@@ -10,11 +10,7 @@ namespace html
 
       cell::cell(::ca::application * papp) :
          ca(papp),
-         data_container(papp),
          user::scroll_view(papp),
-         colorertake5::base_editor(papp),
-         ex1::tree(papp),
-         data_listener(papp),
          user::edit_plain_text(papp),
          html::impl::text(papp)
       {

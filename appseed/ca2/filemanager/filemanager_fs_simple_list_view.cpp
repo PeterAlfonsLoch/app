@@ -805,10 +805,10 @@ namespace filemanager
             _001OnUpdateItemCount(0);
 
             string str;
-            xml::node xml(get_app());
-            if(xml.load(lpszSource))
+            xml::document doc(get_app());
+            if(doc.load(lpszSource))
             {
-               str  = xml.get_xml();
+               str  = doc.get_xml();
             }
             else
             {
@@ -817,9 +817,9 @@ namespace filemanager
             }
 
 
-            m_iParentFolder = xml.attr("id");
+            m_iParentFolder = doc.attr("id");
 
-            xml::node * pnodeFolder = xml.get_child("folder");
+            xml::node * pnodeFolder = doc.get_child("folder");
 
 
             xml::node::base_array childs(get_app());
@@ -832,7 +832,7 @@ namespace filemanager
             for(int i = 0 ; i < pnodeFolder->get_children_count(); i++)
             {
                xml::node * pnodeItem = pnodeFolder->child_at(i);
-               if(pnodeItem->m_strName == "folder")
+               if(pnodeItem->get_name() == "folder")
                {
                   item.m_iParent = m_iParentFolder;
                   item.m_iFolder = pnodeItem->attr("id");
@@ -871,12 +871,12 @@ namespace filemanager
                }
             }
 
-            xml::node * pnodeFile = xml.get_child("file");
+            xml::node * pnodeFile = doc.get_child("file");
 
             for(int i = 0; i < pnodeFile->get_children_count(); i++)
             {
                xml::node * pnodeItem = pnodeFile->child_at(i);
-               if(pnodeItem->m_strName == "file")
+               if(pnodeItem->get_name() == "file")
                {
                   wstrType = pnodeItem->attr("type");
                   item.m_iParent = m_iParentFolder;

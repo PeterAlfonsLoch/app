@@ -1,6 +1,6 @@
 #pragma once
 
-class CRegExp;
+class cregexp;
 
 class ::database::selection;
 class window_redraw_interface;
@@ -483,7 +483,7 @@ namespace user
       point                         m_ptLButtonUp;
       UINT                          m_uiRButtonUpFlags;
       point                         m_ptRButtonUp;
-      CRegExp                       m_reFilter1;
+      cregexp                       m_reFilter1;
       int                           m_iFilter1Step;
       bool                          m_bFilter1;
 

@@ -1547,14 +1547,14 @@ namespace radix
    {
       // 0 => restore, 1=> begin, -1=> end
       ENSURE_ARG(nCode == 0 || nCode == 1 || nCode == -1);
-      ENSURE(afxData.hcurWait != NULL);
-      AfxLockGlobals(CRIT_WAITCURSOR);
+//      ENSURE(afxData.hcurWait != NULL);
+//      AfxLockGlobals(CRIT_WAITCURSOR);
       m_nWaitCursorCount += nCode;
       if (m_nWaitCursorCount > 0)
       {
-         HCURSOR hcurPrev = ::SetCursor(afxData.hcurWait);
-         if (nCode > 0 && m_nWaitCursorCount == 1)
-            m_hcurWaitCursorRestore = hcurPrev;
+         //HCURSOR hcurPrev = ::SetCursor(afxData.hcurWait);
+         //if (nCode > 0 && m_nWaitCursorCount == 1)
+           // m_hcurWaitCursorRestore = hcurPrev;
       }
       else
       {
@@ -1562,7 +1562,7 @@ namespace radix
          m_nWaitCursorCount = 0;     // prevent underflow
          ::SetCursor(m_hcurWaitCursorRestore);
       }
-      AfxUnlockGlobals(CRIT_WAITCURSOR);
+  //    AfxUnlockGlobals(CRIT_WAITCURSOR);
    }
 
 
@@ -2621,7 +2621,7 @@ namespace radix
    }
 
 
-   void application::on_delete(::ca::object * pobject)
+   void application::on_delete(::ca::ca * pobject)
    {
       try
       {

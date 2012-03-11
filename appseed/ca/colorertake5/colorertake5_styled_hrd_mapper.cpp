@@ -28,16 +28,16 @@ void StyledHRDMapper::loadRegionMappings(ex1::byte_input_stream & istream)
   //Document *hrdbase = docbuilder.parse(is);
    string str;
    istream >> str;
-   xml::node hbase(m_papp);
+   xml::document hbase(m_papp);
    hbase.load(str);
-   if(hbase.m_strName != "hrd")
+   if(hbase.get_name() != "hrd")
    {
       throw exception(string("Error loading HRD file"));
    }
 
    for(xml::node *curel = hbase.first_child(); curel; curel = curel->get_next_sibling())
    {
-      if (curel->m_etype == xml::node_element && curel->m_strName == "assign")
+      if (curel->get_type() == xml::node_element && curel->get_name() == "assign")
       {
          string name = (curel)->attr("name");
          if(name.is_empty())

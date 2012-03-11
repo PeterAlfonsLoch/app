@@ -276,6 +276,7 @@ void itoa_dup(char * sz, int i, int iBase)
 
 
 
+
 /*void l64toa_dup(char * sz, __int64 i, __int64 iBase)
 {
    if(i == 0)
@@ -731,6 +732,21 @@ CLASS_DECL_c vsstring itoa_dup(int i)
    char sz[256];
    itoa_dup(sz, i, 10);
    return vsstring(sz);
+}
+
+CLASS_DECL_c vsstring itohex_dup(int i)
+{
+   char sz[256];
+   itoa_dup(sz, i, 16);
+   return vsstring(sz);
+}
+
+CLASS_DECL_c vsstring itohexpad_dup(int i, int iPad)
+{
+   vsstring str = itohex_dup(i);
+   while(iPad > str.length())
+      str = "0" + str;
+   return str;
 }
 
 /*CLASS_DECL_c vsstring i64toa_dup(__int64 i)

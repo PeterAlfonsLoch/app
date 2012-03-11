@@ -1,58 +1,35 @@
 ﻿#include "StdAfx.h"
-#include "html_document.h"
 
 
 html_document::html_document(::ca::application * papp) :
    ca(papp),
-   data_container(papp),
-   document_interface(papp),
-   ::document(papp),
    ::userbase::document(papp)
 {
+
    set_data(new html::data(papp));
    get_html_data()->m_pcallback = this;
    get_html_data()->m_propset["bReplaceEx1"] = true;
+
 }
 
 BOOL html_document::on_new_document()
 {
+
    ::database::client::initialize(get_app());
 
    if (!::userbase::document::on_new_document())
       return FALSE;
 
-   /*string str;
-   data_get("LastOpenedFile", str);
-
-   if(str.get_length() > 0)
-   {
-      return on_open_document(str);
-   }*/
-
-
-
    update_all_views(NULL, 0);
 
-   /*str = "<html>\n";
-   str += "<head>\n";
-   str += "</head>\n";
-   str += "<body>\n";
-   // tag fixer tabjs!!
-   str += "<span>Curitiba, 10 de abril de 2008</span>\n";
+/*
    str += "<h1>Carlos Gustavo Cecyn Lundgren ・minha Vida Eterna, meu Cora鈬o Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!</h1>";
    str += "<h2>Assinado Camilo Sasuke Tsumanuma.</h2>\n";
    str += "<span>htmlapp dedicado ao Carlos Gustavo Cecyn Lundgren!!</span>";
-   str += "<br />";
-   str += "<span>Voc・conhece o ca2?</span>";
-   str += "<br />";
-   str += "<span>Se positivo, entre com seu nome abaixo e clique em enviar!</span>";
-   str += "<br />";
-   str += "<input type=\"text\" />";
-   str += "</body>\n";
-   str += "</html>\n";
-   m_document.load(str);
 */
+
    return TRUE;
+
 }
 
 html_document::~html_document()
@@ -191,4 +168,6 @@ bool html_document::open_document(var varFile)
 {
    return ::userbase::document::get_app();
 }
+
+
 

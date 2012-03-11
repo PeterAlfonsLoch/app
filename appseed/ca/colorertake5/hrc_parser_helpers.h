@@ -97,7 +97,7 @@ public:
   class region* regionsn[NAMED_REGIONS_NUM];
   class region* regione[REGIONS_NUM];
   class region* regionen[NAMED_REGIONS_NUM];
-  CRegExp *start, *end;
+  cregexp *start, *end;
   bool innerRegion, lowPriority, lowContentPriority;
 
 #undef CNAME
@@ -151,7 +151,7 @@ public:
       @param prior Priority of this rule
       @param re Associated regular expression
   */
-  FileTypeChooser(int type, double prior, CRegExp *re){
+  FileTypeChooser(int type, double prior, cregexp *re){
     this->type = type;
     this->prior = prior;
     this->re = re;
@@ -167,11 +167,11 @@ public:
   /** Returns chooser priority */
   double getPrior() const { return prior; };
   /** Returns associated regular expression */
-  CRegExp *getRE() const { return re; };
+  cregexp *getRE() const { return re; };
 private:
   int type;
   double prior;
-  CRegExp *re;
+  cregexp *re;
 };
 
 } // namespace colorertake5

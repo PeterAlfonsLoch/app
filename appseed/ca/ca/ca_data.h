@@ -1,15 +1,19 @@
 #pragma once
 
+
 namespace ca
 {
 
+
    class data_listener;
+   class base_edit;
 
 
    class CLASS_DECL_ca data :
       virtual public ::radix::object
    {
    public:
+
 
       class CLASS_DECL_ca writing :
          public interlocked_long_pulse
@@ -60,6 +64,16 @@ namespace ca
 
 
       virtual void on_update_data(int iHint);
+
+
+      virtual void edit(::ca::base_edit * pbaseedit);
+      template < class EDIT >
+      EDIT * validate_edit(::ca::base_edit * pedit);
+
+
+
    };
 
+
 } // namespace ca
+

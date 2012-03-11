@@ -10,22 +10,19 @@
 #include "xml/xml.h"
 
 
-#include "template/trace.h"
+#include "ca/template/template_trace.h"
 
-
-
-////////////////////////////////////////////////////////////////
-// ca2api
-// Layer level 1
-// Project named ca2api001_00001
-// Namespace ca2
 
 namespace ca2
 {
+
+
    class application;
+
+
 } // namespace ca2
 
-#include "radix/language_string.h"
+
 #include "ca/ca_file_application.h"
 #include "ca/ca_file_system.h"
 #include "ca/ca_dir_application.h"
@@ -49,9 +46,13 @@ namespace ca2
 
 
 #include "ca2_log.h"
-#include "colorertake5/cregexp.h"
-#include "radix/creutil.h"
-#include "radix/datetime_value.h"
+
+
+#include "gen/gen_cregexp.h"
+#include "gen/gen_cregexp_util.h"
+
+
+#include "ca/primitive/datetime/datetime_value.h"
 
 
 #include "ca2_datetime.h"
@@ -59,6 +60,9 @@ namespace ca2
 
 
 #include "ca2_library.h"
+
+
+#include "ca2_xml_data.h"
 
 
 //#include "filehandler/ca2_filehandler.h"

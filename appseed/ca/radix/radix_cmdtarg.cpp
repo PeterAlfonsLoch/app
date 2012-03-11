@@ -437,9 +437,9 @@ void cmd_ui::SetRadio(BOOL bOn)
       // for menu item - use dot instead of checkmark
       ENSURE(m_iIndex < m_iCount);
 
-      if (afxData.hbmMenuDot == NULL)
+/*      if (afxData.hbmMenuDot == NULL)
          _AfxLoadDotBitmap();    // in INIT segment
-
+         */
    }
 }
 
@@ -479,6 +479,7 @@ AFX_STATIC_DATA const BYTE _afxDot[] =
 #define DOT_WIDTH   4
 #define DOT_HEIGHT  5
 
+/*
 AFX_STATIC void _AfxLoadDotBitmap()
 {
    ASSERT(afxData.hbmMenuDot == NULL);
@@ -523,3 +524,4 @@ AFX_STATIC void _AfxLoadDotBitmap()
 }
 
 
+*/

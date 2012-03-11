@@ -1,11 +1,12 @@
 #include "StdAfx.h"
 
+
 namespace ca8
 {
 
+
    keyboard_layout::keyboard_layout(::ca::application * papp) :
       ca(papp),
-      ::ca::data(papp),
       ::user::list_data(papp),
       ::userbase::split_layout(papp),
       ::userbase::view(papp),
@@ -154,15 +155,15 @@ namespace ca8
             }
             else
             {
-               xml::node node(get_app());
-               node.m_strName = "proxy";
-               node.add_attr("server", strServer);
+               xml::document doc(get_app());
+               doc.set_name("proxy");
+               doc.add_attr("server", strServer);
                pguie = m_pview->GetChildByName("port");
                ptext = dynamic_cast < text_interface * > (pguie);
                string strPort;
                ptext->_001GetText(strPort);
-               node.add_attr("port", strPort);
-               Application.file().put_contents(System.dir().appdata("proxy.xml"), node.get_xml());
+               doc.add_attr("port", strPort);
+               Application.file().put_contents(System.dir().appdata("proxy.xml"), doc.get_xml());
             }
          }
       }
@@ -178,11 +179,15 @@ namespace ca8
       pitem->m_bOk = true;
    }
 
-   INT_PTR keyboard_layout::_001GetItemCount()
+   count keyboard_layout::_001GetItemCount()
    {
+
       return m_layoutida.get_size();
+
    }
 
 
-
 } // namespace ca8
+
+
+

@@ -7,9 +7,10 @@ namespace html
 
    class CLASS_DECL_ca2 data :
       virtual public gen::signalizable,
-      virtual public ca::data
+      public ca::data
    {
    public:
+
 
       class CLASS_DECL_ca2 image :
          virtual public ::radix::object
@@ -23,12 +24,14 @@ namespace html
          virtual bool load_image();
       };
 
+
       class CLASS_DECL_ca2 load_image
       {
       public: 
          image * m_pimage;
          data * m_pdocument;
       };
+
 
       class CLASS_DECL_ca2 layout_state
       {
@@ -135,9 +138,27 @@ namespace html
 
 
       font * get_font(elemental * pelemental);
+
    protected:
+
+
       int create_font(elemental * pelemental);
+
+
+   private:
+
+
+      data(const data & ) :
+         ::ca::data(NULL),
+         m_elemental(NULL)
+      {
+      }
+
 
    };
 
+
 } // namespace html
+
+
+

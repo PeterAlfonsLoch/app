@@ -4,20 +4,18 @@
 namespace html
 {
 
+
    namespace impl
    {
 
+
       text::text(::ca::application * papp) :
          ca(papp),
-         data_container(papp),
          user::scroll_view(papp),
-         colorertake5::base_editor(papp),
-         ex1::tree(papp),
-         data_listener(papp),
          user::edit_plain_text(papp)
       {
          m_bLink = false;
-         oprop("send_enter_key") = true;
+         ::user::scroll_view::oprop("send_enter_key") = true;
       }
 
       void text::delete_implementation()
@@ -756,4 +754,7 @@ namespace html
 
    } // namespace impl
 
+
 } // namespace html
+
+

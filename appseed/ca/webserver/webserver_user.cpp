@@ -26,15 +26,15 @@ ca(papp)
 
 void ui_redir::load_xml(const string & pszFileName)
 {
-   xml::node node(get_app());
-   node.load(Application.file().as_string(pszFileName));
-   for(int i = 0; i < node.get_children_count(); i++)
+   xml::document doc(get_app());
+   doc.load(Application.file().as_string(pszFileName));
+   for(int i = 0; i < doc.get_children_count(); i++)
    {
       add(
-         node.child_at(i)->attr("root"),
-         node.child_at(i)->attr("lang"),
-         node.child_at(i)->attr("style"),
-         node.child_at(i)->attr("target"));
+         doc.child_at(i)->attr("root"),
+         doc.child_at(i)->attr("lang"),
+         doc.child_at(i)->attr("style"),
+         doc.child_at(i)->attr("target"));
    }
 }
 

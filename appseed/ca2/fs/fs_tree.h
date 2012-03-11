@@ -4,14 +4,14 @@
 namespace fs
 {
 
+
    class main_view;
 
+
    class CLASS_DECL_ca2 tree :
-      virtual public tree_interface
+      public tree_interface
    {
    public:
-
-
 
 
       tree(::ca::application * papp);
@@ -38,9 +38,12 @@ namespace fs
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
    #endif
+
+
    };
 
 
 } // namespace fs
+
 
 

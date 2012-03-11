@@ -45,6 +45,12 @@
     <Filter Include="Source Files\C Source Files">
       <UniqueIdentifier>{bdda0e49-0b43-48ad-8378-7e5c31eff337}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\os">
+      <UniqueIdentifier>{50811508-299a-4925-a40f-f63b00af7a4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\os">
+      <UniqueIdentifier>{e0507713-d4b9-4d03-b783-b2dc3b1aa752}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="radix.h">
@@ -239,9 +245,6 @@
     <ClInclude Include="windows\c_os_http.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
-    <ClInclude Include="windows\c_os_process.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
     <ClInclude Include="windows\c_os_registry.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
@@ -289,6 +292,15 @@
     </ClInclude>
     <ClInclude Include="bsdiff\bsdiff_private.h">
       <Filter>Header Files\bsdiff</Filter>
+    </ClInclude>
+    <ClInclude Include="os\os_process.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="os\os.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_list.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -534,6 +546,12 @@
     </ClCompile>
     <ClCompile Include="windows\c_os.cpp">
       <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\os_process.cpp">
+      <Filter>Source Files\os</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_list.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

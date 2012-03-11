@@ -1,12 +1,14 @@
 #include "StdAfx.h"
 
+
 namespace simpledb
 {
+
 
    base::base(::ca::application * papp) :
       ca(papp),
       m_spfileMeta(papp),
-      m_nodeMeta(papp)
+      m_xmldocumentMeta(papp)
    {
    }
 
@@ -35,7 +37,7 @@ namespace simpledb
          }
       }
 
-      if(!m_nodeMeta.load(m_spfileMeta))
+      if(!m_xmldocumentMeta.load(m_spfileMeta))
          return DB_ERROR;
 
       return DB_COMMAND_OK;

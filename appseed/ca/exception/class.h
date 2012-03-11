@@ -42,9 +42,9 @@ public:
    {
    }
 
-   static string get(unsigned int uiSkip = 2)
+   static vsstring get(unsigned int uiSkip = 2)
    {
-      string str;
+      vsstring str;
 #ifndef _AMD64_
       if(!IsWow64())
       {
@@ -56,7 +56,7 @@ public:
 
    const char * stack_trace() const { return m_str; }
 private:
-   string m_str;
+   vsstring m_str;
 };
 
 

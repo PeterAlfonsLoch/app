@@ -7,9 +7,6 @@ namespace calculator
 
    document::document(::ca::application * papp) :
       ca(papp),
-      data_container(papp),
-      document_interface(papp),
-      ::document(papp),
       ::userbase::document(papp)
    {
    }
@@ -85,9 +82,13 @@ namespace calculator
 
    bool document::on_open_document(var varFile)
    {
+
+
       string str = Application.file().as_string(varFile);
       update_all_views(NULL, 123);
       return TRUE;
+
+
    }
 
 

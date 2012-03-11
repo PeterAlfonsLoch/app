@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "template/trace_module_manager.h"
+#include "ca/template/template_trace_module_manager.h"
 #include "user/user_str.h"
 #include "user/user_draw_context.h"
 #include "multithreading/multithreading.h"
@@ -489,7 +489,7 @@ namespace radix
       ::user::str_context * str_context();
 
       using pha(::user::interaction)::on_delete;
-      virtual void on_delete(::ca::object * pobject);
+      virtual void on_delete(::ca::ca * pobject);
 
       virtual bool open_link(const char * pszLink, const char * pszTarget = NULL);
 

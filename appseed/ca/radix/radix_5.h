@@ -12,8 +12,8 @@
 #define WM_VIEW (WM_USER + 1023)
 
 
-#include "template/base.h"
-#include "constraint.h"
+#include "ca/template/template_base.h"
+#include "radix_constraint.h"
 
 #ifdef _WINDOWS
 #ifndef _INC_SHELLAPI
@@ -23,8 +23,6 @@
 
 #include "collection/collection.h"
 
-
-#include "simple_list.h"
 
 // Avoid mapping GetFileTitle to GetFileTitle[A/W]
 #ifdef GetFileTitle
@@ -200,8 +198,8 @@ CLASS_DECL_ca void AfxDrawDitheredBitmap(::ca::application * papp, ::ca::graphic
 
 #include "visual/visual_00.h"
 
-#include "command.h"
-#include "command_target.h"
+#include "radix_command.h"
+#include "radix_command_target.h"
 
 
 typedef UINT (AFX_CDECL *AFX_THREADPROC)(LPVOID);
@@ -405,4 +403,3 @@ CLASS_DECL_ca BOOL AfxExtractSubString(string & rString, const char * lpszFullSt
 
 #include "ca/ca_system.h"
 
-#include "implementation.h"

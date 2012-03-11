@@ -10,7 +10,7 @@ match_host::match_host(const char * hostname, const char * useragent)
    m_strUserAgent = useragent;
    if(m_strHostname.has_char())
    {
-      m_ppcreHostname = PcreUtil::CompileExpression(m_strHostname, true);
+      m_ppcreHostname = cregexp_util::CompileExpression(m_strHostname, true);
    }
    else
    {
@@ -18,7 +18,7 @@ match_host::match_host(const char * hostname, const char * useragent)
    }
    if(m_strUserAgent.has_char())
    {
-      m_ppcreUserAgent = PcreUtil::CompileExpression(m_strUserAgent, true);
+      m_ppcreUserAgent = cregexp_util::CompileExpression(m_strUserAgent, true);
    }
    else
    {
@@ -47,7 +47,7 @@ bool match_host::matches(const char * hostname, const char * useragent)
    if(m_ppcreHostname != NULL)
    {
       bTest = true;
-      if(!PcreUtil::match(hostname, m_ppcreHostname))
+      if(!cregexp_util::match(hostname, m_ppcreHostname))
       {
          return false;
       }
@@ -55,7 +55,7 @@ bool match_host::matches(const char * hostname, const char * useragent)
    if(m_ppcreUserAgent != NULL)
    {
       bTest = true;
-      if(!PcreUtil::match(useragent, m_ppcreUserAgent))
+      if(!cregexp_util::match(useragent, m_ppcreUserAgent))
       {
          return FALSE;
       }

@@ -8,7 +8,7 @@ namespace ex1
    class tree_data;
 
    class CLASS_DECL_ca tree :
-      virtual public ::ca::data_container
+      public ::ca::data_container
    {
    protected:
 

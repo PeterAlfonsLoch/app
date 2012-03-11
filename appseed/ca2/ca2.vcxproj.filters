@@ -29,9 +29,6 @@
     <Filter Include="Header Files\srtp">
       <UniqueIdentifier>{f868bd88-2d94-49e9-b5a0-91549c0b702f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\radix">
-      <UniqueIdentifier>{73da3119-f42b-4298-899f-8ababe96c63f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\gcom">
       <UniqueIdentifier>{0ad258e3-3c14-4dbf-85de-239192cf9365}</UniqueIdentifier>
     </Filter>
@@ -653,9 +650,6 @@
     <ClInclude Include="html\html_view_update_hint.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
-    <ClInclude Include="html\image.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
     <ClInclude Include="html\input_button.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
@@ -684,9 +678,6 @@
       <Filter>Header Files\html</Filter>
     </ClInclude>
     <ClInclude Include="html\table_row.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\text.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
     <ClInclude Include="mail\application.h">
@@ -802,231 +793,6 @@
     </ClInclude>
     <ClInclude Include="srtp\srtp_priv.h">
       <Filter>Header Files\srtp</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\allocate.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\base.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\BSTR.H">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\cafxdllx.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\class_sort_array.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\command.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\command_target.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\common.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\comparable.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\composite.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\constraint.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\contact_list.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\conv.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\conversion.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\create_context.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\data_exchange.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\datetime_value.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\dbimpl.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\dd_.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\debug.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\debug_stream.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\DispatchPtrArray.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\dispimpl.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\dll_.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\document.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\document_template.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\elements.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\factory.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\field_definition.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\fixed_alloc.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\flags.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\frame_window.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\fspath.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\go_thread.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\hh.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\html_file.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\id.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\id_space.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\implementation.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\index.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\install.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\int_biunique.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\kbase.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\keep_ptr.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\language_string.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\machine_event_central.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\packset.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\pipe.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\plex.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\preview_dc.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\priv.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\priv2.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\process_data.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\PushingRoutingFrame.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\Resource.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\se_exception.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\se_translator.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\sensitive_ptr.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\service.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\simple_list.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\simple_thread.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\single_document_template.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\sockets.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\specialty.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\spreadset.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\SymEngine.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\this_build_number.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\types.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\unhandled_report.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\userset.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\util.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\veriwell_musical_studio.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\vms.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\wait_cursor.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\win_registry.h">
-      <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="gcom\gcom.h">
       <Filter>Header Files\gcom</Filter>
@@ -1223,12 +989,6 @@
     <ClInclude Include="sockets\smtpd_socket.h">
       <Filter>Header Files\sockets\SMTP</Filter>
     </ClInclude>
-    <ClInclude Include="radix\inline.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\creutil.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="sockets\sip_base_client_socket.h">
       <Filter>Header Files\sockets\SIP framework</Filter>
     </ClInclude>
@@ -1309,15 +1069,6 @@
     </ClInclude>
     <ClInclude Include="window_frame\FrameSchemaHardCoded008.h">
       <Filter>Header Files\window_frame</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_2.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_1.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_5.h">
-      <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="calculator\frame.h">
       <Filter>Header Files\calculator</Filter>
@@ -1529,9 +1280,6 @@
     <ClInclude Include="userbase\simple_document.h">
       <Filter>Header Files\userbase</Filter>
     </ClInclude>
-    <ClInclude Include="os_history.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_plain_text_data.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -1547,9 +1295,6 @@
     <ClInclude Include="sockets\sync_socket_handler.h">
       <Filter>Header Files\sockets\Basic Sockets</Filter>
     </ClInclude>
-    <ClInclude Include="radix\pointer_object.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="html\data.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
@@ -1558,12 +1303,6 @@
     </ClInclude>
     <ClInclude Include="filemanager\filemanager_document.h">
       <Filter>Header Files\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\heap.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\plex_heap.h">
-      <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="filemanager\filemanager_iconoverlayer.h">
       <Filter>Header Files\filemanager</Filter>
@@ -1576,15 +1315,6 @@
     </ClInclude>
     <ClInclude Include="userex\userex_second_list_view.h">
       <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_os_history.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_object.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_application.h">
-      <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="bergedge\bergedge_document.h">
       <Filter>Header Files\bergedge</Filter>
@@ -1669,15 +1399,6 @@
     </ClInclude>
     <ClInclude Include="sockets\http_request_socket.h">
       <Filter>Header Files\sockets\HTTP Sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_system.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_thread.h">
-      <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="cube1\cube1.h">
       <Filter>Header Files\cube1</Filter>
@@ -1913,13 +1634,16 @@
     <ClInclude Include="filemanager\filemanager_folder_list_data.h">
       <Filter>Header Files\filemanager</Filter>
     </ClInclude>
+    <ClInclude Include="html\html_text.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_image.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca2.def">
       <Filter>Source Files</Filter>
-    </None>
-    <None Include="radix\radix.inl">
-      <Filter>Header Files\radix</Filter>
     </None>
     <None Include="user\user_interaction.inl">
       <Filter>Header Files\user</Filter>

@@ -1,8 +1,8 @@
 #include "StdAfx.h"
-#include "BSTR.h"
+#include "radix_bstr.h"
 #include <comdef.h>
 
-void CBSTR::copy(BSTR &bstrDest, const BSTR bstrSrc)
+void bstr::copy(BSTR &bstrDest, const BSTR bstrSrc)
 {
    if(bstrSrc == NULL)
    {
@@ -24,19 +24,19 @@ void CBSTR::copy(BSTR &bstrDest, const BSTR bstrSrc)
 
 }
 
-void CBSTR::copy(string &strDest, const BSTR bstrSrc)
+void bstr::copy(string &strDest, const BSTR bstrSrc)
 {
    _bstr_t bstrt(bstrSrc);
    strDest = (LPTSTR) bstrt;
 }
 
-void CBSTR::copy( BSTR &bstrDest, const string &strSrc )
+void bstr::copy( BSTR &bstrDest, const string &strSrc )
 {
    _bstr_t bstrt(strSrc);
    bstrDest = bstrt;
 }
 
-bool CBSTR::IsEqual(const BSTR bstrA, const BSTR bstrB)
+bool bstr::IsEqual(const BSTR bstrA, const BSTR bstrB)
 {
    _bstr_t bstr1(bstrA);
    _bstr_t bstr2(bstrB);

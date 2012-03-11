@@ -9,7 +9,8 @@ namespace primitive
 
 
    class CLASS_DECL_ca memory_base :
-      virtual public ex1::byte_serializable
+      public ::radix::object,
+      public ex1::byte_serializable
    {
    public:
 

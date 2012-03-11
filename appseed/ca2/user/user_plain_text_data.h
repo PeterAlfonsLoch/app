@@ -4,7 +4,7 @@ namespace user
 {
 
    class CLASS_DECL_ca2 plain_text_data :
-      virtual public ex1::tree_data
+      public ex1::tree_data
    {
    public:
 
@@ -87,9 +87,18 @@ namespace user
       void SetFile(ex1::file * pfile);
 
 
+   private:
 
+      plain_text_data(const plain_text_data & ) :
+         m_editfile(NULL),
+         ex1::tree_data(NULL)
+      {
+      }
 
    };
 
+
 } // namespace user
+
+
 

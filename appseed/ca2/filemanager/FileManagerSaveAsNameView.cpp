@@ -1,28 +1,16 @@
 #include "StdAfx.h"
-#include "FileManagerViewUpdateHint.h"
+
 
 FileManagerSaveAsView::FileManagerSaveAsView(::ca::application * papp) : 
    ca(papp),
-   ::ca::data_container(papp),
-   ::user::edit_plain_text(papp),
-   ::userbase::edit_plain_text(papp),
    ::userbase::edit_plain_text_view(papp),
    ::user::interaction(papp), 
    ::userbase::view(papp),
-   ::user::scroll_view(papp), 
-   ::colorertake5::base_editor(papp),
-   ex1::tree(papp),
-   ::ca::data_listener(papp)
+   ::user::scroll_view(papp)
 {
 
-   LOGFONT lf;
-   memset(&lf, 0, sizeof(lf));
-   strcpy(lf.lfFaceName, "Arial");
-   lf.lfHeight = 16;
-
-   m_font->CreateFontIndirect(&lf);
-
    m_bVoidSync = false;
+
 }
 
 void FileManagerSaveAsView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
@@ -118,8 +106,11 @@ void FileManagerSaveAsView::_017Synchronize()
 
 void FileManagerSaveAsView::_001OnAfterChangeText()
 {
+   
    string str;
+   
    _001GetText(str);
+
    if(Application.dir().is(str))
    {
       GetFileManager()->FileManagerBrowse(str);
@@ -142,5 +133,9 @@ void FileManagerSaveAsView::_001OnAfterChangeText()
             break;
       }
    }
+
    GetFileManager()->m_strTopic = str;
+
 }
+
+

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base_exception.h"
+
+
 class CLASS_DECL_ca simple_exception : 
    public base_exception
 {

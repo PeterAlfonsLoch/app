@@ -10,8 +10,8 @@ namespace webserver
    public:
       string m_strHostname;
       string m_strUserAgent;
-      CRegExp * m_ppcreHostname;
-      CRegExp * m_ppcreUserAgent;
+      cregexp * m_ppcreHostname;
+      cregexp * m_ppcreUserAgent;
 
       match_host(const char * hostname, const char * useragent = NULL);
       virtual ~match_host();

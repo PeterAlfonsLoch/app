@@ -31,8 +31,8 @@ namespace html
 #include "style_sheet_array.h"
 #include "elemental.h"
 
-#include "text.h"
-#include "image.h"
+#include "html_text.h"
+#include "html_image.h"
 
 #include "input_button.h"
 #include "input_check_box.h"

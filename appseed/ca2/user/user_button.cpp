@@ -8,7 +8,8 @@ namespace user
 
    button::button(::ca::application * papp) :
       ca(papp),
-      ::user::interaction(papp)
+      ::user::interaction(papp),
+      m_istrButtonText(papp)
    {
       m_iHover    = -1;
       m_bEnabled  = true;
@@ -39,7 +40,8 @@ namespace user
 
    void button::_001OnDraw(::ca::graphics * pdc)
    {
-      string str(m_langstrButtonText.get(get_app()));
+      
+      string strText(m_istrButtonText);
 
       pdc->SelectObject(_001GetFont());
 
@@ -50,12 +52,12 @@ namespace user
          if(m_iHover == 0)
          {
             pdc->FillSolidRect(rectClient, ARGB(255, 127, 127, 127));
-            pdc->SetTextColor(RGB(0, 100, 255));
+            pdc->SetTextColor(ARGB(255, 0, 100, 255));
          }
          else
          {
             pdc->FillSolidRect(rectClient, ARGB(255, 127, 127, 127));
-            pdc->SetTextColor(RGB(0, 0, 0));
+            pdc->SetTextColor(ARGB(255, 0, 0, 0));
          }
       }
       else
@@ -91,7 +93,9 @@ namespace user
             pdc->SetTextColor(m_pschema->m_crTextNormal);
          }
       }
-      pdc->DrawText(str, m_rectText, DT_LEFT | DT_TOP);
+
+      pdc->DrawText(strText, m_rectText, DT_LEFT | DT_TOP);
+
    }
 
    void button::_001OnLButtonDown(gen::signal_object * pobj)
@@ -227,12 +231,12 @@ namespace user
 
    void button::_001SetButtonText(const char * lpcszText)
    {
-      m_langstrButtonText.set_text(lpcszText);
+      m_istrButtonText = lpcszText;
    }
 
    void button::_001SetButtonTextId(const char * lpcszText)
    {
-      m_langstrButtonText.set_text_id(lpcszText);
+      m_istrButtonText = lpcszText;
    }
 
 
@@ -309,17 +313,20 @@ namespace user
 
    string button::_001GetButtonText()
    {
-      return m_langstrButtonText.get(get_app());
+      return m_istrButtonText;
    }
 
 
    void button::VirtualOnSize()
    {
+      
       _001Layout();
+
    }
 
    bool button::create_control(class control::descriptor * pdescriptor)
    {
+      
       if(!create(
          NULL,
          NULL,
@@ -331,17 +338,27 @@ namespace user
          TRACE("Failed to create control");
          return false;
       }
+
       return control::create_control(pdescriptor);
+
+
    }
 
    int button::get_hover()
    {
+      
+      
       POINT pt;
       // netshare
       // System.get_cursor_position(&pt);
       System.get_cursor_pos(&pt);
       e_element eelement;
       return hit_test(pt, eelement);
+
+
    }
 
+
 } // namespace user
+
+

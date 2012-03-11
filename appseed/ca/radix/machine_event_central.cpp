@@ -53,15 +53,15 @@ void machine_event_central::command(xml::node * pnode)
    mutex_lock lockMachineEvent(&m_machineevent.m_mutex, true);
    machine_event_data data;
    m_machineevent.read(&data);
-   xml::node node(get_app());
+   xml::document doc(get_app());
    if(data.m_blobCommand.m_pchData != NULL)
    {
-      node.load(data.m_blobCommand.m_pchData);
+      doc.load(data.m_blobCommand.m_pchData);
    }
-   if(node.m_strName.is_empty())
-      node.m_strName = "command";
-   node.add_child(pnode);
-   data.m_blobCommand = node.get_xml();
+   if(doc.get_name().is_empty())
+      doc.set_name("command");
+   doc.add_child(pnode);
+   data.m_blobCommand = doc.get_xml();
    m_machineevent.write(&data);
    Sleep(484);
 }

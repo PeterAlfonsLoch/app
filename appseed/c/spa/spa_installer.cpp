@@ -1886,8 +1886,8 @@ install_begin:;
          vsstring strStage;
          strStage = dir::path(dir::beforeca2(),strExec.substr(16));
          #ifdef _WINDOWS
-         ::ShellExecute(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
-         ::ShellExecute(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : install usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
+//         ::ShellExecute(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
+  //       ::ShellExecute(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : install usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
          #else
          throw "TODO";
          #endif
@@ -1901,7 +1901,7 @@ install_begin:;
          strStage = dir::path(dir::beforeca2(), "ca2");
          strStage = dir::path(strStage, str3);
          #ifdef _WINDOWS
-         ::ShellExecute(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
+//         ::ShellExecute(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
          #else
          throw "TODO";
          #endif
@@ -2885,7 +2885,9 @@ install_begin:;
 #else
       char * psz = br_find_exe("app-install");
 #endif
-      call_sync(psz, param);
+
+      call_sync(psz, param, NULL, SW_HIDE, -1, 84, NULL, 0);
+
 #if defined(WINDOWS)
       ca2_free(psz);
 #else

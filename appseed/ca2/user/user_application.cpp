@@ -44,7 +44,7 @@ namespace ca2
          if(is_cube())
          {
             System.factory().cloneable_small < int_biunique > ();
-            System.factory().cloneable_small < ::user::edit_plain_text > ();
+            System.factory().creatable_small < ::user::edit_plain_text > ();
             System.factory().cloneable_small < XfplayerViewLine > ();
             System.factory().creatable_small < ::user::place_holder > ();
             System.factory().creatable_small < ::user::place_holder_container > ();

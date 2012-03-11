@@ -1,9 +1,8 @@
 #pragma once
 
 
-#include "ca/ca_object.h"
-
 class var;
+
 
 namespace ca
 {
@@ -31,7 +30,7 @@ namespace ex1
 
 
    class CLASS_DECL_ca request_interface :
-      virtual public ::ca::object
+      virtual public ::ca::ca
    {
    public:
 

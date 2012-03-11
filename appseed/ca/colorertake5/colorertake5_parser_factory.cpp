@@ -29,7 +29,7 @@ void ParserFactory::init()
    }
 
    xml::node * catalog = document.get_root();
-   if(catalog == NULL || catalog->m_strName != "catalog")
+   if(catalog == NULL || catalog->get_name() != "catalog")
    {
       throw ParserFactoryException(string("bad catalog structure"));
    }
@@ -38,7 +38,7 @@ void ParserFactory::init()
    while(elem != NULL)
    {
       // hrc locations
-      if (elem->m_etype == xml::node_element && elem->m_strName == "hrc-sets")
+      if (elem->get_type() == xml::node_element && elem->get_name() == "hrc-sets")
       {
          string logLocation = (elem)->attr("log-location");
 
@@ -54,7 +54,7 @@ void ParserFactory::init()
          xml::node *loc = elem->first_child();
          while(loc != NULL)
          {
-            if(loc->m_etype == xml::node_element && loc->m_strName == "location")
+            if(loc->get_type() == xml::node_element && loc->get_name() == "location")
             {
                hrcLocations.add((const char *) (loc)->attr("link"));
             }
@@ -62,12 +62,12 @@ void ParserFactory::init()
          }
       }
       // hrd locations
-      else if (elem->m_etype == xml::node_element && elem->m_strName == "hrd-sets")
+      else if (elem->get_type() == xml::node_element && elem->get_name() == "hrd-sets")
       {
          xml::node *hrd = elem->first_child();
          while(hrd != NULL)
          {
-            if(hrd->m_etype == xml::node_element && hrd->m_strName == "hrd")
+            if(hrd->get_type() == xml::node_element && hrd->get_name() == "hrd")
             {
                string hrd_class = (hrd)->attr("class");
                string hrd_name = (hrd)->attr("name");
@@ -87,7 +87,7 @@ void ParserFactory::init()
                xml::node *loc = hrd->first_child();
                while(loc != NULL)
                {
-                  if(loc->m_etype == xml::node_element && loc->m_strName == "location")
+                  if(loc->get_type() == xml::node_element && loc->get_name() == "location")
                   {
                      hrdLocV.add((const char *) loc->attr("link"));
                   }

@@ -11,7 +11,6 @@ namespace ca2
 
       tree_interface::tree_interface(::ca::application * papp) :
          ca(papp),
-         data_container(papp),
          ex1::tree(papp)
       {
          

@@ -7,7 +7,6 @@ namespace mail
 
    tree_data::tree_data(::ca::application * papp) :
       ca(papp),
-      ::ca::data(papp),
       ex1::tree_data(papp)
    {
    }
@@ -25,3 +24,5 @@ namespace mail
 
 
 } // namespace mail
+
+

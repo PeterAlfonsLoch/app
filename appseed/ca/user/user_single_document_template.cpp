@@ -230,8 +230,6 @@ void single_document_template::dump(dump_context & dumpcontext) const
 void single_document_template::assert_valid() const
 {
    document_template::assert_valid();
-   if (m_pdocument)
-      ASSERT_VALID(m_pdocument);
 }
 #endif //_DEBUG
 

@@ -6,7 +6,7 @@ namespace fs
 
 
    class CLASS_DECL_ca2 tree_interface :
-      virtual public ::user::tree
+      public ::user::tree
    {
    public:
 
@@ -81,6 +81,8 @@ namespace fs
       DECL_GEN_SIGNAL(_001OnTimer)
 
    protected:
+
+
       void _StartDelayedListUpdate(void);
       void _StopDelayedListUpdate(void);
       void _DelayedListUpdate(void);

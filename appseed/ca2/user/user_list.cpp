@@ -4399,7 +4399,7 @@ namespace user
             {
                item.m_strText.make_lower();
                item.m_strText.replace("_", " ");
-               if(PcreUtil::match(item.m_strText, &m_reFilter1))
+               if(cregexp_util::match(item.m_strText, &m_reFilter1))
                {
                   if(m_eview == ViewIcon)
                   {

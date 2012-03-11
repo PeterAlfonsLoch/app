@@ -4,27 +4,29 @@
 #include "ca/ex2/ex2.h"
 
 
-#include "enum.h"
+#include "xml_enum.h"
 
 #include "XMLite.h"
 
-#include "entity.h"
-#include "disp_option.h"
-#include "parse_info.h"
-#include "attr.h"
-#include "node.h"
-#include "document.h"
-#include "exportable.h"
-#include "importable.h"
-#include "tree_schema.h"
-#include "var_exchange.h"
-#include "tree_base.h"
-#include "output_tree.h"
-#include "input_tree.h"
-#include "property_exchange.h"
-#include "base_array.h"
-#include "XMLite.h"
+#include "xml_entity.h"
+#include "xml_disp_option.h"
+#include "xml_parse_info.h"
+#include "xml_attr.h"
+#include "xml_node.h"
+#include "xml_document.h"
+#include "xml_exportable.h"
+#include "xml_importable.h"
+#include "xml_tree_schema.h"
+#include "xml_var_exchange.h"
+#include "xml_tree_base.h"
+#include "xml_output_tree.h"
+#include "xml_input_tree.h"
+#include "xml_property_exchange.h"
+#include "xml_base_array.h"
 
 
-#include "application.h"
+#include "xml_edit.h"
+
+
+#include "xml_application.h"
 

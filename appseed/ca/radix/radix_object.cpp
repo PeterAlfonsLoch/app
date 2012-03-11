@@ -58,10 +58,6 @@ namespace radix
 
    object & object::operator=(const object& objectSrc)
    {
-      if(this != &objectSrc)
-      {
-         gen::object::operator =(objectSrc);
-      }
       return *this;
    }
 
@@ -86,11 +82,11 @@ namespace radix
       ::visual::icon * piconOld = get_icon(bBigIcon);
       if(bBigIcon)
       {
-         oprop("big_icon").operator =((::ca::object *) picon);
+         oprop("big_icon").operator =((::ca::ca *) picon);
       }
       else
       {
-         oprop("small_icon").operator =((::ca::object *) picon);
+         oprop("small_icon").operator =((::ca::ca *) picon);
       }
       return piconOld;
    }

@@ -1,21 +1,23 @@
 #include "StdAfx.h"
 
+
 namespace filemanager
 {
+
 
    namespace fs
    {
 
+
       namespace simple
       {
 
+
          tree_view::tree_view(::ca::application * papp) :
             ca(papp),
-            ::ca::data_container(papp),
             ::userbase::view(papp),
             ::user::scroll_view(papp),
-            ::user::tree(papp),
-            ex1::tree(papp)
+            ::user::tree(papp)
          {
 
             m_etranslucency = TranslucencyPresent;
@@ -49,10 +51,10 @@ namespace filemanager
          void tree_view::parse(const char * lpszSource)
          {
             string str;
-            xml::node xml(get_app());
-            if(xml.load(lpszSource))
+            xml::document doc(get_app());
+            if(doc.load(lpszSource))
             {
-               str  = xml.get_xml();
+               str  = doc.get_xml();
             }
             else
             {
@@ -60,7 +62,7 @@ namespace filemanager
                return;
             }
 
-            m_iParentFolder = xml.attr("id");
+            m_iParentFolder = doc.attr("id");
 
             ::ex1::tree_item * pdataitemParent;
             ::ex1::tree_item * pdataitemChild;
@@ -78,7 +80,7 @@ namespace filemanager
             // method 3: Selected Childs with GetChilds()
             // Result: Person, Person, Person
             index iNode = 0;
-            xml::node * pnodeFolder = xml.get_child("folder");
+            xml::node * pnodeFolder = doc.get_child("folder");
 
 
    //         xml::node::base_array childs(get_app());
@@ -235,4 +237,6 @@ namespace filemanager
 
 
 } // namespace mplite
+
+
 

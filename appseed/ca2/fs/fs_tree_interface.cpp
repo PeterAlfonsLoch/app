@@ -7,10 +7,8 @@ namespace fs
 
    tree_interface::tree_interface(::ca::application * papp) :
       ca(papp),
-      ::ca::data_container(papp),
       ::user::scroll_view(papp),
-      ::user::tree(papp),
-      ex1::tree(papp)
+      ::user::tree(papp)
    {
       m_dataid = "filemanager::fs::tree_interface";
 
@@ -782,6 +780,7 @@ namespace fs
    {
       return dynamic_cast < ::fs::tree_data * > (::ex1::tree::get_data());
    }
+
 
 } // namespace fs
 

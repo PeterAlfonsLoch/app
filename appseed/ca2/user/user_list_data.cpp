@@ -1,11 +1,12 @@
 #include "StdAfx.h"
 
+
 namespace user
 {
 
+
    simple_list_data::simple_list_data(::ca::application * papp) :
       ca(papp),
-      ::ca::data(papp),
       ::user::list_data(papp)
    {
       m_bEnable = true;
@@ -112,10 +113,15 @@ namespace user
 
    INT_PTR simple_list_data::_001GetItemCount()
    {
+
       if(m_array.get_size() <= 0)
          return 0;
       else
          return m_array[0].get_size();
+
    }
 
+
 } // namespace user
+
+

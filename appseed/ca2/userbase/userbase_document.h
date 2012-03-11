@@ -11,7 +11,7 @@ namespace userbase
 
 
    class CLASS_DECL_ca2 document : 
-      virtual public ::document,
+      public ::document,
       virtual public ::database::client
    {
    public:
@@ -29,6 +29,7 @@ namespace userbase
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
          
       friend class ::userbase::document_template;
+
 
    };
 

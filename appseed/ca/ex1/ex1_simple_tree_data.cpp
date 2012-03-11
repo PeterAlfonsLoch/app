@@ -7,8 +7,7 @@ namespace ex1
 
    simple_tree_data::simple_tree_data(::ca::application * papp) :
       ca(papp),
-      ex1::tree_data(papp),
-      data(papp)
+      ex1::tree_data(papp)
    {
    }
 

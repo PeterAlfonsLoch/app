@@ -1,50 +1,29 @@
 #include "StdAfx.h"
 
+
 int cube_run(const char * id)
 {
 
-   int iLenBuf = 1024 * 16;
-   char lpszDir[MAX_PATH * 3];
-   char * lpszFile = (char *) ca2_alloc(iLenBuf);
+   vsstring strDir;
+   vsstring strFile;
 
-   strcpy_dup(lpszDir, dir::ca2());
-   strcat_dup(lpszDir, "\\stage");
 #ifdef _X86_
-   strcat_dup(lpszDir, "\\x86");
+   strDir = dir::ca2("\\stage\\x86");
 #else
-   strcat_dup(lpszDir, "\\x64");
-#endif
-   strcpy_dup(lpszFile, lpszDir);
-   strcat_dup(lpszFile, "\\app.exe");
-
-   char param[MAX_PATH];
-
-   strcpy_dup(param, ": app=");
-   strcat_dup(param, id);
-
-   #if defined(_WINDOWS)
-
-   SHELLEXECUTEINFOA infoa;
-
-   memset_dup(&infoa, 0, sizeof(infoa));
-
-   infoa.cbSize            = sizeof(infoa);
-   infoa.lpFile            = lpszFile;
-   infoa.lpParameters      = param;
-#ifdef _X86_
-   infoa.lpDirectory       = dir::ca2("stage\\x86");
-#else
-   infoa.lpDirectory       = dir::ca2("stage\\x64");
+   strDir = dir::ca2("\\stage\\x64");
 #endif
 
+   strFile = strDir;
+   strFile += "\\app.exe";
 
-   ::ShellExecuteExA(&infoa);
-   #else
+   vsstring strParam;
 
-      throw 0;
+   strParam = ": app=";
+   strParam += id;
 
-   #endif
+   call_async(strFile, strParam, strDir, SW_SHOW);
 
    return 0;
 
 }
+

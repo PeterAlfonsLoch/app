@@ -6,7 +6,7 @@ namespace ca
 
 
    class CLASS_DECL_ca exception :
-      virtual public ::gen::object
+      virtual public ::ca::ca
    {
    public:
 

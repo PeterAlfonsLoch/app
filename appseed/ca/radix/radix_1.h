@@ -185,12 +185,6 @@ class dump_context;
 
 
 
-#include "composite.h"
-#include "comparable.h"
-
-#include "gen/gen_ptri.h"
-#include "gen/gen_object.h"
-
 #include "template/template_c_number.h"
 #include "multithreading/multithreading_sync_object_base.h"
 #include "ca/primitive/primitive.h"
@@ -236,7 +230,7 @@ class dump_context;
 
 #endif
 
-#include "inline.h"
+#include "radix.inl"
 
 
 #undef AFX_DATA
@@ -248,7 +242,7 @@ class dump_context;
 #endif
 
 
-#include "allocate.h"
+#include "radix_allocate.h"
 
 #include "pointer_object.h"
 #include "plex.h"
@@ -258,10 +252,9 @@ class dump_context;
 
 #include "plex_heap.h"
 
+
 #include "gen/gen_holder.h"
-
-#include "base.h"
-
+#include "radix_base.h"
 
 
 #include "ca/ca_interlocked_long.h"
@@ -272,6 +265,8 @@ class dump_context;
 #include "ca/ca_data.h"
 #include "ca/ca_data_container.h"
 #include "ca/ca_data_listener.h"
+
+#include "ca/ca_edit.h"
 
 #include "ca/ca_type_info.h"
 #include "radix_factory.h"

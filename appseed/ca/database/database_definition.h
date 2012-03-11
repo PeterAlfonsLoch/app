@@ -133,7 +133,8 @@ namespace database
    typedef ::ex1::byte_serializable_array < base_array < field_properties, field_properties & > > record_properties;
 
    class CLASS_DECL_ca result_set :
-      virtual public ::ex1::byte_serializable
+      public ::radix::object,
+      public ::ex1::byte_serializable
    {
    public:
 

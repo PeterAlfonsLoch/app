@@ -4,15 +4,17 @@
 
 document::document(::ca::application * papp) :
    ca(papp),
-   data_container(papp),
    document_interface(papp)
 {
+
    m_pdocumentemplate      = NULL;
    m_bModified             = FALSE;
    m_bAutoDelete           = TRUE;       // default to auto delete document
    m_bEmbedded             = FALSE;        // default to file-based document
    m_bNew                  = false;
+
    ASSERT(m_viewptra.is_empty());
+
 }
 
 document::~document()
@@ -34,8 +36,6 @@ document::~document()
 
 void document::on_final_release()
 {
-   ASSERT_VALID(this);
-
    on_close_document();  // may 'delete this'
 }
 
@@ -227,7 +227,6 @@ void document::set_path_name(var varFile, BOOL bAddToMRU)
    m_strPathName = strFullPath;
    ASSERT(!m_strPathName.is_empty());       // must be set to something
    m_bEmbedded = FALSE;
-   ASSERT_VALID(this);
 
    // set the document title based on path name
    string strTitle;

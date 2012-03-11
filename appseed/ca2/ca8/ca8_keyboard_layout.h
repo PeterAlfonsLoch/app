@@ -1,12 +1,14 @@
 #pragma once
 
+
 namespace ca8
 {
+
 
    class CLASS_DECL_ca2 keyboard_layout :
       virtual public ::userbase::split_view,
       virtual public ::user::form_callback,
-      virtual public ::user::list_data
+      public ::user::list_data
    {
    public:
 
@@ -30,7 +32,24 @@ namespace ca8
 
       virtual INT_PTR _001GetItemCount();
 
+
+   private:
+
+
+      keyboard_layout(const keyboard_layout & ) :
+         ::userbase::view(NULL),
+         ::user::place_holder_container(NULL),
+         ::userbase::split_layout(NULL),
+         ::userbase::split_view(NULL),
+         ::user::list_data(NULL)
+      {
+      }
+
+
    };
 
 
 } // namespace ca8
+
+
+

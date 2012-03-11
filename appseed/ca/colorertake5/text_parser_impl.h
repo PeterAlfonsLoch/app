@@ -68,7 +68,7 @@ namespace colorertake5
 
       index searchKW(const SchemeNode *node, index no, index lowLen, index hiLen);
       index searchRE(scheme_impl *cscheme, index no, index lowLen, index hiLen);
-      bool colorize(CRegExp *root_end_re, bool lowContentPriority);
+      bool colorize(cregexp *root_end_re, bool lowContentPriority);
 
 
    };

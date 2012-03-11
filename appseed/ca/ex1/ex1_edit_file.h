@@ -4,12 +4,15 @@
 namespace ex1
 {
 
+
    class CLASS_DECL_ca edit_file : 
-      virtual public ex1::filesp,
-      virtual public ex1::tree,
-      virtual public ex1::tree_data
+      public ex1::filesp,
+      public ex1::tree,
+      public ex1::tree_data
    {
    public:
+
+
       enum EItemType
       {
          ItemTypeUndefined,
@@ -216,8 +219,25 @@ namespace ex1
 
 
    protected:
+      
+      
       void TreeInsert(Item * pitem);
       bool calc_root_direction();
+
+
+   private:
+
+
+      edit_file(const edit_file & ) :
+         ::ex1::tree(NULL),
+         ::ex1::tree_data(NULL)
+      {
+      }
+
+
    };
 
+
 } // namespace ex1
+
+

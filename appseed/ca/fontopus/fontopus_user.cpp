@@ -94,7 +94,7 @@ restart:
          doc.load(str);
          xml::node & node = *doc.get_root();
          string strThread;
-         if(node.m_strName == "messages" && node.get_children_count() > 0)
+         if(node.get_name() == "messages" && node.get_children_count() > 0)
          {
             for(int i = 0; i < node.get_children_count(); i++)
             {
@@ -103,15 +103,15 @@ restart:
                string strBody;
                xml::node * pnodeSender = pnodeMessage->get_child("sender");
                if(pnodeSender != NULL)
-                  strSender = pnodeSender->m_strValue;
+                  strSender = pnodeSender->get_value();
 //               int iLength = strSender.get_length();
                xml::node * pnodeBody = pnodeMessage->get_child("body");
                if(pnodeBody != NULL)
                {
-                  strBody = pnodeBody->m_strValue;
-                  if(pnodeMessage->m_strName == "message")
+                  strBody = pnodeBody->get_value();
+                  if(pnodeMessage->get_name() == "message")
                   {
-                     strBody = pnodeBody->m_strValue;
+                     strBody = pnodeBody->get_value();
                      pnodeBody->attrs()["message"] = strBody;
                      Application.db().veiev_post().write(pnodeBody->attrs());
                   }

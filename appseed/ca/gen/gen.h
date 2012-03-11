@@ -24,8 +24,7 @@
 
 
 
-#include "radix/keep_ptr.h"
-#include "radix/sensitive_ptr.h"
+#include "gen_scoped_ptr.h"
 #include "gen_logic.h"
 
 

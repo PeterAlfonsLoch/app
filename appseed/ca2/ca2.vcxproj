@@ -271,7 +271,7 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <CompileAsManaged>false</CompileAsManaged>
       <FunctionLevelLinking>false</FunctionLevelLinking>
-      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
@@ -606,6 +606,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <CompileAsManaged>false</CompileAsManaged>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -839,6 +840,7 @@
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -986,7 +988,6 @@
     <ClInclude Include="nature\pane_view.h" />
     <ClInclude Include="nature\pane_view_update_hint.h" />
     <ClInclude Include="nature\view.h" />
-    <ClInclude Include="os_history.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\document.h" />
     <ClInclude Include="platform\frame.h" />
@@ -995,15 +996,6 @@
     <ClInclude Include="platform\platform.h" />
     <ClInclude Include="platform\Resource.h" />
     <ClInclude Include="platform\view.h" />
-    <ClInclude Include="radix\heap.h" />
-    <ClInclude Include="radix\inline.h" />
-    <ClInclude Include="radix\plex_heap.h" />
-    <ClInclude Include="radix\radix.h" />
-    <ClInclude Include="radix\radix_1.h" />
-    <ClInclude Include="radix\radix_2.h" />
-    <ClInclude Include="radix\radix_object.h" />
-    <ClInclude Include="radix\radix_os_history.h" />
-    <ClInclude Include="radix\radix_system.h" />
     <ClInclude Include="sockets\http_file.h" />
     <ClInclude Include="sockets\http_request_socket.h" />
     <ClInclude Include="sockets\sip_base.h" />
@@ -1206,7 +1198,7 @@
     <ClInclude Include="html\html_value.h" />
     <ClInclude Include="html\html_view.h" />
     <ClInclude Include="html\html_view_update_hint.h" />
-    <ClInclude Include="html\image.h" />
+    <ClInclude Include="html\html_image.h" />
     <ClInclude Include="html\input_button.h" />
     <ClInclude Include="html\input_check_box.h" />
     <ClInclude Include="html\input_text.h" />
@@ -1222,7 +1214,7 @@
     <ClInclude Include="html\table.h" />
     <ClInclude Include="html\table_elemental.h" />
     <ClInclude Include="html\table_row.h" />
-    <ClInclude Include="html\text.h" />
+    <ClInclude Include="html\html_text.h" />
     <ClInclude Include="mail\application.h" />
     <ClInclude Include="mail\application_interface.h" />
     <ClInclude Include="mail\configuration.h" />
@@ -1263,86 +1255,6 @@
     <ClInclude Include="srtp\rtp_priv.h" />
     <ClInclude Include="srtp\srtp.h" />
     <ClInclude Include="srtp\srtp_priv.h" />
-    <ClInclude Include="radix\allocate.h" />
-    <ClInclude Include="radix\radix_application.h" />
-    <ClInclude Include="radix\base.h" />
-    <ClInclude Include="radix\BSTR.H" />
-    <ClInclude Include="radix\cafxdllx.h" />
-    <ClInclude Include="radix\class_sort_array.h" />
-    <ClInclude Include="radix\command.h" />
-    <ClInclude Include="radix\command_target.h" />
-    <ClInclude Include="radix\common.h" />
-    <ClInclude Include="radix\comparable.h" />
-    <ClInclude Include="radix\composite.h" />
-    <ClInclude Include="radix\constraint.h" />
-    <ClInclude Include="radix\contact_list.h" />
-    <ClInclude Include="radix\conv.h" />
-    <ClInclude Include="radix\conversion.h" />
-    <ClInclude Include="radix\radix_5.h" />
-    <ClInclude Include="radix\create_context.h" />
-    <ClInclude Include="radix\data_exchange.h" />
-    <ClInclude Include="radix\datetime_value.h" />
-    <ClInclude Include="radix\dbimpl.h" />
-    <ClInclude Include="radix\dd_.h" />
-    <ClInclude Include="radix\debug.h" />
-    <ClInclude Include="radix\debug_stream.h" />
-    <ClInclude Include="radix\DispatchPtrArray.h" />
-    <ClInclude Include="radix\dispimpl.h" />
-    <ClInclude Include="radix\dll_.h" />
-    <ClInclude Include="radix\document.h" />
-    <ClInclude Include="radix\document_template.h" />
-    <ClInclude Include="radix\elements.h" />
-    <ClInclude Include="radix\factory.h" />
-    <ClInclude Include="radix\field_definition.h" />
-    <ClInclude Include="radix\fixed_alloc.h" />
-    <ClInclude Include="radix\flags.h" />
-    <ClInclude Include="radix\frame_window.h" />
-    <ClInclude Include="radix\fspath.h" />
-    <ClInclude Include="radix\go_thread.h" />
-    <ClInclude Include="radix\hh.h" />
-    <ClInclude Include="radix\html_file.h" />
-    <ClInclude Include="radix\id.h" />
-    <ClInclude Include="radix\id_space.h" />
-    <ClInclude Include="radix\implementation.h" />
-    <ClInclude Include="radix\index.h" />
-    <ClInclude Include="radix\install.h" />
-    <ClInclude Include="radix\int_biunique.h" />
-    <ClInclude Include="radix\kbase.h" />
-    <ClInclude Include="radix\keep_ptr.h" />
-    <ClInclude Include="radix\language_string.h" />
-    <ClInclude Include="radix\machine_event_central.h" />
-    <ClInclude Include="radix\pointer_object.h" />
-    <ClInclude Include="radix\packset.h" />
-    <ClInclude Include="radix\creutil.h" />
-    <ClInclude Include="radix\pipe.h" />
-    <ClInclude Include="radix\plex.h" />
-    <ClInclude Include="radix\preview_dc.h" />
-    <ClInclude Include="radix\priv.h" />
-    <ClInclude Include="radix\priv2.h" />
-    <ClInclude Include="radix\process_data.h" />
-    <ClInclude Include="radix\PushingRoutingFrame.h" />
-    <ClInclude Include="radix\Resource.h" />
-    <ClInclude Include="radix\se_exception.h" />
-    <ClInclude Include="radix\se_translator.h" />
-    <ClInclude Include="radix\sensitive_ptr.h" />
-    <ClInclude Include="radix\service.h" />
-    <ClInclude Include="radix\simple_list.h" />
-    <ClInclude Include="radix\simple_thread.h" />
-    <ClInclude Include="radix\single_document_template.h" />
-    <ClInclude Include="radix\sockets.h" />
-    <ClInclude Include="radix\specialty.h" />
-    <ClInclude Include="radix\spreadset.h" />
-    <ClInclude Include="radix\SymEngine.h" />
-    <ClInclude Include="radix\this_build_number.h" />
-    <ClInclude Include="radix\radix_thread.h" />
-    <ClInclude Include="radix\types.h" />
-    <ClInclude Include="radix\unhandled_report.h" />
-    <ClInclude Include="radix\userset.h" />
-    <ClInclude Include="radix\util.h" />
-    <ClInclude Include="radix\veriwell_musical_studio.h" />
-    <ClInclude Include="radix\vms.h" />
-    <ClInclude Include="radix\wait_cursor.h" />
-    <ClInclude Include="radix\win_registry.h" />
     <ClInclude Include="gcom\gcom.h" />
     <ClInclude Include="gcom\gcom_BackView.h" />
     <ClInclude Include="gcom\gcom_backview_interface.h" />
@@ -1470,7 +1382,6 @@
     <ClCompile Include="ca8\ca8_network_configuration.cpp" />
     <ClCompile Include="ca8\ca8_wait_message_dialog.cpp" />
     <None Include="ca2.def" />
-    <None Include="radix\radix.inl" />
     <None Include="user\user_interaction.inl" />
   </ItemGroup>
   <ItemGroup>

@@ -119,7 +119,6 @@ namespace user
 
    tree::tree(::ca::application * papp) :
       ca(papp),
-      data_container(papp),
       ::user::scroll_view(papp),
       ex1::tree(papp),
       m_dcextension(papp)

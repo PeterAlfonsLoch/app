@@ -15,10 +15,10 @@ namespace gen
 } // namespace gen
 
 
-#include "template/definition.h"
-#include "template/core.h"
+#include "ca/template/template_definition.h"
+#include "ca/template/template_core.h"
 //#include "template/trace.h"
-#include "template/exception.h"
+//#include "template/exception.h"
 
 CLASS_DECL_ca void throw_error_exception(const char * psz);
 

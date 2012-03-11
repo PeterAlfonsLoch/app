@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace databaseuser
 {
+
 
    class CLASS_DECL_ca2 list_data :
       public ::user::list_data,
@@ -22,7 +24,20 @@ namespace databaseuser
 
       virtual bool Map(::user::list * plist, ::database::id & key1, ::database::id & key2, index iItem, index iSubItem, index iListItem);
 
+
+   private:
+
+
+      list_data(const list_data & ) :
+         ::user::list_data(NULL)
+      {
+      }
+
+
    };
 
+
 } // namespace userbase
+
+
 

@@ -6,42 +6,36 @@ namespace command
 {
 
 
-
    primary_view::primary_view(::ca::application * papp) :
       ca(papp),
-      ::ca::data_container(papp),
       ::user::interaction(papp), 
-      ::userbase::edit_plain_text(papp), 
       ::userbase::view(papp),
       ::userbase::edit_plain_text_view(papp), 
-      colorertake5::base_editor(papp),
-      ::user::scroll_view(papp), 
-      ::user::edit_plain_text(papp),
-      ex1::tree(papp),
-      ::ca::data_listener(papp)
+      ::user::scroll_view(papp)
    {
-      m_iCompromised = 0;
-      LOGFONT lf;
-      memset(&lf, 0, sizeof(lf));
-      strcpy(lf.lfFaceName, "Arial");
-      lf.lfHeight = 16;
 
-      m_font->CreateFontIndirect(&lf);
+      m_iCompromised = 0;
+
       connect_update_cmd_ui("edit_copy", &primary_view::_001OnUpdateEditCopy);
       connect_command("edit_copy", &primary_view::_001OnEditCopy);
       connect_update_cmd_ui("edit_paste", &primary_view::_001OnUpdateEditPaste);
       connect_command("edit_paste", &primary_view::_001OnEditPaste);
+
+
    }
 
    void primary_view::on_update(::view* pSender, LPARAM lHint, ::radix::object* phint) 
    {
+
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
       UNREFERENCED_PARAMETER(phint);
+
    }
 
    void primary_view::install_message_handling(::gen::message::dispatch * pinterface)
    {
+
       ::userbase::edit_plain_text_view::install_message_handling(pinterface);
 	   IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &primary_view::_001OnContextMenu);
 
@@ -91,7 +85,7 @@ namespace command
                   if(!bOk)
                   {
                      stringa stra;
-                     if(PcreUtil::match(stra, strLine, "(.+)\\s*segundos", true, 2) == 1)
+                     if(cregexp_util::match(stra, strLine, "(.+)\\s*segundos", true, 2) == 1)
                      {
                         calculator::parser parser(get_app());
                         calculator::element * pelement = parser.parse(stra[1]);
@@ -110,7 +104,7 @@ namespace command
                         m_iCompromised = m_iSelStart = m_iSelEnd = strNewText.get_length();
                         bOk = true;
                      }
-                     else if(PcreUtil::match(stra, strLine, "(.+)\\s*dias", true, 2) == 1)
+                     else if(cregexp_util::match(stra, strLine, "(.+)\\s*dias", true, 2) == 1)
                      {
                         calculator::parser parser(get_app());
                         calculator::element * pelement = parser.parse(stra[1]);
@@ -201,3 +195,5 @@ namespace command
 
 
 } // namespace command
+
+

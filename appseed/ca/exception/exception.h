@@ -42,6 +42,8 @@ namespace win
 
 #include "hresult_exception.h"
 
+#include "ca/primitive/datetime/datetime_time.h"
+
 #ifndef _AFX_JUMPBUF
 // Use portable 'jmp_buf' defined by ANSI by default.
 #define _AFX_JUMPBUF jmp_buf

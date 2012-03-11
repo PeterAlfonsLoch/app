@@ -1,11 +1,10 @@
 #include "StdAfx.h"
 
+
 simple_tree_view::simple_tree_view(::ca::application * papp) :
    ca(papp),
-   data_container(papp),
    ::userbase::view(papp),
    ::user::scroll_view(papp),
-   ex1::tree(papp),
    user::tree(papp)
 {
 }
@@ -57,4 +56,6 @@ void simple_tree_view::_001OnCreate(gen::signal_object * pobj)
    }
 
 }
+
+
 

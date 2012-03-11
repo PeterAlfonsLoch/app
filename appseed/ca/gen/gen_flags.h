@@ -1,8 +1,10 @@
 #pragma once
 
 #include "ex1/ex1_byte_serializable.h"
-#include "radix/DispatchPtrArray.h"
 #include "collection/sort_array.h"
+
+
+
 
 class CLASS_DECL_ca base_sort_serializable_int_ptr_array :
    virtual public ex1::byte_serializable_array < sort_array < INT_PTR, INT_PTR > >
@@ -173,6 +175,8 @@ class flags_ex :
    public flags < ENUM >
 {
 public:
+   
+   
    flags_ex();
    flags_ex(flags_ex & flags);
    virtual ~flags_ex();
@@ -185,7 +189,9 @@ public:
    virtual void on_change_signalization(ENUM eenum);
 
 protected:
-   DispatchPtrArray < flags_listener < ENUM >, flags_listener < ENUM > * > m_dispptra;
+
+   ::gen::signal        m_signal;
+
 };
 
 template < class ENUM >
@@ -252,11 +258,32 @@ bool flags_ex < ENUM > ::unsignalize_all()
    return flags<ENUM>::unsignalize_all();
 }
 
+class flag_change_signalization :
+   public gen::signal_object
+{
+public:
+
+   int m_iEnum;
+
+
+   flag_change_signalization(::gen::signal * psignal) : 
+      gen::signal_object(psignal)
+   {
+   }
+   
+
+};
 
 template < class ENUM >
 void flags_ex < ENUM > ::on_change_signalization(ENUM eenum)
 {
-   m_dispptra.PtrCallAll(&flags_listener<ENUM>::on_change_signalization, (int) eenum);
+   
+   flag_change_signalization obj(&m_signal);
+   
+   obj.m_iEnum = (int) eenum;
+
+   m_signal.emit(&obj);
+
 }
 
 

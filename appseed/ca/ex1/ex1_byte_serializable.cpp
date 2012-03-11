@@ -5,6 +5,8 @@ namespace ex1
 {
 
 
+/*
+   
    byte_serializable::byte_serializable()
    {
 
@@ -15,7 +17,9 @@ namespace ex1
 
    }
 
+*/
 
-}
+
+} // namespace ex1
 
 

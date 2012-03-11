@@ -39,8 +39,9 @@ namespace gen
 
 
 class CLASS_DECL_ca var :
-   virtual public ex1::byte_serializable,
-   virtual public string_interface
+   public ::radix::object,
+   public ex1::byte_serializable,
+   public string_interface
 {
 public:
 

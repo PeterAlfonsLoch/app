@@ -919,24 +919,27 @@ namespace platform
       }
       m_linka.remove_all();
 
+      
       string str = Application.file().as_string(Application.dir().matter("platform\\main_link.xml"));
-      xml::node node(get_app());
-      node.load(str);
+      
+      xml::document doc(get_app());
+
+      doc.load(str);
       //str = "<html><head></head><body>";
 
-      for(int i = 0; i < node.children().get_size(); i++)
+      for(int i = 0; i < doc.children().get_size(); i++)
       {
-         if(node.child_at(i)->m_strName == "link")
+         if(doc.child_at(i)->get_name() == "link")
          {
             link * plink = new link(get_app());
             m_linka.add(plink);
 
             plink->m_iId               = i;
 
-            plink->m_strBrief          = node.child_at(i)->attr("brief");
-            plink->m_strName           = node.child_at(i)->attr("name");
-            plink->m_strDescription    = node.child_at(i)->attr("description");
-            plink->m_strSrc            = node.child_at(i)->attr("src");
+            plink->m_strBrief          = doc.child_at(i)->attr("brief");
+            plink->m_strName           = doc.child_at(i)->attr("name");
+            plink->m_strDescription    = doc.child_at(i)->attr("description");
+            plink->m_strSrc            = doc.child_at(i)->attr("src");
 
             plink->m_button.create(this, plink->m_strBrief);
 
@@ -945,7 +948,7 @@ namespace platform
 
             plink->m_button._001SetButtonText(plink->m_strName);
 
-            string strAttr             = node.child_at(i)->attr("icon");
+            string strAttr             = doc.child_at(i)->attr("icon");
 
             if(gen::str::begins_eat(strAttr, "matter://"))
             {

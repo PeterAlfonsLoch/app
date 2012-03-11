@@ -747,10 +747,6 @@ namespace plane
       for(int i = 0; i < appptra().get_size(); i++)
       {
          ca2::application * papp = dynamic_cast < ca2::application * > (appptra()[i]);
-         for(int j = 0; j < papp->m_langstrptra.get_size(); j++)
-         {
-            papp->m_langstrptra[j]->m_str.Empty();
-         }
          papp->load_string_table();
       }
    }

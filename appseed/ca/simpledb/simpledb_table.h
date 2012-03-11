@@ -14,9 +14,9 @@ namespace simpledb
       
       base *                        m_pdatabase;
       ::ex1::filesp                 m_spfileMeta;
-      ::xml::node                   m_nodeMeta;
+      ::xml::document               m_xmldocumentMeta;
       ::ex1::filesp                 m_spfileFixed;
-      primitive::memory                        m_memoryFixed;
+      primitive::memory             m_memoryFixed;
       string                        m_strName;
       database::field_definition    m_fielddefinition;
 

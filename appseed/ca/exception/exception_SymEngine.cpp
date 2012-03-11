@@ -81,7 +81,7 @@ SymEngine::~SymEngine()
    delete m_pstackframe;
 }
 
-strsize SymEngine::module(string & str)
+size_t SymEngine::module(vsstring & str)
 {
    if (!check())
       return 0;
@@ -92,7 +92,7 @@ strsize SymEngine::module(string & str)
    return get_module_basename(hmodule, str);   
 }
 
-strsize SymEngine::symbol(string & str, DWORD_PTR * pdisplacement)
+size_t SymEngine::symbol(vsstring & str, DWORD_PTR * pdisplacement)
 {
    if (!check())
       return 0;
@@ -110,12 +110,13 @@ strsize SymEngine::symbol(string & str, DWORD_PTR * pdisplacement)
    if (pdisplacement) 
       *pdisplacement = displacement;
 
-   str.Format("%s()", pSym->Name);
+   str = pSym->Name;
+   str += "()";
     
    return str.get_length();
 }
 
-index SymEngine::fileline (string & str, DWORD_PTR * pline, DWORD_PTR * pdisplacement)
+index SymEngine::fileline (vsstring & str, DWORD_PTR * pline, DWORD_PTR * pdisplacement)
 {
 
    if (!check())
@@ -256,7 +257,7 @@ bool SymEngine::get_line_from_address (HANDLE hprocess, DWORD_PTR uiAddress, DWO
    #endif
 }
 
-strsize SymEngine::get_module_basename (HMODULE hmodule, string & str)
+size_t SymEngine::get_module_basename (HMODULE hmodule, vsstring & str)
 {
    
    char filename[MAX_PATH];
@@ -269,12 +270,12 @@ strsize SymEngine::get_module_basename (HMODULE hmodule, string & str)
    str = filename;
 
    // find the last '\' mark.
-   strsize iPos = str.reverse_find('\\');
+   size_t iPos = str.rfind('\\');
 
    if(iPos >= 0)
    {
 
-      str = str.Mid(iPos + 1);
+      str = str.substr(iPos + 1);
 
    }
 
@@ -440,7 +441,7 @@ bool SymEngine::guard::load_module(HANDLE hProcess, HMODULE hMod)
    return true;
 }
 
-bool SymEngine::stack_trace(string & str, CONTEXT * pcontext, DWORD_PTR uiSkip, const char * pszFormat)
+bool SymEngine::stack_trace(vsstring & str, CONTEXT * pcontext, DWORD_PTR uiSkip, const char * pszFormat)
 {
    if(!pszFormat) return false;   
    SymEngine engine(0);
@@ -506,7 +507,7 @@ DWORD WINAPI SymEngine::stack_trace_ThreadProc(void * lpvoidParam)
    return 0;
 }
 
-bool SymEngine::stack_trace(string & str, DWORD_PTR uiSkip, const char * pszFormat)
+bool SymEngine::stack_trace(vsstring & str, DWORD_PTR uiSkip, const char * pszFormat)
 {
    if(!pszFormat) return false;
 
@@ -569,7 +570,7 @@ bool SymEngine::stack_trace(string & str, DWORD_PTR uiSkip, const char * pszForm
    return true;
 }
 
-bool SymEngine::stack_trace(string & str, SymEngine& symengine, 
+bool SymEngine::stack_trace(vsstring & str, SymEngine& symengine, 
       CONTEXT * pcontext, DWORD_PTR uiSkip, const char * pszFormat)
 {   
    if (!symengine.stack_first(pcontext)) 
@@ -579,9 +580,9 @@ bool SymEngine::stack_trace(string & str, SymEngine& symengine,
 //   char fbuf[512] = {0};
 //   char sbuf[512] = {0};
 
-   string strBuf;
-   string strFile;
-   string strSymbol;
+   vsstring strBuf;
+   vsstring strFile;
+   vsstring strSymbol;
 
    do
    {
@@ -590,8 +591,8 @@ bool SymEngine::stack_trace(string & str, SymEngine& symengine,
          DWORD_PTR uiLineNumber = 0;
          DWORD_PTR uiLineDisplacement = 0;
          DWORD_PTR uiSymbolDisplacement = 0;
-         strFile.Empty();
-         strSymbol.Empty();
+         strFile.clear();
+         strSymbol.clear();
          
          for (char * p = (char *)pszFormat; *p; ++p)
          {            
@@ -631,13 +632,13 @@ bool SymEngine::stack_trace(string & str, SymEngine& symengine,
                   }
                   if (*(p + 1) == 'd')
                   {
-                     strBuf.Format("%d", uiLineDisplacement);
+                     strBuf = itoa_dup(uiLineDisplacement);
                      str += strBuf; 
                      ++p;
                   }
                   else
                   {
-                     strBuf.Format("%d", uiLineNumber);
+                     strBuf = itoa_dup(uiLineNumber);
                      str += strBuf;                     
                   }
                   break;
@@ -651,7 +652,7 @@ bool SymEngine::stack_trace(string & str, SymEngine& symengine,
                   }
                   if (*(p + 1) == 'd')
                   {
-                     strBuf.Format("%d", uiSymbolDisplacement);
+                     strBuf = itoa_dup(uiSymbolDisplacement);
                      str += strBuf;
                      ++p;
                   }

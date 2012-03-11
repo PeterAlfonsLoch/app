@@ -66,6 +66,49 @@ namespace gen
 
    };
 
+   class CLASS_DECL_ca base_signalizable_array : 
+      virtual protected comparable_array < signalizable * >
+   {
+   public:
+
+      inline index add(signalizable * psignalizable)
+      { 
+         install_handlers(psignalizable);
+         return ::comparable_array < signalizable * >::add(psignalizable);
+      }
+      inline index remove(signalizable * psignalizable)
+      { 
+         return ::comparable_array < signalizable * >::remove(psignalizable);
+      }
+
+      inline signalizable * ptr_at(index i) { return ::comparable_array < signalizable * >::element_at(i); }
+      inline ::count get_size() { return ::comparable_array < signalizable * >::get_size(); }
+      inline ::count get_count() { return ::comparable_array < signalizable * >::get_count(); }
+      inline ::count size() { return ::comparable_array < signalizable * >::size(); }
+      inline ::count count() { return ::comparable_array < signalizable * >::count(); }
+
+      virtual void install_handlers(signalizable * psignalizable) {}
+
+   };
+
+
+   template < class SIGNALIZABLE >
+   class signalizable_array :
+      virtual public base_signalizable_array
+   {
+   public:
+
+      inline index add(SIGNALIZABLE * psignalizable)
+      { 
+         return base_signalizable_array::add(psignalizable);
+      }
+      inline index remove(SIGNALIZABLE * psignalizable)
+      { 
+         return base_signalizable_array::remove(psignalizable);
+      }
+      SIGNALIZABLE * ptr_at(index i) { return dynamic_cast < SIGNALIZALBE * > (base_signalizable_array:ptr_at(i)); }
+
+   };
 
    class CLASS_DECL_ca signal
    {

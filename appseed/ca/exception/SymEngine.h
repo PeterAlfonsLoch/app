@@ -28,24 +28,26 @@
 #pragma once
 
 
-#include "ca/primitive/primitive_string.h"
 #ifdef _WINDOWS
 #include <imagehlp.h>
 #endif
 
 class SymEngine
 {
- public:
+public:
+
+
    SymEngine(unsigned int);
    ~SymEngine();
+
 
    void address(DWORD_PTR a)      { m_uiAddress = a; }
    DWORD_PTR address(void) const   { return m_uiAddress; }
 
    // symbol handler queries
-   strsize     module  (string & str);
-   strsize     symbol  (string & str, DWORD_PTR * = 0);
-   index       fileline(string & str, DWORD_PTR *, DWORD_PTR * = 0);
+   size_t      module  (vsstring & str);
+   size_t      symbol  (vsstring & str, DWORD_PTR * = 0);
+   index       fileline(vsstring & str, DWORD_PTR *, DWORD_PTR * = 0);
 
    // stack walk
    bool stack_first (CONTEXT* pctx);
@@ -64,14 +66,14 @@ class SymEngine
       "%f(%l) : %m at %s\n"
       "%m.%s + %sd bytes, in %f:line %l\n"
    */
-   static bool stack_trace(string & str, CONTEXT *, DWORD_PTR uiSkip = 0, const char * pszFormat = default_format());
-   static bool stack_trace(string & str, DWORD_PTR uiSkip = 1, const char * pszFormat = default_format());
-   static bool stack_trace(string & str, SymEngine&, CONTEXT *, DWORD_PTR uiSkip = 1, const char * pszFormat = default_format());
+   static bool stack_trace(vsstring & str, CONTEXT *, DWORD_PTR uiSkip = 0, const char * pszFormat = default_format());
+   static bool stack_trace(vsstring & str, DWORD_PTR uiSkip = 1, const char * pszFormat = default_format());
+   static bool stack_trace(vsstring & str, SymEngine&, CONTEXT *, DWORD_PTR uiSkip = 1, const char * pszFormat = default_format());
    static DWORD WINAPI stack_trace_ThreadProc(void * lpvoidParam);
  private:
    static const char * default_format(){ return "%f(%l) : %m at %s\n"; }
    static bool get_line_from_address(HANDLE hProc, DWORD_PTR uiAddress, DWORD_PTR * puiDisplacement, IMAGEHLP_LINE * pline);
-   static strsize get_module_basename(HMODULE hmodule, string & strName);
+   static size_t get_module_basename(HMODULE hmodule, vsstring & strName);
 
 
 

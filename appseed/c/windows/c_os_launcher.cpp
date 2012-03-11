@@ -8,17 +8,10 @@ bool launcher::start()
       return false;
 
    vsstring strPath(get_executable_path());
+   
    vsstring strDir(dir::name(strPath));
 
-   SHELLEXECUTEINFOA infoa;
-
-   memset_dup(&infoa, 0, sizeof(infoa));
-
-   infoa.cbSize         = sizeof(infoa);
-   infoa.lpFile         = strPath;
-   infoa.lpDirectory    = strDir;
-
-   ::ShellExecuteExA(&infoa);
+   call_async(strPath, NULL, strDir, SW_HIDE);
 
    return true;
 

@@ -1,5 +1,4 @@
 #include "StdAfx.h"
-#include "common.h"
 #include "radix_allocator.h"
 
 

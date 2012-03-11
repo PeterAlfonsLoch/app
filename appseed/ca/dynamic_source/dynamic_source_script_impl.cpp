@@ -2090,7 +2090,7 @@ namespace dynamic_source
    void script_impl::menuleft_printVert001(webserver::ui_menu * pmenu, int iPanelIndex)
    {
       
-      if(gen::is_null(pmenu))
+      if(::ca::is_null(pmenu))
          return;
       webserver::ui_menu & menu = *pmenu;
        if(menu.get_size() > 0)
@@ -4256,7 +4256,7 @@ ok1:
    {
       stringa stra;
       string strQuery(pszFreeText);
-      if(PcreUtil::match(stra, strQuery, "/(^|[^a-zA-Z]+)de\\s*((\\d+)\\s*/\\s*(\\d+)\\s*a\\s*(\\d+)\\s*/\\s*(\\d+))(((\\d)?!)|$)/", true, 8) > 0)
+      if(cregexp_util::match(stra, strQuery, "/(^|[^a-zA-Z]+)de\\s*((\\d+)\\s*/\\s*(\\d+)\\s*a\\s*(\\d+)\\s*/\\s*(\\d+))(((\\d)?!)|$)/", true, 8) > 0)
       {
          class time time1;
          time1 = time::get_current_time();
@@ -4370,7 +4370,7 @@ ok1:
       try
       {
          stringa stra;
-         if(PcreUtil::match(stra, strQuery, "/\\s*(((\\s?#1)de\\s+)?(\\d+)\\s*/\\s*(\\d+)\\s*a\\s*(\\d+)\\s*/\\s*(\\d+))(((\\d$)?!)|$)/", true, 8) > 0)
+         if(cregexp_util::match(stra, strQuery, "/\\s*(((\\s?#1)de\\s+)?(\\d+)\\s*/\\s*(\\d+)\\s*a\\s*(\\d+)\\s*/\\s*(\\d+))(((\\d$)?!)|$)/", true, 8) > 0)
          {
             class time time1;
             time1 = time::get_current_time();
@@ -4440,7 +4440,7 @@ ok1:
       try
       {
          stringa stra;
-         if(PcreUtil::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:seconds", NULL))
+         if(cregexp_util::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:seconds", NULL))
          {
 
             calculator::parser parser(get_app());
@@ -4472,7 +4472,7 @@ ok1:
       try
       {
          stringa stra;
-         if(PcreUtil::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:days", NULL))
+         if(cregexp_util::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:days", NULL))
          {
 
             calculator::parser parser(get_app());
@@ -4508,7 +4508,7 @@ ok1:
       try
       {
          stringa stra;
-         if(PcreUtil::match(stra, strQuery, "/\\s*((\\d+)\\s*/\\s*(\\d+))(((\\d)?!)|$)/", true, 4) > 0)
+         if(cregexp_util::match(stra, strQuery, "/\\s*((\\d+)\\s*/\\s*(\\d+))(((\\d)?!)|$)/", true, 4) > 0)
          {
             class time time;
             time = time::get_current_time();

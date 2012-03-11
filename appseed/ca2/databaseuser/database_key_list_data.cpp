@@ -1,11 +1,12 @@
 #include "StdAfx.h"
 
+
 namespace databaseuser
 {
 
+
    data_key_list_data::data_key_list_data(::ca::application * papp) :
       ca(papp),
-      ::ca::data(papp),
       ::user::list_data(papp)
    {
    }
@@ -71,4 +72,8 @@ namespace databaseuser
       return true;
    }
 
+
 } // namespace databaseuser
+
+
+

@@ -1,11 +1,13 @@
 #include "StdAfx.h"
 
+
+
 namespace databaseuser
 {
 
+
    list_data::list_data(::ca::application * papp) :
       ca(papp),
-      ::ca::data(papp),
       ::user::list_data(papp)
    {
       m_iItemCount = 0;
@@ -42,6 +44,7 @@ namespace databaseuser
       index iSubItem, 
       index iListItem)
    {
+
       UNREFERENCED_PARAMETER(plist);
       // default implementation
       string str;
@@ -50,12 +53,18 @@ namespace databaseuser
       str.Format("%d.%d", iItem, iListItem);
       key2 = str;
       return true;
+
    }
 
    count list_data::_001GetItemCount()
    {
+
       return m_iItemCount;
+
    }
 
+
 } // namespace guibase
+
+
 

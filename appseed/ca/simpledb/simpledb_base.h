@@ -12,7 +12,7 @@ namespace simpledb
    public:
 
       ::ex1::filesp                 m_spfileMeta;
-      ::xml::node                   m_nodeMeta;
+      ::xml::document               m_xmldocumentMeta;
       ::collection::string_map < table *, table * > m_mapTable;
       int                           m_iErrorCode;
 

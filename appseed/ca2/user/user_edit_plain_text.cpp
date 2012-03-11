@@ -4,9 +4,9 @@
 namespace user
 {
 
+
    edit_plain_text::edit_plain_text(::ca::application * papp) :
       ca(papp),
-      data_container(papp),
       ::user::interaction(papp),
       scroll_view(papp),
       colorertake5::base_editor(papp),
@@ -2116,4 +2116,7 @@ namespace user
       _001SetSelText(System.copydesk().get_plain_text());
    }
 
+
 } // namespace ex1
+
+

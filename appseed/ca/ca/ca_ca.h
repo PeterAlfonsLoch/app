@@ -6,6 +6,10 @@
 class factory_item_base;
 
 
+#define SCAST_PTR(tcast, pcasted, pcasting) tcast * pcasted = dynamic_cast < tcast * > (pcasting);
+#define SCAST_REF(tcast, rcasted, pcasting) tcast & rcasted = *(dynamic_cast < tcast * > (pcasting));
+
+
 
 namespace ca
 {
@@ -104,6 +108,22 @@ namespace ca
 
    class bergedge;
    class system;
+
+   template < class TYPE >
+   bool is_null(TYPE * p)
+   {
+      return (((int) p) < sizeof(TYPE));
+   }
+
+   template <class t>
+   inline void delptr(t *& p)
+   {
+      if(p != NULL)
+      {
+         delete p;
+         p = NULL;
+      }
+   }
 
 
    class CLASS_DECL_ca ca
@@ -217,13 +237,13 @@ namespace ca
       ptra & listenerptra();
       ptra & listenedptra();
 
-      virtual ptra * new_ptra() = 0;
-
+      virtual ptra * new_ptra();
 
       virtual ::bergedge::bergedge * get_bergedge();
       virtual ::cube::cube * get_cube();
 
    };
+
 
 } // namespace ca
 

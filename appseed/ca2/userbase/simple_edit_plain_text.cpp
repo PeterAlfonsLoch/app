@@ -3,13 +3,9 @@
 
 simple_edit_plain_text::simple_edit_plain_text(::ca::application * papp) :
    ca(papp),
-   data_container(papp),
    ::user::interaction(papp),
-   colorertake5::base_editor(papp),
    ::user::scroll_view(papp),
-   ::user::edit_plain_text(papp),
-   ex1::tree(papp),
-   ::ca::data_listener(papp)
+   ::user::edit_plain_text(papp)
 {
 }
 
@@ -32,3 +28,5 @@ void simple_edit_plain_text::_001OnShowWindow(gen::signal_object * pobj)
 //   SCAST_PTR(::gen::message::show_window, pshowwindow, pobj);
 
 }
+
+

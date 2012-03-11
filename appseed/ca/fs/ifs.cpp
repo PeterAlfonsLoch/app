@@ -14,7 +14,7 @@ bool ifs::has_subdir(const char * pszPath)
 
    defer_initialize();
 
-   xml::node node(get_app());
+   xml::document doc(get_app());
 
    string strUrl;
 
@@ -27,13 +27,13 @@ bool ifs::has_subdir(const char * pszPath)
    if(strSource.is_empty())
       return false;
 
-   if(!node.load(strSource))
+   if(!doc.load(strSource))
       return false;
 
-   if(node.m_strName != "folder")
+   if(doc.get_name() != "folder")
       return false;
 
-   xml::node * pnode = node.get_child("folder");
+   xml::node * pnode = doc.get_child("folder");
 
    if(pnode == NULL)
       return false;
@@ -68,7 +68,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
       return false;
    }
 
-   xml::node node(get_app());
+   xml::document doc(get_app());
 
    string strUrl;
    
@@ -81,20 +81,20 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
    if(strSource.is_empty())
       return false;
 
-   if(!node.load(strSource))
+   if(!doc.load(strSource))
       return false;
 
-   if(node.m_strName != "folder")
+   if(doc.get_name() != "folder")
       return false;
 
-   xml::node * pnode = node.get_child("folder");
+   xml::node * pnode = doc.get_child("folder");
 
    if(pnode != NULL)
    {
       for(int i = 0; i < pnode->get_children_count(); i++)
       {
          string strName = pnode->child_at(i)->attr("name");
-         if(pnode->child_at(i)->m_strName != "folder")
+         if(pnode->child_at(i)->get_name() != "folder")
             continue;
          string strPath = dir_path(pszDir, strName);
          m_mapdirTimeout[strPath] = ::GetTickCount() + (4 * 1000);
@@ -110,7 +110,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
       }
    }
 
-   pnode = node.get_child("file");
+   pnode = doc.get_child("file");
 
    if(pnode != NULL)
    {
@@ -118,7 +118,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
       {
          string strName = pnode->child_at(i)->attr("name");
          string strExtension = pnode->child_at(i)->attr("extension");
-         if(pnode->child_at(i)->m_strName != "file")
+         if(pnode->child_at(i)->get_name() != "file")
             continue;
          string strPath = dir_path(pszDir, strName);
          m_mapfileTimeout[strPath] = ::GetTickCount() + (4 * 1000);

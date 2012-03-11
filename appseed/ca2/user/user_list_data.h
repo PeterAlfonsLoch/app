@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 list_data :
-      virtual public ::ca::data
+      public ::ca::data
    {
    public:
 
@@ -37,4 +37,6 @@ namespace user
 
 
 } // namespace user
+
+
 

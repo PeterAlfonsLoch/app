@@ -46,11 +46,13 @@ namespace ca8
       {
          return;
       }
-      xml::node node(get_app());
-      if(node.load(System.file_as_string(&System, System.dir().appdata("proxy.xml"))))
+
+      xml::document doc(get_app());
+
+      if(doc.load(System.file_as_string(&System, System.dir().appdata("proxy.xml"))))
       {
-         string strProxy = node.attr("server");
-         int iProxyPort = node.attr("port");
+         string strProxy = doc.attr("server");
+         int iProxyPort = doc.attr("port");
          ::user::interaction * pguie = m_pview->GetChildByName("server");
          text_interface * ptext = dynamic_cast < text_interface * > (pguie);
          ptext->_001SetText(strProxy);
@@ -58,6 +60,7 @@ namespace ca8
          ptext = dynamic_cast < text_interface * > (pguie);
          ptext->_001SetText(gen::str::itoa(iProxyPort));
       }
+
    }
 
   bool network_configuration::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
@@ -78,15 +81,15 @@ namespace ca8
             }
             else
             {
-               xml::node node(get_app());
-               node.m_strName = "proxy";
-               node.add_attr("server", strServer);
+               xml::document doc(get_app());
+               doc.set_name("proxy");
+               doc.add_attr("server", strServer);
                pguie = m_pview->GetChildByName("port");
                ptext = dynamic_cast < text_interface * > (pguie);
                string strPort;
                ptext->_001GetText(strPort);
-               node.add_attr("port", strPort);
-               Application.file().put_contents(System.dir().appdata("proxy.xml"), node.get_xml());
+               doc.add_attr("port", strPort);
+               Application.file().put_contents(System.dir().appdata("proxy.xml"), doc.get_xml());
             }
          }
       }

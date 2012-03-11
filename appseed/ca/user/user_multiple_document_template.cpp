@@ -42,7 +42,6 @@ document * multiple_document_template::get_document(index index) const
 
 void multiple_document_template::add_document(document * pdocument)
 {
-   ASSERT_VALID(pdocument);
    if(m_docptra.add_unique(pdocument))
    {
       document_template::add_document(pdocument);
@@ -52,7 +51,6 @@ void multiple_document_template::add_document(document * pdocument)
 
 void multiple_document_template::remove_document(document * pdocument)
 {
-   ASSERT_VALID(pdocument);
    if(m_docptra.remove(pdocument) > 0)
    {
       document_template::remove_document(pdocument);
@@ -75,7 +73,6 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
       System.simple_message_box(NULL, "failed to create document");
       return;
    }
-   ASSERT_VALID(pdocument);
 
    BOOL bAutoDelete = pdocument->m_bAutoDelete;
    pdocument->m_bAutoDelete = FALSE;   // don't destroy if something goes wrong
@@ -185,9 +182,10 @@ void multiple_document_template::assert_valid() const
    for(index index = 0; index < count; index++)
    {
       document * pdocument = get_document(index);
-      ASSERT_VALID(pdocument);
    }
+
 }
+
 #endif //_DEBUG
 
 

@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include "trace_module_manager.h"
+#include "ca/template/template_trace_module_manager.h"
 
 extern HINSTANCE g_hInst;
 

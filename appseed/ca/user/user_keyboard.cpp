@@ -129,13 +129,13 @@ namespace user
       string str = Application.file().as_string(pszPath);
       if(str.is_empty())
          return false;
-      ::xml::node node(get_app());
-      if(!node.load(str))
+      ::xml::document doc(get_app());
+      if(!doc.load(str))
          return false;
       playoutid->m_strPath = pszPath;
-      playoutid->m_strName = node.attrs()["name"];
+      playoutid->m_strName = doc.attrs()["name"];
       stringa straHkl;
-      straHkl.explode(";", node.attr("hkla"));
+      straHkl.explode(";", doc.attr("hkla"));
       for(int i = 0; i < straHkl.get_count(); i++)
       {
          string strHkl = straHkl[i];

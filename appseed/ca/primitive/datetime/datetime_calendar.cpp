@@ -117,10 +117,13 @@ void calendar::_001OnDraw(::ca::graphics * pdc)
    pdc->DrawText(">", rect, DT_CENTER | DT_VCENTER);
 }
 
-void calendar::_001GetHtml(::html::file * pfile)
+void calendar::_001GetHtml(::ca2::html_file * pfile)
 {
+
+
    try
    {
+
       // pszSchema can be ignored if the object has only one implemented schema
       class time timeNow = time::get_current_time();
       int iMonth = m_iMonth;
@@ -370,7 +373,11 @@ bool calendar::time_hit_test(class time & timeRet, point pt)
 
 bool calendar::hit_test(EElement eelement, point pt)
 {
+
    class rect rect;
    GetRect(rect, eelement);
    return rect.contains(pt) != FALSE;
+
 }
+
+

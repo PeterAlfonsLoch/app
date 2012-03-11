@@ -449,24 +449,6 @@
     <ClInclude Include="sqlite\sqlite3ext.h">
       <Filter>Header Files\sqlite</Filter>
     </ClInclude>
-    <ClInclude Include="gen\_base_enum.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\_full_pointer.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\_pointer.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\_PointerManager.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\_raw_pointer.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\_var_array.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
     <ClInclude Include="gen\base_rect.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
@@ -554,9 +536,6 @@
     <ClInclude Include="gen\gen_memory_file.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_object.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
     <ClInclude Include="gen\gen_parse.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
@@ -567,9 +546,6 @@
       <Filter>Header Files\gen</Filter>
     </ClInclude>
     <ClInclude Include="gen\gen_property.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_ptri.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
     <ClInclude Include="gen\gen_raw_pointer.h">
@@ -728,78 +704,6 @@
     <ClInclude Include="count.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="radix\allocate.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\base.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\BSTR.H">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\command.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\command_target.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\Common.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\comparable.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\composite.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\constraint.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\conv.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\conversion.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\creutil.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\datetime_value.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\DispatchPtrArray.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\dispimpl.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\elements.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\heap.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\hh.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\html_file.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\implementation.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\inline.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\kbase.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\keep_ptr.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\language_string.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="radix\machine_event_central.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
@@ -866,80 +770,8 @@
     <ClInclude Include="radix\service.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
-    <ClInclude Include="radix\simple_list.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\sockets.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\specialty.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\spreadset.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\this_build_number.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\util.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="radix\wait_cursor.h">
       <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\win_registry.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\application.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\attr.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\base_array.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\disp_option.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\document.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\entity.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\enum.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\exportable.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\importable.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\input_tree.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\node.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\output_tree.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\parse_info.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\property_exchange.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\tree_base.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\tree_schema.h">
-      <Filter>Header Files\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="xml\var_exchange.h">
-      <Filter>Header Files\xml</Filter>
     </ClInclude>
     <ClInclude Include="xml\xml.h">
       <Filter>Header Files\xml</Filter>
@@ -1367,46 +1199,13 @@
     <ClInclude Include="fs\fs_data.h">
       <Filter>Header Files\fs</Filter>
     </ClInclude>
-    <ClInclude Include="fs\fs_document.h">
-      <Filter>Header Files\fs</Filter>
-    </ClInclude>
     <ClInclude Include="fs\fs_item.h">
       <Filter>Header Files\fs</Filter>
     </ClInclude>
     <ClInclude Include="fs\fs_item_array.h">
       <Filter>Header Files\fs</Filter>
     </ClInclude>
-    <ClInclude Include="fs\fs_list.h">
-      <Filter>Header Files\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="fs\fs_list_data.h">
-      <Filter>Header Files\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="fs\fs_list_interface.h">
-      <Filter>Header Files\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="fs\fs_list_item.h">
-      <Filter>Header Files\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="fs\fs_list_item_array.h">
-      <Filter>Header Files\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="fs\fs_main_view.h">
-      <Filter>Header Files\fs</Filter>
-    </ClInclude>
     <ClInclude Include="fs\fs_set.h">
-      <Filter>Header Files\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="fs\fs_tree.h">
-      <Filter>Header Files\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="fs\fs_tree_data.h">
-      <Filter>Header Files\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="fs\fs_tree_interface.h">
-      <Filter>Header Files\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="fs\fs_tree_item.h">
       <Filter>Header Files\fs</Filter>
     </ClInclude>
     <ClInclude Include="fs\ifs.h">
@@ -1796,9 +1595,6 @@
     <ClInclude Include="ca\ca_message_window.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_object.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_osi.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
@@ -2126,36 +1922,6 @@
     <ClInclude Include="template\_template.h">
       <Filter>Header Files\template</Filter>
     </ClInclude>
-    <ClInclude Include="template\_template_xyz.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\_trace_module_manager.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\base.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\checked.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\core.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\debug.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\definition.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\exception.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\resource.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\simple_collection.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
     <ClInclude Include="template\template.h">
       <Filter>Header Files\template</Filter>
     </ClInclude>
@@ -2181,15 +1947,6 @@
       <Filter>Header Files\template</Filter>
     </ClInclude>
     <ClInclude Include="template\template_std_pair.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\time.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\trace.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\trace_module_manager.h">
       <Filter>Header Files\template</Filter>
     </ClInclude>
     <ClInclude Include="collection\numeric_array.h">
@@ -3356,9 +3113,6 @@
     <ClInclude Include="radix\radix_allocator.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
-    <ClInclude Include="radix\cafxdllx_want_to_remove.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="collection\spreadset.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
@@ -3370,12 +3124,6 @@
     </ClInclude>
     <ClInclude Include="collection\packset.h">
       <Filter>Header Files\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\c_priv_want_to_remove.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\c_priv2_want_to_remove.h">
-      <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="gen\gen_flags.h">
       <Filter>Header Files\gen</Filter>
@@ -3389,17 +3137,218 @@
     <ClInclude Include="windows\os.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
-    <ClInclude Include="template\c_allocate_want_to_remove.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\cw_allocate_want_to_remove.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
     <ClInclude Include="windows\os_registry.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
     <ClInclude Include="api\atol.h">
       <Filter>Header Files\api</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_application.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_attr.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_base_array.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_disp_option.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_document.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_entity.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_enum.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_exportable.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_importable.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_input_tree.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_node.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_output_tree.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_parse_info.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_property_exchange.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_tree_base.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_tree_schema.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_var_exchange.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_xml_data.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_edit.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_edit.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_allocate.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_base.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_cregexp_util.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_cregexp.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_command.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_command_target.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_constraint.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_heap.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_html_file.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\kbase_xxx.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\aaa_simple_list_want_to_remove_xxx.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\aaa_specialty_want_to_remove_xxx.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\aaa_Common_want_to_remove_xxx.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\aaa_comparable_want_to_remove_xxx.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\aaa_conv_want_to_remove_xxx.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\aaa_conversion_want_to_remove_xxx.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\aaa_DispatchPtrArray_want_to_remove_xxx.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\aaa_dispimpl_want_to_remove_xxx.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\aaa_elements_want_to_remove_xxx.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\aaa_hh_want_to_remove_xxx.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\aaa_inline_want_to_remove_xxx.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\aaa_language_string_want_to_remove_xxx.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_composite.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\_full_pointer_want_to_remove_xxx.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\_base_enum_want_to_remove_xxx.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\_pointer_want_to_remove_xxx.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\_PointerManager_want_to_remove_xxx.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\_raw_pointer_want_to_remove_xxx.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\_var_array_want_to_remove_xxx.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_bstr.H">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_time.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\datetime_time.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\datetime_value.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="template\aaa_resource_want_to_remove_xxx.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\aaa_template_xyz_want_to_remove_xxx.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\aaa_trace_module_manager_want_to_remove.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_definition.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_scoped_ptr.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_core.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_checked.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_base.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_debug.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_exception.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\aaa_simple_collection_want_to_remove_xxx.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\aaa_cw_allocate_want_to_remove_xxx.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\aaa_c_allocate_want_to_remove_xxx.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_trace.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="template\template_trace_module_manager.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\os_implementation.h">
+      <Filter>Header Files\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3574,9 +3523,6 @@
     <ClCompile Include="gen\gen_math_rng.cpp">
       <Filter>Source Files\gen</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_object.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
     <ClCompile Include="gen\gen_parse.cpp">
       <Filter>Source Files\gen</Filter>
     </ClCompile>
@@ -3599,9 +3545,6 @@
       <Filter>Source Files\gen</Filter>
     </ClCompile>
     <ClCompile Include="gen\gen_property.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_ptri.cpp">
       <Filter>Source Files\gen</Filter>
     </ClCompile>
     <ClCompile Include="gen\gen_request_signal.cpp">
@@ -3653,9 +3596,6 @@
       <Filter>Source Files\gen</Filter>
     </ClCompile>
     <ClCompile Include="primitive\color.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\comparable.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\count.cpp">
@@ -3725,9 +3665,6 @@
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="radix\radix_application.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_html_file.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="radix\radix_object.cpp">
@@ -4330,9 +4267,6 @@
     <ClCompile Include="ca\ca_message_window.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_object.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_osi.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
@@ -4529,9 +4463,6 @@
       <Filter>Source Files\collection</Filter>
     </ClCompile>
     <ClCompile Include="collection\rect_array.cpp">
-      <Filter>Source Files\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="collection\simple_list.cpp">
       <Filter>Source Files\collection</Filter>
     </ClCompile>
     <ClCompile Include="collection\sort.cpp">
@@ -4894,12 +4825,6 @@
     <ClCompile Include="sockets\sockets_application_interface.cpp">
       <Filter>Source Files\sockets</Filter>
     </ClCompile>
-    <ClCompile Include="sockets\socket_include.cpp">
-      <Filter>Source Files\sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\http_memory_file.cpp">
-      <Filter>Source Files\sockets</Filter>
-    </ClCompile>
     <ClCompile Include="sockets\http_file.cpp">
       <Filter>Source Files\sockets</Filter>
     </ClCompile>
@@ -4982,9 +4907,6 @@
       <Filter>Source Files\colorertake5</Filter>
     </ClCompile>
     <ClCompile Include="colorertake5\colorertake5_base_editor.cpp">
-      <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="colorertake5\colorertake5_cregexp.cpp">
       <Filter>Source Files\colorertake5</Filter>
     </ClCompile>
     <ClCompile Include="colorertake5\colorertake5_default_error_handler.cpp">
@@ -5107,16 +5029,10 @@
     <ClCompile Include="database\database_user_interaction.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
-    <ClCompile Include="template\base.cpp">
-      <Filter>Source Files\template</Filter>
-    </ClCompile>
     <ClCompile Include="template\template_base.cpp">
       <Filter>Source Files\template</Filter>
     </ClCompile>
     <ClCompile Include="template\template_checked.cpp">
-      <Filter>Source Files\template</Filter>
-    </ClCompile>
-    <ClCompile Include="template\template_debug.cpp">
       <Filter>Source Files\template</Filter>
     </ClCompile>
     <ClCompile Include="template\template_exception.cpp">
@@ -5126,9 +5042,6 @@
       <Filter>Source Files\template</Filter>
     </ClCompile>
     <ClCompile Include="template\template_memory.cpp">
-      <Filter>Source Files\template</Filter>
-    </ClCompile>
-    <ClCompile Include="template\template_time.cpp">
       <Filter>Source Files\template</Filter>
     </ClCompile>
     <ClCompile Include="template\template_trace.cpp">
@@ -5242,19 +5155,10 @@
     <ClCompile Include="api\api_str.cpp">
       <Filter>Source Files\api</Filter>
     </ClCompile>
-    <ClCompile Include="radix\radix_afxcrit.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
     <ClCompile Include="radix\radix_allocator.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="radix\radix_assert.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_auxdata.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_BSTR.CPP">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="radix\radix_cmdtarg.cpp">
@@ -5269,12 +5173,6 @@
     <ClCompile Include="radix\radix_constraint.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
-    <ClCompile Include="radix\radix_datetime_value.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_externs.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
     <ClCompile Include="radix\radix_factory.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
@@ -5284,16 +5182,10 @@
     <ClCompile Include="radix\radix_flags.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
-    <ClCompile Include="radix\radix_language_string.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
     <ClCompile Include="radix\radix_load_and_save.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="radix\machine_event_central.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_pcre_util.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="radix\radix_pipe.cpp">
@@ -5312,12 +5204,6 @@
       <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="radix\radix_thread.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_timecore.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_util.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="radix\radix_validadd.cpp">
@@ -5664,6 +5550,45 @@
     </ClCompile>
     <ClCompile Include="api\api_atol.cpp">
       <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_edit.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_edit.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_cregexp_util.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_cregexp.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_time.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_value.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="template\aaa_base_want_to_remove_xxx.cpp">
+      <Filter>Source Files\template</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_include.cpp">
+      <Filter>Source Files\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_http_memory_file.cpp">
+      <Filter>Source Files\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\aaa_radix_afxcrit_want_to_remove_xxx.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\aaa_radix_auxdata_want_to_remove_xxx.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_html_file.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\radix_bstr.cpp">
+      <Filter>Source Files\radix</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

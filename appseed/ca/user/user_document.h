@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca document :
-   virtual public user::document_interface
+   public user::document_interface
 {
 public:
 

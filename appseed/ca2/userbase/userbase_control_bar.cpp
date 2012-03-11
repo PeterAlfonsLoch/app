@@ -550,14 +550,14 @@ namespace userbase
       }
 
       // force black text on gray background all the time
-      if (!::ca::window::GrayCtlColor((HDC)pctlcolor->m_pdc->get_os_data(), (HWND) pctlcolor->m_pwnd->get_os_data(), pctlcolor->m_nCtlType,
+/*      if (!::ca::window::GrayCtlColor((HDC)pctlcolor->m_pdc->get_os_data(), (HWND) pctlcolor->m_pwnd->get_os_data(), pctlcolor->m_nCtlType,
          afxData.hbrBtnFace, afxData.clrBtnText))
       {
          pctlcolor->set_lresult(Default());
          pctlcolor->m_bRet = true;
          return;
-      }
-      pctlcolor->set_lresult((LRESULT) afxData.hbrBtnFace);
+      }*/
+      //pctlcolor->set_lresult((LRESULT) afxData.hbrBtnFace);
       pctlcolor->m_bRet = true;
    }
 
@@ -803,7 +803,8 @@ namespace userbase
       rect1 = rect;
       rect2 = rect;
    //   COLORREF clr = afxData.bWin4 ? afxData.clrBtnShadow : afxData.clrWindowFrame;
-      COLORREF clr = afxData.clrBtnShadow;
+//      COLORREF clr = afxData.clrBtnShadow;
+      COLORREF clr;
       clr = RGB(128, 128, 123);
 
       // draw dark line one pixel back/up
@@ -813,9 +814,11 @@ namespace userbase
          rect1.bottom -= CY_BORDER;
       }
       if (dwStyle & CBRS_BORDER_TOP)
-         rect2.top += afxData.cyBorder2;
+         rect2.top += 2;
+         //rect2.top += afxData.cyBorder2;
       if (dwStyle & CBRS_BORDER_BOTTOM)
-         rect2.bottom -= afxData.cyBorder2;
+         rect2.bottom -= 2;
+         //rect2.bottom -= afxData.cyBorder2;
 
       // draw left and top
       if (dwStyle & CBRS_BORDER_LEFT)
@@ -873,7 +876,7 @@ namespace userbase
       if (dwStyle & CBRS_BORDER_3D)
       {
          // prepare for hilite lines
-         clr = afxData.clrBtnHilite;
+//         clr = afxData.clrBtnHilite;
          clr = RGB(250, 250, 245);
 
          // draw left and top
@@ -896,13 +899,17 @@ namespace userbase
       }
 
       if (dwStyle & CBRS_BORDER_LEFT)
-         rect.left += afxData.cxBorder2;
+         //rect.left += afxData.cxBorder2;
+            rect.left += 2;
       if (dwStyle & CBRS_BORDER_TOP)
-         rect.top += afxData.cyBorder2;
+         //rect.top += afxData.cyBorder2;
+            rect.top += 2;
       if (dwStyle & CBRS_BORDER_RIGHT)
-         rect.right -= afxData.cxBorder2;
+         //rect.right -= afxData.cxBorder2;
+            rect.right -= 2;
       if (dwStyle & CBRS_BORDER_BOTTOM)
-         rect.bottom -= afxData.cyBorder2;
+         //rect.bottom -= afxData.cyBorder2;
+            rect.bottom -= 2;
    }
 
    #define CX_GRIPPER  6

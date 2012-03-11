@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 
+
 namespace ca
 {
+
 
    const char ca::g_szCarlosGustavoCecynLundgren[] = CarlosGustavoCecynLundgren;
    const char ca::g_szCamiloSasukeTsumanuma[] = CamiloSasukeTsumanuma;
@@ -11,6 +13,7 @@ namespace ca
    const char ca::g_szKamiiro[] = kamiiro;
    const char ca::g_szZack[] = zack;
    const char ca::g_szCa[] = car;
+
 
    ca::ca()
    {
@@ -65,6 +68,92 @@ namespace ca
 
    ca::~ca()
    {
+      if(m_papp != NULL)
+      {
+         try
+         {
+            m_papp->on_delete(this);
+         }
+         catch(...)
+         {
+         }
+         try
+         {
+            if(m_papp->m_psystem != NULL)
+            {
+                  m_papp->m_psystem->on_delete(this);
+            }
+         }
+         catch(...)
+         {
+         }
+      }
+
+      if(m_pptraListener != NULL)
+      {
+         for(int i = 0; i < m_pptraListener->get_size(); i++)
+         {
+            ::ca::ca * plistener = m_pptraListener->element_at(i);
+            if(plistener != NULL)
+            {
+               try
+               {
+                  plistener->on_delete(this);
+               }
+               catch(...)
+               {
+               }
+               try
+               {
+                  if(plistener->m_pptraListened != NULL)
+                  {
+                     plistener->m_pptraListened->remove(this);
+                  }
+               }
+               catch(...)
+               {
+               }
+            }
+         }
+         try
+         {
+            delete m_pptraListener;
+         }
+         catch(...)
+         {
+         }
+         m_pptraListener = NULL;
+      }
+      if(m_pptraListened != NULL)
+      {
+         for(int i = 0; i < m_pptraListened->get_size(); i++)
+         {
+            ::ca::ca * plistened = m_pptraListened->element_at(i);
+            if(plistened != NULL)
+            {
+               try
+               {
+                  if(plistened->m_pptraListener != NULL)
+                  {
+                     plistened->m_pptraListener->remove(this);
+                  }
+               }
+               catch(...)
+               {
+               }
+            }
+         }
+         try
+         {
+            delete m_pptraListened;
+         }
+         catch(...)
+         {
+         }
+         m_pptraListened = NULL;
+      }
+
+
    }
 
    ::ca::application * ca::get_app() const
@@ -92,17 +181,8 @@ namespace ca
       return *this;
    }
 
-   void ca::delete_this()
-   {
-   }
-
    void ca::on_delete(::ca::ca * pca)
    {
-   }
-
-   ::ca::ca * ca::clone()
-   {
-      return NULL;
    }
 
    ptra & ca::listenerptra()
@@ -132,6 +212,40 @@ namespace ca
    {
       return m_psystem->m_pcube;
    }
+
+   void ca::delete_this()
+   {
+      if(m_pfactoryitembase != NULL && m_pfactoryitembase->m_pallocator)
+      {
+
+         m_pfactoryitembase->m_pallocator->discard(this);
+      }
+      else if(m_ulFlags & flag_discard_to_factory)
+      {
+         m_papp->m_psystem->discard_to_factory(this);
+      }
+//      else if(m_ulFlags & flag_heap_alloc)
+      else
+      {
+         delete this;
+      }
+   }
+
+   ::ca::ca * ca::clone()
+   {
+      if(m_pfactoryitembase != NULL)
+         return m_pfactoryitembase->clone(this);
+      else
+         return m_papp->m_psystem->clone(this);
+   }
+
+
+   ptra * ca::new_ptra()
+   {
+      return new ptra();
+   }
+
+
 
 } // namespace ca
 

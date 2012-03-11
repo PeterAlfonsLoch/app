@@ -25,7 +25,7 @@ namespace user
 
       check::e_check                      m_echeck;
       bool                                m_bEnabled;
-      language_string                     m_langstrButtonText;
+      istring                             m_istrButtonText;
       rect                                m_rectText;
 
 

@@ -1,11 +1,12 @@
 #include "StdAfx.h"
 
+
 namespace mail
 {
 
+
    list_interface::data::data(::ca::application * papp) :
       ca(papp),
-      ::ca::data(papp),
       ::user::list_data(papp)
    {
    }
@@ -101,4 +102,7 @@ namespace mail
       return ::user::list::_001OnUpdateItemCount(dwFlags);
    }
 
+
 } // namespace mail
+
+

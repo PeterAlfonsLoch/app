@@ -1,17 +1,25 @@
 #pragma once
 
+
 class ::user::list;
 
-class CLASS_DECL_ca2 SimpleFormListEdit : public ::userbase::edit_plain_text
+
+class CLASS_DECL_ca2 simple_form_list_edit : 
+   public ::userbase::edit_plain_text
 {
 public:
-   SimpleFormListEdit(::ca::application * papp);
+
 
    ::user::list * m_plistinterface;
 
+   
+   simple_form_list_edit(::ca::application * papp);
+   virtual ~simple_form_list_edit();
+   
+
    ::user::interaction * GetNotifyWnd();
    ::user::list * GetBaseListInterface();
-   virtual ~SimpleFormListEdit();
+   
 
    BOOL OnEraseBkgnd(::ca::graphics * pgraphics);
    int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -19,4 +27,7 @@ public:
    void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
    int OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message);
 
+
 };
+
+

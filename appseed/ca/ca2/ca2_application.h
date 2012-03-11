@@ -1,15 +1,19 @@
 #pragma once
 
+
 #include "ca2_html.h"
 #include "ca2_process.h"
 
+
 namespace ca
 {
+
 
    class CLASS_DECL_ca application_ptra :
       virtual public comparable_array < ::ca::application *, ::ca::application * >
    {
    };
+
 
 } // namespace ca
 
@@ -17,7 +21,9 @@ namespace ca
 namespace fontopus
 {
 
+
    class user;
+
 
 } // namespace fontopus
 
@@ -25,13 +31,13 @@ namespace fontopus
 namespace ca2
 {
 
+
    class CLASS_DECL_ca application :
       virtual public ::xml::application
    {
    public:
       ::collection::string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemap;
       ::collection::string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemapStd;
-      comparable_array < language_string *, language_string * >                                 m_langstrptra;
       string                                                                                    m_strLocale;
       string                                                                                    m_strStyle;
       manual_reset_event *                                                                      m_peventReady;
@@ -149,5 +155,6 @@ namespace ca2
 
 
 #include "ca/ca_font.h"
+
 
 

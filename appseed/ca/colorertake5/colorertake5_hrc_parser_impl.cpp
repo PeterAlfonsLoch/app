@@ -155,14 +155,15 @@ string HRCParserImpl::getVersion() {
 void HRCParserImpl::parseHRC(const char * psz)
 {
    xml::document doc(get_app());
-   doc.m_parseinfo.m_chEscapeValue = '\0';
+   doc.m_pparseinfo->m_chEscapeValue = '\0';
    doc.load(psz);
    if(doc.get_root() == NULL)
    {
       throw HRCParserException(string("main '<hrc>' block not found"));
    }
    xml::node & types = *doc.get_root();
-   if(types.m_strName != "hrc")
+
+   if(types.get_name() != "hrc")
    {
       throw HRCParserException(string("main '<hrc>' block not found"));
    }
@@ -178,15 +179,15 @@ void HRCParserImpl::parseHRC(const char * psz)
    for (strsize i = 0; i < types.get_children_count(); i++)
    {
       xml::node *elem = types.child_at(i);
-      if (elem->m_strName == "prototype"){
+      if (elem->get_name() == "prototype"){
          addPrototype(elem);
          continue;
       };
-      if (elem->m_strName == "package"){
+      if (elem->get_name() == "package"){
          addPrototype(elem);
          continue;
       };
-      if (elem->m_strName == "type"){
+      if (elem->get_name() == "type"){
          addType(elem);
          continue;
       };
@@ -223,14 +224,14 @@ void HRCParserImpl::addPrototype(xml::node *elem)
    if (typeGroup != NULL){
       type->group = (typeGroup);
    }
-   if (elem->m_strName == "package"){
+   if (elem->get_name() == "package"){
       type->isPackage = true;
    }
 
    for(strsize i = 0; i < elem->get_children_count(); i++)
    {
       xml::node *content = elem->child_at(i);
-      if (content->m_strName == "location"){
+      if (content->get_name() == "location"){
          string locationLink = (content)->attr("link");
          if (locationLink.is_empty())
          {
@@ -248,16 +249,16 @@ void HRCParserImpl::addPrototype(xml::node *elem)
                type->m_strSourceLocation);*/
 
       };
-      if (content->m_strName == "filename" || content->m_strName == "firstline")
+      if (content->get_name() == "filename" || content->get_name() == "firstline")
       {
          if (content->get_children_count() > 0)
          {
             if (errorHandler != NULL)
-               errorHandler->warning(string("Bad '")+content->m_strName+"' element in prototype '"+typeName+"'");
+               errorHandler->warning(string("Bad '")+content->get_name()+"' element in prototype '"+typeName+"'");
                continue;
          }
-         string match = content->m_strValue;
-         CRegExp *matchRE = new CRegExp(match);
+         string match = content->get_name();
+         cregexp *matchRE = new cregexp(match);
          matchRE->setPositionMoves(true);
          if (!matchRE->isOk())
          {
@@ -268,8 +269,8 @@ void HRCParserImpl::addPrototype(xml::node *elem)
             delete matchRE;
             continue;
          };
-         int ctype = content->m_strName == "filename" ? 0 : 1;
-         double prior = content->m_strName == "filename" ? 2 : 1;
+         int ctype = content->get_name() == "filename" ? 0 : 1;
+         double prior = content->get_name() == "filename" ? 2 : 1;
          if(content->find_attr("weight") != NULL)
          {
             prior = atof((content)->attr("weight"));
@@ -277,12 +278,12 @@ void HRCParserImpl::addPrototype(xml::node *elem)
          FileTypeChooser *ftc = new FileTypeChooser(ctype, prior, matchRE);
          type->chooserVector.add(ftc);
       }
-      if (content->m_strName == "parameters")
+      if (content->get_name() == "parameters")
       {
          for(strsize i = 0; i < content->get_children_count(); i++)
          {
             xml::node *param = content->child_at(i);
-            if (param->m_strName == "param")
+            if (param->get_name() == "param")
             {
                string name = (param)->attr("name");
                string value = (param)->attr("value");
@@ -342,7 +343,7 @@ void HRCParserImpl::addType(xml::node *elem)
 
    for(strsize i = 0; i < elem->get_children_count(); i++){
       xml::node *xmlpar = elem->child_at(i);
-      if(xmlpar->m_strName == "region"){
+      if(xmlpar->get_name() == "region"){
          string regionName = (xmlpar)->attr("name");
          string regionParent = (xmlpar)->attr("parent");
          string regionDescr = (xmlpar)->attr("description");
@@ -365,7 +366,7 @@ void HRCParserImpl::addType(xml::node *elem)
          regionNamesHash.set_at(qname1, region);
 
       };
-      if (xmlpar->m_strName == "entity"){
+      if (xmlpar->get_name() == "entity"){
          string entityName  = (xmlpar)->attr("name");
          string entityValue = (xmlpar)->attr("value");
          if (entityName == NULL || entityValue == NULL){
@@ -381,7 +382,7 @@ void HRCParserImpl::addType(xml::node *elem)
             delete qname1;
          };
       };
-      if (xmlpar->m_strName == "import"){
+      if (xmlpar->get_name() == "import"){
          string typeParam = (xmlpar)->attr("type");
          if (typeParam == NULL || fileTypeHash[typeParam] == NULL){
             if (errorHandler != NULL){
@@ -391,7 +392,7 @@ void HRCParserImpl::addType(xml::node *elem)
          };
          type->importVector.add((typeParam));
       };
-      if (xmlpar->m_strName == "scheme"){
+      if (xmlpar->get_name() == "scheme"){
          addScheme(xmlpar);
          continue;
       };
@@ -441,15 +442,15 @@ void HRCParserImpl::addScheme(xml::node *elem)
 
 void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
 {
-   sensitive_ptr < SchemeNode > next;
+   gen::scoped_ptr < SchemeNode > next;
    for(xml::node *tmpel = elem; tmpel; tmpel = tmpel->get_next_sibling()){
-      if (!tmpel->m_strName) continue;
+      if (!tmpel->get_name()) continue;
 
       if (next == NULL){
          next = new SchemeNode();
       }
 
-      if (tmpel->m_strName == "inherit"){
+      if (tmpel->get_name() == "inherit"){
          string nqSchemeName = tmpel->attr("scheme");
          if (nqSchemeName == NULL || nqSchemeName.get_length() == 0){
             if (errorHandler != NULL){
@@ -472,7 +473,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
 
          if (tmpel->first_child() != NULL){
             for(xml::node *vel = tmpel->first_child(); vel; vel = vel->get_next_sibling()){
-               if (vel->m_strName != "virtual"){
+               if (vel->get_name() != "virtual"){
                   continue;
                }
                string schemeName = (vel)->attr("scheme");
@@ -490,10 +491,10 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          continue;
       };
 
-      if (tmpel->m_strName == "regexp"){
+      if (tmpel->get_name() == "regexp"){
          string matchParam = tmpel->attr("match");
-         if (matchParam == NULL && tmpel->first_child() && tmpel->first_child()->m_etype == xml::node_text){
-            matchParam = tmpel->first_child()->m_strValue;
+         if (matchParam == NULL && tmpel->first_child() && tmpel->first_child()->get_type() == xml::node_text){
+            matchParam = tmpel->first_child()->get_value();
          }
          if (matchParam == NULL){
             if (errorHandler != NULL){
@@ -505,7 +506,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          string entMatchParam = useEntities(matchParam);
          next->lowPriority = tmpel->attr("priority") == "low";
          next->type = SNT_RE;
-         next->start = new CRegExp(entMatchParam);
+         next->start = new cregexp(entMatchParam);
          next->start->setPositionMoves(false);
          if (!next->start || !next->start->isOk())
             if (errorHandler != NULL) errorHandler->error(string("fault compiling regexp '")+entMatchParam+"' in scheme '"+scheme->schemeName+"'");
@@ -523,7 +524,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
       };
 
 
-      if (tmpel->m_strName == "block"){
+      if (tmpel->get_name() == "block"){
 
          string sParam = tmpel->attr("start");
          string eParam = tmpel->attr("end");
@@ -533,19 +534,19 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          for(xml::node *blkn = tmpel->first_child(); blkn && !(eParam && sParam); blkn = blkn->get_next_sibling())
          {
             xml::node *blkel;
-            if(blkn->m_etype == xml::node_element) blkel = blkn;
+            if(blkn->get_type() == xml::node_element) blkel = blkn;
             else continue;
 
-            string p = (blkel->first_child() && blkel->first_child()->m_etype == xml::node_text)
-               ? (blkel->first_child())->m_strValue
+            string p = (blkel->first_child() && blkel->first_child()->get_type() == xml::node_text)
+               ? (blkel->first_child())->get_value()
                : blkel->attr("match");
 
-            if(blkel->m_strName == "start")
+            if(blkel->get_name() == "start")
             {
                sParam = p;
                eStart = blkel;
             }
-            if(blkel->m_strName == "end")
+            if(blkel->get_name() == "end")
             {
                eParam = p;
                eEnd = blkel;
@@ -584,14 +585,14 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          next->lowContentPriority = tmpel->attr("content-priority") == "low";
          next->innerRegion = tmpel->attr("inner-region") == "yes";
          next->type = SNT_SCHEME;
-         next->start = new CRegExp(startParam);
+         next->start = new cregexp(startParam);
          next->start->setPositionMoves(false);
          if (!next->start->isOk()){
             if (errorHandler != NULL){
                errorHandler->error(string("fault compiling regexp '")+startParam+"' in scheme '"+scheme->schemeName+"'");
             }
          }
-         next->end = new CRegExp();
+         next->end = new cregexp();
          next->end->setPositionMoves(true);
          next->end->setBackRE(next->start);
          next->end->setRE(endParam);
@@ -609,7 +610,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          continue;
       };
 
-      if (tmpel->m_strName == "keywords"){
+      if (tmpel->get_name() == "keywords"){
          bool isCase = tmpel->attr("ignorecase") ? false : true;
          next->lowPriority = tmpel->attr("priority") != "normal";
          class region *brgn = getNCRegion(tmpel, "region");
@@ -630,8 +631,8 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
 
          next->kwList = new KeywordList;
          for(xml::node *keywrd_count = tmpel->first_child(); keywrd_count; keywrd_count = keywrd_count->get_next_sibling()){
-            if (keywrd_count->m_strName == "word" ||
-               keywrd_count->m_strName == "symb")
+            if (keywrd_count->get_name() == "word" ||
+               keywrd_count->get_name() == "symb")
             {
                next->kwList->num++;
             }
@@ -646,8 +647,8 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
 
          for(xml::node *keywrd = tmpel->first_child(); keywrd; keywrd = keywrd->get_next_sibling()){
             strsize type = 0;
-            if (keywrd->m_strName == "word") type = 1;
-            if (keywrd->m_strName == "symb") type = 2;
+            if (keywrd->get_name() == "word") type = 1;
+            if (keywrd->get_name() == "symb") type = 2;
             if (!type){
                continue;
             }

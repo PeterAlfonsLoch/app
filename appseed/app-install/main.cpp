@@ -71,8 +71,6 @@ public:
 
    int cube_run(const char * id);
 
-   void execute_sync(SHELLEXECUTEINFOA * pinfoa);
-
    void call_self_privileged_sync(const char * param);
 
    int spaboot_registry_register(const char * lpszFile);

@@ -33,14 +33,12 @@ BOOL document_template::GetDocString(string & rString, enum DocStringIndex i) co
 
 void document_template::add_document(document * pdocument)
 {
-   ASSERT_VALID(pdocument);
    ASSERT(pdocument->m_pdocumentemplate == NULL);   // no template attached yet
    pdocument->m_pdocumentemplate = this;
 }
 
 void document_template::remove_document(document * pdocument)
 {
-   ASSERT_VALID(pdocument);
    ASSERT(pdocument->m_pdocumentemplate == this);   // must be attached to us
    pdocument->m_pdocumentemplate = NULL;
 }
@@ -112,8 +110,7 @@ document * document_template::create_new_document()
 
 frame_window* document_template::create_new_frame(document * pdocument, frame_window* pOther, ::ca::create_context * pcreatecontext)
 {
-   if (pdocument != NULL)
-      ASSERT_VALID(pdocument);
+
    // create a frame wired to the specified document
 
    ASSERT(m_strMatter.get_length() > 0); // must have a resource ID to load from
@@ -247,7 +244,6 @@ void document_template::on_idle()
    for(index index = 0; index < count; index++)
    {
       document * pdocument = get_document(index);
-      ASSERT_VALID(pdocument);
       ASSERT_KINDOF(document, pdocument);
       pdocument->on_idle();
    }
@@ -278,7 +274,6 @@ void document_template::dump(dump_context & dumpcontext) const
       for(index index = 0; index < count; index++)
       {
          document * pdocument = get_document(index);
-         dumpcontext << "\ndocument " << pdocument;
       }
       dumpcontext << "\n}";
    }
@@ -294,7 +289,6 @@ void document_template::assert_valid() const
    for(index index = 0; index < count; index++)
    {
       document * pdocument = get_document(index);
-      ASSERT_VALID(pdocument);
    }
 }
 #endif //_DEBUG

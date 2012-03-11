@@ -1,8 +1,10 @@
 #pragma once
 
 
-#include "ca/gen/gen_object.h"
 #include "ca/primitive/datetime/datetime_duration.h"
+#include "ex1/ex1_request_interface.h"
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -15,7 +17,7 @@
 **/
 
 class CLASS_DECL_ca sync_object_base :
-   virtual public ::gen::object
+   virtual public ::ex1::request_interface
 {
 public:
 

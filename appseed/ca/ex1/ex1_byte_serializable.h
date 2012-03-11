@@ -12,14 +12,9 @@ namespace ex1
    class byte_output_stream;
 
 
-   class CLASS_DECL_ca byte_serializable :
-      virtual public ::radix::object
+   class CLASS_DECL_ca byte_serializable
    {
    public:
-
-
-      byte_serializable();
-      virtual ~byte_serializable();
 
 
       virtual void write(byte_output_stream & ostream) = 0;

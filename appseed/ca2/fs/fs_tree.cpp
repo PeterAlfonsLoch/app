@@ -7,10 +7,7 @@ namespace fs
 
    tree::tree(::ca::application * papp) :
       ca(papp),
-      ::ca::data_container(papp),
       ::user::scroll_view(papp),
-      ::ex1::tree(papp),
-      ::user::tree(papp),
       ::fs::tree_interface(papp)
    {
          
@@ -26,14 +23,13 @@ namespace fs
 #ifdef _DEBUG
    void tree::assert_valid() const
    {
-      ::fs::tree_interface::assert_valid();
    }
 
    void tree::dump(dump_context & dumpcontext) const
    {
-      ::fs::tree_interface::dump(dumpcontext);
    }
 #endif //_DEBUG
+
 
    void tree::install_message_handling(::gen::message::dispatch * pinterface)
    {

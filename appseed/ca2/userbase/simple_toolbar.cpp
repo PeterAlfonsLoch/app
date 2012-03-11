@@ -826,13 +826,14 @@ return bResult;
 BOOL simple_toolbar::LoadXmlToolBar(const char * lpszXml)
 {
 
-   xml::node node(get_app());
+   xml::document doc(get_app());
 
-   node.load(lpszXml);
+   if(!doc.load(lpszXml))
+      return FALSE;
 
    xml::node::base_array childs(get_app());
 
-   childs = node.children();
+   childs = doc.children();
 
    //   gen::application * papp = dynamic_cast < gen::application * > (get_app());
 
@@ -843,12 +844,12 @@ BOOL simple_toolbar::LoadXmlToolBar(const char * lpszXml)
    for(int i = 0; i < childs.get_size(); i++)
    {
       xml::node * pchild = &childs[i];
-      if(pchild->m_strName == "button")
+      if(pchild->get_name() == "button")
       {
          xml::attr * pattr = pchild->find_attr("id");
          memset(&tb, 0, sizeof(tb));
          item.m_id = pattr->get_string();
-         item.m_str = pchild->m_strValue;
+         item.m_str = pchild->get_value();
          if(pchild->attr("image").get_string().has_char())
          {
             item.m_spdib.create(get_app());
@@ -857,7 +858,7 @@ BOOL simple_toolbar::LoadXmlToolBar(const char * lpszXml)
          item.m_fsStyle &= ~TBBS_SEPARATOR;
          m_itema.add(item);
       }
-      else if(pchild->m_strName == "separator")
+      else if(pchild->get_name() == "separator")
       {
          item.m_id = "separator";
          item.m_str = "";

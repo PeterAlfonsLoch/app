@@ -325,10 +325,8 @@ namespace ex1
 
    edit_file::edit_file(::ca::application * papp) :
       ca(papp),
-      data_container(papp),
       ex1::tree_data(papp),
       ex1::filesp(papp),
-      ::ca::data(papp),
       ex1::tree(papp)
    {
       m_iBranch = 0;

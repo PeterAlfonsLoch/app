@@ -11,30 +11,30 @@ namespace user
 
    class CLASS_DECL_ca2 edit_plain_text :
       virtual public scroll_view,
-      virtual public text_interface,
-      virtual public colorertake5::base_editor,
-      virtual public ex1::tree,
-      virtual public ca::data_listener
+      public colorertake5::base_editor,
+      public ca::data_listener,
+      public ex1::tree
    {
    public:
 
 
-      WPARAM                      m_dwLastKeyWparam;
-      LPARAM                      m_dwLastKeyLparam;
+      WPARAM                        m_dwLastKeyWparam;
+      LPARAM                        m_dwLastKeyLparam;
 
+      
 
-      bool                       m_bKeyPressed;
-      bool                       m_bColorerTake5;
-      int                        m_iLineCount;
-      visual::dib_sp             m_dibBk;
-      bool                       m_bCustomFrameBefore;
-      rect                       m_FullScreenWindowRect;
-      visual::fastblur           m_fastblur;
+      bool                          m_bKeyPressed;
+      bool                          m_bColorerTake5;
+      int                           m_iLineCount;
+      visual::dib_sp                m_dibBk;
+      bool                          m_bCustomFrameBefore;
+      rect                          m_FullScreenWindowRect;
+      visual::fastblur              m_fastblur;
 
       bool                       m_bPassword;
 
-      bool                        m_bMouseDown;
-      point                        m_ptSelStart;
+      bool                       m_bMouseDown;
+      point                      m_ptSelStart;
       bool                       m_bFocus;
       bool                       m_bCaretOn;
       DWORD                      m_dwLastCaret;
@@ -57,11 +57,11 @@ namespace user
 
       // Used for whatever it can make faster for large files (scroll for example)
       // keep each line size
-      index_array                  m_iaLineIndex; 
+      index_array                m_iaLineIndex; 
       // Used for whatever it can make faster for large files (scroll for example)
       // keep each line end flag 3 = \r \n     1 = \n  \r = 2
-      index_array                  m_iaLineEndIndex;
-      count_array                  m_iaCLineIndex; 
+      index_array                m_iaLineEndIndex;
+      count_array                m_iaCLineIndex; 
       
       plain_text_data *          m_pdata;
       bool                       m_bOwnData;
@@ -140,9 +140,6 @@ namespace user
       virtual void _001OnSetText();
 
 
-      void MacroBegin();
-      void MacroRecord(plain_text_data::Command * pcommand);
-      void MacroEnd();
 
 
 
@@ -182,6 +179,10 @@ namespace user
       void IndexRegisterDelete(strsize iSel, strsize iCount);
       void IndexRegisterInsert(strsize iSel, const char * lpcszWhat);
 
+      void MacroBegin();
+      void MacroRecord(plain_text_data::Command * pcommand);
+      void MacroEnd();
+
       bool Undo();
       bool Redo();
       bool CanUndo();
@@ -195,6 +196,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnContextMenu)
       DECL_GEN_SIGNAL(_001OnSetCursor)
 
+
       virtual ex1::tree_item_data * on_allocate_item();
       virtual void on_delete_item(ex1::tree_item_data * pitem);
 
@@ -203,5 +205,6 @@ namespace user
 
 
 } // namespace user
+
 
 

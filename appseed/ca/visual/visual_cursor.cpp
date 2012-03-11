@@ -19,11 +19,11 @@ namespace visual
          return false;
       str += ".xml";
       string strNode = Application.file().as_string(str);
-      ::xml::node node(get_app());
-      if(node.load(strNode))
+      ::xml::document doc(get_app());
+      if(doc.load(strNode))
       {
-         m_ptHotspot.x = node.attr("x");
-         m_ptHotspot.y = node.attr("y");
+         m_ptHotspot.x = doc.attr("x");
+         m_ptHotspot.y = doc.attr("y");
       }
       return true;
    }

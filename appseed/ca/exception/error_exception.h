@@ -9,7 +9,7 @@ class CLASS_DECL_ca error_exception :
 public:
    
    
-   string m_strError;
+   vsstring m_strError;
 
 
    error_exception(const char * pszError);

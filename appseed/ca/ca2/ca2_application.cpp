@@ -164,18 +164,20 @@ namespace ca2
          return false;
 
       string strSystem = Application.file().as_string(System.dir().appdata("langstyle_settings.xml"));
-      ::xml::node nodeSystem(get_app());
+
+      ::xml::document docSystem(get_app());
+
       string strLangSystem;
       string strStyleSystem;
-      if(nodeSystem.load(strSystem))
+      if(docSystem.load(strSystem))
       {
-         if(nodeSystem.get_child("lang") != NULL)
+         if(docSystem.get_child("lang") != NULL)
          {
-            strLangSystem = nodeSystem.get_child("lang")->m_strValue;
+            strLangSystem = docSystem.get_child("lang")->get_value();
          }
-         if(nodeSystem.get_child("style") != NULL)
+         if(docSystem.get_child("style") != NULL)
          {
-            strStyleSystem = nodeSystem.get_child("style")->m_strValue;
+            strStyleSystem = docSystem.get_child("style")->get_value();
          }
       }
 
@@ -458,19 +460,19 @@ namespace ca2
 
    bool application::load_cached_string(string & str, id id, bool bLoadStringTable)
    {
-      ::xml::node node(this);
+      ::xml::document doc(this);
       if(id.is_text())
       {
-         if(!node.load(id))
+         if(!doc.load(id))
          {
             return load_cached_string_by_id(str, id, NULL, bLoadStringTable);
          }
       }
-      if(node.m_strName == "string")
+      if(doc.get_name() == "string")
       {
-         return load_cached_string_by_id(str, node.attr("id"), node.m_strValue, bLoadStringTable);
+         return load_cached_string_by_id(str, doc.attr("id"), doc.get_value(), bLoadStringTable);
       }
-      str = node.m_strValue;
+      str = doc.get_name();
       return true;
    }
 
@@ -549,7 +551,7 @@ namespace ca2
          strTableId += pszId;
       }
 
-      ::xml::node node(get_app());
+      ::xml::document doc(get_app());
       string strFilePath = System.dir().matter_from_locator(App(this).str_context(), strLocator, strMatter);
       if(!System.file().exists(strFilePath, this))
       {
@@ -559,13 +561,13 @@ namespace ca2
          return;
       }
       string strFile = Application.file().as_string(strFilePath);
-      if(!node.load(strFile))
+      if(!doc.load(strFile))
          return;
       string_to_string_map * pmapNew = new string_to_string_map;
-      for(int i = 0; i < node.children().get_count(); i++)
+      for(int i = 0; i < doc.children().get_count(); i++)
       {
-         string strId      = node.child_at(i)->attr("id");
-         string strValue   = node.child_at(i)->m_strValue;
+         string strId      = doc.child_at(i)->attr("id");
+         string strValue   = doc.child_at(i)->get_value();
          pmapNew->set_at(strId, strValue);
       }
       if(m_stringtablemap[strTableId] != NULL)

@@ -32,7 +32,7 @@ namespace xml
             throw "Cannot output to a null document";
          }
          m_pnode = m_pdocument->get_root();
-         m_pnode->m_strName = lpcszName;
+         m_pnode->set_name(lpcszName);
          exportable.xml_export(*this);
          return m_pdocument->get_root();
       }
@@ -71,12 +71,12 @@ namespace xml
 
    void output_tree::set_value(const char * lpcszValue)
    {
-      m_pnode->m_strValue = lpcszValue;
+      m_pnode->set_value(lpcszValue);
    }
 
    void output_tree::SetNodeName(const char * lpcszName)
    {
-      m_pnode->m_strName = lpcszName;
+      m_pnode->set_name(lpcszName);
    }
 
 } // namespace xml

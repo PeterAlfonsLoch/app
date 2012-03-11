@@ -68,7 +68,7 @@ namespace userbase
    bool menu_item::load_menu(xml::node * lpnode, int iLevel)
    {
 
-      xml::node node(get_app());
+      xml::document doc(get_app());
 
       ::count iItemCount = lpnode->get_children_count();
       for(int i = 0; i < iItemCount; i++)
@@ -77,14 +77,14 @@ namespace userbase
 
          menu_item * pitemNewChild = new menu_item(get_app());
 
-         pitemNewChild->m_bPopup = pnodeChild->get_children_count() > 0 && pnodeChild->m_strName == "menubar";
+         pitemNewChild->m_bPopup = pnodeChild->get_children_count() > 0 && pnodeChild->get_name() == "menubar";
 
          if(pitemNewChild->m_bPopup)
          {
             pitemNewChild->m_iLevel = iLevel + 1;
             pitemNewChild->load_menu(pnodeChild);
          }
-         if(pnodeChild->m_strName == "separator")
+         if(pnodeChild->get_name() == "separator")
          {
             pitemNewChild->m_id = "separator";
             m_iSeparatorCount++;
@@ -100,7 +100,7 @@ namespace userbase
             }
             else
             {
-               pitemNewChild->m_button._001SetButtonText(pnodeChild->m_strValue);
+               pitemNewChild->m_button._001SetButtonText(pnodeChild->get_value());
             }
          }
          add_item(pitemNewChild);

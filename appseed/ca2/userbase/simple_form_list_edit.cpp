@@ -1,29 +1,25 @@
 #include "StdAfx.h"
 
-SimpleFormListEdit::SimpleFormListEdit(::ca::application * papp) :
+
+simple_form_list_edit::simple_form_list_edit(::ca::application * papp) :
     ca(papp),
-   data_container(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),
-   colorertake5::base_editor(papp),
-   ::user::edit_plain_text(papp),
-   ::userbase::edit_plain_text(papp),
-   ex1::tree(papp),
-   ::ca::data_listener(papp)
+   ::userbase::edit_plain_text(papp)
 {
 }
 
-SimpleFormListEdit::~SimpleFormListEdit()
+simple_form_list_edit::~simple_form_list_edit()
 {
 }
 
-BOOL SimpleFormListEdit::OnEraseBkgnd(::ca::graphics * pgraphics) 
+BOOL simple_form_list_edit::OnEraseBkgnd(::ca::graphics * pgraphics) 
 {
    UNREFERENCED_PARAMETER(pgraphics);
    return TRUE;   
 }
 
-int SimpleFormListEdit::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int simple_form_list_edit::OnCreate(LPCREATESTRUCT lpCreateStruct) 
 {
    UNREFERENCED_PARAMETER(lpCreateStruct);
 // trans   if (::user::interaction::OnCreate(lpCreateStruct) == -1)
@@ -43,12 +39,12 @@ int SimpleFormListEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
    return 0;
 }
 
-::user::list * SimpleFormListEdit::GetBaseListInterface()
+::user::list * simple_form_list_edit::GetBaseListInterface()
 {
    return m_plistinterface;
 }
 
-void SimpleFormListEdit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void simple_form_list_edit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
 {
    UNREFERENCED_PARAMETER(nRepCnt);
    user::control_event key;
@@ -67,7 +63,7 @@ void SimpleFormListEdit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
    }
 }
 
-::user::interaction * SimpleFormListEdit::GetNotifyWnd()
+::user::interaction * simple_form_list_edit::GetNotifyWnd()
 {
    ::user::interaction * pwnd = GetOwner();
    if(pwnd != NULL)
@@ -75,7 +71,7 @@ void SimpleFormListEdit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
    return ::user::interaction::GetParent();
 }
 
-void SimpleFormListEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void simple_form_list_edit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 
 {
    UNREFERENCED_PARAMETER(nFlags);
    UNREFERENCED_PARAMETER(nRepCnt);
@@ -86,7 +82,7 @@ void SimpleFormListEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 // trans   ::user::interaction::OnChar(nChar, nRepCnt, nFlags);
 }
 
-int SimpleFormListEdit::OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message) 
+int simple_form_list_edit::OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message) 
 {
    UNREFERENCED_PARAMETER(pDesktopWnd);
    UNREFERENCED_PARAMETER(nHitTest);
@@ -94,3 +90,5 @@ int SimpleFormListEdit::OnMouseActivate(::user::interaction* pDesktopWnd, UINT n
    return MA_NOACTIVATE;   
    //return ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
 }
+
+

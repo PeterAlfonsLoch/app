@@ -75,7 +75,7 @@ namespace user
          for(int i = 0; i < pnode->get_children_count(); i++)
          {
             ::xml::node * pchild = pnode->child_at(i);
-            if(pchild->m_strName.CompareNoCase("item") == 0)
+            if(pchild->get_name().CompareNoCase("item") == 0)
             {
                string str = pchild->attr("char");
                if(str.has_char())
@@ -83,7 +83,7 @@ namespace user
                   set[str] = pchild->attr("value");
                }
             }
-            else if(pchild->m_strName.CompareNoCase("escape") == 0)
+            else if(pchild->get_name().CompareNoCase("escape") == 0)
             {
                process_escape(pchild, set[pnode->attr("value")].propset());
             }
@@ -99,13 +99,13 @@ namespace user
       string str = Application.file().as_string(pszPath);
       if(str.is_empty())
          return false;
-      ::xml::node node(get_app());
-      if(!node.load(str))
+      ::xml::document doc(get_app());
+      if(!doc.load(str))
          return false;
-      for(int i = 0; i < node.get_children_count(); i++)
+      for(int i = 0; i < doc.get_children_count(); i++)
       {
-         ::xml::node * pnode = node.child_at(i);
-         if(pnode->m_strName.CompareNoCase("item") == 0)
+         ::xml::node * pnode = doc.child_at(i);
+         if(pnode->get_name().CompareNoCase("item") == 0)
          {
             string strKey = pnode->attr("key");
             string strCode = pnode->attr("code");
@@ -154,7 +154,7 @@ namespace user
                }
             }
          }
-         else if(pnode->m_strName.CompareNoCase("escape") == 0)
+         else if(pnode->get_name().CompareNoCase("escape") == 0)
          {
             process_escape(pnode, m_setEscape[pnode->attr("value")].propset());
          }

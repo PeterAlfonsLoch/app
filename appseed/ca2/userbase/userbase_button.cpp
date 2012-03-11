@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 
+
 namespace userbase
 {
+
 
    button::button(::ca::application * papp) :
       ::user::interaction(papp), 
@@ -117,13 +119,10 @@ namespace userbase
 
 
 
-      string str(m_langstrButtonText.get(get_app()));
+      string strText(m_istrButtonText);
       pdc->SelectObject(m_pschema->m_font);
-      pdc->DrawText(str, rectText, DT_LEFT | DT_TOP);
+      pdc->DrawText(strText, rectText, DT_LEFT | DT_TOP);
 
-
-
-      //::DrawTextU((HDC)pdc->get_os_data(), str, str.get_length(), rectText, DT_LEFT | DT_TOP);
    }
 
    void button::_001OnCreate(gen::signal_object * pobj)
@@ -141,8 +140,8 @@ namespace userbase
 
       pdc->SelectObject(m_pschema->m_font);
 
-      string str(m_langstrButtonText.get(get_app()));
-      size size = pdc->GetTextExtent(str);
+      string strText(m_istrButtonText);
+      size size = pdc->GetTextExtent(strText);
 
       rect rect(0, 0, 0, 0);
       rect.right = size.cx + 4;
@@ -151,6 +150,8 @@ namespace userbase
       SetWindowPos(NULL, 0, 0, rect.width(), rect.height(), SWP_NOMOVE);
 
       m_pguie->ReleaseDC(pdc);
+
+
    }
 
    void button::install_message_handling(::gen::message::dispatch * pinterface)
@@ -160,4 +161,7 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_CREATE                  , pinterface, this, &button::_001OnCreate);
    }
 
+
 } // namespace userbase
+
+

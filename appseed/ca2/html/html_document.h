@@ -1,7 +1,8 @@
 #pragma once
 
+
 class CLASS_DECL_ca2 html_document :
-   virtual public ::userbase::document,
+   public ::userbase::document,
    virtual public ::database::client,
    virtual public ::user::form_callback
 {
@@ -21,6 +22,7 @@ public:
    virtual bool open_document(var varFile);
 
    virtual BOOL on_new_document();
+
 #ifdef _DEBUG
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
@@ -33,5 +35,8 @@ public:
 
    virtual void soft_reload();
 
+
 };
+
+
 

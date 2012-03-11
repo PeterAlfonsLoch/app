@@ -1,15 +1,19 @@
 #pragma once
 
+
 class image_list;
+
 
 namespace ex1
 {
 
+
    class tree_data;
    class tree;
 
+
    class CLASS_DECL_ca tree_data :
-      virtual public ::ca::data
+      public ::ca::data
    {
    public:
       
@@ -41,5 +45,6 @@ namespace ex1
    };
 
 
-
 } // namespace ex1
+
+

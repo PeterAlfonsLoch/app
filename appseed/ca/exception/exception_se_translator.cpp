@@ -189,9 +189,10 @@ void se_translator::filter(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
    };
 }
 
-string se_translator::name(unsigned int uiCode)
+vsstring se_translator::name(unsigned int uiCode)
 {
-   string str;
+
+   vsstring str;
 
    switch (uiCode)
    {
@@ -220,15 +221,20 @@ string se_translator::name(unsigned int uiCode)
    case EXCEPTION_INVALID_HANDLE:            str = "Invalid Handle";             break;
    case 0xE06D7363:                          str = "Microsoft C++ Exception";    break;
    default:
-      str.Format("0x%08X", uiCode);
+      str = "0x";
+      str += itohexpad_dup(uiCode, 8);
       break;
    };
+
    return str;
+
 }
 
-string se_translator::description(unsigned int uiCode)
+vsstring se_translator::description(unsigned int uiCode)
 {
-   string str;
+   
+   vsstring str;
+
    switch(uiCode)
    {
    case EXCEPTION_NO_MEMORY:
@@ -307,7 +313,9 @@ string se_translator::description(unsigned int uiCode)
       str = "Unknown Exception (Not currently known by ca2 platform)";
       break;
    };
+
    return str;
+
 }
 #else
 

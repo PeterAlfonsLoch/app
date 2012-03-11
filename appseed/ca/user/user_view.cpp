@@ -431,7 +431,7 @@ void view::dump(dump_context & dumpcontext) const
    ::user::interaction::dump(dumpcontext);
 
    if (::view::get_document() != NULL)
-      dumpcontext << "with document: " << ::view::get_document();
+      dumpcontext << "with document: ";
    else
       dumpcontext << "with no document\n";
 }

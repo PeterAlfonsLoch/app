@@ -7,7 +7,6 @@ namespace fs
 
    list_data::list_data(::ca::application * papp) :
       ::ca::ca(papp),
-      ::ca::data(papp),
       ::user::list_data(papp),
       m_itema(papp)
    {
@@ -68,6 +67,7 @@ namespace fs
 
    void list_data::_001GetItemImage(::user::list_item * pitem)
    {
+
       if(pitem->m_iSubItem == m_iNameSubItemText)
       {
          pitem->m_iImage = m_itema.get_item(pitem->m_iItem).m_iImage;
@@ -78,7 +78,9 @@ namespace fs
       {
          return_(pitem->m_bOk, false);
       }
+
    }
+
 
 } // namespace fs
 

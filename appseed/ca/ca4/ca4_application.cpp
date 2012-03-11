@@ -127,11 +127,6 @@ namespace ca4
 
       m_dwAlive = ::GetTickCount();
 
-      if(is_system())
-      {
-         System.factory().cloneable_large < ::xml::node > ();
-      }
-
       if(!ca2::application::initialize())
          return false;
 

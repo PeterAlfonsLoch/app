@@ -30,7 +30,7 @@ namespace sockets
 {
 
    class CLASS_DECL_ca SSLInitializer :
-      public ::ca::object
+      public ::ca::ca
    {
    public:
       /**

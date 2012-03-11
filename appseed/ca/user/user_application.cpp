@@ -59,19 +59,19 @@ namespace user
       if(!visual::application::initialize())     
          return false;
 
-      xml::node nodeUser(this);
+      xml::document docUser(this);
       string strUser = App(this).file().as_string(App(this).dir().userappdata("langstyle_settings.xml"));
       string strLangUser;
       string strStyleUser;
-      if(nodeUser.load(strUser))
+      if(docUser.load(strUser))
       {
-         if(nodeUser.get_child("lang") != NULL)
+         if(docUser.get_child("lang") != NULL)
          {
-            strLangUser = nodeUser.get_child("lang")->m_strValue;
+            strLangUser = docUser.get_child("lang")->get_value();
          }
-         if(nodeUser.get_child("style") != NULL)
+         if(docUser.get_child("style") != NULL)
          {
-            strStyleUser = nodeUser.get_child("style")->m_strValue;
+            strStyleUser = docUser.get_child("style")->get_value();
          }
       }
 

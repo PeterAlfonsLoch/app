@@ -6,6 +6,7 @@ namespace gen
 
 
    class CLASS_DECL_ca property_set :
+      public ::radix::object,
       public ex1::byte_serializable
    {
    public:

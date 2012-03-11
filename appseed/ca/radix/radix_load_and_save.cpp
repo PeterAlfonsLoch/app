@@ -1,8 +1,10 @@
 #include "StdAfx.h"
-#include "common.h"
+
 
 namespace _template
 {
+
+
    void WINAPI NotifyTool();
 
    #define TRACE_SETTINGS_EXT ".trc"
@@ -533,4 +535,8 @@ return false;
       return TRUE;
    }
 
+
 }; // namespace _template
+
+
+

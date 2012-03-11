@@ -33,8 +33,8 @@ namespace sockets
          UNREFERENCED_PARAMETER(pError);
          ca4::http::signal * psignal = new ca4::http::signal;
 
-         (*psignal)()["file"] = (::ca::object *) m_pmemoryfileIn;
-         (*psignal)()["file_out"] = (::ca::object *) m_ptimeoutfile;
+         (*psignal)()["file"] = (::ca::ca *) m_pmemoryfileIn;
+         (*psignal)()["file_out"] = (::ca::ca *) m_ptimeoutfile;
          psignal->m_strUrl = lpszFileName; 
          psignal->m_set["optional_ca2_login"] = true;
 

@@ -22,7 +22,7 @@ namespace xml
          return;
       node * pnode = xmlot.m_pnode;
       pnode->add_attr("type", System.get_name(m_pvar->get_type()));
-      pnode->m_strValue = m_pvar->get_string();
+      pnode->set_value(m_pvar->get_string());
    }
 
    void var_exchange::xml_import(class input_tree & xmlit)
@@ -40,7 +40,7 @@ namespace xml
       string str;
       pnode->get_attr("type", str);
       System.from_name(m_pvar->m_etype, str);
-      m_pvar->set_string(pnode->m_strValue);
+      m_pvar->set_string(pnode->get_value());
    
    }
 

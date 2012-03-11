@@ -1,5 +1,4 @@
 ﻿#include "StdAfx.h"
-#include "document.h"
 
 
 namespace platform
@@ -8,11 +7,6 @@ namespace platform
 
    document::document(::ca::application * papp) :
       ca(papp),
-      data_container(papp),
-      document_interface(papp),
-      ::document(papp),
-      ::userbase::document(papp),
-      html_document(papp),
       form_document(papp)
    {
       
@@ -85,33 +79,50 @@ namespace platform
 
    void document::data_on_after_change(gen::signal_object * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
+
    }
 
    view * document::get_platform_view()
    {
+
       return get_typed_view < view > ();
+
    }
 
    pane_view * document::get_platform_pane_view()
    {
+
       return get_typed_view < pane_view > ();
+
    }
 
    frame * document::get_platform_frame()
    {
+      
       pane_view * pview = get_platform_pane_view();
+      
       if(pview == NULL)
          return NULL;
+      
       frame * pplatformframe = pview->GetTypedParent < frame >();
+      
       return pplatformframe;
+
+
    }
 
 
    ::bergedge::bergedge * document::get_bergedge()
    {
+
       return m_pbergedgedocument->get_bergedge();
+
    }
 
 
 } // namespace platform
+
+
+

@@ -11,9 +11,6 @@ namespace ca2
 
       document::document(::ca::application * papp) :
          ca(papp),
-         data_container(papp),
-         document_interface(papp),
-         ::document(papp),
          ::userbase::document(papp)
       {
       }
@@ -57,23 +54,6 @@ namespace ca2
          ::userbase::document::dump(dumpcontext);
       }
       #endif //_DEBUG
-
-      /////////////////////////////////////////////////////////////////////////////
-      // document serialization
-
-      /*
-      void document::Serialize(CArchive& ar)
-      {
-         if (ar.IsStoring())
-         {
-            // TODO: add storing code here
-         }
-         else
-         {
-            // TODO: add loading code here
-         }
-      }
-      */
 
 
    } // namespace filehandler

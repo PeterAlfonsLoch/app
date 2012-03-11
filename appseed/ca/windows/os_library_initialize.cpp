@@ -29,15 +29,15 @@ BOOL WINAPI RawDllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
          LocalFree(pMinHeap);
 
          // cause early initialization of _afxCriticalSection
-         if (!AfxCriticalInit())
-            return FALSE;
+//         if (!AfxCriticalInit())
+  //          return FALSE;
 
       }
       else if (dwReason == DLL_PROCESS_DETACH)
       {
 
          // free up the _afxCriticalSection
-         AfxCriticalTerm();
+//         AfxCriticalTerm();
 
          // remove reference from thread local data
 //         AfxTlsRelease();

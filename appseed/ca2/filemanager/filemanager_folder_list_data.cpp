@@ -1,11 +1,12 @@
 #include "StdAfx.h"
 
+
 namespace filemanager
 {
 
+
    folder_list_data::folder_list_data(::ca::application * papp) :
       ca(papp),
-      ::ca::data(papp),
       ::user::list_data(papp)
    {
    }
@@ -142,7 +143,13 @@ namespace filemanager
          return false;
       if(!data_set("recursive", ::radix::system::idEmpty, baData))
          return false;
+
       return true;
+
    }
 
+
 } // namespace filemanager
+
+
+

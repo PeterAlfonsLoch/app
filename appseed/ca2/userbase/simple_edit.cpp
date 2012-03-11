@@ -1,15 +1,11 @@
 #include "StdAfx.h"
 
+
 simple_edit::simple_edit(::ca::application * papp) :
    ca(papp),
-   data_container(papp),
    ::user::interaction(papp),
    ::user::scroll_view(papp),
-   colorertake5::base_editor(papp),
-   ::user::edit_plain_text(papp),
-   ::userbase::edit_plain_text(papp),
-   ex1::tree(papp),
-   ::ca::data_listener(papp)
+   ::userbase::edit_plain_text(papp)
 {
 
 }
@@ -34,3 +30,6 @@ void simple_edit::install_message_handling(::gen::message::dispatch * pinterface
 {
    ::userbase::edit_plain_text::install_message_handling(pinterface);
 }
+
+
+

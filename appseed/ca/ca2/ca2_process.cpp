@@ -27,50 +27,31 @@ namespace ca2
 
    DWORD process::retry(const char * pszCmdLine, DWORD dwTimeout, int iShow)
    {
-      LPSTR lpCommand = _strdup(pszCmdLine);
 
-      STARTUPINFO si;
-      memset(&si, 0, sizeof(si));
-      si.cb = sizeof(si);
-      if(iShow >= 0)
-      {
-         si.dwFlags = STARTF_USESHOWWINDOW;
-         si.wShowWindow = (WORD) iShow;
-      }
-      PROCESS_INFORMATION pi;
+      class on_retry onretry;
 
-      memset(&pi, 0, sizeof(pi));
+      onretry.m_dwTimeout     = dwTimeout;
+      onretry.m_dwStartTime   = ::GetTickCount();
 
+      const char * pszEnd = NULL;
 
+      vsstring strBin = consume_param(pszCmdLine, &pszEnd);
 
-      if(!::CreateProcess(NULL, lpCommand,
-                         NULL, NULL, FALSE, 0, NULL, NULL,
-                         &si, &pi))
-      {
-         free(lpCommand);
-         throw misc_exception("failed to create process");
-      }
-      DWORD dwStartTime = ::GetTickCount();
-      //DWORD dwStartError = ::GetLastError();
-      free(lpCommand);
-      DWORD dwExitCode;
-      int iRetry = 0;
-      while(true)
-      {
-         if(!GetExitCodeProcess(pi.hProcess, &dwExitCode))
-            break;
-         if(dwExitCode != STILL_ACTIVE)
-            break;
-         iRetry++;
-         Sleep(484);
-         if(dwTimeout > 0 && ::GetTickCount() - dwStartTime > dwTimeout)
-         {
-            break;
-         }
-      }
-      ::CloseHandle(pi.hProcess);
-      ::CloseHandle(pi.hThread);
+      DWORD dwExitCode = call_sync(strBin, pszEnd, NULL, iShow, -1, 484, &process::s_on_retry, (DWORD_PTR) &onretry);
+
       return dwExitCode;
+
+   }
+
+   int process::s_on_retry(int iTry, DWORD dwParam)
+   {
+      
+      UNREFERENCED_PARAMETER(iTry);
+
+      class on_retry * ponretry = (on_retry *) dwParam;
+
+      return ponretry->m_dwTimeout == 0 || ::GetTickCount() - ponretry->m_dwStartTime < ponretry->m_dwTimeout;
+
    }
 
    DWORD process::synch(const char * pszCmdLine, int iShow)
@@ -80,35 +61,15 @@ namespace ca2
 
    bool process::launch(const char * pszCmdLine, int iShow)
    {
-      UNREFERENCED_PARAMETER(iShow);
-      try
-      {
-      }
-      catch(const char *)
-      {
-      }
-      LPSTR lpCommand = _strdup(pszCmdLine);
 
-      STARTUPINFO si;
-      memset(&si, 0, sizeof(si));
-      si.cb = sizeof(si);
-      si.dwFlags = STARTF_USESHOWWINDOW;
-      si.wShowWindow = SW_HIDE;
-      PROCESS_INFORMATION pi;
+      const char * pszEnd = NULL;
+      
+      vsstring strBin = consume_param(pszCmdLine, &pszEnd);
 
-      memset(&pi, 0, sizeof(pi));
+      int iOk = call_async(strBin, pszEnd, NULL, iShow);
 
-      if(!::CreateProcess(NULL, lpCommand,
-                         NULL, NULL, FALSE, 0, NULL, NULL,
-                         &si, &pi))
-      {
-         free(lpCommand);
-         return false;
-      }
-      free(lpCommand);
-      ::CloseHandle(pi.hProcess);
-      ::CloseHandle(pi.hThread);
-      return true;
+      return iOk != 0;
+
    }
 
    process::process_thread::process_thread(::ca::application * papp) :

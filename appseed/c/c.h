@@ -68,6 +68,7 @@ extern "C"
 #include "template.h"
 #include "simple_array.h"
 #include "simple_map.h"
+#include "simple_list.h"
 #include "stra.h"
 
 #include "xmlite.h"
@@ -91,19 +92,7 @@ extern "C"
 #include "bsdiff/bsdiff.h"
 
 
-#if defined(MACOS)
-
-#include "macos/c_os.h"
-
-#elif defined(LINUX)
-
-#include "linux/c_os.h"
-
-#else
-
-#include "windows/c_os.h"
-
-#endif
+#include "os/os.h"
 
 
 #include "message_loop.h"

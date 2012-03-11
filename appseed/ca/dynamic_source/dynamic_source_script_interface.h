@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/radix/html_file.h"
+#include "ca/ca2/ca2_html_file.h"
 
 
 namespace netnode
@@ -62,7 +62,7 @@ namespace dynamic_source
 
 
    class CLASS_DECL_ca script_interface :
-      virtual public ::html::file
+      virtual public ::ca2::html_file
    {
    public:
       script_interface();
@@ -100,7 +100,7 @@ namespace dynamic_source
       virtual gen::property & get(const char * pszKey) = 0;
       virtual gen::property & post(const char * pszKey) = 0;
       virtual http::cookie      & cookie(const char * pszKey) = 0;
-      using ::html::file::request;
+      using ::ca2::html_file::request;
       virtual gen::property & request(const char * pszKey) = 0;
       //virtual gen::property & session(const char * pszKey) = 0;
       virtual gen::relation_set & geta() = 0;
@@ -377,3 +377,6 @@ namespace dynamic_source
 
 
 } // namespace dynamic_source
+
+
+

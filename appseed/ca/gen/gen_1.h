@@ -174,31 +174,6 @@ enum {  FS_SHOW = 0x01, FS_HIDE = 0x02,
 CLASS_DECL_ca void AfxRepositionWindow(AFX_SIZEPARENTPARAMS* lpLayout,
    ::user::interaction * hWnd, LPCRECT lpRect);
 
-/////////////////////////////////////////////////////////////////////////////
-// Robust file save support
-// opens a temp file if mode_create specified and enough free space
-// renaming, etc occurs automatically if everything succeeds
-
-/*class CLASS_DECL_ca mirror_file : public ex1::filesp
-{
-// Implementation
-public:
-   virtual void Abort();
-   virtual void close();
-   virtual BOOL open(const char * lpszFileName, UINT nOpenFlags,
-      ex1::file_exception_sp * error = NULL);
-
-protected:
-   string m_strMirrorName;
-};*/
-
-//#include "preview_dc.h"
-
-
-/////////////////////////////////////////////////////////////////////////////
-// mirroring support
-
-// some mirroring stuff will be in wingdi.h someday
 #ifndef LAYOUT_LTR
 #define LAYOUT_LTR                         0x00000000
 #endif
@@ -215,30 +190,5 @@ struct NMHDR
 #endif
 
 
-struct AFX_NOTIFY
-{
-   LRESULT* pResult;
-   NMHDR* pNMHDR;
-};
-
-
-
-
-// string helpers
-//CLASS_DECL_ca void AfxSetWindowText(::user::interaction * hWndCtrl, const char * lpszNew);
-//CLASS_DECL_ca int AfxLoadString(__in UINT nIDS, __out_ecount_part_z(nMaxBuf, return + 1) char * lpszBuf, __in UINT nMaxBuf = 256);
-//CLASS_DECL_ca int AfxLoadString(__in UINT nIDS, __out_ecount_part_z(nMaxBuf, return + 1) wchar_t * lpszBuf, __in UINT nMaxBuf = 256);
-
-HDC AfxCreateDC(HGLOBAL hDevNames, HGLOBAL hDevMode);
-
-//CLASS_DECL_ca void AfxGetModuleShortFileName(HINSTANCE hInst, string & strShortName);
-
-// Failure dialog helpers
-//CLASS_DECL_ca void AfxFailMaxChars(CDataExchange* pDX, int nChars);
-//CLASS_DECL_ca void AfxFailRadio(CDataExchange* pDX);
-
-#ifndef __AFXCONV_H__
-#include "radix/conversion.h"
-#endif
 
 #include "gen_2.h"

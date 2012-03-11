@@ -108,11 +108,11 @@ namespace fontopus
          m_loginthread.m_puser->m_sessionidmap[strHost] = Application.command_thread().m_varTopicQuery["sessid"].get_string();
          m_loginthread.m_puser->m_strFontopusServerSessId = Application.command_thread().m_varTopicQuery["sessid"].get_string();
          m_loginthread.m_puser->m_strRequestingServer = strHost;
-         xml::node nodeBasicInfo(get_app());
-         if(nodeBasicInfo.load(Application.http().get("https://"+Application.command_thread().m_varTopicQuery["fontopus"].get_string()+"/ca2api/account/get_basic_info", m_loginthread.m_puser)))
+         xml::document documentBasicInfo(get_app());
+         if(documentBasicInfo.load(Application.http().get("https://"+Application.command_thread().m_varTopicQuery["fontopus"].get_string()+"/ca2api/account/get_basic_info", m_loginthread.m_puser)))
          {
             string strLogin;
-            if(nodeBasicInfo.get_attr("login", strLogin) && strLogin.find("@") > 0)
+            if(documentBasicInfo.get_attr("login", strLogin) && strLogin.find("@") > 0)
             {
                m_loginthread.m_puser->m_strLogin = strLogin;
                return  m_loginthread.m_puser;
@@ -263,11 +263,11 @@ namespace fontopus
 
       m_loginthread.m_strFontopusServer = strHost;
 
-      xml::node node(get_app());
-      node.load(strAuth);
-      if(node.m_strName == "response")
+      xml::document doc(get_app());
+      doc.load(strAuth);
+      if(doc.get_name() == "response")
       {
-         if(node.attr("id") == "auth")
+         if(doc.attr("id") == "auth")
          {
             return true;
          }
@@ -676,19 +676,19 @@ namespace fontopus
       ca4::http::e_status estatus;
       string strResponse = Login(&estatus);
       int iAuth;
-      xml::node node(get_app());
-      node.load(strResponse);
-      if(node.m_strName == "response")
+      xml::document doc(get_app());
+      doc.load(strResponse);
+      if(doc.get_name() == "response")
       {
-         if(node.attr("id") == "auth" && node.attr("passhash").has_char() && node.attr("secureuserid").has_char())
+         if(doc.attr("id") == "auth" && doc.attr("passhash").has_char() && doc.attr("secureuserid").has_char())
          {
             System.m_authmap[m_strUsername].m_mapServer[m_strRequestingServer] = strResponse;
             System.m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
             m_puser->m_strLogin = m_strUsername;
-            m_puser->m_strFontopusServerSessId = node.attr("sessid");
+            m_puser->m_strFontopusServerSessId = doc.attr("sessid");
             m_puser->m_strRequestingServer = m_strRequestingServer;
-            m_puser->m_strFunUserId = node.attr("secureuserid");
-            m_strPasshash = node.attr("passhash");
+            m_puser->m_strFunUserId = doc.attr("secureuserid");
+            m_strPasshash = doc.attr("passhash");
             iAuth = 1;
             if(m_bFontopusServer)
             {
@@ -697,10 +697,10 @@ namespace fontopus
             execute();
             if(m_strLicense.has_char())
             {
-               m_strValidUntil = node.attr("valid_until");
+               m_strValidUntil = doc.attr("valid_until");
             }
          }
-         else if(node.attr("id") == "registration_deferred")
+         else if(doc.attr("id") == "registration_deferred")
          {
             delete m_puser;
             iAuth = 5;
@@ -889,7 +889,7 @@ namespace fontopus
 
       string strLoginUrl("https://"+ m_strFontopusServer +"/ca2api/account/login");
 
-      xml::node node(get_app());
+      xml::document doc(get_app());
 
       string strSessId;
 
@@ -933,18 +933,18 @@ namespace fontopus
          if(strLogin.is_empty())
             continue;
 
-         if(!node.load(strLogin))
+         if(!doc.load(strLogin))
             continue;
 
-         if(node.m_strName != "login")
+         if(doc.get_name() != "login")
             continue;
 
-         strSessId = node.attr("sessid");
+         strSessId = doc.attr("sessid");
 
          if(strSessId.is_empty())
             continue;
 
-         strRsaModulus = node.attr("rsa_modulus");
+         strRsaModulus = doc.attr("rsa_modulus");
 
          if(strRsaModulus.has_char())
             break;

@@ -1,22 +1,27 @@
 #include "StdAfx.h"
 
+
 namespace xml
 {
 
-   document::document(::ca::application * papp) :
+
+   document::document(::ca::application * papp, parse_info * pparseinfo) :
       ca(papp),
-      node(papp),
-      m_parseinfo(papp)
+      ::ca::data(papp),
+      node(papp)
    {
-      m_pnodeParent  = NULL;
+
       m_pdoc         = this;
-      m_etype        = node_document;
-      m_parseinfo    = *System.m_pparseinfoDefault;
+      m_pparseinfo   = pparseinfo != NULL ? pparseinfo : System.m_pparseinfoDefault;
+      m_pedit        = NULL;
+
       entitiesHash.set_at("lt", "<");
       entitiesHash.set_at("gt", ">");
       entitiesHash.set_at("quot", "\"");
       entitiesHash.set_at("apos", "'");
       entitiesHash.set_at("amp", "&");
+
+
    }
 
    document::~document()
@@ -32,12 +37,24 @@ namespace xml
       return *this;
    }
 
-   char * document::load_location(const char * psz)
+   bool document::load_location(const char * psz)
    {
+      
       m_strLocation = psz;
       string str;
       str = Application.file().as_string(psz);
       return load(str);
+
+   }
+
+   bool document::load(::ex1::file * pfile)
+   {
+
+      primitive::memory memory;
+      memory.FullLoad(*pfile);
+      string str = memory.get_data();
+      return load(str);
+
    }
 
    // <?xml version='1.0'?>
@@ -56,23 +73,23 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   char * document::load(const char * psz)
+   bool document::load(const char * psz)
    {
 
       m_nodea.remove_all();
 
       m_strData = psz;
       const char * pszXml = m_strData;
-      class node * pnodeRoot = new class node(get_app());
+      class node * pnodeRoot = new class node(this);
       pnodeRoot->m_pnodeParent = (node *)this;
       pnodeRoot->m_etype = node_element;
       pnodeRoot->m_pdoc = this;
       char * end;
 
-      if( (end = pnodeRoot->load( pszXml, &m_parseinfo )) == NULL )
+      if((end = pnodeRoot->load( pszXml, m_pparseinfo )) == NULL)
       {
          delete pnodeRoot;
-         return NULL;
+         return false;
       }
 
       m_nodea.add(pnodeRoot);
@@ -80,11 +97,12 @@ namespace xml
       // Load Other Node after </Tag>(pparseinfo, comment, CDATA etc)
       char * ret;
       bool bRet = false;
-      ret = pnodeRoot->LoadOtherNodes(&bRet, end, &m_parseinfo );
+      ret = pnodeRoot->LoadOtherNodes(&bRet, end, m_pparseinfo);
       if( ret != NULL )
          end = ret;
 
-      return end;
+      return end != NULL;
+
    }
 
    node * document::get_root()
@@ -173,4 +191,77 @@ namespace xml
       return (char *) &((const char *)m_strData)[iPos + (bExt ? 0 : strValue.get_length())];
    }
 
+
+   void document::edit(::ca::base_edit * pbaseedit)
+   {
+
+      ::xml::edit * pedit = validate_edit(pbaseedit);
+
+
+      if(pedit == NULL)
+         throw simple_exception("edit exception");
+
+
+      ::xml::node * pnode;
+//      ::xml::attr * pattr;
+
+
+      for(int iEdit = pedit->m_iEdit; iEdit < pedit->get_count(); iEdit++)
+      {
+
+         ::xml::edit_item * pitem = pedit->ptr_at(iEdit);
+
+         try
+         {
+
+            switch(pitem->m_eaction)
+            {
+
+            case ::xml::set_name:
+               {
+                  pnode = get_node_from_indexed_path(pitem->m_iaPath);
+                  pnode->set_name(pitem->m_strValue);
+               }
+               break;
+
+            case ::xml::set_value:
+               {
+                  pnode = get_node_from_indexed_path(pitem->m_iaPath);
+                  pnode->set_value(pitem->m_strValue);
+               }
+               break;
+
+            case ::xml::set_attr:
+               {
+                  pnode = get_node_from_indexed_path(pitem->m_iaPath);
+                  pnode->set_attr(pitem->m_strName, pitem->m_strValue);
+               }
+               break;
+
+            case ::xml::add_attr:
+               {
+                  pnode = get_node_from_indexed_path(pitem->m_iaPath);
+                  pnode->add_attr(pitem->m_strName, pitem->m_strValue);
+               }
+               break;
+
+            }
+            
+         }
+         catch(...)
+         {
+            break;
+         }
+
+         pedit->m_iEdit = iEdit; 
+      }
+
+      
+
+   }
+
+
 } // namespace xml
+
+
+

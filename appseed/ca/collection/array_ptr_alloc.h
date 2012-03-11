@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "ca/gen/gen_composite.h"
+
+
 #undef new
 
 

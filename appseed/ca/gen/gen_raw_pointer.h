@@ -11,7 +11,7 @@ public:
 
    raw_pointer(::ca::application * papp);
    raw_pointer(const raw_pointer & holder);
-   raw_pointer(::ca::object * pboject);
+   raw_pointer(::ca::ca * pboject);
 
    template < class T >
    T * ca2 ()
@@ -37,6 +37,9 @@ public:
       return dynamic_cast < T * const > (m_pobject);
    }
 
-   ::ca::object * m_pobject;
+
+   ::ca::ca * m_pca;
+
+
 };
 

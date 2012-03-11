@@ -99,7 +99,7 @@ frame_window::frame_window()
    m_nIdleFlags = 0;               // no idle work at start
    m_rectBorder.null();
 
-   m_bHelpMode = HELP_INACTIVE;    // not in Shift+F1 help mode
+   m_bHelpMode = 0;    // not in Shift+F1 help mode
    m_dwPromptContext = 0;
 
    m_pNextFrameWnd = NULL;         // not in list yet
@@ -234,7 +234,7 @@ BOOL frame_window::OnSetCursor(::user::interaction * pWnd, UINT nHitTest, UINT m
    ENSURE_VALID(pFrameWnd);
    if (pFrameWnd->m_bHelpMode)
    {
-      SetCursor(afxData.hcurHelp);
+//      SetCursor(afxData.hcurHelp);
       return TRUE;
    }
 // trans   return user::frame_window_interface::OnSetCursor(pWnd, nHitTest, message);

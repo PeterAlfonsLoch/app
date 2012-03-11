@@ -183,7 +183,7 @@ namespace zip
 
 
   /*    stringa wstraPath;
-      PcreUtil::add_tokens(wstraPath, lpszFileName, "((([A-Z]:)|([^:]))[^:]+\\.zip)",1);
+      cregexp_util::add_tokens(wstraPath, lpszFileName, "((([A-Z]:)|([^:]))[^:]+\\.zip)",1);
 
       if(wstraPath.get_size() == 0)
          return false;

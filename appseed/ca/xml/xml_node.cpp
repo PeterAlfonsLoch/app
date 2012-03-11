@@ -23,15 +23,32 @@ namespace xml
    {
    }
 
+
+
    node::node(::ca::application * papp) :
       ca(papp),
       m_nodea(papp),
       m_attra(papp)
    {
-      m_attra.m_pnodeParent = this;
-      m_pnodeParent = NULL;
-      m_pdoc = NULL;
-      m_etype = node_element;
+
+      m_attra.m_pnodeParent   = this;
+      m_pnodeParent           = NULL;
+      m_pdoc                  = NULL;
+      m_etype                 = node_document;
+
+   }
+
+   node::node(::xml::node * pnodeParent) :
+      ca(pnodeParent->get_app()),
+      m_nodea(pnodeParent->get_app()),
+      m_attra(pnodeParent->get_app())
+   {
+      
+      m_attra.m_pnodeParent   = this;
+      m_pnodeParent           = pnodeParent;
+      m_pdoc                  = pnodeParent->m_pdoc;
+      m_etype                 = node_element;
+
    }
 
    node::node(const node & node) :
@@ -46,6 +63,7 @@ namespace xml
    {
       close();
    }
+
 
    node & node::operator = (const node & node)
    {
@@ -98,52 +116,153 @@ namespace xml
       return m_attra.str_contains(attra);
    }
 
-   attr * node::add_attr(const char * lpcszName, int iValue)
+   attr * node::add_attr(const char * pszName, int iValue)
    {
+      
+      ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, iValue);
 
-      m_attra.add(lpcszName, iValue);
+      if(m_pdoc != NULL)
+      {
 
-      return &m_attra[lpcszName];
+         if(m_pdoc->m_pedit != NULL)
+         {
+
+            m_pdoc->m_pedit->add_attr(this, pattr);
+
+         }
+
+      }
+
+      return pattr;
 
    }
 
-   attr * node::add_attr(const char * lpcszName, int64_t iValue)
+   attr * node::add_attr(const char * pszName, int64_t iValue)
    {
+      
+      ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, iValue);
 
-      m_attra.add(lpcszName, iValue);
+      if(m_pdoc != NULL)
+      {
 
-      return &m_attra[lpcszName];
+         if(m_pdoc->m_pedit != NULL)
+         {
+
+            m_pdoc->m_pedit->add_attr(this, pattr);
+
+         }
+
+      }
+
+      return pattr;
 
    }
 
-   attr * node::add_attr(const char * lpcszName, unsigned long ulValue)
+   attr * node::add_attr(const char * pszName, unsigned long ulValue)
    {
+      
+      ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, ulValue);
 
-      m_attra.add(lpcszName, ulValue);
+      if(m_pdoc != NULL)
+      {
 
-      return &m_attra[lpcszName];
+         if(m_pdoc->m_pedit != NULL)
+         {
+
+            m_pdoc->m_pedit->add_attr(this, pattr);
+
+         }
+
+      }
+
+      return pattr;
 
    }
 
 
    attr * node::set_attr(const char * lpcszName, const char * pszValue)
    {
-      return &(m_attra[lpcszName] = pszValue);
+      
+      ::xml::attr * pattr = &(m_attra[lpcszName] = pszValue);
+
+      if(m_pdoc != NULL)
+      {
+
+         if(m_pdoc->m_pedit != NULL)
+         {
+
+            m_pdoc->m_pedit->set_attr(this, pattr);
+
+         }
+
+      }
+
+      return pattr;
+
+
    }
 
    attr * node::set_attr(const char * lpcszName, int iValue)
    {
-      return &(m_attra[lpcszName] = iValue);
+
+      ::xml::attr * pattr = &(m_attra[lpcszName] = iValue);
+
+      if(m_pdoc != NULL)
+      {
+
+         if(m_pdoc->m_pedit != NULL)
+         {
+
+            m_pdoc->m_pedit->set_attr(this, pattr);
+
+         }
+
+      }
+
+      return pattr;
+
    }
 
    attr * node::set_attr(const char * lpcszName, int64_t iValue)
    {
-      return &(m_attra[lpcszName] = iValue);
+
+      ::xml::attr * pattr = &(m_attra[lpcszName] = iValue);
+
+      if(m_pdoc != NULL)
+      {
+
+         if(m_pdoc->m_pedit != NULL)
+         {
+
+            m_pdoc->m_pedit->set_attr(this, pattr);
+
+         }
+
+      }
+
+      return pattr;
+
    }
 
    attr * node::set_attr(const char * lpcszName, bool bValue)
    {
-      return &(m_attra[lpcszName] = bValue);
+
+      ::xml::attr * pattr = &(m_attra[lpcszName] = bValue);
+
+      if(m_pdoc != NULL)
+      {
+
+         if(m_pdoc->m_pedit != NULL)
+         {
+
+            m_pdoc->m_pedit->set_attr(this, pattr);
+
+         }
+
+      }
+
+      return pattr;
+
    }
 
    index node::find(const char * lpcszName, attr_array & attra, index iStart)
@@ -298,15 +417,6 @@ namespace xml
       return (char *) pszXml;
    }
 
-   char * node::load(::ex1::file * pfile, parse_info * pparseinfo)
-   {
-      if(pparseinfo == NULL)
-         pparseinfo = get_app()->cast_app < ::xml::application > ().m_pparseinfoDefault;
-      primitive::memory memory;
-      memory.FullLoad(*pfile);
-      string str = memory.get_data();
-      return load(str, pparseinfo);
-   }
 
    // attr1="value1" attr2='value2' attr3=value3 />
    //                                            ^- return pointer
@@ -1226,7 +1336,9 @@ namespace xml
    //========================================================
    attr_array node::attrs( const char * pszName )
    {
-      attr_array attra(this);
+      
+      attr_array attra(get_app());
+
       for( int i = 0 ; i < m_attra.m_propertya.get_count(); i++ )
       {
          ::xml::attr * attr = &m_attra.m_propertya[i];
@@ -1236,7 +1348,9 @@ namespace xml
                attra.m_propertya.add(*attr);
          }
       }
+
       return attra;
+
    }
 
    //========================================================
@@ -1405,7 +1519,7 @@ namespace xml
    }
 
 
-   node * node::get_node_from_path(const char * path)
+   node * node::get_node_from_simple_path(const char * path)
    {
       stringa stra;
       stra.explode("/", path);
@@ -1421,7 +1535,36 @@ namespace xml
       return pnode;
    }
 
-   string node::get_child_simple_path(node * pnode)
+   node * node::get_node_from_indexed_path(const int_array & iaPath)
+   {
+
+      node * pnode = this;
+
+      if(pnode == NULL)
+         return NULL;
+
+      for(int iLevel = 0; iLevel < iaPath.get_count(); iLevel++)
+      {
+         
+         index iIndex = iaPath[iLevel];
+
+         if(iIndex < 0)
+            return NULL;
+
+         if(iIndex >= pnode->get_children_count())
+            return NULL;
+
+         pnode = pnode->child_at(iIndex);
+
+         if(pnode == NULL)
+            return NULL;
+
+      }
+
+      return pnode;
+   }
+
+   string node::get_child_simple_path(const node * pnode) const
    {
       string str;
       while(pnode != NULL && pnode != this)
@@ -1436,6 +1579,26 @@ namespace xml
       return str;
    }
 
+   void node::get_child_indexed_path(int_array & iaPath, const node * pnode) const
+   {
+      
+      iaPath.remove_all();
+      while(pnode != NULL && pnode != this)
+      {
+         iaPath.insert_at(0, pnode->get_index());
+         pnode = pnode->m_pnodeParent;
+      }
+
+   }
+
+   int_array node::get_child_indexed_path(const node * pnode) const
+   {
+      
+      int_array iaPath;
+      get_child_indexed_path(iaPath, pnode);
+      return iaPath;
+
+   }
 
    node * node::get_child(const char * pszName, index & iStartPosition)
    {
@@ -1639,8 +1802,23 @@ namespace xml
    //========================================================
    attr * node::add_attr( const char * pszName /*= NULL*/, const char * pszValue /*= NULL*/ )
    {
-      m_attra.add(pszName, pszValue);
-      return &m_attra[pszName];
+      
+      ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, pszValue);
+
+      if(m_pdoc != NULL)
+      {
+
+         if(m_pdoc->m_pedit != NULL)
+         {
+
+            m_pdoc->m_pedit->add_attr(this, pattr);
+
+         }
+
+      }
+
+      return pattr;
+
    }
 
    //========================================================
@@ -1980,15 +2158,98 @@ namespace xml
 
    void node::write(ex1::byte_output_stream & ostream)
    {
+
       string str = get_xml();
       ostream << str;
+
    }
 
    void node::read(ex1::byte_input_stream & istream)
    {
+
+      close();
+
       string str;
       istream >> str;
       load(str);
+
+   }
+
+   void node::set_name(const string & strName)
+   {
+      
+      m_strName = strName;
+      
+      if(m_pdoc != NULL)
+      {
+
+         if(m_pdoc->m_pedit != NULL)
+         {
+
+            m_pdoc->m_pedit->set_name(this);
+
+         }
+
+      }
+
+   }
+
+   void node::set_value(const string & strValue)
+   {
+
+      m_strValue = strValue;
+
+      if(m_pdoc != NULL)
+      {
+
+         if(m_pdoc->m_pedit != NULL)
+         {
+
+            m_pdoc->m_pedit->set_value(this);
+
+         }
+
+      }
+
+   }
+
+   string node::get_simple_path() const
+   {
+
+      return get_document()->get_child_simple_path(this);
+
+   }
+
+   int_array node::get_indexed_path() const
+   {
+
+      return get_document()->get_child_indexed_path(this);
+
+   }
+
+   void node::get_indexed_path(int_array & iaPath) const
+   {
+
+      return get_document()->get_child_indexed_path(iaPath, this);
+
+   }
+
+   index node::get_index() const
+   {
+      
+      if(m_pnodeParent == NULL)
+         return -1;
+
+
+      for(index iIndex = 0; iIndex < m_pnodeParent->m_nodea.get_count(); iIndex++)
+      {
+
+         if(m_pnodeParent->m_nodea.ptr_at(iIndex) == this)
+            return iIndex;
+
+      }
+
+      return -1;
 
    }
 

@@ -489,7 +489,7 @@ namespace colorertake5
       return MATCH_NOTHING;
    };
 
-   bool text_parser_impl::colorize(CRegExp *root_end_re, bool lowContentPriority)
+   bool text_parser_impl::colorize(cregexp *root_end_re, bool lowContentPriority)
    {
       len = -1;
 

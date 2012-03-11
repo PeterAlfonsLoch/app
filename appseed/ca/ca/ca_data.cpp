@@ -75,5 +75,14 @@ namespace ca
       return true;
    }
 
+   void data::edit(::ca::base_edit * pbaseedit)
+   {
+
+      UNREFERENCED_PARAMETER(pbaseedit);
+
+   }
+
+
 } // namespace ca
+
 

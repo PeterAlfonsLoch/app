@@ -7,8 +7,6 @@ namespace userbase
 
    document::document(::ca::application * papp) :
       ca(papp),
-      data_container(papp),
-      document_interface(papp),
       ::document(papp)
    {
       m_pdocumentemplate = NULL;
@@ -76,8 +74,13 @@ namespace userbase
 
    void document::on_alloc(::ca::application * papp)
    {
+
       ::document::on_alloc(papp);
       ::database::client::initialize(papp);
+
    }
 
+
 } // namespace userbase
+
+

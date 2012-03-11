@@ -258,7 +258,7 @@ namespace ca4
       void system::config_proxy(const char * pszUrl, ::sockets::http_tunnel * psocket)
       {
 
-         xml::node node(get_app());
+         xml::document doc(get_app());
          string str = System.file_as_string(&System, System.dir().appdata("proxy.xml"));
          if(str.has_char() && str.find("<") < 0 && str.find(">") < 0)
          {
@@ -280,7 +280,7 @@ namespace ca4
             }
          }
          bool bOk = false;
-         if(!node.load(str))
+         if(!doc.load(str))
          {
             psocket->m_bDirect = true;
          }
@@ -293,15 +293,15 @@ namespace ca4
             if(!System.net().u2ip(strHost,host))
             {
                psocket->m_bDirect = false;
-               psocket->m_strProxy = node.attr("server");
-               psocket->m_iProxyPort = node.attr("port");
+               psocket->m_strProxy = doc.attr("server");
+               psocket->m_iProxyPort = doc.attr("port");
                return;
             }
             ::sockets::ipv4_address ipHost(get_app(), host, (port_t) iHostPort);
-            for(int iNode = 0; iNode < node.get_children_count(); iNode++)
+            for(int iNode = 0; iNode < doc.get_children_count(); iNode++)
             {
-               xml::node * pnode = node.child_at(iNode);
-               if(pnode->m_strName == "proxy")
+               xml::node * pnode = doc.child_at(iNode);
+               if(pnode->get_name() == "proxy")
                {
                   ipaddr_t addr;
                   if(System.net().u2ip(pnode->attr("address"), addr))
@@ -330,7 +330,7 @@ namespace ca4
                   }
                }
             }
-            if(node.attr("server") == "DIRECT")
+            if(doc.attr("server") == "DIRECT")
             {
                psocket->m_bDirect = true;
                return;
@@ -338,8 +338,8 @@ namespace ca4
             else
             {
                psocket->m_bDirect = false;
-               psocket->m_strProxy = node.attr("server");
-               psocket->m_iProxyPort = node.attr("port");
+               psocket->m_strProxy = doc.attr("server");
+               psocket->m_iProxyPort = doc.attr("port");
                return;
             }
          }
