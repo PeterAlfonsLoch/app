@@ -323,7 +323,7 @@ void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int nBlockUse, const 
    }
    
    pblock->m_iBlockUse     = nBlockUse;
-   pblock->m_pszFileName   = ((id) pszFileName).m_psz;
+   pblock->m_pszFileName   = *((id) pszFileName).m_pstr;
    pblock->m_iLine         = iLine;
 
    return pblock + sizeof(memdleak_block);
@@ -391,7 +391,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
    }
 
    pblock->m_iBlockUse     = nBlockUse;
-   pblock->m_pszFileName   = ((id) pszFileName).m_psz;
+   pblock->m_pszFileName   = *((id) pszFileName).m_pstr;
    pblock->m_iLine         = iLine;
 
    return pblock + sizeof(memdleak_block);

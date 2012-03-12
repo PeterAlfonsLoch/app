@@ -153,8 +153,8 @@ namespace dynamic_source
       virtual string real_path(const char * psz) = 0;
       virtual string system_path(const char * psz) = 0;
 
-      virtual string pstr(id pszTopic, id pszLocale = id(), id pszStyle = id(), id pszExtra = id()) = 0;
-      virtual string pstr(id pszTopic, gen::property_set & set, id pszLocale = id(), id pszStyle = id(), id pszExtra = id()) = 0;
+      virtual string pstr(id pszTopic, id pszLocale = id(), id pszStyle = id()) = 0;
+      virtual string pstr(id pszTopic, gen::property_set & set, id pszLocale = id(), id pszStyle = id()) = 0;
 
       virtual string langstr(const char * pszKey) = 0;
       virtual string langstr2(const char * pszKey) = 0;
@@ -169,7 +169,7 @@ namespace dynamic_source
       virtual string htmlentities(const char * psz) = 0;
 
       virtual script_manager * get_manager() = 0;
-      virtual gen::international::locale_style & localestyle();
+      virtual gen::international::locale_schema & localeschema();
 
       virtual void run();
 

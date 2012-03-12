@@ -769,26 +769,26 @@ namespace ca
          throw interface_only_exception("this is an interface");
       }
 
-      string system::locale_style(::ca::application * papp, const string & strLocale, const string & strStyle)
+      string system::locale_schema(::ca::application * papp, const string & strLocale, const string & strSchema)
       {
 
-         return papp->m_pappThis->get_locale_style_dir(strLocale, strStyle);
+         return papp->m_pappThis->get_locale_schema_dir(strLocale, strSchema);
 
       }
 
-      string system::locale_style_matter(::ca::application * papp, const string & strLocale, const string & strStyle)
+      string system::locale_schema_matter(::ca::application * papp, const string & strLocale, const string & strSchema)
       {
       
          single_lock sl(&papp->m_pappThis->m_mutexMatterLocator, true);
 
-         return path(papp->m_pappThis->m_strMatterLocator, papp->m_pappThis->get_locale_style_dir(strLocale, strStyle));
+         return path(papp->m_pappThis->m_strMatterLocator, papp->m_pappThis->get_locale_schema_dir(strLocale, strSchema));
 
       }
 
-      string system::locale_style_matter(const string & strLocator, const string & strLocale, const string & strStyle)
+      string system::locale_schema_matter(const string & strLocator, const string & strLocale, const string & strSchema)
       {
       
-         return path(strLocator, simple_path(strLocale, strStyle));
+         return path(strLocator, simple_path(strLocale, strSchema));
 
       }
 
@@ -799,20 +799,20 @@ namespace ca
 
          string strPath;
 
-         string strLocale  = pcontext->m_plocalestyle->m_idLocale;
-         string strStyle   = pcontext->m_plocalestyle->m_idStyle;
-         string strLs      = locale_style_matter(papp, strLocale, strStyle);
+         string strLocale  = pcontext->m_plocaleschema->m_idLocale;
+         string strSchema   = pcontext->m_plocaleschema->m_idSchema;
+         string strLs      = locale_schema_matter(papp, strLocale, strSchema);
          strPath           = path(strLs, str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
 
          
-         for(int i = 0; i < pcontext->param_locale_ex().get_count(); i++)
+         for(int i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
          {
             
-            strLocale         = pcontext->param_locale_ex()[i];
-            strStyle          = pcontext->param_style_ex()[i];
-            strLs             = locale_style_matter(papp, strLocale, strStyle);
+            strLocale         = pcontext->localeschema().m_idaLocale[i];
+            strSchema          = pcontext->localeschema().m_idaSchema[i];
+            strLs             = locale_schema_matter(papp, strLocale, strSchema);
             strPath           = path(strLs, str, str2);
             if(System.file().exists(strPath, get_app()))
                return strPath;
@@ -820,8 +820,8 @@ namespace ca
          }
 
          
-         strLs             = locale_style_matter(papp, "en", "en");
-         strPath           = path(locale_style_matter(papp, "se", "se"), str, str2);
+         strLs             = locale_schema_matter(papp, "en", "en");
+         strPath           = path(locale_schema_matter(papp, "se", "se"), str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
 
@@ -848,34 +848,34 @@ namespace ca
          static const string strStd("_std");
          static const string strEmpty("");
          string strPath;
-         string strLs = locale_style_matter(papp, strEmpty, strEmpty);
+         string strLs = locale_schema_matter(papp, strEmpty, strEmpty);
          strPath = path(strLs, str, str2);
          if(System.file().exists(strPath, papp))
             return strPath;
-         strLs = locale_style_matter(papp, strEn, strEmpty);
+         strLs = locale_schema_matter(papp, strEn, strEmpty);
          strPath = path(strLs, str, str2);
          if(System.file().exists(strPath, papp))
             return strPath;
-         strPath = path(locale_style_matter(papp, strStd, strEmpty), str, str2);
+         strPath = path(locale_schema_matter(papp, strStd, strEmpty), str, str2);
          if(System.file().exists(strPath, papp))
             return strPath;
-         strPath = path(locale_style_matter(papp, strEmpty, App(papp).get_locale()), str, str2);
+         strPath = path(locale_schema_matter(papp, strEmpty, App(papp).get_locale()), str, str2);
          if(System.file().exists(strPath, papp))
             return strPath;
-         strPath = path(locale_style_matter(papp, strEmpty, strEn), str, str2);
+         strPath = path(locale_schema_matter(papp, strEmpty, strEn), str, str2);
          if(System.file().exists(strPath, papp))
             return strPath;
-         strPath = path(locale_style_matter(papp, strEmpty, strStd), str, str2);
+         strPath = path(locale_schema_matter(papp, strEmpty, strStd), str, str2);
          if(System.file().exists(strPath, papp))
             return strPath;
-         strLs = locale_style_matter(papp, strEn, strEn);
+         strLs = locale_schema_matter(papp, strEn, strEn);
          strPath = path(strLs, str, str2);
          if(System.file().exists(strPath, papp))
             return strPath;
-         strPath = path(locale_style_matter(papp, strStd, strStd), str, str2);
+         strPath = path(locale_schema_matter(papp, strStd, strStd), str, str2);
          if(System.file().exists(strPath, papp))
             return strPath;
-         strPath = path(locale_style_matter(papp, "se", "se"), str, str2);
+         strPath = path(locale_schema_matter(papp, "se", "se"), str, str2);
          if(System.file().exists(strPath, papp))
             return strPath;
          if(papp->m_psession != NULL && papp->m_psession != papp &&
@@ -892,7 +892,7 @@ namespace ca
             if(System.file().exists(strPath, papp))
                return strPath;
          }
-         return path(locale_style_matter(papp, strEmpty, strEmpty), str, str2);*/
+         return path(locale_schema_matter(papp, strEmpty, strEmpty), str, str2);*/
       }
 
 
@@ -934,31 +934,31 @@ namespace ca
          static const string strEmpty("");
 
          string strPath;
-         string strLs = locale_style_matter(strLocator, App(papp).get_locale(), App(papp).get_style());
+         string strLs = locale_schema_matter(strLocator, App(papp).get_locale(), App(papp).get_style());
          strPath = path(strLs, str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
-         strLs = locale_style_matter(strLocator, strEn, App(papp).get_style());
+         strLs = locale_schema_matter(strLocator, strEn, App(papp).get_style());
          strPath = path(strLs, str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
-         strPath = path(locale_style_matter(strLocator, strStd, App(papp).get_style()), str, str2);
+         strPath = path(locale_schema_matter(strLocator, strStd, App(papp).get_style()), str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
-         strPath = path(locale_style_matter(strLocator, App(papp).get_locale(), App(papp).get_locale()), str, str2);
+         strPath = path(locale_schema_matter(strLocator, App(papp).get_locale(), App(papp).get_locale()), str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
-         strPath = path(locale_style_matter(strLocator, App(papp).get_locale(), strEn), str, str2);
+         strPath = path(locale_schema_matter(strLocator, App(papp).get_locale(), strEn), str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
-         strPath = path(locale_style_matter(strLocator, App(papp).get_locale(), strStd), str, str2);
+         strPath = path(locale_schema_matter(strLocator, App(papp).get_locale(), strStd), str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
-         strLs = locale_style_matter(strLocator, strEn, strEn);
+         strLs = locale_schema_matter(strLocator, strEn, strEn);
          strPath = path(strLs, str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
-         strPath = path(locale_style_matter(strLocator, strStd, strStd), str, str2);
+         strPath = path(locale_schema_matter(strLocator, strStd, strStd), str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
       */
@@ -968,20 +968,20 @@ namespace ca
          
          string strPath;
 
-         string strLocale  = pcontext->m_plocalestyle->m_idLocale;
-         string strStyle   = pcontext->m_plocalestyle->m_idStyle;
-         string strLs      = locale_style_matter(strLocator, strLocale, strStyle);
+         string strLocale  = pcontext->m_plocaleschema->m_idLocale;
+         string strSchema   = pcontext->m_plocaleschema->m_idSchema;
+         string strLs      = locale_schema_matter(strLocator, strLocale, strSchema);
          strPath           = path(strLs, str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
 
          
-         for(int i = 0; i < pcontext->param_locale_ex().get_count(); i++)
+         for(int i = 0; i < pcontext->m_plocaleschema->m_idaLocale.get_count(); i++)
          {
             
-            strLocale         = pcontext->param_locale_ex()[i];
-            strStyle          = pcontext->param_style_ex()[i];
-            strLs             = locale_style_matter(strLocator, strLocale, strStyle);
+            strLocale         = pcontext->m_plocaleschema->m_idaLocale[i];
+            strSchema          = pcontext->m_plocaleschema->m_idaSchema[i];
+            strLs             = locale_schema_matter(strLocator, strLocale, strSchema);
             strPath           = path(strLs, str, str2);
             if(System.file().exists(strPath, get_app()))
                return strPath;
@@ -989,8 +989,8 @@ namespace ca
          }
 
          
-         strLs             = locale_style_matter(strLocator, "en", "en");
-         strPath           = path(locale_style_matter(strLocator, "se", "se"), str, str2);
+         strLs             = locale_schema_matter(strLocator, "en", "en");
+         strPath           = path(locale_schema_matter(strLocator, "se", "se"), str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
 

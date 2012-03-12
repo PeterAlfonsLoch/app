@@ -43,7 +43,7 @@ namespace _template
 
       inline static bool CompareElements(const id * pElement1, const id & element2)
       {
-         return pElement1->m_psz == element2.m_psz && pElement1->m_chType == element2.m_chType;
+         return pElement1->m_chType == element2.m_chType && pElement1->m_pstr == element2.m_pstr;
       }
 
    };
@@ -58,7 +58,7 @@ namespace _template
 
       inline static bool CompareElements(const id * pElement1, const id & element2)
       {
-         return pElement1->m_psz == element2.m_psz;
+         return pElement1->m_pstr == element2.m_pstr;
       }
 
    };

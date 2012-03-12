@@ -8,9 +8,9 @@ namespace html
    {
    public:
 
-      string               m_strSchema;
-      string               m_strStyle;
-      ::user::str_context *  m_puistrcontext;
+      string                     m_strOptions;
+      string                     m_strStyle;
+      ::user::str_context *      m_puistrcontext;
 
       file();
 

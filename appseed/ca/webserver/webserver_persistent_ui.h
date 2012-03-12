@@ -16,7 +16,7 @@ namespace webserver
       public ::collection::string_map < ui_redir_lang, ui_redir_lang >
    {
    public:
-      string m_strStyle;
+      string m_strSchema;
       string m_strLangDefault;
    };
 

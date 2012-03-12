@@ -18,7 +18,7 @@ namespace webserver
    {
    public:
       string m_strLang;
-      string m_strStyle;
+      string m_strSchema;
       string code_getLink(const int64_array & iaClassId, const char * code);
    };
 
@@ -28,7 +28,7 @@ namespace webserver
    {
    public:
       string m_strLang;
-      string m_strStyle;
+      string m_strSchema;
       string code_getLink(const int64_array & iaClassId, const char * code);
    };
 

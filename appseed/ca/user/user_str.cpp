@@ -9,8 +9,8 @@ namespace user
       ca(papp)
    {
       
-      
-      m_plocalestyle = new gen::international::locale_style(papp);
+
+      m_plocaleschema = new gen::international::locale_schema(papp);
 
 
       m_pstr = NULL;
@@ -21,52 +21,113 @@ namespace user
    str_context::~str_context()
    {
 
-      if(m_plocalestyle != NULL)
+      if(m_plocaleschema != NULL)
       {
-         delete m_plocalestyle;
-         m_plocalestyle = NULL;
+         delete m_plocaleschema;
+         m_plocaleschema = NULL;
       }
 
    }
 
-   bool str_context::matches(const id & idRoot, const id & idExtra, const char * psz)
-   {
-      if(m_pstr == NULL)
-         return false;
-      return m_pstr->matches(this, idRoot, idExtra, psz);
-   }
 
-   bool str_context::begins(const id & idRoot, const id & idExtra, const char * psz)
+   void str_context::prepare()
    {
-      if(m_pstr == NULL)
-         return false;
-      return m_pstr->begins(this, idRoot, idExtra, psz);
-   }
+      
+      static ::id idEn("en");
+      static ::id idStd("_std");
 
-   bool str_context::begins_eat(string & strTopic, const id & idRoot, const id & idExtra)
-   {
-      if(m_pstr == NULL)
-         return false;
-      return m_pstr->begins_eat(this, strTopic, idRoot, idExtra);
-   }
 
-   void str_context::get(stringa & stra, const id & idRoot, const id & idExtra)
-   {
-      if(m_pstr == NULL)
-         return;
-      return m_pstr->get(stra, this, idRoot, idExtra);
-   }
+      
 
-   string str_context::get(const id & idRoot, const id & idExtra)
-   {
-      if(m_pstr == NULL)
-         return "";
-      return m_pstr->get(this, idRoot, idExtra);
+
+      m_plocale               = NULL;
+      
+      m_pschema               = NULL;
+      m_pschemaLocale         = NULL;
+      m_pschemaSchemaEn       = NULL;
+      m_pschemaSchemaStd      = NULL;
+
+      if(m_plocaleschema != NULL)
+      {
+         
+         if(!m_plocaleschema->m_idLocale.is_empty())
+         {
+            
+            m_plocale = m_pstr->get_locale(m_plocaleschema->m_idLocale);
+
+            if(m_plocale != NULL)
+            {
+
+               if(!m_plocaleschema->m_idSchema.is_empty() && m_plocaleschema->m_idSchema != m_plocaleschema->m_idLocale)
+               {
+                  m_pschema = m_plocale->get_schema(m_plocaleschema->m_idSchema);
+               }
+               m_pschemaLocale = m_plocale->get_schema(m_plocaleschema->m_idSchema);
+            }
+         }
+
+         if(!m_plocaleschema->m_idSchema.is_empty())
+         {
+
+            str_locale * plocale = m_pstr->get_locale(m_plocaleschema->m_idSchema);
+            
+            if(plocale != NULL)
+            {
+
+               m_pschemaSchemaEn = plocale->get_schema(idEn);
+
+               m_pschemaSchemaStd = plocale->get_schema(idStd);
+
+            }
+
+         }
+
+         strid_array stridaFailedLocale;
+
+         for(int i = 0; i < m_plocaleschema->m_idaLocale.get_count(); i++)
+         {
+            
+            ::id & idLocale = m_plocaleschema->m_idaLocale[i];
+
+
+            if(stridaFailedLocale.contains(idLocale))
+               continue;
+
+            str_locale * plocale = m_pstr->get_locale(idLocale);
+
+            if(plocale == NULL)
+            {
+               stridaFailedLocale.add(idLocale);
+               continue;
+            }
+
+            ::id & idSchema = m_plocaleschema->m_idaSchema[i];
+
+            str_schema * pschema = plocale->get_schema(idSchema);
+
+            if(pschema == NULL)
+            {
+               continue;
+            }
+
+            m_schemaptra.add(pschema);
+
+         }
+
+      }
+
    }
 
    str::str(::ca::application * papp) :
-   ca(papp)
+      ca(papp)
    {
+
+      InitHashTable(64);
+
+      m_pschemaEn    = &(*this)["en"]["en"];
+      m_pschemaStd   = &(*this)["_std"]["_std"];
+
+
    }
 
    bool str::initialize()
@@ -128,129 +189,182 @@ namespace user
       }*/
    }
 
-   void str::set(const id & idRoot, const id & pszLang, const id & pszStyle, const id & idExtra, const char * psz)
+   
+   void str::set(const ::id & id, const ::id & idLocale, const ::id & idSchema, const char * psz)
    {
-      (*this)[idExtra][pszLang][pszStyle][idRoot].m_str = psz;
+
+
+      (*this)[idLocale][idSchema][id] = psz;
+
+
    }
 
-   string str::get(str_context * pcontext, const id & idRoot, const id & pszLang, const id & pszStyle, const id & idExtra)
+
+
+   string str::get(str_context * pcontext, const ::id & id)
    {
-      static id idEn("en");
-      static id idStd("_std");
+   
+      static ::id idEn("en");
+      static ::id idStd("_std");
+
+      gen::international::locale_schema * plocaleschema = NULL;
+
       string str;
-      if(pszLang != NULL)
-      {
-         if(pszStyle != NULL)
-         {
-            str = (*this)[idExtra][pszLang][pszStyle][idRoot].m_str;
-            if(str.has_char())
-               return str;
-         }
-         str = (*this)[idExtra][pszLang][pszLang][idRoot].m_str;
-         if(str.has_char())
-            return str;
-      }
       if(pcontext != NULL)
       {
-         for(int i = 0; i < pcontext->param_locale_ex().get_count(); i++)
+
+         pcontext->defer_ok(this);
+
+         if(pcontext->m_pschema != NULL)
          {
-            id & idStyle = pcontext->param_style_ex()[i];
-            id & idLocale = pcontext->param_locale_ex()[i];
-            str = (*this)[idExtra][idLocale][idStyle][idRoot].m_str;
+            
+            str = (*pcontext->m_pschema)[id];
             if(str.has_char())
                return str;
-            str = (*this)[idExtra][idLocale][idLocale][idRoot].m_str;
+
+         }
+         
+         if(pcontext->m_pschemaLocale != NULL)
+         {
+            str = (*pcontext->m_pschemaLocale)[id];
             if(str.has_char())
                return str;
          }
+
+         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         {
+            
+            str = (*pcontext->m_schemaptra[i])[id];
+            if(str.has_char())
+               return str;
+
+         }
+
       }
-      if(pszStyle != NULL)
+      if(pcontext != NULL && pcontext->m_pschemaSchemaEn != NULL)
       {
-         str = (*this)[idExtra][pszStyle][idEn][idRoot].m_str;
+         str = (*pcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
          if(str.has_char())
             return str;
       }
-      str = (*this)[idExtra][idEn][idEn][idRoot].m_str;
+      str = (*m_pschemaEn)[id]; // lang=en style=en
       if(str.has_char())
          return str;
-      if(pszStyle != NULL)
+      if(pcontext != NULL && pcontext->m_pschemaSchemaStd != NULL)
       {
-         str = (*this)[idExtra][pszStyle][idStd][idRoot].m_str;
+         str = (*pcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
          if(str.has_char())
             return str;
       }
-      str = (*this)[idExtra][idStd][idStd][idRoot].m_str;
+      str = (*m_pschemaStd)[id]; // lang=_std style=_std
       return str;
+
    }
 
-   void str::get(stringa & stra, str_context * pcontext, const id & idRoot, const id & pszLang, const id & pszStyle, const id & idExtra)
+   string str::get(str_context * pcontext, const ::id & id, const ::id & idLocale, const ::id & idSchema)
    {
-      static id idEn("en");
-      static id idStd("_std");
-      string str;
-      if(pszLang != NULL)
+      
+      if(!idLocale.is_empty())
       {
-         if(pszStyle != NULL)
+         string str;
+         str_locale * plocale = get_locale(idLocale);
+         if(plocale != NULL)
          {
-            str = (*this)[idExtra][pszLang][pszStyle][idRoot].m_str;
-            if(str.has_char())
-               stra.add_unique(str);
+            
+            if(!idSchema.is_empty() && idSchema != idLocale)
+            {
+               str_schema * pschema = plocale->get_schema(idSchema);
+               if(pschema != NULL)
+               {
+                  str = (*pschema)[id];
+                  if(str.has_char())
+                     return str;
+               }
+            }
+
+            str_schema * pschema = plocale->get_schema(idLocale);
+            if(pschema != NULL)
+            {
+               str = (*pschema)[id];
+               if(str.has_char())
+                  return str;
+            }
          }
-         str = (*this)[idExtra][pszLang][pszLang][idRoot].m_str;
-         if(str.has_char())
-            stra.add_unique(str);
       }
+      return get(pcontext, id);
+   }
+
+
+   void str::get(stringa & stra, str_context * pcontext, const ::id & id)
+   {
+
+      static ::id idEn("en");
+      static ::id idStd("_std");
+
+      gen::international::locale_schema * plocaleschema = NULL;
+
+      string str;
       if(pcontext != NULL)
       {
-         for(int i = 0; i < pcontext->param_locale_ex().get_count(); i++)
+
+         pcontext->defer_ok(this);
+
+         if(pcontext->m_pschema != NULL)
          {
-            id & idStyle = pcontext->param_style_ex()[i];
-            id & idLocale = pcontext->param_locale_ex()[i];
-            str = (*this)[idExtra][idLocale][idStyle][idRoot].m_str;
+            
+            str = (*pcontext->m_pschema)[id];
             if(str.has_char())
-               stra.add_unique(str);
-            str = (*this)[idExtra][idLocale][idLocale][idRoot].m_str;
-            if(str.has_char())
-               stra.add_unique(str);
+               stra.add(str);
+
          }
+         
+         if(pcontext->m_pschemaLocale != NULL)
+         {
+            str = (*pcontext->m_pschemaLocale)[id];
+            if(str.has_char())
+               stra.add(str);
+         }
+
+         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         {
+            
+            str = (*pcontext->m_schemaptra[i])[id];
+            if(str.has_char())
+               stra.add(str);
+
+         }
+
       }
-      if(pszStyle != NULL)
+
+      if(pcontext != NULL && pcontext->m_pschemaSchemaEn != NULL)
       {
-         str = (*this)[idExtra][pszStyle][idEn][idRoot].m_str;
+
+         str = (*pcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
          if(str.has_char())
-            stra.add_unique(str);
+            stra.add(str);
+
       }
-      str = (*this)[idExtra][idEn][idEn][idRoot].m_str;
+
+      str = (*m_pschemaEn)[id]; // lang=en style=en
       if(str.has_char())
-         stra.add_unique(str);
-      if(pszStyle != NULL)
+         stra.add(str);
+
+      if(pcontext != NULL && pcontext->m_pschemaSchemaStd != NULL)
       {
-         str = (*this)[idExtra][pszStyle][idStd][idRoot].m_str;
+
+         str = (*pcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
          if(str.has_char())
-            stra.add_unique(str);
+            stra.add(str);
+
       }
-      str = (*this)[idExtra][idStd][idStd][idRoot].m_str;
+
+      str = (*m_pschemaStd)[id]; // lang=_std style=_std
       if(str.has_char())
-         stra.add_unique(str);
+         stra.add(str);
+
    }
 
-/*   string persistent_ui_str::get(script_interface * pscript, const char * idRoot, const char * pszLang, const char * pszStyle)
-   {
-      string str;
-      str = operator[](idRoot)[pszStyle][pszLang].m_str;
-      if(str.has_char())
-         return str;
-      str = operator[](idRoot)[pszLang][pszLang].m_str;
-      if(str.has_char())
-         return str;
-      str = operator[](idRoot)[pszStyle]["en"].m_str;
-      if(str.has_char())
-         return str;
-      str = operator[](idRoot)["en"]["en"].m_str;
-      return str;
-   }
-*/
-   bool str::load_uistr_file(const id & pszLang, const id & pszStyle, const char * pszFile)
+   bool str::load_uistr_file(const ::id & pszLang, const ::id & pszStyle, const char * pszFile)
    {
       stringa straLines;
       stringa straSep;
@@ -300,7 +414,6 @@ namespace user
                strRoot,
                pszLang,
                pszStyle,
-               NULL,
                body(strBody));
             str.Empty();
          }
@@ -320,161 +433,216 @@ namespace user
       return str;
    }
 
-   bool str::matches(str_context * pcontext, const id & idRoot, const id & idExtra, const char * psz)
+   bool str::matches(str_context * pcontext, const ::id & id, const char * psz)
    {
+
+      static ::id idEn("en");
+      static ::id idStd("_std");
+
+      gen::international::locale_schema * plocaleschema = NULL;
+
       string str;
       if(pcontext != NULL)
       {
-         for(int i = 0; i < pcontext->param_locale_ex().get_count(); i++)
+
+         pcontext->defer_ok(this);
+
+         if(pcontext->m_pschema != NULL)
          {
-            id & idStyle = pcontext->param_style_ex()[i];
-            id idLocale = pcontext->param_locale_ex()[i];
-            str = (*this)[idExtra][idLocale][idStyle][idRoot].m_str;
+            
+            str = (*pcontext->m_pschema)[id];
             if(!str.CompareNoCase(psz))
                return true;
-            str = (*this)[idExtra][idLocale][idLocale][idRoot].m_str;
+
+         }
+         
+         if(pcontext->m_pschemaLocale != NULL)
+         {
+            str = (*pcontext->m_pschemaLocale)[id];
             if(!str.CompareNoCase(psz))
                return true;
          }
+
+         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         {
+            
+            str = (*pcontext->m_schemaptra[i])[id];
+            if(!str.CompareNoCase(psz))
+               return true;
+
+         }
+
       }
-      str = (*this)[idExtra]["en"]["en"][idRoot].m_str;
+
+      if(pcontext != NULL && pcontext->m_pschemaSchemaEn != NULL)
+      {
+
+         str = (*pcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
+         if(!str.CompareNoCase(psz))
+            return true;
+
+      }
+
+      str = (*m_pschemaEn)[id]; // lang=en style=en
       if(!str.CompareNoCase(psz))
          return true;
-      str = (*this)[idExtra]["_std"]["_std"][idRoot].m_str;
-      if(!str.CompareNoCase(psz))
-         return true;
+
+      if(pcontext != NULL && pcontext->m_pschemaSchemaStd != NULL)
+      {
+
+         str = (*pcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
+         if(!str.CompareNoCase(psz))
+            return true;
+
+      }
+
+
+
       return false;
+
+
    }
 
-   bool str::begins(str_context * pcontext, const char * pszTopic, const id & idRoot, const id & idExtra)
+   bool str::begins(str_context * pcontext, const char * pszTopic, const ::id & id)
    {
+
+      static ::id idEn("en");
+      static ::id idStd("_std");
+
+      gen::international::locale_schema * plocaleschema = NULL;
+
       string str;
       if(pcontext != NULL)
       {
-         for(int i = 0; i < pcontext->param_locale_ex().get_count(); i++)
+
+         pcontext->defer_ok(this);
+
+         if(pcontext->m_pschema != NULL)
          {
-            const id & idStyle = pcontext->param_style_ex()[i];
-            const id & idLocale = pcontext->param_locale_ex()[i];
-            str = (*this)[idExtra][idLocale][idStyle][idRoot].m_str;
+            
+            str = (*pcontext->m_pschema)[id];
             if(str.has_char() && gen::str::begins_ci(pszTopic, str))
                return true;
-            str = (*this)[idExtra][idLocale][idLocale][idRoot].m_str;
+
+         }
+         
+         if(pcontext->m_pschemaLocale != NULL)
+         {
+            str = (*pcontext->m_pschemaLocale)[id];
             if(str.has_char() && gen::str::begins_ci(pszTopic, str))
                return true;
          }
+
+         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         {
+            
+            str = (*pcontext->m_schemaptra[i])[id];
+            if(str.has_char() && gen::str::begins_ci(pszTopic, str))
+               return true;
+
+         }
+
       }
-      str = (*this)[idExtra]["en"]["en"][idRoot].m_str;
+
+      if(pcontext != NULL && pcontext->m_pschemaSchemaEn != NULL)
+      {
+
+         str = (*pcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
+         if(str.has_char() && gen::str::begins_ci(pszTopic, str))
+            return true;
+
+      }
+
+      str = (*m_pschemaEn)[id]; // lang=en style=en
       if(str.has_char() && gen::str::begins_ci(pszTopic, str))
          return true;
-      str = (*this)[idExtra]["_std"]["_std"][idRoot].m_str;
-      if(str.has_char() && gen::str::begins_ci(pszTopic, str))
-         return true;
+
+      if(pcontext != NULL && pcontext->m_pschemaSchemaStd != NULL)
+      {
+
+         str = (*pcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
+         if(str.has_char() && gen::str::begins_ci(pszTopic, str))
+            return true;
+
+      }
+
+
+
       return false;
+
+
    }
 
-   bool str::begins_eat(str_context * pcontext, string & strTopic, const id & idRoot, const id & idExtra)
+   bool str::begins_eat(str_context * pcontext, string & strTopic, const ::id & id)
    {
+
+      static ::id idEn("en");
+      static ::id idStd("_std");
+
+      gen::international::locale_schema * plocaleschema = NULL;
+
       string str;
       if(pcontext != NULL)
       {
-         for(int i = 0; i < pcontext->param_locale_ex().get_count(); i++)
+
+         pcontext->defer_ok(this);
+
+         if(pcontext->m_pschema != NULL)
          {
-            id & idStyle = pcontext->param_style_ex()[i];
-            id & idLocale = pcontext->param_locale_ex()[i];
-            str = (*this)[idExtra][idLocale][idStyle][idRoot].m_str;
+            
+            str = (*pcontext->m_pschema)[id];
             if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
                return true;
-            str = (*this)[idExtra][idLocale][idLocale][idRoot].m_str;
+
+         }
+         
+         if(pcontext->m_pschemaLocale != NULL)
+         {
+            str = (*pcontext->m_pschemaLocale)[id];
             if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
                return true;
          }
+
+         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         {
+            
+            str = (*pcontext->m_schemaptra[i])[id];
+            if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
+               return true;
+
+         }
+
       }
-      str = (*this)[idExtra]["en"]["en"][idRoot].m_str;
+
+      if(pcontext != NULL && pcontext->m_pschemaSchemaEn != NULL)
+      {
+
+         str = (*pcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
+            if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
+               return true;
+
+      }
+
+      str = (*m_pschemaEn)[id]; // lang=en style=en
       if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
          return true;
-      str = (*this)[idExtra]["_std"]["_std"][idRoot].m_str;
-      if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
-         return true;
+
+      if(pcontext != NULL && pcontext->m_pschemaSchemaStd != NULL)
+      {
+
+         str = (*pcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
+         if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
+            return true;
+
+      }
+
+
       return false;
+
+
    }
 
-   void str::get(stringa & stra, str_context * pcontext, const id & idRoot, const id & idExtra)
-   {
-      string str;
-      string strRoot;
-      if(pcontext != NULL)
-      {
-         int i;
-         for(i = 0; i < pcontext->param_locale_ex().get_count(); i++)
-         {
-            id & idStyle = pcontext->param_style_ex()[i];
-            id & idLocale = pcontext->param_locale_ex()[i];
-            str = (*this)[idExtra][idLocale][idStyle][idRoot].m_str;
-            if(str.has_char())
-               stra.add_unique(str);
-            str = (*this)[idExtra][idLocale][idLocale][idRoot].m_str;
-            if(str.has_char())
-               stra.add_unique(str);
-         }
-         bool bOk = true;
-         i = 0;
-         while(i < 32 && bOk)
-         {
-            bOk = false;
-            for(int j = 0; j < pcontext->param_locale_ex().get_count(); j++)
-            {
-               id & idStyle = pcontext->param_style_ex()[i];
-               id & idLocale = pcontext->param_locale_ex()[i];
-               strRoot.Format("%s[%d]", idRoot.str(), i);
-               str = (*this)[idExtra][idLocale][idStyle][strRoot].m_str;
-               if(str.has_char())
-               {
-                  bOk = true;
-                  stra.add_unique(str);
-               }
-               str = (*this)[idExtra][idLocale][idLocale][strRoot].m_str;
-               if(str.has_char())
-               {
-                  bOk = true;
-                  stra.add_unique(str);
-               }
-            }
-            i++;
-         }
-      }
-      str = (*this)[idExtra]["en"]["en"][idRoot].m_str;
-      if(str.has_char())
-         stra.add_unique(str);
-      str = (*this)[idExtra]["_std"]["_std"][idRoot].m_str;
-      if(str.has_char())
-         stra.add_unique(str);
-   }
 
-   string str::get(str_context * pcontext, const id & idRoot, const id & idExtra)
-   {
-      string str;
-      if(pcontext != NULL)
-      {
-         for(int i = 0; i < pcontext->param_locale_ex().get_count(); i++)
-         {
-            id & idStyle = pcontext->param_style_ex()[i];
-            id & idLocale = pcontext->param_locale_ex()[i];
-            str = (*this)[idExtra][idLocale][idStyle][idRoot].m_str;
-            if(str.has_char())
-               return str;
-            str = (*this)[idExtra][idLocale][idLocale][idRoot].m_str;
-            if(str.has_char())
-               return str;
-         }
-      }
-      str = (*this)[idExtra]["en"]["en"][idRoot].m_str;
-      if(str.has_char())
-         return str;
-      str = (*this)[idExtra]["_std"]["_std"][idRoot].m_str;
-      if(str.has_char())
-         return str;
-      return "";
-   }
 
 
 } // namespace user

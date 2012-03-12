@@ -1544,8 +1544,8 @@ namespace dynamic_source
 
       dprint("<br>INIT PATH");
 
-      comparable_array < id > & propLocaleEx = str_context()->param_locale_ex();
-      comparable_array < id > & propStyleEx = str_context()->param_style_ex();
+      comparable_array < id > & propLocaleEx = str_context()->m_plocaleschema->m_idaLocale;
+      comparable_array < id > & propSchemaEx = str_context()->m_plocaleschema->m_idaSchema;
       gen::property & propLangDirModifierEx = gprop("g_langdir_modifier_ex");
 
       if(gprop("enable_userdir"))
@@ -1566,7 +1566,7 @@ namespace dynamic_source
       }
 
 
-      if(localestyle().m_bFixStyle)
+      if(localeschema().m_bSchemaOnly)
       {
          gstr("g_langdir_modifier") = gstr("param_locale") + "/" + gstr("override_param_style") + "/";
          for(int i = 0; i < propLocaleEx.get_count(); i++)
@@ -1601,7 +1601,7 @@ namespace dynamic_source
          for(int i = 0; i < propLocaleEx.get_count(); i++)
          {
             gprop("locale") = propLocaleEx[i];
-            gprop("style") = propStyleEx[i];
+            gprop("style") = propSchemaEx[i];
             propLangDirModifierEx.stra().add(gstr("locale") +"/" + gstr("style") +"/");
          }
 
@@ -1923,13 +1923,13 @@ namespace dynamic_source
          // hold the modifiers in order of priority. Higher priority first.
          //straMod.add(propLangDirModifierEx.stra());
 
-         gen::international::locale_style & ls = localestyle();
+         gen::international::locale_schema & ls = localeschema();
 
          if(gprop("enable_userdir"))
          {
-            for(int i = 0; i < ls.m_idaStyle.get_size(); i++)
+            for(int i = 0; i < ls.m_idaSchema.get_size(); i++)
             {
-               string strCandidate = strSubdomain + strBase + string(ls.m_idaLocale[i]) + "/" + string(ls.m_idaStyle[i]) + "/" + strType + strDoc + strExt;
+               string strCandidate = strSubdomain + strBase + string(ls.m_idaLocale[i]) + "/" + string(ls.m_idaSchema[i]) + "/" + strType + strDoc + strExt;
                dprint("candidate1=" + strCandidate);
                //$path = util_file_realpath($candidate);
                string strPath = System.dir().path(pszSystemPath, strCandidate);
@@ -1943,25 +1943,25 @@ namespace dynamic_source
          }
          string strCandidate;
          string strPath;
-         //            print_r($local_modifiers);
-         //foreach($local_modifiers as $local_modifier)
-         for(int i = 0; i < ls.m_idaStyle.get_size(); i++)
+         string strPrefix = System.dir().path(pszSystemPath, strBase + strSubdomain);
+         string strSuffix = "/" + strType + strDoc + strExt;
+         if(get_manager()->include_matches_is_dir(strPrefix))
          {
-
-            strCandidate = strBase + strSubdomain + string(ls.m_idaLocale[i]) + "/" + string(ls.m_idaStyle[i]) + "/" + strType + strDoc + strExt;
-            dprint("candidate1=" + strCandidate);
-            //$path = util_file_realpath($candidate);
-            strPath = System.dir().path(pszSystemPath, strCandidate);
-            dprint("path=" + strPath);
-            if(get_manager()->include_matches_file_exists(strPath))
+            for(int i = 0; i < ls.m_idaSchema.get_size(); i++)
             {
-               return strPath;
+
+               strPath = strPrefix + string(ls.m_idaLocale[i]) + "/" + string(ls.m_idaSchema[i]) + strSuffix;
+               dprint("path=" + strPath);
+               if(get_manager()->include_matches_file_exists(strPath))
+               {
+                  return strPath;
+               }
+               dprint("<br />");
             }
-            dprint("<br />");
          }
          dprint("<br />");
 
-         if(!localestyle().m_bFixStyle)
+         if(!localeschema().m_bSchemaOnly)
          {
 
             strCandidate = strBase + strSubdomain + "_std/" + gstr("param_style") + strType + strDoc + strExt;
@@ -2284,8 +2284,8 @@ namespace dynamic_source
       string strSubdomainModifier;
       string strParamLocale = gprop("param_locale");
       string strParamStyle = gprop("param_style");
-      comparable_array < id > & propLocaleEx = str_context()->param_locale_ex();
-      comparable_array < id > & propStyleEx = str_context()->param_style_ex();
+      comparable_array < id > & propLocaleEx = str_context()->m_plocaleschema->m_idaLocale;
+      comparable_array < id > & propSchemaEx = str_context()->m_plocaleschema->m_idaSchema;
 
       strLoad += ".ds";
 
@@ -2404,7 +2404,7 @@ namespace dynamic_source
             strCandidate += strSubdomainModifier;
             strCandidate += propLocaleEx[i];
             strCandidate += "/";
-            strCandidate += propStyleEx[i];
+            strCandidate += propSchemaEx[i];
             strCandidate += "/";
             strCandidate += strLoad;
             dprint("(5.1)candidate=" + strCandidate + "<br>");
@@ -3039,14 +3039,14 @@ ok1:
       return prop.is_null();
    }
 
-   string script_impl::pstr(id pszTopic, gen::property_set & set, id pszLocale, id pszStyle, id pszExtra)
+   string script_impl::pstr(id pszTopic, gen::property_set & set, id pszLocale, id pszStyle)
    {
-      string str = pstr(pszTopic, pszLocale, pszStyle, pszExtra);
+      string str = pstr(pszTopic, pszLocale, pszStyle);
       set.replace_ex1(str);
       return str;
    }
 
-   string script_impl::pstr(id pszTopic, id pszLocale, id pszStyle, id pszExtra)
+   string script_impl::pstr(id pszTopic, id pszLocale, id pszStyle)
    {
       single_lock sl(&m_pmanager->m_csPersistentStr, TRUE);
       if(pszLocale.is_empty())
@@ -3057,27 +3057,24 @@ ok1:
       {
          pszStyle = gprop("param_style");
       }
-      if(pszExtra.is_null())
+      string strTopic(pszTopic);
+      string str = System.str().get(str_context(), pszTopic, pszLocale, pszStyle);
+      if(str.has_char())
+         return str;
+      str = System.str().get(str_context(), pszTopic, pszLocale, pszStyle);
+      if(str.has_char())
+         return str;
+      if(strTopic == "ca2plugin.install_ca2_rem")
       {
-         string strTopic(pszTopic);
-         string str = System.str().get(str_context(), pszTopic, pszLocale, pszStyle, gprop("g_domain_suffix"));
-         if(str.has_char())
-            return str;
-         str = System.str().get(str_context(), pszTopic, pszLocale, pszStyle, gprop("g_domain_toplevel"));
-         if(str.has_char())
-            return str;
-         if(strTopic == "ca2plugin.install_ca2_rem")
-         {
-            TRACE("teste");
-         }
+         TRACE("teste");
       }
-      return System.str().get(str_context(), pszTopic, pszLocale, pszStyle, pszExtra);
+      return System.str().get(str_context(), pszTopic, pszLocale, pszStyle);
    }
 
-   void script_impl::pstr_set(id pszTopic, id pszLocale, id pszStyle, id pszExtra, const char * psz)
+   void script_impl::pstr_set(id pszTopic, id pszLocale, id pszStyle, const char * psz)
    {
       single_lock sl(&m_pmanager->m_csPersistentStr, TRUE);
-      System.str().set(pszTopic, pszLocale, pszStyle, pszExtra, psz);
+      System.str().set(pszTopic, pszLocale, pszStyle, psz);
    }
 
 
@@ -4453,10 +4450,10 @@ ok1:
             strMin.Format("%d", ((int)pelement->get_value().mod() / 60));
             string strMinSec;
             strMinSec.Format("%f", fmod(pelement->get_value().mod(), 60.0));
-            strResp = pelement->get_expression() + " " + str_context()->get("calendar:seconds", NULL);
-            strResp += " = " + strValue + " " + str_context()->get("calendar:seconds", NULL);
-            strResp += " = " + strMinFrac + " " + str_context()->get("calendar:minutes", NULL);
-            strResp += " = " + strMin + " " + str_context()->get("calendar:minutes", NULL) + " and " + strMinSec + " " + str_context()->get("calendar:seconds", NULL) + "\n";
+            strResp = pelement->get_expression() + " " + str_context()->get("calendar:seconds");
+            strResp += " = " + strValue + " " + str_context()->get("calendar:seconds");
+            strResp += " = " + strMinFrac + " " + str_context()->get("calendar:minutes");
+            strResp += " = " + strMin + " " + str_context()->get("calendar:minutes") + " and " + strMinSec + " " + str_context()->get("calendar:seconds") + "\n";
 
             bOk = true;
          }
@@ -4641,7 +4638,7 @@ ok1:
 
 
       stringa straCandidate;
-      str_context()->get(straCandidate, "calendar_event:birthday", NULL);
+      str_context()->get(straCandidate, "calendar_event:birthday");
       for(int i = 0; i < straCandidate.get_count(); i++)
       {
          strTopic = pszQuery;

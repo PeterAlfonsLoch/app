@@ -19,14 +19,14 @@ namespace ca
       {
       }
 
-      string application::locale_style(const char * pszLocale, const char * pszStyle)
+      string application::locale_schema(const char * pszLocale, const char * pszStyle)
       {
-         return System.dir().locale_style(get_app(), pszLocale, pszStyle);
+         return System.dir().locale_schema(get_app(), pszLocale, pszStyle);
       }
 
-      string application::locale_style_matter(const char * pszLocale, const char * pszStyle)
+      string application::locale_schema_matter(const char * pszLocale, const char * pszStyle)
       {
-         return System.dir().locale_style_matter(get_app(), pszLocale, pszStyle);
+         return System.dir().locale_schema_matter(get_app(), pszLocale, pszStyle);
       }
 
       string application::matter(const char * lpcsz, const char * lpcsz2)

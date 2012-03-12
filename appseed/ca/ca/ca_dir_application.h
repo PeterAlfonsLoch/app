@@ -21,8 +21,8 @@ namespace ca
          virtual ~application();
 
 
-         virtual string locale_style(const char * pszLocale = NULL, const char * pszStyle = NULL);
-         virtual string locale_style_matter(const char * pszLocale = NULL, const char * pszStyle = NULL);
+         virtual string locale_schema(const char * pszLocale = NULL, const char * pszStyle = NULL);
+         virtual string locale_schema_matter(const char * pszLocale = NULL, const char * pszStyle = NULL);
          virtual string matter(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
 
 

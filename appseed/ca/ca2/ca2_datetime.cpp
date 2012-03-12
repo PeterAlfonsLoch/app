@@ -228,30 +228,21 @@ namespace ca2
    {
       return System.str().get(
          pcontext,
-         "datetimestr_weekday_long[" + gen::str::itoa(iWeekDay - 1) + "]",
-         NULL,
-         NULL,
-         NULL);
+         "datetimestr_weekday_long[" + gen::str::itoa(iWeekDay - 1) + "]");
    }
 
    string datetime::get_tiny_week_day_str(user::str_context * pcontext, int iWeekDay) // 1 - domingo
    {
       return System.str().get(
          pcontext,
-         "datetimestr_weekday_tiny[" + gen::str::itoa(iWeekDay - 1) + "]",
-         NULL,
-         NULL,
-         NULL);
+         "datetimestr_weekday_tiny[" + gen::str::itoa(iWeekDay - 1) + "]");
    }
 
    string datetime::get_month_str(user::str_context * pcontext, int iMonth)
    {
       return System.str().get(
          pcontext,
-         "datetimestr_month[" + gen::str::itoa(iMonth - 1) + "]",
-         NULL,
-         NULL,
-         NULL);
+         "datetimestr_month[" + gen::str::itoa(iMonth - 1) + "]");
    }
 
    class time datetime::from_gmt_date_time(int iYear, int iMonth, int iDay, int iHour, int iMinute, int iSecond)

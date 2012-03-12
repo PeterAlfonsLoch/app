@@ -122,8 +122,8 @@ namespace planebase
          string strCommandLine;
 
          strCommandLine    =" : app=" + strId;
-         strCommandLine    += " locale=" + string(Application.str_context()->m_plocalestyle->m_idLocale);
-         strCommandLine    += " style=" + string(Application.str_context()->m_plocalestyle->m_idStyle);
+         strCommandLine    += " locale=" + string(Application.str_context()->m_plocaleschema->m_idLocale);
+         strCommandLine    += " style=" + string(Application.str_context()->m_plocaleschema->m_idSchema);
          strCommandLine    += " install";
 
          System.install().start(strCommandLine);
@@ -1313,19 +1313,19 @@ InitFailure:
 
    }
 
-   void application::fill_locale_style(gen::international::locale_style & localestyle)
+   void application::fill_locale_schema(gen::international::locale_schema & localeschema)
    {
 
 
-      localestyle.m_idaLocale.remove_all();
-      localestyle.m_idaStyle.remove_all();
+      localeschema.m_idaLocale.remove_all();
+      localeschema.m_idaSchema.remove_all();
 
 
-      localestyle.m_bAddAlternateStyle = true;
+      //localeschema.m_bAddAlternateStyle = true;
 
 
       string strLocale;
-      string strStyle;
+      string strSchema;
 
 
       if(Application.directrix().m_varTopicQuery["locale"].has_char() && Application.directrix().m_varTopicQuery["locale"].get_string().CompareNoCase("_std") != 0)
@@ -1333,11 +1333,11 @@ InitFailure:
          strLocale = Application.directrix().m_varTopicQuery["locale"];
          if(Application.directrix().m_varTopicQuery["style"].has_char() && Application.directrix().m_varTopicQuery["style"].get_string().CompareNoCase("_std") != 0)
          {
-            strStyle = Application.directrix().m_varTopicQuery["style"];
+            strSchema = Application.directrix().m_varTopicQuery["style"];
          }
          else
          {
-            strStyle = strLocale;
+            strSchema = strLocale;
          }
       }
       else if(Application.directrix().m_varTopicQuery["lang"].has_char() && Application.directrix().m_varTopicQuery["lang"].get_string().CompareNoCase("_std") != 0)
@@ -1345,53 +1345,53 @@ InitFailure:
          strLocale = Application.directrix().m_varTopicQuery["lang"];
          if(Application.directrix().m_varTopicQuery["style"].has_char() && Application.directrix().m_varTopicQuery["style"].get_string().CompareNoCase("_std") != 0)
          {
-            strStyle = Application.directrix().m_varTopicQuery["style"];
+            strSchema = Application.directrix().m_varTopicQuery["style"];
          }
          else
          {
-            strStyle = strLocale;
+            strSchema = strLocale;
          }
       }
       else
       {
          strLocale  = get_locale();
-         strStyle   = get_style();
+         strSchema  = get_schema();
       }
 
 
-      localestyle.m_idLocale     = strLocale;
-      localestyle.m_idStyle      = strStyle;
+      localeschema.m_idLocale     = strLocale;
+      localeschema.m_idSchema     = strSchema;
 
 
-      localestyle.add_locale_variant(strLocale, strStyle);
+      localeschema.add_locale_variant(strLocale, strSchema);
       
       
       if(Application.directrix().m_varTopicQuery["style"].has_char() && Application.directrix().m_varTopicQuery["style"].get_string().CompareNoCase("_std") != 0)
       {
-         localestyle.add_locale_variant(get_locale(), Application.directrix().m_varTopicQuery["style"]);
+         localeschema.add_locale_variant(get_locale(), Application.directrix().m_varTopicQuery["style"]);
       }
 
-      if(get_style().has_char() && get_style().CompareNoCase("_std") != 0 && get_style().CompareNoCase(get_locale()) != 0)
+      if(get_schema().has_char() && get_schema().CompareNoCase("_std") != 0 && get_schema().CompareNoCase(get_locale()) != 0)
       {
-         localestyle.add_locale_variant(get_locale(), Application.directrix().m_varTopicQuery["style"]);
+         localeschema.add_locale_variant(get_locale(), Application.directrix().m_varTopicQuery["style"]);
       }
 
-      localestyle.add_locale_variant(get_locale(), get_locale());
+      localeschema.add_locale_variant(get_locale(), get_locale());
 
-      localestyle.add_locale_variant(get_locale(), "en");
-      localestyle.add_locale_variant(get_locale(), "_std");
+      localeschema.add_locale_variant(get_locale(), "en");
+      localeschema.add_locale_variant(get_locale(), "_std");
 
-      localestyle.add_locale_variant("en", get_style());
-      localestyle.add_locale_variant("_std", get_style());
+      localeschema.add_locale_variant("en", get_schema());
+      localeschema.add_locale_variant("_std", get_schema());
 
-      localestyle.add_locale_variant("en", get_locale());
-      localestyle.add_locale_variant("_std", get_locale());
+      localeschema.add_locale_variant("en", get_locale());
+      localeschema.add_locale_variant("_std", get_locale());
 
-      localestyle.add_locale_variant("en", "en");
-      localestyle.add_locale_variant("_std", "_std");
+      localeschema.add_locale_variant("en", "en");
+      localeschema.add_locale_variant("_std", "_std");
 
 
-      localestyle.finalize();
+      localeschema.finalize();
 
    }
 
@@ -1399,15 +1399,15 @@ InitFailure:
    bool application::update_appmatter(const char * pszRoot, const char * pszRelative)
    {
       
-      gen::international::locale_style localestyle(this);
+      gen::international::locale_schema localeschema(this);
 
-      fill_locale_style(localestyle);
+      fill_locale_schema(localeschema);
 
-      update_appmatter(pszRoot, pszRelative, localestyle.m_idLocale, localestyle.m_idStyle);
+      update_appmatter(pszRoot, pszRelative, localeschema.m_idLocale, localeschema.m_idSchema);
       
-      for(int i = 0; i < localestyle.m_idaLocale.get_count(); i++)
+      for(int i = 0; i < localeschema.m_idaLocale.get_count(); i++)
       {
-         update_appmatter(pszRoot, pszRelative, localestyle.m_idaLocale[i], localestyle.m_idaStyle[i]);
+         update_appmatter(pszRoot, pszRelative, localeschema.m_idaLocale[i], localeschema.m_idaSchema[i]);
       }
 
 
@@ -1419,9 +1419,9 @@ InitFailure:
    {
 
       string strLocale;
-      string strStyle;
+      string strSchema;
       TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot, pszRelative, pszLocale, pszStyle);
-      string strRelative = System.dir().path(System.dir().path(pszRoot, "appmatter", pszRelative), App(this).get_locale_style_dir(pszLocale, pszStyle)) + ".zip";
+      string strRelative = System.dir().path(System.dir().path(pszRoot, "appmatter", pszRelative), App(this).get_locale_schema_dir(pszLocale, pszStyle)) + ".zip";
       string strFile = System.dir().ca2(strRelative);
       string strUrl;
       if(_ca_is_basis())

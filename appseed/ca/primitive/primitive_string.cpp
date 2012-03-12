@@ -650,7 +650,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 
    // copy constructor
    string::string(const string & strSrc ) :
-      simple_string( strSrc )
+      simple_string( strSrc, string_trait::GetDefaultManager() )
    {
    }
 

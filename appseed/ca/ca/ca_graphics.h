@@ -20,7 +20,11 @@
 
 namespace user
 {
+
+
    class str_context;
+
+
 }
 
 

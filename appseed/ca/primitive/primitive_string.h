@@ -891,7 +891,113 @@ inline char string::last_char() const
 
 
 
+inline id::operator const char *() const
+{
+   return (const char *) *m_pstr;
+}
+
+inline id::operator const char *()
+{
+   return (const char *) *m_pstr;
+}
+
+inline bool id::is_empty() const
+{
+   return is_null() || (is_text() && (m_pstr == NULL || m_pstr->is_empty()));
+}
+
+inline CLASS_DECL_ca int64_t id_cmp(const id * pid, const string & str)
+{
+   if(pid->is_null())
+   {
+      if(str.is_empty())
+      {
+         return 0;
+      }
+      else
+      {
+         return -1;
+      }
+   }
+   else if(pid->is_text())
+   {
+      if(str.is_empty())
+      {
+         return 1;
+      }
+      else if(id_is_text(str))
+      {
+         return pid->m_pstr->Compare(str);
+      }
+      else
+      {
+         return 1;
+      }
+   }
+   else // if(pid->is_number())
+   {
+      if(str.is_empty())
+      {
+         return 1;
+      }
+      else if(id_is_text(str))
+      {
+         return 1;
+      }
+      else
+      {
+         return pid->m_i - gen::str::atoi64(str);
+      }
+   }
+}
+
+inline CLASS_DECL_ca int64_t id_strcmp(const id * pid1, const id * pid2)
+{
+   char register chCompare = pid1->m_chType - pid2->m_chType;
+   if(chCompare != 0) return chCompare;
+   if(pid1->m_chType == IDTYPE_TYPE_TEXT)
+      return pid1->m_pstr->Compare(*pid2->m_pstr);
+   else
+      return pid1->m_i - pid2->m_i;
+}
+
+inline void id::raw_set(const string * pstr)
+{
+   if(pstr == NULL)
+   {
+      m_chType = IDTYPE_TYPE_NULL;
+      m_i = 0;
+   }
+   else if(id_is_number(pstr->c_str()))
+   {
+      m_chType = IDTYPE_TYPE_NUMBER;
+      m_i = atoi64_dup(*pstr);
+      delete pstr;
+   }
+   else
+   {
+      m_chType = IDTYPE_TYPE_TEXT;
+      m_i = 0;
+      m_pstr = pstr;
+   }
+}
+
+inline string id::str() const
+{
+   if(m_chType == IDTYPE_TYPE_TEXT)
+      return *m_pstr;
+   else if(m_chType == IDTYPE_TYPE_NUMBER)
+   {
+      return gen::str::itoa(m_i);
+   }
+   else
+      return "";
+ }
+
+
 #include "gen/gen_str2.h"
+
+
 
 
 

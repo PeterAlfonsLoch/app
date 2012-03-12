@@ -37,7 +37,7 @@ namespace simpledb
       virtual db_server & db();
 
       virtual void on_set_locale(const char * lpcsz, bool bUser);
-      virtual void on_set_style(const char * lpcsz, bool bUser);
+      virtual void on_set_schema(const char * lpcsz, bool bUser);
 
 
       virtual bool InitializeDataCentral();

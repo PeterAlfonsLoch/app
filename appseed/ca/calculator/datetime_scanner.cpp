@@ -53,7 +53,7 @@ namespace datetime
             scanner = gen::str::utf8_inc(scanner);
          strCandidate = string(start, scanner - start + 1);
          strCandidate.make_lower();
-         if(pcontext->matches(idCalendarDays, NULL, strCandidate))
+         if(pcontext->matches(idCalendarDays, strCandidate))
          {
             return "days";
          }
@@ -61,7 +61,7 @@ namespace datetime
       else
       {
          strCandidate = string(input);
-         if(pcontext->begins(idCalendarDays, NULL, strCandidate))
+         if(pcontext->begins(idCalendarDays, strCandidate))
          {
             return "days";
          }

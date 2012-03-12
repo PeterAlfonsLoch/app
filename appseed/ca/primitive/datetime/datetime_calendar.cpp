@@ -137,7 +137,7 @@ void calendar::_001GetHtml(::ca2::html_file * pfile)
       timeLastDayOfMonth -= time_span(1, 0, 0, 0);
       int iFirstDayOfWeek = time.GetDayOfWeek();
 
-      if(pfile->m_strSchema.find("<monday-first>")>=0 && iFirstDayOfWeek == 1)
+      if(pfile->m_strOptions.find("<monday-first>")>=0 && iFirstDayOfWeek == 1)
       {
          iFirstDayOfWeek = 8;
       }
@@ -148,10 +148,10 @@ void calendar::_001GetHtml(::ca2::html_file * pfile)
       rect rectDay;
       int iDay;
       pfile->print("<table cellpadding=\"0\" cellspacing=\"0\">");
-      if(pfile->m_strSchema.find("<no-week-bar-title>") < 0)
+      if(pfile->m_strOptions.find("<no-week-bar-title>") < 0)
       {
          pfile->print("<tr>");
-         if(pfile->m_strSchema.find("<left-week-of-the-year>") >= 0)
+         if(pfile->m_strOptions.find("<left-week-of-the-year>") >= 0)
          {
             pfile->print("<td>");
             pfile->print("V");
@@ -160,7 +160,7 @@ void calendar::_001GetHtml(::ca2::html_file * pfile)
          for(iWeekDay = 1; iWeekDay <= 7; iWeekDay++)
          {
             int iDayOfWeek = iWeekDay;
-            if(pfile->m_strSchema.find("<monday-first>")>=0)
+            if(pfile->m_strOptions.find("<monday-first>")>=0)
             {
                iDayOfWeek++;
                if(iDayOfWeek > 7)
@@ -183,9 +183,9 @@ void calendar::_001GetHtml(::ca2::html_file * pfile)
       for(int iWeek = 1; iWeek <= iLineCount; iWeek++)
       {
          pfile->print("<tr>");
-         if(pfile->m_strSchema.find("<left-week-of-the-year>") >= 0)
+         if(pfile->m_strOptions.find("<left-week-of-the-year>") >= 0)
          {
-            int w ;       if(pfile->m_strSchema.find("<monday-first>")>=0)
+            int w ;       if(pfile->m_strOptions.find("<monday-first>")>=0)
       {
          w = atoi(System.datetime().strftime("%V", class ::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
       }
@@ -201,7 +201,7 @@ void calendar::_001GetHtml(::ca2::html_file * pfile)
          for(int iWeekDay = 1; iWeekDay <=7; iWeekDay++)
          {
             int iDayOfWeek = iWeekDay;
-            if(pfile->m_strSchema.find("<monday-first>")>=0)
+            if(pfile->m_strOptions.find("<monday-first>")>=0)
             {
                iDayOfWeek++;
             }

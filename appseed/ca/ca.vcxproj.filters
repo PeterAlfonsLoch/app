@@ -515,9 +515,6 @@
     <ClInclude Include="gen\gen_international.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_international_locale_style.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
     <ClInclude Include="gen\gen_international2.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
@@ -3349,6 +3346,9 @@
     </ClInclude>
     <ClInclude Include="ca2\os_implementation.h">
       <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_international_locale_schema.h">
+      <Filter>Header Files\gen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

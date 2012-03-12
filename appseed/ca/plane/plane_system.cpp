@@ -760,12 +760,12 @@ namespace plane
       }
    }
 
-   void system::appa_set_style(const char * pszStyle, bool bUser)
+   void system::appa_set_schema(const char * pszStyle, bool bUser)
    {
       for(int i = 0; i < appptra().get_size(); i++)
       {
          ca2::application * papp = dynamic_cast < ca2::application * > (appptra()[i]);
-         papp->set_style(pszStyle, bUser);
+         papp->set_schema(pszStyle, bUser);
       }
    }
 

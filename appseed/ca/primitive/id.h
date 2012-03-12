@@ -75,27 +75,27 @@ public:
    }
    inline bool operator == (const char * psz) const
    {
-      return !id_cmp(this, psz);
+      return !id_cmp(this, (const string &) psz);
    }
    inline bool operator != (const char * psz) const
    {
-      return id_cmp(this, psz) != 0;
+      return id_cmp(this, (const string &) psz) != 0;
    }
    inline bool operator < (const char * psz) const
    {
-      return id_cmp(this, psz) < 0;
+      return id_cmp(this, (const string &) psz) < 0;
    }
    inline bool operator <= (const char * psz) const
    {
-      return id_cmp(this, psz) <= 0;
+      return id_cmp(this, (const string &) psz) <= 0;
    }
    inline bool operator > (const char * psz) const
    {
-      return id_cmp(this, psz) > 0;
+      return id_cmp(this, (const string &) psz) > 0;
    }
    inline bool operator >= (const char * psz) const
    {
-      return id_cmp(this, psz) >= 0;
+      return id_cmp(this, (const string &) psz) >= 0;
    }
    id & operator = (const char * psz);
    inline bool operator == (const string & str) const;
@@ -190,27 +190,28 @@ public:
          return 0;
    }
 
-   inline operator const char *() const
+   inline operator const char *() const;
+
+   inline operator const char *();
+
+   inline operator const string & () const
    {
-      return m_psz;
+      return *m_pstr;
    }
 
-   inline operator const char *()
+   inline operator const string & ()
    {
-      return m_psz;
+      return *m_pstr;
    }
 
    inline operator string();
 
    inline bool is_null() const
    {
-      return m_chType == IDTYPE_TYPE_NULL || (m_chType == IDTYPE_TYPE_TEXT && m_psz == NULL);
+      return m_chType == IDTYPE_TYPE_NULL || (m_chType == IDTYPE_TYPE_TEXT && m_pstr == NULL);
    }
 
-   inline bool is_empty() const
-   {
-      return is_null() || (is_text() && (m_psz == NULL || m_psz[0] == '\0'));
-   }
+   inline bool is_empty() const;
 
    inline bool has_char() const
    {
@@ -238,17 +239,17 @@ public:
    }
 
    friend CLASS_DECL_ca int64_t id_cmp(const id * pid, int64_t user);
-   friend CLASS_DECL_ca int64_t id_cmp(const id * pid, const char * psz);
+   friend CLASS_DECL_ca int64_t id_cmp(const id * pid, const string & str);
    friend CLASS_DECL_ca int64_t id_cmp(const id * pid1, const id * pid2);
    friend CLASS_DECL_ca int64_t id_strcmp(const id * pid1, const id * pid2);
    friend class id_space;
    friend class ::ca::type_info;
 
-   void raw_set(const char * psz);
+   void raw_set(const string * pstr);
    void raw_set(int64_t user);
    union
    {
-      const char *         m_psz;
+      const string *       m_pstr;
       int64_t              m_i;
    };
    char m_chType;
@@ -294,50 +295,6 @@ inline CLASS_DECL_ca int64_t id_cmp(const id * pid, int64_t i)
    }
 }
 
-inline CLASS_DECL_ca int64_t id_cmp(const id * pid, const char * psz)
-{
-   if(pid->is_null())
-   {
-      if(id_is_null(psz))
-      {
-         return 0;
-      }
-      else
-      {
-         return -1;
-      }
-   }
-   else if(pid->is_text())
-   {
-      if(id_is_null(psz))
-      {
-         return 1;
-      }
-      else if(id_is_text(psz))
-      {
-         return strcmp(pid->m_psz, psz);
-      }
-      else
-      {
-         return 1;
-      }
-   }
-   else // if(pid->is_number())
-   {
-      if(id_is_null(psz))
-      {
-         return 1;
-      }
-      else if(id_is_text(psz))
-      {
-         return 1;
-      }
-      else
-      {
-         return pid->m_i - gen::str::atoi64(psz);
-      }
-   }
-}
 
 
 inline CLASS_DECL_ca int64_t id_cmp(const id * pid1, const id * pid2)
@@ -347,36 +304,8 @@ inline CLASS_DECL_ca int64_t id_cmp(const id * pid1, const id * pid2)
    return pid1->m_i - pid2->m_i;
 }
 
-inline CLASS_DECL_ca int64_t id_strcmp(const id * pid1, const id * pid2)
-{
-   char register chCompare = pid1->m_chType - pid2->m_chType;
-   if(chCompare != 0) return chCompare;
-   if(pid1->m_chType == IDTYPE_TYPE_TEXT)
-      return strcmp(pid1->m_psz, pid2->m_psz);
-   else
-      return pid1->m_i - pid2->m_i;
-}
 
 
-inline void id::raw_set(const char * psz)
-{
-   if(psz == NULL)
-   {
-      m_chType = IDTYPE_TYPE_NULL;
-      m_i = 0;
-   }
-   else if(id_is_number(psz))
-   {
-      m_chType = IDTYPE_TYPE_NUMBER;
-      m_i = atoi64_dup(psz);
-   }
-   else
-   {
-      m_chType = IDTYPE_TYPE_TEXT;
-      m_i = 0;
-      m_psz = psz;
-   }
-}
 
 inline void id::raw_set(int64_t i)
 {

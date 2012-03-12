@@ -12,6 +12,8 @@ namespace ca
    class CLASS_DECL_ca application_ptra :
       virtual public comparable_array < ::ca::application *, ::ca::application * >
    {
+
+
    };
 
 
@@ -36,10 +38,10 @@ namespace ca2
       virtual public ::xml::application
    {
    public:
+
+
       ::collection::string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemap;
       ::collection::string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemapStd;
-      string                                                                                    m_strLocale;
-      string                                                                                    m_strStyle;
       manual_reset_event *                                                                      m_peventReady;
 
       
@@ -48,8 +50,10 @@ namespace ca2
       collection::map < int, int, bool, bool > *                                                m_pmapKeyPressed;
 
 
-      string   m_strRoot;
-      string   m_strDomain;
+      string                                                                                    m_strRoot;
+      string                                                                                    m_strDomain;
+      string                                                                                    m_strLocale;
+      string                                                                                    m_strSchema;
 
 
       
@@ -64,10 +68,10 @@ namespace ca2
       virtual int run();
 
       virtual string get_locale();
-      virtual string get_style();
-      virtual string get_locale_style_dir(const string & strLocale, const string & strStyle);
-      virtual string get_locale_style_dir(const string & strLocale);
-      virtual string get_locale_style_dir();
+      virtual string get_schema();
+      virtual string get_locale_schema_dir(const string & strLocale, const string & strSchema);
+      virtual string get_locale_schema_dir(const string & strLocale);
+      virtual string get_locale_schema_dir();
 
       virtual void EnableShellOpen();
 
@@ -77,9 +81,9 @@ namespace ca2
 
 
       virtual void set_locale(const char * lpcsz, bool bUser);
-      virtual void set_style(const char * lpcsz, bool bUser);
+      virtual void set_schema(const char * lpcsz, bool bUser);
       virtual void on_set_locale(const char * lpcsz, bool bUser);
-      virtual void on_set_style(const char * lpcsz, bool bUser);
+      virtual void on_set_schema(const char * lpcsz, bool bUser);
 
       
       virtual ::fontopus::user * create_current_user();

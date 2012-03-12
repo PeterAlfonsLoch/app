@@ -84,7 +84,7 @@ namespace kar
 			
 		m_plm 					= new AlphaSelectPerformerLinkMaker3();
 		m_plm->m_strLang 		= gprop("param_locale");
-		m_plm->m_strStyle		= gprop("param_style");
+		m_plm->m_strSchema		= gprop("param_style");
 			
 			
 		m_pasp 					   = new AlphaSelectPerformer(get("target"));

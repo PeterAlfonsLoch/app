@@ -30,43 +30,43 @@ namespace ca2
       return m_strLocale;
    }
 
-   string application::get_style()
+   string application::get_schema()
    {
-      return m_strStyle;
+      return m_strSchema;
    }
 
-   string application::get_locale_style_dir()
+   string application::get_locale_schema_dir()
    {
 
-      return System.dir().simple_path(get_locale(), get_style());
+      return System.dir().simple_path(get_locale(), get_schema());
 
    }
 
-   string application::get_locale_style_dir(const string & strLocale)
+   string application::get_locale_schema_dir(const string & strLocale)
    {
 
       if(strLocale.is_empty())
-         return System.dir().simple_path(get_locale(), get_style());
+         return System.dir().simple_path(get_locale(), get_schema());
       else
-         return System.dir().simple_path(strLocale, get_style());
+         return System.dir().simple_path(strLocale, get_schema());
 
    }
 
-   string application::get_locale_style_dir(const string & strLocale, const string & strStyle)
+   string application::get_locale_schema_dir(const string & strLocale, const string & strSchema)
    {
       if(strLocale.is_empty())
       {
-         if(strStyle.is_empty())
-            return System.dir().simple_path(get_locale(), get_style());
+         if(strSchema.is_empty())
+            return System.dir().simple_path(get_locale(), get_schema());
          else
-            return System.dir().simple_path(get_locale(), strStyle);
+            return System.dir().simple_path(get_locale(), strSchema);
       }
       else
       {
-         if(strStyle.is_empty())
-            return System.dir().simple_path(strLocale, get_style());
+         if(strSchema.is_empty())
+            return System.dir().simple_path(strLocale, get_schema());
          else
-            return System.dir().simple_path(strLocale, strStyle);
+            return System.dir().simple_path(strLocale, strSchema);
       }
    }
 
@@ -76,10 +76,10 @@ namespace ca2
       on_set_locale(lpcsz, bUser);
    }
 
-   void application::set_style(const char * lpcsz, bool bUser)
+   void application::set_schema(const char * lpcsz, bool bUser)
    {
-      m_strStyle = lpcsz;
-      on_set_style(lpcsz, bUser);
+      m_strSchema = lpcsz;
+      on_set_schema(lpcsz, bUser);
    }
 
    void application::on_set_locale(const char * lpcsz, bool bUser)
@@ -89,7 +89,7 @@ namespace ca2
       //System.appa_load_string_table();
    }
 
-   void application::on_set_style(const char * lpcsz, bool bUser)
+   void application::on_set_schema(const char * lpcsz, bool bUser)
    {
       UNREFERENCED_PARAMETER(bUser);
       UNREFERENCED_PARAMETER(lpcsz);
@@ -167,8 +167,8 @@ namespace ca2
 
       ::xml::document docSystem(get_app());
 
-      string strLangSystem;
-      string strStyleSystem;
+      string strLocaleSystem;
+      string strSchemaSystem;
       if(docSystem.load(strSystem))
       {
          if(docSystem.get_child("lang") != NULL)
@@ -181,57 +181,57 @@ namespace ca2
          }
       }
 
-      string strLang;
-      string strStyle;
+      string strLocale;
+      string strSchema;
       LANGID langid = ::GetUserDefaultLangID();
 #ifdef WINDOWS
 #define SPR_DEUTSCH LANG_GERMAN
       if(langid == LANG_SWEDISH)
       {
-         strLang = "se";
-         strStyle = "se";
+         strLocale = "se";
+         strSchema = "se";
       }
       else if(langid == MAKELANGID(LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN))
       {
-         strLang = "pt-br";
-         strStyle = "pt-br";
+         strLocale = "pt-br";
+         strSchema = "pt-br";
       }
       else if(PRIMARYLANGID(langid) == SPR_DEUTSCH)
       {
-         strLang = "de";
-         strStyle = "de";
+         strLocale = "de";
+         strSchema = "de";
       }
       else if(PRIMARYLANGID(langid) == LANG_ENGLISH)
       {
-         strLang = "en";
-         strStyle = "en";
+         strLocale = "en";
+         strSchema = "en";
       }
       else if(PRIMARYLANGID(langid) == LANG_JAPANESE)
       {
-         strLang = "jp";
-         strStyle = "jp";
+         strLocale = "jp";
+         strSchema = "jp";
       }
       else if(PRIMARYLANGID(langid) == LANG_POLISH)
       {
-         strLang = "pl";
-         strStyle = "pl";
+         strLocale = "pl";
+         strSchema = "pl";
       }
 #endif
-      if(strLang.is_empty())
-         strLang = "se";
-      if(strStyle.is_empty())
-         strStyle = "se";
+      if(strLocale.is_empty())
+         strLocale = "se";
+      if(strSchema.is_empty())
+         strSchema = "se";
 
-      if(strLangSystem.has_char())
-         strLang = strLangSystem;
-      if(strStyleSystem.has_char())
-         strStyle = strStyleSystem;
+      if(strLocaleSystem.has_char())
+         strLocale = strLocaleSystem;
+      if(strSchemaSystem.has_char())
+         strSchema = strSchemaSystem;
 
-      set_locale(strLang, false);
-      set_style(strStyle, false);
+      set_locale(strLocale, false);
+      set_schema(strSchema, false);
 
-      str_context()->param_locale_ex().add(strLang);
-      str_context()->param_style_ex().add(strStyle);
+      str_context()->localeschema().m_idaLocale.add(strLocale);
+      str_context()->localeschema().m_idaSchema.add(strSchema);
 
 
 
@@ -478,7 +478,7 @@ namespace ca2
 
    bool application::load_cached_string_by_id(string & str, id id, const char * pszFallbackValue, bool bLoadStringTable)
    {
-      string strId(id.m_psz);
+      string strId(*id.m_pstr);
       string strTable;
       string strString;
       string_to_string_map * pmap = NULL;

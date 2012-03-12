@@ -2,14 +2,96 @@
 
 
 #include "ca/primitive/id_space.h"
-#include "gen/gen_international_locale_style.h"
+#include "gen/gen_international_locale_schema.h"
 
 
 namespace user
 {
 
 
-   class str;
+   class str_context;
+
+
+   class CLASS_DECL_ca str_schema : 
+      public ::collection::map < id, const ::id &, string, const string & >
+   {
+   public:
+
+      
+      id m_idSchema;
+
+      
+      str_schema() { InitHashTable(4 * 1024); };
+
+
+   };
+
+   class CLASS_DECL_ca str_locale : 
+      public ::collection::map < id, const ::id &, str_schema, const str_schema & >
+   {
+   public:
+      
+      
+      id       m_idLang;
+
+      inline str_schema * get_schema(const ::id & idSchema)
+      {
+         ::collection::map < id, const ::id &, str_schema, const str_schema & >::pair * ppair = PLookup(idSchema);
+         if(ppair == NULL)
+            return NULL;
+         return &ppair->m_value;
+      }
+
+
+      str_locale() { InitHashTable(256); };
+
+
+   };
+
+
+   class CLASS_DECL_ca str : 
+      public ::collection::map < id, const ::id &, str_locale, const str_locale & >
+   {
+   public:
+
+
+      str_schema *                           m_pschemaEn;
+      str_schema *                           m_pschemaStd;
+      
+
+
+      str(::ca::application * papp);
+
+
+      inline str_locale * get_locale(const ::id & idLocale)
+      {
+         ::collection::map < id, const ::id &, str_locale, const str_locale & >::pair * ppair = PLookup(idLocale);
+         if(ppair == NULL)
+            return NULL;
+         return &ppair->m_value;
+      }
+
+
+      bool initialize();
+
+
+      void set(const ::id & id, const ::id & idLocale, const ::id & idSchema, const char * psz);
+      string get(str_context * pcontext, const ::id & id);
+      string get(str_context * pcontext, const ::id & id, const ::id & idLocale, const ::id & idSchema);
+      void get(stringa & stra, str_context * pcontext, const ::id & id);
+
+      bool load(const char * pszBaseDir);
+      bool load_uistr_file(const ::id & idLocale, const ::id & idSchema, const char * pszFile);
+
+      string body(const char * psz);
+
+      bool matches(str_context * pcontext, const ::id & id, const char * psz);
+      bool begins(str_context * pcontext, const char * psz, const ::id & id);
+      bool begins_eat(str_context * pcontext, string & str, const ::id & id);
+   
+   
+   };
+
 
 
    class CLASS_DECL_ca str_context :
@@ -18,96 +100,93 @@ namespace user
    public:
       
       
-      gen::international::locale_style *    m_plocalestyle;
+      str *                                  m_pstr;
 
-      str * m_pstr;
+      
+      gen::international::locale_schema *    m_plocaleschema;
+
+      str_locale *                           m_plocale;
+      
+      str_schema *                           m_pschema;
+      str_schema *                           m_pschemaLocale;
+      str_schema *                           m_pschemaSchemaEn;
+      str_schema *                           m_pschemaSchemaStd;
+
+      
+
+      comparable_array < str_schema * >      m_schemaptra;
+      
+
 
       str_context(::ca::application * papp);
       virtual ~str_context();
 
-      inline comparable_array < id > & param_locale_ex()
+
+      inline void defer_ok(str * pstr)
       {
-         return m_plocalestyle->m_idaLocale;
+         if(pstr != m_pstr)
+         {
+            m_pstr = pstr;
+            prepare();
+         }
+      }
+      
+      void prepare();
+
+      inline gen::international::locale_schema & localeschema()
+      {
+         return *m_plocaleschema;
       }
 
-      inline comparable_array < id > & param_style_ex()
+
+      inline bool matches(const ::id & id, const char * psz)
       {
-         return m_plocalestyle->m_idaStyle;
-      }
-
-      inline gen::international::locale_style & localestyle()
-      {
-         return *m_plocalestyle;
-      }
-
-      bool matches(const id & pszRoot, const id & pszExtra, const char * psz);
-      bool begins(const id & pszRoot, const id & pszExtra, const char * psz);
-      bool begins_eat(string & str, const id & pszRoot, const id & pszExtra);
-      void get(stringa & stra, const id & pszRoot, const id & pszExtra);
-      string get(const id & pszRoot, const id & pszExtra);
-
-
-   };
-
-   class CLASS_DECL_ca str_root
-   {
-   public:
-      id          m_idLang;
-      string      m_str;
-   };
-
-   class CLASS_DECL_ca str_style : 
-      public ::collection::map < id, const id &, str_root, const str_root & >
-   {
-   public:
-      id m_idStyle;
-      id m_strLangDefault;
-   };
-
-
-   class CLASS_DECL_ca str_lang : 
-      public ::collection::map < id, const id &, str_style, const str_style & >
-   {
-   public:
-      id m_idLang;
-      id m_strStyleDefault;
-   };
-
-   class CLASS_DECL_ca str_extra : 
-      public ::collection::map < id, const id &, str_lang, const str_lang & >
-   {
-   public:
-      id m_idExtra;
-   };
-
-   class CLASS_DECL_ca str : 
-      public ::collection::map < id, const id &, str_extra, const str_extra & >
-   {
-   public:
-      str(::ca::application * papp);
-
-      bool initialize();
-
-
-      void set(const id & pszRoot, const id & pszLang, const id & pszStyle, const id & pszExtra, const char * psz);
-      string get(str_context * pcontext, const id & pszRoot, const id & pszLang, const id & pszStyle, const id & pszExtra);
-      void get(stringa & stra, str_context * pcontext, const id & pszRoot, const id & pszLang, const id & pszStyle, const id & pszExtra);
-
-      bool load(const char * pszBaseDir);
-      bool load_uistr_file(const id & pszLang, const id & pszStyle, const char * pszFile);
-
-      string body(const char * psz);
-
-      bool matches(str_context * pcontext, const id & pszRoot, const id & pszExtra, const char * psz);
-      bool begins(str_context * pcontext, const char * psz, const id & pszRoot, const id & pszExtra);
-      bool begins_eat(str_context * pcontext, string & str, const id & pszRoot, const id & pszExtra);
-      void get(stringa & stra, str_context * pcontext, const id & pszRoot, const id & pszExtra);
-      string get(str_context * pcontext, const id & pszRoot, const id & pszExtra);
+      
+         return m_pstr->matches(this, id, psz);
    
+      }
+
+
+      inline bool begins(const ::id & id, const char * psz)
+      {
+      
+         return m_pstr->begins(this, id, psz);
    
+      }
+
+
+      inline bool begins_eat(string & str, const ::id & id)
+      { 
+      
+         return m_pstr->begins_eat(this, str, id);
+   
+      }
+
+
+      inline void get(stringa & stra, const ::id & id)
+      {
+      
+         return m_pstr->get(stra, this, id);
+
+
+      }
+
+
+      inline string get(const ::id & id)
+      { 
+
+         return m_pstr->get(this, id);
+
+      }
+
+
    };
+
+
 
 
 } // namespace user
+
+
 
 

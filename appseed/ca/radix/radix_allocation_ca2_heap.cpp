@@ -6,7 +6,6 @@ CLASS_DECL_ca void * ca2_heap_alloc(size_t size)
 {
    size_t * psize = (size_t *) g_heap.alloc(size + sizeof(size_t));
    psize[0] = size + sizeof(size_t);
-   memset(&psize[1], 0, size);
    return &psize[1];
 }
 

@@ -56,14 +56,3 @@ id & id::operator = (const string_interface & str)
 }
 
 
-string id::str() const
-{
-   if(m_chType == IDTYPE_TYPE_TEXT)
-      return m_psz;
-   else if(m_chType == IDTYPE_TYPE_NUMBER)
-   {
-      return gen::str::itoa(m_i);
-   }
-   else
-      return "";
- }

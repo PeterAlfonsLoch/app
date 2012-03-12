@@ -308,8 +308,22 @@ public:
       Attach( pData );
    }
 
-   simple_string(const simple_string & strSrc )
+   simple_string(const simple_string & strSrc, string_manager_interface * pstringmanager  )
    {
+      if(&strSrc == NULL)
+      {
+         PCXSTR pszSrc = NULL;
+         ATLENSURE( pstringmanager != NULL );
+
+         string_data* pData = pstringmanager->allocate( 0, sizeof( XCHAR ) );
+         if( pData == NULL )
+         {
+            ThrowMemoryException();
+         }
+         Attach( pData );
+         set_length( 0 );
+         return;
+      }
       string_data* pSrcData = strSrc.get_data();
       string_data* pNewData = CloneData( pSrcData );
       Attach( pNewData );

@@ -49,13 +49,13 @@ namespace simpledb
       ::database::application::on_set_locale(lpcsz, bUser);
    }
 
-   void application::on_set_style(const char * lpcsz, bool bUser)
+   void application::on_set_schema(const char * lpcsz, bool bUser)
    {
       if(bUser)
       {
-         data_set("style", lpcsz);
+         data_set("schema", lpcsz);
       }
-      ::database::application::on_set_style(lpcsz, bUser);
+      ::database::application::on_set_schema(lpcsz, bUser);
    }
 
    bool application::FinalizeDataCentral()
@@ -107,10 +107,10 @@ namespace simpledb
          set_locale(str, false);
       }
 
-      if(command().m_varTopicQuery["style"].get_string().has_char())
+      if(command().m_varTopicQuery["schema"].get_string().has_char())
       {
-         string str = command().m_varTopicQuery["style"];
-         set_style(str, false);
+         string str = command().m_varTopicQuery["schema"];
+         set_schema(str, false);
       }
 
 //      if(&AppUser(this) == NULL)
@@ -171,18 +171,18 @@ namespace simpledb
             set_locale(str, false);
          }
       }
-      // if system style has changed (compared to last recorded one by ca2)
-      // use the system style
-      if(data_get("system_style", str))
+      // if system schema has changed (compared to last recorded one by ca2)
+      // use the system schema
+      if(data_get("system_schema", str))
       {
          if(str.has_char())
          {
-            if(str != get_style())
+            if(str != get_schema())
             {
                try
                {
-                  data_set("system_style", get_style());
-                  data_set("style", get_style());
+                  data_set("system_schema", get_schema());
+                  data_set("schema", get_schema());
                }
                catch(...)
                {
@@ -192,21 +192,21 @@ namespace simpledb
       }
       else
       {
-         data_set("system_style", get_style());
+         data_set("system_schema", get_schema());
       }
 
-      if(command().m_varTopicQuery["style"].get_string().has_char())
+      if(command().m_varTopicQuery["schema"].get_string().has_char())
       {
-         str = command().m_varTopicQuery["style"];
-         data_set("system_style", str);
-         data_set("style", str);
-         set_style(str, false);
+         str = command().m_varTopicQuery["schema"];
+         data_set("system_schema", str);
+         data_set("schema", str);
+         set_schema(str, false);
       }
-      else if(data_get("style", str))
+      else if(data_get("schema", str))
       {
          if(str.has_char())
          {
-            set_style(str, false);
+            set_schema(str, false);
          }
       }
       
@@ -223,7 +223,7 @@ namespace simpledb
       data_pulse_change("ca2_fontopus_votagus", "savings", NULL);
 
 
-      App(this).fill_locale_style(*str_context()->m_plocalestyle);
+      App(this).fill_locale_schema(*str_context()->m_plocaleschema);
 
 
       Sys(this).appa_load_string_table();

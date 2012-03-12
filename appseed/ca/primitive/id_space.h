@@ -81,6 +81,8 @@ public:
    
    bool find(const id & id, index & iIndex) const;
 
+   bool contains(const id & id) const { index iIndex; return find(id, iIndex); }
+
    
 };
 

@@ -273,15 +273,15 @@ namespace dynamic_source
          return low_folder(strUser, iFolder, strPath.Left(iFind));
    }
 
-   gen::international::locale_style & script_interface::localestyle()
+   gen::international::locale_schema & script_interface::localeschema()
    {
-      gen::international::locale_style * plocalestyle = get_session_value("locale_style").ca2 < gen::international::locale_style >();
-      if(plocalestyle == NULL)
+      gen::international::locale_schema * plocaleschema = get_session_value("locale_schema").ca2 < gen::international::locale_schema >();
+      if(plocaleschema == NULL)
       {
-         plocalestyle = new gen::international::locale_style(get_app());
-         set_session_value("locale_style", plocalestyle);
+         plocaleschema = new gen::international::locale_schema(get_app());
+         set_session_value("locale_schema", plocaleschema);
       }
-      return *plocalestyle;
+      return *plocaleschema;
    }
 
 

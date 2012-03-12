@@ -56,7 +56,7 @@ namespace _template
 
       inline static UINT HashKey (const id & key)
       {
-         return *((UINT*)(&key.m_psz));
+         return (UINT) (*((INT_PTR*)(&key.m_pstr)) >> 8);
       }
 
    };
@@ -100,4 +100,11 @@ template<> inline UINT HashKey<const char *> (const char * key)
    register const char * pszKey = (const char *) puiKey;
    while(counter-- >= 0) nHash = (nHash<<5) + nHash + *pszKey++;
    return (UINT) nHash;
+}
+
+
+template <> inline UINT HashKey(const id & id)
+{
+   // default identity hash - works for most primitive values
+   return _template::strid_hash::HashKey(id);
 }

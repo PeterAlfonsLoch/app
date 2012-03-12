@@ -161,7 +161,7 @@ namespace plane
 
       virtual void appa_load_string_table();
       virtual void appa_set_locale(const char * pszLocale, bool bUser);
-      virtual void appa_set_style(const char * pszStyle, bool bUser);
+      virtual void appa_set_schema(const char * pszStyle, bool bUser);
 
       virtual bool assert_running_global(const char * pszAppName, const char * pszId = NULL);
       virtual bool assert_running_local(const char * pszAppName, const char * pszId = NULL);

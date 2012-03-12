@@ -50,8 +50,10 @@ id id_space::operator()(const char * psz)
    
    single_lock sl(m_pmutex, TRUE);
    
+   string str(psz);
+
    id idSearch;
-   idSearch.raw_set(psz);
+   idSearch.raw_set(&str);
    index iIndex = 0;
    
    if(find(idSearch, iIndex))
@@ -60,7 +62,7 @@ id id_space::operator()(const char * psz)
    if(idSearch.is_text())
    {
       id id;
-      id.raw_set(_strdup(psz));
+      id.raw_set(new string(str));
       m_ida.add(id);
       m_iaStr.add(m_ida.get_upper_bound());
       sort();
