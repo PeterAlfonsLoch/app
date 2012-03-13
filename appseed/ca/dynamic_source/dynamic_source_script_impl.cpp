@@ -3048,7 +3048,11 @@ ok1:
 
    string script_impl::pstr(id pszTopic, id pszLocale, id pszStyle)
    {
-      single_lock sl(&m_pmanager->m_csPersistentStr, TRUE);
+      retry_single_lock sl(&m_pmanager->m_mutexPersistentStr, millis(0), millis(84), 23);
+
+      if(!sl.lock())
+         return "";
+
       if(pszLocale.is_empty())
       {
          pszLocale = gprop("param_locale");
@@ -3073,7 +3077,9 @@ ok1:
 
    void script_impl::pstr_set(id pszTopic, id pszLocale, id pszStyle, const char * psz)
    {
-      single_lock sl(&m_pmanager->m_csPersistentStr, TRUE);
+      retry_single_lock sl(&m_pmanager->m_mutexPersistentStr, millis(0), millis(840));
+      sl.lock();
+
       System.str().set(pszTopic, pszLocale, pszStyle, psz);
    }
 
@@ -4114,12 +4120,12 @@ ok1:
       string best_host;
       for(int i = 0; i < straHost.get_count(); i++)
       {
-         string h = straHost[i];
-         h.trim();
-         if(h.is_empty())
+         string strLine = straHost[i];
+         strLine.trim();
+         if(strLine.is_empty())
             continue;
          stringa stra;
-         stra.explode("=", h);
+         stra.explode("=", strLine);
          strHost = stra[0];
          string strIp;
          strIp = stra[1];
@@ -4145,6 +4151,15 @@ ok1:
          {
             best_host = strHost;
          }
+      }
+      if(best_host.is_empty() && straHost.has_elements())
+      {
+         string strLine = straHost[0];
+         strLine.trim();
+         stringa stra;
+         stra.explode("=", strLine);
+         strHost = stra[0];
+         best_host = strHost;
       }
       GeoIP_delete(pgeoip);
       return best_host;

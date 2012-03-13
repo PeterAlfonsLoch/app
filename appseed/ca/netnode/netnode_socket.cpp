@@ -44,6 +44,15 @@ namespace netnode
    void socket::send_response()
    {
 
+      if(IsSSLServer())
+      {
+         oprop("meta_info") = "https:// " + inheader("host").get_string() + inattr("request_uri").get_string();
+      }
+      else
+      {
+         oprop("meta_info") = "http:// " + inheader("host").get_string() + inattr("request_uri").get_string();
+      }
+
       if(gen::str::begins(inattr("request_uri"), "/passthrough/"))
       {
          outheader("Cache-control") = "public";
@@ -56,6 +65,8 @@ namespace netnode
       {
 
          http::response res(get_app());
+
+
 
          string strUri(inattr("request_uri"));
          string strHost(inheader("host"));
@@ -75,6 +86,10 @@ namespace netnode
          if(strScript.find("/passthrough/") >= 0)
          {
             TRACE("socket::send_response passthrough");
+         }
+         if(strHost == "basis.spaignition.api.laborserver.net")
+         {
+            TRACE("socket::send_response host : basis.spaignition.api.laborserver.net");
          }
          if(strScript == "ca2netnodebergedge")
          {

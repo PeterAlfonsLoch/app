@@ -367,7 +367,20 @@ namespace sockets
       }
       dw2 = ::GetTickCount();
       //TRACE("socket_handler::Select select time = %d, %d, %d\n", dw1, dw2, dw2 - dw1);
-      if (n == -1)
+      if(n == 0)
+      {
+         socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
+         while(ppair != NULL)
+         {
+            if(ppair->m_value != NULL)
+            {
+               TRACE("tmout sckt(%d):\"%s\"", ppair->m_key, ppair->m_value->oprop("meta_info").get_string());
+               TRACE("tmout sckt(%d):remote_address=\"%s\"", ppair->m_key, ppair->m_value->GetRemoteAddress());
+            }
+            ppair = m_sockets.PGetNextAssoc(ppair);
+         }
+      }
+      else if (n == -1)
       {
          /*
             EBADF  An invalid file descriptor was given in one of the sets.

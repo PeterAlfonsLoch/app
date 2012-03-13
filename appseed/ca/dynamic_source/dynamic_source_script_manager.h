@@ -90,7 +90,7 @@ namespace dynamic_source
 
       string                                    m_strPersistentError;
 
-      critical_section                          m_csPersistentStr;
+      mutex                                     m_mutexPersistentStr;
       critical_section                          m_csUiRedir;
       mutex                                     m_mutexTagId;
       string_to_string_map                      m_tagid;
