@@ -302,6 +302,11 @@ namespace gen
                idaLocaleAdd1.set_size(0, 256);
                idaSchemaAdd1.set_size(0, 256);
 
+               if(m_idaLocale.get_count() > 256)
+               {
+                  TRACE("What!!!!!!");
+               }
+
                for(index i = 0; i < m_idaLocale.get_count(); i++)
                {
                   string idLocale2 = m_idaLocale[i];
