@@ -47,15 +47,6 @@ namespace xml
          return ::ca::data::validate_edit < ::xml::edit > (pbaseedit);
       }
 
-   private:
-
-
-      document(const document & ) :
-         ::xml::node((::ca::application *) NULL),
-         ::ca::data(NULL)
-      {
-      }
-      
 
    };
 

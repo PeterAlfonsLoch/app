@@ -3508,9 +3508,6 @@
     <ClCompile Include="gen\gen_international.cpp">
       <Filter>Source Files\gen</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_international_locale_style.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
     <ClCompile Include="gen\gen_keeper.cpp">
       <Filter>Source Files\gen</Filter>
     </ClCompile>
@@ -5589,6 +5586,12 @@
     </ClCompile>
     <ClCompile Include="radix\radix_bstr.cpp">
       <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_international_locale_schema.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_xml_data.cpp">
+      <Filter>Source Files\ca2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -43,7 +43,7 @@ namespace ca2
 
    }
 
-   int process::s_on_retry(int iTry, DWORD dwParam)
+   int process::s_on_retry(int iTry, DWORD_PTR dwParam)
    {
       
       UNREFERENCED_PARAMETER(iTry);

@@ -7,7 +7,6 @@ namespace ca2
 
 
    class CLASS_DECL_ca xml_data :
-      
       public ::xml::document
    {
    public:

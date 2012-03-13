@@ -893,12 +893,12 @@ inline char string::last_char() const
 
 inline id::operator const char *() const
 {
-   return (const char *) *m_pstr;
+   return m_pstr == NULL ? NULL : (const char *) *m_pstr;
 }
 
 inline id::operator const char *()
 {
-   return (const char *) *m_pstr;
+   return m_pstr == NULL ? NULL : (const char *) *m_pstr;
 }
 
 inline bool id::is_empty() const

@@ -555,7 +555,7 @@ namespace xml
       {
          char * xml = (char *)pszXml;
 
-         node * pnode = new node(get_app());
+         node * pnode = new node(this);
          pnode->m_pnodeParent = this;
          pnode->m_pdoc = m_pdoc;
          pnode->m_etype = node_pi;
@@ -700,7 +700,7 @@ namespace xml
          char * xml = (char *)pszXml;
          xml += sizeof(szXMLCommentOpen)-1;
 
-         node * pnode = new node(get_app());
+         node * pnode = new node(this);
          pnode->m_pnodeParent = par;
          pnode->m_pdoc = m_pdoc;
          pnode->m_etype = node_comment;
@@ -745,7 +745,7 @@ namespace xml
          char * xml = (char *)pszXml;
          xml += sizeof(szXMLCDATAOpen)-1;
 
-         node * pnode = new node(get_app());
+         node * pnode = new node(this);
          pnode->m_pnodeParent = this;
          pnode->m_pdoc = m_pdoc;
          pnode->m_etype = node_cdata;
@@ -988,7 +988,7 @@ namespace xml
             // generate child nodes
             while( xml && *xml )
             {
-               node * pnode = new node(get_app());
+               node * pnode = new node(this);
                pnode->m_pnodeParent = this;
                pnode->m_pdoc = m_pdoc;
                pnode->m_etype = m_etype;
@@ -997,7 +997,7 @@ namespace xml
                if(pnode->m_strName.has_char())
                {
                   m_nodea.add(pnode);
-                  gen::release(pnode);
+//                  gen::release(pnode);
                }
                else
                {
@@ -1690,7 +1690,7 @@ namespace xml
    //========================================================
    node * node::add_child( const char * pszName /*= NULL*/, const char * pszValue /*= NULL*/ )
    {
-      node * pnode = new node(get_app());
+      node * pnode = new node(this);
       pnode->m_strName = pszName;
       pnode->m_strValue = pszValue;
       return add_child(pnode);

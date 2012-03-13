@@ -1622,6 +1622,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="ca2\ca2_url.cpp" />
     <ClCompile Include="ca2\ca2_url_domain.cpp" />
     <ClCompile Include="ca2\ca2_xml.cpp" />
+    <ClCompile Include="ca2\ca2_xml_data.cpp" />
     <ClCompile Include="ca2\socket_address.cpp" />
     <ClCompile Include="ca4\ca4_application.cpp" />
     <ClCompile Include="ca4\ca4_compress.cpp" />
