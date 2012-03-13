@@ -819,7 +819,7 @@ namespace filemanager
 
             m_iParentFolder = doc.attr("id");
 
-            xml::node * pnodeFolder = doc.get_child("folder");
+            xml::node * pnodeFolder = doc.get_root()->get_child("folder");
 
 
             xml::node::base_array childs(get_app());
@@ -871,7 +871,7 @@ namespace filemanager
                }
             }
 
-            xml::node * pnodeFile = doc.get_child("file");
+            xml::node * pnodeFile = doc.get_root()->get_child("file");
 
             for(int i = 0; i < pnodeFile->get_children_count(); i++)
             {

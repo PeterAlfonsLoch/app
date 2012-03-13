@@ -22,8 +22,8 @@ namespace visual
       ::xml::document doc(get_app());
       if(doc.load(strNode))
       {
-         m_ptHotspot.x = doc.attr("x");
-         m_ptHotspot.y = doc.attr("y");
+         m_ptHotspot.x = doc.get_root()->attr("x");
+         m_ptHotspot.y = doc.get_root()->attr("y");
       }
       return true;
    }

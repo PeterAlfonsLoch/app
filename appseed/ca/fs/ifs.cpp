@@ -30,7 +30,7 @@ bool ifs::has_subdir(const char * pszPath)
    if(!doc.load(strSource))
       return false;
 
-   if(doc.get_name() != "folder")
+   if(doc.get_root()->get_name() != "folder")
       return false;
 
    xml::node * pnode = doc.get_child("folder");
@@ -84,10 +84,10 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
    if(!doc.load(strSource))
       return false;
 
-   if(doc.get_name() != "folder")
+   if(doc.get_root()->get_name() != "folder")
       return false;
 
-   xml::node * pnode = doc.get_child("folder");
+   xml::node * pnode = doc.get_root()->get_child("folder");
 
    if(pnode != NULL)
    {
@@ -110,7 +110,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
       }
    }
 
-   pnode = doc.get_child("file");
+   pnode = doc.get_root()->get_child("file");
 
    if(pnode != NULL)
    {

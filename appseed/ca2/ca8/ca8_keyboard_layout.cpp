@@ -156,8 +156,8 @@ namespace ca8
             else
             {
                xml::document doc(get_app());
-               doc.set_name("proxy");
-               doc.add_attr("server", strServer);
+               doc.get_root()->set_name("proxy");
+               doc.get_root()->add_attr("server", strServer);
                pguie = m_pview->GetChildByName("port");
                ptext = dynamic_cast < text_interface * > (pguie);
                string strPort;

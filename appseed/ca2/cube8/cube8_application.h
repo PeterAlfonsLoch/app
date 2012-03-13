@@ -14,30 +14,18 @@ namespace cube8
       application();
       virtual ~application();
 
+
       virtual int exit_instance();
 
 
-
-
-      
       virtual bool initialize();
       virtual bool initialize1();
-
-      //virtual int pre_run();
-      //virtual int on_run();
-
-      //virtual int main();
-      //virtual bool bergedge_start();
-      //virtual bool os_native_bergedge_start();
-
-
-      //virtual bool initial_check_directrix();
 
 
       virtual void set_title(const char * pszTitle);
 
 
-      virtual bool _001CloseApplicationByUser();
+      virtual bool _001CloseApplicationByUser(::user::interaction * pwndExcept);
 
    };
 

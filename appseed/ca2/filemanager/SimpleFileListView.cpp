@@ -533,7 +533,7 @@ namespace filemanager
       }
       else if(ptimer->m_nIDEvent == 5432185)
       {
-         if(m_bPendingSize)
+/*         if(m_bPendingSize)
          {
             _001RedrawWindow();
          }
@@ -547,7 +547,7 @@ namespace filemanager
                m_bShow = true;
                file_size_add_request(false);
             }
-         }
+         }*/
       }
       else if(ptimer->m_nIDEvent == 5432184)
       {

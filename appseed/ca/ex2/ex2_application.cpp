@@ -37,7 +37,7 @@ namespace ex2
       //::ca::smart_pointer < application >::m_p->_001OnFileNew();
    }
 
-   ::document * application::_001OpenDocumentFile(var varFile)
+   ::user::document_interface * application::_001OpenDocumentFile(var varFile)
    {
       return ::ca::smart_pointer < application >::m_p->_001OpenDocumentFile(varFile);
    }

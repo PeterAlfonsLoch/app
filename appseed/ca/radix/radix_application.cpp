@@ -1532,15 +1532,23 @@ namespace radix
 
    void application::HideApplication()
    {
-      ASSERT_VALID(GetMainWnd());
+      try
+      {
+         if(GetMainWnd() == NULL)
+            return;
 
-      // hide the application's windows before closing all the documents
-      GetMainWnd()->ShowWindow(SW_HIDE);
-   // trans    GetMainWnd()->ShowOwnedPopups(FALSE);
+         // hide the application's windows before closing all the documents
+         GetMainWnd()->ShowWindow(SW_HIDE);
+      // trans    GetMainWnd()->ShowOwnedPopups(FALSE);
 
-      // put the ::ca::window at the bottom of zorder, so it isn't activated
-      GetMainWnd()->SetWindowPos(ZORDER_BOTTOM, 0, 0, 0, 0,
-         SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE);
+         // put the ::ca::window at the bottom of zorder, so it isn't activated
+         GetMainWnd()->SetWindowPos(ZORDER_BOTTOM, 0, 0, 0, 0,
+            SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE);
+      }
+      catch(...)
+      {
+      }
+
    }
 
    void application::DoWaitCursor(int nCode)

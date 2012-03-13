@@ -68,8 +68,6 @@ namespace userbase
    bool menu_item::load_menu(xml::node * lpnode, int iLevel)
    {
 
-      xml::document doc(get_app());
-
       ::count iItemCount = lpnode->get_children_count();
       for(int i = 0; i < iItemCount; i++)
       {

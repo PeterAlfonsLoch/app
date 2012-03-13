@@ -34,9 +34,7 @@ namespace filemanager
       virtual FileManagerTemplate * GetFsManagerTemplate(void);
 
 
-      void OnFileManagerOpenFile(
-         ::filemanager::data * pdata,
-         ::fs::item_array & itema);
+      void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
 
       virtual BOOL do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);

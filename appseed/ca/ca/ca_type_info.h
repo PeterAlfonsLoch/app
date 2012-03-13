@@ -48,7 +48,7 @@ namespace ca
 
       operator bool() const
       {
-         return m_id.m_pstr != NULL;
+         return !m_id.is_empty();
       }
    };
 

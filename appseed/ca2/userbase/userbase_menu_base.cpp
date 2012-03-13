@@ -46,7 +46,7 @@ namespace userbase
       
       doc.load(Application.file().as_string(Application.dir().matter(pszMatter)));
 
-      return LoadMenu(&doc);
+      return LoadMenu(doc.get_root());
 
 
    }

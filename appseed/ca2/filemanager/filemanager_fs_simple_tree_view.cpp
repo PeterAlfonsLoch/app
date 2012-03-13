@@ -62,7 +62,7 @@ namespace filemanager
                return;
             }
 
-            m_iParentFolder = doc.attr("id");
+            m_iParentFolder = doc.get_root()->attr("id");
 
             ::ex1::tree_item * pdataitemParent;
             ::ex1::tree_item * pdataitemChild;
@@ -80,7 +80,7 @@ namespace filemanager
             // method 3: Selected Childs with GetChilds()
             // Result: Person, Person, Person
             index iNode = 0;
-            xml::node * pnodeFolder = doc.get_child("folder");
+            xml::node * pnodeFolder = doc.get_root()->get_child("folder");
 
 
    //         xml::node::base_array childs(get_app());

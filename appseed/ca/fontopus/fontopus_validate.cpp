@@ -112,7 +112,7 @@ namespace fontopus
          if(documentBasicInfo.load(Application.http().get("https://"+Application.command_thread().m_varTopicQuery["fontopus"].get_string()+"/ca2api/account/get_basic_info", m_loginthread.m_puser)))
          {
             string strLogin;
-            if(documentBasicInfo.get_attr("login", strLogin) && strLogin.find("@") > 0)
+            if(documentBasicInfo.get_root()->get_attr("login", strLogin) && strLogin.find("@") > 0)
             {
                m_loginthread.m_puser->m_strLogin = strLogin;
                return  m_loginthread.m_puser;
@@ -265,7 +265,7 @@ namespace fontopus
 
       xml::document doc(get_app());
       doc.load(strAuth);
-      if(doc.get_name() == "response")
+      if(doc.get_root()->get_name() == "response")
       {
          if(doc.attr("id") == "auth")
          {
@@ -678,17 +678,17 @@ namespace fontopus
       int iAuth;
       xml::document doc(get_app());
       doc.load(strResponse);
-      if(doc.get_name() == "response")
+      if(doc.get_root()->get_name() == "response")
       {
-         if(doc.attr("id") == "auth" && doc.attr("passhash").has_char() && doc.attr("secureuserid").has_char())
+         if(doc.get_root()->attr("id") == "auth" && doc.get_root()->attr("passhash").has_char() && doc.get_root()->attr("secureuserid").has_char())
          {
             System.m_authmap[m_strUsername].m_mapServer[m_strRequestingServer] = strResponse;
             System.m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
             m_puser->m_strLogin = m_strUsername;
-            m_puser->m_strFontopusServerSessId = doc.attr("sessid");
+            m_puser->m_strFontopusServerSessId = doc.get_root()->attr("sessid");
             m_puser->m_strRequestingServer = m_strRequestingServer;
-            m_puser->m_strFunUserId = doc.attr("secureuserid");
-            m_strPasshash = doc.attr("passhash");
+            m_puser->m_strFunUserId = doc.get_root()->attr("secureuserid");
+            m_strPasshash = doc.get_root()->attr("passhash");
             iAuth = 1;
             if(m_bFontopusServer)
             {
@@ -697,10 +697,10 @@ namespace fontopus
             execute();
             if(m_strLicense.has_char())
             {
-               m_strValidUntil = doc.attr("valid_until");
+               m_strValidUntil = doc.get_root()->attr("valid_until");
             }
          }
-         else if(doc.attr("id") == "registration_deferred")
+         else if(doc.get_root()->attr("id") == "registration_deferred")
          {
             delete m_puser;
             iAuth = 5;
@@ -936,15 +936,15 @@ namespace fontopus
          if(!doc.load(strLogin))
             continue;
 
-         if(doc.get_name() != "login")
+         if(doc.get_root()->get_name() != "login")
             continue;
 
-         strSessId = doc.attr("sessid");
+         strSessId = doc.get_root()->attr("sessid");
 
          if(strSessId.is_empty())
             continue;
 
-         strRsaModulus = doc.attr("rsa_modulus");
+         strRsaModulus = doc.get_root()->attr("rsa_modulus");
 
          if(strRsaModulus.has_char())
             break;

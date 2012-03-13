@@ -726,10 +726,12 @@ InitFailure:
    int application::exit_instance()
    {
 
-      m_iReturnCode = 0;
-
       try
       {
+   
+         m_iReturnCode = 0;
+
+
          m_iReturnCode = ::fontopus::application::exit_instance();
       }
       catch(...)

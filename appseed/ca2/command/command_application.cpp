@@ -63,11 +63,6 @@ namespace command
       return gen::application::_001OnCmdMsg(pcmdmsg);
    }
 
-   ::ca::application * application::get_app() const
-   {
-      return m_papp;
-   }
-
    void application::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);

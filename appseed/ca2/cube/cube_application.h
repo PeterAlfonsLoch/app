@@ -38,7 +38,7 @@ namespace cube
 
       virtual void on_request(::ca::create_context * pcreatecontext);
 
-      ::document * _001OpenDocumentFile(var varFile);
+      ::user::document_interface * _001OpenDocumentFile(var varFile);
 
       ::ca::application * get_system();
 

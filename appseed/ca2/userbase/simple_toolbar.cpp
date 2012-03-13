@@ -833,7 +833,7 @@ BOOL simple_toolbar::LoadXmlToolBar(const char * lpszXml)
 
    xml::node::base_array childs(get_app());
 
-   childs = doc.children();
+   childs = doc.get_root()->children();
 
    //   gen::application * papp = dynamic_cast < gen::application * > (get_app());
 

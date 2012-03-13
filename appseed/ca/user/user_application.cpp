@@ -441,7 +441,13 @@ retry_license:
 
    ca::type_info application::controltype_to_typeinfo(user::control::e_type e_type)
    {
-      return ::ca::type_info();
+      switch(e_type)
+      {
+      case user::control::e_type::type_edit_plain_text:
+         return typeid(edit_plain_text);
+      default:
+         return ::ca::type_info();
+      }
    }
 
 

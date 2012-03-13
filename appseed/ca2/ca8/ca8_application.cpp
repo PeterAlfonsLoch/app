@@ -48,15 +48,15 @@ namespace ca8
       string strUser = App(this).file().as_string(App(this).dir().userappdata("langstyle_settings.xml"));
       string strLangUser;
       string strStyleUser;
-      if(docUser.load(strUser))
+      if(docUser.get_root()->load(strUser))
       {
-         if(docUser.get_child("lang") != NULL)
+         if(docUser.get_root()->get_child("lang") != NULL)
          {
-            strLangUser = docUser.get_child("lang")->get_value();
+            strLangUser = docUser.get_root()->get_child("lang")->get_value();
          }
-         if(docUser.get_child("style") != NULL)
+         if(docUser.get_root()->get_child("style") != NULL)
          {
-            strStyleUser = docUser.get_child("style")->get_value();
+            strStyleUser = docUser.get_root()->get_child("style")->get_value();
          }
       }
 

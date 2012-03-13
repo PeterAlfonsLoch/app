@@ -61,7 +61,7 @@ void multiple_document_template::remove_document(user::document_interface * pdoc
 void multiple_document_template::request(::ca::create_context * pcreatecontext)
 {
 
-   pcreatecontext->m_spCommandLine->m_varQuery["user::document_interface"] = (::ca::ca *) NULL;
+   pcreatecontext->m_spCommandLine->m_varQuery["document"] = (::ca::ca *) NULL;
    bool bMakeVisible = pcreatecontext->m_bMakeVisible;
 //   ::user::interaction * pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca2 < ::user::interaction > ();
 //   ::view * pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca2 < ::view > ();
@@ -134,7 +134,7 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
 
    gen::add_ref(pdocument);
 
-   pcreatecontext->m_spCommandLine->m_varQuery["user::document_interface"] = pdocument;
+   pcreatecontext->m_spCommandLine->m_varQuery["document"] = pdocument;
 }
 
 void multiple_document_template::set_default_title(user::document_interface * pdocument)

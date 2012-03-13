@@ -580,7 +580,7 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
             
          ::cube8::application * pappChild = &App(Sys(papp).m_appptra[i]);
 
-         if(!pappChild->_001CloseApplicationByUser())
+         if(!pappChild->_001CloseApplicationByUser(this))
             return;
 
       }
@@ -589,7 +589,7 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
    else if(papp->GetVisibleTopLevelFrameCountExcept(this) <= 0)
    {
       
-      if(!papp->_001CloseApplicationByUser())
+      if(!papp->_001CloseApplicationByUser(this))
          return;
 
    }

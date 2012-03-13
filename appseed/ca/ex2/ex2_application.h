@@ -74,7 +74,7 @@ namespace ex2
       virtual ::ex1::file_system & file_system();
       virtual BOOL _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual ::document * _001OpenDocumentFile(var varFile);
+      virtual ::user::document_interface * _001OpenDocumentFile(var varFile);
       DECL_GEN_SIGNAL(_001OnFileNew);
 
 

@@ -297,7 +297,7 @@ namespace plane
    }
 
 
-   ::document * application::_001OpenDocumentFile(var varFile)
+   ::user::document_interface * application::_001OpenDocumentFile(var varFile)
    {
       string strId = m_strId;
       char chFirst = '\0';

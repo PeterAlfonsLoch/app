@@ -169,7 +169,7 @@ namespace cube8
       return ::ca2::fontopus::application::allocate_new_service();
    }*/
 
-   bool application::_001CloseApplicationByUser()
+   bool application::_001CloseApplicationByUser(::user::interaction * pwndExcept)
    {
 
       // attempt to save all documents
@@ -190,7 +190,7 @@ namespace cube8
       //  main ::ca::window of the application.
       //bool bAfxContextIsDll = afxContextIsDLL;
       //if (!bAfxContextIsDll && papp->GetVisibleFrameCount() <= 0)
-      if(GetVisibleFrameCount() <= 0)
+      if(GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
       {
 
          PostThreadMessageA(WM_QUIT, 0, 0);
