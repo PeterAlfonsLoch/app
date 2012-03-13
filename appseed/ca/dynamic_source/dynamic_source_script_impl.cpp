@@ -4437,7 +4437,7 @@ ok1:
       try
       {
          stringa stra;
-         if(cregexp_util::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:seconds", NULL))
+         if(cregexp_util::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:seconds"))
          {
 
             calculator::parser parser(get_app());
@@ -4469,7 +4469,7 @@ ok1:
       try
       {
          stringa stra;
-         if(cregexp_util::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:days", NULL))
+         if(cregexp_util::match(str_context(), stra, strQuery, "/(.+)\\s*%1/", "calendar:days"))
          {
 
             calculator::parser parser(get_app());

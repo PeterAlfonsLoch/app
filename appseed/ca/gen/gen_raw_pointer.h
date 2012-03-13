@@ -16,25 +16,25 @@ public:
    template < class T >
    T * ca2 ()
    {
-      return dynamic_cast < T * > (m_pobject);
+      return dynamic_cast < T * > (m_pca);
    }
 
    template < class T >
    T * const ca2 () const
    {
-      return dynamic_cast < T * const > (m_pobject);
+      return dynamic_cast < T * const > (m_pca);
    }
 
    template < class T >
    operator T *()
    {
-      return dynamic_cast < T * > (m_pobject);
+      return dynamic_cast < T * > (m_pca);
    }
 
    template < class T >
    operator T * const() const
    {
-      return dynamic_cast < T * const > (m_pobject);
+      return dynamic_cast < T * const > (m_pca);
    }
 
 

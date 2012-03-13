@@ -476,10 +476,10 @@ namespace user
 
 
       if(get_document() != NULL
-      && get_document()->get_data() != NULL
-      && dynamic_cast < plain_text_data * > (get_document()->get_data()) != NULL)
+      && ::view::get_data < document > () != NULL
+      && dynamic_cast < plain_text_data * > (::view::get_data < document >()) != NULL)
       {
-         set_plain_text_data(dynamic_cast < plain_text_data * > (get_document()->get_data()), false);
+         set_plain_text_data(dynamic_cast < plain_text_data * > (::view::get_data < document > ()), false);
       }
       else
       {
@@ -2004,7 +2004,7 @@ namespace user
       ::view * pview = dynamic_cast < ::view *> (this);
    if (pview!= NULL)
    {
-      document * pdoc = pview->get_document();
+      ::user::document_interface * pdoc = pview->get_document();
       if(type == NULL)
       {
          string textStart;

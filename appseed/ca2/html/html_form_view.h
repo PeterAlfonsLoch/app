@@ -24,8 +24,6 @@ public:
 
    virtual void on_document_complete(const char * pszUrl);
 
-   virtual html::data * calc_data();
-
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::view

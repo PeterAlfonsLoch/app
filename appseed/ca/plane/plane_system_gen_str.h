@@ -41,5 +41,5 @@ namespace gen
 
 inline id::operator string()
 {
-   return string(m_psz);
+   return *m_pstr;
 }

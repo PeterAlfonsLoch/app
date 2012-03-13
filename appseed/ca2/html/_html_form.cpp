@@ -174,7 +174,6 @@ void html_form::_001OnCreate(gen::signal_object * pobj)
 {
    SCAST_PTR(::gen::message::create, pcreate, pobj)
    pobj->previous();
-   m_spdata = calc_data();
    get_html_data()->m_pform = this;
    ASSERT(get_html_data() != NULL);
    if(get_html_data() == NULL)
@@ -280,20 +279,6 @@ void html_form::_001OnLButtonUp(gen::signal_object * pobj)
    }
 }
 
-html::data * html_form::calc_data()
-{
-   if(get_html_data() != NULL)
-      return get_html_data();
-   else
-      return dynamic_cast < html::data * > (Application.alloc(System.template type_info < html::data > ()));
-}
-
-/*
-bool html_form::open_document(const char * pszPath)
-{
-   return open_document(pszPath);
-}
-*/
 
 string html_form::get_path()
 {
@@ -346,12 +331,12 @@ void html_form::_001SetText(const char * psz)
 
 ::html::data * html_form::get_html_data()
 {
-   return dynamic_cast < ::html::data * > (::view::get_data());
+   return dynamic_cast < ::html::data * > (::view::get_data < html_document> ());
 }
 
 const ::html::data * html_form::get_html_data() const
 {
-   return dynamic_cast < ::html::data * > (::view::get_data());
+   return dynamic_cast < ::html::data * > (((html_form * ) this)->::view::get_data < html_document > ());
 }
 
 void html_form::_001OnKeyDown(gen::signal_object * pobj)

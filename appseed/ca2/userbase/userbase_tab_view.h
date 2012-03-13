@@ -30,7 +30,7 @@ namespace userbase
 
       virtual ::user::interaction * get_view_uie();
       virtual ::user::view_creator_data * get_view_creator_data();
-      virtual ::document * get_view_document();
+      virtual ::user::document_interface * get_view_document();
 
 
       void _000OnDraw(::ca::graphics * pdc);

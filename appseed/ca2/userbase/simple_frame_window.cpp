@@ -560,7 +560,7 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
 
    pobj->m_bRet = true;
    // Note: only queries the active document
-   document * pdocument = GetActiveDocument();
+   ::user::document_interface * pdocument = GetActiveDocument();
    if (pdocument != NULL && !pdocument->can_close_frame(this))
    {
       // document can't close right now -- don't close it

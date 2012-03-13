@@ -1103,21 +1103,6 @@
     <ClInclude Include="user\user_create_context.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_document.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_document_interface.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_document_template.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_document_template_interface.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_draw_context.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_edit_plain_text.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -1181,9 +1166,6 @@
     <ClInclude Include="user\user_mouse_focus.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_multiple_document_template.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_scroll_bar.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -1191,12 +1173,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_simple_list_data.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_single_document_template.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_str.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_tab.h">
@@ -1334,12 +1310,6 @@
     <ClInclude Include="bergedge\bergedge_pane_view_update_hint.h">
       <Filter>Header Files\bergedge</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_document_request_interface.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_document_manager.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="ca8\ca8_message_box.h">
       <Filter>Header Files\ca8</Filter>
     </ClInclude>
@@ -1468,9 +1438,6 @@
     </ClInclude>
     <ClInclude Include="command\command_view.h">
       <Filter>Header Files\command</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_draw_interface.h">
-      <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="userbase\userbase_main_frame.h">
       <Filter>Header Files\userbase</Filter>

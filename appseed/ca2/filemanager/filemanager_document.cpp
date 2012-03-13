@@ -1,5 +1,4 @@
 #include "StdAfx.h"
-#include "FileManagerViewUpdateHint.h"
 
 
 namespace filemanager
@@ -8,13 +7,11 @@ namespace filemanager
 
    document::document(::ca::application * papp) :
       ca(papp),
-      ::userbase::document(papp),
-      ::fs::document(papp),
-      ::ca::data(papp),
-      ::fs::data(papp),
-      ::fs::set(papp)
+      ::fs::document(papp)
    {
+
       command_signalid id;
+
       connect_update_cmd_ui("levelup", &document::_001OnUpdateLevelUp);
       connect_command("levelup", &document::_001OnLevelUp);
       connect_update_cmd_ui("add_location", &document::_001OnUpdateAddLocation);
@@ -27,6 +24,7 @@ namespace filemanager
       connect_command("file_save", &document::_001OnFileSaveAs);
       connect_update_cmd_ui("cancel", &document::_001OnUpdateEditPaste);
       connect_command("cancel", &document::_001OnEditPaste);
+
    }
 
    document::~document()
@@ -41,14 +39,14 @@ namespace filemanager
 
 
       
-      m_spafsdata.remove_all();
+      m_fsset.m_spafsdata.remove_all();
 
 
-      m_spafsdata.add(Application.fs());
+      m_fsset.m_spafsdata.add(Application.fs());
 
 
       stringa stra;
-      root_ones(stra);
+      m_fsset.root_ones(stra);
 
 
       return TRUE;
@@ -387,7 +385,7 @@ namespace filemanager
    }
 
 
-   void document::FileManagerSaveAs(::document * pdocument)
+   void document::FileManagerSaveAs(::user::document_interface * pdocument)
    {
       FileManagerInterface::FileManagerSaveAs(pdocument);
       FileManagerViewUpdateHint uh;
@@ -403,14 +401,39 @@ namespace filemanager
 
    ::filemanager::data * document::get_filemanager_data()
    {
-      return dynamic_cast < ::filemanager::data * > (::ca::data_container::get_data());
+
+
+      return m_spfilemanagerdata;
+
+
    }
+
 
    ::fs::data * document::get_fs_data()
    {
-      return this;
+
+
+      return &m_fsset;
+
+
    }
 
+
+   bool document::set_filemanager_data(::filemanager::data * pdata)
+   {
+
+
+      m_spfilemanagerdata = pdata;
+
+
+      return true;
+
+
+   }
+
+
 } // namespace filemanager
+
+
 
 

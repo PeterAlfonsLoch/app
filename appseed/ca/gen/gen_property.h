@@ -564,6 +564,12 @@ namespace gen
    extern CLASS_DECL_ca empty_property g_emptyproperty;
 
 
+   namespace str
+   {
+      inline bool CLASS_DECL_ca begins(const gen::property & property, const char * lpcszPrefix) { return begins((const string &) property, lpcszPrefix); };
+   }
+
+
 } // namespace gen
 
 

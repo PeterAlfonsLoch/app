@@ -14,6 +14,11 @@ namespace html
 }
 
 
+#include "user_document_interface.h"
+#include "user_document.h"
+
+
+
 #include "user_view.h"
 #include "user_control.h"
 
@@ -21,8 +26,6 @@ namespace html
 #include "user_place_holder_container.h"
 
 
-#include "user_document_interface.h"
-#include "user_document.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // frame_window - base class for SDI and other frame windows

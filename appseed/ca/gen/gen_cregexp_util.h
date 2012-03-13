@@ -27,7 +27,7 @@ public:
    
 
    static bool    match(const char * lpcsz, cregexp * re);
-   static bool    match(::user::str_context * pcontext, string_array & stra, const char * psz, id pszExp, id pszRoot, id pszExtra);
+   static bool    match(::user::str_context * pcontext, string_array & stra, const char * psz, id pszExp, id pszRoot);
 
 
    static index   match(string_array & stra, const char * lpcsz, cregexp * re, strsize iSize);

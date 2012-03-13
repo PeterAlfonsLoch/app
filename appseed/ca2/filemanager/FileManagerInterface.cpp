@@ -82,7 +82,7 @@ void FileManagerInterface::OpenSelectionProperties()
 {
 }
 
-void FileManagerInterface::FileManagerSaveAs(document * pdocument)
+void FileManagerInterface::FileManagerSaveAs(::user::document_interface * pdocument)
 {
    get_filemanager_data()->m_pdocumentSave = pdocument;
 }

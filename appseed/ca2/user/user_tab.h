@@ -105,6 +105,7 @@ namespace user
 
       };
 
+      sp(data)                         m_spdata;
       ::visual::graphics_extension     m_dcextension;
       bool                             m_bRestoringTabs;
       bool                             m_bShowTabs;

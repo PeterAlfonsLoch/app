@@ -50,6 +50,5 @@ public:
    virtual void _001SetText(const char * psz);
 
 
-   virtual html::data * calc_data();
 
 };

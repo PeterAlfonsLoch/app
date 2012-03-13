@@ -1235,7 +1235,7 @@ namespace radix
    }
 
    // prompt for file name - used for open and save as
-   BOOL application::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::document * pdocument)
+   BOOL application::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
          // if ptemplate==NULL => all document templates
    {
       if(m_pfilemanager != NULL)
@@ -3084,7 +3084,7 @@ file_manager_interface::~file_manager_interface()
 {
 }
 
-BOOL file_manager_interface::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::document * pdocument)
+BOOL file_manager_interface::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
 {
    UNREFERENCED_PARAMETER(fileName);
    UNREFERENCED_PARAMETER(nIDSTitle);

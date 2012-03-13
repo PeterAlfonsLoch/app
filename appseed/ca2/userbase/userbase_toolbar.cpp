@@ -338,9 +338,12 @@ namespace userbase
 
       int nHeight = cyHeight;
       if (m_dwStyle & CBRS_BORDER_TOP)
-         cyHeight -= afxData.cyBorder2;
+//         cyHeight -= afxData.cyBorder2;
+            cyHeight -= 2;
       if (m_dwStyle & CBRS_BORDER_BOTTOM)
-         cyHeight -= afxData.cyBorder2;
+         //cyHeight -= afxData.cyBorder2;
+         cyHeight -= 2;
+
       m_cyBottomBorder = (cyHeight - m_sizeButton.cy) / 2;
       // if there is an extra pixel, m_cyTopBorder will get it
       m_cyTopBorder = cyHeight - m_sizeButton.cy - m_cyBottomBorder;
@@ -1488,11 +1491,11 @@ namespace userbase
       // Note: ::userbase::control_bar::assert_valid is not called because it checks for
       //  m_nCount and m_pData to be in sync, which they are not in tool_bar.
 
-      ASSERT(m_hbmImageWell == NULL ||
+/*      ASSERT(m_hbmImageWell == NULL ||
          (afxData.bWin95 || ::GetObjectType(m_hbmImageWell) == OBJ_BITMAP));
 
       if (m_hInstImageWell != NULL && m_hbmImageWell != NULL)
-         ASSERT(m_hRsrcImageWell != NULL);
+         ASSERT(m_hRsrcImageWell != NULL);*/
    }
 
    void tool_bar::dump(dump_context & dumpcontext) const

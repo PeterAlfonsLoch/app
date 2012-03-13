@@ -1,20 +1,29 @@
 #pragma once
 
+
 #define FILE_MANAGER_ID_FILE_NAME 1
+
 
 class FileManagerInterface;
 class ::fs::item;
 
+
 namespace filemanager
 {
 
+
    enum EFolder
    {
+
+
       FolderMyComputer,
+
+
    };
 
+
    class CLASS_DECL_ca2 SimpleFolderTreeInterface :
-      virtual public ::fs::tree,
+      public ::fs::tree,
       virtual public FileManagerViewInterface
    {
    public:
@@ -83,9 +92,17 @@ namespace filemanager
       virtual COLORREF get_background_color();
 
       int MapToCSIDL(EFolder efolder);
+
+
 #ifdef WINDOWS
+
+
       IShellFolder * _001GetFolder(EFolder efolder);
+
+
 #endif
+
+
       void _017PreSynchronize();
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
@@ -104,11 +121,17 @@ namespace filemanager
 
 
    protected:
+
+
       void _StartDelayedListUpdate(void);
       void _StopDelayedListUpdate(void);
       void _DelayedListUpdate(void);
+
+
    };
 
 
 } // namespace filemanager
+
+
 

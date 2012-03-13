@@ -1030,8 +1030,6 @@
     <ClInclude Include="userpresence\userpresence_user_presence_central_container.h" />
     <ClInclude Include="user\user_00.h" />
     <ClInclude Include="user\user_combo_box.h" />
-    <ClInclude Include="user\user_document_manager.h" />
-    <ClInclude Include="user\user_document_request_interface.h" />
     <ClInclude Include="user\user_form.h" />
     <ClInclude Include="user\user_inline.h" />
     <ClInclude Include="user\user_job.h" />
@@ -1283,11 +1281,6 @@
     <ClInclude Include="user\user_control_property.h" />
     <ClInclude Include="user\user_create_context.h" />
     <ClInclude Include="user\user_view_creator.h" />
-    <ClInclude Include="user\user_document.h" />
-    <ClInclude Include="user\user_document_interface.h" />
-    <ClInclude Include="user\user_document_template.h" />
-    <ClInclude Include="user\user_document_template_interface.h" />
-    <ClInclude Include="user\user_draw_context.h" />
     <ClInclude Include="user\user_edit_plain_text.h" />
     <ClInclude Include="user\user_element_2d.h" />
     <ClInclude Include="user\user_elemental.h" />
@@ -1307,12 +1300,9 @@
     <ClInclude Include="user\user_list_data_interface.h" />
     <ClInclude Include="user\user_list_header.h" />
     <ClInclude Include="user\user_mouse_focus.h" />
-    <ClInclude Include="user\user_multiple_document_template.h" />
     <ClInclude Include="user\user_scroll_bar.h" />
     <ClInclude Include="user\user_scroll_view.h" />
     <ClInclude Include="user\user_simple_list_data.h" />
-    <ClInclude Include="user\user_single_document_template.h" />
-    <ClInclude Include="user\user_str.h" />
     <ClInclude Include="user\user_tab.h" />
     <ClInclude Include="user\user_tab_callback.h" />
     <ClInclude Include="user\user_text_interface.h" />
@@ -1322,7 +1312,6 @@
     <ClInclude Include="user\user.h" />
     <ClInclude Include="user\user_view.h" />
     <ClInclude Include="user\user_virtual_user_interface.h" />
-    <ClInclude Include="user\user_draw_interface.h" />
     <ClInclude Include="user\user_window_id.h" />
     <ClInclude Include="user\user_window_interface.h" />
     <ClInclude Include="user\user_window_map.h" />

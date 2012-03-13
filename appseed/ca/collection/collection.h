@@ -173,3 +173,8 @@ public:
 
 
 
+class CLASS_DECL_ca time_array :
+   public base_array < class time, class time & >
+{
+};
+

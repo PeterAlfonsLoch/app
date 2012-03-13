@@ -919,13 +919,13 @@ namespace userbase
 
    void DrawGripperElement001(::ca::graphics * pdc, int ix, int iy)
    {
-      pdc->SetPixel(ix    , iy + 1, afxData.clrBtnHilite);
+/*      pdc->SetPixel(ix    , iy + 1, afxData.clrBtnHilite);
       pdc->SetPixel(ix + 1, iy + 1, afxData.clrBtnHilite);
       pdc->SetPixel(ix + 1, iy    , afxData.clrBtnHilite);
       pdc->SetPixel(ix + 2, iy    , afxData.clrBtnShadow);
       pdc->SetPixel(ix + 3, iy + 1, afxData.clrBtnShadow);
       pdc->SetPixel(ix + 3, iy + 2, afxData.clrBtnShadow);
-      pdc->SetPixel(ix + 2, iy + 3, afxData.clrBtnShadow);
+      pdc->SetPixel(ix + 2, iy + 3, afxData.clrBtnShadow);*/
    }
 
    void control_bar::DrawGripper(::ca::graphics * pdc, const rect& rect)
@@ -984,13 +984,17 @@ namespace userbase
       DWORD dwStyle = m_dwStyle;
 
       if (dwStyle & CBRS_BORDER_LEFT)
-         rect.left += afxData.cxBorder2;
+//         rect.left += afxData.cxBorder2;
+         rect.left += 2;
       if (dwStyle & CBRS_BORDER_TOP)
-         rect.top += afxData.cyBorder2;
+//         rect.top += afxData.cyBorder2;
+         rect.top += 2;
       if (dwStyle & CBRS_BORDER_RIGHT)
-         rect.right -= afxData.cxBorder2;
+//         rect.right -= afxData.cxBorder2;
+         rect.right -= 2;
       if (dwStyle & CBRS_BORDER_BOTTOM)
-         rect.bottom -= afxData.cyBorder2;
+//         rect.bottom -= afxData.cyBorder2;
+         rect.bottom -= 2;
 
       // inset the top and bottom.
       if (bHorz)

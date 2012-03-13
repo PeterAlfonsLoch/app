@@ -161,7 +161,7 @@ namespace filemanager
 
 
 
-   BOOL application::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::document * pdocument)
+   BOOL application::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
    {
 
       ::userex::pane_tab_view * ppanetabview = NULL;

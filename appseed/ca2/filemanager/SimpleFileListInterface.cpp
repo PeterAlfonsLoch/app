@@ -442,7 +442,7 @@ namespace filemanager
             item.m_strPath,
             NULL,
             _shell::IconNormal,
-            get_document()->is_dir(item.m_strPath));
+            get_document()->set().is_dir(item.m_strPath));
 
          m_iCreateImageListStep++;
 

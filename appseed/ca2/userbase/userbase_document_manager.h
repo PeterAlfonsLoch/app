@@ -4,8 +4,10 @@
 namespace userbase
 {
 
+
    class document_template;
    class document;
+
 
    class CLASS_DECL_ca2 document_manager : 
       virtual public ::document_manager
@@ -25,4 +27,6 @@ namespace userbase
 
    };
 
+
 } // namespace userbase
+

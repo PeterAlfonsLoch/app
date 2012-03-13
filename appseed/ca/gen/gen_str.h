@@ -33,6 +33,7 @@ namespace gen
       
       bool CLASS_DECL_ca begins(const char * psz, const char * lpcszPrefix);
       bool CLASS_DECL_ca begins(const string & str, const char * lpcszPrefix);
+      inline bool CLASS_DECL_ca begins(const id & id, const char * lpcszPrefix) { return begins((const string &) id, lpcszPrefix); }
       bool CLASS_DECL_ca begins_with(const char * psz, const char * lpcszPrefix);
       bool CLASS_DECL_ca begins_with(const string & str, const char * lpcszPrefix);
 

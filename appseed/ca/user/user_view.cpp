@@ -53,7 +53,7 @@ void view::install_message_handling(::gen::message::dispatch * pinterface)
 
 
 /////////////////////////////////////////////////////////////////////////////
-// ::view second phase construction - bind to document
+// ::view second phase construction - bind to ::user::document_interface
 
 BOOL view::PreCreateWindow(CREATESTRUCT & cs)
 {
@@ -81,7 +81,7 @@ void view::_001OnCreate(::gen::signal_object * pobj)
    if(pcreate->previous())
       return;
 
-   // if ok, wire in the current document
+   // if ok, wire in the current ::user::document_interface
    ASSERT(::view::get_document() == NULL);
    ::ca::create_context* pContext = (::ca::create_context*)pcreate->m_lpcreatestruct->lpCreateParams;
 
@@ -93,7 +93,7 @@ void view::_001OnCreate(::gen::signal_object * pobj)
    }
    else
    {
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: Creating a pane with no document.\n");
+      TRACE(::radix::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::document_interface.\n");
    }
 
    pcreate->set_lresult(0);
@@ -162,10 +162,10 @@ bool view::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    if (::user::interaction::_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
-   // then pump through document
+   // then pump through ::user::document_interface
    if (::view::get_document() != NULL)
    {
-      // special state for saving ::view before routing to document
+      // special state for saving ::view before routing to ::user::document_interface
       if(::view::get_document()->_001OnCmdMsg(pcmdmsg))
          return TRUE;
    }
@@ -190,7 +190,7 @@ void view::OnPaint()
 //   trans OnDraw(&spgraphics);
 }
 
-document * view::get_document(::user::interaction * pguie)
+::user::document_interface * view::get_document(::user::interaction * pguie)
 {
    ::view * pview = dynamic_cast < ::view * > (pguie);
    if(pview != NULL)
@@ -431,9 +431,9 @@ void view::dump(dump_context & dumpcontext) const
    ::user::interaction::dump(dumpcontext);
 
    if (::view::get_document() != NULL)
-      dumpcontext << "with document: ";
+      dumpcontext << "with ::user::document_interface: ";
    else
-      dumpcontext << "with no document\n";
+      dumpcontext << "with no ::user::document_interface\n";
 }
 
 void view::assert_valid() const
@@ -512,7 +512,7 @@ void view::_001OnView(gen::signal_object * pobj)
    SCAST_PTR(::gen::message::base, pbase, pobj)
    if(pbase->m_wparam == 0)
    {
-      document::update * pupdate = (document::update *) pbase->m_lparam;
+      ::user::document_interface::update * pupdate = (::user::document_interface::update *) pbase->m_lparam;
       on_update(pupdate->m_pSender, pupdate->m_lHint, pupdate->m_pHint);
    }
 }
@@ -525,7 +525,7 @@ void view::_001OnView(gen::signal_object * pobj)
 
 /////////////////////////////////////////////////////////////////////////////
 
-::user::interaction* view::create_view(::ca::type_info info, document * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
+::user::interaction* view::create_view(::ca::type_info info, ::user::document_interface * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
 {
    ::ca::create_context_sp cacc(get_app());
    stacker < ::user::create_context > cc(cacc->m_user);
@@ -551,7 +551,7 @@ void view::_001OnView(gen::signal_object * pobj)
 }
 
 
-::user::interaction* view::s_create_view(::ca::type_info info, document * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
+::user::interaction* view::s_create_view(::ca::type_info info, ::user::document_interface * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
 {
    ::ca::create_context_sp cacc(pdoc->get_app());
    stacker < ::user::create_context > cc(cacc->m_user);
@@ -630,22 +630,13 @@ void view::_001OnMouseMove(gen::signal_object * pobj)
 }
 
 
-document * view::get_document() const
+::user::document_interface * view::get_document() const
  { 
     ASSERT(this != NULL); 
     return m_spdocument; 
  }
 
- ::ca::data * view::get_data() const
- { 
-    ASSERT(this != NULL); 
-    if(m_spdata.is_set())
-       return m_spdata;
-    if(m_spdocument.is_set() && m_spdocument->get_data() != NULL)
-       return m_spdocument->get_data();
-    return NULL;
- }
-
+ 
 void view::collaborate(::ca::job * pjob)
 {
    {

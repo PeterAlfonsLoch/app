@@ -116,15 +116,6 @@ namespace user
       virtual bool can_merge(::user::interaction * pui);
       virtual bool merge(::user::interaction * pui);
 
-   private:
-      
-      tree(const user::tree & ) :
-         user::scroll_view(NULL),
-         ::ex1::tree(NULL),
-         m_dcextension(NULL)
-      {
-      }
-
 
    };
 

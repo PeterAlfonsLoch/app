@@ -19,16 +19,16 @@ namespace user
       };
 
 
-      id                         m_id;
-      ::user::interaction *      m_pwnd;
-      ::user::place_holder *     m_pholder;
-      document *                 m_pdoc;
-      id                         m_idSplit;
-      bool                       m_bTabSplitSwap;
-      int                        m_iExtendOnParent;
-      flags < eflag >            m_eflag;
-      string                     m_strTitle;
-      void *                     m_pviewdata;
+      id                               m_id;
+      ::user::interaction *            m_pwnd;
+      ::user::place_holder *           m_pholder;
+      ::user::document_interface *     m_pdoc;
+      id                               m_idSplit;
+      bool                             m_bTabSplitSwap;
+      int                              m_iExtendOnParent;
+      flags < eflag >                  m_eflag;
+      string                           m_strTitle;
+      void *                           m_pviewdata;
 
 
       view_creator_data();

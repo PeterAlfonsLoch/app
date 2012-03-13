@@ -11,13 +11,14 @@ namespace userbase
 
 
    class CLASS_DECL_ca2 document : 
-      public ::document,
-      virtual public ::database::client
+      public ::document
    {
    public:
 
+
       document(::ca::application * papp);
       virtual ~document();
+
 
       virtual void on_alloc(::ca::application * papp);
 

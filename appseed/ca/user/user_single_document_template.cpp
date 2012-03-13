@@ -15,7 +15,7 @@ single_document_template::~single_document_template()
 {
 #ifdef _DEBUG
    if (m_pdocument != NULL)
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live document.\n");
+      TRACE(::radix::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::document_interface.\n");
 #endif
 }
 
@@ -24,7 +24,7 @@ count single_document_template::get_document_count() const
    return (m_pdocument == NULL) ? 0 : 1;
 }
 
-document * single_document_template::get_document(index index) const
+::user::document_interface * single_document_template::get_document(index index) const
 {
    if(index == 0)
       return m_pdocument;
@@ -32,7 +32,7 @@ document * single_document_template::get_document(index index) const
       return NULL;
 }
 
-void single_document_template::add_document(document * pdocument)
+void single_document_template::add_document(::user::document_interface * pdocument)
 {
    if(m_pdocument == NULL)
    {
@@ -41,7 +41,7 @@ void single_document_template::add_document(document * pdocument)
    }
 }
 
-void single_document_template::remove_document(document * pdocument)
+void single_document_template::remove_document(::user::document_interface * pdocument)
 {
    if(m_pdocument == pdocument)
    {
@@ -56,19 +56,19 @@ void single_document_template::remove_document(document * pdocument)
 void single_document_template::request(::ca::create_context * pcreatecontext)
    // if lpszPathName == NULL => create new file of this type
 {
-   pcreatecontext->m_spCommandLine->m_varQuery["document"] = (::ca::ca *) NULL;
+   pcreatecontext->m_spCommandLine->m_varQuery["::user::document_interface"] = (::ca::ca *) NULL;
    bool bMakeVisible = pcreatecontext->m_spCommandLine->m_varQuery["make_visible_boolean"] || pcreatecontext->m_bMakeVisible;
 //   ::user::interaction * pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca2 < ::user::interaction > ();
 //   ::view * pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca2 < ::view > ();
 
-   document * pdocument = NULL;
+   ::user::document_interface * pdocument = NULL;
    frame_window* pFrame = NULL;
    BOOL bCreated = FALSE;      // => doc and frame created
    BOOL bWasModified = FALSE;
 
    if (m_pdocument != NULL)
    {
-      // already have a document - reinit it
+      // already have a ::user::document_interface - reinit it
       pdocument = m_pdocument;
       if (!pdocument->save_modified())
          return;        // leave the original one
@@ -80,7 +80,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
    }
    else
    {
-      // create a new document
+      // create a new ::user::document_interface
       pdocument = create_new_document();
       ASSERT(pFrame == NULL);     // will be created below
       bCreated = TRUE;
@@ -89,7 +89,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
    if (pdocument == NULL)
    {
       // linux System.simple_message_box(AFX_IDP_FAILED_TO_CREATE_DOC);
-      System.simple_message_box(NULL, "Failed to create document");
+      System.simple_message_box(NULL, "Failed to create ::user::document_interface");
       return;
    }
    ASSERT(pdocument == m_pdocument);
@@ -98,7 +98,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
    {
       ASSERT(bCreated);
 
-      // create frame - set as main document frame
+      // create frame - set as main ::user::document_interface frame
       BOOL bAutoDelete = pdocument->m_bAutoDelete;
       pdocument->m_bAutoDelete = FALSE;
                // don't destroy if something goes wrong
@@ -107,7 +107,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
       if (pFrame == NULL)
       {
          // linux System.simple_message_box(AFX_IDP_FAILED_TO_CREATE_DOC);
-         System.simple_message_box(NULL, "Failed to create document");
+         System.simple_message_box(NULL, "Failed to create ::user::document_interface");
          delete pdocument;       // explicit delete on error
          return;
       }
@@ -115,7 +115,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
 
    if (pcreatecontext->m_spCommandLine->m_varFile.is_empty())
    {
-      // create a new document
+      // create a new ::user::document_interface
       set_default_title(pdocument);
 
       // avoid creating temporary compound file when starting up invisible
@@ -125,9 +125,9 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
       if (!pdocument->on_new_document())
       {
          // user has been alerted to what failed in on_new_document
-         TRACE(::radix::trace::category_AppMsg, 0, "document::on_new_document returned FALSE.\n");
+         TRACE(::radix::trace::category_AppMsg, 0, "::user::document_interface::on_new_document returned FALSE.\n");
          if (bCreated)
-            pFrame->DestroyWindow();    // will destroy document
+            pFrame->DestroyWindow();    // will destroy ::user::document_interface
          return;
       }
    }
@@ -135,32 +135,32 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
    {
       wait_cursor wait(get_app());
 
-      // open an existing document
+      // open an existing ::user::document_interface
       bWasModified = pdocument->is_modified();
       pdocument->set_modified_flag(FALSE);  // not dirty for open
 
       if (!pdocument->on_open_document(pcreatecontext->m_spCommandLine->m_varFile))
       {
          // user has been alerted to what failed in on_open_document
-         TRACE(::radix::trace::category_AppMsg, 0, "document::on_open_document returned FALSE.\n");
+         TRACE(::radix::trace::category_AppMsg, 0, "::user::document_interface::on_open_document returned FALSE.\n");
          if (bCreated)
          {
-            pFrame->DestroyWindow();    // will destroy document
+            pFrame->DestroyWindow();    // will destroy ::user::document_interface
          }
          else if (!pdocument->is_modified())
          {
-            // original document is untouched
+            // original ::user::document_interface is untouched
             pdocument->set_modified_flag(bWasModified);
          }
          else
          {
-            // we corrupted the original document
+            // we corrupted the original ::user::document_interface
             set_default_title(pdocument);
 
             if (!pdocument->on_new_document())
             {
                TRACE(::radix::trace::category_AppMsg, 0, "Error: on_new_document failed after trying "
-                  "to open a document - trying to continue.\n");
+                  "to open a ::user::document_interface - trying to continue.\n");
                // assume we can continue
             }
          }
@@ -197,10 +197,10 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
    
    gen::add_ref(pdocument);
 
-   pcreatecontext->m_spCommandLine->m_varQuery["document"] = pdocument;
+   pcreatecontext->m_spCommandLine->m_varQuery["::user::document_interface"] = pdocument;
 }
 
-void single_document_template::set_default_title(document * pdocument)
+void single_document_template::set_default_title(::user::document_interface * pdocument)
 {
    string strDocName;
    if (!GetDocString(strDocName, document_template::docName) ||
@@ -220,9 +220,9 @@ void single_document_template::dump(dump_context & dumpcontext) const
    document_template::dump(dumpcontext);
 
    if (m_pdocument)
-      dumpcontext << "with document: " << (void *)m_pdocument;
+      dumpcontext << "with ::user::document_interface: " << (void *)m_pdocument;
    else
-      dumpcontext << "with no document";
+      dumpcontext << "with no ::user::document_interface";
 
    dumpcontext << "\n";
 }

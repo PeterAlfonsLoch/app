@@ -39,25 +39,25 @@ namespace datetime
                value span;
                span.m_bSpan = true;
                if(strText1 == "day" || strText1 == "days" || strText1 == "dia" || strText1 == "dias"
-                  || (pcontext != NULL && pcontext->matches(idCalendarDay, NULL, strText1))
-                  || (pcontext != NULL && pcontext->matches(idCalendarDays, NULL, strText1)))
+                  || (pcontext != NULL && pcontext->matches(idCalendarDay, strText1))
+                  || (pcontext != NULL && pcontext->matches(idCalendarDays, strText1)))
                {
                   span.m_iDay = atoi(strNumber);
                }
                else if(strText1 == "hour" || strText1 == "hours" || strText1 == "hora" || strText1 == "horas"
-                  || (pcontext != NULL && pcontext->matches(idCalendarHour, NULL, strText1))
-                  || (pcontext != NULL && pcontext->matches(idCalendarHour, NULL, strText1)))
+                  || (pcontext != NULL && pcontext->matches(idCalendarHour, strText1))
+                  || (pcontext != NULL && pcontext->matches(idCalendarHour, strText1)))
                {
                   span.m_iHour = atoi(strNumber);
                }
                else if(strText1 == "year" || strText1 == "years"
-                  || (pcontext != NULL && pcontext->matches(idCalendarYear, NULL, strText1))
-                  || (pcontext != NULL && pcontext->matches(idCalendarYears, NULL, strText1)))
+                  || (pcontext != NULL && pcontext->matches(idCalendarYear, strText1))
+                  || (pcontext != NULL && pcontext->matches(idCalendarYears, strText1)))
                {
                   span.m_iYear = atoi(strNumber);
                }
                else if(strText1 == "now"
-                  || (pcontext != NULL && pcontext->matches(idCalendarNow, NULL, strText1)))
+                  || (pcontext != NULL && pcontext->matches(idCalendarNow, strText1)))
                {
                   throw "now cannot be span";
                }
@@ -194,7 +194,7 @@ namespace datetime
       }
       if(!bBaseTime && (
          gen::str::begins_eat(str, "today") ||
-         (pcontext != NULL && pcontext->begins_eat(str, "calendar:today", NULL))))
+         (pcontext != NULL && pcontext->begins_eat(str, "calendar:today"))))
       {
          time = time::get_current_time();
          time = class time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
@@ -202,7 +202,7 @@ namespace datetime
       }
       if(!bBaseTime &&(
          gen::str::begins_eat(str, "tomorrow") ||
-         (pcontext != NULL && pcontext->begins_eat(str, "calendar:tomorrow", NULL))))
+         (pcontext != NULL && pcontext->begins_eat(str, "calendar:tomorrow"))))
       {
          time = time::get_current_time();
          time = class time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
@@ -211,7 +211,7 @@ namespace datetime
       }
       if(!bBaseTime &&(
          gen::str::begins_eat(str, "now") ||
-         (pcontext != NULL && pcontext->begins_eat(str, "calendar:now", NULL))))
+         (pcontext != NULL && pcontext->begins_eat(str, "calendar:now"))))
       {
          time = time::get_current_time();
          bBaseTime = true;

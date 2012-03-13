@@ -1,5 +1,6 @@
 #pragma once
 
+
 class FileManagerCallbackInterface;
 class FileManagerInterface;
 class ::fs::item;
@@ -8,17 +9,19 @@ class FileManagerTemplate;
 class CWStrArray;
 class CWStr;
 
+
 namespace filemanager
 {
 
+
    class CLASS_DECL_ca2 data :
-      virtual public ::fs::tree_data,
-      virtual public ::fs::list_data
+      public ::fs::tree_data,
+      public ::fs::list_data
    {
    public:
 
 
-      ::document *                     m_pdocumentSave;
+      ::user::document_interface *     m_pdocumentSave;
       file_manager_interface *         m_pfilemanager;
       FileManagerInterface *           m_pmanager;
       FileManagerInterface *           m_pmanagerMain;
@@ -65,7 +68,9 @@ namespace filemanager
       void OnFileManagerItemCommand(const char * pszId, const ::fs::item_array & itema);
 
 
-
    };
 
+
 } // namespace filemanager
+
+

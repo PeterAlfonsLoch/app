@@ -6,10 +6,13 @@ namespace filemanager
 
 
    class CLASS_DECL_ca2 document :
-      virtual public ::fs::document,
+      public ::fs::document,
       virtual public FileManagerInterface
    {
    public:
+
+
+      sp(::filemanager::data)       m_spfilemanagerdata;
 
 
 
@@ -54,7 +57,9 @@ namespace filemanager
       virtual void dump(dump_context & dumpcontext) const;
    #endif
 
-      virtual void FileManagerSaveAs(::document * pdocument);
+      virtual void FileManagerSaveAs(::user::document_interface * pdocument);
+
+      bool set_filemanager_data(::filemanager::data * pdata);
 
    };
 

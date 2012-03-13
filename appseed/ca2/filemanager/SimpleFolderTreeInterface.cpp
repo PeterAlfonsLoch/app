@@ -69,7 +69,7 @@ namespace filemanager
    {
       stringa stra;
 
-      get_document()->get_ascendants_path(lpcsz, stra);
+      get_document()->set().get_ascendants_path(lpcsz, stra);
 
       m_straUpdatePtrFilter = stra;
 
@@ -88,7 +88,7 @@ namespace filemanager
             }
             else
             {
-               get_document()->eat_end_level(str, 1);
+               get_document()->set().eat_end_level(str, 1);
                _017UpdateList(str, NULL, 1);
             }
          }
@@ -343,7 +343,7 @@ namespace filemanager
 
       if(pitemFolder != NULL && pitemFolder->m_flags.is_signalized(::fs::FlagHasSubFolderUnknown))
       {
-         if(get_document()->has_subdir(pitemFolder->m_strPath))
+         if(get_document()->set().has_subdir(pitemFolder->m_strPath))
          {
             pitemFolder->m_flags.signalize(::fs::FlagHasSubFolder);
          }
@@ -372,12 +372,12 @@ namespace filemanager
       stringa straTitle;
       if(strlen(lpcsz) == 0)
       {
-         get_document()->root_ones(straPath);
+         get_document()->set().root_ones(straPath);
          straTitle = straPath;
       }
       else
       {
-         get_document()->ls(lpcsz, &straPath, & straTitle);
+         get_document()->set().ls(lpcsz, &straPath, & straTitle);
       }
       int i;
 
@@ -390,14 +390,14 @@ namespace filemanager
 
          pitemChild->m_pdata = get_fs_tree_data();
 
-         pitemChild->m_strPath = get_document()->dir_path(straPath[i], "");
+         pitemChild->m_strPath = get_document()->set().dir_path(straPath[i], "");
 
          //if(m_straUpdatePtrFilter.find_first(straPath[i]) >= 0)
          //{
          //   continue;
          //}
          pitemChild->m_strName = straTitle[i];
-         if(!get_document()->is_dir(straPath[i]))
+         if(!get_document()->set().is_dir(straPath[i]))
          {
             if(zip::Util().IsUnzipable(get_app(), pitemChild->m_strPath))
             {

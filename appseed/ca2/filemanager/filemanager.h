@@ -49,6 +49,7 @@ namespace filemanager
 #include "ContextMenu.h"
 
 #include "SimpleFolderTreeInterface.h"
+#include "SimpleFolderTreeView.h"
 
 #include "SimpleFilePropertiesForm.h"
 

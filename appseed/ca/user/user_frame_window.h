@@ -54,8 +54,8 @@ public:
 
    static const rect rectDefault;
    int m_nWindow;  // general purpose ::ca::window number - display as ":n"
-               // -1 => unknown, 0 => only ::ca::window viewing document
-               // 1 => first of many windows viewing document, 2=> second
+               // -1 => unknown, 0 => only ::ca::window viewing ::user::document_interface
+               // 1 => first of many windows viewing ::user::document_interface, 2=> second
 
    HMENU m_hMenuDefault;       // default menu resource for this frame
    HACCEL m_hAccelTable;       // accelerator table
@@ -110,7 +110,7 @@ public:
 
 
 // Attributes
-   virtual ::document * GetActiveDocument();
+   virtual ::user::document_interface * GetActiveDocument();
 
    // Active child ::view maintenance
    ::view * GetActiveView() const;           // active ::view or NULL
@@ -131,7 +131,7 @@ public:
 // Operations
    virtual void layout();
    virtual void ActivateFrame(int nCmdShow = -1);
-   virtual void InitialUpdateFrame(document * pDoc, BOOL bMakeVisible);
+   virtual void InitialUpdateFrame(::user::document_interface * pDoc, BOOL bMakeVisible);
    virtual void InitialFramePosition(bool bForceRestore = false);
    void set_title(const char * lpszTitle);
    string get_title() const;

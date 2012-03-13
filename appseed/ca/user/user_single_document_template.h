@@ -6,18 +6,18 @@ class CLASS_DECL_ca single_document_template :
 public:
 
    
-   document * m_pdocument;
+   ::user::document_interface * m_pdocument;
 
 
    single_document_template(::ca::application * papp, const char * pszMatter, ::ca::type_info pDocClass, ::ca::type_info pFrameClass, ::ca::type_info pViewClass);
 
    virtual ~single_document_template();
-   virtual void add_document(document * pDoc);
-   virtual void remove_document(document * pDoc);
+   virtual void add_document(::user::document_interface * pDoc);
+   virtual void remove_document(::user::document_interface * pDoc);
    virtual count get_document_count() const;
-   virtual document * get_document(index index = 0) const;
+   virtual ::user::document_interface * get_document(index index = 0) const;
    virtual void request(::ca::create_context * pcreatecontext);
-   virtual void set_default_title(document * pdocument);
+   virtual void set_default_title(::user::document_interface * pdocument);
 
 #ifdef _DEBUG
    virtual void dump(dump_context&) const;

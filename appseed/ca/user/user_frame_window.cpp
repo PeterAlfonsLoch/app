@@ -143,10 +143,10 @@ BOOL frame_window::LoadAccelTable(const char * lpszResourceName)
 
 HACCEL frame_window::GetDefaultAccelerator()
 {
-   // use document specific accelerator table over m_hAccelTable
+   // use ::user::document_interface specific accelerator table over m_hAccelTable
    HACCEL hAccelTable = m_hAccelTable;
    HACCEL hAccel;
-   document * pDoc = GetActiveDocument();
+   ::user::document_interface * pDoc = GetActiveDocument();
    if (pDoc != NULL && (hAccel = pDoc->GetDefaultAccelerator()) != NULL)
       hAccelTable = hAccel;
 
@@ -671,11 +671,11 @@ void frame_window::OnUpdateFrameMenu(HMENU hMenuAlt)
 {
    if (hMenuAlt == NULL)
    {
-      // attempt to get default menu from document
-      document * pDoc = GetActiveDocument();
+      // attempt to get default menu from ::user::document_interface
+      ::user::document_interface * pDoc = GetActiveDocument();
       if (pDoc != NULL)
          hMenuAlt = pDoc->GetDefaultMenu();
-      // use default menu stored in frame if none from document
+      // use default menu stored in frame if none from ::user::document_interface
       if (hMenuAlt == NULL)
          hMenuAlt = m_hMenuDefault;
    }
@@ -683,7 +683,7 @@ void frame_window::OnUpdateFrameMenu(HMENU hMenuAlt)
    // trans ::SetMenu(get_handle(), hMenuAlt);
 }
 
-void frame_window::InitialUpdateFrame(document * pDoc, BOOL bMakeVisible)
+void frame_window::InitialUpdateFrame(::user::document_interface * pDoc, BOOL bMakeVisible)
 {
    // if the frame does not have an active ::view, set to first pane
    ::view * pview = NULL;
@@ -802,11 +802,11 @@ void frame_window::OnClose()
    /*if (m_lpfnCloseProc != NULL)
       (*m_lpfnCloseProc)(this);
 
-   // Note: only queries the active document
-   document * pdocument = GetActiveDocument();
+   // Note: only queries the active ::user::document_interface
+   ::user::document_interface * pdocument = GetActiveDocument();
    if (pdocument != NULL && !pdocument->can_close_frame(this))
    {
-      // document can't close right now -- don't close it
+      // ::user::document_interface can't close right now -- don't close it
       return;
    }
    application* pApp = &System;
@@ -832,7 +832,7 @@ void frame_window::OnClose()
       }
    }
 
-   // detect the case that this is the last frame on the document and
+   // detect the case that this is the last frame on the ::user::document_interface and
    // shut down with on_close_document instead.
    if (pdocument != NULL && pdocument->m_bAutoDelete)
    {
@@ -854,7 +854,7 @@ void frame_window::OnClose()
          return;
       }
 
-      // allow the document to cleanup before the ::ca::window is destroyed
+      // allow the ::user::document_interface to cleanup before the ::ca::window is destroyed
       pdocument->pre_close_frame(this);
    }
 
@@ -1265,7 +1265,7 @@ void frame_window::OnSetFocus(::user::interaction * pOldWnd)
       */
 }
 
-document * frame_window::GetActiveDocument()
+::user::document_interface * frame_window::GetActiveDocument()
 {
    ASSERT_VALID(this);
    ::view * pview = GetActiveView();
@@ -1395,7 +1395,7 @@ void frame_window::on_update_frame_title(BOOL bAddToTitle)
       return;     // leave it alone!
 
 
-   document * pdocument = GetActiveDocument();
+   ::user::document_interface * pdocument = GetActiveDocument();
    if (bAddToTitle && pdocument != NULL)
       UpdateFrameTitleForDocument(pdocument->get_title());
    else

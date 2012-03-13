@@ -17,8 +17,10 @@ namespace userbase
    {
    public:
 
+      
       ::user::front_end_schema *   m_pufeschema;
       ::user::front_end *           m_pufe;
+
 
       application();
       virtual ~application();

@@ -14,7 +14,7 @@ public:
    enum DocStringIndex
    {
       windowTitle,        // default ::ca::window title
-      docName,            // ::fontopus::user visible name for default document
+      docName,            // ::fontopus::user visible name for default ::user::document_interface
       fileNewName,        // ::fontopus::user visible name for FileNew
       // for file based documents:
       filterName,         // ::fontopus::user visible name for FileOpen
@@ -64,7 +64,7 @@ public:
    //::ca::type_info       m_pOleViewClass;     // class for creating in-place ::view
 
    string                  m_strDocStrings;    // '\n' separated names
-      // The document names sub-strings are represented as _one_ string:
+      // The ::user::document_interface names sub-strings are represented as _one_ string:
       // windowTitle\ndocName\n ... (see DocStringIndex enum)
 
    document_template(::ca::application * papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass);
@@ -72,27 +72,27 @@ public:
    virtual void load_template();
 
    virtual count get_document_count() const = 0;
-   virtual document * get_document(index index = 0) const = 0;
+   virtual ::user::document_interface * get_document(index index = 0) const = 0;
 
-   virtual void add_document(document * pDoc);      // must override
-   virtual void remove_document(document * pDoc);   // must override
+   virtual void add_document(::user::document_interface * pDoc);      // must override
+   virtual void remove_document(::user::document_interface * pDoc);   // must override
 
    virtual BOOL GetDocString(string & rString, enum DocStringIndex index) const; // get one of the info strings
-   //frame_window* CreateOleFrame(::ca::window* pParentWnd, document * pDoc,
+   //frame_window* CreateOleFrame(::ca::window* pParentWnd, ::user::document_interface * pDoc,
    //   BOOL bCreateView);
 
    void update_all_views(::view * pviewSender, LPARAM lhint, ::radix::object * puh);
 
-   virtual Confidence MatchDocType(const char * lpszPathName, document *& rpDocMatch);
-   virtual document * create_new_document();
-   virtual frame_window* create_new_frame(document * pDoc, frame_window* pOther, ::ca::create_context * pcreatecontext);
-   virtual void InitialUpdateFrame(frame_window* pFrame, document * pDoc, BOOL bMakeVisible = TRUE);
+   virtual Confidence MatchDocType(const char * lpszPathName, ::user::document_interface *& rpDocMatch);
+   virtual ::user::document_interface * create_new_document();
+   virtual frame_window* create_new_frame(::user::document_interface * pDoc, frame_window* pOther, ::ca::create_context * pcreatecontext);
+   virtual void InitialUpdateFrame(frame_window* pFrame, ::user::document_interface * pDoc, BOOL bMakeVisible = TRUE);
    virtual BOOL save_all_modified();     // for all documents
    virtual void close_all_documents(BOOL bEndSession);
    virtual void request(::ca::create_context * pcreatecontext) = 0;
                // open named file
                // if lpszPathName == NULL => create new file with this type
-   virtual void set_default_title(document * pdocument) = 0;
+   virtual void set_default_title(::user::document_interface * pdocument) = 0;
 
    virtual ~document_template() = 0;
 

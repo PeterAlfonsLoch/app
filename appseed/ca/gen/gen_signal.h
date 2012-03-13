@@ -102,11 +102,13 @@ namespace gen
       { 
          return base_signalizable_array::add(psignalizable);
       }
+
       inline index remove(SIGNALIZABLE * psignalizable)
       { 
          return base_signalizable_array::remove(psignalizable);
       }
-      SIGNALIZABLE * ptr_at(index i) { return dynamic_cast < SIGNALIZALBE * > (base_signalizable_array:ptr_at(i)); }
+
+      SIGNALIZABLE * ptr_at(index i) { return dynamic_cast < SIGNALIZABLE * > (base_signalizable_array::ptr_at(i)); }
 
    };
 

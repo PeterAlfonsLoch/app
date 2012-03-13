@@ -1,27 +1,23 @@
 #include "StdAfx.h"
-#include "FileManagerViewUpdateHint.h"
-#include "SimpleFolderTreeView.h"
-//#include "win/WindowsShell.h"
 
 
 #define SHELL_COMMAND_FIRST 0x1000
 #define SHELL_COMMAND_LAST 0x2000
 
+
 namespace filemanager
 {
 
+
    SimpleFolderTreeView::SimpleFolderTreeView(::ca::application * papp) : 
       ca(papp),
-      ::ca::data_container(papp),
       ::user::scroll_view(papp),
-      ::user::tree(papp),
       SimpleFolderTreeInterface(papp),
-      m_headerctrl(papp),
-      ex1::tree(papp),
-      ::fs::tree_interface(papp),
-      ::fs::tree(papp)
+      m_headerctrl(papp)
    {
+
       m_etranslucency = TranslucencyPresent;
+
    }
 
    SimpleFolderTreeView::~SimpleFolderTreeView()
@@ -323,4 +319,5 @@ namespace filemanager
 
 
 } // namespace filemanager
+
 

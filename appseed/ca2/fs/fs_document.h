@@ -6,12 +6,13 @@ namespace fs
 
 
    class CLASS_DECL_ca2 document :
-      virtual public ::userbase::document,
-      virtual public ::fs::set
+      public ::userbase::document
    {
    public:
 
+
       string                                    m_strFolder;
+      ::fs::set                                 m_fsset;
 
 
       document(::ca::application * papp);
@@ -26,6 +27,15 @@ namespace fs
    #endif
 
       bool file_manager_browse(const char * pszFolder);
+
+      inline ::fs::set & set()
+      {
+
+
+         return m_fsset;
+
+
+      }
 
    };
 

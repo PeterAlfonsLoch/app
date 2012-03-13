@@ -381,3 +381,6 @@ inline tstring time::FormatGmt(tstring & str, UINT nFormatID) const
    return FormatGmt(str, strFormat);
 }
 */
+
+
+

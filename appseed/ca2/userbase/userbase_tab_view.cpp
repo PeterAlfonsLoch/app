@@ -394,7 +394,7 @@ namespace userbase
       return pcreatordata->m_pwnd;
    }
 
-   ::document * tab_view::get_view_document()
+   ::user::document_interface * tab_view::get_view_document()
    {
       if(m_pviewdata == NULL)
          return NULL;

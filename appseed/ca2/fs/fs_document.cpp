@@ -8,9 +8,7 @@ namespace fs
    document::document(::ca::application * papp) :
       ::ca::ca(papp),
       userbase::document(papp),
-      ::ca::data(papp),
-      ::fs::data(papp),
-      ::fs::set(papp)
+      m_fsset(papp)
    {
    }
 

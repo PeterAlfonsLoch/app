@@ -212,17 +212,3 @@ void html_form_view::_001OnKillFocus(gen::signal_object * pobj)
    UNREFERENCED_PARAMETER(pobj);
 }
 
-html::data * html_form_view::calc_data()
-{
-   if(m_spdata.m_p != NULL)
-   {
-      return dynamic_cast < html::data * > (m_spdata.m_p);
-   }
-   else if(get_document() != NULL)
-   {
-      html::data * pcontainer = dynamic_cast < html::data * > (get_document()->get_data());
-      if(pcontainer != NULL)
-         return pcontainer;
-   }
-   return html_form::calc_data();
-}

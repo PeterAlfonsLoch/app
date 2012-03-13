@@ -20,7 +20,7 @@ namespace user
    public:
       // for creating new views
       ::ca::type_info         m_typeinfoNewView; // runtime class of ::view to create or NULL
-      document *              m_pCurrentDoc;
+      ::user::document_interface *              m_pCurrentDoc;
       ::user::interaction *   m_puiNew;
 
       // for creating MDI children (CMDIChildWnd::LoadFrame)

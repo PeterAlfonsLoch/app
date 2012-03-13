@@ -964,8 +964,8 @@ namespace filemanager
       string strFileCheck;
       for(int i = 0; i < pdata->m_itema.get_count(); i++)
       {
-         if(::fs::list_interface::get_document()->is_dir(pdata->m_itema.get_item(i).m_strPath)
-            && ::fs::list_interface::get_document()->file_name(pdata->m_itema.get_item(i).m_strPath) != ".svn")
+         if(::fs::list_interface::get_document()->set().is_dir(pdata->m_itema.get_item(i).m_strPath)
+            && ::fs::list_interface::get_document()->set().file_name(pdata->m_itema.get_item(i).m_strPath) != ".svn")
          {
             Application.dir().rls(pdata->m_itema.get_item(i).m_strPath, &straSub);
             for(int j = 0; j < straSub.get_size(); j++)

@@ -18,7 +18,7 @@ namespace ca
       virtual ~data_container();
 
 
-      virtual bool set_data(::ca::data * pdata);
+      bool set_data(::ca::data * pdata);
       data * get_data() const;
 
       virtual bool is_data_in_use() const;

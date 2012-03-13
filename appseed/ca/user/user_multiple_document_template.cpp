@@ -33,14 +33,14 @@ count multiple_document_template::get_document_count() const
    return m_docptra.get_count();
 }
 
-document * multiple_document_template::get_document(index index) const
+user::document_interface * multiple_document_template::get_document(index index) const
 {
    if(index < 0 || index >= m_docptra.get_count())
       return NULL;
    return m_docptra.element_at(index);
 }
 
-void multiple_document_template::add_document(document * pdocument)
+void multiple_document_template::add_document(user::document_interface * pdocument)
 {
    if(m_docptra.add_unique(pdocument))
    {
@@ -49,7 +49,7 @@ void multiple_document_template::add_document(document * pdocument)
 }
 
 
-void multiple_document_template::remove_document(document * pdocument)
+void multiple_document_template::remove_document(user::document_interface * pdocument)
 {
    if(m_docptra.remove(pdocument) > 0)
    {
@@ -61,16 +61,16 @@ void multiple_document_template::remove_document(document * pdocument)
 void multiple_document_template::request(::ca::create_context * pcreatecontext)
 {
 
-   pcreatecontext->m_spCommandLine->m_varQuery["document"] = (::ca::ca *) NULL;
+   pcreatecontext->m_spCommandLine->m_varQuery["user::document_interface"] = (::ca::ca *) NULL;
    bool bMakeVisible = pcreatecontext->m_bMakeVisible;
 //   ::user::interaction * pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca2 < ::user::interaction > ();
 //   ::view * pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca2 < ::view > ();
-   document * pdocument = create_new_document();
+   user::document_interface * pdocument = create_new_document();
    if (pdocument == NULL)
    {
       TRACE(::radix::trace::category_AppMsg, 0, "document_template::create_new_document returned NULL.\n");
       // linux System.simple_message_box(AFX_IDP_FAILED_TO_CREATE_DOC);
-      System.simple_message_box(NULL, "failed to create document");
+      System.simple_message_box(NULL, "failed to create user::document_interface");
       return;
    }
 
@@ -81,7 +81,7 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
    if (pFrame == NULL)
    {
       // linux System.simple_message_box(AFX_IDP_FAILED_TO_CREATE_DOC);
-      System.simple_message_box(NULL, "Failed to create document");
+      System.simple_message_box(NULL, "Failed to create user::document_interface");
       delete pdocument;       // explicit delete on error
       return;
    }
@@ -89,7 +89,7 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
 
    if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())
    {
-      // create a new document - with default document name
+      // create a new user::document_interface - with default user::document_interface name
       set_default_title(pdocument);
 
       // avoid creating temporary compound file when starting up invisible
@@ -99,7 +99,7 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
       if (!pdocument->on_new_document())
       {
          // ::fontopus::user has be alerted to what failed in on_new_document
-         TRACE(::radix::trace::category_AppMsg, 0, "document::on_new_document returned FALSE.\n");
+         TRACE(::radix::trace::category_AppMsg, 0, "user::document_interface::on_new_document returned FALSE.\n");
          pFrame->DestroyWindow();
          return;
       }
@@ -109,12 +109,12 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
    }
    else
    {
-      // open an existing document
+      // open an existing user::document_interface
       wait_cursor wait(get_app());
       if (!pdocument->on_open_document(pcreatecontext->m_spCommandLine->m_varFile))
       {
          // ::fontopus::user has be alerted to what failed in on_open_document
-         TRACE(::radix::trace::category_AppMsg, 0, "document::on_open_document returned FALSE.\n");
+         TRACE(::radix::trace::category_AppMsg, 0, "user::document_interface::on_open_document returned FALSE.\n");
          pFrame->DestroyWindow();
          return;
       }
@@ -134,10 +134,10 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
 
    gen::add_ref(pdocument);
 
-   pcreatecontext->m_spCommandLine->m_varQuery["document"] = pdocument;
+   pcreatecontext->m_spCommandLine->m_varQuery["user::document_interface"] = pdocument;
 }
 
-void multiple_document_template::set_default_title(document * pdocument)
+void multiple_document_template::set_default_title(user::document_interface * pdocument)
 {
    string strDocName;
    if (GetDocString(strDocName, document_template::docName) &&
@@ -167,8 +167,8 @@ void multiple_document_template::dump(dump_context & dumpcontext) const
    count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
-      document * pdocument = get_document(index);
-      dumpcontext << "\nwith document " << (void *)pdocument;
+      user::document_interface * pdocument = get_document(index);
+      dumpcontext << "\nwith user::document_interface " << (void *)pdocument;
    }
 
    dumpcontext << "\n";
@@ -181,7 +181,7 @@ void multiple_document_template::assert_valid() const
    count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
-      document * pdocument = get_document(index);
+      user::document_interface * pdocument = get_document(index);
    }
 
 }

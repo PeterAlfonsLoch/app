@@ -78,7 +78,7 @@ namespace user
       if(strLangUser.has_char())
          set_locale(strLangUser, false);
       if(strStyleUser.has_char())
-         set_style(strStyleUser, false);
+         set_schema(strStyleUser, false);
 
 
       if(m_strLicense.has_char())    

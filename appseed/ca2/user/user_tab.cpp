@@ -1477,7 +1477,7 @@ namespace user
 
    tab::data * tab::get_data()
    {
-      return dynamic_cast < data * > (m_spdata.m_p);
+      return m_spdata;
    }
 
    tab::pane * tab::get_pane_by_id(id id)

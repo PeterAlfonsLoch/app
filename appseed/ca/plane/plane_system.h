@@ -818,7 +818,7 @@ set_size(::count iSize)
 
 
 template < class VIEW >
-inline VIEW * view::create_view(document * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
+inline VIEW * view::create_view(::user::document_interface * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
 {
    return dynamic_cast < VIEW * > (create_view(System.template type_info < VIEW > (), pdoc, pwndParent, id, pviewLast));
 }
@@ -827,3 +827,20 @@ inline VIEW * view::create_view(document * pdoc, ::user::interaction * pwndParen
 
 
 
+   template < class DOCUMENT >
+   ::ca::data * view::get_data()
+    { 
+       ASSERT(this != NULL); 
+       DOCUMENT * pdocument = get_typed_document < DOCUMENT > ();
+       if(pdocument == NULL)
+          return NULL;
+       return pdocument->get_data();
+   }
+
+   template < class DOCUMENT >
+   DOCUMENT * view::get_typed_document()
+   {
+      if(m_spdocument.is_null())
+         return NULL;
+      return dynamic_cast < DOCUMENT * > (m_spdocument.m_p);
+   }

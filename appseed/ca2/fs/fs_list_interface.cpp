@@ -160,18 +160,18 @@ namespace fs
       stringa straTitle;
       if(strlen(lpcsz) == 0)
       {
-         get_document()->root_ones(straPath);
+         get_document()->set().root_ones(straPath);
          straTitle = straPath;
       }
       else
       {
-         get_document()->ls(lpcsz, &straPath, & straTitle);
+         get_document()->set().ls(lpcsz, &straPath, & straTitle);
       }
 
       for(int i = 0; i < straPath.get_size(); i++)
       {
          item.m_flags.unsignalize_all();
-         if(get_document()->is_dir(straPath[i]))
+         if(get_document()->set().is_dir(straPath[i]))
          {
             item.m_flags.signalize(::fs::FlagFolder);
          }
@@ -594,7 +594,7 @@ namespace fs
       list_item item;
       item.m_strPath = pszPath;
       item.m_strName = pszTitle;
-      if(get_document()->is_dir(pszPath))
+      if(get_document()->set().is_dir(pszPath))
       {
          item.m_flags.signalize(FlagFolder);
       }
@@ -717,8 +717,8 @@ namespace fs
       if(strict >= 0 && pdata->m_itema.get_item(strict).IsFolder())
       {
          string strPath = pdata->m_itema.get_item(strictDrag).m_strPath;
-         string strName = get_document()->file_name(strPath);
-         get_document()->file_move(pdata->m_itema.get_item(strict).m_strPath, strPath);
+         string strName = get_document()->set().file_name(strPath);
+         get_document()->set().file_move(pdata->m_itema.get_item(strict).m_strPath, strPath);
          _017Synchronize();
       }
       else

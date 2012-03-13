@@ -6,8 +6,8 @@
 class factory_item_base;
 
 
-#define SCAST_PTR(tcast, pcasted, pcasting) tcast * pcasted = dynamic_cast < tcast * > (pcasting);
-#define SCAST_REF(tcast, rcasted, pcasting) tcast & rcasted = *(dynamic_cast < tcast * > (pcasting));
+#define SCAST_PTR(TYPE, ptarget, psource) TYPE * ptarget = dynamic_cast < TYPE * > (psource);
+#define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource));
 
 
 

@@ -9,14 +9,19 @@ class CLASS_DECL_ca view :
 {
 public:
 
-   sp(::ca::data)    m_spdata;
-   sp(::document)    m_spdocument;
+   sp(::user::document_interface)    m_spdocument;
 
    view();
    virtual ~view() = 0;
 
-   document * get_document() const;
-   ::ca::data * get_data() const;
+   user::document_interface * get_document() const;
+
+   template < class DOCUMENT >
+   ::ca::data * get_data();
+
+   template < class DOCUMENT >
+   DOCUMENT * get_typed_document();
+
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
@@ -56,15 +61,15 @@ public:
 
 
 
-   ::user::interaction * create_view(::ca::type_info info, document * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL);
-   static ::user::interaction * s_create_view(::ca::type_info info, document * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast = NULL);
+   ::user::interaction * create_view(::ca::type_info info, user::document_interface * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL);
+   static ::user::interaction * s_create_view(::ca::type_info info, user::document_interface * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast = NULL);
    static ::user::interaction * s_create_view(::ca::create_context * pContext, ::user::interaction * pwndParent, id id);
 
    template < class VIEW >
-   VIEW * create_view(document * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL);
+   VIEW * create_view(user::document_interface * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL);
 
 
-   static document * get_document(::user::interaction * pguie);
+   static user::document_interface * get_document(::user::interaction * pguie);
 
 #ifdef _DEBUG
    virtual void dump(dump_context&) const;
@@ -86,7 +91,7 @@ public:
    virtual void PostNcDestroy();
 
    // friend classes that call protected view overridables
-   friend class document;
+   friend class user::document_interface;
    friend class document_template;
    friend class CPreviewView;
    friend class frame_window;

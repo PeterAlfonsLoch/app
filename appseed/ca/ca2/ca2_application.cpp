@@ -173,11 +173,11 @@ namespace ca2
       {
          if(docSystem.get_child("lang") != NULL)
          {
-            strLangSystem = docSystem.get_child("lang")->get_value();
+            strLocaleSystem = docSystem.get_child("lang")->get_value();
          }
          if(docSystem.get_child("style") != NULL)
          {
-            strStyleSystem = docSystem.get_child("style")->get_value();
+            strSchemaSystem = docSystem.get_child("style")->get_value();
          }
       }
 

@@ -11,10 +11,10 @@ cregexp_util::~cregexp_util()
 
 }
 
-bool cregexp_util::match(::user::str_context * pcontext, string_array & stra, const char * psz,  id pszExp, id pszRoot, id pszExtra)
+bool cregexp_util::match(::user::str_context * pcontext, string_array & stra, const char * psz,  id pszExp, id pszRoot)
 {
    stringa straCandidate;
-   pcontext->get(straCandidate, pszRoot, pszExtra);
+   pcontext->get(straCandidate, pszRoot);
    for(int i = 0; i < straCandidate.get_count(); i++)
    {
       string strCandidate = straCandidate[i];

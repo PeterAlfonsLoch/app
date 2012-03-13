@@ -9,12 +9,12 @@ public:
 
    virtual ~multiple_document_template();
    virtual void load_template();
-   virtual void add_document(document * pDoc);
-   virtual void remove_document(document * pDoc);
+   virtual void add_document(user::document_interface * pDoc);
+   virtual void remove_document(user::document_interface * pDoc);
    virtual count get_document_count() const;
-   virtual document * get_document(index index) const;
+   virtual user::document_interface * get_document(index index) const;
    virtual void request(::ca::create_context * pcreatecontext);
-   virtual void set_default_title(document * pdocument);
+   virtual void set_default_title(user::document_interface * pdocument);
 
 #ifdef _DEBUG
    virtual void dump(dump_context&) const;
@@ -22,6 +22,6 @@ public:
 #endif //_DEBUG
 
 protected:  // standard implementation
-   comparable_array < document * > m_docptra;          // open documents of this type
+   comparable_array < user::document_interface * > m_docptra;          // open documents of this type
    UINT m_nUntitledCount;   // start at 0, for "Document1" title
 };

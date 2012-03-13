@@ -21,7 +21,7 @@ namespace user
       return ::radix::system::idEmpty;
    }
 
-   document * view_container::get_view_document()
+   ::user::document_interface * view_container::get_view_document()
    {
       return view::get_document(get_view());
    }

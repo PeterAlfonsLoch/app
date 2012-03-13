@@ -92,7 +92,7 @@ bool FileManagerChildFrame::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 void FileManagerChildFrame::OnChangeEditSearch()
 {
 
-   document * pdoc = GetActiveDocument();
+   ::user::document_interface * pdoc = GetActiveDocument();
 
    if(pdoc != NULL)
    {

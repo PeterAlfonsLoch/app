@@ -40,7 +40,7 @@ FileManagerTemplate::~FileManagerTemplate()
       {
          pfilemanagerdata = new filemanager::data(get_app());
       }
-      pdoc->set_data(pfilemanagerdata);
+      pdoc->set_filemanager_data(pfilemanagerdata);
       pdoc->get_filemanager_data()->m_pcallback = pcallback;
       pdoc->get_filemanager_data()->m_pmanager  = pdoc;
       pdoc->get_filemanager_data()->m_pmanagerMain  = pdoc;
@@ -96,7 +96,7 @@ FileManagerTemplate::~FileManagerTemplate()
       {
          pfilemanagerdata = new ::filemanager::data(get_app());
       }
-      pdoc->set_data(pfilemanagerdata);
+      pdoc->set_filemanager_data(pfilemanagerdata);
       pdoc->get_filemanager_data()->m_pcallback                = pcallback;
       pdoc->get_filemanager_data()->m_pfilemanager             = pcallback;
       pdoc->get_filemanager_data()->m_pmanager                 = pdoc;
@@ -135,7 +135,7 @@ FileManagerTemplate::~FileManagerTemplate()
       {
          pfilemanagerdata = new filemanager::data(get_app());
       }
-      pdoc->set_data(pfilemanagerdata);
+      pdoc->set_filemanager_data(pfilemanagerdata);
       pdoc->get_filemanager_data()->m_pcallback = pcallback;
       pdoc->get_filemanager_data()->m_pfilemanager = pcallback;
       pdoc->get_filemanager_data()->m_pmanager  = pdoc;

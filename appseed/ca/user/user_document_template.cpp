@@ -17,7 +17,7 @@ void document_template::load_template()
 {
    if (m_strDocStrings.is_empty() && !System.matter_as_string(get_app(), m_strMatter, "full_string.txt"))
    {
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: no document names in string for template #%d.\n", m_strMatter);
+      TRACE(::radix::trace::category_AppMsg, 0, "Warning: no ::user::document_interface names in string for template #%d.\n", m_strMatter);
    }
 }
 
@@ -31,20 +31,20 @@ BOOL document_template::GetDocString(string & rString, enum DocStringIndex i) co
    return AfxExtractSubString(rString, m_strDocStrings, (int)i);
 }
 
-void document_template::add_document(document * pdocument)
+void document_template::add_document(::user::document_interface * pdocument)
 {
    ASSERT(pdocument->m_pdocumentemplate == NULL);   // no template attached yet
    pdocument->m_pdocumentemplate = this;
 }
 
-void document_template::remove_document(document * pdocument)
+void document_template::remove_document(::user::document_interface * pdocument)
 {
    ASSERT(pdocument->m_pdocumentemplate == this);   // must be attached to us
    pdocument->m_pdocumentemplate = NULL;
 }
 
 document_template::Confidence document_template::MatchDocType(const char * lpszPathName,
-   document *& rpDocMatch)
+   ::user::document_interface *& rpDocMatch)
 {
    ASSERT(lpszPathName != NULL);
    rpDocMatch = NULL;
@@ -53,7 +53,7 @@ document_template::Confidence document_template::MatchDocType(const char * lpszP
    count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
-      document * pdocument = get_document(index);
+      ::user::document_interface * pdocument = get_document(index);
       if(System.file().path().is_equal(pdocument->get_path_name(), lpszPathName))
       {
          // already open
@@ -83,7 +83,7 @@ document_template::Confidence document_template::MatchDocType(const char * lpszP
    return yesAttemptForeign;
 }
 
-document * document_template::create_new_document()
+::user::document_interface * document_template::create_new_document()
 {
    // default implementation constructs one from ::ca::type_info
    if(!m_typeinfoDocument)
@@ -92,15 +92,15 @@ document * document_template::create_new_document()
       ASSERT(FALSE);
       return NULL;
    }
-   document * pdocument = dynamic_cast < document * > (Application.alloc(m_typeinfoDocument));
+   ::user::document_interface * pdocument = dynamic_cast < document * > (Application.alloc(m_typeinfoDocument));
    if (pdocument == NULL)
    {
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: Dynamic create of document type %hs failed.\n",
+      TRACE(::radix::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::document_interface type %hs failed.\n",
          m_typeinfoDocument.raw_name());
       return NULL;
    }
    pdocument->on_alloc(get_app());
-   ASSERT_KINDOF(document, pdocument);
+   ASSERT_KINDOF(::user::document_interface, pdocument);
    add_document(pdocument);
    return pdocument;
 }
@@ -108,10 +108,10 @@ document * document_template::create_new_document()
 /////////////////////////////////////////////////////////////////////////////
 // Default frame creation
 
-frame_window* document_template::create_new_frame(document * pdocument, frame_window* pOther, ::ca::create_context * pcreatecontext)
+frame_window* document_template::create_new_frame(::user::document_interface * pdocument, frame_window* pOther, ::ca::create_context * pcreatecontext)
 {
 
-   // create a frame wired to the specified document
+   // create a frame wired to the specified ::user::document_interface
 
    ASSERT(m_strMatter.get_length() > 0); // must have a resource ID to load from
    stacker < ::user::create_context > context(pcreatecontext->m_user);
@@ -160,7 +160,7 @@ frame_window* document_template::create_new_frame(document * pdocument, frame_wi
 }
 
 /*
-frame_window* document_template::CreateOleFrame(::ca::window* pParentWnd, document * pdocument,
+frame_window* document_template::CreateOleFrame(::ca::window* pParentWnd, ::user::document_interface * pdocument,
    BOOL bCreateView)
 {
    create_context context;
@@ -198,7 +198,7 @@ frame_window* document_template::CreateOleFrame(::ca::window* pParentWnd, docume
 }
 */
 
-void document_template::InitialUpdateFrame(frame_window* pFrame, document * pdocument,
+void document_template::InitialUpdateFrame(frame_window* pFrame, ::user::document_interface * pdocument,
    BOOL bMakeVisible)
 {
    // just delagate to implementation in frame_window
@@ -213,7 +213,7 @@ BOOL document_template::save_all_modified()
    count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
-      document * pdocument = get_document(index);
+      ::user::document_interface * pdocument = get_document(index);
       if (!pdocument->save_modified())
          return FALSE;
    }
@@ -227,7 +227,7 @@ void document_template::close_all_documents(BOOL)
    {
       try
       {
-         document * pdocument = get_document(index);
+         ::user::document_interface * pdocument = get_document(index);
          pdocument->on_close_document();
          remove_document(pdocument);
          delete pdocument;
@@ -243,8 +243,8 @@ void document_template::on_idle()
    count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
-      document * pdocument = get_document(index);
-      ASSERT_KINDOF(document, pdocument);
+      ::user::document_interface * pdocument = get_document(index);
+      ASSERT_KINDOF(::user::document_interface, pdocument);
       pdocument->on_idle();
    }
 }
@@ -273,7 +273,7 @@ void document_template::dump(dump_context & dumpcontext) const
       count count = get_document_count();
       for(index index = 0; index < count; index++)
       {
-         document * pdocument = get_document(index);
+         ::user::document_interface * pdocument = get_document(index);
       }
       dumpcontext << "\n}";
    }
@@ -288,7 +288,7 @@ void document_template::assert_valid() const
    count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
-      document * pdocument = get_document(index);
+      ::user::document_interface * pdocument = get_document(index);
    }
 }
 #endif //_DEBUG
@@ -299,7 +299,7 @@ void document_template::update_all_views(::view * pviewSender, LPARAM lhint, ::r
    count count = get_document_count();
    for(index index = 0; index < count; index++)
    {
-      document * pdoc = get_document(index);
+      ::user::document_interface * pdoc = get_document(index);
       pdoc->update_all_views(pviewSender, lhint, puh);
    }
 }

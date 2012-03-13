@@ -714,7 +714,7 @@ void document_manager::request(::ca::create_context * pcreatecontext)
    count count = m_templateptra.get_count();
    document_template::Confidence bestMatch = document_template::noAttempt;
    document_template * pBestTemplate = NULL;
-   document * pOpenDocument = NULL;
+   ::user::document_interface * pOpenDocument = NULL;
 
    /*char szPath[_MAX_PATH];
    ASSERT(lstrlen(varFileName) < _countof(szPath));

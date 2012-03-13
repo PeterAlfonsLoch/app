@@ -33,7 +33,7 @@ public:
    virtual void GetActiveViewSelection(::fs::item_array & itema);
 
 
-   virtual void FileManagerSaveAs(document * pdocument);
+   virtual void FileManagerSaveAs(::user::document_interface * pdocument);
    virtual void FileManagerSaveOK();
    virtual void FileManagerSaveCancel();
 

@@ -145,7 +145,7 @@ namespace nature
       if(bOk)
       {
          System.appa_set_locale(strLocale, true);
-         System.appa_set_style(strStyle, true);
+         System.appa_set_schema(strStyle, true);
          System.appa_load_string_table();
       }
       return bOk;
