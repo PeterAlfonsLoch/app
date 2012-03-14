@@ -27,12 +27,12 @@ namespace ca2
 
       doc.load(strContents);
 
-      doc.set_name("spa");
+      doc.get_root()->set_name("spa");
 
-      ::xml::node * lpnode = doc.GetChildByAttr("start", "id", pszId);
+      ::xml::node * lpnode = doc.get_root()->GetChildByAttr("start", "id", pszId);
       if(lpnode == NULL)
       {
-         lpnode = doc.add_child("start");
+         lpnode = doc.get_root()->add_child("start");
          lpnode->add_attr("id", pszId);
          Application.file().put_contents(strPath, doc.get_xml());
       }
@@ -46,11 +46,11 @@ namespace ca2
       strContents = Application.file().as_string(strPath);
       ::xml::document doc(get_app());
       doc.load(strContents);
-      doc.set_name("spa");
-      ::xml::node * lpnode = doc.GetChildByAttr("start", "id", pszId);
+      doc.get_root()->set_name("spa");
+      ::xml::node * lpnode = doc.get_root()->GetChildByAttr("start", "id", pszId);
       if(lpnode != NULL)
       {
-         doc.remove_child(lpnode);
+         doc.get_root()->remove_child(lpnode);
          Application.file().put_contents(strPath, doc.get_xml());
       }
    }
@@ -62,14 +62,14 @@ namespace ca2
       System.dir().mk(System.dir().name(strPath), get_app());
       ::xml::document doc(get_app());
       doc.load(Application.file().as_string(strPath));
-      if(doc.get_name().is_empty())
+      if(doc.get_root()->get_name().is_empty())
       {
-         doc.set_name("install");
+         doc.get_root()->set_name("install");
       }
-      ::xml::node * lpnodeInstalled = doc.get_child("installed");
+      ::xml::node * lpnodeInstalled = doc.get_root()->get_child("installed");
       if(lpnodeInstalled == NULL)
       {
-         lpnodeInstalled = doc.add_child("installed");
+         lpnodeInstalled = doc.get_root()->add_child("installed");
       }
       ::xml::node * lpnodeApp = lpnodeInstalled->GetChildByAttr("application", "id", pszId);
       if(lpnodeApp == NULL)
@@ -92,7 +92,7 @@ namespace ca2
       strContents = Application.file().as_string(strPath);
       ::xml::document doc(get_app());
       doc.load(strContents);
-      ::xml::node * lpnodeInstalled = doc.get_child("installed");
+      ::xml::node * lpnodeInstalled = doc.get_root()->get_child("installed");
       if(lpnodeInstalled == NULL)
          return false;
       ::xml::node * lpnodeApp = lpnodeInstalled->GetChildByAttr("application", "id", pszId);
