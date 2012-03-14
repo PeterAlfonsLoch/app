@@ -133,9 +133,9 @@ namespace user
       if(!doc.load(str))
          return false;
       playoutid->m_strPath = pszPath;
-      playoutid->m_strName = doc.attrs()["name"];
+      playoutid->m_strName = doc.get_root()->attrs()["name"];
       stringa straHkl;
-      straHkl.explode(";", doc.attr("hkla"));
+      straHkl.explode(";", doc.get_root()->attr("hkla"));
       for(int i = 0; i < straHkl.get_count(); i++)
       {
          string strHkl = straHkl[i];

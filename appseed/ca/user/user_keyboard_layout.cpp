@@ -102,9 +102,9 @@ namespace user
       ::xml::document doc(get_app());
       if(!doc.load(str))
          return false;
-      for(int i = 0; i < doc.get_children_count(); i++)
+      for(int i = 0; i < doc.get_root()->get_children_count(); i++)
       {
-         ::xml::node * pnode = doc.child_at(i);
+         ::xml::node * pnode = doc.get_root()->child_at(i);
          if(pnode->get_name().CompareNoCase("item") == 0)
          {
             string strKey = pnode->attr("key");
