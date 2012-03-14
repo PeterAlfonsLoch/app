@@ -267,15 +267,20 @@ namespace fontopus
       doc.load(strAuth);
       if(doc.get_root()->get_name() == "response")
       {
-         if(doc.attr("id") == "auth")
+         if(doc.get_root()->attr("id") == "auth")
          {
             return true;
          }
       }
       if(m_bInteractive)
       {
+         m_loginthread.m_strModHash.Empty();
+         m_loginthread.m_strKeyHash.Empty();
+         m_loginthread.m_strCa2Hash.Empty();
          ensure_main_document();
-         authentication_failed(-1, "");
+         page1();
+         show_and_request_auth();
+         return m_bLicense;
       }
       return false;
       string strDir;

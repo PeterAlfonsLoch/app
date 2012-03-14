@@ -34,6 +34,9 @@ namespace ca2
          virtual bool bergedge_start();
 
 
+         virtual bool check_license(const char * pszId, bool bInteractive);
+
+
       };
 
 

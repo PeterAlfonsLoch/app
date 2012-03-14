@@ -468,9 +468,9 @@ namespace ca2
             return load_cached_string_by_id(str, id, NULL, bLoadStringTable);
          }
       }
-      if(doc.get_name() == "string")
+      if(doc.get_root()->get_name() == "string")
       {
-         return load_cached_string_by_id(str, doc.attr("id"), doc.get_value(), bLoadStringTable);
+         return load_cached_string_by_id(str, doc.get_root()->attr("id"), doc.get_root()->get_value(), bLoadStringTable);
       }
       str = doc.get_name();
       return true;
@@ -564,10 +564,10 @@ namespace ca2
       if(!doc.load(strFile))
          return;
       string_to_string_map * pmapNew = new string_to_string_map;
-      for(int i = 0; i < doc.children().get_count(); i++)
+      for(int i = 0; i < doc.get_root()->children().get_count(); i++)
       {
-         string strId      = doc.child_at(i)->attr("id");
-         string strValue   = doc.child_at(i)->get_value();
+         string strId      = doc.get_root()->child_at(i)->attr("id");
+         string strValue   = doc.get_root()->child_at(i)->get_value();
          pmapNew->set_at(strId, strValue);
       }
       if(m_stringtablemap[strTableId] != NULL)

@@ -104,6 +104,14 @@ namespace ca2
          }
       }
 
+      bool application::check_license(const char * pszId, bool bInteractive)
+      {
+
+         ::ca::application * papp = get_app();
+         class validate authuser(papp, "err\\user\\authentication\\not_licensed.xhtml", true, bInteractive);
+         return authuser.get_license(pszId);
+
+      }
 
    } // namespace fontopus
 

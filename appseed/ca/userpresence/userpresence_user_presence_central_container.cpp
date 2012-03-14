@@ -8,6 +8,7 @@ namespace userpresence
    presence_central_container::presence_central_container()
    {
       m_pcentral = NULL;
+      m_bUserPresenceFeatureRequired = false;
    }
       
    presence_central_container::~presence_central_container()
@@ -18,7 +19,7 @@ namespace userpresence
    bool presence_central_container::initialize_central_container(::ca::application * papp)
    {
 
-      if(!App(papp).is_licensed("user_presence", true))
+      if(!App(papp).is_licensed("user_presence", m_bUserPresenceFeatureRequired))
       {
          TRACE("user presence not licensed for this user");
          return false;

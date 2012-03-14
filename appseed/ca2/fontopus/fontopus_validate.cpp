@@ -94,28 +94,19 @@ namespace ca2
       void validate::page1()
       {
          m_pdocAuth->get_html_data()->m_puser = m_loginthread.m_puser;
-         //string strUrl;
-         //strUrl = "http://spaignition.api.laborserver.net/query?node=install_application&id=";
-         //string strAppName;
-         //if(System.m_strAppName == "winactionarea")
-         //{
-           // strAppName = "_set_windesk";
-         //}
-         //else
-         //{
-           // strAppName = System.m_strAppName;
-         //}
-         //strUrl += strAppName;
-         //strUrl += "&key=name";
-         //m_pdocAuth->get_html_data()->m_propertyset["application_name"] = System.http().get(strUrl);
-         //if(m_strLicense.is_empty())
-         //{
-           // m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Authenticating";
-         //}
-         //else
-         //{
-           // m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Licensing";
-         //}
+         if(m_strLicense.is_empty())
+         {
+            m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Authenticating";
+         }
+         else
+         {
+            m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Licensing";
+            string strUrl;
+            strUrl = "http://spaignition.api.laborserver.net/query?node=install_application&id=";
+            strUrl += m_strLicense;
+            strUrl += "&key=name";
+            m_pdocAuth->get_html_data()->m_propertyset["project"] = System.http().get(strUrl);
+         }
          if(!m_pdocAuth->on_open_document(Application.dir().matter(m_strForm)))
          {
             authentication_failed(0, "Cannot open form for authentication!!");

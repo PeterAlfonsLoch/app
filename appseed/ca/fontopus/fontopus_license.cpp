@@ -27,13 +27,26 @@ namespace fontopus
 
    bool license::check(const char * pszId, bool bInteractive)
    {
+
       class info info;
       m_mapInfo.Lookup(pszId, info);
       info.m_strId = pszId;
-      class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true, bInteractive);
-      info.m_bLicensed = authuser.get_license(pszId);
+
+      bool bLicensed = false;
+
+      if(m_psession != NULL && m_psession->m_pbergedge != NULL)
+      {
+         bLicensed = App(m_psession->m_pbergedgeInterface).check_license(pszId, bInteractive);
+      }
+      else
+      {
+         bLicensed = Application.check_license(pszId, bInteractive);   
+      }
+      
+      info.m_bLicensed = bLicensed;
       m_mapInfo.set_at(pszId, info);
       return info.m_bLicensed;
+
    }
 
    count license::clear_all_cache()

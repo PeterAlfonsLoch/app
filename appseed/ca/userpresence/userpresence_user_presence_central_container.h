@@ -9,7 +9,8 @@ namespace userpresence
    public:
 
 
-      presence_central * m_pcentral;
+      presence_central *      m_pcentral;
+      bool                    m_bUserPresenceFeatureRequired;
 
 
       presence_central_container();
