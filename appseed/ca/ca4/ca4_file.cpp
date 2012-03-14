@@ -123,7 +123,8 @@ namespace ca4
          string strFormat;
          for(int j = 0; j < 16; j++)
          {
-            strFormat.Format("%02x", ((const char *)buf)[j]);
+            UINT ui = (((const char *)buf)[j]) & 0xff;
+            strFormat.Format("%02x", ui);
             strMd5 += strFormat;
          }
          write_ex1_string(spfile, NULL, strMd5);
