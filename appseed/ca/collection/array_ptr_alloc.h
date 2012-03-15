@@ -43,7 +43,6 @@ array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA >::array_ptr_alloc(const array_ptr_a
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA >::~array_ptr_alloc()
 {
-   this->remove_all();
 }
 
 

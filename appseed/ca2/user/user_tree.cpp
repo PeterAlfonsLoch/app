@@ -239,6 +239,11 @@ namespace user
 
    void tree::_001OnDraw(::ca::graphics *pdc)
    {
+
+
+
+
+
       rect rectClient;
 
       GetClientRect(rectClient);
@@ -327,6 +332,12 @@ namespace user
             }*/
          }
       }
+
+      if(m_spdata.is_null())
+         return;
+
+      if(m_spdata->is_in_use())
+         return;
 
       pdc->OffsetViewportOrg((int) -m_scrollinfo.m_ptScroll.x, (int) -(m_scrollinfo.m_ptScroll.y % _001GetItemHeight()));
 

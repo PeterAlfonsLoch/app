@@ -317,6 +317,8 @@ namespace visual
       UNREFERENCED_PARAMETER(iCharsPositions);
       UNREFERENCED_PARAMETER(lpiCharsPositions);
 
+      pdc->TextOut(lpcrect->left, lpcrect->top, psz);
+      return;
 
       if(IsGdippEnabled())
       {

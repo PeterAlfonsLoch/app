@@ -263,14 +263,18 @@ namespace ex1
    void tree_item::delete_descendants()
    {
       tree_item * pitem = m_pchild;
-      index iLevel = 0;
       tree_item_ptr_array ptra;
       while(pitem != NULL)
       {
          ptra.add(pitem);
-         pitem = pitem->get_item(TreeNavigationExpandedForward, &iLevel);
-         if(iLevel <= 0)
-            break;
+         try
+         {
+            pitem = pitem->m_pnext;
+         }
+         catch(...)
+         {
+
+         }
       }
       for(int i = 0; i < ptra.get_size(); i++)
       {

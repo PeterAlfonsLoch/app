@@ -44,7 +44,6 @@ array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::array_ptr_copy(const array_ptr_cop
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::~array_ptr_copy()
 {
-   this->remove_all();
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
