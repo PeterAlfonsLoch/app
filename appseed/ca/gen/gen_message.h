@@ -348,17 +348,6 @@ namespace gen
          };
 
 
-         class CLASS_DECL_ca mouse_wheel : public base
-         {
-         public:
-
-
-            mouse_wheel(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
-            UINT     GetFlags();
-            short    GetDelta();
-            point    GetPoint();
-         };
-
          class CLASS_DECL_ca mouse : public base
          {
          public:
@@ -377,6 +366,18 @@ namespace gen
 #endif
             static mouse * cast(gen::signal_object * pobj) { return (mouse *) pobj; }
          };
+
+         class CLASS_DECL_ca mouse_wheel : public mouse
+         {
+         public:
+
+
+            mouse_wheel(::ca::application * papp) : ca(papp), mouse(papp) {}
+            UINT     GetFlags();
+            short    GetDelta();
+            point    GetPoint();
+         };
+
 
          class CLASS_DECL_ca mouse_activate : public base
          {

@@ -106,7 +106,9 @@ namespace user
 
    void list::install_message_handling(::gen::message::dispatch * pinterface)
    {
+      
       ::user::scroll_view::install_message_handling(pinterface);
+
       IGUI_WIN_MSG_LINK(WM_SIZE,            pinterface, this, &list::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_VSCROLL,         pinterface, this, &list::_001OnVScroll);
       IGUI_WIN_MSG_LINK(WM_HSCROLL,         pinterface, this, &list::_001OnHScroll);
@@ -118,7 +120,6 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN,     pinterface, this, &list::_001OnRButtonDown);
 
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,       pinterface, this, &list::_001OnMouseMove);
-      IGUI_WIN_MSG_LINK(WM_MOUSEWHEEL,      pinterface, this, &list::_001OnMouseWheel);
 
       IGUI_WIN_MSG_LINK(WM_KEYDOWN,         pinterface, this, &list::_001OnKeyDown);
 
@@ -4635,19 +4636,16 @@ namespace user
       UNREFERENCED_PARAMETER(pdc);
    }
 
-   void list::_001OnMouseWheel(gen::signal_object * pobj)
+   int list::get_wheel_scroll_delta()
    {
-      SCAST_PTR(::gen::message::mouse_wheel, pmousewheel, pobj);
-      m_iWheelDelta += pmousewheel->GetDelta();
+      return 3 * m_iItemHeight;
+   }
 
-      index iDelta = m_iWheelDelta / WHEEL_DELTA;
 
-      m_iWheelDelta -= (short) (WHEEL_DELTA * iDelta);
+   void list::_001OnUpdateScrollPosition()
+   {
 
-      m_scrollinfo.m_ptScroll.y -= (LONG) (iDelta * 3 * m_iItemHeight);
-
-      _001UpdateScrollBars();
-
+      scroll_view::_001OnUpdateScrollPosition();
 
       HeaderCtrlLayout();
 
@@ -4655,12 +4653,8 @@ namespace user
 
       UpdateHover();
 
-      Redraw();
-
-
-      pmousewheel->set_lresult(0);
-      pmousewheel->m_bRet = true;
    }
+
 
 
    ::ca::pen * list::_001GetPenHighlight()

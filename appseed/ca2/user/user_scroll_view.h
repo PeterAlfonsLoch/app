@@ -34,6 +34,11 @@ namespace user
       ph(scroll_bar)    m_pscrollbarVert;
       scroll_info       m_scrollinfo;
 
+      short             m_iWheelDelta;
+
+
+
+
 
       scroll_view(::ca::application * papp);
       virtual ~scroll_view();
@@ -51,7 +56,7 @@ namespace user
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-
+      virtual int get_wheel_scroll_delta();
 
       void _001GetScrollInfo(scroll_info & info);
 
@@ -65,11 +70,22 @@ namespace user
 
       void send_scroll_message(::gen::message::scroll * pscroll);
 
+
+      virtual void _001OnUpdateScrollPosition();
+
+
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnSize)
       DECL_GEN_SIGNAL(_001OnVScroll)
       DECL_GEN_SIGNAL(_001OnHScroll)
+      DECL_GEN_SIGNAL(_001OnMouseWheel)
       DECL_GEN_SIGNAL(_001OnUser9654)
+
+
    };
 
+
 } // namespace user
+
+
+

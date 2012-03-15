@@ -5,116 +5,6 @@ namespace user
 {
 
 
-   void tree::_001DrawItem(tree_draw_item & data)
-   {
-      rect rect;
-
-      tree * ptree = this;
-      ex1::tree_item * pitem = data.m_pitem;
-
-      image_list * pimagelistItem = data.m_pitem->get_image_list();
-      image_list * pimagelistTree = ptree == NULL ? NULL : ptree->m_pimagelist;
-
-      bool bSelected    = ptree->is_selected(pitem);
-      bool bHover       = ptree->is_hover(pitem);
-
-      if(ptree != NULL && pimagelistTree != NULL && data.m_pitem->m_dwState & ::ex1::tree_item_state_expandable)
-      {
-
-         _001GetItemElementRect(rect, data, tree_element_expand_box);
-
-         int iImage;
-         if(data.m_pitem->m_dwState & ::ex1::tree_item_state_expanded)
-         {
-            iImage = (int) ptree->m_iImageCollapse;
-         }
-         else
-         {
-            iImage = (int) ptree->m_iImageExpand;
-         }
-         pimagelistTree->draw(data.m_pdc, iImage, rect.top_left(), 0);
-      }
-
-
-//      gen::savings & savings = System.savings();
-      if(bSelected) // selected
-      {
-         if(System.savings().is_trying_to_save(gen::resource_processing))
-         {
-            data.m_pdc->FillSolidRect(
-               data.m_rect,
-               RGB(96,96,96));
-         }
-         else
-         {
-            class rect rectUnion;
-            _001GetItemElementRect(
-               rect,
-               data,
-               tree_element_image);
-            rectUnion = rect;
-            _001GetItemElementRect(
-               rect,
-               data,
-               tree_element_text);
-            rectUnion.unite(rect, rectUnion);
-            class imaging & imaging = System.imaging();
-            COLORREF crTranslucid = RGB(0, 0, 0);
-            imaging.color_blend(
-                   data.m_pdc,
-                   rectUnion.left, rectUnion.top,
-                   rectUnion.width(), rectUnion.height(),
-                   crTranslucid, 127);
-         }
-         if(bHover)
-         {
-            data.m_pdc->set_color(m_crTextSelectedHighlight);
-         }
-         else
-         {
-            data.m_pdc->set_color(m_crTextSelected);
-         }
-      }
-      else
-      {
-         if(bHover)
-         {
-            data.m_pdc->set_color(m_crTextHighlight);
-         }
-         else
-         {
-            data.m_pdc->set_color(m_crText);
-         }
-      }
-
-      if(pimagelistItem != NULL)
-      {
-         int iImage = (int) data.m_pitem->get_image();
-         if(iImage >= 0)
-         {
-            _001GetItemElementRect(
-               rect,
-               data,
-               tree_element_image);
-            pimagelistItem->draw(
-               data.m_pdc,
-               iImage,
-               rect.top_left(),
-               0);
-         }
-      }
-
-      string strItem = data.m_pitem->get_text();
-
-      if(strItem.has_char() && _001GetItemElementRect(rect, data, tree_element_text))
-      {
-         ::ca::font_sp font(get_app());
-         font->operator=(*System.font_central().GetListCtrlFont());
-         font->set_bold();
-         data.m_pdc->set_font(font);
-         m_dcextension._DrawText(data.m_pdc, strItem, &rect, DT_LEFT | DT_BOTTOM);
-      }
-   }
 
 
    tree::tree(::ca::application * papp) :
@@ -132,6 +22,7 @@ namespace user
       m_crTextSelected           = ARGB(255, 255, 255, 255);
       m_crTextHighlight          = ARGB(255, 102, 153, 255);
       m_crTextSelectedHighlight  = ARGB(255, 172, 213, 255);
+      m_iItemHeight              = 18;
    }
 
    tree::~tree()
@@ -419,6 +310,116 @@ namespace user
 
    }
 
+   void tree::_001DrawItem(tree_draw_item & data)
+   {
+      rect rect;
+
+      tree * ptree = this;
+      ex1::tree_item * pitem = data.m_pitem;
+
+      image_list * pimagelistItem = data.m_pitem->get_image_list();
+      image_list * pimagelistTree = ptree == NULL ? NULL : ptree->m_pimagelist;
+
+      bool bSelected    = ptree->is_selected(pitem);
+      bool bHover       = ptree->is_hover(pitem);
+
+      if(ptree != NULL && pimagelistTree != NULL && data.m_pitem->m_dwState & ::ex1::tree_item_state_expandable)
+      {
+
+         _001GetItemElementRect(rect, data, tree_element_expand_box);
+
+         int iImage;
+         if(data.m_pitem->m_dwState & ::ex1::tree_item_state_expanded)
+         {
+            iImage = (int) ptree->m_iImageCollapse;
+         }
+         else
+         {
+            iImage = (int) ptree->m_iImageExpand;
+         }
+         pimagelistTree->draw(data.m_pdc, iImage, rect.top_left(), 0);
+      }
+
+
+//      gen::savings & savings = System.savings();
+      if(bSelected) // selected
+      {
+         if(System.savings().is_trying_to_save(gen::resource_processing))
+         {
+            data.m_pdc->FillSolidRect(
+               data.m_rect,
+               RGB(96,96,96));
+         }
+         else
+         {
+            class rect rectUnion;
+            _001GetItemElementRect(
+               rect,
+               data,
+               tree_element_image);
+            rectUnion = rect;
+            _001GetItemElementRect(
+               rect,
+               data,
+               tree_element_text);
+            rectUnion.unite(rect, rectUnion);
+            class imaging & imaging = System.imaging();
+            COLORREF crTranslucid = RGB(0, 0, 0);
+            imaging.color_blend(
+                   data.m_pdc,
+                   rectUnion.left, rectUnion.top,
+                   rectUnion.width(), rectUnion.height(),
+                   crTranslucid, 127);
+         }
+         if(bHover)
+         {
+            data.m_pdc->set_color(m_crTextSelectedHighlight);
+         }
+         else
+         {
+            data.m_pdc->set_color(m_crTextSelected);
+         }
+      }
+      else
+      {
+         if(bHover)
+         {
+            data.m_pdc->set_color(m_crTextHighlight);
+         }
+         else
+         {
+            data.m_pdc->set_color(m_crText);
+         }
+      }
+
+      if(pimagelistItem != NULL)
+      {
+         int iImage = (int) data.m_pitem->get_image();
+         if(iImage >= 0)
+         {
+            _001GetItemElementRect(
+               rect,
+               data,
+               tree_element_image);
+            pimagelistItem->draw(
+               data.m_pdc,
+               iImage,
+               rect.top_left(),
+               0);
+         }
+      }
+
+      string strItem = data.m_pitem->get_text();
+
+      if(strItem.has_char() && _001GetItemElementRect(rect, data, tree_element_text))
+      {
+         ::ca::font_sp font(get_app());
+         font->operator=(*System.font_central().GetListCtrlFont());
+         font->set_bold();
+         data.m_pdc->set_font(font);
+         m_dcextension._DrawText(data.m_pdc, strItem, &rect, DT_LEFT | DT_BOTTOM);
+      }
+   }
 
 
    index tree::_001GetIndentation()
@@ -653,7 +654,7 @@ namespace user
 
    int tree::_001GetItemHeight()
    {
-      return 18;
+      return m_iItemHeight;
    }
 
    void tree::install_message_handling(::gen::message::dispatch * pdispatch)
@@ -795,21 +796,38 @@ namespace user
 
    void tree::_001OnVScroll(gen::signal_object * pobj)
    {
-      //SCAST_PTR(::gen::message::scroll, pscroll, pobj);
+
       pobj->previous();
+
+
+   }
+
+
+   void tree::_001OnHScroll(gen::signal_object * pobj)
+   {
+
+      pobj->previous();
+
+   }
+
+   void tree::_001OnUpdateScrollPosition()
+   {
+
+      scroll_view::_001OnUpdateScrollPosition();
+
+//      HeaderCtrlLayout();
+      
+//      CacheHint();
+
       m_pitemFirstVisible = CalcFirstVisibleItem(
          m_iFirstVisibleItemLevel,
          m_iFirstVisibleItemProperIndex);
 
 
-   }
-
-   void tree::_001OnHScroll(gen::signal_object * pobj)
-   {
-      //SCAST_PTR(::gen::message::scroll, pscroll, pobj);
-      pobj->previous();
+      UpdateHover();
 
    }
+
 
 /*   void tree::SetScrollSizes()
    {
@@ -994,14 +1012,34 @@ namespace user
       return base < tree >::bases(pui) && !m_treeptra.contains(dynamic_cast < tree * > (pui));
    }
 
+
    bool tree::merge(::user::interaction * pui)
    {
+
+
       tree * ptree = dynamic_cast < tree * > (pui);
+      
       if(!insert_item(ptree->get_base_item(), ex1::RelativeLastChild, get_base_item()))
          return false;
+
       m_treeptra.add(ptree);
+
       return true;
+
+
    }
+
+
+   int tree::get_wheel_scroll_delta()
+   {
+
+
+      return 3 * m_iItemHeight;
+
+
+   }
+
+
 
 
 } // namespace ex1

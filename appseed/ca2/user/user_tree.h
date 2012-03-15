@@ -63,6 +63,8 @@ namespace user
       image_list *                  m_pimagelist;
       index                         m_iImageCollapse;
       index                         m_iImageExpand;
+      int                           m_iItemHeight;
+      
 
       tree(::ca::application * papp);
       virtual ~tree();
@@ -98,6 +100,11 @@ namespace user
       void _001OnClick(UINT uiFlags, point point);
 
 
+      virtual int get_wheel_scroll_delta();
+
+      virtual void _001OnUpdateScrollPosition();
+
+
       image_list * get_image_list();
 
       virtual COLORREF get_background_color();
@@ -106,7 +113,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnMouseMove)
       DECL_GEN_SIGNAL(_001OnMouseLeave)
       DECL_GEN_SIGNAL(_001OnLButtonDown)
-       DECL_GEN_SIGNAL(_001OnLButtonUp)
+      DECL_GEN_SIGNAL(_001OnLButtonUp)
       DECL_GEN_SIGNAL(_001OnLButtonDblClk)
       DECL_GEN_SIGNAL(_001OnTimer)
       DECL_GEN_SIGNAL(_001OnCreate)

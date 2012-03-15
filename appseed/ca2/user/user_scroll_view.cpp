@@ -4,9 +4,11 @@
 namespace user
 {
 
+
    scroll_view::scroll_view(::ca::application * papp) :
       ca(papp)
    {
+
       m_pscrollbarHorz = NULL;
       m_pscrollbarVert = NULL;
 
@@ -172,6 +174,53 @@ namespace user
       PostMessage(WM_USER + 9654, 0, 0);
    }
 
+   int scroll_view::get_wheel_scroll_delta()
+   {
+
+      return 1;
+
+   }
+
+   void scroll_view::_001OnUpdateScrollPosition()
+   {
+      
+      
+      _001UpdateScrollBars();
+
+
+   }
+
+
+   void scroll_view::_001OnMouseWheel(gen::signal_object * pobj)
+   {
+      
+      SCAST_PTR(::gen::message::mouse_wheel, pmousewheel, pobj);
+
+      m_iWheelDelta += pmousewheel->GetDelta();
+
+      index iDelta = m_iWheelDelta / WHEEL_DELTA;
+
+      m_iWheelDelta -= (short) (WHEEL_DELTA * iDelta);
+
+      m_scrollinfo.m_ptScroll.y -= (LONG) (iDelta * get_wheel_scroll_delta());
+
+      if(m_scrollinfo.m_ptScroll.y > m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom)
+         m_scrollinfo.m_ptScroll.y = m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom; 
+
+
+      _001OnUpdateScrollPosition();
+
+      
+
+
+
+      pmousewheel->set_lresult(0);
+      pmousewheel->m_bRet = true;
+
+
+   }
+
+
    void scroll_view::_001UpdateScrollBars()
    {
 
@@ -228,12 +277,19 @@ namespace user
 
    void scroll_view::install_message_handling(::gen::message::dispatch * pinterface)
    {
+      
+      
       control::install_message_handling(pinterface);
+
       IGUI_WIN_MSG_LINK(WM_CREATE,          pinterface, this, &scroll_view::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_SIZE,            pinterface, this, &scroll_view::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_VSCROLL,         pinterface, this, &scroll_view::_001OnVScroll);
       IGUI_WIN_MSG_LINK(WM_HSCROLL,         pinterface, this, &scroll_view::_001OnHScroll);
+      IGUI_WIN_MSG_LINK(WM_MOUSEWHEEL,      pinterface, this, &scroll_view::_001OnMouseWheel);
+
       IGUI_WIN_MSG_LINK(WM_USER + 9654,     pinterface, this, &scroll_view::_001OnUser9654);
+
+
    }
 
 

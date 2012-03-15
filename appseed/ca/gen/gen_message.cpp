@@ -177,6 +177,11 @@ namespace gen
                pbase = new mouse(get_app());
             }
             break;
+         case PrototypeMouseWheel:
+            {
+               pbase = new mouse_wheel(get_app());
+            }
+            break;
          case PrototypeSize:
             {
                pbase = new size(get_app());
@@ -424,6 +429,8 @@ namespace gen
          case WM_NCLBUTTONDOWN:
          case WM_NCLBUTTONUP:
             return PrototypeMouse;
+         case WM_MOUSEWHEEL:
+            return PrototypeMouseWheel;
          case WM_NCACTIVATE:
             return PrototypeNcActivate;
          case WM_TIMER:

@@ -459,8 +459,6 @@ namespace user
       int                           m_iItemHeight;
       int                           m_iItemWidth;
 
-      short                         m_iWheelDelta;
-
       index                         m_iItemHover;
       index                         m_iSubItemHover;
 
@@ -718,7 +716,6 @@ namespace user
       DECL_GEN_SIGNAL(_001OnSize)
       DECL_GEN_SIGNAL(_001OnMouseLeave)
       DECL_GEN_SIGNAL(_001OnMouseMove)
-      DECL_GEN_SIGNAL(_001OnMouseWheel)
       DECL_GEN_SIGNAL(_001OnLButtonDown)
       DECL_GEN_SIGNAL(_001OnLButtonUp)
       DECL_GEN_SIGNAL(_001OnLButtonDblClk)
@@ -793,11 +790,22 @@ namespace user
 
       EView _001GetView();
 
+
+      virtual int get_wheel_scroll_delta();
+
+      virtual void _001OnUpdateScrollPosition();
+
       bool keyboard_focus_is_focusable();
 
       DECL_GEN_SIGNAL(_001OnVScroll)
       DECL_GEN_SIGNAL(_001OnHScroll)
 
+
    };
 
+
 } // namespace user
+
+
+
+
