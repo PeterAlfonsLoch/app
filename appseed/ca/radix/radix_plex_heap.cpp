@@ -31,6 +31,8 @@ public:
    plex_heap *    m_pBlocks;     // linked list of blocks (is nBlocks*nAllocSize)
    node*          m_pnodeFree;   // first free node (NULL if no free nodes)
    mutex          m_mutex;
+   __int64        m_iFreeHitCount;
+   node *         m_pnodeLastBlock;
 
 
    plex_heap_alloc(UINT nAllocSize, UINT nBlockSize = 64);
@@ -94,6 +96,8 @@ plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
    m_nBlockSize = nBlockSize;
    m_pnodeFree = NULL;
    m_pBlocks = NULL;
+   m_iFreeHitCount = 0;
+   m_pnodeLastBlock = NULL;
 
 }
 
@@ -161,6 +165,10 @@ void plex_heap_alloc::Free(void * p)
    node* pNode = (node*)p;
    if(pNode == m_pnodeFree) // dbgsnp - debug snippet
       AfxDebugBreak();
+   if(m_pnodeLastBlock != NULL)
+      system_heap_free(m_pnodeLastBlock);
+   m_pnodeLastBlock = (node *) system_heap_alloc(m_nAllocSize + 32);
+   memcpy(m_pnodeLastBlock, pNode, m_nAllocSize + 32);
    pNode->pNext = m_pnodeFree;
    m_pnodeFree = pNode;
 

@@ -77,6 +77,7 @@ verisimple_wstring::~verisimple_wstring()
 {
 
    wstring_data::free(m_pwsz);
+   m_pwsz = NULL;
 
 }
 

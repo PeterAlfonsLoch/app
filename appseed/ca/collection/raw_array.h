@@ -1,6 +1,8 @@
 #pragma once
 
-#undef new
+//#undef new
+
+#define new DEBUG_NEW
 
 #ifndef __max
 #define __max(a,b)  (((a) > (b)) ? (a) : (b))
@@ -602,8 +604,10 @@ void raw_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, cou
 
       // re-init slots we copied from
       memset((void *)(m_pData + nIndex), 0, (size_t)nCount * sizeof(TYPE));
+#undef new
       for( int i = 0; i < nCount; i++ )
          ::new( (void *)( m_pData + nIndex + i ) ) TYPE;
+#define new DEBUG_NEW
    }
 
    // insert new value in the gap
