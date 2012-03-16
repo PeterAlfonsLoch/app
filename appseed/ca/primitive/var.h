@@ -31,7 +31,7 @@ class var_array;
 namespace gen
 {
    class property;
-   class var_property;
+   class property;
    class property_set;
    class pair_set_interface;
    class str_str_interface;
@@ -125,7 +125,6 @@ public:
    var(const gen::property_set & set);
    var(const var & var);
    var(const gen::property & prop);
-   var(const gen::var_property & prop);
    var(const gen::pair_set_interface & set);
    var(const gen::str_str_interface & set);
    var(const string_composite & composite);
@@ -179,7 +178,7 @@ public:
    int64_array                      int64a() const;
    var_array                        vara()  const;
    gen::property_set                propset() const;
-   gen::var_property                prop() const;
+   gen::property                prop() const;
 
    bool is_scalar() const;
    bool is_array() const;
@@ -261,7 +260,6 @@ public:
    var & operator = (const char * psz);
    var & operator = (const wchar_t * lpcsz);
    var & operator = (const gen::property & prop);
-   var & operator = (const gen::var_property & prop);
    var & operator = (const var & var);
    var & operator = (const int_array & ia);
    var & operator = (const stringa & stra);

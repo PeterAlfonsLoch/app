@@ -47,7 +47,7 @@ namespace dynamic_source
    gen::property & script_interface::gprop(const char * pszKey)
    {
       UNREFERENCED_PARAMETER(pszKey);
-      return gen::g_newproperty;
+      throw interface_only_exception();
    }
 
    bool script_interface::isset(gen::property & prop)

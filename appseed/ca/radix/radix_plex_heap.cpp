@@ -144,9 +144,13 @@ void * plex_heap_alloc::Alloc()
    // remove the first available node from the free list
    void * pNode = m_pnodeFree;
    m_pnodeFree = m_pnodeFree->pNext;
-   memset(&((byte *)pNode)[16], 0, m_nAllocSize);
-   return &((byte *)pNode)[16];
+   void * pdata = &((byte *)pNode)[16];
+   sl.unlock();
+   memset(pdata, 0, m_nAllocSize);
+   return pdata;
 }
+
+#define STORE_LAST_BLOCK 0
 
 void plex_heap_alloc::Free(void * p)
 {
@@ -165,10 +169,14 @@ void plex_heap_alloc::Free(void * p)
    node* pNode = (node*)p;
    if(pNode == m_pnodeFree) // dbgsnp - debug snippet
       AfxDebugBreak();
+
+#if STORE_LAST_BLOCK
    if(m_pnodeLastBlock != NULL)
       system_heap_free(m_pnodeLastBlock);
    m_pnodeLastBlock = (node *) system_heap_alloc(m_nAllocSize + 32);
    memcpy(m_pnodeLastBlock, pNode, m_nAllocSize + 32);
+#endif
+
    pNode->pNext = m_pnodeFree;
    m_pnodeFree = pNode;
 

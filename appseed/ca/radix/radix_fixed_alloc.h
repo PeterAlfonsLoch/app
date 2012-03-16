@@ -28,20 +28,26 @@ public:
    node* m_pnodeFree;   // first free node (NULL if no free nodes)
 };
 
-class CLASS_DECL_ca fixed_alloc : public fixed_alloc_no_sync
+class CLASS_DECL_ca fixed_alloc
 {
 public:
+
+
+   simple_critical_section                   m_protect;
+   int                                       m_i;
+   raw_array < simple_critical_section * >   m_protectptra;
+   raw_array < fixed_alloc_no_sync * >       m_allocptra;
+
+
    typedef class fixed_alloc_no_sync baseclass;
 
-   fixed_alloc(UINT nAllocSize, UINT nBlockSize = 64);
+   fixed_alloc(UINT nAllocSize, UINT nBlockSize = 64, int iShareCount = 8);
    ~fixed_alloc();
 
    void * Alloc();   // return a chunk of primitive::memory of nAllocSize
    void Free(void * p);   // free chunk of primitive::memory returned from Alloc
    void FreeAll();   // free everything allocated from this allocator
 
-protected:
-   simple_critical_section m_protect;
 };
 
 #include "exception/base_exception.h"

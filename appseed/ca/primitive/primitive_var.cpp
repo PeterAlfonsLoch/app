@@ -162,13 +162,6 @@ var::var(const gen::property & prop)
    operator = (prop);
 }
 
-var::var(const gen::var_property & prop)
-{
-   m_etype = type_new;
-   m_pca2 = NULL;
-   operator = (prop);
-}
-
 var::var(const string_composite & composite)
 {
    m_etype = type_new;
@@ -541,12 +534,6 @@ class var & var::operator = (const wchar_t * lpcsz)
 class var & var::operator = (const gen::property & prop)
 {
    operator = (((gen::property &)prop).get_value());
-   return *this;
-}
-
-class var & var::operator = (const gen::var_property & prop)
-{
-   operator = (((gen::var_property &)prop).get_value());
    return *this;
 }
 
@@ -1920,12 +1907,12 @@ gen::property & var::prop()
    }
    if(m_pca2 == NULL)
    {
-      m_pca2 = new gen::var_property();
+      m_pca2 = new gen::property();
    }
    return *dynamic_cast < gen::property * > (m_pca2);
 }
 
-gen::var_property var::prop() const
+gen::property var::prop() const
 {
    if(get_type() != type_prop)
    {

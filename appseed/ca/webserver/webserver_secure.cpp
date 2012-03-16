@@ -173,6 +173,8 @@ bool secure::login_check()
    if(gen::str::begins(inattr("request_uri"), gprop("g_secureLoginFront")) && gprop("g_secureLoginFront").get_string().get_length() > 8)
    {
       gprop("minUserLevel") = 0;
+      bOptional = true;
+      bEnforce = false;
    }
    if(request("ruri").is_set())
    {

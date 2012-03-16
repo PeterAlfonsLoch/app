@@ -51,7 +51,7 @@ namespace gen
    };
 
    class CLASS_DECL_ca var_property_array :
-      public ex1::serializable_array < array_ptr_alloc < var_property, var_property & > >
+      public ex1::serializable_array < array_ptr_alloc < property, property & > >
    {
    public:
    };

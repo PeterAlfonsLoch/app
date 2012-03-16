@@ -1760,15 +1760,11 @@ namespace xml
    //========================================================
    attr * node::add_attr(const ::xml::attr & attr)
    {
-      if(m_attra.find(attr.name()))
-      {
-         m_attra[attr.name()].set_string(attr.get_value(), m_attra[attr.name()].get_value_count());
-      }
-      else
-      {
-         add_attr(attr.name(), attr.get_string());
-      }
+
+      m_attra[attr.name()].set_string(attr.get_value());
+
       return find_attr(attr.name());
+
    }
 
    //========================================================
@@ -1852,7 +1848,7 @@ namespace xml
    //========================================================
    attr * node::detach_attr(::xml::attr * attr )
    {
-      index find = m_attra.m_propertya.find_first((gen::var_property *) attr);
+      index find = m_attra.m_propertya.find_first((gen::property *) attr);
       if(find >= 0)
       {
          m_attra.m_propertya.remove_at(find);

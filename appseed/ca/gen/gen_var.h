@@ -9,7 +9,7 @@ class var_array;
 namespace gen
 {
    class property;
-   class var_property;
+   class property;
    class property_set;
    class pair_set_interface;
    class str_str_interface;

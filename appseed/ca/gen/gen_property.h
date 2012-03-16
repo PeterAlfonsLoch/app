@@ -76,24 +76,35 @@ namespace gen
 
       string            m_strName;
       property_set *    m_pset;
+      var               m_var;
 
 
-      property(void);
+      property();
+      property(const property & prop);
+      property(const char * pszName);
+      property(index iIndex);
+      property(const char * pszName, var & var);
       ~property(void);
 
-      string & name();
-      string name() const;
+      inline string & name()
+      {
+         return m_strName;
+      }
+      inline string name() const
+      {
+         return m_strName;
+      }
 
-      stringa & stra(index iIndex = -1);
-      int_array & inta(index iIndex = -1);
-      var_array & vara(index iIndex = -1);
-      property_set & propset(index iIndex = -1);
-      const stringa & stra(index iIndex = -1) const;
-      const int_array & inta(index iIndex = -1) const;
-      const var_array & vara(index iIndex = -1) const;
-      const property_set & propset(index iIndex = -1) const;
-      virtual void get_string(char * psz) const;
-      virtual strsize get_length() const;
+      stringa & stra();
+      int_array & inta();
+      var_array & vara();
+      property_set & propset();
+      const stringa & stra() const;
+      const int_array & inta() const;
+      const var_array & vara() const;
+      const property_set & propset() const;
+      inline void get_string(char * psz) const;
+      inline strsize get_length() const;
 
       string get_xml(::xml::disp_option * opt = ((::xml::disp_option *) 1));
 
@@ -101,67 +112,70 @@ namespace gen
       property & operator[](const char * pszName);
       property & operator[](index iIndex);
 
-      virtual var & get_value(index iIndex = -1) = 0;
-      virtual var get_value(index iIndex = -1) const;
-      virtual void   set_value(const var & var, index iIndex = -1) = 0;
-      virtual void unset(index iIndex = -1);
-      virtual count get_value_count();
-
-      virtual void   get_value(var & value, index iIndex = -1);
-      virtual void   get(var & value, index iIndex = -1);
-      virtual var &  get(index iIndex = -1);
-      virtual void   set(const var & var, index iIndex = -1);
-
-
-
-      int get_integer(index iIndex = -1, int iDefault = 0)
+      inline var & get_value()
       {
-         return get_value(iIndex).get_integer(iDefault);
+         return m_var;
+      }
+      inline var get_value() const
+      {
+         return m_var;
+      }
+      inline void set_value(const var & var)
+      {
+         m_var = var;
+      }
+      inline void unset();
+
+      inline void   get_value(var & value);
+      inline void   get(var & value);
+      inline var &  get();
+      inline void   set(const var & var);
+
+
+
+      int get_integer(int iDefault = 0)
+      {
+         return get_value().get_integer(iDefault);
       }
 
-      int get_integer(index iIndex = -1, int iDefault = 0) const
+      int get_integer(int iDefault = 0) const
       {
-         return get_value(iIndex).get_integer(iDefault);
+         return get_value().get_integer(iDefault);
       }
 
-      double get_double(index iIndex = -1)
+      double get_double()
       {
-         return get_value(iIndex).get_double();
+         return get_value().get_double();
       }
 
-      double get_double(index iIndex = -1) const
+      double get_double() const
       {
-         return get_value(iIndex).get_double();
+         return get_value().get_double();
       }
 
-      bool get_bool(index iIndex = -1)
+      bool get_bool()
       {
-         return get_value(iIndex).get_bool();
+         return get_value().get_bool();
       }
 
-      bool get_bool(index iIndex = -1) const
+      bool get_bool() const
       {
-         return get_value(iIndex).get_bool();
+         return get_value().get_bool();
       }
 
-      string get_string(index iIndex = -1)
+      string get_string()
       {
-         return get_value(iIndex).get_string();
+         return get_value().get_string();
       }
 
-      string get_string(index iIndex = -1) const
+      string get_string() const
       {
-         return get_value(iIndex).get_string();
+         return get_value().get_string();
       }
 
       void set_string(const char * psz)
       {
-         get_value(-1) = psz;
-      }
-
-      void set_string(const char * psz, index iIndex)
-      {
-         get_value(iIndex) = psz;
+         get_value() = psz;
       }
 
       property & operator++(int)
@@ -273,25 +287,25 @@ namespace gen
       var equals_ci_get(const char * pszCompare, var varOnEqual) const;
 
 
-      count get_count(index iIndex = -1) const;
-      count array_get_count(index iIndex = -1) const;
-      bool array_contains(const char * psz, index iIndex = -1, index first = 0, index last = -1) const;
-      bool array_contains_ci(const char * psz, index iIndex = -1, index first = 0, index last = -1) const;
+      count get_count() const;
+      count array_get_count() const;
+      bool array_contains(const char * psz, index first = 0, index last = -1) const;
+      bool array_contains_ci(const char * psz, index first = 0, index last = -1) const;
 
 
-      bool is_set(index iIndex = -1) const;
-      bool is_new(index iIndex = -1) const;
-      bool is_null(index iIndex = -1) const;
-      bool is_new_or_null(index iIndex = -1) const;
-      bool is_empty(index iIndex = -1) const;
-      bool is_true(index iIndex = -1) const;
+      bool is_set() const;
+      bool is_new() const;
+      bool is_null() const;
+      bool is_new_or_null() const;
+      bool is_empty() const;
+      bool is_true() const;
 
-      virtual string implode(const char * pszGlue, index iIndex = -1) const;
+      inline string implode(const char * pszGlue) const;
 
       var element_at(index iIndex) const;
       var at(index iIndex) const;
 
-      int compare_value_ci(const char * psz, index iIndex = -1) const;
+      int compare_value_ci(const char * psz) const;
 
       variable_strict_compare strict_compare() const;
 
@@ -441,6 +455,8 @@ namespace gen
       property & operator += (double d);
       property & operator += (const var & var);
       property & operator += (const property & prop);
+      property & operator += (const char * psz);
+      property & operator += (const string & str);
 
       property & operator /= (int i);
       property & operator /= (unsigned int user);
@@ -464,35 +480,8 @@ namespace gen
       void parse_json(const char * & pszJson, const char * pszEnd);
 
 
-      var explode(const char * pszSeparator, bool bAddEmpty = true, index iIndex = -1) const;
+      var explode(const char * pszSeparator, bool bAddEmpty = true) const;
 
-
-   };
-
-   class CLASS_DECL_ca var_property :
-      public property
-   {
-   public:
-
-
-      var_array m_vara;
-
-
-      var_property();
-      var_property(const property & prop);
-      var_property(const char * pszName);
-      var_property(index iIndex);
-      var_property(const char * pszName, var & var);
-      var_property(const var_property & prop);
-      virtual ~var_property();
-
-      virtual var & get_value(index iIndex = -1);
-      virtual var get_value(index iIndex = -1) const;
-      virtual void set_value(const var & var, index iIndex = -1);
-      virtual count get_value_count();
-
-
-      var_property & operator = (const var_property & prop);
 
       #undef new
       #undef delete
@@ -512,56 +501,19 @@ namespace gen
       #endif
       #define new DEBUG_NEW
 
-
    };
 
 
-   class CLASS_DECL_ca null_property :
-      public property
-   {
-   public:
-      virtual var &  get_value(index iIndex = -1);
-      virtual void   set_value(const var & var, index iIndex = -1);
-   private:
-      null_const   m_nullconst;
-   };
-
-   class CLASS_DECL_ca empty_property :
-      public property
-   {
-   public:
-      virtual var &  get_value(index iIndex = -1);
-      virtual void   set_value(const var & var, index iIndex = -1);
-   private:
-      empty_const   m_emptyconst;
-   };
-
-   class CLASS_DECL_ca new_property :
-      public property
-   {
-   public:
-      virtual var &  get_value(index iIndex = -1);
-      virtual void   set_value(const var & var, index iIndex = -1);
-   private:
-      new_const   m_newconst;
-   };
-
-   class CLASS_DECL_ca var_property_array :
-      public ex1::byte_serializable_array < array_ptr_alloc < var_property, var_property & > >
+   class CLASS_DECL_ca property_array :
+      public ex1::byte_serializable_array < array_ptr_alloc < property, property & > >
    {
    public:
       
       
-      var_property_array();
+      property_array();
 
 
    };
-
-
-
-   extern CLASS_DECL_ca new_property g_newproperty;
-   extern CLASS_DECL_ca null_property g_nullproperty;
-   extern CLASS_DECL_ca empty_property g_emptyproperty;
 
 
    namespace str

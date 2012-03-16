@@ -1964,19 +1964,19 @@ namespace dynamic_source
          if(!localeschema().m_bSchemaOnly)
          {
 
-            strCandidate = strBase + strSubdomain + "_std/" + gstr("param_style") + strType + strDoc + strExt;
-            dprint("candidate2=" + strCandidate);
-            dprint("<br />");
-            strPath = System.dir().path(pszSystemPath, strCandidate);
+            strPath = strPrefix + "_std/" + gstr("param_style") + strSuffix;
+            //dprint("candidate2=" + strCandidate);
+            //dprint("<br />");
+            //strPath = System.dir().path(pszSystemPath, strCandidate);
             dprint("path=" + strPath);
             if(get_manager()->include_matches_file_exists(strPath))
             {
                return strPath;
             }
             dprint("<br />");
-            strCandidate = strBase + strSubdomain + "_std/_std/" + strType + strDoc + strExt;
-            dprint("candidate3=" + strCandidate);
-            strPath = System.dir().path(pszSystemPath, strCandidate);
+            strPath = strPrefix + "_std/_std" + strSuffix;
+            //dprint("candidate3=" + strCandidate);
+            //strPath = System.dir().path(pszSystemPath, strCandidate);
             dprint("path=" + strPath);
             if(get_manager()->include_matches_file_exists(strPath))
             {

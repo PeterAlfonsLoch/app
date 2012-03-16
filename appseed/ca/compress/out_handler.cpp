@@ -332,7 +332,7 @@ namespace compress
 
    ex1::HRes out_handler::SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value)
    {
-      gen::var_property prop;
+      gen::property prop;
       int index = FindPropIdExact(name);
       if (index < 0)
          return E_INVALIDARG;
@@ -603,7 +603,7 @@ namespace compress
          if (index < 0)
             return E_INVALIDARG;
          const CNameToPropID &nameToPropID = g_NameToPropID[index];
-         gen::var_property prop;
+         gen::property prop;
          prop.m_strName = gen::str::itoa(nameToPropID.PropID);
 
          if (atoi(prop.name()) == NCoderPropID::kBlockSize ||

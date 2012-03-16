@@ -1,13 +1,13 @@
 #include "StdAfx.h"
 
+
 #define ROUND(x,y) (((x)+(y-1))&~(y-1))
 #define ROUND16(x) ROUND(x, 16)
 
+
 namespace gen
 {
-   CLASS_DECL_ca new_property g_newproperty;
-   CLASS_DECL_ca null_property g_nullproperty;
-   CLASS_DECL_ca empty_property g_emptyproperty;
+
 
    pair_set_interface::pair_set_interface()
    {
@@ -146,39 +146,29 @@ namespace gen
       return empty_string();
    }
 
-   void property::get_value(var & value, index iIndex)
+   void property::get_value(var & value)
    {
-      value = get_value(iIndex);
+      value = get_value();
    }
 
-   void property::get(var & value, index iIndex)
+   void property::get(var & value)
    {
-      value = get_value(iIndex);
+      value = get_value();
    }
 
-   var property::get_value(index iIndex) const
+   var & property::get()
    {
-      return get_value(iIndex);
+      return get_value();
    }
 
-   var & property::get(index iIndex)
+   void property::set(const var & var)
    {
-      return get_value(iIndex);
+      set_value(var);
    }
 
-   void property::set(const var & var, index iIndex)
+   void property::unset()
    {
-      set_value(var, iIndex);
-   }
-
-   void property::unset(index iIndex)
-   {
-      get_value(iIndex).unset();
-   }
-
-   count property::get_value_count()
-   {
-      return 1;
+      get_value().unset();
    }
 
    string property::operator + (const char * psz) const
@@ -202,7 +192,7 @@ namespace gen
    }
 
 
-   property & property::operator =(const property & prop)
+   property & property::operator = (const property & prop)
    {
       if(&prop != this)
       {
@@ -210,211 +200,72 @@ namespace gen
          {
             m_strName = prop.m_strName;
          }
-         set_value((( property & ) prop).get_value());
+         m_var = prop.m_var;
       }
       return *this;
    }
 
-
-
-   var & var_property::get_value(index iIndex)
-   {
-      if(iIndex < 0)
-      {
-         if(m_vara.get_count() == 0)
-            m_vara.set_size(1);
-         return m_vara.last_element();
-      }
-      else
-         return m_vara[iIndex];
-   }
-
-   count var_property::get_value_count()
-   {
-      return m_vara.get_count();
-   }
-
-   var var_property::get_value(index iIndex) const
-   {
-      if(iIndex < 0)
-      {
-         ASSERT(m_vara.get_count() > 0);
-         return m_vara.last_element();
-      }
-      else
-         return m_vara[iIndex];
-   }
-
-   void var_property::set_value(const var & var, index iIndex)
-   {
-      if(m_pset != NULL && m_pset->m_bMultiValue)
-      {
-         if(iIndex == -1)
-         {
-            m_vara.add(var);
-         }
-         else
-         {
-            m_vara.set_at_grow(iIndex, var);
-         }
-      }
-      else
-      {
-         m_vara.set_at_grow(0, var);
-      }
-   }
-
-   var & new_property::get_value(index iIndex)
-   {
-      UNREFERENCED_PARAMETER(iIndex);
-      return m_newconst;
-   }
-
-   void new_property::set_value(const var & var, index iIndex)
-   {
-      UNREFERENCED_PARAMETER(var);
-      UNREFERENCED_PARAMETER(iIndex);
-      throw "unsupported!";
-   }
-
-
-   var & null_property::get_value(index iIndex)
-   {
-      UNREFERENCED_PARAMETER(iIndex);
-      return m_nullconst;
-   }
-
-   void null_property::set_value(const var & var, index iIndex)
-   {
-      UNREFERENCED_PARAMETER(var);
-      UNREFERENCED_PARAMETER(iIndex);
-      throw "unsupported!";
-   }
-
-   var & empty_property::get_value(index iIndex)
-   {
-      UNREFERENCED_PARAMETER(iIndex);
-      return m_emptyconst;
-   }
-
-   void empty_property::set_value(const var & var, index iIndex)
-   {
-      UNREFERENCED_PARAMETER(var);
-      UNREFERENCED_PARAMETER(iIndex);
-      throw "unsupported!";
-   }
 
    property::property(void)
    {
       m_pset = NULL;
    }
 
-   var_property::var_property()
-   {
-   }
-
-   var_property::var_property(const var_property & prop)
+   property::property(const property & prop)
    {
       property::operator = ((const property &) prop);
    }
 
-   var_property::var_property(const property & prop)
-   {
-      property::operator = (prop);
-   }
 
-   var_property::var_property(const char * pszName)
+   property::property(const char * pszName)
    {
       m_strName = pszName;
    }
 
-   var_property::var_property(index iIndex)
-   {
-      m_strName = "id=" + gen::str::itoa(iIndex);
-   }
-
-   var_property::var_property(const char * pszName, var & var)
+   property::property(const char * pszName, var & var)
    {
       m_strName = pszName;
       set_value(var);
    }
 
-   var_property::~var_property()
+   property::~property()
    {
    }
 
-   var_property & var_property::operator = (const var_property & prop)
+
+   bool property::is_set() const
    {
-      if(&prop != this)
-      {
-         if(m_strName.is_empty())
-         {
-            m_strName = prop.m_strName;
-         }
-         get_value() = ((property &) prop).get_value();
-      }
-      return *this;
+     return get_value().is_set();
    }
 
-   property::~property(void)
+   bool property::is_new() const
    {
+      return get_value().is_new();
    }
 
-   string & property::name()
+   bool property::is_null() const
    {
-      return m_strName;
+      return get_value().is_null();
    }
 
-   string property::name() const
+   bool property::is_new_or_null() const
    {
-      return m_strName;
+      return get_value().is_new_or_null();
    }
 
-   void property::set_value(const var & value, index iIndex)
+   bool property::is_empty() const
    {
-      UNREFERENCED_PARAMETER(iIndex);
-      if(m_pset != NULL)
-         m_pset->OnBeforePropertyChange(this);
-      var variableOld = get_value();
-      set_value(value);
-      if(m_pset != NULL)
-         m_pset->OnAfterPropertyChange(variableOld, this);
-
+      return get_value().is_empty();
    }
 
-   bool property::is_set(index iIndex) const
+   bool property::is_true() const
    {
-     return get_value(iIndex).is_set();
+      return get_value().is_true();
    }
 
-   bool property::is_new(index iIndex) const
+   string property::implode(const char * pszGlue) const
    {
-      return get_value(iIndex).is_new();
-   }
-
-   bool property::is_null(index iIndex) const
-   {
-      return get_value(iIndex).is_null();
-   }
-
-   bool property::is_new_or_null(index iIndex) const
-   {
-      return get_value(iIndex).is_new_or_null();
-   }
-
-   bool property::is_empty(index iIndex) const
-   {
-      return get_value(iIndex).is_empty();
-   }
-
-   bool property::is_true(index iIndex) const
-   {
-      return get_value(iIndex).is_true();
-   }
-
-   string property::implode(const char * pszGlue, index iIndex) const
-   {
-      return get_value(iIndex).implode(pszGlue);
+      return get_value().implode(pszGlue);
    }
 
    void property::parse_json(const string & str)
@@ -436,44 +287,44 @@ namespace gen
        get_value().parse_json(pszJson, pszEnd);
    }
 
-   stringa & property::stra(index iIndex)
+   stringa & property::stra()
    {
-      return get_value(iIndex).stra();
+      return get_value().stra();
    }
 
-   int_array & property::inta(index iIndex)
+   int_array & property::inta()
    {
-      return get_value(iIndex).inta();
+      return get_value().inta();
    }
 
-   var_array & property::vara(index iIndex)
+   var_array & property::vara()
    {
-      return get_value(iIndex).vara();
+      return get_value().vara();
    }
 
-   property_set & property::propset(index iIndex)
+   property_set & property::propset()
    {
-      return get_value(iIndex).propset();
+      return get_value().propset();
    }
 
-   const stringa & property::stra(index iIndex) const
+   const stringa & property::stra() const
    {
-      return get_value(iIndex).stra();
+      return get_value().stra();
    }
 
-   const int_array & property::inta(index iIndex) const
+   const int_array & property::inta() const
    {
-      return get_value(iIndex).inta();
+      return get_value().inta();
    }
 
-   const var_array & property::vara(index iIndex) const
+   const var_array & property::vara() const
    {
-      return get_value(iIndex).vara();
+      return get_value().vara();
    }
 
-   const property_set & property::propset(index iIndex) const
+   const property_set & property::propset() const
    {
-      return get_value(iIndex).propset();
+      return get_value().propset();
    }
 
    strsize property::get_length() const
@@ -509,7 +360,7 @@ namespace gen
       case var::type_propset:
          return const_cast<property *>(this)->propset().at(iIndex);
       default:
-         if(const_cast<property *>(this)->get_count(iIndex) == 1)
+         if(const_cast<property *>(this)->get_count() == 1)
             return const_cast<property *>(this)->get_value();
          throw "unsuported!!";
       }
@@ -532,24 +383,24 @@ namespace gen
       istream >> get_value();
    }
 
-   count property::get_count(index iIndex) const
+   count property::get_count() const
    {
-      return get_value(iIndex).get_count();
+      return get_value().get_count();
    }
 
-   count property::array_get_count(index iIndex) const
+   count property::array_get_count() const
    {
-      return get_value(iIndex).array_get_count();
+      return get_value().array_get_count();
    }
 
-   bool property::array_contains(const char * psz, index iIndex, index first, index last) const
+   bool property::array_contains(const char * psz, index first, index last) const
    {
-      return get_value(iIndex).array_contains(psz, first, last);
+      return get_value().array_contains(psz, first, last);
    }
 
-   bool property::array_contains_ci(const char * psz, index iIndex, index first, index last) const
+   bool property::array_contains_ci(const char * psz, index first, index last) const
    {
-      return get_value(iIndex).array_contains_ci(psz, first, last);
+      return get_value().array_contains_ci(psz, first, last);
    }
 
 
@@ -578,9 +429,9 @@ namespace gen
    }
 
 
-   int property::compare_value_ci(const char * psz, index iIndex) const
+   int property::compare_value_ci(const char * psz) const
    {
-      return get_value(iIndex).compare_ci(psz);
+      return get_value().compare_ci(psz);
    }
 
    variable_strict_compare property::strict_compare() const
@@ -729,9 +580,9 @@ namespace gen
       return get_value() != b;
    }
 
-   var property::explode(const char * pszSeparator, bool bAddEmpty, index iIndex) const
+   var property::explode(const char * pszSeparator, bool bAddEmpty) const
    {
-      return get_value(iIndex).explode(pszSeparator, bAddEmpty);
+      return get_value().explode(pszSeparator, bAddEmpty);
    }
 
 
@@ -1450,7 +1301,17 @@ namespace gen
       return *this;
    }
 
+   property & property::operator += (const char * psz)
+   {
+      operator=(*this + psz);
+      return *this;
+   }
 
+   property & property::operator += (const string & str)
+   {
+      operator=(*this + str);
+      return *this;
+   }
 
 
 
@@ -1626,9 +1487,9 @@ namespace gen
 
 
 
-   var_property_array::var_property_array()
+   property_array::property_array()
    {
-      m_ptra.set_size(0, 16);
+      m_ptra.set_size(0, 64);
    }
 
 
@@ -1675,7 +1536,7 @@ namespace gen
       {
          strName = pszName;
       }
-      m_propertya.add(var_property(strName, var));
+      m_propertya.add(property(strName, var));
       m_propertya.last_element().m_pset = this;
       return &m_propertya.last_element();
    }
@@ -1690,7 +1551,7 @@ namespace gen
       }
       else
       {
-         m_propertya.add(var_property(pszName, var));
+         m_propertya.add(property(pszName, var));
          m_propertya.last_element().m_pset = this;
          return &m_propertya.last_element();
       }
@@ -1708,7 +1569,7 @@ namespace gen
          if(pproperty != NULL)
             return *pproperty;
       }
-      return g_newproperty;
+      throw simple_exception("property with specified name - and specified case sensitivity - does not exist and Auto Add Flag is not set");
    }
 
    bool property_set::has_property(const char * pszName, index find, index last) const
@@ -2578,7 +2439,7 @@ restart_finding:
       return m_propertya[iIndex];
    }
 
-   var_property property_set::at(index iIndex) const
+   property property_set::at(index iIndex) const
    {
       if(iIndex >= m_propertya.get_size())
       {
@@ -2591,10 +2452,10 @@ restart_finding:
    {
       if(&set != this)
       {
-         m_propertya.remove_all();
+         m_propertya.set_size(set.m_propertya.get_size());
          for(int i = 0; i < set.m_propertya.get_count(); i++)
          {
-            m_propertya.add(set.m_propertya[i]);
+            m_propertya[i] = set.m_propertya[i];
          }
          m_bAutoAdd              = set.m_bAutoAdd;
          m_bMultiValue           = set.m_bMultiValue;
@@ -2613,7 +2474,7 @@ restart_finding:
       {
          for(int i = 0; i < set.m_propertya.get_count(); i++)
          {
-            ((var_property &)operator[](set.m_propertya[i].name())).m_vara.add(set.m_propertya[i].get_value());
+            ((property &)operator[](set.m_propertya[i].name())).m_var = set.m_propertya[i].get_value();
          }
       }
       return *this;
@@ -2625,7 +2486,7 @@ restart_finding:
       {
          for(int i = 0; i < set.m_propertya.get_count(); i++)
          {
-            ((var_property &)operator[](set.m_propertya[i].name())).m_vara = set.m_propertya[i].m_vara;
+            ((property &)operator[](set.m_propertya[i].name())).m_var = set.m_propertya[i].m_var;
          }
       }
       return *this;
@@ -2651,7 +2512,7 @@ restart_finding:
          {
             string strKey = set.pair_set_interface_get_key(i);
             class var var = set.pair_set_interface_get_value(i);
-            m_propertya.add(var_property(strKey, var));
+            m_propertya.add(property(strKey, var));
          }
          // WOULD ANALYZE each of the following members parameters for
          // auto discovery, calculation or leave as set.
@@ -2683,7 +2544,7 @@ restart_finding:
          {
             string strKey = set.str_str_interface_get_key(i);
             class var var = set.str_str_interface_get_value(i);
-            m_propertya.add(var_property(strKey, var));
+            m_propertya.add(property(strKey, var));
          }
          // WOULD ANALYZE each of the following members parameters for
          // auto discovery, calculation or leave as set.
@@ -2728,7 +2589,7 @@ restart_finding:
    }
 
 
-   var_property property_set::operator[](const char * pszName) const
+   property property_set::operator[](const char * pszName) const
    {
       return const_cast<property_set*>(this)->operator[](pszName);
    }
@@ -2738,7 +2599,7 @@ restart_finding:
       return operator[](gen::str::itoa(iIndex));
    }
 
-   var_property property_set::operator[](index iIndex) const
+   property property_set::operator[](index iIndex) const
    {
       return operator[](gen::str::itoa(iIndex));
    }
@@ -2748,7 +2609,7 @@ restart_finding:
       return operator[](string(str));
    }
 
-   var_property property_set::operator[](const string_interface & str) const
+   property property_set::operator[](const string_interface & str) const
    {
       return operator[](string(str));
    }
@@ -2758,7 +2619,7 @@ restart_finding:
       return operator[]((const char *) str);
    }
 
-   var_property property_set::operator[](const string & str) const
+   property property_set::operator[](const string & str) const
    {
       return operator[]((const char *) str);
    }
@@ -2824,3 +2685,6 @@ restart_finding:
 
 
 } // namespace gen
+
+
+

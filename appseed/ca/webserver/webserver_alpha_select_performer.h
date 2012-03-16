@@ -40,7 +40,7 @@ namespace webserver
 
       AlphaSelectLinkMaker *  m_plinkmaker;
       int64_array             m_iaClassId;
-      gen::var_property       m_kptitlea;
+      gen::property       m_kptitlea;
       string                  m_strLangStyle;
       int                     m_iTopicType;
 
