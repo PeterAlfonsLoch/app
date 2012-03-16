@@ -145,7 +145,7 @@ namespace ca4
 
          ::collection::string_map < pac * >::pair * ppair = m_mapPac.PLookup(pszUrl);
 
-         if(ppair == NULL || (::GetTickCount() - ppair->m_value->m_dwLastChecked) < 30000)
+         if(ppair == NULL || (::GetTickCount() - ppair->m_value->m_dwLastChecked) > (84 * 1000))
          {
             if(ppair != NULL)
             {

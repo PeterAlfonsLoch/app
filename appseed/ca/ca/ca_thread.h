@@ -237,6 +237,7 @@ namespace ca
       ph(::user::interaction)             m_puiActive;         // active main window (may not be GetMainWnd())
       void *                              m_peventReady;
       gen::property_set                   m_set;
+      string                              m_strWorkUrl;
 
 
       thread();

@@ -88,11 +88,17 @@ namespace fontopus
       straRequestingServer.add("fontopus.asia");
       if(strHost.is_empty())
       {
-
-         strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
-         if(!straRequestingServer.contains_ci(strHost))
+         if(::ca::get_thread() != NULL && ::ca::get_thread()->m_strWorkUrl.has_char())
          {
-            strHost = "https://fontopus.com/";
+            strHost = ::ca::get_thread()->m_strWorkUrl;
+         }
+         else
+         {
+            strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+            if(!straRequestingServer.contains_ci(strHost))
+            {
+               strHost = "https://fontopus.com/";
+            }
          }
       }
       if(System.url().get_server(strHost).has_char())

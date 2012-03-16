@@ -109,6 +109,7 @@ namespace ca4
       {
          if(puser == NULL)
          {
+            keeper < string > keepWorkUrl(&::ca::get_thread()->m_strWorkUrl, pszUrl, ::ca::get_thread()->m_strWorkUrl, true);
             puser = &ApplicationUser;
          }
          return System.http().get(pszUrl, puser);

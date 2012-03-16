@@ -278,7 +278,7 @@ void ifs::defer_initialize()
    
    if(!m_bInitialized)
    {
-      Application.http().get("http://file.veriwell.net/");
+//      Application.http().get("http://file.veriwell.net/");
       m_bInitialized = true;
    }
 
