@@ -18,7 +18,7 @@ bool ifs::has_subdir(const char * pszPath)
 
    string strUrl;
 
-   strUrl = "http://file.veriwell.net/ls?path=" + System.url().url_encode(pszPath);
+   strUrl = "http://file.veriwell.net/ifs/ls?path=" + System.url().url_encode(pszPath);
 
    string strSource;
 
@@ -72,7 +72,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
 
    string strUrl;
    
-   strUrl = "http://file.veriwell.net/ls?path=" + System.url().url_encode(pszDir);
+   strUrl = "http://file.veriwell.net/ifs/ls?path=" + System.url().url_encode(pszDir);
 
    string strSource;
 
@@ -207,7 +207,7 @@ bool ifs::is_dir(const char * pszPath)
 
    /*string strUrl;
 
-   strUrl = "http://file.veriwell.net/ls?path=" + System.url().url_encode(pszPath);
+   strUrl = "http://file.veriwell.net/ifs/ls?path=" + System.url().url_encode(pszPath);
 
    string strSource;
 
@@ -278,7 +278,7 @@ void ifs::defer_initialize()
    
    if(!m_bInitialized)
    {
-//      Application.http().get("http://file.veriwell.net/");
+      //Application.http().get("http://file.veriwell.net/");
       m_bInitialized = true;
    }
 
