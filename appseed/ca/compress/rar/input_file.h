@@ -58,7 +58,7 @@ namespace rar
    public:
       
       
-      pointer_object<ex1::byte_input_stream>          m_Stream;
+      sp(ex1::byte_input_stream)                      m_Stream;
 
       file_position                                   m_StreamStartPosition;
 
@@ -73,7 +73,7 @@ namespace rar
       header::NBlock::CBlock                          m_BlockHeader;
 
       crypto::rar29::decoder *                        m_RarAESSpec;
-      pointer_object<compress::filter_interface>      m_RarAES;
+      sp(compress::filter_interface)                  m_RarAES;
 
 
       byte *                                          m_CurData; // it must point to start of Rar::Block

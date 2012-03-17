@@ -3,12 +3,16 @@
 
 class folder_list_view;
 
+
 namespace filemanager
 {
 
+
    class SimpleFolderTreeView;
 
+
 } // namespace filemanager
+
 
 class CLASS_DECL_ca2 folder_selection_list_view :
    virtual public ::userbase::split_view,
@@ -19,7 +23,7 @@ public:
 
    filemanager::SimpleFolderTreeView *    m_ptreeview;
    folder_list_view *                     m_plistview;
-   pointer_object < filemanager::data >   m_pdata;
+   sp(filemanager::data)                  m_pdata;
 
 
    folder_selection_list_view(::ca::application * papp);
@@ -45,3 +49,6 @@ public:
    void FolderRemove(void);
 
 };
+
+
+

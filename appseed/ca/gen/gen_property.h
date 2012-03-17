@@ -63,7 +63,7 @@ namespace gen
    };
 
    class property_set;
-   class var_property_array;
+   class property_array;
 
 
    class CLASS_DECL_ca property :

@@ -19,3 +19,14 @@ CLASS_DECL_c DWORD call_sync(
 
 
 CLASS_DECL_c vsstring consume_param(const char * pszCommandLine, const char ** pszEndPtr);
+
+CLASS_DECL_c int get_current_processor_index();
+
+CLASS_DECL_c int get_current_process_maximum_affinity();
+
+CLASS_DECL_c int get_current_process_affinity_order();
+
+
+
+
+

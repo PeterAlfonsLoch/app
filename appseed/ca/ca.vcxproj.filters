@@ -569,9 +569,6 @@
     <ClInclude Include="gen\gen_system.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_template.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
     <ClInclude Include="gen\gen_timer.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
@@ -704,28 +701,10 @@
     <ClInclude Include="radix\machine_event_central.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
-    <ClInclude Include="radix\optr.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="radix\pipe.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
-    <ClInclude Include="radix\plex.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\plex_heap.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\pointer_object.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\preview_dc.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="radix\process_data.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\PushingRoutingFrame.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="radix\radix.h">
@@ -756,12 +735,6 @@
       <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="radix\radix_thread.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\Resource.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\sensitive_ptr.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="radix\service.h">
@@ -3230,61 +3203,7 @@
     <ClInclude Include="radix\kbase_xxx.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
-    <ClInclude Include="radix\aaa_simple_list_want_to_remove_xxx.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\aaa_specialty_want_to_remove_xxx.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\aaa_Common_want_to_remove_xxx.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\aaa_comparable_want_to_remove_xxx.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\aaa_conv_want_to_remove_xxx.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\aaa_conversion_want_to_remove_xxx.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\aaa_DispatchPtrArray_want_to_remove_xxx.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\aaa_dispimpl_want_to_remove_xxx.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\aaa_elements_want_to_remove_xxx.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\aaa_hh_want_to_remove_xxx.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\aaa_inline_want_to_remove_xxx.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\aaa_language_string_want_to_remove_xxx.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="gen\gen_composite.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\_full_pointer_want_to_remove_xxx.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\_base_enum_want_to_remove_xxx.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\_pointer_want_to_remove_xxx.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\_PointerManager_want_to_remove_xxx.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\_raw_pointer_want_to_remove_xxx.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\_var_array_want_to_remove_xxx.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
     <ClInclude Include="radix\radix_bstr.H">
@@ -3349,6 +3268,12 @@
     </ClInclude>
     <ClInclude Include="gen\gen_international_locale_schema.h">
       <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_plex.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_plex_heap.h">
+      <Filter>Header Files\radix</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5194,9 +5119,6 @@
     <ClCompile Include="radix\radix_plex_heap.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
-    <ClCompile Include="radix\radix_pushing_routing_frame.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
     <ClCompile Include="radix\radix_service.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
@@ -5574,12 +5496,6 @@
     </ClCompile>
     <ClCompile Include="sockets\sockets_http_memory_file.cpp">
       <Filter>Source Files\sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\aaa_radix_afxcrit_want_to_remove_xxx.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\aaa_radix_auxdata_want_to_remove_xxx.cpp">
-      <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="ca2\ca2_html_file.cpp">
       <Filter>Source Files\ca2</Filter>

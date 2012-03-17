@@ -1,22 +1,14 @@
 #pragma once
 
-#include "plex.h"
 
 class mutex;
+
 
 class CLASS_DECL_ca fixed_alloc_no_sync
 {
 public:
-   fixed_alloc_no_sync(UINT nAllocSize, UINT nBlockSize = 64);
-   ~fixed_alloc_no_sync();
-
-   UINT GetAllocSize() { return m_nAllocSize; }
-
-   void * Alloc();  // return a chunk of primitive::memory of nAllocSize
-   void Free(void * p); // free chunk of primitive::memory returned from Alloc
-   void FreeAll(); // free everything allocated from this allocator
-
-
+   
+   
    struct node
    {
       node* pNext;   // only valid when in free list
@@ -26,27 +18,65 @@ public:
    UINT m_nBlockSize;   // number of blocks to get at a time
    plex* m_pBlocks;   // linked list of blocks (is nBlocks*nAllocSize)
    node* m_pnodeFree;   // first free node (NULL if no free nodes)
+
+
+   fixed_alloc_no_sync(UINT nAllocSize, UINT nBlockSize = 64);
+   ~fixed_alloc_no_sync();
+
+
+   UINT GetAllocSize() { return m_nAllocSize; }
+
+
+   void * Alloc();  // return a chunk of primitive::memory of nAllocSize
+   void Free(void * p); // free chunk of primitive::memory returned from Alloc
+   void FreeAll(); // free everything allocated from this allocator
+
+
+
+
 };
+
+
+class CLASS_DECL_ca fixed_alloc_sync
+{
+public:
+
+
+   int                                       m_i;
+   raw_array < simple_critical_section * >   m_protectptra;
+   raw_array < fixed_alloc_no_sync * >       m_allocptra;
+
+
+   fixed_alloc_sync(UINT nAllocSize, UINT nBlockSize = 64, int iShareCount = 2);
+   ~fixed_alloc_sync();
+
+
+   void * Alloc();   // return a chunk of primitive::memory of nAllocSize
+   void Free(void * p);   // free chunk of primitive::memory returned from Alloc
+   void FreeAll();   // free everything allocated from this allocator
+
+
+};
+
+
 
 class CLASS_DECL_ca fixed_alloc
 {
 public:
 
 
-   simple_critical_section                   m_protect;
-   int                                       m_i;
    raw_array < simple_critical_section * >   m_protectptra;
-   raw_array < fixed_alloc_no_sync * >       m_allocptra;
+   raw_array < fixed_alloc_sync * >       m_allocptra;
 
 
-   typedef class fixed_alloc_no_sync baseclass;
-
-   fixed_alloc(UINT nAllocSize, UINT nBlockSize = 64, int iShareCount = 8);
+   fixed_alloc(UINT nAllocSize, UINT nBlockSize = 64);
    ~fixed_alloc();
+
 
    void * Alloc();   // return a chunk of primitive::memory of nAllocSize
    void Free(void * p);   // free chunk of primitive::memory returned from Alloc
    void FreeAll();   // free everything allocated from this allocator
+
 
 };
 

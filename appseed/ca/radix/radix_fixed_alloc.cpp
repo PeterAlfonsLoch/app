@@ -89,11 +89,17 @@ void fixed_alloc_no_sync::Free(void * p)
    }
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// fixed_alloc
 
-fixed_alloc::fixed_alloc(UINT nAllocSize, UINT nBlockSize, int iShareCount)
+
+
+/////////////////////////////////////////////////////////////////////////////
+// fixed_alloc_sync
+//
+
+fixed_alloc_sync::fixed_alloc_sync(UINT nAllocSize, UINT nBlockSize, int iShareCount)
 {
+   
+   m_i = 0;
    m_allocptra.set_size(iShareCount);
    m_protectptra.set_size(iShareCount);
    for(int i = 0; i < m_allocptra.get_count(); i++)
@@ -104,6 +110,107 @@ fixed_alloc::fixed_alloc(UINT nAllocSize, UINT nBlockSize, int iShareCount)
    {
       m_protectptra[i] = new simple_critical_section();
    }
+}
+
+fixed_alloc_sync::~fixed_alloc_sync()
+{
+   for(int i = 0; i < m_allocptra.get_count(); i++)
+   {
+      delete m_allocptra[i];
+   }
+   for(int i = 0; i < m_protectptra.get_count(); i++)
+   {
+      delete m_protectptra[i];
+   }
+}
+
+void fixed_alloc_sync::FreeAll()
+{
+   
+   for(int i = 0; i < m_allocptra.get_count(); i++)
+   {
+      m_protectptra[i]->lock();
+      __try
+      {
+         m_allocptra[i]->FreeAll();
+      }
+      __finally
+      {
+         m_protectptra[i]->unlock();
+      }
+   }
+
+}
+
+void * fixed_alloc_sync::Alloc()
+{
+
+   int i = m_i % m_protectptra.get_count();
+   m_i++;
+
+   void * p;
+   m_protectptra[i]->lock();
+   __try
+   {
+      p = m_allocptra[i]->Alloc();
+   }
+   __finally
+   {
+      m_protectptra[i]->unlock();
+   }
+   ((int *) p)[0] = i;
+   return &((int *)p)[1];
+}
+
+void fixed_alloc_sync::Free(void * p)
+{
+   if (p == NULL)
+      return;
+   int i = ((int *)p)[-1];
+   m_protectptra[i]->lock();
+   __try
+   {
+      m_allocptra[i]->Free(&((int *)p)[-1]);
+   }
+   __finally
+   {
+      m_protectptra[i]->unlock();
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// fixed_alloc
+//
+
+fixed_alloc::fixed_alloc(UINT nAllocSize, UINT nBlockSize)
+{
+   
+   int iShareCount = get_current_processor_index() + 1;
+
+   if(iShareCount <= 0)
+      iShareCount = 1;
+
+   m_allocptra.set_size(iShareCount);
+   m_protectptra.set_size(iShareCount);
+   for(int i = 0; i < m_allocptra.get_count(); i++)
+   {
+      m_allocptra[i] = new fixed_alloc_sync(nAllocSize + sizeof(int), nBlockSize, 2);
+   }
+   for(int i = 0; i < m_protectptra.get_count(); i++)
+   {
+      m_protectptra[i] = new simple_critical_section();
+   }
+
 }
 
 fixed_alloc::~fixed_alloc()
@@ -120,47 +227,29 @@ fixed_alloc::~fixed_alloc()
 
 void fixed_alloc::FreeAll()
 {
-   m_protect.lock();
-   __try
+   
+   for(int i = 0; i < m_allocptra.get_count(); i++)
    {
-      for(int i = 0; i < m_allocptra.get_count(); i++)
+      m_protectptra[i]->lock();
+      __try
       {
-         m_protectptra[i]->lock();
-         __try
-         {
-            m_allocptra[i]->FreeAll();
-         }
-         __finally
-         {
-            m_protectptra[i]->unlock();
-         }
+         m_allocptra[i]->FreeAll();
+      }
+      __finally
+      {
+         m_protectptra[i]->unlock();
       }
    }
-   __finally
-   {
-      m_protect.unlock();
-   }
+
 }
 
 void * fixed_alloc::Alloc()
 {
-   m_protect.lock();
-   int i;
-   __try
-   {
-      i = m_i;
-      m_i++;
-      if(m_i >= m_protectptra.get_count())
-         m_i = 0;
-   }
-   __finally
-   {
-      m_protect.unlock();
-   }
+
+   int i = ::get_current_processor_index();
 
    void * p;
    m_protectptra[i]->lock();
-   ::fixed_alloc_no_sync * palloc = m_allocptra[i];
    __try
    {
       p = m_allocptra[i]->Alloc();
@@ -192,6 +281,21 @@ void fixed_alloc::Free(void * p)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// fixed_alloc_array
+//
 
 fixed_alloc_array::fixed_alloc_array()
 {
@@ -275,10 +379,11 @@ fixed_alloc * fixed_alloc_array::find(size_t nAllocSize)
    int iFound = -1;
    for(int i = 0; i < this->get_count(); i++)
    {
-      if(this->element_at(i)->m_allocptra[0]->m_nAllocSize >= nAllocSize && (nFoundSize == MAX_DWORD_PTR || this->element_at(i)->m_allocptra[0]->m_nAllocSize < nFoundSize))
+      if(this->element_at(i)->m_allocptra[0]->m_allocptra[0]->m_nAllocSize >= nAllocSize 
+      && (nFoundSize == MAX_DWORD_PTR || this->element_at(i)->m_allocptra[0]->m_allocptra[0]->m_nAllocSize < nFoundSize))
       {
          iFound = i;
-         nFoundSize = this->element_at(i)->m_allocptra[0]->m_nAllocSize;
+         nFoundSize = this->element_at(i)->m_allocptra[0]->m_allocptra[0]->m_nAllocSize;
          break;
       }
    }

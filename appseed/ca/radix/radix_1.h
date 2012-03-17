@@ -242,15 +242,15 @@ class dump_context;
 #endif
 
 
-#include "radix_allocate.h"
 
-#include "pointer_object.h"
-#include "plex.h"
+#include "radix_allocate.h"
+#include "radix_plex.h"
 
 #include "collection/collection.h"
 #include "template/template.h"
 
-#include "plex_heap.h"
+#include "radix_plex_heap.h"
+
 
 
 #include "gen/gen_holder.h"

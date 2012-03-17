@@ -66,7 +66,8 @@ namespace compress
 
    HRESULT CopyStream(::ex1::reader * inStream, ::ex1::writer * outStream, progress_info_interface * progress)
    {
-      pointer_object < coder_interface > copyCoder = new copy_coder;
+      sp(coder_interface) copyCoder;
+      copyCoder(new copy_coder);
       return copyCoder->Code(inStream, outStream, NULL, NULL, progress);
    }
 
