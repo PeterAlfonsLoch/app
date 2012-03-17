@@ -61,12 +61,13 @@ namespace radix
       return *this;
    }
 
-
+#ifdef _DEBUG
 
    void object::assert_valid() const
    {
       ASSERT(this != NULL);
    }
+
 
    void object::dump(dump_context & dumpcontext) const
    {
@@ -76,6 +77,7 @@ namespace radix
       UNUSED(spgraphics); // unused in release build
    }
 
+#endif
 
    ::visual::icon * object::set_icon(::visual::icon * picon, bool bBigIcon)
    {

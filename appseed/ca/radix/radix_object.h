@@ -81,8 +81,13 @@ namespace radix
 #define new DEBUG_NEW
 
       // Diagnostic Support
+      
+#ifdef _DEBUG
+
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
+
+#endif
 
       object & operator = (const object & objectSrc);       // no implementation
 
