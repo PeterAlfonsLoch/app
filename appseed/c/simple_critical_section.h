@@ -2,6 +2,8 @@
 
 
 #ifdef _WINDOWS
+
+
 class CLASS_DECL_c simple_critical_section
 {
 public:
@@ -14,12 +16,17 @@ public:
    ~simple_critical_section();
 
 
-   void lock();
-   void unlock();
+   inline void lock();
+   inline void unlock();
 
 
 };
+
+
+
+
 #else
+
 
 class CLASS_DECL_c simple_critical_section :
     public simple_mutex
@@ -28,6 +35,25 @@ public:
 
 
 };
+
+
+#endif
+
+
+#ifdef _WINDOWS
+
+
+inline void simple_critical_section::lock()
+{
+   EnterCriticalSection(&m_criticalsection);
+}
+
+
+inline void simple_critical_section::unlock()
+{
+   LeaveCriticalSection(&m_criticalsection);
+}
+
 
 #endif
 

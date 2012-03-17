@@ -1,16 +1,25 @@
 #include "StdAfx.h"
 
+
 namespace ca2
 {
 
+
    DWORD g_dwFirstTick = ::GetTickCount();
+
 
    log::log(::ca::application * papp) :
       ca(papp),
       m_spfile(papp),
       m_trace(papp)
    {
+
+      m_bTrace = System.file().exists("C:\\ca2\\trace.txt", papp) || ::IsDebuggerPresent();
+      
       m_bInitialized    = false;
+
+
+
       m_iYear           = -1;
       m_iMonth          = -1;
       m_iDay            = -1;
@@ -121,6 +130,8 @@ namespace ca2
 
    void log::trace(const char * pszFormat, ...)
    {
+      if(!m_bTrace)
+         return;
       va_list ptr;
       va_start(ptr, pszFormat);
       trace_v(NULL, -1, _template::trace::category_General, 0, pszFormat, ptr);
@@ -129,6 +140,8 @@ namespace ca2
 
    void log::trace2(DWORD dwCategory, UINT nLevel, const char * pszFormat, ...)
    {
+      if(!m_bTrace)
+         return;
       va_list ptr;
       va_start(ptr, pszFormat);
       trace_v(NULL, -1, dwCategory, nLevel, pszFormat, ptr);
@@ -137,6 +150,8 @@ namespace ca2
 
    void log::trace_v(const char *pszFileName, int nLine, DWORD dwCategory, unsigned int nLevel, const char * pszFormat, va_list args) const
    {
+      if(!m_bTrace)
+         return;
       UNREFERENCED_PARAMETER(nLevel);
       UNREFERENCED_PARAMETER(nLine);
       UNREFERENCED_PARAMETER(pszFileName);
@@ -245,3 +260,6 @@ namespace ca2
 
 
 } // namespace ca2
+
+
+

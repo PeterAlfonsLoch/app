@@ -4,6 +4,7 @@
 namespace ca2
 {
 
+
    class CLASS_DECL_ca log :
       virtual public ca::log,
       virtual public ::radix::object
@@ -11,9 +12,35 @@ namespace ca2
    public:
 
 
-      _template::CTrace m_trace;
+      bool                    m_bTrace;
+      _template::CTrace       m_trace;
+      critical_section        m_csTrace;
+      stringa                 m_straSeparator;
+      ex1::text_file_sp       m_spfile;
+      mutex                   m_mutex;
+      bool                    m_bInitialized;
+      string                  m_strLogPath;
+      id                      m_id;
+      int                     m_iYear;
+      int                     m_iMonth;
+      int                     m_iDay;
 
-      critical_section m_csTrace;
+
+      log(::ca::application * papp);
+      virtual ~log();
+
+      virtual void print(const char * psz, ...);
+
+      virtual bool initialize(const char * pszId);
+      virtual bool initialize(id id);
+      virtual bool finalize();
+
+      void trace_v(const char *pszFileName, int nLine, DWORD dwCategory, unsigned int nLevel, const char * pszFmt, va_list args) const;
+
+      void __cdecl trace(const char * pszFormat, ...);
+      void __cdecl trace2(DWORD dwCategory, UINT nLevel, const char * pszFormat, ...);
+
+      void set_trace_category(DWORD dwCategory, const char * pszName, unsigned int uiLevel);
 
       inline static string level_name(gen::log::level::e_level elevel)
       {
@@ -32,37 +59,11 @@ namespace ca2
          }
       }
 
-      stringa m_straSeparator;
-
-      ex1::text_file_sp m_spfile;
-
-      mutex m_mutex;
-
-      bool m_bInitialized;
-
-      string m_strLogPath;
-      id m_id;
-
-      int m_iYear;
-      int m_iMonth;
-      int m_iDay;
-
-      log(::ca::application * papp);
-      virtual ~log();
-
-      virtual void print(const char * psz, ...);
-
-      virtual bool initialize(const char * pszId);
-      virtual bool initialize(id id);
-      virtual bool finalize();
-
-      void trace_v(const char *pszFileName, int nLine, DWORD dwCategory, unsigned int nLevel, const char * pszFmt, va_list args) const;
-
-      void __cdecl trace(const char * pszFormat, ...);
-      void __cdecl trace2(DWORD dwCategory, UINT nLevel, const char * pszFormat, ...);
-
-      void set_trace_category(DWORD dwCategory, const char * pszName, unsigned int uiLevel);
 
    };
 
+
 } // namespace ca2
+
+
+

@@ -505,7 +505,7 @@ namespace gen
 
 
    class CLASS_DECL_ca property_array :
-      public ex1::byte_serializable_array < array_ptr_alloc < property, property & > >
+      public ex1::byte_serializable_array < base_array < property, property & > >
    {
    public:
       

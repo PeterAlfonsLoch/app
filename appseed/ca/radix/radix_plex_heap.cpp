@@ -1,51 +1,5 @@
 #include "StdAfx.h"
 
-class CLASS_DECL_ca plex_heap     // warning var length structure
-{
-public:
-   plex_heap* pNext;
-   // BYTE data[maxNum*elementSize];
-
-   void * data() { return this+1; }
-
-   static plex_heap* PASCAL create(plex_heap*& head, UINT_PTR nMax, UINT_PTR cbElement);
-         // like 'calloc' but no zero fill
-         // may throw primitive::memory exceptions
-
-   void FreeDataChain();       // free this one and links
-};
-
-class CLASS_DECL_ca plex_heap_alloc
-{
-public:
-
-
-   struct node
-   {
-      node* pNext;               // only valid when in free list
-   };
-
-
-   UINT           m_nAllocSize;  // size of each block from Alloc
-   UINT           m_nBlockSize;  // number of blocks to get at a time
-   plex_heap *    m_pBlocks;     // linked list of blocks (is nBlocks*nAllocSize)
-   node*          m_pnodeFree;   // first free node (NULL if no free nodes)
-   mutex          m_mutex;
-   __int64        m_iFreeHitCount;
-   node *         m_pnodeLastBlock;
-
-
-   plex_heap_alloc(UINT nAllocSize, UINT nBlockSize = 64);
-   virtual ~plex_heap_alloc();
-
-   UINT GetAllocSize() { return m_nAllocSize; }
-
-   void * Alloc();               // return a chunk of primitive::memory of nAllocSize
-   void Free(void * p);          // free chunk of primitive::memory returned from Alloc
-   void FreeAll();               // free everything allocated from this allocator
-
-
-};
 
 plex_heap * PASCAL plex_heap::create(plex_heap*& pHead, UINT_PTR nMax, UINT_PTR cbElement)
 {
@@ -62,6 +16,7 @@ plex_heap * PASCAL plex_heap::create(plex_heap*& pHead, UINT_PTR nMax, UINT_PTR 
    return p;
 }
 
+
 void plex_heap::FreeDataChain()     // free this one and links
 {
 
@@ -76,11 +31,12 @@ void plex_heap::FreeDataChain()     // free this one and links
 
 }
 
+
+
+
 plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
 {
    
-   single_lock sl(&m_mutex, true);
-
    if(nBlockSize <= 1)
       nBlockSize = 4;
 
@@ -101,6 +57,7 @@ plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
 
 }
 
+
 plex_heap_alloc::~plex_heap_alloc()
 {
    FreeAll();
@@ -109,18 +66,23 @@ plex_heap_alloc::~plex_heap_alloc()
 void plex_heap_alloc::FreeAll()
 {
    
-   single_lock sl(&m_mutex, true);
+   m_protect.lock();
 
-   m_pBlocks->FreeDataChain();
-   m_pBlocks = NULL;
-   m_pnodeFree = NULL;
+   __try
+   {
+      m_pBlocks->FreeDataChain();
+      m_pBlocks = NULL;
+      m_pnodeFree = NULL;
+   }
+   __finally
+   {
+      m_protect.unlock();
+   }
 
 }
 
-void * plex_heap_alloc::Alloc()
+void plex_heap_alloc::NewBlock()
 {
-
-   single_lock sl(&m_mutex, true);
 
    if (m_pnodeFree == NULL)
    {
@@ -141,47 +103,7 @@ void * plex_heap_alloc::Alloc()
    }
    ASSERT(m_pnodeFree != NULL);  // we must have something
 
-   // remove the first available node from the free list
-   void * pNode = m_pnodeFree;
-   m_pnodeFree = m_pnodeFree->pNext;
-   void * pdata = &((byte *)pNode)[16];
-   sl.unlock();
-   memset(pdata, 0, m_nAllocSize);
-   return pdata;
 }
-
-#define STORE_LAST_BLOCK 0
-
-void plex_heap_alloc::Free(void * p)
-{
-
-   if(p == NULL)
-      return;
-
-   p = &((byte *)p)[-16];
-
-   if(p == NULL)
-      return;
-
-   single_lock sl(&m_mutex, true);
-
-   // simply return the node to the free list
-   node* pNode = (node*)p;
-   if(pNode == m_pnodeFree) // dbgsnp - debug snippet
-      AfxDebugBreak();
-
-#if STORE_LAST_BLOCK
-   if(m_pnodeLastBlock != NULL)
-      system_heap_free(m_pnodeLastBlock);
-   m_pnodeLastBlock = (node *) system_heap_alloc(m_nAllocSize + 32);
-   memcpy(m_pnodeLastBlock, pNode, m_nAllocSize + 32);
-#endif
-
-   pNode->pNext = m_pnodeFree;
-   m_pnodeFree = pNode;
-
-}
-
 
 
 
@@ -231,98 +153,6 @@ plex_heap_alloc_array::~plex_heap_alloc_array()
    }
 }
 
-void * plex_heap_alloc_array::alloc(size_t nAllocSize)
-{
-   plex_heap_alloc * palloc = find(nAllocSize);
-   if(palloc != NULL)
-   {
-      return palloc->Alloc();
-   }
-   else
-   {
-      return ::system_heap_alloc(nAllocSize);
-   }
-}
-
-
-void plex_heap_alloc_array::free(void * p, size_t nAllocSize)
-{
-
-   plex_heap_alloc * palloc = find(nAllocSize);
-
-   if(palloc != NULL)
-   {
-      return palloc->Free(p);
-   }
-   else
-   {
-      return ::system_heap_free(p);
-   }
-
-}
-
-
-void * plex_heap_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNewAllocSize)
-{
-   plex_heap_alloc * pallocOld = find(nOldAllocSize);
-   plex_heap_alloc * pallocNew = find(nNewAllocSize);
-   if(pallocOld == NULL && pallocNew == NULL)
-   {
-      return ::system_heap_realloc(pOld, nNewAllocSize);
-   }
-   else if(pallocOld == pallocNew)
-   {
-      return pOld;
-   }
-   else
-   {
-
-      void * pNew;
-      
-      if(pallocNew != NULL)
-      {
-         pNew = pallocNew->Alloc();
-      }
-      else
-      {
-         pNew = ::system_heap_alloc(nNewAllocSize);
-      }
-
-      memcpy(pNew, pOld, min(nOldAllocSize, nNewAllocSize));
-
-      if(pallocOld != NULL)
-      {
-         pallocOld->Free(pOld);
-      }
-      else
-      {
-         ::system_heap_free(pOld);
-      }
-
-      return pNew;
-
-   }
-}
-
-
-plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
-{
-   size_t nFoundSize = MAX_DWORD_PTR;
-   int iFound = -1;
-   for(int i = 0; i < this->get_count(); i++)
-   {
-      if(this->element_at(i)->m_nAllocSize >= nAllocSize && (nFoundSize == MAX_DWORD_PTR || this->element_at(i)->m_nAllocSize < nFoundSize))
-      {
-         iFound = i;
-         nFoundSize = this->element_at(i)->m_nAllocSize;
-         break;
-      }
-   }
-   if(iFound >= 0)
-      return this->element_at(iFound);
-   else
-      return NULL;
-}
 
 
 void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int nBlockUse, const char * pszFileName, int iLine)

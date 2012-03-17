@@ -64,6 +64,7 @@ namespace ca
             bool lookup(const string & strPath, bool &bIsDir, int iLast);
             bool lookup(const char * pszPath, bool &bIsDir);
             void set(const char * pszPath, bool bIsDir);
+            void set(const string & strPath, bool bIsDir);
 
 
          };

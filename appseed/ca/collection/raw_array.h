@@ -100,13 +100,13 @@ public:
 
    raw_array();
 
-   count get_size() const;
-   count get_size_in_bytes() const;
-   count get_count() const;
-   count get_byte_count() const;
-   bool is_empty(count countMinimum = 1) const;
-   bool has_elements(count countMinimum = 1) const;
-   index get_upper_bound(index i = 0) const;
+   inline count get_size() const;
+   inline count get_size_in_bytes() const;
+   inline count get_count() const;
+   inline count get_byte_count() const;
+   inline bool is_empty(count countMinimum = 1) const;
+   inline bool has_elements(count countMinimum = 1) const;
+   inline index get_upper_bound(index i = 0) const;
    count set_size(index nNewSize, count nGrowBy = -1);
    count set_size_in_bytes(index nNewSize, count nGrowBy = -1);
 
@@ -117,22 +117,22 @@ public:
 
 
    // Accessing elements
-   const TYPE& get_at(index nIndex) const;
-   TYPE& get_at(index nIndex);
-   void set_at(index nIndex, ARG_TYPE newElement);
+   inline const TYPE& get_at(index nIndex) const;
+   inline TYPE& get_at(index nIndex);
+   inline void set_at(index nIndex, ARG_TYPE newElement);
 
-   const TYPE & element_at(index nIndex) const;
-   TYPE & element_at(index nIndex);
+   inline const TYPE & element_at(index nIndex) const;
+   inline TYPE & element_at(index nIndex);
 
-   const TYPE& first_element(index index = 0) const;
-   TYPE& first_element(index index = 0);
+   inline const TYPE& first_element(index index = 0) const;
+   inline TYPE& first_element(index index = 0);
 
-   const TYPE& last_element(index index = 0) const;
-   TYPE& last_element(index index = 0);
+   inline const TYPE& last_element(index index = 0) const;
+   inline TYPE& last_element(index index = 0);
 
    // Direct Access to the element data (may return NULL)
-   const TYPE* get_data() const;
-   TYPE* get_data();
+   inline const TYPE* get_data() const;
+   inline TYPE* get_data();
 
    // Potentially growing the raw_array
    void set_at_grow(index nIndex, ARG_TYPE newElement);
@@ -158,8 +158,8 @@ public:
 
 
    // overloaded operator helpers
-   const TYPE& operator[](index nIndex) const;
-   TYPE& operator[](index nIndex);
+   inline const TYPE& operator[](index nIndex) const;
+   inline TYPE& operator[](index nIndex);
 
    // Operations that move elements around
    void insert_at(index nIndex, ARG_TYPE newElement, count nCount = 1);
@@ -248,38 +248,38 @@ inline void raw_array<TYPE, ARG_TYPE>::remove_last()
 template<class TYPE, class ARG_TYPE>
 inline TYPE& raw_array<TYPE, ARG_TYPE>::get_at(index nIndex)
 {
-   if(nIndex >= 0 && nIndex < m_nSize)
+//   if(nIndex >= 0 && nIndex < m_nSize)
       return m_pData[nIndex];
-   AfxThrowInvalidArgException();
+//   AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::get_at(index nIndex) const
 {
-   if(nIndex >= 0 && nIndex < m_nSize)
+//   if(nIndex >= 0 && nIndex < m_nSize)
       return m_pData[nIndex];
-   AfxThrowInvalidArgException();
+  // AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline void raw_array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
 {
-   if(nIndex >= 0 && nIndex < m_nSize)
+//   if(nIndex >= 0 && nIndex < m_nSize)
       m_pData[nIndex] = newElement;
-   else
-      AfxThrowInvalidArgException();
+  // else
+    //  AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::element_at(index nIndex) const
 {
-   if(nIndex >= 0 && nIndex < m_nSize)
+//   if(nIndex >= 0 && nIndex < m_nSize)
       return m_pData[nIndex];
-   AfxThrowInvalidArgException();
+  // AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline TYPE& raw_array<TYPE, ARG_TYPE>::element_at(index nIndex)
 {
-   if(nIndex >= 0 && nIndex < m_nSize)
+//   if(nIndex >= 0 && nIndex < m_nSize)
       return m_pData[nIndex];
-   AfxThrowInvalidArgException();
+  // AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::first_element(index nIndex) const
@@ -295,19 +295,19 @@ template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::last_element(index index) const
 {
    index  = get_upper_bound(index);
-   ASSERT(index >= 0 && index < m_nSize);
-   if(index >= 0 && index < m_nSize)
+//   ASSERT(index >= 0 && index < m_nSize);
+  // if(index >= 0 && index < m_nSize)
       return m_pData[index];
-   AfxThrowInvalidArgException();
+//   AfxThrowInvalidArgException();
 }
 template<class TYPE, class ARG_TYPE>
 inline TYPE& raw_array<TYPE, ARG_TYPE>::last_element(index index)
 {
    index  = get_upper_bound(index);
-   ASSERT(index >= 0 && index < m_nSize);
-   if(index >= 0 && index < m_nSize)
+//   ASSERT(index >= 0 && index < m_nSize);
+  // if(index >= 0 && index < m_nSize)
       return m_pData[index];
-   AfxThrowInvalidArgException();
+//   AfxThrowInvalidArgException();
 }
 
 template<class TYPE, class ARG_TYPE>
@@ -345,7 +345,7 @@ inline index raw_array<TYPE, ARG_TYPE>::push(ARG_TYPE newElement)
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::operator[](index nIndex) const
 {
-   return get_at(nIndex);
+   return element_at(nIndex);
 }
 
 template<class TYPE, class ARG_TYPE>

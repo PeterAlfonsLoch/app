@@ -99,11 +99,11 @@ static simple_mutex g_mutexSystemHeap;
 CLASS_DECL_ca void * system_heap_alloc(size_t size)
 {
    mutex_lock lock(&g_mutexSystemHeap, true);
-#if ZEROED_ALLOC
-   byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, HEAP_ZERO_MEMORY, ((size + 4 + 3) & ~3));
-#else
+//#if ZEROED_ALLOC
+  // byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, HEAP_ZERO_MEMORY, ((size + 4 + 3) & ~3));
+//#else  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
    byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, 0, ((size + 4 + 3) & ~3));
-#endif
+//#endif
    if(p == NULL)
       return NULL;
    ((DWORD *)p)[0] = 0;
@@ -130,18 +130,18 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
          return NULL;
       }
       memcpy(pNew, pvoidOld, min(size, sizeOld));
-#if ZEROED_ALLOC
-      if(size > sizeOld)
-      {
-         memset(&pNew[sizeOld], 0, size - sizeOld);
-      }
-#endif
+//#if ZEROED_ALLOC 
+  //    if(size > sizeOld)
+    //  {
+      //   memset(&pNew[sizeOld], 0, size - sizeOld);
+      //}
+//#endif  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
       system_heap_free(pvoidOld);
       return pNew;
    }
    if(size > sizeOld)
    {
-      memset(&p[sizeOld], 0, ((size + 4 + 3) & ~3) - sizeOld);
+      // memset(&p[sizeOld], 0, ((size + 4 + 3) & ~3) - sizeOld);  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
    }
    ((DWORD *)p)[0] = 0;
    iMod = ((DWORD_PTR)p) % 4;

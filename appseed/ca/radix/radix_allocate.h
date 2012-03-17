@@ -7,10 +7,10 @@
 #include "radix_heap.h"
 
 
-#ifdef _DEBUG
+//#ifdef _DEBUG
 // Special _CLIENT_BLOCK type to identifiy CObjects.
 #define _AFX_CLIENT_BLOCK (_CLIENT_BLOCK|(0xc0<<16))
-#endif
+//#endif
 
 CLASS_DECL_ca void * MyAlloc(size_t size);
 CLASS_DECL_ca void MyFree(void *address);
@@ -275,13 +275,14 @@ inline void PASCAL ::radix::object::operator delete(void * p, void *)
    ca2_free_dbg(p, _AFX_CLIENT_BLOCK);
 }
 
+#ifdef _DEBUG
+
 inline void PASCAL ::radix::object::operator delete(void *pObject, const char *, int)
 {
    ca2_free_dbg(pObject, _AFX_CLIENT_BLOCK); 
 }
 
-
-
+#endif
 
 
 

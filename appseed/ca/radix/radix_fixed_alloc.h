@@ -27,14 +27,40 @@ public:
    UINT GetAllocSize() { return m_nAllocSize; }
 
 
-   void * Alloc();  // return a chunk of primitive::memory of nAllocSize
-   void Free(void * p); // free chunk of primitive::memory returned from Alloc
+   inline void * Alloc();  // return a chunk of primitive::memory of nAllocSize
+   inline void Free(void * p); // free chunk of primitive::memory returned from Alloc
    void FreeAll(); // free everything allocated from this allocator
 
 
-
+   void NewBlock();
 
 };
+
+
+inline void * fixed_alloc_no_sync::Alloc()
+{
+   if (m_pnodeFree == NULL)
+   {
+      NewBlock();
+   }
+   // remove the first available node from the free list
+   void * pNode = m_pnodeFree;
+   m_pnodeFree = m_pnodeFree->pNext;
+   return (void *) (((byte *)pNode) + 16);
+}
+
+inline void fixed_alloc_no_sync::Free(void * p)
+{
+   p = (void *) (((byte *)p) - 16);
+   if (p != NULL)
+   {
+      // simply return the node to the free list
+      node* pNode = (node*)p;
+      pNode->pNext = m_pnodeFree;
+      m_pnodeFree = pNode;
+   }
+}
+
 
 
 class CLASS_DECL_ca fixed_alloc_sync
@@ -43,6 +69,7 @@ public:
 
 
    int                                       m_i;
+   int                                       m_iShareCount;
    raw_array < simple_critical_section * >   m_protectptra;
    raw_array < fixed_alloc_no_sync * >       m_allocptra;
 
@@ -51,13 +78,63 @@ public:
    ~fixed_alloc_sync();
 
 
-   void * Alloc();   // return a chunk of primitive::memory of nAllocSize
-   void Free(void * p);   // free chunk of primitive::memory returned from Alloc
+   inline void * Alloc();   // return a chunk of primitive::memory of nAllocSize
+   inline void Free(void * p);   // free chunk of primitive::memory returned from Alloc
    void FreeAll();   // free everything allocated from this allocator
 
 
 };
 
+
+inline void * fixed_alloc_sync::Alloc()
+{
+
+   // veripseudo-random generator, don't need to be 
+   // perfectly sequential or perfectly distributed, 
+   // just fair well distributed
+   // but very important is extremely fast
+   register int i;
+   if(m_i >= m_iShareCount)
+   {
+      i = 0;
+      m_i = 1;
+   }
+   else
+   {
+      i = m_i;
+      m_i++;
+   }
+
+
+   register void * p;
+   m_protectptra.get_data()[i]->lock();
+   __try
+   {
+      p = m_allocptra.get_data()[i]->Alloc();
+   }
+   __finally
+   {
+      m_protectptra.get_data()[i]->unlock();
+   }
+   ((int *) p)[0] = i;
+   return &((int *)p)[1];
+}
+
+inline void fixed_alloc_sync::Free(void * p)
+{
+   if (p == NULL)
+      return;
+   register int i = ((int *)p)[-1];
+   m_protectptra.get_data()[i]->lock();
+   __try
+   {
+      m_allocptra.get_data()[i]->Free(&((int *)p)[-1]);
+   }
+   __finally
+   {
+      m_protectptra.get_data()[i]->unlock();
+   }
+}
 
 
 class CLASS_DECL_ca fixed_alloc
@@ -65,20 +142,63 @@ class CLASS_DECL_ca fixed_alloc
 public:
 
 
-   raw_array < simple_critical_section * >   m_protectptra;
-   raw_array < fixed_alloc_sync * >       m_allocptra;
+   int                                       m_i;
+   int                                       m_iShareCount;
+   raw_array < fixed_alloc_sync * >          m_allocptra;
 
 
    fixed_alloc(UINT nAllocSize, UINT nBlockSize = 64);
    ~fixed_alloc();
 
 
-   void * Alloc();   // return a chunk of primitive::memory of nAllocSize
-   void Free(void * p);   // free chunk of primitive::memory returned from Alloc
+   inline void * Alloc();   // return a chunk of primitive::memory of nAllocSize
+   inline void Free(void * p);   // free chunk of primitive::memory returned from Alloc
    void FreeAll();   // free everything allocated from this allocator
 
 
 };
+
+
+inline void * fixed_alloc::Alloc()
+{
+
+   // veripseudo-random generator, don't need to be 
+   // perfectly sequential or perfectly distributed, 
+   // just fair well distributed
+   // but very important is extremely fast
+   register int i;
+   if(m_i >= m_iShareCount)
+   {
+      i = 0;
+      m_i = 1;
+   }
+   else
+   {
+      i = m_i;
+      m_i++;
+   }
+   
+
+   register void * p  = m_allocptra.get_data()[i]->Alloc();
+
+   ((int *) p)[0] = i;
+
+   return &((int *)p)[1];
+
+}
+
+inline void fixed_alloc::Free(void * p)
+{
+
+   if (p == NULL)
+      return;
+
+   register int i = ((int *)p)[-1];
+
+   m_allocptra.get_data()[i]->Free(&((int *)p)[-1]);
+
+}
+
 
 #include "exception/base_exception.h"
 #include "exception/simple_exception.h"

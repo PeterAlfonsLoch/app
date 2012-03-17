@@ -5,30 +5,30 @@
 
 var_array::var_array()
 {
-   m_ptra.set_size(0, 16);
+   set_size(0, 64);
 }
 
 var_array::var_array(const stringa & stra)
 {
-   m_ptra.set_size(0, ROUND16(stra.get_size() + 16));
+   set_size(0, ROUND16(stra.get_size() + 16));
    operator = (stra);
 }
 
 var_array::var_array(const int_array & ia)
 {
-   m_ptra.set_size(0, ROUND16(ia.get_size() + 16));
+   set_size(0, ROUND16(ia.get_size() + 16));
    operator = (ia);
 }
 
 var_array::var_array(const gen::property_set & propset)
 {
-   m_ptra.set_size(0, ROUND16(propset.m_propertya.get_size() + 16));
+   set_size(0, ROUND16(propset.m_propertya.get_size() + 16));
    operator = (propset);
 }
 
 var_array::var_array(const var_array & vara)
 {
-   m_ptra.set_size(0, ROUND16(vara.get_size() + 16));
+   set_size(0, ROUND16(vara.get_size() + 16));
    operator = (vara);
 }
 
@@ -36,12 +36,12 @@ index var_array::add(var var)
 {
    if(var.get_type() != var::type_empty_argument)
    {
-      return array_ptr_alloc < class var >::add(var);
+      return base_array < class var >::add(var);
    }
    return -1;
 }
 
-count var_array::add(const var_array & vara)
+::count var_array::add(const var_array & vara)
 {
    for(int i = 0; i < vara.get_size(); i++)
    {
@@ -105,48 +105,48 @@ index var_array::find_first(const var & var, index find, index last) const
    return -1;
 }
 
-bool var_array::contains_ci(const char * lpcsz, index find, index last, count countMin, count countMax) const
+bool var_array::contains_ci(const char * lpcsz, index find, index last, ::count countMin, ::count countMax) const
 {
-   count count = 0;
+   ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
       && (find = find_first_ci(lpcsz, find, last)) >= 0)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
 
-bool var_array::contains(const char * lpcsz, index find, index last, count countMin, count countMax) const
+bool var_array::contains(const char * lpcsz, index find, index last, ::count countMin, ::count countMax) const
 {
-   count count = 0;
+   ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
       && (find = find_first(lpcsz, find, last)) >= 0)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
 
-bool var_array::contains(const var & var, index find, index last, count countMin, count countMax) const
+bool var_array::contains(const var & var, index find, index last, ::count countMin, ::count countMax) const
 {
-   count count = 0;
+   ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
       && (find = find_first(var, find, last)) >= 0)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
 
-count var_array::remove_first_ci(const char * lpcsz, index find, index last)
+::count var_array::remove_first_ci(const char * lpcsz, index find, index last)
 {
    if((find = find_first_ci(lpcsz, find, last)) >= 0)
       remove_at(find);
    return find;
 }
 
-count var_array::remove_first(const char * lpcsz, index find, index last)
+::count var_array::remove_first(const char * lpcsz, index find, index last)
 {
    if((find = find_first(lpcsz, find, last)) >= 0)
       remove_at(find);
    return find;
 }
 
-count var_array::remove_first(const var & var, index find, index last)
+::count var_array::remove_first(const var & var, index find, index last)
 {
    if((find = find_first(var, find, last)) >= 0)
       remove_at(find);
@@ -154,9 +154,9 @@ count var_array::remove_first(const var & var, index find, index last)
 }
 
 
-count var_array::remove_ci(const char * lpcsz, index find, index last, count countMin, count countMax)
+::count var_array::remove_ci(const char * lpcsz, index find, index last, ::count countMin, ::count countMax)
 {
-   count count = 0;
+   ::count count = 0;
    if(contains_ci(lpcsz, find, last, countMin, countMax))
       while(conditional(countMax >= 0, count < countMax)
          && (find = remove_first_ci(lpcsz, find, last)) >= 0)
@@ -165,9 +165,9 @@ count var_array::remove_ci(const char * lpcsz, index find, index last, count cou
 }
 
 
-count var_array::remove(const char * lpcsz, index find, index last, count countMin, count countMax)
+::count var_array::remove(const char * lpcsz, index find, index last, ::count countMin, ::count countMax)
 {
-   count count = 0;
+   ::count count = 0;
    if(contains(lpcsz, find, last, countMin, countMax))
       while(conditional(countMax >= 0, count < countMax)
          && (find = remove_first(lpcsz, find, last)) >= 0)
@@ -176,9 +176,9 @@ count var_array::remove(const char * lpcsz, index find, index last, count countM
 }
 
 
-count var_array::remove(const var & var, index find, index last, count countMin, count countMax)
+::count var_array::remove(const var & var, index find, index last, ::count countMin, ::count countMax)
 {
-   count count = 0;
+   ::count count = 0;
    if(contains(var, find, last, countMin, countMax))
       while(conditional(countMax >= 0, count < countMax)
          && (find = remove_first(var, find, last)) >= 0)
@@ -186,7 +186,7 @@ count var_array::remove(const var & var, index find, index last, count countMin,
    return count;
 }
 
-count var_array::remove(const var_array & vara)
+::count var_array::remove(const var_array & vara)
 {
    if(&vara == this)
    {
@@ -194,7 +194,7 @@ count var_array::remove(const var_array & vara)
    }
    else
    {
-      count count = 0;
+      ::count count = 0;
       for(index i = 0; i < vara.get_count(); i++)
       {
          count += remove(vara[i]);
@@ -309,8 +309,8 @@ void var_array::parse_json(const char * & pszJson, const char * pszEnd)
    gen::str::consume(pszJson, "[", 1, pszEnd);
    while(true)
    {
-      var * pvar = add_new();
-      pvar->parse_json(pszJson, pszEnd);
+      ::var & var = add_new();
+      var.parse_json(pszJson, pszEnd);
       gen::str::consume_spaces(pszJson, 0, pszEnd);
       if(*pszJson == ',')
       {

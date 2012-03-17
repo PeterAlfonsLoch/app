@@ -21,6 +21,9 @@ namespace radix
       return p;
    }
 
+
+#ifdef _DEBUG
+
    inline void * PASCAL object::operator new(size_t nSize, const char * lpszFileName, int nLine)
    {
       void * p = ::operator new(nSize, _AFX_CLIENT_BLOCK, lpszFileName, nLine);
@@ -37,6 +40,12 @@ namespace radix
       return p;
    }
 
+#endif
+
+
 } // namespace radix
 
+
 #define new DEBUG_NEW
+
+

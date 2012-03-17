@@ -1489,7 +1489,7 @@ namespace gen
 
    property_array::property_array()
    {
-      m_ptra.set_size(0, 64);
+      set_size(0, 64);
    }
 
 

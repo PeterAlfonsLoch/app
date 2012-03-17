@@ -1778,7 +1778,7 @@ namespace xml
    //========================================================
    bool node::remove_attr(::xml::attr * pattr )
    {
-      if(m_attra.m_propertya.remove((gen::property *) pattr) > 0)
+      if(m_attra.remove_by_name(pattr->m_strName) > 0)
       {
          delete pattr;
          return true;

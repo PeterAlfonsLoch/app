@@ -153,8 +153,9 @@ public:
 
    // Potentially growing the base_array
    void set_at_grow(index nIndex, ARG_TYPE newElement);
-   virtual index add_new(::count count = 1);
+   virtual index add_new(::count count);
    virtual index add(ARG_TYPE newElement);
+   virtual TYPE & add_new();
    virtual ::count add(const base_array& src); // for disambiguation
    virtual ::count add_array(const base_array& src);
    void copy(const base_array& src);
@@ -542,6 +543,10 @@ template<class TYPE, class ARG_TYPE>
 inline index base_array<TYPE, ARG_TYPE>::add_new(::count count)
    { set_size(m_nSize + count);
       return get_upper_bound(); }
+template<class TYPE, class ARG_TYPE>
+inline TYPE & base_array<TYPE, ARG_TYPE>::add_new()
+   { set_size(m_nSize + 1);
+      return last_element(); }
 template<class TYPE, class ARG_TYPE>
 inline index base_array<TYPE, ARG_TYPE>::insert_new(::count count)
 {
@@ -959,7 +964,7 @@ void base_array<TYPE, ARG_TYPE>::copy(const base_array& src)
 }
 
 
-
+#ifdef _DEBUG
 template<class TYPE, class ARG_TYPE>
 void base_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 {
@@ -975,7 +980,7 @@ void base_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
    dumpcontext << "\n";
 }
 
-
+#endif
 
 #define new DEBUG_NEW
 

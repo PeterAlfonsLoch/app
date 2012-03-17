@@ -639,16 +639,36 @@ namespace ca
 
       void system::is_dir_map::set(const char * pszPath, bool bIsDir)
       {
+         static string strSep = "\\";
          is_dir isdir;
          isdir.m_bIsDir = bIsDir;
          isdir.m_dwLastCheck = ::GetTickCount();
          string strPath(pszPath);
-         if(!gen::str::ends(strPath, "\\"))
-            strPath += "\\";
+         if(!gen::str::ends(strPath, strSep))
+            strPath += strSep;
          single_lock sl(&m_mutex, TRUE);
          set_at(strPath, isdir);
       }
 
+      void system::is_dir_map::set(const string & strPath, bool bIsDir)
+      {
+         static string strSep = "\\";
+         is_dir isdir;
+         isdir.m_bIsDir = bIsDir;
+         isdir.m_dwLastCheck = ::GetTickCount();
+         if(gen::str::ends(strPath, strSep))
+         {
+            single_lock sl(&m_mutex, TRUE);
+            set_at(strPath, isdir);
+         }
+         else
+         {
+            string strPath2(strPath);
+            strPath2 += strSep;
+            single_lock sl(&m_mutex, TRUE);
+            set_at(strPath2, isdir);
+         }
+      }
 
       string system::votagus(const char * lpcsz, const char * lpcsz2)
       {

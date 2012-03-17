@@ -34,63 +34,26 @@ void fixed_alloc_no_sync::FreeAll()
    m_pnodeFree = NULL;
 }
 
-void * fixed_alloc_no_sync::Alloc()
+void fixed_alloc_no_sync::NewBlock()
 {
-   restart:
-   if (m_pnodeFree == NULL)
-   {
-      int nAllocSize = m_nAllocSize + 32;
-      // add another block
-      plex* pNewBlock = plex::create(m_pBlocks, m_nBlockSize, nAllocSize);
 
-      // chain them into free list
-      node* pNode = (node*)pNewBlock->data();
-      // free in reverse order to make it easier to debug
-      (BYTE*&)pNode += (nAllocSize * m_nBlockSize) - nAllocSize;
-      for (int i = m_nBlockSize-1; i >= 0; i--, (BYTE*&)pNode -= nAllocSize)
-      {
-         pNode->pNext = m_pnodeFree;
-         m_pnodeFree = pNode;
-      }
-   }
-   ASSERT(m_pnodeFree != NULL);  // we must have something
+   int nAllocSize = m_nAllocSize + 32;
+   // add another block
+   plex* pNewBlock = plex::create(m_pBlocks, m_nBlockSize, nAllocSize);
 
-   // remove the first available node from the free list
-   void * pNode = m_pnodeFree;
-   try
+   // chain them into free list
+   node* pNode = (node*)pNewBlock->data();
+   // free in reverse order to make it easier to debug
+   (BYTE*&)pNode += (nAllocSize * m_nBlockSize) - nAllocSize;
+   for (int i = m_nBlockSize-1; i >= 0; i--, (BYTE*&)pNode -= nAllocSize)
    {
-      m_pnodeFree = m_pnodeFree->pNext;
-   }
-   catch(...)
-   {
-      m_pnodeFree = NULL;
-      goto restart;
-   }
-   return (void *) (((byte *)pNode) + 16);
-}
-
-void fixed_alloc_no_sync::Free(void * p)
-{
-   p = (void *) (((byte *)p) - 16);
-   if(p == (void *) 0xcdcdcdcd)
-   {
-      if(::IsDebuggerPresent())
-      {
-         // Bingo!!
-         ::DebugBreak();
-      }
-   }
-   else if (p != NULL)
-   {
-      // simply return the node to the free list
-      node* pNode = (node*)p;
       pNode->pNext = m_pnodeFree;
       m_pnodeFree = pNode;
    }
+
+   ASSERT(m_pnodeFree != NULL);  // we must have something
+
 }
-
-
-
 
 /////////////////////////////////////////////////////////////////////////////
 // fixed_alloc_sync
@@ -100,6 +63,7 @@ fixed_alloc_sync::fixed_alloc_sync(UINT nAllocSize, UINT nBlockSize, int iShareC
 {
    
    m_i = 0;
+   m_iShareCount = iShareCount;
    m_allocptra.set_size(iShareCount);
    m_protectptra.set_size(iShareCount);
    for(int i = 0; i < m_allocptra.get_count(); i++)
@@ -153,41 +117,6 @@ void fixed_alloc_sync::FreeAll()
 
 }
 
-void * fixed_alloc_sync::Alloc()
-{
-
-   int i = m_i % m_protectptra.get_count();
-   m_i++;
-
-   void * p;
-   m_protectptra[i]->lock();
-   __try
-   {
-      p = m_allocptra[i]->Alloc();
-   }
-   __finally
-   {
-      m_protectptra[i]->unlock();
-   }
-   ((int *) p)[0] = i;
-   return &((int *)p)[1];
-}
-
-void fixed_alloc_sync::Free(void * p)
-{
-   if (p == NULL)
-      return;
-   int i = ((int *)p)[-1];
-   m_protectptra[i]->lock();
-   __try
-   {
-      m_allocptra[i]->Free(&((int *)p)[-1]);
-   }
-   __finally
-   {
-      m_protectptra[i]->unlock();
-   }
-}
 
 
 
@@ -212,28 +141,22 @@ fixed_alloc::fixed_alloc(UINT nAllocSize, UINT nBlockSize)
       iShareCount = 1;
 
    m_allocptra.set_size(iShareCount);
-   m_protectptra.set_size(iShareCount);
+
    for(int i = 0; i < m_allocptra.get_count(); i++)
    {
       m_allocptra[i] = new fixed_alloc_sync(nAllocSize + sizeof(int), nBlockSize, 2);
-   }
-   for(int i = 0; i < m_protectptra.get_count(); i++)
-   {
-      m_protectptra[i] = new simple_critical_section();
    }
 
 }
 
 fixed_alloc::~fixed_alloc()
 {
+   
    for(int i = 0; i < m_allocptra.get_count(); i++)
    {
       delete m_allocptra[i];
    }
-   for(int i = 0; i < m_protectptra.get_count(); i++)
-   {
-      delete m_protectptra[i];
-   }
+
 }
 
 void fixed_alloc::FreeAll()
@@ -241,53 +164,17 @@ void fixed_alloc::FreeAll()
    
    for(int i = 0; i < m_allocptra.get_count(); i++)
    {
-      m_protectptra[i]->lock();
       __try
       {
          m_allocptra[i]->FreeAll();
       }
       __finally
       {
-         m_protectptra[i]->unlock();
       }
    }
 
 }
 
-void * fixed_alloc::Alloc()
-{
-
-   int i = ::get_current_processor_index();
-
-   void * p;
-   m_protectptra[i]->lock();
-   __try
-   {
-      p = m_allocptra[i]->Alloc();
-   }
-   __finally
-   {
-      m_protectptra[i]->unlock();
-   }
-   ((int *) p)[0] = i;
-   return &((int *)p)[1];
-}
-
-void fixed_alloc::Free(void * p)
-{
-   if (p == NULL)
-      return;
-   int i = ((int *)p)[-1];
-   m_protectptra[i]->lock();
-   __try
-   {
-      m_allocptra[i]->Free(&((int *)p)[-1]);
-   }
-   __finally
-   {
-      m_protectptra[i]->unlock();
-   }
-}
 
 
 

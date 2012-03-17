@@ -12,7 +12,12 @@ void * memset_dup(void * p, int uch, size_t iSize)
    return p;
 }
 
+#pragma function(memcpy)
 
+void * memcpy(void * dst, const void * src, size_t iSize)
+{
+   return memcpy_dup(dst, src, iSize);
+}
 
 
 void * memcpy_dup(void * dst, const void * src, size_t iSize)
@@ -100,3 +105,5 @@ wchar_t * wmemcpy_dup(wchar_t * dst, const wchar_t * src, size_t iSize)
    }
    return dst;
 }
+
+

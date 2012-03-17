@@ -11,9 +11,9 @@ namespace radix
 } // namespace radix
 
 
-
+#ifdef _DEBUG
 #define DEBUG_NEW new(__FILE__, __LINE__)
-
+#endif
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,7 @@ inline void __cdecl Afx_clearerr_s(FILE *stream)
 /////////////////////////////////////////////////////////////////////////////
 // Diagnostic support
 
-//#ifdef _DEBUG
+
 
 CLASS_DECL_ca BOOL AfxAssertFailedLine(const char * lpszFileName, int nLine);
 
@@ -88,8 +88,8 @@ CLASS_DECL_ca void Afxdump(const ::radix::object* pOb); // dump an object from C
 
 
 // extern _template::CTrace TRACE;
+#ifdef _DEBUG
 #define TRACE ATLTRACE
-
 #define THIS_FILE          __FILE__
 #define VERIFY(f)          ASSERT(f)
 //#define DEBUG_ONLY(f)      (f)
@@ -106,16 +106,12 @@ CLASS_DECL_ca void Afxdump(const ::radix::object* pOb); // dump an object from C
 #define AFX_dump0(spgraphics, sz)   dumpcontext << _T(sz)
 #define AFX_dump1(spgraphics, sz, p1) dumpcontext << _T(sz) << p1
 
-#ifdef _DEBUG
 
 #define DEBUG_ONLY(f)      (f)
 
 #else
 
 #define DEBUG_ONLY(f)      ((void)0)
-
-#endif
-/*#else   // _DEBUG
 
 #define VERIFY(f)          ((void)(f))
 #define DEBUG_ONLY(f)      ((void)0)
@@ -133,6 +129,9 @@ inline void AFX_CDECL AfxTrace(...) { }
 
 #include "debug.h"
 
+
+#ifdef _DEBUG
+
 //#define ASSERT(f)          DEBUG_ONLY((void) ((f) || !::AfxAssertFailedLine(THIS_FILE, __LINE__) || (AfxDebugBreak(), 0)))
 #define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && (!::AfxAssertFailedLine(__FILE__, __LINE__) || (AfxDebugBreak(), 0))) || (!is_debugger_attached() && (throw assert_exception(__FILE__, __LINE__), 0))))
 /* see _template headers for commentary on this */
@@ -140,6 +139,11 @@ inline void AFX_CDECL AfxTrace(...) { }
 #define AFXASSUME(cond)       do { bool __afx_condVal=!!(cond); ASSERT(__afx_condVal); __analysis_assume(__afx_condVal); } while(0)
 //#define ASSERT_VALID(pOb)  DEBUG_ONLY((::Afxassert_validObject(pOb, THIS_FILE, __LINE__)))
 #define ASSERT_VALID(pOb)  ((::Afxassert_validObject(pOb, __FILE__, __LINE__)))
+#else
+#define ASSERT(f)
+#define AFXASSUME(cond)
+#define ASSERT_VALID(cond)
+#endif
 
 // Debug ASSERTs then throws. Retail throws if condition not met
 #define ENSURE_THROW(cond, exception)   \
