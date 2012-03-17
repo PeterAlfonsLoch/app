@@ -224,7 +224,6 @@ namespace ex2
       return gen::application::get_app();
    }
 
-   #ifdef _DEBUG
    void application::assert_valid() const
    {
       gen::application::assert_valid();
@@ -234,7 +233,6 @@ namespace ex2
    {
       gen::application::dump(dumpcontext);
    }
-   #endif
 
 
    string application::get_version()

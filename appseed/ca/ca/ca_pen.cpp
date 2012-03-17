@@ -24,13 +24,11 @@ namespace ca
 
    }
 
-#ifdef _DEBUG
    void pen::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
       throw interface_only_exception();
    }
-#endif
 
    void AfxThrowResourceException()
    {

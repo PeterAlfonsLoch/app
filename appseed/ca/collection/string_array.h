@@ -117,10 +117,8 @@ public:
    ~string_array();
 
 ///   void Serialize(CArchive&);
-#ifdef _DEBUG
    void dump(dump_context&) const;
    void assert_valid() const;
-#endif
 
 protected:
    // local typedefs for class templates

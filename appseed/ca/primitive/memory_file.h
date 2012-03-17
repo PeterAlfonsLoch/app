@@ -49,10 +49,8 @@ namespace primitive
 
       virtual void full_load(const char * psz);
 
-   #ifdef _DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-   #endif
 
 
    };

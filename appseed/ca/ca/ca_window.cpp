@@ -254,7 +254,6 @@ namespace ca
       throw interface_only_exception();
    }
 
-#ifdef _DEBUG
    void window::assert_valid() const
    {
       throw interface_only_exception();
@@ -265,7 +264,6 @@ namespace ca
       UNREFERENCED_PARAMETER(dumpcontext);
       throw interface_only_exception();
    }
-#endif
 
    BOOL window::DestroyWindow()
    {

@@ -101,10 +101,8 @@ namespace collection
    public:
       ~list();
       //void Serialize(CArchive&);
-   #ifdef _DEBUG
       void dump(dump_context&) const;
       void assert_valid() const;
-   #endif
    };
 
    /////////////////////////////////////////////////////////////////////////////
@@ -730,7 +728,6 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       }
    }*/
 
-   #ifdef _DEBUG
    template<class TYPE, class ARG_TYPE>
    void list<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
    {
@@ -770,7 +767,6 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
          ASSERT(fx_is_valid_address(m_pnodeTail, sizeof(node)));
       }
    }
-   #endif //_DEBUG
 
    template<class TYPE, class ARG_TYPE>
    list < TYPE, ARG_TYPE > &

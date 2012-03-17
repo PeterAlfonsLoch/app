@@ -92,10 +92,8 @@ protected:
 
 
 //	void Serialize(CArchive&);
-#ifdef _DEBUG
 	void dump(dump_context&) const;
 	void assert_valid() const;
-#endif
 	// local typedefs for class templates
 	typedef ::radix::object* BASE_TYPE;
 	typedef ::radix::object* BASE_ARG_TYPE;

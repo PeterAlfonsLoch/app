@@ -157,7 +157,7 @@ void multiple_document_template::set_default_title(user::document_interface * pd
 /////////////////////////////////////////////////////////////////////////////
 // multiple_document_template diagnostics
 
-#ifdef _DEBUG
+
 void multiple_document_template::dump(dump_context & dumpcontext) const
 {
    document_template::dump(dumpcontext);
@@ -186,7 +186,7 @@ void multiple_document_template::assert_valid() const
 
 }
 
-#endif //_DEBUG
+
 
 
 // IMPLEMENT_DYNAMIC(multiple_document_template, document_template)

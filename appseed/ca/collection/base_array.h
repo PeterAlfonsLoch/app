@@ -228,10 +228,8 @@ protected:
 
 public:
 //   void Serialize(CArchive&);
-#ifdef _DEBUG
    void dump(dump_context&) const;
    void assert_valid() const;
-#endif
 };
 
 template<class TYPE, class ARG_TYPE>
@@ -909,7 +907,6 @@ void base_array<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
    SerializeElements<TYPE>(ar, m_pData, m_nSize);
 }
 */
-#ifdef _DEBUG
 
 template<class TYPE, class ARG_TYPE>
 void base_array<TYPE, ARG_TYPE>::assert_valid() const
@@ -929,7 +926,7 @@ void base_array<TYPE, ARG_TYPE>::assert_valid() const
       ASSERT(fx_is_valid_address(m_pData, m_nMaxSize * sizeof(TYPE)));
    }
 }
-#endif //_DEBUG
+
 
 
 
@@ -964,7 +961,6 @@ void base_array<TYPE, ARG_TYPE>::copy(const base_array& src)
 }
 
 
-#ifdef _DEBUG
 template<class TYPE, class ARG_TYPE>
 void base_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 {
@@ -980,7 +976,6 @@ void base_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
    dumpcontext << "\n";
 }
 
-#endif
 
 #define new DEBUG_NEW
 

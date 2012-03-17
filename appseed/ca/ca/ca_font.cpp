@@ -19,13 +19,11 @@ namespace ca
 
    }
 
-#ifdef _DEBUG
    void font::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
       throw interface_only_exception();   
    }
-#endif
 
    /////////////////////////////////////////////////////////////////////////////
    // out-of-line ::ca::brush, font, etc. helpers

@@ -408,10 +408,8 @@ namespace radix
       static int ShowAppMessageBox(application *pApp, const char * lpszPrompt, UINT nType, UINT nIDPrompt);
       static void DoEnableModeless(BOOL bEnable); // to disable OLE in-place dialogs
 
-   #ifdef _DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-   #endif
 
 #ifdef WINDOWS
       // helpers for registration

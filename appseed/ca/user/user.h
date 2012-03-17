@@ -88,10 +88,8 @@ public:
 public:
    ::user::interaction * m_pguieMdiClient;       // MDI Client ::ca::window handle
 
-#ifdef _DEBUG
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
-#endif
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    virtual BOOL LoadFrame(const char * pszMatter,
             DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
@@ -146,10 +144,8 @@ protected:
    HMENU m_hMenuShared;        // menu when we are active
 
 public:
-#ifdef _DEBUG
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
-#endif
 
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
    virtual BOOL LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,

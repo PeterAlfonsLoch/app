@@ -32,10 +32,8 @@ public:
    virtual bool unlock() = 0;
    virtual bool unlock(LONG /* lCount */, LPLONG /* lpPrevCount=NULL */);
 
-#ifdef _DEBUG
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
-#endif
 
 };
 

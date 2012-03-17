@@ -40,9 +40,7 @@ namespace ca
 
       font & operator = (const font & font);
 
-      #ifdef _DEBUG
-         virtual void dump(dump_context & dumpcontext) const;
-      #endif
+      virtual void dump(dump_context & dumpcontext) const;
 
       virtual void set_family_name(const char * pszFamilyName);
       virtual void set_size(double dSize, e_unit = unit_point);

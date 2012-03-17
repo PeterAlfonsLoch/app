@@ -82,10 +82,8 @@ namespace ex2
 
       virtual string get_version();
 
-   #ifdef _DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-   #endif
 
       virtual bool Ex2OnAppInstall();
       virtual bool Ex2OnAppUninstall();

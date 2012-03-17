@@ -3218,15 +3218,6 @@
     <ClInclude Include="primitive\datetime\datetime_value.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="template\aaa_resource_want_to_remove_xxx.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\aaa_template_xyz_want_to_remove_xxx.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\aaa_trace_module_manager_want_to_remove.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
     <ClInclude Include="template\template_definition.h">
       <Filter>Header Files\template</Filter>
     </ClInclude>
@@ -3246,15 +3237,6 @@
       <Filter>Header Files\template</Filter>
     </ClInclude>
     <ClInclude Include="template\template_exception.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\aaa_simple_collection_want_to_remove_xxx.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\aaa_cw_allocate_want_to_remove_xxx.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\aaa_c_allocate_want_to_remove_xxx.h">
       <Filter>Header Files\template</Filter>
     </ClInclude>
     <ClInclude Include="template\template_trace.h">
@@ -5487,9 +5469,6 @@
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="template\aaa_base_want_to_remove_xxx.cpp">
-      <Filter>Source Files\template</Filter>
     </ClCompile>
     <ClCompile Include="sockets\sockets_include.cpp">
       <Filter>Source Files\sockets</Filter>

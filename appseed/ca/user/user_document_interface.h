@@ -128,10 +128,8 @@ namespace user
       BOOL m_bAutoDelete;     // TRUE => delete document when no more views
       BOOL m_bEmbedded;       // TRUE => document is being created by OLE
 
-   #ifdef _DEBUG
       virtual void dump(dump_context&) const;
       virtual void assert_valid() const;
-   #endif //_DEBUG
 
       // implementation helpers
       virtual bool do_save(const char * pszPathName, bool bReplace = true);

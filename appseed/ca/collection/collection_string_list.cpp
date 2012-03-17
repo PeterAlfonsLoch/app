@@ -427,10 +427,7 @@ void string_list::Serialize(CArchive& ar)
    }
 }
 */
-/////////////////////////////////////////////////////////////////////////////
-// Diagnostics
 
-#ifdef _DEBUG
 void string_list::dump(dump_context & dumpcontext) const
 {
    ::radix::object::dump(dumpcontext);
@@ -463,7 +460,7 @@ void string_list::assert_valid() const
       ASSERT(fx_is_valid_address(m_pnodeTail, sizeof(node)));
    }
 }
-#endif //_DEBUG
+
 
 
 

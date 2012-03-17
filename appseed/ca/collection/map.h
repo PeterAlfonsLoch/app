@@ -180,10 +180,8 @@ namespace collection
    public:
       virtual ~map();
    //   void Serialize(CArchive&);
-   #ifdef _DEBUG
       void dump(dump_context&) const;
       void assert_valid() const;
-   #endif
    };
 
    /////////////////////////////////////////////////////////////////////////////
@@ -707,7 +705,6 @@ namespace collection
    }
    */
 
-   #ifdef _DEBUG
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
    void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::dump(dump_context & dumpcontext) const
    {
@@ -741,7 +738,6 @@ namespace collection
       ASSERT(m_nCount == 0 || m_pHashTable != NULL);
          // non-is_empty map should have hash table
    }
-   #endif //_DEBUG
 
 
 

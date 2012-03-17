@@ -437,7 +437,6 @@ base_string_to_string_map::pair *base_string_to_string_map::PGetNextAssoc(const 
 /////////////////////////////////////////////////////////////////////////////
 // Diagnostics
 
-#ifdef _DEBUG
 void base_string_to_string_map::dump(dump_context & dumpcontext) const
 {
    ::radix::object::dump(dumpcontext);
@@ -468,7 +467,6 @@ void base_string_to_string_map::assert_valid() const
    ASSERT(m_nCount == 0 || m_pHashTable != NULL);
       // non-is_empty ::collection::map should have hash table
 }
-#endif //_DEBUG
 
 
 

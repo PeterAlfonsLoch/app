@@ -425,7 +425,7 @@ void view::OnPrepareDC(::ca::graphics * pgraphics, CPrintInfo* pInfo)
 /////////////////////////////////////////////////////////////////////////////
 // ::view diagnostics
 
-#ifdef _DEBUG
+
 void view::dump(dump_context & dumpcontext) const
 {
    ::user::interaction::dump(dumpcontext);
@@ -440,7 +440,7 @@ void view::assert_valid() const
 {
    ::user::interaction::assert_valid();
 }
-#endif //_DEBUG
+
 
 /////////////////////////////////////////////////////////////////////////////
 // CCtrlView
@@ -490,7 +490,6 @@ void CCtrlView::OnPaint()
 /////////////////////////////////////////////////////////////////////////////
 // CCtrlView diagnostics
 
-#ifdef _DEBUG
 void CCtrlView::dump(dump_context & dumpcontext) const
 {
    view::dump(dumpcontext);
@@ -504,7 +503,6 @@ void CCtrlView::assert_valid() const
    ::user::interaction::assert_valid();
    ASSERT(!m_strClass.is_empty());
 }
-#endif //_DEBUG
 
 
 void view::_001OnView(gen::signal_object * pobj)

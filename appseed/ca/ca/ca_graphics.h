@@ -569,12 +569,8 @@ namespace ca
       virtual void Draw3dRect(int x, int y, int cx, int cy,
          COLORREF clrTopLeft, COLORREF clrBottomRight);
 
-   // Implementation
-   public:
-   #ifdef _DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-   #endif
 
       // advanced use and implementation
       BOOL m_bPrinting;

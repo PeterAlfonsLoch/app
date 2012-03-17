@@ -178,10 +178,8 @@ public:
 
 public:
    virtual ~raw_array();
-#ifdef _DEBUG
    void dump(dump_context&) const;
    void assert_valid() const;
-#endif
 
    typedef TYPE BASE_TYPE;
    typedef ARG_TYPE BASE_ARG_TYPE;
@@ -657,7 +655,6 @@ void raw_array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, raw_array* pNewArra
          set_at(nStartIndex + i, pNewArray->get_at(i));
    }
 }
-#ifdef _DEBUG
 template<class TYPE, class ARG_TYPE>
 void raw_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 {
@@ -691,7 +688,6 @@ void raw_array<TYPE, ARG_TYPE>::assert_valid() const
       ASSERT(fx_is_valid_address(m_pData, m_nMaxSize * sizeof(TYPE)));
    }
 }
-#endif //_DEBUG
 
 template<class TYPE, class ARG_TYPE>
 typename raw_array<TYPE, ARG_TYPE>::iterator raw_array<TYPE, ARG_TYPE>::erase(iterator pos)

@@ -32,9 +32,7 @@ namespace ca
       virtual DWORD SetBitmapBits(DWORD dwCount, const void * lpBits);
       virtual DWORD GetBitmapBits(DWORD dwCount, LPVOID lpBits) const;
 
-   #ifdef _DEBUG
       virtual void dump(dump_context & dumpcontext) const;
-   #endif
    };
 
    typedef smart_pointer < bitmap > bitmap_sp;

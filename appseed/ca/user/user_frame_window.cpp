@@ -1708,7 +1708,7 @@ void frame_window::BringToTop(int nCmdShow)
 /////////////////////////////////////////////////////////////////////////////
 // frame_window Diagnostics
 
-#ifdef _DEBUG
+
 void frame_window::assert_valid() const
 {
    user::frame_window_interface::assert_valid();
@@ -1732,7 +1732,7 @@ void frame_window::dump(dump_context & dumpcontext) const
 
    dumpcontext << "\n";
 }
-#endif //_DEBUG
+
 
 
 

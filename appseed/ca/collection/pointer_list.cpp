@@ -340,10 +340,6 @@ POSITION pointer_list::find(void * searchValue, POSITION startAfter) const
 }
 
 
-/////////////////////////////////////////////////////////////////////////////
-// Diagnostics
-
-#ifdef _DEBUG
 void pointer_list::dump(dump_context & dumpcontext) const
 {
    ::radix::object::dump(dumpcontext);
@@ -376,10 +372,3 @@ void pointer_list::assert_valid() const
       ASSERT(fx_is_valid_address(m_pnodeTail, sizeof(node)));
    }
 }
-#endif //_DEBUG
-
-
-
-// IMPLEMENT_DYNAMIC(pointer_list, ::radix::object)
-
-/////////////////////////////////////////////////////////////////////////////

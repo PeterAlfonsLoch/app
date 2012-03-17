@@ -6,7 +6,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Diagnostic Stream output for floating point numbers
 
-#ifdef _DEBUG
+
 dump_context& dump_context::operator<<(float f)
 {
    char szBuffer[32];
@@ -24,4 +24,4 @@ dump_context& dump_context::operator<<(double d)
    *this << szBuffer;
    return *this;
 }
-#endif
+

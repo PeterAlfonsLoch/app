@@ -87,10 +87,8 @@ namespace ex1
    public:
       virtual bool IsOpened();
       virtual ~file();
-   #ifdef _DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-   #endif
       enum BufferCommand { bufferRead, bufferWrite, bufferCommit, bufferCheck };
       virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
    public:

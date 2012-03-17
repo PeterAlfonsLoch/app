@@ -815,7 +815,6 @@ namespace radix
    ///////////////////////////////////////////////////////////////////////////
    // application diagnostics
 
-   #ifdef _DEBUG
    void application::assert_valid() const
    {
       thread::assert_valid();
@@ -867,7 +866,6 @@ namespace radix
    */
       dumpcontext << "\n";
    }
-   #endif
 
    ::ca::application * application::get_app() const
    {

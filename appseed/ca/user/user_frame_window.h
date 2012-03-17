@@ -170,10 +170,8 @@ public:
 
 
 
-#ifdef _DEBUG
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
-#endif
    virtual BOOL IsFrameWnd();
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
    virtual void on_update_frame_title(BOOL bAddToTitle);

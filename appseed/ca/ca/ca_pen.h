@@ -25,9 +25,8 @@ namespace ca
       pen & operator = (const pen & penSrc);
 
 
-   #ifdef _DEBUG
       virtual void dump(dump_context & dumpcontext) const;
-   #endif
+
    };
 
    class CLASS_DECL_ca pen_sp :

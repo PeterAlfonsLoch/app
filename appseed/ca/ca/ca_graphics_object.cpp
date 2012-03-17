@@ -6,7 +6,6 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // graphics_object
 
-#ifdef _DEBUG
    void graphics_object::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
@@ -17,7 +16,6 @@ namespace ca
    {
       throw interface_only_exception();   
    }
-#endif
 
    graphics_object::~graphics_object()
    {

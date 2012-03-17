@@ -123,7 +123,6 @@ namespace ex1
       UNREFERENCED_PARAMETER(lpszFileName);
    }*/
 
-   #ifdef _DEBUG
    void file::assert_valid() const
    {
    //   ::radix::object::assert_valid();
@@ -139,7 +138,6 @@ namespace ex1
    //   dumpcontext << " and name \"" << m_wstrFileName << "\"";
    //   dumpcontext << "\n";
    }
-   #endif
 
 
 
@@ -436,7 +434,6 @@ namespace ex1
    /////////////////////////////////////////////////////////////////////////////
    // file_exception diagnostics
 
-   #ifdef _DEBUG
    void file_exception::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
@@ -451,7 +448,6 @@ namespace ex1
 
       dumpcontext << "\n";*/
    }
-   #endif
 
    /////////////////////////////////////////////////////////////////////////////
    // file_exception helpers

@@ -221,10 +221,8 @@ public:
 
 
 //   void Serialize(CArchive&);
-#ifdef _DEBUG
    void dump(dump_context&) const;
    void assert_valid() const;
-#endif
 
 protected:
    node* NewNode(node*, node*);

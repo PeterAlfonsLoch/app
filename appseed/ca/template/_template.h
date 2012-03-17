@@ -102,7 +102,6 @@ void SerializeElementsInsertExtract(CArchive& ar, TYPE* pElements,
 }
 */
 
-#ifdef _DEBUG
 template<class TYPE>
 void dump_elements(dump_context & dumpcontext, const TYPE* pElements, count nCount)
 {
@@ -116,7 +115,6 @@ void dump_elements(dump_context & dumpcontext, const TYPE* pElements, count nCou
 #endif
    // default does nothing
 }
-#endif
 
 
 // the two functions below are deprecated.  Use a constructor/destructor instead.

@@ -465,7 +465,6 @@ namespace zip
    /////////////////////////////////////////////////////////////////////////////
    // InFile diagnostics
 
-   #ifdef _DEBUG
    void InFile::assert_valid() const
    {
       //::radix::object::assert_valid();
@@ -480,7 +479,6 @@ namespace zip
       dumpcontext << " and name \"" << m_strFileName << "\"";
       dumpcontext << "\n";
    }
-   #endif
 
 
    // IMPLEMENT_DYNAMIC(InFile, ::radix::object)

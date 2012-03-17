@@ -85,10 +85,8 @@ protected:
 	void FreeNode(node*);
 
 public:
-#ifdef _DEBUG
 	void dump(dump_context&) const;
 	void assert_valid() const;
-#endif
 	// local typedefs for class templates
 	typedef void * BASE_TYPE;
 	typedef void * BASE_ARG_TYPE;

@@ -61,9 +61,7 @@ namespace ex1
 
 
 
-   #ifdef _DEBUG
       virtual void dump(dump_context&) const;
-   #endif
       
       virtual BOOL GetErrorMessage(string & str, PUINT pnHelpContext = NULL) const;
 

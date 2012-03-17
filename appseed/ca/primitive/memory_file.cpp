@@ -281,8 +281,6 @@ namespace primitive
    }
 
 
-   #ifdef _DEBUG
-
    void memory_file::assert_valid() const
    {
       file::assert_valid();
@@ -292,7 +290,6 @@ namespace primitive
    {
       file::dump(dumpcontext);
    }
-   #endif
 
 
 

@@ -61,8 +61,6 @@ namespace radix
       return *this;
    }
 
-#ifdef _DEBUG
-
    void object::assert_valid() const
    {
       ASSERT(this != NULL);
@@ -74,10 +72,10 @@ namespace radix
       dumpcontext << "a " << typeid(*this).name() <<
          " at " << (void *)this << "\n";
 
-      UNUSED(spgraphics); // unused in release build
+      UNUSED(dumpcontext); // unused in release build
    }
 
-#endif
+
 
    ::visual::icon * object::set_icon(::visual::icon * picon, bool bBigIcon)
    {
@@ -134,14 +132,14 @@ namespace radix
 #define new DEBUG_NEW
 #ifndef _DEBUG
 // _DEBUG versions in afxmem.cpp
-void PASCAL object::operator delete(void * p)
-   { ::operator delete(p); }
+//void PASCAL object::operator delete(void * p)
+  // { ::operator delete(p); }
 #if _MSC_VER >= 1200
-void PASCAL object::operator delete(void * p, void *)
-   { ::operator delete(p); }
+//void PASCAL object::operator delete(void * p, void *)
+  // { ::operator delete(p); }
 #endif
-void * PASCAL object::operator new(size_t nSize)
-   { return ::operator new(nSize); }
+//void * PASCAL object::operator new(size_t nSize)
+  // { return ::operator new(nSize); }
 // _DEBUG versions in objcore.cpp
 //void ::radix::object::AssertValid() const
 //   { /* no asserts in release builds */ }

@@ -14,9 +14,7 @@ namespace ex1
       BYTE        m_padding;       // pad the structure to a WORD
       string      m_strFullName;   // absolute path name
 
-   #ifdef _DEBUG
       void dump(dump_context & dumpcontext) const;
-   #endif
 
    };
 

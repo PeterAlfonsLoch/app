@@ -52,10 +52,8 @@ namespace gen
 
       virtual ::ca::application * get_app() const;
 
-   #ifdef _DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-   #endif
 
       virtual int run();
       virtual BOOL on_idle(LONG lCount); // return TRUE if more idle processing

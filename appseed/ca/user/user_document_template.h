@@ -97,10 +97,9 @@ public:
    virtual ~document_template() = 0;
 
 
-#ifdef _DEBUG
    virtual void dump(dump_context&) const;
    virtual void assert_valid() const;
-#endif
+
    virtual void on_idle();             // for all documents
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
       

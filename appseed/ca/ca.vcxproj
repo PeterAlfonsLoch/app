@@ -1404,15 +1404,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="sqlite\sqlite3.h" />
     <ClInclude Include="sqlite\sqlite3ext.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="template\aaa_c_allocate_want_to_remove_xxx.h" />
     <ClInclude Include="template\template_base.h" />
     <ClInclude Include="template\template_checked.h" />
     <ClInclude Include="template\template_core.h" />
     <ClInclude Include="template\template_debug.h" />
     <ClInclude Include="template\template_definition.h" />
     <ClInclude Include="template\template_exception.h" />
-    <ClInclude Include="template\aaa_resource_want_to_remove_xxx.h" />
-    <ClInclude Include="template\aaa_simple_collection_want_to_remove_xxx.h" />
     <ClInclude Include="template\template.h" />
     <ClInclude Include="template\template_back_insert_iterator.h" />
     <ClInclude Include="template\template_compare.h" />
@@ -1425,10 +1422,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="template\template_time.h" />
     <ClInclude Include="template\template_trace.h" />
     <ClInclude Include="template\template_trace_module_manager.h" />
-    <ClInclude Include="template\aaa_cw_allocate_want_to_remove_xxx.h" />
     <ClInclude Include="template\_template.h" />
-    <ClInclude Include="template\aaa_template_xyz_want_to_remove_xxx.h" />
-    <ClInclude Include="template\aaa_trace_module_manager_want_to_remove.h" />
     <ClInclude Include="userpresence\userpresence.h" />
     <ClInclude Include="userpresence\userpresence_application.h" />
     <ClInclude Include="userpresence\userpresence_user_presence.h" />
@@ -2567,7 +2561,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="template\aaa_base_want_to_remove_xxx.cpp" />
     <ClCompile Include="template\template_base.cpp" />
     <ClCompile Include="template\template_checked.cpp" />
     <ClCompile Include="template\template_exception.cpp" />

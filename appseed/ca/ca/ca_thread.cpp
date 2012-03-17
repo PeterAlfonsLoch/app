@@ -232,7 +232,6 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // thread diagnostics
 
-#ifdef _DEBUG
    void thread::assert_valid() const
    {
       throw interface_only_exception();   
@@ -243,7 +242,6 @@ namespace ca
       UNREFERENCED_PARAMETER(dumpcontext);
       throw interface_only_exception();   
    }
-#endif
 
    bool thread::post_message(::user::interaction * pguie, UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {

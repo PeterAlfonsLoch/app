@@ -341,10 +341,7 @@ void string_array::insert_at(index nStartIndex, const string_array & NewArray)
 */
 
 
-/////////////////////////////////////////////////////////////////////////////
-// Diagnostics
 
-#ifdef _DEBUG
 void string_array::dump(dump_context & dumpcontext) const
 {
    ::radix::object::dump(dumpcontext);
@@ -376,7 +373,7 @@ void string_array::assert_valid() const
       ASSERT(fx_is_valid_address(m_pData, m_nMaxSize * sizeof(string)));
    }
 }
-#endif //_DEBUG
+
 
 void string_array::QuickSort(
       void swap(void * lpVoidSwapArg, const index, const index),

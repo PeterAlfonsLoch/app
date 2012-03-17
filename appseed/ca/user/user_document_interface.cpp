@@ -771,7 +771,6 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // document_interface diagnostics
 
-   #ifdef _DEBUG
    void document_interface::dump(dump_context & dumpcontext) const
    {
       ::radix::object::dump(dumpcontext);
@@ -805,7 +804,6 @@ namespace user
          ASSERT_VALID(pview);
       }
    }
-   #endif //_DEBUG
 
 
    bool document_interface::is_new_document()

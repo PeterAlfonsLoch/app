@@ -921,7 +921,6 @@ const ULONGLONG CFileTime::Week = Day * static_cast<ULONGLONG>(7);
 
 
 
-#ifdef _DEBUG
 dump_context& operator <<(dump_context & dumpcontext, class time time)
 {
    char psz[32];
@@ -938,7 +937,7 @@ dump_context& operator <<(dump_context & dumpcontext, class time time)
    // format it
    return dumpcontext << "class time(\"" << psz << "\")";
 }
-#endif
+
 
 /*CArchive& class time::Serialize64(CArchive& ar)
 {
@@ -979,7 +978,7 @@ CArchive& operator >>(CArchive& ar, class time& rtime)
 /////////////////////////////////////////////////////////////////////////////
 // time_span - relative time
 
-#ifdef _DEBUG
+
 dump_context& operator <<(dump_context & dumpcontext, time_span timeSpan)
 {
    return dumpcontext << "time_span(" << timeSpan.GetDays() << " days, " <<
@@ -987,7 +986,6 @@ dump_context& operator <<(dump_context & dumpcontext, time_span timeSpan)
        timeSpan.GetMinutes() << " minutes and " <<
        timeSpan.GetSeconds() << " seconds)";
 }
-#endif
 
 /*CArchive& time_span::Serialize64(CArchive& ar)
 {

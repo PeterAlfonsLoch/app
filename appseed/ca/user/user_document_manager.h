@@ -39,11 +39,8 @@ public:
    virtual ~document_manager();
 
 
-#ifdef _DEBUG
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
-#endif
-
 
    virtual void add_document_template(document_template * ptemplate);
    virtual count get_template_count() const;

@@ -56,10 +56,8 @@ protected:
 
 public:
 	~simple_pointer_array();
-#ifdef _DEBUG
 	void dump(dump_context&) const;
 	void assert_valid() const;
-#endif
 
 protected:
 	// local typedefs for class templates

@@ -311,7 +311,7 @@ namespace radix
    }
 
 
-#ifdef _DEBUG
+
    void thread::assert_valid() const
    {
       m_p->assert_valid();
@@ -320,7 +320,7 @@ namespace radix
    {
       m_p->dump(dumpcontext);
    }
-#endif
+
 
    // 'delete this' only if m_bAutoDelete == TRUE
    void thread::Delete()

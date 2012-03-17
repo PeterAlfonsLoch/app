@@ -19,9 +19,7 @@ public:
    virtual void request(::ca::create_context * pcreatecontext);
    virtual void set_default_title(::user::document_interface * pdocument);
 
-#ifdef _DEBUG
    virtual void dump(dump_context&) const;
    virtual void assert_valid() const;
-#endif //_DEBUG
 
 };

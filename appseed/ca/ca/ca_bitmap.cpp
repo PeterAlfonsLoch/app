@@ -67,13 +67,11 @@ namespace ca
       throw not_implemented_exception();
    }
 
-   #ifdef _DEBUG
    void ::ca::bitmap::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
       throw interface_only_exception();
    }
-   #endif
 
 
    class size bitmap::SetBitmapDimension(int nWidth, int nHeight)

@@ -668,7 +668,7 @@ void document_manager::on_file_open()
       // if returns NULL, the ::fontopus::user has already been alerted
 }
 
-#ifdef _DEBUG
+
 void document_manager::assert_valid() const
 {
    ::radix::object::assert_valid();
@@ -699,7 +699,7 @@ void document_manager::dump(dump_context & dumpcontext) const
 
    dumpcontext << "\n";
 }
-#endif
+
 
 
 void document_manager::request(::ca::create_context * pcreatecontext)

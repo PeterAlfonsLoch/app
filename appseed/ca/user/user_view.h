@@ -71,10 +71,8 @@ public:
 
    static user::document_interface * get_document(::user::interaction * pguie);
 
-#ifdef _DEBUG
    virtual void dump(dump_context&) const;
    virtual void assert_valid() const;
-#endif //_DEBUG
 
    // Advanced: for implementing custom print preview
 /*   BOOL DoPrintPreview(UINT nIDResource, view * pPrintView,
@@ -163,10 +161,8 @@ protected:
 // Implementation
 public:
    ~CCtrlView() = 0;
-#ifdef _DEBUG
    virtual void dump(dump_context&) const;
    virtual void assert_valid() const;
-#endif //_DEBUG
 
    void OnPaint();
 

@@ -234,7 +234,7 @@ namespace ex1
    file_composite::~file_composite()
    {
    }
-   
+
    void file_composite::assert_valid() const
    {
 
@@ -248,6 +248,7 @@ namespace ex1
       return m_spfile->dump(dumpcontext);
 
    }
+
 
    uint64_t file_composite::GetBufferPtr(UINT nCommand, uint64_t nCount, void ** ppBufStart, void ** ppBufMax)
    {

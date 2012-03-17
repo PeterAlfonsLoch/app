@@ -1596,7 +1596,6 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // ::ca::graphics_sp
 
-#ifdef _DEBUG
    void graphics::assert_valid() const
    {
       throw interface_only_exception();
@@ -1607,7 +1606,6 @@ namespace ca
       UNREFERENCED_PARAMETER(dumpcontext);
       throw interface_only_exception();
    }
-#endif //_DEBUG
 
 
 
@@ -2430,7 +2428,6 @@ void AfxThrowUserException()
 }
 
 
-#ifdef _DEBUG
 dump_context& operator<<(dump_context & dumpcontext, SIZE size)
 {
    return dumpcontext << "(" << size.cx << " x " << size.cy << ")";
@@ -2446,4 +2443,3 @@ dump_context& operator<<(dump_context & dumpcontext, const RECT& rect)
    return dumpcontext << "(L " << rect.left << ", T " << rect.top << ", R " <<
       rect.right << ", B " << rect.bottom << ")";
 }
-#endif //_DEBUG

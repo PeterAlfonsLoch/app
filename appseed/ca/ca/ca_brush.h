@@ -30,9 +30,7 @@ namespace ca
 
       brush & operator = (const ::ca::brush & brushSrc);
 
-#ifdef _DEBUG
       virtual void dump(dump_context & dumpcontext) const;
-#endif
    };
 
    class CLASS_DECL_ca brush_sp :

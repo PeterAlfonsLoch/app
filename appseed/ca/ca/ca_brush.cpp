@@ -33,13 +33,11 @@ namespace ca
    }
 #endif
 
-#ifdef _DEBUG
    void brush::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
       throw interface_only_exception();
    }
-#endif
 
    BOOL brush::CreateSolidBrush(COLORREF crColor)
    {

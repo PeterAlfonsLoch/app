@@ -254,7 +254,7 @@ bool document_template::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    return command_target::_001OnCmdMsg(pcmdmsg);
 }
 
-#ifdef _DEBUG
+
 void document_template::dump(dump_context & dumpcontext) const
 {
    command_target::dump(dumpcontext);
@@ -291,7 +291,7 @@ void document_template::assert_valid() const
       ::user::document_interface * pdocument = get_document(index);
    }
 }
-#endif //_DEBUG
+
 
 
 void document_template::update_all_views(::view * pviewSender, LPARAM lhint, ::radix::object * puh)

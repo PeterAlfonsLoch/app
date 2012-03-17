@@ -511,7 +511,7 @@ namespace gen
    */
 
 
-   #ifdef _DEBUG
+
    void application::assert_valid() const
    {
       ex1::application::assert_valid();
@@ -521,7 +521,7 @@ namespace gen
    {
       ex1::application::dump(dumpcontext);
    }
-   #endif
+
 
    int application::run()
    {

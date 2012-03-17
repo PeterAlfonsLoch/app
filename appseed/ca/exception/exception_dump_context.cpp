@@ -288,7 +288,6 @@ dump_context& dump_context::operator<<(const ::radix::object* pOb)
       *this << "NULL";
    else
       pOb->dump(*this);
-
    return *this;
 }
 
