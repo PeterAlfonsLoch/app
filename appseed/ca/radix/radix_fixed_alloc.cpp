@@ -195,7 +195,7 @@ void fixed_alloc_sync::Free(void * p)
 fixed_alloc::fixed_alloc(UINT nAllocSize, UINT nBlockSize)
 {
    
-   int iShareCount = get_current_processor_index() + 1;
+   int iShareCount = ::get_current_process_maximum_affinity() + 1;
 
    if(iShareCount <= 0)
       iShareCount = 1;
