@@ -427,8 +427,14 @@ retry:
             strUrl = System.url().set_script(strUrl, strScript);
          }
 
+         gen::property_set setQuery(get_app());
+
+         setQuery.parse_url_query(System.url().get_query(strUrl));
+
+
+
          string strSessId;
-         if(!(bool)set["disable_ca2_sessid"])
+         if(!(bool)set["disable_ca2_sessid"] && !setQuery.has_property("authnone"))
          {
             if((bool)set["optional_ca2_sessid"])
             {

@@ -764,7 +764,15 @@ InitFailure:
 
    bool application::is_licensed(const char * pszId, bool bInteractive)
    {
+      
+      if(directrix().m_varTopicQuery.has_property("install"))
+         return true;
+
+      if(directrix().m_varTopicQuery.has_property("uninstall"))
+         return true;
+
       return license().has(pszId, bInteractive);
+
    }
 
    class ::fontopus::license & application::license()
