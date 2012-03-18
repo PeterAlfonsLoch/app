@@ -84,8 +84,6 @@ bool sync_object < THANDLE >::lock(const duration & durationTimeout)
 #endif
 }
 
-#ifdef _DEBUG
-
 template < typename THANDLE >
 void sync_object < THANDLE >::dump(dump_context & dumpcontext) const
 {
@@ -100,8 +98,6 @@ void sync_object < THANDLE >::assert_valid() const
 {
    ::radix::object::assert_valid();
 }
-
-#endif
 
 template < typename THANDLE >
 inline sync_object < THANDLE >::operator THANDLE() const

@@ -209,7 +209,7 @@ public:
       {
          get_data()->m_iLength = 0;
       }
-
+      m_pwsz[iLength] = L'\0';
    }
 
    inline void release_buffer()
