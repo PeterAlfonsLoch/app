@@ -21,6 +21,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app", "..\..\..\nodeapp\appseed\app\app.vcxproj", "{B2A3AD3B-1026-4D24-A527-2E1B38324184}"
+	ProjectSection(ProjectDependencies) = postProject
+		{36D2090B-8E11-42A4-B923-08D809A03F4F} = {36D2090B-8E11-42A4-B923-08D809A03F4F}
+		{899CC94B-9028-4E57-A7FE-358A564F05F0} = {899CC94B-9028-4E57-A7FE-358A564F05F0}
+		{AF07539A-BE49-4BE9-818A-0D2CE6462812} = {AF07539A-BE49-4BE9-818A-0D2CE6462812}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

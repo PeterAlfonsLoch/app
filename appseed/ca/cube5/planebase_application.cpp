@@ -26,21 +26,6 @@ namespace planebase
    {
    }
 
-   class ::ca::dir::application & application::dir()
-   {
-      return m_dir;
-   }
-
-   class ::ca::file::application & application::file()
-   {
-      return m_file;
-   }
-
-   class ::ca4::http::application & application::http()
-   {
-      return m_http;
-   }
-
    void application::defer_initialize_twf()
    {
       if(System.m_ptwf == NULL && (System.m_bShouldInitializeGTwf && m_bShouldInitializeGTwf && m_bInitializeProDevianMode))
@@ -775,11 +760,6 @@ InitFailure:
 
    }
 
-   class ::fontopus::license & application::license()
-   {
-      return m_splicense;
-   }
-
    /*
       ::radix::application * pradixapp = dynamic_cast < ::radix::application * > (papp);
       if(pradixapp != NULL)
@@ -858,12 +838,6 @@ InitFailure:
 
       return true;
 
-   }
-
-
-   class ::fs::data * application::fs()
-   {
-      return m_spfsdata;
    }
 
 

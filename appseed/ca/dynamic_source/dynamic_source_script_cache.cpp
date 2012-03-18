@@ -57,10 +57,13 @@ namespace dynamic_source
 
    script_instance * script_cache::create_instance(const char * lpcszName)
    {
+      ::OutputDebugString(lpcszName);
       string strName(lpcszName);
       strName = m_pmanager->real_path(lpcszName);
+      ::OutputDebugString(strName);
       if(strName.is_empty())
          strName =  m_pmanager->real_path(string(lpcszName) + ".ds");
+      ::OutputDebugString(strName);
       strName.replace("\\", "/");
       single_lock sl(&m_cs, TRUE);
       script * pscript  = get(strName);

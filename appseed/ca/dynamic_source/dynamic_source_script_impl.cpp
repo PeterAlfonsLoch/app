@@ -233,7 +233,7 @@ namespace dynamic_source
    string script_impl::real_path(const char * psz)
    {
 
-      if(Application.file().exists(psz))
+      if(get_manager()->include_matches_file_exists(psz))
          return psz;
 
       string strRealPath;
@@ -335,7 +335,7 @@ namespace dynamic_source
                   {
                      strPath = System.dir().path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), strScript);
                   }
-                  if(strPath.is_empty() || !Application.file().exists(strPath))
+                  if(strPath.is_empty() || !get_manager()->include_matches_file_exists(strPath))
                   {
                      strPath = System.dir().path(get_manager()->m_strNetseedPath, "ds\\ca2", strScript);
                   }
@@ -409,7 +409,7 @@ namespace dynamic_source
                {
                   strPath = System.dir().path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), strScript);
                }
-               if(strPath.is_empty() || !Application.file().exists(strPath))
+               if(strPath.is_empty() || !get_manager()->include_matches_file_exists(strPath))
                {
                   strPath = System.dir().path(get_manager()->m_strNetseedPath, "ds\\ca2", strScript);
                }
@@ -472,6 +472,7 @@ namespace dynamic_source
          strInclude += ".ds";
       }
       strInclude = real_path(strInclude);
+      OutputDebugString(strInclude);
       if(m_bOnTopicInclude)
       {
          m_bOnTopicInclude = false;
@@ -997,7 +998,7 @@ namespace dynamic_source
             strPath = System.dir().path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), strScript);
          }
          
-         if(strPath.is_empty() || !Application.file().exists(strPath))
+         if(strPath.is_empty() || !get_manager()->include_matches_file_exists(strPath))
          {
             strPath = System.dir().path(get_manager()->m_strNetseedPath, "ds\\ca2", strScript);
          }
@@ -1020,7 +1021,7 @@ namespace dynamic_source
             strPath = System.dir().path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), strScript);
          }
          
-         if(strPath.is_empty() || !Application.file().exists(strPath))
+         if(strPath.is_empty() || !get_manager()->include_matches_file_exists(strPath))
          {
             strPath = System.dir().path(get_manager()->m_strNetseedPath, "ds\\ca2", strScript);
          }
@@ -1716,7 +1717,7 @@ namespace dynamic_source
          string str = named_sys_get_include_path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), pszExt, pszType, pszDoc, pstraAccept);
          if(str.has_char())
          {
-            if(Application.file().exists(str))
+            if(get_manager()->include_matches_file_exists(str))
                return str;
          }
       }
@@ -1726,7 +1727,7 @@ namespace dynamic_source
          string str = named_sys_get_include_path(m_pinstanceMain->m_straUserDir[i], pszExt, pszType, pszDoc, pstraAccept);
          if(str.has_char())
          {
-            if(Application.file().exists(str))
+            if(get_manager()->include_matches_file_exists(str))
                return str;
             else
                return System.dir().path(m_pinstanceMain->m_straUserDir[i], str);
@@ -1783,7 +1784,7 @@ namespace dynamic_source
          string str = named_sys_get_base_path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), pszExt, pszType, pszDoc, pszBase, pstraAccept);
          if(str.has_char())
          {
-            if(Application.file().exists(str))
+            if(get_manager()->include_matches_file_exists(str))
                return str;
          }
       }
@@ -1793,7 +1794,7 @@ namespace dynamic_source
          string str = named_sys_get_base_path(m_pinstanceMain->m_straUserDir[i], pszExt, pszType, pszDoc, pszBase, pstraAccept);
          if(str.has_char())
          {
-            if(Application.file().exists(str))
+            if(get_manager()->include_matches_file_exists(str))
                return str;
             else
                return System.dir().path(m_pinstanceMain->m_straUserDir[i], str);
@@ -1837,7 +1838,7 @@ namespace dynamic_source
          string str = named_sys_get_subdomain_path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), pszExt, pszType, pszDoc, pszBase, pszSubdomain, pstraAccept);
          if(str.has_char())
          {
-            if(Application.file().exists(str))
+            if(get_manager()->include_matches_file_exists(str))
                return str;
          }
       }
@@ -1847,7 +1848,7 @@ namespace dynamic_source
          string str = named_sys_get_subdomain_path(m_pinstanceMain->m_straUserDir[i], pszExt, pszType, pszDoc, pszBase, pszSubdomain, pstraAccept);
          if(str.has_char())
          {
-            if(Application.file().exists(str))
+            if(get_manager()->include_matches_file_exists(str))
                return str;
             else
                return System.dir().path(m_pinstanceMain->m_straUserDir[i], str);
@@ -2665,6 +2666,7 @@ namespace dynamic_source
       m_ppropertysetVar = new gen::property_set(get_app());
       m_puistrcontext = new ::user::str_context(get_app());
       m_puistrcontext->m_pstr = &System.str();
+      m_puistrcontext->prepare();
 
       return true;
    }
@@ -2979,19 +2981,19 @@ namespace dynamic_source
       if(Application.dir().is(strPath))
       {
          strCandidate = System.dir().path(strPath, "index.ds");
-         if(Application.file().exists(strCandidate))
+         if(get_manager()->include_matches_file_exists(strCandidate))
          {
             include(strCandidate);
             return;
          }
          strCandidate = System.dir().path(strPath, "index.html");
-         if(Application.file().exists(strCandidate))
+         if(get_manager()->include_matches_file_exists(strCandidate))
          {
             strPath = strCandidate;
             goto ok1;
          }
          strCandidate = System.dir().path(strPath, "index.htm");
-         if(Application.file().exists(strCandidate))
+         if(get_manager()->include_matches_file_exists(strCandidate))
          {
             strPath = strCandidate;
             goto ok1;
@@ -3006,7 +3008,7 @@ namespace dynamic_source
       else
       {
          strCandidate = strPath + ".ds";
-         if(Application.file().exists(strCandidate))
+         if(get_manager()->include_matches_file_exists(strCandidate))
          {
             include(strCandidate);
             return;
@@ -4913,7 +4915,7 @@ ok1:
                   {
                      strPath = System.dir().path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site"), "netseed/ds/ca2"), strScript);
                   }
-                  if(strPath.is_empty() || !Application.file().exists(strPath))
+                  if(strPath.is_empty() || !get_manager()->include_matches_file_exists(strPath))
                   {
                      strPath = System.dir().path(get_manager()->m_strNetseedPath, "ds\\ca2", strScript);
                   }
@@ -5036,7 +5038,7 @@ ok1:
       if(strPath.is_empty())
          return false;
 
-      if(!Application.file().exists(strPath))
+      if(!get_manager()->include_matches_file_exists(strPath))
       {
          pfile->seek_to_begin();
          primitive::memory mem;
@@ -5044,7 +5046,7 @@ ok1:
          Application.file().put_contents(strPath, mem);
       }
 
-      if(!Application.file().exists(strPath))
+      if(!get_manager()->include_matches_file_exists(strPath))
          return false;
 
 

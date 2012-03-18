@@ -657,19 +657,9 @@ namespace plane
       return m_appptra;
    }
 
-   ::ca::file::system & system::file()
-   {
-      return m_file;
-   }
-
    ::ca2::net & system::net()
    {
       return m_net;
-   }
-
-   ::ca::dir::system & system::dir()
-   {
-      return m_spdir;
    }
 
    ::ca2::stra & system::stra()

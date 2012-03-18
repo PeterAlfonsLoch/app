@@ -59,13 +59,11 @@ namespace planebase
       virtual int exit_instance();
 
 
-      class ::ca::dir::application        & dir();
-      class ::ca::file::application       & file();
-      class ::ca4::http::application      & http(); 
-
-      class ::fontopus::license           & license();
-
-      class ::fs::data                    * fs();
+      inline class ::ca::dir::application       & dir()        { return m_dir       ; }
+      inline class ::ca::file::application      & file()       { return m_file      ; }
+      inline class ::ca4::http::application     & http()       { return m_http      ; }
+      inline class ::fontopus::license          & license()    { return m_splicense ; }
+      inline class ::fs::data                   * fs()         { return m_spfsdata  ; }
 
 
       

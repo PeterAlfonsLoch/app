@@ -487,6 +487,7 @@ namespace dynamic_source
          return ppair->m_value;
       else
       {
+         OutputDebugString(strPath);
          bool bFileExists = Application.file().exists(strPath);
          m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
          return bFileExists;

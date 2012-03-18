@@ -266,6 +266,8 @@ namespace user
       
       if(!idLocale.is_empty())
       {
+         OutputDebugString("\n");
+         OutputDebugString(idLocale);
          string str;
          str_locale * plocale = get_locale(idLocale);
          if(plocale != NULL)
@@ -273,6 +275,7 @@ namespace user
             
             if(!idSchema.is_empty() && idSchema != idLocale)
             {
+               OutputDebugString(idSchema);
                str_schema * pschema = plocale->get_schema(idSchema);
                if(pschema != NULL)
                {

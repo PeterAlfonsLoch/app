@@ -797,7 +797,7 @@ namespace ca
             if(iFind >= 0)
                return ziputil.exists(papp, pszPath);
 
-            if(!App(papp).dir().is(System.dir().name(pszPath)))
+            if(!Sys(papp).dir().name_is(pszPath, papp))
                return false;
 
          }

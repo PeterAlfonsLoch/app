@@ -204,8 +204,8 @@ namespace plane
       ::ca::application_ptra           & appptra();
       ::ca2::datetime                  & datetime();
 
-      ::ca::file::system               & file();
-      ::ca::dir::system                & dir();
+      inline ::ca::file::system        & file() { return m_file; }
+      inline ::ca::dir::system         & dir() { return m_spdir; }
       ::ca2::stra                      & stra();
       ::ca2::url                       & url();
       ::ca2::html                      & html();
