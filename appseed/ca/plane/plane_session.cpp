@@ -16,6 +16,7 @@ namespace plane
       m_bShowPlatform            = false;
       m_pappCurrent              = NULL;
       m_psession                 = this;
+      m_pbergedgeInterface       = NULL;
 
       ::fs::set * pset = new class ::fs::set(this);
       pset->m_spafsdata.add(new ::fs::native(this));
