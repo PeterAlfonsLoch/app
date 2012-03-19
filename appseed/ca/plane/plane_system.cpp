@@ -377,14 +377,14 @@ namespace plane
 
       m_pfactory->enable_simple_factory_request();
 
-      set_enum_name(var::type_null      , "null");
+      /*set_enum_name(var::type_null      , "null");
       set_enum_name(var::type_empty     , "is_empty");
       set_enum_name(var::type_string    , "string");
       set_enum_name(var::type_integer   , "integer");
       set_enum_name(var::type_ulong     , "ulong");
       set_enum_name(var::type_ca2       , "ca2");
       set_enum_name(var::type_bool      , "bool");
-      set_enum_name(var::type_double    , "double");
+      set_enum_name(var::type_double    , "double");*/
 
       if(!planebase::application::initialize_instance())
         return false;

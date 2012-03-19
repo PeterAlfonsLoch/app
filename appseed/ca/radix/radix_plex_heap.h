@@ -152,15 +152,14 @@ inline void * plex_heap_alloc::Alloc()
    // perfectly sequential or perfectly distributed, 
    // just fair well distributed
    // but very important is extremely fast
-   register int i;
-   if(m_i >= m_iShareCount)
+   register int i = m_i;
+   if(i >= m_iShareCount)
    {
       i = 0;
       m_i = 1;
    }
    else
    {
-      i = m_i;
       m_i++;
    }
    

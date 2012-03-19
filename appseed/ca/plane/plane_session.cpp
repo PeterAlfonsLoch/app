@@ -326,7 +326,7 @@ namespace plane
             }
             return;
          }
-
+         
          ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get(strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
          if(papp == NULL)
             return;
@@ -702,6 +702,7 @@ namespace plane
          papp = NULL;
          try
          {
+            
             papp = create_application(pszId, bSynch, pbiasCreate);
          }
          catch(...)
