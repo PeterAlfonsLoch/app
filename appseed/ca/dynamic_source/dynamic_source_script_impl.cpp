@@ -52,6 +52,8 @@ namespace dynamic_source
       m_pmutexSession         = NULL;
       m_pgeoiprecordClient    = NULL;
       m_bOnTopicInclude       = false;
+      m_iCa2FetchMode         = 0;
+
    }
 
    script_impl::~script_impl()
@@ -176,7 +178,7 @@ namespace dynamic_source
    {
       string str(lpcsz);
 
-      if(m_pinstanceMain != NULL)
+      if(m_pinstanceMain != NULL && ca2_fetch_mode() != 1)
       {
          str = m_pinstanceMain->web_map(str);
       }
@@ -230,17 +232,34 @@ namespace dynamic_source
       return m_pnetnodesocket->read_file(lpcsz, prangea, pszContentType);
    }
 
+#ifdef WINDOWS 
+#define is_absolute_path(psz) ((isalpha(psz[0]) && psz[1] == ':') \
+   || (psz[0] == '\\' && psz[1] == '\\'))
+#else
+#define is_absolute_path(psz) (psz[0] == '/')
+#endif
+
    string script_impl::real_path(const char * psz)
    {
 
-      if(get_manager()->include_matches_file_exists(psz))
-         return psz;
+      if(is_absolute_path(psz))
+      {
+         if(get_manager()->include_matches_file_exists(psz))
+            return psz;
+         return "";
+      }
 
       string strRealPath;
 
-      strRealPath = real_path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site").get_string(), string("netseed/ds/ca2")), psz);
-      if(strRealPath.has_char())
-         return strRealPath;
+      if(gprop("param_site").get_string().has_char())
+      {
+
+         strRealPath = real_path(System.dir().path(get_manager()->m_strNetnodePath, "net-" + gprop("param_site").get_string(), string("netseed/ds/ca2")), psz);
+         if(strRealPath.has_char())
+            return strRealPath;
+
+      }
+
 
       if(m_pinstanceMain != NULL && m_pinstanceMain->m_straUserDir.get_count() > 0)
       {
@@ -2802,9 +2821,9 @@ namespace dynamic_source
    {
       if(iMode >= 0)
       {
-         gprop("g_ca2_fetch_mode") = iMode;
+         m_pinstanceMain->m_iCa2FetchMode = iMode;
       }
-      return gprop("g_ca2_fetch_mode");
+      return m_pinstanceMain->m_iCa2FetchMode;
    }
 
 

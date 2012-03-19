@@ -42,6 +42,8 @@ namespace dynamic_source
    public:
 
 
+      int                                 m_iCa2FetchMode;
+
       GeoIPRecord *                       m_pgeoiprecordClient;
       string2a                            m_str2aScript;
       stringa                             m_straUserDir;

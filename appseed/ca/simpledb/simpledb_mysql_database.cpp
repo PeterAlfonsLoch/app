@@ -228,19 +228,36 @@ namespace mysql
       MYSQL_ROW row;
       var a;
       var a2;
+      a.propset(); //create property set
+      a2.propset(); // create property set;
+
+      int iNumRows = presult->num_rows();
+      int iNumFields = presult->num_fields();
+      a.m_pset->m_propertya.set_size(iNumRows);
+      a2.m_pset->m_propertya.set_size(iNumFields);
+
+      for(int j = 0; j < iNumFields; j++)
+      {
+         a2.m_pset->m_propertya[j].m_strName = gen::str::itoa(j);
+      }
+
       int i = 0;
       while((row = (MYSQL_ROW) presult->fetch_row()) != NULL)
       {
-         int iNumFields = presult->num_fields();
-         a2.propset().m_propertya.remove_all();
+         if(i >= iNumRows)
+         {
+            iNumRows++;
+            a.m_pset->m_propertya.set_size(iNumRows);
+         }
+
          for(int j = 0; j < iNumFields; j++)
          {
             if(row[j] == NULL)
-               a2.propset().add(gen::str::itoa(j), ::var(::var::e_type::type_null));
+               a2.m_pset->m_propertya[j].m_var.set_type(::var::e_type::type_null);
             else
-               a2.propset().add(gen::str::itoa(j), var(row[j]));
+               a2.m_pset->m_propertya[j].m_var = row[j];
          }
-         a.propset().add(gen::str::itoa(i), a2);
+         a.m_pset->m_propertya[i].m_var.propset()  = *a2.m_pset;
          i++;
       }
       return a;
