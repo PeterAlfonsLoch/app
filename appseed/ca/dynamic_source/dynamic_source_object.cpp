@@ -141,20 +141,20 @@ namespace dynamic_source
             }
          }
       }
-      return gen::g_newconst;
+      return ::var(::var::e_type::type_new);
    }
 
    var object_base::function_example0()
    {
-      return gen::g_emptyconst;
+      return ::var(::var::e_type::type_empty);
    }
    var object_base::function_example1(var var1)
    {
-      return gen::g_emptyconst;
+      return ::var(::var::e_type::type_empty);
    }
    var object_base::function_example2(var var1, var var2)
    {
-      return gen::g_emptyconst;
+      return ::var(::var::e_type::type_empty);
    }
 
    ::ca::ca * object_base::clone()
@@ -190,7 +190,7 @@ namespace dynamic_source
    {
       UNREFERENCED_PARAMETER(psz);
       UNREFERENCED_PARAMETER(farproc);
-      return gen::g_emptyconst;
+      return ::var(::var::e_type::type_empty);
    }
 
    var object_base::this_call(const char * psz, FARPROC farproc, var & var01)
@@ -198,7 +198,7 @@ namespace dynamic_source
       UNREFERENCED_PARAMETER(psz);
       UNREFERENCED_PARAMETER(farproc);
       UNREFERENCED_PARAMETER(var01);
-      return gen::g_emptyconst;
+      return ::var(::var::e_type::type_empty);
    }
 
    var object_base::this_call(const char * psz, FARPROC farproc, var & var01, var & var02)
@@ -207,7 +207,7 @@ namespace dynamic_source
       UNREFERENCED_PARAMETER(farproc);
       UNREFERENCED_PARAMETER(var01);
       UNREFERENCED_PARAMETER(var02);
-      return gen::g_emptyconst;
+      return ::var(::var::e_type::type_empty);
    }
 
 

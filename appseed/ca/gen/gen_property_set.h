@@ -27,7 +27,7 @@ namespace gen
       virtual ~property_set(void);
 
 
-      property * add(const char * pszName, var var = g_newconst);
+      property * add(const char * pszName, var var = ::var());
       property * set(const char * pszName, var var);
       index remove_first_by_name(const char * pszName, index first = 0, index last = -1);
       count remove_by_name(const char * pszName, index first = 0, index last = -1);
@@ -40,8 +40,8 @@ namespace gen
       inline property & operator[](int iIndex) { return operator []((index) iIndex); }
       inline property operator[](int iIndex) const { return operator []((index) iIndex); }
 #endif
-      property & operator[](const string_interface & str);
-      property operator[](const string_interface & str) const;
+      property & operator[](const var & var);
+      property operator[](const var & var) const;
       property & operator[](const string & str);
       property operator[](const string  & str) const;
 
@@ -191,6 +191,15 @@ namespace gen
    };
 
 
+
+   inline count property_set::get_count() const
+   {
+      return m_propertya.get_count();
+   }
+
+
+
+
 } // namespace gen
 
 
@@ -213,12 +222,12 @@ inline var var::last() const
 
 inline const var & var::operator[] (var varKey) const
 {
-   return propset().operator[](varKey).get_value();
+   return propset().operator[](varKey.get_string()).get_value();
 }
 
 inline var & var::operator[] (var varKey)
 {
-   return propset().operator[](varKey).get_value();
+   return propset().operator[](varKey.get_string()).get_value();
 }
 
 inline const var & var::operator[] (index iKey) const
@@ -240,3 +249,5 @@ inline var & var::operator[] (const char * pszKey)
 {
    return propset().operator[](pszKey).get_value();
 }
+
+

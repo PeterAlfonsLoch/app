@@ -207,7 +207,8 @@ namespace compress
      (uint32 index, string & name, int *propID, var::e_type *varType) \
        { if(index >= sizeof(k) / sizeof(k[0])) return E_INVALIDARG; \
        const STATPROPSTG &srcItem = k[index]; \
-       *propID = srcItem.propid; *varType = srcItem.vt; name.Empty(); return S_OK; } \
+       throw not_implemented_exception(); \
+       *propID = srcItem.propid;/*xxx *varType = srcItem.vt; */name.Empty(); return S_OK; } \
 
    #define IMP_IInArchive_GetProp_WITH_NAME(k) \
      (uint32 index, string & name, PROPID *propID, VARTYPE *varType) \

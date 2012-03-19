@@ -143,7 +143,7 @@ So we've done a broad replace of all the member-related ATLASSERT to ATLASSUME.
 #ifdef _DEBUG
 #define ATLVERIFY(expr) ATLASSERT(expr)
 #else
-#define ATLVERIFY(expr) (expr)
+#define ATLVERIFY(expr) 
 #endif // DEBUG
 #endif // ATLVERIFY
 
@@ -157,7 +157,11 @@ do {                                       \
 #endif // ATLENSURE
 
 #ifndef ATLENSURE
+#ifdef _DEBUG
 #define ATLENSURE(expr) ATLENSURE_THROW(expr, E_FAIL)
+#else
+#define ATLENSURE(expr)
+#endif
 #endif // ATLENSURE
 
 #ifndef ATLENSURE_SUCCEEDED

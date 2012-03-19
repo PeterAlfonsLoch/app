@@ -34,9 +34,9 @@ void plex_heap::FreeDataChain()     // free this one and links
 
 
 
-plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
+plex_heap_alloc_sync::plex_heap_alloc_sync(UINT nAllocSize, UINT nBlockSize)
 {
-   
+
    if(nBlockSize <= 1)
       nBlockSize = 4;
 
@@ -58,12 +58,12 @@ plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
 }
 
 
-plex_heap_alloc::~plex_heap_alloc()
+plex_heap_alloc_sync::~plex_heap_alloc_sync()
 {
    FreeAll();
 }
 
-void plex_heap_alloc::FreeAll()
+void plex_heap_alloc_sync::FreeAll()
 {
    
    m_protect.lock();
@@ -81,7 +81,7 @@ void plex_heap_alloc::FreeAll()
 
 }
 
-void plex_heap_alloc::NewBlock()
+void plex_heap_alloc_sync::NewBlock()
 {
 
    if (m_pnodeFree == NULL)
@@ -105,6 +105,50 @@ void plex_heap_alloc::NewBlock()
 
 }
 
+plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
+{
+   
+   int iShareCount = ::get_current_process_maximum_affinity() + 1;
+
+   if(iShareCount <= 0)
+      iShareCount = 4;
+
+   set_size(iShareCount);
+
+   for(int i = 0; i < get_count(); i++)
+   {
+      set_at(i, new plex_heap_alloc_sync(nAllocSize + sizeof(int), nBlockSize));
+   }
+
+   m_iShareCount = iShareCount;
+
+}
+
+plex_heap_alloc::~plex_heap_alloc()
+{
+   
+   for(int i = 0; i < get_count(); i++)
+   {
+      delete element_at(i);
+   }
+
+}
+
+void plex_heap_alloc::FreeAll()
+{
+   
+   for(int i = 0; i < get_count(); i++)
+   {
+      __try
+      {
+         element_at(i)->FreeAll();
+      }
+      __finally
+      {
+      }
+   }
+
+}
 
 
 plex_heap_alloc_array::plex_heap_alloc_array()

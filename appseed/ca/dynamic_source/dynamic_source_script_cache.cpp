@@ -35,35 +35,35 @@ namespace dynamic_source
 
    script * script_cache::get(const char * lpcszName)
    {
+   
       single_lock sl(&m_cs, TRUE);
 
-      string strName(lpcszName);
-      if(System.file().extension(strName).is_empty())
-      {
-         strName += ".ds";
-      }
+      map_string_to_ptr::pair * ppair = m_map.PLookup(lpcszName);
+      
+      if(ppair != NULL)
+         return (script *) ppair->m_value;
 
-      script * pscript;
-      if(m_map.Lookup(strName, (void *&) pscript))
-      {
-         return pscript;
-      }
-      pscript = new script(get_app());
+      script * pscript = new script(get_app());
+
       pscript->m_pmanager = m_pmanager;
-      pscript->m_strName = strName;
+
+      pscript->m_strName = lpcszName;
+
       cache(pscript);
+
       return pscript;
+
    }
 
    script_instance * script_cache::create_instance(const char * lpcszName)
    {
-      ::OutputDebugString(lpcszName);
+      //::OutputDebugString(lpcszName);
       string strName(lpcszName);
       strName = m_pmanager->real_path(lpcszName);
-      ::OutputDebugString(strName);
+      //::OutputDebugString(strName);
       if(strName.is_empty())
          strName =  m_pmanager->real_path(string(lpcszName) + ".ds");
-      ::OutputDebugString(strName);
+      //::OutputDebugString(strName);
       strName.replace("\\", "/");
       single_lock sl(&m_cs, TRUE);
       script * pscript  = get(strName);

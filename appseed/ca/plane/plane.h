@@ -55,12 +55,16 @@ class form_view;
 
 
 #include "plane_system_gen_str.h"
+#include "plane_system_gen_var.h"
 
 
 #include "plane_system_template_trace.h"
 #include "plane_system_ca_template.h"
 #include "plane_system_allocate.h"
 #include "plane_system_radix_factory.h"
+
+
+
 
 
 

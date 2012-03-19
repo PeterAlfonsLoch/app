@@ -100,7 +100,7 @@ string checkimage::register_code(const char * pszCode)
 bool checkimage::verify_code(const char * pszCode)
 {
    bool bOk =   get_session_value("ci_verifycode") == pszCode && is_valid_code(get_session_value("ci_verifycode"));
-   set_session_value("ci_verifycode", gen::g_nullconst);
+   set_session_value("ci_verifycode", ::var(::var::e_type::type_null));
    return bOk;
 }
 

@@ -1,10 +1,13 @@
 #include "StdAfx.h"
 
 
+/*
+
+
 fixed_string_log_interface * fixed_string_manager::s_pLog = NULL;
 
 
-fixed_string_manager::fixed_string_manager(string_data * pData,int nChars, string_manager_interface * pMgr) throw() :
+fixed_string_manager::fixed_string_manager(string_data * pData,int nChars, string_manager * pMgr) throw() :
    m_pData( pData ),
    m_pMgr( pMgr )
 {
@@ -18,7 +21,7 @@ fixed_string_manager::~fixed_string_manager() throw()
 {
 }
 
-// string_manager_interface
+// string_manager
 string_data  * fixed_string_manager::allocate(strsize nChars, int nCharSize ) throw()
 {
    ATLASSUME( m_pData->nRefs == -1 );
@@ -116,12 +119,12 @@ string_data * fixed_string_manager::GetNilString() throw()
 
    return m_pData;
 }
-string_manager_interface* fixed_string_manager::Clone() throw()
+string_manager* fixed_string_manager::Clone() throw()
 {
    return m_pMgr;
 }
 
-string_manager_interface* fixed_string_manager::GetBackupManager() const throw()
+string_manager* fixed_string_manager::GetBackupManager() const throw()
 {
    return m_pMgr;
 }
@@ -139,6 +142,10 @@ fixed_string_log::~fixed_string_log() throw()
    fixed_string_manager::s_pLog = NULL;
 }
 
+
+
+
+*/
 
 
 

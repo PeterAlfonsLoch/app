@@ -95,7 +95,7 @@ namespace webserver
       bool _fun_get_user_data(const char * pszUser, const char * pszKey, var & var);
 
       virtual mysql::result * query(const char * pszSql);
-      virtual var query_item(const char * pszSql, var varDefault = gen::g_newconst);
+      virtual var query_item(const char * pszSql, var varDefault = ::var(::var::e_type::type_new));
       virtual var query_items(const char * pszSql);
       virtual var query_row(const char * pszSql);
       virtual var query_rows(const char * pszSql);
@@ -126,9 +126,9 @@ namespace webserver
          var cid,
          var aid,
          var topic,
-         var funuid = gen::g_newconst,
-         var params = gen::g_newconst,
-         var flaga = gen::g_newconst);
+         var funuid = ::var(::var::e_type::type_new),
+         var params = ::var(::var::e_type::type_new),
+         var flaga = ::var(::var::e_type::type_new));
 
 
       music::song_ptr_array * get_song_files(var id);
@@ -146,8 +146,8 @@ namespace webserver
 
       music::person_info * getSongTopicTypeRolePersonInfo(var songid, var topictype, var role);
       music::person_info * getPersonInfo(var topicid, var topictype, var role);
-      music::person_info * getPersonInfoEx(var topicid, var topictype, var role, var flaga = gen::g_newconst);
-      music::person_info * getPersonInfoExFromA(var a, var flaga = gen::g_newconst);
+      music::person_info * getPersonInfoEx(var topicid, var topictype, var role, var flaga = ::var(::var::e_type::type_new));
+      music::person_info * getPersonInfoExFromA(var a, var flaga = ::var(::var::e_type::type_new));
 
 
       int get_lang_id(const char * pszLang);
@@ -161,7 +161,7 @@ namespace webserver
       var register_song_click(var songid, var address, var http_referer, var lang = "unk", var style = "unk", var referer = "unk", var type = CLICK_KARAOKE);
       var get_useragent_id_ex(var useragent);
 
-      music::person * get_person(var personid, var flaga = gen::g_newconst);
+      music::person * get_person(var personid, var flaga = ::var(::var::e_type::type_new));
       var get_song_classes_for_performers(var song);
       music::category * get_class_for_performers(int level, string order, string classa);
       var get_classes_for_performers(int level,  string order, string parentclass, int topictype = 0);

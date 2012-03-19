@@ -1,6 +1,7 @@
 #pragma once
 
 
+/*
 class CLASS_DECL_ca fixed_string_log_interface
 {
 public:
@@ -14,12 +15,12 @@ public:
 
 
 class CLASS_DECL_ca fixed_string_manager :
-   public string_manager_interface
+   public string_manager
 {
 protected:
 
 
-   string_manager_interface * m_pMgr;
+   string_manager * m_pMgr;
    string_data* m_pData;
 
 
@@ -28,16 +29,16 @@ public:
 
    static fixed_string_log_interface * s_pLog;
 
-   fixed_string_manager(string_data * pData,int nChars, string_manager_interface * pMgr = NULL ) throw();
+   fixed_string_manager(string_data * pData,int nChars, string_manager * pMgr = NULL ) throw();
    virtual ~fixed_string_manager() throw();
 
-   string_manager_interface* GetBackupManager() const throw();
+   string_manager* GetBackupManager() const throw();
 
    virtual string_data * allocate(strsize nChars, int nCharSize) throw();
    virtual void Free( string_data * pData ) throw();
    virtual string_data * Reallocate(string_data * pData, strsize nChars, int nCharSize ) throw();
    virtual string_data * GetNilString() throw();
-   virtual string_manager_interface* Clone() throw();
+   virtual string_manager* Clone() throw();
 
 };
 
@@ -56,7 +57,7 @@ protected:
 
 public:
    fixed_string() throw();
-   explicit fixed_string(string_manager_interface* pstringmanager ) throw();
+   explicit fixed_string(string_manager* pstringmanager ) throw();
    fixed_string(const fixed_string< t_nChars >& str );
    fixed_string(string str );
    fixed_string(const string::XCHAR* psz);
@@ -76,14 +77,14 @@ public:
 template < int t_nChars >
 fixed_string< t_nChars >::fixed_string() throw() :
    fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
-   string( static_cast< string_manager_interface* >( this ) )
+   string( static_cast< string_manager* >( this ) )
 {
 }
 
 template < int t_nChars >
-fixed_string< t_nChars >::fixed_string(string_manager_interface* pstringmanager ) throw() :
+fixed_string< t_nChars >::fixed_string(string_manager* pstringmanager ) throw() :
    fixed_string_manager( &m_data, t_nChars, pstringmanager ),
-   string( static_cast< string_manager_interface* >( this ) )
+   string( static_cast< string_manager* >( this ) )
 {
 }
 
@@ -202,3 +203,4 @@ template < int t_nChars> struct const_fixed_string
 
 };
 
+*/

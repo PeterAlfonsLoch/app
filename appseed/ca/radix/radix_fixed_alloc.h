@@ -1,7 +1,7 @@
 #pragma once
 
 
-class mutex;
+struct plex;
 
 
 class CLASS_DECL_ca fixed_alloc_no_sync
@@ -70,8 +70,8 @@ public:
 
    int                                       m_i;
    int                                       m_iShareCount;
-   raw_array < simple_critical_section * >   m_protectptra;
-   raw_array < fixed_alloc_no_sync * >       m_allocptra;
+   simple_array < simple_critical_section * >   m_protectptra;
+   simple_array < fixed_alloc_no_sync * >       m_allocptra;
 
 
    fixed_alloc_sync(UINT nAllocSize, UINT nBlockSize = 64, int iShareCount = 2);
@@ -144,7 +144,7 @@ public:
 
    int                                       m_i;
    int                                       m_iShareCount;
-   raw_array < fixed_alloc_sync * >          m_allocptra;
+   simple_array < fixed_alloc_sync * >          m_allocptra;
 
 
    fixed_alloc(UINT nAllocSize, UINT nBlockSize = 64);
@@ -203,10 +203,9 @@ inline void fixed_alloc::Free(void * p)
 #include "exception/base_exception.h"
 #include "exception/simple_exception.h"
 #include "exception/exception_assert.h"
-#include "collection/base_array.h"
 
 class CLASS_DECL_ca fixed_alloc_array :
-   public base_array < fixed_alloc * >
+   public simple_array < fixed_alloc * >
 {
 public:
 
@@ -296,3 +295,6 @@ fixed_alloc_no_sync class_name::s_alloc(sizeof(class_name), block_size) \
 
 
 */
+
+
+extern CLASS_DECL_ca fixed_alloc_array g_fixedalloca;

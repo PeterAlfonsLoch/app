@@ -472,7 +472,7 @@ namespace dynamic_source
          strInclude += ".ds";
       }
       strInclude = real_path(strInclude);
-      OutputDebugString(strInclude);
+      //OutputDebugString(strInclude);
       if(m_bOnTopicInclude)
       {
          m_bOnTopicInclude = false;
@@ -5289,7 +5289,7 @@ ok1:
          Sleep(584);
       }
 
-      return gen::g_emptyconst;
+      return ::var(::var::e_type::type_empty);
 
    }
 

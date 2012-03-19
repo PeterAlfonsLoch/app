@@ -175,7 +175,7 @@ var cynce::valueid(var type, var value)
    set.replace_ex1(sql);
    dprint(sql);
    if(cyncedb().query(sql) == NULL)
-      return gen::g_nullconst;
+      return ::var(::var::e_type::type_null);
 
    return cyncedb().get_insert_id();
 }
@@ -345,13 +345,13 @@ var cynce::tag_id(const char * title)
       string sql = eval("INSERT INTO tag (`title`, `creator`, `user`) VALUES ('" + strEscapeTitle + "', $secureuserid, $secureuserid)");
       dprint(sql);
       if(cyncedb().query(sql) == NULL)
-         return gen::g_nullconst;
+         return ::var(::var::e_type::type_null);
       tagid = cyncedb().get_insert_id();
       string editdatetime = System.datetime().international().get_gmt_date_time();
       sql = eval("INSERT INTO tag_history (tag, `title`, editdatetime, user) VALUES ('" + tagid.get_string() + "', '" + strEscapeTitle + "', '" +editdatetime+"', $secureuserid)");
       dprint(sql);
       if(cyncedb().query(sql) == NULL)
-         return gen::g_nullconst;
+         return ::var(::var::e_type::type_null);
       get_manager()->m_tagid[title] = tagid;
       return tagid;
    }
@@ -365,13 +365,13 @@ var cynce::create_tag_id(const char * title)
    string sql = eval("INSERT INTO tag (`title`, `creator`, `user`) VALUES ('" + strEscapeTitle + "', $secureuserid, $secureuserid)");
    dprint(sql);
    if(cyncedb().query(sql) == NULL)
-      return gen::g_nullconst;
+      return ::var(::var::e_type::type_null);
    tagid = cyncedb().get_insert_id();
    string editdatetime = System.datetime().international().get_gmt_date_time();
    sql = eval("INSERT INTO tag_history (tag, `title`, editdatetime, user) VALUES ('" + tagid.get_string() + "', '" + strEscapeTitle + "', '" +editdatetime+"', $secureuserid)");
    dprint(sql);
    if(cyncedb().query(sql) == NULL)
-      return gen::g_nullconst;
+      return ::var(::var::e_type::type_null);
    get_manager()->m_tagid[title] = tagid;
    return tagid;
 }

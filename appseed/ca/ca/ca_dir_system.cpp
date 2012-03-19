@@ -539,7 +539,7 @@ namespace ca
 
       bool system::name_is(const string & strPath, ::ca::application * papp)
       {
-         OutputDebugString(strPath);
+         //OutputDebugString(strPath);
          if(papp->m_bZipIsDir && (gen::str::ends_ci(strPath, ".zip")))
          {
             m_isdirmap.set(strPath, true);

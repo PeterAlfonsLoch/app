@@ -117,7 +117,7 @@ string::string(const YCHAR* pch,strsize nLength ) :
    }
 }
 
-string::string(const YCHAR* pch,strsize nLength,string_manager_interface * pstringmanager ) :
+string::string(const YCHAR* pch,strsize nLength,string_manager * pstringmanager ) :
    simple_string( pstringmanager )
 {
    ATLASSERT( nLength >= 0 );
@@ -135,7 +135,7 @@ string::string(const YCHAR* pch,strsize nLength,string_manager_interface * pstri
 }
 
 
-
+/*
 
 void fixed_string_log::OnAllocateSpill(strsize nActualChars,strsize nFixedChars,const string_data* pData ) throw()
 {
@@ -155,7 +155,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
    ::OutputDebugStringA("fixed_string_log::OnReallocateSpill");
 }
 
-
+*/
 
 
 char* __cdecl crt_char_traits::CharNext(const char* p ) throw()
@@ -631,12 +631,8 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       simple_string::construct( string_trait::GetDefaultManager()); 
    }
 
-   string::string() throw() :
-      simple_string( string_trait::GetDefaultManager() )
-   {
-   }
 
-   string::string( string_manager_interface * pstringmanager ) throw() :
+   string::string( string_manager * pstringmanager ) throw() :
       simple_string( pstringmanager )
    {
    }
@@ -664,7 +660,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 //      }
    }
 
-   string::string(const char * pszSrc,string_manager_interface * pstringmanager ) :
+   string::string(const char * pszSrc,string_manager * pstringmanager ) :
       simple_string( pstringmanager )
    {
 //      if( !CheckImplicitLoad( pszSrc ) )
@@ -711,7 +707,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       }
    }
 
-   string::string(const wchar_t * pszSrc,string_manager_interface * pstringmanager ) :
+   string::string(const wchar_t * pszSrc,string_manager * pstringmanager ) :
       simple_string( pstringmanager )
    {
 //      if( !CheckImplicitLoad( pszSrc ) )
@@ -762,7 +758,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
          *this = (const char *) istr;
       }
 
-   string::string(const unsigned char* pszSrc,string_manager_interface * pstringmanager ) :
+   string::string(const unsigned char* pszSrc,string_manager * pstringmanager ) :
       simple_string( pstringmanager )
    {
       *this = reinterpret_cast< const char* >( pszSrc );
@@ -799,7 +795,7 @@ string::string(strsize nLength, char ch) :
    {
    }
 
-   string::string(const XCHAR* pch,strsize nLength,string_manager_interface * pstringmanager ) :
+   string::string(const XCHAR* pch,strsize nLength,string_manager * pstringmanager ) :
       simple_string( pch, nLength, pstringmanager )
    {
    }
@@ -925,9 +921,9 @@ string::string(strsize nLength, char ch) :
    }
 
    // Override from base class
-   string_manager_interface * string::GetManager() const throw()
+   string_manager * string::GetManager() const throw()
    {
-      string_manager_interface * pstringmanager = simple_string::GetManager();
+      string_manager * pstringmanager = simple_string::GetManager();
       if(pstringmanager) { return pstringmanager; }
 
       pstringmanager = string_trait::GetDefaultManager();

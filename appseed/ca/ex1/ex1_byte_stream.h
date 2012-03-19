@@ -59,6 +59,7 @@ namespace ex1
       byte_input_stream & operator >> (::ca::type_info & info);
       byte_input_stream & operator >> (byte_serializable & serializable);
       byte_input_stream & operator >> (id & id);
+      byte_input_stream & operator >> (var & var);
 
       virtual string get_location() const;
 
@@ -109,6 +110,7 @@ namespace ex1
       byte_output_stream & operator << (byte_serializable & serializable);
       byte_output_stream & operator << (const char * psz);
       byte_output_stream & operator << (const id & id);
+      byte_output_stream & operator << (const var & var);
 
       virtual string get_location() const;
 

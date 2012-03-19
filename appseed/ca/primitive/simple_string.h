@@ -4,6 +4,224 @@
 typedef INT_PTR strsize;
 
 
+#include "radix/radix_heap.h"
+#include "radix/radix_plex_heap.h"
+#include "radix/radix_fixed_alloc.h"
+
+
+class string_manager;
+
+
+struct CLASS_DECL_ca string_data
+{
+   string_manager * pstringmanager;  // string manager for this string_data
+   strsize nDataLength;  // Length of currently used data in XCHARs (not including terminating null)
+   strsize nAllocLength;  // Length of allocated data in XCHARs (not including terminating null)
+   long nRefs;     // Reference count: negative == locked
+   // XCHAR data[nAllocLength+1]  // A string_data is always followed in primitive::memory by the actual base_array of character data
+
+   inline char * data() NOTHROW;
+   inline void AddRef() NOTHROW;
+   inline bool IsLocked() const NOTHROW;
+   inline bool IsShared() const NOTHROW;
+   inline void lock() NOTHROW;
+   inline void Release() NOTHROW;
+   inline void unlock() NOTHROW;
+};
+
+
+
+
+class CLASS_DECL_ca nil_string_data :
+   public string_data
+{
+public:
+
+
+   nil_string_data() NOTHROW
+   {
+      pstringmanager = NULL;
+      nRefs = 2;  // Never gets freed by string_manager
+      nDataLength = 0;
+      nAllocLength = 0;
+      achNil[0] = 0;
+      achNil[1] = 0;
+   }
+
+   void SetManager(string_manager * pMgr ) NOTHROW
+   {
+//      ATLASSERT( pstringmanager == NULL );
+      pstringmanager = pMgr;
+   }
+
+
+
+public:
+
+
+   wchar_t achNil[2];
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+class string_manager
+{
+protected:
+
+
+   fixed_alloc_array * m_palloca;
+
+   nil_string_data  m_nil;
+
+
+public:
+
+
+   string_manager();
+
+
+   inline string_data * allocate(strsize nChars, int nCharSize);
+   inline void Free(string_data * pData);
+   inline string_data * Reallocate(string_data * pData, strsize nChars, int nCharSize);
+   inline string_data * GetNilString() ;
+   inline string_manager * Clone() { return this; }
+
+};
+
+inline string_data * string_manager::allocate(strsize nChars, int nCharSize )
+{
+   size_t nTotalSize;
+   string_data * pData;
+   size_t nDataBytes;
+
+//   ASSERT(nCharSize > 0);
+   
+   if(nChars < 0)
+   {
+//      ASSERT(FALSE);
+      return NULL;
+   }
+   
+   nDataBytes = (nChars+1)*nCharSize;
+   nTotalSize = sizeof( string_data  )+nDataBytes;
+   
+   //BOOL bEnable = AfxEnableMemoryTracking(FALSE);
+   
+   try
+   {
+      pData = (string_data *) m_palloca->alloc(nTotalSize);
+//      pData = (string_data *) ca2_alloc(nTotalSize);
+   }
+   catch(...)
+   {
+      return NULL;
+   }
+
+   //AfxEnableMemoryTracking(bEnable);
+
+   if (pData == NULL)
+      return NULL;
+   pData->pstringmanager = this;
+   pData->nRefs = 1;
+   pData->nAllocLength = nChars;
+   pData->nDataLength = 0;
+
+   return pData;
+}
+
+inline void string_manager::Free(string_data * pData)
+{
+   size_t nTotalSize = sizeof( string_data  ) + pData->nAllocLength + 1;
+   m_palloca->free(pData, nTotalSize);
+   //ca2_free(pData, 0);
+}
+
+inline string_data * string_manager::Reallocate(string_data * pOldData, strsize nChars, int nCharSize)
+{
+   string_data * pNewData = NULL;
+   size_t nNewTotalSize;
+   size_t nNewDataBytes;
+   size_t nOldTotalSize;
+   size_t nOldDataBytes;
+   
+//   ASSERT(nCharSize > 0);
+   
+   if(nChars < 0)
+   {
+//      ASSERT(FALSE);
+      return NULL;
+   }
+   
+   nNewDataBytes = (nChars+1)*nCharSize;
+   nNewTotalSize = sizeof( string_data  )+nNewDataBytes;
+   nOldDataBytes = (pOldData->nAllocLength+1)*nCharSize;
+   nOldTotalSize = sizeof( string_data  ) + nOldDataBytes;
+   
+   //BOOL bEnable = AfxEnableMemoryTracking(FALSE);
+   
+   try
+   {
+
+      pNewData = (string_data *) m_palloca->realloc(pOldData, nOldTotalSize, nNewTotalSize);
+      //pNewData = (string_data *) ca2_realloc(pOldData, nNewTotalSize, 0, NULL, 0);
+
+   }
+   catch(...)
+   {
+   }
+
+   //AfxEnableMemoryTracking(bEnable);
+
+
+   if(pNewData == NULL)
+   {
+      return NULL;
+   }
+
+   pNewData->nAllocLength = nChars;
+
+   return pNewData;
+}
+
+inline string_data * string_manager::GetNilString() 
+{
+   m_nil.AddRef();
+   return &m_nil;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 namespace gen
 {
@@ -55,7 +273,7 @@ extern "C"
 
       struct string_data;
 
-      class CLASS_DECL_ca string_manager_interface
+/*      class CLASS_DECL_ca string_manager
       {
    public:
       // allocate a new string_data
@@ -66,8 +284,8 @@ extern "C"
       virtual string_data * Reallocate(string_data * pData, strsize nAllocLength, int nCharSize ) = 0;
       // get the string_data for a Nil string
       virtual string_data * GetNilString() = 0;
-      virtual string_manager_interface* Clone() = 0;
-      };
+      virtual string_manager* Clone() = 0;
+      };*/
 
 #if defined(LINUX) || defined(MACOS)
    #define _AtlInterlockedIncrement(ptr) __sync_add_and_fetch(ptr, 1)
@@ -94,100 +312,6 @@ extern "C"
    #endif  // _M_IX86_
 #endif // ! LINUX
 
-      struct CLASS_DECL_ca string_data
-      {
-         string_manager_interface * pstringmanager;  // string manager for this string_data
-         strsize nDataLength;  // Length of currently used data in XCHARs (not including terminating null)
-         strsize nAllocLength;  // Length of allocated data in XCHARs (not including terminating null)
-         long nRefs;     // Reference count: negative == locked
-         // XCHAR data[nAllocLength+1]  // A string_data is always followed in primitive::memory by the actual base_array of character data
-
-         char * data() NOTHROW
-         {
-            return reinterpret_cast < char *> (this+1);
-         }
-
-         void AddRef() NOTHROW
-         {
-            ATLASSERT(nRefs > 0);
-            _AtlInterlockedIncrement(&nRefs);
-         }
-         bool IsLocked() const NOTHROW
-         {
-            return nRefs < 0;
-         }
-         bool IsShared() const NOTHROW
-         {
-            return( nRefs > 1 );
-         }
-         void lock() NOTHROW
-         {
-            ATLASSERT( nRefs <= 1 );
-            nRefs--;  // Locked buffers can't be shared, so no interlocked operation necessary
-            if( nRefs == 0 )
-            {
-               nRefs = -1;
-            }
-         }
-         void Release() NOTHROW
-         {
-            ATLASSERT( nRefs != 0 );
-
-            if( _AtlInterlockedDecrement( &nRefs ) <= 0 )
-            {
-               pstringmanager->Free( this );
-            }
-         }
-         void unlock() NOTHROW
-         {
-            ATLASSERT( IsLocked() );
-
-            if(IsLocked())
-            {
-               nRefs++;  // Locked buffers can't be shared, so no interlocked operation necessary
-               if( nRefs == 0 )
-               {
-                  nRefs = 1;
-               }
-            }
-         }
-      };
-
-
-
-
-
-
-
-
-
-
-
-   class CLASS_DECL_ca nil_string_data :
-      public string_data
-      {
-   public:
-      nil_string_data() NOTHROW
-      {
-         pstringmanager = NULL;
-         nRefs = 2;  // Never gets freed by string_manager_interface
-         nDataLength = 0;
-         nAllocLength = 0;
-         achNil[0] = 0;
-         achNil[1] = 0;
-      }
-
-      void SetManager(string_manager_interface * pMgr ) NOTHROW
-      {
-         ATLASSERT( pstringmanager == NULL );
-         pstringmanager = pMgr;
-      }
-
-
-
-   public:
-      wchar_t achNil[2];
-      };
 
 
 
@@ -296,19 +420,19 @@ public:
    typedef char_traits_base::PCYSTR PCYSTR;
 
 
-   explicit simple_string(string_manager_interface * pstringmanager )
+   explicit simple_string(string_manager * pstringmanager )
    {
       construct(pstringmanager);
    }
 
-   void construct(string_manager_interface * pstringmanager)
+   void construct(string_manager * pstringmanager)
    {
       ATLENSURE( pstringmanager != NULL );
       string_data * pData = pstringmanager->GetNilString();
       Attach( pData );
    }
 
-   simple_string(const simple_string & strSrc, string_manager_interface * pstringmanager  )
+   simple_string(const simple_string & strSrc, string_manager * pstringmanager  )
    {
       if(&strSrc == NULL)
       {
@@ -329,7 +453,7 @@ public:
       Attach( pNewData );
    }
 
-   simple_string(PCXSTR pszSrc,string_manager_interface * pstringmanager )
+   simple_string(PCXSTR pszSrc,string_manager * pstringmanager )
    {
       ATLENSURE( pstringmanager != NULL );
 
@@ -347,7 +471,7 @@ public:
       CopyChars( m_pszData, pszSrc, nLength );
 #endif
    }
-   simple_string(const XCHAR* pchSrc,strsize nLength,string_manager_interface * pstringmanager )
+   simple_string(const XCHAR* pchSrc,strsize nLength,string_manager * pstringmanager )
    {
       ATLENSURE( pstringmanager != NULL );
 
@@ -519,7 +643,7 @@ public:
 
       string_data * pOldData = get_data();
 
-      string_manager_interface * pstringmanager = pOldData->pstringmanager;
+      string_manager * pstringmanager = pOldData->pstringmanager;
 
       if(pOldData->nDataLength == 0)
          return;
@@ -543,7 +667,7 @@ public:
    {
       string_data* pOldData = get_data();
       strsize nLength = pOldData->nDataLength;
-      string_manager_interface* pstringmanager = pOldData->pstringmanager;
+      string_manager* pstringmanager = pOldData->pstringmanager;
       if( pOldData->nAllocLength == nLength )
       {
          return;
@@ -620,9 +744,9 @@ public:
    {
       SetString(psz);
    }
-   string_manager_interface * GetManager() const NOTHROW
+   string_manager * GetManager() const NOTHROW
    {
-      string_manager_interface * pstringmanager = get_data()->pstringmanager;
+      string_manager * pstringmanager = get_data()->pstringmanager;
       return pstringmanager ? pstringmanager->Clone() : NULL;
    }
 
@@ -694,7 +818,7 @@ public:
       ReleaseBufferSetLength( nLength );
 
    }
-   void SetManager(string_manager_interface * pstringmanager )
+   void SetManager(string_manager * pstringmanager )
    {
       ATLASSERT( is_empty() );
 
@@ -929,7 +1053,7 @@ private:
    {
       string_data* pOldData = get_data();
       ATLASSERT( pOldData->nAllocLength < nLength );
-      string_manager_interface * pstringmanager = pOldData->pstringmanager;
+      string_manager * pstringmanager = pOldData->pstringmanager;
       if ( pOldData->nAllocLength >= nLength || nLength <= 0)
       {
          ThrowMemoryException();
@@ -960,7 +1084,7 @@ private:
    {
       string_data * pNewData = NULL;
 
-      string_manager_interface * pNewStringMgr = pData->pstringmanager->Clone();
+      string_manager * pNewStringMgr = pData->pstringmanager->Clone();
       if( !pData->IsLocked() && (pNewStringMgr == pData->pstringmanager) )
       {
          pNewData = pData;
@@ -1078,7 +1202,67 @@ private:
    string_buffer& operator=( const string_buffer& ) NOTHROW;
 };
 
+///////////////////////////////////////////
+// string_data inlining
+
+inline char * string_data::data() NOTHROW
+{
+   return reinterpret_cast < char *> (this+1);
+}
+
+inline void string_data::AddRef() NOTHROW
+{
+   ATLASSERT(nRefs > 0);
+   _AtlInterlockedIncrement(&nRefs);
+}
+inline bool string_data::IsLocked() const NOTHROW
+{
+   return nRefs < 0;
+}
+inline bool string_data::IsShared() const NOTHROW
+{
+   return( nRefs > 1 );
+}
+inline void string_data::lock() NOTHROW
+{
+   ATLASSERT( nRefs <= 1 );
+   nRefs--;  // Locked buffers can't be shared, so no interlocked operation necessary
+   if( nRefs == 0 )
+   {
+      nRefs = -1;
+   }
+}
+inline void string_data::Release() NOTHROW
+{
+   ATLASSERT( nRefs != 0 );
+
+   if( _AtlInterlockedDecrement( &nRefs ) <= 0 )
+   {
+      pstringmanager->Free( this );
+   }
+}
+inline void string_data::unlock() NOTHROW
+{
+   ATLASSERT( IsLocked() );
+
+   if(IsLocked())
+   {
+      nRefs++;  // Locked buffers can't be shared, so no interlocked operation necessary
+      if( nRefs == 0 )
+      {
+         nRefs = 1;
+      }
+   }
+}
+      
+
+
+
+
 class string;
 
 
 #include "wstringtou.h"
+
+
+

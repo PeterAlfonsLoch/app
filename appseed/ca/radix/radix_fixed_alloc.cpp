@@ -138,14 +138,16 @@ fixed_alloc::fixed_alloc(UINT nAllocSize, UINT nBlockSize)
    int iShareCount = ::get_current_process_maximum_affinity() + 1;
 
    if(iShareCount <= 0)
-      iShareCount = 1;
+      iShareCount = 4;
 
    m_allocptra.set_size(iShareCount);
 
    for(int i = 0; i < m_allocptra.get_count(); i++)
    {
-      m_allocptra[i] = new fixed_alloc_sync(nAllocSize + sizeof(int), nBlockSize, 2);
+      m_allocptra[i] = new fixed_alloc_sync(nAllocSize + sizeof(int), nBlockSize, 12);
    }
+
+   m_iShareCount = iShareCount;
 
 }
 

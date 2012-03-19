@@ -10,7 +10,7 @@
 //#include "radix/fixed_alloc.h"
 
 
-CLASS_DECL_ca string_manager_interface * AfxGetStringManager();
+CLASS_DECL_ca string_manager * AfxGetStringManager();
 
 
 class string;
@@ -198,9 +198,9 @@ class string_trait :
 {
 public:
 
-   CLASS_DECL_ca static string_manager_interface * GetDefaultManager() throw()
+   CLASS_DECL_ca static string_manager * GetDefaultManager() throw()
    {
-      static string_manager_interface * s_pdefaultManager = AfxGetStringManager();
+      static string_manager * s_pdefaultManager = AfxGetStringManager();
       return s_pdefaultManager;
    }
 
@@ -209,31 +209,6 @@ public:
 
 class fixed_alloc_array;
 
-
-class string_manager :
-   public string_manager_interface
-{
-protected:
-
-
-   fixed_alloc_array * m_palloca;
-
-   nil_string_data  m_nil;
-
-
-public:
-
-
-   string_manager();
-
-
-   virtual string_data * allocate(strsize nChars, int nCharSize);
-   virtual void Free(string_data * pData);
-   virtual string_data * Reallocate(string_data * pData, strsize nChars, int nCharSize);
-   virtual string_data * GetNilString() ;
-   virtual string_manager_interface * Clone() ;
-
-};
 
 
 
@@ -247,8 +222,8 @@ public:
    operator PCXSTR() const throw();
    PCXSTR c_str() const throw();
    void construct() throw();
-   string() throw();
-   explicit string( string_manager_interface * pstringmanager ) throw();
+   inline string() throw();
+   explicit string( string_manager * pstringmanager ) throw();
    static void __cdecl Construct( string* pstring );
 
 
@@ -263,18 +238,18 @@ public:
    string(const vsstring & str);
    string(const istring & istr);
 
-   string(const char * pszSrc,string_manager_interface * pstringmanager );
-   string(const wchar_t * pszSrc,string_manager_interface * pstringmanager );
+   string(const char * pszSrc,string_manager * pstringmanager );
+   string(const wchar_t * pszSrc,string_manager * pstringmanager );
 
 
-   string(const unsigned char* pszSrc, string_manager_interface * pstringmanager);
+   string(const unsigned char* pszSrc, string_manager * pstringmanager);
    explicit string(char ch, strsize nLength = 1);
    string(strsize nLength, char ch);
    string(wchar_t ch, strsize nLength = 1 );
    string(const XCHAR* pch, strsize nLength);
-   string(const XCHAR* pch, strsize nLength, string_manager_interface * pstringmanager );
+   string(const XCHAR* pch, strsize nLength, string_manager * pstringmanager );
    string(const YCHAR* pch, strsize nLength);
-   string(const YCHAR* pch, strsize nLength, string_manager_interface * pstringmanager );
+   string(const YCHAR* pch, strsize nLength, string_manager * pstringmanager );
    ~string() throw();
 
 
@@ -283,6 +258,7 @@ public:
    string& operator=(const string_interface & str );
    string& operator=(string strSrc );
    string& operator=(const id & id);
+   string& operator=(const var & var);
    template <bool bMFCDLL>
    string& operator=(const simple_string& strSrc);
    string& operator=(const vsstring & strSrc);
@@ -301,7 +277,7 @@ public:
    string& operator+=(wchar_t ch );
 
    // Override from base class
-   string_manager_interface * GetManager() const throw();
+   string_manager * GetManager() const throw();
 
 
    string & assign(const string & str);
@@ -993,6 +969,11 @@ inline string id::str() const
    else
       return "";
  }
+
+inline   string::string() throw() :
+   simple_string( string_trait::GetDefaultManager() )
+{
+}
 
 
 #include "gen/gen_str2.h"

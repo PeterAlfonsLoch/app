@@ -120,7 +120,7 @@ SQL;
 	{
 		//return db_read->getRowArray('tmp_class_2', 'classid');
 //      return var;
-      return gen::g_emptyconst;
+      return ::var(::var::e_type::type_empty);
 	}
 
 
@@ -455,7 +455,7 @@ SQL;
 	{
       UNREFERENCED_PARAMETER(bPartial);
 		karaoke_update_tmp_song_clickdistinct1(bVerbose);
-      return gen::g_emptyconst;
+      return ::var(::var::e_type::type_empty);
 	}
 
 

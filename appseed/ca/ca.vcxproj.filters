@@ -1832,9 +1832,6 @@
     <ClInclude Include="collection\rect_array.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
-    <ClInclude Include="collection\simple_array.h">
-      <Filter>Header Files\collection</Filter>
-    </ClInclude>
     <ClInclude Include="collection\simple_eq_array.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
@@ -3256,6 +3253,9 @@
     </ClInclude>
     <ClInclude Include="radix\radix_plex_heap.h">
       <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane_system_gen_var.h">
+      <Filter>Header Files\plane</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

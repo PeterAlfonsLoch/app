@@ -23,7 +23,7 @@ secure::secure()
 void secure::ensure()
 {
    prof_enter("secure::ensure()");
-   gprop("secureuserid") = gen::g_newconst;
+   gprop("secureuserid") = ::var(::var::e_type::type_new);
    gprop("param_login_request_uri") = current_url();
 
 	gprop("g_secure_user_table_name") 				= "fun_user";
@@ -75,10 +75,10 @@ void secure::logout()
    if(request("ruri").is_set())
       strUrl = request("ruri");
 
-   set_session_value("login", gen::g_newconst);
-   set_session_value("password", gen::g_newconst);
-   set_session_value("password1", gen::g_newconst);
-   set_session_value("password2", gen::g_newconst);
+   set_session_value("login", ::var(::var::e_type::type_new));
+   set_session_value("password", ::var(::var::e_type::type_new));
+   set_session_value("password1", ::var(::var::e_type::type_new));
+   set_session_value("password2", ::var(::var::e_type::type_new));
 //   session_destroy();
    string strSessionPath = "/";
    string strSessionDomain = "fontopus.com";
@@ -86,9 +86,9 @@ void secure::logout()
    set_cookie("votagus_userid", "", 1000);
    set_cookie("votagus_pass1", "", 1000);
    set_cookie("votagus_pass2", "", 1000);
-   set_session_value("secureuserid", gen::g_newconst);
+   set_session_value("secureuserid", ::var(::var::e_type::type_new));
    set_session_value("secureuserlevel", -1);
-   set_session_value("auth", gen::g_newconst);
+   set_session_value("auth", ::var(::var::e_type::type_new));
 
    if(!gen::str::ends(inattr("http_host"), ".fontopus.com") && inattr("http_host") != "fontopus.com")
    {
@@ -142,10 +142,10 @@ bool secure::login_check()
    bool bEnforce = !bOptional;
    if(get("redir_cause") == "wrong_credentials")
    {
-      set_session_value("auth", gen::g_newconst);
-      set_session_value("login", gen::g_newconst);
-      set_session_value("password1", gen::g_newconst);
-      set_session_value("password2", gen::g_newconst);
+      set_session_value("auth", ::var(::var::e_type::type_new));
+      set_session_value("login", ::var(::var::e_type::type_new));
+      set_session_value("password1", ::var(::var::e_type::type_new));
+      set_session_value("password2", ::var(::var::e_type::type_new));
       gprop("g_fontopus_login_prompt") = "wrong_credentials";
    }
 

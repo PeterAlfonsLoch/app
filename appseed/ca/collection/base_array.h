@@ -617,7 +617,7 @@ template<class TYPE, class ARG_TYPE>
       ::count nAllocSize = __max(nNewSize, m_nGrowBy);
 #undef new
       m_pData = (TYPE*) new BYTE[(size_t)nAllocSize * sizeof(TYPE)];
-      memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
+      //memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
       for( int i = 0; i < nNewSize; i++ )
          ::new( (void *)( m_pData + i ) ) TYPE;
 #define new DEBUG_NEW

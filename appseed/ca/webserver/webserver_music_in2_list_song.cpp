@@ -23,7 +23,7 @@ namespace music
       gen::property_set & params,
       var call_url)
       :
-   in2_list(target, order, gen::g_newconst, params)
+   in2_list(target, order, ::var(::var::e_type::type_new), params)
    {
       m_pperformer = NULL;
       m_previous_artist = NULL;

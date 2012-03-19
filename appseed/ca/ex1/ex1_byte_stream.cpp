@@ -183,6 +183,11 @@ namespace ex1
 
    }
 
+   byte_input_stream & byte_input_stream::operator >> (var & var)
+   {
+      var.read(*this);
+      return *this;
+   }
 
    string byte_input_stream::get_location() const
    {
@@ -354,6 +359,12 @@ namespace ex1
 
       return *this;
 
+   }
+
+   byte_output_stream & byte_output_stream::operator << (const var & var)
+   {
+      ((::var *)&var)->write(*this);
+      return *this;
    }
 
    string byte_output_stream::get_location() const

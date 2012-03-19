@@ -252,7 +252,7 @@ namespace webserver
          return "StarKorea3";
       else if(str == "mk1")
          return "Microke1";
-      return gen::g_nullconst;
+      return ::var(::var::e_type::type_null);
    }
 
    var music::song_get_file_name(var songid)
@@ -601,7 +601,7 @@ namespace webserver
          return "application/x-st3";
       else if(type == "Microke1")
          return "application/x-mk1";
-      return gen::g_nullconst;
+      return ::var(::var::e_type::type_null);
    }
 
 

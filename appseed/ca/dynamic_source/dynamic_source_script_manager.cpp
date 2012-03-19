@@ -487,7 +487,6 @@ namespace dynamic_source
          return ppair->m_value;
       else
       {
-         OutputDebugString(strPath);
          bool bFileExists = Application.file().exists(strPath);
          m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
          return bFileExists;
@@ -612,7 +611,7 @@ namespace dynamic_source
 
    string script_manager::real_path(const char * psz)
    {
-      if(Application.file().exists(psz))
+      if(include_matches_file_exists(psz))
          return psz;
       return real_path(System.dir().path(m_strNetseedPath, "ds/ca2"), psz);
    }

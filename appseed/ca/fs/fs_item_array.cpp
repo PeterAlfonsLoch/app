@@ -8,7 +8,7 @@ namespace fs
    var item_array::get_var_file() const
    {
       if(this->get_count() <= 0)
-         return gen::g_emptyconst;
+         return ::var(::var::e_type::type_empty);
       else if(this->get_count() == 1)
          return this->element_at(0).m_strPath;
       else
@@ -25,7 +25,7 @@ namespace fs
    var item_array::get_var_query() const
    {
       if(this->get_count() <= 0)
-         return gen::g_emptyconst;
+         return ::var(::var::e_type::type_empty);
       else if(this->get_count() == 1)
       {
          class var var;

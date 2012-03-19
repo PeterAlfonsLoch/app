@@ -57,7 +57,7 @@ namespace mysql
          result * presult = query(pszSql);
 
          if(presult == NULL)
-            return gen::g_newconst;
+            return ::var(::var::e_type::type_new);
 
          MYSQL_ROW row;
 

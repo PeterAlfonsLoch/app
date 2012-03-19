@@ -198,7 +198,7 @@ namespace webserver
    var fontopus_database::_fun_get_dataclass(const char * pszId)
    {
       if(m_pmysql == NULL)
-         return gen::g_nullconst;
+         return ::var(::var::e_type::type_null);
       string identifier = real_escape_string(pszId);
       string strSql;
       strSql.Format("SELECT id FROM fun_dataclass WHERE `identifier` = '%s'", identifier);

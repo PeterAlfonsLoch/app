@@ -175,7 +175,7 @@ namespace database
    var set::query_item(const char *sql)
    {
       if(!query(sql))
-         return gen::g_nullconst;
+         return ::var(::var::e_type::type_null);
       return GetSelectFieldValue(0);
    }
 

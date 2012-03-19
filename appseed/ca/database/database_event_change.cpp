@@ -3,7 +3,7 @@
 namespace database
 {
    change_event::change_event() :
-      m_var(gen::g_newconst)
+      m_var(::var(::var::e_type::type_new))
    {
       m_pserver = NULL;
       m_puh = NULL;

@@ -158,10 +158,12 @@ ex1::HRes CHandler::GetPropertyInfo(uint32 index, string & name, int * propID, v
   int indexInMap = FindPropInMap(_fileInfoPopIDs[index]);
   if (indexInMap == -1)
     return E_INVALIDARG;
+  throw not_implemented_exception();
+  /*
   const STATPROPSTG &srcItem = kPropMap[indexInMap].StatPROPSTG;
   *propID = srcItem.propid;
   *varType = srcItem.vt;
-  name.Empty();
+  name.Empty();*/
   return S_OK;
 }
 

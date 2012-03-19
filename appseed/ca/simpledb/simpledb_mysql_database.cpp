@@ -161,7 +161,7 @@ namespace mysql
       if(row == NULL)
          return varDefault;
       else if(row[0] == NULL)
-         return gen::g_nullconst;
+         return ::var(::var::e_type::type_null);
       else
          return var(row[0]);
    }
@@ -187,14 +187,14 @@ namespace mysql
    {
       result * presult = query(pszSql);
       if(presult == NULL)
-         return gen::g_newconst;
+         return ::var(::var::e_type::type_new);
       var a;
       MYSQL_ROW row;
       int i = 0;
       while((row = (MYSQL_ROW) presult->fetch_row()) != NULL)
       {
          if(row[0] == NULL)
-            a.propset().add(gen::str::itoa(i), gen::g_nullconst);
+            a.propset().add(gen::str::itoa(i), ::var(::var::e_type::type_null));
          else
             a.propset().add(gen::str::itoa(i), var(row[0]));
          i++;
@@ -205,16 +205,16 @@ namespace mysql
    {
       result * presult = query(pszSql);
       if(presult == NULL)
-         return gen::g_newconst;
+         return ::var(::var::e_type::type_new);
       MYSQL_ROW row = (MYSQL_ROW) presult->fetch_row();
       if(row == NULL)
-         return gen::g_newconst;
+         return ::var(::var::e_type::type_new);
       var a;
       int iNumFields = presult->num_fields();
       for(int j = 0; j < iNumFields; j++)
       {
          if(row[j] == NULL)
-            a.propset().add(gen::str::itoa(j), gen::g_nullconst);
+            a.propset().add(gen::str::itoa(j), ::var(::var::e_type::type_null));
          else
             a.propset().add(gen::str::itoa(j), var(row[j]));
       }
@@ -224,7 +224,7 @@ namespace mysql
    {
       result * presult = query(pszSql);
       if(presult == NULL)
-         return gen::g_newconst;
+         return ::var(::var::e_type::type_new);
       MYSQL_ROW row;
       var a;
       var a2;
@@ -236,7 +236,7 @@ namespace mysql
          for(int j = 0; j < iNumFields; j++)
          {
             if(row[j] == NULL)
-               a2.propset().add(gen::str::itoa(j), gen::g_nullconst);
+               a2.propset().add(gen::str::itoa(j), ::var(::var::e_type::type_null));
             else
                a2.propset().add(gen::str::itoa(j), var(row[j]));
          }

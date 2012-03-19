@@ -15,7 +15,7 @@ namespace webserver
 
       virtual bool initialize() = 0;
       virtual mysql::result * query(const char * pszSql);
-      virtual var query_item(const char * pszSql, var varDefault = gen::g_newconst);
+      virtual var query_item(const char * pszSql, var varDefault = ::var(::var::e_type::type_new));
       virtual var query_items(const char * pszSql);
       virtual var query_row(const char * pszSql);
       virtual var query_rows(const char * pszSql);

@@ -21,7 +21,7 @@ namespace xml
       if(m_pvar == NULL)
          return;
       node * pnode = xmlot.m_pnode;
-      pnode->add_attr("type", System.get_name(m_pvar->get_type()));
+      pnode->add_attr("type", (int)m_pvar->get_type());
       pnode->set_value(m_pvar->get_string());
    }
 
@@ -37,9 +37,9 @@ namespace xml
          //ASSERT(FALSE);
          return;
       }
-      string str;
-      pnode->get_attr("type", str);
-      System.from_name(m_pvar->m_etype, str);
+      int i;
+      pnode->get_attr("type", i);
+      m_pvar->m_etype = (var::e_type) i;
       m_pvar->set_string(pnode->get_value());
    
    }

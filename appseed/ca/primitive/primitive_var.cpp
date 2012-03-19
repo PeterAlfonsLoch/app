@@ -1,11 +1,6 @@
 #include "StdAfx.h"
 #include <math.h>
 
-var::var()
-{
-   m_etype = type_new;
-   m_pca2 = NULL;
-}
 
 var::var(const char * psz)
 {
@@ -253,7 +248,7 @@ class var & var::operator ++(int)
 
 
 
-void var::set_type(class e_type e_type, bool bConvert)
+void var::set_type(e_type e_type, bool bConvert)
 {
    if(m_pca2 != NULL)
    {
@@ -589,16 +584,16 @@ class var & var::operator = (const class var & var)
          memory()   = ((class var &)var).memory();
          break;
       case type_inta:
-         inta()   = ((class var &)var).inta();
+         inta()   = *var.m_pia;
          break;
       case type_stra:
-         stra()   = ((class var &)var).stra();
+         stra()   = *var.m_pstra;
          break;
       case type_vara:
-         vara()   = ((class var &)var).vara();
+         vara()   = *var.m_pvara;
          break;
       case type_propset:
-         propset()   = ((class var &)var).propset();
+         propset()   = *var.m_pset;
          break;
       case type_prop:
          prop()   = ((class var &)var).prop();
@@ -954,9 +949,9 @@ void var::read(ex1::byte_input_stream & is)
          int iCount;
          is >> iCount;
          inta().set_size(iCount);
-         for(int i = 0; i < inta().get_count(); i++)
+         for(int i = 0; i < m_pia->get_count(); i++)
          {
-            is >> (int &) inta()[i];
+            is >> (int &) m_pia->element_at(i);
          }
       }
       break;
@@ -984,7 +979,7 @@ void var::read(ex1::byte_input_stream & is)
       {
          ::ca::type_info info;
          is >> info;
-         m_pca2 = System.alloc(info);
+         m_pca2 = Sys(is.get_app()).alloc(info);
          if(m_pca2 == NULL)
          {
             throw "object allocation is not implemented";
@@ -1039,9 +1034,9 @@ void var::write(ex1::byte_output_stream & ostream)
    case type_inta:
       {
          ostream << inta().get_count();
-         for(int i = 0; i < inta().get_count(); i++)
+         for(int i = 0; i < m_pia->get_count(); i++)
          {
-            ostream << inta()[i];
+            ostream << m_pia->element_at(i);
          }
       }
       break;
@@ -1061,7 +1056,7 @@ void var::write(ex1::byte_output_stream & ostream)
       {
          ::ca::type_info info(typeid(*m_pca2));
          ostream << info;
-         byte_serializable * pserializable = dynamic_cast < byte_serializable * >(m_pca2);
+         ::ex1::byte_serializable * pserializable = dynamic_cast < ::ex1::byte_serializable * >(m_pca2);
          if(pserializable != NULL)
          {
             pserializable->write(ostream);
@@ -1717,24 +1712,26 @@ class primitive::memory & var::memory()
 
 stringa & var::stra()
 {
-   if(get_type() != type_stra)
+   if(m_etype != type_stra)
    {
       stringa * pstra = new stringa();
       pstra->add(*this);
       set_type(type_stra, false);
       ASSERT(m_pca2 == NULL);
       m_pca2 = pstra;
+      m_pstra = pstra;
    }
    else if(m_pca2 == NULL)
    {
-      m_pca2 = new stringa();
+      m_pstra = new stringa();
+      m_pca2 = m_pstra;
    }
-   return *dynamic_cast < stringa * > (m_pca2);
+   return *m_pstra;
 }
 
 int_array & var::inta()
 {
-   if(get_type() != type_inta)
+   if(m_etype != type_inta)
    {
       int_array * pia =  new int_array();
       for(int i = 0; i < array_get_count(); i++)
@@ -1744,17 +1741,19 @@ int_array & var::inta()
       set_type(type_inta, false);
       ASSERT(m_pca2 == NULL);
       m_pca2 = pia;
+      m_pia = pia;
    }
    else if(m_pca2 == NULL)
    {
-      m_pca2 = new int_array();
+      m_pia = new int_array();
+      m_pca2 = m_pia;
    }
-   return *dynamic_cast < int_array * > (m_pca2);
+   return *m_pia;
 }
 
 int64_array & var::int64a()
 {
-   if(get_type() != type_int64a)
+   if(m_etype != type_int64a)
    {
       int64_array * pia =  new int64_array();
       for(int i = 0; i < array_get_count(); i++)
@@ -1764,10 +1763,12 @@ int64_array & var::int64a()
       set_type(type_int64a, false);
       ASSERT(m_pca2 == NULL);
       m_pca2 = pia;
+      m_pia64 = pia;
    }
    else if(m_pca2 == NULL)
    {
-      m_pca2 = new int64_array();
+      m_pia64 = new int64_array();
+      m_pca2 = m_pia64;
    }
    return *dynamic_cast < int64_array * > (m_pca2);
 }
@@ -1822,11 +1823,11 @@ class var & var::operator = (var * pvar)
 
 var_array & var::vara()
 {
-   if(get_type() == type_pvar)
+   if(m_etype == type_pvar)
    {
       return m_pvar->vara();
    }
-   else if(get_type() != type_vara)
+   else if(m_etype != type_vara)
    {
       var_array * pvara =  new var_array();
       for(int i = 0; i < array_get_count(); i++)
@@ -1836,12 +1837,14 @@ var_array & var::vara()
       set_type(type_vara, false);
       ASSERT(m_pca2 == NULL);
       m_pca2 = pvara;
+      m_pvara = pvara;
    }
    else if(m_pca2 == NULL)
    {
-      m_pca2 = new var_array();
+      m_pvara = new var_array();
+      m_pca2 = m_pvara;
    }
-   return *dynamic_cast < var_array * > (m_pca2);
+   return *m_pvara;
 }
 
 var_array var::vara() const
@@ -1855,17 +1858,17 @@ var_array var::vara() const
       var varTime = *this;
       return varTime.vara();
    }
-   return *dynamic_cast < const var_array * > (m_pca2);
+   return *m_pvara;
 }
 
 gen::property_set & var::propset(::ca::application * papp)
 {
    gen::property_set * pset;
-   if(get_type() == type_pvar)
+   if(m_etype == type_pvar)
    {
       pset = &m_pvar->propset();
    }
-   else if(get_type() != type_propset)
+   else if(m_etype != type_propset)
    {
       gen::property_set * ppropset = new gen::property_set();
       for(int i = 0; i < array_get_count(); i++)
@@ -1876,15 +1879,17 @@ gen::property_set & var::propset(::ca::application * papp)
       //ASSERT(m_pca2 == NULL);
       m_pca2 = ppropset;
       pset = ppropset;
+      m_pset = pset;
    }
    else if(m_pca2 == NULL)
    {
       pset = new gen::property_set();
       m_pca2 = pset;
+      m_pset = pset;
    }
    else
    {
-      pset = dynamic_cast < gen::property_set * > (m_pca2);
+      pset = m_pset;
    }
    if(pset != NULL && papp != NULL)
    {
@@ -1901,13 +1906,14 @@ gen::property_set var::propset() const
 
 gen::property & var::prop()
 {
-   if(get_type() != type_prop)
+   if(m_etype != type_prop)
    {
       set_type(type_prop);
    }
    if(m_pca2 == NULL)
    {
-      m_pca2 = new gen::property();
+      m_pprop = new gen::property();
+      m_pca2 = m_pprop;
    }
    return *dynamic_cast < gen::property * > (m_pca2);
 }
@@ -1962,31 +1968,13 @@ var var::key(index i) const
    case type_vara:
       return i;
    case type_propset:
-      return propset().m_propertya[i].name();
+      return m_pset->m_propertya[i].name();
    default:
       throw "not supported";
    }
 }
 
 
-count var::get_count() const
-{
-   switch(m_etype)
-   {
-   case type_bool:
-      return 1;
-   case type_inta:
-      return inta().get_count();
-   case type_stra:
-      return stra().get_count();
-   case type_vara:
-      return vara().get_count();
-   case type_propset:
-      return propset().get_count();
-   default:
-      return 1;
-   }
-}
 
 
 void var::on_delete(::ca::ca * pca)
@@ -2022,13 +2010,13 @@ var var::at(index i) const
    switch(m_etype)
    {
    case type_inta:
-      return inta()[i];
+      return m_pia->element_at(i);
    case type_stra:
-      return stra()[i];
+      return m_pstra->element_at(i);
    case type_vara:
-      return vara()[i];
+      return m_pvara->element_at(i);
    case type_propset:
-      return propset().m_propertya[i];
+      return m_pset->m_propertya[i];
    case type_pvar:
       return m_pvar->at(i);
    default:
@@ -2048,13 +2036,13 @@ var var::at(index i)
    switch(m_etype)
    {
    case type_inta:
-      return &inta()[i];
+      return &m_pia->element_at(i);
    case type_stra:
-      return &stra()[i];
+      return &m_pstra->element_at(i);
    case type_vara:
-      return &vara()[i];
+      return &m_pvara->element_at(i);
    case type_propset:
-      return &propset().m_propertya[i].get_value();
+      return &m_pset->m_propertya[i].get_value();
    case type_pvar:
       return m_pvar->at(i);
    default:
@@ -2069,35 +2057,7 @@ var var::at(index i)
    }
 }
 
-count var::array_get_count() const
-{
-   if(m_etype == type_new
-   || m_etype == type_null
-   || m_etype == type_empty
-   || m_etype == type_empty_argument)
-   {
-      return -1; // indicates that this var is not an base_array
-   }
-   else if(is_array())
-      return this->get_count();
-   else
-      return 1; // this var is an scalar or object that can be retrieved through "array_" methods
-}
 
-index var::array_get_upper_bound() const
-{
-   if(m_etype == type_new
-   || m_etype == type_null
-   || m_etype == type_empty
-   || m_etype == type_empty_argument)
-   {
-      return -1; // indicates that this var is not an base_array
-   }
-   else if(is_array())
-      return this->get_count() - 1;
-   else
-      return 0; // this var is an scalar or object that can be retrieved through "array_" methods
-}
 
 bool var::array_contains(const char * psz, index find, count count) const
 {
@@ -2995,43 +2955,6 @@ bool var::is_scalar() const
    }
 }
 
-bool var::is_array() const
-{
-   if(m_etype == type_new
-   || m_etype == type_null
-   || m_etype == type_empty)
-   {
-      return false;
-   }
-   else if(m_etype == type_string
-   || m_etype == type_integer
-   || m_etype == type_pinteger
-   || m_etype == type_ulong
-   || m_etype == type_bool
-   || m_etype == type_double)
-   {
-      return false;
-   }
-   else if(m_etype == type_stra
-      || m_etype == type_inta
-      || m_etype == type_vara
-      || m_etype == type_propset)
-   {
-      return true;
-   }
-   else if(m_etype == type_prop)
-   {
-      return prop().get_value().is_array();
-   }
-   else if(m_etype == type_ca2)
-   {
-      return false;
-   }
-   else
-   {
-      return false;
-   }
-}
 
 bool var::is_double() const
 {

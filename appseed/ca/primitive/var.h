@@ -7,6 +7,7 @@
 #include "gen/gen_full_pointer.h"
 #include "template/template_time.h"
 #include "ex1/ex1_byte_serializable.h"
+#include "collection/stringa.h"
 
 class stringa;
 
@@ -38,14 +39,11 @@ namespace gen
 }
 
 
-class CLASS_DECL_ca var :
-   public ::radix::object,
-   public ex1::byte_serializable,
-   public string_interface
+class CLASS_DECL_ca var
 {
 public:
 
-   enum _etype
+   enum e_type
    {
       type_parareturn,
       type_new,
@@ -80,13 +78,10 @@ public:
       type_int64a,
    };
 
-   typedef base_enum < _etype, type_null > e_type;
-
-
    void set_type(e_type e_type, bool bConvert = true);
-   virtual e_type get_type() const;
+   e_type get_type() const;
 
-   virtual bool is_numeric() const;
+   bool is_numeric() const;
    
    inline bool is_number() const
    {
@@ -97,7 +92,7 @@ public:
 
 
 
-   var();
+   inline var();
    var(bool b);
    var(int i);
    var(__int64 i64);
@@ -129,7 +124,7 @@ public:
    var(const gen::str_str_interface & set);
    var(const string_composite & composite);
    var(const id & id);
-   virtual ~var();
+   ~var();
 
    e_type             m_etype;
    union
@@ -151,6 +146,12 @@ public:
       FILETIME             m_filetime;
       unsigned int         m_ui;
       id *                 m_pid;
+      int_array *          m_pia;
+      stringa *            m_pstra;
+      int64_array *        m_pia64;
+      var_array *          m_pvara;
+      gen::property_set *  m_pset;
+      gen::property *      m_pprop;
    };
    ::ca::ca *                       m_pca2;
    string                           m_str;
@@ -181,7 +182,7 @@ public:
    gen::property                prop() const;
 
    bool is_scalar() const;
-   bool is_array() const;
+   inline bool is_array() const;
    bool is_double() const;
    bool is_integer() const;
    bool is_ulong() const;
@@ -192,7 +193,7 @@ public:
 
    var dereference();
 
-   virtual void on_delete(::ca::ca * poc);
+   void on_delete(::ca::ca * poc);
 
 
    variable_strict_compare strict_compare() const;
@@ -200,17 +201,17 @@ public:
 
    void           set_string(const char * psz);
    void           set_id(const id & id);
-   virtual void unset();
+   void unset();
 
-   virtual bool is_true() const;
+   bool is_true() const;
 
 
-   virtual bool is_set() const;
-   virtual bool is_new() const;
-   virtual bool is_null() const;
-   virtual bool is_new_or_null() const;
-   virtual bool is_empty() const;
-   virtual bool has_char() const;
+   bool is_set() const;
+   bool is_new() const;
+   bool is_null() const;
+   bool is_new_or_null() const;
+   bool is_empty() const;
+   bool has_char() const;
 
    bool has_property(const char * pszName) const;
 
@@ -231,8 +232,8 @@ public:
    {
       return m_etype == type_bool && m_b;
    }
-   virtual void get_string(char * psz) const;
-   virtual strsize get_length() const;
+   void get_string(char * psz) const;
+   strsize get_length() const;
    var & operator = (::ca::ca * pca2);
    var & operator = (gen::para_return & eret);
    var & operator = (bool b);
@@ -366,7 +367,7 @@ public:
 
    var first() const;
    var last() const;
-   count get_count() const;
+   inline count get_count() const;
    const var & operator[] (var varKey) const;
    const var & operator[] (const char * pszKey) const;
    const var & operator[] (index iKey) const;
@@ -391,8 +392,8 @@ public:
 #ifdef _AMD64_
    inline var key(int i) const { return key((index) i); }
 #endif
-   count array_get_count() const;
-   index array_get_upper_bound() const;
+   inline count array_get_count() const;
+   inline index array_get_upper_bound() const;
    bool array_contains(const char * psz, index find = 0, count count = -1) const;
    bool array_contains_ci(const char * psz, index find = 0, count count = -1) const;
 

@@ -372,8 +372,9 @@ namespace compress
                propValue = value;
          }
 
-         if (!ConvertProperty(propValue, nameToPropID.VarType, prop.get_value()))
-            return E_INVALIDARG;
+         throw not_implemented_exception();
+         //if (!ConvertProperty(propValue, nameToPropID.VarType, prop.get_value()))
+           // return E_INVALIDARG;
       }
       oneMethodInfo.Props.add(prop);
       return S_OK;
@@ -624,8 +625,9 @@ namespace compress
                return E_INVALIDARG;
             const CNameToPropID &nameToPropID = g_NameToPropID[index];
             prop.m_strName = gen::str::itoa(nameToPropID.PropID);
-            if (!ConvertProperty(value, nameToPropID.VarType, prop.get_value()))
-               return E_INVALIDARG;
+            throw not_implemented_exception();
+            //if (!ConvertProperty(value, nameToPropID.VarType, prop.get_value()))
+              // return E_INVALIDARG;
          }
          oneMethodInfo.Props.add(prop);
       }

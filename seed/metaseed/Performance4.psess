@@ -21,7 +21,7 @@
       <PdhCountersRate>500</PdhCountersRate>
       <PdhCounters>
         <PdhCounter>\Arbeitsspeicher\Seiten/s</PdhCounter>
-        <PdhCounter>\Physikalischer Datentr&amp;amp;amp;amp;amp;#228;ger(_Total)\Durchschnittl. Warteschlangenl&amp;amp;amp;amp;amp;#228;nge des Datentr&amp;amp;amp;amp;amp;#228;gers</PdhCounter>
+        <PdhCounter>\Physikalischer Datentr&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#228;ger(_Total)\Durchschnittl. Warteschlangenl&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#228;nge des Datentr&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#228;gers</PdhCounter>
         <PdhCounter>\Prozessor(_Total)\Prozessorzeit (%)</PdhCounter>
       </PdhCounters>
     </PdhSettings>
@@ -74,6 +74,24 @@
     </Report>
     <Report>
       <Path>Report120317(7).vsp</Path>
+    </Report>
+    <Report>
+      <Path>Report120318.vsp</Path>
+    </Report>
+    <Report>
+      <Path>Report120318(1).vsp</Path>
+    </Report>
+    <Report>
+      <Path>Report120318(2).vsp</Path>
+    </Report>
+    <Report>
+      <Path>Report120318(3).vsp</Path>
+    </Report>
+    <Report>
+      <Path>Report120318(4).vsp</Path>
+    </Report>
+    <Report>
+      <Path>Report120318(5).vsp</Path>
     </Report>
   </Reports>
   <RuntimeMarks>

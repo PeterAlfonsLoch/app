@@ -52,7 +52,7 @@ namespace webserver
       case 10005:
          return "address";
       default:
-         return gen::g_nullconst;
+         return ::var(::var::e_type::type_null);
       }
    }
    var wb::get_address_type_id(var id)
@@ -67,7 +67,7 @@ namespace webserver
          return 10004;
       if(id == "address" || id == "board")
          return 10005;
-      return gen::g_nullconst;
+      return ::var(::var::e_type::type_null);
    }
 
    var wb::get_address_path_name(var id, const char * pszStyle)

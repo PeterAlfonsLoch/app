@@ -57,14 +57,14 @@ namespace webserver
 
 
          in2_list();
-         in2_list(var target, var order = "", var params_ex = gen::g_newconst, gen::property_set params = gen::property_set());
+         in2_list(var target, var order = "", var params_ex = ::var(::var::e_type::type_new), gen::property_set params = gen::property_set());
 
 
          virtual void print_css_include();
 
          virtual string bold001(var text);
 
-         virtual void print_tr(var mainlink, var param = gen::g_newconst);
+         virtual void print_tr(var mainlink, var param = ::var(::var::e_type::type_new));
          virtual void print_td(var i1 = 0, var prefix_style = "");
          virtual void performer_starttable();
          virtual void print_out_nav(var linka, var titlea);

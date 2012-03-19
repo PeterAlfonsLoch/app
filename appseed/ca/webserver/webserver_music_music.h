@@ -112,7 +112,7 @@ namespace webserver
          void register_post(gen::property_set & set);
          void register_request(gen::property_set & set);
 
-         string js_langstr(var id, var value = gen::g_newconst);
+         string js_langstr(var id, var value = ::var(::var::e_type::type_new));
          void js_tr_mdwn_parama(var tr_mdwn_parama);
          string karaoke_to_song_info_topictype(var topictype);
          string karaoke_nfy_count(var n);

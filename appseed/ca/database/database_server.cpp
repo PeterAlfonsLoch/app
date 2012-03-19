@@ -127,7 +127,7 @@ namespace database
       var var;
       if(data_server_load(idSection, id, idIndex, var, phint))
          return var;
-      return gen::g_newconst;
+      return ::var(::var::e_type::type_new);
    }
 
    bool server::data_save(class id idSection, class id id, class id idIndex, var var, update_hint * phint)

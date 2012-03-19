@@ -56,12 +56,12 @@ namespace gen
          return pair_set_interface_get_value(iFind);
       if(get_auto_add())
       {
-         pair_set_interface_set(pszName, g_newconst);
+         pair_set_interface_set(pszName, ::var(::var::e_type::type_new));
          iFind = pair_set_interface_find(pszName);
          if(iFind >= 0)
             return pair_set_interface_get_value(iFind);
       }
-      return g_newconst;
+      return ::var(::var::e_type::type_new);
    }
 
    var pair_set_interface::operator[](const char * pszName) const
@@ -69,7 +69,7 @@ namespace gen
       int iFind = pair_set_interface_find(pszName);
       if(iFind >= 0)
          return pair_set_interface_get_value(iFind);
-      return g_newconst;
+      return ::var(::var::e_type::type_new);
    }
 
    str_str_interface::str_str_interface()
@@ -2382,11 +2382,6 @@ restart_finding:
       return str;
    }
 
-   count property_set::get_count() const
-   {
-      return m_propertya.get_count();
-   }
-
    index property_set::find_value(const char * psz, index find, index last) const
    {
       if(find < 0)
@@ -2604,14 +2599,14 @@ restart_finding:
       return operator[](gen::str::itoa(iIndex));
    }
 
-   property & property_set::operator[](const string_interface & str)
+   property & property_set::operator[](const var & var)
    {
-      return operator[](string(str));
+      return operator[](string(var));
    }
 
-   property property_set::operator[](const string_interface & str) const
+   property property_set::operator[](const var & var) const
    {
-      return operator[](string(str));
+      return operator[](string(var));
    }
 
    property & property_set::operator[](const string & str)
