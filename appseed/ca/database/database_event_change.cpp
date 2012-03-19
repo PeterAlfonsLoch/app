@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 
+
 namespace database
 {
+
    change_event::change_event() :
       m_var(::var(::var::e_type::type_new))
    {
@@ -31,4 +33,6 @@ namespace database
       return false;
    }
 
+
 } // namespace database
+

@@ -174,6 +174,8 @@ public:
 
    id & operator = (const string_interface & str);
 
+   id & operator = (const var & var);
+
    inline operator int64_t() const
    {
       if(is_number())

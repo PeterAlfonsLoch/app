@@ -116,3 +116,15 @@ inline bool CLASS_DECL_ca operator == (const string & str, const var & var)
 
 
 
+inline id & id::operator = (const var & var)
+{
+   if(var.is_integer())
+   {
+      *this = var.get_integer();
+   }
+   else
+   {
+      *this = var.get_string();
+   }
+   return *this;
+}

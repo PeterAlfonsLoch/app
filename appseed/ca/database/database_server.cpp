@@ -10,7 +10,12 @@ namespace database
 
    bool server::data_server_load(class id idSection, class id id, class id idIndex, var & var   , update_hint * puh)
    {
-      return data_server_load(idSection, id, idIndex, (ex1::byte_serializable &) var, puh);
+      ::gen::byte_stream_memory_file memfile(get_app());
+      if(!data_server_load(idSection, id, idIndex, memfile, puh))
+         return false;
+      memfile.seek_to_begin();
+      memfile >> var;
+      return true;
    }
 
    bool server::data_server_load(class id idSection, class id id, class id idIndex, ex1::byte_output_stream & ostream, update_hint * puh)
@@ -50,7 +55,12 @@ namespace database
 
    bool server::data_server_save(class id idSection, class id id, class id idIndex, var & var   , update_hint * puh)
    {
-      return data_server_save(idSection, id, idIndex, (ex1::byte_serializable &) var, puh);
+      ::gen::byte_stream_memory_file memfile(get_app());
+      memfile << var;
+      memfile.seek_to_begin();
+      if(!data_server_save(idSection, id, idIndex, memfile, puh))
+         return false;
+      return true;
    }
 
    bool server::data_server_save(class id idSection, class id id, class id idIndex, ex1::byte_input_stream & istream, update_hint * puh)
