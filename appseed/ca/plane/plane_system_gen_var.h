@@ -8,6 +8,12 @@ inline var::var()
 }
 
 
+inline var::var(e_type etype)
+{
+   m_etype = etype;
+   m_pca2 = NULL;
+}
+
 
 inline count var::get_count() const
 {

@@ -24,15 +24,22 @@ namespace dynamic_source
 
 
 
-      http::memory_file m_memfileLibError;
-      stringa m_straLibSourcePath;
-      stringa m_straLibSourceRelPath;
-      stringa m_straLibCppPath;
-      stringa m_straLibIncludePath;
-      stringa m_straLibIncludeRelPath;
-      stringa m_straLibHppPath;
-      string m_strLibraryPath;
-      ::ca::library m_libraryLib;
+      http::memory_file    m_memfileLibError;
+      stringa              m_straLibSourcePath;
+      stringa              m_straLibSourceRelPath;
+      stringa              m_straLibCppPath;
+      stringa              m_straLibIncludePath;
+      stringa              m_straLibIncludeRelPath;
+      stringa              m_straLibHppPath;
+      string               m_strLibraryPath;
+
+
+      string               m_strDynamicSourceConfiguration;
+
+
+      ::ca::library        m_libraryLib;
+
+
       base_array < FILETIME, FILETIME & > m_ftaLibCreation;
       base_array < FILETIME, FILETIME & > m_ftaLibAccess;
       base_array < FILETIME, FILETIME & > m_ftaLibModified;

@@ -93,6 +93,7 @@ public:
 
 
    inline var();
+   inline var(e_type etype);
    var(bool b);
    var(int i);
    var(__int64 i64);

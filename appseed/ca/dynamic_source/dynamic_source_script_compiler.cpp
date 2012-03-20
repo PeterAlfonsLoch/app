@@ -1,6 +1,8 @@
 #include "StdAfx.h"
 
 
+
+
 namespace dynamic_source
 {
 
@@ -11,6 +13,17 @@ namespace dynamic_source
       m_folderwatch(papp),
       m_folderwatchFribox(papp)
    {
+
+#ifdef _DEBUG
+
+      m_strDynamicSourceConfiguration = "basis";
+
+#else
+
+      m_strDynamicSourceConfiguration = "profiler";
+
+#endif
+
    }
 
    script_compiler::~script_compiler(void)
@@ -56,9 +69,12 @@ namespace dynamic_source
 
       //System.file().lines(m_straSync, "C:\\ca2\\database\\text\\dynamic_source\\syncer.txt", get_app());
 
-      prepare1("dynamic_source_cld" + m_strPlat1 + ".bat", "dynamic_source_cld" + m_strPlat1 + ".bat");
-      prepare1("dynamic_source_libcd" + m_strPlat1 + ".bat", "dynamic_source_libcd" + m_strPlat1 + ".bat");
-      prepare1("dynamic_source_libld" + m_strPlat1 + ".bat", "dynamic_source_libld" + m_strPlat1 + ".bat");
+      prepare1("dynamic_source_" + m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat",
+               "dynamic_source_" + m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat");
+      prepare1("dynamic_source_" + m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat",
+               "dynamic_source_" + m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat");
+      prepare1("dynamic_source_" + m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat", 
+               "dynamic_source_" + m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat");
 
       string vars1batSrc;
       string vars2batSrc;
@@ -248,7 +264,7 @@ namespace dynamic_source
 
       string strBuildCmd;
    //#ifdef _DEBUG
-      strBuildCmd.Format(System.dir().votagus("app\\stage\\app\\matter\\dynamic_source_cld" + m_strPlat1 + ".bat"));
+      strBuildCmd.Format(System.dir().votagus("app\\stage\\app\\matter\\dynamic_source_" + m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bat"));
    //#else
      // strBuildCmd.Format(System.dir().stage("front\\dynamic_source_cl.bat"));
    //#endif
@@ -260,7 +276,7 @@ namespace dynamic_source
       str.replace("%VS_VARS%", m_strEnv);
       str.replace("%VOTAGUS_ROOT%", strV);
       str.replace("%NETNODE_ROOT%", strN);
-      str.replace("%CONFIGURATION_NAME%", "profiler");
+      str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
       str.replace("%PLATFORM%", m_strPlatform);
       str.replace("%LIBPLATFORM%", m_strLibPlatform);
       str.replace("%SDK1%", m_strSdk1);
@@ -697,7 +713,7 @@ namespace dynamic_source
          str1 = "library/source/" + strRel;
          string strCmd;
    //#ifdef _DEBUG
-         strCmd.Format(System.dir().ca2("stage\\front\\dynamic_source_libcd" + m_strPlat1 + ".bat"));
+         strCmd.Format(System.dir().ca2("stage\\front\\dynamic_source_" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat"));
    //#else
      //    strCmd.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat"));
    //#endif
@@ -707,7 +723,7 @@ namespace dynamic_source
          str.replace("%PLATFORM%", m_strPlatform);
          str.replace("%NETNODE_ROOT%", strN);
          str.replace("%LIBPLATFORM%", m_strLibPlatform);
-         str.replace("%CONFIGURATION_NAME%", "profiler");
+         str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
          str.replace("%SDK1%", m_strSdk1);
          Application.dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\dynamic_source_library\\" + System.dir().name(str1)));
          Application.dir().mk(System.dir().path(m_strTime, "library\\" + m_strPlatform + "\\" + System.dir().name(str1)));
@@ -764,7 +780,7 @@ namespace dynamic_source
       }
       string strCmd;
    //#ifdef _DEBUG
-      strCmd.Format(System.dir().stage("front\\dynamic_source_libld" + m_strPlat1 + ".bat"));
+      strCmd.Format(System.dir().stage("front\\dynamic_source_" + m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bat"));
    //#else
      // strCmd.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_libl.bat"));
    //#endif
@@ -775,7 +791,7 @@ namespace dynamic_source
       str.replace("%PLATFORM%", m_strPlatform);
       str.replace("%NETNODE_ROOT%", strN);
       str.replace("%LIBPLATFORM%", m_strLibPlatform);
-      str.replace("%CONFIGURATION_NAME%", "profiler");
+      str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
       str.replace("%SDK1%", m_strSdk1);
       string strTargetName = m_strLibraryPath;
       gen::str::ends_eat_ci(strTargetName, ".dll");
