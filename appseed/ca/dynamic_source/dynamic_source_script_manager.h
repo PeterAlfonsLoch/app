@@ -78,8 +78,8 @@ namespace dynamic_source
 
       mutex                                     m_mutexSession;
       ::collection::string_map < session >      m_mapSession;
-      critical_section                          m_csMusicDbPool;
-      critical_section                          m_csCynceDbPool;
+      mutex                                     m_mutexMusicDbPool;
+      mutex                                     m_mutexCynceDbPool;
       script_cache *                            m_pcache;
       script_compiler *                         m_pcompiler;
       webserver::ui_redir *                     m_puiredir;
@@ -91,7 +91,7 @@ namespace dynamic_source
       string                                    m_strPersistentError;
 
       mutex                                     m_mutexPersistentStr;
-      critical_section                          m_csUiRedir;
+      mutex                                     m_mutexUiRedir;
       mutex                                     m_mutexTagId;
       string_to_string_map                      m_tagid;
       string_to_string_map                      m_usersecuretagid;

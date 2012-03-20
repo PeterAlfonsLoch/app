@@ -288,7 +288,8 @@ namespace dynamic_source
 
    ::webserver::fontopus_database * script_manager::on_new_musicdb(int iServer)
    {
-      single_lock sl(&m_csMusicDbPool, TRUE);
+      retry_single_lock sl(&m_mutexMusicDbPool, millis(0), millis(84));
+      sl.lock();
       __int64 iTime = update_musicdb_list(iServer);
       if(m_musicdba[iServer].get_count() > 0)
       {
@@ -310,14 +311,16 @@ namespace dynamic_source
 
    void script_manager::on_free_musicdb(::webserver::fontopus_database * pmusicdb)
    {
-      single_lock sl(&m_csMusicDbPool, TRUE);
+      retry_single_lock sl(&m_mutexMusicDbPool, millis(0), millis(84));
+      sl.lock();
        update_musicdb_list(pmusicdb->m_iLastServer);
        return m_musicdba[pmusicdb->m_iLastServer].push(pmusicdb);
    }
 
    __int64 script_manager::update_musicdb_list(int iServer)
    {
-      single_lock sl(&m_csMusicDbPool, TRUE);
+      retry_single_lock sl(&m_mutexMusicDbPool, millis(0), millis(84));
+      sl.lock();
       __int64 iTime = ::ca::profiler::micros();
       for(int i = 0; i < m_musicdba[iServer].get_count();)
       {
@@ -357,7 +360,8 @@ namespace dynamic_source
 
    ::webserver::cynce_database * script_manager::on_new_cyncedb()
    {
-      single_lock sl(&m_csCynceDbPool, TRUE);
+      retry_single_lock sl(&m_mutexCynceDbPool, millis(0), millis(84));
+      sl.lock();
       __int64 iTime = update_cyncedb_list();
       if(m_cyncedbptra.get_count() > 0)
       {
@@ -379,14 +383,16 @@ namespace dynamic_source
 
    void script_manager::on_free_cyncedb(::webserver::cynce_database * pcyncedb)
    {
-      single_lock sl(&m_csCynceDbPool, TRUE);
+      retry_single_lock sl(&m_mutexCynceDbPool, millis(0), millis(84));
+      sl.lock();
       update_cyncedb_list();
       return m_cyncedbptra.push(pcyncedb);
    }
 
    __int64 script_manager::update_cyncedb_list()
    {
-      single_lock sl(&m_csCynceDbPool, TRUE);
+      retry_single_lock sl(&m_mutexCynceDbPool, millis(0), millis(84));
+      sl.lock();
       __int64 iTime = ::ca::profiler::micros();
       for(int i = 0; i < m_cyncedbptra.get_count();)
       {

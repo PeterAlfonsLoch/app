@@ -1681,7 +1681,8 @@ namespace dynamic_source
 
    string script_impl::ui_redir(const char * pszLang, const char * pszStyle, const char * pszExUri, const char * pszRoot)
    {
-      single_lock sl(&m_pmanager->m_csUiRedir, TRUE);
+      retry_single_lock sl(&m_pmanager->m_mutexUiRedir,  millis(0), millis(84));
+      sl.lock();
       string strRoot(pszRoot);
       string strStyle(pszStyle);
       string strLang(pszLang);
@@ -1697,7 +1698,8 @@ namespace dynamic_source
 
    void script_impl::ui_redir_add(const char * pszRoot, const char * pszLang, const char * pszStyle, const char * pszTarget)
    {
-      single_lock sl(&m_pmanager->m_csUiRedir, TRUE);
+      retry_single_lock sl(&m_pmanager->m_mutexUiRedir, millis(0), millis(84));
+      sl.lock();
        return uiredir().add(pszRoot, pszLang, pszStyle, pszTarget);
       return;
    }
