@@ -12,6 +12,9 @@ void * memset_dup(void * p, int uch, size_t iSize)
    return p;
 }
 
+
+#if defined(WINDOWS) && defined(_X86_)
+
 #pragma function(memcpy)
 
 void * memcpy(void * dst, const void * src, size_t iSize)
@@ -19,6 +22,7 @@ void * memcpy(void * dst, const void * src, size_t iSize)
    return memcpy_dup(dst, src, iSize);
 }
 
+#endif
 
 void * memcpy_dup(void * dst, const void * src, size_t iSize)
 {
