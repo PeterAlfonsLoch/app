@@ -106,7 +106,7 @@ namespace filemanager
             ca4::http::signal * psignal = new ca4::http::signal;
 
             (*psignal)()["request"] = "";
-            psignal->m_strUrl.Format("http://file.veriwell.net/ls?id=%I64d", iFolder); 
+            psignal->m_strUrl.Format("http://file.veriwell.net/ifs/ls?id=%I64d", iFolder); 
 
             psignal->m_puser = &ApplicationUser;
 
@@ -118,7 +118,7 @@ namespace filemanager
          {
             string strUrl;
 
-            strUrl.Format("http://file.veriwell.net/get?name=" + System.url().url_encode(lpszFileName)+ "&folder=%I64d&extension=.%s", iFolder, pszExtension);
+            strUrl.Format("http://file.veriwell.net/ifs/get?name=" + System.url().url_encode(lpszFileName)+ "&folder=%I64d&extension=.%s", iFolder, pszExtension);
 
             if(m_prequestinterface != NULL)
             {

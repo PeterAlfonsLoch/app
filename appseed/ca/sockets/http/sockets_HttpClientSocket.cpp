@@ -131,7 +131,14 @@ namespace sockets
    void http_client_socket::OnData(const char *buf,size_t len)
    {
       OnDataArrived(buf, len);
+
+      if(m_pfile != NULL)
+      {
+         m_pfile->write(buf, len);
+         return;
+      }
       m_memoryfile.write(buf, len);
+   
       m_content_ptr += len;
       if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))
       {

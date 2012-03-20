@@ -77,7 +77,10 @@ namespace sockets
       
       //inheader("Accept") = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
       //inheader("Accept-Language") = "en-us,en;q=0.5";
-      inheader("Accept-Encoding") = "gzip,deflate";
+      if(m_pfile == NULL) // by the time, inline gzip decompression not yet implemented
+      {
+         inheader("Accept-Encoding") = "gzip,deflate";
+      }
       //inheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
 
 
