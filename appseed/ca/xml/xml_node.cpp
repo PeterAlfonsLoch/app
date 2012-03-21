@@ -1216,8 +1216,11 @@ namespace xml
          for( int i = 0 ; i < m_nodea.get_size(); i++ )
             ostring += m_nodea[i].get_xml( opt );
 
+         string strTrimmedValue = m_strValue;
+
+         strTrimmedValue.trim();
          // Text Value
-         if( m_strValue != "" )
+         if( strTrimmedValue != "" )
          {
             if( opt && opt->newline && !m_nodea.is_empty() )
             {
