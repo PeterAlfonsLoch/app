@@ -63,6 +63,8 @@ namespace ca4
          bool put(const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser = NULL);
          bool put(const char * pszUrl, ex1::file * pfile, ::fontopus::user * puser = NULL);
 
+         bool put(string & strResponse, const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser = NULL);
+         bool put(string & strResponse, const char * pszUrl, ex1::file * pfile, ::fontopus::user * puser = NULL);
 
       };
 

@@ -19,6 +19,7 @@ namespace gen
       byte_stream_memory_file(const byte_stream_memory_file & file);
       virtual ~byte_stream_memory_file();
 
+      file_position seek(file_offset offset, ::ex1::e_seek seekOrigin);
 
    };
 

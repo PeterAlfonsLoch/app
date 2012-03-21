@@ -39,7 +39,10 @@ namespace ex1
    void byte_serializable_array < type_array >::write(byte_output_stream & ostream)
    {
       ::count count = this->get_count();
-      ostream << count;
+      if(ostream.m_b64bit)
+         ostream << (__int64) count;
+      else
+         ostream << count;
       for(index index = 0; index < count; index++)
       {
          ostream << this->element_at(index);

@@ -988,6 +988,34 @@ retry:
          return System.http().get(pszUrl, str, post, headers, set, NULL, puser);
       }
 
+
+      bool system::put(string & strResponse, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser)
+      {
+
+         gen::memory_file file(get_app(), &memory);
+
+         return put(strResponse, pszUrl, &file, puser);
+
+      }
+
+
+      bool system::put(string & strResponse, const char * pszUrl, ex1::file * pfile, ::fontopus::user * puser)
+      {
+
+         if(puser == NULL)
+         {
+            puser = &ApplicationUser;
+         }
+
+         gen::property_set post;
+         gen::property_set headers;
+         gen::property_set set;
+         set["put"] = pfile;
+
+         return get(pszUrl, strResponse, post, headers, set, NULL, puser);
+
+      }
+
    } // namespace system
 
 

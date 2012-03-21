@@ -643,6 +643,14 @@ InitFailure:
          strPath = varFile;
          strPath.trim("\"'");
       }
+      else if(varFile.get_type() == var::type_propset)
+      {
+         if(varFile.has_property("url"))
+         {
+            strPath = varFile["url"];
+            strPath.trim("\"'");
+         }
+      }
 
       if(varFile.get_type() == var::type_propset
       && varFile.propset()["file"].ca2 < ::ex1::file >() != NULL)
@@ -673,7 +681,7 @@ InitFailure:
       else if(gen::str::begins(strPath, "ifs://")
          ||   gen::str::begins(strPath, "uifs://"))
       {
-         spfile(AppUser(this).m_pifs->get_file(strPath, nOpenFlags, pe));
+         spfile(AppUser(this).m_pifs->get_file(varFile, nOpenFlags, pe));
       }
       else if(gen::str::begins_eat_ci(strPath, "matter://"))
       {

@@ -225,6 +225,27 @@ namespace ca4
          return System.http().put(pszUrl, pfile, puser);
       }
 
+
+      bool application::put(string & strResponse, const char * pszUrl, primitive::memory & memory, ::fontopus::user * puser)
+      {
+         if(puser == NULL)
+         {
+            puser = &ApplicationUser;
+         }
+         return System.http().put(strResponse, pszUrl, memory, puser);
+      }
+
+      bool application::put(string & strResponse, const char * pszUrl, ex1::file * pfile, ::fontopus::user * puser)
+      {
+         if(puser == NULL)
+         {
+            puser = &ApplicationUser;
+         }
+         return System.http().put(strResponse, pszUrl, pfile, puser);
+      }
+
+
+
    } // namespace http
 
 

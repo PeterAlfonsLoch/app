@@ -86,7 +86,10 @@ namespace ca4
 
          bool put(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
          bool put(const char * pszUrl, ex1::file * pfile, ::fontopus::user * puser = NULL);
-         
+
+         bool put(string & strResponse, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
+         bool put(string & strResponse, const char * pszUrl, ex1::file * pfile, ::fontopus::user * puser = NULL);
+
 
          void defer_auto_initialize_proxy_configuration();
          void auto_config_proxy(int i);

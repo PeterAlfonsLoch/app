@@ -65,6 +65,7 @@ namespace ex1
 
       byte_input_stream & operator = (const byte_input_stream & istream);
 
+      file_position seek(file_offset offset, e_seek seekOrigin);
 
 
    };
@@ -78,6 +79,9 @@ namespace ex1
       virtual public out_stream_flush
    {
    public:
+
+
+      bool        m_b64bit;
 
 
       byte_output_stream();

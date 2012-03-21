@@ -44,6 +44,9 @@ namespace gen
    }
 
 
-
+   file_position byte_stream_memory_file::seek(file_offset offset, ::ex1::e_seek seekOrigin)
+   {
+      return ::gen::memory_file::seek(offset, seekOrigin);
+   }
 
 } // namespace gen

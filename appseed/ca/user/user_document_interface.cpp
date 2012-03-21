@@ -590,22 +590,29 @@ namespace user
       return TRUE;
    }
 
-   BOOL document_interface::on_save_document(const char * lpszPathName)
+   BOOL document_interface::on_save_document(var varFile)
    {
 
       ::ex1::byte_stream spfile;
       ex1::file_exception_sp fe(get_app());
-      spfile = Application.get_byte_stream(lpszPathName, ::ex1::file::defer_create_directory | ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::shareExclusive, &fe);
+      spfile = Application.get_byte_stream(varFile, ::ex1::file::defer_create_directory | ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::shareExclusive, &fe);
       if(spfile.is_writer_null())
       {
-         report_save_load_exception(lpszPathName, fe, TRUE, "AFX_IDP_INVALID_FILENAME");
+         report_save_load_exception(varFile, fe, TRUE, "AFX_IDP_INVALID_FILENAME");
          return FALSE;
       }
+
 
       try
       {
          wait_cursor wait(get_app());
-         write(spfile);
+         if(varFile["xmledit"].ca2 < gen::memory_file > () != NULL)
+         {
+         }
+         else
+         {
+            write(spfile);
+         }
          spfile.close();
       }
       catch(base_exception * pe)
@@ -614,7 +621,7 @@ namespace user
 
          try
          {
-            report_save_load_exception(lpszPathName, pe, TRUE, "AFX_IDP_FAILED_TO_SAVE_DOC");
+            report_save_load_exception(varFile, pe, TRUE, "AFX_IDP_FAILED_TO_SAVE_DOC");
          }
          catch(...)
          {

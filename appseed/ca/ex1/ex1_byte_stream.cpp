@@ -195,6 +195,10 @@ namespace ex1
    }
 
 
+   file_position byte_input_stream::seek(file_offset offset, e_seek seekOrigin)
+   {
+      return m_spreader->seek(offset, seekOrigin);
+   }
 
 
 
@@ -205,16 +209,19 @@ namespace ex1
 
    byte_output_stream::byte_output_stream()
    {
+      m_b64bit = false;
    }
 
    byte_output_stream::byte_output_stream(writer * pwriter) :
       writer(pwriter)
    {
+      m_b64bit = false;
    }
 
    byte_output_stream::byte_output_stream(const  byte_output_stream & ostream) :
       writer(ostream)
    {
+      m_b64bit = false;
    }
 
    byte_output_stream::~byte_output_stream()
