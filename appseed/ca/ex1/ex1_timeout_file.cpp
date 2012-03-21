@@ -49,7 +49,7 @@ namespace ex1
          break;
       case ::ex1::seek_end:
          {
-            uint64_t dwCurrent = get_length();
+            uint64_t dwCurrent = get_length(&sl);
             if(dwCurrent == ((uint64_t)-1))
                dwFuture = 0;
             else
@@ -97,6 +97,34 @@ namespace ex1
          }
          TRACE("timeout_file::m_uiExpectedSize = %d", m_uiExpectedSize);
       }
+      if(m_uiExpectedSize == (uint64_t) -1)
+         return 0;
+      else
+         return m_uiExpectedSize;
+   }
+
+
+   file_size timeout_file::get_length(single_lock * psl) const
+   {
+      bool bAcquired = psl->m_bAcquired;
+      if(bAcquired)
+         psl->unlock();
+      
+      if(m_uiExpectedSize == (uint64_t) -2)
+         return (uint64_t) -2;
+      if(m_uiExpectedSize == (uint64_t) -1)
+      {
+         (const_cast < timeout_file * > (this))->m_dwLastCall = ::GetTickCount();
+         while(m_uiExpectedSize == (uint64_t) -1)
+         {
+            if(::GetTickCount() - m_dwLastCall > m_dwTimeOut)
+               break;
+            Sleep(max(11, m_dwSleep));
+         }
+         TRACE("timeout_file::m_uiExpectedSize = %d", m_uiExpectedSize);
+      }
+      if(bAcquired)
+         psl->lock();
       if(m_uiExpectedSize == (uint64_t) -1)
          return 0;
       else

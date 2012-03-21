@@ -26,6 +26,7 @@ namespace ex1
       file_position seek(file_offset lOff, ::ex1::e_seek  nFrom);
       file_position get_position() const;
       file_size get_length() const;
+      file_size get_length(single_lock * psl) const;
 
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
       virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
