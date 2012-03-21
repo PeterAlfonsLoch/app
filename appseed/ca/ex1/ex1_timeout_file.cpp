@@ -106,7 +106,7 @@ namespace ex1
 
    file_size timeout_file::get_length(single_lock * psl) const
    {
-      bool bAcquired = psl->m_bAcquired;
+      bool bAcquired = psl->IsLocked();
       if(bAcquired)
          psl->unlock();
       
