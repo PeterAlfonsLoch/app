@@ -191,6 +191,13 @@ namespace ca4
       }
 
 
+      system::proxy::proxy(::ca::application * papp) :
+         ca(papp)
+      {
+      }
+
+
+
       ::ca4::http::system::proxy * system::get_proxy(const char * pszUrl)
       {
          
@@ -270,7 +277,7 @@ namespace ca4
 
          if(var.CompareNoCase("DIRECT") == 0)
          {
-            psocket->m_bDirect = true;
+            pproxy->m_bDirect = true;
          }
          else if(gen::str::begins_eat_ci(var, "PROXY"))
          {
