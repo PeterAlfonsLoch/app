@@ -102,9 +102,13 @@ namespace filemanager
             {
             }
 
+            string strPath = stra[i];
+            string strName = System.file().title_(strPath);
+            
+
             item.m_iImage = -1;
-            item.m_strPath = stra[i];
-            item.m_strName = System.file().title_(stra[i]);
+            item.m_strPath = strPath;
+            item.m_strName = strName;
 
             get_fs_list_data()->m_itema.SetItemAt(i, item);
 

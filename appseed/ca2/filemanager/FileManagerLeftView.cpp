@@ -83,9 +83,11 @@ void FileManagerLeftView::CreateViews()
    
    plist->m_bStatic = true;
 
+   plist->m_scrollinfo.m_rectMargin.null();
+
    SetPane(0, plist, false);
 
-   plist->add_item("V:\\", "votagus");
+   //plist->add_item("V:\\", "votagus");
 
   filemanager:: SimpleFolderTreeView * pmediaview = create_view < filemanager::SimpleFolderTreeView > ();
 

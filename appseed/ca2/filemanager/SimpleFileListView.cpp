@@ -81,7 +81,35 @@ namespace filemanager
    void SimpleFileListView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);
-      if(lHint == 123)
+
+      if(m_bStatic && lHint == 89127784)
+      {
+
+         add_item(GetFileManager()->get_item().m_strPath, System.file().name_(GetFileManager()->get_item().m_strPath));
+
+         /*
+         stringa stra;
+
+         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::radix::system::idEmpty, stra);
+
+         string strPath = GetFileManager()->get_item().m_strPath;
+
+         strPath.trim();
+
+         if(strPath.has_char())
+         {
+
+            stra.add_unique(strPath);
+
+            GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::radix::system::idEmpty, stra);
+
+            _017UpdateList();
+
+         }
+         */
+
+      }
+      else if(lHint == 123)
       {
          _017UpdateList();
       }

@@ -549,6 +549,10 @@ namespace ca
 
          string str(path);
 
+         while(gen::str::ends_eat(str, "\\"));
+
+         while(gen::str::ends_eat(str, "/"));
+
          strsize iPos;
 
          strsize iPos1 = str.reverse_find('\\');

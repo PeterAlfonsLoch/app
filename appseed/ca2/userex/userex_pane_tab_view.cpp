@@ -179,12 +179,12 @@ namespace userex
          if(oprop("file_manager_toolbar").is_set())
             pfilemanagerdata->m_strToolBar = oprop("file_manager_toolbar");
          else
-            pfilemanagerdata->m_strToolBar = "file_manager_toolbar";
+            pfilemanagerdata->m_strToolBar = "file_manager_toolbar.xml";
 
          if(oprop("file_manager_toolbar_save").is_set())
             pfilemanagerdata->m_strToolBarSave = oprop("file_manager_toolbar_save");
          else
-            pfilemanagerdata->m_strToolBarSave = "file_manager_toolbar_save";
+            pfilemanagerdata->m_strToolBarSave = "file_manager_toolbar_save.xml";
 
          ::filemanager::document * pdoc = Application.GetStdFileManagerTemplate()->OpenChild(&Application, true, true, pcreatordata->m_pholder, pfilemanagerdata);
          if(pdoc != NULL)
@@ -196,9 +196,9 @@ namespace userex
                if(pframe != NULL)
                {
                   pcreatordata->m_pdoc = pdoc;
-                  pcreatordata->m_pwnd = pframe;
+                  //pcreatordata->m_pwnd = pframe;
 
-                  pdoc->Initialize(true);
+                  //pdoc->Initialize(true);
                }
             }
          }
@@ -232,7 +232,7 @@ namespace userex
 
    filemanager::document * pane_tab_view::get_filemanager_document()
    {
-      return get_typed_document < filemanager::document > ();
+      return dynamic_cast < filemanager::document * > (get_view_creator()->get("file_manager")->m_pdoc);
    }
 
    filemanager::document * pane_tab_view::get_tabbed_filemanager_document()

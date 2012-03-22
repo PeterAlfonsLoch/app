@@ -8,20 +8,29 @@
 #define TBSTYLE_ALIGN_BOTTOM   0x80000
 #define TBSTYLE_ALIGN_VCENTER  0xC0000
 
+
 class image_list;
+
 
 class simple_toolbar_item
 {
 public:
+
+
+   int                  m_iIndex;
+   int                  m_iImage;
+   ::visual::dib_sp     m_spdib;
+   id                   m_id;
+   BYTE                 m_fsState;
+   BYTE                 m_fsStyle;
+   string               m_str;
+   rect                 m_rect;
+   bool                 m_bEnableIfHasCommandHandler;
+
+   
    simple_toolbar_item();
-   int      m_iIndex;
-   int      m_iImage;
-   ::visual::dib_sp m_spdib;
-   id       m_id;
-   BYTE     m_fsState;
-   BYTE     m_fsStyle;
-   string   m_str;
-   rect     m_rect;
+
+
 };
 
 

@@ -360,7 +360,11 @@ void simple_toolbar::OnUpdateCmdUI(userbase::frame_window* pTarget, BOOL bDisabl
       // ignore separators
       if(m_itema[state.m_iIndex].m_id != "separator")
       {
+         
          state.m_id = m_itema[state.m_iIndex].m_id;
+
+         state.m_bEnableIfHasCommandHandler = m_itema[state.m_iIndex].m_bEnableIfHasCommandHandler;
+
          // allow reflections
          //if (::user::interaction::_001OnCommand(0,
          //   MAKELONG((int)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
@@ -508,10 +512,15 @@ int simple_toolbar::_001GetItemCount()
 
 simple_toolbar_item::simple_toolbar_item()
 {
-   m_iIndex       = -1;
-   m_iImage       = -1;
-   m_fsState      = 0;
-   m_fsStyle      = 0;
+
+
+   m_iIndex                      = -1;
+   m_iImage                      = -1;
+   m_fsState                     = 0;
+   m_fsStyle                     = 0;
+   m_bEnableIfHasCommandHandler  = true;
+
+
 }
 
 
@@ -854,6 +863,10 @@ BOOL simple_toolbar::LoadXmlToolBar(const char * lpszXml)
          {
             item.m_spdib.create(get_app());
             item.m_spdib.load_from_file(pchild->attr("image"));
+         }
+         if(pchild->attr("enable_if_has_command_handler").get_string().has_char())
+         {
+            item.m_bEnableIfHasCommandHandler = pchild->attr("enable_if_has_command_handler").get_string().CompareNoCase("true") == 0;
          }
          item.m_fsStyle &= ~TBBS_SEPARATOR;
          m_itema.add(item);

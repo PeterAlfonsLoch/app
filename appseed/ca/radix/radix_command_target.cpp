@@ -10,21 +10,36 @@ BaseCommand::BaseCommand(gen::signal * psignal) :
 {
 }
 
+
 BaseCmdMsg::BaseCmdMsg()
 {
-   m_etype = type_command;
+
+
+   m_etype                       = type_command;
+
+
 }
+
 
 BaseCmdMsg::BaseCmdMsg(id id)
 {
-   m_etype = type_command;
-   m_id = id;
+
+
+   m_etype                       = type_command;
+   m_id                          = id;
+
+
 }
+
 
 BaseCmdMsg::BaseCmdMsg(cmd_ui * pcmdui)
 {
-   m_etype = type_cmdui;
-   m_pcmdui = pcmdui;
+
+
+   m_etype                       = type_cmdui;
+   m_pcmdui                      = pcmdui;
+
+
 }
 
 
@@ -52,24 +67,40 @@ bool command_target_interface::_001SendUpdateCmdUi(cmd_ui * pcmdui)
 
 bool command_target_interface::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 {
+
    if(pcmdmsg->m_etype == BaseCmdMsg::type_command)
    {
+
       CTestCmdUI cmdui(get_app());
+
       cmdui.m_id = pcmdmsg->m_id;
+
       if(_001OnUpdateCmdUi(&cmdui))
       {
          if(!cmdui.m_bEnabled)
             return false;
       }
+
       if(_001OnCommand(pcmdmsg->m_id))
          return true;
-      return false;
+
    }
    else
    {
-      return _001OnUpdateCmdUi(pcmdmsg->m_pcmdui);
+
+      if(_001OnUpdateCmdUi(pcmdmsg->m_pcmdui))
+         return true;
+
+      if(_001HasCommandHandler(pcmdmsg->m_pcmdui->m_id))
+      {
+         pcmdmsg->m_pcmdui->Enable();
+         return true;
+      }
+
    }
-   return FALSE;
+
+   return false;
+
 }
 
 command_target_interface::command_signalid::~command_signalid()
@@ -104,6 +135,18 @@ bool command_target_interface::_001OnCommand(id id)
    }
    return bOk;
 }
+
+bool command_target_interface::_001HasCommandHandler(id id)
+{
+
+   gen::dispatch::signal_ptr_array signalptra;
+
+   get_command_signal_array(BaseCmdMsg::type_command, signalptra, id);
+
+   return signalptra.get_size() > 0;
+
+}
+
 
 bool command_target_interface::_001OnUpdateCmdUi(cmd_ui * pcmdui)
 {

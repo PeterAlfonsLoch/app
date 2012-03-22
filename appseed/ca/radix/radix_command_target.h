@@ -149,6 +149,7 @@ public:
    virtual bool _001SendUpdateCmdUi(cmd_ui * pcmdUI);
 
    virtual bool _001OnCommand(id id);
+   virtual bool _001HasCommandHandler(id id);
    virtual bool _001OnUpdateCmdUi(cmd_ui * pcmdui);
 
    //virtual bool _001OnUpdateCmdUi(cmd_ui * pcmdui);
@@ -212,22 +213,24 @@ class CLASS_DECL_ca cmd_ui :
 public:
 
 
-   id          m_id;
-   id          m_idControl;     // menu item or other index
+   id                      m_id;
+   id                      m_idControl;     // menu item or other index
 
-   index       m_iIndex;
-   count       m_iCount;        // last + 1 for iterating m_iIndex
+   index                   m_iIndex;
+   count                   m_iCount;        // last + 1 for iterating m_iIndex
 
    // if a menu item
-   ::userbase::menu* m_pMenu;         // NULL if not a menu
-   ::userbase::menu* m_pSubMenu;      // sub containing menu item
+   ::userbase::menu *      m_pMenu;         // NULL if not a menu
+   ::userbase::menu *      m_pSubMenu;      // sub containing menu item
                      // if a popup sub menu - ID is for first in popup
 
    // if from some other ::ca::window
-   ::user::interaction * m_pOther;         // NULL if a menu or not a ::ca::window
+   ::user::interaction *   m_pOther;         // NULL if a menu or not a ::ca::window
 
-   BOOL m_bEnableChanged;
-   BOOL m_bContinueRouting;
+   BOOL                    m_bEnableChanged;
+   BOOL                    m_bContinueRouting;
+   bool                    m_bEnableIfHasCommandHandler;
+
    
 
    ::userbase::menu* m_pParentMenu;   // NULL if parent menu not easily determined

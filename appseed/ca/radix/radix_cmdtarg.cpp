@@ -368,14 +368,16 @@ cmd_ui::cmd_ui(::ca::application * papp)  :
    ca(papp)
 {
 
-   m_iIndex             = 0;
-   m_iCount             = 0;
-   m_pMenu              = NULL;
-   m_pSubMenu           = NULL;
-   m_pParentMenu        = NULL;
-   m_pOther             = NULL;
-   m_bEnableChanged     = FALSE;
-   m_bContinueRouting   = FALSE;
+   m_iIndex                      = 0;
+   m_iCount                      = 0;
+   m_pMenu                       = NULL;
+   m_pSubMenu                    = NULL;
+   m_pParentMenu                 = NULL;
+   m_pOther                      = NULL;
+   m_bEnableChanged              = FALSE;
+   m_bContinueRouting            = FALSE;
+   m_bEnableIfHasCommandHandler  = true;
+
 
 }
 

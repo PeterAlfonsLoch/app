@@ -205,7 +205,7 @@ namespace filemanager
    void document::_001OnAddLocation(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      update_all_views(NULL, 89124592, NULL);
+      update_all_views(NULL, 89127784, NULL);
    }
 
    void document::_001OnUpdateReplaceText(gen::signal_object * pobj)
