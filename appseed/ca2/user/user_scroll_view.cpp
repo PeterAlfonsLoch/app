@@ -160,18 +160,45 @@ namespace user
 
    void scroll_view::_001OnVScroll(gen::signal_object * pobj) 
    {
+      
+      
       SCAST_PTR(::gen::message::scroll, pscroll, pobj);
+
+
       keeper < bool > keepVScroll(&m_scrollinfo.m_bVScroll, true, false, true);
+
+
       m_scrollinfo.m_ptScroll.y = pscroll->m_nPos;
+
+
+      _001OnUpdateScrollPosition();
+
+
       PostMessage(WM_USER + 9654, 0, 0);
+
+      
    }
+
 
    void scroll_view::_001OnHScroll(gen::signal_object * pobj) 
    {
+      
+      
       SCAST_PTR(::gen::message::scroll, pscroll, pobj);
+      
+      
       keeper < bool > keepHScroll(&m_scrollinfo.m_bHScroll, true, false, true);
+      
+      
       m_scrollinfo.m_ptScroll.x = pscroll->m_nPos;
+      
+      
+      _001OnUpdateScrollPosition();
+
+
       PostMessage(WM_USER + 9654, 0, 0);
+
+
    }
 
    int scroll_view::get_wheel_scroll_delta()
