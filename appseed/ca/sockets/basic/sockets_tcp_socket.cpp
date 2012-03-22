@@ -1412,7 +1412,7 @@ namespace sockets
       UNREFERENCED_PARAMETER(type);
       UNREFERENCED_PARAMETER(protocol);
       UNREFERENCED_PARAMETER(s);
-   TRACE("socket::OnOptions()\n");
+      //TRACE("socket::OnOptions()\n");
    #ifdef SO_NOSIGPIPE
       SetSoNosigpipe(true);
    #endif

@@ -139,12 +139,12 @@ namespace ca2
       {
          l = pitem->m_ipaddr;
          DWORD dwTimeTelmo2 = GetTickCount();
-         TRACE("Got from cache net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+         /*TRACE("Got from cache net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
             (DWORD)((byte*)&pitem->m_ipaddr)[0],
             (DWORD)((byte*)&pitem->m_ipaddr)[1],
             (DWORD)((byte*)&pitem->m_ipaddr)[2],
             (DWORD)((byte*)&pitem->m_ipaddr)[3],
-            (dwTimeTelmo2 - dwTimeTelmo1));
+            (dwTimeTelmo2 - dwTimeTelmo1));*/
          return pitem->r;
       }
       if(pitem == NULL)

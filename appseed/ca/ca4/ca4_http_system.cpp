@@ -190,7 +190,42 @@ namespace ca4
 
       }
 
-      bool system::try_pac_script(const char * pszScriptUrl, const char * pszUrl, ::sockets::http_tunnel * psocket)
+
+      ::ca4::http::system::proxy * system::get_proxy(const char * pszUrl)
+      {
+         
+         single_lock sl(&m_mutexProxy, true);
+
+         ::collection::string_map < ::ca4::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
+
+         if(ppair == NULL || (::GetTickCount() - ppair->m_value->m_dwLastChecked) > (84 * 1000))
+         {
+            if(ppair != NULL)
+            {
+               delete ppair->m_value;
+               m_mapPac.remove_key(pszUrl);
+            }
+
+            class ::ca4::http::system::proxy * pproxy = new class ::ca4::http::system::proxy(get_app());
+
+            pproxy->m_dwLastChecked = GetTickCount();
+
+            pproxy->m_strUrl = pszUrl;
+            
+            config_proxy(pszUrl, pproxy);
+
+            m_mapProxy.set_at(pszUrl, pproxy);
+
+            return pproxy;
+
+         }
+
+         return ppair->m_value;
+
+      }
+
+
+      bool system::try_pac_script(const char * pszScriptUrl, const char * pszUrl, proxy * pproxy)
       {
 
          single_lock sl(&m_mutexPac, true);
@@ -201,7 +236,7 @@ namespace ca4
 
          if(gen::str::begins(pszUrl, strUrl))
          {
-            psocket->m_bDirect = true;
+            pproxy->m_bDirect = true;
             return true;
          }
 
@@ -242,13 +277,13 @@ namespace ca4
             var.trim();
             stringa stra;
             stra.explode(":", var);
-            psocket->m_bDirect = false;
-            psocket->m_strProxy = stra[0];
-            psocket->m_iProxyPort = stra.get_size() > 1 ? ::atoi(stra[1]) : 80;
+            pproxy->m_bDirect = false;
+            pproxy->m_strProxy = stra[0];
+            pproxy->m_iPort = stra.get_size() > 1 ? ::atoi(stra[1]) : 80;
          }
          else
          {
-            psocket->m_bDirect = true;
+            pproxy->m_bDirect = true;
          }
 
          return true;
@@ -256,6 +291,29 @@ namespace ca4
       }
 
       void system::config_proxy(const char * pszUrl, ::sockets::http_tunnel * psocket)
+      {
+         
+         ::ca4::http::system::proxy * pproxy = get_proxy(pszUrl);
+
+         if(pproxy == NULL)
+            return;
+
+         if(pproxy->m_bDirect)
+         {
+            psocket->m_bDirect      = true;
+         }
+         else
+         {
+            psocket->m_bDirect      = false;
+            psocket->m_strProxy     = pproxy->m_strProxy;
+            psocket->m_iProxyPort   = pproxy->m_iPort;
+         }
+
+
+      }
+
+
+      void system::config_proxy(const char * pszUrl, ::ca4::http::system::proxy * pproxy)
       {
 
          xml::document doc(get_app());
@@ -266,15 +324,15 @@ namespace ca4
             stra.explode(":", str);
             if(stra.get_size() > 0 && stra[0].has_char())
             {
-               psocket->m_bDirect = false;
-               psocket->m_strProxy = stra[0];
+               pproxy->m_bDirect = false;
+               pproxy->m_strProxy = stra[0];
                if(stra.get_size() >= 2)
                {
-                  psocket->m_iProxyPort = atoi(stra[1]);
+                  pproxy->m_iPort = atoi(stra[1]);
                }
                else
                {
-                  psocket->m_iProxyPort = 80;
+                  pproxy->m_iPort = 80;
                }
                return;
             }
@@ -282,7 +340,7 @@ namespace ca4
          bool bOk = false;
          if(!doc.load(str))
          {
-            psocket->m_bDirect = true;
+            pproxy->m_bDirect = true;
          }
          else
          {
@@ -292,9 +350,9 @@ namespace ca4
                ipaddr_t host;
             if(!System.net().u2ip(strHost,host))
             {
-               psocket->m_bDirect = false;
-               psocket->m_strProxy = doc.attr("server");
-               psocket->m_iProxyPort = doc.attr("port");
+               pproxy->m_bDirect = false;
+               pproxy->m_strProxy = doc.attr("server");
+               pproxy->m_iPort = doc.attr("port");
                return;
             }
             ::sockets::ipv4_address ipHost(get_app(), host, (port_t) iHostPort);
@@ -315,14 +373,14 @@ namespace ca4
                         {
                            if(pnode->attr("server") == "DIRECT")
                            {
-                              psocket->m_bDirect = true;
+                              pproxy->m_bDirect = true;
                               return;
                            }
                            else
                            {
-                              psocket->m_bDirect = false;
-                              psocket->m_strProxy = pnode->attr("server");
-                              psocket->m_iProxyPort = pnode->attr("port");
+                              pproxy->m_bDirect = false;
+                              pproxy->m_strProxy = pnode->attr("server");
+                              pproxy->m_iPort = pnode->attr("port");
                               return;
                            }
                         }
@@ -332,14 +390,14 @@ namespace ca4
             }
             if(doc.attr("server") == "DIRECT")
             {
-               psocket->m_bDirect = true;
+               pproxy->m_bDirect = true;
                return;
             }
             else
             {
-               psocket->m_bDirect = false;
-               psocket->m_strProxy = doc.attr("server");
-               psocket->m_iProxyPort = doc.attr("port");
+               pproxy->m_bDirect = false;
+               pproxy->m_strProxy = doc.attr("server");
+               pproxy->m_iPort = doc.attr("port");
                return;
             }
          }
@@ -359,7 +417,7 @@ namespace ca4
 
             if(bAutoDetect)
             {
-               if(try_pac_script("http://wpad/wpad.dat", pszUrl, psocket))
+               if(try_pac_script("http://wpad/wpad.dat", pszUrl, pproxy))
                   return;
             }
 
@@ -373,11 +431,11 @@ namespace ca4
 
             if(strUrl.has_char())
             {
-               if(try_pac_script(strUrl, pszUrl, psocket))
+               if(try_pac_script(strUrl, pszUrl, pproxy))
                   return;
             }
 
-            psocket->m_bDirect = true;
+            pproxy->m_bDirect = true;
          }
 
       }

@@ -33,19 +33,40 @@ namespace ca4
          public:
 
             
-            pac(::ca::application * papp);
-
-            
-
             string      m_strUrl;
             string      m_strAutoConfigScript;
             tinyjs      m_js;
             DWORD       m_dwLastChecked;
 
+
+            pac(::ca::application * papp);
+
+
+         };
+
+
+         class CLASS_DECL_ca proxy :
+            virtual public ::radix::object
+         {
+         public:
+
+            
+            string      m_strUrl;
+            bool        m_bDirect;
+            string      m_strProxy;
+            int         m_iPort;
+            DWORD       m_dwLastChecked;
+
+
+            proxy(::ca::application * papp);
+
+
          };
 
          mutex                                  m_mutexPac;
          ::collection::string_map < pac *  >    m_mapPac;
+         mutex                                  m_mutexProxy;
+         ::collection::string_map < proxy *  >  m_mapProxy;
 
 
          system();
@@ -95,11 +116,13 @@ namespace ca4
          void auto_config_proxy(int i);
          int auto_config_proxy_count();
          void config_proxy(const char * pszUrl, ::sockets::http_tunnel * psocket);
-         bool try_pac_script(const char * pszScriptUrl, const char * pszUrl, ::sockets::http_tunnel * psocket);
+         void system::config_proxy(const char * pszUrl, proxy * pproxy);
+         bool try_pac_script(const char * pszScriptUrl, const char * pszUrl, proxy * pproxy);
 
          string gmdate(time_t t);
 
          pac * get_pac(const char * pszUrl);
+         proxy * get_proxy(const char * pszUrl);
 
       };
 
