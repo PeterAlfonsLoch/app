@@ -28,7 +28,7 @@ namespace simpledb
       if(!m_xmldocumentMeta.load(m_spfileMeta))
          throw 0;
 
-      ::xml::node * pfields = m_xmldocumentMeta.get_child("fields");
+      ::xml::node * pfields = m_xmldocumentMeta.get_root()->get_child("fields");
 
       for(int i = 0; i < pfields->get_children_count(); i++)
       {
@@ -40,7 +40,7 @@ namespace simpledb
          m_fielddefinition.add(item);
       }
 
-      string strFixedPath = m_xmldocumentMeta.attr("fixed_path");
+      string strFixedPath = m_xmldocumentMeta.get_root()->attr("fixed_path");
       if(strFixedPath.is_empty())
          strFixedPath = strMetaPath = System.dir().ca2("database/" + m_pdatabase->getDatabase() + "/" + m_strName, "fixed.txt");
 
