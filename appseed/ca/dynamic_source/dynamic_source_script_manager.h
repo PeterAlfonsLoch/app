@@ -108,6 +108,7 @@ namespace dynamic_source
       bool initialize_instance();
 
       bool include_matches_file_exists(const string & strPath);
+      void set_include_matches_file_exists(const string & strPath, bool bFileExists);
       bool include_matches_is_dir(const string & strPath);
       bool include_has_script(const string & strPath);
       string include_expand_md5(const string & strPath);

@@ -502,6 +502,9 @@ namespace dynamic_source
       virtual bool      low_fs_license          (const char * user, const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension);
       virtual bool      low_fs_is_licensed      (const char * user, const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension);
 
+      virtual bool      low_fs_as_string        (string & str, const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension);
+      virtual bool      low_fs_as_string        (string & str, const char * user, __int64 iFolder, const char * pszName);
+      virtual bool      low_fs_put_contents     (const char * user, __int64 iFolder, const char * pszName, const string & str);
       virtual bool      low_fs_read             (const char * user, __int64 iFolder, const char * pszName);
       virtual bool      low_fs_write            (const char * user, __int64 iFolder, const char * pszName);
       virtual bool      low_fs_write            (const char * user, __int64 iFolder, const char * pszName, ::ex1::file * pfile, const char * pszContentType);

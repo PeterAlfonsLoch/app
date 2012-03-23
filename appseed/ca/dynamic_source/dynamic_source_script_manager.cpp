@@ -499,6 +499,12 @@ namespace dynamic_source
       }
    }
 
+   void script_manager::set_include_matches_file_exists(const string & strPath, bool bFileExists)
+   {
+      single_lock sl(&m_mutexIncludeMatches, TRUE);
+      m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
+   }
+
    bool script_manager::include_matches_is_dir(const string & strPath)
    {
       single_lock sl(&m_mutexIncludeMatches, TRUE);

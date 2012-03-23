@@ -5012,6 +5012,49 @@ ok1:
 
    }
 
+   bool script_impl::low_fs_as_string(string & str, const char * hash, __int64 key, __int64 size, const char * mimetype, const char * extension)
+   {
+      try
+      {
+         str = Application.file().as_string(low_fs_file_path(hash, key, size, mimetype, extension));
+         return true;
+      }
+      catch(...)
+      {
+         return false;
+      }
+
+   }
+
+
+   bool script_impl::low_fs_as_string(string & str, const char * user, __int64 iFolder, const char * pszName)
+   {
+      string strSql;
+      strSql.Format("SELECT `hash`, `key`, `size`, `mimetype`, `extension` FROM `fs`.`user_folder_item` WHERE `user` = '%s' AND `folder` = '%I64d' AND `name` = '%s'", user, iFolder, pszName);
+      var row = musicdb().query_row(strSql);
+
+      if(row.array_get_count() != 5)
+         return false;
+
+      if(get("extension").is_set() && get("extension").get_string().Mid(1).CompareNoCase(row.at(4)) != 0)
+         return false;
+
+      return low_fs_as_string(str, (const char *) row.at(0),  (__int64) row.at(1), (__int64) row.at(2), (const char *) row.at(3), (const char *) row.at(4));
+      return false;
+
+   }
+
+
+   bool script_impl::low_fs_put_contents(const char * user, __int64 iFolder, const char * pszName, const string & str)
+   {
+      gen::memory_file memfile(get_app());
+
+      memfile.write(str, str.get_length());
+
+      return low_fs_write(user, iFolder, pszName, &memfile, inheader("Content-Type"));
+   }
+
+
 
    bool script_impl::low_fs_read(const char * user, __int64 iFolder, const char * pszName)
    {
@@ -5067,8 +5110,10 @@ ok1:
          Application.file().put_contents(strPath, mem);
       }
 
-      if(!get_manager()->include_matches_file_exists(strPath))
+      if(!Application.file().exists(strPath))
          return false;
+
+      get_manager()->set_include_matches_file_exists(strPath, true);
 
 
       low_fs_map_file(strPath); // ignore return collision
