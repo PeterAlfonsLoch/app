@@ -49,6 +49,7 @@ namespace userbase
       for(i = 0; i < get_pane_count(); i++)
       {
          m_panea[i].m_bFixedSize =  false;
+         m_panea[i].m_pholder = get_new_place_holder();
       }
 
       for(i = 0; i < iSplitBarCount; i++)
@@ -304,13 +305,15 @@ namespace userbase
             }
          }
 
-         ASSERT(pwnd != NULL);
-         pwnd->SetWindowPos(ZORDER_TOP,
-            rectA.left     + m_cxBorder,
-            rectA.top      + m_cyBorder,
-            rectA.width()  - m_cxBorder * 2,
-            rectA.height() - m_cyBorder * 2,
-            uiFlags);
+         if(pwnd != NULL)
+         {
+            pwnd->SetWindowPos(ZORDER_TOP,
+               rectA.left     + m_cxBorder,
+               rectA.top      + m_cyBorder,
+               rectA.width()  - m_cxBorder * 2,
+               rectA.height() - m_cyBorder * 2,
+               uiFlags);
+         }
       }
    }
 

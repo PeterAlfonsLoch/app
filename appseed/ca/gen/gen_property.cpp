@@ -1982,7 +1982,7 @@ restart_finding:
                }
                else if(varFile.get_type() == var::type_string)
                {
-                  varFile.stra().add(varFile);
+                  //varFile.stra().add(varFile);
                   varFile.stra().add(string(pszStart, pszCmdLine - pszStart));
                }
                else if(varFile.get_type() == var::type_stra)

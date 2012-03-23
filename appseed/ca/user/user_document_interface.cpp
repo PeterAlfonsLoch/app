@@ -236,7 +236,7 @@ namespace user
       string strFullPath;
       System.file_system().FullPath(strFullPath, strPathName);
       m_strPathName = strFullPath;
-      ASSERT(!m_strPathName.is_empty());       // must be set to something
+      //!m_strPathName.is_empty());       // must be set to something
       m_bEmbedded = FALSE;
 
       // set the document_interface title based on path name

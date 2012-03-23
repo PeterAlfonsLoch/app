@@ -1290,17 +1290,25 @@ namespace user
       }
    }
 
-   void tab::set_cur_tab_by_id(id id)
+   void tab::set_cur_tab_by_id(id id, ::ca::create_context * pcreatecontext)
    {
-      ::index iPane = get_tab_by_id(id);
-      if(iPane == -1)
+      try
       {
-         add_tab("", id);
-         iPane = get_tab_by_id(id);
+         m_spcreatecontext = pcreatecontext;
+         ::index iPane = get_tab_by_id(id);
          if(iPane == -1)
-            return;
+         {
+            add_tab("", id);
+            iPane = get_tab_by_id(id);
+            if(iPane == -1)
+               return;
+         }
+         _001SetSel(iPane);
       }
-      _001SetSel(iPane);
+      catch(...)
+      {
+      }
+      m_spcreatecontext = NULL;
    }
 
 
