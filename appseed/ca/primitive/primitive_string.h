@@ -948,7 +948,6 @@ inline void id::raw_set(const string * pstr)
    {
       m_chType = IDTYPE_TYPE_NUMBER;
       m_i = atoi64_dup(*pstr);
-      delete pstr;
    }
    else
    {
