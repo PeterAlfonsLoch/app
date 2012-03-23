@@ -110,9 +110,11 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
    else
    {
       // open an existing user::document_interface
-      wait_cursor wait(get_app());
-      if (!pdocument->on_open_document(pcreatecontext->m_spCommandLine->m_varFile))
+      if(!on_open_document(pdocument, pcreatecontext->m_spCommandLine->m_varFile))
       {
+         // failed to open or just failed to queue to open
+         // if m_bQueueDocumentOpening flag is set, document opening is queued, and failure would be reported in a unknown way
+         // prepare ca2 for async operations and also async failures
          // ::fontopus::user has be alerted to what failed in on_open_document
          TRACE(::radix::trace::category_AppMsg, 0, "user::document_interface::on_open_document returned FALSE.\n");
          pFrame->DestroyWindow();

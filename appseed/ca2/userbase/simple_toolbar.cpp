@@ -835,6 +835,8 @@ return bResult;
 BOOL simple_toolbar::LoadXmlToolBar(const char * lpszXml)
 {
 
+   m_itema.remove_all();
+
    xml::document doc(get_app());
 
    if(!doc.load(lpszXml))

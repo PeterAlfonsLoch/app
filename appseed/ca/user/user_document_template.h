@@ -11,6 +11,20 @@ class CLASS_DECL_ca document_template :
 public:
 
 
+   class on_open_document
+   {
+   public:
+
+
+      document_template *                 m_ptemplate;
+      ::user::document_interface *        m_pdocument;
+      var                                 m_varFile;
+
+
+
+   };
+
+
    enum DocStringIndex
    {
       windowTitle,        // default ::ca::window title
@@ -35,6 +49,7 @@ public:
    };
 
 
+   bool                    m_bQueueDocumentOpening;
    gen::property_set       m_set;
    BOOL                    m_bAutoDelete;
    // back pointer to OLE or other server (NULL if none or disabled)
@@ -102,6 +117,13 @@ public:
 
    virtual void on_idle();             // for all documents
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
+
+
+   bool on_open_document(::user::document_interface * pdoc, var varFile);
+
+   bool do_open_document(::user::document_interface * pdoc, var varFile);
+
+   static UINT s_on_open_document(LPVOID lpvoid);
       
 
 };

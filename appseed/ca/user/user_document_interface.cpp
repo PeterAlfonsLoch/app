@@ -467,19 +467,20 @@ namespace user
                break;
             }
          }
-         else */if (base < ex1::file_exception_sp >::bases(e))
+         else*/ if (base < ex1::file_exception >::bases(e))
          {
-            throw not_implemented_exception();
-            /*TRACE(::radix::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
-               ((ex1::file_exception_sp*)e)->m_lOsError);
+            ::ex1::file_exception * pfe = dynamic_cast < ::ex1::file_exception * > (e);
+           // throw not_implemented_exception();
+            TRACE(::radix::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
+               pfe->m_lOsError);
 
-            ex1::file_exception_sp* pFileException = (ex1::file_exception_sp*)e;
-            if (pFileException->m_strFileName.is_empty())
-               pFileException->m_strFileName = lpszPathName;
+            
+            if (pfe->m_strFileName.is_empty())
+               pfe->m_strFileName = lpszPathName;
 
-            if (!e->GetErrorMessage(prompt))
+            if (!pfe->GetErrorMessage(prompt))
             {
-               switch (((ex1::file_exception_sp*)e)->m_cause)
+/*               switch (((ex1::file_exception_sp*)e)->m_cause)
                {
                   case ::ex1::file_exception::fileNotFound:
                   case ::ex1::file_exception::badPath:
@@ -502,17 +503,17 @@ namespace user
                      break;
 
                   default:
-                     break;
-               }
+                     break;*/
+          //     }
             }
-            prompt.ReleaseBuffer();*/
+            prompt.ReleaseBuffer();
          }
       }
 
       if (prompt.is_empty())
       {
          string strTitle = System.file().title_(lpszPathName);
-         throw not_implemented_exception();
+         //throw not_implemented_exception();
          /*
          AfxFormatString1(prompt, nIDP, strTitle);*/
       }

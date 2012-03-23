@@ -545,9 +545,16 @@ l1:
 
       strTimeFile = System.file().time_square(get_app());
 
-      ex1::filesp spfile(get_app());
-      if(!spfile->open(strTimeFile, ::ex1::file::type_binary | ::ex1::file::mode_read_write | ::ex1::file::mode_create))
+      ex1::file_exception_sp fe;
+      
+      ex1::filesp spfile = Application.get_file(strTimeFile,
+         ::ex1::file::type_binary | ::ex1::file::mode_read_write | ::ex1::file::mode_create | ::ex1::file::defer_create_directory, &fe);
+
+      if(spfile.is_null())
+      {
+         throw fe.m_p;
          return;
+      }
 
       Save(spfile);
 
@@ -574,8 +581,8 @@ l1:
       {
          file.write(buf, uiRead);
       }
-      //file.Flush();
-      file.close();
+      file.Flush();
+      //file.close();
       return true;
    }
 

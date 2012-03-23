@@ -3,14 +3,17 @@
 document_template::document_template(::ca::application * papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass) :
    ca(papp)
 {
+   
+   m_bQueueDocumentOpening    = true;
+   m_strMatter                = pszMatter;
+   m_typeinfoDocument         = pDocClass;
+   m_typeinfoFrame            = pFrameClass;
+   m_typeinfoView             = pViewClass;
+   m_pAttachedFactory         = NULL;
+   m_bAutoDelete              = TRUE;   // usually allocated on the heap
 
-   m_strMatter          = pszMatter;
-   m_typeinfoDocument   = pDocClass;
-   m_typeinfoFrame      = pFrameClass;
-   m_typeinfoView       = pViewClass;
-   m_pAttachedFactory   = NULL;
-   m_bAutoDelete        = TRUE;   // usually allocated on the heap
    load_template();
+
 }
 
 void document_template::load_template()
@@ -302,4 +305,55 @@ void document_template::update_all_views(::view * pviewSender, LPARAM lhint, ::r
       ::user::document_interface * pdoc = get_document(index);
       pdoc->update_all_views(pviewSender, lhint, puh);
    }
+}
+
+bool document_template::on_open_document(::user::document_interface * pdocument, var varFile)
+{
+
+   if(m_bQueueDocumentOpening)
+   {
+      
+      class on_open_document * ponopendocument = new class on_open_document();
+      
+      ponopendocument->m_ptemplate     = this;
+      ponopendocument->m_pdocument     = pdocument;
+      ponopendocument->m_varFile       = varFile;
+
+      AfxBeginThread(get_app(), &document_template::s_on_open_document, ponopendocument);
+
+      return true;
+
+   }
+   else
+   {
+      
+      wait_cursor wait(get_app());
+
+      return do_open_document(pdocument, varFile);
+
+   }
+
+}
+
+bool document_template::do_open_document(::user::document_interface * pdocument, var varFile)
+{
+
+   if(!pdocument->on_open_document(varFile))
+   {
+      return false;
+   }
+
+   return true;
+
+}
+
+UINT document_template::s_on_open_document(LPVOID lpvoid)
+{
+
+   class on_open_document * ponopendocument = (class on_open_document *) lpvoid;
+
+   ponopendocument->m_ptemplate->do_open_document(ponopendocument->m_pdocument, ponopendocument->m_varFile);
+
+   return 0;
+
 }
