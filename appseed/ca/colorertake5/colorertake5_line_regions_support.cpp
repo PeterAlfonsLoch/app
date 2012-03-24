@@ -29,7 +29,12 @@ namespace colorertake5
 
    void LineRegionsSupport::resize(index lineCount)
    {
+      int iOldLineCount = lineRegions.get_size();
       lineRegions.set_size(lineCount);
+      for(int i = iOldLineCount; i < lineCount; i++)
+      {
+         lineRegions[i] = NULL;
+      }
       this->lineCount = lineCount;
    }
 
