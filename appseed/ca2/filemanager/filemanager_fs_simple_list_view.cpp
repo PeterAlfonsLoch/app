@@ -281,10 +281,10 @@ namespace filemanager
             }
             else
             {
-               /*if(base < MediaLibraryViewUpdateHint >::bases(phint))
+               /*if(base < view_update_hint >::bases(phint))
                {
-               MediaLibraryViewUpdateHint * puh = (MediaLibraryViewUpdateHint *) phint;
-               if(puh->is_type_of(MediaLibraryViewUpdateHint::TypeFilter))
+               view_update_hint * puh = (view_update_hint *) phint;
+               if(puh->is_type_of(view_update_hint::TypeFilter))
                {
                m_cache._001Invalidate();
                if(puh->m_wstrFilter.is_empty())
