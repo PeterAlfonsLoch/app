@@ -169,6 +169,10 @@ namespace gcom
 
          if(dcSource.get_os_data() == NULL)
             return false;
+
+         if(&dcBuffer == NULL)
+            return false;
+
          if(dcBuffer.get_os_data() == NULL)
             return false;
 

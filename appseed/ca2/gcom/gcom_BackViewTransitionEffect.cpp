@@ -410,7 +410,7 @@ namespace gcom
          ::ca::bitmap & bitmapBuffer = graphics.GetBufferBitmap();
 //         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
         ::ca::dib * pdibBack = graphics.GetDib(_graphics::DibBack);
-         if(dcBack.get_os_data() == NULL)
+         if(&dcBack == NULL || dcBack.get_os_data() == NULL)
          {
             End();
             return;
@@ -1844,7 +1844,8 @@ namespace gcom
          int cy = rectClient.height();
 
          single_lock sl(&graphics.m_mutex4Transfer, TRUE);
-         if(dcTransfer.get_os_data() != NULL)
+
+         if(&dcTransfer != NULL && dcTransfer.get_os_data() != NULL)
          {
             dcFrame1.BitBlt(0, 0, cx, cy, &dcTransfer, 0, 0, SRCCOPY);
          }

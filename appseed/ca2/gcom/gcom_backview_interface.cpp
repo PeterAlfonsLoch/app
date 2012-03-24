@@ -265,17 +265,27 @@ namespace gcom
 
          
          single_lock sl(&graphics.m_mutex4Transfer, TRUE);
+         
          ::ca::graphics & dcTransfer = graphics.GetTransferDC();
+
+         if(&dcTransfer == NULL)
+            return;
+
          if(dcTransfer.get_os_data() == NULL)
             return;
+
          dcTransfer.SelectClipRgn(NULL);
+
          pdc->BitBlt(
             x, y,
             w, h,
             &dcTransfer,
             x, y,
             SRCCOPY);
+
       }
+
+
       COLORREF Interface::GetBackgroundColor()
       {
          //if(main.IsFullScreen())
