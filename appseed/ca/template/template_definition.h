@@ -184,41 +184,38 @@ do {                                           \
 #define ATLENSURE_RETURN(expr) ATLENSURE_RETURN_HR(expr, E_FAIL)
 #endif
 
-#if defined(VC6) || defined(VC71) || defined(LINUX) || defined(MACOS)
-#define _SECURE_ATL 0
-#elif !defined(_SECURE_ATL)
-#define _SECURE_ATL 1
-#endif // _SECURE_ATL
+#if defined(LINUX) || defined(MACOS)
+#define _SECURE_TEMPLATE 0
+#elif !defined(_SECURE_TEMPLATE)
+#define _SECURE_TEMPLATE 1
+#endif // _SECURE_TEMPLATE
 
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
 
-#ifndef ATL_CRT_ERRORCHECK
-#define ATL_CRT_ERRORCHECK(expr) ::_template::AtlCrtErrorCheck(expr)
-#endif // ATL_CRT_ERRORCHECK
 
-#ifndef ATL_CRT_ERRORCHECK_SPRINTF
-#define ATL_CRT_ERRORCHECK_SPRINTF(expr) \
+#ifndef C_RUNTIME_ERRORCHECK_SPRINTF
+#define C_RUNTIME_ERRORCHECK_SPRINTF(expr) \
 do { \
    errno_t _saveErrno = errno; \
    errno = 0; \
    (expr); \
    if(0 != errno) \
    { \
-   ::_template::AtlCrtErrorCheck(errno); \
+      ::c_runtime_error_check(errno); \
    } \
    else \
    { \
       errno = _saveErrno; \
    } \
 } while (0)
-#endif // ATL_CRT_ERRORCHECK_SPRINTF
+#endif // C_RUNTIME_ERRORCHECK_SPRINTF
 
-#else // !_SECURE_ATL
+#else // !_SECURE_TEMPLATE
 
-#define ATL_CRT_ERRORCHECK(expr) do { expr; } while (0)
-#define ATL_CRT_ERRORCHECK_SPRINTF(expr) do { expr; } while (0)
+#define C_RUNTIME_ERROR_CHECK(expr) do { expr; } while (0)
+#define C_RUNTIME_ERRORCHECK_SPRINTF(expr) do { expr; } while (0)
 
-#endif // _SECURE_ATL
+#endif // _SECURE_TEMPLATE
 
 ///////////////////////////////////////////////////////////////////////////////
 // __declspec(novtable) is used on a class declaration to prevent the vtable

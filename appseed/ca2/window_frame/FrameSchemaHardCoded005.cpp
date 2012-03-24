@@ -1825,8 +1825,15 @@ namespace window_frame
 
    void FrameSchemaHardCoded005::OnAttach()
    {
+      
       //m_pworkset->GetSizingManager()->SetSWPFlags(SWP_NOREDRAW);
-      m_pworkset->GetSizingManager()->SetSWPFlags(0);
+      
+      if(m_pworkset->GetSizingManager() != NULL)
+      {
+         m_pworkset->GetSizingManager()->SetSWPFlags(0);
+      }
+
+
    }
 
    void FrameSchemaHardCoded005::OnMove(::user::interaction * pwnd)

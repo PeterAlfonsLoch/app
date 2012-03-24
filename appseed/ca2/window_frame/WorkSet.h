@@ -20,40 +20,42 @@ namespace window_frame
    public:
       friend class appearance;
 
-      bool                    m_bHoverModeOn;
-      bool                    m_bHoverActive;
-      bool                    m_bSizingCapture;
-      bool                    m_bEnableMouse;
-      FrameSchema *           m_pframeschema;
-      rect                    m_rectPending;
-      bool                    m_bEnable;
+      bool                          m_bHoverModeOn;
+      bool                          m_bHoverActive;
+      bool                          m_bSizingCapture;
+      bool                          m_bEnableMouse;
+      FrameSchema *                 m_pframeschema;
+      rect                          m_rectPending;
+      bool                          m_bEnable;
 
-      ::user::interaction *        m_pwndRegion;
-      ::user::interaction *        m_pwndDraw;
-      ::user::interaction *        m_pwndEvent;
-      ::user::interaction *        m_pwndCommand;
+      ::user::interaction *         m_pwndRegion;
+      ::user::interaction *         m_pwndDraw;
+      ::user::interaction *         m_pwndEvent;
+      ::user::interaction *         m_pwndCommand;
 
-      bool                     m_bDockEnable;
-      bool                    m_bNotifyIconEnable;
-      bool                     m_bFullScreenEnable;
+      bool                          m_bDockEnable;
+      bool                          m_bNotifyIconEnable;
+      bool                          m_bFullScreenEnable;
 
-      UINT                    m_uiSWPFlags;
+      UINT                          m_uiSWPFlags;
 
-      WorkSetListenerArray    m_wfla;
+      WorkSetListenerArray          m_wfla;
 
-      MoveManager *            m_pmovemanager;
-      SizeManager *            m_psizemanager;
-      SysMenuManager *         m_psystemmenumanager;
-      DockManager *            m_pdockmanager;
+      MoveManager *                 m_pmovemanager;
+      SizeManager *                 m_psizemanager;
+      SysMenuManager *              m_psystemmenumanager;
+      DockManager *                 m_pdockmanager;
 
-      bool                    m_bMovingEnabled;
-      bool                    m_bSizingEnabled;
-      bool                    m_bSysMenuEnabled;
+      bool                          m_bMovingEnabled;
+      bool                          m_bSizingEnabled;
+      bool                          m_bSysMenuEnabled;
 
-      appearance *            m_pappearance;
+      appearance *                  m_pappearance;
 
-      WorkSet(::ca::application * papp);
+
+      WorkSet();
       virtual ~WorkSet();
+
 
       void OnNcCalcSize(LPRECT lprect);
       bool IsEnabled();
@@ -163,18 +165,17 @@ namespace window_frame
       bool IsSysMenuEnabled();
       bool IsAppearanceEnabled();
 
-      /*void OnSizeRegion(
-      UINT nType,
-      int cx,
-      int cy );*/
-
-
       bool IsFullScreen();
       bool ViewFullScreen(bool bFullScreen);
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
 
       virtual void OnSize(UINT nType, int cx, int cy);
+
+
    };
 
+
 } // namespace window_frame
+
+

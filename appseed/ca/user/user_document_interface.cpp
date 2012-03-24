@@ -316,7 +316,7 @@ namespace user
       return TRUE;
    }
 
-   bool document_interface::do_save(const char * pszPathName, bool bReplace)
+   bool document_interface::do_save(var varFile, bool bReplace)
       // Save the document_interface data to a file
       // lpszPathName = path name where to save document_interface file
       // if lpszPathName is NULL then the ::fontopus::user will be prompted (SaveAs)
@@ -324,7 +324,7 @@ namespace user
       // if 'bReplace' is TRUE will change file name if successful (SaveAs)
       // if 'bReplace' is FALSE will not change path name (SaveCopyAs)
    {
-      string newName = pszPathName;
+      string newName = varFile;
       if (newName.is_empty() || is_new_document())
       {
          document_template * ptemplate = get_document_template();
@@ -359,7 +359,7 @@ namespace user
 
       if(!on_save_document(newName))
       {
-         if(pszPathName == NULL)
+         if(varFile.is_empty())
          {
             // be sure to delete the file
             try
@@ -523,7 +523,7 @@ namespace user
    }
 
 
-   BOOL document_interface::on_new_document()
+   bool document_interface::on_new_document()
    {
    #ifdef _DEBUG
       if(is_modified())
@@ -534,7 +534,7 @@ namespace user
       m_strPathName.Empty();      // no path name yet
       set_modified_flag(FALSE);     // make clean
       m_bNew = true;
-      return TRUE;
+      return true;
    }
 
    bool document_interface::on_open_document(var varFile)
@@ -591,7 +591,7 @@ namespace user
       return TRUE;
    }
 
-   BOOL document_interface::on_save_document(var varFile)
+   bool document_interface::on_save_document(var varFile)
    {
 
       ::ex1::byte_stream spfile;
@@ -600,7 +600,7 @@ namespace user
       if(spfile.is_writer_null())
       {
          report_save_load_exception(varFile, fe, TRUE, "AFX_IDP_INVALID_FILENAME");
-         return FALSE;
+         return false;
       }
 
 
@@ -628,13 +628,13 @@ namespace user
          {
          }
          pe->Delete();
-         return FALSE;
+         return false;
       }
 
 
       set_modified_flag(FALSE);     // back to unmodified
 
-      return TRUE;        // success
+      return true;        // success
    }
 
    void document_interface::on_close_document()

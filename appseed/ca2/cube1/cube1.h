@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "ca8/ca8.h"
-#include "filemanager/filemanager.h"
-#include "calculator/calculator.h"
+#include "ca2/ca8/ca8.h"
+#include "ca2/filemanager/filemanager.h"
+#include "ca2/calculator/calculator.h"
 
 
 namespace cube1

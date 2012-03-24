@@ -1,6 +1,5 @@
 #include "StdAfx.h"
 #include <dde.h>
-//#include "win/WindowsShell.h"
 #include "window_frame/appearance.h"
 #include "window_frame/FrameSchemaHardCoded001.h"
 #include "window_frame/FrameSchemaHardCoded002.h"
@@ -13,9 +12,6 @@
 
 simple_frame_window::simple_frame_window(::ca::application * papp) :
    ca(papp),
-   window_frame::WorkSetClientInterface(papp),
-   userbase::frame_window_interface(papp),
-   userbase::frame_window(papp),
    m_dibBk(papp),
    m_fastblur(papp)
 {
@@ -199,6 +195,7 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
             pschemaSpec->SetStyle(window_frame::FrameSchemaHardCoded008::StyleBlueRedPurple);
          }
       }
+
       m_pframeschema = pschema;
       m_workset.AttachFrameSchema(m_pframeschema);
       if(!m_workset.update(
@@ -211,6 +208,8 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
          return;
       }
 
+      
+
    }
    
    defer_synch_layered();
@@ -222,8 +221,9 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
 void simple_frame_window::_001OnSize(gen::signal_object * pobj) 
 {
    UNREFERENCED_PARAMETER(pobj);
-   if(!m_workset.GetMovingManager()->IsMoving()
-   && !m_workset.GetSizingManager()->IsSizing())
+   if((m_workset.GetMovingManager() == NULL ||
+      m_workset.GetSizingManager() == NULL) || (!m_workset.GetMovingManager()->IsMoving()
+   && !m_workset.GetSizingManager()->IsSizing()))
    {
       _001RedrawWindow();
    }
@@ -238,8 +238,9 @@ void simple_frame_window::_001OnSize(gen::signal_object * pobj)
 void simple_frame_window::_001OnMove(gen::signal_object * pobj) 
 {
    UNREFERENCED_PARAMETER(pobj);
-   if(!m_workset.GetMovingManager()->IsMoving()
-   && !m_workset.GetSizingManager()->IsSizing())
+   if((m_workset.GetMovingManager() == NULL ||
+      m_workset.GetSizingManager() == NULL) || (!m_workset.GetMovingManager()->IsMoving()
+   && !m_workset.GetSizingManager()->IsSizing()))
    {
       _001RedrawWindow();
    }
@@ -792,7 +793,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
       WindowDataEnableSaveWindowRect(true);
    }
    userbase::frame_window::InitialFramePosition(bForceRestore);
-   if(m_workset.GetAppearanceMode() == ::window_frame::AppearanceModeIconic)
+   if(m_workset.GetAppearance() != NULL && m_workset.GetAppearanceMode() == ::window_frame::AppearanceModeIconic)
    {
       WfiRestore();
    }

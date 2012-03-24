@@ -1,10 +1,8 @@
 #include "StdAfx.h"
 
+
 simple_child_frame::simple_child_frame(::ca::application * papp) :
    ca(papp),
-   window_frame::WorkSetClientInterface(papp),
-   userbase::frame_window_interface(papp),
-   userbase::frame_window(papp),
    simple_frame_window(papp)
 {
    m_etranslucency = TranslucencyTotal;
@@ -47,3 +45,6 @@ bool simple_child_frame::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    return FALSE;
 
 }
+
+
+

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "StdAfx.h"
 
 
 ifs::ifs(::ca::application * papp, const char * pszRoot) :

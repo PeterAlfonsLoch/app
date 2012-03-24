@@ -57,7 +57,7 @@ namespace userbase
    public:
 
 
-      frame_window(::ca::application * papp);
+      frame_window();
       virtual ~frame_window();
 
 

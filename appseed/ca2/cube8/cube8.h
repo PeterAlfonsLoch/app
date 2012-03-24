@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "cube5/cube5.h"
+#include "ca2/cube5/cube5.h"
 
 
 namespace cube8

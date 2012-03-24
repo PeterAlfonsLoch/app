@@ -12,7 +12,7 @@ html_document::html_document(::ca::application * papp) :
 
 }
 
-BOOL html_document::on_new_document()
+bool html_document::on_new_document()
 {
 
    ::database::client::initialize(get_app());
@@ -162,11 +162,6 @@ bool html_document::_001OnCommand(id id)
 bool html_document::open_document(var varFile)
 {
    return on_open_document(varFile) != FALSE;
-}
-
-::ca::application * html_document::get_app() const
-{
-   return ::userbase::document::get_app();
 }
 
 

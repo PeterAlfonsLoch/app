@@ -1,13 +1,14 @@
 #include "StdAfx.h"
 
+
 namespace userbase
 {
 
+
    bool frame_window_interface::g_bFullScreenAlt = false;
 
-   frame_window_interface::frame_window_interface(::ca::application * papp) :
-      ca(papp),
-      window_frame::WorkSetClientInterface(papp)
+
+   frame_window_interface::frame_window_interface()
    {
 
    }
@@ -401,4 +402,8 @@ namespace userbase
       UNREFERENCED_PARAMETER(pca);
    }
 
+
 } // namespace userbase
+
+
+

@@ -1,14 +1,14 @@
 #include "StdAfx.h"
 #include "FrameSchema.h"
 
+
 namespace window_frame
 {
 
-   WorkSetClientInterface::WorkSetClientInterface(::ca::application * papp) :
-      ca(papp),
-      m_workset(papp)
-   {
 
+   WorkSetClientInterface::WorkSetClientInterface()
+   {
+      m_workset.set_app(m_papp);
    }
 
    WorkSetClientInterface::~WorkSetClientInterface()

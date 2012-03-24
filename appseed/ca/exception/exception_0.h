@@ -29,7 +29,7 @@ CLASS_DECL_ca void DECLSPEC_NO_RETURN AfxThrowFileException(int cause, LONG lOsE
 /////////////////////////////////////////////////////////////////////////////
 // CRT functions
 
-inline errno_t AfxCrtErrorCheck(errno_t error)
+inline errno_t c_runtime_error_check(errno_t error)
 {
    switch(error)
    {
@@ -52,21 +52,13 @@ inline errno_t AfxCrtErrorCheck(errno_t error)
    return error;
 }
 
-#define AFX_CRT_ERRORCHECK(expr) \
-   AfxCrtErrorCheck(expr)
-
-#if defined(VC6) || defined(VC71)
-inline int __cdecl clearerr_s(FILE *stream)
-{
-   UNREFERENCED_PARAMETER(stream);
-}
-#endif
+#define C_RUNTIME_ERROR_CHECK(expr) ::c_runtime_error_check(expr)
 
 
 inline void __cdecl Afx_clearerr_s(FILE *stream)
 {
 #ifdef _WINDOWS
-   AFX_CRT_ERRORCHECK(::clearerr_s(stream));
+   C_RUNTIME_ERROR_CHECK(::clearerr_s(stream));
 #else
    ::clearerr(stream);
 #endif

@@ -19,36 +19,36 @@ public:
 	void RemoveAll();
 
 	// Accessing elements
-	CObject* GetAt(int nIndex) const;
-	void SetAt(int nIndex, CObject* newElement);
+	::radix::object* GetAt(int nIndex) const;
+	void SetAt(int nIndex, ::radix::object* newElement);
 
-	CObject*& ElementAt(int nIndex);
+	::radix::object*& ElementAt(int nIndex);
 
 	// Direct Access to the element data (may return NULL)
-	const CObject** GetData() const;
-	CObject** GetData();
+	const ::radix::object** GetData() const;
+	::radix::object** GetData();
 
 	// Potentially growing the array
-	void SetAtGrow(int nIndex, CObject* newElement);
+	void SetAtGrow(int nIndex, ::radix::object* newElement);
 
-	int Add(CObject* newElement);
+	int Add(::radix::object* newElement);
 
 	int Append(const simple_object_array& src);
 	void Copy(const simple_object_array& src);
 
 	// overloaded operator helpers
-	CObject* operator[](int nIndex) const;
-	CObject*& operator[](int nIndex);
+	::radix::object* operator[](int nIndex) const;
+	::radix::object*& operator[](int nIndex);
 
 	// Operations that move elements around
-	void InsertAt(int nIndex, CObject* newElement, int nCount = 1);
+	void InsertAt(int nIndex, ::radix::object* newElement, int nCount = 1);
 
 	void RemoveAt(int nIndex, int nCount = 1);
 	void InsertAt(int nStartIndex, simple_object_array* pNewArray);
 
 // Implementation
 protected:
-	CObject** m_pData;   // the actual array of data
+	::radix::object** m_pData;   // the actual array of data
 	int m_nSize;     // # of elements (upperBound - 1)
 	int m_nMaxSize;  // max allocated
 	int m_nGrowBy;   // grow amount
@@ -65,7 +65,7 @@ public:
 
 protected:
 	// local typedefs for class templates
-	typedef CObject* BASE_TYPE;
-	typedef CObject* BASE_ARG_TYPE;
+	typedef ::radix::object* BASE_TYPE;
+	typedef ::radix::object* BASE_ARG_TYPE;
 };
 

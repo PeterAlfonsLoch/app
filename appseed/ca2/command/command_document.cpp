@@ -11,7 +11,7 @@ namespace command
    {
    }
 
-   BOOL document::on_new_document()
+   bool document::on_new_document()
    {
 	   if (!::userbase::document::on_new_document())
 		   return FALSE;

@@ -16,12 +16,11 @@ public:
    virtual void OnBeforeNavigate2(html::data * pdata, var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel);
    
    virtual ::html::data * get_html_data();
-   virtual ::ca::application * get_app() const;
    DECL_GEN_VSIGNAL(data_on_after_change)
 
    virtual bool open_document(var varFile);
 
-   virtual BOOL on_new_document();
+   virtual bool on_new_document();
 
 #ifdef _DEBUG
    virtual void assert_valid() const;

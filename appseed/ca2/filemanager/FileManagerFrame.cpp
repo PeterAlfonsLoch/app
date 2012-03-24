@@ -4,9 +4,6 @@
 
 FileManagerFrame::FileManagerFrame(::ca::application * papp) :
    ca(papp),
-   window_frame::WorkSetClientInterface(papp),
-   userbase::frame_window_interface(papp),
-   userbase::frame_window(papp),
    simple_frame_window(papp),
    m_toolbar(papp),
    m_menubar(papp)
@@ -137,4 +134,8 @@ void FileManagerFrame::_001OnSetText(gen::signal_object * pobj)
       GetWindowText(str);
       ptabview->SetTitleById(m_idTab, str);
    }
+
 }
+
+
+

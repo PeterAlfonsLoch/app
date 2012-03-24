@@ -432,7 +432,7 @@ bool time::operator>=( time time ) const throw()
    return( m_time >= time.m_time );
 }
 
-#if !_SECURE_ATL
+#if !_SECURE_TEMPLATE
 
    _ATL_INSECURE_DEPRECATE("Pass an output time structure to time::GetGmtTm")
 struct tm* time::GetGmtTm() const throw()
@@ -452,11 +452,11 @@ struct tm* time::GetLocalTm() const throw()
 #pragma warning(pop)
 }
 
-#endif // !_SECURE_ATL
+#endif // !_SECURE_TEMPLATE
 
 struct tm* time::GetGmtTm(struct tm* ptm) const
 {
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
    // Ensure ptm is valid
    ATLENSURE( ptm != NULL );
 
@@ -493,7 +493,7 @@ struct tm* time::GetGmtTm(struct tm* ptm) const
 
 struct tm* time::GetLocalTm(struct tm* ptm) const
 {
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
    // Ensure ptm is valid
    ATLENSURE( ptm != NULL );
 

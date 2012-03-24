@@ -14,29 +14,6 @@ namespace _template
 {
 
    
-   inline errno_t AtlCrtErrorCheck(errno_t nError)
-   {
-      switch(nError)
-      {
-      case ENOMEM:
-         AfxThrowMemoryException();
-         break;
-      case EINVAL:
-      case ERANGE:
-         AfxThrowInvalidArgException();
-         break;
-      case 0:
-#if defined(_WINDOWS)
-      case STRUNCATE:
-#endif
-         break;
-      default:
-         throw -1;
-         break;
-      }
-      return nError;
-   }
-
    
    /////////////////////////////////////////////////////////////////////////////
    // Secure (checked) CRT functions
@@ -44,18 +21,14 @@ namespace _template
    namespace checked
    {
 
-   #if _SECURE_ATL
+   #if _SECURE_TEMPLATE
 
-   #ifdef _AFX
-   #define ATLMFC_CRT_ERRORCHECK(expr) AFX_CRT_ERRORCHECK(expr)
-   #else
-   #define ATLMFC_CRT_ERRORCHECK(expr) ATL_CRT_ERRORCHECK(expr)
-   #endif
+   #define C_RUNTIME_ERROR_CHECK(expr) ::c_runtime_error_check(expr)
 
    inline void __cdecl memcpy_s(void *_S1, size_t _S1max, const void *_S2, size_t _N)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::memcpy_s(_S1, _S1max, _S2, _N));
+      C_RUNTIME_ERROR_CHECK(::memcpy_s(_S1, _S1max, _S2, _N));
 #else
       memcpy(_S1, _S2, _N);
 #endif
@@ -64,7 +37,7 @@ namespace _template
    inline void __cdecl wmemcpy_s(wchar_t *_S1, size_t _N1, const wchar_t *_S2, size_t _N)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::wmemcpy_s(_S1, _N1, _S2, _N));
+      C_RUNTIME_ERROR_CHECK(::wmemcpy_s(_S1, _N1, _S2, _N));
 #else
       memcpy(_S1, _S2, _N * sizeof(wchar_t));
 #endif
@@ -73,7 +46,7 @@ namespace _template
    inline void __cdecl memmove_s(void *_S1, size_t _S1max, const void *_S2, size_t _N)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::memmove_s(_S1, _S1max, _S2, _N));
+      C_RUNTIME_ERROR_CHECK(::memmove_s(_S1, _S1max, _S2, _N));
 #else
       memmove(_S1, _S2, _N);
 #endif
@@ -82,7 +55,7 @@ namespace _template
    inline void __cdecl strcpy_s(char *_S1, size_t _S1max, const char *_S2)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::strcpy_s(_S1, _S1max, _S2));
+      C_RUNTIME_ERROR_CHECK(::strcpy_s(_S1, _S1max, _S2));
 #else
       strcpy(_S1, _S2);
 #endif
@@ -91,7 +64,7 @@ namespace _template
    inline void __cdecl wcscpy_s(wchar_t *_S1, size_t _S1max, const wchar_t *_S2)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::wcscpy_s(_S1, _S1max, _S2));
+      C_RUNTIME_ERROR_CHECK(::wcscpy_s(_S1, _S1max, _S2));
 #else
       wcscpy_dup(_S1, _S2);
 #endif
@@ -100,7 +73,7 @@ namespace _template
    inline errno_t __cdecl strncpy_s(char *_Dest, size_t _SizeInChars, const char *_Source, size_t _Count)
    {
 #ifdef _WINDOWS
-      return ATLMFC_CRT_ERRORCHECK(::strncpy_s(_Dest, _SizeInChars, _Source,_Count));
+      return C_RUNTIME_ERROR_CHECK(::strncpy_s(_Dest, _SizeInChars, _Source,_Count));
 #else
       strncpy(_Dest, _Source, _Count);
 #endif
@@ -109,7 +82,7 @@ namespace _template
    inline errno_t __cdecl wcsncpy_s(wchar_t *_Dest, size_t _SizeInChars, const wchar_t *_Source, size_t _Count)
    {
 #ifdef _WINDOWS
-      return ATLMFC_CRT_ERRORCHECK(::wcsncpy_s(_Dest, _SizeInChars, _Source,_Count));
+      return C_RUNTIME_ERROR_CHECK(::wcsncpy_s(_Dest, _SizeInChars, _Source,_Count));
 #else
       wcsncpy(_Dest, _Source, _Count);
 #endif
@@ -118,7 +91,7 @@ namespace _template
    inline void __cdecl strcat_s(char * _Dst, size_t _SizeInChars, const char * _Src)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::strcat_s(_Dst, _SizeInChars, _Src));
+      C_RUNTIME_ERROR_CHECK(::strcat_s(_Dst, _SizeInChars, _Src));
 #else
       strcat(_Dst, _Src);
 #endif
@@ -127,7 +100,7 @@ namespace _template
    inline void __cdecl wcscat_s(wchar_t * _Dst, size_t _SizeInChars, const wchar_t * _Src)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::wcscat_s(_Dst, _SizeInChars, _Src));
+      C_RUNTIME_ERROR_CHECK(::wcscat_s(_Dst, _SizeInChars, _Src));
 #else
       wcscat_dup(_Dst, _Src);
 #endif
@@ -136,7 +109,7 @@ namespace _template
    inline void __cdecl strlwr_s(char * _Str, size_t _SizeInChars)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::_strlwr_s(_Str, _SizeInChars));
+      C_RUNTIME_ERROR_CHECK(::_strlwr_s(_Str, _SizeInChars));
 #else
       strlwr(_Str);
 #endif
@@ -145,7 +118,7 @@ namespace _template
    inline void __cdecl wcslwr_s(wchar_t * _Str, size_t _SizeInChars)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::_wcslwr_s(_Str, _SizeInChars));
+      C_RUNTIME_ERROR_CHECK(::_wcslwr_s(_Str, _SizeInChars));
 #else
       wcslwr(_Str);
 #endif
@@ -154,7 +127,7 @@ namespace _template
    inline void __cdecl strupr_s(char * _Str, size_t _SizeInChars)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::_strupr_s(_Str, _SizeInChars));
+      C_RUNTIME_ERROR_CHECK(::_strupr_s(_Str, _SizeInChars));
 #else
       strupr(_Str);
 #endif
@@ -163,7 +136,7 @@ namespace _template
    inline void __cdecl wcsupr_s(wchar_t * _Str, size_t _SizeInChars)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::_wcsupr_s(_Str, _SizeInChars));
+      C_RUNTIME_ERROR_CHECK(::_wcsupr_s(_Str, _SizeInChars));
 #else
       wcsupr(_Str);
 #endif
@@ -172,7 +145,7 @@ namespace _template
    inline void __cdecl itoa_s(int _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::_itoa_s(_Val, _Buf, _SizeInChars, _Radix));
+      C_RUNTIME_ERROR_CHECK(::_itoa_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
       itoa(_Val, _Buf, _Radix);
 #endif
@@ -181,7 +154,7 @@ namespace _template
    inline void __cdecl ltoa_s(long _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::_ltoa_s(_Val, _Buf, _SizeInChars, _Radix));
+      C_RUNTIME_ERROR_CHECK(::_ltoa_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
       ltoa(_Val, _Buf, _Radix);
 #endif
@@ -190,7 +163,7 @@ namespace _template
    inline void __cdecl ultoa_s(unsigned long _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::_ultoa_s(_Val, _Buf, _SizeInChars, _Radix));
+      C_RUNTIME_ERROR_CHECK(::_ultoa_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
       ultoa(_Val, _Buf, _Radix);
 #endif
@@ -199,7 +172,7 @@ namespace _template
    inline void __cdecl ultow_s(unsigned long _Val, wchar_t *_Buf, size_t _SizeInChars, int _Radix)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::_ultow_s(_Val, _Buf, _SizeInChars, _Radix));
+      C_RUNTIME_ERROR_CHECK(::_ultow_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
       ultow(_Val, _Buf, _Radix);
 #endif
@@ -208,7 +181,7 @@ namespace _template
    inline void __cdecl i64toa_s(__int64 _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::_i64toa_s(_Val, _Buf, _SizeInChars, _Radix));
+      C_RUNTIME_ERROR_CHECK(::_i64toa_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
       i64toa(_Val, _Buf, _Radix);
 #endif
@@ -217,7 +190,7 @@ namespace _template
    inline void __cdecl i64tow_s(__int64 _Val, wchar_t *_Buf, size_t _SizeInChars, int _Radix)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::_i64tow_s(_Val, _Buf, _SizeInChars, _Radix));
+      C_RUNTIME_ERROR_CHECK(::_i64tow_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
       i64tow(_Val, _Buf, _Radix);
 #endif
@@ -226,7 +199,7 @@ namespace _template
    inline void __cdecl ui64toa_s(uint64_t _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::_ui64toa_s(_Val, _Buf, _SizeInChars, _Radix));
+      C_RUNTIME_ERROR_CHECK(::_ui64toa_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
       ui64toa(_Val, _Buf, _Radix);
 #endif
@@ -235,7 +208,7 @@ namespace _template
    inline void __cdecl ui64tow_s(uint64_t _Val, wchar_t *_Buf, size_t _SizeInChars, int _Radix)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::_ui64tow_s(_Val, _Buf, _SizeInChars, _Radix));
+      C_RUNTIME_ERROR_CHECK(::_ui64tow_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
       ui64tow(_Val, _Buf, _Radix);
 #endif
@@ -244,7 +217,7 @@ namespace _template
    inline void __cdecl gcvt_s(char *_Buffer, size_t _SizeInChars, double _Value, int _Ndec)
    {
 #ifdef _WINDOWS
-      ATLMFC_CRT_ERRORCHECK(::_gcvt_s(_Buffer, _SizeInChars, _Value, _Ndec));
+      C_RUNTIME_ERROR_CHECK(::_gcvt_s(_Buffer, _SizeInChars, _Value, _Ndec));
 #else
       gcvt(_Value, _Ndec, _Buffer);
 #endif
@@ -258,13 +231,13 @@ namespace _template
       char *_Fname, size_t _Fname_len,
       char *_Ext, size_t _Ext_len)
    {
-      ATLMFC_CRT_ERRORCHECK(::_tsplitpath_s(_Path, _Drive, _Drive_len, _Dir, _Dir_len, _Fname, _Fname_len, _Ext, _Ext_len));
+      C_RUNTIME_ERROR_CHECK(::_tsplitpath_s(_Path, _Drive, _Drive_len, _Dir, _Dir_len, _Fname, _Fname_len, _Ext, _Ext_len));
    }
 
    inline void __cdecl tmakepath_s(char *_Path, size_t _SizeInChars, const char *_Drive,
       const char *_Dir, const char *_Fname, const char *_Ext)
    {
-      ATLMFC_CRT_ERRORCHECK(::_tmakepath_s(_Path, _SizeInChars, _Drive, _Dir, _Fname, _Ext));
+      C_RUNTIME_ERROR_CHECK(::_tmakepath_s(_Path, _SizeInChars, _Drive, _Dir, _Fname, _Ext));
    }*/
 
    inline size_t __cdecl strnlen(const char *_Str, size_t _Maxsize)
@@ -288,9 +261,9 @@ namespace _template
    CLASS_DECL_ca int get_errno();
    CLASS_DECL_ca void set_errno(int _Value);
 
-   #else // !_SECURE_ATL
+   #else // !_SECURE_TEMPLATE
 
-   #define ATLMFC_CRT_ERRORCHECK(expr) do { expr; } while (0)
+   #define C_RUNTIME_ERROR_CHECK(expr) do { expr; } while (0)
 
    inline void __cdecl memcpy_s(void *_S1, size_t _S1max, const void *_S2, size_t _N)
    {
@@ -599,7 +572,7 @@ namespace _template
       errno = _Value;
    }
 
-   #endif // _SECURE_ATL
+   #endif // _SECURE_TEMPLATE
 
       
    } // namespace checked

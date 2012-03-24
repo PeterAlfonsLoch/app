@@ -465,7 +465,7 @@ public:
       }
       Attach( pData );
       set_length( nLength );
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
       CopyChars( m_pszData, nLength, pszSrc, nLength );
 #else
       CopyChars( m_pszData, pszSrc, nLength );
@@ -488,7 +488,7 @@ public:
       }
       Attach( pData );
       set_length( nLength );
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
       CopyChars( m_pszData, nLength, pchSrc, nLength );
 #else
       CopyChars( m_pszData, pchSrc, nLength );
@@ -608,7 +608,7 @@ public:
          // No need to call CopyCharsOverlapped, since the destination is
          // beyond the end of the original buffer
       }
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
       CopyChars( pszBuffer+nOldLength, nLength, pszSrc, nLength );
 #else
       CopyChars( pszBuffer+nOldLength, pszSrc, nLength );
@@ -682,7 +682,7 @@ public:
             return;
          }
 
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
          CopyChars( PXSTR( pNewData->data() ), nLength,
             PCXSTR( pOldData->data() ), nLength );
 #else
@@ -856,7 +856,7 @@ public:
          PXSTR pszBuffer = GetBuffer( nLength );
          if( nOffset <= nOldLength )
          {
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
             CopyCharsOverlapped( pszBuffer, nLength,
                pszBuffer+nOffset, nLength );
 #else
@@ -865,7 +865,7 @@ public:
          }
          else
          {
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
             CopyChars( pszBuffer, nLength, pszSrc, nLength );
 #else
             CopyChars( pszBuffer, pszSrc, nLength );
@@ -914,7 +914,7 @@ public:
       memcpy(pchDest, pchSrc, nChars * sizeof(XCHAR));
    }
 
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
    static void __cdecl CopyChars(XCHAR* pchDest,size_t nDestLen,const XCHAR* pchSrc,strsize nChars ) NOTHROW
    {
 #ifdef _WINDOWS
@@ -930,7 +930,7 @@ public:
       memmove( pchDest, pchSrc, nChars*sizeof( XCHAR ) );
    }
 
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
    static void __cdecl CopyCharsOverlapped(XCHAR* pchDest,size_t nDestLen,const XCHAR* pchSrc,strsize nChars ) NOTHROW
    {
 #ifdef _WINDOWS
@@ -962,7 +962,7 @@ protected:
    {
       strsize nNewLength = nLength1+nLength2;
       PXSTR pszBuffer = strResult.GetBuffer( nNewLength );
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
       CopyChars( pszBuffer, nLength1, psz1, nLength1 );
       CopyChars( pszBuffer+nLength1, nLength2, psz2, nLength2 );
 #else
@@ -993,7 +993,7 @@ private:
          ThrowMemoryException();
       }
       strsize nCharsToCopy = ((nOldLength < nLength) ? nOldLength : nLength)+1;  // copy '\0'
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
       CopyChars( PXSTR( pNewData->data() ), nCharsToCopy,
          PCXSTR( pOldData->data() ), nCharsToCopy );
 #else
@@ -1098,7 +1098,7 @@ private:
             ThrowMemoryException();
          }
          pNewData->nDataLength = pData->nDataLength;
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
          CopyChars( PXSTR( pNewData->data() ), pData->nDataLength+1,
             PCXSTR( pData->data() ), pData->nDataLength+1 );  // copy '\0'
 #else

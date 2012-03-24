@@ -1,17 +1,25 @@
 #pragma once
 
+
 namespace bergedge
 {
+
+
    class document;
    class bergedge;
+
+
 } // namespace bergedge
+
 
 namespace platform
 {
 
+
    class view;
    class pane_view;
    class frame;
+
 
    class CLASS_DECL_ca2 document :
       public form_document
@@ -25,6 +33,7 @@ namespace platform
       document(::ca::application * papp);
       virtual ~document();
 
+
       view *                  get_platform_view();
       pane_view *             get_platform_pane_view();
       frame *                 get_platform_frame();
@@ -32,11 +41,8 @@ namespace platform
       
       
 
-      virtual BOOL on_new_document();
-      
+      virtual bool on_new_document();
 
-
-      DECL_GEN_VSIGNAL(data_on_after_change)
 
 
    #ifdef _DEBUG
@@ -45,7 +51,13 @@ namespace platform
    #endif
 
 
+      DECL_GEN_VSIGNAL(data_on_after_change)
+
+
    };
 
 
 } // namespace platform
+
+
+

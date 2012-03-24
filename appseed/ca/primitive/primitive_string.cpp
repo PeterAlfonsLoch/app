@@ -378,7 +378,7 @@ char * __cdecl crt_char_traits::StringLowercase( char * psz ) throw()
 
 char * __cdecl crt_char_traits::StringUppercase(char * psz,size_t size ) throw()
 {
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
    _template::checked::strupr_s(psz, size);
 #else
    UNREFERENCED_PARAMETER(size);
@@ -389,7 +389,7 @@ char * __cdecl crt_char_traits::StringUppercase(char * psz,size_t size ) throw()
 
 char * __cdecl crt_char_traits::StringLowercase(char * psz,size_t size ) throw()
 {
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
    _template::checked::strlwr_s(psz, size);
 #else
    UNREFERENCED_PARAMETER(size);
@@ -424,7 +424,7 @@ strsize __cdecl crt_char_traits::Format(char * pszBuffer,const char * pszFormat,
 
 }
 
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
 strsize __cdecl crt_char_traits::Format(char * pszBuffer,size_t nlength,const char * pszFormat, va_list args ) throw()
 {
    return vsprintf_s( pszBuffer, nlength, pszFormat, args );
@@ -2289,7 +2289,7 @@ string::string(strsize nLength, char ch) :
       strsize nCurrentLength = get_length();
       strsize nAppendLength = string_trait::GetFormattedLength( pszFormat, args );
       PXSTR pszBuffer = GetBuffer( nCurrentLength+nAppendLength );
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
         string_trait::Format( pszBuffer+nCurrentLength,
          nAppendLength+1, pszFormat, args );
 #else
@@ -2306,7 +2306,7 @@ string::string(strsize nLength, char ch) :
 
       strsize nLength = string_trait::GetFormattedLength( pszFormat, args );
       PXSTR pszBuffer = GetBuffer( nLength );
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
         string_trait::Format( pszBuffer, nLength+1, pszFormat, args );
 #else
       string_trait::Format( pszBuffer, pszFormat, args );

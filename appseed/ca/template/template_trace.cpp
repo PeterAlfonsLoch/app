@@ -54,7 +54,7 @@ namespace _template
                         if(g_Allocator.GetProcess()->m_bFileNameAndLineNo)
                {
                   int nTemp;
-                  ATL_CRT_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%s(%d) : ", pszFileName, nLine));
+                  C_RUNTIME_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%s(%d) : ", pszFileName, nLine));
                   if( nTemp < 0 )
                      nLen = nCount;
                   else
@@ -66,7 +66,7 @@ namespace _template
                if(pCategory && g_Allocator.GetProcess()->m_bFuncAndCategoryNames)
                {
                   int nTemp;
-                  ATL_CRT_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%S: ", pCategory->Name()));
+                  C_RUNTIME_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%S: ", pCategory->Name()));
                   if( nTemp < 0 )
                      nLen = nCount;
                   else
@@ -75,7 +75,7 @@ namespace _template
                   }*/
       /*if (nLen >= 0 && nLen < nCount)
       {
-         ATL_CRT_ERRORCHECK_SPRINTF(_vsnprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, pszFormat, ptr));
+         C_RUNTIME_ERRORCHECK_SPRINTF(_vsnprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, pszFormat, ptr));
       }*/
 
       string str;

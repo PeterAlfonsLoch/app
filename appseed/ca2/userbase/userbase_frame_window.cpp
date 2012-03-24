@@ -9,10 +9,7 @@ namespace userbase
 {
 
 
-   frame_window::frame_window(::ca::application * papp) :
-      ca(papp),
-      window_frame::WorkSetClientInterface(papp),
-      frame_window_interface(papp)
+   frame_window::frame_window()
    {
       CommonConstruct();
    }

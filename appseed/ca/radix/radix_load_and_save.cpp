@@ -70,10 +70,10 @@ namespace _template
          DWORD dwret = ::GetModuleFileNameA(NULL, szFileName, MAX_PATH);
          if( dwret == 0 || dwret == MAX_PATH )
             return FALSE;
-   #if _SECURE_ATL
-         ATL_CRT_ERRORCHECK(_splitpath_s(szFileName, szDrive, _countof(szDrive), szDir, _countof(szDir), szFName, _countof(szFName), szExt, _countof(szExt)));
-         ATL_CRT_ERRORCHECK(strncpy_s(szExt, _MAX_EXT, TRACE_SETTINGS_EXT, sizeof(TRACE_SETTINGS_EXT)));
-         ATL_CRT_ERRORCHECK(_makepath_s(szFileName, _MAX_PATH, szDrive, szDir, szFName, szExt));
+   #if _SECURE_TEMPLATE
+         C_RUNTIME_ERROR_CHECK(_splitpath_s(szFileName, szDrive, _countof(szDrive), szDir, _countof(szDir), szFName, _countof(szFName), szExt, _countof(szExt)));
+         C_RUNTIME_ERROR_CHECK(strncpy_s(szExt, _MAX_EXT, TRACE_SETTINGS_EXT, sizeof(TRACE_SETTINGS_EXT)));
+         C_RUNTIME_ERROR_CHECK(_makepath_s(szFileName, _MAX_PATH, szDrive, szDir, szFName, szExt));
    #else
          _splitpath(szFileName, szDrive, szDir, szFName, szExt);
          strcpy(szExt, ".trc");
@@ -111,7 +111,7 @@ namespace _template
             ::GetPrivateProfileStringA(pszProcess, "Info", "", szValue, MAX_PATH, pszFileName);
             szValue[MAX_PATH - 1] = 0;
             
-   #if _SECURE_ATL
+   #if _SECURE_TEMPLATE
             if(5 != sscanf_s(szValue, "ModuleCount:%u, Level:%u, Enabled:%c, "
                "FuncAndCategoryNames:%c, FileNameAndLineNo:%c", &nModules, &pProcess->m_nLevel, &cEnabled, sizeof(cEnabled),
                &cFuncAndCategoryNames, sizeof(cFuncAndCategoryNames), &cFileNameAndLineInfo, sizeof(cFileNameAndLineInfo)))
@@ -129,7 +129,7 @@ namespace _template
 
             for(UINT i = 0; i < nModules; i++)
             {
-   #if _SECURE_ATL
+   #if _SECURE_TEMPLATE
                if(-1 == sprintf_s(szKey, MAX_PATH, "Module%d", i+1))
                   return FALSE;
    #else
@@ -150,7 +150,7 @@ namespace _template
 
                ::GetPrivateProfileStringA(szSection, "Settings", "", szValue, MAX_PATH, pszFileName);
                szValue[MAX_PATH -1] = 0;
-   #if _SECURE_ATL
+   #if _SECURE_TEMPLATE
                if(3 != sscanf_s(szValue, "CategoryCount:%u, Level:%u, Status:%u", &nCategories, &nLevel, &nStatus))
    #else
                if(3 != sscanf(szValue, "CategoryCount:%u, Level:%u, Status:%u", &nCategories, &nLevel, &nStatus))
@@ -161,7 +161,7 @@ namespace _template
 
                for(UINT j = 0; j < nCategories; j++)
                {
-   #if _SECURE_ATL
+   #if _SECURE_TEMPLATE
                   if(-1 == sprintf_s(szKey, MAX_PATH, "Category%d", j+1))
                      return FALSE;
    #else
@@ -169,7 +169,7 @@ namespace _template
    #endif
                   ::GetPrivateProfileStringA(szSection, szKey, "", szValue, MAX_PATH, pszFileName);
                   szValue[MAX_PATH -1] = 0;
-   #if _SECURE_ATL
+   #if _SECURE_TEMPLATE
                   if(3 != sscanf_s(szValue, "Level:%u, Status:%u, Name:%s", &nLevel, &nStatus, szName, _countof(szName)))
    #else
                   if(3 != sscanf(szValue, "Level:%u, Status:%u, Name:%s", &nLevel, &nStatus, szName))
@@ -228,7 +228,7 @@ namespace _template
       ATLTRACEPROCESSINFO info;
       AtlTraceGetProcessInfo(dwProcess, &info);
 
-   #if _SECURE_ATL
+   #if _SECURE_TEMPLATE
       if(-1 == sprintf_s(szValue, MAX_PATH, "ModuleCount:%u, Level:%u, Enabled:%c, "
          "FuncAndCategoryNames:%c, FileNameAndLineNo:%c", info.nModules, pProcess->m_nLevel,
          pProcess->m_bEnabled ? 't' : 'f', pProcess->m_bFuncAndCategoryNames ? 't' : 'f',
@@ -253,7 +253,7 @@ namespace _template
          if(!pModule)
             return FALSE;
 
-   #if _SECURE_ATL
+   #if _SECURE_TEMPLATE
          if(-1 == sprintf_s(szKey, MAX_PATH, "Module%d", i+1))
             return FALSE;
    #else
@@ -268,7 +268,7 @@ namespace _template
          if(::WritePrivateProfileStringA(gen::international::unicode_to_utf8(pModule->Name()), "Name", gen::international::unicode_to_utf8(pModule->Path()), pszFileName) == 0)
             return FALSE;
             
-   #if _SECURE_ATL
+   #if _SECURE_TEMPLATE
          if(-1 == sprintf_s(szValue, MAX_PATH, "CategoryCount:%u, Level:%u, Status:%u", nCategories, pModule->m_nLevel, nStatus))
             return FALSE;
    #else
@@ -285,14 +285,14 @@ namespace _template
 
             GetSettings(*pCategory, &nStatus);
 
-   #if _SECURE_ATL
+   #if _SECURE_TEMPLATE
             if(-1 == sprintf_s(szKey, MAX_PATH, "Category%d", j+1))
                return FALSE;
    #else
             sprintf(szKey, "Category%d", j+1);
    #endif
             j++;
-   #if _SECURE_ATL
+   #if _SECURE_TEMPLATE
             if(-1 == sprintf_s(szValue, MAX_PATH, "Level:%u, Status:%u, Name:%S",
                pCategory->m_nLevel, nStatus, pCategory->Name()))
             {
@@ -329,10 +329,10 @@ return false;
          DWORD dwret = ::GetModuleFileNameW(NULL, szFileName, MAX_PATH);
          if( dwret == 0 || dwret == MAX_PATH )
             return FALSE;
-   #if _SECURE_ATL
-         ATL_CRT_ERRORCHECK(_wsplitpath_s(szFileName, szDrive, _countof(szDrive), szDir, _countof(szDir), szFName, _countof(szFName), szExt, _countof(szExt)));
-         ATL_CRT_ERRORCHECK(wcsncpy_s(szExt, _MAX_EXT, TRACE_SETTINGS_EXTW, _countof(TRACE_SETTINGS_EXTW)));
-         ATL_CRT_ERRORCHECK(_wmakepath_s(szFileName, MAX_PATH, szDrive, szDir, szFName, szExt));
+   #if _SECURE_TEMPLATE
+         C_RUNTIME_ERROR_CHECK(_wsplitpath_s(szFileName, szDrive, _countof(szDrive), szDir, _countof(szDir), szFName, _countof(szFName), szExt, _countof(szExt)));
+         C_RUNTIME_ERROR_CHECK(wcsncpy_s(szExt, _MAX_EXT, TRACE_SETTINGS_EXTW, _countof(TRACE_SETTINGS_EXTW)));
+         C_RUNTIME_ERROR_CHECK(_wmakepath_s(szFileName, MAX_PATH, szDrive, szDir, szFName, szExt));
    #else
          _wsplitpath(szFileName, szDrive, szDir, szFName, szExt);
          wcscpy(szExt, L".trc");
@@ -369,7 +369,7 @@ return false;
 
             ::GetPrivateProfileStringW(pszProcess, L"Info", L"", szValue, MAX_PATH, pszFileName);
             szValue[MAX_PATH -1] = 0;
-   #if _SECURE_ATL
+   #if _SECURE_TEMPLATE
             if(5 != swscanf_s(szValue, L"ModuleCount:%u, Level:%u, Enabled:%c, "
                L"FuncAndCategoryNames:%c, FileNameAndLineNo:%c", &nModules, &pProcess->m_nLevel, &cEnabled, sizeof(cEnabled),
                &cFuncAndCategoryNames, sizeof(cFuncAndCategoryNames), &cFileNameAndLineInfo, sizeof(cFileNameAndLineInfo)))
@@ -404,7 +404,7 @@ return false;
 
                ::GetPrivateProfileStringW(szSection, L"Settings", L"", szValue, MAX_PATH, pszFileName);
                szValue[MAX_PATH -1] = 0;
-   #if _SECURE_ATL
+   #if _SECURE_TEMPLATE
                if(3 != swscanf_s(szValue, L"CategoryCount:%u, Level:%u, Status:%u", &nCategories, &nLevel, &nStatus))
    #else
                if(3 != swscanf(szValue, L"CategoryCount:%u, Level:%u, Status:%u", &nCategories, &nLevel, &nStatus))
@@ -419,7 +419,7 @@ return false;
                      return FALSE;
                   ::GetPrivateProfileStringW(szSection, szKey, L"", szValue, MAX_PATH, pszFileName);
                   szValue[MAX_PATH -1] = 0;
-   #if _SECURE_ATL
+   #if _SECURE_TEMPLATE
                   if(3 != swscanf_s(szValue, L"Level:%u, Status:%u, Name:%s", &nLevel, &nStatus, szName, _countof(szName)))
    #else
                   if(3 != swscanf(szValue, L"Level:%u, Status:%u, Name:%s", &nLevel, &nStatus, szName))

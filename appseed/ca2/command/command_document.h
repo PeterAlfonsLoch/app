@@ -4,6 +4,7 @@
 namespace command
 {
 
+
    class CLASS_DECL_ca2 document :
       public ::userbase::document
    {
@@ -16,18 +17,22 @@ namespace command
    
       DECL_GEN_VSIGNAL(data_on_after_change);
 
-	   virtual BOOL on_new_document();
+
+	   virtual bool on_new_document();
 
    #ifdef _DEBUG
 	   virtual void assert_valid() const;
 	   virtual void dump(dump_context & dumpcontext) const;
    #endif
 
+
       bool on_open_document(var varFile);
+
 
    };
 
 
 } // namespace command
+
 
 

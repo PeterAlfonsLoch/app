@@ -2,11 +2,9 @@
 #include "FileManagerViewUpdateHint.h"
 #include "SimpleFileListInterface.h"
 
+
 FileManagerChildFrame::FileManagerChildFrame(::ca::application * papp) :
    ca(papp),
-   window_frame::WorkSetClientInterface(papp),
-   userbase::frame_window_interface(papp),
-   userbase::frame_window(papp),
    simple_child_frame(papp), 
    m_toolbar(papp)
 {
@@ -135,5 +133,8 @@ void FileManagerChildFrame::GetSelected(::fs::item_array &itema)
 void FileManagerChildFrame::_001OnShowWindow(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-//   SCAST_PTR(::gen::message::show_window, pshow, pobj)
 }
+
+
+
+

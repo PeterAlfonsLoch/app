@@ -1,8 +1,7 @@
 #pragma once
 
 
-#include "ca2/user/user.h"
-#include "window_frame/window_frame.h"
+#include "ca2/window_frame/window_frame.h"
 
 
 struct AFX_SIZEPARENTPARAMS;

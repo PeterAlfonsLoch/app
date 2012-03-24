@@ -12,13 +12,13 @@ namespace _template
    CLASS_DECL_ca int get_errno()
    {
       int nErrNo;
-      ATLMFC_CRT_ERRORCHECK(::_get_errno(&nErrNo));
+      C_RUNTIME_ERROR_CHECK(::_get_errno(&nErrNo));
       return nErrNo;
    }
 
    CLASS_DECL_ca void set_errno(int _Value)
    {
-      ATLMFC_CRT_ERRORCHECK(::_set_errno(_Value));
+      C_RUNTIME_ERROR_CHECK(::_set_errno(_Value));
    }
 
 #else

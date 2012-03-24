@@ -20,16 +20,16 @@ void trace_module_info::Reset(HINSTANCE hInst)
    
    szModulePath[MAX_PATH - 1] = 0;
    
-#if _SECURE_ATL
-   ATL_CRT_ERRORCHECK(wcsncpy_s(m_szPath, _countof(m_szPath), szModulePath, _TRUNCATE));
+#if _SECURE_TEMPLATE
+   C_RUNTIME_ERROR_CHECK(wcsncpy_s(m_szPath, _countof(m_szPath), szModulePath, _TRUNCATE));
 #else
    wcsncpy(m_szPath, szModulePath, MAX_PATH - 1);
 #endif
    WCHAR *pszShortName = m_szPath + wcslen(m_szPath);
    while(pszShortName > m_szPath && *(pszShortName - 1) != L'\\')
       pszShortName--;
-#if _SECURE_ATL
-   ATL_CRT_ERRORCHECK(wcsncpy_s(m_szName, _countof(m_szName), pszShortName, ATL_TRACE_MAX_NAME_SIZE - 1));
+#if _SECURE_TEMPLATE
+   C_RUNTIME_ERROR_CHECK(wcsncpy_s(m_szName, _countof(m_szName), pszShortName, ATL_TRACE_MAX_NAME_SIZE - 1));
 #else
    wcsncpy(m_szName, pszShortName, ATL_TRACE_MAX_NAME_SIZE - 1);
 #endif

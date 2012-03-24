@@ -22,6 +22,7 @@ namespace bergedge
       document(::ca::application * papp); 
       virtual ~document();
 
+
       void set_platform(platform::document * pdoc);
       void set_nature(nature::document * pdoc);
 
@@ -29,12 +30,13 @@ namespace bergedge
 
       view * get_bergedge_view();
       
-      virtual BOOL on_new_document();
+      virtual bool on_new_document();
       
    #ifdef _DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-   #endif
+
+#endif
 
    };
 

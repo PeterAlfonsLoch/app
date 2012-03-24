@@ -9,7 +9,7 @@ file_manager_operation_document::file_manager_operation_document(::ca::applicati
    
 }
 
-BOOL file_manager_operation_document::on_new_document()
+bool file_manager_operation_document::on_new_document()
 {
    return TRUE;
 }

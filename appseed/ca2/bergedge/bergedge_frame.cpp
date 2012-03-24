@@ -1,13 +1,12 @@
 #include "StdAfx.h"
+
  
 namespace bergedge
 {
 
+
    frame::frame(::ca::application * papp) :
       ca(papp),
-      window_frame::WorkSetClientInterface(papp),
-      userbase::frame_window_interface(papp),
-      userbase::frame_window(papp),
       simple_frame_window(papp),
       ::ca::message_window_simple_callback(papp)
    {
@@ -403,13 +402,19 @@ namespace bergedge
       pbase->m_bRet = true;*/
    //}
 
+
    void frame::_001OnApp1(gen::signal_object * pobj)
    {
+      
       SCAST_PTR(gen::message::base, pbase, pobj);
+
       MSG * pmsg = (MSG *) pbase->m_lparam;
+
       pmsg->hwnd = get_safe_handle();
+
       try
       {
+
          if(pmsg->message != WM_KICKIDLE)
          {
             ::ca::smart_pointer < ::gen::message::base > spbase;
@@ -420,6 +425,7 @@ namespace bergedge
                SendMessage(spbase);
             }
          }
+
       }
       catch(const ::ca::exception & )
       {
@@ -427,7 +433,13 @@ namespace bergedge
       catch(...)
       {
       }
+
       delete pmsg;
+
    }
 
+
 } // namespace bergedge
+
+
+

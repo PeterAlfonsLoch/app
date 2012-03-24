@@ -42,9 +42,6 @@ html_frame  * g_pframe;
 
 html_frame::html_frame(::ca::application * papp) :
    ca(papp),
-   window_frame::WorkSetClientInterface(papp),
-   userbase::frame_window_interface(papp),
-   userbase::frame_window(papp),
    simple_frame_window(papp)
 {
    m_pimagelist = NULL;
@@ -347,3 +344,6 @@ void html_frame::OnHoverAction()
 {
    ShowWindow(SW_RESTORE);
 }
+
+
+

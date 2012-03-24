@@ -1,11 +1,9 @@
 #include "StdAfx.h"
 #include "FileManagerMainFrame.h"
 
+
 FileManagerMainFrame::FileManagerMainFrame(::ca::application * papp) :
    ca(papp),
-   window_frame::WorkSetClientInterface(papp),
-   userbase::frame_window_interface(papp),
-   userbase::frame_window(papp),
    simple_frame_window(papp),
    m_menubar(papp),
    m_toolbar(papp)
@@ -70,4 +68,9 @@ bool FileManagerMainFrame::CreateBars()
    }
 
    return true;
+
 }
+
+
+
+

@@ -4,6 +4,7 @@
 namespace window_frame 
 {
 
+
    class CLASS_DECL_ca2 WorkSetClientInterface :
       virtual public database::user::interaction
    {
@@ -14,7 +15,7 @@ namespace window_frame
       EAppearanceMode      m_eappearancemodeFullScreen;
       
 
-      WorkSetClientInterface(::ca::application * papp);
+      WorkSetClientInterface();
       virtual ~WorkSetClientInterface();
 
 
@@ -70,4 +71,8 @@ namespace window_frame
 
    };
 
+
 } // namespace window_frame
+
+
+

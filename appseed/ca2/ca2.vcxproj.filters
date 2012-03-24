@@ -1118,12 +1118,6 @@
     <ClInclude Include="user\user_form_list.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_frame_window.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_frame_window_interface.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_front_end.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>

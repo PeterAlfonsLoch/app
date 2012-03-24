@@ -105,9 +105,9 @@ namespace user
       virtual void delete_contents(); // delete doc items etc
 
       // File helpers
-      virtual BOOL on_new_document();
+      virtual bool on_new_document();
       virtual bool on_open_document(var varFile);
-      virtual BOOL on_save_document(var varFile);
+      virtual bool on_save_document(var varFile);
       virtual void on_close_document();
       virtual void report_save_load_exception(const char * lpszPathName, base_exception* e, BOOL bSaving, const char * nIDPDefault);
 
@@ -132,7 +132,7 @@ namespace user
       virtual void assert_valid() const;
 
       // implementation helpers
-      virtual bool do_save(const char * pszPathName, bool bReplace = true);
+      virtual bool do_save(var varFile, bool bReplace = true);
       virtual bool do_file_save();
       virtual void update_frame_counts();
       virtual void disconnect_views();

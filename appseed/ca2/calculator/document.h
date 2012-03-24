@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace calculator
 {
+
 
    class CLASS_DECL_ca2 document :
       public ::userbase::document
@@ -10,13 +12,15 @@ namespace calculator
 
 
       document(::ca::application * papp);   
+      virtual ~document();
 
 
       DECL_GEN_VSIGNAL(data_on_after_change);
 
-      virtual BOOL on_new_document();
-   public:
-      virtual ~document();
+      virtual bool on_new_document();
+
+   
+      
 #ifdef _DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
@@ -26,5 +30,6 @@ namespace calculator
 
 
    };
+
 
 } //

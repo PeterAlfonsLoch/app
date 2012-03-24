@@ -144,7 +144,7 @@ public:
    static char *        __cdecl  StringReverse( char * psz ) throw();
    static strsize           __cdecl  GetFormattedLength(const char * pszFormat, va_list args ) throw();
    static strsize           __cdecl  Format(char * pszBuffer,const char * pszFormat, va_list args ) throw();
-#if _SECURE_ATL
+#if _SECURE_TEMPLATE
    static strsize           __cdecl  Format(char * pszBuffer,size_t nlength,const char * pszFormat, va_list args ) throw();
 #endif
    static strsize           __cdecl  GetcharLength(const char * pszSrc ) throw();

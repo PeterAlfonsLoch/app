@@ -7,41 +7,38 @@ namespace window_frame
 {
 
 
-   WorkSet::WorkSet(::ca::application * papp) :
-      ca(papp)
+   WorkSet::WorkSet()
    {
 
-      m_pframeschema       = NULL;
+      m_pframeschema             = NULL;
 
-      m_bSizingCapture     = false;
-      m_bEnableMouse       = true;
+      m_bSizingCapture           = false;
+      m_bEnableMouse             = true;
 
-      m_bFullScreenEnable  = false;
-      m_bNotifyIconEnable  = false;
+      m_bFullScreenEnable        = false;
+      m_bNotifyIconEnable        = false;
 
-      m_pappearance                = new appearance(this);
-      m_pmovemanager               = new MoveManager(this);
-      m_psizemanager               = new SizeManager(this);
-      m_psystemmenumanager         = new SysMenuManager(this);
-      m_pdockmanager               = new DockManager();
-
-      m_psizemanager->SetSWPFlags(SWP_SHOWWINDOW);
-      m_pmovemanager->SetSWPFlags(SWP_SHOWWINDOW);
+      m_pappearance              = NULL;
+      m_pmovemanager             = NULL;
+      m_psizemanager             = NULL;
+      m_psystemmenumanager       = NULL;
+      m_pdockmanager             = NULL;
 
 
-      m_pwndRegion      = NULL;
-      m_pwndDraw        = NULL;
-      m_pwndEvent       = NULL;
-      m_pwndCommand     = NULL;
 
-      m_bHoverModeOn    = false;
-      m_bHoverActive    = false;
+      m_pwndRegion               = NULL;
+      m_pwndDraw                 = NULL;
+      m_pwndEvent                = NULL;
+      m_pwndCommand              = NULL;
+
+      m_bHoverModeOn             = false;
+      m_bHoverActive             = false;
        
-      m_bMovingEnabled  = true;
-      m_bSizingEnabled  = true;
-      m_bSysMenuEnabled = true;
+      m_bMovingEnabled           = true;
+      m_bSizingEnabled           = true;
+      m_bSysMenuEnabled          = true;
 
-      m_bEnable         = true;
+      m_bEnable                  = true;
 
    }
 
@@ -275,6 +272,37 @@ namespace window_frame
       ::user::interaction *pwndEvent,
       ::user::interaction *pwndCommand)
    {
+
+      if(m_pappearance == NULL)
+      {
+         m_pappearance                = new appearance(this);
+      }
+
+      if(m_pmovemanager == NULL)
+      {
+         m_pmovemanager               = new MoveManager(this);
+         m_pmovemanager->SetSWPFlags(SWP_SHOWWINDOW);
+      }
+      
+      if(m_psizemanager == NULL)
+      {
+         m_psizemanager               = new SizeManager(this);
+         m_psizemanager->SetSWPFlags(SWP_SHOWWINDOW);
+      }
+
+      if(m_psystemmenumanager == NULL)
+      {
+         m_psystemmenumanager         = new SysMenuManager(this);
+      }
+
+      if(m_pdockmanager == NULL)
+      {
+         m_pdockmanager               = new DockManager();
+      }
+
+      m_psizemanager->SetSWPFlags(SWP_SHOWWINDOW);
+      m_pmovemanager->SetSWPFlags(SWP_SHOWWINDOW);
+
 
       if(m_pwndRegion !=  NULL)
       {

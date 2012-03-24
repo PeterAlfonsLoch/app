@@ -1,21 +1,12 @@
 #include "StdAfx.h"
 
+
 namespace calculator
 {
 
-   /*static UINT indicators[] =
-   {
-      ID_SEPARATOR,           // status line indicator
-      ID_INDICATOR_CAPS,
-      ID_INDICATOR_NUM,
-      ID_INDICATOR_SCRL,
-   };*/
 
    frame::frame(::ca::application * papp) :
       ca(papp),
-      window_frame::WorkSetClientInterface(papp),
-      userbase::frame_window_interface(papp),
-      userbase::frame_window(papp),
       simple_frame_window(papp)
    {
       m_pimagelist = NULL;
@@ -279,3 +270,6 @@ namespace calculator
    }
 
 } // namespace calculator
+
+
+

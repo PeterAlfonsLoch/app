@@ -99,7 +99,7 @@ public:
    struct tm* GetGmtTm( struct tm* ptm ) const;
    struct tm* GetLocalTm( struct tm* ptm ) const;
 /*
-#if !_SECURE_ATL
+#if !_SECURE_TEMPLATE
    _ATL_INSECURE_DEPRECATE("Pass an output time structure to time::GetGmtTm")
    struct tm* GetGmtTm() const NOTHROW;
    _ATL_INSECURE_DEPRECATE("Pass an output time structure to time::GetLocalTm")
@@ -312,7 +312,7 @@ inline tstring time::Format(tstring & str, const char * pszFormat) const
    {
       szBuffer[0] = '\0';
    }
-#elif _SECURE_ATL
+#elif _SECURE_TEMPLATE
    struct tm ptmTemp;
    errno_t err = _localtime64_s(&ptmTemp, &m_time);
    if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, pszFormat, &ptmTemp))
@@ -346,7 +346,7 @@ inline tstring time::FormatGmt(tstring & str, const char * pszFormat) const
     {
       szBuffer[0] = '\0';
     }
-#elif _SECURE_ATL
+#elif _SECURE_TEMPLATE
     struct tm ptmTemp;
    errno_t err = _gmtime64_s(&ptmTemp, &m_time);
    if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, pszFormat, &ptmTemp))
