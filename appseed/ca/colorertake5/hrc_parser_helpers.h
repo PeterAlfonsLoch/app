@@ -46,7 +46,7 @@ public:
 
   #undef CNAME
 #define CNAME "KeywordList"
-#include "memory_operator.h"
+#include "ca/gen/gen_memory_operator.h"
 
 };
 
@@ -68,7 +68,7 @@ public:
 
   #undef CNAME
 #define CNAME "VirtualEntry"
-#include "memory_operator.h"
+#include "ca/gen/gen_memory_operator.h"
 
 };
 
@@ -102,7 +102,7 @@ public:
 
 #undef CNAME
 #define CNAME "SchemeNode"
-#include "memory_operator.h"
+#include "ca/gen/gen_memory_operator.h"
 
   SchemeNode();
   ~SchemeNode();
@@ -122,7 +122,7 @@ public:
 
 #undef CNAME
 #define CNAME "scheme_impl"
-#include "memory_operator.h"
+#include "ca/gen/gen_memory_operator.h"
 
 protected:
   string schemeName;
