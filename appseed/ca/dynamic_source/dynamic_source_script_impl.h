@@ -100,26 +100,7 @@ namespace dynamic_source
       virtual ~script_impl();
 
 
-      template < class singleton >
-      singleton & lib ()
-      {
-         string strPropName = "netnode::script::singleton::";
-#ifdef WINDOWS
-         strPropName += typeid(singleton).raw_name();
-#else
-         strPropName += typeid(singleton).name();
-#endif
-         singleton * p = gprop(strPropName).ca2 < singleton >();
-         if(p != NULL)
-            return *p;
-         string strName = typeid(singleton).name();
-         string strPath = strName;
-         strPath.replace("::", "/");
-         strPath.replace("_", "/");
-         p = new singleton;
-         gprop(strPropName) = p;
-         return *p;
-      }
+
 
 
 

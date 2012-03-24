@@ -61,12 +61,12 @@ public:
 
 
 
-   ::user::interaction * create_view(::ca::type_info info, user::document_interface * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL);
+    ::user::interaction * create_view(::ca::type_info info, user::document_interface * pdoc = NULL, ::user::interaction * pwndParent = NULL, ::id id = ::id(), ::user::interaction * pviewLast = NULL);
    static ::user::interaction * s_create_view(::ca::type_info info, user::document_interface * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast = NULL);
    static ::user::interaction * s_create_view(::ca::create_context * pContext, ::user::interaction * pwndParent, id id);
 
    template < class VIEW >
-   VIEW * create_view(user::document_interface * pdoc = NULL, ::user::interaction * pwndParent = NULL, id id = id(), ::user::interaction * pviewLast = NULL);
+    VIEW * create_view(user::document_interface * pdoc = NULL, ::user::interaction * pwndParent = NULL, ::id id = ::id(), ::user::interaction * pviewLast = NULL);
 
 
    static user::document_interface * get_document(::user::interaction * pguie);

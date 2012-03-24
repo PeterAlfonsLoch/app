@@ -143,7 +143,7 @@ namespace sockets
       int Bind(const string & intf,port_t port,const string & protocol,int depth = 20) {
          if (IsIpv6())
          {
-            ipv6_address ad(intf, port);
+            ipv6_address ad(get_app(), intf, port);
             if (ad.IsValid())
             {
                return Bind(ad, protocol, depth);
@@ -153,7 +153,7 @@ namespace sockets
          }
          else
          {
-            ipv4_address ad(intf, port);
+            ipv4_address ad(get_app(), intf, port);
             if (ad.IsValid())
             {
                return Bind(ad, protocol, depth);
@@ -168,7 +168,7 @@ namespace sockets
          \param port Port (0 is random)
          \param depth Listen queue depth */
       int Bind(ipaddr_t a,port_t port,int depth = 20) {
-         ipv4_address ad(a, port);
+         ipv4_address ad(get_app(), a, port);
    #ifdef USE_SCTP
          if (dynamic_cast<SctpSocket *>(m_creator))
          {
@@ -183,7 +183,7 @@ namespace sockets
          \param protocol Network protocol
          \param depth Listen queue depth */
       int Bind(ipaddr_t a,port_t port,const string & protocol,int depth) {
-         ipv4_address ad(a, port);
+         ipv4_address ad(get_app(), a, port);
          return Bind(ad, protocol, depth);
       }
 
@@ -192,7 +192,7 @@ namespace sockets
          \param port Port (0 is random)
          \param depth Listen queue depth */
       int Bind(in6_addr a,port_t port,int depth = 20) {
-         ipv6_address ad(a, port);
+         ipv6_address ad(get_app(), a, port);
    #ifdef USE_SCTP
          if (dynamic_cast<SctpSocket *>(m_creator))
          {
@@ -207,7 +207,7 @@ namespace sockets
          \param protocol Network protocol
          \param depth Listen queue depth */
       int Bind(in6_addr a,port_t port,const string & protocol,int depth) {
-         ipv6_address ad(a, port);
+         ipv6_address ad(get_app(), a, port);
          return Bind(ad, protocol, depth);
       }
 
@@ -354,9 +354,13 @@ namespace sockets
       int m_depth;
       X *m_creator;
       bool m_bHasCreate;
+       
+       
    };
 
 
 
 } // namespace sockets
+
+
 

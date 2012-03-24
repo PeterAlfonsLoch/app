@@ -6,7 +6,7 @@
 
 #if defined(MACOS)
 
-#include "macos/c_os.h"
+#include "c/macos/c_os.h"
 
 #elif defined(LINUX)
 

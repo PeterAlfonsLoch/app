@@ -135,6 +135,14 @@ public:
       m_chType    = IDTYPE_TYPE_NUMBER;
       return *this;
    }
+    inline bool operator <= (long l) const
+    {
+        return id_cmp(this, l) <= 0;
+    }    
+    inline bool operator >= (long l) const
+    {
+        return id_cmp(this, l) >= 0;
+    }
    inline bool operator == (int64_t i) const
    {
       return !id_cmp(this, i);

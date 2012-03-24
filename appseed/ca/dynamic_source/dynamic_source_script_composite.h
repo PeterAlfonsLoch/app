@@ -19,11 +19,6 @@ namespace dynamic_source
 
 
 
-      template < class singleton >
-      singleton & ca2 ()
-      {
-         return m_pinterface->ca2 < singleton >();
-      }
 
 
       virtual void keep(ptr * pptr);

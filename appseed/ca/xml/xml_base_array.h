@@ -55,7 +55,7 @@ xml_import(input_tree & xmlif)
    ARRAY::set_size(iSize);
    for(int i = 0; i < this->get_size(); i++)
    {
-      attr_array attra(get_app());
+      attr_array attra(this->get_app());
       attra.add("array_index", i);
       xmlif.import_node(xmlif.get_node_name(m_iNodeNameIndex), attra, this->element_at(i));
    }

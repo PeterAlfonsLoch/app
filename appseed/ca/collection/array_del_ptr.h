@@ -4,6 +4,9 @@
 #undef new
 
 
+#include "ca/gen/gen_composite.h"
+
+
 template <class TYPE, class ARG_TYPE = const TYPE &, class BASE_PTRA = comparable_array < TYPE * > >
 class array_del_ptr :
    virtual public array_ptr < TYPE, ARG_TYPE, BASE_PTRA >

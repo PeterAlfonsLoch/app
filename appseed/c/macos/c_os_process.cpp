@@ -60,33 +60,67 @@ int create_process(const char * _cmd_line, int * pprocessId)
    return 1;
 }
 
-void call_sync(const char * path, const char * param)
+CLASS_DECL_c int call_async(
+                            const char * pszPath, 
+                            const char * pszParam, 
+                            const char * pszDir,
+                            int iShow)
 {
-
-   vsstring strCmdLine;
-
-   strCmdLine = path;
-   if(strlen_dup(param) > 0)
-   {
-      strCmdLine +=  " ";
-      strCmdLine += param;
-   }
-
-   int processId;
-
-   if(!create_process(strCmdLine, &processId))
-      return;
-
-
-   while(true)
-   {
-
-      if(kill(processId, 0) == -1 && errno == ESRCH) // No process can be found corresponding to processId
-         break;
-      sleep(1);
-   }
-
+    vsstring strCmdLine;
+    
+    strCmdLine = pszPath;
+    if(strlen_dup(pszParam) > 0)
+    {
+        strCmdLine +=  " ";
+        strCmdLine += pszParam;
+    }
+    
+    int processId;
+    
+    if(!create_process(strCmdLine, &processId))
+        return -1;
+    
+    return 0;
+    
 }
+
+CLASS_DECL_c DWORD call_sync(
+                             const char * pszPath, 
+                             const char * pszParam, 
+                             const char * pszDir,
+                             int iShow,
+                             int iRetry, 
+                             int iSleep, 
+                             int (* pfnOnRetry)(int iTry, DWORD_PTR dwParam),
+                             DWORD_PTR dwParam)
+{
+    vsstring strCmdLine;
+    
+    strCmdLine = pszPath;
+    if(strlen_dup(pszParam) > 0)
+    {
+        strCmdLine +=  " ";
+        strCmdLine += pszParam;
+    }
+    
+    int processId;
+    
+    if(!create_process(strCmdLine, &processId))
+        return -1;
+    
+    
+    while(true)
+    {
+        
+        if(kill(processId, 0) == -1 && errno == ESRCH) // No process can be found corresponding to processId
+            break;
+        sleep(1);
+    }
+    
+    return 0;
+}
+
+
 
 
 

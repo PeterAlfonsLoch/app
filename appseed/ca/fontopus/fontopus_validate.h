@@ -66,7 +66,7 @@ namespace fontopus
       login_thread(::ca::application * papp);
       virtual ~login_thread();
 
-      virtual BOOL run();
+      virtual int run();
       virtual string Login(ca4::http::e_status * pestatus);
       virtual string NetLogin(ca4::http::e_status * pestatus);
       void execute();
