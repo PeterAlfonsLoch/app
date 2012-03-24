@@ -10,7 +10,7 @@
 
 #elif defined(LINUX)
 
-#include "linux/c_os.h"
+#include "c/linux/c_os.h"
 
 #else
 

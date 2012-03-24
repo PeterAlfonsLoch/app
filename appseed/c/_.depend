@@ -8,7 +8,7 @@
 	"linux/c_os_internal.h"
 	"windows/c_os_internal.h"
 
-1330322111 /cecyn1/app/appseed/c/c.h
+1331884403 /cecyn1/app/appseed/c/c.h
 	"radix.h"
 	"version.h"
 	"types.h"
@@ -37,6 +37,7 @@
 	"template.h"
 	"simple_array.h"
 	"simple_map.h"
+	"simple_list.h"
 	"stra.h"
 	"xmlite.h"
 	"file.h"
@@ -50,9 +51,7 @@
 	"hotplugin/hotplugin.h"
 	"spa/spa.h"
 	"bsdiff/bsdiff.h"
-	"macos/c_os.h"
-	"linux/c_os.h"
-	"windows/c_os.h"
+	"os/os.h"
 	"message_loop.h"
 
 1324572527 /cecyn1/app/appseed/c/radix.h
@@ -189,9 +188,9 @@
 
 1324572527 /cecyn1/app/appseed/c/_c_math.h
 
-1330322111 /cecyn1/app/appseed/c/verisimple_string.h
+1331884403 /cecyn1/app/appseed/c/verisimple_string.h
 
-1330322111 /cecyn1/app/appseed/c/verisimple_wstring.h
+1331884403 /cecyn1/app/appseed/c/verisimple_wstring.h
 
 1324572527 /cecyn1/app/appseed/c/vsstringtow.h
 
@@ -343,10 +342,10 @@
 
 1324572527 /cecyn1/app/appseed/c/linux/c_os_binreloc.h
 
-1330322106 /cecyn1/app/appseed/c/windows/c_os.h
+1331884399 /cecyn1/app/appseed/c/windows/c_os.h
+	"c/os/os.h"
 	"c_os_http.h"
 	"c_os_registry.h"
-	"c_os_process.h"
 
 1324572527 /cecyn1/app/appseed/c/windows/c_os_http.h
 
@@ -616,7 +615,7 @@
 	"c/linux/c_os_cross_win_gdi_internal.h"
 	<math.h>
 
-1328375627 source:/cecyn1/app/appseed/c/spa/spa_cube_run.cpp
+1331884398 source:/cecyn1/app/appseed/c/spa/spa_cube_run.cpp
 	"StdAfx.h"
 
 1324572527 source:/cecyn1/app/appseed/c/spa/spa_focus.cpp
@@ -628,7 +627,7 @@
 1329518077 source:/cecyn1/app/appseed/c/spa/spa_install_ca2.cpp
 	"StdAfx.h"
 
-1331381174 source:/cecyn1/app/appseed/c/spa/spa_installer.cpp
+1331884398 source:/cecyn1/app/appseed/c/spa/spa_installer.cpp
 	"StdAfx.h"
 	<WinInet.h>
 	<Winternl.h>
@@ -671,7 +670,7 @@
 1324572527 source:/cecyn1/app/appseed/c/sprintf.cpp
 	"StdAfx.h"
 
-1331391230 source:/cecyn1/app/appseed/c/str.cpp
+1331884403 source:/cecyn1/app/appseed/c/str.cpp
 	"StdAfx.h"
 	"ca/x/x_defines.h"
 	"ca/x/x_tables.h"
@@ -712,7 +711,7 @@
 1330322111 source:/cecyn1/app/appseed/c/verisimple_string.cpp
 	"StdAfx.h"
 
-1330322111 source:/cecyn1/app/appseed/c/verisimple_wstring.cpp
+1331884403 source:/cecyn1/app/appseed/c/verisimple_wstring.cpp
 	"StdAfx.h"
 
 1330322111 source:/cecyn1/app/appseed/c/vsstringtow.cpp
@@ -725,4 +724,17 @@
 	"StdAfx.h"
 
 1331390922 /cecyn1/nodeapp/operational_system/cross/win/win_crt.h
+
+1331884403 /cecyn1/app/appseed/c/simple_list.h
+
+1331891091 /cecyn1/app/appseed/c/os/os.h
+	"os_process.h"
+	"macos/c_os.h"
+	"c/linux/c_os.h"
+	"windows/c_os.h"
+
+1331884403 /cecyn1/app/appseed/c/os/os_process.h
+
+1331884403 source:/cecyn1/app/appseed/c/os/os_process.cpp
+	"StdAfx.h"
 

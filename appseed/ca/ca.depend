@@ -58,14 +58,14 @@
 	"native_fs.h"
 	"fs_application.h"
 
-1327052729 /cecyn1/app/appseed/ca/user/user.h
+1331884493 /cecyn1/app/appseed/ca/user/user.h
 	"ca/visual/visual.h"
+	"user_document_interface.h"
+	"user_document.h"
 	"user_view.h"
 	"user_control.h"
 	"user_place_holder.h"
 	"user_place_holder_container.h"
-	"user_document_interface.h"
-	"user_document.h"
 	"user_frame_window_interface.h"
 	"user_frame_window.h"
 	"user_window_util.h"
@@ -248,12 +248,11 @@
 	"ca/ca2/ca2.h"
 	"geoip/geoip.h"
 
-1324572530 /cecyn1/app/appseed/ca/ca2/ca2.h
+1331884406 /cecyn1/app/appseed/ca/ca2/ca2.h
 	"ex2/ex2.h"
 	"ca2_xml.h"
 	"xml/xml.h"
-	"template/trace.h"
-	"radix/language_string.h"
+	"ca/template/template_trace.h"
 	"ca/ca_file_application.h"
 	"ca/ca_file_system.h"
 	"ca/ca_dir_application.h"
@@ -268,12 +267,13 @@
 	"ca/ca_osi.h"
 	"gen/gen_process.h"
 	"ca2_log.h"
-	"colorertake5/cregexp.h"
-	"radix/creutil.h"
-	"radix/datetime_value.h"
+	"gen/gen_cregexp.h"
+	"gen/gen_cregexp_util.h"
+	"ca/primitive/datetime/datetime_value.h"
 	"ca2_datetime.h"
 	"ca2_net.h"
 	"ca2_library.h"
+	"ca2_xml_data.h"
 	"ca2_application.h"
 
 1324572529 /cecyn1/app/appseed/ca/ex2/ex2.h
@@ -283,7 +283,7 @@
 	"ex2_transfer_file.h"
 	"ex2_application.h"
 
-1330322273 /cecyn1/app/appseed/ca/gen/gen.h
+1331884410 /cecyn1/app/appseed/ca/gen/gen.h
 	"ex1/ex1.h"
 	"gen_debug.h"
 	"math/math_math.h"
@@ -293,8 +293,7 @@
 	"muldiv32.h"
 	"simple_thread.h"
 	"go_thread.h"
-	"radix/keep_ptr.h"
-	"radix/sensitive_ptr.h"
+	"gen_scoped_ptr.h"
 	"gen_logic.h"
 	"gen_parse.h"
 	"collection/Base2DArray.h"
@@ -326,7 +325,7 @@
 	"gen_byte_stream_memory_file.h"
 	"gen_file_association.h"
 	"gen_signal_thread.h"
-	"gen_international_locale_style.h"
+	"gen_international_locale_schema.h"
 	"gen_timer.h"
 	"gen_application.h"
 	"gen_istring.h"
@@ -366,11 +365,10 @@
 	"ex1_simple_tree_item_data.h"
 	"ex1_simple_tree_data.h"
 
-1330322273 /cecyn1/app/appseed/ca/gen/gen_1.h
+1331884410 /cecyn1/app/appseed/ca/gen/gen_1.h
 	"ex1/ex1_1.h"
 	"primitive/shared_file.h"
 	<malloc.h>
-	"radix/conversion.h"
 	"gen_2.h"
 
 1324572529 /cecyn1/app/appseed/ca/ex1/ex1_1.h
@@ -406,20 +404,19 @@
 	"ex1_plain_text_string_stream.h"
 	"ex1_file_stream.h"
 
-1330322258 /cecyn1/app/appseed/ca/radix/radix_5.h
+1331884448 /cecyn1/app/appseed/ca/radix/radix_5.h
 	"radix_2.h"
-	"template/base.h"
-	"constraint.h"
+	"ca/template/template_base.h"
+	"radix_constraint.h"
 	<shellapi.h>
 	"collection/collection.h"
-	"simple_list.h"
 	<uxtheme.h>
 	<vssym32.h>
 	"ca/ca_3_graphics.h"
 	"gen/gen_signal.h"
 	"visual/visual_00.h"
-	"command.h"
-	"command_target.h"
+	"radix_command.h"
+	"radix_command_target.h"
 	"visual/visual_01.h"
 	"ca/ca_2.h"
 	"radix_os_history.h"
@@ -430,15 +427,13 @@
 	"radix_fixed_alloc.h"
 	"process_data.h"
 	"ca/ca_system.h"
-	"implementation.h"
 
-1324572531 /cecyn1/app/appseed/ca/radix/radix_2.h
+1331884448 /cecyn1/app/appseed/ca/radix/radix_2.h
 	"radix_1.h"
 	"user/user_str.h"
-	"inline.h"
 	"c/vms/vms_2.h"
 
-1330322258 /cecyn1/app/appseed/ca/radix/radix_1.h
+1331884448 /cecyn1/app/appseed/ca/radix/radix_1.h
 	"radix/radix.h"
 	<new.h>
 	<stdio.h>
@@ -450,10 +445,6 @@
 	<errno.h>
 	<malloc/malloc.h>
 	<malloc.h>
-	"composite.h"
-	"comparable.h"
-	"gen/gen_ptri.h"
-	"gen/gen_object.h"
 	"template/template_c_number.h"
 	"multithreading/multithreading_sync_object_base.h"
 	"ca/primitive/primitive.h"
@@ -461,21 +452,22 @@
 	"exception/exception.h"
 	"primitive/primitive.h"
 	"ca/ca_smart_pointer.h"
-	"inline.h"
-	"allocate.h"
+	"radix.inl"
+	"radix_allocate.h"
 	"pointer_object.h"
 	"plex.h"
 	"collection/collection.h"
 	"template/template.h"
 	"plex_heap.h"
 	"gen/gen_holder.h"
-	"base.h"
+	"radix_base.h"
 	"ca/ca_interlocked_long.h"
 	"ca/ca_interlocked_long_pulse.h"
 	"multithreading/multithreading.h"
 	"ca/ca_data.h"
 	"ca/ca_data_container.h"
 	"ca/ca_data_listener.h"
+	"ca/ca_edit.h"
 	"ca/ca_type_info.h"
 	"radix_factory.h"
 
@@ -506,7 +498,7 @@
 	"sqlite/sqlite.h"
 	"libcharguess/libcharguess.h"
 
-1330322111 /cecyn1/app/appseed/c/c.h
+1331884403 /cecyn1/app/appseed/c/c.h
 	"radix.h"
 	"version.h"
 	"types.h"
@@ -535,6 +527,7 @@
 	"template.h"
 	"simple_array.h"
 	"simple_map.h"
+	"simple_list.h"
 	"stra.h"
 	"xmlite.h"
 	"file.h"
@@ -548,9 +541,7 @@
 	"hotplugin/hotplugin.h"
 	"spa/spa.h"
 	"bsdiff/bsdiff.h"
-	"macos/c_os.h"
-	"linux/c_os.h"
-	"windows/c_os.h"
+	"os/os.h"
 	"message_loop.h"
 
 1324572527 /cecyn1/app/appseed/c/radix.h
@@ -687,9 +678,9 @@
 
 1324572527 /cecyn1/app/appseed/c/_c_math.h
 
-1330322111 /cecyn1/app/appseed/c/verisimple_string.h
+1331884403 /cecyn1/app/appseed/c/verisimple_string.h
 
-1330322111 /cecyn1/app/appseed/c/verisimple_wstring.h
+1331884403 /cecyn1/app/appseed/c/verisimple_wstring.h
 
 1324572527 /cecyn1/app/appseed/c/vsstringtow.h
 
@@ -892,7 +883,7 @@
 
 1328375631 /cecyn1/app/appseed/ca/ca/ca_enum.h
 
-1328375631 /cecyn1/app/appseed/ca/ca/ca_ca.h
+1331884412 /cecyn1/app/appseed/ca/ca/ca_ca.h
 
 1324572532 /cecyn1/app/appseed/ca/ca/ca_live_object.h
 
@@ -974,8 +965,7 @@
 1324572531 /cecyn1/app/appseed/ca/gen/gen_ptri.h
 	"ex1/ex1_request_interface.h"
 
-1324572529 /cecyn1/app/appseed/ca/ex1/ex1_request_interface.h
-	"ca/ca_object.h"
+1331884425 /cecyn1/app/appseed/ca/ex1/ex1_request_interface.h
 
 1324572532 /cecyn1/app/appseed/ca/ca/ca_object.h
 
@@ -995,16 +985,15 @@
 	"ca/ca_exception.h"
 	"class.h"
 
-1324572532 /cecyn1/app/appseed/ca/ca/ca_exception.h
+1331884412 /cecyn1/app/appseed/ca/ca/ca_exception.h
 
-1330322169 /cecyn1/app/appseed/ca/exception/class.h
+1331884434 /cecyn1/app/appseed/ca/exception/class.h
 	"SymEngine.h"
 
-1330322169 /cecyn1/app/appseed/ca/exception/SymEngine.h
-	"ca/primitive/primitive_string.h"
+1331884434 /cecyn1/app/appseed/ca/exception/SymEngine.h
 	<imagehlp.h>
 
-1330596776 /cecyn1/app/appseed/ca/primitive/primitive_string.h
+1331884414 /cecyn1/app/appseed/ca/primitive/primitive_string.h
 	"simple_string.h"
 	"id.h"
 	"simple_string.h"
@@ -1018,10 +1007,9 @@
 	"gen/gen_str.h"
 	"gen/gen_str2.h"
 
-1330322312 /cecyn1/app/appseed/ca/primitive/simple_string.h
-	"template/definition.h"
-	"template/core.h"
-	"template/exception.h"
+1331884414 /cecyn1/app/appseed/ca/primitive/simple_string.h
+	"ca/template/template_definition.h"
+	"ca/template/template_core.h"
 	"wstringtou.h"
 
 1327783211 /cecyn1/app/appseed/ca/template/definition.h
@@ -1054,7 +1042,7 @@
 
 1324572534 /cecyn1/app/appseed/ca/primitive/wstringtou.h
 
-1331389265 /cecyn1/app/appseed/ca/primitive/id.h
+1331884414 /cecyn1/app/appseed/ca/primitive/id.h
 	"gen/gen_ch.h"
 	"gen/gen_str.h"
 
@@ -1069,7 +1057,7 @@
 
 1326579833 /cecyn1/app/appseed/ca/x/x_tables.h
 
-1330584938 /cecyn1/app/appseed/ca/gen/gen_str.h
+1331884410 /cecyn1/app/appseed/ca/gen/gen_str.h
 
 1330322312 /cecyn1/app/appseed/ca/primitive/fixed_string.h
 
@@ -1088,9 +1076,9 @@
 1330594467 /cecyn1/app/appseed/ca/gen/gen_str2.h
 	<string.h>
 
-1324572528 /cecyn1/app/appseed/ca/multithreading/multithreading_sync_object_base.h
-	"ca/gen/gen_object.h"
+1331884419 /cecyn1/app/appseed/ca/multithreading/multithreading_sync_object_base.h
 	"ca/primitive/datetime/datetime_duration.h"
+	"ex1/ex1_request_interface.h"
 
 1327052728 /cecyn1/app/appseed/ca/primitive/datetime/datetime_duration.h
 	"template/template_c_number.h"
@@ -1124,9 +1112,7 @@
 
 1324572534 /cecyn1/app/appseed/ca/primitive/check.h
 
-1327783211 /cecyn1/app/appseed/ca/template/template_time.h
-	"definition.h"
-	"primitive/primitive_string.h"
+1331884416 /cecyn1/app/appseed/ca/template/template_time.h
 
 1330322312 /cecyn1/app/appseed/ca/primitive/geometric_types.h
 	"api/muldiv64.h"
@@ -1150,7 +1136,7 @@
 1327783210 /cecyn1/app/appseed/ca/radix/radix_object.h
 	"ca/multithreading/multithreading_sync_object_base.h"
 
-1327783210 /cecyn1/app/appseed/ca/exception/exception.h
+1331884434 /cecyn1/app/appseed/ca/exception/exception.h
 	"ca/ca_exception.h"
 	"class.h"
 	"base_exception.h"
@@ -1175,6 +1161,7 @@
 	"user.h"
 	"VMSException.h"
 	"hresult_exception.h"
+	"ca/primitive/datetime/datetime_time.h"
 	"memory_state.h"
 	"dump_context.h"
 
@@ -1185,11 +1172,11 @@
 	<ucontext.h>
 	<sys/ucontext.h>
 
-1324572529 /cecyn1/app/appseed/ca/exception/se_translator.h
+1331884434 /cecyn1/app/appseed/ca/exception/se_translator.h
 	<eh.h>
 	<signal.h>
 
-1324572529 /cecyn1/app/appseed/ca/exception/error_exception.h
+1331884434 /cecyn1/app/appseed/ca/exception/error_exception.h
 
 1327783210 /cecyn1/app/appseed/ca/exception/exception_overflow_error.h
 	"error_exception.h"
@@ -1205,25 +1192,27 @@
 
 1324572529 /cecyn1/app/appseed/ca/exception/not_supported.h
 
-1324572529 /cecyn1/app/appseed/ca/exception/not_licensed.h
+1331884434 /cecyn1/app/appseed/ca/exception/not_licensed.h
 
-1324572529 /cecyn1/app/appseed/ca/exception/exception_temporary.h
+1331884434 /cecyn1/app/appseed/ca/exception/exception_temporary.h
 	"base_exception.h"
 
 1324572529 /cecyn1/app/appseed/ca/exception/exception_installing.h
 	"exception_installing.h"
 
-1324572529 /cecyn1/app/appseed/ca/exception/simple_exception.h
+1331884434 /cecyn1/app/appseed/ca/exception/simple_exception.h
+	"base_exception.h"
 
-1327052727 /cecyn1/app/appseed/ca/exception/exception_assert.h
+1331884434 /cecyn1/app/appseed/ca/exception/exception_assert.h
 
-1324572529 /cecyn1/app/appseed/ca/exception/misc.h
+1331884433 /cecyn1/app/appseed/ca/exception/misc.h
 
 1324572529 /cecyn1/app/appseed/ca/exception/memory.h
 
 1324572529 /cecyn1/app/appseed/ca/exception/invalid_argument.h
 
-1324572529 /cecyn1/app/appseed/ca/exception/resource.h
+1331884434 /cecyn1/app/appseed/ca/exception/resource.h
+	"simple_exception.h"
 
 1324572529 /cecyn1/app/appseed/ca/exception/user.h
 
@@ -1246,7 +1235,7 @@
 1328986737 /cecyn1/app/appseed/ca/template/_template.h
 	"template_hash.h"
 
-1331381277 /cecyn1/app/appseed/ca/template/template_hash.h
+1331884416 /cecyn1/app/appseed/ca/template/template_hash.h
 	"ca/primitive/rectangle.h"
 
 1324572531 /cecyn1/app/appseed/ca/radix/inline.h
@@ -1263,7 +1252,7 @@
 
 1324572531 /cecyn1/app/appseed/ca/radix/plex.h
 
-1330322154 /cecyn1/app/appseed/ca/collection/collection.h
+1331884421 /cecyn1/app/appseed/ca/collection/collection.h
 	"template/template.h"
 	"raw_array.h"
 	"primitive_array.h"
@@ -1327,15 +1316,15 @@
 
 1324572537 /cecyn1/app/appseed/ca/template/template_std_pair.h
 
-1326579831 /cecyn1/app/appseed/ca/template/template_equals.h
+1331884416 /cecyn1/app/appseed/ca/template/template_equals.h
 
 1324572537 /cecyn1/app/appseed/ca/template/template_compare.h
 
-1325272363 /cecyn1/app/appseed/ca/collection/raw_array.h
+1331884421 /cecyn1/app/appseed/ca/collection/raw_array.h
 
 1324572528 /cecyn1/app/appseed/ca/collection/primitive_array.h
 
-1330322154 /cecyn1/app/appseed/ca/collection/numeric_array.h
+1331884421 /cecyn1/app/appseed/ca/collection/numeric_array.h
 	"comparable_primitive_array.h"
 	"primitive/numeric_info.h"
 	"ex1/ex1_byte_serializable.h"
@@ -1353,7 +1342,7 @@
 
 1331381189 /cecyn1/app/appseed/ca/collection/comparable_eq_array.h
 
-1328919975 /cecyn1/app/appseed/ca/ex1/ex1_byte_serializable.h
+1331884424 /cecyn1/app/appseed/ca/ex1/ex1_byte_serializable.h
 	"ex1_byte_stream.h"
 
 1328989509 /cecyn1/app/appseed/ca/ex1/ex1_byte_stream.h
@@ -1396,9 +1385,10 @@
 
 1330322154 /cecyn1/app/appseed/ca/collection/array_del_ptr.h
 
-1330322154 /cecyn1/app/appseed/ca/collection/array_ptr_copy.h
+1331884421 /cecyn1/app/appseed/ca/collection/array_ptr_copy.h
 
-1324572528 /cecyn1/app/appseed/ca/collection/array_ptr_alloc.h
+1331884421 /cecyn1/app/appseed/ca/collection/array_ptr_alloc.h
+	"ca/gen/gen_composite.h"
 
 1324572528 /cecyn1/app/appseed/ca/collection/array_release_ptr.h
 
@@ -1436,7 +1426,7 @@
 1324572531 /cecyn1/app/appseed/ca/gen/gen_var.h
 	"primitive/var.h"
 
-1330322312 /cecyn1/app/appseed/ca/primitive/var.h
+1331884414 /cecyn1/app/appseed/ca/primitive/var.h
 	"gen/gen_base_enum.h"
 	"gen/gen_variable_strict_compare.h"
 	"gen/gen_holder.h"
@@ -1454,15 +1444,15 @@
 	"collection/raw_array.h"
 	"collection/map.h"
 
-1324572531 /cecyn1/app/appseed/ca/gen/gen_raw_pointer.h
+1331884410 /cecyn1/app/appseed/ca/gen/gen_raw_pointer.h
 
 1324572531 /cecyn1/app/appseed/ca/gen/gen_full_pointer.h
 
-1330322273 /cecyn1/app/appseed/ca/gen/gen_property.h
+1331884410 /cecyn1/app/appseed/ca/gen/gen_property.h
 	"gen/gen_signal.h"
 	"gen_var_array.h"
 
-1330322273 /cecyn1/app/appseed/ca/gen/gen_signal.h
+1331884410 /cecyn1/app/appseed/ca/gen/gen_signal.h
 	"ca/collection/array_del_ptr.h"
 	"ca/collection/array_ptr_alloc.h"
 	"gen_request_signal.h"
@@ -1470,7 +1460,7 @@
 1324572531 /cecyn1/app/appseed/ca/gen/gen_request_signal.h
 	"ca/primitive/var.h"
 
-1330584938 /cecyn1/app/appseed/ca/gen/gen_property_set.h
+1331884410 /cecyn1/app/appseed/ca/gen/gen_property_set.h
 
 1330322273 /cecyn1/app/appseed/ca/gen/gen_international2.h
 
@@ -1580,13 +1570,13 @@
 
 1324572528 /cecyn1/app/appseed/ca/multithreading/multithreading_plain_service.h
 
-1324572532 /cecyn1/app/appseed/ca/ca/ca_data.h
+1331884412 /cecyn1/app/appseed/ca/ca/ca_data.h
 
-1324572532 /cecyn1/app/appseed/ca/ca/ca_data_container.h
+1331884412 /cecyn1/app/appseed/ca/ca/ca_data_container.h
 
 1324572532 /cecyn1/app/appseed/ca/ca/ca_data_listener.h
 
-1324572532 /cecyn1/app/appseed/ca/ca/ca_type_info.h
+1331884412 /cecyn1/app/appseed/ca/ca/ca_type_info.h
 
 1330322258 /cecyn1/app/appseed/ca/radix/radix_factory.h
 	"radix_fixed_alloc.h"
@@ -1598,11 +1588,11 @@
 	"exception/exception_assert.h"
 	"collection/base_array.h"
 
-1329518109 /cecyn1/app/appseed/ca/user/user_str.h
+1331884493 /cecyn1/app/appseed/ca/user/user_str.h
 	"ca/primitive/id_space.h"
-	"gen/gen_international_locale_style.h"
+	"gen/gen_international_locale_schema.h"
 
-1330322312 /cecyn1/app/appseed/ca/primitive/id_space.h
+1331884414 /cecyn1/app/appseed/ca/primitive/id_space.h
 	"template/template.h"
 	"collection/sort_array.h"
 
@@ -1657,7 +1647,7 @@
 1324572532 /cecyn1/app/appseed/ca/ca/ca_draw_dib.h
 	<vfw.h>
 
-1326579830 /cecyn1/app/appseed/ca/ca/ca_graphics.h
+1331884412 /cecyn1/app/appseed/ca/ca/ca_graphics.h
 	"user/user_draw_context.h"
 	"ca_bitmap.h"
 	"ca_pen.h"
@@ -1679,22 +1669,21 @@
 	"command.h"
 	"ca/user/user_check_interface.h"
 
-1330594323 /cecyn1/app/appseed/ca/gen/gen_message.h
+1331884410 /cecyn1/app/appseed/ca/gen/gen_message.h
 	"radix/radix_fixed_alloc.h"
 	"gen_signal.h"
 	"ca/collection/array_del_ptr.h"
 	"ca/visual/visual_00.h"
 
-1324572537 /cecyn1/app/appseed/ca/user/user_create_context.h
+1331884493 /cecyn1/app/appseed/ca/user/user_create_context.h
 	"ca/ca_type_info.h"
 
 1330322328 /cecyn1/app/appseed/ca/user/user_check_interface.h
 	"gen/gen_flags.h"
 	"ca/primitive/check.h"
 
-1330594671 /cecyn1/app/appseed/ca/gen/gen_flags.h
+1331884410 /cecyn1/app/appseed/ca/gen/gen_flags.h
 	"ex1/ex1_byte_serializable.h"
-	"radix/DispatchPtrArray.h"
 	"collection/sort_array.h"
 
 1324572531 /cecyn1/app/appseed/ca/radix/DispatchPtrArray.h
@@ -1749,13 +1738,12 @@
 	"user_mouse_focus.h"
 	"ca/ca/ca_graphics.h"
 
-1324572537 /cecyn1/app/appseed/ca/user/user_window_interface.h
+1331884493 /cecyn1/app/appseed/ca/user/user_window_interface.h
 	"user_elemental.h"
 	"user_window_util.h"
 	"user_text_interface.h"
 	"user_check_interface.h"
 	"user_draw_interface.h"
-	"ca/radix/command_target.h"
 	"ca/collection/rect_array.h"
 	"user/user_buffer.h"
 	"user/user_window_map.h"
@@ -1870,8 +1858,8 @@
 1327783211 /cecyn1/app/appseed/ca/ca/ca_application_interface.h
 	"radix/radix_application.h"
 
-1330322258 /cecyn1/app/appseed/ca/radix/radix_application.h
-	"template/trace_module_manager.h"
+1331884448 /cecyn1/app/appseed/ca/radix/radix_application.h
+	"ca/template/template_trace_module_manager.h"
 	"user/user_str.h"
 	"user/user_draw_context.h"
 	"multithreading/multithreading.h"
@@ -1894,7 +1882,8 @@
 1330322258 /cecyn1/app/appseed/ca/radix/radix_os.h
 	"ca/windows/os.h"
 
-1330322115 /cecyn1/app/appseed/ca/windows/os.h
+1331884420 /cecyn1/app/appseed/ca/windows/os.h
+	"os_implementation.h"
 	"os_library.h"
 	"os_registry.h"
 
@@ -1912,9 +1901,9 @@
 
 1330322166 /cecyn1/app/appseed/ca/ex1/ex1_tree_item.h
 
-1324572529 /cecyn1/app/appseed/ca/ex1/ex1_tree_data.h
+1331884424 /cecyn1/app/appseed/ca/ex1/ex1_tree_data.h
 
-1325277647 /cecyn1/app/appseed/ca/ex1/ex1_tree.h
+1331884424 /cecyn1/app/appseed/ca/ex1/ex1_tree.h
 
 1324572529 /cecyn1/app/appseed/ca/ex1/ex1_fs_interface.h
 
@@ -1945,7 +1934,7 @@
 	"memory_file.h"
 	"shared_file.h"
 
-1330322312 /cecyn1/app/appseed/ca/primitive/memory_base.h
+1331884414 /cecyn1/app/appseed/ca/primitive/memory_base.h
 
 1330322312 /cecyn1/app/appseed/ca/primitive/virtual_memory.h
 
@@ -2024,7 +2013,7 @@
 
 1328375629 /cecyn1/app/appseed/ca/ex1/ex1_timeout_file.h
 
-1325272364 /cecyn1/app/appseed/ca/ex1/ex1_edit_file.h
+1331884424 /cecyn1/app/appseed/ca/ex1/ex1_edit_file.h
 
 1324572529 /cecyn1/app/appseed/ca/ex1/ex1_text_file.h
 
@@ -2100,7 +2089,7 @@
 
 1324572531 /cecyn1/app/appseed/ca/gen/gen_util1.h
 
-1328375632 /cecyn1/app/appseed/ca/primitive/int_biunique.h
+1331884414 /cecyn1/app/appseed/ca/primitive/int_biunique.h
 
 1324572531 /cecyn1/app/appseed/ca/gen/gen_memory_file.h
 
@@ -2120,31 +2109,31 @@
 
 1330322174 /cecyn1/app/appseed/ca/ex2/ex2_transfer_file.h
 
-1330322174 /cecyn1/app/appseed/ca/ex2/ex2_application.h
+1331884436 /cecyn1/app/appseed/ca/ex2/ex2_application.h
 
 1324572530 /cecyn1/app/appseed/ca/ca2/ca2_xml.h
 
-1324572532 /cecyn1/app/appseed/ca/xml/xml.h
+1331884459 /cecyn1/app/appseed/ca/xml/xml.h
 	"ca/ex2/ex2.h"
-	"enum.h"
+	"xml_enum.h"
 	"XMLite.h"
-	"entity.h"
-	"disp_option.h"
-	"parse_info.h"
-	"attr.h"
-	"node.h"
-	"document.h"
-	"exportable.h"
-	"importable.h"
-	"tree_schema.h"
-	"var_exchange.h"
-	"tree_base.h"
-	"output_tree.h"
-	"input_tree.h"
-	"property_exchange.h"
-	"base_array.h"
-	"XMLite.h"
-	"application.h"
+	"xml_entity.h"
+	"xml_disp_option.h"
+	"xml_parse_info.h"
+	"xml_attr.h"
+	"xml_node.h"
+	"xml_document.h"
+	"xml_exportable.h"
+	"xml_importable.h"
+	"xml_tree_schema.h"
+	"xml_var_exchange.h"
+	"xml_tree_base.h"
+	"xml_output_tree.h"
+	"xml_input_tree.h"
+	"xml_property_exchange.h"
+	"xml_base_array.h"
+	"xml_edit.h"
+	"xml_application.h"
 
 1324572532 /cecyn1/app/appseed/ca/xml/enum.h
 
@@ -2195,9 +2184,9 @@
 
 1330322280 /cecyn1/app/appseed/ca/ca/ca_file_system.h
 
-1325272367 /cecyn1/app/appseed/ca/ca/ca_dir_application.h
+1331884412 /cecyn1/app/appseed/ca/ca/ca_dir_application.h
 
-1330584938 /cecyn1/app/appseed/ca/ca/ca_dir_system.h
+1331884412 /cecyn1/app/appseed/ca/ca/ca_dir_system.h
 
 1324572530 /cecyn1/app/appseed/ca/ca2/ca2_stra.h
 
@@ -2218,8 +2207,7 @@
 
 1326579829 /cecyn1/app/appseed/ca/ca2/ca2_log.h
 
-1330322297 /cecyn1/app/appseed/ca/colorertake5/cregexp.h
-	"memory_operator.h"
+1331884457 /cecyn1/app/appseed/ca/colorertake5/cregexp.h
 
 1324572532 /cecyn1/app/appseed/ca/colorertake5/memory_operator.h
 
@@ -2239,14 +2227,14 @@
 
 1324572530 /cecyn1/app/appseed/ca/ca2/ca2_library.h
 
-1329518099 /cecyn1/app/appseed/ca/ca2/ca2_application.h
+1331884406 /cecyn1/app/appseed/ca/ca2/ca2_application.h
 	"ca2_html.h"
 	"ca2_process.h"
 	"ca/ca_font.h"
 
 1324572530 /cecyn1/app/appseed/ca/ca2/ca2_html.h
 
-1324572530 /cecyn1/app/appseed/ca/ca2/ca2_process.h
+1331884406 /cecyn1/app/appseed/ca/ca2/ca2_process.h
 
 1328986725 /cecyn1/app/appseed/ca/geoip/geoip.h
 	"global.h"
@@ -2284,7 +2272,7 @@
 
 1324572534 /cecyn1/app/appseed/ca/primitive/datetime/datetime_clock_interface.h
 
-1324572534 /cecyn1/app/appseed/ca/primitive/datetime/datetime_calendar.h
+1331884413 /cecyn1/app/appseed/ca/primitive/datetime/datetime_calendar.h
 
 1324572534 /cecyn1/app/appseed/ca/primitive/datetime/datetime_clock.h
 
@@ -2317,7 +2305,7 @@
 
 1324572532 /cecyn1/app/appseed/ca/colorertake5/hrc_parser.h
 
-1330322297 /cecyn1/app/appseed/ca/colorertake5/hrc_parser_helpers.h
+1331884457 /cecyn1/app/appseed/ca/colorertake5/hrc_parser_helpers.h
 	"memory_operator.h"
 	"memory_operator.h"
 	"memory_operator.h"
@@ -2327,7 +2315,7 @@
 
 1330322297 /cecyn1/app/appseed/ca/colorertake5/text_parser_helpers.h
 
-1330322297 /cecyn1/app/appseed/ca/colorertake5/text_parser_impl.h
+1331884457 /cecyn1/app/appseed/ca/colorertake5/text_parser_impl.h
 
 1330322297 /cecyn1/app/appseed/ca/colorertake5/text_lines.h
 
@@ -2896,7 +2884,7 @@
 
 1324572537 /cecyn1/app/appseed/ca/sockets/config.h
 
-1324572537 /cecyn1/app/appseed/ca/sockets/internal/SSLInitializer.h
+1331884473 /cecyn1/app/appseed/ca/sockets/internal/SSLInitializer.h
 
 1324572537 /cecyn1/app/appseed/ca/sockets/exception.h
 
@@ -3068,7 +3056,7 @@
 
 1328375630 /cecyn1/app/appseed/ca/ca4/ca4_application.h
 
-1330322209 /cecyn1/app/appseed/ca/database/database_definition.h
+1331884444 /cecyn1/app/appseed/ca/database/database_definition.h
 	"database_stringhelper.h"
 
 1324572530 /cecyn1/app/appseed/ca/database/database_stringhelper.h
@@ -3090,11 +3078,11 @@
 
 1330322187 /cecyn1/app/appseed/ca/simpledb/simpledb_set.h
 
-1324572530 /cecyn1/app/appseed/ca/simpledb/simpledb_base.h
+1331884440 /cecyn1/app/appseed/ca/simpledb/simpledb_base.h
 
 1324572530 /cecyn1/app/appseed/ca/simpledb/simpledb_record.h
 
-1324572530 /cecyn1/app/appseed/ca/simpledb/simpledb_table.h
+1331884441 /cecyn1/app/appseed/ca/simpledb/simpledb_table.h
 
 1324572530 /cecyn1/app/appseed/ca/simpledb/simpledb_socket.h
 
@@ -3135,13 +3123,13 @@
 
 1330322187 /cecyn1/app/appseed/ca/simpledb/mysql_database.h
 
-1329518096 /cecyn1/app/appseed/ca/simpledb/application.h
+1331884441 /cecyn1/app/appseed/ca/simpledb/application.h
 
 1324572533 /cecyn1/app/appseed/ca/userpresence/userpresence_user_presence.h
 
 1324572533 /cecyn1/app/appseed/ca/userpresence/userpresence_user_presence_central.h
 
-1324572533 /cecyn1/app/appseed/ca/userpresence/userpresence_user_presence_central_container.h
+1331884460 /cecyn1/app/appseed/ca/userpresence/userpresence_user_presence_central_container.h
 
 1328375631 /cecyn1/app/appseed/ca/userpresence/userpresence_application.h
 
@@ -3183,7 +3171,7 @@
 
 1328375630 /cecyn1/app/appseed/ca/visual/visual_application.h
 
-1324572537 /cecyn1/app/appseed/ca/user/user_view.h
+1331884493 /cecyn1/app/appseed/ca/user/user_view.h
 
 1330322328 /cecyn1/app/appseed/ca/user/user_control.h
 
@@ -3191,13 +3179,13 @@
 
 1324572537 /cecyn1/app/appseed/ca/user/user_place_holder_container.h
 
-1324572537 /cecyn1/app/appseed/ca/user/user_document_interface.h
+1331884493 /cecyn1/app/appseed/ca/user/user_document_interface.h
 
-1324572537 /cecyn1/app/appseed/ca/user/user_document.h
+1331884493 /cecyn1/app/appseed/ca/user/user_document.h
 
 1324572537 /cecyn1/app/appseed/ca/user/user_frame_window_interface.h
 
-1326579831 /cecyn1/app/appseed/ca/user/user_frame_window.h
+1331884493 /cecyn1/app/appseed/ca/user/user_frame_window.h
 
 1324572537 /cecyn1/app/appseed/ca/user/user_wait_message_dialog.h
 
@@ -3216,14 +3204,14 @@
 
 1324572537 /cecyn1/app/appseed/ca/user/user_document_template_interface.h
 
-1324572537 /cecyn1/app/appseed/ca/user/user_document_template.h
+1331884493 /cecyn1/app/appseed/ca/user/user_document_template.h
 	"user_document_request_interface.h"
 
-1324572537 /cecyn1/app/appseed/ca/user/user_document_request_interface.h
+1331884493 /cecyn1/app/appseed/ca/user/user_document_request_interface.h
 
-1324572537 /cecyn1/app/appseed/ca/user/user_single_document_template.h
+1331884493 /cecyn1/app/appseed/ca/user/user_single_document_template.h
 
-1324572537 /cecyn1/app/appseed/ca/user/user_multiple_document_template.h
+1331884493 /cecyn1/app/appseed/ca/user/user_multiple_document_template.h
 
 1330322328 /cecyn1/app/appseed/ca/user/user_document_manager.h
 
@@ -3233,9 +3221,9 @@
 
 1324572537 /cecyn1/app/appseed/ca/user/user_form_callback.h
 
-1324572537 /cecyn1/app/appseed/ca/user/user_view_container.h
+1331884493 /cecyn1/app/appseed/ca/user/user_view_container.h
 
-1330322328 /cecyn1/app/appseed/ca/user/user_view_creator.h
+1331884493 /cecyn1/app/appseed/ca/user/user_view_creator.h
 
 1324572537 /cecyn1/app/appseed/ca/user/user_job.h
 
@@ -3247,7 +3235,7 @@
 
 1324572531 /cecyn1/app/appseed/ca/fs/fs_data.h
 
-1324572531 /cecyn1/app/appseed/ca/fs/fs_set.h
+1331884449 /cecyn1/app/appseed/ca/fs/fs_set.h
 
 1324572531 /cecyn1/app/appseed/ca/fs/ifs_file.h
 
@@ -3273,9 +3261,9 @@
 
 1324572537 /cecyn1/app/appseed/ca/fontopus/fontopus_validate.h
 
-1324572537 /cecyn1/app/appseed/ca/fontopus/fontopus_application.h
+1331884480 /cecyn1/app/appseed/ca/fontopus/fontopus_application.h
 
-1329518090 /cecyn1/app/appseed/ca/planebase/planebase_application.h
+1331884419 /cecyn1/app/appseed/ca/planebase/planebase_application.h
 
 1324572533 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source.h
 	"dynamic_source_script.h"
@@ -3298,12 +3286,12 @@
 
 1330322307 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_compiler.h
 
-1331381246 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_interface.h
-	"ca/radix/html_file.h"
+1331884465 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_interface.h
+	"ca/ca2/ca2_html_file.h"
 
 1324572531 /cecyn1/app/appseed/ca/radix/html_file.h
 
-1331381246 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_composite.h
+1331884465 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_composite.h
 
 1324572533 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_library.h
 
@@ -3313,11 +3301,11 @@
 
 1324572533 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_object.h
 
-1331381246 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_impl.h
+1331884465 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_impl.h
 
 1324572533 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_instance.h
 
-1331381247 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_manager.h
+1331884465 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_manager.h
 
 1328375631 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_profiler.h
 
@@ -3351,7 +3339,7 @@
 
 1324572534 /cecyn1/app/appseed/ca/webserver/webserver_cynce_database.h
 
-1331381250 /cecyn1/app/appseed/ca/webserver/webserver_alpha_select_performer.h
+1331884468 /cecyn1/app/appseed/ca/webserver/webserver_alpha_select_performer.h
 
 1324572534 /cecyn1/app/appseed/ca/webserver/webserver_note.h
 
@@ -3427,13 +3415,13 @@
 
 1324572534 /cecyn1/app/appseed/ca/webserver/webserver_music_music.h
 
-1328375632 /cecyn1/app/appseed/ca/webserver/webserver_persistent_ui.h
+1331884468 /cecyn1/app/appseed/ca/webserver/webserver_persistent_ui.h
 
 1324572534 /cecyn1/app/appseed/ca/webserver/webserver_secure.h
 
 1324572534 /cecyn1/app/appseed/ca/webserver/webserver_simage.h
 
-1324572534 /cecyn1/app/appseed/ca/webserver/webserver_spider.h
+1331884468 /cecyn1/app/appseed/ca/webserver/webserver_spider.h
 
 1324572534 /cecyn1/app/appseed/ca/webserver/webserver_fun.h
 	"webserver_fun_user.h"
@@ -3458,16 +3446,16 @@
 
 1324572529 /cecyn1/app/appseed/ca/plane/plane_library.h
 
-1328375629 /cecyn1/app/appseed/ca/plane/plane_application.h
+1331884405 /cecyn1/app/appseed/ca/plane/plane_application.h
 
 1330322183 /cecyn1/app/appseed/ca/plane/plane_session.h
 
-1330322183 /cecyn1/app/appseed/ca/plane/plane_system.h
+1331884405 /cecyn1/app/appseed/ca/plane/plane_system.h
 	"ca/collection/gen_lemon_array.h"
 
 1330322149 /cecyn1/app/appseed/ca/collection/gen_lemon_array.h
 
-1331389317 /cecyn1/app/appseed/ca/plane/plane_system_gen_str.h
+1331884405 /cecyn1/app/appseed/ca/plane/plane_system_gen_str.h
 
 1326579829 /cecyn1/app/appseed/ca/plane/plane_system_template_trace.h
 
@@ -3676,4 +3664,125 @@
 
 1326579829 source:/cecyn1/app/appseed/ca/ca2/ca2_log.cpp
 	"StdAfx.h"
+
+1331398622 source:/cecyn1/app/appseed/ca/ca2/ca2_net.cpp
+	"StdAfx.h"
+	<ctype.h>
+	<sys/socket.h>
+	<netdb.h>
+
+1331884403 /cecyn1/app/appseed/c/simple_list.h
+
+1331891091 /cecyn1/app/appseed/c/os/os.h
+	"os_process.h"
+	"macos/c_os.h"
+	"c/linux/c_os.h"
+	"windows/c_os.h"
+
+1331884403 /cecyn1/app/appseed/c/os/os_process.h
+
+1331884416 /cecyn1/app/appseed/ca/template/template_definition.h
+	"resource.h"
+
+1331884416 /cecyn1/app/appseed/ca/template/template_core.h
+	"ca/template/template_definition.h"
+	"ca/template/template_checked.h"
+
+1331884416 /cecyn1/app/appseed/ca/template/template_checked.h
+	"ca/template/template_definition.h"
+	"ca/template/template_exception.h"
+	<stdlib.h>
+
+1331884416 /cecyn1/app/appseed/ca/template/template_exception.h
+	"ca/template/template_definition.h"
+	"exception/exception_0.h"
+
+1331884413 /cecyn1/app/appseed/ca/primitive/datetime/datetime_time.h
+	"ca/template/template_definition.h"
+	"ca/primitive/primitive_string.h"
+
+1331884448 /cecyn1/app/appseed/ca/radix/radix_allocate.h
+	"radix_heap.h"
+
+1331884448 /cecyn1/app/appseed/ca/radix/radix_heap.h
+
+1331884410 /cecyn1/app/appseed/ca/gen/gen_composite.h
+
+1331884448 /cecyn1/app/appseed/ca/radix/radix_base.h
+
+1331884412 /cecyn1/app/appseed/ca/ca/ca_edit.h
+
+1331884410 /cecyn1/app/appseed/ca/gen/gen_international_locale_schema.h
+
+1331884416 /cecyn1/app/appseed/ca/template/template_base.h
+	"ca/template/template_definition.h"
+	"ca/template/template_core.h"
+	"ca/template/template_exception.h"
+
+1331884448 /cecyn1/app/appseed/ca/radix/radix_constraint.h
+
+1331884448 /cecyn1/app/appseed/ca/radix/radix_command.h
+
+1331884448 /cecyn1/app/appseed/ca/radix/radix_command_target.h
+	"ca/gen/gen_message.h"
+	"ca/user/user_create_context.h"
+	"ca/user/user_check_interface.h"
+
+1331884416 /cecyn1/app/appseed/ca/template/template_trace_module_manager.h
+
+1331884410 /cecyn1/app/appseed/ca/gen/gen_scoped_ptr.h
+
+1331884459 /cecyn1/app/appseed/ca/xml/xml_enum.h
+
+1331884459 /cecyn1/app/appseed/ca/xml/xml_entity.h
+
+1331884459 /cecyn1/app/appseed/ca/xml/xml_disp_option.h
+
+1331884459 /cecyn1/app/appseed/ca/xml/xml_parse_info.h
+
+1331884459 /cecyn1/app/appseed/ca/xml/xml_attr.h
+
+1331884459 /cecyn1/app/appseed/ca/xml/xml_node.h
+
+1331884459 /cecyn1/app/appseed/ca/xml/xml_document.h
+
+1331884460 /cecyn1/app/appseed/ca/xml/xml_exportable.h
+
+1331884459 /cecyn1/app/appseed/ca/xml/xml_importable.h
+
+1331884459 /cecyn1/app/appseed/ca/xml/xml_tree_schema.h
+
+1331884459 /cecyn1/app/appseed/ca/xml/xml_var_exchange.h
+
+1331884459 /cecyn1/app/appseed/ca/xml/xml_tree_base.h
+
+1331884459 /cecyn1/app/appseed/ca/xml/xml_output_tree.h
+
+1331884459 /cecyn1/app/appseed/ca/xml/xml_input_tree.h
+
+1331884459 /cecyn1/app/appseed/ca/xml/xml_property_exchange.h
+
+1331884460 /cecyn1/app/appseed/ca/xml/xml_base_array.h
+
+1331884459 /cecyn1/app/appseed/ca/xml/xml_edit.h
+
+1331884459 /cecyn1/app/appseed/ca/xml/xml_application.h
+
+1331884416 /cecyn1/app/appseed/ca/template/template_trace.h
+	"ca/template/template_definition.h"
+	"ca/template/template_debug.h"
+	"ca/ca_log.h"
+
+1331884416 /cecyn1/app/appseed/ca/template/template_debug.h
+
+1331884410 /cecyn1/app/appseed/ca/gen/gen_cregexp.h
+	"memory_operator.h"
+
+1331884410 /cecyn1/app/appseed/ca/gen/gen_cregexp_util.h
+
+1331884413 /cecyn1/app/appseed/ca/primitive/datetime/datetime_value.h
+
+1331884406 /cecyn1/app/appseed/ca/ca2/ca2_xml_data.h
+
+1331884406 /cecyn1/app/appseed/ca/ca2/ca2_html_file.h
 
