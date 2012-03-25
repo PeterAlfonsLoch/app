@@ -629,6 +629,13 @@ namespace gen
          m_bTranslated = false;
       }
 
+      void mouse_wheel::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      {
+         base::set(pwnd, uiMessage, wparam, lparam, lresult);
+         m_nFlags    = wparam;
+         m_pt        = point(lparam);
+         m_bTranslated = true;
+      }
 
       ::user::interaction * mouse_activate::GetDesktopWindow()
       {

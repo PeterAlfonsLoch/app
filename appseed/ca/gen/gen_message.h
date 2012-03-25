@@ -376,6 +376,8 @@ namespace gen
             UINT     GetFlags();
             short    GetDelta();
             point    GetPoint();
+
+            virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
 
 

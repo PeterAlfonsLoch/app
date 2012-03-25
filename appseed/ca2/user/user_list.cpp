@@ -4647,6 +4647,15 @@ namespace user
 
       scroll_view::_001OnUpdateScrollPosition();
 
+      m_iTopIndex = _001CalcDisplayTopIndex();
+      index iLow = 0;
+      for(m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
+      {
+         if(m_iTopIndex >= iLow && m_iTopIndex < (iLow + _001GetGroupItemCount(m_iTopGroup)))
+            break;
+      }
+      m_nDisplayCount = _001CalcDisplayItemCount();
+
       HeaderCtrlLayout();
 
       CacheHint();
@@ -4862,18 +4871,6 @@ namespace user
 
       pobj->previous();
 
-      m_iTopIndex = _001CalcDisplayTopIndex();
-      index iLow = 0;
-      for(m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
-      {
-         if(m_iTopIndex >= iLow && m_iTopIndex < (iLow + _001GetGroupItemCount(m_iTopGroup)))
-            break;
-      }
-      m_nDisplayCount = _001CalcDisplayItemCount();
-
-      HeaderCtrlLayout();
-
-      CacheHint();
    }
 
    void list::_001OnHScroll(gen::signal_object * pobj)

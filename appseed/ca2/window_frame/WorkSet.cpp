@@ -159,7 +159,17 @@ namespace window_frame
 
    void WorkSet::EnableApperance(bool bEnable)
    {
-       m_pappearance->Enable(bEnable);
+      if(bEnable)
+      {
+         if(m_pappearance == NULL)
+            m_pappearance = new appearance(this);
+         m_pappearance->Enable(true);
+      }
+      else
+      {
+         if(m_pappearance != NULL)
+            m_pappearance->Enable(false);
+      }
    }
 
    void WorkSet::Enable(bool bEnable)
