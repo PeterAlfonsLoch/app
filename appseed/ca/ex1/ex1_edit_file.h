@@ -195,6 +195,7 @@ namespace ex1
 
 
       void Flush();
+      bool SaveTo(ex1::byte_output_stream & file);
       bool Save(ex1::file & file);
       bool Save_N_to_CRLF(ex1::file & file);
 

@@ -681,6 +681,8 @@ InitFailure:
       else if(gen::str::begins(strPath, "ifs://")
          ||   gen::str::begins(strPath, "uifs://"))
       {
+         if(&AppUser(this) == NULL)
+            return NULL;
          spfile(AppUser(this).m_pifs->get_file(varFile, nOpenFlags, pe));
       }
       else if(gen::str::begins_eat_ci(strPath, "matter://"))

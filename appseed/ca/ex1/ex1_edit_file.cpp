@@ -571,6 +571,20 @@ l1:
       m_ptreeitemFlush = m_ptreeitem;
    }
 
+   bool edit_file::SaveTo(ex1::byte_output_stream & ostream)
+   {
+      char buf[4096];
+      primitive::memory_size uiRead;
+      seek(0, ::ex1::seek_begin);
+      while((uiRead = read(buf, sizeof(buf))) > 0)
+      {
+         ostream.write(buf, uiRead);
+      }
+      ostream.Flush();
+      //file.close();
+      return true;
+   }
+
    bool edit_file::Save(ex1::file & file)
    {
       char buf[4096];

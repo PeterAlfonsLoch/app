@@ -145,11 +145,11 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::radix::object
                {
                   string strTitle;
                   dynamic_cast < FileManagerSaveAsView * >(get_pane_window(0))->_001GetText(strTitle);
-                  if(System.dir().name_is(strTitle, get_app()))
+                  if(System.dir().name(strTitle).has_char() && System.dir().name_is(strTitle, get_app()))
                   {
                      strPath = strTitle;
                   }
-                  else if(Application.dir().is(GetFileManager()->get_item().m_strPath))
+                  else if(GetFileManagerDoc()->get_fs_data()->is_dir(GetFileManager()->get_item().m_strPath))
                   {
                      strPath = System.dir().path(GetFileManager()->get_item().m_strPath, strTitle);
                   }
@@ -165,9 +165,9 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::radix::object
 
                bool bSave = !Application.dir().is(strPath);
 
-               if(bSave && Application.file().exists(strPath))
+               if(bSave && GetFileManagerDoc()->get_fs_data()->file_exists(strPath))
                {
-                  if(System.simple_message_box(Bergedge.get_document()->get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
+                  if(System.simple_message_box(Bergedge.get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
                   {
                      bSave = false;
                   }
