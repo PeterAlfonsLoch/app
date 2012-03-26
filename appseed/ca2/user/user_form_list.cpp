@@ -368,12 +368,23 @@ namespace user
       rect rectControl;
       rect rect;
       draw_list_item item(this);
+
+
+      return m_iControlItem >= 0 && m_iControlSubItem == pcontrol->descriptor().m_iSubItem;
+
+      //int iEditItem;
+      //int iEditSubItem;
+
+      //_001DisplayHitTest(point, iEditItem, iEditSubItem);
+
+//      item.m_iDisplayItem = DisplayToStrict(pcontrol->m_iEditItem);
+  //    item.m_iItem = pcontrol->m_iEditItem;
       item.m_iDisplayItem = DisplayToStrict(pcontrol->m_iEditItem);
-      item.m_iItem = pcontrol->m_iEditItem;
+
       item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
       item.m_iListItem = -1;
-      _001GetElementRect(&item, userbase::_list::ElementSubItem);
+      //_001GetElementRect(&item, userbase::_list::ElementSubItem);
       rectControl = item.m_rectSubItem;
       ClientToScreen(rectControl);
       rect64 rectForm;
