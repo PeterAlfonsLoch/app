@@ -73,7 +73,13 @@ namespace fs
          iFind2 = strPath.reverse_find("://", iFind);
          if(iFind >= 0 && iFind2 >= 0 && (iFind - 2) == iFind2)
          {
+            iFind2--;
+            while(iFind2 >= 0 && (isdigit(strPath[iFind2]) || isalpha(strPath[iFind2])))
+               iFind2--;
+            if(iFind2 < 0)
+               iFind2 = 0;
             iFind = iFind2;
+            
          }
          iCount--;
          if(iCount <= 0)
