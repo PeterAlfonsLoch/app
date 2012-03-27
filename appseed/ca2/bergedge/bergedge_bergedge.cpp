@@ -306,6 +306,8 @@ namespace bergedge
             strApp = pcreatecontext->m_spCommandLine->m_strApp;
          }
 
+         MessageBox(NULL, "create", strApp, MB_ICONEXCLAMATION);
+
          if(strApp.is_empty() || strApp == "bergedge")
          {
             return;
@@ -314,6 +316,8 @@ namespace bergedge
          ::ca2::application * papp = dynamic_cast < ::ca2::application * > (application_get(strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
          if(papp == NULL)
             return;
+
+         MessageBox(NULL, "appok", strApp, MB_ICONEXCLAMATION);
 
          if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
          || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
@@ -626,11 +630,13 @@ namespace bergedge
          get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL
          && (!pcreatecontext->m_spApplicationBias.is_set() || pcreatecontext->m_spApplicationBias->m_puiParent == NULL))
       {
+         MessageBox(NULL, "request3", "request3", MB_ICONEXCLAMATION);
          get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
          App(m_pappCurrent).request(pcreatecontext);
       }
       else
       {
+         MessageBox(NULL, "request4", "request4", MB_ICONEXCLAMATION);
          on_request(pcreatecontext);
       }
    }

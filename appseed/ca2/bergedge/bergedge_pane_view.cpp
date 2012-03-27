@@ -472,7 +472,19 @@ namespace bergedge
       Application.dir().mk(psz);
       string strDir(psz);
 
-      Application.file().put_contents(System.dir().path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
+
+      POSITION pos = System.m_mapAppLibrary.get_start_position();
+
+      string strApp;
+      string strLibrary;
+
+      while(pos != NULL)
+      {
+         System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
+         Application.file().put_contents(System.dir().path(strDir, strApp + ".ca2"), "ca2prompt\r\n"+ strApp);
+      }
+
+      //Application.file().put_contents(System.dir().path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
 /*      stringa straPath;
       stringa straRelative;
       straPath.remove_all();
