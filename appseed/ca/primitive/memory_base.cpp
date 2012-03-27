@@ -34,20 +34,20 @@ namespace primitive
          return false;
       }
 
-      if(dwNewLength <= 0)
+      if((m_iOffset + dwNewLength) <= 0)
       {
          m_iOffset = 0;
          m_cbStorage = 0;
          return true;
       }
 
-      if(dwNewLength > m_dwAllocation)
+      if((m_iOffset + dwNewLength) > m_dwAllocation)
       {
-         if(!allocate_internal(dwNewLength))
+         if(!allocate_internal(m_iOffset + dwNewLength))
             return false;
       }
 
-      if(dwNewLength > m_dwAllocation)
+      if((m_iOffset + dwNewLength) > m_dwAllocation)
          return false;
 
       m_cbStorage = dwNewLength;
