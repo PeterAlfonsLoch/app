@@ -24,6 +24,8 @@ namespace bergedge
       DWORD                      m_dwLastHover;
       bool                       m_bTimerOn;
 
+      bool                       m_bMouseOver;
+
       view *                     m_pview;
       pane_view *                m_ppaneview;
 

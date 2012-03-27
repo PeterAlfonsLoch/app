@@ -24,6 +24,8 @@ namespace bergedge
 
       m_ppaneview = NULL;
 
+      m_bMouseOver = false;
+
    }
 
    frame::~frame()
@@ -175,13 +177,23 @@ namespace bergedge
       && m_pdocument->m_pplatformdocument != NULL
       && m_pdocument->m_pplatformdocument->get_platform_frame() != NULL)
       {
-         track_mouse_hover();
          rect rectClient;
          GetClientRect(rectClient);
-         point pt = pmouse->m_pt.x;
+         point pt = pmouse->m_pt;
          ScreenToClient(&pt);
-         if(pt.x <= 0)
+         if(rectClient.contains(pt))
          {
+            get_wnd()->set_capture();
+            if(!m_bMouseOver)
+            {
+               m_bMouseOver = true;
+               m_pdocument->m_pplatformdocument->get_platform_frame()->super_dock_on_bergedge();
+            }
+         }
+         else 
+         {
+            get_wnd()->release_capture();
+            m_bMouseOver = false;
             m_pdocument->m_pplatformdocument->get_platform_frame()->super_dock_on_bergedge();
          }
       }
@@ -190,18 +202,9 @@ namespace bergedge
 
    void frame::_001OnMouseLeave(gen::signal_object * pobj)
    {
-      UNREFERENCED_PARAMETER(pobj);
+      SCAST_PTR(gen::message::mouse, pmouse, pobj);
+//      m_bMouseOver = false;
 //      bergedge::application * papp = dynamic_cast < bergedge::application * > (get_app());
-      if(m_pdocument != NULL)
-      {
-         if(m_pdocument->m_pplatformdocument != NULL)
-         {
-            if(m_pdocument->m_pplatformdocument->get_platform_frame() != NULL)
-            {
-               m_pdocument->m_pplatformdocument->get_platform_frame()->super_dock_on_bergedge();
-            }
-         }
-      }
    }
 
    void frame::pre_translate_message(gen::signal_object * pobj)

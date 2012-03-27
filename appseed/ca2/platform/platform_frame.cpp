@@ -80,8 +80,10 @@ namespace platform
       {
          KillTimer(nIDEvent);
          m_bMouseLeaveTimer = false;
-         m_bHover = false;
-         ShowWindow(SW_HIDE);
+         if(!m_bHover)
+         {
+            ShowWindow(SW_HIDE);
+         }
       }
       else if(nIDEvent == 3)
       {

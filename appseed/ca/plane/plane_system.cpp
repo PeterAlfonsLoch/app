@@ -1322,6 +1322,7 @@ namespace plane
          if(!set.has_property("show_platform") || set["show_platform"] == 1)
          {
             command().add_line(" : show_platform=1");
+            m_bDoNotExitIfNoApplications = true;
          }
       }
       else
