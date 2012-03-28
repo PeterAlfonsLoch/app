@@ -203,14 +203,14 @@ namespace ca2
       {
          ::ex1::tree_item * pitem = m_sptree->get_base_item();
 
-         int iLevel = 0;
+         index iLevel = 0;
 
          while(true)
          {
             pitem = pitem->get_next(true, true, &iLevel);
             if(pitem == NULL)
                break;
-            ostream << iLevel;
+            ostream << (int) iLevel;
             ostream << (int) dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_etopictype;
             ostream << dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_strTopic;
             ostream << dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straApp;
