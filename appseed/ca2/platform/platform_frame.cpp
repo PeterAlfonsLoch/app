@@ -67,6 +67,7 @@ namespace platform
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &frame::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &frame::_001OnMouseMove);
       IGUI_WIN_MSG_LINK(WM_MOUSELEAVE, pinterface, this, &frame::_001OnMouseLeave);
+      IGUI_WIN_MSG_LINK(WM_CLOSE, pinterface, this, &frame::_001OnClose);
    }
    
    
@@ -297,4 +298,13 @@ namespace platform
       form_frame::_000OnDraw(pgraphics);
    }
 
+   void frame::_001OnClose(gen::signal_object * pobj)
+   {
+      pobj->m_bRet = true;
+      ShowWindow(SW_HIDE);
+   }
+
+
 } // namespace platform
+
+

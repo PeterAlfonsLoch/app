@@ -46,14 +46,16 @@ namespace platform
 
       void super_dock_on_bergedge();
 
+      virtual window_frame::FrameSchema * create_frame_schema();
 
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnTimer)
       DECL_GEN_SIGNAL(_001OnSize)
       DECL_GEN_SIGNAL(_001OnMouseMove)
       DECL_GEN_SIGNAL(_001OnMouseLeave)
+      DECL_GEN_SIGNAL(_001OnClose)
 
-      virtual window_frame::FrameSchema * create_frame_schema();
+      
    };
 
 

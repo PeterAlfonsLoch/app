@@ -216,9 +216,9 @@ namespace bergedge
 
             }
 
-     		   string strIcon = Application.dir().matter(System.dir().path(strId, "mainframe/icon48.png"));
+     		   string strIcon = App(Bergedge.m_pappCurrent).dir().matter("mainframe/icon48.png");
             pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
-	   	   if(Application.file().exists(strIcon))
+	   	   if(App(Bergedge.m_pappCurrent).file().exists(strIcon))
             {
                ppane->m_dib.create(papp);
                ppane->m_dib.load_from_file(strIcon);

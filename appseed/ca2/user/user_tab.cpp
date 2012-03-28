@@ -1634,7 +1634,7 @@ namespace user
             continue;
          if(vara[i].get_type() == var::type_string && vara[i].get_string() == "app:")
             continue;
-         if(stra.add_unique(vara[i]))
+         if(stra.add_unique(vara[i]) >= 0)
          {
             ensure_tab_by_id(stra.last_element());
          }

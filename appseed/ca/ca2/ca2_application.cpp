@@ -816,25 +816,32 @@ namespace ca2
          }
          try
          {
+            MSG msg;
             while(true)
             {
-               if(!is_alive())
+               // phase1: check to see if we can do idle work
+               while (!::PeekMessage(&msg, NULL, NULL, NULL, PM_NOREMOVE))
                {
-                  return false;
+                  if(!is_alive())
+                  {
+                     return false;
+                  }
+                  if(m_bReady)
+                  {
+                     if(m_iReturnCode == 0)
+                        goto ok;
+                     return false;
+                  }
+                  Sleep(84);
                }
-               if(m_bReady)
-               {
-                  if(m_iReturnCode == 0)
-                     break;
-                  return false;
-               }
-               Sleep(84);
+               pump_message();
             }
          }
          catch(...)
          {
             return false;
          }
+         ok:;
       }
 
       return true;

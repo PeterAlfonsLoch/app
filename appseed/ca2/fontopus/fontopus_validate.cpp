@@ -160,8 +160,10 @@ namespace ca2
          }
          else*/
          {
-            m_ptabview->GetTopLevelFrame()->ShowWindow(SW_SHOW);
+//            m_ptabview->GetTopLevelFrame()->ShowWindow(SW_SHOW);
          }
+  //       m_ptabview->GetTopLevelFrame()->SetActiveWindow();
+    //     ::SwitchToThisWindow(m_ptabview->GetTopLevelFrame()->get_wnd()->get_safe_handle(), FALSE);
          m_ptabview->GetTopLevelFrame()->SetWindowPos(
             ZORDER_TOP,
             rectOpen.left, rectOpen.top,
