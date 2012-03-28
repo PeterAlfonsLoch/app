@@ -77,6 +77,8 @@ namespace ex1
       tree_item * allocate_item();
       void delete_item(tree_item * pitem);
 
+      virtual void remove_all();
+
    };
 
 

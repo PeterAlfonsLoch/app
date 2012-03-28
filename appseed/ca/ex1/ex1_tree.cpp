@@ -447,6 +447,11 @@ namespace ex1
       delete pitem;
    }
 
+   void tree::remove_all()
+   {
+      delete_item(get_base_item()->m_pchild);
+   }
+
    void tree::sort(int ( * lpfnCompare )(tree_item *, tree_item *, ::ex1::tree_data *))
    {
       tree_item * pitem = get_base_item();

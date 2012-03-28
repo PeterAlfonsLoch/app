@@ -211,7 +211,7 @@ namespace bergedge
 
                string str;
                str = gen::str::itoa((INT_PTR) createcontext->m_spApplicationBias->m_puiParent);
-               MessageBox(NULL, str, str, MB_ICONEXCLAMATION);
+               //MessageBox(NULL, str, str, MB_ICONEXCLAMATION);
                Bergedge.request(createcontext);
 
             }

@@ -39,6 +39,7 @@ namespace plane
    public:
 
 
+      sp(::ca2::filehandler::handler)              m_spfilehandler;
       ::cube::cube *                  m_pcube;
       ::plane::application *          m_pcubeInterface;
 
@@ -232,7 +233,7 @@ namespace plane
 
       ::user::str                      & str();
 
-//      ::ca2::filehandler::handler      & filehandler();
+      ::ca2::filehandler::handler      & filehandler();
 
       virtual void on_delete(::ca::ca * pca);
 

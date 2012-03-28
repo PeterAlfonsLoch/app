@@ -11,7 +11,7 @@ namespace ca2
 
       document::document(::ca::application * papp) :
          ca(papp),
-         ::userbase::document(papp)
+         html_document(papp)
       {
       }
 

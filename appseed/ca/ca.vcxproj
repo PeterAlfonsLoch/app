@@ -616,6 +616,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="ca2\ca2_2.h" />
     <ClInclude Include="ca2\ca2_application.h" />
     <ClInclude Include="ca2\ca2_datetime.h" />
+    <ClInclude Include="ca2\ca2_filehandler_handler.h" />
+    <ClInclude Include="ca2\ca2_filehandler_library.h" />
+    <ClInclude Include="ca2\ca2_filehandler_menu_library.h" />
+    <ClInclude Include="ca2\ca2_filehandler_tree_data.h" />
+    <ClInclude Include="ca2\ca2_filehandler_tree_interface.h" />
+    <ClInclude Include="ca2\ca2_filehandler_tree_item.h" />
     <ClInclude Include="ca2\ca2_html.h" />
     <ClInclude Include="ca2\ca2_html_file.h" />
     <ClInclude Include="ca2\ca2_inline.h" />
@@ -1584,6 +1590,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="api\api_str.cpp" />
     <ClCompile Include="ca2\ca2_application.cpp" />
     <ClCompile Include="ca2\ca2_datetime.cpp" />
+    <ClCompile Include="ca2\ca2_filehandler_handler.cpp" />
+    <ClCompile Include="ca2\ca2_filehandler_library.cpp" />
+    <ClCompile Include="ca2\ca2_filehandler_menu_library.cpp" />
+    <ClCompile Include="ca2\ca2_filehandler_tree_data.cpp" />
+    <ClCompile Include="ca2\ca2_filehandler_tree_interface.cpp" />
+    <ClCompile Include="ca2\ca2_filehandler_tree_item.cpp" />
     <ClCompile Include="ca2\ca2_html.cpp" />
     <ClCompile Include="ca2\ca2_html_file.cpp" />
     <ClCompile Include="ca2\ca2_library.cpp" />

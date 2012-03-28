@@ -10,7 +10,7 @@ namespace ca2
 
 
       class CLASS_DECL_ca2 document:
-         virtual public ::userbase::document
+         virtual public ::html_document
       {
       public:
 

@@ -306,7 +306,7 @@ namespace bergedge
             strApp = pcreatecontext->m_spCommandLine->m_strApp;
          }
 
-         MessageBox(NULL, "create", strApp, MB_ICONEXCLAMATION);
+         //MessageBox(NULL, "create", strApp, MB_ICONEXCLAMATION);
 
          if(strApp.is_empty() || strApp == "bergedge")
          {
@@ -317,7 +317,7 @@ namespace bergedge
          if(papp == NULL)
             return;
 
-         MessageBox(NULL, "appok", strApp, MB_ICONEXCLAMATION);
+         //MessageBox(NULL, "appok", strApp, MB_ICONEXCLAMATION);
 
          if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
          || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
@@ -471,7 +471,7 @@ namespace bergedge
 
          stringa straApp;
 
-         Cube.filehandler().get_extension_app(straApp, strExtension);
+         System.filehandler().get_extension_app(straApp, strExtension);
      
 
          if(straApp.get_count() == 1)
@@ -607,37 +607,46 @@ namespace bergedge
             get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
          }
          App(m_pappCurrent).request(pcreatecontext);
-      }
-      else if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
-      {
-         if(gen::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))
+         if(pcreatecontext->m_spCommandLine->m_varQuery["document"].ca2 < ::user::document_interface > () == NULL)
          {
-            string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
-            if(gen::str::begins_eat(strCommand, "ca2prompt\r")
-            || gen::str::begins_eat(strCommand, "ca2prompt\n"))
-            {
-               strCommand.trim();
-               command().add_fork_uri(strCommand);
-            }
-            return;
+            goto alt1;
          }
-         else
-         {
-            on_request(pcreatecontext);
-         }
-      }
-      else if(pcreatecontext->m_spCommandLine->m_strApp.has_char() &&
-         get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL
-         && (!pcreatecontext->m_spApplicationBias.is_set() || pcreatecontext->m_spApplicationBias->m_puiParent == NULL))
-      {
-         MessageBox(NULL, "request3", "request3", MB_ICONEXCLAMATION);
-         get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
-         App(m_pappCurrent).request(pcreatecontext);
+
       }
       else
       {
-         MessageBox(NULL, "request4", "request4", MB_ICONEXCLAMATION);
-         on_request(pcreatecontext);
+         alt1:
+         if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
+         {
+            if(gen::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))
+            {
+               string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
+               if(gen::str::begins_eat(strCommand, "ca2prompt\r")
+               || gen::str::begins_eat(strCommand, "ca2prompt\n"))
+               {
+                  strCommand.trim();
+                  command().add_fork_uri(strCommand);
+               }
+               return;
+            }
+            else
+            {
+               on_request(pcreatecontext);
+            }
+         }
+         else if(pcreatecontext->m_spCommandLine->m_strApp.has_char() &&
+            get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL
+            && (!pcreatecontext->m_spApplicationBias.is_set() || pcreatecontext->m_spApplicationBias->m_puiParent == NULL))
+         {
+            //MessageBox(NULL, "request3", "request3", MB_ICONEXCLAMATION);
+            get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
+            App(m_pappCurrent).request(pcreatecontext);
+         }
+         else
+         {
+            //MessageBox(NULL, "request4", "request4", MB_ICONEXCLAMATION);
+            on_request(pcreatecontext);
+         }
       }
    }
 

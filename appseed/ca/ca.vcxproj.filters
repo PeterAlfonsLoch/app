@@ -3257,6 +3257,24 @@
     <ClInclude Include="plane\plane_system_gen_var.h">
       <Filter>Header Files\plane</Filter>
     </ClInclude>
+    <ClInclude Include="ca2\ca2_filehandler_handler.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_filehandler_menu_library.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_filehandler_tree_data.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_filehandler_tree_interface.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_filehandler_tree_item.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_filehandler_library.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -5486,6 +5504,24 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ca2\ca2_xml_data.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_filehandler_handler.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_filehandler_menu_library.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_filehandler_tree_data.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_filehandler_tree_interface.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_filehandler_tree_item.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_filehandler_library.cpp">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
   </ItemGroup>

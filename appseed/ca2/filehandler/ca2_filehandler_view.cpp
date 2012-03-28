@@ -41,7 +41,7 @@ namespace ca2
 
       void view::refresh()
       {
-         m_list.parse(&Cube.filehandler(), System.file().extension(m_strName));
+         m_list.parse(&System.filehandler(), System.file().extension(m_strName));
          layout();
       }
 
@@ -97,7 +97,7 @@ namespace ca2
          COLORREF cr;
          ::ca::application * papp = pview->get_app();
          bool bHover = pview->m_iHover == pitem->m_iIndex;
-         cr = bHover ? RGB(230, 255, 230) : RGB(200, 255, 200);
+         cr = bHover ? ARGB(255, 230, 255, 230) : ARGB(255, 200, 255, 200);
          if(!Sys(papp).savings().is_trying_to_save(gen::resource_processing)
          && !Sys(papp).savings().is_trying_to_save(gen::resource_display_bandwidth)
          && !Sys(papp).savings().is_trying_to_save(gen::resource_memory))
@@ -109,21 +109,21 @@ namespace ca2
          {
             pdc->FillSolidRect(m_rectItem, cr);
          }
-         cr = bHover ? RGB(150, 255, 150) : RGB(50, 255, 50);
+         cr = bHover ? ARGB(255, 150, 255, 150) : ARGB(255, 50, 255, 50);
          pdc->FillSolidRect(m_rectStatusImage, cr);
          COLORREF cr1;
          COLORREF cr2;
          if(bHover)
          {
-            cr = RGB(0, 100, 0);
-            cr1 = RGB(120, 255, 150);
-            cr2 = RGB(23, 200, 33);
+            cr = ARGB(255, 0, 100, 0);
+            cr1 = ARGB(255, 120, 255, 150);
+            cr2 = ARGB(255, 23, 200, 33);
          }
          else
          {
-            cr = RGB(40, 40, 40);
-            cr1 = RGB(100, 100, 100);
-            cr2 = RGB(10, 10, 10);
+            cr = ARGB(255, 40, 40, 40);
+            cr1 = ARGB(255, 100, 100, 100);
+            cr2 = ARGB(255, 10, 10, 10);
          }
          pdc->Draw3dRect(m_rectItem, cr1, cr2);
          cr |= 0xff000000;

@@ -208,6 +208,7 @@ namespace plane
    {
 
 
+      m_spfilehandler(new ::ca2::filehandler::handler(this));
 
 
       m_spfilesystem.create(this);
@@ -267,6 +268,8 @@ namespace plane
    bool system::find_applications_from_cache()
    {
 
+      m_spfilehandler->m_sptree->remove_all();
+
       if(directrix().m_varTopicQuery.has_property("install"))
          return true;
 
@@ -281,8 +284,16 @@ namespace plane
 
       is >> m_mapAppLibrary;
 
+      is >> *m_spfilehandler.m_p;
+
       return true;
 
+   }
+
+
+   ::ca2::filehandler::handler & system::filehandler()
+   {
+      return *m_spfilehandler;
    }
 
 
@@ -321,6 +332,8 @@ namespace plane
 
       os << m_mapAppLibrary;
 
+      os << *m_spfilehandler.m_p;
+
       return true;
 
    }
@@ -336,7 +349,7 @@ namespace plane
 
 
 
-//      m_spfilehandler->defer_add_library(library.m_pca2library);
+      m_spfilehandler->defer_add_library(library.m_pca2library);
 
       stringa stra;
       string strApp;

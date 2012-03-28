@@ -199,6 +199,64 @@ namespace ca2
 
       }
 
+      void handler::write(::ex1::byte_output_stream & ostream)
+      {
+         ::ex1::tree_item * pitem = m_sptree->get_base_item();
+
+         int iLevel = 0;
+
+         while(true)
+         {
+            pitem = pitem->get_next(true, true, &iLevel);
+            if(pitem == NULL)
+               break;
+            ostream << iLevel;
+            ostream << (int) dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_etopictype;
+            ostream << dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_strTopic;
+            ostream << dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straApp;
+         }
+
+         ostream << (int) -1;
+
+      }
+
+      void handler::read(::ex1::byte_input_stream & istream)
+      {
+
+         ::ex1::tree_item * pitem = m_sptree->get_base_item();
+
+         int iPreviousLevel = 0;
+         int iLevel = 0;
+
+         while(true)
+         {
+            iPreviousLevel = iLevel;
+            istream >> iLevel;
+            if(iLevel < 0)
+               break;
+            if(iLevel == iPreviousLevel)
+               pitem = m_sptree->create_item(pitem, ex1::RelativeLastSibling);
+            else if(iLevel > iPreviousLevel)
+               pitem = m_sptree->create_item(pitem, ex1::RelativeFirstChild);
+            else
+            {
+               while(iLevel < iPreviousLevel)
+               {
+                  pitem = pitem->m_pparent;
+                  iPreviousLevel--;
+               }
+               pitem = m_sptree->create_item(pitem, ex1::RelativeLastSibling);
+            }
+
+            istream >> (int &) dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_etopictype;
+            istream >> dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_strTopic;
+            istream >> dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straApp;
+         }
+
+
+      }
+
+
    
    } // namespace filehandler
 

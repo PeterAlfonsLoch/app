@@ -11,7 +11,6 @@ namespace cube
    public:
 
 
-      sp(::ca2::filehandler::handler)              m_spfilehandler;
       plane::session::run_start_installer *        m_prunstartinstaller;
       plane::session::map *                        m_pbergedgemap;
       index                                        m_iNewEdge;
@@ -42,9 +41,6 @@ namespace cube
 
       virtual void register_bergedge_application(::ca::application * papp);
       virtual void unregister_bergedge_application(::ca::application * papp);
-
- 
-      ::ca2::filehandler::handler      & filehandler();
 
  
       virtual bool base_support();

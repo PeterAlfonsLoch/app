@@ -9,8 +9,9 @@ namespace ca2
    {
 
 
-      class CLASS_DECL_ca2 handler :
-         virtual public ::radix::object
+      class CLASS_DECL_ca handler :
+         virtual public ::radix::object,
+         virtual public ::ex1::byte_serializable
       {
       public:
       
@@ -35,6 +36,8 @@ namespace ca2
          virtual void get_mime_type_app(stringa & straAppId, const char * pszMimeType);
 
 
+         void write(::ex1::byte_output_stream & ostream);
+         void read(::ex1::byte_input_stream & istream);
 
 
       };
@@ -43,6 +46,6 @@ namespace ca2
    } // namespace filehandler
 
 
-} // namespace mail
+} // namespace ca2
 
 

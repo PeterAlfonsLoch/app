@@ -51,7 +51,6 @@ namespace cube
    bool cube::initialize()
    {
 
-      m_spfilehandler(new ::ca2::filehandler::handler(this));
 
       if(!::cube8::application::initialize())
          return false;
@@ -186,10 +185,6 @@ namespace cube
    }
 
 
-   ::ca2::filehandler::handler & cube::filehandler()
-   {
-      return *m_spfilehandler;
-   }
 
    void cube::register_bergedge_application(::ca::application * papp)
    {

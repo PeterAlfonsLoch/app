@@ -25,6 +25,7 @@ namespace platform
       m_bMouseLeaveTimer   = false;
       m_bOnDraw            = false;
       m_dwLastSuperDock    = 0;
+      m_bHideTimer         = false;
 
       oprop("should_not_be_automatically_holded_on_initial_update_frame") = true;
 

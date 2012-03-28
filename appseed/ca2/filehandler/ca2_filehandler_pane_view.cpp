@@ -160,8 +160,10 @@ namespace ca2
 
                pcreatordata->m_pwnd = pview;
 
+               pcreatordata->m_pdoc = get_document();
+
                pview->m_strName = strFile;
-               pview->layout();
+               //pview->layout();
 
             }
 

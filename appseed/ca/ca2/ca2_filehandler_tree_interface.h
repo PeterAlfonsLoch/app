@@ -9,7 +9,7 @@ namespace ca2
    {
 
 
-      class CLASS_DECL_ca2 tree_interface :
+      class CLASS_DECL_ca tree_interface :
          virtual public ::ex1::tree
       {
       public:
