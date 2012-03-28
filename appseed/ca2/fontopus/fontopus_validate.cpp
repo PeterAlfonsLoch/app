@@ -148,6 +148,12 @@ namespace ca2
          {
             pframe->m_bblur_Background = true;
          }
+         INT_PTR ui1 = GetCurrentThreadId();
+         INT_PTR ui2 = m_ptabview->GetTopLevelFrame()->m_pthread->get_os_int();
+         if(::AttachThreadInput((DWORD) ui1, (DWORD) ui2, TRUE)) 
+         {
+            TRACE("AttachedThreadInput");
+         }
    /*      if(System.m_puiInitialPlaceHolderContainer != NULL)
          {
             System.m_puiInitialPlaceHolderContainer->GetTopLevelParent()->ShowWindow(SW_SHOW);
@@ -173,12 +179,6 @@ namespace ca2
          }
          else
          {
-         }
-         INT_PTR ui1 = GetCurrentThreadId();
-         INT_PTR ui2 = m_ptabview->GetTopLevelFrame()->m_pthread->get_os_int();
-         if(::AttachThreadInput((DWORD) ui1, (DWORD) ui2, TRUE)) 
-         {
-            TRACE("AttachedThreadInput");
          }
          if(m_ptabview->GetTopLevelFrame()->SetForegroundWindow())
          {

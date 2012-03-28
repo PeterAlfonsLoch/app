@@ -209,6 +209,9 @@ namespace bergedge
                createcontext->m_spApplicationBias = pbiasCreate;
                createcontext->m_spCommandLine->_001ParseCommandFork(strId);
 
+               string str;
+               str = gen::str::itoa((INT_PTR) createcontext->m_spApplicationBias->m_puiParent);
+               MessageBox(NULL, str, str, MB_ICONEXCLAMATION);
                Bergedge.request(createcontext);
 
             }
