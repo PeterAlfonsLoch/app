@@ -1,5 +1,6 @@
 ﻿#include "StdAfx.h"
 
+
 html_form::html_form(::ca::application * papp) :
    ca(papp),
    ::user::interaction(papp),
@@ -9,6 +10,9 @@ html_form::html_form(::ca::application * papp) :
    ::user::form(papp),
    ::userbase::form_view(papp)
 {
+   
+   m_sphtmldata(new html::data(papp));
+
 }
 
 html_form::~html_form()
@@ -332,12 +336,12 @@ void html_form::_001SetText(const char * psz)
 
 ::html::data * html_form::get_html_data()
 {
-   return dynamic_cast < ::html::data * > (::view::get_data < html_document> ());
+   return m_sphtmldata;
 }
 
 const ::html::data * html_form::get_html_data() const
 {
-   return dynamic_cast < ::html::data * > (((html_form * ) this)->::view::get_data < html_document > ());
+   return m_sphtmldata;
 }
 
 void html_form::_001OnKeyDown(gen::signal_object * pobj)
@@ -349,3 +353,5 @@ void html_form::_001OnKeyDown(gen::signal_object * pobj)
       return;
    }
 }
+
+
