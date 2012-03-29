@@ -173,7 +173,8 @@ void html_form::layout()
 void html_form::_001OnCreate(gen::signal_object * pobj)
 {
    SCAST_PTR(::gen::message::create, pcreate, pobj)
-   pobj->previous();
+   if(pobj->previous())
+      return;
    get_html_data()->m_pform = this;
    ASSERT(get_html_data() != NULL);
    if(get_html_data() == NULL)
