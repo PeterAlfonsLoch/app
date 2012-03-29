@@ -799,6 +799,10 @@ namespace window_frame
 
    SizeManager * WorkSet::GetSizingManager()
    {
+      if(m_psizemanager == NULL)
+      {
+         m_psizemanager = new SizeManager(this);
+      }
       return m_psizemanager;
    }
 
