@@ -244,21 +244,28 @@ namespace userbase
 
       if(pcreatordata != NULL)
       {
-         if(iTab >= 0 && pcreatordata->m_pwnd != NULL)
+         if(iTab >= 0)
          {
-            if(get_tab_holder(iTab) == NULL)
+            if(pcreatordata->m_pholder != NULL)
             {
-               get_data()->m_panea[iTab].m_pholder = hold(pcreatordata->m_pwnd);
+               get_data()->m_panea[iTab].m_pholder = pcreatordata->m_pholder;
+            }
+            else if(pcreatordata->m_pwnd != NULL)
+            {
+               if(get_tab_holder(iTab) == NULL)
+               {
+                  get_data()->m_panea[iTab].m_pholder = hold(pcreatordata->m_pwnd);
+               }
+               else
+               {
+                  get_data()->m_panea[iTab].m_pholder->m_uiptraHold.remove_all();
+                  get_data()->m_panea[iTab].m_pholder->hold(pcreatordata->m_pwnd);
+               }
             }
             else
             {
-               get_data()->m_panea[iTab].m_pholder->m_uiptraHold.remove_all();
-               get_data()->m_panea[iTab].m_pholder->hold(pcreatordata->m_pwnd);
+               get_data()->m_panea[iTab].m_pholder = get_new_place_holder();
             }
-         }
-         else
-         {
-            get_data()->m_panea[iTab].m_pholder = get_new_place_holder();
          }
          if(pcreatordata->m_strTitle.has_char())
          {
