@@ -95,7 +95,7 @@ document_template::Confidence document_template::MatchDocType(const char * lpszP
       ASSERT(FALSE);
       return NULL;
    }
-   ::user::document_interface * pdocument = dynamic_cast < document * > (Application.alloc(m_typeinfoDocument));
+   ::user::document_interface * pdocument = dynamic_cast < ::user::document_interface * > (Application.alloc(m_typeinfoDocument));
    if (pdocument == NULL)
    {
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::document_interface type %hs failed.\n",

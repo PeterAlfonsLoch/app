@@ -89,7 +89,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
    if (pdocument == NULL)
    {
       // linux System.simple_message_box(AFX_IDP_FAILED_TO_CREATE_DOC);
-      System.simple_message_box(NULL, "Failed to create ::user::document_interface");
+      System.simple_message_box(NULL, "Failed to create document");
       return;
    }
    ASSERT(pdocument == m_pdocument);

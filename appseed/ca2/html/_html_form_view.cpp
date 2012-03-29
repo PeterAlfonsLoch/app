@@ -91,6 +91,7 @@ void html_form_view::_001OnInitialUpdate(gen::signal_object * pobj)
          get_html_data()->m_rect.height() > 0)
       {
          ::ca::graphics * pdc = GetDC();
+         get_html_data()->m_pguie = this;
          get_html_data()->layout(pdc);
          ReleaseDC(pdc);
          _001RedrawWindow();
