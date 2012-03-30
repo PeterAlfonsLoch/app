@@ -82,6 +82,7 @@ namespace plane
 
 
       class ::fontopus::user_set       m_userset;
+      string_to_string_map             m_mapFontopusServer;
 
 
       plane::session::run_start_installer *  m_prunstartinstaller;
@@ -381,6 +382,8 @@ namespace plane
 
 
       virtual bool on_install();
+
+      virtual string get_fontopus_server(const char * pszUrl, ::ca::application * papp, int iRetry = -1);
 
    };
 

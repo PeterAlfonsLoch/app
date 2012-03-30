@@ -504,48 +504,15 @@ retry:
             if((bool)set["optional_ca2_sessid"])
             {
                
+               
                if(papp != NULL)
                {
+                  
+                  string strFontopusServer = Sys(papp).get_fontopus_server(strUrl, papp);
+                  
                   url_domain domainFontopus;
-                  string strGetFontopus("http://" + System.url().get_server(strUrl) + "/get_fontopus");
 
-                  //m_strFontopusServer.Empty();
-
-   //               ::ca::application * papp = get_app();
-
-
-                  string strFontopusServer;
-                  {
-                  //for(int iRetry = 0; iRetry <= 8; iRetry++)
-                  //{
-
-                     /*if(iRetry > 0)
-                     {
-                        Sleep(iRetry * 584);
-                     }*/
-
-               
-
-                     try
-                     {
-                        gen::property_set post;
-                        gen::property_set headers;
-                        gen::property_set set;
-                        set["disable_ca2_sessid"] = true;
-                        set["app"] = papp;
-                        Application.http().get(strGetFontopus, strFontopusServer, post, headers, set, NULL, NULL, NULL, NULL);
-                     }
-                     catch(...)
-                     {
-                     }
-
-                     domainFontopus.create(strFontopusServer);
-
-                     //if(domainFontopus.m_strRadix == "fontopus")
-                       // break;
-                  }
-
-                  //domainFontopus.create(m_strFontopusServer);
+                  domainFontopus.create(strFontopusServer);
 
                   if(domainFontopus.m_strRadix == "fontopus")
                   {
@@ -555,9 +522,10 @@ retry:
                      {
                         System.url().set(strUrl, "sessid", strSessId);
                      }
-                  
                   }
+
                }
+
             }
             if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))

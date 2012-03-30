@@ -859,33 +859,7 @@ namespace fontopus
 
       url_domain domainFontopus;
 
-      for(int iRetry = 0; iRetry <= 8; iRetry++)
-      {
-
-         if(iRetry > 0)
-         {
-            Sleep(iRetry * 584);
-         }
-
-         try
-         {
-            gen::property_set post;
-            gen::property_set headers;
-            gen::property_set set;
-            set["disable_ca2_sessid"] = true;
-            set["app"] = papp;
-            Application.http().get(strGetFontopus, m_strFontopusServer, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
-         }
-         catch(...)
-         {
-            continue;
-         }
-
-         domainFontopus.create(m_strFontopusServer);
-
-         if(domainFontopus.m_strRadix == "fontopus")
-            break;
-      }
+      m_strFontopusServer = System.get_fontopus_server(strGetFontopus, papp, 8);
 
       domainFontopus.create(m_strFontopusServer);
 
