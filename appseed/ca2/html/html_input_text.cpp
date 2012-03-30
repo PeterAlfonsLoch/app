@@ -17,7 +17,23 @@ namespace html
 
       input_text::~input_text()
       {
-         delete m_pedit;
+         try
+         {
+            if(m_pedit->IsWindow())
+            {
+               m_pedit->DestroyWindow();
+            }
+         }
+         catch(...)
+         {
+         }
+         try
+         {
+            delete m_pedit;
+         }
+         catch(...)
+         {
+         }
       }
 
       void input_text::implement_phase1(data * pdata, ::html::elemental * pelemental)

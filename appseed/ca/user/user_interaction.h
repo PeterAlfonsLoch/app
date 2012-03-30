@@ -39,7 +39,7 @@ namespace user
          UINT                 m_uiElapse;
          UINT                 m_uiLastSent;
 
-         bool check();
+         bool check(single_lock & sl);
 
 
       };
@@ -50,8 +50,9 @@ namespace user
       public:
 
 
-         mutex                      m_mutex;
-         raw_array < timer_item >   m_timera;
+         mutex                               m_mutex;
+         array_ptr_alloc < timer_item >      m_timera;
+         int                                 m_iItem;
 
 
 
@@ -60,7 +61,7 @@ namespace user
          void check();
          bool unset(interaction * pguie, UINT_PTR uiId);
          void unset(interaction * pguie);
-         void detach(raw_array < timer_item > & timera, interaction * pguie);
+         void detach(array_ptr_alloc < timer_item > & timera, interaction * pguie);
          void transfer(::ca::window * pwindow, interaction * pguie);
          interaction * find(::ca::ca * pca);
          index find(interaction * pguie, UINT_PTR uiId);
@@ -117,7 +118,7 @@ namespace user
       void set_cursor(::visual::e_cursor ecursor);
 
 
-      void set_timer(raw_array < timer_item > timera);
+      void set_timer(array_ptr_alloc < timer_item > timera);
 
 
       virtual BOOL IsWindow();

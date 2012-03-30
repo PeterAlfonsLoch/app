@@ -185,9 +185,22 @@ namespace radix
 
    void thread::remove(::user::interaction * pui)
    {
-      if(m_p != NULL)
+      try
       {
-         m_p->remove(pui, false);
+         m_p->m_ptimera->on_delete(pui);
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         if(m_p != NULL)
+         {
+            m_p->remove(pui, false);
+         }
+      }
+      catch(...)
+      {
       }
       if(pui == GetMainWnd()
       || pui->m_pguie == GetMainWnd()
@@ -195,7 +208,7 @@ namespace radix
       {
          SetMainWnd(NULL);
       }
-      try
+/*      try
       {
          if(pui->m_pthread == this)
          {
@@ -230,7 +243,7 @@ namespace radix
       }
       catch(...)
       {
-      }
+      }*/
    }
 
    ::count thread::get_ui_count()

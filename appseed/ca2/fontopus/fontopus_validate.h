@@ -47,7 +47,7 @@ namespace ca2
          virtual void show_and_request_auth();
          virtual void ensure_main_document();
          virtual void display_main_frame();
-         virtual void page1();
+         virtual void page1(const char * pszMatter);
          virtual void pageMessage(const char * pszMatter, gen::property_set & set);
 
          //virtual ::fontopus::user * get_user(const char * pszHost = NULL, const char * pszSessid = NULL);

@@ -50,52 +50,74 @@ namespace user
 
    interaction::~interaction()
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
-      m_uiptraChild.remove_all();
-      ::radix::object * pobjTwf = NULL;
-      if(m_papp != NULL && &System != NULL)
+      try
       {
-         pobjTwf = System.get_twf();
-      }
-      synch_lock lock(pobjTwf);
-/*      if(GetTopLevelParent() != NULL
-      && GetTopLevelParent() != this)
-      {
-         ::ca::window * pwnd = GetTopLevelParent()->get_wnd();
-         if(pwnd != NULL)
+         single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+         try
          {
+            if(m_pthread != NULL)
+            {
+               m_pthread->remove(this);
+            }
+         }
+         catch(...)
+         {
+         }
+         try
+         {
+            m_uiptraChild.remove_all();
+         }
+         catch(...)
+         {
+         }
+         ::radix::object * pobjTwf = NULL;
+         if(m_papp != NULL && &System != NULL)
+         {
+            pobjTwf = System.get_twf();
+         }
+         synch_lock lock(pobjTwf);
+   /*      if(GetTopLevelParent() != NULL
+         && GetTopLevelParent() != this)
+         {
+            ::ca::window * pwnd = GetTopLevelParent()->get_wnd();
+            if(pwnd != NULL)
+            {
 
-//            GetTopLevelParent()->get_wnd()->mouse_hover_remove(this);
+   //            GetTopLevelParent()->get_wnd()->mouse_hover_remove(this);
+            }
+         }*/
+   /*      if(m_pthread != NULL)
+         {
+            m_pthread->remove(this);
          }
-      }*/
-/*      if(m_pthread != NULL)
-      {
-         m_pthread->remove(this);
+         else
+         {
+      //      TRACE0("interaction::m_pthread null");
+         }*/
+   /*      if(get_app() != NULL && &System != NULL)
+         {
+            try
+            {
+               System.GetThread()->remove(this);
+            }
+            catch(...)
+            {
+            }
+            try
+            {
+               System.remove(this);
+            }
+            catch(...)
+            {
+            }
+         }*/
+         if(m_pimpl != NULL && m_pimpl != this)
+         {
+            gen::del(m_pimpl);
+         }
       }
-      else
+      catch(...)
       {
-   //      TRACE0("interaction::m_pthread null");
-      }*/
-/*      if(get_app() != NULL && &System != NULL)
-      {
-         try
-         {
-            System.GetThread()->remove(this);
-         }
-         catch(...)
-         {
-         }
-         try
-         {
-            System.remove(this);
-         }
-         catch(...)
-         {
-         }
-      }*/
-      if(m_pimpl != NULL && m_pimpl != this)
-      {
-         gen::del(m_pimpl);
       }
    }
 
@@ -136,7 +158,7 @@ namespace user
          return m_pimpl->GetParent();
    }
 
-   void interaction::set_timer(raw_array < timer_item > timera)
+   void interaction::set_timer(array_ptr_alloc < timer_item > timera)
    {
       for(int i = 0; i < timera.get_count(); i++)
       {
@@ -176,7 +198,7 @@ namespace user
             {
                iStyle &= ~WS_VISIBLE;
             }
-            raw_array < timer_item > timera;
+            array_ptr_alloc < timer_item > timera;
             if(pimplOld->m_pthread != NULL
             && pimplOld->m_pthread->m_p != NULL
             && pimplOld->m_pthread->m_p->m_ptimera != NULL)
@@ -1301,6 +1323,16 @@ namespace user
 
    BOOL interaction::IsWindow()
    {
+      try
+      {
+         ::user::interaction * pui = dynamic_cast < ::user::interaction * > (this);
+         if(pui == NULL)
+            return FALSE;
+      }
+      catch(...)
+      {
+         return FALSE;
+      }
       if(m_pimpl == NULL)
          return FALSE;
       else
@@ -2398,8 +2430,9 @@ ExitModal:
    }
 
 
-   bool interaction::timer_item::check()
+   bool interaction::timer_item::check(single_lock & sl)
    {
+
       if(::GetTickCount() >= (m_uiLastSent + m_uiElapse))
       {
          
@@ -2410,6 +2443,8 @@ ExitModal:
             // simple integrity check by calling "inoffensive" function
             // if it fails, most probably the object is damaged.
             bWindow = m_pguie->IsWindow() != FALSE;
+            if(bWindow)
+               bWindow = dynamic_cast < ::user::interaction * > (m_pguie) != NULL;
          }
          catch(...)
          {
@@ -2419,6 +2454,8 @@ ExitModal:
          if(!bWindow)
             return false;
 
+         sl.unlock();
+         
          try
          {
             m_pguie->SendMessage(WM_TIMER, m_uiId);
@@ -2427,12 +2464,17 @@ ExitModal:
          {
             return false;
          }
+         
+         sl.lock();
 
          m_uiLastSent = ::GetTickCount();
 
       }
+
       return true;
+
    }
+
 
    UINT_PTR interaction::timer_array::set(interaction * pguie, UINT_PTR uiId, UINT uiElapse)
    {
@@ -2443,16 +2485,23 @@ ExitModal:
 
       if(pguie == NULL)
          return 0xffffffff;
+
       add(pguie);
+
       index i = find(pguie, uiId);
+
       if(i >= 0)
       {
+
          m_timera[i].m_uiElapse = uiElapse;
          m_timera[i].m_uiLastSent = ::GetTickCount();
+
          return (UINT) i;
+
       }
       else
       {
+
          timer_item item;
 
          item.m_pguie = pguie;
@@ -2461,8 +2510,11 @@ ExitModal:
          item.m_uiLastSent = ::GetTickCount();
 
          return (UINT) m_timera.add(item);
+
       }
+
    }
+
 
    void interaction::timer_array::check()
    {
@@ -2470,16 +2522,24 @@ ExitModal:
 
       single_lock sl(&m_mutex, TRUE);
 
+      if(m_iItem >= m_timera.get_count())
+         m_iItem = m_timera.get_upper_bound();
 
-      for(int i = 0; i < m_timera.get_count(); )
+      if(m_iItem < 0)
+         m_iItem = 0;
+
+
+      int iPreviousItem = m_iItem;
+
+      for(; m_iItem < m_timera.get_count(); )
       {
          try
          {
-            if(!m_timera[i].check())
+            if(!m_timera[m_iItem].check(sl))
             {
-               if(i < m_timera.get_count())
+               if(m_iItem < m_timera.get_count())
                {
-                  m_timera.remove_at(i);
+                  m_timera.remove_at(m_iItem);
                }
                continue;
             }
@@ -2488,9 +2548,9 @@ ExitModal:
          {
             try
             {
-               if(i < m_timera.get_count())
+               if(m_iItem < m_timera.get_count())
                {
-                  m_timera.remove_at(i);
+                  m_timera.remove_at(m_iItem);
                }
                continue;
             }
@@ -2498,8 +2558,42 @@ ExitModal:
             {
             }
          }
-         i++;
+         m_iItem++;
       }
+
+      m_iItem = 0;
+
+      for(; m_iItem < min(iPreviousItem, m_timera.get_count()); )
+      {
+         try
+         {
+            if(!m_timera[m_iItem].check(sl))
+            {
+               if(m_iItem < m_timera.get_count())
+               {
+                  m_timera.remove_at(m_iItem);
+               }
+               continue;
+            }
+         }
+         catch(...)
+         {
+            try
+            {
+               if(m_iItem < m_timera.get_count())
+               {
+                  m_timera.remove_at(m_iItem);
+               }
+               continue;
+            }
+            catch(...)
+            {
+            }
+         }
+
+         m_iItem++;
+      }
+
    }
 
    void interaction::timer_array::on_delete(interaction * pui)
@@ -2527,7 +2621,7 @@ ExitModal:
       return false;
    }
 
-   void interaction::timer_array::detach(raw_array < timer_item > & timera, interaction * pguie)
+   void interaction::timer_array::detach(array_ptr_alloc < timer_item > & timera, interaction * pguie)
    {
 
 
@@ -2557,7 +2651,7 @@ ExitModal:
 
       single_lock sl(&m_mutex, TRUE);
 
-      raw_array < timer_item > timera;
+      array_ptr_alloc < timer_item > timera;
       detach(timera, pguie);
       pwindow->set_timer(timera);
 

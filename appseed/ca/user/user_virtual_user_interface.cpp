@@ -843,7 +843,51 @@ BOOL virtual_user_interface::DestroyWindow()
    {
    }
    m_bCreate = false;
-   m_pthread = NULL;
+
+
+
+
+
+   try
+   {
+      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      try
+      {
+         if(m_pthread != NULL)
+         {
+            m_pthread->remove(m_pguie);
+         }
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         if(m_pthread != NULL)
+         {
+            m_pthread->remove(this);
+         }
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         m_pthread = NULL;
+      }
+      catch(...)
+      {
+      }
+   }
+   catch(...)
+   {
+   }
+
+
+
+
+
+
    try
    {
       SendMessage(WM_NCDESTROY);

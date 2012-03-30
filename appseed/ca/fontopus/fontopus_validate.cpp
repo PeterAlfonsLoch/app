@@ -155,14 +155,18 @@ namespace fontopus
          m_loginthread.m_strKeyHash.Empty();
          m_loginthread.m_strCa2Hash.Empty();
          ensure_main_document();
-         page1();
+         page1(NULL);
          show_and_request_auth();
          return m_puser;
+
       }
       else
       {
+
          return NULL;
+
       }
+
    }
 
    void validate::ensure_main_document()
@@ -284,7 +288,7 @@ namespace fontopus
          m_loginthread.m_strKeyHash.Empty();
          m_loginthread.m_strCa2Hash.Empty();
          ensure_main_document();
-         page1();
+         page1(NULL);
          show_and_request_auth();
          return m_bLicense;
       }
@@ -313,7 +317,7 @@ namespace fontopus
          m_loginthread.m_strKeyHash.Empty();
          m_loginthread.m_strCa2Hash.Empty();
          ensure_main_document();
-         page1();
+         page1(NULL);
          show_and_request_auth();
          return m_bLicense;
       }
@@ -323,7 +327,7 @@ namespace fontopus
       }
    }
 
-   void validate::page1()
+   void validate::page1(const char * pszMatter)
    {
 //      m_pdocAuth->get_html_data()->m_puser = m_loginthread.m_puser;
       //string strUrl;

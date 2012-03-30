@@ -8,6 +8,7 @@ namespace ca2
    namespace fontopus
    {
 
+
       validate::validate(::ca::application * papp, const char * pszForm, bool bVotagusAuth, bool bInteractive) :
          ca(papp),
          ::fontopus::validate(papp, pszForm, bVotagusAuth, bInteractive),
@@ -53,6 +54,7 @@ namespace ca2
          {
             m_ptabview->get_wnd()->EndAllModalLoops(IDOK);
          }
+
          if(m_ptemplatePane != NULL)
          {
             m_ptemplatePane->close_all_documents(FALSE);
@@ -75,8 +77,10 @@ namespace ca2
 
       void validate::ensure_main_document()
       {
+         
          if(m_pdoc != NULL)
             return;
+
          ::ca::create_context_sp createcontext(get_app());
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca2 < ::user::interaction > ();
@@ -89,40 +93,69 @@ namespace ca2
          pview->set_tab("network", 2);
          pview->set_image_tab("", Application.dir().matter("image/keyboard-h21.png"), 3);
          pview->set_cur_tab_by_id(1);
+
       }
 
-      void validate::page1()
+      void validate::page1(const char * pszMatter)
       {
+         
          m_pdocAuth->get_html_data()->m_puser = m_loginthread.m_puser;
-         if(m_strLicense.is_empty())
+         
+         string strPath;
+         
+         if(pszMatter == NULL)
          {
-            m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Authenticating";
+            
+            if(m_strLicense.is_empty())
+            {
+               
+               m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Authenticating";
+
+            }
+            else
+            {
+               
+               m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Licensing";
+               string strUrl;
+               strUrl = "http://spaignition.api.laborserver.net/query?node=install_application&id=";
+               strUrl += m_strLicense;
+               strUrl += "&key=name";
+               m_pdocAuth->get_html_data()->m_propertyset["project"] = System.http().get(strUrl);
+
+            }
+
+            strPath = Application.dir().matter(m_strForm);
+
          }
          else
          {
-            m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Licensing";
-            string strUrl;
-            strUrl = "http://spaignition.api.laborserver.net/query?node=install_application&id=";
-            strUrl += m_strLicense;
-            strUrl += "&key=name";
-            m_pdocAuth->get_html_data()->m_propertyset["project"] = System.http().get(strUrl);
+            strPath = Application.dir().matter(pszMatter);
          }
-         if(!m_pdocAuth->on_open_document(Application.dir().matter(m_strForm)))
+
+         if(!m_pdocAuth->on_open_document(strPath))
          {
             authentication_failed(0, "Cannot open form for authentication!!");
             return;
          }
+
          display_main_frame();
-         ::user::interaction * pguie = m_pviewAuth->GetChildByName("user");
-         text_interface * ptext = dynamic_cast < text_interface * > (pguie);
-         ptext->_001SetText(m_loginthread.m_strUsername);
-         if(m_loginthread.m_strUsername.is_empty())
-            Application.set_keyboard_focus(pguie);
-         else
+
+         if(pszMatter == NULL)
          {
-            pguie = m_pviewAuth->GetChildByName("password");
-            Application.set_keyboard_focus(pguie);
+
+            ::user::interaction * pguie = m_pviewAuth->GetChildByName("user");
+            text_interface * ptext = dynamic_cast < text_interface * > (pguie);
+            ptext->_001SetText(m_loginthread.m_strUsername);
+            if(m_loginthread.m_strUsername.is_empty())
+               Application.set_keyboard_focus(pguie);
+            else
+            {
+               pguie = m_pviewAuth->GetChildByName("password");
+               Application.set_keyboard_focus(pguie);
+            }
+
          }
+
       }
 
       void validate::display_main_frame()
@@ -206,10 +239,8 @@ namespace ca2
       void validate::pageMessage(const char * pszMatter, gen::property_set & set)
       {
          ensure_main_document();
-         page1();
          m_pdocAuth->get_html_data()->m_propertyset = set;
-         m_pdocAuth->on_open_document(Application.dir().matter(pszMatter));
-         display_main_frame();
+         page1(pszMatter);
          if(m_ptabview->get_wnd()->m_iModalCount <= 0)
          {
             ::ca::live_signal livesignal;
@@ -510,15 +541,23 @@ namespace ca2
 
       void validate::authentication_failed(int iAuth, const char * pszResponse)
       {
+
          UNREFERENCED_PARAMETER(pszResponse);
+
          gen::property_set propertyset;
+
          string strUsername = m_loginthread.m_strUsername;
+
          m_bLicense = false;
          m_puser = NULL;
+
          if(m_pdocAuth != NULL)
          {
+
             m_pdocAuth->get_html_data()->m_puser = NULL;
+
          }
+
          if(m_strLicense.has_char())
          {
             if(m_bInteractive)
@@ -582,7 +621,9 @@ namespace ca2
                pageMessage("err\\user\\authentication\\failed.xhtml", propertyset);
             }
          }
+
          delete m_pauth;
+
       }
 
       void validate::authentication_succeeded()
