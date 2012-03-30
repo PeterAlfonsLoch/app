@@ -675,7 +675,11 @@ BOOL simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle
    // attempt to create the ::ca::window
    const char * lpszClass = (const char *) GetIconWndClass(dwDefaultStyle, pszMatter);
    const char * lpszTitle = m_strTitle;
-   if (!CreateEx(0L, lpszClass, lpszTitle, dwDefaultStyle, rect(0, 0, 0, 0), Application.get_request_parent_ui(this, pContext), /*nIDResource*/ NULL, pContext))
+
+   if(pParentWnd == NULL)
+      pParentWnd = Application.get_request_parent_ui(this, pContext);
+
+   if (!CreateEx(0L, lpszClass, lpszTitle, dwDefaultStyle, rect(0, 0, 0, 0), pParentWnd, /*nIDResource*/ NULL, pContext))
    {
       return FALSE;   // will self destruct on failure normally
    }
