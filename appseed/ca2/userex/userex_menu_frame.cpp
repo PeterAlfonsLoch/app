@@ -7,5 +7,5 @@ menu_frame::menu_frame(::ca::application * papp) :
    form_frame(papp)
 {
    m_bLayered        = true;
-   m_bCustomFrame    = false;
+   m_bWindowFrame    = false;
 }

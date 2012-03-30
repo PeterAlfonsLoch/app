@@ -30,7 +30,8 @@ namespace userbase
 
 
       static bool             g_bFullScreenAlt;
-      bool                    m_bCustomFrame;
+      bool                    m_bAutoWindowFrame;
+      bool                    m_bWindowFrame;
       bool                    m_bLayered;
       ::database::id          m_datakeyFrame;
       int                     m_iFrameData;

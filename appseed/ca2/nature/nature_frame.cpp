@@ -43,8 +43,9 @@ namespace nature
 
    //   m_datakeyWindow = VMSDATAKEY(WindowData);
 
-      m_bCustomFrame = true;
-      m_pimagelist = NULL;
+      m_bWindowFrame    = true;
+      m_pimagelist      = NULL;
+
    }
 
    frame::~frame()

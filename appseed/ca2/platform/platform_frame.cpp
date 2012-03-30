@@ -19,7 +19,7 @@ namespace platform
       m_iFrameData         = 10;
       m_dataid             = "ca2_fontopus_votagus::platform::frame";
 
-      m_bCustomFrame       = true;
+      m_bWindowFrame       = true;
       m_bFrameMoveEnable   = false;
       m_bHover             = false;
       m_bMouseLeaveTimer   = false;

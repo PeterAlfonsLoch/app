@@ -36,7 +36,7 @@ namespace bergedge
    {
       SCAST_PTR(::gen::message::create, pcreate, pobj);
 
-      m_bCustomFrame = GetTypedParent < ::plugin::host_interaction >() == NULL;
+      m_bWindowFrame = GetTypedParent < ::plugin::host_interaction >() == NULL;
 
       if(pobj->previous())
          return;

@@ -41,7 +41,7 @@ namespace userbase
 
 //      SCAST_PTR(::gen::message::create, pcreate, pobj)
       
-      m_bCustomFrame = !Application.directrix().m_varTopicQuery["client_only"].is_set();
+      m_bWindowFrame = !Application.directrix().m_varTopicQuery["client_only"].is_set();
 
       if(pobj->previous())
          return;

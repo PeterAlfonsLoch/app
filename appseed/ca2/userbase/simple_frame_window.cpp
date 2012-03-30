@@ -16,13 +16,14 @@ simple_frame_window::simple_frame_window(::ca::application * papp) :
    m_fastblur(papp)
 {
 
-   m_bblur_Background    = false;
-   m_bCustomFrameBefore = true;
-   m_bCustomFrame       = true;
-   m_bLayered           = true;
-   m_hdcOpenGL          = NULL;
-   m_hglrc              = NULL;
-   m_pframeschema       = NULL;
+   m_bblur_Background      = false;
+   m_bCustomFrameBefore    = true;
+   m_bWindowFrame          = true;
+   m_bLayered              = true;
+   m_hdcOpenGL             = NULL;
+   m_hglrc                 = NULL;
+   m_pframeschema          = NULL;
+
 }
 
 simple_frame_window::~simple_frame_window()
@@ -119,25 +120,26 @@ void simple_frame_window::_001OnDestroy(gen::signal_object * pobj)
 
 }
 
+
 window_frame::FrameSchema * simple_frame_window::create_frame_schema()
 {
+
    window_frame::FrameSchemaHardCoded005 * pschema = new window_frame::FrameSchemaHardCoded005(get_app());
+
    pschema->m_typeinfoControlBoxButton = System.template type_info < MetaButton > ();
+
    return pschema;
+
 }
+
 
 void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
 {
    
-   
    SCAST_PTR(::gen::message::create, pcreate, pobj)
-
 
    if(pobj->previous())
       return;
-
-
-
 
    ::user::place_holder * pplaceholder = dynamic_cast < ::user::place_holder * > (GetParent());
 
@@ -150,7 +152,12 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
       }
    }
 
-   if(m_bCustomFrame)
+   if(m_bAutoWindowFrame)
+   {
+      m_bWindowFrame = GetParent() == NULL;
+   }
+
+   if(m_bWindowFrame)
    {
       WNDCLASS wndclass;
 
@@ -283,7 +290,7 @@ BOOL simple_frame_window::PreCreateWindow(CREATESTRUCT& cs)
 
 void simple_frame_window::layout() 
 {
-   if(m_bCustomFrame && m_workset.IsAppearanceEnabled() && !WfiIsFullScreen())
+   if(m_bWindowFrame && m_workset.IsAppearanceEnabled() && !WfiIsFullScreen())
    {
       m_workset.layout();
    }
@@ -451,7 +458,7 @@ void simple_frame_window::_001OnSysCommand(gen::signal_object * pobj)
       }
    }
 
-   if(m_bCustomFrame)
+   if(m_bWindowFrame)
    {
       if(pbase->m_wparam == SC_MAXIMIZE)
       {
@@ -486,7 +493,7 @@ void simple_frame_window::_001OnUpdateToggleCustomFrame(gen::signal_object * pob
 {
    SCAST_PTR(base_cmd_ui, pcmdui, pobj)
    pcmdui->m_pcmdui->Enable();
-   pcmdui->m_pcmdui->_001SetCheck(m_bCustomFrame);
+   pcmdui->m_pcmdui->_001SetCheck(m_bWindowFrame);
 }
 
 
@@ -509,7 +516,7 @@ void simple_frame_window::SetBorderRect(LPCRECT lpcrect)
 
 void simple_frame_window::SetCustomFrame(bool bCustom)
 {
-   m_bCustomFrame = bCustom;
+   m_bWindowFrame = bCustom;
    m_workset.Enable(bCustom);
    layout();
    _001RedrawWindow();
@@ -518,7 +525,7 @@ void simple_frame_window::SetCustomFrame(bool bCustom)
 
 bool simple_frame_window::GetCustomFrame()
 {
-   return m_bCustomFrame;
+   return m_bWindowFrame;
 }
 
 void simple_frame_window::_001OnClose(gen::signal_object * pobj) 
@@ -627,7 +634,7 @@ void simple_frame_window::_001OnNcActivate(gen::signal_object * pobj)
    if (!IsWindowEnabled())
       pncactivate->m_bActive = FALSE;
 
-   /*if(m_bCustomFrame)
+   /*if(m_bWindowFrame)
    {
       m_workset.SetActiveFlag(pncactivate->m_bActive);
       pncactivate->set_lresult(TRUE); // bStop
@@ -895,9 +902,9 @@ void simple_frame_window::on_set_parent(::user::interaction* pguieParent)
    if(m_pupdowntarget != NULL && m_pupdowntarget->is_up_down_target())
    {
       // an updowntarget always show the frame for upping/downing
-      if(!m_bCustomFrame)
+      if(!m_bWindowFrame)
       {
-         m_bCustomFrame = m_bCustomFrameBefore;
+         m_bWindowFrame = m_bCustomFrameBefore;
       }
       if(!m_workset.IsEnabled())
       {
@@ -909,15 +916,15 @@ void simple_frame_window::on_set_parent(::user::interaction* pguieParent)
    {
       if(pguieParent != NULL)
       {
-         m_bCustomFrameBefore = m_bCustomFrame;
-         m_bCustomFrame = false;
+         m_bCustomFrameBefore = m_bWindowFrame;
+         m_bWindowFrame = false;
          m_workset.Enable(false);
          layout();
       }
       else
       {
-         m_bCustomFrame = m_bCustomFrameBefore;
-         m_workset.Enable(m_bCustomFrame);
+         m_bWindowFrame = m_bCustomFrameBefore;
+         m_workset.Enable(m_bWindowFrame);
          layout();
       }
    }
@@ -925,7 +932,7 @@ void simple_frame_window::on_set_parent(::user::interaction* pguieParent)
 
 void simple_frame_window::GetClientRect(LPRECT lprect)
 {
-   if(m_bCustomFrame && m_pframeschema != NULL && !WfiIsFullScreen())
+   if(m_bWindowFrame && m_pframeschema != NULL && !WfiIsFullScreen())
    {
       m_pframeschema->GetWndClientRect(lprect);
    }

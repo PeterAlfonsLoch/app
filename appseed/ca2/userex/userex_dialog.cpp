@@ -43,9 +43,9 @@ bool dialog::show(const char * pszMatter, gen::property_set & propertyset)
    m_pdocument->on_open_document(Application.dir().matter(pszMatter));
    
    m_pframe = dynamic_cast < simple_frame_window * > (m_pdocument->get_view()->GetParentFrame());
-   m_pframe->m_bCustomFrame      = true;
-   m_pframe->m_bblur_Background  = true;
-   m_pframe->m_etranslucency     = ::user::interaction::TranslucencyPresent;
+   m_pframe->m_bWindowFrame         = true;
+   m_pframe->m_bblur_Background     = true;
+   m_pframe->m_etranslucency        = ::user::interaction::TranslucencyPresent;
 
    on_position_parent_frame();
 

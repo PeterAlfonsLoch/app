@@ -5,8 +5,10 @@ simple_child_frame::simple_child_frame(::ca::application * papp) :
    ca(papp),
    simple_frame_window(papp)
 {
-   m_etranslucency = TranslucencyTotal;
-   m_bCustomFrame = false;
+
+   m_etranslucency      = TranslucencyTotal;
+   m_bWindowFrame       = false;
+
 }
 
 simple_child_frame::~simple_child_frame()

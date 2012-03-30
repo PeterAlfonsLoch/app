@@ -10,6 +10,9 @@ namespace userbase
 
    frame_window_interface::frame_window_interface()
    {
+      
+      m_bAutoWindowFrame      = true;
+      m_bWindowFrame          = true;
 
    }
 
@@ -140,7 +143,7 @@ namespace userbase
 
    void frame_window_interface::_001OnDraw(::ca::graphics *pdc)
    {
-      if(m_bCustomFrame 
+      if(m_bWindowFrame 
       || m_etranslucency == TranslucencyTotal
       || m_etranslucency == TranslucencyPresent)
       {
@@ -386,6 +389,20 @@ namespace userbase
    {
       UNREFERENCED_PARAMETER(pguieParent);
       m_workset.m_pwndEvent = m_pimpl->m_pguie;
+
+      if(m_bAutoWindowFrame)
+      {
+         if(pguieParent == NULL)
+         {
+            m_bWindowFrame = true;
+            m_workset.Enable(true);
+         }
+         else
+         {
+            m_bWindowFrame = false;
+            m_workset.Enable(false);
+         }
+      }
    }
 
    void frame_window_interface::assert_valid() const
