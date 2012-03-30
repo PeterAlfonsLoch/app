@@ -604,6 +604,19 @@ void view::_001OnView(gen::signal_object * pobj)
       // make sure to recalc the non-client area
       ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED);
    }*/
+
+   if(pguie != NULL)
+   {
+      if(pguie->GetParent() != NULL)
+      {
+         ::user::place_holder * pholder = dynamic_cast < ::user::place_holder * > (pguie->GetParent());
+         if(pholder != NULL)
+         {
+            pholder->hold(pguie);
+         }
+      }
+   }
+
    return pguie;
 }
 
