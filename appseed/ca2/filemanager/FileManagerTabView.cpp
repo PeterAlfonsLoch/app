@@ -155,8 +155,8 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
    else
    {
       ::ca::create_context_sp createcontext(get_app());
-      createcontext->m_bMakeVisible = false;
-      createcontext->m_puiParent = this;
+      createcontext->m_bMakeVisible = true;
+      createcontext->m_puiParent = pcreatordata->m_pholder;
       ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (Application.GetStdFileManagerTemplate()->m_pdoctemplateChild->open_document_file(createcontext));
       simple_frame_window * pwndTopLevel = NULL;
       if(pdoc != NULL)
@@ -223,7 +223,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
       if(pdoc == NULL)
          return;
       ::view * pview = pdoc->get_view(0);
-      pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(pview->GetParentFrame());
+      //pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(pview->GetParentFrame());
 //      FileManagerChildFrame * pframe = dynamic_cast < FileManagerChildFrame * >(pcreatordata->m_pwnd);
       //pframe->m_iTabId = iId;
       pcreatordata->m_pdoc = pdoc;

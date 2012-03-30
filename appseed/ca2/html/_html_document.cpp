@@ -6,9 +6,6 @@ html_document::html_document(::ca::application * papp) :
    ::userbase::document(papp)
 {
 
-   set_data(new html::data(papp));
-   get_html_data()->m_pcallback = this;
-   get_html_data()->m_propset["bReplaceEx1"] = true;
 
 }
 
@@ -85,11 +82,16 @@ void html_document::OnBeforeNavigate2(html::data * pdata, var & varFile, DWORD n
 bool html_document::on_open_document(var varFile)
 {
    
-   
    ::ca::data::writing writing(get_html_data());
+   
+
+
    
    
    get_html_data()->m_pform = get_typed_view < html_form > ();
+
+
+   
 
    
    if(get_html_data()->m_pform == NULL)
@@ -133,6 +135,12 @@ void html_document::soft_reload()
 
 ::html::data * html_document::get_html_data()
 {
+   if(::document::get_data() == NULL)
+   {
+      set_data(get_typed_view < html_form > ()->get_html_data());
+      get_html_data()->m_pcallback = this;
+      get_html_data()->m_propset["bReplaceEx1"] = true;
+   }
    return dynamic_cast < ::html::data * > (::document::get_data());
 }
 
