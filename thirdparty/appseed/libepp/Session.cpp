@@ -22,16 +22,17 @@
 * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
 * DAMAGE.
 */
-/* $Id: Session.cpp 1059 2010-07-05 20:50:08Z rafael $ */
+/* $Id: session.cpp 1059 2010-07-05 20:50:08Z rafael $ */
 #include "StdAfx.H"
 
+#define random() rand()
 
 /*#include <sys/types.h>
 #include <sys/stat.h>
 #include <stdio.h>*/
 
 /*
-#include "Session.H"
+#include "session.H"
 #include "EppException.H"
 #include "IoException.H"
 #include "StrUtil.H"
@@ -43,7 +44,7 @@
 namespace libepp
 {
 
-   Session::Session(::ca::application * papp, const char *server, const int port, const char *templates_dir) : 
+   session::session(::ca::application * papp, const char *server, const int port, const char *templates_dir) : 
       ca(papp),
       _server(server), 
       _port(port),
@@ -51,8 +52,8 @@ namespace libepp
    {
       try
       {    
-         _parser = pointer_object<DomParser>(new DomParser(get_app()));
-         _greeting = pointer_object<Greeting>(new Greeting());
+         _parser = new DomParser(get_app());
+         _greeting = new Greeting();
          _cert_common_name_check_enabled = false;
          read_templates(templates_dir);
          srandomdev();
@@ -63,11 +64,11 @@ namespace libepp
       }
    }
 
-   Session::~Session()
+   session::~session()
    {
    }
 
-   void Session::enable_xml_validation(const char *schemas_dir)
+   void session::enable_xml_validation(const char *schemas_dir)
    {
       if (schemas_dir == "")
          _parser->enable_validation();
@@ -75,22 +76,22 @@ namespace libepp
          _parser->enable_validation(schemas_dir);
    }
 
-   void Session::disable_xml_validation()
+   void session::disable_xml_validation()
    {
       _parser->disable_validation();
    }
 
-   void Session::enable_cert_common_name_check()
+   void session::enable_cert_common_name_check()
    {
       _cert_common_name_check_enabled = true;
    }
 
-   void Session::disable_cert_common_name_check()
+   void session::disable_cert_common_name_check()
    {
       _cert_common_name_check_enabled = false;
    }
 
-   void Session::connect(const char * pszCat) 
+   void session::connect(const char * pszCat) 
    {
       try
       {
@@ -103,7 +104,7 @@ namespace libepp
          string greeting;
          m_socket.read_payload_v1(greeting);
          _last_response = greeting;
-         _parser->parse_greeting(greeting, _greeting.m_ptr);
+         _parser->parse_greeting(greeting, _greeting.get_p());
       }
       catch (const GeneralException &e) 
       {
@@ -111,13 +112,13 @@ namespace libepp
       }
    }
 
-   void Session::disconnect()
+   void session::disconnect()
    {
       m_psocket->close();
       //m_socket.disconnect();
    }
 
-   void Session::send_hello()
+   void session::send_hello()
    {
       Hello hello;
       string greeting;
@@ -126,18 +127,18 @@ namespace libepp
          m_socket.write_payload_v1(hello.get_xml_format());
          m_socket.read_payload_v1(greeting);
          _last_response = greeting;
-         _parser->parse_greeting(greeting, _greeting.m_ptr);
+         _parser->parse_greeting(greeting, _greeting.get_p());
       } catch (const GeneralException &e) {
          throw;  
       }
    }
 
-   Greeting *Session::get_greeting() 
+   Greeting *session::get_greeting() 
    {
-      return _greeting.m_ptr;
+      return _greeting.get_p();
    }
 
-   void Session::process_action(Action *client_action, 
+   void session::process_action(Action *client_action, 
       const string clTRID)
    {
       try 
@@ -181,7 +182,7 @@ namespace libepp
       }
    }
 
-   void Session::runXML(const string& input)
+   void session::runXML(const string& input)
    {
       try
       {
@@ -204,12 +205,12 @@ namespace libepp
       }
    }
 
-   void Session::read_template(enum ActionType eactiontype, const char * pszTemplateName)
+   void session::read_template(enum ActionType eactiontype, const char * pszTemplateName)
    {
-      _templates[eactiontype] = Application.file().as_string(System.dir().matter("libepp/templates", string(pszTemplateName) + ".xml"));
+      _templates[eactiontype] = Application.file().as_string(Application.dir().matter(System.dir().path("templates", string(pszTemplateName) + ".xml")));
    }
 
-   void Session::read_templates(const char *templates_dir)
+   void session::read_templates(const char *templates_dir)
    {
       try
       {
@@ -257,32 +258,32 @@ namespace libepp
       }
    }
 
-   string Session::get_last_command() const
+   string session::get_last_command() const
    {
       return _last_command;
    }
 
-   string Session::get_last_response() const
+   string session::get_last_response() const
    {
       return _last_response;
    }
 
-   string Session::get_server() const
+   string session::get_server() const
    {
       return _server;
    }
 
-   int Session::get_port() const
+   int session::get_port() const
    {
       return _port;
    }
 
-   void Session::set_server(const char *server)
+   void session::set_server(const char *server)
    {
       _server = server;
    }
 
-   void Session::set_port(const int &port)
+   void session::set_port(const int &port)
    {
       _port = port;
    }

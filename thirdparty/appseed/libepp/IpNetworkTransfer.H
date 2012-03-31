@@ -40,8 +40,8 @@ namespace libepp
       IpNetworkTransfer(const ActionType type = IP_NETWORK_TRANSFER) : Action(type)
       {
          if (type == IP_NETWORK_TRANSFER) {
-            _command = pointer_object<IpNetworkTransferCommand>(new IpNetworkTransferCommand());
-            _response = pointer_object<IpNetworkTransferResponse>(new IpNetworkTransferResponse());
+            _command = new IpNetworkTransferCommand();
+            _response = new IpNetworkTransferResponse();
          }
       }
 
@@ -68,7 +68,7 @@ namespace libepp
       */
       IpNetworkTransferCommand* get_command() 
       {
-         return (IpNetworkTransferCommand*) _command.m_ptr; 
+         return (IpNetworkTransferCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -77,7 +77,7 @@ namespace libepp
       */
       IpNetworkTransferResponse* get_response() 
       { 
-         return (IpNetworkTransferResponse*) _response.m_ptr; 
+         return (IpNetworkTransferResponse*) _response.get_p(); 
       }
    };
 

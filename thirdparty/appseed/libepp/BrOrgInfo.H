@@ -39,8 +39,8 @@ namespace libepp
       BrOrgInfo(const ActionType type = BR_ORG_INFO) : ContactInfo(type)
       {
          if (type == BR_ORG_INFO) {
-            _command = pointer_object<BrOrgInfoCommand>(new BrOrgInfoCommand());
-            _response = pointer_object<BrOrgInfoResponse>(new BrOrgInfoResponse());
+            _command = new BrOrgInfoCommand();
+            _response = new BrOrgInfoResponse();
          }
       }
 
@@ -56,7 +56,7 @@ namespace libepp
       */
       BrOrgInfoCommand* get_command() 
       { 
-         return (BrOrgInfoCommand*) _command.m_ptr; 
+         return (BrOrgInfoCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -65,7 +65,7 @@ namespace libepp
       */
       BrOrgInfoResponse* get_response() 
       {
-         return (BrOrgInfoResponse*) _response.m_ptr; 
+         return (BrOrgInfoResponse*) _response.get_p(); 
       }
 
    };

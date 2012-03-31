@@ -40,8 +40,8 @@ namespace libepp
       BrOrgCheck(const ActionType type = BR_ORG_CHECK) : ContactCheck(type)
       {
          if (type == BR_ORG_CHECK) {
-            _command = pointer_object<BrOrgCheckCommand>(new BrOrgCheckCommand());
-            _response = pointer_object<BrOrgCheckResponse>(new BrOrgCheckResponse());
+            _command = new BrOrgCheckCommand();
+            _response = new BrOrgCheckResponse();
          }
       }
 
@@ -57,7 +57,7 @@ namespace libepp
       */
       BrOrgCheckResponse* get_response() 
       { 
-         return (BrOrgCheckResponse*) _response.m_ptr; 
+         return (BrOrgCheckResponse*) _response.get_p(); 
       }
 
       /// Returns raw pointer to the command
@@ -66,7 +66,7 @@ namespace libepp
       */
       BrOrgCheckCommand* get_command() 
       { 
-         return (BrOrgCheckCommand*) _command.m_ptr; 
+         return (BrOrgCheckCommand*) _command.get_p(); 
       }
 
    };

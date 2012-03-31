@@ -40,8 +40,8 @@ namespace libepp
       IpNetworkDelete(const ActionType type = IP_NETWORK_DELETE) : Action(type)
       {
          if (type == IP_NETWORK_DELETE) {
-            _command = pointer_object<IpNetworkDeleteCommand>(new IpNetworkDeleteCommand());
-            _response = pointer_object<Response>(new Response());
+            _command = new IpNetworkDeleteCommand();
+            _response = new Response();
          }
       }
 
@@ -68,7 +68,7 @@ namespace libepp
       */
       IpNetworkDeleteCommand* get_command() 
       {
-         return (IpNetworkDeleteCommand*) _command.m_ptr; 
+         return (IpNetworkDeleteCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -77,7 +77,7 @@ namespace libepp
       */
       Response* get_response() 
       { 
-         return (Response*) _response.m_ptr; 
+         return (Response*) _response.get_p(); 
       }
    };
 

@@ -40,8 +40,8 @@ namespace libepp
       AsnDelete(const ActionType type = ASN_DELETE) : Action(type)
       {
          if (type == ASN_DELETE) {
-            _command = pointer_object<AsnDeleteCommand>(new AsnDeleteCommand());
-            _response = pointer_object<Response>(new Response());
+            _command = new AsnDeleteCommand();
+            _response = new Response();
          }
       }
 
@@ -68,7 +68,7 @@ namespace libepp
       */
       AsnDeleteCommand* get_command() 
       {
-         return (AsnDeleteCommand*) _command.m_ptr; 
+         return (AsnDeleteCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -77,7 +77,7 @@ namespace libepp
       */
       Response* get_response() 
       { 
-         return (Response*) _response.m_ptr; 
+         return (Response*) _response.get_p(); 
       }
    };
 

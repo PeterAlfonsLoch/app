@@ -41,8 +41,8 @@ namespace libepp
       BrDomainInfo(::ca::application * papp, const ActionType type = BR_DOMAIN_INFO) : DomainInfo(papp, type)
       {
          if (type == BR_DOMAIN_INFO) {
-            _command = pointer_object<BrDomainInfoCommand>(new BrDomainInfoCommand());
-            _response = pointer_object<BrDomainInfoResponse>(new BrDomainInfoResponse());
+            _command = new BrDomainInfoCommand();
+            _response = new BrDomainInfoResponse();
          }
       }
 
@@ -58,7 +58,7 @@ namespace libepp
       */
       BrDomainInfoCommand* get_command()
       {
-         return (BrDomainInfoCommand *) _command.m_ptr;
+         return (BrDomainInfoCommand *) _command.get_p();
       }
 
       /// Returns raw pointer to the response
@@ -67,7 +67,7 @@ namespace libepp
       */
       BrDomainInfoResponse* get_response()
       {
-         return (BrDomainInfoResponse *) _response.m_ptr;
+         return (BrDomainInfoResponse *) _response.get_p();
       }
    };
 

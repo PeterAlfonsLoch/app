@@ -40,8 +40,8 @@ namespace libepp
       AsnRenew(const ActionType type = ASN_RENEW) : Action(type)
       {
          if (type == ASN_RENEW) {
-            _command = pointer_object<AsnRenewCommand>(new AsnRenewCommand());
-            _response = pointer_object<AsnRenewResponse>(new AsnRenewResponse());
+            _command = new AsnRenewCommand();
+            _response = new AsnRenewResponse();
          }
       }
 
@@ -68,7 +68,7 @@ namespace libepp
       */
       AsnRenewCommand* get_command() 
       {
-         return (AsnRenewCommand*) _command.m_ptr; 
+         return (AsnRenewCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -77,7 +77,7 @@ namespace libepp
       */
       AsnRenewResponse* get_response() 
       { 
-         return (AsnRenewResponse*) _response.m_ptr; 
+         return (AsnRenewResponse*) _response.get_p(); 
       }
    };
 

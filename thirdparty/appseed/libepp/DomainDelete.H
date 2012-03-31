@@ -41,8 +41,8 @@ namespace libepp
       DomainDelete(const ActionType type = DOMAIN_DELETE) : Action(type)
       {
          if (type == DOMAIN_DELETE) {
-            _command = pointer_object<DomainDeleteCommand>(new DomainDeleteCommand());
-            _response = pointer_object<Response>(new Response());
+            _command = new DomainDeleteCommand();
+            _response = new Response();
          }
       }
 
@@ -69,7 +69,7 @@ namespace libepp
       */
       DomainDeleteCommand* get_command() 
       {
-         return (DomainDeleteCommand*) _command.m_ptr; 
+         return (DomainDeleteCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -78,7 +78,7 @@ namespace libepp
       */
       Response* get_response() 
       { 
-         return (Response*) _response.m_ptr; 
+         return (Response*) _response.get_p(); 
       }
    };
 

@@ -12,8 +12,8 @@ namespace libepp
       IpNetworkInfo(const ActionType type = IP_NETWORK_INFO) : Action(type)
       {
          if (type == IP_NETWORK_INFO) {
-            _command = pointer_object<IpNetworkInfoCommand>(new IpNetworkInfoCommand());
-            _response = pointer_object<IpNetworkInfoResponse>(new IpNetworkInfoResponse());
+            _command = new IpNetworkInfoCommand();
+            _response = new IpNetworkInfoResponse();
          }
       }
 
@@ -40,7 +40,7 @@ namespace libepp
       */
       IpNetworkInfoCommand* get_command() 
       {
-         return (IpNetworkInfoCommand*) _command.m_ptr; 
+         return (IpNetworkInfoCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -49,7 +49,7 @@ namespace libepp
       */
       IpNetworkInfoResponse* get_response() 
       { 
-         return (IpNetworkInfoResponse*) _response.m_ptr; 
+         return (IpNetworkInfoResponse*) _response.get_p(); 
       }
    };
 

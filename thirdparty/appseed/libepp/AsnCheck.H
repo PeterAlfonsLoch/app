@@ -41,8 +41,8 @@ namespace libepp
      AsnCheck(const ActionType type = ASN_CHECK) : Action(type)
      {
        if (type == ASN_CHECK) {
-         _command = pointer_object<AsnCheckCommand>(new AsnCheckCommand());
-         _response = pointer_object<AsnCheckResponse>(new AsnCheckResponse());
+         _command = new AsnCheckCommand();
+         _response = new AsnCheckResponse();
        }
      }
 
@@ -69,7 +69,7 @@ namespace libepp
      */
      AsnCheckCommand* get_command() 
      {
-       return (AsnCheckCommand*) _command.m_ptr; 
+       return (AsnCheckCommand *) _command.get_p(); 
      }
 
      /// Returns raw pointer to the response
@@ -78,7 +78,7 @@ namespace libepp
      */
      AsnCheckResponse* get_response() 
      { 
-       return (AsnCheckResponse*) _response.m_ptr; 
+       return (AsnCheckResponse *) _response.get_p(); 
      }
    };
 

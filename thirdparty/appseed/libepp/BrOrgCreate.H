@@ -40,8 +40,8 @@ namespace libepp
       BrOrgCreate(const ActionType type = BR_ORG_CREATE) : ContactCreate(type)
       {
          if (type == BR_ORG_CREATE) {
-            _command = pointer_object<BrOrgCreateCommand>(new BrOrgCreateCommand());
-            _response = pointer_object<BrOrgCreateResponse>(new BrOrgCreateResponse());
+            _command = new BrOrgCreateCommand();
+            _response = new BrOrgCreateResponse();
          }
       }
 
@@ -57,7 +57,7 @@ namespace libepp
       */
       BrOrgCreateCommand* get_command() 
       { 
-         return (BrOrgCreateCommand*) _command.m_ptr; 
+         return (BrOrgCreateCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -66,7 +66,7 @@ namespace libepp
       */
       BrOrgCreateResponse* get_response()
       { 
-         return (BrOrgCreateResponse*) _response.m_ptr; 
+         return (BrOrgCreateResponse*) _response.get_p(); 
       }
    };
 

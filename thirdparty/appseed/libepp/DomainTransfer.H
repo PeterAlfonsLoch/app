@@ -41,8 +41,8 @@ namespace libepp
       DomainTransfer(const ActionType type = DOMAIN_TRANSFER) : Action(type)
       {
          if (type == DOMAIN_TRANSFER) {
-            _command = pointer_object<DomainTransferCommand>(new DomainTransferCommand());
-            _response = pointer_object<DomainTransferResponse>(new DomainTransferResponse());
+            _command = new DomainTransferCommand();
+            _response = new DomainTransferResponse();
          }
       }
 
@@ -69,7 +69,7 @@ namespace libepp
       */
       DomainTransferCommand* get_command()
       { 
-         return (DomainTransferCommand*) _command.m_ptr;
+         return (DomainTransferCommand*) _command.get_p();
       }
 
       /// Returns raw pointer to the response
@@ -78,7 +78,7 @@ namespace libepp
       */
       DomainTransferResponse* get_response() 
       { 
-         return (DomainTransferResponse*) _response.m_ptr; 
+         return (DomainTransferResponse*) _response.get_p(); 
       }
 
    };

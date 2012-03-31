@@ -40,8 +40,8 @@ namespace libepp
       IpNetworkUpdate(const ActionType type = IP_NETWORK_UPDATE) : Action(type)
       {
          if (type == IP_NETWORK_UPDATE) {
-            _command = pointer_object<IpNetworkUpdateCommand>(new IpNetworkUpdateCommand());
-            _response = pointer_object<Response>(new Response());
+            _command = new IpNetworkUpdateCommand();
+            _response = new Response();
          }
       }
 
@@ -68,7 +68,7 @@ namespace libepp
       */
       IpNetworkUpdateCommand* get_command() 
       {
-         return (IpNetworkUpdateCommand*) _command.m_ptr; 
+         return (IpNetworkUpdateCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -77,7 +77,7 @@ namespace libepp
       */
       Response* get_response() 
       { 
-         return (Response*) _response.m_ptr; 
+         return (Response*) _response.get_p(); 
       }
    };
 

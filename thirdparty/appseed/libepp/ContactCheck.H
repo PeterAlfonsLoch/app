@@ -40,8 +40,8 @@ namespace libepp
       ContactCheck(const ActionType type = CONTACT_CHECK) : Action(type)
       {
          if (type == CONTACT_CHECK) {
-            _command = pointer_object<ContactCheckCommand>(new ContactCheckCommand());
-            _response = pointer_object<ContactCheckResponse>(new ContactCheckResponse());
+            _command = new ContactCheckCommand();
+            _response = new ContactCheckResponse();
          }
       }
 
@@ -68,7 +68,7 @@ namespace libepp
       */
       ContactCheckCommand* get_command() 
       {
-         return (ContactCheckCommand*) _command.m_ptr; 
+         return (ContactCheckCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -77,7 +77,7 @@ namespace libepp
       */
       ContactCheckResponse* get_response() 
       {
-         return (ContactCheckResponse*) _response.m_ptr; 
+         return (ContactCheckResponse*) _response.get_p(); 
       }
 
    };

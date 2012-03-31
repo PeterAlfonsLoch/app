@@ -41,8 +41,8 @@ namespace libepp
       ContactCreate(const ActionType type = CONTACT_CREATE) : Action(type)
       {
          if (type == CONTACT_CREATE) {
-            _command = pointer_object<ContactCreateCommand>(new ContactCreateCommand());
-            _response = pointer_object<ContactCreateResponse>(new ContactCreateResponse());
+            _command = new ContactCreateCommand();
+            _response = new ContactCreateResponse();
          }
       }
 
@@ -69,7 +69,7 @@ namespace libepp
       */
       ContactCreateCommand* get_command() 
       {
-         return (ContactCreateCommand*) _command.m_ptr; 
+         return (ContactCreateCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -78,7 +78,7 @@ namespace libepp
       */
       ContactCreateResponse* get_response() 
       { 
-         return (ContactCreateResponse*) _response.m_ptr; 
+         return (ContactCreateResponse*) _response.get_p(); 
       }
 
    };

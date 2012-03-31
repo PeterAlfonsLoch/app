@@ -40,8 +40,8 @@ namespace libepp
       IpNetworkCreate(const ActionType type = IP_NETWORK_CREATE) : Action(type)
       {
          if (type == IP_NETWORK_CREATE) {
-            _command = pointer_object<IpNetworkCreateCommand>(new IpNetworkCreateCommand());
-            _response = pointer_object<IpNetworkCreateResponse>(new IpNetworkCreateResponse());
+            _command = new IpNetworkCreateCommand();
+            _response = new IpNetworkCreateResponse();
          }
       }
 
@@ -68,7 +68,7 @@ namespace libepp
       */
       IpNetworkCreateCommand* get_command() 
       {
-         return (IpNetworkCreateCommand*) _command.m_ptr; 
+         return (IpNetworkCreateCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -77,7 +77,7 @@ namespace libepp
       */
       IpNetworkCreateResponse* get_response() 
       { 
-         return (IpNetworkCreateResponse*) _response.m_ptr; 
+         return (IpNetworkCreateResponse*) _response.get_p(); 
       }
    };
 

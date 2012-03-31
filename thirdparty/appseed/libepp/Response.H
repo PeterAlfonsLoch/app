@@ -33,7 +33,8 @@ namespace libepp
 {
 
    /// EPP Response Class
-   class Response
+   class Response :
+      virtual public ::radix::object
    {
    public:
 

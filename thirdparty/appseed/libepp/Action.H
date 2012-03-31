@@ -88,10 +88,10 @@ namespace libepp
 
    protected:
       /// Generic command
-      pointer_object<Command> _command;
+      gen::scoped_ptr < Command > _command;
 
       /// Generic response
-      pointer_object<Response> _response;
+      gen::scoped_ptr < Response > _response;
 
       /// Action type
       ActionType _type;

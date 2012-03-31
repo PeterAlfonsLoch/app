@@ -41,8 +41,8 @@ namespace libepp
       DomainCreate(::ca::application * papp, const ActionType type = DOMAIN_CREATE) : Action(type)
       {
          if (type == DOMAIN_CREATE) {
-            _command = pointer_object<DomainCreateCommand>(new DomainCreateCommand(papp));
-            _response = pointer_object<DomainCreateResponse>(new DomainCreateResponse());
+            _command = new DomainCreateCommand(papp);
+            _response = new DomainCreateResponse();
          }
       }
 
@@ -69,7 +69,7 @@ namespace libepp
       */
       DomainCreateCommand* get_command() 
       {
-         return (DomainCreateCommand*) _command.m_ptr; 
+         return (DomainCreateCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -78,7 +78,7 @@ namespace libepp
       */
       DomainCreateResponse* get_response() 
       { 
-         return (DomainCreateResponse*) _response.m_ptr; 
+         return (DomainCreateResponse*) _response.get_p(); 
       }
    };
 

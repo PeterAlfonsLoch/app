@@ -40,8 +40,8 @@ namespace libepp
       AsnCreate(const ActionType type = ASN_CREATE) : Action(type)
       {
          if (type == ASN_CREATE) {
-            _command = pointer_object<AsnCreateCommand>(new AsnCreateCommand());
-            _response = pointer_object<AsnCreateResponse>(new AsnCreateResponse());
+            _command = new AsnCreateCommand();
+            _response = new AsnCreateResponse();
          }
       }
 
@@ -68,7 +68,7 @@ namespace libepp
       */
       AsnCreateCommand* get_command() 
       {
-         return (AsnCreateCommand*) _command.m_ptr; 
+         return (AsnCreateCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -77,7 +77,7 @@ namespace libepp
       */
       AsnCreateResponse* get_response() 
       { 
-         return (AsnCreateResponse*) _response.m_ptr; 
+         return (AsnCreateResponse*) _response.get_p(); 
       }
    };
 

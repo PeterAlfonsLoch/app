@@ -42,8 +42,8 @@ namespace libepp
          : DomainRenew(type)
       {
          if (type == BR_DOMAIN_RENEW) {
-            _command = pointer_object<DomainRenewCommand>(new DomainRenewCommand());
-            _response = pointer_object<BrDomainRenewResponse>(new BrDomainRenewResponse());
+            _command = new DomainRenewCommand();
+            _response = new BrDomainRenewResponse();
          }
       }
 
@@ -53,7 +53,7 @@ namespace libepp
       */
       DomainRenewCommand* get_command()
       {
-         return (DomainRenewCommand *) _command.m_ptr;
+         return (DomainRenewCommand *) _command.get_p();
       }
 
       /// Returns raw pointer to the response
@@ -62,7 +62,7 @@ namespace libepp
       */
       BrDomainRenewResponse* get_response()
       {
-         return (BrDomainRenewResponse *) _response.m_ptr;
+         return (BrDomainRenewResponse *) _response.get_p();
       }
    };
 

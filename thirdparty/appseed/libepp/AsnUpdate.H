@@ -40,8 +40,8 @@ namespace libepp
       AsnUpdate(const ActionType type = ASN_UPDATE) : Action(type)
       {
          if (type == ASN_UPDATE) {
-            _command = pointer_object<AsnUpdateCommand>(new AsnUpdateCommand());
-            _response = pointer_object<Response>(new Response());
+            _command = new AsnUpdateCommand();
+            _response = new Response();
          }
       }
 
@@ -68,7 +68,7 @@ namespace libepp
       */
       AsnUpdateCommand* get_command() 
       {
-         return (AsnUpdateCommand*) _command.m_ptr; 
+         return (AsnUpdateCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -77,7 +77,7 @@ namespace libepp
       */
       Response* get_response() 
       { 
-         return (Response*) _response.m_ptr; 
+         return (Response*) _response.get_p(); 
       }
    };
 

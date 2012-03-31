@@ -40,8 +40,8 @@ namespace libepp
       IpNetworkRenew(const ActionType type = IP_NETWORK_RENEW) : Action(type)
       {
          if (type == IP_NETWORK_RENEW) {
-            _command = pointer_object<IpNetworkRenewCommand>(new IpNetworkRenewCommand());
-            _response = pointer_object<IpNetworkRenewResponse>(new IpNetworkRenewResponse());
+            _command = new IpNetworkRenewCommand();
+            _response = new IpNetworkRenewResponse();
          }
       }
 
@@ -68,7 +68,7 @@ namespace libepp
       */
       IpNetworkRenewCommand* get_command() 
       {
-         return (IpNetworkRenewCommand*) _command.m_ptr; 
+         return (IpNetworkRenewCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -77,7 +77,7 @@ namespace libepp
       */
       IpNetworkRenewResponse* get_response() 
       { 
-         return (IpNetworkRenewResponse*) _response.m_ptr; 
+         return (IpNetworkRenewResponse*) _response.get_p(); 
       }
    };
 

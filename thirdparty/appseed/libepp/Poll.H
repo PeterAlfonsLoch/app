@@ -41,8 +41,8 @@ namespace libepp
      Poll(const ActionType type = POLL) : Action(type)
      {
        if (type == POLL) {
-         _command = pointer_object<PollCommand>(new PollCommand());
-         _response = pointer_object<PollResponse>(new PollResponse());
+         _command = new PollCommand();
+         _response = new PollResponse();
        }
      }
 
@@ -67,13 +67,13 @@ namespace libepp
      /**
         @return raw pointer to the command
      */
-     PollCommand* get_command() { return (PollCommand*) _command.m_ptr; }
+     PollCommand* get_command() { return (PollCommand*) _command.get_p(); }
 
      /// Returns raw pointer to the response
      /**
         @return raw pointer to the response
      */
-     PollResponse* get_response() { return (PollResponse*) _response.m_ptr; }
+     PollResponse* get_response() { return (PollResponse*) _response.get_p(); }
 
    };
 

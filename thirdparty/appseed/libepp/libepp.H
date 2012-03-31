@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include "include/ca2.h"
+#include "ca2.h"
 
 #define SCHEMASDIR "/usr/local/share/libepp_nicbr/schemas"
 #define TEMPLATESDIR "/usr/local/share/libepp_nicbr/templates"

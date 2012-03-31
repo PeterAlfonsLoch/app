@@ -41,8 +41,8 @@ namespace libepp
      Logout(::ca::application * papp, const ActionType type = LOGOUT) : ca(papp), Action(type)
      {
        if (type == LOGOUT) {
-         _response = pointer_object<Response>(new Response());
-         _command = pointer_object<Command>(new Command(papp));
+         _response = new Response();
+         _command = new Command(papp);
        }
      }
 
@@ -54,7 +54,7 @@ namespace libepp
      void set_response(const char *xml_payload, DomParser *parser) 
      {
        get_response()->reset();
-       parser->parse_logout_response(xml_payload, _response.m_ptr);
+       parser->parse_logout_response(xml_payload, _response.get_p());
      }
 
      /// Sets the xml template and parses the tags (pure virtual)

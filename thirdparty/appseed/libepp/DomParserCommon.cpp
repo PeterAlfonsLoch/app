@@ -127,9 +127,9 @@ namespace libepp
       
       string xmlns;
 
-      if(pnode->attr_at(0) != NULL && gen::str::begins(pnode->attr_at(0)->m_strName, "xmlns")) 
+      if(pnode->attr_at(0) != NULL && gen::str::begins(pnode->attr_at(0)->name(), "xmlns")) 
       {
-         xmlns = pnode->attr_at(0)->m_strName + "=\"" + pnode->attr_at(0)->get_string() + "\"";
+         xmlns = pnode->attr_at(0)->name() + "=\"" + pnode->attr_at(0)->get_string() + "\"";
       }
 
       return xmlns;
@@ -139,7 +139,7 @@ namespace libepp
    void DomParserCommon::fill_postal_info(xml::node *n, PostalInfo *postal_info)
    {
       bool look_children = false;
-      if (str_transcode(n->m_strName) == "contact:postalInfo") 
+      if (str_transcode(n->get_name()) == "contact:postalInfo") 
       {
          look_children = true;
 
@@ -149,9 +149,9 @@ namespace libepp
          }
       }
 
-      if (n->m_etype == xml::node_element)
+      if (n->get_type() == xml::node_element)
       {
-         string elem_name = str_transcode(n->m_strName);
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "contact:name") 
          {
             postal_info->set_name(str_transcode(n->get_text()));
@@ -211,8 +211,8 @@ namespace libepp
    {
       bool look_children = false;
 
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "secDNS:dsData") {
             look_children = true;
          } else if (elem_name == "secDNS:keyTag") {
@@ -244,17 +244,17 @@ namespace libepp
 
    void DomParserCommon::fill_key_data(xml::node *n, KeyData *keyData)
    {
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "secDNS:keyData") {
             xml::node *child;
 
             for (child = n->first_child(); child != 0;
                child = child->get_next_sibling()) {
-                  if (child->m_etype != xml::node_element) {
+                  if (child->get_type() != xml::node_element) {
                      continue;
                   }
-                  string curr_name = str_transcode(child->m_strName);
+                  string curr_name = str_transcode(child->get_name());
                   if (curr_name == "secDNS:flags") {
                      keyData->set_flags(atoi(str_transcode(child->get_text())));
                   } else if (curr_name == "secDNS:protocol") {
@@ -293,7 +293,7 @@ namespace libepp
       xml::node *child;
       for (child = n->first_child(); child != 0; child = child->get_next_sibling())
       {
-         string e_name = str_transcode(child->m_strName);
+         string e_name = str_transcode(child->get_name());
          if (e_name == "ipnetwork:startAddress") 
          {
             ipRange.set_ipBegin(str_transcode(child->get_text()));
@@ -313,7 +313,7 @@ namespace libepp
       xml::node *child;
       for (child = n->first_child(); child != 0; child = child->get_next_sibling()) 
       {
-            string e_name = str_transcode(child->m_strName); 
+            string e_name = str_transcode(child->get_name()); 
             if (e_name == "ipnetwork:ipRange") 
             {
                reverseDns.ipRange = fill_ipRange(child);
@@ -351,7 +351,7 @@ namespace libepp
       xml::node *child;
       for (child = n->first_child(); child != 0; child = child->get_next_sibling()) 
       {
-         string e_name = str_transcode(child->m_strName);
+         string e_name = str_transcode(child->get_name());
          if (e_name == "brorg:startAddress") 
          {
             ipRange.set_ipBegin(str_transcode(child->get_text()));
@@ -397,7 +397,7 @@ namespace libepp
             if (child->m_etype != xml::node_element) {
                continue;
             }
-            string curr_name = str_transcode(child->m_strName);
+            string curr_name = str_transcode(child->get_name());
             children[curr_name] = str_transcode(child->get_text());
       }
 

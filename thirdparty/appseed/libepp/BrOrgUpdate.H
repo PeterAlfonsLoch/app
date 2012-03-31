@@ -40,8 +40,8 @@ namespace libepp
       BrOrgUpdate(const ActionType type = BR_ORG_UPDATE) : ContactUpdate(type)
       {
          if (type == BR_ORG_UPDATE) {
-            _command = pointer_object<BrOrgUpdateCommand>(new BrOrgUpdateCommand());
-            _response = pointer_object<Response>(new Response());
+            _command = new BrOrgUpdateCommand();
+            _response = new Response();
          }
       }
 
@@ -57,7 +57,7 @@ namespace libepp
       */
       BrOrgUpdateCommand* get_command() 
       { 
-         return (BrOrgUpdateCommand*) _command.m_ptr; 
+         return (BrOrgUpdateCommand*) _command.get_p(); 
       }
 
    };

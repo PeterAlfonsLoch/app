@@ -40,8 +40,8 @@ namespace libepp
       AsnInfo(const ActionType type = ASN_INFO) : Action(type)
       {
          if (type == ASN_INFO) {
-            _command = pointer_object<AsnInfoCommand>(new AsnInfoCommand());
-            _response = pointer_object<AsnInfoResponse>(new AsnInfoResponse());
+            _command = new AsnInfoCommand();
+            _response = new AsnInfoResponse();
          }
       }
 
@@ -68,7 +68,7 @@ namespace libepp
       */
       AsnInfoCommand* get_command() 
       {
-         return (AsnInfoCommand*) _command.m_ptr; 
+         return (AsnInfoCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -77,7 +77,7 @@ namespace libepp
       */
       AsnInfoResponse* get_response() 
       { 
-         return (AsnInfoResponse*) _response.m_ptr; 
+         return (AsnInfoResponse*) _response.get_p(); 
       }
    };
 

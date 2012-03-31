@@ -40,8 +40,8 @@ namespace libepp
       IpNetworkCheck(const ActionType type = IP_NETWORK_CHECK) : Action(type)
       {
          if (type == IP_NETWORK_CHECK) {
-            _command = pointer_object<IpNetworkCheckCommand>(new IpNetworkCheckCommand());
-            _response = pointer_object<IpNetworkCheckResponse>(new IpNetworkCheckResponse());
+            _command = new IpNetworkCheckCommand();
+            _response = new IpNetworkCheckResponse();
          }
       }
 
@@ -68,7 +68,7 @@ namespace libepp
       */
       IpNetworkCheckCommand* get_command() 
       {
-         return (IpNetworkCheckCommand*) _command.m_ptr; 
+         return (IpNetworkCheckCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -77,7 +77,7 @@ namespace libepp
       */
       IpNetworkCheckResponse* get_response() 
       { 
-         return (IpNetworkCheckResponse*) _response.m_ptr; 
+         return (IpNetworkCheckResponse*) _response.get_p(); 
       }
    };
 

@@ -42,8 +42,8 @@ namespace libepp
          : DomainUpdate(papp, type)
       {
          if (type == BR_DOMAIN_UPDATE) {
-            _command = pointer_object<BrDomainUpdateCommand>(new BrDomainUpdateCommand());
-            _response = pointer_object<BrDomainUpdateResponse>(new BrDomainUpdateResponse());
+            _command = new BrDomainUpdateCommand();
+            _response = new BrDomainUpdateResponse();
          }
       }
 
@@ -59,7 +59,7 @@ namespace libepp
       */
       BrDomainUpdateCommand* get_command()
       {
-         return (BrDomainUpdateCommand *) _command.m_ptr;
+         return (BrDomainUpdateCommand *) _command.get_p();
       }
 
       /// Returns raw pointer to the response
@@ -68,7 +68,7 @@ namespace libepp
       */
       BrDomainUpdateResponse* get_response()
       {
-         return (BrDomainUpdateResponse *) _response.m_ptr;
+         return (BrDomainUpdateResponse *) _response.get_p();
       }
    };
 

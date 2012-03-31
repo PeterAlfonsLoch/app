@@ -41,8 +41,8 @@ namespace libepp
       ContactUpdate(const ActionType type = CONTACT_UPDATE) : Action(type)
       {
          if (type == CONTACT_UPDATE) {
-            _command = pointer_object<ContactUpdateCommand>(new ContactUpdateCommand());
-            _response = pointer_object<Response>(new Response());
+            _command = new ContactUpdateCommand();
+            _response = new Response();
          }
       }
 
@@ -69,7 +69,7 @@ namespace libepp
       */
       ContactUpdateCommand* get_command() 
       {
-         return (ContactUpdateCommand*) _command.m_ptr; 
+         return (ContactUpdateCommand*) _command.get_p(); 
       }
 
    };

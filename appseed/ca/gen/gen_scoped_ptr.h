@@ -59,12 +59,18 @@ namespace gen
       }
 
 
-      T * get()
+      T * detach()
       {
          T * p = m_p;
          m_p = NULL;
          return p;
       }
+
+      T * get_p()
+      {
+         return m_p;
+      }
+
 
    };
 

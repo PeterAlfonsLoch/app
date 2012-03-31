@@ -98,7 +98,7 @@ namespace libepp
       */
       void set_response(Response *resp, const ActionType type) {
          _type = type;
-         _response = pointer_object<Response>(resp); 
+         _response = resp; 
       } 
 
       /// Returns the message count
@@ -160,7 +160,7 @@ namespace libepp
          _lang = "en";
          _text = "";
          _content.remove_all();
-         _response = pointer_object<Response>(new Response());
+         _response = new Response();
          _type = UNSET_ACTION;
       }
 
@@ -187,7 +187,7 @@ namespace libepp
       ActionType _type;
 
       /// Response (resData element)
-      pointer_object<Response> _response;
+      gen::scoped_ptr < Response > _response;
 
    };
 

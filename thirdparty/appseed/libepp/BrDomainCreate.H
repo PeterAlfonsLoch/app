@@ -42,8 +42,8 @@ namespace libepp
          : ca(papp), DomainCreate(papp, type)
       {
          if (type == BR_DOMAIN_CREATE) {
-            _command = pointer_object<BrDomainCreateCommand>(new BrDomainCreateCommand());
-            _response = pointer_object<BrDomainCreateResponse>(new BrDomainCreateResponse());
+            _command = new BrDomainCreateCommand();
+            _response = new BrDomainCreateResponse();
          }
       }
 
@@ -59,7 +59,7 @@ namespace libepp
       */
       BrDomainCreateCommand* get_command()
       {
-         return (BrDomainCreateCommand *) _command.m_ptr;
+         return (BrDomainCreateCommand *) _command.get_p();
       }
 
       /// Returns raw pointer to the response
@@ -68,7 +68,7 @@ namespace libepp
       */
       BrDomainCreateResponse* get_response()
       {
-         return (BrDomainCreateResponse *) _response.m_ptr;
+         return (BrDomainCreateResponse *) _response.get_p();
       }
    };
 

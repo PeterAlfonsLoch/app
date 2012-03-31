@@ -41,8 +41,8 @@ namespace libepp
       ContactInfo(const ActionType type = CONTACT_INFO) : Action(type)
       {
          if (type == CONTACT_INFO) {
-            _command = pointer_object<ContactInfoCommand>(new ContactInfoCommand());
-            _response = pointer_object<ContactInfoResponse>(new ContactInfoResponse());
+            _command = new ContactInfoCommand();
+            _response = new ContactInfoResponse();
          }
       }
 
@@ -67,13 +67,13 @@ namespace libepp
       /**
       @return raw pointer to the command
       */
-      ContactInfoCommand* get_command() { return (ContactInfoCommand*) _command.m_ptr; }
+      ContactInfoCommand* get_command() { return (ContactInfoCommand*) _command.get_p(); }
 
       /// Returns raw pointer to the response
       /**
       @return raw pointer to the response
       */
-      ContactInfoResponse* get_response() { return (ContactInfoResponse*) _response.m_ptr; }
+      ContactInfoResponse* get_response() { return (ContactInfoResponse*) _response.get_p(); }
 
    };
 

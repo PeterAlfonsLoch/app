@@ -41,8 +41,8 @@ namespace libepp
       DomainCheck(const ActionType type = DOMAIN_CHECK) : Action(type)
       {
          if (type == DOMAIN_CHECK) {
-            _command = pointer_object<DomainCheckCommand>(new DomainCheckCommand());
-            _response = pointer_object<DomainCheckResponse>(new DomainCheckResponse());
+            _command = new DomainCheckCommand();
+            _response = new DomainCheckResponse();
          }
       }
 
@@ -67,13 +67,13 @@ namespace libepp
       /**
       @return raw pointer to the command
       */
-      DomainCheckCommand* get_command() { return (DomainCheckCommand*) _command.m_ptr; }
+      DomainCheckCommand* get_command() { return (DomainCheckCommand*) _command.get_p(); }
 
       /// Returns raw pointer to the response
       /**
       @return raw pointer to the response
       */
-      DomainCheckResponse* get_response() { return (DomainCheckResponse*) _response.m_ptr; }
+      DomainCheckResponse* get_response() { return (DomainCheckResponse*) _response.get_p(); }
 
    };
 

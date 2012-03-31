@@ -40,8 +40,8 @@ namespace libepp
       DomainUpdate(::ca::application * papp, const ActionType type = DOMAIN_UPDATE) : ca(papp), Action(type)
       {
          if (type == DOMAIN_UPDATE) {
-            _command = pointer_object<DomainUpdateCommand>(new DomainUpdateCommand(papp));
-            _response = pointer_object<Response>(new Response());
+            _command = new DomainUpdateCommand(papp);
+            _response = new Response();
          }
       }
 
@@ -68,7 +68,7 @@ namespace libepp
       */
       DomainUpdateCommand* get_command()
       {
-         return (DomainUpdateCommand*) _command.m_ptr;
+         return (DomainUpdateCommand*) _command.get_p();
       }
    };
 

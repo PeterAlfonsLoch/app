@@ -463,7 +463,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          string schemeName = qualifyForeignName(nqSchemeName, QNT_SCHEME, false);
          if (schemeName == NULL){
             //        if (errorHandler != NULL) errorHandler->warning(string("forward inheritance of '")+nqSchemeName+"'. possible inherit loop with '"+scheme->schemeName+"'");
-                    delete next.get();
+            delete next.detach();
                     continue;
          }else
             next->scheme = schemeHash[schemeName];
@@ -487,7 +487,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
                next->virtualEntryVector.add(new VirtualEntry(schemeName, substName));
             };
          };
-         scheme->nodes.add(next.get());
+         scheme->nodes.add(next.detach());
          continue;
       };
 
@@ -500,7 +500,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
             if (errorHandler != NULL){
                errorHandler->error(string("no 'match' in regexp in scheme ")+scheme->schemeName);
             }
-            delete next.get();
+            delete next.detach();
             continue;
          };
          string entMatchParam = useEntities(matchParam);
@@ -518,7 +518,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
             next->regions[0] = next->region;
          }
 
-         scheme->nodes.add(next.get());
+         scheme->nodes.add(next.detach());
          next = NULL;
          continue;
       };
@@ -606,7 +606,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          loadBlockRegions(next, tmpel);
          loadRegions(next, eStart, true);
          loadRegions(next, eEnd, false);
-         scheme->nodes.add(next.get());
+         scheme->nodes.add(next.detach());
          continue;
       };
 
@@ -679,13 +679,13 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          };
          next->kwList->sortList();
          next->kwList->substrIndex();
-         scheme->nodes.add(next.get());
+         scheme->nodes.add(next.detach());
          continue;
       };
    };
    // drop last unused node
    if (next != NULL)
-      delete next.get();
+      delete next.detach();
 };
 
 

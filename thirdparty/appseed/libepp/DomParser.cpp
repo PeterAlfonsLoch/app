@@ -274,11 +274,11 @@ namespace libepp
       for(int i = 0; i < n->get_children_count(); i++) 
       {
          child = n->child_at(i);
-         if(child->m_etype != xml::node_element) 
+         if(child->get_type() != xml::node_element) 
          {
             continue;
          }
-         elem_name = str_transcode(child->m_strName);
+         elem_name = str_transcode(child->get_name());
          if(elem_name == "value") 
          {
             value = str_transcode(child->get_text());
@@ -300,9 +300,9 @@ namespace libepp
       xml::node *child;
       for (child = n->first_child(); child != 0; child = child->get_next_sibling()) 
       {
-         if (child->m_etype == xml::node_element)
+         if (child->get_type() == xml::node_element)
          {
-            elem_name = str_transcode(child->m_strName);
+            elem_name = str_transcode(child->get_name());
             if (elem_name == "msg" && msg == "") 
             {
                lang = child->attr("lang");
@@ -337,9 +337,9 @@ namespace libepp
    void DomParser::fill_response(xml::node *n, Response *response)
    {  
       bool look_children = false;
-      if (n->m_etype == xml::node_element) 
+      if (n->get_type() == xml::node_element) 
       {
-         string elem_name = str_transcode(n->m_strName);
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response") 
          {
             look_children = true;
@@ -382,8 +382,8 @@ namespace libepp
    void DomParser::fill_greeting(xml::node *n, Greeting *greeting)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "greeting")
          {
             look_children = true;
@@ -429,8 +429,8 @@ namespace libepp
             xml::node *child;
             for (child = n->first_child(); child != 0;
                child = child->get_next_sibling()) {
-                  if (child->m_etype == xml::node_element) {
-                     string e_name = str_transcode(child->m_strName);
+                  if (child->get_type() == xml::node_element) {
+                     string e_name = str_transcode(child->get_name());
                      if (e_name == "all")
                      {
                         greeting->set_access(Greeting::ALL);
@@ -467,8 +467,8 @@ namespace libepp
             xml::node *child;
             for (child = n->first_child(); child != 0;
                child = child->get_next_sibling()) {
-                  if (child->m_etype == xml::node_element) {
-                     string e_name = str_transcode(child->m_strName);
+                  if (child->get_type() == xml::node_element) {
+                     string e_name = str_transcode(child->get_name());
                      if (e_name == "admin")
                      {
                         greeting->set_purpose(Greeting::ADMIN);
@@ -493,8 +493,8 @@ namespace libepp
             xml::node *child;
             for (child = n->first_child(); child != 0;
                child = child->get_next_sibling()) {
-                  if (child->m_etype == xml::node_element) {
-                     string e_name = str_transcode(child->m_strName);
+                  if (child->get_type() == xml::node_element) {
+                     string e_name = str_transcode(child->get_name());
                      if (e_name == "other")
                      {
                         greeting->set_recipient(Greeting::OTHER_RC);
@@ -503,8 +503,8 @@ namespace libepp
                      {
                         greeting->set_recipient(Greeting::OURS);
                         xml::node *recDesc = child->first_child();
-                        if (recDesc && recDesc->m_etype == xml::node_element) {
-                           if (str_transcode(recDesc->m_strName) == "recDesc")
+                        if (recDesc && recDesc->get_type() == xml::node_element) {
+                           if (str_transcode(recDesc->get_name()) == "recDesc")
                            {
                               greeting->set_recDesc(str_transcode(recDesc->get_text()));
                            }
@@ -530,8 +530,8 @@ namespace libepp
             xml::node *child;
             for (child = n->first_child(); child != 0;
                child = child->get_next_sibling()) {
-                  if (child->m_etype == xml::node_element) {
-                     string e_name = str_transcode(child->m_strName);
+                  if (child->get_type() == xml::node_element) {
+                     string e_name = str_transcode(child->get_name());
                      if (e_name == "business")
                      {
                         greeting->set_retention(Greeting::BUSINESS);
@@ -581,8 +581,8 @@ namespace libepp
    void DomParser::fill_contact_check_response(xml::node *n, ContactCheckResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -617,10 +617,10 @@ namespace libepp
             string id, avail, reason;
             for (child = n->first_child(); child != 0;
                child = child->get_next_sibling()) {
-                  if (child->m_etype != xml::node_element) {
+                  if (child->get_type() != xml::node_element) {
                      continue;
                   }
-                  string e_name = str_transcode(child->m_strName);
+                  string e_name = str_transcode(child->get_name());
                   if (e_name == "contact:id")
                   {
                      if(child->attr("avail").has_char())
@@ -661,8 +661,8 @@ namespace libepp
       string str;
 
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          CommonData common = response->get_common_data();
          if (elem_name == "epp" || elem_name == "response")
          {
@@ -779,11 +779,11 @@ namespace libepp
             xml::node *child;
             for (child = n->first_child(); child != 0; child = child->get_next_sibling()) 
             {
-               if (child->m_etype != xml::node_element) 
+               if (child->get_type() != xml::node_element) 
                {
                   continue;
                }
-               string e_name = str_transcode(child->m_strName);
+               string e_name = str_transcode(child->get_name());
                if (e_name == "contact:pw") 
                {
                   authInfo.set_pw(str_transcode(child->get_text()));
@@ -815,11 +815,11 @@ namespace libepp
                xml::node *child;
                for (child = n->first_child(); child != 0; child = child->get_next_sibling()) 
                {
-                  if (child->m_etype != xml::node_element)
+                  if (child->get_type() != xml::node_element)
                   {
                      continue;
                   }
-                  string e_name = str_transcode(child->m_strName);
+                  string e_name = str_transcode(child->get_name());
                   if (e_name == "contact:name") 
                   {
                      if(n->find_attr("loc") != NULL) 
@@ -894,8 +894,8 @@ namespace libepp
    void DomParser::fill_contact_transfer_response(xml::node *n, ContactTransferResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -962,8 +962,8 @@ namespace libepp
    void DomParser::fill_contact_create_response(xml::node *n, ContactCreateResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -1022,8 +1022,8 @@ namespace libepp
    void DomParser::fill_contact_pandata_response(xml::node *n, PanDataResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "contact:panData")
          {
             look_children = true;
@@ -1069,8 +1069,8 @@ namespace libepp
    void DomParser::fill_domain_check_response(xml::node *n, DomainCheckResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -1105,10 +1105,10 @@ namespace libepp
             string name, avail, reason;
             for (child = n->first_child(); child != 0;
                child = child->get_next_sibling()) {
-                  if (child->m_etype != xml::node_element) {
+                  if (child->get_type() != xml::node_element) {
                      continue;
                   }
-                  string e_name = str_transcode(child->m_strName);
+                  string e_name = str_transcode(child->get_name());
                   if (e_name == "domain:name")
                   {
                      if(child->attr("avail").has_char())
@@ -1147,8 +1147,8 @@ namespace libepp
    void DomParser::fill_domain_info_response(xml::node *n, DomainInfoResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -1210,10 +1210,10 @@ namespace libepp
             xml::node *child;
             for (child = n->first_child(); child != 0;
                child = child->get_next_sibling()) {
-                  if (child->m_etype != xml::node_element) {
+                  if (child->get_type() != xml::node_element) {
                      continue;
                   }
-                  string e_name = str_transcode(child->m_strName);
+                  string e_name = str_transcode(child->get_name());
                   if (e_name == "domain:hostName")
                   {
                      ns.name = str_transcode(child->get_text());
@@ -1311,9 +1311,9 @@ namespace libepp
    void DomParser::fill_domain_transfer_response(xml::node *n, DomainTransferResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) 
+      if (n->get_type() == xml::node_element) 
       {
-         string elem_name = str_transcode(n->m_strName);
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response") 
          {
             look_children = true;
@@ -1384,8 +1384,8 @@ namespace libepp
    void DomParser::fill_domain_create_response(xml::node *n, DomainCreateResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -1448,8 +1448,8 @@ namespace libepp
    void DomParser::fill_domain_renew_response(xml::node *n, DomainRenewResponse *response) 
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -1509,8 +1509,8 @@ namespace libepp
    void DomParser::fill_domain_pandata_response(xml::node *n, PanDataResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "domain:panData")
          {
             look_children = true;
@@ -1555,8 +1555,8 @@ namespace libepp
    void DomParser::fill_ipnetwork_create_response(xml::node *n, IpNetworkCreateResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -1615,8 +1615,8 @@ namespace libepp
    void DomParser::fill_ipnetwork_check_response(xml::node *n, IpNetworkCheckResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -1655,11 +1655,11 @@ namespace libepp
 
             for (child = n->first_child(); child != 0; 
                child = child->get_next_sibling()) {
-                  if (child->m_etype != xml::node_element) {
+                  if (child->get_type() != xml::node_element) {
                      continue;
                   }
 
-                  string e_name = str_transcode(child->m_strName);
+                  string e_name = str_transcode(child->get_name());
                   if (e_name == "ipnetwork:ipRange")
                   {
                      ipRange = fill_ipRange(child);
@@ -1693,8 +1693,8 @@ namespace libepp
    void DomParser::fill_ipnetwork_renew_response(xml::node *n, IpNetworkRenewResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -1746,8 +1746,8 @@ namespace libepp
       IpNetworkTransferResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -1814,8 +1814,8 @@ namespace libepp
    void DomParser::fill_ipnetwork_info_response(xml::node *n, IpNetworkInfoResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -1855,11 +1855,11 @@ namespace libepp
 
             for (child = n->first_child(); child != 0; 
                child = child->get_next_sibling()) {
-                  if (child->m_etype != xml::node_element) {
+                  if (child->get_type() != xml::node_element) {
                      continue;
                   }
 
-                  string e_name = str_transcode(child->m_strName);
+                  string e_name = str_transcode(child->get_name());
                   if (e_name == "ipnetwork:roid")
                   {
                      ipRangeInfo.set_roid(str_transcode(child->get_text()));
@@ -1892,11 +1892,11 @@ namespace libepp
 
                      for (blockChild = child->first_child(); blockChild != 0; 
                         blockChild = blockChild->get_next_sibling()) {
-                           if (blockChild->m_etype != xml::node_element) {
+                           if (blockChild->get_type() != xml::node_element) {
                               continue;
                            }
 
-                           string block_e_name = str_transcode(blockChild->m_strName);
+                           string block_e_name = str_transcode(blockChild->get_name());
                            if (block_e_name == "ipnetwork:ipRange")
                            {
                               parentNetwork.set_ipRange(fill_ipRange(blockChild));
@@ -1916,11 +1916,11 @@ namespace libepp
 
                      for (blockChild = child->first_child(); blockChild != 0; 
                         blockChild = blockChild->get_next_sibling()) {
-                           if (blockChild->m_etype != xml::node_element) {
+                           if (blockChild->get_type() != xml::node_element) {
                               continue;
                            }
 
-                           string block_e_name = str_transcode(blockChild->m_strName);
+                           string block_e_name = str_transcode(blockChild->get_name());
                            if (block_e_name == "ipnetwork:ipRange")
                            {
                               childNetwork.set_ipRange(fill_ipRange(blockChild));
@@ -1979,8 +1979,8 @@ namespace libepp
    void DomParser::fill_asn_check_response(xml::node *n, AsnCheckResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -2020,11 +2020,11 @@ namespace libepp
 
             for (child = n->first_child(); child != 0; 
                child = child->get_next_sibling()) {
-                  if (child->m_etype != xml::node_element) {
+                  if (child->get_type() != xml::node_element) {
                      continue;
                   }
 
-                  string e_name = str_transcode(child->m_strName);
+                  string e_name = str_transcode(child->get_name());
                   if (e_name == "asn:number")
                   {
                      if(child->attr("avail") == "1")
@@ -2063,8 +2063,8 @@ namespace libepp
    void DomParser::fill_asn_create_response(xml::node *n, AsnCreateResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -2123,8 +2123,8 @@ namespace libepp
    void DomParser::fill_asn_renew_response(xml::node *n, AsnRenewResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -2175,8 +2175,8 @@ namespace libepp
    void DomParser::fill_asn_transfer_response(xml::node *n, AsnTransferResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -2243,8 +2243,8 @@ namespace libepp
    void DomParser::fill_asn_info_response(xml::node *n, AsnInfoResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response")
          {
             look_children = true;
@@ -2331,9 +2331,9 @@ namespace libepp
    void DomParser::fill_poll_response(xml::node *n, PollResponse *poll_response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) 
+      if (n->get_type() == xml::node_element) 
       {
-         string elem_name = str_transcode(n->m_strName);
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "epp" || elem_name == "response") 
          {
             look_children = true;
@@ -2387,11 +2387,11 @@ namespace libepp
             collection::string_map < PollResponse::MsgContent > content;
             for (child = n->first_child(); child != 0; child = child->get_next_sibling()) 
             {
-               if (child->m_etype == xml::node_element) 
+               if (child->get_type() == xml::node_element) 
                {
                   child_count++;
                   PollResponse::MsgContent msg_content;
-                  string child_name = str_transcode(child->m_strName);
+                  string child_name = str_transcode(child->get_name());
                   string child_text_content = str_transcode(child->get_text());
                   msg_content.value = child_text_content;
                   msg_content.attributes = child->attrs();
@@ -2417,77 +2417,68 @@ namespace libepp
          }
          else if (elem_name == "domain:panData") 
          {
-            pointer_object<PanDataResponse> response = pointer_object<PanDataResponse>(new PanDataResponse());
-            fill_domain_pandata_response(n, response.m_ptr);
+            gen::scoped_ptr < PanDataResponse > response = new PanDataResponse();
+            fill_domain_pandata_response(n, response.get_p());
             poll_response->set_response((Response *) response.detach(), DOMAIN_PANDATA);
          } 
          else if (elem_name == "contact:panData")
          {
-            pointer_object<PanDataResponse> response = pointer_object<PanDataResponse>(new PanDataResponse());
-            fill_contact_pandata_response(n, response.m_ptr);
+            gen::scoped_ptr<PanDataResponse> response = new PanDataResponse();
+            fill_contact_pandata_response(n, response.get_p());
             poll_response->set_response((Response *) response.detach(), CONTACT_PANDATA);
          }
          else if (elem_name == "contact:chkData")
          {
-            pointer_object<ContactCheckResponse> response =
-               pointer_object<ContactCheckResponse>(new ContactCheckResponse());
-            fill_contact_check_response(n, response.m_ptr);
+            gen::scoped_ptr<ContactCheckResponse> response = new ContactCheckResponse();
+            fill_contact_check_response(n, response.get_p());
             poll_response->set_response((Response *) response.detach(), CONTACT_CHECK);
          }
          else if (elem_name == "contact:infData")
          {
-            pointer_object<ContactInfoResponse> response = 
-               pointer_object<ContactInfoResponse>(new ContactInfoResponse());
-            fill_contact_info_response(n, response.m_ptr);
+            gen::scoped_ptr<ContactInfoResponse> response =  new ContactInfoResponse();
+            fill_contact_info_response(n, response.get_p());
             poll_response->set_response((Response *) response.detach(), CONTACT_INFO);      
          }
          else if (elem_name == "contact:trnData")
          {
-            pointer_object<ContactTransferResponse> response = 
-               pointer_object<ContactTransferResponse>(new ContactTransferResponse());
-            fill_contact_transfer_response(n, response.m_ptr);
+            gen::scoped_ptr<ContactTransferResponse> response = new ContactTransferResponse();
+            fill_contact_transfer_response(n, response.get_p());
             poll_response->set_response((Response *) response.detach(), CONTACT_TRANSFER);
          }
          else if (elem_name == "contact:creData")
          {
-            pointer_object<ContactCreateResponse> response = 
-               pointer_object<ContactCreateResponse>(new ContactCreateResponse());
-            fill_contact_create_response(n, response.m_ptr);
+            gen::scoped_ptr<ContactCreateResponse> response = new ContactCreateResponse();
+            fill_contact_create_response(n, response.get_p());
             poll_response->set_response((Response *) response.detach(), CONTACT_CREATE);
          }
          else if (elem_name == "domain:chkData")
          {
-            pointer_object<DomainCheckResponse> response = 
-               pointer_object<DomainCheckResponse>(new DomainCheckResponse());
-            fill_domain_check_response(n, response.m_ptr);
+            gen::scoped_ptr<DomainCheckResponse> response = new DomainCheckResponse();
+            fill_domain_check_response(n, response.get_p());
             poll_response->set_response((Response *) response.detach(), DOMAIN_CHECK);
          }
          else if (elem_name == "domain:infData")
          {
-            pointer_object<DomainInfoResponse> response = 
-               pointer_object<DomainInfoResponse>(new DomainInfoResponse(get_app()));
-            fill_domain_info_response(n, response.m_ptr);
+            gen::scoped_ptr<DomainInfoResponse> response = new DomainInfoResponse(get_app());
+            fill_domain_info_response(n, response.get_p());
             poll_response->set_response((Response *) response.detach(), DOMAIN_INFO);
          }
          else if (elem_name == "domain:trnData")
          {
-            pointer_object<DomainTransferResponse> response = 
-               pointer_object<DomainTransferResponse>(new DomainTransferResponse());
-            fill_domain_transfer_response(n, response.m_ptr);
+            gen::scoped_ptr<DomainTransferResponse> response = new DomainTransferResponse();
+            fill_domain_transfer_response(n, response.get_p());
             poll_response->set_response((Response *) response.detach(), DOMAIN_TRANSFER);
          }
          else if (elem_name == "domain:creData")
          {
-            pointer_object<DomainCreateResponse> response = 
-               pointer_object<DomainCreateResponse>(new DomainCreateResponse());
-            fill_domain_create_response(n, response.m_ptr);
+            gen::scoped_ptr<DomainCreateResponse> response = new DomainCreateResponse();
+            fill_domain_create_response(n, response.get_p());
             poll_response->set_response((Response *) response.detach(), DOMAIN_CREATE);
          }
          else if (elem_name == "domain:renData")
          {
-            pointer_object<DomainRenewResponse> response = 
-               pointer_object<DomainRenewResponse>(new DomainRenewResponse());
-            fill_domain_renew_response(n, response.m_ptr);
+            gen::scoped_ptr<DomainRenewResponse> response = new DomainRenewResponse();
+            fill_domain_renew_response(n, response.get_p());
             poll_response->set_response((Response *) response.detach(), DOMAIN_RENEW);
 
          }
@@ -2499,10 +2490,9 @@ namespace libepp
          {
             if (poll_response->get_response_type() == CONTACT_PANDATA) {
                PanDataResponse *parent = (PanDataResponse *) poll_response->get_response();
-               pointer_object<BrOrgPanDataResponse> extension_response =
-                  pointer_object<BrOrgPanDataResponse>(new BrOrgPanDataResponse());
+               gen::scoped_ptr<BrOrgPanDataResponse> extension_response = new BrOrgPanDataResponse();
                extension_response->copy_parent_data(*parent);
-               fill_brorg_pandata_response(n, extension_response.m_ptr);
+               fill_brorg_pandata_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(), 
                   BR_ORG_PANDATA);
             }
@@ -2511,9 +2501,9 @@ namespace libepp
          {
             if (poll_response->get_response_type() == DOMAIN_PANDATA) {
                PanDataResponse *parent = (PanDataResponse *) poll_response->get_response();
-               pointer_object<BrDomainPanDataResponse> extension_response(new BrDomainPanDataResponse());
+               gen::scoped_ptr<BrDomainPanDataResponse> extension_response(new BrDomainPanDataResponse());
                extension_response->copy_parent_data(*parent);
-               fill_brdomain_pandata_response(n, extension_response.m_ptr);
+               fill_brdomain_pandata_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(),
                   BR_DOMAIN_PANDATA);
             }
@@ -2522,10 +2512,9 @@ namespace libepp
          {
             if (poll_response->get_response_type() == CONTACT_INFO) {
                ContactInfoResponse *parent = (ContactInfoResponse *) poll_response->get_response();
-               pointer_object<BrOrgInfoResponse> extension_response = 
-                  pointer_object<BrOrgInfoResponse>(new BrOrgInfoResponse());
+               gen::scoped_ptr<BrOrgInfoResponse> extension_response = new BrOrgInfoResponse();
                extension_response->copy_parent_data(*parent);
-               fill_brorg_info_response(n, extension_response.m_ptr);
+               fill_brorg_info_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(),
                   BR_ORG_INFO);
             }
@@ -2534,10 +2523,9 @@ namespace libepp
          {
             if (poll_response->get_response_type() == DOMAIN_CHECK) {
                DomainCheckResponse *parent = (DomainCheckResponse *) poll_response->get_response();
-               pointer_object<BrDomainCheckResponse> extension_response = 
-                  pointer_object<BrDomainCheckResponse>(new BrDomainCheckResponse());
+               gen::scoped_ptr<BrDomainCheckResponse> extension_response = new BrDomainCheckResponse();
                extension_response->copy_parent_data(*parent);
-               fill_brdomain_check_response(n, extension_response.m_ptr);
+               fill_brdomain_check_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(),
                   BR_DOMAIN_CHECK);
             }
@@ -2546,10 +2534,9 @@ namespace libepp
          {
             if (poll_response->get_response_type() == DOMAIN_INFO) {
                DomainInfoResponse *parent = (DomainInfoResponse *) poll_response->get_response();
-               pointer_object<BrDomainInfoResponse> extension_response = 
-                  pointer_object<BrDomainInfoResponse>(new BrDomainInfoResponse());
+               gen::scoped_ptr<BrDomainInfoResponse> extension_response = new BrDomainInfoResponse();
                extension_response->copy_parent_data(*parent);
-               fill_brdomain_info_response(n, extension_response.m_ptr);
+               fill_brdomain_info_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(),
                   BR_DOMAIN_INFO);
             }
@@ -2558,10 +2545,9 @@ namespace libepp
          {
             if (poll_response->get_response_type() == DOMAIN_CREATE) {
                DomainCreateResponse *parent = (DomainCreateResponse *) poll_response->get_response();
-               pointer_object<BrDomainCreateResponse> extension_response = 
-                  pointer_object<BrDomainCreateResponse>(new BrDomainCreateResponse());
+               gen::scoped_ptr<BrDomainCreateResponse> extension_response = new BrDomainCreateResponse();
                extension_response->copy_parent_data(*parent);
-               fill_brdomain_create_response(n, extension_response.m_ptr);
+               fill_brdomain_create_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(),
                   BR_DOMAIN_CREATE);
             }
@@ -2570,10 +2556,9 @@ namespace libepp
          {
             if (poll_response->get_response_type() == DOMAIN_RENEW) {
                DomainRenewResponse *parent = (DomainRenewResponse *) poll_response->get_response();
-               pointer_object<BrDomainRenewResponse> extension_response = 
-                  pointer_object<BrDomainRenewResponse>(new BrDomainRenewResponse());
+               gen::scoped_ptr<BrDomainRenewResponse> extension_response = new BrDomainRenewResponse();
                extension_response->copy_parent_data(*parent);
-               fill_brdomain_renew_response(n, extension_response.m_ptr);
+               fill_brdomain_renew_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(),
                   BR_DOMAIN_RENEW);
             }
@@ -2581,9 +2566,8 @@ namespace libepp
          else if (elem_name == "brdomain:updData")
          {
             if (poll_response->get_response_type() == DOMAIN_UPDATE) {
-               pointer_object<BrDomainUpdateResponse> extension_response = 
-                  pointer_object<BrDomainUpdateResponse>(new BrDomainUpdateResponse());
-               fill_brdomain_update_response(n, extension_response.m_ptr);
+               gen::scoped_ptr<BrDomainUpdateResponse> extension_response = new BrDomainUpdateResponse();
+               fill_brdomain_update_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(), 
                   BR_DOMAIN_UPDATE);
             }
@@ -2591,9 +2575,8 @@ namespace libepp
          else if (elem_name == "ipnetwork:create")
          {
             if (poll_response->get_response_type() == IP_NETWORK_CREATE) {
-               pointer_object<IpNetworkCreateResponse> extension_response = 
-                  pointer_object<IpNetworkCreateResponse>(new IpNetworkCreateResponse());
-               fill_ipnetwork_create_response(n, extension_response.m_ptr);
+               gen::scoped_ptr<IpNetworkCreateResponse> extension_response = new IpNetworkCreateResponse();
+               fill_ipnetwork_create_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(), 
                   IP_NETWORK_CREATE);
             }
@@ -2601,8 +2584,8 @@ namespace libepp
          else if (elem_name == "ipnetwork:delete")
          {
             if (poll_response->get_response_type() == IP_NETWORK_DELETE) {
-               pointer_object<Response> extension_response = pointer_object<Response>(new Response());
-               fill_response(n, extension_response.m_ptr);
+               gen::scoped_ptr<Response> extension_response = new Response();
+               fill_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(), 
                   IP_NETWORK_DELETE);
             }
@@ -2610,9 +2593,8 @@ namespace libepp
          else if (elem_name == "ipnetwork:renew")
          {
             if (poll_response->get_response_type() == IP_NETWORK_RENEW) {
-               pointer_object<IpNetworkRenewResponse> extension_response = 
-                  pointer_object<IpNetworkRenewResponse>(new IpNetworkRenewResponse());
-               fill_ipnetwork_renew_response(n, extension_response.m_ptr);
+               gen::scoped_ptr<IpNetworkRenewResponse> extension_response = new IpNetworkRenewResponse();
+               fill_ipnetwork_renew_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(), 
                   IP_NETWORK_RENEW);
             }
@@ -2620,9 +2602,8 @@ namespace libepp
          else if (elem_name == "ipnetwork:transfer")
          {
             if (poll_response->get_response_type() == IP_NETWORK_TRANSFER) {
-               pointer_object<IpNetworkTransferResponse> extension_response = 
-                  pointer_object<IpNetworkTransferResponse>(new IpNetworkTransferResponse());
-               fill_ipnetwork_transfer_response(n, extension_response.m_ptr);
+               gen::scoped_ptr<IpNetworkTransferResponse> extension_response = new IpNetworkTransferResponse();
+               fill_ipnetwork_transfer_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(), 
                   IP_NETWORK_TRANSFER);
             }
@@ -2630,9 +2611,8 @@ namespace libepp
          else if (elem_name == "ipnetwork:check")
          {
             if (poll_response->get_response_type() == IP_NETWORK_CHECK) {
-               pointer_object<IpNetworkCheckResponse> extension_response = 
-                  pointer_object<IpNetworkCheckResponse>(new IpNetworkCheckResponse());
-               fill_ipnetwork_check_response(n, extension_response.m_ptr);
+               gen::scoped_ptr<IpNetworkCheckResponse> extension_response = new IpNetworkCheckResponse();
+               fill_ipnetwork_check_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(), 
                   IP_NETWORK_CHECK);
             }
@@ -2640,9 +2620,8 @@ namespace libepp
          else if (elem_name == "ipnetwork:info")
          {
             if (poll_response->get_response_type() == IP_NETWORK_INFO) {
-               pointer_object<IpNetworkInfoResponse> extension_response = 
-                  pointer_object<IpNetworkInfoResponse>(new IpNetworkInfoResponse());
-               fill_ipnetwork_info_response(n, extension_response.m_ptr);
+               gen::scoped_ptr<IpNetworkInfoResponse> extension_response = new IpNetworkInfoResponse();
+               fill_ipnetwork_info_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(), 
                   IP_NETWORK_INFO);
             }
@@ -2650,9 +2629,8 @@ namespace libepp
          else if (elem_name == "asn:create")
          {
             if (poll_response->get_response_type() == ASN_CREATE) {
-               pointer_object<AsnCreateResponse> extension_response = 
-                  pointer_object<AsnCreateResponse>(new AsnCreateResponse());
-               fill_asn_create_response(n, extension_response.m_ptr);
+               gen::scoped_ptr<AsnCreateResponse> extension_response = new AsnCreateResponse();
+               fill_asn_create_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(), 
                   ASN_CREATE);
             }
@@ -2660,9 +2638,8 @@ namespace libepp
          else if (elem_name == "asn:delete")
          {
             if (poll_response->get_response_type() == ASN_DELETE) {
-               pointer_object<Response> extension_response = 
-                  pointer_object<Response>(new Response());
-               fill_response(n, extension_response.m_ptr);
+               gen::scoped_ptr<Response> extension_response = new Response();
+               fill_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(), 
                   ASN_DELETE);
             }
@@ -2670,9 +2647,8 @@ namespace libepp
          else if (elem_name == "asn:renew")
          {
             if (poll_response->get_response_type() == ASN_RENEW) {
-               pointer_object<AsnRenewResponse> extension_response = 
-                  pointer_object<AsnRenewResponse>(new AsnRenewResponse());
-               fill_asn_renew_response(n, extension_response.m_ptr);
+               gen::scoped_ptr<AsnRenewResponse> extension_response = new AsnRenewResponse();
+               fill_asn_renew_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(), 
                   ASN_RENEW);
             }
@@ -2680,9 +2656,8 @@ namespace libepp
          else if (elem_name == "asn:transfer")
          {
             if (poll_response->get_response_type() == ASN_TRANSFER) {
-               pointer_object<AsnTransferResponse> extension_response = 
-                  pointer_object<AsnTransferResponse>(new AsnTransferResponse());
-               fill_asn_transfer_response(n, extension_response.m_ptr);
+               gen::scoped_ptr<AsnTransferResponse> extension_response = new AsnTransferResponse();
+               fill_asn_transfer_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(), 
                   ASN_TRANSFER);
             }
@@ -2690,9 +2665,8 @@ namespace libepp
          else if (elem_name == "asn:check")
          {
             if (poll_response->get_response_type() == ASN_CHECK) {
-               pointer_object<AsnCheckResponse> extension_response = 
-                  pointer_object<AsnCheckResponse>(new AsnCheckResponse());
-               fill_asn_check_response(n, extension_response.m_ptr);
+               gen::scoped_ptr<AsnCheckResponse> extension_response = new AsnCheckResponse();
+               fill_asn_check_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(), 
                   ASN_CHECK);
             }
@@ -2700,9 +2674,8 @@ namespace libepp
          else if (elem_name == "asn:info")
          {
             if (poll_response->get_response_type() == ASN_INFO) {
-               pointer_object<AsnInfoResponse> extension_response = 
-                  pointer_object<AsnInfoResponse>(new AsnInfoResponse());
-               fill_asn_info_response(n, extension_response.m_ptr);
+               gen::scoped_ptr<AsnInfoResponse> extension_response = new AsnInfoResponse();
+               fill_asn_info_response(n, extension_response.get_p());
                poll_response->set_response((Response *) extension_response.detach(), 
                   ASN_INFO);
             }
@@ -2722,9 +2695,9 @@ namespace libepp
    void DomParser::fill_brorg_info_response(xml::node *n, BrOrgInfoResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) 
+      if (n->get_type() == xml::node_element) 
       {
-         string elem_name = str_transcode(n->m_strName);
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "brorg:infData") 
          {
             look_children = true;
@@ -2777,8 +2750,8 @@ namespace libepp
    void DomParser::fill_brorg_check_response(xml::node *n, BrOrgCheckResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "brorg:chkData")
          {
             look_children = true;
@@ -2793,10 +2766,10 @@ namespace libepp
             xml::node *child;
             for (child = n->first_child(); child != 0;
                child = child->get_next_sibling()) {
-                  if (child->m_etype != xml::node_element) {
+                  if (child->get_type() != xml::node_element) {
                      continue;
                   }
-                  elem_name = str_transcode(child->m_strName);
+                  elem_name = str_transcode(child->get_name());
                   if (elem_name == "brorg:organization")
                   {
                      org = str_transcode(child->get_text());
@@ -2828,8 +2801,8 @@ namespace libepp
    void DomParser::fill_brorg_pandata_response(xml::node *n, BrOrgPanDataResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "brorg:panData")
          {
             look_children = true;
@@ -2864,8 +2837,8 @@ namespace libepp
    {
       bool look_children = false;
 
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "brorg:creData")
          {
             look_children = true;
@@ -2887,8 +2860,8 @@ namespace libepp
    void DomParser::fill_brdomain_check_response(xml::node *n, BrDomainCheckResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "brdomain:chkData")
          {
             look_children = true;
@@ -2915,10 +2888,10 @@ namespace libepp
             xml::node *child;
             for (child = n->first_child(); child != 0;
                child = child->get_next_sibling()) {
-                  if (child->m_etype != xml::node_element) {
+                  if (child->get_type() != xml::node_element) {
                      continue;
                   }
-                  elem_name = str_transcode(child->m_strName);
+                  elem_name = str_transcode(child->get_name());
                   if (elem_name == "brdomain:name")
                   {
                      domain = str_transcode(child->get_text());
@@ -2954,8 +2927,8 @@ namespace libepp
    void DomParser::fill_brdomain_info_response(xml::node *n, BrDomainInfoResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "brdomain:infData")
          {
             look_children = true;
@@ -3006,10 +2979,10 @@ namespace libepp
             xml::node *child;
             for (child = n->first_child(); child != 0;
                child = child->get_next_sibling()) {
-                  if (child->m_etype != xml::node_element) {
+                  if (child->get_type() != xml::node_element) {
                      continue;
                   }
-                  string curr_name = str_transcode(child->m_strName);
+                  string curr_name = str_transcode(child->get_name());
                   if (curr_name == "brdomain:docType")
                   {
                      pend.docType = str_transcode(child->get_text());
@@ -3095,8 +3068,8 @@ namespace libepp
    void DomParser::fill_brdomain_create_response(xml::node *n, BrDomainCreateResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "brdomain:creData")
          {
             look_children = true;
@@ -3120,10 +3093,10 @@ namespace libepp
             xml::node *child;
             for (child = n->first_child(); child != 0;
                child = child->get_next_sibling()) {
-                  if (child->m_etype != xml::node_element) {
+                  if (child->get_type() != xml::node_element) {
                      continue;
                   }
-                  string curr_name = str_transcode(child->m_strName);
+                  string curr_name = str_transcode(child->get_name());
                   if (curr_name == "brdomain:docType")
                   {
                      pend.docType = str_transcode(child->get_text());
@@ -3192,8 +3165,8 @@ namespace libepp
    void DomParser::fill_brdomain_renew_response(xml::node *n, BrDomainRenewResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "brdomain:renData")
          {
             look_children = true;
@@ -3222,8 +3195,8 @@ namespace libepp
    void DomParser::fill_brdomain_update_response(xml::node *n, BrDomainUpdateResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "brdomain:updData")
          {
             look_children = true;
@@ -3247,10 +3220,10 @@ namespace libepp
             xml::node *child;
             for (child = n->first_child(); child != 0;
                child = child->get_next_sibling()) {
-                  if (child->m_etype != xml::node_element) {
+                  if (child->get_type() != xml::node_element) {
                      continue;
                   }
-                  string curr_name = str_transcode(child->m_strName);
+                  string curr_name = str_transcode(child->get_name());
                   if (curr_name == "brdomain:docType")
                   {
                      pend.docType = str_transcode(child->get_text());
@@ -3334,8 +3307,8 @@ namespace libepp
    void DomParser::fill_brdomain_pandata_response(xml::node *n, BrDomainPanDataResponse *response)
    {
       bool look_children = false;
-      if (n->m_etype == xml::node_element) {
-         string elem_name = str_transcode(n->m_strName);
+      if (n->get_type() == xml::node_element) {
+         string elem_name = str_transcode(n->get_name());
          if (elem_name == "brdomain:panData")
          {
             look_children = true;

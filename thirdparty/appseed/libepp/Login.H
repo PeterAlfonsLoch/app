@@ -41,8 +41,8 @@ namespace libepp
       Login(const ActionType type = LOGIN) : Action(type)
       {
          if (type == LOGIN) {
-            _command = pointer_object<LoginCommand>(new LoginCommand());
-            _response = pointer_object<Response>(new Response());
+            _command = new LoginCommand();
+            _response = new Response();
          }
       }
 
@@ -60,14 +60,14 @@ namespace libepp
       void set_response(const char *xml_payload, DomParser *parser)
       {
          get_response()->reset();
-         parser->parse_login_response(xml_payload, _response.m_ptr);
+         parser->parse_login_response(xml_payload, _response.get_p());
       }
 
       /// Returns raw pointer to the command
       /**
       @return raw pointer to the command
       */
-      LoginCommand* get_command() { return (LoginCommand*) _command.m_ptr; }  
+      LoginCommand* get_command() { return (LoginCommand*) _command.get_p(); }  
 
    };
 

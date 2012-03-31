@@ -41,8 +41,8 @@ namespace libepp
       DomainRenew(const ActionType type = DOMAIN_RENEW) : Action(type)
       {
          if (type == DOMAIN_RENEW) {
-            _command = pointer_object<DomainRenewCommand>(new DomainRenewCommand());
-            _response = pointer_object<DomainRenewResponse>(new DomainRenewResponse());
+            _command = new DomainRenewCommand();
+            _response = new DomainRenewResponse();
          }
       }
 
@@ -67,13 +67,13 @@ namespace libepp
       /**
       @return raw pointer to the command
       */
-      DomainRenewCommand* get_command() { return (DomainRenewCommand*) _command.m_ptr; }
+      DomainRenewCommand* get_command() { return (DomainRenewCommand*) _command.get_p(); }
 
       /// Returns raw pointer to the response
       /**
       @return raw pointer to the response
       */
-      DomainRenewResponse* get_response() { return (DomainRenewResponse*) _response.m_ptr; }
+      DomainRenewResponse* get_response() { return (DomainRenewResponse*) _response.get_p(); }
 
    };
 

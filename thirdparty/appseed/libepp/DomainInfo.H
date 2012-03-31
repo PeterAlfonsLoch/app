@@ -41,8 +41,8 @@ namespace libepp
       DomainInfo(::ca::application * papp, const ActionType type = DOMAIN_INFO) : Action(type)
       {
          if (type == DOMAIN_INFO) {
-            _command = pointer_object<DomainInfoCommand>(new DomainInfoCommand());
-            _response = pointer_object<DomainInfoResponse>(new DomainInfoResponse(papp));
+            _command = new DomainInfoCommand();
+            _response = new DomainInfoResponse(papp);
          }
       }
 
@@ -67,13 +67,13 @@ namespace libepp
       /**
       @return raw pointer to the command
       */
-      DomainInfoCommand* get_command() { return (DomainInfoCommand*) _command.m_ptr; }
+      DomainInfoCommand* get_command() { return (DomainInfoCommand*) _command.get_p(); }
 
       /// Returns raw pointer to the response
       /**
       @return raw pointer to the response
       */
-      DomainInfoResponse* get_response() { return (DomainInfoResponse*) _response.m_ptr; }
+      DomainInfoResponse* get_response() { return (DomainInfoResponse*) _response.get_p(); }
 
    };
 

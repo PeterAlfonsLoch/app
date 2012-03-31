@@ -40,8 +40,8 @@ namespace libepp
       AsnTransfer(const ActionType type = ASN_TRANSFER) : Action(type)
       {
          if (type == ASN_TRANSFER) {
-            _command = pointer_object<AsnTransferCommand>(new AsnTransferCommand());
-            _response = pointer_object<AsnTransferResponse>(new AsnTransferResponse());
+            _command = new AsnTransferCommand();
+            _response = new AsnTransferResponse();
          }
       }
 
@@ -68,7 +68,7 @@ namespace libepp
       */
       AsnTransferCommand* get_command() 
       {
-         return (AsnTransferCommand*) _command.m_ptr; 
+         return (AsnTransferCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -77,7 +77,7 @@ namespace libepp
       */
       AsnTransferResponse* get_response() 
       { 
-         return (AsnTransferResponse*) _response.m_ptr; 
+         return (AsnTransferResponse*) _response.get_p(); 
       }
    };
 

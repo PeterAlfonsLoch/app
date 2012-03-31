@@ -39,7 +39,7 @@ namespace libepp
 {
 
    /// EPP Session Class
-   class Session :
+   class session :
       virtual public ::radix::object
    {
    public:
@@ -49,11 +49,11 @@ namespace libepp
       @param port Epp Server Port Number
       @param templates_dir Optional Path to the XML Templates Directory
       */
-      Session(::ca::application * papp, const char *server = "localhost", const int port = 700, 
+      session(::ca::application * papp, const char *server = "localhost", const int port = 700, 
          const char *templates_dir = TEMPLATESDIR);
 
       /// Destructor
-      ~Session();
+      ~session();
 
       /// Enable XML Parser Validation
       /**
@@ -153,7 +153,7 @@ namespace libepp
       void read_templates(const char *templates_dir = TEMPLATESDIR);
 
       /// DOM Parser
-      pointer_object<DomParser> _parser;
+      gen::scoped_ptr < DomParser > _parser;
 
       /// Transport
       sockets::sync_socket_handler m_socket;
@@ -161,7 +161,7 @@ namespace libepp
       sockets::tls_socket * m_psocket;
 
       /// Greeting
-      pointer_object<Greeting> _greeting;
+      gen::scoped_ptr < Greeting > _greeting;
 
       /// XML Templates
       collection::map < ActionType, ActionType, string, const char * > _templates;

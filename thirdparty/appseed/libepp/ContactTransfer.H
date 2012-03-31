@@ -41,8 +41,8 @@ namespace libepp
       ContactTransfer(const ActionType type = CONTACT_TRANSFER) : Action(type)
       {
          if (type == CONTACT_TRANSFER) {
-            _command = pointer_object<ContactTransferCommand>(new ContactTransferCommand());
-            _response = pointer_object<ContactTransferResponse>(new ContactTransferResponse());
+            _command = new ContactTransferCommand();
+            _response = new ContactTransferResponse();
          }
       }
 
@@ -69,7 +69,7 @@ namespace libepp
       */
       ContactTransferCommand* get_command() 
       {
-         return (ContactTransferCommand*) _command.m_ptr; 
+         return (ContactTransferCommand*) _command.get_p(); 
       }
 
       /// Returns raw pointer to the response
@@ -78,7 +78,7 @@ namespace libepp
       */
       ContactTransferResponse* get_response() 
       {
-         return (ContactTransferResponse*) _response.m_ptr; 
+         return (ContactTransferResponse*) _response.get_p(); 
       }
 
    };
