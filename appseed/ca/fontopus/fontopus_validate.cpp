@@ -42,7 +42,7 @@ namespace fontopus
    {
       m_loginthread.m_strSalt.Empty();
       if(command_thread().property("app") == "simpledbcfg"
-      || command_thread().property("app") == "netnode"
+      || command_thread().property("app") == "core_netnode"
       || command_thread().property("app") == "veievserver"
       || command_thread().property("app") == "simpledbcfg"
       //|| command_thread().property("app") == "veriwell_mplite"      // churrasco 2011 m_strLicense
@@ -193,7 +193,7 @@ namespace fontopus
       if(strLicense == "netnodeapp"
          || strLicense == "netnodecfgapp"
          || strLicense == "simpledbcfg"
-         || strLicense == "netnode"
+         || strLicense == "core_netnode"
          || strLicense == "veievserver"
          //|| strLicense == "veriwell_mplite"      // churrasco 2011 m_strLicense
          || strLicense == "mydns"

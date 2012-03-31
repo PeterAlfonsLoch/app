@@ -5,6 +5,26 @@ namespace dynamic_source
 {
 
 
+   script_interface::script_interface()
+   {
+      
+      m_pinstanceMain      = NULL;
+      m_pinstanceParent    = NULL;
+      m_pnetnodesocket     = NULL;
+      m_pmanager           = NULL;
+
+      m_pscript            = NULL;
+
+      
+      m_iDebug             = 0;
+
+   }
+
+   script_interface::~script_interface()
+   {
+   }
+
+
    void script_interface::run()
    {
       

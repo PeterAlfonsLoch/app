@@ -1205,11 +1205,6 @@ InitFailure:
    bool application::on_install()
    {
 
-      if(is_serviceable())
-      {
-         create_service();
-         start_service();
-      }
 
 
       if(m_bUpdateMatterOnInstall)
@@ -1300,6 +1295,13 @@ InitFailure:
          {
             return false;
          }
+      }
+
+
+      if(is_serviceable())
+      {
+         create_service();
+         start_service();
       }
 
 

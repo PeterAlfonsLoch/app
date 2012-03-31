@@ -33,7 +33,8 @@ namespace dynamic_source
 
       int                                 m_iDebug;
       
-
+      script_interface();
+      virtual ~script_interface();
 
       virtual void run();
 
