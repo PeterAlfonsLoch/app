@@ -11,18 +11,14 @@ namespace dynamic_source
       thread(papp),
       ::ca::message_window_simple_callback(papp)
    {
+
       m_pcache                   = new script_cache(papp);
       m_pcache->m_pmanager       = this;
       m_pcompiler                = new script_compiler(papp);
       m_pcompiler->m_pmanager    = this;
-       m_puiredir                 = new webserver::ui_redir(papp);
-      m_pmatchhostaSpider        = new webserver::match_host_array();
-      m_psimageptra              = new webserver::simage_accepta_ptr_array();
       m_dwBuildTimeWindow        = 84;
       m_dwBuildTimeRandomWindow  = 77 * 5;
       m_iDatabaseWaitTimeOut     = 1000 * 1000 * 60;
-
-      m_musicdba.set_size(2);
 
       calc_rsa_key();
 
@@ -89,7 +85,7 @@ namespace dynamic_source
    }
 
 
-   void script_manager::handle(::netnode::socket * pnetnodesocket)
+   void script_manager::handle(::dynamic_source::httpd_socket * pnetnodesocket)
    {
       string strHead;
       script_instance * pinstance = get("system/seed_carlosgustavocecynlundgrencarlos");
@@ -172,7 +168,7 @@ namespace dynamic_source
 
    }
 
-   script_instance * script_manager::get_output_internal(script_impl * pinstanceParent, const char * lpcszName)
+   script_instance * script_manager::get_output_internal(::dynamic_source::script_instance * pinstanceParent, const char * lpcszName)
    {
       string strName = gen::str::get_word(lpcszName, "?");
       if(strName.is_empty())
@@ -249,7 +245,8 @@ namespace dynamic_source
       TRACE(lpsz);
       delete lpsz;
 
-       m_puiredir->load_xml( System.dir().votagus("net\\netseed\\ds\\ca2\\include\\11ca2_fontopus_redir.xml"));
+      on_load_env();
+       
    }
 
    void script_manager::run(const char * lpcszName)
@@ -281,150 +278,6 @@ namespace dynamic_source
       return strBuildLog;
    }
 
-   ::webserver::fontopus_database * script_manager::new_musicdb(int iServer)
-   {
-      return on_new_musicdb(iServer);
-   }
-
-   ::webserver::fontopus_database * script_manager::on_new_musicdb(int iServer)
-   {
-      retry_single_lock sl(&m_mutexMusicDbPool, millis(0), millis(84));
-      sl.lock();
-      __int64 iTime = update_musicdb_list(iServer);
-      if(m_musicdba[iServer].get_count() > 0)
-      {
-         return m_musicdba[iServer].pop();
-      }
-      else
-      {
-         ::webserver::fontopus_database * pmusicdb = new ::webserver::fontopus_database(get_app());
-         pmusicdb->m_iLastUsedTime = iTime;
-         pmusicdb->initialize(iServer);
-         return pmusicdb;
-      }
-   }
-
-   void script_manager::free_musicdb(::webserver::fontopus_database * pmusicdb)
-   {
-      on_free_musicdb(pmusicdb);
-   }
-
-   void script_manager::on_free_musicdb(::webserver::fontopus_database * pmusicdb)
-   {
-      retry_single_lock sl(&m_mutexMusicDbPool, millis(0), millis(84));
-      sl.lock();
-       update_musicdb_list(pmusicdb->m_iLastServer);
-       return m_musicdba[pmusicdb->m_iLastServer].push(pmusicdb);
-   }
-
-   __int64 script_manager::update_musicdb_list(int iServer)
-   {
-      retry_single_lock sl(&m_mutexMusicDbPool, millis(0), millis(84));
-      sl.lock();
-      __int64 iTime = ::ca::profiler::micros();
-      for(int i = 0; i < m_musicdba[iServer].get_count();)
-      {
-          
-         if(iTime - m_musicdba[iServer][i]->m_iLastUsedTime > m_iDatabaseWaitTimeOut)
-         {
-            try
-            {
-               m_musicdba[iServer][i]->m_pinterface = NULL;
-            }
-            catch(...)
-            {
-               TRACE("strange fontopus database, could not set its m_pinterface to NULL for deleting");
-            }
-            try
-            {
-               delete m_musicdba[iServer][i];
-            }
-            catch(...)
-            {
-               TRACE("strange fontopus database, exception when deleting it");
-            }
-            m_musicdba[iServer].remove_at(i);
-         }
-         else
-         {
-            i++;
-         }
-      }
-      return iTime;
-   }
-
-   ::webserver::cynce_database * script_manager::new_cyncedb()
-   {
-      return on_new_cyncedb();
-   }
-
-   ::webserver::cynce_database * script_manager::on_new_cyncedb()
-   {
-      retry_single_lock sl(&m_mutexCynceDbPool, millis(0), millis(84));
-      sl.lock();
-      __int64 iTime = update_cyncedb_list();
-      if(m_cyncedbptra.get_count() > 0)
-      {
-         return m_cyncedbptra.pop();
-      }
-      else
-      {
-          ::webserver::cynce_database * pcyncedb = new ::webserver::cynce_database(get_app());
-          pcyncedb->m_iLastUsedTime = iTime;
-          pcyncedb->initialize();
-          return pcyncedb;
-      }
-   }
-
-   void script_manager::free_cyncedb(::webserver::cynce_database * pcyncedb)
-   {
-      on_free_cyncedb(pcyncedb);
-   }
-
-   void script_manager::on_free_cyncedb(::webserver::cynce_database * pcyncedb)
-   {
-      retry_single_lock sl(&m_mutexCynceDbPool, millis(0), millis(84));
-      sl.lock();
-      update_cyncedb_list();
-      return m_cyncedbptra.push(pcyncedb);
-   }
-
-   __int64 script_manager::update_cyncedb_list()
-   {
-      retry_single_lock sl(&m_mutexCynceDbPool, millis(0), millis(84));
-      sl.lock();
-      __int64 iTime = ::ca::profiler::micros();
-      for(int i = 0; i < m_cyncedbptra.get_count();)
-      {
-          
-         if(iTime - m_cyncedbptra[i]->m_iLastUsedTime > m_iDatabaseWaitTimeOut)
-         {
-            try
-            {
-               m_cyncedbptra[i]->m_pinterface = NULL;
-            }
-            catch(...)
-            {
-               TRACE("strange cynce database, could not set its m_pinterface to NULL for deleting");
-            }
-            try
-            {
-               delete m_cyncedbptra[i];
-            }
-            catch(...)
-            {
-               TRACE("strange cynce database, exception when deleting it");
-            }
-            m_cyncedbptra.remove_at(i);
-         }
-         else
-         {
-            i++;
-         }
-      }
-      return iTime;
-   }
-
    void script_manager::message_window_message_handler(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::base, pbase, pobj);
@@ -438,26 +291,6 @@ namespace dynamic_source
       }
       else if(pbase->m_uiMessage == WM_APP + 14)
       {
-         /*      if(wparam == 1)
-         {
-         lresult = (LPARAM) on_new_musicdb();
-         return true;
-         }
-         else */if(pbase->m_wparam == 2)
-         {
-            on_free_musicdb((::webserver::fontopus_database *) pbase->m_lparam);
-            pbase->m_bRet = true;
-         }
-         else if(pbase->m_wparam == 101)
-         {
-            pbase->set_lresult ((LPARAM) on_new_cyncedb());
-            pbase->m_bRet = true;
-         }
-         else if(pbase->m_wparam == 102)
-         {
-            on_free_cyncedb((::webserver::cynce_database *)pbase->m_lparam);
-            pbase->m_bRet = true;
-         }
       }
    }
 
@@ -669,6 +502,9 @@ namespace dynamic_source
       }
    }
 
+   void script_manager::on_load_env()
+   {
+   }
 
 } // namespace dynamic_source
 

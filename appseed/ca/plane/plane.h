@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/netnode/netnode.h"
+#include "ca/dynamic_source/dynamic_source.h"
 
 
 namespace ca2

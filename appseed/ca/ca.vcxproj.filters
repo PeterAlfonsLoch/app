@@ -159,14 +159,8 @@
     <Filter Include="Header Files\dynamic_source">
       <UniqueIdentifier>{bed0b41b-327e-4bbe-b146-10a009199798}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\netnode">
-      <UniqueIdentifier>{e129b786-b48c-46b4-a9c9-ee03c20994c1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\dynamic_source">
       <UniqueIdentifier>{30cb9173-9abd-434e-a22b-cf6712f5c90d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\netnode">
-      <UniqueIdentifier>{98a56817-bfe7-4883-899c-47ae13d82b00}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\ca4">
       <UniqueIdentifier>{f777b51b-b317-4ccf-bc18-f4500829cffd}</UniqueIdentifier>
@@ -302,12 +296,6 @@
     </Filter>
     <Filter Include="Header Files\crypto">
       <UniqueIdentifier>{17c199fa-1c09-46a7-bd93-0853b7bc1571}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\webserver">
-      <UniqueIdentifier>{fa586896-de7e-4971-84e9-f3f016877e2f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\webserver">
-      <UniqueIdentifier>{7942804c-2001-457d-922f-29a9ca589486}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\calculator">
       <UniqueIdentifier>{a9ca8a32-3516-4005-ba01-ad955d6d7363}</UniqueIdentifier>
@@ -1628,19 +1616,7 @@
     <ClInclude Include="dynamic_source\dynamic_source.h">
       <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_library.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
     <ClInclude Include="dynamic_source\dynamic_source_library_class.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_object.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_profiler.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_ptr.h">
       <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
     <ClInclude Include="dynamic_source\dynamic_source_script.h">
@@ -1652,35 +1628,8 @@
     <ClInclude Include="dynamic_source\dynamic_source_script_compiler.h">
       <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_script_composite.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_script_impl.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_script_instance.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_source\dynamic_source_script_interface.h">
-      <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
     <ClInclude Include="dynamic_source\dynamic_source_script_manager.h">
       <Filter>Header Files\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="netnode\netnode.h">
-      <Filter>Header Files\netnode</Filter>
-    </ClInclude>
-    <ClInclude Include="netnode\netnode_application.h">
-      <Filter>Header Files\netnode</Filter>
-    </ClInclude>
-    <ClInclude Include="netnode\netnode_service.h">
-      <Filter>Header Files\netnode</Filter>
-    </ClInclude>
-    <ClInclude Include="netnode\netnode_socket.h">
-      <Filter>Header Files\netnode</Filter>
-    </ClInclude>
-    <ClInclude Include="netnode\netnode_socket_thread.h">
-      <Filter>Header Files\netnode</Filter>
     </ClInclude>
     <ClInclude Include="ca4\ca4.h">
       <Filter>Header Files\ca4</Filter>
@@ -2807,132 +2756,6 @@
     <ClInclude Include="crypto\7z_crc.h">
       <Filter>Header Files\crypto</Filter>
     </ClInclude>
-    <ClInclude Include="webserver\webserver.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_alpha_select_performer.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_annotate.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_checkimage.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_cynce.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_cynce_database.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_database.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_database_string_integer.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_fontopus_database.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_fun.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_fun_friend_search.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_fun_fun.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_fun_user.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_kar_body_page.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_kar_page_artists.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_kar_page_category.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_kar_page_song.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_karaoke_const.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_music.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_music_category.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_music_database_cache.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_music_in2_info_list.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_music_in2_list.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_music_in2_list_artists.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_music_in2_list_category.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_music_in2_list_song.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_music_karaoke_song_in2_list.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_music_lyrics_song_in2_list.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_music_music.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_music_performer.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_music_person.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_music_person_info.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_music_song.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_music_song_source.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_note.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_note_summary.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_persistent_ui.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_secure.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_simage.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_spider.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_ui.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="webserver\webserver_wb.h">
-      <Filter>Header Files\webserver</Filter>
-    </ClInclude>
     <ClInclude Include="calculator\calculator.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
@@ -3274,6 +3097,18 @@
     </ClInclude>
     <ClInclude Include="ca2\ca2_filehandler_library.h">
       <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_httpd_socket.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_interface.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_instance.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_exit_exception.h">
+      <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4231,19 +4066,7 @@
     <ClCompile Include="plane\plane_application.cpp">
       <Filter>Source Files\plane</Filter>
     </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_library.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
     <ClCompile Include="dynamic_source\dynamic_source_library_class.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_object.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_profiler.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_ptr.cpp">
       <Filter>Source Files\dynamic_source</Filter>
     </ClCompile>
     <ClCompile Include="dynamic_source\dynamic_source_script.cpp">
@@ -4255,32 +4078,8 @@
     <ClCompile Include="dynamic_source\dynamic_source_script_compiler.cpp">
       <Filter>Source Files\dynamic_source</Filter>
     </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_script_composite.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_script_impl.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_script_instance.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="dynamic_source\dynamic_source_script_interface.cpp">
-      <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
     <ClCompile Include="dynamic_source\dynamic_source_script_manager.cpp">
       <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="netnode\netnode_application.cpp">
-      <Filter>Source Files\netnode</Filter>
-    </ClCompile>
-    <ClCompile Include="netnode\netnode_service.cpp">
-      <Filter>Source Files\netnode</Filter>
-    </ClCompile>
-    <ClCompile Include="netnode\netnode_socket.cpp">
-      <Filter>Source Files\netnode</Filter>
-    </ClCompile>
-    <ClCompile Include="netnode\netnode_socket_thread.cpp">
-      <Filter>Source Files\netnode</Filter>
     </ClCompile>
     <ClCompile Include="ca4\ca4_application.cpp">
       <Filter>Source Files\ca4</Filter>
@@ -5227,120 +5026,6 @@
     <ClCompile Include="crypto\crypto_math.c">
       <Filter>Source Files\crypto\C Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="webserver\webserver_alpha_select_performer.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_annotate.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_checkimage.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_cynce.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_cynce_database.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_database.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_database_string_integer.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_fontopus_database.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_fun.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_fun_friend_search.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_fun_fun.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_fun_user.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_kar_body_page.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_kar_page_artists.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_kar_page_category.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_kar_page_song.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_category.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_database_cache.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_in2_info_list.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_in2_list.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_in2_list_artists.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_in2_list_category.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_in2_list_song.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_karaoke_song_in2_list.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_lyrics_song_in2_list.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_performer.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_person.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_person_info.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_music_song.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_note.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_note_summary.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_persistent_ui.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_secure.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_simage.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_spider.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_user.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="webserver\webserver_wb.cpp">
-      <Filter>Source Files\webserver</Filter>
-    </ClCompile>
     <ClCompile Include="calculator\calculator_class.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
@@ -5523,6 +5208,18 @@
     </ClCompile>
     <ClCompile Include="ca2\ca2_filehandler_library.cpp">
       <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_httpd_socket.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_instance.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_interface.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_exit_exception.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

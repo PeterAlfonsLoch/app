@@ -3,11 +3,10 @@
 
 namespace dynamic_source
 {
-   
+
 
    script_instance::script_instance(script * pscript) :
-      ca(pscript->get_app()),
-      script_impl(pscript)
+      ca(pscript->get_app())
    {
       m_pscriptScriptInstance = pscript;
    }
@@ -37,6 +36,8 @@ namespace dynamic_source
    }
 
 
+
 } // namespace dynamic_source
+
 
 

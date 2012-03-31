@@ -65,6 +65,9 @@ namespace ca2
 #include "ca2_xml_data.h"
 
 
+#include "ca2_html_file.h"
+
+
 #include "ca2_filehandler_library.h"
 #include "ca2_filehandler_tree_item.h"
 #include "ca2_filehandler_tree_data.h"

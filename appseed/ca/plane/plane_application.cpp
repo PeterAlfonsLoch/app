@@ -94,13 +94,6 @@ namespace plane
             return fontopus::application::construct();
          }
       }
-      else if(chFirst == 'n')
-      {
-         if(m_strId == "netnode")
-         {
-            return netnode::application::construct();
-         }
-      }
    }
 
 
@@ -117,13 +110,6 @@ namespace plane
          if(strId == "fontopus")
          {
             return fontopus::application::initialize_instance();
-         }
-      }
-      else if(chFirst == 'n')
-      {
-         if(m_strId == "netnode")
-         {
-            return netnode::application::initialize_instance();
          }
       }
       return planebase::application::initialize_instance();
@@ -143,16 +129,6 @@ namespace plane
          {
             return fontopus::application::exit_instance();
          }
-      }
-      else if(chFirst == 'n')
-      {
-         if(m_strId == "netnode")
-         {
-            return netnode::application::exit_instance();
-         }
-      }
-      else if(chFirst == 'r')
-      {
       }
       return planebase::application::exit_instance();
    }
@@ -184,16 +160,6 @@ namespace plane
             return fontopus::application::bergedge_start();
          }
       }
-      else if(chFirst == 'n')
-      {
-         if(strId == "netnode")
-         {
-            return netnode::application::bergedge_start();
-         }
-      }
-      else if(chFirst == 'r')
-      {
-      }
       return planebase::application::bergedge_start();
    }
 
@@ -205,13 +171,6 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      if(chFirst == 'n')
-      {
-         if(strId == "netnode")
-         {
-            return netnode::application::on_install();
-         }
-      }
       return planebase::application::on_install();
    }
 
@@ -222,13 +181,6 @@ namespace plane
       if(strId.get_length() > 0)
       {
          chFirst = strId[0];
-      }
-      if(chFirst == 'n')
-      {
-         if(strId == "netnode")
-         {
-            return netnode::application::on_uninstall();
-         }
       }
       return planebase::application::on_uninstall();
    }
@@ -242,15 +194,6 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      if(m_strId == "netnode")
-      {
-         return netnode::application::on_request(pcreatecontext);
-      }
-      else if(chFirst == 'r')
-      {
-      }
-
-
       return planebase::application::on_request(pcreatecontext);
 
 
@@ -266,14 +209,6 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      if(m_strId == "netnode")
-      {
-         return netnode::application::is_serviceable();
-      }
-      else if(chFirst == 'r')
-      {
-      }
-      
       return planebase::application::is_serviceable();
    }
 
@@ -285,14 +220,6 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      if(m_strId == "netnode")
-      {
-         return netnode::application::allocate_new_service();
-      }
-      else if(chFirst == 'r')
-      {
-      }
-      
       return planebase::application::allocate_new_service();
    }
 
@@ -305,10 +232,6 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      if(chFirst == 'r')
-      {
-      }
-
       return ::planebase::application::_001OpenDocumentFile(varFile);
 
    }

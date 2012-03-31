@@ -1,6 +1,8 @@
 #pragma once
 
 
+
+
 typedef struct rsa_st RSA;
 
 namespace webserver
@@ -72,8 +74,6 @@ namespace dynamic_source
       raw_array < RSA * >     m_rsaptra;
       DWORD                   m_dwLastRsa;
 
-      webserver::simage_accepta_ptr_array * m_psimageptra;
-      webserver::match_host_array * m_pmatchhostaSpider;
       __int64  m_iDatabaseWaitTimeOut;
 
       mutex                                     m_mutexSession;
@@ -82,7 +82,6 @@ namespace dynamic_source
       mutex                                     m_mutexCynceDbPool;
       script_cache *                            m_pcache;
       script_compiler *                         m_pcompiler;
-      webserver::ui_redir *                     m_puiredir;
       DWORD                                     m_dwBuildTimeWindow;
       DWORD                                     m_dwBuildTimeRandomWindow;
 
@@ -97,10 +96,6 @@ namespace dynamic_source
       string_to_string_map                      m_usersecuretagid;
       mutex                                     m_mutexTagName;
       string_to_string_map                      m_tagname;
-
-      base_array < comparable_array < ::webserver::fontopus_database * > > m_musicdba;
-      comparable_array < ::webserver::cynce_database * > m_cyncedbptra;
-
 
       script_manager(::ca::application * papp);
       ~script_manager(void);
@@ -119,8 +114,8 @@ namespace dynamic_source
 
       script_instance * get(const char * lpcszName);
       using ::radix::thread::handle;
-      void handle(::netnode::socket * psocket);
-      script_instance * get_output_internal(script_impl * pinstanceParent, const char * lpcszName);
+      void handle(::dynamic_source::httpd_socket * psocket);
+      script_instance * get_output_internal(::dynamic_source::script_instance * pinstanceParent, const char * lpcszName);
       using thread::run;
       void run(const char * lpcszName);
 
@@ -129,19 +124,6 @@ namespace dynamic_source
       string get_library_build_log();
 
 
-      webserver::fontopus_database * new_musicdb(int iServer);
-      void free_musicdb(webserver::fontopus_database * pdb);
-      __int64 update_musicdb_list(int iServer);
-
-      webserver::cynce_database * new_cyncedb();
-      void free_cyncedb(webserver::cynce_database * pdb);
-      __int64 update_cyncedb_list();
-
-      webserver::fontopus_database * on_new_musicdb(int iServer);
-      void on_free_musicdb(webserver::fontopus_database * pdb);
-
-      webserver::cynce_database * on_new_cyncedb();
-      void on_free_cyncedb(webserver::cynce_database * pdb);
 
       virtual void message_window_message_handler(gen::signal_object * pobj);
 
@@ -154,6 +136,9 @@ namespace dynamic_source
 
       RSA * get_rsa_key();
       void calc_rsa_key();
+
+
+      virtual void on_load_env();
 
    };
 
