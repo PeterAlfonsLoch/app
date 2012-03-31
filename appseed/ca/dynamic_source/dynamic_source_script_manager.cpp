@@ -24,6 +24,7 @@ namespace dynamic_source
 
       Begin();
 
+      m_strNamespace             = "netnode"; // default namespace is linked to outer project app_core_netnode
       m_strNetnodePath           = "C:\\netnodenet\\";
       m_strNetseedPath           = "C:\\netnodenet\\net\\netseed\\";
 
@@ -80,7 +81,9 @@ namespace dynamic_source
 
    script_instance * script_manager::get(const char * lpcszName)
    {
+
       return m_pcache->create_instance(lpcszName);
+
 
    }
 
@@ -94,10 +97,7 @@ namespace dynamic_source
       {
          pinstance->m_strDebugRequestUri = pnetnodesocket->inattr("request_uri");
          pinstance->m_strDebugThisScript = "system/seed_carlosgustavocecynlundgrencarlos";
-         pinstance->m_pnetnodesocket = pnetnodesocket;
-         pinstance->m_pinstanceMain = pinstance;
-         pinstance->m_pinstanceParent = NULL;
-         pinstance->m_pmanager = this;
+         pinstance->initialize(pinstance, NULL, pnetnodesocket, this);
          pinstance->dinit();
          if(pinstance->m_iDebug > 0)
          {
@@ -175,11 +175,11 @@ namespace dynamic_source
       {
          if(pinstanceParent != NULL)
          {
-            if(pinstanceParent->m_pinstanceMain->m_iDebug > 0)
+            if(pinstanceParent->main_instance()->m_iDebug > 0)
             {
                if(pinstanceParent->m_pscript->m_memfileError.get_length() > 0)
                {
-                  pinstanceParent->m_pinstanceMain->m_pnetnodesocket->response().file() << "script_manager::get_output_internal is_empty script parent" << pinstanceParent->m_pscript->m_strName;
+                  pinstanceParent->main_instance()->netnodesocket()->response().file() << "script_manager::get_output_internal is_empty script parent" << pinstanceParent->m_pscript->m_strName;
                }
             }
          }
@@ -188,14 +188,11 @@ namespace dynamic_source
       script_instance * pinstance = get(strName);
       if(pinstance != NULL)
       {
-         pinstance->m_strDebugRequestUri = pinstanceParent->m_pinstanceMain->m_pnetnodesocket->inattr("request_uri");
+         pinstance->m_strDebugRequestUri = pinstanceParent->main_instance()->netnodesocket()->inattr("request_uri");
          pinstance->m_strDebugThisScript = strName;
-         pinstance->m_pnetnodesocket = pinstanceParent->m_pinstanceMain->m_pnetnodesocket;
-         pinstance->m_pinstanceParent = pinstanceParent;
-         pinstance->m_pinstanceMain = pinstanceParent->m_pinstanceMain;
-         pinstance->m_pmanager = this;
+         pinstance->initialize(pinstanceParent->main_instance(), pinstanceParent, pinstanceParent->main_instance()->netnodesocket(), this);
          pinstance->dinit();
-         if(pinstance->m_pinstanceMain->m_iDebug > 0)
+         if(pinstance->main_instance()->m_iDebug > 0)
          {
             if(pinstance->m_pscript->m_memfileError.get_length() > 0)
             {

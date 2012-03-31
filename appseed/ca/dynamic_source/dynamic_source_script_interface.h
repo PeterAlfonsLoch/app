@@ -15,16 +15,20 @@ namespace dynamic_source
    class CLASS_DECL_ca script_interface :
       virtual public ::ca2::html_file
    {
+      
+      script_interface *                  m_pinstanceMain;
+      script_interface *                  m_pinstanceParent;
+      httpd_socket *                      m_pnetnodesocket;
+      script_manager *                    m_pmanager;
+
+
    public:
 
 
       script *                            m_pscript;
-      script_manager *                    m_pmanager;
 
-      httpd_socket *                      m_pnetnodesocket;
+      
 
-      script_interface *                  m_pinstanceParent;
-      script_interface *                  m_pinstanceMain;
 
 
       int                                 m_iDebug;
@@ -47,6 +51,30 @@ namespace dynamic_source
 
 
       virtual ::http::file & output_file();
+
+
+      virtual void on_initialize();
+      virtual void initialize(script_interface * pinterfaceMain, script_interface * pinterfaceParent, httpd_socket * pnetnodesocket, script_manager * pmanager);
+      
+      script_interface * main_instance()
+      {
+         return m_pinstanceMain;
+      }
+
+      script_interface * parent()
+      {
+         return m_pinstanceParent;
+      }
+
+      httpd_socket * netnodesocket()
+      {
+         return m_pnetnodesocket;
+      }
+
+      script_manager * manager()
+      {
+         return m_pmanager;
+      }
 
    };
 

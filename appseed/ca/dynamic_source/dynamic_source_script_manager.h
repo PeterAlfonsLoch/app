@@ -63,7 +63,7 @@ namespace dynamic_source
 
 
 
-
+      string                  m_strNamespace;
       string                  m_strNetnodePath;
       string                  m_strNetseedPath;
 
@@ -73,6 +73,8 @@ namespace dynamic_source
       mutex                   m_mutexRsa;
       raw_array < RSA * >     m_rsaptra;
       DWORD                   m_dwLastRsa;
+
+      
 
       __int64  m_iDatabaseWaitTimeOut;
 

@@ -477,10 +477,10 @@ namespace dynamic_source
          }
       }
       strDest += "\r\n";
-      strDest += "class dynamic_source_script : public dynamic_source::script_instance\r\n";
+      strDest += "class dynamic_source_script : virtual public ::" + m_pmanager->m_strNamespace + "::script_instance\r\n";
       strDest += "{\r\n";
       strDest += "public:\r\n";
-      strDest += "   dynamic_source_script(dynamic_source::script * pscript) : dynamic_source::script_instance(pscript) {};  \r\n";
+      strDest += "   dynamic_source_script(dynamic_source::script * pscript) : dynamic_source::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_instance(pscript) {};  \r\n";
       strDest += "   virtual void run();\r\n";
       strDest += "};\r\n";
       strDest += "\r\n";
@@ -1460,7 +1460,7 @@ namespace dynamic_source
       if(pinstance != NULL)
       {
          string strError;
-         pinstance->m_pmanager = m_pmanager;
+         pinstance->initialize(pinstance, NULL, NULL, m_pmanager);
          pinstance->m_pscript->m_memfileError.seek_to_begin();
          pinstance->m_pscript->m_memfileError.to_string(strError);
          m_pmanager->m_strPersistentError += strError;
@@ -1485,7 +1485,7 @@ namespace dynamic_source
          if(pinstance != NULL)
          {
             string strError;
-            pinstance->m_pmanager = m_pmanager;
+            pinstance->initialize(pinstance, NULL, NULL, m_pmanager);
             pinstance->m_pscript->m_memfileError.seek_to_begin();
             pinstance->m_pscript->m_memfileError.to_string(strError);
             m_pmanager->m_strPersistentError += strError;

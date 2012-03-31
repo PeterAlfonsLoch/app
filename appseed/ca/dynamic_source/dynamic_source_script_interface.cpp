@@ -55,6 +55,22 @@ namespace dynamic_source
       return *((::http::file *) NULL);
    }
 
+   void script_interface::on_initialize()
+   {
+   }
+    
+   void script_interface::initialize(script_interface * pinterfaceMain, script_interface * pinterfaceParent, httpd_socket * pnetnodesocket, script_manager * pmanager)
+   {
+      
+      m_pinstanceMain      = pinterfaceMain;
+      m_pinstanceParent    = pinterfaceParent;
+      m_pnetnodesocket     = pnetnodesocket;
+      m_pmanager           = pmanager;
+      
+      on_initialize();
+
+   }
+
 } // namespace dynamic_source
 
 
