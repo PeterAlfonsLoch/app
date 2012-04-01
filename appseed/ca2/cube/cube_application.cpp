@@ -91,13 +91,6 @@ namespace cube
             return ::ca2::fontopus::application::construct();
          }
       }
-      else if(chFirst == 'n')
-      {
-         if(m_strId == "netnode")
-         {
-            return netnode::application::construct();
-         }
-      }
    }
 
 
@@ -121,13 +114,6 @@ namespace cube
          if(strId == "fontopus2")
          {
             return ::ca2::fontopus::application::initialize_instance();
-         }
-      }
-      else if(chFirst == 'n')
-      {
-         if(m_strId == "netnode")
-         {
-            return netnode::application::initialize_instance();
          }
       }
       return cubebase::application::initialize_instance();
@@ -154,16 +140,6 @@ namespace cube
          {
             return ::ca2::fontopus::application::exit_instance();
          }
-      }
-      else if(chFirst == 'n')
-      {
-         if(m_strId == "netnode")
-         {
-            return netnode::application::exit_instance();
-         }
-      }
-      else if(chFirst == 'r')
-      {
       }
       return cubebase::application::exit_instance();
    }
@@ -202,16 +178,6 @@ namespace cube
             return ::ca2::fontopus::application::bergedge_start();
          }
       }
-      else if(chFirst == 'n')
-      {
-         if(strId == "netnode")
-         {
-            return netnode::application::bergedge_start();
-         }
-      }
-      else if(chFirst == 'r')
-      {
-      }
       return cube2::application::bergedge_start();
    }
 
@@ -237,13 +203,6 @@ namespace cube
             return ::ca2::fontopus::application::on_install();
          }
       }
-      else if(chFirst == 'n')
-      {
-         if(strId == "netnode")
-         {
-            return netnode::application::on_install();
-         }
-      }
       return cubebase::application::on_install();
    }
 
@@ -267,13 +226,6 @@ namespace cube
          if(strId == "fontopus2")
          {
             return ::ca2::fontopus::application::on_uninstall();
-         }
-      }
-      else if(chFirst == 'n')
-      {
-         if(strId == "netnode")
-         {
-            return netnode::application::on_uninstall();
          }
       }
       return cubebase::application::on_uninstall();
@@ -302,15 +254,6 @@ namespace cube
             return ::ca2::fontopus::application::on_request(pcreatecontext);
          }
       }
-      else if(m_strId == "netnode")
-      {
-         return netnode::application::on_request(pcreatecontext);
-      }
-      else if(chFirst == 'r')
-      {
-      }
-
-
       return cube2::application::on_request(pcreatecontext);
 
 
@@ -333,13 +276,6 @@ namespace cube
             return ::ca2::filehandler::application::is_serviceable();
          }
       }
-      else if(m_strId == "netnode")
-      {
-         return netnode::application::is_serviceable();
-      }
-      else if(chFirst == 'r')
-      {
-      }
       
       return cube2::application::is_serviceable();
    }
@@ -358,13 +294,6 @@ namespace cube
          {
             return ::ca2::filehandler::application::allocate_new_service();
          }
-      }
-      else if(m_strId == "netnode")
-      {
-         return netnode::application::allocate_new_service();
-      }
-      else if(chFirst == 'r')
-      {
       }
       
       return cube2::application::allocate_new_service();
