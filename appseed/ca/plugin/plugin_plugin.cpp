@@ -322,9 +322,7 @@ namespace plugin
       ::fontopus::user * puser = NULL;
       while(puser == NULL)
       {
-         ::fontopus::validate authuser(m_psystem, "system\\user\\authenticate.xhtml", true);
-         authuser.oprop("defer_registration") = "defer_registration";
-         puser = authuser.get_user(strLocation, strSessId);
+         puser = Session.login();
       }
       
       if(strSessId == puser->m_strFontopusServerSessId ||
