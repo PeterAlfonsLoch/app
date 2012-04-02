@@ -320,9 +320,10 @@ namespace plugin
       string strSessId = set["sessid"];
       
       ::fontopus::user * puser = NULL;
+//      Sleep(15 * 1000);
       while(puser == NULL)
       {
-         puser = Session.login();
+         puser = Application.login();
       }
       
       if(strSessId == puser->m_strFontopusServerSessId ||

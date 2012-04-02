@@ -113,6 +113,30 @@ namespace ca2
 
       }
 
+
+      void application::on_request(::ca::create_context * pcreatecontext)
+      {
+
+         if(pcreatecontext->m_spCommandLine.is_set()
+          && pcreatecontext->m_spCommandLine->m_varFile == "ca2login")
+         {
+            while(true)
+            {
+               if(login() != NULL)
+                  break;
+            }
+            if(pcreatecontext->m_spCommandLine->m_varQuery["ruri"].is_set())
+            {
+               string strUri = pcreatecontext->m_spCommandLine->m_varQuery["ruri"];
+               System.url().set(strUri, "sessid", ApplicationUser.get_sessid(strUri, true));
+               System.open_link(strUri);
+            }
+         }
+
+      }
+
+
+
    } // namespace fontopus
 
 
