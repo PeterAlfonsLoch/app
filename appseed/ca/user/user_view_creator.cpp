@@ -14,6 +14,21 @@ namespace user
       m_pholder            = NULL;
    }
 
+   ::user::interaction *   view_creator_data::get_wnd()
+   {
+      if(m_pwnd != NULL)
+         return m_pwnd;
+      try
+      {
+         if(m_pholder != NULL && m_pholder->m_uiptraHold.get_count() == 1)
+            return m_pholder->m_uiptraHold[0];
+      }
+      catch(...)
+      {
+      }
+      return NULL;
+   }
+
    view_creator_data * view_creator::get(id id)
    {
       ::user::view_creator_data * pcreatordata;
@@ -122,12 +137,19 @@ namespace user
       {
          if(id != ppair->m_key)
          {
-            if(ppair->m_value->m_pwnd != NULL)
+            try
             {
-               if(ppair->m_value->m_pwnd->IsWindowVisible())
+               if(ppair->m_value->m_pholder != NULL)
+               {
+                  ppair->m_value->m_pholder->ShowWindow(SW_HIDE);
+               }
+               else if(ppair->m_value->m_pwnd != NULL)
                {
                   ppair->m_value->m_pwnd->ShowWindow(SW_HIDE);
                }
+            }
+            catch(...)
+            {
             }
          }
          ppair = m_viewmap.PGetNextAssoc(ppair);

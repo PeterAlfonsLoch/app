@@ -34,6 +34,9 @@ namespace user
       view_creator_data();
 
 
+      ::user::interaction *   get_wnd();
+
+
    };
 
 

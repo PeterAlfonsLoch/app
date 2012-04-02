@@ -303,15 +303,25 @@ namespace userbase
       {
          m_pviewdataOld = m_pviewdata;
          m_pviewdata = pcreatordata;
-         if(m_pviewdataOld != NULL
-            // heuristics
-            && m_pviewdata->m_pwnd != NULL
-            && (!m_pviewdata->m_pwnd->_001HasTranslucency()
-            || m_pviewdata->m_eflag.is_signalized(::user::view_creator_data::flag_hide_all_others_on_show)))
+         if(m_pviewdata->m_eflag.is_signalized(::user::view_creator_data::flag_hide_all_others_on_show))
          {
-            if(m_pviewdataOld->m_pwnd != NULL)
+            ::user::view_creator::view_map::pair * ppair = m_pviewcreator->m_viewmap.PGetFirstAssoc();
+            while(ppair != NULL)
             {
-               m_pviewdataOld->m_pwnd->ShowWindow(SW_HIDE);
+               try
+               {
+                  if(ppair->m_value != m_pviewdata)
+                  {
+                     if(ppair->m_value->m_pholder != NULL)
+                     {
+                        ppair->m_value->m_pholder->ShowWindow(SW_HIDE);
+                     }
+                  }
+               }
+               catch(...)
+               {
+               }
+               ppair = m_pviewcreator->m_viewmap.PGetNextAssoc(ppair);
             }
          }
       }

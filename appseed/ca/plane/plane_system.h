@@ -828,6 +828,12 @@ inline VIEW * view::create_view(::user::document_interface * pdoc, ::user::inter
 }
 
 
+template < class VIEW >
+inline VIEW * view::create_view(::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
+{
+   return dynamic_cast < VIEW * > (create_view(System.template type_info < VIEW > (), NULL, pwndParent, id, pviewLast));
+}
+
 
 
 

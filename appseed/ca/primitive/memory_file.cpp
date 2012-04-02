@@ -192,8 +192,8 @@ namespace primitive
 
       m_dwPosition = dwNew;
 
-      if(dwNew > this->get_size())
-         allocate((primitive::memory_size) dwNew);
+      //if(dwNew > this->get_size())
+         //allocate((primitive::memory_size) dwNew);
 
       return (file_position) dwNew;
    }
