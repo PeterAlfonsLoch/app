@@ -1,6 +1,16 @@
 #pragma once
 
 
+namespace user
+{
+
+
+   class view_creator_data;
+
+
+} // namespace user
+
+
 class view_update_hint;
 
 
@@ -70,6 +80,9 @@ public:
    
    template < class VIEW >
    VIEW * create_view(::user::interaction * pwndParent, ::id id = ::id(), ::user::interaction * pviewLast = NULL);
+
+   template < class VIEW >
+   VIEW * create_view(::user::view_creator_data * pcreatordata, ::user::interaction * pviewLast = NULL);
 
 
    static user::document_interface * get_document(::user::interaction * pguie);

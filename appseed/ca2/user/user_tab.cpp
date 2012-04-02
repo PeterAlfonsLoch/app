@@ -617,16 +617,17 @@ namespace user
       get_data()->m_bDrag = false;
       if(iPane >= 0)
       {
-         if(iPane != _001GetSel())
+         int iSel = _001GetSel();
+         if(m_eelement == element_close_tab_button)
          {
             get_data()->m_iDragTab = iPane;
-            SetTimer(5432187, 884, NULL);
             pmouse->m_bRet = true;
             pmouse->set_lresult(1);
          }
-         else if(m_eelement == element_close_tab_button)
+         else if(iPane != iSel)
          {
             get_data()->m_iDragTab = iPane;
+            SetTimer(5432187, 1230, NULL);
             pmouse->m_bRet = true;
             pmouse->set_lresult(1);
          }
