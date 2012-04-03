@@ -320,7 +320,7 @@ namespace plugin
       string strSessId = set["sessid"];
       
       ::fontopus::user * puser = NULL;
-//      Sleep(15 * 1000);
+      //Sleep(15 * 1000);
       while(puser == NULL)
       {
          puser = Application.login();
@@ -401,7 +401,7 @@ namespace plugin
       
          strsize iCount = strlen(psz);
 
-         //sleep(seconds(15));
+         //Sleep(15 * 1000);
 
          string strPluginUrl;
 
@@ -511,6 +511,7 @@ namespace plugin
                         return;
                      }
                   }
+                  //Sleep(15 * 1000);
                   if(str.has_char())
                   {
                      string strId = str;
@@ -554,7 +555,7 @@ namespace plugin
                      else
                      {
                         m_puiHost->KillTimer(19841115);
-                        sleep(seconds(15));
+                        //Sleep(15 * 1000);
    //                     m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
                         ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
                         pbiasCreate->m_set["NativeWindowFocus"] = false;

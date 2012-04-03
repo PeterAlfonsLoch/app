@@ -159,14 +159,14 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
 
    if(m_bWindowFrame)
    {
-      WNDCLASS wndclass;
+      /*WNDCLASS wndclass;
 
       char szBuf [64];
       ::GetClassName(_get_handle(), szBuf, _countof(szBuf));
 
       GetClassInfo(System.m_hInstance, 
          szBuf,
-         &wndclass);
+         &wndclass);*/
 
 // trans      SetIcon(wndclass.hIcon, false);
 

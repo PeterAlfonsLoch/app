@@ -1944,59 +1944,69 @@ restart_finding:
       bool bTwoDots = false;
       bool bFile = !bApp;
       bool bRun = true;
+      bool bStarted = false;
 
 
       const char * pszStart = pszCmdLine;
       while(bRun)
       {
          bRun = bRun && *pszCmdLine != '\0';
-         if(!bQuote && *pszCmdLine != '\0' && gen::ch::is_space_char(pszCmdLine))
+         if(!bStarted && !bQuote && *pszCmdLine != '\0' && gen::ch::is_space_char(pszCmdLine))
          {
             pszStart = gen::str::utf8_inc(pszCmdLine);
+            bStarted = true;
          }
          if(pszStart <= pszCmdLine && (((bApp || bFile) && ((!bQuote && isspace(*pszCmdLine)) || (bQuote && *pszCmdLine == '\"' && (*(pszCmdLine - 1)) != '\\') || !bRun)) || (!bTwoDots && !bQuote && *pszCmdLine == ':')))
          {
             if(!bTwoDots && !bQuote && *pszCmdLine == ':')
             {
                bTwoDots    = true;
-               bFile       = false;
-               bApp        = false;
             }
             if(bApp)
             {
                strApp = string(pszStart, pszCmdLine - pszStart);
                bApp = false;
                bFile = true;
+               bStarted = false;
             }
             else if(bFile)
             {
-               if(varFile.is_empty())
+               string strFile = string(pszStart, pszCmdLine - pszStart);
+               strFile.trim();
+               if(strFile.has_char())
                {
-                  varFile = string(pszStart, pszCmdLine - pszStart);
-                  if(bQuote)
+                  if(varFile.is_empty())
                   {
-                     pszCmdLine++;
-                     pszStart = pszCmdLine;
-                     bRun = bRun && *pszCmdLine != '\0';
+                     varFile = strFile;
+                     if(bQuote)
+                     {
+                        pszCmdLine++;
+                        pszStart = pszCmdLine;
+                        bRun = bRun && *pszCmdLine != '\0';
+                     }
+                     bStarted = false;
                   }
-               }
-               else if(varFile.get_type() == var::type_string)
-               {
-                  //varFile.stra().add(varFile);
-                  varFile.stra().add(string(pszStart, pszCmdLine - pszStart));
-               }
-               else if(varFile.get_type() == var::type_stra)
-               {
-                  varFile.stra().add(string(pszStart, pszCmdLine - pszStart));
-               }
-               else if(varFile.get_type() == var::type_propset)
-               {
-                  varFile.propset()["stra"].stra().add(string(pszStart, pszCmdLine - pszStart));
-               }
-               else
-               {
-                  varFile.propset()["varFile"] = varFile;
-                  varFile.propset()["stra"].stra().add(string(pszStart, pszCmdLine - pszStart));
+                  else if(varFile.get_type() == var::type_string)
+                  {
+                     varFile.stra().add(strFile);
+                     bStarted = false;
+                  }
+                  else if(varFile.get_type() == var::type_stra)
+                  {
+                     varFile.stra().add(strFile);
+                     bStarted = false;
+                  }
+                  else if(varFile.get_type() == var::type_propset)
+                  {
+                     varFile.propset()["stra"].stra().add(strFile);
+                     bStarted = false;
+                  }
+                  else
+                  {
+                     varFile.propset()["varFile"] = varFile;
+                     varFile.propset()["stra"].stra().add(strFile);
+                     bStarted = false;
+                  }
                }
             }
             if(bTwoDots)

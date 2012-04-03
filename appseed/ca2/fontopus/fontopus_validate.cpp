@@ -33,7 +33,7 @@ namespace ca2
             papp,
             "system/auth",
             System.template type_info < form_document > (),
-            System.template type_info < simple_frame_window > (),
+            System.template type_info < simple_main_frame > (),
             System.template type_info < userex::pane_tab_view > ());
          m_pauth           = NULL;
          m_pviewAuth       = NULL;
@@ -85,6 +85,7 @@ namespace ca2
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca2 < ::user::interaction > ();
          createcontext->m_bOuterPopupAlertLike = true;
+         //Sleep(15 * 1000);
          m_pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
          userex::pane_tab_view * pview = m_pdoc->get_typed_view < userex::pane_tab_view >();
          pview->set_view_creator(this);

@@ -1007,6 +1007,7 @@
     <ClInclude Include="sockets\tls_socket.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="userbase\simple_document.h" />
+    <ClInclude Include="userbase\simple_main_frame.h" />
     <ClInclude Include="userbase\simple_printer_list_view.h" />
     <ClInclude Include="userbase\simple_tree_view.h" />
     <ClInclude Include="userbase\userbase_main_frame.h" />
@@ -1452,6 +1453,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">StdAfx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="userbase\simple_document.cpp" />
+    <ClCompile Include="userbase\simple_main_frame.cpp" />
     <ClCompile Include="userbase\simple_printer_list_view.cpp" />
     <ClCompile Include="userbase\simple_tree_view.cpp" />
     <ClCompile Include="userbase\userbase_main_frame.cpp" />

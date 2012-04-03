@@ -31,6 +31,7 @@ namespace userbase
          System.factory().creatable_small < BaseButtonControl >();
          System.factory().creatable_small < userbase::menu_list_view >();
          System.factory().cloneable_small < simple_child_frame >();
+         System.factory().cloneable_small < simple_main_frame >();
          System.factory().creatable_small < simple_button >();
          System.factory().cloneable_small < userbase::document >();
          System.factory().cloneable_small < userbase::split_view >();

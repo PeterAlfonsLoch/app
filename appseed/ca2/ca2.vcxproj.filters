@@ -1583,6 +1583,9 @@
     <ClInclude Include="html\html_image.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
+    <ClInclude Include="userbase\simple_main_frame.h">
+      <Filter>Header Files\userbase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca2.def">
@@ -2513,6 +2516,9 @@
     </ClCompile>
     <ClCompile Include="command\command_view.cpp">
       <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_main_frame.cpp">
+      <Filter>Source Files\userbase</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
