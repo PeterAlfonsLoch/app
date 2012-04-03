@@ -89,11 +89,11 @@ void FileManagerTabView::on_update(::view * pSender, LPARAM lHint, ::radix::obje
    }
    if(lHint == 89124592)
    {
-      set_cur_tab_by_id(100000);
+      set_cur_tab_by_id("add_location");
    }
    else if(lHint == 89124593)
    {
-      set_cur_tab_by_id(101000);
+      set_cur_tab_by_id("replace_name");
    }
 
 
@@ -101,7 +101,49 @@ void FileManagerTabView::on_update(::view * pSender, LPARAM lHint, ::radix::obje
 
 void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata)
 {
-   if(pcreatordata->m_id == 200000)
+
+   if(pcreatordata->m_id.is_text())
+   {
+
+      if(pcreatordata->m_id == "add_location"
+         || pcreatordata->m_id == "replace_name")
+      {
+         ::ca::create_context_sp createcontext(get_app());
+         createcontext->m_bMakeVisible = false;
+         createcontext->m_puiParent = pcreatordata->m_pholder;
+         file_manager_form_document * pdoc = dynamic_cast < file_manager_form_document * > (Application.m_ptemplateForm->open_document_file(createcontext));
+         if(pdoc == NULL)
+            return;
+         file_manager_form_view * pformview = pdoc->get_typed_view < file_manager_form_view > ();
+         file_manager_form_update_hint uh;
+         uh.m_etype = file_manager_form_update_hint::type_browse;
+         if(pcreatordata->m_id == "replace_name")
+         {
+            uh.m_strForm = "filemanager\\replace_name_in_file_system.xhtml";
+         }
+         else if(pcreatordata->m_id == "add_location")
+         {
+            uh.m_strForm = "filemanager_add_location_1.xhtml";
+         }
+         pdoc->update_all_views(NULL, 0, &uh);
+
+         uh.m_etype = file_manager_form_update_hint::type_get_form_view;
+         pdoc->update_all_views(NULL, 0, &uh);
+
+         uh.m_etype = file_manager_form_update_hint::type_after_browse;
+         pdoc->update_all_views(NULL, 0, &uh);
+
+
+         pformview->m_pfilemanagerinterface = dynamic_cast < FileManagerInterface * > (m_pviewdata->m_pdoc);
+         //pformview->VmsDataInitialize(simpledb::get(get_app())->GetDataServer());
+         //pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(pformview->GetParentFrame());
+         //      file_manager_form_child_frame * pframe = dynamic_cast < file_manager_form_child_frame * >(pcreatordata->m_pwnd);
+         //pframe->m_iTabId = iId;
+         pcreatordata->m_pdoc = pdoc;
+      }
+
+   }
+   else if(pcreatordata->m_id == 200000)
    {
       ::ca::create_context_sp createcontext(get_app());
       createcontext->m_bMakeVisible = false;
@@ -113,42 +155,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
       ::view * pview = pdoc->get_view(0);
       //file_manager_form_view * poperationview = dynamic_cast < file_manager_form_view * > (pview);
       pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(pview->GetParentFrame());
-//      file_manager_operation_child_frame * pframe = dynamic_cast < file_manager_operation_child_frame * >(pcreatordata->m_pwnd);
-      //pframe->m_iTabId = iId;
-      pcreatordata->m_pdoc = pdoc;
-   }
-   else if(pcreatordata->m_id >= 100000)
-   {
-      ::ca::create_context_sp createcontext(get_app());
-      createcontext->m_bMakeVisible = false;
-      createcontext->m_puiParent = this;
-      file_manager_form_document * pdoc = dynamic_cast < file_manager_form_document * > (Application.m_ptemplateForm->open_document_file(createcontext));
-      if(pdoc == NULL)
-         return;
-      file_manager_form_view * pformview = pdoc->get_typed_view < file_manager_form_view > ();
-      file_manager_form_update_hint uh;
-      uh.m_etype = file_manager_form_update_hint::type_browse;
-      if(pcreatordata->m_id >= 101000)
-      {
-         uh.m_strForm = "filemanager\\replace_name_in_file_system.xhtml";
-      }
-      else if(pcreatordata->m_id >= 100000)
-      {
-         uh.m_strForm = "filemanager_add_location_1.xhtml";
-      }
-      pdoc->update_all_views(NULL, 0, &uh);
-
-      uh.m_etype = file_manager_form_update_hint::type_get_form_view;
-      pdoc->update_all_views(NULL, 0, &uh);
-
-      uh.m_etype = file_manager_form_update_hint::type_after_browse;
-      pdoc->update_all_views(NULL, 0, &uh);
-
-
-      pformview->m_pfilemanagerinterface = dynamic_cast < FileManagerInterface * > (m_pviewdata->m_pdoc);
-      //pformview->VmsDataInitialize(simpledb::get(get_app())->GetDataServer());
-      pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(pformview->GetParentFrame());
-//      file_manager_form_child_frame * pframe = dynamic_cast < file_manager_form_child_frame * >(pcreatordata->m_pwnd);
+      //      file_manager_operation_child_frame * pframe = dynamic_cast < file_manager_operation_child_frame * >(pcreatordata->m_pwnd);
       //pframe->m_iTabId = iId;
       pcreatordata->m_pdoc = pdoc;
    }
@@ -160,10 +167,10 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
       ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (Application.GetStdFileManagerTemplate()->m_pdoctemplateChild->open_document_file(createcontext));
       simple_frame_window * pwndTopLevel = NULL;
       if(pdoc != NULL)
-      //if(false)
+         //if(false)
       {
-   //      pdoc->get_filemanager_data()->m_uiMenuBar = m_uiMenuBar;
-   //      pdoc->get_filemanager_data()->m_uiToolBar = m_uiToolBar;
+         //      pdoc->get_filemanager_data()->m_uiMenuBar = m_uiMenuBar;
+         //      pdoc->get_filemanager_data()->m_uiToolBar = m_uiToolBar;
 
 
 
@@ -224,7 +231,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
          return;
       ::view * pview = pdoc->get_view(0);
       //pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(pview->GetParentFrame());
-//      FileManagerChildFrame * pframe = dynamic_cast < FileManagerChildFrame * >(pcreatordata->m_pwnd);
+      //      FileManagerChildFrame * pframe = dynamic_cast < FileManagerChildFrame * >(pcreatordata->m_pwnd);
       //pframe->m_iTabId = iId;
       pcreatordata->m_pdoc = pdoc;
       if(pwndTopLevel != NULL)
@@ -237,7 +244,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
 
 void FileManagerTabView::_001OnCreate(gen::signal_object * pobj)
 {
-//   SCAST_PTR(::gen::message::create, pcreate, pobj)
+   //   SCAST_PTR(::gen::message::create, pcreate, pobj)
 
    pobj->previous();
 
