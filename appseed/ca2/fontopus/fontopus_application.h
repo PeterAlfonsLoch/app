@@ -24,7 +24,7 @@ namespace ca2
          virtual void construct();
 
 
-         virtual ::fontopus::user * login();
+         virtual ::fontopus::user * login(gen::property_set & set);
          virtual bool get_auth(const char * psz, string & strUsername, string & strPassword);
 
 

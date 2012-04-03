@@ -26,7 +26,7 @@ namespace fontopus
       virtual user * create_user(::fontopus::user * puser);
       virtual user * allocate_user();
       virtual user * create_current_user();
-      virtual user * login();
+      virtual user * login(gen::property_set & set);
 
       virtual void logout();
 

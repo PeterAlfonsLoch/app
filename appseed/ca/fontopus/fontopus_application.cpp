@@ -82,7 +82,7 @@ namespace fontopus
       return m_puser;
    }
 
-   user * application::login()
+   user * application::login(gen::property_set & set)
    {
       /*::ca::application * papp;
       if(m_puiInitialPlaceHolderContainer != NULL)

@@ -54,7 +54,7 @@ namespace ca2
 
 
 
-      ::fontopus::user * application::login()
+      ::fontopus::user * application::login(gen::property_set & set)
       {
          /*::ca::application * papp;
          if(m_puiInitialPlaceHolderContainer != NULL)
