@@ -223,7 +223,28 @@ namespace user
       
       SCAST_PTR(::gen::message::mouse_wheel, pmousewheel, pobj);
 
-      m_iWheelDelta += pmousewheel->GetDelta();
+      if(pmousewheel->GetDelta() > 0)
+      {
+         if(m_iWheelDelta > 0)
+         {
+            m_iWheelDelta += pmousewheel->GetDelta();
+         }
+         else
+         {
+            m_iWheelDelta = pmousewheel->GetDelta();
+         }
+      }
+      else if(pmousewheel->GetDelta() < 0)
+      {
+         if(m_iWheelDelta < 0)
+         {
+            m_iWheelDelta += pmousewheel->GetDelta();
+         }
+         else
+         {
+            m_iWheelDelta = pmousewheel->GetDelta();
+         }
+      }
 
       index iDelta = m_iWheelDelta / WHEEL_DELTA;
 
