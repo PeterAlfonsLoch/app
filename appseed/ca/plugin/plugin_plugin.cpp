@@ -319,11 +319,13 @@ namespace plugin
       }
       string strSessId = set["sessid"];
       
+      gen::property_set setLogin(get_app());
+
       ::fontopus::user * puser = NULL;
       //Sleep(15 * 1000);
       while(puser == NULL)
       {
-         puser = Application.login();
+         puser = Application.login(setLogin);
       }
       
       if(strSessId == puser->m_strFontopusServerSessId ||

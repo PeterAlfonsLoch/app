@@ -986,7 +986,7 @@ namespace fontopus
       {
 
          string strAuthUrl("https://"+ m_strFontopusServer +"/ca2api/account/auth?" + m_pcallback->oprop("defer_registration").get_string() 
-            +"&ruri=" + System.url(m_pcallback->oprop("ruri").get_string()).url_encode());
+            +"&ruri=" + System.url().url_encode((m_pcallback->oprop("ruri").get_string())));
 
          gen::property_set post;
          gen::property_set headers;

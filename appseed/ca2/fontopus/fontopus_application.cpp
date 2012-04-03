@@ -72,6 +72,7 @@ namespace ca2
          //class validate authuser(papp, "system\\user\\authenticate.xhtml", true);
          class validate authuser(this, "system\\user\\authenticate.xhtml", true);
          authuser.oprop("defer_registration") = "defer_registration";
+         authuser.propset().merge(set);
          return authuser.get_user();
       }
 
@@ -120,6 +121,11 @@ namespace ca2
          if(pcreatecontext->m_spCommandLine.is_set()
           && pcreatecontext->m_spCommandLine->m_varFile == "ca2login")
          {
+            gen::property_set set(get_app());
+            if(pcreatecontext->m_spCommandLine->m_varQuery["ruri"].is_set())
+            {
+               set["ruri"] = pcreatecontext->m_spCommandLine->m_varQuery["ruri"];
+            }
             while(true)
             {
                if(login() != NULL)

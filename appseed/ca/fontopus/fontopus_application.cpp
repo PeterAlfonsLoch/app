@@ -51,13 +51,14 @@ namespace fontopus
 
    user * application::create_current_user()
    {
+      gen::property_set set(get_app());
       if(m_puser == NULL)
       {
          int iRetry = 3;
          ::fontopus::user * puser = NULL;
          while(iRetry > 0)
          {
-            puser = login();
+            puser = login(set);
             if(puser != NULL)
                break;
             //bool bOk = false;
@@ -101,11 +102,12 @@ namespace fontopus
 
       if(m_psession != NULL && m_psession->m_pbergedge != NULL)
       {
-         return m_psession->m_pbergedgeInterface->login();
+         return m_psession->m_pbergedgeInterface->login(set);
       }
 
       class validate authuser(this, "system\\user\\authenticate.xhtml", true);
       authuser.oprop("defer_registration") = "defer_registration";
+      authuser.propset().merge(set);
       return authuser.get_user();
    }
 
