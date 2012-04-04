@@ -49,6 +49,8 @@ namespace sockets
       inattr("http_protocol")       = m_strProtocol;
       m_strUrl                      = m_strProtocol + "://" + m_strHost + inattr("request_uri");
       inattr("http_version")        = "HTTP/1.1";
+      m_b_keepalive                 = true;
+      m_content_ptr                 = 0;
 
       if(m_bRequestComplete)
       {

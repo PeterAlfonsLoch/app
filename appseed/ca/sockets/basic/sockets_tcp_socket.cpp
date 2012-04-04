@@ -516,7 +516,7 @@ namespace sockets
    void tcp_socket::OnRead( char *buf, size_t n )
    {
       // unbuffered
-      if (n > 0 && n <= TCP_BUFSIZE_READ)
+      if (n > 0)
       {
          stream_socket::OnRead(buf, n);
       }
