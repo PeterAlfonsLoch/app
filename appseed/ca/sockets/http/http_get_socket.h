@@ -36,7 +36,7 @@ namespace sockets
    /** get http page. 
       \ingroup http */
    class CLASS_DECL_ca http_get_socket : 
-      public http_client_socket
+      virtual public http_client_socket
    {
    public:
       http_get_socket(socket_handler_base&);

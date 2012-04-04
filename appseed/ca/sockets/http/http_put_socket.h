@@ -36,14 +36,15 @@ namespace sockets
 
    /** Put http page. 
       \ingroup http */
-   class CLASS_DECL_ca http_put_socket : public http_client_socket
+   class CLASS_DECL_ca http_put_socket : 
+      virtual public http_client_socket
    {
    public:
       
       
       string            m_filename;
-      string            m_content_type;
-      long              m_content_length;
+      //string            m_content_type;
+      //long              m_content_length;
       ::ex1::filesp     m_file;
 
       

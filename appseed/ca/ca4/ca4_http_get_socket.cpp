@@ -10,6 +10,9 @@ namespace ca4
       ::sockets::socket(handler),
       ::sockets::stream_socket(handler),
       ::sockets::tcp_socket(handler),
+      ::sockets::http_socket(handler),
+      ::sockets::http_tunnel(handler),
+      ::sockets::http_client_socket(handler),
       ::sockets::http_get_socket(handler, url)
    {
       m_pcookies = NULL;
@@ -21,6 +24,9 @@ namespace ca4
       ::sockets::socket(handler),
       ::sockets::stream_socket(handler),
       ::sockets::tcp_socket(handler),
+      ::sockets::http_socket(handler),
+      ::sockets::http_tunnel(handler),
+      ::sockets::http_client_socket(handler),
       ::sockets::http_get_socket(handler, host, port, url)
    {
       m_pcookies = NULL;

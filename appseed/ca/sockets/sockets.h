@@ -265,6 +265,7 @@ namespace sockets
 #include "http/http_post_socket.h"
 #include "http/http_put_socket.h"
 #include "http/http_debug_socket.h"
+#include "http/http_session.h"
 
 
 #include "webserver/AjpBaseSocket.h"

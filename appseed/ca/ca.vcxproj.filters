@@ -3110,6 +3110,9 @@
     <ClInclude Include="dynamic_source\dynamic_source_exit_exception.h">
       <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
+    <ClInclude Include="sockets\http\http_session.h">
+      <Filter>Header Files\sockets\http</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -5220,6 +5223,9 @@
     </ClCompile>
     <ClCompile Include="dynamic_source\dynamic_source_exit_exception.cpp">
       <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\http\sockets_http_session.cpp">
+      <Filter>Source Files\sockets\http</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

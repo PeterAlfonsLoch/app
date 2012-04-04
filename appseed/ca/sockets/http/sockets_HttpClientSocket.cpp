@@ -32,6 +32,7 @@ namespace sockets
       socket(h),
       stream_socket(h),
       tcp_socket(h),
+      http_socket(h),
       http_tunnel(h),
       m_content_length((size_t)-1),
       m_content_ptr(0),
@@ -52,6 +53,7 @@ namespace sockets
       socket(h),
       stream_socket(h),
       tcp_socket(h),
+      http_socket(h),
       http_tunnel(h),
       m_content_length((size_t)-1),
       m_content_ptr(0),
@@ -116,10 +118,14 @@ namespace sockets
    void http_client_socket::OnHeaderComplete()
    {
 
+      m_memoryfile.Truncate(0);
+
       if(m_content_length != ((size_t) (-1)))
       {
          m_memoryfile.allocate_internal(m_content_length);
       }
+
+      m_memoryfile.seek_to_begin();
 
    }
 
@@ -256,6 +262,22 @@ namespace sockets
       port = (port_t) System.url().get_port(url);
    }
 
+
+   void http_client_socket::request_url(string strUrlParam)
+   {
+      string strRequestUri;
+
+      url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
+
+      m_request.attr("http_protocol")     = m_protocol;
+      outheader("host")                   = m_host;
+      m_request.attr("request_uri")       = strRequestUri;
+      m_response.attr("request_uri")      = strRequestUri;
+
+      m_strUrl = strUrlParam;
+
+      m_pfile = NULL;
+   }
 
 } // namespace sockets
 

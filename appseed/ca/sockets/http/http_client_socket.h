@@ -8,7 +8,8 @@ namespace sockets
 
    /** get http response to file or primitive::memory. 
       \ingroup http */
-   class CLASS_DECL_ca http_client_socket : public http_tunnel
+   class CLASS_DECL_ca http_client_socket : 
+      virtual public http_tunnel
    {
    public:
 
@@ -83,6 +84,9 @@ namespace sockets
       const string & GetUrlFilename();
 
       virtual void OnDataComplete();
+
+
+      virtual void request_url(string strUrlParam);
 
    };
 

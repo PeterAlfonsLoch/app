@@ -37,17 +37,17 @@ namespace sockets
    /** get http page. 
       \ingroup http */
    class CLASS_DECL_ca http_request_socket : 
-      public http_client_socket
+      virtual public http_client_socket
    {
    public:
 
       
-      string      m_strRequest;
+      string      m_strMethod;
 
 
       http_request_socket(socket_handler_base & handler);
-      http_request_socket(socket_handler_base & handler, const char * pszRequest, const string & url);
-      http_request_socket(socket_handler_base & handler, const char * pszRequest, const string & host, port_t port, const string & url);
+      http_request_socket(socket_handler_base & handler, const char * pszMethod, const string & url);
+      http_request_socket(socket_handler_base & handler, const char * pszMethod, const string & host, port_t port, const string & url);
       ~http_request_socket();
 
 

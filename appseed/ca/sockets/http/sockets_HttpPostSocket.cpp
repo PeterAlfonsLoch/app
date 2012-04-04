@@ -40,6 +40,8 @@ namespace sockets
       socket(h),
       stream_socket(h),
       tcp_socket(h),
+      http_socket(h),
+      http_tunnel(h),
       http_client_socket(h),
       m_fields(h.get_app()),
       m_bMultipart(false)
@@ -52,6 +54,8 @@ namespace sockets
       socket(h),
       stream_socket(h),
       tcp_socket(h),
+      http_socket(h),
+      http_tunnel(h),
       http_client_socket(h, url_in),
       m_fields(h.get_app()),
       m_bMultipart(false)
@@ -91,10 +95,10 @@ namespace sockets
    {
       if (Application.file().exists(filename))
       {
-         m_files[name] = filename;
-         m_content_length[filename] = System.file().length(filename);
-         m_content_type[filename] = type;
-         m_bMultipart = true;
+         m_mapFiles[name]              = filename;
+         m_mapContentLength[filename]  = System.file().length(filename);
+         m_mapContentType[filename]    = type;
+         m_bMultipart                  = true;
       }
       else
       {
@@ -206,14 +210,14 @@ namespace sockets
 
       // files
       {
-         POSITION pos = m_files.get_start_position();
+         POSITION pos = m_mapFiles.get_start_position();
          for(; pos != NULL; )
          {
             string name;
             string filename;
-            m_files.get_next_assoc(pos, name, filename);
-            long content_length = m_content_length[filename];
-            string content_type = m_content_type[filename];
+            m_mapFiles.get_next_assoc(pos, name, filename);
+            long content_length = m_mapContentLength[filename];
+            string content_type = m_mapContentType[filename];
             tmp = "--" + m_boundary + "\r\n"
                "content-disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\"\r\n"
                "content-type: " + content_type + "\r\n"
@@ -260,13 +264,13 @@ namespace sockets
 
       // send files
       {
-         POSITION pos = m_files.get_start_position();
+         POSITION pos = m_mapFiles.get_start_position();
          for(; pos != NULL;)
          {
             string name;
             string filename;
-            m_files.get_next_assoc(pos, name, filename);
-            string content_type = m_content_type[filename];
+            m_mapFiles.get_next_assoc(pos, name, filename);
+            string content_type = m_mapContentType[filename];
             tmp = "--" + m_boundary + "\r\n"
                "content-disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\"\r\n"
                "content-type: " + content_type + "\r\n"

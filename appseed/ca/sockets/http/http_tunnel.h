@@ -4,7 +4,7 @@ namespace sockets
 {
 
    class CLASS_DECL_ca http_tunnel :
-      public http_socket
+      virtual public http_socket
    {
    public:
       enum estate

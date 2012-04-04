@@ -37,16 +37,17 @@ namespace sockets
 
    /** Generate a http post request, get response. 
       \ingroup http */
-   class CLASS_DECL_ca http_post_socket : public http_client_socket
+   class CLASS_DECL_ca http_post_socket : 
+      virtual public http_client_socket
    {
    public:
       
       
-      string_to_string_map m_files;
-      string m_boundary;
-      ::collection::string_map < long > m_content_length;
-      string_to_string_map m_content_type;
-      bool m_bMultipart;
+      string                              m_boundary;
+      string_to_string_map                m_mapFiles;
+      ::collection::string_map < long >   m_mapContentLength;
+      string_to_string_map                m_mapContentType;
+      bool                                m_bMultipart;
       //static int m_boundary_count;
       //static mutex m_boundary_mutex;
 

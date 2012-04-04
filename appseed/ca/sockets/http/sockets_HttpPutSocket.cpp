@@ -37,6 +37,8 @@ namespace sockets
       socket(h),
       stream_socket(h),
       tcp_socket(h),
+      http_socket(h),
+      http_tunnel(h),
       http_client_socket(h)
    {
       m_content_length = -1;
@@ -48,6 +50,8 @@ namespace sockets
       socket(h),
       stream_socket(h),
       tcp_socket(h),
+      http_socket(h),
+      http_tunnel(h),
       http_client_socket(h, url_in)
    {
       m_content_length = -1;
@@ -99,7 +103,7 @@ namespace sockets
       {
          outheader("Content-type")     = m_content_type;
       }
-      inheader("Content-length")      = m_content_length;
+      inheader("Content-length")      = (int64_t) m_content_length;
       inheader("User-agent")          = MyUseragent();
       inheader("Connection")          = "close";
       SendRequest();

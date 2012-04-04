@@ -77,11 +77,28 @@ namespace ca4
          virtual void clean_proxy_auth(::fontopus::user * puser);
 
 
+         ::sockets::http_session * system::open(
+                     ::sockets::socket_handler & handler,
+                     const char * pszHost,
+                     const char * pszProtocol,
+                     gen::property_set & set,
+                     ::fontopus::user * puser,
+                     const char * pszVersion);
+
+         ::sockets::http_session * request(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszRequest, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
+
+         bool get(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszRequest, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
+
+
+
+
          ::sockets::http_client_socket * get(::sockets::socket_handler & handler, const char * pszUrl, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
+
 
       
          DECL_GEN_SIGNAL(get);
 
+         
          bool get(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
          bool get(const char * pszUrl, primitive::memory_base & memory, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
          bool get(const char * pszUrl, string & str, ::fontopus::user * puser = NULL);

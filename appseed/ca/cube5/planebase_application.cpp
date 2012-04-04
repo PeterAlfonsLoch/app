@@ -1205,7 +1205,7 @@ InitFailure:
    bool application::on_install()
    {
 
-
+      bool bOk = true;
 
       if(m_bUpdateMatterOnInstall)
       {
@@ -1283,17 +1283,25 @@ InitFailure:
                }
             }
 
-            update_appmatter("app", "main"); // update matter of system
-            update_appmatter("app", "bergedge"); // update matter of bergedge
+
+            ::sockets::socket_handler h(get_app());
+            ::sockets::http_session * psession = NULL;
+
+            double d1 = ::GetTickCount();
+            update_appmatter(h, psession, "app", "main"); // update matter of system
+            update_appmatter(h, psession, "app", "bergedge"); // update matter of bergedge
             if(!is_session() && !is_system())
             {
-               update_appmatter(strRoot, strDomain);
+               update_appmatter(h, psession, strRoot, strDomain);
             }
+            double d2 = ::GetTickCount();
+            double d = (d2 - d1) / 1000.0;
+            TRACE("update_appmatter seconds %f", d);
 
          }
          catch(...)
          {
-            return false;
+            bOk = false;
          }
       }
 
@@ -1305,7 +1313,7 @@ InitFailure:
       }
 
 
-      return true;
+      return bOk;
 
    }
 
@@ -1392,18 +1400,18 @@ InitFailure:
    }
 
 
-   bool application::update_appmatter(const char * pszRoot, const char * pszRelative)
+   bool application::update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession,const char * pszRoot, const char * pszRelative)
    {
       
       gen::international::locale_schema localeschema(this);
 
       fill_locale_schema(localeschema);
 
-      update_appmatter(pszRoot, pszRelative, localeschema.m_idLocale, localeschema.m_idSchema);
+      update_appmatter(h, psession, pszRoot, pszRelative, localeschema.m_idLocale, localeschema.m_idSchema);
       
       for(int i = 0; i < localeschema.m_idaLocale.get_count(); i++)
       {
-         update_appmatter(pszRoot, pszRelative, localeschema.m_idaLocale[i], localeschema.m_idaSchema[i]);
+         update_appmatter(h, psession, pszRoot, pszRelative, localeschema.m_idaLocale[i], localeschema.m_idaSchema[i]);
       }
 
 
@@ -1411,7 +1419,7 @@ InitFailure:
 
    }
    
-   bool application::update_appmatter(const char * pszRoot, const char * pszRelative, const char * pszLocale, const char * pszStyle)
+   bool application::update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession,const char * pszRoot, const char * pszRelative, const char * pszLocale, const char * pszStyle)
    {
 
       string strLocale;
@@ -1433,7 +1441,13 @@ InitFailure:
 
       primitive::memory mem(get_app());
 
-      Application.http().get(strUrl, mem);
+      while(psession == NULL)
+      {
+         psession = System.http().open(h, System.url().get_server(strUrl), System.url().get_protocol(strUrl), gen::property_set(get_app()), NULL, NULL);
+         Sleep(184);
+      }
+
+      System.http().get(h, psession, strUrl, mem);
 
       primitive::memory_file file(get_app(), &mem);
 

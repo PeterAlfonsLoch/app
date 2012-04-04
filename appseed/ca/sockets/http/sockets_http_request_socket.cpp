@@ -39,6 +39,8 @@ namespace sockets
       socket(h),
       stream_socket(h),
       tcp_socket(h),
+      http_socket(h),
+      http_tunnel(h),
       http_client_socket(h)
    {
    }
@@ -49,6 +51,8 @@ namespace sockets
       socket(h),
       stream_socket(h),
       tcp_socket(h),
+      http_socket(h),
+      http_tunnel(h),
       http_client_socket(h, url_in)
    {
       
@@ -62,6 +66,8 @@ namespace sockets
       socket(h),
       stream_socket(h),
       tcp_socket(h),
+      http_socket(h),
+      http_tunnel(h),
       http_client_socket(h, url_in)
    {
       
