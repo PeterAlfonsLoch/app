@@ -227,37 +227,32 @@ namespace mysql
          return ::var(::var::e_type::type_new);
       MYSQL_ROW row;
       var a;
-      var a2;
-      a.propset(); //create property set
-      a2.propset(); // create property set;
+      //var a2;
+      a.vara(); //create var array
+      //a2.vara(); // create var array;
 
       int iNumRows = presult->num_rows();
       int iNumFields = presult->num_fields();
-      a.m_pset->m_propertya.set_size(iNumRows);
-      a2.m_pset->m_propertya.set_size(iNumFields);
-
-      for(int j = 0; j < iNumFields; j++)
-      {
-         a2.m_pset->m_propertya[j].m_strName = gen::str::itoa(j);
-      }
+      a.m_pvara->set_size(iNumRows);
+      //a2.m_pvara->set_size(iNumFields);
 
       int i = 0;
+
       while((row = (MYSQL_ROW) presult->fetch_row()) != NULL)
       {
          if(i >= iNumRows)
          {
             iNumRows++;
-            a.m_pset->m_propertya.set_size(iNumRows);
+            a.m_pvara->set_size(iNumRows);
          }
-
+         a.m_pvara->element_at(i).vara().set_size(iNumFields);
          for(int j = 0; j < iNumFields; j++)
          {
             if(row[j] == NULL)
-               a2.m_pset->m_propertya[j].m_var.set_type(::var::e_type::type_null);
+               a.m_pvara->element_at(i).vara()[j].set_type(::var::e_type::type_null);
             else
-               a2.m_pset->m_propertya[j].m_var = row[j];
+               a.m_pvara->element_at(i).vara()[j] = row[j];
          }
-         a.m_pset->m_propertya[i].m_var.propset()  = *a2.m_pset;
          i++;
       }
       return a;

@@ -1316,7 +1316,8 @@ namespace xml
    //========================================================
    attr * node::find_attr( const char * attrname )
    {
-      for( int i = 0 ; i < m_attra.m_propertya.get_size(); i++ )
+      return m_attra.find(attrname);
+      /*for( int i = 0 ; i < m_attra.m_propertya.get_size(); i++ )
       {
          ::xml::attr * attr = &m_attra.m_propertya[i];
          if(attr != NULL)
@@ -1325,7 +1326,7 @@ namespace xml
                return attr;
          }
       }
-      return NULL;
+      return NULL;*/
    }
 
    //========================================================
@@ -1337,7 +1338,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   attr_array node::attrs( const char * pszName )
+   /*attr_array node::attrs( const char * pszName )
    {
       
       attr_array attra(get_app());
@@ -1354,7 +1355,7 @@ namespace xml
 
       return attra;
 
-   }
+   }*/
 
    //========================================================
    // Name   : get_attr_value
@@ -1746,9 +1747,7 @@ namespace xml
    //========================================================
    attr * node::attr_at( index i )
    {
-      if( i >= 0 && i < m_attra.m_propertya.get_size() )
-         return &m_attra.m_propertya[i];
-      return NULL;
+      return &m_attra.m_propertya[i];
    }
 
 
@@ -1781,7 +1780,7 @@ namespace xml
    //========================================================
    bool node::remove_attr(::xml::attr * pattr )
    {
-      if(m_attra.remove_by_name(pattr->m_strName) > 0)
+      if(m_attra.remove_by_name(pattr->name()) > 0)
       {
          delete pattr;
          return true;
@@ -1849,16 +1848,17 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   attr * node::detach_attr(::xml::attr * attr )
+/*   attr  node::detach_attr(::xml::attr * attr )
    {
-      index find = m_attra.m_propertya.find_first((gen::property *) attr);
+      attr = m_attra.m_propertymap[attr]find_first((gen::property *) attr);
       if(find >= 0)
       {
+         a
          m_attra.m_propertya.remove_at(find);
          return attr;
       }
       return NULL;
-   }
+   }*/
 
    //========================================================
    // Name   : CopyNode

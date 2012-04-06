@@ -133,7 +133,7 @@ namespace xml
       virtual bool            get_attr(const char * attrname, string & strValue);
       virtual bool            get_attr(const char * lpcszName, int & iValue);
       virtual bool            get_attr(const char * lpcszName, bool & bValue);
-      attr_array              attrs(const char * name);
+      //attr_array              attrs(const char * name);
       attr_array  &           attrs();
 
       // in one level child nodes
@@ -196,7 +196,7 @@ namespace xml
       ::xml::attr *           set_attr(const char * pszName, int64_t iValue);
       ::xml::attr *           set_attr(const char * pszName, bool bValue);
       bool                    remove_attr(::xml::attr * attr);
-      ::xml::attr *           detach_attr(::xml::attr * attr);
+      //::xml::attr           detach_attr(::xml::attr * attr);
 
 
       bool from_row_column_v2(const string2a & str2a);

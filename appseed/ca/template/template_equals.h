@@ -31,7 +31,7 @@ namespace _template
 
       inline static bool CompareElements(const string * pElement1, const string & element2)
       {
-         return strcmp(*pElement1, element2) == 0;
+         return *pElement1 == element2;
       }
 
    };

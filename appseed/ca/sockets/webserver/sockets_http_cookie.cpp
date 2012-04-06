@@ -22,6 +22,7 @@ namespace http
       if(&cookie != this)
       {
          m_strName      = cookie.m_strName;
+         m_strNameLow   = cookie.m_strNameLow;
          m_varValue     = cookie.m_varValue;
          m_strExpire    = cookie.m_strExpire;
          m_strPath      = cookie.m_strPath;
@@ -83,6 +84,18 @@ index cookies::find_cookie(const char * name)
    return -1;
 }
 
+index cookies::lowfind_cookie(const char * name)
+{
+   for(int i = 0; i < this->get_size(); i++)
+   {
+      if(this->element_at(i).m_strNameLow == name)
+      {
+         return i;
+      }
+   }
+   return -1;
+}
+
 http::cookie & cookies::cookie(const char * name)
 {
    index iFind = find_cookie(name);
@@ -90,6 +103,26 @@ http::cookie & cookies::cookie(const char * name)
    {
       class cookie c;
       c.m_strName = name;
+      c.m_strNameLow = name;
+      add(c);
+      iFind = find_cookie(name);
+      if(iFind < 0)
+      {
+         return *((http::cookie *) NULL);
+      }
+      return this->element_at(iFind);;
+   }
+   return this->element_at(iFind);
+}
+
+http::cookie & cookies::lowcookie(const char * name)
+{
+   index iFind = lowfind_cookie(name);
+   if(iFind < 0)
+   {
+      class cookie c;
+      c.m_strName = name;
+      c.m_strNameLow = name;
       add(c);
       iFind = find_cookie(name);
       if(iFind < 0)
@@ -116,6 +149,8 @@ void cookies::add(const char * psz)
          if(stra2.get_size() >= 2)
          {
             cookie.m_strName = stra2[0].trim();
+            cookie.m_strNameLow = cookie.m_strName;
+            cookie.m_strNameLow.make_lower();
             cookie.m_varValue = stra2[1];
          }
          else
@@ -273,10 +308,13 @@ void cookies::parse_header(const char * psz)
       if(stra2.get_size() > 0)
       {
          c.m_strName = stra2[0].trim();
+         c.m_strNameLow = c.m_strName;
+         c.m_strNameLow.make_lower();
       }
       else
       {
          c.m_strName.Empty();
+         c.m_strNameLow.Empty();
       }
       if(stra2.get_size() > 1)
       {

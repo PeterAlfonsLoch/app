@@ -680,11 +680,6 @@ namespace plane
       return m_stra;
    }
 
-   ::ca2::url & system::url()
-   {
-      return m_url;
-   }
-
    ::ca2::html & system::html()
    {
       return m_html;
@@ -1115,8 +1110,8 @@ namespace plane
          return false;
       if(headers["Location"].get_string().has_char())
       {
-         post.m_propertya.remove_all();
-         headers.m_propertya.remove_all();
+         post.clear();
+         headers.clear();
          ::DeleteFile(filename);
          return http().download(str, headers["Location"], post, headers, set, pcookies, puser);
       }

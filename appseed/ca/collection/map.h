@@ -164,6 +164,44 @@ namespace collection
 
       VALUE get(ARG_KEY argkey, ARG_VALUE valueDefault);
 
+
+      pair * next(pair * & ppair)
+      {
+         if(ppair == NULL)
+         {
+            ppair = PGetFirstAssoc();
+         }
+         else
+         {
+            ppair = PGetNextAssoc(ppair);
+         }
+         return ppair;
+      }
+
+      const pair * next(const pair * & ppair) const
+      {
+         if(ppair == NULL)
+         {
+            ppair = PGetFirstAssoc();
+         }
+         else
+         {
+            ppair = PGetNextAssoc(ppair);
+         }
+         return ppair;
+      }
+
+
+      void set(map & map)
+      {
+         pair * ppair = NULL;
+         while(map.next(ppair) != NULL)
+         {
+            set_at(ppair->m_key, ppair->m_value);
+         }
+      }
+
+
    // Implementation
    protected:
       assoc** m_pHashTable;

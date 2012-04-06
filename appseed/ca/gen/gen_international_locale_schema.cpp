@@ -39,6 +39,11 @@ namespace gen
          bool locale_schema::add_locale_variant(id idLocale, id idSchema)
          {
 
+            static ::id id_std("_std");
+            static ::id id_br("br");
+            static ::id id_de("de");
+            
+
             if(m_idLocale.is_empty())
             {
                m_idLocale = idLocale;
@@ -56,29 +61,87 @@ namespace gen
             id idLocale2 = idLocale;
             id idSchema2 = idSchema;
 
-            if(idLocale2.is_empty() && idSchema2.is_empty())
+            if((idLocale2.is_empty() || !idLocale2.is_text()) && (idSchema2.is_empty() || !idSchema2.is_text()))
                return false;
 
-            if(idLocale2.is_empty())
+            if(idLocale2.is_empty() || !idLocale2.is_text())
                idLocale2 = m_idLocale;
             
-            if(idSchema2.is_empty())
+            if(idSchema2.is_empty() || !idSchema2.is_text())
                idSchema2 = m_idSchema;
 
-            if(defer_add_locale(idLocale2, idSchema2))
-            {
-               _add_locale_variant(idLocale2, idSchema2);
-            }
 
-            stringa stra;
-            stra.add_tokens(idLocale2, "-", FALSE);
-            if(stra.get_count() > 1)
+            //if(defer_add_locale(idLocale2, idSchema2))
+            //{
+              // _add_locale_variant(idLocale2, idSchema2);
+            //}
+
+            int iStart;
+            int iFind = -1;
+            int iLen;
+            string str;
+            bool bEnd = false;
+            while(!bEnd)
             {
-               for(index i = stra.get_upper_bound(); i >= 0; i--)
+               iStart = iFind + 1;
+               iFind = idLocale2.m_pstr->find('-', iStart);
+               bEnd = iFind < 0;
+               if(bEnd)
                {
-                  if(defer_add_locale(stra[i], idSchema))
+                  iFind = idLocale2.m_pstr->get_length();
+               }
+               iLen = iFind - iStart;
+               if(iLen == 4)
+               {
+                  if(idLocale2.m_pstr->operator[](iStart) == '_')
                   {
-                     _add_locale_variant(stra[i], idSchema);
+                     if(idLocale2.m_pstr->operator[](iStart + 1) == 's')
+                     {
+                        if(idLocale2.m_pstr->operator[](iStart + 2) == 't')
+                        {
+                           if(idLocale2.m_pstr->operator[](iStart + 3) == 'd')
+                           {
+                              if(defer_add_locale(id_std, idSchema))
+                              {
+                                 _add_locale_variant(id_std, idSchema);
+                              }
+                              continue;
+                           }
+                        }
+                     }
+                  }
+               }
+               else if(iLen == 2)
+               {
+                  if(idLocale2.m_pstr->operator[](iStart) == 'b')
+                  {
+                     if(idLocale2.m_pstr->operator[](iStart + 1) == 'r')
+                     {
+                        if(defer_add_locale(id_br, idSchema))
+                        {
+                           _add_locale_variant(id_br, idSchema);
+                        }
+                        continue;
+                     }
+                  }
+                  else if(idLocale2.m_pstr->operator[](iStart) == 'd')
+                  {
+                     if(idLocale2.m_pstr->operator[](iStart + 1) == 'e')
+                     {
+                        if(defer_add_locale(id_de, idSchema))
+                        {
+                           _add_locale_variant(id_de, idSchema);
+                        }
+                        continue;
+                     }
+                  }
+               }
+               if(iLen > 0)
+               {
+                  str = idLocale2.m_pstr->Mid(iStart, iFind - iStart);
+                  if(defer_add_locale(str, idSchema))
+                  {
+                     _add_locale_variant(str, idSchema);
                   }
                }
             }
@@ -206,6 +269,8 @@ namespace gen
          bool locale_schema::defer_add_locale(id idLocale, id idSchema)
          {
 
+            
+
             bool bAdded = false;
 
             id idSchema2;
@@ -260,9 +325,32 @@ namespace gen
 
          }
 
+         ::collection::map < ::id, const ::id &, ::id, const ::id & > g_mapRTL;
+
+         inline id rl_id(const ::id & id)
+         {
+            
+
+            ::collection::map < ::id, const ::id &, ::id, const ::id & >::pair * ppair = g_mapRTL.PLookup(id);
+
+            if(ppair != NULL)
+               return ppair->m_value;
+
+            string str = id;
+
+            ::id idRl = str + "_rl";
+
+            g_mapRTL.set_at(id, idRl);
+
+            return idRl;
+
+         }
+
 
          bool locale_schema::process_final_locale_schema(bool bRTLLayout)
          {
+            static id _std("_std");
+            static id _stdRl("_std_rl");
          restart:
             for(index i = 0; i < m_idaLocale.get_count(); i++)
             {
@@ -309,14 +397,14 @@ namespace gen
 
                for(index i = 0; i < m_idaLocale.get_count(); i++)
                {
-                  string idLocale2 = m_idaLocale[i];
-                  if(i >= m_idaSchema.get_count())
+                  id idLocale2 = m_idaLocale[i];
+                  while(i >= m_idaSchema.get_count())
                      m_idaSchema.add(m_idSchema);
-                  string strSchema = m_idaSchema[i];
-                  if(strSchema.CompareNoCase("_std") != 0)
+                  id idSchema = m_idaSchema[i];
+                  if(idSchema != _std)
                   {
                      idaLocaleAdd1.add(idLocale2);
-                     idaSchemaAdd1.add(strSchema + "_rl");
+                     idaSchemaAdd1.add(rl_id(idSchema));
                   }
                }
             }
@@ -324,14 +412,14 @@ namespace gen
             {
                for(index i = 0; i < m_idaLocale.get_count(); i++)
                {
-                  string idLocale2 = m_idaLocale[i];
+                  id idLocale2 = m_idaLocale[i];
                   if(i >= m_idaSchema.get_count())
-                     m_idaSchema.add("_std");
-                  string strSchema = m_idaSchema[i];
-                  if(strSchema.CompareNoCase("_std") != 0)
+                     m_idaSchema.add(_std);
+                  id idSchema = m_idaSchema[i];
+                  if(idSchema != _std)
                   {
                      idaLocaleAdd1.add(idLocale2);
-                     idaSchemaAdd1.add("_std_rl");
+                     idaSchemaAdd1.add(_stdRl);
                   }
                }
             }
@@ -339,14 +427,14 @@ namespace gen
             {
                for(index i = 0; i < m_idaLocale.get_count(); i++)
                {
-                  string idLocale2 = m_idaLocale[i];
-                  if(i >= m_idaSchema.get_count())
-                     m_idaSchema.add("_std");
-                  string strSchema = m_idaSchema[i];
-                  if(strSchema.CompareNoCase("_std") != 0)
+                  id idLocale2 = m_idaLocale[i];
+                  while(i >= m_idaSchema.get_count())
+                     m_idaSchema.add(_std);
+                  id idSchema = m_idaSchema[i];
+                  if(idSchema != _std)
                   {
                      idaLocaleAdd1.add(idLocale2);
-                     idaSchemaAdd1.add("_std");
+                     idaSchemaAdd1.add(_std);
                   }
                }
             }

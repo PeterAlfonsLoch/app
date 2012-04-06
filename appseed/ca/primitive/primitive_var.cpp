@@ -509,7 +509,7 @@ class var & var::operator = (string * pstr)
 
 class var & var::operator = (id * pid)
 {
-   set_type(type_pstring, false);
+   set_type(type_pid, false);
    m_pid = pid;
    return *this;
 }
@@ -1555,10 +1555,6 @@ const string & var::get_ref_string(const char * pszOnNull) const
    return str;
 }
 
-id var::get_id(const char * pszOnNull) const
-{
-   return string(get_ref_id(pszOnNull));
-}
 
 const id & var::get_ref_id(const char * pszOnNull) const
 {

@@ -13,7 +13,7 @@ void * memset_dup(void * p, int uch, size_t iSize)
 }
 
 
-#if (defined(WINDOWS) && defined(_X86_)) && !defined(_DEBUG)
+//#if (defined(WINDOWS) && defined(_X86_)) && !defined(_DEBUG)
 
 #pragma function(memcpy)
 
@@ -22,7 +22,7 @@ void * memcpy(void * dst, const void * src, size_t iSize)
    return memcpy_dup(dst, src, iSize);
 }
 
-#endif
+//#endif
 
 void * memcpy_dup(void * dst, const void * src, size_t iSize)
 {

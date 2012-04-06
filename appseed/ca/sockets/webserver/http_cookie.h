@@ -14,7 +14,8 @@ namespace http
 
 
       string         m_strName;
-      var  m_varValue;
+      string         m_strNameLow;
+      var            m_varValue;
       string         m_strExpire;
       string         m_strPath;
       string         m_strDomain;
@@ -51,6 +52,8 @@ namespace http
       {
          return m_varValue;
       }
+
+
    };
 
 
@@ -67,7 +70,9 @@ namespace http
 
 
       index find_cookie(const char * name);
+      index lowfind_cookie(const char * name);
       http::cookie & cookie(const char * name);
+      http::cookie & lowcookie(const char * name);
       using array_ptr_alloc < http::cookie, http::cookie & >::add;
       void add(const char * psz);
       void parse_header(const char * psz);

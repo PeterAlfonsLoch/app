@@ -462,56 +462,6 @@ namespace sockets
    } // url_this
 
 
-   ::http::request & http_socket::request()
-   {
-      return m_request;
-   }
-
-   ::http::response & http_socket::response()
-   {
-      return m_response;
-   }
-
-   gen::property & http_socket::inattr(const char * pszName)
-   {
-      return m_request.attr(pszName);
-   }
-
-   gen::property_set & http_socket::inattrs()
-   {
-      return m_request.attrs();
-   }
-
-   gen::property & http_socket::outattr(const char * pszName)
-   {
-      return m_response.attr(pszName);
-   }
-
-   gen::property_set & http_socket::outattrs()
-   {
-      return m_response.attrs();
-   }
-
-   gen::property & http_socket::inheader(const char * pszName)
-   {
-      return m_request.header(pszName);
-   }
-
-   gen::property_set & http_socket::inheaders()
-   {
-      return m_request.headers();
-   }
-
-   gen::property & http_socket::outheader(const char * pszName)
-   {
-      return m_response.header(pszName);
-   }
-
-   gen::property_set & http_socket::outheaders()
-   {
-      return m_response.headers();
-   }
-
    void http_socket::OnHeader(const string & key,const string & value)
    {
       //http_socket::OnHeader(key, value);

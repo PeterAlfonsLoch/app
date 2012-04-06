@@ -920,6 +920,7 @@ namespace dynamic_source
       index_array iaFunctionParen; // index of the parenthesis of the function
       bool bInserted = false;
       bool bNewLine = true;
+      bool bLow = false;
       while(i < iLen)
       {
          bInserted = false;
@@ -1059,17 +1060,26 @@ namespace dynamic_source
          {
             if(isdigit(ch) || isalpha(ch) || ch == '_')
             {
-               strResult += ch;
+               if(bLow)
+               {
+                  strResult += (char) tolower(ch);
+               }
+               else
+               {
+                  strResult += ch;
+               }
             }
             else
             {
                bInVar = false;
+               bLow = false;
                if(bInDoubleQuote)
                {
                   if(ch == '$')
                   {
                      bInVar = true;
-                     strResult += "\") + gstr(\"";
+                     strResult += "\") + glowstr(\"";
+                     bLow = true;
                      i++;
                      continue;
                   }
@@ -1147,17 +1157,17 @@ namespace dynamic_source
                         }
                         if(ch == ')')
                         {
-                           strResult += "\").ca2 < dynamic_source::object_base >()->call(\""+ strToken + "\" ";
+                           strResult += "\").ca2 < " + m_pmanager->m_strNamespace + "::object_base >()->call(\""+ strToken + "\" ";
                         }
                         else
                         {
-                           strResult += "\").ca2 < dynamic_source::object_base >()->call(\""+ strToken + "\", ";
+                           strResult += "\").ca2 < " + m_pmanager->m_strNamespace + "::object_base >()->call(\""+ strToken + "\", ";
                            continue;
                         }
                      }
                      else
                      {
-                        strResult += "\").ca2 < dynamic_source::object_base >()->m_propertyset[\""+ strToken + "\"]";
+                        strResult += "\").ca2 < " + m_pmanager->m_strNamespace + "::object_base >()->m_propertyset[\""+ strToken + "\"]";
                      }
                   }
                   else
@@ -1184,7 +1194,8 @@ namespace dynamic_source
                if(ch == '$' && (isalpha(chNext) || chNext == '_'))
                {
                   bInVar = true;
-                  strResult += "\") + gstr(\"";
+                  strResult += "\") + glowstr(\"";
+                  bLow = true;
                }
                else if(ch == '{')
                {
@@ -1234,7 +1245,8 @@ namespace dynamic_source
             {
                if(bInDoubleQuote)
                {
-                  strResult += "\") + gstr(\"";
+                  strResult += "\") + glowstr(\"";
+                  bLow = trace;
                }
                else
                {
@@ -1246,7 +1258,8 @@ namespace dynamic_source
                bInVar = true;
                if(bInDoubleQuote)
                {
-                  strResult += "\") + gstr(\"";
+                  strResult += "\") + glowstr(\"";
+                  bLow = true;
                }
                else
                {
@@ -1282,7 +1295,8 @@ namespace dynamic_source
                   }
                   else
                   {
-                     strResult += "gprop(\"";
+                     strResult += "glowprop(\"";
+                     bLow = true;
                   }
                }
             }
@@ -1383,7 +1397,14 @@ namespace dynamic_source
             }
             else
             {
-               strResult += ch;
+               if(bLow)
+               {
+                  strResult += (char) tolower(ch);
+               }
+               else
+               {
+                  strResult += ch;
+               }
             }
          }
          i++;

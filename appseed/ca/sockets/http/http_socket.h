@@ -98,4 +98,56 @@ namespace sockets
 
 
 
+   inline ::http::request & http_socket::request()
+   {
+      return m_request;
+   }
+
+   inline ::http::response & http_socket::response()
+   {
+      return m_response;
+   }
+
+   inline gen::property & http_socket::inattr(const char * pszName)
+   {
+      return m_request.attr(pszName);
+   }
+
+   inline gen::property_set & http_socket::inattrs()
+   {
+      return m_request.attrs();
+   }
+
+   inline gen::property & http_socket::outattr(const char * pszName)
+   {
+      return m_response.attr(pszName);
+   }
+
+   inline gen::property_set & http_socket::outattrs()
+   {
+      return m_response.attrs();
+   }
+
+   inline gen::property & http_socket::inheader(const char * pszName)
+   {
+      return m_request.header(pszName);
+   }
+
+   inline gen::property_set & http_socket::inheaders()
+   {
+      return m_request.headers();
+   }
+
+   inline gen::property & http_socket::outheader(const char * pszName)
+   {
+      return m_response.header(pszName);
+   }
+
+   inline gen::property_set & http_socket::outheaders()
+   {
+      return m_response.headers();
+   }
+
+
+
 } // namespace sockets

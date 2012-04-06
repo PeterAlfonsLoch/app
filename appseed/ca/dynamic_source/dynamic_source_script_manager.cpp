@@ -20,6 +20,13 @@ namespace dynamic_source
       m_dwBuildTimeRandomWindow  = 77 * 5;
       m_iDatabaseWaitTimeOut     = 1000 * 1000 * 60;
 
+
+      m_mapIncludeMatchesFileExists.InitHashTable(256 * 1024);
+      m_mapIncludeMatchesIsDir.InitHashTable(256 * 1024);
+      m_mapIncludeHasScript.InitHashTable(256 * 1024);
+      m_mapIncludeExpandMd5.InitHashTable(256 * 1024);
+      m_mapSession.InitHashTable(256 * 1024);
+
       calc_rsa_key();
 
       Begin();

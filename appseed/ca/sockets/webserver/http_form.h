@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace http
 {
+
 
    /** Parse/store a http query_string/form-data body. 
       \ingroup webserver */
@@ -50,5 +52,26 @@ namespace http
       bool m_bRaw;
    };
 
+
+   inline gen::relation_set & form::get()
+   {
+      return m_setGet;
+   }
+
+   inline gen::relation_set & form::post()
+   {
+      return m_setPost;
+   }
+
+   inline gen::relation_set & form::request()
+   {
+      return m_setRequest;
+   }
+
+
+
 } // namespace http
+
+
+
 

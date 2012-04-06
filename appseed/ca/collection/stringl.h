@@ -1,6 +1,8 @@
 #pragma once
 
-#include "primitive/var.h"
+
+#include "primitive/primitive_var.h"
+
 
 class CLASS_DECL_ca stringl :
    virtual public string_list,

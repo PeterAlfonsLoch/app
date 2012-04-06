@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace http
 {
+
 
    class CLASS_DECL_ca transaction :
       virtual public ::radix::object
@@ -62,4 +64,28 @@ namespace http
 
    }; // end of class
 
+
+   inline gen::property_set & transaction::headers()
+   {
+      return m_propertysetHeader;
+   }
+
+   inline gen::property_set & transaction::attrs()
+   {
+      return m_propertysetAttribute;
+   }
+
+   inline http::cookies & transaction::cookies()
+   {
+      return m_cookies;
+   }
+
+   inline gen::property & transaction::attr(const char * psz)
+   {
+      return m_propertysetAttribute[psz];
+   }
+
 } // namespace http
+
+
+

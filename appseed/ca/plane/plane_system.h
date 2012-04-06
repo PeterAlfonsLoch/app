@@ -209,7 +209,7 @@ namespace plane
       inline ::ca::file::system        & file() { return m_file; }
       inline ::ca::dir::system         & dir() { return m_spdir; }
       ::ca2::stra                      & stra();
-      ::ca2::url                       & url();
+      inline ::ca2::url                & url() { return m_url; }
       ::ca2::html                      & html();
       ::ca2::xml                       & xml();
       ::ca2::install                   & install();

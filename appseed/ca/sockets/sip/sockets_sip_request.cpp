@@ -86,8 +86,8 @@ namespace sip
       {
          m_form.parse_body(&m_file, ContentType(), ContentLength());
       }
-      m_form.request().m_propertya.add(m_form.get().m_propertya);
-      m_form.request().m_propertya.add(m_form.post().m_propertya);
+      m_form.request().merge(m_form.get());
+      m_form.request().merge(m_form.post());
    }
 
 

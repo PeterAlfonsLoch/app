@@ -197,8 +197,8 @@ namespace sip
    // --------------------------------------------------------------------------------------
    void transaction::clear()
    {
-      m_propertysetAttribute.m_propertya.remove_all();
-      m_propertysetHeader.m_propertya.remove_all();
+      m_propertysetAttribute.clear();
+      m_propertysetHeader.clear();
       m_cookies.remove_all();
    }
 

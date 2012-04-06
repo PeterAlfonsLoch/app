@@ -42,4 +42,17 @@ namespace http
 
    }; // end of class
 
+
+
+   // --------------------------------------------------------------------------------------
+   inline http::form & request::form()
+   {
+      return m_form;
+   }
+
+
 } // namespace http
+
+
+
+

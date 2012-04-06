@@ -409,20 +409,6 @@ namespace http
 
 
 
-   gen::relation_set & form::get()
-   {
-      return m_setGet;
-   }
-
-   gen::relation_set & form::post()
-   {
-      return m_setPost;
-   }
-
-   gen::relation_set & form::request()
-   {
-      return m_setRequest;
-   }
 
 
    string & form::boundary()

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/primitive/var.h"
+#include "ca/primitive/primitive_var.h"
 
 
 namespace gen

@@ -12,6 +12,7 @@ namespace gen
    public:
 
 
+      property_map         m_map;
       property_array       m_propertya;
       signal               m_signal;
       bool                 m_bAutoAdd;
@@ -27,13 +28,20 @@ namespace gen
       virtual ~property_set(void);
 
 
-      property * add(const char * pszName, var var = ::var());
+//      inline property_map::pair * next(property_pair & pair);
+  //    inline const property_map::pair * next(const_property_pair & pair) const;
+
+
+
+      property * add(const char * pszName);
+      property * add(const char * pszName, var var);
       property * set(const char * pszName, var var);
-      index remove_first_by_name(const char * pszName, index first = 0, index last = -1);
-      count remove_by_name(const char * pszName, index first = 0, index last = -1);
+      count remove_by_name(const char * pszName);
       count remove_by_name(stringa & straName);
       property & operator[](const char * pszName);
       property operator[](const char * pszName) const;
+      property & lowprop(const string & strName);
+      property lowprop(const string & strName) const;
       property & operator[](index iIndex);
       property operator[](index iIndex) const;
 #ifdef _AMD64_
@@ -48,56 +56,62 @@ namespace gen
       property & at(index iId);
       property at(index iId) const;
 
-      index find_var_ci(const var & var, index find = 0, index last = -1) const;
-      index find_value_ci(var var, index find = 0, index last = -1) const;
-      index find_value_ci(const char * psz, index find = 0, index last = -1) const;
+      index find_var_ci(const var & var) const;
+      index find_value_ci(var var) const;
+      index find_value_ci(const char * psz) const;
 
-      index find_var(const var & var, index find = 0, index last = -1) const;
-      index find_value(var var, index find = 0, index last = -1) const;
-      index find_value(const char * psz, index find = 0, index last = -1) const;
+      index find_var(const var & var) const;
+      index find_value(var var) const;
+      index find_value(const char * psz) const;
 
       index str_find(const property & property, index find = 0) const;
 
-      bool contains_var_ci(const var & var, index find = 0, index last = -1, count countMin = 1, count countMax = -1) const;
-      bool contains_value_ci(var var, index find = 0, index last = -1, count countMin = 1, count countMax = -1) const;
-      bool contains_value_ci(const char * psz, index find = 0, index last = -1, count countMin = 1, count countMax = -1) const;
+      bool contains_var_ci(const var & var, count countMin = 1, count countMax = -1) const;
+      bool contains_value_ci(var var, count countMin = 1, count countMax = -1) const;
+      bool contains_value_ci(const char * psz, count countMin = 1, count countMax = -1) const;
 
-      bool contains_var(const var & var, index find = 0, index last = -1, count countMin = 1, count countMax = -1) const;
-      bool contains_value(var var, index find = 0, index last = -1, count countMin = 1, count countMax = -1) const;
-      bool contains_value(const char * psz, index find = 0, index last = -1, count countMin = 1, count countMax = -1) const;
+      bool contains_var(const var & var, count countMin = 1, count countMax = -1) const;
+      bool contains_value(var var, count countMin = 1, count countMax = -1) const;
+      bool contains_value(const char * psz, count countMin = 1, count countMax = -1) const;
 
       bool str_contains(const property_set & set) const;
 
-      index remove_first_var_ci(const var & var, index find = 0, index last = -1);
-      index remove_first_value_ci(var var, index find = 0, index last = -1);
-      index remove_first_value_ci(const char * psz, index find = 0, index last = -1);
+      index remove_first_var_ci(const var & var);
+      index remove_first_value_ci(var var);
+      index remove_first_value_ci(const char * psz);
 
-      index remove_first_var(const var & var, index find = 0, index last = -1);
-      index remove_first_value(var var, index find = 0, index last = -1);
-      index remove_first_value(const char * psz, index find = 0, index last = -1);
+      index remove_first_var(const var & var);
+      index remove_first_value(var var);
+      index remove_first_value(const char * psz);
 
-      count remove_var_ci(const var & var, index find = 0, index last = -1, count countMin = 0, count countMax = -1);
-      count remove_value_ci(var var, index find = 0, index last = -1, count countMin = 0, count countMax = -1);
-      count remove_value_ci(const char * psz, index find = 0, index last = -1, count countMin = 0, count countMax = -1);
+      count remove_var_ci(const var & var, count countMin = 0, count countMax = -1);
+      count remove_value_ci(var var, count countMin = 0, count countMax = -1);
+      count remove_value_ci(const char * psz, count countMin = 0, count countMax = -1);
 
-      count remove_var(const var & var, index find = 0, index last = -1, count countMin = 0, count countMax = -1);
-      count remove_value(var var, index find = 0, index last = -1, count countMin = 0, count countMax = -1);
-      count remove_value(const char * psz, index find = 0, index last = -1, count countMin = 0, count countMax = -1);
+      count remove_var(const var & var, count countMin = 0, count countMax = -1);
+      count remove_value(var var, count countMin = 0, count countMax = -1);
+      count remove_value(const char * psz, count countMin = 0, count countMax = -1);
 
-      bool has_property(const char * pszName, index find = 0, index last = -1) const;
-      bool has_property(string_interface & str, index find = 0, index last = -1) const;
+      bool has_property(const char * pszName) const;
+      bool has_property(string_interface & str) const;
 
       bool is_set_empty(count countMinimum = 1) const;
       bool has_properties(count countMinimum = 1) const;
 
-      const property * find(const char * pszName, index find = 0, index last = -1) const;
-      const property * find(string_interface & str, index find = 0, index last = -1) const;
+      const property * lowfind(const char * pszName) const;
+      const property * lowfind(const string & strName) const;
+      const property * lowfind(string_interface & str) const;
 
-      property * find(const char * pszName, index find = 0, index last = -1);
-      property * find(string_interface & str, index find = 0, index last = -1);
+      property * lowfind(const char * pszName);
+      property * lowfind(const string & strName);
+      property * lowfind(string_interface & str);
 
-      index find_first(const char * pszName, index find = 0, index last = -1) const;
-      index find_first(string_interface & str, index find = 0, index last = -1) const;
+      const property * find(const char * pszName) const;
+      const property * find(string_interface & str) const;
+
+      property * find(const char * pszName);
+      property * find(string_interface & str);
+
 
       count unset(const char * pszName);
 
@@ -194,9 +208,104 @@ namespace gen
 
    inline count property_set::get_count() const
    {
-      return m_propertya.get_count();
+      return m_map.get_count();
    }
 
+
+/*   inline property_map::pair * property_set::next(property_pair & pair)
+   {
+      return m_map.next(pair.m_ppair);
+   }
+
+
+   inline const property_map::pair * property_set::next(const_property_pair & pair) const
+   {
+      return m_map.next(pair.m_ppair);
+   }
+   */
+
+   class property_pair 
+   {
+   public:
+      
+
+      property_map::pair * m_ppair;
+      property_set & m_set;
+
+
+      property_pair(property_set & set) :
+         m_set(set)
+      {
+         m_ppair = NULL;
+      }
+
+      gen::property * operator ->()
+      {
+         return &m_set.m_propertya[m_ppair->m_value];
+      }
+
+      const gen::property * operator ->() const
+      {
+         return &m_set.m_propertya[m_ppair->m_value];
+      }
+
+      operator property_map::pair * ()
+      {
+         return m_ppair;
+      }
+
+      operator const property_map::pair * () const
+      {
+         return m_ppair;
+      }
+
+      bool operator ()()
+      {
+         return m_set.m_map.next(m_ppair) != NULL;
+      }
+
+
+   };
+
+
+   class const_property_pair 
+   {
+   public:
+      
+
+      const property_map::pair * m_ppair;
+      const property_set & m_set;
+
+
+      const_property_pair(const property_set & set) :
+         m_set(set)
+
+      {
+         m_ppair = NULL;
+      }
+
+      const gen::property * operator ->()
+      {
+         return &m_set.m_propertya[m_ppair->m_value];
+      }
+
+      const gen::property * operator ->() const
+      {
+         return &m_set.m_propertya[m_ppair->m_value];
+      }
+
+      operator const property_map::pair * () const
+      {
+         return m_ppair;
+      }
+
+
+      bool operator ()()
+      {
+         return m_set.m_map.next(m_ppair) != NULL;
+      }
+
+   };
 
 
 
@@ -249,5 +358,6 @@ inline var & var::operator[] (const char * pszKey)
 {
    return propset().operator[](pszKey).get_value();
 }
+
 
 

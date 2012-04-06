@@ -455,16 +455,65 @@ namespace ca2
 
    }
 
+   var url::get_param(const char * pszUrl, const char * pszKey)
+   {
+
+      string strUrl(pszUrl);
+
+      strsize iPos = strUrl.find("?");
+
+      if(iPos < 0)
+         return var(var::type_empty);
+      else
+         return query_get_param(strUrl.Mid(iPos + 1), pszKey);
+
+   }
+
    string url::query_set(const char * pszQuery, const char * pszKey, var var)
    {
 
-      gen::property_set set(get_app());
+      string strQuery(pszQuery);
 
-      set.parse_url_query(pszQuery);
+      string strKey(pszKey);
+      
+      string strKeyEqual = strKey + "=";
 
-      set[pszKey] = var;
+      string strAndKeyEqual = "&" + strKeyEqual;
 
-      return set.get_http_post();
+      if(gen::str::begins(strQuery, strKeyEqual))
+      {
+         int iPos = strQuery.find("&");
+         if(iPos < 0)
+         {
+            strQuery = strKey + var.get_string();
+         }
+         else
+         {
+            strQuery = strKey + var.get_string() + __query_remove(strQuery.Mid(iPos), strAndKeyEqual);
+         }
+      }
+      else
+      {
+         int iPos = strQuery.find(strAndKeyEqual);
+         if(iPos < 0)
+         {
+            if(strQuery.has_char())
+            {
+               strQuery += strAndKeyEqual + var.get_string();
+            }
+            else
+            {
+               strQuery = strKeyEqual + var.get_string();
+            }
+         }
+         else
+         {
+            strQuery = strKey + var.get_string() + __query_remove(strQuery.Mid(iPos), strAndKeyEqual);
+         }
+      }
+
+
+      return strQuery;
 
    }
 
@@ -481,6 +530,31 @@ namespace ca2
 
    }
 
+   string url::__query_remove(const char * pszQuery, const char * pszAndKeyEqual)
+   {
+      
+      string strQuery(pszQuery);
+
+      while(true)
+      {
+         int iFind = strQuery.find(pszAndKeyEqual);
+         if(iFind < 0)
+            break;
+         int iNextParam = strQuery.find("&", iFind + 1);
+         if(iNextParam < 0)
+         {
+            strQuery = strQuery.Left(iFind);
+         }
+         else
+         {
+            strQuery = strQuery.Left(iFind) + strQuery.Mid(iNextParam);
+         }
+      }
+
+      return strQuery;
+
+   }
+
    string url::query_remove(const char * pszQuery, stringa & straKey)
    {
       
@@ -494,10 +568,89 @@ namespace ca2
 
    }
 
+
+   var url::query_get_param(const char * pszQuery, const char * pszKey)
+   {
+
+      string strQuery(pszQuery);
+
+      string strKey(pszKey);
+      
+      string strKeyEqual = strKey + "=";
+
+      string strAndKeyEqual = "&" + strKeyEqual;
+
+      var varValue;
+
+      int iPos = 0;
+
+      if(gen::str::begins(strQuery, strKeyEqual))
+      {
+         iPos = strQuery.find('&');
+         if(iPos < 0)
+         {
+            varValue = strQuery.Mid(strKeyEqual.get_length());
+            return varValue;
+         }
+         else
+         {
+            varValue = strQuery.Mid(strKeyEqual.get_length(), iPos - strKeyEqual.get_length());
+         }
+      }
+      
+      while(true)
+      {
+         iPos = strQuery.find(strAndKeyEqual, iPos);
+         if(iPos < 0)
+            break;
+         int iEnd = strQuery.find('&', iPos + 1);
+         if(iEnd < 0)
+         {
+            if(varValue.is_new())
+            {
+               varValue = strQuery.Mid(iPos + strKeyEqual.get_length());
+            }
+            else
+            {
+               varValue.vara().add(strQuery.Mid(iPos + strKeyEqual.get_length()));
+            }
+            return varValue;
+         }
+         else
+         {
+            if(varValue.is_new())
+            {
+               varValue = strQuery.Mid(iPos + strKeyEqual.get_length(), iEnd - (iPos + strKeyEqual.get_length()));
+            }
+            else
+            {
+               varValue.vara().add(strQuery.Mid(iPos + strKeyEqual.get_length(), iEnd - (iPos + strKeyEqual.get_length())));
+            }
+         }
+         iPos++;
+      }
+
+
+      return varValue;
+
+   }
+
+
    bool url::locale_is_eu(const char * pszLocale)
    {
       
       string strLocale(pszLocale);
+
+      gen::str::ends_eat_ci(strLocale, ".com");
+      gen::str::ends_eat_ci(strLocale, ".net");
+      gen::str::ends_eat_ci(strLocale, ".org");
+
+      gen::str::begins_eat_ci(strLocale, "co.");
+      gen::str::begins_eat_ci(strLocale, "or.");
+      gen::str::begins_eat_ci(strLocale, "ne.");
+      gen::str::begins_eat_ci(strLocale, "com.");
+      gen::str::begins_eat_ci(strLocale, "org.");
+      gen::str::begins_eat_ci(strLocale, "net.");
 
       if(
          strLocale == "eu"

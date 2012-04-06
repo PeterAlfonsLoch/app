@@ -198,7 +198,8 @@ namespace gen
       {
          if(m_strName.is_empty())
          {
-            m_strName = prop.m_strName;
+            m_strName      = prop.m_strName;
+            m_strNameLow   = prop.m_strNameLow;
          }
          m_var = prop.m_var;
       }
@@ -220,11 +221,15 @@ namespace gen
    property::property(const char * pszName)
    {
       m_strName = pszName;
+      m_strNameLow = m_strName;
+      m_strNameLow.make_lower();
    }
 
    property::property(const char * pszName, var & var)
    {
       m_strName = pszName;
+      m_strNameLow = m_strName;
+      m_strNameLow.make_lower();
       set_value(var);
    }
 
@@ -1487,11 +1492,15 @@ namespace gen
 
 
 
+   property_map::property_map()
+   {
+      InitHashTable(64);
+   }
+
    property_array::property_array()
    {
       set_size(0, 64);
    }
-
 
 
    property_set::property_set(::ca::application * papp,
@@ -1508,22 +1517,23 @@ namespace gen
    {
    }
 
-   property * property_set::add(const char * pszName, var var)
+   property * property_set::add(const char * pszName)
    {
       string strName;
       if(pszName == NULL)
       {
          index iMax = -1;
          index idx;
-         for(int i = 0; i < m_propertya.get_count(); i++)
+         ::gen::property_pair pair(*this);
+         while(pair())
          {
-            if(m_propertya[i].name() == "0")
+            if(pair->name() == "0")
             {
                idx = 0;
             }
             else
             {
-               idx = atoi(m_propertya[i].name());
+               idx = atoi(pair->name());
                if(idx == 0)
                   idx = -1;
             }
@@ -1536,9 +1546,69 @@ namespace gen
       {
          strName = pszName;
       }
-      m_propertya.add(property(strName, var));
-      m_propertya.last_element().m_pset = this;
-      return &m_propertya.last_element();
+      if(m_bKeyCaseInsensitive)
+      {
+         string strNameLow = strName;
+         strNameLow.make_lower();
+         m_propertya.add(property(strName));
+         m_map.set_at(strNameLow, m_propertya.get_upper_bound());
+         m_propertya.last_element().m_pset = this;
+         return &m_propertya.last_element();
+      }
+      else
+      {
+         m_propertya.add(property(strName));
+         m_map.set_at(strName, m_propertya.get_upper_bound());
+         m_propertya.last_element().m_pset = this;
+         return &m_propertya.last_element();
+      }
+   }
+
+   property * property_set::add(const char * pszName, var var)
+   {
+      string strName;
+      if(pszName == NULL)
+      {
+         index iMax = -1;
+         index idx;
+         ::gen::property_pair pair(*this);
+         while(pair())
+         {
+            if(pair->name() == "0")
+            {
+               idx = 0;
+            }
+            else
+            {
+               idx = atoi(pair->name());
+               if(idx == 0)
+                  idx = -1;
+            }
+            if(idx > iMax)
+               iMax = idx;
+         }
+         strName.Format("%d", iMax + 1);
+      }
+      else
+      {
+         strName = pszName;
+      }
+      if(m_bKeyCaseInsensitive)
+      {
+         string strNameLow = strName;
+         strNameLow.make_lower();
+         m_propertya.add(property(strName));
+         m_map.set_at(strNameLow, m_propertya.get_upper_bound());
+         m_propertya.last_element().m_pset = this;
+         return &m_propertya.last_element();
+      }
+      else
+      {
+         m_propertya.add(property(strName));
+         m_map.set_at(strName, m_propertya.get_upper_bound());
+         m_propertya.last_element().m_pset = this;
+         return &m_propertya.last_element();
+      }
    }
 
    property * property_set::set(const char * pszName, var var)
@@ -1551,9 +1621,7 @@ namespace gen
       }
       else
       {
-         m_propertya.add(property(pszName, var));
-         m_propertya.last_element().m_pset = this;
-         return &m_propertya.last_element();
+         return add(pszName, var);
       }
    }
 
@@ -1572,34 +1640,45 @@ namespace gen
       throw simple_exception("property with specified name - and specified case sensitivity - does not exist and Auto Add Flag is not set");
    }
 
-   bool property_set::has_property(const char * pszName, index find, index last) const
+   property & property_set::lowprop(const string & strName)
    {
-      return find_first(pszName, find, last) >= 0 && operator[](pszName).get_value().get_type() != var::type_new;
+      property * pproperty = lowfind(strName);
+      if(pproperty != NULL)
+         return *pproperty;
+      if(m_bAutoAdd)
+      {
+         pproperty = add(strName);
+         if(pproperty != NULL)
+            return *pproperty;
+      }
+      throw simple_exception("property with specified name - and specified case sensitivity - does not exist and Auto Add Flag is not set");
    }
 
-   bool property_set::has_property(string_interface & str, index find, index last) const
+   bool property_set::has_property(const char * pszName) const
    {
-      return has_property((const char *) string(str), find, last);
+      const property * pproperty = find(pszName);
+      return pproperty != NULL && pproperty->m_var.m_etype != var::type_new;
+   }
+
+   bool property_set::has_property(string_interface & str) const
+   {
+      return has_property((const char *) string(str));
    }
 
    bool property_set::is_set_empty(count countMinimum) const
    {
-      return m_propertya.get_count() < countMinimum;
+      return get_count() < countMinimum;
    }
 
    bool property_set::has_properties(count countMinimum) const
    {
-      return m_propertya.get_count() >= countMinimum;
+      return get_count() >= countMinimum;
    }
 
 
-   index property_set::find_var_ci(const var & var, index find, index last) const
+   index property_set::find_var_ci(const var & var) const
    {
-      if(find < 0)
-         find += m_propertya.get_count();
-      if(last < 0)
-         last += m_propertya.get_count();
-      for(; find <= last; find++)
+      for(index find = 0; find < m_propertya.get_count(); find++)
       {
          if(m_propertya[find].get_value().compare_ci(var) == 0)
             return find;
@@ -1607,19 +1686,15 @@ namespace gen
       return -1;
    }
 
-   index property_set::find_value_ci(var var, index find, index last) const
+   index property_set::find_value_ci(var var) const
    {
-      return find_var_ci(var, find, last);
+      return find_var_ci(var);
    }
 
 
-   index property_set::find_var(const var & var, index find, index last) const
+   index property_set::find_var(const var & var) const
    {
-      if(find < 0)
-         find += m_propertya.get_count();
-      if(last < 0)
-         last += m_propertya.get_count();
-      for(; find <= last; find++)
+      for(index find = 0; find < m_propertya.get_count(); find++)
       {
          if(m_propertya[find].get_value() == var)
             return find;
@@ -1627,218 +1702,241 @@ namespace gen
       return -1;
    }
 
-   index property_set::find_value(var var, index find, index last) const
+   index property_set::find_value(var var) const
    {
-      return find_var(var, find, last);
+      return find_var(var);
    }
 
-   bool property_set::contains_var_ci(const var & var, index find, index last, count countMin, count countMax) const
+   bool property_set::contains_var_ci(const var & var, count countMin, count countMax) const
    {
       count count = 0;
       while((count < countMin || (countMax >= 0 && count <= countMax))
-         && (find = find_var_ci(var, find, last)) >= 0)
+         && (find_var_ci(var)) >= 0)
          count++;
       return count >= countMin && conditional(countMax >= 0, count <= countMax);
    }
 
-   bool property_set::contains_value_ci(var var, index find, index last, count countMin, count countMax) const
+   bool property_set::contains_value_ci(var var, count countMin, count countMax) const
    {
-      return contains_var_ci(var, find, last, countMin, countMax);
+      return contains_var_ci(var, countMin, countMax);
    }
 
-   bool property_set::contains_value_ci(const char * psz, index find, index last, count countMin, count countMax) const
+   bool property_set::contains_value_ci(const char * psz, count countMin, count countMax) const
    {
       count count = 0;
       while((count < countMin || (countMax >= 0 && count <= countMax))
-         && (find = find_value_ci(psz, find, last)) >= 0)
+         && (find_value_ci(psz)) >= 0)
          count++;
       return count >= countMin && conditional(countMax >= 0, count <= countMax);
    }
 
 
-   bool property_set::contains_var(const var & var, index find, index last, count countMin, count countMax) const
+   bool property_set::contains_var(const var & var, count countMin, count countMax) const
    {
       count count = 0;
       while((count < countMin || (countMax >= 0 && count <= countMax))
-         && (find = find_var(var, find, last)) >= 0)
+         && (find_var(var)) >= 0)
          count++;
       return count >= countMin && conditional(countMax >= 0, count <= countMax);
    }
 
-   bool property_set::contains_value(var var, index find, index last, count countMin, count countMax) const
+   bool property_set::contains_value(var var, count countMin, count countMax) const
    {
-      return contains_var(var, find, last, countMin, countMax);
+      return contains_var(var, countMin, countMax);
    }
 
-   bool property_set::contains_value(const char * psz, index find, index last, count countMin, count countMax) const
+   bool property_set::contains_value(const char * psz, count countMin, count countMax) const
    {
       count count = 0;
       while((count < countMin || (countMax >= 0 && count <= countMax))
-         && (find = find_value(psz, find, last)) >= 0)
+         && (find_value(psz)) >= 0)
          count++;
       return count >= countMin && conditional(countMax >= 0, count <= countMax);
    }
 
-   index property_set::remove_first_var_ci(const var & var, index find, index last)
+   index property_set::remove_first_var_ci(const var & var)
    {
-      if((find = find_var_ci(var, find, last)) >= 0)
+      index find;
+      if((find = find_var_ci(var)) >= 0)
          m_propertya.remove_at(find);
       return find;
    }
 
-   index property_set::remove_first_value_ci(var var, index find, index last)
+   index property_set::remove_first_value_ci(var var)
    {
-      return remove_first_var_ci(var, find, last);
+      return remove_first_var_ci(var);
    }
 
-   index property_set::remove_first_value_ci(const char * lpcsz, index find, index last)
+   index property_set::remove_first_value_ci(const char * lpcsz)
    {
-      if((find = find_value_ci(lpcsz, find, last)) >= 0)
+      index find;
+      if((find = find_value_ci(lpcsz)) >= 0)
          m_propertya.remove_at(find);
       return find;
    }
 
-   index property_set::remove_first_var(const var & var, index find, index last)
+   index property_set::remove_first_var(const var & var)
    {
-      if((find = find_var(var, find, last)) >= 0)
+      index find;
+      if((find = find_var(var)) >= 0)
          m_propertya.remove_at(find);
       return find;
    }
 
-   index property_set::remove_first_value(var var, index find, index last)
+   index property_set::remove_first_value(var var)
    {
-      return remove_first_var(var, find, last);
+      return remove_first_var(var);
    }
 
-   index property_set::remove_first_value(const char * lpcsz, index find, index last)
+   index property_set::remove_first_value(const char * lpcsz)
    {
-      if((find = find_value(lpcsz, find, last)) >= 0)
+      index find;
+      if((find = find_value(lpcsz)) >= 0)
          m_propertya.remove_at(find);
       return find;
    }
 
 
-   count property_set::remove_var_ci(const var & var, index find, index last, count countMin, count countMax)
+   count property_set::remove_var_ci(const var & var, count countMin, count countMax)
    {
       count count = 0;
-      if(contains_var_ci(var, find, last, countMin, countMax))
+      if(contains_var_ci(var, countMin, countMax))
          while(conditional(countMax >= 0, count < countMax)
-            && (find = remove_first_var_ci(var, find, last)) >= 0)
+            && (remove_first_var_ci(var)) >= 0)
             count++;
       return count;
    }
 
-   count property_set::remove_value_ci(var var, index find, index last, count countMin, count countMax)
+   count property_set::remove_value_ci(var var, count countMin, count countMax)
    {
-      return remove_var_ci(var, find, last, countMin, countMax);
+      return remove_var_ci(var, countMin, countMax);
    }
 
-   count property_set::remove_value_ci(const char * psz, index find, index last, count countMin, count countMax)
+   count property_set::remove_value_ci(const char * psz, count countMin, count countMax)
    {
       count count = 0;
-      if(contains_value_ci(psz, find, last, countMin, countMax))
+      if(contains_value_ci(psz, countMin, countMax))
          while(conditional(countMax >= 0, count < countMax)
-            && (find = remove_first_value_ci(psz, find, last)) >= 0)
+            && (remove_first_value_ci(psz)) >= 0)
             count++;
       return count;
    }
 
-   count property_set::remove_var(const var & var, index find, index last, count countMin, count countMax)
+   count property_set::remove_var(const var & var, count countMin, count countMax)
    {
       count count = 0;
-      if(contains_var(var, find, last, countMin, countMax))
+      if(contains_var(var, countMin, countMax))
          while(conditional(countMax >= 0, count < countMax)
-            && (find = remove_first_var(var, find, last)) >= 0)
+            && (remove_first_var(var)) >= 0)
             count++;
       return count;
    }
 
-   count property_set::remove_value(var var, index find, index last, count countMin, count countMax)
+   count property_set::remove_value(var var, count countMin, count countMax)
    {
-      return remove_var(var, find, last, countMin, countMax);
+      return remove_var(var, countMin, countMax);
    }
 
-   count property_set::remove_value(const char * psz, index find, index last, count countMin, count countMax)
+   count property_set::remove_value(const char * psz, count countMin, count countMax)
    {
       count count = 0;
-      if(contains_value(psz, find, last, countMin, countMax))
+      if(contains_value(psz, countMin, countMax))
          while(conditional(countMax >= 0, count < countMax)
-            && (find = remove_first_value(psz, find, last)) >= 0)
+            && (remove_first_value(psz)) >= 0)
             count++;
       return count;
    }
 
 
 
-   index property_set::find_first(const char * pszName, index find, index last) const
-   {
-      if(find < 0)
-         find += m_propertya.get_count();
-      if(last < 0)
-         last += m_propertya.get_count();
-      if(m_bKeyCaseInsensitive)
-      {
-         for(; find <= last; find++)
-         {
-            if(m_propertya[find].m_strName.CompareNoCase(pszName) == 0)
-               return find;
-         }
-      }
-      else
-      {
-         for(; find <= last; find++)
-         {
-            if(m_propertya[find].m_strName.Compare(pszName) == 0)
-               return find;
-         }
-      }
-      return -1;
-   }
-
-
-   index property_set::find_first(string_interface & str, index find, index last) const
-   {
-      return find_first((const char *) string(str), find, last);
-   }
 
    count property_set::unset(const char * pszName)
    {
-      count countRemove = 0;
-restart_finding:
-      index iFind = find_first(pszName);
-      if(iFind >= 0)
+      if(m_bKeyCaseInsensitive)
       {
-         m_propertya.remove_at(iFind);
-         countRemove++;
-         goto restart_finding;
+         string strName(pszName);
+         strName.make_lower();
+         gen::property_map::pair * ppair = m_map.PLookup(strName);
+         if(ppair == NULL)
+            return 0;
+         m_propertya.remove_at(ppair->m_value);
+         m_map.remove_key(strName);
+         return 1;
       }
-      return countRemove;
+      else
+      {
+         gen::property_map::pair * ppair = m_map.PLookup(pszName);
+         if(ppair == NULL)
+            return 0;
+         m_propertya.remove_at(ppair->m_value);
+         m_map.remove_key(pszName);
+         return 1;
+      }
    }
 
-   property * property_set::find(const char * pszName, index find, index last)
+   property * property_set::find(const char * pszName)
    {
-      if((find = find_first(pszName, find, last)) >= 0)
-         return &m_propertya[find];
-      return NULL;
+      if(m_bKeyCaseInsensitive)
+      {
+         string strName(pszName);
+         strName.make_lower();
+         gen::property_map::pair * ppair = m_map.PLookup(strName);
+         if(ppair == NULL)
+            return NULL;
+         return &m_propertya[ppair->m_value];
+      }
+      else
+      {
+         gen::property_map::pair * ppair = m_map.PLookup(pszName);
+         if(ppair == NULL)
+            return NULL;
+         return &m_propertya[ppair->m_value];
+      }
    }
 
-   property * property_set::find(string_interface & str, index first, index last)
+   property * property_set::find(string_interface & str)
    {
-      return find((const char *) string(str), first, last);
+      return find((const char *) string(str));
    }
 
-   const property * property_set::find(const char * pszName, index find, index last) const
+   const property * property_set::find(const char * pszName) const
    {
-      if((find = find_first(pszName, find, last)) >= 0)
-         return &m_propertya[find];
-      return NULL;
+      return ((property_set *) this)->find(pszName);
    }
 
-   const property * property_set::find(string_interface & str, index first, index last) const
+
+   const property * property_set::find(string_interface & str) const
    {
-      return find((const char *) string(str), first, last);
+      return find((const char *) string(str));
    }
 
+   property * property_set::lowfind(const string & strName)
+   {
+      gen::property_map::pair * ppair = m_map.PLookup(strName);
+      if(ppair == NULL)
+         return NULL;
+      return &m_propertya[ppair->m_value];
+   }
+
+   property * property_set::lowfind(const char * pszName)
+   {
+      return lowfind(string(pszName));
+   }
+
+   property * property_set::lowfind(string_interface & str)
+   {
+      return lowfind(string(str));
+   }
+
+   const property * property_set::lowfind(const char * pszName) const
+   {
+      return ((property_set *) this)->lowfind(pszName);
+   }
+
+   const property * property_set::lowfind(string_interface & str) const
+   {
+      return lowfind((const char *) string(str));
+   }
 
    bool property_set::is_new(const char * pszName) const
    {
@@ -2190,20 +2288,10 @@ restart_finding:
       }
    }
 
-   index property_set::remove_first_by_name(const char * pszName, index find, index last)
-   {
-      if((find = find_first(pszName, find, last)) >= 0)
-         m_propertya.remove_at(find);
-      return find;
-   }
 
-
-   count property_set::remove_by_name(const char * pszName, index find, index last)
+   count property_set::remove_by_name(const char * pszName)
    {
-      count count = 0;
-      while((find = remove_first_by_name(pszName, find, last)) >= 0)
-         count++;
-      return count;
+      return unset(pszName);
    }
 
    count property_set::remove_by_name(stringa & stra)
@@ -2375,6 +2463,17 @@ restart_finding:
       istream >> m_bMultiValue;
       istream >> m_bKeyCaseInsensitive;
       istream >> m_propertya;
+      for(int i = 0; i < m_propertya.get_count(); i++)
+      {
+         if(m_bKeyCaseInsensitive)
+         {
+            m_map.set_at(m_propertya[i].lowname(), i);
+         }
+         else
+         {
+            m_map.set_at(m_propertya[i].name(), i);
+         }
+      }
    }
 
    string property_set::implode(const char * pszGlue) const
@@ -2392,13 +2491,9 @@ restart_finding:
       return str;
    }
 
-   index property_set::find_value(const char * psz, index find, index last) const
+   index property_set::find_value(const char * psz) const
    {
-      if(find < 0)
-         find += m_propertya.get_count();
-      if(last < 0)
-         last += m_propertya.get_count();
-      for(; find <= last; find++)
+      for(index find = 0; find < m_propertya.get_count(); find++)
       {
          if(m_propertya[find].get_string() == psz)
             return find;
@@ -2406,13 +2501,9 @@ restart_finding:
       return -1;
    }
 
-   index property_set::find_value_ci(const char * psz, index find, index last) const
+   index property_set::find_value_ci(const char * psz) const
    {
-      if(find < 0)
-         find += m_propertya.get_count();
-      if(last < 0)
-         last += m_propertya.get_count();
-      for(; find <= last; find++)
+      for(index find = 0; find < m_propertya.get_count(); find++)
       {
          if(m_propertya[find].get_string().CompareNoCase(psz) == 0)
             return find;
@@ -2599,6 +2690,11 @@ restart_finding:
       return const_cast<property_set*>(this)->operator[](pszName);
    }
 
+   property property_set::lowprop(const string & strName) const
+   {
+      return const_cast<property_set*>(this)->lowprop(strName);
+   }
+
    property & property_set::operator[](index iIndex)
    {
       return operator[](gen::str::itoa(iIndex));
@@ -2693,3 +2789,14 @@ restart_finding:
 
 
 
+void prop_id_debug(::ca::application * papp)
+{
+   
+   comparable_array < ::id > idaSchema;
+
+   gen::property_set set(papp);
+
+   idaSchema.add(set["prop1"]);
+
+
+}

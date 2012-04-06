@@ -43,7 +43,7 @@
 #include "gen_string_tokenizer.h"
 #include "gen_base_enum.h"
 #include "gen_variable_strict_compare.h"
-#include "primitive/var.h"
+#include "primitive/primitive_var.h"
 #include "gen_var.h"
 #include "gen_var_array.h"
 

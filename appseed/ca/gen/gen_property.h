@@ -63,7 +63,7 @@ namespace gen
    };
 
    class property_set;
-   class property_array;
+   class property_map;
 
 
    class CLASS_DECL_ca property :
@@ -71,10 +71,14 @@ namespace gen
       public ex1::byte_serializable,
       public string_interface
    {
-   public:
+   protected:
 
 
       string            m_strName;
+      string            m_strNameLow;
+
+   public:
+
       property_set *    m_pset;
       var               m_var;
 
@@ -90,9 +94,45 @@ namespace gen
       {
          return m_strName;
       }
-      inline string name() const
+      inline const string & name() const
       {
          return m_strName;
+      }
+      inline string & lowname()
+      {
+         return m_strNameLow;
+      }
+      inline const string & lowname() const
+      {
+         return m_strNameLow;
+      }
+
+      inline void set_name(const char * psz)
+      {
+         m_strName = psz;
+         m_strNameLow = m_strName;
+         m_strName.make_lower();
+      }
+
+      inline void set_name(const string & str)
+      {
+         m_strName = str;
+         m_strNameLow = m_strName;
+         m_strName.make_lower();
+      }
+
+      inline void set_name(const var & var)
+      {
+         m_strName = var.get_string();
+         m_strNameLow = m_strName;
+         m_strName.make_lower();
+      }
+
+      inline void set_name(const property & prop)
+      {
+         m_strName = prop.get_value().get_string();
+         m_strNameLow = m_strName;
+         m_strName.make_lower();
       }
 
       stringa & stra();
@@ -257,6 +297,28 @@ namespace gen
          get_value().m_str = get_value().get_string();
          return get_value().m_str;
       }
+
+      operator id()
+      {
+         return get_value().get_id();
+      }
+
+/*      operator const id()
+      {
+         return get_value().get_id();
+      }
+
+      operator id &()
+      {
+         get_value().m_id = get_value().get_id();
+         return get_value().m_id;
+      }
+
+      operator const id &()
+      {
+         get_value().m_id = get_value().get_id();
+         return get_value().m_id;
+      }*/
 
       operator string()
       {
@@ -504,8 +566,9 @@ namespace gen
    };
 
 
+
    class CLASS_DECL_ca property_array :
-      public ex1::byte_serializable_array < base_array < property, property & > >
+      public ex1::byte_serializable_array < base_array < property > >
    {
    public:
       
@@ -513,7 +576,25 @@ namespace gen
       property_array();
 
 
+
+
    };
+
+   class CLASS_DECL_ca property_map :
+      public ::collection::string_to_intptr
+   {
+   public:
+      
+
+      
+      property_map();
+
+
+
+
+   };
+
+
 
 
    namespace str

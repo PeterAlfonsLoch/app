@@ -1047,7 +1047,7 @@ retry:
             psocket = new ::sockets::http_put_socket(handler, strUrl);
             dynamic_cast < ::sockets::http_put_socket * > (psocket)->m_file = set["put"].ca2 < ::ex1::file >();
          }
-         else if(post.m_propertya.get_count() > 0 || set["http_request"] == "POST")
+         else if(post.get_count() > 0 || set["http_request"] == "POST")
          {
             bPost = true;
             bPut = false;

@@ -677,9 +677,6 @@
     <ClInclude Include="primitive\size.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\var.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\virtual_memory.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -3110,6 +3107,9 @@
     <ClInclude Include="dynamic_source\dynamic_source_exit_exception.h">
       <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive_var.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
     <ClInclude Include="sockets\http\http_session.h">
       <Filter>Header Files\sockets\http</Filter>
     </ClInclude>
@@ -5188,9 +5188,6 @@
     <ClCompile Include="radix\radix_bstr.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_international_locale_schema.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ca2\ca2_xml_data.cpp">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
@@ -5223,6 +5220,9 @@
     </ClCompile>
     <ClCompile Include="dynamic_source\dynamic_source_exit_exception.cpp">
       <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_international_locale_schema.cpp">
+      <Filter>Source Files\gen</Filter>
     </ClCompile>
     <ClCompile Include="sockets\http\sockets_http_session.cpp">
       <Filter>Source Files\sockets\http</Filter>

@@ -22,7 +22,7 @@ var_array::var_array(const int_array & ia)
 
 var_array::var_array(const gen::property_set & propset)
 {
-   set_size(0, ROUND16(propset.m_propertya.get_size() + 16));
+   set_size(0, ROUND16(propset.get_count() + 16));
    operator = (propset);
 }
 

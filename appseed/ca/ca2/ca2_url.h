@@ -46,7 +46,9 @@ namespace ca2
       string query_remove(const char * pszQuery, const char * pszKey);
       string query_set(const char * pszQuery, const char * pszKey, var var);
 
-
+      var get_param(const char * pszQuery, const char * pszKey);
+      var query_get_param(const char * pszQuery, const char * pszKey);
+      string __query_remove(const char * pszQuery, const char * pszAndKeyEqual);
       
       virtual bool locale_is_eu(const char * pszLocale);
       virtual bool locale_is_asia(const char * pszLocale);
