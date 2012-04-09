@@ -321,11 +321,11 @@ namespace ca2
             psz++;
             lpszUrl++;
          }
-         else if(*psz == '%')
+         else if(*lpszUrl == '%')
          {
             iLen--;
             lpszUrl++;
-            if(*psz == '%')
+            if(*lpszUrl == '%')
             {
                i++;
                *psz = '%';
