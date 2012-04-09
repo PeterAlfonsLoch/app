@@ -44,7 +44,7 @@ namespace userbase
    {
       SCAST_PTR(::gen::message::size, psize, pobj)
       psize->previous();
-      layout();
+      //layout();
    }
 
    BOOL split_view::PreCreateWindow(CREATESTRUCT& cs) 
