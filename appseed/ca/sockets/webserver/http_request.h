@@ -9,6 +9,17 @@ namespace http
    class CLASS_DECL_ca request : public transaction
    {
    public:
+
+
+      
+      string      m_strRequestUri;
+      string      m_strQueryString;
+      string      m_strHttpHost;
+      string      m_strHttpMethod;
+
+
+
+
       request(::ca::application * papp);
       request(const request& src);
       ~request();

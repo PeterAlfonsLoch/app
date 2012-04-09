@@ -66,6 +66,7 @@ namespace dynamic_source
       string                  m_strNamespace;
       string                  m_strNetnodePath;
       string                  m_strNetseedPath;
+      string                  m_strNetseedDsCa2Path;
 
       mutex                   m_mutexSimage;
       mutex                   m_mutexSpider;

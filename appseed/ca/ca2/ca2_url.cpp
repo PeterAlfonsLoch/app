@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+#include "c/conv.h"
 
 
 namespace ca2
@@ -302,6 +303,59 @@ namespace ca2
 
    }
 
+   string url::url_decode(const char * lpszUrl, int iLen)
+   {
+
+      string strDecode;
+      
+      char * psz = strDecode.GetBufferSetLength(iLen * 4);
+      
+      strsize i = 0;
+
+      while(*lpszUrl != '\0' && i < iLen)
+      {
+         if(*lpszUrl == '+')
+         {
+            i++;
+            *psz = ' ';
+            psz++;
+            lpszUrl++;
+         }
+         else if(*psz == '%')
+         {
+            iLen--;
+            lpszUrl++;
+            if(*psz == '%')
+            {
+               i++;
+               *psz = '%';
+               psz++;
+               lpszUrl++;
+            }
+            else
+            {
+               i++;
+               iLen--;
+               *psz = (char) (unsigned char) (from_hex_char(*lpszUrl) * 16 + from_hex_char(*(lpszUrl + 1)));
+               psz++;
+               lpszUrl += 2;
+            }
+         }
+         else
+         {
+            i++;
+            *psz = *lpszUrl;
+            psz++;
+            lpszUrl++;
+         }
+      }
+
+      strDecode.ReleaseBuffer(iLen);
+
+      return strDecode;
+
+   }
+
    string url::query_append(const char * pszUrl, const char * pszQuery)
    {
 
@@ -418,6 +472,106 @@ namespace ca2
 
    }
 
+   void url::set_key(string & strUrl, const char * pszUrl, const char * pszKey, var var)
+   {
+
+      strUrl = pszUrl;
+
+      strsize iPos = strUrl.find('?');
+
+      if(iPos < 0)
+         iPos = strUrl.get_length();
+
+      strUrl = strUrl.Left(iPos) + "?" + query_set(strUrl.Mid(iPos + 1), pszKey, var);
+
+   }
+
+   void url::set_param(string & strUrl, const char * pszUrl, const char * pszKey, const string & strParam)
+   {
+
+      const char * pszQuery = strchr(pszUrl, '?');
+
+      strsize iLenUrl = strlen(pszUrl);
+      strsize iLenKey = strlen(pszKey);
+
+      string str;
+
+      char * psz = str.GetBufferSetLength(iLenUrl + iLenKey + strParam.get_length() + 2);
+
+      if(pszQuery == NULL)
+      {
+         strcpy(psz, pszUrl);
+         psz[iLenUrl] = '?';
+         strcpy(&psz[iLenUrl + 1], pszKey);
+         psz[iLenUrl + 1 + iLenKey] = '=';
+         strcpy(&psz[iLenUrl + 1 + iLenKey + 1], strParam);
+         str.ReleaseBuffer(iLenUrl + iLenKey + strParam.get_length() + 2);
+      }
+      else
+      {
+         strsize iLen = pszQuery - pszUrl;
+         strncpy(psz, pszUrl, iLen);
+         psz[iLen] = '?';
+         iLen++;
+         bool bRemove = false;
+         bool bAlreadyInsertedFirstParam = false;
+         const char * pszQueryEnd;
+         while(true)
+         {
+            pszQueryEnd = strchr(pszQuery + 1, '&');
+            if(strncmp(pszQuery, pszKey, iLenKey) == 0 && pszQuery[iLenKey] == '=')
+            {
+               if(!bRemove)
+               {
+                  if(bAlreadyInsertedFirstParam)
+                  {
+                     psz[iLen] = '&';
+                     iLen++;
+                  }
+                  strncpy(&psz[iLen], pszKey, iLenKey);
+                  iLen += iLenKey;
+                  psz[iLen] = '=';
+                  iLen++;
+                  strncpy(&psz[iLen], strParam, strParam.get_length());
+                  bRemove = true;
+                  bAlreadyInsertedFirstParam = true;
+               }
+            }
+            else
+            {
+               if(bAlreadyInsertedFirstParam)
+               {
+                  psz[iLen] = '&';
+                  iLen++;
+               }
+               if(pszQueryEnd == NULL)
+               {
+                  strncpy(&psz[iLen], pszQuery, iLenUrl - (pszQuery - pszUrl));
+                  iLen += iLenUrl - (pszQuery - pszUrl);
+                  break;
+               }
+               else
+               {
+                  strncpy(&psz[iLen], pszQuery, pszQueryEnd - pszQuery);
+                  iLen += pszQueryEnd - pszQuery;
+                  bAlreadyInsertedFirstParam = true;
+               }
+            }
+            pszQuery = pszQueryEnd;
+            if(pszQuery == NULL)
+               break;
+            pszQuery++;
+         }
+
+         str.ReleaseBuffer(iLen);
+
+      }
+
+      strUrl = str;
+
+
+   }
+
    var & url::remove(var & varUrl, const char * pszKey)
    {
 
@@ -455,12 +609,26 @@ namespace ca2
 
    }
 
-   var url::get_param(const char * pszUrl, const char * pszKey)
+   var url::get_var(const char * pszUrl, const char * pszKey)
    {
 
       string strUrl(pszUrl);
 
-      strsize iPos = strUrl.find("?");
+      strsize iPos = strUrl.find('?');
+
+      if(iPos < 0)
+         return var(var::type_empty);
+      else
+         return query_get_var(strUrl.Mid(iPos + 1), pszKey);
+
+   }
+
+   string url::get_param(const char * pszUrl, const char * pszKey)
+   {
+
+      string strUrl(pszUrl);
+
+      strsize iPos = strUrl.find('?');
 
       if(iPos < 0)
          return var(var::type_empty);
@@ -509,6 +677,54 @@ namespace ca2
          else
          {
             strQuery = strKey + var.get_string() + __query_remove(strQuery.Mid(iPos), strAndKeyEqual);
+         }
+      }
+
+
+      return strQuery;
+
+   }
+
+   string url::query_set_param(const char * pszQuery, const char * pszKey, const string & strParam)
+   {
+
+      string strQuery(pszQuery);
+
+      string strKey(pszKey);
+      
+      string strKeyEqual = strKey + "=";
+
+      string strAndKeyEqual = "&" + strKeyEqual;
+
+      if(gen::str::begins(strQuery, strKeyEqual))
+      {
+         int iPos = strQuery.find("&");
+         if(iPos < 0)
+         {
+            strQuery = strKey + strParam;
+         }
+         else
+         {
+            strQuery = strKey + strParam + __query_remove(strQuery.Mid(iPos), strAndKeyEqual);
+         }
+      }
+      else
+      {
+         int iPos = strQuery.find(strAndKeyEqual);
+         if(iPos < 0)
+         {
+            if(strQuery.has_char())
+            {
+               strQuery += strAndKeyEqual + strParam;
+            }
+            else
+            {
+               strQuery = strKeyEqual + strParam;
+            }
+         }
+         else
+         {
+            strQuery = strKey + strParam + __query_remove(strQuery.Mid(iPos), strAndKeyEqual);
          }
       }
 
@@ -569,7 +785,7 @@ namespace ca2
    }
 
 
-   var url::query_get_param(const char * pszQuery, const char * pszKey)
+   var url::query_get_var(const char * pszQuery, const char * pszKey)
    {
 
       string strQuery(pszQuery);
@@ -635,6 +851,51 @@ namespace ca2
 
    }
 
+   string url::query_get_param(const char * pszQuery, const char * pszKey)
+   {
+
+      string strQuery(pszQuery);
+
+      string strKey(pszKey);
+      
+      string strKeyEqual = strKey + "=";
+
+      string strAndKeyEqual = "&" + strKeyEqual;
+
+      string strValue;
+
+      int iPos = 0;
+
+      if(gen::str::begins(strQuery, strKeyEqual))
+      {
+         iPos = strQuery.find('&');
+         if(iPos < 0)
+         {
+            strValue = strQuery.Mid(strKeyEqual.get_length());
+         }
+         else
+         {
+            strValue = strQuery.Mid(strKeyEqual.get_length(), iPos - strKeyEqual.get_length());
+         }
+         return strValue;
+      }
+      
+      iPos = strQuery.find(strAndKeyEqual, iPos);
+      if(iPos < 0)
+         return "";
+      int iEnd = strQuery.find('&', iPos + 1);
+      if(iEnd < 0)
+      {
+         strValue = strQuery.Mid(iPos + strKeyEqual.get_length());
+      }
+      else
+      {
+         strValue = strQuery.Mid(iPos + strKeyEqual.get_length(), iEnd - (iPos + strKeyEqual.get_length()));
+      }
+
+      return strValue;
+
+   }
 
    bool url::locale_is_eu(const char * pszLocale)
    {
@@ -959,6 +1220,40 @@ namespace ca2
       return strProtocol + "://" + strRoot + strScript + gen::str::has_char(strQuery, "?");
    }
 
+
+   
+
+   bool is_url(const char * pszCandidate, const char ** ppszRequest)
+   {
+      const char * psz = pszCandidate;
+      while(*psz != '\0' && (*psz == '.' || *psz == '_' || isalnum((unsigned char ) *psz)))
+      {
+         psz++;
+      }
+      if(psz == pszCandidate)
+         return false;
+      if(*psz != ':')
+         return false;
+      psz++;
+      if(*psz != '/')
+         return false;
+      psz++;
+      if(*psz != '/')
+         return false;
+      psz++;
+      while(*psz != '\0' && (*psz == '.' || *psz == '_' || isalnum((unsigned char ) *psz)))
+      {
+         psz++;
+      }
+      if(*psz != '\0' && *psz != '/')
+         return false;
+      if(ppszRequest != NULL)
+      {
+         *ppszRequest = psz;
+      }
+      return true;
+
+   }
 
 } // namespace ca2
 

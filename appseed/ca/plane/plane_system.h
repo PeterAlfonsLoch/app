@@ -26,9 +26,153 @@ namespace ca
 } // namespace ca
 
 
+#undef __str
+#define __str(x) (m_papp->m_psystem->m_cstrpool.str_##x)
+#undef __id
+#define __id(x) (m_papp->m_psystem->m_cstrpool.id_##x)
+
+
+class CLASS_DECL_ca cstr :
+   public string
+{
+public:
+   cstr(const char * psz) : string(psz) { }
+};
+
 
 namespace plane
 {
+
+
+   class CLASS_DECL_ca cstr_pool
+   {
+   public:
+
+      const id id_at;
+      const id id_de_at;
+      const id id_de;
+      const id id_de_de;
+
+      const id id_br;
+      const id id_pt_br;
+      const id id_pt;
+
+      const id id_es;
+
+      const id id_cn;
+      const id id_zh_cn;
+      const id id_zh_tw;
+      const id id_hk;
+
+      const id id_ja;
+      const id id_jp;
+
+      const id id_en;
+      const id id_std;
+
+      const id id_pe;
+      const id id_mx;
+      const id id_ec;
+
+      const id id_tw;
+
+
+
+      const cstr str_http_host;
+      const cstr str_http_version;
+      const cstr str_http_status_code;
+      const cstr str_http_status;
+      const cstr str_http_method;
+      const cstr str_http_protocol;
+      const cstr str_http_referer;
+      const cstr str_https;
+
+      const cstr str_query_string;
+
+      const cstr str_content_length;
+      const cstr str_content_type;
+      const cstr str_connection;
+      const cstr str_location;
+      const cstr str_set_cookie;
+      const cstr str_cookie;
+      const cstr str_cache_control;
+      const cstr str_pragma;
+      const cstr str_expires;
+      const cstr str_host;
+      const cstr str_referer;
+
+      const cstr str_close;
+
+      const cstr str_put;
+
+      const cstr str_remote_addr;
+      const cstr str_request_uri;
+
+
+      
+
+
+      cstr_pool() :
+
+         id_at("at"),
+         id_de_at("de-at"),
+         id_de("de"),
+         id_de_de("de-de"),
+
+         id_br("br"),
+         id_pt_br("pt-br"),
+         id_pt("pt"),
+
+         id_es("es"),
+
+         id_cn("cn"),
+         id_zh_cn("zh-cn"),
+         id_zh_tw("zh-tw"),
+         id_hk("hk"),
+
+         id_ja("ja"),
+         id_jp("jp"),
+
+         id_en("en"),
+         id_std("_std"),
+
+         id_pe("pe"),
+         id_mx("mx"),
+         id_ec("ec"),
+
+         id_tw("tw"),
+
+         str_http_host("http_host"),
+         str_http_version("http_version"),
+         str_http_status_code("http_status_code"),
+         str_http_status("http_status"),
+         str_http_method("http_method"),
+         str_http_protocol("http_protocol"),
+         str_http_referer("http_referer"),
+         str_https("https"),
+
+         str_query_string("query_string"),
+
+         str_content_length("content-length"),
+         str_content_type("content-type"),
+         str_connection("connection"),
+         str_location("location"),
+         str_set_cookie("set-cookie"),
+         str_cookie("cookie"),
+         str_cache_control("cache-control"),
+         str_pragma("pragma"),
+         str_expires("expires"),
+         str_host("host"),
+         str_referer("referer"),
+
+         str_close("close"),
+
+         str_put("put"),
+
+         str_remote_addr("remote_addr"),
+         str_request_uri("request_uri") {}
+
+   };
 
 
    class CLASS_DECL_ca system :
@@ -52,6 +196,7 @@ namespace plane
       mutex                            m_mutexGdiplus;
 #endif
 
+      cstr_pool                        m_cstrpool;
 
       ::collection::strid_map < ::ca::type_info > m_typemap;
 

@@ -35,21 +35,35 @@ namespace gen
          virtual ~locale_schema();
 
 
+         ::id localeid(const char * pszLocale, int iLen);
+
+
          virtual bool add_locale_variant(id idLocale, id Style);
          virtual bool finalize(bool bRtlLayout);
          virtual bool finalize();
 
-
-         virtual bool defer_add_locale(id idLocale, id idStyle);
-         virtual bool _add_locale_variant(id pszLocale, id idStyle);
-         virtual bool process_final_locale_schema(bool bRTLLayout);
-         virtual bool process_final_locale_schema();
+         bool defer_add_locale(id idLocale, id idStyle);
+         bool defer_add_locale(const char * psz, int iLen, id idStyle);
+         bool _add_locale_variant(id pszLocale, id idStyle);
+         bool _add_locale_variant(const char * psz, int iLen, id idStyle);
+         bool process_final_locale_schema(bool bRTLLayout);
+         bool process_final_locale_schema();
 
 
          locale_schema & operator = (const locale_schema & ls);
 
 
       };
+
+      inline bool locale_schema::_add_locale_variant(id idLocale, id idStyle)
+      {
+         return _add_locale_variant(*idLocale.m_pstr, idLocale.m_pstr->get_length(), idStyle);
+      }
+
+      inline bool locale_schema::defer_add_locale(const char * pszLocale, int iLen, id idSchema)
+      {
+         return defer_add_locale(localeid(pszLocale, iLen), idSchema);
+      }
 
 
    }  // namespace international

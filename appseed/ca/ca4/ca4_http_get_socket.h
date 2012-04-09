@@ -16,7 +16,7 @@ namespace ca4
       ::http::cookies * m_pcookies;
    
       virtual void OnDataArrived(const char *, size_t len);
-      void OnHeader(const string & key,const string & value);
+      void OnHeader(const string & key,const string & value, const string & lowvalue);
 
       virtual string MyUseragent();
    };

@@ -96,19 +96,19 @@ namespace sockets
    }
 
 
-   void http_client_socket::OnHeader(const string & key,const string & value)
+   void http_client_socket::OnHeader(const string & key,const string & value, const string & lowvalue)
    {
       m_content += key + ": " + value + "\r\n";
       m_response.m_propertysetHeader[key] = value;
-      if (!strcasecmp(key, "content-length"))
+      if (key == __str(content_length))
       {
          m_content_length = atoi(value);
       }
-      else if(!strcasecmp(key, "content-type"))
+      else if (key == __str(content_type))
       {
          m_content_type = value;
       }
-      else if(!strcasecmp(key, "set-cookie"))
+      else if (key == __str(set_cookie))
       {
          m_response.m_cookies.add(value);
       }

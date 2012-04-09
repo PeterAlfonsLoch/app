@@ -157,7 +157,7 @@ namespace sockets
    {
       if (m_bFirst)
       {
-         m_request.attr("remote_addr") = GetRemoteSocketAddress()->Convert(false);
+         m_request.lowattr(__str(remote_addr)) = GetRemoteSocketAddress()->Convert(false);
          {
             __int64 count;
             __int64 freq;
@@ -175,30 +175,32 @@ namespace sockets
          string str = pa.getword();
          if (str.get_length() > 4 &&  gen::str::begins_ci(str, "http/")) // response
          {
-            m_response.attr("http_version") = str;
-            m_response.attr("http_status_code") = pa.getword();
-            m_response.attr("http_status") = pa.getrest();
+            m_response.lowattr(__str(http_version)) = str;
+            m_response.lowattr(__str(http_status_code)) = pa.getword();
+            m_response.lowattr(__str(http_status)) = pa.getrest();
             m_bResponse = true;
          }
          else // request
          {
-            m_request.attr("http_method") = str;
-            m_request.attr("https") = IsSSL();
+            m_request.m_strHttpMethod = str;
+            m_request.m_strHttpMethod.make_lower();
+            m_request.lowattr(__str(http_method)) = m_request.m_strHttpMethod;
+            m_request.lowattr(__str(https)) = IsSSL();
             if(IsSSL())
             {
-               m_request.attr("http_protocol") = "https";
+               m_request.lowattr(__str(http_protocol)) = "https";
             }
             else
             {
-               m_request.attr("http_protocol") = "http";
+               m_request.lowattr(__str(http_protocol)) = "http";
             }
-            m_request.attr("http_method") = str;
             string strRequestUri = pa.getword();
             string strScript = System.url().get_script(strRequestUri);
             string strQuery = System.url().object_get_query(strRequestUri);
-            m_request.attr("request_uri") = System.url().url_decode(strScript) + gen::str::has_char(strQuery, "?");
-            m_request.attr("http_version") = pa.getword();
-            m_b_http_1_1 = gen::str::ends(m_request.attr("http_version"), "/1.1");
+            m_request.m_strRequestUri = System.url().url_decode(strScript) + gen::str::has_char(strQuery, "?");
+            m_request.lowattr(__str(request_uri)) = m_request.m_strRequestUri;
+            m_request.lowattr(__str(http_version)) = pa.getword();
+            m_b_http_1_1 = gen::str::ends(m_request.lowattr(__str(http_version)), "/1.1");
             m_b_keepalive = m_b_http_1_1;
             m_bRequest = true;
          }
@@ -220,19 +222,48 @@ namespace sockets
          }
          return;
       }
-      ::gen::parse pa(line,":");
-      string key = pa.getword();
-      string value = pa.getrest();
-      OnHeader(key,value);
-      if(gen::str::equals_ci(key, "content-length"))
+      string key;
+      string value;
+      string lowvalue;
+      int iFind = line.find(':');
+      if(iFind < 0)
+      {
+         key = line;
+      }
+      else
+      {
+         key = line.Left(iFind);
+         key.trim();
+         iFind++;
+         while(isspace(line[iFind]) && iFind < line.get_length())
+         {
+            iFind++;
+         }
+         int iLen = line.get_length();
+         while(iLen >= iFind && isspace(line[iLen - 1]))
+         {
+            iLen--;
+         }
+         value = line.Mid(iFind, iLen - iFind);
+         lowvalue = value;
+         lowvalue.make_lower();
+      }
+      key.make_lower();
+      OnHeader(key, value, lowvalue);
+      if(key == __str(host))
+      {
+         m_request.m_strHttpHost = lowvalue;
+         m_request.lowattr(__str(http_host)) = lowvalue;
+      }
+      else if(key == __str(content_length))
       {
          m_body_size_left = atol(value);
       }
-      if(gen::str::equals_ci(key, "connection"))
+      else if(key == __str(connection))
       {
          if (m_b_http_1_1)
          {
-            if(gen::str::equals_ci(value, "close"))
+            if(lowvalue == __str(close))
             {
                m_b_keepalive = false;
             }
@@ -282,19 +313,17 @@ namespace sockets
       //TRACE("SendResponse\n");
       string msg;
       string strLine;
-      string strTrace;
-      strLine = m_response.attr("http_version").get_string() + " " + m_response.attr("http_status_code") + " " + m_response.attr("http_status");
+      strLine = m_response.lowattr(__str(http_version)).get_string() + " " + m_response.lowattr(__str(http_status_code)) + " " + m_response.lowattr(__str(http_status));
       msg = strLine + "\r\n";
-      if(m_response.m_propertysetHeader["host"].get_string().has_char())
+      string strHost = m_response.lowheader(__str(host));
+      if(strHost.has_char())
       {
-         strLine = "Host: " + m_response.m_propertysetHeader["host"];
-         msg += strLine + "\r\n";
+         msg += "Host: " + strHost + "\r\n";
+         TRACE0("Host: " + strHost  + "\n");
       }
-      strTrace = strLine;
-      strTrace.replace("%", "%%");
-      TRACE(strTrace + "\n");
       
-      bool bContentLength = m_response.attr("http_status_code") != 304;
+      
+      bool bContentLength = m_response.lowattr(__str(http_status_code)) != 304;
       
       if(!bContentLength)
          m_response.m_propertysetHeader.remove_by_name("Content-Length");
@@ -307,10 +336,9 @@ namespace sockets
             continue;
          if(strKey.CompareNoCase("host") == 0)
             continue;
-         strLine = strKey + ": " + strValue;
-         msg += strLine + "\r\n";
-         strTrace = strLine;
-         strTrace.replace("%", "%%");
+//         strLine = ;
+         msg += strKey + ": " + strValue + "\r\n";
+         TRACE0(strKey + ": " + strValue +  + "\n");
          //TRACE(strTrace + "\n");
       }
       
@@ -462,22 +490,20 @@ namespace sockets
    } // url_this
 
 
-   void http_socket::OnHeader(const string & key,const string & value)
+   void http_socket::OnHeader(const string & key,const string & value, const string & lowalue)
    {
       //http_socket::OnHeader(key, value);
       /*if(key.CompareNoCase("user-agent") == 0)
       {
          TRACE("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
       }*/
-      string strKey = key;
-      strKey = strKey.make_lower();
-      if(strKey == "cookie")
+      if(key == __str(cookie))
       {
          m_request.cookies().parse_header(value);
          m_response.cookies().parse_header(value);
       }
       else
-         m_request.header(key) = value;
+         m_request.lowheader(key) = value;
    }
 
 

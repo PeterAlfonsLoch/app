@@ -303,7 +303,7 @@ namespace http
 
    // form(buffer,l) -- request_method GET
 
-   void form::parse_query_string(const string & buffer,size_t l)
+/*   void form::parse_query_string(const string & buffer,size_t l)
    {
       m_setGet.parse_url_query(buffer);
       return;
@@ -321,12 +321,12 @@ namespace http
          switch (c)
          {
             case '=': /* end of name */
-               name = slask;
+  /*             name = slask;
                slask.Empty();
                got_name = true;
                break;
             case '&': /* end of value */
-                  if (got_name)
+    /*              if (got_name)
                   {
    //                  cgi = new CGI(name,slask);
                      m_setGet[name] = slask;
@@ -341,17 +341,17 @@ namespace http
    //            m_cgi.push_back(cgi);
                break;
             case '+': /* space */
-               slask += " ";
+      /*         slask += " ";
                break;
             case '%': /* hex value */
-               chigh = buffer.operator[](ptr++);
+        /*       chigh = buffer.operator[](ptr++);
                chigh -= 48 + (chigh > '9' ? 7 : 0) + (chigh >= 'a' ? 32 : 0);
                clow = buffer.operator[](ptr++);
                clow -= 48 + (clow > '9' ? 7 : 0) + (clow >= 'a' ? 32 : 0);
                slask += (char)(chigh * 16 + clow);
                break;
             default: /* just another char */
-               slask += c;
+          /*     slask += c;
                break;
          }
       }
@@ -367,7 +367,7 @@ namespace http
                      m_setGet[slask] = "";
                   }
    //   m_cgi.push_back(cgi);
-   }
+   }*/
 
 
    form::~form()

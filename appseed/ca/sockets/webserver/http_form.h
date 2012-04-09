@@ -68,6 +68,10 @@ namespace http
       return m_setRequest;
    }
 
+   inline void form::parse_query_string(const string & buffer,size_t l)
+   {
+      m_setGet._parse_url_query(buffer);
+   }
 
 
 } // namespace http

@@ -26,6 +26,7 @@ namespace dynamic_source
       http::memory_file m_memfileError;
       string m_strName;
       string m_strSourcePath;
+      string m_strSourceDir;
       string m_strCppPath;
       string m_strScriptPath;
       string m_strBuildBat;

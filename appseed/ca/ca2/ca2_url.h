@@ -1,7 +1,12 @@
 #pragma once
 
+
 namespace ca2
 {
+
+
+   bool CLASS_DECL_ca is_url(const char * pszCandidate, const char ** ppszRequest = NULL);
+
 
    class CLASS_DECL_ca url :
       public ::radix::object
@@ -16,6 +21,8 @@ namespace ca2
       string get_script(const char *); // page
       string get_query(const char *); // id=1
       string set_key(const char * pszUrl, const char * pszKey, var var);
+      void set_key(string & strUrl, const char * pszUrl, const char * pszKey, var var);
+      void set_param(string & strUrl, const char * pszUrl, const char * pszKey, const string & strParam);
       string set(string & strUrl, const char * pszKey, var var);
       var & set(var & varUrl, const char * pszKey, var var);
       gen::property & set(gen::property & propUrl, const char * pszKey, var var);
@@ -40,14 +47,18 @@ namespace ca2
       string name(const char * psz);
       string url_encode(const char * psz);
       string url_decode(const char * psz);
+      string url_decode(const char * psz, int iLen);
 
       string query_append(const char * pszUrl, const char * pszQuery);
       string query_remove(const char * pszQuery, stringa & straKey);
       string query_remove(const char * pszQuery, const char * pszKey);
       string query_set(const char * pszQuery, const char * pszKey, var var);
+      string query_set_param(const char * pszQuery, const char * pszKey, const string & strParam);
 
-      var get_param(const char * pszQuery, const char * pszKey);
-      var query_get_param(const char * pszQuery, const char * pszKey);
+      var get_var(const char * pszQuery, const char * pszKey);
+      var query_get_var(const char * pszQuery, const char * pszKey);
+      string get_param(const char * pszQuery, const char * pszKey);
+      string query_get_param(const char * pszQuery, const char * pszKey);
       string __query_remove(const char * pszQuery, const char * pszAndKeyEqual);
       
       virtual bool locale_is_eu(const char * pszLocale);
@@ -64,4 +75,7 @@ namespace ca2
 
    };
 
+
 } // namespace ca2
+
+

@@ -26,11 +26,6 @@ namespace http
    {
    }
 
-   gen::property & transaction::header(const char * pszKey)
-   {
-      return m_propertysetHeader[pszKey];
-   }
-
    void transaction::SetAccept(const string & value)
    {
       header("Accept") = value;

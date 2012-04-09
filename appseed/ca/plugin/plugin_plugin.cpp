@@ -534,7 +534,7 @@ namespace plugin
                         for(int i = 0; i < set.m_propertya.get_count(); i++)
                         {
                            strCommandLine += " ";
-                           strCommandLine += set.m_propertya[i].m_strName;
+                           strCommandLine += set.m_propertya[i].name();
                            if(set.m_propertya[i].get_string().has_char())
                            {
                               strCommandLine += "=";

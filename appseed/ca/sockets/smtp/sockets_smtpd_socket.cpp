@@ -56,7 +56,11 @@ namespace sockets
                {
                   ::gen::parse pa(m_header_line, ":");
                   string key = pa.getword();
-                  OnHeader(key, pa.getrest());
+                  key.make_lower();
+                  string value = pa.getrest();
+                  string lowvalue = value;
+                  lowvalue.make_lower();
+                  OnHeader(key, value, lowvalue);
                }
                m_header = false;
                OnHeaderComplete();
@@ -72,7 +76,11 @@ namespace sockets
                {
                   ::gen::parse pa(m_header_line, ":");
                   string key = pa.getword();
-                  OnHeader(key, pa.getrest());
+                  key.make_lower();
+                  string value = pa.getrest();
+                  string lowvalue = value;
+                  lowvalue.make_lower();
+                  OnHeader(key, value, lowvalue);
                }
                m_header_line = line;
             }

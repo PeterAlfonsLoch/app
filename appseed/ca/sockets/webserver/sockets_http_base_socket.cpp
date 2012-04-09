@@ -40,12 +40,12 @@ namespace sockets
    }
 
 
-   void http_base_socket::OnHeader(const string & key,const string & value)
+   void http_base_socket::OnHeader(const string & key,const string & value, const string & lowvalue)
    {
-      http_socket::OnHeader(key, value);
+      http_socket::OnHeader(key, value, lowvalue);
 
 
-      if(key == "content-length")
+      if(key == __str(content_length))
       {
          m_iContentLength = atoi(value);
       }

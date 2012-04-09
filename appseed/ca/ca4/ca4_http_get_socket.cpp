@@ -37,14 +37,14 @@ namespace ca4
       UNREFERENCED_PARAMETER(len);
    }
 
-   void http_get_socket::OnHeader(const string & key,const string & value)
+   void http_get_socket::OnHeader(const string & key, const string & value, const string & lowvalue)
    {
-      ::sockets::http_get_socket::OnHeader(key, value);
-      if(!_stricmp(key, "location"))
+      ::sockets::http_get_socket::OnHeader(key, value, lowvalue);
+      if(key == __str(location))
       {
          m_strHeaderLocation = value;
       }
-      else if(!_stricmp(key, "set-cookie"))
+      else if(key == __str(set_cookie))
       {
          if(m_pcookies != NULL)
          {

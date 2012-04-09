@@ -296,35 +296,65 @@ string cookies::expire(time_t t)
 
 void cookies::parse_header(const char * psz)
 {
+   
+   if(psz == NULL)
+      return;
+
    stringa stra;
-   stra.add_tokens(psz, ";", FALSE);
+   const char * pszParam = psz;
+   const char * pszParamEnd;
+   const char * pszKeyEnd;
    class cookie c;
-   for(int i = 0; i < stra.get_size(); i++)
+   while(true)
    {
-      string str = stra[i];
-      str = str.trim();
-      stringa stra2;
-      stra2.add_tokens(str, "=", TRUE);
-      if(stra2.get_size() > 0)
+      while(*pszParam != '\0' && isspace((unsigned char ) *pszParam))
       {
-         c.m_strName = stra2[0].trim();
-         c.m_strNameLow = c.m_strName;
-         c.m_strNameLow.make_lower();
+         pszParam++;
+      }
+      if(*pszParam == '\0')
+         break;
+      pszParamEnd = strchr(pszParam, ';');
+      pszKeyEnd = strchr(pszParam, '=');
+      if(pszParamEnd == NULL)
+      {
+         if(pszKeyEnd == NULL)
+         {
+            c.m_strName = string(pszParam);
+            c.m_strNameLow = c.m_strName;
+            c.m_strNameLow.make_lower();
+            c.m_varValue.set_type(var::type_empty);
+            add(c);
+         }
+         else
+         {
+            c.m_strName = string(pszParam, pszKeyEnd - pszParam);
+            c.m_strNameLow = c.m_strName;
+            c.m_strNameLow.make_lower();
+            c.m_varValue = string(pszKeyEnd + 1);
+            add(c);
+         }
+         return;
       }
       else
       {
-         c.m_strName.Empty();
-         c.m_strNameLow.Empty();
+         if(pszKeyEnd == NULL || pszKeyEnd > pszParamEnd)
+         {
+            c.m_strName = string(pszParam, pszParamEnd - pszKeyEnd);
+            c.m_strNameLow = c.m_strName;
+            c.m_strNameLow.make_lower();
+            c.m_varValue.set_type(var::type_empty);
+            add(c);
+         }
+         else
+         {
+            c.m_strName = string(pszParam, pszKeyEnd - pszParam);
+            c.m_strNameLow = c.m_strName;
+            c.m_strNameLow.make_lower();
+            c.m_varValue = string(pszKeyEnd + 1, pszParamEnd - (pszKeyEnd + 1));
+            add(c);
+         }
       }
-      if(stra2.get_size() > 1)
-      {
-         c.m_varValue = stra2[1].trim();
-      }
-      else
-      {
-         c.m_varValue.set_type(var::type_empty);
-      }
-      add(c);
+      pszParam = pszParamEnd + 1;
    }
 }
 

@@ -80,9 +80,9 @@ namespace sockets
    }
 
 
-   void http_debug_socket::OnHeader(const string & key,const string & value)
+   void http_debug_socket::OnHeader(const string & key,const string & value, const string & lowvalue)
    {
-      if (!strcasecmp(key,"content-length"))
+      if(key == __str(content_length))
          m_content_length = atoi(value);
 
       Send(key + ": " + value + "\n");

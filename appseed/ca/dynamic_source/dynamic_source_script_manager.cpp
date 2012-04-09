@@ -34,6 +34,7 @@ namespace dynamic_source
       m_strNamespace             = "netnode"; // default namespace is linked to outer project app_core_netnode
       m_strNetnodePath           = "C:\\netnodenet\\";
       m_strNetseedPath           = "C:\\netnodenet\\net\\netseed\\";
+      m_strNetseedDsCa2Path      = "C:\\netnodenet\\net\\netseed\\ds\\ca2\\";
 
    }
 
@@ -61,7 +62,7 @@ namespace dynamic_source
 
       {
          clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch();
-         pwatch->m_strPath = System.dir().path(m_strNetseedPath, "ds\\ca2");
+         pwatch->m_strPath = m_strNetseedDsCa2Path;
          pwatch->m_pmanager = this;
          AfxBeginThread(get_app(), clear_include_matches_FolderWatchThread, (LPVOID) pwatch);
       }
@@ -195,12 +196,12 @@ namespace dynamic_source
       script_instance * pinstance = get(strName);
       if(pinstance != NULL)
       {
-         pinstance->m_strDebugRequestUri = pinstanceParent->main_instance()->netnodesocket()->inattr("request_uri");
-         pinstance->m_strDebugThisScript = strName;
          pinstance->initialize(pinstanceParent->main_instance(), pinstanceParent, pinstanceParent->main_instance()->netnodesocket(), this);
          pinstance->dinit();
          if(pinstance->main_instance()->m_iDebug > 0)
          {
+            pinstance->m_strDebugRequestUri = pinstanceParent->main_instance()->netnodesocket()->m_request.m_strRequestUri;
+            pinstance->m_strDebugThisScript = strName;
             if(pinstance->m_pscript->m_memfileError.get_length() > 0)
             {
                pinstance->output_file() << pinstance->m_pscript->m_memfileError;
@@ -229,12 +230,12 @@ namespace dynamic_source
       string str;
       str = System.get_module_folder();
       System.file().path().eat_end_level(str, 2, "\\");
-      str =System.dir().path(str, "stage\\basis");
+      str =System.dir().path(str, "stage\\basis", false);
       str = ";" + str;
       string str2;
       str2 = System.get_module_folder();
       System.file().path().eat_end_level(str2, 2, "\\");
-      str2 =System.dir().path(str2, "netnode\\library\\include");
+      str2 =System.dir().path(str2, "netnode\\library\\include", false);
       str2 = ";" + str2;
       str = str + str2;
       DWORD dwSize = GetEnvironmentVariable("PATH", NULL, 0);
@@ -449,7 +450,7 @@ namespace dynamic_source
 
    string script_manager::real_path(const char * pszBase, const char * psz)
    {
-      string strRealPath = System.dir().path(pszBase, psz);
+      string strRealPath = System.dir().path(pszBase, psz, false);
       if(include_matches_file_exists(strRealPath))
          return strRealPath;
       else if(include_matches_is_dir(strRealPath))
@@ -458,11 +459,38 @@ namespace dynamic_source
          return "";
    }
 
+#ifdef WINDOWS 
+#define is_absolute_path(psz) ((isalpha(psz[0]) && psz[1] == ':') \
+   || (psz[0] == '\\' && psz[1] == '\\'))
+#else
+#define is_absolute_path(psz) (psz[0] == '/')
+#endif
+
    string script_manager::real_path(const char * psz)
    {
-      if(include_matches_file_exists(psz))
-         return psz;
-      return real_path(System.dir().path(m_strNetseedPath, "ds/ca2"), psz);
+#ifdef WINDOWS 
+      if(is_absolute_path(psz))
+      {
+         if(include_matches_file_exists(psz))
+            return psz;
+         return "";
+      }
+      else
+      {
+         return real_path(m_strNetseedDsCa2Path, psz);
+      }
+#else
+      if(is_absolute_path(psz))
+      {
+         if(include_matches_file_exists(psz))
+            return psz;
+         return real_path(m_strNetseedDsCa2Path, psz);
+      }
+      else
+      {
+         return real_path(m_strNetseedDsCa2Path, psz);
+      }
+#endif
    }
 
 

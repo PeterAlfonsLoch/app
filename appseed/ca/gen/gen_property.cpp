@@ -1564,6 +1564,17 @@ namespace gen
       }
    }
 
+   property * property_set::lowadd(const string & strLowName)
+   {
+      property p;
+      p.name() = strLowName;
+      p.lowname() = strLowName;
+      m_propertya.add(p);
+      m_map.set_at(strLowName, m_propertya.get_upper_bound());
+      m_propertya.last_element().m_pset = this;
+      return &m_propertya.last_element();
+   }
+
    property * property_set::add(const char * pszName, var var)
    {
       string strName;
@@ -1597,14 +1608,14 @@ namespace gen
       {
          string strNameLow = strName;
          strNameLow.make_lower();
-         m_propertya.add(property(strName));
+         m_propertya.add(property(strName, var));
          m_map.set_at(strNameLow, m_propertya.get_upper_bound());
          m_propertya.last_element().m_pset = this;
          return &m_propertya.last_element();
       }
       else
       {
-         m_propertya.add(property(strName));
+         m_propertya.add(property(strName, var));
          m_map.set_at(strName, m_propertya.get_upper_bound());
          m_propertya.last_element().m_pset = this;
          return &m_propertya.last_element();
@@ -1647,23 +1658,13 @@ namespace gen
          return *pproperty;
       if(m_bAutoAdd)
       {
-         pproperty = add(strName);
+         pproperty = lowadd(strName);
          if(pproperty != NULL)
             return *pproperty;
       }
       throw simple_exception("property with specified name - and specified case sensitivity - does not exist and Auto Add Flag is not set");
    }
 
-   bool property_set::has_property(const char * pszName) const
-   {
-      const property * pproperty = find(pszName);
-      return pproperty != NULL && pproperty->m_var.m_etype != var::type_new;
-   }
-
-   bool property_set::has_property(string_interface & str) const
-   {
-      return has_property((const char *) string(str));
-   }
 
    bool property_set::is_set_empty(count countMinimum) const
    {
@@ -1908,24 +1909,6 @@ namespace gen
    const property * property_set::find(string_interface & str) const
    {
       return find((const char *) string(str));
-   }
-
-   property * property_set::lowfind(const string & strName)
-   {
-      gen::property_map::pair * ppair = m_map.PLookup(strName);
-      if(ppair == NULL)
-         return NULL;
-      return &m_propertya[ppair->m_value];
-   }
-
-   property * property_set::lowfind(const char * pszName)
-   {
-      return lowfind(string(pszName));
-   }
-
-   property * property_set::lowfind(string_interface & str)
-   {
-      return lowfind(string(str));
    }
 
    const property * property_set::lowfind(const char * pszName) const
@@ -2220,26 +2203,35 @@ namespace gen
    }
 
 
-   void property_set::parse_url_query(const char * pszUrlQuery)
+   void property_set::parse_url_query(const char * pszUrl)
    {
-      stringa stra;
-      string strQuery(pszUrlQuery);
-      strQuery.trim();
-      if(strQuery.find("?") >= 0)
+      if(pszUrl == NULL)
+         return;
+      const char * pszUrlQuery = strchr(pszUrl, '?');
+      if(pszUrlQuery == NULL)
+         return _parse_url_query(pszUrl);
+      else
+         return _parse_url_query(pszUrlQuery + 1);
+   }
+
+   void property_set::_parse_url_query(const char * pszUrlQuery)
+   {
+      if(pszUrlQuery == NULL)
+         return;
+      const char * pszParam = pszUrlQuery;
+      const char * pszParamEnd;
+      const char * pszKeyEnd;
+      string strKey;
+      while(true)
       {
-         strQuery = System.url().get_query(strQuery);
-      }
-      stra.add_tokens(strQuery, "&", TRUE);
-      for(int i = 0; i < stra.get_size(); i++)
-      {
-         string & str = stra[i];
-         if(str.get_length() > 0)
+         pszParamEnd = strchr(pszParam, '&');
+         pszKeyEnd   = strchr(pszParam, '=');
+         if(pszParamEnd == NULL)
          {
-            index find = str.find("=");
-            if(find <= 0)
+            if(pszKeyEnd == NULL)
             {
-               string strKey = System.url().url_decode(str);
-               bool bAddArray = gen::str::ends_eat(strKey, "[]");
+               strKey = System.url().url_decode(pszParam, strlen(pszUrlQuery) - (pszParam - pszUrlQuery));
+               bool bAddArray = strKey.get_length() >= 2 && strKey[strKey.get_length() - 2] == '[' && strKey[strKey.get_length() - 1] == ']';
                if(bAddArray)
                {
                   operator[](strKey).stra().add("");
@@ -2251,9 +2243,40 @@ namespace gen
             }
             else
             {
-               string strKey = System.url().url_decode(str.Mid(0, find));
-               bool bAddArray = gen::str::ends_eat(strKey, "[]");
-               string strValue = System.url().url_decode(str.Mid(find + 1));
+               string strKey = System.url().url_decode(pszParam, pszKeyEnd - pszParam);
+               bool bAddArray = strKey.get_length() >= 2 && strKey[strKey.get_length() - 2] == '[' && strKey[strKey.get_length() - 1] == ']';
+               string strValue = System.url().url_decode(pszKeyEnd + 1, strlen(pszUrlQuery) - (pszKeyEnd + 1 - pszUrlQuery));
+               if(bAddArray)
+               {
+                  operator[](strKey).stra().add(strValue);
+               }
+               else
+               {
+                  add(strKey, var(strValue));
+               }
+            }
+            return;
+         }
+         else
+         {
+            if(pszKeyEnd == NULL || pszKeyEnd > pszParamEnd)
+            {
+               strKey = System.url().url_decode(pszParam, pszParamEnd - pszParam);
+               bool bAddArray = strKey.get_length() >= 2 && strKey[strKey.get_length() - 2] == '[' && strKey[strKey.get_length() - 1] == ']';
+               if(bAddArray)
+               {
+                  operator[](strKey).stra().add("");
+               }
+               else
+               {
+                  operator[](strKey).get_value() = "";
+               }
+            }
+            else
+            {
+               string strKey = System.url().url_decode(pszParam, pszKeyEnd - pszParam);
+               bool bAddArray = strKey.get_length() >= 2 && strKey[strKey.get_length() - 2] == '[' && strKey[strKey.get_length() - 1] == ']';
+               string strValue = System.url().url_decode(pszKeyEnd + 1, pszParamEnd - (pszKeyEnd + 1));
                if(bAddArray)
                {
                   operator[](strKey).stra().add(strValue);
@@ -2264,7 +2287,9 @@ namespace gen
                }
             }
          }
+         pszParam = pszParamEnd + 1;
       }
+
    }
 
    void property_set::parse_http_headers(const char * pszHeaders)
@@ -2447,6 +2472,7 @@ namespace gen
    void property_set::clear()
    {
       m_propertya.remove_all();
+      m_map.remove_all();
    }
 
    void property_set::write(ex1::byte_output_stream & ostream)
@@ -2560,6 +2586,7 @@ namespace gen
          {
             m_propertya[i].m_pset = this;
          }
+         m_map                   = set.m_map;
       }
       return *this;
    }

@@ -1,97 +1,385 @@
 #include "StdAfx.h"
 
+url_domain_base::url_domain_base()
+{
+   
+   m_pszRadix     = NULL;
+   m_iLenRadix    = 0;
+   m_pszSuffix    = NULL;
+   m_iLenSuffix   = 0;
+   m_pszDomain    = NULL;
+   m_iLenDomain   = 0;
+   m_pszPrefix    = NULL;
+   m_iLenPrefix   = 0;
+   m_pszTopLevel  = NULL;
+   m_iLenTopLevel = 0;
+   m_pszName      = NULL;
+   m_iLenName     = 0;
 
-   void url_domain::create(const char * pszServerName)
+   m_iCount       = 0;
+   m_bHasWww      = false;
+
+}
+
+   void url_domain_base::create(const char * pszServerName)
    {
       m_strOriginalName = pszServerName;
       if(m_strOriginalName.is_empty())
          return;
-      m_stra.add_tokens(pszServerName, ".", TRUE);
-      m_bHasWww = m_stra[0] == "www";
+      const char * psz = m_strOriginalName;
+      m_iCount = 1;
+      while(*psz != '\0')
+      {
+         if(*psz == '.')
+            m_iCount++;
+         psz++;
+      }
+      psz = m_strOriginalName;
+      m_bHasWww = gen::str::begins(pszServerName, "www.");
       if(m_bHasWww)
       {
-         m_stra.remove_at(0);
+         psz += 4;
+         m_iCount--;
       }
-      m_iCount = m_stra.get_size();
-      if(m_iCount <= 1)
+      const char * pszEnd = ((LPCTSTR) m_strOriginalName) + m_strOriginalName.get_length();
+      m_pszTopLevel = pszEnd;
+      while(m_pszTopLevel > psz && *m_pszTopLevel != '.')
       {
-         m_strRadix  = pszServerName;
-         m_strRadix  = m_strDomain;
-         m_strName   = m_strDomain;
+         m_pszTopLevel--;
+         m_iLenTopLevel++;
+      }
+      if(*m_pszTopLevel == '.')
+      {
+         m_pszTopLevel++;
+         m_iLenTopLevel--;
+      }
+      else
+      {
+         m_pszTopLevel     = NULL;
+         m_iLenTopLevel    = 0;
+         m_pszRadix        = psz;
+         m_iLenRadix       = m_strOriginalName.get_length();
+         m_pszDomain       = psz;
+         m_iLenDomain      = m_strOriginalName.get_length();
+         m_pszName         = psz;
+         m_iLenName        = m_strOriginalName.get_length();
          return;
       }
       if(m_iCount == 2)
       {
-         m_strSuffix = m_stra[1];
-         m_strRadix  = m_stra[0];
-         m_strDomain = m_strRadix + "." + m_strSuffix;
-         m_strName   = m_strDomain;
-         m_strTopLevel = m_stra[1];
+         m_pszSuffix       = m_pszTopLevel;
+         m_iLenSuffix      = m_iLenTopLevel;
+         m_pszRadix        = psz;
+         m_iLenRadix       = (m_pszTopLevel - 1) - psz;
+         m_pszDomain       = m_pszRadix;
+         m_iLenDomain      = m_iLenRadix + 1 + m_iLenTopLevel;
+         m_pszName         = m_pszDomain;
+         m_iLenName        = m_iLenDomain;
          return;
       }
-      if(m_stra[m_iCount - 1] == "br" && m_stra[m_iCount - 2] == "nom")
+      const char * pszPreTopLevel = m_pszTopLevel - 2;
+      int iLenPreTopLevel = 0;
+      while(pszPreTopLevel > psz && *pszPreTopLevel != '.')
       {
-         m_strSuffix    = m_stra[m_iCount - 2] + "." + m_stra[m_iCount - 1];
-         m_strRadix     = m_stra[m_iCount - 4] + "." + m_stra[m_iCount - 3];
-         m_strPrefix    = m_stra.implode(".", 0, m_iCount - 4);
+         pszPreTopLevel--;
+         iLenPreTopLevel++;
       }
-      else if(m_stra[m_iCount - 1] == "am"
-         && (m_stra[m_iCount - 2] == "north" ||
-         m_stra[m_iCount - 2] == "south"))
+      if(*pszPreTopLevel == '.')
       {
-         m_strSuffix    = m_stra[m_iCount - 2] + "." + m_stra[m_iCount - 1];
-         m_strTopLevel  = m_strSuffix;
-         m_strRadix     = m_stra[m_iCount - 3];
-         m_strPrefix    = m_stra.implode(".", 0, m_iCount - 3);
-         m_strDomain = m_strRadix + "." + m_strSuffix;
-         if(m_strPrefix.get_length() > 0)
-            m_strName   = m_strPrefix + "." + m_strDomain;
+         pszPreTopLevel++;
+      }
+      else
+      {
+         throw "not_expected";
+      }
+      const char * pszPreTopLevel2 = NULL;
+      int iLenPreTopLevel2 = 0;
+      const char * pszPreTopLevel3 = NULL;
+      int iLenPreTopLevel3 = 0;
+      if(m_iCount >= 4)
+      {
+         pszPreTopLevel2 = pszPreTopLevel - 2;
+         while(pszPreTopLevel2 > psz && *pszPreTopLevel2 != '.')
+         {
+            pszPreTopLevel2--;
+            iLenPreTopLevel2++;
+         }
+         if(*pszPreTopLevel2 == '.')
+         {
+            pszPreTopLevel2++;
+         }
          else
-            m_strName   = m_strDomain;
+         {
+            throw "not_expected";
+         }
+         if(m_iCount >= 5)
+         {
+            pszPreTopLevel3 = pszPreTopLevel2 - 2;
+            while(pszPreTopLevel3 > psz && *pszPreTopLevel3 != '.')
+            {
+               pszPreTopLevel3--;
+               iLenPreTopLevel2++;
+            }
+            if(*pszPreTopLevel3 == '.')
+            {
+               pszPreTopLevel3++;
+            }
+            else
+            {
+               throw "not_expected";
+            }
+         }
+      }
+      if(m_iLenTopLevel == 2 
+      && m_pszTopLevel[0] == 'b'
+      && m_pszTopLevel[1] == 'r'
+      && iLenPreTopLevel == 3
+      && pszPreTopLevel[0] == 'n'
+      && pszPreTopLevel[1] == 'o'
+      && pszPreTopLevel[2] == 'm'
+      )
+      {
+         m_pszSuffix       = pszPreTopLevel;
+         m_iLenSuffix      = pszEnd - pszPreTopLevel;
+         if(m_iCount <= 4)
+         {
+            m_pszRadix     = psz;
+            m_iLenRadix    = (pszPreTopLevel - 1) - psz;
+         }
+         else
+         {
+            m_pszRadix     = pszPreTopLevel3;
+            m_iLenRadix    = (pszPreTopLevel - 1) - pszPreTopLevel3;
+            m_pszPrefix    = psz;
+            m_iLenPrefix   = (pszPreTopLevel3 - 1) - psz;
+         }
+      }
+      else if(m_iLenTopLevel == 2 
+      && m_pszTopLevel[0] == 'am'
+      && m_pszTopLevel[1] == 'r'
+      && iLenPreTopLevel == 5
+      && ((pszPreTopLevel[0] == 'n'
+      &&   pszPreTopLevel[2] == 'r') ||
+          (pszPreTopLevel[0] == 's'
+      &&   pszPreTopLevel[1] == 'u'))
+      && pszPreTopLevel[1] == 'o'
+      && pszPreTopLevel[3] == 't'
+      && pszPreTopLevel[4] == 'h'
+         )
+      {
+         m_pszSuffix       = pszPreTopLevel;
+         m_iLenSuffix      = pszEnd - pszPreTopLevel;
+         m_pszTopLevel     = pszPreTopLevel;
+         m_iLenTopLevel    = pszEnd - pszPreTopLevel;
+         if(m_iCount <= 3)
+         {
+            m_pszRadix     = psz;
+            m_iLenRadix    = (pszPreTopLevel - 1) - psz;
+            m_pszName      = m_pszRadix;
+            m_iLenName     = pszEnd - m_pszDomain;
+         }
+         else
+         {
+            m_pszRadix     = pszPreTopLevel2;
+            m_iLenRadix    = (pszPreTopLevel - 1) - pszPreTopLevel2;
+            m_pszPrefix    = psz;
+            m_iLenPrefix   = (pszPreTopLevel2 - 1) - psz;
+            m_pszName      = m_pszPrefix;
+            m_iLenName     = pszEnd - m_pszPrefix;
+         }
+         m_pszDomain       = m_pszRadix;
+         m_iLenDomain      = pszEnd - m_pszDomain;
          return;
       }
-      else    if(server_is_top_domain(m_stra[m_iCount - 1], m_stra[m_iCount - 2]))
+      else if(server_is_top_domain(m_pszTopLevel, m_iLenTopLevel, pszPreTopLevel, iLenPreTopLevel))
       {
-         m_strSuffix = m_stra[m_iCount - 2] + "." +m_stra[m_iCount - 1];
-         m_strRadix  = m_stra[m_iCount - 3];
-         m_strPrefix = m_stra.implode(".", 0, m_iCount - 3);
+         m_pszSuffix       = pszPreTopLevel;
+         m_iLenSuffix      = pszEnd - pszPreTopLevel;
+         if(m_iCount <= 3)
+         {
+            m_pszRadix     = psz;
+            m_iLenRadix    = (pszPreTopLevel - 1) - psz;
+         }
+         else
+         {
+            m_pszRadix     = pszPreTopLevel2;
+            m_iLenRadix    = (pszPreTopLevel - 1) - pszPreTopLevel2;
+            m_pszPrefix    = psz;
+            m_iLenPrefix   = (pszPreTopLevel2 - 1) - psz;
+         }
       }
       else
       {
-         m_strSuffix = m_stra[m_iCount - 1];
-         m_strRadix  = m_stra[m_iCount - 2];
-         m_strPrefix = m_stra.implode(".", 0, m_iCount - 2);
+         m_pszSuffix       = m_pszTopLevel;
+         m_iLenSuffix      = m_iLenTopLevel;
+         m_pszRadix        = pszPreTopLevel;
+         m_iLenRadix       = (m_pszTopLevel - 1) - pszPreTopLevel;
+         m_pszPrefix       = psz;
+         m_iLenPrefix      = (pszPreTopLevel - 1) - psz;
       }
-      m_strDomain = m_strRadix + "." + m_strSuffix;
-      if(m_strPrefix.get_length() > 0)
-         m_strName   = m_strPrefix + "." + m_strDomain;
+      m_pszDomain       = m_pszRadix;
+      m_iLenDomain      = pszEnd - m_pszDomain;
+      if(m_pszPrefix != NULL)
+      {
+         m_pszName      = m_pszPrefix;
+         m_iLenName     = pszEnd - m_pszPrefix;
+      }
       else
-         m_strName   = m_strDomain;
-      m_strTopLevel = m_stra[m_iCount - 1];
+      {
+         m_pszName      = m_pszDomain;
+         m_iLenName     = m_iLenDomain;
+      }
    }
 
-   bool CLASS_DECL_ca server_is_top_domain(string strTop1, string strTop2)
+
+   string url_domain_base::get_name(const char * pszServerName)
    {
-      if(strTop2 == "com")
+   
+      url_domain_base domainbase;
+
+      domainbase.create(pszServerName);
+
+      if(domainbase.m_pszName != NULL)
+         return string(domainbase.m_pszName, domainbase.m_iLenName);
+      else
+         return "";
+
+   }
+
+   void url_domain::create(const char * pszServerName)
+   {
+
+      url_domain_base::create(pszServerName);
+
+      if(m_pszRadix != NULL)
+      {
+         m_strRadix.assign(m_pszRadix, m_iLenRadix);
+      }
+
+      if(m_pszSuffix != NULL)
+      {
+         m_strSuffix.assign(m_pszSuffix, m_iLenSuffix);
+      }
+
+      if(m_pszDomain != NULL)
+      {
+         m_strDomain.assign(m_pszDomain, m_iLenDomain);
+      }
+
+      if(m_pszPrefix != NULL)
+      {
+         m_strPrefix.assign(m_pszPrefix, m_iLenPrefix);
+      }
+
+      if(m_pszTopLevel != NULL)
+      {
+         m_strTopLevel.assign(m_pszTopLevel, m_iLenTopLevel);
+      }
+
+      if(m_pszName != NULL)
+      {
+         m_strName.assign(m_pszName, m_iLenName);
+      }
+   }
+
+
+   bool CLASS_DECL_ca server_is_top_domain(const char * pszTop1, int blen, const char * pszTop2, int alen)
+   {
+      char a1;
+      char a2;
+      char a3;
+      char b1;
+      char b2;
+      char b3;
+      if(blen >= 1)
+      {
+         b1 = pszTop1[0];
+         if(blen >= 2)
+         {
+            b2 = pszTop1[1];
+            if(blen >= 3)
+            {
+               b3 = pszTop1[2];
+            }
+            else
+            {
+               b3 = '\0';
+            }
+         }
+         else
+         {
+            b2 = '\0';
+            b3 = '\0';
+         }
+      }
+      else
+      {
+         b1 = '\0';
+         b2 = '\0';
+         b3 = '\0';
+      }
+      if(alen >= 1)
+      {
+         a1 = pszTop2[0];
+         if(alen >= 2)
+         {
+            a2 = pszTop2[1];
+            if(alen >= 3)
+            {
+               a3 = pszTop2[2];
+            }
+            else
+            {
+               a3 = '\0';
+            }
+         }
+         else
+         {
+            a2 = '\0';
+            a3 = '\0';
+         }
+      }
+      else
+      {
+         a1 = '\0';
+         a2 = '\0';
+         a3 = '\0';
+      }
+      if(alen == 3 && a1 == 'c' && a2 == 'o' && a3 == 'm')
          return true;
-      if(strTop1 == "ar")
+      if(b1 == 'a')
       {
-         if(strTop2 == "com")
+         if(b2 == 'r')
          {
-            return true;
+         }
+         else if(b2 == 't')
+         {
+            if(alen == 2)
+            {
+               if(a1 == 'c' && a2 == 'o')
+               {
+                  return true;
+               }
+               else if(a1 == 'o' && a2 == 'r')
+               {
+                  return true;
+               }
+            }
          }
       }
-      else if(strTop1 == "at")
+      else if(b1 == 'b')
       {
-         if(strTop2 == "co"
-         || strTop2 == "or")
+         if(b2 == 'r')
          {
-            return true;
+            if(alen == 2)
+            {
+               if(a1 == 't' && a2 == 'v')
+               {
+                  return true;
+                }
+            }
          }
-      }
-      else if(strTop1 == "br")
-      {
-         if(strTop2 == "blog"
+         /*if(strTop2 == "blog"
          || strTop2 == "com"
          || strTop2 == "emp"
          || strTop2 == "eng"
@@ -108,9 +396,9 @@
          || strTop2 == "wiki")
          {
             return true;
-         }
+         }*/
       }
-      else if(strTop1 == "cc")
+/*      else if(strTop1 == "cc")
       {
          if(strTop2 == "cc"
          || strTop2 == "co")
@@ -326,7 +614,7 @@
          {
             return true;
          }
-      }
+      }*/
       return false;
    }
 

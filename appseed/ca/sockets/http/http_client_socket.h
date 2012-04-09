@@ -40,7 +40,7 @@ namespace sockets
       void Url(const string & url_in,string & host,port_t& port);
 
       void OnFirst();
-      void OnHeader(const string &,const string &);
+      void OnHeader(const string &,const string &, const string & lowvalue);
       void OnHeaderComplete();
       void OnData(const char *,size_t);
       void OnDelete();

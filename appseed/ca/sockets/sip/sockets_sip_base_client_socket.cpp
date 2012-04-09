@@ -226,7 +226,9 @@ namespace sockets
       ::gen::parse pa(line,":");
       string key = pa.getword();
       string value = pa.getrest();
-      OnHeader(key,value);
+      string lowvalue = value;
+      lowvalue.make_lower();
+      OnHeader(key, value, lowvalue);
       if(gen::str::equals_ci(key, "content-length"))
       {
          m_body_size_left = atol(value);
@@ -443,13 +445,11 @@ namespace sockets
       return m_response.headers();
    }
 
-   void sip_base_client_socket::OnHeader(const string & key,const string & value)
+   void sip_base_client_socket::OnHeader(const string & key,const string & value, const string & lowvalue)
    {
       //sip_base_client_socket::OnHeader(key, value);
       TRACE("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
-      string strKey = key;
-      strKey = strKey.make_lower();
-      if(strKey == "cookie")
+      if(key == "cookie")
       {
          m_request.cookies().parse_header(value);
          m_response.cookies().parse_header(value);

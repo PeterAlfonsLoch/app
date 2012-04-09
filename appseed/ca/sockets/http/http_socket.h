@@ -11,24 +11,27 @@ namespace sockets
    {
    public:
 
-      http::request   m_request;
-      http::response  m_response;
 
-      bool m_b_http_1_1;
-      bool m_b_keepalive;
+      
 
-      bool     m_bFirst;
-      bool     m_bHeader;
-      string   m_strLine;
-      bool     m_bRequest;
-      bool     m_bResponse;
-      size_t m_body_size_left;
-      bool m_b_chunked;
-      size_t m_chunk_size;
-      int m_chunk_state;
-      string m_chunk_line;
+      http::request        m_request;
+      http::response       m_response;
 
-      __int64 m_iFirstTime;
+      bool                 m_b_http_1_1;
+      bool                 m_b_keepalive;
+
+      bool                 m_bFirst;
+      bool                 m_bHeader;
+      string               m_strLine;
+      bool                 m_bRequest;
+      bool                 m_bResponse;
+      size_t               m_body_size_left;
+      bool                 m_b_chunked;
+      size_t               m_chunk_size;
+      int                  m_chunk_state;
+      string               m_chunk_line;
+
+      __int64              m_iFirstTime;
 
 
       http_socket(socket_handler_base& );
@@ -43,7 +46,7 @@ namespace sockets
       /** For each header line this callback is executed.
          \param key Http header name
          \param value Http header value */
-      virtual void OnHeader(const string & key,const string & value);
+      virtual void OnHeader(const string & key,const string & value, const string & lowvalue);
       /** Callback fires when all http headers have been received. */
       virtual void OnHeaderComplete() = 0;
       /** Chunk of http body data recevied. */
@@ -74,15 +77,19 @@ namespace sockets
       bool IsChunked() { return m_b_chunked; }
 
       gen::property & inattr(const char * pszName);
+      gen::property & lowinattr(const string & strName);
       gen::property_set & inattrs();
 
       gen::property & inheader(const char * pszName);
+      gen::property & lowinheader(const string & strName);
       gen::property_set & inheaders();
 
       gen::property & outattr(const char * pszName);
+      gen::property & lowoutattr(const string & strName);
       gen::property_set & outattrs();
 
       gen::property & outheader(const char * pszName);
+      gen::property & lowoutheader(const string & strName);
       gen::property_set & outheaders();
 
       using tcp_socket::request;
@@ -113,6 +120,11 @@ namespace sockets
       return m_request.attr(pszName);
    }
 
+   inline gen::property & http_socket::lowinattr(const string & strName)
+   {
+      return m_request.lowattr(strName);
+   }
+
    inline gen::property_set & http_socket::inattrs()
    {
       return m_request.attrs();
@@ -121,6 +133,11 @@ namespace sockets
    inline gen::property & http_socket::outattr(const char * pszName)
    {
       return m_response.attr(pszName);
+   }
+
+   inline gen::property & http_socket::lowoutattr(const string & strLowName)
+   {
+      return m_response.lowattr(strLowName);
    }
 
    inline gen::property_set & http_socket::outattrs()
@@ -133,6 +150,11 @@ namespace sockets
       return m_request.header(pszName);
    }
 
+   inline gen::property & http_socket::lowinheader(const string & strName)
+   {
+      return m_request.lowheader(strName);
+   }
+
    inline gen::property_set & http_socket::inheaders()
    {
       return m_request.headers();
@@ -141,6 +163,11 @@ namespace sockets
    inline gen::property & http_socket::outheader(const char * pszName)
    {
       return m_response.header(pszName);
+   }
+
+   inline gen::property & http_socket::lowoutheader(const string & strName)
+   {
+      return m_response.header(strName);
    }
 
    inline gen::property_set & http_socket::outheaders()

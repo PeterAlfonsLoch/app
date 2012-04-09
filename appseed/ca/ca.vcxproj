@@ -631,6 +631,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="ca2\ca2_net.h" />
     <ClInclude Include="ca2\ca2_process.h" />
     <ClInclude Include="ca2\ca2_stra.h" />
+    <ClInclude Include="ca2\ca2_url.h" />
+    <ClInclude Include="ca2\ca2_url_domain.h" />
     <ClInclude Include="ca2\ca2_user.h" />
     <ClInclude Include="ca2\ca2_xml.h" />
     <ClInclude Include="ca2\ca2_xml_data.h" />

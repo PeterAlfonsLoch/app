@@ -30,11 +30,14 @@ namespace sockets
    class CLASS_DECL_ca http_base_socket : public http_socket
    {
    public:
+
+
       http_base_socket(socket_handler_base& h);
       ~http_base_socket();
 
+
       void OnFirst();
-      void OnHeader(const string & key,const string & value);
+      void OnHeader(const string & key,const string & value, const string & lowvalue);
       void OnHeaderComplete();
       void OnData(const char *,size_t);
 

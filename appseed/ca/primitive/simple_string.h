@@ -98,6 +98,7 @@ public:
 
 };
 
+
 inline string_data * string_manager::allocate(strsize nChars, int nCharSize )
 {
    size_t nTotalSize;
@@ -198,6 +199,20 @@ inline string_data * string_manager::GetNilString()
    m_nil.AddRef();
    return &m_nil;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

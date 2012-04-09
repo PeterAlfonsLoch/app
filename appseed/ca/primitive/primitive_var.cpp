@@ -273,6 +273,9 @@ void var::set_type(e_type e_type, bool bConvert)
       case type_string:
          m_str    = get_string();
          break;
+      case type_id:
+         m_id     = get_id();
+         break;
       }
    }
    m_etype = e_type;
@@ -873,6 +876,10 @@ bool var::is_empty() const
       return m_pca2 != NULL;
    case type_pvar:
       return m_pvar->is_empty();
+   case type_id:
+      return m_id.is_empty();
+   case type_pid:
+      return m_pid->is_empty();
    default:
       return false;
    }

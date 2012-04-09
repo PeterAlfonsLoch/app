@@ -72,17 +72,15 @@ namespace http
    // --------------------------------------------------------------------------------------
    void request::ParseBody()
    {
+
       m_form.clear();
-      if(attrs().has_property("request_uri"))
-      {
-         attr("query_string") = System.url().object_get_query(attr("request_uri"));
-         string str = attrs()["query_string"];
-         m_form.parse_query_string(str, str.get_length());
-      }
-      m_form.request().merge(m_form.get());
-      attr("http_host")       = header("host");
-      attr("http_referer")    = header("referer");
-      if(attr("http_method").get_string().CompareNoCase("PUT") == 0)
+
+      m_strQueryString = System.url().object_get_query(m_strRequestUri);
+      lowattr(__str(query_string))  = m_strQueryString;
+      m_form.parse_query_string(m_strQueryString, m_strQueryString.get_length());
+      m_form.request()              = m_form.get();
+      lowattr(__str(http_referer))  = lowheader(__str(referer));
+      if(m_strHttpMethod == __str(put))
       {
          // skip following POST processing below
          return;

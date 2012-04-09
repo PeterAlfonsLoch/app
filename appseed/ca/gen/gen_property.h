@@ -294,8 +294,23 @@ namespace gen
 
       operator string &()
       {
-         get_value().m_str = get_value().get_string();
-         return get_value().m_str;
+         if(m_var.m_etype == var::type_string)
+         {
+            return m_var.m_str;
+         }
+         else if(m_var.m_etype == var::type_pstring)
+         {
+            return *m_var.m_pstr;
+         }
+         else if(m_var.m_etype == var::type_pvar)
+         {
+            return m_var.m_pvar->operator string &();
+         }
+         else
+         {
+            m_var.set_type(var::type_string);
+            return m_var.m_str;
+         }
       }
 
       operator id()

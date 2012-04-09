@@ -3113,6 +3113,12 @@
     <ClInclude Include="sockets\http\http_session.h">
       <Filter>Header Files\sockets\http</Filter>
     </ClInclude>
+    <ClInclude Include="ca2\ca2_url.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_url_domain.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">

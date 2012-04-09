@@ -34,6 +34,7 @@ namespace gen
 
 
       property * add(const char * pszName);
+      property * lowadd(const string & strLowName);
       property * add(const char * pszName, var var);
       property * set(const char * pszName, var var);
       count remove_by_name(const char * pszName);
@@ -93,7 +94,12 @@ namespace gen
       count remove_value(const char * psz, count countMin = 0, count countMax = -1);
 
       bool has_property(const char * pszName) const;
+      bool has_property(const string & pszName) const;
       bool has_property(string_interface & str) const;
+
+      bool low_has_property(const char * pszName) const;
+      bool low_has_property(const string & pszName) const;
+      bool low_has_property(string_interface & str) const;
 
       bool is_set_empty(count countMinimum = 1) const;
       bool has_properties(count countMinimum = 1) const;
@@ -144,7 +150,8 @@ namespace gen
 
       void parse_json(const char * & pszJson);
       void parse_json(const char * & pszJson, const char * pszEnd);
-      void parse_url_query(const char * pszUrlQuery);
+      void parse_url_query(const char * pszUrl);
+      void _parse_url_query(const char * pszUrlQuery);
       void parse_http_headers(const char * pszHeaders);
       string get_http_post();
 
@@ -306,6 +313,56 @@ namespace gen
       }
 
    };
+
+   inline bool property_set::has_property(const string & strName) const
+   {
+      const property * pproperty = find(strName);
+      return pproperty != NULL && pproperty->m_var.m_etype != var::type_new;
+   }
+
+   inline bool property_set::has_property(const char * pszName) const
+   {
+      return has_property(string(pszName));
+   }
+
+   inline bool property_set::has_property(string_interface & str) const
+   {
+      return has_property(string(str));
+   }
+
+   inline bool property_set::low_has_property(const string & strName) const
+   {
+      const property * pproperty = find(strName);
+      return pproperty != NULL && pproperty->m_var.m_etype != var::type_new;
+   }
+
+   inline bool property_set::low_has_property(const char * pszName) const
+   {
+      return has_property(string(pszName));
+   }
+
+   inline bool property_set::low_has_property(string_interface & str) const
+   {
+      return has_property(string(str));
+   }
+
+   inline property * property_set::lowfind(const string & strName)
+   {
+      gen::property_map::pair * ppair = m_map.PLookup(strName);
+      if(ppair == NULL)
+         return NULL;
+      return &m_propertya[ppair->m_value];
+   }
+
+   inline property * property_set::lowfind(const char * pszName)
+   {
+      return lowfind(string(pszName));
+   }
+
+   inline property * property_set::lowfind(string_interface & str)
+   {
+      return lowfind(string(str));
+   }
 
 
 
