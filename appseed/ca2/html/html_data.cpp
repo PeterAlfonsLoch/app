@@ -135,7 +135,7 @@ namespace html
    void data::delete_contents()
    {
       ::ca::data::writing writing(this);
-      m_elemental.m_propertyset.m_propertya.remove_all();
+      m_elemental.m_propertyset.clear();
       m_elemental.m_pbase = NULL;
       delete m_elemental.m_pimpl;
       for(int i = 0; i < m_elemental.m_elementalptra.get_size(); i++)
