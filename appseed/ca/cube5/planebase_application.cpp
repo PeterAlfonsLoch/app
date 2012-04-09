@@ -1441,10 +1441,15 @@ InitFailure:
 
       primitive::memory mem(get_app());
 
-      while(psession == NULL)
+      if(psession == NULL)
       {
-         psession = System.http().open(h, System.url().get_server(strUrl), System.url().get_protocol(strUrl), gen::property_set(get_app()), NULL, NULL);
-         Sleep(184);
+         while(true)
+         {
+            psession = System.http().open(h, System.url().get_server(strUrl), System.url().get_protocol(strUrl), gen::property_set(get_app()), NULL, NULL);
+            if(psession != NULL)
+               break;
+            Sleep(184);
+         }
       }
 
       System.http().get(h, psession, strUrl, mem);

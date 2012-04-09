@@ -663,9 +663,9 @@ retry:
 
          string strUrl = psession->m_strProtocol + "://" + psession->m_strHost + strRequest;
 
-         psession->inheaders().m_propertya.remove_all();
-         psession->outheaders().m_propertya.remove_all();
-         psession->inattrs().m_propertya.remove_all();
+         psession->inheaders().clear();
+         psession->outheaders().clear();
+         psession->inattrs().clear();
 
 
          psession->inheaders().add(headers);
