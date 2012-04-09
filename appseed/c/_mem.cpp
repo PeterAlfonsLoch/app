@@ -22,6 +22,20 @@ void * memcpy(void * dst, const void * src, size_t iSize)
    return memcpy_dup(dst, src, iSize);
 }
 
+#pragma function(memcmp)
+
+int memcmp(const void * sz1, const void * sz2, size_t iLen)
+{
+   return memcmp_dup(sz1, sz2, iLen);
+}
+
+#pragma function(memset)
+
+void * memset(void * p, int uch, size_t iSize)
+{
+   return memset_dup(p, uch, iSize);
+}
+
 //#endif
 
 void * memcpy_dup(void * dst, const void * src, size_t iSize)
