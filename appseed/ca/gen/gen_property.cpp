@@ -288,6 +288,8 @@ namespace gen
    {
        gen::str::consume_spaces(pszJson, 0, pszEnd);
        m_strName = gen::str::consume_quoted_value(pszJson, pszEnd);
+       m_strNameLow = m_strName;
+       m_strNameLow.make_lower();
        gen::str::consume(pszJson, ":", 1, pszEnd);
        get_value().parse_json(pszJson, pszEnd);
    }
@@ -2182,6 +2184,7 @@ namespace gen
       {
          m_propertya.set_size(m_propertya.get_size() + 1);
          m_propertya.last_element().parse_json(pszJson, pszEnd);
+         m_map.set_at(m_propertya.last_element().lowname(), m_propertya.get_upper_bound());
          gen::str::consume_spaces(pszJson, 0, pszEnd);
          if(*pszJson == ',')
          {
