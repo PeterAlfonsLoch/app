@@ -1382,17 +1382,17 @@ InitFailure:
 
       localeschema.add_locale_variant(get_locale(), get_locale());
 
-      localeschema.add_locale_variant(get_locale(), "en");
-      localeschema.add_locale_variant(get_locale(), "_std");
+      localeschema.add_locale_variant(get_locale(), __id(en));
+      localeschema.add_locale_variant(get_locale(), __id(std));
 
-      localeschema.add_locale_variant("en", get_schema());
-      localeschema.add_locale_variant("_std", get_schema());
+      localeschema.add_locale_variant(__id(en), get_schema());
+      localeschema.add_locale_variant(__id(std), get_schema());
 
-      localeschema.add_locale_variant("en", get_locale());
-      localeschema.add_locale_variant("_std", get_locale());
+      localeschema.add_locale_variant(__id(en), get_locale());
+      localeschema.add_locale_variant(__id(std), get_locale());
 
-      localeschema.add_locale_variant("en", "en");
-      localeschema.add_locale_variant("_std", "_std");
+      localeschema.add_locale_variant(__id(en), __id(en));
+      localeschema.add_locale_variant(__id(std), __id(std));
 
 
       localeschema.finalize();
@@ -1407,7 +1407,7 @@ InitFailure:
 
       fill_locale_schema(localeschema);
 
-      update_appmatter(h, psession, pszRoot, pszRelative, localeschema.m_idLocale, localeschema.m_idSchema);
+      //update_appmatter(h, psession, pszRoot, pszRelative, localeschema.m_idLocale, localeschema.m_idSchema);
       
       for(int i = 0; i < localeschema.m_idaLocale.get_count(); i++)
       {

@@ -39,23 +39,18 @@ namespace gen
       bool locale_schema::add_locale_variant(id idLocale, id idSchema)
       {
 
-         static ::id id_std("_std");
-         static ::id id_br("br");
-         static ::id id_de("de");
-
-
          if(m_idLocale.is_empty())
          {
             m_idLocale = idLocale;
             if(m_idLocale.is_empty())
-               m_idLocale = "_std";
+               m_idLocale = __id(std);
          }
 
          if(m_idSchema.is_empty())
          {
             m_idSchema = idSchema;
             if(m_idSchema.is_empty())
-               m_idSchema = "_std";
+               m_idSchema = __id(std);
          }
 
          id idLocale2 = idLocale;
@@ -91,58 +86,10 @@ namespace gen
                iFind = idLocale2.m_pstr->get_length();
             }
             iLen = iFind - iStart;
-            if(iLen == 4)
+            ::id id = localeid(&((LPCSTR)*idLocale2.m_pstr)[iStart], iLen);
+            if(defer_add_locale(id, idSchema))
             {
-               if(idLocale2.m_pstr->operator[](iStart) == '_')
-               {
-                  if(idLocale2.m_pstr->operator[](iStart + 1) == 's')
-                  {
-                     if(idLocale2.m_pstr->operator[](iStart + 2) == 't')
-                     {
-                        if(idLocale2.m_pstr->operator[](iStart + 3) == 'd')
-                        {
-                           if(defer_add_locale(id_std, idSchema))
-                           {
-                              _add_locale_variant(id_std, idSchema);
-                           }
-                           continue;
-                        }
-                     }
-                  }
-               }
-            }
-            else if(iLen == 2)
-            {
-               if(idLocale2.m_pstr->operator[](iStart) == 'b')
-               {
-                  if(idLocale2.m_pstr->operator[](iStart + 1) == 'r')
-                  {
-                     if(defer_add_locale(id_br, idSchema))
-                     {
-                        _add_locale_variant(id_br, idSchema);
-                     }
-                     continue;
-                  }
-               }
-               else if(idLocale2.m_pstr->operator[](iStart) == 'd')
-               {
-                  if(idLocale2.m_pstr->operator[](iStart + 1) == 'e')
-                  {
-                     if(defer_add_locale(id_de, idSchema))
-                     {
-                        _add_locale_variant(id_de, idSchema);
-                     }
-                     continue;
-                  }
-               }
-            }
-            if(iLen > 0)
-            {
-               str = idLocale2.m_pstr->Mid(iStart, iFind - iStart);
-               if(defer_add_locale(str, idSchema))
-               {
-                  _add_locale_variant(str, idSchema);
-               }
+               _add_locale_variant(id, idSchema);
             }
          }
 
@@ -164,8 +111,27 @@ namespace gen
       ::id locale_schema::localeid(const char * pszLocale, int iLen)
       {
 
-
-         if(iLen == 2 || (iLen == 5 && pszLocale[2] == '-'))
+         if(iLen == 4)
+         {
+            char ch1 = pszLocale[0];
+            char ch2 = pszLocale[1];
+            char ch3 = pszLocale[2];
+            char ch4 = pszLocale[3];
+            if(ch1 <= '_')
+            {
+               if(ch2 <= 's')
+               {
+                  if(ch3 == 't')
+                  {
+                     if(ch4 == 'd')
+                     {
+                        return __id(std);
+                     }
+                  }
+               }
+            }
+         }
+         else if(iLen == 2 || (iLen == 5 && pszLocale[2] == '-'))
          {
             char ch1 = pszLocale[0];
             char ch2 = pszLocale[1];
@@ -242,7 +208,7 @@ namespace gen
                      }
                   }
                }
-               else
+               else // ch1 >= 'g'
                {
                   if(ch1 == 'h')
                   {
@@ -283,12 +249,9 @@ namespace gen
                   }
                }
             }
-            else
+            else // ch1 >= 'n'
             {
                if(ch1 <=  's')
-               {
-               }
-               else
                {
                   if(ch1 == 'p')
                   {
@@ -311,7 +274,10 @@ namespace gen
                         }
                      }
                   }
-                  else if(ch1 == 't')
+               }
+               else // ch1 >= 't'
+               {
+                  if(ch1 == 't')
                   {
                      if(ch2 == 'w')
                      {
@@ -325,13 +291,14 @@ namespace gen
             }
          }
 
-         return pszLocale;
+         return string(pszLocale, iLen);
       }
 
 
       bool locale_schema::_add_locale_variant(const char * psz, int iLen, id idSchema)
       {
 
+         
 
 
          if(iLen == 2)
@@ -487,7 +454,7 @@ namespace gen
 
             if(idSchema2.is_empty())
             {
-               idSchema2 = "_std";
+               idSchema2 = __id(std);
             }
 
             for(int i = 0; i < m_idaLocale.get_count() && i < m_idaSchema.get_count(); i++)
@@ -509,7 +476,7 @@ step2:
 
          if(idSchema2.is_empty())
          {
-            idSchema2 = "_std";
+            idSchema2 = __id(std);
          }
 
          for(int i = 0; i < m_idaLocale.get_count() && i < m_idaSchema.get_count(); i++)
@@ -627,15 +594,7 @@ restart:
          {
             for(index i = 0; i < m_idaLocale.get_count(); i++)
             {
-               id idLocale2 = m_idaLocale[i];
-               while(i >= m_idaSchema.get_count())
-                  m_idaSchema.add(_std);
-               id idSchema = m_idaSchema[i];
-               if(idSchema != _std)
-               {
-                  idaLocaleAdd1.add(idLocale2);
-                  idaSchemaAdd1.add(_std);
-               }
+               defer_add_locale(m_idaLocale[i], __id(std));
             }
          }
 
