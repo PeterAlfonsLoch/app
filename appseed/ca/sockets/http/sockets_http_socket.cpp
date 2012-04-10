@@ -235,7 +235,7 @@ namespace sockets
          key = line.Left(iFind);
          key.trim();
          iFind++;
-         while(isspace(line[iFind]) && iFind < line.get_length())
+         while(isspace((unsigned char) line[iFind]) && iFind < line.get_length())
          {
             iFind++;
          }

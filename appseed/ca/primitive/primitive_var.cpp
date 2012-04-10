@@ -1613,6 +1613,8 @@ int var::get_integer(int iDefault) const
       return m_pvar->get_integer(iDefault);
    case var::type_integer:
       return m_i;
+   case var::type_int64:
+      return m_i64;
    case var::type_ulong:
       return (int) m_ul;
    case var::type_double:
