@@ -124,7 +124,7 @@ namespace ca2
          if(pcreatecontext->m_spCommandLine.is_set()
           && pcreatecontext->m_spCommandLine->m_varFile == "ca2login")
          {
-            Sleep(15 * 1000);
+            //Sleep(15 * 1000);
             gen::property_set setLogin(get_app());
             if(pcreatecontext->m_spCommandLine->m_varQuery["ruri"].is_set())
             {
