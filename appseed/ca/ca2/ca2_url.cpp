@@ -491,31 +491,37 @@ namespace ca2
 
       const char * pszQuery = strchr(pszUrl, '?');
 
+      string strKey = url_encode(pszKey);
+      string strValue = url_encode(strParam);
+
       strsize iLenUrl = strlen(pszUrl);
-      strsize iLenKey = strlen(pszKey);
+      strsize iLenKey = strKey.length();
 
       string str;
 
-      char * psz = str.GetBufferSetLength(iLenUrl + iLenKey + strParam.get_length() + 2);
+      char * psz = str.GetBufferSetLength(iLenUrl + iLenKey + strValue.get_length() + 2);
 
       if(pszQuery == NULL)
       {
          strcpy(psz, pszUrl);
          psz[iLenUrl] = '?';
-         strcpy(&psz[iLenUrl + 1], pszKey);
+         strcpy(&psz[iLenUrl + 1], strKey);
          psz[iLenUrl + 1 + iLenKey] = '=';
-         strcpy(&psz[iLenUrl + 1 + iLenKey + 1], strParam);
-         str.ReleaseBuffer(iLenUrl + iLenKey + strParam.get_length() + 2);
+         strcpy(&psz[iLenUrl + 1 + iLenKey + 1], strValue);
+         str.ReleaseBuffer(iLenUrl + iLenKey + strValue.get_length() + 2);
       }
       else
       {
-         strsize iLen = pszQuery - pszUrl;
-         strncpy(psz, pszUrl, iLen);
-         psz[iLen] = '?';
-         iLen++;
+         strsize iFinalLen = pszQuery - pszUrl;
+         int iPos = 0;
+         strncpy(psz, pszUrl, iFinalLen);
+         psz[iFinalLen] = '?';
+         iFinalLen++;
+         pszQuery++;
          bool bRemove = false;
          bool bAlreadyInsertedFirstParam = false;
          const char * pszQueryEnd;
+         bool bInserted = false;
          while(true)
          {
             pszQueryEnd = strchr(pszQuery + 1, '&');
@@ -525,35 +531,38 @@ namespace ca2
                {
                   if(bAlreadyInsertedFirstParam)
                   {
-                     psz[iLen] = '&';
-                     iLen++;
+                     psz[iFinalLen] = '&';
+                     iFinalLen++;
                   }
-                  strncpy(&psz[iLen], pszKey, iLenKey);
-                  iLen += iLenKey;
-                  psz[iLen] = '=';
-                  iLen++;
-                  strncpy(&psz[iLen], strParam, strParam.get_length());
+                  strncpy(&psz[iFinalLen], strKey, iLenKey);
+                  iFinalLen += iLenKey;
+                  psz[iFinalLen] = '=';
+                  iFinalLen++;
+                  strncpy(&psz[iFinalLen], strValue, strValue.get_length());
+                  iFinalLen += strValue.get_length();
                   bRemove = true;
                   bAlreadyInsertedFirstParam = true;
+                  bInserted = true;
                }
             }
             else
             {
                if(bAlreadyInsertedFirstParam)
                {
-                  psz[iLen] = '&';
-                  iLen++;
+                  psz[iFinalLen] = '&';
+                  iFinalLen++;
                }
                if(pszQueryEnd == NULL)
                {
-                  strncpy(&psz[iLen], pszQuery, iLenUrl - (pszQuery - pszUrl));
-                  iLen += iLenUrl - (pszQuery - pszUrl);
+                  strncpy(&psz[iFinalLen], pszQuery, iLenUrl - (pszQuery - pszUrl));
+                  iFinalLen += iLenUrl - (pszQuery - pszUrl);
+                  bAlreadyInsertedFirstParam = true;
                   break;
                }
                else
                {
-                  strncpy(&psz[iLen], pszQuery, pszQueryEnd - pszQuery);
-                  iLen += pszQueryEnd - pszQuery;
+                  strncpy(&psz[iFinalLen], pszQuery, pszQueryEnd - pszQuery);
+                  iFinalLen += pszQueryEnd - pszQuery;
                   bAlreadyInsertedFirstParam = true;
                }
             }
@@ -562,8 +571,25 @@ namespace ca2
                break;
             pszQuery++;
          }
+         if(!bInserted)
+         {
+            if(bAlreadyInsertedFirstParam)
+            {
+               psz[iFinalLen] = '&';
+               iFinalLen++;
+            }
+            strncpy(&psz[iFinalLen], strKey, iLenKey);
+            iFinalLen += iLenKey;
+            psz[iFinalLen] = '=';
+            iFinalLen++;
+            strncpy(&psz[iFinalLen], strValue, strValue.get_length());
+            iFinalLen += strValue.get_length();
+            bRemove = true;
+            bAlreadyInsertedFirstParam = true;
+            bInserted = true;
+         }
 
-         str.ReleaseBuffer(iLen);
+         str.ReleaseBuffer(iFinalLen);
 
       }
 
