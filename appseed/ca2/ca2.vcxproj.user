@@ -4,7 +4,7 @@
     <LocalDebuggerCommand>C:\Program Files (x86)\ca2\stage\x86\app.exe</LocalDebuggerCommand>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
-    <LocalDebuggerCommandArguments>: app=bergedge bergedge_start=veriwell_mplite install</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>: app=bergedge bergedge_start=veriwell_mplite</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
