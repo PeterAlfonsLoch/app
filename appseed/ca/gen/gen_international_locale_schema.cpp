@@ -76,21 +76,25 @@ namespace gen
             _add_locale_variant(idLocale2, idSchema2);
          }
 
-         int iStart;
-         int iFind = -1;
+         int iStart = idLocale2.m_pstr->get_length() + 1;
+         int iEnd;
          int iLen;
          string str;
          bool bEnd = false;
          while(!bEnd)
          {
-            iStart = iFind + 1;
-            iFind = idLocale2.m_pstr->find('-', iStart);
-            bEnd = iFind < 0;
+            iEnd = iStart - 1;
+            iStart = idLocale2.m_pstr->reverse_find('-', iEnd - 1);
+            bEnd = iStart < 0;
             if(bEnd)
             {
-               iFind = idLocale2.m_pstr->get_length();
+               iStart = 0;
             }
-            iLen = iFind - iStart;
+            else 
+            {
+               iStart++;
+            }
+            iLen = iEnd - iStart;
             ::id id = localeid(&((LPCSTR)*idLocale2.m_pstr)[iStart], iLen);
             if(defer_add_locale(id, idSchema2))
             {
