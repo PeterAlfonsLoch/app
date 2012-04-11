@@ -1537,7 +1537,15 @@ retry:
    }
 
 
+   string system::get_host_location_url()
+   {
+      
+      return "";
+
+   }
+
 
 } // namespace plane
+
 
 

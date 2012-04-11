@@ -84,15 +84,16 @@ namespace plugin
          vsstring * pstrLink = (vsstring *) pbase->m_lparam;
          string strLink(*pstrLink);
          gen::property_set setQuery(get_app());
-         setQuery.parse_url_query(strLink);
+         //setQuery.parse_url_query(strLink);
          if(setQuery.has_property("karfile_url"))
          {
             System.url().set(strLink, "karfile_url", (const char *) m_pplugin->get_host_location_url());
          }
-         else if(setQuery["ruri"].get_string().get_length() <= 0)
-         {
-            System.url().set(strLink, "ruri", (const char *) m_pplugin->get_host_location_url());
-         }
+         // do the following if desired on calling System open linnk, will try to create plugin::system::get_host_location_url
+         // else if(setQuery["ruri"].get_string().get_length() <= 0)
+         //{
+            //System.url().set(strLink, "ruri", (const char *) m_pplugin->get_host_location_url());
+         //}
          m_pplugin->open_url(strLink);
          delete pstrLink;
       }

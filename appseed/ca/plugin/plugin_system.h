@@ -26,6 +26,8 @@ namespace plugin
 
       virtual bool verb();
 
+      virtual string get_host_location_url();
+
    };
 
 

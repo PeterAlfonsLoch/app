@@ -28,5 +28,13 @@ namespace plugin
       return ::plane::application::verb();
    }
 
+   string system::get_host_location_url()
+   {
+      
+      return (const char *) m_pplugin->get_host_location_url();
+
+   }
+
+
 } // namespace plugin
 

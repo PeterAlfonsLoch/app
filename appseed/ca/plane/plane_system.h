@@ -550,6 +550,8 @@ namespace plane
 
       virtual string get_fontopus_server(const char * pszUrl, ::ca::application * papp, int iRetry = -1);
 
+      virtual string get_host_location_url();
+
    };
 
 
