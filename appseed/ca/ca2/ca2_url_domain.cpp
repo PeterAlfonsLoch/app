@@ -288,6 +288,7 @@ url_domain_base::url_domain_base()
       char a1;
       char a2;
       char a3;
+      char a4;
       char b1;
       char b2;
       char b3;
@@ -327,16 +328,26 @@ url_domain_base::url_domain_base()
             if(alen >= 3)
             {
                a3 = pszTop2[2];
+               if(alen >= 4)
+               {
+                  a4 = pszTop2[3];
+               }
+               else
+               {
+                  a4 = '\0';
+               }
             }
             else
             {
                a3 = '\0';
+               a4 = '\0';
             }
          }
          else
          {
             a2 = '\0';
             a3 = '\0';
+            a4 = '\0';
          }
       }
       else
@@ -344,277 +355,611 @@ url_domain_base::url_domain_base()
          a1 = '\0';
          a2 = '\0';
          a3 = '\0';
+         a4 = '\0';
       }
+
       if(alen == 3 && a1 == 'c' && a2 == 'o' && a3 == 'm')
          return true;
-      if(b1 == 'a')
+      if(blen == 2)
       {
-         if(b2 == 'r')
+         if(b1 == 'a')
          {
-         }
-         else if(b2 == 't')
-         {
-            if(alen == 2)
+            if(b2 == 'r')
             {
-               if(a1 == 'c' && a2 == 'o')
+            }
+            else if(b2 == 't')
+            {
+               if(alen == 2)
                {
-                  return true;
+                  if(a1 == 'c' && a2 == 'o')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'o' && a2 == 'r')
+                  {
+                     return true;
+                  }
                }
-               else if(a1 == 'o' && a2 == 'r')
+            }
+         }
+         else if(b1 == 'b')
+         {
+            if(b2 == 'r')
+            {
+               if(alen == 2)
                {
-                  return true;
+                  if(a1 == 't' && a2 == 'v')
+                  {
+                     return true;
+                  }
+               }
+               else if(alen == 3)
+               {
+                  if(a1 == 'c' && a2 == 'o' && a3 == 'm')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'e')
+                  {
+                     if(a2 == 'm' && a3 == 'p')
+                     {
+                        return true;
+                     }
+                     else if(a2 == 'n' && a3 == 'g')
+                     {
+                        return true;
+                     }
+                     else if(a2 == 't' && a3 == 'c')
+                     {
+                        return true;
+                     }
+                  }
+                  else if(a1 == 'i' && a2 == 'n' && a3 == 'd')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'm' && a2 == 'u' && a3 == 's')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'n')
+                  {
+                     if(a2 == 'e' && a3 == 't')
+                     {
+                        return true;
+                     }
+                     else if(a2 == 'o' && a3 == 'm')
+                     {
+                        return true;
+                     }
+                  }
+                  else if(a1 == 'p' && a2 == 'r' && a3 == 'o')
+                  {
+                     return true;
+                  }
+               }
+               else if(alen == 4)
+               {
+                  if(a2 == 'l' && a3 == 'o' && a4 == 'g')
+                  {
+                     if(a1 == 'b' || a1 == 'f' || a1 == 'v')
+                     {
+                        return true;
+                     }
+                  }
+                  else if(a1 == 'w' && a2 == 'i' && a3 == 'k' && a4 == 'i')
+                  {
+                     return true;
+                  }
+               }
+               else if(alen == 5)
+               {
+                  if(strncmp(pszTop2, "radio", 5) == 0)
+                  {
+                     return true;
+                  }
+               }
+            }
+         }
+         else if(b1 == 'c')
+         {
+            if(b2 == 'c')
+            {
+               if(alen == 2)
+               {
+                  if(a1 == 'c' && a2 == 'c')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'c' && a2 == 'o')
+                  {
+                     return true;
+                  }
+               }
+            }
+            else if(b2 == 'n')
+            {
+               if(alen == 3)
+               {
+                  if(a1 == 'c' && a2 == 'o' && a3 == 'm')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'n' && a2 == 'e' && a3 == 't')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'o' && a2 == 'r' && a3 == 'g')
+                  {
+                     return true;
+                  }
+               }
+            }
+            else if(b2 == 'o')
+            {
+               if(alen == 3)
+               {
+                  if(a1 == 'c' && a2 == 'o' && a3 == 'm')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'n' && a2 == 'e' && a3 == 't')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'o' && a2 == 'r' && a3 == 'g')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'n' && a2 == 'o' && a3 == 'm')
+                  {
+                     return true;
+                  }
+               }
+            }
+         }
+         else if(b1 == 'e')
+         {
+            if(b2 == 's')
+            {
+               // es
+               if(alen == 3)
+               {
+                  if(a1 == 'c' && a2 == 'o' && a3 == 'm')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'n' && a2 == 'e' && a3 == 't')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'o' && a2 == 'r' && a3 == 'g')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'n' && a2 == 'o' && a3 == 'm')
+                  {
+                     return true;
+                  }
+               }
+            }
+            else if(b2 == 'e')
+            {
+               // ee
+               if(alen == 2)
+               {
+                  if(a1 == 'c' && a2 == 'o')
+                  {
+                     return true;
+                  }
+               }
+               else if(alen == 3)
+               {
+                  if(a1 == 'c' && a2 == 'o' && a3 == 'm')
+                  {
+                     return true;
+                  }
+               }
+            }
+         }
+         else if(b1 == 'g')
+         {
+            if(b2 == 't')
+            {
+               // gt
+               if(alen == 3)
+               {
+                  if(a1 == 'c' && a2 == 'o' && a3 == 'm')
+                  {
+                     return true;
+                  }
+               }
+            }
+         }
+         else if(b1 == 'h')
+         {
+            if(b2 == 't')
+            {
+               // ht
+               if(alen == 3)
+               {
+                  if(a1 == 'c' && a2 == 'o' && a3 == 'm')
+                  {
+                     return true;
+                  }
+               }
+            }
+         }
+         else if(b1 == 'i')
+         {
+            if(b2 == 'l')
+            {
+               // il
+               if(alen == 2)
+               {
+                  if(a1 == 'c' && a2 == 'o')
+                  {
+                     return true;
+                  }
+               }
+               else if(alen == 3)
+               {
+                  if(a1 == 'o' && a2 == 'r' && a3 == 'g')
+                  {
+                     return true;
+                  }
+               }
+            }
+            if(b2 == 'n')
+            {
+               // in
+               if(alen == 2)
+               {
+                  if(a1 == 'c' && a2 == 'o')
+                  {
+                     return true;
+                  }
+               }
+               else if(alen == 3)
+               {
+                  if(a1 == 'g' && a2 == 'e' && a3 == 'n')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'i' && a2 == 'n' && a3 == 'd')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'n' && a2 == 'e' && a3 == 't')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'o' && a2 == 'r' && a3 == 'g')
+                  {
+                     return true;
+                  }
+               }
+               else if(alen == 4)
+               {
+                  if(a1 == 'f' && a2 == 'i' && a3 == 'r' && a4 == 'm')
+                  {
+                     return true;
+                  }
+               }
+            }
+         }
+         else if(b1 == 'j')
+         {
+            if(b2 == 'p')
+            {
+               // jp
+               if(alen == 2)
+               {
+                  if(a1 == 'c' && a2 == 'o')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'g' && a2 == 'r')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'n' && a2 == 'e')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'o' && a2 == 'r')
+                  {
+                     return true;
+                  }
+               }
+            }
+         }
+         else if(b1 == 'l')
+         {
+            if(b2 == 'v')
+            {
+               // lv
+               if(alen == 3)
+               {
+                  if(a1 == 'c' && a2 == 'o' && a3 == 'm')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'n' && a2 == 'e' && a3 == 't')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'o' && a2 == 'r' && a3 == 'g')
+                  {
+                     return true;
+                  }
+               }
+            }
+         }
+         else if(b1 == 'm')
+         {
+            if(b2 == 'x')
+            {
+               // mx
+               if(alen == 3)
+               {
+                  if(a1 == 'c' && a2 == 'o' && a3 == 'm')
+                  {
+                     return true;
+                  }
+               }
+            }
+         }
+         else if(b1 == 'n')
+         {
+            if(b2 == 'l')
+            {
+               // nl
+               if(alen == 2)
+               {
+                  if(a1 == 'c' && a2 == 'o')
+                  {
+                     return true;
+                  }
+               }
+            }
+            else if(b2 == 'z')
+            {
+               // nz
+               if(alen == 2)
+               {
+                  if(a1 == 'c' && a2 == 'o')
+                  {
+                     return true;
+                  }
+               }
+            }
+         }
+         else if(b1 == 'p')
+         {
+            if(b2 == 't')
+            {
+               // pt
+               if(alen == 3)
+               {
+                  if(a1 == 'c' && a2 == 'o' && a3 == 'm')
+                  {
+                     return true;
+                  }
+               }
+            }
+            else if(b2 == 'l')
+            {
+               // pl
+               if(alen == 3)
+               {
+                  if(a1 == 'c' && a2 == 'o' && a3 == 'm')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'n' && a2 == 'e' && a3 == 't')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'o' && a2 == 'r' && a3 == 'g')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'b' && a2 == 'i' && a3 == 'z')
+                  {
+                     return true;
+                  }
+               }
+               else if(alen == 4)
+               {
+                  if(a1 == 'i' && a2 == 'n' && a3 == 'f' && a4 == 'o')
+                  {
+                     return true;
+                  }
+               }
+            }
+         }
+         else if(b1 == 'r')
+         {
+            if(b2 == 'u')
+            {
+               // ru
+               if(alen == 2)
+               {
+                  if(a1 == 'p' && a2 == 'p')
+                  {
+                     return true;
+                  }
+               }
+               else if(alen == 3)
+               {
+                  if(a1 == 'm' && a2 == 's' && a3 == 'k')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 's' && a2 == 'p' && a3 == 'b')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'n' && a2 == 'o' && a3 == 'v')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'n' && a2 == 'e' && a3 == 't')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'o' && a2 == 'r' && a3 == 'g')
+                  {
+                     return true;
+                  }
+               }
+            }
+         }
+         else if(b1 == 's')
+         {
+            if(b2 == 'u')
+            {
+               // su
+               if(alen == 2)
+               {
+                  if(a1 == 'p' && a2 == 'p')
+                  {
+                     return true;
+                  }
+               }
+               else if(alen == 3)
+               {
+                  if(a1 == 'm' && a2 == 's' && a3 == 'k')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 's' && a2 == 'p' && a3 == 'b')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'n' && a2 == 'o' && a3 == 'v')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'n' && a2 == 'e' && a3 == 't')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'o' && a2 == 'r' && a3 == 'g')
+                  {
+                     return true;
+                  }
+               }
+            }
+         }
+         else if(b1 == 't')
+         {
+            if(b2 == 'r')
+            {
+               // tr
+               if(alen == 2)
+               {
+                  if(a1 == 't' && a2 == 'v')
+                  {
+                     return true;
+                  }
+               }
+               else if(alen == 3)
+               {
+                  if(a1 == 'c' && a2 == 'o' && a3 == 'm')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'w' && a2 == 'e' && a3 == 'b')
+                  {
+                     return true;
+                  }
+               }
+            }
+            else if(b2 == 'w')
+            {
+               // tw
+               if(alen == 3)
+               {
+                  if(a1 == 'c' && a2 == 'o' && a3 == 'm')
+                  {
+                     return true;
+                  }
+               }
+            }
+         }
+         else if(b1 == 'u')
+         {
+            if(b2 == 'a')
+            {
+               // ua
+               if(alen == 2)
+               {
+                  if(a1 == 'c' && a2 == 'o')
+                  {
+                     return true;
+                  }
+               }
+               else if(alen == 3)
+               {
+                  if(a1 == 'c' && a2 == 'o' && a3 == 'm')
+                  {
+                     return true;
+                  }
+               }
+            }
+            else if(b2 == 'k')
+            {
+               // uk
+               if(alen == 2)
+               {
+                  if(a1 == 'c' && a2 == 'o')
+                  {
+                     return true;
+                  }
+                  else if(a1 == 'm' && a2 == 'e')
+                  {
+                     return true;
+                  }
+               }
+               else if(alen == 3)
+               {
+                  if(a1 == 'o' && a2 == 'r' && a3 == 'g')
+                  {
+                     return true;
+                  }
                }
             }
          }
       }
-      else if(b1 == 'b')
+      else if(blen == 3)
       {
-         if(b2 == 'r')
+         if(b1 == 'c')
          {
-            if(alen == 2)
+            if(b2 == 'o')
             {
-               if(a1 == 't' && a2 == 'v')
+               if(b3 == 'm')
                {
-                  return true;
-                }
+                  if(alen == 2)
+                  {
+/*                  || strTop2 == "de"
+                  || strTop2 == "eu"
+                  || strTop2 == "uk"
+                  */
+                     return true;
+                  }
+                  else if(alen == 4)
+                  {
+                     if(a1 == 'a' && a2 == 's' && a3 == 'i' && a4 == 'a')
+                     {
+                        return true;
+                     }
+                  }
+               }
             }
          }
-         /*if(strTop2 == "blog"
-         || strTop2 == "com"
-         || strTop2 == "emp"
-         || strTop2 == "eng"
-         || strTop2 == "etc"
-         || strTop2 == "flog"
-         || strTop2 == "ind"
-         || strTop2 == "mus"
-         || strTop2 == "net"
-         || strTop2 == "nom"
-         || strTop2 == "pro"
-         || strTop2 == "radio"
-         || strTop2 == "tv"
-         || strTop2 == "vlog"
-         || strTop2 == "wiki")
-         {
-            return true;
-         }*/
       }
-/*      else if(strTop1 == "cc")
-      {
-         if(strTop2 == "cc"
-         || strTop2 == "co")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "cn")
-      {
-         if(strTop2 == "net"
-         || strTop2 == "org")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "co")
-      {
-         if(strTop2 == "com"
-         || strTop2 == "net"
-         || strTop2 == "org"
-         || strTop2 == "nom")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "com")
-      {
-         if(strTop2 == "asia"
-         || strTop2 == "de"
-         || strTop2 == "eu"
-         || strTop2 == "uk"
-         || strTop2.get_length() == 2)
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "de")
-      {
-         if(strTop2 == "com")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "ee")
-      {
-         if(strTop2 == "co"
-         || strTop2 == "com")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "es")
-      {
-         if(strTop2 == "com"
-         || strTop2 == "nom"
-         || strTop2 == "org")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "gt")
-      {
-         if(strTop2 == "com")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "ht")
-      {
-         if(strTop2 == "com")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "hu")
-      {
-         if(strTop2 == "co")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "il")
-      {
-         if(strTop2 == "co"
-         || strTop2 == "org")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "in")
-      {
-         if(strTop2 == "co"
-         || strTop2 == "firm"
-         || strTop2 == "gen"
-         || strTop2 == "ind"
-         || strTop2 == "net"
-         || strTop2 == "org")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "jp")
-      {
-         if(strTop2 == "co"
-         || strTop2 == "ne"
-         || strTop2 == "or")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "lv")
-      {
-         if(strTop2 == "com"
-         || strTop2 == "net"
-         || strTop2 == "org")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "mx")
-      {
-         if(strTop2 == "com")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "nl")
-      {
-         if(strTop2 == "co")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "nz")
-      {
-         if(strTop2 == "co")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "pt")
-      {
-         if(strTop2 == "com")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "ru")
-      {
-         if(strTop2 == "msk"
-         || strTop2 == "spb"
-         || strTop2 == "nov"
-         || strTop2 == "net"
-         || strTop2 == "org"
-         || strTop2 == "pp")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "su")
-      {
-         if(strTop2 == "msk"
-         || strTop2 == "spb"
-         || strTop2 == "nov"
-         || strTop2 == "net"
-         || strTop2 == "org"
-         || strTop2 == "pp")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "tr")
-      {
-         if(strTop2 == "tv"
-         || strTop2 == "web"
-         || strTop2 == "com")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "tw")
-      {
-         if(strTop2 == "com")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "ua")
-      {
-         if(strTop2 == "co"
-         || strTop2 == "com")
-         {
-            return true;
-         }
-      }
-      else if(strTop1 == "uk")
-      {
-         if(strTop2 == "me"
-         || strTop2 == "org"
-         || strTop2 == "co")
-         {
-            return true;
-         }
-
-      }
-      else if(strTop1 == "pl")
-      {
-         if(strTop2 == "biz"
-         || strTop2 == "com"
-         || strTop2 == "info"
-         || strTop2 == "net"
-         || strTop2 == "org")
-         {
-            return true;
-         }
-      }*/
       return false;
    }
 

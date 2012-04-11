@@ -71,6 +71,11 @@ namespace gen
          // _add_locale_variant(idLocale2, idSchema2);
          //}
 
+         if(defer_add_locale(idLocale2, idSchema2))
+         {
+            _add_locale_variant(idLocale2, idSchema2);
+         }
+
          int iStart;
          int iFind = -1;
          int iLen;
@@ -87,9 +92,9 @@ namespace gen
             }
             iLen = iFind - iStart;
             ::id id = localeid(&((LPCSTR)*idLocale2.m_pstr)[iStart], iLen);
-            if(defer_add_locale(id, idSchema))
+            if(defer_add_locale(id, idSchema2))
             {
-               _add_locale_variant(id, idSchema);
+               _add_locale_variant(id, idSchema2);
             }
          }
 
