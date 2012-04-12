@@ -170,18 +170,34 @@ bool copydesk::desk_to_dib(::ca::dib * pdib)
 {
    if(!m_p->OpenClipboard())
       return false;
+   bool bOk = false;
    HBITMAP hbitmap = (HBITMAP) ::GetClipboardData(CF_BITMAP);
-   HDC hdc = ::CreateCompatibleDC(NULL);
-   ::ca::graphics_sp g(get_app());
-   g->attach(hdc);
-   //::ca::graphics * pgraphics = Application.graphics_from_os_data(hdc);
-   g->SelectObject(hbitmap);
-   BITMAP bm;
-   ::GetObjectA(hbitmap, sizeof(bm), &bm);
-   if(!pdib->create(bm.bmWidth, bm.bmHeight))
-      return false;
-   pdib->get_graphics()->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, g, 0, 0, SRCCOPY);
-   ::DeleteDC(hdc);
+   try
+   {
+      ::ca::bitmap_sp bitmap(get_app());
+      bitmap->Attach(hbitmap);
+      //HDC hdc = ::CreateCompatibleDC(NULL);
+      //::ca::graphics_sp g(get_app());
+      //g->Attach(hdc);
+      //::ca::graphics * pgraphics = Application.graphics_from_os_data(hdc);
+      //g->SelectObject(hbitmap);
+    //  BITMAP bm;
+      //::GetObjectA(hbitmap, sizeof(bm), &bm);
+      //if(!pdib->create(bm.bmWidth, bm.bmHeight))
+        // return false;
+      ::ca::graphics_sp g(get_app());
+      g->SelectObject(bitmap);
+      size sz = bitmap->GetBitmapDimension();
+      if(pdib->create(sz))
+      {
+         bOk = pdib->get_graphics()->BitBlt(0, 0, sz.cx, sz.cy, g, 0, 0, SRCCOPY) != FALSE;
+      }
+   }
+   catch(...)
+   {
+   }
+   ::DeleteObject((HGDIOBJ) hbitmap);
+   //::DeleteDC(hdc);
    ::CloseClipboard();
-   return true;
+   return bOk;
 }

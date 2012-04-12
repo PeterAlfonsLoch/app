@@ -81,6 +81,13 @@ namespace ca
       throw not_implemented_exception();
    }
 
+
+   bool bitmap::Attach(HBITMAP hbitmap)
+   {
+      UNREFERENCED_PARAMETER(hbitmap);
+      throw interface_only_exception();
+   }
+
    class size bitmap::set_size(class size size)
    {
 
