@@ -14,8 +14,8 @@ XfplayerViewLine::XfplayerViewLine(::ca::application * papp) :
    m_pContainer                  = NULL;
    m_bEnhancedEmboss             = true;
    m_bCacheEmboss                = false;
-   m_cr                          = RGB(255, 255, 255);
-   m_crOutline                   = RGB(0, 0, 0);
+   m_cr                          = ARGB(255, 255, 255, 255);
+   m_crOutline                   = ARGB(255, 0, 0, 0);
    m_nFont                       = 0;
    m_lpBitmapData                = NULL;
    m_bAutoSizeX                  = false;

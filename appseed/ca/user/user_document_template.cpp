@@ -38,6 +38,7 @@ void document_template::add_document(::user::document_interface * pdocument)
 {
    ASSERT(pdocument->m_pdocumentemplate == NULL);   // no template attached yet
    pdocument->m_pdocumentemplate = this;
+   pdocument->install_message_handling(pdocument);
 }
 
 void document_template::remove_document(::user::document_interface * pdocument)
