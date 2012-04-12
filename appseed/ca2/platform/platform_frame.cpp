@@ -27,6 +27,10 @@ namespace platform
       m_dwLastSuperDock    = 0;
       m_bHideTimer         = false;
 
+
+      m_bAutoWindowFrame   = false;
+      m_bWindowFrame       = true;
+
       oprop("should_not_be_automatically_holded_on_initial_update_frame") = true;
 
       WfiEnableFullScreen();

@@ -325,7 +325,7 @@ namespace bergedge
          break;
       case PaneViewThreeActionLaunch:
          {
-            ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChildList(papp, false, true, this);
+            ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChildList(papp, false, true, pcreatordata->m_pholder);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 48;
@@ -348,7 +348,6 @@ namespace bergedge
                   if(pframe != NULL)
                   {
                      pcreatordata->m_pdoc = pdoc;
-                     pcreatordata->m_pwnd = pframe;
                   }
                }
             }

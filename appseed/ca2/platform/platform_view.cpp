@@ -50,19 +50,19 @@ namespace platform
       m_brushProgress2(papp),
       m_brushProgress1(papp)
    {
-      m_buttonschema.m_crBkDisabled = RGB(126, 127, 128);
-      m_buttonschema.m_crBkPress = RGB(200, 127, 200);
-      m_buttonschema.m_crBkHover = RGB(220, 255, 220);
-      m_buttonschema.m_crBkNormal = RGB(120, 220, 255);
+      m_buttonschema.m_crBkDisabled = ARGB(255, 126, 127, 128);
+      m_buttonschema.m_crBkPress = ARGB(255, 200, 127, 200);
+      m_buttonschema.m_crBkHover = ARGB(255, 220, 255, 220);
+      m_buttonschema.m_crBkNormal = ARGB(255, 120, 220, 255);
       m_buttonschema.m_bBorder = false;
-      m_buttonschema.m_crTextDisabled = RGB(0, 0, 0);
-      m_buttonschema.m_crTextPress = RGB(255, 255, 0);
-      m_buttonschema.m_crTextHover = RGB(100, 180, 110);
-      m_buttonschema.m_crTextNormal = RGB(100, 100, 20);
-      m_brushBk->CreateSolidBrush(RGB(255, 250, 245));
-      m_brushProgress1->CreateSolidBrush(RGB(120, 180, 255));
-      m_brushProgress2->CreateSolidBrush(RGB(255, 240, 200));
-      m_brushProgress3->CreateSolidBrush(RGB(128, 128, 128));
+      m_buttonschema.m_crTextDisabled = ARGB(255, 0, 0, 0);
+      m_buttonschema.m_crTextPress = ARGB(255, 255, 255, 0);
+      m_buttonschema.m_crTextHover = ARGB(255, 100, 180, 110);
+      m_buttonschema.m_crTextNormal = ARGB(255, 100, 100, 20);
+      m_brushBk->CreateSolidBrush(ARGB(255, 255, 250, 245));
+      m_brushProgress1->CreateSolidBrush(ARGB(255, 120, 180, 255));
+      m_brushProgress2->CreateSolidBrush(ARGB(255, 255, 240, 200));
+      m_brushProgress3->CreateSolidBrush(ARGB(255, 128, 128, 128));
 
       LOGFONT lf;
 
@@ -293,7 +293,7 @@ namespace platform
       m_dib_winactionarea.load_from_matter("winactionarea.png");
 
 
-      System.imaging().color_blend(m_dibBk->get_graphics(), 0, 0, 1280, 1024, RGB(235, 245, 255), 31);
+      System.imaging().color_blend(m_dibBk->get_graphics(), 0, 0, 1280, 1024, ARGB(255, 235, 245, 255), 31);
 
    }
    void view::_001OnContextMenu(gen::signal_object * pobj)
@@ -440,10 +440,10 @@ namespace platform
 
 /*      pdc->SetBkMode(TRANSPARENT);
       pdc->SelectObject(m_font1);
-      pdc->SetTextColor(RGB(108, 0, 108));
+      pdc->SetTextColor(ARGB(255, 108, 0, 108));
       LPTSTR lpsz8 = "ccvotagus ca2";
       pdc->TextOut(10, 10, lpsz8, strlen(lpsz8));
-      pdc->SetTextColor(RGB(0, 0, 0));
+      pdc->SetTextColor(ARGB(255, 0, 0, 0));
       LPTSTR lpsz = "dedicated to Carlos Gustavo Cecyn Lundgren";
       pdc->TextOut(10, 30, lpsz, strlen(lpsz));
       LPTSTR lpsz2 = "program created on 2008-03-27";
@@ -472,10 +472,10 @@ namespace platform
 
       if(m_iScreen == 1)
       {
-         pdc->SetTextColor(RGB(0, 108, 0));
+         pdc->SetTextColor(ARGB(255, 0, 108, 0));
          pdc->SelectObject(m_font2);
          pdc->TextOut(10, 110, m_strStatus1);
-         pdc->SetTextColor(RGB(0, 0, 108));
+         pdc->SetTextColor(ARGB(255, 0, 0, 108));
          pdc->SelectObject(m_font3);
          pdc->TextOut(10, 170, m_strStatus2);
       }
@@ -487,21 +487,21 @@ namespace platform
       m_dibV->bitmap_blend(pdc, rectArea);
       if(m_iHitArea == m_iV)
       {
-         imaging.color_blend(pdc, rectArea, RGB(140, 255, 110), 80);
+         imaging.color_blend(pdc, rectArea, ARGB(255, 140, 255, 110), 80);
       }
 
       GetAreaThumbRect(rectArea, m_i_veriwell);
       m_dib_veriwell->bitmap_blend(pdc, rectArea);
       if(m_iHitArea == m_i_veriwell)
       {
-         imaging.color_blend(pdc, rectArea, RGB(140, 255, 110), 80);
+         imaging.color_blend(pdc, rectArea, ARGB(255, 140, 255, 110), 80);
       }
 
       GetAreaThumbRect(rectArea, m_i_winactionarea);
       m_dib_winactionarea->bitmap_blend(pdc, rectArea);
       if(m_iHitArea == m_i_winactionarea)
       {
-         imaging.color_blend(pdc, rectArea, RGB(140, 255, 110), 80);
+         imaging.color_blend(pdc, rectArea, ARGB(255, 140, 255, 110), 80);
       }
 
 
