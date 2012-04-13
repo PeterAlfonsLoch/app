@@ -136,7 +136,16 @@ public:
    typedef const iterator const_iterator;
 
 
+   iterator begin()
+   {
+      return iterator(get_head_position(), this);
+   }
 
+
+   iterator end()
+   {
+      return iterator(NULL, this);
+   }
 
 protected:
 
