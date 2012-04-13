@@ -2879,9 +2879,6 @@
     <ClInclude Include="ca\OpenedFiles.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\Utils.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="install\install.h">
       <Filter>Header Files\install</Filter>
     </ClInclude>
@@ -5151,9 +5148,6 @@
     </ClCompile>
     <ClCompile Include="crypto\crypto_hmac_sha1.cpp">
       <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_utils.cpp">
-      <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="windows\os_library_initialize.cpp">
       <Filter>Source Files\windows</Filter>

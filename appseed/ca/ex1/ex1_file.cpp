@@ -1,5 +1,4 @@
 #include "StdAfx.h"
-#include "ca/Utils.h"
 
 namespace ex1
 {

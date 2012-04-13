@@ -1080,7 +1080,6 @@ namespace ca
 
 #include <Tlhelp32.h>
 #include <Psapi.h>
-#include "Utils.h"
 
 
 void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR pUserContext );

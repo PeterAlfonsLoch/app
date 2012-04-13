@@ -1,5 +1,4 @@
 #include "StdAfx.h"
-#include "Utils.h"
 #include <Winsvc.h>
 
 const LPCTSTR DRV_DOS_NAME = _T("\\\\.\\ListFileDrv");

@@ -668,22 +668,42 @@ namespace ca2
 
       string strQuery(pszQuery);
 
-      string strKey(pszKey);
+      string strKey(url_encode(pszKey));
       
       string strKeyEqual = strKey + "=";
 
       string strAndKeyEqual = "&" + strKeyEqual;
+
+      string strKey2(url_encode(pszKey));
+      
+      string strKeyEqual2 = strKey + "=";
+
+      string strAndKeyEqual2 = "&" + strKeyEqual;
+
+      string strValue = url_encode(var.get_string());
 
       if(gen::str::begins(strQuery, strKeyEqual))
       {
          int iPos = strQuery.find("&");
          if(iPos < 0)
          {
-            strQuery = strKey + var.get_string();
+            strQuery = strKeyEqual2 + strValue;
          }
          else
          {
-            strQuery = strKey + var.get_string() + __query_remove(strQuery.Mid(iPos), strAndKeyEqual);
+            strQuery = strKeyEqual2 + strValue + __query_remove(strQuery.Mid(iPos), strAndKeyEqual);
+         }
+      }
+      else if(gen::str::begins(strQuery, strKeyEqual2))
+      {
+         int iPos = strQuery.find("&");
+         if(iPos < 0)
+         {
+            strQuery = strKeyEqual2 + strValue;
+         }
+         else
+         {
+            strQuery = strKeyEqual2 + strValue + __query_remove(strQuery.Mid(iPos), strAndKeyEqual);
          }
       }
       else
@@ -693,16 +713,31 @@ namespace ca2
          {
             if(strQuery.has_char())
             {
-               strQuery += strAndKeyEqual + var.get_string();
+               strQuery += strAndKeyEqual2 + strValue;
             }
             else
             {
-               strQuery = strKeyEqual + var.get_string();
+               strQuery = strKeyEqual2 + strValue;
             }
          }
          else
          {
-            strQuery = strKey + var.get_string() + __query_remove(strQuery.Mid(iPos), strAndKeyEqual);
+            iPos = strQuery.find(strAndKeyEqual2);
+            if(iPos < 0)
+            {
+               if(strQuery.has_char())
+               {
+                  strQuery += strAndKeyEqual2 + strValue;
+               }
+               else
+               {
+                  strQuery = strKeyEqual2 + strValue;
+               }
+            }
+            else
+            {
+               strQuery = strQuery.Left(iPos) + strAndKeyEqual2 + strValue + __query_remove(strQuery.Mid(iPos), strAndKeyEqual);
+            }
          }
       }
 
