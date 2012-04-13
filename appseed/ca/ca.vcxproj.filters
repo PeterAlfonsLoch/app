@@ -3119,6 +3119,9 @@
     <ClInclude Include="ca2\ca2_url_domain.h">
       <Filter>Header Files\ca2</Filter>
     </ClInclude>
+    <ClInclude Include="windows\os_utils.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -5232,6 +5235,9 @@
     </ClCompile>
     <ClCompile Include="sockets\http\sockets_http_session.cpp">
       <Filter>Source Files\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\os_utils.cpp">
+      <Filter>Source Files\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

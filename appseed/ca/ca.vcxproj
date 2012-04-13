@@ -1504,6 +1504,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="windows\os.h" />
     <ClInclude Include="windows\os_library.h" />
     <ClInclude Include="windows\os_registry.h" />
+    <ClInclude Include="windows\os_utils.h" />
     <ClInclude Include="xml\xml_application.h" />
     <ClInclude Include="xml\xml_attr.h" />
     <ClInclude Include="xml\xml_base_array.h" />
@@ -2596,6 +2597,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="windows\os_library_initialize.cpp" />
     <ClCompile Include="windows\os_resouce_string.cpp" />
     <ClCompile Include="windows\os_registry.cpp" />
+    <ClCompile Include="windows\os_utils.cpp" />
     <ClCompile Include="xml\xml_application.cpp" />
     <ClCompile Include="xml\xml_attr.cpp" />
     <ClCompile Include="xml\xml_base_array.cpp" />
