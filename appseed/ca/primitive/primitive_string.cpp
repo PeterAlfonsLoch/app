@@ -43,16 +43,16 @@ string_interface & string_interface::operator = (const char * psz)
 }
 
 
-void string_composite::set_string(const string * pstr) const 
-{ 
+void string_composite::set_string(const string * pstr) const
+{
    string_composite * pThis = const_cast < string_composite * > (this);
-   pThis->m_pstring = const_cast < string *  > (pstr); 
+   pThis->m_pstring = const_cast < string *  > (pstr);
    pThis->m_pinterface = NULL;
 }
 
 string_composite & string_composite::operator = (const string & str)
 {
-   *m_pstring = str; 
+   *m_pstring = str;
    m_pinterface = NULL;
    return *this;
 }
@@ -80,7 +80,7 @@ string::string(wchar_t ch,strsize nLength) :
       //allocate enough characters in string and flood (replicate) with the (converted character)*nLength
       PXSTR pszBuffer = GetBuffer( nLength*ncharCharLen );
       if (ncharCharLen == 1)
-      {  
+      {
          //Optimization for a common case - wide char translates to 1 ansi/wide char.
          string_trait::FloodCharacters( ((const char *)buffcharChar)[0], nLength, pszBuffer );
 
@@ -483,7 +483,7 @@ void __cdecl crt_char_traits::FloodCharacters(char ch,strsize nLength, char* pch
 
 BSTR __cdecl crt_char_traits::AllocSysString( const char* pchData, strsize nDataLength ) throw()
 {
-   
+
    strsize nLen = ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, (int) nDataLength, NULL, NULL );
 
    BSTR bstr = ::SysAllocStringLen( NULL, (UINT) nLen );
@@ -499,7 +499,7 @@ BSTR __cdecl crt_char_traits::AllocSysString( const char* pchData, strsize nData
 
 BOOL __cdecl crt_char_traits::ReAllocSysString( const char* pchData,BSTR* pbstr,strsize nDataLength ) throw()
 {
-   
+
    strsize nLen = ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, (int) nDataLength, NULL, NULL );
 
    BOOL bSuccess = ::SysReAllocStringLen( pbstr, NULL, (UINT) nLen );
@@ -610,7 +610,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 
    void string::construct() throw()
    {
-      simple_string::construct( string_trait::GetDefaultManager()); 
+      simple_string::construct( string_trait::GetDefaultManager());
    }
 
 
@@ -667,6 +667,30 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 //      if( !CheckImplicitLoad( pszSrc ) )
 //      {
          *this = str.m_psz;
+//      }
+   }
+
+   string::string(const var & var ) :
+      simple_string( string_trait::GetDefaultManager() )
+   {
+//      if( !CheckImplicitLoad( pszSrc ) )
+//      {
+         this->operator = (var);
+//      }
+   }
+
+
+   string::string(const id & id ) :
+      simple_string( string_trait::GetDefaultManager() )
+   {
+//      if( !CheckImplicitLoad( pszSrc ) )
+//      {
+         if(id.is_empty())
+            return;
+         if(id.is_number())
+            *this = gen::str::itoa(id.m_i);
+         else
+            *this = *id.m_pstr;
 //      }
    }
 
@@ -817,7 +841,7 @@ string::string(strsize nLength, char ch) :
 
    string & string::operator = (const class id & id)
    {
-      
+
       simple_string::operator = (id.str());
 
       return( *this );
@@ -1905,7 +1929,7 @@ string::string(strsize nLength, char ch) :
    // remove all trailing whitespace
    string& string::trim_right()
    {
-      
+
       PCXSTR pszLast = NULL;
       PCXSTR pszMax = GetString() + get_length();
       PCXSTR psz = pszMax;

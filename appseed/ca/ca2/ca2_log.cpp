@@ -14,8 +14,12 @@ namespace ca2
       m_trace(papp)
    {
 
+#if defined(WINDOWS)
       m_bTrace = System.file().exists("C:\\ca2\\trace.txt", papp) || ::IsDebuggerPresent();
-      
+#elif defined(LINUX)
+      m_bTrace = System.file().exists("/etc/ca2/trace.txt", papp) || ::gdb_check();
+#endif
+
       m_bInitialized    = false;
 
 

@@ -9,7 +9,11 @@ int64_t atoi64_dup(const char * psz)
       char ch = *psz;
       if(ch == '\0' || ch < '0' || ch > '9')
          break;
+#ifdef WINDOWS
       iResult = iResult * 10i64 + (ch - '0');
+#else
+      iResult = iResult * 10+ (ch - '0');
+#endif
       psz++;
    }
    return iResult;
@@ -23,7 +27,11 @@ int64_t atoi64_dup(const char *psz, const char ** pszEnd)
       char ch = *psz;
       if(ch == '\0' || ch < '0' || ch > '9')
          break;
+#ifdef WINDOWS
       iResult = iResult * 10i64 + (ch - '0');
+#else
+      iResult = iResult * 10+ (ch - '0');
+#endif
       psz++;
    }
    if(pszEnd != NULL)
@@ -77,7 +85,7 @@ int64_t _atoi64_dup(const char * psz, const char ** pszEnd, int iBase)
       {
          break;
       }
-      
+
       psz++;
 
    }

@@ -71,7 +71,7 @@ extern "C"
 #if defined(MACOS)
 #include "macos/macos.h"
 #elif defined(LINUX)
-#include "linux/linux.h"
+#include "linux/os.h"
 #endif
 
 #include <stdio.h>

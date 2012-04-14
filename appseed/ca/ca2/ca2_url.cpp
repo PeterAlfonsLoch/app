@@ -1,6 +1,11 @@
 #include "StdAfx.h"
 #include "c/conv.h"
 
+#if defined(LINUX)
+#include <ctype.h>
+#endif
+
+
 
 namespace ca2
 {
@@ -36,7 +41,7 @@ namespace ca2
 
    string url::get_server(const char * psz)
    {
-      
+
       string strRoot = get_root(psz);
 
       strsize iPos = strRoot.find(":");
@@ -50,7 +55,7 @@ namespace ca2
 
    int url::get_port(const char * psz, int iDefault)
    {
-      
+
       string strRoot = get_root(psz);
 
       strsize iPos = strRoot.find(":");
@@ -82,7 +87,7 @@ namespace ca2
 
    string url::get_object(const char * psz)
    {
-      
+
       string str(psz);
 
       strsize iPos = str.find("://");
@@ -110,7 +115,7 @@ namespace ca2
 
       if(iFind < 0)
          return str;
-      else 
+      else
          return str.Left(iFind);
 
    }
@@ -124,7 +129,7 @@ namespace ca2
 
       if(iFind < 0)
          return "";
-      else 
+      else
          return str.Mid(iFind + 1);
 
    }
@@ -194,7 +199,7 @@ namespace ca2
       return path(path(psz1, psz2), psz3);
 
    }
-   
+
    string url::name(const char * psz)
    {
 
@@ -295,8 +300,8 @@ namespace ca2
             iStart = iFind + 3;
 
          }
-         
-         
+
+
       }
 
       return strDecode;
@@ -307,9 +312,9 @@ namespace ca2
    {
 
       string strDecode;
-      
+
       char * psz = strDecode.GetBufferSetLength(iLen * 4);
-      
+
       strsize i = 0;
 
       while(*lpszUrl != '\0' && i < iLen)
@@ -383,7 +388,7 @@ namespace ca2
          iStart = 0;
 
       }
-      
+
       if(strUrl.find("?", iStart) > 0)
       {
 
@@ -402,11 +407,11 @@ namespace ca2
 
    bool url::is_url(const char * pszCandidate)
    {
-      
+
       string strCandidate(pszCandidate);
 
       strsize iLen = strCandidate.get_length();
-      
+
       strsize i = 0;
 
       char ch;
@@ -430,7 +435,7 @@ namespace ca2
       }
 
       return false;
-      
+
    }
 
    var & url::set(var & varUrl, const char * pszKey, var var)
@@ -669,13 +674,13 @@ namespace ca2
       string strQuery(pszQuery);
 
       string strKey(url_encode(pszKey));
-      
+
       string strKeyEqual = strKey + "=";
 
       string strAndKeyEqual = "&" + strKeyEqual;
 
       string strKey2(url_encode(pszKey));
-      
+
       string strKeyEqual2 = strKey + "=";
 
       string strAndKeyEqual2 = "&" + strKeyEqual;
@@ -752,7 +757,7 @@ namespace ca2
       string strQuery(pszQuery);
 
       string strKey(pszKey);
-      
+
       string strKeyEqual = strKey + "=";
 
       string strAndKeyEqual = "&" + strKeyEqual;
@@ -796,7 +801,7 @@ namespace ca2
 
    string url::query_remove(const char * pszQuery, const char * pszKey)
    {
-      
+
       gen::property_set set(get_app());
 
       set.parse_url_query(pszQuery);
@@ -809,7 +814,7 @@ namespace ca2
 
    string url::__query_remove(const char * pszQuery, const char * pszAndKeyEqual)
    {
-      
+
       string strQuery(pszQuery);
 
       while(true)
@@ -834,7 +839,7 @@ namespace ca2
 
    string url::query_remove(const char * pszQuery, stringa & straKey)
    {
-      
+
       gen::property_set set(get_app());
 
       set.parse_url_query(pszQuery);
@@ -852,7 +857,7 @@ namespace ca2
       string strQuery(pszQuery);
 
       string strKey(pszKey);
-      
+
       string strKeyEqual = strKey + "=";
 
       string strAndKeyEqual = "&" + strKeyEqual;
@@ -874,7 +879,7 @@ namespace ca2
             varValue = strQuery.Mid(strKeyEqual.get_length(), iPos - strKeyEqual.get_length());
          }
       }
-      
+
       while(true)
       {
          iPos = strQuery.find(strAndKeyEqual, iPos);
@@ -918,7 +923,7 @@ namespace ca2
       string strQuery(pszQuery);
 
       string strKey(pszKey);
-      
+
       string strKeyEqual = strKey + "=";
 
       string strAndKeyEqual = "&" + strKeyEqual;
@@ -940,7 +945,7 @@ namespace ca2
          }
          return strValue;
       }
-      
+
       iPos = strQuery.find(strAndKeyEqual, iPos);
       if(iPos < 0)
          return "";
@@ -960,7 +965,7 @@ namespace ca2
 
    bool url::locale_is_eu(const char * pszLocale)
    {
-      
+
       string strLocale(pszLocale);
 
       gen::str::ends_eat_ci(strLocale, ".com");
@@ -979,7 +984,7 @@ namespace ca2
       || strLocale == "se"
       || strLocale == "at"
       || strLocale == "dk"
-      || strLocale == "en-uk" 
+      || strLocale == "en-uk"
       || strLocale == "uk"
       || strLocale == "fi"
       || strLocale == "gr"
@@ -1018,13 +1023,13 @@ namespace ca2
 
    bool url::locale_is_asia(const char * pszLocale)
    {
-      
+
       string strLocale(pszLocale);
 
       if(strLocale == "asia"
       || strLocale == "cn"
       || strLocale == "tw"
-      || strLocale == "vn" 
+      || strLocale == "vn"
       || strLocale == "in"
       || strLocale == "kg"
       || strLocale == "kz"
@@ -1049,7 +1054,7 @@ namespace ca2
 
    bool url::locale_is_middle_east(const char * pszLocale)
    {
-      
+
       string strLocale(pszLocale);
 
       if(strLocale == "sy"
@@ -1068,13 +1073,13 @@ namespace ca2
 
    bool url::locale_is_south_america(const char * pszLocale)
    {
-      
+
       string strLocale(pszLocale);
 
       if(strLocale == "cl"
       || strLocale == "br"
       || strLocale == "ar"
-      || strLocale == "ec" 
+      || strLocale == "ec"
       || strLocale == "pe"
       || strLocale == "ve"
       || strLocale == "bo"
@@ -1093,12 +1098,12 @@ namespace ca2
 
    bool url::locale_is_oceania(const char * pszLocale)
    {
-      
+
       string strLocale(pszLocale);
 
       if(strLocale == "au"
-      || strLocale == "oceania" 
-      || strLocale == "nz" 
+      || strLocale == "oceania"
+      || strLocale == "nz"
       || strLocale == "tl")
       {
          return true;
@@ -1117,7 +1122,7 @@ namespace ca2
       if(strLocale == "ug"
       || strLocale == "sc"
       || strLocale == "cm"
-      || strLocale == "za" 
+      || strLocale == "za"
       || strLocale == "africa" )
       {
          return true;
@@ -1129,7 +1134,7 @@ namespace ca2
 
    bool url::locale_is_latin_america(const char * pszLocale)
    {
-      
+
       string strLocale(pszLocale);
 
       if(strLocale == "mx")
@@ -1143,7 +1148,7 @@ namespace ca2
 
    bool url::locale_is_north_america(const char * pszLocale)
    {
-      
+
       string strLocale(pszLocale);
 
       if(strLocale == "mx"
@@ -1159,9 +1164,9 @@ namespace ca2
 
    bool url::locale_is_caribe(const char * pszLocale)
    {
-      
+
       string strLocale(pszLocale);
-      
+
       if(strLocale == "caribe")
          return true;
 
@@ -1179,7 +1184,7 @@ namespace ca2
 
    bool url::locale_is_central_america(const char * pszLocale)
    {
-      
+
       string strLocale(pszLocale);
 
       if(strLocale == "central_america")
@@ -1199,30 +1204,30 @@ namespace ca2
 
    bool url::locale_is_america(const char * pszLocale)
    {
-      
+
       string strLocale(pszLocale);
 
       if(strLocale == "america")
          return true;
-      
-      return 
-         locale_is_central_america(pszLocale) 
-      || locale_is_caribe(pszLocale) 
-      || locale_is_south_america(pszLocale) 
+
+      return
+         locale_is_central_america(pszLocale)
+      || locale_is_caribe(pszLocale)
+      || locale_is_south_america(pszLocale)
       || locale_is_north_america(pszLocale);
 
    }
 
    string url::set_script(const char * pszUrl, const char * pszScript)
    {
-      
+
       return get_protocol(pszUrl) + "://" + get_root(pszUrl) + string(pszScript) + gen::str::has_char(get_query(pszUrl), "?");
 
-   } 
+   }
 
    string url::override_if_empty(const char * pszDst, const char * pszSrc, bool bOverrideQuery)
    {
-      
+
       string strProtocol = get_protocol(pszDst);
       string strProtocolOver = get_protocol(pszSrc);
       string strRoot = get_root(pszDst);
@@ -1234,26 +1239,26 @@ namespace ca2
 
       if(strProtocol.is_empty())
          strProtocol = strProtocolOver;
-      
+
       if(strRoot.is_empty())
          strRoot = strRootOver;
-      
+
       if(strScript.is_empty())
          strScript = strScriptOver;
-      
+
       if(bOverrideQuery && strQuery.is_empty())
          strQuery = strQueryOver;
-      
+
       if(!gen::str::begins(strScript, "/"))
          strScript = "/" + strScript;
-      
+
       return strProtocol + "://" + strRoot + strScript + gen::str::has_char(strQuery, "?");
    }
 
 
    string url::override_if_set_at_source(const char * pszDst, const char * pszSrc)
    {
-      
+
       string strProtocol = get_protocol(pszDst);
       string strProtocolOver = get_protocol(pszSrc);
       string strRoot = get_root(pszDst);
@@ -1265,24 +1270,24 @@ namespace ca2
 
       if(strProtocolOver.has_char())
          strProtocol = strProtocolOver;
-      
+
       if(strRootOver.has_char())
          strRoot = strRootOver;
-      
+
       if(strScriptOver.has_char())
          strScript = strScriptOver;
-      
+
       if(strQueryOver.has_char())
          strQuery = strQueryOver;
-      
+
       if(!gen::str::begins(strScript, "/"))
          strScript = "/" + strScript;
-      
+
       return strProtocol + "://" + strRoot + strScript + gen::str::has_char(strQuery, "?");
    }
 
 
-   
+
 
    bool is_url(const char * pszCandidate, const char ** ppszRequest)
    {

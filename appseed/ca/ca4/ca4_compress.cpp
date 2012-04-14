@@ -1,16 +1,51 @@
 #include "StdAfx.h"
+#if defined(LINUX)
+#define _O_BINARY 0
+#define _O_RDONLY O_RDONLY
+#else
 #include <io.h>
+#endif
 #include <wchar.h>
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#if !defined(LINUX)
 #include <share.h>
+#endif
+
+#ifdef WINDOWS
+int my_open(const char * psz, int i)
+{
+   return _wopen(gen::international::utf8_to_unicode(psz), i);
+}
+FILE * my_fopen(const char * psz, const char * pszMode)
+{
+   return _wfopen(gen::international::utf8_to_unicode(psz), en::international::utf8_to_unicode(pszMode));
+}
+#else
+
+void _get_errno(int * perrno)
+{
+   *perrno = errno;
+}
+
+int my_open(const char * psz, int i)
+{
+   return open(psz, i);
+}
+FILE * my_fopen(const char * psz, const char * pszMode)
+{
+   return fopen(psz, pszMode);
+}
+#endif
+
+
 
 namespace ca4
 {
    bool compress::ungz(ex1::writer & ostreamUncompressed, const char * lpcszGzFileCompressed)
    {
-      int fileUn = _wopen(gen::international::utf8_to_unicode(lpcszGzFileCompressed), _O_BINARY | _O_RDONLY);
+      int fileUn = my_open(lpcszGzFileCompressed, _O_BINARY | _O_RDONLY);
       if (fileUn == -1)
       {
          TRACE("ungz wopen error %s", lpcszGzFileCompressed);
@@ -38,10 +73,10 @@ namespace ca4
    {
 
       __int64 dataLength = memoryfile.get_length();
- 
+
       bool done = false;
       int status;
- 
+
       z_stream strm;
       strm.next_in = (Bytef *)memoryfile.get_data();
       strm.avail_in = (uInt)dataLength;
@@ -58,28 +93,28 @@ namespace ca4
       {
 	      return false;
       }
- 
+
       while (!done)
       {
- 
+
 	      strm.next_out = memory.get_data();
 	      strm.avail_out = memory.get_size();
- 
+
 	      // Inflate another chunk.
 	      status = inflate (&strm, Z_SYNC_FLUSH);
 
          memoryfileOut.write(memory.get_data(), memory.get_size() - strm.avail_out);
- 
+
 	      if (status == Z_STREAM_END)
 	      {
 		      done = true;
 	      }
 	      else if (status != Z_OK)
 	      {
-		      break;	
+		      break;
 	      }
       }
- 
+
       memoryfile.FullLoad(memoryfileOut);
 
       if (inflateEnd (&strm) != Z_OK || !done)
@@ -95,7 +130,7 @@ namespace ca4
    bool compress::gz(ex1::writer & ostreamCompressed, const char * lpcszUncompressed)
    {
       string str(lpcszUncompressed);
-      FILE * fileUn = _wfopen(gen::international::utf8_to_unicode(lpcszUncompressed), L"rb");
+      FILE * fileUn = my_fopen(lpcszUncompressed, "rb");
       if (fileUn == NULL)
       {
          int err;

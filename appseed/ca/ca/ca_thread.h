@@ -349,6 +349,9 @@ namespace ca
       virtual bool is_alive();
 
 
+      virtual bool has_message();
+
+
 
 
 	/// This class represents a thread which can be put into a WaitableCollection also.

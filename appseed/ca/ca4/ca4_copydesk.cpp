@@ -46,9 +46,9 @@ void copydesk::get_filea(stringa & stra)
 
 void copydesk::set_filea(stringa & stra)
 {
-   
+
    ASSERT(m_p->IsWindow());
-   
+
    strsize iLen = 0;
 
    for(int i = 0; i < stra.get_size(); i++)

@@ -32,7 +32,7 @@ namespace ca4
          {
          public:
 
-            
+
             string      m_strUrl;
             string      m_strAutoConfigScript;
             tinyjs      m_js;
@@ -50,7 +50,7 @@ namespace ca4
          {
          public:
 
-            
+
             string      m_strUrl;
             bool        m_bDirect;
             string      m_strProxy;
@@ -77,7 +77,7 @@ namespace ca4
          virtual void clean_proxy_auth(::fontopus::user * puser);
 
 
-         ::sockets::http_session * system::open(
+         ::sockets::http_session * open(
                      ::sockets::socket_handler & handler,
                      const char * pszHost,
                      const char * pszProtocol,
@@ -95,15 +95,15 @@ namespace ca4
          ::sockets::http_client_socket * get(::sockets::socket_handler & handler, const char * pszUrl, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
 
 
-      
+
          DECL_GEN_SIGNAL(get);
 
-         
+
          bool get(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
          bool get(const char * pszUrl, primitive::memory_base & memory, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
          bool get(const char * pszUrl, string & str, ::fontopus::user * puser = NULL);
          bool get(const char * pszUrl, string & str, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
-         
+
 
 
          string get(const char * pszUrl, ::fontopus::user * puser = NULL);
@@ -133,7 +133,7 @@ namespace ca4
          void auto_config_proxy(int i);
          int auto_config_proxy_count();
          void config_proxy(const char * pszUrl, ::sockets::http_tunnel * psocket);
-         void system::config_proxy(const char * pszUrl, proxy * pproxy);
+         void config_proxy(const char * pszUrl, proxy * pproxy);
          bool try_pac_script(const char * pszScriptUrl, const char * pszUrl, proxy * pproxy);
 
          string gmdate(time_t t);

@@ -39,7 +39,3 @@ namespace gen
 
 
 
-inline id::operator string()
-{
-   return *m_pstr;
-}

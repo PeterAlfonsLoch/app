@@ -56,7 +56,7 @@ inline void * plex_heap_alloc_sync::Alloc()
 
    m_protect.lock();
    void * pdata = NULL;
-   __try
+   try
    {
       if (m_pnodeFree == NULL)
       {
@@ -67,10 +67,10 @@ inline void * plex_heap_alloc_sync::Alloc()
       m_pnodeFree = m_pnodeFree->pNext;
       pdata = &((byte *)pNode)[16];
    }
-   __finally
+   catch(...)
    {
-      m_protect.unlock();
    }
+   m_protect.unlock();
    //memset(pdata, 0, m_nAllocSize); // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
    return pdata;
 }
@@ -89,7 +89,7 @@ inline void plex_heap_alloc_sync::Free(void * p)
       return;
 
    m_protect.lock();
-   __try
+   try
    {
 
       // simply return the node to the free list
@@ -107,10 +107,10 @@ inline void plex_heap_alloc_sync::Free(void * p)
       pNode->pNext = m_pnodeFree;
       m_pnodeFree = pNode;
    }
-   __finally
+   catch(...)
    {
-      m_protect.unlock();
    }
+   m_protect.unlock();
 
 }
 
@@ -119,7 +119,7 @@ inline void plex_heap_alloc_sync::Free(void * p)
 
 
 
-class CLASS_DECL_ca plex_heap_alloc : 
+class CLASS_DECL_ca plex_heap_alloc :
    public simple_array < plex_heap_alloc_sync * >
 {
 public:
@@ -148,8 +148,8 @@ public:
 inline void * plex_heap_alloc::Alloc()
 {
 
-   // veripseudo-random generator, don't need to be 
-   // perfectly sequential or perfectly distributed, 
+   // veripseudo-random generator, don't need to be
+   // perfectly sequential or perfectly distributed,
    // just fair well distributed
    // but very important is extremely fast
    register int i = m_i;
@@ -162,7 +162,7 @@ inline void * plex_heap_alloc::Alloc()
    {
       m_i++;
    }
-   
+
 
    register void * p  = get_data()[i]->Alloc();
 
@@ -191,16 +191,16 @@ inline void plex_heap_alloc::Free(void * p)
 
 
 
-class CLASS_DECL_ca plex_heap_alloc_array : 
+class CLASS_DECL_ca plex_heap_alloc_array :
    public simple_array < plex_heap_alloc * >
 {
-public: 
+public:
 
 
    struct memdleak_block
    {
-   
-   
+
+
       int               m_iBlockUse;
       const char *      m_pszFileName;
       int               m_iLine;
@@ -271,7 +271,7 @@ inline void * plex_heap_alloc_array::realloc(void * pOld, size_t nOldAllocSize, 
    {
 
       void * pNew;
-      
+
       if(pallocNew != NULL)
       {
          pNew = pallocNew->Alloc();

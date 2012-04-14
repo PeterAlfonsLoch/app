@@ -5,6 +5,12 @@
 #include "id.h"
 
 
+#ifdef LINUX
+#undef __USE_MISC
+#include <strings.h>
+#endif
+
+
 //#include "template/base.h"
 
 //#include "radix/fixed_alloc.h"
@@ -237,10 +243,10 @@ public:
    string(const string_interface & str);
    string(const vsstring & str);
    string(const istring & istr);
-
    string(const char * pszSrc,string_manager * pstringmanager );
    string(const wchar_t * pszSrc,string_manager * pstringmanager );
 
+   string(const var & var);
 
    string(const unsigned char* pszSrc, string_manager * pstringmanager);
    explicit string(char ch, strsize nLength = 1);
@@ -875,11 +881,6 @@ inline id::operator const char *() const
    return m_pstr == NULL ? NULL : (const char *) *m_pstr;
 }
 
-inline id::operator const char *()
-{
-   return m_pstr == NULL ? NULL : (const char *) *m_pstr;
-}
-
 inline bool id::is_empty() const
 {
    return is_null() || (is_text() && (m_pstr == NULL || m_pstr->is_empty()));
@@ -989,7 +990,11 @@ inline int __cdecl crt_char_traits::StringCompare(const char * pszA,const char *
 
 inline int __cdecl crt_char_traits::StringCompareIgnore(const char * pszA,const char * pszB ) throw()
 {
+#ifdef WINDOWS
    return _stricmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
+#else
+   return strcasecmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
+#endif
 }
 
 

@@ -7,8 +7,8 @@ struct plex;
 class CLASS_DECL_ca fixed_alloc_no_sync
 {
 public:
-   
-   
+
+
    struct node
    {
       node* pNext;   // only valid when in free list
@@ -89,8 +89,8 @@ public:
 inline void * fixed_alloc_sync::Alloc()
 {
 
-   // veripseudo-random generator, don't need to be 
-   // perfectly sequential or perfectly distributed, 
+   // veripseudo-random generator, don't need to be
+   // perfectly sequential or perfectly distributed,
    // just fair well distributed
    // but very important is extremely fast
    register int i = m_i;
@@ -107,14 +107,14 @@ inline void * fixed_alloc_sync::Alloc()
 
    register void * p;
    m_protectptra.get_data()[i]->lock();
-   __try
+   try
    {
       p = m_allocptra.get_data()[i]->Alloc();
    }
-   __finally
+   catch(...)
    {
-      m_protectptra.get_data()[i]->unlock();
    }
+   m_protectptra.get_data()[i]->unlock();
    ((int *) p)[0] = i;
    return &((int *)p)[1];
 }
@@ -125,14 +125,14 @@ inline void fixed_alloc_sync::Free(void * p)
       return;
    register int i = ((int *)p)[-1];
    m_protectptra.get_data()[i]->lock();
-   __try
+   try
    {
       m_allocptra.get_data()[i]->Free(&((int *)p)[-1]);
    }
-   __finally
+   catch(...)
    {
-      m_protectptra.get_data()[i]->unlock();
    }
+   m_protectptra.get_data()[i]->unlock();
 }
 
 
@@ -161,8 +161,8 @@ public:
 inline void * fixed_alloc::Alloc()
 {
 
-   // veripseudo-random generator, don't need to be 
-   // perfectly sequential or perfectly distributed, 
+   // veripseudo-random generator, don't need to be
+   // perfectly sequential or perfectly distributed,
    // just fair well distributed
    // but very important is extremely fast
    register int i = m_i;
@@ -175,7 +175,7 @@ inline void * fixed_alloc::Alloc()
    {
       m_i++;
    }
-   
+
 
    register void * p  = m_allocptra.get_data()[i]->Alloc();
 

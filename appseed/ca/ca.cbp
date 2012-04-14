@@ -113,7 +113,6 @@
 		<Unit filename="ca/ca_main_init_data.h" />
 		<Unit filename="ca/ca_message_window.cpp" />
 		<Unit filename="ca/ca_message_window.h" />
-		<Unit filename="ca/ca_object.cpp" />
 		<Unit filename="ca/ca_object.h" />
 		<Unit filename="ca/ca_osi.cpp" />
 		<Unit filename="ca/ca_osi.h" />

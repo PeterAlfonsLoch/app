@@ -820,7 +820,7 @@ namespace ca2
             while(true)
             {
                // phase1: check to see if we can do idle work
-               while (!::PeekMessage(&msg, NULL, NULL, NULL, PM_NOREMOVE))
+               while (!has_message())
                {
                   if(!is_alive())
                   {

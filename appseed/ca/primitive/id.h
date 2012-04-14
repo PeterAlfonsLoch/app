@@ -138,11 +138,12 @@ public:
     inline bool operator <= (long l) const
     {
         return id_cmp(this, l) <= 0;
-    }    
+    }
     inline bool operator >= (long l) const
     {
         return id_cmp(this, l) >= 0;
     }
+    #if !defined(LINUX)
    inline bool operator == (int64_t i) const
    {
       return !id_cmp(this, i);
@@ -173,6 +174,7 @@ public:
       m_chType    = IDTYPE_TYPE_NUMBER;
       return *this;
    }
+   #endif
    inline bool operator == (const string_interface & str) const;
    inline bool operator != (const string_interface & str) const;
    inline bool operator < (const string_interface & str) const;
@@ -202,19 +204,10 @@ public:
 
    inline operator const char *() const;
 
-   inline operator const char *();
-
    inline operator const string & () const
    {
       return *m_pstr;
    }
-
-   inline operator const string & ()
-   {
-      return *m_pstr;
-   }
-
-   inline operator string();
 
    inline bool is_null() const
    {

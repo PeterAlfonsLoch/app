@@ -52,7 +52,7 @@ inline errno_t c_runtime_error_check(errno_t error)
    return error;
 }
 
-#define C_RUNTIME_ERROR_CHECK(expr) ::c_runtime_error_check(expr)
+//#define C_RUNTIME_ERROR_CHECK(expr) ::c_runtime_error_check(expr)
 
 
 inline void __cdecl Afx_clearerr_s(FILE *stream)

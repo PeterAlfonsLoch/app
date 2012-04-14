@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 
 #ifdef LINUX
+#define __USE_MISC
 #include <ctype.h>
 #include <sys/socket.h>
 #include <netdb.h>

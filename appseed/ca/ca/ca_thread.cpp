@@ -31,7 +31,7 @@ namespace ca
    void thread::set_p(::radix::thread * p)
    {
       UNREFERENCED_PARAMETER(p);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void thread::construct()
@@ -43,7 +43,7 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(pfnThreadProc);
       UNREFERENCED_PARAMETER(pParam);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
 
@@ -53,7 +53,7 @@ namespace ca
       m_puiMain         = NULL;
       m_peventReady     = NULL;
       m_bReady          = false;
-/*      m_ptimera = NULL; 
+/*      m_ptimera = NULL;
       m_puieptra = NULL;
       GetMainWnd() = NULL;
       m_pActiveWnd = NULL;*/
@@ -84,17 +84,17 @@ namespace ca
 
    void * thread::get_os_data() const
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    INT_PTR thread::get_os_int() const
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void thread::start()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    bool thread::Begin(int nPriority, UINT nStackSize, DWORD dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
@@ -103,7 +103,7 @@ namespace ca
       UNREFERENCED_PARAMETER(nStackSize);
       UNREFERENCED_PARAMETER(dwCreateFlags);
       UNREFERENCED_PARAMETER(lpSecurityAttrs);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    BOOL thread::CreateThread(DWORD dwCreateFlags, UINT nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
@@ -111,7 +111,7 @@ namespace ca
       UNREFERENCED_PARAMETER(dwCreateFlags);
       UNREFERENCED_PARAMETER(nStackSize);
       UNREFERENCED_PARAMETER(lpSecurityAttrs);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void thread::Delete()
@@ -161,37 +161,37 @@ namespace ca
    // main running routine until thread exits
    int thread::run()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    BOOL thread::is_idle_message(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    int thread::exit_instance()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    BOOL thread::on_idle(LONG lCount)
    {
       UNREFERENCED_PARAMETER(lCount);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    ::gen::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
    {
       UNREFERENCED_PARAMETER(uiMessage);
       UNREFERENCED_PARAMETER(uiCode);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void thread::DispatchThreadMessageEx(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void thread::pre_translate_message(gen::signal_object * pobj)
@@ -203,14 +203,14 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(e);
       UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void thread::ProcessMessageFilter(int code, gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(code);
       UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -218,7 +218,7 @@ namespace ca
 
    ::user::interaction* thread::GetMainWnd()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -226,7 +226,7 @@ namespace ca
 
    BOOL thread::pump_message()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -234,13 +234,13 @@ namespace ca
 
    void thread::assert_valid() const
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void thread::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    bool thread::post_message(::user::interaction * pguie, UINT uiMessage, WPARAM wparam, LPARAM lparam)
@@ -249,34 +249,34 @@ namespace ca
       UNREFERENCED_PARAMETER(uiMessage);
       UNREFERENCED_PARAMETER(wparam);
       UNREFERENCED_PARAMETER(lparam);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    bool thread::on_run_exception(::ca::exception & e)
    {
       UNREFERENCED_PARAMETER(e);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    int thread::GetThreadPriority()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    BOOL thread::SetThreadPriority(int nPriority)
    {
       UNREFERENCED_PARAMETER(nPriority);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    DWORD thread::ResumeThread()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    DWORD thread::SuspendThread()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    BOOL thread::PostThreadMessage(UINT message, WPARAM wParam, LPARAM lParam)
@@ -284,36 +284,36 @@ namespace ca
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);
       UNREFERENCED_PARAMETER(lParam);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    ::user::interaction * thread::SetMainWnd(::user::interaction * pui)
    {
       UNREFERENCED_PARAMETER(pui);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void thread::add(::user::interaction * pui)
    {
       UNREFERENCED_PARAMETER(pui);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void thread::remove(::user::interaction * pui)
    {
       UNREFERENCED_PARAMETER(pui);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    ::count thread::get_ui_count()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    ::user::interaction * thread::get_ui(index iIndex)
    {
       UNREFERENCED_PARAMETER(iIndex);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void thread::set_timer(::user::interaction * pui, UINT_PTR nIDEvent, UINT nEllapse)
@@ -321,57 +321,57 @@ namespace ca
       UNREFERENCED_PARAMETER(pui);
       UNREFERENCED_PARAMETER(nIDEvent);
       UNREFERENCED_PARAMETER(nEllapse);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void thread::unset_timer(::user::interaction * pui, UINT_PTR nIDEvent)
    {
       UNREFERENCED_PARAMETER(pui);
       UNREFERENCED_PARAMETER(nIDEvent);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void thread::set_auto_delete(bool bAutoDelete)
    {
       UNREFERENCED_PARAMETER(bAutoDelete);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void thread::set_run(bool bRun)
    {
       UNREFERENCED_PARAMETER(bRun);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    event & thread::get_finish_event()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    bool thread::get_run()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    ::ca::thread * thread::get_app_thread()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    ::user::interaction * thread::get_active_ui()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    ::user::interaction * thread::set_active_ui(::user::interaction * pui)
    {
       UNREFERENCED_PARAMETER(pui);
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void thread::step_timer()
    {
-      throw interface_only_exception();   
+      throw interface_only_exception();
    }
 
    void thread::on_delete(::ca::ca * pui)
@@ -391,7 +391,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   
+
    int thread::main()
    {
       return 0;
@@ -401,12 +401,17 @@ namespace ca
    {
       m_dwAlive = ::GetTickCount();
    }
-      
+
    bool thread::is_alive()
    {
       if((::GetTickCount() - m_dwAlive) > ((1984 + 1977) * 91))
          return false;
       return true;
+   }
+
+   bool thread::has_message()
+   {
+      return false;
    }
 
    bool thread::verb()
@@ -445,7 +450,7 @@ namespace ca
 	///  \brief		gets thread priority
 	///  \param		priority
 	int thread::priority()
-	{ 
+	{
       throw not_implemented_exception();
       return 0x80000000;
    }

@@ -11,10 +11,10 @@ namespace mysql
    class CLASS_DECL_ca database :
       virtual public ::radix::object
    {
-   
-      
+
+
       friend class result;
-   
+
    protected:
 
 
@@ -26,16 +26,16 @@ namespace mysql
 
 
       __int64 m_iLastUsedTime;
-      
+
 
       database(::ca::application * papp);
       virtual ~database();
 
 
       bool connect(
-         const char * pszHost, 
+         const char * pszHost,
          const char * pszUser,
-         const char * pszPassword, 
+         const char * pszPassword,
          const char * pszDatabase,
          int iPort = 0,
          const char * pszSocketName = NULL,
@@ -57,7 +57,7 @@ namespace mysql
          result * presult = query(pszSql);
 
          if(presult == NULL)
-            return ::var(::var::e_type::type_new);
+            return 0;
 
          MYSQL_ROW row;
 
