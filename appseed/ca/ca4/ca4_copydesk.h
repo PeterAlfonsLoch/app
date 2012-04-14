@@ -1,32 +1,43 @@
 #pragma once
 
 
-#include "ca/ca/ca_window.h"
-
-
-class CLASS_DECL_ca copydesk : 
-   public ::ca::window_sp
+namespace ca4
 {
-public:
 
-   copydesk();
-   ~copydesk();
 
-   bool initialize();
+   class CLASS_DECL_ca copydesk : 
+      virtual public ::radix::object
+   {
+   public:
 
-   void set_filea(stringa & stra);
+      
+      copydesk(::ca::application * papp);
+      virtual ~copydesk();
 
-   int get_file_count();
-   void get_filea(stringa & stra);
 
-   void set_plain_text(const char * psz);
-   string get_plain_text();
+      virtual bool initialize();
+      virtual bool finalize();
 
-   
-   bool desk_to_dib(::ca::dib * pdib);
-   // todo
-   //bool dib_to_desk(::ca::dib * pdib);
-   
-};
+      virtual void set_filea(stringa & stra);
+
+      virtual int get_file_count();
+      virtual void get_filea(stringa & stra);
+
+      virtual void set_plain_text(const char * psz);
+      virtual string get_plain_text();
+
+
+      virtual bool desk_to_dib(::ca::dib * pdib);
+      // todo
+      //bool dib_to_desk(::ca::dib * pdib);
+
+   };
+
+
+   typedef ::ca::smart_pointer < copydesk > copydesk_sp;
+
+
+} // namespace ca4
+
 
 

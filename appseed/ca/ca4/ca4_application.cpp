@@ -135,11 +135,20 @@ namespace ca4
 
       if(is_system())
       {
+         
+
+
+
          ::sockets::SSLInitializer ssl_init(m_psystem);
-         System.m_pcopydesk = new class copydesk();
-         System.m_pcopydesk->create(this);
-         if(!System.copydesk().initialize())
+
+
+
+
+         System.m_spcopydesk.create(this);
+
+         if(!System.m_spcopydesk->initialize())
             return false;
+
       }
 
       if(is_system()
@@ -174,11 +183,10 @@ namespace ca4
       {
          if(is_system())
          {
-            if(System.m_pcopydesk != NULL)
+            if(System.m_spcopydesk.is_set())
             {
-               (*System.m_pcopydesk)->DestroyWindow();
-               delete System.m_pcopydesk;
-               System.m_pcopydesk = NULL;
+               System.m_spcopydesk->finalize();
+               System.m_spcopydesk.destroy();               
             }
             System.m_splicense.detach()->release();
          }

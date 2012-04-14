@@ -246,7 +246,6 @@ public:
    string(const char * pszSrc,string_manager * pstringmanager );
    string(const wchar_t * pszSrc,string_manager * pstringmanager );
 
-   string(const var & var);
 
    string(const unsigned char* pszSrc, string_manager * pstringmanager);
    explicit string(char ch, strsize nLength = 1);

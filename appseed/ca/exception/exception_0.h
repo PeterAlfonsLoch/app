@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "template/template_definition.h"
+
+
 namespace radix
 {
 

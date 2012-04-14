@@ -23,7 +23,6 @@ namespace _template
 
    #if _SECURE_TEMPLATE
 
-   #define C_RUNTIME_ERROR_CHECK(expr) ::c_runtime_error_check(expr)
 
    inline void __cdecl memcpy_s(void *_S1, size_t _S1max, const void *_S2, size_t _N)
    {

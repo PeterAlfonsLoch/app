@@ -192,7 +192,7 @@ do {                                           \
 
 #if _SECURE_TEMPLATE
 
-
+#define C_RUNTIME_ERROR_CHECK(expr) ::c_runtime_error_check(expr)
 #ifndef C_RUNTIME_ERRORCHECK_SPRINTF
 #define C_RUNTIME_ERRORCHECK_SPRINTF(expr) \
 do { \
@@ -209,6 +209,9 @@ do { \
    } \
 } while (0)
 #endif // C_RUNTIME_ERRORCHECK_SPRINTF
+
+
+
 
 #else // !_SECURE_TEMPLATE
 

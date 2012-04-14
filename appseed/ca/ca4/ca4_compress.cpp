@@ -16,11 +16,11 @@
 #ifdef WINDOWS
 int my_open(const char * psz, int i)
 {
-   return _wopen(gen::international::utf8_to_unicode(psz), i);
+   return _wopen(::gen::international::utf8_to_unicode(psz), i);
 }
 FILE * my_fopen(const char * psz, const char * pszMode)
 {
-   return _wfopen(gen::international::utf8_to_unicode(psz), en::international::utf8_to_unicode(pszMode));
+   return _wfopen(::gen::international::utf8_to_unicode(psz), ::gen::international::utf8_to_unicode(pszMode));
 }
 #else
 

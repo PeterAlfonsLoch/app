@@ -241,7 +241,7 @@ namespace plane
       class ::ca4::http::system        m_http;
       class ::ca4::email               m_email;
       class ::ca4::file                m_file4;
-      class ::copydesk *               m_pcopydesk;
+      ::ca4::copydesk_sp               m_spcopydesk;
       ::ca4::port_forward_sp           m_spportforward;
       ::string_to_string_map           m_mapAppLibrary;
 
@@ -393,7 +393,7 @@ namespace plane
       class ::ca4::http::system        & http();
       class ::ca4::email               & email();
       class ::ca4::file                & file36();
-      class ::copydesk                 & copydesk();
+      class ::ca4::copydesk            & copydesk();
 
       ::fontopus::user_set             & userset();
 

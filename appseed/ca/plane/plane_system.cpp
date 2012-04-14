@@ -93,7 +93,6 @@ namespace plane
       m_plog                     = NULL;
       m_ptwf                     = NULL;
       m_pbergedgemap             = NULL;
-      m_pcopydesk                = NULL;
 
       
 
@@ -1226,9 +1225,9 @@ namespace plane
       return m_file4;
    }
 
-   class copydesk & system::copydesk()
+   ::ca4::copydesk & system::copydesk()
    {
-      return *m_pcopydesk;
+      return m_spcopydesk;
    }
 
    void system::http_config_proxy(const char * pszUrl, ::sockets::http_tunnel * ptunnel)

@@ -670,29 +670,6 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 //      }
    }
 
-   string::string(const var & var ) :
-      simple_string( string_trait::GetDefaultManager() )
-   {
-//      if( !CheckImplicitLoad( pszSrc ) )
-//      {
-         this->operator = (var);
-//      }
-   }
-
-
-   string::string(const id & id ) :
-      simple_string( string_trait::GetDefaultManager() )
-   {
-//      if( !CheckImplicitLoad( pszSrc ) )
-//      {
-         if(id.is_empty())
-            return;
-         if(id.is_number())
-            *this = gen::str::itoa(id.m_i);
-         else
-            *this = *id.m_pstr;
-//      }
-   }
 
    string::string( const string_interface & str ) :
       simple_string( string_trait::GetDefaultManager() )
@@ -712,6 +689,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
          free(psz);
       }
    }
+
 
    string::string(const wchar_t * pszSrc,string_manager * pstringmanager ) :
       simple_string( pstringmanager )
