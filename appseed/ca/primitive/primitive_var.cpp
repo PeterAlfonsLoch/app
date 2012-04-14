@@ -681,7 +681,7 @@ class var & var::operator = (const id & id)
 
 }
 
-var::operator id &()
+/*var::operator id &()
 {
    if(get_type() == type_pvar)
       return m_pvar->operator id &();
@@ -704,21 +704,7 @@ var::operator string & ()
       m_str = get_string();
    set_type(type_string);
    return m_str;
-}
-
-var::operator string () const
-{
-
-   if(get_type() == type_pvar)
-      return m_pvar->operator string &();
-   else if(get_type() == type_pstring)
-      return *m_pstr;
-   else if(get_type() != type_string)
-      return get_string();
-   else
-      return m_str;
-
-}
+}*/
 
 
 var::operator const char *() const
@@ -1516,11 +1502,61 @@ string var::to_r_string() const
 
 string var::get_string(const char * pszOnNull) const
 {
-   return string(get_ref_string(pszOnNull));
+
+   if(m_etype == type_pvar)
+   {
+      return m_pvar->get_string(pszOnNull);
+   }
+   else if(m_etype == type_pstring)
+   {
+      return *m_pstr;
+   }
+   else if(m_etype != type_string)
+   {
+      string str;
+
+      if(m_etype == var::type_null)
+      {
+         str = pszOnNull;
+      }
+      else if(m_etype == var::type_integer)
+      {
+         str.Format("%I32d", m_i);
+      }
+      else if(m_etype == var::type_int64)
+      {
+         str.Format("%I64d", m_i64);
+      }
+      else if(m_etype == var::type_ulong)
+      {
+         str.Format("%d", m_ul);
+      }
+      else if(m_etype == var::type_double)
+      {
+         str.Format("%f", m_d);
+      }
+      else if(m_etype == var::type_id)
+      {
+         str = m_id;
+      }
+      else if(m_etype == var::type_pid)
+      {
+         str = *m_pid;
+      }
+
+      return str;
+
+   }
+   else
+   {
+      return m_str;
+   }
+
 }
 
-const string & var::get_ref_string(const char * pszOnNull) const
+string & var::get_ref_string(const char * pszOnNull)
 {
+
    if(m_etype == type_pvar)
    {
       return m_pvar->get_ref_string(pszOnNull);
@@ -1529,41 +1565,73 @@ const string & var::get_ref_string(const char * pszOnNull) const
    {
       return *m_pstr;
    }
-   string & str = (string &) m_str;
-   if(m_etype == var::type_null)
+   else 
    {
-      str = pszOnNull;
-   }
-   else if(m_etype == var::type_integer)
-   {
-      str.Format("%I32d", m_i);
-   }
-   else if(m_etype == var::type_int64)
-   {
-      str.Format("%I64d", m_i64);
-   }
-   else if(m_etype == var::type_ulong)
-   {
-      str.Format("%d", m_ul);
-   }
-   else if(m_etype == var::type_double)
-   {
-      str.Format("%f", m_d);
-   }
-   else if(m_etype == var::type_id)
-   {
-      str = m_id;
-   }
-   else if(m_etype == var::type_pid)
-   {
-      str = *m_pid;
+      m_str = get_string(pszOnNull);
+      return m_str;
    }
 
-   return str;
 }
 
 
-const id & var::get_ref_id(const char * pszOnNull) const
+inline id var::get_id(const char * pszOnNull) const
+{
+   if(m_etype == type_pvar)
+   {
+      return m_pvar->get_id(pszOnNull);
+   }
+   else if(m_etype == type_pid)
+   {
+      return *m_pid;
+   }
+   else if(m_etype != type_id)
+   {
+      
+      ::id id;
+
+      if(m_etype == var::type_null)
+      {
+         id = pszOnNull;
+      }
+      else if(m_etype == var::type_integer)
+      {
+         id = m_i;
+      }
+      else if(m_etype == var::type_int64)
+      {
+         id = m_i64;
+      }
+      else if(m_etype == var::type_ulong)
+      {
+         id = (int64_t) m_ul;
+      }
+      else if(m_etype == var::type_double)
+      {
+         string str;
+         str.Format("%f", m_d);
+         id = str;
+      }
+      else if(m_etype == var::type_string)
+      {
+         id = m_str;
+      }
+      else if(m_etype == var::type_pstring)
+      {
+         id = *m_pstr;
+      }
+
+      return id;
+
+   }
+   else
+   {
+      return m_id;
+   }
+}
+
+
+
+id & var::get_ref_id(const char * pszOnNull)
 {
    if(m_etype == type_pvar)
    {
@@ -1573,36 +1641,15 @@ const id & var::get_ref_id(const char * pszOnNull) const
    {
       return *m_pid;
    }
-   class id & id = (class id &) m_id;
-   if(m_etype == var::type_null)
+   else
    {
-      id = pszOnNull;
+
+      m_id = get_id();
+
+      return m_id;
+
    }
-   else if(m_etype == var::type_integer)
-   {
-      id = m_i;
-   }
-   else if(m_etype == var::type_int64)
-   {
-      id = m_i64;
-   }
-   else if(m_etype == var::type_ulong)
-   {
-      string str;
-      str.Format("%d", m_ul);
-      id = str;
-   }
-   else if(m_etype == var::type_double)
-   {
-      string str;
-      str.Format("%f", m_d);
-      id = str;
-   }
-   else if(m_etype == var::type_string)
-   {
-      id = m_str;
-   }
-   return id;
+
 }
 
 int var::get_integer(int iDefault) const

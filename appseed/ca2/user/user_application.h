@@ -101,7 +101,7 @@ namespace ca2
       int get_open_document_count();
 
       // helpers for standard commdlg dialogs
-      BOOL do_prompt_file_name(string & fileName, UINT nIDSTitle,
+      BOOL do_prompt_file_name(var & varFile, UINT nIDSTitle,
             DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate);
       INT_PTR DoPrintDialog(CPrintDialog* pPD);
    // Implementation

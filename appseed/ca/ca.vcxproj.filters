@@ -3071,9 +3071,6 @@
     <ClInclude Include="radix\radix_plex_heap.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
-    <ClInclude Include="plane\plane_system_gen_var.h">
-      <Filter>Header Files\plane</Filter>
-    </ClInclude>
     <ClInclude Include="ca2\ca2_filehandler_handler.h">
       <Filter>Header Files\ca2</Filter>
     </ClInclude>
@@ -3118,6 +3115,9 @@
     </ClInclude>
     <ClInclude Include="windows\os_utils.h">
       <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane_system_primitive_var.h">
+      <Filter>Header Files\plane</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

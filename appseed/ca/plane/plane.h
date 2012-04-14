@@ -55,7 +55,7 @@ class form_view;
 
 
 #include "plane_system_gen_str.h"
-#include "plane_system_gen_var.h"
+#include "plane_system_primitive_var.h"
 
 
 #include "plane_system_template_trace.h"

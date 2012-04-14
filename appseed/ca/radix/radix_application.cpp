@@ -1233,12 +1233,12 @@ namespace radix
    }
 
    // prompt for file name - used for open and save as
-   BOOL application::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
+   BOOL application::do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
          // if ptemplate==NULL => all document templates
    {
       if(m_pfilemanager != NULL)
       {
-         return m_pfilemanager->do_prompt_file_name(fileName, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
+         return m_pfilemanager->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
       }
       ENSURE(m_pdocmanager != NULL);
 /*      return m_pdocmanager->do_prompt_file_name(fileName, nIDSTitle, lFlags,
@@ -3090,9 +3090,9 @@ file_manager_interface::~file_manager_interface()
 {
 }
 
-BOOL file_manager_interface::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
+BOOL file_manager_interface::do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
 {
-   UNREFERENCED_PARAMETER(fileName);
+   UNREFERENCED_PARAMETER(varFile);
    UNREFERENCED_PARAMETER(nIDSTitle);
    UNREFERENCED_PARAMETER(lFlags);
    UNREFERENCED_PARAMETER(bOpenFileDialog);

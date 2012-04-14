@@ -60,13 +60,6 @@ namespace ca
          return strlen(psz);
       }
 
-      string system::path(const string & strFolder, const string & strRelative, const char * lpcsz2)
-      {
-
-         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), lpcsz2, safe_strlen(lpcsz2), ::ca2::is_url(strFolder));
-
-      }
-
       string system::path(const string & strFolder, const string & strRelative)
       {
 
@@ -74,71 +67,6 @@ namespace ca
 
       }
 
-      string system::path(const string & strFolder, const char * lpcszRelative, const string & str2)
-      {
-
-         return path(strFolder, strFolder.get_length(), lpcszRelative, safe_strlen(lpcszRelative), str2, str2.get_length(), ::ca2::is_url(strFolder));
-
-      }
-
-      string system::path(const string & strFolder, const char * lpcszRelative, const char * lpcsz2)
-      {
-
-         return path(strFolder, strFolder.get_length(), lpcszRelative, safe_strlen(lpcszRelative), lpcsz2, safe_strlen(lpcsz2), ::ca2::is_url(strFolder));
-
-      }
-
-      string system::path(const string & strFolder, const char * lpcszRelative)
-      {
-
-         return path(strFolder, strFolder.get_length(), lpcszRelative, safe_strlen(lpcszRelative), NULL, 0, ::ca2::is_url(strFolder));
-
-      }
-
-      
-      string system::path(const char  * lpcszFolder, const string & strRelative, const string & str2)
-      {
-         
-         return path(lpcszFolder, safe_strlen(lpcszFolder), strRelative, strRelative.get_length(), str2, str2.get_length(), ::ca2::is_url(lpcszFolder));
-
-      }
-
-      string system::path(const char * lpcszFolder, const string & strRelative, const char * lpcsz2)
-      {
-
-         return path(lpcszFolder, safe_strlen(lpcszFolder), strRelative, strRelative.get_length(), lpcsz2, safe_strlen(lpcsz2), ::ca2::is_url(lpcszFolder));
-
-      }
-
-      string system::path(const char * lpcszFolder, const string & strRelative)
-      {
-
-         return path(lpcszFolder, safe_strlen(lpcszFolder), strRelative, strRelative.get_length(), NULL, 0, ::ca2::is_url(lpcszFolder));
-
-      }
-
-      string system::path(const char * lpcszFolder, const char * lpcszRelative, const string & str2)
-      {
-
-         return path(lpcszFolder, safe_strlen(lpcszFolder), lpcszRelative, safe_strlen(lpcszRelative), str2, str2.get_length(), ::ca2::is_url(lpcszFolder));
-
-      }
-
-
-      string system::path(const char * lpcszFolder, const char * lpcszRelative)
-      {
-
-         return path(lpcszFolder, safe_strlen(lpcszFolder), lpcszRelative, safe_strlen(lpcszRelative), NULL, 0, ::ca2::is_url(lpcszFolder));
-
-      }
-
-
-      string system::path(const char * lpcszFolder, const char * lpcszRelative, const char * psz2)
-      {
-         
-         return path(lpcszFolder, safe_strlen(lpcszFolder), lpcszRelative, safe_strlen(lpcszRelative), psz2, safe_strlen(psz2), ::ca2::is_url(lpcszFolder));
-
-      }
 
       string system::path(const string & strFolder, const string & strRelative, const string & str2)
       {
@@ -147,83 +75,10 @@ namespace ca
 
       }
 
-      string system::path(const string & strFolder, const string & strRelative, const char * lpcsz2, bool bUrl)
-      {
-
-         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), lpcsz2, safe_strlen(lpcsz2), bUrl);
-
-      }
-
       string system::path(const string & strFolder, const string & strRelative, bool bUrl)
       {
 
          return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), NULL, 0, bUrl);
-
-      }
-
-      string system::path(const string & strFolder, const char * lpcszRelative, const string & str2, bool bUrl)
-      {
-
-         return path(strFolder, strFolder.get_length(), lpcszRelative, safe_strlen(lpcszRelative), str2, str2.get_length(), bUrl);
-
-      }
-
-      string system::path(const string & strFolder, const char * lpcszRelative, const char * lpcsz2, bool bUrl)
-      {
-
-         return path(strFolder, strFolder.get_length(), lpcszRelative, safe_strlen(lpcszRelative), lpcsz2, safe_strlen(lpcsz2), bUrl);
-
-      }
-
-      string system::path(const string & strFolder, const char * lpcszRelative, bool bUrl)
-      {
-
-         return path(strFolder, strFolder.get_length(), lpcszRelative, safe_strlen(lpcszRelative), NULL, 0, bUrl);
-
-      }
-
-      
-      string system::path(const char  * lpcszFolder, const string & strRelative, const string & str2, bool bUrl)
-      {
-         
-         return path(lpcszFolder, safe_strlen(lpcszFolder), strRelative, strRelative.get_length(), str2, str2.get_length(), bUrl);
-
-      }
-
-      string system::path(const char * lpcszFolder, const string & strRelative, const char * lpcsz2, bool bUrl)
-      {
-
-         return path(lpcszFolder, safe_strlen(lpcszFolder), strRelative, strRelative.get_length(), lpcsz2, safe_strlen(lpcsz2), bUrl);
-
-      }
-
-      string system::path(const char * lpcszFolder, const string & strRelative, bool bUrl)
-      {
-
-         return path(lpcszFolder, safe_strlen(lpcszFolder), strRelative, strRelative.get_length(), NULL, 0, bUrl);
-
-      }
-
-      string system::path(const char * lpcszFolder, const char * lpcszRelative, const string & str2, bool bUrl)
-      {
-
-         return path(lpcszFolder, safe_strlen(lpcszFolder), lpcszRelative, safe_strlen(lpcszRelative), str2, str2.get_length(), bUrl);
-
-      }
-
-
-      string system::path(const char * lpcszFolder, const char * lpcszRelative, bool bUrl)
-      {
-
-         return path(lpcszFolder, safe_strlen(lpcszFolder), lpcszRelative, safe_strlen(lpcszRelative), NULL, 0, bUrl);
-
-      }
-
-
-      string system::path(const char * lpcszFolder, const char * lpcszRelative, const char * psz2, bool bUrl)
-      {
-         
-         return path(lpcszFolder, safe_strlen(lpcszFolder), lpcszRelative, safe_strlen(lpcszRelative), psz2, safe_strlen(psz2), bUrl);
 
       }
 

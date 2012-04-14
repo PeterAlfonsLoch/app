@@ -393,7 +393,7 @@ namespace radix
       int get_open_document_count();
 
       // helpers for standard commdlg dialogs
-      BOOL do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
+      BOOL do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
 
       void EnableModeless(BOOL bEnable); // to disable OLE in-place dialogs
 

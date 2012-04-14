@@ -247,6 +247,10 @@ public:
    string(const wchar_t * pszSrc,string_manager * pstringmanager );
 
 
+   string(const id & id);
+   string(const var & var);
+
+
    string(const unsigned char* pszSrc, string_manager * pstringmanager);
    explicit string(char ch, strsize nLength = 1);
    string(strsize nLength, char ch);

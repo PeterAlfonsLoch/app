@@ -324,7 +324,7 @@ namespace user
       // if 'bReplace' is TRUE will change file name if successful (SaveAs)
       // if 'bReplace' is FALSE will not change path name (SaveCopyAs)
    {
-      string newName = varFile;
+      var newName = varFile;
       if (newName.is_empty() || is_new_document())
       {
          document_template * ptemplate = get_document_template();
@@ -335,9 +335,9 @@ namespace user
          {
             newName = m_strTitle;
             // check for dubious filename
-            strsize iBad = newName.FindOneOf(":/\\");
+            strsize iBad = newName.get_string().FindOneOf(":/\\");
             if (iBad != -1)
-               newName.ReleaseBuffer(iBad);
+               newName = newName.get_string().Left(iBad);
 
             // append the default suffix if there is one
             string strExt;

@@ -10,6 +10,9 @@ namespace gen
 {
 
 
+   class property;
+
+
    namespace str
    {
 
@@ -64,6 +67,12 @@ namespace gen
       bool CLASS_DECL_ca begins_eat(string & str, const char * lpcszPrefix);
       bool CLASS_DECL_ca begins_eat_ci(string & str, const char * lpcszPrefix); // case insensitive
       bool CLASS_DECL_ca begins_eat_ci(string & str, const char * lpcszPrefix, const char * pszSeparator); // case insensitive
+      bool CLASS_DECL_ca begins_eat(var & var, const char * lpcszPrefix);
+      bool CLASS_DECL_ca begins_eat_ci(var & var, const char * lpcszPrefix); // case insensitive
+      bool CLASS_DECL_ca begins_eat_ci(var & var, const char * lpcszPrefix, const char * pszSeparator); // case insensitive
+      bool CLASS_DECL_ca begins_eat(gen::property & property, const char * lpcszPrefix);
+      bool CLASS_DECL_ca begins_eat_ci(gen::property & property, const char * lpcszPrefix); // case insensitive
+      bool CLASS_DECL_ca begins_eat_ci(gen::property & property, const char * lpcszPrefix, const char * pszSeparator); // case insensitive
       bool CLASS_DECL_ca while_begins_with_chars_eat(string & str, const char * lpcszChars);
       bool CLASS_DECL_ca while_begins_with_chars_eat_ci(string & str, const char * lpcszChars); // case insensitive
       bool CLASS_DECL_ca ends(const char * lpcsz, const char * lpcszSuffix);

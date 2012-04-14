@@ -28,6 +28,7 @@ public:
    id(uint64_t ui);
    id(const string & str);
    id(const string_interface & str);
+   id(const var & var);
 
    inline id()
    {

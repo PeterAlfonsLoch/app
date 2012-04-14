@@ -661,13 +661,31 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 //      }
    }
 
+
    string::string(const vsstring & str ) :
       simple_string( string_trait::GetDefaultManager() )
    {
-//      if( !CheckImplicitLoad( pszSrc ) )
-//      {
-         *this = str.m_psz;
-//      }
+
+      *this = str.m_psz;
+
+   }
+
+
+   string::string(const id & id ) :
+      simple_string( string_trait::GetDefaultManager() )
+   {
+
+      *this = *id.m_pstr;
+
+   }
+
+
+   string::string(const var & var) :
+      simple_string( string_trait::GetDefaultManager() )
+   {
+
+      *this = var.get_string();
+
    }
 
 

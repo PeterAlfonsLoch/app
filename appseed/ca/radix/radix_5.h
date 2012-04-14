@@ -327,7 +327,7 @@ class CLASS_DECL_ca file_manager_interface :
 public:
    file_manager_interface();
    virtual ~file_manager_interface();
-   virtual BOOL do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
+   virtual BOOL do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
 
    bool initialize(::ca::application * papp);
 

@@ -138,3 +138,12 @@ inline id & id::operator = (const var & var)
 
 
 
+inline id::id(const var & var)
+{
+
+   m_i = 0;
+   m_chType = IDTYPE_TYPE_NULL;
+
+   *this = var.get_id();
+
+}

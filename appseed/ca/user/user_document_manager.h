@@ -52,7 +52,7 @@ public:
    virtual void close_all_documents(BOOL bEndSession); // close documents before exiting
    virtual count get_open_document_count();
 
-   virtual BOOL do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::document * pdocument);
+   virtual BOOL do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::document * pdocument);
 
    virtual BOOL OnDDECommand(LPTSTR lpszCommand);
    virtual void _001OnFileNew();

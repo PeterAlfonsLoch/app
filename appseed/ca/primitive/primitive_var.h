@@ -159,10 +159,10 @@ public:
    id                               m_id;
 
    string                           to_r_string() const;
-   const string &                   get_ref_string(const char * pszOnNull = NULL)   const;
-   string                           get_string(const char * pszOnNull = NULL)   const;
-   const id &                       get_ref_id(const char * pszOnNull = NULL)   const;
+   string                           get_string(const char * pszOnNull = NULL) const;
+   string &                         get_ref_string(const char * pszOnNull = NULL);
    id                               get_id(const char * pszOnNull = NULL)   const;
+   id &                             get_ref_id(const char * pszOnNull = NULL);
    int                              get_integer(int iDefault = 0)  const;
    unsigned long                    get_ulong()    const;
    double                           get_double()   const;
@@ -222,11 +222,10 @@ public:
    operator long();
    operator int();
    operator __int64();
-   operator string & ();
-   operator string () const;
-   operator id &();
+   //operator string & ();
+   //operator id &();
    operator const char * () const;
-   operator ::CFileTime & ();
+   //operator ::CFileTime & ();
    operator ::CFileTime () const;
    operator class ::time() const;
    operator bool()
@@ -535,17 +534,6 @@ namespace gen
 
 
 } // namespace gen
-
-
-
-
-inline id var::get_id(const char * pszOnNull) const
-{
-   if(m_etype == type_id)
-      return m_id;
-   else
-      return get_ref_id(pszOnNull);
-}
 
 
 inline string CLASS_DECL_ca operator+ (const char * psz, const var & var)

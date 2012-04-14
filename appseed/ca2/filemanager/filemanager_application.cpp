@@ -161,7 +161,7 @@ namespace filemanager
 
 
 
-   BOOL application::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
+   BOOL application::do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
    {
 
       ::userex::pane_tab_view * ppanetabview = NULL;
@@ -174,7 +174,7 @@ namespace filemanager
          ppanetabview->get_filemanager_document()->FileManagerSaveAs(pdocument);
          if(ppanetabview->GetParentFrame()->RunModalLoop() != "yes")
             return FALSE;
-         fileName = ppanetabview->get_filemanager_document()->get_filemanager_data()->m_pmanager->m_strTopic;
+         varFile = ppanetabview->get_filemanager_document()->get_filemanager_data()->m_pmanager->m_strTopic;
          return TRUE;
       }
 
@@ -196,7 +196,7 @@ namespace filemanager
       pview->set_cur_tab_by_id(1);
       pview->GetParentFrame()->RedrawWindow();
       pview->GetParentFrame()->RunModalLoop();
-      fileName = pdoc->m_strTopic;
+      varFile = pdoc->m_strTopic;
       pview->GetParentFrame()->DestroyWindow();
       return TRUE;
 

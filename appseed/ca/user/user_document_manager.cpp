@@ -458,9 +458,9 @@ void document_manager::close_all_documents(BOOL bEndSession)
    }
 }
 
-BOOL document_manager::do_prompt_file_name(string & fileName, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::document * pdocument)
+BOOL document_manager::do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::document * pdocument)
 {
-   return System.do_prompt_file_name(fileName, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
+   return System.do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
 }
 
 count document_manager::get_document_count()
@@ -658,12 +658,12 @@ void document_manager::_001OnFileNew()
 void document_manager::on_file_open()
 {
    // prompt the ::fontopus::user (with all document templates)
-   string newName;
-   if (!do_prompt_file_name(newName, 0 /*AFX_IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL, NULL))
+   
+   ::ca::create_context_sp createcontext(get_app());
+
+   if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*AFX_IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL, NULL))
       return; // open cancelled
 
-   ::ca::create_context_sp createcontext(get_app());
-   createcontext->m_spCommandLine->m_varFile = newName;
    System.open_document_file(createcontext);
       // if returns NULL, the ::fontopus::user has already been alerted
 }

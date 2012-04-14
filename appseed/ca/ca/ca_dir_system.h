@@ -82,34 +82,12 @@ namespace ca
          virtual class path & path();
       
 
-         virtual string path(const char * lpcszFolder, const char * lpcszRelative, bool bUrl);
-         virtual string path(const char * lpcszFolder, const char * lpcszRelative, const char * lpcsz2, bool bUrl);
-         virtual string path(const char * lpcszFolder, const char * lpcszRelative, const string & str2, bool bUrl);
-         virtual string path(const char * lpcszFolder, const string & strRelative, bool bUrl);
-         virtual string path(const char * lpcszFolder, const string & strRelative, const char * lpcsz2, bool bUrl);
-         virtual string path(const char * lpcszFolder, const string & strRelative, const string & str2, bool bUrl);
-
-         virtual string path(const string & strFolder, const char * lpcszRelative, bool bUrl);
-         virtual string path(const string & strFolder, const char * lpcszRelative, const char * lpcsz2, bool bUrl);
-         virtual string path(const string & strFolder, const char * lpcszRelative, const string & str2, bool bUrl);
          virtual string path(const string & strFolder, const string & strRelative, bool bUrl);
-         virtual string path(const string & strFolder, const string & strRelative, const char * lpcsz2, bool bUrl);
          virtual string path(const string & strFolder, const string & strRelative, const string & str2, bool bUrl);
 
          virtual string path(const char * pszFolder, int iLenFolder, const char * pszRelative, int iLenRelative, const char * psz2, int iLen2, bool bUrl);
 
-         virtual string path(const char * lpcszFolder, const char * lpcszRelative);
-         virtual string path(const char * lpcszFolder, const char * lpcszRelative, const char * lpcsz2);
-         virtual string path(const char * lpcszFolder, const char * lpcszRelative, const string & str2);
-         virtual string path(const char * lpcszFolder, const string & strRelative);
-         virtual string path(const char * lpcszFolder, const string & strRelative, const char * lpcsz2);
-         virtual string path(const char * lpcszFolder, const string & strRelative, const string & str2);
-
-         virtual string path(const string & strFolder, const char * lpcszRelative);
-         virtual string path(const string & strFolder, const char * lpcszRelative, const char * lpcsz2);
-         virtual string path(const string & strFolder, const char * lpcszRelative, const string & str2);
          virtual string path(const string & strFolder, const string & strRelative);
-         virtual string path(const string & strFolder, const string & strRelative, const char * lpcsz2);
          virtual string path(const string & strFolder, const string & strRelative, const string & str2);
 
          virtual string path(const char * pszFolder, int iLenFolder, const char * pszRelative, int iLenRelative, const char * psz2, int iLen2);
