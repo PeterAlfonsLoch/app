@@ -4105,9 +4105,6 @@
     <ClCompile Include="ca4\ca4_email.cpp">
       <Filter>Source Files\ca4</Filter>
     </ClCompile>
-    <ClCompile Include="ca4\ca4_enum.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
     <ClCompile Include="ca4\ca4_file.cpp">
       <Filter>Source Files\ca4</Filter>
     </ClCompile>
@@ -5232,6 +5229,9 @@
     </ClCompile>
     <ClCompile Include="windows\os_utils.cpp">
       <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="ca4\ca4_ip_enum.cpp">
+      <Filter>Source Files\ca4</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
