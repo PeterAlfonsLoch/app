@@ -13,8 +13,6 @@ extern "C"
 #include "ca4_nessie.h"
 
 
-#include <wincrypt.h>
-
 
 
 void NESSIEinit(struct NESSIEstruct * const structpointer);
@@ -29,7 +27,8 @@ void NESSIEfinalize(struct NESSIEstruct * const structpointer, unsigned char * c
 namespace ca4
 {
 
-   crypt::crypt()
+   crypt::crypt(::ca::application * papp) :
+      ca(papp)
    {
    }
 
@@ -37,58 +36,34 @@ namespace ca4
    {
    }
 
-   bool crypt::decrypt(primitive::memory & storageDecrypt, primitive::memory & storageEncrypt, const char * pszSalt)
+
+   bool crypt::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
    {
-      DATA_BLOB DataIn;
-      DATA_BLOB DataOut;
 
-      if(pszSalt == NULL)
-         pszSalt = "";
+      UNREFERENCED_PARAMETER(storageEncrypt);
+      UNREFERENCED_PARAMETER(storageDecrypt);
+      UNREFERENCED_PARAMETER(pszSalt);
 
-      DATA_BLOB DataSalt;
-      primitive::memory memorySalt;
-      memorySalt.from_string(pszSalt);
-      DataSalt.pbData = memorySalt.get_data();
-      DataSalt.cbData = (DWORD) memorySalt.get_size();
+      throw interface_only_exception();
 
-      //--------------------------------------------------------------------
-      // Initialize the DataIn structure.
+      return false;
 
-      DataIn.pbData = storageEncrypt.get_data();
-      DataIn.cbData = (DWORD) storageEncrypt.get_size();
-
-      wchar_t * lpwsz = NULL;
-
-      //--------------------------------------------------------------------
-      //  Begin protect phase. Note that the encryption key is created
-      //  by the function and is not passed.
-
-      if(CryptUnprotectData(
-         &DataIn,
-         NULL, // A description string
-                                            // to be included with the
-                                            // encrypted data.
-         &DataSalt,                               // Optional entropy not used.
-         NULL,                               // Reserved.
-         NULL,                               // Pass NULL for the
-                                            // prompt structure.
-         0,
-         &DataOut))
-      {
-         TRACE("crypt::decrypt The encryption phase worked. \n");
-         storageDecrypt.allocate(DataOut.cbData);
-         memcpy(storageDecrypt.get_data(), DataOut.pbData, DataOut.cbData);
-         LocalFree(lpwsz);
-         LocalFree(DataOut.pbData);
-         return true;
-      }
-      else
-      {
-         TRACELASTERROR();
-         TRACE("crypt::decrypt Decryption error! (1)");
-         return false;
-      }
    }
+
+
+   bool crypt::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
+   {
+
+      UNREFERENCED_PARAMETER(storageDecrypt);
+      UNREFERENCED_PARAMETER(storageEncrypt);
+      UNREFERENCED_PARAMETER(pszSalt);
+      
+      throw interface_only_exception();
+
+      return false;
+
+   }
+
 
    int crypt::key(primitive::memory & storage)
    {
@@ -100,60 +75,8 @@ namespace ca4
       return (int) storage.get_size();
    }
 
-   bool crypt::encrypt(primitive::memory & storageEncrypt, primitive::memory & storageDecrypt, const char * pszSalt)
-   {
-      DATA_BLOB DataIn;
-      DATA_BLOB DataOut;
 
-      if(pszSalt == NULL)
-         pszSalt = "";
-
-      DATA_BLOB DataSalt;
-      primitive::memory memorySalt;
-      memorySalt.from_string(pszSalt);
-      DataSalt.pbData = memorySalt.get_data();
-      DataSalt.cbData = (DWORD) memorySalt.get_size();
-
-
-      //--------------------------------------------------------------------
-      // Initialize the DataIn structure.
-
-      DataIn.pbData = (BYTE *) storageDecrypt.get_data();
-      DataIn.cbData = (DWORD) storageDecrypt.get_size();
-
-//      wchar_t * lpwsz = NULL;
-
-      //--------------------------------------------------------------------
-      //  Begin protect phase. Note that the encryption key is created
-      //  by the function and is not passed.
-
-      if(CryptProtectData(
-           &DataIn,
-           NULL, // A description string
-                                               // to be included with the
-                                               // encrypted data.
-           &DataSalt,                               // Optional entropy not used.
-           NULL,                               // Reserved.
-           NULL,                               // Pass NULL for the
-                                               // prompt structure.
-           0,
-           &DataOut))
-      {
-         TRACE("crypt::encrypt The encryption phase worked. \n");
-         storageEncrypt.allocate(DataOut.cbData);
-         memcpy(storageEncrypt.get_data(), DataOut.pbData, DataOut.cbData);
-         LocalFree(DataOut.pbData);
-         return true;
-      }
-      else
-      {
-         TRACE("crypt::encrypt Encryption error! (1)");
-          return false;
-      }
-
-   }
-
-   int crypt::encrypt(primitive::memory & storageEncrypt, primitive::memory & storageDecrypt, primitive::memory & key)
+   int crypt::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, primitive::memory & key)
    {
       int plainlen = (int) storageDecrypt.get_size();
       int cipherlen, tmplen;
@@ -178,7 +101,7 @@ namespace ca4
    }
 
 
-   int crypt::decrypt(primitive::memory & storageDecrypt, primitive::memory & storageEncrypt, primitive::memory & key)
+   int crypt::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, primitive::memory & key)
    {
       int cipherlen = (int) storageEncrypt.get_size();
       int plainlen, tmplen;
@@ -326,7 +249,7 @@ namespace ca4
       return encrypt(storageEncrypt, memoryDecrypt, pszSalt);
    }
 
-   bool crypt::decrypt(string & strDecrypt, primitive::memory & storageEncrypt, const char * pszSalt)
+   bool crypt::decrypt(string & strDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
    {
       primitive::memory memoryDecrypt;
       if(!decrypt(memoryDecrypt, storageEncrypt, pszSalt))

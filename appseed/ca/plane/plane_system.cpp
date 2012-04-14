@@ -81,7 +81,6 @@ namespace plane
       m_pdatetime = new class ::ca2::datetime(this);
       m_email.set_app(this);
       m_http.set_app(this);
-      m_crypt.set_app(this);
       m_compress.set_app(this);
       m_file.set_app(this);
       m_file4.set_app(this);
@@ -227,6 +226,10 @@ namespace plane
       if(!m_spdir->initialize())
          return false;
 
+      m_spcrypt.create(this);
+
+      if(!m_spcrypt.is_set())
+         return false;
 
       m_puser                 = new ::fontopus::user(this);
       m_puser->m_strLogin     = "system";
@@ -871,6 +874,18 @@ namespace plane
 
    bool system::finalize()
    {
+
+      try
+      {
+         if(m_spcrypt.is_set())
+         {
+            m_spcrypt.destroy();
+         }
+      }
+      catch(...)
+      {
+      }
+
       ::planebase::application::finalize();
 
 
@@ -1207,7 +1222,7 @@ namespace plane
 
    class ::ca4::crypt & system::crypt()
    {
-      return m_crypt;
+      return m_spcrypt;
    }
 
    class ::ca4::email & system::email()

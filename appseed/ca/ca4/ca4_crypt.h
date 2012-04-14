@@ -1,27 +1,32 @@
 #pragma once
 
+
 namespace ca4
 {
+
 
    class CLASS_DECL_ca crypt :
       virtual public ::radix::object
    {
    public:
 
+
       // salt here may be dangerous for the universe
 
-      crypt();
+
+      crypt(::ca::application * papp);
       virtual ~crypt();
 
-      bool encrypt(primitive::memory & storageEncrypt, primitive::memory & storageDecrypt, const char * pszSalt);
-      bool decrypt(primitive::memory & storageDecrypt, primitive::memory & storageEncrypt, const char * pszSalt);
-      bool encrypt(primitive::memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt);
-      bool decrypt(string & strDecrypt, primitive::memory & storageEncrypt, const char * pszSalt);
+
+      virtual bool encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt);
+      virtual bool decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt);
+      virtual bool encrypt(primitive::memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt);
+      virtual bool decrypt(string & strDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt);
 
 
       int key(primitive::memory & storage);
-      int encrypt(primitive::memory & storageEncrypt, primitive::memory & storageDecrypt, primitive::memory & storageKey);
-      int decrypt(primitive::memory & storageDecrypt, primitive::memory & storageEncrypt, primitive::memory & storageKey);
+      int encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, primitive::memory & storageKey);
+      int decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, primitive::memory & storageKey);
 
       string strkey();
       int encrypt(string & str, const char * psz, const char * pszKey);
@@ -60,4 +65,10 @@ namespace ca4
    };
 
 
-} //   namespace ca5 
+   typedef ::ca::smart_pointer < crypt > crypt_sp;
+
+
+} //   namespace ca4
+
+
+

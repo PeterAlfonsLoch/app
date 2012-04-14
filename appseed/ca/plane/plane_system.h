@@ -237,7 +237,7 @@ namespace plane
 
       class ::ca4::compress            m_compress;
       class ::ca4::patch               m_patch;
-      class ::ca4::crypt               m_crypt;
+      ::ca4::crypt_sp                  m_spcrypt;
       class ::ca4::http::system        m_http;
       class ::ca4::email               m_email;
       class ::ca4::file                m_file4;
