@@ -133,6 +133,12 @@ namespace gen
       CLASS_DECL_ca  bool           atoi(const char * psz, int & i, int iBase);
       CLASS_DECL_ca  bool           atoi(const char * psz, int64_t & i, int iBase);
 
+      CLASS_DECL_ca  bool           natoi(const char * psz, int & i, int iLen);
+      CLASS_DECL_ca  bool           natoi(const char * psz, int64_t & i, int iLen);
+      CLASS_DECL_ca  bool           natoi(const char * psz, int & i, int iBase, int iLen);
+      CLASS_DECL_ca  bool           natoi(const char * psz, int64_t & i, int iBase, int iLen);
+
+
       inline CLASS_DECL_ca int      xatoi(const char * psz, int iDefault){ atoi(psz, iDefault); return iDefault; }
       inline CLASS_DECL_ca int64_t  xatoi64(const char * psz, int64_t & iDefault) { atoi(psz, iDefault); return iDefault; }
       inline CLASS_DECL_ca int      xatoi(const char * psz, int iDefault, int iBase){ atoi(psz, iDefault, iBase); return iDefault; }

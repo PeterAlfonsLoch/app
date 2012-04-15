@@ -1212,6 +1212,84 @@ namespace gen
 
    }
 
+
+   bool str::natoi(const char * psz, int64_t & i, int iLen)
+   {
+
+      const char * pszEnd;
+
+      int64_t iConversion = ::natoi64_dup(psz, &pszEnd, iLen);
+
+      if(pszEnd == psz)
+         return false;
+
+      i = iConversion;
+
+      return true;
+
+   }
+
+   bool str::natoi(const char * psz, int & i, int iLen)
+   {
+
+      const char * pszEnd;
+
+      int64_t iConversion = ::natoi_dup(psz, &pszEnd, iLen);
+
+      if(pszEnd == psz)
+         return false;
+
+      if(iConversion > numeric_info::get_maximum_value < int > ())
+         return false;
+
+      i = (int) iConversion;
+
+      return true;
+
+   }
+
+
+   bool str::natoi(const char * psz, int64_t & i, int iBase, int iLen)
+   {
+
+      if(iBase < 0 || iBase == 1 || iBase > 36)
+         return false;
+
+      char * pszEnd;
+
+      int64_t iConversion = ::natoi_dup(psz, &pszEnd, iBase, iLen);
+
+      if(pszEnd == psz)
+         return false;
+
+      i = iConversion;
+
+      return true;
+
+   }
+
+   bool str::natoi(const char * psz, int & i, int iBase, int iLen)
+   {
+
+      if(iBase < 0 || iBase == 1 || iBase > 36)
+         return false;
+
+      char * pszEnd;
+
+      int64_t iConversion = ::natoi_dup(psz, &pszEnd, iBase, iLen);
+
+      if(pszEnd == psz)
+         return false;
+
+      if(iConversion > numeric_info::get_maximum_value < int > ())
+         return false;
+
+      i = (int) iConversion;
+
+      return true;
+
+   }
+
    string & str::itoa(string & str, int i)
    {
       str.Format("%d", i);

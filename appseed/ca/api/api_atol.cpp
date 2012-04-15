@@ -144,3 +144,118 @@ int64_t atoi64_dup(const char * psz, const char ** pszEnd, int iBase)
 }
 
 */
+
+
+int64_t natoi64_dup(const char * psz, int iLen)
+{
+   int64_t iResult = 0;
+   while(iLen > 0)
+   {
+      char ch = *psz;
+      if(ch == '\0' || ch < '0' || ch > '9')
+         break;
+#ifdef WINDOWS
+      iResult = iResult * 10i64 + (ch - '0');
+#else
+      iResult = iResult * 10+ (ch - '0');
+#endif
+      psz++;
+      iLen--;
+   }
+   return iResult;
+}
+
+int64_t natoi64_dup(const char *psz, const char ** pszEnd, int iLen)
+{
+   int64_t iResult = 0;
+   while(iLen > 0)
+   {
+      char ch = *psz;
+      if(ch == '\0' || ch < '0' || ch > '9')
+         break;
+#ifdef WINDOWS
+      iResult = iResult * 10i64 + (ch - '0');
+#else
+      iResult = iResult * 10+ (ch - '0');
+#endif
+      psz++;
+      iLen--;
+   }
+   if(pszEnd != NULL)
+   {
+      *pszEnd = psz;
+   }
+   return iResult;
+}
+
+int64_t _digit_natoi64_dup(const char * psz, const char ** pszEnd, int iBase, int iLen)
+{
+   int64_t iResult = 0;
+   char chMax = '0' + iBase;
+   while(iLen > 0)
+   {
+      char ch = *psz;
+      if(ch == '\0' || ch < '0' || ch > chMax)
+         break;
+      iResult = iResult * iBase + (ch - '0');
+      psz++;
+      iLen--;
+   }
+   if(pszEnd != NULL)
+   {
+      *pszEnd = psz;
+   }
+   return iResult;
+}
+
+int64_t _natoi64_dup(const char * psz, const char ** pszEnd, int iBase, int iLen)
+{
+   int64_t iResult = 0;
+   char chMax = 'a' + iBase - 10;
+   while(iLen > 0)
+   {
+
+      char ch = to_lower(*psz);
+
+      if(ch == '\0')
+      {
+         break;
+      }
+      else if(ch >= '0' && ch <= '9')
+      {
+         iResult = iResult * iBase + (ch - '0');
+      }
+      else if(ch >= 'a' && ch <= chMax)
+      {
+         iResult = iResult * iBase + (ch - 'a' + 10);
+      }
+      else
+      {
+         break;
+      }
+
+      psz++;
+      iLen--;
+
+   }
+   if(pszEnd != NULL)
+   {
+      *pszEnd = psz;
+   }
+   return iResult;
+}
+
+
+int64_t natoi64_dup(const char * psz, const char ** pszEnd, int iBase, int iLen)
+{
+   if(iBase <= 0)
+      return 0;
+   else if(iBase == 10)
+      return atoi64_dup(psz, pszEnd, iLen);
+   else if(iBase < 10)
+      return _digit_natoi64_dup(psz, pszEnd, iBase, iLen);
+   else if(iBase < 36)
+      return _natoi64_dup(psz, pszEnd, iBase, iLen);
+   else
+      return 0;
+}
