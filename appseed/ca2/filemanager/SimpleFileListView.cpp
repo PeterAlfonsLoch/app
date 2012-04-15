@@ -812,21 +812,10 @@ namespace filemanager
             string strPath = itema[0].m_strPath;
 
             string strExt = System.file().extension(strPath);
-            strExt = "." + strExt;
-
-            string strOpenWithKey;
-            strOpenWithKey = strExt + "\\OpenWithList";
-
-
-
-
-            win::registry::Key key;
-
-            key.OpenKey(HKEY_CLASSES_ROOT, strOpenWithKey, false);
-
 
             stringa stra;
-            key.EnumKey(stra);
+            System.os().file_extension_get_open_with_list_keys(stra, strExt);
+
             m_straOpenWith = stra;
             count iCount = stra.get_size();
 

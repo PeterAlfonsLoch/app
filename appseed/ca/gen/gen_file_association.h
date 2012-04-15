@@ -1,8 +1,10 @@
 #pragma once
 
+
 namespace gen
 {
 
+   /*
    class CLASS_DECL_ca file_association :
       public ::win::registry
    {
@@ -18,5 +20,9 @@ namespace gen
       HKEY GetHKEYClassesRoot();
 
    };
+   */
 
-}
+} // namespace gen
+
+
+

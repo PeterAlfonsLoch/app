@@ -708,7 +708,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="ca\ca_log.h" />
     <ClInclude Include="ca\ca_main_init_data.h" />
     <ClInclude Include="ca\ca_message_window.h" />
-    <ClInclude Include="ca\ca_osi.h" />
+    <ClInclude Include="ca\ca_os.h" />
     <ClInclude Include="ca\ca_palette.h" />
     <ClInclude Include="ca\ca_pen.h" />
     <ClInclude Include="ca\ca_print_job.h" />
@@ -1503,7 +1503,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="visual\water_routine.h" />
     <ClInclude Include="windows\os.h" />
     <ClInclude Include="windows\os_library.h" />
-    <ClInclude Include="windows\os_registry.h" />
     <ClInclude Include="windows\os_utils.h" />
     <ClInclude Include="xml\xml_application.h" />
     <ClInclude Include="xml\xml_attr.h" />
@@ -1625,7 +1624,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="ca\ca_live_signal.cpp" />
     <ClCompile Include="ca\ca_log.cpp" />
     <ClCompile Include="ca\ca_message_window.cpp" />
-    <ClCompile Include="ca\ca_osi.cpp" />
+    <ClCompile Include="ca\ca_os.cpp" />
     <ClCompile Include="ca\ca_palette.cpp" />
     <ClCompile Include="ca\ca_pen.cpp" />
     <ClCompile Include="ca\ca_print_job.cpp" />
@@ -2595,7 +2594,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="visual\visual_water_routine.cpp" />
     <ClCompile Include="windows\os_library_initialize.cpp" />
     <ClCompile Include="windows\os_resouce_string.cpp" />
-    <ClCompile Include="windows\os_registry.cpp" />
     <ClCompile Include="windows\os_utils.cpp" />
     <ClCompile Include="xml\xml_application.cpp" />
     <ClCompile Include="xml\xml_attr.cpp" />

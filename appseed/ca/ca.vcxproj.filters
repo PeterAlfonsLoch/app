@@ -1550,9 +1550,6 @@
     <ClInclude Include="ca\ca_message_window.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_osi.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_palette.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
@@ -2921,9 +2918,6 @@
     <ClInclude Include="windows\os.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
-    <ClInclude Include="windows\os_registry.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
     <ClInclude Include="api\atol.h">
       <Filter>Header Files\api</Filter>
     </ClInclude>
@@ -3118,6 +3112,9 @@
     </ClInclude>
     <ClInclude Include="plane\plane_system_primitive_var.h">
       <Filter>Header Files\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_os.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4031,9 +4028,6 @@
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_message_window.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_osi.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_palette.cpp">
@@ -5152,9 +5146,6 @@
     <ClCompile Include="windows\os_resouce_string.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
-    <ClCompile Include="windows\os_registry.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
     <ClCompile Include="api\api_atol.cpp">
       <Filter>Source Files\api</Filter>
     </ClCompile>
@@ -5232,6 +5223,9 @@
     </ClCompile>
     <ClCompile Include="ca4\ca4_ip_enum.cpp">
       <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_os.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

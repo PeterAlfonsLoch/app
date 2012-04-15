@@ -210,7 +210,7 @@ namespace plane
 
 
       m_spfilesystem.create(this);
-      m_sposi.create(this);
+      m_spos.create(this);
       m_spdir.create(this);
 
       string strId;
@@ -509,9 +509,9 @@ namespace plane
       }
       try
       {
-         if(m_sposi.m_p != NULL)
+         if(m_spos.is_set())
          {
-            gen::del(m_sposi.m_p);
+            m_spos.destroy();
          }
       }
       catch(...)
@@ -531,7 +531,7 @@ namespace plane
 
       try
       {
-         m_sposi.destroy();
+         m_spos.destroy();
       }
       catch(...)
       {
@@ -707,9 +707,9 @@ namespace plane
       return m_install;
    }
 
-   ::ca::osi & system::osi()
+   ::ca::os & system::os()
    {
-      return m_sposi;
+      return m_spos;
    }
 
    ::ca2::process & system::process()
@@ -920,7 +920,7 @@ namespace plane
 
    string system::dir_path(const char * psz1, const char * psz2, const char * psz3)
    {
-      return dir().path(psz1, psz2, psz3);
+      return dir().path(psz1, strlen(psz1), psz2, strlen(psz2), psz3, strlen(psz3));
    }
 
    string system::dir_name(const char * psz)

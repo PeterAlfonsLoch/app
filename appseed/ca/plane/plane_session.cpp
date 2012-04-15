@@ -895,48 +895,11 @@ namespace plane
 
       strSentinelPath = System.dir().ca2("stage/x86/app-sentinel.exe");
 
-      win::registry::Key keyKar(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-      keyKar.SetValue("ca2 app-sentinel", "\"" + strSentinelPath + "\"");
+      System.os().local_machine_set_run("ca2 app-sentinel", "\"" + strSentinelPath + "\"");
 
 
-#ifdef _WIN64
+      System.os().defer_register_ca2_plugin_for_mozilla();
 
-
-#else
-
-      win::registry::Key keyPlugins;
-
-      if(keyPlugins.OpenKey(HKEY_LOCAL_MACHINE, "SOFTWARE\\MozillaPlugins", true))
-      {
-
-         win::registry::Key keyPlugin;
-
-         if(keyPlugin.OpenKey(keyPlugins, "@ca2.cc/npca2", true))
-         {
-
-            keyPlugin.SetValue("Description", "ca2 plugin for NPAPI");
-            keyPlugin.SetValue("Path", System.dir().ca2module("npca2.dll"));
-            keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
-            keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-            keyPlugin.SetValue("Version", Application.file().as_string(System.dir().ca2("appdata/x86/ca2_build.txt")));
-
-            win::registry::Key keyApplicationCa2;
-
-            if(keyApplicationCa2.OpenKey(keyPlugin, "application/ca2", true))
-            {
-
-               keyApplicationCa2.SetValue("Description", "ca2 Document");
-
-            }
-
-
-         }
-
-
-      }
-
-
-#endif
 
 
       return ::planebase::application::on_install();

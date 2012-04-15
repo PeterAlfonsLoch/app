@@ -3,6 +3,7 @@
 namespace gen
 {
 
+   /*
    file_association::file_association(::ca::application * papp) :
       ca(papp)
    {
@@ -33,5 +34,6 @@ namespace gen
 
       return true;
    }
+   */
 
 } // namespace VmsGen

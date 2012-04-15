@@ -40,7 +40,7 @@ namespace ca2
 #include "install/install.h"
 
 
-#include "ca/ca_osi.h"
+#include "ca/ca_os.h"
 
 #include "gen/gen_process.h"
 

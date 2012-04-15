@@ -412,15 +412,7 @@ namespace ca4
          if(!bOk)
          {
 
-            win::registry::Key key1;
-
-            key1.OpenKey(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Connections", false);
-
-            primitive::memory mem;
-
-            key1.QueryValue("DefaultConnectionSettings", mem);
-
-            bool bAutoDetect = (((LPBYTE) mem.get_data())[8] & 0x08) != 0;
+            bool bAutoDetect = System.os().connection_settings_get_auto_detect();
 
             if(bAutoDetect)
             {
@@ -428,13 +420,7 @@ namespace ca4
                   return;
             }
 
-            win::registry::Key key;
-
-            key.OpenKey(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings", false);
-
-            string strUrl;
-
-            key.QueryValue("AutoConfigURL", strUrl);
+            string strUrl = System.os().connection_settings_get_auto_config_url();
 
             if(strUrl.has_char())
             {

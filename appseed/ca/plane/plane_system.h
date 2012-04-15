@@ -230,7 +230,7 @@ namespace plane
       class ::ca2::xml                 m_xml;
       class ::ca2::service             m_service;
       class ::ca2::install             m_install;
-      ::ca::osi_sp                     m_sposi;
+      ::ca::os_sp                      m_spos;
       class ::ca2::process             m_process;
       class ::ca2::datetime *          m_pdatetime;
       class ::ca2::net                 m_net;
@@ -380,7 +380,7 @@ namespace plane
       ::ca2::install                   & install();
       ::ca2::service                   & service();
       class ::machine_event_central    & machine_event_central();
-      ::ca::osi                        & osi();
+      class ::ca::os                   & os();
       using ::plane::application::process;
       ::ca2::process                   & process();
       class ::ca2::net                 & net();
