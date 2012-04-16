@@ -44,9 +44,9 @@ void StyledHRDMapper::loadRegionMappings(ex1::byte_input_stream & istream)
             continue;
 
 
-         bool bfore = isdigit(curel->attr("fore").first()) != FALSE;
+         bool bfore = isdigit_dup(curel->attr("fore").first()) != FALSE;
          int fore = atoi((curel)->attr("fore"));
-         bool bback = isdigit((curel)->attr("back").first()) != FALSE;
+         bool bback = isdigit_dup((curel)->attr("back").first()) != FALSE;
          int back = atoi((curel)->attr("back"));
          int style = atoi((curel)->attr("style"));
          RegionDefine *rdef = new StyledRegion(bfore, bback, fore, back, style);

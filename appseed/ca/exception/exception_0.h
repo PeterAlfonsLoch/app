@@ -92,7 +92,7 @@ CLASS_DECL_ca void Afxdump(const ::radix::object* pOb); // dump an object from C
 // The following trace macros are provided for backward compatiblity
 //  (they also take a fixed number of parameters which provides
 //   some amount of extra error checking)
-#define TRACE0(sz)              TRACE("%s", _T(sz))
+#define TRACE0(sz)              TRACE("%s", (const char *) (_T(sz)))
 #define TRACE1(sz, p1)          TRACE(_T(sz), p1)
 #define TRACE2(sz, p1, p2)      TRACE(_T(sz), p1, p2)
 #define TRACE3(sz, p1, p2, p3)  TRACE(_T(sz), p1, p2, p3)

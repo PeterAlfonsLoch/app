@@ -90,18 +90,18 @@ namespace colorertake5
                pos = l1->start;
             }
 
-            if (l1->texted()->sback != NULL)
+            if (l1->texted()->sback.has_char())
                markupWriter << l1->texted()->sback;
 
-            if (l1->texted()->stext != NULL)
+            if (l1->texted()->stext.has_char())
                markupWriter << l1->texted()->stext;
 
             textWriter.write(&line[pos], end - l1->start);
 
-            if (l1->texted()->etext != NULL)
+            if (l1->texted()->etext.has_char())
                markupWriter << l1->texted()->etext;
 
-            if (l1->texted()->eback != NULL)
+            if (l1->texted()->eback.has_char())
                markupWriter << l1->texted()->eback;
 
             pos += end - l1->start;
@@ -126,7 +126,7 @@ namespace colorertake5
       */
       void ParsedLineWriter::htmlRGBWrite(ex1::byte_output_stream & markupWriter, ex1::byte_output_stream & textWriter, string_to_string_map *docLinkHash, const char *line, LineRegion *lineRegions)
       {
-         
+
          index pos = 0;
 
          for(LineRegion *l1 = lineRegions; l1; l1 = l1->next)

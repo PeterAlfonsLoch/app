@@ -31,7 +31,7 @@ namespace n7z
       _filePos = 0;
       while (_fileIndex < _numFiles)
       {
-         ::ca::smart_pointer<::ex1::byte_input_stream> stream;
+         ::ca::smart_pointer < ::ex1::byte_input_stream > stream;
          HRESULT result = _updateCallback->GetStream(_fileIndices[_fileIndex], &stream.m_p);
          if (result != S_OK && result != S_FALSE)
             return result;
@@ -41,7 +41,7 @@ namespace n7z
          if (stream)
          {
             _fileIsOpen = true;
-            ::ca::smart_pointer<::ex1::stream_get_size> streamGetSize;
+            ::ca::smart_pointer < ::ex1::stream_get_size > streamGetSize;
             streamGetSize = dynamic_cast < ::ex1::stream_get_size * > (stream.m_p);
             if (streamGetSize)
             {

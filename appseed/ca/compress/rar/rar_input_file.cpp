@@ -90,7 +90,7 @@ namespace rar
 
       uint64 arcStartPos;
       arcStartPos = stream->find(header::kMarker, header::kMarkerSize, searchHeaderSizeLimit);
-      if(arcStartPos == _UI64_MAX)
+      if(arcStartPos == ::numeric_info::get_maximum_value < uint64_t >())
          return E_FAIL;
       m_Position = arcStartPos + header::kMarkerSize;
       try
@@ -127,7 +127,7 @@ namespace rar
          (uint32)Get16(buf) != (crc_calc(buf + 2, headerSize - 2) & 0xFFFF))
          return S_FALSE;
 
-      ::primitive::memory_size commentSize = blockSize - headerSize; 
+      ::primitive::memory_size commentSize = blockSize - headerSize;
       _comment.SetCapacity((size_t) commentSize);
       RINOK(ReadStream_FALSE(stream, _comment, commentSize));
       AddToSeekValue(commentSize);

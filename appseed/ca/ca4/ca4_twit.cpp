@@ -22,7 +22,7 @@ namespace ca4
    namespace twitter_defaults
    {
 
-    
+
    };
 
 
@@ -144,7 +144,7 @@ namespace ca4
       /* Prepare URL */
       string strUrl( "" );
       strUrl = Application.TWIT_SEARCH_URL;
-      strUrl.append( Application.TWIT_SEARCHQUERYSTRING );        
+      strUrl.append( Application.TWIT_SEARCHQUERYSTRING );
       strUrl.append( query );
 
       /* Perform GET */
@@ -479,7 +479,7 @@ namespace ca4
          strUrl = build_url(Application.TWIT_DIRECTMESSAGENEW_URL, userInfo, isUserId );
 
          /* Perform POST */
-         retVal = performPost( strUrl, post );        
+         retVal = performPost( strUrl, post );
       }
       return retVal;
    }
@@ -560,7 +560,7 @@ namespace ca4
          post["text"] = "dummy";
 
          /* Perform POST */
-         retVal = performPost( strUrl, post );        
+         retVal = performPost( strUrl, post );
       }
       return retVal;
    }
@@ -587,7 +587,7 @@ namespace ca4
          strUrl = build_url(Application.TWIT_FRIENDSHIPSDESTROY_URL, userInfo, isUserId );
 
          /* Perform DELETE */
-         retVal = performDelete( strUrl );        
+         retVal = performDelete( strUrl );
       }
       return retVal;
    }
@@ -875,7 +875,7 @@ namespace ca4
    /*++
    * @method: twit::savedSearchShow
    *
-   * @description: method to retrieve the data for a saved search owned by the authenticating user 
+   * @description: method to retrieve the data for a saved search owned by the authenticating user
    *               specified by the given id.
    *
    * @input: searchId - id in string format of the search to be displayed
@@ -935,7 +935,7 @@ namespace ca4
    /*++
    * @method: twit::savedSearchDestroy
    *
-   * @description: method to destroy a saved search for the authenticated user. The search specified 
+   * @description: method to destroy a saved search for the authenticated user. The search specified
    *               by id must be owned by the authenticating user.
    *
    * @input: searchId - search id of item to be deleted
@@ -1361,7 +1361,8 @@ namespace ca4
             {
                string strAuth = headers["Authorization"];
                string strDate = headers["date"];
-               string strDateHere = System.datetime().international().get_gmt_date_time(class time(iTime));
+               class ::time time(iTime);
+               string strDateHere = System.datetime().international().get_gmt_date_time(time);
                /* Tell OAuth object to save access token and secret from web response */
                m_oauth.extractOAuthTokenKeySecret(get_response());
 

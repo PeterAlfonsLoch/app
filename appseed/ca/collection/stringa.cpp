@@ -1,5 +1,4 @@
 #include "StdAfx.h"
-#include "radix/radix_bstr.h"
 
 
 // return string length or -1 if UNICODE string is found in the archive
@@ -398,9 +397,17 @@ LPTSTR stringa::GetFormatV004()
 
       iLength = pstr->get_length();
 
+#ifdef WINDOWS
       strcat_s(lpszN, iLength, *pstr);
+#else
+      strcat(lpszN, *pstr);
+#endif
 
+#ifdef WINDOWS
       iLength = _tcsnbcnt(lpszN, iLength);
+#else
+      iLength = strlen(lpszN);
+#endif
 
       lpszN = (LPTSTR) ((LPBYTE)lpszN) + iLength + sizeof(char);
 
@@ -741,11 +748,11 @@ void stringa::replace(const char * lpszSearch, const char * lpszReplace)
 
 void stringa::surround(const char * pszPrefix, const char * pszSuffix, index iStart, count iCount)
 {
-   
+
    string strPrefix(pszPrefix);
-   
+
    string strSuffix(pszSuffix);
-   
+
    strsize iEnd;
 
    if(iStart < 0)
@@ -771,7 +778,7 @@ string stringa::surround_and_implode(const char * pszSeparator, const char * psz
    string strSeparator(pszSeparator);
    string strPrefix(pszPrefix);
    string strSuffix(pszSuffix);
-   
+
    index iEnd;
 
    if(iStart < 0)
@@ -784,9 +791,9 @@ string stringa::surround_and_implode(const char * pszSeparator, const char * psz
 
    if(iStart <= iEnd)
    {
-      
+
       str = strPrefix + this->element_at(iStart) + strSuffix;
-      
+
       iStart++;
 
       for(index i = iStart; i <= iEnd; i++)

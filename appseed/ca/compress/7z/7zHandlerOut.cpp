@@ -99,7 +99,7 @@ namespace n7z
       {
          // headerMethod.Methods.add(methodMode.Methods.Back());
 
-         array_ptr_alloc<::compress::COneMethodInfo> headerMethodInfoVector;
+         array_ptr_alloc < ::compress::COneMethodInfo > headerMethodInfoVector;
          ::compress::COneMethodInfo oneMethodInfo;
          oneMethodInfo.MethodName = kLZMAMethodName;
          oneMethodInfo.Props[NCoderPropID::kMatchFinder] = kLzmaMatchFinderForHeaders;
@@ -119,7 +119,7 @@ namespace n7z
 
    ex1::HRes CHandler::SetCompressionMethod(
       CCompressionMethodMode &methodMode,
-      array_ptr_alloc<::compress::COneMethodInfo> &methodsInfo
+      array_ptr_alloc < ::compress::COneMethodInfo > &methodsInfo
 #ifndef _7ZIP_ST
       , uint32 numThreads
 #endif
@@ -182,6 +182,8 @@ namespace n7z
       }
       return S_OK;
    }
+
+   #define PROPID int
 
    static ex1::HRes GetTime(::compress::archive_update_callback_interface *updateCallback, int index, bool writeTime, PROPID propID, uint64 &ft, bool &ftDefined)
    {
@@ -348,7 +350,7 @@ namespace n7z
       headerMethod.NumThreads = 1;
 #endif
 
-      ::ca::smart_pointer<::crypto::get_text_password2_interface> getPassword2;
+      ::ca::smart_pointer < ::crypto::get_text_password2_interface > getPassword2;
       getPassword2 = dynamic_cast < ::crypto::get_text_password2_interface * > (updateCallback);
 
       if (getPassword2)
@@ -406,7 +408,7 @@ namespace n7z
       COutArchive archive;
       CArchiveDatabase newDatabase;
 
-      ::ca::smart_pointer<::crypto::get_text_password_interface> getPassword;
+      ::ca::smart_pointer < ::crypto::get_text_password_interface > getPassword;
       getPassword = dynamic_cast < ::crypto::get_text_password_interface * > (updateCallback);
 
       ex1::HRes res = Update(

@@ -41,7 +41,7 @@ namespace n7z
          ::compress::archive::extract::ask_mode_test :
       ::compress::archive::extract::ask_mode_extract) :
       ::compress::archive::extract::ask_mode_skip;
-      ::ca::smart_pointer<::ex1::writer> realOutStream;
+      ::ca::smart_pointer < ::ex1::writer > realOutStream;
       uint32 index = _startIndex + _currentIndex;
       RINOK(_extractCallback->GetStream(_ref2Offset + index, &realOutStream.m_p, askMode));
       _crcStreamSpec->SetStream(realOutStream);

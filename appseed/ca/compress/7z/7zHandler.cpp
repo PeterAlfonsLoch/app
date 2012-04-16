@@ -72,6 +72,14 @@ ex1::HRes CHandler::GetPropertyInfo(uint32 /* index */,
 
 #else
 
+/*struct STATPROPSTG
+{
+
+  int m_i1;
+  int m_i2;
+  int m_i3;
+};
+
 STATPROPSTG kArcProps[] =
 {
   { NULL, ::compress::kpidMethod, VT_BSTR},
@@ -81,9 +89,11 @@ STATPROPSTG kArcProps[] =
   { NULL, ::compress::kpidHeadersSize, VT_UI8},
   { NULL, ::compress::kpidOffset, VT_UI8}
 };
-
+*/
 ex1::HRes CHandler::GetArchiveProperty(int propID, var *value)
 {
+   throw not_implemented_exception();
+   /*
   var prop;
   switch(propID)
   {
@@ -104,7 +114,7 @@ ex1::HRes CHandler::GetArchiveProperty(int propID, var *value)
       {
         uint64 id = ids[i];
         string methodName;
-        /* bool methodIsKnown = */ FindMethod(_codecsInfo, &_externalCodecs, id, methodName);
+        /* bool methodIsKnown = */ /*FindMethod(_codecsInfo, &_externalCodecs, id, methodName);
         if (methodName.is_empty())
           methodName = ConvertMethodIdToString(id);
         if (!resString.is_empty())
@@ -120,12 +130,12 @@ ex1::HRes CHandler::GetArchiveProperty(int propID, var *value)
     case ::compress::kpidPhySize:  prop = _db.PhySize; break;
     case ::compress::kpidOffset: if (_db.ArchiveInfo.StartPosition != 0) prop = _db.ArchiveInfo.StartPosition; break;
   }
-  *value = prop;
+  *value = prop;*/
   return S_OK;
 }
-
+/*
 IMP_IInArchive_ArcProps
-
+*/
 #endif
 
 static void SetPropFromUInt64Def(CUInt64DefVector &v, int index, var &prop)
@@ -391,10 +401,10 @@ ex1::HRes CHandler::Open(::ex1::byte_input_stream *stream,
   #endif
   try
   {
-    ::ca::smart_pointer<::compress::archive_open_callback_interface> openArchiveCallbackTemp = openArchiveCallback;
+    ::ca::smart_pointer < ::compress::archive_open_callback_interface > openArchiveCallbackTemp = openArchiveCallback;
 
     #ifndef _NO_CRYPTO
-    ::ca::smart_pointer<::crypto::get_text_password_interface> getTextPassword;
+    ::ca::smart_pointer < ::crypto::get_text_password_interface > getTextPassword;
     if (openArchiveCallback)
     {
       getTextPassword = dynamic_cast < ::crypto::get_text_password_interface * > (openArchiveCallbackTemp.m_p);

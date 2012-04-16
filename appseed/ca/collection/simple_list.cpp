@@ -3,7 +3,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // simple_list
 
-void simple_list::add_head(void * p)
+void base_simple_list::add_head(void * p)
 {
    ASSERT(p != NULL);
    ASSERT(*GetNextPtr(p) == NULL);
@@ -12,7 +12,7 @@ void simple_list::add_head(void * p)
    m_pHead = p;
 }
 
-BOOL simple_list::remove(void * p)
+BOOL base_simple_list::remove(void * p)
 {
    ASSERT(p != NULL);
 

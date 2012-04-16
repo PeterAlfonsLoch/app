@@ -106,32 +106,34 @@ namespace compress
          AreEqual(methodName, kDeflate64MethodName);
    }
 
+   #define PROPID int
+
    struct CNameToPropID
    {
       PROPID PropID;
-      VARTYPE VarType;
+      var::e_type VarType;
       const char *Name;
    };
 
    static CNameToPropID g_NameToPropID[] =
    {
-      { NCoderPropID::kBlockSize, VT_UI4, "C" },
-      { NCoderPropID::kDictionarySize, VT_UI4, "D" },
-      { NCoderPropID::kUsedMemorySize, VT_UI4, "MEM" },
+      { NCoderPropID::kBlockSize, var::type_integer, "C" },
+      { NCoderPropID::kDictionarySize, var::type_integer, "D" },
+      { NCoderPropID::kUsedMemorySize, var::type_integer, "MEM" },
 
-      { NCoderPropID::kOrder, VT_UI4, "O" },
-      { NCoderPropID::kPosStateBits, VT_UI4, "PB" },
-      { NCoderPropID::kLitContextBits, VT_UI4, "LC" },
-      { NCoderPropID::kLitPosBits, VT_UI4, "LP" },
-      { NCoderPropID::kEndMarker, VT_BOOL, "eos" },
+      { NCoderPropID::kOrder, var::type_integer, "O" },
+      { NCoderPropID::kPosStateBits, var::type_integer, "PB" },
+      { NCoderPropID::kLitContextBits, var::type_integer, "LC" },
+      { NCoderPropID::kLitPosBits, var::type_integer, "LP" },
+      { NCoderPropID::kEndMarker, var::type_bool, "eos" },
 
-      { NCoderPropID::kNumPasses, VT_UI4, "Pass" },
-      { NCoderPropID::kNumFastBytes, VT_UI4, "fb" },
-      { NCoderPropID::kMatchFinderCycles, VT_UI4, "mc" },
-      { NCoderPropID::kAlgorithm, VT_UI4, "a" },
-      { NCoderPropID::kMatchFinder, VT_BSTR, "mf" },
-      { NCoderPropID::kNumThreads, VT_UI4, "mt" },
-      { NCoderPropID::kDefaultProp, VT_UI4, "" }
+      { NCoderPropID::kNumPasses, var::type_integer, "Pass" },
+      { NCoderPropID::kNumFastBytes, var::type_integer, "fb" },
+      { NCoderPropID::kMatchFinderCycles, var::type_integer, "mc" },
+      { NCoderPropID::kAlgorithm, var::type_integer, "a" },
+      { NCoderPropID::kMatchFinder, var::type_string, "mf" },
+      { NCoderPropID::kNumThreads, var::type_integer, "mt" },
+      { NCoderPropID::kDefaultProp, var::type_integer, "" }
    };
 
    static bool ConvertProperty(var srcProp, var::e_type varType, var &destProp)
@@ -144,7 +146,7 @@ namespace compress
       throw "should implement below";
       /*if (varType == VT_UI1)
       {
-         if (srcProp.vt == VT_UI4)
+         if (srcProp.vt == var::type_integer)
          {
             uint32 value = srcProp.ulVal;
             if (value > 0xFF)
@@ -153,7 +155,7 @@ namespace compress
             return true;
          }
       }
-      else if (varType == VT_BOOL)
+      else if (varType == var::type_bool)
       {
          bool res;
          if (SetBoolProperty(res, srcProp) != S_OK)
@@ -354,9 +356,9 @@ namespace compress
       {
          var propValue;
 
-         if (nameToPropID.VarType == VT_BSTR)
+         if (nameToPropID.VarType == var::type_string)
             propValue = value;
-         else if (nameToPropID.VarType == VT_BOOL)
+         else if (nameToPropID.VarType == var::type_bool)
          {
             bool res;
             if (!StringToBool(value, res))

@@ -37,7 +37,8 @@ namespace colorertake5
          if (curel->get_type() == xml::node_element && curel->get_name() == "assign")
          {
             string name = (curel)->attr("name");
-            if (name == NULL) continue;
+            if(name.is_empty())
+             continue;
 
             if (regionDefines[name] != NULL)
             {
@@ -52,13 +53,13 @@ namespace colorertake5
             string eback;
             string sval;
             sval = (curel)->attr("stext");
-            if (sval != NULL) stext = (sval);
+            if (sval.has_char()) stext = (sval);
             sval = (curel)->attr("etext");
-            if (sval != NULL) etext = (sval);
+            if (sval.has_char()) etext = (sval);
             sval = (curel)->attr("sback");
-            if (sval != NULL) sback = (sval);
+            if (sval.has_char()) sback = (sval);
             sval = (curel)->attr("eback");
-            if (sval != NULL) eback = (sval);
+            if (sval.has_char()) eback = (sval);
 
             RegionDefine *rdef = new TextRegion(stext, etext, sback, eback);
             regionDefines.set_at(name, rdef);
@@ -95,10 +96,10 @@ namespace colorertake5
       string etext;
       string sback;
       string eback;
-      if (rd_new->stext != NULL) stext = (rd_new->stext);
-      if (rd_new->etext != NULL) etext = (rd_new->etext);
-      if (rd_new->sback != NULL) sback = (rd_new->sback);
-      if (rd_new->eback != NULL) eback = (rd_new->eback);
+      if (rd_new->stext.has_char()) stext = (rd_new->stext);
+      if (rd_new->etext.has_char()) etext = (rd_new->etext);
+      if (rd_new->sback.has_char()) sback = (rd_new->sback);
+      if (rd_new->eback .has_char()) eback = (rd_new->eback);
 
       RegionDefine *rd_old = regionDefines[name];
       if (rd_old != NULL){

@@ -48,7 +48,7 @@ namespace n7z
        int32 testModeSpec, ::compress::archive_extract_callback_interface *extractCallbackSpec)
    {
      bool testMode = (testModeSpec != 0);
-     ::ca::smart_pointer<::compress::archive_extract_callback_interface> extractCallback = extractCallbackSpec;
+     ::ca::smart_pointer < ::compress::archive_extract_callback_interface > extractCallback = extractCallbackSpec;
      uint64 importantTotalUnpacked = 0;
 
      bool allFilesMode = (numItems == (uint32)-1);
@@ -153,7 +153,7 @@ namespace n7z
      uint64 curPacked, curUnpacked;
 
      ::compress::local_progress *lps = new ::compress::local_progress;
-     ::ca::smart_pointer<::compress::progress_info_interface> progress = lps;
+     ::ca::smart_pointer < ::compress::progress_info_interface > progress = lps;
      lps->Init(extractCallback, false);
 
      for (int i = 0;; i++, totalUnpacked += curUnpacked, totalPacked += curPacked)
@@ -170,7 +170,7 @@ namespace n7z
        curPacked = 0;
 
        CFolderOutStream *folderOutStream = new CFolderOutStream;
-       ::ca::smart_pointer<::ex1::writer> outStream(folderOutStream);
+       ::ca::smart_pointer < ::ex1::writer > outStream(folderOutStream);
 
        #ifdef _7Z_VOL
        const CVolume &volume = _volumes[efi.VolumeIndex];
@@ -208,11 +208,11 @@ namespace n7z
        uint64 folderStartPackPos = db.GetFolderStreamPos(folderIndex, 0);
 
        #ifndef _NO_CRYPTO
-       ::ca::smart_pointer<::crypto::get_text_password_interface> getTextPassword;
+       ::ca::smart_pointer < ::crypto::get_text_password_interface > getTextPassword;
        if (extractCallback)
        {
 
-         getTextPassword = dynamic_cast <::crypto::get_text_password_interface *> (extractCallback.m_p);
+         getTextPassword = dynamic_cast < ::crypto::get_text_password_interface * > (extractCallback.m_p);
        }
        #endif
 

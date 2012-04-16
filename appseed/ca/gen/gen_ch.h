@@ -55,7 +55,7 @@ namespace gen
                   ) >> CHAR_CATEGORY(CHAR_PROP(wch))) & 1) != 0;
       }
 
-      inline bool is_space_char(__int64 c)
+      inline bool is_space_char(int64_t c)
       {
          if(!is_legal_uni_index(c)) return false;
          return is_space_char((wchar_t) c);
@@ -69,10 +69,24 @@ namespace gen
         return wchar_t(wch - (c1>>16));
       }
 
-      inline __int64 to_lower_case(__int64 c)
+      inline int64_t to_lower_case(int64_t c)
       {
          if(!is_legal_uni_index(c)) return false;
-         return (__int64) to_lower_case((wchar_t) c);
+         return (int64_t) to_lower_case((wchar_t) c);
+      }
+
+      inline wchar_t to_upper_case(wchar_t wch)
+      {
+        unsigned long c1 = CHAR_PROP(wch);
+        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return wchar_t(wch);
+        if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(wch-1);
+        return wchar_t(wch - (c1>>16));
+      }
+
+      inline int64_t to_upper_case(int64_t c)
+      {
+         if(!is_legal_uni_index(c)) return false;
+         return (int64_t) to_upper_case((wchar_t) c);
       }
 
       CLASS_DECL_ca string to_lower_case(const char * pszUtf8Char);
@@ -127,7 +141,7 @@ namespace gen
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

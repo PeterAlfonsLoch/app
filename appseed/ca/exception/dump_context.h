@@ -29,7 +29,18 @@ public:
    dump_context& operator<<(WORD w);
    dump_context& dumpAsHex(BYTE b);
    dump_context& dumpAsHex(WORD w);
-#ifdef _WIN64
+#if defined(_LP64)
+   dump_context& operator<<(INT_PTR i);
+   dump_context& operator<<(LONG_PTR l);
+   dump_context& operator<<(DWORD_PTR dw);
+   dump_context& operator<<(int n);
+   dump_context& operator<<(UINT u);
+   dump_context& dumpAsHex(INT_PTR i);
+   dump_context& dumpAsHex(LONG_PTR l);
+   dump_context& dumpAsHex(DWORD_PTR dw);
+   dump_context& dumpAsHex(int n);
+   dump_context& dumpAsHex(UINT u);
+#elif defined(_WIN64)
    dump_context& operator<<(LONG l);
    dump_context& operator<<(DWORD dw);
    dump_context& operator<<(int n);

@@ -8,6 +8,8 @@ namespace compress
    static const uint64 k_LZMA = 0x030101;
    static const uint64 k_LZMA2 = 0x21;
 
+   #define IUnknown ::radix::object
+
    HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, IUnknown *coder)
    {
       bool tryReduce = false;
@@ -36,7 +38,7 @@ namespace compress
 
       {
          count numProps = method.Props.get_count();
-         ::ca::smart_pointer<::compress::set_coder_properties_interface> setCoderProperties;
+         ::ca::smart_pointer < ::compress::set_coder_properties_interface > setCoderProperties;
          setCoderProperties = dynamic_cast < ::compress::set_coder_properties_interface * > (coder);
          if (setCoderProperties == NULL)
          {
@@ -63,7 +65,7 @@ namespace compress
                            if (reducedDictionarySize < value.get_ulong())
                               value = (unsigned long) reducedDictionarySize;
                }
-               ::ca::smart_pointer<::compress::set_coder_properties_interface> setCoderProperties;
+               ::ca::smart_pointer < ::compress::set_coder_properties_interface > setCoderProperties;
                setCoderProperties = dynamic_cast < ::compress::set_coder_properties_interface *> (coder);
                res = setCoderProperties->SetCoderProperties(&propIDs.first_element(), values, (uint32_t) numProps);
             }

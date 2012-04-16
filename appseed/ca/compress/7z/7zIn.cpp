@@ -143,7 +143,7 @@ public:
   void Remove();
   void Set(CInArchive *archive, const byte *data, size_t size);
   void Set(CInArchive *archive, const ::ex1::byte_buffer &byteBuffer);
-  void Set(CInArchive *archive, const array_ptr_alloc<::ex1::byte_buffer> *dataVector);
+  void Set(CInArchive *archive, const array_ptr_alloc < ::ex1::byte_buffer > *dataVector);
 };
 
 void CStreamSwitch::Remove()
@@ -168,7 +168,7 @@ void CStreamSwitch::Set(CInArchive *archive, const ::ex1::byte_buffer &byteBuffe
   Set(archive, byteBuffer, byteBuffer.GetCapacity());
 }
 
-void CStreamSwitch::Set(CInArchive *archive, const array_ptr_alloc<::ex1::byte_buffer> *dataVector)
+void CStreamSwitch::Set(CInArchive *archive, const array_ptr_alloc < ::ex1::byte_buffer > *dataVector)
 {
   Remove();
   byte external = archive->ReadByte();
@@ -527,8 +527,8 @@ void CInArchive::ReadPackInfo(
 }
 
 void CInArchive::ReadUnpackInfo(
-    const array_ptr_alloc<::ex1::byte_buffer> *dataVector,
-    array_ptr_alloc<CFolder> &folders)
+    const array_ptr_alloc < ::ex1::byte_buffer > *dataVector,
+    array_ptr_alloc < CFolder > &folders)
 {
   WaitAttribute(NID::kFolder);
   CNum numFolders = ReadNum();
@@ -682,16 +682,16 @@ void CInArchive::ReadSubStreamsInfo(
 }
 
 void CInArchive::ReadStreamsInfo(
-    const array_ptr_alloc<::ex1::byte_buffer> *dataVector,
-    file_position &dataOffset,
-    base_array<file_size> &packSizes,
-    bool_array &packCRCsDefined,
-    base_array<uint32> &packCRCs,
-    array_ptr_alloc<CFolder> &folders,
-    base_array<CNum> &numUnpackStreamsInFolders,
-    base_array<file_size> &unpackSizes,
-    bool_array &digestsDefined,
-    base_array<uint32> &digests)
+    const array_ptr_alloc < ::ex1::byte_buffer > * dataVector,
+    file_position & dataOffset,
+    base_array < file_size > & packSizes,
+    bool_array & packCRCsDefined,
+    base_array < uint32 > & packCRCs,
+    array_ptr_alloc < CFolder > & folders,
+    base_array < CNum > & numUnpackStreamsInFolders,
+    base_array < file_size > & unpackSizes,
+    bool_array & digestsDefined,
+    base_array < uint32 > & digests)
 {
   for (;;)
   {
@@ -756,8 +756,7 @@ void CInArchive::ReadBoolVector2(int numItems, bool_array &v)
     v.add(true);
 }
 
-void CInArchive::ReadUInt64DefVector(const array_ptr_alloc<::ex1::byte_buffer> &dataVector,
-    CUInt64DefVector &v, int numFiles)
+void CInArchive::ReadUInt64DefVector(const array_ptr_alloc < ::ex1::byte_buffer > & dataVector, CUInt64DefVector & v, int numFiles)
 {
   ReadBoolVector2(numFiles, v.Defined);
 
@@ -775,9 +774,11 @@ void CInArchive::ReadUInt64DefVector(const array_ptr_alloc<::ex1::byte_buffer> &
 }
 
 HRESULT CInArchive::ReadAndDecodePackedStreams(
-    ::compress::codecs_info_interface *codecsInfo, const base_array<::compress::codec_info_ex> *externalCodecs,
+    ::compress::codecs_info_interface *codecsInfo,
+    const base_array < ::compress::codec_info_ex > *externalCodecs,
     file_position baseOffset,
-    file_position &dataOffset, array_ptr_alloc<::ex1::byte_buffer> &dataVector
+    file_position & dataOffset,
+    array_ptr_alloc < ::ex1::byte_buffer > &dataVector
     #ifndef _NO_CRYPTO
     , ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
     #endif
@@ -864,7 +865,8 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
 }
 
 HRESULT CInArchive::ReadHeader(
-    ::compress::codecs_info_interface *codecsInfo, const base_array<::compress::codec_info_ex> *externalCodecs,
+    ::compress::codecs_info_interface *codecsInfo,
+    const base_array < ::compress::codec_info_ex > *externalCodecs,
     CArchiveDatabaseEx &db
     #ifndef _NO_CRYPTO
     , ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
@@ -879,7 +881,7 @@ HRESULT CInArchive::ReadHeader(
     type = ReadID();
   }
 
-  array_ptr_alloc<::ex1::byte_buffer> dataVector;
+  array_ptr_alloc < ::ex1::byte_buffer > dataVector;
 
   if (type == NID::kAdditionalStreamsInfo)
   {
@@ -1137,7 +1139,8 @@ void CArchiveDatabaseEx::FillFolderStartFileIndex()
 }
 
 HRESULT CInArchive::ReadDatabase2(
-    ::compress::codecs_info_interface *codecsInfo, const base_array<::compress::codec_info_ex> *externalCodecs,
+    ::compress::codecs_info_interface *codecsInfo,
+    const base_array < ::compress::codec_info_ex > *externalCodecs,
     CArchiveDatabaseEx &db
     #ifndef _NO_CRYPTO
     , ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
@@ -1218,7 +1221,7 @@ HRESULT CInArchive::ReadDatabase2(
   CStreamSwitch streamSwitch;
   streamSwitch.Set(this, buffer2);
 
-  array_ptr_alloc<::ex1::byte_buffer> dataVector;
+  array_ptr_alloc < ::ex1::byte_buffer > dataVector;
 
   uint64 type = ReadID();
   if (type != NID::kHeader)
@@ -1257,7 +1260,8 @@ HRESULT CInArchive::ReadDatabase2(
 }
 
 HRESULT CInArchive::ReadDatabase(
-    ::compress::codecs_info_interface *codecsInfo, const base_array<::compress::codec_info_ex> *externalCodecs,
+    ::compress::codecs_info_interface *codecsInfo,
+    const base_array < ::compress::codec_info_ex > *externalCodecs,
     CArchiveDatabaseEx &db
     #ifndef _NO_CRYPTO
     , ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined

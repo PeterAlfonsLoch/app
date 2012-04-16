@@ -88,10 +88,16 @@ void colorer_logger(int level, const char *cname, const char *msg, va_list v){
 
   bool found = false;
 
-  for (int idx = 0; idx < sizeof(toTrace)/sizeof(toTrace[0]); idx++){
-    if (_stricmp(toTrace[idx], cname) == 0){
-      found = true;
-    }
+  for (int idx = 0; idx < sizeof(toTrace)/sizeof(toTrace[0]); idx++)
+  {
+#ifdef WINDOWS
+      if (_stricmp(toTrace[idx], cname) == 0)
+#else
+      if (strcasecmp(toTrace[idx], cname) == 0)
+#endif
+      {
+         found = true;
+      }
   }
   if (!found){
   //  return;
@@ -122,7 +128,7 @@ void colorer_logger(int level, const char *cname, const char *msg, va_list v){
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

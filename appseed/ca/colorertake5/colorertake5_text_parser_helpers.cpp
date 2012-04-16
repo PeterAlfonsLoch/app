@@ -15,7 +15,7 @@ namespace colorertake5
 
    parse_cache::~parse_cache()
    {
-      CLR_TRACE("TPCache", "~parse_cache():%s,%d-%d", scheme->getName(), sline, eline);
+      CLR_TRACE("TPCache", "~parse_cache():%s,%d-%d", scheme->getName().c_str(), sline, eline);
       delete children;
       delete next;
       delete[] vcache;
@@ -30,7 +30,7 @@ namespace colorertake5
       while(tmp)
       {
 
-         CLR_TRACE("TPCache", "  searchLine() tmp:%s,%d-%d", tmp->scheme->getName(), tmp->sline, tmp->eline);
+         CLR_TRACE("TPCache", "  searchLine() tmp:%s,%d-%d", tmp->scheme->getName().c_str(), tmp->sline, tmp->eline);
 
          if (tmp->sline <=ln && tmp->eline >= ln)
          {
@@ -44,7 +44,7 @@ namespace colorertake5
             return tmp;
          }
 
-         if (tmp->sline <= ln) 
+         if (tmp->sline <= ln)
             *cache = tmp;
 
          tmp = tmp->next;
@@ -70,13 +70,13 @@ namespace colorertake5
    {
       //  FAULT(next == this);
       // deletes only from root
-      if (!prev && next) 
+      if (!prev && next)
          next->deltree();
    }
 
    void VTList::deltree()
    {
-      
+
       if (next)
          next->deltree();
 
@@ -86,12 +86,12 @@ namespace colorertake5
 
    bool VTList::push(SchemeNode *node)
    {
-      
+
       VTList *newitem;
 
       if(!node || node->virtualEntryVector.get_size() == 0)
          return false;
-      
+
       newitem = new VTList();
 
       if(last->next)
@@ -112,7 +112,7 @@ namespace colorertake5
 
    bool VTList::pop()
    {
-   
+
       VTList *ditem;
       //  FAULT(last == this);
       ditem = last;
@@ -129,7 +129,7 @@ namespace colorertake5
       return true;
 
    };
-   
+
    scheme_impl *VTList::pushvirt(scheme_impl *scheme)
    {
       scheme_impl *ret = scheme;
@@ -147,20 +147,20 @@ namespace colorertake5
             }
          }
       }
-      
+
       if (curvl)
       {
          curvl->shadowlast = last;
          last = curvl->prev;
          return ret;
       }
-      
+
       return 0;
 
    }
    void VTList::popvirt()
    {
-    
+
       VTList *that = last->next;
       //  FAULT(!last->next || !that->shadowlast);
       last = that->shadowlast;
@@ -184,19 +184,19 @@ namespace colorertake5
 
    VirtualEntryVector **VTList::store()
    {
-    
+
       VirtualEntryVector **store;
-      
+
       index i = 0;
-      
-      if (!nodesnum || last == this) 
+
+      if (!nodesnum || last == this)
          return 0;
-      
+
       store = new VirtualEntryVector*[nodesnum + 1];
 
       for(VTList *list = this->next; list; list = list->next)
       {
-         
+
          store[i++] = list->vlist;
 
          if (list == this->last)
@@ -211,17 +211,17 @@ namespace colorertake5
 
    bool VTList::restore(VirtualEntryVector **store)
    {
-      
+
       VTList *prevpos, *pos = this;
 
-      if (next || prev || !store) 
+      if (next || prev || !store)
          return false;
       //  nodesnum = store[0].shadowlast;
       prevpos = last = 0;
 
       for(index i = 0; store[i] != NULL; i++)
       {
-         
+
          pos->next = new VTList;
          prevpos = pos;
          pos = pos->next;
@@ -230,9 +230,9 @@ namespace colorertake5
          nodesnum++;
 
       }
-      
+
       last = pos;
-      
+
       return true;
 
    }

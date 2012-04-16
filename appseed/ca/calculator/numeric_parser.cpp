@@ -1,7 +1,7 @@
 /* (C) Copyright 2008 Nick Mudge <mudgen@gmail.com>
  * This code can be freely copied and modified.
  */
-#include "StdAfx.h" 
+#include "StdAfx.h"
 
 namespace calculator
 {
@@ -10,7 +10,7 @@ namespace calculator
          ca(papp)
    {
    }
-   
+
    parser::~parser()
    {
    }
@@ -24,7 +24,7 @@ namespace calculator
 /********************************************/
 /* Parsing functions */
 
-/* 
+/*
    Grammer:
    expr   -> term + expr | term - expr | term
    term   -> func * term | func / term | func
@@ -34,7 +34,7 @@ namespace calculator
 
 
 element * parser::parse(const char * psz)
- {   
+ {
    element *node;
    m_scanner.initialize(psz);
    node = expr(term(factor()));
@@ -44,7 +44,7 @@ element * parser::parse(const char * psz)
 }
 
 element * parser::expr(element * pelement1)
-{   
+{
    element * top_node;
    m_scanner.peek();
    if(m_scanner.m_ptoken->value == token::addition || m_scanner.m_ptoken->value == token::subtraction)
@@ -72,7 +72,7 @@ element * parser::expr(element * pelement1)
          top_node->m_pelement2   = term(factor());
          return top_node;
       }
-      return m_pelement1;   
+      return m_pelement1;
    }
 
 
@@ -110,7 +110,7 @@ element * parser::expr(element * pelement1)
          node = new_node();
          node->m_ptoken = m_scanner.m_ptoken;
          return node;
-      }   
+      }
       else if(m_scanner.m_ptoken->value == token::function)
       {
          m_scanner.next();
@@ -173,18 +173,18 @@ element * parser::expr(element * pelement1)
          expect(token::close_paren);
          return node;
       }
-      
+
       syntax_error("missing number or ending parenthesis");
       return NULL;
    }
 
    void parser::expect(char value)
-   {   
+   {
       char error_msg[11] = "expected ";
       error_msg[9] = value;
       error_msg[10] = '\0';
       m_scanner.peek();
-      if(m_scanner.m_ptoken->value == value)
+      if(m_scanner.m_ptoken->value == (::calculator::token::e_type) value)
          m_scanner.next();
       else
          syntax_error(error_msg);
@@ -193,14 +193,14 @@ element * parser::expr(element * pelement1)
 
    void parser::syntax_error(const char * psz)
    {
-      error(string("syntax") + psz);   
+      error(string("syntax") + psz);
    }
    void parser::error(const char * psz)
    {
       string str;
       str = "error: ";
       str += psz;
-      throw (const char *) str;   
+      throw (const char *) str;
    }
 
 } // namespace calculator

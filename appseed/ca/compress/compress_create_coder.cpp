@@ -35,6 +35,8 @@ namespace compress
       return S_OK;
    }
 
+   #define PROPID int
+
    static HRESULT ReadIsAssignedProp(::compress::codecs_info_interface  * codecsInfo, uint32 index, PROPID propID, bool &res)
    {
       var prop;
@@ -57,7 +59,7 @@ namespace compress
          codec_info_ex info;
          var prop;
          RINOK(codecsInfo->GetProperty(i, method_prop_ID, &prop));
-         // if (prop.vt != VT_BSTR)
+         // if (prop.vt != var::type_string)
          // info.Id.IDSize = (byte)SysStringByteLen(prop.bstrVal);
          // memmove(info.Id.ID, prop.bstrVal, info.Id.IDSize);
          if (prop.get_type() != var::type_uint64)
@@ -65,13 +67,13 @@ namespace compress
             continue; // old Interface
             // return E_INVALIDARG;
          }
-         info.Id = (__int64) prop;
+         info.Id = prop;
          prop.unset();
 
          RINOK(codecsInfo->GetProperty(i, method_prop_Name, &prop));
          if (prop.get_type() == var::type_string)
             info.Name = prop;
-         else if (prop.get_type() != VT_EMPTY)
+         else if (prop.get_type() != var::type_empty)
             return E_INVALIDARG;;
 
          RINOK(ReadNumberOfStreams(codecsInfo, i, method_prop_InStreams, info.NumInStreams));

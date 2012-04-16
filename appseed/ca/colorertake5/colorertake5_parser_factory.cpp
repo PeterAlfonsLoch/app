@@ -109,25 +109,42 @@ string ParserFactory::searchPath()
 ParserFactory::ParserFactory(::ca::application * papp) :
    ca(papp)
 {
-  fileErrorHandler = NULL;
-  keeper < bool > keepZipAsDir(&papp->m_bZipIsDir, true, papp->m_bZipIsDir, true);
-  catalogPath = searchPath();
-  init();
-};
-   ParserFactory::ParserFactory(::ca::application * papp, string catalogPath) :
-      ca(papp)
-{
-  fileErrorHandler = NULL;
-  if (catalogPath == NULL) this->catalogPath = searchPath();
-  else this->catalogPath = (catalogPath);
-  init();
-};
-ParserFactory::~ParserFactory(){
-};
 
-const char *ParserFactory::getVersion(){
-  return "Colorer-take5 Library be5 "__TIMESTAMP__;
-};
+  fileErrorHandler = NULL;
+
+  keeper < bool > keepZipAsDir(&papp->m_bZipIsDir, true, papp->m_bZipIsDir, true);
+
+  catalogPath = searchPath();
+
+  init();
+
+}
+
+ParserFactory::ParserFactory(::ca::application * papp, string catalogPath) :
+   ca(papp)
+{
+
+   fileErrorHandler = NULL;
+
+   if(catalogPath.is_empty())
+      this->catalogPath = searchPath();
+   else
+      this->catalogPath = (catalogPath);
+
+   init();
+
+}
+
+ParserFactory::~ParserFactory()
+{
+}
+
+const char *ParserFactory::getVersion()
+{
+
+   return "Colorer-take5 Library be5 "__TIMESTAMP__;
+
+}
 
 
 
@@ -187,7 +204,7 @@ HRCParser* ParserFactory::getHRCParser()
                   {
                      string str;
                      e.GetErrorMessage(str);
-                     TRACE("exception %s", str);
+                     TRACE("exception %s", str.c_str());
                   }
                }
             }
@@ -205,7 +222,7 @@ HRCParser* ParserFactory::getHRCParser()
                {
                   string str;
                   e.GetErrorMessage(str);
-                  TRACE("exception %s", str);
+                  TRACE("exception %s", str.c_str());
                }
             }
          }
@@ -220,7 +237,7 @@ text_parser *ParserFactory::createTextParser(){
 StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID)
 {
   ::collection::string_map<stringa> * hrdClass = NULL;
-  if (classID == NULL)
+  if (classID.is_empty())
     hrdClass = hrdLocations.pget(("rgb"));
   else
     hrdClass = hrdLocations.pget(classID);
@@ -229,7 +246,7 @@ StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID
     throw ParserFactoryException(string("can't find hrdClass '")+classID+"'");
 
   stringa *hrdLocV = NULL;
-  if (nameID == NULL)
+  if (nameID.is_empty())
   {
     char *hrd = getenv("COLORER5HRD");
     hrdLocV = (hrd) ? hrdClass->pget((hrd)) : hrdClass->pget(("default"));
@@ -246,7 +263,7 @@ StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID
   StyledHRDMapper *mapper = new StyledHRDMapper(get_app());
   for(int idx = 0; idx < hrdLocV->get_size(); idx++)
   {
-    if (hrdLocV->element_at(idx) != NULL)
+    if (hrdLocV->element_at(idx).has_char())
     {
 
        try
@@ -271,7 +288,7 @@ TextHRDMapper *ParserFactory::createTextMapper(string nameID){
   if (hrdClass == NULL) throw ParserFactoryException(string("can't find hrdClass 'text'"));
 
   stringa *hrdLocV = NULL;
-  if (nameID == NULL)
+  if (nameID.is_empty())
     hrdLocV = hrdClass->pget(("default"));
   else
     hrdLocV = hrdClass->pget(nameID);
@@ -281,7 +298,7 @@ TextHRDMapper *ParserFactory::createTextMapper(string nameID){
   TextHRDMapper *mapper = new TextHRDMapper(get_app());
   for(int idx = 0; idx < hrdLocV->get_size(); idx++)
   {
-    if (hrdLocV->element_at(idx) != NULL)
+    if (hrdLocV->element_at(idx).has_char())
     {
        try
        {

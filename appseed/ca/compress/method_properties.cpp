@@ -43,8 +43,8 @@ namespace compress
 
       {
          count numProps = method.Props.m_propertya.get_size();
-         ::ca::smart_pointer<::compress::set_coder_properties_interface> setCoderProperties;
-         setCoderProperties = dynamic_cast<::compress::set_coder_properties_interface *>(coder);
+         ::ca::smart_pointer < ::compress::set_coder_properties_interface > setCoderProperties;
+         setCoderProperties = dynamic_cast < ::compress::set_coder_properties_interface * > (coder);
          if (setCoderProperties == NULL)
          {
             if (numProps != 0)
@@ -66,12 +66,12 @@ namespace compress
                   // if (tryReduce && prop.Id == NCoderPropID::kDictionarySize && value.vt == VT_UI4 && reducedDictionarySize < value.ulVal)
                   if (tryReduce)
                      if (atoi(prop.name()) == NCoderPropID::kDictionarySize)
-                        if (value.get_integer() == VT_UI4)
+                        if (value.get_integer() == var::type_integer)
                            if (reducedDictionarySize < value.get_ulong())
                               value = reducedDictionarySize;
                }
-               ::ca::smart_pointer<::compress::set_coder_properties_interface> setCoderProperties;
-               setCoderProperties = dynamic_cast<::compress::set_coder_properties_interface *>(coder);
+               ::ca::smart_pointer < ::compress::set_coder_properties_interface > setCoderProperties;
+               setCoderProperties = dynamic_cast < ::compress::set_coder_properties_interface * > (coder);
                res = setCoderProperties->SetCoderProperties(&propIDs.first_element(), values, (uint32_t) numProps);
             }
             catch(...)

@@ -27,38 +27,12 @@ template <class T> inline int MyCompare(T a, T b)
 
 wchar_t MyCharUpper(wchar_t c)
 {
-  if (c == 0)
-    return 0;
-  wchar_t *res = CharUpperW((LPWSTR)(UINT_PTR)(unsigned int)c);
-  if (res != 0 || ::GetLastError() != ERROR_CALL_NOT_IMPLEMENTED)
-    return (wchar_t)(unsigned int)(UINT_PTR)res;
-  const int kBufferSize = 4;
-  char s[kBufferSize + 1];
-  int numChars = ::WideCharToMultiByte(CP_ACP, 0, &c, 1, s, kBufferSize, 0, 0);
-  if (numChars == 0 || numChars > kBufferSize)
-    return c;
-  s[numChars] = 0;
-  ::CharUpperA(s);
-  ::MultiByteToWideChar(CP_ACP, 0, s, numChars, &c, 1);
-  return c;
+   return gen::ch::to_upper_case(c);
 }
 
 wchar_t MyCharLower(wchar_t c)
 {
-  if (c == 0)
-    return 0;
-  wchar_t *res = CharLowerW((LPWSTR)(UINT_PTR)(unsigned int)c);
-  if (res != 0 || ::GetLastError() != ERROR_CALL_NOT_IMPLEMENTED)
-    return (wchar_t)(unsigned int)(UINT_PTR)res;
-  const int kBufferSize = 4;
-  char s[kBufferSize + 1];
-  int numChars = ::WideCharToMultiByte(CP_ACP, 0, &c, 1, s, kBufferSize, 0, 0);
-  if (numChars == 0 || numChars > kBufferSize)
-    return c;
-  s[numChars] = 0;
-  ::CharLowerA(s);
-  ::MultiByteToWideChar(CP_ACP, 0, s, numChars, &c, 1);
-  return c;
+   return gen::ch::to_lower_case(c);
 }
 
 
@@ -108,12 +82,12 @@ namespace n7z
    {
       inStream->seek(position, ::ex1::seek_begin);
       ::ex1::limited_reader *streamSpec = new ::ex1::limited_reader;
-      ::ca::smart_pointer<::ex1::limited_reader> inStreamLimited(streamSpec);
+      ::ca::smart_pointer < ::ex1::limited_reader > inStreamLimited(streamSpec);
       streamSpec->SetStream(inStream);
       streamSpec->Init(size);
 
       ::compress::copy_coder *copyCoderSpec = new ::compress::copy_coder;
-      ::ca::smart_pointer<::compress::coder_interface> copyCoder = copyCoderSpec;
+      ::ca::smart_pointer < ::compress::coder_interface > copyCoder = copyCoderSpec;
       RINOK(copyCoder->Code(inStreamLimited, outStream, NULL, NULL, progress));
       return (copyCoderSpec->TotalSize == size ? S_OK : E_FAIL);
    }
@@ -172,7 +146,7 @@ namespace n7z
 
    static int CompareFolders(const CFolder &f1, const CFolder &f2)
    {
-      
+
       count s1 = f1.Coders.get_count();
 
       count s2 = f2.Coders.get_count();
@@ -185,7 +159,7 @@ namespace n7z
          RINOZ(CompareCoders(f1.Coders[i], f2.Coders[i]));
 
       s1 = f1.BindPairs.get_count();
-      
+
       s2 = f2.BindPairs.get_count();
 
       RINOZ_COMP(s1, s2);
@@ -333,7 +307,7 @@ namespace n7z
       {
          if (sortByType)
          {
-            
+
             strsize slashPos = GetReverseSlashPos(ui.Name);
 
             NamePos = ((slashPos >= 0) ? (slashPos + 1) : 0);
@@ -405,7 +379,7 @@ namespace n7z
       base_array<uint32> Indices;
    };
 
-   static char *g_ExeExts[] =
+   static const char *g_ExeExts[] =
    {
       "dll",
       "exe",
@@ -441,11 +415,11 @@ namespace n7z
          GetMethodFull(k_BCJ2, 4, methodFull);
          exeMethod.Methods.insert_at(0, methodFull);
          GetMethodFull(k_LZMA, 1, methodFull);
-         methodFull.Props[NCoderPropID::kAlgorithm] = (int)kAlgorithmForBCJ2_LZMA;
-         methodFull.Props[NCoderPropID::kMatchFinder] = (int)kMatchFinderForBCJ2_LZMA;
-         methodFull.Props[NCoderPropID::kDictionarySize] = (int)kDictionaryForBCJ2_LZMA;
-         methodFull.Props[NCoderPropID::kNumFastBytes] = (int)kNumFastBytesForBCJ2_LZMA;
-         methodFull.Props[NCoderPropID::kNumThreads] = (int)1;
+         methodFull.Props[NCoderPropID::kAlgorithm] = (INT_PTR)kAlgorithmForBCJ2_LZMA;
+         methodFull.Props[NCoderPropID::kMatchFinder] = (INT_PTR)kMatchFinderForBCJ2_LZMA;
+         methodFull.Props[NCoderPropID::kDictionarySize] = (INT_PTR)kDictionaryForBCJ2_LZMA;
+         methodFull.Props[NCoderPropID::kNumFastBytes] = (INT_PTR)kNumFastBytesForBCJ2_LZMA;
+         methodFull.Props[NCoderPropID::kNumThreads] = (INT_PTR)1;
 
          exeMethod.Methods.add(methodFull);
          exeMethod.Methods.add(methodFull);
@@ -505,10 +479,10 @@ namespace n7z
       public ::ex1::writer
    {
       ::compress::writer_with_crc *_crcStreamSpec;
-      ::ca::smart_pointer<::ex1::writer> _crcStream;
+      ::ca::smart_pointer < ::ex1::writer > _crcStream;
       const CArchiveDatabaseEx *_db;
       const bool_array *_extractStatuses;
-      ::ca::smart_pointer<::ex1::writer> _outStream;
+      ::ca::smart_pointer < ::ex1::writer > _outStream;
       uint32 _startIndex;
       int _currentIndex;
       bool _fileIsOpen;
@@ -555,7 +529,7 @@ namespace n7z
 
    void CFolderOutStream2::OpenFile()
    {
-      _crcStreamSpec->SetStream((*_extractStatuses)[_currentIndex] ? _outStream : NULL);
+      _crcStreamSpec->SetStream((*_extractStatuses)[_currentIndex] ? _outStream.m_p : NULL);
       _crcStreamSpec->Init(true);
       _fileIsOpen = true;
       _rem = _db->Files[_startIndex + _currentIndex].get_count;
@@ -630,16 +604,16 @@ namespace n7z
    {
    public:
       HRESULT Result;
-      ::ca::smart_pointer<::ex1::byte_input_stream> InStream;
+      ::ca::smart_pointer < ::ex1::byte_input_stream > InStream;
 
       CFolderOutStream2 *FosSpec;
-      ::ca::smart_pointer<::ex1::writer> Fos;
+      ::ca::smart_pointer < ::ex1::writer > Fos;
 
       uint64 StartPos;
       const file_size *PackSizes;
       const CFolder *Folder;
 #ifndef _NO_CRYPTO
-      ::ca::smart_pointer<::crypto::get_text_password_interface> GetTextPassword;
+      ::ca::smart_pointer < ::crypto::get_text_password_interface > GetTextPassword;
 #endif
 
       ///DECL_EXTERNAL_CODECS_VARS
@@ -741,17 +715,18 @@ namespace n7z
    { return (encrypted ? 2 : 0) + (bcjFiltered ? 1 : 0); }
 
    HRESULT Update(
-      ::compress::codecs_info_interface *codecsInfo, const base_array<::compress::codec_info_ex> *externalCodecs,
-      ::ex1::byte_input_stream *inStream,
-      const CArchiveDatabaseEx *db,
-      const array_ptr_alloc<CUpdateItem> &updateItems,
-      COutArchive &archive,
-      CArchiveDatabase &newDatabase,
-      ::ex1::writer *seqOutStream,
-      ::compress::archive_update_callback_interface *updateCallback,
-      const CUpdateOptions &options
+      ::compress::codecs_info_interface * codecsInfo,
+      const base_array < ::compress::codec_info_ex > * externalCodecs,
+      ::ex1::byte_input_stream * inStream,
+      const CArchiveDatabaseEx * db,
+      const array_ptr_alloc < CUpdateItem > & updateItems,
+      COutArchive & archive,
+      CArchiveDatabase & newDatabase,
+      ::ex1::writer * seqOutStream,
+      ::compress::archive_update_callback_interface * updateCallback,
+      const CUpdateOptions & options
 #ifndef _NO_CRYPTO
-      , ::crypto::get_text_password_interface *getDecoderPassword
+      , ::crypto::get_text_password_interface * getDecoderPassword
 #endif
       )
    {
@@ -861,7 +836,7 @@ namespace n7z
       RINOK(updateCallback->SetTotal(complexity));
 
       ::compress::local_progress *lps = new ::compress::local_progress;
-      ::ca::smart_pointer<::compress::progress_info_interface> progress = lps;
+      ::ca::smart_pointer < ::compress::progress_info_interface > progress = lps;
       lps->Init(updateCallback, true);
 
       CThreadDecoder threadDecoder(inStream->get_app());
@@ -883,25 +858,25 @@ namespace n7z
          // ---------- Split files to 2 groups ----------
 
          bool useFilters = options.UseFilters;
-         
+
          const CCompressionMethodMode &method = *options.Method;
-         
+
          if (method.Methods.get_count() != 1 || method.Binds.get_count() != 0)
             useFilters = false;
-         
+
          for (i = 0; i < updateItems.get_count(); i++)
          {
-            
+
             const CUpdateItem &ui = updateItems[i];
-            
+
             if (!ui.NewData || !ui.HasStream())
                continue;
-            
+
             bool filteredGroup = false;
 
             if (useFilters)
             {
-               
+
                strsize dotPos = ui.Name.reverse_find(L'.');
 
                if (dotPos >= 0)
@@ -1004,8 +979,8 @@ namespace n7z
             {
                ::ex1::stream_binder sb;
                RINOK(sb.CreateEvents());
-               ::ca::smart_pointer<::ex1::writer> sbOutStream;
-               ::ca::smart_pointer<::ex1::reader> sbInStream;
+               ::ca::smart_pointer < ::ex1::writer > sbOutStream;
+               ::ca::smart_pointer < ::ex1::reader > sbInStream;
                sb.CreateStreams(&sbInStream.m_p,&sbOutStream.m_p);
                bool_array extractStatuses;
 
@@ -1148,7 +1123,7 @@ namespace n7z
                numSubFiles = 1;
 
             CFolderInStream *inStreamSpec = new CFolderInStream;
-            ::ca::smart_pointer<::ex1::reader> solidInStream(inStreamSpec);
+            ::ca::smart_pointer < ::ex1::reader > solidInStream(inStreamSpec);
             inStreamSpec->Init(updateCallback, &indices[i], numSubFiles);
 
             CFolder folderItem;

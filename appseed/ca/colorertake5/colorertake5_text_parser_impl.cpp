@@ -26,7 +26,7 @@ namespace colorertake5
 
    void text_parser_impl::setFileType(file_type *type)
    {
-   
+
       baseScheme = NULL;
 
       if (type != NULL)
@@ -38,7 +38,7 @@ namespace colorertake5
 
    void text_parser_impl::setLineSource(line_source *lh)
    {
-   
+
       lineSource = lh;
 
    }
@@ -65,13 +65,13 @@ namespace colorertake5
 
       CLR_TRACE("text_parser_impl", "parse from=%d, num=%d", from, num);
       /* Check for initial bad conditions */
-      if (regionHandler == NULL) 
+      if (regionHandler == NULL)
          return from;
 
-      if (lineSource == NULL) 
+      if (lineSource == NULL)
          return from;
 
-      if (baseScheme == NULL) 
+      if (baseScheme == NULL)
          return from;
 
 
@@ -92,7 +92,7 @@ namespace colorertake5
 
          if (parent != NULL)
          {
-            CLR_TRACE("TPCache", "searchLine() parent:%s,%d-%d", parent->scheme->getName(), parent->sline, parent->eline);
+            CLR_TRACE("TPCache", "searchLine() parent:%s,%d-%d", parent->scheme->getName().c_str(), parent->sline, parent->eline);
          }
 
       }
@@ -107,7 +107,7 @@ namespace colorertake5
       {
          if (!forward)
          {
-            if (!parent) 
+            if (!parent)
                return from;
 
             if (updateCache)
@@ -183,17 +183,17 @@ namespace colorertake5
 
    void text_parser_impl::addRegion(index lno, strsize sx, strsize ex, class region* region)
    {
-      
-      if (sx == -1 || region == NULL) 
+
+      if (sx == -1 || region == NULL)
          return;
-      
+
       regionHandler->addRegion(lno, str, sx, ex, region);
 
    }
 
    void text_parser_impl::enterScheme(index lno, strsize sx, strsize ex, class region* region)
    {
-      
+
       regionHandler->enterScheme(lno, str, sx, ex, region, baseScheme);
 
    }
@@ -203,7 +203,7 @@ namespace colorertake5
 
       regionHandler->leaveScheme(lno, str, sx, ex, region, baseScheme);
 
-      if (region != NULL) 
+      if (region != NULL)
          picked = region;
 
    }
@@ -211,7 +211,7 @@ namespace colorertake5
 
    void text_parser_impl::enterScheme(index lno, SMatches *match, SchemeNode *schemeNode)
    {
-      
+
       index i;
 
       if (schemeNode->innerRegion == false)
@@ -224,15 +224,15 @@ namespace colorertake5
 
       if (schemeNode->innerRegion == true)
          enterScheme(lno, match->e[0], match->e[0], schemeNode->region);
-      
+
 
    }
 
    void text_parser_impl::leaveScheme(index lno, SMatches *match, SchemeNode *schemeNode)
    {
-      
+
       UNREFERENCED_PARAMETER(lno);
-      
+
       index i;
 
       if (schemeNode->innerRegion == true)
@@ -265,11 +265,11 @@ namespace colorertake5
 
    index text_parser_impl::searchKW(const SchemeNode *node, index no, index lowlen, index hilen)
    {
-      
+
       UNREFERENCED_PARAMETER(no);
       UNREFERENCED_PARAMETER(hilen);
 
-      if (!node->kwList->num) 
+      if (!node->kwList->num)
          return MATCH_NOTHING;
 
       if (node->kwList->minKeywordLength+gx > lowlen)
@@ -326,11 +326,11 @@ namespace colorertake5
             };
             break;
          };
-         
-         if (cr == 1) 
+
+         if (cr == 1)
             right = pos;
 
-         if (cr == 0 || cr == -1) 
+         if (cr == 0 || cr == -1)
             left = pos;
 
       };
@@ -342,7 +342,7 @@ namespace colorertake5
 
    index text_parser_impl::searchRE(scheme_impl *cscheme, index no, index lowLen, index hiLen)
    {
-      
+
       index i, re_result;
       scheme_impl *ssubst = NULL;
       SMatches match;
@@ -351,7 +351,7 @@ namespace colorertake5
       parse_cache *ResF = NULL;
       parse_cache *ResP = NULL;
 
-      CLR_TRACE("text_parser_impl", "searchRE: entered scheme \"%s\"", cscheme->getName());
+      CLR_TRACE("text_parser_impl", "searchRE: entered scheme \"%s\"", cscheme->getName().c_str());
 
       if (!cscheme)
          return MATCH_NOTHING;

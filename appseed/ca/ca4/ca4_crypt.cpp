@@ -12,7 +12,8 @@ extern "C"
 
 #include "ca4_nessie.h"
 
-
+#ifdef WINDOWS
+#endif
 
 
 void NESSIEinit(struct NESSIEstruct * const structpointer);
@@ -338,18 +339,18 @@ namespace ca4
 
    void crypt::hmac(void * result, const primitive::memory & memMessage, const primitive::memory & memKey)
    {
-      
+
       crypto::hmac_sha1::context context;
-      
+
       context.digest(result, memMessage.get_data(), (int) memMessage.get_size(), memKey.get_data(), (int) memKey.get_size());
 
    }
 
    void crypt::hmac(void * result, const string & strMessage, const string & strKey)
    {
-      
+
       crypto::hmac_sha1::context context;
-      
+
       context.digest(result, strMessage, (int) strMessage.get_length(), strKey, (int) strKey.get_length());
 
    }

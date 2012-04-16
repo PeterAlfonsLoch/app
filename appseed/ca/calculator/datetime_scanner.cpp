@@ -152,12 +152,12 @@ namespace datetime
    string check_month(const char * input, const char * & scanner)
    {
       scanner = input;
-      while(isspace(*scanner) && *scanner != '\0')
+      while(isspace_dup(*scanner) && *scanner != '\0')
          scanner++;
       if(*scanner == '\0')
          return "";
       const char * start = scanner;
-      while(isalpha(*scanner))
+      while(isalpha_dup(*scanner))
          scanner++;
       string strCandidate = string(input, scanner - start);
       strCandidate.make_lower();
@@ -628,7 +628,7 @@ namespace datetime
       if(input != next_input && next_input != NULL)
          return;
       beginning = input;
-      m_ptoken = look_ahead();   
+      m_ptoken = look_ahead();
       next_input = input;
       input = beginning;
    }
@@ -639,18 +639,18 @@ namespace datetime
    }
 
    token * scanner::look_ahead(void)
-   {   
+   {
       token * token;
       token = new class token;
       if(token == NULL)
          throw memory_exception();
-      while(isspace(*input))
+      while(isspace_dup(*input))
          input++;
       if(*input == '\0')
       {
          token->value = token::end;
          return token;
-      }      
+      }
       if(*input == '+')
       {
          token->value = token::addition;
@@ -693,7 +693,7 @@ namespace datetime
          input++;
          return token;
       }
-      else 
+      else
       {
          token->m_str = consume_date_expression(m_pstrcontext, input);
          while(gen::ch::is_space_char(input))

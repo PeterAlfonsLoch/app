@@ -22,7 +22,7 @@ namespace n7z
 {
 
    static void ConvertBindInfoToFolderItemInfo(const ::compress::coder_mixer::CBindInfo &bindInfo,
-      const base_array<::compress::method_id> decompressionMethods,
+      const base_array < ::compress::method_id > decompressionMethods,
       CFolder &folder)
    {
       folder.Coders.remove_all();
@@ -52,7 +52,8 @@ namespace n7z
    }
 
    HRESULT CEncoder::CreateMixerCoder(
-      ::compress::codecs_info_interface *codecsInfo, const base_array<::compress::codec_info_ex> *externalCodecs,
+      ::compress::codecs_info_interface *codecsInfo,
+      const base_array < ::compress::codec_info_ex > *externalCodecs,
       const file_size *inSizeForReduce)
    {
       ex1::HRes hr;
@@ -65,8 +66,8 @@ namespace n7z
          _codersInfo.add(CCoderInfo());
          CCoderInfo &encodingInfo = _codersInfo.last_element();
          encodingInfo.MethodID = methodFull.Id;
-         ::ca::smart_pointer<::compress::coder_interface> encoder;
-         ::ca::smart_pointer<::compress::coder2_interface> encoder2;
+         ::ca::smart_pointer < ::compress::coder_interface > encoder;
+         ::ca::smart_pointer < ::compress::coder2_interface > encoder2;
 
 
          if(FAILED(hr = CreateCoder(
@@ -79,10 +80,10 @@ namespace n7z
          if (!encoder && !encoder2)
             return E_FAIL;
 
-         ::ca::smart_pointer<::radix::object> encoderCommon = encoder ? (::radix::object *)encoder : (::radix::object *)encoder2;
+         ::ca::smart_pointer < ::radix::object > encoderCommon = encoder ? (::radix::object *)encoder : (::radix::object *)encoder2;
 
          {
-            ::ca::smart_pointer<::compress::set_coder_mt_interface> setCoderMt;
+            ::ca::smart_pointer < ::compress::set_coder_mt_interface > setCoderMt;
             setCoderMt =   dynamic_cast < ::compress::set_coder_mt_interface * > (encoderCommon.m_p);
             if (setCoderMt)
             {
@@ -113,7 +114,7 @@ namespace n7z
          }
 #endif
 
-         ::ca::smart_pointer<::crypto::set_password_interface> cryptoSetPassword;
+         ::ca::smart_pointer < ::crypto::set_password_interface > cryptoSetPassword;
          cryptoSetPassword = dynamic_cast < ::crypto::set_password_interface * > (encoderCommon.m_p);
 
          if (cryptoSetPassword)
@@ -140,7 +141,8 @@ namespace n7z
    }
 
    HRESULT CEncoder::Encode(
-      ::compress::codecs_info_interface *codecsInfo, const base_array<::compress::codec_info_ex> *externalCodecs,
+      ::compress::codecs_info_interface *codecsInfo,
+      const base_array < ::compress::codec_info_ex > *externalCodecs,
       ::ex1::reader *inStream,
       const file_size *inStreamSize, const file_size *inSizeForReduce,
       CFolder &folderItem,
@@ -159,9 +161,9 @@ namespace n7z
       _mixerCoderSpec->ReInit();
       // _mixerCoderSpec->SetCoderInfo(0, NULL, NULL, progress);
 
-      array_ptr_alloc<::ex1::temp_io_buffer> inOutTempBuffers;
-      array_ptr_alloc<::ex1::temp_io_writer *> tempBufferSpecs;
-      array_ptr_alloc<::ca::smart_pointer<::ex1::writer> > tempBuffers;
+      array_ptr_alloc < ::ex1::temp_io_buffer > inOutTempBuffers;
+      array_ptr_alloc < ::ex1::temp_io_writer * > tempBufferSpecs;
+      array_ptr_alloc < ::ca::smart_pointer < ::ex1::writer > > tempBuffers;
       count numMethods = _bindInfo.Coders.get_count();
       index i;
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
@@ -173,7 +175,7 @@ namespace n7z
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
       {
          ex1::temp_io_writer *tempBufferSpec = new ex1::temp_io_writer;
-         ::ca::smart_pointer<::ex1::writer> tempBuffer = tempBufferSpec;
+         ::ca::smart_pointer < ::ex1::writer > tempBuffer = tempBufferSpec;
          tempBufferSpec->Init(&inOutTempBuffers[i - 1]);
          tempBuffers.add(tempBuffer);
          tempBufferSpecs.add(tempBufferSpec);
@@ -203,16 +205,16 @@ namespace n7z
       // RINOK(stream->Seek(0, STREAM_SEEK_CUR, &outStreamStartPos));
 
       ::compress::size_count_reader2 * inStreamSizeCountSpec = new ::compress::size_count_reader2;
-      ::ca::smart_pointer<::ex1::reader> inStreamSizeCount = inStreamSizeCountSpec;
+      ::ca::smart_pointer < ::ex1::reader > inStreamSizeCount = inStreamSizeCountSpec;
       ::ex1::size_count_writer * outStreamSizeCountSpec = new ::ex1::size_count_writer;
-      ::ca::smart_pointer<::ex1::writer> outStreamSizeCount = outStreamSizeCountSpec;
+      ::ca::smart_pointer < ::ex1::writer > outStreamSizeCount = outStreamSizeCountSpec;
 
       inStreamSizeCountSpec->Init(inStream);
       outStreamSizeCountSpec->SetStream(outStream);
       outStreamSizeCountSpec->Init();
 
-      base_array<::ex1::reader *> inStreamPointers;
-      base_array<::ex1::writer *> outStreamPointers;
+      base_array < ::ex1::reader * > inStreamPointers;
+      base_array < ::ex1::writer * > outStreamPointers;
       inStreamPointers.add(inStreamSizeCount);
       outStreamPointers.add(outStreamSizeCount);
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
@@ -222,19 +224,19 @@ namespace n7z
       {
          CCoderInfo &encodingInfo = _codersInfo[i];
 
-         ::ca::smart_pointer<::crypto::reset_init_vector_interface> resetInitVector;
+         ::ca::smart_pointer < ::crypto::reset_init_vector_interface > resetInitVector;
          resetInitVector = dynamic_cast < ::crypto::reset_init_vector_interface * > (&_mixerCoderSpec->_coders[i]);
          if (resetInitVector != NULL)
          {
             resetInitVector->ResetInitVector();
          }
 
-         ::ca::smart_pointer<::compress::write_coder_properties_interface> writeCoderProperties;
+         ::ca::smart_pointer < ::compress::write_coder_properties_interface >  writeCoderProperties;
          writeCoderProperties = dynamic_cast < ::compress::write_coder_properties_interface * >(&_mixerCoderSpec->_coders[i]);
          if (writeCoderProperties != NULL)
          {
             ::ex1::dynamic_buffered_writer *outStreamSpec = new ::ex1::dynamic_buffered_writer;
-            ::ca::smart_pointer<::ex1::writer> outStream(outStreamSpec);
+            ::ca::smart_pointer < ::ex1::writer > outStream(outStreamSpec);
             outStreamSpec->Init();
             writeCoderProperties->WriteCoderProperties(outStream);
             outStreamSpec->CopyToBuffer(encodingInfo.Props);

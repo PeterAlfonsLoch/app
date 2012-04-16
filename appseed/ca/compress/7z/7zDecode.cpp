@@ -87,7 +87,8 @@ namespace n7z
    }
 
    HRESULT CDecoder::Decode(
-      ::compress::codecs_info_interface * codecsInfo, const base_array<::compress::codec_info_ex> * externalCodecs,
+      ::compress::codecs_info_interface * codecsInfo,
+      const base_array < ::compress::codec_info_ex > * externalCodecs,
       ::ex1::byte_input_stream *inStream,
       file_position startPos,
       const file_size * packSizes,
@@ -102,7 +103,7 @@ namespace n7z
       if (!folderInfo.CheckStructure())
          return E_NOTIMPL;
       passwordIsDefined = false;
-      array_ptr_alloc< ::ca::smart_pointer<::ex1::reader> > inStreams;
+      array_ptr_alloc < ::ca::smart_pointer < ::ex1::reader > > inStreams;
 
       ::ex1::locked_in_stream lockedInStream;
       lockedInStream.Init(inStream);
@@ -110,13 +111,13 @@ namespace n7z
       for (int j = 0; j < folderInfo.PackStreams.get_count(); j++)
       {
          ::ex1::locked_reader *lockedStreamImpSpec = new ::ex1::locked_reader;
-         ::ca::smart_pointer<::ex1::reader> lockedStreamImp = lockedStreamImpSpec;
+         ::ca::smart_pointer < ::ex1::reader > lockedStreamImp = lockedStreamImpSpec;
          lockedStreamImpSpec->Init(&lockedInStream, (file_size) startPos);
          startPos += packSizes[j];
 
          ::ex1::limited_reader *streamSpec = new
             ::ex1::limited_reader;
-         ::ca::smart_pointer<::ex1::reader> inStream = streamSpec;
+         ::ca::smart_pointer < ::ex1::reader > inStream = streamSpec;
          streamSpec->SetStream(lockedStreamImp);
          streamSpec->Init(packSizes[j]);
          inStreams.add(inStream);
@@ -160,8 +161,8 @@ namespace n7z
             const CCoderInfo &coderInfo = folderInfo.Coders[i];
 
 
-            ::ca::smart_pointer<::compress::coder_interface> decoder;
-            ::ca::smart_pointer<::compress::coder2_interface> decoder2;
+            ::ca::smart_pointer < ::compress::coder_interface > decoder;
+            ::ca::smart_pointer < ::compress::coder2_interface > decoder2;
 
             if(FAILED(hr = ::compress::CreateCoder(
                codecsInfo, externalCodecs,
@@ -169,7 +170,7 @@ namespace n7z
             {
                return  hr;
             }
-            ::ca::smart_pointer<::radix::object> decoderUnknown;
+            ::ca::smart_pointer < ::radix::object > decoderUnknown;
             if (coderInfo.IsSimpleCoder())
             {
                if (decoder == 0)
@@ -197,7 +198,7 @@ namespace n7z
 #endif
             }
             _decoders.add(decoderUnknown.m_p);
-            ::ca::smart_pointer<::compress::set_codecs_info_interface> setCompressCodecsInfo;
+            ::ca::smart_pointer < ::compress::set_codecs_info_interface > setCompressCodecsInfo;
             setCompressCodecsInfo = dynamic_cast < ::compress::set_codecs_info_interface * > (setCompressCodecsInfo.m_p);
             if (setCompressCodecsInfo)
             {
@@ -220,7 +221,7 @@ namespace n7z
 //         ::ca::smart_pointer<::ca::ca> &decoder = _decoders[coderIndex];
 
          {
-            ::ca::smart_pointer<::compress::set_decoder_properties2_interface> setDecoderProperties;
+            ::ca::smart_pointer < ::compress::set_decoder_properties2_interface > setDecoderProperties;
             setDecoderProperties = dynamic_cast < ::compress::set_decoder_properties2_interface * > (setDecoderProperties.m_p);
             if (setDecoderProperties)
             {
@@ -237,7 +238,7 @@ namespace n7z
 
          if (mtMode)
          {
-            ::ca::smart_pointer<::compress::set_coder_mt_interface> setCoderMt;
+            ::ca::smart_pointer < ::compress::set_coder_mt_interface > setCoderMt;
             setCoderMt = dynamic_cast < ::compress::set_coder_mt_interface * > (setCoderMt.m_p);
             if (setCoderMt)
             {
@@ -246,7 +247,7 @@ namespace n7z
          }
 
          {
-            ::ca::smart_pointer<::crypto::set_password_interface> cryptoSetPassword;
+            ::ca::smart_pointer < ::crypto::set_password_interface > cryptoSetPassword;
             cryptoSetPassword = dynamic_cast < ::crypto::set_password_interface * > (cryptoSetPassword.m_p);
             if (cryptoSetPassword)
             {
@@ -315,7 +316,7 @@ namespace n7z
 
       if (numCoders == 0)
          return 0;
-      base_array<::ex1::reader *> inStreamPointers;
+      base_array < ::ex1::reader * > inStreamPointers;
       inStreamPointers.set_size(0, inStreams.get_count());
       for (i = 0; i < inStreams.get_count(); i++)
          inStreamPointers.add(inStreams[i]);

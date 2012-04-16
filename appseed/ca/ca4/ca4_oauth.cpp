@@ -173,7 +173,7 @@ typedef unsigned char BYTE ;
 {
 public:
 
-   
+
    BYTE m_ipad[64];
    BYTE m_opad[64];
 
@@ -826,7 +826,7 @@ namespace ca4
       memset( szRand, 0, oAuthLibDefaults::OAUTHLIB_BUFFSIZE );
       srand((UINT) time( NULL ) );
       sprintf( szRand, "%x", rand()%1000 );
-      sprintf( szTime, "%ld", (int) time( NULL ) );
+      sprintf( szTime, "%ld", (long int) time( NULL ) );
 
       m_nonce = szTime;
       m_nonce += szRand;
@@ -983,7 +983,7 @@ namespace ca4
       //hmac_context context;
       System.crypt().hmac(memHmac, sigBase, secretSigningKey);
       //context.digest(memHmac.get_data(), sigBase, secretSigningKey);
-      
+
 
       //string strHmac;
       //System.memory_to_hex(strHmac, memHmac);

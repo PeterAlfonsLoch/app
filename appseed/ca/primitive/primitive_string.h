@@ -543,7 +543,7 @@ public:
    x	Unsigned hexadecimal integer	7fa
    X	Unsigned hexadecimal integer (capital letters)	7FA
    p	Pointer address	B800:0000
-   n	Nothing printed. The argument must be a pointer to a signed int, where the number of characters written so far is stored.	
+   n	Nothing printed. The argument must be a pointer to a signed int, where the number of characters written so far is stored.
    %	A % followed by another % character will write % to stdout.	%
 
    The tag can also contain flags, width, .precision and length sub-specifiers, which are optional and follow these specifications:
@@ -573,10 +573,10 @@ public:
    length	description
    h	The argument is interpreted as a short int or unsigned short int (only applies to integer specifiers: i, d, o, u, x and X).
    l	The argument is interpreted as a long int or unsigned long int for integer specifiers (i, d, o, u, x and X), and as a wide character or wide character string for specifiers c and s.
-   L	The argument is interpreted as a long double (only applies to floating point specifiers: e, E, f, g and G). 
+   L	The argument is interpreted as a long double (only applies to floating point specifiers: e, E, f, g and G).
 
    additional arguments
-   Depending on the format string, the function may expect a sequence of additional arguments, each containing one value to be inserted instead of each %-tag specified in the format parameter, if any. There should be the same number of these arguments as the number of %-tags that expect a value. 
+   Depending on the format string, the function may expect a sequence of additional arguments, each containing one value to be inserted instead of each %-tag specified in the format parameter, if any. There should be the same number of these arguments as the number of %-tags that expect a value.
 
 
    */
@@ -585,114 +585,234 @@ public:
    {
    public:
 
-      bool m_bLeftJustify;
-      bool m_bForceShowSign;
-      bool m_bSharp;
-      bool m_bZeroPadding;
 
-      bool m_bWaitingWidthArgument;
-      int  m_iWidth;
-      bool m_bWaitingPrecisionArgument;
-      int  m_iPrecision;
+      enum e_state
+      {
+         state_initial,
+         state_waiting_width,
+         state_parse_precision,
+         state_waiting_precision,
+         state_parse_length,
+      };
+
+
+      e_state     m_estate;
+
+      bool        m_bLeftJustify;
+      bool        m_bForceShowSign;
+      bool        m_bSharp;
+      bool        m_bZeroPadding;
+
+      int         m_iWidth;
+      int         m_iPrecision;
+
+      char        m_chLength;
+      char        m_chSpec;
+
 
       format_spec()
       {
-         
+
+         m_estate                      = state_initial;
+
          m_bLeftJustify                = false;
          m_bForceShowSign              = false;
          m_bSharp                      = false;
          m_bZeroPadding                = false;
 
 
-         m_bWaitingWidthArgument       = false;
          m_iWidth                      = -1;
-         m_bWaitingPrecisionArgument   = false;
          m_iPrecision                  = -1;
+         m_chLength                    = '\0';
+         m_chSpec                      = '\0';
 
       }
 
-   };
-
-   template < typename T >
-   static bool format_get_arg(format_spec & spec, const char * & s, T arg)
-   {
-      while(*s != '\0')
+      bool defer_get_additional_argument(const char * & s)
       {
-         if(*s == '-')
-         {
-            bLeftJustify = true;
-         }
-         else if(*s == '+')
-         {
-            bForceShowSign = true;
-         }
-         else if(*s == '#')
-         {
-            bSharp = true;
-         }
-         else if(*s == '0')
-         {
-            bZeroPadding = true;
-         }
-         else
-         {
-            break;
-         }
-         s++;
+
+         throw "missing argument value";
+
       }
-      const char * start = s;
-      while(*s != '\0')
-      {
-         if(*s == '*')
-         {
-            s++;
-            m_bWaitingWidthArgument = true;
-            return true;
-         }
-         else if(isdigit((unsigned char) *s))
-         {
-         }
-         else
-         {
-            break;
-         }
-         s++;
-      }
-      if(s > start)
-      {
-         m_iWidth = gen::str::natoi(start, s - start);
-      }
-      return false;
-   }
 
-   template < typename T, typename... Args>
-   static bool format_get_arg(format_spec & spec, const char * & s, T value, Args... args)
-   {
-
-      string str;
-
-      while (*s)
+      bool parse(const char * & s)
       {
-         if (*s == '%' && *(++s) != '%')
+         if(m_estate == state_initial)
          {
-            format_spec spec;
-            if(format_get_arg(spec, s, value))
+            while(*s != '\0')
             {
-               format(spec, s, args...); // call even when *s == 0 to detect extra arguments
+               if(*s == '-')
+               {
+                  m_bLeftJustify = true;
+               }
+               else if(*s == '+')
+               {
+                  m_bForceShowSign = true;
+               }
+               else if(*s == '#')
+               {
+                  m_bSharp = true;
+               }
+               else if(*s == '0')
+               {
+                  m_bZeroPadding = true;
+               }
+               else
+               {
+                  break;
+               }
+               s++;
+            }
+            if(*s == '\0')
+            {
+               throw simple_exception("unfineshed argument specifier");
+            }
+            const char * start = s;
+            while(*s != '\0')
+            {
+               if(*s == '*')
+               {
+                  s++;
+                  m_estate = state_waiting_width;
+                  return true;
+               }
+               else if(isdigit_dup(*s))
+               {
+               }
+               else
+               {
+                  break;
+               }
+               s++;
+            }
+            if(*s == '\0')
+            {
+               throw simple_exception("unfineshed argument specifier");
+            }
+            if(s > start)
+            {
+               m_iWidth = natoi_dup(start, s - start);
+            }
+            m_estate = state_parse_precision;
+         }
+         if(m_estate == state_parse_precision)
+         {
+            if(*s == '.')
+            {
+               s++;
+            }
+            const char * start = s;
+            while(*s != '\0')
+            {
+               if(*s == '*')
+               {
+                  s++;
+                  m_estate = state_waiting_precision;
+                  return true;
+               }
+               else if(isdigit_dup(*s))
+               {
+               }
+               else
+               {
+                  break;
+               }
+               s++;
+            }
+            if(*s == '\0')
+            {
+               throw simple_exception("unfineshed argument specifier");
+            }
+            if(s > start)
+            {
+               m_iPrecision = natoi_dup(start, s - start);
+            }
+            m_estate = state_parse_length;
+         }
+         if(m_estate == state_parse_length)
+         {
+            if(*s == 'l' || *s == 'L' || *s == 'h')
+            {
+               m_chLength = *s;
+               s++;
+            }
+            if(*s == '\0')
+            {
+               throw simple_exception("unfineshed argument specifier");
+            }
+            if(*s == 'c' || *s == 'd' || *s == 'i'
+            || *s == 'e' || *s == 'E' || *s == 'f'
+            || *s == 'g' || *s == 'G' || *s == 'o'
+            || *s == 'g' || *s == 'G' || *s == 's'
+            || *s == 'u' || *s == 'x' || *s == 'X'
+            || *s == 'p')
+            {
+               m_chLength = *s;
+               s++;
             }
             else
             {
-               str += format(spec, value);
+               throw simple_exception("unfineshed format specifier");
             }
-            str += format(s, value);
-            ++s;
-            
-            return;
+            return false;
          }
-         std::cout << *s++;
+         else
+         {
+            throw "invalid state";
+         }
       }
-      throw std::logic_error("extra arguments provided to printf");
-   }
+
+      template < typename T, typename... Args>
+      bool defer_get_additional_argument(const char * & s, const T & arg, Args... args)
+      {
+         if(m_estate == state_initial
+         || m_estate == state_parse_precision
+         || m_estate == state_parse_length)
+         {
+            if(!parse(s))
+               return false;
+         }
+         if(m_estate == state_waiting_width)
+         {
+            throw "width should plain int";
+         }
+         else if(m_estate == state_waiting_precision)
+         {
+            throw "width should plain int";
+         }
+         return defer_get_additional_argument(s, arg, args...);
+      }
+
+      template < typename T, typename... Args>
+      bool defer_get_additional_argument(const char * & s, const int & arg, Args... args)
+      {
+         if(m_estate == state_initial
+         || m_estate == state_parse_precision
+         || m_estate == state_parse_length)
+         {
+            if(!parse(s))
+               return false;
+         }
+         if(m_estate == state_waiting_width)
+         {
+            m_iWidth = arg;
+            m_estate = state_parse_precision;
+         }
+         else if(m_estate == state_waiting_precision)
+         {
+            m_iPrecision = arg;
+            m_estate = state_parse_length;
+         }
+         return defer_get_additional_argument(s, arg, args...);
+      }
+
+      string format(int i);
+      string format(const char * psz);
+
+
+   };
+
+
 
    void Format(const char * s)
    {
@@ -701,9 +821,12 @@ public:
 
       while (*s)
       {
+
          if(*s == '%' && *(++s) != '%')
-            throw std::runtime_error("invalid format string: missing arguments");
+            throw simple_exception("invalid format string: missing arguments");
+
          str += *s++;
+
       }
 
       *this = str;
@@ -711,7 +834,7 @@ public:
    }
 
    template<typename T, typename... Args>
-   void Format(const char *s, T value, Args... args)
+   void Format(const char *s, const T & value, Args... args)
    {
 
       string str;
@@ -720,23 +843,30 @@ public:
       {
          if (*s == '%' && *(++s) != '%')
          {
+
             format_spec spec;
-            if(format_get_arg(spec, s, value))
+
+            if(spec.defer_get_additional_argument(s, value))
             {
-               format(spec, s, args...); // call even when *s == 0 to detect extra arguments
+
+               spec.defer_get_additional_argument(s, args...); // call even when *s == 0 to detect extra arguments
+
             }
-            else
-            {
-               str += format(spec, value);
-            }
-            str += format(s, value);
-            ++s;
-            
+
+            str += spec.format(value);
+
+            string strContinue;
+
+            strContinue.Format(s, args...);
+
+            str += strContinue;
+
             return;
+
          }
-         std::cout << *s++;
+         str += *s++;
       }
-      throw std::logic_error("extra arguments provided to printf");
+      throw simple_exception("extra arguments provided to printf");
    }
 
 #endif

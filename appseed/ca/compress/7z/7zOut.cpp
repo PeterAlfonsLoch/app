@@ -27,7 +27,7 @@ static HRESULT WriteBytes(::ex1::writer *stream, const void *data, ::primitive::
 }
 
 
-namespace n7z 
+namespace n7z
 {
 
 
@@ -546,9 +546,12 @@ namespace n7z
    }
 
    HRESULT COutArchive::EncodeStream(
-      ::compress::codecs_info_interface *codecsInfo, const base_array<::compress::codec_info_ex> *externalCodecs,
-      CEncoder &encoder, const ::ex1::byte_buffer &data,
-      base_array<file_size> &packSizes, array_ptr_alloc<CFolder> &folders)
+      ::compress::codecs_info_interface * codecsInfo,
+      const base_array < ::compress::codec_info_ex > * externalCodecs,
+      CEncoder & encoder,
+      const ::ex1::byte_buffer & data,
+      base_array < file_size > & packSizes,
+      array_ptr_alloc < CFolder > & folders)
    {
       UNREFERENCED_PARAMETER(codecsInfo);
       UNREFERENCED_PARAMETER(externalCodecs);
@@ -750,10 +753,11 @@ namespace n7z
    }
 
    HRESULT COutArchive::WriteDatabase(
-      ::compress::codecs_info_interface *codecsInfo, const base_array<::compress::codec_info_ex> *externalCodecs,
-      const CArchiveDatabase &db,
-      const CCompressionMethodMode *options,
-      const CHeaderOptions &headerOptions)
+      ::compress::codecs_info_interface *codecsInfo,
+      const base_array < ::compress::codec_info_ex > *externalCodecs,
+      const CArchiveDatabase & db,
+      const CCompressionMethodMode * options,
+      const CHeaderOptions & headerOptions)
    {
       if (!db.CheckNumFiles())
          return E_FAIL;
@@ -854,7 +858,7 @@ namespace n7z
 
    void CArchiveDatabase::GetFile(index index, CFileItem &file, CFileItem2 &file2) const
    {
-      
+
       file = Files[index];
       file2.CTimeDefined = CTime.GetItem(index, file2.CTime);
       file2.ATimeDefined = ATime.GetItem(index, file2.ATime);
@@ -866,7 +870,7 @@ namespace n7z
 
    void CArchiveDatabase::AddFile(const CFileItem &file, const CFileItem2 &file2)
    {
-      
+
       count index = Files.get_count();
 
       CTime.SetItem(index, file2.CTimeDefined, file2.CTime);
@@ -878,4 +882,4 @@ namespace n7z
 
    }
 
-} // namespace n7z 
+} // namespace n7z

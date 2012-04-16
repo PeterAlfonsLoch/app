@@ -2,7 +2,7 @@
 
 url_domain_base::url_domain_base()
 {
-   
+
    m_pszRadix     = NULL;
    m_iLenRadix    = 0;
    m_pszSuffix    = NULL;
@@ -130,7 +130,7 @@ url_domain_base::url_domain_base()
             }
          }
       }
-      if(m_iLenTopLevel == 2 
+      if(m_iLenTopLevel == 2
       && m_pszTopLevel[0] == 'b'
       && m_pszTopLevel[1] == 'r'
       && iLenPreTopLevel == 3
@@ -154,14 +154,14 @@ url_domain_base::url_domain_base()
             m_iLenPrefix   = (pszPreTopLevel3 - 1) - psz;
          }
       }
-      else if(m_iLenTopLevel == 2 
-      && m_pszTopLevel[0] == 'am'
-      && m_pszTopLevel[1] == 'r'
+      else if(m_iLenTopLevel == 2
+      && m_pszTopLevel[0] == 'a'
+      && m_pszTopLevel[1] == 'm'
       && iLenPreTopLevel == 5
       && ((pszPreTopLevel[0] == 'n'
       &&   pszPreTopLevel[2] == 'r') ||
           (pszPreTopLevel[0] == 's'
-      &&   pszPreTopLevel[1] == 'u'))
+      &&   pszPreTopLevel[2] == 'u'))
       && pszPreTopLevel[1] == 'o'
       && pszPreTopLevel[3] == 't'
       && pszPreTopLevel[4] == 'h'
@@ -234,7 +234,7 @@ url_domain_base::url_domain_base()
 
    string url_domain_base::get_name(const char * pszServerName)
    {
-   
+
       url_domain_base domainbase;
 
       domainbase.create(pszServerName);

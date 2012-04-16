@@ -12,6 +12,7 @@
 
 namespace n7z {
 
+/*
 struct CPropMap
 {
   uint64 FilePropID;
@@ -50,13 +51,15 @@ CPropMap kPropMap[] =
   #endif
 };
 
-static const int kPropMapSize = sizeof(kPropMap) / sizeof(kPropMap[0]);
+static const int kPropMapSize = sizeof(kPropMap) / sizeof(kPropMap[0]);*/
 
 static int FindPropInMap(uint64 filePropID)
 {
+   throw not_implemented_exception();
+   /*
   for (int i = 0; i < kPropMapSize; i++)
     if (kPropMap[i].FilePropID == filePropID)
-      return i;
+      return i;*/
   return -1;
 }
 
@@ -146,7 +149,7 @@ ex1::HRes CHandler::GetNumberOfProperties(uint32 *numProperties)
 {
 
    *numProperties = (uint32_t) _fileInfoPopIDs.get_count();
-   
+
    return S_OK;
 
 }

@@ -43,25 +43,19 @@ namespace archive
    {
      if (name.is_empty())
        return false;
-     LPCSTR prev =
-     #if defined(_WIN32) && !defined(UNDER_CE)
-       CharPrevExA((WORD)codePage, name, &LPCSTR(name)[name.get_length()], 0);
-     #else
-       (LPCSTR)(name) + (name.Length() - 1);
-     #endif
-     return (*prev == '/');
+     return name[name.length() - 1] == '/';
    }
 
-   #ifdef _WIN32
+#ifdef WINDOWS
    string WinNameToOSName(const string &name)
    {
      return name;
    }
-   #else
+#else
    string WinNameToOSName(const string &name)
    {
      string newName = name;
-     newName.Replace(L'\\', kOSDirDelimiter);
+     newName.replace('\\', kOSDirDelimiter);
      return newName;
    }
    #endif

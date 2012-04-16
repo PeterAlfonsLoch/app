@@ -46,7 +46,7 @@ namespace calculator
       if(input != next_input && next_input != NULL)
          return;
       beginning = input;
-      m_ptoken = look_ahead();   
+      m_ptoken = look_ahead();
       next_input = input;
       input = beginning;
    }
@@ -57,7 +57,7 @@ namespace calculator
    }
 
    token * scanner::look_ahead(void)
-   {   
+   {
       token * token;
       token = new class token;
       if(token == NULL)
@@ -68,7 +68,7 @@ namespace calculator
       {
          token->value = token::end;
          return token;
-      }      
+      }
       const char * nextinput = gen::str::utf8_inc(input);
 
       if((*input == 'j' || *input == 'i') &&
@@ -88,7 +88,7 @@ namespace calculator
          strtod(input, &endptr);
          token->m_str = string(input, endptr - input);
          if((*endptr == 'i' || *endptr == 'j')
-            && !(isdigit(*(endptr + 1)) || isalpha(*(endptr + 1))))
+            && !(isdigit_dup(*(endptr + 1)) || isalpha_dup(*(endptr + 1))))
          {
             token->value = token::imaginary;
             endptr++;
@@ -138,7 +138,7 @@ namespace calculator
          input++;
          return token;
       }
-      else 
+      else
       {
          token->m_str = gen::str::consume_nc_name(input);
          while(gen::ch::is_space_char(input))

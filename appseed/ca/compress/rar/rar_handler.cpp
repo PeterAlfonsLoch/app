@@ -31,23 +31,6 @@
 using namespace NWindows;
 using namespace NTime;*/
 
-bool DosTimeToFileTime(uint32 dosTime, FILETIME &ft)
-{
-  #if defined(_WIN32) && !defined(UNDER_CE)
-  return ::DosDateTimeToFileTime((uint16)(dosTime >> 16), (uint16)(dosTime & 0xFFFF), &ft) != 0;
-  #else
-  ft.dwLowDateTime = 0;
-  ft.dwHighDateTime = 0;
-  uint64 res;
-  if (!GetSecondsSince1601(kDosTimeStartYear + (dosTime >> 25), (dosTime >> 21) & 0xF, (dosTime >> 16) & 0x1F,
-      (dosTime >> 11) & 0x1F, (dosTime >> 5) & 0x3F, (dosTime & 0x1F) * 2, res))
-    return false;
-  res *= kNumTimeQuantumsInSecond;
-  ft.dwLowDateTime = (uint32)res;
-  ft.dwHighDateTime = (uint32)(res >> 32);
-  return true;
-  #endif
-}
 
 
 namespace rar
@@ -156,7 +139,7 @@ namespace rar
 
    ex1::HRes handler::GetNumberOfItems(uint32 * numItems)
    {
-      
+
       *numItems = (uint32_t) _refItems.get_size();
 
       return S_OK;
@@ -167,7 +150,7 @@ namespace rar
 
    static bool RarTimeToFileTime(const CRarTime &rarTime, FILETIME &result)
    {
-      if (!DosTimeToFileTime(rarTime.DosTime, result))
+      if (!windows::file_time::DosTimeToFileTime(rarTime.DosTime, result))
          return false;
       uint64 value =  (((uint64)result.dwHighDateTime) << 32) + result.dwLowDateTime;
       value += (uint64)rarTime.LowSecond * 10000000;
@@ -184,8 +167,9 @@ namespace rar
       FILETIME localFileTime, utcFileTime;
       if (RarTimeToFileTime(rarTime, localFileTime))
       {
-         if (!LocalFileTimeToFileTime(&localFileTime, &utcFileTime))
-            utcFileTime.dwHighDateTime = utcFileTime.dwLowDateTime = 0;
+         throw not_implemented_exception();
+/*         if (!LocalFileTimeToFileTime(&localFileTime, &utcFileTime))
+            utcFileTime.dwHighDateTime = utcFileTime.dwLowDateTime = 0;*/
       }
       else
          utcFileTime.dwHighDateTime = utcFileTime.dwLowDateTime = 0;
@@ -331,7 +315,7 @@ namespace rar
          string newName;
          if (_newStyle || !_first)
          {
-            
+
             strsize i;
 
             strsize numLetters = _changedPart.get_length();

@@ -221,7 +221,14 @@ public:
    operator unsigned int();
    operator long();
    operator int();
-   operator __int64();
+   operator int64_t();
+
+#ifdef LINUX
+   operator long unsigned int()
+   {
+      return operator unsigned int();
+   }
+#endif
    //operator string & ();
    //operator id &();
    operator const char * () const;

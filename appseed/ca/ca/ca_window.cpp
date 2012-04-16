@@ -2397,9 +2397,7 @@ void AfxRepositionWindow(AFX_SIZEPARENTPARAMS* lpLayout,
    //   return;     // nothing to do
 
    // try to use DeferWindowPos for speed, otherwise use SetWindowPos
-   hWnd->SetWindowPos(NULL, lpRect->left, lpRect->top,
-      lpRect->right - lpRect->left, lpRect->bottom - lpRect->top,
-      SWP_NOACTIVATE|SWP_NOZORDER | SWP_NOREDRAW);
+   hWnd->SetWindowPos(0, lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top, SWP_NOACTIVATE | SWP_NOZORDER | SWP_NOREDRAW);
 }
 
 

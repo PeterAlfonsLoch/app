@@ -139,7 +139,7 @@ namespace colorertake5
    }
 
    void base_editor::setFileType(file_type *ftype){
-      CLR_INFO("base_editor", "setFileType:%s", ftype->getName());
+      CLR_INFO("base_editor", "setFileType:%s", ftype->getName().c_str());
       currentFileType = ftype;
       textParser->setFileType(currentFileType);
       invalidLine = 0;
@@ -159,7 +159,8 @@ namespace colorertake5
          strsize totalLength = 0;
          for(int i = 0; i < 4; i++){
             string iLine = lineSource->getLine(i);
-            if (iLine == NULL) break;
+            if(iLine.is_empty())
+               break;
             textStart += iLine;
             textStart + "\n";
             totalLength += iLine.get_length();
@@ -351,7 +352,7 @@ namespace colorertake5
 
    void base_editor::modifyEvent(index topLine)
    {
-   
+
       CLR_TRACE("base_editor", "modifyEvent:%d", topLine);
 
       if (invalidLine > topLine)
@@ -377,7 +378,7 @@ namespace colorertake5
 
    void base_editor::visibleTextEvent(index wStart, count wSize)
    {
-   
+
       CLR_TRACE("base_editor", "visibleTextEvent:%d-%d", wStart, wSize);
 
       this->wStart = wStart;
@@ -396,7 +397,7 @@ namespace colorertake5
 
    inline index base_editor::getLastVisibleLine()
    {
-   
+
       index r1 = (wStart+wSize);
       count r2 = lineCount;
       return ((r1 > r2)?r2:r1)-1;
@@ -471,7 +472,7 @@ namespace colorertake5
       /* Text modification general ajustment */
       if (invalidLine < parseFrom)
       {
-      
+
          parseFrom = invalidLine;
          tpmode = TPM_CACHE_UPDATE;
 
@@ -497,10 +498,10 @@ namespace colorertake5
 
    void base_editor::idleJob(int time)
    {
-      if(time < 0) 
+      if(time < 0)
          time = 0;
 
-      if(time > 100) 
+      if(time > 100)
          time = 100;
 
       if(invalidLine < lineCount)

@@ -16,7 +16,7 @@ namespace colorertake5
 
    Outliner::~Outliner()
    {
-   
+
       baseEditor->removeRegionHandler(this);
 
       baseEditor->removeEditorListener(this);
@@ -41,7 +41,7 @@ namespace colorertake5
 
    index Outliner::manageTree(index_array &treeStack, index newLevel)
    {
-      
+
       while(treeStack.get_size() > 0 && newLevel < treeStack.last_element())
          treeStack.remove_last();
 
@@ -51,7 +51,7 @@ namespace colorertake5
          return treeStack.get_size()-1;
       };
 
-      if (newLevel == treeStack.last_element()) 
+      if (newLevel == treeStack.last_element())
          return treeStack.get_size()-1;
 
       return 0;
@@ -72,7 +72,7 @@ namespace colorertake5
       for(new_size = outline.get_size()-1; new_size >= 0; new_size--)
       {
 
-         if (outline.element_at(new_size)->lno < topLine) 
+         if (outline.element_at(new_size)->lno < topLine)
             break;
 
          delete outline.element_at(new_size);
@@ -106,7 +106,7 @@ namespace colorertake5
 
    void Outliner::addRegion(index lno, const char * line, index sx, index ex, class region *region)
    {
-   
+
       if(lno < modifiedLine)
          return;
 
@@ -123,7 +123,7 @@ namespace colorertake5
       {
          OutlineItem *thisItem = outline.last_element();
 
-         if (itemLabel != NULL && thisItem->token != NULL && thisItem->lno == lno)
+         if (itemLabel.has_char() && thisItem->token.has_char() && thisItem->lno == lno)
             thisItem->token += itemLabel;
 
       }
