@@ -1557,7 +1557,11 @@ string var::get_string(const char * pszOnNull) const
 string & var::get_ref_string(const char * pszOnNull)
 {
 
-   if(m_etype == type_pvar)
+   if(m_etype == type_string)
+   {
+      return m_str;
+   }
+   else if(m_etype == type_pvar)
    {
       return m_pvar->get_ref_string(pszOnNull);
    }
@@ -1568,6 +1572,7 @@ string & var::get_ref_string(const char * pszOnNull)
    else 
    {
       m_str = get_string(pszOnNull);
+      set_type(type_string, false);
       return m_str;
    }
 
@@ -1645,7 +1650,7 @@ id & var::get_ref_id(const char * pszOnNull)
    {
 
       m_id = get_id();
-
+      set_type(type_id, false);
       return m_id;
 
    }
