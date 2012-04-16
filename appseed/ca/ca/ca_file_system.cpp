@@ -666,11 +666,22 @@ namespace ca
                }
             }
          }
-         else
+         else 
          {
+            
+            string strNew;
+
+            if(System.dir().is(pszNew, papp))
+            {
+               strNew = System.dir().path(pszNew, name_(psz));
+            }
+            else
+            {
+               strNew = pszNew;
+            }
 
             ::ex1::filesp ofile;
-            ofile = App(papp).get_file(pszNew, ex1::file::mode_write | ex1::file::type_binary | ex1::file::mode_create | ex1::file::defer_create_directory);
+            ofile = App(papp).get_file(strNew, ex1::file::mode_write | ex1::file::type_binary | ex1::file::mode_create | ex1::file::defer_create_directory);
             if(ofile.is_null())
             {
                string strError;

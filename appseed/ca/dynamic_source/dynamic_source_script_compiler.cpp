@@ -76,6 +76,8 @@ namespace dynamic_source
       prepare1("dynamic_source_" + m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat", 
                "dynamic_source_" + m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat");
 
+      System.dir().mk(System.dir().votagus("stage/front"), get_app());
+
       string vars1batSrc;
       string vars2batSrc;
       string vars1batDst;
