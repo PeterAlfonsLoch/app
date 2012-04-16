@@ -75,6 +75,13 @@ namespace ca
 
       }
 
+      string system::path(const string & strFolder, const string & strRelative, const char * psz2)
+      {
+         
+         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), psz2, strlen(psz2), ::ca2::is_url(strFolder));
+
+      }
+
       string system::path(const string & strFolder, const string & strRelative, bool bUrl)
       {
 
