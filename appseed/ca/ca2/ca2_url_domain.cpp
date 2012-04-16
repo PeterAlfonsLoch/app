@@ -154,7 +154,7 @@ url_domain_base::url_domain_base()
             m_iLenPrefix   = (pszPreTopLevel3 - 1) - psz;
          }
       }
-      else if(m_iLenTopLevel == 2
+      else if(m_iLenTopLevel == 2 
       && m_pszTopLevel[0] == 'a'
       && m_pszTopLevel[1] == 'm'
       && iLenPreTopLevel == 5
@@ -176,7 +176,7 @@ url_domain_base::url_domain_base()
             m_pszRadix     = psz;
             m_iLenRadix    = (pszPreTopLevel - 1) - psz;
             m_pszName      = m_pszRadix;
-            m_iLenName     = pszEnd - m_pszDomain;
+            m_iLenName     = pszEnd - m_pszName;
          }
          else
          {

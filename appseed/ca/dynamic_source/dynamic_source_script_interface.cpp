@@ -7,6 +7,11 @@ namespace dynamic_source
 
    script_interface::script_interface()
    {
+
+      if(get_app() != NULL)
+      {
+         m_spmemoryfileFallback(new ::http::memory_file(get_app()));
+      }
       
       m_pinstanceMain      = NULL;
       m_pinstanceParent    = NULL;
@@ -72,7 +77,18 @@ namespace dynamic_source
 
    ::http::file & script_interface::output_file()
    {
-      return *((::http::file *) NULL);
+      if(m_pinstanceMain != NULL)
+      {
+         return m_pinstanceMain->output_file();
+      }
+      else if(m_pnetnodesocket != NULL)
+      {
+         return m_pnetnodesocket->response().file();
+      }
+      else
+      {
+         return *m_spmemoryfileFallback;
+      }
    }
 
    void script_interface::on_initialize()

@@ -25,6 +25,8 @@ namespace dynamic_source
    public:
 
 
+      sp(::http::memory_file)             m_spmemoryfileFallback;
+
       script *                            m_pscript;
 
       
