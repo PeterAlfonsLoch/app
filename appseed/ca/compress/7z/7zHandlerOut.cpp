@@ -77,13 +77,13 @@ namespace n7z
    static inline bool IsCopyMethod(const string &methodName)
    { return (methodName.CompareNoCase(kCopyMethod) == 0); }
 
-   ex1::HRes CHandler::GetFileTimeType(uint32 *type)
+   ex1::HRes handler::GetFileTimeType(uint32 *type)
    {
       *type = ::compress::NFileTimeType::kWindows;
       return S_OK;
    }
 
-   ex1::HRes CHandler::SetCompressionMethod(
+   ex1::HRes handler::SetCompressionMethod(
       CCompressionMethodMode &methodMode,
       CCompressionMethodMode &headerMethod)
    {
@@ -117,7 +117,7 @@ namespace n7z
       return S_OK;
    }
 
-   ex1::HRes CHandler::SetCompressionMethod(
+   ex1::HRes handler::SetCompressionMethod(
       CCompressionMethodMode &methodMode,
       array_ptr_alloc < ::compress::COneMethodInfo > &methodsInfo
 #ifndef _7ZIP_ST
@@ -203,7 +203,7 @@ namespace n7z
       return S_OK;
    }
 
-   ex1::HRes CHandler::UpdateItems(::ex1::writer *outStream, uint32 numItems,
+   ex1::HRes handler::UpdateItems(::ex1::writer *outStream, uint32 numItems,
       ::compress::archive_update_callback_interface *updateCallback)
    {
          const CArchiveDatabaseEx *db = 0;
@@ -464,7 +464,7 @@ namespace n7z
       return S_OK;
    }
 
-   ex1::HRes CHandler::SetProperties(const char **names, const var *values, int32 numProperties)
+   ex1::HRes handler::SetProperties(const char **names, const var *values, int32 numProperties)
    {
       _binds.remove_all();
       BeforeSetProperty();

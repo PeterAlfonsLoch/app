@@ -67,7 +67,7 @@ namespace compress
             continue; // old Interface
             // return E_INVALIDARG;
          }
-         info.Id = prop;
+         info.Id = (long unsigned int) prop;
          prop.unset();
 
          RINOK(codecsInfo->GetProperty(i, method_prop_Name, &prop));

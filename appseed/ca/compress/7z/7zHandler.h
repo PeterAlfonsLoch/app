@@ -19,7 +19,7 @@ namespace n7z
 #endif
 
 
-   class CHandler:
+   class handler:
       virtual public ::compress::out_handler,
       virtual public ::compress::input_archive_interface,
       virtual public ::compress::set_properties_interface,
@@ -52,7 +52,7 @@ namespace n7z
       CA2_COMPRESS_INTERFACE_IOutArchive(;)
 
 
-      CHandler();
+      handler();
 
       virtual ex1::HRes SetCompressCodecsInfo(::compress::codecs_info_interface *compressCodecsInfo) = 0;
       virtual ex1::HRes SetProperties(const char **names, const var *values, int32 numProperties);

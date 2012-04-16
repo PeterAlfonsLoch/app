@@ -1221,6 +1221,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="multithreading\multithreading_thread_pool.h" />
     <ClInclude Include="multithreading\multithreading_waitable.h" />
     <ClInclude Include="multithreading\multithreading_wait_result.h" />
+    <ClInclude Include="os\os.h" />
+    <ClInclude Include="os\os_cross_windows.h" />
+    <ClInclude Include="os\os_windows_defs.h" />
     <ClInclude Include="planebase\planebase_application.h" />
     <ClInclude Include="planebase\planebase.h" />
     <ClInclude Include="plane\plane.h" />
@@ -1252,6 +1255,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="primitive\datetime\datetime_duration.h" />
     <ClInclude Include="primitive\datetime\datetime_time.h" />
     <ClInclude Include="primitive\datetime\datetime_value.h" />
+    <ClInclude Include="primitive\datetime\datetime_windows_file_time.h" />
     <ClInclude Include="primitive\fixed_string.h" />
     <ClInclude Include="primitive\geometric_types.h" />
     <ClInclude Include="primitive\id.h" />
@@ -1502,6 +1506,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="visual\visual_visual.h" />
     <ClInclude Include="visual\water_routine.h" />
     <ClInclude Include="windows\os.h" />
+    <ClInclude Include="windows\os_defs.h" />
     <ClInclude Include="windows\os_library.h" />
     <ClInclude Include="windows\os_utils.h" />
     <ClInclude Include="xml\xml_application.h" />
@@ -2349,6 +2354,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="multithreading\multithreading_sync_object_base.cpp" />
     <ClCompile Include="multithreading\multithreading_waitable.cpp" />
     <ClCompile Include="multithreading\multithreading_wait_result.cpp" />
+    <ClCompile Include="os\os_cross_windows.cpp" />
     <ClCompile Include="plane\plane_application.cpp" />
     <ClCompile Include="plane\plane_session.cpp" />
     <ClCompile Include="plane\plane_library.cpp" />
@@ -2368,6 +2374,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="primitive\datetime\datetime_duration.cpp" />
     <ClCompile Include="primitive\datetime\datetime_time.cpp" />
     <ClCompile Include="primitive\datetime\datetime_value.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp" />
     <ClCompile Include="primitive\fixed_string.cpp" />
     <ClCompile Include="primitive\geometric_types.cpp" />
     <ClCompile Include="primitive\id.cpp" />

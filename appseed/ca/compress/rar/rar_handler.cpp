@@ -64,42 +64,43 @@ namespace rar
       { 9, "EncryptVer" }
    };
 
-   /*static const STATPROPSTG kProps[] =
-   {
-      { NULL, ::compress::kpidPath, VT_BSTR},
-      { NULL, ::compress::kpidIsDir, VT_BOOL},
-      { NULL, ::compress::kpidSize, VT_UI8},
-      { NULL, ::compress::kpidPackSize, VT_UI8},
-      { NULL, ::compress::kpidMTime, VT_FILETIME},
-      { NULL, ::compress::kpidCTime, VT_FILETIME},
-      { NULL, ::compress::kpidATime, VT_FILETIME},
-      { NULL, ::compress::kpidAttrib, VT_UI4},
 
-      { NULL, ::compress::kpidEncrypted, VT_BOOL},
-      { NULL, ::compress::kpidSolid, VT_BOOL},
-      { NULL, ::compress::kpidCommented, VT_BOOL},
-      { NULL, ::compress::kpidSplitBefore, VT_BOOL},
-      { NULL, ::compress::kpidSplitAfter, VT_BOOL},
-      { NULL, ::compress::kpidCRC, VT_UI4},
-      { NULL, ::compress::kpidHostOS, VT_BSTR},
-      { NULL, ::compress::kpidMethod, VT_BSTR},
-      { NULL, ::compress::kpidUnpackVer, VT_UI1}
+   static const stat_prop_stg kProps[] =
+   {
+      { NULL, ::compress::kpidPath, var::type_string},
+      { NULL, ::compress::kpidIsDir, var::type_bool},
+      { NULL, ::compress::kpidSize, var::type_uint64},
+      { NULL, ::compress::kpidPackSize, var::type_uint64},
+      { NULL, ::compress::kpidMTime, var::type_filetime},
+      { NULL, ::compress::kpidCTime, var::type_filetime},
+      { NULL, ::compress::kpidATime, var::type_filetime},
+      { NULL, ::compress::kpidAttrib, var::type_uint},
+
+      { NULL, ::compress::kpidEncrypted, var::type_bool},
+      { NULL, ::compress::kpidSolid, var::type_bool},
+      { NULL, ::compress::kpidCommented, var::type_bool},
+      { NULL, ::compress::kpidSplitBefore, var::type_bool},
+      { NULL, ::compress::kpidSplitAfter, var::type_bool},
+      { NULL, ::compress::kpidCRC, var::type_uint},
+      { NULL, ::compress::kpidHostOS, var::type_string},
+      { NULL, ::compress::kpidMethod, var::type_string},
+      { NULL, ::compress::kpidUnpackVer, var::type_byte}
    };
 
-   static const STATPROPSTG kArcProps[] =
+   static const stat_prop_stg kArcProps[] =
    {
-      { NULL, ::compress::kpidCharacts, VT_BSTR},
-      { NULL, ::compress::kpidSolid, VT_BOOL},
-      { NULL, ::compress::kpidNumBlocks, VT_UI4},
-      // { NULL, ::compress::kpidEncrypted, VT_BOOL},
-      { NULL, ::compress::kpidIsVolume, VT_BOOL},
-      { NULL, ::compress::kpidNumVolumes, VT_UI4},
-      { NULL, ::compress::kpidPhySize, VT_UI8}
-      // { NULL, ::compress::kpidCommented, VT_BOOL}
-   };*/
+      { NULL, ::compress::kpidCharacts, var::type_string},
+      { NULL, ::compress::kpidSolid, var::type_bool},
+      { NULL, ::compress::kpidNumBlocks, var::type_uint},
+      // { NULL, ::compress::kpidEncrypted, var::type_bool},
+      { NULL, ::compress::kpidIsVolume, var::type_bool},
+      { NULL, ::compress::kpidNumVolumes, var::type_uint},
+      { NULL, ::compress::kpidPhySize, var::type_uint64}
+      // { NULL, ::compress::kpidCommented, var::type_bool}
+   };
 
-   /*IMP_IInArchive_Props
-      IMP_IInArchive_ArcProps*/
+   IMP_IInArchive_Props
+      IMP_IInArchive_ArcProps
 
    uint64 handler::GetPackSize(int refIndex) const
    {

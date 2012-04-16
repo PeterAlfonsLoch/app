@@ -9,6 +9,14 @@
 
 */
 
+struct stat_prop_stg
+{
+   void *         m_p;
+   int            propid;
+   var::e_type    vt;
+};
+
+
 namespace compress
 {
 
@@ -206,9 +214,8 @@ namespace compress
    #define IMP_IInArchive_GetProp(k) \
      (uint32 index, string & name, int *propID, var::e_type *varType) \
        { if(index >= sizeof(k) / sizeof(k[0])) return E_INVALIDARG; \
-       const STATPROPSTG &srcItem = k[index]; \
-       throw not_implemented_exception(); \
-       *propID = srcItem.propid;/*xxx *varType = srcItem.vt; */name.Empty(); return S_OK; } \
+       const stat_prop_stg &srcItem = k[index]; \
+       *propID = srcItem.propid; *varType = srcItem.vt; name.Empty(); return S_OK; } \
 
    #define IMP_IInArchive_GetProp_WITH_NAME(k) \
      (uint32 index, string & name, PROPID *propID, VARTYPE *varType) \
@@ -218,9 +225,9 @@ namespace compress
        if (srcItem.lpwstrName == 0) name.Empty(); else name = gen::international::unicode_to_utf8(srcItem.lpwstrName); return S_OK; } \
 
    #define IMP_IInArchive_Props \
-     ex1::HRes CHandler::GetNumberOfProperties(uint32 *numProperties) \
+     ex1::HRes handler::GetNumberOfProperties(uint32 *numProperties) \
        { *numProperties = sizeof(kProps) / sizeof(kProps[0]); return S_OK; } \
-     ex1::HRes CHandler::GetPropertyInfo IMP_IInArchive_GetProp(kProps)
+     ex1::HRes handler::GetPropertyInfo IMP_IInArchive_GetProp(kProps)
 
    #define IMP_IInArchive_Props_WITH_NAME \
      ex1::HRes CHandler::GetNumberOfProperties(uint32 *numProperties) \
@@ -229,9 +236,9 @@ namespace compress
 
 
    #define IMP_IInArchive_ArcProps \
-     ex1::HRes CHandler::GetNumberOfArchiveProperties(uint32 *numProperties) \
+     ex1::HRes handler::GetNumberOfArchiveProperties(uint32 *numProperties) \
        { *numProperties = sizeof(kArcProps) / sizeof(kArcProps[0]); return S_OK; } \
-     ex1::HRes CHandler::GetArchivePropertyInfo IMP_IInArchive_GetProp(kArcProps)
+     ex1::HRes handler::GetArchivePropertyInfo IMP_IInArchive_GetProp(kArcProps)
 
    #define IMP_IInArchive_ArcProps_WITH_NAME \
      ex1::HRes CHandler::GetNumberOfArchiveProperties(uint32 *numProperties) \

@@ -80,6 +80,17 @@ namespace gen
 
       bool MultiByteToUnicode(UINT uiCodePage, wchar_t * lpwsz, strsize iBuffer, const char * lpcsz, strsize iCount)
       {
+         if(lpwsz == NULL)
+         {
+            if(iBuffer > 0)
+               return false;
+            else if(lpcsz != NULL)
+               return false;
+            else if(iCount > 0)
+               return false;
+            else
+               return true;
+         }
          return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int) iCount, lpwsz, (int) iBuffer) != 0;
       }
 

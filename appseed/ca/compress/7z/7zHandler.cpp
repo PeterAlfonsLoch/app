@@ -31,7 +31,7 @@ extern string ConvertMethodIdToString(uint64 id);
 namespace n7z
 {
 
-CHandler::CHandler()
+handler::handler()
 {
   _crcSize = 4;
 
@@ -48,7 +48,7 @@ CHandler::CHandler()
   #endif
 }
 
-ex1::HRes CHandler::GetNumberOfItems(uint32 *numItems)
+ex1::HRes handler::GetNumberOfItems(uint32 *numItems)
 {
   *numItems = (uint32_t) _db.Files.get_count();
   return S_OK;
@@ -58,12 +58,12 @@ ex1::HRes CHandler::GetNumberOfItems(uint32 *numItems)
 
 IMP_IInArchive_ArcProps_NO
 
-ex1::HRes CHandler::GetNumberOfProperties(uint32 * /* numProperties */)
+ex1::HRes handler::GetNumberOfProperties(uint32 * /* numProperties */)
 {
   return E_NOTIMPL;
 }
 
-ex1::HRes CHandler::GetPropertyInfo(uint32 /* index */,
+ex1::HRes handler::GetPropertyInfo(uint32 /* index */,
       BSTR * /* name */, PROPID * /* propID */, VARTYPE * /* varType */)
 {
   return E_NOTIMPL;
@@ -78,22 +78,20 @@ ex1::HRes CHandler::GetPropertyInfo(uint32 /* index */,
   int m_i1;
   int m_i2;
   int m_i3;
+};*/
+
+stat_prop_stg kArcProps[] =
+{
+  { NULL, ::compress::kpidMethod, var::type_string},
+  { NULL, ::compress::kpidSolid, var::type_bool},
+  { NULL, ::compress::kpidNumBlocks, var::type_uint},
+  { NULL, ::compress::kpidPhySize, var::type_uint64},
+  { NULL, ::compress::kpidHeadersSize, var::type_uint64},
+  { NULL, ::compress::kpidOffset, var::type_uint64}
 };
 
-STATPROPSTG kArcProps[] =
+ex1::HRes handler::GetArchiveProperty(int propID, var *value)
 {
-  { NULL, ::compress::kpidMethod, VT_BSTR},
-  { NULL, ::compress::kpidSolid, VT_BOOL},
-  { NULL, ::compress::kpidNumBlocks, VT_UI4},
-  { NULL, ::compress::kpidPhySize, VT_UI8},
-  { NULL, ::compress::kpidHeadersSize, VT_UI8},
-  { NULL, ::compress::kpidOffset, VT_UI8}
-};
-*/
-ex1::HRes CHandler::GetArchiveProperty(int propID, var *value)
-{
-   throw not_implemented_exception();
-   /*
   var prop;
   switch(propID)
   {
@@ -114,7 +112,7 @@ ex1::HRes CHandler::GetArchiveProperty(int propID, var *value)
       {
         uint64 id = ids[i];
         string methodName;
-        /* bool methodIsKnown = */ /*FindMethod(_codecsInfo, &_externalCodecs, id, methodName);
+        /* bool methodIsKnown = */ FindMethod(_codecsInfo, &_externalCodecs, id, methodName);
         if (methodName.is_empty())
           methodName = ConvertMethodIdToString(id);
         if (!resString.is_empty())
@@ -130,12 +128,12 @@ ex1::HRes CHandler::GetArchiveProperty(int propID, var *value)
     case ::compress::kpidPhySize:  prop = _db.PhySize; break;
     case ::compress::kpidOffset: if (_db.ArchiveInfo.StartPosition != 0) prop = _db.ArchiveInfo.StartPosition; break;
   }
-  *value = prop;*/
+  *value = prop;
   return S_OK;
 }
-/*
+
 IMP_IInArchive_ArcProps
-*/
+
 #endif
 
 static void SetPropFromUInt64Def(CUInt64DefVector &v, int index, var &prop)
@@ -199,7 +197,7 @@ static inline void AddHexToString(string &res, byte value)
 
 #endif
 
-bool CHandler::IsEncrypted(uint32 index2) const
+bool handler::IsEncrypted(uint32 index2) const
 {
   CNum folderIndex = _db.FileIndexToFolderIndexMap[index2];
   if (folderIndex != kNumNoIndex)
@@ -207,7 +205,7 @@ bool CHandler::IsEncrypted(uint32 index2) const
   return false;
 }
 
-ex1::HRes CHandler::GetProperty(uint32 index, int propID,  var *value)
+ex1::HRes handler::GetProperty(uint32 index, int propID,  var *value)
 {
   var prop;
 
@@ -391,7 +389,7 @@ ex1::HRes CHandler::GetProperty(uint32 index, int propID,  var *value)
   return S_OK;
 }
 
-ex1::HRes CHandler::Open(::ex1::byte_input_stream *stream,
+ex1::HRes handler::Open(::ex1::byte_input_stream *stream,
     const file_position *maxCheckStartPosition,
     ::compress::archive_open_callback_interface *openArchiveCallback)
 {
@@ -439,7 +437,7 @@ ex1::HRes CHandler::Open(::ex1::byte_input_stream *stream,
   return S_OK;
 }
 
-ex1::HRes CHandler::Close()
+ex1::HRes handler::Close()
 {
 gen::release(_inStream.m_p);
   _db.clear();
@@ -449,7 +447,7 @@ gen::release(_inStream.m_p);
 #ifdef __7Z_SET_PROPERTIES
 #ifdef EXTRACT_ONLY
 
-ex1::HRes CHandler::SetProperties(const wchar_t **names, const PROPVARIANT *values, Int32 numProperties)
+ex1::HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *values, Int32 numProperties)
 {
   COM_TRY_BEGIN
   const uint32 numProcessors = NSystem::GetNumberOfProcessors();
@@ -482,8 +480,8 @@ ex1::HRes CHandler::SetProperties(const wchar_t **names, const PROPVARIANT *valu
 #endif
 #endif
 
-   // IMPL_ISetCompressCodecsInfo2(CHandler)
-   ex1::HRes CHandler::SetCompressCodecsInfo(::compress::codecs_info_interface * compressCodecsInfo)
+   // IMPL_ISetCompressCodecsInfo2(handler)
+   ex1::HRes handler::SetCompressCodecsInfo(::compress::codecs_info_interface * compressCodecsInfo)
    {
       _codecsInfo = compressCodecsInfo;
       return LoadExternalCodecs(_codecsInfo, _externalCodecs);
@@ -491,7 +489,7 @@ ex1::HRes CHandler::SetProperties(const wchar_t **names, const PROPVARIANT *valu
    }
 
 
-   /*bool CHandler::IsSolid(int refIndex)
+   /*bool handler::IsSolid(int refIndex)
    {
       const CItemEx &item = _items[_refItems[refIndex].ItemIndex];
       if (item.UnPackVersion < 20)
@@ -502,7 +500,7 @@ ex1::HRes CHandler::SetProperties(const wchar_t **names, const PROPVARIANT *valu
       }
       return item.IsSolid();
    }
-   void CHandler::AddErrorMessage(const string &s)
+   void handler::AddErrorMessage(const string &s)
    {
       if (!_errorMessage.is_empty())
          _errorMessage += '\n';

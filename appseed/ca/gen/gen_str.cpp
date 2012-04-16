@@ -1255,9 +1255,9 @@ namespace gen
       if(iBase < 0 || iBase == 1 || iBase > 36)
          return false;
 
-      char * pszEnd;
+      const char * pszEnd;
 
-      int64_t iConversion = ::natoi_dup(psz, &pszEnd, iBase, iLen);
+      int64_t iConversion = ::natoi64_dup(psz, &pszEnd, iBase, iLen);
 
       if(pszEnd == psz)
          return false;
@@ -1274,9 +1274,9 @@ namespace gen
       if(iBase < 0 || iBase == 1 || iBase > 36)
          return false;
 
-      char * pszEnd;
+      const char * pszEnd;
 
-      int64_t iConversion = ::natoi_dup(psz, &pszEnd, iBase, iLen);
+      int64_t iConversion = ::natoi64_dup(psz, &pszEnd, iBase, iLen);
 
       if(pszEnd == psz)
          return false;

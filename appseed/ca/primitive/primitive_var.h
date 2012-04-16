@@ -76,6 +76,8 @@ public:
       type_id,
       type_pid,
       type_int64a,
+      type_char,
+      type_byte,
    };
 
    void set_type(e_type e_type, bool bConvert = true);
@@ -153,6 +155,8 @@ public:
       var_array *          m_pvara;
       gen::property_set *  m_pset;
       gen::property *      m_pprop;
+      unsigned char        m_uch;
+      char                 m_ch;
    };
    ::ca::ca *                       m_pca2;
    string                           m_str;
@@ -223,12 +227,10 @@ public:
    operator int();
    operator int64_t();
 
-#ifdef LINUX
    operator long unsigned int()
    {
       return operator unsigned int();
    }
-#endif
    //operator string & ();
    //operator id &();
    operator const char * () const;

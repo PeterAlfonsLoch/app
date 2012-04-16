@@ -294,13 +294,19 @@ namespace filemanager
 
          wstring wstr = gen::international::utf8_to_unicode(lpcsz);
 
-         hr = lpsfDesktop->ParseDisplayName(
-            NULL,
-            NULL,
-            (wchar_t *) (const wchar_t *) wstr,
-            &ulEaten,
-            lpiidl,
-            &dwAttrib);
+         try
+         {
+            hr = lpsfDesktop->ParseDisplayName(
+               NULL,
+               NULL,
+               (wchar_t *) (const wchar_t *) wstr,
+               &ulEaten,
+               lpiidl,
+               &dwAttrib);
+         }
+         catch(...)
+         {
+         }
 
          lpsfDesktop->Release();
          lpmalloc->Release();

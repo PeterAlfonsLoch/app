@@ -324,6 +324,12 @@
     <Filter Include="Source Files\windows">
       <UniqueIdentifier>{28399771-e26a-4693-b4d6-9f4e76256ac8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\os">
+      <UniqueIdentifier>{a28da0a9-77ec-4f4c-8821-ad2d60cf8bad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\os">
+      <UniqueIdentifier>{afafef36-ef8f-43c3-986e-c6d3d79971c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
@@ -3116,6 +3122,21 @@
     <ClInclude Include="ca\ca_os.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\datetime\datetime_windows_file_time.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\os_defs.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="os\os.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="os\os_windows_defs.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="os\os_cross_windows.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -5226,6 +5247,12 @@
     </ClCompile>
     <ClCompile Include="ca\ca_os.cpp">
       <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="os\os_cross_windows.cpp">
+      <Filter>Source Files\os</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

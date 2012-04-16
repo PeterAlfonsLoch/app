@@ -44,7 +44,7 @@ namespace n7z
      };
    };
 
-   ex1::HRes CHandler::Extract(const uint32 *indices, uint32 numItems,
+   ex1::HRes handler::Extract(const uint32 *indices, uint32 numItems,
        int32 testModeSpec, ::compress::archive_extract_callback_interface *extractCallbackSpec)
    {
      bool testMode = (testModeSpec != 0);
