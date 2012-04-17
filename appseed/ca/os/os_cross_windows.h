@@ -9,7 +9,7 @@
 #include <stddef.h> // for wchar_t
 #include <string.h>
 
-#include "MyGuidDef.h"
+#include "os_cross_windows_guid_def.h"
 
 typedef char CHAR;
 typedef unsigned char UCHAR;
@@ -25,17 +25,17 @@ typedef unsigned short WORD;
 typedef short VARIANT_BOOL;
 
 typedef int INT;
-typedef Int32 INT32;
+typedef int32_t INT32;
 typedef unsigned int UINT;
-typedef UInt32 UINT32;
+typedef uint32_t UINT32;
 typedef INT32 LONG;   // LONG, ULONG and DWORD must be 32-bit
-typedef UINT32 ULONG;
+//typedef UINT32 ULONG;
 
 #undef DWORD
 typedef UINT32 DWORD;
 
-typedef Int64 LONGLONG;
-typedef UInt64 ULONGLONG;
+typedef int64_t LONGLONG;
+typedef uint64_t ULONGLONG;
 
 typedef struct LARGE_INTEGER { LONGLONG QuadPart; }LARGE_INTEGER;
 typedef struct _ULARGE_INTEGER { ULONGLONG QuadPart;} ULARGE_INTEGER;
@@ -50,18 +50,18 @@ typedef OLECHAR *BSTR;
 typedef const OLECHAR *LPCOLESTR;
 typedef OLECHAR *LPOLESTR;
 
-typedef struct _FILETIME
+/*typedef struct _FILETIME
 {
   DWORD dwLowDateTime;
   DWORD dwHighDateTime;
-}FILETIME;
+}FILETIME;*/
 
 #define HRESULT LONG
-#define FAILED(Status) ((HRESULT)(Status)<0)
+//#define FAILED(Status) ((HRESULT)(Status)<0)
 typedef ULONG PROPID;
 typedef LONG SCODE;
 
-#define S_OK    ((HRESULT)0x00000000L)
+/*#define S_OK    ((HRESULT)0x00000000L)
 #define S_FALSE ((HRESULT)0x00000001L)
 #define E_NOTIMPL ((HRESULT)0x80004001L)
 #define E_NOINTERFACE ((HRESULT)0x80004002L)
@@ -70,7 +70,7 @@ typedef LONG SCODE;
 #define STG_E_INVALIDFUNCTION ((HRESULT)0x80030001L)
 #define E_OUTOFMEMORY ((HRESULT)0x8007000EL)
 #define E_INVALIDARG ((HRESULT)0x80070057L)
-
+*/
 #ifdef _MSC_VER
 #define STDMETHODCALLTYPE __stdcall
 #else

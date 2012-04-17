@@ -26,11 +26,12 @@
 
 
 #include "datatypes.h"
+#include "err.h"
 
 
 BEGIN_EXTERN_C
 
-/* 
+/*
  *  This structure will hold context information for the hashing
  *  operation
  */

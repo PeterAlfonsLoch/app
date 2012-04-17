@@ -475,7 +475,7 @@ namespace zip
    {
    //   ::radix::object::dump(dumpcontext);
 
-      dumpcontext << "with handle " << (UINT)get_zip_file();
+      dumpcontext << "with handle " << (UINT_PTR)get_zip_file();
       dumpcontext << " and name \"" << m_strFileName << "\"";
       dumpcontext << "\n";
    }
@@ -559,12 +559,21 @@ namespace zip
    #define EPIPE           32
    #define EDOM            33
    #define ERANGE          34
+
+
+#ifdef WINDOWS
+
    #define EDEADLK         36
    #define ENAMETOOLONG    38
    #define ENOLCK          39
    #define ENOSYS          40
    #define ENOTEMPTY       41
    #define EILSEQ          42
+
+#endif
+
+
+
 
    /*
     * Support EDEADLOCK for compatibiity with older MS-C versions.
@@ -597,12 +606,12 @@ namespace zip
 
    void InFile::add_file(const char * pszDir, const char * pszRelative)
    {
-      
+
       string strPath(System.dir().path(pszDir, pszRelative));
-      
+
       ::ex1::filesp file;
 
-      file = Application.get_file(strPath, ::ex1::file::mode_read | ::ex1::file::type_binary); 
+      file = Application.get_file(strPath, ::ex1::file::mode_read | ::ex1::file::type_binary);
 
       if(file.is_null())
          throw "failed to open file for compressing";

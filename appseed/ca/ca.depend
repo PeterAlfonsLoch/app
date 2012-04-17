@@ -567,7 +567,7 @@
 	<pthread.h>
 	<sys/resource.h>
 
-1334471777 /cecyn1/nodeapp/operational_system/get_platform.h
+1334674210 /cecyn1/nodeapp/operational_system/get_platform.h
 	<inttypes.h>
 	<stdlib.h>
 	"linux_system.h"
@@ -595,7 +595,7 @@
 
 1323413962 /cecyn1/nodeapp/operational_system/version_dll.h
 
-1334470483 /cecyn1/nodeapp/operational_system/cross/win/win.h
+1334673145 /cecyn1/nodeapp/operational_system/cross/win/win.h
 	"base_tsd.h"
 	"win_def.h"
 	"win_crt.h"
@@ -1888,10 +1888,12 @@
 
 1324572531 /cecyn1/app/appseed/ca/radix/wait_cursor.h
 
-1330322258 /cecyn1/app/appseed/ca/radix/radix_os.h
+1334672093 /cecyn1/app/appseed/ca/radix/radix_os.h
+	"ca/os/os.h"
 	"ca/windows/os.h"
 
-1334469600 /cecyn1/app/appseed/ca/windows/os.h
+1334672093 /cecyn1/app/appseed/ca/windows/os.h
+	"os_defs.h"
 	"os_implementation.h"
 	"os_library.h"
 	"os_utils.h"
@@ -2195,7 +2197,7 @@
 
 1331884412 /cecyn1/app/appseed/ca/ca/ca_dir_application.h
 
-1334418633 /cecyn1/app/appseed/ca/ca/ca_dir_system.h
+1334672092 /cecyn1/app/appseed/ca/ca/ca_dir_system.h
 
 1324572530 /cecyn1/app/appseed/ca/ca2/ca2_stra.h
 
@@ -2508,8 +2510,9 @@
 
 1324572531 /cecyn1/app/appseed/ca/crypto/c_crypto.h
 
-1328375631 /cecyn1/app/appseed/ca/crypto/sha1.h
+1334677747 /cecyn1/app/appseed/ca/crypto/sha1.h
 	"datatypes.h"
+	"err.h"
 
 1328375631 /cecyn1/app/appseed/ca/crypto/hmac.h
 	"auth.h"
@@ -2603,7 +2606,7 @@
 
 1324572528 /cecyn1/app/appseed/ca/compress/item_name.h
 
-1332554826 /cecyn1/app/appseed/ca/compress/archive.h
+1334672092 /cecyn1/app/appseed/ca/compress/archive.h
 	"../IProgress.h"
 	"../IStream.h"
 	"../PropID.h"
@@ -2697,7 +2700,7 @@
 
 1324572528 /cecyn1/app/appseed/ca/compress/7z/7zFolderOutStream.h
 
-1324572528 /cecyn1/app/appseed/ca/compress/7z/7zHandler.h
+1334672092 /cecyn1/app/appseed/ca/compress/7z/7zHandler.h
 
 1324572528 /cecyn1/app/appseed/ca/compress/7z/7zProperties.h
 
@@ -3292,7 +3295,7 @@
 
 1332554829 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_compiler.h
 
-1334304989 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_interface.h
+1334672093 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_interface.h
 
 1324572531 /cecyn1/app/appseed/ca/radix/html_file.h
 
@@ -3549,7 +3552,7 @@
 1331884412 source:/cecyn1/app/appseed/ca/ca/ca_dir_application.cpp
 	"StdAfx.h"
 
-1334418633 source:/cecyn1/app/appseed/ca/ca/ca_dir_system.cpp
+1334672092 source:/cecyn1/app/appseed/ca/ca/ca_dir_system.cpp
 	"StdAfx.h"
 
 1324572532 source:/cecyn1/app/appseed/ca/ca/ca_draw_dib.cpp
@@ -3563,7 +3566,7 @@
 
 1331390922 /cecyn1/nodeapp/operational_system/cross/win/win_crt.h
 
-1334359538 source:/cecyn1/app/appseed/ca/ca/ca_file_system.cpp
+1334672092 source:/cecyn1/app/appseed/ca/ca/ca_file_system.cpp
 	"StdAfx.h"
 	<sys/types.h>
 	<sys/stat.h>
@@ -3794,7 +3797,7 @@
 
 1332554828 /cecyn1/app/appseed/ca/radix/radix_plex.h
 
-1334528860 /cecyn1/app/appseed/ca/primitive/primitive_var.h
+1334672092 /cecyn1/app/appseed/ca/primitive/primitive_var.h
 	"gen/gen_base_enum.h"
 	"gen/gen_variable_strict_compare.h"
 	"gen/gen_holder.h"
@@ -3875,7 +3878,7 @@
 
 1334304983 /cecyn1/app/appseed/c/conv.h
 
-1334510826 source:/cecyn1/app/appseed/ca/ca2/ca2_url_domain.cpp
+1334672092 source:/cecyn1/app/appseed/ca/ca2/ca2_url_domain.cpp
 	"StdAfx.h"
 
 1324572530 source:/cecyn1/app/appseed/ca/ca2/ca2_xml.cpp
@@ -4158,7 +4161,7 @@
 1330322226 source:/cecyn1/app/appseed/ca/ca4/ca4_email.cpp
 	"StdAfx.h"
 
-1334469600 /cecyn1/app/appseed/ca/ca/ca_os.h
+1334694153 /cecyn1/app/appseed/ca/ca/ca_os.h
 
 1331884446 source:/cecyn1/app/appseed/ca/ca4/ca4_file.cpp
 	"StdAfx.h"
@@ -4175,7 +4178,7 @@
 
 1334509651 /cecyn1/nodeapp/operational_system/linux_system.h
 
-1334501408 /cecyn1/app/appseed/ca/plane/plane_system_primitive_string_format_spec.h
+1334672092 /cecyn1/app/appseed/ca/plane/plane_system_primitive_string_format_spec.h
 
 1334469600 source:/cecyn1/app/appseed/ca/ca4/ca4_http_system.cpp
 	"StdAfx.h"
@@ -4405,7 +4408,7 @@
 	"7zEncode.h"
 	"7zSpecStream.h"
 
-1334522880 source:/cecyn1/app/appseed/ca/compress/7z/7zExtract.cpp
+1334672092 source:/cecyn1/app/appseed/ca/compress/7z/7zExtract.cpp
 	"StdAfx.h"
 	"../../Common/ProgressUtils.h"
 	"7zDecode.h"
@@ -4418,7 +4421,7 @@
 1334522928 source:/cecyn1/app/appseed/ca/compress/7z/7zFolderOutStream.cpp
 	"StdAfx.h"
 
-1334523168 source:/cecyn1/app/appseed/ca/compress/7z/7zHandler.cpp
+1334672092 source:/cecyn1/app/appseed/ca/compress/7z/7zHandler.cpp
 	"StdAfx.h"
 	"../../../Common/ComTry.h"
 	"../../../Common/IntToString.h"
@@ -4428,7 +4431,7 @@
 	"7zProperties.h"
 	"../Common/ParseProperties.h"
 
-1334523238 source:/cecyn1/app/appseed/ca/compress/7z/7zHandlerOut.cpp
+1334672092 source:/cecyn1/app/appseed/ca/compress/7z/7zHandlerOut.cpp
 	"StdAfx.h"
 	"../../../Common/ComTry.h"
 	"../../../Common/StringToInt.h"
@@ -4457,7 +4460,7 @@
 	"../../Common/StreamObjects.h"
 	"7zOut.h"
 
-1334523552 source:/cecyn1/app/appseed/ca/compress/7z/7zProperties.cpp
+1334672092 source:/cecyn1/app/appseed/ca/compress/7z/7zProperties.cpp
 	"StdAfx.h"
 	"7zProperties.h"
 	"7zHeader.h"
@@ -4515,7 +4518,7 @@
 1331884406 source:/cecyn1/app/appseed/ca/ca2/ca2_xml_data.cpp
 	"StdAfx.h"
 
-1334529825 source:/cecyn1/app/appseed/ca/compress/compress_create_coder.cpp
+1334672092 source:/cecyn1/app/appseed/ca/compress/compress_create_coder.cpp
 	"StdAfx.h"
 	"../../Windows/PropVariant.h"
 	"CreateCoder.h"
@@ -4607,7 +4610,7 @@
 
 1334532409 /cecyn1/app/appseed/ca/primitive/datetime/datetime_windows_file_time.h
 
-1334580259 source:/cecyn1/app/appseed/ca/compress/rar/rar_handler.cpp
+1334672092 source:/cecyn1/app/appseed/ca/compress/rar/rar_handler.cpp
 	"StdAfx.h"
 	"../prop_id.h"
 	"Common/IntToString.h"
@@ -4629,4 +4632,222 @@
 
 1324572528 source:/cecyn1/app/appseed/ca/compress/rar/rar_header.cpp
 	"StdAfx.h"
+
+1334672092 /cecyn1/app/appseed/ca/os/os.h
+	"os_cross_windows.h"
+	"os_windows_defs.h"
+
+1334673027 /cecyn1/app/appseed/ca/os/os_cross_windows.h
+	<stddef.h>
+	<string.h>
+	"os_cross_windows_guid_def.h"
+
+1334672920 /cecyn1/app/appseed/ca/os/os_cross_windows_guid_def.h
+
+1334672092 /cecyn1/app/appseed/ca/os/os_windows_defs.h
+
+1334672093 /cecyn1/app/appseed/ca/windows/os_defs.h
+
+1334580308 source:/cecyn1/app/appseed/ca/compress/rar/rar_input_file.cpp
+	"StdAfx.h"
+	"../../../../C/CpuArch.h"
+	"Common/StringConvert.h"
+	"Common/UTFConvert.h"
+	"../../Common/LimitedStreams.h"
+	"../../Common/StreamUtils.h"
+	"../Common/FindSignature.h"
+	"RarIn.h"
+
+1324572528 source:/cecyn1/app/appseed/ca/compress/rar/rar_item.cpp
+	"StdAfx.h"
+
+1324572528 source:/cecyn1/app/appseed/ca/compress/rar/rar_volume_input_stream.cpp
+	"StdAfx.h"
+	"RarVolumeInStream.h"
+
+1324572528 source:/cecyn1/app/appseed/ca/compress/writer_with_crc.cpp
+	"StdAfx.h"
+
+1324572528 source:/cecyn1/app/appseed/ca/compress/zip/zip_api.cpp
+	"StdAfx.h"
+
+1326579831 source:/cecyn1/app/appseed/ca/compress/zip/zip_file.cpp
+	"StdAfx.h"
+
+1334674177 source:/cecyn1/app/appseed/ca/compress/zip/zip_in_file.cpp
+	"StdAfx.h"
+	"InFile.h"
+
+1330322140 source:/cecyn1/app/appseed/ca/compress/zip/zip_ioapi.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"c/c_c.h"
+	"ca/zlib/zlib.h"
+	"ioapi.h"
+
+1324572528 source:/cecyn1/app/appseed/ca/compress/zip/zip_memory_file.cpp
+	"StdAfx.h"
+
+1324572528 source:/cecyn1/app/appseed/ca/compress/zip/zip_unzip.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"unzip.h"
+	<stddef.h>
+	<string.h>
+	<stdlib.h>
+	<errno.h>
+	"crypt.h"
+
+1324572528 /cecyn1/app/appseed/ca/compress/zip/crypt.h
+
+1331884420 source:/cecyn1/app/appseed/ca/compress/zip/zip_util.cpp
+	"StdAfx.h"
+	"InFile.h"
+
+1330322143 source:/cecyn1/app/appseed/ca/compress/zip/zip_zip.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"zipImpl.h"
+	<stddef.h>
+	<string.h>
+	<stdlib.h>
+	<errno.h>
+	"crypt.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/7z_crc.cpp
+	"StdAfx.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/ae_xfm.c
+	"cryptoalg.h"
+	"aes_cbc.h"
+	"hmac.h"
+	"crypto_kernel.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/cipher_aes.c
+	"aes.h"
+	"err.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/cipher_aes_cbc.c
+	"aes_cbc.h"
+	"alloc.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/cipher_aes_icm.c
+	"aes_icm.h"
+	"alloc.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/cipher_cipher.c
+	"cipher.h"
+	"rand_source.h"
+	"alloc.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/cipher_null_cipher.c
+	"datatypes.h"
+	"null_cipher.h"
+	"alloc.h"
+
+1324572531 /cecyn1/app/appseed/ca/crypto/null_cipher.h
+	"datatypes.h"
+	"cipher.h"
+
+1328375631 source:/cecyn1/app/appseed/ca/crypto/crypto_hmac_sha1.cpp
+	"StdAfx.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/crypto_math.c
+	"crypto_math.h"
+
+1324572531 /cecyn1/app/appseed/ca/crypto/crypto_math.h
+	"datatypes.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/crypto_rar20.cpp
+	"StdAfx.h"
+	"../../../C/CpuArch.h"
+	"../../../C/RotateDefs.h"
+	"Rar20Crypto.h"
+
+1328375631 source:/cecyn1/app/appseed/ca/crypto/crypto_sha1.cpp
+	"StdAfx.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/gf2_8.c
+	"datatypes.h"
+	"gf2_8.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/hash_auth.c
+	"auth.h"
+
+1328375631 source:/cecyn1/app/appseed/ca/crypto/hash_hmac.c
+	"hmac.h"
+	"alloc.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/hash_null_auth.c
+	"null_auth.h"
+	"alloc.h"
+
+1324572531 /cecyn1/app/appseed/ca/crypto/null_auth.h
+	"auth.h"
+
+1330322277 source:/cecyn1/app/appseed/ca/crypto/hash_sha1.c
+	"sha1.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/kernel_alloc.c
+	"alloc.h"
+	"crypto_kernel.h"
+	<linux/interrupt.h>
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/kernel_crypto_kernel.c
+	"alloc.h"
+	"crypto_kernel.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/kernel_err.c
+	"err.h"
+	<syslog.h>
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/kernel_key.c
+	"key.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/math_datatypes.c
+	"datatypes.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/math_stat.c
+	"stat.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/my_aes.cpp
+	"StdAfx.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/replay_rdb.c
+	"rdb.h"
+
+1324572531 /cecyn1/app/appseed/ca/crypto/rdb.h
+	"integers.h"
+	"datatypes.h"
+	"err.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/replay_rdbx.c
+	"rdbx.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/replay_ut_sim.c
+	"ut_sim.h"
+	<stdio.h>
+
+1324572531 /cecyn1/app/appseed/ca/crypto/ut_sim.h
+	"c/c_c.h"
+	"integers.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/rng_ctr_prng.c
+	"prng.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/rng_prng.c
+	"prng.h"
+
+1324572531 source:/cecyn1/app/appseed/ca/crypto/rng_rand_source.c
+	"config.h"
+	<fcntl.h>
+	<unistd.h>
+	<stdlib.h>
+	<stdio.h>
+	<stdio.h>
+	"rand_source.h"
 

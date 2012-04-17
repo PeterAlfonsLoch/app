@@ -24,7 +24,7 @@ namespace ca
       os(::ca::application * papp);
       virtual ~os();
 
-      
+
       virtual bool reboot();
       virtual bool shutdown(bool bPowerOff);
 
@@ -62,7 +62,7 @@ namespace ca
       virtual bool open_in_ie(const char * lpcsz);
 
 #endif
-      
+
 
       virtual bool create_service(::planebase::application * papp);
       virtual bool remove_service(::planebase::application * papp);
