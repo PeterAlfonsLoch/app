@@ -229,6 +229,35 @@ namespace ca
    }
 
 
+   bool os::start_service(::planebase::application * papp)
+   {
+
+
+      throw not_implemented_exception();
+
+      
+      return false;
+
+
+   }
+
+
+   bool os::stop_service(::planebase::application * papp)
+   {
+
+
+      throw not_implemented_exception();
+
+      
+      return false;
+
+
+   }
+
+
+
+
+
 } // namespace ca
 
 

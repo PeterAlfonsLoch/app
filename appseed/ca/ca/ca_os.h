@@ -66,6 +66,9 @@ namespace ca
 
       virtual bool create_service(::planebase::application * papp);
       virtual bool remove_service(::planebase::application * papp);
+      
+      virtual bool start_service(::planebase::application * papp);
+      virtual bool stop_service(::planebase::application * papp);
 
 
    };

@@ -941,165 +941,30 @@ InitFailure:
    bool application::create_service()
    {
 
-      if(m_strAppName.is_empty()
-      || m_strAppName.CompareNoCase("bergedge") == 0
-      || !is_serviceable())
-         return false;
+      return System.os().create_service(this);
 
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
-
-      string strCalling = m_strModulePath + " : app=" + m_strAppName + " service usehostlogin";
-
-      if(hdlSCM == 0)
-      {
-         //::GetLastError()
-         return false;
-      }
-    
-      SC_HANDLE hdlServ = ::CreateService(
-         hdlSCM,                    // SCManager database 
-         "CGCLCSTvotagusCa2FontopusMain-" + m_strAppName,               // name of service 
-         "ccvotagus ca2 fontopus " + m_strAppName,        // service name to display 
-         STANDARD_RIGHTS_REQUIRED,  // desired access 
-         SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS, // service type 
-         SERVICE_AUTO_START,      // start type 
-         SERVICE_ERROR_NORMAL,      // error control type 
-         strCalling,                   // service's binary Path name
-         0,                      // no load ordering group 
-         0,                      // no tag identifier 
-         0,                      // no dependencies 
-         0,                      // LocalSystem account 
-         0);                     // no password 
-    
-      if (!hdlServ)
-      {
-         CloseServiceHandle(hdlSCM);
-         //Ret = ::GetLastError();
-         return FALSE;
-      }
-       
-      CloseServiceHandle(hdlServ);
-      CloseServiceHandle(hdlSCM);
-
-      return true;
    }
 
    bool application::remove_service()
    {
 
-      if(m_strAppName.is_empty()
-      || m_strAppName.CompareNoCase("bergedge") == 0
-      || !is_serviceable())
-         return false;
+      return System.os().remove_service(this);
 
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
-
-      if(hdlSCM == 0)
-      {
-         //::GetLastError();
-         return false;
-      }
-    
-      SC_HANDLE hdlServ = ::OpenService(
-         hdlSCM,                    // SCManager database 
-         "CGCLCSTvotagusCa2FontopusMain-" + m_strAppName,               // name of service 
-         DELETE);                     // no password 
-    
-      if (!hdlServ)
-      {
-         // Ret = ::GetLastError();
-         CloseServiceHandle(hdlSCM);
-         return false;
-      }
-
-      ::DeleteService(hdlServ);
-
-      CloseServiceHandle(hdlServ);
-
-      CloseServiceHandle(hdlSCM);
-
-      return false;
    }
 
 
    bool application::start_service()
    {
 
-      if(m_strAppName.is_empty()
-      || m_strAppName.CompareNoCase("bergedge") == 0
-      || !is_serviceable())
-         return false;
+      return System.os().start_service(this);
 
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
-
-      if(hdlSCM == 0)
-      {
-         //::GetLastError();
-         return false;
-      }
-    
-      SC_HANDLE hdlServ = ::OpenService(
-         hdlSCM,                    // SCManager database 
-         "CGCLCSTvotagusCa2FontopusMain-" + m_strAppName,               // name of service 
-         SERVICE_START);                     // no password 
-    
-    
-      if (!hdlServ)
-      {
-         CloseServiceHandle(hdlSCM);
-         //Ret = ::GetLastError();
-         return FALSE;
-      }
-       
-      BOOL bOk = StartService(hdlServ, 0, NULL);
-
-      CloseServiceHandle(hdlServ);
-      CloseServiceHandle(hdlSCM);
-
-      return bOk != FALSE;
    }
 
    bool application::stop_service()
    {
 
-      if(m_strAppName.is_empty()
-      || m_strAppName.CompareNoCase("bergedge") == 0
-      || !is_serviceable())
-         return false;
+      return System.os().stop_service(this);
 
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
-
-      if(hdlSCM == 0)
-      {
-         //::GetLastError();
-         return false;
-      }
-    
-      SC_HANDLE hdlServ = ::OpenService(
-         hdlSCM,                    // SCManager database 
-         "CGCLCSTvotagusCa2FontopusMain-" + m_strAppName,               // name of service 
-         SERVICE_STOP);                     // no password 
-    
-      if (!hdlServ)
-      {
-         // Ret = ::GetLastError();
-         CloseServiceHandle(hdlSCM);
-         return false;
-      }
-
-      SERVICE_STATUS ss;
-
-      memset(&ss, 0, sizeof(ss));
-
-      BOOL bOk = ::ControlService(hdlServ, SERVICE_CONTROL_STOP, &ss);
-
-      ::DeleteService(hdlServ);
-
-      CloseServiceHandle(hdlServ);
-
-      CloseServiceHandle(hdlSCM);
-
-      return bOk != FALSE;
    }
 
   
