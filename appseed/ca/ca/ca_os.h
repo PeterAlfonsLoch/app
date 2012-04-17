@@ -1,6 +1,16 @@
 #pragma once
 
 
+namespace planebase
+{
+
+
+   class application;
+
+
+} // namespace planebase
+
+
 namespace ca
 {
 
@@ -52,6 +62,10 @@ namespace ca
       virtual bool open_in_ie(const char * lpcsz);
 
 #endif
+      
+
+      virtual bool create_service(::planebase::application * papp);
+      virtual bool remove_service(::planebase::application * papp);
 
 
    };

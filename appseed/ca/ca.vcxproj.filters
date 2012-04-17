@@ -4315,9 +4315,6 @@
     <ClCompile Include="compress\zip\zip_ioapi.c">
       <Filter>Source Files\compress\zip\C Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="compress\zip\zip_iowin32.c">
-      <Filter>Source Files\compress\zip\C Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="compress\zip\zip_unzip.c">
       <Filter>Source Files\compress\zip\C Source Files</Filter>
     </ClCompile>

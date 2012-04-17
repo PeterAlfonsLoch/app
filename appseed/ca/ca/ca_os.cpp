@@ -203,7 +203,35 @@ namespace ca
 #endif
 
 
+   bool os::create_service(::planebase::application * papp)
+   {
+      
+
+      throw not_implemented_exception();
+
+      
+      return false;
+
+
+   }
+
+
+   bool os::remove_service(::planebase::application * papp)
+   {
+
+
+      throw not_implemented_exception();
+
+      
+      return false;
+
+
+   }
+
+
 } // namespace ca
+
+
 
 
 
