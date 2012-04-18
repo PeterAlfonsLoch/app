@@ -690,7 +690,7 @@ namespace ca
             }
 
             ::ex1::filesp ifile;
-            ifile = App(papp).get_file(psz, ex1::file::mode_read | ex1::file::type_binary);
+            ifile = App(papp).get_file(psz, ::ex1::file::mode_read | ::ex1::file::type_binary | ::ex1::file::shareDenyNone);
             if(ifile.is_null())
             {
                string strError;
