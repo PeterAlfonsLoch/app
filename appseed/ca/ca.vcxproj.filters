@@ -5080,9 +5080,6 @@
     <ClCompile Include="geoip\geoip_time_zone.cpp">
       <Filter>Source Files\geoip</Filter>
     </ClCompile>
-    <ClCompile Include="cube5\planebase_application.cpp">
-      <Filter>Source Files\planebase</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_calendar.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
@@ -5250,6 +5247,9 @@
     </ClCompile>
     <ClCompile Include="os\os_cross_windows.cpp">
       <Filter>Source Files\os</Filter>
+    </ClCompile>
+    <ClCompile Include="planebase\planebase_application.cpp">
+      <Filter>Source Files\planebase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
