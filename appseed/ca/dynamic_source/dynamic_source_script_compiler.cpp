@@ -1,6 +1,11 @@
 #include "StdAfx.h"
 
 
+#if defined(LINUX)
+#include <ctype.h>
+#endif
+
+
 
 
 namespace dynamic_source
@@ -73,7 +78,7 @@ namespace dynamic_source
                "dynamic_source_" + m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat");
       prepare1("dynamic_source_" + m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat",
                "dynamic_source_" + m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat");
-      prepare1("dynamic_source_" + m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat", 
+      prepare1("dynamic_source_" + m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat",
                "dynamic_source_" + m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat");
 
       System.dir().mk(System.dir().votagus("stage/front"), get_app());
@@ -101,21 +106,29 @@ namespace dynamic_source
 
       strItem = System.dir().ca2("stage\\" + m_strPlatform + "\\dynamic_source\\library");
       str = str + strItem + ";";
-
+#ifdef WINDOWS
       DWORD dwSize = GetEnvironmentVariable("PATH", NULL, 0);
       LPTSTR lpsz = new char[dwSize + 1];
       dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
       str += lpsz;
-      BOOL bResult = SetEnvironmentVariable("PATH", str);
-      TRACE("script_compiler::prepare_compile_and_link_environment SetEnvironmentVariable return BOOL %d", bResult);
       delete lpsz;
+#else
+      str += getenv("PATH");
+#endif
+      BOOL bResult;
+#ifdef WINDOWS
+      bResult = SetEnvironmentVariable("PATH", str);
+#else
+      bResult = setenv("PATH", str, TRUE);
+#endif
+      TRACE("script_compiler::prepare_compile_and_link_environment SetEnvironmentVariable return BOOL %d", bResult);
 
    }
 
    void script_compiler::compile(script * pscript)
    {
       single_lock slScript(&pscript->m_mutex, TRUE);
-      TRACE("Compiling script \"%s\"\n", pscript->m_strName);
+      TRACE("Compiling script \"%s\"\n", pscript->m_strName.c_str());
       string strName(pscript->m_strName);
       pscript->on_start_build();
 
@@ -184,10 +197,10 @@ namespace dynamic_source
      // pscript->m_strLibraryPath.Format(System.dir().stage("Release\\%s.dll"), strName);
    //#endif
 
-      ::DeleteFile(strP);
-      ::DeleteFile(strO);
-      ::DeleteFile(strL);
-      ::DeleteFile(strE);
+      ::remove(strP);
+      ::remove(strO);
+      ::remove(strL);
+      ::remove(strE);
       //::DeleteFile(pscript->m_strBuildBat);
       try
       {
@@ -225,9 +238,9 @@ namespace dynamic_source
 
       Application.dir().mk(System.dir().name(strDVI));
       Application.dir().mk(System.dir().name(pscript->m_strBuildBat));
-      ::CopyFile(strSVI, strDVI, FALSE);
-      ::CopyFile(strSVP, strDVP, FALSE);
-      ::CopyFile(strSPCH, strDPCH, FALSE);
+      Application.file().copy(strDVI, strSVI, false);
+      Application.file().copy(strDVP, strSVP, false);
+      Application.file().copy(strDPCH, strSPCH, false);
 
 
 
@@ -282,23 +295,17 @@ namespace dynamic_source
 
       //Application.file().put_contents(strLinkCmd, str);
 
-      STARTUPINFO si;
-      PROCESS_INFORMATION pi;
-      memset(&si, 0, sizeof(si));
-      memset(&pi, 0, sizeof(pi));
-      si.cb = sizeof(si);
-      si.dwFlags = STARTF_USESHOWWINDOW;
-      si.wShowWindow = SW_HIDE;
-      ::CreateProcess(NULL, (LPTSTR) (const char *) strBuildCmd, NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, System.dir().name(pscript->m_strBuildBat), &si, &pi);
+
+      gen::process process;
+
+      process.create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat));
 
       bool bTimeout = false;
       DWORD dwStart = ::GetTickCount();
       DWORD dwExitCode;
       while(true)
       {
-         if(!GetExitCodeProcess(pi.hProcess, &dwExitCode))
-            break;
-         if(dwExitCode != STILL_ACTIVE)
+         if(process.has_exited(&dwExitCode))
             break;
          Sleep(284);
          if(::GetTickCount() - dwStart > 5 * 60 * 1000) // 5 minutes
@@ -340,9 +347,9 @@ namespace dynamic_source
       pscript->m_memfileError << str;
       pscript->m_memfileError << "</pre>";
 
-      ::DeleteFile(strDVI);
-      ::DeleteFile(strDVP);
-      ::DeleteFile(strDPCH);
+      ::remove(strDVI);
+      ::remove(strDVP);
+      ::remove(strDPCH);
 
 
       pscript->m_dwLastBuildTime = ::GetTickCount();
@@ -353,61 +360,27 @@ namespace dynamic_source
       // System.math().RandRange(0, pscript->m_pmanager->m_dwBuildTimeRandomWindow));
       pscript->m_bShouldBuild =false;
 
-      HANDLE h = ::CreateFile(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+      //HANDLE h = ::CreateFile(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
       memset(&pscript->m_ftCreation, 0, sizeof(FILETIME));
       memset(&pscript->m_ftAccess, 0, sizeof(FILETIME));
       memset(&pscript->m_ftModified, 0, sizeof(FILETIME));
-      GetFileTime(
+      struct stat64 st;
+      stat64(pscript->m_strSourcePath, &st);
+      pscript->m_ftCreation = st.st_ctime;
+      pscript->m_ftAccess = st.st_atime;
+      pscript->m_ftModified = st.st_mtime;
+/*      GetFileTime(
          h ,
          &pscript->m_ftCreation,
          &pscript->m_ftAccess,
-         &pscript->m_ftModified);
-      ::CloseHandle(h);
+         &pscript->m_ftModified);*/
+      //::CloseHandle(h);
 
    }
-
-   string base_name(const char * lpcsz)
-   {
-      string str(lpcsz);
-      strsize iPos1 = str.reverse_find('\\');
-      strsize iPos2 = str.reverse_find('/');
-      if(iPos1 > iPos2)
-      {
-         return str.Left(iPos1);
-      }
-      else if(iPos2 >= 0)
-      {
-         return str.Left(iPos2);
-      }
-      else
-      {
-         return str;
-      }
-   }
-
-
-   bool ensure_dir(const char * lpcsz)
-   {
-      stringa stra;
-      string str = lpcsz;
-      while((::GetFileAttributes(str) & FILE_ATTRIBUTE_DIRECTORY) == 0
-         || (::GetFileAttributes(str) == INVALID_FILE_ATTRIBUTES))
-      {
-         stra.add(str);
-         str = base_name(str);
-      }
-      for(index i = stra.get_size() - 1; i >= 0; i-- )
-      {
-         if(!::CreateDirectory(stra[i], NULL))
-            return false;
-      }
-      return true;
-   }
-
 
    void script_compiler::cppize(script * pscript)
    {
-      ensure_dir(base_name(pscript->m_strCppPath));
+      Application.dir().mk(System.dir().name(pscript->m_strCppPath));
       cppize1(pscript);
    }
 
@@ -724,25 +697,20 @@ namespace dynamic_source
          vars2batSrc = System.dir().ca2("app/stage/app/matter/vc10vars_query_registry.bat");
          vars1batDst = System.dir().stage("stage\\front", "vc10vars64.bat");
          vars2batDst = System.dir().stage("stage\\front", "vc10vars_query_registry.bat");
-         ::CopyFile(vars1batSrc, vars1batDst, FALSE);
-         ::CopyFile(vars2batSrc, vars2batDst, FALSE);
+         Application.file().copy(vars1batDst, vars1batSrc, false);
+         Application.file().copy(vars2batDst, vars2batSrc, false);
 
          Application.file().put_contents(strCmd, str);
-         STARTUPINFO si;
-         PROCESS_INFORMATION pi;
-         memset(&si, 0, sizeof(si));
-         memset(&pi, 0, sizeof(pi));
-         si.cb = sizeof(si);
-         si.dwFlags = STARTF_USESHOWWINDOW;
-         si.wShowWindow = SW_HIDE;
-         ::CreateProcess(NULL, (LPTSTR) (const char *) strCmd, NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, System.dir().ca2("stage\\front"), &si, &pi);
+
+         gen::process process;
+
+         process.create_child_process(strCmd, false, System.dir().ca2("stage\\front"));
+
 
          DWORD dwExitCode;
          while(true)
          {
-            if(!GetExitCodeProcess(pi.hProcess, &dwExitCode))
-               break;
-            if(dwExitCode != STILL_ACTIVE)
+            if(process.has_exited(&dwExitCode))
                break;
             Sleep(200);
          }
@@ -786,21 +754,14 @@ namespace dynamic_source
       Application.dir().mk(System.dir().ca2("stage\\" + m_strPlatform + "\\library"));
       strCmd = System.dir().ca2("stage\\front\\dynamic_source_libl1.bat");
       Application.file().put_contents(strCmd, str);
-      STARTUPINFO si;
-      PROCESS_INFORMATION pi;
-      memset(&si, 0, sizeof(si));
-      memset(&pi, 0, sizeof(pi));
-      si.cb = sizeof(si);
-      si.dwFlags = STARTF_USESHOWWINDOW;
-      si.wShowWindow = SW_HIDE;
-      ::CreateProcess(NULL, (LPTSTR) (const char *) strCmd, NULL, NULL, FALSE, CREATE_NEW_CONSOLE, NULL, System.dir().ca2("stage\\front"), &si, &pi);
+
+
+      gen::process process;
 
       DWORD dwExitCode;
       while(true)
       {
-         if(!GetExitCodeProcess(pi.hProcess, &dwExitCode))
-            break;
-         if(dwExitCode != STILL_ACTIVE)
+         if(process.has_exited(&dwExitCode))
             break;
          Sleep(200);
       }
@@ -818,7 +779,7 @@ namespace dynamic_source
 
    void script_compiler::cppize(const char * lpcszSource, const char * lpcszDest, ecpptype e_type)
    {
-      ensure_dir(base_name(lpcszDest));
+      Application.dir().mk(System.dir().name(lpcszDest));
       cppize1(lpcszSource, lpcszDest, e_type);
    }
 
@@ -1240,7 +1201,7 @@ namespace dynamic_source
                i++;
             }
             strResult += "'";
-            
+
          }
          else if(ch == '$' && (isalpha(chNext) || chNext == '_'))
          {
@@ -1539,17 +1500,19 @@ namespace dynamic_source
       single_lock slLibrary(&m_mutexLibrary, TRUE);
       for(int i = 0; i < m_straLibSourcePath.get_size(); i++)
       {
-         FILETIME ftCreation;
-         FILETIME ftAccess;
-         FILETIME ftModified;
-         memset(&ftCreation, 0, sizeof(FILETIME));
-         memset(&ftAccess, 0, sizeof(FILETIME));
-         memset(&ftModified, 0, sizeof(FILETIME));
-         HANDLE h = ::CreateFile(m_straLibSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-         GetFileTime(h, &ftCreation, &ftAccess, &ftModified);
-         ::CloseHandle(h);
-         if(memcmp(&ftCreation, &m_ftaLibCreation[i], sizeof(FILETIME)) != 0
-            || memcmp(&m_ftaLibModified[i], &ftModified, sizeof(FILETIME)) != 0)
+         //FILETIME ftCreation;
+         //FILETIME ftAccess;
+         //FILETIME ftModified;
+         //memset(&ftCreation, 0, sizeof(FILETIME));
+         //memset(&ftAccess, 0, sizeof(FILETIME));
+         //memset(&ftModified, 0, sizeof(FILETIME));
+      //   HANDLE h = ::CreateFile(m_straLibSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+         //GetFileTime(h, &ftCreation, &ftAccess, &ftModified);
+        // ::CloseHandle(h);
+        struct stat64 st;
+        stat64(m_straLibSourcePath[i], &st);
+         if(memcmp(&st.st_ctime, &m_ftaLibCreation[i], sizeof(__time_t)) != 0
+            || memcmp(&m_ftaLibModified[i], &st.st_mtime, sizeof(__time_t)) != 0)
          {
             return false;
          }
@@ -1558,23 +1521,28 @@ namespace dynamic_source
    }
    void script_compiler::load_library()
    {
-      
+
       single_lock slLibrary(&m_mutexLibrary, TRUE);
-      
+
       if(!m_libraryLib.open(m_strLibraryPath))
          return;
-     
+
       m_ftaLibCreation.set_size(m_straLibSourcePath.get_size());
       m_ftaLibAccess.set_size(m_straLibSourcePath.get_size());
       m_ftaLibModified.set_size(m_straLibSourcePath.get_size());
       for(int i = 0; i < m_straLibSourcePath.get_size(); i++)
       {
-         HANDLE h = ::CreateFile(m_straLibSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-         memset(&m_ftaLibCreation[i], 0, sizeof(FILETIME));
-         memset(&m_ftaLibAccess[i], 0, sizeof(FILETIME));
-         memset(&m_ftaLibModified[i], 0, sizeof(FILETIME));
-         GetFileTime(h , &m_ftaLibCreation[i], &m_ftaLibAccess[i], &m_ftaLibModified[i]);
-         ::CloseHandle(h);
+         struct stat64 st;
+         stat64(m_straLibSourcePath[i], &st);
+         m_ftaLibCreation[i]  = st.st_ctime;
+         m_ftaLibAccess[i]    = st.st_atime;
+         m_ftaLibModified[i]  = st.st_mtime;
+         //HANDLE h = ::CreateFile(m_straLibSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    //     memset(&m_ftaLibCreation[i], 0, sizeof(FILETIME));
+      //   memset(&m_ftaLibAccess[i], 0, sizeof(FILETIME));
+        // memset(&m_ftaLibModified[i], 0, sizeof(FILETIME));
+//         GetFileTime(h , &m_ftaLibCreation[i], &m_ftaLibAccess[i], &m_ftaLibModified[i]);
+  //       ::CloseHandle(h);
       }
    }
 

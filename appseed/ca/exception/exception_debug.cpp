@@ -2,20 +2,24 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Global variables 
+// Global variables
 //
 
-   // Patch for SetUnhandledExceptionFilter 
+   // Patch for SetUnhandledExceptionFilter
 const BYTE PatchBytes[5] = { 0x33, 0xC0, 0xC2, 0x04, 0x00 };
 
-   // Original bytes at the beginning of SetUnhandledExceptionFilter 
+   // Original bytes at the beginning of SetUnhandledExceptionFilter
 BYTE OriginalBytes[5] = {0};
 
 
 
 bool is_debugger_attached()
 {
+#ifdef WINDOWS
    return ::IsDebuggerPresent() != FALSE;
+#else
+   return ::is_gdb_present();
+#endif
 /*    DWORD dw;
 
     __asm
@@ -63,8 +67,8 @@ assert_exception::~assert_exception()
 }
 
 misc_exception::misc_exception(const misc_exception & e) :
-   simple_exception(e), 
-   m_strMessage(e.m_strMessage) 
+   simple_exception(e),
+   m_strMessage(e.m_strMessage)
 {
 }
 
@@ -90,15 +94,15 @@ BOOL misc_exception::GetErrorMessage(string & str, PUINT pnHelpContext)
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// EnforceFilter function 
-// 
+// EnforceFilter function
+//
 /*
 bool EnforceFilter( bool bEnforce )
 {
    DWORD ErrCode = 0;
 
-   
-   // Obtain the address of SetUnhandledExceptionFilter 
+
+   // Obtain the address of SetUnhandledExceptionFilter
 
    HMODULE hLib = GetModuleHandle( "kernel32.dll" );
 
@@ -127,12 +131,12 @@ bool EnforceFilter( bool bEnforce )
 
    if( bEnforce )
    {
-      // Save the original contents of SetUnhandledExceptionFilter 
+      // Save the original contents of SetUnhandledExceptionFilter
 
       memcpy( OriginalBytes, pTarget, sizeof(OriginalBytes) );
 
 
-      // Patch SetUnhandledExceptionFilter 
+      // Patch SetUnhandledExceptionFilter
 
       if( !WriteMemory( pTarget, PatchBytes, sizeof(PatchBytes) ) )
          return false;
@@ -140,7 +144,7 @@ bool EnforceFilter( bool bEnforce )
    }
    else
    {
-      // Restore the original behavior of SetUnhandledExceptionFilter 
+      // Restore the original behavior of SetUnhandledExceptionFilter
 
       if( !WriteMemory( pTarget, OriginalBytes, sizeof(OriginalBytes) ) )
          return false;
@@ -148,7 +152,7 @@ bool EnforceFilter( bool bEnforce )
    }
 
 
-   // Success 
+   // Success
 
    return true;
 
@@ -156,15 +160,15 @@ bool EnforceFilter( bool bEnforce )
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// WriteMemory function 
-// 
+// WriteMemory function
+//
 
 bool WriteMemory( BYTE* pTarget, const BYTE* pSource, DWORD size )
 {
    DWORD ErrCode = 0;
 
 
-   // Check parameters 
+   // Check parameters
 
    if( pTarget == 0 )
    {
@@ -191,7 +195,7 @@ bool WriteMemory( BYTE* pTarget, const BYTE* pSource, DWORD size )
    }
 
 
-   // Modify protection attributes of the target primitive::memory page 
+   // Modify protection attributes of the target primitive::memory page
 
    DWORD OldProtect = 0;
 
@@ -203,12 +207,12 @@ bool WriteMemory( BYTE* pTarget, const BYTE* pSource, DWORD size )
    }
 
 
-   // write primitive::memory 
+   // write primitive::memory
 
    memcpy( pTarget, pSource, size );
 
 
-   // Restore primitive::memory protection attributes of the target primitive::memory page 
+   // Restore primitive::memory protection attributes of the target primitive::memory page
 
    DWORD Temp = 0;
 
@@ -220,7 +224,7 @@ bool WriteMemory( BYTE* pTarget, const BYTE* pSource, DWORD size )
    }
 
 
-   // Success 
+   // Success
 
    return true;
 
@@ -228,10 +232,18 @@ bool WriteMemory( BYTE* pTarget, const BYTE* pSource, DWORD size )
 
 */
 
+
 namespace win
 {
+
+
    CLASS_DECL_ca string error_message(DWORD dwError)
    {
+
+      string str;
+
+#ifdef WINDOWS
+
       wchar_t * lpBuffer;
       FormatMessageW(
          FORMAT_MESSAGE_ALLOCATE_BUFFER |
@@ -243,8 +255,15 @@ namespace win
          1,
          NULL);
 
-      string str = gen::international::unicode_to_utf8(lpBuffer);
+      str = gen::international::unicode_to_utf8(lpBuffer);
       LocalFree(lpBuffer);
+#endif
+
       return str;
+
    }
-}
+
+
+} // namespace win
+
+

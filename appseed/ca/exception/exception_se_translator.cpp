@@ -18,6 +18,12 @@
 #include "StdAfx.h"
 #include "se_translator.h"
 
+#ifdef LINUX
+
+#include <signal.h>
+
+#endif
+
 #ifdef _WINDOWS
 
 // 0x40010005 control C
@@ -120,12 +126,12 @@ bool se_translator::attach()
 
       sa.sa_flags = SA_NODEFER;
       sigemptyset(&sa.sa_mask);
-      sigaddset(&sa.sa_mask, SISGSEGV);
+      sigaddset(&sa.sa_mask, SIGSEGV);
 
-      sa.sa_action = &se_translator::filter_sigsegv;
+      sa.sa_sigaction = &se_translator::filter_sigsegv;
       sigaction(SIGSEGV, &sa, NULL);
 
-      sa.sa_action = &se_translator::filter_sigfpe;
+      sa.sa_sigaction = &se_translator::filter_sigfpe;
       sigaction(SIGFPE, &sa, NULL);
 
 
@@ -232,7 +238,7 @@ vsstring se_translator::name(unsigned int uiCode)
 
 vsstring se_translator::description(unsigned int uiCode)
 {
-   
+
    vsstring str;
 
    switch(uiCode)

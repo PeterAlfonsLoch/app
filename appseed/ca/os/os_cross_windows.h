@@ -56,7 +56,7 @@ typedef OLECHAR *LPOLESTR;
   DWORD dwHighDateTime;
 }FILETIME;*/
 
-#define HRESULT LONG
+//#define HRESULT LONG
 //#define FAILED(Status) ((HRESULT)(Status)<0)
 typedef ULONG PROPID;
 typedef LONG SCODE;

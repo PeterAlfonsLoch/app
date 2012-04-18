@@ -1,6 +1,13 @@
 #include "StdAfx.h"
 
 
+int is_gdb_present()
+{
+
+   return gdb_check();
+
+}
+
 int gdb_check()
 {
   int pid = fork();

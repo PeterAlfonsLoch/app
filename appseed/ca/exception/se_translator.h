@@ -41,7 +41,7 @@ class CLASS_DECL_ca se_translator :
    static vsstring description(unsigned int uiCode);
 #else
    static void filter_sigsegv(int signal, siginfo_t * psiginfo, void * pc);
-   static void filter_fpe(int signal, siginfo_t * psiginfo, void * pc);
+   static void filter_sigfpe(int signal, siginfo_t * psiginfo, void * pc);
 #endif
 
 

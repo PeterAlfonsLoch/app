@@ -1,6 +1,31 @@
 #include "StdAfx.h"
 
 
+#ifdef LINUX
+
+inline int _stprintf_s(char * pszBuffer, int iBufferLen, const char * pszFormat, ...)
+{
+
+   UNREFERENCED_PARAMETER(iBufferLen);
+
+   va_list args;
+
+   va_start (args, pszFormat);
+
+   vsprintf(pszBuffer, pszFormat, args);
+
+   va_end (args);
+
+}
+
+inline size_t lstrlen(const char * psz)
+{
+   return strlen(psz);
+}
+
+#endif
+
+
 dump_context::dump_context(const dump_context &)
 {
 
@@ -13,12 +38,12 @@ void dump_context::operator = (const dump_context &)
 
 int dump_context::GetDepth() const
 {
-   return m_nDepth; 
+   return m_nDepth;
 }
 
 void dump_context::SetDepth(int nNewDepth)
 {
-   m_nDepth = nNewDepth; 
+   m_nDepth = nNewDepth;
 }
 
 void dump_context::OutputString(const char * lpsz)
@@ -35,7 +60,11 @@ void dump_context::OutputString(const char * lpsz)
    if( lpsz == NULL )
       AfxThrowUserException();
    // otherwise, write the string to the file
+#ifdef WINDOWS
    m_pFile->write(lpsz, lstrlen(lpsz)*sizeof(char));
+#else
+   m_pFile->write(lpsz, strlen(lpsz)*sizeof(char));
+#endif
 }
 
 dump_context::dump_context(ex1::file * pFile)
@@ -158,6 +187,8 @@ dump_context& dump_context::operator<<(LONG_PTR l)
    return *this;
 }
 
+#if !defined(_LP64)
+
 #ifdef _WIN64
 dump_context& dump_context::operator<<(DWORD dw)
 #else
@@ -171,6 +202,8 @@ dump_context& dump_context::operator<<(DWORD_PTR dw)
 
    return *this;
 }
+
+#endif
 
 #ifdef _WIN64
 dump_context& dump_context::operator<<(int n)
@@ -186,6 +219,8 @@ dump_context& dump_context::operator<<(INT_PTR n)
    return *this;
 }
 
+#if !defined(_LP64)
+
 #ifdef _WIN64
 dump_context& dump_context::dumpAsHex(UINT u)
 #else
@@ -199,6 +234,8 @@ dump_context& dump_context::dumpAsHex(UINT_PTR u)
 
    return *this;
 }
+
+#endif
 
 #ifdef _WIN64
 dump_context& dump_context::dumpAsHex(LONG l)
@@ -242,6 +279,8 @@ dump_context& dump_context::dumpAsHex(INT_PTR n)
    return *this;
 }
 
+#if !defined(_LP64)
+
 dump_context& dump_context::operator<<(LONGLONG n)
 {
    char szBuffer[32];
@@ -282,6 +321,8 @@ dump_context& dump_context::dumpAsHex(ULONGLONG n)
    return *this;
 }
 
+#endif
+
 dump_context& dump_context::operator<<(const ::radix::object* pOb)
 {
    if (pOb == NULL)
@@ -317,6 +358,10 @@ dump_context& dump_context::operator<<(HDC h)
    return *this << (void *)h;
 }
 
+
+#ifdef WINDOWS
+
+
 dump_context& dump_context::operator<<(HMENU h)
 {
    return *this << (void *)h;
@@ -326,6 +371,10 @@ dump_context& dump_context::operator<<(HACCEL h)
 {
    return *this << (void *)h;
 }
+
+
+#endif
+
 
 dump_context& dump_context::operator<<(HFONT h)
 {
@@ -407,7 +456,7 @@ dump_context& dump_context::operator<<(const wchar_t * lpsz)
    }
 
    // limited length
-   
+
    return *this << gen::international::unicode_to_utf8(lpsz);
 }
 #endif  //!_UNICODE

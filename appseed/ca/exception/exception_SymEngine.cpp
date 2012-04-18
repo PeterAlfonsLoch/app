@@ -1,7 +1,7 @@
 /*
  Copyright (c) 2001 - 2002
- Author: Konstantin Boukreev 
- E-mail: konstantin@mail.primorye.ru 
+ Author: Konstantin Boukreev
+ E-mail: konstantin@mail.primorye.ru
  Created: 25.12.2001 19:41:07
  Version: 1.0.2
 
@@ -17,7 +17,10 @@
 
 #include "StdAfx.h"
 
-#include <malloc.h> 
+#include <malloc.h>
+
+#ifdef WINDOWS
+
 #include <tlhelp32.h>
 
 #pragma comment (lib, "dbghelp")
@@ -42,9 +45,9 @@
 ///////////////////////////////////////////////////////////////////////
 
 bool IsNT()
-{   
+{
    #if 1
-   OSVERSIONINFO vi = { sizeof(vi)};   
+   OSVERSIONINFO vi = { sizeof(vi)};
    ::GetVersionEx(&vi);
    return vi.dwPlatformId == VER_PLATFORM_WIN32_NT;
    #else
@@ -89,7 +92,7 @@ size_t SymEngine::module(vsstring & str)
    HANDLE hprocess = SymGetProcessHandle();
    HMODULE hmodule = (HMODULE)SymGetModuleBase (hprocess, m_uiAddress);
    if (!hmodule) return 0;
-   return get_module_basename(hmodule, str);   
+   return get_module_basename(hmodule, str);
 }
 
 size_t SymEngine::symbol(vsstring & str, DWORD_PTR * pdisplacement)
@@ -107,12 +110,12 @@ size_t SymEngine::symbol(vsstring & str, DWORD_PTR * pdisplacement)
    DWORD_PTR displacement = 0;
    int r = SymGetSymFromAddr(hprocess, m_uiAddress, &displacement, pSym);
    if (!r) return 0;
-   if (pdisplacement) 
+   if (pdisplacement)
       *pdisplacement = displacement;
 
    str = pSym->Name;
    str += "()";
-    
+
    return str.get_length();
 }
 
@@ -130,9 +133,9 @@ index SymEngine::fileline (vsstring & str, DWORD_PTR * pline, DWORD_PTR * pdispl
    DWORD_PTR displacement = 0;
    if (!get_line_from_address(hprocess, m_uiAddress, &displacement, &img_line))
       return 0;
-   if (pdisplacement) 
+   if (pdisplacement)
       *pdisplacement = displacement;
-   if (pline) 
+   if (pline)
       *pline = img_line.LineNumber;
    str = img_line.FileName;
    return str.get_length();
@@ -140,18 +143,18 @@ index SymEngine::fileline (vsstring & str, DWORD_PTR * pline, DWORD_PTR * pdispl
 
 bool SymEngine::stack_first (CONTEXT* pcontext)
 {
-   if(!pcontext || IsBadReadPtr(pcontext, sizeof(CONTEXT))) 
+   if(!pcontext || IsBadReadPtr(pcontext, sizeof(CONTEXT)))
       return false;
 
    if(!check())
       return false;
 
-   if(!m_pstackframe) 
+   if(!m_pstackframe)
    {
       m_pstackframe = new STACKFRAME;
       if (!m_pstackframe) return false;
    }
-            
+
    memset(m_pstackframe, 0, sizeof(STACKFRAME));
 
    #ifdef _AMD64_
@@ -185,24 +188,24 @@ bool SymEngine::stack_first (CONTEXT* pcontext)
 
 bool SymEngine::stack_next()
 {
-   if (!m_pstackframe || !m_pcontext) 
-   {      
+   if (!m_pstackframe || !m_pcontext)
+   {
       _ASSERTE(0);
       return false;
    }
-      
+
    if (!m_bOk)
    {
       _ASSERTE(0);
       return false;
    }
-   
+
    SetLastError(0);
    HANDLE hprocess = SymGetProcessHandle();
    BOOL r = StackWalk (IMAGE_FILE_MACHINE_I386,
-            hprocess, 
-            GetCurrentThread(), 
-            m_pstackframe, 
+            hprocess,
+            GetCurrentThread(),
+            m_pstackframe,
             m_pcontext,
                 (PREAD_PROCESS_MEMORY_ROUTINE)My_ReadProcessMemory,
             SymFunctionTableAccess,
@@ -210,9 +213,9 @@ bool SymEngine::stack_next()
             0);
 
    if (!r || !m_pstackframe->AddrFrame.Offset)
-   {      
+   {
       return false;
-   }      
+   }
 
    // "Debugging Applications" John Robbins
    // Before I get too carried away and start calculating
@@ -221,8 +224,8 @@ bool SymEngine::stack_next()
    // StackWalk returns TRUE but the address doesn't belong to
    // a module in the process.
    DWORD_PTR dwModBase = SymGetModuleBase (hprocess, m_pstackframe->AddrPC.Offset);
-   if (!dwModBase) 
-   {   
+   if (!dwModBase)
+   {
       ::OutputDebugString("SymEngine::stack_next :: StackWalk returned TRUE but the address doesn't belong to a module in the process.");
       return false;
    }
@@ -232,7 +235,7 @@ bool SymEngine::stack_next()
 }
 
 bool SymEngine::get_line_from_address (HANDLE hprocess, DWORD_PTR uiAddress, DWORD_PTR * puiDisplacement, IMAGEHLP_LINE * pline)
-{    
+{
    #ifdef WORK_AROUND_SRCLINE_BUG
    // "Debugging Applications" John Robbins
    // The problem is that the symbol engine finds only those source
@@ -241,25 +244,25 @@ bool SymEngine::get_line_from_address (HANDLE hprocess, DWORD_PTR uiAddress, DWO
    // find the line and return the proper displacement.
    DWORD dwDisplacement = 0 ;
    while (!SymGetLineFromAddr (hprocess, uiAddress - dwDisplacement, (DWORD*)puiDisplacement, pline))
-   {        
+   {
       if (100 == ++dwDisplacement)
-         return false;        
+         return false;
    }
 
    // "Debugging Applications" John Robbins
    // I found the line, and the source line information is correct, so
    // change the displacement if I had to search backward to find the source line.
-   if(dwDisplacement)    
-      *puiDisplacement = dwDisplacement;    
+   if(dwDisplacement)
+      *puiDisplacement = dwDisplacement;
    return true;
-   #else 
+   #else
    return 0 != SymGetLineFromAddr (hprocess, uiAddress, (DWORD *) puiDisplacement, pline);
    #endif
 }
 
 size_t SymEngine::get_module_basename (HMODULE hmodule, vsstring & str)
 {
-   
+
    char filename[MAX_PATH];
 
    DWORD r = GetModuleFileNameA(hmodule, filename, MAX_PATH);
@@ -284,27 +287,27 @@ size_t SymEngine::get_module_basename (HMODULE hmodule, vsstring & str)
 }
 
 bool SymEngine::check()
-{   
-   if (!m_bOk) 
-      m_bOk = guard::instance().init(); 
-   return m_bOk; 
+{
+   if (!m_bOk)
+      m_bOk = guard::instance().init();
+   return m_bOk;
 }
 
-SymEngine::guard::guard() 
-   : m_iRef(0) 
+SymEngine::guard::guard()
+   : m_iRef(0)
 {}
 
-SymEngine::guard::~guard() 
-{ 
-   clear(); 
+SymEngine::guard::~guard()
+{
+   clear();
 }
 
 bool SymEngine::guard::init()
-{   
-   if (!m_iRef) 
+{
+   if (!m_iRef)
    {
       m_iRef = -1;
-      
+
       HANDLE hprocess = SymGetProcessHandle();
       DWORD  dwPid = GetCurrentProcessId();
 
@@ -312,36 +315,36 @@ bool SymEngine::guard::init()
       SymSetOptions (SymGetOptions()|SYMOPT_DEFERRED_LOADS|SYMOPT_LOAD_LINES);
    //   SymSetOptions (SYMOPT_UNDNAME|SYMOPT_LOAD_LINES);
       if (::SymInitialize(hprocess, 0, TRUE))
-      {         
+      {
          // enumerate modules
-         if (IsNT())      
+         if (IsNT())
          {
             typedef BOOL (WINAPI *ENUMPROCESSMODULES)(HANDLE, HMODULE*, DWORD, LPDWORD);
 
             HINSTANCE hInst = LoadLibrary("psapi.dll");
             if (hInst)
-            {            
-               ENUMPROCESSMODULES fnEnumProcessModules = 
+            {
+               ENUMPROCESSMODULES fnEnumProcessModules =
                   (ENUMPROCESSMODULES)GetProcAddress(hInst, "EnumProcessModules");
                DWORD cbNeeded = 0;
                if (fnEnumProcessModules &&
                   fnEnumProcessModules(GetCurrentProcess(), 0, 0, &cbNeeded) &&
                   cbNeeded)
-               {   
+               {
                   HMODULE * pmod = (HMODULE *)alloca(cbNeeded);
                   DWORD cb = cbNeeded;
                   if (fnEnumProcessModules(GetCurrentProcess(), pmod, cb, &cbNeeded))
                   {
                      m_iRef = 0;
                      for (unsigned i = 0; i < cb / sizeof (HMODULE); ++i)
-                     {                        
+                     {
                         if (!load_module(hprocess, pmod[i]))
                         {
                         //   m_iRef = -1;
                         //   break;
                            _ASSERTE(0);
-                        }                           
-                     }                     
+                        }
+                     }
                   }
                }
                else
@@ -365,14 +368,14 @@ bool SymEngine::guard::init()
             MODULEWALK fnModule32First = (MODULEWALK)GetProcAddress(hMod, "Module32First");
             MODULEWALK fnModule32Next  = (MODULEWALK)GetProcAddress(hMod, "Module32Next");
 
-            if (fnCreateToolhelp32Snapshot && 
-               fnModule32First && 
+            if (fnCreateToolhelp32Snapshot &&
+               fnModule32First &&
                fnModule32Next)
-            {            
+            {
                HANDLE hModSnap = fnCreateToolhelp32Snapshot(TH32CS_SNAPMODULE, dwPid);
                if (hModSnap)
                {
-                  MODULEENTRY32 me32 = {0};                   
+                  MODULEENTRY32 me32 = {0};
                   me32.dwSize = sizeof(MODULEENTRY32);
                   if (fnModule32First(hModSnap, &me32))
                   {
@@ -383,17 +386,17 @@ bool SymEngine::guard::init()
                         {
                         //   m_iRef = -1;
                         //   break;
-                        }                                                   
+                        }
                      }
                      while(fnModule32Next(hModSnap, &me32));
                   }
-                  VERIFY(CloseHandle(hModSnap));                  
+                  VERIFY(CloseHandle(hModSnap));
                }
             }
          }
 
          if (m_iRef == -1)
-         {            
+         {
             VERIFY(SymCleanup(SymGetProcessHandle()));
          }
       }
@@ -404,7 +407,7 @@ bool SymEngine::guard::init()
    }
    if (m_iRef == -1)
       return false;
-   if (0 == m_iRef) 
+   if (0 == m_iRef)
       ++m_iRef; // lock it once
 //   ++m_iRef;
    return true;
@@ -413,39 +416,39 @@ bool SymEngine::guard::init()
 void SymEngine::guard::clear()
 {
    if (m_iRef ==  0) return;
-   if (m_iRef == -1) return;   
+   if (m_iRef == -1) return;
    if (--m_iRef == 0)
-   {    
+   {
       VERIFY(SymCleanup(SymGetProcessHandle()));
    }
 }
 
 bool SymEngine::guard::load_module(HANDLE hProcess, HMODULE hMod)
-{   
+{
    char filename[MAX_PATH];
    if (!GetModuleFileNameA(hMod, filename, MAX_PATH))
       return false;
-   
+
    HANDLE hFile = CreateFileA(filename, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, 0);
    if (hFile == INVALID_HANDLE_VALUE) return false;
 
-   // "Debugging Applications" John Robbins   
+   // "Debugging Applications" John Robbins
     // For whatever reason, SymLoadModule can return zero, but it still loads the modules. Sheez.
    SetLastError(ERROR_SUCCESS);
-    if (!SymLoadModule(hProcess, hFile, filename, 0, (DWORD)hMod, 0) && 
+    if (!SymLoadModule(hProcess, hFile, filename, 0, (DWORD)hMod, 0) &&
       ERROR_SUCCESS != GetLastError())
    {
       return false;
    }
-   
+
    return true;
 }
 
 bool SymEngine::stack_trace(vsstring & str, CONTEXT * pcontext, DWORD_PTR uiSkip, const char * pszFormat)
 {
-   if(!pszFormat) return false;   
+   if(!pszFormat) return false;
    SymEngine engine(0);
-   return stack_trace(str, engine, pcontext, uiSkip, pszFormat);   
+   return stack_trace(str, engine, pcontext, uiSkip, pszFormat);
 }
 
 /////////////////////////////////////////////
@@ -453,12 +456,12 @@ bool SymEngine::stack_trace(vsstring & str, CONTEXT * pcontext, DWORD_PTR uiSkip
 
 struct current_context : CONTEXT
 {
-   HANDLE   thread;    
+   HANDLE   thread;
    volatile int signal;
 };
 
 DWORD WINAPI SymEngine::stack_trace_ThreadProc(void * lpvoidParam)
-{  
+{
 
 #ifdef _AMD64_
 
@@ -467,17 +470,17 @@ DWORD WINAPI SymEngine::stack_trace_ThreadProc(void * lpvoidParam)
 #endif
 
    current_context * pcontext = reinterpret_cast<current_context*>(lpvoidParam);
-   
+
    __try
-   {   
+   {
       // Konstantin, 14.01.2002 17:21:32
       // must wait in spin lock until main thread will leave a ResumeThread (must return back to ::fontopus::user context)
       int iInverseAgility = 26 + 33; // former iPatienceQuota
       int iPatience = iInverseAgility;
-      while(pcontext->signal && iPatience > 0) 
-      {      
+      while(pcontext->signal && iPatience > 0)
+      {
          if(!SwitchToThread())
-            Sleep(10); // forces switch to another thread 
+            Sleep(10); // forces switch to another thread
          iPatience--;
       }
 
@@ -485,7 +488,7 @@ DWORD WINAPI SymEngine::stack_trace_ThreadProc(void * lpvoidParam)
       sprintf(sz, "SymEngine::stack_trace patience near down %u%%\n", iPatience * 100 / iInverseAgility);
       ::OutputDebugString(sz);
 
-      if (-1 == SuspendThread(pcontext->thread)) 
+      if (-1 == SuspendThread(pcontext->thread))
       {
          pcontext->signal  = -1;
          __leave;
@@ -498,12 +501,12 @@ DWORD WINAPI SymEngine::stack_trace_ThreadProc(void * lpvoidParam)
       __finally
       {
          VERIFY(-1 != ResumeThread(pcontext->thread));
-      }      
+      }
    }
    __except(EXCEPTION_EXECUTE_HANDLER)
-   {   
+   {
       pcontext->signal  = -1;
-   }   
+   }
    return 0;
 }
 
@@ -512,11 +515,11 @@ bool SymEngine::stack_trace(vsstring & str, DWORD_PTR uiSkip, const char * pszFo
    if(!pszFormat) return false;
 
    // attempts to get current thread's context
-   
+
    current_context context;
    memset(&context, 0, sizeof(current_context));
-   
-   BOOL bOk = DuplicateHandle(GetCurrentProcess(), GetCurrentThread(), GetCurrentProcess(), 
+
+   BOOL bOk = DuplicateHandle(GetCurrentProcess(), GetCurrentThread(), GetCurrentProcess(),
       &context.thread, 0, 0, DUPLICATE_SAME_ACCESS);
 
    _ASSERTE(bOk);
@@ -528,12 +531,12 @@ bool SymEngine::stack_trace(vsstring & str, DWORD_PTR uiSkip, const char * pszFo
    context.ContextFlags = CONTEXT_CONTROL; // CONTEXT_FULL;
    context.signal = -1;
 
-   DWORD dwDummy;      
-   HANDLE hthreadWorker = CreateThread(0, 0, &SymEngine::stack_trace_ThreadProc, &context, CREATE_SUSPENDED, &dwDummy);   
+   DWORD dwDummy;
+   HANDLE hthreadWorker = CreateThread(0, 0, &SymEngine::stack_trace_ThreadProc, &context, CREATE_SUSPENDED, &dwDummy);
    _ASSERTE(hthreadWorker);
 
    if (hthreadWorker)
-   {  
+   {
       //VERIFY(SetThreadPriority(hthreadWorker, THREAD_PRIORITY_TIME_CRITICAL)); //  THREAD_PRIORITY_HIGHEST
       if (-1 != ResumeThread(hthreadWorker))
       {
@@ -544,8 +547,8 @@ bool SymEngine::stack_trace(vsstring & str, DWORD_PTR uiSkip, const char * pszFo
          while (!context.signal && iPatience > 0)
          {
             if(!SwitchToThread())
-               Sleep(10); // forces switch to another thread 
-            iPatience--; // wait in spin      
+               Sleep(10); // forces switch to another thread
+            iPatience--; // wait in spin
          }
          char sz[200];
          sprintf(sz, "SymEngine::stack_trace patience near down %u%%\n", iPatience * 100 / iInverseAgility);
@@ -555,7 +558,7 @@ bool SymEngine::stack_trace(vsstring & str, DWORD_PTR uiSkip, const char * pszFo
       {
          VERIFY(TerminateThread(hthreadWorker, 0));
       }
-      VERIFY(CloseHandle(hthreadWorker));      
+      VERIFY(CloseHandle(hthreadWorker));
    }
    VERIFY(CloseHandle(context.thread));
 
@@ -564,18 +567,18 @@ bool SymEngine::stack_trace(vsstring & str, DWORD_PTR uiSkip, const char * pszFo
       _ASSERTE(0);
       return false;
    }
-   // now it can print stack   
+   // now it can print stack
    SymEngine symengine(0);
    stack_trace(str, symengine, &context, uiSkip, pszFormat);
    return true;
 }
 
-bool SymEngine::stack_trace(vsstring & str, SymEngine& symengine, 
+bool SymEngine::stack_trace(vsstring & str, SymEngine& symengine,
       CONTEXT * pcontext, DWORD_PTR uiSkip, const char * pszFormat)
-{   
-   if (!symengine.stack_first(pcontext)) 
+{
+   if (!symengine.stack_first(pcontext))
       return false;
-               
+
 //   char buf [512] = {0};
 //   char fbuf[512] = {0};
 //   char sbuf[512] = {0};
@@ -587,22 +590,22 @@ bool SymEngine::stack_trace(vsstring & str, SymEngine& symengine,
    do
    {
       if (!uiSkip)
-      {         
+      {
          DWORD_PTR uiLineNumber = 0;
          DWORD_PTR uiLineDisplacement = 0;
          DWORD_PTR uiSymbolDisplacement = 0;
          strFile.clear();
          strSymbol.clear();
-         
+
          for (char * p = (char *)pszFormat; *p; ++p)
-         {            
+         {
             if (*p == '%')
             {
                ++p; // skips '%'
                char c = *p;
                switch (c)
                {
-               case 'm':   
+               case 'm':
                   if(symengine.module(strBuf))
                   {
                      str += strBuf;
@@ -633,13 +636,13 @@ bool SymEngine::stack_trace(vsstring & str, SymEngine& symengine,
                   if (*(p + 1) == 'd')
                   {
                      strBuf = itoa_dup(uiLineDisplacement);
-                     str += strBuf; 
+                     str += strBuf;
                      ++p;
                   }
                   else
                   {
                      strBuf = itoa_dup(uiLineNumber);
-                     str += strBuf;                     
+                     str += strBuf;
                   }
                   break;
                case 's':
@@ -684,3 +687,5 @@ bool SymEngine::stack_trace(vsstring & str, SymEngine& symengine,
    while (symengine.stack_next());
    return true;
 }
+
+#endif

@@ -16,11 +16,11 @@ namespace ex1
    }
 
    stream::stream(const reader & reader, const writer & writer) :
-      reader(reader),
-      writer(writer)
+      ::ex1::reader(reader),
+      ::ex1::writer(writer)
    {
    }
-   
+
    stream::stream(const stream & stream) :
       reader(stream),
       writer(stream)
@@ -42,7 +42,7 @@ namespace ex1
    {
       return is_writer_null() && is_reader_null();
    }
-      
+
    bool stream::is_stream_set()
    {
       return is_writer_set() || is_reader_set();

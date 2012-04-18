@@ -1,8 +1,11 @@
 #pragma once
 
+#include <sys/stat.h>
+
 
 namespace dynamic_source
 {
+
 
    class CLASS_DECL_ca library_class :
       virtual public ::radix::object
@@ -16,9 +19,11 @@ namespace dynamic_source
       stringa m_straCppPath;
       string m_strLibraryPath;
       ::ca::library m_library;
-      base_array < FILETIME, FILETIME & > m_ftaCreation;
-      base_array < FILETIME, FILETIME & > m_ftaAccess;
-      base_array < FILETIME, FILETIME & > m_ftaModified;
+
+      base_array < __time_t, __time_t & > m_ftaCreation;
+      base_array < __time_t, __time_t & > m_ftaAccess;
+      base_array < __time_t, __time_t & > m_ftaModified;
+
       script_manager * m_pmanager;
 
 

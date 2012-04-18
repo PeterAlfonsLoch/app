@@ -19,9 +19,9 @@ namespace dynamic_source
 
 
       ::ca::library m_library;
-      FILETIME m_ftCreation;
-      FILETIME m_ftAccess;
-      FILETIME m_ftModified;
+      __time_t m_ftCreation;
+      __time_t m_ftAccess;
+      __time_t m_ftModified;
 
       http::memory_file m_memfileError;
       string m_strName;

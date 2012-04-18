@@ -10,7 +10,7 @@ namespace database
       {
          m_bEnableSaveWindowRect = false;
       }
-       
+
       interaction::~interaction()
       {
       }
@@ -64,7 +64,7 @@ namespace database
 //         SCAST_PTR(::gen::message::show_window, pshowwindow, pobj)
          if(GetParent() == NULL)
          {
-#if !core_level_1 && !core_level_2
+#if !core_level_1 && !core_level_2 && defined(WINDOWS)
             if(GetExStyle() && WS_EX_LAYERED)
             {
                if(IsZoomed())
@@ -78,7 +78,7 @@ namespace database
                }
                else
                {
-                  
+
                }
             }
 #endif
@@ -123,7 +123,7 @@ namespace database
       }
 
       bool interaction::LoadWindowRect_(
-         ::database::id key, ::database::id idIndex, 
+         ::database::id key, ::database::id idIndex,
          ::user::interaction * pWnd,
          bool bForceRestore)
       {
@@ -170,7 +170,7 @@ namespace database
          gen::byte_stream_memory_file memstream(get_app());
          gen::byte_stream_memory_file memstreamGet(get_app());
          bool bGet = data_get(
-            key, 
+            key,
             idIndex,
             memstreamGet);
          memstreamGet.seek_to_begin();

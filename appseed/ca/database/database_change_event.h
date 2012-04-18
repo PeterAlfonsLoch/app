@@ -16,14 +16,13 @@ namespace database
       public gen::signal_object
    {
    public:
-      
-      
+
+
       server *          m_pserver;
       key               m_key;
       update_hint *     m_puh;
       bool              m_bOk;
-      var &             m_var;
-
+      var *             m_pvar;
 
       change_event();
       change_event(var & var);

@@ -1,5 +1,4 @@
 #include "StdAfx.h"
-#include "sal.h"
 
 
 void PASCAL base_exception::operator delete(void * pbData)
@@ -12,16 +11,20 @@ void PASCAL base_exception::operator delete(void * pbData,   const char * /* lps
    operator delete(pbData);
 }
 
-base_exception::base_exception(unsigned int uiSkip) :
-   call_stack(uiSkip)
+base_exception::base_exception(unsigned int uiSkip)
+#ifdef WINDOWS
+: call_stack(uiSkip)
+#endif
 {
    // most exceptions are deleted when not needed
    m_ulFlags |= flag_auto_clean;
    m_ulFlags &= ~flag_ready_for_delete;
 }
 
-base_exception::base_exception(BOOL bAutoDelete, unsigned int uiSkip) :
-   call_stack(uiSkip)
+base_exception::base_exception(BOOL bAutoDelete, unsigned int uiSkip)
+#ifdef WINDOWS
+: call_stack(uiSkip)
+#endif
 {
    // for exceptions which are not auto-delete (usually)
    if(bAutoDelete)
@@ -119,6 +122,8 @@ void DECLSPEC_NO_RETURN AfxThrowInvalidArgException()
 
 //typedef BOOL (WINAPI *  LPFN_ISWOW64PROCESS )(HANDLE, BOOL *) ;
 
+#ifdef WINDOWS
+
 BOOL IsWow64()
 {
     BOOL bIsWow64 = FALSE;
@@ -129,3 +134,5 @@ BOOL IsWow64()
      }
     return bIsWow64;
 }
+
+#endif

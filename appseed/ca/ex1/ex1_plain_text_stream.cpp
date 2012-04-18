@@ -27,7 +27,7 @@ namespace ex1
 
    plain_text_stream_base::fmtflags plain_text_stream_base::setf(fmtflags flagsAdd, fmtflags flagsRemove)
    {
-      
+
       fmtflags fmtflagsOld = m_fmtflags;
 
       m_fmtflags = (fmtflags) (((uint) m_fmtflags | (uint) flagsAdd) & (~(uint)flagsRemove));
@@ -80,13 +80,13 @@ namespace ex1
    plain_text_input_stream::plain_text_input_stream(reader * preader) :
       reader(preader)
    {
-      
+
    }
 
    plain_text_input_stream::plain_text_input_stream(const plain_text_input_stream & istream) :
       reader(istream)
    {
-      
+
    }
 
    plain_text_input_stream::~plain_text_input_stream()
@@ -146,6 +146,8 @@ namespace ex1
       return *this;
    }
 
+#ifdef WINDOWS
+
    plain_text_input_stream & plain_text_input_stream::operator >> (long & l)
    {
       uint64_t uiRead = read(&l, sizeof(l));
@@ -160,7 +162,9 @@ namespace ex1
       return *this;
    }
 
-   plain_text_input_stream & plain_text_input_stream::operator >> (__int64 & i)
+#endif
+
+   plain_text_input_stream & plain_text_input_stream::operator >> (int64_t & i)
    {
       read(&i, sizeof(i));
       return *this;
@@ -300,19 +304,23 @@ namespace ex1
       return raw_print(gen::str::itoa(ui));
    }
 
+#if !defined(_LP64)
+
    plain_text_output_stream & plain_text_output_stream::operator << (long l)
    {
       return raw_print(gen::str::itoa(l));
    }
 
-   plain_text_output_stream & plain_text_output_stream::operator << (__int64 i)
-   {
-      return raw_print(gen::str::i64toa(i));
-   }
-
    plain_text_output_stream & plain_text_output_stream::operator << (unsigned long ul)
    {
       return raw_print(gen::str::itoa(ul));
+   }
+
+#endif
+
+   plain_text_output_stream & plain_text_output_stream::operator << (int64_t i)
+   {
+      return raw_print(gen::str::i64toa(i));
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (uint64_t ui)
@@ -420,7 +428,7 @@ namespace ex1
    }
 
    plain_text_stream::plain_text_stream(const plain_text_stream & stream) :
-      stream(stream),
+      ::ex1::stream(stream),
       plain_text_input_stream(stream),
       plain_text_output_stream(stream)
    {

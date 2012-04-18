@@ -40,9 +40,9 @@ namespace dynamic_source
       ::ca::library        m_libraryLib;
 
 
-      base_array < FILETIME, FILETIME & > m_ftaLibCreation;
-      base_array < FILETIME, FILETIME & > m_ftaLibAccess;
-      base_array < FILETIME, FILETIME & > m_ftaLibModified;
+      base_array < __time_t, __time_t & > m_ftaLibCreation;
+      base_array < __time_t, __time_t & > m_ftaLibAccess;
+      base_array < __time_t, __time_t & > m_ftaLibModified;
 
 
       stringa                 m_straSync;

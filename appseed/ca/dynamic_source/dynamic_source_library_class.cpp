@@ -21,17 +21,15 @@ namespace dynamic_source
    {
       for(int i = 0; i < m_straSourcePath.get_size(); i++)
       {
-         FILETIME ftCreation;
-         FILETIME ftAccess;
-         FILETIME ftModified;
-         memset(&ftCreation, 0, sizeof(FILETIME));
-         memset(&ftAccess, 0, sizeof(FILETIME));
-         memset(&ftModified, 0, sizeof(FILETIME));
-         HANDLE h = ::CreateFile(m_straSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-         GetFileTime(h, &ftCreation, &ftAccess, &ftModified);
-         ::CloseHandle(h);
-         if(memcmp(&ftCreation, &m_ftaCreation[i], sizeof(FILETIME)) != 0
-            || memcmp(&m_ftaModified[i], &ftModified, sizeof(FILETIME)) != 0)
+         struct stat64 st;
+         memset(&st, 0, sizeof(st));
+//         memset(&ftAccess, 0, sizeof(__time_t));
+//         memset(&ftModified, 0, sizeof(__time_t));
+//         HANDLE h = ::CreateFile(m_straSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+         stat64(m_straSourcePath[i], &st);
+//         ::CloseHandle(h);
+         if(memcmp(&st.st_ctime, &m_ftaCreation[i], sizeof(__time_t)) != 0
+            || memcmp(&m_ftaModified[i], &st.st_mtime, sizeof(__time_t)) != 0)
          {
             return false;
          }
@@ -47,12 +45,17 @@ namespace dynamic_source
       m_ftaModified.set_size(m_straSourcePath.get_size());
       for(int i = 0; i < m_straSourcePath.get_size(); i++)
       {
-         HANDLE h = ::CreateFile(m_straSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-         memset(&m_ftaCreation[i], 0, sizeof(FILETIME));
+         //HANDLE h = ::CreateFile(m_straSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+         struct stat64 st;
+         stat64(m_straSourcePath[i], &st);
+/*         memset(&m_ftaCreation[i], 0, sizeof(FILETIME));
          memset(&m_ftaAccess[i], 0, sizeof(FILETIME));
          memset(&m_ftaModified[i], 0, sizeof(FILETIME));
-         GetFileTime(h , &m_ftaCreation[i], &m_ftaAccess[i], &m_ftaModified[i]);
-         ::CloseHandle(h);
+         GetFileTime(h , &m_ftaCreation[i], &m_ftaAccess[i], &m_ftaModified[i]);*/
+         m_ftaCreation[i] = st.st_ctime;
+         m_ftaAccess[i] = st.st_atime;
+         m_ftaModified[i] = st.st_mtime;
+         //::CloseHandle(h);
       }
    }
    void library_class::Unload()

@@ -1182,7 +1182,7 @@
 	<ucontext.h>
 	<sys/ucontext.h>
 
-1331884434 /cecyn1/app/appseed/ca/exception/se_translator.h
+1334771832 /cecyn1/app/appseed/ca/exception/se_translator.h
 	<eh.h>
 	<signal.h>
 
@@ -3080,7 +3080,7 @@
 1324572530 /cecyn1/app/appseed/ca/database/database_base.h
 	"database_definition.h"
 
-1324572530 /cecyn1/app/appseed/ca/database/database_change_event.h
+1334698071 /cecyn1/app/appseed/ca/database/database_change_event.h
 	"ca/database/database_key.h"
 
 1324572530 /cecyn1/app/appseed/ca/database/database_server.h
@@ -3289,11 +3289,11 @@
 	"dynamic_source_httpd_socket.h"
 	"dynamic_source_script_manager.h"
 
-1334304989 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script.h
+1334701718 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script.h
 
 1324572533 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_cache.h
 
-1332554829 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_compiler.h
+1334754536 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_compiler.h
 
 1334672093 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_interface.h
 
@@ -3303,7 +3303,8 @@
 
 1324572533 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_library.h
 
-1334304989 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_library_class.h
+1334701629 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_library_class.h
+	<sys/stat.h>
 
 1324572533 /cecyn1/app/appseed/ca/dynamic_source/dynamic_source_ptr.h
 
@@ -3862,7 +3863,7 @@
 
 1334311465 /cecyn1/app/appseed/ca/linux/os_allocate_debug.h
 
-1334311459 /cecyn1/app/appseed/ca/linux/os_debug.h
+1334767276 /cecyn1/app/appseed/ca/linux/os_debug.h
 
 1334308752 /cecyn1/app/appseed/ca/windows/os_utils.h
 	<Winsvc.h>
@@ -4223,7 +4224,7 @@
 1334509066 source:/cecyn1/app/appseed/ca/calculator/datetime_parser.cpp
 	"StdAfx.h"
 
-1334469600 source:/cecyn1/app/appseed/ca/ca/ca_os.cpp
+1334694153 source:/cecyn1/app/appseed/ca/ca/ca_os.cpp
 	"StdAfx.h"
 
 1334509188 source:/cecyn1/app/appseed/ca/calculator/datetime_scanner.cpp
@@ -4637,7 +4638,7 @@
 	"os_cross_windows.h"
 	"os_windows_defs.h"
 
-1334673027 /cecyn1/app/appseed/ca/os/os_cross_windows.h
+1334763075 /cecyn1/app/appseed/ca/os/os_cross_windows.h
 	<stddef.h>
 	<string.h>
 	"os_cross_windows_guid_def.h"
@@ -4850,4 +4851,299 @@
 	<stdio.h>
 	<stdio.h>
 	"rand_source.h"
+
+1324572530 source:/cecyn1/app/appseed/ca/database/database_application.cpp
+	"StdAfx.h"
+
+1324572530 source:/cecyn1/app/appseed/ca/database/database_base.cpp
+	"StdAfx.h"
+
+1330322209 source:/cecyn1/app/appseed/ca/database/database_client.cpp
+	"StdAfx.h"
+
+1330322209 source:/cecyn1/app/appseed/ca/database/database_definition.cpp
+	"StdAfx.h"
+
+1324572530 source:/cecyn1/app/appseed/ca/database/database_field_definition.cpp
+	"StdAfx.h"
+
+1324572530 source:/cecyn1/app/appseed/ca/database/database_id.cpp
+	"StdAfx.h"
+
+1324572530 source:/cecyn1/app/appseed/ca/database/database_key.cpp
+	"StdAfx.h"
+
+1324572530 source:/cecyn1/app/appseed/ca/database/database_selection.cpp
+	"StdAfx.h"
+
+1324572530 source:/cecyn1/app/appseed/ca/database/database_selection_item.cpp
+	"StdAfx.h"
+
+1334698071 source:/cecyn1/app/appseed/ca/database/database_event_change.cpp
+	"StdAfx.h"
+
+1332554827 source:/cecyn1/app/appseed/ca/database/database_server.cpp
+	"StdAfx.h"
+
+1332554827 source:/cecyn1/app/appseed/ca/database/database_set.cpp
+	"StdAfx.h"
+
+1330322209 source:/cecyn1/app/appseed/ca/database/database_stringhelper.cpp
+	"StdAfx.h"
+
+1324572530 source:/cecyn1/app/appseed/ca/database/database_update_hint.cpp
+	"StdAfx.h"
+
+1334699741 source:/cecyn1/app/appseed/ca/database/database_user_interaction.cpp
+	"StdAfx.h"
+
+1334304989 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_exit_exception.cpp
+	"StdAfx.h"
+
+1334304989 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_httpd_socket.cpp
+	"StdAfx.h"
+
+1334704381 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_library_class.cpp
+	"StdAfx.h"
+
+1334741893 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script.cpp
+	"StdAfx.h"
+	<dlfcn.h>
+
+1332554829 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_cache.cpp
+	"StdAfx.h"
+
+1334754491 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_compiler.cpp
+	"StdAfx.h"
+	<ctype.h>
+
+1334672093 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_instance.cpp
+	"StdAfx.h"
+
+1334672093 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_interface.cpp
+	"StdAfx.h"
+
+1334761182 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_manager.cpp
+	"StdAfx.h"
+	<openssl/ssl.h>
+	<sys/inotify.h>
+
+1334761391 source:/cecyn1/app/appseed/ca/ex1/ex1_application.cpp
+	"StdAfx.h"
+	<dlfcn.h>
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_buffered_file.cpp
+	"StdAfx.h"
+
+1331884423 source:/cecyn1/app/appseed/ca/ex1/ex1_byte_serializable.cpp
+	"StdAfx.h"
+
+1334762800 source:/cecyn1/app/appseed/ca/ex1/ex1_byte_stream.cpp
+	"StdAfx.h"
+	"FindSignature.h"
+	"../../Common/StreamUtils.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_circular_buffer.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_clustered_input_stream.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_dynamic_buffered_writer.cpp
+	"StdAfx.h"
+
+1334304986 source:/cecyn1/app/appseed/ca/ex1/ex1_edit_file.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_exception.cpp
+	"StdAfx.h"
+
+1334764980 source:/cecyn1/app/appseed/ca/ex1/ex1_file.cpp
+	"StdAfx.h"
+
+1332554826 source:/cecyn1/app/appseed/ca/ex1/ex1_file_composite.cpp
+	"StdAfx.h"
+
+1327052727 source:/cecyn1/app/appseed/ca/ex1/ex1_file_stream.cpp
+	"StdAfx.h"
+
+1325272364 source:/cecyn1/app/appseed/ca/ex1/ex1_file_system.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_fs_interface.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_in_buffer.cpp
+	"StdAfx.h"
+	"InBuffer.h"
+
+1330322166 source:/cecyn1/app/appseed/ca/ex1/ex1_io_temp_buffer.cpp
+	"StdAfx.h"
+	"InOutTempBuffer.h"
+	"StreamUtils.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_limited_input_stream.cpp
+	"StdAfx.h"
+
+1330322166 source:/cecyn1/app/appseed/ca/ex1/ex1_limited_reader.cpp
+	"StdAfx.h"
+	"../../Common/Defs.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_limited_writer.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_locked_in_stream.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_match.cpp
+	"StdAfx.h"
+
+1334765388 source:/cecyn1/app/appseed/ca/ex1/ex1_out_buffer.cpp
+	"StdAfx.h"
+	"OutBuffer.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_output_string_stream.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_plain_text_serializable.cpp
+	"StdAfx.h"
+
+1334765511 source:/cecyn1/app/appseed/ca/ex1/ex1_plain_text_stream.cpp
+	"StdAfx.h"
+
+1330322166 source:/cecyn1/app/appseed/ca/ex1/ex1_reader.cpp
+	"StdAfx.h"
+
+1328375629 source:/cecyn1/app/appseed/ca/ex1/ex1_request_interface.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_resource.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_seekable.cpp
+	"StdAfx.h"
+
+1331884425 source:/cecyn1/app/appseed/ca/ex1/ex1_simple_tree_data.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_simple_tree_item_data.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_size_count_writer.cpp
+	"StdAfx.h"
+
+1330322166 source:/cecyn1/app/appseed/ca/ex1/ex1_str_stream.cpp
+	"StdAfx.h"
+
+1334765880 source:/cecyn1/app/appseed/ca/ex1/ex1_stream.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_stream2.cpp
+	"StdAfx.h"
+
+1330322166 source:/cecyn1/app/appseed/ca/ex1/ex1_stream_binder.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_text_file.cpp
+	"StdAfx.h"
+
+1332554826 source:/cecyn1/app/appseed/ca/ex1/ex1_timeout_file.cpp
+	"StdAfx.h"
+
+1334304986 source:/cecyn1/app/appseed/ca/ex1/ex1_tree.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_tree_data.cpp
+	"StdAfx.h"
+
+1331884424 source:/cecyn1/app/appseed/ca/ex1/ex1_tree_item.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_tree_item_data.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex1/ex1_writer.cpp
+	"StdAfx.h"
+
+1334766250 source:/cecyn1/app/appseed/ca/ex2/ex2_application.cpp
+	"StdAfx.h"
+
+1330322174 source:/cecyn1/app/appseed/ca/ex2/ex2_file_set.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/ex2/ex2_folder_watch.cpp
+	"StdAfx.h"
+
+1328375630 source:/cecyn1/app/appseed/ca/ex2/ex2_transfer_file.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/exception/exception.cpp
+	"StdAfx.h"
+
+1334766298 source:/cecyn1/app/appseed/ca/exception/exception_SymEngine.cpp
+	"StdAfx.h"
+	<malloc.h>
+	<tlhelp32.h>
+
+1324572529 source:/cecyn1/app/appseed/ca/exception/exception_VMSException.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/exception/exception_archive_exception.cpp
+	"StdAfx.h"
+
+1334766906 source:/cecyn1/app/appseed/ca/exception/exception_base_exception.cpp
+	"StdAfx.h"
+
+1334769873 source:/cecyn1/app/appseed/ca/exception/exception_debug.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/exception/exception_dump.cpp
+	"StdAfx.h"
+
+1334770712 source:/cecyn1/app/appseed/ca/exception/exception_dump_context.cpp
+	"StdAfx.h"
+
+1332554826 source:/cecyn1/app/appseed/ca/exception/exception_dump_floating_point.cpp
+	"StdAfx.h"
+	<float.h>
+
+1334770785 source:/cecyn1/app/appseed/ca/exception/exception_dump_output.cpp
+	"StdAfx.h"
+	<stdarg.h>
+
+1324572529 source:/cecyn1/app/appseed/ca/exception/exception_error_exception.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/exception/exception_hresult_exception.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/exception/exception_installing.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/exception/exception_interface_only.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/exception/exception_invalid_arg_exception.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/exception/exception_memory_exception.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/exception/exception_not_implemented.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/exception/exception_not_licensed_exception.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/exception/exception_not_supported_exception.cpp
+	"StdAfx.h"
+
+1327783210 source:/cecyn1/app/appseed/ca/exception/exception_overflow_error.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/exception/exception_range_error.cpp
+	"StdAfx.h"
+
+1324572529 source:/cecyn1/app/appseed/ca/exception/exception_runtime_error.cpp
+	"StdAfx.h"
 

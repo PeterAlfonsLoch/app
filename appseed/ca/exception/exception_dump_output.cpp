@@ -1,12 +1,12 @@
 // This is ca2 API library.
-// 
-// 
 //
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
+//
+//
 
 #include "StdAfx.h"
 #include <stdarg.h>
@@ -34,7 +34,11 @@ void AFX_CDECL AfxTrace(const char * lpszFormat, ...)
    int nBuf;
    char szBuffer[512];
 
-   nBuf = _vstprintf_s(szBuffer, _countof(szBuffer), lpszFormat, args); 
+#ifdef WINDOWS
+   nBuf = _vstprintf_s(szBuffer, _countof(szBuffer), lpszFormat, args);
+#else
+   nBuf = vsprintf(szBuffer, lpszFormat, args);
+#endif
 
    // was there an error? was the expanded string too long?
    ASSERT(nBuf >= 0);

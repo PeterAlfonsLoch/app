@@ -30,7 +30,7 @@ namespace ex1
       seek_to_begin();
       ex1::reader::write(ostream);
    }
-    
+
    void file::read(byte_input_stream & istream)
    {
       ex1::writer::read(istream);
@@ -215,12 +215,17 @@ namespace ex1
    #define EPIPE           32
    #define EDOM            33
    #define ERANGE          34
+
+#if defined(WINDOWS)
+
    #define EDEADLK         36
    #define ENAMETOOLONG    38
    #define ENOLCK          39
    #define ENOSYS          40
    #define ENOTEMPTY       41
    #define EILSEQ          42
+
+#endif
 
    /*
     * Support EDEADLOCK for compatibiity with older MS-C versions.
@@ -308,6 +313,7 @@ namespace ex1
 	   if(System.file().name_(gen::international::unicode_to_utf8(OpenedFileInfo.lpFile)).CompareNoCase(System.file().name_(m_strFileName)) == 0)
       {
 
+#ifdef WINDOWS
 	      PROCESS_INFO_t stInfo;
 	      //if( !m_stProcessInfo.Lookup( OpenedFileInfo.dwPID, stInfo))
 	      {
@@ -321,7 +327,7 @@ namespace ex1
 			      {
 				      CloseHandle( hProcess );
 			      }
-			
+
 			      if( OpenedFileInfo.dwPID == 4 )// system process
 			      {
 				      stInfo.csProcess = L"System";
@@ -334,9 +340,9 @@ namespace ex1
 		      else
 		      {
 			      GetDrive( tcFileName, csModule, false );
-			      CloseHandle( hProcess );		
+			      CloseHandle( hProcess );
 			      PathStripPath( tcFileName );
-			      stInfo.csProcess = tcFileName;			
+			      stInfo.csProcess = tcFileName;
 			      SHFILEINFO stIcon = {0};
    /*			   if( SHGetFileInfo( csModule, 0, &stIcon, sizeof( stIcon), SHGFI_ICON ))
 			      {
@@ -345,14 +351,15 @@ namespace ex1
 			      }*/
 		      }
 		     // m_stProcessInfo[OpenedFileInfo.dwPID] = stInfo;
-	      }	
+	      }
 	      // Insert Process name, PID and file name
-	      //m_list.InsertItem( m_nCount, stInfo.csProcess, stInfo.dwImageListIndex );                    
+	      //m_list.InsertItem( m_nCount, stInfo.csProcess, stInfo.dwImageListIndex );
 	      string csPid;
-	      csPid.Format( _T("%d ( 0x%x )"), OpenedFileInfo.dwPID , OpenedFileInfo.dwPID );			
+	      csPid.Format( _T("%d ( 0x%x )"), OpenedFileInfo.dwPID , OpenedFileInfo.dwPID );
          m_strAdd += "PID: " + csPid + " Process Name : " + stInfo.csProcess;
 	      //m_list.SetItemText( m_nCount, 2, OpenedFileInfo.lpFile );
 	      //m_list.SetItemData( m_nCount, (DWORD_PTR)OpenedFileInfo.hFile );
+#endif
 
       }
 
@@ -361,7 +368,7 @@ namespace ex1
 
    BOOL file_exception::get_friendly_error_message(string & str, PUINT pnHelpContext) const
    {
-   
+
      // if (pnHelpContext != NULL)
    //      *pnHelpContext = m_cause + AFX_IDP_FILE_NONE;
 
@@ -408,14 +415,14 @@ namespace ex1
 
    BOOL file_exception::GetErrorMessage(string & str, PUINT pnHelpContext) const
    {
-   
+
      // if (pnHelpContext != NULL)
    //      *pnHelpContext = m_cause + AFX_IDP_FILE_NONE;
 
       string strMessage;
-      
+
       string strFileName = m_strFileName;
-      
+
       if(strFileName.is_empty())
          strFileName = "IDS_UNNAMED_FILE";
 

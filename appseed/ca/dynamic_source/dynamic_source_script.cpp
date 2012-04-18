@@ -1,5 +1,9 @@
 #include "StdAfx.h"
 
+#if defined(LINUX)
+#include <dlfcn.h>
+#endif
+
 
 namespace dynamic_source
 {
@@ -25,17 +29,15 @@ namespace dynamic_source
    bool script::DoesMatchVersion()
    {
       single_lock sl(&m_mutex, TRUE);
-      FILETIME ftCreation;
-      FILETIME ftAccess;
-      FILETIME ftModified;
-      memset(&ftCreation, 0, sizeof(FILETIME));
-      memset(&ftAccess, 0, sizeof(FILETIME));
-      memset(&ftModified, 0, sizeof(FILETIME));
-      HANDLE h = ::CreateFile(m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-      GetFileTime(h, &ftCreation, &ftAccess, &ftModified);
-      ::CloseHandle(h);
-      return !memcmp(&ftCreation, &m_ftCreation, sizeof(FILETIME)) &&
-         !memcmp(&m_ftModified, &ftModified, sizeof(FILETIME));
+      struct stat64 st;
+      memset(&st, 0, sizeof(st));
+//         memset(&ftAccess, 0, sizeof(__time_t));
+//         memset(&ftModified, 0, sizeof(__time_t));
+//         HANDLE h = ::CreateFile(m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+      stat64(m_strSourcePath, &st);
+//         ::CloseHandle(h);
+      return memcmp(&st.st_ctime, &m_ftCreation, sizeof(__time_t)) != 0
+          || memcmp(&m_ftModified, &st.st_mtime, sizeof(__time_t)) != 0;
    }
 
    bool script::ShouldBuild()
@@ -196,7 +198,9 @@ namespace dynamic_source
             if(lpBuffer != NULL)
             {
                m_memfileError << lpBuffer;
+#ifdef WINDOWS
                LocalFree(lpBuffer);
+#endif
             }
          }
       }
@@ -241,6 +245,8 @@ namespace dynamic_source
       if(m_library.is_opened())
       {
          m_library.close();
+
+#ifdef WINDOWS
          HMODULE hmodule = ::GetModuleHandleW(gen::international::utf8_to_unicode("\\\\?\\" + m_strScriptPath));
          BOOL b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + m_strScriptPath), &hmodule);
          if(hmodule != NULL && !::FreeLibrary(hmodule))
@@ -258,6 +264,13 @@ namespace dynamic_source
             DWORD dwError = ::GetLastError();
             TRACE("script::Unload Error close Handle %s %d\r\n", strPdb, dwError);
          }
+#else
+         void * p = dlopen(m_strScriptPath, RTLD_NOLOAD);
+         if(p != NULL && !dlclose(p))
+         {
+            TRACE("script::%s Unload Error\r\n", m_strScriptPath.c_str());
+         }
+#endif
 
          m_lpfnCreateInstance = (NET_NODE_CREATE_INSTANCE_PROC) NULL;
       }
@@ -297,11 +310,11 @@ namespace dynamic_source
             m_memfileError.to_string(str);
             if(iRetry == 0)
             {
-               TRACE("Build: %s\n%s\n", m_strName, str);
+               TRACE("Build: %s\n%s\n", m_strName.c_str(), str.c_str());
             }
             else
             {
-               TRACE("Retry(%d): %s\nError: %s\n", iRetry, m_strName, str);
+               TRACE("Retry(%d): %s\nError: %s\n", iRetry, m_strName.c_str(), str.c_str());
             }
             iRetry++;
          } while(HasTempError() && iRetry < 8);

@@ -90,6 +90,8 @@ namespace ex1
       return *this;
    }
 
+#if defined(WINDOWS)
+
    byte_input_stream & byte_input_stream::operator >> (long & l)
    {
       uint64_t uiRead = read(&l, sizeof(l));
@@ -104,7 +106,9 @@ namespace ex1
       return *this;
    }
 
-   byte_input_stream & byte_input_stream::operator >> (__int64 & i)
+#endif
+
+   byte_input_stream & byte_input_stream::operator >> (int64_t & i)
    {
       read(&i, sizeof(i));
       return *this;
@@ -165,7 +169,7 @@ namespace ex1
 
    byte_input_stream & byte_input_stream::operator >> (id & id)
    {
-      
+
       operator >> (id.m_chType);
 
       if(id.m_chType == IDTYPE_TYPE_TEXT)
@@ -277,23 +281,31 @@ namespace ex1
       return *this;
    }
 
+#if defined(WINDOWS)
+
    byte_output_stream & byte_output_stream::operator << (long l)
    {
       write(&l, sizeof(l));
       return *this;
    }
 
-   byte_output_stream & byte_output_stream::operator << (__int64 i)
+#endif
+
+   byte_output_stream & byte_output_stream::operator << (int64_t i)
    {
       write(&i, sizeof(i));
       return *this;
    }
+
+#if defined(WINDOWS)
 
    byte_output_stream & byte_output_stream::operator << (unsigned long ul)
    {
       write(&ul, sizeof(ul));
       return *this;
    }
+
+#endif
 
    byte_output_stream & byte_output_stream::operator << (uint64_t ui)
    {
@@ -351,13 +363,12 @@ namespace ex1
 
    byte_output_stream & byte_output_stream::operator << (const id & id)
    {
-      
+
       operator << (id.m_chType);
 
       if(id.m_chType == IDTYPE_TYPE_TEXT)
       {
-         string str = id;
-         *this << str;
+         *this << *id.m_pstr;
       }
       else if(id.m_chType == IDTYPE_TYPE_NUMBER)
       {
@@ -418,7 +429,7 @@ namespace ex1
    }
 
    byte_stream::byte_stream(const byte_stream & stream) :
-      stream(stream),
+      ::ex1::stream(stream),
       byte_input_stream(stream),
       byte_output_stream(stream)
    {
@@ -445,7 +456,7 @@ namespace ex1
 
    static const ::primitive::memory_size kBlockSize = ((uint32)1 << 31);
 
-   HRESULT ReadStream(reader * stream, void * data, ::primitive::memory_size * processedSize)
+   HRESULT ReadStream(::ex1::reader * stream, void * data, ::primitive::memory_size * processedSize)
    {
       ::primitive::memory_size size = *processedSize;
       *processedSize = 0;
@@ -502,7 +513,7 @@ namespace ex1
    }
 
 
-   
+
 
 
 } // namespace ex1

@@ -1,4 +1,4 @@
-      void SetMemStream(byte *buffer) { _buffer2 = buffer; }
+/*      void SetMemStream(byte *buffer) { _buffer2 = buffer; }
       void SetStream(writer *stream);
       void Init();
       HRESULT Flush();
@@ -21,7 +21,7 @@
             WriteByte(((const byte *)data)[i]);
       }
 
-      uint64 GetProcessedSize() const;
+      uint64 GetProcessedSize() const;*/
 
 // OutBuffer.cpp
 // from 7-zip on 2012-12-23, dawn

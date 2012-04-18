@@ -5,7 +5,7 @@ namespace database
 {
 
    change_event::change_event() :
-      m_var(::var(::var::e_type::type_new))
+      m_pvar(NULL)
    {
       m_pserver = NULL;
       m_puh = NULL;
@@ -13,7 +13,7 @@ namespace database
    }
 
    change_event::change_event(var & var) :
-      m_var(var)
+      m_pvar(&var)
    {
       m_pserver = NULL;
       m_puh = NULL;

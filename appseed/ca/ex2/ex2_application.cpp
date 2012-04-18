@@ -24,7 +24,7 @@ namespace ex2
 
    void application::_001OnFileNew(gen::signal_object * pobj)
    {
-      
+
       UNREFERENCED_PARAMETER(pobj);
 
       var varFile;
@@ -100,7 +100,7 @@ namespace ex2
             return false;
       }
 
-       
+
       if(!smart_pointer < application >::m_p->process_initialize())
             return false;
 
@@ -110,7 +110,7 @@ namespace ex2
 
    bool application::initialize1()
    {
-      
+
       if(!smart_pointer < application >::m_p->initialize1())
          return false;
 
@@ -188,13 +188,13 @@ namespace ex2
          // avoid calling CloseHandle() on our own thread handle
          // during the thread destructor
          // avoid thread object data auto deletion on thread termination,
-         // letting thread function terminate 
-         ::ca::thread_sp::m_p->m_bAutoDelete = false; 
+         // letting thread function terminate
+         ::ca::thread_sp::m_p->m_bAutoDelete = false;
 
          ::ca::thread_sp::m_p->set_os_data(NULL);
 
          ::ca::thread_sp::m_p->set_run(false);
-         ::ca::smart_pointer<::ex2::application>::m_p->::ca::thread_sp::m_p->set_run(false);
+         ::ca::smart_pointer < ::ex2::application >::m_p->::ca::thread_sp::m_p->set_run(false);
       }
       catch(...)
       {
@@ -202,7 +202,7 @@ namespace ex2
 
       try
       {
-         ::ca::smart_pointer<::ex2::application>::m_p->exit_instance();
+         ::ca::smart_pointer < ::ex2::application >::m_p->exit_instance();
       }
       catch(...)
       {
@@ -245,7 +245,7 @@ namespace ex2
    {
       return true;
    }
-      
+
    bool application::Ex2OnAppUninstall()
    {
       return true;
@@ -254,37 +254,37 @@ namespace ex2
 
    BOOL application::DeferRegisterClass(LONG fToRegister, const char ** ppszClass)
    {
-      return ::ca::smart_pointer<::ex2::application>::m_p->DeferRegisterClass(fToRegister, ppszClass);
+      return ::ca::smart_pointer < ::ex2::application >::m_p->DeferRegisterClass(fToRegister, ppszClass);
    }
 
    void application::LockTempMaps()
    {
-      ::ca::smart_pointer<::ex2::application>::m_p->LockTempMaps();
+      ::ca::smart_pointer < ::ex2::application >::m_p->LockTempMaps();
    }
    BOOL application::UnlockTempMaps(BOOL bDeleteTemp)
    {
-      return ::ca::smart_pointer<::ex2::application>::m_p->UnlockTempMaps(bDeleteTemp);
+      return ::ca::smart_pointer < ::ex2::application >::m_p->UnlockTempMaps(bDeleteTemp);
    }
 
    const char * application::RegisterWndClass(UINT nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
    {
-      return ::ca::smart_pointer<::ex2::application>::m_p->RegisterWndClass(nClassStyle, hCursor, hbrBackground, hIcon);
+      return ::ca::smart_pointer < ::ex2::application >::m_p->RegisterWndClass(nClassStyle, hCursor, hbrBackground, hIcon);
    }
 
    ::radix::thread * application::GetThread()
    {
-      if(::ca::smart_pointer<::ex2::application>::m_p == NULL)
+      if(::ca::smart_pointer < ::ex2::application >::m_p == NULL)
          return NULL;
-      return ::ca::smart_pointer<::ex2::application>::m_p->GetThread();
+      return ::ca::smart_pointer < ::ex2::application >::m_p->GetThread();
    }
 
    void application::set_thread(::radix::thread * pthread)
    {
-      ::ca::smart_pointer<::ex2::application>::m_p->set_thread(pthread);
+      ::ca::smart_pointer < ::ex2::application >::m_p->set_thread(pthread);
    }
 
    ::user::interaction * application::GetMainWnd()
-   { 
+   {
       if(m_puiMain != NULL)
          return m_puiMain;
       return NULL;
@@ -292,17 +292,17 @@ namespace ex2
 
 /*   ::ca::graphics * application::graphics_from_os_data(void * pdata)
    {
-      return ::ca::smart_pointer<::ex2::application>::m_p->graphics_from_os_data(pdata);
+      return ::ca::smart_pointer < ::ex2::application >::m_p->graphics_from_os_data(pdata);
    }*/
 
    ::ca::window * application::window_from_os_data(void * pdata)
    {
-      return ::ca::smart_pointer<::ex2::application>::m_p->window_from_os_data(pdata);
+      return ::ca::smart_pointer < ::ex2::application >::m_p->window_from_os_data(pdata);
    }
 
    ::ca::window * application::window_from_os_data_permanent(void * pdata)
    {
-      return ::ca::smart_pointer<::ex2::application>::m_p->window_from_os_data_permanent(pdata);
+      return ::ca::smart_pointer < ::ex2::application >::m_p->window_from_os_data_permanent(pdata);
    }
 
    ::ca::window * application::get_desktop_window()
@@ -312,37 +312,37 @@ namespace ex2
 
    void application::SetCurrentHandles()
    {
-      ::ca::smart_pointer<::ex2::application>::m_p->SetCurrentHandles();
+      ::ca::smart_pointer < ::ex2::application >::m_p->SetCurrentHandles();
    }
 
    ::ca::window * application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
-      return ::ca::smart_pointer<::ex2::application>::m_p->FindWindow(lpszClassName, lpszWindowName);
+      return ::ca::smart_pointer < ::ex2::application >::m_p->FindWindow(lpszClassName, lpszWindowName);
    }
 
    ::ca::window * application::FindWindowEx(HWND hwndParent, HWND hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
-      return ::ca::smart_pointer<::ex2::application>::m_p->FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
+      return ::ca::smart_pointer < ::ex2::application >::m_p->FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
    }
 
    void application::get_time(timeval *p)
    {
-      ::ca::smart_pointer<::ex2::application>::m_p->get_time(p);
+      ::ca::smart_pointer < ::ex2::application >::m_p->get_time(p);
    }
 
    void application::set_env_var(const string & var,const string & value)
    {
-      ::ca::smart_pointer<::ex2::application>::m_p->set_env_var(var, value);
+      ::ca::smart_pointer < ::ex2::application >::m_p->set_env_var(var, value);
    }
 
    unsigned long application::get_thread_id()
    {
-      return ::ca::smart_pointer<::ex2::application>::m_p->get_thread_id();
+      return ::ca::smart_pointer < ::ex2::application >::m_p->get_thread_id();
    }
 
    bool application::set_main_init_data(::ca::main_init_data * pdata)
    {
-      return ::ca::smart_pointer<::ex2::application>::m_p->set_main_init_data(pdata);
+      return ::ca::smart_pointer < ::ex2::application >::m_p->set_main_init_data(pdata);
    }
 
 

@@ -1,6 +1,10 @@
 #include "StdAfx.h"
 #include <openssl/ssl.h>
 
+#ifdef LINUX
+#include <sys/inotify.h>
+#endif
+
 
 namespace dynamic_source
 {
@@ -238,20 +242,39 @@ namespace dynamic_source
       str2 =System.dir().path(str2, "netnode\\library\\include", false);
       str2 = ";" + str2;
       str = str + str2;
+
+      string strNew;
+#ifdef WINDOWS
       DWORD dwSize = GetEnvironmentVariable("PATH", NULL, 0);
       LPTSTR lpsz = new char[dwSize + 1024];
       dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1024);
-      strcat(lpsz, str);
-      SetEnvironmentVariable("PATH", lpsz);
+      strNew = lpsz;
       delete lpsz;
+#else
+      strNew = getenv("PATH");
+#endif
+      strNew += str;
+#ifdef WINDOWS
+      SetEnvironmentVariable("PATH", strNew);
+#else
+      setenv("PATH", strNew, 1);
+#endif
+
+
+      // just verifying
+
+#ifdef WINDOWS
       dwSize = GetEnvironmentVariable("PATH", NULL, 0);
       lpsz = new char[dwSize + 1024];
       dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1024);
       TRACE(lpsz);
       delete lpsz;
+#else
+      LPCTSTR lpcsz = getenv("PATH");
+#endif
 
       on_load_env();
-       
+
    }
 
    void script_manager::run(const char * lpcszName)
@@ -304,7 +327,7 @@ namespace dynamic_source
 
    void script_manager::clear_include_matches()
    {
-      
+
       {
          single_lock sl(&m_mutexIncludeMatches, TRUE);
          m_mapIncludeMatchesFileExists.remove_all();
@@ -365,11 +388,11 @@ namespace dynamic_source
          return ppair->m_value;
       else
       {
-         
+
          // roughly detect this way: by finding the <?
 
          bool bHasScript = Application.file().as_string(strPath).find("<?") >= 0;
-         
+
          m_mapIncludeHasScript.set_at(strPath, bHasScript);
 
          return bHasScript;
@@ -391,6 +414,8 @@ namespace dynamic_source
 
    UINT AFX_CDECL script_manager::clear_include_matches_FolderWatchThread(LPVOID lpParam) // thread procedure
    {
+
+#ifdef WINDOWS
       clear_include_matches_folder_watch * pwatch = (clear_include_matches_folder_watch *) lpParam;
       HANDLE hDirectory =
          ::CreateFile((const char *)pwatch->m_strPath,    // folder path
@@ -446,6 +471,100 @@ namespace dynamic_source
       ::CloseHandle(hDirectory);
       delete pwatch;
       return 0;
+#else
+
+      clear_include_matches_folder_watch * pwatch = (clear_include_matches_folder_watch *) lpParam;
+
+      int iNotify = inotify_init();
+
+      string strDir = pwatch->m_strPath;
+      int_array ia;
+
+      stringa stra;
+
+      stringa straDir;
+
+      App(pwatch->m_pmanager->get_app()).dir().rls(strDir, &straDir);
+
+      inotify_add_watch(iNotify, strDir, IN_CLOSE_WRITE | IN_DELETE | IN_DELETE_SELF | IN_MODIFY | IN_MOVED_TO | IN_CREATE);
+
+      for(int i = 0; i < straDir.get_count(); i++)
+         if(stra.add_unique(straDir[i]))
+         {
+            ia.add(inotify_add_watch(iNotify, straDir[i], IN_CLOSE_WRITE | IN_DELETE | IN_DELETE_SELF | IN_MODIFY | IN_MOVED_TO | IN_CREATE));
+            stra.add(straDir[i]);
+         }
+
+      straDir.remove_all();
+      App(pwatch->m_pmanager->get_app()).dir().rls(strDir, &straDir);
+      for(int i = 0; i < straDir.get_count(); i++)
+         if(stra.add_unique(straDir[i]))
+         {
+            ia.add(inotify_add_watch(iNotify, straDir[i], IN_CLOSE_WRITE | IN_DELETE | IN_DELETE_SELF | IN_MODIFY | IN_MOVED_TO | IN_CREATE));
+            stra.add(straDir[i]);
+         }
+
+
+      int iLen = 1024;
+
+      inotify_event * pevent = (inotify_event *) malloc(iLen);
+
+      int iRead;
+      int iCount;
+      while(iRead = read(iNotify, pevent, iLen))
+      {
+         if(iRead == -1)
+         {
+            iLen += 1024;
+            free(pevent);
+            pevent = (inotify_event *) malloc(iLen);
+            continue;
+         }
+         while(iRead > sizeof(inotify_event))
+         {
+
+            if(pevent->mask & IN_ISDIR)
+            {
+               if(pevent->mask & IN_CREATE)
+               {
+                  straDir.remove_all();
+                  App(pwatch->m_pmanager->get_app()).dir().rls(strDir, &straDir);
+                  for(int i = 0; i < straDir.get_count(); i++)
+                     if(stra.add_unique(straDir[i]))
+                     {
+                        ia.add(inotify_add_watch(iNotify, straDir[i], IN_CLOSE_WRITE | IN_DELETE | IN_DELETE_SELF | IN_MODIFY | IN_MOVED_TO | IN_CREATE));
+                        stra.add(straDir[i]);
+                     }
+
+               }
+               else if(pevent->mask & IN_DELETE || pevent->mask & IN_DELETE_SELF)
+               {
+                  straDir.remove_all();
+                  App(pwatch->m_pmanager->get_app()).dir().rls(strDir, &straDir);
+                  for(int i = 0; i < stra.get_count(); i++)
+                     if(!straDir.contains(stra[i]))
+                     {
+                        inotify_rm_watch(iNotify, ia[i]);
+                        stra.remove_at(i);
+                        ia.remove_at(i);
+                     }
+               }
+            }
+            else
+            {
+               pwatch->m_pmanager->clear_include_matches();
+            }
+            iRead -= sizeof(inotify_event) + pevent->len;
+         }
+      }
+
+      close(iNotify);
+      delete pwatch;
+      return 0;
+
+#endif
+
+
    }
 
    string script_manager::real_path(const char * pszBase, const char * psz)
@@ -459,7 +578,7 @@ namespace dynamic_source
          return "";
    }
 
-#ifdef WINDOWS 
+#ifdef WINDOWS
 #define is_absolute_path(psz) ((isalpha(psz[0]) && psz[1] == ':') \
    || (psz[0] == '\\' && psz[1] == '\\'))
 #else
@@ -468,7 +587,7 @@ namespace dynamic_source
 
    string script_manager::real_path(const char * psz)
    {
-#ifdef WINDOWS 
+#ifdef WINDOWS
       if(is_absolute_path(psz))
       {
          if(include_matches_file_exists(psz))
@@ -501,7 +620,7 @@ namespace dynamic_source
       pmutex = & session.m_mutex;
       return &session;
    }
-   
+
 
    UINT ThreadProcRsa(LPVOID lp)
    {
