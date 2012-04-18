@@ -91,8 +91,20 @@ namespace dynamic_source
       vars2batSrc = System.dir().ca2("app/stage/app/matter/vc10vars_query_registry.bat");
       vars1batDst = System.dir().votagus("stage/front", "vc10vars64.bat");
       vars2batDst = System.dir().votagus("stage/front", "vc10vars_query_registry.bat");
-      Application.file().copy(vars1batDst, vars1batSrc);
-      Application.file().copy(vars2batDst, vars2batSrc);
+      try
+      {
+         Application.file().copy(vars1batDst, vars1batSrc, false);
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         Application.file().copy(vars2batDst, vars2batSrc, false);
+      }
+      catch(...)
+      {
+      }
 
 
       var var = System.process().get_output("\"" + m_strEnv  + "\" "+ strPlat2);
@@ -271,8 +283,20 @@ namespace dynamic_source
       vars2batSrc = System.dir().ca2("app/stage/app/matter/vc10vars_query_registry.bat");
       vars1batDst = System.dir().path(System.dir().name(pscript->m_strBuildBat), "vc10vars64.bat", false);
       vars2batDst = System.dir().path(System.dir().name(pscript->m_strBuildBat), "vc10vars_query_registry.bat", false);
-      Application.file().copy(vars1batDst, vars1batSrc);
-      Application.file().copy(vars2batDst, vars2batSrc);
+      try
+      {
+         Application.file().copy(vars1batDst, vars1batSrc, false);
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         Application.file().copy(vars2batDst, vars2batSrc, false);
+      }
+      catch(...)
+      {
+      }
 
       Application.dir().mk(System.dir().name(pscript->m_strScriptPath));
       Application.dir().mk(System.dir().name(strL));
@@ -715,8 +739,20 @@ namespace dynamic_source
          vars2batSrc = System.dir().ca2("app/stage/app/matter/vc10vars_query_registry.bat");
          vars1batDst = System.dir().stage("stage\\front", "vc10vars64.bat");
          vars2batDst = System.dir().stage("stage\\front", "vc10vars_query_registry.bat");
-         Application.file().copy(vars1batDst, vars1batSrc, false);
-         Application.file().copy(vars2batDst, vars2batSrc, false);
+         try
+         {
+            Application.file().copy(vars1batDst, vars1batSrc, false);
+         }
+         catch(...)
+         {
+         }
+         try
+         {
+            Application.file().copy(vars2batDst, vars2batSrc, false);
+         }
+         catch(...)
+         {
+         }
 
          Application.file().put_contents(strCmd, str);
 
