@@ -681,7 +681,7 @@ namespace ca
             }
 
             ::ex1::filesp ofile;
-            ofile = App(papp).get_file(strNew, ex1::file::mode_write | ex1::file::type_binary | ex1::file::mode_create | ex1::file::defer_create_directory);
+            ofile = App(papp).get_file(strNew, ex1::file::mode_write | ex1::file::type_binary | ex1::file::mode_create | ex1::file::defer_create_directory | ::ex1::file::shareDenyWrite);
             if(ofile.is_null())
             {
                string strError;
@@ -699,6 +699,46 @@ namespace ca
             }
 
             ::ca4::compress::null(ofile, ifile);
+
+            bool bOutputFail = false;
+            bool bInputFail = false;
+            try
+            {
+               ofile->close();
+            }
+            catch(...)
+            {
+               bOutputFail = true;
+            }
+            try
+            {
+               ifile->close();
+            }
+            catch(...)
+            {
+               bInputFail = true;
+            }
+            if(bInputFail)
+            {
+               if(bOutputFail)
+               {
+                  string strError;
+                  strError.Format("During copy, failed to close both input file \"%s\" and output file \"%s\" bFailIfExists=%d", psz, pszNew, bFailIfExists);
+                  throw strError;
+               }
+               else
+               {
+                  string strError;
+                  strError.Format("During copy, failed to close input file \"%s\" bFailIfExists=%d", psz, bFailIfExists);
+                  throw strError;
+               }
+            }
+            else if(bOutputFail)
+            {
+               string strError;
+               strError.Format("During copy, failed to close output file \"%s\" bFailIfExists=%d", pszNew, bFailIfExists);
+               throw strError;
+            }
 
          }
 
