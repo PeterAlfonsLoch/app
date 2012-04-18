@@ -29,7 +29,15 @@
 class CLASS_DECL_ca se_translator :
    virtual public ::radix::object
 {
- public:
+public:
+
+#ifdef LINUX
+   struct sigaction m_saSeg;
+   struct sigaction m_saFpe;
+   struct sigaction m_saSegOld;
+   struct sigaction m_saFpeOld;
+#endif
+
    se_translator();
    virtual ~se_translator();
 
@@ -37,12 +45,13 @@ class CLASS_DECL_ca se_translator :
    void filter(unsigned int uiCode, _EXCEPTION_POINTERS * p);
    static void __cdecl filter2(unsigned int uiCode, _EXCEPTION_POINTERS * p);
    //void filter( _EXCEPTION_POINTERS * p);
-   static vsstring name(unsigned int uiCode);
-   static vsstring description(unsigned int uiCode);
 #else
    static void filter_sigsegv(int signal, siginfo_t * psiginfo, void * pc);
    static void filter_sigfpe(int signal, siginfo_t * psiginfo, void * pc);
 #endif
+
+   static vsstring name(unsigned int uiCode);
+   static vsstring description(unsigned int uiCode);
 
 
    bool attach();

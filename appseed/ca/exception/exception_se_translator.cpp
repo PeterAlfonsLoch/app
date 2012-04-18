@@ -18,11 +18,6 @@
 #include "StdAfx.h"
 #include "se_translator.h"
 
-#ifdef LINUX
-
-#include <signal.h>
-
-#endif
 
 #ifdef _WINDOWS
 
@@ -122,17 +117,19 @@ bool se_translator::attach()
       //EnforceFilter(true);
       #else
 
-      struct sigaction sa;
+      memset(&m_saSeg, 0, sizeof(m_saSeg));
+      sigemptyset(&m_saSeg.sa_mask);
+      sigaddset(&m_saSeg.sa_mask, SIGSEGV);
+      m_saSeg.sa_flags = SA_NODEFER;
+      m_saSeg.sa_sigaction = &se_translator::filter_sigsegv;
+      sigaction(SIGSEGV, &m_saSeg, &m_saSegOld);
 
-      sa.sa_flags = SA_NODEFER;
-      sigemptyset(&sa.sa_mask);
-      sigaddset(&sa.sa_mask, SIGSEGV);
-
-      sa.sa_sigaction = &se_translator::filter_sigsegv;
-      sigaction(SIGSEGV, &sa, NULL);
-
-      sa.sa_sigaction = &se_translator::filter_sigfpe;
-      sigaction(SIGFPE, &sa, NULL);
+      memset(&m_saFpe, 0, sizeof(m_saFpe));
+      sigemptyset(&m_saFpe.sa_mask);
+      sigaddset(&m_saFpe.sa_mask, SIGFPE);
+      m_saFpe.sa_flags = SA_NODEFER;
+      m_saFpe.sa_sigaction = &se_translator::filter_sigfpe;
+      sigaction(SIGFPE, &m_saFpe, &m_saFpeOld);
 
 
 
@@ -152,7 +149,12 @@ bool se_translator::detach()
 {
    if(m_bSet)
    {
+#ifdef _WINDOWS
       _set_se_translator(m_pfn);
+#else
+      sigaction(SIGSEGV, &m_saSegOld, NULL);
+      sigaction(SIGFPE, &m_saFpeOld, NULL);
+#endif
       m_bSet = false;
       return true;
    }
@@ -330,10 +332,9 @@ vsstring se_translator::description(unsigned int uiCode)
       throw se_access_violation(NULL, psiginfo, pc);
    }
 
-   void se_translator::filter_fpe(int signal, siginfo_t * psiginfo, void * pc)
+   void se_translator::filter_sigfpe(int signal, siginfo_t * psiginfo, void * pc)
    {
-
-
+      throw se_sigfpe(NULL, psiginfo, pc);
    }
 
 #endif
