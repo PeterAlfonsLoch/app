@@ -209,10 +209,34 @@ namespace dynamic_source
      // pscript->m_strLibraryPath.Format(System.dir().stage("Release\\%s.dll"), strName);
    //#endif
 
-      ::remove(strP);
-      ::remove(strO);
-      ::remove(strL);
-      ::remove(strE);
+      try
+      {
+         System.file().del(strP);
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         System.file().del(strO);
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+        System.file().del(strL);
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+        System.file().del(strE);
+      }
+      catch(...)
+      {
+      }
       //::DeleteFile(pscript->m_strBuildBat);
       try
       {
@@ -403,9 +427,9 @@ namespace dynamic_source
       pscript->m_bShouldBuild =false;
 
       //HANDLE h = ::CreateFile(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-      memset(&pscript->m_ftCreation, 0, sizeof(FILETIME));
-      memset(&pscript->m_ftAccess, 0, sizeof(FILETIME));
-      memset(&pscript->m_ftModified, 0, sizeof(FILETIME));
+      memset(&pscript->m_ftCreation, 0, sizeof(__time_t));
+      memset(&pscript->m_ftAccess, 0, sizeof(__time_t));
+      memset(&pscript->m_ftModified, 0, sizeof(__time_t));
       struct stat64 st;
       stat64(pscript->m_strSourcePath, &st);
       pscript->m_ftCreation = st.st_ctime;
