@@ -7,12 +7,20 @@ namespace gen
       m_pipe(true)
    {
       m_bPiped = false;
+      memset(&m_pi, 0, sizeof(PROCESS_INFORMATION));
+      memset(&m_si, 0, sizeof(STARTUPINFO));
    }
 
    process::~process()
    {
-      CloseHandle(m_pi.hProcess);
-      CloseHandle(m_pi.hThread);
+      if(m_pi.hProcess != INVALID_HANDLE_VALUE && m_pi.hProcess != NULL)
+      {
+         CloseHandle(m_pi.hProcess);
+      }
+      if(m_pi.hThread != INVALID_HANDLE_VALUE && m_pi.hThread != NULL)
+      {
+         CloseHandle(m_pi.hThread);
+      }
    }
 
 
@@ -25,7 +33,7 @@ namespace gen
  
 // Set up members of the PROCESS_INFORMATION structure. 
  
-      ZeroMemory( &m_pi, sizeof(PROCESS_INFORMATION) );
+      
 
       if(bPiped)
       {
@@ -43,7 +51,7 @@ namespace gen
 // Set up members of the STARTUPINFO structure. 
 // This structure specifies the STDIN and STDOUT handles for redirection.
  
-      ZeroMemory( &m_si, sizeof(STARTUPINFO) );
+      
       m_si.cb = sizeof(STARTUPINFO); 
       if(bPiped)
       {
