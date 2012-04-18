@@ -527,9 +527,6 @@
 		<Unit filename="compress/zip/zip_ioapi.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="compress/zip/zip_iowin32.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="compress/zip/zip_memory_file.cpp" />
 		<Unit filename="compress/zip/zip_unzip.c">
 			<Option compilerVar="CC" />
@@ -614,13 +611,7 @@
 		<Unit filename="crypto/hash_null_auth.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="crypto/hash_sha1 - Cópia.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/hash_sha1.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/hash_sha1_sym.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="crypto/hmac.h" />
@@ -675,8 +666,6 @@
 		<Unit filename="crypto/stat.h" />
 		<Unit filename="crypto/ut_sim.h" />
 		<Unit filename="crypto/xfm.h" />
-		<Unit filename="cube5/cube4_application.cpp" />
-		<Unit filename="cube5/planebase_application.cpp" />
 		<Unit filename="database/database.h" />
 		<Unit filename="database/database1.h" />
 		<Unit filename="database/database_application.cpp" />
@@ -710,21 +699,6 @@
 		<Unit filename="database/database_update_hint.h" />
 		<Unit filename="database/database_user_interaction.cpp" />
 		<Unit filename="database/database_user_interaction.h" />
-		<Unit filename="deepfish/bergedge.h" />
-		<Unit filename="deepfish/bergedge_bergedge.cpp" />
-		<Unit filename="deepfish/bergedge_bergedge.h" />
-		<Unit filename="deepfish/bergedge_document.cpp" />
-		<Unit filename="deepfish/bergedge_document.h" />
-		<Unit filename="deepfish/bergedge_form_callback.cpp" />
-		<Unit filename="deepfish/bergedge_form_callback.h" />
-		<Unit filename="deepfish/bergedge_frame.cpp" />
-		<Unit filename="deepfish/bergedge_frame.h" />
-		<Unit filename="deepfish/bergedge_pane_view.cpp" />
-		<Unit filename="deepfish/bergedge_pane_view.h" />
-		<Unit filename="deepfish/bergedge_pane_view_update_hint.cpp" />
-		<Unit filename="deepfish/bergedge_pane_view_update_hint.h" />
-		<Unit filename="deepfish/bergedge_view.cpp" />
-		<Unit filename="deepfish/bergedge_view.h" />
 		<Unit filename="dynamic_source/dynamic_source.h" />
 		<Unit filename="dynamic_source/dynamic_source_exit_exception.cpp" />
 		<Unit filename="dynamic_source/dynamic_source_exit_exception.h" />
@@ -1222,6 +1196,11 @@
 		<Unit filename="multithreading/multithreading_wait_result.h" />
 		<Unit filename="multithreading/multithreading_waitable.cpp" />
 		<Unit filename="multithreading/multithreading_waitable.h" />
+		<Unit filename="os/os.h" />
+		<Unit filename="os/os_cross_windows.cpp" />
+		<Unit filename="os/os_cross_windows.h" />
+		<Unit filename="os/os_cross_windows_guid_def.h" />
+		<Unit filename="os/os_windows_defs.h" />
 		<Unit filename="plane/plane.h" />
 		<Unit filename="plane/plane_application.cpp" />
 		<Unit filename="plane/plane_application.h" />
@@ -1240,6 +1219,7 @@
 		<Unit filename="plane/plane_system_template_trace.h" />
 		<Unit filename="planebase/cube4_application.h" />
 		<Unit filename="planebase/planebase.h" />
+		<Unit filename="planebase/planebase_application.cpp" />
 		<Unit filename="planebase/planebase_application.h" />
 		<Unit filename="plugin/plugin.h" />
 		<Unit filename="plugin/plugin_gen.h" />
