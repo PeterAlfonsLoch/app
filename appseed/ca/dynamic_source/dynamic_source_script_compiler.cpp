@@ -812,6 +812,9 @@ namespace dynamic_source
 
       gen::process process;
 
+
+      process.create_child_process(strCmd, false, System.dir().name(strCmd));
+
       DWORD dwExitCode;
       while(true)
       {
