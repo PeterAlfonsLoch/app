@@ -237,6 +237,27 @@ namespace dynamic_source
       catch(...)
       {
       }
+      try
+      {
+        System.file().del(strDPCH);
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+        System.file().del(strDVP);
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+        System.file().del(strDVI);
+      }
+      catch(...)
+      {
+      }
       //::DeleteFile(pscript->m_strBuildBat);
       try
       {
@@ -413,9 +434,27 @@ namespace dynamic_source
       pscript->m_memfileError << str;
       pscript->m_memfileError << "</pre>";
 
-      ::remove(strDVI);
-      ::remove(strDVP);
-      ::remove(strDPCH);
+      try
+      {
+         System.file().del(strDVI);
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         System.file().del(strDVP);
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         System.file().del(strDPCH);
+      }
+      catch(...)
+      {
+      }
 
 
       pscript->m_dwLastBuildTime = ::GetTickCount();

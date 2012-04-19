@@ -589,6 +589,17 @@ url_domain_base::url_domain_base()
                   }
                }
             }
+            else if(b2 == 'u')
+            {
+               // hu
+               if(alen == 2)
+               {
+                  if(a1 == 'c' && a2 == 'o')
+                  {
+                     return true;
+                  }
+               }
+            }
          }
          else if(b1 == 'i')
          {
