@@ -42,45 +42,39 @@ namespace fs
    string data::eat_end_level(const char * pszPath, int iCount)
    {
       string strPath(pszPath);
-      strsize iFind = -1;
-      strsize iFind2;
+      strsize iFind;
+      int iStart = strPath.get_length() - 1;
       if(iCount <= 0)
          return pszPath;
-      if(iCount > 0)
-      {
-         iFind = strPath.reverse_find('/', iFind);
-         iFind2 = strPath.find("://");
-         if(iFind == strPath.get_length() - 1)
-         {
-            if(iFind2 >= 0 && (iFind - 2) == iFind2)
-            {
-               iFind = strPath.reverse_find('/', iFind);
-               iFind2 = strPath.reverse_find("://", iFind);
-               if(iFind >= 0 && iFind2 >= 0 && (iFind - 2) == iFind2)
-               {
-                  iFind = iFind2 + 3;
-               }
-            }
-         }
-         else
-         {
-            iFind = -1;
-         }
-      }
       while(iCount > 0)
       {
-         iFind = strPath.reverse_find('/', iFind);
-         iFind2 = strPath.reverse_find("://", iFind);
-         if(iFind >= 0 && iFind2 >= 0 && (iFind - 2) == iFind2)
+         iFind = strPath.reverse_find('/', iStart);
+         int iPos = iFind - 1;
+         if(iPos >= 0 && strPath[iPos] == '/')
          {
-            iFind = iFind2 + 3;
-            
+            iPos--;
+            if(iPos >= 0 && strPath[iPos] == ':')
+            {
+               if(iFind == iStart)
+               {
+                  iPos--;
+                  // t12n dedicaverse comments : protocol name
+                  iFind = strPath.reverse_find('/', iPos);
+                  if(iFind < 0)
+                     iFind = 0;
+               }
+               else
+               {
+                  iFind++;
+               }
+            }
          }
          iCount--;
          if(iCount <= 0)
             break;
          if(iFind < 0)
             return "";
+         iStart = iFind - 1;
       }
       return strPath.Left(iFind);
    }
