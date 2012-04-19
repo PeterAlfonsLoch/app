@@ -67,6 +67,7 @@ namespace ex1
 
       file_position seek(file_offset offset, e_seek seekOrigin);
 
+      void full_load(string & str);
 
    };
 

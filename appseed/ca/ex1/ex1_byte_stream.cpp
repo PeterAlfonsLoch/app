@@ -205,6 +205,32 @@ namespace ex1
    }
 
 
+   void byte_input_stream::full_load(string & str)
+   {
+
+      seek_to_end();
+
+      UINT uiLength = get_position();
+
+      seek_to_begin();
+
+      UINT uiCount = uiLength;
+
+      UINT uiPos = 0;
+      LPSTR lpstr = str.GetBufferSetLength(uiLength + 1);
+      while(uiCount > 0)
+      {
+         UINT uiRead = read(&lpstr[uiPos], uiCount);
+         uiCount -= uiRead;
+         uiPos+=uiRead;
+         if(uiCount > 0)
+            Sleep(84);
+      }
+
+      str.ReleaseBuffer(uiLength);
+
+   }
+
 
 
 
