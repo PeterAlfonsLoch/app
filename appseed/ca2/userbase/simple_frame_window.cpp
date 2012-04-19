@@ -66,6 +66,7 @@ void simple_frame_window::install_message_handling(::gen::message::dispatch * pi
 
    connect_update_cmd_ui("view_full_screen", &simple_frame_window::_001OnUpdateViewFullScreen);
    connect_command("view_full_screen", &simple_frame_window::_001OnViewFullScreen);
+   connect_command("app_exit", &simple_frame_window::_001OnClose);
 }
 
 bool simple_frame_window::IsFullScreen()
