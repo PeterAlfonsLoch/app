@@ -261,6 +261,9 @@ StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID
     throw ParserFactoryException(string("can't find hrdName '")+nameID+"'");
 
   StyledHRDMapper *mapper = new StyledHRDMapper(get_app());
+
+  string strDir = System.dir().name(this->catalogPath);
+
   for(int idx = 0; idx < hrdLocV->get_size(); idx++)
   {
     if (hrdLocV->element_at(idx).has_char())
@@ -268,19 +271,32 @@ StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID
 
        try
        {
-          ex1::byte_stream spfile(Application.get_byte_stream(hrdLocV->element_at(idx), ::ex1::file::mode_read | ::ex1::file::type_binary));
+
+          string strPath;
+
+          strPath = System.dir().path(strDir, hrdLocV->element_at(idx));
+
+          ex1::byte_stream spfile(Application.get_byte_stream(strPath, ::ex1::file::mode_read | ::ex1::file::type_binary));
+
           if(spfile.is_reader_set())
           {
+
             mapper->loadRegionMappings(spfile);
+
           }
+
        }
        catch(base_exception & )
        {
        }
-      };
-    };
-  return mapper;
-};
+
+      }
+
+    }
+
+   return mapper;
+
+}
 
 TextHRDMapper *ParserFactory::createTextMapper(string nameID){
   // fixed class 'text'

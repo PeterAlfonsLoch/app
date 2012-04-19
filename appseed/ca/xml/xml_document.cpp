@@ -156,7 +156,9 @@ namespace xml
       return "";
    }
 
-   char * document::patch_entity_ref(const char * & pszXml, bool useExtEnt, ...)
+   // the additional parameter must end with , NULL
+   // the parameters are pointers based on m_strData that should be offset because m_strData will be edited by entity ref patch
+   char * document::patch_entity_ref(const char * & pszXml, bool useExtEnt, ...) 
    {
       // pszXml must be a valid portion of and point to an entity ref in:
       // m_strData of this document

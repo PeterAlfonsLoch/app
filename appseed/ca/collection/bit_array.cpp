@@ -170,7 +170,7 @@ void bit_array::clear_bit_array(bit_array & ba)
      return;
   if(INT_PTR(ba.m_pdata) == 1)
   {
-    if(m_pdata != NULL)
+    if(m_pdata != NULL && INT_PTR(m_pdata) != 1)
        delete[] m_pdata;
     m_pdata = NULL;
     return;

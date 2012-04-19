@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace ex1
 {
+
 
    class CLASS_DECL_ca simple_tree_data :
       virtual public tree_data
@@ -23,3 +25,6 @@ namespace ex1
 
 
 } // namespace ex1
+
+
+

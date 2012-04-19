@@ -26,10 +26,21 @@ void StyledHRDMapper::loadRegionMappings(ex1::byte_input_stream & istream)
 //  DocumentBuilder docbuilder;
 
   //Document *hrdbase = docbuilder.parse(is);
+   
    string str;
-   istream >> str;
-   xml::document hbase(m_papp);
-   hbase.load(str);
+   
+   istream.full_load(str);
+
+   xml::document hbasedoc(m_papp);
+
+
+   if(!hbasedoc.load(str))
+   {
+      throw exception(string("Error loading HRD file"));
+   }
+
+   xml::node & hbase = *hbasedoc.get_root();
+
    if(hbase.get_name() != "hrd")
    {
       throw exception(string("Error loading HRD file"));

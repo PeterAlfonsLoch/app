@@ -502,7 +502,7 @@ namespace user
       if(m_bColorerTake5)
       {
          colorertake5::base_editor::initialize(&m_lines);
-         colorertake5::base_editor::setRegionMapper("rgb", "white");
+         colorertake5::base_editor::setRegionMapper("rgb", "default");
       }
    //  m_peditfile = new edit_file(get_app());
       m_pdata->m_editfile.SetFile(m_pdata->m_pfile);

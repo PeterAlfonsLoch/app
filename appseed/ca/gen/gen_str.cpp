@@ -2143,7 +2143,7 @@ namespace gen
 
       int i = 0;
 
-      for (; *psz != '\0' && i < 30 && isspace(*psz); i++, psz++);
+      for (; *psz != '\0' && i < 30 && isspace((unsigned char ) *psz); i++, psz++);
 
       bool bNegative = *psz == '-';
 
@@ -2152,7 +2152,7 @@ namespace gen
 
       uint64_t ui = 0;
 
-      for(; *psz != '\0' && i < 30 && isdigit(*psz); psz++, i++)
+      for(; *psz != '\0' && i < 30 && isdigit((unsigned char ) *psz); psz++, i++)
       {
          ui = ui * 10 + *psz - 48;
       }
