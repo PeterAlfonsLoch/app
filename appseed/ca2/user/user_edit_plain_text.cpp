@@ -1907,6 +1907,10 @@ namespace user
       MacroBegin();
       MacroRecord(new plain_text_data::FileCommand());
       MacroEnd();
+
+      _001OnUpdate();
+      _001OnAfterChangeText();
+
    }
 
 
