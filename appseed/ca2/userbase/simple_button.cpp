@@ -9,7 +9,7 @@ simple_button::simple_button(::ca::application * papp) :
 {
    m_bFocus = true;
    m_bTransparent = true;
-   m_brushBkg->CreateStockObject(NULL_BRUSH);
+   //m_brushBkg->CreateStockObject(NULL_BRUSH);
 }
 
 simple_button::~simple_button()

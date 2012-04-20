@@ -17,5 +17,5 @@
 
 
 
-<string id="MessageBoxChangedFileAskToSave">File "%1" has changed. Do you want to save the changes?</string>
+<string id="MessageBoxChangedFileAskToSave">O arquivo "%1" foi modificado. Deseja salvar as mudanças?</string>
 </stringtable>
