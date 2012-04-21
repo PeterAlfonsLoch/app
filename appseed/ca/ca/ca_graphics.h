@@ -432,6 +432,7 @@ namespace ca
    #pragma pop_macro("DrawText")
    #pragma pop_macro("DrawTextEx")
 
+      virtual size GetTextExtent(const char * lpszString, int nCount, int iIndex) const;
       virtual size GetTextExtent(const char * lpszString, int nCount) const;
       virtual size GetTextExtent(const string & str) const;
       virtual size GetOutputTextExtent(const char * lpszString, int nCount) const;

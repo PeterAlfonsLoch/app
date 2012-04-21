@@ -2053,6 +2053,14 @@ namespace ca
 
 #endif
 
+   size graphics::GetTextExtent(const char * lpszString, int nCount, int iIndex) const
+   {
+      UNREFERENCED_PARAMETER(lpszString);
+      UNREFERENCED_PARAMETER(nCount);
+      UNREFERENCED_PARAMETER(iIndex);
+      throw interface_only_exception();
+   }
+
    size graphics::GetTextExtent(const char * lpszString, int nCount) const
    {
       UNREFERENCED_PARAMETER(lpszString);

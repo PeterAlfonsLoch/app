@@ -186,6 +186,7 @@ namespace user
       COLORREF crSel;
       COLORREF cr;
 
+
       cr          = ARGB(255, 100, 100, 84);
       crBk        = ARGB(255, 250, 248, 240);
       crBkSel     = ARGB(255, 0, 0, 127);
@@ -338,7 +339,7 @@ namespace user
       pdc->SelectObject(GetFont());
       size size3;
       visual::graphics_extension(get_app()).GetTextExtent(pdc, unitext("gGYIﾍ"), size3);
-      int maxcy = size3.cy;
+      int iLineHeight = size3.cy;
       stringa & straLines = m_lines.lines;
       stringa straLineFeed;
       string strLine;
@@ -438,29 +439,35 @@ namespace user
             pdc->set_color(cr);
             pdc->SetBkColor(crBkSel);
             pdc->TextOut(left, y, strExtent1);
-            size size1 = pdc->GetTextExtent(strExtent1);
+            size size1 = pdc->GetTextExtent(strLine, strLine.length(), iStart);
             pdc->SetBkMode(OPAQUE);
-            pdc->set_color(crSel);
-            pdc->TextOut(left + size1.cx, y, strExtent2);
-            size size2 = pdc->GetTextExtent(strExtent2);
+            size sizeb = pdc->GetTextExtent(strLine, iEnd);
+            size size2 = pdc->GetTextExtent(strLine, strLine.length(), iEnd);
+            size2.cx -= size1.cx;
+            if(iEnd > iStart)
+            {
+               pdc->FillSolidRect(left + size1.cx, y, size2.cx, size2.cy, ARGB(255, 120, 240, 180));
+               pdc->set_color(crSel);
+               pdc->TextOut(left + size1.cx, y, strExtent2);
+            }
             pdc->set_color(cr);
-            pdc->SetBkColor(RGB(120, 240, 180));
+            
             pdc->SetBkMode(TRANSPARENT);
             pdc->TextOut(left + size1.cx + size2.cx, y, strExtent3);
-            maxcy = max(size1.cy, size2.cy);
-            maxcy = max(maxcy, size3.cy);
+            //maxcy = max(size1.cy, size2.cy);
+            //maxcy = max(maxcy, size3.cy);
             if(m_bFocus && m_bCaretOn && i3 == str1.get_length())
             {
                pdc->MoveTo(left + size1.cx, y);
-               pdc->LineTo(left + size1.cx, y + maxcy);
+               pdc->LineTo(left + size1.cx, y + iLineHeight);
             }
-            if(m_bFocus && m_bCaretOn && i3 == (str1.get_length() + str2.get_length()))
+            else if(m_bFocus && m_bCaretOn && i3 == (str1.get_length() + str2.get_length()))
             {
-               pdc->MoveTo(left + size1.cx + size2.cx, y);
-               pdc->LineTo(left + size1.cx + size2.cx, y + maxcy);
+               pdc->MoveTo(left + size2.cx + size1.cx, y);
+               pdc->LineTo(left + size2.cx + size1.cx, y + iLineHeight);
             }
          }
-         y += maxcy;
+         y += iLineHeight;
          lim += straLines[i].get_length();
       }
 
@@ -979,25 +986,25 @@ namespace user
       strsize iSelEnd;
       _001GetViewSel(iSelStart, iSelEnd);
       //int lim = 0;
-      int maxcy;
+      int iLineHeight;
 //      int y = 0;
 //      bool bFound = false;
       string strLine;
       size size3 = pdc->GetTextExtent(unitext("gqYALﾍWM"));
       size size;
       m_scrollinfo.m_sizeTotal.cx = 0;
-      maxcy = size3.cy;
+      iLineHeight = size3.cy;
       for(int i = 0; i < straLines.get_size(); i++)
       {
          strLine = straLines[i];
          strLine.replace("\t", "   ");
          size = (DWORD) (strLine.get_length() * size3.cx / 8);
-         maxcy = max(size.cy, size3.cy);
+//         maxcy = max(size.cy, size3.cy);
          if(size.cx > m_scrollinfo.m_sizeTotal.cx)
             m_scrollinfo.m_sizeTotal.cx = size.cx;
 
       }
-      m_scrollinfo.m_sizeTotal.cy = (long) (m_iaLineIndex.get_count() * maxcy);
+      m_scrollinfo.m_sizeTotal.cy = (long) (m_iaLineIndex.get_count() * iLineHeight);
       rect rectClient;
       GetClientRect(rectClient);
       class size sizePage;
@@ -1025,6 +1032,37 @@ namespace user
       }
       return -1;
    }
+
+   index edit_plain_text::SelToLineX(strsize iSel, int & x)
+   {
+      iSel -= m_iViewOffset;
+      stringa & straLines = m_lines.lines;
+      strsize i1;
+      strsize i2 = 0;
+      for(index i = 0; i < straLines.get_size(); i++)
+      {
+         i1 = i2;
+         i2 = i1 + straLines[i].get_length();
+         if(iSel >= i1
+            && iSel < i2)
+         {
+            ::ca::graphics * pgraphics = GetDC();
+
+            pgraphics->SelectObject(GetFont());
+
+            size size1 = pgraphics->GetTextExtent(straLines[i], straLines[i].length(), iSel - i1);
+            size size2 = pgraphics->GetTextExtent(straLines[i], iSel - i1);
+
+            ReleaseDC(pgraphics);
+
+            x = (size1.cx + size2.cx) / 2;
+
+            return i;
+         }
+      }
+      return -1;
+   }
+
 
    strsize edit_plain_text::LineColumnToSel(index iLine, index iColumn)
    {
@@ -1069,6 +1107,62 @@ namespace user
       return m_iViewOffset + iOffset + iColumn;
    }
 
+   strsize edit_plain_text::LineXToSel(index iLine, index x)
+   {
+      
+      ::ca::graphics * pgraphics = GetDC();
+
+      pgraphics->SelectObject(GetFont());
+
+      size size3 = pgraphics->GetTextExtent(unitext("gqYALﾍWM"));
+
+      int iLineHeight = size3.cy;
+
+      int y = iLineHeight * iLine + iLineHeight / 2 - m_scrollinfo.m_ptScroll.y;
+
+      strsize iChar = char_hit_test(pgraphics, x, y); 
+
+      ReleaseDC(pgraphics);
+
+      return iChar;
+/*      while(iLine < 0)
+      {
+         OneLineUp();
+         if(m_iViewOffset == 0)
+         {
+            iLine = 0;
+            break;
+         }
+         iLine++;
+      }
+      stringa & straLines = m_lines.lines;
+      if(iLine >= straLines.get_size())
+      {
+         return 0;
+      }
+      strsize iOffset = 0;
+      for(int i = 0; i < iLine; i++)
+      {
+         iOffset += straLines[i].get_length();
+      }
+      stringa stra;
+      string strLine;
+      stra.remove_all();
+      stra.add_smallest_tokens(straLines[iLine], m_straSep, FALSE, FALSE);
+      if(stra.get_size() > 0)
+      {
+         strLine = stra[0];
+      }
+      else
+      {
+         strLine.Empty();
+      }
+      if(iColumn < 0)
+         iColumn = iColumn + 1 + strLine.get_length();
+      if(iColumn > strLine.get_length())
+         iColumn = strLine.get_length();
+      return m_iViewOffset + iOffset + iColumn;*/
+   }
 
    index edit_plain_text::SelToColumn(strsize iSel)
    {
@@ -1109,13 +1203,16 @@ namespace user
       strsize iSelEnd;
       _001GetViewSel(iSelStart, iSelEnd);
       int lim = 0;
-      int maxcy;
+      int iLineHeight;
       int y = 0;
       bool bFound = false;
       string strLine;
       string strExtent;
       size size3;
       visual::graphics_extension(get_app()).GetTextExtent(pdc, unitext("gqYALﾍ"), size3);
+
+      iLineHeight = size3.cy;
+
       strsize iOffset = 0;
       stringa stra;
       for(int i = 0; i < straLines.get_size(); i++)
@@ -1134,40 +1231,45 @@ namespace user
          strExtent.replace("\t", "   ");
          size size;
          visual::graphics_extension(get_app()).GetTextExtent(pdc, strExtent, size);
-         maxcy = max(size.cy, size3.cy);
-         if(py >= y && py < y + maxcy)
+         //iLineHeight = max(size.cy, size3.cy);
+         if(py >= y && py < y + iLineHeight)
          {
             bFound = true;
             break;
          }
-         y += maxcy;
+         y += iLineHeight;
          iOffset += straLines[i].get_length();
       }
       int lim2 = 0;
       int lim1;
       const char * psz = strLine;
       const char * pszEnd = psz;
-      for(;; pszEnd = gen::str::utf8_inc(pszEnd))
+      const char * pszPrevious = psz;
+      for(;; )
       {
+         pszPrevious = pszEnd;
+         pszEnd = gen::str::utf8_inc(pszEnd);
          lim1 = lim2;
          strExtent = string(psz, pszEnd - psz);
          strExtent.replace("\t", "   ");
          class size size;
-         visual::graphics_extension(get_app()).GetTextExtent(pdc, strExtent, size);
-         lim2 = size.cx;
-         lim = (lim2 + lim1) / 2;
-         lim++;
-         if(px >= lim1 && px <= lim)
+         class ::size size1 = pdc->GetTextExtent(strLine, strLine.length(), strExtent.length());
+         class ::size size2 = pdc->GetTextExtent(strLine, strExtent.length());
+         lim2 = (size1.cx + size2.cx) / 2;
+         lim = lim2;
+         //lim = (lim2 + lim1) / 2;
+         //lim++;
+         if(px >= lim1 && px <= (lim2 * 3 + lim1) / 4)
          {
-            const char * pszPrev = gen::str::utf8_dec(psz, pszEnd);
-            return iOffset + (pszPrev - psz) + m_iViewOffset;
+            return iOffset + (pszPrevious - psz) + m_iViewOffset;
          }
-         else if(px >= lim && px <= lim2)
+         else if(px >= (lim2 * 3 + lim1) / 4 && px <= lim2)
          {
             return iOffset + (pszEnd - psz) + m_iViewOffset;
          }
          if(pszEnd[0] == '\0')
             break;
+         
       }
       return (strsize) min((strsize)(iOffset + strLine.get_length() + m_iViewOffset), (strsize)m_pdata->m_editfile.get_length());
    }
@@ -1385,9 +1487,10 @@ namespace user
       }
       else if(pkey->m_nChar == VK_UP)
       {
-         index iLine = SelToLine(m_iSelEnd);
+         int x;
+         index iLine = SelToLineX(m_iSelEnd, x);
          iLine--;
-         m_iSelEnd = LineColumnToSel(iLine, m_iColumn);
+         m_iSelEnd = LineXToSel(iLine, x);
          if(!bShift)
          {
             m_iSelStart = m_iSelEnd;
@@ -1396,9 +1499,10 @@ namespace user
       }
       else if(pkey->m_nChar == VK_DOWN)
       {
-         index iLine = SelToLine(m_iSelEnd);
+         int x;
+         index iLine = SelToLineX(m_iSelEnd, x);
          iLine++;
-         m_iSelEnd = LineColumnToSel(iLine, m_iColumn);
+         m_iSelEnd = LineXToSel(iLine, x);
          if(!bShift)
          {
             m_iSelStart = m_iSelEnd;
@@ -1453,8 +1557,8 @@ namespace user
             {
                char buf[64];
                char * psz;
-               m_pdata->m_editfile.seek(m_iSelEnd - 32, ::ex1::seek_begin);
-               psz = &buf[32];
+               m_pdata->m_editfile.seek(max(0, m_iSelEnd - 32), ::ex1::seek_begin);
+               psz = &buf[min(32, m_iSelEnd)];
                primitive::memory_size uiRead = m_pdata->m_editfile.read(buf, 64);
                if(uiRead == 2 &&
                   psz[0] == '\r' &&

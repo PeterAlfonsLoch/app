@@ -172,7 +172,9 @@ namespace user
 
       index SelToColumn(strsize iSel);
       index SelToLine(strsize iSel);
+      index SelToLineX(strsize iSel, int & x);
       strsize LineColumnToSel(index iLine, index iColumn);
+      strsize LineXToSel(index iLine, int x);
 
       void OneLineUp();
 
