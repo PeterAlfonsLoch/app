@@ -1014,7 +1014,7 @@ namespace fontopus
          Application.http().get(strAuthUrl, strAuth, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
          DWORD dwTimeTelmo2 = GetTickCount();
 
-         TRACE0("Total time Application.http().get(\"" + strAuthUrl + "\") : " + gen::str::itoa(dwTimeTelmo2 - dwTimeTelmo1));
+         TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + gen::str::itoa(dwTimeTelmo2 - dwTimeTelmo1));
 
       }
 
