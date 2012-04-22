@@ -190,3 +190,137 @@ rect64 size64::operator-(const __rect64 * lpRect) const throw()
 
 __int64 size64::area()
    { return cx * cy; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// sized
+sized::sized() throw()
+   { /* random filled */ }
+sized::sized(double initCX, double initCY) throw()
+   { cx = (int) initCX; cy = (int) initCY; }
+sized::sized(SIZED initSize) throw()
+   { *(SIZED*)this = initSize; }
+sized::sized(const SIZED * pinitSize) throw()
+   { *(SIZED*)this = *pinitSize; }
+sized::sized(__size64  initSize) throw()
+   { cx = (int) initSize.cx; cy = (int) initSize.cy; }
+sized::sized(const __size64 *  pinitSize) throw()
+   { cx = (int) pinitSize->cx; cy = (int) pinitSize->cy; }
+sized::sized(POINT initPt) throw()
+   { *(POINT*)this = initPt; }
+sized::sized(DWORD dwSize) throw()
+   {
+      cx = (short)LOWORD(dwSize);
+      cy = (short)HIWORD(dwSize);
+   }
+
+sized::operator SIZED *() throw()
+   { return this; }
+sized::operator const SIZED *() const throw()
+   { return this; }
+
+bool sized::operator==(SIZED sized) const throw()
+   { return (cx == sized.cx && cy == sized.cy); }
+bool sized::operator!=(SIZED sized) const throw()
+   { return (cx != sized.cx || cy != sized.cy); }
+void sized::operator+=(SIZED sized) throw()
+   { cx += sized.cx; cy += sized.cy; }
+void sized::operator-=(SIZED sized) throw()
+   { cx -= sized.cx; cy -= sized.cy; }
+void sized::set_size(int CX, int CY) throw()
+   { cx = CX; cy = CY; }
+class sized sized::operator+(SIZED sized) const throw()
+   {
+      class sized sizeRet;
+      sizeRet.cx = cx + sized.cx;
+      sizeRet.cy = cy + sized.cy;
+      return sizeRet;
+   }
+sized sized::operator-(SIZED sized) const throw()
+   {
+      class sized sizeRet;
+      sizeRet.cx = cx - sized.cx;
+      sizeRet.cy = cy - sized.cy;
+      return sizeRet;
+   }
+sized sized::operator-() const throw()
+   { return sized(-cx, -cy); }
+pointd sized::operator+(POINTD pointd) const throw()
+   {
+      class pointd pointRet;
+      pointRet.x = cx + pointd.x;
+      pointRet.y = cy + pointd.y;
+      return pointRet;
+   }
+pointd sized::operator-(POINTD pointd) const throw()
+   {
+      class pointd pointRet;
+      pointRet.x = cx - pointd.x;
+      pointRet.y = cy - pointd.y;
+      return pointRet;
+   }
+rectd sized::operator+(LPCRECTD lpRect) const throw()
+   { return rectd(lpRect) + *this; }
+rectd sized::operator-(LPCRECTD lpRect) const throw()
+   { return rectd(lpRect) - *this; }
+
+double sized::area()
+   { return cx * cy; }

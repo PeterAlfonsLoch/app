@@ -19,8 +19,8 @@ namespace ca
 
       m_pta.remove_all();
 
-      m_pta.add(double_point(x1, y1));
-      m_pta.add(double_point(x2, y2));
+      m_pta.add(pointd(x1, y1));
+      m_pta.add(pointd(x2, y2));
 
       m_etype = type_rect;
 
@@ -35,8 +35,8 @@ namespace ca
 
       m_pta.remove_all();
 
-      m_pta.add(double_point(lpRect->left, lpRect->top));
-      m_pta.add(double_point(lpRect->right, lpRect->bottom));
+      m_pta.add(pointd(lpRect->left, lpRect->top));
+      m_pta.add(pointd(lpRect->right, lpRect->bottom));
 
       m_etype = type_rect;
 
@@ -51,8 +51,8 @@ namespace ca
 
       m_pta.remove_all();
 
-      m_pta.add(double_point(x1, y1));
-      m_pta.add(double_point(x2, y2));
+      m_pta.add(pointd(x1, y1));
+      m_pta.add(pointd(x2, y2));
 
       m_etype = type_elliptic;
 
@@ -67,8 +67,8 @@ namespace ca
 
       m_pta.remove_all();
 
-      m_pta.add(double_point(lpRect->left, lpRect->top));
-      m_pta.add(double_point(lpRect->right, lpRect->bottom));
+      m_pta.add(pointd(lpRect->left, lpRect->top));
+      m_pta.add(pointd(lpRect->right, lpRect->bottom));
 
       m_etype = type_elliptic;
 
@@ -85,7 +85,7 @@ namespace ca
 
       for(int i = 0; i < nCount; i++)
       {
-         m_pta.add(double_point(lpPoints[i].x, lpPoints[i].y));
+         m_pta.add(pointd(lpPoints[i].x, lpPoints[i].y));
       }
 
       m_etype = type_polygon;
@@ -109,7 +109,7 @@ namespace ca
          m_iaCount.add(lpPolyCounts[i]);
          for(int j = 0; j < lpPolyCounts[i]; j++)
          {
-            m_pta.add(double_point(lpPoints[n].x, lpPoints[n].y));
+            m_pta.add(pointd(lpPoints[n].x, lpPoints[n].y));
             n++;
          }
       }
@@ -128,9 +128,9 @@ namespace ca
       m_pta.remove_all();
       m_iaCount.remove_all();
 
-      m_pta.add(double_point(x1, y1));
-      m_pta.add(double_point(x2, y2));
-      m_pta.add(double_point(x3, y3));
+      m_pta.add(pointd(x1, y1));
+      m_pta.add(pointd(x2, y2));
+      m_pta.add(pointd(x3, y3));
 
       m_etype = type_polygon;
 

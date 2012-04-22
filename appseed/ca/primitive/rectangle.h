@@ -379,3 +379,177 @@ inline bool rect64::is_empty() const throw()
 {
    return width() == 0 && height() == 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class pointd_array;
+
+
+/////////////////////////////////////////////////////////////////////////////
+// rect - A 2-D rectangle, similar to Windows RECT structure.
+
+class CLASS_DECL_ca rectd : public tagRECTD
+{
+// Constructors
+public:
+   // uninitialized rectangle
+   rectd() throw();
+   // from left, top, right, and bottom
+   rectd(double l, double t, double r, double b) throw();
+   // copy constructor
+   rectd(const RECTD& srcRect) throw();
+   rectd(const __rect64& srcRect) throw();
+   // from a pointer to another rectd
+   rectd(LPCRECTD lpSrcRect) throw();
+   // from a point and size
+   rectd(POINTD point, SIZED size) throw();
+   // from two points
+   rectd(POINTD topLeft, POINTD bottomRight) throw();
+
+// Attributes (in addition to RECTD members)
+
+   // retrieves the width
+   double width() const throw();
+   // returns the height
+   double height() const throw();
+   // returns the size
+   class size size() const throw();
+   // reference to the top-left point
+   point& top_left() throw();
+   // reference to the bottom-right point
+   point& bottom_right() throw();
+   // const reference to the top-left point
+   const point& top_left() const throw();
+   // const reference to the bottom-right point
+   const point& bottom_right() const throw();
+   // the geometric center point of the rectangle
+   point center() const throw();
+   // swap the left and right
+   void swap_left_right() throw();
+   static void WINAPI swap_left_right(LPRECTD lpRect) throw();
+
+   // convert between rectd and LPRECTD/LPCRECTD (no need for &)
+   operator LPRECTD() throw();
+   operator LPCRECTD() const throw();
+
+   // returns TRUE if rectangle has no area
+   bool is_empty() const throw();
+   // returns TRUE if rectangle is at (0,0) and has no area
+   bool is_null() const throw();
+   // returns TRUE if point is within rectangle
+   bool contains(POINTD point) const throw();
+
+// Operations
+
+   // set rectangle from left, top, right, and bottom
+   void set(double x1, double y1, double x2, double y2) throw();
+   void set(POINTD topLeft, POINTD bottomRight) throw();
+   // is_empty the rectangle
+   void null() throw();
+   // copy from another rectangle
+   void copy(LPCRECTD lpSrcRect) throw();
+   // TRUE if exactly the same as another rectangle
+   bool is_equal(LPCRECTD lpRect) const throw();
+
+   // Inflate rectangle's width and height by
+   // x units to the left and right ends of the rectangle
+   // and y units to the top and bottom.
+   void inflate(double x, double y) throw();
+   // Inflate rectangle's width and height by
+   // size.cx units to the left and right ends of the rectangle
+   // and size.cy units to the top and bottom.
+   void inflate(SIZED size) throw();
+   // Inflate rectangle's width and height by moving individual sides.
+   // Left side is moved to the left, right side is moved to the right,
+   // top is moved up and bottom is moved down.
+   void inflate(LPCRECTD lpRect) throw();
+   void inflate(double l, double t, double r, double b) throw();
+
+   // deflate the rectangle's width and height without
+   // moving its top or left
+   void deflate(double x, double y) throw();
+   void deflate(SIZED size) throw();
+   void deflate(LPCRECTD lpRect) throw();
+   void deflate(double l, double t, double r, double b) throw();
+
+   // translate the rectangle by moving its top and left
+   void offset(double x, double y) throw();
+   void offset(SIZED size) throw();
+   void offset(POINTD point) throw();
+   void normalize() throw();
+
+   // absolute position of rectangle
+   void move_to_y(double y) throw();
+   void move_to_x(double x) throw();
+   void move_to(double x, double y) throw();
+   void move_to(POINTD point) throw();
+
+   // set this rectangle to intersection of two others
+   bool intersect(LPCRECTD lpRect1, LPCRECTD lpRect2) throw();
+
+   // set this rectangle to bounding union of two others
+   bool unite(LPCRECTD lpRect1, LPCRECTD lpRect2) throw();
+
+   // set this rectangle to minimum of two others
+   //bool subtract(LPCRECTD lpRectSrc1, LPCRECTD lpRectSrc2) throw();
+
+// Additional Operations
+   void operator=(const RECTD& srcRect) throw();
+   bool operator==(const RECTD& rectd) const throw();
+   bool operator!=(const RECTD& rectd) const throw();
+   void operator+=(POINTD point) throw();
+   void operator+=(SIZED size) throw();
+   void operator+=(LPCRECTD lpRect) throw();
+   void operator-=(POINTD point) throw();
+   void operator-=(SIZED size) throw();
+   void operator-=(LPCRECTD lpRect) throw();
+   void operator&=(const RECTD& rectd) throw();
+   void operator|=(const RECTD& rectd) throw();
+
+// Operators returning rectd values
+   rectd operator+(POINTD point) const throw();
+   rectd operator-(POINTD point) const throw();
+   rectd operator+(LPCRECTD lpRect) const throw();
+   rectd operator+(SIZED size) const throw();
+   rectd operator-(SIZED size) const throw();
+   rectd operator-(LPCRECTD lpRect) const throw();
+   rectd operator&(const RECTD& rect2) const throw();
+   rectd operator|(const RECTD& rect2) const throw();
+   rectd MulDiv(double nMultiplier, double nDivisor) const throw();
+
+   double area();
+
+   bool contains(LPCRECTD lpcrect) const;
+   void ConstraintV5(LPCRECTD lpcrect, const class size sizeMin);
+   void Align(double align, LPCRECTD lpcrect);
+   void ScaleHeightAspect(double iNewHeight, double iCenterX, double iCenterY);
+   void ScaleRect(double dx, double dy, double ix, double iy);
+   void ExtendOnCenter(LPCRECTD lpcrect);
+   void FitOnCenterOf(LPCRECTD lpcrect);
+   void DeflateBottomRightSizeByRate(double dRate);
+   void SetBottomRightSize(double iWidth, double iHeight);
+   inline point top_right();
+   inline point bottom_left();
+
+   void SubtractRectMajor(LPCRECTD lpcrectMajor, LPCRECTD lpcrectMinor);
+   void SubtractRectMinor(LPCRECTD lpcrectMajor, LPCRECTD lpcrectMinor);
+
+
+   void get_bounding_rect(const POINTD * lppoint, count count);
+   void get_bounding_rect(const pointd_array & pointa);
+
+};

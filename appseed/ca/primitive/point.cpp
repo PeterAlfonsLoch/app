@@ -139,13 +139,92 @@ uint64_t point64::_001GetLparam()
 
 
 
-double_point::double_point() throw()
-{
-   /* random filled */ 
-}
 
-double_point::double_point(double xParam, double yParam) throw()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// pointd
+pointd::pointd() throw()
+   { /* random filled */ }
+pointd::pointd(double initX, double initY) throw()
+   { x = (double) initX; y = (double) initY; }
+pointd::pointd(POINTD initPt) throw()
+   { *(POINTD*)this = initPt; }
+pointd::pointd(SIZED initSize) throw()
+   { *(SIZED*)this = initSize; }
+pointd::pointd(__point64 pt) throw()
+   { x = (int) pt.x; y = (int) pt.y; }
+pointd::pointd(LPARAM dwPoint) throw()
+   {
+      x = (short)GET_X_LPARAM(dwPoint);
+      y = (short)GET_Y_LPARAM(dwPoint);
+   }
+
+pointd::operator POINTD *() throw()
+   { return this; }
+pointd::operator const POINTD *() const throw()
+   { return this; }
+
+void pointd::Offset(int xOffset, int yOffset) throw()
+   { x += xOffset; y += yOffset; }
+void pointd::Offset(POINTD pointd) throw()
+   { x += pointd.x; y += pointd.y; }
+void pointd::Offset(SIZED size) throw()
+   { x += size.cx; y += size.cy; }
+void pointd::SetPoint(int X, int Y) throw()
+   { x = X; y = Y; }
+BOOL pointd::operator==(POINTD pointd) const throw()
+   { return (x == pointd.x && y == pointd.y); }
+BOOL pointd::operator!=(POINTD pointd) const throw()
+   { return (x != pointd.x || y != pointd.y); }
+void pointd::operator+=(SIZED size) throw()
+   { x += size.cx; y += size.cy; }
+void pointd::operator-=(SIZED size) throw()
+   { x -= size.cx; y -= size.cy; }
+void pointd::operator+=(POINTD pointd) throw()
+   { x += pointd.x; y += pointd.y; }
+void pointd::operator-=(POINTD pointd) throw()
+   { x -= pointd.x; y -= pointd.y; }
+pointd pointd::operator+(SIZED size) const throw()
+   { return pointd(x + size.cx, y + size.cy); }
+pointd pointd::operator-(SIZED size) const throw()
+   { return pointd(x - size.cx, y - size.cy); }
+pointd pointd::operator-() const throw()
+   { return pointd(-x, -y); }
+pointd pointd::operator+(POINTD pt) const throw()
+   { return pointd(x +  pt.x, y +  pt.y); }
+sized pointd::operator-(POINTD  pt) const throw()
+   { return sized(x -  pt.x, y -  pt.y); }
+rectd pointd::operator+(LPCRECTD lpRect) const throw()
+   { return rectd(lpRect) + *this; }
+rectd pointd::operator-(LPCRECTD lpRect) const throw()
+   { return rectd(lpRect) - *this; }
+
+LPARAM pointd::_001GetLparam()
 {
-   x = xParam;
-   y = yParam;
+   return MAKELPARAM(x, y);
 }

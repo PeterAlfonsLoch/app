@@ -181,6 +181,8 @@ namespace user
    void edit_plain_text::_001OnDraw(::ca::graphics * pdc)
    {
 
+      pdc->set_text_rendering(::ca::text_rendering_anti_alias);
+
       COLORREF crBk;
       COLORREF crBkSel;
       COLORREF crSel;
@@ -307,7 +309,7 @@ namespace user
       //ClientToScreen(rectClient);
       rgn->CreateRectRgnIndirect(rectClient);
 
-      int left = rectClient.left;
+      double left = rectClient.left;
 
    //   pdc->SelectClipRgn(&rgn);
 
@@ -332,7 +334,7 @@ namespace user
 //      pdc->FillSolidRect(rectClient, crBk);
 
 
-      int y = rectClient.top;
+      double y = rectClient.top;
       _001GetViewSel(iSelStart, iSelEnd);
       strsize iCursor = iSelEnd;
       sort::sort(iSelStart, iSelEnd);
@@ -439,10 +441,13 @@ namespace user
             pdc->set_color(cr);
             pdc->SetBkColor(crBkSel);
             pdc->TextOut(left, y, strExtent1);
-            size size1 = pdc->GetTextExtent(strLine, strLine.length(), iStart);
+            sized size1(0.0, 0.0);
+            pdc->GetTextExtent(size1, strLine, strLine.length(), iStart);
             pdc->SetBkMode(OPAQUE);
-            size sizeb = pdc->GetTextExtent(strLine, iEnd);
-            size size2 = pdc->GetTextExtent(strLine, strLine.length(), iEnd);
+            sized sizeb(0.0, 0.0);
+            pdc->GetTextExtent(sizeb, strLine, iEnd);
+            sized size2(0.0, 0.0);
+            pdc->GetTextExtent(size2, strLine, strLine.length(), iEnd);
             size2.cx -= size1.cx;
             if(iEnd > iStart)
             {
@@ -990,8 +995,9 @@ namespace user
 //      int y = 0;
 //      bool bFound = false;
       string strLine;
-      size size3 = pdc->GetTextExtent(unitext("gqYALﾍWM"));
-      size size;
+      sized size3;
+      pdc->GetTextExtent(size3, unitext("gqYALﾍWM"));
+      sized size;
       m_scrollinfo.m_sizeTotal.cx = 0;
       iLineHeight = size3.cy;
       for(int i = 0; i < straLines.get_size(); i++)

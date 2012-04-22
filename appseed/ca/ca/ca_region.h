@@ -22,7 +22,7 @@ namespace ca
          type_round,
       };
 
-      double_point_array      m_pta;
+      pointd_array            m_pta;
       int_array               m_iaCount;
       e_type                  m_etype;
 

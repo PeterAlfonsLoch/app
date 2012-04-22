@@ -115,11 +115,11 @@ void point64_array::offset(__int64 x, __int64 y)
 }
 
 
-double_point_array::~double_point_array(void)
+pointd_array::~pointd_array(void)
 {
 }
 
-void double_point_array::offset(double x, double y)
+void pointd_array::offset(double x, double y)
 {
    for(int i = 0; i < this->get_size(); i++)
    {
@@ -130,3 +130,45 @@ void double_point_array::offset(double x, double y)
 
 
 
+
+void pointd_array::get_bounding_rect(LPRECTD lprect) const
+{
+   
+   get_bounding_rect(lprect, get_data(), get_count());
+
+}
+
+void pointd_array::get_bounding_rect(LPRECTD lprect, const POINTD * lppoint, count count)
+{
+
+   if(count <= 0)
+   {
+
+      lprect->left      = 0;
+      lprect->top       = 0;
+      lprect->right     = 0;
+      lprect->bottom    = 0;
+
+   }
+   else
+   {
+      lprect->left      = lppoint[0].x;
+      lprect->top       = lppoint[0].y;
+      lprect->right     = lppoint[0].x;
+      lprect->bottom    = lppoint[0].y;
+
+      for(int i = 1; i < count; i++)
+      {
+         if(lppoint[i].x < lprect->left)
+            lprect->left = lppoint[i].x;
+         else if(lppoint[i].x > lprect->right)
+            lprect->right = lppoint[i].x;
+         if(lppoint[i].y < lprect->top)
+            lprect->top = lppoint[i].y;
+         else if(lppoint[i].y > lprect->bottom)
+            lprect->bottom = lppoint[i].y;
+      }
+
+   }
+
+}

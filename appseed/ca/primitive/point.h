@@ -117,19 +117,67 @@ public:
 };
 
 
-class CLASS_DECL_ca double_point
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// pointd - A 2-D pointd, similar to Windows POINTD structure.
+
+class CLASS_DECL_ca pointd : public tagPOINTD
 {
 public:
-   
-   
-   double x;
-   double y;
+// Constructors
+
+   // create an uninitialized pointd
+   pointd() throw();
+   // create from two integers
+   pointd(double initX, double initY) throw();
+   // create from another pointd
+   pointd(POINTD initPt) throw();
+   pointd(const POINTD * pinitPt) throw();
+   pointd(__point64 initPt) throw();
+   pointd(const __point64 * pinitPt) throw();
+   // create from a sized
+   pointd(SIZED initSize) throw();
+   // create from an LPARAM: x = LOWORD(dw) y = HIWORD(dw)
+   pointd(LPARAM dwPoint) throw();
 
 
-   double_point() throw();
-   double_point(double x, double y) throw();
+   operator POINTD *() throw();
+   operator const POINTD *() const throw();
 
+// Operations
 
+// translate the pointd
+   void Offset(int xOffset, int yOffset) throw();
+   void Offset(POINTD pointd) throw();
+   void Offset(SIZED sized) throw();
+   void SetPoint(int X, int Y) throw();
+
+   BOOL operator==(POINTD pointd) const throw();
+   BOOL operator!=(POINTD pointd) const throw();
+   void operator+=(SIZED sized) throw();
+   void operator-=(SIZED sized) throw();
+   void operator+=(POINTD pointd) throw();
+   void operator-=(POINTD pointd) throw();
+
+// Operators returning pointd values
+   pointd operator+(SIZED sized) const throw();
+   pointd operator-(SIZED sized) const throw();
+   pointd operator-() const throw();
+   pointd operator+(POINTD pointd) const throw();
+
+// Operators returning sized values
+   sized operator-(POINTD pointd) const throw();
+
+// Operators returning rectd values
+   rectd operator+(LPCRECTD lpRect) const throw();
+   rectd operator-(LPCRECTD lpRect) const throw();
+
+   LPARAM _001GetLparam();
 };
 
 
+__inline pointd null_pointd() { return pointd(0.0, 0.0); }

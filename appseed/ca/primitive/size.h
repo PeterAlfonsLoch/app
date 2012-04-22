@@ -109,3 +109,61 @@ inline bool size64::is_empty() const throw()
 {
    return cx <= 0 || cy <= 0;
 }
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// sized - An extent, similar to Windows SIZE structure.
+
+class CLASS_DECL_ca sized : public tagSIZED
+{
+public:
+
+// Constructors
+   // construct an uninitialized sized
+   sized() throw();
+   // create from two integers
+   sized(double initCX, double initCY) throw();
+   // create from another sized
+   sized(const SIZED * pinitSize) throw();
+   sized(SIZED initSize) throw();
+   sized(__size64 initSize) throw();
+   sized(const __size64 * pinitSize) throw();
+   // create from a pointd
+   sized(POINT initPt) throw();
+   // create from a DWORD: cx = LOWORD(dw) cy = HIWORD(dw)
+   sized(DWORD dwSize) throw();
+
+   operator SIZED *() throw();
+   operator const SIZED *() const throw();
+
+// Operations
+   bool operator==(SIZED size) const throw();
+   bool operator!=(SIZED size) const throw();
+   void operator+=(SIZED size) throw();
+   void operator-=(SIZED size) throw();
+   void set_size(int CX, int CY) throw();
+
+// Operators returning sized values
+   sized operator+(SIZED size) const throw();
+   sized operator-(SIZED size) const throw();
+   sized operator-() const throw();
+
+// Operators returning pointd values
+   pointd operator+(POINTD point) const throw();
+   pointd operator-(POINTD point) const throw();
+
+// Operators returning rectd values
+   rectd operator+(LPCRECTD lpRect) const throw();
+   rectd operator-(LPCRECTD lpRect) const throw();
+
+   double area();
+   inline bool is_empty() const throw();
+};
+
+
+inline bool sized::is_empty() const throw()
+{
+   return cx <= 0 || cy <= 0;
+}

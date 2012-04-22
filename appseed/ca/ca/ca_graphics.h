@@ -40,6 +40,14 @@ namespace ca
       alpha_mode_blend,
    };
 
+   enum e_text_rendering
+   {
+      text_rendering_anti_alias,
+      text_rendering_anti_alias_grid_fit,
+      text_rendering_single_bit_per_pixel,
+      text_rendering_clear_type_grid_fit,
+   };
+
    class CLASS_DECL_ca graphics :
       virtual public _template::simple_chain < ::user::draw_context >
    {
@@ -72,6 +80,9 @@ namespace ca
       double                     m_y;
 
       e_alpha_mode               m_ealphamode;
+      e_text_rendering           m_etextrendering;
+
+
 
       graphics();
 
@@ -90,6 +101,8 @@ namespace ca
 
 
       virtual void set_alpha_mode(e_alpha_mode ealphamode);
+
+      virtual void set_text_rendering(e_text_rendering etextrendering);
 
       virtual bool blur(bool bExpand, double dRadius, LPCRECT lprect);
 
@@ -399,6 +412,8 @@ namespace ca
    // Text Functions
       virtual BOOL TextOut(int x, int y, const char * lpszString, int nCount);
       virtual BOOL TextOut(int x, int y, const string & str);
+      virtual BOOL TextOut(double x, double y, const char * lpszString, int nCount);
+      virtual BOOL TextOut(double x, double y, const string & str);
       virtual BOOL ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect,
                const char * lpszString, UINT nCount, LPINT lpDxWidths);
       virtual BOOL ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect,
@@ -435,6 +450,9 @@ namespace ca
       virtual size GetTextExtent(const char * lpszString, int nCount, int iIndex) const;
       virtual size GetTextExtent(const char * lpszString, int nCount) const;
       virtual size GetTextExtent(const string & str) const;
+      virtual bool GetTextExtent(sized & size, const char * lpszString, int nCount, int iIndex) const;
+      virtual bool GetTextExtent(sized & size, const char * lpszString, int nCount) const;
+      virtual bool GetTextExtent(sized & size, const string & str) const;
       virtual size GetOutputTextExtent(const char * lpszString, int nCount) const;
       virtual size GetOutputTextExtent(const string & str) const;
       virtual size GetTabbedTextExtent(const char * lpszString, int nCount,

@@ -871,6 +871,24 @@ namespace ca
       throw interface_only_exception();
    }
 
+   BOOL graphics::TextOut(double x, double y, const char * lpszString, int nCount)
+   {
+      UNREFERENCED_PARAMETER(x);
+      UNREFERENCED_PARAMETER(y);
+      UNREFERENCED_PARAMETER(lpszString);
+      UNREFERENCED_PARAMETER(nCount);
+      throw interface_only_exception();
+   }
+
+   BOOL graphics::TextOut(double x, double y, const string & str)
+   {
+      UNREFERENCED_PARAMETER(x);
+      UNREFERENCED_PARAMETER(y);
+      UNREFERENCED_PARAMETER(str);
+      throw interface_only_exception();
+   }
+
+
    BOOL graphics::ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect, const char * lpszString, UINT nCount, LPINT lpDxWidths)
    {
       UNREFERENCED_PARAMETER(x);
@@ -2074,6 +2092,30 @@ namespace ca
       throw interface_only_exception();
    }
 
+   bool graphics::GetTextExtent(sized & size, const char * lpszString, int nCount, int iIndex) const
+   {
+      UNREFERENCED_PARAMETER(size);
+      UNREFERENCED_PARAMETER(lpszString);
+      UNREFERENCED_PARAMETER(nCount);
+      UNREFERENCED_PARAMETER(iIndex);
+      throw interface_only_exception();
+   }
+
+   bool graphics::GetTextExtent(sized & size, const char * lpszString, int nCount) const
+   {
+      UNREFERENCED_PARAMETER(size);
+      UNREFERENCED_PARAMETER(lpszString);
+      UNREFERENCED_PARAMETER(nCount);
+      throw interface_only_exception();
+   }
+
+   bool graphics::GetTextExtent(sized & size, const string & str) const
+   {
+      UNREFERENCED_PARAMETER(size);
+      UNREFERENCED_PARAMETER(str);
+      throw interface_only_exception();
+   }
+
    size graphics::GetOutputTextExtent(const char * lpszString, int nCount) const
    {
       UNREFERENCED_PARAMETER(lpszString);
@@ -2250,6 +2292,10 @@ namespace ca
       m_ealphamode = ealphamode;
    }
 
+   void graphics::set_text_rendering(e_text_rendering etextrendering)
+   {
+      throw not_implemented_exception();
+   }
 
    bool graphics::blur(bool bExpand, double dRadius, LPCRECT lpcrect)
    {

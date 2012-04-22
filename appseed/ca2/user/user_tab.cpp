@@ -234,6 +234,8 @@ namespace user
    void tab::_001OnDraw(::ca::graphics * pdc)
    {
 
+      pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
+
       if(!m_bShowTabs)
          return;
 

@@ -897,3 +897,241 @@ rect64 rect64::MulDiv(__int64 nMultiplier, __int64 nDivisor) const throw()
 
 __int64 rect64::area()
    { return width() * height(); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// rectd
+rectd::rectd() throw()
+   { /* random filled */ }
+rectd::rectd(double l, double t, double r, double b) throw()
+   { left = (double) l; top = (double) t; right = (double) r; bottom = (double) b; }
+rectd::rectd(const RECTD& srcRect) throw()
+   { ::copy(this, &srcRect); }
+rectd::rectd(const __rect64& srcRect) throw()
+   { ::copy(this, &srcRect); }
+rectd::rectd(LPCRECTD lpSrcRect) throw()
+   { ::copy(this, lpSrcRect); }
+rectd::rectd(POINTD point, SIZED size) throw()
+   { right = (left = point.x) + size.cx; bottom = (top = point.y) + size.cy; }
+rectd::rectd(POINTD topLeft, POINTD bottomRight) throw()
+   { left = topLeft.x; top = topLeft.y;
+      right = bottomRight.x; bottom = bottomRight.y; }
+double rectd::width() const throw()
+   { return right - left; }
+double rectd::height() const throw()
+   { return bottom - top; }
+class size rectd::size() const throw()
+   {
+      class size sizeRet(right - left, bottom - top);
+      return sizeRet; }
+point& rectd::top_left() throw()
+   { return *((point*)this); }
+point& rectd::bottom_right() throw()
+   { return *((point*)this+1); }
+const point& rectd::top_left() const throw()
+   { return *((point*)this); }
+const point& rectd::bottom_right() const throw()
+   { return *((point*)this+1); }
+void rectd::swap_left_right() throw()
+   { swap_left_right(LPRECTD(this)); }
+void WINAPI rectd::swap_left_right(LPRECTD lpRect) throw()
+   { LONG temp = lpRect->left; lpRect->left = lpRect->right; lpRect->right = temp; }
+rectd::operator LPRECTD() throw()
+   { return this; }
+rectd::operator LPCRECTD() const throw()
+   { return (LPCRECTD) this; }
+bool rectd::contains(POINTD point) const throw()
+   { return ::contains((LPCRECTD) this, point) != FALSE; }
+void rectd::set(double x1, double y1, double x2, double y2) throw()
+   { ::set(this, x1, y1, x2, y2); }
+void rectd::set(POINTD topLeft, POINTD bottomRight) throw()
+   { ::set(this, topLeft.x, topLeft.y, bottomRight.x, bottomRight.y); }
+void rectd::null() throw()
+   { ::null(this); }
+void rectd::copy(LPCRECTD lpSrcRect) throw()
+   { ::copy(this, lpSrcRect); }
+bool rectd::is_equal(LPCRECTD lpRect) const throw()
+   { return ::is_equal((LPCRECTD) this, lpRect) != FALSE; }
+void rectd::inflate(double x, double y) throw()
+   { ::inflate(this, x, y); }
+void rectd::inflate(SIZED size) throw()
+   { ::inflate(this, size.cx, size.cy); }
+void rectd::deflate(double x, double y) throw()
+   { ::inflate(this, -x, -y); }
+void rectd::deflate(SIZED size) throw()
+   { ::inflate(this, -size.cx, -size.cy); }
+void rectd::offset(double x, double y) throw()
+   { ::offset(this, x, y); }
+void rectd::offset(POINTD point) throw()
+   { ::offset(this, point.x, point.y); }
+void rectd::offset(SIZED size) throw()
+   { ::offset(this, size.cx, size.cy); }
+void rectd::move_to_y(double y) throw()
+   { bottom = height() + y; top = y; }
+void rectd::move_to_x(double x) throw()
+   { right = width() + x; left = x; }
+void rectd::move_to(double x, double y) throw()
+   { move_to_x(x); move_to_y(y); }
+void rectd::move_to(POINTD pt) throw()
+   { move_to_x(pt.x); move_to_y(pt.y); }
+bool rectd::intersect(LPCRECTD lpRect1, LPCRECTD lpRect2) throw()
+{ return ::intersect(this, lpRect1, lpRect2) != FALSE;}
+bool rectd::unite(LPCRECTD lpRect1, LPCRECTD lpRect2) throw()
+   { return ::unite(this, lpRect1, lpRect2) != FALSE; }
+void rectd::operator=(const RECTD& srcRect) throw()
+   { ::copy(this, (LPCRECTD) &srcRect); }
+bool rectd::operator==(const RECTD& rectd) const throw()
+   { return ::is_equal((LPCRECTD)this, (LPCRECTD) &rectd) != FALSE; }
+bool rectd::operator!=(const RECTD& rectd) const throw()
+   { return !::is_equal((LPCRECTD)this, (LPCRECTD) &rectd) != FALSE; }
+void rectd::operator+=(POINTD point) throw()
+   { ::offset(this, point.x, point.y); }
+void rectd::operator+=(SIZED size) throw()
+   { ::offset(this, size.cx, size.cy); }
+void rectd::operator+=(LPCRECTD lpRect) throw()
+   { inflate(lpRect); }
+void rectd::operator-=(POINTD point) throw()
+   { ::offset(this, -point.x, -point.y); }
+void rectd::operator-=(SIZED size) throw()
+   { ::offset(this, -size.cx, -size.cy); }
+void rectd::operator-=(LPCRECTD lpRect) throw()
+   { deflate(lpRect); }
+void rectd::operator&=(const RECTD& rectd) throw()
+   { ::intersect(this, this, (LPCRECTD)&rectd); }
+void rectd::operator|=(const RECTD& rectd) throw()
+   { ::unite(this, this,(LPCRECTD) &rectd); }
+rectd rectd::operator+(POINTD pt) const throw()
+   { rectd rectd(*this); ::offset(&rectd, pt.x, pt.y); return rectd; }
+rectd rectd::operator-(POINTD pt) const throw()
+   { rectd rectd(*this); ::offset(&rectd, -pt.x, -pt.y); return rectd; }
+rectd rectd::operator+(SIZED size) const throw()
+   { rectd rectd(*this); ::offset(&rectd, size.cx, size.cy); return rectd; }
+rectd rectd::operator-(SIZED size) const throw()
+   { rectd rectd(*this); ::offset(&rectd, -size.cx, -size.cy); return rectd; }
+rectd rectd::operator+(LPCRECTD lpRect) const throw()
+   { class rectd rectd((LPCRECTD)this); rectd.inflate(lpRect); return rectd; }
+rectd rectd::operator-(LPCRECTD lpRect) const throw()
+   { class rectd rectd((LPCRECTD)this); rectd.deflate(lpRect); return rectd; }
+rectd rectd::operator&(const RECTD& rect2) const throw()
+{ class rectd rectd; ::intersect(&rectd, (LPCRECTD)this, (LPCRECTD)&rect2);
+      return rectd; }
+rectd rectd::operator|(const RECTD& rect2) const throw()
+   { class rectd rectd; ::unite(&rectd, (LPCRECTD)this, (LPCRECTD)&rect2);
+      return rectd; }
+//bool rectd::subtract(LPCRECTD lpRectSrc1, LPCRECTD lpRectSrc2) throw()
+  // { return ::subtract(this, lpRectSrc1, lpRectSrc2) != FALSE; }
+
+void rectd::normalize() throw()
+   {
+      double nTemp;
+      if (left > right)
+      {
+         nTemp = left;
+         left = right;
+         right = nTemp;
+      }
+      if (top > bottom)
+      {
+         nTemp = top;
+         top = bottom;
+         bottom = nTemp;
+      }
+   }
+
+void rectd::inflate(LPCRECTD lpRect) throw()
+   {
+      left -= lpRect->left;      top -= lpRect->top;
+      right += lpRect->right;      bottom += lpRect->bottom;
+   }
+
+void rectd::inflate(double l, double t, double r, double b) throw()
+   {
+      left -= l;         top -= t;
+      right += r;         bottom += b;
+   }
+
+void rectd::deflate(LPCRECTD lpRect) throw()
+{
+   left += lpRect->left;   top += lpRect->top;
+   right -= lpRect->right;   bottom -= lpRect->bottom;
+}
+
+void rectd::deflate(double l, double t, double r, double b) throw()
+   {
+      left += l;      top += t;
+      right -= r;      bottom -= b;
+   }
+
+rectd rectd::MulDiv(double nMultiplier, double nDivisor) const throw()
+   {
+      return rectd(  left     *  nMultiplier / nDivisor,
+                     top      *  nMultiplier / nDivisor,
+                     right    *  nMultiplier / nDivisor,
+                     bottom   *  nMultiplier / nDivisor);
+   }
+
+double rectd::area()
+   { return width() * height(); }
+
+
+void rectd::get_bounding_rect(const POINTD * lppoint, count count)
+{
+
+   pointd_array::get_bounding_rect(this, lppoint, count);
+
+}
+
+void rectd::get_bounding_rect(const pointd_array & pointa)
+{
+
+   pointa.get_bounding_rect(this);
+
+}
+
+

@@ -23,12 +23,15 @@
 class __size64;
 class size;
 class size64;
+class sized;
 class __point64;
 class point;
 class point64;
+class pointd;
 class __rect64;
 class rect;
 class rect64;
+class rectd;
 
 class CLASS_DECL_ca __point64
 {
@@ -47,12 +50,18 @@ typedef DWORD_PTR          dwordptr;
 class __size64;
 class size;
 class size64;
+struct tagSIZED;
+class sized;
 class __point64;
 class point;
 class point64;
+struct tagPOINTD;
+class pointd;
 class __rect64;
 class rect;
 class rect64;
+struct tagRECTD;
+class rectd;
 
 class CLASS_DECL_ca __size64
 {
@@ -71,6 +80,29 @@ public:
 };
 
 
+typedef struct tagPOINTD
+{
+    double  x;
+    double  y;
+} POINTD, *PPOINTD, NEAR *NPPOINTD, FAR *LPPOINTD;
+
+typedef struct tagSIZED
+{
+    double        cx;
+    double        cy;
+} SIZED, *PSIZED, *LPSIZED;
+
+typedef struct tagRECTD
+{
+    double  left;
+    double  top;
+    double  right;
+    double  bottom;
+} RECTD, *PRECTD, NEAR *NPRECTD, FAR *LPRECTD;
+
+typedef const RECTD FAR* LPCRECTD;
+
+
 
 
 #include "size.h"
@@ -83,6 +115,26 @@ CLASS_DECL_ca inline bool is64(__int64 i)
 {
    return (i & 0xffffffff00000000 ) != 0;
 }
+CLASS_DECL_ca bool copy(tagRECTD * prectDest, const tagRECTD * prectSrc);
+CLASS_DECL_ca bool copy(tagRECTD * prectDest, const RECT * prectSrc);
+CLASS_DECL_ca bool copy(RECT * prectDest, const tagRECTD * prectSrc);
+CLASS_DECL_ca bool copy(tagRECTD * prectDest, const __rect64 * prectSrc);
+CLASS_DECL_ca bool copy(__rect64 * prectDest, const tagRECTD * prectSrc);
+CLASS_DECL_ca bool is_empty(const tagRECTD * prect);
+CLASS_DECL_ca bool contains(const tagRECTD * prect, POINTD pt);
+CLASS_DECL_ca bool set(tagRECTD * prectDest, double x1, double y1, double x2, double y2);
+CLASS_DECL_ca bool null(tagRECTD * prectDest);
+CLASS_DECL_ca bool is_equal(const tagRECTD * prect1, const tagRECTD * prect2);
+CLASS_DECL_ca bool inflate(tagRECTD * prect, double x, double y);
+CLASS_DECL_ca bool deflate(tagRECTD * prect, double x, double y);
+CLASS_DECL_ca bool offset(tagRECTD * prect, double x, double y);
+CLASS_DECL_ca bool x_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
+CLASS_DECL_ca bool y_intersect_rect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
+CLASS_DECL_ca bool intersect(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
+CLASS_DECL_ca bool unite(tagRECTD * prect, const tagRECTD * prect1, const tagRECTD * prect2);
+CLASS_DECL_ca double width(LPRECTD lpcrect);
+CLASS_DECL_ca double height(LPCRECTD lpcrect);
+
 CLASS_DECL_ca bool copy(__rect64 * prectDest, const __rect64 * prectSrc);
 CLASS_DECL_ca bool copy(__rect64 * prectDest, const RECT * prectSrc);
 CLASS_DECL_ca bool copy(RECT * prectDest, const __rect64 * prectSrc);
@@ -98,6 +150,7 @@ CLASS_DECL_ca bool x_intersect_rect(__rect64 * prect, const __rect64 * prect1, c
 CLASS_DECL_ca bool y_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
 CLASS_DECL_ca bool intersect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
 CLASS_DECL_ca bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
+
 CLASS_DECL_ca long width(LPRECT lpcrect);
 CLASS_DECL_ca long height(LPCRECT lpcrect);
 
