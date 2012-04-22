@@ -14,3 +14,10 @@ class CLASS_DECL_ca float2a :
 public:
 };
 
+
+class CLASS_DECL_ca double2a :
+   public array_ptr_alloc < double_array, double_array & >
+{
+public:
+};
+
