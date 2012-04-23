@@ -299,6 +299,7 @@ namespace user
          {
             if(get_element_rect(iVisiblePane, rectIcon, element_icon))
             {
+               pdc->set_alpha_mode(::ca::alpha_mode_blend);
                pane.m_dib->bitmap_blend(pdc, rectIcon);
             }
 
@@ -346,6 +347,7 @@ namespace user
 
             if(get_element_rect(iVisiblePane, rectIcon, element_icon))
             {
+               pdc->set_alpha_mode(::ca::alpha_mode_blend);
                pane.m_dib->bitmap_blend(pdc, rectIcon);
             }
 

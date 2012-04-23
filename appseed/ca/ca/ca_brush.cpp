@@ -39,6 +39,24 @@ namespace ca
       throw interface_only_exception();
    }
 
+   BOOL brush::CreateStockObject(int nIndex)
+   {
+
+      if(nIndex == NULL_BRUSH)
+      {
+         m_crColor   = ARGB(0, 0, 0, 0);
+         m_bUpdated  = false;
+      }
+      else
+      {
+         m_crColor   = ARGB(0, 0, 0, 0);
+         m_bUpdated  = false;
+      }
+
+      return TRUE;
+
+   }
+
    BOOL brush::CreateSolidBrush(COLORREF crColor)
    {
 

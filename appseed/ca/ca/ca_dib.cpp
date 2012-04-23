@@ -610,6 +610,7 @@ fill_last:
    bool dib::bitmap_blend(::ca::graphics * pgraphics, LPCRECT lprect)
    {
       rect rect(lprect);
+      
       return System.imaging().bitmap_blend(
          pgraphics,
          rect.top_left(),

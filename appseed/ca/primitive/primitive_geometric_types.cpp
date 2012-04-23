@@ -400,7 +400,7 @@ bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
 
 
 
-CLASS_DECL_ca long width(LPRECT lpcrect)
+CLASS_DECL_ca long width(LPCRECT lpcrect)
 {
    return lpcrect->right - lpcrect->left;
 }

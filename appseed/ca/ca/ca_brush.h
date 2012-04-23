@@ -16,6 +16,7 @@ namespace ca
       virtual void construct(int nIndex, COLORREF crColor);    // CreateHatchBrush
       virtual void construct(bitmap * pbitmap);                // CreatePatternBrush
 
+      virtual BOOL CreateStockObject(int nIndex);
       virtual BOOL CreateSolidBrush(COLORREF crColor);
       virtual BOOL CreateHatchBrush(int nIndex, COLORREF crColor);
       virtual BOOL CreateBrushIndirect(const LOGBRUSH* lpLogBrush);
