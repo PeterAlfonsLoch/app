@@ -9,7 +9,7 @@ namespace ca
       m_eventFree(TRUE, TRUE)
    {
       m_bProDevianMode           = true;
-      m_iFramesPerSecond         = 120;
+      m_iFramesPerSecond         = 40;
       m_bRun                     = true;
    }
 

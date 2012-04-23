@@ -193,7 +193,13 @@ namespace ca2
 
       if(m_pca2library != NULL)
       {
-         m_pca2library->get_app_list(stra);
+         try
+         {
+            m_pca2library->get_app_list(stra);
+         }
+         catch(...)
+         {
+         }
       }
       else
       {

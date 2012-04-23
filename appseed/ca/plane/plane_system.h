@@ -555,7 +555,7 @@ namespace plane
 
       virtual string get_host_location_url();
 
-      virtual void add_library(::ca2::library * plibrary);
+      virtual bool add_library(::ca2::library * plibrary);
 
    };
 

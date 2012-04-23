@@ -1354,6 +1354,18 @@ InitFailure:
    }
 
 
+   bool application::add_library(::ca2::library * plibrary)
+   {
+      
+      plibrary->set_app(this);
+      
+      System.add_library(plibrary);
+
+      return true;
+
+   }
+
+
 } //namespace planebase
 
 

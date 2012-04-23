@@ -131,6 +131,8 @@ namespace planebase
       virtual bool update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession, const char * pszRoot, const char * pszRelative, const char * pszLocale, const char * pszStyle);
 
 
+      virtual bool add_library(::ca2::library * plibrary);
+
    };
 
    CLASS_DECL_ca UINT AFX_CDECL application_thread_procedure(LPVOID pvoid);

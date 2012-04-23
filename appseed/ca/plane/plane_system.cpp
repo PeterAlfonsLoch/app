@@ -1559,7 +1559,7 @@ retry:
    }
 
 
-   void system::add_library(::ca2::library * plibrary)
+   bool system::add_library(::ca2::library * plibrary)
    {
       
       m_libraryptra.add(plibrary);
@@ -1574,6 +1574,8 @@ retry:
          m_idmapCreateViewLibrary.set_at(ida[i], plibrary);
 
       }
+
+      return true;
 
    }
 
