@@ -92,12 +92,51 @@ namespace filemanager
       }
       else if(m_pcallback != NULL)
       {
+         
+         var varFile;
 
-         var varFile(itema.get_var_file());
+         var varQuery;
 
-         var varQuery(itema.get_var_query());
+         if(itema.get_count() == 2 && m_id == "left_file")
+         {
+            {
+               varFile = itema[0].m_strPath;
+               varQuery["file_manager_id"] = "left_file";
+               m_pcallback->request(varFile, varQuery);
+            }
 
-         m_pcallback->request(varFile, varQuery);
+            {
+               varFile = itema[1].m_strPath;
+               varQuery["file_manager_id"] = "right_file";
+               m_pcallback->request(varFile, varQuery);
+            }
+         }
+         else if(itema.get_count() == 2 && m_id == "right_file")
+         {
+            {
+               varFile = itema[0].m_strPath;
+               varQuery["file_manager_id"] = "right_file";
+               m_pcallback->request(varFile, varQuery);
+            }
+
+            {
+               varFile = itema[1].m_strPath;
+               varQuery["file_manager_id"] = "left_file";
+               m_pcallback->request(varFile, varQuery);
+            }
+         }
+         else
+         {
+
+            varFile = itema.get_var_file();
+
+            varQuery = itema.get_var_query();
+
+            varQuery["file_manager_id"] = m_id;
+
+            m_pcallback->request(varFile, varQuery);
+
+         }
 
       }
 

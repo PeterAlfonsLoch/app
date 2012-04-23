@@ -35,6 +35,8 @@ namespace filemanager
 
       string                           m_strToolBar;
       string                           m_strToolBarSave;
+
+      id                               m_id;
    
    
 

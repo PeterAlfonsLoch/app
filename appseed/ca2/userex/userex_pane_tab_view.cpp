@@ -157,10 +157,15 @@ namespace userex
          {
             plibrary->on_create_view(pcreatordata);
          }
-         else if(pcreatordata->m_id == "file_manager")
+         else if(pcreatordata->m_id == "file_manager"
+              || pcreatordata->m_id == "left_file"
+              || pcreatordata->m_id == "right_file")
          {
 
             ::filemanager::data * pfilemanagerdata = new ::filemanager::data(get_app());
+
+
+            pfilemanagerdata->m_id = pcreatordata->m_id;
 
             if(oprop("file_manager_toolbar").is_set())
                pfilemanagerdata->m_strToolBar = oprop("file_manager_toolbar");
@@ -182,9 +187,6 @@ namespace userex
                   if(pframe != NULL)
                   {
                      pcreatordata->m_pdoc = pdoc;
-                     //pcreatordata->m_pwnd = pframe;
-
-                     //pdoc->Initialize(true);
                   }
                }
             }
