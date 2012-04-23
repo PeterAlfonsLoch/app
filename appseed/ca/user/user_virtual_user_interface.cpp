@@ -166,7 +166,7 @@ BOOL virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
       return FALSE;
    m_bVisible = (dwStyle & WS_VISIBLE) != 0;
 
-   m_pthread = System.GetThread();
+   m_pthread = &Application;
    m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
    m_pguie->m_pthread->add(m_pguie);
@@ -247,7 +247,7 @@ BOOL virtual_user_interface::create(const char * lpszClassName,
    m_bCreate = true;
    if(!create_message_window())
       return FALSE;
-   m_pthread = System.GetThread();
+   m_pthread = &Application;
    m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
    m_pguie->m_pthread->add(m_pguie);
@@ -323,7 +323,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    m_bCreate = true;
    if(!create_message_window())
       return false;
-   m_pthread = System.GetThread();
+   m_pthread = &Application;
    m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
    m_pguie->m_pthread->add(m_pguie);

@@ -40,10 +40,8 @@ namespace userbase
    }
 
 
-   void split_bar::_001OnSize(gen::signal_object * pobj)
+   void split_bar::layout()
    {
-      //SCAST_PTR(::gen::message::size, psize, pobj)
-      pobj->previous();
       if(m_pparent != NULL)
       {
          split_layout::e_orientation eorientation = m_pparent->GetSplitOrientation();

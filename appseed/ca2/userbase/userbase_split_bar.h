@@ -34,11 +34,12 @@ namespace userbase
       BOOL create(split_layout * pparent);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
-      DECL_GEN_SIGNAL(_001OnSize)
+      
       DECL_GEN_SIGNAL(_001OnLButtonDown)
       DECL_GEN_SIGNAL(_001OnLButtonUp)
       DECL_GEN_SIGNAL(_001OnMouseMove)
 
+      virtual void layout();
 
    };
 
