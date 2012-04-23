@@ -125,6 +125,11 @@ namespace dynamic_source
             return true;
       }
       {
+         strsize iFind1 = str.find("fatal error C1083:");
+         if(iFind1 >= 0)
+            return true;
+      }
+      {
          strsize iFind1 = str.find("warning LNK4099:");
          if(iFind1 >= 0)
             return true;
