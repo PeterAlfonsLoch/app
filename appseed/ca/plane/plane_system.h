@@ -287,6 +287,9 @@ namespace plane
 
      bool                              m_bDoNotExitIfNoApplications;
 
+     ::collection::strid_map < ::ca2::library * > m_idmapCreateViewLibrary;
+
+     comparable_array < ::ca2::library * >   m_libraryptra;
 
       system();
       virtual ~system();
@@ -551,6 +554,8 @@ namespace plane
       virtual string get_fontopus_server(const char * pszUrl, ::ca::application * papp, int iRetry = -1);
 
       virtual string get_host_location_url();
+
+      virtual void add_library(::ca2::library * plibrary);
 
    };
 

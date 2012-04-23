@@ -1559,6 +1559,25 @@ retry:
    }
 
 
+   void system::add_library(::ca2::library * plibrary)
+   {
+      
+      m_libraryptra.add(plibrary);
+
+      ::raw_array < ::id > ida;
+
+      plibrary->get_create_view_id_list(ida);
+
+      for(int i = 0; i < ida.get_count(); i++)
+      {
+
+         m_idmapCreateViewLibrary.set_at(ida[i], plibrary);
+
+      }
+
+   }
+
+
 } // namespace plane
 
 

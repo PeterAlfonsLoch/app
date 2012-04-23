@@ -217,7 +217,21 @@ namespace ca2
 
    }
 
+   
+   void library::on_create_view(::user::view_creator_data * pcreatordata)
+   {
 
+      UNREFERENCED_PARAMETER(pcreatordata);
+
+   }
+
+
+   void library::get_create_view_id_list(::raw_array < id > & ida)
+   {
+      
+      UNREFERENCED_PARAMETER(ida);
+
+   }
 
 
 } // namespace ca2

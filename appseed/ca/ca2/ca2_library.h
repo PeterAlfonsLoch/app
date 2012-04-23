@@ -1,6 +1,16 @@
 #pragma once
 
 
+namespace user
+{
+   
+
+   class view_creator_data;
+
+
+} // namespace user
+
+
 namespace ca2
 {
 
@@ -28,6 +38,12 @@ namespace ca2
 
 
       virtual bool contains_app(const char * pszAppId);
+
+
+      virtual void get_create_view_id_list(::raw_array < id > & ida);
+
+
+      virtual void on_create_view(::user::view_creator_data * pcreatordata);
 
 
       // impl
