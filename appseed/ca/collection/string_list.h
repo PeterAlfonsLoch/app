@@ -147,6 +147,17 @@ public:
       return iterator(NULL, this);
    }
 
+   const_iterator begin() const
+   {
+      return const_iterator(get_head_position(), (string_list *) this);
+   }
+
+
+   const_iterator end() const
+   {
+      return const_iterator(NULL, (string_list *) this);
+   }
+
 protected:
 
 
