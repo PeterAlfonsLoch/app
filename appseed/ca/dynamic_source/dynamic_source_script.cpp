@@ -9,6 +9,17 @@ namespace dynamic_source
 {
 
 
+
+   script::script(::ca::application * papp) :
+      ca(papp)
+   {
+   }
+   
+   script::~script()
+   {
+   }
+
+
    typedef struct tagLOADPARMS32 {
      char * lpEnvAddress;  // address of environment strings
      char * lpCmdLine;     // address of command line
@@ -16,8 +27,9 @@ namespace dynamic_source
      DWORD dwReserved;    // must be zero
    } LOADPARMS32;
 
-   script::script(::ca::application * papp) :
+   ds_script::ds_script(::ca::application * papp) :
       ca(papp),
+      script(papp),
       m_memfileError(papp)
    {
       m_lpfnCreateInstance    = NULL;
@@ -26,7 +38,7 @@ namespace dynamic_source
       m_evCreationEnabled.SetEvent();
    }
 
-   bool script::DoesMatchVersion()
+   bool ds_script::DoesMatchVersion()
    {
       single_lock sl(&m_mutex, TRUE);
       struct stat64 st;
@@ -41,7 +53,7 @@ namespace dynamic_source
       return bMatches;
    }
 
-   bool script::ShouldBuild()
+   bool ds_script::ShouldBuild()
    {
       single_lock sl(&m_mutex, TRUE);
       return  m_bShouldBuild || (HasTempError() &&
@@ -50,7 +62,7 @@ namespace dynamic_source
 
    }
 
-   void script::on_start_build()
+   void ds_script::on_start_build()
    {
       single_lock sl(&m_mutex, TRUE);
       // Unload library in the context of manager thread
@@ -61,14 +73,14 @@ namespace dynamic_source
       m_memfileError.Truncate(0);
    }
 
-   bool script::HasTimedOutLastBuild()
+   bool ds_script::HasTimedOutLastBuild()
    {
       single_lock sl(&m_mutex, TRUE);
       return (::GetTickCount() - m_dwLastBuildTime) >
          (m_pmanager->m_dwBuildTimeWindow + System.math().RandRange(0, m_pmanager->m_dwBuildTimeRandomWindow));
    }
 
-   bool script::HasCompileOrLinkError()
+   bool ds_script::HasCompileOrLinkError()
    {
       single_lock sl(&m_mutex, TRUE);
       string str;
@@ -83,7 +95,7 @@ namespace dynamic_source
       return false;
    }
 
-   bool script::HasTempError(bool bLock)
+   bool ds_script::HasTempError(bool bLock)
    {
       single_lock sl(&m_mutex, bLock ? TRUE : FALSE);
       if(!m_bCalcHasTempError)
@@ -94,7 +106,7 @@ namespace dynamic_source
       return m_bHasTempError;
    }
 
-   bool script::CalcHasTempError(bool bLock)
+   bool ds_script::CalcHasTempError(bool bLock)
    {
       single_lock sl(&m_mutex, bLock ? TRUE : FALSE);
       string str;
@@ -154,7 +166,7 @@ namespace dynamic_source
    }
 
 
-   void script::Load(bool bLock)
+   void ds_script::Load(bool bLock)
    {
       single_lock sl(&m_mutex, bLock ? TRUE : FALSE);
       m_strScriptPath.replace("/", "\\");
@@ -210,13 +222,13 @@ namespace dynamic_source
             }
          }
       }
-      m_lpfnCreateInstance = m_library.get < NET_NODE_CREATE_INSTANCE_PROC > ("create_dynamic_source_script_instance");
+      m_lpfnCreateInstance = m_library.get < NET_NODE_CREATE_INSTANCE_PROC > ("create_dynamic_source_ds_script_instance");
       if(m_lpfnCreateInstance != NULL)
       {
          m_evCreationEnabled.SetEvent();
       }
    }
-   void script::Unload(bool bLock)
+   void ds_script::Unload(bool bLock)
    {
       m_evCreationEnabled.ResetEvent();
       single_lock sl(&m_mutex);
@@ -224,18 +236,18 @@ namespace dynamic_source
       {
          sl.lock(minutes(0.5));
       }
-      while(m_scriptinstanceptra.get_size())
+      while(m_ds_scriptinstanceptra.get_size())
       {
          if(bLock)
          {
             sl.unlock();
             sl.lock(minutes(0.5));
          }
-         for(int i = 0; i < m_scriptinstanceptra.get_size();)
+         for(int i = 0; i < m_ds_scriptinstanceptra.get_size();)
          {
-            if(GetTickCount() > (m_scriptinstanceptra[i]->m_dwCreate + 30 * 1000))
+            if(GetTickCount() > (m_ds_scriptinstanceptra[i]->m_dwCreate + 30 * 1000))
             {
-               m_scriptinstanceptra.remove_at(i);
+               m_ds_scriptinstanceptra.remove_at(i);
             }
             else
             {
@@ -258,7 +270,7 @@ namespace dynamic_source
          if(hmodule != NULL && !::FreeLibrary(hmodule))
          {
             DWORD dwError = ::GetLastError();
-            TRACE("script::GetModuleHandle return BOOL(%d) Unload Error close Handle %s %d\r\n", b, m_strScriptPath, dwError);
+            TRACE("ds_script::GetModuleHandle return BOOL(%d) Unload Error close Handle %s %d\r\n", b, m_strScriptPath, dwError);
          }
          string strPdb;
          strPdb = m_strScriptPath;
@@ -268,13 +280,13 @@ namespace dynamic_source
          if(hmodule != NULL && !::FreeLibrary(hmodule))
          {
             DWORD dwError = ::GetLastError();
-            TRACE("script::Unload Error close Handle %s %d\r\n", strPdb, dwError);
+            TRACE("ds_script::Unload Error close Handle %s %d\r\n", strPdb, dwError);
          }
 #else
          void * p = dlopen(m_strScriptPath, RTLD_NOLOAD);
          if(p != NULL && !dlclose(p))
          {
-            TRACE("script::%s Unload Error\r\n", m_strScriptPath.c_str());
+            TRACE("ds_script::%s Unload Error\r\n", m_strScriptPath.c_str());
          }
 #endif
 
@@ -284,16 +296,16 @@ namespace dynamic_source
 
 
 
-   script::~script(void)
+   ds_script::~ds_script(void)
    {
    }
 
-   void script::run(script_instance * pinstance)
+   void ds_script::run(ds_script_instance * pinstance)
    {
       pinstance->run();
    }
 
-   script_instance * script::create_instance()
+   ds_script_instance * ds_script::create_instance()
    {
       single_lock slCreationEnabled(&m_evCreationEnabled);
       if(!slCreationEnabled.lock(minutes(0.7)))
@@ -332,22 +344,22 @@ namespace dynamic_source
          m_evCreationEnabled.SetEvent();
       }
 
-      script_instance * pinstance;
+      ds_script_instance * pinstance;
       if(m_lpfnCreateInstance == NULL)
       {
-         pinstance = new script_instance(this);
+         pinstance = new ds_script_instance(this);
       }
       else
       {
          pinstance = m_lpfnCreateInstance(this);
       }
       pinstance->m_dwCreate = GetTickCount();
-      m_scriptinstanceptra.add(pinstance);
+      m_ds_scriptinstanceptra.add(pinstance);
       return pinstance;
    }
 
 
-   ::ca::application * script::get_app() const
+   ::ca::application * ds_script::get_app() const
    {
       return m_pmanager->get_app();
    }

@@ -35,7 +35,7 @@ namespace dynamic_source
 
       Begin();
 
-      m_strNamespace             = "netnode"; // default namespace is linked to outer project app_core_netnode
+      m_strNamespace             = "netnodelite"; // default namespace is linked to outer project app_core_netnodelite
       m_strNetnodePath           = "C:\\netnodenet\\";
       m_strNetseedPath           = "C:\\netnodenet\\net\\netseed\\";
       m_strNetseedDsCa2Path      = "C:\\netnodenet\\net\\netseed\\ds\\ca2\\";
@@ -103,12 +103,12 @@ namespace dynamic_source
    void script_manager::handle(::dynamic_source::httpd_socket * pnetnodesocket)
    {
       string strHead;
-      script_instance * pinstance = get("system/seed_carlosgustavocecynlundgrencarlos");
+      script_instance * pinstance = get("netnode://script_seed_carlos_gustavo_cecyn_lundgren_carlos");
       pnetnodesocket->m_pinstanceCurrent = pinstance;
       if(pinstance != NULL)
       {
          pinstance->m_strDebugRequestUri = pnetnodesocket->inattr("request_uri");
-         pinstance->m_strDebugThisScript = "system/seed_carlosgustavocecynlundgrencarlos";
+         pinstance->m_strDebugThisScript = "netnode://script_seed_carlos_gustavo_cecyn_lundgren_carlos";
          pinstance->initialize(pinstance, NULL, pnetnodesocket, this);
          pinstance->dinit();
          if(pinstance->m_iDebug > 0)
@@ -655,6 +655,20 @@ namespace dynamic_source
 
    void script_manager::on_load_env()
    {
+   }
+
+   script_manager::register_plugin(const char * pszHost, const char * pszScript, const char * pszName, script * pscript)
+   {
+
+      plugin_map_item item;
+      
+      item.m_strHost       = pszHost;
+      item.m_strScript     = pszScript;
+      item.m_strPlugin     = pszName;
+
+      m_pcache->register_script(pszName, pscript);
+
+
    }
 
 } // namespace dynamic_source

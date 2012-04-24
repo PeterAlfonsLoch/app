@@ -27,6 +27,7 @@ namespace dynamic_source
       void cache(script * pscript);
 
       script * get(const char * lpcszName);
+      script * register_script(const char * lpcszName, script * pscript);
 
 
    };

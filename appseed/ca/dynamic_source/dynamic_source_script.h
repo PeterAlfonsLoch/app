@@ -11,34 +11,59 @@ namespace dynamic_source
    typedef   script_instance * (*NET_NODE_CREATE_INSTANCE_PROC)(script * pscript);
 
 
-
    class CLASS_DECL_ca script :
       virtual public ::radix::object
    {
    public:
 
 
-      ::ca::library m_library;
-      __time_t m_ftCreation;
-      __time_t m_ftAccess;
-      __time_t m_ftModified;
-
-      http::memory_file m_memfileError;
-      string m_strName;
-      string m_strSourcePath;
-      string m_strSourceDir;
-      string m_strCppPath;
-      string m_strScriptPath;
-      string m_strBuildBat;
-      mutex m_mutex;
-      manual_reset_event m_evCreationEnabled;
-
+      script_manager *        m_pmanager;
+      string                  m_strName;
       comparable_array < script_instance * > m_scriptinstanceptra;
 
 
-
       script(::ca::application * papp);
-      ~script(void);
+      virtual ~script();
+
+
+      virtual script_instance * create_instance() = 0;
+
+
+
+   };
+
+
+   class CLASS_DECL_ca ds_script :
+      virtual public script
+   {
+   public:
+
+
+      ::ca::library           m_library;
+      __time_t                m_ftCreation;
+      __time_t                m_ftAccess;
+      __time_t                m_ftModified;
+
+      http::memory_file       m_memfileError;
+      
+      string                  m_strSourcePath;
+      string                  m_strSourceDir;
+      string                  m_strCppPath;
+      string                  m_strScriptPath;
+      string                  m_strBuildBat;
+      mutex                   m_mutex;
+      manual_reset_event      m_evCreationEnabled;
+      DWORD                   m_dwLastBuildTime;
+      bool                    m_bShouldBuild;
+      bool                    m_bCalcHasTempError;
+      bool                    m_bHasTempError;
+
+      
+
+
+
+      ds_script(::ca::application * papp);
+      ~ds_script(void);
 
 
 
@@ -58,17 +83,33 @@ namespace dynamic_source
       void Unload(bool bLock);
 
 
-      script_manager * m_pmanager;
-      DWORD m_dwLastBuildTime;
-      bool m_bShouldBuild;
-      bool m_bCalcHasTempError;
-      bool m_bHasTempError;
 
 
       ::ca::application * get_app() const;
 
       script_instance * create_instance();
 
+
+   };
+
+   template < class T >
+   class CLASS_DECL_ca t_script :
+      virtual public script
+   {
+   public:
+
+
+      t_script(::ca::application * papp) : 
+         ca(papp),
+         script(papp)
+      {
+      };
+
+
+      virtual script_instance * create_instance()
+      {
+         return new T(this);
+      }
 
    };
 

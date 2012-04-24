@@ -32,14 +32,14 @@ namespace dynamic_source
    {
    public:
 
-      class clear_include_matches_folder_watch
+      class CLASS_DECL_ca clear_include_matches_folder_watch
       {
       public:
          string                  m_strPath;
          script_manager *  m_pmanager;
       };
 
-      class session :
+      class CLASS_DECL_ca session :
          virtual public ::radix::object
       {
       public:
@@ -50,6 +50,19 @@ namespace dynamic_source
 
 
       };
+
+      class CLASS_DECL_ca plugin_map_item
+      {
+      public:
+
+         
+         string         m_strHost;
+         string         m_strScript;
+         string         m_strPlugin;
+
+      };
+
+      ::raw_array < plugin_map_item >           m_pluginmapitema;
 
       mutex m_mutexIncludeMatches;
       ::collection::string_map < bool > m_mapIncludeMatchesFileExists;
@@ -142,6 +155,8 @@ namespace dynamic_source
 
 
       virtual void on_load_env();
+
+      virtual void register_plugin(const char * pszHost, const char * pszScript, const char * pszName, script * pscript);
 
    };
 

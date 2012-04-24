@@ -55,6 +55,39 @@ namespace dynamic_source
 
    }
 
+   script * script_cache::register_script(const char * lpcszName, script * pscript)
+   {
+   
+      single_lock sl(&m_cs, TRUE);
+
+      map_string_to_ptr::pair * ppair = m_map.PLookup(lpcszName);
+      
+      if(ppair != NULL)
+      {
+         try
+         {
+            delete ppair->m_value;
+         }
+         catch(...)
+         {
+         }
+         
+         ppair->m_value = pscript;
+
+         return pscript;
+
+      }
+
+      pscript->m_pmanager = m_pmanager;
+
+      pscript->m_strName = lpcszName;
+
+      cache(pscript);
+
+      return pscript;
+
+   }
+
    script_instance * script_cache::create_instance(const char * lpcszName)
    {
       //::OutputDebugString(lpcszName);
