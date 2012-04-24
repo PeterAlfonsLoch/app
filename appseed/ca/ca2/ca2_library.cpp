@@ -240,6 +240,16 @@ namespace ca2
    }
 
 
+   ::dynamic_source::script_manager * library::create_script_manager(::ca::application * papp)
+   {
+
+      UNREFERENCED_PARAMETER(papp);
+
+      return NULL;
+
+   }
+
+
 } // namespace ca2
 
 

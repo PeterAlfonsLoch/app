@@ -137,7 +137,7 @@ namespace dynamic_source
 
    }
 
-   void script_compiler::compile(script * pscript)
+   void script_compiler::compile(ds_script * pscript)
    {
       single_lock slScript(&pscript->m_mutex, TRUE);
       TRACE("Compiling script \"%s\"\n", pscript->m_strName.c_str());
@@ -483,7 +483,7 @@ namespace dynamic_source
 
    }
 
-   void script_compiler::cppize(script * pscript)
+   void script_compiler::cppize(ds_script * pscript)
    {
       Application.dir().mk(System.dir().name(pscript->m_strCppPath));
       cppize1(pscript);
@@ -501,7 +501,7 @@ namespace dynamic_source
       return str;
    }
 
-   void script_compiler::cppize1(script * pscript)
+   void script_compiler::cppize1(ds_script * pscript)
    {
       /*ex1::filesp spfile(get_app());
       if(!spfile->open(pscript->m_strSourcePath, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone))
@@ -1566,11 +1566,21 @@ namespace dynamic_source
       {
          string strError;
          pinstance->initialize(pinstance, NULL, NULL, m_pmanager);
+         ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript);
+         if(pdsscript != NULL)
+         {
+            try
+            {
+               pdsscript->m_memfileError.seek_to_begin();
+               pdsscript->m_memfileError.to_string(strError);
+               m_pmanager->m_strPersistentError += strError;
+            }
+            catch(...)
+            {
+            }
+         }
          try
          {
-            pinstance->m_pscript->m_memfileError.seek_to_begin();
-            pinstance->m_pscript->m_memfileError.to_string(strError);
-            m_pmanager->m_strPersistentError += strError;
             pinstance->run();
             pinstance->destroy();
          }
@@ -1597,9 +1607,19 @@ namespace dynamic_source
          {
             string strError;
             pinstance->initialize(pinstance, NULL, NULL, m_pmanager);
-            pinstance->m_pscript->m_memfileError.seek_to_begin();
-            pinstance->m_pscript->m_memfileError.to_string(strError);
-            m_pmanager->m_strPersistentError += strError;
+            ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript);
+            if(pdsscript != NULL)
+            {
+               try
+               {
+                  pdsscript->m_memfileError.seek_to_begin();
+                  pdsscript->m_memfileError.to_string(strError);
+                  m_pmanager->m_strPersistentError += strError;
+               }
+               catch(...)
+               {
+               }
+            }
             pinstance->run();
             pinstance->destroy();
          }

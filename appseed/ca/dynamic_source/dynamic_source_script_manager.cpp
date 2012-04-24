@@ -103,12 +103,12 @@ namespace dynamic_source
    void script_manager::handle(::dynamic_source::httpd_socket * pnetnodesocket)
    {
       string strHead;
-      script_instance * pinstance = get("netnode://script_seed_carlos_gustavo_cecyn_lundgren_carlos");
+      script_instance * pinstance = get(get_root_plugin());
       pnetnodesocket->m_pinstanceCurrent = pinstance;
       if(pinstance != NULL)
       {
          pinstance->m_strDebugRequestUri = pnetnodesocket->inattr("request_uri");
-         pinstance->m_strDebugThisScript = "netnode://script_seed_carlos_gustavo_cecyn_lundgren_carlos";
+         pinstance->m_strDebugThisScript = get_root_plugin();
          pinstance->initialize(pinstance, NULL, pnetnodesocket, this);
          pinstance->dinit();
          if(pinstance->m_iDebug > 0)
@@ -206,10 +206,18 @@ namespace dynamic_source
          {
             pinstance->m_strDebugRequestUri = pinstanceParent->main_instance()->netnodesocket()->m_request.m_strRequestUri;
             pinstance->m_strDebugThisScript = strName;
-            if(pinstance->m_pscript->m_memfileError.get_length() > 0)
+            ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript);
+            if(pdsscript != NULL)
             {
-               pinstance->output_file() << pinstance->m_pscript->m_memfileError;
+               try
+               {
+                  if(pdsscript->m_memfileError.get_length() > 0)
+                  {
+                     pinstance->output_file() << pdsscript->m_memfileError;
+                  }
+               }
             }
+
          }
       }
       if(pinstance != NULL)
@@ -669,6 +677,11 @@ namespace dynamic_source
       m_pcache->register_script(pszName, pscript);
 
 
+   }
+
+   string script_manager::get_root_handler()
+   {
+      return "netnode://script_seed_carlos_gustavo_cecyn_lundgren_carlos";
    }
 
 } // namespace dynamic_source

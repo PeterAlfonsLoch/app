@@ -11,6 +11,17 @@ namespace user
 } // namespace user
 
 
+
+namespace dynamic_source
+{
+
+
+   class script_manager;
+
+
+} // namespace dynamic_source
+
+
 namespace ca2
 {
 
@@ -49,6 +60,10 @@ namespace ca2
       // impl
       virtual ::ca::application * get_new_app(const char * pszId);
       virtual void get_app_list(stringa & stra);
+
+
+      virtual ::dynamic_source::script_manager * create_script_manager(::ca::application * papp);
+
 
    private:
 

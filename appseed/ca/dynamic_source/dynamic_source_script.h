@@ -19,6 +19,9 @@ namespace dynamic_source
 
       script_manager *        m_pmanager;
       string                  m_strName;
+      mutex                   m_mutex;
+      http::memory_file       m_memfileError;
+
       comparable_array < script_instance * > m_scriptinstanceptra;
 
 
@@ -28,7 +31,7 @@ namespace dynamic_source
 
       virtual script_instance * create_instance() = 0;
 
-
+      virtual void run(script_instance * pinstance);
 
    };
 
@@ -44,14 +47,13 @@ namespace dynamic_source
       __time_t                m_ftAccess;
       __time_t                m_ftModified;
 
-      http::memory_file       m_memfileError;
+      
       
       string                  m_strSourcePath;
       string                  m_strSourceDir;
       string                  m_strCppPath;
       string                  m_strScriptPath;
       string                  m_strBuildBat;
-      mutex                   m_mutex;
       manual_reset_event      m_evCreationEnabled;
       DWORD                   m_dwLastBuildTime;
       bool                    m_bShouldBuild;
@@ -69,7 +71,7 @@ namespace dynamic_source
 
       NET_NODE_CREATE_INSTANCE_PROC m_lpfnCreateInstance;
 
-      virtual void run(script_instance * pinstance);
+      
 
       virtual void on_start_build();
 

@@ -43,7 +43,7 @@ namespace dynamic_source
       if(ppair != NULL)
          return (script *) ppair->m_value;
 
-      script * pscript = new script(get_app());
+      script * pscript = new ds_script(get_app());
 
       pscript->m_pmanager = m_pmanager;
 
@@ -90,6 +90,15 @@ namespace dynamic_source
 
    script_instance * script_cache::create_instance(const char * lpcszName)
    {
+      
+      if(gen::str::begins(lpcszName, "netnode://"))
+      {
+         single_lock sl(&m_cs, TRUE);
+         script * pscript  = get(lpcszName);
+         sl.unlock();
+         return pscript->create_instance();
+      }
+
       //::OutputDebugString(lpcszName);
       string strName(lpcszName);
       strName = m_pmanager->real_path(lpcszName);
@@ -120,7 +129,13 @@ namespace dynamic_source
       while(pos != NULL)
       {
          m_map.get_next_assoc(pos, strName, (void * &) pscript);
-         pscript->m_bShouldBuild = true;
+
+         ds_script * pdsscript = dynamic_cast < ds_script * > (pscript);
+         if(pdsscript != NULL)
+         {
+            pdsscript->m_bShouldBuild = true;
+         }
+
       }
    }
 

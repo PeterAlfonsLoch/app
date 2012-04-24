@@ -19,6 +19,12 @@ namespace dynamic_source
    {
    }
 
+   void script::run(script_instance * pinstance)
+   {
+      pinstance->run();
+   }
+
+
 
    typedef struct tagLOADPARMS32 {
      char * lpEnvAddress;  // address of environment strings
@@ -236,18 +242,18 @@ namespace dynamic_source
       {
          sl.lock(minutes(0.5));
       }
-      while(m_ds_scriptinstanceptra.get_size())
+      while(m_scriptinstanceptra.get_size())
       {
          if(bLock)
          {
             sl.unlock();
             sl.lock(minutes(0.5));
          }
-         for(int i = 0; i < m_ds_scriptinstanceptra.get_size();)
+         for(int i = 0; i < m_scriptinstanceptra.get_size();)
          {
-            if(GetTickCount() > (m_ds_scriptinstanceptra[i]->m_dwCreate + 30 * 1000))
+            if(GetTickCount() > (m_scriptinstanceptra[i]->m_dwCreate + 30 * 1000))
             {
-               m_ds_scriptinstanceptra.remove_at(i);
+               m_scriptinstanceptra.remove_at(i);
             }
             else
             {
@@ -300,12 +306,8 @@ namespace dynamic_source
    {
    }
 
-   void ds_script::run(ds_script_instance * pinstance)
-   {
-      pinstance->run();
-   }
 
-   ds_script_instance * ds_script::create_instance()
+   script_instance * ds_script::create_instance()
    {
       single_lock slCreationEnabled(&m_evCreationEnabled);
       if(!slCreationEnabled.lock(minutes(0.7)))
@@ -344,17 +346,17 @@ namespace dynamic_source
          m_evCreationEnabled.SetEvent();
       }
 
-      ds_script_instance * pinstance;
+      script_instance * pinstance;
       if(m_lpfnCreateInstance == NULL)
       {
-         pinstance = new ds_script_instance(this);
+         pinstance = new script_instance(this);
       }
       else
       {
          pinstance = m_lpfnCreateInstance(this);
       }
       pinstance->m_dwCreate = GetTickCount();
-      m_ds_scriptinstanceptra.add(pinstance);
+      m_scriptinstanceptra.add(pinstance);
       return pinstance;
    }
 

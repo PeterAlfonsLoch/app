@@ -73,12 +73,12 @@ namespace dynamic_source
       bool is_id(const char * psz, const char * pszId, strsize & iIdLen);
       const char * next_nonspace(const char * psz);
 
-      void compile(script * pscript);
+      void compile(ds_script * pscript);
 
-      void cppize(script * pscript);
+      void cppize(ds_script * pscript);
       void cppize(const char * pszSource, const char * pszDest, ecpptype e_type);
 
-      void cppize1(script * pscript);
+      void cppize1(ds_script * pscript);
       void cppize1(const char * pszSource, const char * pszDest, ecpptype e_type);
 
       string cppize2(const char * pszSource, bool bScript, stringa & straId);

@@ -158,6 +158,10 @@ namespace dynamic_source
 
       virtual void register_plugin(const char * pszHost, const char * pszScript, const char * pszName, script * pscript);
 
+      
+      virtual string get_root_plugin();
+      
+
    };
 
 
