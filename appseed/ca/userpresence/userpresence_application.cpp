@@ -60,7 +60,7 @@ namespace userpresence
          return;
 
       if(command().m_varTopicQuery["app"] == "simpledbcfg"
-      || command().m_varTopicQuery["app"] == "core_netnode")
+      || command().m_varTopicQuery["app"] == "core_netnodelite")
          return;
 
       if(command().m_varTopicQuery["app"] == "mydns")
@@ -90,7 +90,7 @@ namespace userpresence
          return;
 
       if(command().m_varTopicQuery["app"] == "simpledbcfg"
-      || command().m_varTopicQuery["app"] == "netnode")
+      || command().m_varTopicQuery["app"] == "core_netnodelite")
          return;
 
       // it may not be initialized, due

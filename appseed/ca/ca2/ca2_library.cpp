@@ -243,7 +243,10 @@ namespace ca2
    ::dynamic_source::script_manager * library::create_script_manager(::ca::application * papp)
    {
 
-      UNREFERENCED_PARAMETER(papp);
+      if(m_pca2library != NULL)
+      {
+         return m_pca2library->create_script_manager(papp);
+      }
 
       return NULL;
 

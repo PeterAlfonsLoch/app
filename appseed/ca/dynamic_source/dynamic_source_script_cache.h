@@ -6,7 +6,7 @@ namespace dynamic_source
 
    class script;
 
-   class script_cache :
+   class CLASS_DECL_ca script_cache :
       virtual public ::radix::object
    {
    public:

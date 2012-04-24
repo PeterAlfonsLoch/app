@@ -11,7 +11,8 @@ namespace dynamic_source
 
 
    script::script(::ca::application * papp) :
-      ca(papp)
+      ca(papp),
+      m_memfileError(papp)
    {
    }
    
@@ -35,8 +36,7 @@ namespace dynamic_source
 
    ds_script::ds_script(::ca::application * papp) :
       ca(papp),
-      script(papp),
-      m_memfileError(papp)
+      script(papp)
    {
       m_lpfnCreateInstance    = NULL;
       m_bShouldBuild          = true;
@@ -228,7 +228,7 @@ namespace dynamic_source
             }
          }
       }
-      m_lpfnCreateInstance = m_library.get < NET_NODE_CREATE_INSTANCE_PROC > ("create_dynamic_source_ds_script_instance");
+      m_lpfnCreateInstance = m_library.get < NET_NODE_CREATE_INSTANCE_PROC > ("create_dynamic_source_script_instance");
       if(m_lpfnCreateInstance != NULL)
       {
          m_evCreationEnabled.SetEvent();

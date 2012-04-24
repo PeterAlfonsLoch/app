@@ -216,6 +216,9 @@ namespace dynamic_source
                      pinstance->output_file() << pdsscript->m_memfileError;
                   }
                }
+               catch(...)
+               {
+               }
             }
 
          }
@@ -665,7 +668,7 @@ namespace dynamic_source
    {
    }
 
-   script_manager::register_plugin(const char * pszHost, const char * pszScript, const char * pszName, script * pscript)
+   void script_manager::register_plugin(const char * pszHost, const char * pszScript, const char * pszName, script * pscript)
    {
 
       plugin_map_item item;
@@ -679,7 +682,7 @@ namespace dynamic_source
 
    }
 
-   string script_manager::get_root_handler()
+   string script_manager::get_root_plugin()
    {
       return "netnode://script_seed_carlos_gustavo_cecyn_lundgren_carlos";
    }

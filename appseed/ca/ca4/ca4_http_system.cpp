@@ -74,7 +74,7 @@ namespace ca4
          if(!strcmp(System.get_module_name(), "netnodeapp")
             || !strcmp(System.get_module_name(), "netnodecfgapp")
             || System.get_license_id() == "simpledbcfg"
-            || System.get_license_id() == "netnode"
+            || System.get_license_id() == "core_netnodelite"
             || System.command().m_varTopicQuery["app"] == "simpledbcfg")
          {
             return;

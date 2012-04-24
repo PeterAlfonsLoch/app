@@ -152,7 +152,7 @@ namespace ca4
       }
 
       if(is_system()
-         && command_thread().m_varTopicQuery["app"] != "netnode")
+         && command_thread().m_varTopicQuery["app"] != "core_netnodelite")
       {
          System.http().defer_auto_initialize_proxy_configuration();
       }

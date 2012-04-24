@@ -95,7 +95,7 @@ namespace dynamic_source
    };
 
    template < class T >
-   class CLASS_DECL_ca t_script :
+   class t_script :
       virtual public script
    {
    public:
