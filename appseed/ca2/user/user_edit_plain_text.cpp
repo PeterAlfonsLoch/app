@@ -2212,10 +2212,13 @@ namespace user
 
    void edit_plain_text::_001OnEditFocusCopy(gen::signal_object * pobj)
    {
+      
       UNREFERENCED_PARAMETER(pobj);
-      string str;
-      _001GetSelText(str);
-      System.copydesk().set_plain_text(str);
+
+      clipboard_copy();
+
+      pobj->m_bRet = true;
+      
    }
 
    void edit_plain_text::_001OnUpdateEditFocusPaste(gen::signal_object * pobj)
@@ -2226,8 +2229,13 @@ namespace user
 
    void edit_plain_text::_001OnEditFocusPaste(gen::signal_object * pobj)
    {
+      
       UNREFERENCED_PARAMETER(pobj);
-      _001SetSelText(System.copydesk().get_plain_text());
+      
+      clipboard_paste();
+
+      pobj->m_bRet = true;
+
    }
 
 
