@@ -52,6 +52,10 @@ class CLASS_DECL_ca frame_window :
 public:
 
 
+
+   ::id           m_idHelp;         // xxx mrs
+
+
    static const rect rectDefault;
    int m_nWindow;  // general purpose ::ca::window number - display as ":n"
                // -1 => unknown, 0 => only ::ca::window viewing ::user::document_interface
