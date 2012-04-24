@@ -189,8 +189,8 @@ namespace user
       COLORREF cr;
 
 
-      cr          = ARGB(255, 100, 100, 84);
-      crBk        = ARGB(255, 250, 248, 240);
+      cr          = ARGB(255, 23, 23, 23);
+      crBk        = ARGB(255, 255, 255, 255);
       crBkSel     = ARGB(255, 0, 0, 127);
       crSel       = ARGB(255, 255, 255, 255);
 
@@ -964,6 +964,7 @@ namespace user
       pdc->SelectObject(GetFont());
       int y = 0;
 ///      int i = 1;
+      pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
       size size3 = pdc->GetTextExtent(unitext("gqYALﾍ"));
 
       rect rectClient;
@@ -996,6 +997,7 @@ namespace user
 //      bool bFound = false;
       string strLine;
       sized size3;
+      pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
       pdc->GetTextExtent(size3, unitext("gqYALﾍWM"));
       sized size;
       m_scrollinfo.m_sizeTotal.cx = 0;
@@ -1055,7 +1057,7 @@ namespace user
             ::ca::graphics * pgraphics = GetDC();
 
             pgraphics->SelectObject(GetFont());
-
+            pgraphics->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
             size size1 = pgraphics->GetTextExtent(straLines[i], straLines[i].length(), iSel - i1);
             size size2 = pgraphics->GetTextExtent(straLines[i], iSel - i1);
 
@@ -1119,7 +1121,7 @@ namespace user
       ::ca::graphics * pgraphics = GetDC();
 
       pgraphics->SelectObject(GetFont());
-
+      pgraphics->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
       size size3 = pgraphics->GetTextExtent(unitext("gqYALﾍWM"));
 
       int iLineHeight = size3.cy;
