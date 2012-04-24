@@ -422,6 +422,10 @@ namespace user
             strsize i3 = iCursor - lim;
             strsize iStart = max(0, i1);
             strsize iEnd = min(i2, strLine.get_length());
+            if(m_bPassword)
+            {
+               str_fill(strLine, '*');
+            }
             str1 = strLine.Mid(0, iStart);
             str2 = strLine.Mid(iStart, iEnd - iStart);
             str3 = strLine.Mid(iEnd);
