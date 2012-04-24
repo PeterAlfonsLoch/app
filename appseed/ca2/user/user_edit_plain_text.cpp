@@ -1119,7 +1119,7 @@ namespace user
       return m_iViewOffset + iOffset + iColumn;
    }
 
-   strsize edit_plain_text::LineXToSel(index iLine, index x)
+   strsize edit_plain_text::LineXToSel(index iLine, int x)
    {
       
       ::ca::graphics * pgraphics = GetDC();

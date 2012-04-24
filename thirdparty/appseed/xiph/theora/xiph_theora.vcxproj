@@ -440,6 +440,7 @@
     <ClCompile Include="rate.c" />
     <ClCompile Include="StdAfx.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="tokenize.c" />
     <ClCompile Include="x86_vc\mmxencfrag.c">
