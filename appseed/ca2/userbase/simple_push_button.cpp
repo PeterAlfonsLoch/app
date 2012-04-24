@@ -30,13 +30,13 @@ void SimplePushButton::install_message_handling(::gen::message::dispatch * pinte
 /////////////////////////////////////////////////////////////////////////////
 // SimplePushButton message handlers
 
-BOOL SimplePushButton::PreCreateWindow(CREATESTRUCT& cs) 
+BOOL SimplePushButton::pre_create_window(CREATESTRUCT& cs) 
 {
    
    cs.style |= BS_OWNERDRAW;   
    cs.style |= BS_PUSHBUTTON;
 
-   return ::userbase::button::PreCreateWindow(cs);
+   return ::userbase::button::pre_create_window(cs);
 }
 
 void SimplePushButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct) 

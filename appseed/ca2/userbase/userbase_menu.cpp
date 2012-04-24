@@ -563,7 +563,7 @@ namespace userbase
    }
 
 
-   BOOL menu::PreCreateWindow(CREATESTRUCT& cs)
+   BOOL menu::pre_create_window(CREATESTRUCT& cs)
    {
       if(cs.lpszClass == NULL)
       {

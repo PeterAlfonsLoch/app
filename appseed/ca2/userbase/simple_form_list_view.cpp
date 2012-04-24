@@ -42,11 +42,11 @@ void simple_form_list_view::dump(dump_context & dumpcontext) const
 }
 #endif //_DEBUG
 
-BOOL simple_form_list_view::PreCreateWindow(CREATESTRUCT& cs) 
+BOOL simple_form_list_view::pre_create_window(CREATESTRUCT& cs) 
 {
    
    cs.style |= WS_CLIPCHILDREN;
    
-   return ::userbase::view::PreCreateWindow(cs);
+   return ::userbase::view::pre_create_window(cs);
 }
 

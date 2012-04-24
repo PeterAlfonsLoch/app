@@ -316,9 +316,9 @@ namespace userbase
          CREATESTRUCT cs;
          memset(&cs, 0, sizeof(CREATESTRUCT));
          cs.style = dwDefaultStyle;
-         PreCreateWindow(cs);
+         pre_create_window(cs);
             // will fill lpszClassName with default WNDCLASS name
-            // ignore instance handle from PreCreateWindow.
+            // ignore instance handle from pre_create_window.
 
          WNDCLASS wndcls;
          if (cs.lpszClass != NULL &&

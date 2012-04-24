@@ -1880,12 +1880,12 @@ namespace user
          return m_pimpl->SetWindowPlacement(lpwndpl);
    }
 
-   BOOL interaction::PreCreateWindow(CREATESTRUCT& cs)
+   BOOL interaction::pre_create_window(CREATESTRUCT& cs)
    {
       if(m_pimpl == NULL)
          return TRUE;
       else
-         return m_pimpl->PreCreateWindow(cs);
+         return m_pimpl->pre_create_window(cs);
    }
 
    BOOL interaction::IsTopParentActive()

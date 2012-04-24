@@ -177,9 +177,9 @@ namespace nature
       return 0;
    }
 
-   BOOL frame::PreCreateWindow(CREATESTRUCT& cs)
+   BOOL frame::pre_create_window(CREATESTRUCT& cs)
    {
-      if( !simple_frame_window::PreCreateWindow(cs) )
+      if( !simple_frame_window::pre_create_window(cs) )
          return FALSE;
       cs.dwExStyle &= ~WS_EX_WINDOWEDGE;
       ::DestroyMenu(cs.hMenu);

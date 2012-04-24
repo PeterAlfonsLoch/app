@@ -168,7 +168,7 @@ namespace userbase
       DWORD m_dwCtrlStyle;
 
       virtual void pre_translate_message(gen::signal_object * pobj);
-      virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+      virtual BOOL pre_create_window(CREATESTRUCT& cs);
       virtual void PostNcDestroy();
 
       virtual void DoPaint(::ca::graphics * pgraphics);

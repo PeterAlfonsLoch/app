@@ -117,12 +117,12 @@ void SimpleFolderListView::_001OnCancelMode(gen::signal_object * pobj)
    
 }
 
-BOOL SimpleFolderListView::PreCreateWindow(CREATESTRUCT& cs) 
+BOOL SimpleFolderListView::pre_create_window(CREATESTRUCT& cs) 
 {
    
    cs.style |= WS_CLIPCHILDREN;
    
-   return ::userbase::view::PreCreateWindow(cs);
+   return ::userbase::view::pre_create_window(cs);
 }
 
 

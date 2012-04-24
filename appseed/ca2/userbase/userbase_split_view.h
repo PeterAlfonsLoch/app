@@ -1,19 +1,24 @@
 #pragma once
 
+
 namespace userbase
 {
+
 
    class CLASS_DECL_ca2 split_view :
       virtual public view,
       virtual public split_layout
    {
    public:
+
+
       split_view(::ca::application * papp);
       virtual ~split_view();
 
+
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
       virtual void _001OnDraw(::ca::graphics * pdc);
-      virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+      virtual BOOL pre_create_window(CREATESTRUCT& cs);
    #ifdef _DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
@@ -25,3 +30,6 @@ namespace userbase
 
 
 } // namespace userbase
+
+
+

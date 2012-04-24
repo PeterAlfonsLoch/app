@@ -17,7 +17,7 @@ public:
    image_list *                m_pimagelist;
    bool m_bTimerOn;
 
-   virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+   virtual BOOL pre_create_window(CREATESTRUCT& cs);
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
    void ShowControlBars(bool bShow);
    void AnimateStatusBar();

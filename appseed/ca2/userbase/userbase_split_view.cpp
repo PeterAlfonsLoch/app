@@ -47,11 +47,11 @@ namespace userbase
       //layout();
    }
 
-   BOOL split_view::PreCreateWindow(CREATESTRUCT& cs) 
+   BOOL split_view::pre_create_window(CREATESTRUCT& cs) 
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
       
-      return view::PreCreateWindow(cs);
+      return view::pre_create_window(cs);
    }
 
    void split_view::_001OnDraw(::ca::graphics *pdc)

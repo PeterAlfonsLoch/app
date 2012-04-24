@@ -698,12 +698,12 @@ namespace user
       return m_columna.VisibleGetCount();
    }
 
-   /*BOOL list::PreCreateWindow(CREATESTRUCT& cs)
+   /*BOOL list::pre_create_window(CREATESTRUCT& cs)
    {
 
    //cs.style |= LVS_NOSCROLL;
 
-   return ::ca::window::PreCreateWindow(cs);
+   return ::ca::window::pre_create_window(cs);
    }*/
 
    /*void list::OnSize(UINT nType, index cx, index cy)

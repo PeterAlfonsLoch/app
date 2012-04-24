@@ -80,7 +80,7 @@ namespace userbase
    // ::view second phase construction - bind to document
 
    const CHAR _vfxWndFrameOrView[] = AFX_WNDFRAMEORVIEW;
-   BOOL view::PreCreateWindow(CREATESTRUCT & cs)
+   BOOL view::pre_create_window(CREATESTRUCT & cs)
    {
       ASSERT(cs.style & WS_CHILD);
 

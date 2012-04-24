@@ -78,11 +78,11 @@ namespace nature
          return;
    }
 
-   BOOL appearance_view::PreCreateWindow(CREATESTRUCT& cs) 
+   BOOL appearance_view::pre_create_window(CREATESTRUCT& cs) 
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;   
 
-      return ::userbase::view::PreCreateWindow(cs);
+      return ::userbase::view::pre_create_window(cs);
    }
 
    void appearance_view::on_show_view()

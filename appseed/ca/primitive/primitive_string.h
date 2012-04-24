@@ -1290,6 +1290,51 @@ inline CLASS_DECL_ca int64_t id_cmp(const id * pid, const string & str)
    }
 }
 
+inline CLASS_DECL_ca int64_t id_cmp(const id * pid, const char * psz)
+{
+   if(pid->is_null())
+   {
+      if(psz == NULL ||*psz == '\0')
+      {
+         return 0;
+      }
+      else
+      {
+         return -1;
+      }
+   }
+   else if(pid->is_text())
+   {
+      if(psz == NULL ||*psz == '\0')
+      {
+         return 1;
+      }
+      else if(id_is_text(psz))
+      {
+         return pid->m_pstr->Compare(psz);
+      }
+      else
+      {
+         return 1;
+      }
+   }
+   else // if(pid->is_number())
+   {
+      if(psz == NULL ||*psz == '\0')
+      {
+         return 1;
+      }
+      else if(id_is_text(psz))
+      {
+         return 1;
+      }
+      else
+      {
+         return pid->m_i - gen::str::atoi64(psz);
+      }
+   }
+}
+
 inline CLASS_DECL_ca int64_t id_strcmp(const id * pid1, const id * pid2)
 {
    char register chCompare = pid1->m_chType - pid2->m_chType;

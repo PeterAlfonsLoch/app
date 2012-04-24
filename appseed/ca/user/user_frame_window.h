@@ -194,7 +194,7 @@ public:
 
    void UpdateFrameTitleForDocument(const char * lpszDocName);
    virtual const char * GetIconWndClass(DWORD dwDefaultStyle, const char * pszMatter);
-   virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+   virtual BOOL pre_create_window(CREATESTRUCT& cs);
    virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
    virtual void PostNcDestroy();   // default to delete this.
    int OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);

@@ -749,7 +749,7 @@ namespace userbase
       return pholder->get_ui();
    }
 
-   id split_layout::_001GetPaneId(int iPane)
+   id split_layout::get_pane_id(int iPane)
    {
       ASSERT(iPane >= 0);
       ASSERT(iPane < get_pane_count());
@@ -759,6 +759,18 @@ namespace userbase
       return pane.m_id;
    }
 
+   int split_layout::get_pane_by_id(::id id)
+   {
+
+      for(int iPane = 0; iPane < m_panea.get_count(); iPane++)
+      {
+         if(m_panea[iPane].m_id == id)
+            return iPane;
+      }
+      
+      return -1;
+
+   }
 
    split_layout::Pane::Pane()
    {

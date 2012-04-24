@@ -66,11 +66,11 @@ namespace userbase
    }
 
 
-   BOOL split_bar::PreCreateWindow(CREATESTRUCT& cs)
+   BOOL split_bar::pre_create_window(CREATESTRUCT& cs)
    {
       cs.style &= ~WS_BORDER;
 
-      return ::user::interaction::PreCreateWindow(cs);
+      return ::user::interaction::pre_create_window(cs);
    }
 
 

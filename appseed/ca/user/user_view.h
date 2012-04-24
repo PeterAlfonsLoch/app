@@ -101,7 +101,7 @@ public:
 
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
-   virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+   virtual BOOL pre_create_window(CREATESTRUCT& cs);
    virtual void PostNcDestroy();
 
    // friend classes that call protected view overridables
@@ -172,7 +172,7 @@ protected:
 
 // Overrides
    virtual void OnDraw(::ca::graphics * pgraphics);
-   virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+   virtual BOOL pre_create_window(CREATESTRUCT& cs);
 
 // Implementation
 public:

@@ -181,12 +181,12 @@ namespace fs
 
    }
 
-   BOOL list::PreCreateWindow(CREATESTRUCT& cs)
+   BOOL list::pre_create_window(CREATESTRUCT& cs)
    {
 
       cs.style |= WS_CLIPCHILDREN;
 
-      return ::fs::list_interface::PreCreateWindow(cs);
+      return ::fs::list_interface::pre_create_window(cs);
    }
 
 } // namespace fs

@@ -181,11 +181,11 @@ namespace bergedge
       }
    }
 
-   BOOL pane_view::PreCreateWindow(CREATESTRUCT& cs)
+   BOOL pane_view::pre_create_window(CREATESTRUCT& cs)
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
-      return ::userbase::view::PreCreateWindow(cs);
+      return ::userbase::view::pre_create_window(cs);
    }
 
 

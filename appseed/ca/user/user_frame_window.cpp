@@ -442,7 +442,7 @@ void frame_window::OnEnable(BOOL bEnable)
 /////////////////////////////////////////////////////////////////////////////
 // frame_window second phase creation
 
-BOOL frame_window::PreCreateWindow(CREATESTRUCT& cs)
+BOOL frame_window::pre_create_window(CREATESTRUCT& cs)
 {
    if (cs.lpszClass == NULL)
    {
@@ -607,9 +607,9 @@ const char * frame_window::GetIconWndClass(DWORD dwDefaultStyle, const char * ps
       CREATESTRUCT cs;
       memset(&cs, 0, sizeof(CREATESTRUCT));
       cs.style = dwDefaultStyle;
-      PreCreateWindow(cs);
+      pre_create_window(cs);
          // will fill lpszClassName with default WNDCLASS name
-         // ignore instance handle from PreCreateWindow.
+         // ignore instance handle from pre_create_window.
 
       WNDCLASS wndcls;
       if (cs.lpszClass != NULL &&

@@ -96,7 +96,7 @@ public:
    static void PASCAL CalcBorders(LPRECT lpClientRect, DWORD dwStyle = 0, DWORD dwExStyle = 0);
 
 protected:
-   virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+   virtual BOOL pre_create_window(CREATESTRUCT& cs);
 
 protected:
    BOOL m_bSysTracking;

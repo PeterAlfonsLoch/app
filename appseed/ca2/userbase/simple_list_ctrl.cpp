@@ -21,12 +21,12 @@ simple_list_control::~simple_list_control()
    return this;
 }
 
-BOOL simple_list_control::PreCreateWindow(CREATESTRUCT& cs)
+BOOL simple_list_control::pre_create_window(CREATESTRUCT& cs)
 {
 
    cs.style |= WS_CLIPCHILDREN;
 
-   return ::user::interaction::PreCreateWindow(cs);
+   return ::user::interaction::pre_create_window(cs);
 }
 
 void simple_list_control::set_data(stringa &stra)

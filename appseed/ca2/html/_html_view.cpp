@@ -79,14 +79,14 @@ void html_view::dump(dump_context & dumpcontext) const
 #endif //_DEBUG
 
 
-BOOL html_view::PreCreateWindow(CREATESTRUCT& cs)
+BOOL html_view::pre_create_window(CREATESTRUCT& cs)
 {
    cs.lpszClass = System.RegisterWndClass(
       CS_DBLCLKS |
       CS_OWNDC,
       0, 0, 0);
    cs.style &= ~WS_EX_CLIENTEDGE;
-   return ::userbase::view::PreCreateWindow(cs);
+   return ::userbase::view::pre_create_window(cs);
 }
 void html_view::_001OnInitialUpdate(gen::signal_object * pobj) 
 {

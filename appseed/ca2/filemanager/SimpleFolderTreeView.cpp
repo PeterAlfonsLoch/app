@@ -230,12 +230,12 @@ namespace filemanager
       }*/
    }
 
-   BOOL SimpleFolderTreeView::PreCreateWindow(CREATESTRUCT& cs) 
+   BOOL SimpleFolderTreeView::pre_create_window(CREATESTRUCT& cs) 
    {
       
       cs.style |= WS_CLIPCHILDREN;
       
-      return SimpleFolderTreeInterface::PreCreateWindow(cs);
+      return SimpleFolderTreeInterface::pre_create_window(cs);
    }
 
 

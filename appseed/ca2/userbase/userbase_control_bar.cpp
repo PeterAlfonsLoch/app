@@ -65,9 +65,9 @@ namespace userbase
       m_cyBottomBorder = cyBottom;
    }
 
-   BOOL control_bar::PreCreateWindow(CREATESTRUCT& cs)
+   BOOL control_bar::pre_create_window(CREATESTRUCT& cs)
    {
-      if (!::user::interaction::PreCreateWindow(cs))
+      if (!::user::interaction::pre_create_window(cs))
          return FALSE;
 
       // force clipsliblings (otherwise will cause repaint problems)

@@ -15,15 +15,20 @@ namespace userex
       split_view(::ca::application * papp);
       virtual ~split_view();
 
+      virtual void on_new_view_creator_data(::user::view_creator_data * pcreatordata);
 
       bool _001OnUpdateCmdUi(cmd_ui * pcmdui);
+
       bool _001OnCommand(id id);
 
-      virtual void OnDraw(::ca::graphics * pgraphics);
+      bool create_pane(int iPane, bool bFixedSize, ::id id);
 
 
    };
 
 
 } // namespace userex
+
+
+
 

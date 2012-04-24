@@ -17,10 +17,10 @@ MetaButton::~MetaButton()
 }
 
 
-BOOL MetaButton::PreCreateWindow(CREATESTRUCT& cs) 
+BOOL MetaButton::pre_create_window(CREATESTRUCT& cs) 
 {
    cs.style |= BS_OWNERDRAW;
-   return ::userbase::button::PreCreateWindow(cs);
+   return ::userbase::button::pre_create_window(cs);
 }
 
 void MetaButton::SetEllipseBrushs(

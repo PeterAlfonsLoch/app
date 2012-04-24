@@ -94,7 +94,7 @@ public:
    virtual void layout();
    virtual void ActivateFrame(int nCmdShow = -1);
    virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);
-   virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+   virtual BOOL pre_create_window(CREATESTRUCT& cs);
    virtual void pre_translate_message(gen::signal_object * pobj);
 
    virtual void _000OnDraw(::ca::graphics * pdc);

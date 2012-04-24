@@ -437,12 +437,12 @@ namespace filemanager
       }
    }
 
-   BOOL SimpleFileListView::PreCreateWindow(CREATESTRUCT& cs)
+   BOOL SimpleFileListView::pre_create_window(CREATESTRUCT& cs)
    {
 
       cs.style |= WS_CLIPCHILDREN;
 
-      return ::userbase::view::PreCreateWindow(cs);
+      return ::userbase::view::pre_create_window(cs);
    }
 
    UINT AFX_CDECL SimpleFileListView::ThreadProcFileSize(LPVOID lpparam)

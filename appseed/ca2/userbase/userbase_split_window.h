@@ -8,7 +8,7 @@ public:
 
    virtual void _001OnDraw(::ca::graphics * pdc);
 
-   virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+   virtual BOOL pre_create_window(CREATESTRUCT& cs);
 
    virtual ~BaseSplitWnd();
 

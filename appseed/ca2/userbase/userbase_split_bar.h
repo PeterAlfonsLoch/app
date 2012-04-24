@@ -32,7 +32,7 @@ namespace userbase
 
       using ::user::interaction::create;
       BOOL create(split_layout * pparent);
-      virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+      virtual BOOL pre_create_window(CREATESTRUCT& cs);
 
       
       DECL_GEN_SIGNAL(_001OnLButtonDown)

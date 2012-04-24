@@ -53,7 +53,7 @@ namespace bergedge
       virtual void set_display(int iDisplay);
 
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
-      virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+      virtual BOOL pre_create_window(CREATESTRUCT& cs);
 
    #ifdef _DEBUG
       virtual void assert_valid() const;

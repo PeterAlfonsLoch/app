@@ -76,7 +76,7 @@ namespace userbase
 #endif
 
       virtual size CalcFixedLayout(BOOL bStretch, BOOL bHorz);
-      BOOL PreCreateWindow(CREATESTRUCT& cs);
+      BOOL pre_create_window(CREATESTRUCT& cs);
       //BOOL AllocElements(int nElements, int cbElement);
       void CalcInsideRect(rect& rect, BOOL bHorz);
       virtual void OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle);

@@ -25,7 +25,7 @@ public:
    virtual void on_document_complete(const char * pszUrl);
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
-   virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+   virtual BOOL pre_create_window(CREATESTRUCT& cs);
    virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::view
    virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
 

@@ -25,7 +25,7 @@ namespace filemanager
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
 
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
-      virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+      virtual BOOL pre_create_window(CREATESTRUCT& cs);
     
       virtual ~SimpleFolderTreeView();
    #ifdef _DEBUG

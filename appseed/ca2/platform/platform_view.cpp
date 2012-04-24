@@ -148,14 +148,14 @@ namespace platform
 
 
 
-   BOOL view::PreCreateWindow(CREATESTRUCT& cs)
+   BOOL view::pre_create_window(CREATESTRUCT& cs)
    {
       cs.lpszClass = System.RegisterWndClass(
          CS_DBLCLKS |
          CS_OWNDC,
          0, 0, 0);
       cs.style &= ~WS_EX_CLIENTEDGE;
-      return form_view::PreCreateWindow(cs);
+      return form_view::pre_create_window(cs);
    }
    /////////////////////////////////////////////////////////////////////////////
    // ::view printing

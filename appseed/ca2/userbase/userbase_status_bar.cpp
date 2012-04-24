@@ -69,14 +69,14 @@ namespace userbase
       return ::user::interaction::create(STATUSCLASSNAME, NULL, dwStyle, rect, pParentWnd, strId);
    }
 
-   BOOL status_bar::PreCreateWindow(CREATESTRUCT& cs)
+   BOOL status_bar::pre_create_window(CREATESTRUCT& cs)
    {
       // in Win4, status bars do not have a border at all, since it is
       //  provided by the client area.
       if ((m_dwStyle & (CBRS_ALIGN_ANY|CBRS_BORDER_ANY)) == CBRS_BOTTOM)
          m_dwStyle &= ~(CBRS_BORDER_ANY|CBRS_BORDER_3D);
 
-      return ::userbase::control_bar::PreCreateWindow(cs);
+      return ::userbase::control_bar::pre_create_window(cs);
    }
 
    BOOL status_bar::SetIndicators(stringa & stra)

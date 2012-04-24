@@ -55,7 +55,7 @@ void view::install_message_handling(::gen::message::dispatch * pinterface)
 /////////////////////////////////////////////////////////////////////////////
 // ::view second phase construction - bind to ::user::document_interface
 
-BOOL view::PreCreateWindow(CREATESTRUCT & cs)
+BOOL view::pre_create_window(CREATESTRUCT & cs)
 {
    ASSERT(cs.style & WS_CHILD);
 
@@ -459,7 +459,7 @@ CCtrlView::CCtrlView(const char * lpszClass, DWORD dwStyle)
    m_dwDefaultStyle = dwStyle;
 }
 
-BOOL CCtrlView::PreCreateWindow(CREATESTRUCT& cs)
+BOOL CCtrlView::pre_create_window(CREATESTRUCT& cs)
 {
    ASSERT(cs.lpszClass == NULL);
    cs.lpszClass = m_strClass;
@@ -473,7 +473,7 @@ BOOL CCtrlView::PreCreateWindow(CREATESTRUCT& cs)
    /*if ((cs.style | WS_BORDER) == AFX_WS_DEFAULT_VIEW)
       cs.style = m_dwDefaultStyle & (cs.style | ~WS_BORDER);*/
 
-   return view::PreCreateWindow(cs);
+   return view::pre_create_window(cs);
 }
 
 void CCtrlView::OnDraw(::ca::graphics *)

@@ -266,7 +266,7 @@ BOOL simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_conte
    return userbase::frame_window::OnCreateClient(lpcs, pContext);
 }
 
-BOOL simple_frame_window::PreCreateWindow(CREATESTRUCT& cs) 
+BOOL simple_frame_window::pre_create_window(CREATESTRUCT& cs) 
 {
 
    if(cs.lpszClass == NULL)
@@ -274,7 +274,7 @@ BOOL simple_frame_window::PreCreateWindow(CREATESTRUCT& cs)
       cs.lpszClass = System.RegisterWndClass(CS_HREDRAW | CS_VREDRAW, 0, 0, 0);
    }
 
-   if(!userbase::frame_window::PreCreateWindow(cs))
+   if(!userbase::frame_window::pre_create_window(cs))
       return FALSE;
 
    if(cs.hMenu != NULL)

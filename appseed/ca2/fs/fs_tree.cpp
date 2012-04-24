@@ -234,12 +234,12 @@ namespace fs
       }*/
    }
 
-   BOOL tree::PreCreateWindow(CREATESTRUCT& cs) 
+   BOOL tree::pre_create_window(CREATESTRUCT& cs) 
    {
       
       cs.style |= WS_CLIPCHILDREN;
       
-      return ::fs::tree_interface::PreCreateWindow(cs);
+      return ::fs::tree_interface::pre_create_window(cs);
    }
 
 

@@ -197,7 +197,7 @@ namespace ca
    }
 
    // for child windows
-   BOOL window::PreCreateWindow(CREATESTRUCT & cs)
+   BOOL window::pre_create_window(CREATESTRUCT & cs)
    {
       UNREFERENCED_PARAMETER(cs);
       throw interface_only_exception();

@@ -65,11 +65,11 @@ namespace userbase
 
    }
 
-   BOOL tab_view::PreCreateWindow(CREATESTRUCT& cs) 
+   BOOL tab_view::pre_create_window(CREATESTRUCT& cs) 
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;   
 
-      return view::PreCreateWindow(cs);
+      return view::pre_create_window(cs);
    }
 
    void tab_view::rotate()
@@ -292,8 +292,8 @@ namespace userbase
          }
          psplitview->_001GetPane(0)->SetParent(this);
          psplitview->_001GetPane(1)->SetParent(this);
-         m_pviewcreator->m_viewmap[psplitview->_001GetPaneId(0)]->m_idSplit.is_empty();
-         m_pviewcreator->m_viewmap[psplitview->_001GetPaneId(1)]->m_idSplit.is_empty();
+         m_pviewcreator->m_viewmap[psplitview->get_pane_id(0)]->m_idSplit.is_empty();
+         m_pviewcreator->m_viewmap[psplitview->get_pane_id(1)]->m_idSplit.is_empty();
          psplitview->ShowWindow(SW_HIDE);
          psplitview->ModifyStyle(WS_CHILD, 0, 0);
          psplitview->SetParent(NULL);

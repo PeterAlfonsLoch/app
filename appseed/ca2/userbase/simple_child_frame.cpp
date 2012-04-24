@@ -16,14 +16,14 @@ simple_child_frame::~simple_child_frame()
 }
 
 
-BOOL simple_child_frame::PreCreateWindow(CREATESTRUCT& cs) 
+BOOL simple_child_frame::pre_create_window(CREATESTRUCT& cs) 
 {
    cs.style |= WS_CHILD;
    cs.style |= WS_CLIPCHILDREN;
    cs.style &= ~WS_BORDER;
    cs.style &= ~WS_THICKFRAME;
 
-   if(!simple_frame_window::PreCreateWindow(cs))
+   if(!simple_frame_window::pre_create_window(cs))
       return FALSE;
 
    if(cs.hwndParent == NULL)

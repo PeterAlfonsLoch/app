@@ -76,27 +76,27 @@ public:
    }
    inline bool operator == (const char * psz) const
    {
-      return !id_cmp(this, (const string &) psz);
+      return !id_cmp(this, psz);
    }
    inline bool operator != (const char * psz) const
    {
-      return id_cmp(this, (const string &) psz) != 0;
+      return id_cmp(this, psz) != 0;
    }
    inline bool operator < (const char * psz) const
    {
-      return id_cmp(this, (const string &) psz) < 0;
+      return id_cmp(this, psz) < 0;
    }
    inline bool operator <= (const char * psz) const
    {
-      return id_cmp(this, (const string &) psz) <= 0;
+      return id_cmp(this, psz) <= 0;
    }
    inline bool operator > (const char * psz) const
    {
-      return id_cmp(this, (const string &) psz) > 0;
+      return id_cmp(this, psz) > 0;
    }
    inline bool operator >= (const char * psz) const
    {
-      return id_cmp(this, (const string &) psz) >= 0;
+      return id_cmp(this, psz) >= 0;
    }
    id & operator = (const char * psz);
    inline bool operator == (const string & str) const;
@@ -243,6 +243,7 @@ public:
    }
 
    friend CLASS_DECL_ca int64_t id_cmp(const id * pid, int64_t user);
+   friend CLASS_DECL_ca int64_t id_cmp(const id * pid, const char * psz);
    friend CLASS_DECL_ca int64_t id_cmp(const id * pid, const string & str);
    friend CLASS_DECL_ca int64_t id_cmp(const id * pid1, const id * pid2);
    friend CLASS_DECL_ca int64_t id_strcmp(const id * pid1, const id * pid2);

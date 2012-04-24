@@ -95,9 +95,9 @@ void simple_menu_bar::SetMenuID(UINT uiResourceID)
    m_uiResourceID = uiResourceID;
 }
 
-BOOL simple_menu_bar::PreCreateWindow(CREATESTRUCT& cs)
+BOOL simple_menu_bar::pre_create_window(CREATESTRUCT& cs)
 {
-   return simple_toolbar::PreCreateWindow(cs);
+   return simple_toolbar::pre_create_window(cs);
 }
 
 

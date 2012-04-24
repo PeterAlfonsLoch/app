@@ -136,11 +136,11 @@ namespace ca2
 
 
 
-      BOOL pane_view::PreCreateWindow(CREATESTRUCT& cs) 
+      BOOL pane_view::pre_create_window(CREATESTRUCT& cs) 
       {
          cs.dwExStyle &= ~WS_EX_CLIENTEDGE;   
 
-         return ::userbase::view::PreCreateWindow(cs);
+         return ::userbase::view::pre_create_window(cs);
       }
 
       void pane_view::on_create_view(::user::view_creator_data * pcreatordata)

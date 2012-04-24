@@ -12,7 +12,7 @@ public:
 
    virtual ::user::interaction* OnDrawInterfaceGetWnd();
 
-   virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+   virtual BOOL pre_create_window(CREATESTRUCT& cs);
    virtual void pre_subclass_window();
 
    bool RemoveItem(int iItem);

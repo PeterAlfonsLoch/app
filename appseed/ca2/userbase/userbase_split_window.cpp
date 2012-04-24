@@ -12,11 +12,11 @@ BaseSplitWnd::~BaseSplitWnd()
 {
 }
 
-BOOL BaseSplitWnd::PreCreateWindow(CREATESTRUCT& cs) 
+BOOL BaseSplitWnd::pre_create_window(CREATESTRUCT& cs) 
 {
    cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
    
-   return ::user::interaction::PreCreateWindow(cs);
+   return ::user::interaction::pre_create_window(cs);
 }
 
 void BaseSplitWnd::_001OnDraw(::ca::graphics *pdc)

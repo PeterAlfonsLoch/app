@@ -223,7 +223,7 @@ BOOL virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
    cs.hMenu = NULL;
    cs.hInstance = System.m_hInstance;
    cs.lpCreateParams = lpParam;
-   m_pguie->PreCreateWindow(cs);
+   m_pguie->pre_create_window(cs);
    //m_pguie->install_message_handling(dynamic_cast < ::gen::message::dispatch * > (this));
    SendMessage(WM_CREATE, 0, (LPARAM) &cs);
    m_pguie->SetWindowPos(NULL, rect.left, rect.top, cs.cx, cs.cy, 0);
@@ -302,7 +302,7 @@ BOOL virtual_user_interface::create(const char * lpszClassName,
    cs.hMenu = NULL;
    cs.hInstance = System.m_hInstance;
    cs.lpCreateParams = (LPVOID) pContext;
-   m_pguie->PreCreateWindow(cs);
+   m_pguie->pre_create_window(cs);
    SendMessage(WM_CREATE, 0, (LPARAM) &cs);
    if(rect.bottom != 0 && rect.left != 0 && rect.right != 0 && rect.top != 0)
    {
@@ -379,7 +379,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    cs.hMenu = NULL;
    cs.hInstance = System.m_hInstance;
    cs.lpCreateParams = (LPVOID) NULL;
-   m_pguie->PreCreateWindow(cs);
+   m_pguie->pre_create_window(cs);
    SendMessage(WM_CREATE, 0, (LPARAM) &cs);
    m_pguie->SetWindowPos(NULL, 0, 0, cs.cx, cs.cy, 0);
    SendMessage(WM_SIZE, 0, 0);

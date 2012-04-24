@@ -71,14 +71,14 @@ void html_form_view::dump(dump_context & dumpcontext) const
 //
 
 
-BOOL html_form_view::PreCreateWindow(CREATESTRUCT& cs)
+BOOL html_form_view::pre_create_window(CREATESTRUCT& cs)
 {
    cs.lpszClass = System.RegisterWndClass(
       CS_DBLCLKS |
       CS_OWNDC,
       0, 0, 0);
    cs.style &= ~WS_EX_CLIENTEDGE;
-   return html_form::PreCreateWindow(cs);
+   return html_form::pre_create_window(cs);
 }
 void html_form_view::_001OnInitialUpdate(gen::signal_object * pobj)
 {

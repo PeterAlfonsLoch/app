@@ -57,7 +57,7 @@ public:
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
    virtual void pre_translate_message(gen::signal_object * pobj);
    protected:
-   virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+   virtual BOOL pre_create_window(CREATESTRUCT& cs);
 
    virtual int _001GetHoverItem();
    virtual void OnUpdateHover();

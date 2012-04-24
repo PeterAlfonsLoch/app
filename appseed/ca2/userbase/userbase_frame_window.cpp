@@ -114,7 +114,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // frame_window second phase creation
 
-   BOOL frame_window::PreCreateWindow(CREATESTRUCT& cs)
+   BOOL frame_window::pre_create_window(CREATESTRUCT& cs)
    {
       if (cs.lpszClass == NULL)
       {

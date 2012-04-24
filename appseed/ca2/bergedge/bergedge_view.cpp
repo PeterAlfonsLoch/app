@@ -86,10 +86,10 @@ namespace bergedge
    // ::view
 
 
-   BOOL view::PreCreateWindow(CREATESTRUCT& cs)
+   BOOL view::pre_create_window(CREATESTRUCT& cs)
    {
       cs.style &= ~WS_EX_CLIENTEDGE;
-      return ::userbase::view::PreCreateWindow(cs);
+      return ::userbase::view::pre_create_window(cs);
    }
    void view::_001OnInitialUpdate(gen::signal_object * pobj)
    {

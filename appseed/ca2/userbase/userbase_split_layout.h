@@ -1,24 +1,36 @@
 #pragma once
 
+
 namespace userbase
 {
 
+
    class split_bar;
+
 
    class CLASS_DECL_ca2 split_layout :
       virtual public user::place_holder_container
    {
    public:
+
+
+      friend class split_bar;
+
+
       enum e_orientation
       {
          orientation_horizontal = 1,
          orientation_vertical = 2
       };
+
+
       enum
       {
          stateInitial = 1,
          stateDragging = 2
       };
+
+
       class CLASS_DECL_ca2 Pane
       {
       public:
@@ -29,19 +41,23 @@ namespace userbase
          bool                    m_bFixedSize;
          user::place_holder *    m_pholder;
       };
-      array_app_alloc < split_bar, split_bar & > m_splitbara;
-      array_ptr_alloc < Pane, Pane &> m_panea;
-      e_orientation            m_eorientationSplit;
-      int                     m_iIndex;
-      int                     m_iState;
-      bool                     m_bInitialized;
-      ::critical_section      m_mutex;
-      static const int        m_iMarging;
-      int                     m_cxBorder;
-      int                     m_cyBorder;
+
+
+      array_app_alloc < split_bar, split_bar & >   m_splitbara;
+      array_ptr_alloc < Pane, Pane &>              m_panea;
+      e_orientation                                m_eorientationSplit;
+      int                                          m_iIndex;
+      int                                          m_iState;
+      bool                                         m_bInitialized;
+      ::critical_section                           m_mutex;
+      static const int                             m_iMarging;
+      int                                          m_cxBorder;
+      int                                          m_cyBorder;
+      
 
       split_layout(::ca::application * papp);
       virtual ~split_layout();
+
 
       virtual int get_normal_dimension();
       virtual int get_ortogonal_dimension();
@@ -61,7 +77,8 @@ namespace userbase
 
       virtual ::user::interaction  * get_pane_window(int iPane);
       virtual ::user::place_holder * get_pane_holder(int iPane);
-      virtual id _001GetPaneId(int iPane);
+      virtual id get_pane_id(int iPane);
+      virtual int get_pane_by_id(::id id);
 
 
       int get_pane_count();
@@ -80,7 +97,10 @@ namespace userbase
 
       bool SetPaneCount(int iPaneCount);
 
-      friend class split_bar;
    };
 
+
 } // namespace userbase
+
+
+

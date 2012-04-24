@@ -98,7 +98,7 @@ namespace userbase
 
 
       ::user::interaction* WindowDataGetWnd();
-      virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+      virtual BOOL pre_create_window(CREATESTRUCT& cs);
 
 
       friend class ::user::interaction;  // for access to m_bModalDisable

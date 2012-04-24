@@ -199,7 +199,7 @@ namespace user
       virtual BOOL SendChildNotifyLastMsg(LRESULT* pResult = NULL);
 
 
-      virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+      virtual BOOL pre_create_window(CREATESTRUCT& cs);
 
 
       virtual bool subclass_window(void * posdata);

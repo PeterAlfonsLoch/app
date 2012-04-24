@@ -63,7 +63,7 @@ namespace userbase
 
 
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
-      virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+      virtual BOOL pre_create_window(CREATESTRUCT& cs);
 
       DECL_GEN_SIGNAL(_001OnMenuMessage)
 

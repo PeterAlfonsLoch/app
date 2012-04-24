@@ -114,7 +114,7 @@ namespace platform
 
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
-      virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+      virtual BOOL pre_create_window(CREATESTRUCT& cs);
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
 
       document * get_document();

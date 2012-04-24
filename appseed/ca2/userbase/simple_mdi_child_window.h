@@ -39,7 +39,7 @@ public:
    virtual void dump(dump_context & dumpcontext) const;
 #endif
 
-   virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+   virtual BOOL pre_create_window(CREATESTRUCT& cs);
    virtual BOOL LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
                ::user::interaction* pParentWnd, ::ca::create_context* pContext = NULL);
       // 'pParentWnd' parameter is required for MDI Child
