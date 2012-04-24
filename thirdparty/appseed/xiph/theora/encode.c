@@ -14,12 +14,7 @@
   last mod: $Id: encode.c 16503 2009-08-22 18:14:02Z giles $
 
  ********************************************************************/
-#include <stdlib.h>
-#include <string.h>
-#include "encint.h"
-#if defined(OC_X86_ASM)
-# include "x86/x86enc.h"
-#endif
+#include "StdAfx.h"
 
 
 

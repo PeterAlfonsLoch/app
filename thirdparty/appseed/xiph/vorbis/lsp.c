@@ -31,15 +31,8 @@
    finder; find the cause of the confusion (probably a single bin
    spike or accidental near-float-limit resolution problems) and
    correct it. */
+#include "StdAfx.h"
 
-#include <math.h>
-#include <string.h>
-#include <stdlib.h>
-#include "lsp.h"
-#include "os.h"
-#include "misc.h"
-#include "lookup.h"
-#include "scales.h"
 
 /* three possible LSP to f curve functions; the exact computation
    (float), a lookup based float implementation, and an integer

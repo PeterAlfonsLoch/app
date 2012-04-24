@@ -14,10 +14,7 @@
   last mod: $Id: tokenize.c 16503 2009-08-22 18:14:02Z giles $
 
  ********************************************************************/
-#include <stdlib.h>
-#include <string.h>
-#include "encint.h"
-
+#include "StdAfx.h"
 
 
 static int oc_make_eob_token(int _run_count){

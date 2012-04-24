@@ -14,16 +14,8 @@
  last mod: $Id: sharedbook.c 17030 2010-03-25 06:52:55Z xiphmont $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <stdlib.h>
-#include <math.h>
-#include <string.h>
-#include <ogg/ogg.h>
-#include "os.h"
-#include "misc.h"
-#include "vorbis/codec.h"
-#include "codebook.h"
-#include "scales.h"
 
 /**** pack/unpack helpers ******************************************/
 int _ilog(unsigned int v){

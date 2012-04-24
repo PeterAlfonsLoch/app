@@ -17,19 +17,8 @@
  more amusing by Vorbis' current two allowed block sizes.
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ogg/ogg.h>
-#include "vorbis/codec.h"
-#include "codec_internal.h"
-
-#include "window.h"
-#include "mdct.h"
-#include "lpc.h"
-#include "registry.h"
-#include "misc.h"
 
 static int ilog2(unsigned int v){
   int ret=0;

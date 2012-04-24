@@ -14,16 +14,8 @@
  last mod: $Id: bitrate.c 16227 2009-07-08 06:58:46Z xiphmont $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <ogg/ogg.h>
-#include "vorbis/codec.h"
-#include "codec_internal.h"
-#include "os.h"
-#include "misc.h"
-#include "bitrate.h"
 
 /* compute bitrate tracking setup  */
 void vorbis_bitrate_init(vorbis_info *vi,bitrate_manager_state *bm){

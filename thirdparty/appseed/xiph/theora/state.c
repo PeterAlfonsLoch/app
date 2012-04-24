@@ -14,21 +14,8 @@
     last mod: $Id: state.c 16503 2009-08-22 18:14:02Z giles $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <stdlib.h>
-#include <string.h>
-#include "internal.h"
-#if defined(OC_X86_ASM)
-#if defined(_MSC_VER)
-# include "x86_vc/x86int.h"
-#else
-# include "x86/x86int.h"
-#endif
-#endif
-#if defined(OC_DUMP_IMAGES)
-# include <stdio.h>
-# include "png.h"
-#endif
 
 /*Returns the fragment index of the top-left block in a macro block.
   This can be used to test whether or not the whole macro block is valid.

@@ -14,20 +14,8 @@
  last mod: $Id: envelope.c 16227 2009-07-08 06:58:46Z xiphmont $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <math.h>
-#include <ogg/ogg.h>
-#include "vorbis/codec.h"
-#include "codec_internal.h"
-
-#include "os.h"
-#include "scales.h"
-#include "envelope.h"
-#include "mdct.h"
-#include "misc.h"
 
 void _ve_envelope_init(envelope_lookup *e,vorbis_info *vi){
   codec_setup_info *ci=vi->codec_setup;

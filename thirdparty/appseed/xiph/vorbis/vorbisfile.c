@@ -14,18 +14,8 @@
  last mod: $Id: vorbisfile.c 17573 2010-10-27 14:53:59Z xiphmont $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
-#include <math.h>
-
-#include "vorbis/codec.h"
-
-/* we don't need or want the static callback symbols here */
-#define OV_EXCLUDE_STATIC_CALLBACKS
-#include "vorbis/vorbisfile.h"
 
 #include "os.h"
 #include "misc.h"

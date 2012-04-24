@@ -19,17 +19,8 @@
    encode/decode loops are coded for clarity and performance is not
    yet even a nagging little idea lurking in the shadows.  Oh and BTW,
    it's slow. */
+#include "StdAfx.h"
 
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <ogg/ogg.h>
-#include "vorbis/codec.h"
-#include "codec_internal.h"
-#include "registry.h"
-#include "codebook.h"
-#include "misc.h"
-#include "os.h"
 
 //#define TRAIN_RES 1
 //#define TRAIN_RESAUX 1

@@ -103,6 +103,9 @@
     <ClCompile Include="x86_vc\x86enc.c">
       <Filter>Source Files\C Source Files\x86_vc</Filter>
     </ClCompile>
+    <ClCompile Include="StdAfx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\theora\codec.h">
@@ -166,6 +169,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ocintrin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

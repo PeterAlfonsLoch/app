@@ -14,12 +14,9 @@
     last mod: $Id: dequant.c 16503 2009-08-22 18:14:02Z giles $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <stdlib.h>
-#include <string.h>
-#include <ogg/ogg.h>
-#include "dequant.h"
-#include "decint.h"
+
 
 int oc_quant_params_unpack(oc_pack_buf *_opb,th_quant_info *_qinfo){
   th_quant_base *base_mats;

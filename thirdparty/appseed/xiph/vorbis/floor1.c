@@ -14,19 +14,8 @@
  last mod: $Id: floor1.c 17555 2010-10-21 18:14:51Z tterribe $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <ogg/ogg.h>
-#include "vorbis/codec.h"
-#include "codec_internal.h"
-#include "registry.h"
-#include "codebook.h"
-#include "misc.h"
-#include "scales.h"
-
-#include <stdio.h>
 
 #define floor1_rangedB 140 /* floor 1 fixed at -140dB to 0dB range */
 

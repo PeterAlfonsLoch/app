@@ -14,12 +14,7 @@
     last mod: $Id: info.c 16503 2009-08-22 18:14:02Z giles $
 
  ********************************************************************/
-
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
-#include "internal.h"
-
+#include "StdAfx.h"
 
 
 /*This is more or less the same as strncasecmp, but that doesn't exist

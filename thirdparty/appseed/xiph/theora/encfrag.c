@@ -14,9 +14,7 @@
   last mod: $Id: encfrag.c 16503 2009-08-22 18:14:02Z giles $
 
  ********************************************************************/
-#include <stdlib.h>
-#include <string.h>
-#include "encint.h"
+#include "StdAfx.h"
 
 
 void oc_enc_frag_sub(const oc_enc_ctx *_enc,ogg_int16_t _diff[64],

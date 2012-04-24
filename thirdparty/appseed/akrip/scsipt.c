@@ -32,8 +32,9 @@
  **********************************************************************
  *
  */
+#include "StdAfx.h"
 
-#include "akrip32_internal.h"
+
 #include "scsipt.h"
 #include <stdio.h>
 #include <stddef.h>

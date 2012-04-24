@@ -27,13 +27,8 @@
  * it follows R_0, R_1, I_1, R_2, I_2 ... R_n-1, I_n-1, I_n like the
  * FORTRAN version
  */
+#include "StdAfx.h"
 
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include "smallft.h"
-#include "os.h"
-#include "misc.h"
 
 static void drfti1(int n, float *wa, int *ifac){
   static int ntryh[4] = { 4,2,3,5 };

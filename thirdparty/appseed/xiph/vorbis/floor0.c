@@ -14,23 +14,8 @@
  last mod: $Id: floor0.c 17558 2010-10-22 00:24:41Z tterribe $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <ogg/ogg.h>
-#include "vorbis/codec.h"
-#include "codec_internal.h"
-#include "registry.h"
-#include "lpc.h"
-#include "lsp.h"
-#include "codebook.h"
-#include "scales.h"
-#include "misc.h"
-#include "os.h"
-
-#include "misc.h"
-#include <stdio.h>
 
 typedef struct {
   int ln;

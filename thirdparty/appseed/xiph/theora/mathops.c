@@ -1,5 +1,4 @@
-#include "mathops.h"
-#include <limits.h>
+#include "StdAfx.h"
 
 /*The fastest fallback strategy for platforms with fast multiplication appears
    to be based on de Bruijn sequences~\cite{LP98}.

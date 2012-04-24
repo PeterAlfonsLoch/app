@@ -14,12 +14,7 @@
     last mod: $Id: internal.c 16503 2009-08-22 18:14:02Z giles $
 
  ********************************************************************/
-
-#include <stdlib.h>
-#include <limits.h>
-#include <string.h>
-#include "internal.h"
-
+#include "StdAfx.h"
 
 
 /*A map from the index in the zig zag scan to the coefficient number in a

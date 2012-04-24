@@ -1,8 +1,4 @@
-#include <stdlib.h>
-#include <string.h>
-#include <ogg/ogg.h>
-#include "huffenc.h"
-
+#include "StdAfx.h"
 
 
 /*The default Huffman codes used for VP3.1.*/

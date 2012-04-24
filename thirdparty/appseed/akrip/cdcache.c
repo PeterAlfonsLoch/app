@@ -26,8 +26,7 @@
  **********************************************************************
  *
  */
-
-#include "akrip32_internal.h"
+#include "StdAfx.h"
 
 
 #include <time.h>

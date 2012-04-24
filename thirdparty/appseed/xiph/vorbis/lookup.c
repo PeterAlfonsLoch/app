@@ -14,12 +14,8 @@
   last mod: $Id: lookup.c 16227 2009-07-08 06:58:46Z xiphmont $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <math.h>
-#include "lookup.h"
-#include "lookup_data.h"
-#include "os.h"
-#include "misc.h"
 
 #ifdef FLOAT_LOOKUP
 

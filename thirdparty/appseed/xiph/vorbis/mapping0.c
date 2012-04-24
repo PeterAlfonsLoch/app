@@ -14,19 +14,8 @@
  last mod: $Id: mapping0.c 17022 2010-03-25 03:45:42Z xiphmont $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
-#include <ogg/ogg.h>
-#include "vorbis/codec.h"
-#include "codec_internal.h"
-#include "codebook.h"
-#include "window.h"
-#include "registry.h"
-#include "psy.h"
-#include "misc.h"
 
 /* simplistic, wasteful way of doing this (unique lookup for each
    mode/submapping); there should be a central repository for

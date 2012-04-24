@@ -14,10 +14,9 @@
   last mod: $Id$
 
  ********************************************************************/
-#include <limits.h>
-#include <string.h>
-#include "encint.h"
-#include "modedec.h"
+#include "StdAfx.h"
+
+
 
 
 

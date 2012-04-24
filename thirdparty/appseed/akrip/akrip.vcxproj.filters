@@ -40,6 +40,9 @@
     <ClCompile Include="scsipt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="StdAfx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="akrip32.h">

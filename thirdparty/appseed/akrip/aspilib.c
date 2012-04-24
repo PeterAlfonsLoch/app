@@ -22,10 +22,9 @@
  **********************************************************************
  *
  */
+#include "StdAfx.h"
 
-#define _AKRIP32_
 
-#include "akrip32_internal.h"
 
 #define SHAREDMEMVER 2
 typedef struct {

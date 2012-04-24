@@ -14,8 +14,7 @@
   last mod: $Id: fdct.c 16503 2009-08-22 18:14:02Z giles $
 
  ********************************************************************/
-#include "encint.h"
-#include "dct.h"
+#include "StdAfx.h"
 
 
 

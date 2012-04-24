@@ -37,9 +37,6 @@
     <ClCompile Include="mapping0.c">
       <Filter>Source Files\C Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mdct.c">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="window.c">
       <Filter>Source Files\C Source Files</Filter>
     </ClCompile>
@@ -62,6 +59,12 @@
       <Filter>Source Files\C Source Files</Filter>
     </ClCompile>
     <ClCompile Include="psy.c">
+      <Filter>Source Files\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mdct.c">
       <Filter>Source Files\C Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -190,6 +193,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

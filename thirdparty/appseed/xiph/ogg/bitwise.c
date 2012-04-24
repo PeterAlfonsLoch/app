@@ -17,11 +17,7 @@
 
 /* We're 'LSb' endian; if we write a word but read individual bits,
    then we'll read the lsb first */
-
-#include <string.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <ogg/ogg.h>
+#include "StdAfx.h"
 
 #define BUFFER_INCREMENT 256
 

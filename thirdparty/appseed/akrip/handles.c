@@ -22,11 +22,7 @@
  **********************************************************************
  *
  */
-
-#define _AKRIP32_
-
-
-#include "akrip32_internal.h"
+#include "StdAfx.h"
 
 
 extern CDHANDLEREC *cdHandles;

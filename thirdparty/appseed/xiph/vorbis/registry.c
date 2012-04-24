@@ -14,11 +14,8 @@
  last mod: $Id: registry.c 16227 2009-07-08 06:58:46Z xiphmont $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include "vorbis/codec.h"
-#include "codec_internal.h"
-#include "registry.h"
-#include "misc.h"
 /* seems like major overkill now; the backend numbers will grow into
    the infrastructure soon enough */
 

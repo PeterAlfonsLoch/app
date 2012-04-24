@@ -14,11 +14,7 @@
   last mod: $Id$
 
  ********************************************************************/
-#include <stdlib.h>
-#include <limits.h>
-#include <string.h>
-#include "encint.h"
-
+#include "StdAfx.h"
 
 
 typedef struct oc_mcenc_ctx           oc_mcenc_ctx;

@@ -14,12 +14,7 @@
     last mod: $Id: huffdec.c 16503 2009-08-22 18:14:02Z giles $
 
  ********************************************************************/
-
-#include <stdlib.h>
-#include <string.h>
-#include <ogg/ogg.h>
-#include "huffdec.h"
-#include "decint.h"
+#include "StdAfx.h"
 
 
 /*The ANSI offsetof macro is broken on some platforms (e.g., older DECs).*/

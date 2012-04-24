@@ -14,17 +14,8 @@
  last mod: $Id: analysis.c 16226 2009-07-08 06:43:49Z xiphmont $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
-#include <ogg/ogg.h>
-#include "vorbis/codec.h"
-#include "codec_internal.h"
-#include "registry.h"
-#include "scales.h"
-#include "os.h"
-#include "misc.h"
 
 /* decides between modes, dispatches to the appropriate mapping. */
 int vorbis_analysis(vorbis_block *vb, ogg_packet *op){

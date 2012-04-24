@@ -14,12 +14,8 @@
     last mod: $Id: quant.c 16503 2009-08-22 18:14:02Z giles $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <stdlib.h>
-#include <string.h>
-#include <ogg/ogg.h>
-#include "quant.h"
-#include "decint.h"
 
 static const unsigned OC_DC_QUANT_MIN[2]={4<<2,8<<2};
 static const unsigned OC_AC_QUANT_MIN[2]={2<<2,4<<2};

@@ -14,20 +14,8 @@
  last mod: $Id: psy.c 17569 2010-10-26 17:09:47Z xiphmont $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <stdlib.h>
-#include <math.h>
-#include <string.h>
-#include "vorbis/codec.h"
-#include "codec_internal.h"
-
-#include "masking.h"
-#include "psy.h"
-#include "os.h"
-#include "lpc.h"
-#include "smallft.h"
-#include "scales.h"
-#include "misc.h"
 
 #define NEGINF -9999.f
 static const double stereo_threshholds[]={0.0, .5, 1.0, 1.5, 2.5, 4.5, 8.5, 16.5, 9e10};

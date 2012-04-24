@@ -19,10 +19,7 @@
  for details.
 
  ********************************************************************/
-
-#include <stdlib.h>
-#include <string.h>
-#include <ogg/ogg.h>
+#include "StdAfx.h"
 
 /* A complete description of Ogg framing exists in docs/framing.html */
 

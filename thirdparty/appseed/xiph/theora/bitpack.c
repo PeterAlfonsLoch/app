@@ -14,9 +14,7 @@
   last mod: $Id: bitpack.c 16503 2009-08-22 18:14:02Z giles $
 
  ********************************************************************/
-#include <string.h>
-#include <stdlib.h>
-#include "bitpack.h"
+#include "StdAfx.h"
 
 /*We're 'MSb' endian; if we write a word but read individual bits,
    then we'll read the MSb first.*/

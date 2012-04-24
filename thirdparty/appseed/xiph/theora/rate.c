@@ -14,9 +14,7 @@
   last mod: $Id: rate.c 16503 2009-08-22 18:14:02Z giles $
 
  ********************************************************************/
-#include <stdlib.h>
-#include <string.h>
-#include "encint.h"
+#include "StdAfx.h"
 
 /*A rough lookup table for tan(x), 0<=x<pi/2.
   The values are Q12 fixed-point and spaced at 5 degree intervals.

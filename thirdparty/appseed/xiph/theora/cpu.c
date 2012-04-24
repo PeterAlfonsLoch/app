@@ -18,7 +18,7 @@
 
  ********************************************************************/
 
-#include "cpu.h"
+#include "StdAfx.h"
 
 #if !defined(OC_X86_ASM)
 static ogg_uint32_t oc_cpu_flags_get(void){

@@ -1,9 +1,4 @@
-#include <stdlib.h>
-#include <string.h>
-#include "internal.h"
-#include "enquant.h"
-#include "huffenc.h"
-
+#include "StdAfx.h"
 
 
 /*Packs a series of octets from a given byte array into the pack buffer.

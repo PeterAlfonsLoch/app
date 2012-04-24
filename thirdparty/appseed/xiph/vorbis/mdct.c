@@ -37,14 +37,8 @@
    roundoff isn't done (so it's noisy).  Consider it functional, but
    only a starting point.  There's no point on a machine with an FPU */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include "vorbis/codec.h"
-#include "mdct.h"
-#include "os.h"
-#include "misc.h"
+#include "StdAfx.h"
+
 
 /* build lookups for trig functions; also pre-figure scaling and
    some window function algebra. */

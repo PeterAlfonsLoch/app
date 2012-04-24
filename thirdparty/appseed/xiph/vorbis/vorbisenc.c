@@ -14,18 +14,8 @@
  last mod: $Id: vorbisenc.c 17028 2010-03-25 05:22:15Z xiphmont $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-
-#include "vorbis/codec.h"
-#include "vorbis/vorbisenc.h"
-
-#include "codec_internal.h"
-
-#include "os.h"
-#include "misc.h"
 
 /* careful with this; it's using static array sizing to make managing
    all the modes a little less annoying.  If we use a residue backend

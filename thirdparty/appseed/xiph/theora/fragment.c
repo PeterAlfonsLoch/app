@@ -14,8 +14,9 @@
     last mod: $Id: fragment.c 16503 2009-08-22 18:14:02Z giles $
 
  ********************************************************************/
-#include <string.h>
-#include "internal.h"
+#include "StdAfx.h"
+
+
 
 void oc_frag_copy(const oc_theora_state *_state,unsigned char *_dst,
  const unsigned char *_src,int _ystride){

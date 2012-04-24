@@ -14,8 +14,8 @@
   last mod: $Id: encoder_disabled.c 16503 2009-08-22 18:14:02Z giles $
 
  ********************************************************************/
-#include "apiwrapper.h"
-#include "encint.h"
+#include "StdAfx.h"
+
 
 th_enc_ctx *th_encode_alloc(const th_info *_info){
   return NULL;

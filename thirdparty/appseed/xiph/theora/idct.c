@@ -14,10 +14,8 @@
     last mod: $Id: idct.c 16503 2009-08-22 18:14:02Z giles $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <string.h>
-#include "internal.h"
-#include "dct.h"
 
 /*Performs an inverse 8 point Type-II DCT transform.
   The output is scaled by a factor of 2 relative to the orthonormal version of

@@ -22,10 +22,8 @@
  **********************************************************************
  *
  */
+#include "StdAfx.h"
 
-#define _AKRIP32_
-
-#include "akrip32_internal.h"
 
 extern CDHANDLEREC *cdHandles;
 extern HANDLE *cdMutexes;

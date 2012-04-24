@@ -15,10 +15,7 @@
 
  ********************************************************************/
 
-#include <stdlib.h>
-#include <string.h>
-#include <limits.h>
-#include "apiwrapper.h"
+#include "StdAfx.h"
 
 
 

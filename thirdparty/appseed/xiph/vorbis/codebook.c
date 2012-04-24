@@ -14,16 +14,8 @@
  last mod: $Id: codebook.c 17553 2010-10-21 17:54:26Z tterribe $
 
  ********************************************************************/
+#include "StdAfx.h"
 
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <ogg/ogg.h>
-#include "vorbis/codec.h"
-#include "codebook.h"
-#include "scales.h"
-#include "misc.h"
-#include "os.h"
 
 /* packs the given codebook into the bitstream **************************/
 
