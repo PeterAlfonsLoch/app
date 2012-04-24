@@ -301,7 +301,7 @@ namespace ca
             string strFilePath(varFile);
             if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", strFilePath) >= 0))
             {
-               gen::memory_file memfile(get_app(), &storage);
+               gen::memory_file memfile(papp, &storage);
                zip::InFile infile(get_app());
                if(!infile.unzip_open(strFilePath, 0, NULL))
                   return "";
@@ -331,15 +331,15 @@ namespace ca
                }
                if(varQuery.propset()["disable_ca2_sessid"])
                {
-                  Application.http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
+                  App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
                }
                else if(varQuery.propset()["optional_ca2_sessid"])
                {
-                  Application.http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
+                  App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
                }
                else
                {
-                  Application.http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, &AppUser(papp));
+                  App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, &AppUser(papp));
                }
                varQuery["out_headers"] = headers;
             }

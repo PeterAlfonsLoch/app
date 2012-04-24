@@ -989,7 +989,7 @@ retry:
                if(papp != NULL)
                {
                   
-                  string strFontopusServer = Sys(papp).get_fontopus_server(strUrl, papp);
+                  string strFontopusServer = Sys(papp).get_fontopus_server(strUrl, papp, 8);
                   
                   url_domain domainFontopus;
 

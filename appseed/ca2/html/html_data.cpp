@@ -443,8 +443,9 @@ namespace html
 
       string str = Application.file().as_string(varFile, varQuery);
 
-      if(varQuery.propset()["out_headers"].propset().has_property("Location"))
+      if(!varQuery.propset()["out_headers"].propset()["Location"].is_empty())
       {
+         string strLocation = varQuery.propset()["out_headers"].propset()["Location"];
          iRetry++;
          if(iRetry > 8)
          {
