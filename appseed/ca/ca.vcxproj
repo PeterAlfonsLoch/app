@@ -1392,6 +1392,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="sockets\sockets.h" />
     <ClInclude Include="sockets\sockets_http_batch_file.h" />
     <ClInclude Include="sockets\sockets_http_file.h" />
+    <ClInclude Include="sockets\sockets_link_out_socket.h" />
+    <ClInclude Include="sockets\sockets_link_in_socket.h" />
     <ClInclude Include="sockets\timer\Event.h" />
     <ClInclude Include="sockets\timer\EventHandler.h" />
     <ClInclude Include="sockets\timer\EventTime.h" />
@@ -2491,6 +2493,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="sockets\sockets_http_batch_file.cpp" />
     <ClCompile Include="sockets\sockets_http_file.cpp" />
     <ClCompile Include="sockets\sockets_include.cpp" />
+    <ClCompile Include="sockets\sockets_link_out_socket.cpp" />
+    <ClCompile Include="sockets\sockets_link_in_socket.cpp" />
     <ClCompile Include="sockets\timer\sockets_Event.cpp" />
     <ClCompile Include="sockets\timer\sockets_EventHandler.cpp" />
     <ClCompile Include="sockets\timer\sockets_EventTime.cpp" />

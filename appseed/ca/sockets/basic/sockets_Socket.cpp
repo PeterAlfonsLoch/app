@@ -85,7 +85,8 @@ namespace sockets
    ,m_slave_handler(NULL)
    // Line protocol
    ,m_bLineProtocol(false)
-   ,m_skip_c(false)
+   ,m_skip_c(false),
+   m_memfileInput(h.get_app())
    {
 
       m_iBindPort    = -1;
@@ -1818,6 +1819,7 @@ namespace sockets
 
    void socket::OnRead( char *buf, size_t n )
    {
+      m_memfileInput.write(buf, n);
       if (LineProtocol())
       {
          buf[n] = 0;

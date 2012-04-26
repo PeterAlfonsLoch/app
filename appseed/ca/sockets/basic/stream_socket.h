@@ -86,7 +86,7 @@ namespace sockets
       /** Returns IPPROTO_TCP or IPPROTO_SCTP */
       virtual int Protocol() = 0;
 
-
+   public:
 
       bool m_bConnecting; ///< Flag indicating connection in progress
       int m_connect_timeout; ///< Connection timeout (seconds)

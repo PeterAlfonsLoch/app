@@ -80,6 +80,12 @@ namespace dynamic_source
 
 
       bool                             m_bUseTunnel;
+      mutex m_mutexOutLink;
+      ::collection::string_map < ::sockets::link_out_socket * > m_mapOutLink;
+      mutex m_mutexInLink;
+      ::collection::map < ::sockets::link_out_socket *, ::sockets::link_out_socket *, ::sockets::link_in_socket *, ::sockets::link_in_socket * > m_mapInLink;
+
+
 
 
       string                  m_strNamespace;
@@ -166,6 +172,10 @@ namespace dynamic_source
 
       
       virtual string get_root_plugin();
+
+
+      void wait_link_out(const char * pszServer, ::sockets::link_in_socket * pinsocket);
+      ::sockets::link_in_socket * get_link_in(const char * pszServer, ::sockets::link_out_socket * poutsocket);
       
 
    };

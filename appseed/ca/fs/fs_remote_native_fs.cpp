@@ -13,6 +13,11 @@ namespace fs
       m_strRoot = pszRoot;
    }
 
+
+   remote_native::~remote_native()
+   {
+   }
+
    bool remote_native::has_subdir(const char * pszPath)
    {
 

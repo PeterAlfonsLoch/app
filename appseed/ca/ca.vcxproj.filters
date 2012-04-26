@@ -3128,6 +3128,12 @@
     <ClInclude Include="os\os_cross_windows.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
+    <ClInclude Include="sockets\sockets_link_out_socket.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sockets_link_in_socket.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
     <ClInclude Include="fs\fs_ifs.h">
       <Filter>Header Files\fs</Filter>
     </ClInclude>
@@ -5247,6 +5253,12 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive_virtual_memory.cpp">
       <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_link_out_socket.cpp">
+      <Filter>Source Files\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_link_in_socket.cpp">
+      <Filter>Source Files\sockets</Filter>
     </ClCompile>
     <ClCompile Include="fs\fs_remote_native_fs.cpp">
       <Filter>Source Files\fs</Filter>

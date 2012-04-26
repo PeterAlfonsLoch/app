@@ -14,15 +14,16 @@ namespace fs
    public:
 
 
-      string         m_strRoot;
-      bool           m_bInitialized;
+      string                              m_strRoot;
+      bool                                m_bInitialized;
 
 
       ::collection::string_map < DWORD >   m_mapdirTimeout;
       ::collection::string_map < DWORD >   m_mapfileTimeout;
 
 
-      remove_native(::ca::application * papp, const char * pszRoot);
+      remote_native(::ca::application * papp, const char * pszRoot);
+      virtual ~remote_native();
 
    
       virtual bool has_subdir(const char * pszPath);

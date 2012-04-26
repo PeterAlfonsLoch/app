@@ -17,6 +17,9 @@ namespace sockets
    {
    public:
 
+
+      gen::memory_file m_memfileInput;
+
       class CLASS_DECL_ca callback
       {
       public:

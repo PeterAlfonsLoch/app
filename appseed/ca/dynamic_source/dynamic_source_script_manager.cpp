@@ -716,6 +716,37 @@ namespace dynamic_source
       return "netnode://script_seed_carlos_gustavo_cecyn_lundgren_carlos";
    }
 
+
+   void script_manager::wait_link_out(const char * pszServer, ::sockets::link_in_socket * pinsocket)
+   {
+      ::collection::string_map < ::sockets::link_out_socket * >::pair * ppair;
+      while(true)
+      {
+         {
+            single_lock sl(&m_mutexOutLink);
+            ppair = m_mapOutLink.PLookup(pszServer);
+            if(ppair != NULL)
+            {
+               single_lock sl2(&m_mutexInLink);
+               m_mapInLink.set_at(ppair->m_value, pinsocket);
+               break;
+            }
+         }
+         Sleep(455);
+      }
+   }
+
+   ::sockets::link_in_socket * script_manager::get_link_in(const char * pszServer, ::sockets::link_out_socket * poutsocket)
+   {
+       single_lock sl2(&m_mutexInLink);
+       ::collection::map < ::sockets::link_out_socket *, ::sockets::link_out_socket *, ::sockets::link_in_socket *, ::sockets::link_in_socket * >::pair * ppair =
+          m_mapInLink.PLookup(poutsocket);
+       if(ppair == NULL)
+          return NULL;
+         return ppair->m_value;
+   }
+
+
 } // namespace dynamic_source
 
 
