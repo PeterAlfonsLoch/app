@@ -1169,15 +1169,6 @@
     <ClInclude Include="fs\fs_set.h">
       <Filter>Header Files\fs</Filter>
     </ClInclude>
-    <ClInclude Include="fs\ifs.h">
-      <Filter>Header Files\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="fs\ifs_file.h">
-      <Filter>Header Files\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="fs\native_fs.h">
-      <Filter>Header Files\fs</Filter>
-    </ClInclude>
     <ClInclude Include="userpresence\userpresence.h">
       <Filter>Header Files\userpresence</Filter>
     </ClInclude>
@@ -3137,6 +3128,21 @@
     <ClInclude Include="os\os_cross_windows.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
+    <ClInclude Include="fs\fs_ifs.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_ifs_file.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_native_fs.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_remote_native_fs.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_remote_native_file.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -3782,15 +3788,6 @@
       <Filter>Source Files\fs</Filter>
     </ClCompile>
     <ClCompile Include="fs\fs_set.cpp">
-      <Filter>Source Files\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="fs\ifs.cpp">
-      <Filter>Source Files\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="fs\ifs_file.cpp">
-      <Filter>Source Files\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="fs\native_fs.cpp">
       <Filter>Source Files\fs</Filter>
     </ClCompile>
     <ClCompile Include="ca2\ca2_application.cpp">
@@ -5250,6 +5247,21 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive_virtual_memory.cpp">
       <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\fs_remote_native_fs.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\fs_ifs.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\fs_ifs_file.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\fs_native_fs.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\fs_remote_native_file.cpp">
+      <Filter>Source Files\fs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
