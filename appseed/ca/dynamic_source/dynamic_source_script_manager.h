@@ -60,9 +60,15 @@ namespace dynamic_source
          string         m_strScript;
          string         m_strPlugin;
 
+         plugin_map_item();
+         plugin_map_item(const plugin_map_item & item);
+
+
+         plugin_map_item & operator = (const plugin_map_item & item);
+
       };
 
-      ::raw_array < plugin_map_item >           m_pluginmapitema;
+      ::array_ptr_alloc < plugin_map_item >           m_pluginmapitema;
 
       mutex m_mutexIncludeMatches;
       ::collection::string_map < bool > m_mapIncludeMatchesFileExists;
@@ -73,7 +79,7 @@ namespace dynamic_source
       string_to_string_map             m_mapIncludeExpandMd5;
 
 
-
+      bool                             m_bUseTunnel;
 
 
       string                  m_strNamespace;

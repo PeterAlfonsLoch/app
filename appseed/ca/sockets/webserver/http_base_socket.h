@@ -45,6 +45,7 @@ namespace sockets
 
       void OnWriteComplete();
 
+
       virtual void OnExecute() = 0;
       virtual void OnResponseComplete();
 

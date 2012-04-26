@@ -16,6 +16,7 @@ namespace dynamic_source
 {
 
 
+   class script;
    class script_manager;
 
 
@@ -63,6 +64,11 @@ namespace ca2
 
 
       virtual ::dynamic_source::script_manager * create_script_manager(::ca::application * papp);
+
+      virtual void get_script_list(stringa & stra);
+      virtual ::dynamic_source::script * create_script(::ca::application * papp, const char * pszScript);
+      virtual void do_default_script_registration(::dynamic_source::script_manager * pmanager);
+
 
 
    private:

@@ -131,7 +131,10 @@ namespace sockets
 
    void http_client_socket::OnDataComplete()
    {
-      SetCloseAndDelete();
+      if(oprop("noclose").is_empty() || !(bool)oprop("noclose"))
+      {
+         SetCloseAndDelete();
+      }
    }
 
    void http_client_socket::OnData(const char *buf,size_t len)

@@ -1051,6 +1051,10 @@ retry:
          {
             psocket->m_request.attrs()["minimal_headers"] = true;
          }
+         if((bool)set["noclose"])
+         {
+            psocket->oprop("noclose") = true;
+         }
          if(set.has_property("file"))
          {
             psocket->m_pfile = set["file"].ca2 < ::ex1::file >();
@@ -1067,7 +1071,10 @@ retry:
          {
             psocket->request().header("Cookie") = set["Cookie"];
          }
-         psocket->SetCloseOnComplete();
+         if(!(bool)set["noclose"])
+         {
+            psocket->SetCloseOnComplete();
+         }
          if(strProtocol == "https")
          {
             ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].ca2 < ::sockets::ssl_client_context > ();
@@ -1104,6 +1111,9 @@ retry:
          int iIteration = 0;
          ::ca::live_signal keeplive;
          
+         if((bool)set["noloop"])
+            return psocket;
+
          if(papp != NULL)
          {
             keeplive.add(papp);

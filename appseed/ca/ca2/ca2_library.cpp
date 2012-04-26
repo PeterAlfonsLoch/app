@@ -253,6 +253,40 @@ namespace ca2
    }
 
 
+   void library::get_script_list(stringa & stra)
+   {
+      
+      if(m_pca2library != NULL)
+      {
+         return m_pca2library->get_script_list(stra);
+      }
+
+   }
+
+   ::dynamic_source::script * library::create_script(::ca::application * papp, const char * pszScript)
+   {
+
+      if(m_pca2library != NULL)
+      {
+         return m_pca2library->create_script(papp, pszScript);
+      }
+
+      return NULL;
+
+
+   }
+
+   void library::do_default_script_registration(::dynamic_source::script_manager * pmanager)
+   {
+
+      if(m_pca2library != NULL)
+      {
+         return m_pca2library->do_default_script_registration(pmanager);
+      }
+
+   }
+
+
 } // namespace ca2
 
 

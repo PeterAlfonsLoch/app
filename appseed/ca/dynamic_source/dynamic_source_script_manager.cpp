@@ -10,6 +10,30 @@ namespace dynamic_source
 {
 
 
+      script_manager::plugin_map_item::plugin_map_item()
+      {
+      }
+
+      script_manager::plugin_map_item::plugin_map_item(const plugin_map_item & item)
+      {
+         
+         operator = (item);
+
+      }
+
+
+      script_manager::plugin_map_item & script_manager::plugin_map_item::operator = (const plugin_map_item & item)
+      {
+
+         m_strHost         = item.m_strHost;
+         m_strScript       = item.m_strScript;
+         m_strPlugin       = item.m_strPlugin;
+
+         return *this;
+
+      }
+
+
    script_manager::script_manager(::ca::application * papp) :
       ca(papp),
       thread(papp),
@@ -39,6 +63,9 @@ namespace dynamic_source
       m_strNetnodePath           = "C:\\netnodenet\\";
       m_strNetseedPath           = "C:\\netnodenet\\net\\netseed\\";
       m_strNetseedDsCa2Path      = "C:\\netnodenet\\net\\netseed\\ds\\ca2\\";
+
+
+      m_bUseTunnel               = false;
 
    }
 
@@ -676,6 +703,8 @@ namespace dynamic_source
       item.m_strHost       = pszHost;
       item.m_strScript     = pszScript;
       item.m_strPlugin     = pszName;
+
+      m_pluginmapitema.add(item);
 
       m_pcache->register_script(pszName, pscript);
 

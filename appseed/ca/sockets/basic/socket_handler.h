@@ -172,7 +172,7 @@ namespace sockets
       /** Sanity check of those accursed lists. */
       void CheckSanity();
 
-   protected:
+   public:
       socket_map     m_sockets; ///< Active sockets ::collection::map
       socket_map     m_add; ///< Sockets to be added to sockets ::collection::map
       socket_list    m_delete; ///< Sockets to be deleted (failed when add)

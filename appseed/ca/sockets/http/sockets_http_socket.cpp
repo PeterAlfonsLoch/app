@@ -507,5 +507,17 @@ namespace sockets
    }
 
 
+   void http_socket::client_to_server(http_socket * psocket)
+   {
+
+      m_ssl             = psocket->m_ssl;
+      m_socket          = psocket->m_socket;
+      m_b_ssl           = psocket->m_b_ssl;
+      m_b_ssl_server    = psocket->m_b_ssl_server;
+      m_b_enable_ssl    = psocket->m_b_enable_ssl;
+      SetRemoteAddress(psocket->GetRemoteSocketAddress());
+
+
+   }
 
 } // namespace sockets

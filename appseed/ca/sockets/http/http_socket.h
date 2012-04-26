@@ -101,6 +101,10 @@ namespace sockets
       virtual void Reset();
 
       virtual bool http_filter_response_header(string & strKey, string & strValue);
+
+      virtual void client_to_server(http_socket * psocket);
+
+
    };
 
 
