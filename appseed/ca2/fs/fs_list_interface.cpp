@@ -142,8 +142,6 @@ namespace fs
          return;
       }*/
 
-
-
       string strParent = lpcsz;
 
       int iMaxSize;

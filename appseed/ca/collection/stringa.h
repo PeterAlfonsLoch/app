@@ -18,6 +18,9 @@ public:
    LPTSTR GetFormatV004();
    count remove_empty();
    index add_normal(const char * lpcsz);
+   void trim_right(const char * pszChars);
+   void trim_left(const char * pszChars);
+   void trim(const char * pszChars);
    void trim_right();
    void trim_left();
    void trim();

@@ -105,8 +105,13 @@ namespace filemanager
 
       m_straUpdatePtrFilter.remove_all();
 
-      m_straMissingUpdate = stra;
+      {
 
+         single_lock sl(&m_mutexMissinUpdate, TRUE);
+
+         m_straMissingUpdate = stra;
+
+      }
 
       _StartDelayedListUpdate();
 
@@ -321,6 +326,132 @@ namespace filemanager
          m_pitem = pitemParent;
       }
 
+
+      stringa straAscendants;
+
+      ::ex1::tree_item * pitem;
+
+      ::ex1::tree_item * pitemBase;
+
+      ::fs::tree_item * pitemChild;
+
+      string strNew;
+
+      System.file().get_ascendants_path(lpcsz, straAscendants);
+
+      pitemBase = get_base_item();
+
+      for(int i = 0; i < straAscendants.get_count(); i++)
+      {
+         string strItem = straAscendants[i];
+         strItem.trim("/\\");
+         if(strItem.is_empty())
+            continue;
+         pitem = find_item(strItem);
+         if(pitem == NULL)
+         {
+            pitem = find_item(strItem + "\\");
+            if(pitem == NULL)
+            {
+               pitem = find_item(strItem + "/");
+               if(pitem == NULL)
+               {
+                  pitem = find_item(strItem + "//");
+                  if(pitem == NULL)
+                  {
+                     strItem.replace("\\", "/");
+                     pitem = find_item(strItem);
+                     if(pitem == NULL)
+                     {
+                        pitem = find_item(strItem + "/");
+                     }
+                  }
+               }
+            }
+            
+         }
+         strNew.Empty();
+         if(pitem != NULL)
+         {
+            pitemBase = pitem;
+            continue;
+         }
+         else 
+         {
+            // pitem == NULL
+            if(i == 0)
+            {
+               if(strItem[1] == ':')
+               {
+                  strNew = strItem + "\\";
+               }
+               else if(strItem.find(':') >= 0)
+               {
+                  strNew = strItem + "//";
+               }
+            }
+            else
+            {
+               strNew = strItem;
+            }
+         }
+         if(strNew.is_empty())
+         {
+            // error
+            return;
+         }
+
+         pitemChild = new ::fs::tree_item;
+
+         pitemChild->m_pdata = get_fs_tree_data();
+
+         pitemChild->m_strPath = get_document()->set().dir_path(strNew, "");
+
+         //if(m_straUpdatePtrFilter.find_first(straPath[i]) >= 0)
+         //{
+         //   continue;
+         //}
+         pitemChild->m_strName = System.file().name_(strNew);
+
+         pitemChild->m_flags.signalize(::fs::FlagFolder);
+         pitemChild->m_iImage = m_iDefaultImage;
+         pitemChild->m_iImageSelected = m_iDefaultImageSelected;
+
+         pitem = find_item(pitemChild->m_strPath);
+         if(pitem != NULL)
+         {
+            //pitem = insert_item(pitemChild, ex1::RelativeReplace, pitem);
+            // a refresh or a file monitoring event for folder deletion or creation should
+            // the most precisely possible way reset this flag
+            //pitemChild->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
+            // error
+            return;
+         }
+         else
+         {
+            pitem = insert_item(pitemChild, ex1::RelativeLastChild, pitemBase);
+         }
+
+         if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
+         {
+            pitem->m_dwState |= ::ex1::tree_item_state_expandable;
+         }
+
+
+         pitemBase = pitem;
+
+         //if(iLevel > 1)
+         //{
+           // _017UpdateList(pitemChild->m_strPath,  pitem, iLevel - 1);
+         //}
+
+      }
+
+
+      pitemParent = pitemBase;
+
+
+
       if(GetFileManager() != NULL && GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge != NULL
          && !(dynamic_cast < user::tree * > (GetFileManager()->get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
       {
@@ -336,10 +467,6 @@ namespace filemanager
          pitemFolder = (::fs::tree_item *) pitemParent;
       }
 
-
-      ::fs::tree_item * pitemChild;
-      ::ex1::tree_item * pitem;
-      ex1::tree_item_ptr_array ptraRemove;
 
       if(pitemFolder != NULL && pitemFolder->m_flags.is_signalized(::fs::FlagHasSubFolderUnknown))
       {
@@ -379,6 +506,41 @@ namespace filemanager
       {
          get_document()->set().ls(lpcsz, &straPath, & straTitle);
       }
+
+      pitem = pitemParent->m_pchild;
+
+      stringa straNew = straPath;
+
+      straNew.trim_right("/\\");
+
+      ex1::tree_item_ptr_array ptraRemove;
+
+      while(pitem != NULL)
+      {
+
+         string strPathOld = ((::fs::tree_item *) pitem->m_pitemdata)->m_strPath;
+         
+         strPathOld.trim_right("/\\");
+
+         if(!straNew.contains(strPathOld) || !GetFileManager()->get_fs_data()->is_dir(strPathOld))
+         {
+            ptraRemove.add(pitem);
+         }
+
+         pitem = pitem->m_pnext;
+
+      }
+
+      for(int j = 0; j < ptraRemove.get_size(); j++)
+      {
+         delete_item(ptraRemove[j]);
+      }
+
+
+//      ex1::tree_item_ptr_array ptraRemove;
+
+
+
       int i;
 
       for(i = 0; i < straPath.get_size(); i++)
@@ -467,10 +629,6 @@ namespace filemanager
             _017UpdateList(pitemChild->m_strPath,  pitem, iLevel - 1);
          }
 
-      }
-      for(int j = 0; j < ptraRemove.get_size(); j++)
-      {
-         delete_item(ptraRemove[j]);
       }
 
       arrange(::fs::arrange_by_name);
@@ -782,6 +940,9 @@ namespace filemanager
 
    void filemanager::SimpleFolderTreeInterface::_DelayedListUpdate(void)
    {
+      
+      single_lock sl(&m_mutexMissinUpdate, TRUE);
+
       if(m_straMissingUpdate.get_size() == 0)
       {
          _StopDelayedListUpdate();
@@ -802,6 +963,7 @@ namespace filemanager
       }
 
       m_straMissingUpdate.remove_at(0);
+
       m_bDelayedListUpdate = false;
 
 

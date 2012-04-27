@@ -425,9 +425,10 @@ namespace ca2
             i++;
          else if(ch == '.')
             i++;
-         else if(ch == ':' && iLen > (i + 3)
+         else if(ch == ':' && ((i + 1) == iLen) ||
+            (iLen > (i + 3)
             && strCandidate[i + 1] == '/'
-            && strCandidate[i + 2] == '/')
+            && strCandidate[i + 2] == '/'))
             return true;
          else
             return false;

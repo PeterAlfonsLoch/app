@@ -45,19 +45,20 @@ namespace filemanager
       };
 
 
-      critical_section      m_csBrowse;
-      bool                  m_bCreateImageList;
-      bool                  m_bCreateImageListRedraw;
-      int                  m_iAnimate;
-      bool                 m_bTimer123;
-      stringa              m_straUpdatePtrFilter;
-      stringa              m_straMissingUpdate;
-      bool                 m_bDelayedListUpdate;
+      critical_section        m_csBrowse;
+      bool                    m_bCreateImageList;
+      bool                    m_bCreateImageListRedraw;
+      int                     m_iAnimate;
+      bool                    m_bTimer123;
+      stringa                 m_straUpdatePtrFilter;
+      mutex                   m_mutexMissinUpdate;
+      stringa                 m_straMissingUpdate;
+      bool                    m_bDelayedListUpdate;
 #ifdef WINDOWS
       ::collection::map < EFolder, EFolder, IShellFolder *, IShellFolder *> m_mapFolder;
 #endif
-      ex1::tree_item *     m_pdataitemCreateImageListStep;
-      string               m_strPath;
+      ex1::tree_item *        m_pdataitemCreateImageListStep;
+      string                  m_strPath;
 
 
       SimpleFolderTreeInterface(::ca::application * papp);

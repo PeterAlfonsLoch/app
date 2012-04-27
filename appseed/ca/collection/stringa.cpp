@@ -311,6 +311,31 @@ count stringa::remove(const string_array & stra)
    return count;
 }
 
+void stringa::trim_left(const char * pszChars)
+{
+   for(int i = 0; i < m_nSize; i++)
+   {
+      operator[](i).trim_left(pszChars);
+   }
+}
+
+void stringa::trim_right(const char * pszChars)
+{
+   for(int i = 0; i < m_nSize; i++)
+   {
+      operator[](i).trim_right(pszChars);
+   }
+}
+
+void stringa::trim(const char * pszChars)
+{
+   for(int i = 0; i < m_nSize; i++)
+   {
+      operator[](i).trim(pszChars);
+   }
+}
+
+
 void stringa::trim_left()
 {
    for(int i = 0; i < m_nSize; i++)

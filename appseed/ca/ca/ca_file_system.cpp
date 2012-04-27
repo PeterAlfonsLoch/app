@@ -97,10 +97,22 @@ namespace ca
          stringa stra;
          get_ascendants_name(lpcsz, stra);
          string str;
+         bool bUrl = System.url().is_url(lpcsz);
          for(int i = 0; i < stra.get_size(); i++)
          {
             str += stra[i];
-            str += "\\";
+            if(stra[i].find('/') < 0 && stra[i].find('\\') < 0)
+            {
+               str += "\\";
+            }
+            if(bUrl)
+            {
+               str.replace("\\", "/");
+            }
+            else
+            {
+               str.replace("/", "\\");
+            }
             straParam.add(str);
          }
       }
@@ -111,6 +123,18 @@ namespace ca
          straSeparator.add("/");
          straSeparator.add("\\");
          straParam.add_smallest_tokens(lpcsz, straSeparator, FALSE);
+         if(straParam.get_count() > 0)
+         {
+            int iFind = straParam[0].find(':');
+            if(iFind >= 2)
+            {
+               straParam[0] += "//";
+            }
+            else if(iFind == 1)
+            {
+               straParam[0] += "\\";
+            }
+         }
       }
 
       var system::length(const char * pszPath)
