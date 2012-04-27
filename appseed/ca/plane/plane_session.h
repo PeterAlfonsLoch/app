@@ -60,6 +60,7 @@ namespace plane
       bool                                                  m_bDrawCursor;
 
       ifs *                                                 m_pifs;
+      fs::remote_native *                                   m_prfs;
 
 
       session();

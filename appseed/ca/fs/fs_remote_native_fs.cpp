@@ -56,7 +56,7 @@ namespace fs
 
    void remote_native::root_ones(stringa & stra)
    {
-      stra.add("uifs://");
+      stra.add("fs://");
    }
 
 
@@ -81,7 +81,7 @@ namespace fs
 
       string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/ls?path=" + System.url().url_encode(pszDir);
+      strUrl = "http://fs.veriwell.net/fs/ls?path=" + System.url().url_encode(System.url().get_script(pszDir)) + "&server=" + System.url().url_encode(System.url().get_server(pszDir));
 
       string strSource;
 
@@ -106,7 +106,7 @@ namespace fs
             if(pnode->child_at(i)->get_name() != "folder")
                continue;
             string strPath = dir_path(pszDir, strName);
-            m_mapdirTimeout[strPath] = ::GetTickCount() + (4 * 1000);
+            m_mapdirTimeout[strPath] = ::GetTickCount() + (15 * 1000);
             m_mapfileTimeout.remove_key(strPath);
             if(pstraPath != NULL)
             {
@@ -126,11 +126,11 @@ namespace fs
          for(int i = 0; i < pnode->get_children_count(); i++)
          {
             string strName = pnode->child_at(i)->attr("name");
-            string strExtension = pnode->child_at(i)->attr("extension");
+            //string strExtension = pnode->child_at(i)->attr("extension");
             if(pnode->child_at(i)->get_name() != "file")
                continue;
             string strPath = dir_path(pszDir, strName);
-            m_mapfileTimeout[strPath] = ::GetTickCount() + (4 * 1000);
+            m_mapfileTimeout[strPath] = ::GetTickCount() + (15 * 1000);
             m_mapdirTimeout.remove_key(strPath);
             if(pstraPath != NULL)
             {
@@ -158,6 +158,12 @@ namespace fs
       }
 
       if(stricmp(pszPath, "fs://") == 0)
+      {
+         return true;
+      }
+
+      if(System.url().get_script(pszPath).is_empty() ||
+         System.url().get_script(pszPath) == "/")
       {
          return true;
       }

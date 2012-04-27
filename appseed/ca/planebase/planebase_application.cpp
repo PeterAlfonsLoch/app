@@ -795,6 +795,7 @@ InitFailure:
                m_spfsdata(new ::fs::set(this));
             ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
             pset->m_spafsdata.add(Session.m_pifs);
+            pset->m_spafsdata.add(Session.m_prfs);
             stringa stra;
             pset->root_ones(stra);
          }

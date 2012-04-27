@@ -117,7 +117,7 @@ void FileManagerPathView::_001OnAfterChangeText()
       while(true)
       {
          strName = System.dir().name(strName);
-         if(Application.dir().is(strName))
+         if(GetFileManager()->get_fs_data()->is_dir(strName))
          {
             if(System.file_system().cmp(GetFileManager()->get_item().m_strPath, strName) != 0)
             {

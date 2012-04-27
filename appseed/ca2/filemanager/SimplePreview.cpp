@@ -59,7 +59,7 @@ namespace filemanager
                m_straPath.remove_all();
                m_straTitle.remove_all();
                m_iCurFile = 0;
-               Application.dir().ls(GetFileManagerItem().m_strPath, &m_straPath, &m_straTitle);
+               GetFileManager()->get_fs_data()->ls(GetFileManagerItem().m_strPath, &m_straPath, &m_straTitle);
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypeFilter))
             {

@@ -24,6 +24,7 @@ namespace plane
 
 
       m_pifs                     = new ifs(this, "");
+      m_prfs                     = new ::fs::remote_native(this, "");
 
    }
 
