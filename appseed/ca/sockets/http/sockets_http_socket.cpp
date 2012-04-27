@@ -515,6 +515,8 @@ namespace sockets
       m_b_ssl           = psocket->m_b_ssl;
       m_b_ssl_server    = psocket->m_b_ssl_server;
       m_b_enable_ssl    = psocket->m_b_enable_ssl;
+      m_connected       = psocket->m_connected;
+      
       SetRemoteAddress(psocket->GetRemoteSocketAddress());
 
 

@@ -66,6 +66,9 @@ namespace userpresence
       if(command().m_varTopicQuery["app"] == "mydns")
          return;
 
+      if(command().m_varTopicQuery["app"] == "netnodecfg")
+         return;
+
       // it may not be initialized, due
       // licensing for example
       if(presence_central_container::initialize_central_container(this))
