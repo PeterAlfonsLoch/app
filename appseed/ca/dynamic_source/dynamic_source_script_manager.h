@@ -68,6 +68,18 @@ namespace dynamic_source
 
       };
 
+      class CLASS_DECL_ca tunnel_map_item
+      {
+      public:
+
+
+         string         m_strServer;
+         DWORD          m_dwLast;
+
+
+      };
+
+
       ::array_ptr_alloc < plugin_map_item >           m_pluginmapitema;
 
       mutex m_mutexIncludeMatches;
@@ -79,11 +91,13 @@ namespace dynamic_source
       string_to_string_map             m_mapIncludeExpandMd5;
 
 
-      bool                             m_bUseTunnel;
-      mutex m_mutexOutLink;
+      bool                                   m_bUseTunnel;
+      mutex                                  m_mutexOutLink;
       ::collection::string_map < ::sockets::link_out_socket * > m_mapOutLink;
-      mutex m_mutexInLink;
+      mutex                                  m_mutexInLink;
       ::collection::map < ::sockets::link_out_socket *, ::sockets::link_out_socket *, ::sockets::link_in_socket *, ::sockets::link_in_socket * > m_mapInLink;
+      mutex                                  m_mutexTunnel;
+      ::collection::string_map < tunnel_map_item > m_mapTunnel;
 
 
 
@@ -175,7 +189,10 @@ namespace dynamic_source
 
 
       void wait_link_out(const char * pszServer, ::sockets::link_in_socket * pinsocket);
+      bool has_link_out_link(const char * pszServer, ::sockets::link_in_socket * pinsocket, ::sockets::httpd_socket * phttpdsocket);
       ::sockets::link_in_socket * get_link_in(const char * pszServer, ::sockets::link_out_socket * poutsocket);
+      bool is_online(const char * pszServer);
+      ::sockets::link_out_socket * create_link_out(const char * pszServer, ::sockets::httpd_socket * phttpdsocket);
       
 
    };

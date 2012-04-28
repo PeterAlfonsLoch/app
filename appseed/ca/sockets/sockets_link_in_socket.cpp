@@ -61,7 +61,56 @@ namespace sockets
    }
 
 
+   void link_in_socket::server_to_link_in(httpd_socket * psocket)
+   {
+      socket_handler & h = dynamic_cast < socket_handler & > (psocket->Handler());
+      POSITION pos = h.m_sockets.get_start_position();
+      sockets::socket * psocket2;
+      SOCKET key;
+      while(pos != NULL)
+      {
+         h.m_sockets.get_next_assoc(pos, key, psocket2);
+         if(psocket2 == psocket)
+         {
+            h.m_sockets.set_at(key, this);
+         }
+      }
+      m_ssl = psocket->GetSsl();
+      m_socket = psocket->m_socket;
 
+      m_bConnecting        = psocket->m_bConnecting; ///< Flag indicating connection in progress
+      m_connect_timeout    = psocket->m_connect_timeout; ///< Connection timeout (seconds)
+      m_flush_before_close = psocket->m_flush_before_close; ///< Send all data before closing (default true)
+      m_connection_retry   = psocket->m_connection_retry; ///< Maximum connection retries (tcp)
+      m_retries            = psocket->m_retries; ///< Actual number of connection retries (tcp)
+      m_call_on_connect    = psocket->m_call_on_connect; ///< OnConnect will be called next socket_handler_base cycle if true
+      m_b_retry_connect    = psocket->m_b_retry_connect; ///< Try another connection attempt next socket_handler_base cycle
+      m_shutdown           = psocket->m_shutdown; ///< Shutdown status
+
+      m_b_ssl              = psocket->m_b_ssl;
+      m_b_reconnect        = psocket->m_b_reconnect;
+      m_ssl                = psocket->m_ssl;
+      m_b_ssl_server       = psocket->m_b_ssl_server;
+      m_b_enable_ssl       = psocket->m_b_enable_ssl;
+
+   }
+
+   link_in_socket * link_in_socket::from_server(httpd_socket * psocket)
+   {
+      
+      link_in_socket * pinsocket = new link_in_socket(psocket->Handler());
+
+	   pinsocket->m_in = psocket;
+	
+	   pinsocket->m_memfileInput.FullLoad(psocket->m_memfileInput);
+
+      pinsocket->server_to_link_in(psocket);
+
+      psocket->m_bEnd = true;
+
+      return pinsocket;
+
+   }
 
 } // namespace sockets
 

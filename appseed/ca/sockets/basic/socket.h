@@ -18,8 +18,6 @@ namespace sockets
    public:
 
 
-      gen::memory_file m_memfileInput;
-
       class CLASS_DECL_ca callback
       {
       public:
@@ -65,27 +63,30 @@ namespace sockets
          status_connection_timed_out,
       };
 
+      gen::memory_file        m_memfileInput;
+      bool                    m_bEnd; // should finish by not sending no more writes
 
-      callback * m_pcallback;
+
+      callback *              m_pcallback;
 
 
-      int m_iBindPort;
-      socket_handler_base& m_handler; ///< Reference of socket_handler_base in control of this socket
-      SOCKET m_socket; ///< File descriptor
-      bool m_bDel; ///< Delete by handler flag
-      bool m_bClose; ///< close and delete flag
-      time_t m_tCreate; ///< time in seconds when this socket was created
-      socket *m_parent; ///< Pointer to listen_socket class, valid for incoming sockets
-      bool m_b_disable_read; ///< Disable checking for read events
-      bool m_connected; ///< socket is connected (tcp/udp)
-      bool m_b_erased_by_handler; ///< Set by handler before delete
-      time_t m_tClose; ///< time in seconds when ordered to close
-      address_sp m_client_remote_address; ///< Address of last connect()
-      address_sp m_remote_address; ///< Remote end address
-      ex1::file * m_traffic_monitor;
-      time_t m_timeout_start; ///< Set by SetTimeout
-      time_t m_timeout_limit; ///< Defined by SetTimeout
-      bool m_bLost; ///< connection lost
+      int                     m_iBindPort;
+      socket_handler_base &   m_handler; ///< Reference of socket_handler_base in control of this socket
+      SOCKET                  m_socket; ///< File descriptor
+      bool                    m_bDel; ///< Delete by handler flag
+      bool                    m_bClose; ///< close and delete flag
+      time_t                  m_tCreate; ///< time in seconds when this socket was created
+      socket *                m_parent; ///< Pointer to listen_socket class, valid for incoming sockets
+      bool                    m_b_disable_read; ///< Disable checking for read events
+      bool                    m_connected; ///< socket is connected (tcp/udp)
+      bool                    m_b_erased_by_handler; ///< Set by handler before delete
+      time_t                  m_tClose; ///< time in seconds when ordered to close
+      address_sp              m_client_remote_address; ///< Address of last connect()
+      address_sp              m_remote_address; ///< Remote end address
+      ex1::file *             m_traffic_monitor;
+      time_t                  m_timeout_start; ///< Set by SetTimeout
+      time_t                  m_timeout_limit; ///< Defined by SetTimeout
+      bool                    m_bLost; ///< connection lost
    //   unsigned long m_flags; ///< boolean flags, replacing old 'bool' members
 
       string m_strCat;

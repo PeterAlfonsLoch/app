@@ -81,7 +81,7 @@ namespace sockets
       };
       typedef ::collection::list<OUTPUT *> output_list;
 
-   protected:
+   public:
       //
       bool m_b_input_buffer_disabled;
       uint64_t m_bytes_sent;

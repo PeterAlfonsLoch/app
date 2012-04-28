@@ -30,6 +30,10 @@ namespace sockets
    {
    public:
 
+      socket *             m_in;
+      link_out_socket *    m_out;
+      event                m_eventFinished;
+
 
       link_in_socket(socket_handler_base& h);
       ~link_in_socket();
@@ -39,8 +43,11 @@ namespace sockets
       void link_write(void * p, int size);
 
 
-      socket * m_in;
-      link_out_socket * m_out;
+      static link_in_socket * from_server(httpd_socket * psocket);
+
+
+      void server_to_link_in(httpd_socket * psocket);
+
 
    };
 

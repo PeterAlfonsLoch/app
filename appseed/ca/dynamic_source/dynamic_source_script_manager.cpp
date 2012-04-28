@@ -719,33 +719,149 @@ namespace dynamic_source
 
    void script_manager::wait_link_out(const char * pszServer, ::sockets::link_in_socket * pinsocket)
    {
+      
       ::collection::string_map < ::sockets::link_out_socket * >::pair * ppair;
+
       while(true)
       {
-         {
-            single_lock sl(&m_mutexOutLink);
-            ppair = m_mapOutLink.PLookup(pszServer);
-            if(ppair != NULL)
-            {
-               single_lock sl2(&m_mutexInLink);
-               m_mapInLink.set_at(ppair->m_value, pinsocket);
-               break;
-            }
-         }
+         
+         if(has_link_out_link(pszServer, pinsocket, NULL))
+            break;
+
          Sleep(455);
+
       }
+
+   }
+   
+   bool script_manager::has_link_out_link(const char * pszServer, ::sockets::link_in_socket * pinsocket, ::sockets::httpd_socket * phttpdsocket)
+   {
+
+      ::collection::string_map < ::sockets::link_out_socket * >::pair * ppair;
+
+      single_lock sl(&m_mutexOutLink, TRUE);
+
+      ppair = m_mapOutLink.PLookup(pszServer);
+
+      ::sockets::link_out_socket * psocket = NULL;
+
+      if(ppair != NULL)
+      {
+
+         psocket = ppair->m_value;
+
+         if(psocket != NULL)
+         {
+
+            single_lock sl2(&m_mutexInLink, TRUE);
+
+            if(phttpdsocket != NULL)
+            {
+
+	            pinsocket->m_in = phttpdsocket;
+	
+	            pinsocket->m_memfileInput.FullLoad(phttpdsocket->m_memfileInput);
+
+               pinsocket->server_to_link_in(phttpdsocket);
+
+               phttpdsocket->m_bEnd = true;
+
+            }
+
+            m_mapInLink.set_at(psocket, pinsocket);
+
+         }
+
+         m_mapOutLink.remove_key(pszServer);
+
+      }
+      
+      if(psocket == NULL)
+         return false;
+
+      return true;
+
    }
 
    ::sockets::link_in_socket * script_manager::get_link_in(const char * pszServer, ::sockets::link_out_socket * poutsocket)
    {
-       single_lock sl2(&m_mutexInLink);
+       
+      single_lock sl2(&m_mutexInLink, TRUE);
+
        ::collection::map < ::sockets::link_out_socket *, ::sockets::link_out_socket *, ::sockets::link_in_socket *, ::sockets::link_in_socket * >::pair * ppair =
           m_mapInLink.PLookup(poutsocket);
+
+       {
+   
+          single_lock sl3(&m_mutexTunnel, TRUE);
+
+          tunnel_map_item item;
+
+          item.m_strServer    = pszServer;
+          item.m_dwLast       = GetTickCount();
+
+          m_mapTunnel.set_at(pszServer, item);
+
+       }
+
        if(ppair == NULL)
           return NULL;
-         return ppair->m_value;
+
+       ::sockets::link_in_socket * pinsocket = ppair->m_value;
+
+       m_mapInLink.remove_key(poutsocket);
+
+       return pinsocket;
+
    }
 
+
+   bool script_manager::is_online(const char * pszServer)
+   {
+
+      single_lock sl(&m_mutexTunnel, TRUE);
+      
+      ::collection::string_map < tunnel_map_item >::pair * ppair = m_mapTunnel.PLookup(pszServer);
+
+      if(ppair == NULL)
+         return false;
+
+      if(::GetTickCount() - ppair->m_value.m_dwLast > (60 * 1000))
+         return false;
+
+      return true;
+
+   }
+
+
+   ::sockets::link_out_socket * script_manager::create_link_out(const char * pszServer, ::sockets::httpd_socket * phttpdsocket)
+   {
+
+      ::sockets::link_out_socket * psocket = new sockets::link_out_socket(phttpdsocket->Handler());
+
+      {
+	
+		   single_lock sl(&m_mutexTunnel, TRUE);
+
+         tunnel_map_item item;
+
+         item.m_strServer    = pszServer;
+         item.m_dwLast       = GetTickCount();
+
+         m_mapTunnel.set_at(pszServer, item);
+		
+	   }
+
+	   {
+	
+		   single_lock sl(&m_mutexOutLink, TRUE);
+		   m_mapOutLink.set_at(pszServer, psocket);
+		
+	   }
+
+      return psocket;
+
+   }
 
 } // namespace dynamic_source
 
