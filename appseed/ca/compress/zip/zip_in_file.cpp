@@ -394,10 +394,9 @@ namespace zip
    }
 
    // InFile does not support direct buffering (CMemFile does)
-   uint64_t InFile::GetBufferPtr(UINT nCommand, uint64_t /*nCount*/, void ** /*ppBufStart*/, void ** /*ppBufMax*/)
+   uint64_t InFile::GetBufferPtr(UINT UNUSED(nCommand), uint64_t /*nCount*/, void ** /*ppBufStart*/, void ** /*ppBufMax*/)
    {
       ASSERT(nCommand == bufferCheck);
-      UNUSED(nCommand);    // not used in retail build
 
       return 0;   // no support
    }

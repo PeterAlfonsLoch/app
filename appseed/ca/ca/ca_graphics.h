@@ -88,7 +88,7 @@ namespace ca
 
       virtual bool is_set();
 
-      virtual void * get_os_data() const;
+      virtual INT_PTR get_os_data() const;
       virtual void attach(void * pdata);
 
 #ifdef WINDOWS

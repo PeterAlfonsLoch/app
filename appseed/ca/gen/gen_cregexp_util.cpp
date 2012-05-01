@@ -224,7 +224,7 @@ bool cregexp_util::ReplaceAll(string & str, cregexp * re, index iSubString, cons
 {
    strsize start;
    strsize end = 0;
-   strsize iSubstLen = lstrlen(lpsz);
+   strsize iSubstLen = strlen(lpsz);
    while(find(str, re, iSubString, start, end))
    {
       str = str.Left(start) + lpsz + str.Mid(end);

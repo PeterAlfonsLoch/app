@@ -22,6 +22,7 @@ namespace ca
       smart_pointer(::ca::application * papp);
       smart_pointer(DWORD_PTR dw);
       smart_pointer(int i);
+      smart_pointer(long int i);
       virtual ~smart_pointer();
 
 
@@ -102,6 +103,14 @@ namespace ca
 
    template < class T >
    smart_pointer < T > ::smart_pointer(int i) :
+      ca(i != 0 ? ((T *) i)->get_app() : NULL)
+   {
+      m_p = NULL;
+      operator = ((T *) i);
+   }
+
+   template < class T >
+   smart_pointer < T > ::smart_pointer(long int i) :
       ca(i != 0 ? ((T *) i)->get_app() : NULL)
    {
       m_p = NULL;

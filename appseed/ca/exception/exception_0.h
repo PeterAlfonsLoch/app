@@ -157,12 +157,22 @@ inline void AFX_CDECL AfxTrace(...) { }
 #define ASSERT_NULL_OR_POINTER(p, type) \
    ASSERT(((p) == NULL) || fx_is_valid_address((p), sizeof(type), FALSE))
 
-#ifdef _DEBUG
-#define UNUSED(x)
+
+#ifdef __GNUC__
+#  define UNUSED_ALWAYS(x) __attribute__((__unused__))
+#elif defined(_MSC_VER)
+#  define UNUSED_ALWAYS(x)
 #else
-#define UNUSED(x) x
+#	define UNUSED_ALWAYS(x) x
 #endif
-#define UNUSED_ALWAYS(x) x
+
+
+#ifdef _DEBUG
+#	define UNUSED(x) x
+#else
+#  define UNUSED(x) UNUSED_ALWAYS(x)
+#endif
+
 
 #ifdef _DEBUG
 #define REPORT_EXCEPTION(pException, szMsg) \

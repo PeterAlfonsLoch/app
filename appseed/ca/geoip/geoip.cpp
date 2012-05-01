@@ -1,10 +1,21 @@
 #include "StdAfx.h"
 
-#pragma comment(lib, "Ws2_32.lib") 
+#pragma comment(lib, "Ws2_32.lib")
 
 #include <sys/stat.h>
 
 static geoipv6_t IPV6_NULL;
+
+
+#define GEOIPDATADIR "/ca2/geoip"
+
+#if defined(LINUX)
+
+#include <sys/mman.h>
+#include <stdio.h>
+#include <netdb.h>
+
+#endif
 
 
 #ifndef        INADDR_NONE
@@ -145,55 +156,55 @@ const char GeoIP_country_continent[253][3] = {"--","AS","EU","EU","AS","AS","SA"
 geoipv6_t _GeoIP_lookupaddress_v6 (const char *host);
 
 #if defined(_WIN32)
-/* http://www.mail-archive.com/users@ipv6.org/msg02107.html */ 
-static const char * _GeoIP_inet_ntop(int af, const void *src, char *dst, socklen_t cnt) 
-{ 
-   if (af == AF_INET) 
-   { 
-      struct sockaddr_in in; 
-      memset(&in, 0, sizeof(in)); 
-      in.sin_family = AF_INET; 
-      memcpy(&in.sin_addr, src, sizeof(struct in_addr)); 
-      getnameinfo((struct sockaddr *)&in, sizeof(struct 
-         sockaddr_in), dst, cnt, NULL, 0, NI_NUMERICHOST); 
-      return dst; 
-   } 
-   else if (af == AF_INET6) 
-   { 
-      struct sockaddr_in6 in; 
-      memset(&in, 0, sizeof(in)); 
-      in.sin6_family = AF_INET6; 
-      memcpy(&in.sin6_addr, src, sizeof(struct in_addr6)); 
-      getnameinfo((struct sockaddr *)&in, sizeof(struct 
-         sockaddr_in6), dst, cnt, NULL, 0, NI_NUMERICHOST); 
-      return dst; 
-   } 
-   return NULL; 
-} 
+/* http://www.mail-archive.com/users@ipv6.org/msg02107.html */
+static const char * _GeoIP_inet_ntop(int af, const void *src, char *dst, socklen_t cnt)
+{
+   if (af == AF_INET)
+   {
+      struct sockaddr_in in;
+      memset(&in, 0, sizeof(in));
+      in.sin_family = AF_INET;
+      memcpy(&in.sin_addr, src, sizeof(struct in_addr));
+      getnameinfo((struct sockaddr *)&in, sizeof(struct
+         sockaddr_in), dst, cnt, NULL, 0, NI_NUMERICHOST);
+      return dst;
+   }
+   else if (af == AF_INET6)
+   {
+      struct sockaddr_in6 in;
+      memset(&in, 0, sizeof(in));
+      in.sin6_family = AF_INET6;
+      memcpy(&in.sin6_addr, src, sizeof(struct in_addr6));
+      getnameinfo((struct sockaddr *)&in, sizeof(struct
+         sockaddr_in6), dst, cnt, NULL, 0, NI_NUMERICHOST);
+      return dst;
+   }
+   return NULL;
+}
 
-static int _GeoIP_inet_pton(int af, const char *src, void *dst) 
-{ 
-   struct addrinfo hints, *res, *ressave; 
+static int _GeoIP_inet_pton(int af, const char *src, void *dst)
+{
+   struct addrinfo hints, *res, *ressave;
 
-   memset(&hints, 0, sizeof(struct addrinfo)); 
-   hints.ai_family = af; 
+   memset(&hints, 0, sizeof(struct addrinfo));
+   hints.ai_family = af;
 
-   if (getaddrinfo(src, NULL, &hints, &res) != 0) 
-   { 
-      fprintf(stderr, "Couldn't resolve host %s\n", src); 
-      return -1; 
-   } 
+   if (getaddrinfo(src, NULL, &hints, &res) != 0)
+   {
+      fprintf(stderr, "Couldn't resolve host %s\n", src);
+      return -1;
+   }
 
-   ressave = res; 
+   ressave = res;
 
-   while (res) 
-   { 
-      memcpy(dst, res->ai_addr, res->ai_addrlen); 
-      res = res->ai_next; 
-   } 
+   while (res)
+   {
+      memcpy(dst, res->ai_addr, res->ai_addrlen);
+      res = res->ai_next;
+   }
 
-   freeaddrinfo(ressave); 
-   return 0; 
+   freeaddrinfo(ressave);
+   return 0;
 }
 #else
 static int _GeoIP_inet_pton(int af, const char *src, void *dst) {
@@ -203,11 +214,11 @@ static const char * _GeoIP_inet_ntop(int af, const void *src, char *dst, socklen
    return inet_ntop(af, src, dst, cnt);
 }
 
-#endif /* defined(_WIN32) */ 
+#endif /* defined(_WIN32) */
 
 
 int __GEOIP_V6_IS_NULL(geoipv6_t v6) {
-   int i; 
+   int i;
    for (i=0;i<16;i++) {
       if (v6.s6_addr[i])
          return 0;
@@ -317,19 +328,19 @@ void _setup_segments(GeoIP * gi) {
             gi->databaseType -= 105;
          }
 
-         if (gi->databaseType == GEOIP_REGION_EDITION_REV0) {
+         if (gi->databaseType == (char) GEOIP_REGION_EDITION_REV0) {
             /* Region Edition, pre June 2003 */
             gi->databaseSegments = (unsigned int *) malloc(sizeof(int));
             gi->databaseSegments[0] = STATE_BEGIN_REV0;
-         } else if (gi->databaseType == GEOIP_REGION_EDITION_REV1) {
+         } else if (gi->databaseType == (char) GEOIP_REGION_EDITION_REV1) {
             /* Region Edition, post June 2003 */
             gi->databaseSegments = (unsigned int *) malloc(sizeof(int));
             gi->databaseSegments[0] = STATE_BEGIN_REV1;
-         } else if (gi->databaseType == GEOIP_CITY_EDITION_REV0 ||
-            gi->databaseType == GEOIP_CITY_EDITION_REV1 ||
-            gi->databaseType == GEOIP_ORG_EDITION ||
-            gi->databaseType == GEOIP_ISP_EDITION ||
-            gi->databaseType == GEOIP_ASNUM_EDITION) {
+         } else if (gi->databaseType == (char) GEOIP_CITY_EDITION_REV0 ||
+            gi->databaseType == (char) GEOIP_CITY_EDITION_REV1 ||
+            gi->databaseType == (char) GEOIP_ORG_EDITION ||
+            gi->databaseType == (char) GEOIP_ISP_EDITION ||
+            gi->databaseType == (char) GEOIP_ASNUM_EDITION) {
                /* City/Org Editions have two segments, read offset of second segment */
                gi->databaseSegments = (unsigned int *) malloc(sizeof(int));
                gi->databaseSegments[0] = 0;
@@ -337,8 +348,8 @@ void _setup_segments(GeoIP * gi) {
                for (j = 0; j < SEGMENT_RECORD_LENGTH; j++) {
                   gi->databaseSegments[0] += (buf[j] << (j * 8));
                }
-               if (gi->databaseType == GEOIP_ORG_EDITION ||
-                  gi->databaseType == GEOIP_ISP_EDITION)
+               if (gi->databaseType == (char) GEOIP_ORG_EDITION ||
+                  gi->databaseType == (char) GEOIP_ISP_EDITION)
                   gi->record_length = ORG_RECORD_LENGTH;
          }
          break;
@@ -346,10 +357,10 @@ void _setup_segments(GeoIP * gi) {
          fseek(gi->GeoIPDatabase, -4l, SEEK_CUR);
       }
    }
-   if (gi->databaseType == GEOIP_COUNTRY_EDITION ||
-      gi->databaseType == GEOIP_PROXY_EDITION ||
-      gi->databaseType == GEOIP_NETSPEED_EDITION ||
-      gi->databaseType == GEOIP_COUNTRY_EDITION_V6 ) {
+   if (gi->databaseType == (char) GEOIP_COUNTRY_EDITION ||
+      gi->databaseType == (char) GEOIP_PROXY_EDITION ||
+      gi->databaseType == (char) GEOIP_NETSPEED_EDITION ||
+      gi->databaseType == (char) GEOIP_COUNTRY_EDITION_V6 ) {
          gi->databaseSegments = (unsigned int *)  malloc(sizeof(int));
          gi->databaseSegments[0] = COUNTRY_BEGIN;
    }
@@ -358,7 +369,7 @@ void _setup_segments(GeoIP * gi) {
 static
 int _check_mtime(GeoIP *gi) {
    struct stat buf;
-#if !defined(_WIN32) 
+#if !defined(_WIN32)
    struct timeval t;
 
    /* stat only has second granularity, so don't
@@ -368,20 +379,20 @@ int _check_mtime(GeoIP *gi) {
       return 0;
    }
    gi->last_mtime_check = t.tv_sec;
-#else /* !defined(_WIN32) */ 
-   FILETIME ft; 
-   ULONGLONG t; 
+#else /* !defined(_WIN32) */
+   FILETIME ft;
+   ULONGLONG t;
 
-   /* stat only has second granularity, so don't 
-   call it more than once a second */ 
-   GetSystemTimeAsFileTime(&ft); 
-   t = FILETIME_TO_USEC(ft) / 1000 / 1000; 
+   /* stat only has second granularity, so don't
+   call it more than once a second */
+   GetSystemTimeAsFileTime(&ft);
+   t = FILETIME_TO_USEC(ft) / 1000 / 1000;
    if (t == natural(gi->last_mtime_check))
-   { 
-      return 0; 
-   } 
-   gi->last_mtime_check = t; 
-#endif /* !defined(_WIN32) */ 
+   {
+      return 0;
+   }
+   gi->last_mtime_check = t;
+#endif /* !defined(_WIN32) */
 
 
    if (gi->flags & GEOIP_CHECK_CACHE) {
@@ -419,7 +430,7 @@ int _check_mtime(GeoIP *gi) {
                gi->cache = 0;
                return -1;
 #else
-               gi->cache = mmap(NULL, buf.st_size, PROT_READ, MAP_PRIVATE, _fileno(gi->GeoIPDatabase), 0);
+               gi->cache = (unsigned char *) mmap(NULL, buf.st_size, PROT_READ, MAP_PRIVATE, _fileno(gi->GeoIPDatabase), 0);
                if ( gi->cache == MAP_FAILED ) {
 
                   fprintf(stderr,"Error remapping file %s when reloading\n",gi->file_path);
@@ -444,7 +455,7 @@ int _check_mtime(GeoIP *gi) {
                fprintf(stderr, "Error reading file %s -- corrupt\n", gi->file_path);
                return -1;
             }
-            if (gi->flags & GEOIP_INDEX_CACHE) {                        
+            if (gi->flags & GEOIP_INDEX_CACHE) {
                gi->index_cache = (unsigned char *) realloc(gi->index_cache, sizeof(unsigned char) * ((gi->databaseSegments[0] * (long)gi->record_length * 2)));
                if (gi->index_cache != NULL) {
                   fseek(gi->GeoIPDatabase, 0, SEEK_SET);
@@ -460,7 +471,7 @@ int _check_mtime(GeoIP *gi) {
    return 0;
 }
 
-#define ADDR_STR_LEN (8 * 4 + 7 + 1) 
+#define ADDR_STR_LEN (8 * 4 + 7 + 1)
 unsigned int _GeoIP_seek_record_v6 (GeoIP *gi, geoipv6_t ipnum) {
    int depth;
    char paddr[ADDR_STR_LEN];
@@ -532,7 +543,7 @@ unsigned int _GeoIP_seek_record_v6 (GeoIP *gi, geoipv6_t ipnum) {
    }
 
    /* shouldn't reach here */
-   _GeoIP_inet_ntop(AF_INET6, &ipnum.s6_addr[0], paddr, ADDR_STR_LEN); 
+   _GeoIP_inet_ntop(AF_INET6, &ipnum.s6_addr[0], paddr, ADDR_STR_LEN);
    fprintf(stderr,"Error Traversing Database for ipnum = %s - Perhaps database is corrupt?\n", paddr);
    return 0;
 }
@@ -712,7 +723,7 @@ GeoIP* GeoIP_open (const char * filename, int flags) {
          /* MMAP added my Peter Shipley */
          if ( flags & GEOIP_MMAP_CACHE ) {
 #if !defined(_WIN32)
-            gi->cache = mmap(NULL, buf.st_size, PROT_READ, MAP_PRIVATE, _fileno(gi->GeoIPDatabase), 0);
+            gi->cache = (unsigned char *) mmap(NULL, buf.st_size, PROT_READ, MAP_PRIVATE, _fileno(gi->GeoIPDatabase), 0);
             if ( gi->cache == MAP_FAILED ) {
                fprintf(stderr,"Error mmaping file %s\n",filename);
                free(gi->file_path);
@@ -749,7 +760,7 @@ GeoIP* GeoIP_open (const char * filename, int flags) {
       gi->charset = GEOIP_CHARSET_ISO_8859_1;
 
       _setup_segments(gi);
-      if (flags & GEOIP_INDEX_CACHE) {                        
+      if (flags & GEOIP_INDEX_CACHE) {
          gi->index_cache = (unsigned char *) malloc(sizeof(unsigned char) * ((gi->databaseSegments[0] * (long)gi->record_length * 2)));
          if (gi->index_cache != NULL) {
             fseek(gi->GeoIPDatabase, 0, SEEK_SET);
@@ -860,7 +871,7 @@ unsigned long _GeoIP_lookupaddress (const char *host) {
    return ntohl(addr);
 }
 
-geoipv6_t 
+geoipv6_t
 _GeoIP_lookupaddress_v6(const char *host)
 {
    geoipv6_t       ipnum;
@@ -889,7 +900,7 @@ int GeoIP_id_by_name (GeoIP* gi, const char *name) {
    if (name == NULL) {
       return 0;
    }
-   if (gi->databaseType != GEOIP_COUNTRY_EDITION && gi->databaseType != GEOIP_PROXY_EDITION && gi->databaseType != GEOIP_NETSPEED_EDITION) {
+   if (gi->databaseType != (char) GEOIP_COUNTRY_EDITION && gi->databaseType != (char) GEOIP_PROXY_EDITION && gi->databaseType != (char) GEOIP_NETSPEED_EDITION) {
       printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int)gi->databaseType], GeoIPDBDescription[GEOIP_COUNTRY_EDITION]);
       return 0;
    }
@@ -906,7 +917,7 @@ int GeoIP_id_by_name_v6 (GeoIP* gi, const char *name) {
    if (name == NULL) {
       return 0;
    }
-   if (gi->databaseType != GEOIP_COUNTRY_EDITION_V6 && gi->databaseType != GEOIP_PROXY_EDITION && gi->databaseType != GEOIP_NETSPEED_EDITION) {
+   if (gi->databaseType != (char) GEOIP_COUNTRY_EDITION_V6 && gi->databaseType != (char) GEOIP_PROXY_EDITION && gi->databaseType != (char) GEOIP_NETSPEED_EDITION) {
       printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int)gi->databaseType], GeoIPDBDescription[GEOIP_COUNTRY_EDITION_V6]);
       return 0;
    }
@@ -939,7 +950,7 @@ const char *GeoIP_country_name_by_ipnum (GeoIP* gi, unsigned long ipnum) {
    int country_id;
    country_id = GeoIP_id_by_ipnum(gi, ipnum);
    return (country_id > 0) ? GeoIP_country_name[country_id] : NULL;
-} 
+}
 
 const char *GeoIP_country_name_by_ipnum_v6 (GeoIP* gi, geoipv6_t ipnum) {
    int country_id;
@@ -985,9 +996,9 @@ int GeoIP_id_by_addr_v6 (GeoIP* gi, const char *addr) {
    if (addr == NULL) {
       return 0;
    }
-   if (gi->databaseType != GEOIP_COUNTRY_EDITION_V6 &&
-      gi->databaseType != GEOIP_PROXY_EDITION &&
-      gi->databaseType != GEOIP_NETSPEED_EDITION) {
+   if (gi->databaseType != (char) GEOIP_COUNTRY_EDITION_V6 &&
+      gi->databaseType != (char) GEOIP_PROXY_EDITION &&
+      gi->databaseType != (char) GEOIP_NETSPEED_EDITION) {
          printf("Invalid database type %s, expected %s\n",
             GeoIPDBDescription[(int)gi->databaseType],
             GeoIPDBDescription[GEOIP_COUNTRY_EDITION_V6]);
@@ -1004,9 +1015,9 @@ int GeoIP_id_by_addr (GeoIP* gi, const char *addr) {
    if (addr == NULL) {
       return 0;
    }
-   if (gi->databaseType != GEOIP_COUNTRY_EDITION &&
-      gi->databaseType != GEOIP_PROXY_EDITION &&
-      gi->databaseType != GEOIP_NETSPEED_EDITION) {
+   if (gi->databaseType != (char) GEOIP_COUNTRY_EDITION &&
+      gi->databaseType != (char) GEOIP_PROXY_EDITION &&
+      gi->databaseType != (char) GEOIP_NETSPEED_EDITION) {
          printf("Invalid database type %s, expected %s\n",
             GeoIPDBDescription[(int)gi->databaseType],
             GeoIPDBDescription[GEOIP_COUNTRY_EDITION]);
@@ -1022,10 +1033,10 @@ int GeoIP_id_by_ipnum_v6 (GeoIP* gi, geoipv6_t ipnum) {
    /*     if (ipnum == 0) {
    return 0;
    }
-   */     
-   if (gi->databaseType != GEOIP_COUNTRY_EDITION_V6 && 
-      gi->databaseType != GEOIP_PROXY_EDITION &&
-      gi->databaseType != GEOIP_NETSPEED_EDITION) {
+   */
+   if (gi->databaseType != (char) GEOIP_COUNTRY_EDITION_V6 &&
+      gi->databaseType != (char) GEOIP_PROXY_EDITION &&
+      gi->databaseType != (char) GEOIP_NETSPEED_EDITION) {
          printf("Invalid database type %s, expected %s\n",
             GeoIPDBDescription[(int)gi->databaseType],
             GeoIPDBDescription[GEOIP_COUNTRY_EDITION_V6]);
@@ -1042,9 +1053,9 @@ int GeoIP_id_by_ipnum (GeoIP* gi, unsigned long ipnum) {
    if (ipnum == 0) {
       return 0;
    }
-   if (gi->databaseType != GEOIP_COUNTRY_EDITION && 
-      gi->databaseType != GEOIP_PROXY_EDITION &&
-      gi->databaseType != GEOIP_NETSPEED_EDITION) {
+   if (gi->databaseType != (char) GEOIP_COUNTRY_EDITION &&
+      gi->databaseType != (char) GEOIP_PROXY_EDITION &&
+      gi->databaseType != (char) GEOIP_NETSPEED_EDITION) {
          printf("Invalid database type %s, expected %s\n",
             GeoIPDBDescription[(int)gi->databaseType],
             GeoIPDBDescription[GEOIP_COUNTRY_EDITION]);
@@ -1110,7 +1121,7 @@ void GeoIP_assign_region_by_inetaddr(GeoIP* gi, unsigned long inetaddr, GeoIPReg
 
    seek_region = _GeoIP_seek_record(gi, ntohl(inetaddr));
 
-   if (gi->databaseType == GEOIP_REGION_EDITION_REV0) {
+   if (gi->databaseType == (char) GEOIP_REGION_EDITION_REV0) {
       /* Region Edition, pre June 2003 */
       seek_region -= STATE_BEGIN_REV0;
       if (seek_region >= 1000) {
@@ -1121,7 +1132,7 @@ void GeoIP_assign_region_by_inetaddr(GeoIP* gi, unsigned long inetaddr, GeoIPReg
       } else {
          memcpy(region->country_code, GeoIP_country_code[seek_region], 2);
       }
-   } else if (gi->databaseType == GEOIP_REGION_EDITION_REV1) {
+   } else if (gi->databaseType == (char) GEOIP_REGION_EDITION_REV1) {
       /* Region Edition, post June 2003 */
       seek_region -= STATE_BEGIN_REV1;
       if (seek_region < US_OFFSET) {
@@ -1155,7 +1166,7 @@ void GeoIP_assign_region_by_inetaddr_v6(GeoIP* gi, geoipv6_t inetaddr, GeoIPRegi
 
    seek_region = _GeoIP_seek_record_v6(gi, inetaddr);
 
-   if (gi->databaseType == GEOIP_REGION_EDITION_REV0) {
+   if (gi->databaseType == (char) GEOIP_REGION_EDITION_REV0) {
       /* Region Edition, pre June 2003 */
       seek_region -= STATE_BEGIN_REV0;
       if (seek_region >= 1000) {
@@ -1166,7 +1177,7 @@ void GeoIP_assign_region_by_inetaddr_v6(GeoIP* gi, geoipv6_t inetaddr, GeoIPRegi
       } else {
          memcpy(region->country_code, GeoIP_country_code[seek_region], 2);
       }
-   } else if (gi->databaseType == GEOIP_REGION_EDITION_REV1) {
+   } else if (gi->databaseType == (char) GEOIP_REGION_EDITION_REV1) {
       /* Region Edition, post June 2003 */
       seek_region -= STATE_BEGIN_REV1;
       if (seek_region < US_OFFSET) {
@@ -1218,8 +1229,8 @@ GeoIPRegion * GeoIP_region_by_addr (GeoIP* gi, const char *addr) {
    if (addr == NULL) {
       return 0;
    }
-   if (gi->databaseType != GEOIP_REGION_EDITION_REV0 &&
-      gi->databaseType != GEOIP_REGION_EDITION_REV1) {
+   if (gi->databaseType != (char) GEOIP_REGION_EDITION_REV0 &&
+      gi->databaseType != (char) GEOIP_REGION_EDITION_REV1) {
          printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int)gi->databaseType], GeoIPDBDescription[GEOIP_REGION_EDITION_REV1]);
          return 0;
    }
@@ -1232,8 +1243,8 @@ GeoIPRegion * GeoIP_region_by_addr_v6 (GeoIP* gi, const char *addr) {
    if (addr == NULL) {
       return 0;
    }
-   if (gi->databaseType != GEOIP_REGION_EDITION_REV0 &&
-      gi->databaseType != GEOIP_REGION_EDITION_REV1) {
+   if (gi->databaseType != (char) GEOIP_REGION_EDITION_REV0 &&
+      gi->databaseType != (char) GEOIP_REGION_EDITION_REV1) {
          printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int)gi->databaseType], GeoIPDBDescription[GEOIP_REGION_EDITION_REV1]);
          return 0;
    }
@@ -1246,8 +1257,8 @@ GeoIPRegion * GeoIP_region_by_name (GeoIP* gi, const char *name) {
    if (name == NULL) {
       return 0;
    }
-   if (gi->databaseType != GEOIP_REGION_EDITION_REV0 &&
-      gi->databaseType != GEOIP_REGION_EDITION_REV1) {
+   if (gi->databaseType != (char) GEOIP_REGION_EDITION_REV0 &&
+      gi->databaseType != (char) GEOIP_REGION_EDITION_REV1) {
          printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int)gi->databaseType], GeoIPDBDescription[GEOIP_REGION_EDITION_REV1]);
          return 0;
    }
@@ -1261,8 +1272,8 @@ GeoIPRegion * GeoIP_region_by_name_v6 (GeoIP* gi, const char *name) {
    if (name == NULL) {
       return 0;
    }
-   if (gi->databaseType != GEOIP_REGION_EDITION_REV0 &&
-      gi->databaseType != GEOIP_REGION_EDITION_REV1) {
+   if (gi->databaseType != (char) GEOIP_REGION_EDITION_REV0 &&
+      gi->databaseType != (char) GEOIP_REGION_EDITION_REV1) {
          printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int)gi->databaseType], GeoIPDBDescription[GEOIP_REGION_EDITION_REV1]);
          return 0;
    }
@@ -1274,8 +1285,8 @@ GeoIPRegion * GeoIP_region_by_name_v6 (GeoIP* gi, const char *name) {
 }
 
 GeoIPRegion * GeoIP_region_by_ipnum (GeoIP* gi, unsigned long ipnum) {
-   if (gi->databaseType != GEOIP_REGION_EDITION_REV0 &&
-      gi->databaseType != GEOIP_REGION_EDITION_REV1) {
+   if (gi->databaseType != (char) GEOIP_REGION_EDITION_REV0 &&
+      gi->databaseType != (char) GEOIP_REGION_EDITION_REV1) {
          printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int)gi->databaseType], GeoIPDBDescription[GEOIP_REGION_EDITION_REV1]);
          return 0;
    }
@@ -1283,8 +1294,8 @@ GeoIPRegion * GeoIP_region_by_ipnum (GeoIP* gi, unsigned long ipnum) {
 }
 
 GeoIPRegion * GeoIP_region_by_ipnum_v6 (GeoIP* gi, geoipv6_t ipnum) {
-   if (gi->databaseType != GEOIP_REGION_EDITION_REV0 &&
-      gi->databaseType != GEOIP_REGION_EDITION_REV1) {
+   if (gi->databaseType != (char) GEOIP_REGION_EDITION_REV0 &&
+      gi->databaseType != (char) GEOIP_REGION_EDITION_REV1) {
          printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int)gi->databaseType], GeoIPDBDescription[GEOIP_REGION_EDITION_REV1]);
          return 0;
    }
@@ -1305,15 +1316,15 @@ char *_get_name (GeoIP* gi, unsigned long ipnum) {
    size_t len;
    size_t silence;
 
-   if (gi->databaseType != GEOIP_ORG_EDITION &&
-      gi->databaseType != GEOIP_ISP_EDITION &&
-      gi->databaseType != GEOIP_ASNUM_EDITION) {
+   if (gi->databaseType != (char) GEOIP_ORG_EDITION &&
+      gi->databaseType != (char) GEOIP_ISP_EDITION &&
+      gi->databaseType != (char) GEOIP_ASNUM_EDITION) {
          printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int)gi->databaseType], GeoIPDBDescription[GEOIP_ORG_EDITION]);
          return NULL;
    }
 
    seek_org = _GeoIP_seek_record(gi, ipnum);
-   if(natural(seek_org) == gi->databaseSegments[0])      
+   if(natural(seek_org) == gi->databaseSegments[0])
       return NULL;
 
    record_pointer = seek_org + (2 * gi->record_length - 1) * gi->databaseSegments[0];
@@ -1341,9 +1352,9 @@ char *_get_name_v6 (GeoIP* gi, geoipv6_t ipnum) {
    size_t len;
    size_t silence;
 
-   if (gi->databaseType != GEOIP_ORG_EDITION &&
-      gi->databaseType != GEOIP_ISP_EDITION &&
-      gi->databaseType != GEOIP_ASNUM_EDITION) {
+   if (gi->databaseType != (char) GEOIP_ORG_EDITION &&
+      gi->databaseType != (char) GEOIP_ISP_EDITION &&
+      gi->databaseType != (char) GEOIP_ASNUM_EDITION) {
          printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int)gi->databaseType], GeoIPDBDescription[GEOIP_ORG_EDITION]);
          return NULL;
    }
@@ -1416,11 +1427,11 @@ char **GeoIP_range_by_ip (GeoIP* gi, const char *addr) {
    ipnum = _GeoIP_addr_to_num(addr);
    target_value = _GeoIP_seek_record(gi, ipnum);
    orig_netmask = GeoIP_last_netmask(gi);
-   mask = 0xffffffff << ( 32 - orig_netmask );   
+   mask = 0xffffffff << ( 32 - orig_netmask );
    left_seek = ipnum & mask;
    right_seek = left_seek + ( 0xffffffff & ~mask );
 
-   while (left_seek != 0 
+   while (left_seek != 0
       && natural(target_value) == _GeoIP_seek_record(gi, left_seek - 1) ) {
 
          /* Go to beginning of netblock defined by netmask */
@@ -1455,11 +1466,11 @@ void GeoIP_range_by_ip_delete( char ** ptr ){
 }
 
 char *GeoIP_name_by_ipnum (GeoIP* gi, unsigned long ipnum) {
-   return _get_name(gi,ipnum);  
+   return _get_name(gi,ipnum);
 }
 
 char *GeoIP_name_by_ipnum_v6 (GeoIP* gi, geoipv6_t ipnum) {
-   return _get_name_v6(gi,ipnum);  
+   return _get_name_v6(gi,ipnum);
 }
 
 char *GeoIP_name_by_addr (GeoIP* gi, const char *addr) {

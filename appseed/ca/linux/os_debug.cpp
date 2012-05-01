@@ -1,6 +1,11 @@
 #include "StdAfx.h"
 
 
+#include <sys/ptrace.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+
 int is_gdb_present()
 {
 

@@ -23,8 +23,7 @@ public:
    explicit sync_object(LPCTSTR pstrName);
    virtual ~sync_object();
 
-
-   virtual void * get_os_data() const;
+   virtual INT_PTR get_os_data() const;
 
    operator THANDLE() const;
 
@@ -49,7 +48,6 @@ bool sync_object<THANDLE>::unlock(LONG /* lCount */, LPLONG /* lpPrevCount=NULL 
 template < typename THANDLE >
 sync_object < THANDLE >::sync_object(const char * pstrName)
 {
-   UNUSED(pstrName);   // unused in release builds
 
    m_hObject = NULL;
 
@@ -106,8 +104,7 @@ inline sync_object < THANDLE >::operator THANDLE() const
 }
 
 template < typename THANDLE >
-void * sync_object < THANDLE >::get_os_data() const
+INT_PTR sync_object < THANDLE >::get_os_data() const
 {
    return m_hObject;
 }
-

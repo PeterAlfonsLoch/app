@@ -1,6 +1,9 @@
 #include "StdAfx.h"
 #include <openssl/ssl.h>
 
+#if defined(LINUX)
+#include <netdb.h>
+#endif
 
 #define BLOCK_SIZE 1024
 
@@ -66,7 +69,7 @@ const char * GeoIP_get_error_message(int i) {
     return "Server returned something unexpected";
   default:
     return "no error";
-  }  
+  }
 }
 int GeoIP_fprintf(int (*f)(FILE *, char *),FILE *fp, const char *str, ...) {
   va_list ap;
@@ -130,9 +133,9 @@ void GeoIP_printf(void (*f)(char *), const char *str,...) {
  */
 
 /* The Protocol is usually "" OR "http://" with a proxy. */
-static char *GeoIPProxyHTTP = "";
+static const char * GeoIPProxyHTTP = "";
 /* GeoIP Hostname where proxy forwards requests. */
-static char *GeoIPProxiedHost = "";
+static const char * GeoIPProxiedHost = "";
 
 /* read http_proxy env. var & parse it.
  * -----------------------------------------
@@ -248,7 +251,7 @@ short int GeoIP_update_database (char * license_key, int verbose, void (*f)( cha
    if (verbose == 1){
       GeoIP_printf(f,"Connecting to MaxMind GeoIP Update server\n");
       GeoIP_printf(f, "via Host or Proxy Server: %s:%d\n", hostlist->h_name, GeoIPHTTPPort);
-   }   
+   }
 
    /* Download gzip file */
    if (connect(sock, (struct sockaddr *)&sa, sizeof(struct sockaddr))< 0)
@@ -483,12 +486,12 @@ short int GeoIP_update_database_general (char * user_id,char * license_key,char 
    sa.sin_port = htons((u_short) GeoIPHTTPPort);
    memcpy(&sa.sin_addr, hostlist->h_addr_list[0], hostlist->h_length);
    sa.sin_family = AF_INET;
-   
+
    if (verbose == 1) {
       GeoIP_printf(f,"Connecting to MaxMind GeoIP server\n");
       GeoIP_printf(f, "via Host or Proxy Server: %s:%d\n", hostlist->h_name, GeoIPHTTPPort);
    }
-   
+
    if (connect(sock, (struct sockaddr *)&sa, sizeof(struct sockaddr))< 0)
       return GEOIP_CONNECTION_ERR;
    request_uri = (char *) malloc(sizeof(char) * (strlen(license_key) + strlen(GeoIPHTTPRequestMD5)+1036));
@@ -508,7 +511,7 @@ short int GeoIP_update_database_general (char * user_id,char * license_key,char 
    offset = 0;
    for (;;){
       int amt;
-      amt = recv(sock, &buf[offset], block_size,0); 
+      amt = recv(sock, &buf[offset], block_size,0);
       if (amt == 0){
          break;
       } else if (amt == -1) {
@@ -593,7 +596,7 @@ short int GeoIP_update_database_general (char * user_id,char * license_key,char 
 
       for (;;){
          int amt;
-         amt = recv(sock, &buf[offset], block_size,0); 
+         amt = recv(sock, &buf[offset], block_size,0);
          if (amt == 0) {
             break;
          } else if (amt == -1) {
@@ -634,8 +637,8 @@ short int GeoIP_update_database_general (char * user_id,char * license_key,char 
       GeoIP_printf(f, "md5sum of ip address and license key is %s \n",hex_digest2);
    }
 
-   /* send the request using the ::fontopus::user id,product id, 
-    * md5 sum of the prev database and 
+   /* send the request using the ::fontopus::user id,product id,
+    * md5 sum of the prev database and
     * the md5 sum of the license_key and ip address */
    if((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
    {

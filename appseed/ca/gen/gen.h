@@ -75,6 +75,7 @@
 #include "gen_byte_stream_memory_file.h"
 
 
+#include "gen_microtimer.h"
 
 template <class TYPE>
 inline bool IsRefNull(const TYPE & ref)

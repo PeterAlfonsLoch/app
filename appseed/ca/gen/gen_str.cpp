@@ -1,5 +1,9 @@
 #include "StdAfx.h"
 
+#ifdef LINUX
+#include <ctype.h>
+#endif
+
 namespace gen
 {
    namespace str
@@ -28,7 +32,7 @@ namespace gen
 
    int  str::compare_ci(const char * psz1, const char * psz2)
    {
-      return _stricmp(psz1, psz2);
+      return stricmp(psz1, psz2);
    }
 
    bool str::equals(const char * psz1, const char * psz2)
@@ -827,7 +831,7 @@ namespace gen
                i += strChar.get_length();
                pszIter = utf8_inc(pszIter);
                strChar = utf8_char(pszIter);
-            } 
+            }
             while(!gen::ch::is_letter_or_digit(strChar) && *pszIter != '\0');
 
             if(*pszIter == '\0')
@@ -898,7 +902,7 @@ namespace gen
 
                strChar = utf8_char(pszIter);
 
-            } 
+            }
             while(!gen::ch::is_letter(strChar) && *pszIter != '\0');
 
             if(*pszIter == '\0')
@@ -1078,11 +1082,15 @@ namespace gen
       if (hwnd != NULL)
       {
 
+#ifdef WINDOWS
+
          int nLen = ::GetWindowTextLength(hwnd);
 
          ::GetWindowText(hwnd, str.GetBufferSetLength(nLen), nLen+1);
 
          str.ReleaseBuffer();
+
+#endif
 
       }
 
@@ -1091,9 +1099,9 @@ namespace gen
    }
 
    string str::get_word(
-      const char * psz, 
-      const char * pszSeparator, 
-      bool bWithSeparator, 
+      const char * psz,
+      const char * pszSeparator,
+      bool bWithSeparator,
       bool bEndIsSeparator)
    {
 
@@ -1138,7 +1146,7 @@ namespace gen
    bool str::atoi(const char * psz, int64_t & i)
    {
 
-      const char * pszEnd;
+      char * pszEnd;
 
       int64_t iConversion = ::atoi64_dup(psz, &pszEnd);
 
@@ -1216,7 +1224,7 @@ namespace gen
    bool str::natoi(const char * psz, int64_t & i, int iLen)
    {
 
-      const char * pszEnd;
+      char * pszEnd;
 
       int64_t iConversion = ::natoi64_dup(psz, &pszEnd, iLen);
 
@@ -1232,9 +1240,9 @@ namespace gen
    bool str::natoi(const char * psz, int & i, int iLen)
    {
 
-      const char * pszEnd;
+      char * pszEnd;
 
-      int64_t iConversion = ::natoi_dup(psz, &pszEnd, iLen);
+      int64_t iConversion = ::natoi_dup(psz, (const char **) &pszEnd, iLen);
 
       if(pszEnd == psz)
          return false;
@@ -1255,7 +1263,7 @@ namespace gen
       if(iBase < 0 || iBase == 1 || iBase > 36)
          return false;
 
-      const char * pszEnd;
+      char * pszEnd;
 
       int64_t iConversion = ::natoi64_dup(psz, &pszEnd, iBase, iLen);
 
@@ -1274,7 +1282,7 @@ namespace gen
       if(iBase < 0 || iBase == 1 || iBase > 36)
          return false;
 
-      const char * pszEnd;
+      char * pszEnd;
 
       int64_t iConversion = ::natoi64_dup(psz, &pszEnd, iBase, iLen);
 
@@ -1314,11 +1322,15 @@ namespace gen
       return str;
    }
 
+#if !defined(_LP64)
+
    string & str::itoa(string & str, unsigned long ul)
    {
       str.Format("%u", ul);
       return str;
    }
+
+#endif
 
    __int64 str::get_hex(const char * pszUtf8Char)
    {
@@ -1346,17 +1358,17 @@ namespace gen
       {
          str += (char) w;
       }
-      else if(w < 0x0800) 
+      else if(w < 0x0800)
       {
          str = (char)(0xc0 | ((w) >> 6));
          str += (char)(0x80 | ((w) & 0x3f));
       }
-      else 
+      else
       {
          str = (char)(0xe0 | ((w) >> 12));
          str += (char)(0x80 | (((w) >> 6) & 0x3f));
          str += (char)(0x80 | ((w) & 0x3f));
-      } 
+      }
       return str;
    }
 
@@ -1419,7 +1431,7 @@ namespace gen
             return NULL;
          }
          return psz - 4;
-      } 
+      }
       else if((*(psz - 5) & 0xFC) == 0xF8)
       {
          if((psz - 5) < pszBeg)
@@ -1503,7 +1515,7 @@ namespace gen
          pchar->m_sz[4] = '\0';
          pchar->m_chLen = 4;
          return psz - 4;
-      } 
+      }
       else if((*(psz - 5) & 0xFC) == 0xF8)
       {
          if((psz - 5) < pszBeg)
@@ -1659,7 +1671,7 @@ namespace gen
                }
                int64_t hex = get_hex_number(val);
                strsize val_len = val.get_length();
-               if(hex < 0 || hex > 0xFFFF) 
+               if(hex < 0 || hex > 0xFFFF)
                {
                   return BAD_WCHAR;
                }
@@ -1669,8 +1681,8 @@ namespace gen
             else
             {
                __int64 hex = get_hex_number(string(&lpcsz[pos+2], 2));
-               if(__int64(strlen(lpcsz)) <= pos + 2 || hex== -1) 
-               {  
+               if(__int64(strlen(lpcsz)) <= pos + 2 || hex== -1)
+               {
                   return BAD_WCHAR;
                }
                retPos += 2;
@@ -1685,12 +1697,12 @@ namespace gen
    __int64 str::get_hex_number(const char * lpcsz)
    {
       __int64 r = 0, num = 0;
-      if(lpcsz == NULL) 
+      if(lpcsz == NULL)
          return -1;
       for(__int64 i = strlen(lpcsz)-1; i >= 0; i--)
       {
          __int64 d = get_hex(&(lpcsz)[i]);
-         if(d == -1) 
+         if(d == -1)
             return -1;
          num += d << r;
          r += 4;
@@ -1867,7 +1879,7 @@ namespace gen
          {
             throw "Quote character is required here, premature end";
          }
-         if(qc2 == qc) 
+         if(qc2 == qc)
             break;
          str += qc2;
       }
@@ -1908,7 +1920,7 @@ namespace gen
                break;
             psz++;
          }
-         if(i == qclen) 
+         if(i == qclen)
             break;
          psz = pszNext;
          pszValueEnd = psz;
@@ -1948,7 +1960,7 @@ namespace gen
          }
          else
          {
-            if(strCurrentChar == strQuoteChar) 
+            if(strCurrentChar == strQuoteChar)
                break;
             str += strCurrentChar;
          }
@@ -2067,7 +2079,7 @@ namespace gen
    This library is made available under the terms of the GNU GPL.
 
    If you would like to use this library in a closed-source application,
-   a separate license agreement is available. For information about 
+   a separate license agreement is available. For information about
    the closed-source license agreement for the C++ sockets library,
    please visit http://www.alhem.net/Sockets/license.html and/or
    email license@alhem.net.
@@ -2113,7 +2125,7 @@ namespace gen
       return str;
    }*/
 
-   int64_t str::atoi64(const string & str) 
+   int64_t str::atoi64(const string & str)
    {
 
       int i = 0;
@@ -2138,7 +2150,7 @@ namespace gen
          return (int64_t) ui;
    }
 
-   int64_t str::atoi64(const char * psz) 
+   int64_t str::atoi64(const char * psz)
    {
 
       int i = 0;
@@ -2164,7 +2176,7 @@ namespace gen
 
    }
 
-   uint64_t str::atoui64(const string & str) 
+   uint64_t str::atoui64(const string & str)
    {
 
       int i = 0;
@@ -2182,7 +2194,7 @@ namespace gen
 
    }
 
-   uint64_t str::atoui64(const char * psz) 
+   uint64_t str::atoui64(const char * psz)
    {
 
       int i = 0;
@@ -2276,17 +2288,17 @@ namespace gen
    {
 
       strsize iPrefixLen = wcslen_dup(lpcszPrefix);
-      if(wstr.storage_size() >= (wstr.get_length() + iPrefixLen + 1))
+      if(wstr.storage_size() >= ((wstr.get_length() + iPrefixLen + 1) * sizeof(wchar_t)))
       {
-         memmove(&wstr[iPrefixLen], wstr, wstr.get_length() + 1);
+         memmove(&wstr[iPrefixLen], (const wchar_t *) wstr, (wstr.get_length() + 1) * sizeof(wchar_t));
          memcpy_dup(wstr, lpcszPrefix, iPrefixLen);
       }
       else
       {
          wstring wstrNew;
-         wstrNew.alloc(wstr.get_length() + iPrefixLen + 1);
-         memcpy_dup(&wstrNew[iPrefixLen], wstr, wstr.get_length() + 1);
-         memcpy_dup(wstrNew, lpcszPrefix, iPrefixLen);
+         wstrNew.alloc((wstr.get_length() + iPrefixLen + 1) * sizeof(wchar_t));
+         memcpy_dup(&wstrNew[iPrefixLen], (const wchar_t *) wstr, (wstr.get_length() + 1) * sizeof(wchar_t));
+         memcpy_dup(wstrNew, lpcszPrefix, iPrefixLen * sizeof(wchar_t));
          wstr.attach(wstrNew.detach());
       }
 
@@ -2390,7 +2402,7 @@ namespace gen
          lpcszPrefix++;
          if(*lpcsz == L'\0')
          {
-            if(*lpcszPrefix == 'L\0')
+            if(*lpcszPrefix == L'\0')
                return true;
             else
                return false;

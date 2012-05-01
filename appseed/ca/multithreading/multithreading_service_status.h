@@ -6,10 +6,11 @@
 //      Description:    Provides default initialization for SERVICE_STATUS.
 //
 //*****************************************************************************
-
 #pragma once
 
+
 #ifdef WINDOWS
+
 
 class CLASS_DECL_ca service_status : public SERVICE_STATUS
 {
@@ -25,4 +26,31 @@ public:
 };
 
 
+#else
+
+
+class CLASS_DECL_ca service_status
+{
+public:
+
+
+   DWORD       dwServiceType;
+   DWORD       dwServiceState;
+
+
+   service_status()
+   {
+
+      ATLASSERT(sizeof(*this) == sizeof(service_status));
+
+      memset(this, 0, sizeof(service_status));
+
+   }
+
+};
+
+
 #endif
+
+
+

@@ -90,7 +90,7 @@ namespace gen
             {
                iStart = 0;
             }
-            else 
+            else
             {
                iStart++;
             }
@@ -202,7 +202,7 @@ namespace gen
                         }
                      }
                      else if(ch2 == 's')
-                     { 
+                     {
                         if(iLen == 2)
                         {
                            return __id(es);
@@ -307,7 +307,7 @@ namespace gen
       bool locale_schema::_add_locale_variant(const char * psz, int iLen, id idSchema)
       {
 
-         
+
 
 
          if(iLen == 2)
@@ -354,7 +354,7 @@ namespace gen
                      defer_add_locale(__id(std), idSchema);
                   }
                   else if(ch2 == 's')
-                  { 
+                  {
                      // es
                      defer_add_locale(__id(br), idSchema);
                      defer_add_locale(__id(pt_br), idSchema);
@@ -512,7 +512,9 @@ step2:
          if(ppair != NULL)
             return ppair->m_value;
 
-         string str = id;
+         string str;
+
+         str = id;
 
          ::id idRl = str + "_rl";
 

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="all32">
-		<Project filename="../../../../../../../cecyn1/app/appseed/c/_.cbp" />
-		<Project filename="../../../../../../../cecyn1/app/appseed/ca/ca.cbp" active="1">
-			<Depends filename="../../../../../../../cecyn1/app/appseed/c/_.cbp" />
+		<Project filename="../../../cecyn1/app/appseed/ca2/ca2.cbp">
+			<Depends filename="../../../cecyn1/app/appseed/ca/ca.cbp" />
+			<Depends filename="../../../cecyn1/app/appseed/c/_.cbp" />
 		</Project>
-		<Project filename="../../../../../../../cecyn1/app/appseed/ca2/ca2.cbp">
-			<Depends filename="../../../../../../../cecyn1/app/appseed/c/_.cbp" />
-			<Depends filename="../../../../../../../cecyn1/app/appseed/ca/ca.cbp" />
+		<Project filename="../../../cecyn1/app/appseed/ca/ca.cbp" active="1">
+			<Depends filename="../../../cecyn1/app/appseed/c/_.cbp" />
 		</Project>
-		<Project filename="../../../../../../../cecyn1/nodeapp/os/os.cbp">
-			<Depends filename="../../../../../../../cecyn1/app/appseed/c/_.cbp" />
-			<Depends filename="../../../../../../../cecyn1/app/appseed/ca/ca.cbp" />
-			<Depends filename="../../../../../../../cecyn1/app/appseed/ca2/ca2.cbp" />
+		<Project filename="../../../cecyn1/app/appseed/c/_.cbp" />
+		<Project filename="../../../cecyn1/nodeapp/os/os.cbp">
+			<Depends filename="../../../cecyn1/app/appseed/ca2/ca2.cbp" />
+			<Depends filename="../../../cecyn1/app/appseed/ca/ca.cbp" />
+			<Depends filename="../../../cecyn1/app/appseed/c/_.cbp" />
 		</Project>
 	</Workspace>
 </CodeBlocks_workspace_file>

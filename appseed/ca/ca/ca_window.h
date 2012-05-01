@@ -60,7 +60,7 @@ namespace ca
 
       virtual window * from_os_data(void * pdata);
 
-      virtual void * get_os_data() const;
+      virtual INT_PTR get_os_data() const;
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 

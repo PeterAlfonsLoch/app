@@ -1,5 +1,11 @@
 #include "StdAfx.h"
 
+#ifdef LINUX
+#include <dlfcn.h>
+#include <link.h>
+#include <ctype.h>
+#endif
+
 
 namespace gen
 {
@@ -54,6 +60,7 @@ namespace gen
       if(is_system())
       {
 
+#ifdef WINDOWS
 
          {
             char lpszModuleFilePath[MAX_PATH + 1];
@@ -76,6 +83,40 @@ namespace gen
             string strModuleFolder(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
             m_strCa2ModuleFolder = strModuleFolder;
          }
+
+#else
+         {
+
+            char * lpszModuleFolder = br_find_exe_dir(NULL);
+
+            if(lpszModuleFolder == NULL)
+               return false;
+
+            m_strModuleFolder = lpszModuleFolder;
+
+            free(lpszModuleFolder);
+
+         }
+
+         {
+
+            void * handle = dlopen("ca.so", 0);
+
+            if(handle == NULL)
+               return false;
+
+            link_map * plm;
+
+            dlinfo(handle, RTLD_DI_LINKMAP, &plm);
+
+            m_strCa2ModuleFolder = System.dir().name(plm->l_name);
+
+            dlclose(handle);
+
+
+         }
+
+#endif
 
 
       }
@@ -252,12 +293,15 @@ namespace gen
       return false;
    }
 
+#ifdef WINDOWS
 
    bool application::OnMessageWindowMessage(LPMSG lpmsg)
    {
       UNREFERENCED_PARAMETER(lpmsg);
       return false;
    }
+
+#endif
 
    void application::OnAppLanguage(gen::signal_object * pobj)
    {
@@ -273,12 +317,36 @@ namespace gen
 
    string application::get_ca2_module_file_path()
    {
+
+#ifdef WINDOWS
+
       char lpszModuleFilePath[MAX_PATH + 1];
+
       GetModuleFileName(::GetModuleHandleA("ca.dll"), lpszModuleFilePath, MAX_PATH + 1);
 
       string strModuleFileName(lpszModuleFilePath);
 
       return strModuleFileName;
+
+#else
+
+      void * handle = dlopen("ca.so", 0);
+
+      if(handle == NULL)
+         return "";
+
+      link_map * plm;
+
+      dlinfo(handle, RTLD_DI_LINKMAP, &plm);
+
+      string strModuleFileName(plm->l_name);
+
+      dlclose(handle);
+
+      return strModuleFileName;
+
+#endif
+
    }
 
    string application::get_module_folder()
@@ -288,12 +356,32 @@ namespace gen
 
    string application::get_module_file_path()
    {
+
+#ifdef WINDOWS
+
       char lpszModuleFilePath[MAX_PATH + 1];
+
       GetModuleFileName(NULL, lpszModuleFilePath, MAX_PATH + 1);
 
       string strModuleFileName(lpszModuleFilePath);
 
       return strModuleFileName;
+
+#else
+
+      char * lpszModuleFilePath = br_find_exe_dir("app");
+
+      if(lpszModuleFilePath == NULL)
+         return "";
+
+      string strModuleFileName(lpszModuleFilePath);
+
+      free(lpszModuleFilePath);
+
+      return strModuleFileName;
+
+#endif
+
    }
 
 
@@ -457,6 +545,8 @@ namespace gen
 
    }
 
+#ifdef WINDOWS
+
    HENHMETAFILE application::LoadEnhMetaFile(UINT uiResource)
    {
       primitive::memory storage;
@@ -466,6 +556,8 @@ namespace gen
       }
       return SetEnhMetaFileBits((UINT) storage.get_size(), storage.get_data());
    }
+
+#endif
 
    /////////////////////////////////////////////////////////////////////////////
    // WinApp UI related functions

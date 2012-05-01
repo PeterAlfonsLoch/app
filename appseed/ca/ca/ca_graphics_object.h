@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca graphics_object : 
+   class CLASS_DECL_ca graphics_object :
       virtual public ::radix::object
    {
    public:
@@ -21,7 +21,7 @@ namespace ca
       virtual bool is_updated();
 
 
-      virtual void * get_os_data() const;
+      virtual INT_PTR get_os_data() const;
 
 /*   #pragma push_macro("GetObject")
    #undef GetObject

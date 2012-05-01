@@ -1,7 +1,7 @@
-// guibase.cpp : Defines the initialization routines for the DLL.
-//
+#include "StdAfx.h"
 
-#include "stdafx.h"
+#ifdef WINDOWS
+
 #ifdef _MANAGED
 #error Please read instructions in igui.cpp to compile with /clr
 // If you want to add /clr to your project you must do the following:
@@ -32,7 +32,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 	if (dwReason == DLL_PROCESS_ATTACH)
 	{
 		TRACE0("guibase.DLL Initializing!\n");
-		
+
 		// Extension DLL one-time initialization
 		if (!AfxInitExtensionModule(iguiDLL, hInstance))
 			return 0;
@@ -66,3 +66,4 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 #pragma managed(pop)
 #endif
 
+#endif

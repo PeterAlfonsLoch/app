@@ -36,6 +36,13 @@ CLASS_DECL_c int isdigit_dup(int ch);
 CLASS_DECL_c int isalpha_dup(int ch);
 CLASS_DECL_c int isspace_dup(int ch);
 
+#if defined(LINUX)
+
+CLASS_DECL_c char * strlwr(char * psz);
+CLASS_DECL_c char * strupr(char * psz);
+
+#endif
+
 CLASS_DECL_c void wcscat_dup(wchar_t * dest, const wchar_t * cat);
 CLASS_DECL_c void wcscpy_dup(wchar_t * dest, const wchar_t * src);
 CLASS_DECL_c int iswalnum_dup(int wch);
@@ -59,5 +66,14 @@ CLASS_DECL_c count utf16_len(const char * psz);
 CLASS_DECL_c void utf8_to_16(wchar_t * pwsz, const char * psz);
 CLASS_DECL_c wchar_t * utf8_to_16(const char * psz);
 CLASS_DECL_c char * utf16_to_8(const wchar_t * psz);
+
+
+
+
+#if defined(LINUX)
+
+#define _strdup strdup
+
+#endif
 
 

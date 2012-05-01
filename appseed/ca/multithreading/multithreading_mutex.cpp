@@ -3,7 +3,9 @@
 
 mutex::mutex(BOOL bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
    sync_object(pstrName),
+#ifdef WINDOWS
    base_sync_object(pstrName)
+#endif
 {
 
 #ifdef _WIN32

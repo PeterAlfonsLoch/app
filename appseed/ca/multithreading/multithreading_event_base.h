@@ -8,14 +8,18 @@
 
 
 /// This class represents waitables which can be put into a event_collection.
-class CLASS_DECL_ca event_base : 
+class CLASS_DECL_ca event_base :
    virtual public waitable
 {
 public:
 
 
 	/// internal member holding the handle of the waitable
-	HANDLE   m_object;
+#ifdef WINDOWS
+	HANDLE      m_object;
+#else
+   INT_PTR     m_object;
+#endif
 
 	/// internal member holding the owner of the waitable
 	bool     m_bOwn;
@@ -25,33 +29,33 @@ public:
 
 	///  \brief		constructor with passed handle
 	///  \param		item handle of the item (default: INVALID_HANDLE_VALUE)
-	explicit event_base( HANDLE item=INVALID_HANDLE_VALUE);
-
-	///  \brief		handle setter
-	///  \param     item handle to set
-	void set_item( HANDLE item );
+#ifdef WINDOWS
+	explicit event_base( HANDLE   item = INVALID_HANDLE_VALUE);
+#else
+   explicit event_base( INT_PTR  item = -1);
+#endif
 
 	///  \brief		resets ownership of the waitable item
 	void release_ownership();
 
-	///  \brief		handle getter
-	///  \return    item handle
+#ifdef WINDOWS
 	virtual HANDLE item() const;
-
    virtual void * get_os_data() const;
-
-   operator HANDLE ()
-   {
-      return m_object;
-   }
-
-   operator HANDLE () const
-   {
-      return m_object;
-   }
+   operator HANDLE () { return m_object; }
+   operator HANDLE () const { return m_object; }
+	void set_item( HANDLE item );
+#else
+	virtual INT_PTR item() const;
+   virtual INT_PTR get_os_data() const;
+   operator INT_PTR () { return m_object; }
+   operator INT_PTR () const { return m_object; }
+	void set_item( INT_PTR item );
+#endif
 
 	virtual void init_wait ();
 	virtual void exit_wait ();
+
+
 };
 
 

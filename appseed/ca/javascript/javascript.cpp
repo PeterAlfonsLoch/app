@@ -194,8 +194,8 @@ inline CScriptVarSmartLink &CScriptVarSmartLink::operator <<(CScriptVarSmartLink
 
 #if DEBUG_MEMORY
 
-vector<CScriptVar*> allocatedVars;
-vector<CScriptVarLink*> allocatedLinks;
+base_array<CScriptVar*> allocatedVars;
+base_array<CScriptVarLink*> allocatedLinks;
 
 void mark_allocated(CScriptVar *v) {
    allocatedVars.push_back(v);
@@ -270,7 +270,7 @@ bool isIDString(const char *s) {
    return true;
 }
 
-void replace(string &str, char textFrom, const char *textTo) 
+void replace(string &str, char textFrom, const char *textTo)
 {
 
    strsize sLen = strlen(textTo);
@@ -279,7 +279,7 @@ void replace(string &str, char textFrom, const char *textTo)
 
    while (p >= 0)
    {
-   
+
       str = str.substr(0, p) + textTo + str.substr(p+1);
       p = str.find(textFrom, p+sLen);
 
@@ -346,7 +346,7 @@ CScriptLex::CScriptLex(const string &input)
    reset();
 }
 
-CScriptLex::CScriptLex(CScriptLex *owner, strsize startChar, strsize endChar) 
+CScriptLex::CScriptLex(CScriptLex *owner, strsize startChar, strsize endChar)
 {
    data = owner->data;
    dataOwned = false;
@@ -711,14 +711,19 @@ CScriptLex *CScriptLex::getSubLex(strsize lastPosition)
       return new CScriptLex( this, lastPosition, dataEnd );
 }
 
-strsize CScriptLex::getDataPos() 
+strsize CScriptLex::getDataPos()
 {
    return dataPos;
 }
 
-string CScriptLex::getPosition(strsize pos) {
-   if (pos<0) pos=tokenLastEnd;
-   index line = 1,col = 1;
+string CScriptLex::getPosition(strsize pos)
+{
+
+   if(pos < 0)
+      pos=tokenLastEnd;
+
+   int line = 1;
+   int col = 1;
    for (int i=0;i<pos;i++) {
       char ch;
       if (i < dataEnd)

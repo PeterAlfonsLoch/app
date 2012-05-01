@@ -82,7 +82,7 @@ namespace ca
    }
 
 
-   void * thread::get_os_data() const
+   INT_PTR thread::get_os_data() const
    {
       throw interface_only_exception();
    }
@@ -427,6 +427,8 @@ namespace ca
 	void thread::wait()
 	{
       throw not_implemented_exception();
+      // on Windows ==>       ::WaitForSingleObject(m_loginthread.get_os_data(), INFINITE);
+
    }
 
 	///  \brief		waits for signaling the thread for a specified time

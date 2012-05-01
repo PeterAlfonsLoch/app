@@ -1,15 +1,21 @@
 #include "StdAfx.h"
 
+
 namespace math
 {
 
-void number::set_value_string(const char * psz)
-{
-}
 
-string number::get_value_string()
-{
-   return "";
-}
+   void _integer::set_value_string(const char * psz)
+   {
+   }
+
+   string _integer::get_value_string()
+   {
+      return "";
+   }
+
 
 } // namespace math
+
+
+

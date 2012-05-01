@@ -3,8 +3,10 @@
 
 
 
+#if defined(WINDOWS)
 #define snprintf _snprintf
 #define FILETIME_TO_USEC(ft) (((uint64_t) ft.dwHighDateTime << 32 | ft.dwLowDateTime) / 10)
+#endif
 
 
 #define SEGMENT_RECORD_LENGTH 3

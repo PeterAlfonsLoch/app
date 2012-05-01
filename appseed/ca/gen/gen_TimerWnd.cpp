@@ -12,7 +12,7 @@ namespace gen
 
    TimerWnd::~TimerWnd()
    {
-      
+
    //    if(m_pTimerCallbackFinal != NULL)
      //  {
        //    m_pTimerCallbackFinal->m_evTimerWndDeleted.SetEvent();
@@ -40,11 +40,11 @@ namespace gen
        m_pTimerCallback = pCallback;
    ///    m_pTimerCallbackFinal = m_pTimerCallback;
        rect rect(0, 0, 0, 0);
-       const char * lpcStr = System.RegisterWndClass(NULL);
+       const char * lpcStr = System.RegisterWndClass(0);
        return ::ca::window::CreateEx(0,lpcStr, "Timer Window", 0, rect, NULL, id());
    }
 
-   void TimerWnd::OnTimer(UINT nIDEvent) 
+   void TimerWnd::OnTimer(UINT nIDEvent)
    {
       // TODO: add your message handler code here and/or call default
    //    try
@@ -58,6 +58,8 @@ namespace gen
    //            return;
    //    }
 
+#ifdef WINDOWS
+
        long lElapsed = GetTickCount() - GetMessageTime();
        //TRACE("Elapsed %d /n", lElapsed);
        if(lElapsed > 1000)
@@ -65,6 +67,8 @@ namespace gen
    //        ASSERT(FALSE);
            return;
        }
+
+#endif
 
        if(m_bEnable && m_pTimerCallback != NULL)
            if(m_pTimerCallback->IsEnabled())
@@ -104,14 +108,14 @@ namespace gen
       //::ca::window::OnTimer(nIDEvent);
    }
 
-   void TimerWnd::OnDestroy() 
+   void TimerWnd::OnDestroy()
    {
        m_pTimerCallback = NULL;
    //   ::ca::window::OnDestroy();
 
        //m_pTimerCallbackFinal = m_pTimerCallback;
 
-       //MSG msg; 
+       //MSG msg;
 
    //    while(PeekMessage(&msg, m_hWnd, WM_TIMER, WM_TIMER, PM_REMOVE))
      //  {
@@ -120,21 +124,21 @@ namespace gen
 
 
       // TODO: add your message handler code here
-      
+
    }
 
-   void TimerWnd::OnClose() 
+   void TimerWnd::OnClose()
    {
       // TODO: add your message handler code here and/or call default
-      
+
    //   ::ca::window::OnClose();
        DestroyWindow();
    }
 
-   BOOL TimerWnd::DestroyWindow() 
+   BOOL TimerWnd::DestroyWindow()
    {
       // TODO: add your specialized code here and/or call the base class
-      
+
       if(::ca::window::DestroyWindow())
        {
            delete this;
@@ -164,7 +168,7 @@ namespace gen
    LRESULT TimerWnd::OnUserMessage(WPARAM wparam, LPARAM lparam)
    {
       UNREFERENCED_PARAMETER(lparam);
-      
+
       // processor saving remark but should not be a remark
       // ASSERT(m_pTimerCallback->WishesQueueModel());
       // END processor saving remark but should not be a remark

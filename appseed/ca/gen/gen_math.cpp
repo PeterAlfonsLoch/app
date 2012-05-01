@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include <math.h> 
+#include <math.h>
 #include <time.h>
 
 
@@ -39,20 +39,20 @@ namespace gen
          hOriginalKey = NULL;
          hDuplicateKey = NULL;
 
-         if(!CryptAcquireContext(    
+         if(!CryptAcquireContext(
             &hCryptProv,
             NULL,
             NULL,
             PROV_RSA_FULL,
-            0)) 
-         {    
-            if(CryptAcquireContext(    
+            0))
+         {
+            if(CryptAcquireContext(
                &hCryptProv,
                NULL,
                NULL,
                PROV_RSA_FULL,
-               CRYPT_NEWKEYSET)) 
-            {    
+               CRYPT_NEWKEYSET))
+            {
                 printf("CryptAcquireContext succeeded. \n");
             }
             else
@@ -61,7 +61,7 @@ namespace gen
              printf("Error during CryptAcquireContext!\n");
 
             }
-          
+
          }
          else
          {
@@ -70,9 +70,9 @@ namespace gen
          //-------------------------------------------------------------------
          // Generate a key.
          if (CryptGenKey(
-              hCryptProv, 
-              CALG_RC4, 
-              0, 
+              hCryptProv,
+              CALG_RC4,
+              0,
               &hOriginalKey))
          {
             printf("Original session key is created. \n");
@@ -85,9 +85,9 @@ namespace gen
          // Duplicate the key.
 
          if (CryptDuplicateKey(
-              hOriginalKey, 
-              NULL, 
-              0, 
+              hOriginalKey,
+              NULL,
+              0,
               &hDuplicateKey))
          {
             printf("The session key has been duplicated. \n");
@@ -102,10 +102,10 @@ namespace gen
 
          dwMode = CRYPT_MODE_ECB;
          if(CryptSetKeyParam(
-            hOriginalKey, 
-            KP_MODE, 
-            (BYTE*)&dwMode, 
-            0)) 
+            hOriginalKey,
+            KP_MODE,
+            (BYTE*)&dwMode,
+            0))
          {
               printf("Key Parameters set. \n");
          }
@@ -116,9 +116,9 @@ namespace gen
 
          // Generate a random initialization vector.
          if(CryptGenRandom(
-            hCryptProv, 
-            8, 
-            pbData)) 
+            hCryptProv,
+            8,
+            pbData))
          {
               printf("Random sequence generated. \n");
          }
@@ -129,10 +129,10 @@ namespace gen
          //-------------------------------------------------------------------
          // Set the initialization vector.
          if(CryptSetKeyParam(
-            hOriginalKey, 
-            KP_IV, 
-            pbData, 
-            0)) 
+            hOriginalKey,
+            KP_IV,
+            pbData,
+            0))
          {
               printf("Parameter set with random sequence as "
                 "initialization vector. \n");
@@ -200,20 +200,38 @@ namespace gen
          }
          else
          {
+
+            gen::microtimer timer;
+
+            double d1 = timer.getTimeInMicroSec();
+
             sleep(millis(1));
-            LARGE_INTEGER tick;
-            QueryPerformanceCounter(&tick);
-            PERFORMANCE_INFORMATION pi;
-            memset(&pi, 0, sizeof(pi));
-            GetPerformanceInfo(&pi, sizeof(pi));
-            FILETIME fta[3];
-            memset(&fta, 0, sizeof(fta));
-            GetSystemTimes(&fta[0], &fta[1], &fta[2]);
-            __int64 v1 = tick.QuadPart;
-            __int64 v2 = time(NULL);
-            __int64 v3 = ca4::crypt::crc32(tick.QuadPart % 0xffffffff, &pi, sizeof(pi));
-            __int64 v4 = ca4::crypt::crc32(tick.QuadPart % 0xffffffff, fta, sizeof(fta));
+
+            double d2 = timer.getTimeInMicroSec();
+
+//            LARGE_INTEGER tick;
+  //          QueryPerformanceCounter(&tick);
+    //        PERFORMANCE_INFORMATION pi;
+      //      memset(&pi, 0, sizeof(pi));
+        //    GetPerformanceInfo(&pi, sizeof(pi));
+//            FILETIME fta[3];
+  //          memset(&fta, 0, sizeof(fta));
+    //        GetSystemTimes(&fta[0], &fta[1], &fta[2]);
+      //      __int64 v1 = tick.QuadPart;
+        //    __int64 v2 = time(NULL);
+          //  __int64 v3 = ca4::crypt::crc32(tick.QuadPart % 0xffffffff, &pi, sizeof(pi));
+            //__int64 v4 = ca4::crypt::crc32(tick.QuadPart % 0xffffffff, fta, sizeof(fta));
+
+            int64_t v1 = (int64_t) timer.getTimeInMicroSec();
+
+            int64_t v2 = time(NULL);
+
+            int64_t v3 = ca4::crypt::crc32(((DWORD) timer.getTimeInMicroSec()) % 0xffffffff, &d1, sizeof(double));
+
+            int64_t v4 = ca4::crypt::crc32(((DWORD) timer.getTimeInMicroSec()) % 0xffffffff, &d2, sizeof(double));
+
             iValue = abs(v1 + v2 + v3 + v4) % (iMax - iMin);
+
          }
          if(iMax > iMin)
          {
@@ -379,7 +397,7 @@ namespace gen
 
       double math::LinearMap(
          double dMin, double dMax,
-         double dValue, 
+         double dValue,
          double dValueMin,
          double dValueMax)
       {

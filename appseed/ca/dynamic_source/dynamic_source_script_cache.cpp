@@ -35,11 +35,11 @@ namespace dynamic_source
 
    script * script_cache::get(const char * lpcszName)
    {
-   
+
       single_lock sl(&m_cs, TRUE);
 
       map_string_to_ptr::pair * ppair = m_map.PLookup(lpcszName);
-      
+
       if(ppair != NULL)
          return (script *) ppair->m_value;
 
@@ -57,21 +57,21 @@ namespace dynamic_source
 
    script * script_cache::register_script(const char * lpcszName, script * pscript)
    {
-   
+
       single_lock sl(&m_cs, TRUE);
 
       map_string_to_ptr::pair * ppair = m_map.PLookup(lpcszName);
-      
+
       if(ppair != NULL)
       {
          try
          {
-            delete ppair->m_value;
+            delete (script *) ppair->m_value;
          }
          catch(...)
          {
          }
-         
+
          ppair->m_value = pscript;
 
          return pscript;
@@ -90,7 +90,7 @@ namespace dynamic_source
 
    script_instance * script_cache::create_instance(const char * lpcszName)
    {
-      
+
       if(gen::str::begins(lpcszName, "netnode://"))
       {
          single_lock sl(&m_cs, TRUE);

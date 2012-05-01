@@ -11,21 +11,39 @@
 
 #pragma once
 
-#ifdef WINDOWS
-
 class CLASS_DECL_ca service_base :
    virtual public ::radix::object
 {
 public:
 
 
-   static service_base * m_service;
-   SERVICE_STATUS_HANDLE m_handle;
-   service_status m_status;
-   string m_serviceName;
+   static service_base *   m_service;
 
+   service_status          m_status;
+   string                  m_serviceName;
+
+#ifdef WINDOWS
+
+   SERVICE_STATUS_HANDLE   m_handle;
+
+#else
+
+   int                     m_iPid;
+
+#endif
+
+
+
+#ifdef WINDOWS
 
    service_base(::ca::application * papp, DWORD controlsAccepted = SERVICE_ACCEPT_PAUSE_CONTINUE | SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_SHUTDOWN);
+
+#else
+
+   service_base(::ca::application * papp, DWORD UNUSED(controlsAccepted));
+
+#endif
+
    virtual ~service_base();
 
    virtual void Start(DWORD control) = 0;
@@ -46,4 +64,4 @@ public:
 
 };
 
-#endif
+

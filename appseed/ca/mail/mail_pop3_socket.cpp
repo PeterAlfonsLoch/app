@@ -1,6 +1,10 @@
 #include "StdAfx.h"
 #include <openssl/ssl.h>
 
+#if defined(LINUX)
+#include <ctype.h>
+#endif
+
 
 namespace mail
 {

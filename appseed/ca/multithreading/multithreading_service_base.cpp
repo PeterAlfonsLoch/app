@@ -3,13 +3,14 @@
 //      Class:          service_base
 //      Author:         Kenny Kerr
 //      Date created:   10 April 2004
-//      Description:    Provides a base class for a service that will exist as 
-//                      part of a service application. service_base must be 
+//      Description:    Provides a base class for a service that will exist as
+//                      part of a service application. service_base must be
 //                      derived when creating a new service class.
 //
 //*****************************************************************************
 
 #include "StdAfx.h"
+
 
 //
 // The single, static service instance pointer.
@@ -19,7 +20,7 @@ service_base* service_base::m_service = 0;
 //*****************************************************************************
 //
 //      Name:           service_base
-//      Description:    The constructor - initializes a new instance of the 
+//      Description:    The constructor - initializes a new instance of the
 //                      service_base class.
 //
 //*****************************************************************************
@@ -46,8 +47,8 @@ service_base::~service_base()
 //*****************************************************************************
 //
 //      Name:           run
-//      Description:    Provides the main entry point for an executable that 
-//                      contains a single service. Loads the service into 
+//      Description:    Provides the main entry point for an executable that
+//                      contains a single service. Loads the service into
 //                      primitive::memory so it can be started. This method blocks until
 //                      the service has stopped.
 //
@@ -57,14 +58,14 @@ void service_base::run(service_base& service)
    ATLASSERT(0 == m_service);
    m_service = &service;
 
-   SERVICE_TABLE_ENTRYW serviceTable[] = 
+   SERVICE_TABLE_ENTRYW serviceTable[] =
    {
       // Even though the service name is ignored for own process services,
       // it must be a valid string and cannot be 0.
       { L"", ServiceMain },
 
       // Designates the end of table.
-      { 0, 0 } 
+      { 0, 0 }
    };
 
    if (!::StartServiceCtrlDispatcherW(serviceTable))
@@ -83,7 +84,7 @@ DWORD Win32FromHResult(HRESULT value)
 //*****************************************************************************
 //
 //      Name:           UpdateState
-//      Description:    Updates the current state and exit code of the service 
+//      Description:    Updates the current state and exit code of the service
 //                      and notifies the service control manager of the change.
 //
 //*****************************************************************************
@@ -103,7 +104,7 @@ void service_base::UpdateState(DWORD state,
         }
         else
         {
-            m_status.dwWin32ExitCode = ERROR_SERVICE_SPECIFIC_ERROR; 
+            m_status.dwWin32ExitCode = ERROR_SERVICE_SPECIFIC_ERROR;
             m_status.dwServiceSpecificExitCode = errorCode;
         }
     }
@@ -162,8 +163,8 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount,
 {
     //
     // Since there's no way to inform the SCM of failure before a successful
-    // call to RegisterServiceCtrlHandler, if an error occurs before we have 
-    // a service status handle we don't catch any exceptions and let the 
+    // call to RegisterServiceCtrlHandler, if an error occurs before we have
+    // a service status handle we don't catch any exceptions and let the
     // process terminate. The SCM will diligently log this event.
     //
 
@@ -194,8 +195,8 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount,
     catch (const _template::atl_exception& e)
     {
         //
-        // If the service can't start it should throw an exception from the 
-        // Start method. If this happens, we catch it here and notify the 
+        // If the service can't start it should throw an exception from the
+        // Start method. If this happens, we catch it here and notify the
         // SCM so that it can log the error code.
         //
 
@@ -206,7 +207,7 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount,
 //*****************************************************************************
 //
 //      Name:           Handler
-//      Description:    The handler function called by the control dispatcher 
+//      Description:    The handler function called by the control dispatcher
 //                      when an event occurs.
 //
 //*****************************************************************************
@@ -245,4 +246,5 @@ void WINAPI service_base::ServiceHandler(DWORD control)
         m_service->UpdateState(SERVICE_STOPPED, e);
     }
 }
+
 

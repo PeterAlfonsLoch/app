@@ -91,8 +91,8 @@
 	<File name="linux/c_os_cross_win_gdi.h" open="0" top="0" tabpos="5">
 		<Cursor position="192" topLine="0" />
 	</File>
-	<File name="linux/c_os_cross_win_gdi_internal.h" open="0" top="0" tabpos="2">
-		<Cursor position="95" topLine="0" />
+	<File name="linux/c_os_cross_win_gdi_internal.h" open="0" top="0" tabpos="1">
+		<Cursor position="51" topLine="0" />
 	</File>
 	<File name="linux/c_os_http.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="2999" topLine="117" />

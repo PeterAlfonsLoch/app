@@ -1,5 +1,9 @@
 #include "StdAfx.h"
 
+// Ubuntu apt-get install libx11-dev
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+
 
 #undef new
 
@@ -13,8 +17,8 @@ struct myfx_CTLCOLOR
 
 namespace gen
 {
-   
-   
+
+
    namespace message
    {
 
@@ -47,7 +51,7 @@ namespace gen
       }
       */
 
-
+#ifdef WINDOWS
 
       bool dispatch::igui_RelayEvent(LPMSG lpmsg)
       {
@@ -61,10 +65,15 @@ namespace gen
          }
          return 0;
       }
+
+#endif
+
       bool dispatch::OnWndMsgPosCreate()
       {
          return true;
       }
+
+#ifdef WINDOWS
 
       base * dispatch::peek_message(LPMSG lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
       {
@@ -85,6 +94,7 @@ namespace gen
          MSG msg;
          return peek_message(&msg, pwnd, wMsgFilterMin, wMsgFilterMax, wRemoveMsg);
       }
+
 
       base * dispatch::get_message(::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
       {
@@ -224,6 +234,8 @@ namespace gen
 
          return get_base(pwnd, lpmsg->message, lpmsg->wParam, lpmsg->lParam);
       }
+
+#endif
 
       dispatch::dispatch()
       {
@@ -366,7 +378,7 @@ namespace gen
 
       ::ca::window * dispatch::_GetWnd()
       {
-         return dynamic_cast <::ca::window *> (this);
+         return dynamic_cast < ::ca::window * > (this);
       }
 
       Handler::Handler()
@@ -403,8 +415,10 @@ namespace gen
             return PrototypeActivate;
          case WM_MEASUREITEM:
             return PrototypeMeasureItem;
+#ifdef WINDOWS
          case WM_NOTIFY:
             return PrototypeNotify;
+#endif
          case WM_COMMAND:
             {
                switch(uiCode)
@@ -429,8 +443,10 @@ namespace gen
          case WM_NCLBUTTONDOWN:
          case WM_NCLBUTTONUP:
             return PrototypeMouse;
+#ifdef WINDOWS
          case WM_MOUSEWHEEL:
             return PrototypeMouseWheel;
+#endif
          case WM_NCACTIVATE:
             return PrototypeNcActivate;
          case WM_TIMER:
@@ -457,10 +473,12 @@ namespace gen
             return PrototypeShowWindow;
          case WM_INITMENUPOPUP:
             return PrototypeInitMenuPopup;
+#ifdef WINDOWS
          case WM_CTLCOLOR:
             return PrototypeCtlColor;
          case WM_CTLCOLOR + WM_REFLECT_BASE:
             return PrototypeCtlColorReflect;
+#endif
          case WM_SETFOCUS:
             return PrototypeSetFocus;
          case WM_WINDOWPOSCHANGING:
@@ -596,8 +614,8 @@ namespace gen
       void size::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         m_nType     = static_cast<UINT>(wparam);
-         m_size      = class ::size(LOWORD(lparam), HIWORD(lparam));
+         m_nType     = static_cast < UINT > (wparam);
+         m_size      = ::size(LOWORD(lparam), HIWORD(lparam));
       }
 
       mouse::mouse(::ca::application * papp) :
@@ -621,6 +639,8 @@ namespace gen
          }
       }
 
+#ifdef WINDOWS
+
       void mouse::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
@@ -628,6 +648,8 @@ namespace gen
          m_pt        = point(lparam);
          m_bTranslated = false;
       }
+
+#endif
 
       void mouse_wheel::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
@@ -745,6 +767,8 @@ namespace gen
          return (HWND) m_lparam;
       }
 
+#ifdef WINDOWS
+
       LPNMHDR notify::get_lpnmhdr()
       {
          return (LPNMHDR) m_lparam;
@@ -754,6 +778,8 @@ namespace gen
       {
          return (int) m_wparam;
       }
+
+#endif
 
       dispatch::Signal::Signal()
       {
@@ -790,12 +816,6 @@ namespace gen
       void dispatch::_start_user_message_handler(gen::signal_object * pobj)
       {
          _on_start_user_message_handler();
-#ifdef WINDOWS
-         install_message_handling(this);
-#endif
-#ifdef LINUX
-         _002InstallMessageHandling(this);
-#endif
          install_message_handling(this);
          if(get_app() == NULL)
          {
@@ -1061,7 +1081,7 @@ namespace gen
    //               ::ca::window* pWnd = ::ca::window::FromHandlePermanent(wndTemp.get_handle());
    //               if (pWnd == NULL)
                {
-   
+
    //               pWnd = &wndTemp;
       /*         }
                ctl_color ctlcolor(get_app());

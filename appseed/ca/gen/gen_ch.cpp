@@ -12,7 +12,7 @@ namespace gen
    {
 
 
-      string ch::to_lower_case(const char * pszUtf8Char){
+      string to_lower_case(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return "";
@@ -21,7 +21,7 @@ namespace gen
         if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return string(wchar_t(c+1));
         return string(wchar_t(c - (c1>>16)));
       }
-      string ch::to_upper_case(const char * pszUtf8Char){
+      string to_upper_case(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return "";
@@ -30,7 +30,7 @@ namespace gen
         if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return string(wchar_t(c-1));
         return string(wchar_t(c - (c1>>16)));
       }
-      string ch::to_title_case(const char * pszUtf8Char)
+      string to_title_case(const char * pszUtf8Char)
       {
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
@@ -47,19 +47,19 @@ namespace gen
       }
 
 
-      bool ch::is_lower_case(const char * pszUtf8Char){
+      bool is_lower_case(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return CHAR_CATEGORY(CHAR_PROP(c)) == CHAR_CATEGORY_Ll;
       }
-      bool ch::is_upper_case(const char * pszUtf8Char){
+      bool is_upper_case(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return CHAR_CATEGORY(CHAR_PROP(c)) == CHAR_CATEGORY_Lu;
       }
-      bool ch::is_title_case(const char * pszUtf8Char){
+      bool is_title_case(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
@@ -67,7 +67,7 @@ namespace gen
       }
 
 
-      bool ch::is_letter(const char * pszUtf8Char){
+      bool is_letter(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
@@ -79,7 +79,7 @@ namespace gen
                    (1 << CHAR_CATEGORY_Lo)
                  ) >> c1) & 1) != 0;
       }
-      bool ch::is_letter_or_digit(const char * pszUtf8Char){
+      bool is_letter_or_digit(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
@@ -93,21 +93,21 @@ namespace gen
                  ) >> c1) & 1) != 0;
       }
 
-      bool ch::is_digit(const char * pszUtf8Char){
+      bool is_digit(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return CHAR_CATEGORY(CHAR_PROP(c)) == CHAR_CATEGORY_Nd;
       }
 
-      bool ch::is_assigned(const char * pszUtf8Char){
+      bool is_assigned(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return CHAR_CATEGORY(CHAR_PROP(c)) != CHAR_CATEGORY_Cn;
       }
 
-      bool ch::is_space_char(const char * pszUtf8Char){
+      bool is_space_char(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
@@ -116,7 +116,7 @@ namespace gen
                    (1 << CHAR_CATEGORY_Zp)
                   ) >> CHAR_CATEGORY(CHAR_PROP(c))) & 1) != 0;
       }
-      bool ch::is_whitespace(const char * pszUtf8Char){
+      bool is_whitespace(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
@@ -133,7 +133,7 @@ namespace gen
                     (1 << CHAR_CATEGORY_Zp)
                    ) >> CHAR_CATEGORY(CHAR_PROP(c))) & 1) != 0);
       }
-      bool ch::is_whitespace(const char * pszUtf8Char, const char * pszEnd){
+      bool is_whitespace(const char * pszUtf8Char, const char * pszEnd){
          __int64 c = uni_index(pszUtf8Char, pszEnd);
          if(!is_legal_uni_index(c))
             return false;
@@ -151,14 +151,14 @@ namespace gen
                    ) >> CHAR_CATEGORY(CHAR_PROP(c))) & 1) != 0);
       }
 
-      bool ch::is_number(const char * pszUtf8Char){
+      bool is_number(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return NUMBER(CHAR_PROP(c)) != 0;
       }
 
-      bool ch::to_numeric_value(const char * pszUtf8Char, float *f){
+      bool to_numeric_value(const char * pszUtf8Char, float *f){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
@@ -168,34 +168,34 @@ namespace gen
         return true;
       }
 
-      ECharCategory ch::get_category(const char * pszUtf8Char){
+      ECharCategory get_category(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return CHAR_CATEGORY_LAST;
         return ECharCategory(CHAR_CATEGORY(CHAR_PROP(c)));
       }
 
-      string ch::get_category_name(const char * pszUtf8Char){
+      string get_category_name(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return "";
         return string(char_category_names[CHAR_CATEGORY(CHAR_PROP(c))]);
       }
 
-      int ch::get_combining_class(const char * pszUtf8Char){
+      int get_combining_class(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return COMBINING_CLASS(CHAR_PROP(c));
       }
-      bool ch::is_mirrored(const char * pszUtf8Char){
+      bool is_mirrored(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return MIRRORED(CHAR_PROP(c)) != 0;
       }
 
-      int ch::size_of_tables(){
+      int size_of_tables(){
         return sizeof(arr_idxCharInfo)+sizeof(arr_CharInfo)+sizeof(arr_idxCharInfo2)+sizeof(arr_CharInfo2);
       }
 
@@ -224,12 +224,12 @@ namespace gen
        * This table contains as many values as there might be trailing bytes
        * in a UTF-8 sequence.
        */
-      static const unsigned int offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL, 
+      static const unsigned int offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL,
                  0x03C82080UL, 0xFA082080UL, 0x82082080UL };
 
 
 
-      __int64 ch::uni_index(const char * pszUtf8)
+      __int64 uni_index(const char * pszUtf8)
       {
          unsigned char * source = (unsigned char *) pszUtf8;
          __int64 ch = 0;
@@ -259,7 +259,7 @@ namespace gen
          return ch;
       }
 
-      __int64 ch::uni_index(const char * pszUtf8, const char * pszEnd)
+      __int64 uni_index(const char * pszUtf8, const char * pszEnd)
       {
          unsigned char * source = (unsigned char *) pszUtf8;
          __int64 ch = 0;
@@ -269,7 +269,7 @@ namespace gen
             return -1;
          switch (extraBytesToRead)
          {
-            case 5: ch += *source++; ch <<= 6; 
+            case 5: ch += *source++; ch <<= 6;
                 if(*source == '\0') return -1;
             case 4: ch += *source++; ch <<= 6;
                 if(*source == '\0') return -1;
@@ -309,7 +309,7 @@ namespace gen
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

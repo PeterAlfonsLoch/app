@@ -2,12 +2,11 @@
 
 
 class CLASS_DECL_ca mutex :
-#ifdef _WIN32
+#ifdef WINDOWS
    public base_sync_object
 #else
    public sync_object < pthread_mutex_t >
 #endif
-
 {
 public:
 

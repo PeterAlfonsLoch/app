@@ -35,7 +35,7 @@ namespace fontopus
 
    validate::~validate()
    {
-      ::WaitForSingleObject(m_loginthread.get_os_data(), INFINITE);
+       m_loginthread.wait();
    }
 
    ::fontopus::user * validate::get_user(const char * pszRequestingParty, const char * pszSessId)
@@ -418,7 +418,7 @@ namespace fontopus
       }*/
       /*UINT ui1 = GetCurrentThreadId();
       UINT ui2 = m_ptabview->GetTopLevelFrame()->m_pthread->get_os_int();
-      if(::AttachThreadInput(ui1, ui2, TRUE)) 
+      if(::AttachThreadInput(ui1, ui2, TRUE))
       {
          TRACE("AttachedThreadInput");
       }*/
@@ -431,12 +431,12 @@ namespace fontopus
          }
       }
       */
-      
+
 
       /*
       m_ptabview->GetTopLevelFrame()->ActivateFrame();
       m_ptabview->GetTopLevelFrame()->SetFocus();*/
-      
+
 
       //m_pviewAuth->GetTopLevelParent()->SetForegroundWindow();
       //m_pviewAuth->GetTopLevelParent()->BringWindowToTop();
@@ -985,7 +985,7 @@ namespace fontopus
 
       {
 
-         string strAuthUrl("https://"+ m_strFontopusServer +"/ca2api/account/auth?" + m_pcallback->oprop("defer_registration").get_string() 
+         string strAuthUrl("https://"+ m_strFontopusServer +"/ca2api/account/auth?" + m_pcallback->oprop("defer_registration").get_string()
             +"&ruri=" + System.url().url_encode((m_pcallback->oprop("ruri").get_string())));
 
          gen::property_set post;

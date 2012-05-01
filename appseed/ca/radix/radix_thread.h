@@ -21,7 +21,7 @@ namespace radix
       virtual ~thread();
 
 
-      virtual void * get_os_data() const;
+      virtual INT_PTR get_os_data() const;
       virtual INT_PTR get_os_int() const;
 
       virtual bool Begin(int nPriority = ::get_thread_priority_normal(), UINT nStackSize = 0, DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
@@ -93,6 +93,9 @@ namespace radix
       virtual void DispatchThreadMessageEx(gen::signal_object * pobj);  // helper
 
       virtual int main();
+
+
+      virtual void wait();
 
 
    };

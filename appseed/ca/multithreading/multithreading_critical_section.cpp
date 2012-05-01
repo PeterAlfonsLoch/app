@@ -79,10 +79,10 @@ BOOL critical_section::Init()
       pthread_mutex_init(&m_mutex, &mutexattr);
 
       //After initializing the mutex, the thread attribute can be destroyed
-      pthread_mutexattr_destroy(&mutexattr)
+      pthread_mutexattr_destroy(&mutexattr);
 
    }
-   catch(...))
+   catch(...)
    {
       return FALSE;
    }

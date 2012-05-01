@@ -1,15 +1,18 @@
 #include "StdAfx.h"
 
+#define _GNU_SOURCE
+#include <unistd.h>
+
 namespace gen
 {
 
 
    pipe::pipe(bool bInherit)
    {
-      m_pchBuf = NULL; 
-      m_sa.nLength = sizeof(SECURITY_ATTRIBUTES); 
-      m_sa.bInheritHandle = bInherit ? TRUE : FALSE; 
-      m_sa.lpSecurityDescriptor = NULL; 
+      m_pchBuf = NULL;
+      m_sa.nLength = sizeof(SECURITY_ATTRIBUTES);
+      m_sa.bInheritHandle = bInherit ? TRUE : FALSE;
+      m_sa.lpSecurityDescriptor = NULL;
       m_hRead = NULL;
       m_hWrite = NULL;
    }
@@ -24,11 +27,38 @@ namespace gen
       ::CloseHandle(m_hWrite);
    }
 
-   bool pipe::create()
+
+   bool pipe::create(bool bBlock)
    {
+
+#ifdef WINDOWS
+
       if(!CreatePipe(&m_hRead, &m_hWrite, &m_sa, 0))
          return false;
+
+      if(!bBlock)
+      {
+
+         DWORD dwMode = PIPE_NOWAIT;
+         VERIFY(SetNamedPipeHandleState(m_hRead   , &dwMode, NULL, NULL));
+         VERIFY(SetNamedPipeHandleState(m_hWrite  , &dwMode, NULL, NULL));
+
+      }
+
+#else
+
+      int iFlags = bBlock ? 0 : O_NONBLOCK;
+
+      if(pipe2(m_fd, iFlags))
+      {
+         // errno
+         return false;
+      }
+
+#endif
+
       return true;
+
    }
 
    bool pipe::not_inherit_read()
@@ -46,23 +76,23 @@ namespace gen
    }
 
 
-   bool pipe::write(const char * psz) 
-   { 
-      DWORD dwWritten; 
+   bool pipe::write(const char * psz)
+   {
+      DWORD dwWritten;
       BOOL bSuccess = FALSE;
       bSuccess = WriteFile(m_hWrite, (const char *) psz, (DWORD) strlen(psz), &dwWritten, NULL);
       return bSuccess != FALSE;
-   } 
+   }
 
-   string pipe::read() 
-   { 
+   string pipe::read()
+   {
       string str;
       const int BUFSIZE = 1024 * 8;
       DWORD dwRead;
       BOOL bSuccess;
       char chBuf[BUFSIZE];
-      for (;;) 
-      { 
+      for (;;)
+      {
          memset(chBuf, 0, BUFSIZE);
 
          try
@@ -74,16 +104,16 @@ namespace gen
             bSuccess = FALSE;
          }
          if(!bSuccess || dwRead == 0 )
-            break; 
+            break;
          str += chBuf;
          if(dwRead < BUFSIZE)
             break;
-      } 
+      }
       return str;
-   } 
+   }
 
-   string pipe::one_pass_read() 
-   { 
+   string pipe::one_pass_read()
+   {
       string str;
       const int BUFSIZE = 1024 * 8;
       DWORD dwRead;
@@ -100,10 +130,10 @@ namespace gen
          bSuccess = FALSE;
       }
       if(!bSuccess || dwRead == 0 )
-         return str; 
+         return str;
       str += chBuf;
       return str;
-   } 
+   }
 
    void pipe::readex()
    {
@@ -142,13 +172,13 @@ namespace gen
    {
    }
 
-   bool cross_pipe::create()
+   bool cross_pipe::create(bool bBlock)
    {
-      if(!m_pipeIn.create())
+      if(!m_pipeIn.create(bBlock))
          return false;
       if(!m_pipeIn.not_inherit_write())
          return false;
-      if(!m_pipeOut.create())
+      if(!m_pipeOut.create(bBlock))
          return false;
       if(!m_pipeOut.not_inherit_read())
          return false;

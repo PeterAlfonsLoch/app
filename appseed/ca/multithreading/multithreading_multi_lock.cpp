@@ -24,7 +24,11 @@ multi_lock::multi_lock(sync_object_ptra syncobjectptra, bool bInitialLock)
 
       ASSERT(!base < critical_section >::bases (m_syncobjectptra[i]));
 
+#ifdef WINDOWS
       m_handlea[i] = m_syncobjectptra[i]->get_os_data();
+#else
+      m_handlea[i] = m_syncobjectptra[i];
+#endif
       m_baLocked[i] = FALSE;
    }
 

@@ -1,8 +1,11 @@
 #pragma once
 
 
+#ifdef WINDOWS
+
+
 /// This class represents events for file changes
-class CLASS_DECL_ca file_change_event : 
+class CLASS_DECL_ca file_change_event :
    virtual public sync_object_base,
    virtual public event_base
 {
@@ -55,4 +58,9 @@ public:
 	void close ();
 
 };
+
+
+
+#endif
+
 

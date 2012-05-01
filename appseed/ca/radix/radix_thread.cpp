@@ -346,6 +346,15 @@ namespace radix
       return m_p->DispatchThreadMessageEx(pobj);
    }
 
+	void thread::wait()
+   {
+
+      return m_p->wait();
+      // on Windows ==>       ::WaitForSingleObject(m_loginthread.get_os_data(), INFINITE);
+
+   }
+
+
 } // namespace radix
 
 ::radix::thread* AfxBeginThread(::ca::application * papp, AFX_THREADPROC pfnThreadProc, LPVOID pParam,

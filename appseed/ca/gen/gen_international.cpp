@@ -1,6 +1,10 @@
 #include "StdAfx.h"
+
+#ifdef WINDOWS
+
 #include <winnls.h>
 
+#endif
 
 namespace gen
 {

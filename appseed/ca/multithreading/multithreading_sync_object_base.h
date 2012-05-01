@@ -21,12 +21,14 @@ class CLASS_DECL_ca sync_object_base :
 {
 public:
 
+
    sync_object_base();
    sync_object_base(const sync_object_base & objectSrc);
    virtual ~sync_object_base();
 
 
-   virtual void * get_os_data() const;
+   virtual INT_PTR get_os_data() const;
+
 
    virtual bool lock(const duration & durationTimeout = duration::infinite());
    virtual bool unlock();

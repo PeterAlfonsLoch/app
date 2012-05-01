@@ -27,21 +27,11 @@
  * This is a simple program showing how to use TinyJS
  */
 #include "StdAfx.h"
- 	
+
 #if defined(_MSC_VER) && defined(_DEBUG)
 #	define new DEBUG_NEW
 #endif
 
-#ifdef __GNUC__
-#	define UNUSED(x) __attribute__((__unused__))
-#elif defined(_MSC_VER)
-#	ifndef UNUSED
-#		define UNUSED(x) x
-#		pragma warning( disable : 4100 ) /* unreferenced formal parameter */
-#	endif
-#else
-#	define UNUSED(x) x
-#endif
 
 //const char *code = "var a = 5; if (a==5) a=4; else a=3;";
 //const char *code = "{ var a = 4; var b = 1; while (a>0) { b = b * 2; a = a - 1; } var c = 5; }";

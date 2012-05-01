@@ -1,6 +1,8 @@
 #include "StdAfx.h"
 
 
+#ifdef WINDOWS
+
 ///  \brief		constructor with passed path to file
 ///  \param		path the file to watch
 ///  \param		watchsubtree if true, the function monitors the directory tree
@@ -60,4 +62,10 @@ BOOL file_change_event::next ()
 ///  \brief		stops change notification handle monitoring
 void file_change_event::close ()
 { ::FindCloseChangeNotification(item()); }
+
+
+
+
+#endif
+
 

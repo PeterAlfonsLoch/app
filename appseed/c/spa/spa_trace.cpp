@@ -131,3 +131,5 @@ CLASS_DECL_c void trace_progress(double dRate)
    str += itoa_dup(i);
    trace(str);
 }
+
+

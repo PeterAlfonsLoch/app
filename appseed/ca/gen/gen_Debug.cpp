@@ -5,7 +5,7 @@
 *  TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR
 *  A PARTICULAR PURPOSE.
 *
-*  Copyright (C) 1993 - 1997 ca2. 
+*  Copyright (C) 1993 - 1997 ca2.
 *
 ******************************************************************************
 *
@@ -28,6 +28,9 @@ void TRACELASTERROR()
                DWORD dwMessageId = GetLastError();
          LPTSTR lpBuffer;
 //         TRACE("Error Message Id: %d\n", dwMessageId);
+
+#ifdef WINDOWS
+
          _AFX_FUNCNAME(FormatMessage)(
             FORMAT_MESSAGE_ALLOCATE_BUFFER |
             FORMAT_MESSAGE_FROM_SYSTEM,
@@ -39,6 +42,8 @@ void TRACELASTERROR()
             NULL);
          //TRACE("Error Message :\n%s\n", lpBuffer);
          LocalFree(lpBuffer);
+#endif
+
    }
 #endif
 
@@ -46,6 +51,9 @@ string FormatMessageFromSystem(DWORD dwError)
 {
    string strError;
    LPTSTR pszError = NULL;
+
+#ifdef WINDOWS
+
    _AFX_FUNCNAME(FormatMessage)(
      FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
      NULL,
@@ -56,6 +64,11 @@ string FormatMessageFromSystem(DWORD dwError)
      NULL);
 
    strError = pszError;
+
    ::LocalFree(pszError);
+
+#endif
+
    return strError;
+
 }

@@ -817,3 +817,50 @@ CLASS_DECL_c char * strtok_r_dup(char *s1, const char *s2, char **lasts)
 
 
 
+
+
+#if !defined(WINDOWS)
+
+CLASS_DECL_c char * strlwr(char * pszParam)
+{
+
+   char * psz = pszParam;
+
+   if(psz == NULL)
+      return NULL;
+
+   while(*psz != '\0')
+   {
+      if(*psz >= 'A' && *psz <= 'Z')
+      {
+         *psz = *psz - 'A' + 'a';
+      }
+      psz++;
+   }
+
+   return pszParam;
+
+}
+
+CLASS_DECL_c char * strupr(char * pszParam)
+{
+
+   char * psz = pszParam;
+
+   if(psz == NULL)
+      return NULL;
+
+   while(*psz != '\0')
+   {
+      if(*psz >= 'a' && *psz <= 'z')
+      {
+         *psz = *psz - 'a' + 'A';
+      }
+      psz++;
+   }
+
+   return pszParam;
+
+}
+
+#endif

@@ -1,9 +1,6 @@
 #pragma once
 
 
-#ifdef WINDOWS
-
-
 class CLASS_DECL_ca plain_service :
    public service_base
 {
@@ -24,8 +21,3 @@ public:
 
 
 };
-
-
-#endif
-
-

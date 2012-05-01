@@ -6,6 +6,10 @@ class CLASS_DECL_ca event :
 {
 public:
 
+#if defined(LINUX)
+   bool     m_bManualReset;
+#endif
+
 
    event(BOOL bInitiallyOwn = FALSE, BOOL bManualReset = FALSE, LPCTSTR lpszNAme = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
    virtual ~event();
@@ -16,7 +20,7 @@ public:
    using sync_object_base::unlock;
    virtual bool unlock();
 
-   void * get_os_data() const;
+   INT_PTR get_os_data() const;
 
    BOOL SetEvent();
    BOOL PulseEvent();

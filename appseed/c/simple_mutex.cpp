@@ -9,14 +9,6 @@
 #include <sys/sem.h>
 
 
-union semun
-{
-    int val;
-    struct semid_ds *buf;
-    USHORT *array;
-};
-
-
 #ifdef MACOS
 
 

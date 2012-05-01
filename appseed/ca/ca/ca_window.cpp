@@ -153,7 +153,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void * window::get_os_data() const
+   INT_PTR window::get_os_data() const
    {
       throw interface_only_exception();
    }

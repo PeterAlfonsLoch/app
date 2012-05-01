@@ -25,13 +25,13 @@ namespace ca
 
    bool graphics::is_set()
    {
-      return get_os_data() != NULL;
+      return get_os_data() != 0;
    }
 
-   void * graphics::get_os_data() const
+   INT_PTR graphics::get_os_data() const
    {
       throw interface_only_exception();
-      return NULL;
+      return 0;
    }
 
 #ifdef WINDOWS

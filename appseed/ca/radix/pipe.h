@@ -19,14 +19,30 @@ namespace gen
          }
       };
 
+
+      overlapped           m_overlapped;
+
+      char *               m_pchBuf;
+      string               m_strRead;
+
+#ifdef WINDOWS
+
+      SECURITY_ATTRIBUTES  m_sa;
+      HANDLE               m_hRead;
+      HANDLE               m_hWrite;
+
+#else
+
+      int                  m_fd[2];
+
+#endif
+
       pipe(bool bInherit);
       virtual ~pipe();
 
-      bool create();
 
-      SECURITY_ATTRIBUTES m_sa;
-      HANDLE m_hRead;
-      HANDLE m_hWrite;
+      bool create(bool bBlock = true);
+
 
       bool not_inherit_read();
       bool not_inherit_write();
@@ -37,17 +53,13 @@ namespace gen
 
       void readex();
 
-      overlapped m_overlapped;
-
-      char * m_pchBuf;
-      string m_strRead;
 
       static void WINAPI read_complete(
          DWORD dwErrorCode,
          DWORD dwNumberOfBytesTransfered,
          LPOVERLAPPED lpOverlapped
          );
-   
+
 
 
    };
@@ -55,10 +67,21 @@ namespace gen
    class CLASS_DECL_ca cross_pipe
    {
    public:
-      cross_pipe(bool bInherit);
-      bool create();
+
+
       pipe m_pipeIn;
       pipe m_pipeOut;
+
+
+      cross_pipe(bool bInherit);
+
+
+      bool create(bool bBlock = true);
+
+
    };
 
+
 } // namespace gen
+
+

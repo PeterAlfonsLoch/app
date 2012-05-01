@@ -30,7 +30,7 @@ string_tokenizer
 
 BOOL string_tokenizer::GetNextToken(string &strToken, const char * lpSeparator, BOOL bWithSeparator)
 {
-   
+
    strsize i;
 
    if((i = find(lpSeparator, m_nCurrentIndex)) >= 0)
@@ -207,7 +207,11 @@ bool string_tokenizer::_01ReadHex(int &i)
    string str;
    if(!_01Read(str))
       return false;
+#ifdef WINDOWS
    sscanf_s(str, "%x", &i);
+#else
+   sscanf(str, "%x", &i);
+#endif
    return true;
 }
 

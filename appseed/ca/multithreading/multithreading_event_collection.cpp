@@ -1,5 +1,14 @@
 #include "StdAfx.h"
 
+
+#if defined(LINUX)
+
+
+DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable * pwaitableptra, BOOL bWaitForAll, DWORD dwTimeout, BOOL UNUSED(bAlertable));
+
+#endif
+
+
 /// This class represents a collection of waitable items. A collection can be mixed
 /// of any kind of waitable items (threads, events, semaphores, ...).
    ///  \brief		default constructor
@@ -35,7 +44,7 @@
    ///  			false : failure
    bool event_collection::add(event_base& waitableItem)
    {
-      if ( m_objecta.size() >= MAXIMUM_WAIT_OBJECTS )
+      if(m_objecta.size() >= MAXIMUM_WAIT_OBJECTS)
          return false;
       waitable_element wStruct;
       wStruct.item=&waitableItem;
@@ -99,7 +108,7 @@
    ///  			false : failure
    void event_collection::remove(index index)
    {
-      
+
       if ( index > m_objecta.size() )
          throw range_error("event_collection::remove: index out of bounds");
 
@@ -126,6 +135,7 @@
    {
       return wait(false, duration);
    }
+
 
    /////  \brief		waits for the collection for a specified time and if wanted,
    /////				returns when all items are signaled
@@ -247,3 +257,62 @@ const event_collection& event_collection::operator=( const event_collection& )
 {
    throw void_implementation_exception();
 };
+
+
+#if defined(LINUX)
+
+
+DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable * pwaitableptra, BOOL bWaitForAll, DWORD dwTimeout, BOOL UNUSED(bAlertable)
+{
+
+   DWORD start;
+
+   if(dwTimeout != (DWORD) INFINITE)
+   {
+      start = ::GetTickCount();
+   }
+
+   if(bWaitForAll)
+   {
+
+      timespec delay;
+
+      delay.tv_sec = 0;
+      defay.tv_nsec = 1000000;
+
+      int i;
+      int j;
+      i = 0;
+      for(; i < dwSize;)
+      {
+         if(dwTimeout != (DWORD) INFINITE && ::GetTickCount() - start >= dwTimeout)
+         {
+            return WAIT_TIMEOUT;
+         }
+            break;
+         if(pwaitableptra[i]->is_locked())
+         {
+            for(j = 0; j < i; j++)
+            {
+               pwaitableptra[j]->unlock();
+            }
+            nanosleep(&delay, NULL)
+            i = 0;
+         }
+         else
+         {
+            pwaitableptra[i]->lock();
+            i++;
+         }
+      }
+      for(j = 0; j < dwSize; j++)
+      {
+         pwaitableptra[j]->unlock();
+      }
+
+   }
+
+}
+
+
+#endif

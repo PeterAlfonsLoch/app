@@ -32,21 +32,32 @@ void event_base::set_item( HANDLE item )
 
 ///  \brief		resets ownership of the waitable item
 void event_base::release_ownership()
-{ 
-   m_bOwn = false; 
+{
+   m_bOwn = false;
 }
 
 ///  \brief		handle getter
 ///  \return    item handle
 HANDLE event_base::item() const
-{ 
-   return m_object; 
+{
+   return m_object;
 }
 
+#ifdef WINDOWS
+
 HANDLE event_base::get_os_data() const
-{ 
-   return m_object; 
+{
+   return m_object;
 }
+
+#else
+
+void * event_base::get_os_data() const
+{
+   return m_object;
+}
+
+#endif
 
 void event_base::init_wait ()
 {

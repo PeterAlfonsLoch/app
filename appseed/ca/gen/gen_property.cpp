@@ -1,5 +1,8 @@
 #include "StdAfx.h"
 
+#if defined(LINUX)
+#include <ctype.h>
+#endif
 
 #define ROUND(x,y) (((x)+(y-1))&~(y-1))
 #define ROUND16(x) ROUND(x, 16)
@@ -61,7 +64,9 @@ namespace gen
          if(iFind >= 0)
             return pair_set_interface_get_value(iFind);
       }
-      return ::var(::var::e_type::type_new);
+
+      throw "cannot reference absent property";
+
    }
 
    var pair_set_interface::operator[](const char * pszName) const
@@ -2821,7 +2826,7 @@ namespace gen
 
 void prop_id_debug(::ca::application * papp)
 {
-   
+
    comparable_array < ::id > idaSchema;
 
    gen::property_set set(papp);
