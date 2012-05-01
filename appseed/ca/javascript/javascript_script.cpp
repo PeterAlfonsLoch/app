@@ -32,7 +32,6 @@
 #	define new DEBUG_NEW
 #endif
 
-
 //const char *code = "var a = 5; if (a==5) a=4; else a=3;";
 //const char *code = "{ var a = 4; var b = 1; while (a>0) { b = b * 2; a = a - 1; } var c = 5; }";
 //const char *code = "{ var b = 1; for (var i=0;i<4;i=i+1) b = b * 2; }";
