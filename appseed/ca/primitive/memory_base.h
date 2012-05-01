@@ -232,10 +232,8 @@ namespace primitive
 
    inline void memory_base::eat_begin(void * pdata, memory_size iSize)
    {
-      ASSERT(iSize >= 0);
       ASSERT(iSize <= this->get_size());
-      if(iSize >= 0 &&
-         iSize <= this->get_size())
+      if(iSize <= this->get_size())
       {
          memcpy(pdata, get_data(), (size_t) iSize);
          delete_begin(iSize);

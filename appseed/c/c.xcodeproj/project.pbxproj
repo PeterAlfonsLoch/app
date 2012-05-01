@@ -899,9 +899,17 @@
 					"\"$(SRCROOT)/../../../ccvotagus/ca2core/fontopus/app/source/main/_000ca2api00000\"",
 				);
 				New_Setting = "";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../../ $(WorkspaceDir)../../appseed/ca2/ $(WorkspaceDir)../../ . ..";
 				VALID_ARCHS = x86_64;
+				WARNING_CFLAGS = (
+					"-Wno-comment",
+					"-Wno-unused-value",
+					"-Wno-c++11-extensions",
+				);
 				WorkspaceDir = /cecyn1/app/seed/macseed/;
 			};
 			name = Debug;
@@ -932,9 +940,17 @@
 					"\"$(SRCROOT)/../../../ccvotagus/ca2core/fontopus/app/source/main/_000ca2api00000\"",
 				);
 				New_Setting = "";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../../ $(WorkspaceDir)../../appseed/ca2/ $(WorkspaceDir)../../ . ..";
 				VALID_ARCHS = x86_64;
+				WARNING_CFLAGS = (
+					"-Wno-comment",
+					"-Wno-unused-value",
+					"-Wno-c++11-extensions",
+				);
 				WorkspaceDir = /cecyn1/app/seed/macseed/;
 			};
 			name = Release;

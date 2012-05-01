@@ -7929,9 +7929,15 @@
 					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-adzuzcjvdbrwgcegakzdmwrfvdrd/Build/Products/Debug\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../../ $(WorkspaceDir)../../appseed/ca2/ $(WorkspaceDir)../../ . ..";
+				WARNING_CFLAGS = (
+					"-Wno-comment",
+					"-Wno-unused-value",
+					"-Wno-c++11-extensions",
+				);
 				WorkspaceDir = /cecyn1/app/seed/macseed/;
 			};
 			name = Debug;
@@ -7945,9 +7951,15 @@
 					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-adzuzcjvdbrwgcegakzdmwrfvdrd/Build/Products/Debug\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../../ $(WorkspaceDir)../../appseed/ca2/ $(WorkspaceDir)../../ . ..";
+				WARNING_CFLAGS = (
+					"-Wno-comment",
+					"-Wno-unused-value",
+					"-Wno-c++11-extensions",
+				);
 				WorkspaceDir = /cecyn1/app/seed/macseed/;
 			};
 			name = Release;

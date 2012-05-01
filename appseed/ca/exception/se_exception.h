@@ -93,7 +93,7 @@ class se_access_violation : public se_exception
 {
    friend class se_translator;
 protected:
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
    se_access_violation (::ca::application * papp, siginfo_t * psiginfo, void * pc) : ca(papp), se_exception(papp, psiginfo, pc) {}
 #else
    se_access_violation (::ca::application * papp, EXCEPTION_POINTERS * ppointers) : ca(papp), se_exception(papp, ppointers) {}

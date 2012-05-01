@@ -451,7 +451,6 @@ public:
    {
       if(&strSrc == NULL)
       {
-         PCXSTR pszSrc = NULL;
          ATLENSURE( pstringmanager != NULL );
 
          string_data* pData = pstringmanager->allocate( 0, sizeof( XCHAR ) );
