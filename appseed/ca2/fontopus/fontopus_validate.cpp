@@ -44,7 +44,7 @@ namespace ca2
 
       validate::~validate()
       {
-         ::WaitForSingleObject(m_loginthread.get_os_data(), INFINITE);
+         ::WaitForSingleObject((HANDLE) m_loginthread.get_os_data(), INFINITE);
       }
 
       void validate::close_all()

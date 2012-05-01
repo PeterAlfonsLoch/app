@@ -38,7 +38,7 @@ namespace radix
    {
    }
 
-   void * thread::get_os_data() const
+   INT_PTR thread::get_os_data() const
    {
       return m_p->get_os_data();
    }
@@ -353,6 +353,21 @@ namespace radix
       // on Windows ==>       ::WaitForSingleObject(m_loginthread.get_os_data(), INFINITE);
 
    }
+
+#ifdef WINDOWS
+	HANDLE thread::item() const
+   {
+
+      return m_p->item();
+   }
+#else
+	INT_PTR thread::item() const
+   {
+      return m_p->item();
+
+   }
+#endif
+
 
 
 } // namespace radix

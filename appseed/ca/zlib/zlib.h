@@ -1343,7 +1343,7 @@ ZEXTERN int ZEXPORT inflateBackInit_ OF((z_streamp strm, int windowBits,
 
 
 #if !defined(ZUTIL_H) && !defined(NO_DUMMY_DECL)
-    struct internal_state {int dummy;}; /* hack for buggy compilers */
+    struct internal_state;
 #endif
 
 ZEXTERN const char   * ZEXPORT zError           OF((int));

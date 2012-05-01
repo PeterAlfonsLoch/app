@@ -15,7 +15,7 @@ sync_object_base::sync_object_base(const sync_object_base & objectSrc)
    UNREFERENCED_PARAMETER(objectSrc);
 }
 
-HANDLE sync_object_base::get_os_data() const
+INT_PTR sync_object_base::get_os_data() const
 {
    return System.get_mutex( const_cast < sync_object_base * > (this))->get_os_data();
 }

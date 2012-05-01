@@ -97,6 +97,12 @@ namespace radix
 
       virtual void wait();
 
+#ifdef WINDOWS
+      virtual HANDLE item() const;
+#else
+      virtual INT_PTR item() const;
+#endif
+
 
    };
 

@@ -38,15 +38,16 @@ public:
 	///  \brief		resets ownership of the waitable item
 	void release_ownership();
 
+   virtual INT_PTR get_os_data() const;
+
+
 #ifdef WINDOWS
 	virtual HANDLE item() const;
-   virtual void * get_os_data() const;
    operator HANDLE () { return m_object; }
    operator HANDLE () const { return m_object; }
 	void set_item( HANDLE item );
 #else
 	virtual INT_PTR item() const;
-   virtual INT_PTR get_os_data() const;
    operator INT_PTR () { return m_object; }
    operator INT_PTR () const { return m_object; }
 	void set_item( INT_PTR item );

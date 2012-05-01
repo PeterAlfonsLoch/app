@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 
+#if defined(LINUX)
 #define _GNU_SOURCE
 #include <unistd.h>
+#endif
 
 namespace gen
 {

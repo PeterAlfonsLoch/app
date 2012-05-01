@@ -189,9 +189,6 @@
     <Filter Include="Source Files\planebase">
       <UniqueIdentifier>{07e1e9b7-67e0-4317-8878-5733270cee65}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\compress\zip\C Source Files">
-      <UniqueIdentifier>{7deebc1c-b57a-4ccb-9d0c-1201cf5d9ca3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\simpledb">
       <UniqueIdentifier>{6748dbeb-c727-4385-ac6a-84cf939743e3}</UniqueIdentifier>
     </Filter>
@@ -270,9 +267,6 @@
     <Filter Include="Source Files\crypto">
       <UniqueIdentifier>{896f23bf-9353-4679-a351-cc7f703729a4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\crypto\C Source Files">
-      <UniqueIdentifier>{be71f77e-0739-4276-bf2c-6dd5803eed49}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\geoip">
       <UniqueIdentifier>{b0e6ed78-c9e4-4306-9850-f8309f411293}</UniqueIdentifier>
     </Filter>
@@ -329,6 +323,12 @@
     </Filter>
     <Filter Include="Source Files\os">
       <UniqueIdentifier>{afafef36-ef8f-43c3-986e-c6d3d79971c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math">
+      <UniqueIdentifier>{52a6b4e1-6649-4559-8e5c-c5ee16f1f5ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{32b3d148-f464-4be0-b68a-7d78bebab6da}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -3149,6 +3149,30 @@
     <ClInclude Include="fs\fs_remote_native_file.h">
       <Filter>Header Files\fs</Filter>
     </ClInclude>
+    <ClInclude Include="gen\gen_microtimer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="math\_double.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\_float.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\_integer.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\binary_operation.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\math_math.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\number.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\value.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -3157,113 +3181,8 @@
     <ClCompile Include="sqlite\sqlite3.c">
       <Filter>Source Files\sqlite</Filter>
     </ClCompile>
-    <ClCompile Include="libcharguess\big5Prober.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\charDistribution.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\charguess.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\EscCharsetProber.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\EscSM.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\EUCJPProber.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\EUCKRProber.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\EUCTWProber.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\GB2312Prober.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\jpCntx.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\LangBulgarianModel.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\LangCyrillicModel.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\LangGreekModel.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\LangHungarianModel.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\LangThaiModel.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\Latin1Prober.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
     <ClCompile Include="libcharguess\libcharguess.cpp">
       <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\MBCSGroupProber.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\MBCSSM.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\SBCharsetProber.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\SBCSGroupProber.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\SJISProber.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\universal.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="libcharguess\UTF8Prober.cpp">
-      <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\adler32.c">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\compress.c">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\crc32.c">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\deflate.c">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\gzio.c">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\infback.c">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\inffast.c">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\inflate.c">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\inftrees.c">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\trees.c">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\uncompr.c">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zutil.c">
-      <Filter>Source Files\zlib</Filter>
     </ClCompile>
     <ClCompile Include="gen\base_enum.cpp">
       <Filter>Source Files\gen</Filter>
@@ -4249,15 +4168,6 @@
     <ClCompile Include="user\user_wait_message_dialog.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="compress\zip\zip_ioapi.c">
-      <Filter>Source Files\compress\zip\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\zip_unzip.c">
-      <Filter>Source Files\compress\zip\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\zip_zip.c">
-      <Filter>Source Files\compress\zip\C Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_control_event.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -4732,80 +4642,11 @@
     <ClCompile Include="ca2\ca2_url_domain.cpp">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\7z_crc.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\crypto_rar20.cpp">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_sha1.cpp">
       <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\ae_xfm.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\cipher_null_cipher.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\cipher_aes.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\cipher_aes_cbc.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\cipher_aes_icm.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\cipher_cipher.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\gf2_8.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\rng_ctr_prng.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\hash_auth.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\hash_hmac.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\hash_null_auth.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\kernel_alloc.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\kernel_crypto_kernel.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\kernel_err.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\kernel_key.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\math_stat.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\my_aes.cpp">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\replay_rdb.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\replay_rdbx.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\replay_ut_sim.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\rng_prng.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\rng_rand_source.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
     </ClCompile>
     <ClCompile Include="user\user_check_interface.cpp">
       <Filter>Source Files\user</Filter>
@@ -4978,9 +4819,6 @@
     <ClCompile Include="plane\plane_session.cpp">
       <Filter>Source Files\plane</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\crypto_math.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="calculator\calculator_class.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
@@ -5085,9 +4923,6 @@
     </ClCompile>
     <ClCompile Include="exception\exception_overflow_error.cpp">
       <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\hash_sha1.c">
-      <Filter>Source Files\crypto\C Source Files</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_hmac_sha1.cpp">
       <Filter>Source Files\crypto</Filter>
@@ -5274,6 +5109,219 @@
     </ClCompile>
     <ClCompile Include="fs\fs_remote_native_file.cpp">
       <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_math.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_7z_crc.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_ae_xfm.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_cipher_aes.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_cipher_aes_cbc.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_cipher_aes_icm.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_cipher_cipher.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_cipher_null_cipher.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_gf2_8.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_hash_auth.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_hash_hmac.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_hash_null_auth.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_hash_sha1.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_kernel_alloc.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_kernel_crypto_kernel.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_kernel_err.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_kernel_key.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_math_stat.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_my_aes.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_replay_rdb.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_replay_rdbx.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_replay_ut_sim.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_rng_ctr_prng.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_rng_prng.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_rng_rand_source.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\zlib_zutil.cpp">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\zlib_uncompr.cpp">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\zlib_trees.cpp">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\zlib_inftrees.cpp">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\zlib_inflate.cpp">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\zlib_inffast.cpp">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\zlib_infback.cpp">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\zlib_gzio.cpp">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\zlib_deflate.cpp">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\zlib_crc32.cpp">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\zlib_compress.cpp">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\zlib_adler32.cpp">
+      <Filter>Source Files\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_unzip.cpp">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_ioapi.cpp">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\zip\zip_zip.cpp">
+      <Filter>Source Files\compress\zip</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_big5Prober.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_charDistribution.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_charguess.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_EscCharsetProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_EscSM.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_EUCJPProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_EUCKRProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_EUCTWProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_GB2312Prober.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_jpCntx.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_LangBulgarianModel.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_LangCyrillicModel.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_LangGreekModel.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_LangHungarianModel.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_LangThaiModel.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_Latin1Prober.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_MBCSGroupProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_MBCSSM.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_SBCharsetProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_SBCSGroupProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_SJISProber.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_universal.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="libcharguess\libcharguess_UTF8Prober.cpp">
+      <Filter>Source Files\libcharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_microtimer.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="math\_double.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\_float.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\_integer.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\binary_operation.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\math.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\number.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\value.cpp">
+      <Filter>Source Files\math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

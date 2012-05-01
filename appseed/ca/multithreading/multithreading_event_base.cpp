@@ -43,21 +43,11 @@ HANDLE event_base::item() const
    return m_object;
 }
 
-#ifdef WINDOWS
-
-HANDLE event_base::get_os_data() const
+INT_PTR event_base::get_os_data() const
 {
-   return m_object;
+   return (INT_PTR) m_object;
 }
 
-#else
-
-void * event_base::get_os_data() const
-{
-   return m_object;
-}
-
-#endif
 
 void event_base::init_wait ()
 {

@@ -1,3 +1,6 @@
+#include "StdAfx.h"
+
+
 #include "libcharguess.h"
 #include "charguess.h"
 #include <string.h>

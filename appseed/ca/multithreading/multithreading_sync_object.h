@@ -106,5 +106,5 @@ inline sync_object < THANDLE >::operator THANDLE() const
 template < typename THANDLE >
 INT_PTR sync_object < THANDLE >::get_os_data() const
 {
-   return m_hObject;
+   return (INT_PTR) m_hObject;
 }

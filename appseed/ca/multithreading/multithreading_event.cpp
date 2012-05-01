@@ -72,9 +72,13 @@ event::event(BOOL bInitiallyOwn, BOOL bManualReset, const char * pstrName,LPSECU
 event::~event()
 {
 
+#if defined(LINUX)
+   
    semun ignored_argument;
 
    semctl(static_cast < int > (m_object), 0, IPC_RMID, ignored_argument);
+
+#endif
 
 }
 
@@ -325,7 +329,7 @@ bool event::unlock()
    return true;
 }
 
-HANDLE event::get_os_data() const
+INT_PTR event::get_os_data() const
 {
-   return m_object;
+   return (INT_PTR) m_object;
 }

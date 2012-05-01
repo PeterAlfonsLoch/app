@@ -14,7 +14,7 @@
 #pragma once
 
 
-#ifndef WINDOOWS
+#ifndef WINDOWS
 #include <sys/time.h> // Unix based system specific
 #endif
 

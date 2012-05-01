@@ -10,8 +10,15 @@
 
 /* @(#) $Id$ */
 
+// undef DEBUG for zlib
+#undef DEBUG 
+
+
 #ifndef ZUTIL_H
 #define ZUTIL_H
+
+
+
 
 #define ZLIB_INTERNAL
 #include "zlib.h"
