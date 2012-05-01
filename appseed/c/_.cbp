@@ -59,9 +59,7 @@
 		<Unit filename="bsdiff/huffman.cpp" />
 		<Unit filename="bsdiff/randtable.cpp" />
 		<Unit filename="c.h" />
-		<Unit filename="c_c.c">
-			<Option compilerVar="CC" />
-		</Unit>
+		<Unit filename="c_c.cpp" />
 		<Unit filename="c_c.h" />
 		<Unit filename="c_natural.h" />
 		<Unit filename="c_types.h" />
