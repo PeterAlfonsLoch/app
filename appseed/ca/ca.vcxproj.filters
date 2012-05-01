@@ -54,9 +54,6 @@
     <Filter Include="Source Files\ca">
       <UniqueIdentifier>{41b76268-c4ed-48ce-97fd-845e1543009c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ca\C Source Files">
-      <UniqueIdentifier>{c16d98b4-da20-4734-888b-e00d251b991d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\api">
       <UniqueIdentifier>{f4d62481-a2f3-4b08-8f5c-d756a42385e7}</UniqueIdentifier>
     </Filter>
@@ -3940,9 +3937,6 @@
     <ClCompile Include="ca\ca_window_draw.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_c.c">
-      <Filter>Source Files\ca\C Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="plane\plane_application.cpp">
       <Filter>Source Files\plane</Filter>
     </ClCompile>
@@ -5322,6 +5316,9 @@
     </ClCompile>
     <ClCompile Include="math\value.cpp">
       <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_c.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

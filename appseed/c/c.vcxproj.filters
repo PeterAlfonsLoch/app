@@ -42,9 +42,6 @@
     <Filter Include="Header Files\bsdiff">
       <UniqueIdentifier>{254aa1d9-6362-42f9-af93-f43b19cc8e40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\C Source Files">
-      <UniqueIdentifier>{bdda0e49-0b43-48ad-8378-7e5c31eff337}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\os">
       <UniqueIdentifier>{50811508-299a-4925-a40f-f63b00af7a4a}</UniqueIdentifier>
     </Filter>
@@ -538,9 +535,6 @@
     <ClCompile Include="windows\c_os_crt0dll.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
-    <ClCompile Include="c_c.c">
-      <Filter>Source Files\C Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="conv.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -551,6 +545,9 @@
       <Filter>Source Files\os</Filter>
     </ClCompile>
     <ClCompile Include="simple_list.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="c_c.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

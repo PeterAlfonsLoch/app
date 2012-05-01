@@ -42,9 +42,6 @@
     <Filter Include="Header Files\bsdiff">
       <UniqueIdentifier>{66e24f5d-5dd2-44b6-8d76-9738b1df5f77}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\C Source Files">
-      <UniqueIdentifier>{4f58334d-7387-4f67-87a8-6cfbb745a7ab}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="radix.h">
@@ -529,11 +526,11 @@
     <ClCompile Include="cpu_architecture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="c_c.c">
-      <Filter>Source Files\C Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="windows\c_os.cpp">
       <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="c_c.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
