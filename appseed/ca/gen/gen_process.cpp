@@ -61,7 +61,7 @@ namespace gen
 
       if(bPiped)
       {
-         if(!m_pipe.create())
+         if(!m_pipe.create(false))
             return false;
       }
 
