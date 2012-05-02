@@ -1009,7 +1009,16 @@ inline VIEW * view::create_view(::user::interaction * pwndParent, id id, ::user:
 template < class VIEW >
 inline VIEW * view::create_view(::user::view_creator_data * pcreatordata, ::user::interaction * pviewLast)
 {
-   return create_view < VIEW > (pcreatordata->m_pholder, pcreatordata->m_id, pviewLast);
+   
+   VIEW * pview = create_view < VIEW > (pcreatordata->m_pholder, pcreatordata->m_id, pviewLast);
+
+   if(pview != NULL)
+   {
+      pcreatordata->m_pdoc = get_document();
+   }
+
+   return pview;
+
 }
 
 
