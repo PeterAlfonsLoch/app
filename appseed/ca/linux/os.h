@@ -49,3 +49,8 @@ typedef ::ex1::file * HFILE;
 
 #include "os_allocate_debug.h"
 #include "os_debug.h"
+
+
+CLASS_DECL_ca errno_t fopen_s(FILE ** pFile, const char * pFileName, const char * mode);
+
+

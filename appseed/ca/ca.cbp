@@ -522,22 +522,13 @@
 		<Unit filename="compress/zip/zip_file.cpp" />
 		<Unit filename="compress/zip/zip_in_file.cpp" />
 		<Unit filename="compress/zip/zip_internal.h" />
-		<Unit filename="compress/zip/zip_ioapi.c">
-			<Option compilerVar="CC" />
-		</Unit>
+		<Unit filename="compress/zip/zip_ioapi.cpp" />
 		<Unit filename="compress/zip/zip_memory_file.cpp" />
-		<Unit filename="compress/zip/zip_unzip.c">
-			<Option compilerVar="CC" />
-		</Unit>
+		<Unit filename="compress/zip/zip_unzip.cpp" />
 		<Unit filename="compress/zip/zip_util.cpp" />
-		<Unit filename="compress/zip/zip_zip.c">
-			<Option compilerVar="CC" />
-		</Unit>
+		<Unit filename="compress/zip/zip_zip.cpp" />
 		<Unit filename="crypto/7z_crc.cpp" />
 		<Unit filename="crypto/7z_crc.h" />
-		<Unit filename="crypto/ae_xfm.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/aes.h" />
 		<Unit filename="crypto/aes_cbc.h" />
 		<Unit filename="crypto/aes_cbc_coder.h" />
@@ -546,21 +537,6 @@
 		<Unit filename="crypto/auth.h" />
 		<Unit filename="crypto/c_crypto.h" />
 		<Unit filename="crypto/cipher.h" />
-		<Unit filename="crypto/cipher_aes.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/cipher_aes_cbc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/cipher_aes_icm.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/cipher_cipher.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/cipher_null_cipher.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/compress_codecs_info_interface.h" />
 		<Unit filename="crypto/compress_coder2_interface.h" />
 		<Unit filename="crypto/compress_coder_interface.h" />
@@ -577,18 +553,40 @@
 		<Unit filename="crypto/compress_write_coder_properties_interface.h" />
 		<Unit filename="crypto/config.h" />
 		<Unit filename="crypto/crypto.h" />
+		<Unit filename="crypto/crypto_7z_crc.cpp" />
+		<Unit filename="crypto/crypto_ae_xfm.cpp" />
+		<Unit filename="crypto/crypto_cipher_aes.cpp" />
+		<Unit filename="crypto/crypto_cipher_aes_cbc.cpp" />
+		<Unit filename="crypto/crypto_cipher_aes_icm.cpp" />
+		<Unit filename="crypto/crypto_cipher_cipher.cpp" />
+		<Unit filename="crypto/crypto_cipher_null_cipher.cpp" />
 		<Unit filename="crypto/crypto_get_text_password2_interface.h" />
 		<Unit filename="crypto/crypto_get_text_password_interface.h" />
+		<Unit filename="crypto/crypto_gf2_8.cpp" />
+		<Unit filename="crypto/crypto_hash_auth.cpp" />
+		<Unit filename="crypto/crypto_hash_hmac.cpp" />
+		<Unit filename="crypto/crypto_hash_null_auth.cpp" />
+		<Unit filename="crypto/crypto_hash_sha1.cpp" />
 		<Unit filename="crypto/crypto_hmac_sha1.cpp" />
 		<Unit filename="crypto/crypto_hmac_sha1.h" />
 		<Unit filename="crypto/crypto_kernel.h" />
-		<Unit filename="crypto/crypto_math.c">
-			<Option compilerVar="CC" />
-		</Unit>
+		<Unit filename="crypto/crypto_kernel_alloc.cpp" />
+		<Unit filename="crypto/crypto_kernel_crypto_kernel.cpp" />
+		<Unit filename="crypto/crypto_kernel_err.cpp" />
+		<Unit filename="crypto/crypto_kernel_key.cpp" />
+		<Unit filename="crypto/crypto_math.cpp" />
 		<Unit filename="crypto/crypto_math.h" />
+		<Unit filename="crypto/crypto_math_stat.cpp" />
+		<Unit filename="crypto/crypto_my_aes.cpp" />
 		<Unit filename="crypto/crypto_properties_interface.h" />
 		<Unit filename="crypto/crypto_rar20.cpp" />
+		<Unit filename="crypto/crypto_replay_rdb.cpp" />
+		<Unit filename="crypto/crypto_replay_rdbx.cpp" />
+		<Unit filename="crypto/crypto_replay_ut_sim.cpp" />
 		<Unit filename="crypto/crypto_reset_init_vector_interface.h" />
+		<Unit filename="crypto/crypto_rng_ctr_prng.cpp" />
+		<Unit filename="crypto/crypto_rng_prng.cpp" />
+		<Unit filename="crypto/crypto_rng_rand_source.cpp" />
 		<Unit filename="crypto/crypto_set_password_interface.h" />
 		<Unit filename="crypto/crypto_sha1.cpp" />
 		<Unit filename="crypto/crypto_sha1.h" />
@@ -596,45 +594,11 @@
 		<Unit filename="crypto/cryptoalg.h" />
 		<Unit filename="crypto/datatypes.h" />
 		<Unit filename="crypto/err.h" />
-		<Unit filename="crypto/gf2_8.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/gf2_8.h" />
-		<Unit filename="crypto/hash_auth.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/hash_hmac.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/hash_null_auth.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/hash_sha1.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/hmac.h" />
 		<Unit filename="crypto/integers.h" />
-		<Unit filename="crypto/kernel_alloc.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/kernel_compat.h" />
-		<Unit filename="crypto/kernel_crypto_kernel.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/kernel_err.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/kernel_key.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/key.h" />
-		<Unit filename="crypto/math_datatypes.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/math_stat.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/my_aes.cpp" />
 		<Unit filename="crypto/null_auth.h" />
 		<Unit filename="crypto/null_cipher.h" />
 		<Unit filename="crypto/prng.h" />
@@ -642,24 +606,6 @@
 		<Unit filename="crypto/rar20.h" />
 		<Unit filename="crypto/rdb.h" />
 		<Unit filename="crypto/rdbx.h" />
-		<Unit filename="crypto/replay_rdb.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/replay_rdbx.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/replay_ut_sim.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/rng_ctr_prng.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/rng_prng.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="crypto/rng_rand_source.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="crypto/sha1.h" />
 		<Unit filename="crypto/stat.h" />
 		<Unit filename="crypto/ut_sim.h" />
@@ -913,17 +859,24 @@
 		<Unit filename="fs/fs_application.h" />
 		<Unit filename="fs/fs_data.cpp" />
 		<Unit filename="fs/fs_data.h" />
+		<Unit filename="fs/fs_ifs.cpp" />
+		<Unit filename="fs/fs_ifs.h" />
+		<Unit filename="fs/fs_ifs_file.cpp" />
+		<Unit filename="fs/fs_ifs_file.h" />
 		<Unit filename="fs/fs_item.cpp" />
 		<Unit filename="fs/fs_item.h" />
 		<Unit filename="fs/fs_item_array.cpp" />
 		<Unit filename="fs/fs_item_array.h" />
+		<Unit filename="fs/fs_native_fs.cpp" />
+		<Unit filename="fs/fs_native_fs.h" />
+		<Unit filename="fs/fs_remote_native_file.cpp" />
+		<Unit filename="fs/fs_remote_native_file.h" />
+		<Unit filename="fs/fs_remote_native_fs.cpp" />
+		<Unit filename="fs/fs_remote_native_fs.h" />
 		<Unit filename="fs/fs_set.cpp" />
 		<Unit filename="fs/fs_set.h" />
-		<Unit filename="fs/ifs.cpp" />
 		<Unit filename="fs/ifs.h" />
-		<Unit filename="fs/ifs_file.cpp" />
 		<Unit filename="fs/ifs_file.h" />
-		<Unit filename="fs/native_fs.cpp" />
 		<Unit filename="fs/native_fs.h" />
 		<Unit filename="gen/_PointerManager.h" />
 		<Unit filename="gen/_base_enum.h" />
@@ -1115,8 +1068,6 @@
 		<Unit filename="libcharguess/universal.cpp" />
 		<Unit filename="libcharguess/universal.h" />
 		<Unit filename="linux/debug.cpp" />
-		<Unit filename="linux/linux.cpp" />
-		<Unit filename="linux/linux.h" />
 		<Unit filename="linux/os.cpp" />
 		<Unit filename="linux/os.h" />
 		<Unit filename="linux/os_allocate_debug.cpp" />
@@ -1853,55 +1804,28 @@
 		<Unit filename="xml/xml_tree_schema.h" />
 		<Unit filename="xml/xml_var_exchange.cpp" />
 		<Unit filename="xml/xml_var_exchange.h" />
-		<Unit filename="zlib/adler32.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="zlib/compress.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="zlib/crc32.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="zlib/crc32.h" />
-		<Unit filename="zlib/deflate.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="zlib/deflate.h" />
-		<Unit filename="zlib/demo/example.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="zlib/gzio.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="zlib/infback.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="zlib/inffast.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="zlib/inffast.h" />
 		<Unit filename="zlib/inffixed.h" />
-		<Unit filename="zlib/inflate.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="zlib/inflate.h" />
-		<Unit filename="zlib/inftrees.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="zlib/inftrees.h" />
-		<Unit filename="zlib/trees.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="zlib/trees.h" />
-		<Unit filename="zlib/uncompr.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="zlib/zconf.h" />
 		<Unit filename="zlib/zconf.in.h" />
 		<Unit filename="zlib/zlib.h" />
-		<Unit filename="zlib/zutil.c">
-			<Option compilerVar="CC" />
-		</Unit>
+		<Unit filename="zlib/zlib_adler32.cpp" />
+		<Unit filename="zlib/zlib_compress.cpp" />
+		<Unit filename="zlib/zlib_crc32.cpp" />
+		<Unit filename="zlib/zlib_deflate.cpp" />
+		<Unit filename="zlib/zlib_gzio.cpp" />
+		<Unit filename="zlib/zlib_infback.cpp" />
+		<Unit filename="zlib/zlib_inffast.cpp" />
+		<Unit filename="zlib/zlib_inflate.cpp" />
+		<Unit filename="zlib/zlib_inftrees.cpp" />
+		<Unit filename="zlib/zlib_trees.cpp" />
+		<Unit filename="zlib/zlib_uncompr.cpp" />
+		<Unit filename="zlib/zlib_zutil.cpp" />
 		<Unit filename="zlib/zutil.h" />
 		<Extensions>
 			<code_completion />

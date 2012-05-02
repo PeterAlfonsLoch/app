@@ -120,3 +120,24 @@ CLASS_DECL__ bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
    }
    return bXIntersects || bYIntersects;
 }
+
+
+
+
+CLASS_DECL_ca errno_t fopen_s(FILE ** pFile, const char * pFileName, const char * mode)
+{
+   if(pFile == NULL)
+   {
+      return EINVAL;
+   }
+
+   *pFile = fopen(pFileName, mode);
+
+   if(*pFile == NULL)
+   {
+      return errno;
+   }
+
+   return 0;
+
+}
