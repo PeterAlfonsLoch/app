@@ -60,7 +60,8 @@ namespace userpresence
          return;
 
       if(command().m_varTopicQuery["app"] == "simpledbcfg"
-      || command().m_varTopicQuery["app"] == "core_netnodelite")
+      || command().m_varTopicQuery["app"] == "core_netnodelite"
+      || command().m_varTopicQuery["app"] == "netshareclient")
          return;
 
       if(command().m_varTopicQuery["app"] == "mydns")

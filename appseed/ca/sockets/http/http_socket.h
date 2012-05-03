@@ -48,7 +48,7 @@ namespace sockets
          \param value Http header value */
       virtual void OnHeader(const string & key,const string & value, const string & lowvalue);
       /** Callback fires when all http headers have been received. */
-      virtual void OnHeaderComplete() = 0;
+      virtual void OnHeaderComplete();
       /** Chunk of http body data recevied. */
       virtual void OnData(const char *,size_t) = 0;
       /** The full request/response body has been received. */

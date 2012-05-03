@@ -133,6 +133,8 @@ namespace sockets
       }
       void http_tunnel::OnHeaderComplete()
       {
+         http_socket::OnHeaderComplete();
+
          m_bHeaders = true;
          m_fileBody.Truncate(0);
          m_fileBody.seek_to_begin();

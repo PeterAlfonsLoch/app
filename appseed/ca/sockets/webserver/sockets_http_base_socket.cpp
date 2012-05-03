@@ -72,7 +72,6 @@ namespace sockets
       {
          TRACE0("accept-language: " + m_request.header("accept-language") + "\n");
       }
-      m_body_size_left = atol(m_request.header("content-length"));
       if (m_body_size_left > 0)
       {
          m_request.InitBody( m_body_size_left );

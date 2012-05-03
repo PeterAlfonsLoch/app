@@ -240,7 +240,7 @@ namespace sockets
             iFind++;
          }
          int iLen = line.get_length();
-         while(iLen >= iFind && isspace(line[iLen - 1]))
+         while(iLen >= iFind && isspace((unsigned char ) line[iLen - 1]))
          {
             iLen--;
          }
@@ -504,6 +504,21 @@ namespace sockets
       }
       else
          m_request.lowheader(key) = value;
+   }
+
+
+   void http_socket::OnHeaderComplete()
+   {
+   
+      if(m_bRequest)
+      {
+         m_body_size_left = atol(m_request.header("content-length"));
+      }
+      if(m_bResponse)
+      {
+         m_body_size_left = atol(m_response.header("content-length"));
+      }
+
    }
 
 

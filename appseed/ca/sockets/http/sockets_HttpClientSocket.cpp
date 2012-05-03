@@ -118,6 +118,8 @@ namespace sockets
    void http_client_socket::OnHeaderComplete()
    {
 
+      http_tunnel::OnHeaderComplete();
+
       m_memoryfile.Truncate(0);
 
       if(m_content_length != ((size_t) (-1)))
