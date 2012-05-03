@@ -193,6 +193,99 @@ namespace plane
 
    bool session::create_bergedge(::ca::create_context * pcreatecontext)
    {
+
+
+      //if(m_pbergedgeInterface != NULL)
+      {
+
+//         m_pbergedgeInterface->create_bergedge(pcreatecontext);
+         //return false;
+
+      }
+
+      m_varCurrentViewFile = pcreatecontext->m_spCommandLine->m_varFile;
+
+
+      string strApp;
+
+      if((pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command().m_varTopicQuery["show_platform"] == 1)
+         && (!(bool)pcreatecontext->m_spCommandLine->m_varQuery["client_only"] && !(bool)command().m_varTopicQuery["client_only"])
+         && (!pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !command().m_varTopicQuery.has_property("client_only")))
+      {
+         m_bShowPlatform = true;
+      }
+
+      strApp = "bergedge";
+
+      pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] = 1;
+
+      ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get(strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
+      if(papp == NULL)
+         return false;
+
+      m_pbergedge             = papp->get_bergedge();
+      m_pbergedgeInterface    = papp;
+
+      UINT uiMessage = WM_APP + 2043;
+
+      papp->PostThreadMessage(uiMessage, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
+
+      pcreatecontext->m_spCommandLine->m_eventReady.wait();
+
+
+      
+
+
+      m_pappCurrent = papp;
+
+
+
+      
+/*      if(m_bShowPlatform)
+      {
+         ::simple_frame_window * pframeApp = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::session::pane_view >()->get_view_uie());
+         if(pframeApp != NULL)
+         {
+            pframeApp->WfiFullScreen(true, false);
+         }
+         ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::session::pane_view >()->GetParentFrame());
+         if(pframe != NULL)
+         {
+            pframe->ShowWindow(SW_SHOW);
+         }
+      }
+      else
+      {
+         if(get_document() != NULL && get_document()->get_typed_view < ::session::view >() != NULL)
+         {
+            ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::session::view >()->GetParentFrame());
+            if(pframe != NULL)
+            {
+               pframe->ShowWindow(SW_SHOW);
+               if(pframe->GetTypedParent < ::plugin::host_interaction > () != NULL)
+               {
+                  pframe->GetTypedParent < ::plugin::host_interaction > ()->layout();
+               }
+               else
+               {
+                  pframe->InitialFramePosition();
+               }
+            }
+         }
+      }
+
+      try
+      {
+         get_view()->GetParentFrame()->SetWindowTextA(dynamic_cast < ::cube8::application * > (m_pappCurrent)->m_puser->m_strLogin);
+      }
+      catch(...)
+      {
+      }
+
+      */
+
+
+
 /*      if(m_pbergedgedocument == NULL)
       {
 
