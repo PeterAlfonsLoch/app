@@ -883,10 +883,10 @@ namespace plane
          return puiParent;
       }
 
-      if(!create_bergedge(pcreatecontext))
+      /*if(!create_bergedge(pcreatecontext))
       {
          return NULL;
-      }
+      }*/
 
 
 
