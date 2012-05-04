@@ -66,7 +66,6 @@ namespace sockets
    private:
       http_base_socket& operator=(const http_base_socket& ) { return *this; } // assignment operator
       void Execute();
-      size_t m_body_size_left;
       int m_iContentLength;
    };
 
