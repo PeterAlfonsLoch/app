@@ -272,126 +272,129 @@ namespace bergedge
             }
          }
       }
-      switch(pcreatordata->m_id)
+      else if(pcreatordata->m_id.is_number())
       {
-      case PaneViewContextMenu:
+
+
+         switch(pcreatordata->m_id)
          {
-/*            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(System.template type_info < bergedge::menu_view > (), get_document(), this, 102));
-            if(pview != NULL)
+         case PaneViewContextMenu:
             {
-               pcreatordata->m_pdoc = get_document();
-               pcreatordata->m_pwnd = pview;
-            }*/
-         }
-         break;
-      case PaneViewWinActionArea:
-         {
-            pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
-            ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChildList(papp, false, true, this);
-            if(pdoc != NULL)
-            {
-               pdoc->get_filemanager_data()->m_iIconSize = 48;
-               pdoc->get_filemanager_data()->m_bListText = true;
-               pdoc->get_filemanager_data()->m_bListSelection = false;
-               pdoc->get_filemanager_data()->m_bIconView = true;
-               pdoc->get_filemanager_data()->m_pcallback = this;
-               pdoc->get_filemanager_data()->m_strDISection.Format("bergedge.pane(%d)", m_iDisplay);
-               pdoc->get_filemanager_data()->m_bPassBk = true;
-               pdoc->Initialize(true);
-               pdoc->update_all_views(NULL, 1234);
-               pdoc->update_all_views(NULL, 1234525);
-               ::view * pview = pdoc->get_view();
-               string strDirName;
-               strDirName.Format("desktop-%d", m_iDisplay);
-               string strDir = Application.dir().userfolder(strDirName);
-               if(m_iDisplay == 0)
-               {
-                  check_desktop_dir(strDir);
-               }
-               pdoc->FileManagerBrowse(strDir);
+   /*            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(System.template type_info < bergedge::menu_view > (), get_document(), this, 102));
                if(pview != NULL)
                {
-                  userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
-                  if(pframe != NULL)
+                  pcreatordata->m_pdoc = get_document();
+                  pcreatordata->m_pwnd = pview;
+               }*/
+            }
+            break;
+         case PaneViewWinActionArea:
+            {
+               pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
+               FileManagerTemplate * ptemplate = papp->GetStdFileManagerTemplate(); 
+               ::filemanager::document * pdoc = ptemplate->OpenChildList(papp, false, true, pcreatordata->m_pholder);
+               if(pdoc != NULL)
+               {
+                  pdoc->get_filemanager_data()->m_iIconSize = 48;
+                  pdoc->get_filemanager_data()->m_bListText = true;
+                  pdoc->get_filemanager_data()->m_bListSelection = false;
+                  pdoc->get_filemanager_data()->m_bIconView = true;
+                  pdoc->get_filemanager_data()->m_pcallback = this;
+                  pdoc->get_filemanager_data()->m_strDISection.Format("bergedge.pane(%d)", m_iDisplay);
+                  pdoc->get_filemanager_data()->m_bPassBk = true;
+                  pdoc->Initialize(true);
+                  pdoc->update_all_views(NULL, 1234);
+                  pdoc->update_all_views(NULL, 1234525);
+                  ::view * pview = pdoc->get_view();
+                  string strDirName;
+                  strDirName.Format("desktop-%d", m_iDisplay);
+                  string strDir = Application.dir().userfolder(strDirName);
+                  if(m_iDisplay == 0)
                   {
-                     pcreatordata->m_pdoc = pdoc;
-                     pcreatordata->m_pwnd = pframe;
-
-
+                     check_desktop_dir(strDir);
+                  }
+                  pdoc->FileManagerBrowse(strDir);
+                  if(pview != NULL)
+                  {
+                     userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
+                     if(pframe != NULL)
+                     {
+                        pcreatordata->m_pdoc = pdoc;
+                     }
                   }
                }
             }
-         }
-         break;
-      case PaneViewThreeActionLaunch:
-         {
-            ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChildList(papp, false, true, pcreatordata->m_pholder);
-            if(pdoc != NULL)
+            break;
+         case PaneViewThreeActionLaunch:
             {
-               pdoc->get_filemanager_data()->m_iIconSize = 48;
-               pdoc->get_filemanager_data()->m_bListText = true;
-               pdoc->get_filemanager_data()->m_bListSelection = false;
-               pdoc->get_filemanager_data()->m_pcallback = &Bergedge;
-               pdoc->get_filemanager_data()->m_bIconView = true;
-               pdoc->get_filemanager_data()->m_strDISection = "winactionarea_3-action-launch";
-               pdoc->Initialize(true);
-               pdoc->update_all_views(NULL, 1234);
-               //pdoc->update_all_views(NULL, 123458);
-               pdoc->update_all_views(NULL, 1234525);
-               ::view * pview = pdoc->get_view();
-               string strDir = Application.dir().userappdata("bergedge\\3-action-launch");
-               check_3click_dir(strDir);
-               pdoc->FileManagerBrowse(strDir);
-               if(pview != NULL)
+               ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChildList(papp, false, true, pcreatordata->m_pholder);
+               if(pdoc != NULL)
                {
-                  userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
-                  if(pframe != NULL)
+                  pdoc->get_filemanager_data()->m_iIconSize = 48;
+                  pdoc->get_filemanager_data()->m_bListText = true;
+                  pdoc->get_filemanager_data()->m_bListSelection = false;
+                  pdoc->get_filemanager_data()->m_pcallback = &Bergedge;
+                  pdoc->get_filemanager_data()->m_bIconView = true;
+                  pdoc->get_filemanager_data()->m_strDISection = "winactionarea_3-action-launch";
+                  pdoc->Initialize(true);
+                  pdoc->update_all_views(NULL, 1234);
+                  //pdoc->update_all_views(NULL, 123458);
+                  pdoc->update_all_views(NULL, 1234525);
+                  ::view * pview = pdoc->get_view();
+                  string strDir = Application.dir().userappdata("bergedge\\3-action-launch");
+                  check_3click_dir(strDir);
+                  pdoc->FileManagerBrowse(strDir);
+                  if(pview != NULL)
                   {
-                     pcreatordata->m_pdoc = pdoc;
+                     userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
+                     if(pframe != NULL)
+                     {
+                        pcreatordata->m_pdoc = pdoc;
+                     }
                   }
                }
             }
-         }
-         break;
-      case PaneViewConfiguration:
-      {
-         form_document * pdoc = Cube.create_form(this, this);
-         if(pdoc == NULL)
-            return;
-         m_pformOptions = pdoc->get_typed_view < form_view > ();
-         form_update_hint uh;
-         uh.m_etype = form_update_hint::type_browse;
-         uh.m_strForm = "bergedge\\options.xhtml";
-         pdoc->update_all_views(NULL, 0, &uh);
-
-         uh.m_etype = form_update_hint::type_get_form_view;
-         pdoc->update_all_views(NULL, 0, &uh);
-
-         uh.m_etype = form_update_hint::type_after_browse;
-         pdoc->update_all_views(NULL, 0, &uh);
-
-
-
-
-         pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(m_pformOptions->GetParentFrame());
-         pcreatordata->m_pdoc = pdoc;
-      }
-      break;
-      case PaneViewFileProperties:
+            break;
+         case PaneViewConfiguration:
          {
-            if(m_ppropform == NULL)
-            {
-               m_ppropform = new filemanager::SimpleFilePropertiesForm(get_app());
-            }
-            pcreatordata->m_pwnd = m_ppropform->open(this, m_itema);
-            if(pcreatordata->m_pwnd == NULL)
+            form_document * pdoc = Cube.create_form(this, this);
+            if(pdoc == NULL)
                return;
-            pcreatordata->m_pdoc = m_ppropform->m_ptabview->get_document();
+            m_pformOptions = pdoc->get_typed_view < form_view > ();
+            form_update_hint uh;
+            uh.m_etype = form_update_hint::type_browse;
+            uh.m_strForm = "bergedge\\options.xhtml";
+            pdoc->update_all_views(NULL, 0, &uh);
 
+            uh.m_etype = form_update_hint::type_get_form_view;
+            pdoc->update_all_views(NULL, 0, &uh);
+
+            uh.m_etype = form_update_hint::type_after_browse;
+            pdoc->update_all_views(NULL, 0, &uh);
+
+
+
+
+            pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(m_pformOptions->GetParentFrame());
+            pcreatordata->m_pdoc = pdoc;
          }
          break;
-      default:
-         break;
+         case PaneViewFileProperties:
+            {
+               if(m_ppropform == NULL)
+               {
+                  m_ppropform = new filemanager::SimpleFilePropertiesForm(get_app());
+               }
+               pcreatordata->m_pwnd = m_ppropform->open(this, m_itema);
+               if(pcreatordata->m_pwnd == NULL)
+                  return;
+               pcreatordata->m_pdoc = m_ppropform->m_ptabview->get_document();
+
+            }
+            break;
+         default:
+            break;
+         }
       }
       ::userex::pane_tab_view::on_create_view(pcreatordata);
    }

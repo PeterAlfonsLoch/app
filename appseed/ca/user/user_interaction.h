@@ -469,7 +469,7 @@ namespace user
       virtual COLORREF get_background_color();
       virtual void set_default_background_color(COLORREF crDefaultBackgroundColor);
 
-
+      virtual void _001OnTriggerMouseInside();
 
    };
 

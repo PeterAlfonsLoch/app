@@ -2959,6 +2959,19 @@ restart:
    }
 
 
+   void interaction::_001OnTriggerMouseInside()
+   {
+
+      if(m_pimpl != NULL)
+      {
+
+         m_pimpl->_001OnTriggerMouseInside();
+
+      }
+
+   }
+
+
 } // namespace user
 
 CLASS_DECL_ca ::user::interaction * WINAPI CreateGuieEx(

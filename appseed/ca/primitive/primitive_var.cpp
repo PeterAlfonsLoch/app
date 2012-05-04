@@ -917,9 +917,10 @@ void var::read(ex1::byte_input_stream & is)
    {
    case type_string:
       {
-         is >> i;
-         char * lpsz = m_str.GetBuffer(i + 2);
-         is.read(lpsz, (i + 1) * sizeof(CHAR));
+         strsize size;
+         is >> size;
+         char * lpsz = m_str.GetBuffer(size + 2);
+         is.read(lpsz, (size + 1) * sizeof(CHAR));
          m_str.ReleaseBuffer();
       }
       break;
