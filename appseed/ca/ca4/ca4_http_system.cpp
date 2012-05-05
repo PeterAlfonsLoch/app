@@ -98,12 +98,12 @@ namespace ca4
 
          string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
          stringa straRequestingServer;
-         straRequestingServer.add("fontopus.com");
+         straRequestingServer.add("account.ca2.cc");
          straRequestingServer.add("fontopus.eu");
          straRequestingServer.add("fontopus.asia");
          if(!straRequestingServer.contains_ci(strHost))
          {
-            strHost = "fontopus.com";
+            strHost = "account.ca2.cc";
          }
 
          straRequestingServer.remove(strHost);

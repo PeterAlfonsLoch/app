@@ -84,7 +84,7 @@ namespace fontopus
       string strHost(pszRequestingParty);
 
       stringa straRequestingServer;
-      straRequestingServer.add("fontopus.com");
+      straRequestingServer.add("account.ca2.cc");
       straRequestingServer.add("fontopus.eu");
       straRequestingServer.add("fontopus.asia");
       if(strHost.is_empty())
@@ -98,7 +98,7 @@ namespace fontopus
             strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
             if(!straRequestingServer.contains_ci(strHost))
             {
-               strHost = "https://fontopus.com/";
+               strHost = "https://account.ca2.cc/";
             }
          }
       }
@@ -244,12 +244,12 @@ namespace fontopus
       m_loginthread.m_strLicense = m_strLicense;
       string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
-      straRequestingServer.add("fontopus.com");
+      straRequestingServer.add("account.ca2.cc");
       straRequestingServer.add("fontopus.eu");
       straRequestingServer.add("fontopus.asia");
       if(!straRequestingServer.contains_ci(strHost))
       {
-         strHost = "fontopus.com";
+         strHost = "account.ca2.cc";
       }
 
       if(straRequestingServer.contains(Application.command_thread().m_varTopicQuery["fontopus"].get_string())
@@ -631,7 +631,7 @@ namespace fontopus
    // return hash and check if hash is valid
    bool validate::check_ca2_hash()
    {
-      string strUrl("https://fontopus.com/ca2api/account/check_hash");
+      string strUrl("https://account.ca2.cc/ca2api/account/check_hash");
       gen::property_set post;
       gen::property_set headers;
       gen::property_set set;
@@ -751,7 +751,7 @@ namespace fontopus
       if(m_straRequestingServer.get_count() <= 0)
       {
          stringa straRequestingServer;
-         straRequestingServer.add("fontopus.com");
+         straRequestingServer.add("account.ca2.cc");
          straRequestingServer.add("fontopus.eu");
          straRequestingServer.add("fontopus.asia");
          if(straRequestingServer.contains_ci(m_strRequestingServer))
@@ -1173,7 +1173,7 @@ namespace fontopus
       {
          if(m_bInteractive)
          {
-            propertyset["server"] = "fontopus.com";
+            propertyset["server"] = "account.ca2.cc";
             pageMessage("err\\user\\network\\connection_timed_out.xhtml", propertyset);
          }
       }
@@ -1181,7 +1181,7 @@ namespace fontopus
       {
          if(m_bInteractive)
          {
-            propertyset["server"] = "fontopus.com";
+            propertyset["server"] = "account.ca2.cc";
             propertyset["email"] = strUsername;
             pageMessage("err\\user\\authentication\\registration_deferred.xhtml", propertyset);
          }

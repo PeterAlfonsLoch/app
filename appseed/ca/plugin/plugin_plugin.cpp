@@ -351,7 +351,7 @@ namespace plugin
       strLocation = m_psystem->url().remove(strLocation, "sessid");
       strLocation = m_psystem->url().remove(strLocation, "action");
       string strUrl;
-      strUrl = "https://fontopus.com/sec?action=logout";
+      strUrl = "https://account.ca2.cc/sec?action=logout";
       m_psystem->url().set(strUrl, "ruri", strLocation);
       m_strOpenUrl = strLocation;
       m_bOpenUrl = true;
