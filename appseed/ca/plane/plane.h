@@ -4,21 +4,14 @@
 #include "ca/dynamic_source/dynamic_source.h"
 
 
-namespace ca2
+namespace filehandler
 {
 
 
-   namespace filehandler
-   {
+   class handler;
 
 
-      class handler;
-
-
-   } // namespace filehandler
-
-
-} // namespace ca2
+} // namespace filehandler
 
 
 namespace bergedge
