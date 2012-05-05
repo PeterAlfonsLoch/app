@@ -219,9 +219,25 @@ namespace plane
 
       pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] = 1;
 
-      ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get(strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
+      ::ca::application * pcaapp = application_get(strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+
+      ::bergedge_interface * papp = dynamic_cast < ::bergedge_interface * > (pcaapp);
+
       if(papp == NULL)
+      {
+
+         try
+         {
+
+            delete pcaapp;
+
+         }
+         catch(...)
+         {
+         }
+
          return false;
+      }
 
       m_pbergedge             = papp->get_bergedge();
       m_pbergedgeInterface    = papp;
@@ -439,8 +455,28 @@ namespace plane
 
             if(strApp == "bergedge")
             {
+               
                m_pbergedge             = papp->get_bergedge();
-               m_pbergedgeInterface    = papp;
+               
+               m_pbergedgeInterface    = dynamic_cast < ::bergedge_interface * > (papp);
+
+               if(m_pbergedgeInterface == NULL)
+               {
+                  
+                  try
+                  {
+
+                     delete papp;
+
+                  }
+                  catch(...)
+                  {
+                  }
+
+                  return;
+
+               }
+
             }
 
 
@@ -547,6 +583,18 @@ namespace plane
 
    bool session::open_by_file_extension(::ca::create_context * pcreatecontext)
    {
+
+      if(m_pbergedge == NULL)
+      {
+         create_bergedge(pcreatecontext);
+      }
+
+      if(m_pbergedge != NULL)
+      {
+         return m_pbergedgeInterface->open_by_file_extension(pcreatecontext);
+      }
+
+      return false;
 
       string strId;
       string strOriginalPathName(pcreatecontext->m_spCommandLine->m_varFile);

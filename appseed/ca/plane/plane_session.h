@@ -43,7 +43,7 @@ namespace plane
 
 
       ::bergedge::bergedge *                                m_pbergedge;
-      ::plane::application *                                m_pbergedgeInterface;
+      ::bergedge_interface *                                m_pbergedgeInterface;
 
       
       index                                                 m_iEdge;

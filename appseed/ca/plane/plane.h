@@ -50,6 +50,7 @@ class form_view;
 
 #include "plane_library.h"
 #include "plane_application.h"
+#include "plane_bergedge_interface.h"
 #include "plane_session.h"
 #include "plane_system.h"
 

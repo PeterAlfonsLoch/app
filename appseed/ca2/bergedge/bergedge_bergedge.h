@@ -20,7 +20,8 @@ namespace bergedge
 
    class CLASS_DECL_ca2 bergedge :
       virtual public ::platform::application,
-      virtual public ::filemanager::item_action
+      virtual public ::filemanager::item_action,
+      virtual public ::bergedge_interface
    {
    public:
 

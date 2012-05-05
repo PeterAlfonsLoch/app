@@ -3170,6 +3170,9 @@
     <ClInclude Include="math\value.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
+    <ClInclude Include="plane\plane_bergedge_interface.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -5319,6 +5322,9 @@
     </ClCompile>
     <ClCompile Include="ca\ca_c.cpp">
       <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="plane\plane_bergedge_interface.cpp">
+      <Filter>Source Files\plane</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
