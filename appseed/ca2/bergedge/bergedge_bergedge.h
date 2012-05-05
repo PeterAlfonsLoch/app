@@ -127,10 +127,6 @@ namespace bergedge
 
       ::ca::application * application_get(const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
 
-      virtual bool open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate = NULL);
-
-      virtual bool open_by_file_extension(::ca::create_context * pcreatecontext);
-      
       virtual bool is_bergedge();
 
       ::ca::application * get_current_application();

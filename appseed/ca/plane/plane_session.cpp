@@ -565,6 +565,8 @@ namespace plane
       return m_pnaturedocument;
    }
    */
+
+
    bool session::open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate)
    {
       
@@ -581,46 +583,47 @@ namespace plane
 
    }
 
+
    bool session::open_by_file_extension(::ca::create_context * pcreatecontext)
    {
 
-      if(m_pbergedge == NULL)
-      {
-         create_bergedge(pcreatecontext);
-      }
-
-      if(m_pbergedge != NULL)
-      {
-         return m_pbergedgeInterface->open_by_file_extension(pcreatecontext);
-      }
-
-      return false;
-
       string strId;
+
       string strOriginalPathName(pcreatecontext->m_spCommandLine->m_varFile);
+
       string strPathName(strOriginalPathName);
 
       strPathName.trim();
+
       strPathName.trim("\"");
 
       strsize iFind = strPathName.find("?");
+
       if(iFind >= 0)
       {
+
          strPathName = strPathName.Left(iFind);
+
       }
 
       if(gen::str::ends_ci(strPathName, ".cgcl"))
       {
+
       }
 
       string strProtocol = System.url().get_protocol(strPathName);
+
       if(strProtocol == "app")
       {
+         
          strId = System.url().get_server(strPathName);
 
          string str = System.url().get_object(strPathName);
+
          gen::str::begins_eat(str, "/");
+
          pcreatecontext->m_spCommandLine->m_varFile = str;
+
       }
       else
       {
@@ -629,9 +632,8 @@ namespace plane
 
          stringa straApp;
 
-         //Cube.filehandler().get_extension_app(straApp, strExtension);
+         System.filehandler().get_extension_app(straApp, strExtension);
      
-
          if(straApp.get_count() == 1)
          {
             strId = straApp[0];
@@ -643,76 +645,15 @@ namespace plane
 
       }
 
+      ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get(strId, true, true, pcreatecontext->m_spApplicationBias));
 
-      /*|| gen::str::ends_ci(strPathName, ".cpp")
-      || gen::str::ends_ci(strPathName, ".html"))
-      {
-         strId = "devedge";
-      }
-      else if(gen::str::ends_ci(strPathName, ".ca2"))
-      {
-         strId = Application.file().as_string(strOriginalPathName);
-         if(gen::str::begins_eat(strId, "ca2prompt\r\n"))
-         {
-            strId.trim();
-         }
-         return false;
-      }
-      else if(gen::str::ends_ci(strPathName, ".txt")
-      || gen::str::ends_ci(strOriginalPathName, ".pac"))
-      {
-         strId = "veriedit";
-      }
-      else if(gen::str::ends_ci(strPathName, ".ogv")
-         || gen::str::ends_ci(strPathName, ".flv"))
-      {
-         strId = "verisimplevideo";
-      }
-      else if(gen::str::ends_ci(strPathName, ".kar")
-      || gen::str::ends_ci(strPathName, ".mid")
-      || gen::str::ends_ci(strPathName, ".mp3")
-      || gen::str::ends_ci(strPathName, ".mk1"))
-      {
-         strId = "mplite";
-      }
-      else if(gen::str::ends_ci(strPathName, ".flv"))
-      {
-         strId = "verisimplevideo";
-      }
-      else if(gen::str::ends_ci(strPathName, ".bmp")
-           || gen::str::ends_ci(strPathName, ".jpg")
-           || gen::str::ends_ci(strPathName, ".jpeg")
-           || gen::str::ends_ci(strPathName, ".png")
-           || gen::str::ends_ci(strPathName, ".gif"))
-      {
-         strId = "eluce";
-      }
-      else if(gen::str::begins(strPathName, "rtprx://"))
-      {
-         strId = "rtprx";
-      }
-      else if(gen::str::begins(strPathName, "rtptx://"))
-      {
-         strId = "rtptx";
-      }
-      else
-      {
-#ifdef WINDOWS
-         ::ShellExecuteW(
-            NULL,
-            L"open",
-            gen::international::utf8_to_unicode(strPathName),
-            NULL,
-            NULL,
-            SW_SHOW);
-#endif
-         return true;
-      }*/
-/*      ::user::application * papp = dynamic_cast < ::user::application * > (application_get(strId, true, true, pcreatecontext->m_spApplicationBias));
       if(papp == NULL)
          return false;
-      papp->::ex1::request_interface::create(pcreatecontext);*/
+
+      papp->::ex1::request_interface::create(pcreatecontext);
+
       return true;
+
    }
 
    bool session::InitializeLocalDataCentral()

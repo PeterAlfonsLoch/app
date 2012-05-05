@@ -327,6 +327,9 @@
     <Filter Include="Source Files\math">
       <UniqueIdentifier>{32b3d148-f464-4be0-b68a-7d78bebab6da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\filehandler">
+      <UniqueIdentifier>{ee640ee3-e847-4dde-b27c-ac383fa4b3f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
@@ -3172,6 +3175,27 @@
     </ClInclude>
     <ClInclude Include="plane\plane_bergedge_interface.h">
       <Filter>Header Files\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_handler.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_library.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_menu_library.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_tree_data.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_tree_interface.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_tree_item.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler.h">
+      <Filter>Header Files\filehandler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

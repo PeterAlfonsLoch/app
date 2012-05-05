@@ -1,37 +1,35 @@
 #pragma once
 
 
-namespace ca2
+namespace filehandler
 {
 
 
-   namespace filehandler
+   class CLASS_DECL_ca tree_interface :
+      virtual public ::ex1::tree
    {
-
-
-      class CLASS_DECL_ca tree_interface :
-         virtual public ::ex1::tree
-      {
-      public:
+   public:
       
 
-         tree_interface(::ca::application * papp);
-         virtual ~tree_interface();
+      tree_interface(::ca::application * papp);
+      virtual ~tree_interface();
 
 
-         ::ca2::filehandler::tree_data * get_filehandler_tree_data();
+      ::filehandler::tree_data * get_filehandler_tree_data();
 
-         virtual bool initialize();
+      virtual bool initialize();
 
-         void update_list();
-
-
-      };
+      void update_list();
 
 
-   } // namespace filehandler
+   };
 
 
-} // namespace mail
+} // namespace filehandler
+
+
+
+
+
 
 

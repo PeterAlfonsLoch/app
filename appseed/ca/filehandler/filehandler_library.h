@@ -1,42 +1,38 @@
 #pragma once
 
 
-namespace ca2
+namespace filehandler
 {
 
 
-   namespace filehandler
+   class CLASS_DECL_ca library :
+      virtual public ::ca2::library
    {
+   public:
 
 
-      class CLASS_DECL_ca library :
-         virtual public ::ca2::library
-      {
-      public:
+      library();
+      virtual ~library();
 
 
-         library();
-         virtual ~library();
+      virtual bool handles_extension(const char * pszExtension);
+      virtual bool handles_mime_type(const char * pszMimeType);
+
+      virtual void get_extension_app(stringa & straAppId, const char * pszExtension);
+      virtual void get_mime_type_app(stringa & straAppId, const char * pszMimeType);
 
 
-         virtual bool handles_extension(const char * pszExtension);
-         virtual bool handles_mime_type(const char * pszMimeType);
-
-         virtual void get_extension_app(stringa & straAppId, const char * pszExtension);
-         virtual void get_mime_type_app(stringa & straAppId, const char * pszMimeType);
+      // impl
+      virtual void get_extension_list(stringa & stra);
+      virtual void get_mime_type_list(stringa & stra);
 
 
-         // impl
-         virtual void get_extension_list(stringa & stra);
-         virtual void get_mime_type_list(stringa & stra);
+   };
 
 
-      };
+} // namespace filehandler
 
 
-   } // namespace filehandler
 
-
-} // namespace mail
 
 

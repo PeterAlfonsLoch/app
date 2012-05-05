@@ -1463,30 +1463,6 @@
     <ClInclude Include="user\user_thread.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="filehandler\ca2_filehandler.h">
-      <Filter>Header Files\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="filehandler\ca2_filehandler_application.h">
-      <Filter>Header Files\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="filehandler\ca2_filehandler_default.h">
-      <Filter>Header Files\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="filehandler\ca2_filehandler_document.h">
-      <Filter>Header Files\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="filehandler\ca2_filehandler_frame.h">
-      <Filter>Header Files\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="filehandler\ca2_filehandler_pane_view.h">
-      <Filter>Header Files\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="filehandler\ca2_filehandler_pane_view_update_hint.h">
-      <Filter>Header Files\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="filehandler\ca2_filehandler_view.h">
-      <Filter>Header Files\filehandler</Filter>
-    </ClInclude>
     <ClInclude Include="ca2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1585,6 +1561,30 @@
     </ClInclude>
     <ClInclude Include="userbase\simple_main_frame.h">
       <Filter>Header Files\userbase</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_application.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_default.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_document.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_frame.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_pane_view.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_pane_view_update_hint.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_view.h">
+      <Filter>Header Files\filehandler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

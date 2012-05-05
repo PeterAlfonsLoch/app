@@ -1081,6 +1081,13 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="exception\unhandled_report.h" />
     <ClInclude Include="exception\user.h" />
     <ClInclude Include="exception\VMSException.h" />
+    <ClInclude Include="filehandler\filehandler.h" />
+    <ClInclude Include="filehandler\filehandler_handler.h" />
+    <ClInclude Include="filehandler\filehandler_library.h" />
+    <ClInclude Include="filehandler\filehandler_menu_library.h" />
+    <ClInclude Include="filehandler\filehandler_tree_data.h" />
+    <ClInclude Include="filehandler\filehandler_tree_interface.h" />
+    <ClInclude Include="filehandler\filehandler_tree_item.h" />
     <ClInclude Include="fontopus\fontopus.h" />
     <ClInclude Include="fontopus\fontopus_application.h" />
     <ClInclude Include="fontopus\fontopus_authentication_map.h" />
