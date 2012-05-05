@@ -4,9 +4,10 @@
 namespace cube
 {
 
+
    library::library() :
       ::ca2::single_application_library < application > (),
-      ::ca2::filehandler::menu_library()
+      ::filehandler::menu_library()
    {
    }
 

@@ -6,7 +6,7 @@ namespace mail
 
 
    class CLASS_DECL_ca2 application : 
-      virtual public ::ca2::filehandler::application
+      virtual public ::filehandler::application
    {
    public:
       
@@ -23,5 +23,7 @@ namespace mail
 
    };
 
+
 } // namespace mail
+
 

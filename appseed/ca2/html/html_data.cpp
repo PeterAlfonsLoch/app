@@ -421,7 +421,7 @@ namespace html
          string filename;
          filename = System.file().time_square(get_app());
          System.http().download(
-            "https://fontopus.com/ca2api/auth",
+            "https://api.ca2.cc/auth",
             filename,
             post,
             headers,

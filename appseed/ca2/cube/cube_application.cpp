@@ -81,7 +81,7 @@ namespace cube
       {
          if(strId == "default_file_handler")
          {
-            return ::ca2::filehandler::application::construct();
+            return ::filehandler::application::construct();
          }
       }
       else if(chFirst == 'f')
@@ -106,7 +106,7 @@ namespace cube
       {
          if(strId == "default_file_handler")
          {
-            return ::ca2::filehandler::application::initialize_instance();
+            return ::filehandler::application::initialize_instance();
          }
       }
       else if(chFirst == 'f')
@@ -131,7 +131,7 @@ namespace cube
       {
          if(strId == "default_file_handler")
          {
-            return ::ca2::filehandler::application::exit_instance();
+            return ::filehandler::application::exit_instance();
          }
       }
       else if(chFirst == 'f')
@@ -168,7 +168,7 @@ namespace cube
       {
          if(strId == "default_file_handler")
          {
-            return ::ca2::filehandler::application::bergedge_start();
+            return ::filehandler::application::bergedge_start();
          }
       }
       else if(chFirst == 'f')
@@ -193,7 +193,7 @@ namespace cube
       {
          if(strId == "default_file_handler")
          {
-            return ::ca2::filehandler::application::on_install();
+            return ::filehandler::application::on_install();
          }
       }
       else if(chFirst == 'f')
@@ -218,7 +218,7 @@ namespace cube
       {
          if(strId == "default_file_handler")
          {
-            return ::ca2::filehandler::application::on_uninstall();
+            return ::filehandler::application::on_uninstall();
          }
       }
       else if(chFirst == 'f')
@@ -244,7 +244,7 @@ namespace cube
       {
          if(strId == "default_file_handler")
          {
-            return ::ca2::filehandler::application::on_request(pcreatecontext);
+            return ::filehandler::application::on_request(pcreatecontext);
          }
       }
       else if(chFirst == 'f')
@@ -264,20 +264,30 @@ namespace cube
 
 
       string strId = m_strId;
+
       char chFirst = '\0';
+
       if(strId.get_length() > 0)
       {
+
          chFirst = strId[0];
+
       }
+
       if(chFirst == 'd')
       {
+
          if(strId == "default_file_handler")
          {
-            return ::ca2::filehandler::application::is_serviceable();
+
+            return ::filehandler::application::is_serviceable();
+
          }
+
       }
       
       return cube2::application::is_serviceable();
+
    }
 
    service_base * application::allocate_new_service()
@@ -292,7 +302,7 @@ namespace cube
       {
          if(strId == "default_file_handler")
          {
-            return ::ca2::filehandler::application::allocate_new_service();
+            return ::filehandler::application::allocate_new_service();
          }
       }
       
@@ -312,7 +322,7 @@ namespace cube
       {
          if(strId == "default_file_handler")
          {
-            return ::ca2::filehandler::application::_001OpenDocumentFile(varFile);
+            return ::filehandler::application::_001OpenDocumentFile(varFile);
          }
       }
       else if(chFirst == 'r')

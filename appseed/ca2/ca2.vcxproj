@@ -933,7 +933,6 @@
     <ClInclude Include="cube\cube_library.h" />
     <ClInclude Include="filehandler\filehandler.h" />
     <ClInclude Include="filehandler\filehandler_application.h" />
-    <ClInclude Include="filehandler\filehandler_default.h" />
     <ClInclude Include="filehandler\filehandler_document.h" />
     <ClInclude Include="filehandler\filehandler_frame.h" />
     <ClInclude Include="filehandler\filehandler_pane_view.h" />
@@ -1390,12 +1389,12 @@
     <ClCompile Include="cube\cube_application.cpp" />
     <ClCompile Include="cube\cube_cube.cpp" />
     <ClCompile Include="cube\cube_library.cpp" />
-    <ClCompile Include="filehandler\ca2_filehandler_application.cpp" />
-    <ClCompile Include="filehandler\ca2_filehandler_document.cpp" />
-    <ClCompile Include="filehandler\ca2_filehandler_frame.cpp" />
-    <ClCompile Include="filehandler\ca2_filehandler_pane_view.cpp" />
-    <ClCompile Include="filehandler\ca2_filehandler_pane_view_update_hint.cpp" />
-    <ClCompile Include="filehandler\ca2_filehandler_view.cpp" />
+    <ClCompile Include="filehandler\filehandler_application.cpp" />
+    <ClCompile Include="filehandler\filehandler_document.cpp" />
+    <ClCompile Include="filehandler\filehandler_frame.cpp" />
+    <ClCompile Include="filehandler\filehandler_pane_view.cpp" />
+    <ClCompile Include="filehandler\filehandler_pane_view_update_hint.cpp" />
+    <ClCompile Include="filehandler\filehandler_view.cpp" />
     <ClCompile Include="filemanager\FileManagerSaveAsNameView.cpp" />
     <ClCompile Include="filemanager\filemanager_ContextMenu.cpp" />
     <ClCompile Include="filemanager\filemanager_folder_list_data.cpp" />

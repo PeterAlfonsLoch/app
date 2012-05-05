@@ -85,8 +85,8 @@ namespace fontopus
 
       stringa straRequestingServer;
       straRequestingServer.add("account.ca2.cc");
-      straRequestingServer.add("fontopus.eu");
-      straRequestingServer.add("fontopus.asia");
+      straRequestingServer.add("eu-account.ca2.cc");
+      straRequestingServer.add("asia-account.ca2.cc");
       if(strHost.is_empty())
       {
          if(::ca::get_thread() != NULL && ::ca::get_thread()->m_strWorkUrl.has_char())
@@ -245,8 +245,8 @@ namespace fontopus
       string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
       straRequestingServer.add("account.ca2.cc");
-      straRequestingServer.add("fontopus.eu");
-      straRequestingServer.add("fontopus.asia");
+      straRequestingServer.add("eu-account.ca2.cc");
+      straRequestingServer.add("asia-account.ca2.cc");
       if(!straRequestingServer.contains_ci(strHost))
       {
          strHost = "account.ca2.cc";
@@ -631,7 +631,7 @@ namespace fontopus
    // return hash and check if hash is valid
    bool validate::check_ca2_hash()
    {
-      string strUrl("https://account.ca2.cc/ca2api/account/check_hash");
+      string strUrl("https://api.ca2.cc/account/check_hash");
       gen::property_set post;
       gen::property_set headers;
       gen::property_set set;
@@ -752,8 +752,8 @@ namespace fontopus
       {
          stringa straRequestingServer;
          straRequestingServer.add("account.ca2.cc");
-         straRequestingServer.add("fontopus.eu");
-         straRequestingServer.add("fontopus.asia");
+         straRequestingServer.add("eu-account.ca2.cc");
+         straRequestingServer.add("asia-account.ca2.cc");
          if(straRequestingServer.contains_ci(m_strRequestingServer))
          {
             m_bFontopusServer = true;

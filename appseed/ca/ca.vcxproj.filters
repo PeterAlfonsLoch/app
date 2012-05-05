@@ -330,6 +330,15 @@
     <Filter Include="Header Files\filehandler">
       <UniqueIdentifier>{ee640ee3-e847-4dde-b27c-ac383fa4b3f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\bergedge">
+      <UniqueIdentifier>{4c1b0d5e-b832-49d9-843b-87c79b970a88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\bergedge">
+      <UniqueIdentifier>{591ebc67-8ffa-4c0a-98c2-e2de259e83d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filehandler">
+      <UniqueIdentifier>{f3517830-9e05-4d8a-8327-57e6ac47c4d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
@@ -3197,6 +3206,12 @@
     <ClInclude Include="filehandler\filehandler.h">
       <Filter>Header Files\filehandler</Filter>
     </ClInclude>
+    <ClInclude Include="bergedge\bergedge.h">
+      <Filter>Header Files\bergedge</Filter>
+    </ClInclude>
+    <ClInclude Include="bergedge\bergedge_interface.h">
+      <Filter>Header Files\bergedge</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StdAfx.cpp">
@@ -4990,24 +5005,6 @@
     <ClCompile Include="ca2\ca2_xml_data.cpp">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_filehandler_handler.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_filehandler_menu_library.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_filehandler_tree_data.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_filehandler_tree_interface.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_filehandler_tree_item.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_filehandler_library.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="dynamic_source\dynamic_source_httpd_socket.cpp">
       <Filter>Source Files\dynamic_source</Filter>
     </ClCompile>
@@ -5347,8 +5344,26 @@
     <ClCompile Include="ca\ca_c.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="plane\plane_bergedge_interface.cpp">
-      <Filter>Source Files\plane</Filter>
+    <ClCompile Include="bergedge\bergedge_interface.cpp">
+      <Filter>Source Files\bergedge</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_handler.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_library.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_menu_library.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_tree_data.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_tree_interface.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_tree_item.cpp">
+      <Filter>Source Files\filehandler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

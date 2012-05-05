@@ -411,7 +411,7 @@ namespace ca2
       // return hash and check if hash is valid
       bool validate::check_ca2_hash()
       {
-         string strUrl("https://fontopus.com/ca2api/account/check_hash");
+         string strUrl("https://api.ca2.cc/account/check_hash");
          gen::property_set post;
          gen::property_set headers;
          gen::property_set set;
@@ -602,7 +602,7 @@ namespace ca2
          {
             if(m_bInteractive)
             {
-               propertyset["server"] = "fontopus.com";
+               propertyset["server"] = "account.ca2.cc";
                pageMessage("err\\user\\network\\connection_timed_out.xhtml", propertyset);
             }
          }
@@ -610,7 +610,7 @@ namespace ca2
          {
             if(m_bInteractive)
             {
-               propertyset["server"] = "fontopus.com";
+               propertyset["server"] = "account.ca2.cc";
                propertyset["email"] = strUsername;
                pageMessage("err\\user\\authentication\\registration_deferred.xhtml", propertyset);
             }

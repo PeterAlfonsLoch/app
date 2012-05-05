@@ -49,8 +49,8 @@ namespace userpresence
       string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
       straRequestingServer.add("account.ca2.cc");
-      straRequestingServer.add("fontopus.eu");
-      straRequestingServer.add("fontopus.asia");
+      straRequestingServer.add("eu-account.ca2.cc");
+      straRequestingServer.add("asia-account.ca2.cc");
       if(!straRequestingServer.contains_ci(strHost))
       {
          strHost = "account.ca2.cc";

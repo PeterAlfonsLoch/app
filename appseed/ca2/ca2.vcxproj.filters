@@ -1568,9 +1568,6 @@
     <ClInclude Include="filehandler\filehandler_application.h">
       <Filter>Header Files\filehandler</Filter>
     </ClInclude>
-    <ClInclude Include="filehandler\filehandler_default.h">
-      <Filter>Header Files\filehandler</Filter>
-    </ClInclude>
     <ClInclude Include="filehandler\filehandler_document.h">
       <Filter>Header Files\filehandler</Filter>
     </ClInclude>
@@ -2430,24 +2427,6 @@
     <ClCompile Include="cube\cube_library.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="filehandler\ca2_filehandler_application.cpp">
-      <Filter>Source Files\filehandler</Filter>
-    </ClCompile>
-    <ClCompile Include="filehandler\ca2_filehandler_document.cpp">
-      <Filter>Source Files\filehandler</Filter>
-    </ClCompile>
-    <ClCompile Include="filehandler\ca2_filehandler_frame.cpp">
-      <Filter>Source Files\filehandler</Filter>
-    </ClCompile>
-    <ClCompile Include="filehandler\ca2_filehandler_pane_view.cpp">
-      <Filter>Source Files\filehandler</Filter>
-    </ClCompile>
-    <ClCompile Include="filehandler\ca2_filehandler_pane_view_update_hint.cpp">
-      <Filter>Source Files\filehandler</Filter>
-    </ClCompile>
-    <ClCompile Include="filehandler\ca2_filehandler_view.cpp">
-      <Filter>Source Files\filehandler</Filter>
-    </ClCompile>
     <ClCompile Include="cubebase\cubebase_application.cpp">
       <Filter>Source Files\cubebase</Filter>
     </ClCompile>
@@ -2519,6 +2498,24 @@
     </ClCompile>
     <ClCompile Include="userbase\simple_main_frame.cpp">
       <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_application.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_document.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_frame.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_pane_view.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_pane_view_update_hint.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_view.cpp">
+      <Filter>Source Files\filehandler</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

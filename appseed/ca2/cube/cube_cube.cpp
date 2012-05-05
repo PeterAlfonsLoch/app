@@ -234,7 +234,7 @@ namespace cube
 
    void cube::open_by_file_extension(index iEdge, const char * pszFileName)
    {
-      get_bergedge(iEdge)->open_by_file_extension(pszFileName);
+      System.get_session(iEdge)->open_by_file_extension(pszFileName);
    }
 
 

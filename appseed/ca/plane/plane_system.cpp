@@ -206,7 +206,7 @@ namespace plane
    {
 
 
-      m_spfilehandler(new ::ca2::filehandler::handler(this));
+      m_spfilehandler(new ::filehandler::handler(this));
 
 
       m_spfilesystem.create(this);
@@ -293,7 +293,7 @@ namespace plane
    }
 
 
-   ::ca2::filehandler::handler & system::filehandler()
+   ::filehandler::handler & system::filehandler()
    {
       return *m_spfilehandler;
    }
