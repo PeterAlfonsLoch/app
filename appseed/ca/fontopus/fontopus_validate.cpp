@@ -116,7 +116,14 @@ namespace fontopus
          m_loginthread.m_puser->m_strFontopusServerSessId = Application.command_thread().m_varTopicQuery["sessid"].get_string();
          m_loginthread.m_puser->m_strRequestingServer = strHost;
          xml::document documentBasicInfo(get_app());
-         if(documentBasicInfo.load(Application.http().get("https://"+Application.command_thread().m_varTopicQuery["fontopus"].get_string()+"/ca2api/account/get_basic_info", m_loginthread.m_puser)))
+
+         string strApiServer;
+         
+         strApiServer = Application.command_thread().m_varTopicQuery["fontopus"];
+
+         strApiServer.replace("account", "api");
+
+         if(documentBasicInfo.load(Application.http().get("https://" + strApiServer + "/account/get_basic_info", m_loginthread.m_puser)))
          {
             string strLogin;
             if(documentBasicInfo.get_root()->get_attr("login", strLogin) && strLogin.find("@") > 0)
@@ -865,7 +872,7 @@ namespace fontopus
 
       domainFontopus.create(m_strFontopusServer);
 
-      if(domainFontopus.m_strRadix != "fontopus")
+      if(domainFontopus.m_strRadix != "ca2")
          return "";
 
       if(System.m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
@@ -878,7 +885,13 @@ namespace fontopus
 
       string strLogin;
 
-      string strLoginUrl("https://"+ m_strFontopusServer +"/ca2api/account/login");
+      string strApiServer;
+
+      strApiServer = m_strFontopusServer;
+
+      strApiServer.replace("account", "api");
+
+      string strLoginUrl("https://" + strApiServer + "/account/login");
 
       xml::document doc(get_app());
 
@@ -987,7 +1000,7 @@ namespace fontopus
 
       {
 
-         string strAuthUrl("https://"+ m_strFontopusServer +"/ca2api/account/auth?" + m_pcallback->oprop("defer_registration").get_string()
+         string strAuthUrl("https://" + strApiServer + "/account/auth?" + m_pcallback->oprop("defer_registration").get_string()
             +"&ruri=" + System.url().url_encode((m_pcallback->oprop("ruri").get_string())));
 
          gen::property_set post;

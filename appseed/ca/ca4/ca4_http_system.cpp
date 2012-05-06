@@ -511,7 +511,7 @@ namespace ca4
 
                   domainFontopus.create(strFontopusServer);
 
-                  if(domainFontopus.m_strRadix == "fontopus")
+                  if(domainFontopus.m_strRadix == "ca2")
                   {
                      puser = &AppUser(papp);
                      if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
@@ -995,7 +995,7 @@ retry:
 
                   domainFontopus.create(strFontopusServer);
 
-                  if(domainFontopus.m_strRadix == "fontopus")
+                  if(domainFontopus.m_strRadix == "ca2")
                   {
                      puser = &AppUser(papp);
                      if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
