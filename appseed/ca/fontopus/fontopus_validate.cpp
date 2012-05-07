@@ -265,7 +265,13 @@ namespace fontopus
          strHost = Application.command_thread().m_varTopicQuery["fontopus"].get_string();
       }
 
-      string strAuthUrl("https://"+ strHost +"/ca2api/account/auth");
+      string strAuthUrl;
+
+      string strApiHost = strHost;
+
+      strApiHost.replace("account", "api");
+      
+      strAuthUrl = "https://" + strApiHost + "/account/auth";
 
       gen::property_set post;
       gen::property_set headers;
