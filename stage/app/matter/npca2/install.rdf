@@ -6,7 +6,7 @@
 		<em:unpack>true</em:unpack>
 		<em:version>%BUILD%</em:version>
 		<em:homepageURL>http://ca2.cc/</em:homepageURL>
-		<em:updateURL>https://fontopus.com/%PLATFORM%%VERSION%/windows.rdf</em:updateURL>
+		<em:updateURL>https://%DOWNLOADSITE%/%PLATFORM%%VERSION%/windows.rdf</em:updateURL>
 		<em:iconURL>chrome://npca2@ca2.cc/skin/ca2-5c-32.png</em:iconURL>
 		<em:creator>ca2 Desenvolvimento de Software Ltda.</em:creator>
 		<em:targetApplication>
