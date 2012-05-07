@@ -1,12 +1,12 @@
-﻿-c1-production -c2-producer -t12n-producing -mmmi- 2012-05-07 18-56-42 app:SVN4322, app-cidadedecuritiba:SVN47, app-core:SVN388M, app-frontpage:SVN84, app-sysutils:SVN66, app-veriwell:SVN376 - // CarlosGustavoCecynLundgren1984+kaarurosu日歩路主
+﻿-c1-production -c2-producer -t12n-producing -mmmi- 2012-05-07 23-10-45 app:SVN4325, app-cidadedecuritiba:SVN47, app-core:SVN389, app-frontpage:SVN84, app-sysutils:SVN66, app-veriwell:SVN376 - // CarlosGustavoCecynLundgren1984+kaarurosu日歩路主
 // <==! Thanks and dedicated to &lt; <
 // Thanks to and in honor of God > &gt; ==>
 // for ca2 and 5!!
 // you(*) and me(*) and God(***) make 5...
-#define THIS_PRODUCT_VERSION "2012-05-07 18-56-42 app:SVN4322, app-cidadedecuritiba:SVN47, app-core:SVN388M, app-frontpage:SVN84, app-sysutils:SVN66, app-veriwell:SVN376\0"
-#define THIS_FILE_VERSION "2012-05-07 18-56-42 app:SVN4322, app-cidadedecuritiba:SVN47, app-core:SVN388M, app-frontpage:SVN84, app-sysutils:SVN66, app-veriwell:SVN376\0"
-#define __THIS_PRODUCT_VERSION 2012,0507,1856,42
-#define __THIS_FILE_VERSION 2012,0507,1856,42
+#define THIS_PRODUCT_VERSION "2012-05-07 23-10-45 app:SVN4325, app-cidadedecuritiba:SVN47, app-core:SVN389, app-frontpage:SVN84, app-sysutils:SVN66, app-veriwell:SVN376\0"
+#define THIS_FILE_VERSION "2012-05-07 23-10-45 app:SVN4325, app-cidadedecuritiba:SVN47, app-core:SVN389, app-frontpage:SVN84, app-sysutils:SVN66, app-veriwell:SVN376\0"
+#define __THIS_PRODUCT_VERSION 2012,0507,2310,45
+#define __THIS_FILE_VERSION 2012,0507,2310,45
 
 
 
