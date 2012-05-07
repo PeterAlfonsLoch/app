@@ -101,16 +101,49 @@ namespace user
                continue;
             }
 
-            ::id & idSchema = m_plocaleschema->m_idaSchema[i];
-
-            str_schema * pschema = plocale->get_schema(idSchema);
-
-            if(pschema == NULL)
             {
-               continue;
+
+               ::id & idSchema = m_plocaleschema->m_idaSchema[i];
+
+               str_schema * pschema = plocale->get_schema(idSchema);
+
+               if(pschema != NULL)
+               {
+
+                  m_schemaptra.add(pschema);
+
+               }
+
             }
 
-            m_schemaptra.add(pschema);
+
+            if(idLocale != m_plocaleschema->m_idaSchema[i])
+            {
+
+               str_schema * pschema = plocale->get_schema(idLocale);
+
+               if(pschema != NULL)
+               {
+
+                  m_schemaptra.add(pschema);
+
+               }
+
+            }
+
+            if(__id(std) != m_plocaleschema->m_idaSchema[i])
+            {
+
+               str_schema * pschema = plocale->get_schema(__id(std));
+
+               if(pschema != NULL)
+               {
+
+                  m_schemaptra.add(pschema);
+
+               }
+
+            }
 
          }
 
