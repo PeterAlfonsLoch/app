@@ -2917,7 +2917,7 @@ install_begin:;
 
       strFullCommandLine = dir::path(dir::beforeca2(), ("ca2\\stage\\" + strPlatform + "\\app.exe"));
 
-      strFullCommandLine = strFullCommandLine + " ";
+      strFullCommandLine = "\"" strFullCommandLine + "\" ";
       
       strFullCommandLine = strFullCommandLine + pszCommandLine;
 
