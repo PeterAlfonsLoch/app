@@ -2835,9 +2835,9 @@ install_begin:;
                break;
             vsstring strUrl;
 #if CA2_PLATFORM_VERSION == CA2_BASIS
-               strUrl = "http://hardaxs.net/spa?download=app-install.exe&authnone";
+            strUrl = "http://warehouse.ca2.cc/spa?download=app-install.exe&authnone";
 #else
-               strUrl = "http://veriaxs.net/spa?download=app-install.exe&authnone";
+            strUrl = "http://store.ca2.cc/spa?download=app-install.exe&authnone";
 #endif
             if(ms_download_dup(strUrl, m_strPath, false))
             {
