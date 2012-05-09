@@ -1,6 +1,9 @@
 #include "StdAfx.h"
 #include "user_Shell.h"
 
+#include <Shellapi.h>
+#include <CommonControls.h>
+
 namespace filemanager
 {
    namespace _shell
@@ -661,6 +664,55 @@ namespace filemanager
             }
          }
       }
+      if(imagekey.m_iIcon <= -1)
+      {
+         string strTarget;
+         if(System.os().resolve_link(strTarget, strFilePath, System.window_from_os_data(hwnd)))
+         {
+
+            wstring wstr = gen::international::utf8_to_unicode(strTarget);
+
+            LPITEMIDLIST lpiidl2 = NULL;
+
+            DWORD dwAttrib = 0;
+
+            unsigned long ulEaten;
+
+            HRESULT hr;
+
+            try
+            {
+               hr = SHParseDisplayName(
+                  wstr,
+                  NULL,
+                  &lpiidl2,
+                  0,
+                  NULL);
+            }
+            catch(...)
+            {
+            }
+            
+            LPITEMIDLIST lpiidlChild2     = _017ItemIDListGetLast(lpiidl2);
+            
+            LPITEMIDLIST lpiidlParent2    = _017ItemIDListGetFolderParent(lpiidl2);
+
+            int iImage = GetImage(
+               hwnd,
+               lpsf,
+               lpiidl2,
+               lpiidlChild2,
+               NULL,
+               eicon);
+
+            _017ItemIDListFree(lpiidlParent2);
+
+            _017ItemIDListFree(lpiidlChild2);
+
+            return iImage;
+
+         }
+      }
       if(!m_imagemap.Lookup(imagekey, iImage))
       {
 
@@ -706,7 +758,26 @@ namespace filemanager
                   | SHGFI_LARGEICON);
             }
             iImage = m_pil16->add_icon_os_data(shfi16.hIcon);
-            m_pil48Hover->add_icon_os_data(shfi48.hIcon);
+            IImageList * pil = NULL;
+            SHGetImageList(SHIL_EXTRALARGE, IID_IImageList, (void **) &pil);
+            if(pil != NULL)
+            {
+               HICON hicon48;
+               pil->GetIcon(shfi48.iIcon, ILD_TRANSPARENT, &hicon48);
+               if(hicon48 == NULL)
+               {
+                  m_pil48Hover->add_icon_os_data(shfi48.hIcon);
+               }
+               else
+               {
+                  m_pil48Hover->add_icon_os_data(hicon48);
+               }
+               pil->Release();
+            }
+            else
+            {
+               m_pil48Hover->add_icon_os_data(shfi48.hIcon);
+            }
             System.imaging().Createcolor_blend_ImageList(
                m_pil48,
                m_pil48Hover,
@@ -742,7 +813,20 @@ namespace filemanager
                   {
                      bExtract = true;
                      iImage = m_pil16->add_icon_os_data(hicon16);
-                     m_pil48Hover->add_icon_os_data(hicon48);
+/*                     HMODULE hmodule = ::LoadLibrary(strPath);
+                     HICON hicon48_2;
+                     if(hmodule != NULL)
+                     {
+                        hicon48_2 = (HICON) ::LoadImage(hmodule, MAKEINTRESOURCE(iIcon), IMAGE_ICON, 48, 48, LR_LOADTRANSPARENT);
+                     }
+                     if(hicon48_2 != NULL)
+                     {
+                        m_pil48Hover->add_icon_os_data(hicon48_2);
+                     }
+                     else*/
+                     {
+                        m_pil48Hover->add_icon_os_data(hicon48);
+                     }
                      System.imaging().Createcolor_blend_ImageList(
                         m_pil48,
                         m_pil48Hover,
@@ -781,7 +865,26 @@ namespace filemanager
                         | SHGFI_LARGEICON);
                      hicon48 = shfi48.hIcon;
                      iImage = m_pil16->add_icon_os_data(hicon16);
-                     m_pil48Hover->add_icon_os_data(hicon48);
+                     IImageList * pil = NULL;
+                     SHGetImageList(SHIL_EXTRALARGE, IID_IImageList, (void **) &pil);
+                     if(pil != NULL)
+                     {
+                        HICON hicon48;
+                        pil->GetIcon(shfi48.iIcon, ILD_TRANSPARENT, &hicon48);
+                        if(hicon48 == NULL)
+                        {
+                           m_pil48Hover->add_icon_os_data(shfi48.hIcon);
+                        }
+                        else
+                        {
+                           m_pil48Hover->add_icon_os_data(hicon48);
+                        }
+                        pil->Release();
+                     }
+                     else
+                     {
+                        m_pil48Hover->add_icon_os_data(shfi48.hIcon);
+                     }
                      System.imaging().Createcolor_blend_ImageList(
                         m_pil48,
                         m_pil48Hover,
@@ -822,7 +925,26 @@ namespace filemanager
                      hicon48 = shfi48.hIcon;
                   }
                   iImage = m_pil16->add_icon_os_data(hicon16);
-                  m_pil48Hover->add_icon_os_data(hicon48);
+                  IImageList * pil = NULL;
+                  SHGetImageList(SHIL_EXTRALARGE, IID_IImageList, (void **) &pil);
+                  if(pil != NULL)
+                  {
+                     HICON hicon48;
+                     pil->GetIcon(shfi48.iIcon, ILD_TRANSPARENT, &hicon48);
+                     if(hicon48 == NULL)
+                     {
+                        m_pil48Hover->add_icon_os_data(shfi48.hIcon);
+                     }
+                     else
+                     {
+                        m_pil48Hover->add_icon_os_data(hicon48);
+                     }
+                     pil->Release();
+                  }
+                  else
+                  {
+                     m_pil48Hover->add_icon_os_data(shfi48.hIcon);
+                  }
                   System.imaging().Createcolor_blend_ImageList(
                      m_pil48,
                      m_pil48Hover,

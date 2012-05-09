@@ -639,6 +639,7 @@ namespace user
       _001GetElementRect(pdrawitem, userbase::_list::ElementImage);
       if(pdrawitem->m_bOk)
       {
+         _001GetItemImage(pdrawitem);
          pdrawitem->draw_image();
       }
       pdrawitem->m_iListItem = -1;

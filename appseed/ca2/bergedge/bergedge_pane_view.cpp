@@ -161,7 +161,7 @@ namespace bergedge
          string strDirName;
          strDirName.Format("desktop-%d", m_iDisplay);
          string strDir = Application.dir().userfolder(strDirName);
-         if(m_iDisplay == 0)
+         if(m_iDisplay <= 0)
          {
             check_desktop_dir(strDir);
          }
@@ -301,7 +301,7 @@ namespace bergedge
                   pdoc->get_filemanager_data()->m_bIconView = true;
                   pdoc->get_filemanager_data()->m_pcallback = this;
                   pdoc->get_filemanager_data()->m_strDISection.Format("bergedge.pane(%d)", m_iDisplay);
-                  pdoc->get_filemanager_data()->m_bPassBk = true;
+                  pdoc->get_filemanager_data()->m_bPassBk = false;
                   pdoc->Initialize(true);
                   pdoc->update_all_views(NULL, 1234);
                   pdoc->update_all_views(NULL, 1234525);
@@ -309,7 +309,7 @@ namespace bergedge
                   string strDirName;
                   strDirName.Format("desktop-%d", m_iDisplay);
                   string strDir = Application.dir().userfolder(strDirName);
-                  if(m_iDisplay == 0)
+                  if(m_iDisplay <= 0)
                   {
                      check_desktop_dir(strDir);
                   }

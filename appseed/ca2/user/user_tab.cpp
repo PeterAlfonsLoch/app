@@ -236,8 +236,20 @@ namespace user
 
       pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
 
+
+
       if(!m_bShowTabs)
-         return;
+      {
+         if(!GetParentFrame()->IsFullScreen()
+        || (GetParentFrame()->GetTopLevelFrame() != NULL))
+         {
+            m_bShowTabs = true;
+         }
+         else
+         {
+            return;
+         }
+      }
 
       if(GetParentFrame()->IsFullScreen()
      && (GetParentFrame()->GetTopLevelFrame() == NULL))

@@ -71,6 +71,9 @@ namespace ca
       virtual bool stop_service(::planebase::application * papp);
 
 
+      virtual bool resolve_link(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional = NULL);
+
+
    };
 
 

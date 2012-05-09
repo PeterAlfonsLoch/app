@@ -255,7 +255,16 @@ namespace ca
    }
 
 
+   bool os::resolve_link(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional)
+   {
 
+
+      throw interface_only_exception();
+
+
+      return false;
+
+   }
 
 
 } // namespace ca
