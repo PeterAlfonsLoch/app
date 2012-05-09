@@ -608,7 +608,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "netnodelibrary", "..\..\app
 		{068997F0-99F1-4D44-BD62-364A237BAA57} = {068997F0-99F1-4D44-BD62-364A237BAA57}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "netnodescript", "..\..\appseed\netnodescript\netnodescript.vcproj", "{36D2090B-8E11-42A4-B923-08D809A03F4F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "netnodescript", "..\..\appseed\netnodescript\netnodescript.vcproj", "{19841977-8E11-42A4-B923-08D809A03F4F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{068997F0-99F1-4D44-BD62-364A237BAA57} = {068997F0-99F1-4D44-BD62-364A237BAA57}
 	EndProjectSection
@@ -1725,12 +1725,12 @@ Global
 		{AF07539A-BE49-4BE9-818A-0D2CE6462812}.Release Debug|Win32.Build.0 = Debug|Win32
 		{AF07539A-BE49-4BE9-818A-0D2CE6462812}.Release|Win32.ActiveCfg = Release|Win32
 		{AF07539A-BE49-4BE9-818A-0D2CE6462812}.Release|Win32.Build.0 = Release|Win32
-		{36D2090B-8E11-42A4-B923-08D809A03F4F}.Debug|Win32.ActiveCfg = Debug|Win32
-		{36D2090B-8E11-42A4-B923-08D809A03F4F}.Debug|Win32.Build.0 = Debug|Win32
-		{36D2090B-8E11-42A4-B923-08D809A03F4F}.Release Debug|Win32.ActiveCfg = Debug|Win32
-		{36D2090B-8E11-42A4-B923-08D809A03F4F}.Release Debug|Win32.Build.0 = Debug|Win32
-		{36D2090B-8E11-42A4-B923-08D809A03F4F}.Release|Win32.ActiveCfg = Release|Win32
-		{36D2090B-8E11-42A4-B923-08D809A03F4F}.Release|Win32.Build.0 = Release|Win32
+		{19841977-8E11-42A4-B923-08D809A03F4F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{19841977-8E11-42A4-B923-08D809A03F4F}.Debug|Win32.Build.0 = Debug|Win32
+		{19841977-8E11-42A4-B923-08D809A03F4F}.Release Debug|Win32.ActiveCfg = Debug|Win32
+		{19841977-8E11-42A4-B923-08D809A03F4F}.Release Debug|Win32.Build.0 = Debug|Win32
+		{19841977-8E11-42A4-B923-08D809A03F4F}.Release|Win32.ActiveCfg = Release|Win32
+		{19841977-8E11-42A4-B923-08D809A03F4F}.Release|Win32.Build.0 = Release|Win32
 		{DCBA4F0F-2896-49C3-8B0E-A613B6047BB4}.Debug|Win32.ActiveCfg = Debug|Win32
 		{DCBA4F0F-2896-49C3-8B0E-A613B6047BB4}.Debug|Win32.Build.0 = Debug|Win32
 		{DCBA4F0F-2896-49C3-8B0E-A613B6047BB4}.Release Debug|Win32.ActiveCfg = Debug|Win32

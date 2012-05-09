@@ -587,7 +587,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "netnodelibrary", "..\..\app
 		{068997F0-99F1-4D44-BD62-364A237BAA57} = {068997F0-99F1-4D44-BD62-364A237BAA57}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "netnodescript", "..\..\appseed\netnodescript\netnodescript.vcproj", "{36D2090B-8E11-42A4-B923-08D809A03F4F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "netnodescript", "..\..\appseed\netnodescript\netnodescript.vcproj", "{19841977-8E11-42A4-B923-08D809A03F4F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{068997F0-99F1-4D44-BD62-364A237BAA57} = {068997F0-99F1-4D44-BD62-364A237BAA57}
 	EndProjectSection
@@ -1418,8 +1418,8 @@ Global
 		{A2BFEA96-BD91-4802-8BF7-73623D297F13}.basis|Win32.Build.0 = basis|Win32
 		{AF07539A-BE49-4BE9-818A-0D2CE6462812}.basis|Win32.ActiveCfg = basis|Win32
 		{AF07539A-BE49-4BE9-818A-0D2CE6462812}.basis|Win32.Build.0 = basis|Win32
-		{36D2090B-8E11-42A4-B923-08D809A03F4F}.basis|Win32.ActiveCfg = basis|Win32
-		{36D2090B-8E11-42A4-B923-08D809A03F4F}.basis|Win32.Build.0 = basis|Win32
+		{19841977-8E11-42A4-B923-08D809A03F4F}.basis|Win32.ActiveCfg = basis|Win32
+		{19841977-8E11-42A4-B923-08D809A03F4F}.basis|Win32.Build.0 = basis|Win32
 		{A4122E96-400B-4A1A-ACE1-021CC5556A3F}.basis|Win32.ActiveCfg = basis|Win32
 		{A4122E96-400B-4A1A-ACE1-021CC5556A3F}.basis|Win32.Build.0 = basis|Win32
 		{0A82B0FE-9F18-4B93-B311-E7996E447017}.basis|Win32.ActiveCfg = basis|Win32

@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C++ Express 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "netnodelibrary", "..\..\appseed\netnodelibrary\netnodelibrary.vcxproj", "{AF07539A-BE49-4BE9-818A-0D2CE6462812}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "netnodescript", "..\..\appseed\netnodescript\netnodescript.vcxproj", "{36D2090B-8E11-42A4-B923-08D809A03F4F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "netnodescript", "..\..\appseed\netnodescript\netnodescript.vcxproj", "{19841977-8E11-42A4-B923-08D809A03F4F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "command", "..\..\appseed\command\command.vcxproj", "{E407F4BA-7422-4A36-B9B7-53F3E656FAA4}"
 EndProject
@@ -28,7 +28,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_", "..\..\appseedcore\_\_.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cubeapp", "..\..\appseed\cubeapp\cubeapp.vcxproj", "{B2A3AD3B-1026-4D24-A527-2E1B38324184}"
 	ProjectSection(ProjectDependencies) = postProject
-		{36D2090B-8E11-42A4-B923-08D809A03F4F} = {36D2090B-8E11-42A4-B923-08D809A03F4F}
+		{19841977-8E11-42A4-B923-08D809A03F4F} = {19841977-8E11-42A4-B923-08D809A03F4F}
 		{ACB3FF4B-0B61-45A7-881D-E102E0F85808} = {ACB3FF4B-0B61-45A7-881D-E102E0F85808}
 		{38A5C152-C1EF-4322-BADF-A41B35335831} = {38A5C152-C1EF-4322-BADF-A41B35335831}
 		{6352AD78-A4BA-4F99-89EB-521C22C05322} = {6352AD78-A4BA-4F99-89EB-521C22C05322}
@@ -47,8 +47,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AF07539A-BE49-4BE9-818A-0D2CE6462812}.basis|x64.ActiveCfg = basis|x64
 		{AF07539A-BE49-4BE9-818A-0D2CE6462812}.basis|x64.Build.0 = basis|x64
-		{36D2090B-8E11-42A4-B923-08D809A03F4F}.basis|x64.ActiveCfg = basis|x64
-		{36D2090B-8E11-42A4-B923-08D809A03F4F}.basis|x64.Build.0 = basis|x64
+		{19841977-8E11-42A4-B923-08D809A03F4F}.basis|x64.ActiveCfg = basis|x64
+		{19841977-8E11-42A4-B923-08D809A03F4F}.basis|x64.Build.0 = basis|x64
 		{E407F4BA-7422-4A36-B9B7-53F3E656FAA4}.basis|x64.ActiveCfg = basis|x64
 		{E407F4BA-7422-4A36-B9B7-53F3E656FAA4}.basis|x64.Build.0 = basis|x64
 		{85CBA1C6-C28B-410C-9F71-FA6899B00CC8}.basis|x64.ActiveCfg = basis|x64

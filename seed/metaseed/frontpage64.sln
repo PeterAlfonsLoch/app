@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C++ Express 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "netnodelibrary", "..\..\appseed\netnodelibrary\netnodelibrary.vcxproj", "{AF07539A-BE49-4BE9-818A-0D2CE6462812}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "netnodescript", "..\..\appseed\netnodescript\netnodescript.vcxproj", "{36D2090B-8E11-42A4-B923-08D809A03F4F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "netnodescript", "..\..\appseed\netnodescript\netnodescript.vcxproj", "{19841977-8E11-42A4-B923-08D809A03F4F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "netshareclient", "..\..\appseed\netshareclient\netshareclient.vcxproj", "{A4122E96-400B-4A1A-ACE1-021CC5556A3F}"
 EndProject
@@ -50,7 +50,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_", "..\..\appseedcore\_\_.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cubeapp", "..\..\appseed\cubeapp\cubeapp.vcxproj", "{B2A3AD3B-1026-4D24-A527-2E1B38324184}"
 	ProjectSection(ProjectDependencies) = postProject
-		{36D2090B-8E11-42A4-B923-08D809A03F4F} = {36D2090B-8E11-42A4-B923-08D809A03F4F}
+		{19841977-8E11-42A4-B923-08D809A03F4F} = {19841977-8E11-42A4-B923-08D809A03F4F}
 		{DCBA4F0F-2896-49C3-8B0E-A613B6047BB4} = {DCBA4F0F-2896-49C3-8B0E-A613B6047BB4}
 		{7149341E-970F-4C74-87A1-FA1D3C4CD40F} = {7149341E-970F-4C74-87A1-FA1D3C4CD40F}
 		{54DEC125-5537-4502-AE28-EAFE740C9AF9} = {54DEC125-5537-4502-AE28-EAFE740C9AF9}
@@ -83,10 +83,10 @@ Global
 		{AF07539A-BE49-4BE9-818A-0D2CE6462812}.basis|Win32.Build.0 = basis|Win32
 		{AF07539A-BE49-4BE9-818A-0D2CE6462812}.basis|x64.ActiveCfg = basis|x64
 		{AF07539A-BE49-4BE9-818A-0D2CE6462812}.basis|x64.Build.0 = basis|x64
-		{36D2090B-8E11-42A4-B923-08D809A03F4F}.basis|Win32.ActiveCfg = basis|Win32
-		{36D2090B-8E11-42A4-B923-08D809A03F4F}.basis|Win32.Build.0 = basis|Win32
-		{36D2090B-8E11-42A4-B923-08D809A03F4F}.basis|x64.ActiveCfg = basis|x64
-		{36D2090B-8E11-42A4-B923-08D809A03F4F}.basis|x64.Build.0 = basis|x64
+		{19841977-8E11-42A4-B923-08D809A03F4F}.basis|Win32.ActiveCfg = basis|Win32
+		{19841977-8E11-42A4-B923-08D809A03F4F}.basis|Win32.Build.0 = basis|Win32
+		{19841977-8E11-42A4-B923-08D809A03F4F}.basis|x64.ActiveCfg = basis|x64
+		{19841977-8E11-42A4-B923-08D809A03F4F}.basis|x64.Build.0 = basis|x64
 		{A4122E96-400B-4A1A-ACE1-021CC5556A3F}.basis|Win32.ActiveCfg = basis|Win32
 		{A4122E96-400B-4A1A-ACE1-021CC5556A3F}.basis|Win32.Build.0 = basis|Win32
 		{A4122E96-400B-4A1A-ACE1-021CC5556A3F}.basis|x64.ActiveCfg = basis|x64
