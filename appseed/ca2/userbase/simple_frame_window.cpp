@@ -551,7 +551,8 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
       ShowWindow(SW_HIDE);
       return;
    }
-   else if(GetTopLevelFrame()->m_pimpl != NULL
+   else if(GetTopLevelFrame() != NULL
+   && GetTopLevelFrame()->m_pimpl != NULL
    && (GetTopLevelFrame()->m_pimpl->m_iModalCount > 0))
    {
       GetTopLevelFrame()->m_pimpl->EndModalLoop(IDOK);
