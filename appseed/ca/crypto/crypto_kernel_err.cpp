@@ -7,26 +7,26 @@
  * Cisco Systems, Inc.
  */
 /*
- *   
+ *
  * Copyright(c) 2001-2006 Cisco Systems, Inc.
- * 
- * 
+ *
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- * 
+ *
  *   Redistributions of source code must retain the above copyright
  *   notice, this list of conditions and the following disclaimer.
- * 
+ *
  *   Redistributions in binary form must reproduce the above
  *   copyright notice, this list of conditions and the following
  *   disclaimer in the documentation and/or other materials provided
  *   with the distribution.
- * 
+ *
  *   Neither the name of the Cisco Systems, Inc. nor the names of its
  *   contributors may be used to endorse or promote products derived
  *   from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -58,23 +58,23 @@ err_reporting_level_t err_level = err_level_none;
 
 #ifdef SRTP_KERNEL_LINUX
 err_status_t
-err_reporting_init(char *ident) {
+err_reporting_init(const char *ident) {
 
   return err_status_ok;
 }
 
-#else /* SRTP_KERNEL_LINUX */   
+#else /* SRTP_KERNEL_LINUX */
 
 /* err_file is the FILE to which errors are reported */
 
 static FILE *err_file = NULL;
 
 err_status_t
-err_reporting_init(char *ident) {
+err_reporting_init(const char *ident) {
 #ifdef ERR_REPORTING_SYSLOG
   openlog(ident, LOG_PID, LOG_AUTHPRIV);
 #endif
-  
+
   /*
    * Believe it or not, openlog doesn't return an error on failure.
    * But then, neither does the syslog() call...
@@ -93,7 +93,7 @@ err_reporting_init(char *ident) {
 }
 
 void
-err_report(int priority, char *format, ...) {
+err_report(int priority, const char *format, ...) {
   va_list args;
 
   if (priority <= err_level) {
@@ -141,9 +141,9 @@ err_report(int priority, char *format, ...) {
     va_end(args);
   }
 }
-#endif /* SRTP_KERNEL_LINUX */   
+#endif /* SRTP_KERNEL_LINUX */
 
 void
-err_reporting_set_level(err_reporting_level_t lvl) { 
+err_reporting_set_level(err_reporting_level_t lvl) {
   err_level = lvl;
 }

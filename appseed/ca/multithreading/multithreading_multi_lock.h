@@ -11,7 +11,11 @@ public:
 
 
    sync_object_ptra           m_syncobjectptra;
+#ifdef WINDOWS
    base_array < HANDLE >      m_handlea;
+#else
+    base_array < waitable * >      m_handlea;
+#endif
    bool_array                 m_baLocked;
 
 

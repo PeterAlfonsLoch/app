@@ -36,13 +36,13 @@ event::event(BOOL bInitiallyOwn, BOOL bManualReset, const char * pstrName,LPSECU
 
       string strPath = "/ca2/time/ftok/event/" + string(pstrName);
 
-      m_object = (HANDLE) semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
+      m_object = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
 
    }
    else
    {
 
-      m_object = (HANDLE) semget(IPC_PRIVATE, 1, 0666 | IPC_CREAT);
+      m_object = semget(IPC_PRIVATE, 1, 0666 | IPC_CREAT);
 
    }
 
@@ -73,7 +73,7 @@ event::~event()
 {
 
 #if defined(LINUX)
-   
+
    semun ignored_argument;
 
    semctl(static_cast < int > (m_object), 0, IPC_RMID, ignored_argument);
@@ -95,7 +95,7 @@ BOOL event::SetEvent()
    sb.sem_num  = 0;
    sb.sem_flg  = m_bManualReset ? 0 : SEM_UNDO;
 
-   sempop(static_cast < int > (m_object), &sb, 1);
+   semop(static_cast < int > (m_object), &sb, 1);
 
 #endif
 }
@@ -113,7 +113,7 @@ BOOL event::PulseEvent()
    sb.sem_num  = 0;
    sb.sem_flg  = SEM_UNDO;
 
-   sempop(static_cast < int > (m_object), &sb, 1);
+   semop(static_cast < int > (m_object), &sb, 1);
 
 #endif
 }
@@ -129,9 +129,9 @@ BOOL event::ResetEvent()
 
    sb.sem_op   = 0;
    sb.sem_num  = 0;
-   sb.sem_flg  = bManualReset ? 0 : SEM_UNDO;
+   sb.sem_flg  = m_bManualReset ? 0 : SEM_UNDO;
 
-   sempop(static_cast < int > (m_object), &sb, 1);
+   semop(static_cast < int > (m_object), &sb, 1);
 
 #endif
 }
@@ -150,9 +150,8 @@ void event::wait ()
    sb.sem_num  = 0;
    sb.sem_flg  = 0;
 
-   sempop(static_cast < int > (m_object), &sb, 1);
+   semop(static_cast < int > (m_object), &sb, 1);
 
-   return wait_result(wait_result::Success);
 
 #endif
 }
@@ -173,7 +172,7 @@ wait_result event::wait (const duration & duration)
 	timespec delay;
 
 	delay.tv_sec = 0;
-	defay.tv_nsec = 1000000;
+	delay.tv_nsec = 1000000;
 
 	while(::GetTickCount() - start < timeout)
 	{
@@ -184,7 +183,7 @@ wait_result event::wait (const duration & duration)
       sb.sem_num  = 0;
       sb.sem_flg  = IPC_NOWAIT;
 
-      int ret = sempop(static_cast < int > (m_object), &sb, 1);
+      int ret = semop(static_cast < int > (m_object), &sb, 1);
 
       if(ret < 0)
       {
@@ -194,12 +193,12 @@ wait_result event::wait (const duration & duration)
          }
          else
          {
-            return wait_result(wait_result::Error);
+            return wait_result(wait_result::Failure);
          }
       }
       else
       {
-         return wait_result(wait_result::Success);
+         return wait_result(wait_result::Event0);
       }
 
 	}
@@ -240,7 +239,7 @@ bool event::is_signaled() const
    sb.sem_num  = 0;
    sb.sem_flg  = IPC_NOWAIT;
 
-   int ret = sempop(static_cast < int > (m_object), &sb, 1);
+   int ret = semop(static_cast < int > (m_object), &sb, 1);
 
    if(ret < 0)
    {
@@ -282,12 +281,14 @@ bool event::lock(const duration & durationTimeout)
 
 #else
 
+    DWORD timeout = durationTimeout.os_lock_duration();
+
 	DWORD start = ::GetTickCount();
 
 	timespec delay;
 
 	delay.tv_sec = 0;
-	defay.tv_nsec = 1000000;
+	delay.tv_nsec = 1000000;
 
 	while(::GetTickCount() - start < timeout)
 	{
@@ -298,7 +299,7 @@ bool event::lock(const duration & durationTimeout)
       sb.sem_num  = 0;
       sb.sem_flg  = IPC_NOWAIT;
 
-      int ret = sempop(static_cast < int > (m_object), &sb, 1);
+      int ret = semop(static_cast < int > (m_object), &sb, 1);
 
       if(ret < 0)
       {

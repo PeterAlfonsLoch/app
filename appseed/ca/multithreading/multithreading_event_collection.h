@@ -6,7 +6,11 @@
 class CLASS_DECL_ca event_collection : public waitable
 {
 public:
+#ifdef WINDOWS
    typedef comparable_array < HANDLE > CollectionType;
+#else
+    typedef comparable_array < waitable * > CollectionType;
+#endif
 
 private:
    CollectionType    m_objecta;
