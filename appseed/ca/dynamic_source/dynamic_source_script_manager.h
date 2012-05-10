@@ -91,7 +91,7 @@ namespace dynamic_source
       string_to_string_map             m_mapIncludeExpandMd5;
 
 
-      bool                                   m_bUseTunnel;
+      int                                    m_iTunnelPluginCount;
       mutex                                  m_mutexOutLink;
       ::collection::string_map < ::sockets::link_out_socket * > m_mapOutLink;
       mutex                                  m_mutexInLink;
@@ -138,6 +138,10 @@ namespace dynamic_source
       string_to_string_map                      m_usersecuretagid;
       mutex                                     m_mutexTagName;
       string_to_string_map                      m_tagname;
+
+
+      
+
 
       script_manager(::ca::application * papp);
       ~script_manager(void);
