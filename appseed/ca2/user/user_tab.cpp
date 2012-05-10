@@ -254,7 +254,8 @@ namespace user
       {
          rect rectTab(get_data()->m_rectTab);
          ClientToScreen(rectTab);
-         m_bShowTabs = rectTab.contains(Bergedge.m_ptCursor);
+         point ptCursor = Bergedge.m_ptCursor;
+         m_bShowTabs = rectTab.contains(ptCursor);
          if(!m_bShowTabs)
             return;
       }
