@@ -282,7 +282,7 @@ namespace dynamic_source
          strPdb = m_strScriptPath;
          gen::str::ends_eat_ci(strPdb, ".dll");
          strPdb += ".pdb";
-         hmodule = ::GetModuleHandleW(gen::international::utf8_to_unicode(strPdb));
+         b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + strPdb), &hmodule);
          if(hmodule != NULL && !::FreeLibrary(hmodule))
          {
             DWORD dwError = ::GetLastError();

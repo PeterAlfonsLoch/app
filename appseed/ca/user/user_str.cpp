@@ -47,6 +47,10 @@ namespace user
       m_pschemaSchemaEn       = NULL;
       m_pschemaSchemaStd      = NULL;
 
+
+      m_schemaptra.remove_all();
+
+
       if(m_plocaleschema != NULL)
       {
          

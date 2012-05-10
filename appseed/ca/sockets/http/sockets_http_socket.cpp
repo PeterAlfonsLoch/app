@@ -178,7 +178,8 @@ namespace sockets
             m_response.lowattr(__str(http_version)) = str;
             m_response.lowattr(__str(http_status_code)) = pa.getword();
             m_response.lowattr(__str(http_status)) = pa.getrest();
-            m_bResponse = true;
+            m_bResponse    = true;
+            m_bRequest     = false;
          }
          else // request
          {
@@ -202,7 +203,8 @@ namespace sockets
             m_request.lowattr(__str(http_version)) = pa.getword();
             m_b_http_1_1 = gen::str::ends(m_request.lowattr(__str(http_version)), "/1.1");
             m_b_keepalive = m_b_http_1_1;
-            m_bRequest = true;
+            m_bRequest     = true;
+            m_bResponse    = false;
          }
          m_bFirst = false;
          OnFirst();
@@ -415,10 +417,10 @@ namespace sockets
 
    void http_socket::Reset()
    {
-      m_bFirst = true;
-      m_bHeader = true;
-      m_bRequest = false;
-      m_bResponse = false;
+      m_bFirst       = true;
+      m_bHeader      = true;
+      m_bRequest     = false;
+      m_bResponse    = false;
       SetLineProtocol(true);
       m_request.clear();
       m_response.clear();
@@ -510,11 +512,11 @@ namespace sockets
    void http_socket::OnHeaderComplete()
    {
    
-      if(m_bRequest)
+      if(IsRequest())
       {
          m_body_size_left = atol(m_request.header("content-length"));
       }
-      if(m_bResponse)
+      if(IsResponse())
       {
          m_body_size_left = atol(m_response.header("content-length"));
       }
