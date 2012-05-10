@@ -65,7 +65,7 @@ namespace dynamic_source
       m_strNetseedDsCa2Path      = "C:\\netnodenet\\net\\netseed\\ds\\ca2\\";
 
 
-      m_bUseTunnel               = false;
+      m_iTunnelPluginCount       = 0;
 
    }
 
@@ -130,12 +130,12 @@ namespace dynamic_source
    void script_manager::handle(::dynamic_source::httpd_socket * pnetnodesocket)
    {
       string strHead;
-      script_instance * pinstance = get(get_root_plugin());
+      script_instance * pinstance = get("system/seed_carlosgustavocecynlundgrencarlos");
       pnetnodesocket->m_pinstanceCurrent = pinstance;
       if(pinstance != NULL)
       {
          pinstance->m_strDebugRequestUri = pnetnodesocket->inattr("request_uri");
-         pinstance->m_strDebugThisScript = get_root_plugin();
+         pinstance->m_strDebugThisScript = "system/seed_carlosgustavocecynlundgrencarlos";
          pinstance->initialize(pinstance, NULL, pnetnodesocket, this);
          pinstance->dinit();
          if(pinstance->m_iDebug > 0)
