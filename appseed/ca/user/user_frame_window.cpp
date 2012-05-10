@@ -991,7 +991,10 @@ void frame_window::_001OnActivate(gen::signal_object * pobj)
    // get top level frame unless this is a child ::ca::window
    // determine if ::ca::window should be active or not
    frame_window* pTopLevel = (GetStyle() & WS_CHILD) ? this : dynamic_cast < frame_window * > (GetTopLevelFrame());
-   ENSURE_VALID(pTopLevel);
+   
+   if(pTopLevel == NULL)
+      pTopLevel = this;
+
    ::user::interaction* pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
    BOOL bStayActive =
       (pTopLevel == pActive ||

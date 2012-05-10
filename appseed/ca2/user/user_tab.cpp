@@ -240,8 +240,7 @@ namespace user
 
       if(!m_bShowTabs)
       {
-         if(!GetParentFrame()->IsFullScreen()
-        || (GetParentFrame()->GetTopLevelFrame() != NULL))
+         if(!GetParentFrame()->IsFullScreen())
          {
             m_bShowTabs = true;
          }
@@ -251,8 +250,7 @@ namespace user
          }
       }
 
-      if(GetParentFrame()->IsFullScreen()
-     && (GetParentFrame()->GetTopLevelFrame() == NULL))
+      if(GetParentFrame()->IsFullScreen())
       {
          rect rectTab(get_data()->m_rectTab);
          ClientToScreen(rectTab);
