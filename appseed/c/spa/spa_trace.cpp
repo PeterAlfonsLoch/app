@@ -29,7 +29,7 @@ void ensure_trace_file()
          return;
       }
    }
-   g_ftrace = ::CreateFile(dir::ca2("install.log"), GENERIC_WRITE, FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+   g_ftrace = ::CreateFile(dir::ca2("install.log"), GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
    ::SetFilePointer(g_ftrace, 0, NULL, FILE_END);
 }
 

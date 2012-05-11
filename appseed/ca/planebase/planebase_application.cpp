@@ -1068,6 +1068,23 @@ InitFailure:
 
    }
 
+   int g_iCountProgress;
+   int g_iStepProgress;
+
+   void trace_progress(int iStep)
+   {
+      double dProgressStart   = 0.8;
+      double dProgressEnd     = 1.0;
+      double dProgress = dProgressStart + (dProgressEnd - dProgressStart) * ((double) iStep / (double) g_iCountProgress);
+      ::trace_progress(dProgress);
+   }
+
+   void progress()
+   {
+      trace_progress(++g_iStepProgress);
+   }
+
+
    bool application::on_install()
    {
 
@@ -1152,6 +1169,25 @@ InitFailure:
 
             ::sockets::socket_handler h(get_app());
             ::sockets::http_session * psession = NULL;
+
+            ::ensure_trace_file();
+
+            g_iStepProgress      = 0;
+
+            g_iCountProgress     = 2;
+
+
+            if(!is_session() && !is_system())
+            {
+               g_iCountProgress++;
+            }
+
+            gen::international::locale_schema localeschema(this);
+
+            fill_locale_schema(localeschema);
+
+            g_iCountProgress *= localeschema.m_idaLocale.get_count();
+
 
             double d1 = ::GetTickCount();
             update_appmatter(h, psession, "app", "main"); // update matter of system
@@ -1278,6 +1314,7 @@ InitFailure:
       for(int i = 0; i < localeschema.m_idaLocale.get_count(); i++)
       {
          update_appmatter(h, psession, pszRoot, pszRelative, localeschema.m_idaLocale[i], localeschema.m_idaSchema[i]);
+         progress();
       }
 
 

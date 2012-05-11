@@ -4,7 +4,7 @@
 HINTERNET  g_hSession = NULL;
 HINTERNET  g_hConnect = NULL;
 HINTERNET  g_hPreviousRequest = NULL;
-DWORD g_MsDownloadSize = 1024 * 128;
+DWORD g_MsDownloadSize = 1024 * 16;
 char * g_MsDownloadBuffer = NULL;
 vsstring * g_pstrHost = NULL;
 
@@ -245,7 +245,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
             dwLen += dwWritten;
             if(callback != NULL)
             {
-               callback(callback_param, 1, dwWritten);
+               callback(callback_param, 1, dwLen);
             }
          }
          if(dwDownloaded == 0)

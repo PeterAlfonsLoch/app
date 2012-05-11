@@ -1,5 +1,6 @@
 #pragma once
 
+CLASS_DECL_c void ensure_trace_file();
 
 CLASS_DECL_c void trace(const char * psz);
 

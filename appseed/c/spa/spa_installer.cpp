@@ -480,7 +480,7 @@ install_begin:;
            ::OutputDebugStringA("\r\n");
         }
 
-        new_progress_end(0.5);
+        new_progress_end(0.7);
          trace("***Downloading files.");
          if(m_bInternetInstall)
          {
