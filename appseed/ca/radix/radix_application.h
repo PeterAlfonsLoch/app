@@ -16,8 +16,8 @@
 
 namespace user
 {
-   
-   
+
+
    class document_interface;
 
 
@@ -161,7 +161,7 @@ namespace radix
       string                           m_strId;
 
       mutex                            m_mutexObjectLock;
-      ::collection::map < ::sync_object_base *, ::sync_object_base *, mutex *, mutex * > m_mapObjectMutex;
+      ::collection::map < ::waitable *, ::waitable *, mutex *, mutex * > m_mapObjectMutex;
 
       mutex                            m_mutexObjectEvent;
       ::collection::map < ::radix::object *, ::radix::object *, ::collection::map < int, int, event *, event * > *, ::collection::map < int, int, event *, event * >  * > m_mapObjectEvent;
@@ -219,7 +219,7 @@ namespace radix
       ::user::interaction * get_focus_guie();
 //      virtual ::user::interaction * get_place_holder_container();
 
-      
+
       ::user::LPWndArray & frames();
       virtual void add_frame(::user::interaction * pwnd);
       virtual void remove_frame(::user::interaction * pwnd);
@@ -459,11 +459,14 @@ namespace radix
       // transparent ::ca::window framework
 
 
-      mutex * get_mutex(::sync_object_base * pobject);
+      mutex * get_mutex(::waitable * pobject);
       using ::radix::thread::lock;
-      bool lock(::sync_object_base * pobject, duration dwTimeout = duration::infinite());
+      wait_result wait(::waitable * pobject);
+      wait_result wait(::waitable * pobject, duration dwTimeout);
+      bool lock(::waitable * pobject);
+      bool lock(::waitable * pobject, duration dwTimeout);
       using ::radix::thread::unlock;
-      bool unlock(::sync_object_base * pobject);
+      bool unlock(::waitable * pobject);
 
       event * get_event(::radix::object * pobject, int iEvent = 0);
       bool event_lock(::radix::object * pobject, int iEvent = 0, duration dwTimeout = duration::infinite());

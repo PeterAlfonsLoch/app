@@ -2,9 +2,9 @@
 
 
 mutex::mutex(BOOL bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
-   sync_object(pstrName),
+   sync_object(pstrName)
 #ifdef WINDOWS
-   base_sync_object(pstrName)
+   ,base_sync_object(pstrName)
 #endif
 {
 

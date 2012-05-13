@@ -102,6 +102,7 @@ namespace ca
    }
 
 #ifndef _LP64
+
    template < class T >
    smart_pointer < T > ::smart_pointer(int i) :
       ca(i != 0 ? ((T *) i)->get_app() : NULL)

@@ -25,8 +25,12 @@ service_base* service_base::m_service = 0;
 //
 //*****************************************************************************
 service_base::service_base(::ca::application * papp, DWORD controlsAccepted) :
-   ca(papp),
-   m_handle(0)
+   ca(papp)
+#ifdef WINDOWS
+   , m_handle(0)
+#else
+   , m_waitableptra(0)
+#endif
 {
     m_status.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
     m_status.dwCurrentState = SERVICE_START_PENDING;

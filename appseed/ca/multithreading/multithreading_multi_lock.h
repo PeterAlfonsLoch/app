@@ -12,9 +12,9 @@ public:
 
    sync_object_ptra           m_syncobjectptra;
 #ifdef WINDOWS
-   base_array < HANDLE >      m_handlea;
+   base_array < HANDLE >      m_objecta;
 #else
-    base_array < waitable * >      m_handlea;
+   base_array < waitable * >  m_objecta;
 #endif
    bool_array                 m_baLocked;
 

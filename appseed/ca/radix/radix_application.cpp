@@ -2608,14 +2608,14 @@ namespace radix
    bool application::initialize1()
    {
 
-      
+
       m_strMatterLocator = System.dir().appmatter_locator(this);
-      
-      
+
+
       m_puserstrcontext = new ::user::str_context(this);
       if(m_puserstrcontext == NULL)
          return false;
-      
+
 
       if(!ca_initialize1())
             return false;
@@ -2631,7 +2631,7 @@ namespace radix
    {
       try
       {
-         sync_object_base * pobj = dynamic_cast < sync_object_base * >(pobject);
+         waitable * pobj = dynamic_cast < waitable * >(pobject);
          if(pobj != NULL)
          {
             mutex * pmutex = get_mutex(pobj);
@@ -2648,7 +2648,7 @@ namespace radix
       }
    }
 
-   mutex * application::get_mutex(sync_object_base * pobject)
+   mutex * application::get_mutex(waitable * pobject)
    {
       single_lock sl(&m_mutexObjectLock, TRUE);
       mutex * pmutex;
@@ -2660,7 +2660,15 @@ namespace radix
       return pmutex;
    }
 
-   bool application::lock(sync_object_base * pobject, duration duration)
+   bool application::wait(waitable * pobject, duration duration)
+   {
+      mutex * pmutex = get_mutex(pobject);
+      if(pmutex == NULL)
+         return false;
+      return pmutex->wait(duration);
+   }
+
+   bool application::lock(waitable * pobject, duration duration)
    {
       mutex * pmutex = get_mutex(pobject);
       if(pmutex == NULL)
@@ -2668,7 +2676,8 @@ namespace radix
       return pmutex->lock(duration) != FALSE;
    }
 
-   bool application::unlock(sync_object_base * pobject)
+
+   bool application::unlock(waitable * pobject)
    {
       mutex * pmutex = get_mutex(pobject);
       if(pmutex == NULL)

@@ -980,7 +980,7 @@ void base_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 #define new DEBUG_NEW
 
 
-typedef base_array < sync_object_base * > sync_object_ptra;
+typedef base_array < waitable * > sync_object_ptra;
 
 
 

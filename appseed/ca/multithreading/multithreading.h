@@ -1,6 +1,6 @@
 #pragma once
 
-class sync_object_base;
+class waitable;
 template < typename THANDLE >
 class sync_object;
 class semaphore;
@@ -11,8 +11,6 @@ class single_lock;
 class multi_lock;
 
 
-#include "multithreading_wait_result.h"
-#include "multithreading_waitable.h"
 #include "multithreading_sync_object.h"
 #include "multithreading_base_sync_object.h"
 #include "multithreading_event_base.h"

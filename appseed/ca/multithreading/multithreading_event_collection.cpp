@@ -49,7 +49,6 @@ DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable * pwaitableptra, BOOL bWai
       waitable_element wStruct;
       wStruct.item=&waitableItem;
       wStruct.callback=static_cast<waitable_callback*>(0);
-
 #ifdef WINDOWS
       m_objecta.push_back(waitableItem.item());
 #else
@@ -72,11 +71,7 @@ DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable * pwaitableptra, BOOL bWai
       wStruct.item=&waitableItem;
       wStruct.callback=waitCallback;
 
-#ifdef WINDOWS
       m_objecta.push_back(waitableItem.item());
-#else
-      m_objecta.push_back(&waitableItem);
-#endif
       m_waitableelementa.push_back(wStruct);
       callback_cnt++;
       return true;
@@ -175,14 +170,7 @@ DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable * pwaitableptra, BOOL bWai
                if (ticks-start >= timeout)
                   winResult = WAIT_TIMEOUT;
                else
-               {
-                  #ifdef WINDOWS
                   winResult = ::WaitForMultipleObjectsEx(static_cast<DWORD>(m_objecta.size()), &*m_objecta.begin(), waitForAll, start + timeout - ticks, true);
-                  #else
-                  winResult = ::WaitForMultipleObjectsEx(static_cast<DWORD>(m_waitableelementa.size()), m_waitableelementa.get_data(), waitForAll, start + timeout - ticks, true);
-                  #endif
-               }
-
 
             } while (winResult == WAIT_IO_COMPLETION);
          }

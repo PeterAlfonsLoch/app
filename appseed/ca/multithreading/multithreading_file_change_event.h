@@ -6,7 +6,7 @@
 
 /// This class represents events for file changes
 class CLASS_DECL_ca file_change_event :
-   virtual public sync_object_base,
+   virtual public waitable,
    virtual public event_base
 {
 public:
@@ -37,7 +37,7 @@ public:
 
    virtual bool lock(const duration & durationTimeout = duration::infinite());
 
-   using sync_object_base::unlock;
+   using waitable::unlock;
    virtual bool unlock();
 
 

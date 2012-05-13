@@ -3,14 +3,14 @@
 /////////////////////////////////////////////////////////////////////////////
 // single_lock
 
-single_lock::single_lock(sync_object_base* psyncobject, bool bInitialLock)
+single_lock::single_lock(waitable* psyncobject, bool bInitialLock)
 {
    //ASSERT(pObject != NULL);
-   //ASSERT(base < sync_object_base >::bases(pObject));
+   //ASSERT(base < waitable >::bases(pObject));
 
    //if(pObject == NULL)
       //AfxThrowInvalidArgException();
-      
+
    m_psyncobject = psyncobject;
    //m_hObject = pObject->m_hObject;
    m_bAcquired = FALSE;
@@ -40,7 +40,7 @@ bool single_lock::lock(const duration & durationTimeOut /* = INFINITE */)
 
 bool single_lock::unlock()
 {
-   
+
    if(m_psyncobject == NULL)
       return FALSE;
 
@@ -72,10 +72,10 @@ bool single_lock::unlock(LONG lCount, LPLONG lpPrevCount /* = NULL */)
 
 single_lock::~single_lock()
 {
-   unlock(); 
+   unlock();
 }
 
 bool single_lock::IsLocked()
 {
-   return m_bAcquired; 
+   return m_bAcquired;
 }

@@ -23,7 +23,23 @@ void waitable::wait()
 	///  \brief		abstract function to initialize a waiting action with a timeout
 	///  \param		duration time period to wait for item
 	///  \return	waiting action result as wait_result
-//	virtual wait_result wait(const duration & duration ) = 0;
+wait_result waitable::wait(const duration & duration )
+{
+
+   if(m_psystem == NULL)
+      return false;
+
+   try
+   {
+      return System.wait(this, duration);
+   }
+   catch(...)
+   {
+   }
+
+   return wait_result(wait_result::Failure);
+
+}
 
 
 
@@ -52,6 +68,71 @@ waitable_callback::~waitable_callback()
 }*/
 
 CLASS_DECL_ca void sleep(const duration & duration)
-{ 
-   ::Sleep(static_cast<DWORD>(duration.total_milliseconds())); 
+{
+   ::Sleep(static_cast<DWORD>(duration.total_milliseconds()));
+}
+
+
+
+waitable::~waitable()
+{
+}
+
+
+waitable::waitable()
+{
+}
+
+waitable::waitable(const waitable & objectSrc)
+{
+   UNREFERENCED_PARAMETER(objectSrc);
+}
+
+INT_PTR waitable::get_os_data() const
+{
+   return System.get_mutex( const_cast < waitable * > (this))->get_os_data();
+}
+
+bool waitable::lock(const duration & duration)
+{
+   if(m_psystem == NULL)
+      return false;
+   bool bLocked = false;
+   try
+   {
+      bLocked = System.lock(this, duration);
+   }
+   catch(...)
+   {
+      bLocked = false;
+   }
+   if(!bLocked)
+      return false;
+   return true;
+}
+
+
+bool waitable::unlock()
+{
+   if(m_psystem == NULL)
+      return false;
+   bool bUnlocked = false;
+   try
+   {
+      bUnlocked = System.unlock(this);
+   }
+   catch(...)
+   {
+      bUnlocked = false;
+   }
+   if(!bUnlocked)
+      return false;
+   return true;
+}
+
+bool waitable::unlock(LONG lCount, LPLONG lpPrevCount)
+{
+   UNREFERENCED_PARAMETER(lCount);
+   UNREFERENCED_PARAMETER(lpPrevCount);
+   return true;
 }

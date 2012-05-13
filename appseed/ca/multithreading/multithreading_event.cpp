@@ -152,7 +152,6 @@ void event::wait ()
 
    semop(static_cast < int > (m_object), &sb, 1);
 
-
 #endif
 }
 
@@ -281,14 +280,12 @@ bool event::lock(const duration & durationTimeout)
 
 #else
 
-    DWORD timeout = durationTimeout.os_lock_duration();
-
 	DWORD start = ::GetTickCount();
 
 	timespec delay;
 
 	delay.tv_sec = 0;
-	delay.tv_nsec = 1000000;
+	defay.tv_nsec = 1000000;
 
 	while(::GetTickCount() - start < timeout)
 	{
@@ -299,7 +296,7 @@ bool event::lock(const duration & durationTimeout)
       sb.sem_num  = 0;
       sb.sem_flg  = IPC_NOWAIT;
 
-      int ret = semop(static_cast < int > (m_object), &sb, 1);
+      int ret = sempop(static_cast < int > (m_object), &sb, 1);
 
       if(ret < 0)
       {

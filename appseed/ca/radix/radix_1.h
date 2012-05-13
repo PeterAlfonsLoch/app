@@ -186,7 +186,8 @@ class dump_context;
 
 
 #include "template/template_c_number.h"
-#include "multithreading/multithreading_sync_object_base.h"
+#include "multithreading/multithreading_wait_result.h"
+#include "multithreading/multithreading_waitable.h"
 #include "ca/primitive/primitive.h"
 
 

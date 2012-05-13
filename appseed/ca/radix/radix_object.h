@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/multithreading/multithreading_sync_object_base.h"
+#include "ca/multithreading/multithreading_waitable.h"
 
 
 class var;
@@ -38,7 +38,7 @@ namespace radix
 
 
    class CLASS_DECL_ca object :
-      virtual public sync_object_base
+      virtual public waitable
    {
    public:
 
@@ -81,7 +81,7 @@ namespace radix
 #define new DEBUG_NEW
 
       // Diagnostic Support
-      
+
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 

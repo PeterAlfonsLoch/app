@@ -8,7 +8,7 @@ multi_lock::multi_lock(sync_object_ptra syncobjectptra, bool bInitialLock)
       AfxThrowInvalidArgException();
 
    m_syncobjectptra  = syncobjectptra;
-   m_handlea.set_size(m_syncobjectptra.get_count());
+   m_objecta.set_size(m_syncobjectptra.get_count());
    m_baLocked.set_size(m_syncobjectptra.get_count());
 
    // get list of handles from base_array of objects passed
@@ -18,16 +18,16 @@ multi_lock::multi_lock(sync_object_ptra syncobjectptra, bool bInitialLock)
       if(m_syncobjectptra[i] == NULL)
          AfxThrowInvalidArgException();
 
-      ASSERT(base < sync_object_base >::bases (m_syncobjectptra[i]));
+      ASSERT(base < waitable >::bases (m_syncobjectptra[i]));
 
       // can't wait for critical sections
 
       ASSERT(!base < critical_section >::bases (m_syncobjectptra[i]));
 
 #ifdef WINDOWS
-      m_handlea[i] = (HANDLE) m_syncobjectptra[i]->get_os_data();
+      m_objecta[i] = (HANDLE) m_syncobjectptra[i]->get_os_data();
 #else
-      m_handlea[i] = m_syncobjectptra[i];
+      m_objecta[i] = m_syncobjectptra[i];
 #endif
       m_baLocked[i] = FALSE;
    }
@@ -45,22 +45,22 @@ wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, DWORD 
 {
    DWORD dwResult;
 
-   if(m_handlea.get_count() < 0)
+   if(m_objectaget_count() < 0)
       return wait_result(wait_result::Failure);
 
    if (dwWakeMask == 0)
-      dwResult = ::WaitForMultipleObjects((DWORD) m_handlea.get_count(), m_handlea.get_data(), bWaitForAll, duration.os_lock_duration());
+      dwResult = ::WaitForMultipleObjects((DWORD) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration());
    else
-      dwResult = ::MsgWaitForMultipleObjects((DWORD) m_handlea.get_count(), m_handlea.get_data(), bWaitForAll, duration.os_lock_duration(), dwWakeMask);
+      dwResult = ::MsgWaitForMultipleObjects((DWORD) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration(), dwWakeMask);
 
-   DWORD dwUpperBound = WAIT_OBJECT_0 + (DWORD) m_handlea.get_count();
+   DWORD dwUpperBound = WAIT_OBJECT_0 + (DWORD) m_objecta.get_count();
    if (dwResult >= WAIT_OBJECT_0 && dwResult < dwUpperBound)
    {
-      if (dwUpperBound >= (DWORD) m_handlea.get_count() && dwUpperBound >= WAIT_OBJECT_0)
+      if (dwUpperBound >= (DWORD) m_objecta.get_count() && dwUpperBound >= WAIT_OBJECT_0)
       {
          if (bWaitForAll)
          {
-            for (index i = 0; i < m_handlea.get_count(); i++)
+            for (index i = 0; i < m_objecta.get_count(); i++)
                m_baLocked[i] = TRUE;
          }
          else

@@ -17,7 +17,7 @@ public:
 
    virtual bool lock(const duration & durationTimeout = duration::infinite());
 
-   using sync_object_base::unlock;
+   using waitable::unlock;
    virtual bool unlock();
 
    INT_PTR get_os_data() const;

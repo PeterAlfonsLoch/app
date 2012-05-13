@@ -6,7 +6,22 @@
 #pragma once
 
 
+#include "ca/primitive/datetime/datetime_duration.h"
+#include "ex1/ex1_request_interface.h"
 
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Basic synchronization object
+
+/** templatization of sync_object inspired my class
+    Mutex from C++ Sockets Library \file Mutex.h
+ **   \date  2004-10-30
+ **   \author grymse@alhem.net
+**/
+/** sync_object_base renamed to waitable
+Thank you Thomas Hoefer!!
 
 /// This class represents an item which can be waited for. Items can be threads, events, sockets,
 /// files, semaphores and so on.
@@ -25,6 +40,38 @@ public:
 	///  \return	waiting action result as wait_result
 	virtual wait_result wait(const duration & duration ) = 0;
 };
+*/
+
+class CLASS_DECL_ca waitable :
+   virtual public ::ex1::request_interface
+{
+public:
+
+
+   waitable();
+   waitable(const waitable & objectSrc);
+   virtual ~waitable();
+
+
+   virtual INT_PTR get_os_data() const;
+
+
+   virtual bool lock(const duration & durationTimeout = duration::infinite());
+   virtual bool unlock();
+   virtual bool unlock(LONG lCount, LPLONG lpPrevCount = NULL);
+
+
+	///  \brief		abstract function to initialize a waiting action without a timeout
+	virtual void wait();
+
+	///  \brief		*no more as of 2012-05-12* abstract function to initialize a waiting action with a timeout
+	///  \param		duration time period to wait for item
+	///  \return	waiting action result as wait_result
+	virtual wait_result wait(const duration & duration);
+
+
+};
+
 
 
 ///  \brief		pauses waitable for specified time
@@ -61,7 +108,7 @@ namespace gen
    namespace pal
    {
 
-      
+
       typedef ::waitable WaitableItem;
 
 

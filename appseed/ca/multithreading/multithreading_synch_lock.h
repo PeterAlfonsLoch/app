@@ -7,7 +7,7 @@ class CLASS_DECL_ca synch_lock :
 public:
 
 
-   synch_lock(sync_object_base * pObject);
+   synch_lock(waitable * pObject);
    ~synch_lock();
 
 

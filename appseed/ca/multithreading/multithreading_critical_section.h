@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca critical_section :
-   virtual public sync_object_base
+   virtual public waitable
 {
 public:
 
@@ -29,7 +29,7 @@ public:
 
 
 private:
-   using sync_object_base::unlock;
+   using waitable::unlock;
    BOOL Init();
 
 };

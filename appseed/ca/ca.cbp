@@ -1127,7 +1127,6 @@
 		<Unit filename="multithreading/multithreading_socket_event.cpp" />
 		<Unit filename="multithreading/multithreading_socket_event.h" />
 		<Unit filename="multithreading/multithreading_sync_object.h" />
-		<Unit filename="multithreading/multithreading_sync_object_base.cpp" />
 		<Unit filename="multithreading/multithreading_sync_object_base.h" />
 		<Unit filename="multithreading/multithreading_synch_lock.cpp" />
 		<Unit filename="multithreading/multithreading_synch_lock.h" />

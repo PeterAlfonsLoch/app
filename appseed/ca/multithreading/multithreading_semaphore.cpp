@@ -24,13 +24,13 @@ semaphore::semaphore(LONG lInitialCount, LONG lMaxCount, const char * pstrName, 
 
       string strPath = "/ca2/time/ftok/event/" + string(pstrName);
 
-      m_object = (HANDLE) semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
+      m_object = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
 
    }
    else
    {
 
-      m_object = (HANDLE) semget(IPC_PRIVATE, 1, 0666 | IPC_CREAT);
+      m_object = semget(IPC_PRIVATE, 1, 0666 | IPC_CREAT);
 
    }
 
