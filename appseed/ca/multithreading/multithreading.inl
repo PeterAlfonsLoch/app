@@ -53,7 +53,7 @@ _AFXMT_INLINE critical_section::critical_section() : sync_object < HANDLE > (NUL
 
       bSuccess = Init();
       if (!bSuccess)
-         AfxThrowMemoryException();
+         throw memory_exception();
    }
 
 _AFXMT_INLINE critical_section::operator CRITICAL_SECTION*()
@@ -68,7 +68,7 @@ _AFXMT_INLINE BOOL critical_section::Lock()
       }
       __except(STATUS_NO_MEMORY == GetExceptionCode())
       {
-         AfxThrowMemoryException();
+         throw memory_exception();
       }
       return TRUE; 
    }

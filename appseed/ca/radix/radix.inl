@@ -51,7 +51,7 @@ _AFX_INLINE void ::ex1::filesp::SetFilePath(LPCTSTR lpszNewName)
    if(lpszNewName != NULL)
       m_strFileName = lpszNewName;
    else
-      AfxThrowInvalidArgException();  
+      throw invalid_argument_exception();  
 
 }
 /*

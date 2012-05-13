@@ -18,11 +18,11 @@ namespace _template
       switch(nError)
       {
       case ENOMEM:
-         AfxThrowMemoryException();
+         throw memory_exception();
          break;
       case EINVAL:
       case ERANGE:
-         AfxThrowInvalidArgException();
+         throw invalid_argument_exception();
          break;
       case 0:
 #if defined(_WINDOWS)

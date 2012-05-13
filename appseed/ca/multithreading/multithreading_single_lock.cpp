@@ -9,7 +9,7 @@ single_lock::single_lock(waitable* psyncobject, bool bInitialLock)
    //ASSERT(base < waitable >::bases(pObject));
 
    //if(pObject == NULL)
-      //AfxThrowInvalidArgException();
+      //throw invalid_argument_exception();
 
    m_psyncobject = psyncobject;
    //m_hObject = pObject->m_hObject;

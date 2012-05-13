@@ -39,7 +39,7 @@ namespace visual
 
       m_pimaging = new class imaging(this);
       if(m_pimaging == NULL)
-         AfxThrowMemoryException();
+         throw memory_exception();
 
       set_cursor_set_from_matter("cursor/antialiased-classic");
       

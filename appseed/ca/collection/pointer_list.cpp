@@ -84,7 +84,7 @@ void pointer_list::FreeNode(pointer_list::node* pNode)
 {
    if (pNode == NULL)
    {
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
    }
 
    pNode->pNext = m_pnodeFree;
@@ -141,7 +141,7 @@ void pointer_list::add_head(pointer_list* pNewList)
    ASSERT_VALID(pNewList);
    if (pNewList == NULL)
    {
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
    }
    ASSERT_KINDOF(pointer_list, pNewList);
 
@@ -157,7 +157,7 @@ void pointer_list::add_tail(pointer_list* pNewList)
    ASSERT_VALID(pNewList);
    if (pNewList == NULL)
    {
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
    }
    ASSERT_KINDOF(pointer_list, pNewList);
    
@@ -273,7 +273,7 @@ void pointer_list::remove_at(POSITION position)
 
    if (pOldNode == NULL)
    {
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
    }
    
    // remove pOldNode from list

@@ -25,7 +25,7 @@ void * base_ca2_alloc(size_t size)
    byte * p = (byte *) ca2_heap_alloc(size + 4 + 32);
    if(p == NULL)
    {
-      AfxThrowMemoryException();
+      throw memory_exception();
    }
    p[0] = 0;
    *((size_t *) &p[1]) = size;
@@ -43,7 +43,7 @@ void * base_ca2_alloc_dbg(size_t nSize, int nBlockUse, const char * szFileName, 
    byte * p = (byte *) ca2_heap_alloc_dbg(nSize + 4 + 32, nBlockUse, szFileName, nLine);
    if(p == NULL)
    {
-      AfxThrowMemoryException();
+      throw memory_exception();
    }
    p[0] = 1;
    *((size_t *) &p[1]) = nSize;
@@ -82,12 +82,12 @@ void * base_ca2_realloc(void * pvoid, size_t nSize, int nBlockUse, const char * 
    {
       // todo: rethrow free exception
       {
-         AfxThrowMemoryException();
+         throw memory_exception();
       }
    }
    if(p == NULL)
    {
-      AfxThrowMemoryException();
+      throw memory_exception();
    }
    *((size_t *) &p[1]) = nSize;
    return p + 4 + 16;
@@ -324,7 +324,7 @@ AfxDoForAllObjects(void (AFX_CDECL *pfn)(::radix::object*, void *), void * pCont
 {
    if (pfn == NULL)
    {
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
    }
    _AFX_ENUM_CONTEXT context;
    context.m_pfn = pfn;

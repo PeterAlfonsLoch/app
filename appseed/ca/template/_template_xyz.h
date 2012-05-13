@@ -101,7 +101,7 @@ count base_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
 	ASSERT(nNewSize >= 0);
 
 	if(nNewSize < 0 )
-		AfxThrowInvalidArgException();
+		throw invalid_argument_exception();
 
 	if (nGrowBy >= 0)
 		m_nGrowBy = nGrowBy;  // set new size
@@ -177,7 +177,7 @@ count base_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
 		ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
 
 		if(nNewMax  < m_nMaxSize)
-			AfxThrowInvalidArgException();
+			throw invalid_argument_exception();
 
 #ifdef SIZE_T_MAX
 		ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
@@ -275,7 +275,7 @@ void base_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
 	ASSERT(nIndex >= 0);
 
 	if(nIndex < 0)
-		AfxThrowInvalidArgException();
+		throw invalid_argument_exception();
 
 	if (nIndex >= m_nSize)
 		set_size(nIndex+1, -1);
@@ -290,7 +290,7 @@ void base_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, co
 	ASSERT(nCount > 0);     // zero or negative size not allowed
 
 	if(nIndex < 0 || nCount <= 0)
-		AfxThrowInvalidArgException();
+		throw invalid_argument_exception();
 
 	if (nIndex >= m_nSize)
 	{
@@ -336,7 +336,7 @@ void base_array<TYPE, ARG_TYPE>::remove_at(index nIndex, count nCount)
 	ASSERT(nUpperBound <= m_nSize && nUpperBound >= nIndex && nUpperBound >= nCount);
 
 	if(nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
-		AfxThrowInvalidArgException();
+		throw invalid_argument_exception();
 
 	// just remove a range
 	count nMoveCount = m_nSize - (nUpperBound);
@@ -372,7 +372,7 @@ insert_array_at(index nStartIndex, base_array* pNewArray)
 	ASSERT(nStartIndex >= 0);
 
 	if(pNewArray == NULL || nStartIndex < 0)
-		AfxThrowInvalidArgException();
+		throw invalid_argument_exception();
 
 	if (pNewArray->get_size() > 0)
 	{

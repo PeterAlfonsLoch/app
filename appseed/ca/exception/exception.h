@@ -42,6 +42,31 @@ namespace win
 
 #include "hresult_exception.h"
 
+
+
+inline errno_t c_runtime_error_check(errno_t error)
+{
+    switch(error)
+    {
+        case ENOMEM:
+            throw memory_exception();
+            break;
+        case EINVAL:
+        case ERANGE:
+            throw invalid_argument_exception();
+            break;
+#if defined(_WINDOWS)
+        case STRUNCATE:
+#endif
+        case 0:
+            break;
+        default:
+            throw invalid_argument_exception();
+            break;
+    }
+    return error;
+}
+
 #include "ca/primitive/datetime/datetime_time.h"
 
 #ifndef _AFX_JUMPBUF

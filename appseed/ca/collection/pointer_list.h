@@ -120,45 +120,45 @@ inline void *& pointer_list::get_next(POSITION& rPosition) // return *position++
    { node* pNode = (node*) rPosition;
       ASSERT(fx_is_valid_address(pNode, sizeof(node)));
       if( pNode == NULL )
-         AfxThrowInvalidArgException();
+         throw invalid_argument_exception();
       rPosition = (POSITION) pNode->pNext;
       return pNode->data; }
 inline const void * pointer_list::get_next(POSITION& rPosition) const // return *position++
    { node* pNode = (node*) rPosition;
       ASSERT(fx_is_valid_address(pNode, sizeof(node)));
       if( pNode == NULL )
-         AfxThrowInvalidArgException();
+         throw invalid_argument_exception();
       rPosition = (POSITION) pNode->pNext;
       return pNode->data; }
 inline void *& pointer_list::get_previous(POSITION& rPosition) // return *position--
    { node* pNode = (node*) rPosition;
       ASSERT(fx_is_valid_address(pNode, sizeof(node)));
       if( pNode == NULL )
-         AfxThrowInvalidArgException();
+         throw invalid_argument_exception();
       rPosition = (POSITION) pNode->pPrev;
       return pNode->data; }
 inline const void * pointer_list::get_previous(POSITION& rPosition) const // return *position--
    { node* pNode = (node*) rPosition;
       ASSERT(fx_is_valid_address(pNode, sizeof(node)));
       if( pNode == NULL )
-         AfxThrowInvalidArgException();
+         throw invalid_argument_exception();
       rPosition = (POSITION) pNode->pPrev;
       return pNode->data; }
 inline void *& pointer_list::get_at(POSITION position)
    { node* pNode = (node*) position;
       ASSERT(fx_is_valid_address(pNode, sizeof(node)));
       if( pNode == NULL )
-         AfxThrowInvalidArgException();
+         throw invalid_argument_exception();
       return pNode->data; }
 inline const void * pointer_list::get_at(POSITION position) const
    { node* pNode = (node*) position;
       ASSERT(fx_is_valid_address(pNode, sizeof(node)));
       if( pNode == NULL )
-         AfxThrowInvalidArgException();
+         throw invalid_argument_exception();
       return pNode->data; }
 inline void pointer_list::set_at(POSITION pos, void * newElement)
    { node* pNode = (node*) pos;
       ASSERT(fx_is_valid_address(pNode, sizeof(node)));
       if( pNode == NULL )
-         AfxThrowInvalidArgException();
+         throw invalid_argument_exception();
       pNode->data = newElement; }

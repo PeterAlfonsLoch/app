@@ -94,7 +94,7 @@ void string_list::FreeNode(string_list::node* pNode)
 {
    if (pNode == NULL)
    {
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
    }
    
    DestructElement(&pNode->data);
@@ -163,7 +163,7 @@ void string_list::add_head(string_list* pNewList)
    ASSERT_VALID(pNewList);
    if (pNewList == NULL)
    {
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
    }
    ASSERT_KINDOF(string_list, pNewList);
 
@@ -179,7 +179,7 @@ void string_list::add_tail(string_list* pNewList)
    ASSERT_VALID(pNewList);
    if (pNewList == NULL)
    {
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
    }
    ASSERT_KINDOF(string_list, pNewList);
 
@@ -305,7 +305,7 @@ void string_list::remove_at(POSITION position)
 
    if (pOldNode == NULL)
    {
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
    }
    
    // remove pOldNode from list

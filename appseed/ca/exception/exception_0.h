@@ -19,41 +19,9 @@ namespace radix
 #endif
 
 
-/////////////////////////////////////////////////////////////////////////////
-// Standard exception throws
-
-CLASS_DECL_ca void DECLSPEC_NO_RETURN AfxThrowMemoryException();
-CLASS_DECL_ca void DECLSPEC_NO_RETURN AfxThrowNotSupportedException();
-CLASS_DECL_ca void DECLSPEC_NO_RETURN AfxThrowInvalidArgException();
-//CLASS_DECL_ca void DECLSPEC_NO_RETURN AfxThrowArchiveException(int cause, const char * lpszArchiveName = NULL);
-CLASS_DECL_ca void DECLSPEC_NO_RETURN AfxThrowFileException(int cause, LONG lOsError = -1, const char * lpszFileName = NULL);
 
 
-/////////////////////////////////////////////////////////////////////////////
-// CRT functions
 
-inline errno_t c_runtime_error_check(errno_t error)
-{
-   switch(error)
-   {
-   case ENOMEM:
-      AfxThrowMemoryException();
-      break;
-   case EINVAL:
-   case ERANGE:
-      AfxThrowInvalidArgException();
-      break;
-#if defined(_WINDOWS)
-   case STRUNCATE:
-#endif
-   case 0:
-      break;
-   default:
-      AfxThrowInvalidArgException();
-      break;
-   }
-   return error;
-}
 
 //#define C_RUNTIME_ERROR_CHECK(expr) ::c_runtime_error_check(expr)
 

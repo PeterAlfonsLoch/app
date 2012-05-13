@@ -94,7 +94,7 @@ CArchive& operator <<(CArchive& ar, time_span timeSpan)
    __time64_t timespan = timeSpan.GetTimeSpan();
    ASSERT( timespan <= UINT_MAX);
    if( timespan > UINT_MAX)
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
    time_t timeConverted = (time_t)timespan;
    return ar << (DWORD) timeConverted;
 }

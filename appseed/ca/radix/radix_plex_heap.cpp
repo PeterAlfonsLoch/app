@@ -6,7 +6,7 @@ plex_heap * PASCAL plex_heap::create(plex_heap*& pHead, UINT_PTR nMax, UINT_PTR 
    ASSERT(nMax > 0 && cbElement > 0);
    if (nMax == 0 || cbElement == 0)
    {
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
    }
 
    plex_heap* p = (plex_heap*) system_heap_alloc(sizeof(plex) + nMax * cbElement);

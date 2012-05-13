@@ -26,7 +26,7 @@ namespace ex1
          return;
       byte *buf = GetBufPtrForWriting(size);
       if (!buf)
-         AfxThrowMemoryException();
+         throw memory_exception();
       memcpy(buf, data, size);
       UpdateSize(size);
       if (processedSize)

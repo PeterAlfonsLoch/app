@@ -707,7 +707,7 @@ void document_manager::request(::ca::create_context * pcreatecontext)
 
    if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())
    {
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
    }
 
    // find the highest confidence

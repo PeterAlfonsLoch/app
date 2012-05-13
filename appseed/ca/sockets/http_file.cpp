@@ -41,7 +41,7 @@ namespace http
          primitive::memory mem;
          if(!mem.allocate(1024 * 1024))
          {
-            AfxThrowMemoryException();
+            throw memory_exception();
          }
          while((nRead = file.read(mem.get_data(), mem.get_size())) > 0)
          {

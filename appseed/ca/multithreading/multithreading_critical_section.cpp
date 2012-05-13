@@ -22,7 +22,7 @@ critical_section::critical_section()
 
    bSuccess = Init();
    if (!bSuccess)
-      AfxThrowMemoryException();
+      throw memory_exception();
 }
 
 critical_section::operator CRITICAL_SECTION*()
@@ -43,7 +43,7 @@ bool critical_section::lock()
    }
    __except(STATUS_NO_MEMORY == GetExceptionCode())
    {
-      AfxThrowMemoryException();
+      throw memory_exception();
    }
    return TRUE;
 }
@@ -96,7 +96,7 @@ critical_section::critical_section()
 
    bSuccess = Init();
    if (!bSuccess)
-      AfxThrowMemoryException();
+      throw memory_exception();
 }
 
 critical_section::operator pthread_mutex_t*()
@@ -119,7 +119,7 @@ bool critical_section::lock()
    }
    catch(...)
    {
-      AfxThrowMemoryException();
+      throw memory_exception();
    }
    return TRUE;
 }

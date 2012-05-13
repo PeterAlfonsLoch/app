@@ -20,7 +20,7 @@ CLASS_DECL_ca void WINAPI atl_throw_impl( HRESULT hr )
 #ifdef _AFX
    if( hr == E_OUTOFMEMORY )
    {
-      AfxThrowMemoryException();
+      throw memory_exception();
    }
    else
    {

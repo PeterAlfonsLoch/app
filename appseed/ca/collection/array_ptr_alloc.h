@@ -50,7 +50,7 @@ template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline TYPE * array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA >::add_new()
 {
    TYPE * p = gen::alloc<TYPE>();
-   add(p);
+   this->add(p);
    return p;
 }
 
@@ -84,7 +84,7 @@ set_size(count iSize)
    }
    while(this->get_size() > iSize && iSize >=0)
    {
-      remove_at(this->get_size() - 1);
+      this->remove_at(this->get_size() - 1);
    }
 }
 

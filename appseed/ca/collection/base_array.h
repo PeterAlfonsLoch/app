@@ -476,7 +476,7 @@ inline TYPE& base_array<TYPE, ARG_TYPE>::get_at(index nIndex)
    ASSERT(nIndex >= 0 && nIndex < m_nSize);
    if(nIndex >= 0 && nIndex < m_nSize)
       return m_pData[nIndex];
-   AfxThrowInvalidArgException();
+   throw invalid_argument_exception();
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& base_array<TYPE, ARG_TYPE>::get_at(index nIndex) const
@@ -484,7 +484,7 @@ inline const TYPE& base_array<TYPE, ARG_TYPE>::get_at(index nIndex) const
    ASSERT(nIndex >= 0 && nIndex < m_nSize);
    if(nIndex >= 0 && nIndex < m_nSize)
       return m_pData[nIndex];
-   AfxThrowInvalidArgException();
+   throw invalid_argument_exception();
 }
 template<class TYPE, class ARG_TYPE>
 inline void base_array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
@@ -493,7 +493,7 @@ inline void base_array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement
    if(nIndex >= 0 && nIndex < m_nSize)
       m_pData[nIndex] = newElement;
    else
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& base_array<TYPE, ARG_TYPE>::element_at(index nIndex) const
@@ -501,7 +501,7 @@ inline const TYPE& base_array<TYPE, ARG_TYPE>::element_at(index nIndex) const
    //ASSERT(nIndex >= 0 && nIndex < m_nSize);
    if(nIndex >= 0 && nIndex < m_nSize)
       return m_pData[nIndex];
-   AfxThrowInvalidArgException();
+   throw invalid_argument_exception();
 }
 template<class TYPE, class ARG_TYPE>
 inline TYPE& base_array<TYPE, ARG_TYPE>::element_at(index nIndex)
@@ -509,7 +509,7 @@ inline TYPE& base_array<TYPE, ARG_TYPE>::element_at(index nIndex)
 //   ASSERT(nIndex >= 0 && nIndex < m_nSize);
    if(nIndex >= 0 && nIndex < m_nSize)
       return m_pData[nIndex];
-   AfxThrowInvalidArgException();
+   throw invalid_argument_exception();
 }
 
 template<class TYPE, class ARG_TYPE>
@@ -588,7 +588,7 @@ template<class TYPE, class ARG_TYPE>
    ASSERT(nNewSize >= 0);
 
    if(nNewSize < 0 )
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
 
    if (nGrowBy >= 0)
       m_nGrowBy = nGrowBy;  // set new size
@@ -611,7 +611,7 @@ template<class TYPE, class ARG_TYPE>
       // m_nGrowBy elements, whichever is larger.
 #ifdef SIZE_T_MAX
       if(nNewSize > SIZE_T_MAX/sizeof(TYPE))
-         AfxThrowMemoryException();
+         throw memory_exception();
       ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
 #endif
       ::count nAllocSize = __max(nNewSize, m_nGrowBy);
@@ -664,7 +664,7 @@ template<class TYPE, class ARG_TYPE>
       ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
 
       if(nNewMax  < m_nMaxSize)
-         AfxThrowInvalidArgException();
+         throw invalid_argument_exception();
 
 #ifdef SIZE_T_MAX
       ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
@@ -737,7 +737,7 @@ void base_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
    ASSERT(nIndex >= 0);
 
    if(nIndex < 0)
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
 
    if (nIndex >= m_nSize)
       set_size(nIndex+1, -1);
@@ -752,7 +752,7 @@ void base_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::
    ASSERT(nCount > 0);     // zero or negative size not allowed
 
    if(nIndex < 0 || nCount <= 0)
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
 
    if (nIndex >= m_nSize)
    {
@@ -798,7 +798,7 @@ void base_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
 //   ASSERT(nUpperBound <= m_nSize && nUpperBound >= nIndex && nUpperBound >= nCount);
 
    if(nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
 
    // just remove a range
    ::count nMoveCount = m_nSize - (nUpperBound);
@@ -879,7 +879,7 @@ insert_array_at(index nStartIndex, base_array* pNewArray)
    ASSERT(nStartIndex >= 0);
 
    if(pNewArray == NULL || nStartIndex < 0)
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
 
    if (pNewArray->get_size() > 0)
    {

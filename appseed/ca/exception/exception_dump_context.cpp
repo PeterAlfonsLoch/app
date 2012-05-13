@@ -392,16 +392,16 @@ void dump_context::Hexdump(const char * lpszLine, BYTE* pby,
 {
    ASSERT(nBytes > 0);
    if( nBytes <= 0 )
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
    ASSERT(nWidth > 0);
    if( nWidth <= 0 )
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
    ASSERT(AfxIsValidString(lpszLine));
    if( lpszLine == NULL )
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
    ASSERT(fx_is_valid_address(pby, nBytes, FALSE));
    if( pby == NULL )
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
 
    int nRow = 0;
    char szBuffer[32];

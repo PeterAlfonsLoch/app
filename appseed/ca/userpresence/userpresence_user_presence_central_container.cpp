@@ -32,7 +32,7 @@ namespace userpresence
       m_pcentral = new presence_central(get_app());
 
       if(m_pcentral == NULL)
-         AfxThrowMemoryException();
+         throw memory_exception();
 
 
       if(!m_pcentral->initialize())

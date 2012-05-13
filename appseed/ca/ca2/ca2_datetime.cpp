@@ -329,7 +329,7 @@ namespace ca2
       case 12:
          return 30;
       }
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
    }
 
    int LEAP(int y )

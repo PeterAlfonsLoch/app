@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
-		9A8897A814C24792006B4023 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A714C24792006B4023 /* Carbon.framework */; };
 		9A8897AA14C24901006B4023 /* c_os_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8897A914C24901006B4023 /* c_os_file.cpp */; };
 		9A90D07D14A348E200226F1A /* c_os_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A90D07C14A348E200226F1A /* c_os_cross_gdi.mm */; };
 		A10D34E715131C06004FD312 /* os_process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A10D34E415131C06004FD312 /* os_process.cpp */; };
 		A10D34E815131C06004FD312 /* os_process.h in Headers */ = {isa = PBXBuildFile; fileRef = A10D34E515131C06004FD312 /* os_process.h */; };
 		A10D34E915131C06004FD312 /* os.h in Headers */ = {isa = PBXBuildFile; fileRef = A10D34E615131C06004FD312 /* os.h */; };
 		CE30D6D614653CB2001991EA /* cpu_architecture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE30D6D414653CB2001991EA /* cpu_architecture.cpp */; };
+		CE931715155F1599005F90F6 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
 		CEA7AABF14412789007E04DE /* _argcargv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA7AA0E14412789007E04DE /* _argcargv.cpp */; };
 		CEA7AAC014412789007E04DE /* _atol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA7AA0F14412789007E04DE /* _atol.cpp */; };
 		CEA7AAC314412789007E04DE /* _initterm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA7AA1214412789007E04DE /* _initterm.cpp */; };
@@ -179,7 +179,6 @@
 
 /* Begin PBXFileReference section */
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
-		9A8897A714C24792006B4023 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = ../../../../System/Library/Frameworks/Carbon.framework; sourceTree = "<group>"; };
 		9A8897A914C24901006B4023 /* c_os_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_file.cpp; sourceTree = "<group>"; };
 		9A88B4F514C2CBF8006B4023 /* c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A90D07C14A348E200226F1A /* c_os_cross_gdi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = c_os_cross_gdi.mm; sourceTree = "<group>"; };
@@ -187,6 +186,7 @@
 		A10D34E515131C06004FD312 /* os_process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = os_process.h; path = os/os_process.h; sourceTree = "<group>"; };
 		A10D34E615131C06004FD312 /* os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = os.h; path = os/os.h; sourceTree = "<group>"; };
 		CE30D6D414653CB2001991EA /* cpu_architecture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cpu_architecture.cpp; sourceTree = "<group>"; };
+		CE931714155F1599005F90F6 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = ../../../../System/Library/Frameworks/Carbon.framework; sourceTree = "<group>"; };
 		CEA7AA0E14412789007E04DE /* _argcargv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _argcargv.cpp; sourceTree = "<group>"; };
 		CEA7AA0F14412789007E04DE /* _atol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _atol.cpp; sourceTree = "<group>"; };
 		CEA7AA1214412789007E04DE /* _initterm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _initterm.cpp; sourceTree = "<group>"; };
@@ -356,7 +356,7 @@
 			files = (
 				CEF82C74145789DB0011783B /* libX11.6.dylib in Frameworks */,
 				9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */,
-				9A8897A814C24792006B4023 /* Carbon.framework in Frameworks */,
+				CE931715155F1599005F90F6 /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,7 +376,7 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
-				9A8897A714C24792006B4023 /* Carbon.framework */,
+				CE931714155F1599005F90F6 /* Carbon.framework */,
 				9A8897A514C24736006B4023 /* Foundation.framework */,
 				CEC9A23D144B818900FEA8E6 /* macos */,
 				CEAAA41F1461A72700DDE33F /* bsdiff */,
@@ -899,9 +899,7 @@
 					"\"$(SRCROOT)/../../../ccvotagus/ca2core/fontopus/app/source/main/_000ca2api00000\"",
 				);
 				New_Setting = "";
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../../ $(WorkspaceDir)../../appseed/ca2/ $(WorkspaceDir)../../ . ..";
 				VALID_ARCHS = x86_64;
@@ -940,9 +938,7 @@
 					"\"$(SRCROOT)/../../../ccvotagus/ca2core/fontopus/app/source/main/_000ca2api00000\"",
 				);
 				New_Setting = "";
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../../ $(WorkspaceDir)../../appseed/ca2/ $(WorkspaceDir)../../ . ..";
 				VALID_ARCHS = x86_64;

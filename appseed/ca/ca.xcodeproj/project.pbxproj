@@ -1790,7 +1790,6 @@
 		9A88B4F014C2CA2F006B4023 /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88ADDF14C2CA2D006B4023 /* zutil.c */; };
 		9A88B4F114C2CA2F006B4023 /* zutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88ADE014C2CA2D006B4023 /* zutil.h */; };
 		9A91900414D0A4AA00757806 /* bitset.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A91900314D0A4A900757806 /* bitset.h */; };
-		9A94F7ED14C8D4BA0090A8F6 /* c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94F7EC14C8D4BA0090A8F6 /* c.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
 		A10D34F715131DB3004FD312 /* gen_composite.h in Headers */ = {isa = PBXBuildFile; fileRef = A10D34EB15131DB3004FD312 /* gen_composite.h */; };
 		A10D34F815131DB3004FD312 /* gen_cregexp_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A10D34EC15131DB3004FD312 /* gen_cregexp_util.cpp */; };
 		A10D34F915131DB3004FD312 /* gen_cregexp_util.h in Headers */ = {isa = PBXBuildFile; fileRef = A10D34ED15131DB3004FD312 /* gen_cregexp_util.h */; };
@@ -1802,6 +1801,7 @@
 		A10D34FF15131DB3004FD312 /* gen_property_set.h in Headers */ = {isa = PBXBuildFile; fileRef = A10D34F315131DB3004FD312 /* gen_property_set.h */; };
 		A10D350015131DB3004FD312 /* gen_scoped_ptr.h in Headers */ = {isa = PBXBuildFile; fileRef = A10D34F415131DB3004FD312 /* gen_scoped_ptr.h */; };
 		A10D350115131DB3004FD312 /* gen_str2.h in Headers */ = {isa = PBXBuildFile; fileRef = A10D34F515131DB3004FD312 /* gen_str2.h */; };
+		CE931719155F1C02005F90F6 /* c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931718155F1C02005F90F6 /* c.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1809,7 +1809,7 @@
 		9A5E0A0B14D448F300E91EC4 /* plane_system_radix_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plane_system_radix_factory.h; sourceTree = "<group>"; };
 		9A5E0A0D14D44DA700E91EC4 /* exception_overflow_error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_overflow_error.h; sourceTree = "<group>"; };
 		9A5E0A0F14D44E4300E91EC4 /* exception_overflow_error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_overflow_error.cpp; sourceTree = "<group>"; };
-		9A8897B614C2C8DB006B4023 /* libca.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libca.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A8897B614C2C8DB006B4023 /* ca.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = ca.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A88A65E14C2CA2C006B4023 /* api_muldiv64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api_muldiv64.cpp; sourceTree = "<group>"; };
 		9A88A65F14C2CA2C006B4023 /* api_str.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api_str.cpp; sourceTree = "<group>"; };
 		9A88A66014C2CA2C006B4023 /* debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = debug.cpp; sourceTree = "<group>"; };
@@ -3632,7 +3632,6 @@
 		9A88ADDF14C2CA2D006B4023 /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zutil.c; sourceTree = "<group>"; };
 		9A88ADE014C2CA2D006B4023 /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
 		9A91900314D0A4A900757806 /* bitset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitset.h; sourceTree = "<group>"; };
-		9A94F7EC14C8D4BA0090A8F6 /* c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = c.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-adzuzcjvdbrwgcegakzdmwrfvdrd/Build/Products/Debug/c.dylib"; sourceTree = "<group>"; };
 		A10D34EB15131DB3004FD312 /* gen_composite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gen_composite.h; sourceTree = "<group>"; };
 		A10D34EC15131DB3004FD312 /* gen_cregexp_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gen_cregexp_util.cpp; sourceTree = "<group>"; };
 		A10D34ED15131DB3004FD312 /* gen_cregexp_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gen_cregexp_util.h; sourceTree = "<group>"; };
@@ -3645,6 +3644,7 @@
 		A10D34F415131DB3004FD312 /* gen_scoped_ptr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gen_scoped_ptr.h; sourceTree = "<group>"; };
 		A10D34F515131DB3004FD312 /* gen_str2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gen_str2.h; sourceTree = "<group>"; };
 		A10D34F615131DB3004FD312 /* gen_str2.h.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gen_str2.h.txt; sourceTree = "<group>"; };
+		CE931718155F1C02005F90F6 /* c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3652,7 +3652,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A94F7ED14C8D4BA0090A8F6 /* c.dylib in Frameworks */,
+				CE931719155F1C02005F90F6 /* c.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3670,7 +3670,6 @@
 		9A8897AB14C2C8DB006B4023 = {
 			isa = PBXGroup;
 			children = (
-				9A94F7EC14C8D4BA0090A8F6 /* c.dylib */,
 				9A88A65D14C2CA2C006B4023 /* api */,
 				9A88A66914C2CA2C006B4023 /* ca */,
 				9A88A6D614C2CA2C006B4023 /* ca2 */,
@@ -3717,6 +3716,7 @@
 				9A88AD9C14C2CA2D006B4023 /* xml */,
 				9A88ADC114C2CA2D006B4023 /* zlib */,
 				9A8897B714C2C8DB006B4023 /* Products */,
+				CE931718155F1C02005F90F6 /* c.dylib */,
 				9A88AC8514C2CA2D006B4023 /* StdAfx.cpp */,
 				9A88A6CF14C2CA2C006B4023 /* ca.h */,
 				9A88AC8614C2CA2D006B4023 /* StdAfx.h */,
@@ -3726,7 +3726,7 @@
 		9A8897B714C2C8DB006B4023 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A8897B614C2C8DB006B4023 /* libca.dylib */,
+				9A8897B614C2C8DB006B4023 /* ca.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -7051,7 +7051,7 @@
 			);
 			name = ca;
 			productName = ca;
-			productReference = 9A8897B614C2C8DB006B4023 /* libca.dylib */;
+			productReference = 9A8897B614C2C8DB006B4023 /* ca.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -7923,7 +7923,7 @@
 		9A8897BB14C2C8DB006B4023 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_PREFIX = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-adzuzcjvdbrwgcegakzdmwrfvdrd/Build/Products/Debug\"",
@@ -7945,7 +7945,7 @@
 		9A8897BC14C2C8DB006B4023 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_PREFIX = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-adzuzcjvdbrwgcegakzdmwrfvdrd/Build/Products/Debug\"",

@@ -5,7 +5,7 @@ multi_lock::multi_lock(sync_object_ptra syncobjectptra, bool bInitialLock)
    ASSERT(syncobjectptra.get_count() > 0 && syncobjectptra.get_count() <= MAXIMUM_WAIT_OBJECTS);
 
    if(syncobjectptra.get_count() <= 0)
-      AfxThrowInvalidArgException();
+      throw invalid_argument_exception();
 
    m_syncobjectptra  = syncobjectptra;
    m_objecta.set_size(m_syncobjectptra.get_count());
@@ -16,7 +16,7 @@ multi_lock::multi_lock(sync_object_ptra syncobjectptra, bool bInitialLock)
    {
       ASSERT_VALID(dynamic_cast < ::radix::object * > (m_syncobjectptra[i]));
       if(m_syncobjectptra[i] == NULL)
-         AfxThrowInvalidArgException();
+         throw invalid_argument_exception();
 
       ASSERT(base < waitable >::bases (m_syncobjectptra[i]));
 
