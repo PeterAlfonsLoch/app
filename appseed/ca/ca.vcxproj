@@ -1237,7 +1237,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="multithreading\multithreading_socket_event.h" />
     <ClInclude Include="multithreading\multithreading_synch_lock.h" />
     <ClInclude Include="multithreading\multithreading_sync_object.h" />
-    <ClInclude Include="multithreading\multithreading_sync_object_base.h" />
     <ClInclude Include="multithreading\multithreading_thread_pool.h" />
     <ClInclude Include="multithreading\multithreading_waitable.h" />
     <ClInclude Include="multithreading\multithreading_wait_result.h" />
@@ -2376,7 +2375,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="multithreading\multithreading_single_lock.cpp" />
     <ClCompile Include="multithreading\multithreading_socket_event.cpp" />
     <ClCompile Include="multithreading\multithreading_synch_lock.cpp" />
-    <ClCompile Include="multithreading\multithreading_sync_object_base.cpp" />
     <ClCompile Include="multithreading\multithreading_waitable.cpp" />
     <ClCompile Include="multithreading\multithreading_wait_result.cpp" />
     <ClCompile Include="os\os_cross_windows.cpp" />

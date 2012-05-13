@@ -6,7 +6,9 @@
 #include "StdAfx.h"
 
 
-
+waitable::waitable()
+{
+}
 
 ///  \brief		destructor
 waitable::~waitable()
@@ -27,7 +29,7 @@ wait_result waitable::wait(const duration & duration )
 {
 
    if(m_psystem == NULL)
-      return false;
+      return wait_result(wait_result::Failure);
 
    try
    {
@@ -74,14 +76,6 @@ CLASS_DECL_ca void sleep(const duration & duration)
 
 
 
-waitable::~waitable()
-{
-}
-
-
-waitable::waitable()
-{
-}
 
 waitable::waitable(const waitable & objectSrc)
 {

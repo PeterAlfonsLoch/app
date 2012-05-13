@@ -1406,9 +1406,6 @@
     <ClInclude Include="multithreading\multithreading_sync_object.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\multithreading_sync_object_base.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="multithreading\multithreading_synch_lock.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
@@ -3824,9 +3821,6 @@
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_socket_event.cpp">
-      <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_sync_object_base.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_synch_lock.cpp">

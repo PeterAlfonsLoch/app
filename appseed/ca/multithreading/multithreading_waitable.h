@@ -20,7 +20,7 @@
  **   \date  2004-10-30
  **   \author grymse@alhem.net
 **/
-/** sync_object_base renamed to waitable
+/** waitable renamed to waitable
 Thank you Thomas Hoefer!!
 
 /// This class represents an item which can be waited for. Items can be threads, events, sockets,

@@ -45,7 +45,7 @@ wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, DWORD 
 {
    DWORD dwResult;
 
-   if(m_objectaget_count() < 0)
+   if(m_objecta.get_count() < 0)
       return wait_result(wait_result::Failure);
 
    if (dwWakeMask == 0)
@@ -76,7 +76,7 @@ wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, DWORD 
 
 bool multi_lock::unlock()
 {
-   for (index i=0; i < m_handlea.get_count(); i++)
+   for (index i=0; i < m_objecta.get_count(); i++)
    {
       if (m_baLocked[i])
          m_baLocked[i] = !m_syncobjectptra[i]->unlock();
@@ -87,7 +87,7 @@ bool multi_lock::unlock()
 bool multi_lock::unlock(LONG lCount, LPLONG lpPrevCount /* =NULL */)
 {
    bool bGotOne = false;
-   for (index i=0; i < m_handlea.get_count(); i++)
+   for (index i=0; i < m_objecta.get_count(); i++)
    {
       if (m_baLocked[i])
       {
@@ -108,7 +108,7 @@ bool multi_lock::unlock(LONG lCount, LPLONG lpPrevCount /* =NULL */)
 
 bool multi_lock::IsLocked(index dwObject)
 {
-   ASSERT(dwObject < m_handlea.get_count());
+   ASSERT(dwObject < m_objecta.get_count());
    return m_baLocked[dwObject];
 }
 

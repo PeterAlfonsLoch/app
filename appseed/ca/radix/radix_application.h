@@ -461,7 +461,7 @@ namespace radix
 
       mutex * get_mutex(::waitable * pobject);
       using ::radix::thread::lock;
-      wait_result wait(::waitable * pobject);
+      void wait(::waitable * pobject);
       wait_result wait(::waitable * pobject, duration dwTimeout);
       bool lock(::waitable * pobject);
       bool lock(::waitable * pobject, duration dwTimeout);

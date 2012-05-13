@@ -2660,13 +2660,38 @@ namespace radix
       return pmutex;
    }
 
-   bool application::wait(waitable * pobject, duration duration)
+   void application::wait(waitable * pobject)
+   {
+      
+      mutex * pmutex = get_mutex(pobject);
+      
+      if(pmutex == NULL)
+         throw resource_exception();
+
+      pmutex->wait();
+
+   }
+
+   wait_result application::wait(waitable * pobject, duration duration)
+   {
+      
+      mutex * pmutex = get_mutex(pobject);
+
+      if(pmutex == NULL)
+         return wait_result(wait_result::Failure);
+
+      return pmutex->wait(duration);
+
+   }
+
+   bool application::lock(waitable * pobject)
    {
       mutex * pmutex = get_mutex(pobject);
       if(pmutex == NULL)
          return false;
-      return pmutex->wait(duration);
+      return pmutex->lock() != FALSE;
    }
+
 
    bool application::lock(waitable * pobject, duration duration)
    {
