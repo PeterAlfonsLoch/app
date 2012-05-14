@@ -652,6 +652,7 @@ retry:
          psession->inheaders().clear();
          psession->outheaders().clear();
          psession->inattrs().clear();
+         psession->m_memoryfile.Truncate(0);
 
 
          psession->inheaders().add(headers);
