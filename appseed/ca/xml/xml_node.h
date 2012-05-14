@@ -75,6 +75,7 @@ namespace xml
       inline string get_value() const { return m_strValue; }
 
       inline e_node get_type() const { return m_etype; }
+      inline void set_type(e_node etype) { m_etype = etype; }
 
       index get_index() const;
 
