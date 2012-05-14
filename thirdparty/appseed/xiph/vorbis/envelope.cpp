@@ -16,6 +16,8 @@
  ********************************************************************/
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 
 void _ve_envelope_init(envelope_lookup *e,vorbis_info *vi){
   codec_setup_info *ci=vi->codec_setup;
@@ -361,3 +363,14 @@ void _ve_envelope_shift(envelope_lookup *e,long shift){
     e->curmark-=shift;
   e->cursor-=shift;
 }
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

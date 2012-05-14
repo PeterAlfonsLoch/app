@@ -16,6 +16,8 @@
  ********************************************************************/
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 
 /* packs the given codebook into the bitstream **************************/
 
@@ -469,3 +471,14 @@ long vorbis_book_decodevv_add(codebook *book,float **a,long offset,int ch,
   }
   return(0);
 }
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

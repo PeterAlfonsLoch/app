@@ -39,6 +39,8 @@
 
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 
 /* build lookups for trig functions; also pre-figure scaling and
    some window function algebra. */
@@ -555,3 +557,12 @@ void mdct_forward(mdct_lookup *init, DATA_TYPE *in, DATA_TYPE *out){
     T+=2;
   }
 }
+
+
+
+
+END_EXTERN_C
+
+
+
+

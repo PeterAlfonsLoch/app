@@ -16,6 +16,8 @@
  ********************************************************************/
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 
 /* simplistic, wasteful way of doing this (unique lookup for each
    mode/submapping); there should be a central repository for
@@ -803,3 +805,12 @@ const vorbis_func_mapping mapping0_exportbundle={
   &mapping0_forward,
   &mapping0_inverse
 };
+
+
+
+
+END_EXTERN_C
+
+
+
+

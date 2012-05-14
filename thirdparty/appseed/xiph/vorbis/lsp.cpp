@@ -33,6 +33,8 @@
    correct it. */
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 
 /* three possible LSP to f curve functions; the exact computation
    (float), a lookup based float implementation, and an integer
@@ -447,3 +449,12 @@ int vorbis_lpc_to_lsp(float *lpc,float *lsp,int m){
     lsp[i*2+1] = acos(g2r[i]);
   return(0);
 }
+
+
+
+
+END_EXTERN_C
+
+
+
+

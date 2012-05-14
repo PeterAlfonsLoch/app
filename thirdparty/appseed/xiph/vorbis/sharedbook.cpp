@@ -16,6 +16,8 @@
  ********************************************************************/
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 
 /**** pack/unpack helpers ******************************************/
 int _ilog(unsigned int v){
@@ -569,3 +571,12 @@ int main(){
 }
 
 #endif
+
+
+
+
+END_EXTERN_C
+
+
+
+

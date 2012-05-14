@@ -162,14 +162,14 @@ typedef struct vorbis_comment{
 
 /* Vorbis PRIMITIVES: general ***************************************/
 
-extern void     vorbis_info_init(vorbis_info *vi);
-extern void     vorbis_info_clear(vorbis_info *vi);
-extern int      vorbis_info_blocksize(vorbis_info *vi,int zo);
-extern void     vorbis_comment_init(vorbis_comment *vc);
-extern void     vorbis_comment_add(vorbis_comment *vc, const char *comment);
-extern void     vorbis_comment_add_tag(vorbis_comment *vc,
+void     vorbis_info_init(vorbis_info *vi);
+void     vorbis_info_clear(vorbis_info *vi);
+int      vorbis_info_blocksize(vorbis_info *vi,int zo);
+void     vorbis_comment_init(vorbis_comment *vc);
+void     vorbis_comment_add(vorbis_comment *vc, const char *comment);
+void     vorbis_comment_add_tag(vorbis_comment *vc,
                                        const char *tag, const char *contents);
-extern char    *vorbis_comment_query(vorbis_comment *vc, const char *tag, int count);
+char    *vorbis_comment_query(vorbis_comment *vc, const char *tag, int count);
 extern int      vorbis_comment_query_count(vorbis_comment *vc, const char *tag);
 extern void     vorbis_comment_clear(vorbis_comment *vc);
 

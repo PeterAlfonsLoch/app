@@ -16,6 +16,7 @@
  ********************************************************************/
 #include "framework.h"
 
+BEGIN_EXTERN_C
 
 /* careful with this; it's using static array sizing to make managing
    all the modes a little less annoying.  If we use a residue backend
@@ -1203,3 +1204,12 @@ int vorbis_encode_ctl(vorbis_info *vi,int number,void *arg){
   }
   return(OV_EINVAL);
 }
+
+
+
+
+END_EXTERN_C
+
+
+
+

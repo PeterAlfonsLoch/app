@@ -29,6 +29,8 @@
  */
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 
 static void drfti1(int n, float *wa, int *ifac){
   static int ntryh[4] = { 4,2,3,5 };
@@ -1248,3 +1250,12 @@ void drft_clear(drft_lookup *l){
     memset(l,0,sizeof(*l));
   }
 }
+
+
+
+
+END_EXTERN_C
+
+
+
+

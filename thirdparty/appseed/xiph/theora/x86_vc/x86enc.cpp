@@ -18,7 +18,7 @@
 
 #if defined(OC_X86_ASM)
 
-#include "../cpu.c"
+#include "../cpu.cpp"
 
 void oc_enc_vtable_init_x86(oc_enc_ctx *_enc){
   ogg_uint32_t cpu_flags;

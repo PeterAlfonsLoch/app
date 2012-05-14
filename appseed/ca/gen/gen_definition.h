@@ -276,24 +276,24 @@ do {                                           \
 
 // If you define _TRY before including this file, then
 // you should define _CATCH and _RETHROW as well.
-#ifndef _TRY
-#define _TRY try
-#ifdef _AFX
-#define _CATCH( e ) catch( base_exception* e )
-#else
-#define _CATCH( e ) catch( atl_exception e )
-#endif
+//#ifndef _TRY
+//#define _TRY try
+//#ifdef _AFX
+//#define _CATCH( e ) catch( base_exception* e )
+//#else
+//#define _CATCH( e ) catch( atl_exception e )
+//#endif
 
-#define _CATCHALL() __pragma(warning(push)) __pragma(warning(disable: 4571)) catch( ... ) __pragma(warning(pop))
+//#define _CATCHALL() __pragma(warning(push)) __pragma(warning(disable: 4571)) catch( ... ) __pragma(warning(pop))
 
-#ifdef _AFX
-#define _DELETEEXCEPTION(e) e->Delete();
-#else
-#define _DELETEEXCEPTION(e) e;
-#endif
+//#ifdef _AFX
+//#define _DELETEEXCEPTION(e) e->Delete();
+//#else
+//#define _DELETEEXCEPTION(e) e;
+//#endif
 
-#define _RETHROW throw
-#endif   // _TRY
+//#define _RETHROW throw
+//#endif   // _TRY
 
 /*
 COM functions should not throw. Which means we should protect their callers from C++ exceptions leaking out. These macros
@@ -449,13 +449,13 @@ that we consider it dangerous to even throw an exception
  * fix warning 6268. At least until those macros are not cleanend in PSDK.
    Same comes true for those definitions of constants which use the above macros
 */
-#define MAKEINTRESOURCEA(i) ((char *)((ULONG_PTR)((WORD)(i))))
-#define MAKEINTRESOURCEW(i) ((wchar_t *)((ULONG_PTR)((WORD)(i))))
-#ifdef UNICODE
-#define MAKEINTRESOURCE  MAKEINTRESOURCEW
-#else
-#define MAKEINTRESOURCE  MAKEINTRESOURCEA
-#endif // !UNICODE
+//#define MAKEINTRESOURCEA(i) ((char *)((ULONG_PTR)((WORD)(i))))
+//#define MAKEINTRESOURCEW(i) ((wchar_t *)((ULONG_PTR)((WORD)(i))))
+//#ifdef UNICODE
+//#define MAKEINTRESOURCE  MAKEINTRESOURCEW
+//#else
+//#define MAKEINTRESOURCE  MAKEINTRESOURCEA
+//#endif // !UNICODE
 #define IS_INTRESOURCE(_r) ((((ULONG_PTR)(_r)) >> 16) == 0)
 
 /*
@@ -474,8 +474,8 @@ that we consider it dangerous to even throw an exception
 #define RT_MESSAGETABLE     MAKEINTRESOURCE(11)
 
 #define DIFFERENCE     11
-#define RT_GROUP_CURSOR MAKEINTRESOURCE((ULONG_PTR)RT_CURSOR + DIFFERENCE)
-#define RT_GROUP_ICON   MAKEINTRESOURCE((ULONG_PTR)RT_ICON + DIFFERENCE)
+//#define RT_GROUP_CURSOR MAKEINTRESOURCE((ULONG_PTR)RT_CURSOR + DIFFERENCE)
+//#define RT_GROUP_ICON   MAKEINTRESOURCE((ULONG_PTR)RT_ICON + DIFFERENCE)
 #define RT_VERSION      MAKEINTRESOURCE(16)
 #define RT_DLGINCLUDE   MAKEINTRESOURCE(17)
 #if(WINVER >= 0x0400)

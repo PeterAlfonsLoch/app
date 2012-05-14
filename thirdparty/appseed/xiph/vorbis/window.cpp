@@ -17,7 +17,7 @@
 #include "framework.h"
 
 
-
+BEGIN_EXTERN_C
 
 static const float vwin64[32] = {
   0.0009460463F, 0.0085006468F, 0.0235352254F, 0.0458950567F,
@@ -2132,3 +2132,9 @@ void _vorbis_apply_window(float *d,int *winno,long *blocksizes,
       d[i]=0.f;
   }
 }
+
+END_EXTERN_C
+
+
+
+

@@ -19,6 +19,8 @@
    substructures) */
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 
 #define GENERAL_VENDOR_STRING "Xiph.Org libVorbis 1.3.2"
 #define ENCODE_VENDOR_STRING "Xiph.Org libVorbis I 20101101 (Schaufenugget)"
@@ -651,3 +653,14 @@ double vorbis_granule_time(vorbis_dsp_state *v,ogg_int64_t granulepos){
 const char *vorbis_version_string(void){
   return GENERAL_VENDOR_STRING;
 }
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

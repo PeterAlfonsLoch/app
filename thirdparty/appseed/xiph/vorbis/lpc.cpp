@@ -44,6 +44,8 @@ Carsten Bormann
 *********************************************************************/
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 
 /* Autocorrelation LPC coeff generation algorithm invented by
    N. Levinson in 1947, modified by J. Durbin in 1959. */
@@ -151,3 +153,10 @@ void vorbis_lpc_predict(float *coeff,float *prime,int m,
     data[i]=work[o]=y;
   }
 }
+
+
+END_EXTERN_C
+
+
+
+

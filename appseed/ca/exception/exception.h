@@ -76,8 +76,8 @@ namespace datetime
 
 
 // ::datetime::time_span diagnostics and serialization
-CLASS_DECL_ca dump_context& operator<<(dump_context & dumpcontext, const ::datetime::time_span & dateSpanSrc);
-CLASS_DECL_ca dump_context& operator<<(dump_context & dumpcontext, const ::datetime::time & dateSrc);
+CLASS_DECL_ca dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time_span & dateSpanSrc);
+CLASS_DECL_ca dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time & dateSrc);
 
 
 #if defined(_DEBUG) && !defined(___NO_DEBUG_CRT)
@@ -225,7 +225,7 @@ CLASS_DECL_ca void __dump(const ::radix::object* pOb); // dump an object from Co
 #ifndef TRACE
 #define TRACE ::gen::trace_add_file_and_line(m_papp, __FILE__, __LINE__)
 #define APPTRACE(papp) ::gen::trace_add_file_and_line(papp, __FILE__, __LINE__)
-#define TRACE2 TRACE
+//#define TRACE2 TRACE
 #endif
 #define THIS_FILE          __FILE__
 #define VERIFY(f)          ASSERT(f)
@@ -279,7 +279,7 @@ inline void c_cdecl __trace(...) { }
 #else
 #define ASSERT(f)
 #define AFXASSUME(cond)
-#define ASSERT_VALID(cond)
+#define ASSERT_VALID(cond) __noop;
 #endif
 
 // Debug ASSERTs then throws. Retail throws if condition not met

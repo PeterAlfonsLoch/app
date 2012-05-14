@@ -16,6 +16,8 @@
  ********************************************************************/
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 
 /* decides between modes, dispatches to the appropriate mapping. */
 int vorbis_analysis(vorbis_block *vb, ogg_packet *op){
@@ -103,7 +105,7 @@ void _analysis_output(char *base,int i,float *v,int n,int bark,int dB,
 
 
 
-
+END_EXTERN_C
 
 
 

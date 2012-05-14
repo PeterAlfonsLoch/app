@@ -64,19 +64,19 @@ inline BOOL __is_valid_address(const void * p, size_t nBytes, BOOL bReadWrite = 
    return (p != NULL);
 }
 
-template<typename T>
+/*template<typename T>
 inline void __assert_valid_object(const T *pOb)
 {
    ASSERT(pOb);
    ASSERT(__is_valid_address(pOb, sizeof(T)));
    if(pOb)
       pOb->assert_valid();
-}
-#ifdef _DEBUG
+}*/
+/*#ifdef _DEBUG
 #define ASSERT_VALID(x) __assert_valid_object(x)
 #else
 #define ASSERT_VALID(x) __noop;
-#endif
+#endif*/
 
 // COM Sync Classes
 /*class CComCriticalSection

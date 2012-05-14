@@ -16,6 +16,8 @@
  ********************************************************************/
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 
 /* compute bitrate tracking setup  */
 void vorbis_bitrate_init(vorbis_info *vi,bitrate_manager_state *bm){
@@ -243,3 +245,14 @@ int vorbis_bitrate_flushpacket(vorbis_dsp_state *vd,ogg_packet *op){
   bm->vb=0;
   return(1);
 }
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

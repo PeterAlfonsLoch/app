@@ -19,6 +19,8 @@
  ********************************************************************/
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 
 static int ilog2(unsigned int v){
   int ret=0;
@@ -1024,7 +1026,9 @@ int vorbis_synthesis_lapout(vorbis_dsp_state *v,float ***pcm){
 
 }
 
-float *vorbis_window(vorbis_dsp_state *v,int W){
+extern float * vorbis_window(vorbis_dsp_state *v,int W)
+{
+
   vorbis_info *vi=v->vi;
   codec_setup_info *ci=vi->codec_setup;
   int hs=ci->halfrate_flag;
@@ -1032,4 +1036,16 @@ float *vorbis_window(vorbis_dsp_state *v,int W){
 
   if(b->window[W]-1<0)return NULL;
   return _vorbis_window_get(b->window[W]-hs);
+
 }
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

@@ -123,6 +123,9 @@ namespace ca2
                strUrl += "&key=name";
                m_pdocAuth->get_html_data()->m_propertyset["project"] = System.http().get(strUrl);
 
+               strUrl = "ext://https://"+ m_loginthread.m_strFontopusServer + "/license?id="+ m_strLicense + "&lang=" + System.get_locale() + "&sessid=" + ApplicationUser.get_sessid(m_loginthread.m_strFontopusServer);
+               m_pdocAuth->get_html_data()->m_propertyset["contribute_link"] = strUrl;
+
             }
 
             strPath = Application.dir().matter(m_strForm);

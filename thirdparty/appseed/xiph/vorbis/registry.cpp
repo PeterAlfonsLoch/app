@@ -16,6 +16,8 @@
  ********************************************************************/
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 /* seems like major overkill now; the backend numbers will grow into
    the infrastructure soon enough */
 
@@ -40,3 +42,12 @@ const vorbis_func_residue   *const _residue_P[]={
 const vorbis_func_mapping   *const _mapping_P[]={
   &mapping0_exportbundle,
 };
+
+
+
+
+END_EXTERN_C
+
+
+
+

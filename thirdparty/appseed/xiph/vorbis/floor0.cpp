@@ -16,6 +16,8 @@
  ********************************************************************/
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 
 typedef struct {
   int ln;
@@ -205,3 +207,14 @@ const vorbis_func_floor floor0_exportbundle={
   NULL,&floor0_unpack,&floor0_look,&floor0_free_info,
   &floor0_free_look,&floor0_inverse1,&floor0_inverse2
 };
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

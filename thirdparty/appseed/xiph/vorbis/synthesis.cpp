@@ -16,6 +16,8 @@
  ********************************************************************/
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 
 int vorbis_synthesis(vorbis_block *vb,ogg_packet *op){
   vorbis_dsp_state     *vd= vb ? vb->vd : 0;
@@ -176,3 +178,13 @@ int vorbis_synthesis_halfrate_p(vorbis_info *vi){
   codec_setup_info     *ci=vi->codec_setup;
   return ci->halfrate_flag;
 }
+
+
+
+
+
+END_EXTERN_C
+
+
+
+

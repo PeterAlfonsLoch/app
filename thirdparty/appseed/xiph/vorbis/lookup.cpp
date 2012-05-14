@@ -16,6 +16,7 @@
  ********************************************************************/
 #include "framework.h"
 
+BEGIN_EXTERN_C
 
 #ifdef FLOAT_LOOKUP
 
@@ -88,3 +89,14 @@ long vorbis_coslook_i(long a){
 }
 
 #endif
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

@@ -21,6 +21,8 @@
    it's slow. */
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 
 //#define TRAIN_RES 1
 //#define TRAIN_RESAUX 1
@@ -878,3 +880,13 @@ const vorbis_func_residue residue2_exportbundle={
   &res2_forward,
   &res2_inverse
 };
+
+
+
+
+
+END_EXTERN_C
+
+
+
+

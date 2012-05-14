@@ -16,6 +16,8 @@
  ********************************************************************/
 #include "framework.h"
 
+BEGIN_EXTERN_C
+
 
 #define floor1_rangedB 140 /* floor 1 fixed at -140dB to 0dB range */
 
@@ -1086,3 +1088,14 @@ const vorbis_func_floor floor1_exportbundle={
   &floor1_pack,&floor1_unpack,&floor1_look,&floor1_free_info,
   &floor1_free_look,&floor1_inverse1,&floor1_inverse2
 };
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

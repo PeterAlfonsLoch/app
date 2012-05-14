@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -79,4 +80,6 @@
 
 
 
-
+BEGIN_EXTERN_C
+extern float * vorbis_window(vorbis_dsp_state *v,int W);
+END_EXTERN_C

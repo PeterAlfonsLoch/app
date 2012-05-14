@@ -495,12 +495,12 @@ static int _bisect_forward_serialno(OggVorbis_File *vf,
     if(vf->serialnos)_ogg_free(vf->serialnos);
     if(vf->dataoffsets)_ogg_free(vf->dataoffsets);
 
-    vf->offsets=(ogg_int64_t *) _ogg_malloc((vf->links+1)*sizeof(*vf->offsets));
-    vf->vi=(vorbis_info *) _ogg_realloc(vf->vi,vf->links*sizeof(*vf->vi));
-    vf->vc=(vorbis_comment *) _ogg_realloc(vf->vc,vf->links*sizeof(*vf->vc));
-    vf->serialnos=(long *) _ogg_malloc(vf->links*sizeof(*vf->serialnos));
-    vf->dataoffsets=(ogg_int64_t)_ogg_malloc(vf->links*sizeof(*vf->dataoffsets));
-    vf->pcmlengths=(ogg_int64_t)_ogg_malloc(vf->links*2*sizeof(*vf->pcmlengths));
+    vf->offsets = (ogg_int64_t *) _ogg_malloc((vf->links+1)*sizeof(*vf->offsets));
+    vf->vi = (vorbis_info *) _ogg_realloc(vf->vi,vf->links*sizeof(*vf->vi));
+    vf->vc = (vorbis_comment *) _ogg_realloc(vf->vc,vf->links*sizeof(*vf->vc));
+    vf->serialnos = (long *) _ogg_malloc(vf->links*sizeof(*vf->serialnos));
+    vf->dataoffsets = (ogg_int64_t *) _ogg_malloc(vf->links*sizeof(*vf->dataoffsets));
+    vf->pcmlengths = (ogg_int64_t *) _ogg_malloc(vf->links*2*sizeof(*vf->pcmlengths));
 
     vf->offsets[m+1]=end;
     vf->offsets[m]=begin;
@@ -2044,7 +2044,7 @@ long ov_read_float(OggVorbis_File *vf,float ***pcm_channels,int length,
   }
 }
 
-extern float *vorbis_window(vorbis_dsp_state *v,int W);
+//extern float *vorbis_window(vorbis_dsp_state *v,int W);
 
 static void _ov_splice(float **pcm,float **lappcm,
                        int n1, int n2,
@@ -2187,7 +2187,7 @@ int ov_crosslap(OggVorbis_File *vf1, OggVorbis_File *vf2){
   w2=vorbis_window(&vf2->vd,0);
 
   for(i=0;i<vi1->channels;i++)
-    lappcm[i]=(float **) alloca(sizeof(**lappcm)*n1);
+    lappcm[i] = (float *) alloca(sizeof(**lappcm)*n1);
 
   _ov_getlap(vf1,vi1,&vf1->vd,lappcm,n1);
 
