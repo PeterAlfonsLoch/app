@@ -171,9 +171,6 @@
     <Filter Include="Source Files\collection">
       <UniqueIdentifier>{26ded645-d5d2-47ee-8763-f9e07d83a489}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\template">
-      <UniqueIdentifier>{94b1d30d-6f85-47f2-b8ce-82499e5652e9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\visual">
       <UniqueIdentifier>{8b85352a-3ad2-49e0-a183-c82962c08bf7}</UniqueIdentifier>
     </Filter>
@@ -1760,36 +1757,6 @@
     <ClInclude Include="collection\unique_array.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
-    <ClInclude Include="template\_template.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template_back_insert_iterator.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template_c_number.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template_compare.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template_equals.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template_hash.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template_insert_iterator.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template_iterator.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template_std_pair.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
     <ClInclude Include="collection\numeric_array.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
@@ -2804,38 +2771,14 @@
     <ClInclude Include="gen\gen_composite.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
-    <ClInclude Include="template\template_time.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_time.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_value.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="template\template_definition.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
     <ClInclude Include="gen\gen_scoped_ptr.h">
       <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template_core.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template_checked.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template_base.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template_debug.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template_trace.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template_trace_module_manager.h">
-      <Filter>Header Files\template</Filter>
     </ClInclude>
     <ClInclude Include="ca2\os_implementation.h">
       <Filter>Header Files\windows</Filter>
