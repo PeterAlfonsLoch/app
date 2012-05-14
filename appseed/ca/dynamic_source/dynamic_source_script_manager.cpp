@@ -67,6 +67,9 @@ namespace dynamic_source
 
       m_iTunnelPluginCount       = 0;
 
+
+      m_strSeedCarlosGustavoCecynLundgrenCarlos = "system/seed_carlosgustavocecynlundgrencarlos";
+
    }
 
    script_manager::~script_manager(void)
@@ -130,12 +133,12 @@ namespace dynamic_source
    void script_manager::handle(::dynamic_source::httpd_socket * pnetnodesocket)
    {
       string strHead;
-      script_instance * pinstance = get("system/seed_carlosgustavocecynlundgrencarlos");
+      script_instance * pinstance = get(m_strSeedCarlosGustavoCecynLundgrenCarlos);
       pnetnodesocket->m_pinstanceCurrent = pinstance;
       if(pinstance != NULL)
       {
          pinstance->m_strDebugRequestUri = pnetnodesocket->inattr("request_uri");
-         pinstance->m_strDebugThisScript = "system/seed_carlosgustavocecynlundgrencarlos";
+         pinstance->m_strDebugThisScript = m_strSeedCarlosGustavoCecynLundgrenCarlos;
          pinstance->initialize(pinstance, NULL, pnetnodesocket, this);
          pinstance->dinit();
          if(pinstance->m_iDebug > 0)
@@ -720,8 +723,6 @@ namespace dynamic_source
    void script_manager::wait_link_out(const char * pszServer, ::sockets::link_in_socket * pinsocket)
    {
       
-      ::collection::string_map < ::sockets::link_out_socket * >::pair * ppair;
-
       while(true)
       {
          

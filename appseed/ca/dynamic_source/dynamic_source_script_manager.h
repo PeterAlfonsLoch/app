@@ -140,7 +140,7 @@ namespace dynamic_source
       string_to_string_map                      m_tagname;
 
 
-      
+      string                                    m_strSeedCarlosGustavoCecynLundgrenCarlos;
 
 
       script_manager(::ca::application * papp);
