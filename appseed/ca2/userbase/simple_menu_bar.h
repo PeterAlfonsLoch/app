@@ -33,18 +33,18 @@ public:
    using ::simple_toolbar::create;
    BOOL create(::user::interaction* pParentWnd,
       DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
-      UINT nID = AFX_IDW_TOOLBAR);
+      UINT nID = __IDW_TOOLBAR);
    using ::simple_toolbar::CreateEx;
 #ifdef WINDOWS
    BOOL CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = TBSTYLE_FLAT,
       DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
       rect rcBorders = rect(0, 0, 0, 0),
-      UINT nID = AFX_IDW_TOOLBAR);
+      UINT nID = __IDW_TOOLBAR);
 #else
    BOOL CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = 0,
       DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
       rect rcBorders = rect(0, 0, 0, 0),
-      UINT nID = AFX_IDW_TOOLBAR);
+      UINT nID = __IDW_TOOLBAR);
 #endif
 
 

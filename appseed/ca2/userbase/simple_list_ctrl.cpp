@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 simple_list_control::simple_list_control(::ca::application * papp) :
    ca(papp),

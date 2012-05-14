@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 void debug_xml_array()
 {

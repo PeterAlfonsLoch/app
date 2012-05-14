@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #define TIMER_HOVER 321654
 
@@ -104,7 +104,7 @@ BOOL simple_toolbar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle
 
    // save the style
    m_dwStyle = (dwStyle & CBRS_ALL);
-   if (nID == AFX_IDW_TOOLBAR)
+   if (nID == __IDW_TOOLBAR)
       m_dwStyle |= CBRS_HIDE_INPLACE;
 
    dwStyle &= ~CBRS_ALL;
@@ -113,12 +113,6 @@ BOOL simple_toolbar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle
 
    m_dwCtrlStyle = dwCtrlStyle & (0xffff0000 | TBSTYLE_FLAT);
 
-   // initialize common controls
-   //VERIFY(AfxDeferRegisterClass(AFX_WNDCOMMCTL_BAR_REG));
-   //_AfxGetComCtlVersion();
-   //ASSERT(_afxComCtlVersion != -1);
-   //_AfxGetDropDownWidth();
-   //ASSERT(_afxDropDownWidth != -1);
 
    // create the HWND
    class rect rect;
@@ -409,8 +403,8 @@ size simple_toolbar::CalcSize(int nCount)
       //  only do the 100% calculation specifically for IE4.
       simple_toolbar_item & item = m_itema[i];
       int cySep = item.m_iImage;
-      //      ASSERT(_afxComCtlVersion != -1);
-      /*      if (!(GetStyle() & TBSTYLE_FLAT) && _afxComCtlVersion != VERSION_IE4)
+      //      ASSERT(gen_ComCtlVersion != -1);
+      /*      if (!(GetStyle() & TBSTYLE_FLAT) && gen_ComCtlVersion != VERSION_IE4)
       cySep = cySep * 2 / 3;*/
       if (item.m_spdib.is_set())
       {
@@ -455,8 +449,8 @@ size simple_toolbar::CalcSize(int nCount)
          (dwExtendedStyle & TBSTYLE_EX_DRAWDDARROWS))
          {
          // add size of drop down
-         ASSERT(_afxDropDownWidth != -1);
-         cx += _afxDropDownWidth;
+         ASSERT(gen_DropDownWidth != -1);
+         cx += gen_DropDownWidth;
          }*/
          sizeResult.cx = max(cur.x + cx, sizeResult.cx);
          //sizeResult.cy = max(cur.y + m_sizeButton.cy, sizeResult.cy);
@@ -789,7 +783,7 @@ ASSERT_VALID(this);
 ASSERT(lpszResourceName != NULL);
 
 // determine location of the bitmap in resource fork
-HINSTANCE hInst = AfxFindResourceHandle(lpszResourceName, RT_TOOLBAR);
+HINSTANCE hInst = gen::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
 HRSRC hRsrc = ::FindResource(hInst, lpszResourceName, RT_TOOLBAR);
 if (hRsrc == NULL)
 return FALSE;
@@ -1021,7 +1015,7 @@ bool simple_toolbar::_001GetItemRect(int iItem, LPRECT lprect, EElement eelement
 ASSERT_VALID(this);
 ASSERT(nIDCount >= 1);  // must be at least one of them
 ASSERT(lpIDArray == NULL ||
-fx_is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
+__is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
 
 // delete all existing buttons
 int nCount = (int)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
@@ -1043,7 +1037,7 @@ if ((button.m_id = *lpIDArray++) == 0)
 // separator
 button.m_fsStyle = TBSTYLE_SEP;
 // width of separator includes 8 pixel overlap
-//            ASSERT(_afxComCtlVersion != -1);
+//            ASSERT(gen_ComCtlVersion != -1);
 if (GetStyle() & TBSTYLE_FLAT)
 button.iBitmap = 6;
 else
@@ -1115,14 +1109,14 @@ ASSERT_VALID(this);
 ASSERT(lpszResourceName != NULL);
 
 // determine location of the bitmap in resource fork
-HINSTANCE hInstImageWell = AfxFindResourceHandle(lpszResourceName, RT_BITMAP);
+HINSTANCE hInstImageWell = gen::FindResourceHandle(lpszResourceName, RT_BITMAP);
 HRSRC hRsrcImageWell = ::FindResource(hInstImageWell, lpszResourceName, RT_BITMAP);
 if (hRsrcImageWell == NULL)
 return FALSE;
 
 // load the bitmap
 HBITMAP hbmImageWell;
-//   hbmImageWell = AfxLoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
+//   hbmImageWell = gen::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
 ::ca::graphics * pdc = GetDC();
 hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
 ReleaseDC(pdc);
@@ -1793,7 +1787,7 @@ void  simple_toolbar::SizeToolBar(int nCount, int nLength, BOOL bVert)
    }
 }
 
-struct _AFX_CONTROLPOS
+struct ___CONTROLPOS
 {
    int nIndex;
    string strId;
@@ -1847,7 +1841,7 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
 
       if (dwMode & LM_COMMIT)
       {
-         _AFX_CONTROLPOS* pControl = NULL;
+         ___CONTROLPOS* pControl = NULL;
          int nControlCount = 0;
          BOOL bIsDelayed = m_bDelayedButtonLayout;
          m_bDelayedButtonLayout = FALSE;
@@ -1859,7 +1853,7 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
 
          if (nControlCount > 0)
          {
-            pControl = new _AFX_CONTROLPOS[nControlCount];
+            pControl = new ___CONTROLPOS[nControlCount];
             nControlCount = 0;
 
             for(int i = 0; i < nCount; i++)
@@ -1987,8 +1981,8 @@ for (int i = 0; i < nCount; i++)
 //  This is actually a bug which should be fixed in IE 4.01, so we
 //  only do the 100% calculation specifically for IE4.
 int cySep = m_itema[i].iBitmap;
-ASSERT(_afxComCtlVersion != -1);
-if (!(GetStyle() & TBSTYLE_FLAT) && _afxComCtlVersion != VERSION_IE4)
+ASSERT(gen_ComCtlVersion != -1);
+if (!(GetStyle() & TBSTYLE_FLAT) && gen_ComCtlVersion != VERSION_IE4)
 cySep = cySep * 2 / 3;
 
 if (m_itema[i].fsState & TBSTATE_HIDDEN)
@@ -2010,8 +2004,8 @@ if ((m_itema[i].m_fsStyle & TBSTYLE_DROPDOWN) &&
 (dwExtendedStyle & TBSTYLE_EX_DRAWDDARROWS))
 {
 // add size of drop down
-//            ASSERT(_afxDropDownWidth != -1);
-//            cx += _afxDropDownWidth;
+//            ASSERT(gen_DropDownWidth != -1);
+//            cx += gen_DropDownWidth;
 }
 sizeResult.cx = max(cur.x + cx, sizeResult.cx);
 sizeResult.cy = max(cur.y + m_sizeButton.cy, sizeResult.cy);

@@ -7,7 +7,7 @@ Contact : nish@voidnish.com
 // ShellTrayInfoView.cpp : implementation of the notification_area class
 //
 
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace userbase
 {

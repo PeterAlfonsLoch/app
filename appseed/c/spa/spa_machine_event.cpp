@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 //#ifndef CCVOTAGUS_CA2_SPA
 //#define PATH_SEPARATOR "\\"

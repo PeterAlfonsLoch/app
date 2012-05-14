@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 simple_tree_view::simple_tree_view(::ca::application * papp) :

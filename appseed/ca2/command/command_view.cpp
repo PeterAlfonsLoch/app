@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace command
@@ -225,7 +225,7 @@ namespace command
 
    void view::GetDateTime(string & strDateTime)
    {
-      class time time = time::get_current_time();
+      ::datetime::time time = ::datetime::time::get_current_time();
       string strDate;
       string strWeekDay;
       string strTime;

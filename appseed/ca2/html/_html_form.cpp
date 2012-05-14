@@ -1,4 +1,4 @@
-﻿#include "StdAfx.h"
+﻿#include "framework.h"
 
 
 html_form::html_form(::ca::application * papp) :

@@ -1,5 +1,5 @@
 
-#include "StdAfx.h"
+#include "framework.h"
 
 
 BaseButtonControl::BaseButtonControl(::ca::application * papp) :
@@ -37,7 +37,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
    bool bItemHover;
    bool bSubItemHover;
 
-   ::user::draw_context * pdrawcontext = pdc->::_template::simple_chain < ::user::draw_context >::get_last();
+   ::user::draw_context * pdrawcontext = pdc->::gen::simple_chain < ::user::draw_context >::get_last();
 
    if(pdrawcontext != NULL)
    {

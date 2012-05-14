@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 simple_exception::simple_exception()
@@ -31,7 +31,7 @@ void simple_exception::InitString()
 {
    m_bInitialized = TRUE;
    throw not_implemented_exception();
-//   m_bLoaded = (AfxLoadString(m_nResourceID,
+//   m_bLoaded = (gen::LoadString(m_nResourceID,
 //      m_szMessage, _countof(m_szMessage)) != 0);
 
 }

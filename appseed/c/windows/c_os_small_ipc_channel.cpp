@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 extern BOOL (WINAPI * g_pfnChangeWindowMessageFilter)(
     _In_ UINT message,

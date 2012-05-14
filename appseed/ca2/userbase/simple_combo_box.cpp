@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 simple_combo_box::simple_combo_box()
@@ -11,9 +11,9 @@ simple_combo_box::~simple_combo_box()
 
 
  // BEGIN_MESSAGE_MAP(simple_combo_box, ::userbase::combo_box)
-   //{{AFX_MSG_MAP(simple_combo_box)
+   //{{__MSG_MAP(simple_combo_box)
 // xxx   ON_WM_ERASEBKGND()
-   //}}AFX_MSG_MAP
+   //}}__MSG_MAP
  // END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -23,14 +23,14 @@ void simple_combo_box::_001OnDraw(::ca::graphics *pdc)
 {
    ::userbase::combo_box::_001OnDraw(pdc);
 /*   BOOL bWin4 = afxData.bWin4;
-   _AfxFillPSOnStack();
+   _gen::FillPSOnStack();
    ::CallWindowProc(
       *GetSuperWndProcAddr(),
       get_handle(), (bWin4 ? WM_PRINT : WM_PAINT),
       (WPARAM)(pdc->get_handle1()),
       (LPARAM)(bWin4 ? PRF_CHILDREN | PRF_CLIENT : 0));*/
 //   BOOL bWin4 = afxData.bWin4;
-//   _AfxFillPSOnStack();
+//   _gen::FillPSOnStack();
 /* trans   ::CallWindowProc(
       *GetSuperWndProcAddr(),
       //xxxm_hWnd, (bWin4 ? WM_PRINT : WM_PAINT),

@@ -1,13 +1,5 @@
 #pragma once
 
-#include "gen/gen_base_enum.h"
-#include "gen/gen_variable_strict_compare.h"
-#include "gen/gen_holder.h"
-#include "gen/gen_raw_pointer.h"
-#include "gen/gen_full_pointer.h"
-#include "template/template_time.h"
-#include "ex1/ex1_byte_serializable.h"
-#include "collection/stringa.h"
 
 class stringa;
 
@@ -111,7 +103,7 @@ public:
    var(int * pi);
    var(__int64 * pi);
    var(uint64_t * pui);
-   var(const class ::time & time);
+   var(const ::datetime::time & time);
    var(const FILETIME & time);
    var(const SYSTEMTIME & time);
    var(string * pstr);
@@ -234,9 +226,9 @@ public:
    //operator string & ();
    //operator id &();
    operator const char * () const;
-   //operator ::CFileTime & ();
-   operator ::CFileTime () const;
-   operator class ::time() const;
+   //operator ::file_time & ();
+   operator ::datetime::file_time () const;
+   operator ::datetime::time() const;
    operator bool()
    {
       return m_etype == type_bool && m_b;
@@ -253,7 +245,7 @@ public:
    var & operator = (__int64 * pi);
    var & operator = (uint64_t i);
    var & operator = (uint64_t * pi);
-   var & operator = (const class ::time & time);
+   var & operator = (const ::datetime::time & time);
    var & operator = (const FILETIME & time);
    var & operator = (const SYSTEMTIME & time);
 #ifdef _WINDOWS
@@ -508,7 +500,7 @@ public:
    void PASCAL operator delete(void * p, void * pPlace);
 #endif
 
-#if defined(_DEBUG) && !defined(_AFX_NO_DEBUG_CRT)  || defined(LINUX)
+#if defined(_DEBUG) && !defined(___NO_DEBUG_CRT)  || defined(LINUX)
    // for file name/line number tracking using DEBUG_NEW
    void * PASCAL operator new(size_t nSize, const char * lpszFileName, int nLine);
 #if _MSC_VER >= 1200  || defined(LINUX)

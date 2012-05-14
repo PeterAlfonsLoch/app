@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 int spaboot_registry_register(const char * lpszFile)
 {

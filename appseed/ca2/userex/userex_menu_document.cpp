@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 menu_document::menu_document(::ca::application * papp) :

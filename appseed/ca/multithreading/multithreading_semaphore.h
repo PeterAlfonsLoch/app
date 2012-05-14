@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca semaphore :
-   virtual public base_sync_object
+   virtual public sync_object
 {
 public:
 

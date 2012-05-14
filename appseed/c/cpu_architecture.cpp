@@ -1,7 +1,7 @@
 /* CpuArch.c -- CPU specific code
 2010-10-26: Igor Pavlov : Public domain */
 // from 7-zip on 2010-12-26 Sunday, just after Christmas evening at Music Room
-#include "StdAfx.h"
+#include "framework.h"
 
 #ifdef WINDOWS
 #include <intrin.h>

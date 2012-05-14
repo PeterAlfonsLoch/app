@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 font_central::font_central(::ca::application * papp) :
    ca(papp),

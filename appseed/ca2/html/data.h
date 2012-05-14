@@ -120,7 +120,7 @@ namespace html
 
       int get_image_index(const char * pszUrl);
       void load_image_asynch(image * pimage);
-      static UINT AFX_CDECL LoadImageProc(LPVOID lpParam);
+      static UINT c_cdecl LoadImageProc(LPVOID lpParam);
       bool load_image(image * pimage);
 
       void on_image_loaded(image * pimage);

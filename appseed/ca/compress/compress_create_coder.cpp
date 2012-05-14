@@ -1,6 +1,6 @@
 // CreateCoder.cpp
 // from 7-zip on 2012-12-22
-#include "StdAfx.h"
+#include "framework.h"
 
 /*#include "../../Windows/Defs.h"
 #include "../../Windows/PropVariant.h"

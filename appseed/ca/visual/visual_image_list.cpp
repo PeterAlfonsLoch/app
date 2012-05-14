@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "include/FreeImage.h"
 
 image_list::image_list(::ca::application * papp) :

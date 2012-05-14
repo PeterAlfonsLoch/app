@@ -23,7 +23,7 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include "StdAfx.h"
+#include "framework.h"
 
 #ifdef _DEBUG
 #	ifdef _MSC_VER

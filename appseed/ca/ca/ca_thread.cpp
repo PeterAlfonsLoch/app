@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace ca
 {
@@ -39,7 +39,7 @@ namespace ca
       CommonConstruct();
    }
 
-   void thread::construct(AFX_THREADPROC pfnThreadProc, LPVOID pParam)
+   void thread::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
    {
       UNREFERENCED_PARAMETER(pfnThreadProc);
       UNREFERENCED_PARAMETER(pParam);
@@ -62,7 +62,7 @@ namespace ca
       //      m_hThread = NULL;
       //      m_nThreadID = 0;
 
-      /*      _AFX_THREAD_STATE* pState = AfxGetThreadState();
+      /*      ___THREAD_STATE* pState = __get_thread_state();
       // initialize message pump
       #ifdef _DEBUG
       pState->m_nDisablePumpCount = 0;
@@ -485,7 +485,7 @@ namespace win
       pmessage->m_uiMessage = uiMessage;
       pmessage->m_wparam = wparam;
       pmessage->m_lparam = lparam;
-      AfxBeginThread(puie->get_app(), &ThreadProcSendMessage, pmessage, nPriority);
+      __begin_thread(puie->get_app(), &ThreadProcSendMessage, pmessage, nPriority);
    }
 
 

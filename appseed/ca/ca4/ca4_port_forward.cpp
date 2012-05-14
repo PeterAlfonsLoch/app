@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace ca4
@@ -104,7 +104,7 @@ namespace ca4
    // To use this function, your program must be able to receive (and process)
    // a registered window message posted from the thread when the thread is finished.
    // Thus, you must pass in a HWND of one of your windows that will receive the message.  Typically,
-   // you would choose your CMainFrame window (use the ::AfxGetMainWnd() function).  However, you might
+   // you would choose your CMainFrame window (use the ::__get_main_window() function).  However, you might
    // choose a different window, such as your CView-derived window for SDI applications
    //
    // The window that you choose must be able to process the message, which is a UINT named

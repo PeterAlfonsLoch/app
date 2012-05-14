@@ -1,7 +1,7 @@
-﻿#include "StdAfx.h"
+﻿#include "framework.h"
 
 //   // BEGIN_MESSAGE_MAP(html_view, ::userbase::view)
-   //{{AFX_MSG_MAP(html_view)
+   //{{__MSG_MAP(html_view)
 /*
    ON_WM_DESTROY()
    ON_WM_SIZE()
@@ -10,7 +10,7 @@
    ON_WM_CONTEXTMENU()
    ON_WM_SETCURSOR()
    ON_WM_ERASEBKGND()
-   //}}AFX_MSG_MAP
+   //}}__MSG_MAP
    // Standard printing commands
    ON_MESSAGE(WM_USER + 177, OnTabClick)
    ON_MESSAGE(WM_APP + 119, OnWavePlayerEvent)

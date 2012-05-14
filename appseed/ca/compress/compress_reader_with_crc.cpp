@@ -1,7 +1,7 @@
 // InStreamWithCRC.cpp
 // at Sector8J from 7-zip on afternoon of 14/01/2001 - Friday
 
-#include "StdAfx.h"
+#include "framework.h"
 
 /*#include "InStreamWithCRC.h"*/
 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
 
@@ -223,7 +223,7 @@ namespace userbase
       if (GetKeyState(VK_LBUTTON) < 0)
          return;
 
-   //   AFX_MODULE_THREAD_STATE* pModuleThreadState = AfxGetModuleThreadState();
+   //   __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
 
    }
 
@@ -231,13 +231,13 @@ namespace userbase
    {
       ::user::interaction* pOwner = GetOwner();
 
-   //   _AFX_THREAD_STATE* pModuleThreadState = AfxGetThreadState();
+   //   ___THREAD_STATE* pModuleThreadState = __get_thread_state();
       if (nHit == -1)
       {
          // handle reset case
          if (m_nStateFlags & statusSet)
          {
-/*            pOwner->SendMessage(WM_POPMESSAGESTRING, AFX_IDS_IDLEMESSAGE);*/
+/*            pOwner->SendMessage(WM_POPMESSAGESTRING, __IDS_IDLEMESSAGE);*/
             m_nStateFlags &= ~statusSet;
             return TRUE;
          }
@@ -280,14 +280,14 @@ namespace userbase
          ((message >= WM_MOUSEFIRST && message <= WM_MOUSELAST) ||
           (message >= WM_NCMOUSEFIRST && message <= WM_NCMOUSELAST)))
       {
-   //      AFX_MODULE_THREAD_STATE* pModuleThreadState = AfxGetModuleThreadState();
+   //      __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
 
          // gather information about current mouse position
          point point;
          System.get_cursor_pos(&point);
          ScreenToClient(&point);
          TOOLINFO ti; memset(&ti, 0, sizeof(TOOLINFO));
-         ti.cbSize = sizeof(AFX_OLDTOOLINFO);
+         ti.cbSize = sizeof(__OLDTOOLINFO);
       }
 
       // don't translate dialog messages when in Shift+F1 help mode
@@ -430,7 +430,7 @@ namespace userbase
    void control_bar::_001OnDestroy(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-   //   _AFX_THREAD_STATE* pModuleThreadState = AfxGetThreadState();
+   //   ___THREAD_STATE* pModuleThreadState = __get_thread_state();
 
       if (m_pDockSite != NULL)
       {
@@ -645,7 +645,7 @@ namespace userbase
       _001OnIdleUpdateCmdUI(&base);
    }
 
-   DWORD control_bar::RecalcDelayShow(AFX_SIZEPARENTPARAMS* lpLayout)
+   DWORD control_bar::RecalcDelayShow(__SIZEPARENTPARAMS* lpLayout)
    {
       ASSERT(lpLayout != NULL);
 
@@ -692,7 +692,7 @@ namespace userbase
    void control_bar::_001OnSizeParent(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::base, pbase, pobj)
-      AFX_SIZEPARENTPARAMS* lpLayout = (AFX_SIZEPARENTPARAMS*)pbase->m_lparam;
+      __SIZEPARENTPARAMS* lpLayout = (__SIZEPARENTPARAMS*)pbase->m_lparam;
       DWORD dwStyle = RecalcDelayShow(lpLayout);
 
       if ((dwStyle & WS_VISIBLE) && (dwStyle & CBRS_ALIGN_ANY) != 0)
@@ -751,7 +751,7 @@ namespace userbase
 
          // only resize the ::ca::window if doing layout and not just rect query
          if (lpLayout->hDWP != NULL)
-            AfxRepositionWindow(lpLayout, this, &rect);
+            __reposition_window(lpLayout, this, &rect);
       }
       pbase->set_lresult(0);
    }

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "SimpleFileListView.h"
 #include "SimpleFolderTreeView.h"
 #include "SimplePreview.h"

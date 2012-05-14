@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 #if defined(LINUX) || defined(MACOS)

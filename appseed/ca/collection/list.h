@@ -163,25 +163,25 @@ inline bool list<TYPE, ARG_TYPE>::has_elements(count countMinimum) const
    template<class TYPE, class ARG_TYPE>
    inline TYPE& list<TYPE, ARG_TYPE>::get_next(POSITION& rPosition) // return *position++
       { node* pNode = (node*) rPosition;
-         ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+         ASSERT(__is_valid_address(pNode, sizeof(node)));
          rPosition = (POSITION) pNode->pNext;
          return pNode->data; }
    template<class TYPE, class ARG_TYPE>
    inline const TYPE& list<TYPE, ARG_TYPE>::get_next(POSITION& rPosition) const // return *position++
       { node* pNode = (node*) rPosition;
-         ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+         ASSERT(__is_valid_address(pNode, sizeof(node)));
          rPosition = (POSITION) pNode->pNext;
          return pNode->data; }
    template<class TYPE, class ARG_TYPE>
    inline TYPE& list<TYPE, ARG_TYPE>::get_previous(POSITION& rPosition) // return *position--
       { node* pNode = (node*) rPosition;
-         ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+         ASSERT(__is_valid_address(pNode, sizeof(node)));
          rPosition = (POSITION) pNode->pPrev;
          return pNode->data; }
    template<class TYPE, class ARG_TYPE>
    inline const TYPE& list<TYPE, ARG_TYPE>::get_previous(POSITION& rPosition) const // return *position--
       { node* pNode = (node*) rPosition;
-         ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+         ASSERT(__is_valid_address(pNode, sizeof(node)));
          rPosition = (POSITION) pNode->pPrev;
          return pNode->data; }
 
@@ -207,17 +207,17 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    template<class TYPE, class ARG_TYPE>
    inline TYPE& list<TYPE, ARG_TYPE>::get_at(POSITION position)
       { node* pNode = (node*) position;
-         ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+         ASSERT(__is_valid_address(pNode, sizeof(node)));
          return pNode->data; }
    template<class TYPE, class ARG_TYPE>
    inline const TYPE& list<TYPE, ARG_TYPE>::get_at(POSITION position) const
       { node* pNode = (node*) position;
-         ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+         ASSERT(__is_valid_address(pNode, sizeof(node)));
          return pNode->data; }
    template<class TYPE, class ARG_TYPE>
    inline void list<TYPE, ARG_TYPE>::set_at(POSITION pos, ARG_TYPE newElement)
       { node* pNode = (node*) pos;
-         ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+         ASSERT(__is_valid_address(pNode, sizeof(node)));
          pNode->data = newElement; }
 
    template<class TYPE, class ARG_TYPE>
@@ -415,7 +415,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    {
       ASSERT_VALID(this);
       ASSERT(m_pnodeHead != NULL);  // don't call on is_empty list !!!
-      ASSERT(fx_is_valid_address(m_pnodeHead, sizeof(node)));
+      ASSERT(__is_valid_address(m_pnodeHead, sizeof(node)));
 
       node* pOldNode = m_pnodeHead;
       TYPE returnValue = pOldNode->data;
@@ -434,7 +434,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    {
       ASSERT_VALID(this);
       ASSERT(m_pnodeTail != NULL);  // don't call on is_empty list !!!
-      ASSERT(fx_is_valid_address(m_pnodeTail, sizeof(node)));
+      ASSERT(__is_valid_address(m_pnodeTail, sizeof(node)));
 
       node* pOldNode = m_pnodeTail;
       TYPE returnValue = pOldNode->data;
@@ -463,7 +463,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
 
       if (pOldNode->pPrev != NULL)
       {
-         ASSERT(fx_is_valid_address(pOldNode->pPrev, sizeof(node)));
+         ASSERT(__is_valid_address(pOldNode->pPrev, sizeof(node)));
          pOldNode->pPrev->pNext = pNewNode;
       }
       else
@@ -485,13 +485,13 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
 
       // Insert it before position
       node* pOldNode = (node*) position;
-      ASSERT(fx_is_valid_address(pOldNode, sizeof(node)));
+      ASSERT(__is_valid_address(pOldNode, sizeof(node)));
       node* pNewNode = NewNode(pOldNode, pOldNode->pNext);
       pNewNode->data = newElement;
 
       if (pOldNode->pNext != NULL)
       {
-         ASSERT(fx_is_valid_address(pOldNode->pNext, sizeof(node)));
+         ASSERT(__is_valid_address(pOldNode->pNext, sizeof(node)));
          pOldNode->pNext->pPrev = pNewNode;
       }
       else
@@ -612,7 +612,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       ASSERT_VALID(this);
 
       node* pOldNode = (node*) position;
-      ASSERT(fx_is_valid_address(pOldNode, sizeof(node)));
+      ASSERT(__is_valid_address(pOldNode, sizeof(node)));
 
       // remove pOldNode from list
       if (pOldNode == m_pnodeHead)
@@ -621,7 +621,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       }
       else
       {
-         ASSERT(fx_is_valid_address(pOldNode->pPrev, sizeof(node)));
+         ASSERT(__is_valid_address(pOldNode->pPrev, sizeof(node)));
          pOldNode->pPrev->pNext = pOldNode->pNext;
       }
       if (pOldNode == m_pnodeTail)
@@ -630,7 +630,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       }
       else
       {
-         ASSERT(fx_is_valid_address(pOldNode->pNext, sizeof(node)));
+         ASSERT(__is_valid_address(pOldNode->pNext, sizeof(node)));
          pOldNode->pNext->pPrev = pOldNode->pPrev;
       }
       FreeNode(pOldNode);
@@ -647,7 +647,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       node* pNode = m_pnodeHead;
       while (nIndex--)
       {
-         ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+         ASSERT(__is_valid_address(pNode, sizeof(node)));
          pNode = pNode->pNext;
       }
       return (POSITION) pNode;
@@ -664,7 +664,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       {
          if((node *) pos == pnode)
             return i;
-         ASSERT(fx_is_valid_address(pnode, sizeof(node)));
+         ASSERT(__is_valid_address(pnode, sizeof(node)));
          pnode = pnode->pNext;
          i++;
       }
@@ -683,12 +683,12 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       }
       else
       {
-         ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+         ASSERT(__is_valid_address(pNode, sizeof(node)));
          pNode = pNode->pNext;  // start after the one specified
       }
 
       for (; pNode != NULL; pNode = pNode->pNext)
-         if (_template::equals_type_arg_type < TYPE, ARG_TYPE > ::CompareElements(&pNode->data, searchValue))
+         if (gen::equals_type_arg_type < TYPE, ARG_TYPE > ::CompareElements(&pNode->data, searchValue))
             return (POSITION)pNode;
       return NULL;
    }
@@ -706,7 +706,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
          ar.WriteCount(m_nCount);
          for (node* pNode = m_pnodeHead; pNode != NULL; pNode = pNode->pNext)
          {
-            ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+            ASSERT(__is_valid_address(pNode, sizeof(node)));
             TYPE* pData;
             //
             // in some cases the & operator might be overloaded, and we cannot use it to obtain
@@ -763,8 +763,8 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       else
       {
          // non-is_empty list
-         ASSERT(fx_is_valid_address(m_pnodeHead, sizeof(node)));
-         ASSERT(fx_is_valid_address(m_pnodeTail, sizeof(node)));
+         ASSERT(__is_valid_address(m_pnodeHead, sizeof(node)));
+         ASSERT(__is_valid_address(m_pnodeTail, sizeof(node)));
       }
    }
 

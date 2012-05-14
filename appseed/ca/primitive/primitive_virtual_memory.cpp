@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace primitive
@@ -13,7 +13,7 @@ namespace primitive
    virtual_memory::virtual_memory(const void * pdata, int iCount)
    {
       allocate(iCount);
-      ASSERT(fx_is_valid_address(pdata, iCount, FALSE));
+      ASSERT(__is_valid_address(pdata, iCount, FALSE));
       memcpy(m_pbStorage, pdata, iCount);
    }
 
@@ -32,7 +32,7 @@ namespace primitive
    {
       m_pbStorage          = NULL;
       allocate(dwSize);
-      ASSERT(fx_is_valid_address(pmemory, (UINT_PTR) dwSize, FALSE));
+      ASSERT(__is_valid_address(pmemory, (UINT_PTR) dwSize, FALSE));
       memcpy(m_pbStorage, pmemory, (size_t) dwSize);
    }
 

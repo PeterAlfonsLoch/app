@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 message_box::message_box(::ca::application * papp) :
    ca(papp)/*,

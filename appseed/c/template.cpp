@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 template<> UINT simple_HashKey<const char *> (const char * key)

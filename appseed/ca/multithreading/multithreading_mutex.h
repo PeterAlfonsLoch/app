@@ -3,19 +3,24 @@
 
 class CLASS_DECL_ca mutex :
 #ifdef WINDOWS
-   public base_sync_object
+   public sync_object
 #else
-   public sync_object < pthread_mutex_t >
+   public ::radix::object
 #endif
 {
 public:
+
+
+#ifndef WINDOWS
+   pthread_mutex_t      m_mutex;
+#endif
 
 
    mutex(BOOL bInitiallyOwn = FALSE, LPCTSTR lpszName = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
    virtual ~mutex();
 
 
-#ifndef _WIN32
+#ifndef WINDOWS
    virtual bool lock(const duration & durationTimeout = ::duration::infinite());
 #endif
    bool unlock();

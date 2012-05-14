@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 CLASS_DECL_c wchar_t * wstring_data::get_nil()

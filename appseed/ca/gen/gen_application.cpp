@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #ifdef LINUX
 #include <dlfcn.h>
@@ -240,7 +240,7 @@ namespace gen
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpcszType);
       UNREFERENCED_PARAMETER(lpcszFilePath);
-/*      HINSTANCE hinst = ::AfxFindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
+/*      HINSTANCE hinst = ::gen::FindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
       if(hinst == NULL)
          return false;
       HRSRC hrsrc = ::FindResource(
@@ -271,14 +271,14 @@ namespace gen
               else
               {
                #ifdef _DEBUG
-                  afxdump << "File could not be opened \n";
+                  g_dumpcontext << "File could not be opened \n";
                #endif
               }
            }
            catch(ex1::file_exception_sp * pe)
            {
          #ifdef _DEBUG
-   //         afxdump << "File could not be opened " << pe->m_cause << "\n";
+   //         g_dumpcontext << "File could not be opened " << pe->m_cause << "\n";
          #endif
            }
 
@@ -501,7 +501,7 @@ namespace gen
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpcszType);
       UNREFERENCED_PARAMETER(storage);
-/*      HINSTANCE hinst = ::AfxFindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
+/*      HINSTANCE hinst = ::gen::FindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
 
       if(hinst == NULL)
          return false;
@@ -530,7 +530,7 @@ namespace gen
          catch(ex1::file_exception_sp * pe)
          {
             #ifdef _DEBUG
-   //            afxdump << "File could not be opened " << pe->m_cause << "\n";
+   //            g_dumpcontext << "File could not be opened " << pe->m_cause << "\n";
             #endif
          }
 
@@ -565,7 +565,7 @@ namespace gen
    void application::EnableModelessEx(BOOL bEnable)
    {
       UNREFERENCED_PARAMETER(bEnable);
-   #ifdef _AFX_NO_OLE_SUPPORT
+   #ifdef ___NO_OLE_SUPPORT
       UNUSED(bEnable);
    #endif
 
@@ -574,7 +574,7 @@ namespace gen
       if (pMainWnd == NULL || !pMainWnd->IsFrameWnd())
          return;*/
 
-   #ifndef _AFX_NO_OLE_SUPPORT
+   #ifndef ___NO_OLE_SUPPORT
       // check if notify hook installed
    /*   gen::frame_window_interface* pFrameWnd =
          dynamic_cast < gen::frame_window_interface * > (pMainWnd);

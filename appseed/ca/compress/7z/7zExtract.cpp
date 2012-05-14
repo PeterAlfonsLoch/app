@@ -1,6 +1,6 @@
 // 7zExtract.cpp
 
-#include "StdAfx.h"
+#include "framework.h"
 
 /*#include "../../../Common/ComTry.h"
 

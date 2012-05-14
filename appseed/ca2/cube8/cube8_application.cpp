@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace cube8
@@ -188,8 +188,8 @@ namespace cube8
 
       // there are cases where destroying the documents may destroy the
       //  main ::ca::window of the application.
-      //bool bAfxContextIsDll = afxContextIsDLL;
-      //if (!bAfxContextIsDll && papp->GetVisibleFrameCount() <= 0)
+      //bool bgen::ContextIsDll = afxContextIsDLL;
+      //if (!bgen::ContextIsDll && papp->GetVisibleFrameCount() <= 0)
       if(GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
       {
 

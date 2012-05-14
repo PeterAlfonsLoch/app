@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
  
 namespace bergedge
@@ -321,7 +321,7 @@ namespace bergedge
          {
             GetTopLevelFrame()->ShowWindow(SW_HIDE);
   //          m_pwinutilview->KillTimer(21977);
-            AfxPostQuitMessage(36);
+            __post_quit_message(36);
          }
       }
       else if(pbase->m_wparam == 4)
@@ -375,7 +375,7 @@ namespace bergedge
          if(pbase->m_lparam == 6)
          {
             GetTopLevelFrame()->ShowWindow(SW_HIDE);
-            AfxPostQuitMessage(36);
+            __post_quit_message(36);
          }
       }
       else if(pbase->m_wparam == 4)

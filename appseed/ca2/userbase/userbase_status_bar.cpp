@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #define SBPF_UPDATE 0x0001  // pending update of text
 #define CX_PANE_BORDER 6    // 3 pixels on each side of each pane
@@ -6,7 +6,7 @@
 namespace userbase
 {
 
-   AFX_STATUSPANE* status_bar::_GetPanePtr(int nIndex)
+   __STATUSPANE* status_bar::_GetPanePtr(int nIndex)
    {
       return &m_panea[nIndex];
    }
@@ -61,7 +61,7 @@ namespace userbase
       dwStyle |= dwCtrlStyle;
 
       // initialize common controls
-      VERIFY(System.DeferRegisterClass(AFX_WNDCOMMCTL_BAR_REG, NULL));
+      VERIFY(System.DeferRegisterClass(__WNDCOMMCTL_BAR_REG, NULL));
 
       // create the HWND
       class rect rect;
@@ -84,11 +84,11 @@ namespace userbase
       ASSERT_VALID(this);
       ASSERT(stra.get_count() >= 1);  // must be at least one of them
       //ASSERT(lpIDArray == NULL ||
-   //      fx_is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
+   //      __is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
       ASSERT(IsWindow());
 
       // first allocate base_array for panes and copy initial data
-   //   if (!AllocElements(nIDCount, sizeof(AFX_STATUSPANE)))
+   //   if (!AllocElements(nIDCount, sizeof(__STATUSPANE)))
    //      return FALSE;
    //   ASSERT(nIDCount == m_panea.get_count());
 
@@ -102,7 +102,7 @@ namespace userbase
          if (hFont != NULL)
             hOldFont = spgraphicsScreen->SelectObject(hFont);
 
-         AFX_STATUSPANE* pSBP = _GetPanePtr(0);
+         __STATUSPANE* pSBP = _GetPanePtr(0);
          for (int i = 0; i < stra.get_count(); i++)
          {
             pSBP->id = stra[i];
@@ -148,7 +148,7 @@ namespace userbase
       int i;
 
       // destruct old elements
-      //AFX_STATUSPANE* pSBP = _GetPanePtr(0);
+      //__STATUSPANE* pSBP = _GetPanePtr(0);
       //for (i = 0; i < m_panea.get_count(); i++)
       //{
       //   pSBP->strText.~string();
@@ -217,10 +217,10 @@ namespace userbase
          // determine extra space for stretchy pane
          int cxExtra = rect.width() + rgBorders[2];
          int nStretchyCount = 0;
-         //AFX_STATUSPANE* pSBP = _GetPanePtr(0);
+         //__STATUSPANE* pSBP = _GetPanePtr(0);
          for (i = 0; i < m_panea.get_count(); i++)
          {
-            AFX_STATUSPANE* pSBP = _GetPanePtr(i);
+            __STATUSPANE* pSBP = _GetPanePtr(i);
             if (pSBP->nStyle & SBPS_STRETCH)
                ++nStretchyCount;
             cxExtra -= (pSBP->cxText+CX_PANE_BORDER + rgBorders[2]);
@@ -233,7 +233,7 @@ namespace userbase
    //      pSBP = _GetPanePtr(0);
          for (i = 0; i < m_panea.get_count(); i++)
          {
-            AFX_STATUSPANE* pSBP = _GetPanePtr(i);
+            __STATUSPANE* pSBP = _GetPanePtr(i);
             // determine size of the pane
             ASSERT(pSBP->cxText >= 0);
             right += pSBP->cxText+CX_PANE_BORDER;
@@ -261,7 +261,7 @@ namespace userbase
       {
          for (i = 0; i < m_panea.get_count(); i++)
          {
-            AFX_STATUSPANE* pSBP = _GetPanePtr(i);
+            __STATUSPANE* pSBP = _GetPanePtr(i);
             if (pSBP->nFlags & SBPF_UPDATE)
                SetPaneText(i, pSBP->strText);
             ++pSBP;
@@ -269,8 +269,8 @@ namespace userbase
       }
    }
 
-   #ifdef AFX_CORE3_SEG
-   #pragma code_seg(AFX_CORE3_SEG)
+   #ifdef __CORE3_SEG
+   #pragma code_seg(__CORE3_SEG)
    #endif
 
    /////////////////////////////////////////////////////////////////////////////
@@ -285,7 +285,7 @@ namespace userbase
 
       for (int i = 0; i < m_panea.get_count(); i++)
       {
-         AFX_STATUSPANE* pSBP = _GetPanePtr(i);
+         __STATUSPANE* pSBP = _GetPanePtr(i);
          if (pSBP->id == id)
             return i;
       }
@@ -316,7 +316,7 @@ namespace userbase
 
    void status_bar::SetPaneStyle(int nIndex, UINT nStyle)
    {
-      AFX_STATUSPANE* pSBP = _GetPanePtr(nIndex);
+      __STATUSPANE* pSBP = _GetPanePtr(nIndex);
       if (pSBP->nStyle != nStyle)
       {
          // if the pane is changing SBPS_STRETCH, then...
@@ -339,7 +339,7 @@ namespace userbase
    {
       ASSERT_VALID(this);
 
-      AFX_STATUSPANE* pSBP = _GetPanePtr(nIndex);
+      __STATUSPANE* pSBP = _GetPanePtr(nIndex);
       id = pSBP->id;
       nStyle = pSBP->nStyle;
       cxWidth = pSBP->cxText;
@@ -350,7 +350,7 @@ namespace userbase
       ASSERT_VALID(this);
 
       BOOL bChanged = FALSE;
-      AFX_STATUSPANE* pSBP = _GetPanePtr(nIndex);
+      __STATUSPANE* pSBP = _GetPanePtr(nIndex);
       pSBP->id = id;
       if (pSBP->nStyle != nStyle)
       {
@@ -378,7 +378,7 @@ namespace userbase
    {
       ASSERT_VALID(this);
 
-      AFX_STATUSPANE* pSBP = _GetPanePtr(nIndex);
+      __STATUSPANE* pSBP = _GetPanePtr(nIndex);
       s = pSBP->strText;
    }
 
@@ -386,7 +386,7 @@ namespace userbase
    {
       ASSERT_VALID(this);
 
-      AFX_STATUSPANE* pSBP = _GetPanePtr(nIndex);
+      __STATUSPANE* pSBP = _GetPanePtr(nIndex);
       return pSBP->strText;
    }
 
@@ -395,7 +395,7 @@ namespace userbase
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
-      AFX_STATUSPANE* pSBP = _GetPanePtr(nIndex);
+      __STATUSPANE* pSBP = _GetPanePtr(nIndex);
 
       if (!(pSBP->nFlags & SBPF_UPDATE) &&
          ((lpszNewText == NULL && pSBP->strText.is_empty()) ||
@@ -619,7 +619,7 @@ namespace userbase
       int nIndex = CommandToIndex(0); // use pane with ID zero
       if (nIndex >= 0)
       {
-         AFX_STATUSPANE* pSBP = _GetPanePtr(nIndex);
+         __STATUSPANE* pSBP = _GetPanePtr(nIndex);
          nLen = pSBP->strText.get_length();
          if (nLen > nMaxLen)
             nLen = nMaxLen - 1; // number of characters to copy (less term.)
@@ -641,7 +641,7 @@ namespace userbase
       int nIndex = CommandToIndex(0); // use pane with ID zero
       if (nIndex >= 0)
       {
-         AFX_STATUSPANE* pSBP = _GetPanePtr(nIndex);
+         __STATUSPANE* pSBP = _GetPanePtr(nIndex);
          nLen = pSBP->strText.get_length();
       }
       pbase->set_lresult(nLen);
@@ -755,7 +755,7 @@ namespace userbase
       {
          for (int i = 0; i < m_panea.get_count(); i++)
          {
-            AFX_STATUSPANE * ppane = ((status_bar *) this)->_GetPanePtr(i);
+            __STATUSPANE * ppane = ((status_bar *) this)->_GetPanePtr(i);
             dumpcontext << "\nstatus pane[" << i << "] = {";
             dumpcontext << "\n\tnID = " << (const char *) ppane->id;
             dumpcontext << "\n\tnStyle = " << ppane->nStyle;
@@ -768,8 +768,8 @@ namespace userbase
    }
    #endif //_DEBUG
 
-   #ifdef AFX_INIT_SEG
-   #pragma code_seg(AFX_INIT_SEG)
+   #ifdef __INIT_SEG
+   #pragma code_seg(__INIT_SEG)
    #endif
 
    // IMPLEMENT_DYNAMIC(status_bar, ::userbase::control_bar)
@@ -777,7 +777,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
 
 
-   AFX_STATUSPANE & AFX_STATUSPANE::operator = (const AFX_STATUSPANE & pane)
+   __STATUSPANE & __STATUSPANE::operator = (const __STATUSPANE & pane)
    {
       if(&pane == this)
          return *this;
@@ -792,11 +792,11 @@ namespace userbase
       return *this;
    }
 
-   AFX_STATUSPANE::AFX_STATUSPANE()
+   __STATUSPANE::__STATUSPANE()
    {
    }
 
-   AFX_STATUSPANE::AFX_STATUSPANE(const AFX_STATUSPANE & pane)
+   __STATUSPANE::__STATUSPANE(const __STATUSPANE & pane)
    {
       operator =(pane);
    }

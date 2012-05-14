@@ -1,6 +1,6 @@
 // Common/IntToString.cpp
 // from 7-zip on 2010-12-26, morning with Lucinho at torvon and me at eco - at veriverse
-#include "StdAfx.h"
+#include "framework.h"
 
 //#include "IntToString.h"
 

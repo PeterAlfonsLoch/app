@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 map_ptr_to_ptr::map_ptr_to_ptr(INT_PTR nBlockSize) :
    ::collection::map < void *, void *, void *, void *>(nBlockSize)

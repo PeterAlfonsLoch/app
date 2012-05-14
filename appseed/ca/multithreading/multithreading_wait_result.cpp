@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 wait_result::wait_result(unsigned long value, count objectCount)

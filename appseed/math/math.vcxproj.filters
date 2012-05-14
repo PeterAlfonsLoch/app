@@ -26,9 +26,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="math\math.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
@@ -53,11 +50,11 @@
     <ClInclude Include="kissfft\_kiss_fft_guts.h">
       <Filter>Header Files\kissfft</Filter>
     </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="StdAfx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="kissfft\kissfft_ifftd.cpp">
       <Filter>Source Files\kissfft</Filter>
     </ClCompile>
@@ -72,6 +69,9 @@
     </ClCompile>
     <ClCompile Include="kissfft\kiss_fft_shared.c">
       <Filter>Source Files\kissfft\C Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

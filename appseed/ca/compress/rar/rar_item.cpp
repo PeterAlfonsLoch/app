@@ -1,6 +1,6 @@
 // RarItem.cpp
 // from 7-zip
-#include "StdAfx.h"
+#include "framework.h"
 
 //#include "RarItem.h"
 

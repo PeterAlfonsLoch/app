@@ -44,7 +44,7 @@
  *
  */
 
-#include "StdAfx.h"
+#include "framework.h"
 
 #include "null_auth.h" 
 #include "alloc.h"

@@ -158,7 +158,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // class CCtrlView allows almost any control to be a view
 
-class CLASS_DECL_ca AFX_NOVTABLE CCtrlView : public view
+class CLASS_DECL_ca __NOVTABLE CCtrlView : public view
 {
    // // DECLARE_DYNCREATE(CCtrlView)
 

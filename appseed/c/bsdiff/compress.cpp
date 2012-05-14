@@ -25,7 +25,7 @@
     0.9.0c   -- changed setting of nGroups in sendMTFValues() 
                 so as to do a bit better on small files
 */
-#include "StdAfx.h"
+#include "framework.h"
 #include "bzlib_private.h"
 
 

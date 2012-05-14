@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "InFile.h"
 
 namespace zip
@@ -213,7 +213,7 @@ namespace zip
 
    BOOL InFile::unzip_open(File * pzfile, const char * lpcszFileName)
    {
-      ASSERT(AfxIsValidString(lpcszFileName));
+      ASSERT(__is_valid_string(lpcszFileName));
       m_filea.add(pzfile);
       if(!locate(lpcszFileName))
          return FALSE;
@@ -222,7 +222,7 @@ namespace zip
 
    BOOL InFile::zip_open(File * pzfile, const char * lpcszFileName)
    {
-      ASSERT(AfxIsValidString(lpcszFileName));
+      ASSERT(__is_valid_string(lpcszFileName));
       m_filea.add(pzfile);
       m_strZipFile = lpcszFileName;
       return TRUE;
@@ -250,7 +250,7 @@ namespace zip
          return 0;   // avoid Win32 "null-read"
 
       ASSERT(lpBuf != NULL);
-      ASSERT(fx_is_valid_address(lpBuf, (UINT_PTR) nCount));
+      ASSERT(__is_valid_address(lpBuf, (UINT_PTR) nCount));
 
       uint64_t iRead;
       iRead = unzReadCurrentFile(get_zip_file()->m_pfUnzip, lpBuf, (unsigned int) nCount);
@@ -406,13 +406,13 @@ namespace zip
    /*/////////////////////////////////////////////////////////////////////////////
    // InFile implementation helpers
 
-   #ifdef AfxGetFileName
-   #undef AfxGetFileName
+   #ifdef gen::GetFileName
+   #undef gen::GetFileName
    #endif
 
-   #ifndef _AFX_NO_OLE_SUPPORT
+   #ifndef ___NO_OLE_SUPPORT
 
-   HRESULT AFX_COM::CreateInstance(REFCLSID rclsid, LPUNKNOWN pUnkOuter,
+   HRESULT __COM::CreateInstance(REFCLSID rclsid, LPUNKNOWN pUnkOuter,
       REFIID riid, LPVOID* ppv)
    {
       // find the object's class factory
@@ -430,16 +430,16 @@ namespace zip
       return hRes;
    }
 
-   HRESULT AFX_COM::GetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv)
+   HRESULT __COM::GetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv)
    {
       *ppv = NULL;
       HINSTANCE hInst = NULL;
 
       // find server name for this class ID
 
-      string strCLSID = AfxStringFromCLSID(rclsid);
+      string strCLSID = __string_from_clsid(rclsid);
       string strServer;
-      if (!AfxGetInProcServer(strCLSID, strServer))
+      if (!__get_in_proc_server(strCLSID, strServer))
          return REGDB_E_CLASSNOTREG;
 
       // try to load it

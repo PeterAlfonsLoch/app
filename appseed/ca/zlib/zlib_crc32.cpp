@@ -18,7 +18,7 @@
   first call get_crc_table() to initialize the tables before allowing more than
   one thread to use crc32().
  */
-#include "StdAfx.h"
+#include "framework.h"
 
 
 

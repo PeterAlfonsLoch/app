@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 simple_edit::simple_edit(::ca::application * papp) :

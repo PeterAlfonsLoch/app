@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #undef new
 
@@ -370,7 +370,7 @@ void string_array::assert_valid() const
       ASSERT(m_nSize >= 0);
       ASSERT(m_nMaxSize >= 0);
       ASSERT(m_nSize <= m_nMaxSize);
-      ASSERT(fx_is_valid_address(m_pData, m_nMaxSize * sizeof(string)));
+      ASSERT(__is_valid_address(m_pData, m_nMaxSize * sizeof(string)));
    }
 }
 

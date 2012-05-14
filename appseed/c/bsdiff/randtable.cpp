@@ -17,7 +17,7 @@
    This program is released under the terms of the license contained
    in the file LICENSE.
    ------------------------------------------------------------------ */
-#include "StdAfx.h"
+#include "framework.h"
 #include "bzlib_private.h"
 
 

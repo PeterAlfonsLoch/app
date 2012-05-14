@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 form_child_frame::form_child_frame(::ca::application * papp) :

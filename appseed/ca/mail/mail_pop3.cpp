@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace mail
 {
@@ -53,7 +53,7 @@ namespace mail
       }
       else
       {
-         AfxBeginThread(get_app(), pop3_thread_proc, this);
+         __begin_thread(get_app(), pop3_thread_proc, this);
       }
    }
 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace cube1
 {
@@ -71,7 +71,7 @@ namespace cube1
 
    bool application::final_handle_exception(::ca::exception & e)
    {
-      base_exception * pbe = dynamic_cast < se_exception * > (&e);
+      base_exception * pbe = dynamic_cast < standard_exception * > (&e);
       if(pbe != NULL)
       {
          TRACE(pbe->stack_trace());

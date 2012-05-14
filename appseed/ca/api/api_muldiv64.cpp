@@ -18,7 +18,7 @@
  * Uses 128 bit intermediate result
  */
 
-#include "StdAfx.h"
+#include "framework.h"
 
 #define ABS64(num) (num >=0 ? num : -num)
 

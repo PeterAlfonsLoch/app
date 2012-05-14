@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 void CLASS_DECL_ca __cdecl _ca2_purecall_(void)
@@ -282,22 +282,22 @@ namespace plugin
 
    void plugin::start_ca2_login()
    {
-      AfxBeginThread(m_puiHost->get_app(), &plugin::thread_proc_ca2_login, (LPVOID) this); 
+      __begin_thread(m_puiHost->get_app(), &plugin::thread_proc_ca2_login, (LPVOID) this); 
    }
 
    void plugin::start_ca2_logout()
    {
-      AfxBeginThread(m_puiHost->get_app(), &plugin::thread_proc_ca2_logout, (LPVOID) this); 
+      __begin_thread(m_puiHost->get_app(), &plugin::thread_proc_ca2_logout, (LPVOID) this); 
    }
 
-   UINT AFX_CDECL plugin::thread_proc_ca2_login(LPVOID pvoid)
+   UINT c_cdecl plugin::thread_proc_ca2_login(LPVOID pvoid)
    {
       plugin * pplugin = (plugin *) pvoid;
       pplugin->ca2_login();
       return 0;
    }
 
-   UINT AFX_CDECL plugin::thread_proc_ca2_logout(LPVOID pvoid)
+   UINT c_cdecl plugin::thread_proc_ca2_logout(LPVOID pvoid)
    {
       plugin * pplugin = (plugin *) pvoid;
       pplugin->ca2_logout();

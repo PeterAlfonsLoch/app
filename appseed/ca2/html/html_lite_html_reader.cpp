@@ -24,7 +24,7 @@
  *   so that I may know how useful this library is. This will encourage
  *   me to keep updating it.
  */
-#include "StdAfx.h"
+#include "framework.h"
 
 DWORD_PTR lite_html_reader::parseDocument(void)
 {
@@ -214,7 +214,7 @@ LEndParse:
  */
 DWORD_PTR lite_html_reader::read(const char * psz)
 {
-   ASSERT(AfxIsValidString(psz));
+   ASSERT(__is_valid_string(psz));
    m_strBuffer    = psz;
    m_dwBufLen     = m_strBuffer.get_length();
    m_lpszBuffer   = m_strBuffer;

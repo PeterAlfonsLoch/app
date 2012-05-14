@@ -41,7 +41,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#include "StdAfx.h"
+#include "framework.h"
 
 #include "alloc.h"
 #include "crypto_kernel.h"

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 static
 const int FULL_RECORD_LENGTH = 50;

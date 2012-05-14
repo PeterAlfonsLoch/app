@@ -4,7 +4,7 @@
 #include "ca2/window_frame/window_frame.h"
 
 
-struct AFX_SIZEPARENTPARAMS;
+struct __SIZEPARENTPARAMS;
 
 namespace userbase
 {

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 #if defined(LINUX)
@@ -516,7 +516,7 @@ namespace dynamic_source
       stringa straId;
       string strDest;
       strDest = "";
-      strDest += "#include \"StdAfx.h\"\r\n";
+      strDest += "#include \"framework.h\"\r\n";
       strDest += "#include \"11ca2_fontopus.h\"\r\n";
       for(int i = 0; i < m_straLibIncludePath.get_count(); i++)
       {
@@ -915,7 +915,7 @@ namespace dynamic_source
       strDest = "";
       if(e_type == cpptype_source || e_type == cpptype_ds)
       {
-         strDest += "#include \"StdAfx.h\"\r\n";
+         strDest += "#include \"framework.h\"\r\n";
          strDest += "#include \"11ca2_fontopus.h\"\r\n";
          for(int i = 0; i < m_straLibIncludePath.get_count(); i++)
          {
@@ -996,7 +996,7 @@ namespace dynamic_source
          chNext = str[i + 1];
          if(gen::str::begins(str.Mid(i), "bk_filter_active1"))
          {
-            //AfxDebugBreak();
+            //__debug_break();
          }
          if(bInSpec1)
          {

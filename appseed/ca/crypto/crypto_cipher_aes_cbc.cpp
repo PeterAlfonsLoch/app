@@ -43,7 +43,7 @@
  *
  */
 
-#include "StdAfx.h"
+#include "framework.h"
 
 #include "aes_cbc.h"
 #include "alloc.h"

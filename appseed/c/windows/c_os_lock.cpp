@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 int _c_lock_is_active(const char * pszName)
 {

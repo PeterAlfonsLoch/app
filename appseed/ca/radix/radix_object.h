@@ -1,7 +1,6 @@
 #pragma once
 
 
-#include "ca/multithreading/multithreading_waitable.h"
 
 
 class var;
@@ -71,7 +70,7 @@ namespace radix
       void PASCAL operator delete(void * p, void * pPlace);
 #endif
 
-#if defined(_DEBUG) && !defined(_AFX_NO_DEBUG_CRT) || defined(LINUX) || defined(MACOS)
+#if defined(_DEBUG) && !defined(___NO_DEBUG_CRT) || defined(LINUX) || defined(MACOS)
       // for file name/line number tracking using DEBUG_NEW
       void * PASCAL operator new(size_t nSize, const char * lpszFileName, int nLine);
 #if _MSC_VER >= 1200  || defined(LINUX) || defined(MACOS)

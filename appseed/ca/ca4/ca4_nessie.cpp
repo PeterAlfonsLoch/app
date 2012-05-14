@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "ca4_nessie.h"
 
 void NESSIEinit(struct NESSIEstruct * const structpointer);

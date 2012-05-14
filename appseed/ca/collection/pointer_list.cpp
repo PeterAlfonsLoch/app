@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 pointer_list::pointer_list(INT_PTR nBlockSize)
 {
@@ -171,7 +171,7 @@ void * pointer_list::remove_head()
 {
    ENSURE_VALID(this);
    ENSURE(m_pnodeHead != NULL);  // throws if called on is_empty list
-   ASSERT(fx_is_valid_address(m_pnodeHead, sizeof(node)));
+   ASSERT(__is_valid_address(m_pnodeHead, sizeof(node)));
 
    node* pOldNode = m_pnodeHead;
    void * returnValue = pOldNode->data;
@@ -189,7 +189,7 @@ void * pointer_list::remove_tail()
 {
    ASSERT_VALID(this);
    ASSERT(m_pnodeTail != NULL);  // don't call on is_empty list !!!
-   ASSERT(fx_is_valid_address(m_pnodeTail, sizeof(node)));
+   ASSERT(__is_valid_address(m_pnodeTail, sizeof(node)));
 
    node* pOldNode = m_pnodeTail;
    void * returnValue = pOldNode->data;
@@ -218,7 +218,7 @@ POSITION pointer_list::insert_before(POSITION position, void * newElement)
 
    if (pOldNode->pPrev != NULL)
    {
-      ASSERT(fx_is_valid_address(pOldNode->pPrev, sizeof(node)));
+      ASSERT(__is_valid_address(pOldNode->pPrev, sizeof(node)));
       pOldNode->pPrev->pNext = pNewNode;
    }
    else
@@ -243,13 +243,13 @@ POSITION pointer_list::insert_after(POSITION position, void * newElement)
 
    // Insert it before position
    node* pOldNode = (node*) position;
-   ASSERT(fx_is_valid_address(pOldNode, sizeof(node)));
+   ASSERT(__is_valid_address(pOldNode, sizeof(node)));
    node* pNewNode = NewNode(pOldNode, pOldNode->pNext);
    pNewNode->data = newElement;
 
    if (pOldNode->pNext != NULL)
    {
-      ASSERT(fx_is_valid_address(pOldNode->pNext, sizeof(node)));
+      ASSERT(__is_valid_address(pOldNode->pNext, sizeof(node)));
       pOldNode->pNext->pPrev = pNewNode;
    }
    else
@@ -269,7 +269,7 @@ void pointer_list::remove_at(POSITION position)
    ASSERT_VALID(this);
 
    node* pOldNode = (node*) position;
-   ASSERT(fx_is_valid_address(pOldNode, sizeof(node)));
+   ASSERT(__is_valid_address(pOldNode, sizeof(node)));
 
    if (pOldNode == NULL)
    {
@@ -283,7 +283,7 @@ void pointer_list::remove_at(POSITION position)
    }
    else
    {
-      ASSERT(fx_is_valid_address(pOldNode->pPrev, sizeof(node)));
+      ASSERT(__is_valid_address(pOldNode->pPrev, sizeof(node)));
       pOldNode->pPrev->pNext = pOldNode->pNext;
    }
    if (pOldNode == m_pnodeTail)
@@ -292,7 +292,7 @@ void pointer_list::remove_at(POSITION position)
    }
    else
    {
-      ASSERT(fx_is_valid_address(pOldNode->pNext, sizeof(node)));
+      ASSERT(__is_valid_address(pOldNode->pNext, sizeof(node)));
       pOldNode->pNext->pPrev = pOldNode->pPrev;
    }
    FreeNode(pOldNode);
@@ -312,7 +312,7 @@ POSITION pointer_list::find_index(INT_PTR nIndex) const
    node* pNode = m_pnodeHead;
    while (nIndex--)
    {
-      ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+      ASSERT(__is_valid_address(pNode, sizeof(node)));
       pNode = pNode->pNext;
    }
    return (POSITION) pNode;
@@ -329,7 +329,7 @@ POSITION pointer_list::find(void * searchValue, POSITION startAfter) const
    }
    else
    {
-      ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+      ASSERT(__is_valid_address(pNode, sizeof(node)));
       pNode = pNode->pNext;  // start after the one specified
    }
 
@@ -368,7 +368,7 @@ void pointer_list::assert_valid() const
    else
    {
       // non-is_empty list
-      ASSERT(fx_is_valid_address(m_pnodeHead, sizeof(node)));
-      ASSERT(fx_is_valid_address(m_pnodeTail, sizeof(node)));
+      ASSERT(__is_valid_address(m_pnodeHead, sizeof(node)));
+      ASSERT(__is_valid_address(m_pnodeTail, sizeof(node)));
    }
 }

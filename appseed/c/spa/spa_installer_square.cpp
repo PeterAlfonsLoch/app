@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 CLASS_DECL_c bool send_short_message_to_installer(const char * psz, bool bLaunch);
 CLASS_DECL_c void installer_call_sync(const char * path, const char * param);

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "simple_tab_control.h"
 
 

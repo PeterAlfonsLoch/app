@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 variable_strict_compare::variable_strict_compare(const class var & var) :
    m_var(var)

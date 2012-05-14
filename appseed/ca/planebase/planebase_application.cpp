@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace planebase
@@ -169,7 +169,7 @@ namespace planebase
 
       if(is_system())
       {
-         se_translator::attach();
+         translator::attach();
       }
 
       m_iReturnCode            = 0;
@@ -499,10 +499,10 @@ InitFailure:
       {
       }*/
 
-      // let se_translator run undefinetely
+      // let translator run undefinetely
       /*if(is_system())
       {
-         se_translator::detach();
+         translator::detach();
       }*/
 
       return m_iReturnCode;

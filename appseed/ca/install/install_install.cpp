@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 //void initialize_http_dup();
 

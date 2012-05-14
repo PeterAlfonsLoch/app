@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace command
@@ -96,7 +96,7 @@ namespace command
 		   WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP | CBRS_GRIPPER | CBRS_SIZE_DYNAMIC
          | CBRS_DRAGMOVE,
          rect(0, 0, 0, 0),
-		   AFX_IDW_TOOLBAR + 1) ||
+		   __IDW_TOOLBAR + 1) ||
 		   !m_toolbarView.LoadToolBar(IDR_VIEW))
 	   {
 		   TRACE0("Failed to create toolbar\n");
@@ -106,7 +106,7 @@ namespace command
    
 	   if (!m_dialogbar.create(this, IDR_MAINFRAME, 
 		   WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP | CBRS_GRIPPER | CBRS_SIZE_DYNAMIC
-         | CBRS_DRAGMOVE, AFX_IDW_DIALOGBAR))
+         | CBRS_DRAGMOVE, __IDW_DIALOGBAR))
 	   {
 		   TRACE0("Failed to create dialogbar\n");
 		   return -1;		// fail to create
@@ -499,7 +499,7 @@ namespace command
          if(pbase->m_lparam == 6)
          {
             GetTopLevelFrame()->ShowWindow(SW_HIDE);
-            AfxPostQuitMessage(36);
+            __post_quit_message(36);
          }
       }
       else if(pbase->m_wparam == 4)

@@ -1,6 +1,6 @@
 // Archive/RarIn.cpp
 // from 7-zip
-#include "StdAfx.h"
+#include "framework.h"
 
 
 /*#include "../../../../C/7zCrc.h"

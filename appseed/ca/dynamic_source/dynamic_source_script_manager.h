@@ -174,7 +174,7 @@ namespace dynamic_source
       virtual void message_window_message_handler(gen::signal_object * pobj);
 
       void clear_include_matches();
-      static UINT AFX_CDECL clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
+      static UINT c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
 
       virtual string real_path(const char * psz);
       virtual string real_path(const char * pszBase, const char * psz);

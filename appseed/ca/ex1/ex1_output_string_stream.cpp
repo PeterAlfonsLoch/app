@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 _template_std_istringstream::_template_std_istringstream()

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 void itemswap(void * pswaparg, index i1, index i2)
@@ -80,7 +80,7 @@ void factory::discard(::ca::ca * pobject)
    if(pallocator == NULL)
    {
       if(::IsDebuggerPresent())
-         AfxDebugBreak();
+         __debug_break();
       return;
    }
    pallocator->discard(pobject);

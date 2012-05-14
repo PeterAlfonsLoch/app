@@ -15,7 +15,7 @@ namespace datetime
       int            m_iSecond;
       bool           m_bSpan;
 
-      value(const class time & time);
+      value(const ::datetime::time & time);
       value();
       ~value();
 
@@ -28,9 +28,9 @@ namespace datetime
       double get_minutes() const;
       double get_seconds() const;
 
-      class time get_time() const;
-      time_span GetSpan() const;
-      value & operator = (const class time & time);
+      ::datetime::time get_time() const;
+      ::datetime::time_span GetSpan() const;
+      value & operator = (const ::datetime::time & time);
 
       string to_string(::ca::application * pcaapp, ::user::str_context * pcontext);
 

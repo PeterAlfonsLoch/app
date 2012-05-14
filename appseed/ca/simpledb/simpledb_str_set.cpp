@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "db_str_set.h"
 
 db_str_set::db_str_set(db_server * pserver) : 

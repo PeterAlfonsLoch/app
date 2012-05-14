@@ -4,11 +4,6 @@
 #undef new
 
 
-#include "radix/radix_object.h"
-#include "exception/exception_0.h"
-
-
-#include "template/_template.h"
 
 
 template<class TYPE, class ARG_TYPE = const TYPE&>
@@ -674,7 +669,7 @@ template<class TYPE, class ARG_TYPE>
 #define new DEBUG_NEW
 
       // copy new data from old
-      ::_template::checked::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
+      ::gen::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
          m_pData, (size_t)m_nSize * sizeof(TYPE));
 
       // construct remaining elements
@@ -719,7 +714,7 @@ void base_array<TYPE, ARG_TYPE>::free_extra()
          pNewData = (TYPE*) new BYTE[m_nSize * sizeof(TYPE)];
 #define new DEBUG_NEW
          // copy new data from old
-         ::_template::checked::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
+         ::gen::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
             m_pData, m_nSize * sizeof(TYPE));
       }
 
@@ -769,7 +764,7 @@ void base_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::
       for(i = 0; i < nCount; i++ )
          (m_pData + nOldSize + i)->~TYPE();
       // shift old data up to fill gap
-      ::_template::checked::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
+      ::gen::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
          m_pData + nIndex, (nOldSize-nIndex) * sizeof(TYPE));
 
       // re-init slots we copied from
@@ -806,7 +801,7 @@ void base_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
       (m_pData + nIndex + i)->~TYPE();
    if (nMoveCount)
    {
-      ::_template::checked::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
+      ::gen::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
          m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
    }
    m_nSize -= nCount;
@@ -923,7 +918,7 @@ void base_array<TYPE, ARG_TYPE>::assert_valid() const
       ASSERT(m_nSize >= 0);
       ASSERT(m_nMaxSize >= 0);
       ASSERT(m_nSize <= m_nMaxSize);
-      ASSERT(fx_is_valid_address(m_pData, m_nMaxSize * sizeof(TYPE)));
+      ASSERT(__is_valid_address(m_pData, m_nMaxSize * sizeof(TYPE)));
    }
 }
 

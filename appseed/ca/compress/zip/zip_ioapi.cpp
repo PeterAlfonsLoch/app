@@ -5,7 +5,7 @@
 
    Copyright (C) 1998-2003 Gilles Vollant
 */
-#include "StdAfx.h"
+#include "framework.h"
 
 
 #include <stdio.h>

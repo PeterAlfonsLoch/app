@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 BaseSplitWnd::BaseSplitWnd(::ca::application * papp) :

@@ -6,7 +6,7 @@
  * David A. McGrew
  * Cisco Systems, Inc.
  */
-#include "StdAfx.h"
+#include "framework.h"
 
 #include "stat.h"
 

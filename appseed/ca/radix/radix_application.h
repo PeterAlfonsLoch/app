@@ -1,17 +1,5 @@
 #pragma once
 
-#pragma once
-
-#include "ca/template/template_trace_module_manager.h"
-#include "user/user_str.h"
-#include "user/user_draw_context.h"
-#include "multithreading/multithreading.h"
-#include "ca/ca/ca_message_window.h"
-
-#define CA2M_BERGEDGE 0xCA20
-#define BERGEDGE_GETAPP 0
-
-#include "radix_factory.h"
 
 
 namespace user
@@ -21,7 +9,7 @@ namespace user
    class document_interface;
 
 
-}
+} // namespace user
 
 
 class document_template;
@@ -115,7 +103,7 @@ namespace radix
       file_manager_interface *      m_pfilemanager;
       // Running args (can be changed in initialize_instance)
       // Human-redable name of the application. Normally set in
-      // constructor or retreived from AFX_IDS_APP_TITLE.
+      // constructor or retreived from __IDS_APP_TITLE.
       string                        m_strAppName;
       string                        m_strLibraryName;
 
@@ -144,7 +132,7 @@ namespace radix
       // Default based on this application's name.
       const char *                  m_pszProfileName;
       // help mode used by the cast
-//      AFX_HELP_TYPE m_eHelpType;
+//      __HELP_TYPE m_eHelpType;
 
       ::user::LPWndArray * m_pframea;
 
@@ -210,8 +198,8 @@ namespace radix
       void EnableHtmlHelp();
 
       // Sets and initializes usage of HtmlHelp instead of WinHelp.
-//      void SetHelpMode( AFX_HELP_TYPE eHelpType );
-  //    AFX_HELP_TYPE GetHelpMode();
+//      void SetHelpMode( __HELP_TYPE eHelpType );
+  //    __HELP_TYPE GetHelpMode();
 
    // Initialization Operations - should be done in initialize_instance
 
@@ -271,6 +259,7 @@ namespace radix
       HICON LoadOEMIcon(UINT nIDIcon) const;
 #endif
 
+      /*
       // Retrieve an integer value from INI file or registry.
       UINT GetProfileInt(const char * lpszSection, const char * lpszEntry, int nDefault);
 
@@ -300,11 +289,11 @@ namespace radix
       virtual BOOL Register();
 
       // Unregisters everything this cast was known to register.
-      virtual BOOL Unregister();
+      virtual BOOL Unregister();*/
 
 #ifdef WINDOWS
       // Delete a registry key entry (and all its subkeys, too).
-      LONG DelRegTree(HKEY hParentKey, const string & strKeyName);
+      //LONG DelRegTree(HKEY hParentKey, const string & strKeyName);
 #endif
 
 
@@ -425,10 +414,10 @@ namespace radix
    protected :
       BOOL _LoadSysPolicies() throw(); // Implementation helper
    public:
-      static const char _afxFileSection[];
-      static const char _afxFileEntry[];
-      static const char _afxPreviewSection[];
-      static const char _afxPreviewEntry[];
+      static const char gen_FileSection[];
+      static const char gen_FileEntry[];
+      static const char gen_PreviewSection[];
+      static const char gen_PreviewEntry[];
 
       virtual ::ca::application * get_app() const;
       virtual string get_mutex_name_radix();

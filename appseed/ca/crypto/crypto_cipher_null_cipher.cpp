@@ -43,7 +43,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#include "StdAfx.h"
+#include "framework.h"
 
 #include "datatypes.h"
 #include "null_cipher.h"

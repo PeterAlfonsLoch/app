@@ -15,7 +15,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "framework.h"
 
 object_list::object_list(INT_PTR nBlockSize)
 {
@@ -188,7 +188,7 @@ void object_list::add_tail(object_list* pNewList)
    ENSURE_VALID(this);
    ENSURE(m_pnodeHead != NULL);  // throws if called on is_empty list
 
-   ASSERT(fx_is_valid_address(m_pnodeHead, sizeof(node)));
+   ASSERT(__is_valid_address(m_pnodeHead, sizeof(node)));
 
    node* pOldNode = m_pnodeHead;
    ::radix::object* returnValue = pOldNode->m_pdata;
@@ -206,7 +206,7 @@ void object_list::add_tail(object_list* pNewList)
 {
    ASSERT_VALID(this);
    ASSERT(m_pnodeTail != NULL);  // don't call on is_empty list !!!
-   ASSERT(fx_is_valid_address(m_pnodeTail, sizeof(node)));
+   ASSERT(__is_valid_address(m_pnodeTail, sizeof(node)));
 
    node* pOldNode = m_pnodeTail;
    ::radix::object* returnValue = pOldNode->m_pdata;
@@ -235,7 +235,7 @@ POSITION object_list::insert_before(POSITION position, ::radix::object* newEleme
 
    if (pOldNode->m_pprevious != NULL)
    {
-      ASSERT(fx_is_valid_address(pOldNode->m_pprevious, sizeof(node)));
+      ASSERT(__is_valid_address(pOldNode->m_pprevious, sizeof(node)));
       pOldNode->m_pprevious->m_pnext = pNewNode;
    }
    else
@@ -260,13 +260,13 @@ POSITION object_list::insert_after(POSITION position, ::radix::object* newElemen
 
    // Insert it before position
    node* pOldNode = (node*) position;
-   ASSERT(fx_is_valid_address(pOldNode, sizeof(node)));
+   ASSERT(__is_valid_address(pOldNode, sizeof(node)));
    node* pNewNode = NewNode(pOldNode, pOldNode->m_pnext);
    pNewNode->m_pdata = newElement;
 
    if (pOldNode->m_pnext != NULL)
    {
-      ASSERT(fx_is_valid_address(pOldNode->m_pnext, sizeof(node)));
+      ASSERT(__is_valid_address(pOldNode->m_pnext, sizeof(node)));
       pOldNode->m_pnext->m_pprevious = pNewNode;
    }
    else
@@ -286,7 +286,7 @@ void object_list::remove_at(POSITION position)
    ASSERT_VALID(this);
 
    node* pOldNode = (node*) position;
-   ASSERT(fx_is_valid_address(pOldNode, sizeof(node)));
+   ASSERT(__is_valid_address(pOldNode, sizeof(node)));
 
    if (pOldNode == NULL)
    {
@@ -300,7 +300,7 @@ void object_list::remove_at(POSITION position)
    }
    else
    {
-      ASSERT(fx_is_valid_address(pOldNode->m_pprevious, sizeof(node)));
+      ASSERT(__is_valid_address(pOldNode->m_pprevious, sizeof(node)));
       pOldNode->m_pprevious->m_pnext = pOldNode->m_pnext;
    }
    if (pOldNode == m_pnodeTail)
@@ -309,7 +309,7 @@ void object_list::remove_at(POSITION position)
    }
    else
    {
-      ASSERT(fx_is_valid_address(pOldNode->m_pnext, sizeof(node)));
+      ASSERT(__is_valid_address(pOldNode->m_pnext, sizeof(node)));
       pOldNode->m_pnext->m_pprevious = pOldNode->m_pprevious;
    }
    FreeNode(pOldNode);
@@ -329,7 +329,7 @@ POSITION object_list::find_index(INT_PTR nIndex) const
    node* pNode = m_pnodeHead;
    while (nIndex--)
    {
-      ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+      ASSERT(__is_valid_address(pNode, sizeof(node)));
       pNode = pNode->m_pnext;
    }
    return (POSITION) pNode;
@@ -346,7 +346,7 @@ POSITION object_list::find(::radix::object* searchValue, POSITION startAfter) co
    }
    else
    {
-      ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+      ASSERT(__is_valid_address(pNode, sizeof(node)));
       pNode = pNode->m_pnext;  // start after the one specified
    }
 
@@ -371,7 +371,7 @@ void object_list::Serialize(CArchive& ar)
       ar.WriteCount(m_nCount);
       for (node* pNode = m_pnodeHead; pNode != NULL; pNode = pNode->m_pnext)
       {
-         ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+         ASSERT(__is_valid_address(pNode, sizeof(node)));
          ar << pNode->m_pdata;
       }
    }
@@ -418,8 +418,8 @@ void object_list::assert_valid() const
    else
    {
       // non-is_empty list
-      ASSERT(fx_is_valid_address(m_pnodeHead, sizeof(node)));
-      ASSERT(fx_is_valid_address(m_pnodeTail, sizeof(node)));
+      ASSERT(__is_valid_address(m_pnodeHead, sizeof(node)));
+      ASSERT(__is_valid_address(m_pnodeTail, sizeof(node)));
    }
 }
 

@@ -30,7 +30,7 @@ namespace cube8
    };
 
 
-   CLASS_DECL_ca2 UINT AFX_CDECL application_thread_procedure(LPVOID pvoid);
+   CLASS_DECL_ca2 UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
    typedef ::ca::application * (* LPFN_instantiate_application)(::ca::application * pappParent, const char * pszId);
 

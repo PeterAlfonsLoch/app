@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <math.h>
 
 namespace datetime
@@ -123,7 +123,7 @@ namespace datetime
 
    value strtotime(::ca::application * pcaapp, ::user::str_context * pcontext, const char * psz, int & iPath, int & iPathCount)
    {
-      class time time;
+      ::datetime::time time;
       string str(psz);
       str.trim();
       str += " ";
@@ -159,11 +159,11 @@ namespace datetime
                /*time_t now = _time64(NULL);
                time_t nowUtc = mktime(gmtime(&now));
                time_t tDiff = difftime(nowUtc, now);*/
-               time = class time(_mkgmtime64(&atm));
+               time = ::datetime::time(_mkgmtime64(&atm));
             }
             else
             {
-               time = class time(
+               time = ::datetime::time(
                   set["year"],
                   set["month"],
                   set["day"],
@@ -182,7 +182,7 @@ namespace datetime
          {
             bBaseTime = true;
             Sys(pcaapp->m_psystem).datetime().international().parse_str(str, set);
-            time = class time(
+            time = ::datetime::time(
                set["year"],
                set["month"],
                set["day"],
@@ -196,30 +196,30 @@ namespace datetime
          gen::str::begins_eat(str, "today") ||
          (pcontext != NULL && pcontext->begins_eat(str, "calendar:today"))))
       {
-         time = time::get_current_time();
-         time = class time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
+         time = ::datetime::time::get_current_time();
+         time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
          bBaseTime = true;
       }
       if(!bBaseTime &&(
          gen::str::begins_eat(str, "tomorrow") ||
          (pcontext != NULL && pcontext->begins_eat(str, "calendar:tomorrow"))))
       {
-         time = time::get_current_time();
-         time = class time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
-         time += time_span(1, 0, 0, 0);
+         time = ::datetime::time::get_current_time();
+         time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
+         time += ::datetime::time_span(1, 0, 0, 0);
          bBaseTime = true;
       }
       if(!bBaseTime &&(
          gen::str::begins_eat(str, "now") ||
          (pcontext != NULL && pcontext->begins_eat(str, "calendar:now"))))
       {
-         time = time::get_current_time();
+         time = ::datetime::time::get_current_time();
          bBaseTime = true;
       }
       stringa stra;
       if(!bBaseTime && cregexp_util::match(stra, str, "/^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)/", true, 4) > 0)
       {
-         time = time::get_current_time();
+         time = ::datetime::time::get_current_time();
          int i1 = atoi(stra[2]);
          int i2 = atoi(stra[3]);
          int iCount = 0;
@@ -244,17 +244,17 @@ namespace datetime
             {
                int iDay = i2;
                int iMonth = i1;
-               time = class time(time.GetYear(), iMonth, iDay,
+               time = ::datetime::time(time.GetYear(), iMonth, iDay,
                   time.GetHour(), time.GetMinute(), time.GetSecond());
-               time = class time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
+               time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
             }
             else if((iCount == 1 && !bFirst) || (iCount == 2 && (iPath % iCount) == 1))
             {
                int iDay = i1;
                int iMonth = i2;
-               time = class time(time.GetYear(), iMonth, iDay,
+               time = ::datetime::time(time.GetYear(), iMonth, iDay,
                   time.GetHour(), time.GetMinute(), time.GetSecond());
-               time = class time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
+               time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
             }
             iPath = iPath / iCount;
             iPathCount = iPathCount * iCount;
@@ -272,7 +272,7 @@ namespace datetime
    }
 
 
-   value::value(const class time & time)
+   value::value(const ::datetime::time & time)
    {
       operator =(time);
    }
@@ -325,12 +325,12 @@ namespace datetime
       return (((m_iYear * 365.2425 + m_iMonth * 365.2425 / 12.0 + m_iDay) * 24.0  + m_iHour) * 60.0 + m_iMinute) * 60.0 + m_iSecond;
    }
 
-   class time value::get_time() const
+   ::datetime::time value::get_time() const
    {
       ASSERT(!m_bSpan);
       try
       {
-         return class time(m_iYear, m_iMonth, m_iDay, m_iHour, m_iMinute, m_iSecond);
+         return ::datetime::time(m_iYear, m_iMonth, m_iDay, m_iHour, m_iMinute, m_iSecond);
       }
       catch(...)
       {
@@ -338,13 +338,13 @@ namespace datetime
       }
    }
 
-   time_span value::GetSpan() const
+   ::datetime::time_span value::GetSpan() const
    {
       ASSERT(m_bSpan);
-      return time_span((LONG) (m_iDay + m_iMonth * (365.0 * 4.0 + 1.0) /(12.0 *4.0) + m_iYear *(365.0 * 4.0 + 1.0) /(4.0)), m_iHour, m_iMinute, m_iSecond);
+      return ::datetime::time_span((LONG) (m_iDay + m_iMonth * (365.0 * 4.0 + 1.0) /(12.0 *4.0) + m_iYear *(365.0 * 4.0 + 1.0) /(4.0)), m_iHour, m_iMinute, m_iSecond);
    }
 
-   value & value::operator = (const class time & time)
+   value & value::operator = (const ::datetime::time & time)
    {
       m_bSpan     = false;
       m_iYear     = time.GetYear();
@@ -446,7 +446,7 @@ namespace datetime
       }
       else
       {
-         class time time = get_time();
+         ::datetime::time time = get_time();
          if(time.GetSecond() == 0)
          {
             if(time.GetHour() == 0 && time.GetMinute() == 0)
@@ -506,7 +506,7 @@ datetime::value operator + (const datetime::value & val1, const datetime::value 
          pdate = &val1;
          pspan = &val2;
       }
-      val = class time(pdate->get_time() + pspan->GetSpan());
+      val = ::datetime::time(pdate->get_time() + pspan->GetSpan());
    }
    else
    {
@@ -538,7 +538,7 @@ datetime::value operator - (const datetime::value & val1, const datetime::value 
    {
       const datetime::value * pdate = &val1;
       const datetime::value * pspan = &val2;
-      val = class time(pdate->get_time() - pspan->GetSpan());
+      val = ::datetime::time(pdate->get_time() - pspan->GetSpan());
    }
    else
    {

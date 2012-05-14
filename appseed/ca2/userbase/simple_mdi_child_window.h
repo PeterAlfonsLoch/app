@@ -58,7 +58,7 @@ public:
    virtual LRESULT DefWindowProc(UINT nMsg, WPARAM wParam, LPARAM lParam);
    BOOL UpdateClientEdge(LPRECT lpRect = NULL);
 
-   //{{AFX_MSG(SimpleMDIChildWindow)
+   //{{__MSG(SimpleMDIChildWindow)
    void OnMDIActivate(BOOL bActivate, ::user::interaction*, ::user::interaction*);
    int OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message);
    DECL_GEN_SIGNAL(_001OnCreate)

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 installing_exception::installing_exception(const installing_exception & e) : 
    temporary_exception(e.m_strTip)

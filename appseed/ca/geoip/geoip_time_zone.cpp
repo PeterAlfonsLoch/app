@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 const char* GeoIP_time_zone_by_country_and_region(const char * country,const char * region)
 {

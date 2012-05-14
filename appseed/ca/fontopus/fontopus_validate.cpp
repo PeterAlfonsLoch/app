@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <openssl/rsa.h>
 #include <openssl/engine.h>
 #include <openssl/err.h>

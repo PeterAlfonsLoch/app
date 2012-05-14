@@ -197,8 +197,7 @@ namespace plane
 
    class CLASS_DECL_ca system :
       virtual public ::plane::application,
-      virtual public ::gen::system,
-      virtual public debug_reporter
+      virtual public ::gen::system
    {
    public:
 

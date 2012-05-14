@@ -5,7 +5,7 @@
 // radius will approximate a gaussian blur quite well.
 //
 
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace visual
 {

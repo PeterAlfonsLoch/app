@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "stream_socket.h"
 #include "socket_handler_base.h"
 

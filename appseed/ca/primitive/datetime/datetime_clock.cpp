@@ -1,16 +1,16 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <math.h>
 
 clock::clock(::ca::application * papp) :
    ca(papp),
    clock_interface(papp)
 {
-   class time time = time::get_current_time();
+   ::datetime::time time = ::datetime::time::get_current_time();
 }
 
 void clock::_001OnDraw(::ca::graphics * pdc)
 {
-   class time timeNow = time::get_current_time() + m_timespan;
+   ::datetime::time timeNow = ::datetime::time::get_current_time() + m_timespan;
 
    rect rect;
    GetRect(&rect, ElementClock);

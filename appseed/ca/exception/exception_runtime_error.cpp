@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 runtime_error::runtime_error(const char * pszError) :

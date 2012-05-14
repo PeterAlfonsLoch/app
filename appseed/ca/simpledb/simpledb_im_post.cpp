@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 im_post::im_post(db_server * pserver) : 
    db_set(pserver, "im_post")

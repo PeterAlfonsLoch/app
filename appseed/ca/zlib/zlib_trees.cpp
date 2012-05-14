@@ -32,7 +32,7 @@
 /* @(#) $Id$ */
 
 /* #define GEN_TREES_H */
-#include "StdAfx.h"
+#include "framework.h"
 
 
 

@@ -69,7 +69,7 @@ class CDockContext;                     // for dragging control bars
 // Internal AFX Windows messages (see Technical note TN024 for more details)
 // (0x0360 - 0x037F are reserved for ca2 API)
 
-#define WM_QUERYAFXWNDPROC  0x0360  // lResult = 1 if processed by AfxWndProc
+#define WM_QUERYAFXWNDPROC  0x0360  // lResult = 1 if processed by gen::WndProc
 #define WM_SIZEPARENT       0x0361  // lParam = &AFX_SIZEPARENTPARAMS
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
                            // lParam = lpszOther (or NULL)
@@ -138,7 +138,7 @@ class CDockContext;                     // for dragging control bars
 #define WM_RESERVED_037D    0x037D
 #define WM_RESERVED_037E    0x037E
 
-// WM_FORWARDMSG - used by _template to forward a message to another ::ca::window for processing
+// WM_FORWARDMSG - used by gen to forward a message to another ::ca::window for processing
 //   WPARAM - DWORD dwUserData - defined by ::fontopus::user
 //   LPARAM - LPMSG pMsg - a pointer to the MSG structure
 //   return value - 0 if the message was not processed, nonzero if it was
@@ -146,7 +146,7 @@ class CDockContext;                     // for dragging control bars
 
 // like ON_MESSAGE but no return value
 #define ON_MESSAGE_VOID(message, memberFxn) \
-   { message, 0, 0, 0, AfxSig_vv, \
+   { message, 0, 0, 0, gen::Sig_vv, \
       (AFX_PMSG)(AFX_PMSGW)(void (AFX_MSG_CALL ::ca::window::*)(void))&memberFxn },
 
 #if defined(LINUX) || defined(MACOS)
@@ -171,7 +171,7 @@ enum {  FS_SHOW = 0x01, FS_HIDE = 0x02,
       FS_ENABLE = 0x10, FS_DISABLE = 0x20,
       FS_SYNCACTIVE = 0x40 };
 
-CLASS_DECL_ca void AfxRepositionWindow(AFX_SIZEPARENTPARAMS* lpLayout,
+CLASS_DECL_ca void gen::RepositionWindow(AFX_SIZEPARENTPARAMS* lpLayout,
    ::user::interaction * hWnd, LPCRECT lpRect);
 
 #ifndef LAYOUT_LTR

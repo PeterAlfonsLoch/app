@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 clock_interface::clock_interface(::ca::application * papp) :
    ca(papp)
@@ -18,14 +18,14 @@ void clock_interface::GetRect(LPRECT lprect, enum EElement eelement)
 }
 
 
-void clock_interface::set_time(const class time & time)
+void clock_interface::set_time(const ::datetime::time & time)
 {
-   m_timespan = time - time::get_current_time();
+   m_timespan = time - ::datetime::time::get_current_time();
 }
 
-void clock_interface::get_time(class time & time)
+void clock_interface::get_time(::datetime::time & time)
 {
-   time = time::get_current_time() + m_timespan;
+   time = ::datetime::time::get_current_time() + m_timespan;
 }
 
 
@@ -33,21 +33,21 @@ void clock_interface::get_time(class time & time)
 
 void clock_interface::previous_minute()
 {
-   m_timespan -= time_span(0, 0, 1, 0);
+   m_timespan -= ::datetime::time_span(0, 0, 1, 0);
 }
 void clock_interface::next_minute()
 {
-   m_timespan += time_span(0, 0, 1, 0);
+   m_timespan += ::datetime::time_span(0, 0, 1, 0);
 }
 
 void clock_interface::next_hour()
 {
-   m_timespan += time_span(0, 1, 0, 0);
+   m_timespan += ::datetime::time_span(0, 1, 0, 0);
 }
 
 void clock_interface::previous_hour()
 {
-   m_timespan -= time_span(0, 1, 0, 0);
+   m_timespan -= ::datetime::time_span(0, 1, 0, 0);
 }
 
 

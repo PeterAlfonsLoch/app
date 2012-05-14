@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "FileManagerFrame.h"
 
 
@@ -16,9 +16,9 @@ FileManagerFrame::~FileManagerFrame()
 
 
  // BEGIN_MESSAGE_MAP(FileManagerFrame, simple_frame_window)
-   //{{AFX_MSG_MAP(FileManagerFrame)
+   //{{__MSG_MAP(FileManagerFrame)
 // xxx   ON_WM_CREATE()
-   //}}AFX_MSG_MAP
+   //}}__MSG_MAP
  // END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////

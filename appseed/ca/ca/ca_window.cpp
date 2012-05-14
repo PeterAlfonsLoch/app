@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace ca
 {
@@ -593,7 +593,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void AfxRepositionWindow(AFX_SIZEPARENTPARAMS * lpLayout, ::user::interaction * hWnd, LPCRECT lpRect)
+   void __reposition_window(__SIZEPARENTPARAMS * lpLayout, ::user::interaction * hWnd, LPCRECT lpRect)
    {
       UNREFERENCED_PARAMETER(lpLayout);
       UNREFERENCED_PARAMETER(hWnd);
@@ -1021,7 +1021,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   LRESULT window::_AFX_FUNCNAME(SendMessage)(UINT message, WPARAM wParam, LPARAM lParam)
+   LRESULT window::___FUNCNAME(SendMessage)(UINT message, WPARAM wParam, LPARAM lParam)
    {
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);
@@ -2220,7 +2220,7 @@ namespace ca
       // control notification
       ASSERT(nID == 0 || ::IsWindow(hWndCtrl));
 
-      if (_afxThreadState->m_hLockoutNotifyWindow == get_handle())
+      if (gen_ThreadState->m_hLockoutNotifyWindow == get_handle())
       return TRUE;        // locked out - ignore control notification
 
       // reflect notification to child ::ca::window control
@@ -2377,7 +2377,7 @@ void guie_message_wnd::message_handler(gen::signal_object * pobj)
 }
 
 
-void AfxRepositionWindow(AFX_SIZEPARENTPARAMS* lpLayout,
+void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
                                 ::user::interaction * hWnd, LPCRECT lpRect)
 {
    ASSERT(hWnd != NULL);

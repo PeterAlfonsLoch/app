@@ -1,6 +1,6 @@
 // LockedStream.cpp
 // at sector8J on afternoon of 13/01/2011 - Thursday
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace ex1
 {

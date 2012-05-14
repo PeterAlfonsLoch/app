@@ -1,7 +1,7 @@
 /* 7zCrcOpt.c -- CRC32 calculation : optimized version
 2009-11-23 : Igor Pavlov : Public domain */
 // from 7-zip on 2010-12-26 Sunday, just after Christmas evening at Music Room with Lucinho at torvon and me at eco - at veriverse - and Mummi and Maninha no quarto da Mummi
-#include "StdAfx.h"
+#include "framework.h"
 
 #ifdef MY_CPU_LE
 

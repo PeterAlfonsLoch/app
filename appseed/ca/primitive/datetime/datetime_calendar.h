@@ -35,7 +35,7 @@ public:
    calendar(::ca::application * papp);
 
 
-   virtual void GetRectDay(class time & time, LPRECT lprect);
+   virtual void GetRectDay(::datetime::time & time, LPRECT lprect);
    virtual void GetRectDay(int iWeekDay, int iLine, LPRECT lprect);
    virtual void GetRect(LPRECT lprect, enum EElement eelement);
 
@@ -46,7 +46,7 @@ public:
 
    virtual EElement hit_test(point pt);
    virtual bool hit_test(EElement eelement, point pt);
-   virtual bool time_hit_test(class time & time, point pt);
+   virtual bool time_hit_test(::datetime::time & time, point pt);
 
 
 

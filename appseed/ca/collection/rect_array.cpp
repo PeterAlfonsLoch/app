@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 rect_array::~rect_array()
 {

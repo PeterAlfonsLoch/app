@@ -10,7 +10,12 @@
 #include "xml/xml.h"
 
 
-#include "ca/template/template_trace.h"
+#include "ca/gen/gen_definition.h"
+#include "ca/gen/gen_debug.h"
+
+#include "ca/ca/ca_log.h"
+
+#include "ca/gen/gen_trace.h"
 
 
 namespace ca2
@@ -33,23 +38,23 @@ namespace ca2
 #include "ca2_url.h"
 
 
-#include "radix/service.h"
-#include "radix/machine_event_central.h"
+#include "ca/radix/radix_service.h"
+#include "ca/radix/radix_machine_event_central.h"
 
 
-#include "install/install.h"
+#include "ca/install/install.h"
 
 
-#include "ca/ca_os.h"
+#include "ca/ca/ca_os.h"
 
-#include "gen/gen_process.h"
+#include "ca/gen/gen_process.h"
 
 
 #include "ca2_log.h"
 
 
-#include "gen/gen_cregexp.h"
-#include "gen/gen_cregexp_util.h"
+#include "ca/gen/gen_cregexp.h"
+#include "ca/gen/gen_cregexp_util.h"
 
 
 #include "ca/primitive/datetime/datetime_value.h"

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "collection/raw_array.h"
-#include "collection/map.h"
+
 
 // ph - pointer holder
 #define ph(holding_type) ::gen::holder < holding_type >

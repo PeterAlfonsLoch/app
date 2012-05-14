@@ -13,9 +13,9 @@ namespace ca2
       public:
          international(::ca::application * papp);
          void parse_str(const char * psz, gen::property_set & set);
-         string get_gmt_date_time(const class time & time);
+         string get_gmt_date_time(const ::datetime::time & time);
          string get_gmt_date_time();
-         string get_local_date_time(const class time & time);
+         string get_local_date_time(const ::datetime::time & time);
          string get_local_date_time();
       };
 
@@ -49,7 +49,7 @@ namespace ca2
 
       time_t mktime(int iHour, int iMinute, int iSecond, int iMonth, int iDay, int iYear);
 
-      class time from_gmt_date_time(int iYear, int iMonth, int iDay, int iHour, int iMinute, int iSecond);
+      ::datetime::time from_gmt_date_time(int iYear, int iMonth, int iDay, int iHour, int iMinute, int iSecond);
 
       class international & international();
       class str & str();

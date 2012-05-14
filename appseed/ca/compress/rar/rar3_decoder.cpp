@@ -4,7 +4,7 @@
 
 /* This code uses Carryless rangecoder (1999): Dmitry Subbotin : Public domain */
 
-#include "StdAfx.h"
+#include "framework.h"
 
 /*#include "../../../C/Alloc.h"
 

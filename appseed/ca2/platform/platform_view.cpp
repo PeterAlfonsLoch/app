@@ -1,4 +1,4 @@
-﻿#include "StdAfx.h"
+﻿#include "framework.h"
 #include "view.h"
 #include "document.h"
 
@@ -567,7 +567,7 @@ namespace platform
    }
 
 
-   UINT AFX_CDECL view::ThreadProcShowWindow(LPVOID lpparam)
+   UINT c_cdecl view::ThreadProcShowWindow(LPVOID lpparam)
    {
       show_window * pshow = (show_window *) lpparam;
       if(pshow != NULL)
@@ -602,7 +602,7 @@ namespace platform
 
    void view::mt_show_window(HWND hwnd, int iShow)
    {
-      AfxBeginThread(
+      __begin_thread(
          get_app(),
          &view::ThreadProcShowWindow,
          new show_window(hwnd, iShow),
@@ -833,7 +833,7 @@ namespace platform
             break;
          default:
             {
-               class time time;
+               ::datetime::time time;
                if(m_calendar.time_hit_test(time, pt))
                {
                   m_calendar.set_time(time);

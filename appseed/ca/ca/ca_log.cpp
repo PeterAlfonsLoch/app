@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #include <stdio.h>
 #ifdef WIN32

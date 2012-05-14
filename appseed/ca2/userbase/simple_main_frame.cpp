@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 simple_main_frame::simple_main_frame(::ca::application * papp) :

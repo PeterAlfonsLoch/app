@@ -1,7 +1,7 @@
 // Crypto/RarAes.cpp
 // Note: you must include MyAes.cpp to project to initialize AES tables
 
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace crypto
 {

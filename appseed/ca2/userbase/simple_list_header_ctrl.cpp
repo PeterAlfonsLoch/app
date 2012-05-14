@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 const int simple_list_header_control::s_iDividerWidth = 4;
 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 SimplePushButton::SimplePushButton(::ca::application * papp) :
    ca(papp),

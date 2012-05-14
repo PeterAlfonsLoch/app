@@ -8,13 +8,12 @@
 #include "ca_font.h"
 #include "ca_region.h"
 #include "ca_palette.h"
-#include "ca/radix/radix_1.h"
 
 
 #ifdef UNICODE
-#define _AFX_FUNCNAME(_Name) _Name##W
+#define ___FUNCNAME(_Name) _Name##W
 #else
-#define _AFX_FUNCNAME(_Name) _Name##A
+#define ___FUNCNAME(_Name) _Name##A
 #endif
 
 
@@ -49,7 +48,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca graphics :
-      virtual public _template::simple_chain < ::user::draw_context >
+      virtual public gen::simple_chain < ::user::draw_context >
    {
    public:
 
@@ -427,13 +426,13 @@ namespace ca
    #pragma push_macro("DrawTextEx")
    #undef DrawText
    #undef DrawTextEx
-      virtual int _AFX_FUNCNAME(DrawText)(const char * lpszString, int nCount, LPRECT lpRect,
+      virtual int ___FUNCNAME(DrawText)(const char * lpszString, int nCount, LPRECT lpRect,
                UINT nFormat);
-      virtual int _AFX_FUNCNAME(DrawText)(const string & str, LPRECT lpRect, UINT nFormat);
+      virtual int ___FUNCNAME(DrawText)(const string & str, LPRECT lpRect, UINT nFormat);
 #ifdef WINDOWS
-      virtual int _AFX_FUNCNAME(DrawTextEx)(LPTSTR lpszString, int nCount, LPRECT lpRect,
+      virtual int ___FUNCNAME(DrawTextEx)(LPTSTR lpszString, int nCount, LPRECT lpRect,
                UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
-      virtual int _AFX_FUNCNAME(DrawTextEx)(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
+      virtual int ___FUNCNAME(DrawTextEx)(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
 #endif
 
       virtual int DrawText(const char * lpszString, int nCount, LPRECT lpRect,
@@ -473,7 +472,7 @@ namespace ca
    #pragma push_macro("GetTextMetrics")
    #undef GetTextMetrics
 #ifdef WINDOWS
-      virtual BOOL _AFX_FUNCNAME(GetTextMetrics)(LPTEXTMETRIC lpMetrics) const;
+      virtual BOOL ___FUNCNAME(GetTextMetrics)(LPTEXTMETRIC lpMetrics) const;
       virtual BOOL GetTextMetrics(LPTEXTMETRIC lpMetrics) const;
 #endif
    #pragma pop_macro("GetTextMetrics")

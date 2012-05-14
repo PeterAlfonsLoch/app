@@ -1,10 +1,6 @@
 #pragma once
 
 
-#include "simple_string.h"
-#include "id.h"
-
-
 #ifdef LINUX
 #undef __USE_MISC
 #include <strings.h>
@@ -16,7 +12,7 @@
 //#include "radix/fixed_alloc.h"
 
 
-CLASS_DECL_ca string_manager * AfxGetStringManager();
+CLASS_DECL_ca string_manager * __get_string_manager();
 
 
 class string;
@@ -77,7 +73,7 @@ CLASS_DECL_ca int64_t strtoi(const char * psz);
 CLASS_DECL_ca int64_t strtoi(const wchar_t * psz);
 
 
-inline UINT _AtlGetConversionACP()
+inline UINT _gen_GetConversionACP()
 {
 #ifdef _WINDOWS
    return CP_UTF8;
@@ -89,11 +85,10 @@ inline UINT _AtlGetConversionACP()
 
 
 
-#include "simple_string.h"
 
 
 #ifndef _AFX
-#define _AFX_FUNCNAME(_Name) _Name
+#define ___FUNCNAME(_Name) _Name
 #endif
 
 //#pragma push_macro("new")
@@ -206,7 +201,7 @@ public:
 
    CLASS_DECL_ca static string_manager * GetDefaultManager() throw()
    {
-      static string_manager * s_pdefaultManager = AfxGetStringManager();
+      static string_manager * s_pdefaultManager = __get_string_manager();
       return s_pdefaultManager;
    }
 
@@ -902,7 +897,7 @@ public:
    // Load the string from resource 'nID' in module 'hInstance'
    /*    BOOL load_string(HINSTANCE hInstance,strsize nID )
    {
-   const ATLSTRINGRESOURCEIMAGE* pImage = AtlGetStringResourceImage( hInstance, nID );
+   const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID );
    if( pImage == NULL )
    {
    return( FALSE );
@@ -919,7 +914,7 @@ public:
    // Load the string from resource 'nID' in module 'hInstance', using language 'wLanguageID'
    /*BOOL load_string(HINSTANCE hInstance,strsize nID,WORD wLanguageID )
    {
-   const ATLSTRINGRESOURCEIMAGE* pImage = AtlGetStringResourceImage( hInstance, nID, wLanguageID );
+   const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID, wLanguageID );
    if( pImage == NULL )
    {
    return( FALSE );
@@ -1406,13 +1401,13 @@ inline int __cdecl crt_char_traits::StringCompareIgnore(const char * pszA,const 
 
 inline int string::Compare(PCXSTR psz ) const
 {
-   ATLENSURE( _template::_template_is_valid_string( psz ) );
+   ENSURE( __is_valid_string( psz ) );
    return( string_trait::StringCompare( GetString(), psz ) );
 }
 
 inline int string::CompareNoCase(PCXSTR psz ) const throw()
 {
-   ATLASSERT( _template::_template_is_valid_string( psz ) );
+   ASSERT( __is_valid_string( psz ) );
    return( string_trait::StringCompareIgnore( GetString(), psz ) );
 }
 

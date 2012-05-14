@@ -3,7 +3,7 @@
 * \author	Thomas Hoefer
 */
 // from sector8J on 2011-08-09
-#include "StdAfx.h"
+#include "framework.h"
 
 
 waitable::waitable()

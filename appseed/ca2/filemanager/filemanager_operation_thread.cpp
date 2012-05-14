@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 // BEGIN_MESSAGE_MAP(file_manager_operation_thread, thread)
 //   ON_THREAD_MESSAGE(WM_USER, &file_manager_operation_thread::On1)

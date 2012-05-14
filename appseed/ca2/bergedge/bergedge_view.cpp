@@ -1,4 +1,4 @@
-﻿#include "StdAfx.h"
+﻿#include "framework.h"
 
 namespace bergedge
 {
@@ -441,7 +441,7 @@ namespace bergedge
    }
 
 
-   UINT AFX_CDECL view::ThreadProcShowWindow(LPVOID lpparam)
+   UINT c_cdecl view::ThreadProcShowWindow(LPVOID lpparam)
    {
       UNREFERENCED_PARAMETER(lpparam);
       return 0;

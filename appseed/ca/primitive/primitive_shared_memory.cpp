@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace primitive
@@ -35,7 +35,7 @@ namespace primitive
 
       allocate(dwSize);
 
-      ASSERT(fx_is_valid_address(pMemory, (UINT_PTR) dwSize, FALSE));
+      ASSERT(__is_valid_address(pMemory, (UINT_PTR) dwSize, FALSE));
 
       memcpy(m_pbStorage, pMemory, (size_t) dwSize);
 
@@ -138,7 +138,7 @@ namespace primitive
 
       if (hGlobalMemory == NULL)
       {
-         AfxThrowInvalidArgException();
+         throw invalid_argument_exception();
       }
 
       m_hGlobalMemory = hGlobalMemory;

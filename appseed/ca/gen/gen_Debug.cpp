@@ -18,7 +18,7 @@
 /*#include <windows.h>
 #include <mmsystem.h>  */
 
-#include "StdAfx.h"
+#include "framework.h"
 
 #include "gen_debug.h"
 
@@ -31,7 +31,7 @@ void TRACELASTERROR()
 
 #ifdef WINDOWS
 
-         _AFX_FUNCNAME(FormatMessage)(
+         ___FUNCNAME(FormatMessage)(
             FORMAT_MESSAGE_ALLOCATE_BUFFER |
             FORMAT_MESSAGE_FROM_SYSTEM,
             NULL,
@@ -54,7 +54,7 @@ string FormatMessageFromSystem(DWORD dwError)
 
 #ifdef WINDOWS
 
-   _AFX_FUNCNAME(FormatMessage)(
+   ___FUNCNAME(FormatMessage)(
      FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
      NULL,
      dwError,

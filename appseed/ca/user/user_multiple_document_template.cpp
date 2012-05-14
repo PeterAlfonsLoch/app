@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 multiple_document_template::multiple_document_template(
    ::ca::application * papp,
@@ -69,7 +69,7 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
    if (pdocument == NULL)
    {
       TRACE(::radix::trace::category_AppMsg, 0, "document_template::create_new_document returned NULL.\n");
-      // linux System.simple_message_box(AFX_IDP_FAILED_TO_CREATE_DOC);
+      // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
       System.simple_message_box(NULL, "failed to create user::document_interface");
       return;
    }
@@ -80,7 +80,7 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
    pdocument->m_bAutoDelete = bAutoDelete;
    if (pFrame == NULL)
    {
-      // linux System.simple_message_box(AFX_IDP_FAILED_TO_CREATE_DOC);
+      // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
       System.simple_message_box(NULL, "Failed to create user::document_interface");
       delete pdocument;       // explicit delete on error
       return;

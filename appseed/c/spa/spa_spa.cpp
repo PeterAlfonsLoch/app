@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 bool g_bAdmin = false;
 vsstring * g_pstrId = NULL;

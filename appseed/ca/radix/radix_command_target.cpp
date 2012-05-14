@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 base_cmd_ui::base_cmd_ui(gen::signal * psignal) :
    signal_object(psignal)

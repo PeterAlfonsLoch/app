@@ -18,7 +18,7 @@ public:
 
    service_status()
    {
-      ATLASSERT(sizeof (*this) == sizeof (SERVICE_STATUS));
+      ASSERT(sizeof (*this) == sizeof (SERVICE_STATUS));
 
       ::ZeroMemory(this,
          sizeof (SERVICE_STATUS));
@@ -41,7 +41,7 @@ public:
    service_status()
    {
 
-      ATLASSERT(sizeof(*this) == sizeof(service_status));
+      ASSERT(sizeof(*this) == sizeof(service_status));
 
       memset(this, 0, sizeof(service_status));
 

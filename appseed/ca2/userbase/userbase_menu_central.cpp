@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 HHOOK BaseMenuCentral::m_hCBTHook = NULL;
@@ -333,7 +333,7 @@ bool BaseMenuCentralContainer::initialize_central_container(::ca::application * 
 {
    m_pmenucentral = new BaseMenuCentral(papp);
    if(!m_pmenucentral)
-      AfxThrowMemoryException();
+      throw memory_exception();
    return true;
 }
 

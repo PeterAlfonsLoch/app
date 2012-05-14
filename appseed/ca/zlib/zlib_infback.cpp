@@ -9,7 +9,7 @@
    with inffast.c is retained so that optimized assembler-coded versions of
    inflate_fast() can be used with either inflate.c or infback.c.
  */
-#include "StdAfx.h"
+#include "framework.h"
 
 
 

@@ -2,7 +2,7 @@
 * \brief	Platform independent waitables (windows version)
 * \author	Thomas Hoefer
 */
-#include "StdAfx.h"
+#include "framework.h"
 
 
 ///  \brief		constructor with passed handle

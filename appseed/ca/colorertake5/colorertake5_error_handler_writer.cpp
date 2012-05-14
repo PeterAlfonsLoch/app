@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 ErrorHandlerWriter::ErrorHandlerWriter(::ca::application * papp) :
 ca(papp)

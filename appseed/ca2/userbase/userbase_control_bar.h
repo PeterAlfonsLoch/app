@@ -19,15 +19,15 @@ class BaseDockState;
 
 
 // Standard control bars (IDW = ::ca::window ID)
-#define AFX_IDW_CONTROLBAR_FIRST        0xE800
-#define AFX_IDW_CONTROLBAR_LAST         0xE8FF
+#define __IDW_CONTROLBAR_FIRST        0xE800
+#define __IDW_CONTROLBAR_LAST         0xE8FF
 
-#define AFX_IDW_TOOLBAR                 0xE800  // main Toolbar for ::ca::window
+#define __IDW_TOOLBAR                 0xE800  // main Toolbar for ::ca::window
 //#define "status_bar"              0xE801  // Status bar ::ca::window
-#define AFX_IDW_PREVIEW_BAR             0xE802  // PrintPreview Dialog Bar
-#define AFX_IDW_RESIZE_BAR              0xE803  // OLE in-place resize bar
-#define AFX_IDW_REBAR                   0xE804  // COMCTL32 "rebar" Bar
-#define AFX_IDW_DIALOGBAR               0xE805  // CDialogBar
+#define __IDW_PREVIEW_BAR             0xE802  // PrintPreview Dialog Bar
+#define __IDW_RESIZE_BAR              0xE803  // OLE in-place resize bar
+#define __IDW_REBAR                   0xE804  // COMCTL32 "rebar" Bar
+#define __IDW_DIALOGBAR               0xE805  // CDialogBar
 
 // Note: If your application supports docking toolbars, you should
 //  not use the following IDs for your own toolbars.  The IDs chosen
@@ -35,14 +35,14 @@ class BaseDockState;
 //  while in print preview mode, and are not likely to conflict with
 //  IDs your application may have used succesfully in the past.
 
-#define AFX_IDW_DOCKBAR_TOP             0xE81B
-#define AFX_IDW_DOCKBAR_LEFT            0xE81C
-#define AFX_IDW_DOCKBAR_RIGHT           0xE81D
-#define AFX_IDW_DOCKBAR_BOTTOM          0xE81E
-#define AFX_IDW_DOCKBAR_FLOAT           0xE81F
+#define __IDW_DOCKBAR_TOP             0xE81B
+#define __IDW_DOCKBAR_LEFT            0xE81C
+#define __IDW_DOCKBAR_RIGHT           0xE81D
+#define __IDW_DOCKBAR_BOTTOM          0xE81E
+#define __IDW_DOCKBAR_FLOAT           0xE81F
 
 // Macro for mapping standard control bars to bitmask (limit of 32)
-#define AFX_CONTROLBAR_MASK(nIDC)   (1L << (nIDC - AFX_IDW_CONTROLBAR_FIRST))
+#define __CONTROLBAR_MASK(nIDC)   (1L << (nIDC - __IDW_CONTROLBAR_FIRST))
 
 
 
@@ -137,7 +137,7 @@ namespace userbase
    #endif
       virtual void DelayShow(BOOL bShow);
       virtual BOOL IsVisible();
-      virtual DWORD RecalcDelayShow(AFX_SIZEPARENTPARAMS* lpLayout);
+      virtual DWORD RecalcDelayShow(__SIZEPARENTPARAMS* lpLayout);
 
       virtual BOOL IsDockBar();
       virtual BOOL DestroyWindow();

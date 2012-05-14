@@ -33,7 +33,7 @@ woven in by Terry Thorsen 1/2003.
   file (appnote.txt) is distributed with the PKZIP program (even in the
   version without encryption capabilities).
  */
-#include "StdAfx.h"
+#include "framework.h"
 
 #include <stdio.h>
 #include <stdlib.h>

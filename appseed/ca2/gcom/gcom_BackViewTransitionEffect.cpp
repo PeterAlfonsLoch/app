@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <math.h>
 
 
@@ -1818,7 +1818,7 @@ namespace gcom
 
       ::radix::thread * TransitionEffect::CreateRunStepThread()
       {
-         return AfxBeginThread(get_app(), ThreadProcRunStep, this, THREAD_PRIORITY_NORMAL, 0, 0, NULL);
+         return __begin_thread(get_app(), ThreadProcRunStep, this, THREAD_PRIORITY_NORMAL, 0, 0, NULL);
       }
 
       void TransitionEffect::_Init()
@@ -1859,7 +1859,7 @@ namespace gcom
          m_tool001.Initialize(get_type(), cx, cy, *this);
       }
 
-      UINT AFX_CDECL TransitionEffect::ThreadProcRunStep(LPVOID lpParameter)
+      UINT c_cdecl TransitionEffect::ThreadProcRunStep(LPVOID lpParameter)
       {
          TransitionEffect * peffect = (TransitionEffect *) lpParameter;
          srand((unsigned int) time(NULL));

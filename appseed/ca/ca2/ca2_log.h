@@ -13,7 +13,7 @@ namespace ca2
 
 
       bool                    m_bTrace;
-      _template::CTrace       m_trace;
+      gen::trace::trace       m_trace;
       critical_section        m_csTrace;
       stringa                 m_straSeparator;
       ex1::text_file_sp       m_spfile;

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 calendar::calendar(::ca::application * papp) :
    ca(papp),
@@ -8,7 +8,7 @@ calendar::calendar(::ca::application * papp) :
    m_fontSpin(papp),
    calendar_interface(papp)
 {
-   class time time = time::get_current_time();
+   ::datetime::time time = ::datetime::time::get_current_time();
    m_iYear = time.GetYear();
    m_iMonth = time.GetMonth();
 }
@@ -16,11 +16,11 @@ calendar::calendar(::ca::application * papp) :
 void calendar::_001OnDraw(::ca::graphics * pdc)
 {
    pdc->SelectObject(m_font);
-   class time timeNow = time::get_current_time();
+   ::datetime::time timeNow = ::datetime::time::get_current_time();
    int iMonth = m_iMonth;
    int iYear = m_iYear;
-   class time time(iYear, iMonth, 1, 0, 0, 0);
-   time_span timespan(1, 0, 0, 0);
+   ::datetime::time time(iYear, iMonth, 1, 0, 0, 0);
+   ::datetime::time_span timespan(1, 0, 0, 0);
    COLORREF crBorder;
    rect rectDay;
    int iDay;
@@ -75,7 +75,7 @@ void calendar::_001OnDraw(::ca::graphics * pdc)
       strDay.Format("%d", timeNow.GetDay());
       pdc->DrawText(strDay, rectDay, DT_BOTTOM | DT_RIGHT);
    }
-   class time timeEmp = m_time;
+   ::datetime::time timeEmp = m_time;
    for(int iDay = timeEmp.GetDay(); time.GetYear() == iYear 
       && time.GetMonth() == iMonth &&
       (m_time.GetDay() == iDay || (
@@ -125,16 +125,16 @@ void calendar::_001GetHtml(::ca2::html_file * pfile)
    {
 
       // pszSchema can be ignored if the object has only one implemented schema
-      class time timeNow = time::get_current_time();
+      ::datetime::time timeNow = ::datetime::time::get_current_time();
       int iMonth = m_iMonth;
       int iYear = m_iYear;
 
       int iWeekDay;
       
-      class time time(iYear, iMonth, 1, 0, 0, 0);
-      time_span timespan(1, 0, 0, 0);
-      class time timeLastDayOfMonth((iMonth == 12) ? (iYear + 1) : iYear, (iMonth == 12) ? 1 : (iMonth + 1), 1, 0, 0, 0);
-      timeLastDayOfMonth -= time_span(1, 0, 0, 0);
+      ::datetime::time time(iYear, iMonth, 1, 0, 0, 0);
+      ::datetime::time_span timespan(1, 0, 0, 0);
+      ::datetime::time timeLastDayOfMonth((iMonth == 12) ? (iYear + 1) : iYear, (iMonth == 12) ? 1 : (iMonth + 1), 1, 0, 0, 0);
+      timeLastDayOfMonth -= ::datetime::time_span(1, 0, 0, 0);
       int iFirstDayOfWeek = time.GetDayOfWeek();
 
       if(pfile->m_strOptions.find("<monday-first>")>=0 && iFirstDayOfWeek == 1)
@@ -144,7 +144,7 @@ void calendar::_001GetHtml(::ca2::html_file * pfile)
 
 //      int iFirstWeek;
       int iLastDayOfWeek = timeLastDayOfMonth.GetDayOfWeek();
-      int iLastDayPreviousMonth = (time - time_span(1, 0, 0, 0)).GetDay();
+      int iLastDayPreviousMonth = (time - ::datetime::time_span(1, 0, 0, 0)).GetDay();
       rect rectDay;
       int iDay;
       pfile->print("<table cellpadding=\"0\" cellspacing=\"0\">");
@@ -187,11 +187,11 @@ void calendar::_001GetHtml(::ca2::html_file * pfile)
          {
             int w ;       if(pfile->m_strOptions.find("<monday-first>")>=0)
       {
-         w = atoi(System.datetime().strftime("%V", class ::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
+         w = atoi(System.datetime().strftime("%V", ::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
       }
       else
       {
-         w = atoi( class ::time(iYear, iMonth, iDay, 0, 0, 0).Format("%U"));
+         w = atoi( ::datetime::time(iYear, iMonth, iDay, 0, 0, 0).Format("%U"));
       }
 
             pfile->print("<td>");
@@ -213,8 +213,8 @@ void calendar::_001GetHtml(::ca2::html_file * pfile)
                && iYear == m_time.GetYear( )
                && iDay == m_time.GetDay()) ||
                (m_bRange &&
-               class time(iYear, iMonth, iDay, 23, 59, 59) >= m_time
-               && class time(iYear, iMonth, iDay, 0, 0, 0) <= m_timeEnd))
+               ::datetime::time(iYear, iMonth, iDay, 23, 59, 59) >= m_time
+               && ::datetime::time(iYear, iMonth, iDay, 0, 0, 0) <= m_timeEnd))
             {
                pfile->print("<div class=\""+ pfile->m_strStyle + "calendar-sel\">");
             }
@@ -274,10 +274,10 @@ void calendar::_001GetHtml(::ca2::html_file * pfile)
 }
 
 
-void calendar::GetRectDay(class time & time, LPRECT lprect)
+void calendar::GetRectDay(::datetime::time & time, LPRECT lprect)
 {
    int iWeekDay = time.GetDayOfWeek();
-   class time timeMonth(m_iYear, m_iMonth, 1, 0, 0, 0);
+   ::datetime::time timeMonth(m_iYear, m_iMonth, 1, 0, 0, 0);
    int iWeek = get_week_of_month(time);
    GetRectDay(iWeekDay, iWeek + 1, lprect);
 }
@@ -348,12 +348,12 @@ calendar::EElement calendar::hit_test(point pt)
    return ElementNull;
 }
 
-bool calendar::time_hit_test(class time & timeRet, point pt)
+bool calendar::time_hit_test(::datetime::time & timeRet, point pt)
 {
    int iMonth = m_iMonth;
    int iYear = m_iYear;
-   class time time(iYear, iMonth, 1, 0, 0, 0);
-   time_span timespan(1, 0, 0, 0);
+   ::datetime::time time(iYear, iMonth, 1, 0, 0, 0);
+   ::datetime::time_span timespan(1, 0, 0, 0);
    rect rectDay;
    int iDay;
    for(iDay = 1; iDay <= 33; iDay++)

@@ -1,6 +1,6 @@
 // Windows/Time.cpp
 
-#include "StdAfx.h"
+#include "framework.h"
 /*
 #include "Windows/Defs.h"
 

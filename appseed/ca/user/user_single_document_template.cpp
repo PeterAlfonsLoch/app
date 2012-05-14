@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 single_document_template::single_document_template(
    ::ca::application * papp, 
@@ -88,7 +88,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
 
    if (pdocument == NULL)
    {
-      // linux System.simple_message_box(AFX_IDP_FAILED_TO_CREATE_DOC);
+      // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
       System.simple_message_box(NULL, "Failed to create document");
       return;
    }
@@ -106,7 +106,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
       pdocument->m_bAutoDelete = bAutoDelete;
       if (pFrame == NULL)
       {
-         // linux System.simple_message_box(AFX_IDP_FAILED_TO_CREATE_DOC);
+         // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
          System.simple_message_box(NULL, "Failed to create ::user::document_interface");
          delete pdocument;       // explicit delete on error
          return;

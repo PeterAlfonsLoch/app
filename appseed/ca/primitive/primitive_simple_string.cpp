@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #define ROUND(x,y) (((x)+(y-1))&~(y-1))
 #define ROUND4(x) ROUND(x, 4)
@@ -12,7 +12,7 @@
    if(g_pfixedallocaWstring != NULL)
       return g_pfixedallocaWstring;
    fixed_alloc_array * pa = new fixed_alloc_array();
-   BOOL bEnable = AfxEnableMemoryTracking(FALSE);
+   BOOL bEnable = __enable_memory_tracking(FALSE);
    int iCharSize = 2;
    try
    {
@@ -63,7 +63,7 @@
    catch(...)
    {
    }
-   AfxEnableMemoryTracking(bEnable);
+   __enable_memory_tracking(bEnable);
    g_pfixedallocaWstring = pa;
    return pa;
 }*/

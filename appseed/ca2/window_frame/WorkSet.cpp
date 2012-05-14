@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "ControlBoxButton.h"
 #include "SysMenuManager.h"
 #include "FrameSchema.h"

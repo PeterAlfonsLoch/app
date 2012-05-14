@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <WinInet.h>
 
 HINTERNET  g_hSession = NULL;

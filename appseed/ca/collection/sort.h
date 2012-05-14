@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include "numeric_array.h"
-
-
 namespace sort
 {
 

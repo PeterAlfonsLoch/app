@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <windows.h>
 
 namespace ca

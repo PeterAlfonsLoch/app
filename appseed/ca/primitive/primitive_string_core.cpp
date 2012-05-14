@@ -1,5 +1,5 @@
-#include "StdAfx.h"
-#include "template/template.h"
+#include "framework.h"
+
 
 
 CLASS_DECL_ca int64_t strtoi(const char * psz)
@@ -22,7 +22,7 @@ template<> UINT HashKey<const wchar_t *> (const wchar_t * key)
 UINT HashKey(const wchar_t * key)
 #endif
 {
-   ENSURE_ARG(AfxIsValidString(key));
+   ENSURE_ARG(__is_valid_string(key));
    UINT nHash = 0;
    while (*key)
       nHash = (nHash<<5) + nHash + *key++;
@@ -32,7 +32,7 @@ UINT HashKey(const wchar_t * key)
 
 
 
-string_manager * AfxGetStringManager()
+string_manager * __get_string_manager()
 {
    static string_manager s_stringmanager;
    return &s_stringmanager;

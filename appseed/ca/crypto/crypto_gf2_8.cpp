@@ -44,7 +44,7 @@
  *
  */
 
-#include "StdAfx.h"
+#include "framework.h"
 
 #include "datatypes.h"
 #include "gf2_8.h"

@@ -24,7 +24,7 @@
  *   so that I may know how useful this library is. This will encourage
  *   me to keep updating it.
  */
-#include "StdAfx.h"
+#include "framework.h"
 
 LiteHTMLEntityResolver::CharEntityRefs::CharEntityRefs() :
    ::collection::string_map < char, char >(55)
@@ -138,7 +138,7 @@ LiteHTMLEntityResolver::CharEntityRefs::CharEntityRefs() :
 int LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & strChar)
 {
    ASSERT(m_CharEntityRefs.get_count());
-   ASSERT(AfxIsValidString(lpszEntity));
+   ASSERT(__is_valid_string(lpszEntity));
 
    const char * lpszBegin = lpszEntity;
    const char * lpszEnd = ::_tcschr(lpszEntity, ';');

@@ -9,7 +9,7 @@
 
 //#ifdef _DEBUG
 // Special _CLIENT_BLOCK type to identifiy CObjects.
-#define _AFX_CLIENT_BLOCK (_CLIENT_BLOCK|(0xc0<<16))
+#define ___CLIENT_BLOCK (_CLIENT_BLOCK|(0xc0<<16))
 //#endif
 
 CLASS_DECL_ca void * MyAlloc(size_t size);
@@ -186,46 +186,46 @@ inline void __cdecl operator delete[](void * p, int nType, const char * lpszFile
 // test allocation routines
 
 
-#ifndef _AFX_NO_DEBUG_CRT
+#ifndef ___NO_DEBUG_CRT
 
-CLASS_DECL_ca void * AfxAllocMemoryDebug(size_t nSize, BOOL bIsObject,  const char * lpszFileName, int nLine);
-CLASS_DECL_ca void AfxFreeMemoryDebug(void * pbData, BOOL bIsObject);
+CLASS_DECL_ca void * __alloc_memory_debug(size_t nSize, BOOL bIsObject,  const char * lpszFileName, int nLine);
+CLASS_DECL_ca void __free_memory_debug(void * pbData, BOOL bIsObject);
 
 /////////////////////////////////////////////////////////////////////////////
 // allocation failure hook, tracking turn on
 
-CLASS_DECL_ca BOOL _AfxDefaultAllocHook(size_t, BOOL, LONG);
+CLASS_DECL_ca BOOL __default_alloc_hook(size_t, BOOL, LONG);
    
-CLASS_DECL_ca int __cdecl _AfxAllocHookProxy(int nAllocType, void * pvData, size_t nSize, int nBlockUse, long lRequest, const unsigned char * szFilename, int nLine);
-CLASS_DECL_ca AFX_ALLOC_HOOK AfxSetAllocHook(AFX_ALLOC_HOOK pfnNewHook);
+CLASS_DECL_ca int __cdecl __alloc_alloc_hook(int nAllocType, void * pvData, size_t nSize, int nBlockUse, long lRequest, const unsigned char * szFilename, int nLine);
+CLASS_DECL_ca __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnNewHook);
 
-CLASS_DECL_ca BOOL AfxEnableMemoryLeakOverride(BOOL bEnable);
-CLASS_DECL_ca BOOL AfxEnableMemoryTracking(BOOL bTrack);
+CLASS_DECL_ca BOOL __enable_memory_leak_override(BOOL bEnable);
+CLASS_DECL_ca BOOL __enable_memory_tracking(BOOL bTrack);
 
 /////////////////////////////////////////////////////////////////////////////
 // Enumerate all objects allocated in the diagnostic primitive::memory heap
 
-struct CLASS_DECL_ca _AFX_ENUM_CONTEXT
+struct CLASS_DECL_ca ___ENUM_CONTEXT
 {
    void (*m_pfn)(::radix::object*,void *);
    void * m_pContext;
 };
 
-CLASS_DECL_ca AFX_STATIC void _AfxDoForAllObjectsProxy(void * pObject, void * pContext);
-CLASS_DECL_ca void AFXAPI AfxDoForAllObjects(void (AFX_CDECL *pfn)(::radix::object*, void *), void * pContext);
+CLASS_DECL_ca __STATIC void __do_for_all_objects_proxy(void * pObject, void * pContext);
+CLASS_DECL_ca void AFXAPI __do_for_all_objects(void (c_cdecl *pfn)(::radix::object*, void *), void * pContext);
 
 /////////////////////////////////////////////////////////////////////////////
 // Automatic debug primitive::memory diagnostics
 
-CLASS_DECL_ca BOOL AfxDumpMemoryLeaks();
+CLASS_DECL_ca BOOL __dump_memory_leaks();
 
-#endif // _AFX_NO_DEBUG_CRT
+#endif // ___NO_DEBUG_CRT
 #endif // _DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // Non-diagnostic primitive::memory routines
 
-CLASS_DECL_ca int AFX_CDECL AfxNewHandler(size_t /* nSize */);
+CLASS_DECL_ca int c_cdecl __new_handler(size_t /* nSize */);
 
 #undef new
 #undef delete
@@ -267,19 +267,19 @@ void __cdecl operator delete[](void * p);
 
 inline void PASCAL ::radix::object::operator delete(void * p)
 {
-   ca2_free_dbg(p, _AFX_CLIENT_BLOCK);
+   ca2_free_dbg(p, ___CLIENT_BLOCK);
 }
 
 inline void PASCAL ::radix::object::operator delete(void * p, void *)
 {
-   ca2_free_dbg(p, _AFX_CLIENT_BLOCK);
+   ca2_free_dbg(p, ___CLIENT_BLOCK);
 }
 
 #ifdef _DEBUG
 
 inline void PASCAL ::radix::object::operator delete(void *pObject, const char *, int)
 {
-   ca2_free_dbg(pObject, _AFX_CLIENT_BLOCK); 
+   ca2_free_dbg(pObject, ___CLIENT_BLOCK); 
 }
 
 #endif

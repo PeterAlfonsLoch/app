@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 dialog::dialog(::ca::application * papp) :
    ca(papp)

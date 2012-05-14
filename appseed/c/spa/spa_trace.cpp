@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 //extern HWND g_hwnd;
 

@@ -11,18 +11,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="StdAfx.h">
+    <ClInclude Include="optca.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="optca.h">
+    <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="StdAfx.cpp">
+    <ClCompile Include="optca.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="optca.cpp">
+    <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

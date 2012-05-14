@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 html_child_frame::html_child_frame(::ca::application * papp) :

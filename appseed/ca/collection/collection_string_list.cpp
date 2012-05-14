@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 
@@ -193,7 +193,7 @@ string string_list::remove_head()
 {
    ENSURE_VALID(this);
    ENSURE(m_pnodeHead != NULL);  // throws if called on is_empty list
-   ASSERT(fx_is_valid_address(m_pnodeHead, sizeof(node)));
+   ASSERT(__is_valid_address(m_pnodeHead, sizeof(node)));
 
    node* pOldNode = m_pnodeHead;
    string returnValue = pOldNode->data;
@@ -211,7 +211,7 @@ string string_list::remove_tail()
 {
    ASSERT_VALID(this);
    ASSERT(m_pnodeTail != NULL);  // don't call on is_empty list !!!
-   ASSERT(fx_is_valid_address(m_pnodeTail, sizeof(node)));
+   ASSERT(__is_valid_address(m_pnodeTail, sizeof(node)));
 
    node* pOldNode = m_pnodeTail;
    string returnValue = pOldNode->data;
@@ -247,7 +247,7 @@ POSITION string_list::insert_before(POSITION position, const string & newElement
 
    if (pOldNode->m_pnodePrevious != NULL)
    {
-      ASSERT(fx_is_valid_address(pOldNode->m_pnodePrevious, sizeof(node)));
+      ASSERT(__is_valid_address(pOldNode->m_pnodePrevious, sizeof(node)));
       pOldNode->m_pnodePrevious->m_pnodeNext = pNewNode;
    }
    else
@@ -277,13 +277,13 @@ POSITION string_list::insert_after(POSITION position, const string & newElement)
 
    // Insert it before position
    node* pOldNode = (node*) position;
-   ASSERT(fx_is_valid_address(pOldNode, sizeof(node)));
+   ASSERT(__is_valid_address(pOldNode, sizeof(node)));
    node* pNewNode = NewNode(pOldNode, pOldNode->m_pnodeNext);
    pNewNode->data = newElement;
 
    if (pOldNode->m_pnodeNext != NULL)
    {
-      ASSERT(fx_is_valid_address(pOldNode->m_pnodeNext, sizeof(node)));
+      ASSERT(__is_valid_address(pOldNode->m_pnodeNext, sizeof(node)));
       pOldNode->m_pnodeNext->m_pnodePrevious = pNewNode;
    }
    else
@@ -301,7 +301,7 @@ void string_list::remove_at(POSITION position)
    ASSERT_VALID(this);
 
    node* pOldNode = (node*) position;
-   ASSERT(fx_is_valid_address(pOldNode, sizeof(node)));
+   ASSERT(__is_valid_address(pOldNode, sizeof(node)));
 
    if (pOldNode == NULL)
    {
@@ -315,7 +315,7 @@ void string_list::remove_at(POSITION position)
    }
    else
    {
-      ASSERT(fx_is_valid_address(pOldNode->m_pnodePrevious, sizeof(node)));
+      ASSERT(__is_valid_address(pOldNode->m_pnodePrevious, sizeof(node)));
       pOldNode->m_pnodePrevious->m_pnodeNext = pOldNode->m_pnodeNext;
    }
    if (pOldNode == m_pnodeTail)
@@ -324,7 +324,7 @@ void string_list::remove_at(POSITION position)
    }
    else
    {
-      ASSERT(fx_is_valid_address(pOldNode->m_pnodeNext, sizeof(node)));
+      ASSERT(__is_valid_address(pOldNode->m_pnodeNext, sizeof(node)));
       pOldNode->m_pnodeNext->m_pnodePrevious = pOldNode->m_pnodePrevious;
    }
    FreeNode(pOldNode);
@@ -347,7 +347,7 @@ POSITION string_list::find_index(INT_PTR nIndex) const
    node* pNode = m_pnodeHead;
    while(nIndex-- > 0)
    {
-      ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+      ASSERT(__is_valid_address(pNode, sizeof(node)));
       pNode = pNode->m_pnodeNext;
    }
    return (POSITION) pNode;
@@ -369,7 +369,7 @@ POSITION string_list::reverse_find_index(INT_PTR nIndex) const
    node* pNode = m_pnodeTail;
    while(nIndex-- > 0)
    {
-      ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+      ASSERT(__is_valid_address(pNode, sizeof(node)));
       pNode = pNode->m_pnodePrevious;
    }
    return (POSITION) pNode;
@@ -386,7 +386,7 @@ POSITION string_list::find(const char * searchValue, POSITION startAfter) const
    }
    else
    {
-      ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+      ASSERT(__is_valid_address(pNode, sizeof(node)));
       pNode = pNode->m_pnodeNext;  // start after the one specified
    }
 
@@ -411,7 +411,7 @@ void string_list::Serialize(CArchive& ar)
       ar.WriteCount(m_nCount);
       for (node* pNode = m_pnodeHead; pNode != NULL; pNode = pNode->m_pnodeNext)
       {
-         ASSERT(fx_is_valid_address(pNode, sizeof(node)));
+         ASSERT(__is_valid_address(pNode, sizeof(node)));
          ar << pNode->data;
       }
    }
@@ -456,8 +456,8 @@ void string_list::assert_valid() const
    else
    {
       // non-is_empty list
-      ASSERT(fx_is_valid_address(m_pnodeHead, sizeof(node)));
-      ASSERT(fx_is_valid_address(m_pnodeTail, sizeof(node)));
+      ASSERT(__is_valid_address(m_pnodeHead, sizeof(node)));
+      ASSERT(__is_valid_address(m_pnodeTail, sizeof(node)));
    }
 }
 

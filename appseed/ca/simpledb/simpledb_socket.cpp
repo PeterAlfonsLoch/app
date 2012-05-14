@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace simpledb
 {
@@ -52,13 +52,13 @@ namespace simpledb
          string strScript = System.url().object_get_script(strUri);
          if(strUri.find("thesecret") >= 0)
          {
-      //      AfxDebugBreak();
+      //      __debug_break();
          }
          if(strHost == "ca2.am")
          {
             TRACE("simpledb::socket::send_response ca2.am");
 //            DWORD dw = ::GetTickCount();
-          //  AfxDebugBreak();
+          //  __debug_break();
          }
          if(strScript == "songs")
          {

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 CLASS_DECL_ca void throw_error_exception(const char * psz)

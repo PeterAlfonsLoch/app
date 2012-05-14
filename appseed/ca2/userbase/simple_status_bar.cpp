@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 simple_status_bar::simple_status_bar(::ca::application * papp) :
@@ -13,9 +13,9 @@ simple_status_bar::~simple_status_bar()
 
 /*
  // BEGIN_MESSAGE_MAP(simple_status_bar, ::userbase::status_bar)
-   //{{AFX_MSG_MAP(simple_status_bar)
+   //{{__MSG_MAP(simple_status_bar)
    ON_WM_ERASEBKGND()
-   //}}AFX_MSG_MAP
+   //}}__MSG_MAP
  // END_MESSAGE_MAP()
 */
 

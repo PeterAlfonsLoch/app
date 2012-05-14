@@ -208,7 +208,7 @@ namespace ca
 
    class CLASS_DECL_ca thread :
       virtual public command_target,
-      virtual public se_translator,
+      virtual public ::exception::translator,
       virtual public pha(::user::interaction),
       virtual public ::ca::live_object
 #ifdef _WINDOWS
@@ -256,10 +256,10 @@ namespace ca
       virtual void set_os_int(INT_PTR iData);
 
 
-      friend BOOL AfxInternalPreTranslateMessage(MSG* pMsg);
+      friend BOOL __internal_pre_translate_message(MSG* pMsg);
 
       virtual void construct();
-      virtual void construct(AFX_THREADPROC pfnThreadProc, LPVOID pParam);
+      virtual void construct(__THREADPROC pfnThreadProc, LPVOID pParam);
 
       virtual int main();
 
@@ -279,7 +279,7 @@ namespace ca
 
       virtual bool PreInitInstance();
 
-      // called when occurs an se_exception exception in run
+      // called when occurs an standard_exception exception in run
       // return true to call run again
       virtual bool on_run_exception(::ca::exception & e);
 

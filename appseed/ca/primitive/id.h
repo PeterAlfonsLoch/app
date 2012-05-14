@@ -1,7 +1,5 @@
 #pragma once
 
-#include "gen/gen_ch.h"
-#include "gen/gen_str.h"
 
 
 #define IDTYPE_TYPE_NULL 0

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace userbase
 {
@@ -12,7 +12,7 @@ namespace userbase
       UINT nID)
    {
       // initialize common controls
-      VERIFY(System.DeferRegisterClass(AFX_WNDCOMMCTL_BAR_REG, NULL));
+      VERIFY(System.DeferRegisterClass(__WNDCOMMCTL_BAR_REG, NULL));
 
       ::user::interaction* pWnd = this;
       return pWnd->create(TOOLBARCLASSNAME, NULL, dwStyle, rect, pParentWnd, nID);
@@ -84,7 +84,7 @@ namespace userbase
       ASSERT(lpszResourceName != NULL);
 
       // determine location of the bitmap in resource fork
-      HINSTANCE hInst = AfxFindResourceHandle(lpszResourceName, RT_TOOLBAR);
+      HINSTANCE hInst = gen::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
       HRSRC hRsrc = ::FindResource(hInst, lpszResourceName, RT_TOOLBAR);
       if (hRsrc == NULL)
          return FALSE;
@@ -112,7 +112,7 @@ namespace userbase
    //      SetSizes(sizeButton, sizeImage);
 
          // load bitmap now that sizes are known by the toolbar control
-         LoadImages((int)(WORD) (long *)lpszResourceName, AfxGetResourceHandle());
+         LoadImages((int)(WORD) (long *)lpszResourceName, __get_resource_handle());
       }
 
       UnlockResource(hGlobal);
@@ -126,7 +126,7 @@ namespace userbase
       ASSERT_VALID(this);
       ASSERT(nIDCount >= 1);  // must be at least one of them
       ASSERT(lpIDArray == NULL ||
-         fx_is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
+         __is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
 
       // delete all existing buttons
       /* linux int nCount = (int)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
@@ -147,8 +147,8 @@ namespace userbase
                // separator
                button.fsStyle = TBSTYLE_SEP;
                // width of separator includes 8 pixel overlap
-               ASSERT(_afxComCtlVersion != -1);
-               if ((GetStyle() & TBSTYLE_FLAT) || _afxComCtlVersion == VERSION_IE4)
+               ASSERT(gen_ComCtlVersion != -1);
+               if ((GetStyle() & TBSTYLE_FLAT) || gen_ComCtlVersion == VERSION_IE4)
                   button.iBitmap = 6;
                else
                   button.iBitmap = 8;

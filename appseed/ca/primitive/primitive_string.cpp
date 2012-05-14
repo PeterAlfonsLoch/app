@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 strsize string_interface::get_length() const
 {
@@ -62,7 +62,7 @@ string_composite & string_composite::operator = (const string & str)
 string::string(wchar_t ch,strsize nLength) :
    simple_string( string_trait::GetDefaultManager() )
 {
-   ATLASSERT( nLength >= 0 );
+   ASSERT( nLength >= 0 );
    if( nLength > 0 )
    {
       //Convert ch to the char
@@ -103,12 +103,12 @@ string::string(wchar_t ch,strsize nLength) :
 string::string(const YCHAR* pch,strsize nLength ) :
    simple_string( string_trait::GetDefaultManager() )
 {
-   ATLASSERT( nLength >= 0 );
+   ASSERT( nLength >= 0 );
    if( nLength > 0 )
    {
-      ATLASSERT(_template::_template_is_valid_address( pch, nLength*sizeof( YCHAR ), FALSE ) );
+      ASSERT(__is_valid_address( pch, nLength*sizeof( YCHAR ), FALSE ) );
       if(pch == NULL)
-         AtlThrow(E_INVALIDARG);
+         throw hresult_exception(E_INVALIDARG);
 
       strsize nDestLength = string_trait::GetcharLength( pch, nLength );
       PXSTR pszBuffer = GetBuffer( nDestLength );
@@ -120,12 +120,12 @@ string::string(const YCHAR* pch,strsize nLength ) :
 string::string(const YCHAR* pch,strsize nLength,string_manager * pstringmanager ) :
    simple_string( pstringmanager )
 {
-   ATLASSERT( nLength >= 0 );
+   ASSERT( nLength >= 0 );
    if( nLength > 0 )
    {
-      ATLASSERT( _template::_template_is_valid_address( pch, nLength*sizeof( YCHAR ), FALSE ) );
+      ASSERT( __is_valid_address( pch, nLength*sizeof( YCHAR ), FALSE ) );
       if(pch == NULL)
-         AtlThrow(E_INVALIDARG);
+         throw hresult_exception(E_INVALIDARG);
 
       strsize nDestLength = string_trait::GetcharLength( pch, nLength );
       PXSTR pszBuffer = GetBuffer( nDestLength );
@@ -142,7 +142,7 @@ void fixed_string_log::OnAllocateSpill(strsize nActualChars,strsize nFixedChars,
    (void)nActualChars;
    (void)nFixedChars;
    (void)pData;
-//   ATLTRACE(_template::trace::category_String, 0, _T( "fixed_string_manager::allocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
+//   TRACE(gen::trace::category_String, 0, _T( "fixed_string_manager::allocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
    ::OutputDebugStringA("fixed_string_log::OnAllocateSpill");
 }
 
@@ -151,7 +151,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
    (void)nActualChars;
    (void)nFixedChars;
    (void)pData;
-//   ATLTRACE(_template::trace::category_String, 0, _T( "fixed_string_manager::Reallocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
+//   TRACE(gen::trace::category_String, 0, _T( "fixed_string_manager::Reallocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
    ::OutputDebugStringA("fixed_string_log::OnReallocateSpill");
 }
 
@@ -324,7 +324,7 @@ strsize __cdecl crt_char_traits::StringSpanExcluding(const char * pszBlock,const
 
 }
 
-_ATL_INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringUppercase")
+_INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringUppercase")
 char * __cdecl crt_char_traits::StringUppercase( char * psz ) throw()
 {
 #pragma warning (push)
@@ -346,7 +346,7 @@ char * __cdecl crt_char_traits::StringUppercase( char * psz ) throw()
 #pragma warning (pop)
 }
 
-_ATL_INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringLowercase")
+_INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringLowercase")
 char * __cdecl crt_char_traits::StringLowercase( char * psz ) throw()
 {
 #pragma warning (push)
@@ -370,7 +370,7 @@ char * __cdecl crt_char_traits::StringLowercase( char * psz ) throw()
 char * __cdecl crt_char_traits::StringUppercase(char * psz,size_t size ) throw()
 {
 #if _SECURE_TEMPLATE
-   _template::checked::strupr_s(psz, size);
+   ::gen::strupr_s(psz, size);
 #else
    UNREFERENCED_PARAMETER(size);
    return reinterpret_cast< char * >( _mbsupr( reinterpret_cast< unsigned char* >( psz ) ) );
@@ -381,7 +381,7 @@ char * __cdecl crt_char_traits::StringUppercase(char * psz,size_t size ) throw()
 char * __cdecl crt_char_traits::StringLowercase(char * psz,size_t size ) throw()
 {
 #if _SECURE_TEMPLATE
-   _template::checked::strlwr_s(psz, size);
+   ::gen::strlwr_s(psz, size);
 #else
    UNREFERENCED_PARAMETER(size);
    return reinterpret_cast< char * >( _mbslwr( reinterpret_cast< unsigned char* >( psz ) ) );
@@ -438,41 +438,41 @@ strsize __cdecl crt_char_traits::GetcharLength(const char * pszSrc, strsize nLen
 strsize __cdecl crt_char_traits::GetcharLength(const wchar_t * pszSource ) throw()
 {
    // Returns required buffer length in XCHARs
-   return ::WideCharToMultiByte( _AtlGetConversionACP(), 0, pszSource, -1, NULL, 0, NULL, NULL )-1;
+   return ::WideCharToMultiByte( _gen_GetConversionACP(), 0, pszSource, -1, NULL, 0, NULL, NULL )-1;
 }
 
 strsize __cdecl crt_char_traits::GetcharLength(const wchar_t * pszSource, strsize nLength ) throw()
 {
    // Returns required buffer length in XCHARs
-   return ::WideCharToMultiByte( _AtlGetConversionACP(), 0, pszSource, (int) nLength, NULL, 0, NULL, NULL );
+   return ::WideCharToMultiByte( _gen_GetConversionACP(), 0, pszSource, (int) nLength, NULL, 0, NULL, NULL );
 }
 
 void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, const char * pszSrc, strsize nSrcLength) throw()
 {
    if (nSrcLength == -1) { nSrcLength=1 + GetcharLength(pszSrc); }
    // nLen is in XCHARs
-   _template::checked::memcpy_s( pszDest, nDestLength*sizeof( char ),
+   ::gen::memcpy_s( pszDest, nDestLength*sizeof( char ),
       pszSrc, nSrcLength*sizeof( char ) );
 }
 
 void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, const wchar_t * pszSrc,strsize nSrcLength) throw()
 {
    // nLen is in XCHARs
-   ::WideCharToMultiByte( _AtlGetConversionACP(), 0, pszSrc, (int) nSrcLength, pszDest, (int) nDestLength, NULL, NULL );
+   ::WideCharToMultiByte( _gen_GetConversionACP(), 0, pszSrc, (int) nSrcLength, pszDest, (int) nDestLength, NULL, NULL );
 }
 
 void crt_char_traits::ConvertToOem(char* pstrString) throw()
 {
    BOOL fSuccess=::CharToOemA(pstrString, pstrString);
    // old version can't report error
-   ATLASSERT(fSuccess);
+   ASSERT(fSuccess);
 }
 
 void crt_char_traits::ConvertToAnsi(char* pstrString) throw()
 {
    BOOL fSuccess=::OemToCharA(pstrString, pstrString);
    // old version can't report error
-   ATLASSERT(fSuccess);
+   ASSERT(fSuccess);
 }
 
 void __cdecl crt_char_traits::FloodCharacters(char ch,strsize nLength, char* pch ) throw()
@@ -484,13 +484,13 @@ void __cdecl crt_char_traits::FloodCharacters(char ch,strsize nLength, char* pch
 BSTR __cdecl crt_char_traits::AllocSysString( const char* pchData, strsize nDataLength ) throw()
 {
 
-   strsize nLen = ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, (int) nDataLength, NULL, NULL );
+   strsize nLen = ::MultiByteToWideChar( _gen_GetConversionACP(), 0, pchData, (int) nDataLength, NULL, NULL );
 
    BSTR bstr = ::SysAllocStringLen( NULL, (UINT) nLen );
 
    if( bstr != NULL )
    {
-      ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, (int) nDataLength, bstr, (int) nLen);
+      ::MultiByteToWideChar( _gen_GetConversionACP(), 0, pchData, (int) nDataLength, bstr, (int) nLen);
    }
 
    return bstr;
@@ -500,13 +500,13 @@ BSTR __cdecl crt_char_traits::AllocSysString( const char* pchData, strsize nData
 BOOL __cdecl crt_char_traits::ReAllocSysString( const char* pchData,BSTR* pbstr,strsize nDataLength ) throw()
 {
 
-   strsize nLen = ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, (int) nDataLength, NULL, NULL );
+   strsize nLen = ::MultiByteToWideChar( _gen_GetConversionACP(), 0, pchData, (int) nDataLength, NULL, NULL );
 
    BOOL bSuccess = ::SysReAllocStringLen( pbstr, NULL, (UINT) nLen );
 
    if( bSuccess )
    {
-      ::MultiByteToWideChar( _AtlGetConversionACP(), 0, pchData, (int) nDataLength, *pbstr, (int) nLen );
+      ::MultiByteToWideChar( _gen_GetConversionACP(), 0, pchData, (int) nDataLength, *pbstr, (int) nLen );
    }
 
    return bSuccess;
@@ -564,13 +564,13 @@ void crt_char_traits::ConvertToAnsi(char* pstrString,size_t size)
    if(size>UINT_MAX)
    {
       // API only allows DWORD size
-      AtlThrow(E_INVALIDARG);
+      throw hresult_exception(E_INVALIDARG);
    }
    DWORD dwSize=static_cast<DWORD>(size);
    BOOL fSuccess=::OemToCharBuffA(pstrString, pstrString, dwSize);
    if(!fSuccess)
    {
-      _template::AtlThrowLastWin32();
+      throw last_error_exception();
    }
 }
 void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
@@ -578,13 +578,13 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    if(size>UINT_MAX)
    {
       // API only allows DWORD size
-      AtlThrow(E_INVALIDARG);
+      throw hresult_exception(E_INVALIDARG);
    }
    DWORD dwSize=static_cast<DWORD>(size);
    BOOL fSuccess=::CharToOemBuffA(pstrString, pstrString, dwSize);
    if(!fSuccess)
    {
-      _template::AtlThrowLastWin32();
+      throw last_error_exception();
    }
 }
 
@@ -769,7 +769,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    string::string(char ch,strsize nLength) :
       simple_string( string_trait::GetDefaultManager() )
    {
-      ATLASSERT( nLength >= 0 );
+      ASSERT( nLength >= 0 );
       if( nLength > 0 )
       {
          PXSTR pszBuffer = GetBuffer( nLength );
@@ -781,7 +781,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 string::string(strsize nLength, char ch) :
       simple_string( string_trait::GetDefaultManager() )
 {
-      ATLASSERT( nLength >= 0 );
+      ASSERT( nLength >= 0 );
       if( nLength > 0 )
       {
          PXSTR pszBuffer = GetBuffer( nLength );
@@ -989,13 +989,13 @@ string::string(strsize nLength, char ch) :
 
    int string::Collate(PCXSTR psz ) const throw()
    {
-      ATLASSERT( _template::_template_is_valid_string( psz ) );
+      ASSERT( __is_valid_string( psz ) );
       return( string_trait::StringCollate( GetString(), psz ) );
    }
 
    int string::CollateNoCase(PCXSTR psz ) const throw()
    {
-      ATLASSERT( _template::_template_is_valid_string( psz ) );
+      ASSERT( __is_valid_string( psz ) );
       return( string_trait::StringCollateIgnore( GetString(), psz ) );
    }
 
@@ -1160,7 +1160,7 @@ string::string(strsize nLength, char ch) :
       if(nCount < 0)
          return get_length();
 
-      if( (::_template::add_throw(nCount, iIndex)) > nLength )
+      if( (::gen::add_throw(nCount, iIndex)) > nLength )
       {
          nCount = nLength-iIndex;
       }
@@ -1169,7 +1169,7 @@ string::string(strsize nLength, char ch) :
          strsize nNewLength = nLength-nCount;
          strsize nXCHARsToCopy = nLength-(iIndex+nCount)+1;
          PXSTR pszBuffer = GetBuffer();
-         _template::checked::memmove_s( pszBuffer+iIndex, nXCHARsToCopy*sizeof( XCHAR ),
+         ::gen::memmove_s( pszBuffer+iIndex, nXCHARsToCopy*sizeof( XCHAR ),
             pszBuffer+iIndex+nCount, nXCHARsToCopy*sizeof( XCHAR ) );
          ReleaseBufferSetLength( nNewLength );
       }
@@ -1191,7 +1191,7 @@ string::string(strsize nLength, char ch) :
       PXSTR pszBuffer = GetBuffer( nNewLength );
 
       // move existing bytes down
-        _template::checked::memmove_s( pszBuffer+iIndex+1, (nNewLength-iIndex)*sizeof( XCHAR ),
+        ::gen::memmove_s( pszBuffer+iIndex+1, (nNewLength-iIndex)*sizeof( XCHAR ),
          pszBuffer+iIndex, (nNewLength-iIndex)*sizeof( XCHAR ) );
       pszBuffer[iIndex] = ch;
 
@@ -1219,9 +1219,9 @@ string::string(strsize nLength, char ch) :
 
          PXSTR pszBuffer = GetBuffer( nNewLength );
          // move existing bytes down
-            _template::checked::memmove_s( pszBuffer+iIndex+nInsertLength, (nNewLength-iIndex-nInsertLength+1)*sizeof( XCHAR ),
+            ::gen::memmove_s( pszBuffer+iIndex+nInsertLength, (nNewLength-iIndex-nInsertLength+1)*sizeof( XCHAR ),
             pszBuffer+iIndex, (nNewLength-iIndex-nInsertLength+1)*sizeof( XCHAR ) );
-         _template::checked::memcpy_s( pszBuffer+iIndex, nInsertLength*sizeof( XCHAR ),
+         ::gen::memcpy_s( pszBuffer+iIndex, nInsertLength*sizeof( XCHAR ),
             psz, nInsertLength*sizeof( XCHAR ) );
          ReleaseBufferSetLength( nNewLength );
       }
@@ -1310,9 +1310,9 @@ string::string(strsize nLength, char ch) :
             while( (pszTarget = string_trait::StringFindString( pszStart, pszOld ) ) != NULL )
             {
                strsize nBalance = nOldLength-strsize(pszTarget-pszBuffer+nSourceLen);
-                    _template::checked::memmove_s( pszTarget+nReplacementLen, nBalance*sizeof( XCHAR ),
+                    ::gen::memmove_s( pszTarget+nReplacementLen, nBalance*sizeof( XCHAR ),
                   pszTarget+nSourceLen, nBalance*sizeof( XCHAR ) );
-               _template::checked::memcpy_s( pszTarget, nReplacementLen*sizeof( XCHAR ),
+               ::gen::memcpy_s( pszTarget, nReplacementLen*sizeof( XCHAR ),
                   pszNew, nReplacementLen*sizeof( XCHAR ) );
                pszStart = pszTarget+nReplacementLen;
                pszTarget[nReplacementLen+nBalance] = 0;
@@ -1320,7 +1320,7 @@ string::string(strsize nLength, char ch) :
             }
             pszStart += string_trait::SafeStringLen( pszStart )+1;
          }
-         ATLASSERT( pszBuffer[nNewLength] == 0 );
+         ASSERT( pszBuffer[nNewLength] == 0 );
          ReleaseBufferSetLength( nNewLength );
       }
 
@@ -1376,10 +1376,10 @@ string::string(strsize nLength, char ch) :
 
    string string::Tokenize(PCXSTR pszTokens, strsize& iStart ) const
    {
-      ATLASSERT( iStart >= 0 );
+      ASSERT( iStart >= 0 );
 
       if(iStart < 0)
-         AtlThrow(E_INVALIDARG);
+         throw hresult_exception(E_INVALIDARG);
 
       if( (pszTokens == NULL) || (*pszTokens == (XCHAR)0) )
       {
@@ -1423,7 +1423,7 @@ string::string(strsize nLength, char ch) :
    strsize string::find(XCHAR ch,strsize iStart, strsize nCount) const throw()
    {
       // iStart is in XCHARs
-      ATLASSERT( iStart >= 0 );
+      ASSERT( iStart >= 0 );
 
       // nLength is in XCHARs
       strsize nLength = get_length();
@@ -1456,7 +1456,7 @@ string::string(strsize nLength, char ch) :
    strsize string::find_ci(XCHAR ch,strsize iStart, strsize nCount) const throw()
    {
       // iStart is in XCHARs
-      ATLASSERT( iStart >= 0 );
+      ASSERT( iStart >= 0 );
 
       // nLength is in XCHARs
       strsize nLength = get_length();
@@ -1495,8 +1495,8 @@ string::string(strsize nLength, char ch) :
    strsize string::find(PCXSTR pszSub,strsize iStart, strsize nCount) const throw()
    {
       // iStart is in XCHARs
-      ATLASSERT( iStart >= 0 );
-      ATLASSERT( _template::_template_is_valid_string( pszSub ) );
+      ASSERT( iStart >= 0 );
+      ASSERT( __is_valid_string( pszSub ) );
 
       if(pszSub == NULL)
       {
@@ -1544,8 +1544,8 @@ string::string(strsize nLength, char ch) :
    strsize string::find_ci(PCXSTR pszSub,strsize iStart, strsize nCount) const throw()
    {
       // iStart is in XCHARs
-      ATLASSERT( iStart >= 0 );
-      ATLASSERT( _template::_template_is_valid_string( pszSub ) );
+      ASSERT( iStart >= 0 );
+      ASSERT( __is_valid_string( pszSub ) );
 
       if(pszSub == NULL)
       {
@@ -1592,8 +1592,8 @@ string::string(strsize nLength, char ch) :
    strsize string::find_w(PCXSTR pszSub,strsize iStart, strsize nCount) const throw()
    {
       // iStart is in XCHARs
-      ATLASSERT( iStart >= 0 );
-      ATLASSERT( _template::_template_is_valid_string( pszSub ) );
+      ASSERT( iStart >= 0 );
+      ASSERT( __is_valid_string( pszSub ) );
 
       if(pszSub == NULL)
       {
@@ -1642,8 +1642,8 @@ string::string(strsize nLength, char ch) :
    strsize string::find_wci(PCXSTR pszSub,strsize iStart, strsize nCount) const throw()
    {
       // iStart is in XCHARs
-      ATLASSERT( iStart >= 0 );
-      ATLASSERT( _template::_template_is_valid_string( pszSub ) );
+      ASSERT( iStart >= 0 );
+      ASSERT( __is_valid_string( pszSub ) );
 
       if(pszSub == NULL)
       {
@@ -1693,7 +1693,7 @@ string::string(strsize nLength, char ch) :
    {
       string strCharSet(pszCharSet, n);
       // iStart is in XCHARs
-      ATLASSERT( iStart >= 0 );
+      ASSERT( iStart >= 0 );
 
       // nLength is in XCHARs
       strsize nLength = get_length();
@@ -1979,7 +1979,7 @@ string::string(strsize nLength, char ch) :
          PXSTR pszBuffer = GetBuffer( get_length() );
          psz = pszBuffer+iFirst;
          strsize nDataLength = get_length()-iFirst;
-            _template::checked::memmove_s( pszBuffer, (nDataLength+1)*sizeof( XCHAR ),
+            ::gen::memmove_s( pszBuffer, (nDataLength+1)*sizeof( XCHAR ),
             psz, (nDataLength+1)*sizeof( XCHAR ) );
          ReleaseBufferSetLength( nDataLength );
       }
@@ -2101,7 +2101,7 @@ string::string(strsize nLength, char ch) :
          PXSTR pszBuffer = GetBuffer( get_length() );
          psz = pszBuffer+iFirst;
          strsize nDataLength = get_length()-iFirst;
-            _template::checked::memmove_s( pszBuffer, (nDataLength+1)*sizeof( XCHAR ),
+            ::gen::memmove_s( pszBuffer, (nDataLength+1)*sizeof( XCHAR ),
             psz, (nDataLength+1)*sizeof( XCHAR ) );
          ReleaseBufferSetLength( nDataLength );
       }
@@ -2131,7 +2131,7 @@ string::string(strsize nLength, char ch) :
          PXSTR pszBuffer = GetBuffer( get_length() );
          psz = pszBuffer+iFirst;
          strsize nDataLength = get_length()-iFirst;
-            _template::checked::memmove_s( pszBuffer, (nDataLength+1)*sizeof( XCHAR ),
+            ::gen::memmove_s( pszBuffer, (nDataLength+1)*sizeof( XCHAR ),
             psz, (nDataLength+1)*sizeof( XCHAR ) );
          ReleaseBufferSetLength( nDataLength );
       }
@@ -2191,7 +2191,7 @@ string::string(strsize nLength, char ch) :
       if(nCount < 0)
          return "";
 
-      if( (::_template::add_throw(iFirst,nCount)) > get_length() )
+      if( (::gen::add_throw(iFirst,nCount)) > get_length() )
       {
          nCount = get_length()-iFirst;
       }
@@ -2200,7 +2200,7 @@ string::string(strsize nLength, char ch) :
          nCount = 0;
       }
 
-      ATLASSERT( (nCount == 0) || ((iFirst+nCount) <= get_length()) );
+      ASSERT( (nCount == 0) || ((iFirst+nCount) <= get_length()) );
 
       // optimize case of returning entire string
       if( (iFirst == 0) && ((iFirst+nCount) == get_length()) )
@@ -2256,9 +2256,9 @@ string::string(strsize nLength, char ch) :
    // Return the substring consisting of the leftmost characters in the set 'pszCharSet'
    string string::SpanIncluding(PCXSTR pszCharSet ) const
    {
-      ATLASSERT( _template::_template_is_valid_string( pszCharSet ) );
+      ASSERT( __is_valid_string( pszCharSet ) );
       if(pszCharSet == NULL)
-         AtlThrow(E_INVALIDARG);
+         throw hresult_exception(E_INVALIDARG);
 
       return( Left( string_trait::StringSpanIncluding( GetString(), pszCharSet ) ) );
    }
@@ -2266,16 +2266,16 @@ string::string(strsize nLength, char ch) :
    // Return the substring consisting of the leftmost characters not in the set 'pszCharSet'
    string string::SpanExcluding(PCXSTR pszCharSet ) const
    {
-      ATLASSERT( _template::_template_is_valid_string( pszCharSet ) );
+      ASSERT( __is_valid_string( pszCharSet ) );
       if(pszCharSet == NULL)
-         AtlThrow(E_INVALIDARG);
+         throw hresult_exception(E_INVALIDARG);
 
       return( Left( string_trait::StringSpanExcluding( GetString(), pszCharSet ) ) );
     }
 
    void string::AppendFormatV(PCXSTR pszFormat, va_list args )
    {
-      ATLASSERT( _template::_template_is_valid_string( pszFormat ) );
+      ASSERT( __is_valid_string( pszFormat ) );
 
       strsize nCurrentLength = get_length();
       strsize nAppendLength = string_trait::GetFormattedLength( pszFormat, args );
@@ -2291,9 +2291,9 @@ string::string(strsize nLength, char ch) :
 
    void string::FormatV(PCXSTR pszFormat, va_list args )
    {
-      ATLASSERT( _template::_template_is_valid_string( pszFormat ) );
+      ASSERT( __is_valid_string( pszFormat ) );
       if(pszFormat == NULL)
-         AtlThrow(E_INVALIDARG);
+         throw hresult_exception(E_INVALIDARG);
 
       strsize nLength = string_trait::GetFormattedLength( pszFormat, args );
       PXSTR pszBuffer = GetBuffer( nLength );
@@ -2337,14 +2337,14 @@ string::string(strsize nLength, char ch) :
 
    BSTR string::SetSysString(BSTR* pbstr ) const
    {
-      ATLASSERT( _template::_template_is_valid_address( pbstr, sizeof( BSTR ) ) );
+      ASSERT( __is_valid_address( pbstr, sizeof( BSTR ) ) );
 
       if( !string_trait::ReAllocSysString( GetString(), pbstr,
          get_length() ) )
       {
          ThrowMemoryException();
       }
-      ATLASSERT( *pbstr != NULL );
+      ASSERT( *pbstr != NULL );
         return( *pbstr );
    }
 
@@ -2377,7 +2377,7 @@ string::string(strsize nLength, char ch) :
    // Load the string from resource 'nID' in module 'hInstance'
 /*    BOOL load_string(HINSTANCE hInstance,UINT nID )
    {
-      const ATLSTRINGRESOURCEIMAGE* pImage = AtlGetStringResourceImage( hInstance, nID );
+      const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID );
       if( pImage == NULL )
       {
          return( FALSE );
@@ -2394,7 +2394,7 @@ string::string(strsize nLength, char ch) :
    // Load the string from resource 'nID' in module 'hInstance', using language 'wLanguageID'
     /*BOOL load_string(HINSTANCE hInstance,UINT nID,WORD wLanguageID )
    {
-      const ATLSTRINGRESOURCEIMAGE* pImage = AtlGetStringResourceImage( hInstance, nID, wLanguageID );
+      const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID, wLanguageID );
       if( pImage == NULL )
       {
          return( FALSE );
@@ -2415,7 +2415,7 @@ string::string(strsize nLength, char ch) :
 
    void __cdecl string::Format(PCXSTR pszFormat, ... )
    {
-      ATLASSERT( _template::_template_is_valid_string( pszFormat ) );
+      ASSERT( __is_valid_string( pszFormat ) );
 
       va_list argList;
       va_start( argList, pszFormat );
@@ -2427,7 +2427,7 @@ string::string(strsize nLength, char ch) :
    // append formatted data using format string 'pszFormat'
    void __cdecl string::AppendFormat(PCXSTR pszFormat, ... )
    {
-      ATLASSERT( _template::_template_is_valid_string( pszFormat ) );
+      ASSERT( __is_valid_string( pszFormat ) );
 
       va_list argList;
       va_start( argList, pszFormat );
@@ -2438,10 +2438,10 @@ string::string(strsize nLength, char ch) :
    }
 
    // Format a message using format string 'pszFormat'
-   void __cdecl string::_AFX_FUNCNAME(FormatMessage)(PCXSTR pszFormat, ... )
+   void __cdecl string::___FUNCNAME(FormatMessage)(PCXSTR pszFormat, ... )
    {
       if(pszFormat == NULL)
-         AtlThrow(E_INVALIDARG);
+         throw hresult_exception(E_INVALIDARG);
 
       va_list argList;
       va_start( argList, pszFormat );
@@ -2454,7 +2454,7 @@ string::string(strsize nLength, char ch) :
    void __cdecl string::format_message(PCXSTR pszFormat, ... )
    {
       if(pszFormat == NULL)
-         AtlThrow(E_INVALIDARG);
+         throw hresult_exception(E_INVALIDARG);
 
       va_list argList;
       va_start( argList, pszFormat );

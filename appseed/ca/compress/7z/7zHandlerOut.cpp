@@ -1,6 +1,6 @@
 // 7zHandlerOut.cpp
 // from 7-zip on dawn of 13/01/2001 - Thursday
-#include "StdAfx.h"
+#include "framework.h"
 
 /*#include "../../../Windows/PropVariant.h"
 

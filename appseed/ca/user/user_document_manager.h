@@ -10,29 +10,29 @@ public:
    comparable_array < document_template * >  m_templateptra;
 
 
-   static const char _afxShellOpenFmt[];
-   static const char _afxShellPrintFmt[];
-   static const char _afxShellPrintToFmt[];
-   static const char _afxDefaultIconFmt[];
-   static const char _afxShellNewFmt[];
+   static const char gen_ShellOpenFmt[];
+   static const char gen_ShellPrintFmt[];
+   static const char gen_ShellPrintToFmt[];
+   static const char gen_DefaultIconFmt[];
+   static const char gen_ShellNewFmt[];
 
    #define DEFAULT_ICON_INDEX 0
 
-   static  const char _afxIconIndexFmt[];
-   static  const char _afxCommand[];
-   static  const char _afxOpenArg[];
-   static  const char _afxPrintArg[];
-   static  const char _afxPrintToArg[];
-   static  const char _afxDDEArg[];
+   static  const char gen_IconIndexFmt[];
+   static  const char gen_Command[];
+   static  const char gen_OpenArg[];
+   static  const char gen_PrintArg[];
+   static  const char gen_PrintToArg[];
+   static  const char gen_DDEArg[];
 
-   static  const char _afxDDEExec[];
-   static  const char _afxDDEOpen[];
+   static  const char gen_DDEExec[];
+   static  const char gen_DDEOpen[];
 
-   static const char _afxDDEPrint[];
-   static const char _afxDDEPrintTo[];
+   static const char gen_DDEPrint[];
+   static const char gen_DDEPrintTo[];
 
-   static const char _afxShellNewValueName[];
-   static const char _afxShellNewValue[];
+   static const char gen_ShellNewValueName[];
+   static const char gen_ShellNewValue[];
 
 
    document_manager();

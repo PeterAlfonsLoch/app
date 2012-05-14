@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #include "elements.h"  // used for special creation
 
@@ -139,7 +139,7 @@ base_string_to_string_map::assoc*
 base_string_to_string_map::GetAssocAt(const string & key, UINT& nHashBucket, UINT& nHashValue) const
 // find association (or return NULL)
 {
-   nHashValue = _template::hash < BASE_ARG_KEY >::HashKey(key);
+   nHashValue = gen::hash < BASE_ARG_KEY >::HashKey(key);
    nHashBucket = nHashValue % m_nHashTableSize;
 
    if (m_pHashTable == NULL)
@@ -235,7 +235,7 @@ BOOL base_string_to_string_map::RemoveKey(const string & key)
 
    assoc** ppAssocPrev;
    UINT nHashValue;
-   nHashValue = _template::hash < BASE_ARG_KEY >::HashKey(key);
+   nHashValue = gen::hash < BASE_ARG_KEY >::HashKey(key);
    ppAssocPrev = &m_pHashTable[nHashValue%m_nHashTableSize];
 
    assoc* pAssoc;
@@ -318,7 +318,7 @@ void base_string_to_string_map::get_next_assoc(POSITION& rNextPosition,
    }
 
    // find next association
-   ASSERT(fx_is_valid_address(pAssocRet, sizeof(assoc)));
+   ASSERT(__is_valid_address(pAssocRet, sizeof(assoc)));
    assoc* pAssocNext;
    if ((pAssocNext = pAssocRet->pNext) == NULL)
    {
@@ -350,7 +350,7 @@ const base_string_to_string_map::pair *base_string_to_string_map::PGetNextAssoc(
    ASSERT(pAssocRet != (assoc*)BEFORE_START_POSITION );
 
    // find next association
-   ASSERT(fx_is_valid_address(pAssocRet, sizeof(assoc)));
+   ASSERT(__is_valid_address(pAssocRet, sizeof(assoc)));
    assoc* pAssocNext;
    if ((pAssocNext = pAssocRet->pNext) == NULL)
    {
@@ -378,7 +378,7 @@ base_string_to_string_map::pair *base_string_to_string_map::PGetNextAssoc(const 
    ASSERT(pAssocRet != (assoc*)BEFORE_START_POSITION );
 
    // find next association
-   ASSERT(fx_is_valid_address(pAssocRet, sizeof(assoc)));
+   ASSERT(__is_valid_address(pAssocRet, sizeof(assoc)));
    assoc* pAssocNext;
    if ((pAssocNext = pAssocRet->pNext) == NULL)
    {

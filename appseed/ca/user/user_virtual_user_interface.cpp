@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 virtual_user_interface::virtual_user_interface()
@@ -194,7 +194,7 @@ BOOL virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
          break;
       hWndParent = hWndT;
    }
-   while ((hWndT = AfxGetParentOwner(hWndParent)) != NULL);*/
+   while ((hWndT = __get_parent_owner(hWndParent)) != NULL);*/
 
 //   m_pwnd = NULL;
   // m_pguie->m_pwnd = NULL;
@@ -272,7 +272,7 @@ BOOL virtual_user_interface::create(const char * lpszClassName,
          break;
       hWndParent = hWndT;
    }
-   while ((hWndT = AfxGetParentOwner(hWndParent)) != NULL);*/
+   while ((hWndT = __get_parent_owner(hWndParent)) != NULL);*/
 
 //   m_pwnd = NULL;
 //   m_pguie->m_pwnd = NULL;
@@ -348,7 +348,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
          break;
       hWndParent = hWndT;
    }
-   while ((hWndT = AfxGetParentOwner(hWndParent)) != NULL);*/
+   while ((hWndT = __get_parent_owner(hWndParent)) != NULL);*/
 
 //   m_pwnd = NULL;
 //   m_pguie->m_pwnd = NULL;
@@ -544,7 +544,7 @@ LRESULT virtual_user_interface::Default()
 }
 
 
-void AfxRepositionWindow(AFX_SIZEPARENTPARAMS* lpLayout,
+void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
 ::user::interaction * pwnd, LPCRECT lpRect);
 
 
@@ -564,7 +564,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    // remaining size goes to the 'nIDLeftOver' pane
    // NOTE: nIDFirst->nIDLast are usually 0->0xffff
 
-   AFX_SIZEPARENTPARAMS layout;
+   __SIZEPARENTPARAMS layout;
    ::user::interaction * hWndLeftOver = NULL;
 
    layout.bStretch = bStretch;
@@ -663,7 +663,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
       if ((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
       {
          pLeftOver->CalcWindowRect(&layout.rect);
-         AfxRepositionWindow(&layout, pLeftOver, &layout.rect);
+         __reposition_window(&layout, pLeftOver, &layout.rect);
       }
    }
 
@@ -679,7 +679,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    // remaining size goes to the 'nIDLeftOver' pane
    // NOTE: nIDFirst->nIDLast are usually 0->0xffff
 
-   AFX_SIZEPARENTPARAMS layout;
+   __SIZEPARENTPARAMS layout;
    ::user::interaction * hWndLeftOver = NULL;
 
    layout.bStretch = bStretch;
@@ -697,7 +697,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    for (::user::interaction * hWndChild = GetTopWindow(); hWndChild != NULL;
       hWndChild = hWndChild->GetNextWindow(GW_HWNDNEXT))
    {
-      UINT_PTR nIDC = _AfxGetDlgCtrlID_(hWndChild);
+      UINT_PTR nIDC = __get_dialog_control_id_(hWndChild);
       ::user::interaction* pWnd = hWndChild;
       if (nIDC == nIDLeftOver)
          hWndLeftOver = hWndChild;
@@ -708,7 +708,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    for (int i = 0; i < m_uiptra.get_count(); i++)
    {
       ::user::interaction * hWndChild = m_uiptra[i];
-      UINT_PTR nIDC = _AfxGetDlgCtrlID_(hWndChild);
+      UINT_PTR nIDC = __get_dialog_control_id_(hWndChild);
       ::user::interaction* pWnd = hWndChild;
       if (nIDC == nIDLeftOver)
          hWndLeftOver = hWndChild;
@@ -748,7 +748,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
       if ((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
       {
          pLeftOver->CalcWindowRect(&layout.rect);
-         AfxRepositionWindow(&layout, hWndLeftOver, &layout.rect);
+         __reposition_window(&layout, hWndLeftOver, &layout.rect);
       }
    }
 
@@ -757,7 +757,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");*/
 }
 
-void AfxRepositionWindow(AFX_SIZEPARENTPARAMS* lpLayout,
+void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
    HWND hWnd, LPCRECT lpRect)
 {
    ASSERT(hWnd != NULL);
@@ -913,7 +913,7 @@ BOOL virtual_user_interface::DestroyWindow()
 
    ::user::interaction * hWndParent = this;
    ::user::interaction * hWndT;
-   while ((hWndT = AfxGetParentOwner(hWndParent)) != NULL)
+   while ((hWndT = __get_parent_owner(hWndParent)) != NULL)
       hWndParent = hWndT;
 
    return hWndParent;

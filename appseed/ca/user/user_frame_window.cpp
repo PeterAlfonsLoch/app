@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <dde.h>        // for DDE execute shell requests
 
 
@@ -6,12 +6,12 @@
 /////////////////////////////////////////////////////////////////////////////
 // rect for creating windows with the default position/size
 
-const AFX_DATADEF rect frame_window::rectDefault(
+const __DATADEF rect frame_window::rectDefault(
    CW_USEDEFAULT, CW_USEDEFAULT,
    0 /* 2*CW_USEDEFAULT */, 0 /* 2*CW_USEDEFAULT */);
 
 // register for Windows 95 or Windows NT 3.51
-UINT _afxMsgMouseWheel =
+UINT gen_MsgMouseWheel =
    (((::GetVersion() & 0x80000000) && LOBYTE(LOWORD(::GetVersion()) == 4)) ||
     (!(::GetVersion() & 0x80000000) && LOBYTE(LOWORD(::GetVersion()) == 3)))
     ? ::RegisterWindowMessage(MSH_MOUSEWHEEL) : 0;
@@ -20,7 +20,7 @@ UINT _afxMsgMouseWheel =
 // frame_window
 
 // // BEGIN_MESSAGE_MAP(frame_window, user::frame_window_interface)
-   //{{AFX_MSG_MAP(frame_window)
+   //{{__MSG_MAP(frame_window)
 /* xxx   ON_WM_INITMENU()
    ON_WM_INITMENUPOPUP()
    ON_WM_MENUSELECT()
@@ -68,12 +68,12 @@ UINT _afxMsgMouseWheel =
    ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTW, 0, 0xFFFF, &frame_window::OnToolTipText)
    ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, &frame_window::OnToolTipText)
    ON_NOTIFY_EX_RANGE(RBN_CHEVRONPUSHED, 0, 0xFFFF, &frame_window::OnChevronPushed)
-   //}}AFX_MSG_MAP
+   //}}__MSG_MAP
    // message handling for standard DDE commands
    ON_MESSAGE(WM_DDE_INITIATE, &frame_window::OnDDEInitiate)
    ON_MESSAGE(WM_DDE_EXECUTE, &frame_window::OnDDEExecute)
    ON_MESSAGE(WM_DDE_TERMINATE, &frame_window::OnDDETerminate)
-   ON_REGISTERED_MESSAGE(_afxMsgMouseWheel, &frame_window::OnRegisteredMouseWheel) */
+   ON_REGISTERED_MESSAGE(gen_MsgMouseWheel, &frame_window::OnRegisteredMouseWheel) */
 // // END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -136,7 +136,7 @@ BOOL frame_window::LoadAccelTable(const char * lpszResourceName)
    ASSERT(m_hAccelTable == NULL);  // only do once
    ASSERT(lpszResourceName != NULL);
 
-/*   HINSTANCE hInst = AfxFindResourceHandle(lpszResourceName, ATL_RT_ACCELERATOR);
+/*   HINSTANCE hInst = gen::FindResourceHandle(lpszResourceName, RT_ACCELERATOR);
    m_hAccelTable = ::LoadAccelerators(hInst, lpszResourceName);*/
    return (m_hAccelTable != NULL);
 }
@@ -158,7 +158,7 @@ void frame_window::pre_translate_message(gen::signal_object * pobj)
    ENSURE_ARG(pobj != NULL);
    // check for special cancel modes for combo boxes
    //if (pMsg->message == WM_LBUTTONDOWN || pMsg->message == WM_NCLBUTTONDOWN)
-   //   AfxCancelModes(pMsg->hwnd);    // filter clicks
+   //   __cancel_modes(pMsg->hwnd);    // filter clicks
 
    // allow tooltip messages to be filtered
    user::frame_window_interface::pre_translate_message(pobj);
@@ -291,7 +291,7 @@ BOOL frame_window::OnCommand(WPARAM wParam, LPARAM lParam)
 }
 
 
-BOOL AfxIsDescendant(::user::interaction * hWndParent, ::user::interaction * hWndChild)
+BOOL __is_descendant(::user::interaction * hWndParent, ::user::interaction * hWndChild)
    // helper for detecting whether child descendent of parent
    //  (works with owned popups as well)
 {
@@ -307,7 +307,7 @@ BOOL AfxIsDescendant(::user::interaction * hWndParent, ::user::interaction * hWn
       if (hWndParent == hWndChild)
          return TRUE;
 
-      hWndChild = AfxGetParentOwner(hWndChild);
+      hWndChild = __get_parent_owner(hWndChild);
    } while (hWndChild != NULL);
 
    return FALSE;
@@ -333,7 +333,7 @@ void frame_window::BeginModalState()
    while (hWnd != NULL)
    {
       if (hWnd->IsWindowEnabled() &&
-         AfxIsDescendant(pParent, hWnd) &&
+         __is_descendant(pParent, hWnd) &&
          hWnd->SendMessage(WM_DISABLEMODAL, 0, 0) == 0)
       {
          hWnd->EnableWindow(FALSE);
@@ -352,7 +352,7 @@ void frame_window::BeginModalState()
    m_phWndDisable[nCount] = NULL;
    ENSURE(arrDisabledWnds.get_data()!=NULL);
    // copy the HWNDs from local base_array to m_phWndDisable, to be enabled later.
-   _template::checked::memcpy_s(m_phWndDisable,sizeof(HWND)*nCount,arrDisabledWnds.get_data(),sizeof(HWND)*nCount);
+   ::gen::memcpy_s(m_phWndDisable,sizeof(HWND)*nCount,arrDisabledWnds.get_data(),sizeof(HWND)*nCount);
 }
 
 void frame_window::EndModalState()
@@ -384,7 +384,7 @@ void frame_window::ShowOwnedWindows(BOOL bShow)
    while (hWnd != NULL)
    {
       ::ca::window * pWnd = ::ca::window::FromHandlePermanent(hWnd);
-      if (pWnd != NULL && _get_handle() != hWnd && AfxIsDescendant(this, pWnd))
+      if (pWnd != NULL && _get_handle() != hWnd && __is_descendant(this, pWnd))
       {
          DWORD dwStyle = ::GetWindowLong(hWnd, GWL_STYLE);
          if (!bShow && (dwStyle & (WS_VISIBLE|WS_DISABLED)) == WS_VISIBLE)
@@ -447,7 +447,7 @@ BOOL frame_window::pre_create_window(CREATESTRUCT& cs)
    if (cs.lpszClass == NULL)
    {
       // COLOR_WINDOW background
-      VERIFY(System.DeferRegisterClass(AFX_WNDFRAMEORVIEW_REG, &cs.lpszClass));
+      VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, &cs.lpszClass));
    }
 
    if (cs.style & FWS_ADDTOTITLE)
@@ -474,7 +474,7 @@ BOOL frame_window::create(const char * lpszClassName,
    /* trans if (lpszMenuName != NULL)
    {
       // load in a menu that will get destroyed when ::ca::window gets destroyed
-      HINSTANCE hInst = AfxFindResourceHandle(lpszMenuName, ATL_RT_MENU);
+      HINSTANCE hInst = gen::FindResourceHandle(lpszMenuName, RT_MENU);
       if ((hMenu = ::LoadMenu(hInst, lpszMenuName)) == NULL)
       {
          TRACE(::radix::trace::category_AppMsg, 0, "Warning: failed to load menu for frame_window.\n");
@@ -517,7 +517,7 @@ BOOL frame_window::create(const char * lpszClassName,
    ASSERT_KINDOF(::user::interaction, pview);
 
    // views are always created with a border!
-   if (!pview->create(NULL, NULL, AFX_WS_DEFAULT_VIEW,
+   if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
       rect(0,0,0,0), this, nID, pContext))
    {
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: could not create ::view for frame.\n");
@@ -582,7 +582,7 @@ int frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* pCon
    }
 
    // post message for initial message string
-// trans   PostMessage(WM_SETMESSAGESTRING, AFX_IDS_IDLEMESSAGE);
+// trans   PostMessage(WM_SETMESSAGESTRING, __IDS_IDLEMESSAGE);
 
    // make sure the child windows have been properly sized
 //   layout();
@@ -593,9 +593,9 @@ int frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* pCon
 const char * frame_window::GetIconWndClass(DWORD dwDefaultStyle, const char * pszMatter)
 {
 //   ASSERT_VALID_IDR(nIDResource);
-//   HINSTANCE hInst = AfxFindResourceHandle(
-//      ATL_MAKEINTRESOURCE(nIDResource), ATL_RT_GROUP_ICON);
-   //HICON hIcon = ::LoadIcon(hInst, ATL_MAKEINTRESOURCE(nIDResource));
+//   HINSTANCE hInst = gen::FindResourceHandle(
+//      MAKEINTRESOURCE(nIDResource), RT_GROUP_ICON);
+   //HICON hIcon = ::LoadIcon(hInst, MAKEINTRESOURCE(nIDResource));
    HICON hIcon = (HICON) ::LoadImage(
       NULL,
       Application.dir().matter(pszMatter, "icon.ico"), IMAGE_ICON,
@@ -640,9 +640,9 @@ BOOL frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
 
    string strFullString;
    if (strFullString.load_string(nIDResource))
-      AfxExtractSubString(m_strTitle, strFullString, 0);    // first sub-string
+      __extract_sub_string(m_strTitle, strFullString, 0);    // first sub-string
 
-   VERIFY(AfxDeferRegisterClass(AFX_WNDFRAMEORVIEW_REG));
+   VERIFY(__defer_register_class(__WNDFRAMEORVIEW_REG));
 
    // attempt to create the ::ca::window
    const char * lpszClass = GetIconWndClass(dwDefaultStyle, nIDResource);
@@ -659,7 +659,7 @@ BOOL frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
    m_hMenuDefault = NULL; // trans
 
    // load accelerator resource
-   LoadAccelTable(ATL_MAKEINTRESOURCE(nIDResource));
+   LoadAccelTable(MAKEINTRESOURCE(nIDResource));
 
    if (pContext == NULL)   // send initial update
       SendMessageToDescendants(WM_INITIALUPDATE, 0, 0, TRUE, TRUE);
@@ -827,7 +827,7 @@ void frame_window::OnClose()
       //  main ::ca::window of the application.
       if (!afxContextIsDLL && pApp->GetMainWnd() == NULL)
       {
-         AfxPostQuitMessage(0);
+         __post_quit_message(0);
          return;
       }
    }
@@ -1288,7 +1288,7 @@ void frame_window::GetMessageString(UINT nID, string & rMessage) const
    // load appropriate string
    throw not_implemented_exception();
 /*   LPTSTR lpsz = rMessage.GetBuffer(255);
-   if (AfxLoadString(nID, lpsz) != 0)
+   if (gen::LoadString(nID, lpsz) != 0)
    {
       // first newline terminates actual string
       lpsz = _tcschr(lpsz, '\n');
@@ -1331,8 +1331,8 @@ LRESULT frame_window::OnSetMessageString(WPARAM wParam, LPARAM lParam)
       else if (wParam != 0)
       {
          // ::collection::map SC_CLOSE to PREVIEW_CLOSE when in print preview mode
-/*         if (wParam == AFX_IDS_SCCLOSE && m_lpfnCloseProc != NULL)
-            wParam = AFX_IDS_PREVIEW_CLOSE;*/
+/*         if (wParam == __IDS_SCCLOSE && m_lpfnCloseProc != NULL)
+            wParam = __IDS_PREVIEW_CLOSE;*/
 
          // get message associated with the ID indicated by wParam
        //NT64: Assume IDs are still 32-bit
@@ -1482,13 +1482,13 @@ void frame_window::OnSetPreviewMode(BOOL bPreview, CPrintPreviewState* pState)
       m_lpfnCloseProc = NULL;
 
       // shift original "pane_first" back to its rightful ID
-/*      ::user::interaction * hWnd = GetDlgItem(AFX_IDW_PANE_SAVE);
+/*      ::user::interaction * hWnd = GetDlgItem(__IDW_PANE_SAVE);
       if (hWnd != NULL)
       {
          ::user::interaction * hWndTemp = GetDlgItem("pane_first");
          if (hWndTemp != NULL)
-            _AfxSetDlgCtrlID_(hWndTemp, AFX_IDW_PANE_SAVE);
-         _AfxSetDlgCtrlID_(hWnd, "pane_first");
+            __set_dialog_control_id_(hWndTemp, __IDW_PANE_SAVE);
+         __set_dialog_control_id_(hWnd, "pane_first");
       }*/
 
       layout();
@@ -1716,7 +1716,7 @@ void frame_window::assert_valid() const
 {
    user::frame_window_interface::assert_valid();
    if (m_pViewActive != NULL)
-      ASSERT_VALID(m_pViewActive);
+      ASSERT_VALID(m_pViewActive.get_p());
 }
 
 void frame_window::dump(dump_context & dumpcontext) const
@@ -1747,8 +1747,8 @@ BOOL frame_window::IsFrameWnd()
 BOOL frame_window::IsTracking() const
 {
 /*   return m_nIDTracking != 0 &&
-      m_nIDTracking != AFX_IDS_HELPMODEMESSAGE &&
-      m_nIDTracking != AFX_IDS_IDLEMESSAGE;*/
+      m_nIDTracking != __IDS_HELPMODEMESSAGE &&
+      m_nIDTracking != __IDS_IDLEMESSAGE;*/
    return FALSE;
 }
 

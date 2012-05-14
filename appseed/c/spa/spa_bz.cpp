@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 const int g_iGzUncompressLen = 1024 * 1024;
 char * g_pchGzUncompressBuffer = NULL;

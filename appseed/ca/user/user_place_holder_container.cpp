@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace user
@@ -86,7 +86,7 @@ namespace user
 
    bool place_holder_container::create(::user::interaction * puiParent, id id)
    {
-      return ::database::user::interaction::create(NULL, NULL, 0 /*AFX_WS_DEFAULT_VIEW*/, rect(0,0,0,0), puiParent, id) != FALSE;
+      return ::database::user::interaction::create(NULL, NULL, 0 /*__WS_DEFAULT_VIEW*/, rect(0,0,0,0), puiParent, id) != FALSE;
    }
 
    place_holder_ptra place_holder_container_ptra::hold(::user::interaction * pui)

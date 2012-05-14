@@ -1,6 +1,6 @@
 // Archive/Common/ItemNameUtils.cpp
 // from 7-zip on 2010-12-25, Christmas evening
-#include "StdAfx.h"
+#include "framework.h"
 
 //#include "../../../../C/Types.h"
 /*

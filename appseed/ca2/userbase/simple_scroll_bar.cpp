@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 simple_scroll_bar::simple_scroll_bar(::ca::application * papp) :

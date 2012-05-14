@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace gcom
 {
@@ -26,7 +26,7 @@ namespace gcom
          m_pvisualeffect = new VisualEffect(*this);
          
          m_pthreadIdlePriority = 
-            AfxBeginThread < thread > (
+            __begin_thread < thread > (
                get_app(),
                THREAD_PRIORITY_NORMAL,
                0,
@@ -35,7 +35,7 @@ namespace gcom
          m_pthreadIdlePriority->ResumeThread();
 
          m_pthreadHighestPriority =
-            AfxBeginThread < thread > (
+            __begin_thread < thread > (
                get_app(),
                THREAD_PRIORITY_HIGHEST,
                0,

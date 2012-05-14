@@ -4,7 +4,7 @@
 
 // 08/20/05 (mv)
 
-#include "StdAfx.h"
+#include "framework.h"
 
 #if defined(LINUX) || defined(MACOS)
 #include <stdarg.h>

@@ -1,11 +1,11 @@
-﻿#include "StdAfx.h"
+﻿#include "framework.h"
 
 
 
 
 
 
-BOOL AfxInternalPumpMessage()
+BOOL __internal_pump_message()
 {
 
 MSG g_msgSpaAdminWindow;
@@ -22,7 +22,7 @@ MSG g_msgSpaAdminWindow;
 
   // process this message
 
-///*	if (!AfxPreTranslateMessage(&(pState->m_msgCur)))
+///*	if (!__pre_translate_message(&(pState->m_msgCur)))
 //	{
 		::TranslateMessage(&g_msgSpaAdminWindow);
 		::DispatchMessage(&g_msgSpaAdminWindow);

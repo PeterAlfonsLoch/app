@@ -24,16 +24,16 @@
 #endif
 
 #include <eh.h>
-#include "_000ca2api12000/AtlAux2.h"
+#include "_000ca2api12000/gen_Aux2.h"
 
 
-class se_translator :
-   public aux_thunk < se_translator >,
+class translator :
+   public aux_thunk < translator >,
    virtual public ::radix::object
 {      
  public:
-   se_translator();
-   virtual ~se_translator();
+   translator();
+   virtual ~translator();
 
    void translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers);
    static string name(unsigned int uiCode);

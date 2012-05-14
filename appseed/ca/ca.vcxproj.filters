@@ -258,9 +258,6 @@
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{ee06166a-e342-48b6-88d2-26b9ce17f079}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\template">
-      <UniqueIdentifier>{d1c8960a-82cb-44dc-a270-6c06c13af5cd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\crypto">
       <UniqueIdentifier>{896f23bf-9353-4679-a351-cc7f703729a4}</UniqueIdentifier>
     </Filter>
@@ -341,9 +338,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="libcharguess\big5Prober.h">
       <Filter>Header Files\libcharguess</Filter>
     </ClInclude>
@@ -459,15 +453,6 @@
       <Filter>Header Files\gen</Filter>
     </ClInclude>
     <ClInclude Include="gen\gen.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_0.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_1.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_2.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
     <ClInclude Include="gen\gen_application.h">
@@ -596,21 +581,6 @@
     <ClInclude Include="gen\gen_variable_strict_compare.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
-    <ClInclude Include="gen\go_thread.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\muldiv32.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\muldiv64.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\reference.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\simple_thread.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\_int_biunique.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -698,25 +668,7 @@
     <ClInclude Include="count.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="radix\machine_event_central.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\pipe.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\process_data.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="radix\radix.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_1.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_2.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_5.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="radix\radix_application.h">
@@ -735,12 +687,6 @@
       <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="radix\radix_thread.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\service.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\wait_cursor.h">
       <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="xml\xml.h">
@@ -801,12 +747,6 @@
       <Filter>Header Files\ex2</Filter>
     </ClInclude>
     <ClInclude Include="ex1\ex1.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_0.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_1.h">
       <Filter>Header Files\ex1</Filter>
     </ClInclude>
     <ClInclude Include="ex1\ex1_application.h">
@@ -1319,9 +1259,6 @@
     <ClInclude Include="ca2\ca2.h">
       <Filter>Header Files\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\ca2_2.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="ca2\ca2_application.h">
       <Filter>Header Files\ca2</Filter>
     </ClInclude>
@@ -1360,9 +1297,6 @@
     </ClInclude>
     <ClInclude Include="ca2\contact_list.h">
       <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_base_sync_object.h">
-      <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_critical_section.h">
       <Filter>Header Files\multithreading</Filter>
@@ -1455,12 +1389,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_2.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_3_graphics.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_application.h">
@@ -1889,61 +1817,7 @@
     <ClInclude Include="plane\plane_system_ca_template.h">
       <Filter>Header Files\plane</Filter>
     </ClInclude>
-    <ClInclude Include="visual\api.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\application.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\buffered_graphics.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\clip.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\dib.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\dib_pal.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\fastblur.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\font_central.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\FreeImageFileProc.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\glyph.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\glyph_set.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\graphics_extension.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\icon.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\image_list.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\imaging.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\rgb_quad_array.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
     <ClInclude Include="visual\visual.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\visual_00.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\visual_01.h">
       <Filter>Header Files\visual</Filter>
     </ClInclude>
     <ClInclude Include="visual\visual_application.h">
@@ -1959,9 +1833,6 @@
       <Filter>Header Files\visual</Filter>
     </ClInclude>
     <ClInclude Include="visual\visual_visual.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\water_routine.h">
       <Filter>Header Files\visual</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading.h">
@@ -2474,57 +2345,6 @@
     <ClInclude Include="primitive\datetime\datetime_duration.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="exception\VMSException.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\user.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\unhandled_report.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\SymEngine.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\simple_exception.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\se_translator.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\se_exception.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\resource.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\not_supported.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\not_licensed.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\misc.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\memory_state.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\memory.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\invalid_argument.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\interface_only.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\hresult_exception.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\exception2.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
     <ClInclude Include="exception\exception_void_implementation.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
@@ -2543,41 +2363,11 @@
     <ClInclude Include="exception\exception_installing.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\exception_0.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
     <ClInclude Include="exception\exception.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\error_exception.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\dump_context.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\debug_stream.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\debug.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\class.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\assert.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_exception.h">
       <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\not_implemented.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\base_exception.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user1.h">
-      <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="database\database1.h">
       <Filter>Header Files\database</Filter>
@@ -3011,14 +2801,8 @@
     <ClInclude Include="ca2\ca2_html_file.h">
       <Filter>Header Files\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="radix\kbase_xxx.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="gen\gen_composite.h">
       <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_bstr.H">
-      <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="template\template_time.h">
       <Filter>Header Files\template</Filter>
@@ -3045,9 +2829,6 @@
       <Filter>Header Files\template</Filter>
     </ClInclude>
     <ClInclude Include="template\template_debug.h">
-      <Filter>Header Files\template</Filter>
-    </ClInclude>
-    <ClInclude Include="template\template_exception.h">
       <Filter>Header Files\template</Filter>
     </ClInclude>
     <ClInclude Include="template\template_trace.h">
@@ -3209,11 +2990,254 @@
     <ClInclude Include="bergedge\bergedge_interface.h">
       <Filter>Header Files\bergedge</Filter>
     </ClInclude>
+    <ClInclude Include="exception\exception_memory.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_invalid_argument.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_interface_only.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_hresult.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_not_implemented.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_not_licensed.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_not_supported.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_base.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_call_stack.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_debug.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_debug_stream.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_dump_context.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_error.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_assert.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_memory_state.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_misc.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_resource.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_standard.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_standard_translator.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_simple.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_engine.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_unhandled_report.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_user.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_vms.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_last_error.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\base.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_memory_operator.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_back_insert_iterator.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_base.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_c_number.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_compare.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_core.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_definition.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_equals.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_hash.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_insert_iterator.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_iterator.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_std_pair.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_time.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_trace.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_common.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_const.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_graphic_classes.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_wait_cursor.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_service.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_pipe.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_process_data.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_machine_event_central.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="radix\radix_bstr.h">
+      <Filter>Header Files\radix</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_api.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_buffered_graphics.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_clip.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_dib_pal.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_fastblur.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_font_central.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_FreeImageFileProc.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_glyph.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_glyph_set.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_graphics_extension.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_icon.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_image_list.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_imaging.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_rgb_quad_array.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="visual\visual_water_routine.h">
+      <Filter>Header Files\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\aaa_base_enum_want_to_remove_xxx.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\aaa_full_pointer_want_to_remove_xxx.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\aaa_pointer_want_to_remove_xxx.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\aaa_PointerManager_want_to_remove_xxx.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\aaa_raw_pointer_want_to_remove_xxx.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\aaa_var_array_want_to_remove_xxx.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\aaa_c_allocate_want_to_remove.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\aaa_cw_allocate_want_to_remove.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_muldiv32.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_muldiv64.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_reference.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_resource.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_simple_collection.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_simple_thread.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_go_thread.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\aaa_template_want_to_remove_xxx2.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_template.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="StdAfx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sqlite\sqlite3.c">
       <Filter>Source Files\sqlite</Filter>
     </ClCompile>
@@ -3338,12 +3362,6 @@
       <Filter>Source Files\gen</Filter>
     </ClCompile>
     <ClCompile Include="gen\gen_variable_strict_compare.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\go_thread.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\simple_thread.cpp">
       <Filter>Source Files\gen</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_scalar.cpp">
@@ -3777,9 +3795,6 @@
     </ClCompile>
     <ClCompile Include="ca2\socket_address.cpp">
       <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="multithreading\multithreading_base_sync_object.cpp">
-      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_core.cpp">
       <Filter>Source Files\multithreading</Filter>
@@ -4501,13 +4516,7 @@
     <ClCompile Include="exception\exception_runtime_error.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\exception_se_translator.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\exception_simple_exception.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_SymEngine.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_temporary.cpp">
@@ -4645,27 +4654,6 @@
     <ClCompile Include="database\database_user_interaction.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
-    <ClCompile Include="template\template_base.cpp">
-      <Filter>Source Files\template</Filter>
-    </ClCompile>
-    <ClCompile Include="template\template_checked.cpp">
-      <Filter>Source Files\template</Filter>
-    </ClCompile>
-    <ClCompile Include="template\template_exception.cpp">
-      <Filter>Source Files\template</Filter>
-    </ClCompile>
-    <ClCompile Include="template\template_hash.cpp">
-      <Filter>Source Files\template</Filter>
-    </ClCompile>
-    <ClCompile Include="template\template_memory.cpp">
-      <Filter>Source Files\template</Filter>
-    </ClCompile>
-    <ClCompile Include="template\template_trace.cpp">
-      <Filter>Source Files\template</Filter>
-    </ClCompile>
-    <ClCompile Include="template\template_trace_module_manager.cpp">
-      <Filter>Source Files\template</Filter>
-    </ClCompile>
     <ClCompile Include="ca2\ca2_url.cpp">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
@@ -4702,9 +4690,6 @@
     <ClCompile Include="api\api_str.cpp">
       <Filter>Source Files\api</Filter>
     </ClCompile>
-    <ClCompile Include="radix\radix_allocator.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
     <ClCompile Include="radix\radix_assert.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
@@ -4729,12 +4714,6 @@
     <ClCompile Include="radix\radix_flags.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
-    <ClCompile Include="radix\radix_load_and_save.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\machine_event_central.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
     <ClCompile Include="radix\radix_pipe.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
@@ -4748,9 +4727,6 @@
       <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="radix\radix_thread.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_validadd.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="radix\radix_wait_cursor.cpp">
@@ -5358,6 +5334,48 @@
     </ClCompile>
     <ClCompile Include="filehandler\filehandler_tree_item.cpp">
       <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_last_error.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_sync_objec.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\base.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_trace.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_memory.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_hash.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="radix\radix_machine_event_central.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_standard_translator.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_engine.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_checked.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_base.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_simple_thread.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_go_thread.cpp">
+      <Filter>Source Files\gen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

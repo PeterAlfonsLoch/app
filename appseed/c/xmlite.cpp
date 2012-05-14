@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #undef _T
 //#define _T(x) L##x

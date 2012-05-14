@@ -8,7 +8,7 @@
 //
 //*****************************************************************************
 
-#include "StdAfx.h"
+#include "framework.h"
 
 //*****************************************************************************
 //
@@ -33,7 +33,7 @@ manual_reset_event::manual_reset_event(bool bInitiallyOwn) :
 {
     if (!m_event.SetEvent())
     {
-       _template::AtlThrowLastWin32();
+       throw last_error_exception();
     }
 }*/
 
@@ -47,7 +47,7 @@ manual_reset_event::manual_reset_event(bool bInitiallyOwn) :
 {
     if (!m_event.ResetEvent())
     {
-       _template::AtlThrowLastWin32();
+       throw last_error_exception();
     }
 }*/
 

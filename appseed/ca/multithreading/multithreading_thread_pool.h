@@ -61,10 +61,10 @@ public:
       if(!::QueueUserWorkItem(thread_proc < T >, psignal, flags))
       {
          delete psignal;
-         _template::AtlThrowLastWin32();
+         throw last_error_exception();
       }
 #else
-      if(!AfxBeginThread(pobject->get_app(), thread_proc < T >, psignal))
+      if(!__begin_thread(pobject->get_app(), thread_proc < T >, psignal))
       {
          delete psignal;
          throw 0;

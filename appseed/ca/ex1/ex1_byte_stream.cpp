@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace ex1
@@ -10,7 +10,7 @@ namespace ex1
 
 // FindSignature.cpp
 // from 7-zip on 2012-12-23, lunch time
-//#include "StdAfx.h"
+//#include "framework.h"
 
 /*#include "Common/Buffer.h"
 

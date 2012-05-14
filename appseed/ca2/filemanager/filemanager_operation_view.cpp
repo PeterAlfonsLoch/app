@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 file_manager_operation_view::file_manager_operation_view(::ca::application * papp) :
    ca(papp),

@@ -37,7 +37,7 @@
  *      multiple of the size of an 8-bit character.
  *
  */
-#include "StdAfx.h"
+#include "framework.h"
 
 #include "sha1.h"
 

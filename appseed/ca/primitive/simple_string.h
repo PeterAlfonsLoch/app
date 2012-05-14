@@ -4,10 +4,6 @@
 typedef INT_PTR strsize;
 
 
-#include "radix/radix_heap.h"
-#include "radix/radix_plex_heap.h"
-#include "radix/radix_fixed_alloc.h"
-
 
 class string_manager;
 
@@ -50,7 +46,7 @@ public:
 
    void SetManager(string_manager * pMgr ) NOTHROW
    {
-//      ATLASSERT( pstringmanager == NULL );
+//      ASSERT( pstringmanager == NULL );
       pstringmanager = pMgr;
    }
 
@@ -116,7 +112,7 @@ inline string_data * string_manager::allocate(strsize nChars, int nCharSize )
    nDataBytes = (nChars+1)*nCharSize;
    nTotalSize = sizeof( string_data  )+nDataBytes;
    
-   //BOOL bEnable = AfxEnableMemoryTracking(FALSE);
+   //BOOL bEnable = __enable_memory_tracking(FALSE);
    
    try
    {
@@ -128,7 +124,7 @@ inline string_data * string_manager::allocate(strsize nChars, int nCharSize )
       return NULL;
    }
 
-   //AfxEnableMemoryTracking(bEnable);
+   //__enable_memory_tracking(bEnable);
 
    if (pData == NULL)
       return NULL;
@@ -168,7 +164,7 @@ inline string_data * string_manager::Reallocate(string_data * pOldData, strsize 
    nOldDataBytes = (pOldData->nAllocLength+1)*nCharSize;
    nOldTotalSize = sizeof( string_data  ) + nOldDataBytes;
    
-   //BOOL bEnable = AfxEnableMemoryTracking(FALSE);
+   //BOOL bEnable = __enable_memory_tracking(FALSE);
    
    try
    {
@@ -181,7 +177,7 @@ inline string_data * string_manager::Reallocate(string_data * pOldData, strsize 
    {
    }
 
-   //AfxEnableMemoryTracking(bEnable);
+   //__enable_memory_tracking(bEnable);
 
 
    if(pNewData == NULL)
@@ -248,10 +244,6 @@ namespace gen
 } // namespace gen
 
 
-#include "ca/template/template_definition.h"
-#include "ca/template/template_core.h"
-//#include "template/trace.h"
-//#include "template/exception.h"
 
 CLASS_DECL_ca void throw_error_exception(const char * psz);
 
@@ -303,16 +295,16 @@ extern "C"
       };*/
 
 #if defined(LINUX) || defined(MACOS)
-   #define _AtlInterlockedIncrement(ptr) __sync_add_and_fetch(ptr, 1)
-   #define _AtlInterlockedDecrement(ptr) __sync_sub_and_fetch(ptr, 1)
+   #define _gen_InterlockedIncrement(ptr) __sync_add_and_fetch(ptr, 1)
+   #define _gen_InterlockedDecrement(ptr) __sync_sub_and_fetch(ptr, 1)
 #else
    #ifdef _M_IX86
       #ifndef _M_CEE
-         #define _AtlInterlockedIncrement _InterlockedIncrement
-         #define _AtlInterlockedDecrement _InterlockedDecrement
+         #define _gen_InterlockedIncrement _InterlockedIncrement
+         #define _gen_InterlockedDecrement _InterlockedDecrement
       #else
-         #define _AtlInterlockedIncrement InterlockedIncrement
-         #define _AtlInterlockedDecrement InterlockedDecrement
+         #define _gen_InterlockedIncrement InterlockedIncrement
+         #define _gen_InterlockedDecrement InterlockedDecrement
          /* managed code must use the non-intrinsics */
          #ifdef InterlockedIncrement
             #undef InterlockedIncrement
@@ -322,8 +314,8 @@ extern "C"
          #endif
       #endif  // !_M_CEE
    #else
-      #define _AtlInterlockedIncrement InterlockedIncrement
-      #define _AtlInterlockedDecrement InterlockedDecrement
+      #define _gen_InterlockedIncrement InterlockedIncrement
+      #define _gen_InterlockedDecrement InterlockedDecrement
    #endif  // _M_IX86_
 #endif // ! LINUX
 
@@ -376,9 +368,9 @@ static_string& operator=( const static_string& str ) NOTHROW;
 
 
 
-#define _ST( psz ) _template::static_string< char, sizeof( _T( psz ) ) >( _T( psz ) )
-#define _SA( psz ) _template::static_string< char, sizeof( psz ) >( psz )
-#define _SW( psz ) _template::static_string< wchar_t, sizeof( L##psz ) >( L##psz )
+#define _ST( psz ) gen::static_string< char, sizeof( _T( psz ) ) >( _T( psz ) )
+#define _SA( psz ) gen::static_string< char, sizeof( psz ) >( psz )
+#define _SW( psz ) gen::static_string< wchar_t, sizeof( L##psz ) >( L##psz )
 #define _SO( psz ) _SW( psz )
 
 class CLASS_DECL_ca char_traits_base
@@ -442,7 +434,7 @@ public:
 
    void construct(string_manager * pstringmanager)
    {
-      ATLENSURE( pstringmanager != NULL );
+      ENSURE( pstringmanager != NULL );
       string_data * pData = pstringmanager->GetNilString();
       Attach( pData );
    }
@@ -451,7 +443,7 @@ public:
    {
       if(&strSrc == NULL)
       {
-         ATLENSURE( pstringmanager != NULL );
+         ENSURE( pstringmanager != NULL );
 
          string_data* pData = pstringmanager->allocate( 0, sizeof( XCHAR ) );
          if( pData == NULL )
@@ -469,7 +461,7 @@ public:
 
    simple_string(PCXSTR pszSrc,string_manager * pstringmanager )
    {
-      ATLENSURE( pstringmanager != NULL );
+      ENSURE( pstringmanager != NULL );
 
       strsize nLength = StringLength( pszSrc );
       string_data* pData = pstringmanager->allocate( nLength, sizeof( XCHAR ) );
@@ -487,10 +479,10 @@ public:
    }
    simple_string(const XCHAR* pchSrc,strsize nLength,string_manager * pstringmanager )
    {
-      ATLENSURE( pstringmanager != NULL );
+      ENSURE( pstringmanager != NULL );
 
       if(pchSrc == NULL && nLength != 0)
-         AtlThrow(E_INVALIDARG);
+         throw hresult_exception(E_INVALIDARG);
 
       if(nLength < 0)
          nLength = (strsize) strlen(pchSrc);
@@ -586,10 +578,10 @@ public:
 
    XCHAR operator[](strsize iChar ) const
    {
-      ATLASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
+      ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
 
       if( (iChar < 0) || (iChar > get_length()) )
-         AtlThrow(E_INVALIDARG);
+         throw hresult_exception(E_INVALIDARG);
 
       return( m_pszData[iChar] );
    }
@@ -715,9 +707,9 @@ public:
    }
    XCHAR get_at(strsize iChar ) const
    {
-      ATLASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
+      ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
       if( (iChar < 0) || (iChar > get_length()) )
-         AtlThrow(E_INVALIDARG);
+         throw hresult_exception(E_INVALIDARG);
 
       return( m_pszData[iChar] );
    }
@@ -810,21 +802,21 @@ public:
    }
    void ReleaseBufferSetLength(strsize nNewLength )
    {
-      ATLASSERT( nNewLength >= 0 );
+      ASSERT( nNewLength >= 0 );
       set_length( nNewLength );
    }
    void Truncate(strsize nNewLength )
    {
-      ATLASSERT( nNewLength <= get_length() );
+      ASSERT( nNewLength <= get_length() );
       GetBuffer( nNewLength );
       ReleaseBufferSetLength( nNewLength );
    }
    void set_at(strsize iChar,XCHAR ch )
    {
-      ATLASSERT( (iChar >= 0) && (iChar < get_length()) );
+      ASSERT( (iChar >= 0) && (iChar < get_length()) );
 
       if( (iChar < 0) || (iChar >= get_length()) )
-         AtlThrow(E_INVALIDARG);
+         throw hresult_exception(E_INVALIDARG);
 
       strsize nLength = get_length();
       PXSTR pszBuffer = GetBuffer();
@@ -834,7 +826,7 @@ public:
    }
    void SetManager(string_manager * pstringmanager )
    {
-      ATLASSERT( is_empty() );
+      ASSERT( is_empty() );
 
       string_data * pData = get_data();
       pData->Release();
@@ -860,7 +852,7 @@ public:
          // into the newly allocated buffer instead.
 
          if(pszSrc == NULL)
-            AtlThrow(E_INVALIDARG);
+            throw hresult_exception(E_INVALIDARG);
 
          UINT_PTR nOldLength = (UINT_PTR) get_length();
          UINT_PTR nOffset = (UINT_PTR) (pszSrc - GetString());
@@ -955,7 +947,7 @@ public:
    }
 #endif
 
-   ATL_NOINLINE static strsize __cdecl StringLength(PCXSTR psz ) NOTHROW
+   NOINLINE static strsize __cdecl StringLength(PCXSTR psz ) NOTHROW
    {
       strsize nLength = 0;
       if( psz != NULL )
@@ -986,9 +978,9 @@ protected:
       strResult.ReleaseBufferSetLength( nNewLength );
    }
 
-   ATL_NOINLINE DECLSPEC_NO_RETURN static void __cdecl ThrowMemoryException()
+   NOINLINE DECLSPEC_NO_RETURN static void __cdecl ThrowMemoryException()
    {
-      AtlThrow( E_OUTOFMEMORY );
+      throw hresult_exception( E_OUTOFMEMORY );
    }
 
    // Implementation
@@ -997,7 +989,7 @@ private:
    {
       m_pszData = static_cast< PXSTR >( pData->data() );
    }
-   ATL_NOINLINE void Fork(strsize nLength )
+   NOINLINE void Fork(strsize nLength )
    {
       string_data* pOldData = get_data();
       strsize nOldLength = pOldData->nDataLength;
@@ -1033,7 +1025,7 @@ private:
 
       return( m_pszData );
    }
-   ATL_NOINLINE void PrepareWrite2(strsize nLength )
+   NOINLINE void PrepareWrite2(strsize nLength )
    {
       string_data * pOldData = get_data();
       if( pOldData->nDataLength > nLength )
@@ -1063,10 +1055,10 @@ private:
          Reallocate( nNewLength );
       }
    }
-   ATL_NOINLINE void Reallocate(strsize nLength )
+   NOINLINE void Reallocate(strsize nLength )
    {
       string_data* pOldData = get_data();
-      ATLASSERT( pOldData->nAllocLength < nLength );
+      ASSERT( pOldData->nAllocLength < nLength );
       string_manager * pstringmanager = pOldData->pstringmanager;
       if ( pOldData->nAllocLength >= nLength || nLength <= 0)
       {
@@ -1192,11 +1184,11 @@ public:
 
    void set_length(strsize nLength )
    {
-      ATLASSERT( nLength >= 0 );
-      ATLASSERT( nLength <= m_nBufferLength );
+      ASSERT( nLength >= 0 );
+      ASSERT( nLength <= m_nBufferLength );
 
       if( nLength < 0 )
-         AtlThrow(E_INVALIDARG);
+         throw hresult_exception(E_INVALIDARG);
 
       m_nLength = nLength;
    }
@@ -1226,8 +1218,8 @@ inline char * string_data::data() NOTHROW
 
 inline void string_data::AddRef() NOTHROW
 {
-   ATLASSERT(nRefs > 0);
-   _AtlInterlockedIncrement(&nRefs);
+   ASSERT(nRefs > 0);
+   _gen_InterlockedIncrement(&nRefs);
 }
 inline bool string_data::IsLocked() const NOTHROW
 {
@@ -1239,7 +1231,7 @@ inline bool string_data::IsShared() const NOTHROW
 }
 inline void string_data::lock() NOTHROW
 {
-   ATLASSERT( nRefs <= 1 );
+   ASSERT( nRefs <= 1 );
    nRefs--;  // Locked buffers can't be shared, so no interlocked operation necessary
    if( nRefs == 0 )
    {
@@ -1248,16 +1240,16 @@ inline void string_data::lock() NOTHROW
 }
 inline void string_data::Release() NOTHROW
 {
-   ATLASSERT( nRefs != 0 );
+   ASSERT( nRefs != 0 );
 
-   if( _AtlInterlockedDecrement( &nRefs ) <= 0 )
+   if( _gen_InterlockedDecrement( &nRefs ) <= 0 )
    {
       pstringmanager->Free( this );
    }
 }
 inline void string_data::unlock() NOTHROW
 {
-   ATLASSERT( IsLocked() );
+   ASSERT( IsLocked() );
 
    if(IsLocked())
    {

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 plex_heap * PASCAL plex_heap::create(plex_heap*& pHead, UINT_PTR nMax, UINT_PTR cbElement)

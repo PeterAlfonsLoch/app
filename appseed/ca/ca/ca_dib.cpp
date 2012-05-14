@@ -3,7 +3,7 @@
 //   Date : 09-04-98
 //////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "framework.h"
 #include <math.h>
 
 namespace ca
@@ -1392,7 +1392,7 @@ fill_last:
       return RGB(rgba_get_b(dw), rgba_get_g(dw), rgba_get_r(dw));
    }
 
-   // too slow for animation on AMD XP Atlhon.
+   // too slow for animation on AMD XP gen_hon.
    // TOP SUGGESTION:
    // The gradient can´t have more then 256 levels of the most bright color
    // (white). So creating a radial fill of radius 256 and then using fasting

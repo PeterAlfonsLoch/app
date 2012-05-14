@@ -1,27 +1,27 @@
-#include "StdAfx.h"
+#include "framework.h"
 
-AFX_STATIC_DATA const CHAR _vfxShellOpenFmt[] = "%s\\shell\\open\\%s";
-AFX_STATIC_DATA const CHAR _vfxShellPrintFmt[] = "%s\\shell\\print\\%s";
-AFX_STATIC_DATA const CHAR _vfxShellPrintToFmt[] = "%s\\shell\\printto\\%s";
-AFX_STATIC_DATA const CHAR _vfxDefaultIconFmt[] = "%s\\DefaultIcon";
-AFX_STATIC_DATA const CHAR _vfxShellNewFmt[] = "%s\\ShellNew";
+__STATIC_DATA const CHAR _vfxShellOpenFmt[] = "%s\\shell\\open\\%s";
+__STATIC_DATA const CHAR _vfxShellPrintFmt[] = "%s\\shell\\print\\%s";
+__STATIC_DATA const CHAR _vfxShellPrintToFmt[] = "%s\\shell\\printto\\%s";
+__STATIC_DATA const CHAR _vfxDefaultIconFmt[] = "%s\\DefaultIcon";
+__STATIC_DATA const CHAR _vfxShellNewFmt[] = "%s\\ShellNew";
 
 #define DEFAULT_ICON_INDEX 0
 
-AFX_STATIC_DATA const CHAR _vfxIconIndexFmt[] = ",%d";
-AFX_STATIC_DATA const CHAR _vfxCommand[] = "command";
-AFX_STATIC_DATA const CHAR _vfxOpenArg[] = " \"%1\"";
-AFX_STATIC_DATA const CHAR _vfxPrintArg[] = " /p \"%1\"";
-AFX_STATIC_DATA const CHAR _vfxPrintToArg[] = " /pt \"%1\" \"%2\" \"%3\" \"%4\"";
-AFX_STATIC_DATA const CHAR _vfxDDEArg[] = " /dde";
+__STATIC_DATA const CHAR _vfxIconIndexFmt[] = ",%d";
+__STATIC_DATA const CHAR _vfxCommand[] = "command";
+__STATIC_DATA const CHAR _vfxOpenArg[] = " \"%1\"";
+__STATIC_DATA const CHAR _vfxPrintArg[] = " /p \"%1\"";
+__STATIC_DATA const CHAR _vfxPrintToArg[] = " /pt \"%1\" \"%2\" \"%3\" \"%4\"";
+__STATIC_DATA const CHAR _vfxDDEArg[] = " /dde";
 
-AFX_STATIC_DATA const CHAR _vfxDDEExec[] = "ddeexec";
-AFX_STATIC_DATA const CHAR _vfxDDEOpen[] = "[open(\"%1\")]";
-AFX_STATIC_DATA const CHAR _vfxDDEPrint[] = "[print(\"%1\")]";
-AFX_STATIC_DATA const CHAR _vfxDDEPrintTo[] = "[printto(\"%1\",\"%2\",\"%3\",\"%4\")]";
+__STATIC_DATA const CHAR _vfxDDEExec[] = "ddeexec";
+__STATIC_DATA const CHAR _vfxDDEOpen[] = "[open(\"%1\")]";
+__STATIC_DATA const CHAR _vfxDDEPrint[] = "[print(\"%1\")]";
+__STATIC_DATA const CHAR _vfxDDEPrintTo[] = "[printto(\"%1\",\"%2\",\"%3\",\"%4\")]";
 
-AFX_STATIC_DATA const CHAR _vfxShellNewValueName[] = "NullFile";
-AFX_STATIC_DATA const CHAR _vfxShellNewValue[] = "";
+__STATIC_DATA const CHAR _vfxShellNewValueName[] = "NullFile";
+__STATIC_DATA const CHAR _vfxShellNewValue[] = "";
 
 
 #define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? NULL : (_cpc2)-1)
@@ -30,16 +30,16 @@ AFX_STATIC_DATA const CHAR _vfxShellNewValue[] = "";
 
 /*BOOL vfxExtractSubString(string& rString, const wchar_t * lpszFullString,
    int iSubString, WCHAR chSep);*/
-UINT AfxGetFileTitle(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax);
+UINT __get_file_title(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax);
 
-AFX_STATIC BOOL AFXAPI
-_AfxSetRegKey(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName = NULL);
+__STATIC BOOL AFXAPI
+__set_reg_key(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName = NULL);
 
-void AfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName);
+void __get_module_short_file_name(HINSTANCE hInst, string& strShortName);
 
 
 
-AFX_STATIC inline BOOL IsDirSep(WCHAR wch)
+__STATIC inline BOOL IsDirSep(WCHAR wch)
 {
    return (wch == '\\' || wch == '/');
 }
@@ -51,28 +51,28 @@ AFX_STATIC inline BOOL IsDirSep(WCHAR wch)
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-AFX_STATIC_DATA const char _afxShellOpenFmt[] = "%s\\shell\\open\\%s";
-AFX_STATIC_DATA const char _afxShellPrintFmt[] = "%s\\shell\\print\\%s";
-AFX_STATIC_DATA const char _afxShellPrintToFmt[] = "%s\\shell\\printto\\%s";
-AFX_STATIC_DATA const char _afxDefaultIconFmt[] = "%s\\DefaultIcon";
-AFX_STATIC_DATA const char _afxShellNewFmt[] = "%s\\ShellNew";
+__STATIC_DATA const char gen_ShellOpenFmt[] = "%s\\shell\\open\\%s";
+__STATIC_DATA const char gen_ShellPrintFmt[] = "%s\\shell\\print\\%s";
+__STATIC_DATA const char gen_ShellPrintToFmt[] = "%s\\shell\\printto\\%s";
+__STATIC_DATA const char gen_DefaultIconFmt[] = "%s\\DefaultIcon";
+__STATIC_DATA const char gen_ShellNewFmt[] = "%s\\ShellNew";
 
 #define DEFAULT_ICON_INDEX 0
 
-AFX_STATIC_DATA const char _afxIconIndexFmt[] = ",%d";
-AFX_STATIC_DATA const char _afxCommand[] = "command";
-AFX_STATIC_DATA const char _afxOpenArg[] = _T(" \"%1\"");
-AFX_STATIC_DATA const char _afxPrintArg[] = _T(" /p \"%1\"");
-AFX_STATIC_DATA const char _afxPrintToArg[] = _T(" /pt \"%1\" \"%2\" \"%3\" \"%4\"");
-AFX_STATIC_DATA const char _afxDDEArg[] = " /dde";
+__STATIC_DATA const char gen_IconIndexFmt[] = ",%d";
+__STATIC_DATA const char gen_Command[] = "command";
+__STATIC_DATA const char gen_OpenArg[] = _T(" \"%1\"");
+__STATIC_DATA const char gen_PrintArg[] = _T(" /p \"%1\"");
+__STATIC_DATA const char gen_PrintToArg[] = _T(" /pt \"%1\" \"%2\" \"%3\" \"%4\"");
+__STATIC_DATA const char gen_DDEArg[] = " /dde";
 
-AFX_STATIC_DATA const char _afxDDEExec[] = "ddeexec";
-AFX_STATIC_DATA const char _afxDDEOpen[] = _T("[open(\"%1\")]");
-AFX_STATIC_DATA const char _afxDDEPrint[] = _T("[print(\"%1\")]");
-AFX_STATIC_DATA const char _afxDDEPrintTo[] = _T("[printto(\"%1\",\"%2\",\"%3\",\"%4\")]");
+__STATIC_DATA const char gen_DDEExec[] = "ddeexec";
+__STATIC_DATA const char gen_DDEOpen[] = _T("[open(\"%1\")]");
+__STATIC_DATA const char gen_DDEPrint[] = _T("[print(\"%1\")]");
+__STATIC_DATA const char gen_DDEPrintTo[] = _T("[printto(\"%1\",\"%2\",\"%3\",\"%4\")]");
 
-AFX_STATIC_DATA const char _afxShellNewValueName[] = "NullFile";
-AFX_STATIC_DATA const char _afxShellNewValue[] = "";
+__STATIC_DATA const char gen_ShellNewValueName[] = "NullFile";
+__STATIC_DATA const char gen_ShellNewValue[] = "";
 
 
 namespace userbase
@@ -100,7 +100,7 @@ namespace userbase
    {
    }
 
-   BOOL _AfxDeleteRegKey(const wchar_t * lpszKey)
+/*   BOOL __delete_reg_key(const wchar_t * lpszKey)
    {
       // copy the string
       wchar_t * lpszKeyCopy = _wcsdup(lpszKey);
@@ -140,8 +140,8 @@ namespace userbase
       return TRUE;
    }
 
-   AFX_STATIC BOOL AFXAPI
-   _AfxSetRegKey(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName)
+   __STATIC BOOL AFXAPI
+   __set_reg_key(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName)
    {
       if (lpszValueName == NULL)
       {
@@ -170,7 +170,7 @@ namespace userbase
          return FALSE;
       }
    }
-
+   */
 } // namespace userbase
 
 

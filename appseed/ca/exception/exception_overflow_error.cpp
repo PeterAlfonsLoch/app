@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 
-#include "StdAfx.h"
+#include "framework.h"
 
 
 overflow_error::overflow_error(const char * pszError) :

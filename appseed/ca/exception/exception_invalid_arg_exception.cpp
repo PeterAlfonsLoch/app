@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 invalid_argument_exception::invalid_argument_exception()

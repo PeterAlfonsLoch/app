@@ -7,10 +7,8 @@
 #include "img.h"
 #include "scalar.h"
 #include "check.h"
-#include "simple_string.h"
-#include "id.h"
 #include "string.h"
-#include "template/template_time.h"
+#include "ca/gen/gen_time.h"
 #include "geometric_types.h"
 
 

@@ -1,8 +1,8 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 // return string length or -1 if UNICODE string is found in the archive
-AFX_STATIC UINT _AfxReadStringLength(ex1::byte_input_stream & ar);
+__STATIC UINT __read_string_length(ex1::byte_input_stream & ar);
 
 
 stringa::stringa(::ca::application * papp) :
@@ -58,13 +58,13 @@ void stringa::add_smallest_tokens(const char * lpcsz, stringa & straSeparator, B
       while(strTokenizer.GetNextSmallestToken(strToken, straSeparator, bWithSeparator))
       {
          if(straSeparator.get_data() == get_data())
-            AfxDebugBreak();
+            __debug_break();
          if(strToken == "cecyn1.at.hotmail.com")
             g_add_smallest_tokens++;
          if(!strToken.is_empty())
             string_array::add(strToken);
          if(straSeparator.get_data() == get_data())
-            AfxDebugBreak();
+            __debug_break();
       }
    }
 }
@@ -588,11 +588,11 @@ ex1::byte_input_stream & operator>>(ex1::byte_input_stream & ar, string & string
 {
    int nConvert = 0;   // if we get UNICODE, convert
 
-   UINT nNewLen = _AfxReadStringLength(ar);
+   UINT nNewLen = __read_string_length(ar);
    if (nNewLen == (UINT)-1)
    {
       nConvert = 1 - nConvert;
-      nNewLen = _AfxReadStringLength(ar);
+      nNewLen = __read_string_length(ar);
       ASSERT(nNewLen != -1);
    }
 
@@ -613,7 +613,7 @@ ex1::byte_input_stream & operator>>(ex1::byte_input_stream & ar, string & string
       // read new data
       if (ar.read(lpBuf, nByteLen) != nByteLen)
       {
-         //   AfxThrowArchiveException(CArchiveException::endOfFile);
+         //   gen::ThrowArchiveException(CArchiveException::endOfFile);
       }
 
       // convert the data if as necessary
@@ -656,7 +656,7 @@ ex1::byte_output_stream & operator<<(ex1::byte_output_stream & ar, const string 
 }
 
 // return string length or -1 if UNICODE string is found in the archive
-AFX_STATIC UINT _AfxReadStringLength(ex1::byte_input_stream & ar)
+__STATIC UINT __read_string_length(ex1::byte_input_stream & ar)
 {
    DWORD nNewLen;
 

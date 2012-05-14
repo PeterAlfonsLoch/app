@@ -1,9 +1,8 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 semaphore::semaphore(LONG lInitialCount, LONG lMaxCount, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttributes) :
-   sync_object < HANDLE > (pstrName),
-   base_sync_object(pstrName)
+   sync_object(pstrName)
 {
 
    ASSERT(lMaxCount > 0);
@@ -11,9 +10,9 @@ semaphore::semaphore(LONG lInitialCount, LONG lMaxCount, const char * pstrName, 
 
 #ifdef WINDOWS
 
-   m_hObject = ::CreateSemaphore(lpsaAttributes, lInitialCount, lMaxCount, pstrName);
-   if (m_hObject == NULL)
-      AfxThrowResourceException();
+   m_object = ::CreateSemaphore(lpsaAttributes, lInitialCount, lMaxCount, pstrName);
+   if (m_object == NULL)
+      throw resource_exception();
 #else
 
 
@@ -65,7 +64,7 @@ bool semaphore::unlock(LONG lCount, LPLONG lpPrevCount /* =NULL */)
 
 #ifdef WINDOWS
 
-   return ::ReleaseSemaphore(m_hObject, lCount, lpPrevCount) != FALSE;
+   return ::ReleaseSemaphore(m_object, lCount, lpPrevCount) != FALSE;
 
 #else
 

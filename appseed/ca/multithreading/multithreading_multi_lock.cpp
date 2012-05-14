@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 multi_lock::multi_lock(sync_object_ptra syncobjectptra, bool bInitialLock)
 {

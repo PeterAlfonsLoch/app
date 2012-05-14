@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #if defined(MACOS)
 #include <malloc/malloc.h>

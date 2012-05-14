@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #define TIMER_HOVER 321654
 
@@ -105,7 +105,7 @@ BOOL simple_menu_bar::pre_create_window(CREATESTRUCT& cs)
 {
     LPNMTOOLBAR lpnmtb = (LPNMTOOLBAR) pNotifyStruct;
 
-//    m_pwthreadTracking = (CMenuTrackingThreadV033*) AfxBeginThread(System.template type_info < CMenuTrackingThreadV033 > ());
+//    m_pwthreadTracking = (CMenuTrackingThreadV033*) __begin_thread(System.template type_info < CMenuTrackingThreadV033 > ());
   //  m_pwthreadTracking->m_evInitialized.lock();
     //m_pwthreadTracking->GetMainWnd()->SendMessage(WM_USER, 3, (LPARAM) this);
     //m_pwthreadTracking->GetMainWnd()->SendMessage(WM_USER, 4, lpnmtb->iItem);
@@ -159,7 +159,7 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(int iItem)
 
 
 
-//    HWND hwndOld = AfxGetThreadState()->m_hTrackingWindow;
+//    HWND hwndOld = __get_thread_state()->m_hTrackingWindow;
 //    m_hwndFilter = NULL;
     return VMSR_SUCCESS;
 }
@@ -548,19 +548,16 @@ BOOL simple_menu_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyl
 
    // save the style
    m_dwStyle = (dwStyle & CBRS_ALL);
-   if (nID == AFX_IDW_TOOLBAR)
+   if (nID == __IDW_TOOLBAR)
       m_dwStyle |= CBRS_HIDE_INPLACE;
 
    dwStyle &= ~CBRS_ALL;
    dwStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
    dwStyle |= dwCtrlStyle;
 
-   // initialize common controls
-//   VERIFY(AfxDeferRegisterClass(AFX_WNDCOMMCTL_BAR_REG));
-//   _AfxGetComCtlVersion();
-//   ASSERT(_afxComCtlVersion != -1);
-//   _AfxGetDropDownWidth();
-//   ASSERT(_afxDropDownWidth != -1);
+//   ASSERT(gen_ComCtlVersion != -1);
+//   _gen::GetDropDownWidth();
+//   ASSERT(gen_DropDownWidth != -1);
 
    // create the HWND
    class rect rect;

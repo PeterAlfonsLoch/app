@@ -1,4 +1,5 @@
-#include "StdAfx.h"
+#include "framework.h"
+#include <time.h>
 
 
 namespace ca4
@@ -1361,7 +1362,7 @@ namespace ca4
             {
                string strAuth = headers["Authorization"];
                string strDate = headers["date"];
-               class ::time time(iTime);
+               ::datetime::time time(iTime);
                string strDateHere = System.datetime().international().get_gmt_date_time(time);
                /* Tell OAuth object to save access token and secret from web response */
                m_oauth.extractOAuthTokenKeySecret(get_response());

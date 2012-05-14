@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "filemanager/filemanager_folder_selection_list_view.h"
 
 namespace nature

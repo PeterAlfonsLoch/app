@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 simple_tab_view::simple_tab_view(::ca::application * papp) :
    ca(papp),

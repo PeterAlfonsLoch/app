@@ -1,6 +1,6 @@
 // Compress/CopyCoder.cpp
 
-#include "StdAfx.h"
+#include "framework.h"
 
 /*#include "../../../C/Alloc.h"
 

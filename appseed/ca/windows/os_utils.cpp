@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <Winsvc.h>
 
 const LPCTSTR DRV_DOS_NAME = _T("\\\\.\\ListFileDrv");
@@ -70,7 +70,7 @@ HANDLE ExtractAndInstallDrv()
 
 
 		/*// First extract the resource
-		HINSTANCE hModule= AfxGetInstanceHandle();
+		HINSTANCE hModule= __get_instance_handle();
 		HRSRC hRsrc = FindResource(hModule, MAKEINTRESOURCE(DRVIER_ID),_T("BINARY"));
 		HGLOBAL hDrvRsrc = LoadResource(hModule, hRsrc);
 		DWORD dwDriverSize = SizeofResource(hModule, hRsrc);

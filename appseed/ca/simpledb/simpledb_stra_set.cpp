@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 db_stra_set::db_stra_set(db_server * pserver, ::database::id & id) :
    m_id(id)

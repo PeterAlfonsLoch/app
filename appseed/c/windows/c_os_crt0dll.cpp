@@ -6,7 +6,7 @@
 
 // 08/13/06 (mv)
 
-#include "StdAfx.h"
+#include "framework.h"
 
 #ifdef WINDOWS
 

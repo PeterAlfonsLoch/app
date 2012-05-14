@@ -1,8 +1,9 @@
-#include "StdAfx.h"
-#include "Clip.h"
+#include "framework.h"
+
 
 namespace visual
 {
+
 
    graphics_extension::graphics_extension(::ca::application * papp) :
       ca(papp)
@@ -437,4 +438,7 @@ namespace visual
       return 1;
    }
 
+
 } // namespace visual
+
+

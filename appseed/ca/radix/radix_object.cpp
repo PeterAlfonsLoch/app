@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace radix
@@ -161,39 +161,39 @@ namespace radix
 // Diagnostic Support
 
 //#ifdef _DEBUG
-void Afxassert_validObject(const ::radix::object * pOb, const char * lpszFileName, int nLine)
+void assert_valid_object(const ::radix::object * pOb, const char * lpszFileName, int nLine)
 {
    if (pOb == NULL)
    {
 //      TRACE(::radix::trace::category_AppMsg, 0, "ASSERT_VALID fails with NULL pointer.\n");
-      if (AfxAssertFailedLine(lpszFileName, nLine))
-         AfxDebugBreak();
+      if (__assert_failed_line(lpszFileName, nLine))
+         __debug_break();
       return;     // quick escape
    }
-   if (!fx_is_valid_address(pOb, sizeof(::radix::object)))
+   if (!__is_valid_address(pOb, sizeof(::radix::object)))
    {
       ///TRACE(::radix::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
-      if (AfxAssertFailedLine(lpszFileName, nLine))
-         AfxDebugBreak();
+      if (__assert_failed_line(lpszFileName, nLine))
+         __debug_break();
       return;     // quick escape
    }
 
    // check to make sure the VTable pointer is valid
    //   ASSERT(sizeof(::object) == sizeof(void *));
-   //   if (!fx_is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
-   if (!fx_is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
+   //   if (!__is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
+   if (!__is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
    {
 //      TRACE(::radix::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal vtable pointer.\n");
-      if (AfxAssertFailedLine(lpszFileName, nLine))
-         AfxDebugBreak();
+      if (__assert_failed_line(lpszFileName, nLine))
+         __debug_break();
       return;     // quick escape
    }
 
-   /*if (!fx_is_valid_address(pOb, typeid(pOb->GetRuntimeClass()->m_nObjectSize, FALSE))
+   /*if (!__is_valid_address(pOb, typeid(pOb->GetRuntimeClass()->m_nObjectSize, FALSE))
    {
    TRACE(::radix::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
-   if (AfxAssertFailedLine(lpszFileName, nLine))
-   AfxDebugBreak();
+   if (__assert_failed_line(lpszFileName, nLine))
+   __debug_break();
    return;     // quick escape
    }*/
    pOb->assert_valid();

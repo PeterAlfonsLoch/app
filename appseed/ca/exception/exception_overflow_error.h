@@ -9,9 +9,6 @@
 #pragma once
 
 
-#include "error_exception.h"
-
-
 class CLASS_DECL_ca overflow_error : 
    public error_exception
 {

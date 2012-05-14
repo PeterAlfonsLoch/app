@@ -107,7 +107,7 @@ There is no ternary operator implemented yet
 */
 
 
-#include "StdAfx.h"
+#include "framework.h"
 
 #ifdef _DEBUG
 #	ifdef _MSC_VER
@@ -1364,7 +1364,7 @@ void CScriptVar::trace(string & indentStr, const char * name) {
       if(recursionFlag) {
          int pos = recursionFlag>>12;
          string indent_r = indentStr.substr(0, pos+1) + string('-', indentStr.length()-(pos+1));
-         _template::CTraceFileAndLineInfo(::ca::get_thread()->get_app(), __FILE__, __LINE__)("%s'%s' = '%s' %s\n",
+         gen::trace_add_file_and_line(::ca::get_thread()->get_app(), __FILE__, __LINE__)("%s'%s' = '%s' %s\n",
             indent_r.c_str(),
             name,
             getString().c_str(),
@@ -1384,7 +1384,7 @@ void CScriptVar::trace(string & indentStr, const char * name) {
       }
       recursionFlag = (int) (indentStr.length()<<12 | (internalRefs&0xfff)) ;
    }
-   _template::CTraceFileAndLineInfo(::ca::get_thread()->get_app(), __FILE__, __LINE__)("%s'%s' = '%s' %s\n",
+   gen::trace_add_file_and_line(::ca::get_thread()->get_app(), __FILE__, __LINE__)("%s'%s' = '%s' %s\n",
       indentStr.c_str(),
       name,
       getString().c_str(),
@@ -2272,7 +2272,7 @@ CScriptVarSmartLink tinyjs::factor(bool &execute) {
       if (execute) {
          CScriptVarLink *objClass = findInScopes(className);
          if (!objClass) {
-            _template::CTraceFileAndLineInfo(::ca::get_thread()->get_app(), __FILE__, __LINE__)("%s is not a valid class name", className.c_str());
+            gen::trace_add_file_and_line(::ca::get_thread()->get_app(), __FILE__, __LINE__)("%s is not a valid class name", className.c_str());
             return new CScriptVarLink(new CScriptVar());
          }
          l->match(LEX_ID);
@@ -2748,7 +2748,7 @@ CScriptVarSmartLink tinyjs::statement(bool &execute) {
 
          if (loopCount<=0) {
             root->trace();
-            _template::CTraceFileAndLineInfo(::ca::get_thread()->get_app(), __FILE__, __LINE__)("WHILE Loop exceeded %d iterations at %s\n", TINYJS_LOOP_MAX_ITERATIONS, l->getPosition(l->tokenLastEnd).c_str());
+            gen::trace_add_file_and_line(::ca::get_thread()->get_app(), __FILE__, __LINE__)("WHILE Loop exceeded %d iterations at %s\n", TINYJS_LOOP_MAX_ITERATIONS, l->getPosition(l->tokenLastEnd).c_str());
             throw new CScriptException("LOOP_ERROR");
          }
       }
@@ -2820,7 +2820,7 @@ CScriptVarSmartLink tinyjs::statement(bool &execute) {
 
          if (loopCount<=0) {
             root->trace();
-            _template::CTraceFileAndLineInfo(::ca::get_thread()->get_app(), __FILE__, __LINE__)("WHILE Loop exceeded %d iterations at %s\n", TINYJS_LOOP_MAX_ITERATIONS, l->getPosition(l->tokenLastEnd).c_str());
+            gen::trace_add_file_and_line(::ca::get_thread()->get_app(), __FILE__, __LINE__)("WHILE Loop exceeded %d iterations at %s\n", TINYJS_LOOP_MAX_ITERATIONS, l->getPosition(l->tokenLastEnd).c_str());
             throw new CScriptException("LOOP_ERROR");
          }
       }
@@ -2979,7 +2979,7 @@ CScriptVarSmartLink tinyjs::statement(bool &execute) {
             delete forBody;
             if (loopCount<=0) {
                root->trace();
-               _template::CTraceFileAndLineInfo(::ca::get_thread()->get_app(), __FILE__, __LINE__)("FOR Loop exceeded %d iterations at %s\n", TINYJS_LOOP_MAX_ITERATIONS, l->getPosition(l->tokenLastEnd).c_str());
+               gen::trace_add_file_and_line(::ca::get_thread()->get_app(), __FILE__, __LINE__)("FOR Loop exceeded %d iterations at %s\n", TINYJS_LOOP_MAX_ITERATIONS, l->getPosition(l->tokenLastEnd).c_str());
                throw new CScriptException("LOOP_ERROR");
             }
          }

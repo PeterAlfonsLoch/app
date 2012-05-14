@@ -10,7 +10,7 @@ namespace ca
 } // namespace ca
 
 
-namespace _template
+namespace gen
 {
 
    template < class TYPE >
@@ -72,7 +72,7 @@ namespace user
 {
    
    class CLASS_DECL_ca draw_context :
-      virtual public _template::simple_chain < draw_context >
+      virtual public gen::simple_chain < draw_context >
    {
    public:
 

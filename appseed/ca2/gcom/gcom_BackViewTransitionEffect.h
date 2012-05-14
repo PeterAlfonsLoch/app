@@ -279,7 +279,7 @@ namespace gcom
          void Restart();
          //void RunStep_();
          void OnNoPrecisionThousandMillisTimer();
-         static UINT AFX_CDECL ThreadProcRunStep(LPVOID lpParameter);
+         static UINT c_cdecl ThreadProcRunStep(LPVOID lpParameter);
 
       };
 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 document_template::document_template(::ca::application * papp, const char * pszMatter, ::ca::type_info & pDocClass, ::ca::type_info & pFrameClass, ::ca::type_info & pViewClass) :
    ca(papp)
@@ -31,7 +31,7 @@ document_template::~document_template()
 
 BOOL document_template::GetDocString(string & rString, enum DocStringIndex i) const
 {
-   return AfxExtractSubString(rString, m_strDocStrings, (int)i);
+   return __extract_sub_string(rString, m_strDocStrings, (int)i);
 }
 
 void document_template::add_document(::user::document_interface * pdocument)
@@ -320,7 +320,7 @@ bool document_template::on_open_document(::user::document_interface * pdocument,
       ponopendocument->m_pdocument     = pdocument;
       ponopendocument->m_varFile       = varFile;
 
-      AfxBeginThread(get_app(), &document_template::s_on_open_document, ponopendocument);
+      __begin_thread(get_app(), &document_template::s_on_open_document, ponopendocument);
 
       return true;
 

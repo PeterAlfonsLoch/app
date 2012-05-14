@@ -1,6 +1,6 @@
-#include "StdAfx.h"
+#include "framework.h"
 
-#define AfxDeferRegisterClass(fClass) AfxEndDeferRegisterClass(fClass)
+#define __defer_register_class(fClass) __end_defer_register_class(fClass)
 
 UINT HashKey(string & okey)
 {
@@ -24,14 +24,14 @@ UINT HashKey(string & okey)
 #define RGB_TO_RGBQUAD(r,g,b)   (RGB(b,g,r))
 #define CLR_TO_RGBQUAD(clr)     (RGB(rgba_get_b(clr), rgba_get_g(clr), rgba_get_r(clr)))
 
-struct AFX_COLORMAP
+struct __COLORMAP
 {
    // use DWORD instead of RGBQUAD so we can compare two RGBQUADs easily
    DWORD rgbqFrom;
    int iSysColorTo;
 };
 
-AFX_STATIC_DATA const AFX_COLORMAP _afxSysColorMap[] =
+__STATIC_DATA const __COLORMAP gen_SysColorMap[] =
 {
    // mapping from color in DIB to system color
    { RGB_TO_RGBQUAD(0x00, 0x00, 0x00),  COLOR_BTNTEXT },       // black
@@ -41,7 +41,7 @@ AFX_STATIC_DATA const AFX_COLORMAP _afxSysColorMap[] =
 };
 
 /*HBITMAP AFXAPI
-AfxLoadSysColorBitmap(HINSTANCE hInst, HRSRC hRsrc, BOOL bMono)
+gen::LoadSysColorBitmap(HINSTANCE hInst, HRSRC hRsrc, BOOL bMono)
 {
    HGLOBAL hglb;
    if ((hglb = LoadResource(hInst, hRsrc)) == NULL)
@@ -66,19 +66,19 @@ AfxLoadSysColorBitmap(HINSTANCE hInst, HRSRC hRsrc, BOOL bMono)
    for (int iColor = 0; iColor < nColorTableSize; iColor++)
    {
       // look for matching RGBQUAD color in original
-      for (int i = 0; i < _countof(_afxSysColorMap); i++)
+      for (int i = 0; i < _countof(gen_SysColorMap); i++)
       {
-         if (pColorTable[iColor] == _afxSysColorMap[i].rgbqFrom)
+         if (pColorTable[iColor] == gen_SysColorMap[i].rgbqFrom)
          {
             if (bMono)
             {
                // all colors except text become white
-               if (_afxSysColorMap[i].iSysColorTo != COLOR_BTNTEXT)
+               if (gen_SysColorMap[i].iSysColorTo != COLOR_BTNTEXT)
                   pColorTable[iColor] = RGB_TO_RGBQUAD(255, 255, 255);
             }
             else
                pColorTable[iColor] =
-                  CLR_TO_RGBQUAD(::GetSysColor(_afxSysColorMap[i].iSysColorTo));
+                  CLR_TO_RGBQUAD(::GetSysColor(gen_SysColorMap[i].iSysColorTo));
             break;
          }
       }
@@ -113,77 +113,7 @@ AfxLoadSysColorBitmap(HINSTANCE hInst, HRSRC hRsrc, BOOL bMono)
 }*/
 
 
-struct AFX_DLLVERSIONINFO
-{
-      DWORD cbSize;
-      DWORD dwMajorVersion;                   // Major version
-      DWORD dwMinorVersion;                   // Minor version
-      DWORD dwBuildNumber;                    // Build number
-      DWORD dwPlatformID;                     // DLLVER_PLATFORM_*
-};
 
-typedef HRESULT (CALLBACK* AFX_DLLGETVERSIONPROC)(AFX_DLLVERSIONINFO *);
-
-int _afxComCtlVersion = -1;
-#define VERSION_WIN4    MAKELONG(0, 4)
-#define VERSION_IE3     MAKELONG(70, 4)
-#define VERSION_IE4     MAKELONG(71, 4)
-#define VERSION_IE401   MAKELONG(72, 4)
-
-DWORD _AfxGetComCtlVersion()
-{
-   // return cached version if already determined...
-   if (_afxComCtlVersion != -1)
-      return _afxComCtlVersion;
-
-   // otherwise determine comctl32.dll version via DllGetVersion
-   HINSTANCE hInst = ::GetModuleHandleA("COMCTL32.DLL");
-   ASSERT(hInst != NULL);
-   AFX_DLLGETVERSIONPROC pfn;
-   pfn = (AFX_DLLGETVERSIONPROC)GetProcAddress(hInst, "DllGetVersion");
-   DWORD dwVersion = VERSION_WIN4;
-   if (pfn != NULL)
-   {
-      AFX_DLLVERSIONINFO dvi;
-      memset(&dvi, 0, sizeof(dvi));
-      dvi.cbSize = sizeof(dvi);
-      HRESULT hr = (*pfn)(&dvi);
-      if (SUCCEEDED(hr))
-      {
-         ASSERT(dvi.dwMajorVersion <= 0xFFFF);
-         ASSERT(dvi.dwMinorVersion <= 0xFFFF);
-         dwVersion = MAKELONG(dvi.dwMinorVersion, dvi.dwMajorVersion);
-      }
-   }
-   _afxComCtlVersion = dwVersion;
-   return dwVersion;
-}
-
-int _afxDropDownWidth = -1;
-
-int _AfxGetDropDownWidth()
-{
-   // return cached version if already determined...
-   if (_afxDropDownWidth != -1)
-      return _afxDropDownWidth;
-
-   // otherwise calculate it...
-   HDC hDC = GetDC(NULL);
-   ASSERT(hDC != NULL);
-   HFONT hFont;
-   if ((hFont = CreateFont(GetSystemMetrics(SM_CYMENUCHECK), 0, 0, 0,
-      FW_NORMAL, 0, 0, 0, SYMBOL_CHARSET, 0, 0, 0, 0, "Marlett")) != NULL)
-      hFont = (HFONT)SelectObject(hDC, hFont);
-   VERIFY(GetCharWidth(hDC, '6', '6', &_afxDropDownWidth));
-   if (hFont != NULL)
-   {
-      SelectObject(hDC, hFont);
-      ::DeleteObject(hFont);
-   }
-   ReleaseDC(NULL, hDC);
-   ASSERT(_afxDropDownWidth != -1);
-   return _afxDropDownWidth;
-}
 
 namespace userbase
 {
@@ -251,19 +181,13 @@ namespace userbase
 
       // save the style
       m_dwStyle = (dwStyle & CBRS_ALL);
-      if (nID == AFX_IDW_TOOLBAR)
+      if (nID == __IDW_TOOLBAR)
          m_dwStyle |= CBRS_HIDE_INPLACE;
 
       dwStyle &= ~CBRS_ALL;
       dwStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
       dwStyle |= dwCtrlStyle;
 
-      // initialize common controls
-      VERIFY(System.DeferRegisterClass(AFX_WNDCOMMCTL_BAR_REG, NULL));
-      _AfxGetComCtlVersion();
-      ASSERT(_afxComCtlVersion != -1);
-      _AfxGetDropDownWidth();
-      ASSERT(_afxDropDownWidth != -1);
 
       // create the HWND
       class rect rect; 
@@ -368,7 +292,7 @@ namespace userbase
       ASSERT(lpszResourceName != NULL);
 
       // determine location of the bitmap in resource fork
-      HINSTANCE hInst = AfxFindResourceHandle(lpszResourceName, RT_TOOLBAR);
+      HINSTANCE hInst = gen::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
       HRSRC hRsrc = ::FindResource(hInst, lpszResourceName, RT_TOOLBAR);
       if (hRsrc == NULL)
          return FALSE;
@@ -413,14 +337,14 @@ namespace userbase
       ASSERT(lpszResourceName != NULL);
 
       // determine location of the bitmap in resource fork
-      HINSTANCE hInstImageWell = AfxFindResourceHandle(lpszResourceName, RT_BITMAP);
+      HINSTANCE hInstImageWell = gen::FindResourceHandle(lpszResourceName, RT_BITMAP);
       HRSRC hRsrcImageWell = ::FindResource(hInstImageWell, lpszResourceName, RT_BITMAP);
       if (hRsrcImageWell == NULL)
          return FALSE;
 
       // load the bitmap
       HBITMAP hbmImageWell;
-   //   hbmImageWell = AfxLoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
+   //   hbmImageWell = gen::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
       ::ca::graphics * pdc = GetDC();
       hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
       ReleaseDC(pdc);
@@ -490,7 +414,7 @@ namespace userbase
       ASSERT_VALID(this);
       ASSERT(nIDCount >= 1);  // must be at least one of them
       ASSERT(lpIDArray == NULL ||
-         fx_is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
+         __is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
 
       // delete all existing buttons
       int nCount = (int)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
@@ -511,8 +435,7 @@ namespace userbase
                // separator
                button.fsStyle = TBSTYLE_SEP;
                // width of separator includes 8 pixel overlap
-               ASSERT(_afxComCtlVersion != -1);
-               if ((GetStyle() & TBSTYLE_FLAT) || _afxComCtlVersion == VERSION_IE4)
+               if ((GetStyle() & TBSTYLE_FLAT))
                   button.iBitmap = 6;
                else
                   button.iBitmap = 8;
@@ -693,8 +616,7 @@ namespace userbase
          //  This is actually a bug which should be fixed in IE 4.01, so we
          //  only do the 100% calculation specifically for IE4.
          int cySep = pData[i].iBitmap;
-         ASSERT(_afxComCtlVersion != -1);
-         if (!(GetStyle() & TBSTYLE_FLAT) && _afxComCtlVersion != VERSION_IE4)
+         if (!(GetStyle() & TBSTYLE_FLAT))
             cySep = cySep * 2 / 3;
 
          if (pData[i].fsState & TBSTATE_HIDDEN)
@@ -716,8 +638,7 @@ namespace userbase
                (dwExtendedStyle & TBSTYLE_EX_DRAWDDARROWS))
             {
                // add size of drop down
-               ASSERT(_afxDropDownWidth != -1);
-               cx += _afxDropDownWidth;
+               cx += 2;
             }
             sizeResult.cx = max(cur.x + cx, sizeResult.cx);
             sizeResult.cy = max(cur.y + m_sizeButton.cy, sizeResult.cy);
@@ -899,7 +820,7 @@ namespace userbase
       }
    }
 
-   struct _AFX_CONTROLPOS
+   struct ___CONTROLPOS
    {
       int nIndex, nID;
       rect rectOldPos;
@@ -960,7 +881,7 @@ namespace userbase
 
          if (dwMode & LM_COMMIT)
          {
-            _AFX_CONTROLPOS* pControl = NULL;
+            ___CONTROLPOS* pControl = NULL;
             int nControlCount = 0;
             BOOL bIsDelayed = m_bDelayedButtonLayout;
             m_bDelayedButtonLayout = FALSE;
@@ -972,7 +893,7 @@ namespace userbase
 
             if (nControlCount > 0)
             {
-               pControl = new _AFX_CONTROLPOS[nControlCount];
+               pControl = new ___CONTROLPOS[nControlCount];
                nControlCount = 0;
 
                for(int i = 0; i < nCount; i++)
@@ -1234,15 +1155,11 @@ namespace userbase
       rect.null();
       BOOL bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
       ::userbase::control_bar::CalcInsideRect(rect, bHorz);
-      ASSERT(_afxComCtlVersion != -1);
-      ASSERT(_afxComCtlVersion >= VERSION_IE4 || rect.top >= 2);
 
       // adjust non-client area for border space
       pnccalcsize->m_pparams->rgrc[0].left += rect.left;
       pnccalcsize->m_pparams->rgrc[0].top += rect.top;
       // previous versions of COMCTL32.DLL had a built-in 2 pixel border
-      if (_afxComCtlVersion < VERSION_IE4)
-         pnccalcsize->m_pparams->rgrc[0].top -= 2;
       pnccalcsize->m_pparams->rgrc[0].right += rect.right;
       pnccalcsize->m_pparams->rgrc[0].bottom += rect.bottom;
    }
@@ -1345,13 +1262,8 @@ namespace userbase
       //  the top and left borders to anything you please.
 
       BOOL bModify = FALSE;
-      ASSERT(_afxComCtlVersion != -1);
-      DWORD dwStyle = 0;
-      if (_afxComCtlVersion >= VERSION_IE4)
-      {
-         dwStyle = GetStyle();
-         bModify = ModifyStyle(0, TBSTYLE_TRANSPARENT|TBSTYLE_FLAT);
-      }
+      DWORD dwStyle = GetStyle();
+      bModify = ModifyStyle(0, TBSTYLE_TRANSPARENT|TBSTYLE_FLAT);
 
       LRESULT lResult = Default();
       if (lResult)
@@ -1367,13 +1279,9 @@ namespace userbase
    {
       SCAST_PTR(::gen::message::base, pbase, pobj)
       BOOL bModify = FALSE;
-      ASSERT(_afxComCtlVersion != -1);
       DWORD dwStyle = 0;
-      if (_afxComCtlVersion >= VERSION_IE4)
-      {
-         dwStyle = GetStyle();
-         bModify = ModifyStyle(0, TBSTYLE_TRANSPARENT|TBSTYLE_FLAT);
-      }
+      dwStyle = GetStyle();
+      bModify = ModifyStyle(0, TBSTYLE_TRANSPARENT|TBSTYLE_FLAT);
 
       LRESULT lResult = Default();
 
@@ -1390,7 +1298,7 @@ namespace userbase
       if (m_hInstImageWell != NULL && m_hbmImageWell != NULL)
       {
    // trans      HBITMAP hbmNew;
-   /*      hbmNew = AfxLoadSysColorBitmap(m_hInstImageWell, m_hRsrcImageWell);
+   /*      hbmNew = gen::LoadSysColorBitmap(m_hInstImageWell, m_hRsrcImageWell);
          if (hbmNew != NULL)
             AddReplaceBitmap(hbmNew);*/
       }

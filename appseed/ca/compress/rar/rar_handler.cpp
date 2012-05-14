@@ -1,6 +1,6 @@
 // RarHandler.cpp
 
-#include "StdAfx.h"
+#include "framework.h"
 #include "../prop_id.h"
 
 /*#include "Common/ComTry.h"

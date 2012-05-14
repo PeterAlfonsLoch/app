@@ -8,3 +8,134 @@
 
 
 CLASS_DECL_ca string FormatMessageFromSystem(DWORD dwError);
+
+
+
+// This is ca2 API library.
+// 
+// 
+//
+// 
+// 
+// 
+// 
+// 
+
+
+#ifndef __DEBUGAPI_H__
+#define __DEBUGAPI_H__
+
+#pragma once
+
+#ifdef __cplusplus
+
+namespace gen
+{
+extern "C" {
+#endif
+#define TRACE_MAX_NAME_SIZE 64
+
+
+DWORD_PTR __stdcall gen_TraceOpenProcess( DWORD idProcess );
+void __stdcall gen_TraceCloseProcess( DWORD_PTR dwProcess );
+void __stdcall gen_TraceSnapshotProcess( DWORD_PTR dwProcess );
+
+/*DWORD_PTR __stdcall gen_TraceRegister(HINSTANCE hInst,
+   int (__cdecl *fnCrtDbgReport)(int,const char *,int,const char *,const char *,va_list));
+BOOL __stdcall gen_TraceUnregister(DWORD_PTR dwModule);*/
+
+/*DWORD_PTR __stdcall gen_TraceRegisterCategoryA(DWORD_PTR dwModule, const CHAR szCategoryName[TRACE_MAX_NAME_SIZE]);
+DWORD_PTR __stdcall gen_TraceRegisterCategoryU(DWORD_PTR dwModule, const WCHAR szCategoryName[TRACE_MAX_NAME_SIZE]);*/
+
+/*BOOL __stdcall gen_TraceModifyProcess(DWORD_PTR dwProcess, UINT nLevel, BOOL bEnabled, BOOL bFuncAndCategoryNames, BOOL bFileNameAndLineNo);
+BOOL __stdcall gen_TraceModifyModule(DWORD_PTR dwProcess, DWORD_PTR dwModule, UINT nLevel, trace::e_status eStatus);
+BOOL __stdcall gen_TraceModifyCategory(DWORD_PTR dwProcess, DWORD_PTR dwCategory, UINT nLevel, TRACESTATUS eStatus);
+BOOL __stdcall gen_TraceGetProcess(DWORD_PTR dwProcess, UINT *pnLevel, BOOL *pbEnabled, BOOL *pbFuncAndCategoryNames, BOOL *pbFileNameAndLineNo);
+BOOL __stdcall gen_TraceGetModule(DWORD_PTR dwProcess, DWORD_PTR dwModule, UINT *pnLevel, TRACESTATUS *pStatus);
+BOOL __stdcall gen_TraceGetCategory(DWORD_PTR dwProcess, DWORD_PTR dwCategory, UINT *pnLevel, TRACESTATUS *pStatus);
+
+_INSECURE_DEPRECATE("gen_TraceGetUpdateEventNameA is unsafe. Instead use AtlTraceGetUpdateEventNameA_s") 
+void __stdcall gen_TraceGetUpdateEventNameA(CHAR *pszEventName);
+_INSECURE_DEPRECATE("gen_TraceGetUpdateEventNameU is unsafe. Instead use AtlTraceGetUpdateEventNameU_s") 
+void __stdcall gen_TraceGetUpdateEventNameU(WCHAR *pszEventName);
+
+void __stdcall gen_TraceGetUpdateEventNameA_s(CHAR *pszEventName, size_t cchEventName);
+void __stdcall gen_TraceGetUpdateEventNameU_s(WCHAR *pszEventName, size_t cchEventName);*/
+
+void __cdecl gen_TraceVA(DWORD_PTR dwModule, const char *pszFileName, int nLineNo,
+                  DWORD_PTR dwCategory, UINT nLevel, const CHAR *pszFormat, va_list ptr);
+void __cdecl gen_TraceVU(DWORD_PTR dwModule,const char *pszFileName, int nLineNo,
+                  DWORD_PTR dwCategory, UINT nLevel, const WCHAR *pszFormat, va_list ptr);
+
+BOOL __stdcall gen_TraceLoadSettingsA(const CHAR *pszFileName, DWORD_PTR dwProcess = 0);
+BOOL __stdcall gen_TraceLoadSettingsU(const WCHAR *pszFileName, DWORD_PTR dwProcess = 0);
+BOOL __stdcall gen_TraceSaveSettingsA(const CHAR *pszFileName, DWORD_PTR dwProcess = 0);
+BOOL __stdcall gen_TraceSaveSettingsU(const WCHAR *pszFileName, DWORD_PTR dwProcess = 0);
+
+/*typedef struct TRACESETTINGS
+{
+   UINT nLevel;
+   TRACESTATUS eStatus;
+} TRACESETTINGS;
+
+typedef struct TRACEPROCESSSETTINGS
+{
+   UINT nLevel;
+   BOOL bEnabled, bFuncAndCategoryNames, bFileNameAndLineNo;
+} TRACEPROCESSSETTINGS;
+
+typedef struct TRACEPROCESSINFO
+{
+   WCHAR szName[TRACE_MAX_NAME_SIZE], szPath[MAX_PATH];
+   DWORD dwId;
+   TRACEPROCESSSETTINGS settings;
+   int nModules;
+} TRACEPROCESSINFO;
+
+typedef struct TRACEMODULEINFO
+{
+   WCHAR szName[TRACE_MAX_NAME_SIZE], szPath[MAX_PATH];
+   TRACESETTINGS settings;
+   DWORD_PTR dwModule;
+   int nCategories;
+} TRACEMODULEINFO;
+
+typedef struct TRACECATEGORYINFO
+{
+   WCHAR szName[TRACE_MAX_NAME_SIZE];
+   TRACESETTINGS settings;
+   DWORD_PTR dwCategory;
+} TRACECATEGORYINFO;
+
+BOOL __stdcall gen_TraceGetProcessInfo(DWORD_PTR dwProcess, TRACEPROCESSINFO* pProcessInfo);
+void __stdcall gen_TraceGetModuleInfo(DWORD_PTR dwProcess, int iModule, TRACEMODULEINFO* pModuleInfo);
+void __stdcall gen_TraceGetCategoryInfo(DWORD_PTR dwProcess, DWORD_PTR dwModule, int iCategory, TRACECATEGORYINFO* pAtlTraceCategoryInfo);
+*/
+
+#ifdef UNICODE
+#define gen_TraceRegisterCategory AtlTraceRegisterCategoryU
+#define gen_TraceGetUpdateEventName AtlTraceGetUpdateEventNameU
+#define gen_TraceGetUpdateEventName_s AtlTraceGetUpdateEventNameU_s
+#define gen_Trace AtlTraceU
+#define gen_TraceV AtlTraceVU
+#define gen_TraceLoadSettings AtlTraceLoadSettingsU
+#define gen_TraceSaveSettings AtlTraceSaveSettingsU
+
+#else
+#define gen_TraceRegisterCategory AtlTraceRegisterCategoryA
+#define gen_TraceGetUpdateEventName AtlTraceGetUpdateEventNameA
+#define gen_TraceGetUpdateEventName_s AtlTraceGetUpdateEventNameA_s
+#define gen_Trace AtlTraceA
+#define gen_TraceV AtlTraceVA
+#define gen_TraceLoadSettings AtlTraceLoadSettingsA
+#define gen_TraceSaveSettings AtlTraceSaveSettingsA
+
+#endif
+
+#ifdef __cplusplus
+};
+
+};  // namespace gen
+#endif
+
+#endif  // __DEBUGAPI_H__

@@ -23,7 +23,7 @@
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
 */
-#include "StdAfx.h"
+#include "framework.h"
 #include "bsdiff_private.h"
 #include "bzlib.h"
 #include "bsdiff.h"

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
    
 verisimple_string::verisimple_string()
 {

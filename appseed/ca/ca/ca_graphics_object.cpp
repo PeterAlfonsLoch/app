@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace ca
 {
@@ -21,7 +21,7 @@ namespace ca
    {
    }
 
-/*   int graphics_object::_AFX_FUNCNAME(GetObject)(int nCount, LPVOID lpObject) const
+/*   int graphics_object::___FUNCNAME(GetObject)(int nCount, LPVOID lpObject) const
    {
       UNREFERENCED_PARAMETER(nCount);
       UNREFERENCED_PARAMETER(lpObject);
@@ -33,7 +33,7 @@ namespace ca
 
    int graphics_object::GetObject(int nCount, LPVOID lpObject) const
    {
-      return _AFX_FUNCNAME(GetObject)(nCount, lpObject);
+      return ___FUNCNAME(GetObject)(nCount, lpObject);
    }
 
 #pragma pop_macro("GetObject")*/

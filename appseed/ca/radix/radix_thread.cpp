@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace radix
 {
@@ -26,7 +26,7 @@ namespace radix
       m_p->construct();
    }
 
-   thread::thread(::ca::application * papp, AFX_THREADPROC pfnThreadProc, LPVOID pParam) :
+   thread::thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
       ca(papp)
    {
       ::ca::thread_sp::create(papp);
@@ -105,7 +105,7 @@ namespace radix
       return m_p->PreInitInstance();
    }
 
-   // called when occurs an se_exception exception in run
+   // called when occurs an standard_exception exception in run
    // return true to call run again
    bool thread::on_run_exception(::ca::exception & e)
    {
@@ -372,7 +372,7 @@ namespace radix
 
 } // namespace radix
 
-::radix::thread* AfxBeginThread(::ca::application * papp, AFX_THREADPROC pfnThreadProc, LPVOID pParam,
+::radix::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam,
    int nPriority, UINT nStackSize, DWORD dwCreateFlags,
    LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {

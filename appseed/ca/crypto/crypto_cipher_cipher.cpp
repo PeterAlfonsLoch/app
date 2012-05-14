@@ -43,7 +43,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#include "StdAfx.h"
+#include "framework.h"
 
 #include "cipher.h"
 #include "rand_source.h"        /* used in invertibiltiy tests        */

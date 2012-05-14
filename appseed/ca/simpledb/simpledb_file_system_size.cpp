@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 file_size_table::get_fs_size::get_fs_size()

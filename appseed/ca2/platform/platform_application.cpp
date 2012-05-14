@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "application.h"
 #include "html/html_frame.h"
 #include "html/html_document.h"

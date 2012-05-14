@@ -1,8 +1,11 @@
 #pragma once
 
 
-#include "template/template.h"
+#include "comparable_primitive_array.h"
 
+#include "ca/primitive/numeric_info.h"
+
+#include "ca/ex1/ex1_byte_serializable.h"
 
 #include "raw_array.h"
 #include "primitive_array.h"
@@ -13,8 +16,6 @@
 #include "list.h"
 #include "comparable_eq_list.h"
 #include "comparable_list.h"
-
-#include "map.h"
 
 #include "comparable_array.h"
 
@@ -37,7 +38,7 @@
 #include "class_sort_array.h"
 
 
-
+#include "map.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // Classes declared in this file
@@ -131,8 +132,11 @@ public:
 #include "string_to_string_map.h"
 #include "bit_array.h"
 #include "collection/string_array.h"
+#include "gen/gen_variable_strict_compare.h"
+#include "ca/primitive/primitive_var.h"
 #include "gen/gen_var_array.h"
 #include "gen/gen_property.h"
+#include "gen/gen_signal.h"
 #include "gen/gen_property_set.h"
 #include "gen/gen_international2.h"
 #include "point_array.h"
@@ -174,7 +178,7 @@ public:
 
 
 class CLASS_DECL_ca time_array :
-   public base_array < class time, class time & >
+   public base_array < ::datetime::time, ::datetime::time & >
 {
 };
 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 #define WM_INITIALUPDATE    0x0364  // (params unused) - sent to children
@@ -7,15 +7,15 @@
 
 // like ON_MESSAGE but no return value
 /*#define ON_MESSAGE_VOID(message, memberFxn) \
-   { message, 0, 0, 0, AfxSig_vv, \
-      (AFX_PMSG)(AFX_PMSGW)(void (AFX_MSG_CALL ::user::interaction::*)(void))&memberFxn },*/
+   { message, 0, 0, 0, gen::Sig_vv, \
+      (__PMSG)(__PMSGW)(void (__MSG_CALL ::user::interaction::*)(void))&memberFxn },*/
 // IMPLEMENT_DYNAMIC(::view, ::user::interaction)
 
 /////////////////////////////////////////////////////////////////////////////
 // ::view
 
  // BEGIN_MESSAGE_MAP(::view, ::user::interaction)
-   //{{AFX_MSG_MAP(::view)
+   //{{__MSG_MAP(::view)
 /*   ON_WM_PAINT()
    ON_WM_MOUSEACTIVATE()
    ON_WM_CREATE()
@@ -30,7 +30,7 @@
    ON_COMMAND_EX(ID_NEXT_PANE, OnNextPaneCmd)
    ON_UPDATE_COMMAND_UI(ID_PREV_PANE, OnUpdateNextPaneMenu)
    ON_COMMAND_EX(ID_PREV_PANE, OnNextPaneCmd)
-   //}}AFX_MSG_MAP
+   //}}__MSG_MAP
    // special command for Initial Update
    ON_MESSAGE_VOID(WM_INITIALUPDATE, OnInitialUpdate)*/
  // END_MESSAGE_MAP()
@@ -66,7 +66,7 @@ namespace userbase
 //      connect_update_cmd_ui(ID_PREV_PANE    , &view::_001OnUpdateNextPaneMenu);
   //    connect_command(ID_PREV_PANE    , &view::_001OnNextPaneCmd);
       
-      //}}AFX_MSG_MAP
+      //}}__MSG_MAP
       // special command for Initial Update
       IGUI_WIN_MSG_LINK(WM_INITIALUPDATE  , pinterface, this, &view::_001OnInitialUpdate);
 
@@ -79,14 +79,14 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // ::view second phase construction - bind to document
 
-   const CHAR _vfxWndFrameOrView[] = AFX_WNDFRAMEORVIEW;
+   const CHAR _vfxWndFrameOrView[] = __WNDFRAMEORVIEW;
    BOOL view::pre_create_window(CREATESTRUCT & cs)
    {
       ASSERT(cs.style & WS_CHILD);
 
       if (cs.lpszClass == NULL)
       {
-         VERIFY(System.DeferRegisterClass(AFX_WNDFRAMEORVIEW_REG, & cs.lpszClass));
+         VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, & cs.lpszClass));
       }
 
    //   if (afxData.bWin4 && (cs.style & WS_BORDER))
@@ -268,7 +268,7 @@ namespace userbase
 
    DROPEFFECT view::OnDragScroll(DWORD /*dwKeyState*/, point /*point*/)
    {
-   #ifndef _AFX_NO_OLE_SUPPORT
+   #ifndef ___NO_OLE_SUPPORT
       return DROPEFFECT_SCROLL; // this means do the default
    #else
       return 0;
@@ -363,14 +363,6 @@ namespace userbase
    }
 
 
-   BOOL CALLBACK _AfxPreviewCloseProc(userbase::frame_window* pFrameWnd)
-   {
-      ASSERT_VALID(pFrameWnd);
-
-
-      return FALSE;
-   }
-
    void view::_001OnFilePrint(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
@@ -398,7 +390,7 @@ namespace userbase
       ASSERT_KINDOF(::user::interaction, pview);
 
       // views are always created with a border!
-      if (!pview->create(NULL, NULL, AFX_WS_DEFAULT_VIEW,
+      if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
          rect(0,0,0,0), this, nID, (create_context *) pContext))
       {
          TRACE0("Warning: could not create ::view for frame.\n");
@@ -435,7 +427,7 @@ namespace userbase
       ASSERT_KINDOF(::ca::window, pview);
 
       // views are always created with a border!
-      if (!pview->create(NULL, NULL, AFX_WS_DEFAULT_VIEW,
+      if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
          rect(0,0,0,0), pwndParent, nID, (create_context *) pContext))
       {
          TRACE0("Warning: could not create ::view for frame.\n");

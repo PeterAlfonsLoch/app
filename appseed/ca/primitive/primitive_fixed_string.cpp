@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 /*
@@ -24,8 +24,8 @@ fixed_string_manager::~fixed_string_manager() throw()
 // string_manager
 string_data  * fixed_string_manager::allocate(strsize nChars, int nCharSize ) throw()
 {
-   ATLASSUME( m_pData->nRefs == -1 );
-   ATLASSUME( m_pData->nDataLength == 0 );
+   ASSUME( m_pData->nRefs == -1 );
+   ASSUME( m_pData->nDataLength == 0 );
    if( nChars > m_pData->nAllocLength )
    {
       if( s_pLog != NULL )
@@ -50,7 +50,7 @@ string_data  * fixed_string_manager::allocate(strsize nChars, int nCharSize ) th
 }
 void fixed_string_manager::Free( string_data  * pData ) throw()
 {
-   ATLASSERT( pData->nRefs <= 0 );
+   ASSERT( pData->nRefs <= 0 );
    if( pData != m_pData )
    {
       // Must have been allocated from the backup manager
@@ -68,7 +68,7 @@ string_data * fixed_string_manager::Reallocate( string_data * pData, strsize nCh
 {
    string_data * pNewData;
 
-   ATLASSERT( pData->nRefs < 0 );
+   ASSERT( pData->nRefs < 0 );
    if( pData != m_pData )
    {
       pData->pstringmanager = m_pMgr;
@@ -97,7 +97,7 @@ string_data * fixed_string_manager::Reallocate( string_data * pData, strsize nCh
          }
 
          // copy the string data
-               _template::checked::memcpy_s( pNewData->data(), nChars*nCharSize,
+               ::gen::memcpy_s( pNewData->data(), nChars*nCharSize,
             pData->data(), (pData->nAllocLength+1)*nCharSize );
          pNewData->nRefs = pData->nRefs;  // Locked
          pNewData->pstringmanager = this;
@@ -114,8 +114,8 @@ string_data * fixed_string_manager::Reallocate( string_data * pData, strsize nCh
 }
 string_data * fixed_string_manager::GetNilString() throw()
 {
-   ATLASSUME( m_pData->nRefs == -1 );
-   ATLASSUME( m_pData->nDataLength == 0 );
+   ASSUME( m_pData->nRefs == -1 );
+   ASSUME( m_pData->nDataLength == 0 );
 
    return m_pData;
 }

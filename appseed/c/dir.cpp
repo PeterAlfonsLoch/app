@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #ifdef WINDOWS
 #include <Shlobj.h>
 #else

@@ -134,7 +134,7 @@ namespace ca
    // Message Functions
    #pragma push_macro("SendMessage")
    #undef SendMessage
-      virtual LRESULT _AFX_FUNCNAME(SendMessage)(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
+      virtual LRESULT ___FUNCNAME(SendMessage)(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
       virtual LRESULT SendMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
    #pragma pop_macro("SendMessage")
       virtual BOOL PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
@@ -707,6 +707,6 @@ public:
 };
 
 
-#include "ca/ca_message_window.h"
+
 
 

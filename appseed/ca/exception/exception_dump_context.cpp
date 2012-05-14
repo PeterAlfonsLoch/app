@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 #ifdef LINUX
@@ -58,7 +58,7 @@ void dump_context::OutputString(const char * lpsz)
 
    ASSERT( lpsz != NULL );
    if( lpsz == NULL )
-      AfxThrowUserException();
+      throw user_exception();
    // otherwise, write the string to the file
 #ifdef WINDOWS
    m_pFile->write(lpsz, lstrlen(lpsz)*sizeof(char));
@@ -92,7 +92,7 @@ dump_context& dump_context::operator<<(const char * lpsz)
 
    ASSERT( lpsz != NULL );
    if( lpsz == NULL )
-      AfxThrowUserException();
+      throw user_exception();
 
    if (m_pFile == NULL)
    {
@@ -396,10 +396,10 @@ void dump_context::Hexdump(const char * lpszLine, BYTE* pby,
    ASSERT(nWidth > 0);
    if( nWidth <= 0 )
       throw invalid_argument_exception();
-   ASSERT(AfxIsValidString(lpszLine));
+   ASSERT(__is_valid_string(lpszLine));
    if( lpszLine == NULL )
       throw invalid_argument_exception();
-   ASSERT(fx_is_valid_address(pby, nBytes, FALSE));
+   ASSERT(__is_valid_address(pby, nBytes, FALSE));
    if( pby == NULL )
       throw invalid_argument_exception();
 

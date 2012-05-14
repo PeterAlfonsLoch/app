@@ -2,7 +2,7 @@
 // According to unRAR license, this code may not be used to develop
 // a program that creates RAR archives
 // from 7-zip on 2012-12-23, morning
-#include "StdAfx.h"
+#include "framework.h"
 
 //#include "Rar1Decoder.h"
 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <math.h>
 
 
@@ -461,7 +461,7 @@ class var & var::operator = (uint64_t * pui)
    return *this;
 }
 
-class var & var::operator = (const class ::time & time)
+class var & var::operator = (const ::datetime::time & time)
 {
    set_type(type_time, false);
    m_time = time.get_time();

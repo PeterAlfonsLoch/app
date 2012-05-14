@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 #if defined(LINUX)
@@ -14,7 +14,7 @@ event::event(BOOL bInitiallyOwn, BOOL bManualReset, const char * pstrName,LPSECU
    m_object = ::CreateEvent(lpsaAttribute, bManualReset, bInitiallyOwn, pstrName);
 
    if(m_object == NULL)
-      AfxThrowResourceException();
+      throw resource_exception();
 
 #else
 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 MetaButton::MetaButton(::ca::application * papp) :

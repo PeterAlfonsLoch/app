@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <openssl/ssl.h>
 
 #ifdef LINUX
@@ -95,7 +95,7 @@ namespace dynamic_source
          clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch();
          pwatch->m_strPath = m_strNetseedDsCa2Path;
          pwatch->m_pmanager = this;
-         AfxBeginThread(get_app(), clear_include_matches_FolderWatchThread, (LPVOID) pwatch);
+         __begin_thread(get_app(), clear_include_matches_FolderWatchThread, (LPVOID) pwatch);
       }
 
       stringa straPath;
@@ -110,7 +110,7 @@ namespace dynamic_source
             clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch();
             pwatch->m_strPath = straPath[i];
             pwatch->m_pmanager = this;
-            AfxBeginThread(get_app(), clear_include_matches_FolderWatchThread, (LPVOID) pwatch);
+            __begin_thread(get_app(), clear_include_matches_FolderWatchThread, (LPVOID) pwatch);
          }
       }
 
@@ -450,7 +450,7 @@ namespace dynamic_source
       m_mapIncludeExpandMd5[strPath] = strMd5;
    }
 
-   UINT AFX_CDECL script_manager::clear_include_matches_FolderWatchThread(LPVOID lpParam) // thread procedure
+   UINT c_cdecl script_manager::clear_include_matches_FolderWatchThread(LPVOID lpParam) // thread procedure
    {
 
 #ifdef WINDOWS
@@ -671,7 +671,7 @@ namespace dynamic_source
    {
       if(::GetTickCount() - m_dwLastRsa > (1984 + 1977))
       {
-         AfxBeginThread(get_app(), ThreadProcRsa, this);
+         __begin_thread(get_app(), ThreadProcRsa, this);
          m_dwLastRsa = ::GetTickCount();
       }
       single_lock sl(&m_mutexRsa, TRUE);

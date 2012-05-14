@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 simple_button::simple_button(::ca::application * papp) :
@@ -22,7 +22,7 @@ void simple_button::_001OnDraw(::ca::graphics *pdc)
 {
    ::userbase::button::_001OnDraw(pdc);
 //   BOOL bWin4 = afxData.bWin4;
-   //_AfxFillPSOnStack();
+   //_gen::FillPSOnStack();
 /*   ::CallWindowProc(
       *GetSuperWndProcAddr(),
       get_handle(), (bWin4 ? WM_PRINT : WM_PAINT),

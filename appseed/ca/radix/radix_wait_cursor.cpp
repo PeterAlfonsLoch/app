@@ -1,15 +1,15 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 wait_cursor::wait_cursor(::ca::application * papp) :
    ca(papp)
    { System.BeginWaitCursor(); }
  wait_cursor::~wait_cursor()
 {
-   //AFX_BEGIN_DESTRUCTOR
+   //__BEGIN_DESTRUCTOR
 
    System.EndWaitCursor();
 
-   //AFX_END_DESTRUCTOR
+   //__END_DESTRUCTOR
 }
  void wait_cursor::Restore()
    { System.RestoreWaitCursor(); }

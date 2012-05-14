@@ -1,11 +1,11 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace ex1
 {
 
    /*#define ROUND(x,y) (((x)+(y-1))&~(y-1))
    #define ROUND4(x) ROUND(x, 4)
-   AFX_STATIC fixed_alloc_no_sync _alloc001SimpleTreeItem(ROUND4(sizeof(::ex1::simple_tree_item_data)));*/
+   __STATIC fixed_alloc_no_sync _alloc001SimpleTreeItem(ROUND4(sizeof(::ex1::simple_tree_item_data)));*/
 
    simple_tree_item_data::simple_tree_item_data()
    {

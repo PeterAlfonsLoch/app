@@ -274,7 +274,7 @@ public:
          if (nElemCount)
          {
             if ((m_parrAttrib = new CElemAttrArray) == NULL)
-               AfxThrowMemoryException();
+               throw memory_exception();
 
             LiteHTMLElemAttr   *pItem = NULL;
             m_parrAttrib->set_size(nElemCount);
@@ -285,7 +285,7 @@ public:
                if ((pItem = new LiteHTMLElemAttr(rSource[iElem])) == NULL)
                {
                   removeAll();
-                  AfxThrowMemoryException();
+                  throw memory_exception();
                   return;
                }
 
@@ -333,7 +333,7 @@ public:
     */
    int getIndexFromName(const char * lpszAttributeName) const
    {
-      ASSERT(AfxIsValidString(lpszAttributeName));
+      ASSERT(__is_valid_string(lpszAttributeName));
       LiteHTMLElemAttr   *pItem = NULL;
       for (int iElem = 0; iElem < getCount(); iElem++)
       {
@@ -373,7 +373,7 @@ public:
     */
    LiteHTMLElemAttr operator[](const char * lpszIndex) const
    {
-      ASSERT(AfxIsValidString(lpszIndex));
+      ASSERT(__is_valid_string(lpszIndex));
       return ((*this)[getIndexFromName(lpszIndex)]);
    }
 
@@ -396,7 +396,7 @@ public:
     */
    LiteHTMLElemAttr getAttribute(const char * lpszIndex) const
    {
-      ASSERT(AfxIsValidString(lpszIndex));
+      ASSERT(__is_valid_string(lpszIndex));
       return ((*this)[getIndexFromName(lpszIndex)]);
    }
 

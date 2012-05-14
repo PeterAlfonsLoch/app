@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "radix_bstr.h"
 #include <comdef.h>
 

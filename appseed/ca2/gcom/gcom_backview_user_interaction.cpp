@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "window_frame/FrameSchema.h"
 
 namespace gcom

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace gen
 {
@@ -22,11 +22,11 @@ namespace gen
 
 
    // // BEGIN_MESSAGE_MAP(TimerWnd, ::ca::window)
-      //{{AFX_MSG_MAP(TimerWnd)
+      //{{__MSG_MAP(TimerWnd)
    /* xxx   ON_WM_TIMER()
       ON_WM_DESTROY()
       ON_WM_CLOSE()
-      //}}AFX_MSG_MAP
+      //}}__MSG_MAP
       ON_MESSAGE(WM_USER, OnUserMessage) */
    // // END_MESSAGE_MAP()
 

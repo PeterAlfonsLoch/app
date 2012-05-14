@@ -1,7 +1,7 @@
 ﻿/* (C) Copyright 2008 Nick Mudge <mudgen@gmail.com>
  * This code can be freely copied and modified.
  */
-#include  "StdAfx.h"
+#include  "framework.h"
 
 namespace datetime
 {

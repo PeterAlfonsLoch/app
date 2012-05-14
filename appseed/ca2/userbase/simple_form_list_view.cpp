@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 simple_form_list_view::simple_form_list_view(::ca::application * papp) :

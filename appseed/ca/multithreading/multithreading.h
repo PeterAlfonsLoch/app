@@ -1,7 +1,6 @@
 #pragma once
 
 class waitable;
-template < typename THANDLE >
 class sync_object;
 class semaphore;
 class mutex;
@@ -12,7 +11,6 @@ class multi_lock;
 
 
 #include "multithreading_sync_object.h"
-#include "multithreading_base_sync_object.h"
 #include "multithreading_event_base.h"
 #include "multithreading_event_collection.h"
 #include "multithreading_semaphore.h"
@@ -27,7 +25,7 @@ class multi_lock;
 #include "multithreading_multi_lock.h"
 
 
-#ifdef _AFX_ENABLE_INLINES
+#ifdef ___ENABLE_INLINES
 #define _AFXMT_INLINE inline
 #include "multithreading.inl"
 #undef _AFXMT_INLINE

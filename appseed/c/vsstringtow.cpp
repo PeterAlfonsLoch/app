@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 vsstringtow::vsstringtow(wstring & str, int iAllocCount)
 {

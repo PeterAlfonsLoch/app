@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "FileManagerViewUpdateHint.h"
 #include "SimpleFileListView.h"
 
@@ -445,7 +445,7 @@ namespace filemanager
       return ::userbase::view::pre_create_window(cs);
    }
 
-   UINT AFX_CDECL SimpleFileListView::ThreadProcFileSize(LPVOID lpparam)
+   UINT c_cdecl SimpleFileListView::ThreadProcFileSize(LPVOID lpparam)
    {
       file_size * psize = (file_size *) lpparam;
       db_server * pcentral = dynamic_cast < db_server * > (&App(psize->m_pview->m_papp).db());
@@ -944,7 +944,7 @@ namespace filemanager
          }
       }
 
-      class time time = time::get_current_time();
+      ::datetime::time time = ::datetime::time::get_current_time();
 
       string strTime;
       strTime.Format("%04d-%02d-%02d %02d-%02d",
@@ -1015,7 +1015,7 @@ namespace filemanager
          }
       }
 
-      class time time = time::get_current_time();
+      ::datetime::time time = ::datetime::time::get_current_time();
 
       string strTime;
       strTime.Format("%04d-%02d-%02d %02d-%02d",
@@ -1048,7 +1048,7 @@ namespace filemanager
    //   file_size * psize = new file_size;
      // psize->m_pview = this;
       //psize->m_str = psz;
-      //AfxBeginThread(ThreadProc4, psize, THREAD_PRIORITY_IDLE);
+      //__begin_thread(ThreadProc4, psize, THREAD_PRIORITY_IDLE);
    }
 
    void SimpleFileListView::_001OnShowWindow(gen::signal_object * pobj)

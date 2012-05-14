@@ -8,7 +8,7 @@ namespace userbase
    class status_bar_control;   // forward reference (see afxcmn.h for definition)
 
 
-   struct AFX_STATUSPANE
+   struct __STATUSPANE
    {
       id    id;        // IDC of indicator: 0 => normal text area
       int     cxText;     // width of string area in pixels
@@ -18,9 +18,9 @@ namespace userbase
       UINT    nFlags;     // state flags (SBPF_*)
       string strText;    // text in the pane
 
-      AFX_STATUSPANE & operator = (const AFX_STATUSPANE & pane);
-      AFX_STATUSPANE();
-      AFX_STATUSPANE(const AFX_STATUSPANE & pane);
+      __STATUSPANE & operator = (const __STATUSPANE & pane);
+      __STATUSPANE();
+      __STATUSPANE(const __STATUSPANE & pane);
    };
 
 
@@ -31,7 +31,7 @@ namespace userbase
 
 
 
-      array_ptr_alloc < AFX_STATUSPANE >     m_panea;
+      array_ptr_alloc < __STATUSPANE >     m_panea;
       int                                    m_nMinHeight;
 
 
@@ -89,7 +89,7 @@ namespace userbase
       virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, BOOL bDisableIfNoHndler);
 
 
-      AFX_STATUSPANE* _GetPanePtr(int nIndex);
+      __STATUSPANE* _GetPanePtr(int nIndex);
       void UpdateAllPanes(BOOL bUpdateRects, BOOL bUpdateText);
       virtual BOOL OnChildNotify(UINT message, WPARAM, LPARAM, LRESULT*);
 

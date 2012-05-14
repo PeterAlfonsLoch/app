@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <dde.h>
 
 #include "window_frame/appearance.h"
@@ -102,14 +102,14 @@ namespace userbase
       ::user::interaction* hWnd = System.get_desktop_window()->GetWindow(GW_CHILD);
       while (hWnd != NULL)
       {
-         if (AfxIsDescendant(pParent, hWnd))
+         if (__is_descendant(pParent, hWnd))
             hWnd->SendMessage(WM_FLOATSTATUS, dwFlags, 0);
          hWnd = hWnd->GetWindow(GW_HWNDNEXT);
       }
    }
 
    extern const CHAR _vfxWndFrameOrView[];
-   //const CHAR _vfxWndFrameOrView[] = AFX_WNDFRAMEORVIEW;
+   //const CHAR _vfxWndFrameOrView[] = __WNDFRAMEORVIEW;
 
    /////////////////////////////////////////////////////////////////////////////
    // frame_window second phase creation
@@ -118,7 +118,7 @@ namespace userbase
    {
       if (cs.lpszClass == NULL)
       {
-         VERIFY(System.DeferRegisterClass(AFX_WNDFRAMEORVIEW_REG, &cs.lpszClass));
+         VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, &cs.lpszClass));
       }
 
    //   if ((cs.style & FWS_ADDTOTITLE) && afxData.bWin4)
@@ -197,8 +197,8 @@ namespace userbase
    void frame_window::OnUpdateControlBarMenu(cmd_ui * pcmdui)
    {
 /*      ASSERT(ID_VIEW_STATUS_BAR == "status_bar");
-      ASSERT(ID_VIEW_TOOLBAR == AFX_IDW_TOOLBAR);
-      ASSERT(ID_VIEW_REBAR == AFX_IDW_REBAR);*/
+      ASSERT(ID_VIEW_TOOLBAR == __IDW_TOOLBAR);
+      ASSERT(ID_VIEW_REBAR == __IDW_REBAR);*/
 
       pcmdui->ContinueRouting();
    }
@@ -207,8 +207,8 @@ namespace userbase
    {
       UNREFERENCED_PARAMETER(nID);
       /*ASSERT(ID_VIEW_STATUS_BAR == "status_bar");
-      ASSERT(ID_VIEW_TOOLBAR == AFX_IDW_TOOLBAR);
-      ASSERT(ID_VIEW_REBAR == AFX_IDW_REBAR);*/
+      ASSERT(ID_VIEW_TOOLBAR == __IDW_TOOLBAR);
+      ASSERT(ID_VIEW_REBAR == __IDW_REBAR);*/
 
       return FALSE;
    }
@@ -281,7 +281,7 @@ namespace userbase
       try
       {
          if (m_pViewActive != NULL)
-            ASSERT_VALID(m_pViewActive);
+            ASSERT_VALID(m_pViewActive.get_p());
       }
       catch(...)
       {
@@ -332,10 +332,10 @@ namespace userbase
    // dwDockBarMap
    /*const DWORD frame_window::dwDockBarMap[4][2] =
    {
-      { AFX_IDW_DOCKBAR_TOP,      CBRS_TOP    },
-      { AFX_IDW_DOCKBAR_BOTTOM,   CBRS_BOTTOM },
-      { AFX_IDW_DOCKBAR_LEFT,     CBRS_LEFT   },
-      { AFX_IDW_DOCKBAR_RIGHT,    CBRS_RIGHT  },
+      { __IDW_DOCKBAR_TOP,      CBRS_TOP    },
+      { __IDW_DOCKBAR_BOTTOM,   CBRS_BOTTOM },
+      { __IDW_DOCKBAR_LEFT,     CBRS_LEFT   },
+      { __IDW_DOCKBAR_RIGHT,    CBRS_RIGHT  },
    };*/
 
 

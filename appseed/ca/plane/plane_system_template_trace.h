@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace _template
+namespace gen
 {
 
 
-   class CTraceFileAndLineInfo
+   class trace_add_file_and_line
    {
    public:
 
@@ -14,7 +14,7 @@ namespace _template
       const int               m_nLineNo;
 
 
-      CTraceFileAndLineInfo(::ca::application * papp, const char *pszFileName, int nLineNo)
+      trace_add_file_and_line(::ca::application * papp, const char *pszFileName, int nLineNo)
          : m_papp(papp), m_pszFileName(pszFileName), m_nLineNo(nLineNo)
       {
       }
@@ -45,9 +45,9 @@ namespace _template
 
    private:
       /* unimplemented */
-      CTraceFileAndLineInfo &__cdecl operator=(const CTraceFileAndLineInfo &right);
+      trace_add_file_and_line &__cdecl operator=(const trace_add_file_and_line &right);
 
    };
 
 
-} // namespace _template
+} // namespace gen

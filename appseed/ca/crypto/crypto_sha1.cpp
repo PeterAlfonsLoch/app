@@ -2,7 +2,7 @@
 // This file is based on public domain
 // Steve Reid and Wei Dai's code from Crypto++
 
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace crypto
 {

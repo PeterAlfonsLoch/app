@@ -1,8 +1,22 @@
 #pragma once
 
 
-#include "ca/primitive/id_space.h"
-#include "gen/gen_international_locale_schema.h"
+namespace gen
+{
+
+
+   namespace international
+   {
+
+
+      class locale_schema;
+
+
+   } // namespace international
+
+
+} // namespace gen
+
 
 
 namespace user

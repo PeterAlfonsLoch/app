@@ -241,7 +241,7 @@
       <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -617,7 +617,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="bergedge\bergedge.h" />
     <ClInclude Include="bergedge\bergedge_interface.h" />
     <ClInclude Include="ca2\ca2.h" />
-    <ClInclude Include="ca2\ca2_2.h" />
     <ClInclude Include="ca2\ca2_application.h" />
     <ClInclude Include="ca2\ca2_datetime.h" />
     <ClInclude Include="ca2\ca2_filehandler_handler.h" />
@@ -673,8 +672,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="calculator\numeric_value.h" />
     <ClInclude Include="ca\ca.h" />
     <ClInclude Include="ca\ca2_keep_alive.h" />
-    <ClInclude Include="ca\ca_2.h" />
-    <ClInclude Include="ca\ca_3_graphics.h" />
+    <ClInclude Include="ca\ca_graphic_classes.h" />
     <ClInclude Include="ca\ca_application.h" />
     <ClInclude Include="ca\ca_application_bias.h" />
     <ClInclude Include="ca\ca_application_interface.h" />
@@ -982,8 +980,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="dynamic_source\dynamic_source_script_manager.h" />
     <ClInclude Include="dynamic_source\dynamic_source_httpd_socket.h" />
     <ClInclude Include="ex1\ex1.h" />
-    <ClInclude Include="ex1\ex1_0.h" />
-    <ClInclude Include="ex1\ex1_1.h" />
     <ClInclude Include="ex1\ex1_application.h" />
     <ClInclude Include="ex1\ex1_bitl_decoder.h" />
     <ClInclude Include="ex1\ex1_bitl_encoder.h" />
@@ -1049,40 +1045,39 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="ex2\ex2_file_set.h" />
     <ClInclude Include="ex2\ex2_folder_watch.h" />
     <ClInclude Include="ex2\ex2_transfer_file.h" />
-    <ClInclude Include="exception\assert.h" />
-    <ClInclude Include="exception\base_exception.h" />
-    <ClInclude Include="exception\class.h" />
-    <ClInclude Include="exception\debug.h" />
-    <ClInclude Include="exception\debug_stream.h" />
-    <ClInclude Include="exception\dump_context.h" />
-    <ClInclude Include="exception\error_exception.h" />
+    <ClInclude Include="exception\exception_assert.h" />
+    <ClInclude Include="exception\exception_base.h" />
+    <ClInclude Include="exception\exception_call_stack.h" />
+    <ClInclude Include="exception\exception_debug.h" />
+    <ClInclude Include="exception\exception_debug_stream.h" />
+    <ClInclude Include="exception\exception_dump_context.h" />
+    <ClInclude Include="exception\exception_error.h" />
     <ClInclude Include="exception\exception.h" />
-    <ClInclude Include="exception\exception2.h" />
-    <ClInclude Include="exception\exception_0.h" />
     <ClInclude Include="exception\exception_installing.h" />
+    <ClInclude Include="exception\exception_last_error.h" />
     <ClInclude Include="exception\exception_overflow_error.h" />
     <ClInclude Include="exception\exception_range_error.h" />
     <ClInclude Include="exception\exception_runtime_error.h" />
     <ClInclude Include="exception\exception_temporary.h" />
     <ClInclude Include="exception\exception_trap.h" />
     <ClInclude Include="exception\exception_void_implementation.h" />
-    <ClInclude Include="exception\hresult_exception.h" />
-    <ClInclude Include="exception\interface_only.h" />
-    <ClInclude Include="exception\invalid_argument.h" />
-    <ClInclude Include="exception\memory.h" />
-    <ClInclude Include="exception\memory_state.h" />
-    <ClInclude Include="exception\misc.h" />
-    <ClInclude Include="exception\not_implemented.h" />
-    <ClInclude Include="exception\not_licensed.h" />
-    <ClInclude Include="exception\not_supported.h" />
-    <ClInclude Include="exception\resource.h" />
-    <ClInclude Include="exception\se_exception.h" />
-    <ClInclude Include="exception\se_translator.h" />
-    <ClInclude Include="exception\simple_exception.h" />
-    <ClInclude Include="exception\SymEngine.h" />
-    <ClInclude Include="exception\unhandled_report.h" />
-    <ClInclude Include="exception\user.h" />
-    <ClInclude Include="exception\VMSException.h" />
+    <ClInclude Include="exception\exception_hresult.h" />
+    <ClInclude Include="exception\exception_interface_only.h" />
+    <ClInclude Include="exception\exception_invalid_argument.h" />
+    <ClInclude Include="exception\exception_memory.h" />
+    <ClInclude Include="exception\exception_memory_state.h" />
+    <ClInclude Include="exception\exception_misc.h" />
+    <ClInclude Include="exception\exception_not_implemented.h" />
+    <ClInclude Include="exception\exception_not_licensed.h" />
+    <ClInclude Include="exception\exception_not_supported.h" />
+    <ClInclude Include="exception\exception_resource.h" />
+    <ClInclude Include="exception\exception_standard.h" />
+    <ClInclude Include="exception\exception_standard_translator.h" />
+    <ClInclude Include="exception\exception_simple.h" />
+    <ClInclude Include="exception\exception_engine.h" />
+    <ClInclude Include="exception\exception_unhandled_report.h" />
+    <ClInclude Include="exception\exception_user.h" />
+    <ClInclude Include="exception\exception_vms.h" />
     <ClInclude Include="filehandler\filehandler.h" />
     <ClInclude Include="filehandler\filehandler_handler.h" />
     <ClInclude Include="filehandler\filehandler_library.h" />
@@ -1112,16 +1107,16 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="fs\fs_ifs.h" />
     <ClInclude Include="fs\fs_ifs_file.h" />
     <ClInclude Include="fs\fs_native_fs.h" />
+    <ClInclude Include="gen\base.h" />
     <ClInclude Include="gen\base_rect.h" />
     <ClInclude Include="gen\base_rect_array.h" />
+    <ClInclude Include="gen\aaa_cw_allocate_want_to_remove.h" />
+    <ClInclude Include="gen\aaa_c_allocate_want_to_remove.h" />
     <ClInclude Include="gen\gen_composite.h" />
     <ClInclude Include="gen\gen_cregexp.h" />
     <ClInclude Include="gen\gen_cregexp_util.h" />
     <ClInclude Include="gen\gen_flags.h" />
     <ClInclude Include="gen\gen.h" />
-    <ClInclude Include="gen\gen_0.h" />
-    <ClInclude Include="gen\gen_1.h" />
-    <ClInclude Include="gen\gen_2.h" />
     <ClInclude Include="gen\gen_application.h" />
     <ClInclude Include="gen\gen_base64.h" />
     <ClInclude Include="gen\gen_base_enum.h" />
@@ -1145,6 +1140,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="gen\gen_math.h" />
     <ClInclude Include="gen\gen_math_rng.h" />
     <ClInclude Include="gen\gen_memory_file.h" />
+    <ClInclude Include="gen\gen_memory_operator.h" />
     <ClInclude Include="gen\gen_message.h" />
     <ClInclude Include="gen\gen_microtimer.h" />
     <ClInclude Include="gen\gen_parse.h" />
@@ -1170,11 +1166,35 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="gen\gen_var.h" />
     <ClInclude Include="gen\gen_variable_strict_compare.h" />
     <ClInclude Include="gen\gen_var_array.h" />
-    <ClInclude Include="gen\go_thread.h" />
-    <ClInclude Include="gen\muldiv32.h" />
-    <ClInclude Include="gen\muldiv64.h" />
-    <ClInclude Include="gen\reference.h" />
-    <ClInclude Include="gen\simple_thread.h" />
+    <ClInclude Include="gen\gen_go_thread.h" />
+    <ClInclude Include="gen\gen_muldiv32.h" />
+    <ClInclude Include="gen\gen_muldiv64.h" />
+    <ClInclude Include="gen\gen_reference.h" />
+    <ClInclude Include="gen\gen_resource.h" />
+    <ClInclude Include="gen\gen_simple_collection.h" />
+    <ClInclude Include="gen\gen_simple_thread.h" />
+    <ClInclude Include="gen\gen_back_insert_iterator.h" />
+    <ClInclude Include="gen\gen_base.h" />
+    <ClInclude Include="gen\gen_common.h" />
+    <ClInclude Include="gen\gen_compare.h" />
+    <ClInclude Include="gen\gen_core.h" />
+    <ClInclude Include="gen\gen_c_number.h" />
+    <ClInclude Include="gen\gen_definition.h" />
+    <ClInclude Include="gen\gen_equals.h" />
+    <ClInclude Include="gen\gen_hash.h" />
+    <ClInclude Include="gen\gen_insert_iterator.h" />
+    <ClInclude Include="gen\gen_iterator.h" />
+    <ClInclude Include="gen\gen_std_pair.h" />
+    <ClInclude Include="gen\gen_time.h" />
+    <ClInclude Include="gen\gen_trace.h" />
+    <ClInclude Include="gen\aaa_base_enum_want_to_remove_xxx.h" />
+    <ClInclude Include="gen\aaa_full_pointer_want_to_remove_xxx.h" />
+    <ClInclude Include="gen\aaa_pointer_want_to_remove_xxx.h" />
+    <ClInclude Include="gen\aaa_PointerManager_want_to_remove_xxx.h" />
+    <ClInclude Include="gen\aaa_raw_pointer_want_to_remove_xxx.h" />
+    <ClInclude Include="gen\gen_template.h" />
+    <ClInclude Include="gen\aaa_template_want_to_remove_xxx2.h" />
+    <ClInclude Include="gen\aaa_var_array_want_to_remove_xxx.h" />
     <ClInclude Include="geoip\geoip.h" />
     <ClInclude Include="geoip\geoip_city.h" />
     <ClInclude Include="geoip\geoip_internal.h" />
@@ -1219,7 +1239,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="math\_float.h" />
     <ClInclude Include="math\_integer.h" />
     <ClInclude Include="multithreading\multithreading.h" />
-    <ClInclude Include="multithreading\multithreading_base_sync_object.h" />
     <ClInclude Include="multithreading\multithreading_critical_section.h" />
     <ClInclude Include="multithreading\multithreading_event.h" />
     <ClInclude Include="multithreading\multithreading_event_base.h" />
@@ -1306,23 +1325,19 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="ca.h" />
     <ClInclude Include="radix\radix_allocate.h" />
     <ClInclude Include="radix\radix_base.h" />
-    <ClInclude Include="radix\radix_bstr.H" />
+    <ClInclude Include="radix\radix_bstr.h" />
     <ClInclude Include="radix\radix_command.h" />
     <ClInclude Include="radix\radix_command_target.h" />
     <ClInclude Include="radix\radix_constraint.h" />
     <ClInclude Include="radix\radix_factory.h" />
     <ClInclude Include="radix\radix_fixed_alloc.h" />
     <ClInclude Include="radix\radix_heap.h" />
-    <ClInclude Include="radix\kbase_xxx.h" />
-    <ClInclude Include="radix\machine_event_central.h" />
-    <ClInclude Include="radix\pipe.h" />
+    <ClInclude Include="radix\radix_machine_event_central.h" />
+    <ClInclude Include="radix\radix_pipe.h" />
     <ClInclude Include="radix\radix_plex.h" />
     <ClInclude Include="radix\radix_plex_heap.h" />
-    <ClInclude Include="radix\process_data.h" />
+    <ClInclude Include="radix\radix_process_data.h" />
     <ClInclude Include="radix\radix.h" />
-    <ClInclude Include="radix\radix_1.h" />
-    <ClInclude Include="radix\radix_2.h" />
-    <ClInclude Include="radix\radix_5.h" />
     <ClInclude Include="radix\radix_application.h" />
     <ClInclude Include="radix\radix_object.h" />
     <ClInclude Include="radix\radix_os.h" />
@@ -1330,8 +1345,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="radix\radix_system.h" />
     <ClInclude Include="radix\radix_template.h" />
     <ClInclude Include="radix\radix_thread.h" />
-    <ClInclude Include="radix\service.h" />
-    <ClInclude Include="radix\wait_cursor.h" />
+    <ClInclude Include="radix\radix_service.h" />
+    <ClInclude Include="radix\radix_wait_cursor.h" />
     <ClInclude Include="radix\radix_allocator.h" />
     <ClInclude Include="simpledb\application.h" />
     <ClInclude Include="simpledb\DBFileSystemSize.h" />
@@ -1429,13 +1444,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="sqlite\sqlite.h" />
     <ClInclude Include="sqlite\sqlite3.h" />
     <ClInclude Include="sqlite\sqlite3ext.h" />
-    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="framework.h" />
     <ClInclude Include="template\template_base.h" />
     <ClInclude Include="template\template_checked.h" />
     <ClInclude Include="template\template_core.h" />
     <ClInclude Include="template\template_debug.h" />
     <ClInclude Include="template\template_definition.h" />
-    <ClInclude Include="template\template_exception.h" />
     <ClInclude Include="template\template.h" />
     <ClInclude Include="template\template_back_insert_iterator.h" />
     <ClInclude Include="template\template_compare.h" />
@@ -1455,7 +1469,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="userpresence\userpresence_user_presence_central.h" />
     <ClInclude Include="userpresence\userpresence_user_presence_central_container.h" />
     <ClInclude Include="user\user.h" />
-    <ClInclude Include="user\user1.h" />
     <ClInclude Include="user\user_application.h" />
     <ClInclude Include="user\user_buffer.h" />
     <ClInclude Include="user\user_check_interface.h" />
@@ -1502,31 +1515,28 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="user\user_window_interface.h" />
     <ClInclude Include="user\user_window_map.h" />
     <ClInclude Include="user\user_window_util.h" />
-    <ClInclude Include="visual\api.h" />
-    <ClInclude Include="visual\application.h" />
-    <ClInclude Include="visual\buffered_graphics.h" />
-    <ClInclude Include="visual\clip.h" />
-    <ClInclude Include="visual\dib.h" />
-    <ClInclude Include="visual\dib_pal.h" />
-    <ClInclude Include="visual\fastblur.h" />
-    <ClInclude Include="visual\font_central.h" />
-    <ClInclude Include="visual\FreeImageFileProc.h" />
-    <ClInclude Include="visual\glyph.h" />
-    <ClInclude Include="visual\glyph_set.h" />
-    <ClInclude Include="visual\graphics_extension.h" />
-    <ClInclude Include="visual\icon.h" />
-    <ClInclude Include="visual\image_list.h" />
-    <ClInclude Include="visual\imaging.h" />
-    <ClInclude Include="visual\rgb_quad_array.h" />
+    <ClInclude Include="visual\visual_api.h" />
+    <ClInclude Include="visual\visual_buffered_graphics.h" />
+    <ClInclude Include="visual\visual_clip.h" />
+    <ClInclude Include="visual\visual_dib_pal.h" />
+    <ClInclude Include="visual\visual_fastblur.h" />
+    <ClInclude Include="visual\visual_font_central.h" />
+    <ClInclude Include="visual\visual_FreeImageFileProc.h" />
+    <ClInclude Include="visual\visual_glyph.h" />
+    <ClInclude Include="visual\visual_glyph_set.h" />
+    <ClInclude Include="visual\visual_graphics_extension.h" />
+    <ClInclude Include="visual\visual_icon.h" />
+    <ClInclude Include="visual\visual_image_list.h" />
+    <ClInclude Include="visual\visual_imaging.h" />
+    <ClInclude Include="visual\visual_rgb_quad_array.h" />
     <ClInclude Include="visual\visual.h" />
-    <ClInclude Include="visual\visual_00.h" />
-    <ClInclude Include="visual\visual_01.h" />
+    <ClInclude Include="visual\visual_const.h" />
     <ClInclude Include="visual\visual_application.h" />
     <ClInclude Include="visual\visual_cursor.h" />
     <ClInclude Include="visual\visual_dib.h" />
     <ClInclude Include="visual\visual_font.h" />
     <ClInclude Include="visual\visual_visual.h" />
-    <ClInclude Include="visual\water_routine.h" />
+    <ClInclude Include="visual\visual_water_routine.h" />
     <ClInclude Include="windows\os.h" />
     <ClInclude Include="windows\os_defs.h" />
     <ClInclude Include="windows\os_library.h" />
@@ -2063,6 +2073,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="exception\exception_installing.cpp" />
     <ClCompile Include="exception\exception_interface_only.cpp" />
     <ClCompile Include="exception\exception_invalid_arg_exception.cpp" />
+    <ClCompile Include="exception\exception_last_error.cpp" />
     <ClCompile Include="exception\exception_memory_exception.cpp" />
     <ClCompile Include="exception\exception_not_implemented.cpp" />
     <ClCompile Include="exception\exception_not_licensed_exception.cpp" />
@@ -2070,9 +2081,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="exception\exception_overflow_error.cpp" />
     <ClCompile Include="exception\exception_range_error.cpp" />
     <ClCompile Include="exception\exception_runtime_error.cpp" />
-    <ClCompile Include="exception\exception_se_translator.cpp" />
+    <ClCompile Include="exception\exception_standard_translator.cpp" />
     <ClCompile Include="exception\exception_simple_exception.cpp" />
-    <ClCompile Include="exception\exception_SymEngine.cpp" />
+    <ClCompile Include="exception\exception_engine.cpp" />
     <ClCompile Include="exception\exception_temporary.cpp" />
     <ClCompile Include="exception\exception_VMSException.cpp" />
     <ClCompile Include="exception\exception_void_implementation.cpp" />
@@ -2099,6 +2110,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="fs\fs_ifs.cpp" />
     <ClCompile Include="fs\fs_ifs_file.cpp" />
     <ClCompile Include="fs\fs_native_fs.cpp" />
+    <ClCompile Include="gen\base.cpp" />
     <ClCompile Include="gen\base_enum.cpp" />
     <ClCompile Include="gen\gen_application.cpp" />
     <ClCompile Include="gen\gen_base64.cpp" />
@@ -2146,8 +2158,13 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="gen\gen_variable_strict_compare.cpp" />
     <ClCompile Include="gen\gen_var_array.cpp" />
     <ClCompile Include="gen\gen_var_property_allocation.cpp" />
-    <ClCompile Include="gen\go_thread.cpp" />
-    <ClCompile Include="gen\simple_thread.cpp" />
+    <ClCompile Include="gen\gen_go_thread.cpp" />
+    <ClCompile Include="gen\gen_simple_thread.cpp" />
+    <ClCompile Include="gen\gen_base.cpp" />
+    <ClCompile Include="gen\gen_checked.cpp" />
+    <ClCompile Include="gen\gen_hash.cpp" />
+    <ClCompile Include="gen\gen_memory.cpp" />
+    <ClCompile Include="gen\gen_trace.cpp" />
     <ClCompile Include="geoip\geoip.cpp" />
     <ClCompile Include="geoip\geoip_city.cpp" />
     <ClCompile Include="geoip\geoip_update.cpp" />
@@ -2358,7 +2375,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="math\_double.cpp" />
     <ClCompile Include="math\_float.cpp" />
     <ClCompile Include="math\_integer.cpp" />
-    <ClCompile Include="multithreading\multithreading_base_sync_object.cpp" />
     <ClCompile Include="multithreading\multithreading_core.cpp" />
     <ClCompile Include="multithreading\multithreading_critical_section.cpp" />
     <ClCompile Include="multithreading\multithreading_event.cpp" />
@@ -2375,6 +2391,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="multithreading\multithreading_single_lock.cpp" />
     <ClCompile Include="multithreading\multithreading_socket_event.cpp" />
     <ClCompile Include="multithreading\multithreading_synch_lock.cpp" />
+    <ClCompile Include="multithreading\multithreading_sync_objec.cpp" />
     <ClCompile Include="multithreading\multithreading_waitable.cpp" />
     <ClCompile Include="multithreading\multithreading_wait_result.cpp" />
     <ClCompile Include="os\os_cross_windows.cpp" />
@@ -2426,7 +2443,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="primitive\primitive_virtual_memory.cpp" />
     <ClCompile Include="radix\radix_allocation_mid_big.cpp" />
     <ClCompile Include="radix\radix_allocation_base_ca2.cpp" />
-    <ClCompile Include="radix\radix_allocator.cpp" />
     <ClCompile Include="radix\radix_assert.cpp" />
     <ClCompile Include="radix\radix_bstr.cpp" />
     <ClCompile Include="radix\radix_cmdtarg.cpp" />
@@ -2437,8 +2453,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="radix\radix_fixed_alloc.cpp" />
     <ClCompile Include="radix\radix_flags.cpp" />
     <ClCompile Include="radix\radix_allocation_ca2_heap.cpp" />
-    <ClCompile Include="radix\radix_load_and_save.cpp" />
-    <ClCompile Include="radix\machine_event_central.cpp" />
+    <ClCompile Include="radix\radix_machine_event_central.cpp" />
     <ClCompile Include="radix\radix_pipe.cpp" />
     <ClCompile Include="radix\radix_plex.cpp" />
     <ClCompile Include="radix\radix_plex_heap.cpp" />
@@ -2448,7 +2463,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="radix\radix_system.cpp" />
     <ClCompile Include="radix\radix_service.cpp" />
     <ClCompile Include="radix\radix_thread.cpp" />
-    <ClCompile Include="radix\radix_validadd.cpp" />
     <ClCompile Include="radix\radix_wait_cursor.cpp" />
     <ClCompile Include="simpledb\simpledb_application.cpp" />
     <ClCompile Include="simpledb\simpledb_database.cpp" />
@@ -2541,7 +2555,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="StdAfx.cpp">
+    <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Create</PrecompiledHeader>
@@ -2550,13 +2564,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="template\template_base.cpp" />
-    <ClCompile Include="template\template_checked.cpp" />
-    <ClCompile Include="template\template_exception.cpp" />
-    <ClCompile Include="template\template_hash.cpp" />
-    <ClCompile Include="template\template_memory.cpp" />
-    <ClCompile Include="template\template_trace.cpp" />
-    <ClCompile Include="template\template_trace_module_manager.cpp" />
     <ClCompile Include="userpresence\userpresence_application.cpp" />
     <ClCompile Include="userpresence\userpresence_user_presence.cpp" />
     <ClCompile Include="userpresence\userpresence_user_presence_central.cpp" />

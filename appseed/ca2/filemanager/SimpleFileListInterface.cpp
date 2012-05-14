@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "SimpleFileListInterface.h"
 
 
@@ -654,7 +654,7 @@ namespace filemanager
 
    }
 
-   /*UINT AFX_CDECL SimpleFileListInterface::_017ThreadProcCreateImageList(LPVOID lpParameter)
+   /*UINT c_cdecl SimpleFileListInterface::_017ThreadProcCreateImageList(LPVOID lpParameter)
    {
       try
       {

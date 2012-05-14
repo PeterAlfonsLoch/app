@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 ifs_file::ifs_file(::ca::application * papp, var varFile) :

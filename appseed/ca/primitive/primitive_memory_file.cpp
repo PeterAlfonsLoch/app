@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace primitive
@@ -104,7 +104,7 @@ namespace primitive
 
       LPBYTE lpb = get_data();
 
-      ASSERT(fx_is_valid_address(&(lpb)[m_dwPosition], (UINT_PTR) nCount, TRUE));
+      ASSERT(__is_valid_address(&(lpb)[m_dwPosition], (UINT_PTR) nCount, TRUE));
 
       memcpy(&(lpb)[m_dwPosition], lpBuf, (size_t) nCount);
 

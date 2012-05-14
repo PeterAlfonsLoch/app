@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 //#define ALLOC(size) malloc(size)
 //#define TRYFREE(p) {if (p) free(p);}

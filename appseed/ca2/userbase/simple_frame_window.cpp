@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <dde.h>
 #include "window_frame/appearance.h"
 #include "window_frame/FrameSchemaHardCoded001.h"
@@ -32,7 +32,7 @@ simple_frame_window::~simple_frame_window()
 
 
 // // BEGIN_MESSAGE_MAP(simple_frame_window, userbase::frame_window)
-   //{{AFX_MSG_MAP(simple_frame_window)
+   //{{__MSG_MAP(simple_frame_window)
 /* xxx   ON_WM_DESTROY()
    ON_WM_SIZE()
    ON_WM_CLOSE()
@@ -43,7 +43,7 @@ simple_frame_window::~simple_frame_window()
    ON_COMMAND_EX(ID_VIEW_TOOLBAR, OnBarCheck)
    ON_UPDATE_COMMAND_UI(ID_VIEW_REBAR, OnUpdateControlBarMenu)
    ON_COMMAND_EX(ID_VIEW_REBAR, OnBarCheck) */
-   //}}AFX_MSG_MAP
+   //}}__MSG_MAP
 // // END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -670,9 +670,9 @@ BOOL simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle
 
 //   string strFullString;
 //   if (strFullString.load_string(nIDResource))
-//      AfxExtractSubString(m_strTitle, strFullString, 0);    // first sub-string
+//      __extract_sub_string(m_strTitle, strFullString, 0);    // first sub-string
 
-   VERIFY(System.DeferRegisterClass(AFX_WNDFRAMEORVIEW_REG, NULL));
+   VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, NULL));
 
    // attempt to create the ::ca::window
    const char * lpszClass = (const char *) GetIconWndClass(dwDefaultStyle, pszMatter);
@@ -712,7 +712,7 @@ BOOL simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle
    if (lpszMenuName != NULL)
    {
       // load in a menu that will get destroyed when ::ca::window gets destroyed
-      HINSTANCE hInst = AfxFindResourceHandle(lpszMenuName, RT_MENU);
+      HINSTANCE hInst = gen::FindResourceHandle(lpszMenuName, RT_MENU);
       if ((hMenu = ::LoadMenu(hInst, lpszMenuName)) == NULL)
       {
          TRACE0("Warning: failed to load menu for userbase::frame_window.\n");
@@ -737,7 +737,7 @@ BOOL simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle
 }*/
 
 
-AFX_STATIC_DATA const char _afxOldWndProc[] = "AfxOldWndProc423";
+__STATIC_DATA const char gen_OldWndProc[] = "gen::OldWndProc423";
 
 
 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "frame.h"
 #include "view.h"
 
@@ -11,7 +11,7 @@ namespace nature
    // IMPLEMENT_DYNCREATE(frame, simple_frame_window)
 
     // BEGIN_MESSAGE_MAP(frame, simple_frame_window)
-      //{{AFX_MSG_MAP(frame)
+      //{{__MSG_MAP(frame)
    /* xxx   ON_WM_CREATE()
       ON_COMMAND(ID_HELP_FINDER, simple_frame_window::OnHelpFinder)
       ON_COMMAND(ID_HELP, simple_frame_window::OnHelp)
@@ -107,7 +107,7 @@ namespace nature
          WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP | CBRS_GRIPPER | CBRS_SIZE_DYNAMIC
          | CBRS_DRAGMOVE,
          rect(0, 0, 0, 0),
-         AFX_IDW_TOOLBAR) ||
+         __IDW_TOOLBAR) ||
          !m_toolbar.LoadToolBar(IDR_MAINFRAME))
       {
          TRACE0("Failed to create toolbar\n");
@@ -118,7 +118,7 @@ namespace nature
          WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP | CBRS_GRIPPER | CBRS_SIZE_DYNAMIC
          | CBRS_DRAGMOVE,
          rect(0, 0, 0, 0),
-         AFX_IDW_TOOLBAR + 1) ||
+         __IDW_TOOLBAR + 1) ||
          !m_toolbarView.LoadToolBar(IDR_VIEW))
       {
          TRACE0("Failed to create toolbar\n");
@@ -128,7 +128,7 @@ namespace nature
    
       if (!m_dialogbar.create(this, IDR_MAINFRAME, 
          WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP | CBRS_GRIPPER | CBRS_SIZE_DYNAMIC
-         | CBRS_DRAGMOVE, AFX_IDW_DIALOGBAR))
+         | CBRS_DRAGMOVE, __IDW_DIALOGBAR))
       {
          TRACE0("Failed to create dialogbar\n");
          return -1;      // fail to create

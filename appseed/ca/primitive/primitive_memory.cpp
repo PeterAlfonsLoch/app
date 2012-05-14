@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace primitive
@@ -114,7 +114,7 @@ namespace primitive
    {
       m_pbStorage    = NULL;
       allocate(iCount);
-      ASSERT(fx_is_valid_address(pdata, iCount, FALSE));
+      ASSERT(__is_valid_address(pdata, iCount, FALSE));
       memcpy(m_pbStorage, pdata, iCount);
    }
 
@@ -149,7 +149,7 @@ namespace primitive
       m_pbStorage          = NULL;
       m_pcontainer         = pcontainer;
       allocate(dwSize);
-      ASSERT(fx_is_valid_address(pMemory, (UINT_PTR) dwSize, FALSE));
+      ASSERT(__is_valid_address(pMemory, (UINT_PTR) dwSize, FALSE));
       memcpy(m_pbStorage, pMemory, (size_t) dwSize);
    }
 

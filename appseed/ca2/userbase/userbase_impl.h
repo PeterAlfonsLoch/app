@@ -54,13 +54,13 @@ namespace userbase
 /////////////////////////////////////////////////////////////////////////////
 // Thread global state
 
-// forward references required for _AFX_THREAD_STATE definition
+// forward references required for ___THREAD_STATE definition
 class FrameWnd;
 class SimpleView;
 class CToolTipCtrl;
 class ::userbase::control_bar;
 
 
-CLASS_DECL_ca2 UINT PASCAL _AfxGetMouseScrollLines();
+CLASS_DECL_ca2 UINT PASCAL _gen::GetMouseScrollLines();
 
 */

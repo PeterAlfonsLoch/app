@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 raw_pointer::raw_pointer(::ca::application * papp) :

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 // defines for the random number generator
 #define TWIST_LEN       (m_dwa.get_count())

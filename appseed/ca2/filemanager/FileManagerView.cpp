@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "FileManagerFrame.h"
 #include "FileManagerViewUpdateHint.h"
 #include "SimpleFileListView.h"
@@ -262,8 +262,8 @@ FileManagerView::~FileManagerView()
 
 
  // BEGIN_MESSAGE_MAP(FileManagerView, ::userbase::split_view)
-   //{{AFX_MSG_MAP(FileManagerView)
-   //}}AFX_MSG_MAP
+   //{{__MSG_MAP(FileManagerView)
+   //}}__MSG_MAP
  // END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////

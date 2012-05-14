@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 command_target::command_target()
 {
@@ -28,8 +28,8 @@ bool command_target::handle(BaseCmdMsg * pcmdmsg)
 // command_target windows message dispatching
 
 /*
-AFX_STATIC BOOL _AfxDispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
-   AFX_PMSG pfn, void * pExtra, UINT_PTR nSig, 
+__STATIC BOOL _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
+   __PMSG pfn, void * pExtra, UINT_PTR nSig, 
       // return TRUE to stop routing
 {
    ENSURE_VALID(pTarget);
@@ -54,36 +54,36 @@ AFX_STATIC BOOL _AfxDispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
       return 0;
       break;
 
-   case AfxSigCmd_v:
+   case gen::SigCmd_v:
       // normal command or control notification
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
       ASSERT(pExtra == NULL);
       (pTarget->*mmf.pfnCmd_v_v)();
       break;
 
-   case AfxSigCmd_b:
+   case gen::SigCmd_b:
       // normal command or control notification
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
       ASSERT(pExtra == NULL);
       bResult = (pTarget->*mmf.pfnCmd_b_v)();
       break;
 
-   case AfxSigCmd_RANGE:
+   case gen::SigCmd_RANGE:
       // normal command or control notification in a range
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
       ASSERT(pExtra == NULL);
       (pTarget->*mmf.pfnCmd_v_u)(nID);
       break;
 
-   case AfxSigCmd_EX:
+   case gen::SigCmd_EX:
       // extended command (passed ID, returns bContinue)
       ASSERT(pExtra == NULL);
       bResult = (pTarget->*mmf.pfnCmd_b_u)(nID);
       break;
 
-   case AfxSigNotify_v:
+   case gen::SigNotify_v:
       {
-         AFX_NOTIFY* pNotify = (AFX_NOTIFY*)pExtra;
+         __NOTIFY* pNotify = (__NOTIFY*)pExtra;
          ENSURE(pNotify != NULL);
          ASSERT(pNotify->pResult != NULL);
          ASSERT(pNotify->pNMHDR != NULL);
@@ -91,9 +91,9 @@ AFX_STATIC BOOL _AfxDispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
       }
       break;
 
-   case AfxSigNotify_b:
+   case gen::SigNotify_b:
       {
-         AFX_NOTIFY* pNotify = (AFX_NOTIFY*)pExtra;
+         __NOTIFY* pNotify = (__NOTIFY*)pExtra;
          ENSURE(pNotify != NULL);
          ASSERT(pNotify->pResult != NULL);
          ASSERT(pNotify->pNMHDR != NULL);
@@ -101,9 +101,9 @@ AFX_STATIC BOOL _AfxDispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
       }
       break;
 
-   case AfxSigNotify_RANGE:
+   case gen::SigNotify_RANGE:
       {
-         AFX_NOTIFY* pNotify = (AFX_NOTIFY*)pExtra;
+         __NOTIFY* pNotify = (__NOTIFY*)pExtra;
          ENSURE(pNotify != NULL);
          ASSERT(pNotify->pResult != NULL);
          ASSERT(pNotify->pNMHDR != NULL);
@@ -112,9 +112,9 @@ AFX_STATIC BOOL _AfxDispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
       }
       break;
 
-   case AfxSigNotify_EX:
+   case gen::SigNotify_EX:
       {
-         AFX_NOTIFY* pNotify = (AFX_NOTIFY*)pExtra;
+         __NOTIFY* pNotify = (__NOTIFY*)pExtra;
          ENSURE(pNotify != NULL);
          ASSERT(pNotify->pResult != NULL);
          ASSERT(pNotify->pNMHDR != NULL);
@@ -123,7 +123,7 @@ AFX_STATIC BOOL _AfxDispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
       }
       break;
 
-   case AfxSigCmdUI:
+   case gen::SigCmdUI:
       {
          // ON_UPDATE_COMMAND_UI or ON_UPDATE_COMMAND_UI_REFLECT case
          ASSERT(CN_UPDATE_COMMAND_UI == (UINT)-1);
@@ -137,7 +137,7 @@ AFX_STATIC BOOL _AfxDispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
       }
       break;
 
-   case AfxSigCmdUI_RANGE:
+   case gen::SigCmdUI_RANGE:
       {
          // ON_UPDATE_COMMAND_UI case
          ASSERT(nCode == CN_UPDATE_COMMAND_UI);
@@ -152,61 +152,61 @@ AFX_STATIC BOOL _AfxDispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
       break;
 
    // general extensibility hooks
-   case AfxSigCmd_v_pv:
+   case gen::SigCmd_v_pv:
       (pTarget->*mmf.pfnCmd_v_pv)(pExtra);
       break;
-   case AfxSigCmd_b_pv:
+   case gen::SigCmd_b_pv:
       bResult = (pTarget->*mmf.pfnCmd_b_pv)(pExtra);
       break;
    /*
-   case AfxSig_vv:
+   case gen::Sig_vv:
       // normal command or control notification
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
       ASSERT(pExtra == NULL);
       (pTarget->*mmf.pfn_COMMAND)();
       break;
 
-   case AfxSig_bv:
+   case gen::Sig_bv:
       // normal command or control notification
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
       ASSERT(pExtra == NULL);
       bResult = (pTarget->*mmf.pfn_bCOMMAND)();
       break;
 
-   case AfxSig_vw:
+   case gen::Sig_vw:
       // normal command or control notification in a range
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
       ASSERT(pExtra == NULL);
       (pTarget->*mmf.pfn_COMMAND_RANGE)(nID);
       break;
 
-   case AfxSig_bw:
+   case gen::Sig_bw:
       // extended command (passed ID, returns bContinue)
       ASSERT(pExtra == NULL);
       bResult = (pTarget->*mmf.pfn_COMMAND_EX)(nID);
       break;
 
-   case AfxSig_vNMHDRpl:
+   case gen::Sig_vNMHDRpl:
       {
-         AFX_NOTIFY* pNotify = (AFX_NOTIFY*)pExtra;
+         __NOTIFY* pNotify = (__NOTIFY*)pExtra;
          ENSURE(pNotify != NULL);
          ASSERT(pNotify->pResult != NULL);
          ASSERT(pNotify->pNMHDR != NULL);
          (pTarget->*mmf.pfn_NOTIFY)(pNotify->pNMHDR, pNotify->pResult);
       }
       break;
-   case AfxSig_bNMHDRpl:
+   case gen::Sig_bNMHDRpl:
       {
-         AFX_NOTIFY* pNotify = (AFX_NOTIFY*)pExtra;
+         __NOTIFY* pNotify = (__NOTIFY*)pExtra;
          ENSURE(pNotify != NULL);
          ASSERT(pNotify->pResult != NULL);
          ASSERT(pNotify->pNMHDR != NULL);
          bResult = (pTarget->*mmf.pfn_bNOTIFY)(pNotify->pNMHDR, pNotify->pResult);
       }
       break;
-   case AfxSig_vwNMHDRpl:
+   case gen::Sig_vwNMHDRpl:
       {
-         AFX_NOTIFY* pNotify = (AFX_NOTIFY*)pExtra;
+         __NOTIFY* pNotify = (__NOTIFY*)pExtra;
          ENSURE(pNotify != NULL);
          ASSERT(pNotify->pResult != NULL);
          ASSERT(pNotify->pNMHDR != NULL);
@@ -214,9 +214,9 @@ AFX_STATIC BOOL _AfxDispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
             pNotify->pResult);
       }
       break;
-   case AfxSig_bwNMHDRpl:
+   case gen::Sig_bwNMHDRpl:
       {
-         AFX_NOTIFY* pNotify = (AFX_NOTIFY*)pExtra;
+         __NOTIFY* pNotify = (__NOTIFY*)pExtra;
          ENSURE(pNotify != NULL);
          ASSERT(pNotify->pResult != NULL);
          ASSERT(pNotify->pNMHDR != NULL);
@@ -224,7 +224,7 @@ AFX_STATIC BOOL _AfxDispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
             pNotify->pResult);
       }
       break;
-   case AfxSig_cmdui:
+   case gen::Sig_cmdui:
       {
          // ON_UPDATE_COMMAND_UI or ON_UPDATE_COMMAND_UI_REFLECT case
          ASSERT(CN_UPDATE_COMMAND_UI == (UINT)-1);
@@ -238,7 +238,7 @@ AFX_STATIC BOOL _AfxDispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
       }
       break;
 
-   case AfxSig_cmduiw:
+   case gen::Sig_cmduiw:
       {
          // ON_UPDATE_COMMAND_UI case
          ASSERT(nCode == CN_UPDATE_COMMAND_UI);
@@ -253,10 +253,10 @@ AFX_STATIC BOOL _AfxDispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
       break;
 
    // general extensibility hooks
-   case AfxSig_vpv:
+   case gen::Sig_vpv:
       (pTarget->*mmf.pfn_OTHER)(pExtra);
       break;
-   case AfxSig_bpv:
+   case gen::Sig_bpv:
       bResult = (pTarget->*mmf.pfn_OTHER_EX)(pExtra);
       break;
    */
@@ -280,8 +280,8 @@ bool command_target::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 {
 
    // determine the message number and code (packed into nCode)
-   const AFX_MSGMAP* pMessageMap;
-   const AFX_MSGMAP_ENTRY* lpEntry;
+   const __MSGMAP* pMessageMap;
+   const __MSGMAP_ENTRY* lpEntry;
    UINT nMsg = 0;
 
 
@@ -302,7 +302,7 @@ bool command_target::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    {
       // Note: catches  // BEGIN_MESSAGE_MAP(CMyClass, CMyClass)!
       ASSERT(pMessageMap != (*pMessageMap->pfnGetBaseMap)());
-      lpEntry = AfxFindMessageEntry(pMessageMap->lpEntries, nMsg, nCode, nID);
+      lpEntry = gen::FindMessageEntry(pMessageMap->lpEntries, nMsg, nCode, nID);
       if (lpEntry != NULL)
       {
          // found it
@@ -314,7 +314,7 @@ bool command_target::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
             TRACE(traceCmdRouting, 1, "SENDING control notification %d from control id 0x%04X to %hs ::ca::window.\n",
                nCode, nID, typeid(*this).name());
 #endif //_DEBUG
-         return _AfxDispatchCmdMsg(this, nID, nCode,
+         return _gen::DispatchCmdMsg(this, nID, nCode,
             lpEntry->pfn, pExtra, lpEntry->nSig, pHandlerInfo);
       }
    }
@@ -336,19 +336,19 @@ void command_target::RestoreWaitCursor()
 // Root of message maps
 
 
-//const AFX_MSGMAP* command_target::GetMessageMap() const
+//const __MSGMAP* command_target::GetMessageMap() const
 //{
 //   return GetThisMessageMap();
 //}
 
 /*
-const AFX_MSGMAP* command_target::GetThisMessageMap()
+const __MSGMAP* command_target::GetThisMessageMap()
 {
-   static const AFX_MSGMAP_ENTRY _messageEntries[] =
+   static const __MSGMAP_ENTRY _messageEntries[] =
    {
-      { 0, 0, AfxSig_end, 0 }     // nothing here
+      { 0, 0, gen::Sig_end, 0 }     // nothing here
    };
-   static const AFX_MSGMAP messageMap =
+   static const __MSGMAP messageMap =
    {
       NULL,
       &_messageEntries[0]
@@ -426,7 +426,7 @@ void cmd_ui::_001SetCheck(check::e_check nCheck)
    }
 }
 
-AFX_STATIC void _AfxLoadDotBitmap(); // for swap tuning
+__STATIC void __load_dot_bitmap(); // for swap tuning
 
 void cmd_ui::SetRadio(BOOL bOn)
 {
@@ -440,7 +440,7 @@ void cmd_ui::SetRadio(BOOL bOn)
       ENSURE(m_iIndex < m_iCount);
 
 /*      if (afxData.hbmMenuDot == NULL)
-         _AfxLoadDotBitmap();    // in INIT segment
+         __load_dot_bitmap();    // in INIT segment
          */
    }
 }
@@ -448,7 +448,7 @@ void cmd_ui::SetRadio(BOOL bOn)
 void cmd_ui::SetText(const char * lpszText)
 {
    ENSURE_ARG(lpszText != NULL);
-   ASSERT(AfxIsValidString(lpszText));
+   ASSERT(__is_valid_string(lpszText));
 
    {
       ENSURE(m_pOther != NULL);
@@ -476,13 +476,13 @@ BOOL cmd_ui::DoUpdate(command_target* pTarget, BOOL bDisableIfNoHndler)
 // Special init
 
 
-AFX_STATIC_DATA const BYTE _afxDot[] =
+__STATIC_DATA const BYTE gen_Dot[] =
    { 0x6, 0xF, 0xF, 0xF, 0x6 }; // simple byte bitmap, 1=> bit on
 #define DOT_WIDTH   4
 #define DOT_HEIGHT  5
 
 /*
-AFX_STATIC void _AfxLoadDotBitmap()
+__STATIC void __load_dot_bitmap()
 {
    ASSERT(afxData.hbmMenuDot == NULL);
    // attempt to load special bitmap, else default to arrow
@@ -505,7 +505,7 @@ AFX_STATIC void _AfxLoadDotBitmap()
 
    BYTE* pbOut = &rgbBitmap[iwRow * sizeof(WORD) *
                      ((size.cy - (DOT_HEIGHT+1)) >> 1)];
-   const BYTE* pbIn = _afxDot;
+   const BYTE* pbIn = gen_Dot;
    for (int y = 0; y < DOT_HEIGHT; y++)
    {
       WORD w = (WORD)~(((DWORD)*pbIn++) << nShift);

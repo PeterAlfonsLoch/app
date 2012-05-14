@@ -135,7 +135,7 @@ namespace planebase
 
    };
 
-   CLASS_DECL_ca UINT AFX_CDECL application_thread_procedure(LPVOID pvoid);
+   CLASS_DECL_ca UINT c_cdecl application_thread_procedure(LPVOID pvoid);
 
    typedef ::ca::application * (* LPFN_instantiate_application)(::ca::application * pappParent, const char * pszId);
 

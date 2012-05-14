@@ -55,7 +55,7 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#include "StdAfx.h"
+#include "framework.h"
 #include "ca4_nessie.h"
 
 /* #define TRACE_INTERMEDIATE_VALUES */

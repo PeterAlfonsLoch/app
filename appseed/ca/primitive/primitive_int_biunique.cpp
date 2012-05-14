@@ -1,4 +1,5 @@
-#include "Stdafx.h"
+#include "framework.h"
+
 
 index_biunique::index_biunique(::ca::application * papp) : 
    biunique < index >(papp) 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 veiev_post::veiev_post(db_server * pserver) :
    db_set(pserver, "veiev_post")

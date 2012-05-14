@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace ca2
@@ -31,34 +31,34 @@ namespace ca2
       m_straSeparator.add("\r");
       m_straSeparator.add("\n");
 
-      set_trace_category(_template::trace::category_General, "category_General", 3000);
-      set_trace_category(_template::trace::category_COM, "category_COM", 0);
-      set_trace_category(_template::trace::category_QI, "category_QI", 0);
-      set_trace_category(_template::trace::category_Registrar, "category_Registrar", 0);
-      set_trace_category(_template::trace::category_Refcount, "category_Refcount", 0);
-      set_trace_category(_template::trace::category_Windowing, "category_Windowing", 0);
-      set_trace_category(_template::trace::category_Controls, "category_Controls", 0);
-      set_trace_category(_template::trace::category_Hosting, "category_Hosting", 0);
-      set_trace_category(_template::trace::category_DBClient, "category_DBClient", 0);
-      set_trace_category(_template::trace::category_DBProvider, "category_DBProvider", 0);
-      set_trace_category(_template::trace::category_Snapin, "category_Snapin", 0);
-      set_trace_category(_template::trace::category_NotImpl, "category_NotImpl", 0);
-      set_trace_category(_template::trace::category_Allocation, "category_Allocation", 0);
-      set_trace_category(_template::trace::category_Exception, "category_Exception", 0);
-      set_trace_category(_template::trace::category_Time, "category_Time", 0);
-      set_trace_category(_template::trace::category_Cache, "category_Cache", 0);
-      set_trace_category(_template::trace::category_Stencil, "category_Stencil", 0);
-      set_trace_category(_template::trace::category_String, "category_String", 0);
-      set_trace_category(_template::trace::category_Map, "category_Map", 0);
-      set_trace_category(_template::trace::category_Util, "category_Util", 0);
-      set_trace_category(_template::trace::category_Security, "category_Security", 0);
-      set_trace_category(_template::trace::category_Sync, "category_Sync", 0);
-      set_trace_category(_template::trace::category_ISAPI, "category_ISAPI", 0);
+      set_trace_category(gen::trace::category_General, "category_General", 3000);
+      set_trace_category(gen::trace::category_COM, "category_COM", 0);
+      set_trace_category(gen::trace::category_QI, "category_QI", 0);
+      set_trace_category(gen::trace::category_Registrar, "category_Registrar", 0);
+      set_trace_category(gen::trace::category_Refcount, "category_Refcount", 0);
+      set_trace_category(gen::trace::category_Windowing, "category_Windowing", 0);
+      set_trace_category(gen::trace::category_Controls, "category_Controls", 0);
+      set_trace_category(gen::trace::category_Hosting, "category_Hosting", 0);
+      set_trace_category(gen::trace::category_DBClient, "category_DBClient", 0);
+      set_trace_category(gen::trace::category_DBProvider, "category_DBProvider", 0);
+      set_trace_category(gen::trace::category_Snapin, "category_Snapin", 0);
+      set_trace_category(gen::trace::category_NotImpl, "category_NotImpl", 0);
+      set_trace_category(gen::trace::category_Allocation, "category_Allocation", 0);
+      set_trace_category(gen::trace::category_Exception, "category_Exception", 0);
+      set_trace_category(gen::trace::category_Time, "category_Time", 0);
+      set_trace_category(gen::trace::category_Cache, "category_Cache", 0);
+      set_trace_category(gen::trace::category_Stencil, "category_Stencil", 0);
+      set_trace_category(gen::trace::category_String, "category_String", 0);
+      set_trace_category(gen::trace::category_Map, "category_Map", 0);
+      set_trace_category(gen::trace::category_Util, "category_Util", 0);
+      set_trace_category(gen::trace::category_Security, "category_Security", 0);
+      set_trace_category(gen::trace::category_Sync, "category_Sync", 0);
+      set_trace_category(gen::trace::category_ISAPI, "category_ISAPI", 0);
 
-      set_trace_category(_template::trace::category_User, "category_User", 0);
-      set_trace_category(_template::trace::category_User2, "category_User2", 0);
-      set_trace_category(_template::trace::category_User3, "category_User3", 0);
-      set_trace_category(_template::trace::category_User4, "category_User4", 0);
+      set_trace_category(gen::trace::category_User, "category_User", 0);
+      set_trace_category(gen::trace::category_User2, "category_User2", 0);
+      set_trace_category(gen::trace::category_User3, "category_User3", 0);
+      set_trace_category(gen::trace::category_User4, "category_User4", 0);
 
 
       set_trace_category(radix::trace::category_AppMsg, "AppMsg", 0);        // main message pump trace (includes DDE)
@@ -82,7 +82,7 @@ namespace ca2
    {
       va_list ptr;
       va_start(ptr, pszFormat);
-      trace_v(NULL, -1, _template::trace::category_General, 0, pszFormat, ptr);
+      trace_v(NULL, -1, gen::trace::category_General, 0, pszFormat, ptr);
       va_end(ptr);
    }
 
@@ -138,7 +138,7 @@ namespace ca2
          return;
       va_list ptr;
       va_start(ptr, pszFormat);
-      trace_v(NULL, -1, _template::trace::category_General, 0, pszFormat, ptr);
+      trace_v(NULL, -1, gen::trace::category_General, 0, pszFormat, ptr);
       va_end(ptr);
    }
 
@@ -164,8 +164,8 @@ namespace ca2
       //((log * )this)->print(pszFormat, args);
       //m_trace.TraceV(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
       log * plog = (log *) this;
-      _template::CTraceCategory & category = plog->m_trace.m_map[dwCategory];
-      if(category.m_estatus == _template::trace::status_disabled || category.m_uiLevel > category.m_uiLevel)
+      gen::trace::category & category = plog->m_trace.m_map[dwCategory];
+      if(category.m_estatus == gen::trace::status_disabled || category.m_uiLevel > category.m_uiLevel)
          return;
       string str;
       str.FormatV(pszFormat, args);
@@ -192,7 +192,7 @@ namespace ca2
          }
       }*/
       string strPre;
-      class time time;
+      ::datetime::time time;
       time = time.get_current_time();
       time.Format(strPre, "%Y-%m-%d %H:%M:%S");
       string strTick;
@@ -255,11 +255,11 @@ namespace ca2
 
    void log::set_trace_category(DWORD dwCategory, const char * pszName, unsigned int uiLevel)
    {
-      _template::CTraceCategory & category = m_trace[dwCategory];
+      gen::trace::category & category = m_trace[dwCategory];
       category.m_strCategory = pszName;
       category.m_dwCategory = dwCategory;
       category.m_uiLevel = uiLevel;
-      category.m_estatus = uiLevel >= 1 ? _template::trace::status_enabled : _template::trace::status_disabled;
+      category.m_estatus = uiLevel >= 1 ? gen::trace::status_enabled : gen::trace::status_disabled;
    }
 
 

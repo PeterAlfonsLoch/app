@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace ca2
 {
@@ -62,7 +62,7 @@ namespace ca2
 // 0 is Sunday
    int datetime::get_weekday(int year, int month, int day)
    {
-      class time time(year, month, day, 0, 0, 0);
+      ::datetime::time time(year, month, day, 0, 0, 0);
       return atoi(time.Format("%w"));
    }
 
@@ -76,7 +76,7 @@ namespace ca2
 
    int64_t datetime::strtotime(::user::str_context * pcontext, const char * psz, int iPath, int & iPathCount)
    {
-      class time time;
+      ::datetime::time time;
       ::datetime::value val =::datetime::strtotime(get_app(), pcontext, psz, iPath, iPathCount);
       if(val.m_bSpan)
          time = time.get_current_time() + val.GetSpan();
@@ -88,7 +88,7 @@ namespace ca2
    int64_t datetime::strtotime(::user::str_context * pcontext, const char * psz, time_t timeParam, int iPath, int & iPathCount)
    {
       UNREFERENCED_PARAMETER(iPath);
-      class time time(timeParam);
+      ::datetime::time time(timeParam);
       iPathCount = 1;
       ::datetime::value val = ::datetime::value(time) +
          ::datetime::span_strtotime(get_app(), pcontext, psz);
@@ -168,7 +168,7 @@ namespace ca2
    }
 
 
-   string datetime::international::get_gmt_date_time(const class time & time)
+   string datetime::international::get_gmt_date_time(const ::datetime::time & time)
    {
       string str;
       time.FormatGmt(str, "%Y-%m-%d %H:%M:%S");
@@ -177,12 +177,12 @@ namespace ca2
 
    string datetime::international::get_gmt_date_time()
    {
-      class time time;
+      ::datetime::time time;
       time = time.get_current_time();
       return get_gmt_date_time(time);
    }
 
-   string datetime::international::get_local_date_time(const class time & time)
+   string datetime::international::get_local_date_time(const ::datetime::time & time)
    {
       string str;
       time.Format(str, "%Y-%m-%d %H:%M:%S");
@@ -191,7 +191,7 @@ namespace ca2
 
    string datetime::international::get_local_date_time()
    {
-      class time time;
+      ::datetime::time time;
       time = time.get_current_time();
       return get_local_date_time(time);
    }
@@ -204,7 +204,7 @@ namespace ca2
 
    string datetime::str::get_gmt_date_time()
    {
-      return m_pdatetime->international().get_gmt_date_time(time::get_current_time());
+      return m_pdatetime->international().get_gmt_date_time(::datetime::time::get_current_time());
    }
 
    time_t datetime::mktime(int iHour, int iMinute, int iSecond, int iMonth, int iDay, int iYear)
@@ -245,13 +245,13 @@ namespace ca2
          "datetimestr_month[" + gen::str::itoa(iMonth - 1) + "]");
    }
 
-   class time datetime::from_gmt_date_time(int iYear, int iMonth, int iDay, int iHour, int iMinute, int iSecond)
+   ::datetime::time datetime::from_gmt_date_time(int iYear, int iMonth, int iDay, int iHour, int iMinute, int iSecond)
    {
-      class time timeLocalNow = time::get_current_time();
+      ::datetime::time timeLocalNow = ::datetime::time::get_current_time();
       struct tm tmLocalNow;
       timeLocalNow.GetGmtTm(&tmLocalNow);
-      class time timeUTCNow(tmLocalNow.tm_year + 1900, tmLocalNow.tm_mon + 1, tmLocalNow.tm_mday, tmLocalNow.tm_hour, tmLocalNow.tm_min, tmLocalNow.tm_sec);
-      class time timeUTC(tmLocalNow.tm_year + 1900, tmLocalNow.tm_mon + 1, tmLocalNow.tm_mday, tmLocalNow.tm_hour, tmLocalNow.tm_min, tmLocalNow.tm_sec);
+      ::datetime::time timeUTCNow(tmLocalNow.tm_year + 1900, tmLocalNow.tm_mon + 1, tmLocalNow.tm_mday, tmLocalNow.tm_hour, tmLocalNow.tm_min, tmLocalNow.tm_sec);
+      ::datetime::time timeUTC(tmLocalNow.tm_year + 1900, tmLocalNow.tm_mon + 1, tmLocalNow.tm_mday, tmLocalNow.tm_hour, tmLocalNow.tm_min, tmLocalNow.tm_sec);
       return timeUTC + (timeUTCNow - timeLocalNow);
    }
 
@@ -454,7 +454,7 @@ int ISO_WN(int  y, int m, int d )
    {
       string strFormat(psz);
       string str;
-      class time time(timeParam);
+      ::datetime::time time(timeParam);
       index iFind = strFormat.find("%V");
       if(iFind >= 0)
       {
@@ -469,8 +469,8 @@ int ISO_WN(int  y, int m, int d )
    string datetime::strftime(const char * psz)
    {
       string str;
-      class time time;
-      time = time::get_current_time();
+      ::datetime::time time;
+      time = ::datetime::time::get_current_time();
       time.FormatGmt(str, psz);
       return str;
    }

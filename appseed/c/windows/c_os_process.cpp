@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <ShellAPI.h> // TODO: try to remove - by replacing -  SHELLEXECUTEINFOA from execute_sync
 
 

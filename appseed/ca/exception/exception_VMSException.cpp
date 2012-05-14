@@ -1,23 +1,20 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
-CVMSException::CVMSException()
+vms_exception::vms_exception()
 {
     m_vmsResult = 0;
 }
 
-CVMSException::CVMSException(VMSRESULT vmsr)
+vms_exception::vms_exception(VMSRESULT vmsr)
 {
     m_vmsResult = vmsr;
 }
 
 
-CVMSException::~CVMSException()
+vms_exception::~vms_exception()
 {
 
 }
 
-CLASS_DECL_ca void AfxThrowVMSException(VMSRESULT vmsr)
-{
-   throw new CVMSException(vmsr);
-}
+

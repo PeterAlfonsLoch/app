@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 // IMPLEMENT_DYNCREATE(file_manager_operation_list_view, ::userbase::view)

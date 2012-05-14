@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 synch_lock::synch_lock(waitable * pobject) :

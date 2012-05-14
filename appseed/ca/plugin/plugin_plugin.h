@@ -85,8 +85,8 @@ namespace plugin
       void start_ca2_logout();
       void ca2_login();
       void ca2_logout();
-      static UINT AFX_CDECL thread_proc_ca2_login(LPVOID pvoid);
-      static UINT AFX_CDECL thread_proc_ca2_logout(LPVOID pvoid);
+      static UINT c_cdecl thread_proc_ca2_login(LPVOID pvoid);
+      static UINT c_cdecl thread_proc_ca2_logout(LPVOID pvoid);
 
 
 

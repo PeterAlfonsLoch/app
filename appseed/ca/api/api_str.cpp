@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 void ultoa_dup(char * sz, uint64_t ui, int iBase)

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace user
@@ -221,15 +221,15 @@ namespace user
       //   ASSERT(FALSE);
          // ca2 API requires paths with length < _MAX_PATH
          // No other way to handle the error from a void function
-      //   AfxThrowFileException(::ex1::file_exception::badPath);
+      //   gen::ThrowFileException(::ex1::file_exception::badPath);
       //}
 
-   //   if( AfxFullPath(szFullPath, lpszPathName) == FALSE )
+   //   if( gen::FullPath(szFullPath, lpszPathName) == FALSE )
    //   {
    //      ASSERT(FALSE);
          // ca2 API requires paths with length < _MAX_PATH
          // No other way to handle the error from a void function
-   //      AfxThrowFileException(::ex1::file_exception::badPath);
+   //      gen::ThrowFileException(::ex1::file_exception::badPath);
    //   }
 
       // store the path fully qualified
@@ -350,7 +350,7 @@ namespace user
             }
          }
 
-         if (!System.do_prompt_file_name(newName, 0 /*bReplace ? AFX_IDS_SAVEFILE : AFX_IDS_SAVEFILECOPY*/, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, FALSE, ptemplate, this))
+         if (!System.do_prompt_file_name(newName, 0 /*bReplace ? __IDS_SAVEFILE : __IDS_SAVEFILECOPY*/, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, FALSE, ptemplate, this))
             return FALSE;       // don't even attempt to save
 
       }
@@ -461,7 +461,7 @@ namespace user
             case CArchiveException::badClass:
             case CArchiveException::badIndex:
             case CArchiveException::endOfFile:
-               nIDP = AFX_IDP_FAILED_INVALID_FORMAT;
+               nIDP = __IDP_FAILED_INVALID_FORMAT;
                break;
             default:
                break;
@@ -484,14 +484,14 @@ namespace user
                {
                   case ::ex1::file_exception::fileNotFound:
                   case ::ex1::file_exception::badPath:
-                     nIDP = AFX_IDP_FAILED_INVALID_PATH;
+                     nIDP = __IDP_FAILED_INVALID_PATH;
                      break;
                   case ::ex1::file_exception::diskFull:
-                     nIDP = AFX_IDP_FAILED_DISK_FULL;
+                     nIDP = __IDP_FAILED_DISK_FULL;
                      break;
                   case ::ex1::file_exception::accessDenied:
-                     nIDP = bSaving ? AFX_IDP_FAILED_ACCESS_WRITE :
-                           AFX_IDP_FAILED_ACCESS_READ;
+                     nIDP = bSaving ? __IDP_FAILED_ACCESS_WRITE :
+                           __IDP_FAILED_ACCESS_READ;
                      break;
 
                   case ::ex1::file_exception::badSeek:
@@ -515,7 +515,7 @@ namespace user
          string strTitle = System.file().title_(lpszPathName);
          //throw not_implemented_exception();
          /*
-         AfxFormatString1(prompt, nIDP, strTitle);*/
+         gen::FormatString1(prompt, nIDP, strTitle);*/
       }
 
       //System.simple_message_box(prompt, MB_ICONEXCLAMATION, nHelpContext);
@@ -557,7 +557,7 @@ namespace user
       }*/
       if(spfile.is_reader_null())
       {
-         report_save_load_exception(varFile, fe, FALSE, "AFX_IDP_FAILED_TO_OPEN_DOC");
+         report_save_load_exception(varFile, fe, FALSE, "__IDP_FAILED_TO_OPEN_DOC");
          return FALSE;
       }
 
@@ -577,7 +577,7 @@ namespace user
 
          try
          {
-            report_save_load_exception(varFile, pe, FALSE, "AFX_IDP_FAILED_TO_OPEN_DOC");
+            report_save_load_exception(varFile, pe, FALSE, "__IDP_FAILED_TO_OPEN_DOC");
          }
          catch(...)
          {
@@ -599,7 +599,7 @@ namespace user
       spfile = Application.get_byte_stream(varFile, ::ex1::file::defer_create_directory | ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::shareExclusive, &fe);
       if(spfile.is_writer_null())
       {
-         report_save_load_exception(varFile, fe, TRUE, "AFX_IDP_INVALID_FILENAME");
+         report_save_load_exception(varFile, fe, TRUE, "__IDP_INVALID_FILENAME");
          return false;
       }
 
@@ -622,7 +622,7 @@ namespace user
 
          try
          {
-            report_save_load_exception(varFile, pe, TRUE, "AFX_IDP_FAILED_TO_SAVE_DOC");
+            report_save_load_exception(varFile, pe, TRUE, "__IDP_FAILED_TO_SAVE_DOC");
          }
          catch(...)
          {

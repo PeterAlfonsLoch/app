@@ -198,9 +198,6 @@ inline void fixed_alloc::Free(void * p)
 }
 
 
-#include "exception/base_exception.h"
-#include "exception/simple_exception.h"
-#include "exception/exception_assert.h"
 
 class CLASS_DECL_ca fixed_alloc_array :
    public simple_array < fixed_alloc * >

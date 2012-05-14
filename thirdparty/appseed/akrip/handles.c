@@ -22,7 +22,7 @@
  **********************************************************************
  *
  */
-#include "StdAfx.h"
+#include "framework.h"
 
 
 extern CDHANDLEREC *cdHandles;

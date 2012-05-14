@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 wait_message_dialog::wait_message_dialog(::ca::application * papp) :

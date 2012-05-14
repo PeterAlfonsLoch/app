@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include "template/template_c_number.h"
-
-
 class CLASS_DECL_ca duration
 {
 public:

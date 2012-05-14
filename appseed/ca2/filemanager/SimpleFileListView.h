@@ -49,7 +49,7 @@ namespace filemanager
       virtual void _017OpenFolder(const ::fs::item & item);
       void StartAnimation();
       void RenameFile(int iLine, string & str);
-      static UINT AFX_CDECL ThreadProcFileSize(LPVOID lpparam);
+      static UINT c_cdecl ThreadProcFileSize(LPVOID lpparam);
 
       void FileSize();
 

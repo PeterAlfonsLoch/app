@@ -24,7 +24,7 @@
  *   so that I may know how useful this library is. This will encourage
  *   me to keep updating it.
  */
-#include "StdAfx.h"
+#include "framework.h"
 
 /*#pragma warning(push, 4)
 
@@ -49,7 +49,7 @@ const unsigned short LiteHTMLElemAttr::_percentMax = USHRT_MAX;
  */
 DWORD_PTR LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const char * lpszString)
 {
-   ASSERT(AfxIsValidString(lpszString));
+   ASSERT(__is_valid_string(lpszString));
 
    const char *   lpszBegin = lpszString;
    const char *   lpszEnd;
@@ -191,7 +191,7 @@ DWORD_PTR LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
  */
 DWORD_PTR LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const char * lpszString)
 {
-   ASSERT(AfxIsValidString(lpszString));
+   ASSERT(__is_valid_string(lpszString));
 
    CElemAttrArray      *pcoll = NULL;
    LiteHTMLElemAttr   oElemAttr;
@@ -257,8 +257,8 @@ LCleanExit:
 
    LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const char * lpszName, const char * lpszValue)
    {
-      ASSERT(AfxIsValidString(lpszName));
-      ASSERT(AfxIsValidString(lpszValue));
+      ASSERT(__is_valid_string(lpszName));
+      ASSERT(__is_valid_string(lpszValue));
 
       LiteHTMLElemAttr   *pItem = new LiteHTMLElemAttr(lpszName, lpszValue);
       if (pItem != NULL)
@@ -281,7 +281,7 @@ LCleanExit:
 
 void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const char * lpszValue)
 {
-   ASSERT(AfxIsValidString(lpszValue));
+   ASSERT(__is_valid_string(lpszValue));
 
    m_strValue = lpszValue;
 

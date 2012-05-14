@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 db_set::db_set(db_server * pserver, const char * pszTable)
 {

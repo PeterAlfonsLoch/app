@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="bitwise.c">
-      <Filter>Source Files\C Source Files</Filter>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framing.c">
-      <Filter>Source Files\C Source Files</Filter>
+    <ClCompile Include="framing.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StdAfx.c">
+    <ClCompile Include="bitwise.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -18,16 +18,13 @@
     <ClInclude Include="..\..\..\include\ogg\os_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StdAfx.h">
+    <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
       <UniqueIdentifier>{80fac8c6-f3ab-42ff-bc0c-b9291011f434}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\C Source Files">
-      <UniqueIdentifier>{bdfdd276-135b-4ad5-b14d-4e1236f6eceb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{9c891899-48bb-45bd-8170-931c863e4f62}</UniqueIdentifier>

@@ -98,7 +98,7 @@ namespace filemanager
 
             BuildHelper          m_buildhelper;
 
-            static UINT AFX_CDECL ThreadProcFillTask(LPVOID lpParameter);
+            static UINT c_cdecl ThreadProcFillTask(LPVOID lpParameter);
 
             class FillTask
             {

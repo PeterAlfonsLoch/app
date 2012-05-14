@@ -1,19 +1,16 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 mutex::mutex(BOOL bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
    sync_object(pstrName)
-#ifdef WINDOWS
-   ,base_sync_object(pstrName)
-#endif
 {
 
 #ifdef _WIN32
-   m_hObject = ::CreateMutex(lpsaAttribute, bInitiallyOwn, pstrName);
-   if (m_hObject == NULL)
-      AfxThrowResourceException();
+   m_object = ::CreateMutex(lpsaAttribute, bInitiallyOwn, pstrName);
+   if (m_object == NULL)
+      throw resource_exception();
 #else
-   pthread_mutex_init(&m_hObject, NULL);
+   pthread_mutex_init(&m_object, NULL);
 #endif
 
 }
@@ -23,7 +20,7 @@ mutex::~mutex()
 {
 
 #ifndef _WIN32
-   pthread_mutex_destroy(&m_hObject);
+   pthread_mutex_destroy(&m_object);
 #endif
 
 }
@@ -63,9 +60,9 @@ bool mutex::unlock()
 {
 
 #ifdef _WIN32
-   return ::ReleaseMutex(m_hObject) != FALSE;
+   return ::ReleaseMutex(m_object) != FALSE;
 #else
-   return pthread_mutex_unlock(&m_hObject) != 0;
+   return pthread_mutex_unlock(&m_object) != 0;
 #endif
 
 }

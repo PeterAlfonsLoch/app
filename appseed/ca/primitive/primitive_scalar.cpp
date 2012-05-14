@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 void DoubleScalar::SetScalar(int i, double d)
 {

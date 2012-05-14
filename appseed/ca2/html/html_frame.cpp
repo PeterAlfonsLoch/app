@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #include "html_frame.h"
 #include "html_view.h"
@@ -10,7 +10,7 @@ html_frame  * g_pframe;
 // IMPLEMENT_DYNCREATE(html_frame, simple_frame_window)
 
  // BEGIN_MESSAGE_MAP(html_frame, simple_frame_window)
-   //{{AFX_MSG_MAP(html_frame)
+   //{{__MSG_MAP(html_frame)
 /*
    ON_WM_CREATE()
    ON_WM_GETMINMAXINFO()
@@ -22,7 +22,7 @@ html_frame  * g_pframe;
    ON_WM_INITMENUPOPUP()
    ON_WM_INITMENU()
    ON_WM_ACTIVATE()
-   //}}AFX_MSG_MAP
+   //}}__MSG_MAP
    // Global help commands
    ON_COMMAND(ID_HELP_FINDER, simple_frame_window::OnHelpFinder)
    ON_COMMAND(ID_HELP, simple_frame_window::OnHelp)
@@ -118,7 +118,7 @@ int html_frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
       WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP | CBRS_GRIPPER | CBRS_SIZE_DYNAMIC
       | CBRS_DRAGMOVE,
       rect(0, 0, 0, 0),
-      AFX_IDW_TOOLBAR) ||
+      __IDW_TOOLBAR) ||
       !m_toolbar.LoadToolBar(IDR_MAINFRAME))
    {
       TRACE0("Failed to create toolbar\n");
@@ -129,7 +129,7 @@ int html_frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
       WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP | CBRS_GRIPPER | CBRS_SIZE_DYNAMIC
       | CBRS_DRAGMOVE,
       rect(0, 0, 0, 0),
-      AFX_IDW_TOOLBAR + 1) ||
+      __IDW_TOOLBAR + 1) ||
       !m_toolbarView.LoadToolBar(IDR_VIEW))
    {
       TRACE0("Failed to create toolbar\n");
@@ -139,7 +139,7 @@ int html_frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
    
    if (!m_dialogbar.create(this, IDR_MAINFRAME, 
       WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP | CBRS_GRIPPER | CBRS_SIZE_DYNAMIC
-      | CBRS_DRAGMOVE, AFX_IDW_DIALOGBAR))
+      | CBRS_DRAGMOVE, __IDW_DIALOGBAR))
    {
       TRACE0("Failed to create dialogbar\n");
       return -1;      // fail to create

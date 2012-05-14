@@ -8,7 +8,7 @@
 // 
 // 
 
-#include "StdAfx.h"
+#include "framework.h"
 #include "sal.h"
 
 
@@ -16,7 +16,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 
-BOOL AfxExtractSubString(string & rString, const char * lpszFullString,
+BOOL __extract_sub_string(string & rString, const char * lpszFullString,
    int iSubString, char chSep)
 {
    if (lpszFullString == NULL)
@@ -36,7 +36,7 @@ BOOL AfxExtractSubString(string & rString, const char * lpszFullString,
    int nLen = (lpchEnd == NULL) ?
       lstrlen(lpszFullString) : (int)(lpchEnd - lpszFullString);
    ASSERT(nLen >= 0);
-   _template::checked::memcpy_s(rString.GetBufferSetLength(nLen), nLen*sizeof(char),
+   ::gen::memcpy_s(rString.GetBufferSetLength(nLen), nLen*sizeof(char),
       lpszFullString, nLen*sizeof(char));
    rString.ReleaseBuffer();   // Need to call ReleaseBuffer 
                         // after calling GetBufferSetLength

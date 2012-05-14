@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -221,7 +221,7 @@ namespace user
       else
       {
          BOOL bWin4 = FALSE;
-      //_AfxFillPSOnStack();
+      //_gen::FillPSOnStack();
          ::DefWindowProc(
             hwndParam,
             (bWin4 ? WM_PRINT : WM_PAINT),

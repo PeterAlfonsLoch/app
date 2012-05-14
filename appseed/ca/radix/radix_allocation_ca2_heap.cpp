@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 extern CLASS_DECL_ca plex_heap_alloc_array g_heap;
 

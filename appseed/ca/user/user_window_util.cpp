@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace user
 {
@@ -522,7 +522,7 @@ namespace user
    if (pWnd != NULL)
    {
    // call ::ca::window proc directly since it is a C++ ::ca::window
-   AfxCallWndProc(pWnd, pWnd->m_hWnd, message, wParam, lParam);
+   __call_window_procedure(pWnd, pWnd->m_hWnd, message, wParam, lParam);
    }
    }
    else

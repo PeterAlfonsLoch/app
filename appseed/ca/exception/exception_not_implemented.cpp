@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 not_implemented_exception::not_implemented_exception(const not_implemented_exception & e) : 
    base_exception(e), 

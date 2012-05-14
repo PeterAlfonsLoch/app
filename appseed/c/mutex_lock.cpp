@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 mutex_lock::mutex_lock(simple_mutex * pmutex, bool bInitialLock)

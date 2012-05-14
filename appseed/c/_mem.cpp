@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 void * memset_dup(void * p, int uch, size_t iSize)
 {

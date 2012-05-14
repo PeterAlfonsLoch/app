@@ -2,8 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#if !defined(AFX__VMSGENTIMER_H__1CB5622E_03B6_4227_BF09_C336375C28B7__INCLUDED_)
-#define AFX__VMSGENTIMER_H__1CB5622E_03B6_4227_BF09_C336375C28B7__INCLUDED_
+#if !defined(___VMSGENTIMER_H__1CB5622E_03B6_4227_BF09_C336375C28B7__INCLUDED_)
+#define ___VMSGENTIMER_H__1CB5622E_03B6_4227_BF09_C336375C28B7__INCLUDED_
 
 #if _MSC_VER > 1000
 #pragma once
@@ -31,4 +31,4 @@ public:
    static const UINT ID_HOVER;
 };
 } // namespace gen
-#endif // !defined(AFX__VMSGENTIMER_H__1CB5622E_03B6_4227_BF09_C336375C28B7__INCLUDED_)
+#endif // !defined(___VMSGENTIMER_H__1CB5622E_03B6_4227_BF09_C336375C28B7__INCLUDED_)

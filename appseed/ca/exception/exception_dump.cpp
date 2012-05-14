@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
-AFX_DATADEF dump_context afxdump;
+__DATADEF dump_context g_dumpcontext;

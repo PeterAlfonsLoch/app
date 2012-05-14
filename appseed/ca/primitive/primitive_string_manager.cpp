@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 #define ROUND(x,y) (((x)+(y-1))&~(y-1))
@@ -7,7 +7,7 @@
 string_manager::string_manager()
 {
    m_palloca = new fixed_alloc_array();
-   //BOOL bEnable = AfxEnableMemoryTracking(FALSE);
+   //BOOL bEnable = __enable_memory_tracking(FALSE);
    try
    {
       m_palloca->add(new fixed_alloc(ROUND4(32), 1024));
@@ -57,7 +57,7 @@ string_manager::string_manager()
    catch(...)
    {
    }
-   //AfxEnableMemoryTracking(bEnable);
+   //__enable_memory_tracking(bEnable);
 
    
    

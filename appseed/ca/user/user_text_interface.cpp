@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 void text_interface::_001GetText(string & str) const
 {

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 
@@ -1567,7 +1567,7 @@ namespace user
 
       interaction * hWndParent = this;
       interaction * hWndT;
-      while ((hWndT = AfxGetParentOwner(hWndParent)) != NULL)
+      while ((hWndT = __get_parent_owner(hWndParent)) != NULL)
       {
          if(hWndT->get_wnd() == NULL)
             break;
@@ -2073,7 +2073,7 @@ namespace user
                puieParent->SendMessage(WM_ENTERIDLE, MSGF_DIALOGBOX, NULL);
             }
             /*if ((dwFlags & MLF_NOKICKIDLE) ||
-               !AfxCallWndProc(this, get_handle(), WM_KICKIDLE, MSGF_DIALOGBOX, lIdleCount++))
+               !__call_window_procedure(this, get_handle(), WM_KICKIDLE, MSGF_DIALOGBOX, lIdleCount++))
             {
                // stop idle processing next time
                bIdle = FALSE;
@@ -2104,7 +2104,7 @@ namespace user
             // pump message, but quit on WM_QUIT
             if (!m_pthread->pump_message())
             {
-               AfxPostQuitMessage(0);
+               __post_quit_message(0);
                return -1;
             }
 
@@ -2125,7 +2125,7 @@ namespace user
             
             todo: enable again to update menu enabled/and other states
             
-            if (AfxIsIdleMessage(&msg))
+            if (__is_idle_message(&msg))
             {
                bIdle = TRUE;
                lIdleCount = 0;
@@ -3010,7 +3010,7 @@ CLASS_DECL_ca ::user::interaction * WINAPI CreateGuieEx(
 
 
 
-::user::interaction * AfxGetParentOwner(::user::interaction * hWnd)
+::user::interaction * __get_parent_owner(::user::interaction * hWnd)
 {
    // check for permanent-owned ::ca::window first
    ::user::interaction* pWnd = hWnd;

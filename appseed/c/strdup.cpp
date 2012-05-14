@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 //BEGIN_EXTERN_C
 

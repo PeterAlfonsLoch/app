@@ -1,6 +1,6 @@
-#include "StdAfx.h"
+#include "framework.h"
 
-BOOL AfxAssertFailedLine(const char * lpszFileName, int nLine)
+BOOL __assert_failed_line(const char * lpszFileName, int nLine)
 {
    ::ca::thread * pthread = ::ca::get_thread();
    if(pthread == NULL)

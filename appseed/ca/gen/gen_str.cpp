@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #ifdef LINUX
 #include <ctype.h>

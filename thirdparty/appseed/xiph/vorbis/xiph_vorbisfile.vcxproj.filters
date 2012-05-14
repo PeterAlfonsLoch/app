@@ -1,19 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="vorbisfile.c">
-      <Filter>Source Files\C Source Files</Filter>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StdAfx.c">
+    <ClCompile Include="vorbisfile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
       <UniqueIdentifier>{a7504f28-aece-4d97-9ac1-58c18194d739}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\C Source Files">
-      <UniqueIdentifier>{3c33e1ec-4452-4e32-9fb4-891261464661}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{d6eedec2-547d-4f38-977b-cb13b7d713cc}</UniqueIdentifier>
@@ -23,7 +20,7 @@
     <ClInclude Include="..\..\..\include\vorbis\vorbisfile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StdAfx.h">
+    <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

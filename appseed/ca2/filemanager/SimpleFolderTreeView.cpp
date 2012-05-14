@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 #define SHELL_COMMAND_FIRST 0x1000

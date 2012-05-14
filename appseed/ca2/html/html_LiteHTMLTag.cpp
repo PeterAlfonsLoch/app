@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 lite_html_tag::lite_html_tag(lite_html_tag &rSource, bool bCopy) throw(memory_exception)
@@ -51,7 +51,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const char * lpsz
                               bool &bIsClosingTag, 
                               bool bParseAttrib /* = true */)
 {
-   ASSERT(AfxIsValidString(lpszString));
+   ASSERT(__is_valid_string(lpszString));
 
    bool            bClosingTag = false;
    bool            bOpeningTag = false;
@@ -161,7 +161,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const char * lpsz
          if ((pcollAttr = new LiteHTMLAttributes) == NULL)
          {
 //            TRACE0("(Error) lite_html_tag::parseFromStr: Out of primitive::memory.\n");
-            AfxThrowMemoryException();
+            throw memory_exception();
             return (0U);
          }
 

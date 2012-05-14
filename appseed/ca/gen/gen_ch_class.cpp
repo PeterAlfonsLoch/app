@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "x/x_charcategory2.h"
 #include "x/x_charcategory_names.h"
 
@@ -32,7 +32,7 @@ namespace gen
       string str = ccs;
       if(str == "(%back;?#1[\\.\\:]|\\^)\\M[^%nname;]+")
       {
-         //AfxDebugBreak();
+         //__debug_break();
       }
       ch_class *cc = new ch_class();
       ch_class cc_temp;

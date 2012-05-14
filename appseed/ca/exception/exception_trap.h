@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include "AtlAux2.h"
+#include "gen_Aux2.h"
 
 struct unhandled_policy
 {

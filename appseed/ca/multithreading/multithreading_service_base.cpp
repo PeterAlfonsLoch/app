@@ -9,7 +9,7 @@
 //
 //*****************************************************************************
 
-#include "StdAfx.h"
+#include "framework.h"
 
 
 //
@@ -59,7 +59,7 @@ service_base::~service_base()
 //*****************************************************************************
 void service_base::run(service_base& service)
 {
-   ATLASSERT(0 == m_service);
+   ASSERT(0 == m_service);
    m_service = &service;
 
    SERVICE_TABLE_ENTRYW serviceTable[] =
@@ -74,13 +74,13 @@ void service_base::run(service_base& service)
 
    if (!::StartServiceCtrlDispatcherW(serviceTable))
    {
-      _template::AtlThrowLastWin32();
+      throw last_error_exception();
    }
 }
 
 DWORD Win32FromHResult(HRESULT value)
 {
-    ATLASSERT(FACILITY_WIN32 == HRESULT_FACILITY(value));
+    ASSERT(FACILITY_WIN32 == HRESULT_FACILITY(value));
     return value & ~0x80070000;
 }
 
@@ -97,8 +97,8 @@ void service_base::UpdateState(DWORD state,
 {
     m_status.dwCurrentState = state;
 
-    ATLASSERT(0 == m_status.dwWin32ExitCode);
-    ATLASSERT(0 == m_status.dwServiceSpecificExitCode);
+    ASSERT(0 == m_status.dwWin32ExitCode);
+    ASSERT(0 == m_status.dwServiceSpecificExitCode);
 
     if (FAILED(errorCode))
     {
@@ -131,12 +131,12 @@ void service_base::SetServiceStatus()
     if (0 != m_service)
     {
 #endif
-        ATLASSERT(0 != m_service);
+        ASSERT(0 != m_service);
 
         if (!::SetServiceStatus(m_handle,
                                 &m_status))
         {
-           _template::AtlThrowLastWin32();
+           throw last_error_exception();
         }
 #ifdef DEBUG
     }
@@ -172,11 +172,11 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount,
     // process terminate. The SCM will diligently log this event.
     //
 
-    ATLASSERT(0 != m_service);
+    ASSERT(0 != m_service);
 
     if (1 != argumentCount || 0 == arguments || 0 == arguments[0])
     {
-        AtlThrow(E_INVALIDARG);
+        throw hresult_exception(E_INVALIDARG);
     }
 
     m_service->m_serviceName = arguments[0];
@@ -186,7 +186,7 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount,
 
     if (0 == m_service->m_handle)
     {
-       _template::AtlThrowLastWin32();
+       throw last_error_exception();
     }
 
     m_service->SetServiceStatus();
@@ -196,7 +196,7 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount,
         m_service->Start(0);
         m_service->UpdateState(SERVICE_RUNNING);
     }
-    catch (const _template::atl_exception& e)
+    catch (const hresult_exception& e)
     {
         //
         // If the service can't start it should throw an exception from the
@@ -245,7 +245,7 @@ void WINAPI service_base::ServiceHandler(DWORD control)
             }
         }
     }
-    catch (const _template::atl_exception& e)
+    catch (const hresult_exception& e)
     {
         m_service->UpdateState(SERVICE_STOPPED, e);
     }

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 UINT g_nCa2StarterStartThreadID;
 bool g_bCa2Installed = false;

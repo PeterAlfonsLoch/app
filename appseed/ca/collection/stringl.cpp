@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 stringl::stringl(INT_PTR nBlockSize) :

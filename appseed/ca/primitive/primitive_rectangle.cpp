@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 void rect::DeflateBottomRightSizeByRate(double dRate)
 {

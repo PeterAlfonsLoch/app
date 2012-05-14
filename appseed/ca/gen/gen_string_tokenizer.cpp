@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 string_tokenizer
 ::string_tokenizer()

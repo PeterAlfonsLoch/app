@@ -1,6 +1,6 @@
 // Crypto/MyAes.cpp
 
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace crypto

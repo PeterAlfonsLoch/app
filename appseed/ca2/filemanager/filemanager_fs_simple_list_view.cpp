@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace filemanager
@@ -410,12 +410,12 @@ namespace filemanager
             ASSERT(FALSE);
             //   FillTask * ptask = new FillTask(this, wstrFile);
             // ptask->m_uiTimer = uiTimer;
-            //AfxBeginThread(
+            //__begin_thread(
             // ThreadProcFillTask,
             //(LPVOID)  ptask);
          }
 
-         UINT AFX_CDECL list_view::ThreadProcFillTask(LPVOID lpParameter)
+         UINT c_cdecl list_view::ThreadProcFillTask(LPVOID lpParameter)
          {
             UNREFERENCED_PARAMETER(lpParameter);
             ASSERT(FALSE);

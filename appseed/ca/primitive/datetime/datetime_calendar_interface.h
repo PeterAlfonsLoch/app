@@ -20,26 +20,26 @@ public:
    int      m_iMonth;
    int      m_iYear;
    bool     m_bRange;
-   class time    m_time;
-   class time    m_timeEnd;
+   ::datetime::time    m_time;
+   ::datetime::time    m_timeEnd;
 
 
    calendar_interface(::ca::application * papp);
 
 
-   virtual void GetRectDay(class time & time, LPRECT lprect);
+   virtual void GetRectDay(::datetime::time & time, LPRECT lprect);
    virtual void GetRectDay(int iWeekDay, int iLine, LPRECT lprect);
    virtual void GetRect(LPRECT lprect, enum EElement eelement);
 
    virtual void set_month(int iYear, int iMonth);
-   virtual void set_time(const class time & time);
-   virtual void set_time_range(const class time & time, const class time & timeEnd);
-   virtual void set_time_end(const class time & timeEnd);
-   virtual void get_time(class time & time);
+   virtual void set_time(const ::datetime::time & time);
+   virtual void set_time_range(const ::datetime::time & time, const ::datetime::time & timeEnd);
+   virtual void set_time_end(const ::datetime::time & timeEnd);
+   virtual void get_time(::datetime::time & time);
    virtual int get_month();
    virtual int get_year();
 
-   virtual int get_week_of_month(class time & time);
+   virtual int get_week_of_month(::datetime::time & time);
 
    virtual void _001OnDraw(::ca::graphics * pdc);
 
@@ -58,7 +58,7 @@ public:
 
    virtual EElement hit_test(point pt);
    virtual bool hit_test(EElement eelement, point pt);
-   virtual bool time_hit_test(class time & time, point pt);
+   virtual bool time_hit_test(::datetime::time & time, point pt);
 
 
 };

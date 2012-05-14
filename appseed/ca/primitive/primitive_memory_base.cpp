@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace primitive
@@ -81,7 +81,7 @@ namespace primitive
       {
          throw "smfOpenFile: read error on image!";
    #ifdef _DEBUG
-         (*pe)->dump(afxdump);
+         (*pe)->dump(g_dumpcontext);
    #endif
          delete pe;
       }

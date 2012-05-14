@@ -27,10 +27,10 @@ namespace gen
 
    // Overrides
       // ClassWizard generated virtual function overrides
-      //{{AFX_VIRTUAL(TimerWnd)
+      //{{__VIRTUAL(TimerWnd)
       public:
       virtual BOOL DestroyWindow();
-      //}}AFX_VIRTUAL
+      //}}__VIRTUAL
 
    // Implementation
    public:

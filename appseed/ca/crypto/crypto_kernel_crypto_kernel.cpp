@@ -42,7 +42,7 @@
  *
  */
 
-#include "StdAfx.h"
+#include "framework.h"
 
 #include "alloc.h"
 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "plugin_instance.h"
 
 

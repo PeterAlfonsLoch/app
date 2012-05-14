@@ -8,7 +8,7 @@
 // 
 // 
 
-#include "StdAfx.h"
+#include "framework.h"
 
 
 
@@ -45,7 +45,7 @@ void view::install_message_handling(::gen::message::dispatch * pinterface)
    ON_COMMAND_EX(ID_NEXT_PANE, &view::OnNextPaneCmd)
    ON_UPDATE_COMMAND_UI(ID_PREV_PANE, &view::OnUpdateNextPaneMenu)
    ON_COMMAND_EX(ID_PREV_PANE, &view::OnNextPaneCmd)
-   //}}AFX_MSG_MAP
+   //}}__MSG_MAP
    // special command for Initial Update
    ON_MESSAGE_VOID(WM_INITIALUPDATE, view::OnInitialUpdate) */
 
@@ -62,7 +62,7 @@ BOOL view::pre_create_window(CREATESTRUCT & cs)
    if (cs.lpszClass == NULL)
    {
       // COLOR_WINDOW background
-      VERIFY(System.DeferRegisterClass(AFX_WNDFRAMEORVIEW_REG, &cs.lpszClass));
+      VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, &cs.lpszClass));
    }
 
    if (cs.style & WS_BORDER)
@@ -313,7 +313,7 @@ BOOL view::OnScrollBy(size /*sizeScroll*/, BOOL /*bDoScroll*/)
 
 ///*DROPEFFECT view::OnDragScroll(DWORD /*dwKeyState*/, point /*point*/)
 //{
-//#ifndef _AFX_NO_OLE_SUPPORT
+//#ifndef ___NO_OLE_SUPPORT
   // return DROPEFFECT_SCROLL; // this means do the default
 //#else
   // return 0;
@@ -465,12 +465,12 @@ BOOL CCtrlView::pre_create_window(CREATESTRUCT& cs)
    cs.lpszClass = m_strClass;
 
    // initialize common controls
-   VERIFY(System.DeferRegisterClass(AFX_WNDCOMMCTLS_REG, NULL));
-   System.DeferRegisterClass(AFX_WNDCOMMCTLSNEW_REG, NULL);
+   VERIFY(System.DeferRegisterClass(__WNDCOMMCTLS_REG, NULL));
+   System.DeferRegisterClass(__WNDCOMMCTLSNEW_REG, NULL);
 
    // ::collection::map default ::view style to default style
    // WS_BORDER is insignificant
-   /*if ((cs.style | WS_BORDER) == AFX_WS_DEFAULT_VIEW)
+   /*if ((cs.style | WS_BORDER) == __WS_DEFAULT_VIEW)
       cs.style = m_dwDefaultStyle & (cs.style | ~WS_BORDER);*/
 
    return view::pre_create_window(cs);

@@ -54,7 +54,7 @@ namespace userbase
       virtual LRESULT DefWindowProc(UINT nMsg, WPARAM wParam, LPARAM lParam);
       BOOL UpdateClientEdge(LPRECT lpRect = NULL);
 
-      //{{AFX_MSG(mdi_child_window)
+      //{{__MSG(mdi_child_window)
       void OnMDIActivate(BOOL bActivate, ::user::interaction*, ::user::interaction*);
       int OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message);
       int OnCreate(LPCREATESTRUCT lpCreateStruct);

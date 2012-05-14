@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "FileManagerViewUpdateHint.h"
 #include "SimpleFileListInterface.h"
 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #ifdef LINUX
 // Ubuntu apt-get install libx11-dev
@@ -274,7 +274,7 @@ namespace gen
    /////////////////////////////////////////////////////////////////////////////
    // WM_NOTIFY support
 
-   struct AFX_NOTIFY
+   struct __NOTIFY
    {
       LRESULT* pResult;
       NMHDR* pNMHDR;
@@ -308,7 +308,7 @@ namespace gen
    /*            case PrototypeNotify:
                   {
 
-                     AFX_NOTIFY* pNotify = (AFX_NOTIFY*)pExtra;
+                     __NOTIFY* pNotify = (__NOTIFY*)pExtra;
                      ASSERT(pNotify != NULL);
                      ASSERT(pNotify->pResult != NULL);
                      ASSERT(pNotify->pNMHDR != NULL);
@@ -325,7 +325,7 @@ namespace gen
                      {
                         // just fill in the information, don't do it
                         //pHandlerInfo->pTarget = (command_target *) 1;
-                        //pHandlerInfo->pmf = (void (AFX_MSG_CALL command_target::*)(void)) NULL;
+                        //pHandlerInfo->pmf = (void (__MSG_CALL command_target::*)(void)) NULL;
                         b = TRUE;
                         return true;
                      }

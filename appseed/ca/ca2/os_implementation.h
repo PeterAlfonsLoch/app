@@ -94,36 +94,36 @@ extern CLASS_DECL_ca AUX_DATA afxData;*/
 // Window class names and other ::ca::window creation support
 
 
-#define AFX_WND_REG                                             0x00001
-#define AFX_WNDCONTROLBAR_REG                   0x00002
-#define AFX_WNDMDIFRAME_REG                             0x00004
-#define AFX_WNDFRAMEORVIEW_REG                  0x00008
-#define AFX_WNDCOMMCTLS_REG                             0x00010 // means all original Win95
-#define AFX_WNDOLECONTROL_REG                   0x00020
-#define AFX_WNDCOMMCTL_UPDOWN_REG       0x00040 // these are original Win95
-#define AFX_WNDCOMMCTL_TREEVIEW_REG     0x00080
-#define AFX_WNDCOMMCTL_TAB_REG                  0x00100
-#define AFX_WNDCOMMCTL_PROGRESS_REG             0x00200
-#define AFX_WNDCOMMCTL_LISTVIEW_REG         0x00400
-#define AFX_WNDCOMMCTL_HOTKEY_REG           0x00800
-#define AFX_WNDCOMMCTL_BAR_REG              0x01000
-#define AFX_WNDCOMMCTL_ANIMATE_REG              0x02000
-#define AFX_WNDCOMMCTL_INTERNET_REG             0x04000 // these are new in IE4
-#define AFX_WNDCOMMCTL_COOL_REG             0x08000
-#define AFX_WNDCOMMCTL_USEREX_REG       0x10000
-#define AFX_WNDCOMMCTL_DATE_REG             0x20000
-#define AFX_WNDCOMMCTL_LINK_REG             0x40000      // new in IE6
+#define __WND_REG                                             0x00001
+#define __WNDCONTROLBAR_REG                   0x00002
+#define __WNDMDIFRAME_REG                             0x00004
+#define __WNDFRAMEORVIEW_REG                  0x00008
+#define __WNDCOMMCTLS_REG                             0x00010 // means all original Win95
+#define __WNDOLECONTROL_REG                   0x00020
+#define __WNDCOMMCTL_UPDOWN_REG       0x00040 // these are original Win95
+#define __WNDCOMMCTL_TREEVIEW_REG     0x00080
+#define __WNDCOMMCTL_TAB_REG                  0x00100
+#define __WNDCOMMCTL_PROGRESS_REG             0x00200
+#define __WNDCOMMCTL_LISTVIEW_REG         0x00400
+#define __WNDCOMMCTL_HOTKEY_REG           0x00800
+#define __WNDCOMMCTL_BAR_REG              0x01000
+#define __WNDCOMMCTL_ANIMATE_REG              0x02000
+#define __WNDCOMMCTL_INTERNET_REG             0x04000 // these are new in IE4
+#define __WNDCOMMCTL_COOL_REG             0x08000
+#define __WNDCOMMCTL_USEREX_REG       0x10000
+#define __WNDCOMMCTL_DATE_REG             0x20000
+#define __WNDCOMMCTL_LINK_REG             0x40000      // new in IE6
 
-#define AFX_WIN95CTLS_MASK                              0x03FC0 // UPDOWN -> ANIMATE
-#define AFX_WNDCOMMCTLSALL_REG                  0x7C010 // COMMCTLS|INTERNET|COOL|USEREX|DATE|LINK
-#define AFX_WNDCOMMCTLSNEW_REG                  0x7C000 // INTERNET|COOL|USEREX|DATE
+#define __WIN95CTLS_MASK                              0x03FC0 // UPDOWN -> ANIMATE
+#define __WNDCOMMCTLSALL_REG                  0x7C010 // COMMCTLS|INTERNET|COOL|USEREX|DATE|LINK
+#define __WNDCOMMCTLSNEW_REG                  0x7C000 // INTERNET|COOL|USEREX|DATE
 
 
 // ca2 API has its own version of the TOOLINFO structure containing the
 // the Win95 base version of the structure. Since ca2 API targets Win95 base,
 // we need this structure so calls into that old library don't fail.
 
-typedef struct tagAFX_OLDTOOLINFO {
+typedef struct tag__OLDTOOLINFO {
    UINT cbSize;
    UINT uFlags;
    HWND hwnd;
@@ -131,29 +131,29 @@ typedef struct tagAFX_OLDTOOLINFO {
    RECT rect;
    HINSTANCE hinst;
    LPTSTR lpszText;
-} AFX_OLDTOOLINFO;
+} __OLDTOOLINFO;
 
 // special AFX ::ca::window class name mangling
 
 
-#define AFX_WNDCLASS(s)    "ca2" _T(s)
-#define AFX_WND             AFX_WNDCLASS("Wnd")
-#define AFX_WNDCONTROLBAR   AFX_WNDCLASS("ControlBar")
-#define AFX_WNDMDIFRAME     AFX_WNDCLASS("MDIFrame")
-#define AFX_WNDFRAMEORVIEW  AFX_WNDCLASS("FrameOrView")
-#define AFX_WNDOLECONTROL   AFX_WNDCLASS("OleControl")
+#define __WNDCLASS(s)    "ca2" _T(s)
+#define __WND             __WNDCLASS("Wnd")
+#define __WNDCONTROLBAR   __WNDCLASS("ControlBar")
+#define __WNDMDIFRAME     __WNDCLASS("MDIFrame")
+#define __WNDFRAMEORVIEW  __WNDCLASS("FrameOrView")
+#define __WNDOLECONTROL   __WNDCLASS("OleControl")
 
 // dialog/commdlg hook procs
-CLASS_DECL_ca INT_PTR CALLBACK AfxDlgProc(HWND, UINT, WPARAM, LPARAM);
-CLASS_DECL_ca UINT_PTR CALLBACK _AfxCommDlgProc(HWND hWnd, UINT, WPARAM, LPARAM);
+CLASS_DECL_ca INT_PTR CALLBACK __dialog_procedure(HWND, UINT, WPARAM, LPARAM);
+CLASS_DECL_ca UINT_PTR CALLBACK __common_dialog_procedure(HWND hWnd, UINT, WPARAM, LPARAM);
 
 // support for standard dialogs
-extern UINT _afxMsgSETRGB;
+extern UINT gen_MsgSETRGB;
 typedef UINT_PTR (CALLBACK* COMMDLGPROC)(HWND, UINT, WPARAM, LPARAM);
 
 // conversion helpers
-//int AFX_CDECL _wcstombsz(char* mbstr, const wchar_t* wcstr, size_t count);
-//int AFX_CDECL _mbstowcsz(wchar_t* wcstr, const char* mbstr, size_t count);
+//int c_cdecl _wcstombsz(char* mbstr, const wchar_t* wcstr, size_t count);
+//int c_cdecl _mbstowcsz(wchar_t* wcstr, const char* mbstr, size_t count);
 
 /////////////////////////////////////////////////////////////////////////////
 // Extended dialog templates (new in Win95)
@@ -187,15 +187,15 @@ typedef struct
 /////////////////////////////////////////////////////////////////////////////
 // Special helpers
 
-CLASS_DECL_ca ::user::interaction * AfxGetParentOwner(::user::interaction * hWnd);
-CLASS_DECL_ca BOOL AfxIsDescendant(::user::interaction * hWndParent, ::user::interaction * hWndChild);
+CLASS_DECL_ca ::user::interaction * __get_parent_owner(::user::interaction * hWnd);
+CLASS_DECL_ca BOOL __is_descendant(::user::interaction * hWndParent, ::user::interaction * hWndChild);
 
 
 /*// UNICODE/MBCS abstractions
 #ifdef _MBCS
-   extern CLASS_DECL_ca const BOOL _afxDBCS;
+   extern CLASS_DECL_ca const BOOL gen_DBCS;
 #else
-   #define _afxDBCS FALSE
+   #define gen_DBCS FALSE
 #endif
    */
 // determine number of elements in an base_array (not bytes)
@@ -203,14 +203,14 @@ CLASS_DECL_ca BOOL AfxIsDescendant(::user::interaction * hWndParent, ::user::int
 #define _countof(base_array) (sizeof(base_array)/sizeof(base_array[0]))
 #endif
 
-#ifndef _AFX_PORTABLE
-int AFX_CDECL AfxCriticalNewHandler(size_t nSize);
+#ifndef ___PORTABLE
+int c_cdecl __critical_new_handler(size_t nSize);
 #endif
 
 
 /////////////////////////////////////////////////////////////////////////////
 // locale-invariant comparison helpers till CRT gets that support
-inline int AfxInvariantStrICmp(const char *pszLeft, const char *pszRight)
+inline int __invariant_stricmp(const char *pszLeft, const char *pszRight)
 {
 #ifdef WINDOWS
     return ::CompareStringA(MAKELCID(MAKELANGID(LANG_ENGLISH,SUBLANG_ENGLISH_US),SORT_DEFAULT),
@@ -224,7 +224,7 @@ inline int AfxInvariantStrICmp(const char *pszLeft, const char *pszRight)
 #endif
 }
 
-inline int AfxInvariantStrICmp(const wchar_t *pwszLeft, const wchar_t *pwszRight)
+inline int __invariant_stricmp(const wchar_t *pwszLeft, const wchar_t *pwszRight)
 {
 #ifdef WINDOWS
     return ::CompareStringW(MAKELCID(MAKELANGID(LANG_ENGLISH,SUBLANG_ENGLISH_US),SORT_DEFAULT),
@@ -260,16 +260,16 @@ extern resource_exception _simpleResourceException;
 /////////////////////////////////////////////////////////////////////////////
 // Portability abstractions
 
-#define _AfxSetDlgCtrlID(hWnd, nID)     SetWindowLong(hWnd, GWL_ID, nID)
-#define _AfxSetDlgCtrlID_(hWnd, nID)     hWnd->SetWindowLong(GWL_ID, nID)
-#define _AfxGetDlgCtrlID(hWnd)          ((UINT)(WORD)::GetDlgCtrlID(hWnd))
-#define _AfxGetDlgCtrlID_(hWnd)          ((UINT)(WORD)hWnd->GetDlgCtrlId())
+#define __set_dialog_control_id(hWnd, nID)     SetWindowLong(hWnd, GWL_ID, nID)
+#define __set_dialog_control_id_(hWnd, nID)     hWnd->SetWindowLong(GWL_ID, nID)
+#define __get_dialog_control_id(hWnd)          ((UINT)(WORD)::GetDlgCtrlID(hWnd))
+#define __get_dialog_control_id_(hWnd)          ((UINT)(WORD)hWnd->GetDlgCtrlId())
 
 // misc helpers
-CLASS_DECL_ca void AfxGetRoot(const char * lpszPath, string & strRoot);
+CLASS_DECL_ca void __get_root_path(const char * lpszPath, string & strRoot);
 
-#ifndef _AFX_NO_OLE_SUPPORT
-class CLASS_DECL_ca AFX_COM
+#ifndef ___NO_OLE_SUPPORT
+class CLASS_DECL_ca __COM
 {
 public:
    HRESULT CreateInstance(REFCLSID rclsid, LPUNKNOWN pUnkOuter,
@@ -277,9 +277,9 @@ public:
    HRESULT GetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv);
 };
 
-CLASS_DECL_ca string AfxStringFromCLSID(REFCLSID rclsid);
-CLASS_DECL_ca BOOL AfxGetInProcServer(const char * lpszCLSID, string & str);
-#endif // _AFX_NO_OLE_SUPPORT
+CLASS_DECL_ca string __string_from_clsid(REFCLSID rclsid);
+CLASS_DECL_ca BOOL __get_in_proc_server(const char * lpszCLSID, string & str);
+#endif // ___NO_OLE_SUPPORT
 
 #define NULL_TLS ((DWORD)-1)
 
@@ -292,7 +292,7 @@ CLASS_DECL_ca BOOL AfxGetInProcServer(const char * lpszCLSID, string & str);
 // Debugging/Tracing helpers
 
 #ifdef _DEBUG
-   CLASS_DECL_ca BOOL _AfxCheckDialogTemplate(const char * lpszResource, BOOL bInvisibleChild);
+   CLASS_DECL_ca BOOL __check_dialog_template(const char * lpszResource, BOOL bInvisibleChild);
 #endif
 
 

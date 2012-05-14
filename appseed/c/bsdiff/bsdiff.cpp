@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "bzlib.h"
 #include "bsdiff.h"
 #include "bsdiff_private.h"

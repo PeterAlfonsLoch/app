@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 plain_service::plain_service(::ca::application * papp) :

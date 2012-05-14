@@ -1,6 +1,6 @@
 // Archive/Rar/Headers.cpp
 // from 7-zip
-#include "StdAfx.h"
+#include "framework.h"
 
 //#include "RarHeader.h"
 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #ifndef _X86_
 #include <math.h>

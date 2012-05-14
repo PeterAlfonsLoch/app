@@ -1,8 +1,6 @@
 #pragma once
 
 
-#include "template/template.h"
-#include "collection/sort_array.h"
 
 
 inline index BaseSortCompare(const id & id1, const id & id2)

@@ -59,9 +59,6 @@
     <ClInclude Include="hotplugin\hotplugin.h">
       <Filter>Header Files\hotplugin</Filter>
     </ClInclude>
-    <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ca_seed.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -299,6 +296,9 @@
     <ClInclude Include="simple_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -457,9 +457,6 @@
     <ClCompile Include="strx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StdAfx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="spa\windows\spa_windows_boot.cpp">
       <Filter>Source Files\spa\windows</Filter>
     </ClCompile>
@@ -548,6 +545,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="c_c.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

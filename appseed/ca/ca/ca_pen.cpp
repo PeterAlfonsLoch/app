@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 namespace ca
@@ -29,17 +29,6 @@ namespace ca
       UNREFERENCED_PARAMETER(dumpcontext);
       throw interface_only_exception();
    }
-
-   void AfxThrowResourceException()
-   {
-      throw resource_exception();
-   }
-
-   void AfxThrowUserException()
-   {
-      throw user_exception();
-   }
-
 
    BOOL pen::CreatePen(int nPenStyle, double dWidth, COLORREF crColor)
    {

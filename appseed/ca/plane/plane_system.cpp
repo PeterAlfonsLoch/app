@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #ifdef WINDOWS
 #undef new
@@ -868,7 +868,7 @@ namespace plane
          gen::del(m_plog);
          return false;
       }
-//      _template::trace_v = &_template::system_log_trace_v;
+//      gen::trace_v = &gen::system_log_trace_v;
       return true;
    }
 
@@ -1040,7 +1040,7 @@ namespace plane
          return false;
       // may be in another thread than application thread
    #ifdef _DEBUG
-   #ifndef _AFX_NO_DEBUG_CRT
+   #ifndef ___NO_DEBUG_CRT
       // we remove WM_QUIT because if it is in the queue then the message box
       // won't display
       MSG msg;
@@ -1052,10 +1052,10 @@ namespace plane
       return bResult;
    #else
       // Not supported.
-   #error _AFX_NO_DEBUG_CRT is not supported.
-   #endif // _AFX_NO_DEBUG_CRT
+   #error ___NO_DEBUG_CRT is not supported.
+   #endif // ___NO_DEBUG_CRT
    #else
-      TRACE("AfxAssertFailedLine %s %d", lpszFileName, iLine);
+      TRACE("__assert_failed_line %s %d", lpszFileName, iLine);
       return true;
    #endif
    }

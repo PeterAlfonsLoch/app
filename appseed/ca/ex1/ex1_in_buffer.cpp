@@ -1,6 +1,6 @@
 // InBuffer.cpp
 // from 7-zip on 2012-12-23, dawn
-#include "StdAfx.h"
+#include "framework.h"
 
 /*#include "../../../C/Alloc.h"
 

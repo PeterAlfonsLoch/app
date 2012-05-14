@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #if defined(LINUX)
 #include <dlfcn.h>
@@ -194,7 +194,7 @@ namespace dynamic_source
       {
          //if(m_strScriptPath.find("transactions") >= 0)
          //{
-           // AfxDebugBreak();
+           // __debug_break();
          //}
          m_library.open(m_strScriptPath);
          if(m_library.is_closed())
@@ -202,7 +202,7 @@ namespace dynamic_source
             DWORD dwMessageId = GetLastError();
             if(dwMessageId == 0x139)
             {
-               AfxDebugBreak();
+               __debug_break();
             }
             LPTSTR lpBuffer;
             TRACE("Error Message Id: %d\n", dwMessageId);

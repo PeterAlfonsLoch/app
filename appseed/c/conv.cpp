@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 int to_hex_char(int i)
 {

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace gcom
 {
@@ -48,7 +48,7 @@ namespace gcom
             CommandPreTransitionImage,
             (LPARAM) pview);
       /*   DWORD dwThreadID = 0;
-         AfxBeginThread(
+         __begin_thread(
             ThreadProcPreTransitionImage,
             pview,
             THREAD_PRIORITY_IDLE,
@@ -165,7 +165,7 @@ namespace gcom
        }
 
 
-      UINT AFX_CDECL thread::ThreadProcPreTransitionImage(LPVOID lpParameter)
+      UINT c_cdecl thread::ThreadProcPreTransitionImage(LPVOID lpParameter)
       {
           backview::Main * pview = (backview::Main *) lpParameter;
          try
@@ -394,7 +394,7 @@ namespace gcom
 
          /*DWORD dwThreadID = 0;
          load_image * lploadimage = new load_image(loadimage);
-         AfxBeginThread(
+         __begin_thread(
             ThreadProcLoadImage,
             lploadimage,
             THREAD_PRIORITY_IDLE,
@@ -410,7 +410,7 @@ namespace gcom
           ::CreateThread(NULL, 0, ThreadProcStretchImage, lpSi, 0, &dwThreadID);
       }
 
-      UINT AFX_CDECL thread::ThreadProcLoadImage(LPVOID lpParameter)
+      UINT c_cdecl thread::ThreadProcLoadImage(LPVOID lpParameter)
       {
 //         TRACE("thread::ThreadProcLoadImage (no initialize_instance) %X\n", GetCurrentThreadId());
           

@@ -1,6 +1,6 @@
 // FilterCoder.cpp
 // from 7-zip on 2010-12-19
-#include "StdAfx.h"
+#include "framework.h"
 
 /*#include "../../../C/Alloc.h"
 

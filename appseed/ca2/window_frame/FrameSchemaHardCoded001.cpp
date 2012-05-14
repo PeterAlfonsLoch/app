@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 #include "ControlBoxButton.h"
 #include "FrameSchemaHardCoded001.h"

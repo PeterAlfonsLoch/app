@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 void PASCAL base_exception::operator delete(void * pbData)
@@ -77,50 +77,13 @@ int base_exception::ReportError(UINT nType /* = MB_OK */,
    else
    {
       if (pszMessageId == 0)
-         //pszMessageId = AFX_IDP_NO_ERROR_AVAILABLE;
+         //pszMessageId = __IDP_NO_ERROR_AVAILABLE;
          pszMessageId = "Mensagem de erro não disponível";
       nDisposition = System.simple_message_box(NULL, pszMessageId, nType);
    }
    return nDisposition;
 }
 
-
-
-// IMPLEMENT_DYNAMIC(base_exception, ::radix::object)
-
-// IMPLEMENT_DYNAMIC(memory_exception, base_exception)
-//memory_exception _simpleMemoryException(FALSE, AFX_IDS_MEMORY_EXCEPTION);
-
-// IMPLEMENT_DYNAMIC(CNotSupportedException, base_exception)
-//CNotSupportedException _simpleNotSupportedException(FALSE, AFX_IDS_NOT_SUPPORTED_EXCEPTION);
-
-// IMPLEMENT_DYNAMIC(invalid_argument_exception, base_exception)
-//invalid_argument_exception _simpleInvalidArgException(FALSE, AFX_IDS_INVALID_ARG_EXCEPTION);
-
-/////////////////////////////////////////////////////////////////////////////
-// Standard exceptions
-
-
-
-void DECLSPEC_NO_RETURN AfxThrowMemoryException()
-{
-   throw memory_exception();
-}
-
-void DECLSPEC_NO_RETURN AfxThrowNotSupportedException()
-{
-   throw not_supported_exception();
-}
-
-void DECLSPEC_NO_RETURN AfxThrowInvalidArgException()
-{
-   throw invalid_argument_exception();
-}
-
-
-/////////////////////////////////////////////////////////////////////////////
-
-//typedef BOOL (WINAPI *  LPFN_ISWOW64PROCESS )(HANDLE, BOOL *) ;
 
 #ifdef WINDOWS
 

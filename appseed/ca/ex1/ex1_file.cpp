@@ -1,9 +1,9 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace ex1
 {
 
-   AFX_STATIC inline BOOL IsDirSep(WCHAR ch)
+   __STATIC inline BOOL IsDirSep(WCHAR ch)
    {
       return (ch == '\\' || ch == '/');
    }
@@ -370,7 +370,7 @@ namespace ex1
    {
 
      // if (pnHelpContext != NULL)
-   //      *pnHelpContext = m_cause + AFX_IDP_FILE_NONE;
+   //      *pnHelpContext = m_cause + __IDP_FILE_NONE;
 
       string strMessage;
 
@@ -417,7 +417,7 @@ namespace ex1
    {
 
      // if (pnHelpContext != NULL)
-   //      *pnHelpContext = m_cause + AFX_IDP_FILE_NONE;
+   //      *pnHelpContext = m_cause + __IDP_FILE_NONE;
 
       string strMessage;
 

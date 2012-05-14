@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <malloc.h>
 #include <cderr.h>      // Commdlg Error definitions
 #include <winspool.h>
@@ -13,13 +13,13 @@ CLASS_DECL_ca fixed_alloc_array * new_wstring_manager();
 
 
 // // BEGIN_MESSAGE_MAP(application, command_target)
-   //{{AFX_MSG_MAP(application)
+   //{{__MSG_MAP(application)
    // Global File commands
 //   ON_COMMAND(ID_APP_EXIT, &application::OnAppExit)
    // MRU - most recently used file menu
 //   ON_UPDATE_COMMAND_UI(ID_FILE_MRU_FILE1, &application::OnUpdateRecentFileMenu)
 //   ON_COMMAND_EX_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_FILE16, &application::OnOpenRecentFile)
-   //}}AFX_MSG_MAP
+   //}}__MSG_MAP
 // // END_MESSAGE_MAP()
 
 
@@ -181,10 +181,10 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 namespace radix
 {
 
-   const char application::_afxFileSection[] = "Recent File List";
-   const char application::_afxFileEntry[] = "File%d";
-   const char application::_afxPreviewSection[] = "Settings";
-   const char application::_afxPreviewEntry[] = "PreviewPages";
+   const char application::gen_FileSection[] = "Recent File List";
+   const char application::gen_FileEntry[] = "File%d";
+   const char application::gen_PreviewSection[] = "Settings";
+   const char application::gen_PreviewEntry[] = "PreviewPages";
 
    application::application() :
       ::radix::thread(NULL)
@@ -233,34 +233,34 @@ namespace radix
       DWORD dwType = 0;
 
       // clear current policy settings.
-      m_dwPolicies = _AFX_SYSPOLICY_NOTINITIALIZED;
+      m_dwPolicies = ___SYSPOLICY_NOTINITIALIZED;
 
-      static _AfxSysPolicyData rgExplorerData[] =
+      static __system_policy_data rgExplorerData[] =
       {
-         {"NoRun", _AFX_SYSPOLICY_NORUN},
-         {"NoDrives", _AFX_SYSPOLICY_NODRIVES},
-         {"RestrictRun", _AFX_SYSPOLICY_RESTRICTRUN},
-         {"NoNetConnectDisconnect", _AFX_SYSPOLICY_NONETCONNECTDISCONNECTD},
-         {"NoRecentDocsHistory", _AFX_SYSPOLICY_NORECENTDOCHISTORY},
-         {"NoClose", _AFX_SYSPOLICY_NOCLOSE},
+         {"NoRun", ___SYSPOLICY_NORUN},
+         {"NoDrives", ___SYSPOLICY_NODRIVES},
+         {"RestrictRun", ___SYSPOLICY_RESTRICTRUN},
+         {"NoNetConnectDisconnect", ___SYSPOLICY_NONETCONNECTDISCONNECTD},
+         {"NoRecentDocsHistory", ___SYSPOLICY_NORECENTDOCHISTORY},
+         {"NoClose", ___SYSPOLICY_NOCLOSE},
          {NULL, NULL}
       };
 
-      static _AfxSysPolicyData rgNetworkData[] =
+      static __system_policy_data rgNetworkData[] =
       {
-         {"NoEntireNetwork", _AFX_SYSPOLICY_NOENTIRENETWORK},
+         {"NoEntireNetwork", ___SYSPOLICY_NOENTIRENETWORK},
          {NULL, NULL}
       };
 
-      static _AfxSysPolicyData rgComDlgData[] =
+      static __system_policy_data rgComDlgData[] =
       {
-         {"NoPlacesBar", _AFX_SYSPOLICY_NOPLACESBAR},
-         {"NoBackButton", _AFX_SYSPOLICY_NOBACKBUTTON},
-         {"NoFileMru", _AFX_SYSPOLICY_NOFILEMRU},
+         {"NoPlacesBar", ___SYSPOLICY_NOPLACESBAR},
+         {"NoBackButton", ___SYSPOLICY_NOBACKBUTTON},
+         {"NoFileMru", ___SYSPOLICY_NOFILEMRU},
          {NULL, NULL}
       };
 
-      static _AfxSysPolicies rgPolicies[] =
+      static __system_policies rgPolicies[] =
       {
          {"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
             rgExplorerData},
@@ -271,8 +271,8 @@ namespace radix
          {NULL, NULL}
       };
 
-      _AfxSysPolicies *pPolicies = rgPolicies;
-      _AfxSysPolicyData *pData = NULL;
+      __system_policies *pPolicies = rgPolicies;
+      __system_policy_data *pData = NULL;
 
       while (pPolicies->szPolicyKey != NULL)
       {
@@ -336,7 +336,7 @@ namespace radix
          if (pApp != NULL && !pApp->InitApplication())
             goto InitFailure;
 
-         pThread->se_translator::attach();
+         pThread->translator::attach();
 
          // Perform specific initializations
          try
@@ -435,7 +435,7 @@ namespace radix
             return false;
       }
 
-      InitLibId();
+//      InitLibId();
 
 
       m_dwAlive = ::GetTickCount();
@@ -492,7 +492,7 @@ namespace radix
       ASSERT_VALID(this);
 
       // 0 by default means not set
-      m_nNumPreviewPages = GetProfileInt(_afxPreviewSection, _afxPreviewEntry, 0);
+      m_nNumPreviewPages = GetProfileInt(gen_PreviewSection, gen_PreviewEntry, 0);
    }*/
 
    /*void application::ParseCommandLine(CCommandLineInfo& rCmdInfo)
@@ -564,22 +564,22 @@ namespace radix
          m_nShellCommand = FilePrintTo;
       else if (lstrcmpA(pszParam, "p") == 0)
          m_nShellCommand = FilePrint;
-       else if (::AfxInvariantStrICmp(pszParam, "Register") == 0 ||
-                ::AfxInvariantStrICmp(pszParam, "Regserver") == 0)
+       else if (::__invariant_stricmp(pszParam, "Register") == 0 ||
+                ::__invariant_stricmp(pszParam, "Regserver") == 0)
          m_nShellCommand = AppRegister;
-       else if (::AfxInvariantStrICmp(pszParam, "Unregister") == 0 ||
-                ::AfxInvariantStrICmp(pszParam, "Unregserver") == 0)
+       else if (::__invariant_stricmp(pszParam, "Unregister") == 0 ||
+                ::__invariant_stricmp(pszParam, "Unregserver") == 0)
          m_nShellCommand = AppUnregister;
       else if (lstrcmpA(pszParam, "dde") == 0)
       {
          m_nShellCommand = FileDDE;
       }
-       else if (::AfxInvariantStrICmp(pszParam, "Embedding") == 0)
+       else if (::__invariant_stricmp(pszParam, "Embedding") == 0)
       {
          m_bRunEmbedded = TRUE;
          m_bShowSplash = FALSE;
       }
-       else if (::AfxInvariantStrICmp(pszParam, "Automation") == 0)
+       else if (::__invariant_stricmp(pszParam, "Automation") == 0)
       {
          m_bRunAutomated = TRUE;
          m_bShowSplash = FALSE;
@@ -636,9 +636,9 @@ namespace radix
 
       // free printer info
    /*   if (m_hDevMode != NULL)
-         AfxGlobalFree(m_hDevMode);
+         __global_free(m_hDevMode);
       if (m_hDevNames != NULL)
-         AfxGlobalFree(m_hDevNames);*/
+         __global_free(m_hDevNames);*/
 
       // free atoms if used
       if (m_atomApp != NULL)
@@ -665,8 +665,8 @@ namespace radix
       ASSERT_VALID(this);
 
 
-      if (m_nNumPreviewPages != 0)
-         WriteProfileInt(_afxPreviewSection, _afxPreviewEntry, m_nNumPreviewPages);
+//      if (m_nNumPreviewPages != 0)
+  //       WriteProfileInt(gen_PreviewSection, gen_PreviewEntry, m_nNumPreviewPages);
    }
 
 
@@ -679,7 +679,7 @@ namespace radix
       {
          // Not launched /Embedding or /Automation, but has no main ::ca::window!
          TRACE(::radix::trace::category_AppMsg, 0, "Warning: GetMainWnd() is NULL in application::run - quitting application.\n");
-         AfxPostQuitMessage(0);
+         __post_quit_message(0);
       }*/
       return thread::run();
    }
@@ -750,13 +750,13 @@ namespace radix
       }
 
       // handle all the rest
-      //linux UINT nIDP = AFX_IDP_INTERNAL_FAILURE;   // generic message string
+      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // generic message string
       const char * nIDP = "Internal Failure";
       pbase->set_lresult(0);        // sensible default
       if (pbase->m_uiMessage == WM_COMMAND)
       {
          if ((HWND)pbase->m_lparam == NULL)
-            //linux nIDP = AFX_IDP_COMMAND_FAILURE; // command (not from a control)
+            //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
             nIDP = "Command Failure";
          pbase->set_lresult((LRESULT)TRUE);        // pretend the command was handled
       }
@@ -854,7 +854,7 @@ namespace radix
       dumpcontext << "\nm_hcurWaitCursorRestore = " << (void *)m_hcurWaitCursorRestore;
       dumpcontext << "\nm_nNumPreviewPages = " << m_nNumPreviewPages;
 
-   /*   _AFX_THREAD_STATE* pState = AfxGetThreadState();
+   /*   ___THREAD_STATE* pState = __get_thread_state();
       dumpcontext << "\nm_msgCur = {";
       dumpcontext << "\n\thwnd = " << (void *)pState->m_msgCur.hwnd;
       dumpcontext << "\n\tmessage = " << (UINT)pState->m_msgCur.message;
@@ -1264,20 +1264,20 @@ namespace radix
    // Strings in format ".....%1 .... %2 ...." etc.
 
    /*
-   void AfxFormatStrings(string & rString, UINT nIDS,
+   void __format_strings(string & rString, UINT nIDS,
          const char * const* rglpsz, int nString)
    {
       string strFormat;
       if (!strFormat.load_string(nIDS) != 0)
       {
-         TRACE(::radix::trace::category_AppMsg, 0, "Error: failed to load AfxFormatString string 0x%04x.\n", nIDS);
+         TRACE(::radix::trace::category_AppMsg, 0, "Error: failed to load gen::FormatString string 0x%04x.\n", nIDS);
          ASSERT(FALSE);
          return;
       }
-      AfxFormatStrings(rString, strFormat, rglpsz, nString);
+      __format_strings(rString, strFormat, rglpsz, nString);
    }*/
 
-   void AfxFormatStrings(string & rString, const char * lpszFormat,
+   void __format_strings(string & rString, const char * lpszFormat,
          const char * const* rglpsz, int nString)
    {
       ENSURE_ARG(lpszFormat != NULL);
@@ -1336,7 +1336,7 @@ namespace radix
             else if (rglpsz[i] != NULL)
             {
                int nLen = lstrlen(rglpsz[i]);
-               _template::checked::strcpy_s(pchDest, nTotalLen + 1, rglpsz[i]);
+               ::gen::strcpy_s(pchDest, nTotalLen + 1, rglpsz[i]);
                nTotalLen -= nLen;
                pchDest += nLen;
             }
@@ -1353,18 +1353,18 @@ namespace radix
          // ReleaseBuffer will assert if we went too far
    }
 
-   /*void AfxFormatString1(string & rString, UINT nIDS, const char * lpsz1)
+   /*void gen::FormatString1(string & rString, UINT nIDS, const char * lpsz1)
    {
-      AfxFormatStrings(rString, nIDS, &lpsz1, 1);
+      __format_strings(rString, nIDS, &lpsz1, 1);
    }
 
-   void AfxFormatString2(string & rString, UINT nIDS, const char * lpsz1,
+   void gen::FormatString2(string & rString, UINT nIDS, const char * lpsz1,
          const char * lpsz2)
    {
       const char * rglpsz[2];
       rglpsz[0] = lpsz1;
       rglpsz[1] = lpsz2;
-      AfxFormatStrings(rString, nIDS, rglpsz, 2);
+      __format_strings(rString, nIDS, rglpsz, 2);
    }*/
 
    /////////////////////////////////////////////////////////////////////////////
@@ -1378,7 +1378,7 @@ namespace radix
       if (m_dwPromptContext != 0)
       {
          // do not call WinHelp when the error is failing to lauch help
-//         if (m_dwPromptContext != HID_BASE_PROMPT+AFX_IDP_FAILED_TO_LAUNCH_HELP)
+//         if (m_dwPromptContext != HID_BASE_PROMPT+__IDP_FAILED_TO_LAUNCH_HELP)
   //          WinHelpInternal(m_dwPromptContext);
          return;
       }
@@ -1475,13 +1475,13 @@ namespace radix
       /*if (m_hDevNames != hDevNames)
       {
          if (m_hDevNames != NULL && bFreeOld)
-            AfxGlobalFree(m_hDevNames);
+            __global_free(m_hDevNames);
          m_hDevNames = hDevNames;
       }
       if (m_hDevMode != hDevMode)
       {
          if (m_hDevMode != NULL && bFreeOld)
-            AfxGlobalFree(m_hDevMode);
+            __global_free(m_hDevMode);
          m_hDevMode = hDevMode;
       }*/
    }
@@ -1491,7 +1491,7 @@ namespace radix
 //      UNREFERENCED_PARAMETER(spgraphics);
       throw not_implemented_exception();
       /*
-      HDC hDC = AfxCreateDC(m_hDevNames, m_hDevMode);
+      HDC hDC = gen::CreateDC(m_hDevNames, m_hDevMode);
       if (hDC != NULL)
       {
          spgraphics->DeleteDC();
@@ -1554,7 +1554,7 @@ namespace radix
       // 0 => restore, 1=> begin, -1=> end
       ENSURE_ARG(nCode == 0 || nCode == 1 || nCode == -1);
 //      ENSURE(afxData.hcurWait != NULL);
-//      AfxLockGlobals(CRIT_WAITCURSOR);
+//      gen::LockGlobals(CRIT_WAITCURSOR);
       m_nWaitCursorCount += nCode;
       if (m_nWaitCursorCount > 0)
       {
@@ -1568,7 +1568,7 @@ namespace radix
          m_nWaitCursorCount = 0;     // prevent underflow
          ::SetCursor(m_hcurWaitCursorRestore);
       }
-  //    AfxUnlockGlobals(CRIT_WAITCURSOR);
+  //    gen::UnlockGlobals(CRIT_WAITCURSOR);
    }
 
 
@@ -1612,7 +1612,7 @@ namespace radix
    void application::DoEnableModeless(BOOL bEnable)
    {
       UNREFERENCED_PARAMETER(bEnable);
-   #ifdef _AFX_NO_OLE_SUPPORT
+   #ifdef ___NO_OLE_SUPPORT
       UNUSED(bEnable);
    #endif
 
@@ -1621,7 +1621,7 @@ namespace radix
       if (pMainWnd == NULL || !pMainWnd->IsFrameWnd())
          return;*/
 
-   #ifndef _AFX_NO_OLE_SUPPORT
+   #ifndef ___NO_OLE_SUPPORT
       // check if notify hook installed
    /*xxx
       ASSERT_KINDOF(frame_window, pMainWnd);
@@ -1763,7 +1763,7 @@ namespace radix
       return nResult;
    }
 
-   /* int AfxMessageBox(const char * lpszText, UINT nType, UINT nIDHelp)
+   /* int gen::MessageBox(const char * lpszText, UINT nType, UINT nIDHelp)
    {
       application* papp = &System;
       if (papp != NULL)
@@ -1915,9 +1915,9 @@ namespace radix
             {
                /* linux
                if (bUnregistered)
-                  System.simple_message_box(AFX_IDP_UNREG_DONE);
+                  System.simple_message_box(__IDP_UNREG_DONE);
                else
-                  System.simple_message_box(AFX_IDP_UNREG_FAILURE);
+                  System.simple_message_box(__IDP_UNREG_FAILURE);
                   */
 
                /*if (bUnregistered)
@@ -1944,7 +1944,7 @@ namespace radix
       return bResult;
    }*/
 
-   void application::InitLibId()
+/*   void application::InitLibId()
    {
    }
 
@@ -1971,7 +1971,7 @@ namespace radix
       // remove profile information -- the registry entries exist if
       // SetRegistryKey() was used.
 
-      if (m_pszRegistryKey)
+  /*    if (m_pszRegistryKey)
       {
          ENSURE(m_pszProfileName != NULL);
 
@@ -1995,20 +1995,20 @@ namespace radix
             bRet = TRUE;
       }
       return bRet;
-   }
+   }*/
 
-   LONG AfxDelRegTreeHelper(HKEY hParentKey, const string & strKeyName);
+//   LONG delete_registry_tree_helper(HKEY hParentKey, const string & strKeyName);
 
    // Under Win32, a reg key may not be deleted unless it is is_empty.
    // Thus, to delete a tree,  one must recursively enumerate and
    // delete all of the sub-keys.
 
-   LONG application::DelRegTree(HKEY hParentKey, const string & strKeyName)
+   /*LONG application::DelRegTree(HKEY hParentKey, const string & strKeyName)
    {
-      return AfxDelRegTreeHelper(hParentKey, strKeyName);
+      return delete_registry_tree_helper(hParentKey, strKeyName);
    }
 
-   LONG AfxDelRegTreeHelper(HKEY hParentKey, const string & strKeyName)
+   LONG delete_registry_tree_helper(HKEY hParentKey, const string & strKeyName)
    {
       char   szSubKeyName[MAX_PATH + 1];
       HKEY    hCurrentKey;
@@ -2024,7 +2024,7 @@ namespace radix
             try
             {
                // temp string constructed from szSubKeyName can throw in Low Memory condition.
-               if ((dwResult = AfxDelRegTreeHelper(hCurrentKey, szSubKeyName)) != ERROR_SUCCESS)
+               if ((dwResult = delete_registry_tree_helper(hCurrentKey, szSubKeyName)) != ERROR_SUCCESS)
                   break;
             }
             catch(memory_exception* e)
@@ -2044,7 +2044,7 @@ namespace radix
       }
 
       return dwResult;
-   }
+   }*/
 
    void application::EnableShellOpen()
    {
@@ -2057,7 +2057,7 @@ namespace radix
       // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
       // short file name so we need to use the short file name.
       string strShortName;
-      AfxGetModuleShortFileName(System.m_hInstance, strShortName);
+      __get_module_short_file_name(System.m_hInstance, strShortName);
 
       // strip out path
       string strFileName = ::PathFindFileName(strShortName);
@@ -2111,12 +2111,12 @@ namespace radix
       ASSERT(lpszRegistryKey != NULL);
       ASSERT(m_strAppName.has_char());
 
-      //BOOL bEnable = AfxEnableMemoryTracking(FALSE);
+      //BOOL bEnable = __enable_memory_tracking(FALSE);
       free((void *)m_pszRegistryKey);
       m_pszRegistryKey = _tcsdup(lpszRegistryKey);
       free((void *)m_pszProfileName);
       m_pszProfileName = _tcsdup(m_strAppName);
-      //AfxEnableMemoryTracking(bEnable);
+      //__enable_memory_tracking(bEnable);
    }
 
    void application::SetRegistryKey(UINT nIDRegistryKey)
@@ -2125,7 +2125,7 @@ namespace radix
       ASSERT(m_pszRegistryKey == NULL);
     throw not_implemented_exception();
       /*char szRegistryKey[256];
-      VERIFY(AfxLoadString(nIDRegistryKey, szRegistryKey));
+      VERIFY(gen::LoadString(nIDRegistryKey, szRegistryKey));
       SetRegistryKey(szRegistryKey);*/
    }
 
@@ -2182,7 +2182,7 @@ namespace radix
       return hSectionKey;
    }
 
-   UINT application::GetProfileInt(const char * lpszSection, const char * lpszEntry,
+/*   UINT application::GetProfileInt(const char * lpszSection, const char * lpszEntry,
       int nDefault)
    {
       ASSERT(lpszSection != NULL);
@@ -2277,7 +2277,7 @@ namespace radix
 
          // ensure destruction
 
-         // linux ::_template::CRegKey rkSecKey(hSecKey);
+         // linux ::gen::CRegKey rkSecKey(hSecKey);
 
          DWORD dwType=0;
          DWORD dwCount=0;
@@ -2426,7 +2426,7 @@ namespace radix
       return bResult;
    }
 
-#include "StdAfx.h"
+#include "framework.h"*/
 
 
 
@@ -2858,9 +2858,9 @@ namespace radix
 
       return 0;
 /*      int nReturnValue=0;
-      if(AfxGetCurrentMessage())
+      if(__get_current_message())
       {
-         nReturnValue=static_cast<int>(AfxGetCurrentMessage()->wParam);
+         nReturnValue=static_cast<int>(__get_current_message()->wParam);
       }*/
 //      return nReturnValue; // returns the value from PostQuitMessage
    }
@@ -3142,7 +3142,7 @@ bool file_manager_interface::initialize(::ca::application * papp)
 }
 
 
-void AfxPostQuitMessage(int nExitCode)
+void __post_quit_message(int nExitCode)
 {
 
    ::PostQuitMessage(nExitCode);

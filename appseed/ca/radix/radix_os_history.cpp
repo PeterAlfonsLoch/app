@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 os_history::os_history(::ca::application * papp) :
    ca(papp),

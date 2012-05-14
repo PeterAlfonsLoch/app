@@ -11,7 +11,7 @@
 //
 // Copyright (c) 2003 Song Ho Ahn
 //////////////////////////////////////////////////////////////////////////////
-#include "StdAfx.h"
+#include "framework.h"
 #include <stdlib.h>
 
 

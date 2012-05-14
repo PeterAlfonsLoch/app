@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <math.h>
 
 namespace ca
@@ -1003,7 +1003,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-   BOOL graphics::_AFX_FUNCNAME(GetTextMetrics)(LPTEXTMETRIC lpMetrics) const
+   BOOL graphics::___FUNCNAME(GetTextMetrics)(LPTEXTMETRIC lpMetrics) const
    {
       UNREFERENCED_PARAMETER(lpMetrics);
       throw interface_only_exception();
@@ -2031,7 +2031,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   int graphics::_AFX_FUNCNAME(DrawText)(const char * lpszString, int nCount, LPRECT lpRect, UINT nFormat)
+   int graphics::___FUNCNAME(DrawText)(const char * lpszString, int nCount, LPRECT lpRect, UINT nFormat)
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);
@@ -2465,21 +2465,6 @@ namespace ca
    }
 
 } // namespace ca
-
-
-
-
-// resource failure
-void AfxThrowResourceException()
-{
-   throw resource_exception();
-}
-
-// ::fontopus::user alert
-void AfxThrowUserException()
-{
-   throw user_exception();
-}
 
 
 dump_context& operator<<(dump_context & dumpcontext, SIZE size)

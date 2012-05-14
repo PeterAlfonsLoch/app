@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <stdarg.h>
 #include "sal.h"
 
@@ -20,7 +20,7 @@ BOOL WINAPI RawDllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
             SEM_FAILCRITICALERRORS|SEM_NOOPENFILEERRORBOX);
 
          // add a reference to thread local storage data
-//         AfxTlsAddRef();
+//         __tls_add_ref();
 
          // make sure we have enough primitive::memory to attempt to start (8kb)
          void * pMinHeap = LocalAlloc(NONZEROLPTR, 0x2000);
@@ -28,19 +28,19 @@ BOOL WINAPI RawDllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
             return FALSE;   // fail if primitive::memory alloc fails
          LocalFree(pMinHeap);
 
-         // cause early initialization of _afxCriticalSection
-//         if (!AfxCriticalInit())
+         // cause early initialization of gen_CriticalSection
+//         if (!gen::CriticalInit())
   //          return FALSE;
 
       }
       else if (dwReason == DLL_PROCESS_DETACH)
       {
 
-         // free up the _afxCriticalSection
-//         AfxCriticalTerm();
+         // free up the gen_CriticalSection
+//         gen::CriticalTerm();
 
          // remove reference from thread local data
-//         AfxTlsRelease();
+//         __tls_release();
       }
    }
    catch( base_exception* e )
@@ -67,7 +67,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
    }
    else if (dwReason == DLL_THREAD_DETACH)
    {
-//      AfxTermThread();
+//      __term_thread();
    }
 
    return TRUE;    // ok

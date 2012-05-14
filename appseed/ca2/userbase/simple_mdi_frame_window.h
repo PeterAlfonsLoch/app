@@ -53,7 +53,7 @@ protected:
    virtual LRESULT DefWindowProc(UINT nMsg, WPARAM wParam, LPARAM lParam);
    virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
 
-   //{{AFX_MSG(SimpleMDIFrameWindow)
+   //{{__MSG(SimpleMDIFrameWindow)
    DECL_GEN_SIGNAL(_001OnDestroy)
    void OnSize(UINT nType, int cx, int cy);
    void OnUpdateMDIWindowCmd(cmd_ui * pcmdui);
@@ -62,6 +62,6 @@ protected:
    LRESULT OnCommandHelp(WPARAM wParam, LPARAM lParam);
    void OnIdleUpdateCmdUI();
    LRESULT OnMenuChar(UINT nChar, UINT, ::userbase::menu*);
-   //}}AFX_MSG
+   //}}__MSG
    //()
 };

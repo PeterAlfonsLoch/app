@@ -140,7 +140,7 @@ namespace platform
 
       void mt_show_window(HWND hwnd, int iShow);
 
-      static UINT AFX_CDECL ThreadProcShowWindow(LPVOID lpparam);
+      static UINT c_cdecl ThreadProcShowWindow(LPVOID lpparam);
 
    };
 

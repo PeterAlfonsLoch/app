@@ -1,9 +1,9 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 calendar_interface::calendar_interface(::ca::application * papp) :
    ca(papp)
 {
-   class time time = time::get_current_time();
+   ::datetime::time time = ::datetime::time::get_current_time();
    m_iYear = time.GetYear();
    m_iMonth = time.GetMonth();
    m_bRange = false;
@@ -15,7 +15,7 @@ void calendar_interface::_001OnDraw(::ca::graphics * pdc)
 }
 
 
-void calendar_interface::GetRectDay(class time & time, LPRECT lprect)
+void calendar_interface::GetRectDay(::datetime::time & time, LPRECT lprect)
 {
    int iWeekDay = time.GetDayOfWeek();
    int iWeek = get_week_of_month(time);
@@ -36,25 +36,25 @@ void calendar_interface::GetRect(LPRECT lprect, enum EElement eelement)
 }
 
 
-void calendar_interface::set_time(const class time & time)
+void calendar_interface::set_time(const ::datetime::time & time)
 {
    m_time = time;
 }
 
-void calendar_interface::set_time_range(const class time & time, const class time & timeEnd)
+void calendar_interface::set_time_range(const ::datetime::time & time, const ::datetime::time & timeEnd)
 {
    m_time = time;
    m_timeEnd = timeEnd;
    m_bRange = true;
 }
 
-void calendar_interface::set_time_end(const class time & timeEnd)
+void calendar_interface::set_time_end(const ::datetime::time & timeEnd)
 {
    m_timeEnd = timeEnd;
    m_bRange = true;
 }
 
-void calendar_interface::get_time(class time & time)
+void calendar_interface::get_time(::datetime::time & time)
 {
    time = m_time;
 }
@@ -68,7 +68,7 @@ void calendar_interface::set_pos(point pt, size sz)
 
 void calendar_interface::GetDateTime(::user::str_context * pcontext, string & strDateTime)
 {
-   class time time = time::get_current_time();
+   ::datetime::time time = ::datetime::time::get_current_time();
    string strDate;
    string strWeekDay;
    string strTime;
@@ -157,12 +157,12 @@ calendar_interface::EElement calendar_interface::hit_test(point pt)
    return ElementNull;
 }
 
-bool calendar_interface::time_hit_test(class time & timeRet, point pt)
+bool calendar_interface::time_hit_test(::datetime::time & timeRet, point pt)
 {
    int iMonth = m_iMonth;
    int iYear = m_iYear;
-   class time time(iYear, iMonth, 1, 0, 0, 0);
-   time_span timespan(1, 0, 0, 0);
+   ::datetime::time time(iYear, iMonth, 1, 0, 0, 0);
+   ::datetime::time_span timespan(1, 0, 0, 0);
    rect rectDay;
    int iDay;
    for(iDay = 1; iDay <= 33; iDay++)
@@ -188,9 +188,9 @@ bool calendar_interface::hit_test(EElement eelement, point pt)
 }
 
 
-int calendar_interface::get_week_of_month(class time & time)
+int calendar_interface::get_week_of_month(::datetime::time & time)
 {
-   class time timeMonth(time.GetYear(), time.GetMonth(), 1, 0, 0, 0);
+   ::datetime::time timeMonth(time.GetYear(), time.GetMonth(), 1, 0, 0, 0);
    return (time.GetDay() + timeMonth.GetDayOfWeek() - 2) / 7;
 }
 

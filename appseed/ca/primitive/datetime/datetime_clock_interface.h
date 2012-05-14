@@ -6,7 +6,7 @@ class CLASS_DECL_ca clock_interface :
 protected:
 
 
-   time_span    m_timespan;
+   ::datetime::time_span    m_timespan;
 
 
 public:
@@ -31,8 +31,8 @@ public:
    virtual void GetRect(LPRECT lprect, enum EElement eelement);
 
 
-   virtual void set_time(const class time & time);
-   virtual void get_time(class time & time);
+   virtual void set_time(const ::datetime::time & time);
+   virtual void get_time(::datetime::time & time);
 
    virtual void _001OnDraw(::ca::graphics * pdc);
 

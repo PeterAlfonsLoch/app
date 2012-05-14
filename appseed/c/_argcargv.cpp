@@ -6,7 +6,7 @@
 
 // 08/12/06 (mv)
 
-#include "StdAfx.h"
+#include "framework.h"
 
 #define _MAX_CMD_LINE_ARGS  32
 char *_argv[_MAX_CMD_LINE_ARGS+1];

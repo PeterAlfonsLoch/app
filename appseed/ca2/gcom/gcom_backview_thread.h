@@ -86,7 +86,7 @@ namespace gcom
          void install_message_handling(::gen::message::dispatch * pinterface);
 
           static DWORD WINAPI ThreadProcStretchImage(LPVOID lpParameter);
-          static UINT AFX_CDECL ThreadProcLoadImage(LPVOID lpParameter);
+          static UINT c_cdecl ThreadProcLoadImage(LPVOID lpParameter);
 
          //void OnImageLoaded(HBITMAP hbitmap);
          long OnImageStretched(::ca::bitmap * pbitmap, long cx, long cy, long iUserData);
@@ -100,7 +100,7 @@ namespace gcom
 
          void PreTransitionImageAsync(backview::Main * pview);
 
-         static UINT AFX_CDECL ThreadProcPreTransitionImage(LPVOID lpParameter);
+         static UINT c_cdecl ThreadProcPreTransitionImage(LPVOID lpParameter);
 
 
 

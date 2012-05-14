@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 bool is_file_ok(const char * path1, const char * pszTemplate)
 {

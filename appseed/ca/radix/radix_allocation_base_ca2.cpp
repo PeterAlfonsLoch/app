@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 CLASS_DECL_ca void * base_ca2_alloc(size_t size);
@@ -179,30 +179,30 @@ void * __cdecl operator new[](size_t nSize, int nType, const char * lpszFileName
 
 #define new DEBUG_NEW
 
-void * AfxAllocMemoryDebug(size_t nSize, BOOL bIsObject,  const char * lpszFileName, int nLine)
+void * __alloc_memory_debug(size_t nSize, BOOL bIsObject,  const char * lpszFileName, int nLine)
 {
-   return ca2_alloc_dbg(nSize, bIsObject ? _AFX_CLIENT_BLOCK : _NORMAL_BLOCK, lpszFileName, nLine);
+   return ca2_alloc_dbg(nSize, bIsObject ? ___CLIENT_BLOCK : _NORMAL_BLOCK, lpszFileName, nLine);
 }
 
-void AfxFreeMemoryDebug(void * pbData, BOOL bIsObject)
+void __free_memory_debug(void * pbData, BOOL bIsObject)
 {
-   ca2_free(pbData, bIsObject ? _AFX_CLIENT_BLOCK : _NORMAL_BLOCK);
+   ca2_free(pbData, bIsObject ? ___CLIENT_BLOCK : _NORMAL_BLOCK);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // allocation failure hook, tracking turn on
 
-BOOL _AfxDefaultAllocHook(size_t, BOOL, LONG)
+BOOL __default_alloc_hook(size_t, BOOL, LONG)
    { return TRUE; }
 
-AFX_STATIC_DATA AFX_ALLOC_HOOK pfnAllocHook = _AfxDefaultAllocHook;
+__STATIC_DATA __ALLOC_HOOK pfnAllocHook = __default_alloc_hook;
 
-AFX_STATIC_DATA _CRT_ALLOC_HOOK pfnCrtAllocHook = NULL;
+__STATIC_DATA _CRT_ALLOC_HOOK pfnCrtAllocHook = NULL;
 #if _MSC_VER >= 1200
-int __cdecl _AfxAllocHookProxy(int nAllocType, void * pvData, size_t nSize,
+int __cdecl __alloc_alloc_hook(int nAllocType, void * pvData, size_t nSize,
    int nBlockUse, long lRequest, const unsigned char * szFilename, int nLine)
 #else
-int __cdecl _AfxAllocHookProxy(int nAllocType, void * pvData, size_t nSize,
+int __cdecl __alloc_alloc_hook(int nAllocType, void * pvData, size_t nSize,
    int nBlockUse, long lRequest, const char * szFilename, int nLine)
 #endif
 {
@@ -210,45 +210,45 @@ int __cdecl _AfxAllocHookProxy(int nAllocType, void * pvData, size_t nSize,
    if (nAllocType != _HOOK_ALLOC)
       return (pfnCrtAllocHook)(nAllocType, pvData, nSize,
          nBlockUse, lRequest, (const unsigned char*) szFilename, nLine);
-   if ((pfnAllocHook)(nSize, _BLOCK_TYPE(nBlockUse) == _AFX_CLIENT_BLOCK, lRequest))
+   if ((pfnAllocHook)(nSize, _BLOCK_TYPE(nBlockUse) == ___CLIENT_BLOCK, lRequest))
       return (pfnCrtAllocHook)(nAllocType, pvData, nSize,
          nBlockUse, lRequest, (const unsigned char*) szFilename, nLine);
 #else
    if (nAllocType != _HOOK_ALLOC)
       return (pfnCrtAllocHook)(nAllocType, pvData, nSize,
          nBlockUse, lRequest, szFilename, nLine);
-   if ((pfnAllocHook)(nSize, _BLOCK_TYPE(nBlockUse) == _AFX_CLIENT_BLOCK, lRequest))
+   if ((pfnAllocHook)(nSize, _BLOCK_TYPE(nBlockUse) == ___CLIENT_BLOCK, lRequest))
       return (pfnCrtAllocHook)(nAllocType, pvData, nSize,
          nBlockUse, lRequest, szFilename, nLine);
 #endif
    return FALSE;
 }
 
-AFX_ALLOC_HOOK AfxSetAllocHook(AFX_ALLOC_HOOK pfnNewHook)
+__ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnNewHook)
 {
    if (pfnCrtAllocHook == NULL)
-      pfnCrtAllocHook = _CrtSetAllocHook(_AfxAllocHookProxy);
+      pfnCrtAllocHook = _CrtSetAllocHook(__alloc_alloc_hook);
 
-   AFX_ALLOC_HOOK pfnOldHook = pfnAllocHook;
+   __ALLOC_HOOK pfnOldHook = pfnAllocHook;
    pfnAllocHook = pfnNewHook;
    return pfnOldHook;
 }
 
-// This can be set to TRUE to override all AfxEnableMemoryTracking calls,
+// This can be set to TRUE to override all __enable_memory_tracking calls,
 // allowing all allocations, even ca2 API internal allocations to be tracked.
-BOOL _afxMemoryLeakOverride = FALSE;
+BOOL gen_MemoryLeakOverride = FALSE;
 
-BOOL AfxEnableMemoryLeakOverride(BOOL bEnable)
+BOOL __enable_memory_leak_override(BOOL bEnable)
 {
-   BOOL bOldState = _afxMemoryLeakOverride;
-   _afxMemoryLeakOverride = bEnable;
+   BOOL bOldState = gen_MemoryLeakOverride;
+   gen_MemoryLeakOverride = bEnable;
 
    return bOldState;
 }
 
-BOOL AfxEnableMemoryTracking(BOOL bTrack)
+BOOL __enable_memory_tracking(BOOL bTrack)
 {
-   if (_afxMemoryLeakOverride)
+   if (gen_MemoryLeakOverride)
       return TRUE;
 
    int nOldState = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
@@ -313,33 +313,33 @@ void memory_state::dumpAllObjectsSince() const
 /////////////////////////////////////////////////////////////////////////////
 // Enumerate all objects allocated in the diagnostic primitive::memory heap
 
-AFX_STATIC void _AfxDoForAllObjectsProxy(void * pObject, void * pContext)
+__STATIC void __do_for_all_objects_proxy(void * pObject, void * pContext)
 {
-   _AFX_ENUM_CONTEXT* p = (_AFX_ENUM_CONTEXT*)pContext;
+   ___ENUM_CONTEXT* p = (___ENUM_CONTEXT*)pContext;
    (*p->m_pfn)((::radix::object*)pObject, p->m_pContext);
 }
 
 void AFXAPI
-AfxDoForAllObjects(void (AFX_CDECL *pfn)(::radix::object*, void *), void * pContext)
+__do_for_all_objects(void (c_cdecl *pfn)(::radix::object*, void *), void * pContext)
 {
    if (pfn == NULL)
    {
       throw invalid_argument_exception();
    }
-   _AFX_ENUM_CONTEXT context;
+   ___ENUM_CONTEXT context;
    context.m_pfn = pfn;
    context.m_pContext = pContext;
-   _CrtDoForAllClientObjects(_AfxDoForAllObjectsProxy, &context);
+   _CrtDoForAllClientObjects(__do_for_all_objects_proxy, &context);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // Automatic debug primitive::memory diagnostics
 
-BOOL AfxDumpMemoryLeaks()
+BOOL __dump_memory_leaks()
 {
    return _CrtDumpMemoryLeaks();
 }
 
-#endif // _AFX_NO_DEBUG_CRT
+#endif // ___NO_DEBUG_CRT
 
 */

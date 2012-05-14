@@ -26,7 +26,7 @@ namespace radix
 
    inline void * PASCAL object::operator new(size_t nSize, const char * lpszFileName, int nLine)
    {
-      void * p = ::operator new(nSize, _AFX_CLIENT_BLOCK, lpszFileName, nLine);
+      void * p = ::operator new(nSize, ___CLIENT_BLOCK, lpszFileName, nLine);
       /*try
       {
          if(::ca::get_thread_state() != NULL)

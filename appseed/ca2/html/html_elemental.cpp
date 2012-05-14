@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <math.h>
 
 void trim001(string & str)

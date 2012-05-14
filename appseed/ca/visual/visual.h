@@ -19,26 +19,26 @@ CLASS_DECL_ca int  DrawTextU(HDC hdc, const char * lpchText, int cchText, LPRECT
 
 
 
-#include "clip.h"
+#include "visual_clip.h"
 
 #include "visual_dib.h"
-#include "fastblur.h"
-#include "rgb_quad_array.h"
-#include "imaging.h"
-#include "image_list.h"
-#include "water_routine.h"
+#include "visual_fastblur.h"
+#include "visual_rgb_quad_array.h"
+#include "visual_imaging.h"
+#include "visual_image_list.h"
+#include "visual_water_routine.h"
 #include "visual_cursor.h"
 
-#include "api.h"
-#include "graphics_extension.h"
-#include "glyph.h"
-#include "glyph_set.h"
+#include "visual_api.h"
+#include "visual_graphics_extension.h"
+#include "visual_glyph.h"
+#include "visual_glyph_set.h"
 #include "visual_font.h"
-#include "font_central.h"
-#include "dib_pal.h"
-#include "icon.h"
+#include "visual_font_central.h"
+#include "visual_dib_pal.h"
+#include "visual_icon.h"
 
-#include "buffered_graphics.h"
+#include "visual_buffered_graphics.h"
 
 
 #include "visual_visual.h"

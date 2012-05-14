@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 void_implementation_exception::void_implementation_exception(const char * pszTip) : 

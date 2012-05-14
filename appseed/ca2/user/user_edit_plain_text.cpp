@@ -1,4 +1,4 @@
-﻿#include "StdAfx.h"
+﻿#include "framework.h"
 
 
 namespace user
@@ -106,7 +106,7 @@ namespace user
       ReleaseDC(pdc);
 
 
-      AfxBeginThread(get_app(), ThreadProcScrollSize, (LPVOID) this);
+      __begin_thread(get_app(), ThreadProcScrollSize, (LPVOID) this);
 
 
    }

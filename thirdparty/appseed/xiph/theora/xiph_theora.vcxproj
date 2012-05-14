@@ -193,7 +193,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
@@ -413,16 +413,16 @@
     <ClInclude Include="idct.h" />
     <ClInclude Include="ocintrin.h" />
     <ClInclude Include="quant.h" />
-    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="framework.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cpu.c" />
-    <ClCompile Include="analyze.c" />
-    <ClCompile Include="encapiwrapper.c" />
-    <ClCompile Include="encfrag.c" />
-    <ClCompile Include="encinfo.c" />
-    <ClCompile Include="encode.c" />
-    <ClCompile Include="encoder_disabled.c">
+    <ClCompile Include="cpu.cpp" />
+    <ClCompile Include="analyze.cpp" />
+    <ClCompile Include="encapiwrapper.cpp" />
+    <ClCompile Include="encfrag.cpp" />
+    <ClCompile Include="encinfo.cpp" />
+    <ClCompile Include="encode.cpp" />
+    <ClCompile Include="encoder_disabled.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -432,34 +432,34 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="enquant.c" />
-    <ClCompile Include="fdct.c" />
-    <ClCompile Include="huffenc.c" />
-    <ClCompile Include="mathops.c" />
-    <ClCompile Include="mcenc.c" />
-    <ClCompile Include="rate.c" />
-    <ClCompile Include="StdAfx.c">
+    <ClCompile Include="enquant.cpp" />
+    <ClCompile Include="fdct.cpp" />
+    <ClCompile Include="huffenc.cpp" />
+    <ClCompile Include="mathops.cpp" />
+    <ClCompile Include="mcenc.cpp" />
+    <ClCompile Include="rate.cpp" />
+    <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="tokenize.c" />
-    <ClCompile Include="x86_vc\mmxencfrag.c">
+    <ClCompile Include="tokenize.cpp" />
+    <ClCompile Include="x86_vc\mmxencfrag.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="x86_vc\mmxfdct.c">
+    <ClCompile Include="x86_vc\mmxfdct.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="x86_vc\x86enc.c">
+    <ClCompile Include="x86_vc\x86enc.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="apiwrapper.c" />
-    <ClCompile Include="bitpack.c" />
-    <ClCompile Include="decapiwrapper.c" />
-    <ClCompile Include="decinfo.c" />
-    <ClCompile Include="decode.c">
+    <ClCompile Include="apiwrapper.cpp" />
+    <ClCompile Include="bitpack.cpp" />
+    <ClCompile Include="decapiwrapper.cpp" />
+    <ClCompile Include="decinfo.cpp" />
+    <ClCompile Include="decode.cpp">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
@@ -477,10 +477,10 @@
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
     </ClCompile>
-    <ClCompile Include="dequant.c" />
-    <ClCompile Include="fragment.c" />
-    <ClCompile Include="huffdec.c" />
-    <ClCompile Include="idct.c">
+    <ClCompile Include="dequant.cpp" />
+    <ClCompile Include="fragment.cpp" />
+    <ClCompile Include="huffdec.cpp" />
+    <ClCompile Include="idct.cpp">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
@@ -498,9 +498,9 @@
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
     </ClCompile>
-    <ClCompile Include="info.c" />
-    <ClCompile Include="internal.c" />
-    <ClCompile Include="quant.c">
+    <ClCompile Include="info.cpp" />
+    <ClCompile Include="internal.cpp" />
+    <ClCompile Include="quant.cpp">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
@@ -518,20 +518,20 @@
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
     </ClCompile>
-    <ClCompile Include="state.c" />
-    <ClCompile Include="x86_vc\mmxfrag.c">
+    <ClCompile Include="state.cpp" />
+    <ClCompile Include="x86_vc\mmxfrag.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="x86_vc\mmxidct.c">
+    <ClCompile Include="x86_vc\mmxidct.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="x86_vc\mmxstate.c">
+    <ClCompile Include="x86_vc\mmxstate.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="x86_vc\x86state.c">
+    <ClCompile Include="x86_vc\x86state.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>

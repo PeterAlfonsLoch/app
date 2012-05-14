@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "pane_view.h"
 
 namespace platform

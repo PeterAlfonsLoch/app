@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #if defined(LINUX)
 #define _O_BINARY 0
 #define _O_RDONLY O_RDONLY

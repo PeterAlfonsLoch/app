@@ -47,7 +47,7 @@ namespace ca2
          virtual int exit_instance();
 
          // Load MRU file list and last preview state.
-         void LoadStdProfileSettings(UINT nMaxMRU = _AFX_MRU_COUNT);
+         void LoadStdProfileSettings(UINT nMaxMRU = ___MRU_COUNT);
 
 
          string message_box(const char * pszMatter, gen::property_set & propertyset);
@@ -106,20 +106,20 @@ namespace ca2
       INT_PTR DoPrintDialog(CPrintDialog* pPD);
    // Implementation
          // Server object for document creation
-      //{{AFX_MSG(App)
+      //{{__MSG(App)
       void OnUpdateRecentFileMenu(cmd_ui * pcmdui) ;
-      //}}AFX_MSG
+      //}}__MSG
 
    // Initialization Operations - should be done in initialize_instance
    protected:
       // Load MRU file list and last preview state.
-      void LoadStdProfileSettings(UINT nMaxMRU = _AFX_MRU_COUNT);
+      void LoadStdProfileSettings(UINT nMaxMRU = ___MRU_COUNT);
 
       void EnableShellOpen();
 
       // SetDialogBkColor is no longer supported.
       // To change dialog background and text color, handle WM_CTLCOLORDLG instead.
-      AFX_DEPRECATED("BaseWinApp::SetDialogBkColor is no longer supported. Instead, handle WM_CTLCOLORDLG in your dialog")
+      __DEPRECATED("BaseWinApp::SetDialogBkColor is no longer supported. Instead, handle WM_CTLCOLORDLG in your dialog")
             void SetDialogBkColor(COLORREF clrCtlBk = RGB(192, 192, 192), COLORREF clrCtlText = RGB(0, 0, 0));
 
    */

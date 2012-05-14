@@ -179,7 +179,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PrecompiledHeaderFile>StdAfx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
@@ -408,31 +408,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="analysis.c" />
-    <ClCompile Include="bitrate.c" />
-    <ClCompile Include="block.c" />
-    <ClCompile Include="codebook.c" />
-    <ClCompile Include="envelope.c" />
-    <ClCompile Include="floor0.c" />
-    <ClCompile Include="floor1.c" />
-    <ClCompile Include="info.c" />
-    <ClCompile Include="lookup.c" />
-    <ClCompile Include="lpc.c" />
-    <ClCompile Include="lsp.c" />
-    <ClCompile Include="mapping0.c" />
-    <ClCompile Include="mdct.c" />
-    <ClCompile Include="psy.c" />
-    <ClCompile Include="registry.c" />
-    <ClCompile Include="res0.c" />
-    <ClCompile Include="sharedbook.c" />
-    <ClCompile Include="smallft.c" />
-    <ClCompile Include="StdAfx.c">
+    <ClCompile Include="analysis.cpp" />
+    <ClCompile Include="bitrate.cpp" />
+    <ClCompile Include="block.cpp" />
+    <ClCompile Include="codebook.cpp" />
+    <ClCompile Include="envelope.cpp" />
+    <ClCompile Include="floor0.cpp" />
+    <ClCompile Include="floor1.cpp" />
+    <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="synthesis.c" />
-    <ClCompile Include="vorbisenc.c" />
-    <ClCompile Include="window.c" />
+    <ClCompile Include="info.cpp" />
+    <ClCompile Include="lookup.cpp" />
+    <ClCompile Include="lpc.cpp" />
+    <ClCompile Include="lsp.cpp" />
+    <ClCompile Include="mapping0.cpp" />
+    <ClCompile Include="mdct.cpp" />
+    <ClCompile Include="psy.cpp" />
+    <ClCompile Include="registry.cpp" />
+    <ClCompile Include="res0.cpp" />
+    <ClCompile Include="sharedbook.cpp" />
+    <ClCompile Include="smallft.cpp" />
+    <ClCompile Include="synthesis.cpp" />
+    <ClCompile Include="vorbisenc.cpp" />
+    <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\libogg.props">
@@ -482,7 +481,7 @@
     <ClInclude Include="smallft.h" />
     <ClInclude Include="..\..\..\include\vorbis\vorbisenc.h" />
     <ClInclude Include="..\..\..\include\vorbis\vorbisfile.h" />
-    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="framework.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
   <ItemGroup>

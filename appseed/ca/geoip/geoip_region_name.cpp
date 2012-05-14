@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 const char * GeoIP_region_name_by_code(const char * country_code,const char * region_code) {
   const char * name = NULL;
@@ -1587,7 +1587,7 @@ const char * GeoIP_region_name_by_code(const char * country_code,const char * re
       name = "Atakora";
       break;
       case 2:
-      name = "Atlantique";
+      name = "gen_antique";
       break;
       case 3:
       name = "Borgou";
@@ -1608,7 +1608,7 @@ const char * GeoIP_region_name_by_code(const char * country_code,const char * re
       name = "Atakora";
       break;
       case 9:
-      name = "Atlanyique";
+      name = "gen_anyique";
       break;
       case 10:
       name = "Borgou";
@@ -5255,7 +5255,7 @@ const char * GeoIP_region_name_by_code(const char * country_code,const char * re
   if (strcmp(country_code,"HN") == 0) {
     switch (region_code2) {
       case 1:
-      name = "Atlantida";
+      name = "gen_antida";
       break;
       case 2:
       name = "Choluteca";

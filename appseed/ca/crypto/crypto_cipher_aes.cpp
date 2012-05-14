@@ -43,7 +43,7 @@
  *
  */
 
-#include "StdAfx.h"
+#include "framework.h"
 
 #include "aes.h"
 #include "err.h"

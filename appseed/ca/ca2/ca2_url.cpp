@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "c/conv.h"
 
 #if defined(LINUX)

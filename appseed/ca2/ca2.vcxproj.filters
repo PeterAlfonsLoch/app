@@ -191,9 +191,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="StdAfx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="calculator\application.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
@@ -1583,6 +1580,9 @@
     <ClInclude Include="filehandler\filehandler_view.h">
       <Filter>Header Files\filehandler</Filter>
     </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca2.def">
@@ -1593,9 +1593,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="StdAfx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="window_frame\Appearance.cpp">
       <Filter>Source Files\window_frame</Filter>
     </ClCompile>
@@ -2516,6 +2513,9 @@
     </ClCompile>
     <ClCompile Include="filehandler\filehandler_view.cpp">
       <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

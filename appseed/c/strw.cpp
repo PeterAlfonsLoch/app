@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "ca/x/x_defines.h"
 #include "ca/x/x_tables.h"
 #include "ca/x/x_charcategory_names.h"

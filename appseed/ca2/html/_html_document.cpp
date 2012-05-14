@@ -1,4 +1,4 @@
-﻿#include "StdAfx.h"
+﻿#include "framework.h"
 
 
 html_document::html_document(::ca::application * papp) :

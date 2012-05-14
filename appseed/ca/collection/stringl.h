@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include "primitive/primitive_var.h"
-
-
 class CLASS_DECL_ca stringl :
    virtual public string_list,
    virtual public ex1::byte_serializable

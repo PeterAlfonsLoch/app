@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 namespace html
 {
@@ -296,10 +296,10 @@ namespace html
       class load_image * ploadimage = new class load_image;
       ploadimage->m_pimage = pimage;
       ploadimage->m_pdocument = this;
-      AfxBeginThread(get_app(), LoadImageProc, ploadimage);
+      __begin_thread(get_app(), LoadImageProc, ploadimage);
    }
 
-   UINT AFX_CDECL data::LoadImageProc(LPVOID lpParam)
+   UINT c_cdecl data::LoadImageProc(LPVOID lpParam)
    {
       class load_image * ploadimage = (class load_image *) lpParam;
       if(ploadimage->m_pdocument->load_image(ploadimage->m_pimage))

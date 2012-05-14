@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 vsstring consume_param(const char * pszCommandLine, const char ** pszEndPtr)

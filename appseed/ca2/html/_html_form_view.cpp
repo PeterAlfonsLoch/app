@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 html_form_view::html_form_view(::ca::application * papp) :
    ca(papp),

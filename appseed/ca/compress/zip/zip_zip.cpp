@@ -5,7 +5,7 @@
 
    read zip.h for more info
 */
-#include "StdAfx.h"
+#include "framework.h"
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,17 +1,14 @@
 #pragma once
 
 
-#include "ca/template/template_equals.h"
-#include "ca/collection/numeric_array.h"
-
-
 #undef new
+
 
 namespace collection
 {
 
 
-   template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = _template::hash < ARG_KEY > , class EQUALS = _template::equals_type_arg_type < KEY, ARG_KEY > >
+   template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = gen::hash < ARG_KEY > , class EQUALS = gen::equals_type_arg_type < KEY, ARG_KEY > >
    class map :
       virtual public ::radix::object
    {
@@ -602,7 +599,7 @@ namespace collection
       }
 
       // find next association
-      ASSERT(fx_is_valid_address(pAssocRet, sizeof(assoc)));
+      ASSERT(__is_valid_address(pAssocRet, sizeof(assoc)));
       assoc* pAssocNext;
       if ((pAssocNext = pAssocRet->pNext) == NULL)
       {
@@ -637,7 +634,7 @@ namespace collection
       ASSERT(pAssocRet != (assoc*)BEFORE_START_POSITION);
 
       // find next association
-      ASSERT(fx_is_valid_address(pAssocRet, sizeof(assoc)));
+      ASSERT(__is_valid_address(pAssocRet, sizeof(assoc)));
       assoc* pAssocNext;
       if ((pAssocNext = pAssocRet->pNext) == NULL)
       {
@@ -668,7 +665,7 @@ namespace collection
       ASSERT(pAssocRet != (assoc*)BEFORE_START_POSITION);
 
       // find next association
-      ASSERT(fx_is_valid_address(pAssocRet, sizeof(assoc)));
+      ASSERT(__is_valid_address(pAssocRet, sizeof(assoc)));
       assoc* pAssocNext;
       if ((pAssocNext = pAssocRet->pNext) == NULL)
       {
@@ -828,7 +825,7 @@ namespace collection
    }
 
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = _template::hash < const string & > , class EQUALS = _template::equals_type_arg_type < string, const string & > >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = gen::hash < const string & > , class EQUALS = gen::equals_type_arg_type < string, const string & > >
    class string_map :
       virtual public attrib_map < map < string, const string &, VALUE, ARG_VALUE, HASH, EQUALS > >
    {
@@ -869,7 +866,7 @@ namespace collection
 
    }
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = _template::strid_hash, class EQUALS = _template::strid_equals  >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = gen::strid_hash, class EQUALS = gen::strid_equals  >
    class strid_map :
       virtual public attrib_map < map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > >
    {
@@ -911,7 +908,7 @@ namespace collection
 
    }
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = _template::hash < int > , class EQUALS = _template::equals_type_arg_type < int, int > >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = gen::hash < int > , class EQUALS = gen::equals_type_arg_type < int, int > >
    class int_map :
       virtual public attrib_map < map < int, int, VALUE, ARG_VALUE, HASH, EQUALS > >
    {

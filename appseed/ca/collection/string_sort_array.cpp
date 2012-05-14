@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 str_sort_array::str_sort_array()
 {

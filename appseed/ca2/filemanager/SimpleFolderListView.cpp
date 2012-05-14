@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "FileManagerViewUpdateHint.h"
 #include "SimpleFolderListView.h"
 
@@ -32,12 +32,12 @@ void SimpleFolderListView::install_message_handling(::gen::message::dispatch * p
 
 
  // BEGIN_MESSAGE_MAP(SimpleFolderListView, ::userbase::view)
-   //{{AFX_MSG_MAP(SimpleFolderListView)
+   //{{__MSG_MAP(SimpleFolderListView)
    /*
    ON_WM_LBUTTONDBLCLK()
    ON_WM_CANCELMODE()
    */
-   //}}AFX_MSG_MAP
+   //}}__MSG_MAP
  // END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////

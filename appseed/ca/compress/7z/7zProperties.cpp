@@ -1,7 +1,7 @@
 // 7zProperties.cpp
 // from 7-zip on dawn of 13/01/2001 - Thursday
 
-#include "StdAfx.h"
+#include "framework.h"
 
 #include "7zProperties.h"
 #include "7zHeader.h"

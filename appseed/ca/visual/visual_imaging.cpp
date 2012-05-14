@@ -1,6 +1,6 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "include/FreeImage.h"
-#include "FreeImageFileProc.h"
+#include "visual_FreeImageFileProc.h"
 #undef new
 #include <gdiplus.h>
 #define new DEBUG_NEW

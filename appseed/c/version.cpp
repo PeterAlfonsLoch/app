@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 CLASS_DECL_c int _ca_is_basis()

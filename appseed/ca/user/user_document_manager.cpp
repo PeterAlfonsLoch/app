@@ -1,34 +1,34 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include "sal.h"
 
 
 
-const char document_manager::_afxShellOpenFmt[] = "%s\\shell\\open\\%s";
-const char document_manager::_afxShellPrintFmt[] = "%s\\shell\\print\\%s";
-const char document_manager::_afxShellPrintToFmt[] = "%s\\shell\\printto\\%s";
-const char document_manager::_afxDefaultIconFmt[] = "%s\\DefaultIcon";
-const char document_manager::_afxShellNewFmt[] = "%s\\ShellNew";
+const char document_manager::gen_ShellOpenFmt[] = "%s\\shell\\open\\%s";
+const char document_manager::gen_ShellPrintFmt[] = "%s\\shell\\print\\%s";
+const char document_manager::gen_ShellPrintToFmt[] = "%s\\shell\\printto\\%s";
+const char document_manager::gen_DefaultIconFmt[] = "%s\\DefaultIcon";
+const char document_manager::gen_ShellNewFmt[] = "%s\\ShellNew";
 
 #define DEFAULT_ICON_INDEX 0
 
-const char document_manager::_afxIconIndexFmt[] = ",%d";
-const char document_manager::_afxCommand[] = "command";
-const char document_manager::_afxOpenArg[] = _T(" \"%1\"");
-const char document_manager::_afxPrintArg[] = _T(" /p \"%1\"");
-const char document_manager::_afxPrintToArg[] = _T(" /pt \"%1\" \"%2\" \"%3\" \"%4\"");
-const char document_manager::_afxDDEArg[] = " /dde";
+const char document_manager::gen_IconIndexFmt[] = ",%d";
+const char document_manager::gen_Command[] = "command";
+const char document_manager::gen_OpenArg[] = _T(" \"%1\"");
+const char document_manager::gen_PrintArg[] = _T(" /p \"%1\"");
+const char document_manager::gen_PrintToArg[] = _T(" /pt \"%1\" \"%2\" \"%3\" \"%4\"");
+const char document_manager::gen_DDEArg[] = " /dde";
 
-const char document_manager::_afxDDEExec[] = "ddeexec";
-const char document_manager::_afxDDEOpen[] = _T("[open(\"%1\")]");
-const char document_manager::_afxDDEPrint[] = _T("[print(\"%1\")]");
-const char document_manager::_afxDDEPrintTo[] = _T("[printto(\"%1\",\"%2\",\"%3\",\"%4\")]");
+const char document_manager::gen_DDEExec[] = "ddeexec";
+const char document_manager::gen_DDEOpen[] = _T("[open(\"%1\")]");
+const char document_manager::gen_DDEPrint[] = _T("[print(\"%1\")]");
+const char document_manager::gen_DDEPrintTo[] = _T("[printto(\"%1\",\"%2\",\"%3\",\"%4\")]");
 
-const char document_manager::_afxShellNewValueName[] = "NullFile";
-const char document_manager::_afxShellNewValue[] = "";
+const char document_manager::gen_ShellNewValueName[] = "NullFile";
+const char document_manager::gen_ShellNewValue[] = "";
 
 // recursively remove a registry key if and only if it has no subkeys
-
-BOOL _AfxDeleteRegKey(const char * lpszKey)
+/*
+BOOL __delete_reg_key(const char * lpszKey)
 {
    // copy the string
    LPTSTR lpszKeyCopy = _tcsdup(lpszKey);
@@ -72,8 +72,8 @@ BOOL _AfxDeleteRegKey(const char * lpszKey)
    return TRUE;
 }
 
-AFX_STATIC BOOL AFXAPI
-_AfxSetRegKey(const char * lpszKey, const char * lpszValue, const char * lpszValueName)
+__STATIC BOOL AFXAPI
+__set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName)
 {
    if (lpszValueName == NULL)
    {
@@ -102,7 +102,7 @@ _AfxSetRegKey(const char * lpszKey, const char * lpszValue, const char * lpszVal
       return FALSE;
    }
 }
-
+*/
 document_manager::document_manager()
 {
 }
@@ -114,7 +114,7 @@ void document_manager::UnregisterShellFileTypes()
 
    string strPathName, strTemp;
 
-   AfxGetModuleShortFileName(System.m_hInstance, strPathName);
+   __get_module_short_file_name(System.m_hInstance, strPathName);
 
    POSITION pos = m_templateptra.get_head_position();
    for (int nTemplateIndex = 1; pos != NULL; nTemplateIndex++)
@@ -132,43 +132,43 @@ void document_manager::UnregisterShellFileTypes()
 
          ASSERT(strFileTypeId.find(' ') == -1);  // no spaces allowed
 
-         strTemp.Format(_afxDefaultIconFmt, (const char *)strFileTypeId);
-         _AfxDeleteRegKey(strTemp);
+         strTemp.Format(gen_DefaultIconFmt, (const char *)strFileTypeId);
+         __delete_reg_key(strTemp);
 
          // If MDI System
          if (!ptemplate->GetDocString(strTemp, document_template::windowTitle) ||
             strTemp.is_empty())
          {
             // path\shell\open\ddeexec = [open("%1")]
-            strTemp.Format(_afxShellOpenFmt, (const char *)strFileTypeId,
-               (const char *)_afxDDEExec);
-            _AfxDeleteRegKey(strTemp);
+            strTemp.Format(gen_ShellOpenFmt, (const char *)strFileTypeId,
+               (const char *)gen_DDEExec);
+            __delete_reg_key(strTemp);
 
             // path\shell\print\ddeexec = [print("%1")]
-            strTemp.Format(_afxShellPrintFmt, (const char *)strFileTypeId,
-               (const char *)_afxDDEExec);
-            _AfxDeleteRegKey(strTemp);
+            strTemp.Format(gen_ShellPrintFmt, (const char *)strFileTypeId,
+               (const char *)gen_DDEExec);
+            __delete_reg_key(strTemp);
 
             // path\shell\printto\ddeexec = [printto("%1","%2","%3","%4")]
-            strTemp.Format(_afxShellPrintToFmt, (const char *)strFileTypeId,
-               (const char *)_afxDDEExec);
-            _AfxDeleteRegKey(strTemp);
+            strTemp.Format(gen_ShellPrintToFmt, (const char *)strFileTypeId,
+               (const char *)gen_DDEExec);
+            __delete_reg_key(strTemp);
          }
 
          // path\shell\open\command = path filename
-         strTemp.Format(_afxShellOpenFmt, (const char *)strFileTypeId,
-            (const char *)_afxCommand);
-         _AfxDeleteRegKey(strTemp);
+         strTemp.Format(gen_ShellOpenFmt, (const char *)strFileTypeId,
+            (const char *)gen_Command);
+         __delete_reg_key(strTemp);
 
          // path\shell\print\command = path /p filename
-         strTemp.Format(_afxShellPrintFmt, (const char *)strFileTypeId,
-            (const char *)_afxCommand);
-         _AfxDeleteRegKey(strTemp);
+         strTemp.Format(gen_ShellPrintFmt, (const char *)strFileTypeId,
+            (const char *)gen_Command);
+         __delete_reg_key(strTemp);
 
          // path\shell\printto\command = path /pt filename printer driver port
-         strTemp.Format(_afxShellPrintToFmt, (const char *)strFileTypeId,
-            (const char *)_afxCommand);
-         _AfxDeleteRegKey(strTemp);
+         strTemp.Format(gen_ShellPrintToFmt, (const char *)strFileTypeId,
+            (const char *)gen_Command);
+         __delete_reg_key(strTemp);
 
          ptemplate->GetDocString(strFilterExt, document_template::filterExt);
          if (!strFilterExt.is_empty())
@@ -183,11 +183,11 @@ void document_manager::UnregisterShellFileTypes()
             if (lResult != ERROR_SUCCESS || strTemp.is_empty() ||
                strTemp == strFileTypeId)
             {
-               strTemp.Format(_afxShellNewFmt, (const char *)strFilterExt);
-               _AfxDeleteRegKey(strTemp);
+               strTemp.Format(gen_ShellNewFmt, (const char *)strFilterExt);
+               __delete_reg_key(strTemp);
 
                // no association for that suffix
-               _AfxDeleteRegKey(strFilterExt);
+               __delete_reg_key(strFilterExt);
             }
          }
       }
@@ -204,7 +204,7 @@ void document_manager::RegisterShellFileTypes(BOOL bCompat)
 
    string strPathName, strTemp;
 
-   AfxGetModuleShortFileName(System.m_hInstance, strPathName);
+   __get_module_short_file_name(System.m_hInstance, strPathName);
 
    POSITION pos = m_templateptra.get_head_position();
    for (int nTemplateIndex = 1; pos != NULL; nTemplateIndex++)
@@ -222,12 +222,12 @@ void document_manager::RegisterShellFileTypes(BOOL bCompat)
          HICON hIcon = ::ExtractIcon(System.m_hInstance, strPathName, nTemplateIndex);
          if (hIcon != NULL)
          {
-            strIconIndex.Format(_afxIconIndexFmt, nTemplateIndex);
+            strIconIndex.Format(gen_IconIndexFmt, nTemplateIndex);
             DestroyIcon(hIcon);
          }
          else
          {
-            strIconIndex.Format(_afxIconIndexFmt, DEFAULT_ICON_INDEX);
+            strIconIndex.Format(gen_IconIndexFmt, DEFAULT_ICON_INDEX);
          }
          strDefaultIconCommandLine += strIconIndex;
       }
@@ -244,14 +244,14 @@ void document_manager::RegisterShellFileTypes(BOOL bCompat)
          ASSERT(strFileTypeId.find(' ') == -1);  // no spaces allowed
 
          // first register the type ID of our server
-         if (!_AfxSetRegKey(strFileTypeId, strFileTypeName))
+         if (!__set_reg_key(strFileTypeId, strFileTypeName))
             continue;       // just skip it
 
          if (bCompat)
          {
             // path\DefaultIcon = path,1
-            strTemp.Format(_afxDefaultIconFmt, (const char *)strFileTypeId);
-            if (!_AfxSetRegKey(strTemp, strDefaultIconCommandLine))
+            strTemp.Format(gen_DefaultIconFmt, (const char *)strFileTypeId);
+            if (!__set_reg_key(strTemp, strDefaultIconCommandLine))
                continue;       // just skip it
          }
 
@@ -260,35 +260,35 @@ void document_manager::RegisterShellFileTypes(BOOL bCompat)
             strTemp.is_empty())
          {
             // path\shell\open\ddeexec = [open("%1")]
-            strTemp.Format(_afxShellOpenFmt, (const char *)strFileTypeId,
-               (const char *)_afxDDEExec);
-            if (!_AfxSetRegKey(strTemp, _afxDDEOpen))
+            strTemp.Format(gen_ShellOpenFmt, (const char *)strFileTypeId,
+               (const char *)gen_DDEExec);
+            if (!__set_reg_key(strTemp, gen_DDEOpen))
                continue;       // just skip it
 
             if (bCompat)
             {
                // path\shell\print\ddeexec = [print("%1")]
-               strTemp.Format(_afxShellPrintFmt, (const char *)strFileTypeId,
-                  (const char *)_afxDDEExec);
-               if (!_AfxSetRegKey(strTemp, _afxDDEPrint))
+               strTemp.Format(gen_ShellPrintFmt, (const char *)strFileTypeId,
+                  (const char *)gen_DDEExec);
+               if (!__set_reg_key(strTemp, gen_DDEPrint))
                   continue;       // just skip it
 
                // path\shell\printto\ddeexec = [printto("%1","%2","%3","%4")]
-               strTemp.Format(_afxShellPrintToFmt, (const char *)strFileTypeId,
-                  (const char *)_afxDDEExec);
-               if (!_AfxSetRegKey(strTemp, _afxDDEPrintTo))
+               strTemp.Format(gen_ShellPrintToFmt, (const char *)strFileTypeId,
+                  (const char *)gen_DDEExec);
+               if (!__set_reg_key(strTemp, gen_DDEPrintTo))
                   continue;       // just skip it
 
                // path\shell\open\command = path /dde
                // path\shell\print\command = path /dde
                // path\shell\printto\command = path /dde
-               strOpenCommandLine += _afxDDEArg;
-               strPrintCommandLine += _afxDDEArg;
-               strPrintToCommandLine += _afxDDEArg;
+               strOpenCommandLine += gen_DDEArg;
+               strPrintCommandLine += gen_DDEArg;
+               strPrintToCommandLine += gen_DDEArg;
             }
             else
             {
-               strOpenCommandLine += _afxOpenArg;
+               strOpenCommandLine += gen_OpenArg;
             }
          }
          else
@@ -296,32 +296,32 @@ void document_manager::RegisterShellFileTypes(BOOL bCompat)
             // path\shell\open\command = path filename
             // path\shell\print\command = path /p filename
             // path\shell\printto\command = path /pt filename printer driver port
-            strOpenCommandLine += _afxOpenArg;
+            strOpenCommandLine += gen_OpenArg;
             if (bCompat)
             {
-               strPrintCommandLine += _afxPrintArg;
-               strPrintToCommandLine += _afxPrintToArg;
+               strPrintCommandLine += gen_PrintArg;
+               strPrintToCommandLine += gen_PrintToArg;
             }
          }
 
          // path\shell\open\command = path filename
-         strTemp.Format(_afxShellOpenFmt, (const char *)strFileTypeId,
-            (const char *)_afxCommand);
-         if (!_AfxSetRegKey(strTemp, strOpenCommandLine))
+         strTemp.Format(gen_ShellOpenFmt, (const char *)strFileTypeId,
+            (const char *)gen_Command);
+         if (!__set_reg_key(strTemp, strOpenCommandLine))
             continue;       // just skip it
 
          if (bCompat)
          {
             // path\shell\print\command = path /p filename
-            strTemp.Format(_afxShellPrintFmt, (const char *)strFileTypeId,
-               (const char *)_afxCommand);
-            if (!_AfxSetRegKey(strTemp, strPrintCommandLine))
+            strTemp.Format(gen_ShellPrintFmt, (const char *)strFileTypeId,
+               (const char *)gen_Command);
+            if (!__set_reg_key(strTemp, strPrintCommandLine))
                continue;       // just skip it
 
             // path\shell\printto\command = path /pt filename printer driver port
-            strTemp.Format(_afxShellPrintToFmt, (const char *)strFileTypeId,
-               (const char *)_afxCommand);
-            if (!_AfxSetRegKey(strTemp, strPrintToCommandLine))
+            strTemp.Format(gen_ShellPrintToFmt, (const char *)strFileTypeId,
+               (const char *)gen_Command);
+            if (!__set_reg_key(strTemp, strPrintToCommandLine))
                continue;       // just skip it
          }
 
@@ -339,13 +339,13 @@ void document_manager::RegisterShellFileTypes(BOOL bCompat)
                strTemp == strFileTypeId)
             {
                // no association for that suffix
-               if (!_AfxSetRegKey(strFilterExt, strFileTypeId))
+               if (!__set_reg_key(strFilterExt, strFileTypeId))
                   continue;
 
                if (bCompat)
                {
-                  strTemp.Format(_afxShellNewFmt, (const char *)strFilterExt);
-                  (void)_AfxSetRegKey(strTemp, _afxShellNewValue, _afxShellNewValueName);
+                  strTemp.Format(gen_ShellNewFmt, (const char *)strFilterExt);
+                  (void)__set_reg_key(strTemp, gen_ShellNewValue, gen_ShellNewValueName);
                }
             }
          }
@@ -354,7 +354,7 @@ void document_manager::RegisterShellFileTypes(BOOL bCompat)
 }
 
 /*
-AFX_STATIC void _AfxAppendFilterSuffix(string & filter, OPENFILENAME& ofn,
+__STATIC void _gen::AppendFilterSuffix(string & filter, OPENFILENAME& ofn,
    document_template * ptemplate, string* pstrDefaultExt)
 {
    ENSURE_VALID(ptemplate);
@@ -634,7 +634,7 @@ void document_manager::_001OnFileNew()
    if (m_templateptra.is_empty())
    {
       TRACE(::radix::trace::category_AppMsg, 0, "Error: no document templates registered with application.\n");
-      // linux System.simple_message_box(AFX_IDP_FAILED_TO_CREATE_DOC);
+      // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
       System.simple_message_box(NULL, "Failed to create document");
       return;
    }
@@ -661,7 +661,7 @@ void document_manager::on_file_open()
    
    ::ca::create_context_sp createcontext(get_app());
 
-   if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*AFX_IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL, NULL))
+   if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL, NULL))
       return; // open cancelled
 
    System.open_document_file(createcontext);
@@ -721,12 +721,12 @@ void document_manager::request(::ca::create_context * pcreatecontext)
    char szTemp[_MAX_PATH];
    if (lpszFileName[0] == '\"')
       ++lpszFileName;
-   _template::checked::tcsncpy_s(szTemp, _countof(szTemp), varFileName, _TRUNCATE);
+   ::gen::tcsncpy_s(szTemp, _countof(szTemp), varFileName, _TRUNCATE);
    LPTSTR lpszLast = _tcsrchr(szTemp, '\"');
    if (lpszLast != NULL)
       *lpszLast = 0;*/
 
-   //if( AfxFullPath(szPath, szTemp) == FALSE )
+   //if( gen::FullPath(szPath, szTemp) == FALSE )
    //{
    //   ASSERT(FALSE);
    //   return NULL; // We won't open the file. ca2 API requires paths with
@@ -734,8 +734,8 @@ void document_manager::request(::ca::create_context * pcreatecontext)
    //}
 
 /*   char szLinkName[_MAX_PATH];
-   if (AfxResolveShortcut(System.GetMainWnd(), szPath, szLinkName, _MAX_PATH))
-      _template::checked::tcscpy_s(szPath, _countof(szPath), szLinkName);
+   if (gen::ResolveShortcut(System.GetMainWnd(), szPath, szLinkName, _MAX_PATH))
+      ::gen::tcscpy_s(szPath, _countof(szPath), szLinkName);
 */
 
    for(index index = 0; index < count; index++)
@@ -788,7 +788,7 @@ void document_manager::request(::ca::create_context * pcreatecontext)
 
    if (pBestTemplate == NULL)
    {
-      // linux System.simple_message_box(AFX_IDP_FAILED_TO_OPEN_DOC);
+      // linux System.simple_message_box(__IDP_FAILED_TO_OPEN_DOC);
       System.simple_message_box(NULL, "failed to open document");
       return;
    }

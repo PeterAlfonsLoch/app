@@ -17,7 +17,7 @@ namespace radix
 
       thread();
       thread(::ca::application * papp);
-      thread(::ca::application * papp, AFX_THREADPROC pfnThreadProc, LPVOID pParam);
+      thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam);
       virtual ~thread();
 
 
@@ -38,7 +38,7 @@ namespace radix
 
       virtual bool PreInitInstance();
 
-      // called when occurs an se_exception exception in run
+      // called when occurs an standard_exception exception in run
       // return true to call run again
       virtual bool on_run_exception(::ca::exception & e);
 
