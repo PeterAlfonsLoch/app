@@ -49,7 +49,7 @@ static unsigned int cur_atexit_entries = 0;
 void _init_atexit()
 {
 	max_atexit_entries = 128;
-	atexitlist = (_PVFV*)ca2_alloc(max_atexit_entries * sizeof(_PVFV*));
+	atexitlist = (_PVFV*)_ca_alloc(max_atexit_entries * sizeof(_PVFV*));
 }
 
 int atexit(_PVFV func)

@@ -22,13 +22,14 @@ void _term_args();
 typedef void (__cdecl *_PVFV)();
 extern _PVFV __xc_a[], __xc_z[];    /* C++ initializers */
 
-void _initterm(_PVFV *pfbegin, _PVFV *pfend);
-void _init_atexit();
-void _doexit();
+CLASS_DECL_c void _initterm(_PVFV *pfbegin, _PVFV *pfend);
+CLASS_DECL_c void _init_atexit();
+CLASS_DECL_c void _doexit();
+CLASS_DECL_c void _init_file();
 
 END_EXTERN_C
 
-void _init_file();
+
 
 #include "c_heap.h"
 

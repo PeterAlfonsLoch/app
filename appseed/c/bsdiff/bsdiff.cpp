@@ -187,11 +187,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    int bz2err;
 
    /* allocate oldsize+1 bytes instead of oldsize bytes to ensure
-      that we never try to ca2_alloc(0) and get a NULL pointer */
+      that we never try to _ca_alloc(0) and get a NULL pointer */
    //org:
    //if(((fd=_open(oldfile,O_RDONLY,0))<0) ||
    //   ((oldsize=fseek_dup(fd,0,SEEK_END))==-1) ||
-   //   ((old=ca2_alloc(oldsize+1))==NULL) ||
+   //   ((old=_ca_alloc(oldsize+1))==NULL) ||
    //   (fseek_dup(fd,0,SEEK_SET)!=0) ||
    //   (fread_dup(fd,old,oldsize)!=oldsize) ||
    //   (fclose_dup(fd)==-1)) return err(1,"%s",oldfile);
@@ -199,7 +199,7 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    //fread_dup in chunks, don't rely on fread_dup always returns full data!
    if(((fd=fopen_dup(oldfile,"rb")) ==0) ||
       ((oldsize=fseek_dup(fd,0,SEEK_END))==-1) ||
-      ((old=(u_char*)ca2_alloc(oldsize+1))==NULL) ||
+      ((old=(u_char*)_ca_alloc(oldsize+1))==NULL) ||
       (fseek_dup(fd,0,SEEK_SET)!=0))
    {
       if(fd != 0)
@@ -208,7 +208,7 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
       }
       if(old != NULL)
       {
-         ca2_free(old);
+         _ca_free(old, 0);
       }
       return err(1,"%s",oldfile);
    }
@@ -219,36 +219,36 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
       r-=i;
    if (r>0 || fclose_dup(fd)>0)
    {
-      ca2_free(old);
+      _ca_free(old, 0);
       return err(1,"%s",oldfile);
    }
 
 
-   if(((I=(off_t*)ca2_alloc((oldsize+1)*sizeof(off_t)))==NULL) ||
-      ((V=(off_t*)ca2_alloc((oldsize+1)*sizeof(off_t)))==NULL))
+   if(((I=(off_t*)_ca_alloc((oldsize+1)*sizeof(off_t)))==NULL) ||
+      ((V=(off_t*)_ca_alloc((oldsize+1)*sizeof(off_t)))==NULL))
    {
-      ca2_free(old);
+      _ca_free(old, 0);
       if(I != NULL)
       {
-         ca2_free(I);
+         _ca_free(I, 0);
       }
       if(V != NULL)
       {
-         ca2_free(V);
+         _ca_free(V, 0);
       }
       return err(1,NULL);
    }
 
    qsufsort(I,V,old,oldsize);
 
-   ca2_free(V);
+   _ca_free(V, 0);
 
    /* allocate newsize+1 bytes instead of newsize bytes to ensure
-      that we never try to ca2_alloc(0) and get a NULL pointer */
+      that we never try to _ca_alloc(0) and get a NULL pointer */
    //org:
    //if(((fd=_open(newfile,O_RDONLY,0))<0) ||
    //   ((newsize=fseek_dup(fd,0,SEEK_END))==-1) ||
-   //   ((_new=ca2_alloc(newsize+1))==NULL) ||
+   //   ((_new=_ca_alloc(newsize+1))==NULL) ||
    //   (fseek_dup(fd,0,SEEK_SET)!=0) ||
    //   (fread_dup(fd,_new,newsize)!=newsize) ||
    //   (fclose_dup(fd)==-1)) return err(1,"%s",newfile);
@@ -256,15 +256,15 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    //fread_dup in chunks, don't rely on fread_dup always returns full data!
    if(((fd=fopen_dup(newfile,"rb"))== NULL) ||
       ((newsize=fseek_dup(fd,0,SEEK_END))==-1) ||
-      ((_new=(u_char*)ca2_alloc(newsize+1))==NULL) ||
+      ((_new=(u_char*)_ca_alloc(newsize+1))==NULL) ||
       (fseek_dup(fd,0,SEEK_SET)!=0))
    {
       if(fd != 0)
       {
          fclose_dup(fd);
       }
-      ca2_free(old);
-      ca2_free(I);
+      _ca_free(old, 0);
+      _ca_free(I, 0);
       return err(1,"%s",newfile);
    }
 
@@ -273,25 +273,25 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
       r-=i;
    if (r>0 || fclose_dup(fd)> 0)
    {
-      ca2_free(old);
-      ca2_free(_new);
-      ca2_free(I);
+      _ca_free(old, 0);
+      _ca_free(_new, 0);
+      _ca_free(I, 0);
       return err(1,"%s",oldfile);
    }
 
-   if(((db=(u_char*)ca2_alloc(newsize+1))==NULL) ||
-      ((eb=(u_char*)ca2_alloc(newsize+1))==NULL))
+   if(((db=(u_char*)_ca_alloc(newsize+1))==NULL) ||
+      ((eb=(u_char*)_ca_alloc(newsize+1))==NULL))
    {
-      ca2_free(old);
-      ca2_free(_new);
-      ca2_free(I);
+      _ca_free(old, 0);
+      _ca_free(_new, 0);
+      _ca_free(I, 0);
       if(db != NULL)
       {
-         ca2_free(db);
+         _ca_free(db, 0);
       }
       if(eb != NULL)
       {
-         ca2_free(eb);
+         _ca_free(eb, 0);
       }
       return err(1,NULL);
    }
@@ -305,11 +305,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    //if((fd=_open(patchfile,O_CREAT|O_TRUNC|O_WRONLY|O_BINARY|O_NOINHERIT,0666))<0)
    if ((pf = fopen_dup(patchfile, "wb")) == NULL)
    {
-      ca2_free(old);
-      ca2_free(_new);
-      ca2_free(I);
-      ca2_free(db);
-      ca2_free(eb);
+      _ca_free(old, 0);
+      _ca_free(_new, 0);
+      _ca_free(I, 0);
+      _ca_free(db, 0);
+      _ca_free(eb, 0);
       return err(1,"%s",patchfile);
    }
 
@@ -329,11 +329,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    offtout(newsize, header + 24);
    if (fwrite_dup(header, 32, 1, pf) != 1)
    {
-      ca2_free(old);
-      ca2_free(_new);
-      ca2_free(I);
-      ca2_free(db);
-      ca2_free(eb);
+      _ca_free(old, 0);
+      _ca_free(_new, 0);
+      _ca_free(I, 0);
+      _ca_free(db, 0);
+      _ca_free(eb, 0);
       fclose_dup(pf);
       return err(1, "fwrite_dup(%s)", patchfile);
    }
@@ -341,11 +341,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    /* Compute the differences, writing ctrl as we go */
    if ((pfbz2 = BZ2_bzWriteOpen(&bz2err, pf, 9, 0, 0)) == NULL)
    {
-      ca2_free(old);
-      ca2_free(_new);
-      ca2_free(I);
-      ca2_free(db);
-      ca2_free(eb);
+      _ca_free(old, 0);
+      _ca_free(_new, 0);
+      _ca_free(I, 0);
+      _ca_free(db, 0);
+      _ca_free(eb, 0);
       fclose_dup(pf);
       return errx(1, "BZ2_bzWriteOpen, bz2err = %d", bz2err);
    }
@@ -415,11 +415,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
          BZ2_bzWrite(&bz2err, pfbz2, buf, 8);
          if (bz2err != BZ_OK)
          {
-            ca2_free(old);
-            ca2_free(_new);
-            ca2_free(I);
-            ca2_free(db);
-            ca2_free(eb);
+            _ca_free(old, 0);
+            _ca_free(_new, 0);
+            _ca_free(I, 0);
+            _ca_free(db, 0);
+            _ca_free(eb, 0);
             fclose_dup(pf);
             return errx(1, "BZ2_bzWrite, bz2err = %d", bz2err);
          }
@@ -428,11 +428,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
          BZ2_bzWrite(&bz2err, pfbz2, buf, 8);
          if (bz2err != BZ_OK)
          {
-            ca2_free(old);
-            ca2_free(_new);
-            ca2_free(I);
-            ca2_free(db);
-            ca2_free(eb);
+            _ca_free(old, 0);
+            _ca_free(_new, 0);
+            _ca_free(I, 0);
+            _ca_free(db, 0);
+            _ca_free(eb, 0);
             fclose_dup(pf);
             return errx(1, "BZ2_bzWrite, bz2err = %d", bz2err);
          }
@@ -441,11 +441,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
          BZ2_bzWrite(&bz2err, pfbz2, buf, 8);
          if (bz2err != BZ_OK)
          {
-            ca2_free(old);
-            ca2_free(_new);
-            ca2_free(I);
-            ca2_free(db);
-            ca2_free(eb);
+            _ca_free(old, 0);
+            _ca_free(_new, 0);
+            _ca_free(I, 0);
+            _ca_free(db, 0);
+            _ca_free(eb, 0);
             fclose_dup(pf);
             return errx(1, "BZ2_bzWrite, bz2err = %d", bz2err);
          }
@@ -458,11 +458,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    BZ2_bzWriteClose(&bz2err, pfbz2, 0, NULL, NULL);
    if (bz2err != BZ_OK)
    {
-      ca2_free(old);
-      ca2_free(_new);
-      ca2_free(I);
-      ca2_free(db);
-      ca2_free(eb);
+      _ca_free(old, 0);
+      _ca_free(_new, 0);
+      _ca_free(I, 0);
+      _ca_free(db, 0);
+      _ca_free(eb, 0);
       fclose_dup(pf);
       return errx(1, "BZ2_bzWriteClose, bz2err = %d", bz2err);
    }
@@ -470,11 +470,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    /* Compute size of compressed ctrl data */
    if ((len = ftell_dup(pf)) == -1)
    {
-      ca2_free(old);
-      ca2_free(_new);
-      ca2_free(I);
-      ca2_free(db);
-      ca2_free(eb);
+      _ca_free(old, 0);
+      _ca_free(_new, 0);
+      _ca_free(I, 0);
+      _ca_free(db, 0);
+      _ca_free(eb, 0);
       fclose_dup(pf);
       return err(1, "ftello");
    }
@@ -483,33 +483,33 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    /* _write compressed diff data */
    if ((pfbz2 = BZ2_bzWriteOpen(&bz2err, pf, 9, 0, 0)) == NULL)
    {
-      ca2_free(old);
-      ca2_free(_new);
-      ca2_free(I);
-      ca2_free(db);
-      ca2_free(eb);
+      _ca_free(old, 0);
+      _ca_free(_new, 0);
+      _ca_free(I, 0);
+      _ca_free(db, 0);
+      _ca_free(eb, 0);
       fclose_dup(pf);
       return errx(1, "BZ2_bzWriteOpen, bz2err = %d", bz2err);
    }
    BZ2_bzWrite(&bz2err, pfbz2, db, dblen);
    if (bz2err != BZ_OK)
    {
-      ca2_free(old);
-      ca2_free(_new);
-      ca2_free(I);
-      ca2_free(db);
-      ca2_free(eb);
+      _ca_free(old, 0);
+      _ca_free(_new, 0);
+      _ca_free(I, 0);
+      _ca_free(db, 0);
+      _ca_free(eb, 0);
       fclose_dup(pf);
       return errx(1, "BZ2_bzWrite, bz2err = %d", bz2err);
    }
    BZ2_bzWriteClose(&bz2err, pfbz2, 0, NULL, NULL);
    if (bz2err != BZ_OK)
    {
-      ca2_free(old);
-      ca2_free(_new);
-      ca2_free(I);
-      ca2_free(db);
-      ca2_free(eb);
+      _ca_free(old, 0);
+      _ca_free(_new, 0);
+      _ca_free(I, 0);
+      _ca_free(db, 0);
+      _ca_free(eb, 0);
       fclose_dup(pf);
       return errx(1, "BZ2_bzWriteClose, bz2err = %d", bz2err);
    }
@@ -517,11 +517,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    /* Compute size of compressed diff data */
    if ((newsize = ftell_dup(pf)) == -1)
    {
-      ca2_free(old);
-      ca2_free(_new);
-      ca2_free(I);
-      ca2_free(db);
-      ca2_free(eb);
+      _ca_free(old, 0);
+      _ca_free(_new, 0);
+      _ca_free(I, 0);
+      _ca_free(db, 0);
+      _ca_free(eb, 0);
       fclose_dup(pf);
       return err(1, "ftello");
    }
@@ -530,33 +530,33 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    /* _write compressed extra data */
    if ((pfbz2 = BZ2_bzWriteOpen(&bz2err, pf, 9, 0, 0)) == NULL)
    {
-      ca2_free(old);
-      ca2_free(_new);
-      ca2_free(I);
-      ca2_free(db);
-      ca2_free(eb);
+      _ca_free(old, 0);
+      _ca_free(_new, 0);
+      _ca_free(I, 0);
+      _ca_free(db, 0);
+      _ca_free(eb, 0);
       fclose_dup(pf);
       return errx(1, "BZ2_bzWriteOpen, bz2err = %d", bz2err);
    }
    BZ2_bzWrite(&bz2err, pfbz2, eb, eblen);
    if (bz2err != BZ_OK)
    {
-      ca2_free(old);
-      ca2_free(_new);
-      ca2_free(I);
-      ca2_free(db);
-      ca2_free(eb);
+      _ca_free(old, 0);
+      _ca_free(_new, 0);
+      _ca_free(I, 0);
+      _ca_free(db, 0);
+      _ca_free(eb, 0);
       fclose_dup(pf);
       return errx(1, "BZ2_bzWrite, bz2err = %d", bz2err);
    }
    BZ2_bzWriteClose(&bz2err, pfbz2, 0, NULL, NULL);
    if (bz2err != BZ_OK)
    {
-      ca2_free(old);
-      ca2_free(_new);
-      ca2_free(I);
-      ca2_free(db);
-      ca2_free(eb);
+      _ca_free(old, 0);
+      _ca_free(_new, 0);
+      _ca_free(I, 0);
+      _ca_free(db, 0);
+      _ca_free(eb, 0);
       fclose_dup(pf);
       return errx(1, "BZ2_bzWriteClose, bz2err = %d", bz2err);
    }
@@ -564,21 +564,21 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    /* seek to the beginning, _write the header, and fclose_dup the file */
    if (fseek_dup(pf, 0, SEEK_SET))
    {
-      ca2_free(old);
-      ca2_free(_new);
-      ca2_free(I);
-      ca2_free(db);
-      ca2_free(eb);
+      _ca_free(old, 0);
+      _ca_free(_new, 0);
+      _ca_free(I, 0);
+      _ca_free(db, 0);
+      _ca_free(eb, 0);
       fclose_dup(pf);
       return err(1, "fseeko");
    }
    if (fwrite_dup(header, 32, 1, pf) != 1)
    {
-      ca2_free(old);
-      ca2_free(_new);
-      ca2_free(I);
-      ca2_free(db);
-      ca2_free(eb);
+      _ca_free(old, 0);
+      _ca_free(_new, 0);
+      _ca_free(I, 0);
+      _ca_free(db, 0);
+      _ca_free(eb, 0);
       fclose_dup(pf);
       return err(1, "fwrite_dup(%s)", patchfile);
    }
@@ -589,11 +589,11 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    }
 
    /* Free the primitive::memory we used */
-   ca2_free(db);
-   ca2_free(eb);
-   ca2_free(I);
-   ca2_free(old);
-   ca2_free(_new);
+   _ca_free(db, 0);
+   _ca_free(eb, 0);
+   _ca_free(I, 0);
+   _ca_free(old, 0);
+   _ca_free(_new, 0);
 
    return 0;
 }

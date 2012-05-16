@@ -4,7 +4,7 @@
 
 
 simple_mutex g_mutexTrace;
-stra_dup g_straTrace;
+stra_dup * g_pstraTrace = NULL;
 HANDLE g_ftrace = INVALID_HANDLE_VALUE;
 vsstring g_strLastStatus;
 int g_iLastStatus = 0;
@@ -58,8 +58,8 @@ void trace(const char * psz)
    vsstring str;
    {
       mutex_lock lockTrace(&g_mutexTrace, true);
-      g_straTrace.add(psz);
-      str = g_straTrace[g_straTrace.get_count() - 1];
+      g_pstraTrace->add(psz);
+      str = g_pstraTrace->element_at(g_pstraTrace->get_count() - 1);
    }
    vsstring str2(str);
    str2 = "\r\n" + str2;
@@ -71,11 +71,11 @@ void trace_add(const char * psz)
    vsstring str;
    {
       mutex_lock lockTrace(&g_mutexTrace, true);
-      if(g_straTrace.get_count() == 0)
-         g_straTrace.add(psz);
+      if(g_pstraTrace->get_count() == 0)
+         g_pstraTrace->add(psz);
       else
-         g_straTrace[g_straTrace.get_count() - 1] += psz;
-      str = g_straTrace[g_straTrace.get_count() - 1];
+         g_pstraTrace->element_at(g_pstraTrace->get_count() - 1) += psz;
+      str = g_pstraTrace->element_at(g_pstraTrace->get_count() - 1);
    }
    vsstring str2(psz);
    on_trace(str, str2);
@@ -133,3 +133,29 @@ CLASS_DECL_c void trace_progress(double dRate)
 }
 
 
+
+
+CLASS_DECL_c bool initialize_primitive_trace()
+{
+   
+   g_pstraTrace = new stra_dup();
+
+   if(g_pstraTrace == NULL)
+      return false;
+
+   return true;
+
+}
+
+
+CLASS_DECL_c void finalize_primitive_trace()
+{
+
+   if(g_pstraTrace != NULL)
+   {
+
+      delete g_pstraTrace;
+
+   }
+
+}

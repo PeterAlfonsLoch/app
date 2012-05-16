@@ -18,9 +18,11 @@ namespace fontopus
       m_strInstallToken    = "fontopus";    
    }
 
+
    application::~application(void)
    {
    }
+
 
    bool application::initialize_instance()
    {
@@ -31,17 +33,29 @@ namespace fontopus
       return TRUE;
    }
 
+
    int application::exit_instance()
    {
+
+      int iExitCode = 0;
+
       try
       {
-         ::fs::application::exit_instance();
+
+         iExitCode = ::fs::application::exit_instance();
+
       }
       catch(...)
       {
+
+         iExitCode = -1;
+
       }
-      return 0;
+
+      return iExitCode;
+
    }
+
 
    bool application::bergedge_start()
    {

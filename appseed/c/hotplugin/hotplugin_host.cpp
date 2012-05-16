@@ -74,7 +74,7 @@ namespace hotplugin
    void host::set_memory(void * puchMemory, count c)
    {
       free_memory();
-      m_puchMemory = (byte *) ca2_alloc(c);
+      m_puchMemory = (byte *) _ca_alloc(c);
       memcpy_dup(m_puchMemory, puchMemory, c);
       m_countMemory = c;
    }
@@ -89,7 +89,7 @@ namespace hotplugin
       }
       else
       {
-         byte * puchMemoryNew = (byte *) ca2_realloc(m_puchMemory, m_countMemory + c);
+         byte * puchMemoryNew = (byte *) _ca_realloc(m_puchMemory, m_countMemory + c, 0, NULL, 0);
          memcpy_dup(&puchMemoryNew[m_countMemory], puchMemory, c);
          m_countMemory += c;
          m_puchMemory = puchMemoryNew;
@@ -118,7 +118,7 @@ namespace hotplugin
    {
       if(*ppuchMemory != NULL)
       {
-         ca2_free(*ppuchMemory);
+         _ca_free(*ppuchMemory, 0);
       }
       *ppuchMemory = NULL;
    }

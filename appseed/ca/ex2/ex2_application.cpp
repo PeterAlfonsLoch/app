@@ -91,8 +91,8 @@ namespace ex2
          gen::add_ref(::ca::thread_sp::m_p);
       }
       set_thread(dynamic_cast < ::radix::thread * > (this));
-      m_pappDelete = this;
-      ::ca::thread_sp::m_p->m_pappDelete = this;
+      //m_pappDelete = this;
+      //::ca::thread_sp::m_p->m_pappDelete = this;
 
       if(is_system())
       {

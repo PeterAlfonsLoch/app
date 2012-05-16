@@ -30,7 +30,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
 
    vsstring strUrl;
 
-   char * szBuf = (char *) ca2_alloc(4096);
+   char * szBuf = (char *) _ca_alloc(4096);
 
    prepare_http();
 
@@ -151,7 +151,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    if(piStatus != NULL)
       *piStatus = dwStatusCode;
    dwBufferLen = 1024;
-   char * pszStatus = (char *) ca2_alloc(dwBufferLen);
+   char * pszStatus = (char *) _ca_alloc(dwBufferLen);
    if(pszStatus != NULL)
    {
       memset_dup(pszStatus, 0, dwBufferLen);
@@ -169,7 +169,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
       if(piStatus == NULL)
       {
          /*dwBufferLen = 1024 + 256;
-         char * pszMessage = (char *) ca2_alloc(dwBufferLen);
+         char * pszMessage = (char *) _ca_alloc(dwBufferLen);
          if(pszMessage != NULL)
          {
          //sprintf_s(pszMessage, dwBufferLen, "download error : status %d - %s", dwStatusCode, pszStatus);
@@ -187,7 +187,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    }
    if(pszStatus != NULL)
    {
-      ca2_free(pszStatus);
+      _ca_free(pszStatus, 0);
    }
 
    if (bResults)
@@ -405,7 +405,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
       &dwBufferLen,
       &dwIndex);
    dwBufferLen = 1024;
-   char * pszStatus = (char *) ca2_alloc(dwBufferLen);
+   char * pszStatus = (char *) _ca_alloc(dwBufferLen);
    if(pszStatus != NULL)
    {
       memset_dup(pszStatus, 0, dwBufferLen);
@@ -431,7 +431,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    }
    if(pszStatus != NULL)
    {
-      ca2_free(pszStatus);
+      _ca_free(pszStatus, 0);
    }
 
    DWORD dwLen = 0;

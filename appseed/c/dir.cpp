@@ -41,7 +41,7 @@ vsstring dir::beforeca2()
 {
    vsstring str;
 #ifdef WINDOWS
-   char * buf = (char *) ca2_alloc(4096);
+   char * buf = (char *) _ca_alloc(4096);
    memset_dup(buf, 0, sizeof(buf));
    SHGetSpecialFolderPath(
       NULL,
@@ -49,7 +49,7 @@ vsstring dir::beforeca2()
       CSIDL_PROGRAM_FILES,
       FALSE);
    str = buf;
-   ca2_free(buf);
+   _ca_free(buf, 0);
 #endif
    return str;
 }

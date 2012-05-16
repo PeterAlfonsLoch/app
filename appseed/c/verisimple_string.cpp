@@ -46,7 +46,7 @@ verisimple_string::~verisimple_string()
    if(m_psz != NULL)
    {
 //      g_pfixedallocaWstring->ca2_free(m_psz, (wcslen(m_psz) + 1) * 2);
-      ca2_free(m_psz);
+      _ca_free(m_psz, 0);
    }
 }
 
@@ -55,7 +55,7 @@ char * verisimple_string::alloc(int iCount)
    clear();
    int iAlloc = (iCount + 1) * sizeof(char);
    //m_psz = (char *) g_pfixedallocaWstring->alloc(iAlloc);
-   m_psz = (char *) ca2_alloc(iAlloc);
+   m_psz = (char *) _ca_alloc(iAlloc);
    m_psz[iCount] = L'\0';
    return m_psz;
 }
@@ -110,18 +110,18 @@ verisimple_string & verisimple_string::operator = (char ch)
    if(m_psz != NULL)
    {
       //g_pfixedallocaWstring->ca2_free(m_psz, (wcslen(m_psz) + 1) * 2);
-      ca2_free(m_psz);
+      _ca_free(m_psz, 0);
       m_psz = NULL;
    }
    if(ch == '\0')
    {
-      m_psz = (char *) ca2_alloc(1);
+      m_psz = (char *) _ca_alloc(1);
       m_psz[0] = '\0';
    }
    else
    {
       //m_psz = (char *) g_pfixedallocaWstring->alloc((wcslen(psz) + 1) * 2);
-      m_psz = (char *) ca2_alloc(2);
+      m_psz = (char *) _ca_alloc(2);
       m_psz[0] = ch;
       m_psz[1] = '\0';
    }
@@ -135,7 +135,7 @@ void verisimple_string::attach(const char * psz)
       if(m_psz != NULL)
       {
          //g_pfixedallocaWstring->ca2_free(m_psz, (wcslen(m_psz) + 1) * 2);
-         ca2_free(m_psz);
+         _ca_free(m_psz, 0);
          m_psz = NULL;
       }
       m_psz = (char *) psz;
@@ -209,7 +209,7 @@ verisimple_string operator + (const verisimple_string & str1, const verisimple_s
 
    verisimple_string strRet;
 
-   char * pszRet = (char *) ca2_alloc(iLen1 + iLen2 + 1);
+   char * pszRet = (char *) _ca_alloc(iLen1 + iLen2 + 1);
 
    strcpy_dup(pszRet, str1);
 
@@ -499,7 +499,7 @@ void verisimple_string::clear()
 {
    if(m_psz != NULL)
    {
-      ca2_free(m_psz);
+      _ca_free(m_psz, 0);
       m_psz = NULL;
    }
 }

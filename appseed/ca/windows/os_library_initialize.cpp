@@ -67,6 +67,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
    }
    else if (dwReason == DLL_THREAD_DETACH)
    {
+      initialize_primitive_heap();
 //      __term_thread();
    }
 

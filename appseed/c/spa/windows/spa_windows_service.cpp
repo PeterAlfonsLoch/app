@@ -57,7 +57,7 @@ int remove_service()
    if(!::CreateProcess(NULL, lpsz, 
       NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi))
       return 1;
-   ca2_free(lpsz);*/
+   _ca_free(lpsz, 0);*/
 
    return Ret;
 }

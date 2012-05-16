@@ -400,12 +400,12 @@ const char * get_file_md5(const char * path)
       return NULL;
    DWORD dwSizeHigh;
    DWORD dwSize = ::GetFileSize(hfile, &dwSizeHigh);
-   char * psz = (char *) ca2_alloc(dwSize);
+   char * psz = (char *) _ca_alloc(dwSize);
    DWORD dwRead;
    ::ReadFile(hfile, psz, dwSize, &dwRead, NULL);
    md5.update(psz, dwRead);
    md5.finalize();
-   ca2_free(psz);
+   _ca_free(psz, 0);
    ::CloseHandle(hfile);
    return md5.to_string();
 
@@ -417,7 +417,7 @@ const char * get_file_md5(const char * path)
    if(hfile == NULL)
       return NULL;
    DWORD dwSize = 1024 * 512;
-   char * buf = (char *) ca2_alloc(dwSize);
+   char * buf = (char *) _ca_alloc(dwSize);
    DWORD dwRead;
    while((dwRead = fread(buf, dwSize, 1, hfile)) > 0)
    {
@@ -425,7 +425,7 @@ const char * get_file_md5(const char * path)
    }
 
    md5.finalize();
-   ca2_free(buf);
+   _ca_free(buf, 0);
    fclose(hfile);
    return md5.to_string();
 

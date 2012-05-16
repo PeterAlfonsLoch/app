@@ -32,7 +32,7 @@ namespace hotplugin
       m_sizeBitmap.cy = 394;
 
 
-      m_pcolorref = (DWORD *) ca2_alloc(abs_dup(4 * m_sizeBitmap.cx * m_sizeBitmap.cy));
+      m_pcolorref = (DWORD *) _ca_alloc(abs_dup(4 * m_sizeBitmap.cx * m_sizeBitmap.cy));
 
 #if !defined(MACOS) && !defined(LINUX)
       m_pbitmap = new Gdiplus::Bitmap(abs_dup(m_sizeBitmap.cx), abs_dup(m_sizeBitmap.cy), abs_dup(m_sizeBitmap.cx) * 4, PixelFormat32bppARGB, (BYTE *) m_pcolorref);
@@ -50,7 +50,7 @@ namespace hotplugin
       if(m_pbitmap != NULL)
          delete (Gdiplus::Bitmap *) m_pbitmap;
       if(m_pcolorref != NULL)
-         ca2_free(m_pcolorref);
+         _ca_free(m_pcolorref, 0);
 #endif
       //delete m_pinfo;
    }

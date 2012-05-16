@@ -296,6 +296,9 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="simple_app.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -531,6 +534,9 @@
     </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_simple_app.cpp">
+      <Filter>Source Files\windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

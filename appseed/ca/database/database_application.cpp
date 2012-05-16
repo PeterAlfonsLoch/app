@@ -36,8 +36,20 @@ namespace database
    // should not call base class implementation because database::application is inside a n-furcation of user::application
    int application::exit_instance()
    {
-      
+
+      try
+      {
+
+         ::ca4::application::exit_instance();
+
+      }
+      catch(...)
+      {
+
+      }
+
       return 0;
+
    }
 
 }

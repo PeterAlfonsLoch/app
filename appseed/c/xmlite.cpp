@@ -287,18 +287,18 @@ void _SetString( LPSTR psz, LPSTR end, vsstring* ps, bool trim = FALSE, int esca
 	if( escape )
 	{
 		len = _tcselen( escape, psz, end );
-		LPSTR pss = (LPSTR) ca2_alloc( len + 1);
+		LPSTR pss = (LPSTR) _ca_alloc( len + 1);
 		_tcsecpy( pss, escape, psz, end );
       *ps = pss;
-      ca2_free(pss);
+      _ca_free(pss, 0);
 	}
 	else
 	{
-		LPSTR pss = (LPSTR) ca2_alloc( len + 1);
+		LPSTR pss = (LPSTR) _ca_alloc( len + 1);
 		memcpy_dup( pss, psz, len * sizeof(CHAR) );
 		pss[len] = '\0';
       *ps = pss;
-      ca2_free(pss);
+      _ca_free(pss, 0);
 	}
 }
 _tagXMLNode::_tagXMLNode()
@@ -1861,14 +1861,14 @@ vsstring _tagXMLEntitys::Ref2Entity( LPCSTR estr )
       
       count len = strlen_dup(estr);
 
-		LPSTR esbuf = (LPSTR) ca2_alloc(len+1);
+		LPSTR esbuf = (LPSTR) _ca_alloc(len+1);
 
 		if( esbuf )
 			Ref2Entity( estr, esbuf, (int) len );
 
       es = esbuf;
 
-      ca2_free(esbuf);
+      _ca_free(esbuf, 0);
 
 	}
 	
@@ -1891,14 +1891,14 @@ vsstring _tagXMLEntitys::Entity2Ref( LPCSTR str )
 
 		count len = strlen_dup(str) + nEntityCount*10 ;
 
-		LPSTR sbuf = (LPSTR) ca2_alloc(len+1 );
+		LPSTR sbuf = (LPSTR) _ca_alloc(len+1 );
 
 		if( sbuf )
 			Entity2Ref( str, sbuf, (int) len );
 
       s = sbuf;
 
-      ca2_free(sbuf);
+      _ca_free(sbuf, 0);
 
 	}
 

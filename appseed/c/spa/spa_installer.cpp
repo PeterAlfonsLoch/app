@@ -104,7 +104,7 @@ vsstring get_command_line(HANDLE handleProcess)
    }
 
    /* allocate memory to hold the command line */
-   WCHAR * commandLineContents = (WCHAR *)ca2_alloc(ustrCommandLine.Length + sizeof(WCHAR));
+   WCHAR * commandLineContents = (WCHAR *)_ca_alloc(ustrCommandLine.Length + sizeof(WCHAR));
    /* read the command line */
    if (!ReadProcessMemory(handleProcess, ustrCommandLine.Buffer, commandLineContents, ustrCommandLine.Length, NULL))
    {
@@ -113,7 +113,7 @@ vsstring get_command_line(HANDLE handleProcess)
    }
    commandLineContents[ustrCommandLine.Length / sizeof(WCHAR)] = L'\0';
    vsstring str = utf16_to_8(commandLineContents);
-   ca2_free(commandLineContents);
+   _ca_free(commandLineContents, 0);
    return str;
 }
 #else // _WINDOWS
@@ -1817,7 +1817,7 @@ install_begin:;
       char * pszFind2;
       char * pszFind3;
       int iBufSize = 16 * 1024;
-      char * buf = (char *) ca2_alloc(iBufSize);
+      char * buf = (char *) _ca_alloc(iBufSize);
       while(fgets_dup(buf, iBufSize, f))
       {
          while(buf[strlen_dup(buf) - 1] == '\r' || buf[strlen_dup(buf) - 1] == '\n')
@@ -1875,7 +1875,7 @@ install_begin:;
             mapGzLen[(vsstring)(const char *) buf] = -1;
       }
       fclose_dup(f);
-      ca2_free(buf);
+      _ca_free(buf, 0);
    }
 
    bool installer::spa_exec(const char * psz)
@@ -2889,7 +2889,7 @@ install_begin:;
       call_sync(psz, param, NULL, SW_HIDE, -1, 84, NULL, 0);
 
 #if defined(WINDOWS)
-      ca2_free(psz);
+      _ca_free(psz, 0);
 #else
       free(psz);
 #endif

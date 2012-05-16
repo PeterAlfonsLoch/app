@@ -780,7 +780,7 @@ vsstring read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszTyp
 
       UINT FAR* lpnRes = (UINT FAR*)::LockResource(hres);
 
-      psz = (char *) ca2_alloc(dwResSize + 1);
+      psz = (char *) _ca_alloc(dwResSize + 1);
       memcpy_dup(psz, lpnRes, dwResSize);
       psz[dwResSize] = '\0';
       ::FreeResource(hres);

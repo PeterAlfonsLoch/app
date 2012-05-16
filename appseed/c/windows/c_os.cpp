@@ -31,6 +31,10 @@ BOOL os_initialize()
 
    //Sleep(15 * 1000);
 
+   if(!initialize_primitive_trace())
+      return FALSE;
+
+
    HMODULE hmoduleUser32 = ::LoadLibrary("User32");
    g_pfnChangeWindowMessageFilter = (LPFN_ChangeWindowMessageFilter) ::GetProcAddress(hmoduleUser32, "ChangeWindowMessageFilter");
 
@@ -47,6 +51,7 @@ BOOL os_initialize()
 BOOL os_finalize()
 {
 
+   finalize_primitive_trace();
 
    return TRUE;
 

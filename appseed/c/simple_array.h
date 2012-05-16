@@ -1,6 +1,7 @@
 #pragma once
 
 #undef new
+#define new C_NEW
 
 // raw array is a special array and should be used with care
 // it uses operations like memmove and memcopy to move objects and does not
@@ -296,8 +297,10 @@ void simple_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, 
 
       // re-init slots we copied from
       memset_dup((void *)(m_pData + nIndex), 0, (size_t)nCount * sizeof(TYPE));
+#undef new
       for( int i = 0; i < nCount; i++ )
          ::new( (void *)( m_pData + nIndex + i ) ) TYPE;
+#define new C_NEW
    }
 
    while (nCount--)
@@ -367,3 +370,10 @@ class CLASS_DECL_c simple_double_array :
 public:
    double average();
 };
+
+
+
+#undef new
+#define new DEBUG_NEW
+
+

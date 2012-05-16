@@ -43,7 +43,7 @@ simple_mutex::simple_mutex(const char * pszName, bool bInitialLock)
    {
       wchar_t * pwszName = utf8_to_16(m_strName);
       m_hMutex = ::CreateMutexW(NULL, bInitialLock ? TRUE : FALSE, pwszName);
-      ca2_free(pwszName);
+      _ca_free(pwszName, 0);
    }
 #else
    if(m_strName.is_empty())

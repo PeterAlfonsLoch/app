@@ -225,7 +225,7 @@ simple_map< KEY,  VALUE >::NewAssoc(KEY & key)
    if (m_pFreeList == NULL)
    {
       // chain them into free list
-      typename simple_map::assoc* pAssoc = (typename simple_map::assoc *) ca2_alloc(m_nBlockSize * sizeof(simple_map::assoc));
+      typename simple_map::assoc* pAssoc = (typename simple_map::assoc *) _ca_alloc(m_nBlockSize * sizeof(simple_map::assoc));
       // free in reverse order to make it easier to debug
       pAssoc += m_nBlockSize - 1;
       for (index i = m_nBlockSize-1; i >= 0; i--, pAssoc--)
@@ -770,7 +770,7 @@ simple_string_map < VALUE >::NewAssoc(vsstring & vsstring)
    if (m_pFreeList == NULL)
    {
       // chain them into free list
-      typename simple_string_map::assoc* pAssoc = (typename simple_string_map::assoc *) ca2_alloc(m_nBlockSize * sizeof(typename simple_string_map::assoc));
+      typename simple_string_map::assoc* pAssoc = (typename simple_string_map::assoc *) _ca_alloc(m_nBlockSize * sizeof(typename simple_string_map::assoc));
       // free in reverse order to make it easier to debug
       pAssoc += m_nBlockSize - 1;
       for (index i = m_nBlockSize-1; i >= 0; i--, pAssoc--)

@@ -174,13 +174,13 @@ void stra_dup::decode_v16(const char * psz)
       {
          if(str == NULL)
          {
-            str = (char *) ca2_alloc(iSize);
+            str = (char *) _ca_alloc(iSize);
          }
          else if(iSize < (strlen_dup(str) + 1))
          {
             char * strOld = str;
             iSize += 1024;
-            char * strNew = (char *) ca2_alloc(iSize);
+            char * strNew = (char *) _ca_alloc(iSize);
             strcpy_dup(strNew, strOld);
             str = strNew;
          }

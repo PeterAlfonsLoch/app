@@ -15,7 +15,7 @@ vsstring dir::appdata(const char * lpcsz)
 
 #ifdef WIN32
    
-   char * buf = (char *) ca2_alloc(4096);
+   char * buf = (char *) _ca_alloc(4096);
    
    memset_dup(buf, 0, sizeof(buf));
    
@@ -27,7 +27,7 @@ vsstring dir::appdata(const char * lpcsz)
    
    str = path(buf, "ca2");
    
-   ca2_free(buf);
+   _ca_free(buf, 0);
 
 #endif
    

@@ -137,7 +137,7 @@ const char * file_get_contents_dup(const char * path)
       return strdup_dup("");
    DWORD dwSizeHigh;
    DWORD dwSize = ::GetFileSize(hfile, &dwSizeHigh);
-   char * psz = (char *) ca2_alloc(dwSize + 1);
+   char * psz = (char *) _ca_alloc(dwSize + 1);
    DWORD dwRead;
    ::ReadFile(hfile, psz, dwSize, &dwRead, NULL);
    psz[dwSize] = '\0';
@@ -150,7 +150,7 @@ const char * file_get_contents_dup(const char * path)
    if(f == NULL)
       return NULL;
    int iSize = fsize_dup(f);
-   char * psz = (char *) ca2_alloc(iSize + 1);
+   char * psz = (char *) _ca_alloc(iSize + 1);
    int iRead = fread(psz, iSize, 1, f);
    psz[iSize] = '\0';
    fclose(f);
@@ -481,7 +481,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
    vsstring strMd5;
    vsstring strMd5New;
    int iBufSize = 1024 * 1024;
-   unsigned char * buf = (unsigned char *)  ca2_alloc(iBufSize);
+   unsigned char * buf = (unsigned char *)  _ca_alloc(iBufSize);
    int iLen;
    ::md5::md5 ctx;
    DWORD dwRead;
@@ -619,7 +619,7 @@ void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, vsstring & str)
 {
    int iLen;
    file_read_n_number_dup(hfile, pctx, iLen);
-   LPSTR lpsz = (LPSTR) ca2_alloc(iLen + 1);
+   LPSTR lpsz = (LPSTR) _ca_alloc(iLen + 1);
    DWORD dwRead;
 #ifdef WINDOWS
    ReadFile(hfile, lpsz, iLen, &dwRead, NULL);
@@ -632,7 +632,7 @@ void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, vsstring & str)
    }
    lpsz[iLen] = '\0';
    str = lpsz;
-   ca2_free(lpsz);
+   _ca_free(lpsz, 0);
 }
 
 
@@ -867,10 +867,10 @@ bool PrintModules(vsstring & strImage, DWORD processID, const char * pszDll )
 
 
    const int iImageSize = MAX_PATH * 8;
-   char * szImage = (char *) ca2_alloc(iImageSize);
+   char * szImage = (char *) _ca_alloc(iImageSize);
    GetModuleFileNameEx(hProcess, NULL, szImage, iImageSize);
    strImage = szImage;
-   ca2_free(szImage);
+   _ca_free(szImage, 0);
 
    bool bFound = false;
 
@@ -1020,12 +1020,12 @@ CLASS_DECL_c bool file_is_equal_path(const char * psz1, const char * psz2)
          const char * p1 = utf16_to_8(pwszPath1);
          const char * p2 = utf16_to_8(pwszPath2);
          iCmp = stricmp_dup(p1, p2);
-         ca2_free((void *) p1);
-         ca2_free((void *) p2);
+         _ca_free((void *) p1, 0);
+         _ca_free((void *) p2, 0);
       }
    }
-   ca2_free((void *) pwsz1);
-   ca2_free((void *) pwsz2);
+   _ca_free((void *) pwsz1, 0);
+   _ca_free((void *) pwsz2, 0);
    delete pwszPath1;
    delete pwszPath2;
    return iCmp == 0;

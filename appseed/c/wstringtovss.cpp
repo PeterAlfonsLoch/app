@@ -16,7 +16,7 @@ wstringtovss::~wstringtovss()
    if(m_pwsz != NULL)
    {
       //g_pfixedallocaWstring->free(m_psz, (wcslen(m_psz) + 1) * 2);
-      ca2_free(m_pwsz);
+      _ca_free(m_pwsz, 0);
       m_pwsz = NULL;
    }
 }
