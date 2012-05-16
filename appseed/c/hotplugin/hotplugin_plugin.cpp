@@ -603,7 +603,18 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
       */
 
 
-       BYTE bA = 84;
+         int iARange = (184 - 23) * 2;
+         int iAClip = iARange / 2;
+         int iA = (iARange * ::GetTickCount() / 8000) % iARange;
+
+         BYTE bA;
+
+
+         if(iA < iAClip)
+            bA = iA + 23;
+         else
+            bA = 184 * 2 - iA;
+
          BYTE uchR;
          BYTE uchG;
          BYTE uchB;
@@ -612,20 +623,45 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
 
          graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
-         const int iRowCount = cx;
+         int iRate = 50;
+
+         const int iRowCount = cx - cx / (iRate / 2);
          int iProgressCount = max(min((int) (iRowCount * dRate), iRowCount), 0);
 
          
 
          int iRow;
 
+         Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(84, 84, 84, 84));
+         graphics2.FillRectangle(pbr, lprect->left + cx / iRate - 1 , lprect->top + (cy - 23) / 2 - 1, iRowCount + 2, 23 + 2);
+         delete pbr;
+
          for(iRow = 0; iRow < iProgressCount; iRow++)
          {
             get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount);
             Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-            graphics2.FillRectangle(pbr, lprect->left + iRow , lprect->top, 1, cy);
+            graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2, 1, 23);
             delete pbr;
          }
+
+         int iOffset = 3;
+         Gdiplus::Pen * ppen = new Gdiplus::Pen(Gdiplus::Color(220, 180, 180, 180));
+         graphics2.DrawLine(ppen, lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset);
+         graphics2.DrawLine(ppen, lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset);
+         delete ppen;
+         ppen = new Gdiplus::Pen(Gdiplus::Color(220, 77, 77, 77));
+         graphics2.DrawLine(ppen, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
+         graphics2.DrawLine(ppen, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
+         delete ppen;
+         iOffset = 2;
+         ppen = new Gdiplus::Pen(Gdiplus::Color(220, 84, 84, 84));
+         graphics2.DrawLine(ppen, lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset);
+         graphics2.DrawLine(ppen, lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset);
+         delete ppen;
+         ppen = new Gdiplus::Pen(Gdiplus::Color(220, 170, 170, 170));
+         graphics2.DrawLine(ppen, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
+         graphics2.DrawLine(ppen, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
+         delete ppen;
 
 
          //graphics2.DrawImage((Gdiplus::Bitmap *) m_pbitmap, lprect->left, lprect->top);
