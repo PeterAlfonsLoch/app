@@ -280,12 +280,14 @@ bool event::lock(const duration & durationTimeout)
 
 #else
 
+   DWORD timeout = durationTimeout.os_lock_duration();
+
 	DWORD start = ::GetTickCount();
 
 	timespec delay;
 
 	delay.tv_sec = 0;
-	defay.tv_nsec = 1000000;
+	delay.tv_nsec = 1000000;
 
 	while(::GetTickCount() - start < timeout)
 	{

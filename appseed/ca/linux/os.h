@@ -53,4 +53,4 @@ typedef ::ex1::file * HFILE;
 
 CLASS_DECL_ca errno_t fopen_s(FILE ** pFile, const char * pFileName, const char * mode);
 
-
+#include "os_multithreading.h"

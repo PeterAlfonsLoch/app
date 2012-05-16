@@ -1,12 +1,6 @@
 #include "framework.h"
 
 
-#if defined(LINUX)
-
-
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable * pwaitableptra, BOOL bWaitForAll, DWORD dwTimeout, BOOL UNUSED(bAlertable));
-
-#endif
 
 
 /// This class represents a collection of waitable items. A collection can be mixed
@@ -262,60 +256,3 @@ const event_collection& event_collection::operator=( const event_collection& )
 };
 
 
-#if defined(LINUX)
-
-
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable * pwaitableptra, BOOL bWaitForAll, DWORD dwTimeout, BOOL UNUSED(bAlertable)
-{
-
-   DWORD start;
-
-   if(dwTimeout != (DWORD) INFINITE)
-   {
-      start = ::GetTickCount();
-   }
-
-   if(bWaitForAll)
-   {
-
-      timespec delay;
-
-      delay.tv_sec = 0;
-      defay.tv_nsec = 1000000;
-
-      int i;
-      int j;
-      i = 0;
-      for(; i < dwSize;)
-      {
-         if(dwTimeout != (DWORD) INFINITE && ::GetTickCount() - start >= dwTimeout)
-         {
-            return WAIT_TIMEOUT;
-         }
-            break;
-         if(pwaitableptra[i]->is_locked())
-         {
-            for(j = 0; j < i; j++)
-            {
-               pwaitableptra[j]->unlock();
-            }
-            nanosleep(&delay, NULL)
-            i = 0;
-         }
-         else
-         {
-            pwaitableptra[i]->lock();
-            i++;
-         }
-      }
-      for(j = 0; j < dwSize; j++)
-      {
-         pwaitableptra[j]->unlock();
-      }
-
-   }
-
-}
-
-
-#endif

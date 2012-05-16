@@ -40,7 +40,7 @@ public:
 
 #else
 
-   service_base(::ca::application * papp, DWORD UNUSED(controlsAccepted));
+   service_base(::ca::application * papp, DWORD controlsAccepted = 0);
 
 #endif
 
