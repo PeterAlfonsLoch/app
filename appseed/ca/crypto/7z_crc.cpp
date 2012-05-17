@@ -1,16 +1,16 @@
 /* 7zCrc.c -- CRC32 calculation
 2009-11-23 : Igor Pavlov : Public domain */
 // from 7-zip on 2010-12-19
-#include "StdAfx.h"
+#include "framework.h"
 
 
 struct CCRCTableInit
-{ 
-   
+{
+
    CCRCTableInit()
-   { 
-      CrcGenerateTable(); 
-   } 
+   {
+      CrcGenerateTable();
+   }
 
 } g_CRCTableInit;
 

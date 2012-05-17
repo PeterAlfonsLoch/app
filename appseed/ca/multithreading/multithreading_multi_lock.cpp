@@ -43,18 +43,18 @@ multi_lock::~multi_lock()
 
 wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, DWORD dwWakeMask /* = 0 */)
 {
-   DWORD dwResult;
+   int iResult;
 
    if(m_objecta.get_count() < 0)
       return wait_result(wait_result::Failure);
 
    if (dwWakeMask == 0)
-      dwResult = ::WaitForMultipleObjects((DWORD) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration());
+      iResult = ::WaitForMultipleObjects((DWORD) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration());
    else
-      dwResult = ::MsgWaitForMultipleObjects((DWORD) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration(), dwWakeMask);
+      iResult = ::MsgWaitForMultipleObjects((DWORD) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration(), dwWakeMask);
 
    DWORD dwUpperBound = WAIT_OBJECT_0 + (DWORD) m_objecta.get_count();
-   if (dwResult >= WAIT_OBJECT_0 && dwResult < dwUpperBound)
+   if (iResult >= WAIT_OBJECT_0 && iResult < dwUpperBound)
    {
       if (dwUpperBound >= (DWORD) m_objecta.get_count() && dwUpperBound >= WAIT_OBJECT_0)
       {
@@ -65,13 +65,13 @@ wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, DWORD 
          }
          else
          {
-            ASSERT((dwResult >= WAIT_OBJECT_0) && ((dwResult - WAIT_OBJECT_0) <= dwResult));
-            if ((dwResult >= WAIT_OBJECT_0) && ((dwResult - WAIT_OBJECT_0) <= dwResult))
-               m_baLocked[(index)(dwResult - WAIT_OBJECT_0)] = TRUE;
+            ASSERT((iResult >= WAIT_OBJECT_0) && ((iResult - WAIT_OBJECT_0) <= iResult));
+            if ((iResult >= WAIT_OBJECT_0) && ((iResult - WAIT_OBJECT_0) <= iResult))
+               m_baLocked[(index)(iResult - WAIT_OBJECT_0)] = TRUE;
          }
       }
    }
-   return wait_result(dwResult);
+   return wait_result(iResult);
 }
 
 bool multi_lock::unlock()

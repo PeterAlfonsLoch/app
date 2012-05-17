@@ -743,7 +743,7 @@
 
 1336651896 /cecyn1/nodeapp/operational_system/linux_system.h
 
-1337260414 /cecyn1/nodeapp/operational_system/bare_operational_system.h
+1337274932 /cecyn1/nodeapp/operational_system/bare_operational_system.h
 	<stdlib.h>
 	<unistd.h>
 	"version_linux.h"
@@ -1030,7 +1030,7 @@
 	<inttypes.h>
 	"operational_system.h"
 
-1337260415 /cecyn1/nodeapp/operational_system/operational_system.h
+1337274933 /cecyn1/nodeapp/operational_system/operational_system.h
 	"version_linux.h"
 	"version_cpu.h"
 	"version_cpu.h"
@@ -1153,7 +1153,7 @@
 1335690120 /cecyn1/app/appseed/ca/exception/SymEngine.h
 	<imagehlp.h>
 
-1337255324 /cecyn1/app/appseed/ca/multithreading/multithreading_wait_result.h
+1337280014 /cecyn1/app/appseed/ca/multithreading/multithreading_wait_result.h
 
 1337255331 /cecyn1/app/appseed/ca/exception/exception_range_error.h
 
@@ -1661,7 +1661,7 @@
 
 1337255324 /cecyn1/app/appseed/ca/multithreading/multithreading_semaphore.h
 
-1337255324 /cecyn1/app/appseed/ca/multithreading/multithreading_mutex.h
+1337286853 /cecyn1/app/appseed/ca/multithreading/multithreading_mutex.h
 
 1337255324 /cecyn1/app/appseed/ca/multithreading/multithreading_event.h
 
@@ -3495,71 +3495,71 @@
 1337258947 source:/cecyn1/app/appseed/ca/api/api_str.cpp
 	"framework.h"
 
-1335690126 source:/cecyn1/app/appseed/ca/api/debug.cpp
-	"StdAfx.h"
+1337261216 source:/cecyn1/app/appseed/ca/api/debug.cpp
+	"framework.h"
 
 1337261197 source:/cecyn1/app/appseed/ca/api/linux.cpp
 	"framework.h"
 	<sys/times.h>
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_application.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_application.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_application_bias.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_application_bias.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_application_interface.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_application_interface.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_bitmap.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_bitmap.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_brush.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_brush.cpp
+	"framework.h"
 
-1335862443 source:/cecyn1/app/appseed/ca/ca/ca_c.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_c.cpp
+	"framework.h"
 	"ca_c.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_ca.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_ca.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_create_context.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_create_context.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_data.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_data.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_data_container.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_data_container.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_data_listener.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_data_listener.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_dib.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_dib.cpp
+	"framework.h"
 	<math.h>
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_dir_application.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_dir_application.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_dir_system.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_dir_system.cpp
+	"framework.h"
 
-1335861103 source:/cecyn1/app/appseed/ca/ca/ca_draw_dib.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_draw_dib.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_edit.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_edit.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_exception.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_exception.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_file_application.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_file_application.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_file_system.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_file_system.cpp
+	"framework.h"
 	<sys/types.h>
 	<sys/stat.h>
 	<unistd.h>
@@ -3568,130 +3568,130 @@
 	<Tlhelp32.h>
 	<Psapi.h>
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_font.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_font.cpp
+	"framework.h"
 
-1335828549 source:/cecyn1/app/appseed/ca/ca/ca_graphics.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_graphics.cpp
+	"framework.h"
 	<math.h>
 
-1335826649 source:/cecyn1/app/appseed/ca/ca/ca_graphics_object.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_graphics_object.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_history.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_history.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_interlocked_long.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_interlocked_long.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_interlocked_long_pulse.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_interlocked_long_pulse.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_job.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_job.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_live_object.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_live_object.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_live_signal.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_live_signal.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_log.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_log.cpp
+	"framework.h"
 	<stdio.h>
 	<windows.h>
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_message_window.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_message_window.cpp
+	"framework.h"
 
-1336866469 source:/cecyn1/app/appseed/ca/ca/ca_os.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_os.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_palette.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_palette.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_pen.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_pen.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_print_job.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_print_job.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_profiler.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_profiler.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_region.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_region.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_session.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_session.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_smart_pointer.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_smart_pointer.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_system.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_system.cpp
+	"framework.h"
 
-1335826674 source:/cecyn1/app/appseed/ca/ca/ca_thread.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_thread.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_type_info.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_type_info.cpp
+	"framework.h"
 
-1335826674 source:/cecyn1/app/appseed/ca/ca/ca_window.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_window.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/ca/ca_window_draw.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/ca/ca_window_draw.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca2/ca2_application.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/ca2/ca2_application.cpp
+	"framework.h"
 
-1336871534 source:/cecyn1/app/appseed/ca/ca2/ca2_datetime.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/ca2/ca2_datetime.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca2/ca2_html.cpp
+1337255333 source:/cecyn1/app/appseed/ca/ca2/ca2_html.cpp
 
-1335690122 source:/cecyn1/app/appseed/ca/ca2/ca2_html_file.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/ca2/ca2_html_file.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca2/ca2_library.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/ca2/ca2_library.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca2/ca2_log.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/ca2/ca2_log.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca2/ca2_net.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/ca2/ca2_net.cpp
+	"framework.h"
 	<ctype.h>
 	<sys/socket.h>
 	<netdb.h>
 
-1335690122 source:/cecyn1/app/appseed/ca/ca2/ca2_process.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/ca2/ca2_process.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca2/ca2_url.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/ca2/ca2_url.cpp
+	"framework.h"
 	"c/conv.h"
 	<ctype.h>
 
-1335690118 /cecyn1/app/appseed/c/conv.h
+1336652452 /cecyn1/app/appseed/c/conv.h
 
-1335690122 source:/cecyn1/app/appseed/ca/ca2/ca2_url_domain.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/ca2/ca2_url_domain.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca2/ca2_xml.cpp
+1337255333 source:/cecyn1/app/appseed/ca/ca2/ca2_xml.cpp
 
-1335690122 source:/cecyn1/app/appseed/ca/ca2/ca2_xml_data.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/ca2/ca2_xml_data.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca2/socket_address.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/ca2/socket_address.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca4/ca4_application.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_application.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca4/ca4_compress.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_compress.cpp
+	"framework.h"
 	<io.h>
 	<wchar.h>
 	<fcntl.h>
@@ -3699,16 +3699,16 @@
 	<sys/stat.h>
 	<share.h>
 
-1335690122 source:/cecyn1/app/appseed/ca/ca4/ca4_copydesk.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_copydesk.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca4/ca4_crypt.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_crypt.cpp
+	"framework.h"
 	<openssl/ssl.h>
 	"crypto/hmac.h"
 	"ca4_nessie.h"
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/ssl.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/ssl.h
 	<openssl/e_os2.h>
 	<openssl/comp.h>
 	<openssl/bio.h>
@@ -3725,15 +3725,15 @@
 	<openssl/tls1.h>
 	<openssl/ssl23.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/e_os2.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/e_os2.h
 	<openssl/opensslconf.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/opensslconf.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/opensslconf.h
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/comp.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/comp.h
 	<openssl/crypto.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/crypto.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/crypto.h
 	<stdlib.h>
 	<stdio.h>
 	<openssl/stack.h>
@@ -3742,26 +3742,26 @@
 	<openssl/ebcdic.h>
 	<openssl/symhacks.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/stack.h
+1336652563 /cecyn1/app/thirdparty/appseed/openssl/stack.h
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/safestack.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/safestack.h
 	<openssl/stack.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/opensslv.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/opensslv.h
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/ebcdic.h
+1336652563 /cecyn1/app/thirdparty/appseed/openssl/ebcdic.h
 	<sys/types.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/symhacks.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/symhacks.h
 	<openssl/e_os2.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/bio.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/bio.h
 	<stdio.h>
 	<stdarg.h>
 	<openssl/crypto.h>
 	<openssl/e_os2.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/x509.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/x509.h
 	<openssl/symhacks.h>
 	<openssl/buffer.h>
 	<openssl/evp.h>
@@ -3778,11 +3778,11 @@
 	<openssl/x509_vfy.h>
 	<openssl/pkcs7.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/buffer.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/buffer.h
 	<stddef.h>
 	<sys/types.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/evp.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/evp.h
 	<openssl/opensslconf.h>
 	<openssl/opensslconf.h>
 	<openssl/ossl_typ.h>
@@ -3807,72 +3807,72 @@
 	<openssl/dh.h>
 	<openssl/objects.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/ossl_typ.h
+1336652563 /cecyn1/app/thirdparty/appseed/openssl/ossl_typ.h
 	<openssl/e_os2.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/md2.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/md2.h
 	<openssl/opensslconf.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/md4.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/md4.h
 	<openssl/e_os2.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/md5.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/md5.h
 	<openssl/e_os2.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/sha.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/sha.h
 	<openssl/e_os2.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/ripemd.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/ripemd.h
 	<openssl/e_os2.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/des.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/des.h
 	<openssl/opensslconf.h>
 	<openssl/e_os2.h>
 	<openssl/des_old.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/des_old.h
+1337255359 /cecyn1/app/thirdparty/appseed/openssl/des_old.h
 	<openssl/opensslconf.h>
 	<openssl/e_os2.h>
 	<openssl/symhacks.h>
 	<openssl/ui_compat.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/ui_compat.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/ui_compat.h
 	<openssl/opensslconf.h>
 	<openssl/ui.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/ui.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/ui.h
 	<openssl/crypto.h>
 	<openssl/safestack.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/rc4.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/rc4.h
 	<openssl/opensslconf.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/rc2.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/rc2.h
 	<openssl/opensslconf.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/rc5.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/rc5.h
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/blowfish.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/blowfish.h
 	<openssl/e_os2.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/cast.h
+1336652563 /cecyn1/app/thirdparty/appseed/openssl/cast.h
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/idea.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/idea.h
 	<openssl/opensslconf.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/mdc2.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/mdc2.h
 	<openssl/des.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/aes.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/aes.h
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/rsa.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/rsa.h
 	<openssl/asn1.h>
 	<openssl/bio.h>
 	<openssl/bn.h>
 	<openssl/crypto.h>
 	<openssl/ossl_typ.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/asn1.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/asn1.h
 	<time.h>
 	<openssl/bio.h>
 	<openssl/e_os2.h>
@@ -3882,55 +3882,55 @@
 	<openssl/symhacks.h>
 	<openssl/ossl_typ.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/bn.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/bn.h
 	<openssl/e_os2.h>
 	<stdio.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/dsa.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/dsa.h
 	<openssl/bio.h>
 	<openssl/bn.h>
 	<openssl/crypto.h>
 	<openssl/ossl_typ.h>
 	<openssl/dh.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/dh.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/dh.h
 	<openssl/bio.h>
 	<openssl/bn.h>
 	<openssl/crypto.h>
 	<openssl/ossl_typ.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/objects.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/objects.h
 	<openssl/obj_mac.h>
 	<openssl/bio.h>
 	<openssl/asn1.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/obj_mac.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/obj_mac.h
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/x509_vfy.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/x509_vfy.h
 	<openssl/x509.h>
 	<openssl/lhash.h>
 	<openssl/bio.h>
 	<openssl/crypto.h>
 	<openssl/symhacks.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/lhash.h
+1336652563 /cecyn1/app/thirdparty/appseed/openssl/lhash.h
 	<stdio.h>
 	<openssl/bio.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/pkcs7.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/pkcs7.h
 	<openssl/asn1.h>
 	<openssl/bio.h>
 	<openssl/e_os2.h>
 	<openssl/symhacks.h>
 	<openssl/ossl_typ.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/kssl.h
+1336652563 /cecyn1/app/thirdparty/appseed/openssl/kssl.h
 	<openssl/opensslconf.h>
 	<stdio.h>
 	<ctype.h>
 	<krb5.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/pem.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/pem.h
 	<openssl/bio.h>
 	<openssl/stack.h>
 	<openssl/evp.h>
@@ -3939,257 +3939,258 @@
 	<openssl/e_os2.h>
 	<openssl/symhacks.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/pem2.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/pem2.h
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/ssl2.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/ssl2.h
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/ssl3.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/ssl3.h
 	<openssl/comp.h>
 	<openssl/buffer.h>
 	<openssl/evp.h>
 	<openssl/ssl.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/tls1.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/tls1.h
 	<openssl/buffer.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/ssl23.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/ssl23.h
 
-1335690122 /cecyn1/app/appseed/ca/ca4/ca4_nessie.h
+1336652467 /cecyn1/app/appseed/ca/ca4/ca4_nessie.h
 	<limits.h>
 
-1335690122 source:/cecyn1/app/appseed/ca/ca4/ca4_email.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_email.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca4/ca4_file.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_file.cpp
+	"framework.h"
 	<openssl/ssl.h>
 
-1335690122 source:/cecyn1/app/appseed/ca/ca4/ca4_http.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_http.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca4/ca4_http_application.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_http_application.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca4/ca4_http_get_socket.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_http_get_socket.cpp
+	"framework.h"
 
-1336866469 source:/cecyn1/app/appseed/ca/ca4/ca4_http_system.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_http_system.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca4/ca4_ip_enum.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_ip_enum.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca4/ca4_nessie.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_nessie.cpp
+	"framework.h"
 	"ca4_nessie.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca4/ca4_oauth.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_oauth.cpp
+	"framework.h"
 	<memory.h>
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
 
-1335690122 source:/cecyn1/app/appseed/ca/ca4/ca4_patch.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_patch.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca4/ca4_port_forward.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_port_forward.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/ca4/ca4_twit.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_twit.cpp
+	"framework.h"
+	<time.h>
 
-1335690122 source:/cecyn1/app/appseed/ca/ca4/ca4_whirlpool.cpp
-	"StdAfx.h"
+1337255334 source:/cecyn1/app/appseed/ca/ca4/ca4_whirlpool.cpp
+	"framework.h"
 	"ca4_nessie.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/calculator/calculator_application.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/calculator/calculator_application.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/calculator/calculator_class.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/calculator/calculator_class.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/calculator/datetime_element.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/calculator/datetime_element.cpp
+	"framework.h"
 	<math.h>
 
-1335690124 source:/cecyn1/app/appseed/ca/calculator/datetime_parser.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/calculator/datetime_parser.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/calculator/datetime_scanner.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/calculator/datetime_scanner.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/calculator/datetime_token.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/calculator/datetime_token.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/calculator/numeric_element.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/calculator/numeric_element.cpp
+	"framework.h"
 	<math.h>
 
-1335690124 source:/cecyn1/app/appseed/ca/calculator/numeric_parser.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/calculator/numeric_parser.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/calculator/numeric_scanner.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/calculator/numeric_scanner.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/calculator/numeric_value.cpp
+1337255337 source:/cecyn1/app/appseed/ca/calculator/numeric_value.cpp
 	<math.h>
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/2DArray.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/2DArray.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/_array_app_copy.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/_array_app_copy.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/array.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/array.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/array_app_copy.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/array_app_copy.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/array_ptr.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/array_ptr.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/array_ptr_alloc.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/array_ptr_alloc.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/array_ptr_copy.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/array_ptr_copy.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/bit_array.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/bit_array.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/class_sort_array.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/class_sort_array.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/collection_numeric_array.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/collection_numeric_array.cpp
+	"framework.h"
 
-1336871534 source:/cecyn1/app/appseed/ca/collection/collection_string_list.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/collection_string_list.cpp
+	"framework.h"
 	"elements.h"
 
-1335690120 /cecyn1/app/appseed/ca/collection/elements.h
+1336652457 /cecyn1/app/appseed/ca/collection/elements.h
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/comparable_array.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/comparable_array.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/key_sort_array.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/key_sort_array.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/map_misc.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/map_misc.cpp
+	"framework.h"
 
-1336871534 source:/cecyn1/app/appseed/ca/collection/object_list.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/object_list.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/point_array.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/point_array.cpp
+	"framework.h"
 	<math.h>
 
-1336871534 source:/cecyn1/app/appseed/ca/collection/pointer_list.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/pointer_list.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/rect_array.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/rect_array.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/simple_list.cpp
-	"StdAfx.h"
+1337262490 source:/cecyn1/app/appseed/ca/collection/simple_list.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/sort.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/sort.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/string_array.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/string_array.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/string_sort_array.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/string_sort_array.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/string_to_string_map.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/string_to_string_map.cpp
+	"framework.h"
 	"elements.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/stringa.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/stringa.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/collection/stringl.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/collection/stringl.cpp
+	"framework.h"
 
 1335690125 source:/cecyn1/app/appseed/ca/colorertake5/application.cpp
 	"StdAfx.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_application.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_application.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_base_editor.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_base_editor.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_default_error_handler.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_default_error_handler.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_error_handler_writer.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_error_handler_writer.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_exception.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_exception.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_hrc_parser_helpers.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_hrc_parser_helpers.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_hrc_parser_impl.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_hrc_parser_impl.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_line_regions_compact_support.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_line_regions_compact_support.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_line_regions_support.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_line_regions_support.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_line_source.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_line_source.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_logging.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_logging.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_outliner.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_outliner.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_parsed_line_writer.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_parsed_line_writer.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_parser_factory.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_parser_factory.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_region_handler.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_region_handler.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_region_mapper_impl.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_region_mapper_impl.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_styled_hrd_mapper.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_styled_hrd_mapper.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_text_hrd_mapper.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_text_hrd_mapper.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_text_lines.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_text_lines.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_text_parser_helpers.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_text_parser_helpers.cpp
+	"framework.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_text_parser_impl.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/colorertake5/colorertake5_text_parser_impl.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/7z/7zDecode.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/7z/7zDecode.cpp
+	"framework.h"
 	"../../Common/LockedStream.h"
 	"../../Common/ProgressUtils.h"
 	"../../Common/StreamObjects.h"
 	"7zDecode.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/7z/7zEncode.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/7z/7zEncode.cpp
+	"framework.h"
 	"../../Common/FilterCoder.h"
 	"../../Common/LimitedStreams.h"
 	"../../Common/InOutTempBuffer.h"
@@ -4198,21 +4199,21 @@
 	"7zEncode.h"
 	"7zSpecStream.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/7z/7zExtract.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/7z/7zExtract.cpp
+	"framework.h"
 	"../../Common/ProgressUtils.h"
 	"7zDecode.h"
 	"7zFolderOutStream.h"
 	"7zHandler.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/7z/7zFolderInStream.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/7z/7zFolderInStream.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/7z/7zFolderOutStream.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/7z/7zFolderOutStream.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/7z/7zHandler.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/7z/7zHandler.cpp
+	"framework.h"
 	"../../../Common/ComTry.h"
 	"../../../Common/IntToString.h"
 	"../../../Windows/System.h"
@@ -4221,8 +4222,8 @@
 	"7zProperties.h"
 	"../Common/ParseProperties.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/7z/7zHandlerOut.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/7z/7zHandlerOut.cpp
+	"framework.h"
 	"../../../Common/ComTry.h"
 	"../../../Common/StringToInt.h"
 	"../../ICoder.h"
@@ -4232,39 +4233,39 @@
 	"7zOut.h"
 	"7zUpdate.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/7z/7zHeader.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/7z/7zHeader.cpp
+	"framework.h"
 	"7zHeader.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/7z/7zIn.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/7z/7zIn.cpp
+	"framework.h"
 	"../../../../C/CpuArch.h"
 	"../../Common/StreamObjects.h"
 	"../../Common/StreamUtils.h"
 	"7zDecode.h"
 	"7zIn.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/7z/7zOut.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/7z/7zOut.cpp
+	"framework.h"
 	"../../../Common/AutoPtr.h"
 	"../../Common/StreamObjects.h"
 	"7zOut.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/7z/7zProperties.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/7z/7zProperties.cpp
+	"framework.h"
 	"7zProperties.h"
 	"7zHeader.h"
 	"7zHandler.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/7z/7zRegister.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/7z/7zRegister.cpp
+	"framework.h"
 	"7zHandler.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/7z/7zSpecStream.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/7z/7zSpecStream.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/7z/7zUpdate.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/7z/7zUpdate.cpp
+	"framework.h"
 	"../../Common/LimitedStreams.h"
 	"../../Common/ProgressUtils.h"
 	"../../Common/CreateCoder.h"
@@ -4278,125 +4279,125 @@
 	"7zOut.h"
 	"7zUpdate.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/7z_crc_opt.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/7z_crc_opt.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/compress/bzip_helper.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/bzip_helper.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/compress/compress_archive.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_archive.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/compress_archive_item_name.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_archive_item_name.cpp
+	"framework.h"
 	"ItemNameUtils.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/compress/compress_coder_mixer.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_coder_mixer.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/compress/compress_coder_mixer2.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_coder_mixer2.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/compress/compress_coder_mixer2mt.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_coder_mixer2mt.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/compress_copy_coder.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_copy_coder.cpp
+	"framework.h"
 	"../Common/StreamUtils.h"
 	"CopyCoder.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/compress_create_coder.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_create_coder.cpp
+	"framework.h"
 	"../../Windows/PropVariant.h"
 	"CreateCoder.h"
 	"FilterCoder.h"
 	"RegisterCodec.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/compress_filter_coder.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_filter_coder.cpp
+	"framework.h"
 	"../../Common/Defs.h"
 	"FilterCoder.h"
 	"StreamUtils.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/compress/compress_int_to_string.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_int_to_string.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/compress_local_progress.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_local_progress.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/compress/compress_lz_out_window.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_lz_out_window.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/compress/compress_method_id.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_method_id.cpp
+	"framework.h"
 	"../../Common/MyString.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/compress/compress_method_properties.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_method_properties.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/compress/compress_parse_properties.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_parse_properties.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/compress/compress_ppmd7.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_ppmd7.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/compress/compress_ppmd7_dec.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_ppmd7_dec.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/compress_ppmd7_enc.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_ppmd7_enc.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/compress/compress_ppmd8.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_ppmd8.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/compress_reader_with_crc.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/compress_reader_with_crc.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/compress/gzip_helper.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/gzip_helper.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/method_properties.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/method_properties.cpp
+	"framework.h"
 	"../ICoder.h"
 	"MethodProps.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/out_handler.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/out_handler.cpp
+	"framework.h"
 	"../../../Windows/PropVariant.h"
 	"../../../Windows/System.h"
 	"../../ICoder.h"
 	"../Common/ParseProperties.h"
 	"HandlerOut.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/compress/prop_id.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/prop_id.cpp
+	"framework.h"
 	"prop_id.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/rar/rar1_decoder.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/rar/rar1_decoder.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/rar/rar2_decoder.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/rar/rar2_decoder.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/rar/rar3_decoder.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/rar/rar3_decoder.cpp
+	"framework.h"
 	"../Common/StreamUtils.h"
 	"Rar3Decoder.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/rar/rar3_vm.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/rar/rar3_vm.cpp
+	"framework.h"
 	"../../../C/Alloc.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/rar/rar_aes.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/rar/rar_aes.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/rar/rar_codecs_register.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/rar/rar_codecs_register.cpp
+	"framework.h"
 	"Rar2Decoder.h"
 	"Rar3Decoder.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/rar/rar_handler.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/rar/rar_handler.cpp
+	"framework.h"
 	"../prop_id.h"
 	"Common/IntToString.h"
 	"Common/StringConvert.h"
@@ -4415,11 +4416,11 @@
 	"../Common/OutStreamWithCRC.h"
 	"RarHandler.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/rar/rar_header.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/rar/rar_header.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/rar/rar_input_file.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/rar/rar_input_file.cpp
+	"framework.h"
 	"../../../../C/CpuArch.h"
 	"Common/StringConvert.h"
 	"Common/UTFConvert.h"
@@ -4428,28 +4429,28 @@
 	"../Common/FindSignature.h"
 	"RarIn.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/rar/rar_item.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/rar/rar_item.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/rar/rar_volume_input_stream.cpp
-	"StdAfx.h"
+1337255328 source:/cecyn1/app/appseed/ca/compress/rar/rar_volume_input_stream.cpp
+	"framework.h"
 	"RarVolumeInStream.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/writer_with_crc.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/writer_with_crc.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/zip/zip_api.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/zip/zip_api.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/zip/zip_file.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/zip/zip_file.cpp
+	"framework.h"
 
-1335797650 source:/cecyn1/app/appseed/ca/compress/zip/zip_in_file.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/zip/zip_in_file.cpp
+	"framework.h"
 	"InFile.h"
 
-1335861103 source:/cecyn1/app/appseed/ca/compress/zip/zip_ioapi.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/zip/zip_ioapi.cpp
+	"framework.h"
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -4457,11 +4458,11 @@
 	"ca/zlib/zlib.h"
 	"ioapi.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/zip/zip_memory_file.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/zip/zip_memory_file.cpp
+	"framework.h"
 
-1335861103 source:/cecyn1/app/appseed/ca/compress/zip/zip_unzip.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/zip/zip_unzip.cpp
+	"framework.h"
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -4472,14 +4473,14 @@
 	<errno.h>
 	"crypt.h"
 
-1335861103 /cecyn1/app/appseed/ca/compress/zip/crypt.h
+1336652456 /cecyn1/app/appseed/ca/compress/zip/crypt.h
 
-1335690119 source:/cecyn1/app/appseed/ca/compress/zip/zip_util.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/zip/zip_util.cpp
+	"framework.h"
 	"InFile.h"
 
-1335861103 source:/cecyn1/app/appseed/ca/compress/zip/zip_zip.cpp
-	"StdAfx.h"
+1337255329 source:/cecyn1/app/appseed/ca/compress/zip/zip_zip.cpp
+	"framework.h"
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -4491,151 +4492,151 @@
 	<errno.h>
 	"crypt.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/crypto/7z_crc.cpp
-	"StdAfx.h"
+1337274208 source:/cecyn1/app/appseed/ca/crypto/7z_crc.cpp
+	"framework.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_7z_crc.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_7z_crc.cpp
+	"framework.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_ae_xfm.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_ae_xfm.cpp
+	"framework.h"
 	"cryptoalg.h"
 	"aes_cbc.h"
 	"hmac.h"
 	"crypto_kernel.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_cipher_aes.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_cipher_aes.cpp
+	"framework.h"
 	"aes.h"
 	"err.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_cipher_aes_cbc.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_cipher_aes_cbc.cpp
+	"framework.h"
 	"aes_cbc.h"
 	"alloc.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_cipher_aes_icm.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_cipher_aes_icm.cpp
+	"framework.h"
 	"aes_icm.h"
 	"alloc.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_cipher_cipher.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_cipher_cipher.cpp
+	"framework.h"
 	"cipher.h"
 	"rand_source.h"
 	"alloc.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_cipher_null_cipher.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_cipher_null_cipher.cpp
+	"framework.h"
 	"datatypes.h"
 	"null_cipher.h"
 	"alloc.h"
 
-1335690124 /cecyn1/app/appseed/ca/crypto/null_cipher.h
+1336652480 /cecyn1/app/appseed/ca/crypto/null_cipher.h
 	"datatypes.h"
 	"cipher.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_gf2_8.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_gf2_8.cpp
+	"framework.h"
 	"datatypes.h"
 	"gf2_8.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_hash_auth.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_hash_auth.cpp
+	"framework.h"
 	"auth.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_hash_hmac.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_hash_hmac.cpp
+	"framework.h"
 	"hmac.h"
 	"alloc.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_hash_null_auth.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_hash_null_auth.cpp
+	"framework.h"
 	"null_auth.h"
 	"alloc.h"
 
-1335690124 /cecyn1/app/appseed/ca/crypto/null_auth.h
+1336652480 /cecyn1/app/appseed/ca/crypto/null_auth.h
 	"auth.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_hash_sha1.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_hash_sha1.cpp
+	"framework.h"
 	"sha1.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/crypto/crypto_hmac_sha1.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_hmac_sha1.cpp
+	"framework.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_kernel_alloc.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_kernel_alloc.cpp
+	"framework.h"
 	"alloc.h"
 	"crypto_kernel.h"
 	<linux/interrupt.h>
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_kernel_crypto_kernel.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_kernel_crypto_kernel.cpp
+	"framework.h"
 	"alloc.h"
 	"crypto_kernel.h"
 
-1336859696 source:/cecyn1/app/appseed/ca/crypto/crypto_kernel_err.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_kernel_err.cpp
+	"framework.h"
 	"err.h"
 	<syslog.h>
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_kernel_key.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_kernel_key.cpp
+	"framework.h"
 	"key.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_math.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_math.cpp
+	"framework.h"
 	"crypto_math.h"
 
-1335690124 /cecyn1/app/appseed/ca/crypto/crypto_math.h
+1336652480 /cecyn1/app/appseed/ca/crypto/crypto_math.h
 	"datatypes.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_math_stat.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_math_stat.cpp
+	"framework.h"
 	"stat.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_my_aes.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_my_aes.cpp
+	"framework.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/crypto/crypto_rar20.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_rar20.cpp
+	"framework.h"
 	"../../../C/CpuArch.h"
 	"../../../C/RotateDefs.h"
 	"Rar20Crypto.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_replay_rdb.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_replay_rdb.cpp
+	"framework.h"
 	"rdb.h"
 
-1335690124 /cecyn1/app/appseed/ca/crypto/rdb.h
+1336652480 /cecyn1/app/appseed/ca/crypto/rdb.h
 	"integers.h"
 	"datatypes.h"
 	"err.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_replay_rdbx.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_replay_rdbx.cpp
+	"framework.h"
 	"rdbx.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_replay_ut_sim.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_replay_ut_sim.cpp
+	"framework.h"
 	"ut_sim.h"
 	<stdio.h>
 
-1335690124 /cecyn1/app/appseed/ca/crypto/ut_sim.h
+1336652480 /cecyn1/app/appseed/ca/crypto/ut_sim.h
 	"c/c_c.h"
 	"integers.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_rng_ctr_prng.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_rng_ctr_prng.cpp
+	"framework.h"
 	"prng.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_rng_prng.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_rng_prng.cpp
+	"framework.h"
 	"prng.h"
 
-1335861105 source:/cecyn1/app/appseed/ca/crypto/crypto_rng_rand_source.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_rng_rand_source.cpp
+	"framework.h"
 	"config.h"
 	<fcntl.h>
 	<unistd.h>
@@ -4644,360 +4645,360 @@
 	<stdio.h>
 	"rand_source.h"
 
-1335690124 source:/cecyn1/app/appseed/ca/crypto/crypto_sha1.cpp
-	"StdAfx.h"
+1337255325 source:/cecyn1/app/appseed/ca/crypto/crypto_sha1.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/database/database_application.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/database/database_application.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/database/database_base.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/database/database_base.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/database/database_client.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/database/database_client.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/database/database_definition.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/database/database_definition.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/database/database_event_change.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/database/database_event_change.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/database/database_field_definition.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/database/database_field_definition.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/database/database_id.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/database/database_id.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/database/database_key.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/database/database_key.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/database/database_selection.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/database/database_selection.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/database/database_selection_item.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/database/database_selection_item.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/database/database_server.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/database/database_server.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/database/database_set.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/database/database_set.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/database/database_stringhelper.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/database/database_stringhelper.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/database/database_update_hint.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/database/database_update_hint.cpp
+	"framework.h"
 
-1335690122 source:/cecyn1/app/appseed/ca/database/database_user_interaction.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/database/database_user_interaction.cpp
+	"framework.h"
 
-1335690126 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_exit_exception.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_exit_exception.cpp
+	"framework.h"
 
-1335690126 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_httpd_socket.cpp
-	"StdAfx.h"
+1337255339 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_httpd_socket.cpp
+	"framework.h"
 
-1335690126 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_library_class.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_library_class.cpp
+	"framework.h"
 
-1336866469 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script.cpp
-	"StdAfx.h"
+1337255339 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script.cpp
+	"framework.h"
 	<dlfcn.h>
 
-1335827865 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_cache.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_cache.cpp
+	"framework.h"
 
-1335690126 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_compiler.cpp
-	"StdAfx.h"
+1337255339 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_compiler.cpp
+	"framework.h"
 	<ctype.h>
 
-1335690126 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_instance.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_instance.cpp
+	"framework.h"
 
-1335690126 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_interface.cpp
-	"StdAfx.h"
+1337255338 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_interface.cpp
+	"framework.h"
 
-1336866469 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_manager.cpp
-	"StdAfx.h"
+1337255339 source:/cecyn1/app/appseed/ca/dynamic_source/dynamic_source_script_manager.cpp
+	"framework.h"
 	<openssl/ssl.h>
 	<sys/inotify.h>
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_application.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_application.cpp
+	"framework.h"
 	<dlfcn.h>
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_buffered_file.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_buffered_file.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_byte_serializable.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_byte_serializable.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_byte_stream.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_byte_stream.cpp
+	"framework.h"
 	"FindSignature.h"
 	"../../Common/StreamUtils.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_circular_buffer.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_circular_buffer.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_clustered_input_stream.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_clustered_input_stream.cpp
+	"framework.h"
 
-1336871534 source:/cecyn1/app/appseed/ca/ex1/ex1_dynamic_buffered_writer.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_dynamic_buffered_writer.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_edit_file.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_edit_file.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_exception.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_exception.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_file.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_file.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_file_composite.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_file_composite.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_file_stream.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_file_stream.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_file_system.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_file_system.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_fs_interface.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_fs_interface.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_in_buffer.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_in_buffer.cpp
+	"framework.h"
 	"InBuffer.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_io_temp_buffer.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_io_temp_buffer.cpp
+	"framework.h"
 	"InOutTempBuffer.h"
 	"StreamUtils.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_limited_input_stream.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_limited_input_stream.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_limited_reader.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_limited_reader.cpp
+	"framework.h"
 	"../../Common/Defs.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_limited_writer.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_limited_writer.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_locked_in_stream.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_locked_in_stream.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_match.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_match.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_out_buffer.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_out_buffer.cpp
+	"framework.h"
 	"OutBuffer.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_output_string_stream.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_output_string_stream.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_plain_text_serializable.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_plain_text_serializable.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_plain_text_stream.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_plain_text_stream.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_reader.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_reader.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_request_interface.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_request_interface.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_resource.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_resource.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_seekable.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_seekable.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_simple_tree_data.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_simple_tree_data.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_simple_tree_item_data.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_simple_tree_item_data.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_size_count_writer.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_size_count_writer.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_str_stream.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_str_stream.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_stream.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_stream.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_stream2.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_stream2.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_stream_binder.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_stream_binder.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_text_file.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_text_file.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_timeout_file.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_timeout_file.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_tree.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_tree.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_tree_data.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_tree_data.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_tree_item.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_tree_item.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_tree_item_data.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_tree_item_data.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex1/ex1_writer.cpp
-	"StdAfx.h"
+1337255330 source:/cecyn1/app/appseed/ca/ex1/ex1_writer.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex2/ex2_application.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/ex2/ex2_application.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex2/ex2_file_set.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/ex2/ex2_file_set.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex2/ex2_folder_watch.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/ex2/ex2_folder_watch.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/ex2/ex2_transfer_file.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/ex2/ex2_transfer_file.cpp
+	"framework.h"
 
-1336871534 source:/cecyn1/app/appseed/ca/exception/exception.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception.cpp
+	"framework.h"
 
 1335690120 source:/cecyn1/app/appseed/ca/exception/exception_SymEngine.cpp
 	"StdAfx.h"
 	<malloc.h>
 	<tlhelp32.h>
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_VMSException.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_VMSException.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_archive_exception.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_archive_exception.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_base_exception.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_base_exception.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_debug.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_debug.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_dump.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_dump.cpp
+	"framework.h"
 
-1336871534 source:/cecyn1/app/appseed/ca/exception/exception_dump_context.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_dump_context.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_dump_floating_point.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_dump_floating_point.cpp
+	"framework.h"
 	<float.h>
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_dump_output.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_dump_output.cpp
+	"framework.h"
 	<stdarg.h>
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_error_exception.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_error_exception.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_hresult_exception.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_hresult_exception.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_installing.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_installing.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_interface_only.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_interface_only.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_invalid_arg_exception.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_invalid_arg_exception.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_memory_exception.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_memory_exception.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_not_implemented.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_not_implemented.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_not_licensed_exception.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_not_licensed_exception.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_not_supported_exception.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_not_supported_exception.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_overflow_error.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_overflow_error.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_range_error.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_range_error.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_runtime_error.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_runtime_error.cpp
+	"framework.h"
 
 1335690120 source:/cecyn1/app/appseed/ca/exception/exception_se_translator.cpp
 	"StdAfx.h"
 	"se_translator.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_simple_exception.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_simple_exception.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_temporary.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_temporary.cpp
+	"framework.h"
 
-1335690120 source:/cecyn1/app/appseed/ca/exception/exception_void_implementation.cpp
-	"StdAfx.h"
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_void_implementation.cpp
+	"framework.h"
 
-1336866487 source:/cecyn1/app/appseed/ca/filehandler/filehandler_handler.cpp
-	"StdAfx.h"
+1337255343 source:/cecyn1/app/appseed/ca/filehandler/filehandler_handler.cpp
+	"framework.h"
 
-1336866487 source:/cecyn1/app/appseed/ca/filehandler/filehandler_library.cpp
-	"StdAfx.h"
+1337255343 source:/cecyn1/app/appseed/ca/filehandler/filehandler_library.cpp
+	"framework.h"
 
-1336866487 source:/cecyn1/app/appseed/ca/filehandler/filehandler_menu_library.cpp
-	"StdAfx.h"
+1337255343 source:/cecyn1/app/appseed/ca/filehandler/filehandler_menu_library.cpp
+	"framework.h"
 
-1336866487 source:/cecyn1/app/appseed/ca/filehandler/filehandler_tree_data.cpp
-	"StdAfx.h"
+1337255343 source:/cecyn1/app/appseed/ca/filehandler/filehandler_tree_data.cpp
+	"framework.h"
 
-1336866487 source:/cecyn1/app/appseed/ca/filehandler/filehandler_tree_interface.cpp
-	"StdAfx.h"
+1337255343 source:/cecyn1/app/appseed/ca/filehandler/filehandler_tree_interface.cpp
+	"framework.h"
 
-1336866487 source:/cecyn1/app/appseed/ca/filehandler/filehandler_tree_item.cpp
-	"StdAfx.h"
+1337255343 source:/cecyn1/app/appseed/ca/filehandler/filehandler_tree_item.cpp
+	"framework.h"
 
-1335690128 source:/cecyn1/app/appseed/ca/fontopus/fontopus_application.cpp
-	"StdAfx.h"
+1337255343 source:/cecyn1/app/appseed/ca/fontopus/fontopus_application.cpp
+	"framework.h"
 
-1335690128 source:/cecyn1/app/appseed/ca/fontopus/fontopus_contact_list.cpp
-	"StdAfx.h"
+1337255343 source:/cecyn1/app/appseed/ca/fontopus/fontopus_contact_list.cpp
+	"framework.h"
 
-1335690128 source:/cecyn1/app/appseed/ca/fontopus/fontopus_license.cpp
-	"StdAfx.h"
+1337255343 source:/cecyn1/app/appseed/ca/fontopus/fontopus_license.cpp
+	"framework.h"
 
-1336866473 source:/cecyn1/app/appseed/ca/fontopus/fontopus_user.cpp
-	"StdAfx.h"
+1337255343 source:/cecyn1/app/appseed/ca/fontopus/fontopus_user.cpp
+	"framework.h"
 
-1335690128 source:/cecyn1/app/appseed/ca/fontopus/fontopus_user_set.cpp
-	"StdAfx.h"
+1337255343 source:/cecyn1/app/appseed/ca/fontopus/fontopus_user_set.cpp
+	"framework.h"
 
-1335690128 source:/cecyn1/app/appseed/ca/fontopus/fontopus_usera.cpp
-	"StdAfx.h"
+1337255343 source:/cecyn1/app/appseed/ca/fontopus/fontopus_usera.cpp
+	"framework.h"
 
-1336866473 source:/cecyn1/app/appseed/ca/fontopus/fontopus_validate.cpp
-	"StdAfx.h"
+1337255343 source:/cecyn1/app/appseed/ca/fontopus/fontopus_validate.cpp
+	"framework.h"
 	<openssl/rsa.h>
 	<openssl/engine.h>
 	<openssl/err.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/engine.h
+1336652563 /cecyn1/app/thirdparty/appseed/openssl/engine.h
 	<openssl/opensslconf.h>
 	<openssl/ossl_typ.h>
 	<openssl/bn.h>
@@ -5009,208 +5010,208 @@
 	<openssl/symhacks.h>
 	<openssl/err.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/rand.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/rand.h
 	<stdlib.h>
 	<openssl/ossl_typ.h>
 	<openssl/e_os2.h>
 	<windows.h>
 
-1335690147 /cecyn1/app/thirdparty/appseed/openssl/err.h
+1336652568 /cecyn1/app/thirdparty/appseed/openssl/err.h
 	<stdio.h>
 	<stdlib.h>
 	<openssl/bio.h>
 	<openssl/lhash.h>
 	<errno.h>
 
-1335690123 source:/cecyn1/app/appseed/ca/fs/fs_application.cpp
-	"StdAfx.h"
+1337255335 source:/cecyn1/app/appseed/ca/fs/fs_application.cpp
+	"framework.h"
 
-1335828549 source:/cecyn1/app/appseed/ca/fs/fs_data.cpp
-	"StdAfx.h"
+1337255335 source:/cecyn1/app/appseed/ca/fs/fs_data.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/fs/fs_ifs.cpp
-	"StdAfx.h"
+1337255335 source:/cecyn1/app/appseed/ca/fs/fs_ifs.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/fs/fs_ifs_file.cpp
-	"StdAfx.h"
+1337255335 source:/cecyn1/app/appseed/ca/fs/fs_ifs_file.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/fs/fs_item.cpp
-	"StdAfx.h"
+1337255335 source:/cecyn1/app/appseed/ca/fs/fs_item.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/fs/fs_item_array.cpp
-	"StdAfx.h"
+1337255335 source:/cecyn1/app/appseed/ca/fs/fs_item_array.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/fs/fs_native_fs.cpp
-	"StdAfx.h"
+1337255335 source:/cecyn1/app/appseed/ca/fs/fs_native_fs.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/fs/fs_remote_native_file.cpp
-	"StdAfx.h"
+1337255335 source:/cecyn1/app/appseed/ca/fs/fs_remote_native_file.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/fs/fs_remote_native_fs.cpp
-	"StdAfx.h"
+1337255335 source:/cecyn1/app/appseed/ca/fs/fs_remote_native_fs.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/fs/fs_set.cpp
-	"StdAfx.h"
+1337255335 source:/cecyn1/app/appseed/ca/fs/fs_set.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/base_enum.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/base_enum.cpp
+	"framework.h"
 
-1335724053 source:/cecyn1/app/appseed/ca/gen/gen_Debug.cpp
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_Debug.cpp
 	<mmsystem.h>
-	"StdAfx.h"
+	"framework.h"
 	"gen_debug.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_Timer.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_Timer.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_TimerCallback.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_TimerCallback.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_TimerListener.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_TimerListener.cpp
+	"framework.h"
 
-1335828549 source:/cecyn1/app/appseed/ca/gen/gen_TimerWnd.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_TimerWnd.cpp
+	"framework.h"
 
-1335737064 source:/cecyn1/app/appseed/ca/gen/gen_application.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_application.cpp
+	"framework.h"
 	<dlfcn.h>
 	<link.h>
 	<ctype.h>
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_base64.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_base64.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_bit.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_bit.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_byte_stream_memory_file.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_byte_stream_memory_file.cpp
+	"framework.h"
 
-1335727924 source:/cecyn1/app/appseed/ca/gen/gen_ch.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_ch.cpp
+	"framework.h"
 	"ca/x/x_charcategory_names.h"
 
-1335690126 /cecyn1/app/appseed/ca/x/x_charcategory_names.h
+1336652499 /cecyn1/app/appseed/ca/x/x_charcategory_names.h
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_ch_class.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_ch_class.cpp
+	"framework.h"
 	"x/x_charcategory2.h"
 	"x/x_charcategory_names.h"
 
-1335690126 /cecyn1/app/appseed/ca/x/x_charcategory2.h
+1336652499 /cecyn1/app/appseed/ca/x/x_charcategory2.h
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_command.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_command.cpp
+	"framework.h"
 
-1335728923 source:/cecyn1/app/appseed/ca/gen/gen_command_line.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_command_line.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_command_thread.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_command_thread.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_cregexp.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_cregexp.cpp
+	"framework.h"
 
-1335729040 source:/cecyn1/app/appseed/ca/gen/gen_cregexp_util.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_cregexp_util.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_file_sssociation.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_file_sssociation.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_geometry.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_geometry.cpp
+	"framework.h"
 	<math.h>
 
-1335727943 source:/cecyn1/app/appseed/ca/gen/gen_international.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_international.cpp
+	"framework.h"
 	<winnls.h>
 
-1335729024 source:/cecyn1/app/appseed/ca/gen/gen_international_locale_schema.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_international_locale_schema.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_istring.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_istring.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_keeper.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_keeper.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_logic.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_logic.cpp
+	"framework.h"
 
-1335788295 source:/cecyn1/app/appseed/ca/gen/gen_math.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_math.cpp
+	"framework.h"
 	<math.h>
 	<time.h>
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_math_rng.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_math_rng.cpp
+	"framework.h"
 
-1335861103 source:/cecyn1/app/appseed/ca/gen/gen_message.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_message.cpp
+	"framework.h"
 	<X11/Xlib.h>
 	<X11/Xutil.h>
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_parse.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_parse.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_pointer_holder.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_pointer_holder.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_pointer_interface.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_pointer_interface.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_pointer_keeper.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_pointer_keeper.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_pointer_listener.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_pointer_listener.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_pointer_manager.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_pointer_manager.cpp
+	"framework.h"
 
-1336866469 source:/cecyn1/app/appseed/ca/gen/gen_process.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_process.cpp
+	"framework.h"
 	<sys/wait.h>
 
-1335798892 source:/cecyn1/app/appseed/ca/gen/gen_property.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_property.cpp
+	"framework.h"
 	<ctype.h>
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_request_signal.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_request_signal.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_savings.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_savings.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_signal.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_signal.cpp
+	"framework.h"
 	"signal.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_signal_thread.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_signal_thread.cpp
+	"framework.h"
 
-1335828549 source:/cecyn1/app/appseed/ca/gen/gen_str.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_str.cpp
+	"framework.h"
 	<ctype.h>
 
-1335786895 source:/cecyn1/app/appseed/ca/gen/gen_string_tokenizer.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_string_tokenizer.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_system.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_system.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_var.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_var.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_var_array.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_var_array.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_var_property_allocation.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_var_property_allocation.cpp
+	"framework.h"
 
-1335690123 source:/cecyn1/app/appseed/ca/gen/gen_variable_strict_compare.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_variable_strict_compare.cpp
+	"framework.h"
 
 1335690123 source:/cecyn1/app/appseed/ca/gen/go_thread.cpp
 	"StdAfx.h"
@@ -5218,24 +5219,24 @@
 1335804466 source:/cecyn1/app/appseed/ca/gen/simple_thread.cpp
 	"StdAfx.h"
 
-1335814205 source:/cecyn1/app/appseed/ca/geoip/geoip.cpp
-	"StdAfx.h"
+1337255332 source:/cecyn1/app/appseed/ca/geoip/geoip.cpp
+	"framework.h"
 	<sys/stat.h>
 	<sys/mman.h>
 	<stdio.h>
 	<netdb.h>
 
-1335815719 source:/cecyn1/app/appseed/ca/geoip/geoip_city.cpp
-	"StdAfx.h"
+1337255332 source:/cecyn1/app/appseed/ca/geoip/geoip_city.cpp
+	"framework.h"
 
-1335690121 source:/cecyn1/app/appseed/ca/geoip/geoip_region_name.cpp
-	"StdAfx.h"
+1337255332 source:/cecyn1/app/appseed/ca/geoip/geoip_region_name.cpp
+	"framework.h"
 
-1335690121 source:/cecyn1/app/appseed/ca/geoip/geoip_time_zone.cpp
-	"StdAfx.h"
+1337255332 source:/cecyn1/app/appseed/ca/geoip/geoip_time_zone.cpp
+	"framework.h"
 
-1335822337 source:/cecyn1/app/appseed/ca/geoip/geoip_update.cpp
-	"StdAfx.h"
+1337255332 source:/cecyn1/app/appseed/ca/geoip/geoip_update.cpp
+	"framework.h"
 	<openssl/ssl.h>
 	<netdb.h>
 
@@ -5245,120 +5246,120 @@
 1335690121 source:/cecyn1/app/appseed/ca/geoip/time_zone.cpp
 	"StdAfx.h"
 
-1335690126 source:/cecyn1/app/appseed/ca/install/install_install.cpp
-	"StdAfx.h"
+1337255339 source:/cecyn1/app/appseed/ca/install/install_install.cpp
+	"framework.h"
 
-1335828549 source:/cecyn1/app/appseed/ca/javascript/javascript.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/javascript/javascript.cpp
+	"framework.h"
 
-1335793957 source:/cecyn1/app/appseed/ca/javascript/javascript_functions.cpp
-	"StdAfx.h"
+1337255333 source:/cecyn1/app/appseed/ca/javascript/javascript_functions.cpp
+	"framework.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_EUCJPProber.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_EUCJPProber.cpp
+	"framework.h"
 	"EUCJPProber.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/EUCJPProber.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/EUCJPProber.h
 	"charsetProber.h"
 	"codingStateMachine.h"
 	"jpCntx.h"
 	"charDistribution.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/charsetProber.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/charsetProber.h
 	"types.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/types.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/types.h
 	<stdlib.h>
 	<stdio.h>
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/codingStateMachine.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/codingStateMachine.h
 	"pkgInt.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/pkgInt.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/pkgInt.h
 	"types.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/jpCntx.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/jpCntx.h
 	"types.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/charDistribution.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/charDistribution.h
 	"types.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_EUCKRProber.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_EUCKRProber.cpp
+	"framework.h"
 	"EUCKRProber.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/EUCKRProber.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/EUCKRProber.h
 	"charsetProber.h"
 	"codingStateMachine.h"
 	"charDistribution.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_EUCTWProber.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_EUCTWProber.cpp
+	"framework.h"
 	"EUCTWProber.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/EUCTWProber.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/EUCTWProber.h
 	"charsetProber.h"
 	"codingStateMachine.h"
 	"charDistribution.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_EscCharsetProber.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_EscCharsetProber.cpp
+	"framework.h"
 	"EscCharsetProber.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/EscCharsetProber.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/EscCharsetProber.h
 	"charsetProber.h"
 	"codingStateMachine.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_EscSM.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_EscSM.cpp
+	"framework.h"
 	"codingStateMachine.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_GB2312Prober.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_GB2312Prober.cpp
+	"framework.h"
 	"GB2312Prober.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/GB2312Prober.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/GB2312Prober.h
 	"charsetProber.h"
 	"codingStateMachine.h"
 	"charDistribution.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_LangBulgarianModel.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_LangBulgarianModel.cpp
+	"framework.h"
 	"SBCharsetProber.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/SBCharsetProber.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/SBCharsetProber.h
 	"charsetProber.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_LangCyrillicModel.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_LangCyrillicModel.cpp
+	"framework.h"
 	"SBCharsetProber.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_LangGreekModel.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_LangGreekModel.cpp
+	"framework.h"
 	"SBCharsetProber.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_LangHungarianModel.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_LangHungarianModel.cpp
+	"framework.h"
 	"SBCharsetProber.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_LangThaiModel.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_LangThaiModel.cpp
+	"framework.h"
 	"SBCharsetProber.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_Latin1Prober.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_Latin1Prober.cpp
+	"framework.h"
 	"Latin1Prober.h"
 	"types.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/Latin1Prober.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/Latin1Prober.h
 	"charsetProber.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_MBCSGroupProber.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_MBCSGroupProber.cpp
+	"framework.h"
 	"types.h"
 	"MBCSGroupProber.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/MBCSGroupProber.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/MBCSGroupProber.h
 	"SJISProber.h"
 	"UTF8Prober.h"
 	"EUCJPProber.h"
@@ -5367,51 +5368,51 @@
 	"big5Prober.h"
 	"EUCTWProber.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/SJISProber.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/SJISProber.h
 	"charsetProber.h"
 	"codingStateMachine.h"
 	"jpCntx.h"
 	"charDistribution.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/UTF8Prober.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/UTF8Prober.h
 	"charsetProber.h"
 	"codingStateMachine.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/big5Prober.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/big5Prober.h
 	"charsetProber.h"
 	"codingStateMachine.h"
 	"charDistribution.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_MBCSSM.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_MBCSSM.cpp
+	"framework.h"
 	"codingStateMachine.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_SBCSGroupProber.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_SBCSGroupProber.cpp
+	"framework.h"
 	"SBCharsetProber.h"
 	"SBCSGroupProber.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/SBCSGroupProber.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/SBCSGroupProber.h
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_SBCharsetProber.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_SBCharsetProber.cpp
+	"framework.h"
 	<stdio.h>
 	"SBCharsetProber.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_SJISProber.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_SJISProber.cpp
+	"framework.h"
 	"SJISProber.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_UTF8Prober.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_UTF8Prober.cpp
+	"framework.h"
 	"UTF8Prober.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_big5Prober.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_big5Prober.cpp
+	"framework.h"
 	"big5Prober.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_charDistribution.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_charDistribution.cpp
+	"framework.h"
 	"charDistribution.h"
 	"JISFreq.tab"
 	"Big5Freq.tab"
@@ -5419,105 +5420,105 @@
 	"EUCTWFreq.tab"
 	"GB2312Freq.tab"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/JISFreq.tab
+1336652502 /cecyn1/app/appseed/ca/libcharguess/JISFreq.tab
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/Big5Freq.tab
+1336652502 /cecyn1/app/appseed/ca/libcharguess/Big5Freq.tab
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/EUCKRFreq.tab
+1336652502 /cecyn1/app/appseed/ca/libcharguess/EUCKRFreq.tab
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/EUCTWFreq.tab
+1336652502 /cecyn1/app/appseed/ca/libcharguess/EUCTWFreq.tab
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/GB2312Freq.tab
+1336652502 /cecyn1/app/appseed/ca/libcharguess/GB2312Freq.tab
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_charguess.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_charguess.cpp
+	"framework.h"
 	"universal.h"
 	"string.h"
 
-1335690127 /cecyn1/app/appseed/ca/libcharguess/universal.h
+1336652502 /cecyn1/app/appseed/ca/libcharguess/universal.h
 	"types.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_jpCntx.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_jpCntx.cpp
+	"framework.h"
 	"types.h"
 	"jpCntx.h"
 
-1335861106 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_universal.cpp
-	"StdAfx.h"
+1337255340 source:/cecyn1/app/appseed/ca/libcharguess/libcharguess_universal.cpp
+	"framework.h"
 	"universal.h"
 	"MBCSGroupProber.h"
 	"SBCSGroupProber.h"
 	"EscCharsetProber.h"
 	"Latin1Prober.h"
 
-1335690125 source:/cecyn1/app/appseed/ca/linux/debug.cpp
-	"StdAfx.h"
+1337277299 source:/cecyn1/app/appseed/ca/linux/debug.cpp
+	"framework.h"
 
-1335910025 source:/cecyn1/app/appseed/ca/linux/os.cpp
-	"StdAfx.h"
+1337277325 source:/cecyn1/app/appseed/ca/linux/os.cpp
+	"framework.h"
 	<sys/times.h>
 
-1335690125 source:/cecyn1/app/appseed/ca/linux/os_allocate_debug.cpp
-	"StdAfx.h"
+1337277337 source:/cecyn1/app/appseed/ca/linux/os_allocate_debug.cpp
+	"framework.h"
 
-1335805782 source:/cecyn1/app/appseed/ca/linux/os_debug.cpp
-	"StdAfx.h"
+1337277438 source:/cecyn1/app/appseed/ca/linux/os_debug.cpp
+	"framework.h"
 	<sys/ptrace.h>
 	<sys/types.h>
 	<sys/wait.h>
 
-1335690124 source:/cecyn1/app/appseed/ca/mail/mail_pop3.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/mail/mail_pop3.cpp
+	"framework.h"
 
-1335809099 source:/cecyn1/app/appseed/ca/mail/mail_pop3_socket.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/mail/mail_pop3_socket.cpp
+	"framework.h"
 	<openssl/ssl.h>
 	<ctype.h>
 
-1335690124 source:/cecyn1/app/appseed/ca/mail/mail_simple_pop3.cpp
-	"StdAfx.h"
+1337255337 source:/cecyn1/app/appseed/ca/mail/mail_simple_pop3.cpp
+	"framework.h"
 
-1335861103 source:/cecyn1/app/appseed/ca/math/_double.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/math/_double.cpp
+	"framework.h"
 
-1335861103 source:/cecyn1/app/appseed/ca/math/_float.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/math/_float.cpp
+	"framework.h"
 
-1335805175 source:/cecyn1/app/appseed/ca/math/_integer.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/math/_integer.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/math/binary_operation.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/math/binary_operation.cpp
+	"framework.h"
 
-1335861103 source:/cecyn1/app/appseed/ca/math/math.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/math/math.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/math/number.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/math/number.cpp
+	"framework.h"
 
-1335818723 source:/cecyn1/app/appseed/ca/math/value.cpp
-	"StdAfx.h"
+1337255327 source:/cecyn1/app/appseed/ca/math/value.cpp
+	"framework.h"
 	<ctype.h>
 
 1335829605 source:/cecyn1/app/appseed/ca/multithreading/multithreading_base_sync_object.cpp
 	"StdAfx.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/multithreading/multithreading_core.cpp
-	"StdAfx.h"
+1337255324 source:/cecyn1/app/appseed/ca/multithreading/multithreading_core.cpp
+	"framework.h"
 
-1336871533 source:/cecyn1/app/appseed/ca/multithreading/multithreading_critical_section.cpp
-	"StdAfx.h"
+1337255324 source:/cecyn1/app/appseed/ca/multithreading/multithreading_critical_section.cpp
+	"framework.h"
 
-1336866469 source:/cecyn1/app/appseed/ca/multithreading/multithreading_event_base.cpp
-	"StdAfx.h"
+1337255324 source:/cecyn1/app/appseed/ca/multithreading/multithreading_event_base.cpp
+	"framework.h"
 
-1335821931 source:/cecyn1/app/appseed/ca/multithreading/multithreading_file_change_event.cpp
-	"StdAfx.h"
+1337255324 source:/cecyn1/app/appseed/ca/multithreading/multithreading_file_change_event.cpp
+	"framework.h"
 
-1335690119 source:/cecyn1/app/appseed/ca/multithreading/multithreading_manual_reset_event.cpp
-	"StdAfx.h"
+1337255324 source:/cecyn1/app/appseed/ca/multithreading/multithreading_manual_reset_event.cpp
+	"framework.h"
 
-1337255338 /cecyn1/app/appseed/ca/linux/os_multithreading.h
+1337281501 /cecyn1/app/appseed/ca/linux/os_multithreading.h
 
 1336864857 source:/cecyn1/app/appseed/ca/multithreading/multithreading_retry_single_lock.cpp
 	"StdAfx.h"
@@ -5672,4 +5673,61 @@
 1337255333 /cecyn1/app/appseed/ca/visual/visual_icon.h
 
 1337255333 /cecyn1/app/appseed/ca/visual/visual_buffered_graphics.h
+
+1337255344 source:/cecyn1/app/appseed/ca/framework.cpp
+	"framework.h"
+
+1337276032 source:/cecyn1/app/appseed/ca/gen/base.cpp
+	"framework.h"
+
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_base.cpp
+	"framework.h"
+
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_last_error.cpp
+	"framework.h"
+
+1337276256 source:/cecyn1/app/appseed/ca/exception/exception_engine.cpp
+	"framework.h"
+	<malloc.h>
+	<tlhelp32.h>
+
+1337255331 source:/cecyn1/app/appseed/ca/exception/exception_standard_translator.cpp
+	"framework.h"
+
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_checked.cpp
+	"framework.h"
+	<errno.h>
+
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_go_thread.cpp
+	"framework.h"
+
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_hash.cpp
+	"framework.h"
+
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_memory.cpp
+	"framework.h"
+
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_microtimer.cpp
+	"framework.h"
+	<stdlib.h>
+
+1337255337 source:/cecyn1/app/appseed/ca/gen/gen_simple_thread.cpp
+	"framework.h"
+
+1337277018 source:/cecyn1/app/appseed/ca/gen/gen_trace.cpp
+	"framework.h"
+
+1337277993 source:/cecyn1/app/appseed/ca/multithreading/multithreading_event.cpp
+	"framework.h"
+	<sys/ipc.h>
+	<sys/sem.h>
+
+1337281507 source:/cecyn1/app/appseed/ca/multithreading/multithreading_event_collection.cpp
+	"framework.h"
+
+1337286788 source:/cecyn1/app/appseed/ca/multithreading/multithreading_multi_lock.cpp
+	"framework.h"
+
+1337255324 source:/cecyn1/app/appseed/ca/multithreading/multithreading_plain_service.cpp
+	"framework.h"
 

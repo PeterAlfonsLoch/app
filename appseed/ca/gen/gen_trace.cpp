@@ -140,7 +140,7 @@ namespace gen
          UNREFERENCED_PARAMETER(nLevel);
 
          string str;
-         str.Format(pszFmt, args);
+         str.FormatV(pszFmt, args);
          ::OutputDebugStringW(gen::international::utf8_to_unicode(str));
       }
 

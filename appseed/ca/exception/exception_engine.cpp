@@ -689,10 +689,11 @@ namespace exception
       return true;
    }
 
-#endif
-
 
 } // namespace exception
+
+
+#endif
 
 
 

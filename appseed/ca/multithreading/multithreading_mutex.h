@@ -2,11 +2,7 @@
 
 
 class CLASS_DECL_ca mutex :
-#ifdef WINDOWS
    public sync_object
-#else
-   public ::radix::object
-#endif
 {
 public:
 

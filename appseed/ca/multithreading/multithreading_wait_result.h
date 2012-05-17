@@ -20,7 +20,7 @@
 // use 0
 
 /// This class represents results of waiting actions.
-class CLASS_DECL_ca wait_result 
+class CLASS_DECL_ca wait_result
 {
 	/// Internal member holding the result of the last waiting action
 	int                        m_iWaitResult;
@@ -34,12 +34,12 @@ public:
 	static const int Event0		=  0;		/// signaled
 
 public:
-#if defined(WIN32) || defined(WIN64)
+//#if defined(WIN32) || defined(WIN64)
 	///  \brief		constructor with result value and object count passed (Windows only)
 	///  \param		value waiting result value as passed by Windows API function
 	///  \param		objectCount number of items in event_collection
 	explicit wait_result( unsigned long value, count objectCount=1 );
-#endif
+//#endif
 	///  \brief		constructor with result value passed
 	///  \param		value waiting result value as passed by Windows API function
 	explicit wait_result( int value )
@@ -83,7 +83,7 @@ public:
 	///  \brief		checks if last result == Event0
 	///  \return	true if last result == Event0
 	bool signaled() const
-	{ return m_iWaitResult >= Event0; }		
+	{ return m_iWaitResult >= Event0; }
 
 	///  \brief		returns index of signaled thread
 	///  \return	signaled thread index

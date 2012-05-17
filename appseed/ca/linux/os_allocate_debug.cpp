@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 void * DECL_C _malloc_dbg(size_t _Size, int _BlockType, const char * _Filename, int _LineNumber)

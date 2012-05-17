@@ -1,12 +1,12 @@
 // This is ca2 API library.
-// 
-// 
 //
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
+//
+//
 
 #include "StdAfx.h"
 #include <malloc.h>
@@ -16,7 +16,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Cached system metrics, etc
 
-AFX_DATADEF AUX_DATA afxData;
+__DATADEF AUX_DATA afxData;
 
 // Initialization code
 AUX_DATA::AUX_DATA()

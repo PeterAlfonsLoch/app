@@ -65,7 +65,11 @@
       wStruct.item=&waitableItem;
       wStruct.callback=waitCallback;
 
+#ifdef WINDOWS
       m_objecta.push_back(waitableItem.item());
+#else
+      m_objecta.push_back(&waitableItem);
+#endif
       m_waitableelementa.push_back(wStruct);
       callback_cnt++;
       return true;
@@ -196,7 +200,7 @@
 
                for ( ++position; position<m_objecta.size(); ++position ) {
                   if(m_waitableelementa[position].callback) {
-                     unsigned long res = ::WaitForSingleObject(m_objecta[position],0);
+                     unsigned long res = ::WaitForSingleObject(m_objecta[position], 0);
 
                      if ( res != WAIT_TIMEOUT )
                         m_waitableelementa[position].callback->callback(*m_waitableelementa[position].item);
