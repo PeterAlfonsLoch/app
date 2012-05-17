@@ -31,7 +31,7 @@
  *
  */
 
- #include "StdAfx.h"
+#include "framework.h"
 
 static const char *rcsid="$Id: http_lib.c,v 3.5 1998/09/23 06:19:15 dl Exp $";
 

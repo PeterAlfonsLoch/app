@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 #include <sys/times.h>
 
 uint32_t GetTickCount()

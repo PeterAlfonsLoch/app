@@ -9,7 +9,7 @@
 
 count wcslen_dup(const wchar_t * str)
 {
-   
+
    if(str == NULL)
       return 0;
 
@@ -97,6 +97,47 @@ CLASS_DECL_c wchar_t w_to_lower(int c)
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return wchar_t(c);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(c+1);
    return wchar_t(c - (c1>>16));
+}
+
+
+CLASS_DECL_c errno_t wcslwr_s_dup(wchar_t * sz, size_t size)
+{
+
+        while(size > 0 && *sz != L'\0')
+        {
+            *sz = w_to_lower(*sz);
+            size--;
+            sz++;
+        }
+
+
+        return 0;
+
+}
+
+CLASS_DECL_c wchar_t w_to_upper(int c)
+{
+
+    unsigned long c1 = CHAR_PROP(c);
+    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return wchar_t(c);
+    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(c-1);
+    return wchar_t(c - (c1>>16));
+
+}
+
+CLASS_DECL_c errno_t wcsupr_s_dup(wchar_t * sz, size_t size)
+{
+
+        while(size > 0 && *sz != L'\0')
+        {
+            *sz = w_to_lower(*sz);
+            size--;
+            sz++;
+        }
+
+
+        return 0;
+
 }
 
 
@@ -345,4 +386,134 @@ void wcscat_dup(wchar_t * dest, const wchar_t * cat)
    while(*cat != 0)
       *dest++ = *cat++;
    *dest = L'\0';
+}
+
+
+
+
+
+void uitow_dup(wchar_t * sz, unsigned int ui, int iBase)
+{
+   if(ui == 0)
+   {
+      sz[0] = L'0';
+      sz[1] = L'\0';
+      return;
+   }
+   int iIndex = 0;
+   while(ui > 0)
+   {
+      int iDigit = (ui % iBase);
+      wchar_t wch;
+      if(iDigit <= 9)
+      {
+         wch = iDigit + L'0';
+      }
+      else
+      {
+         wch = iDigit - 10 + L'a';
+      }
+      sz[iIndex] =  wch;
+      ui = ui / iBase;
+      iIndex++;
+   }
+   sz[iIndex] = L'\0';
+   wcs_reverse(sz);
+}
+
+
+
+void itow_dup(wchar_t * sz, int i, int iBase)
+{
+   if(i == 0)
+   {
+      sz[0] = L'0';
+      sz[1] =  L'\0';
+      return;
+   }
+   bool bNegative = false;
+   if(i < 0)
+   {
+      i = -i;
+      bNegative = true;
+   }
+   int iIndex = 0;
+   while(i > 0)
+   {
+      int iDigit = (i % iBase);
+      wchar_t wch;
+      if(iDigit <= 9)
+      {
+         wch = iDigit + L'0';
+      }
+      else
+      {
+         wch = iDigit - 10 + L'a';
+      }
+      sz[iIndex] =  wch;
+      i = i / iBase;
+      iIndex++;
+   }
+   if(bNegative)
+   {
+      sz[iIndex] = L'-';
+      iIndex++;
+   }
+   sz[iIndex] = L'\0';
+   wcs_reverse(sz);
+}
+
+
+
+
+void wcs_reverse(wchar_t * sz)
+{
+
+   count iLen = wcslen_dup(sz);
+
+   count iMid = iLen / 2;
+
+   count iL = 0;
+
+   count iR = iLen - 1;
+
+   wchar_t ch;
+
+   for(; iL < iMid; iL++, iR--)
+   {
+      ch = sz[iL];
+      sz[iL] = sz[iR];
+      sz[iR] = ch;
+   }
+
+}
+
+void w_zero_pad(wchar_t * sz, count iPad)
+{
+
+   count iLen = wcslen_dup(sz);
+
+   count iZeroCount = iPad - iLen;
+
+   if(iZeroCount > 0)
+   {
+
+      count iEnd = iLen - 1;
+
+      count iFinalEnd = iEnd + iZeroCount;
+
+      sz[iFinalEnd + 1] = L'\0';
+
+      for(; iEnd >= 0; iEnd--, iFinalEnd--)
+      {
+         sz[iFinalEnd] = sz[iEnd];
+      }
+
+      for(; iFinalEnd >= 0; iFinalEnd--)
+      {
+         sz[iFinalEnd] = L'0';
+      }
+
+   }
+
 }

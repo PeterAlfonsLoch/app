@@ -14,12 +14,12 @@ namespace datetime
       bool m_bConstraintMonth;
    };
 
-   class CLASS_DECL_ca ::datetime::time_span
+   class CLASS_DECL_ca time_span
    {
    public:
-      ::datetime::time_span() NOTHROW;
-      ::datetime::time_span( __time64_t time ) NOTHROW;
-      ::datetime::time_span( LONG lDays, int nHours, int nMins, int nSecs ) NOTHROW;
+      time_span() NOTHROW;
+      time_span( __time64_t time ) NOTHROW;
+      time_span( LONG lDays, int nHours, int nMins, int nSecs ) NOTHROW;
 
       LONGLONG GetDays() const NOTHROW;
       LONGLONG GetTotalHours() const NOTHROW;
@@ -31,16 +31,16 @@ namespace datetime
 
       __time64_t GetTimeSpan() const NOTHROW;
 
-      ::datetime::time_span operator+( ::datetime::time_span span ) const NOTHROW;
-      ::datetime::time_span operator-( ::datetime::time_span span ) const NOTHROW;
-      ::datetime::time_span& operator+=( ::datetime::time_span span ) NOTHROW;
-      ::datetime::time_span& operator-=( ::datetime::time_span span ) NOTHROW;
-      bool operator==( ::datetime::time_span span ) const NOTHROW;
-      bool operator!=( ::datetime::time_span span ) const NOTHROW;
-      bool operator<( ::datetime::time_span span ) const NOTHROW;
-      bool operator>( ::datetime::time_span span ) const NOTHROW;
-      bool operator<=( ::datetime::time_span span ) const NOTHROW;
-      bool operator>=( ::datetime::time_span span ) const NOTHROW;
+      time_span operator+( time_span span ) const NOTHROW;
+      time_span operator-( time_span span ) const NOTHROW;
+      time_span& operator+=( time_span span ) NOTHROW;
+      time_span& operator-=( time_span span ) NOTHROW;
+      bool operator==( time_span span ) const NOTHROW;
+      bool operator!=( time_span span ) const NOTHROW;
+      bool operator<( time_span span ) const NOTHROW;
+      bool operator>( time_span span ) const NOTHROW;
+      bool operator<=( time_span span ) const NOTHROW;
+      bool operator>=( time_span span ) const NOTHROW;
 
    public:
       string Format( const char * pszFormat ) const;
@@ -81,12 +81,12 @@ namespace datetime
       time& operator+=( date_span span );
       time& operator-=( date_span span );
 
-      time& operator+=( ::datetime::time_span span ) NOTHROW;
-      time& operator-=( ::datetime::time_span span ) NOTHROW;
+      time& operator+=( time_span span ) NOTHROW;
+      time& operator-=( time_span span ) NOTHROW;
 
-      ::datetime::time_span operator-( time time ) const NOTHROW;
-      time operator-( ::datetime::time_span span ) const NOTHROW;
-      time operator+( ::datetime::time_span span ) const NOTHROW;
+      time_span operator-( time time ) const NOTHROW;
+      time operator-( time_span span ) const NOTHROW;
+      time operator+( time_span span ) const NOTHROW;
 
       time operator-( date_span span ) const;
       time operator+( date_span span ) const;
@@ -246,7 +246,7 @@ namespace datetime
 #define _CTIMESPANFORMATS 3
 
 
-   /*inline string ::datetime::time_span::Format(UINT nFormatID) const
+   /*inline string time_span::Format(UINT nFormatID) const
    {
    string strFormat;
    ENSURE(strFormat.load_string(nFormatID));
@@ -254,7 +254,7 @@ namespace datetime
    }*/
 
 #if defined(_AFX) && defined(_UNICODE)
-   inline string ::datetime::time_span::Format(const char * pFormat) const
+   inline string time_span::Format(const char * pFormat) const
    {
       return Format(string(pFormat));
    }

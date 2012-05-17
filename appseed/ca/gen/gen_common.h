@@ -8,8 +8,8 @@
 
 namespace gen
 {
-   
-   
+
+
 
 
    inline void __cdecl memcpy_s(void *_S1, size_t _S1max, const void *_S2, size_t _N)
@@ -107,7 +107,7 @@ namespace gen
 #ifdef _WINDOWS
       C_RUNTIME_ERROR_CHECK(::_wcslwr_s(_Str, _SizeInChars));
 #else
-      wcslwr(_Str);
+      C_RUNTIME_ERROR_CHECK(::wcslwr_s_dup(_Str, _SizeInChars));
 #endif
    }
 
@@ -125,7 +125,7 @@ namespace gen
 #ifdef _WINDOWS
       C_RUNTIME_ERROR_CHECK(::_wcsupr_s(_Str, _SizeInChars));
 #else
-      wcsupr(_Str);
+      C_RUNTIME_ERROR_CHECK(::wcsupr_s_dup(_Str, _SizeInChars));
 #endif
    }
 
@@ -134,7 +134,7 @@ namespace gen
 #ifdef _WINDOWS
       C_RUNTIME_ERROR_CHECK(::_itoa_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
-      itoa(_Val, _Buf, _Radix);
+      itoa_dup(_Buf, _Val, _Radix);
 #endif
    }
 
@@ -143,7 +143,7 @@ namespace gen
 #ifdef _WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ltoa_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
-      ltoa(_Val, _Buf, _Radix);
+      itoa_dup(_Buf, _Val, _Radix);
 #endif
    }
 
@@ -152,7 +152,7 @@ namespace gen
 #ifdef _WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ultoa_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
-      ultoa(_Val, _Buf, _Radix);
+      uitoa_dup(_Buf, _Val, _Radix);
 #endif
    }
 
@@ -161,7 +161,7 @@ namespace gen
 #ifdef _WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ultow_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
-      ultow(_Val, _Buf, _Radix);
+      uitow_dup(_Buf, _Val, _Radix);
 #endif
    }
 
@@ -170,7 +170,7 @@ namespace gen
 #ifdef _WINDOWS
       C_RUNTIME_ERROR_CHECK(::_i64toa_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
-      i64toa(_Val, _Buf, _Radix);
+      ltoa_dup(_Buf, _Val, _Radix);
 #endif
    }
 
@@ -179,7 +179,7 @@ namespace gen
 #ifdef _WINDOWS
       C_RUNTIME_ERROR_CHECK(::_i64tow_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
-      i64tow(_Val, _Buf, _Radix);
+      ltow_dup(_Buf, _Val, _Radix);
 #endif
    }
 
@@ -188,7 +188,7 @@ namespace gen
 #ifdef _WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ui64toa_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
-      ui64toa(_Val, _Buf, _Radix);
+     ltoa_dup(_Buf, _Val, _Radix);
 #endif
    }
 
@@ -197,7 +197,7 @@ namespace gen
 #ifdef _WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ui64tow_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
-      ui64tow(_Val, _Buf, _Radix);
+      ltow_dup(_Buf, _Val, _Radix);
 #endif
    }
 
@@ -249,7 +249,7 @@ namespace gen
    CLASS_DECL_ca void set_errno(int _Value);
 
 
-   
+
 } // namespace gen
 
 

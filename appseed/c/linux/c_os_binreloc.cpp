@@ -11,7 +11,7 @@
  */
 
 
-#include "StdAfx.h"
+#include "framework.h"
 
 #ifndef __BINRELOC_C__
 #define __BINRELOC_C__

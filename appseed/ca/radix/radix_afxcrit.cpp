@@ -1,12 +1,12 @@
 // This is ca2 API library.
-// 
-// 
 //
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
+//
+//
 
 #include "StdAfx.h"
 
@@ -19,14 +19,14 @@
 
 #ifdef _MT
 
-AFX_STATIC_DATA BOOL _afxCriticalInit = 0;   // set _afxGlobalLock, _afxTempLock init
+__STATIC_DATA BOOL _afxCriticalInit = 0;   // set _afxGlobalLock, _afxTempLock init
 
 // _afxResourceLock and _afxLockInit are used to lock each ca2 API global resource
-AFX_STATIC_DATA CRITICAL_SECTION _afxResourceLock[CRIT_MAX] = { { 0 } };
-AFX_STATIC_DATA CRITICAL_SECTION _afxLockInitLock = { 0 };
-AFX_STATIC_DATA BOOL _afxLockInit[CRIT_MAX] = { 0 };
+__STATIC_DATA CRITICAL_SECTION _afxResourceLock[CRIT_MAX] = { { 0 } };
+__STATIC_DATA CRITICAL_SECTION _afxLockInitLock = { 0 };
+__STATIC_DATA BOOL _afxLockInit[CRIT_MAX] = { 0 };
 #ifdef _DEBUG
-AFX_STATIC_DATA BOOL _afxResourceLocked[CRIT_MAX] = { 0 };
+__STATIC_DATA BOOL _afxResourceLocked[CRIT_MAX] = { 0 };
 #endif
 
 BOOL AfxCriticalInit()

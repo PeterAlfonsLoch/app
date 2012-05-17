@@ -50,7 +50,23 @@ CLASS_DECL_c count wcslen_dup(const wchar_t * pwsz);
 CLASS_DECL_c wchar_t * wcschr_dup(const wchar_t * sz, wchar_t ch);
 CLASS_DECL_c int wcscmp_dup(const wchar_t * sz1, const wchar_t * sz2);
 CLASS_DECL_c int wcsicmp_dup(const wchar_t * sz1, const wchar_t * sz2);
+
+
+CLASS_DECL_c void uitow_dup(wchar_t * sz, unsigned int i, int iBase);
+CLASS_DECL_c void itow_dup(wchar_t * sz, int i, int iBase);
+
+
+//CLASS_DECL_c void l64toa_dup(char * sz, __int64 i, __int64 iBase);
+//CLASS_DECL_c void i64toa_dup(char * sz, __int64 i);
+CLASS_DECL_c void wcs_reverse(wchar_t * sz);
+CLASS_DECL_c void w_zero_pad(char * sz, count iPad);
+
+
 CLASS_DECL_c wchar_t w_to_lower(int wch);
+CLASS_DECL_c wchar_t w_to_upper(int wch);
+
+CLASS_DECL_c errno_t wcslwr_s_dup(wchar_t * sz, size_t size);
+CLASS_DECL_c errno_t wcsupr_s_dup(wchar_t * sz, size_t size);
 
 CLASS_DECL_c int iswalpha_dup(int ch);
 CLASS_DECL_c int iswdigit_dup(int ch);

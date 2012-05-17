@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 tiny_http g_tinyhttp;
 DWORD g_MsDownloadSize = 1024 * 128;

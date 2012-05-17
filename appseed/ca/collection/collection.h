@@ -1,26 +1,30 @@
 #pragma once
 
 
+#include "raw_array.h"
+#include "comparable_eq_array.h"
+#include "comparable_array.h"
+#include "comparable_raw_array.h"
 #include "comparable_primitive_array.h"
 
 #include "ca/primitive/numeric_info.h"
 
 #include "ca/ex1/ex1_byte_serializable.h"
 
-#include "raw_array.h"
 #include "primitive_array.h"
 #include "numeric_array.h"
 
+#include "ca/ex1/ex1_byte_serializable.h"
 #include "logic_array.h"
 
 #include "list.h"
 #include "comparable_eq_list.h"
 #include "comparable_list.h"
 
-#include "comparable_array.h"
 
 #include "typed_ptr_array.h"
 #include "typed_pointer_array.h"
+
 
 #include "array_ptr.h"
 #include "array_del_ptr.h"
@@ -81,14 +85,14 @@
 #include "string_list.h"
 
 
-class CLASS_DECL_ca map_word_to_ptr : 
+class CLASS_DECL_ca map_word_to_ptr :
    virtual public ::collection::map < WORD, WORD, void *, void * >
 {
 public:
    map_word_to_ptr(::count nBlockSize = 10);
 };
 
-class CLASS_DECL_ca map_ptr_to_word : 
+class CLASS_DECL_ca map_ptr_to_word :
    virtual public ::collection::map < void *, void *, WORD, WORD >
 {
 public:
@@ -96,14 +100,14 @@ public:
 };
 
 
-class CLASS_DECL_ca map_ptr_to_ptr : 
+class CLASS_DECL_ca map_ptr_to_ptr :
    virtual public ::collection::map < void *, void *, void *, void * >
 {
 public:
    map_ptr_to_ptr(::count nBlockSize = 10);
 };
 
-class CLASS_DECL_ca map_word_to_ob : 
+class CLASS_DECL_ca map_word_to_ob :
    virtual public ::collection::map < WORD, WORD, ::radix::object *, ::radix::object * >
 {
 public:
@@ -111,14 +115,14 @@ public:
 };
 
 
-class CLASS_DECL_ca map_string_to_ptr : 
+class CLASS_DECL_ca map_string_to_ptr :
    virtual public ::collection::map < string, const string &, void *, void * >
 {
 public:
    map_string_to_ptr(::count nBlockSize = 10);
 };
 
-class CLASS_DECL_ca map_string_to_ob : 
+class CLASS_DECL_ca map_string_to_ob :
    virtual public ::collection::map < string, const string &, ::radix::object *, ::radix::object * >
 {
 public:

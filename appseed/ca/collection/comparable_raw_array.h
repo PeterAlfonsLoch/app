@@ -1,8 +1,6 @@
 #pragma once
 
 
-#include "raw_array.h"
-#include "comparable_array.h"
 
 
 template<class TYPE, class ARG_TYPE = const TYPE &>

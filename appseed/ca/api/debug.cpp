@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 void * DECL_C _malloc_dbg(size_t _Size, int _BlockType, const char * _Filename, int _LineNumber)
 {
@@ -46,7 +46,7 @@ CLASS_DECL_ca int DECL_C _CrtDbgReportW(
 
 CLASS_DECL_ca int __cdecl _CrtReportBlockType(const void * p)
 {
-   return _AFX_CLIENT_BLOCK;
+   return ___CLIENT_BLOCK;
 }
 
 CLASS_DECL_ca int __cdecl _CrtSetReportMode(int,int)

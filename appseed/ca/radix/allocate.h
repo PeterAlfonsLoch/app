@@ -193,7 +193,7 @@ CLASS_DECL_ca void AfxFreeMemoryDebug(void * pbData, BOOL bIsObject);
 // allocation failure hook, tracking turn on
 
 CLASS_DECL_ca BOOL _AfxDefaultAllocHook(size_t, BOOL, LONG);
-   
+
 CLASS_DECL_ca int __cdecl _AfxAllocHookProxy(int nAllocType, void * pvData, size_t nSize, int nBlockUse, long lRequest, const unsigned char * szFilename, int nLine);
 CLASS_DECL_ca AFX_ALLOC_HOOK AfxSetAllocHook(AFX_ALLOC_HOOK pfnNewHook);
 
@@ -209,7 +209,7 @@ struct CLASS_DECL_ca _AFX_ENUM_CONTEXT
    void * m_pContext;
 };
 
-CLASS_DECL_ca AFX_STATIC void _AfxDoForAllObjectsProxy(void * pObject, void * pContext);
+CLASS_DECL_ca __STATIC void _AfxDoForAllObjectsProxy(void * pObject, void * pContext);
 CLASS_DECL_ca void AFXAPI AfxDoForAllObjects(void (AFX_CDECL *pfn)(::radix::object*, void *), void * pContext);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -275,7 +275,7 @@ inline void PASCAL ::radix::object::operator delete(void * p, void *)
 
 inline void PASCAL ::radix::object::operator delete(void *pObject, const char *, int)
 {
-   ca2_free_dbg(pObject, _AFX_CLIENT_BLOCK); 
+   ca2_free_dbg(pObject, _AFX_CLIENT_BLOCK);
 }
 
 

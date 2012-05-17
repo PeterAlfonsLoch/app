@@ -1,7 +1,5 @@
 #pragma once
 
-#include "base_array.h"
-#include "comparable_eq_array.h"
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = comparable_eq_array < TYPE, ARG_TYPE > >

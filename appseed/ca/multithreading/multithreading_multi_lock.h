@@ -1,8 +1,6 @@
 #pragma once
 
 
-#include "ca/collection/logic_array.h"
-
 
 class CLASS_DECL_ca multi_lock :
    virtual public ::radix::object

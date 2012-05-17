@@ -228,6 +228,10 @@ class dump_context;
 #include "ca/gen/gen_equals.h"
 #include "ca/gen/gen.h"
 
+
+#include "ca/gen/gen_template.h"
+
+
 #include "ca/collection/base_array.h"
 
 #include "ca/ca_smart_pointer.h"
@@ -307,15 +311,15 @@ typedef long VMSRESULT;
 } VMSNMHDR;
 
 typedef struct tagE17_KEYDOWN {
-    VMSNMHDR hdr;   
-    WORD wVKey;  
-    UINT flags;  
+    VMSNMHDR hdr;
+    WORD wVKey;
+    UINT flags;
 } E17_KEYDOWN;
 
 typedef struct tagE17_SYSKEYDOWN {
-    VMSNMHDR hdr;   
-    WORD wVKey;  
-    UINT flags;  
+    VMSNMHDR hdr;
+    WORD wVKey;
+    UINT flags;
 } E17_SYSKEYDOWN;*/
 
 
@@ -594,12 +598,12 @@ CLASS_DECL_ca void __draw_dithered_bitmap(::ca::application * papp, ::ca::graphi
 
 
 #include "radix/radix_fixed_alloc.h"
-#include "gen_request_signal.h"
+#include "ca/gen/gen_request_signal.h"
 
 #include "ca/collection/array_del_ptr.h"
 #include "ca/visual/visual_const.h"
 
-#include "gen_var_array.h"
+#include "ca/gen/gen_var_array.h"
 
 
 
@@ -778,7 +782,6 @@ namespace user
 
 
 
-#include "ca/ca/ca_application_interface.h"
 #include "ca/ca/ca_profiler.h"
 
 
@@ -788,6 +791,7 @@ namespace user
 #include "ca/gen/gen_timer_callback.h"
 #include "ca/gen/gen_timer_window.h"
 #include "ca/gen/gen_timer_listener.h"
+
 
 
 #include "ca/ca/ca_live_signal.h"
@@ -809,3 +813,6 @@ namespace user
 
 
 #include "radix_application.h"
+
+
+#include "ca/ca/ca_application_interface.h"

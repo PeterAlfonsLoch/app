@@ -60,7 +60,7 @@ char (*__countof_helper(UNALIGNED _CountofType (&_Array)[_SizeOfArray]))[_SizeOf
 #ifdef _DEBUG
 #define ASSERT(expr) _ASSERTE(expr)
 #else
-#define ASSERT(expr) 
+#define ASSERT(expr)
 #endif
 #endif // ASSERT
 
@@ -134,7 +134,7 @@ So we've done a broad replace of all the member-related ASSERT to ASSUME.
 #ifdef _DEBUG
 #define VERIFY(expr) ASSERT(expr)
 #else
-#define VERIFY(expr) 
+#define VERIFY(expr)
 #endif // DEBUG
 #endif // VERIFY
 
@@ -189,11 +189,11 @@ do {                                           \
 #endif
 
 
-#ifdef _DISABLE_FORCEINLINE
+/*#ifdef _DISABLE_FORCEINLINE
 #define FORCEINLINE
 #else
 #define FORCEINLINE __forceinline
-#endif
+#endif*/
 
 #if defined(_DISABLE_NOINLINE) || defined(VC6) || defined(LINUX)
 #define NOINLINE

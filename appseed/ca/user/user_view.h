@@ -77,7 +77,7 @@ public:
 
    template < class VIEW >
    VIEW * create_view(user::document_interface * pdoc = NULL, ::user::interaction * pwndParent = NULL, ::id id = ::id(), ::user::interaction * pviewLast = NULL);
-   
+
    template < class VIEW >
    VIEW * create_view(::user::interaction * pwndParent, ::id id = ::id(), ::user::interaction * pviewLast = NULL);
 
@@ -153,36 +153,5 @@ public:
    view_update_hint(::ca::application * papp);
    etype m_etype;
 };
-
-
-/////////////////////////////////////////////////////////////////////////////
-// class CCtrlView allows almost any control to be a view
-
-class CLASS_DECL_ca __NOVTABLE CCtrlView : public view
-{
-   // // DECLARE_DYNCREATE(CCtrlView)
-
-public:
-   CCtrlView(const char * lpszClass, DWORD dwStyle);
-
-// Attributes
-protected:
-   string m_strClass;
-   DWORD m_dwDefaultStyle;
-
-// Overrides
-   virtual void OnDraw(::ca::graphics * pgraphics);
-   virtual BOOL pre_create_window(CREATESTRUCT& cs);
-
-// Implementation
-public:
-   ~CCtrlView() = 0;
-   virtual void dump(dump_context&) const;
-   virtual void assert_valid() const;
-
-   void OnPaint();
-
-};
-
 
 
