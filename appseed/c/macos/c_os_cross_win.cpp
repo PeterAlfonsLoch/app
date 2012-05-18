@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 static DWORD m_dwLastError = 0;
 

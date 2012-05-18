@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include "StdAfx.h"
+#include "framework.h"
 #include "c_os_internal.h"
 
 

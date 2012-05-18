@@ -8,7 +8,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "0"
-         filePath = "/cecyn1.at.hotmail.com/app/appseedcore/c/_argcargv.cpp"
+         filePath = "../../../../cecyn1.at.hotmail.com/app/appseedcore/c/_argcargv.cpp"
          timestampString = "340160790.449501"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
@@ -22,7 +22,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "0"
-         filePath = "/Developer/SDKs/MacOSX10.6.sdk/usr/include/mach-o/dyld.h"
+         filePath = "../../../../Developer/SDKs/MacOSX10.6.sdk/usr/include/mach-o/dyld.h"
          timestampString = "341275741.315388"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
@@ -34,7 +34,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "0"
-         filePath = "/cecyn1.at.hotmail.com/app/appseedcore/c/gdi.cpp"
+         filePath = "../../../../cecyn1.at.hotmail.com/app/appseedcore/c/gdi.cpp"
          timestampString = "342606235.98631"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
@@ -42,6 +42,17 @@
          endingLineNumber = "207"
          landmarkName = "FillSolidRect_dup(HDC hdc, LPCRECT lpRect, COLORREF clr)"
          landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../../nodeapp/os/mac.h"
+         timestampString = "359037481.57421"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "24"
+         endingLineNumber = "24">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

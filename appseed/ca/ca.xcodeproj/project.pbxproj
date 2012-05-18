@@ -1461,8 +1461,6 @@
 		9A88B3A614C2CA2F006B4023 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AC8214C2CA2D006B4023 /* sqlite3.c */; };
 		9A88B3A714C2CA2F006B4023 /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AC8314C2CA2D006B4023 /* sqlite3.h */; };
 		9A88B3A814C2CA2F006B4023 /* sqlite3ext.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AC8414C2CA2D006B4023 /* sqlite3ext.h */; };
-		9A88B3A914C2CA2F006B4023 /* StdAfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AC8514C2CA2D006B4023 /* StdAfx.cpp */; };
-		9A88B3AA14C2CA2F006B4023 /* StdAfx.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AC8614C2CA2D006B4023 /* StdAfx.h */; };
 		9A88B3AB14C2CA2F006B4023 /* _allocate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AC8814C2CA2D006B4023 /* _allocate.h */; };
 		9A88B3AC14C2CA2F006B4023 /* _template.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AC8914C2CA2D006B4023 /* _template.h */; };
 		9A88B3AD14C2CA2F006B4023 /* _template_xyz.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AC8A14C2CA2D006B4023 /* _template_xyz.h */; };
@@ -1802,6 +1800,8 @@
 		A10D350015131DB3004FD312 /* gen_scoped_ptr.h in Headers */ = {isa = PBXBuildFile; fileRef = A10D34F415131DB3004FD312 /* gen_scoped_ptr.h */; };
 		A10D350115131DB3004FD312 /* gen_str2.h in Headers */ = {isa = PBXBuildFile; fileRef = A10D34F515131DB3004FD312 /* gen_str2.h */; };
 		CE931719155F1C02005F90F6 /* c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931718155F1C02005F90F6 /* c.dylib */; };
+		CE980ABD156679A800CD7C45 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE980ABB156679A800CD7C45 /* framework.cpp */; };
+		CE980ABE156679A800CD7C45 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = CE980ABC156679A800CD7C45 /* framework.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -3294,8 +3294,6 @@
 		9A88AC8214C2CA2D006B4023 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3.c; sourceTree = "<group>"; };
 		9A88AC8314C2CA2D006B4023 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
 		9A88AC8414C2CA2D006B4023 /* sqlite3ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3ext.h; sourceTree = "<group>"; };
-		9A88AC8514C2CA2D006B4023 /* StdAfx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StdAfx.cpp; sourceTree = "<group>"; };
-		9A88AC8614C2CA2D006B4023 /* StdAfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StdAfx.h; sourceTree = "<group>"; };
 		9A88AC8814C2CA2D006B4023 /* _allocate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _allocate.h; sourceTree = "<group>"; };
 		9A88AC8914C2CA2D006B4023 /* _template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _template.h; sourceTree = "<group>"; };
 		9A88AC8A14C2CA2D006B4023 /* _template_xyz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _template_xyz.h; sourceTree = "<group>"; };
@@ -3645,6 +3643,8 @@
 		A10D34F515131DB3004FD312 /* gen_str2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gen_str2.h; sourceTree = "<group>"; };
 		A10D34F615131DB3004FD312 /* gen_str2.h.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gen_str2.h.txt; sourceTree = "<group>"; };
 		CE931718155F1C02005F90F6 /* c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE980ABB156679A800CD7C45 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		CE980ABC156679A800CD7C45 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3717,9 +3717,9 @@
 				9A88ADC114C2CA2D006B4023 /* zlib */,
 				9A8897B714C2C8DB006B4023 /* Products */,
 				CE931718155F1C02005F90F6 /* c.dylib */,
-				9A88AC8514C2CA2D006B4023 /* StdAfx.cpp */,
 				9A88A6CF14C2CA2C006B4023 /* ca.h */,
-				9A88AC8614C2CA2D006B4023 /* StdAfx.h */,
+				CE980ABB156679A800CD7C45 /* framework.cpp */,
+				CE980ABC156679A800CD7C45 /* framework.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -6837,7 +6837,6 @@
 				9A88B3A514C2CA2F006B4023 /* sqlite.h in Headers */,
 				9A88B3A714C2CA2F006B4023 /* sqlite3.h in Headers */,
 				9A88B3A814C2CA2F006B4023 /* sqlite3ext.h in Headers */,
-				9A88B3AA14C2CA2F006B4023 /* StdAfx.h in Headers */,
 				9A88B3AB14C2CA2F006B4023 /* _allocate.h in Headers */,
 				9A88B3AC14C2CA2F006B4023 /* _template.h in Headers */,
 				9A88B3AD14C2CA2F006B4023 /* _template_xyz.h in Headers */,
@@ -7031,6 +7030,7 @@
 				A10D34FF15131DB3004FD312 /* gen_property_set.h in Headers */,
 				A10D350015131DB3004FD312 /* gen_scoped_ptr.h in Headers */,
 				A10D350115131DB3004FD312 /* gen_str2.h in Headers */,
+				CE980ABE156679A800CD7C45 /* framework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7714,7 +7714,6 @@
 				9A88B3A314C2CA2F006B4023 /* sockets_http_transaction.cpp in Sources */,
 				9A88B3A414C2CA2F006B4023 /* sockets_httpd_socket.cpp in Sources */,
 				9A88B3A614C2CA2F006B4023 /* sqlite3.c in Sources */,
-				9A88B3A914C2CA2F006B4023 /* StdAfx.cpp in Sources */,
 				9A88B3B014C2CA2F006B4023 /* base.cpp in Sources */,
 				9A88B3BB14C2CA2F006B4023 /* template_base.cpp in Sources */,
 				9A88B3BD14C2CA2F006B4023 /* template_checked.cpp in Sources */,
@@ -7864,6 +7863,7 @@
 				A10D34F815131DB3004FD312 /* gen_cregexp_util.cpp in Sources */,
 				A10D34FA15131DB3004FD312 /* gen_cregexp.cpp in Sources */,
 				A10D34FD15131DB3004FD312 /* gen_international_locale_schema.cpp in Sources */,
+				CE980ABD156679A800CD7C45 /* framework.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7895,7 +7895,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../appseed/ca $(WorkspaceDir)/../../appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../..";
 				VALID_ARCHS = x86_64;
+				WorkspaceDir = /cecyn1/app/seed/macseed/;
 			};
 			name = Debug;
 		};
@@ -7916,7 +7918,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../appseed/ca $(WorkspaceDir)/../../appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../..";
 				VALID_ARCHS = x86_64;
+				WorkspaceDir = /cecyn1/app/seed/macseed/;
 			};
 			name = Release;
 		};
@@ -7932,7 +7936,7 @@
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../../ $(WorkspaceDir)../../appseed/ca2/ $(WorkspaceDir)../../ . ..";
+				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../appseed/ca $(WorkspaceDir)/../../appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../..";
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",
@@ -7954,7 +7958,7 @@
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)../../../ $(WorkspaceDir)../../appseed/ca2/ $(WorkspaceDir)../../ . ..";
+				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../appseed/ca $(WorkspaceDir)/../../appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../..";
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",
