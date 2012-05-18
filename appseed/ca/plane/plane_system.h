@@ -219,6 +219,7 @@ namespace plane
 
       ::collection::strid_map < ::ca::type_info > m_typemap;
 
+      FT_Library                       m_ftlibrary;
       mutex                            m_mutexDelete;
       ::ca::application_ptra           m_appptra;
       class ::ca::file::system         m_file;
@@ -369,6 +370,8 @@ namespace plane
       class ::ca2::log                 & log();
 
       ::ca::window_draw                * get_twf();
+
+      FT_Library &                     ftlibrary();
 
       ::ca::application_ptra           & appptra();
       ::ca2::datetime                  & datetime();

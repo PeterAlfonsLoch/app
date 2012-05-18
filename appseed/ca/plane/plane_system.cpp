@@ -188,6 +188,13 @@ namespace plane
    bool system::initialize()
    {
 
+      int error = FT_Init_FreeType( &m_ftlibrary ); 
+      if ( error )
+      { 
+         TRACE("an error occurred during Free Type library initialization");
+         return false;
+      }
+
       m_pmachineeventcentral = new class machine_event_central(this);
       if(!m_pmachineeventcentral->initialize())
          return false;
@@ -1579,6 +1586,10 @@ retry:
 
    }
 
+   FT_Library & system::ftlibrary()
+   {
+      return m_ftlibrary;
+   }
 
 } // namespace plane
 
