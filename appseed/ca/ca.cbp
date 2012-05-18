@@ -1131,6 +1131,8 @@
 		<Unit filename="linux/os_allocate_debug.h" />
 		<Unit filename="linux/os_debug.cpp" />
 		<Unit filename="linux/os_debug.h" />
+		<Unit filename="linux/os_multithreading.cpp" />
+		<Unit filename="linux/os_multithreading.h" />
 		<Unit filename="macos/macos.h" />
 		<Unit filename="mail/mail.h" />
 		<Unit filename="mail/mail_pop3.cpp" />
@@ -1154,7 +1156,6 @@
 		<Unit filename="math/value.cpp" />
 		<Unit filename="math/value.h" />
 		<Unit filename="multithreading/multithreading.h" />
-		<Unit filename="multithreading/multithreading_base_sync_object.h" />
 		<Unit filename="multithreading/multithreading_core.cpp" />
 		<Unit filename="multithreading/multithreading_critical_section.cpp" />
 		<Unit filename="multithreading/multithreading_critical_section.h" />
@@ -1186,7 +1187,6 @@
 		<Unit filename="multithreading/multithreading_socket_event.cpp" />
 		<Unit filename="multithreading/multithreading_socket_event.h" />
 		<Unit filename="multithreading/multithreading_sync_object.h" />
-		<Unit filename="multithreading/multithreading_sync_object_base.h" />
 		<Unit filename="multithreading/multithreading_synch_lock.cpp" />
 		<Unit filename="multithreading/multithreading_synch_lock.h" />
 		<Unit filename="multithreading/multithreading_thread_pool.h" />

@@ -25,51 +25,55 @@ mutex::~mutex()
 
 }
 
-#ifndef _WIN32
-void mutex::lock(const duration & duration)
+#ifndef WINDOWS
+wait_result mutex::lock(const duration & duration)
 {
-// Case 2, Accessing share resource with time out value specified in the
-// Mutex call
 
-while (timeout < TIMEOUT ) {
+   DWORD dwTimeout = duration.os_lock_duration();
+
+   timespec delay;
 
    delay.tv_sec = 0;
    delay.tv_nsec = 1000000;  // 1 milli sec delay
 
-    // Tries to acquire the mutex and access the shared resource,
-    // if success, access the shared resource,
-    // if the shared reosurce already in use, it tries every 1 milli sec
-    // to acquire the resource
-    // if it does not acquire the mutex within 2 secs delay,
-    // then it is considered to be failed
+      int irc;
 
-    irc = pthread_mutex_trylock(&mutexWithTimeOut);
-    if (!irc)  {
-
-        // Acquire mutex success
-        // Access the shared resource
+   while(dwTimeout == (DWORD) INFINITE && ::GetTickCount() - start < dwTimeout)
+   {
 
 
-        // Unlock the mutex and release the shared resource
-        pthread_mutex_unlock (&mutexWithTimeOut);
+      // Tries to acquire the mutex and access the shared resource,
+      // if success, access the shared resource,
+      // if the shared reosurce already in use, it tries every 1 milli sec
+      // to acquire the resource
+      // if it does not acquire the mutex within 2 secs delay,
+      // then it is considered to be failed
 
-
-      break;
-    }
-    else {
-        // check whether somebody else has the mutex
-        if (irc == EPERM ) {
+       irc = pthread_mutex_trylock(&mutexWithTimeOut);
+       if (!irc)
+       {
+            return wait_result(wait_result::Event0);
+       }
+       else
+       {
+         // check whether somebody else has the mutex
+         if (irc == EPERM )
+         {
             // Yes, Resource already in use so sleep
             nanosleep(&delay, NULL);
             timeout++ ;
-        }
-        else{
-            // Handle error condition
-        }
+         }
+         else
+         {
+            return wait_result(wait_result::Failure);
+         }
+       }
     }
-}
+
+    return wait_result(wait_result::Timeout);
 
 }
+
 #endif
 
 

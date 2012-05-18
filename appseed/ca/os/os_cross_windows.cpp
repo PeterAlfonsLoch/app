@@ -3,12 +3,22 @@
 
 #ifndef WINDOWS
 
-#include "MyWindows.h"
-#include "Types.h"
-#include <malloc.h>
 
-static inline void *AllocateForBSTR(size_t cb) { return ::malloc(cb); }
-static inline void FreeForBSTR(void *pv) { ::free(pv);}
+
+static inline void *AllocateForBSTR(size_t cb)
+{
+
+   return ::malloc(cb);
+
+}
+
+static inline void FreeForBSTR(void *pv)
+{
+
+   ::free(pv);
+
+}
+
 
 static UINT MyStringLen(const wchar_t *s)
 {
