@@ -42,6 +42,10 @@ namespace gen
    namespace ch
    {
 
+      CLASS_DECL_ca  __int64 uni_index(const char * pszUtf8);
+      CLASS_DECL_ca  __int64 uni_index(const char * pszUtf8, const char * pszEnd);
+
+
       inline bool is_legal_uni_index(__int64 c)
       {
          return c >= ((uint64_t) 0xffff) ? false : true;
@@ -89,6 +93,18 @@ namespace gen
          return (int64_t) to_upper_case((wchar_t) c);
       }
 
+      inline bool to_numeric_value(const char * pszUtf8Char, float *f)
+      {
+         __int64 c = uni_index(pszUtf8Char);
+         if(!is_legal_uni_index(c))
+            return false;
+        unsigned long c1 = CHAR_PROP(c);
+        if (!NUMBER(c1)) return false;
+        *f = CHAR_PROP2(c);
+        return true;
+      }
+
+
       CLASS_DECL_ca string to_lower_case(const char * pszUtf8Char);
       CLASS_DECL_ca string to_upper_case(const char * pszUtf8Char);
       CLASS_DECL_ca string to_title_case(const char * pszUtf8Char);
@@ -105,7 +121,7 @@ namespace gen
       CLASS_DECL_ca bool is_whitespace(const char * pszUtf8Char, const char * pszEnd);
 
       CLASS_DECL_ca bool is_number(const char * pszUtf8Char);
-      CLASS_DECL_ca bool to_numeric_value(const char * pszUtf8Char, float *f);
+//      CLASS_DECL_ca bool to_numeric_value(const char * pszUtf8Char, float *f);
 
       CLASS_DECL_ca string get_category_name(const char * pszUtf8Char);
       ECharCategory get_category(const char * pszUtf8Char);
@@ -116,8 +132,6 @@ namespace gen
       /** @deprecated For debug purposes only. */
       CLASS_DECL_ca int size_of_tables();
 
-      CLASS_DECL_ca  __int64 uni_index(const char * pszUtf8);
-      CLASS_DECL_ca  __int64 uni_index(const char * pszUtf8, const char * pszEnd);
 
    }
 

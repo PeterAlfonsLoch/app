@@ -158,15 +158,6 @@ namespace gen
         return NUMBER(CHAR_PROP(c)) != 0;
       }
 
-      bool to_numeric_value(const char * pszUtf8Char, float *f){
-         __int64 c = uni_index(pszUtf8Char);
-         if(!is_legal_uni_index(c))
-            return false;
-        unsigned long c1 = CHAR_PROP(c);
-        if (!NUMBER(c1)) return false;
-        *f = CHAR_PROP2(c);
-        return true;
-      }
 
       ECharCategory get_category(const char * pszUtf8Char){
          __int64 c = uni_index(pszUtf8Char);
