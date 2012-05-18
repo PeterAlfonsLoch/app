@@ -442,67 +442,6 @@ void view::assert_valid() const
 }
 
 
-/////////////////////////////////////////////////////////////////////////////
-// CCtrlView
-
-// // BEGIN_MESSAGE_MAP(CCtrlView, ::view)
-// xxx   ON_WM_PAINT()
-// // END_MESSAGE_MAP()
-
-CCtrlView::~CCtrlView()
-{
-}
-
-CCtrlView::CCtrlView(const char * lpszClass, DWORD dwStyle)
-{
-   m_strClass = lpszClass;
-   m_dwDefaultStyle = dwStyle;
-}
-
-BOOL CCtrlView::pre_create_window(CREATESTRUCT& cs)
-{
-   ASSERT(cs.lpszClass == NULL);
-   cs.lpszClass = m_strClass;
-
-   // initialize common controls
-   VERIFY(System.DeferRegisterClass(__WNDCOMMCTLS_REG, NULL));
-   System.DeferRegisterClass(__WNDCOMMCTLSNEW_REG, NULL);
-
-   // ::collection::map default ::view style to default style
-   // WS_BORDER is insignificant
-   /*if ((cs.style | WS_BORDER) == __WS_DEFAULT_VIEW)
-      cs.style = m_dwDefaultStyle & (cs.style | ~WS_BORDER);*/
-
-   return view::pre_create_window(cs);
-}
-
-void CCtrlView::OnDraw(::ca::graphics *)
-{
-   ASSERT(FALSE);
-}
-
-void CCtrlView::OnPaint()
-{
-   // this is done to avoid view::OnPaint
-// trans   Default();
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// CCtrlView diagnostics
-
-void CCtrlView::dump(dump_context & dumpcontext) const
-{
-   view::dump(dumpcontext);
-   dumpcontext << "\nClass Name: " << m_strClass;
-   dumpcontext << "\nDefault Style: ";
-   dumpcontext.dumpAsHex(m_dwDefaultStyle);
-}
-
-void CCtrlView::assert_valid() const
-{
-   ::user::interaction::assert_valid();
-   ASSERT(!m_strClass.is_empty());
-}
 
 
 void view::_001OnView(gen::signal_object * pobj)
@@ -515,13 +454,6 @@ void view::_001OnView(gen::signal_object * pobj)
    }
 }
 
-
-// // IMPLEMENT_DYNAMIC for ::view is in wincore.cpp for .OBJ granularity reasons
-
-// IMPLEMENT_DYNAMIC(CSplitterWnd, ::user::interaction)   // for swap tuning
-// IMPLEMENT_DYNAMIC(CCtrlView, ::view)
-
-/////////////////////////////////////////////////////////////////////////////
 
 ::user::interaction* view::create_view(::ca::type_info info, ::user::document_interface * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
 {

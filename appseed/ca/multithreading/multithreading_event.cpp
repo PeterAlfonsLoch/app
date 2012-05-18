@@ -164,7 +164,7 @@ wait_result event::wait (const duration & duration)
 	DWORD timeout = duration.os_lock_duration();
 
 #ifdef WINDOWS
-	return wait_result(::WaitForSingleObject(item(), timeout);
+	return wait_result(::WaitForSingleObject(item(), timeout));
 #else
 
 	DWORD start = ::GetTickCount();
