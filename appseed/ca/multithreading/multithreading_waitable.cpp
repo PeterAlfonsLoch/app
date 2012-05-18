@@ -130,3 +130,21 @@ bool waitable::unlock(LONG lCount, LPLONG lpPrevCount)
    UNREFERENCED_PARAMETER(lpPrevCount);
    return true;
 }
+
+
+bool waitable::is_locked() const
+{
+
+    // CRITICAL SECTIONS does *NOT* support is locked and timed locks
+    ASSERT(dynamic_cast < critical_section * > ( const_cast < waitable * > (this)) == NULL);
+
+   single_lock sl(const_cast < waitable * > (this));
+
+   bool bWasLocked = !sl.lock(duration::zero());
+
+   if(!bWasLocked)
+      sl.unlock();
+
+   return bWasLocked;
+
+}

@@ -29,12 +29,18 @@ service_base::service_base(::ca::application * papp, DWORD controlsAccepted) :
 #ifdef WINDOWS
    , m_handle(0)
 #else
-   , m_waitableptra(0)
+//   , m_waitableptra(0)
 #endif
 {
+
+
+#ifdef WINDOWS
     m_status.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
     m_status.dwCurrentState = SERVICE_START_PENDING;
     m_status.dwControlsAccepted = controlsAccepted;
+#endif
+
+
 }
 
 //*****************************************************************************
@@ -59,23 +65,34 @@ service_base::~service_base()
 //*****************************************************************************
 void service_base::run(service_base& service)
 {
+
    ASSERT(0 == m_service);
+
    m_service = &service;
+
+#ifdef WINDOWS
 
    SERVICE_TABLE_ENTRYW serviceTable[] =
    {
+
       // Even though the service name is ignored for own process services,
       // it must be a valid string and cannot be 0.
       { L"", ServiceMain },
 
       // Designates the end of table.
       { 0, 0 }
+
    };
 
    if (!::StartServiceCtrlDispatcherW(serviceTable))
    {
+
       throw last_error_exception();
+
    }
+
+#endif
+
 }
 
 DWORD Win32FromHResult(HRESULT value)
@@ -95,6 +112,11 @@ DWORD Win32FromHResult(HRESULT value)
 void service_base::UpdateState(DWORD state,
                                     HRESULT errorCode)
 {
+
+
+#ifdef WINDOWS
+
+
     m_status.dwCurrentState = state;
 
     ASSERT(0 == m_status.dwWin32ExitCode);
@@ -114,6 +136,11 @@ void service_base::UpdateState(DWORD state,
     }
 
     SetServiceStatus();
+
+
+#endif
+
+
 }
 
 //*****************************************************************************
@@ -124,23 +151,34 @@ void service_base::UpdateState(DWORD state,
 //*****************************************************************************
 void service_base::SetServiceStatus()
 {
+
     // If m_service is zero it means we're not running as a service but
     // rather from the console. This is possible in debug mode.
 
 #ifdef DEBUG
+
     if (0 != m_service)
     {
+
 #endif
+
         ASSERT(0 != m_service);
 
-        if (!::SetServiceStatus(m_handle,
-                                &m_status))
+#ifdef WINDOWS
+
+        if (!::SetServiceStatus(m_handle, &m_status))
         {
            throw last_error_exception();
         }
-#ifdef DEBUG
-    }
+
 #endif
+
+#ifdef DEBUG
+
+    }
+
+#endif
+
 }
 
 //*****************************************************************************
@@ -165,6 +203,11 @@ string service_base::get_service_name() const
 void WINAPI service_base::ServiceMain(DWORD argumentCount,
                                            PWSTR* arguments)
 {
+
+
+#ifdef WINDOWS
+
+
     //
     // Since there's no way to inform the SCM of failure before a successful
     // call to RegisterServiceCtrlHandler, if an error occurs before we have
@@ -206,6 +249,11 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount,
 
         m_service->UpdateState(SERVICE_STOPPED, e);
     }
+
+
+#endif
+
+
 }
 
 //*****************************************************************************
@@ -217,6 +265,11 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount,
 //*****************************************************************************
 void WINAPI service_base::ServiceHandler(DWORD control)
 {
+
+
+#ifdef WINDOWS
+
+
     try
     {
         switch (control)
@@ -249,6 +302,11 @@ void WINAPI service_base::ServiceHandler(DWORD control)
     {
         m_service->UpdateState(SERVICE_STOPPED, e);
     }
+
+
+#endif
+
+
 }
 
 

@@ -26,7 +26,8 @@ mutex::~mutex()
 }
 
 #ifndef WINDOWS
-wait_result mutex::lock(const duration & duration)
+
+wait_result mutex::wait(const duration & duration)
 {
 
    DWORD dwTimeout = duration.os_lock_duration();
@@ -36,7 +37,9 @@ wait_result mutex::lock(const duration & duration)
    delay.tv_sec = 0;
    delay.tv_nsec = 1000000;  // 1 milli sec delay
 
-      int irc;
+   int irc;
+
+   DWORD start = ::GetTickCount();
 
    while(dwTimeout == (DWORD) INFINITE && ::GetTickCount() - start < dwTimeout)
    {
@@ -49,7 +52,7 @@ wait_result mutex::lock(const duration & duration)
       // if it does not acquire the mutex within 2 secs delay,
       // then it is considered to be failed
 
-       irc = pthread_mutex_trylock(&mutexWithTimeOut);
+       irc = pthread_mutex_trylock(&m_mutex);
        if (!irc)
        {
             return wait_result(wait_result::Event0);
@@ -61,7 +64,6 @@ wait_result mutex::lock(const duration & duration)
          {
             // Yes, Resource already in use so sleep
             nanosleep(&delay, NULL);
-            timeout++ ;
          }
          else
          {
@@ -74,6 +76,19 @@ wait_result mutex::lock(const duration & duration)
 
 }
 
+
+bool mutex::lock(const duration & duration)
+{
+
+    wait_result result = wait(duration);
+
+    if(!result.signaled())
+        return false;
+
+    return true;
+
+}
+
 #endif
 
 
@@ -81,19 +96,7 @@ wait_result mutex::lock(const duration & duration)
 
 
 
-bool mutex::is_locked() const
-{
 
-   single_lock sl(const_cast < mutex * > (this));
-
-   bool bWasLocked = !sl.lock(duration::zero());
-
-   if(!bWasLocked)
-      sl.unlock();
-
-   return bWasLocked;
-
-}
 
 
 
@@ -104,7 +107,7 @@ bool mutex::unlock()
 #ifdef _WIN32
    return ::ReleaseMutex(m_object) != FALSE;
 #else
-   return pthread_mutex_unlock(&m_object) != 0;
+   return pthread_mutex_unlock(&m_mutex) != 0;
 #endif
 
 }

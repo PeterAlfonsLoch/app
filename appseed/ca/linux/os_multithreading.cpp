@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable * pwaitableptra, BOOL bWaitForAll, DWORD dwTimeout, BOOL UNUSED(bAlertable))
+DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, BOOL bWaitForAll, DWORD dwTimeout, BOOL UNUSED(bAlertable))
 {
 
    DWORD start;
@@ -28,18 +28,18 @@ DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable * pwaitableptra, BOOL bWai
          {
             return WAIT_TIMEOUT;
          }
-         if(pwaitableptra[i].is_locked())
+         if(pwaitableptra[i]->is_locked())
          {
             for(j = 0; j < i; j++)
             {
-               pwaitableptra[j].unlock();
+               pwaitableptra[j]->unlock();
             }
-            nanosleep(&delay, NULL)
+            nanosleep(&delay, NULL);
             i = 0;
          }
          else
          {
-            pwaitableptra[i].lock();
+            pwaitableptra[i]->lock();
             i++;
          }
       }
@@ -54,7 +54,7 @@ DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable * pwaitableptra, BOOL bWai
 
 
 
-DWORD WaitForMultipleObjects(DWORD dwSize, waitable * pwaitableptra, BOOL bWaitForAll, DWORD dwTimeout)
+DWORD WaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, BOOL bWaitForAll, DWORD dwTimeout)
 {
 
    return WaitForMultipleObjectsEx(dwSize, pwaitableptra, bWaitForAll, dwTimeout, FALSE);
@@ -62,9 +62,11 @@ DWORD WaitForMultipleObjects(DWORD dwSize, waitable * pwaitableptra, BOOL bWaitF
 }
 
 
-DWORD WaitForMultipleObjects(DWORD dwSize, waitable * pwaitableptra, BOOL bWaitForAll, DWORD dwWakeMask)
+DWORD WaitForSingleObject(waitable * pwaitable, DWORD dwTimeout)
 {
 
-   return WaitForMultipleObjectsEx(dwSize, pwaitableptra, bWaitForAll, dwTimeout, FALSE);
+   return WaitForMultipleObjectsEx(1, &pwaitable, TRUE, dwTimeout, FALSE);
 
 }
+
+

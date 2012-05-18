@@ -1,6 +1,12 @@
 #include "framework.h"
 
 
+#if defined(LINUX)
+#include <sys/ipc.h>
+#include <sys/sem.h>
+#endif
+
+
 semaphore::semaphore(LONG lInitialCount, LONG lMaxCount, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttributes) :
    sync_object(pstrName)
 {
@@ -35,18 +41,7 @@ semaphore::semaphore(LONG lInitialCount, LONG lMaxCount, const char * pstrName, 
 
    semun semctl_arg;
 
-   if(bSet)
-   {
-
-      semctl_arg.val = lInitialCount;
-
-   }
-   else
-   {
-
-      semctl_arg.val = 0;
-
-   }
+   semctl_arg.val = lInitialCount;
 
    semctl(static_cast < int > (m_object), 0, SETVAL, semctl_arg);
 

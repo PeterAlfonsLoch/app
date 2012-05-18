@@ -67,6 +67,9 @@ public:
 	virtual wait_result wait(const duration & duration);
 
 
+	virtual bool is_locked() const;
+
+
 };
 
 

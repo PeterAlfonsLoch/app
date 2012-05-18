@@ -9,7 +9,8 @@ public:
 
 #if defined(LINUX)
 
-   LONG           m_lMaxCount;
+   LONG             m_lMaxCount;
+   int              m_object;
 
 #endif
 

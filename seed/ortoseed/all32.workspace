@@ -2,9 +2,7 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="all32">
 		<Project filename="../../appseed/c/_.cbp" />
-		<Project filename="../../appseed/ca/ca.cbp" active="1">
-			<Depends filename="../../appseed/c/_.cbp" />
-		</Project>
 		<Project filename="../../../nodeapp/os/os.cbp" />
+		<Project filename="../../appseed/ca/ca.cbp" active="1" />
 	</Workspace>
 </CodeBlocks_workspace_file>

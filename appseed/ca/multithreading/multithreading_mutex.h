@@ -17,12 +17,17 @@ public:
 
 
 #ifndef WINDOWS
+
    virtual bool lock(const duration & durationTimeout = ::duration::infinite());
+
+   virtual wait_result wait(const duration & durationTimeout);
+
 #endif
-   bool unlock();
+
+   virtual bool unlock();
 
 
-   bool is_locked() const;
+
 
 
 };

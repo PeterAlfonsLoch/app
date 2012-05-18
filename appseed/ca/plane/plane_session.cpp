@@ -61,7 +61,7 @@ namespace plane
 
          ::ca2::application * papp = dynamic_cast < ::ca2::application * > (pcaapp);
 
-         papp->PostThreadMessageA(WM_QUIT, 0, 0);
+         papp->PostThreadMessage(WM_QUIT, 0, 0);
       }
 
    }
@@ -249,14 +249,14 @@ namespace plane
       pcreatecontext->m_spCommandLine->m_eventReady.wait();
 
 
-      
+
 
 
       m_pappCurrent = papp;
 
 
 
-      
+
 /*      if(m_bShowPlatform)
       {
          ::simple_frame_window * pframeApp = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::session::pane_view >()->get_view_uie());
@@ -312,7 +312,7 @@ namespace plane
 
          m_pbergedgedocument = dynamic_cast < document * > (m_ptemplate_bergedge->open_document_file(createcontextBergedge));
          m_pbergedgedocument->m_pbergedge = this;
-      
+
       }
       if(m_bShowPlatform)
       {
@@ -402,7 +402,7 @@ namespace plane
             }*/
             bCreate = true;
          }
-         
+
       }
       if(bCreate)
       {
@@ -436,7 +436,7 @@ namespace plane
             }
             return;
          }
-         
+
          ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get(strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
          if(papp == NULL)
             return;
@@ -455,14 +455,14 @@ namespace plane
 
             if(strApp == "bergedge")
             {
-               
+
                m_pbergedge             = papp->get_bergedge();
-               
+
                m_pbergedgeInterface    = dynamic_cast < ::bergedge_interface * > (papp);
 
                if(m_pbergedgeInterface == NULL)
                {
-                  
+
                   try
                   {
 
@@ -495,7 +495,7 @@ namespace plane
 
 
 
-      
+
 /*      if(m_bShowPlatform)
       {
          ::simple_frame_window * pframeApp = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::session::pane_view >()->get_view_uie());
@@ -569,7 +569,7 @@ namespace plane
 
    bool session::open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate)
    {
-      
+
       ::ca::create_context_sp cc(get_app());
 
       cc->m_spCommandLine->m_varFile = pszPathName;
@@ -615,7 +615,7 @@ namespace plane
 
       if(strProtocol == "app")
       {
-         
+
          strId = System.url().get_server(strPathName);
 
          string str = System.url().get_object(strPathName);
@@ -627,13 +627,13 @@ namespace plane
       }
       else
       {
-         
+
          string strExtension = System.file().extension(strPathName);
 
          stringa straApp;
 
          System.filehandler().get_extension_app(straApp, strExtension);
-     
+
          if(straApp.get_count() == 1)
          {
             strId = straApp[0];
@@ -729,11 +729,11 @@ namespace plane
             on_request(pcreatecontext);
          }
       }
-      else if(m_pappCurrent != NULL && m_pappCurrent != this 
-         && (pcreatecontext->m_spCommandLine->m_strApp.is_empty() 
+      else if(m_pappCurrent != NULL && m_pappCurrent != this
+         && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
          ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
       {
-               
+
 
 /*         if(get_document() != NULL && get_document()->get_typed_view < ::session::pane_view >() != NULL)
          {
@@ -785,7 +785,7 @@ namespace plane
          papp = NULL;
          try
          {
-            
+
             papp = create_application(pszId, bSynch, pbiasCreate);
          }
          catch(...)
@@ -957,13 +957,13 @@ namespace plane
 
    void session::get_screen_rect(LPRECT lprect)
    {
-            
+
 
 /*      if(get_document() != NULL && get_view() != NULL)
       {
          get_view()->GetWindowRect(lprect);
       }
-      else 
+      else
       {
          System.get_screen_rect(lprect);
       }*/
@@ -1001,7 +1001,7 @@ namespace plane
 
          if(ppaneview != NULL)
          {
-         
+
             string strAppName(pszAppId);
 
             ::user::tab::pane * ppane = ppaneview->get_pane_by_id("app:" + strAppName);
@@ -1051,7 +1051,7 @@ namespace plane
 
    FileManagerTemplate * session::GetStdFileManagerTemplate()
    {
-      
+
       if(m_pbergedgeInterface != NULL)
       {
          return m_pbergedgeInterface->GetStdFileManagerTemplate();
