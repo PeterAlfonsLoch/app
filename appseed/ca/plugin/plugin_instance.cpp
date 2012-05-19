@@ -9,7 +9,7 @@ namespace plugin
 
    instance::instance()
    {
-      
+
       m_pfile           = NULL;
       m_lpbMemory       = NULL;
       m_iMemory         = -1;
@@ -28,10 +28,13 @@ namespace plugin
 
    }
 
+
+#ifdef WINDOWS
+
    static LRESULT CALLBACK PluginWinProc(HWND, UINT, WPARAM, LPARAM);
    static WNDPROC lpOldProc = NULL;
 
-
+#endif
 
 
 

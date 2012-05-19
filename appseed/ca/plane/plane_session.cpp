@@ -685,8 +685,10 @@ namespace plane
 
    void session::on_exclusive_instance_conflict(::radix::EExclusiveInstance eexclusive)
    {
+
       if(eexclusive == ::radix::ExclusiveInstanceLocalId)
       {
+         /*
          gen::memory_file file(get_app());
          file.from_string(command().m_varTopicFile);
          COPYDATASTRUCT data;
@@ -695,8 +697,19 @@ namespace plane
          data.lpData = file.get_data();
          HWND hwnd = (HWND) ::FindWindowA(NULL, "ca2::fontopus::message_wnd::session::");
 
-         ::SendMessage(hwnd, WM_COPYDATA, NULL, (LPARAM) &data);
+         ::SendMessage(hwnd, WM_COPYDATA, NULL, (LPARAM) &data);*/
+
+
+         small_ipc_tx_channel channel;
+
+         if(channel.open("ca2::fontopus::message_wnd::session::"))
+         {
+            channel.send(command().m_varTopicFile);
+            channel.close();
+         }
+
       }
+
    }
 
 

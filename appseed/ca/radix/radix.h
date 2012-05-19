@@ -214,6 +214,7 @@ class dump_context;
 #include "ca/gen/gen_str.h"
 
 #include "ca/primitive/id.h"
+#include "ca/primitive/primitive_string_format.h"
 #include "ca/primitive/primitive_string.h"
 #include "ca/primitive/datetime/datetime_time.h"
 

@@ -48,7 +48,11 @@ namespace plugin
       if(m_phost->get_system() == NULL)
       {
 
+#ifdef WINDOWS
+
          _set_purecall_handler(_ca2_purecall_);
+
+#endif
 
          ::plane::system * psystem = new ::plane::system();
 
@@ -67,20 +71,20 @@ namespace plugin
          pinitmaindata->m_vssCommandLine        = gen::international::unicode_to_utf8(::GetCommandLineW());
          pinitmaindata->m_nCmdShow              = nCmdShow;
 
-   
+
          psystem->init_main_data(pinitmaindata);*/
 
          psystem->m_hInstance = ::GetModuleHandle("ca.dll");
-      
+
          if(!psystem->InitApplication())
             return 0;
-      
+
          if(!psystem->process_initialize())
             return 0;
 
          psystem->start_application(true, NULL);
 
-         
+
 
       }
 
@@ -90,7 +94,7 @@ namespace plugin
       {
 
          m_bAppStarted = false;
-         
+
          m_psystem = new ::plugin::system();
 
          set_app(m_psystem);
@@ -98,10 +102,10 @@ namespace plugin
          m_psystem->m_pplugin = this;
 
          m_psystem->m_hInstance = ::GetModuleHandle("ca.dll");
-      
+
          if(!m_psystem->InitApplication())
             return 0;
-      
+
          if(!m_psystem->process_initialize())
             return 0;
 
@@ -110,10 +114,10 @@ namespace plugin
          m_psystem->m_prunstartinstaller = new run_start_installer(m_psystem, this);
 
          m_psystem->m_bInitializeProDevianMode = false;
-         
+
          string strId;
          strId.Format("npca2::%08x", (UINT_PTR) m_psystem);
-         
+
          m_psystem->command().m_varTopicQuery["local_mutex_id"] = strId;
 
       }
@@ -220,7 +224,7 @@ namespace plugin
       catch(...)
       {
       }
-      
+
       try
       {
          ::ca::graphics_sp g(get_app());
@@ -282,12 +286,12 @@ namespace plugin
 
    void plugin::start_ca2_login()
    {
-      __begin_thread(m_puiHost->get_app(), &plugin::thread_proc_ca2_login, (LPVOID) this); 
+      __begin_thread(m_puiHost->get_app(), &plugin::thread_proc_ca2_login, (LPVOID) this);
    }
 
    void plugin::start_ca2_logout()
    {
-      __begin_thread(m_puiHost->get_app(), &plugin::thread_proc_ca2_logout, (LPVOID) this); 
+      __begin_thread(m_puiHost->get_app(), &plugin::thread_proc_ca2_logout, (LPVOID) this);
    }
 
    UINT c_cdecl plugin::thread_proc_ca2_login(LPVOID pvoid)
@@ -318,7 +322,7 @@ namespace plugin
          strLocation = Sys(m_psystem).url().override_if_empty(strLocation, get_host_location_url(), false);
       }
       string strSessId = set["sessid"];
-      
+
       gen::property_set setLogin(get_app());
 
       ::fontopus::user * puser = NULL;
@@ -327,7 +331,7 @@ namespace plugin
       {
          puser = Application.login(setLogin);
       }
-      
+
       if(strSessId == puser->m_strFontopusServerSessId ||
          puser->m_strFontopusServerSessId.get_length() < 16)
       {
@@ -400,7 +404,7 @@ namespace plugin
          //Sleep(15 * 1000);
 
          LPSTR lpszAlloc = (LPSTR) (void *) psz;
-      
+
          strsize iCount = strlen(psz);
 
          //Sleep(15 * 1000);
@@ -419,7 +423,7 @@ namespace plugin
          headers.parse_http_headers(m_phost->m_strPluginHeaders);
 
          string strContentType = headers["Content-Type"];
-   
+
          string str;
 
          // TODO |) : Should parse Content-type:
@@ -525,7 +529,7 @@ namespace plugin
                      if(strId.has_char() && !m_psystem->install().is(strId))
                      {
 
-                        string strCommandLine; 
+                        string strCommandLine;
 
 
                         strCommandLine = ": app=session session_start=" + strId;
@@ -552,7 +556,7 @@ namespace plugin
 
                         return;
                         //m_puiHost->SetTimer(19841115, (1984 + 1977 )* 2, NULL);
-                        
+
                      }
                      else
                      {
@@ -660,7 +664,7 @@ namespace plugin
       m_bApp = true;
 
       set_ready();
-      
+
       return true;
 
    }

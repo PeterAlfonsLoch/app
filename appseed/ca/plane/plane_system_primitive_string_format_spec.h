@@ -2,19 +2,22 @@
 
 #if defined(LINUX)
 
-inline string string::format_spec::format(int i)
+/*
+inline void string_format::format(int i)
 {
 
-   return gen::str::itoa(i);
+   append(gen::str::itoa(i));
 
 }
 
 
-inline string string::format_spec::format(const char * psz)
+inline void string_format::format(const char * psz)
 {
 
-   return psz;
+   append(psz);
 
 }
+
+*/
 
 #endif

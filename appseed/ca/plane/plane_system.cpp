@@ -22,7 +22,7 @@ namespace plane
       g_pheapitema = pitema;
    }*/
 
-      
+
 
    system::system()
    {
@@ -93,7 +93,7 @@ namespace plane
       m_ptwf                     = NULL;
       m_pbergedgemap             = NULL;
 
-      
+
 
       m_spfsdata(new ::fs::native(this));
 
@@ -171,7 +171,7 @@ namespace plane
       ::ca::profiler::initialize();
 
 
-      System.factory().creatable < ::ca2::log >(System.template type_info < ::ca::log > (), 1);
+      System.factory().creatable < ::ca2::log >(System.type_info < ::ca::log > (), 1);
 
       if(!::planebase::application::process_initialize())
       {
@@ -188,9 +188,9 @@ namespace plane
    bool system::initialize()
    {
 
-      int error = FT_Init_FreeType( &m_ftlibrary ); 
+      int error = FT_Init_FreeType( &m_ftlibrary );
       if ( error )
-      { 
+      {
          TRACE("an error occurred during Free Type library initialization");
          return false;
       }
@@ -328,7 +328,7 @@ namespace plane
 
       map_application_library("ca");
       map_application_library("ca2");
-      
+
       ex1::file_exception_sp fe(this);
 
       ex1::filesp file = get_file(System.dir().appdata("applibcache.bin"), ex1::file::defer_create_directory
@@ -1336,7 +1336,7 @@ namespace plane
             return false;
          return true;
       }
-      
+
       gen::property_set set(this);
 
       var varFile;
@@ -1373,16 +1373,16 @@ namespace plane
 
       if(!::plane::application::set_main_init_data(pdata))
          return false;
-      
+
       return true;
 
    }
 
    ::ca::type_info & system::get_type_info(const ::std_type_info & info)
    {
-      
+
       ::ca::type_info & typeinfo = m_typemap[info.raw_name()];
-      
+
       if(typeinfo.m_id.is_null())
          typeinfo = info;
 
@@ -1390,7 +1390,7 @@ namespace plane
 
    }
 
-   
+
 
 
    //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1463,7 +1463,7 @@ namespace plane
 
    FileManagerTemplate * system::GetStdFileManagerTemplate()
    {
-      
+
       if(m_pcubeInterface != NULL)
       {
          return m_pcubeInterface->GetStdFileManagerTemplate();
@@ -1511,7 +1511,7 @@ namespace plane
 
       }
 
-      
+
       return true;
 
    }
@@ -1560,7 +1560,7 @@ retry:
 
    string system::get_host_location_url()
    {
-      
+
       return "";
 
    }
@@ -1568,7 +1568,7 @@ retry:
 
    bool system::add_library(::ca2::library * plibrary)
    {
-      
+
       m_libraryptra.add(plibrary);
 
       ::raw_array < ::id > ida;
