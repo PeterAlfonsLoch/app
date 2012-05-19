@@ -71,7 +71,7 @@ namespace userbase
       point                m_ptTrack;
 
       /*DECL_GEN_SIGNAL(OnMouseProc)*/
-      BOOL pre_create_window(CREATESTRUCT& cs);
+      bool pre_create_window(CREATESTRUCT& cs);
       virtual void PostNcDestroy();
       ::user::front_end_schema::menu  * m_pschema;
       virtual void install_message_handling(::gen::message::dispatch * pinterface);

@@ -81,8 +81,8 @@ namespace userbase
       if (dwFlags & (FS_DEACTIVATE|FS_ACTIVATE))
       {
          // update parent ::ca::window activation state
-         BOOL bActivate = !(dwFlags & FS_DEACTIVATE);
-         BOOL bEnabled = pParent->IsWindowEnabled();
+         bool bActivate = !(dwFlags & FS_DEACTIVATE);
+         bool bEnabled = pParent->IsWindowEnabled();
 
          if (bActivate && bEnabled && pParent != this)
          {
@@ -114,7 +114,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // frame_window second phase creation
 
-   BOOL frame_window::pre_create_window(CREATESTRUCT& cs)
+   bool frame_window::pre_create_window(CREATESTRUCT& cs)
    {
       if (cs.lpszClass == NULL)
       {
@@ -203,7 +203,7 @@ namespace userbase
       pcmdui->ContinueRouting();
    }
 
-   BOOL frame_window::OnBarCheck(UINT nID)
+   bool frame_window::OnBarCheck(UINT nID)
    {
       UNREFERENCED_PARAMETER(nID);
       /*ASSERT(ID_VIEW_STATUS_BAR == "status_bar");

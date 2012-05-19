@@ -25,7 +25,7 @@ namespace gen
       property_set(const property_set & set);
       property_set(const pair_set_interface & set);
       property_set(const str_str_interface & set);
-      virtual ~property_set(void);
+      virtual ~property_set();
 
 
 //      inline property_map::pair * next(property_pair & pair);

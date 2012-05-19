@@ -239,7 +239,7 @@ namespace gen
          void (dispatch::*m_pfnDispatchWindowProc)(gen::signal_object * pobj);
 
          virtual void _user_message_handler(gen::signal_object * pobj);
-         //bool _iguimessageDispatchCommandMessage(BaseCommand * pcommand, BOOL & b);
+         //bool _iguimessageDispatchCommandMessage(BaseCommand * pcommand, bool & b);
          // return TRUE to stop routing
 #ifdef WINDOWS
          virtual bool igui_RelayEvent(LPMSG lpmsg);
@@ -302,7 +302,7 @@ namespace gen
 
             UINT  m_nState;
             ::user::interaction * m_pWndOther;
-            BOOL  m_bMinimized;
+            bool  m_bMinimized;
 
 
             activate(::ca::application * papp);
@@ -416,7 +416,7 @@ namespace gen
 
 
             show_window(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
-            BOOL m_bShow;
+            bool m_bShow;
             UINT  m_nStatus;
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
@@ -440,7 +440,7 @@ namespace gen
 
             erase_bkgnd(::ca::application * papp);
 
-            void set_result(BOOL bResult);
+            void set_result(bool bResult);
 
          };
 
@@ -476,7 +476,7 @@ namespace gen
          public:
 
 
-            BOOL m_bActive;
+            bool m_bActive;
 
 
             nc_activate(::ca::application * papp);
@@ -570,7 +570,7 @@ namespace gen
 
             nc_calc_size(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
             NCCALCSIZE_PARAMS * m_pparams;
-            BOOL GetCalcValidRects();
+            bool GetCalcValidRects();
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 
          };

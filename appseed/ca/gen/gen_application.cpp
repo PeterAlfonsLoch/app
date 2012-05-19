@@ -562,7 +562,7 @@ namespace gen
    /////////////////////////////////////////////////////////////////////////////
    // WinApp UI related functions
 
-   void application::EnableModelessEx(BOOL bEnable)
+   void application::EnableModelessEx(bool bEnable)
    {
       UNREFERENCED_PARAMETER(bEnable);
    #ifdef ___NO_OLE_SUPPORT
@@ -620,7 +620,7 @@ namespace gen
       return ex1::application::run();
    }
 
-   BOOL application::on_idle(LONG lCount)
+   bool application::on_idle(LONG lCount)
    {
       return ex1::application::on_idle(lCount);
    }

@@ -86,7 +86,7 @@ namespace bergedge
    // ::view
 
 
-   BOOL view::pre_create_window(CREATESTRUCT& cs)
+   bool view::pre_create_window(CREATESTRUCT& cs)
    {
       cs.style &= ~WS_EX_CLIENTEDGE;
       return ::userbase::view::pre_create_window(cs);

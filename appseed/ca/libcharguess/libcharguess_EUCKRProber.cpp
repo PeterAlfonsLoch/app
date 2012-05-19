@@ -23,7 +23,7 @@
 
 #include "EUCKRProber.h"
 
-void  nsEUCKRProber::Reset(void)
+void  nsEUCKRProber::Reset()
 {
   mCodingSM->Reset(); 
   mState = eDetecting;
@@ -74,7 +74,7 @@ nsProbingState nsEUCKRProber::HandleData(const char* aBuf, PRUint32 aLen)
 }
 
 
-float nsEUCKRProber::GetConfidence(void)
+float nsEUCKRProber::GetConfidence()
 {
   float distribCf = mDistributionAnalyser.GetConfidence();
 

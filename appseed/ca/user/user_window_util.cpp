@@ -508,7 +508,7 @@ namespace user
    }
 
    /*void WndUtil::SendMessageToDescendants(HWND hWnd, UINT message,
-   WPARAM wParam, LPARAM lParam, BOOL bDeep, BOOL bOnlyPerm)
+   WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
    {
    // walk through HWNDs to avoid creating temporary ::ca::window objects
    // unless we need to call this function recursively
@@ -541,7 +541,7 @@ namespace user
 
 
    void WndUtil::SendMessageToDescendants(HWND hWnd, UINT message,
-      WPARAM wParam, LPARAM lParam, BOOL bDeep)
+      WPARAM wParam, LPARAM lParam, bool bDeep)
    {
       // walk through HWNDs to avoid creating temporary ::ca::window objects
       // unless we need to call this function recursively

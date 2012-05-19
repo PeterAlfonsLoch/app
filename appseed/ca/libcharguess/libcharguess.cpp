@@ -33,7 +33,7 @@ DllMain( HINSTANCE hModule,
 LIBCHARGUESS_API int nLibcharguess=0;
 
 // This is an example of an exported function.
-LIBCHARGUESS_API int fnLibcharguess(void)
+LIBCHARGUESS_API int fnLibcharguess()
 {
    return 42;
 }

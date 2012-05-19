@@ -19,7 +19,7 @@ stringa::~stringa()
 {
 }
 
-void stringa::add_tokens(const char * lpcsz, const char * lpcszSeparator, BOOL bAddEmpty)
+void stringa::add_tokens(const char * lpcsz, const char * lpcszSeparator, bool bAddEmpty)
 {
    string_tokenizer strTokenizer(lpcsz);
    string strToken;
@@ -42,7 +42,7 @@ void stringa::add_tokens(const char * lpcsz, const char * lpcszSeparator, BOOL b
 
 int g_add_smallest_tokens = 0;
 
-void stringa::add_smallest_tokens(const char * lpcsz, stringa & straSeparator, BOOL bAddEmpty, BOOL bWithSeparator)
+void stringa::add_smallest_tokens(const char * lpcsz, stringa & straSeparator, bool bAddEmpty, bool bWithSeparator)
 {
    string_tokenizer strTokenizer(lpcsz);
    string strToken;

@@ -29,14 +29,14 @@ namespace gen
       // ClassWizard generated virtual function overrides
       //{{__VIRTUAL(TimerWnd)
       public:
-      virtual BOOL DestroyWindow();
+      virtual bool DestroyWindow();
       //}}__VIRTUAL
 
    // Implementation
    public:
       bool IsEnabled();
       bool EnableTimer(bool bEnable = true);
-      BOOL create(TimerCallback * pCallback);
+      bool create(TimerCallback * pCallback);
       virtual ~TimerWnd();
 
       void OnTimer(UINT nIDEvent);

@@ -57,7 +57,7 @@ namespace gcom
 
          int         m_iWidth;
          int         m_iHeight;
-         BOOL      m_bDrawWithLight;
+         bool      m_bDrawWithLight;
          int         m_iLightModifier;
          int         m_iHpage;// The current heightfield
          double      m_density;// The water density - can change the density...

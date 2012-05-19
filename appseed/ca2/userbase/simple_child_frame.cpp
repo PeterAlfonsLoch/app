@@ -16,7 +16,7 @@ simple_child_frame::~simple_child_frame()
 }
 
 
-BOOL simple_child_frame::pre_create_window(CREATESTRUCT& cs) 
+bool simple_child_frame::pre_create_window(CREATESTRUCT& cs) 
 {
    cs.style |= WS_CHILD;
    cs.style |= WS_CLIPCHILDREN;

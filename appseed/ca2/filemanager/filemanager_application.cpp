@@ -16,7 +16,7 @@ namespace filemanager
       m_pfilemanager       = this;
    }
 
-   application::~application(void)
+   application::~application()
    {
    }
 
@@ -73,12 +73,12 @@ namespace filemanager
       FileManagerCallbackInterface::on_request(pcreatecontext);
    }
 
-   FileManagerTemplate * application::GetStdFileManagerTemplate(void)
+   FileManagerTemplate * application::GetStdFileManagerTemplate()
    {
       return m_ptemplateStd;
    }
 
-   FileManagerTemplate * application::GetFsManagerTemplate(void)
+   FileManagerTemplate * application::GetFsManagerTemplate()
    {
       return m_ptemplateFs;
    }
@@ -161,7 +161,7 @@ namespace filemanager
 
 
 
-   BOOL application::do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
+   bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
    {
 
       ::userex::pane_tab_view * ppanetabview = NULL;

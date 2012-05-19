@@ -68,7 +68,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   string getTagName(void) const
+   string getTagName() const
       { return (m_strTagName); }
 
    /**
@@ -76,7 +76,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   const LiteHTMLAttributes* getAttributes(void) const
+   const LiteHTMLAttributes* getAttributes() const
       { return (m_pcollAttr);  }
 
 // Parsing Helpers

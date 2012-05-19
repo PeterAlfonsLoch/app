@@ -169,15 +169,15 @@ typedef struct _CrtMemState
     multiple definition problems */
 
 #ifndef _ASSERT
-#define _ASSERT(expr) ((void)0)
+#define _ASSERT(expr) (()0)
 #endif
 
 #ifndef _ASSERTE
-#define _ASSERTE(expr) ((void)0)
+#define _ASSERTE(expr) (()0)
 #endif
 
 #ifndef _ASSERT_EXPR
-#define _ASSERT_EXPR(expr, expr_str) ((void)0)
+#define _ASSERT_EXPR(expr, expr_str) (()0)
 #endif
 
 #ifndef _ASSERT_BASE
@@ -264,7 +264,7 @@ typedef struct _CrtMemState
 #define _CrtSetReportMode(t, f)             ((int)0)
 #define _CrtSetReportFile(t, f)             ((_HFILE)0)
 
-#define _CrtDbgBreak()                      ((void)0)
+#define _CrtDbgBreak()                      (()0)
 
 #define _CrtSetBreakAlloc(a)                ((long)0)
 
@@ -273,7 +273,7 @@ typedef struct _CrtMemState
 
 #define _CrtCheckMemory()                   ((int)1)
 #define _CrtSetDbgFlag(f)                   ((int)0)
-#define _CrtDoForAllClientObjects(f, c)     ((void)0)
+#define _CrtDoForAllClientObjects(f, c)     (()0)
 #define _CrtIsValidPointer(p, n, r)         ((int)1)
 #define _CrtIsValidHeapPointer(p)           ((int)1)
 #define _CrtIsMemoryBlock(p, t, r, f, l)    ((int)1)
@@ -282,10 +282,10 @@ typedef struct _CrtMemState
 #define _CrtSetDumpClient(f)                ((_CRT_DUMP_CLIENT)0)
 #define _CrtGetDumpClient()                 ((_CRT_DUMP_CLIENT)0)
 
-#define _CrtMemCheckpoint(s)                ((void)0)
+#define _CrtMemCheckpoint(s)                (()0)
 #define _CrtMemDifference(s1, s2, s3)       ((int)0)
-#define _CrtMemDumpAllObjectsSince(s)       ((void)0)
-#define _CrtMemDumpStatistics(s)            ((void)0)
+#define _CrtMemDumpAllObjectsSince(s)       (()0)
+#define _CrtMemDumpStatistics(s)            (()0)
 #define _CrtDumpMemoryLeaks()               ((int)0)
 #define _CrtSetDebugFillThreshold(t)        ((size_t)0)
 
@@ -354,7 +354,7 @@ CLASS_DECL__ int DECL_C _CrtDbgReportW(int _ReportType, const wchar_t * _Filenam
 /* Asserts */
 /* We use !! below to ensure that any overloaded operators used to evaluate expr do not end up at operator || */
 #define _ASSERT_EXPR(expr, msg) \
-        (void) ((!!(expr)) || \
+        () ((!!(expr)) || \
                 (1 != _CrtDbgReportW(_CRT_ASSERT, _WIDEN(__FILE__), __LINE__, NULL, msg)) || \
                 (_CrtDbgBreak(), 0))
 
@@ -377,11 +377,11 @@ should not have done so since it was not documented.
 /* Reports with no file/line info */
 
 #define _RPT_BASE(args) \
-        (void) ((1 != _CrtDbgReport args) || \
+        () ((1 != _CrtDbgReport args) || \
                 (_CrtDbgBreak(), 0))
 
 #define _RPT_BASE_W(args) \
-        (void) ((1 != _CrtDbgReportW args) || \
+        () ((1 != _CrtDbgReportW args) || \
                 (_CrtDbgBreak(), 0))
 
 #define _RPT0(rptno, msg) \
@@ -462,7 +462,7 @@ should not have done so since it was not documented.
 #if !defined(_CRT_PORTABLE) && !defined(LINUX)
 #define _CrtDbgBreak() __debugbreak()
 #else
-CLASS_DECL__ void DECL_C _CrtDbgBreak(void);
+CLASS_DECL__ void DECL_C _CrtDbgBreak();
 #endif
 
  /****************************************************************************
@@ -841,7 +841,7 @@ echo you got owned
 CLASS_DECL__ extern int _crtDbgFlag;
 #endif /* !defined(_M_CEE_PURE) */
 
-CLASS_DECL__ int DECL_C _CrtCheckMemory(void);
+CLASS_DECL__ int DECL_C _CrtCheckMemory();
 CLASS_DECL__ int DECL_C _CrtSetDbgFlag(int _NewFlag);
 CLASS_DECL__ void DECL_C _CrtDoForAllClientObjects(void (DECL_C *_PFn)(void *, void *), void * _Context);
 CLASS_DECL__ int DECL_C _CrtIsValidPointer(const void * _Ptr, unsigned int _Bytes, int _ReadWrite);
@@ -887,9 +887,9 @@ CLASS_DECL__ void DECL_C _CrtMemCheckpoint(_CrtMemState * _State);
 CLASS_DECL__ int DECL_C _CrtMemDifference(_CrtMemState * _State, const _CrtMemState * _OldState, const _CrtMemState * _NewState);
 CLASS_DECL__ void DECL_C _CrtMemDumpAllObjectsSince(const _CrtMemState * _State);
 CLASS_DECL__ void DECL_C _CrtMemDumpStatistics(const _CrtMemState * _State);
-CLASS_DECL__ int DECL_C _CrtDumpMemoryLeaks(void);
+CLASS_DECL__ int DECL_C _CrtDumpMemoryLeaks();
 CLASS_DECL__ int DECL_C _CrtSetCheckCount(int _CheckCount);
-CLASS_DECL__ int DECL_C _CrtGetCheckCount(void);
+CLASS_DECL__ int DECL_C _CrtGetCheckCount();
 
 #endif  /* _DEBUG */
 

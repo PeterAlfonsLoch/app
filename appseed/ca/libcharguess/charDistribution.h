@@ -57,7 +57,7 @@ public:
   float GetConfidence();
 
   //Reset analyser, clear any state 
-  void      Reset(void) 
+  void      Reset() 
   {
     mDone = PR_FALSE;
     mTotalChars = 0;

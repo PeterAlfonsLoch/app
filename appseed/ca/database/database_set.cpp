@@ -164,7 +164,7 @@ namespace database
    }
 
 
-   void set::close(void) {
+   void set::close() {
      haveError  = false;
      frecno = 0;
      fbof = feof = true;
@@ -402,7 +402,7 @@ namespace database
      return locate();
    }
 
-   bool set::findNext(void) {
+   bool set::findNext() {
      bool result;
      if (m_parameterlist.is_empty()) return false;
 

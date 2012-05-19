@@ -330,7 +330,7 @@ void oc_frag_recon_inter2_mmx(unsigned char *_dst,const unsigned char *_src1,
   }
 }
 
-void oc_restore_fpu_mmx(void){
+void oc_restore_fpu_mmx(){
   __asm emms;
 }
 

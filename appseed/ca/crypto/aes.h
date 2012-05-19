@@ -75,10 +75,10 @@ aes_decrypt(v128_t *plaintext, const aes_expanded_key_t exp_key);
  */
 
 void
-aes_init_sbox(void);
+aes_init_sbox();
 
 void
-aes_compute_tables(void);
+aes_compute_tables();
 #endif 
 
 #endif /* _AES_H */

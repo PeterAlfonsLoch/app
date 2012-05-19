@@ -26,7 +26,7 @@ namespace cube
 
    }
 
-   BOOL cube::InitApplication()
+   bool cube::InitApplication()
    {
 
       if(!::cube8::application::InitApplication())

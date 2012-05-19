@@ -35,11 +35,11 @@ public:
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-   virtual BOOL IsSelected(const ::radix::object* pDocItem) const; // support for OLE
+   virtual bool IsSelected(const ::radix::object* pDocItem) const; // support for OLE
 
    // OLE scrolling support (used for drag/drop as well)
-   virtual BOOL OnScroll(UINT nScrollCode, UINT nPos, BOOL bDoScroll = TRUE);
-   virtual BOOL OnScrollBy(size sizeScroll, BOOL bDoScroll = TRUE);
+   virtual bool OnScroll(UINT nScrollCode, UINT nPos, bool bDoScroll = TRUE);
+   virtual bool OnScrollBy(size sizeScroll, bool bDoScroll = TRUE);
 
    // OLE drag/drop support
 /*   virtual DROPEFFECT OnDragEnter(COleDataObject* pDataObject,
@@ -47,7 +47,7 @@ public:
    virtual DROPEFFECT OnDragOver(COleDataObject* pDataObject,
       DWORD dwKeyState, point point);
    virtual void OnDragLeave();
-   virtual BOOL OnDrop(COleDataObject* pDataObject,
+   virtual bool OnDrop(COleDataObject* pDataObject,
       DROPEFFECT dropEffect, point point);
    virtual DROPEFFECT OnDropEx(COleDataObject* pDataObject,
       DROPEFFECT dropDefault, DROPEFFECT dropList, point point);
@@ -60,7 +60,7 @@ public:
 
 
    // Activation
-   virtual void OnActivateView(BOOL bActivate, view * pActivateView,
+   virtual void OnActivateView(bool bActivate, view * pActivateView,
                view * pDeactiveView);
    virtual void OnActivateFrame(UINT nState, frame_window* pFrameWnd);
 
@@ -91,7 +91,7 @@ public:
    virtual void assert_valid() const;
 
    // Advanced: for implementing custom print preview
-/*   BOOL DoPrintPreview(UINT nIDResource, view * pPrintView,
+/*   bool DoPrintPreview(UINT nIDResource, view * pPrintView,
          ::ca::type_info pPreviewViewClass, CPrintPreviewState* pState);*/
 
    virtual void CalcWindowRect(LPRECT lpClientRect,
@@ -101,7 +101,7 @@ public:
 
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
-   virtual BOOL pre_create_window(CREATESTRUCT& cs);
+   virtual bool pre_create_window(CREATESTRUCT& cs);
    virtual void PostNcDestroy();
 
    // friend classes that call protected view overridables
@@ -123,9 +123,9 @@ public:
    //int OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message);
    // commands
    void OnUpdateSplitCmd(cmd_ui* pCmdUI);
-   BOOL OnSplitCmd(UINT nID);
+   bool OnSplitCmd(UINT nID);
    void OnUpdateNextPaneMenu(cmd_ui* pCmdUI);
-   BOOL OnNextPaneCmd(UINT nID);
+   bool OnNextPaneCmd(UINT nID);
 
    // not mapped commands - must be mapped in derived class
    void OnFilePrint();

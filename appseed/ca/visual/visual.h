@@ -15,8 +15,8 @@ namespace visual
 #include "primitive/img.h"
 #include "primitive/color.h"
 
-CLASS_DECL_ca BOOL TextOutU(HDC hdc, int x, int y, const char * lpString, int c);
-CLASS_DECL_ca BOOL GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, LPSIZE psizl);
+CLASS_DECL_ca bool TextOutU(HDC hdc, int x, int y, const char * lpString, int c);
+CLASS_DECL_ca bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, LPSIZE psizl);
 CLASS_DECL_ca int  DrawTextU(HDC hdc, const char * lpchText, int cchText, LPRECT lprc, UINT format);
 
 

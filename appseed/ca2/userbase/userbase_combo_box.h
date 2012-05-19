@@ -31,13 +31,13 @@ namespace userbase
       int GetDroppedWidth();
 
    #if(WINVER >= 0x0500)
-      BOOL GetComboBoxInfo(PCOMBOBOXINFO pcbi);
+      bool GetComboBoxInfo(PCOMBOBOXINFO pcbi);
    #endif   // WINVER >= 0x0500
 
       // for edit control
-      BOOL GetEditSel(strsize & nStartChar, strsize & nEndChar);
-      BOOL LimitText(strsize nMaxChars);
-      BOOL SetEditSel(strsize nStartChar, strsize nEndChar);
+      bool GetEditSel(strsize & nStartChar, strsize & nEndChar);
+      bool LimitText(strsize nMaxChars);
+      bool SetEditSel(strsize nStartChar, strsize nEndChar);
 
       // for combobox item
       DWORD_PTR GetItemData(index nIndex);
@@ -51,14 +51,14 @@ namespace userbase
       int SetItemHeight(index nIndex, UINT cyItemHeight);
       int GetItemHeight(index nIndex);
       index FindStringExact(index nIndexStart, const char * lpszFind);
-      int SetExtendedUI(BOOL bExtended = TRUE);
-      BOOL GetExtendedUI();
+      int SetExtendedUI(bool bExtended = TRUE);
+      bool GetExtendedUI();
       void GetDroppedControlRect(LPRECT lprect);
-      BOOL GetDroppedState();
+      bool GetDroppedState();
 
    // Operations
       // for drop-down combo boxes
-      void ShowDropDown(BOOL bShowIt = TRUE);
+      void ShowDropDown(bool bShowIt = TRUE);
 
       // manipulating listbox items
       index AddString(const char * lpszString);
@@ -85,7 +85,7 @@ namespace userbase
       virtual void DeleteItem(LPDELETEITEMSTRUCT lpDeleteItemStruct);
 #endif
 
-      virtual BOOL OnChildNotify(UINT, WPARAM, LPARAM, LRESULT*);
+      virtual bool OnChildNotify(UINT, WPARAM, LPARAM, LRESULT*);
 
 
    };

@@ -252,7 +252,7 @@ namespace ca2
    }
 
 #ifdef WINDOWS
-   BOOL Is_Vista_or_Later ()
+   bool Is_Vista_or_Later ()
    {
       OSVERSIONINFOEX osvi;
       DWORDLONG dwlConditionMask = 0;

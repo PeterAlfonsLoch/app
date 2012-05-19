@@ -72,7 +72,7 @@ const char* nsMBCSGroupProber::GetCharSetName()
   return mProbers[mBestGuess]->GetCharSetName();
 }
 
-void  nsMBCSGroupProber::Reset(void)
+void  nsMBCSGroupProber::Reset()
 {
   for (PRUint32 i = 0; i < NUM_OF_PROBERS; i++)
   {
@@ -140,7 +140,7 @@ nsProbingState nsMBCSGroupProber::HandleData(const char* aBuf, PRUint32 aLen)
   return mState;
 }
 
-float nsMBCSGroupProber::GetConfidence(void)
+float nsMBCSGroupProber::GetConfidence()
 {
   PRUint32 i;
   float bestConf = 0.0, cf;

@@ -21,7 +21,7 @@
 // This class is exported from the libcharguess.dll
 class LIBCHARGUESS_API LibCharGuess {
 public:
-   LibCharGuess(void);
+   LibCharGuess();
    // TODO: add your methods here.
 
    static int Init();
@@ -32,5 +32,5 @@ public:
 
 extern LIBCHARGUESS_API int nLibcharguess;
 
-LIBCHARGUESS_API int fnLibcharguess(void);
+LIBCHARGUESS_API int fnLibcharguess();
 

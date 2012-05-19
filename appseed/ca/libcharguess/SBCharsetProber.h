@@ -47,9 +47,9 @@ public:
   nsSingleByteCharSetProber(SequenceModel *model){mModel = model; Reset();};
   const char* GetCharSetName() {return mModel->charsetName;};
   nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
-  nsProbingState GetState(void) {return mState;};
-  void      Reset(void);
-  float     GetConfidence(void);
+  nsProbingState GetState() {return mState;};
+  void      Reset();
+  float     GetConfidence();
   void      SetOpion() {};
   PRBool KeepEnglishLetters() {return mModel->keepEnglishLetter;};
 

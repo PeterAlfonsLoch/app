@@ -108,7 +108,7 @@ namespace userbase
       return true;
    }
 
-   bool menu_item::IsPopup(void)
+   bool menu_item::IsPopup()
    {
       return m_spitema.is_set() && m_spitema->get_count() > 0;
    }

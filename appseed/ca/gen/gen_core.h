@@ -8,14 +8,14 @@
 // return TRUE no matter how long the string is. The primitive::memory
 // used by the string can be read-only.
 
-//BOOL __is_valid_string(const wchar_t * psz, int nLength /* = -1 */)
+//bool __is_valid_string(const wchar_t * psz, int nLength /* = -1 */)
 //{
 //   return __is_valid_string(psz, nLength);
 //}
 //
 //// As above, but for ANSI strings.
 //
-///*BOOL __is_valid_string(const char * psz, int nLength /* = -1 */)
+///*bool __is_valid_string(const char * psz, int nLength /* = -1 */)
 //{
 //   return __is_valid_string(psz, nLength);
 //}*/
@@ -25,8 +25,8 @@
 //// the primitive::memory must be writeable; if bReadWrite is FALSE, the primitive::memory
 //// may be const.
 //
-//BOOL __is_valid_address(const void * p, UINT_PTR nBytes,
-//   BOOL bReadWrite /* = TRUE */)
+//bool __is_valid_address(const void * p, UINT_PTR nBytes,
+//   bool bReadWrite /* = TRUE */)
 //{
 //   return __is_valid_address(p, nBytes, bReadWrite);
 //}
@@ -37,7 +37,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // Verify that a null-terminated string points to valid primitive::memory
-inline BOOL __is_valid_string(const wchar_t * psz, size_t nMaxLength = INT_MAX)
+inline bool __is_valid_string(const wchar_t * psz, size_t nMaxLength = INT_MAX)
 {
 #ifdef WINDOWS
    (nMaxLength);
@@ -46,7 +46,7 @@ inline BOOL __is_valid_string(const wchar_t * psz, size_t nMaxLength = INT_MAX)
 }
 
 // Verify that a null-terminated string points to valid primitive::memory
-inline BOOL __is_valid_string(const char * psz, size_t nMaxLength = UINT_MAX)
+inline bool __is_valid_string(const char * psz, size_t nMaxLength = UINT_MAX)
 {
 #ifdef WINDOWS
    (nMaxLength);
@@ -55,7 +55,7 @@ inline BOOL __is_valid_string(const char * psz, size_t nMaxLength = UINT_MAX)
 }
 
 // Verify that a pointer points to valid primitive::memory
-inline BOOL __is_valid_address(const void * p, size_t nBytes, BOOL bReadWrite = TRUE)
+inline bool __is_valid_address(const void * p, size_t nBytes, bool bReadWrite = TRUE)
 {
 #ifdef WINDOWS
    (bReadWrite);
@@ -280,12 +280,12 @@ return retval;
 }
 #pragma warning(pop)
 
-inline BOOL gen_ConvertSystemTimeToVariantTime(const SYSTEMTIME& systimeSrc,double* pVarDtTm)
+inline bool gen_ConvertSystemTimeToVariantTime(const SYSTEMTIME& systimeSrc,double* pVarDtTm)
 {
 ENSURE(pVarDtTm!=NULL);
 //Convert using ::SystemTimeToVariantTime and store the result in pVarDtTm then
 //convert variant time back to system time and compare to original system time.
-BOOL ok = ::SystemTimeToVariantTime(const_cast<SYSTEMTIME*>(&systimeSrc), pVarDtTm);
+bool ok = ::SystemTimeToVariantTime(const_cast<SYSTEMTIME*>(&systimeSrc), pVarDtTm);
 SYSTEMTIME sysTime;
 ::ZeroMemory(&sysTime, sizeof(SYSTEMTIME));
 

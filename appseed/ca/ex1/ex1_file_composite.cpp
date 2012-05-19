@@ -28,7 +28,7 @@ namespace ex1
 
    }
 
-   BOOL file_composite::GetStatus(file_status& rStatus) const
+   bool file_composite::GetStatus(file_status& rStatus) const
    {
 
       return m_spfile->GetStatus(rStatus);
@@ -63,14 +63,14 @@ namespace ex1
 
    }
 
-   BOOL file_composite::open(const char * lpszFileName, UINT nOpenFlags, file_exception_sp * pError)
+   bool file_composite::open(const char * lpszFileName, UINT nOpenFlags, file_exception_sp * pError)
    {
 
       return m_spfile->open(lpszFileName, nOpenFlags, pError);
 
    }
 
-   BOOL file_composite::GetStatus(const char * lpszFileName, file_status& rStatus)
+   bool file_composite::GetStatus(const char * lpszFileName, file_status& rStatus)
    {
 
       return m_spfile->GetStatus(lpszFileName, rStatus);

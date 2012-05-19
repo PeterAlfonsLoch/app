@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-void CLASS_DECL_ca __cdecl _ca2_purecall_(void)
+void CLASS_DECL_ca __cdecl _ca2_purecall_()
 {
     throw simple_exception();
 }
@@ -644,7 +644,7 @@ namespace plugin
          }
          ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_puiHost->m_pimpl);
          HWND hwnd = pwindow->_get_handle();
-         BOOL bIsWindow = ::IsWindow(hwnd);
+         bool bIsWindow = ::IsWindow(hwnd);
          if(bIsWindow)
          {
             LRESULT l = m_puiHost->SendMessageA(uiMessage, wparam, lparam);

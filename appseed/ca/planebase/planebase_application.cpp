@@ -861,7 +861,7 @@ InitFailure:
 
 
 
-   FileManagerTemplate * application::GetStdFileManagerTemplate(void)
+   FileManagerTemplate * application::GetStdFileManagerTemplate()
    {
       return NULL;
    }
@@ -969,7 +969,7 @@ InitFailure:
    }
 
   
-   BOOL application::run()
+   int application::run()
    {
 
       if(!is_system() && !is_session() && !is_bergedge() && !is_cube())

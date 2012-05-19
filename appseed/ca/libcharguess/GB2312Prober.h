@@ -29,14 +29,14 @@
 
 class nsGB18030Prober: public nsCharSetProber {
 public:
-  nsGB18030Prober(void){mCodingSM = new nsCodingStateMachine(&GB18030SMModel);
+  nsGB18030Prober(){mCodingSM = new nsCodingStateMachine(&GB18030SMModel);
                       Reset();};
-  virtual ~nsGB18030Prober(void){delete mCodingSM;};
+  virtual ~nsGB18030Prober(){delete mCodingSM;};
   nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
   const char* GetCharSetName() {return "gb18030";};
-  nsProbingState GetState(void) {return mState;};
-  void      Reset(void);
-  float     GetConfidence(void);
+  nsProbingState GetState() {return mState;};
+  void      Reset();
+  float     GetConfidence();
   void      SetOpion() {};
 
 protected:

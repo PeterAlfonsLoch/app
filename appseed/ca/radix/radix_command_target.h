@@ -227,8 +227,8 @@ public:
    // if from some other ::ca::window
    ::user::interaction *   m_pOther;         // NULL if a menu or not a ::ca::window
 
-   BOOL                    m_bEnableChanged;
-   BOOL                    m_bContinueRouting;
+   bool                    m_bEnableChanged;
+   bool                    m_bContinueRouting;
    bool                    m_bEnableIfHasCommandHandler;
 
    
@@ -241,17 +241,17 @@ public:
 
 
 // Operations to do in ON_UPDATE_COMMAND_UI
-   virtual void Enable(BOOL bOn = TRUE);
+   virtual void Enable(bool bOn = TRUE);
    using ::user::check_interface::_001SetCheck;
    virtual void _001SetCheck(check::e_check echeck);   // 0, 1 or 2 (indeterminate)
-   virtual void SetRadio(BOOL bOn = TRUE);
+   virtual void SetRadio(bool bOn = TRUE);
    virtual void SetText(const char * lpszText);
 
 // Advanced operation
    void ContinueRouting();
 
 
-   BOOL DoUpdate(command_target* pTarget, BOOL bDisableIfNoHndler);
+   bool DoUpdate(command_target* pTarget, bool bDisableIfNoHndler);
 };
 
 // cmd_ui
@@ -269,12 +269,12 @@ public:
    CTestCmdUI(::ca::application * papp);
 
 public: // re-implementations only
-   virtual void Enable(BOOL bOn);
+   virtual void Enable(bool bOn);
    virtual void SetCheck(int nCheck);
-   virtual void SetRadio(BOOL bOn);
+   virtual void SetRadio(bool bOn);
    virtual void SetText(const char *);
 
-   BOOL m_bEnabled;
+   bool m_bEnabled;
 };
 
 
@@ -285,7 +285,7 @@ public: // re-implementations only
 #ifndef __MSG_CALL
 #define __MSG_CALL
 #endif
-typedef void (__MSG_CALL command_target::*__PMSG)(void);
+typedef void (__MSG_CALL command_target::*__PMSG)();
 
 enum __DISPMAP_FLAGS
 {

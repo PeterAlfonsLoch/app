@@ -26,7 +26,7 @@ namespace fs
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
 
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
-      virtual BOOL pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(CREATESTRUCT& cs);
     
       DECL_GEN_SIGNAL(_001OnLButtonDblClk)
       DECL_GEN_SIGNAL(_001OnContextMenu)

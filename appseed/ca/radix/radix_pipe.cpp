@@ -81,7 +81,7 @@ namespace gen
    bool pipe::write(const char * psz)
    {
       DWORD dwWritten;
-      BOOL bSuccess = FALSE;
+      bool bSuccess = FALSE;
       bSuccess = WriteFile(m_hWrite, (const char *) psz, (DWORD) strlen(psz), &dwWritten, NULL);
       return bSuccess != FALSE;
    }
@@ -91,7 +91,7 @@ namespace gen
       string str;
       const int BUFSIZE = 1024 * 8;
       DWORD dwRead;
-      BOOL bSuccess;
+      bool bSuccess;
       char chBuf[BUFSIZE];
       for (;;)
       {
@@ -119,7 +119,7 @@ namespace gen
       string str;
       const int BUFSIZE = 1024 * 8;
       DWORD dwRead;
-      BOOL bSuccess;
+      bool bSuccess;
       char chBuf[BUFSIZE];
       memset(chBuf, 0, BUFSIZE);
 

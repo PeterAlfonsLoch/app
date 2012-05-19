@@ -121,10 +121,10 @@ namespace collection
       ::count get_size() const;
       ::count size() const;
       ::count count() const;
-      BOOL is_empty() const;
+      bool is_empty() const;
 
       // Lookup
-      BOOL Lookup(ARG_KEY key, VALUE& rValue) const;
+      bool Lookup(ARG_KEY key, VALUE& rValue) const;
       const pair *PLookup(ARG_KEY key) const;
       pair *PLookup(ARG_KEY key);
 
@@ -139,7 +139,7 @@ namespace collection
       void set_at(ARG_KEY key, ARG_VALUE newValue);
 
       // removing existing (key, ?) pair
-      BOOL remove_key(ARG_KEY key);
+      bool remove_key(ARG_KEY key);
       void remove_all();
       void clear();
 
@@ -156,7 +156,7 @@ namespace collection
 
       // advanced features for derived classes
       UINT GetHashTableSize() const;
-      void InitHashTable(UINT hashSize, BOOL bAllocNow = TRUE);
+      void InitHashTable(UINT hashSize, bool bAllocNow = TRUE);
 
 
       VALUE get(ARG_KEY argkey, ARG_VALUE valueDefault);
@@ -241,7 +241,7 @@ namespace collection
       { return m_nCount; }
 
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-   inline BOOL map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::is_empty() const
+   inline bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::is_empty() const
       { return m_nCount == 0; }
 
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
@@ -327,7 +327,7 @@ namespace collection
 
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
    void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::InitHashTable(
-      UINT nHashSize, BOOL bAllocNow)
+      UINT nHashSize, bool bAllocNow)
    //
    // Used to force allocation of a hash table or to override the default
    //   hash table size of (which is fairly small)
@@ -477,7 +477,7 @@ namespace collection
    }
 
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-   BOOL map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::Lookup(ARG_KEY key, VALUE& rValue) const
+   bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::Lookup(ARG_KEY key, VALUE& rValue) const
    {
       //ASSERT_VALID(this);
 
@@ -546,7 +546,7 @@ namespace collection
    }
 
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-   BOOL map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::remove_key(ARG_KEY key)
+   bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::remove_key(ARG_KEY key)
    // remove key - return TRUE if removed
    {
       ASSERT_VALID(this);
@@ -964,7 +964,7 @@ namespace collection
          T * m_value;
       };
 
-      BOOL Lookup(string key, T * & rValue) const
+      bool Lookup(string key, T * & rValue) const
       {
          return string_to_ptr::Lookup(key, rValue);
       }

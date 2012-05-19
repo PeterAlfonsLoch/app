@@ -56,7 +56,7 @@ namespace nature
    #endif //_DEBUG
 
 
-   BOOL view::pre_create_window(CREATESTRUCT& cs)
+   bool view::pre_create_window(CREATESTRUCT& cs)
    {
       cs.lpszClass = System.RegisterWndClass(
          CS_DBLCLKS |

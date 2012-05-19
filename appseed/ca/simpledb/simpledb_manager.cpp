@@ -19,7 +19,7 @@ namespace simpledb
 
    }
 
-   manager::~manager(void)
+   manager::~manager()
    {
    }
 

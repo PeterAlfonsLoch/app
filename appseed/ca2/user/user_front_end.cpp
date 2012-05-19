@@ -7,12 +7,12 @@ namespace user
    HHOOK front_end::s_hhookMouse = NULL;
    int front_end::s_iMouseHookCount    = 0;
 
-   front_end::front_end(void)
+   front_end::front_end()
    {
 
    }
 
-   front_end::~front_end(void)
+   front_end::~front_end()
    {
    }
 
@@ -55,7 +55,7 @@ namespace user
          s_iMouseHookCount--;
          if(s_iMouseHookCount == 0)
          {
-            BOOL bResult = UnhookWindowsHookEx(s_hhookMouse);
+            bool bResult = UnhookWindowsHookEx(s_hhookMouse);
             s_hhookMouse = NULL;
             return bResult != FALSE;
          }

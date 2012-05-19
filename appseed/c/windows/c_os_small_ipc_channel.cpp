@@ -1,6 +1,6 @@
 #include "framework.h"
 
-extern BOOL (WINAPI * g_pfnChangeWindowMessageFilter)(
+extern bool (WINAPI * g_pfnChangeWindowMessageFilter)(
     _In_ UINT message,
     _In_ DWORD dwFlag);
 

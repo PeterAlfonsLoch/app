@@ -29,7 +29,7 @@ namespace dynamic_source
 
 
       library_class(::ca::application * papp);
-      ~library_class(void);
+      ~library_class();
 
 
 

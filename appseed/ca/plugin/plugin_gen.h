@@ -7,7 +7,7 @@ int spaboot_start(const char * pszVersion, const char * pszId);
 
 /*BSTR BSTRFromCStr_dup(UINT codePage, LPCSTR s);
 
-BOOL TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize);
+bool TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize);
 
 void FillSolidRect_dup(HDC hdc, LPCRECT lpRect, COLORREF clr);
 

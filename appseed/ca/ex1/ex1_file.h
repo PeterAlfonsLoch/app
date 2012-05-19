@@ -35,7 +35,7 @@ namespace ex1
       operator HFILE() const;
 
       virtual file_position get_position() const;
-      virtual BOOL GetStatus(file_status& rStatus) const;
+      virtual bool GetStatus(file_status& rStatus) const;
       virtual string GetFileName() const;
       virtual string GetFileTitle() const;
       virtual string GetFilePath() const;
@@ -43,11 +43,11 @@ namespace ex1
 
       
    // Operations
-      virtual BOOL open(const char * lpszFileName, UINT nOpenFlags, file_exception_sp * pError = NULL);
+      virtual bool open(const char * lpszFileName, UINT nOpenFlags, file_exception_sp * pError = NULL);
 
       //virtual void PASCAL Rename(const char * lpszOldName, const char * lpszNewName);
       //virtual void PASCAL remove(const char * lpszFileName);
-      virtual BOOL PASCAL GetStatus(const char * lpszFileName, file_status& rStatus);
+      virtual bool PASCAL GetStatus(const char * lpszFileName, file_status& rStatus);
       virtual void PASCAL SetStatus(const char * lpszFileName, const file_status& status);
 
 

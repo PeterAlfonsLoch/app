@@ -76,7 +76,7 @@ zlib_local void gf2_matrix_square OF((unsigned long *square, unsigned long *mat)
 
 zlib_local volatile int crc_table_empty = 1;
 zlib_local unsigned long FAR crc_table[TBLS][256];
-zlib_local void make_crc_table OF((void));
+zlib_local void make_crc_table OF(());
 #ifdef MAKECRCH
    zlib_local void write_table OF((FILE *, const unsigned long FAR *));
 #endif /* MAKECRCH */

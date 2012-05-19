@@ -5,11 +5,11 @@
 
 
 
-extern "C" BOOL WINAPI RawDllMain(HINSTANCE, DWORD dwReason, LPVOID);
-extern "C" BOOL (WINAPI * const _pRawDllMain)(HINSTANCE , DWORD , LPVOID) = &RawDllMain;
+extern "C" bool WINAPI RawDllMain(HINSTANCE, DWORD dwReason, LPVOID);
+extern "C" bool (WINAPI * const _pRawDllMain)(HINSTANCE , DWORD , LPVOID) = &RawDllMain;
 
 extern "C"
-BOOL WINAPI RawDllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
+bool WINAPI RawDllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
 {
    hInstance;
    try
@@ -53,7 +53,7 @@ BOOL WINAPI RawDllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
 }
 
 extern "C"
-BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
+bool WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
 {
    if (dwReason == DLL_PROCESS_ATTACH)
    {

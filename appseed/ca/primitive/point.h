@@ -35,8 +35,8 @@ public:
    void Offset(SIZE size) throw();
    void SetPoint(int X, int Y) throw();
 
-   BOOL operator==(POINT point) const throw();
-   BOOL operator!=(POINT point) const throw();
+   bool operator==(POINT point) const throw();
+   bool operator!=(POINT point) const throw();
    void operator+=(SIZE size) throw();
    void operator-=(SIZE size) throw();
    void operator+=(POINT point) throw();
@@ -93,8 +93,8 @@ public:
    void Offset(__size64 size) throw();
    void SetPoint(__int64 X, __int64 Y) throw();
 
-   BOOL operator==(__point64 point64) const throw();
-   BOOL operator!=(__point64 point64) const throw();
+   bool operator==(__point64 point64) const throw();
+   bool operator!=(__point64 point64) const throw();
    void operator+=(__size64 size) throw();
    void operator-=(__size64 size) throw();
    void operator+=(__point64 point64) throw();
@@ -156,8 +156,8 @@ public:
    void Offset(SIZED sized) throw();
    void SetPoint(int X, int Y) throw();
 
-   BOOL operator==(POINTD pointd) const throw();
-   BOOL operator!=(POINTD pointd) const throw();
+   bool operator==(POINTD pointd) const throw();
+   bool operator!=(POINTD pointd) const throw();
    void operator+=(SIZED sized) throw();
    void operator-=(SIZED sized) throw();
    void operator+=(POINTD pointd) throw();

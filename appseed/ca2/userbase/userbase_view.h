@@ -33,11 +33,11 @@ namespace userbase
 
       ::userbase::document* get_document() const;
 
-      virtual BOOL IsSelected(const ::radix::object* pDocItem) const; // support for OLE
+      virtual bool IsSelected(const ::radix::object* pDocItem) const; // support for OLE
 
       // OLE scrolling support (used for drag/drop as well)
-      virtual BOOL OnScroll(UINT nScrollCode, UINT nPos, BOOL bDoScroll = TRUE);
-      virtual BOOL OnScrollBy(size sizeScroll, BOOL bDoScroll = TRUE);
+      virtual bool OnScroll(UINT nScrollCode, UINT nPos, bool bDoScroll = TRUE);
+      virtual bool OnScrollBy(size sizeScroll, bool bDoScroll = TRUE);
 
       // OLE drag/drop support
       virtual DROPEFFECT OnDragEnter(COleDataObject* pDataObject,
@@ -45,7 +45,7 @@ namespace userbase
       virtual DROPEFFECT OnDragOver(COleDataObject* pDataObject,
          DWORD dwKeyState, point point);
       virtual void OnDragLeave();
-      virtual BOOL OnDrop(COleDataObject* pDataObject,
+      virtual bool OnDrop(COleDataObject* pDataObject,
          DROPEFFECT dropEffect, point point);
       virtual DROPEFFECT OnDropEx(COleDataObject* pDataObject,
          DROPEFFECT dropDefault, DROPEFFECT dropList, point point);
@@ -53,7 +53,7 @@ namespace userbase
 
 
 
-      virtual void OnActivateView(BOOL bActivate, ::view* pActivateView, ::view* pDeactiveView);
+      virtual void OnActivateView(bool bActivate, ::view* pActivateView, ::view* pDeactiveView);
       virtual void OnActivateFrame(UINT nState, ::frame_window* pFrameWnd);
 
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
@@ -68,7 +68,7 @@ namespace userbase
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
-      virtual BOOL pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(CREATESTRUCT& cs);
 
       // friend classes that call protected ::view overridables
       friend class ::userbase::document;

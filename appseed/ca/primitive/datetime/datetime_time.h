@@ -66,7 +66,7 @@ namespace datetime
 
    public:
       static time WINAPI get_current_time() NOTHROW;
-      static BOOL WINAPI is_valid_FILETIME(const FILETIME& ft) NOTHROW;
+      static bool WINAPI is_valid_FILETIME(const FILETIME& ft) NOTHROW;
 
       time() NOTHROW;
       time( __time64_t time ) NOTHROW;

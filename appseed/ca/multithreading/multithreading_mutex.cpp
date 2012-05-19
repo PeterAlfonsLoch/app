@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-mutex::mutex(BOOL bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
+mutex::mutex(bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
    sync_object(pstrName)
 {
 

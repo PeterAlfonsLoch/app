@@ -24,7 +24,7 @@ namespace platform
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-      virtual BOOL pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(CREATESTRUCT& cs);
 
 
       virtual void _000OnDraw(::ca::graphics * pgraphics);

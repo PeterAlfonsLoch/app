@@ -9,7 +9,7 @@ public:
    SimpleMDIFrameWindow(::ca::application * papp);
 
    void MDIActivate(::user::interaction* pWndActivate);
-   SimpleMDIChildWindow* MDIGetActive(BOOL* pbMaximized = NULL) const;
+   SimpleMDIChildWindow* MDIGetActive(bool* pbMaximized = NULL) const;
    void MDIIconArrange();
    void MDIMaximize(::user::interaction* pWnd);
    void MDINext();
@@ -24,7 +24,7 @@ public:
 
 // Overridables
    // ca2 API 1.0 backward compatible CreateClient hook (called by OnCreateClient)
-   virtual BOOL CreateClient(LPCREATESTRUCT lpCreateStruct, ::userbase::menu* pWindowMenu);
+   virtual bool CreateClient(LPCREATESTRUCT lpCreateStruct, ::userbase::menu* pWindowMenu);
    // customize if using an 'Window' menu with non-standard IDs
    virtual HMENU GetWindowMenuPopup(HMENU hMenuBar);
 
@@ -36,14 +36,14 @@ public:
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
 #endif
-   virtual BOOL pre_create_window(CREATESTRUCT& cs);
-   virtual BOOL LoadFrame(const char * pszMatter,
+   virtual bool pre_create_window(CREATESTRUCT& cs);
+   virtual bool LoadFrame(const char * pszMatter,
             DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
             ::user::interaction* pParentWnd = NULL,
             ::ca::create_context* pContext = NULL);
-   virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);
+   virtual bool OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);
    virtual void pre_translate_message(gen::signal_object * pobj);
-   virtual void on_update_frame_title(BOOL bAddToTitle);
+   virtual void on_update_frame_title(bool bAddToTitle);
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
       
    virtual void OnUpdateFrameMenu(HMENU hMenuAlt);
@@ -51,13 +51,13 @@ public:
 
 protected:
    virtual LRESULT DefWindowProc(UINT nMsg, WPARAM wParam, LPARAM lParam);
-   virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
+   virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
 
    //{{__MSG(SimpleMDIFrameWindow)
    DECL_GEN_SIGNAL(_001OnDestroy)
    void OnSize(UINT nType, int cx, int cy);
    void OnUpdateMDIWindowCmd(cmd_ui * pcmdui);
-   BOOL OnMDIWindowCmd(UINT nID);
+   bool OnMDIWindowCmd(UINT nID);
    void OnWindowNew();
    LRESULT OnCommandHelp(WPARAM wParam, LPARAM lParam);
    void OnIdleUpdateCmdUI();

@@ -83,9 +83,9 @@ namespace fs
    protected:
 
 
-      void _StartDelayedListUpdate(void);
-      void _StopDelayedListUpdate(void);
-      void _DelayedListUpdate(void);
+      void _StartDelayedListUpdate();
+      void _StopDelayedListUpdate();
+      void _DelayedListUpdate();
 
 
    };

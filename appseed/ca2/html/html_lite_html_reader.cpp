@@ -26,7 +26,7 @@
  */
 #include "framework.h"
 
-DWORD_PTR lite_html_reader::parseDocument(void)
+DWORD_PTR lite_html_reader::parseDocument()
 {
    ASSERT(m_lpszBuffer != NULL);
 
@@ -293,7 +293,7 @@ LCleanExit:
    return (nRetVal);
 }
 
-char lite_html_reader::UngetChar(void)
+char lite_html_reader::UngetChar()
 {
    if(m_lpszBuffer == NULL || m_dwBufPos == 0)
       return '\0';

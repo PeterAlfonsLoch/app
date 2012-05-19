@@ -53,7 +53,7 @@ namespace gen
       string szCmdline = pszCmdLine;
 
 
-      BOOL bSuccess = FALSE;
+      bool bSuccess = FALSE;
 
 // Set up members of the PROCESS_INFORMATION structure.
 

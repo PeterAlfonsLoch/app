@@ -33,9 +33,9 @@ public:
   PRBool FilterWithoutEnglishLetters(const char* aBuf, PRUint32 aLen, char** newBuf, PRUint32& newLen);
   PRBool FilterWithEnglishLetters(const char* aBuf, PRUint32 aLen, char** newBuf, PRUint32& newLen);
   const char* GetCharSetName();
-  nsProbingState GetState(void) {return mState;};
-  void      Reset(void);
-  float     GetConfidence(void);
+  nsProbingState GetState() {return mState;};
+  void      Reset();
+  float     GetConfidence();
   void      SetOpion() {};
 
 #ifdef DEBUG_chardet

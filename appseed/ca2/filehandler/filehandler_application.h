@@ -15,8 +15,8 @@ namespace filehandler
       ::userbase::single_document_template *       m_ptemplateMenu;
 
 
-      application(void);
-      virtual ~application(void);
+      application();
+      virtual ~application();
 
       virtual void construct();
 

@@ -102,7 +102,7 @@ bool file_put_contents_dup(const char * path, const char * contents, int len)
    else
       dwWrite = len;
    DWORD dwWritten = 0;
-   BOOL bOk = ::WriteFile(hfile, contents, (DWORD) dwWrite, &dwWritten, NULL);
+   bool bOk = ::WriteFile(hfile, contents, (DWORD) dwWrite, &dwWritten, NULL);
    ::CloseHandle(hfile);
    return dwWrite == dwWritten && bOk != FALSE;
 

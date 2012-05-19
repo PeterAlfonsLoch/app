@@ -11,7 +11,7 @@ public:
 #endif
 
 
-   event(BOOL bInitiallyOwn = FALSE, BOOL bManualReset = FALSE, LPCTSTR lpszNAme = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
+   event(bool bInitiallyOwn = FALSE, bool bManualReset = FALSE, LPCTSTR lpszNAme = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
    virtual ~event();
 
 
@@ -22,9 +22,9 @@ public:
 
    INT_PTR get_os_data() const;
 
-   BOOL SetEvent();
-   BOOL PulseEvent();
-   BOOL ResetEvent();
+   bool SetEvent();
+   bool PulseEvent();
+   bool ResetEvent();
 
 /**
 * \brief	Platform independent waitables (windows version)

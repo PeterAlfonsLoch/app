@@ -146,8 +146,8 @@ namespace gen
       };
       friend class signalizable;
    public:
-      signal(void);
-      virtual ~signal(void);
+      signal();
+      virtual ~signal();
 
       bool has_handler();
       void emit(signal_object * pobject = NULL);

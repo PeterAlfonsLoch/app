@@ -16,16 +16,16 @@ namespace ca
       virtual void construct(int nIndex, COLORREF crColor);    // CreateHatchBrush
       virtual void construct(bitmap * pbitmap);                // CreatePatternBrush
 
-      virtual BOOL CreateStockObject(int nIndex);
-      virtual BOOL CreateSolidBrush(COLORREF crColor);
-      virtual BOOL CreateHatchBrush(int nIndex, COLORREF crColor);
-      virtual BOOL CreateBrushIndirect(const LOGBRUSH* lpLogBrush);
-      virtual BOOL CreatePatternBrush(::ca::bitmap* pBitmap);
+      virtual bool CreateStockObject(int nIndex);
+      virtual bool CreateSolidBrush(COLORREF crColor);
+      virtual bool CreateHatchBrush(int nIndex, COLORREF crColor);
+      virtual bool CreateBrushIndirect(const LOGBRUSH* lpLogBrush);
+      virtual bool CreatePatternBrush(::ca::bitmap* pBitmap);
 #ifdef WINDOWS
-      virtual BOOL CreateDIBPatternBrush(HGLOBAL hPackedDIB, UINT nUsage);
+      virtual bool CreateDIBPatternBrush(HGLOBAL hPackedDIB, UINT nUsage);
 #endif
-      virtual BOOL CreateDIBPatternBrush(const void * lpPackedDIB, UINT nUsage);
-      virtual BOOL CreateSysColorBrush(int nIndex);
+      virtual bool CreateDIBPatternBrush(const void * lpPackedDIB, UINT nUsage);
+      virtual bool CreateSysColorBrush(int nIndex);
 
       virtual int GetLogBrush(LOGBRUSH* pLogBrush);
 

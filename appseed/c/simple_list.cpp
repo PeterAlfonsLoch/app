@@ -10,14 +10,14 @@ void base_simple_list::add_head(void * p)
    m_pHead = p;
 }
 
-BOOL base_simple_list::remove(void * p)
+bool base_simple_list::remove(void * p)
 {
 //   ASSERT(p != NULL);
 
    if (m_pHead == NULL)
       return FALSE;
 
-   BOOL bResult = FALSE;
+   bool bResult = FALSE;
    if (m_pHead == p)
    {
       m_pHead = *GetNextPtr(p);

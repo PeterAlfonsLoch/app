@@ -165,7 +165,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   EventMaskEnum getEventMask(void) const
+   EventMaskEnum getEventMask() const
       { return (m_eventMask); }
 
    /**
@@ -211,7 +211,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   DWORD_PTR getAppData(void) const
+   DWORD_PTR getAppData() const
       { return (m_dwAppData); }
 
    /**
@@ -239,7 +239,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   ILiteHTMLReaderEvents* getEventHandler(void) const
+   ILiteHTMLReaderEvents* getEventHandler() const
       { return (m_pEventHandler); }
 
    /**
@@ -281,7 +281,7 @@ protected:
 
    // parses an HTML document, and returns the
    // number of characters successfully parsed
-   virtual DWORD_PTR parseDocument(void);
+   virtual DWORD_PTR parseDocument();
 
    // parses an HTML comment from the buffer starting from
    // the current buffer position and returns true on sucess
@@ -312,7 +312,7 @@ protected:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   void ResetSeekPointer(void)
+   void ResetSeekPointer()
       { m_dwBufPos = 0L; }
 
    /**
@@ -322,7 +322,7 @@ protected:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   char ReadChar(void)
+   char ReadChar()
    {
       ASSERT(m_lpszBuffer != NULL);
       if (m_dwBufPos >= m_dwBufLen)
@@ -336,7 +336,7 @@ protected:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   char UngetChar(void);
+   char UngetChar();
 
    /** Other Helpers */
 

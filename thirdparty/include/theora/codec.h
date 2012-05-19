@@ -453,7 +453,7 @@ typedef struct{
 /**Retrieves a human-readable string to identify the library vendor and
  *  version.
  * \return the version string.*/
-extern const char *th_version_string(void);
+extern const char *th_version_string();
 /**Retrieves the library version number.
  * This is the highest bitstream version that the encoder library will produce,
  *  or that the decoder library can decode.
@@ -463,7 +463,7 @@ extern const char *th_version_string(void);
  * (VERSION_MAJOR<<16)+(VERSION_MINOR<<8)+(VERSION_SUBMINOR)
  * \endcode
  * \return the version number.*/
-extern ogg_uint32_t th_version_number(void);
+extern ogg_uint32_t th_version_number();
 /**Converts a granule position to an absolute frame index, starting at
  *  <tt>0</tt>.
  * The granule position is interpreted in the context of a given

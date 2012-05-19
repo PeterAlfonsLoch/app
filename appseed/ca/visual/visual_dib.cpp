@@ -155,7 +155,7 @@ namespace visual
          bConv = false;
       }
       
-      BOOL bOk = FreeImage_SaveToMemory(eformat, pfi8, pfm1 , PNG_DEFAULT);
+      bool bOk = FreeImage_SaveToMemory(eformat, pfi8, pfm1 , PNG_DEFAULT);
 
       BYTE * pbData;
       DWORD dwSize;

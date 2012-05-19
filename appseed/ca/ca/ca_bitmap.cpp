@@ -3,7 +3,7 @@
 namespace ca
 {
 
-   BOOL bitmap::CreateBitmap(int nWidth, int nHeight, UINT nPlanes,
+   bool bitmap::CreateBitmap(int nWidth, int nHeight, UINT nPlanes,
       UINT nBitcount, const void * lpBits)
    {
       UNREFERENCED_PARAMETER(nWidth);
@@ -13,12 +13,12 @@ namespace ca
       UNREFERENCED_PARAMETER(lpBits);
       throw not_implemented_exception();
    }
-   BOOL bitmap::CreateBitmapIndirect(LPBITMAP lpBitmap)
+   bool bitmap::CreateBitmapIndirect(LPBITMAP lpBitmap)
    {
       UNREFERENCED_PARAMETER(lpBitmap);
       throw not_implemented_exception();
    }
-   BOOL bitmap::CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset)
+   bool bitmap::CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset)
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(lpbmi);
@@ -28,7 +28,7 @@ namespace ca
       UNREFERENCED_PARAMETER(offset);
       throw not_implemented_exception();
    }
-   BOOL bitmap::CreateDIBitmap(::ca::graphics * pdc, const BITMAPINFOHEADER *pbmih, DWORD flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage)
+   bool bitmap::CreateDIBitmap(::ca::graphics * pdc, const BITMAPINFOHEADER *pbmih, DWORD flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage)
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(pbmih);
@@ -52,14 +52,14 @@ namespace ca
       throw not_implemented_exception();
    }
 
-   BOOL bitmap::CreateCompatibleBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight)
+   bool bitmap::CreateCompatibleBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
       throw not_implemented_exception();
    }
-   BOOL bitmap::CreateDiscardableBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight)
+   bool bitmap::CreateDiscardableBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nWidth);

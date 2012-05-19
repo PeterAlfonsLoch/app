@@ -15,7 +15,7 @@ folder_selection_list_view::folder_selection_list_view(::ca::application * papp)
 {
 }
 
-folder_selection_list_view::~folder_selection_list_view(void)
+folder_selection_list_view::~folder_selection_list_view()
 {
 }
 
@@ -104,7 +104,7 @@ void folder_selection_list_view::OnFileManagerBrowse()
 }
 
 
-void folder_selection_list_view::FolderAdd(void)
+void folder_selection_list_view::FolderAdd()
 {
    stringa straSel;
    m_ptreeview->GetSelectedFilePath(straSel);
@@ -119,7 +119,7 @@ void folder_selection_list_view::FolderAdd(void)
    }
 }
 
-void folder_selection_list_view::FolderRemove(void)
+void folder_selection_list_view::FolderRemove()
 {
    stringa wstraSel;
    m_plistview->GetSel(wstraSel);

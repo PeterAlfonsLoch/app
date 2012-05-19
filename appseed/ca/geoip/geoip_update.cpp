@@ -173,7 +173,7 @@ short int parse_http_proxy(char **proxy_host, int *port) {
 }
 
 /* get the GeoIP host or the current HTTP Proxy host. */
-struct hostent *GeoIP_get_host_or_proxy (void) {
+struct hostent *GeoIP_get_host_or_proxy () {
    char * hostname = (char *) GeoIPUpdateHost;
    char * proxy_host;
    int proxy_port;

@@ -130,7 +130,7 @@ namespace primitive
       }
    }
 
-   void shared_memory::SetHandle(HGLOBAL hGlobalMemory, BOOL bAllowGrow)
+   void shared_memory::SetHandle(HGLOBAL hGlobalMemory, bool bAllowGrow)
    {
       UNREFERENCED_PARAMETER(bAllowGrow);
       ASSERT(m_hGlobalMemory == NULL);        // do once only

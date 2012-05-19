@@ -15,7 +15,7 @@ namespace userbase
       m_iScalar = 0;
    }
 
-   elastic_slider::~elastic_slider(void)
+   elastic_slider::~elastic_slider()
    {
    }
 

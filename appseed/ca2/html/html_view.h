@@ -31,7 +31,7 @@ public:
 
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
-   virtual BOOL pre_create_window(CREATESTRUCT& cs);
+   virtual bool pre_create_window(CREATESTRUCT& cs);
    DECL_GEN_SIGNAL(_001OnInitialUpdate)
    virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
 

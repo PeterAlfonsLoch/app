@@ -33,7 +33,7 @@ database::set * base::CreateDataset() const
    return new class set((base*)this);
 }
 
-int base::status(void)
+int base::status()
 {
   if (active == false) return DB_CONNECTION_NONE;
   return DB_CONNECTION_OK;
@@ -111,7 +111,7 @@ int base::connect()
    return DB_CONNECTION_NONE;
 }
 
-void base::disconnect(void) {
+void base::disconnect() {
   if (active == false) return;
   sqlite3_close((sqlite3 *) conn);
   active = false;

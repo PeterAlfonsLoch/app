@@ -774,7 +774,7 @@
     <None Include="akrip.def" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="aspilib.c">
+    <ClCompile Include="aspilib.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -784,7 +784,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="atapi.c">
+    <ClCompile Include="atapi.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -794,7 +794,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="cdcache.c">
+    <ClCompile Include="cdcache.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -804,7 +804,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="handles.c">
+    <ClCompile Include="handles.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -814,7 +814,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="read10.c">
+    <ClCompile Include="read10.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -824,7 +824,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="readd4.c">
+    <ClCompile Include="readd4.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -834,7 +834,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="readd8.c">
+    <ClCompile Include="readd8.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -844,7 +844,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="scsipt.c">
+    <ClCompile Include="scsipt.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -854,7 +854,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="framework.c">
+    <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
     </ClCompile>

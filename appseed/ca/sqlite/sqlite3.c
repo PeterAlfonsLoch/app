@@ -582,8 +582,8 @@ extern "C" {
 **          a pointer to the [sqlite3_version] string constant.
 */
 SQLITE_API const char sqlite3_version[];
-SQLITE_API const char *sqlite3_libversion(void);
-SQLITE_API int sqlite3_libversion_number(void);
+SQLITE_API const char *sqlite3_libversion();
+SQLITE_API int sqlite3_libversion_number();
 
 /*
 ** CAPI3REF: Test To See If The Library Is Threadsafe {F10100}
@@ -609,7 +609,7 @@ SQLITE_API int sqlite3_libversion_number(void);
 **          SQLite was compiled with its mutexes enabled or zero
 **          if SQLite was compiled with mutexes disabled.
 */
-SQLITE_API int sqlite3_threadsafe(void);
+SQLITE_API int sqlite3_threadsafe();
 
 /*
 ** CAPI3REF: Database Connection Handle {F12000}
@@ -2045,7 +2045,7 @@ SQLITE_API void sqlite3_free(void*);
 **          by [sqlite3_memory_highwater(1)] is the highwater mark
 **          prior to the reset.
 */
-SQLITE_API sqlite3_int64 sqlite3_memory_used(void);
+SQLITE_API sqlite3_int64 sqlite3_memory_used();
 SQLITE_API sqlite3_int64 sqlite3_memory_highwater(int resetFlag);
 
 /*
@@ -3855,8 +3855,8 @@ SQLITE_API int sqlite3_create_function16(
 SQLITE_API int sqlite3_aggregate_count(sqlite3_context*);
 SQLITE_API int sqlite3_expired(sqlite3_stmt*);
 SQLITE_API int sqlite3_transfer_bindings(sqlite3_stmt*, sqlite3_stmt*);
-SQLITE_API int sqlite3_global_recover(void);
-SQLITE_API void sqlite3_thread_cleanup(void);
+SQLITE_API int sqlite3_global_recover();
+SQLITE_API void sqlite3_thread_cleanup();
 SQLITE_API int sqlite3_memory_alarm(void(*)(void*,sqlite3_int64,int),void*,sqlite3_int64);
 
 /*
@@ -5091,7 +5091,7 @@ SQLITE_API int sqlite3_auto_extension(void *xEntryPoint);
 ** This interface is experimental and is subject to change or
 ** removal in future releases of SQLite.
 */
-SQLITE_API void sqlite3_reset_auto_extension(void);
+SQLITE_API void sqlite3_reset_auto_extension();
 
 
 /*
@@ -7077,8 +7077,8 @@ SQLITE_PRIVATE   void sqlite3PagerRefdump(Pager*);
 #endif
 
 #ifdef SQLITE_TEST
-void disable_simulated_io_errors(void);
-void enable_simulated_io_errors(void);
+void disable_simulated_io_errors();
+void enable_simulated_io_errors();
 #else
 # define disable_simulated_io_errors()
 # define enable_simulated_io_errors()
@@ -7360,7 +7360,7 @@ SQLITE_PRIVATE int sqlite3OsCloseFree(sqlite3_file *);
 ** before attempting to use SQLite.
 */
 #if OS_UNIX || OS_WIN || OS_OS2
-SQLITE_PRIVATE sqlite3_vfs *sqlite3OsDefaultVfs(void);
+SQLITE_PRIVATE sqlite3_vfs *sqlite3OsDefaultVfs();
 #else
 # define sqlite3OsDefaultVfs(X) 0
 #endif
@@ -8741,7 +8741,7 @@ typedef struct {
 ** corruption is first detected.
 */
 #ifdef SQLITE_DEBUG
-SQLITE_PRIVATE   int sqlite3Corrupt(void);
+SQLITE_PRIVATE   int sqlite3Corrupt();
 # define SQLITE_CORRUPT_BKPT sqlite3Corrupt()
 # define DEBUGONLY(X)        X
 #else
@@ -8957,7 +8957,7 @@ SQLITE_PRIVATE   void sqlite3AuthContextPop(AuthContext*);
 # define sqlite3AuthRead(a,b,c,d)
 # define sqlite3AuthCheck(a,b,c,d,e)    SQLITE_OK
 # define sqlite3AuthContextPush(a,b,c)
-# define sqlite3AuthContextPop(a)  ((void)(a))
+# define sqlite3AuthContextPop(a)  (()(a))
 #endif
 SQLITE_PRIVATE void sqlite3Attach(Parse*, Expr*, Expr*, Expr*);
 SQLITE_PRIVATE void sqlite3Detach(Parse*, Expr*);
@@ -10611,7 +10611,7 @@ SQLITE_PRIVATE void sqlite3FaultBenign(int id, int enable){
 ** This routine exists as a place to set a breakpoint that will
 ** fire on any simulated fault.
 */
-static void sqlite3Fault(void){
+static void sqlite3Fault(){
   static int cnt = 0;
   cnt++;
 }
@@ -10706,7 +10706,7 @@ static struct {
 /*
 ** Enter the mutex mem.mutex. Allocate it if it is not already allocated.
 */
-static void enterMem(void){
+static void enterMem(){
   if( mem.mutex==0 ){
     mem.mutex = sqlite3_mutex_alloc(SQLITE_MUTEX_STATIC_MEM);
   }
@@ -10716,7 +10716,7 @@ static void enterMem(void){
 /*
 ** Return the amount of primitive::memory currently checked out.
 */
-SQLITE_API sqlite3_int64 sqlite3_memory_used(void){
+SQLITE_API sqlite3_int64 sqlite3_memory_used(){
   sqlite3_int64 n;
   enterMem();
   n = mem.nowUsed;
@@ -11009,7 +11009,7 @@ static struct {
 /*
 ** Enter the mutex mem.mutex. Allocate it if it is not already allocated.
 */
-static void enterMem(void){
+static void enterMem(){
   if( mem.mutex==0 ){
     mem.mutex = sqlite3_mutex_alloc(SQLITE_MUTEX_STATIC_MEM);
   }
@@ -11019,7 +11019,7 @@ static void enterMem(void){
 /*
 ** Return the amount of primitive::memory currently checked out.
 */
-SQLITE_API sqlite3_int64 sqlite3_memory_used(void){
+SQLITE_API sqlite3_int64 sqlite3_memory_used(){
   sqlite3_int64 n;
   enterMem();
   n = mem.nowUsed;
@@ -11547,7 +11547,7 @@ static void memsys3Link(u32 i){
 ** Also:  Initialize the primitive::memory allocation subsystem the first time
 ** this routine is called.
 */
-static void memsys3Enter(void){
+static void memsys3Enter(){
   if( mem.mutex==0 ){
     mem.mutex = sqlite3_mutex_alloc(SQLITE_MUTEX_STATIC_MEM);
     mem.aPool[0].u.hdr.size4x = SQLITE_MEMORY_SIZE/2 + 2;
@@ -11563,7 +11563,7 @@ static void memsys3Enter(void){
 /*
 ** Return the amount of primitive::memory currently checked out.
 */
-SQLITE_API sqlite3_int64 sqlite3_memory_used(void){
+SQLITE_API sqlite3_int64 sqlite3_memory_used(){
   sqlite3_int64 n;
   memsys3Enter();
   n = SQLITE_MEMORY_SIZE - mem.szMaster*8;
@@ -12177,7 +12177,7 @@ static void memsys5Link(int i, int iLogsize){
 ** Also:  Initialize the primitive::memory allocation subsystem the first time
 ** this routine is called.
 */
-static void memsys5Enter(void){
+static void memsys5Enter(){
   if( mem.mutex==0 ){
     int i;
     assert( sizeof(Mem5Block)==POW2_MIN );
@@ -12198,7 +12198,7 @@ static void memsys5Enter(void){
 /*
 ** Return the amount of primitive::memory currently checked out.
 */
-SQLITE_API sqlite3_int64 sqlite3_memory_used(void){
+SQLITE_API sqlite3_int64 sqlite3_memory_used(){
   return mem.currentOut;
 }
 
@@ -13223,7 +13223,7 @@ struct sqlite3_mutex {
 #if OS_WINCE
 # define mutexIsNT()  (1)
 #else
-  static int mutexIsNT(void){
+  static int mutexIsNT(){
     static int osType = 0;
     if( osType==0 ){
       OSVERSIONINFO sInfo;
@@ -14589,7 +14589,7 @@ static struct sqlite3PrngType {
 ** (Later):  Actually, OP_NewRowid does not depend on a good source of
 ** randomness any more.  But we will leave this code in all the same.
 */
-static int randomByte(void){
+static int randomByte(){
   unsigned char t;
 
 
@@ -14653,13 +14653,13 @@ SQLITE_PRIVATE void sqlite3Randomness(int N, void *pBuf){
 ** PRNG and restore the PRNG to its saved state at a later time.
 */
 static struct sqlite3PrngType sqlite3SavedPrng;
-SQLITE_PRIVATE void sqlite3SavePrngState(void){
+SQLITE_PRIVATE void sqlite3SavePrngState(){
   memcpy(&sqlite3SavedPrng, &sqlite3Prng, sizeof(sqlite3Prng));
 }
-SQLITE_PRIVATE void sqlite3RestorePrngState(void){
+SQLITE_PRIVATE void sqlite3RestorePrngState(){
   memcpy(&sqlite3Prng, &sqlite3SavedPrng, sizeof(sqlite3Prng));
 }
-SQLITE_PRIVATE void sqlite3ResetPrngState(void){
+SQLITE_PRIVATE void sqlite3ResetPrngState(){
   sqlite3Prng.isInit = 0;
 }
 #endif /* SQLITE_TEST */
@@ -17033,7 +17033,7 @@ SQLITE_PRIVATE int sqlite3OSTrace = 0;
 ** on i486 hardware.
 */
 #ifdef SQLITE_PERFORMANCE_TRACE
-__inline__ unsigned long long int hwtime(void){
+__inline__ unsigned long long int hwtime(){
   unsigned long long int x;
   __asm__("rdtsc\n\t"
           "mov %%edx, %%ecx\n\t"
@@ -18004,7 +18004,7 @@ int os2CurrentTime( sqlite3_vfs *pVfs, double *prNow ){
 ** some compilers (MSVC) do not allow forward declarations of
 ** initialized structures.
 */
-SQLITE_PRIVATE sqlite3_vfs *sqlite3OsDefaultVfs(void){
+SQLITE_PRIVATE sqlite3_vfs *sqlite3OsDefaultVfs(){
   static sqlite3_vfs os2Vfs = {
     1,                 /* iVersion */
     sizeof(os2File),   /* szOsFile */
@@ -18204,7 +18204,7 @@ SQLITE_PRIVATE int sqlite3OSTrace = 0;
 ** on i486 hardware.
 */
 #ifdef SQLITE_PERFORMANCE_TRACE
-__inline__ unsigned long long int hwtime(void){
+__inline__ unsigned long long int hwtime(){
   unsigned long long int x;
   __asm__("rdtsc\n\t"
           "mov %%edx, %%ecx\n\t"
@@ -20905,7 +20905,7 @@ static int unixCurrentTime(sqlite3_vfs *pVfs, double *prNow){
 ** some compilers (MSVC) do not allow forward declarations of
 ** initialized structures.
 */
-SQLITE_PRIVATE sqlite3_vfs *sqlite3OsDefaultVfs(void){
+SQLITE_PRIVATE sqlite3_vfs *sqlite3OsDefaultVfs(){
   static sqlite3_vfs unixVfs = {
     1,                  /* iVersion */
     sizeof(unixFile),   /* szOsFile */
@@ -21060,7 +21060,7 @@ SQLITE_PRIVATE int sqlite3OSTrace = 0;
 ** on i486 hardware.
 */
 #ifdef SQLITE_PERFORMANCE_TRACE
-__inline__ unsigned long long int hwtime(void){
+__inline__ unsigned long long int hwtime(){
   unsigned long long int x;
   __asm__("rdtsc\n\t"
           "mov %%edx, %%ecx\n\t"
@@ -21149,9 +21149,9 @@ SQLITE_API int sqlite3_open_file_count = 0;
 #if OS_WINCE
 typedef struct winceLock {
   int nReaders;       /* Number of reader locks obtained */
-  BOOL bPending;      /* Indicates a pending lock has been obtained */
-  BOOL bReserved;     /* Indicates a reserved lock has been obtained */
-  BOOL bExclusive;    /* Indicates an exclusive lock has been obtained */
+  bool bPending;      /* Indicates a pending lock has been obtained */
+  bool bReserved;     /* Indicates a reserved lock has been obtained */
+  bool bExclusive;    /* Indicates an exclusive lock has been obtained */
 } winceLock;
 #endif
 
@@ -21207,7 +21207,7 @@ static int sqlite3_os_type = 0;
 #if OS_WINCE
 # define isNT()  (1)
 #else
-  static int isNT(void){
+  static int isNT(){
     if( sqlite3_os_type==0 ){
       OSVERSIONINFO sInfo;
       sInfo.dwOSVersionInfoSize = sizeof(sInfo);
@@ -21404,10 +21404,10 @@ static void winceMutexAcquire(HANDLE h){
 ** create the mutex and shared primitive::memory used for locking in the file
 ** descriptor pFile
 */
-static BOOL winceCreateLock(const char *zFilename, winFile *pFile){
+static bool winceCreateLock(const char *zFilename, winFile *pFile){
   WCHAR *zTok;
   WCHAR *zName = utf8ToUnicode(zFilename);
-  BOOL bInit = TRUE;
+  bool bInit = TRUE;
 
   /* Initialize the local lockdata */
   ZeroMemory(&pFile->local, sizeof(pFile->local));
@@ -21511,7 +21511,7 @@ static void winceDestroyLock(winFile *pFile){
 /*
 ** An implementation of the LockFile() API of windows for wince
 */
-static BOOL winceLockFile(
+static bool winceLockFile(
   HANDLE *phFile,
   DWORD dwFileOffsetLow,
   DWORD dwFileOffsetHigh,
@@ -21519,7 +21519,7 @@ static BOOL winceLockFile(
   DWORD nNumberOfBytesToLockHigh
 ){
   winFile *pFile = HANDLE_TO_WINFILE(phFile);
-  BOOL bReturn = FALSE;
+  bool bReturn = FALSE;
 
   if (!pFile->hMutex) return TRUE;
   winceMutexAcquire(pFile->hMutex);
@@ -21572,7 +21572,7 @@ static BOOL winceLockFile(
 /*
 ** An implementation of the UnlockFile API of windows for wince
 */
-static BOOL winceUnlockFile(
+static bool winceUnlockFile(
   HANDLE *phFile,
   DWORD dwFileOffsetLow,
   DWORD dwFileOffsetHigh,
@@ -21580,7 +21580,7 @@ static BOOL winceUnlockFile(
   DWORD nNumberOfBytesToUnlockHigh
 ){
   winFile *pFile = HANDLE_TO_WINFILE(phFile);
-  BOOL bReturn = FALSE;
+  bool bReturn = FALSE;
 
   if (!pFile->hMutex) return TRUE;
   winceMutexAcquire(pFile->hMutex);
@@ -21630,7 +21630,7 @@ static BOOL winceUnlockFile(
 /*
 ** An implementation of the LockFileEx() API of windows for wince
 */
-static BOOL winceLockFileEx(
+static bool winceLockFileEx(
   HANDLE *phFile,
   DWORD dwFlags,
   DWORD dwReserved,
@@ -22606,7 +22606,7 @@ int winCurrentTime(sqlite3_vfs *pVfs, double *prNow){
 ** some compilers (MSVC) do not allow forward declarations of
 ** initialized structures.
 */
-SQLITE_PRIVATE sqlite3_vfs *sqlite3OsDefaultVfs(void){
+SQLITE_PRIVATE sqlite3_vfs *sqlite3OsDefaultVfs(){
   static sqlite3_vfs winVfs = {
     1,                 /* iVersion */
     sizeof(winFile),   /* szOsFile */
@@ -25233,11 +25233,11 @@ SQLITE_PRIVATE int sqlite3PagerMaxPageCount(Pager *pPager, int mxPage){
 SQLITE_API extern int sqlite3_io_error_pending;
 SQLITE_API extern int sqlite3_io_error_hit;
 static int saved_cnt;
-void disable_simulated_io_errors(void){
+void disable_simulated_io_errors(){
   saved_cnt = sqlite3_io_error_pending;
   sqlite3_io_error_pending = -1;
 }
-void enable_simulated_io_errors(void){
+void enable_simulated_io_errors(){
   sqlite3_io_error_pending = saved_cnt;
 }
 #else
@@ -40981,7 +40981,7 @@ static void registerTrace(FILE *out, int iReg, Mem *p){
 ** processor and returns that value.  This can be used for high-res
 ** profiling.
 */
-__inline__ unsigned long long int hwtime(void){
+__inline__ unsigned long long int hwtime(){
   unsigned long long int x;
   __asm__("rdtsc\n\t"
           "mov %%edx, %%ecx\n\t"
@@ -56627,7 +56627,7 @@ SQLITE_PRIVATE void sqlite3RegisterBuiltinFunctions(sqlite3 *db){
     }
   }
 #ifdef SQLITE_SSE
-  (void)sqlite3SseFunctions(db);
+  ()sqlite3SseFunctions(db);
 #endif
 #ifdef SQLITE_CASE_SENSITIVE_LIKE
   sqlite3RegisterLikeFunctions(db, 1);
@@ -58632,11 +58632,11 @@ struct sqlite3_api_routines {
   int  (*get_autocommit)(sqlite3*);
   void * (*get_auxdata)(sqlite3_context*,int);
   int  (*get_table)(sqlite3*,const char*,char***,int*,int*,char**);
-  int  (*global_recover)(void);
+  int  (*global_recover)();
   void  (*interruptx)(sqlite3*);
   sqlite_int64  (*last_insert_rowid)(sqlite3*);
-  const char * (*libversion)(void);
-  int  (*libversion_number)(void);
+  const char * (*libversion)();
+  int  (*libversion_number)();
   void *(*ca2_alloc)(int);
   char * (*mprintf)(const char*,...);
   int  (*open)(const char*,sqlite3**);
@@ -58665,7 +58665,7 @@ struct sqlite3_api_routines {
   char * (*snprintf)(int,char*,const char*,...);
   int  (*step)(sqlite3_stmt*);
   int  (*table_column_metadata)(sqlite3*,const char*,const char*,const char*,char const**,char const**,int*,int*,int*);
-  void  (*thread_cleanup)(void);
+  void  (*thread_cleanup)();
   int  (*total_changes)(sqlite3*);
   void * (*trace)(sqlite3*,void(*xTrace)(void*,const char*),void*);
   int  (*transfer_bindings)(sqlite3_stmt*,sqlite3_stmt*);
@@ -58702,7 +58702,7 @@ struct sqlite3_api_routines {
   int (*create_collation_v2)(sqlite3*,const char*,int,void*,int(*)(void*,int,const void*,int,const void*),void(*)(void*));
   int (*file_control)(sqlite3*,const char*,int,void*);
   sqlite3_int64 (*memory_highwater)(int);
-  sqlite3_int64 (*memory_used)(void);
+  sqlite3_int64 (*memory_used)();
   sqlite3_mutex *(*mutex_alloc)(int);
   void (*mutex_enter)(sqlite3_mutex*);
   void (*mutex_free)(sqlite3_mutex*);
@@ -59335,7 +59335,7 @@ SQLITE_API int sqlite3_auto_extension(void *xInit){
 /*
 ** Reset the automatic extension loading mechanism.
 */
-SQLITE_API void sqlite3_reset_auto_extension(void){
+SQLITE_API void sqlite3_reset_auto_extension(){
   sqlite3_mutex *mutex = sqlite3_mutex_alloc(SQLITE_MUTEX_STATIC_MASTER);
   sqlite3_mutex_enter(mutex);
   sqlite3_free(autoext.aExt);
@@ -74779,9 +74779,9 @@ SQLITE_PRIVATE int sqlite3Fts3Init(sqlite3 *db);
 ** The version of the library
 */
 SQLITE_API const char sqlite3_version[] = SQLITE_VERSION;
-SQLITE_API const char *sqlite3_libversion(void){ return sqlite3_version; }
-SQLITE_API int sqlite3_libversion_number(void){ return SQLITE_VERSION_NUMBER; }
-SQLITE_API int sqlite3_threadsafe(void){ return SQLITE_THREADSAFE; }
+SQLITE_API const char *sqlite3_libversion(){ return sqlite3_version; }
+SQLITE_API int sqlite3_libversion_number(){ return SQLITE_VERSION_NUMBER; }
+SQLITE_API int sqlite3_threadsafe(){ return SQLITE_THREADSAFE; }
 
 /*
 ** If the following function pointer is not NULL and if
@@ -76029,7 +76029,7 @@ SQLITE_API int sqlite3_collation_needed16(
 ** This function is now an anachronism. It used to be used to recover from a
 ** ca2_alloc() failure, but SQLite now does this automatically.
 */
-SQLITE_API int sqlite3_global_recover(void){
+SQLITE_API int sqlite3_global_recover(){
   return SQLITE_OK;
 }
 #endif
@@ -76052,7 +76052,7 @@ SQLITE_API int sqlite3_get_autocommit(sqlite3 *db){
 ** debugging builds.  This provides a way to set a breakpoint for when
 ** corruption is first detected.
 */
-SQLITE_PRIVATE int sqlite3Corrupt(void){
+SQLITE_PRIVATE int sqlite3Corrupt(){
   return SQLITE_CORRUPT;
 }
 #endif
@@ -76064,7 +76064,7 @@ SQLITE_PRIVATE int sqlite3Corrupt(void){
 ** SQLite no longer uses thread-specific data so this routine is now a
 ** no-op.  It is retained for historical compatibility.
 */
-SQLITE_API void sqlite3_thread_cleanup(void){
+SQLITE_API void sqlite3_thread_cleanup(){
 }
 
 /*

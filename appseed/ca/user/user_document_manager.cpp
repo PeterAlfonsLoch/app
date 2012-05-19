@@ -28,7 +28,7 @@ const char document_manager::gen_ShellNewValue[] = "";
 
 // recursively remove a registry key if and only if it has no subkeys
 /*
-BOOL __delete_reg_key(const char * lpszKey)
+bool __delete_reg_key(const char * lpszKey)
 {
    // copy the string
    LPTSTR lpszKeyCopy = _tcsdup(lpszKey);
@@ -52,7 +52,7 @@ BOOL __delete_reg_key(const char * lpszKey)
       // enumerate the keys underneath
       char szScrap[_MAX_PATH+1];
       DWORD dwLen = _countof(szScrap);
-      BOOL bItExists = FALSE;
+      bool bItExists = FALSE;
 
       if (::RegEnumKey(hKey, 0, szScrap, dwLen) == ERROR_SUCCESS)
          bItExists = TRUE;
@@ -72,7 +72,7 @@ BOOL __delete_reg_key(const char * lpszKey)
    return TRUE;
 }
 
-__STATIC BOOL AFXAPI
+__STATIC bool AFXAPI
 __set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName)
 {
    if (lpszValueName == NULL)
@@ -195,7 +195,7 @@ void document_manager::UnregisterShellFileTypes()
 }
 
 
-void document_manager::RegisterShellFileTypes(BOOL bCompat)
+void document_manager::RegisterShellFileTypes(bool bCompat)
 {
    UNREFERENCED_PARAMETER(bCompat);
    throw not_implemented_exception();
@@ -345,7 +345,7 @@ void document_manager::RegisterShellFileTypes(BOOL bCompat)
                if (bCompat)
                {
                   strTemp.Format(gen_ShellNewFmt, (const char *)strFilterExt);
-                  (void)__set_reg_key(strTemp, gen_ShellNewValue, gen_ShellNewValueName);
+                  ()__set_reg_key(strTemp, gen_ShellNewValue, gen_ShellNewValueName);
                }
             }
          }
@@ -434,7 +434,7 @@ document_template * document_manager::get_template(index index) const
    return m_templateptra.element_at(index);
 }
 
-BOOL document_manager::save_all_modified()
+bool document_manager::save_all_modified()
 {
    count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
@@ -447,7 +447,7 @@ BOOL document_manager::save_all_modified()
    return TRUE;
 }
 
-void document_manager::close_all_documents(BOOL bEndSession)
+void document_manager::close_all_documents(bool bEndSession)
 {
    count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
@@ -458,7 +458,7 @@ void document_manager::close_all_documents(BOOL bEndSession)
    }
 }
 
-BOOL document_manager::do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::document * pdocument)
+bool document_manager::do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate, ::document * pdocument)
 {
    return System.do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
 }
@@ -476,7 +476,7 @@ count document_manager::get_document_count()
    return nCount;
 }
 
-BOOL document_manager::OnDDECommand(__in LPTSTR lpszCommand)
+bool document_manager::OnDDECommand(__in LPTSTR lpszCommand)
 {
    UNREFERENCED_PARAMETER(lpszCommand);
    /*string strCommand = lpszCommand;
@@ -514,7 +514,7 @@ BOOL document_manager::OnDDECommand(__in LPTSTR lpszCommand)
    strCommand = strCommand.Right(strCommand.get_length() - i);
 
    //gen::command_line* pOldInfo = NULL;
-   BOOL bRetVal = TRUE;
+   bool bRetVal = TRUE;
 
    // // If we were started up for DDE retrieve the Show state
 //   System.command_line() = cmdInfo;

@@ -85,17 +85,17 @@ public:
 
 
    using ::userbase::control_bar::create;
-   BOOL create(::user::interaction* pParentWnd,
+   bool create(::user::interaction* pParentWnd,
       DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
       id nID = "__IDW_TOOLBAR");
    using ::user::interaction::CreateEx;
 #ifdef WINDOWS
-   BOOL CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = TBSTYLE_FLAT,
+   bool CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = TBSTYLE_FLAT,
       DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
       rect rcBorders = rect(0, 0, 0, 0),
       id nID = "__IDW_TOOLBAR");
 #else
-   BOOL CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = 0,
+   bool CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = 0,
       DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
       rect rcBorders = rect(0, 0, 0, 0),
       id nID = "__IDW_TOOLBAR");
@@ -103,14 +103,14 @@ public:
 
 
    int WrapToolBar(int nCount, int nWidth);
-   void SizeToolBar( int nCount, int nLength, BOOL bVert = FALSE);
+   void SizeToolBar( int nCount, int nLength, bool bVert = FALSE);
 
    size CalcDynamicLayout(int nLength, DWORD dwMode);
    size CalcLayout(DWORD dwMode, int nLength = -1);
    //bool CalcSize(size & size, bool bHorz);
    size CalcSize(int nCount);
    virtual void OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle);
-   virtual size CalcFixedLayout(BOOL bStretch, BOOL bHorz);
+   virtual size CalcFixedLayout(bool bStretch, bool bHorz);
 
 
    void RemoveAllTools();
@@ -143,20 +143,20 @@ public:
    int _001GetItemCount();
 
 /*
-   BOOL LoadToolBar(const char * lpszResourceName);
-   BOOL LoadToolBar(UINT nIDResource);
-   BOOL LoadBitmap(const char * lpszResourceName);
-   BOOL LoadBitmap(UINT nIDResource);
+   bool LoadToolBar(const char * lpszResourceName);
+   bool LoadToolBar(UINT nIDResource);
+   bool LoadBitmap(const char * lpszResourceName);
+   bool LoadBitmap(UINT nIDResource);
 */
 
-   BOOL LoadXmlToolBar(const char * lpszFileName);
+   bool LoadXmlToolBar(const char * lpszFileName);
 
 
 
 //   bool SetButtons(const UINT* lpIDArray, int nIDCount);
    void SetSizes(SIZE sizeButton, SIZE sizeImage);
 
-   void OnUpdateCmdUI(userbase::frame_window* pTarget, BOOL bDisableIfNoHndler);
+   void OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler);
 
 
    void TransparentEraseNonClient(::ca::graphics * pdc);

@@ -687,17 +687,17 @@ namespace fs
       ptimer->m_bRet = false;
    }
 
-   void tree_interface::_StartDelayedListUpdate(void)
+   void tree_interface::_StartDelayedListUpdate()
    {
       //SetTimer(TimerDelayedListUpdate, 500, NULL);
    }
 
-   void tree_interface::_StopDelayedListUpdate(void)
+   void tree_interface::_StopDelayedListUpdate()
    {
       //KillTimer(TimerDelayedListUpdate);
    }
 
-   void tree_interface::_DelayedListUpdate(void)
+   void tree_interface::_DelayedListUpdate()
    {
       if(m_straMissingUpdate.get_size() == 0)
       {

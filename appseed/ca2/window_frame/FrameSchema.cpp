@@ -257,8 +257,8 @@ namespace window_frame
       class rect rectWindow = rectClient;
       pwndiDraw->ClientToScreen(rectWindow);
       //spdib->create(rectClient.width(), rectClient.height());
-      BOOL b = spdib2->get_graphics()->BitBlt(0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, pdc, rectClient.left - iInflate, rectClient.top - iInflate, SRCCOPY);
-      //BOOL b = ::BitBlt(dc2, 0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, hdcScreen, rectClient.left - iInflate, rectClient.top - iInflate, SRCCOPY);
+      bool b = spdib2->get_graphics()->BitBlt(0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, pdc, rectClient.left - iInflate, rectClient.top - iInflate, SRCCOPY);
+      //bool b = ::BitBlt(dc2, 0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, hdcScreen, rectClient.left - iInflate, rectClient.top - iInflate, SRCCOPY);
       b = imaging.blur(spdib->get_graphics(), point(0, 0), 
          size(rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2),
          spdib2->get_graphics(), point(0, 0), 2);

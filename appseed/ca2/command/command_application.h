@@ -14,14 +14,14 @@ namespace command
       ::userbase::single_document_template *    m_ptemplateCommandMain;
 
 
-      application(void);
-      virtual ~application(void);
+      application();
+      virtual ~application();
 
       void construct();
 
 
       bool initialize_instance();
-      BOOL exit_instance();
+      virtual int exit_instance();
 
 
 	   virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);

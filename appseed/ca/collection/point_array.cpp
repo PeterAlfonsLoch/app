@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <math.h>
 
-point_array::~point_array(void)
+point_array::~point_array()
 {
 }
 
@@ -101,7 +101,7 @@ bool point_array::bounding_rect_contains_pt(point pt)
 }
 
 
-point64_array::~point64_array(void)
+point64_array::~point64_array()
 {
 }
 
@@ -115,7 +115,7 @@ void point64_array::offset(__int64 x, __int64 y)
 }
 
 
-pointd_array::~pointd_array(void)
+pointd_array::~pointd_array()
 {
 }
 

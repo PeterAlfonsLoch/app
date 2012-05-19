@@ -2,7 +2,7 @@
 
 #ifdef WINDOWS
 
-BOOL critical_section::Init()
+bool critical_section::Init()
 {
    __try
    {
@@ -18,7 +18,7 @@ BOOL critical_section::Init()
 
 critical_section::critical_section()
 {
-   BOOL bSuccess;
+   bool bSuccess;
 
    bSuccess = Init();
    if (!bSuccess)
@@ -65,7 +65,7 @@ bool critical_section::unlock()
 
 #else
 
-BOOL critical_section::Init()
+bool critical_section::Init()
 {
    try
    {
@@ -92,7 +92,7 @@ BOOL critical_section::Init()
 
 critical_section::critical_section()
 {
-   BOOL bSuccess;
+   bool bSuccess;
 
    bSuccess = Init();
    if (!bSuccess)
@@ -128,7 +128,7 @@ bool critical_section::lock()
 bool critical_section::lock(const duration & durationTimeout)
 {
    ASSERT(durationTimeout.is_pos_infinity());
-   (void)durationTimeout;
+   ()durationTimeout;
    return lock();
 }
 

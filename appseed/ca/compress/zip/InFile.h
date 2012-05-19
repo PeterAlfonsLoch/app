@@ -39,7 +39,7 @@ namespace zip
       };
 
       unz_file_info                       m_fi;
-      BOOL                                m_bCloseOnDelete;
+      bool                                m_bCloseOnDelete;
       string                              m_strFileName;
       uint64_t                            m_iPosition;
       stringa                             m_straPath;
@@ -59,12 +59,12 @@ namespace zip
 
       virtual file_position get_position() const;
 
-      virtual BOOL zip_open(const char *,UINT,ex1::file_exception_sp *);
-      virtual BOOL zip_open(File * pzfile, const char * lpcszFileName);
+      virtual bool zip_open(const char *,UINT,ex1::file_exception_sp *);
+      virtual bool zip_open(File * pzfile, const char * lpcszFileName);
 
-      virtual BOOL unzip_open(::ex1::file * pfile);
-      virtual BOOL unzip_open(const char *,UINT,ex1::file_exception_sp *);
-      virtual BOOL unzip_open(File * pzfile, const char * lpcszFileName);
+      virtual bool unzip_open(::ex1::file * pfile);
+      virtual bool unzip_open(const char *,UINT,ex1::file_exception_sp *);
+      virtual bool unzip_open(File * pzfile, const char * lpcszFileName);
 
       virtual bool locate(const char * pszFileName);
 

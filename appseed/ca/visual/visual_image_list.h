@@ -42,7 +42,7 @@ public:
    virtual ~image_list();
 
 #ifdef WINDOWS
-   BOOL get_image_info(int nImage, IMAGEINFO* pImageInfo) const;
+   bool get_image_info(int nImage, IMAGEINFO* pImageInfo) const;
 #endif
 
    void remove_all();

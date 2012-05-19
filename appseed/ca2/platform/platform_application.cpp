@@ -14,7 +14,7 @@ namespace platform
       m_strBaseSupportId   = "votagus_ca2_platform";
    }
 
-   application::~application(void)
+   application::~application()
    {
    }
 
@@ -39,7 +39,7 @@ namespace platform
       return true;
    }
 
-   BOOL application::exit_instance()
+   int application::exit_instance()
    {
       try
       {

@@ -31,17 +31,17 @@ public:
 
 
    using ::simple_toolbar::create;
-   BOOL create(::user::interaction* pParentWnd,
+   bool create(::user::interaction* pParentWnd,
       DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
       UINT nID = __IDW_TOOLBAR);
    using ::simple_toolbar::CreateEx;
 #ifdef WINDOWS
-   BOOL CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = TBSTYLE_FLAT,
+   bool CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = TBSTYLE_FLAT,
       DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
       rect rcBorders = rect(0, 0, 0, 0),
       UINT nID = __IDW_TOOLBAR);
 #else
-   BOOL CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = 0,
+   bool CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = 0,
       DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
       rect rcBorders = rect(0, 0, 0, 0),
       UINT nID = __IDW_TOOLBAR);
@@ -57,7 +57,7 @@ public:
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
    virtual void pre_translate_message(gen::signal_object * pobj);
    protected:
-   virtual BOOL pre_create_window(CREATESTRUCT& cs);
+   virtual bool pre_create_window(CREATESTRUCT& cs);
 
    virtual int _001GetHoverItem();
    virtual void OnUpdateHover();
@@ -72,7 +72,7 @@ public:
    //bool _001GetItemRect(int iItem, LPRECT lprect, EElement eelement);
    //virtual void _001OnDraw(::ca::graphics * pdc);
    bool ReloadMenuBar();
-   virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, BOOL bDisableIfNoHndler);
+   virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler);
    void RemoveAllButtons();
 
    bool Initialize(
@@ -83,7 +83,7 @@ public:
 
    //size CalcLayout(DWORD dwMode, int nLength);
 
-   //size CalcFixedLayout(BOOL bStretch, BOOL bHorz);
+   //size CalcFixedLayout(bool bStretch, bool bHorz);
 
    //size CalcDynamicLayout(int nLength, DWORD dwMode);
    //static VMSRESULT CalcSize(::userbase::tool_bar_control & tbc, size & size);

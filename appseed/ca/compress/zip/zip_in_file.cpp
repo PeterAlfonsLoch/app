@@ -39,7 +39,7 @@ namespace zip
    }
 
 
-   BOOL InFile::zip_open(const char * lpszFileName, UINT, ex1::file_exception_sp *)
+   bool InFile::zip_open(const char * lpszFileName, UINT, ex1::file_exception_sp *)
    {
       m_filea.remove_all();
       m_izfilea.remove_all();
@@ -98,7 +98,7 @@ namespace zip
       return TRUE;
    }
 
-   BOOL InFile::unzip_open(ex1::file * pfile)
+   bool InFile::unzip_open(ex1::file * pfile)
    {
 
       m_filea.remove_all();
@@ -114,7 +114,7 @@ namespace zip
 
    }
 
-   BOOL InFile::unzip_open(const char * lpszFileName, UINT, ex1::file_exception_sp *)
+   bool InFile::unzip_open(const char * lpszFileName, UINT, ex1::file_exception_sp *)
    {
       m_filea.remove_all();
       m_izfilea.remove_all();
@@ -211,7 +211,7 @@ namespace zip
       return true;
    }
 
-   BOOL InFile::unzip_open(File * pzfile, const char * lpcszFileName)
+   bool InFile::unzip_open(File * pzfile, const char * lpcszFileName)
    {
       ASSERT(__is_valid_string(lpcszFileName));
       m_filea.add(pzfile);
@@ -220,7 +220,7 @@ namespace zip
       return TRUE;
    }
 
-   BOOL InFile::zip_open(File * pzfile, const char * lpcszFileName)
+   bool InFile::zip_open(File * pzfile, const char * lpcszFileName)
    {
       ASSERT(__is_valid_string(lpcszFileName));
       m_filea.add(pzfile);
@@ -347,7 +347,7 @@ namespace zip
    //   ASSERT_VALID(this);
       //ASSERT(get_zip_file() != NULL);
 
-      BOOL bError = FALSE;
+      bool bError = FALSE;
       /*if(get_zip_file() != NULL)
       {
          unzCloseCurrentFile(get_zip_file()->m_pf);

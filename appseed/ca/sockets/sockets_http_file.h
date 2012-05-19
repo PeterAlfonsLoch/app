@@ -17,7 +17,7 @@ namespace sockets
          virtual ~file();
 
 
-         virtual BOOL open(const char * lpszFileName, UINT nOpenFlags, ::ex1::file_exception_sp * pError = NULL);
+         virtual bool open(const char * lpszFileName, UINT nOpenFlags, ::ex1::file_exception_sp * pError = NULL);
 
          
          DECL_GEN_SIGNAL(on_http_request_response);

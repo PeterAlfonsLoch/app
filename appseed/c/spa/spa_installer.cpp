@@ -194,14 +194,14 @@ namespace spa
          //MutexAttributes.bInheritHandle = FALSE; // object uninheritable
          // declare and initialize a security descriptor
          //SECURITY_DESCRIPTOR SD;
-   /*      BOOL bInitOk = InitializeSecurityDescriptor(
+   /*      bool bInitOk = InitializeSecurityDescriptor(
                            &SD,
                            SECURITY_DESCRIPTOR_REVISION );
          if ( bInitOk )
          {
             // give the security descriptor a Null Dacl
             // done using the  "TRUE, (PACL)NULL" here
-            BOOL bSetOk = SetSecurityDescriptorDacl( &SD,
+            bool bSetOk = SetSecurityDescriptorDacl( &SD,
                                                   TRUE,
                                                   (PACL)NULL,
                                                   FALSE );
@@ -2574,14 +2574,14 @@ install_begin:;
       MutexAttributes.bInheritHandle = FALSE; // object uninheritable
       // declare and initialize a security descriptor
       SECURITY_DESCRIPTOR SD;
-      BOOL bInitOk = InitializeSecurityDescriptor(
+      bool bInitOk = InitializeSecurityDescriptor(
                         &SD,
                         SECURITY_DESCRIPTOR_REVISION );
       if ( bInitOk )
       {
          // give the security descriptor a Null Dacl
          // done using the  "TRUE, (PACL)NULL" here
-         BOOL bSetOk = SetSecurityDescriptorDacl( &SD,
+         bool bSetOk = SetSecurityDescriptorDacl( &SD,
                                                TRUE,
                                                (PACL)NULL,
                                                FALSE );

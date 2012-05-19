@@ -188,7 +188,7 @@ int html_frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
    return 0;
 }
 
-BOOL html_frame::pre_create_window(CREATESTRUCT& cs)
+bool html_frame::pre_create_window(CREATESTRUCT& cs)
 {
    if( !simple_frame_window::pre_create_window(cs) )
       return FALSE;

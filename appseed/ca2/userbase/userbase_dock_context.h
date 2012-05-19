@@ -25,7 +25,7 @@ public:
    point m_ptLast;            // last mouse position during drag
    rect m_rectLast;
    size m_sizeLast;
-   BOOL m_bDitherLast;
+   bool m_bDitherLast;
 
    // Rectangles used during dragging or resizing
    rect m_rectDragHorz;
@@ -38,11 +38,11 @@ public:
    DWORD m_dwDockStyle;        // allowable dock styles for bar
    DWORD m_dwOverDockStyle;    // style of dock that rect is over
    DWORD m_dwStyle;            // style of control bar
-   BOOL m_bFlip;               // if shift key is down
-   BOOL m_bForceFrame;         // if ctrl key is down
+   bool m_bFlip;               // if shift key is down
+   bool m_bForceFrame;         // if ctrl key is down
 
    ::ca::graphics * m_pDC;                 // where to draw during drag
-   BOOL m_bDragging;
+   bool m_bDragging;
    int m_nHitTest;
    bool m_bTracking;
 
@@ -56,7 +56,7 @@ public:
    virtual void StartDrag(point pt);
    void Move(point pt);       // called when mouse has moved
    void EndDrag();             // drop
-   void OnKey(int nChar, BOOL bDown);
+   void OnKey(int nChar, bool bDown);
 
 // Resize Operations
    virtual void StartResize(int nHitTest, point pt);
@@ -73,10 +73,10 @@ public:
 // Implementation
 public:
    ~BaseDockContext();
-   BOOL Track();
-   void DrawFocusRect(BOOL bRemoveRect = FALSE);
+   bool Track();
+   void DrawFocusRect(bool bRemoveRect = FALSE);
       // draws the correct outline
-   void UpdateState(BOOL* pFlag, BOOL bNewValue);
+   void UpdateState(bool* pFlag, bool bNewValue);
    DWORD CanDock();
    BaseDockBar* GetDockBar(DWORD dwOverDockStyle);
 

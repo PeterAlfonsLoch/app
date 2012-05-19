@@ -19,7 +19,7 @@ namespace userbase
       menu_button_cmd_ui(::ca::application * papp);
 
 
-      virtual void Enable(BOOL bOn);
+      virtual void Enable(bool bOn);
       virtual void SetCheck(check::e_check echeck);
       virtual void SetText(const char * lpszText);
 

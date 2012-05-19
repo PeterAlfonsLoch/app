@@ -75,7 +75,7 @@ extern CLASS_DECL_ca UINT g_uiTraceFlags;
 //CLASS_DECL_ca void __format_strings(string & rString, UINT nIDS,
 //            const char * const* rglpsz, int nString);
 CLASS_DECL_ca void __format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int nString);
-CLASS_DECL_ca BOOL __extract_sub_string(string & rString, const char * lpszFullString, int iSubString, char chSep = '\n');
+CLASS_DECL_ca bool __extract_sub_string(string & rString, const char * lpszFullString, int iSubString, char chSep = '\n');
 
 
 
@@ -286,7 +286,7 @@ class CDockContext;                     // for dragging control bars
 // like ON_MESSAGE but no return value
 #define ON_MESSAGE_VOID(message, memberFxn) \
    { message, 0, 0, 0, gen::Sig_vv, \
-      (__PMSG)(__PMSGW)(void (__MSG_CALL ::ca::window::*)(void))&memberFxn },
+      (__PMSG)(__PMSGW)(void (__MSG_CALL ::ca::window::*)())&memberFxn },
 
 #if defined(LINUX) || defined(MACOS)
 
@@ -301,7 +301,7 @@ struct __SIZEPARENTPARAMS
    HDWP hDWP;       // handle for DeferWindowPos
    RECT rect;       // parent client rectangle (trim as appropriate)
    SIZE sizeTotal;  // total size on each side as layout proceeds
-   BOOL bStretch;   // should stretch to fill all space
+   bool bStretch;   // should stretch to fill all space
 };
 
 // flags for wParam in the WM_FLOATSTATUS message
@@ -388,7 +388,7 @@ struct __EVENT
    DISPPARAMS* m_pDispParams;
    EXCEPINFO* m_pExcepInfo;
    UINT* m_puArgError;
-   BOOL m_bPropChanged;
+   bool m_bPropChanged;
    HRESULT m_hResult;
    DSCSTATE m_nDSCState;
    DSCREASON m_nDSCReason;

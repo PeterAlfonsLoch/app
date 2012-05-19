@@ -81,10 +81,10 @@ namespace ca
       virtual void transparent_color(color color);
 
 
-      virtual BOOL create(size size);
-      virtual BOOL create(int iWidth, int iHeight);
-      virtual BOOL create(::ca::graphics * pdc);
-      virtual BOOL Destroy();
+      virtual bool create(size size);
+      virtual bool create(int iWidth, int iHeight);
+      virtual bool create(::ca::graphics * pdc);
+      virtual bool Destroy();
 
 
       virtual void DivideRGB(int iDivide);

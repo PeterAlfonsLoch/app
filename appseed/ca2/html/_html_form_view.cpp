@@ -71,7 +71,7 @@ void html_form_view::dump(dump_context & dumpcontext) const
 //
 
 
-BOOL html_form_view::pre_create_window(CREATESTRUCT& cs)
+bool html_form_view::pre_create_window(CREATESTRUCT& cs)
 {
    cs.lpszClass = System.RegisterWndClass(
       CS_DBLCLKS |

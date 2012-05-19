@@ -24,7 +24,7 @@ namespace userbase
 
    public:
       step_slider(::ca::application * papp);
-      virtual ~step_slider(void);
+      virtual ~step_slider();
 
       bool create(::user::interaction * pwndParent, id id);
 

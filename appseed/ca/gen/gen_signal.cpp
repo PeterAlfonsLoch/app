@@ -130,11 +130,11 @@ namespace gen
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   signal::signal(void)
+   signal::signal()
    {
    }
 
-   signal::~signal(void)
+   signal::~signal()
    {
       for(int i = 0; i < m_delegatea.get_size(); i++)
       {

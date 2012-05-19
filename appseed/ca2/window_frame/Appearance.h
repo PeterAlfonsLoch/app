@@ -53,7 +53,7 @@ namespace window_frame
       };
 
       CWorkSetDownUpInterface   *   m_pwndframeworkdownupinterface;
-      BOOL                          m_fActive;
+      bool                          m_fActive;
       bool                          m_bUseNc;
 
       bool                          m_bAutomaticModeSwitching;

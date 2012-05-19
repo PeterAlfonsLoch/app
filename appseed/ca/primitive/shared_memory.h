@@ -13,7 +13,7 @@ namespace primitive
 
       UINT                                   m_nAllocFlags;
       HGLOBAL                                m_hGlobalMemory;
-      BOOL                                   m_bAllowGrow;
+      bool                                   m_bAllowGrow;
 
    
       shared_memory(const memory_base & memory);
@@ -22,7 +22,7 @@ namespace primitive
       virtual ~shared_memory();
       
 
-      virtual void SetHandle(HGLOBAL hGlobalMemory, BOOL bAllowGrow = TRUE);
+      virtual void SetHandle(HGLOBAL hGlobalMemory, bool bAllowGrow = TRUE);
       virtual BYTE* Alloc(SIZE_T nBytes);
       virtual BYTE* Realloc(BYTE* lpMem, SIZE_T nBytes);
       virtual void Free(BYTE* lpMem);

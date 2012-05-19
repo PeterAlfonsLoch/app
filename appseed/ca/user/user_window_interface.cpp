@@ -220,7 +220,7 @@ namespace user
       }
       else
       {
-         BOOL bWin4 = FALSE;
+         bool bWin4 = FALSE;
       //_gen::FillPSOnStack();
          ::DefWindowProc(
             hwndParam,
@@ -538,7 +538,7 @@ namespace user
       //::UpdateWindow(GetHandle());
    }
 
-   inline void window_interface::Invalidate(BOOL bErase)
+   inline void window_interface::Invalidate(bool bErase)
    {
       UNREFERENCED_PARAMETER(bErase);
       //ASSERT(::IsWindow(GetHandle()));

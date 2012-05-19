@@ -11,7 +11,7 @@ namespace sockets
       {
       }
 
-      BOOL batch_file::open(const char * lpszFileName, UINT nOpenFlags, ::ex1::file_exception_sp * pError)
+      bool batch_file::open(const char * lpszFileName, UINT nOpenFlags, ::ex1::file_exception_sp * pError)
       {
          UNREFERENCED_PARAMETER(pError);
          m_strPath = lpszFileName;

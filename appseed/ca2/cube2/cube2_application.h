@@ -14,8 +14,11 @@ namespace cube2
       stringa m_straAppInterest;
       ::collection::string_map < HWND, HWND > m_mapAppInterest;
 
+#ifdef WINDOWS
 
       static BOOL CALLBACK GetAppsEnumWindowsProc(HWND hwnd, LPARAM lParam);
+
+#endif
 
       void update_app_interest();
       void ensure_app_interest();

@@ -2398,7 +2398,7 @@ static ptrdiff_t oc_token_skip_zrl(int _token,int _extra_bits){
 }
 
 /*Handles a normal coefficient value token.*/
-static ptrdiff_t oc_token_skip_val(void){
+static ptrdiff_t oc_token_skip_val(){
   return 1;
 }
 

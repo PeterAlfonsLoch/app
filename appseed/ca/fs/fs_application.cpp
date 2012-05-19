@@ -7,7 +7,7 @@ namespace fs
    {
    }
 
-   application::~application(void)
+   application::~application()
    {
    }
 

@@ -15,8 +15,8 @@ namespace ca2
       public:
 
 
-         application(void);
-         virtual ~application(void);
+         application();
+         virtual ~application();
 
 
          using ::ca::thread::construct;

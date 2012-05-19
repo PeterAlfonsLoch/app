@@ -701,7 +701,7 @@ namespace fontopus
       return "";
    }
 
-   BOOL login_thread::run()
+   int login_thread::run()
    {
       ca4::http::e_status estatus;
       string strResponse = Login(&estatus);

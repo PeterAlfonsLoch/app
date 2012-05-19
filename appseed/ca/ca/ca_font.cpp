@@ -29,7 +29,7 @@ namespace ca
    // out-of-line ::ca::brush, font, etc. helpers
 
    // nPointSize is actually scaled 10x
-   BOOL font::CreatePointFont(int nPointSize, const char * lpszFaceName, ::ca::graphics * pgraphics)
+   bool font::CreatePointFont(int nPointSize, const char * lpszFaceName, ::ca::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(nPointSize);
       UNREFERENCED_PARAMETER(lpszFaceName);
@@ -38,12 +38,12 @@ namespace ca
    }
 
    // pLogFont->nHeight is interpreted as PointSize * 10
-   BOOL font::CreatePointFontIndirect(const LOGFONT* lpLogFont, ::ca::graphics * pgraphics)
+   bool font::CreatePointFontIndirect(const LOGFONT* lpLogFont, ::ca::graphics * pgraphics)
    {
       return ::ca::font::CreateFontIndirect(lpLogFont);
    }
 
-   BOOL font::CreateFontIndirect(const LOGFONT* lpLogFont)
+   bool font::CreateFontIndirect(const LOGFONT* lpLogFont)
    {
       
       m_strFontFamilyName  = lpLogFont->lfFaceName;
@@ -54,7 +54,7 @@ namespace ca
 
    }
 
-   BOOL font::CreateFont(int nHeight, int nWidth, int nEscapement,
+   bool font::CreateFont(int nHeight, int nWidth, int nEscapement,
       int nOrientation, int nWeight, BYTE bItalic, BYTE bUnderline,
       BYTE cStrikeOut, BYTE nCharSet, BYTE nOutPrecision,
       BYTE nClipPrecision, BYTE nQuality, BYTE nPitchAndFamily,

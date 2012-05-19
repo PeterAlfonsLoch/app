@@ -48,7 +48,7 @@ namespace exception
 
 
       void address(DWORD_PTR a)      { m_uiAddress = a; }
-      DWORD_PTR address(void) const   { return m_uiAddress; }
+      DWORD_PTR address() const   { return m_uiAddress; }
 
       // symbol handler queries
       size_t      module  (vsstring & str);

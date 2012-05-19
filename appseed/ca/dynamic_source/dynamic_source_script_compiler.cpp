@@ -31,11 +31,11 @@ namespace dynamic_source
 
    }
 
-   script_compiler::~script_compiler(void)
+   script_compiler::~script_compiler()
    {
    }
 
-   void script_compiler::initialize(void)
+   void script_compiler::initialize()
    {
       prepare_compile_and_link_environment();
       folder_watch();
@@ -43,7 +43,7 @@ namespace dynamic_source
       run_persistent();
    }
 
-   void script_compiler::prepare_compile_and_link_environment(void)
+   void script_compiler::prepare_compile_and_link_environment()
    {
       //string strVars = getenv("VS100COMNTOOLS");
       string strVars = getenv("VS110COMNTOOLS");
@@ -127,13 +127,13 @@ namespace dynamic_source
 #else
       str += getenv("PATH");
 #endif
-      BOOL bResult;
+      bool bResult;
 #ifdef WINDOWS
       bResult = SetEnvironmentVariable("PATH", str);
 #else
       bResult = setenv("PATH", str, TRUE);
 #endif
-      TRACE("script_compiler::prepare_compile_and_link_environment SetEnvironmentVariable return BOOL %d", bResult);
+      TRACE("script_compiler::prepare_compile_and_link_environment SetEnvironmentVariable return bool %d", bResult);
 
    }
 

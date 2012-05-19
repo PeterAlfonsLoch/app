@@ -77,7 +77,7 @@ element * parser::expr(element * pelement1)
    }
 
 
-   element *parser::factor(void)
+   element *parser::factor()
    {
       element *node;
       m_scanner.peek();

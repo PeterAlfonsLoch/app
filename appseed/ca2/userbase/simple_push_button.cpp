@@ -30,7 +30,7 @@ void SimplePushButton::install_message_handling(::gen::message::dispatch * pinte
 /////////////////////////////////////////////////////////////////////////////
 // SimplePushButton message handlers
 
-BOOL SimplePushButton::pre_create_window(CREATESTRUCT& cs) 
+bool SimplePushButton::pre_create_window(CREATESTRUCT& cs) 
 {
    
    cs.style |= BS_OWNERDRAW;   

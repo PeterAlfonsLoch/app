@@ -117,7 +117,7 @@ namespace userbase
    }
 
 
-   void menu_button_cmd_ui::Enable(BOOL bOn)
+   void menu_button_cmd_ui::Enable(bool bOn)
    {
       m_bEnableChanged = TRUE;
       menu_button* pbutton = dynamic_cast < menu_button * > (m_pOther);

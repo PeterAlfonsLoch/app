@@ -29,10 +29,10 @@ namespace ca
       virtual int GetObject(int nCount, LPVOID lpObject) const;
    #pragma pop_macro("GetObject")*/
       virtual UINT GetObjectType() const;
-      virtual BOOL CreateStockObject(int nIndex);
-      virtual BOOL UnrealizeObject();
-      virtual BOOL operator==(const ::ca::graphics_object& obj) const;
-      virtual BOOL operator!=(const ::ca::graphics_object& obj) const;
+      virtual bool CreateStockObject(int nIndex);
+      virtual bool UnrealizeObject();
+      virtual bool operator==(const ::ca::graphics_object& obj) const;
+      virtual bool operator!=(const ::ca::graphics_object& obj) const;
 
       virtual void dump(dump_context & dumpcontext) const;
       virtual void assert_valid() const;

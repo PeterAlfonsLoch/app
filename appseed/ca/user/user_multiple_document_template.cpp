@@ -74,7 +74,7 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
       return;
    }
 
-   BOOL bAutoDelete = pdocument->m_bAutoDelete;
+   bool bAutoDelete = pdocument->m_bAutoDelete;
    pdocument->m_bAutoDelete = FALSE;   // don't destroy if something goes wrong
    frame_window* pFrame = create_new_frame(pdocument, NULL, pcreatecontext);
    pdocument->m_bAutoDelete = bAutoDelete;

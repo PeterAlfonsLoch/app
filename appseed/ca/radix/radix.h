@@ -649,14 +649,14 @@ public:
    CCommandLineInfo();
 
    // plain char* version on UNICODE for source-code backwards compatibility
-   virtual void ParseParam(const char* pszParam, BOOL bFlag, BOOL bLast);
+   virtual void ParseParam(const char* pszParam, bool bFlag, bool bLast);
 #ifdef _UNICODE
-   virtual void ParseParam(const char* pszParam, BOOL bFlag, BOOL bLast);
+   virtual void ParseParam(const char* pszParam, bool bFlag, bool bLast);
 #endif
 
-   BOOL m_bShowSplash;
-   BOOL m_bRunEmbedded;
-   BOOL m_bRunAutomated;
+   bool m_bShowSplash;
+   bool m_bRunEmbedded;
+   bool m_bRunAutomated;
    enum { FileNew, FileOpen, FilePrint, FilePrintTo, FileDDE, AppRegister,
       AppUnregister, FileNothing = -1 } m_nShellCommand;
 
@@ -676,18 +676,18 @@ protected:
 #ifdef _UNICODE
    void ParseParamNotFlag(const char* pszParam);
 #endif
-   void ParseLast(BOOL bLast);
+   void ParseLast(bool bLast);
 };
 */
 /////////////////////////////////////////////////////////////////////////////
 // document_manager
 
 
-/*CLASS_DECL_ca BOOL __delete_reg_key(const char * lpszKey);
+/*CLASS_DECL_ca bool __delete_reg_key(const char * lpszKey);
 
 
 
-CLASS_DECL_ca BOOL AFXAPI
+CLASS_DECL_ca bool AFXAPI
 __set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName = NULL);
 
 */
@@ -727,7 +727,7 @@ class CLASS_DECL_ca file_manager_interface :
 public:
    file_manager_interface();
    virtual ~file_manager_interface();
-   virtual BOOL do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
+   virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
 
    bool initialize(::ca::application * papp);
 

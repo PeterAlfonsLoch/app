@@ -72,7 +72,7 @@ namespace ex2
       virtual int exit_instance();
 
       virtual ::ex1::file_system & file_system();
-      virtual BOOL _001OnDDECommand(const char * lpcsz);
+      virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
       virtual ::user::document_interface * _001OpenDocumentFile(var varFile);
       DECL_GEN_SIGNAL(_001OnFileNew);
@@ -88,11 +88,11 @@ namespace ex2
       virtual bool Ex2OnAppInstall();
       virtual bool Ex2OnAppUninstall();
 
-      virtual BOOL DeferRegisterClass(LONG fToRegister, const char ** ppszClass);
+      virtual bool DeferRegisterClass(LONG fToRegister, const char ** ppszClass);
 
       // Temporary ::collection::map management (locks temp ::collection::map on current thread)
       virtual void LockTempMaps();
-      virtual BOOL UnlockTempMaps(BOOL bDeleteTemps = TRUE);
+      virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
       virtual const char * RegisterWndClass(UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 
       virtual ::radix::thread * GetThread();

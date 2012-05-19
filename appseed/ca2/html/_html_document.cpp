@@ -68,7 +68,7 @@ void html_document::data_on_after_change(gen::signal_object * pobj)
    UNREFERENCED_PARAMETER(pobj);
 }
 
-void html_document::OnBeforeNavigate2(html::data * pdata, var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
+void html_document::OnBeforeNavigate2(html::data * pdata, var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel)
 {
    UNREFERENCED_PARAMETER(pdata);
    UNREFERENCED_PARAMETER(varFile);

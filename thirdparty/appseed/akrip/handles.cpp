@@ -35,7 +35,7 @@ extern int *nextHandle;
 /*
  * external prototypes
  */
-BOOL UsingSCSIPT( void );
+bool UsingSCSIPT( void );
 void SPTIOpenCDHandle( BYTE ha, BYTE tgt, BYTE lun );
 
 
@@ -64,7 +64,7 @@ HCDROM  GetCDHandle( LPGETCDHAND lpcd )
   BYTE devType;
   //LPBYTE pDevType = &devType;
   HANDLE hMutex;
-  //BOOL bSkip;
+  //bool bSkip;
 
   if ( !lpcd )
     {
@@ -201,7 +201,7 @@ HCDROM  GetCDHandle( LPGETCDHAND lpcd )
  * Releases a CD Handle.
  *
  ****************************************************************/
-BOOL CloseCDHandle( HCDROM hCD )
+bool CloseCDHandle( HCDROM hCD )
 {
   int idx = (int)hCD - 1;
 

@@ -390,7 +390,7 @@ namespace html
 
 
       byte_array ba;
-      BOOL bCancel = FALSE;
+      bool bCancel = FALSE;
       OnBeforeNavigate2(
          varFile,
          0,
@@ -501,7 +501,7 @@ namespace html
       return TRUE;
    }
 
-   void data::OnBeforeNavigate2(var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
+   void data::OnBeforeNavigate2(var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel)
    {
       if(m_pcallback != NULL)
       {

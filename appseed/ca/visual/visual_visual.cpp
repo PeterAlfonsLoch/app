@@ -11,7 +11,7 @@ namespace visual
    }
 
 
-   visual::~visual(void)
+   visual::~visual()
    {
    }
 

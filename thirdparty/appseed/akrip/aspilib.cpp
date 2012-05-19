@@ -37,22 +37,22 @@ typedef struct {
 
 DWORD deinitREAD10( HCDROM hCD );
 DWORD initREAD10( HCDROM hCD );
-DWORD readCDParameters( HCDROM hCD, BOOL bChangeMask );
+DWORD readCDParameters( HCDROM hCD, bool bChangeMask );
 DWORD setCDSpeed( HCDROM hCD, DWORD speed );
-DWORD pauseResumeCD( HCDROM hCD, BOOL bPause );
-DWORD startStopUnit( HCDROM hCD, BOOL bLoEj, BOOL bStart );
+DWORD pauseResumeCD( HCDROM hCD, bool bPause );
+DWORD startStopUnit( HCDROM hCD, bool bLoEj, bool bStart );
 int loadAspi( void );
 void unloadAspi( void );
-BOOL initMutexes( void );
-BOOL deinitMutexes( void );
+bool initMutexes( void );
+bool deinitMutexes( void );
 DWORD CDDBSum( DWORD n );
 int compBuf( BYTE *b1, BYTE *b2, int n );
 DWORD testReadCDAudio( HCDROM hCD, LPTRACKBUF t );
 DWORD dummyGetASPI32SupportInfo( void );
 DWORD dummySendASPI32Command( LPSRB lpsrb );
-BOOL dummyGetASPI32Buffer( PASPI32BUFF pbuf );
-BOOL dummyFreeASPI32Buffer( PASPI32BUFF pbuf );
-BOOL dummyTranslateASPI32Address( PDWORD p1, PDWORD p2 );
+bool dummyGetASPI32Buffer( PASPI32BUFF pbuf );
+bool dummyFreeASPI32Buffer( PASPI32BUFF pbuf );
+bool dummyTranslateASPI32Address( PDWORD p1, PDWORD p2 );
 DWORD dummyGetASPI32DLLVersion( void );
 int InitSCSIPT( void );
 int DeinitSCSIPT( void );
@@ -99,13 +99,13 @@ static DWORD dwAPI = APIC_NONE;
 //CRITICAL_SECTION useDbbuf;
 //char dbbuf[512];
 
-DWORD (*pfnGetASPI32SupportInfo)(void);
+DWORD (*pfnGetASPI32SupportInfo)();
 DWORD (*pfnSendASPI32Command)(LPSRB);
-BOOL  (*pfnGetASPI32Buffer)(PASPI32BUFF);
-BOOL  (*pfnFreeASPI32Buffer)(PASPI32BUFF);
-BOOL  (*pfnTranslateASPI32Address)(PDWORD,PDWORD);
-DWORD (*pfnGetASPI32DLLVersion)(void);
-BOOL  aspiLoaded = FALSE;
+bool  (*pfnGetASPI32Buffer)(PASPI32BUFF);
+bool  (*pfnFreeASPI32Buffer)(PASPI32BUFF);
+bool  (*pfnTranslateASPI32Address)(PDWORD,PDWORD);
+DWORD (*pfnGetASPI32DLLVersion)();
+bool  aspiLoaded = FALSE;
 
 /*
  * local prototypes
@@ -118,12 +118,12 @@ static char *devType( int i );
 /***************************************************************************
  * DllMain
  ***************************************************************************/
-BOOL WINAPI DllMain( HANDLE hModule, DWORD dwReason, LPVOID lpReserved )
+bool WINAPI DllMain( HANDLE hModule, DWORD dwReason, LPVOID lpReserved )
 {
-  BOOL fInit;
+  bool fInit;
   static HANDLE hMapObject = NULL;
   HANDLE hInitMutex = NULL;
-  BOOL retVal = FALSE;
+  bool retVal = FALSE;
 
   hModule = hModule;
   lpReserved = lpReserved;
@@ -154,7 +154,7 @@ BOOL WINAPI DllMain( HANDLE hModule, DWORD dwReason, LPVOID lpReserved )
       if ( hMapObject == NULL )
 	break;
       fInit = ( GetLastError() != ERROR_ALREADY_EXISTS );
-      pcdShared = MapViewOfFile( hMapObject, FILE_MAP_WRITE, 0, 0, 0 );
+      pcdShared = (LPAKSHAREDMEM) MapViewOfFile( hMapObject, FILE_MAP_WRITE, 0, 0, 0 );
       if ( !pcdShared )
 	break;
       if ( fInit )
@@ -204,7 +204,7 @@ BOOL WINAPI DllMain( HANDLE hModule, DWORD dwReason, LPVOID lpReserved )
 
 
 
-BOOL initMutexes( void )
+bool initMutexes( void )
 {
   int i;
   char tmp[32];
@@ -222,7 +222,7 @@ BOOL initMutexes( void )
 }
 
 
-BOOL deinitMutexes( void )
+bool deinitMutexes( void )
 {
   int i;
 
@@ -321,19 +321,19 @@ DWORD dummySendASPI32Command( LPSRB lpsrb )
 }
 
 
-BOOL dummyGetASPI32Buffer( PASPI32BUFF pbuf )
+bool dummyGetASPI32Buffer( PASPI32BUFF pbuf )
 {
   return FALSE;
 }
 
 
-BOOL dummyFreeASPI32Buffer( PASPI32BUFF pbuf )
+bool dummyFreeASPI32Buffer( PASPI32BUFF pbuf )
 {
   return FALSE;
 }
 
 
-BOOL dummyTranslateASPI32Address( PDWORD p1, PDWORD p2 )
+bool dummyTranslateASPI32Address( PDWORD p1, PDWORD p2 )
 {
   return FALSE;
 }
@@ -356,17 +356,17 @@ int loadAspi( void )
   if ( hinstWNASPI32 )
     {
       pfnGetASPI32SupportInfo =
-	(DWORD(*)(void))GetProcAddress( hinstWNASPI32, "GetASPI32SupportInfo" );
+	(DWORD(*)())GetProcAddress( hinstWNASPI32, "GetASPI32SupportInfo" );
       pfnSendASPI32Command =
 	(DWORD(*)(LPSRB))GetProcAddress( hinstWNASPI32, "SendASPI32Command" );
       pfnGetASPI32Buffer =
-	(BOOL(*)(PASPI32BUFF))GetProcAddress( hinstWNASPI32, "GetASPI32Buffer" );
+	(bool(*)(PASPI32BUFF))GetProcAddress( hinstWNASPI32, "GetASPI32Buffer" );
       pfnFreeASPI32Buffer =
-	(BOOL(*)(PASPI32BUFF))GetProcAddress( hinstWNASPI32, "FreeASPI32Buffer" );
+	(bool(*)(PASPI32BUFF))GetProcAddress( hinstWNASPI32, "FreeASPI32Buffer" );
       pfnTranslateASPI32Address =
-	(BOOL(*)(PDWORD,PDWORD))GetProcAddress( hinstWNASPI32, "TranslateASPI32Address" );
+	(bool(*)(PDWORD,PDWORD))GetProcAddress( hinstWNASPI32, "TranslateASPI32Address" );
       pfnGetASPI32DLLVersion =
-	(DWORD(*)(void))GetProcAddress( hinstWNASPI32, "GetASPI32DLLVersion" );
+	(DWORD(*)())GetProcAddress( hinstWNASPI32, "GetASPI32DLLVersion" );
 
       if ( !pfnGetASPI32SupportInfo || !pfnSendASPI32Command )
 	{
@@ -885,7 +885,7 @@ DWORD SendASPI32Command( LPSRB s )
 
 
 #define _GEN_CDPARMS 0
-DWORD readCDParameters( HCDROM hCD, BOOL bChangeMask )
+DWORD readCDParameters( HCDROM hCD, bool bChangeMask )
 {
   HANDLE h;
   SRB_ExecSCSICmd s;
@@ -1003,12 +1003,12 @@ DWORD readCDParameters( HCDROM hCD, BOOL bChangeMask )
  * returns: If the parm is not available, returns FALSE.  Otherwise
  *          returns TRUE.
  *
- * The data requested will either be returned as a BOOL, or copied
+ * The data requested will either be returned as a bool, or copied
  * to pNum, depending on the parameter requested.
  ****************************************************************/
-BOOL QueryCDParms( HCDROM hCD, int which, DWORD *pNum )
+bool QueryCDParms( HCDROM hCD, int which, DWORD *pNum )
 {
-  BOOL retVal = FALSE;
+  bool retVal = FALSE;
   DWORD dwTmp;
   int idx = (int)hCD - 1;
 
@@ -1244,11 +1244,11 @@ BOOL QueryCDParms( HCDROM hCD, int which, DWORD *pNum )
  * Complement to queryCDParms -- used to set values in the various control
  * pages on the CD drive.
  */
-BOOL ModifyCDParms( HCDROM hCD, int which, DWORD val )
+bool ModifyCDParms( HCDROM hCD, int which, DWORD val )
 {
   //SENSEMASK smask;
-  //BOOL smRead = FALSE;
-  BOOL retVal = FALSE;
+  //bool smRead = FALSE;
+  bool retVal = FALSE;
   int idx = (int)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
@@ -1279,7 +1279,7 @@ BOOL ModifyCDParms( HCDROM hCD, int which, DWORD val )
       break;
 
     case CDP_MSF:
-      cdHandles[idx].bMSF = (BOOL)val;
+      cdHandles[idx].bMSF = (bool)val;
       retVal = TRUE;
       break;
 
@@ -1360,7 +1360,7 @@ DWORD setCDSpeed( HCDROM hCD, DWORD speed )
 }
 
 
-DWORD pauseResumeCD( HCDROM hCD, BOOL bPause )
+DWORD pauseResumeCD( HCDROM hCD, bool bPause )
 {
   DWORD dwStatus;
   HANDLE heventSRB;
@@ -1415,7 +1415,7 @@ DWORD pauseResumeCD( HCDROM hCD, BOOL bPause )
 }
 
 
-DWORD startStopUnit( HCDROM hCD, BOOL bLoEj, BOOL bStart )
+DWORD startStopUnit( HCDROM hCD, bool bLoEj, bool bStart )
 {
   DWORD dwStatus;
   HANDLE heventSRB;
@@ -1558,7 +1558,7 @@ DWORD  GetCDId( HCDROM hCD, char *buf, int maxBuf )
 }
 
 
-BOOL allZeros( LPTRACKBUF t )
+bool allZeros( LPTRACKBUF t )
 {
   DWORD i;
   unsigned char *p = &t->buf[t->startOffset]; 
@@ -1627,7 +1627,7 @@ DWORD ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF t, LPTRACKBUF tOver )
   int idx = (int)hCD - 1;
   int j, o;
   unsigned char *pOverAddr;
-  BOOL bJitterCorr, bSaveJitter;
+  bool bJitterCorr, bSaveJitter;
 
   if ( (idx<0) || (idx>=MAXCDHAND) )
     {

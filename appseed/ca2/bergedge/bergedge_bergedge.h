@@ -55,7 +55,7 @@ namespace bergedge
       virtual void construct();
 
       bool initialize_instance();
-      BOOL exit_instance();
+      virtual int exit_instance();
 
       bool InitializeLocalDataCentral();
 

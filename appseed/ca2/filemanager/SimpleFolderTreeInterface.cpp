@@ -922,7 +922,7 @@ namespace filemanager
    }
 
 
-   void filemanager::SimpleFolderTreeInterface::_StartDelayedListUpdate(void)
+   void filemanager::SimpleFolderTreeInterface::_StartDelayedListUpdate()
    {
 
       SetTimer(TimerDelayedListUpdate, 500, NULL);
@@ -930,7 +930,7 @@ namespace filemanager
    }
 
 
-   void filemanager::SimpleFolderTreeInterface::_StopDelayedListUpdate(void)
+   void filemanager::SimpleFolderTreeInterface::_StopDelayedListUpdate()
    {
 
       KillTimer(TimerDelayedListUpdate);
@@ -938,7 +938,7 @@ namespace filemanager
    }
 
 
-   void filemanager::SimpleFolderTreeInterface::_DelayedListUpdate(void)
+   void filemanager::SimpleFolderTreeInterface::_DelayedListUpdate()
    {
       
       single_lock sl(&m_mutexMissinUpdate, TRUE);

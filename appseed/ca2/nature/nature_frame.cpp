@@ -177,7 +177,7 @@ namespace nature
       return 0;
    }
 
-   BOOL frame::pre_create_window(CREATESTRUCT& cs)
+   bool frame::pre_create_window(CREATESTRUCT& cs)
    {
       if( !simple_frame_window::pre_create_window(cs) )
          return FALSE;

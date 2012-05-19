@@ -50,10 +50,10 @@ typedef struct
   CDRomParmsMask              cpm;
   CDRomCapabilitiesStatusMask ccsm;
   CDRomAudioControlMask       cacm;
-  BOOL                        rerAvail;
-  BOOL                        cpmAvail;
-  BOOL                        ccsmAvail;
-  BOOL                        cacmAvail;
+  bool                        rerAvail;
+  bool                        cpmAvail;
+  bool                        ccsmAvail;
+  bool                        cacmAvail;
 } SENSEMASK, *PSENSEMASK, FAR *LPSENSEMASK;
 
 int getSCSIDevType( BYTE bHostAdapter, BYTE bTarget, BYTE bLUN,
@@ -64,11 +64,11 @@ typedef DWORD (*CDREADFN)( HCDROM hCD, LPTRACKBUF t );
 typedef DWORD (*CDDEINIT)( HCDROM hCD );
 
 typedef struct {
-  BOOL bInit;
+  bool bInit;
 } R6INIT;
 
 typedef struct {
-  BOOL bInit;
+  bool bInit;
 } R10INIT;
 
 typedef union {
@@ -81,11 +81,11 @@ typedef struct {
   BYTE      tgt;
   BYTE      lun;
   BYTE      readType;
-  BOOL      used;
-  BOOL      bMSF;
-  BOOL      bInit;
+  bool      used;
+  bool      bMSF;
+  bool      bInit;
   SENSEMASK sm;
-  BOOL      smRead;
+  bool      smRead;
   CDREADFN  pfnRead;
   CDDEINIT  pfnDeinit;
   int       numCheck;     // used for jitter correction
@@ -103,7 +103,7 @@ DWORD readCDAudioLBA_READ10( HCDROM hCD, LPTRACKBUF t );
 DWORD readCDAudioLBA_D8( HCDROM hCD, LPTRACKBUF t );
 DWORD readCDAudioLBA_D4( HCDROM hCD, LPTRACKBUF t );
 
-DWORD pauseResumeCD( HCDROM hCD, BOOL bPause );
+DWORD pauseResumeCD( HCDROM hCD, bool bPause );
 
 void dbprintf( char *fmt, ... );
 #endif

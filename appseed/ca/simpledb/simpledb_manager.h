@@ -33,7 +33,7 @@ namespace simpledb
 
 
       manager(::ca::application * papp);
-      ~manager(void);
+      ~manager();
 
       bool initialize_instance();
 

@@ -9,7 +9,7 @@ class CLASS_DECL_ca point_array :
 public:
    __inline point_array() : raw_array < point >() {}
    __inline point_array(const point_array & pointset) { operator=(pointset); }
-   virtual ~point_array(void);
+   virtual ~point_array();
 
    void offset(int x, int y);
    void offset(class point point);
@@ -32,7 +32,7 @@ class CLASS_DECL_ca point64_array :
    public raw_array < point64 >
 {
 public:
-   virtual ~point64_array(void);
+   virtual ~point64_array();
 
    void offset(__int64 x, __int64 y);
    void offset(class point64 point);
@@ -45,7 +45,7 @@ class CLASS_DECL_ca pointd_array :
 public:
    __inline pointd_array() : raw_array < pointd >() {}
    __inline pointd_array(const pointd_array & pointset) { operator=(pointset); }
-   virtual ~pointd_array(void);
+   virtual ~pointd_array();
 
    void offset(double x, double y);
    void offset(class point point);

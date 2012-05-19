@@ -39,7 +39,7 @@ namespace bergedge
 
       void OnHoverAction();
 
-      virtual BOOL pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(CREATESTRUCT& cs);
 
       void ShowControlBars(bool bShow);
       void AnimateStatusBar();

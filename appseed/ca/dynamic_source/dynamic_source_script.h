@@ -65,7 +65,7 @@ namespace dynamic_source
 
 
       ds_script(::ca::application * papp);
-      ~ds_script(void);
+      ~ds_script();
 
 
 

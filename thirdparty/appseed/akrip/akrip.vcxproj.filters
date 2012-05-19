@@ -16,31 +16,31 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="aspilib.c">
+    <ClCompile Include="aspilib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="atapi.c">
+    <ClCompile Include="atapi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cdcache.c">
+    <ClCompile Include="cdcache.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="handles.c">
+    <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="read10.c">
+    <ClCompile Include="handles.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="readd4.c">
+    <ClCompile Include="read10.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="readd8.c">
+    <ClCompile Include="readd4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scsipt.c">
+    <ClCompile Include="readd8.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework.c">
+    <ClCompile Include="scsipt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

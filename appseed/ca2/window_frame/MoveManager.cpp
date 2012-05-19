@@ -306,7 +306,7 @@ namespace window_frame
       
 
 
-   BOOL CALLBACK UpdateCurrentAreaEnumWindowsProc(      
+   bool CALLBACK UpdateCurrentAreaEnumWindowsProc(      
        HWND hwnd,
        LPARAM lParam)
    {

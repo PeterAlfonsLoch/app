@@ -17,7 +17,7 @@ namespace visual
       void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, size & size);
       void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, strsize iCount, size & size);
 
-      BOOL TextOut(::ca::graphics * pdc, int x, int y, const char * lpcwsz, strsize iCount);
+      bool TextOut(::ca::graphics * pdc, int x, int y, const char * lpcwsz, strsize iCount);
       int _DrawText(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::ca::font * pfontUnderline = NULL);
       
       strsize _EncodeV033(string & str);

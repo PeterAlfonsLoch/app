@@ -13,7 +13,7 @@ namespace nature
       m_strBaseSupportId   = "votagus_ca2_nature";
    }
 
-   application::~application(void)
+   application::~application()
    {
    }
 

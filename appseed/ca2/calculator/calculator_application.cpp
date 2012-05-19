@@ -8,11 +8,11 @@ namespace ca2
    namespace calculator
    {
 
-      application::application(void)
+      application::application()
       {
       }
 
-      application::~application(void)
+      application::~application()
       {
       }
 

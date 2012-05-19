@@ -80,7 +80,7 @@ namespace database
 
    /* This function works only with MySQL database
       Filling the fields information from select statement */
-     virtual void fill_fields(void)=0;
+     virtual void fill_fields()=0;
 
    /* Parse Sql - replacing fields with prefixes :OLD_ and :NEW_ with current values of OLD or NEW field. */
      void parse_sql(const char * sql);
@@ -100,15 +100,15 @@ namespace database
    /* sets a new value of connection to database */
      void setDatabase(base *newDb) { db = newDb; }
    /* retrieves  a database which connected */
-     base *getDatabase(void) { return db; }
+     base *getDatabase() { return db; }
 
    /* sets a new query string to database server */
      void setExecSql(const char *newSql) { sql = newSql; }
    /* retrieves a query string */
-     const char *getExecSql(void) { return sql; }
+     const char *getExecSql() { return sql; }
 
    /* status active is OK query */
-     virtual bool isActive(void) { return active; }
+     virtual bool isActive() { return active; }
 
    //  virtual void setSqlParams(const char *sqlFrmt, sqlType t, ...); 
 
@@ -154,9 +154,9 @@ namespace database
      virtual void last();
 
    /* Check for Ending set */
-     virtual bool eof(void) { return feof; }
+     virtual bool eof() { return feof; }
    /* Check for Begining set */
-     virtual bool bof(void) { return fbof; }
+     virtual bool bof() { return fbof; }
 
    /* Start the insert mode */
      virtual void insert();

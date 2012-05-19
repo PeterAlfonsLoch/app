@@ -13,7 +13,7 @@ public:
 
 
    folder_list_view(::ca::application * papp);
-   virtual ~folder_list_view(void);
+   virtual ~folder_list_view();
 
 
    void Initialize(::database::id  datakey, bool bRecursive);

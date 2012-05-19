@@ -100,7 +100,7 @@ namespace plane
       return true;
    }
 
-   BOOL session::exit_instance()
+   int session::exit_instance()
    {
       try
       {

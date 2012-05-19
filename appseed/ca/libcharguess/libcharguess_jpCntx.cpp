@@ -136,7 +136,7 @@ void JapaneseContextAnalysis::HandleData(const char* aBuf, PRUint32 aLen)
   return;
 }
 
-void JapaneseContextAnalysis::Reset(void)
+void JapaneseContextAnalysis::Reset()
 {
   mTotalRel = 0;
   for (PRUint32 i = 0; i < NUM_OF_CATEGORY; i++)

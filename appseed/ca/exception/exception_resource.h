@@ -8,8 +8,8 @@ public:
 
 
    resource_exception();
-   explicit resource_exception(BOOL bAutoDelete);
-   resource_exception(BOOL bAutoDelete, UINT nResourceID);
+   explicit resource_exception(bool bAutoDelete);
+   resource_exception(bool bAutoDelete, UINT nResourceID);
    virtual ~resource_exception();
 
 

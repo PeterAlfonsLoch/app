@@ -22,14 +22,14 @@ simple_combo_box::~simple_combo_box()
 void simple_combo_box::_001OnDraw(::ca::graphics *pdc)
 {
    ::userbase::combo_box::_001OnDraw(pdc);
-/*   BOOL bWin4 = afxData.bWin4;
+/*   bool bWin4 = afxData.bWin4;
    _gen::FillPSOnStack();
    ::CallWindowProc(
       *GetSuperWndProcAddr(),
       get_handle(), (bWin4 ? WM_PRINT : WM_PAINT),
       (WPARAM)(pdc->get_handle1()),
       (LPARAM)(bWin4 ? PRF_CHILDREN | PRF_CLIENT : 0));*/
-//   BOOL bWin4 = afxData.bWin4;
+//   bool bWin4 = afxData.bWin4;
 //   _gen::FillPSOnStack();
 /* trans   ::CallWindowProc(
       *GetSuperWndProcAddr(),
@@ -40,7 +40,7 @@ void simple_combo_box::_001OnDraw(::ca::graphics *pdc)
       PRF_CHILDREN | PRF_CLIENT); */
 }
 
-BOOL simple_combo_box::OnEraseBkgnd(::ca::graphics * pgraphics) 
+bool simple_combo_box::OnEraseBkgnd(::ca::graphics * pgraphics) 
 {
    UNREFERENCED_PARAMETER(pgraphics);
    return TRUE;

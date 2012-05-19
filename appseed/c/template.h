@@ -7,7 +7,7 @@ typedef __POSITION* POSITION;
 
 
 template<class TYPE, class ARG_TYPE>
-BOOL simple_CompareElements(const TYPE* pElement1, const ARG_TYPE* pElement2)
+bool simple_CompareElements(const TYPE* pElement1, const ARG_TYPE* pElement2)
 {
    return *pElement1 == *pElement2;
 }
@@ -20,7 +20,7 @@ inline UINT simple_HashKey(ARG_KEY key)
    return (DWORD)(((DWORD_PTR)key)>>4);
 }
 
-template<> CLASS_DECL_c BOOL simple_CompareElements(const wstring * pElement1, const wstring * pElement2);
+template<> CLASS_DECL_c bool simple_CompareElements(const wstring * pElement1, const wstring * pElement2);
 
 
 template<> CLASS_DECL_c UINT simple_HashKey<const wchar_t *> (const wchar_t * key);

@@ -10,7 +10,7 @@
 ///				it monitors only the specified directory
 ///  \param		filter filter conditions that satisfy a change notification wait
 ///				can take values described by enum filter
-file_change_event::file_change_event(const char * path, BOOL watchsubtree, DWORD filter) :
+file_change_event::file_change_event(const char * path, bool watchsubtree, DWORD filter) :
 	event_base( ::FindFirstChangeNotificationW(gen::international::utf8_to_unicode(path), watchsubtree, filter) )
 {
 	if (item() == 0)
@@ -56,7 +56,7 @@ wait_result file_change_event::wait (const duration & duration)
 ///  \brief		requests that the operating system signal a change
 ///				notification handle the next time it detects an appropriate
 ///				change
-BOOL file_change_event::next ()
+bool file_change_event::next ()
 { return ::FindNextChangeNotification(item()); }
 
 ///  \brief		stops change notification handle monitoring

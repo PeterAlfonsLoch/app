@@ -38,7 +38,7 @@ public:
 
 
    using userbase::frame_window::create;
-   virtual BOOL create(const char * lpszClassName,
+   virtual bool create(const char * lpszClassName,
             const char * lpszWindowName,
             DWORD dwStyle = WS_OVERLAPPEDWINDOW,
             const RECT& rect = rectDefault,
@@ -73,7 +73,7 @@ public:
 
    virtual window_frame::FrameSchema * create_frame_schema();
 
-   virtual BOOL LoadFrame(const char * pszMatter, DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction* pParentWnd = NULL, ::ca::create_context* pContext = NULL);
+   virtual bool LoadFrame(const char * pszMatter, DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction* pParentWnd = NULL, ::ca::create_context* pContext = NULL);
 
    DECL_GEN_SIGNAL(_001OnNcActivate);
 
@@ -93,8 +93,8 @@ public:
    ::user::interaction* WindowDataGetWnd();
    virtual void layout();
    virtual void ActivateFrame(int nCmdShow = -1);
-   virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);
-   virtual BOOL pre_create_window(CREATESTRUCT& cs);
+   virtual bool OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);
+   virtual bool pre_create_window(CREATESTRUCT& cs);
    virtual void pre_translate_message(gen::signal_object * pobj);
 
    virtual void _000OnDraw(::ca::graphics * pdc);
@@ -123,7 +123,7 @@ public:
    DECL_GEN_SIGNAL(_001OnGetMinMaxInfo)
    DECL_GEN_SIGNAL(_001OnUser184)
 
-   void OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp);
+   void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp);
 
    // persistent frame implemenation using updowntarget
 

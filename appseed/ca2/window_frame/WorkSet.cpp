@@ -466,7 +466,7 @@ namespace window_frame
    }
 
 
-   void WorkSet::SetActiveFlag(BOOL fActive)
+   void WorkSet::SetActiveFlag(bool fActive)
    {
       if(fActive != m_pappearance->m_fActive)
       {

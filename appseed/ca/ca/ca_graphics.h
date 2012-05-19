@@ -91,7 +91,7 @@ namespace ca
       virtual void attach(void * pdata);
 
 #ifdef WINDOWS
-      virtual BOOL Attach(HDC hdc);
+      virtual bool Attach(HDC hdc);
       virtual HDC Detach();
 #endif
 
@@ -107,7 +107,7 @@ namespace ca
 
       void set_solid_pen(double dWidth);
 
-      virtual BOOL IsPrinting() const;            // TRUE if being used for printing
+      virtual bool IsPrinting() const;            // TRUE if being used for printing
 
       virtual ::ca::pen & GetCurrentPen() const;
       virtual ::ca::brush & GetCurrentBrush() const;
@@ -120,22 +120,22 @@ namespace ca
       virtual DWORD SetLayout(DWORD dwLayout);
 
    // Constructors
-      virtual BOOL CreateDC(const char * lpszDriverName, const char * lpszDeviceName,
+      virtual bool CreateDC(const char * lpszDriverName, const char * lpszDeviceName,
          const char * lpszOutput, const void * lpInitData);
-      virtual BOOL CreateIC(const char * lpszDriverName, const char * lpszDeviceName,
+      virtual bool CreateIC(const char * lpszDriverName, const char * lpszDeviceName,
          const char * lpszOutput, const void * lpInitData);
-      virtual BOOL CreateCompatibleDC(::ca::graphics * pgraphics);
+      virtual bool CreateCompatibleDC(::ca::graphics * pgraphics);
 
-      virtual BOOL DeleteDC();
+      virtual bool DeleteDC();
 
    // Device-Context Functions
       virtual int SaveDC();
-      virtual BOOL RestoreDC(int nSavedDC);
+      virtual bool RestoreDC(int nSavedDC);
       virtual int GetDeviceCaps(int nIndex) const;
       virtual UINT SetBoundsRect(LPCRECT lpRectBounds, UINT flags);
       virtual UINT GetBoundsRect(LPRECT lpRectBounds, UINT flags);
 #ifdef WINDOWS
-      virtual BOOL ResetDC(const DEVMODE* lpDevMode);
+      virtual bool ResetDC(const DEVMODE* lpDevMode);
 #endif
 
    // Drawing-Tool Functions
@@ -158,7 +158,7 @@ namespace ca
 
    // color and color Palette Functions
       virtual COLORREF GetNearestColor(COLORREF crColor) const;
-      virtual ::ca::palette* SelectPalette(::ca::palette* pPalette, BOOL bForceBackground);
+      virtual ::ca::palette* SelectPalette(::ca::palette* pPalette, bool bForceBackground);
       virtual UINT RealizePalette();
       virtual void UpdateColors();
 
@@ -187,8 +187,8 @@ namespace ca
 
 
 #ifdef WINDOWS
-      virtual BOOL GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const;
-      virtual BOOL SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust);
+      virtual bool GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const;
+      virtual bool SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust);
 #endif
 
    #if (_WIN32_WINNT >= 0x0500)
@@ -207,9 +207,9 @@ namespace ca
 
       // World transform
 #ifdef WINDOWS
-      virtual BOOL SetWorldTransform(const XFORM* pXform);
-      virtual BOOL ModifyWorldTransform(const XFORM* pXform,DWORD iMode);
-      virtual BOOL GetWorldTransform(XFORM* pXform) const;
+      virtual bool SetWorldTransform(const XFORM* pXform);
+      virtual bool ModifyWorldTransform(const XFORM* pXform,DWORD iMode);
+      virtual bool GetWorldTransform(XFORM* pXform) const;
 #endif
 
       // Mapping Functions
@@ -254,17 +254,17 @@ namespace ca
       virtual void HIMETRICtoLP(LPSIZE lpSize) const;
 
    // Region Functions
-      virtual BOOL FillRgn(::ca::region* pRgn, ::ca::brush* pBrush);
-      virtual BOOL FrameRgn(::ca::region* pRgn, ::ca::brush* pBrush, int nWidth, int nHeight);
-      virtual BOOL InvertRgn(::ca::region* pRgn);
-      virtual BOOL PaintRgn(::ca::region* pRgn);
+      virtual bool FillRgn(::ca::region* pRgn, ::ca::brush* pBrush);
+      virtual bool FrameRgn(::ca::region* pRgn, ::ca::brush* pBrush, int nWidth, int nHeight);
+      virtual bool InvertRgn(::ca::region* pRgn);
+      virtual bool PaintRgn(::ca::region* pRgn);
 
    // Clipping Functions
       virtual int GetClipBox(LPRECT lpRect) const;
       virtual int GetClipBox(rect64 * lpRect) const;
-      virtual BOOL PtVisible(int x, int y) const;
-      virtual BOOL PtVisible(POINT point) const;
-      virtual BOOL RectVisible(LPCRECT lpRect) const;
+      virtual bool PtVisible(int x, int y) const;
+      virtual bool PtVisible(POINT point) const;
+      virtual bool RectVisible(LPCRECT lpRect) const;
       virtual int SelectClipRgn(::ca::region* pRgn);
       virtual int ExcludeClipRect(int x1, int y1, int x2, int y2);
       virtual int ExcludeClipRect(LPCRECT lpRect);
@@ -281,114 +281,114 @@ namespace ca
       virtual point drawLine(int x1, int y1, int x2, int y2);
       virtual point draw_line(int x1, int y1, int x2, int y2);
 
-      virtual BOOL DrawRect(int x1, int y1, int x2, int y2);
-      virtual BOOL drawRect(int x1, int y1, int x2, int y2);
-      virtual BOOL draw_rect(int x1, int y1, int x2, int y2);
+      virtual bool DrawRect(int x1, int y1, int x2, int y2);
+      virtual bool drawRect(int x1, int y1, int x2, int y2);
+      virtual bool draw_rect(int x1, int y1, int x2, int y2);
 
 
       virtual point GetCurrentPosition() const;
       virtual point MoveTo(int x, int y);
       virtual point MoveTo(double x, double y);
       virtual point MoveTo(POINT point);
-      virtual BOOL LineTo(int x, int y);
-      virtual BOOL LineTo(double x, double y);
-      virtual BOOL LineTo(POINT point);
-      virtual BOOL Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
-      virtual BOOL Arc(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
-      virtual BOOL Arc(int x1, int y1, int x2, int y2, double start, double extends);
-      virtual BOOL Arc(LPCRECT lpRect, double start, double extends);
-      virtual BOOL Polyline(const POINT* lpPoints, int nCount);
+      virtual bool LineTo(int x, int y);
+      virtual bool LineTo(double x, double y);
+      virtual bool LineTo(POINT point);
+      virtual bool Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
+      virtual bool Arc(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
+      virtual bool Arc(int x1, int y1, int x2, int y2, double start, double extends);
+      virtual bool Arc(LPCRECT lpRect, double start, double extends);
+      virtual bool Polyline(const POINT* lpPoints, int nCount);
 
-      virtual BOOL AngleArc(int x, int y, int nRadius, float fStartAngle, float fSweepAngle);
-      virtual BOOL ArcTo(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
-      virtual BOOL ArcTo(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
+      virtual bool AngleArc(int x, int y, int nRadius, float fStartAngle, float fSweepAngle);
+      virtual bool ArcTo(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
+      virtual bool ArcTo(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
       virtual int GetArcDirection() const;
       virtual int SetArcDirection(int nArcDirection);
 
-      virtual BOOL PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, int nCount);
-      virtual BOOL PolylineTo(const POINT* lpPoints, int nCount);
-      virtual BOOL PolyPolyline(const POINT* lpPoints, const DWORD* lpPolyPoints, int nCount);
+      virtual bool PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, int nCount);
+      virtual bool PolylineTo(const POINT* lpPoints, int nCount);
+      virtual bool PolyPolyline(const POINT* lpPoints, const DWORD* lpPolyPoints, int nCount);
 
-      virtual BOOL PolyBezier(const POINT* lpPoints, int nCount);
-      virtual BOOL PolyBezierTo(const POINT* lpPoints, int nCount);
+      virtual bool PolyBezier(const POINT* lpPoints, int nCount);
+      virtual bool PolyBezierTo(const POINT* lpPoints, int nCount);
 
    // Simple Drawing Functions
       virtual void FillRect(LPCRECT lpRect, ::ca::brush* pBrush);
       virtual void FrameRect(LPCRECT lpRect, ::ca::brush* pBrush);
       virtual void InvertRect(LPCRECT lpRect);
-      virtual BOOL DrawIcon(int x, int y, ::visual::icon * picon);
-      virtual BOOL DrawIcon(POINT point, ::visual::icon * picon);
-      virtual BOOL DrawIcon(int x, int y, ::visual::icon * picon, int cx, int cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags);
-      virtual BOOL DrawState(point pt, size size, HBITMAP hBitmap, UINT nFlags,
+      virtual bool DrawIcon(int x, int y, ::visual::icon * picon);
+      virtual bool DrawIcon(POINT point, ::visual::icon * picon);
+      virtual bool DrawIcon(int x, int y, ::visual::icon * picon, int cx, int cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags);
+      virtual bool DrawState(point pt, size size, HBITMAP hBitmap, UINT nFlags,
          HBRUSH hBrush = NULL);
-      virtual BOOL DrawState(point pt, size size, ::ca::bitmap* pBitmap, UINT nFlags,
+      virtual bool DrawState(point pt, size size, ::ca::bitmap* pBitmap, UINT nFlags,
          ::ca::brush* pBrush = NULL);
 #ifdef WINDOWS
-      virtual BOOL DrawState(point pt, size size, HICON hIcon, UINT nFlags,
+      virtual bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
          HBRUSH hBrush = NULL);
-      virtual BOOL DrawState(point pt, size size, HICON hIcon, UINT nFlags,
+      virtual bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
          ::ca::brush* pBrush = NULL);
 #endif
-      virtual BOOL DrawState(point pt, size size, const char * lpszText, UINT nFlags,
-         BOOL bPrefixText = TRUE, int nTextLen = 0, HBRUSH hBrush = NULL);
-      virtual BOOL DrawState(point pt, size size, const char * lpszText, UINT nFlags,
-         BOOL bPrefixText = TRUE, int nTextLen = 0, ::ca::brush* pBrush = NULL);
+      virtual bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
+         bool bPrefixText = TRUE, int nTextLen = 0, HBRUSH hBrush = NULL);
+      virtual bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
+         bool bPrefixText = TRUE, int nTextLen = 0, ::ca::brush* pBrush = NULL);
 #ifdef WINDOWS
-      virtual BOOL DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
+      virtual bool DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
          LPARAM lData, UINT nFlags, HBRUSH hBrush = NULL);
-      virtual BOOL DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
+      virtual bool DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
          LPARAM lData, UINT nFlags, ::ca::brush* pBrush = NULL);
 #endif
    // Ellipse and Polygon Functions
-      virtual BOOL Chord(int x1, int y1, int x2, int y2, int x3, int y3,
+      virtual bool Chord(int x1, int y1, int x2, int y2, int x3, int y3,
          int x4, int y4);
-      virtual BOOL Chord(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
+      virtual bool Chord(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
       virtual void DrawFocusRect(LPCRECT lpRect);
-      virtual BOOL Ellipse(int x1, int y1, int x2, int y2);
-      virtual BOOL Ellipse(LPCRECT lpRect);
-      virtual BOOL DrawEllipse(int x1, int y1, int x2, int y2);
-      virtual BOOL DrawEllipse(LPCRECT lpRect);
-      virtual BOOL FillEllipse(int x1, int y1, int x2, int y2);
-      virtual BOOL FillEllipse(LPCRECT lpRect);
-      virtual BOOL Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
-      virtual BOOL Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
-      virtual BOOL Polygon(point_array & pta);
-      virtual BOOL Polygon(const POINT* lpPoints, int nCount);
-      virtual BOOL PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int nCount);
-      virtual BOOL Rectangle(int x1, int y1, int x2, int y2);
-      virtual BOOL Rectangle(LPCRECT lpRect);
-      virtual BOOL DrawRectangle(int x1, int y1, int x2, int y2);
-      virtual BOOL DrawRectangle(LPCRECT lpRect);
-      virtual BOOL FillRectangle(int x1, int y1, int x2, int y2);
-      virtual BOOL FillRectangle(LPCRECT lpRect);
-      virtual BOOL RoundRect(int x1, int y1, int x2, int y2, int x3, int y3);
-      virtual BOOL RoundRect(LPCRECT lpRect, POINT point);
+      virtual bool Ellipse(int x1, int y1, int x2, int y2);
+      virtual bool Ellipse(LPCRECT lpRect);
+      virtual bool DrawEllipse(int x1, int y1, int x2, int y2);
+      virtual bool DrawEllipse(LPCRECT lpRect);
+      virtual bool FillEllipse(int x1, int y1, int x2, int y2);
+      virtual bool FillEllipse(LPCRECT lpRect);
+      virtual bool Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
+      virtual bool Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
+      virtual bool Polygon(point_array & pta);
+      virtual bool Polygon(const POINT* lpPoints, int nCount);
+      virtual bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int nCount);
+      virtual bool Rectangle(int x1, int y1, int x2, int y2);
+      virtual bool Rectangle(LPCRECT lpRect);
+      virtual bool DrawRectangle(int x1, int y1, int x2, int y2);
+      virtual bool DrawRectangle(LPCRECT lpRect);
+      virtual bool FillRectangle(int x1, int y1, int x2, int y2);
+      virtual bool FillRectangle(LPCRECT lpRect);
+      virtual bool RoundRect(int x1, int y1, int x2, int y2, int x3, int y3);
+      virtual bool RoundRect(LPCRECT lpRect, POINT point);
 
    // Bitmap Functions
       virtual bool from(point ptDst, size size, ::ca::graphics * pgraphicsSrc, point ptSrc, DWORD dwRop);
       virtual bool from(size size, ::ca::graphics * pgraphicsSrc, point ptSrc, DWORD dwRop);
       virtual bool from(size size, ::ca::graphics * pgraphicsSrc, DWORD dwRop);
-      virtual BOOL PatBlt(int x, int y, int nWidth, int nHeight, DWORD dwRop);
-      virtual BOOL BitBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc,
+      virtual bool PatBlt(int x, int y, int nWidth, int nHeight, DWORD dwRop);
+      virtual bool BitBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc,
          int xSrc, int ySrc, DWORD dwRop);
-      virtual BOOL StretchBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc,
+      virtual bool StretchBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc,
          int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, DWORD dwRop);
       virtual COLORREF GetPixel(int x, int y) const;
       virtual COLORREF GetPixel(POINT point) const;
       virtual COLORREF SetPixel(int x, int y, COLORREF crColor);
       virtual COLORREF SetPixel(POINT point, COLORREF crColor);
-      virtual BOOL FloodFill(int x, int y, COLORREF crColor);
-      virtual BOOL ExtFloodFill(int x, int y, COLORREF crColor, UINT nFillType);
-      virtual BOOL MaskBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc,
+      virtual bool FloodFill(int x, int y, COLORREF crColor);
+      virtual bool ExtFloodFill(int x, int y, COLORREF crColor, UINT nFillType);
+      virtual bool MaskBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc,
          int xSrc, int ySrc, ::ca::bitmap& maskBitmap, int xMask, int yMask,
          DWORD dwRop);
-      virtual BOOL PlgBlt(LPPOINT lpPoint, ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc,
+      virtual bool PlgBlt(LPPOINT lpPoint, ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc,
          int nWidth, int nHeight, ::ca::bitmap& maskBitmap, int xMask, int yMask);
-      virtual BOOL SetPixelV(int x, int y, COLORREF crColor);
-      virtual BOOL SetPixelV(POINT point, COLORREF crColor);
-      virtual BOOL GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
+      virtual bool SetPixelV(int x, int y, COLORREF crColor);
+      virtual bool SetPixelV(POINT point, COLORREF crColor);
+      virtual bool GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
         void * pMesh, ULONG nMeshElements, DWORD dwMode);
-      virtual BOOL TransparentBlt(int xDest, int yDest, int nDestWidth, int nDestHeight,
+      virtual bool TransparentBlt(int xDest, int yDest, int nDestWidth, int nDestHeight,
         ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight,
         UINT clrTransparent);
 
@@ -409,13 +409,13 @@ namespace ca
       virtual bool alpha_blend(size sz,::ca::graphics * pgraphicsSrc, BLENDFUNCTION blend);*/
 
    // Text Functions
-      virtual BOOL TextOut(int x, int y, const char * lpszString, int nCount);
-      virtual BOOL TextOut(int x, int y, const string & str);
-      virtual BOOL TextOut(double x, double y, const char * lpszString, int nCount);
-      virtual BOOL TextOut(double x, double y, const string & str);
-      virtual BOOL ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect,
+      virtual bool TextOut(int x, int y, const char * lpszString, int nCount);
+      virtual bool TextOut(int x, int y, const string & str);
+      virtual bool TextOut(double x, double y, const char * lpszString, int nCount);
+      virtual bool TextOut(double x, double y, const string & str);
+      virtual bool ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect,
                const char * lpszString, UINT nCount, LPINT lpDxWidths);
-      virtual BOOL ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect,
+      virtual bool ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect,
                const string & str, LPINT lpDxWidths);
       virtual size TabbedTextOut(int x, int y, const char * lpszString, int nCount,
                int nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin);
@@ -462,8 +462,8 @@ namespace ca
          int nTabPositions, LPINT lpnTabStopPositions) const;
       virtual size GetOutputTabbedTextExtent(const string & str,
          int nTabPositions, LPINT lpnTabStopPositions) const;
-      virtual BOOL GrayString(::ca::brush* pBrush,
-         BOOL (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData,
+      virtual bool GrayString(::ca::brush* pBrush,
+         bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData,
             int nCount, int x, int y, int nWidth, int nHeight);
       virtual UINT GetTextAlign() const;
       virtual UINT SetTextAlign(UINT nFlags);
@@ -472,12 +472,12 @@ namespace ca
    #pragma push_macro("GetTextMetrics")
    #undef GetTextMetrics
 #ifdef WINDOWS
-      virtual BOOL ___FUNCNAME(GetTextMetrics)(LPTEXTMETRIC lpMetrics) const;
-      virtual BOOL GetTextMetrics(LPTEXTMETRIC lpMetrics) const;
+      virtual bool ___FUNCNAME(GetTextMetrics)(LPTEXTMETRIC lpMetrics) const;
+      virtual bool GetTextMetrics(LPTEXTMETRIC lpMetrics) const;
 #endif
    #pragma pop_macro("GetTextMetrics")
 #ifdef WINDOWS
-      virtual BOOL GetOutputTextMetrics(LPTEXTMETRIC lpMetrics) const;
+      virtual bool GetOutputTextMetrics(LPTEXTMETRIC lpMetrics) const;
 #endif
       virtual int SetTextJustification(int nBreakExtra, int nBreakCount);
       virtual int GetTextCharacterExtra() const;
@@ -488,28 +488,28 @@ namespace ca
 #endif
    #if (_WIN32_WINNT >= 0x0500)
 
-      virtual BOOL GetTextExtentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE lpSize) const;
-      virtual BOOL GetTextExtentPointI(LPWORD pgiIn, int cgi, __out_opt LPSIZE lpSize) const;
+      virtual bool GetTextExtentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE lpSize) const;
+      virtual bool GetTextExtentPointI(LPWORD pgiIn, int cgi, __out_opt LPSIZE lpSize) const;
 
    #endif
 
 
 
    // Advanced Drawing
-      virtual BOOL DrawEdge(LPRECT lpRect, UINT nEdge, UINT nFlags);
-      virtual BOOL DrawFrameControl(LPRECT lpRect, UINT nType, UINT nState);
+      virtual bool DrawEdge(LPRECT lpRect, UINT nEdge, UINT nFlags);
+      virtual bool DrawFrameControl(LPRECT lpRect, UINT nType, UINT nState);
 
    // Scrolling Functions
-      virtual BOOL ScrollDC(int dx, int dy, LPCRECT lpRectScroll, LPCRECT lpRectClip,
+      virtual bool ScrollDC(int dx, int dy, LPCRECT lpRectScroll, LPCRECT lpRectClip,
          ::ca::region* pRgnUpdate, LPRECT lpRectUpdate);
 
    // font Functions
-      virtual BOOL GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const;
-      virtual BOOL GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const;
+      virtual bool GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const;
+      virtual bool GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const;
       virtual DWORD SetMapperFlags(DWORD dwFlag);
       virtual size GetAspectRatioFilter() const;
 #ifdef WINDOWS
-      virtual BOOL GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC lpabc) const;
+      virtual bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC lpabc) const;
 #endif
       virtual DWORD GetFontData(DWORD dwTable, DWORD dwOffset, LPVOID lpData, DWORD cbData) const;
 #ifdef WINDOWS
@@ -519,18 +519,18 @@ namespace ca
       virtual DWORD GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,
          DWORD cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
 
-      virtual BOOL GetCharABCWidths(UINT nFirstChar, UINT nLastChar,
+      virtual bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar,
          LPABCFLOAT lpABCF) const;
 #endif
-      virtual BOOL GetCharWidth(UINT nFirstChar, UINT nLastChar,
+      virtual bool GetCharWidth(UINT nFirstChar, UINT nLastChar,
          float* lpFloatBuffer) const;
 
       virtual DWORD GetFontLanguageInfo() const;
 
    #if (_WIN32_WINNT >= 0x0500)
 
-      virtual BOOL GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) const;
-      virtual BOOL GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, LPINT lpBuffer) const;
+      virtual bool GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) const;
+      virtual bool GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, LPINT lpBuffer) const;
 
    #endif
 
@@ -548,32 +548,32 @@ namespace ca
    #endif
       virtual int StartPage();
       virtual int EndPage();
-      virtual int SetAbortProc(BOOL (CALLBACK* lpfn)(HDC, int));
+      virtual int SetAbortProc(bool (CALLBACK* lpfn)(HDC, int));
       virtual int AbortDoc();
       virtual int EndDoc();
 
    // MetaFile Functions
 #ifdef WINDOWS
-      virtual BOOL PlayMetaFile(HMETAFILE hMF);
-      virtual BOOL PlayMetaFile(HENHMETAFILE hEnhMetaFile, LPCRECT lpBounds);
+      virtual bool PlayMetaFile(HMETAFILE hMF);
+      virtual bool PlayMetaFile(HENHMETAFILE hEnhMetaFile, LPCRECT lpBounds);
 #endif
-      virtual BOOL AddMetaFileComment(UINT nDataSize, const BYTE* pCommentData);
+      virtual bool AddMetaFileComment(UINT nDataSize, const BYTE* pCommentData);
          // can be used for enhanced metafiles only
 
    // Path Functions
-      virtual BOOL AbortPath();
-      virtual BOOL BeginPath();
-      virtual BOOL CloseFigure();
-      virtual BOOL EndPath();
-      virtual BOOL FillPath();
-      virtual BOOL FlattenPath();
-      virtual BOOL StrokeAndFillPath();
-      virtual BOOL StrokePath();
-      virtual BOOL WidenPath();
+      virtual bool AbortPath();
+      virtual bool BeginPath();
+      virtual bool CloseFigure();
+      virtual bool EndPath();
+      virtual bool FillPath();
+      virtual bool FlattenPath();
+      virtual bool StrokeAndFillPath();
+      virtual bool StrokePath();
+      virtual bool WidenPath();
       virtual float GetMiterLimit() const;
-      virtual BOOL SetMiterLimit(float fMiterLimit);
+      virtual bool SetMiterLimit(float fMiterLimit);
       virtual int GetPath(LPPOINT lpPoints, LPBYTE lpTypes, int nCount) const;
-      virtual BOOL SelectClipPath(int nMode);
+      virtual bool SelectClipPath(int nMode);
 
    // Misc Helper Functions
       static ::ca::brush* PASCAL GetHalftoneBrush();
@@ -591,7 +591,7 @@ namespace ca
       virtual void dump(dump_context & dumpcontext) const;
 
       // advanced use and implementation
-      BOOL m_bPrinting;
+      bool m_bPrinting;
       virtual HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
 
       virtual bool SelectFont(::ca::font * pfont);

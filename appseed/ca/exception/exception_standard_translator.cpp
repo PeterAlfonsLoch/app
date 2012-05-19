@@ -35,7 +35,7 @@ LPTOP_LEVEL_EXCEPTION_FILTER WINAPI MyDummySetUnhandledExceptionFilter(
    return NULL;
 }
 
-BOOL PreventSetUnhandledExceptionFilter()
+bool PreventSetUnhandledExceptionFilter()
 {
    /*HMODULE hKernel32 = LoadLibrary("kernel32.dll");
    if (hKernel32 == NULL) return FALSE;
@@ -50,7 +50,7 @@ BOOL PreventSetUnhandledExceptionFilter()
    newJump[ 0 ] = 0xE9;  // JMP absolute
    memcpy(&newJump[ 1 ], &dwRelativeAddr, sizeof(pNewFunc));
    SIZE_T bytesWritten;
-   BOOL bRet = WriteProcessMemory(GetCurrentProcess(),
+   bool bRet = WriteProcessMemory(GetCurrentProcess(),
    pOrgEntry, newJump, sizeof(pNewFunc) + 1, &bytesWritten);
    return bRet;*/
    return FALSE;

@@ -26,7 +26,7 @@ namespace gen
    {
    }
 
-   void command_line::ParseParam(const char* pszParam, BOOL bFlag, BOOL bLast)
+   void command_line::ParseParam(const char* pszParam, bool bFlag, bool bLast)
    {
       if (bFlag)
          ParseParamFlag(pszParam);
@@ -76,7 +76,7 @@ namespace gen
          m_varFile = pszParam;
    }
 
-   void command_line::ParseLast(BOOL bLast)
+   void command_line::ParseLast(bool bLast)
    {
       if (bLast)
       {

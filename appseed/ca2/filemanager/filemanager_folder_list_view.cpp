@@ -17,7 +17,7 @@ folder_list_view::folder_list_view(::ca::application * papp) :
    m_bRecursive = true;
 }
 
-folder_list_view::~folder_list_view(void)
+folder_list_view::~folder_list_view()
 {
 }
 

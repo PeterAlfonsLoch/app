@@ -633,12 +633,12 @@ namespace datetime
       input = beginning;
    }
 
-   void scanner::next(void)
+   void scanner::next()
    {
       input = next_input;
    }
 
-   token * scanner::look_ahead(void)
+   token * scanner::look_ahead()
    {
       token * token;
       token = new class token;

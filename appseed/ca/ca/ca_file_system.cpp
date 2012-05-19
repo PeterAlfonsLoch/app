@@ -1273,7 +1273,7 @@ DWORD WINAPI ThreadProc( LPVOID lParam )
 		HANDLE hProcess = OpenProcess( PROCESS_DUP_HANDLE , FALSE, sh.dwProcessId );
 		if( hProcess )
 		{
-			BOOL b = DuplicateHandle( hProcess, (HANDLE)sh.wValue, GetCurrentProcess(), &hDup, 0, FALSE, DUPLICATE_SAME_ACCESS );
+			bool b = DuplicateHandle( hProcess, (HANDLE)sh.wValue, GetCurrentProcess(), &hDup, 0, FALSE, DUPLICATE_SAME_ACCESS );
 			if( !b )
 			{
 				hDup = (HANDLE)sh.wValue;
@@ -1441,7 +1441,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR pU
 			ADDRESS_INFO stAddress;
 			stAddress.pAddress = sh.pAddress;
 			DWORD dwReturn = 0;
-			BOOL bSuccess = DeviceIoControl( hDriver, IOCTL_LISTDRV_BUFFERED_IO, &stAddress, sizeof(ADDRESS_INFO),
+			bool bSuccess = DeviceIoControl( hDriver, IOCTL_LISTDRV_BUFFERED_IO, &stAddress, sizeof(ADDRESS_INFO),
 				&stHandle, sizeof(HANDLE_INFO), &dwReturn, NULL );
 
 

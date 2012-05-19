@@ -29,7 +29,7 @@ public:
 	///				it monitors only the specified directory
 	///  \param		filter filter conditions that satisfy a change notification wait
 	///				can take values described by enum filter
-	file_change_event (const char * path, BOOL watchsubtree, DWORD filter);
+	file_change_event (const char * path, bool watchsubtree, DWORD filter);
 
 	///  \brief		destructor
 	~file_change_event();
@@ -52,7 +52,7 @@ public:
 	///  \brief		requests that the operating system signal a change
 	///				notification handle the next time it detects an appropriate
 	///				change
-	BOOL next ();
+	bool next ();
 
 	///  \brief		stops change notification handle monitoring
 	void close ();

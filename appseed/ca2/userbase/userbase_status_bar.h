@@ -39,14 +39,14 @@ namespace userbase
       virtual ~status_bar();
 
       using ::userbase::control_bar::create;
-      virtual BOOL create(::user::interaction* pParentWnd,
+      virtual bool create(::user::interaction* pParentWnd,
          DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,
          id nID = "status_bar");
       using ::userbase::control_bar::CreateEx;
-      virtual BOOL CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = 0,
+      virtual bool CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = 0,
          DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,
          id nID = "status_bar");
-      BOOL SetIndicators(stringa & stra);
+      bool SetIndicators(stringa & stra);
 
       void SetBorders(LPCRECT lpRect);
       void SetBorders(int cxLeft = 0, int cyTop = 0, int cxRight = 0, int cyBottom = 0);
@@ -59,7 +59,7 @@ namespace userbase
       // specific to status_bar
       void GetPaneText(int nIndex, string & rString);
       string GetPaneText(int nIndex);
-      BOOL SetPaneText(int nIndex, const char * lpszNewText, BOOL bUpdate = TRUE);
+      bool SetPaneText(int nIndex, const char * lpszNewText, bool bUpdate = TRUE);
       void GetPaneInfo(int nIndex, id & id, UINT& nStyle, int& cxWidth);
       void SetPaneInfo(int nIndex, id id, UINT nStyle, int cxWidth);
       void SetPaneInfo(int nIndex, int iId, UINT nStyle, int cxWidth);
@@ -75,10 +75,10 @@ namespace userbase
       virtual void DrawItem(LPDRAWITEMSTRUCT);
 #endif
 
-      virtual size CalcFixedLayout(BOOL bStretch, BOOL bHorz);
-      BOOL pre_create_window(CREATESTRUCT& cs);
-      //BOOL AllocElements(int nElements, int cbElement);
-      void CalcInsideRect(rect& rect, BOOL bHorz);
+      virtual size CalcFixedLayout(bool bStretch, bool bHorz);
+      bool pre_create_window(CREATESTRUCT& cs);
+      //bool AllocElements(int nElements, int cbElement);
+      void CalcInsideRect(rect& rect, bool bHorz);
       virtual void OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle);
 
    #ifdef _DEBUG
@@ -86,12 +86,12 @@ namespace userbase
       virtual void dump(dump_context & dumpcontext) const;
       void EnableDocking(DWORD dwDockStyle);
    #endif
-      virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, BOOL bDisableIfNoHndler);
+      virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler);
 
 
       __STATUSPANE* _GetPanePtr(int nIndex);
-      void UpdateAllPanes(BOOL bUpdateRects, BOOL bUpdateText);
-      virtual BOOL OnChildNotify(UINT message, WPARAM, LPARAM, LRESULT*);
+      void UpdateAllPanes(bool bUpdateRects, bool bUpdateText);
+      virtual bool OnChildNotify(UINT message, WPARAM, LPARAM, LRESULT*);
 
       DECL_GEN_SIGNAL(_001OnNcHitTest)
       DECL_GEN_SIGNAL(_001OnNcCalcSize)

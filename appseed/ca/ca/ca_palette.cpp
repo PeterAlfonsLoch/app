@@ -8,13 +8,13 @@ namespace ca
 #ifdef WINDOWS
 
 
-   BOOL palette::CreatePalette(LPLOGPALETTE lpLogPalette)
+   bool palette::CreatePalette(LPLOGPALETTE lpLogPalette)
    {
       UNREFERENCED_PARAMETER(lpLogPalette);
       throw interface_only_exception();
    }
 
-   BOOL palette::CreateHalftonePalette(::ca::graphics * pgraphics)
+   bool palette::CreateHalftonePalette(::ca::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       throw interface_only_exception();
@@ -50,7 +50,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL palette::ResizePalette(UINT nNumEntries)
+   bool palette::ResizePalette(UINT nNumEntries)
    {
       UNREFERENCED_PARAMETER(nNumEntries);
       throw interface_only_exception();

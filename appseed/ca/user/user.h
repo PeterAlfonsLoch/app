@@ -76,32 +76,32 @@ public:
    ~CMiniFrameWnd();
 
 
-   virtual BOOL create(const char * lpClassName, const char * lpWindowName,
+   virtual bool create(const char * lpClassName, const char * lpWindowName,
       DWORD dwStyle, const RECT& rect,
       virtual_user_interface* pParentWnd = NULL, UINT nID = 0);
-   virtual BOOL CreateEx(DWORD dwExStyle, const char * lpClassName, const char * lpWindowName,
+   virtual bool CreateEx(DWORD dwExStyle, const char * lpClassName, const char * lpWindowName,
       DWORD dwStyle, const RECT& rect,
       virtual_user_interface* pParentWnd = NULL, UINT nID = 0);
 
 
-   BOOL OnNcActivate(BOOL bActive);
+   bool OnNcActivate(bool bActive);
    LRESULT OnNcHitTest(point point);
    void OnSysCommand(UINT nID, LPARAM lParam);
    void OnGetMinMaxInfo(MINMAXINFO* pMMI);
    LRESULT OnFloatStatus(WPARAM wParam, LPARAM lParam);
    LRESULT OnQueryCenterWnd(WPARAM wParam, LPARAM lParam);
-   BOOL OnNcCreate(LPCREATESTRUCT lpcs);
+   bool OnNcCreate(LPCREATESTRUCT lpcs);
 
 public:
    static void PASCAL CalcBorders(LPRECT lpClientRect, DWORD dwStyle = 0, DWORD dwExStyle = 0);
 
 protected:
-   virtual BOOL pre_create_window(CREATESTRUCT& cs);
+   virtual bool pre_create_window(CREATESTRUCT& cs);
 
 protected:
-   BOOL m_bSysTracking;
-   BOOL m_bInSys;
-   BOOL m_bActive;
+   bool m_bSysTracking;
+   bool m_bInSys;
+   bool m_bActive;
    string m_strCaption;
 };
 #pragma warning( default: 4263 )

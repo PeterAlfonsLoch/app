@@ -22,7 +22,7 @@ namespace cube
 
 
       //virtual int main();
-      virtual BOOL InitApplication();
+      virtual bool InitApplication();
 
       virtual bool process_initialize();
 

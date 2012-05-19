@@ -112,7 +112,7 @@ inline string_data * string_manager::allocate(strsize nChars, int nCharSize )
    nDataBytes = (nChars+1)*nCharSize;
    nTotalSize = sizeof( string_data  )+nDataBytes;
    
-   //BOOL bEnable = __enable_memory_tracking(FALSE);
+   //bool bEnable = __enable_memory_tracking(FALSE);
    
    try
    {
@@ -164,7 +164,7 @@ inline string_data * string_manager::Reallocate(string_data * pOldData, strsize 
    nOldDataBytes = (pOldData->nAllocLength+1)*nCharSize;
    nOldTotalSize = sizeof( string_data  ) + nOldDataBytes;
    
-   //BOOL bEnable = __enable_memory_tracking(FALSE);
+   //bool bEnable = __enable_memory_tracking(FALSE);
    
    try
    {

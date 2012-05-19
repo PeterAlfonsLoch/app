@@ -47,7 +47,7 @@ namespace ex2
        ::ca::smart_pointer < application >::m_p->_001EnableShellOpen();
    }
 
-   BOOL application::_001OnDDECommand(const char * lpcsz)
+   bool application::_001OnDDECommand(const char * lpcsz)
    {
       return ::ca::smart_pointer < application >::m_p->_001OnDDECommand(lpcsz);
    }
@@ -252,7 +252,7 @@ namespace ex2
    }
 
 
-   BOOL application::DeferRegisterClass(LONG fToRegister, const char ** ppszClass)
+   bool application::DeferRegisterClass(LONG fToRegister, const char ** ppszClass)
    {
       return ::ca::smart_pointer < ::ex2::application >::m_p->DeferRegisterClass(fToRegister, ppszClass);
    }
@@ -261,7 +261,7 @@ namespace ex2
    {
       ::ca::smart_pointer < ::ex2::application >::m_p->LockTempMaps();
    }
-   BOOL application::UnlockTempMaps(BOOL bDeleteTemp)
+   bool application::UnlockTempMaps(bool bDeleteTemp)
    {
       return ::ca::smart_pointer < ::ex2::application >::m_p->UnlockTempMaps(bDeleteTemp);
    }

@@ -40,10 +40,10 @@ protected :
    typedef void (WINAPI * PFNReleaseActCtx)(HANDLE);
    static PFNReleaseActCtx s_pfnReleaseActCtx;
 
-   typedef BOOL (WINAPI * PFNActivateActCtx)(HANDLE, ULONG_PTR*);
+   typedef bool (WINAPI * PFNActivateActCtx)(HANDLE, ULONG_PTR*);
    static PFNActivateActCtx s_pfnActivateActCtx;
 
-   typedef BOOL (WINAPI * PFNDeactivateActCtx)(DWORD, ULONG_PTR);
+   typedef bool (WINAPI * PFNDeactivateActCtx)(DWORD, ULONG_PTR);
    static PFNDeactivateActCtx s_pfnDeactivateActCtx;
 
    static bool s_bPFNInitialized;
@@ -217,7 +217,7 @@ namespace radix
 
    }
 
-   BOOL application::LoadSysPolicies()
+   bool application::LoadSysPolicies()
    {
       return _LoadSysPolicies();
    }
@@ -225,7 +225,7 @@ namespace radix
    // This function is not exception safe - will leak a registry key if exceptions are thrown from some places
    // To reduce risk of leaks, I've declared the whole function throw(). This despite the fact that its callers have
    // no dependency on non-throwing.
-   BOOL application::_LoadSysPolicies() throw()
+   bool application::_LoadSysPolicies() throw()
    {
       HKEY hkPolicy = NULL;
       DWORD dwValue = 0;
@@ -317,7 +317,7 @@ namespace radix
       return TRUE;
    }
 
-   BOOL application::GetSysPolicyValue(DWORD dwPolicyID, BOOL *pbValue)
+   bool application::GetSysPolicyValue(DWORD dwPolicyID, bool *pbValue)
    {
       if (!pbValue)
          return FALSE; // bad pointer
@@ -325,7 +325,7 @@ namespace radix
       return TRUE;
    }
 
-   BOOL application::InitApplication()
+   bool application::InitApplication()
    {
       /*if(::get_app() == NULL)
       {
@@ -500,8 +500,8 @@ namespace radix
       for (int i = 1; i < __argc; i++)
       {
          const char * pszParam = __targv[i];
-         BOOL bFlag = FALSE;
-         BOOL bLast = ((i + 1) == __argc);
+         bool bFlag = FALSE;
+         bool bLast = ((i + 1) == __argc);
          if (pszParam[0] == '-' || pszParam[0] == '/')
          {
             // remove flag specifier
@@ -527,7 +527,7 @@ namespace radix
    {
    }
 
-   void CCommandLineInfo::ParseParam(const char* pszParam,BOOL bFlag,BOOL bLast)
+   void CCommandLineInfo::ParseParam(const char* pszParam,bool bFlag,bool bLast)
    {
       if (bFlag)
       {
@@ -542,7 +542,7 @@ namespace radix
 
    /*
    #ifdef UNICODE
-   void CCommandLineInfo::ParseParam(const char* pszParam, BOOL bFlag, BOOL bLast)
+   void CCommandLineInfo::ParseParam(const char* pszParam, bool bFlag, bool bLast)
    {
       if (bFlag)
          ParseParamFlag(pszParam);
@@ -612,7 +612,7 @@ namespace radix
    }
    #endif
 
-   void CCommandLineInfo::ParseLast(BOOL bLast)
+   void CCommandLineInfo::ParseLast(bool bLast)
    {
       if (bLast)
       {
@@ -775,7 +775,7 @@ namespace radix
    /////////////////////////////////////////////////////////////////////////////
    // application idle processing
 
-   BOOL application::on_idle(LONG lCount)
+   bool application::on_idle(LONG lCount)
    {
 /*      if (lCount <= 0)
       {
@@ -999,14 +999,14 @@ namespace radix
       MutexAttributes.bInheritHandle = FALSE; // object uninheritable
       // declare and initialize a security descriptor
       SECURITY_DESCRIPTOR SD;
-      BOOL bInitOk = InitializeSecurityDescriptor(
+      bool bInitOk = InitializeSecurityDescriptor(
                         &SD,
                         SECURITY_DESCRIPTOR_REVISION );
       if ( bInitOk )
       {
          // give the security descriptor a Null Dacl
          // done using the  "TRUE, (PACL)NULL" here
-         BOOL bSetOk = SetSecurityDescriptorDacl( &SD,
+         bool bSetOk = SetSecurityDescriptorDacl( &SD,
                                                TRUE,
                                                (PACL)NULL,
                                                FALSE );
@@ -1233,7 +1233,7 @@ namespace radix
    }
 
    // prompt for file name - used for open and save as
-   BOOL application::do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
+   bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
          // if ptemplate==NULL => all document templates
    {
       if(m_pfilemanager != NULL)
@@ -1441,7 +1441,7 @@ namespace radix
    /////////////////////////////////////////////////////////////////////////////
    // WinApp support for printing
 
-   /*BOOL application::GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg)
+   /*bool application::GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg)
    {
       UpdatePrinterSelection(m_hDevNames == NULL); //force default if no current
       if (m_hDevNames == NULL)
@@ -1456,7 +1456,7 @@ namespace radix
       return TRUE;
    }*/
 
-   void application::UpdatePrinterSelection(BOOL bForceDefaults)
+   void application::UpdatePrinterSelection(bool bForceDefaults)
    {
       UNREFERENCED_PARAMETER(bForceDefaults);
    }
@@ -1466,7 +1466,7 @@ namespace radix
    {
    }
 
-   void application::SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, BOOL bFreeOld)
+   void application::SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld)
    {
       UNREFERENCED_PARAMETER(hDevNames);
       UNREFERENCED_PARAMETER(hDevMode);
@@ -1495,7 +1495,7 @@ namespace radix
       if (hDC != NULL)
       {
          spgraphics->DeleteDC();
-         BOOL bRet = spgraphics->Attach(hDC);
+         bool bRet = spgraphics->Attach(hDC);
          ASSERT(bRet);
          return bRet;
       }*/
@@ -1572,7 +1572,7 @@ namespace radix
    }
 
 
-   BOOL application::save_all_modified()
+   bool application::save_all_modified()
    {
 /*      if (m_pdocmanager != NULL)
          return m_pdocmanager->save_all_modified();*/
@@ -1584,7 +1584,7 @@ namespace radix
       //m_pdocmanager->request(pcreatecontext);
    }
 
-   void application::close_all_documents(BOOL bEndSession)
+   void application::close_all_documents(bool bEndSession)
    {
       /*if (m_pdocmanager != NULL)
          m_pdocmanager->close_all_documents(bEndSession);*/
@@ -1594,7 +1594,7 @@ namespace radix
    /////////////////////////////////////////////////////////////////////////////
    // DDE and ShellExecute support
 
-   BOOL application::OnDDECommand(__in LPTSTR lpszCommand)
+   bool application::OnDDECommand(__in LPTSTR lpszCommand)
    {
 /*      if (m_pdocmanager != NULL)
          return m_pdocmanager->OnDDECommand(lpszCommand);
@@ -1604,12 +1604,12 @@ namespace radix
 
 
 
-   void application::EnableModeless(BOOL bEnable)
+   void application::EnableModeless(bool bEnable)
    {
        DoEnableModeless(bEnable);
    }
 
-   void application::DoEnableModeless(BOOL bEnable)
+   void application::DoEnableModeless(bool bEnable)
    {
       UNREFERENCED_PARAMETER(bEnable);
    #ifdef ___NO_OLE_SUPPORT
@@ -1840,9 +1840,9 @@ namespace radix
    /////////////////////////////////////////////////////////////////////////////
    // DDE and ShellExecute support
 
-   /*BOOL application::ProcessShellCommand(CCommandLineInfo& rCmdInfo)
+   /*bool application::ProcessShellCommand(CCommandLineInfo& rCmdInfo)
    {
-      BOOL bResult = TRUE;
+      bool bResult = TRUE;
       switch (rCmdInfo.m_nShellCommand)
       {
       case CCommandLineInfo::FileNew:
@@ -1906,7 +1906,7 @@ namespace radix
       // If we've been asked to unregister, unregister and then terminate
       case CCommandLineInfo::AppUnregister:
          {
-            BOOL bUnregistered = Unregister();
+            bool bUnregistered = Unregister();
 
             // if you specify /EMBEDDED, we won't make an success/failure box
             // this use of /EMBEDDED is not related to OLE
@@ -1948,17 +1948,17 @@ namespace radix
    {
    }
 
-   BOOL application::Register()
+   bool application::Register()
    {
       return TRUE;
    }
 
-   BOOL application::Unregister()
+   bool application::Unregister()
    {
       HKEY    hKey = 0;
       char   szBuf[_MAX_PATH+1];
       LONG    cSize = 0;
-      BOOL    bRet = TRUE;
+      bool    bRet = TRUE;
 
       /*xxx POSITION pos = get_template_count();
       while (pos != NULL)
@@ -2070,7 +2070,7 @@ namespace radix
       m_atomSystemTopic = ::GlobalAddAtom("system");*/
    }
 
-   void application::RegisterShellFileTypes(BOOL bCompat)
+   void application::RegisterShellFileTypes(bool bCompat)
    {
       ENSURE(m_pdocmanager != NULL);
 //      m_pdocmanager->RegisterShellFileTypes(bCompat);
@@ -2111,7 +2111,7 @@ namespace radix
       ASSERT(lpszRegistryKey != NULL);
       ASSERT(m_strAppName.has_char());
 
-      //BOOL bEnable = __enable_memory_tracking(FALSE);
+      //bool bEnable = __enable_memory_tracking(FALSE);
       free((void *)m_pszRegistryKey);
       m_pszRegistryKey = _tcsdup(lpszRegistryKey);
       free((void *)m_pszProfileName);
@@ -2258,7 +2258,7 @@ namespace radix
       }
    }
 
-   BOOL application::GetProfileBinary(const char * lpszSection, const char * lpszEntry,
+   bool application::GetProfileBinary(const char * lpszSection, const char * lpszEntry,
       BYTE** ppData, UINT* pBytes)
    {
       ASSERT(lpszSection != NULL);
@@ -2323,7 +2323,7 @@ namespace radix
    }
 
 
-   BOOL application::WriteProfileInt(const char * lpszSection, const char * lpszEntry,
+   bool application::WriteProfileInt(const char * lpszSection, const char * lpszEntry,
       int nValue)
    {
       ASSERT(lpszSection != NULL);
@@ -2349,7 +2349,7 @@ namespace radix
       }
    }
 
-   BOOL application::WriteProfileString(const char * lpszSection, const char * lpszEntry,
+   bool application::WriteProfileString(const char * lpszSection, const char * lpszEntry,
             const char * lpszValue)
    {
       ASSERT(lpszSection != NULL);
@@ -2393,7 +2393,7 @@ namespace radix
       }
    }
 
-   BOOL application::WriteProfileBinary(const char * lpszSection, const char * lpszEntry,
+   bool application::WriteProfileBinary(const char * lpszSection, const char * lpszEntry,
       LPBYTE pData, UINT nBytes)
    {
       ASSERT(lpszSection != NULL);
@@ -2421,7 +2421,7 @@ namespace radix
 
       ASSERT(m_pszProfileName != NULL);
 
-      BOOL bResult = WriteProfileString(lpszSection, lpszEntry, lpsz);
+      bool bResult = WriteProfileString(lpszSection, lpszEntry, lpsz);
       delete[] lpsz;
       return bResult;
    }
@@ -2871,7 +2871,7 @@ namespace radix
    {
    }
 
-   BOOL application::UnlockTempMaps(BOOL bDeleteTemps)
+   bool application::UnlockTempMaps(bool bDeleteTemps)
    {
       UNREFERENCED_PARAMETER(bDeleteTemps);
       return TRUE;
@@ -3124,7 +3124,7 @@ file_manager_interface::~file_manager_interface()
 {
 }
 
-BOOL file_manager_interface::do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
+bool file_manager_interface::do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
 {
    UNREFERENCED_PARAMETER(varFile);
    UNREFERENCED_PARAMETER(nIDSTitle);

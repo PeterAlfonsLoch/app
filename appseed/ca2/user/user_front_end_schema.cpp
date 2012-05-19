@@ -131,7 +131,7 @@ namespace user
 
    }
 
-   front_end_schema::~front_end_schema(void)
+   front_end_schema::~front_end_schema()
    {
    }
 

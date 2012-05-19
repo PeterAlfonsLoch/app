@@ -31,8 +31,8 @@ namespace userbase
       virtual void _001OnDraw(::ca::graphics * pdc);
 
       using ::user::interaction::create;
-      BOOL create(split_layout * pparent);
-      virtual BOOL pre_create_window(CREATESTRUCT& cs);
+      bool create(split_layout * pparent);
+      virtual bool pre_create_window(CREATESTRUCT& cs);
 
       
       DECL_GEN_SIGNAL(_001OnLButtonDown)

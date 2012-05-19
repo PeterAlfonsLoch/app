@@ -15,7 +15,7 @@ public:
    error_exception(const char * pszError);
    virtual ~error_exception();
 
-   virtual BOOL GetErrorMessage(string & str, PUINT pnHelpContext = NULL);
+   virtual bool GetErrorMessage(string & str, PUINT pnHelpContext = NULL);
 
 
 };

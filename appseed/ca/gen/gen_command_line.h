@@ -37,9 +37,9 @@ namespace gen
 
 
       e_command                     m_ecommand;
-      BOOL                          m_bShowSplash;
-      BOOL                          m_bRunEmbedded;
-      BOOL                          m_bRunAutomated;
+      bool                          m_bShowSplash;
+      bool                          m_bRunEmbedded;
+      bool                          m_bRunAutomated;
       int                           m_nCmdShow;
 
       // not valid for file_new
@@ -69,10 +69,10 @@ namespace gen
 
       command_line & operator = (const command_line & info);
 
-      virtual void ParseParam(const char* pszParam, BOOL bFlag, BOOL bLast);
+      virtual void ParseParam(const char* pszParam, bool bFlag, bool bLast);
       virtual void ParseParamFlag(const char* pszParam);
       virtual void ParseParamNotFlag(const char* pszParam);
-      virtual void ParseLast(BOOL bLast);
+      virtual void ParseLast(bool bLast);
 
 
       virtual void _001ParseCommandLine(const char * pszCommandLine);

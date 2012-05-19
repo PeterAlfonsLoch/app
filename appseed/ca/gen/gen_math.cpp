@@ -265,7 +265,7 @@ namespace gen
          return dPi;
       }
 
-      BOOL math::IsPowerOfTwo(
+      bool math::IsPowerOfTwo(
          unsigned int uiValue)
       {
           if (uiValue < 2)

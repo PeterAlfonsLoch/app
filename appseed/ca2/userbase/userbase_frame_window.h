@@ -76,7 +76,7 @@ namespace userbase
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
       void OnUpdateControlBarMenu(cmd_ui * pcmdui);
-      BOOL OnBarCheck(UINT nID);
+      bool OnBarCheck(UINT nID);
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
       using window_frame::WorkSetListener::Attach;
@@ -93,12 +93,12 @@ namespace userbase
       UINT m_nIdleFlags;          // set of bit flags for idle processing
       virtual void DelayUpdateFrameMenu(HMENU hMenuAlt);
       void DelayUpdateFrameTitle();
-      void DelayRecalcLayout(BOOL bNotify = TRUE);
+      void DelayRecalcLayout(bool bNotify = TRUE);
 
 
 
       ::user::interaction* WindowDataGetWnd();
-      virtual BOOL pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(CREATESTRUCT& cs);
 
 
       friend class ::user::interaction;  // for access to m_bModalDisable

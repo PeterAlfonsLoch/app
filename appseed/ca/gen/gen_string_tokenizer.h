@@ -30,8 +30,8 @@ public:
    bool ExtractFolderPath(const char * lpcszFilePath);
    void Restart();
    void Restart(string &strNew);
-   BOOL GetNextToken(string &strToken, const char * lpSeparator, BOOL bWithSeparator = FALSE);
-   BOOL GetNextSmallestToken(string &strToken, string_array & straSeparator, BOOL bWithSeparator = FALSE);
+   bool GetNextToken(string &strToken, const char * lpSeparator, bool bWithSeparator = FALSE);
+   bool GetNextSmallestToken(string &strToken, string_array & straSeparator, bool bWithSeparator = FALSE);
    // Any of separator character
    bool GetNextTokenEx(string &strToken, const char * lpSeparator, bool bWithSeparator = false, bool bSkipAdjacent = false);
 

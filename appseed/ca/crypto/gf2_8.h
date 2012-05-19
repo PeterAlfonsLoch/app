@@ -71,7 +71,7 @@ gf2_8
 gf2_8_compute_inverse(gf2_8 x);
 
 void
-test_gf2_8(void);
+test_gf2_8();
 
 gf2_8
 gf2_8_multiply(gf2_8 x, gf2_8 y);

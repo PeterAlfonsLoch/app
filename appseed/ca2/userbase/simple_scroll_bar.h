@@ -24,7 +24,7 @@ public:
 
    virtual void pre_translate_message(gen::signal_object * pobj);
    using ::user::scroll_bar::create;
-   virtual BOOL create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd, UINT nID, ::ca::create_context* pContext = NULL);
+   virtual bool create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd, UINT nID, ::ca::create_context* pContext = NULL);
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
    virtual void _001OnDraw(::ca::graphics * pdc);
@@ -37,8 +37,8 @@ public:
    int ScrollLineB();
    int ScrollPageB();
    int ScrollPageA();
-   BOOL GetPageARect(LPRECT lpRectClient, LPRECT lpRectTrack,  LPRECT lpRect);
-   BOOL GetPageBRect(LPRECT lpRectClient, LPRECT lpRectTrack,  LPRECT lpRect);
+   bool GetPageARect(LPRECT lpRectClient, LPRECT lpRectTrack,  LPRECT lpRect);
+   bool GetPageBRect(LPRECT lpRectClient, LPRECT lpRectTrack,  LPRECT lpRect);
    void UpdateBitmaps();
    void OnDisplayChange(int iBitsPerPixel, size sizeScreen);
    //virtual void OnDraw(::ca::graphics * pgraphics);
@@ -47,12 +47,12 @@ public:
    virtual bool _001GetScrollInfo(::user::scroll_info * psi);
    virtual bool _001SetScrollInfo(::user::scroll_info * psi, bool bRedraw = true);
 
-   BOOL create(e_orientation eorientation, DWORD dwStyle, rect & rect, ::user::interaction * pParentWnd, UINT nID);
+   bool create(e_orientation eorientation, DWORD dwStyle, rect & rect, ::user::interaction * pParentWnd, UINT nID);
 
    int SetTrackingPos(point point);
    int GetTrackSize(size & size);
-   BOOL GetTrackClientRect(LPRECT lpRect);
-   BOOL GetTrackRect(LPRECT lpRect);
+   bool GetTrackClientRect(LPRECT lpRect);
+   bool GetTrackRect(LPRECT lpRect);
    DECL_GEN_SIGNAL(_001OnMouseMove)
    DECL_GEN_SIGNAL(_001OnLButtonDown)
    DECL_GEN_SIGNAL(_001OnLButtonUp)

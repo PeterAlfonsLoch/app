@@ -10,12 +10,12 @@ public:
    void Construct(int nNextOffset);
 
 // Operations
-   BOOL is_empty() const;
+   bool is_empty() const;
    void add_head(void * p);
    void remove_all();
    void * get_head() const;
    void * get_next(void * p) const;
-   BOOL remove(void * p);
+   bool remove(void * p);
 
 // Implementation
    void * m_pHead;
@@ -28,7 +28,7 @@ inline base_simple_list::base_simple_list(int nNextOffset)
    { m_pHead = NULL; m_nNextOffset = nNextOffset; }
 inline void base_simple_list::Construct(int nNextOffset)
    { m_nNextOffset = nNextOffset; }
-inline BOOL base_simple_list::is_empty() const
+inline bool base_simple_list::is_empty() const
    { return m_pHead == NULL; }
 inline void ** base_simple_list::GetNextPtr(void * p) const
    { return (void **)((BYTE*)p+m_nNextOffset); }
@@ -51,7 +51,7 @@ public:
       { return (TYPE)base_simple_list::get_head(); }
    TYPE get_next(TYPE p)
       { return (TYPE)base_simple_list::get_next(p); }
-   BOOL remove(TYPE p)
+   bool remove(TYPE p)
       { return base_simple_list::remove((TYPE)p); }
    operator TYPE();      
 };

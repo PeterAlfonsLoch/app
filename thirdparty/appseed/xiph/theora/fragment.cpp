@@ -85,4 +85,4 @@ void oc_restore_fpu(const oc_theora_state *_state){
   _state->opt_vtable.restore_fpu();
 }
 
-void oc_restore_fpu_c(void){}
+void oc_restore_fpu_c(){}

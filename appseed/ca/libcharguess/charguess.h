@@ -18,6 +18,6 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-int CharGuessInit(void);
+int CharGuessInit();
 const char* GuessChardet(const char *str);
-int CharGuessDone(void);
+int CharGuessDone();

@@ -55,7 +55,7 @@ void view::install_message_handling(::gen::message::dispatch * pinterface)
 /////////////////////////////////////////////////////////////////////////////
 // ::view second phase construction - bind to ::user::document_interface
 
-BOOL view::pre_create_window(CREATESTRUCT & cs)
+bool view::pre_create_window(CREATESTRUCT & cs)
 {
    ASSERT(cs.style & WS_CHILD);
 
@@ -237,7 +237,7 @@ void view::OnDraw(::ca::graphics * pgraphics)
 /////////////////////////////////////////////////////////////////////////////
 // ::view selection support
 
-BOOL view::IsSelected(const ::radix::object* pDocItem) const
+bool view::IsSelected(const ::radix::object* pDocItem) const
 {
    ASSERT_VALID(pDocItem);
    UNUSED(pDocItem);    // unused in release builds
@@ -245,7 +245,7 @@ BOOL view::IsSelected(const ::radix::object* pDocItem) const
    return FALSE;   // not implemented, so not selected
 }
 
-void view::OnActivateView(BOOL bActivate, ::view * pActivateView, ::view *)
+void view::OnActivateView(bool bActivate, ::view * pActivateView, ::view *)
 {
    UNUSED(pActivateView);   // unused in release builds
 
@@ -298,12 +298,12 @@ int view::OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message
 /////////////////////////////////////////////////////////////////////////////
 // ::view scrolling support
 
-BOOL view::OnScroll(UINT /*nScrollCode*/, UINT /*nPos*/, BOOL /*bDoScroll*/)
+bool view::OnScroll(UINT /*nScrollCode*/, UINT /*nPos*/, bool /*bDoScroll*/)
 {
    return FALSE;
 }
 
-BOOL view::OnScrollBy(size /*sizeScroll*/, BOOL /*bDoScroll*/)
+bool view::OnScrollBy(size /*sizeScroll*/, bool /*bDoScroll*/)
 {
    return FALSE;
 }
@@ -332,7 +332,7 @@ BOOL view::OnScrollBy(size /*sizeScroll*/, BOOL /*bDoScroll*/)
    //return 0;   // DROPEFFECT_NONE
 //}
 
-//BOOL view::OnDrop(COleDataObject* /*pDataObject*/,
+//bool view::OnDrop(COleDataObject* /*pDataObject*/,
    //DROPEFFECT /*dropEffect*/, point /*point*/)
 //{
   // return FALSE;
@@ -374,7 +374,7 @@ void view::OnUpdateSplitCmd(cmd_ui* pCmdUI)
    pCmdUI->Enable(pSplitter != NULL && !pSplitter->IsTracking());*/
 }
 
-BOOL view::OnSplitCmd(UINT)
+bool view::OnSplitCmd(UINT)
 {
 /*   CSplitterWnd* pSplitter = GetParentSplitter(this, FALSE);
    if (pSplitter == NULL)
@@ -395,7 +395,7 @@ void view::OnUpdateNextPaneMenu(cmd_ui* pCmdUI)
       pSplitter->CanActivateNext(pCmdUI->m_nID == ID_PREV_PANE));*/
 }
 
-BOOL view::OnNextPaneCmd(UINT nID)
+bool view::OnNextPaneCmd(UINT nID)
 {
    UNREFERENCED_PARAMETER(nID);
 /*   CSplitterWnd* pSplitter = GetParentSplitter(this, FALSE);

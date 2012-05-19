@@ -30,14 +30,14 @@ namespace filemanager
       virtual void on_request(::ca::create_context * pcreatecontext);
 
       virtual void InitializeFileManager(const char * pszMatter);
-      virtual FileManagerTemplate * GetStdFileManagerTemplate(void);
-      virtual FileManagerTemplate * GetFsManagerTemplate(void);
+      virtual FileManagerTemplate * GetStdFileManagerTemplate();
+      virtual FileManagerTemplate * GetFsManagerTemplate();
 
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
 
-      virtual BOOL do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
+      virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
 
       string get_file_manager_initial_browse_path(const char * pszDefault = NULL);
 

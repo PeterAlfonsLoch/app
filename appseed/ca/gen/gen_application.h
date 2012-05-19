@@ -56,11 +56,11 @@ namespace gen
       virtual void dump(dump_context & dumpcontext) const;
 
       virtual int run();
-      virtual BOOL on_idle(LONG lCount); // return TRUE if more idle processing
+      virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
       virtual void ProcessWndProcException(base_exception* e, gen::signal_object * pobj);
 
 
-      void EnableModelessEx(BOOL bEnable);
+      void EnableModelessEx(bool bEnable);
 #ifdef WINDOWS
       HENHMETAFILE LoadEnhMetaFile(UINT uiResource);
 #endif

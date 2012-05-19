@@ -21,8 +21,8 @@ namespace user
    {
    public:
 
-      front_end(void);
-      ~front_end(void);
+      front_end();
+      ~front_end();
 
       static LRESULT CALLBACK MouseProc(
          int      nCode,

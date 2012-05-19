@@ -28,18 +28,18 @@ __STATIC_DATA const CHAR _vfxShellNewValue[] = "";
 
 #define _wcsinc(_pc)    ((_pc)+1)
 
-/*BOOL vfxExtractSubString(string& rString, const wchar_t * lpszFullString,
+/*bool vfxExtractSubString(string& rString, const wchar_t * lpszFullString,
    int iSubString, WCHAR chSep);*/
 UINT __get_file_title(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax);
 
-__STATIC BOOL AFXAPI
+__STATIC bool AFXAPI
 __set_reg_key(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName = NULL);
 
 void __get_module_short_file_name(HINSTANCE hInst, string& strShortName);
 
 
 
-__STATIC inline BOOL IsDirSep(WCHAR wch)
+__STATIC inline bool IsDirSep(WCHAR wch)
 {
    return (wch == '\\' || wch == '/');
 }
@@ -100,7 +100,7 @@ namespace userbase
    {
    }
 
-/*   BOOL __delete_reg_key(const wchar_t * lpszKey)
+/*   bool __delete_reg_key(const wchar_t * lpszKey)
    {
       // copy the string
       wchar_t * lpszKeyCopy = _wcsdup(lpszKey);
@@ -120,7 +120,7 @@ namespace userbase
          // enumerate the keys underneath
          WCHAR szScrap[_MAX_PATH+1];
          DWORD dwLen = _countof(szScrap);
-         BOOL bItExists = FALSE;
+         bool bItExists = FALSE;
 
          if (::RegEnumKeyW(hKey, 0, szScrap, dwLen) == ERROR_SUCCESS)
             bItExists = TRUE;
@@ -140,7 +140,7 @@ namespace userbase
       return TRUE;
    }
 
-   __STATIC BOOL AFXAPI
+   __STATIC bool AFXAPI
    __set_reg_key(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName)
    {
       if (lpszValueName == NULL)

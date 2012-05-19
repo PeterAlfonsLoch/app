@@ -17,7 +17,7 @@ namespace calculator
       frame(::ca::application * papp);
       virtual ~frame();
 
-      virtual BOOL pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(CREATESTRUCT& cs);
 
       void ShowControlBars(bool bShow);
       void AnimateStatusBar();

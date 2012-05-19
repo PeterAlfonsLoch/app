@@ -15,7 +15,7 @@ simple_exception::simple_exception(const char * pszMessage)
    m_szMessage[sizeof(m_szMessage) - 1] = '\0';
 }
 
-simple_exception::simple_exception(BOOL bAutoDelete)
+simple_exception::simple_exception(bool bAutoDelete)
    : base_exception(bAutoDelete)
 {
    m_bInitialized = FALSE; 
@@ -36,7 +36,7 @@ void simple_exception::InitString()
 
 }
 
-BOOL simple_exception::GetErrorMessage(string & str, PUINT pnHelpContext)
+bool simple_exception::GetErrorMessage(string & str, PUINT pnHelpContext)
 {
 
    if (pnHelpContext != NULL)

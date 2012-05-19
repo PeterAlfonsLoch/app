@@ -81,7 +81,7 @@ misc_exception::~misc_exception()
 {
 }
 
-BOOL misc_exception::GetErrorMessage(string & str, PUINT pnHelpContext)
+bool misc_exception::GetErrorMessage(string & str, PUINT pnHelpContext)
 {
    UNREFERENCED_PARAMETER(pnHelpContext);
    str = m_strMessage;

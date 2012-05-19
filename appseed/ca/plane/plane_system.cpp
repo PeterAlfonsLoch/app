@@ -139,7 +139,7 @@ namespace plane
 
    }
 
-   BOOL system::InitApplication()
+   bool system::InitApplication()
    {
 
       if(m_bInitApplication)
@@ -1051,7 +1051,7 @@ namespace plane
       // we remove WM_QUIT because if it is in the queue then the message box
       // won't display
       MSG msg;
-      BOOL bQuit = PeekMessage(&msg, NULL, WM_QUIT, WM_QUIT, PM_REMOVE);
+      bool bQuit = PeekMessage(&msg, NULL, WM_QUIT, WM_QUIT, PM_REMOVE);
       va_list list = NULL;
       bool bResult = ________ca2_votagus_logging_Report(_CRT_ASSERT, lpszFileName, iLine, NULL, NULL, list) != 0;
       if (bQuit)

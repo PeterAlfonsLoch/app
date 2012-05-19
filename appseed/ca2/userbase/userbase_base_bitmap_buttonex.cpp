@@ -21,7 +21,7 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &bitmap_button::_001OnMouseMove); 
    }
 
-   BOOL bitmap_button::LoadBitmaps(
+   bool bitmap_button::LoadBitmaps(
       const char * lpszBitmapResource,
       const char * lpszBitmapResourceSel,
       const char * lpszBitmapResourceFocus,
@@ -40,7 +40,7 @@ namespace userbase
            TRACE0("Failed to load bitmap for normal image.\n");
            return FALSE;   // need this one image
        }
-       BOOL bAllLoaded = TRUE;
+       bool bAllLoaded = TRUE;
        if (lpszBitmapResourceSel != NULL)
        {
            if (!m_bitmapSel.LoadBitmap(lpszBitmapResourceSel))

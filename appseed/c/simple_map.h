@@ -33,7 +33,7 @@ public:
    count get_count() const;
 
    // Lookup
-   BOOL Lookup(KEY & key, VALUE& rValue) const;
+   bool Lookup(KEY & key, VALUE& rValue) const;
    const pair *PLookup(KEY & key) const;
    pair *PLookup(KEY & key);
 
@@ -48,7 +48,7 @@ public:
    void set_at(KEY key, VALUE newValue);
 
    // removing existing (key, ?) pair
-   BOOL remove_key(KEY key);
+   bool remove_key(KEY key);
    void remove_all();
 
    // iterating all (key, value) pairs
@@ -64,7 +64,7 @@ public:
 
    // advanced features for derived classes
    UINT GetHashTableSize() const;
-   void InitHashTable(UINT hashSize, BOOL bAllocNow = TRUE);
+   void InitHashTable(UINT hashSize, bool bAllocNow = TRUE);
 
 
    VALUE get(KEY & argkey, VALUE & valueDefault);
@@ -164,7 +164,7 @@ simple_map< KEY,  VALUE >::simple_map(pair pairs[])
 
 template<class KEY,  class VALUE>
 void simple_map< KEY,  VALUE >::InitHashTable(
-   UINT nHashSize, BOOL bAllocNow)
+   UINT nHashSize, bool bAllocNow)
 //
 // Used to force allocation of a hash table or to override the default
 //   hash table size of (which is fairly small)
@@ -283,7 +283,7 @@ simple_map< KEY,  VALUE >::GetAssocAt(KEY & key, UINT& nHashBucket, UINT& nHashV
 }
 
 template<class KEY,  class VALUE>
-BOOL simple_map< KEY,  VALUE >::Lookup(KEY & key, VALUE& rValue) const
+bool simple_map< KEY,  VALUE >::Lookup(KEY & key, VALUE& rValue) const
 {
    UINT nHashBucket, nHashValue;
    assoc* pAssoc = GetAssocAt(key, nHashBucket, nHashValue);
@@ -346,7 +346,7 @@ VALUE& simple_map< KEY,  VALUE >::operator[](KEY & key)
 }
 
 template<class KEY,  class VALUE>
-BOOL simple_map< KEY,  VALUE >::remove_key(KEY key)
+bool simple_map< KEY,  VALUE >::remove_key(KEY key)
 // remove key - return TRUE if removed
 {
    if (m_pHashTable == NULL)
@@ -577,7 +577,7 @@ public:
    count get_count() const;
 
    // Lookup
-   BOOL Lookup(vsstring &  str, VALUE& rValue) const;
+   bool Lookup(vsstring &  str, VALUE& rValue) const;
    const pair *PLookup(vsstring &  str) const;
    pair *PLookup(vsstring &  str);
 
@@ -593,7 +593,7 @@ public:
    void set_at(vsstring str, VALUE newValue);
 
    // removing existing (vsstring, ?) pair
-   BOOL remove_vsstring(vsstring  str);
+   bool remove_vsstring(vsstring  str);
    void remove_all();
 
    // iterating all (vsstring, value) pairs
@@ -609,7 +609,7 @@ public:
 
    // advanced features for derived classes
    UINT GetHashTableSize() const;
-   void InitHashTable(UINT hashSize, BOOL bAllocNow = TRUE);
+   void InitHashTable(UINT hashSize, bool bAllocNow = TRUE);
 
 
    VALUE get(vsstring & argvsstring, VALUE & valueDefault);
@@ -709,7 +709,7 @@ simple_string_map < VALUE >::simple_string_map(pair pairs[])
 
 template < class VALUE>
 void simple_string_map < VALUE >::InitHashTable(
-   UINT nHashSize, BOOL bAllocNow)
+   UINT nHashSize, bool bAllocNow)
 //
 // Used to force allocation of a hash table or to override the default
 //   hash table size of (which is fairly small)
@@ -828,7 +828,7 @@ simple_string_map < VALUE >::GetAssocAt(vsstring & str, UINT& nHashBucket, UINT&
 }
 
 template < class VALUE>
-BOOL simple_string_map < VALUE >::Lookup(vsstring & str, VALUE& rValue) const
+bool simple_string_map < VALUE >::Lookup(vsstring & str, VALUE& rValue) const
 {
    UINT nHashBucket, nHashValue;
    assoc* pAssoc = GetAssocAt(str, nHashBucket, nHashValue);
@@ -898,7 +898,7 @@ VALUE& simple_string_map < VALUE >::operator[](const char * psz)
 }
 
 template < class VALUE>
-BOOL simple_string_map < VALUE >::remove_vsstring(vsstring str)
+bool simple_string_map < VALUE >::remove_vsstring(vsstring str)
 // remove vsstring - return TRUE if removed
 {
    if (m_pHashTable == NULL)

@@ -20,14 +20,14 @@ namespace userbase
       ::ca::bitmap m_bitmapHover;     // hover bitmap
 
 #ifdef WINDOWS
-      BOOL LoadBitmaps(UINT nIDBitmapResource,
+      bool LoadBitmaps(UINT nIDBitmapResource,
          UINT nIDBitmapResourceSel = 0,
          UINT nIDBitmapResourceFocus = 0,
          UINT nIDBitmapResourceDisabled = 0,
          UINT nIDBitmapResourceHover = 0);
 #endif
 
-      BOOL LoadBitmaps(
+      bool LoadBitmaps(
          const char * lpszBitmapResource,
          const char * lpszBitmapResourceSel = NULL,
          const char * lpszBitmapResourceFocus = NULL,
@@ -53,7 +53,7 @@ namespace userbase
    };
 
 #ifdef WINDOWS
-   inline BOOL bitmap_button::LoadBitmaps(UINT nIDBitmapResource,
+   inline bool bitmap_button::LoadBitmaps(UINT nIDBitmapResource,
        UINT nIDBitmapResourceSel, UINT nIDBitmapResourceFocus,
        UINT nIDBitmapResourceDisabled, UINT nIDBitmapResourceHover)
        { return LoadBitmaps(MAKEINTRESOURCE(nIDBitmapResource),

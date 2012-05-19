@@ -355,7 +355,7 @@ CScriptLex::CScriptLex(CScriptLex *owner, strsize startChar, strsize endChar)
    reset();
 }
 
-CScriptLex::~CScriptLex(void)
+CScriptLex::~CScriptLex()
 {
    if (dataOwned)
       free((void*)data);
@@ -904,7 +904,7 @@ CScriptVar::CScriptVar(bool val) {
    setBool(val);
 }
 
-CScriptVar::~CScriptVar(void) {
+CScriptVar::~CScriptVar() {
 #if DEBUG_MEMORY
    mark_deallocated(this);
 #endif

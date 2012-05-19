@@ -19,7 +19,7 @@ namespace fontopus
    }
 
 
-   application::~application(void)
+   application::~application()
    {
    }
 

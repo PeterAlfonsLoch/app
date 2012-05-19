@@ -129,7 +129,7 @@ namespace user
          return m_pimpl->GetDC();
    }
 
-   BOOL interaction::ReleaseDC(::ca::graphics * pdc)
+   bool interaction::ReleaseDC(::ca::graphics * pdc)
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -137,7 +137,7 @@ namespace user
          return m_pimpl->ReleaseDC(pdc);
    }
 
-   BOOL interaction::IsChild(interaction * pWnd)
+   bool interaction::IsChild(interaction * pWnd)
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -950,7 +950,7 @@ namespace user
    // pbase object should be allocated with new in
    // base or derived object and will be delete after
    // handling
-   BOOL interaction::PostMessage(gen::message::base * pbase)
+   bool interaction::PostMessage(gen::message::base * pbase)
    {
       return PostMessage(WM_APP + 2014, 1, (LPARAM) pbase);
    }
@@ -963,7 +963,7 @@ namespace user
          return m_pimpl->SendMessage(uiMessage, wparam, lparam);
    }
 
-   BOOL interaction::IsWindowVisible()
+   bool interaction::IsWindowVisible()
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -971,7 +971,7 @@ namespace user
          return m_pimpl->IsWindowVisible();
    }
 
-   BOOL interaction::EnableWindow(BOOL bEnable)
+   bool interaction::EnableWindow(bool bEnable)
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -979,7 +979,7 @@ namespace user
          return m_pimpl->EnableWindow(bEnable);
    }
 
-   BOOL interaction::ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool interaction::ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -987,7 +987,7 @@ namespace user
          return m_pimpl->ModifyStyle(dwRemove, dwAdd,  nFlags);
    }
 
-   BOOL interaction::ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool interaction::ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -995,20 +995,20 @@ namespace user
          return m_pimpl->ModifyStyleEx(dwRemove, dwAdd, nFlags);
    }
 
-   BOOL interaction::ShowWindow(int nCmdShow)
+   bool interaction::ShowWindow(int nCmdShow)
    {
       if(m_pimpl == NULL)
          return FALSE;
       else
       {
-         BOOL b = m_pimpl->ShowWindow(nCmdShow);
+         bool b = m_pimpl->ShowWindow(nCmdShow);
          m_bVisible = b != FALSE;
          return b;
       }
 
    }
 
-   BOOL interaction::IsFrameWnd()
+   bool interaction::IsFrameWnd()
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -1016,7 +1016,7 @@ namespace user
          return m_pimpl->IsFrameWnd();
    }
 
-   BOOL interaction::IsWindowEnabled()
+   bool interaction::IsWindowEnabled()
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -1032,7 +1032,7 @@ namespace user
          return m_pimpl->GetTopLevelFrame();
    }
 
-   void interaction::SendMessageToDescendants(UINT message, WPARAM wparam, LPARAM lparam, BOOL bDeep, BOOL bOnlyPerm)
+   void interaction::SendMessageToDescendants(UINT message, WPARAM wparam, LPARAM lparam, bool bDeep, bool bOnlyPerm)
    {
       if(m_pimpl == NULL)
          return;
@@ -1135,7 +1135,7 @@ namespace user
       return true;
    }
 
-   BOOL interaction::create_window(
+   bool interaction::create_window(
       const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
@@ -1179,7 +1179,7 @@ namespace user
 
 
 
-   BOOL interaction::create(const char * lpszClassName,
+   bool interaction::create(const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
          const RECT& rect,
          interaction* pParentWnd, id id,
@@ -1244,7 +1244,7 @@ namespace user
    }
 
 
-   BOOL interaction::create_window_ex(DWORD dwExStyle, const char * lpszClassName,
+   bool interaction::create_window_ex(DWORD dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
          const RECT& rect,
          interaction* pParentWnd, id id,
@@ -1268,7 +1268,7 @@ namespace user
    }
 
 
-   BOOL interaction::CreateEx(DWORD dwExStyle, const char * lpszClassName,
+   bool interaction::CreateEx(DWORD dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
          const RECT& rect,
          interaction* pParentWnd, id id,
@@ -1321,7 +1321,7 @@ namespace user
 
    }
 
-   BOOL interaction::IsWindow()
+   bool interaction::IsWindow()
    {
       try
       {
@@ -1356,7 +1356,7 @@ namespace user
    }
 
 
-   BOOL interaction::RedrawWindow(LPCRECT lpRectUpdate,
+   bool interaction::RedrawWindow(LPCRECT lpRectUpdate,
          ::ca::region* prgnUpdate,
          UINT flags)
    {
@@ -1477,7 +1477,7 @@ namespace user
          return m_pimpl->SetActiveWindow();
    }
 
-   BOOL interaction::SetForegroundWindow()
+   bool interaction::SetForegroundWindow()
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -1530,7 +1530,7 @@ namespace user
          return m_pimpl->GetWindowTextLength();
    }
 
-   void interaction::SetFont(::ca::font* pFont, BOOL bRedraw)
+   void interaction::SetFont(::ca::font* pFont, bool bRedraw)
    {
       if(m_pimpl == NULL)
          return;
@@ -1545,7 +1545,7 @@ namespace user
          return m_pimpl->GetFont();
    }
 
-   BOOL interaction::SendChildNotifyLastMsg(LRESULT* pResult)
+   bool interaction::SendChildNotifyLastMsg(LRESULT* pResult)
    {
       if(m_pimpl == NULL)
          return NULL;
@@ -1609,7 +1609,7 @@ namespace user
          return m_pimpl->GetExStyle();
    }
 
-   BOOL interaction::DestroyWindow()
+   bool interaction::DestroyWindow()
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -1654,7 +1654,7 @@ namespace user
 
    void interaction::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver,
          UINT nFlag, LPRECT lpRectParam,
-         LPCRECT lpRectClient, BOOL bStretch)
+         LPCRECT lpRectClient, bool bStretch)
    {
       if(m_pimpl == NULL)
          return;
@@ -1764,7 +1764,7 @@ namespace user
          return m_pimpl->ClientToScreen(lppoint);
    }
 
-   int interaction::SetWindowRgn(HRGN hRgn, BOOL bRedraw)
+   int interaction::SetWindowRgn(HRGN hRgn, bool bRedraw)
    {
      if(m_pimpl == NULL)
          return 0;
@@ -1814,7 +1814,7 @@ namespace user
    }
 
    void interaction::MoveWindow(int x, int y, int nWidth, int nHeight,
-               BOOL bRepaint)
+               bool bRepaint)
    {
       if(m_pimpl == NULL)
          return;
@@ -1822,7 +1822,7 @@ namespace user
          m_pimpl->MoveWindow(x, y, nWidth, nHeight, bRepaint);
    }
 
-   void interaction::MoveWindow(LPCRECT lpRect, BOOL bRepaint)
+   void interaction::MoveWindow(LPCRECT lpRect, bool bRepaint)
    {
       if(m_pimpl == NULL)
          return;
@@ -1832,7 +1832,7 @@ namespace user
 
 
 
-   BOOL interaction::CheckAutoCenter()
+   bool interaction::CheckAutoCenter()
    {
       if(m_pimpl == NULL)
          return TRUE;
@@ -1864,7 +1864,7 @@ namespace user
          return m_pimpl->message_handler(pobj);
    }
 
-   BOOL interaction::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
+   bool interaction::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -1872,7 +1872,7 @@ namespace user
          return m_pimpl->GetWindowPlacement(lpwndpl);
    }
 
-   BOOL interaction::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
+   bool interaction::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -1880,7 +1880,7 @@ namespace user
          return m_pimpl->SetWindowPlacement(lpwndpl);
    }
 
-   BOOL interaction::pre_create_window(CREATESTRUCT& cs)
+   bool interaction::pre_create_window(CREATESTRUCT& cs)
    {
       if(m_pimpl == NULL)
          return TRUE;
@@ -1888,7 +1888,7 @@ namespace user
          return m_pimpl->pre_create_window(cs);
    }
 
-   BOOL interaction::IsTopParentActive()
+   bool interaction::IsTopParentActive()
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -1904,7 +1904,7 @@ namespace user
          m_pimpl->ActivateTopParent();
    }
 
-   void interaction::UpdateDialogControls(command_target* pTarget, BOOL bDisableIfNoHandler)
+   void interaction::UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHandler)
    {
       if(m_pimpl == NULL)
          return;
@@ -1920,7 +1920,7 @@ namespace user
          m_pimpl->UpdateWindow();
    }
 
-   void interaction::SetRedraw(BOOL bRedraw)
+   void interaction::SetRedraw(bool bRedraw)
    {
       if(m_pimpl == NULL)
          return;
@@ -1928,7 +1928,7 @@ namespace user
          m_pimpl->SetRedraw(bRedraw);
    }
 
-   BOOL interaction::GetUpdateRect(LPRECT lpRect, BOOL bErase)
+   bool interaction::GetUpdateRect(LPRECT lpRect, bool bErase)
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -1936,7 +1936,7 @@ namespace user
          return m_pimpl->GetUpdateRect(lpRect, bErase);
    }
 
-   int interaction::GetUpdateRgn(::ca::region* pRgn, BOOL bErase)
+   int interaction::GetUpdateRgn(::ca::region* pRgn, bool bErase)
    {
       if(m_pimpl == NULL)
          return 0;
@@ -1945,7 +1945,7 @@ namespace user
 
    }
 
-   void interaction::Invalidate(BOOL bErase)
+   void interaction::Invalidate(bool bErase)
    {
       if(m_pimpl == NULL)
          return;
@@ -1953,7 +1953,7 @@ namespace user
          m_pimpl->Invalidate(bErase);
    }
 
-   void interaction::InvalidateRect(LPCRECT lpRect, BOOL bErase)
+   void interaction::InvalidateRect(LPCRECT lpRect, bool bErase)
    {
       if(m_pimpl == NULL)
          return;
@@ -1961,7 +1961,7 @@ namespace user
          m_pimpl->InvalidateRect(lpRect, bErase);
    }
 
-   void interaction::InvalidateRgn(::ca::region* pRgn, BOOL bErase)
+   void interaction::InvalidateRgn(::ca::region* pRgn, bool bErase)
    {
       if(m_pimpl == NULL)
          return;
@@ -1989,7 +1989,7 @@ namespace user
    {
    }
 
-   void interaction::ShowOwnedPopups(BOOL bShow)
+   void interaction::ShowOwnedPopups(bool bShow)
    {
       if(m_pimpl == NULL || m_pimpl == this)
          return;
@@ -1997,7 +1997,7 @@ namespace user
          m_pimpl->ShowOwnedPopups(bShow);
    }
 
-   BOOL interaction::Attach(HWND hWndNew)
+   bool interaction::Attach(HWND hWndNew)
    {
       if(m_pimpl == NULL || m_pimpl == this)
          return FALSE;
@@ -2032,9 +2032,9 @@ namespace user
    id interaction::RunModalLoop(DWORD dwFlags, ::ca::live_object * pliveobject)
    {
       // for tracking the idle time state
-      BOOL bIdle = TRUE;
+      bool bIdle = TRUE;
       LONG lIdleCount = 0;
-      BOOL bShowIdle = (dwFlags & MLF_SHOWONIDLE) && !(GetStyle() & WS_VISIBLE);
+      bool bShowIdle = (dwFlags & MLF_SHOWONIDLE) && !(GetStyle() & WS_VISIBLE);
 //      HWND hWndParent = ::GetParent(get_handle());
       m_iModal = m_iModalCount;
       int iLevel = m_iModal;
@@ -2042,7 +2042,7 @@ namespace user
       oprop(string("RunModalLoop.thread(") + gen::str::itoa(iLevel) + ")") = System.GetThread();
       m_iModalCount++;
 
-      //BOOL bAttach = AttachThreadInput(get_wnd()->m_pthread->get_os_int(), ::GetCurrentThreadId(), TRUE);
+      //bool bAttach = AttachThreadInput(get_wnd()->m_pthread->get_os_int(), ::GetCurrentThreadId(), TRUE);
 
       m_iaModalThread.add(::ca::get_thread()->get_os_int());
       ::radix::application * pappThis1 = dynamic_cast < ::radix::application * > (m_pthread->m_p);
@@ -2235,7 +2235,7 @@ ExitModal:
       }
    }
 
-   BOOL interaction::PostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   bool interaction::PostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -2253,7 +2253,7 @@ ExitModal:
          return m_pimpl->SetTimer(nIDEvent, nElapse, lpfnTimer);
    }
 
-   BOOL interaction::KillTimer(UINT_PTR nIDEvent)
+   bool interaction::KillTimer(UINT_PTR nIDEvent)
    {
       if(m_pimpl == NULL)
          return FALSE;

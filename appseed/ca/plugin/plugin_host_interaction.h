@@ -41,13 +41,13 @@ namespace plugin
 
       virtual void GetWindowRect(__rect64 * lprect);
 
-      virtual BOOL IsWindowVisible();
+      virtual bool IsWindowVisible();
 
       DECL_GEN_SIGNAL(_001OnMouseMove)
       DECL_GEN_SIGNAL(_001OnCheck)
       DECL_GEN_SIGNAL(_001OnCreate)
 
-      virtual BOOL RedrawWindow(LPCRECT lpRectUpdate, ::ca::region* prgnUpdate, UINT flags);
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate, ::ca::region* prgnUpdate, UINT flags);
 
       ::user::interaction * get_os_focus_uie();
 

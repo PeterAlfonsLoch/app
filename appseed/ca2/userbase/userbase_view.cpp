@@ -8,7 +8,7 @@
 // like ON_MESSAGE but no return value
 /*#define ON_MESSAGE_VOID(message, memberFxn) \
    { message, 0, 0, 0, gen::Sig_vv, \
-      (__PMSG)(__PMSGW)(void (__MSG_CALL ::user::interaction::*)(void))&memberFxn },*/
+      (__PMSG)(__PMSGW)(void (__MSG_CALL ::user::interaction::*)())&memberFxn },*/
 // IMPLEMENT_DYNAMIC(::view, ::user::interaction)
 
 /////////////////////////////////////////////////////////////////////////////
@@ -80,7 +80,7 @@ namespace userbase
    // ::view second phase construction - bind to document
 
    const CHAR _vfxWndFrameOrView[] = __WNDFRAMEORVIEW;
-   BOOL view::pre_create_window(CREATESTRUCT & cs)
+   bool view::pre_create_window(CREATESTRUCT & cs)
    {
       ASSERT(cs.style & WS_CHILD);
 
@@ -159,7 +159,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // ::view selection support
 
-   BOOL view::IsSelected(const ::radix::object* pDocItem) const
+   bool view::IsSelected(const ::radix::object* pDocItem) const
    {
       ASSERT_VALID(pDocItem);
       UNUSED(pDocItem);    // unused in release builds
@@ -167,7 +167,7 @@ namespace userbase
       return FALSE;   // not implemented, so not selected
    }
 
-   void view::OnActivateView(BOOL bActivate, ::view* pActivateView, ::view*)
+   void view::OnActivateView(bool bActivate, ::view* pActivateView, ::view*)
    {
       UNUSED(pActivateView);   // unused in release builds
 
@@ -253,12 +253,12 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // ::view scrolling support
 
-   BOOL view::OnScroll(UINT /*nScrollCode*/, UINT /*nPos*/, BOOL /*bDoScroll*/)
+   bool view::OnScroll(UINT /*nScrollCode*/, UINT /*nPos*/, bool /*bDoScroll*/)
    {
       return FALSE;
    }
 
-   BOOL view::OnScrollBy(size /*sizeScroll*/, BOOL /*bDoScroll*/)
+   bool view::OnScrollBy(size /*sizeScroll*/, bool /*bDoScroll*/)
    {
       return FALSE;
    }
@@ -287,7 +287,7 @@ namespace userbase
       return 0;   // DROPEFFECT_NONE
    }
 
-   BOOL view::OnDrop(COleDataObject* /*pDataObject*/,
+   bool view::OnDrop(COleDataObject* /*pDataObject*/,
       DROPEFFECT /*dropEffect*/, point /*point*/)
    {
       return FALSE;

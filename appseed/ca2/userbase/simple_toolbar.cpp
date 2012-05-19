@@ -7,7 +7,7 @@ class SimpleToolCmdUI : public cmd_ui        // class private to this file !
 public: // re-implementations only
 
    SimpleToolCmdUI(::ca::application * papp);
-   virtual void Enable(BOOL bOn);
+   virtual void Enable(bool bOn);
    virtual void SetCheck(check::e_check echeck = check::checked);
    virtual void SetText(const char * lpszText);
 };
@@ -89,13 +89,13 @@ void simple_toolbar::install_message_handling(::gen::message::dispatch * pdispat
 // IMPLEMENT_DYNAMIC(simple_toolbar, ::userbase::control_bar)
 
 
-BOOL simple_toolbar::create(::user::interaction* pParentWnd, DWORD dwStyle, id nID)
+bool simple_toolbar::create(::user::interaction* pParentWnd, DWORD dwStyle, id nID)
 {
    return CreateEx(pParentWnd, 0, dwStyle,
       rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder), nID);
 }
 
-BOOL simple_toolbar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle, DWORD dwStyle, rect rcBorders, id nID)
+bool simple_toolbar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle, DWORD dwStyle, rect rcBorders, id nID)
 {
    ASSERT_VALID(pParentWnd);   // must have a parent
    ASSERT (!((dwStyle & CBRS_SIZE_FIXED) && (dwStyle & CBRS_SIZE_DYNAMIC)));
@@ -129,7 +129,7 @@ BOOL simple_toolbar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle
 }
 
 
-size simple_toolbar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
+size simple_toolbar::CalcFixedLayout(bool bStretch, bool bHorz)
 {
    DWORD dwMode = bStretch ? LM_STRETCH : 0;
    dwMode |= bHorz ? LM_HORZ : 0;
@@ -208,7 +208,7 @@ void simple_toolbar::_001OnDraw(::ca::graphics *pdc)
 
    //DoPaint(pdc);
 
-   //xxx   BOOL bWin4 = afxData.bWin4;
+   //xxx   bool bWin4 = afxData.bWin4;
    /*::CallWindowProc(
    *GetSuperWndProcAddr(),
    get_handle(), (bWin4 ? WM_PRINT : WM_PAINT),
@@ -224,7 +224,7 @@ void simple_toolbar::_001OnDraw(::ca::graphics *pdc)
 }
 
 /*
-BOOL simple_toolbar::OnEraseBkgnd(::ca::graphics * pgraphics)
+bool simple_toolbar::OnEraseBkgnd(::ca::graphics * pgraphics)
 {
 return true;
 }
@@ -339,7 +339,7 @@ void simple_toolbar::_001OnCreate(gen::signal_object * pobj)
 }
 
 
-void simple_toolbar::OnUpdateCmdUI(userbase::frame_window* pTarget, BOOL bDisableIfNoHndler)
+void simple_toolbar::OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler)
 {
    
    SimpleToolCmdUI state(get_app());
@@ -777,7 +777,7 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int iItem)
 }
 
 /*
-BOOL simple_toolbar::LoadToolBar(const char * lpszResourceName)
+bool simple_toolbar::LoadToolBar(const char * lpszResourceName)
 {
 ASSERT_VALID(this);
 ASSERT(lpszResourceName != NULL);
@@ -800,7 +800,7 @@ ASSERT(m_itema->wVersion == 1);
 UINT* pItems = new UINT[m_itema->wItemCount];
 for (int i = 0; i < m_itema->wItemCount; i++)
 pItems[i] = m_itema->items()[i];
-BOOL bResult = SetButtons(pItems, m_itema->wItemCount);
+bool bResult = SetButtons(pItems, m_itema->wItemCount);
 delete[] pItems;
 
 
@@ -826,7 +826,7 @@ return bResult;
 }
 */
 
-BOOL simple_toolbar::LoadXmlToolBar(const char * lpszXml)
+bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
 {
 
    m_itema.remove_all();
@@ -1103,7 +1103,7 @@ void simple_toolbar::SetSizes(SIZE sizeButton, SIZE sizeImage)
 }
 
 /*
-BOOL simple_toolbar::LoadBitmap(const char * lpszResourceName)
+bool simple_toolbar::LoadBitmap(const char * lpszResourceName)
 {
 ASSERT_VALID(this);
 ASSERT(lpszResourceName != NULL);
@@ -1155,7 +1155,7 @@ void simple_toolbar::layout()
 
    BaseMenuCentral * pmenucentral = BaseMenuCentral::GetMenuCentral(get_app());
 
-   BOOL bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
+   bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
    //   if(m_bSimpleLayout)
    //      CalcSimpleLayout();
    if ((m_dwStyle & CBRS_FLOATING) && (m_dwStyle & CBRS_SIZE_DYNAMIC))
@@ -1518,7 +1518,7 @@ ca(papp),
    cmd_ui(papp)
 {
 }
-void SimpleToolCmdUI::Enable(BOOL bOn)
+void SimpleToolCmdUI::Enable(bool bOn)
 {
    m_bEnableChanged = TRUE;
    simple_toolbar* pToolBar = dynamic_cast < simple_toolbar * > (m_pOther);
@@ -1608,7 +1608,7 @@ void simple_toolbar::_001OnNcCalcSize(gen::signal_object * pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
    class rect rect;
    rect.null();
-   BOOL bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
+   bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
    ::userbase::control_bar::CalcInsideRect(rect, bHorz);
 
    // adjust non-client area for border space
@@ -1670,7 +1670,7 @@ int simple_toolbar::WrapToolBar(int nCount, int nWidth)
 
       if (x + dx > nWidth)
       {
-         BOOL bFound = FALSE;
+         bool bFound = FALSE;
          for (int j = i; j >= 0  &&  !(m_itema[j].m_fsState & TBSTATE_WRAP); j--)
          {
             // find last separator that isn't hidden
@@ -1713,7 +1713,7 @@ int simple_toolbar::WrapToolBar(int nCount, int nWidth)
    return nResult + 1;
 }
 
-void  simple_toolbar::SizeToolBar(int nCount, int nLength, BOOL bVert)
+void  simple_toolbar::SizeToolBar(int nCount, int nLength, bool bVert)
 {
    ASSERT(nCount > 0);
 
@@ -1813,7 +1813,7 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
    {
       if (!(m_dwStyle & CBRS_SIZE_FIXED))
       {
-         BOOL bDynamic = m_dwStyle & CBRS_SIZE_DYNAMIC;
+         bool bDynamic = m_dwStyle & CBRS_SIZE_DYNAMIC;
 
          if (bDynamic && (dwMode & LM_MRUWIDTH))
             SizeToolBar(nCount, m_nMRUWidth);
@@ -1826,7 +1826,7 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
             class rect rect;
             rect.null();
             CalcInsideRect(rect, (dwMode & LM_HORZ));
-            BOOL bVert = (dwMode & LM_LENGTHY);
+            bool bVert = (dwMode & LM_LENGTHY);
             int nLen = nLength + (bVert ? rect.height() : rect.width());
 
             SizeToolBar(nCount, nLen, bVert);
@@ -1843,7 +1843,7 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
       {
          ___CONTROLPOS* pControl = NULL;
          int nControlCount = 0;
-         BOOL bIsDelayed = m_bDelayedButtonLayout;
+         bool bIsDelayed = m_bDelayedButtonLayout;
          m_bDelayedButtonLayout = FALSE;
 
          int i;

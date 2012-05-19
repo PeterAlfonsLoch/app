@@ -34,7 +34,7 @@ namespace cube
       virtual bool on_install();
       virtual bool on_uninstall();
 
-      virtual BOOL run();
+      virtual int run();
 
       virtual void on_request(::ca::create_context * pcreatecontext);
 

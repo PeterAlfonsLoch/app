@@ -88,7 +88,7 @@ zlib_local void flush_pending  OF((z_streamp strm));
 zlib_local int read_buf        OF((z_streamp strm, Bytef *buf, unsigned size));
 #ifndef FASTEST
 #ifdef ASMV
-      void match_init OF((void)); /* asm code initialization */
+      void match_init OF(()); /* asm code initialization */
       uInt longest_match  OF((deflate_state *s, IPos cur_match));
 #else
 zlib_local uInt longest_match  OF((deflate_state *s, IPos cur_match));

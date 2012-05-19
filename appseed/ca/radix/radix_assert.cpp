@@ -1,6 +1,6 @@
 #include "framework.h"
 
-BOOL __assert_failed_line(const char * lpszFileName, int nLine)
+bool __assert_failed_line(const char * lpszFileName, int nLine)
 {
    ::ca::thread * pthread = ::ca::get_thread();
    if(pthread == NULL)

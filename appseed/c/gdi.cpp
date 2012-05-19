@@ -136,7 +136,7 @@ CTFontRef CreateFontConvertedToFamily(CTFontRef iFont, CFStringRef iFamily)
    
 }
 
-BOOL TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
+bool TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
 {    
    
    CGContextRef context = hdc->m_cgcontext;
@@ -334,10 +334,10 @@ HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam)
 
 #elif defined(WINDOWS)
 
-BOOL TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
+bool TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
 {
    WCHAR * pwsz = utf8_to_16(pszUtf8);
-   BOOL b = TextOutW(hdc, x, y, pwsz, (int) wcslen_dup(pwsz));
+   bool b = TextOutW(hdc, x, y, pwsz, (int) wcslen_dup(pwsz));
    delete  [] pwsz;
    return b;
 }

@@ -21,7 +21,7 @@ base_exception::base_exception(unsigned int uiSkip)
    m_ulFlags &= ~flag_ready_for_delete;
 }
 
-base_exception::base_exception(BOOL bAutoDelete, unsigned int uiSkip)
+base_exception::base_exception(bool bAutoDelete, unsigned int uiSkip)
 #ifdef WINDOWS
 : call_stack(uiSkip)
 #endif
@@ -52,7 +52,7 @@ void base_exception::Delete()
    }
 }
 
-BOOL base_exception::GetErrorMessage(string & str,   PUINT pnHelpContext /* = NULL */ )
+bool base_exception::GetErrorMessage(string & str,   PUINT pnHelpContext /* = NULL */ )
 {
    if (pnHelpContext != NULL)
       *pnHelpContext = 0;
@@ -87,15 +87,18 @@ int base_exception::ReportError(UINT nType /* = MB_OK */,
 
 #ifdef WINDOWS
 
-BOOL IsWow64()
+bool IsWow64()
 {
-    BOOL bIsWow64 = FALSE;
 
-     if (!IsWow64Process(GetCurrentProcess(),&bIsWow64))
-     {
-         return FALSE;
-     }
-    return bIsWow64;
+   BOOL bIsWow64 = FALSE;
+
+   if (!IsWow64Process(GetCurrentProcess(),&bIsWow64))
+   {
+      return FALSE;
+   }
+   
+   return bIsWow64;
+
 }
 
 #endif

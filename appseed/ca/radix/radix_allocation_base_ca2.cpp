@@ -179,12 +179,12 @@ void * __cdecl operator new[](size_t nSize, int nType, const char * lpszFileName
 
 #define new DEBUG_NEW
 
-void * __alloc_memory_debug(size_t nSize, BOOL bIsObject,  const char * lpszFileName, int nLine)
+void * __alloc_memory_debug(size_t nSize, bool bIsObject,  const char * lpszFileName, int nLine)
 {
    return ca2_alloc_dbg(nSize, bIsObject ? ___CLIENT_BLOCK : _NORMAL_BLOCK, lpszFileName, nLine);
 }
 
-void __free_memory_debug(void * pbData, BOOL bIsObject)
+void __free_memory_debug(void * pbData, bool bIsObject)
 {
    ca2_free(pbData, bIsObject ? ___CLIENT_BLOCK : _NORMAL_BLOCK);
 }
@@ -192,7 +192,7 @@ void __free_memory_debug(void * pbData, BOOL bIsObject)
 /////////////////////////////////////////////////////////////////////////////
 // allocation failure hook, tracking turn on
 
-BOOL __default_alloc_hook(size_t, BOOL, LONG)
+bool __default_alloc_hook(size_t, bool, LONG)
    { return TRUE; }
 
 __STATIC_DATA __ALLOC_HOOK pfnAllocHook = __default_alloc_hook;
@@ -236,17 +236,17 @@ __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnNewHook)
 
 // This can be set to TRUE to override all __enable_memory_tracking calls,
 // allowing all allocations, even ca2 API internal allocations to be tracked.
-BOOL gen_MemoryLeakOverride = FALSE;
+bool gen_MemoryLeakOverride = FALSE;
 
-BOOL __enable_memory_leak_override(BOOL bEnable)
+bool __enable_memory_leak_override(bool bEnable)
 {
-   BOOL bOldState = gen_MemoryLeakOverride;
+   bool bOldState = gen_MemoryLeakOverride;
    gen_MemoryLeakOverride = bEnable;
 
    return bOldState;
 }
 
-BOOL __enable_memory_tracking(BOOL bTrack)
+bool __enable_memory_tracking(bool bTrack)
 {
    if (gen_MemoryLeakOverride)
       return TRUE;
@@ -281,7 +281,7 @@ void memory_state::UpdateData()
 }
 
 // fills 'this' with the difference, returns TRUE if significant
-BOOL memory_state::Difference(const memory_state& oldState,
+bool memory_state::Difference(const memory_state& oldState,
       const memory_state& newState)
 {
    int nResult = _CrtMemDifference(&m_memState, &oldState.m_memState, &newState.m_memState);
@@ -335,7 +335,7 @@ __do_for_all_objects(void (c_cdecl *pfn)(::radix::object*, void *), void * pCont
 /////////////////////////////////////////////////////////////////////////////
 // Automatic debug primitive::memory diagnostics
 
-BOOL __dump_memory_leaks()
+bool __dump_memory_leaks()
 {
    return _CrtDumpMemoryLeaks();
 }

@@ -10,7 +10,7 @@ namespace userbase
    public:
       elastic_slider(::ca::application * papp);
    public:
-      virtual ~elastic_slider(void);
+      virtual ~elastic_slider();
 
 
       virtual void install_message_handling(::gen::message::dispatch * pdispatch);

@@ -30,11 +30,11 @@ namespace user
       const string & get_title() const;
       virtual void set_title(const char * lpszTitle);
       const string & get_path_name() const;
-      virtual void set_path_name(var varFile, BOOL bAddToMRU = TRUE);
+      virtual void set_path_name(var varFile, bool bAddToMRU = TRUE);
 
       document_template * get_document_template() const;
-      virtual BOOL is_modified();
-      virtual void set_modified_flag(BOOL bModified = TRUE);
+      virtual bool is_modified();
+      virtual void set_modified_flag(bool bModified = TRUE);
       virtual void set_new(bool bNew = true);
 
       virtual bool is_new_document();
@@ -109,11 +109,11 @@ namespace user
       virtual bool on_open_document(var varFile);
       virtual bool on_save_document(var varFile);
       virtual void on_close_document();
-      virtual void report_save_load_exception(const char * lpszPathName, base_exception* e, BOOL bSaving, const char * nIDPDefault);
+      virtual void report_save_load_exception(const char * lpszPathName, base_exception* e, bool bSaving, const char * nIDPDefault);
 
       // advanced overridables, closing down frame/doc, etc.
-      virtual BOOL can_close_frame(frame_window* pFrame);
-      virtual BOOL save_modified(); // return TRUE if ok to continue
+      virtual bool can_close_frame(frame_window* pFrame);
+      virtual bool save_modified(); // return TRUE if ok to continue
       virtual void pre_close_frame(frame_window* pFrame);
 
    protected:
@@ -121,12 +121,12 @@ namespace user
       string               m_strPathName;
       document_template *    m_pdocumentemplate;
       comparable_array < ::view * > m_viewptra;
-      BOOL                 m_bModified;
+      bool                 m_bModified;
       bool                 m_bNew;
 
    public:
-      BOOL m_bAutoDelete;     // TRUE => delete document when no more views
-      BOOL m_bEmbedded;       // TRUE => document is being created by OLE
+      bool m_bAutoDelete;     // TRUE => delete document when no more views
+      bool m_bEmbedded;       // TRUE => document is being created by OLE
 
       virtual void dump(dump_context&) const;
       virtual void assert_valid() const;

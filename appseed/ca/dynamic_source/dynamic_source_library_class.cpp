@@ -64,7 +64,7 @@ namespace dynamic_source
 
 
 
-   library_class::~library_class(void)
+   library_class::~library_class()
    {
    }
 

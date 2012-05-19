@@ -11,18 +11,18 @@ class CLASS_DECL_ca simple_exception :
 public:
    
    
-   BOOL m_bInitialized;
-   BOOL m_bLoaded;
+   bool m_bInitialized;
+   bool m_bLoaded;
    char m_szMessage[128];
    UINT m_nResourceID;
 
 
    simple_exception();
    simple_exception(const char * pszMessage);
-   explicit simple_exception(BOOL bAutoDelete);
+   explicit simple_exception(bool bAutoDelete);
    virtual ~simple_exception();
 
-   virtual BOOL GetErrorMessage(string & str, PUINT pnHelpContext = NULL);
+   virtual bool GetErrorMessage(string & str, PUINT pnHelpContext = NULL);
 
 
    void InitString();      // used during ca2 API initialization

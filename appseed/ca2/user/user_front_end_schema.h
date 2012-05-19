@@ -54,7 +54,7 @@ namespace user
       
 
       front_end_schema(::ca::application * app);
-      ~front_end_schema(void);
+      ~front_end_schema();
 
       virtual void DrawCheck(check::check echeck, LPCRECT lpcrect, ::ca::graphics * pdc);
 

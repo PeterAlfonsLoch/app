@@ -650,7 +650,7 @@ double vorbis_granule_time(vorbis_dsp_state *v,ogg_int64_t granulepos){
   }
 }
 
-const char *vorbis_version_string(void){
+const char *vorbis_version_string(){
   return GENERAL_VENDOR_STRING;
 }
 

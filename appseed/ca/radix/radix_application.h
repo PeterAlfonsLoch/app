@@ -118,7 +118,7 @@ namespace radix
       // Support for Shift+F1 help mode.
 
       // TRUE if we're in SHIFT+F1 mode.
-      BOOL                          m_bHelpMode;
+      bool                          m_bHelpMode;
 
       mutex                         m_mutexMatterLocator;
       string                        m_strMatterLocator;
@@ -231,7 +231,7 @@ namespace radix
       void SetRegistryKey(UINT nIDRegistryKey);
 
 
-      void RegisterShellFileTypes(BOOL bCompat = FALSE);
+      void RegisterShellFileTypes(bool bCompat = FALSE);
 
       // call after all doc templates are registered
       void UnregisterShellFileTypes();
@@ -264,32 +264,32 @@ namespace radix
       UINT GetProfileInt(const char * lpszSection, const char * lpszEntry, int nDefault);
 
       // Sets an integer value to INI file or registry.
-      BOOL WriteProfileInt(const char * lpszSection, const char * lpszEntry, int nValue);
+      bool WriteProfileInt(const char * lpszSection, const char * lpszEntry, int nValue);
 
       // Retrieve a string value from INI file or registry.
       string GetProfileString(const char * lpszSection, const char * lpszEntry,
                const char * lpszDefault = NULL);
 
       // Sets a string value to INI file or registry.
-      BOOL WriteProfileString(const char * lpszSection, const char * lpszEntry,
+      bool WriteProfileString(const char * lpszSection, const char * lpszEntry,
                const char * lpszValue);
 
       // Retrieve an arbitrary binary value from INI file or registry.
-      BOOL GetProfileBinary(const char * lpszSection, const char * lpszEntry,
+      bool GetProfileBinary(const char * lpszSection, const char * lpszEntry,
                LPBYTE* ppData, UINT* pBytes);
 
       // Sets an arbitrary binary value to INI file or registry.
-      BOOL WriteProfileBinary(const char * lpszSection, const char * lpszEntry,
+      bool WriteProfileBinary(const char * lpszSection, const char * lpszEntry,
                LPBYTE pData, UINT nBytes);
 
       // Override in derived class.
       virtual void InitLibId();
 
       // Register
-      virtual BOOL Register();
+      virtual bool Register();
 
       // Unregisters everything this cast was known to register.
-      virtual BOOL Unregister();*/
+      virtual bool Unregister();*/
 
 #ifdef WINDOWS
       // Delete a registry key entry (and all its subkeys, too).
@@ -303,45 +303,45 @@ namespace radix
 
 
       // Printer DC Setup routine, 'struct tagPD' is a PRINTDLG structure.
-      void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, BOOL bFreeOld = TRUE);
+      void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld = TRUE);
 
       // create a DC for the system default printer.
       ::ca::graphics * CreatePrinterDC();
 
 
-   //   BOOL GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg);
+   //   bool GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg);
 
       // run this cast as an embedded object.
-      BOOL RunEmbedded();
+      bool RunEmbedded();
 
       // run this cast as an OLE automation server.
-      BOOL RunAutomated();
+      bool RunAutomated();
 
       // Parse the command line for stock options and commands.
    //   void ParseCommandLine(CCommandLineInfo& rCmdInfo);
 
       // React to a shell-issued command line directive.
-   //   BOOL ProcessShellCommand(CCommandLineInfo& rCmdInfo);
+   //   bool ProcessShellCommand(CCommandLineInfo& rCmdInfo);
 
    // Overridables
 
       // Hooks for your initialization code
-      virtual BOOL InitApplication();
+      virtual bool InitApplication();
 
       virtual int    exit();
       virtual bool   finalize();
 
       // exiting
-      virtual BOOL save_all_modified(); // save before exit
+      virtual bool save_all_modified(); // save before exit
       void HideApplication();
-      void close_all_documents(BOOL bEndSession); // close documents before exiting
+      void close_all_documents(bool bEndSession); // close documents before exiting
 
       // Advanced: to override message boxes and other hooks
       virtual int DoMessageBox(const char * lpszPrompt, UINT nType, UINT nIDPrompt);
       virtual void DoWaitCursor(int nCode); // 0 => restore, 1=> begin, -1=> end
 
       // Advanced: process async DDE request
-      virtual BOOL OnDDECommand(LPTSTR lpszCommand);
+      virtual bool OnDDECommand(LPTSTR lpszCommand);
 
 #ifdef WINDOWS
       // Advanced: Help support
@@ -369,7 +369,7 @@ namespace radix
    // Implementation
    public:
 
-      void UpdatePrinterSelection(BOOL bForceDefaults);
+      void UpdatePrinterSelection(bool bForceDefaults);
       void SaveStdProfileSettings();  // save options to .INI file
 
 
@@ -382,20 +382,20 @@ namespace radix
       int get_open_document_count();
 
       // helpers for standard commdlg dialogs
-      BOOL do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
+      bool do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
 
-      void EnableModeless(BOOL bEnable); // to disable OLE in-place dialogs
+      void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
       // overrides for implementation
       virtual bool initialize_instance();
       virtual int exit_instance(); // return cast exit code
       virtual int run();
-      virtual BOOL on_idle(LONG lCount); // return TRUE if more idle processing
+      virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
       virtual void ProcessWndProcException(base_exception* e, gen::signal_object * pobj);
 
        // Helper for message boxes; can work when no application can be found
       static int ShowAppMessageBox(application *pApp, const char * lpszPrompt, UINT nType, UINT nIDPrompt);
-      static void DoEnableModeless(BOOL bEnable); // to disable OLE in-place dialogs
+      static void DoEnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
@@ -409,10 +409,10 @@ namespace radix
       void OnAppExit();
    public :
       // System Policy Settings
-      virtual BOOL LoadSysPolicies(); // Override to load policies other than the system policies that ca2 API loads.
-      BOOL GetSysPolicyValue(DWORD dwPolicyID, BOOL *pbValue); // returns the policy's setting in the out parameter
+      virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that ca2 API loads.
+      bool GetSysPolicyValue(DWORD dwPolicyID, bool *pbValue); // returns the policy's setting in the out parameter
    protected :
-      BOOL _LoadSysPolicies() throw(); // Implementation helper
+      bool _LoadSysPolicies() throw(); // Implementation helper
    public:
       static const char gen_FileSection[];
       static const char gen_FileEntry[];
@@ -495,7 +495,7 @@ namespace radix
 
       // Temporary ::collection::map management (locks temp ::collection::map on current thread)
       virtual void LockTempMaps();
-      virtual BOOL UnlockTempMaps(BOOL bDeleteTemps = TRUE);
+      virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
       virtual void TermThread(HINSTANCE hInstTerm);
 
       //virtual ::ca::graphics * graphics_from_os_data(void * pdata);
@@ -553,6 +553,6 @@ namespace radix
 
 
 
-typedef ::ca::application * (* LP_GET_NEW_APP) (void);
+typedef ::ca::application * (* LP_GET_NEW_APP) ();
 
 

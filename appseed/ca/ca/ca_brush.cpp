@@ -25,7 +25,7 @@ namespace ca
    }
 
 #ifdef WINDOWS
-   BOOL brush::CreateDIBPatternBrush(HGLOBAL hPackedDIB, UINT nUsage)
+   bool brush::CreateDIBPatternBrush(HGLOBAL hPackedDIB, UINT nUsage)
    {
       UNREFERENCED_PARAMETER(hPackedDIB);
       UNREFERENCED_PARAMETER(nUsage);
@@ -39,7 +39,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL brush::CreateStockObject(int nIndex)
+   bool brush::CreateStockObject(int nIndex)
    {
 
       if(nIndex == NULL_BRUSH)
@@ -57,7 +57,7 @@ namespace ca
 
    }
 
-   BOOL brush::CreateSolidBrush(COLORREF crColor)
+   bool brush::CreateSolidBrush(COLORREF crColor)
    {
 
       m_crColor = crColor;
@@ -66,29 +66,29 @@ namespace ca
       return TRUE;
 
    }
-   BOOL brush::CreateHatchBrush(int nIndex, COLORREF crColor)
+   bool brush::CreateHatchBrush(int nIndex, COLORREF crColor)
    {
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(crColor);
       throw interface_only_exception();
    }
-   BOOL brush::CreateBrushIndirect(const LOGBRUSH* lpLogBrush)
+   bool brush::CreateBrushIndirect(const LOGBRUSH* lpLogBrush)
    {
       UNREFERENCED_PARAMETER(lpLogBrush);
       throw interface_only_exception();
    }
-   BOOL brush::CreatePatternBrush(::ca::bitmap* pBitmap)
+   bool brush::CreatePatternBrush(::ca::bitmap* pBitmap)
    {
       UNREFERENCED_PARAMETER(pBitmap);
       throw interface_only_exception();
    }
-   BOOL brush::CreateDIBPatternBrush(const void * lpPackedDIB, UINT nUsage)
+   bool brush::CreateDIBPatternBrush(const void * lpPackedDIB, UINT nUsage)
    {
       UNREFERENCED_PARAMETER(lpPackedDIB);
       UNREFERENCED_PARAMETER(nUsage);
       throw interface_only_exception();
    }
-   BOOL brush::CreateSysColorBrush(int nIndex)
+   bool brush::CreateSysColorBrush(int nIndex)
    {
       UNREFERENCED_PARAMETER(nIndex);
       throw interface_only_exception();

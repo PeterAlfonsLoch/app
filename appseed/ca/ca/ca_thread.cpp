@@ -106,7 +106,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL thread::CreateThread(DWORD dwCreateFlags, UINT nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+   bool thread::CreateThread(DWORD dwCreateFlags, UINT nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
       UNREFERENCED_PARAMETER(dwCreateFlags);
       UNREFERENCED_PARAMETER(nStackSize);
@@ -164,7 +164,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL thread::is_idle_message(gen::signal_object * pobj)
+   bool thread::is_idle_message(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception();
@@ -175,7 +175,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL thread::on_idle(LONG lCount)
+   bool thread::on_idle(LONG lCount)
    {
       UNREFERENCED_PARAMETER(lCount);
       throw interface_only_exception();
@@ -224,7 +224,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // thread implementation helpers
 
-   BOOL thread::pump_message()
+   bool thread::pump_message()
    {
       throw interface_only_exception();
    }
@@ -263,7 +263,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL thread::SetThreadPriority(int nPriority)
+   bool thread::SetThreadPriority(int nPriority)
    {
       UNREFERENCED_PARAMETER(nPriority);
       throw interface_only_exception();
@@ -279,7 +279,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL thread::PostThreadMessage(UINT message, WPARAM wParam, LPARAM lParam)
+   bool thread::PostThreadMessage(UINT message, WPARAM wParam, LPARAM lParam)
    {
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);

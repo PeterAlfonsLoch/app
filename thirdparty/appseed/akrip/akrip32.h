@@ -266,7 +266,7 @@ typedef struct _GETCDHAND {
   BYTE tgt;              /* target id                           */
   BYTE lun;              /* LUN                                 */
   BYTE readType;         /* read function to use                */
-  BOOL jitterCorr;       /* use built-in jitter correction?     */
+  bool jitterCorr;       /* use built-in jitter correction?     */
   BYTE numJitter;        /* number of frames to try to match    */
   BYTE numOverlap;       /* number of frames to overlap         */
 } PACKED GETCDHAND, *PGETCDHAND, FAR *LPGETCDHAND;
@@ -295,21 +295,21 @@ typedef struct _GETCDHAND {
 #define CDDB_OPT_USERAUTH    11
 #define CDDB_OPT_PROTOLEVEL  12
 
-int GetNumAdapters( void );
+int GetNumAdapters();
 int GetCDList( LPCDLIST cd );
-int GetAspiLibError( void );
-BYTE GetAspiLibAspiError( void );
+int GetAspiLibError();
+BYTE GetAspiLibAspiError();
 
 DWORD GetCDId( HCDROM hCD, char *buf, int maxBuf );
 DWORD GetDriveInfo( BYTE ha, BYTE tgt, BYTE lun, LPCDREC cdrec );
 DWORD ReadTOC( HCDROM hCD, LPTOC lpToc );
 DWORD ReadCDAudioLBA( HCDROM hCD, LPTRACKBUF );
-BOOL QueryCDParms( HCDROM hCD, int which, DWORD *pNum );
-BOOL ModifyCDParms( HCDROM hCD, int which, DWORD val );
+bool QueryCDParms( HCDROM hCD, int which, DWORD *pNum );
+bool ModifyCDParms( HCDROM hCD, int which, DWORD val );
 HCDROM GetCDHandle( LPGETCDHAND lpcd );
-BOOL CloseCDHandle( HCDROM );
+bool CloseCDHandle( HCDROM );
 DWORD ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF, LPTRACKBUF );
-DWORD GetAKRipDllVersion( void );
+DWORD GetAKRipDllVersion();
 
 /*
  * CDDB support
@@ -317,7 +317,7 @@ DWORD GetAKRipDllVersion( void );
 typedef struct {
   char categ[12];
   char cddbId[9];
-  BOOL bExact;
+  bool bExact;
   char artist[81];
   char title[81];
 } CDDBQUERYITEM, FAR *LPCDDBQUERYITEM;
@@ -331,7 +331,7 @@ typedef struct {
 
 typedef struct {
   char szServer[81];
-  BOOL bHTTP;
+  bool bHTTP;
   int  iPort;
   char szCGI[81];
   char szNorth[16];
@@ -351,7 +351,7 @@ DWORD CDDBQuery( HCDROM hCD, LPCDDBQUERY lpq );
 DWORD CDDBGetDiskInfo( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int maxLen );
 void CDDBSetOption( int what, char *szVal, int iVal );
 DWORD CDDBGetServerList( LPCDDBSITELIST lpSiteList );
-DWORD CDDBSubmit( DWORD dwDiscID, BOOL bTest, char *szEmail, char *szCategory,
+DWORD CDDBSubmit( DWORD dwDiscID, bool bTest, char *szEmail, char *szCategory,
 		  char *szEntry );
 
 #ifdef __cplusplus

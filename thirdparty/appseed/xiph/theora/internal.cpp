@@ -233,11 +233,11 @@ void oc_ycbcr_buffer_flip(th_ycbcr_buffer _dst,
   }
 }
 
-const char *th_version_string(void){
+const char *th_version_string(){
   return OC_VENDOR_STRING;
 }
 
-ogg_uint32_t th_version_number(void){
+ogg_uint32_t th_version_number(){
   return (TH_VERSION_MAJOR<<16)+(TH_VERSION_MINOR<<8)+TH_VERSION_SUB;
 }
 

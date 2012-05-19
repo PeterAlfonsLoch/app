@@ -11,7 +11,7 @@ namespace databaseuser
    {
    }
 
-   data_key_list_data::~data_key_list_data(void)
+   data_key_list_data::~data_key_list_data()
    {
    }
 

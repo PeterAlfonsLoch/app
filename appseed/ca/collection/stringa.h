@@ -118,8 +118,8 @@ public:
 
 
    void get_format_string(string & str, const char * lpcszSeparator) const;
-   void add_tokens(const char * lpcsz, const char * lpcszSeparator, BOOL bAddEmpty);
-   void add_smallest_tokens(const char * lpcsz, stringa & straSeparator, BOOL bAddEmpty, BOOL bWithSeparator = FALSE);
+   void add_tokens(const char * lpcsz, const char * lpcszSeparator, bool bAddEmpty);
+   void add_smallest_tokens(const char * lpcsz, stringa & straSeparator, bool bAddEmpty, bool bWithSeparator = FALSE);
 
 
    bool is_empty(count countMinimum = 1);

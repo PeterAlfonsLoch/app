@@ -32,7 +32,7 @@ namespace simpledb
 
 
       socket_thread(::ca::application * papp);
-      virtual ~socket_thread(void);
+      virtual ~socket_thread();
 
 
       virtual bool initialize_instance();

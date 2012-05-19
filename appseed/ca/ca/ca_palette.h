@@ -9,8 +9,8 @@ namespace ca
    {
    public:
 
-      virtual BOOL CreatePalette(LPLOGPALETTE lpLogPalette);
-      virtual BOOL CreateHalftonePalette(::ca::graphics * pgraphics);
+      virtual bool CreatePalette(LPLOGPALETTE lpLogPalette);
+      virtual bool CreateHalftonePalette(::ca::graphics * pgraphics);
 
       virtual int GetEntryCount();
       virtual UINT GetPaletteEntries(UINT nStartIndex, UINT nNumEntries,
@@ -22,7 +22,7 @@ namespace ca
       virtual void AnimatePalette(UINT nStartIndex, UINT nNumEntries,
             LPPALETTEENTRY lpPaletteColors);
       virtual UINT GetNearestPaletteIndex(COLORREF crColor) const;
-      virtual BOOL ResizePalette(UINT nNumEntries);
+      virtual bool ResizePalette(UINT nNumEntries);
 
    };
 

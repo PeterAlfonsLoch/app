@@ -7,7 +7,7 @@
  * compilation w/o having the DDK installed.
  *
  * Implements the following functions:
- *   DWORD SPTIGetASPI32SupportInfo(void);
+ *   DWORD SPTIGetASPI32SupportInfo();
  *   DWORD SPTISendASPI32Command(LPSRB);
  * which are equivalents to their ASPI counterparts.  Additionally implements
  *   int InitSCSIPT( void );
@@ -45,7 +45,7 @@ typedef struct {
   BYTE tgt;
   BYTE lun;
   BYTE driveLetter;
-  BOOL bUsed;
+  bool bUsed;
   HANDLE hDevice;
   BYTE inqData[36];
 } DRIVE;
@@ -60,12 +60,12 @@ BYTE SPTIGetNumAdapters( void );
 BYTE SPTIGetDeviceIndex( BYTE ha, BYTE tgt, BYTE lun );
 DWORD SPTIHandleHaInquiry( LPSRB_HAInquiry lpsrb );
 DWORD SPTIGetDeviceType( LPSRB_GDEVBlock lpsrb );
-DWORD SPTIExecSCSICommand( LPSRB_ExecSCSICmd lpsrb, BOOL bBeenHereBefore );
+DWORD SPTIExecSCSICommand( LPSRB_ExecSCSICmd lpsrb, bool bBeenHereBefore );
 HANDLE GetFileHandle( BYTE i );
 
-static BOOL bSCSIPTInit = FALSE;
+static bool bSCSIPTInit = FALSE;
 static SPTIGLOBAL sptiglobal;
-static BOOL bUsingSCSIPT = FALSE;
+static bool bUsingSCSIPT = FALSE;
 
 /*
  * Initialization of SCSI Pass Through Interface code.  Responsible for
@@ -452,7 +452,7 @@ BYTE SPTIGetDeviceIndex( BYTE ha, BYTE tgt, BYTE lun )
 /*
  * Converts ASPI-style SRB to SCSI Pass Through IOCTL
  */
-DWORD SPTIExecSCSICommand( LPSRB_ExecSCSICmd lpsrb, BOOL bBeenHereBefore )
+DWORD SPTIExecSCSICommand( LPSRB_ExecSCSICmd lpsrb, bool bBeenHereBefore )
 {
   BOOLEAN status;
   SCSI_PASS_THROUGH_DIRECT_WITH_BUFFER swb;
@@ -549,7 +549,7 @@ DWORD SPTIExecSCSICommand( LPSRB_ExecSCSICmd lpsrb, BOOL bBeenHereBefore )
 
 
 
-BOOL UsingSCSIPT( void )
+bool UsingSCSIPT( void )
 {
   return bUsingSCSIPT;
 }

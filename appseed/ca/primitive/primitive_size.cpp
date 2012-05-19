@@ -161,9 +161,9 @@ size64::operator const __size64 *() const throw()
    { return this; }
 
 
-BOOL size64::operator==(__size64 size64) const throw()
+bool size64::operator==(__size64 size64) const throw()
    { return (cx == size64.cx && cy == size64.cy); }
-BOOL size64::operator!=(__size64 size64) const throw()
+bool size64::operator!=(__size64 size64) const throw()
    { return (cx != size64.cx || cy != size64.cy); }
 void size64::operator+=(__size64 size64) throw()
    { cx += size64.cx; cy += size64.cy; }

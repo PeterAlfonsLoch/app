@@ -305,7 +305,7 @@ public:
       ::ca::graphics * pdcCompatible, 
       HINSTANCE hInst, 
       HRSRC hRsrc,
-      BOOL bMono = false);*/
+      bool bMono = false);*/
 
    virtual bool LoadImageFile(::ca::dib * pdib, var varFile, ::ca::application * papp);
    virtual bool LoadImageSync(::ca::dib * pdib, const char * lpcszImageFilePath, ::ca::application * papp);

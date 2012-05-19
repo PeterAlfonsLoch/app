@@ -28,7 +28,7 @@ bool command_target::handle(BaseCmdMsg * pcmdmsg)
 // command_target windows message dispatching
 
 /*
-__STATIC BOOL _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
+__STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
    __PMSG pfn, void * pExtra, UINT_PTR nSig, 
       // return TRUE to stop routing
 {
@@ -37,7 +37,7 @@ __STATIC BOOL _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
 
    union MessageMapFunctions mmf;
    mmf.pfn = pfn;
-   BOOL bResult = TRUE; // default is ok
+   bool bResult = TRUE; // default is ok
 
    if (pHandlerInfo != NULL)
    {
@@ -382,7 +382,7 @@ cmd_ui::cmd_ui(::ca::application * papp)  :
 }
 
 // default cmd_ui implementation only works for Menu Items
-void cmd_ui::Enable(BOOL bOn)
+void cmd_ui::Enable(bool bOn)
 {
    if (m_pMenu != NULL)
    {
@@ -428,7 +428,7 @@ void cmd_ui::_001SetCheck(check::e_check nCheck)
 
 __STATIC void __load_dot_bitmap(); // for swap tuning
 
-void cmd_ui::SetRadio(BOOL bOn)
+void cmd_ui::SetRadio(bool bOn)
 {
    _001SetCheck(bOn != FALSE); // this default works for most things as well
    if (m_pMenu != NULL)
@@ -456,7 +456,7 @@ void cmd_ui::SetText(const char * lpszText)
    }
 }
 
-BOOL cmd_ui::DoUpdate(command_target* pTarget, BOOL bDisableIfNoHndler)
+bool cmd_ui::DoUpdate(command_target* pTarget, bool bDisableIfNoHndler)
 {
    if(m_id.is_empty())
       return TRUE;     // ignore invalid IDs
@@ -464,7 +464,7 @@ BOOL cmd_ui::DoUpdate(command_target* pTarget, BOOL bDisableIfNoHndler)
    ENSURE_VALID(pTarget);
 
    m_bEnableChanged = FALSE;
-   BOOL bResult = pTarget->_001SendUpdateCmdUi(this);
+   bool bResult = pTarget->_001SendUpdateCmdUi(this);
 
    if(!bResult)
       Enable(FALSE);

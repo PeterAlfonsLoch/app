@@ -217,7 +217,7 @@ namespace datetime
    }
 #pragma pop_macro("get_current_time")
 
-   BOOL WINAPI time::is_valid_FILETIME(const FILETIME& fileTime) throw()
+   bool WINAPI time::is_valid_FILETIME(const FILETIME& fileTime) throw()
    {
       FILETIME localTime;
       if (!FileTimeToLocalFileTime(&fileTime, &localTime))

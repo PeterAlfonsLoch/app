@@ -27,14 +27,14 @@
 
 class nsEUCKRProber: public nsCharSetProber {
 public:
-  nsEUCKRProber(void){mCodingSM = new nsCodingStateMachine(&EUCKRSMModel);
+  nsEUCKRProber(){mCodingSM = new nsCodingStateMachine(&EUCKRSMModel);
                       Reset();};
-  virtual ~nsEUCKRProber(void){delete mCodingSM;};
+  virtual ~nsEUCKRProber(){delete mCodingSM;};
   nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
   const char* GetCharSetName() {return "EUC-KR";};
-  nsProbingState GetState(void) {return mState;};
-  void      Reset(void);
-  float     GetConfidence(void);
+  nsProbingState GetState() {return mState;};
+  void      Reset();
+  float     GetConfidence();
   void      SetOpion() {};
 
 protected:

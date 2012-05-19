@@ -33,7 +33,7 @@ public:
    virtual void form_from_user();
    // UpdateData false
    virtual void form_to_user();
-   //virtual BOOL OnInitDialog();
+   //virtual bool OnInitDialog();
    // substituir, replace _001Initialize
 
 };

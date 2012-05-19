@@ -13,7 +13,7 @@ namespace filemanager
 
 
       folder_list_data(::ca::application * papp);
-      virtual ~folder_list_data(void);
+      virtual ~folder_list_data();
 
 
       virtual void _001GetItemText(::user::list_item * pitem);

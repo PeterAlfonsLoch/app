@@ -55,7 +55,7 @@ namespace filemanager
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
-      virtual BOOL pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(CREATESTRUCT& cs);
 
       bool _001OnUpdateCmdUi(cmd_ui * pcmdui);
       bool _001OnCommand(id id);

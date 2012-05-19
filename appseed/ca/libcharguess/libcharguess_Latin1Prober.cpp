@@ -89,7 +89,7 @@ static unsigned char Latin1ClassModel[] =
 /*ASO*/  0,  3,  1,  3,  1,  1,  3,  3,
 };
 
-void  nsLatin1Prober::Reset(void)
+void  nsLatin1Prober::Reset()
 {
   mState = eDetecting;
   mLastCharClass = OTH;
@@ -168,7 +168,7 @@ nsProbingState nsLatin1Prober::HandleData(const char* aBuf, PRUint32 aLen)
   return mState;
 }
 
-float nsLatin1Prober::GetConfidence(void)
+float nsLatin1Prober::GetConfidence()
 {
   if (mState == eNotMe)
     return 0.01f;

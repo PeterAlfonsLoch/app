@@ -83,9 +83,9 @@ namespace user
       WndUtil();
       virtual ~WndUtil();
       /*static void SendMessageToDescendants(HWND hWnd, UINT message,
-         WPARAM wParam, LPARAM lParam, BOOL bDeep, BOOL bOnlyPerm);*/
+         WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm);*/
       static void SendMessageToDescendants(HWND hWnd, UINT message,
-         WPARAM wParam, LPARAM lParam, BOOL bDeep);
+         WPARAM wParam, LPARAM lParam, bool bDeep);
       static bool IsAscendant(HWND hwndAscendant, HWND hwndDescendant);
 
       static int GetZOrder(HWND hwnd);

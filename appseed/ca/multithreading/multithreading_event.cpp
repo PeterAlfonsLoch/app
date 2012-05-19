@@ -7,7 +7,7 @@
 #endif
 
 
-event::event(BOOL bInitiallyOwn, BOOL bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute)
+event::event(bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute)
 {
 #ifdef WINDOWS
 
@@ -82,7 +82,7 @@ event::~event()
 
 }
 
-BOOL event::SetEvent()
+bool event::SetEvent()
 {
 #ifdef WINDOWS
    ASSERT(m_object != NULL);
@@ -100,7 +100,7 @@ BOOL event::SetEvent()
 #endif
 }
 
-BOOL event::PulseEvent()
+bool event::PulseEvent()
 {
 #ifdef WINDOWS
    ASSERT(m_object != NULL);
@@ -118,7 +118,7 @@ BOOL event::PulseEvent()
 #endif
 }
 
-BOOL event::ResetEvent()
+bool event::ResetEvent()
 {
 #ifdef WINDOWS
    ASSERT(m_object != NULL);

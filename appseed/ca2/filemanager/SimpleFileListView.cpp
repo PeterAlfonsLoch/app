@@ -437,7 +437,7 @@ namespace filemanager
       }
    }
 
-   BOOL SimpleFileListView::pre_create_window(CREATESTRUCT& cs)
+   bool SimpleFileListView::pre_create_window(CREATESTRUCT& cs)
    {
 
       cs.style |= WS_CLIPCHILDREN;
@@ -569,7 +569,7 @@ namespace filemanager
          {
             m_dwLastFileSize = ::GetTickCount();
             ::user::interaction* pwnd = GetParentFrame();
-//            BOOL b = pwnd->IsWindowVisible();
+//            bool b = pwnd->IsWindowVisible();
             if(pwnd->IsWindowVisible() && m_bFileSize)
             {
                m_bShow = true;

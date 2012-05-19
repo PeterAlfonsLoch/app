@@ -7,7 +7,7 @@
 string_manager::string_manager()
 {
    m_palloca = new fixed_alloc_array();
-   //BOOL bEnable = __enable_memory_tracking(FALSE);
+   //bool bEnable = __enable_memory_tracking(FALSE);
    try
    {
       m_palloca->add(new fixed_alloc(ROUND4(32), 1024));

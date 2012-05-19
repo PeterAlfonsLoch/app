@@ -18,8 +18,8 @@ namespace ca
 
       virtual void construct(int nPenStyle, double dWidth, COLORREF crColor);
       virtual void construct(int nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, int nStyleCount = 0, const DWORD* lpStyle = NULL);
-      virtual BOOL CreatePen(int nPenStyle, double dWidth, COLORREF crColor);
-      virtual BOOL CreatePen(int nPenStyle, double nWidth, const LOGBRUSH * pLogBrush, int nStyleCount = 0, const DWORD* lpStyle = NULL);
+      virtual bool CreatePen(int nPenStyle, double dWidth, COLORREF crColor);
+      virtual bool CreatePen(int nPenStyle, double nWidth, const LOGBRUSH * pLogBrush, int nStyleCount = 0, const DWORD* lpStyle = NULL);
 
 
       pen & operator = (const pen & penSrc);

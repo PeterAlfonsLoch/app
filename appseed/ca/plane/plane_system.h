@@ -272,7 +272,7 @@ namespace plane
       // on the functionality of these variables cached information,
       // to avoid multiple initialization.
       bool                             m_bInitApplication;
-      BOOL                             m_bInitApplicationResult;
+      bool                             m_bInitApplicationResult;
       bool                             m_bProcessInitialize;
       bool                             m_bProcessInitializeResult;
 
@@ -296,7 +296,7 @@ namespace plane
 
 
       //virtual int main();
-      virtual BOOL InitApplication();
+      virtual bool InitApplication();
 
       virtual bool process_initialize();
 

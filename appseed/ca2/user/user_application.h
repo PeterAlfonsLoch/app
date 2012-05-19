@@ -87,22 +87,22 @@ namespace ca2
 
       // Printer DC Setup routine, 'struct tagPD' is a PRINTDLG structure.
       void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode,
-         BOOL bFreeOld = TRUE);
+         bool bFreeOld = TRUE);
 
 
       // create a DC for the system default printer.
-      BOOL CreatePrinterDC(::ca::graphics_sp& spgraphics);
+      bool CreatePrinterDC(::ca::graphics_sp& spgraphics);
 
 
-   BOOL GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg);
+   bool GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg);
 
       // Finds number of opened document items owned by templates
       // registered with the doc manager.
       int get_open_document_count();
 
       // helpers for standard commdlg dialogs
-      BOOL do_prompt_file_name(var & varFile, UINT nIDSTitle,
-            DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate);
+      bool do_prompt_file_name(var & varFile, UINT nIDSTitle,
+            DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate);
       INT_PTR DoPrintDialog(CPrintDialog* pPD);
    // Implementation
          // Server object for document creation

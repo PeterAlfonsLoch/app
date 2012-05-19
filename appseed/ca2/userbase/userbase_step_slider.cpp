@@ -12,7 +12,7 @@ namespace userbase
       m_bHover = false;
    }
 
-   step_slider::~step_slider(void)
+   step_slider::~step_slider()
    {
    }
    bool step_slider::create(::user::interaction * pwndParent, id id)

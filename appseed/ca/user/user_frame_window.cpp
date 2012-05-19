@@ -131,7 +131,7 @@ void frame_window::RemoveFrameWnd()
 /////////////////////////////////////////////////////////////////////////////
 // Special processing etc
 
-BOOL frame_window::LoadAccelTable(const char * lpszResourceName)
+bool frame_window::LoadAccelTable(const char * lpszResourceName)
 {
    ASSERT(m_hAccelTable == NULL);  // only do once
    ASSERT(lpszResourceName != NULL);
@@ -189,7 +189,7 @@ void frame_window::OnPaletteChanged(::user::interaction* pFocusWnd)
    // trans user::frame_window_interface::OnPaletteChanged(pFocusWnd);
 }
 
-BOOL frame_window::OnQueryNewPalette()
+bool frame_window::OnQueryNewPalette()
 {
 // trans    return user::frame_window_interface::OnQueryNewPalette();
    return FALSE;
@@ -225,7 +225,7 @@ void frame_window::ExitHelpMode()
    */
 }
 
-BOOL frame_window::OnSetCursor(::user::interaction * pWnd, UINT nHitTest, UINT message)
+bool frame_window::OnSetCursor(::user::interaction * pWnd, UINT nHitTest, UINT message)
 {
    UNREFERENCED_PARAMETER(pWnd);
    UNREFERENCED_PARAMETER(nHitTest);
@@ -268,7 +268,7 @@ BOOL frame_window::OnSetCursor(::user::interaction * pWnd, UINT nHitTest, UINT m
       return 0;
 }*/
 
-BOOL frame_window::OnCommand(WPARAM wParam, LPARAM lParam)
+bool frame_window::OnCommand(WPARAM wParam, LPARAM lParam)
    // return TRUE if command invocation was attempted
 {
    HWND hWndCtrl = (HWND)lParam;
@@ -291,7 +291,7 @@ BOOL frame_window::OnCommand(WPARAM wParam, LPARAM lParam)
 }
 
 
-BOOL __is_descendant(::user::interaction * hWndParent, ::user::interaction * hWndChild)
+bool __is_descendant(::user::interaction * hWndParent, ::user::interaction * hWndChild)
    // helper for detecting whether child descendent of parent
    //  (works with owned popups as well)
 {
@@ -375,7 +375,7 @@ void frame_window::EndModalState()
    m_phWndDisable = NULL;
 }
 
-void frame_window::ShowOwnedWindows(BOOL bShow)
+void frame_window::ShowOwnedWindows(bool bShow)
 {
    UNREFERENCED_PARAMETER(bShow);
    // walk through all top-level windows
@@ -404,7 +404,7 @@ void frame_window::ShowOwnedWindows(BOOL bShow)
    }*/
 }
 
-void frame_window::OnEnable(BOOL bEnable)
+void frame_window::OnEnable(bool bEnable)
 {
    if (bEnable && (m_nFlags & WF_STAYDISABLED))
    {
@@ -442,7 +442,7 @@ void frame_window::OnEnable(BOOL bEnable)
 /////////////////////////////////////////////////////////////////////////////
 // frame_window second phase creation
 
-BOOL frame_window::pre_create_window(CREATESTRUCT& cs)
+bool frame_window::pre_create_window(CREATESTRUCT& cs)
 {
    if (cs.lpszClass == NULL)
    {
@@ -458,7 +458,7 @@ BOOL frame_window::pre_create_window(CREATESTRUCT& cs)
    return TRUE;
 }
 
-BOOL frame_window::create(const char * lpszClassName,
+bool frame_window::create(const char * lpszClassName,
    const char * lpszWindowName,
    DWORD dwStyle,
    const RECT& rect,
@@ -535,7 +535,7 @@ BOOL frame_window::create(const char * lpszClassName,
 }
 */
 
-BOOL frame_window::OnCreateClient(LPCREATESTRUCT, ::ca::create_context* pContext)
+bool frame_window::OnCreateClient(LPCREATESTRUCT, ::ca::create_context* pContext)
 {
    // default create client will create a ::view if asked for it
    if (pContext != NULL &&
@@ -624,7 +624,7 @@ const char * frame_window::GetIconWndClass(DWORD dwDefaultStyle, const char * ps
    return NULL;        // just use the default
 }
 
-BOOL frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
+bool frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
    ::user::interaction * pParentWnd, ::ca::create_context* pContext)
 {
    UNREFERENCED_PARAMETER(pszMatter);
@@ -683,7 +683,7 @@ void frame_window::OnUpdateFrameMenu(HMENU hMenuAlt)
    // trans ::SetMenu(get_handle(), hMenuAlt);
 }
 
-void frame_window::InitialUpdateFrame(::user::document_interface * pDoc, BOOL bMakeVisible)
+void frame_window::InitialUpdateFrame(::user::document_interface * pDoc, bool bMakeVisible)
 {
    // if the frame does not have an active ::view, set to first pane
    ::view * pview = NULL;
@@ -699,7 +699,7 @@ void frame_window::InitialUpdateFrame(::user::document_interface * pDoc, BOOL bM
 
 //   HWND hwnd = _get_handle();
 //   DWORD dwStyle = ::GetWindowLong(hwnd, GWL_STYLE);
-//   BOOL bChild =  dwStyle & WS_CHILD;
+//   bool bChild =  dwStyle & WS_CHILD;
 
    if (bMakeVisible)
    {
@@ -836,7 +836,7 @@ void frame_window::OnClose()
    // shut down with on_close_document instead.
    if (pdocument != NULL && pdocument->m_bAutoDelete)
    {
-      BOOL bOtherFrame = FALSE;
+      bool bOtherFrame = FALSE;
       POSITION pos = pdocument->get_view_count();
       while (pos != NULL)
       {
@@ -996,7 +996,7 @@ void frame_window::_001OnActivate(gen::signal_object * pobj)
       pTopLevel = this;
 
    ::user::interaction* pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
-   BOOL bStayActive =
+   bool bStayActive =
       (pTopLevel == pActive ||
       (pActive && pTopLevel == dynamic_cast < frame_window * > (pActive->GetTopLevelFrame()) &&
       (pActive == pTopLevel ||
@@ -1100,7 +1100,7 @@ void frame_window::OnDropFiles(HDROP hDropInfo)
 }
 
 // query end session for main frame will attempt to close it all down
-BOOL frame_window::OnQueryEndSession()
+bool frame_window::OnQueryEndSession()
 {
    ::radix::application* pApp = &System;
    if (pApp != NULL && pApp->GetMainWnd() == this)
@@ -1110,7 +1110,7 @@ BOOL frame_window::OnQueryEndSession()
 }
 
 // when Windows session ends, close all documents
-void frame_window::OnEndSession(BOOL bEnding)
+void frame_window::OnEndSession(bool bEnding)
 {
    if (!bEnding)
       return;
@@ -1214,7 +1214,7 @@ LRESULT frame_window::OnDDETerminate(WPARAM wParam, LPARAM lParam)
    return m_pViewActive;
 }
 
-void frame_window::SetActiveView(::view * pViewNew, BOOL bNotify)
+void frame_window::SetActiveView(::view * pViewNew, bool bNotify)
 {
 #ifdef _DEBUG
    if (pViewNew != NULL)
@@ -1392,7 +1392,7 @@ void frame_window::SetMessageText(UINT nID)
 /////////////////////////////////////////////////////////////////////////////
 // Setting title of frame ::ca::window - UISG standard
 
-void frame_window::on_update_frame_title(BOOL bAddToTitle)
+void frame_window::on_update_frame_title(bool bAddToTitle)
 {
    if ((GetStyle() & FWS_ADDTOTITLE) == 0)
       return;     // leave it alone!
@@ -1457,7 +1457,7 @@ void frame_window::UpdateFrameTitleForDocument(const char * lpszDocName)
 
 /////////////////////////////////////////////////////////////////////////////
 
-void frame_window::OnSetPreviewMode(BOOL bPreview, CPrintPreviewState* pState)
+void frame_window::OnSetPreviewMode(bool bPreview, CPrintPreviewState* pState)
 {
    ENSURE_ARG(pState != NULL);
    // default implementation changes control bars, menu and main pane ::ca::window
@@ -1570,7 +1570,7 @@ void frame_window::layout()
 }
 
 // frame_window implementation of OLE border space negotiation
-BOOL frame_window::NegotiateBorderSpace(UINT nBorderCmd, LPRECT lpRectBorder)
+bool frame_window::NegotiateBorderSpace(UINT nBorderCmd, LPRECT lpRectBorder)
 {
    rect border, request;
 
@@ -1621,7 +1621,7 @@ void frame_window::OnSize(UINT nType, int cx, int cy)
       layout();
 }
 
-BOOL frame_window::OnEraseBkgnd(::ca::graphics * pgraphics)
+bool frame_window::OnEraseBkgnd(::ca::graphics * pgraphics)
 {
    UNREFERENCED_PARAMETER(pgraphics);
    if (m_pViewActive != NULL)
@@ -1739,12 +1739,12 @@ void frame_window::dump(dump_context & dumpcontext) const
 
 
 
-BOOL frame_window::IsFrameWnd()
+bool frame_window::IsFrameWnd()
 {
    return TRUE;
 }
 
-BOOL frame_window::IsTracking() const
+bool frame_window::IsTracking() const
 {
 /*   return m_nIDTracking != 0 &&
       m_nIDTracking != __IDS_HELPMODEMESSAGE &&
@@ -1753,9 +1753,9 @@ BOOL frame_window::IsTracking() const
 }
 
 
-BOOL frame_window::ShowWindow(int nCmdShow)
+bool frame_window::ShowWindow(int nCmdShow)
 {
-   BOOL bResult = interaction::ShowWindow(nCmdShow);
+   bool bResult = interaction::ShowWindow(nCmdShow);
    if(GetParent() != NULL
    && nCmdShow == SW_RESTORE)
    {
@@ -1785,9 +1785,9 @@ void frame_window::_001OnSysCommand(gen::signal_object * pobj)
 // frame_window
  void frame_window::DelayUpdateFrameTitle()
    { m_nIdleFlags |= idleTitle; }
- void frame_window::DelayRecalcLayout(BOOL bNotify)
+ void frame_window::DelayRecalcLayout(bool bNotify)
    { m_nIdleFlags |= (idleLayout | (bNotify ? idleNotify : 0)); };
- BOOL frame_window::InModalState() const
+ bool frame_window::InModalState() const
    { return m_cModalStack != 0; }
  void frame_window::set_title(const char * lpszTitle)
    { m_strTitle = lpszTitle; }

@@ -163,7 +163,7 @@ namespace user
       ASSERT(iFrame == nFrames + 1);
    }
 
-   BOOL document_interface::can_close_frame(frame_window* pFrameArg)
+   bool document_interface::can_close_frame(frame_window* pFrameArg)
       // permission to close all views using this frame
       //  (at least one of our views must be in this frame)
    {
@@ -198,7 +198,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // File/Path commands
 
-   void document_interface::set_path_name(var varFile, BOOL bAddToMRU)
+   void document_interface::set_path_name(var varFile, bool bAddToMRU)
    {
       UNREFERENCED_PARAMETER(bAddToMRU);
       string strPathName;
@@ -383,7 +383,7 @@ namespace user
       return TRUE;        // success
    }
 
-   BOOL document_interface::save_modified()
+   bool document_interface::save_modified()
    {
       if (!is_modified())
          return TRUE;        // ok to continue
@@ -439,7 +439,7 @@ namespace user
       return NULL;    // just use original default
    }
 
-   void document_interface::report_save_load_exception(const char * lpszPathName, base_exception* e, BOOL bSaving, const char * nIDPDefault)
+   void document_interface::report_save_load_exception(const char * lpszPathName, base_exception* e, bool bSaving, const char * nIDPDefault)
    {
 
       UNREFERENCED_PARAMETER(bSaving);
@@ -642,7 +642,7 @@ namespace user
    {
       // destroy all frames viewing this document_interface
       // the last destroy may destroy us
-      BOOL bAutoDelete = m_bAutoDelete;
+      bool bAutoDelete = m_bAutoDelete;
       m_bAutoDelete = FALSE;  // don't destroy document_interface while closing views
       for(index index = 0; index < m_viewptra.get_count(); index++)
       {
@@ -868,9 +868,9 @@ namespace user
       { ASSERT(this != NULL); return m_strPathName; }
     document_template * document_interface::get_document_template() const
       { ASSERT(this != NULL); return m_pdocumentemplate; }
-    BOOL document_interface::is_modified()
+    bool document_interface::is_modified()
       { ASSERT(this != NULL); return m_bModified; }
-    void document_interface::set_modified_flag(BOOL bModified)
+    void document_interface::set_modified_flag(bool bModified)
       { ASSERT(this != NULL); m_bModified = bModified; }
     void document_interface::set_new(bool bNew)
    {

@@ -95,7 +95,7 @@ void simple_menu_bar::SetMenuID(UINT uiResourceID)
    m_uiResourceID = uiResourceID;
 }
 
-BOOL simple_menu_bar::pre_create_window(CREATESTRUCT& cs)
+bool simple_menu_bar::pre_create_window(CREATESTRUCT& cs)
 {
    return simple_toolbar::pre_create_window(cs);
 }
@@ -346,7 +346,7 @@ void simple_menu_bar::_001OnMenuChar(gen::signal_object * pobj)
    pobj->previous();
 }
 
-void simple_menu_bar::OnUpdateCmdUI(userbase::frame_window *pTarget, BOOL bDisableIfNoHndler)
+void simple_menu_bar::OnUpdateCmdUI(userbase::frame_window *pTarget, bool bDisableIfNoHndler)
 {
    UNREFERENCED_PARAMETER(pTarget);
    UNREFERENCED_PARAMETER(bDisableIfNoHndler);
@@ -533,13 +533,13 @@ int simple_menu_bar::_001HitTest(const POINT *lppoint)
 }*/
 
 
-BOOL simple_menu_bar::create(::user::interaction* pParentWnd, DWORD dwStyle, UINT nID)
+bool simple_menu_bar::create(::user::interaction* pParentWnd, DWORD dwStyle, UINT nID)
 {
    return CreateEx(pParentWnd, 0, dwStyle,
       rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder), nID);
 }
 
-BOOL simple_menu_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle, DWORD dwStyle, rect rcBorders, UINT nID)
+bool simple_menu_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle, DWORD dwStyle, rect rcBorders, UINT nID)
 {
    ASSERT_VALID(pParentWnd);   // must have a parent
    ASSERT (!((dwStyle & CBRS_SIZE_FIXED) && (dwStyle & CBRS_SIZE_DYNAMIC)));
@@ -613,7 +613,7 @@ size simple_menu_bar::CalcLayout(DWORD dwMode, int nLength)
    return sizeResult;
 }
 
-size simple_menu_bar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
+size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 {
    DWORD dwMode = bStretch ? LM_STRETCH : 0;
    dwMode |= bHorz ? LM_HORZ : 0;
@@ -743,7 +743,7 @@ void simple_menu_bar::_001OnTimer(gen::signal_object * pobj)
 }
 
 /*
-BOOL simple_menu_bar::OnEraseBkgnd(::ca::graphics * pgraphics)
+bool simple_menu_bar::OnEraseBkgnd(::ca::graphics * pgraphics)
 {
    return TRUE;
 }

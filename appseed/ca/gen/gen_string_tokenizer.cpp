@@ -28,7 +28,7 @@ string_tokenizer
 
 
 
-BOOL string_tokenizer::GetNextToken(string &strToken, const char * lpSeparator, BOOL bWithSeparator)
+bool string_tokenizer::GetNextToken(string &strToken, const char * lpSeparator, bool bWithSeparator)
 {
 
    strsize i;
@@ -56,7 +56,7 @@ BOOL string_tokenizer::GetNextToken(string &strToken, const char * lpSeparator, 
 
 }
 
-BOOL string_tokenizer::GetNextSmallestToken(string & strToken, string_array & straSeparator, BOOL bWithSeparator)
+bool string_tokenizer::GetNextSmallestToken(string & strToken, string_array & straSeparator, bool bWithSeparator)
 {
    if(m_nCurrentIndex >= get_length())
    {

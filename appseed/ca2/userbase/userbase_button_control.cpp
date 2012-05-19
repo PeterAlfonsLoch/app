@@ -23,7 +23,7 @@ void BaseButtonControl::install_message_handling(::gen::message::dispatch * pdis
 }
 
 
-BOOL BaseButtonControl::pre_create_window(CREATESTRUCT& cs) 
+bool BaseButtonControl::pre_create_window(CREATESTRUCT& cs) 
 {
    cs.style |= BS_OWNERDRAW;
    return ::user::interaction::pre_create_window(cs);

@@ -15,8 +15,8 @@ namespace fontopus
       user *         m_puser;
 
       
-      application(void);
-      virtual ~application(void);
+      application();
+      virtual ~application();
 
       using ::ca::thread::construct;
       using ::ca::application::construct;

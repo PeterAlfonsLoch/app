@@ -13,7 +13,7 @@ invalid_argument_exception::invalid_argument_exception(const char * pszMessage)
 
 }
 
-invalid_argument_exception::invalid_argument_exception(BOOL bAutoDelete, UINT nResourceID)
+invalid_argument_exception::invalid_argument_exception(bool bAutoDelete, UINT nResourceID)
    : simple_exception(bAutoDelete) 
 {
    m_nResourceID = nResourceID; 

@@ -83,7 +83,7 @@ typedef NTSTATUS ( WINAPI *PNtQuerySystemInformation)
 // };
 // 
 // 
-// typedef BOOL (WINAPI *PGetFileInformationByHandleEx)(
+// typedef bool (WINAPI *PGetFileInformationByHandleEx)(
 // 	HANDLE hFile,
 // 	OF_FILE_INFO_BY_HANDLE_CLASS FileInformationClass,
 // 	LPVOID lpFileInformation,
@@ -97,11 +97,11 @@ typedef DWORD (WINAPI* GetFinalPathNameByHandleDef)(
 	
 
 
-BOOL StopAndUninstallDrv( HANDLE hDrvHandle );
+bool StopAndUninstallDrv( HANDLE hDrvHandle );
 
 HANDLE ExtractAndInstallDrv();
 
-BOOL GetDrive( LPCTSTR lpDeviceFileName, string & fsFileName, bool bDriveLetterOnly );
+bool GetDrive( LPCTSTR lpDeviceFileName, string & fsFileName, bool bDriveLetterOnly );
 
-BOOL EnableTokenPrivilege(LPCTSTR pszPrivilege);
+bool EnableTokenPrivilege(LPCTSTR pszPrivilege);
 #endif

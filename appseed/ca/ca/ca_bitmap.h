@@ -13,12 +13,12 @@ namespace ca
    public:
 
 
-      virtual BOOL CreateBitmap(int nWidth, int nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits);
-      virtual BOOL CreateBitmapIndirect(LPBITMAP lpBitmap);
-      virtual BOOL CreateCompatibleBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight);
-      virtual BOOL CreateDiscardableBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight);
-      virtual BOOL CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset);
-      virtual BOOL CreateDIBitmap(::ca::graphics * pdc, const BITMAPINFOHEADER *pbmih, DWORD flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage);
+      virtual bool CreateBitmap(int nWidth, int nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits);
+      virtual bool CreateBitmapIndirect(LPBITMAP lpBitmap);
+      virtual bool CreateCompatibleBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight);
+      virtual bool CreateDiscardableBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight);
+      virtual bool CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset);
+      virtual bool CreateDIBitmap(::ca::graphics * pdc, const BITMAPINFOHEADER *pbmih, DWORD flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage);
 
       virtual bool Attach(HBITMAP hbitmap);
       

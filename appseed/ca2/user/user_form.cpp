@@ -855,7 +855,7 @@ namespace ca2
          }
          return true;
       }
-      void form::_001SetControlFactory(void)
+      void form::_001SetControlFactory()
       {
       }
 
@@ -987,7 +987,7 @@ namespace ca2
          return false;
       }
 
-      void form::OnBeforeNavigate2(var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel)
+      void form::OnBeforeNavigate2(var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel)
       {
          UNREFERENCED_PARAMETER(varFile);
          UNREFERENCED_PARAMETER(nFlags);

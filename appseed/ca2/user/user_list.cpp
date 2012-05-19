@@ -699,7 +699,7 @@ namespace user
       return m_columna.VisibleGetCount();
    }
 
-   /*BOOL list::pre_create_window(CREATESTRUCT& cs)
+   /*bool list::pre_create_window(CREATESTRUCT& cs)
    {
 
    //cs.style |= LVS_NOSCROLL;

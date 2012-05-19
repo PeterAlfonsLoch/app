@@ -5,7 +5,7 @@
 
 
 
-BOOL __internal_pump_message()
+bool __internal_pump_message()
 {
 
 MSG g_msgSpaAdminWindow;

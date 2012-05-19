@@ -1793,7 +1793,7 @@ static void timing() {
 }
 */
 
-/*void testAPI(void) {
+/*void testAPI() {
     u32 pieceLen, totalLen, dataLen;
     NESSIEstruct w;
     u8 dataBuf[512], expectedDigest[DIGESTBYTES], computedDigest[DIGESTBYTES];

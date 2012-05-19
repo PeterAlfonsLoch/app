@@ -29,7 +29,7 @@ document_template::~document_template()
 {
 }
 
-BOOL document_template::GetDocString(string & rString, enum DocStringIndex i) const
+bool document_template::GetDocString(string & rString, enum DocStringIndex i) const
 {
    return __extract_sub_string(rString, m_strDocStrings, (int)i);
 }
@@ -165,7 +165,7 @@ frame_window* document_template::create_new_frame(::user::document_interface * p
 
 /*
 frame_window* document_template::CreateOleFrame(::ca::window* pParentWnd, ::user::document_interface * pdocument,
-   BOOL bCreateView)
+   bool bCreateView)
 {
    create_context context;
    context.m_pCurrentFrame = NULL;
@@ -203,7 +203,7 @@ frame_window* document_template::CreateOleFrame(::ca::window* pParentWnd, ::user
 */
 
 void document_template::InitialUpdateFrame(frame_window* pFrame, ::user::document_interface * pdocument,
-   BOOL bMakeVisible)
+   bool bMakeVisible)
 {
    // just delagate to implementation in frame_window
    pFrame->InitialUpdateFrame(pdocument, bMakeVisible);
@@ -212,7 +212,7 @@ void document_template::InitialUpdateFrame(frame_window* pFrame, ::user::documen
 /////////////////////////////////////////////////////////////////////////////
 // document_template commands and command helpers
 
-BOOL document_template::save_all_modified()
+bool document_template::save_all_modified()
 {
    count count = get_document_count();
    for(index index = 0; index < count; index++)
@@ -225,7 +225,7 @@ BOOL document_template::save_all_modified()
 }
 
 
-void document_template::close_all_documents(BOOL)
+void document_template::close_all_documents(bool)
 {
    for(index index = 0; index < get_document_count(); index++)
    {

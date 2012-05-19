@@ -17,7 +17,7 @@ namespace mail
 
       bool initialize_instance();
 
-      BOOL exit_instance();
+      virtual int exit_instance();
 
       virtual void update_pop3_mail_lists();
 

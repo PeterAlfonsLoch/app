@@ -256,7 +256,7 @@ namespace ca
       virtual void set_os_int(INT_PTR iData);
 
 
-      friend BOOL __internal_pre_translate_message(MSG* pMsg);
+      friend bool __internal_pre_translate_message(MSG* pMsg);
 
       virtual void construct();
       virtual void construct(__THREADPROC pfnThreadProc, LPVOID pParam);
@@ -267,14 +267,14 @@ namespace ca
 
       virtual bool Begin(int nPriority = thread_priority_normal, UINT nStackSize = 0, DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
-      virtual BOOL CreateThread(DWORD dwCreateFlags = 0, UINT nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+      virtual bool CreateThread(DWORD dwCreateFlags = 0, UINT nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
       virtual int GetThreadPriority();
-      virtual BOOL SetThreadPriority(int nPriority);
+      virtual bool SetThreadPriority(int nPriority);
 
       virtual DWORD SuspendThread();
       virtual DWORD ResumeThread();
-      virtual BOOL PostThreadMessage(UINT message, WPARAM wParam, LPARAM lParam);
+      virtual bool PostThreadMessage(UINT message, WPARAM wParam, LPARAM lParam);
       virtual bool post_message(::user::interaction * pguie, UINT message, WPARAM wParam, LPARAM lParam);
 
       virtual bool PreInitInstance();
@@ -296,9 +296,9 @@ namespace ca
       // running and idle processing
       virtual int run();
       virtual void pre_translate_message(gen::signal_object * pobj);
-      virtual BOOL pump_message();     // low level message pump
-      virtual BOOL on_idle(LONG lCount); // return TRUE if more idle processing
-      virtual BOOL is_idle_message(gen::signal_object * pobj);  // checks for special messages
+      virtual bool pump_message();     // low level message pump
+      virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
+      virtual bool is_idle_message(gen::signal_object * pobj);  // checks for special messages
 
       // thread termination
       virtual int exit_instance(); // default will 'delete this'

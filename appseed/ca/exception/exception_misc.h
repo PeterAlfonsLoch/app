@@ -13,7 +13,7 @@ public:
    misc_exception(const misc_exception & e);
    misc_exception(const char * pszMessage);
    virtual ~misc_exception();
-   virtual BOOL GetErrorMessage(string & str, PUINT pnHelpContext = NULL);
+   virtual bool GetErrorMessage(string & str, PUINT pnHelpContext = NULL);
 
    
 };

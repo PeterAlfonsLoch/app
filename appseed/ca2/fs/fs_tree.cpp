@@ -234,7 +234,7 @@ namespace fs
       }*/
    }
 
-   BOOL tree::pre_create_window(CREATESTRUCT& cs) 
+   bool tree::pre_create_window(CREATESTRUCT& cs) 
    {
       
       cs.style |= WS_CLIPCHILDREN;

@@ -27,7 +27,7 @@ public:
 
 
    folder_selection_list_view(::ca::application * papp);
-   ~folder_selection_list_view(void);
+   ~folder_selection_list_view();
 
 
    virtual filemanager::data * get_filemanager_data();
@@ -45,8 +45,8 @@ public:
 
    virtual void OnFileManagerBrowse();
 
-   void FolderAdd(void);
-   void FolderRemove(void);
+   void FolderAdd();
+   void FolderRemove();
 
 };
 

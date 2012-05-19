@@ -22,7 +22,7 @@ namespace mail
       return true;
    }
 
-   BOOL application::exit_instance()
+   int application::exit_instance()
    {
       try
       {

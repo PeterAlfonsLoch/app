@@ -98,7 +98,7 @@ namespace bergedge
       return true;
    }
 
-   BOOL bergedge::exit_instance()
+   int bergedge::exit_instance()
    {
       try
       {

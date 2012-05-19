@@ -23,7 +23,7 @@
 
 #include "EscCharsetProber.h"
 
-nsEscCharSetProber::nsEscCharSetProber(void)
+nsEscCharSetProber::nsEscCharSetProber()
 {
   mCodingSM[0] = new nsCodingStateMachine(&HZSMModel);
   mCodingSM[1] = new nsCodingStateMachine(&ISO2022CNSMModel);
@@ -34,13 +34,13 @@ nsEscCharSetProber::nsEscCharSetProber(void)
   mDetectedCharset = nsnull;
 };
 
-nsEscCharSetProber::~nsEscCharSetProber(void)
+nsEscCharSetProber::~nsEscCharSetProber()
 {
   for (PRUint32 i = 0; i < NUM_OF_ESC_CHARSETS; i++)
     delete mCodingSM[i];
 }
 
-void nsEscCharSetProber::Reset(void)
+void nsEscCharSetProber::Reset()
 {
   mState = eDetecting;
   for (PRUint32 i = 0; i < NUM_OF_ESC_CHARSETS; i++)

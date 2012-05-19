@@ -34,7 +34,7 @@ namespace gen
    /////////////////////////////////////////////////////////////////////////////
    // TimerWnd message handlers
 
-   BOOL TimerWnd::create(TimerCallback *pCallback)
+   bool TimerWnd::create(TimerCallback *pCallback)
 
    {
        m_pTimerCallback = pCallback;
@@ -135,7 +135,7 @@ namespace gen
        DestroyWindow();
    }
 
-   BOOL TimerWnd::DestroyWindow()
+   bool TimerWnd::DestroyWindow()
    {
       // TODO: add your specialized code here and/or call the base class
 

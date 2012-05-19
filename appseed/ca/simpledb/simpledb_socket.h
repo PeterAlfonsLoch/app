@@ -20,7 +20,7 @@ namespace simpledb
       socket_thread *   m_pthreadParent;
 
       socket(::sockets::socket_handler_base & h);
-      virtual ~socket(void);
+      virtual ~socket();
 
       virtual void OnExecute();
       virtual void OnResponseComplete();

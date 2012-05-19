@@ -159,18 +159,18 @@ namespace visual
       ClearDC();
    }
 
-   BOOL font::AddGlyph(WCHAR wchar)
+   bool font::AddGlyph(WCHAR wchar)
    {
       return AddGlyph((UINT) wchar);
    }
 
 
-   BOOL font::AddGlyph(CHAR tch)
+   bool font::AddGlyph(CHAR tch)
    {
       return AddGlyph((UINT) tch);
    }
 
-   BOOL font::AddGlyph(UINT user)
+   bool font::AddGlyph(UINT user)
    {
    //   single_lock sl(&m_mutex);
    //   sl.lock(INFINITE);
@@ -271,7 +271,7 @@ namespace visual
       char            ch;
       string            str;
       int               i, j, k;
-      BOOL             forceInsertion = FALSE;
+      bool             forceInsertion = FALSE;
       stringa *   p1DTokens;
 
       ASSERT(p2DTokens != NULL);
@@ -397,25 +397,25 @@ namespace visual
 
 
 
-BOOL CLASS_DECL_ca TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
+bool CLASS_DECL_ca TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
 {
    if(lpString == NULL)
    {
       return ::TextOutW(hdc, x, y, NULL, c);
    }
    wstring wstr = gen::international::utf8_to_unicode(lpString, c);
-   BOOL bRet = ::TextOutW(hdc, x, y, wstr, (int) wstr.get_length());
+   bool bRet = ::TextOutW(hdc, x, y, wstr, (int) wstr.get_length());
    return bRet;
 }
 
-CLASS_DECL_ca BOOL GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, LPSIZE psizl)
+CLASS_DECL_ca bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, LPSIZE psizl)
 {
    if(lpString == NULL)
    {
       return ::GetTextExtentPoint32W(hdc, NULL, c, psizl);
    }
    wstring wstr = gen::international::utf8_to_unicode(lpString, c);
-   BOOL bRet = ::GetTextExtentPoint32W(hdc, wstr, (int) wstr.get_length(), psizl);
+   bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (int) wstr.get_length(), psizl);
    return bRet;
 }
 
@@ -427,6 +427,6 @@ CLASS_DECL_ca int  DrawTextU(HDC hdc, const char * lpchText, int cchText, LPRECT
       return ::DrawTextW(hdc, NULL, cchText, lprc, format);
    }
    wstring wstr = gen::international::utf8_to_unicode(lpchText, cchText);
-   BOOL bRet = ::DrawTextW(hdc, wstr, (int) wcslen(wstr), lprc, format);
+   bool bRet = ::DrawTextW(hdc, wstr, (int) wcslen(wstr), lprc, format);
    return bRet;
 }

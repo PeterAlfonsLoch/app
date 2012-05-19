@@ -12,7 +12,7 @@ namespace simpledb
    {
    }
 
-   service::~service(void)
+   service::~service()
    {
    }
 

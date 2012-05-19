@@ -63,7 +63,7 @@ namespace calculator
    // view
 
 
-   BOOL view::pre_create_window(CREATESTRUCT& cs)
+   bool view::pre_create_window(CREATESTRUCT& cs)
    {
       cs.lpszClass = System.RegisterWndClass(
          CS_DBLCLKS |

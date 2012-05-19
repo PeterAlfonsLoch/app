@@ -16,7 +16,7 @@ namespace primitive
    {
    }
 
-   void shared_file::SetHandle(HGLOBAL hGlobalMemory, BOOL bAllowGrow)
+   void shared_file::SetHandle(HGLOBAL hGlobalMemory, bool bAllowGrow)
    {
       (dynamic_cast < shared_memory * >(get_memory()))->SetHandle(hGlobalMemory, bAllowGrow);
    }

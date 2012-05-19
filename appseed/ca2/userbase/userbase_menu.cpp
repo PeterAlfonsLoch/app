@@ -211,7 +211,7 @@ namespace userbase
 
    void menu::_001OnDraw(::ca::graphics *pdc)
    {
-//      BOOL bEnabled = IsWindowEnabled();
+//      bool bEnabled = IsWindowEnabled();
       rect rectClient;
       GetClientRect(rectClient);
       if(_001IsTranslucent())
@@ -324,7 +324,7 @@ namespace userbase
    }
 
 
-   /*void menu::OnBnClickedClose(void)
+   /*void menu::OnBnClickedClose()
    {
       PostMessage(MessageDestroyWindow);
    }*/
@@ -563,7 +563,7 @@ namespace userbase
    }
 
 
-   BOOL menu::pre_create_window(CREATESTRUCT& cs)
+   bool menu::pre_create_window(CREATESTRUCT& cs)
    {
       if(cs.lpszClass == NULL)
       {

@@ -17,8 +17,8 @@ namespace calculator
       class ::calculator::calculator  * m_pcalculator;
 
 
-      application(void);
-      virtual ~application(void);
+      application();
+      virtual ~application();
 
 
       bool initialize();

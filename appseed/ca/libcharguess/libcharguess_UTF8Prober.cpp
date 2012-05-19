@@ -23,7 +23,7 @@
 
 #include "UTF8Prober.h"
 
-void  nsUTF8Prober::Reset(void)
+void  nsUTF8Prober::Reset()
 {
   mCodingSM->Reset(); 
   mNumOfMBChar = 0;
@@ -62,7 +62,7 @@ nsProbingState nsUTF8Prober::HandleData(const char* aBuf, PRUint32 aLen)
 
 #define ONE_CHAR_PROB   (float)0.50
 
-float nsUTF8Prober::GetConfidence(void)
+float nsUTF8Prober::GetConfidence()
 {
   float unlike = (float)0.99;
 

@@ -38,7 +38,7 @@ public:
   };
 
   float GetConfidence();
-  void      Reset(void);
+  void      Reset();
   void      SetOpion(){};
   PRBool GotEnoughData() {return mTotalRel > ENOUGH_REL_THRESHOLD;};
 

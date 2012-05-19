@@ -86,7 +86,7 @@ In general, our approach is to try to make sure that when something goes wrong
 
 Sometimes we have code like
 
-HRESULT ComMethod(void)
+HRESULT ComMethod()
 {
    ASSUME(m_pFoo);
    return m_pFoo->Method();

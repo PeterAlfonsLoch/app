@@ -63,8 +63,8 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
 
    ::user::document_interface * pdocument = NULL;
    frame_window* pFrame = NULL;
-   BOOL bCreated = FALSE;      // => doc and frame created
-   BOOL bWasModified = FALSE;
+   bool bCreated = FALSE;      // => doc and frame created
+   bool bWasModified = FALSE;
 
    if (m_pdocument != NULL)
    {
@@ -99,7 +99,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
       ASSERT(bCreated);
 
       // create frame - set as main ::user::document_interface frame
-      BOOL bAutoDelete = pdocument->m_bAutoDelete;
+      bool bAutoDelete = pdocument->m_bAutoDelete;
       pdocument->m_bAutoDelete = FALSE;
                // don't destroy if something goes wrong
       pFrame = create_new_frame(pdocument, NULL, pcreatecontext);

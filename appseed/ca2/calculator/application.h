@@ -15,10 +15,10 @@ namespace ca2
       public:
 
 
-         application(void);
+         application();
 
 
-         virtual ~application(void);
+         virtual ~application();
 
 
          bool initialize();

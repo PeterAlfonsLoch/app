@@ -13,7 +13,7 @@ namespace userbase
       tool_cmd_ui(::ca::application * papp);
       virtual ~tool_cmd_ui();
 
-      virtual void Enable(BOOL bOn);
+      virtual void Enable(bool bOn);
       virtual void SetCheck(int nCheck);
       virtual void SetText(const char * lpszText);
    };

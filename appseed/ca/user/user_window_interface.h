@@ -110,7 +110,7 @@ namespace user
       static bool PASCAL ModifyStyleEx(HWND hwnd, DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
 
       LRESULT SendMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
-      BOOL PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);*/
+      bool PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);*/
 
    // Window size and position Functions
       /*bool IsIconic() const;
@@ -130,9 +130,9 @@ namespace user
 
 
       virtual void UpdateWindow();
-      virtual void Invalidate(BOOL bErase = TRUE);
-      /*void InvalidateRect(LPCRECT lprect, BOOL bErase = TRUE);
-      void InvalidateRgn(::ca::region* prgn, BOOL bErase = TRUE);
+      virtual void Invalidate(bool bErase = TRUE);
+      /*void InvalidateRect(LPCRECT lprect, bool bErase = TRUE);
+      void InvalidateRgn(::ca::region* prgn, bool bErase = TRUE);
       void ValidateRect(LPCRECT lprect);
       void ValidateRgn(::ca::region* prgn);
       bool ShowWindow(int iCmdShow);
@@ -142,7 +142,7 @@ namespace user
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
       bool SetTimer(UINT nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(HWND, UINT, UINT, DWORD));
       bool KillTimer(int nIDEvent);
-      BOOL SetWindowPos(const ::ca::window* pWndInsertAfter, int x, int y, int cx, int cy, UINT nFlags);
+      bool SetWindowPos(const ::ca::window* pWndInsertAfter, int x, int y, int cx, int cy, UINT nFlags);
       ::ca::window * SetFocus();*/
 
 

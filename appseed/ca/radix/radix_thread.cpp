@@ -53,7 +53,7 @@ namespace radix
       return m_p->Begin(nPriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
    }
 
-   BOOL thread::CreateThread(DWORD dwCreateFlags, UINT nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+   bool thread::CreateThread(DWORD dwCreateFlags, UINT nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
       return m_p->CreateThread(dwCreateFlags, nStackSize, lpSecurityAttrs);
    }
@@ -63,7 +63,7 @@ namespace radix
       return m_p->GetThreadPriority();
    }
 
-   BOOL thread::SetThreadPriority(int nPriority)
+   bool thread::SetThreadPriority(int nPriority)
    {
       return m_p->SetThreadPriority(nPriority);
    }
@@ -78,7 +78,7 @@ namespace radix
       return m_p->ResumeThread();
    }
 
-   BOOL thread::PostThreadMessage(UINT message, WPARAM wParam, LPARAM lParam)
+   bool thread::PostThreadMessage(UINT message, WPARAM wParam, LPARAM lParam)
    {
       return m_p->PostThreadMessage(message, wParam, lParam);
    }
@@ -137,17 +137,17 @@ namespace radix
       return m_p->pre_translate_message(pobj);
    }
 
-   BOOL thread::pump_message()     // low level message pump
+   bool thread::pump_message()     // low level message pump
    {
       return m_p->pump_message();
    }
 
-   BOOL thread::on_idle(LONG lCount) // return TRUE if more idle processing
+   bool thread::on_idle(LONG lCount) // return TRUE if more idle processing
    {
       return m_p->on_idle(lCount);
    }
 
-   BOOL thread::is_idle_message(gen::signal_object * pobj)  // checks for special messages
+   bool thread::is_idle_message(gen::signal_object * pobj)  // checks for special messages
    {
       return m_p->is_idle_message(pobj);
    }

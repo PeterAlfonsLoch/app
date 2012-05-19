@@ -38,12 +38,12 @@ namespace ca
 
 #pragma pop_macro("GetObject")*/
 
-   BOOL graphics_object::CreateStockObject(int nIndex)
+   bool graphics_object::CreateStockObject(int nIndex)
    {
       throw interface_only_exception();
    }
 
-   BOOL graphics_object::UnrealizeObject()
+   bool graphics_object::UnrealizeObject()
    {
       throw interface_only_exception();
    }
@@ -53,13 +53,13 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics_object::operator==(const graphics_object & obj) const
+   bool graphics_object::operator==(const graphics_object & obj) const
    {
       UNREFERENCED_PARAMETER(obj);
       throw interface_only_exception();
    }
 
-   BOOL graphics_object::operator!=(const graphics_object & obj) const
+   bool graphics_object::operator!=(const graphics_object & obj) const
    {
       UNREFERENCED_PARAMETER(obj);
       throw interface_only_exception();

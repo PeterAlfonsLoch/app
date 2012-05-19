@@ -9,12 +9,12 @@
 #define ARGB(a, r,g,b)          ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)|(((DWORD)(BYTE)(a))<<24)))
 
 
-CLASS_DECL_c BOOL os_initialize();
-CLASS_DECL_c BOOL os_finalize();
+CLASS_DECL_c bool os_initialize();
+CLASS_DECL_c bool os_finalize();
 
 
-CLASS_DECL_c BOOL main_initialize();
-CLASS_DECL_c BOOL main_finalize();
+CLASS_DECL_c bool main_initialize();
+CLASS_DECL_c bool main_finalize();
 
 CLASS_DECL_c
 LSTATUS

@@ -7,7 +7,7 @@ memory_exception::memory_exception()
 
 }
 
-memory_exception::memory_exception(BOOL bAutoDelete, UINT nResourceID)
+memory_exception::memory_exception(bool bAutoDelete, UINT nResourceID)
    : simple_exception(bAutoDelete) 
 {
    m_nResourceID = nResourceID; 

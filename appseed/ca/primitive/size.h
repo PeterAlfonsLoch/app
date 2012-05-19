@@ -81,8 +81,8 @@ public:
    operator const __size64 *() const throw();
 
 // Operations
-   BOOL operator==(__size64 size64) const throw();
-   BOOL operator!=(__size64 size64) const throw();
+   bool operator==(__size64 size64) const throw();
+   bool operator!=(__size64 size64) const throw();
    void operator+=(__size64 size64) throw();
    void operator-=(__size64 size64) throw();
    void set_size(__int64 CX, __int64 CY) throw();

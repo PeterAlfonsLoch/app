@@ -284,7 +284,7 @@ namespace gen
 
       //bool dispatch::_iguimessageDispatchCommandMessage(
          // BaseCommand * pcommand,
-         //BOOL & b)
+         //bool & b)
       //{
          /*int & i = m_iHandling;
          SignalPtrArray signalptra;
@@ -325,7 +325,7 @@ namespace gen
                      {
                         // just fill in the information, don't do it
                         //pHandlerInfo->pTarget = (command_target *) 1;
-                        //pHandlerInfo->pmf = (void (__MSG_CALL command_target::*)(void)) NULL;
+                        //pHandlerInfo->pmf = (void (__MSG_CALL command_target::*)()) NULL;
                         b = TRUE;
                         return true;
                      }
@@ -571,7 +571,7 @@ namespace gen
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_nState = (UINT)(LOWORD(wparam));
          m_pWndOther = System.window_from_os_data((HWND)lparam);
-         m_bMinimized = (BOOL)HIWORD(wparam);
+         m_bMinimized = (bool)HIWORD(wparam);
       }
 
 
@@ -582,7 +582,7 @@ namespace gen
       {
       }
 
-      void erase_bkgnd::set_result(BOOL bResult)
+      void erase_bkgnd::set_result(bool bResult)
       {
          set_lresult(bResult);
       }
@@ -610,7 +610,7 @@ namespace gen
       void nc_activate::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         m_bActive = static_cast<BOOL>(wparam);
+         m_bActive = static_cast<bool>(wparam);
       }
 
       void size::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
@@ -731,9 +731,9 @@ namespace gen
          return m_wparam != 0;
       }
 
-      BOOL nc_calc_size::GetCalcValidRects()
+      bool nc_calc_size::GetCalcValidRects()
       {
-         return static_cast<BOOL>(m_wparam);
+         return static_cast<bool>(m_wparam);
       }
 
 
@@ -912,7 +912,7 @@ namespace gen
                   nc_activate ncactivate(get_app());
                   ncactivate.m_psignal = psignal;
                   ncactivate.set(message, wparam, lparam, lresult);
-                  ncactivate.m_bActive = static_cast<BOOL>(wparam);
+                  ncactivate.m_bActive = static_cast<bool>(wparam);
                   psignal->emit(&ncactivate);
                   if(ncactivate.m_bRet)
                      return true;
@@ -1063,7 +1063,7 @@ namespace gen
                activate.set(message, wparam, lparam, lresult);
                activate.m_nState = (UINT)(LOWORD(wparam));
                activate.m_pWndOther = System.window_from_os_data((HWND)lparam);
-               activate.m_bMinimized = (BOOL)HIWORD(wparam);
+               activate.m_bMinimized = (bool)HIWORD(wparam);
                psignal->emit(&activate);
                if(activate.m_bRet)
                   return true;

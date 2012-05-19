@@ -206,7 +206,7 @@ protected:
 public:
 	CScriptLex(const string &input);
 	CScriptLex(CScriptLex *owner, strsize startChar, strsize endChar);
-	~CScriptLex(void);
+	~CScriptLex();
 
 	char currCh, nextCh;
 	int tk; ///< The type of the token that we have
@@ -281,7 +281,7 @@ public:
    CScriptVar(int val);
 	CScriptVar(int64_t val);
 	CScriptVar(bool val);
-	~CScriptVar(void);
+	~CScriptVar();
 
 	CScriptVar *getReturnVar(); ///< If this is a function, get the result value (for use by native functions)
 	void setReturnVar(CScriptVar *var); ///< Set the result value. Use this when setting complex return data as it avoids a deepCopy()

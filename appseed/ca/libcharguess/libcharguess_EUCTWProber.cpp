@@ -23,7 +23,7 @@
 
 #include "EUCTWProber.h"
 
-void  nsEUCTWProber::Reset(void)
+void  nsEUCTWProber::Reset()
 {
   mCodingSM->Reset(); 
   mState = eDetecting;
@@ -73,7 +73,7 @@ nsProbingState nsEUCTWProber::HandleData(const char* aBuf, PRUint32 aLen)
   return mState;
 }
 
-float nsEUCTWProber::GetConfidence(void)
+float nsEUCTWProber::GetConfidence()
 {
   float distribCf = mDistributionAnalyser.GetConfidence();
 

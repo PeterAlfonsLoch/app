@@ -25,8 +25,8 @@ public:
    virtual void message_handler(gen::signal_object * pobj);
    virtual ::ca::graphics * GetDC();
    ::user::interaction * SetParent(::user::interaction * pguieParent);
-   BOOL ShowWindow(int nCmdShow);
-   virtual BOOL ReleaseDC(::ca::graphics *);
+   bool ShowWindow(int nCmdShow);
+   virtual bool ReleaseDC(::ca::graphics *);
    virtual ::user::interaction * GetParent();
 
    virtual void _001WindowMaximize();
@@ -48,19 +48,19 @@ public:
 
    virtual user::interaction * SetFocus();
 
-   void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, BOOL bStretch);
+   void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch);
 
 
    //virtual int RunModalLoop(DWORD dwFlags = 0, ::ca::live_object * pliveobject = NULL);
 
 
-   virtual BOOL DestroyWindow();
+   virtual bool DestroyWindow();
 
    virtual DWORD GetStyle();
    virtual DWORD GetExStyle();
    virtual LRESULT Default();
 
-   virtual void SetFont(::ca::font* pFont, BOOL bRedraw = TRUE);
+   virtual void SetFont(::ca::font* pFont, bool bRedraw = TRUE);
    virtual ::ca::font* GetFont();
 
    LRESULT SendMessage(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
@@ -76,21 +76,21 @@ public:
 // Timer Functions
    virtual UINT_PTR SetTimer(UINT_PTR nIDEvent, UINT nElapse,
       void (CALLBACK* lpfnTimer)(HWND, UINT, UINT_PTR, DWORD));
-   virtual BOOL KillTimer(UINT_PTR nIDEvent);
+   virtual bool KillTimer(UINT_PTR nIDEvent);
 
 
-   virtual BOOL IsWindow();
-   virtual BOOL IsWindowEnabled();
-   virtual BOOL IsWindowVisible();
+   virtual bool IsWindow();
+   virtual bool IsWindowEnabled();
+   virtual bool IsWindowVisible();
 
    virtual void VirtualOnSize();
    virtual bool create(::user::interaction *pparent, id id);
-   virtual BOOL create(const char * lpszClassName,
+   virtual bool create(const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
       ::user::interaction* pParentWnd, id id,
       ::ca::create_context* pContext = NULL);
-   virtual BOOL CreateEx(DWORD dwExStyle, const char * lpszClassName,
+   virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
       ::user::interaction* pParentWnd, id id,
@@ -116,9 +116,9 @@ public:
    DECL_GEN_SIGNAL(_001OnNcDestroy)
    DECL_GEN_SIGNAL(_001OnClose)
 
-   void SendMessageToDescendants(UINT message,   WPARAM wParam = 0, LPARAM lParam = 0, BOOL bDeep = true, BOOL bOnlyPerm = 0);
+   void SendMessageToDescendants(UINT message,   WPARAM wParam = 0, LPARAM lParam = 0, bool bDeep = true, bool bOnlyPerm = 0);
 
-   virtual BOOL PostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam);
+   virtual bool PostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam);
 
 
 };

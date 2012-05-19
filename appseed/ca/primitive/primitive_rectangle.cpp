@@ -842,7 +842,7 @@ rect64 rect64::operator&(const __rect64& rect2) const throw()
 rect64 rect64::operator|(const __rect64& rect2) const throw()
    { rect64 rect64; ::unite(&rect64, this, &rect2);
       return rect64; }
-//BOOL rect64::subtract(const __rect64 * lpRectSrc1, const __rect64 * lpRectSrc2) throw()
+//bool rect64::subtract(const __rect64 * lpRectSrc1, const __rect64 * lpRectSrc2) throw()
 //   { return ::subtract(this, lpRectSrc1, lpRectSrc2); }
 
 void rect64::normalize() throw()

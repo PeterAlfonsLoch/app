@@ -16,7 +16,7 @@ namespace visual
 
    }
 
-   BOOL graphics_extension::TextOut(::ca::graphics * pdc, int x, int y, const char * lpcsz, strsize iCount)
+   bool graphics_extension::TextOut(::ca::graphics * pdc, int x, int y, const char * lpcsz, strsize iCount)
    {
       return pdc->TextOut(x, y, string(lpcsz, iCount));
       //return ::TextOutU((HDC)pdc->get_os_data(), x, y, lpcsz, iCount);

@@ -41,7 +41,7 @@ __STATIC_DATA const __COLORMAP gen_SysColorMap[] =
 };
 
 /*HBITMAP AFXAPI
-gen::LoadSysColorBitmap(HINSTANCE hInst, HRSRC hRsrc, BOOL bMono)
+gen::LoadSysColorBitmap(HINSTANCE hInst, HRSRC hRsrc, bool bMono)
 {
    HGLOBAL hglb;
    if ((hglb = LoadResource(hInst, hRsrc)) == NULL)
@@ -166,13 +166,13 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_SYSCOLORCHANGE    , pinterface, this, &tool_bar::_001OnSysColorChange);
    }
 
-   BOOL tool_bar::create(::user::interaction* pParentWnd, DWORD dwStyle, UINT nID)
+   bool tool_bar::create(::user::interaction* pParentWnd, DWORD dwStyle, UINT nID)
    {
       return CreateEx(pParentWnd, 0, dwStyle,
          rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder), nID);
    }
 
-   BOOL tool_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle, DWORD dwStyle, rect rcBorders, UINT nID)
+   bool tool_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle, DWORD dwStyle, rect rcBorders, UINT nID)
    {
       ASSERT_VALID(pParentWnd);   // must have a parent
       ASSERT (!((dwStyle & CBRS_SIZE_FIXED) && (dwStyle & CBRS_SIZE_DYNAMIC)));
@@ -286,7 +286,7 @@ namespace userbase
    }
 
 
-   /*BOOL tool_bar::LoadToolBar(const char * lpszResourceName)
+   /*bool tool_bar::LoadToolBar(const char * lpszResourceName)
    {
       ASSERT_VALID(this);
       ASSERT(lpszResourceName != NULL);
@@ -309,7 +309,7 @@ namespace userbase
       UINT* pItems = new UINT[pData->wItemCount];
       for (int i = 0; i < pData->wItemCount; i++)
          pItems[i] = pData->items()[i];
-      BOOL bResult = SetButtons(pItems, pData->wItemCount);
+      bool bResult = SetButtons(pItems, pData->wItemCount);
       delete[] pItems;
 
 
@@ -331,7 +331,7 @@ namespace userbase
       return bResult;
    }*/
 
-   /*BOOL tool_bar::LoadBitmap(const char * lpszResourceName)
+   /*bool tool_bar::LoadBitmap(const char * lpszResourceName)
    {
       ASSERT_VALID(this);
       ASSERT(lpszResourceName != NULL);
@@ -359,7 +359,7 @@ namespace userbase
       return TRUE;
    }*/
 
-   BOOL tool_bar::from(HBITMAP hbmImageWell)
+   bool tool_bar::from(HBITMAP hbmImageWell)
    {
       ASSERT_VALID(this);
       ASSERT(hbmImageWell != NULL);
@@ -372,14 +372,14 @@ namespace userbase
       return AddReplaceBitmap(hbmImageWell);
    }
 
-   BOOL tool_bar::AddReplaceBitmap(HBITMAP hbmImageWell)
+   bool tool_bar::AddReplaceBitmap(HBITMAP hbmImageWell)
    {
       // need complete bitmap size to determine number of images
       BITMAP bitmap;
       VERIFY(::GetObject(hbmImageWell, sizeof(BITMAP), &bitmap));
 
       // add the bitmap to the common control toolbar
-      BOOL bResult;
+      bool bResult;
       if (m_hbmImageWell == NULL)
       {
          TBADDBITMAP addBitmap;
@@ -396,7 +396,7 @@ namespace userbase
          replaceBitmap.hInstNew = NULL;
          replaceBitmap.nIDNew = (UINT)hbmImageWell;
          replaceBitmap.nButtons = bitmap.bmWidth / m_sizeImage.cx;
-         bResult = (BOOL)DefWindowProc(TB_REPLACEBITMAP, 0,
+         bResult = (bool)DefWindowProc(TB_REPLACEBITMAP, 0,
             (LPARAM)&replaceBitmap);
       }
       // remove old bitmap, if present
@@ -409,7 +409,7 @@ namespace userbase
       return bResult;
    }
 
-   BOOL tool_bar::SetButtons(const UINT* lpIDArray, int nIDCount)
+   bool tool_bar::SetButtons(const UINT* lpIDArray, int nIDCount)
    {
       ASSERT_VALID(this);
       ASSERT(nIDCount >= 1);  // must be at least one of them
@@ -560,7 +560,7 @@ namespace userbase
 
       m_bDelayedButtonLayout = FALSE;
 
-      BOOL bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
+      bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
       if(m_bSimpleLayout)
          CalcSimpleLayout();
       else if ((m_dwStyle & CBRS_FLOATING) && (m_dwStyle & CBRS_SIZE_DYNAMIC))
@@ -703,7 +703,7 @@ namespace userbase
 
          if (x + dx > nWidth)
          {
-            BOOL bFound = FALSE;
+            bool bFound = FALSE;
             for (int j = i; j >= 0  &&  !(pData[j].fsState & TBSTATE_WRAP); j--)
             {
                // find last separator that isn't hidden
@@ -746,7 +746,7 @@ namespace userbase
       return nResult + 1;
    }
 
-   void  tool_bar::SizeToolBar(TBBUTTON* pData, int nCount, int nLength, BOOL bVert)
+   void  tool_bar::SizeToolBar(TBBUTTON* pData, int nCount, int nLength, bool bVert)
    {
       ASSERT(pData != NULL && nCount > 0);
 
@@ -853,7 +853,7 @@ namespace userbase
       {
          if (!(m_dwStyle & CBRS_SIZE_FIXED))
          {
-            BOOL bDynamic = m_dwStyle & CBRS_SIZE_DYNAMIC;
+            bool bDynamic = m_dwStyle & CBRS_SIZE_DYNAMIC;
 
             if (bDynamic && (dwMode & LM_MRUWIDTH))
                SizeToolBar(pData, nCount, m_nMRUWidth);
@@ -866,7 +866,7 @@ namespace userbase
                class rect rect; 
                rect.null();
                CalcInsideRect(rect, (dwMode & LM_HORZ));
-               BOOL bVert = (dwMode & LM_LENGTHY);
+               bool bVert = (dwMode & LM_LENGTHY);
                int nLen = nLength + (bVert ? rect.height() : rect.width());
 
                SizeToolBar(pData, nCount, nLen, bVert);
@@ -883,7 +883,7 @@ namespace userbase
          {
             ___CONTROLPOS* pControl = NULL;
             int nControlCount = 0;
-            BOOL bIsDelayed = m_bDelayedButtonLayout;
+            bool bIsDelayed = m_bDelayedButtonLayout;
             m_bDelayedButtonLayout = FALSE;
 
             int i;
@@ -998,7 +998,7 @@ namespace userbase
       return sizeResult;
    }
 
-   size tool_bar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
+   size tool_bar::CalcFixedLayout(bool bStretch, bool bHorz)
    {
       DWORD dwMode = bStretch ? LM_STRETCH : 0;
       dwMode |= bHorz ? LM_HORZ : 0;
@@ -1048,7 +1048,7 @@ namespace userbase
    }
 
 
-   BOOL tool_bar::SetButtonText(int nIndex, const char * lpszText)
+   bool tool_bar::SetButtonText(int nIndex, const char * lpszText)
    {
       // attempt to lookup string index in map
       int nString = -1;
@@ -1134,9 +1134,9 @@ namespace userbase
 
 
    /*
-   BOOL tool_bar::OnEraseBkgnd(::ca::graphics *)
+   bool tool_bar::OnEraseBkgnd(::ca::graphics *)
    {
-      return (BOOL)Default();
+      return (bool)Default();
    }
    */
 
@@ -1153,7 +1153,7 @@ namespace userbase
       // calculate border space (will add to top/bottom, subtract from right/bottom)
       class rect rect; 
       rect.null();
-      BOOL bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
+      bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
       ::userbase::control_bar::CalcInsideRect(rect, bHorz);
 
       // adjust non-client area for border space
@@ -1261,7 +1261,7 @@ namespace userbase
       //  future version, the system toolbar would just allow you to set
       //  the top and left borders to anything you please.
 
-      BOOL bModify = FALSE;
+      bool bModify = FALSE;
       DWORD dwStyle = GetStyle();
       bModify = ModifyStyle(0, TBSTYLE_TRANSPARENT|TBSTYLE_FLAT);
 
@@ -1278,7 +1278,7 @@ namespace userbase
    void tool_bar::_001OnPreserveZeroBorderHelper(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::base, pbase, pobj)
-      BOOL bModify = FALSE;
+      bool bModify = FALSE;
       DWORD dwStyle = 0;
       dwStyle = GetStyle();
       bModify = ModifyStyle(0, TBSTYLE_TRANSPARENT|TBSTYLE_FLAT);
@@ -1308,7 +1308,7 @@ namespace userbase
    // tool_bar idle update through tool_cmd_ui class
 
 
-   void tool_cmd_ui::Enable(BOOL bOn)
+   void tool_cmd_ui::Enable(bool bOn)
    {
       m_bEnableChanged = TRUE;
       tool_bar* pToolBar = dynamic_cast < tool_bar * > (m_pOther);
@@ -1354,7 +1354,7 @@ namespace userbase
    }
 
    /*
-   void tool_bar::OnUpdateCmdUI(userbase::frame_window* pTarget, BOOL bDisableIfNoHndler)
+   void tool_bar::OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler)
    {
       tool_cmd_ui state;
       state.m_pOther = this;
@@ -1524,9 +1524,9 @@ namespace userbase
 
    tool_bar_control& tool_bar::GetToolBarCtrl() const
       { return *(tool_bar_control*)this; }
-   /*BOOL tool_bar::LoadToolBar(UINT nIDResource)
+   /*bool tool_bar::LoadToolBar(UINT nIDResource)
       { return LoadToolBar(MAKEINTRESOURCE(nIDResource)); }
-   BOOL tool_bar::LoadBitmap(UINT nIDResource)
+   bool tool_bar::LoadBitmap(UINT nIDResource)
       { return LoadBitmap(MAKEINTRESOURCE(nIDResource)); }*/
 
 

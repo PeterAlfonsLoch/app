@@ -14,7 +14,7 @@ namespace ca
 // exception support
  resource_exception::resource_exception()
    : simple_exception() { }
- resource_exception::resource_exception(BOOL bAutoDelete, UINT nResourceID)
+ resource_exception::resource_exception(bool bAutoDelete, UINT nResourceID)
    : simple_exception(bAutoDelete) { m_nResourceID = nResourceID; }
  resource_exception::~resource_exception()
    { }
@@ -22,7 +22,7 @@ namespace ca
 
   user_exception::user_exception()
    : simple_exception() { }
- user_exception::user_exception(BOOL bAutoDelete, UINT nResourceID)
+ user_exception::user_exception(bool bAutoDelete, UINT nResourceID)
    : simple_exception(bAutoDelete) { m_nResourceID = nResourceID; }
  user_exception::~user_exception()
    { }

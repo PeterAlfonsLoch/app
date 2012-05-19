@@ -115,15 +115,15 @@ namespace filemanager
 #endif
 
 
-         inline image_list * GetImageList16(void)
+         inline image_list * GetImageList16()
          {
             return m_pil16;
          }
-         inline image_list * GetImageList48(void)
+         inline image_list * GetImageList48()
          {
             return m_pil48;
          }
-         inline image_list * GetImageList48Hover(void)
+         inline image_list * GetImageList48Hover()
          {
             return m_pil48Hover;
          }

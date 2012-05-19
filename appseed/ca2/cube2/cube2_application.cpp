@@ -30,9 +30,7 @@ namespace cube2
       return true;
    }
 
-   BOOL CALLBACK application::GetAppsEnumWindowsProc(
-       HWND hwnd,
-       LPARAM lParam)
+   BOOL CALLBACK application::GetAppsEnumWindowsProc(HWND hwnd, LPARAM lParam)
    {
       application * papp = (application *) lParam;
       DWORD dwptr;

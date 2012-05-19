@@ -49,7 +49,7 @@ namespace radix
 
       void common_construct();
 
-      BOOL IsSerializable() const;
+      bool IsSerializable() const;
 
 
       virtual gen::property & oprop(const char * psz);

@@ -124,8 +124,8 @@ extern "C" {
 **          a pointer to the [sqlite3_version] string constant.
 */
 SQLITE_EXTERN const char sqlite3_version[];
-const char *sqlite3_libversion(void);
-int sqlite3_libversion_number(void);
+const char *sqlite3_libversion();
+int sqlite3_libversion_number();
 
 /*
 ** CAPI3REF: Test To See If The Library Is Threadsafe {F10100}
@@ -151,7 +151,7 @@ int sqlite3_libversion_number(void);
 **          SQLite was compiled with its mutexes enabled or zero
 **          if SQLite was compiled with mutexes disabled.
 */
-int sqlite3_threadsafe(void);
+int sqlite3_threadsafe();
 
 /*
 ** CAPI3REF: Database Connection Handle {F12000}
@@ -1587,7 +1587,7 @@ void sqlite3_free(void*);
 **          by [sqlite3_memory_highwater(1)] is the highwater mark
 **          prior to the reset.
 */
-sqlite3_int64 sqlite3_memory_used(void);
+sqlite3_int64 sqlite3_memory_used();
 sqlite3_int64 sqlite3_memory_highwater(int resetFlag);
 
 /*
@@ -3397,8 +3397,8 @@ int sqlite3_create_function16(
 int sqlite3_aggregate_count(sqlite3_context*);
 int sqlite3_expired(sqlite3_stmt*);
 int sqlite3_transfer_bindings(sqlite3_stmt*, sqlite3_stmt*);
-int sqlite3_global_recover(void);
-void sqlite3_thread_cleanup(void);
+int sqlite3_global_recover();
+void sqlite3_thread_cleanup();
 int sqlite3_memory_alarm(void(*)(void*,sqlite3_int64,int),void*,sqlite3_int64);
 
 /*
@@ -4633,7 +4633,7 @@ int sqlite3_auto_extension(void *xEntryPoint);
 ** This interface is experimental and is subject to change or
 ** removal in future releases of SQLite.
 */
-void sqlite3_reset_auto_extension(void);
+void sqlite3_reset_auto_extension();
 
 
 /*

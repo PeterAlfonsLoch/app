@@ -7,7 +7,7 @@ namespace command
    {
    }
 
-   application::~application(void)
+   application::~application()
    {
    }
 

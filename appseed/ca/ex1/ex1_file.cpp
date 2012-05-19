@@ -3,7 +3,7 @@
 namespace ex1
 {
 
-   __STATIC inline BOOL IsDirSep(WCHAR ch)
+   __STATIC inline bool IsDirSep(WCHAR ch)
    {
       return (ch == '\\' || ch == '/');
    }
@@ -46,7 +46,7 @@ namespace ex1
       return NULL;
    }
 
-   BOOL file::open(const char * lpszFileName, UINT nOpenFlags,
+   bool file::open(const char * lpszFileName, UINT nOpenFlags,
       ex1::file_exception_sp * pException)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
@@ -366,7 +366,7 @@ namespace ex1
    }
 
 
-   BOOL file_exception::get_friendly_error_message(string & str, PUINT pnHelpContext) const
+   bool file_exception::get_friendly_error_message(string & str, PUINT pnHelpContext) const
    {
 
      // if (pnHelpContext != NULL)
@@ -413,7 +413,7 @@ namespace ex1
    }
 
 
-   BOOL file_exception::GetErrorMessage(string & str, PUINT pnHelpContext) const
+   bool file_exception::GetErrorMessage(string & str, PUINT pnHelpContext) const
    {
 
      // if (pnHelpContext != NULL)
@@ -489,13 +489,13 @@ namespace ex1
    /////////////////////////////////////////////////////////////////////////////
    // file Status implementation
 
-   BOOL file::GetStatus(file_status & rStatus) const
+   bool file::GetStatus(file_status & rStatus) const
    {
       UNREFERENCED_PARAMETER(rStatus);
       return FALSE;
    }
 
-   BOOL PASCAL file::GetStatus(const char * lpszFileName, file_status & rStatus)
+   bool PASCAL file::GetStatus(const char * lpszFileName, file_status & rStatus)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
       UNREFERENCED_PARAMETER(rStatus);

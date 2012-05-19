@@ -65,7 +65,7 @@ namespace userbase
       m_cyBottomBorder = cyBottom;
    }
 
-   BOOL control_bar::pre_create_window(CREATESTRUCT& cs)
+   bool control_bar::pre_create_window(CREATESTRUCT& cs)
    {
       if (!::user::interaction::pre_create_window(cs))
          return FALSE;
@@ -124,7 +124,7 @@ namespace userbase
    }
 
    /*
-   BOOL control_bar::AllocElements(int nElements, int cbElement)
+   bool control_bar::AllocElements(int nElements, int cbElement)
    {
       ASSERT_VALID(this);
       ASSERT(nElements >= 0 && cbElement >= 0);
@@ -185,7 +185,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // Attributes
 
-   size control_bar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
+   size control_bar::CalcFixedLayout(bool bStretch, bool bHorz)
    {
       size size;
       size.cx = (bStretch && bHorz ? 32767 : 0);
@@ -198,7 +198,7 @@ namespace userbase
       return CalcFixedLayout(nMode & LM_STRETCH, nMode & LM_HORZ);
    }
 
-   BOOL control_bar::IsDockBar()
+   bool control_bar::IsDockBar()
    {
       return FALSE;
    }
@@ -227,7 +227,7 @@ namespace userbase
 
    }
 
-   BOOL control_bar::SetStatusText(int nHit)
+   bool control_bar::SetStatusText(int nHit)
    {
       ::user::interaction* pOwner = GetOwner();
 
@@ -441,7 +441,7 @@ namespace userbase
    //   ::user::interaction::OnDestroy();
    }
 
-   BOOL control_bar::DestroyWindow()
+   bool control_bar::DestroyWindow()
    {
       /* trans if(get_handle() != NULL && IsFloating())
          return GetDockingFrame()->DestroyWindow();
@@ -609,7 +609,7 @@ namespace userbase
    {
       SCAST_PTR(::gen::message::base, pbase, pobj)
       // handle delay hide/show
-      BOOL bVis = GetStyle() & WS_VISIBLE;
+      bool bVis = GetStyle() & WS_VISIBLE;
       UINT swpFlags = 0;
       if ((m_nStateFlags & delayHide) && bVis)
          swpFlags = SWP_HIDEWINDOW;
@@ -630,7 +630,7 @@ namespace userbase
          if (pTarget == NULL || !pTarget->IsFrameWnd())
             pTarget = dynamic_cast < userbase::frame_window * > (GetParentFrame());
          if (pTarget != NULL)
-            OnUpdateCmdUI(pTarget, (BOOL)pbase->m_wparam);
+            OnUpdateCmdUI(pTarget, (bool)pbase->m_wparam);
       }
       pbase->set_lresult(0L);
    }
@@ -756,7 +756,7 @@ namespace userbase
       pbase->set_lresult(0);
    }
 
-   void control_bar::DelayShow(BOOL bShow)
+   void control_bar::DelayShow(bool bShow)
    {
       m_nStateFlags &= ~(delayHide|delayShow);
       if (bShow && (GetStyle() & WS_VISIBLE) == 0)
@@ -765,7 +765,7 @@ namespace userbase
          m_nStateFlags |= delayHide;
    }
 
-   BOOL control_bar::IsVisible()
+   bool control_bar::IsVisible()
    {
       if (m_nStateFlags & delayHide)
          return FALSE;
@@ -978,7 +978,7 @@ namespace userbase
    }
 
    // input rect should be client rectangle size
-   void control_bar::CalcInsideRect(rect& rect, BOOL bHorz) const
+   void control_bar::CalcInsideRect(rect& rect, bool bHorz) const
    {
       ASSERT_VALID(this);
       DWORD dwStyle = m_dwStyle;
@@ -1055,7 +1055,7 @@ namespace userbase
       return (userbase::frame_window*) pFrameWnd;
    }
 
-   BOOL control_bar::IsFloating()
+   bool control_bar::IsFloating()
    {
       return FALSE;
    }

@@ -61,7 +61,7 @@ namespace dynamic_source
 
 
       script_compiler(::ca::application * papp);
-      virtual ~script_compiler(void);
+      virtual ~script_compiler();
 
       void initialize();
       void prepare_compile_and_link_environment();

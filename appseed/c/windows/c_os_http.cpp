@@ -75,7 +75,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    }
    DWORD dwSize = 0;
    LPSTR pszOutBuffer;
-   BOOL  bResults = FALSE;
+   bool  bResults = FALSE;
 
    WCHAR * pwzHost = utf8_to_16(strHost);
 
@@ -314,7 +314,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    DWORD dwSize = 0;
    DWORD dwDownloaded = 0;
    LPSTR pszOutBuffer;
-   BOOL  bResults = FALSE;
+   bool  bResults = FALSE;
    HINTERNET  hSession = NULL,
       hConnect = NULL,
       hRequest = NULL;
@@ -579,7 +579,7 @@ iPort = 443;
 DWORD dwSize = 0;
 DWORD dwDownloaded = 0;
 LPSTR pszOutBuffer;
-BOOL  bResults = FALSE;
+bool  bResults = FALSE;
 HINTERNET  hSession = NULL,
 hConnect = NULL,
 hRequest = NULL;

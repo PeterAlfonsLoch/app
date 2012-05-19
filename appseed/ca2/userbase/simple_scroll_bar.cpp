@@ -37,12 +37,12 @@ void simple_scroll_bar::install_message_handling(::gen::message::dispatch * pint
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &simple_scroll_bar::_001OnDestroy);
 }
 
-BOOL simple_scroll_bar::create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction * pParentWnd, UINT nID, ::ca::create_context* pContext) 
+bool simple_scroll_bar::create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction * pParentWnd, UINT nID, ::ca::create_context* pContext) 
 {
    return ::user::interaction::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }
 
-BOOL simple_scroll_bar::create(e_orientation eorientation, DWORD dwStyle, rect &rect, ::user::interaction *pParentWnd, UINT nID)
+bool simple_scroll_bar::create(e_orientation eorientation, DWORD dwStyle, rect &rect, ::user::interaction *pParentWnd, UINT nID)
 {
    if(!::user::scroll_bar::create(eorientation, dwStyle, rect, pParentWnd, nID))
       return FALSE;
@@ -166,7 +166,7 @@ void simple_scroll_bar::_001OnLButtonUp(gen::signal_object * pobj)
    }
 }
 
-BOOL simple_scroll_bar::GetTrackRect(LPRECT lpRect)
+bool simple_scroll_bar::GetTrackRect(LPRECT lpRect)
 {
    rect rectClient;
    GetClientRect(rectClient);
@@ -262,7 +262,7 @@ bool simple_scroll_bar::_001SetScrollInfo(::user::scroll_info * lpsi, bool bRedr
 }
 
 
-BOOL simple_scroll_bar::GetTrackClientRect(LPRECT lpRect)
+bool simple_scroll_bar::GetTrackClientRect(LPRECT lpRect)
 {
    rect rectClient;
    GetClientRect(rectClient);
@@ -680,7 +680,7 @@ void simple_scroll_bar::UpdateBitmaps()
 
 }
 
-BOOL simple_scroll_bar::GetPageARect(LPRECT lpRectClient,LPRECT lpRectTrack, LPRECT lpRect)
+bool simple_scroll_bar::GetPageARect(LPRECT lpRectClient,LPRECT lpRectTrack, LPRECT lpRect)
 {
    if(m_eorientation == orientation_horizontal)
    {
@@ -699,7 +699,7 @@ BOOL simple_scroll_bar::GetPageARect(LPRECT lpRectClient,LPRECT lpRectTrack, LPR
    return true;
 }
 
-BOOL simple_scroll_bar::GetPageBRect(LPRECT lpRectClient,LPRECT lpRectTrack, LPRECT lpRect)
+bool simple_scroll_bar::GetPageBRect(LPRECT lpRectClient,LPRECT lpRectTrack, LPRECT lpRect)
 {
    if(m_eorientation == orientation_horizontal)
    {

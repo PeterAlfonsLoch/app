@@ -188,19 +188,19 @@ inline void __cdecl operator delete[](void * p, int nType, const char * lpszFile
 
 #ifndef ___NO_DEBUG_CRT
 
-CLASS_DECL_ca void * __alloc_memory_debug(size_t nSize, BOOL bIsObject,  const char * lpszFileName, int nLine);
-CLASS_DECL_ca void __free_memory_debug(void * pbData, BOOL bIsObject);
+CLASS_DECL_ca void * __alloc_memory_debug(size_t nSize, bool bIsObject,  const char * lpszFileName, int nLine);
+CLASS_DECL_ca void __free_memory_debug(void * pbData, bool bIsObject);
 
 /////////////////////////////////////////////////////////////////////////////
 // allocation failure hook, tracking turn on
 
-CLASS_DECL_ca BOOL __default_alloc_hook(size_t, BOOL, LONG);
+CLASS_DECL_ca bool __default_alloc_hook(size_t, bool, LONG);
    
 CLASS_DECL_ca int __cdecl __alloc_alloc_hook(int nAllocType, void * pvData, size_t nSize, int nBlockUse, long lRequest, const unsigned char * szFilename, int nLine);
 CLASS_DECL_ca __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnNewHook);
 
-CLASS_DECL_ca BOOL __enable_memory_leak_override(BOOL bEnable);
-CLASS_DECL_ca BOOL __enable_memory_tracking(BOOL bTrack);
+CLASS_DECL_ca bool __enable_memory_leak_override(bool bEnable);
+CLASS_DECL_ca bool __enable_memory_tracking(bool bTrack);
 
 /////////////////////////////////////////////////////////////////////////////
 // Enumerate all objects allocated in the diagnostic primitive::memory heap
@@ -217,7 +217,7 @@ CLASS_DECL_ca void AFXAPI __do_for_all_objects(void (c_cdecl *pfn)(::radix::obje
 /////////////////////////////////////////////////////////////////////////////
 // Automatic debug primitive::memory diagnostics
 
-CLASS_DECL_ca BOOL __dump_memory_leaks();
+CLASS_DECL_ca bool __dump_memory_leaks();
 
 #endif // ___NO_DEBUG_CRT
 #endif // _DEBUG

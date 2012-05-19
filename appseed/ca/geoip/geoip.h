@@ -183,7 +183,7 @@ GEOIP_API const char* GeoIP_continent_by_id(int id);
 GEOIP_API int GeoIP_id_by_code(const char *country);
 
 /** return return number of known countries */
-GEOIP_API unsigned GeoIP_num_countries(void);
+GEOIP_API unsigned GeoIP_num_countries();
 
 GEOIP_API char *GeoIP_database_info (GeoIP* gi);
 GEOIP_API unsigned char GeoIP_database_edition (GeoIP* gi);

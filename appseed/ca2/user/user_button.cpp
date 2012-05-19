@@ -17,7 +17,7 @@ namespace user
       m_pschema   = NULL;
    }
 
-   button::~button(void)
+   button::~button()
    {
 
    }
@@ -220,7 +220,7 @@ namespace user
       }
    }
 
-   ::ca::font * button::_001GetFont(void)
+   ::ca::font * button::_001GetFont()
    {
       return GetFont();
    }

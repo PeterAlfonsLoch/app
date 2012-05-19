@@ -38,7 +38,7 @@ public:
       m_strValue = rSource.m_strValue;
    }
 
-   static void Init(void);
+   static void Init();
 
    string getName() const
    {
@@ -73,7 +73,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   bool isHexColorValue(void) const;
+   bool isHexColorValue() const;
 
    /**
     * Determines if the attribute value contains a color reference
@@ -106,7 +106,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   bool isPercentValue(void) const
+   bool isPercentValue() const
       { return (m_strValue.Right(1) == "%" ? true : false); }
 
    /**
@@ -313,7 +313,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   count getCount(void) const
+   count getCount() const
    {
       if (m_parrAttrib != NULL)
          return (m_parrAttrib->get_upper_bound() + 1);
@@ -473,7 +473,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   bool removeAll(void)
+   bool removeAll()
    {
       LiteHTMLElemAttr   *pItem = NULL;
       for (int iElem = 0; iElem < getCount(); iElem++)

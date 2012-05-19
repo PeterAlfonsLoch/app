@@ -13,7 +13,7 @@ namespace databaseuser
 
 
       data_key_list_data(::ca::application * papp);
-      virtual ~data_key_list_data(void);
+      virtual ~data_key_list_data();
 
 
       virtual void _001GetItemText(::user::list_item * pitem);

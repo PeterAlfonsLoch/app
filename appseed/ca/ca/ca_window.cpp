@@ -33,7 +33,7 @@ namespace ca
    }
 
 #ifdef WINDOWS
-   BOOL window::GetWindowInfo(PWINDOWINFO pwi) const
+   bool window::GetWindowInfo(PWINDOWINFO pwi) const
    {
       UNREFERENCED_PARAMETER(pwi);
       throw interface_only_exception();
@@ -45,27 +45,27 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::GetScrollBarInfo(LONG idObject, PSCROLLBARINFO psbi) const
+   bool window::GetScrollBarInfo(LONG idObject, PSCROLLBARINFO psbi) const
    {
       UNREFERENCED_PARAMETER(idObject);
       UNREFERENCED_PARAMETER(psbi);
       throw interface_only_exception();
    }
 
-   BOOL window::GetTitleBarInfo(PTITLEBARINFO pti) const
+   bool window::GetTitleBarInfo(PTITLEBARINFO pti) const
    {
       UNREFERENCED_PARAMETER(pti);
       throw interface_only_exception();
    }
 
-   BOOL window::AnimateWindow(DWORD dwTime, DWORD dwFlags)
+   bool window::AnimateWindow(DWORD dwTime, DWORD dwFlags)
    {
       UNREFERENCED_PARAMETER(dwTime);
       UNREFERENCED_PARAMETER(dwFlags);
       throw interface_only_exception();
    }
 
-   BOOL window::FlashWindowEx(DWORD dwFlags, UINT uCount, DWORD dwTimeout)
+   bool window::FlashWindowEx(DWORD dwFlags, UINT uCount, DWORD dwTimeout)
    {
       UNREFERENCED_PARAMETER(dwFlags);
       UNREFERENCED_PARAMETER(uCount);
@@ -73,7 +73,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, DWORD dwFlags)
+   bool window::SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, DWORD dwFlags)
    {
       UNREFERENCED_PARAMETER(crKey);
       UNREFERENCED_PARAMETER(bAlpha);
@@ -81,7 +81,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::UpdateLayeredWindow(::ca::graphics * pDCDst, POINT * pptDst, SIZE * psize,
+   bool window::UpdateLayeredWindow(::ca::graphics * pDCDst, POINT * pptDst, SIZE * psize,
       ::ca::graphics * pDCSrc, POINT * pptSrc, COLORREF crKey, BLENDFUNCTION * pblend, DWORD dwFlags)
    {
       UNREFERENCED_PARAMETER(pDCDst);
@@ -95,7 +95,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::GetLayeredWindowAttributes(COLORREF * pcrKey, BYTE * pbAlpha, DWORD * pdwFlags) const
+   bool window::GetLayeredWindowAttributes(COLORREF * pcrKey, BYTE * pbAlpha, DWORD * pdwFlags) const
    {
       UNREFERENCED_PARAMETER(pcrKey);
       UNREFERENCED_PARAMETER(pbAlpha);
@@ -103,7 +103,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::PrintWindow(::ca::graphics * pgraphics, UINT nFlags) const
+   bool window::PrintWindow(::ca::graphics * pgraphics, UINT nFlags) const
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nFlags);
@@ -112,7 +112,7 @@ namespace ca
 
 #endif
 
-   BOOL PASCAL window::ModifyStyle(HWND hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool PASCAL window::ModifyStyle(HWND hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
       UNREFERENCED_PARAMETER(hWnd);
       UNREFERENCED_PARAMETER(dwRemove);
@@ -121,7 +121,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL PASCAL window::ModifyStyleEx(HWND hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool PASCAL window::ModifyStyleEx(HWND hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
       UNREFERENCED_PARAMETER(hWnd);
       UNREFERENCED_PARAMETER(dwRemove);
@@ -161,7 +161,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // window creation
 
-   BOOL window::CreateEx(DWORD dwExStyle, const char * lpszClassName,
+   bool window::CreateEx(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT & rect, ::user::interaction* pParentWnd, id id,
       LPVOID lpParam /* = NULL */)
@@ -177,7 +177,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::CreateEx(DWORD dwExStyle, const char * lpszClassName,
+   bool window::CreateEx(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       int x, int y, int nWidth, int nHeight,
       HWND hWndParent, id id, LPVOID lpParam)
@@ -197,13 +197,13 @@ namespace ca
    }
 
    // for child windows
-   BOOL window::pre_create_window(CREATESTRUCT & cs)
+   bool window::pre_create_window(CREATESTRUCT & cs)
    {
       UNREFERENCED_PARAMETER(cs);
       throw interface_only_exception();
    }
 
-   BOOL window::create(const char * lpszClassName,
+   bool window::create(const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT & rect,
       ::user::interaction * pParentWnd, id id,
@@ -265,7 +265,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::DestroyWindow()
+   bool window::DestroyWindow()
    {
       throw interface_only_exception();
    }
@@ -308,13 +308,13 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
+   bool window::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
    {
       UNREFERENCED_PARAMETER(lpwndpl);
       throw interface_only_exception();
    }
 
-   BOOL window::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
+   bool window::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
    {
       UNREFERENCED_PARAMETER(lpwndpl);
       throw interface_only_exception();
@@ -418,7 +418,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::OnNotify(WPARAM, LPARAM lParam, LRESULT* pResult)
+   bool window::OnNotify(WPARAM, LPARAM lParam, LRESULT* pResult)
    {
       UNREFERENCED_PARAMETER(lParam);
       UNREFERENCED_PARAMETER(pResult);
@@ -445,7 +445,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::IsTopParentActive()
+   bool window::IsTopParentActive()
    {
       throw interface_only_exception();
    }
@@ -483,7 +483,7 @@ namespace ca
    }
 
    void PASCAL window::SendMessageToDescendants(HWND hWnd, UINT message,
-      WPARAM wParam, LPARAM lParam, BOOL bDeep, BOOL bOnlyPerm)
+      WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
    {
       UNREFERENCED_PARAMETER(hWnd);
       UNREFERENCED_PARAMETER(message);
@@ -506,7 +506,7 @@ namespace ca
       throw interface_only_exception();
    }*/
 
-   int window::SetScrollPos(int nBar, int nPos, BOOL bRedraw)
+   int window::SetScrollPos(int nBar, int nPos, bool bRedraw)
    {
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(nPos);
@@ -520,7 +520,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void window::SetScrollRange(int nBar, int nMinPos, int nMaxPos, BOOL bRedraw)
+   void window::SetScrollRange(int nBar, int nMinPos, int nMaxPos, bool bRedraw)
    {
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(nMinPos);
@@ -540,7 +540,7 @@ namespace ca
    // Turn on/off non-control scrollbars
    //   for WS_?SCROLL scrollbars - show/hide them
    //   for control scrollbar - enable/disable them
-   void window::EnableScrollBarCtrl(int nBar, BOOL bEnable)
+   void window::EnableScrollBarCtrl(int nBar, bool bEnable)
    {
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(bEnable);
@@ -548,7 +548,7 @@ namespace ca
    }
 
 #ifdef WINDOWS
-   BOOL window::SetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, BOOL bRedraw)
+   bool window::SetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, bool bRedraw)
    {
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(lpScrollInfo);
@@ -556,7 +556,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::GetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, UINT nMask)
+   bool window::GetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, UINT nMask)
    {
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(lpScrollInfo);
@@ -581,7 +581,7 @@ namespace ca
    }
 
    void window::RepositionBars(UINT nIDFirst, UINT nIDLast, UINT nIdLeftOver,
-      UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, BOOL bStretch)
+      UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch)
    {
       UNREFERENCED_PARAMETER(nIDFirst);
       UNREFERENCED_PARAMETER(nIDLast);
@@ -611,7 +611,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // Special keyboard/system command processing
 
-   BOOL window::HandleFloatingSysCommand(UINT nID, LPARAM lParam)
+   bool window::HandleFloatingSysCommand(UINT nID, LPARAM lParam)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lParam);
@@ -625,20 +625,20 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::SendChildNotifyLastMsg(LRESULT* pResult)
+   bool window::SendChildNotifyLastMsg(LRESULT* pResult)
    {
       UNREFERENCED_PARAMETER(pResult);
       throw interface_only_exception();
    }
 
-   BOOL PASCAL window::ReflectLastMsg(HWND hWndChild, LRESULT* pResult)
+   bool PASCAL window::ReflectLastMsg(HWND hWndChild, LRESULT* pResult)
    {
       UNREFERENCED_PARAMETER(hWndChild);
       UNREFERENCED_PARAMETER(pResult);
       throw interface_only_exception();
    }
 
-   BOOL window::OnChildNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
+   bool window::OnChildNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
    {
       UNREFERENCED_PARAMETER(uMsg);
       UNREFERENCED_PARAMETER(wParam);
@@ -647,7 +647,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::ReflectChildNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
+   bool window::ReflectChildNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
    {
       UNREFERENCED_PARAMETER(uMsg);
       UNREFERENCED_PARAMETER(wParam);
@@ -694,7 +694,7 @@ namespace ca
    }
 
 
-   BOOL window::OnHelpInfo(HELPINFO* /*pHelpInfo*/)
+   bool window::OnHelpInfo(HELPINFO* /*pHelpInfo*/)
    {
       throw interface_only_exception();
    }
@@ -764,7 +764,7 @@ namespace ca
    //  return value of FALSE means caller must call DefWindowProc's default
    //  TRUE means that 'hbrGray' will be used and the appropriate text
    //    ('clrText') and background colors are set.
-   BOOL PASCAL window::GrayCtlColor(HDC hDC, HWND hWnd, UINT nCtlColor,
+   bool PASCAL window::GrayCtlColor(HDC hDC, HWND hWnd, UINT nCtlColor,
       HBRUSH hbrGray, COLORREF clrText)
    {
       UNREFERENCED_PARAMETER(hDC);
@@ -778,7 +778,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // 'dialog data' support
 
-   BOOL window::UpdateData(BOOL bSaveAndValidate)
+   bool window::UpdateData(bool bSaveAndValidate)
    {
       UNREFERENCED_PARAMETER(bSaveAndValidate);
       throw interface_only_exception();
@@ -793,7 +793,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::CheckAutoCenter()
+   bool window::CheckAutoCenter()
    {
       throw interface_only_exception();
    }
@@ -801,19 +801,19 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // Dialog initialization support
 
-   BOOL window::ExecuteDlgInit(const char * lpszResourceName)
+   bool window::ExecuteDlgInit(const char * lpszResourceName)
    {
       UNREFERENCED_PARAMETER(lpszResourceName);
       throw interface_only_exception();
    }
 
-   BOOL window::ExecuteDlgInit(LPVOID lpResource)
+   bool window::ExecuteDlgInit(LPVOID lpResource)
    {
       UNREFERENCED_PARAMETER(lpResource);
       throw interface_only_exception();
    }
 
-   void window::UpdateDialogControls(command_target * pTarget, BOOL bDisableIfNoHndler)
+   void window::UpdateDialogControls(command_target * pTarget, bool bDisableIfNoHndler)
    {
       UNREFERENCED_PARAMETER(pTarget);
       UNREFERENCED_PARAMETER(bDisableIfNoHndler);
@@ -840,7 +840,7 @@ namespace ca
       throw interface_only_exception();
    }*/
 
-   BOOL window::IsFrameWnd()
+   bool window::IsFrameWnd()
    {
       throw interface_only_exception();
    }
@@ -849,13 +849,13 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // Extra window support for dynamic subclassing of controls
 
-   BOOL window::SubclassWindow(HWND hWnd)
+   bool window::SubclassWindow(HWND hWnd)
    {
       UNREFERENCED_PARAMETER(hWnd);
       throw interface_only_exception();
    }
 
-   BOOL window::SubclassDlgItem(UINT nID, window* pParent)
+   bool window::SubclassDlgItem(UINT nID, window* pParent)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(pParent);
@@ -867,23 +867,23 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::IsChild(::user::interaction * pui)
+   bool window::IsChild(::user::interaction * pui)
    {
       UNREFERENCED_PARAMETER(pui);
       throw interface_only_exception();
    }
 
-   BOOL window::IsWindow()
+   bool window::IsWindow()
    {
       throw interface_only_exception();
    }
 
-/*   ::visual::icon * window::SetIcon(::visual::icon * picon, BOOL bBigIcon)
+/*   ::visual::icon * window::SetIcon(::visual::icon * picon, bool bBigIcon)
    {
       throw interface_only_exception();
    }
 
-   ::visual::icon * window::GetIcon(BOOL bBigIcon) const
+   ::visual::icon * window::GetIcon(bool bBigIcon) const
    {
       throw interface_only_exception();
    }*/
@@ -899,7 +899,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void window::MoveWindow(int x, int y, int nWidth, int nHeight, BOOL bRepaint)
+   void window::MoveWindow(int x, int y, int nWidth, int nHeight, bool bRepaint)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -930,7 +930,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::ShowWindow(int nCmdShow)
+   bool window::ShowWindow(int nCmdShow)
    {
       UNREFERENCED_PARAMETER(nCmdShow);
       throw interface_only_exception();
@@ -977,13 +977,13 @@ namespace ca
    // window
    /* window::operator HWND() const
    { return this == NULL ? NULL : get_handle(); }*/
-   BOOL window::operator==(const window& wnd) const
+   bool window::operator==(const window& wnd) const
    {
       UNREFERENCED_PARAMETER(wnd);
       throw interface_only_exception();
    }
 
-   BOOL window::operator!=(const window& wnd) const
+   bool window::operator!=(const window& wnd) const
    {
       UNREFERENCED_PARAMETER(wnd);
       throw interface_only_exception();
@@ -999,7 +999,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool window::ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
       UNREFERENCED_PARAMETER(dwRemove);
       UNREFERENCED_PARAMETER(dwAdd);
@@ -1007,7 +1007,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool window::ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
       UNREFERENCED_PARAMETER(dwRemove);
       UNREFERENCED_PARAMETER(dwAdd);
@@ -1042,7 +1042,7 @@ namespace ca
 
 #pragma pop_macro("SendMessage")
 
-   BOOL window::PostMessage(UINT message, WPARAM wParam, LPARAM lParam)
+   bool window::PostMessage(UINT message, WPARAM wParam, LPARAM lParam)
    {
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);
@@ -1050,7 +1050,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::DragDetect(POINT pt) const
+   bool window::DragDetect(POINT pt) const
    {
       UNREFERENCED_PARAMETER(pt);
       throw interface_only_exception();
@@ -1074,7 +1074,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void window::SetFont(::ca::font * pfont, BOOL bRedraw)
+   void window::SetFont(::ca::font * pfont, bool bRedraw)
    {
       UNREFERENCED_PARAMETER(pfont);
       UNREFERENCED_PARAMETER(bRedraw);
@@ -1086,7 +1086,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void window::DragAcceptFiles(BOOL bAccept)
+   void window::DragAcceptFiles(bool bAccept)
    {
       UNREFERENCED_PARAMETER(bAccept);
       throw interface_only_exception();
@@ -1102,7 +1102,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void window::MoveWindow(LPCRECT lpRect, BOOL bRepaint)
+   void window::MoveWindow(LPCRECT lpRect, bool bRepaint)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(bRepaint);
@@ -1114,7 +1114,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   int window::SetWindowRgn(HRGN hRgn, BOOL bRedraw)
+   int window::SetWindowRgn(HRGN hRgn, bool bRedraw)
    {
       UNREFERENCED_PARAMETER(hRgn);
       UNREFERENCED_PARAMETER(bRedraw);
@@ -1157,7 +1157,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   int window::ReleaseDC(::ca::graphics * pgraphics)
+   bool window::ReleaseDC(::ca::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       throw interface_only_exception();
@@ -1168,40 +1168,40 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void window::SetRedraw(BOOL bRedraw)
+   void window::SetRedraw(bool bRedraw)
    {
       UNREFERENCED_PARAMETER(bRedraw);
       throw interface_only_exception();
    }
 
-   BOOL window::GetUpdateRect(LPRECT lpRect, BOOL bErase)
+   bool window::GetUpdateRect(LPRECT lpRect, bool bErase)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(bErase);
       throw interface_only_exception();
    }
 
-   int window::GetUpdateRgn(::ca::region* pRgn, BOOL bErase)
+   int window::GetUpdateRgn(::ca::region* pRgn, bool bErase)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(bErase);
       throw interface_only_exception();
    }
 
-   void window::Invalidate(BOOL bErase)
+   void window::Invalidate(bool bErase)
    {
       UNREFERENCED_PARAMETER(bErase);
       throw interface_only_exception();
    }
 
-   void window::InvalidateRect(LPCRECT lpRect, BOOL bErase)
+   void window::InvalidateRect(LPCRECT lpRect, bool bErase)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(bErase);
       throw interface_only_exception();
    }
 
-   void window::InvalidateRgn(::ca::region* pRgn, BOOL bErase)
+   void window::InvalidateRgn(::ca::region* pRgn, bool bErase)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(bErase);
@@ -1220,18 +1220,18 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::IsWindowVisible()
+   bool window::IsWindowVisible()
    {
       throw interface_only_exception();
    }
 
-   void window::ShowOwnedPopups(BOOL bShow)
+   void window::ShowOwnedPopups(bool bShow)
    {
       UNREFERENCED_PARAMETER(bShow);
       throw interface_only_exception();
    }
 
-   void window::SendMessageToDescendants(UINT message, WPARAM wParam, LPARAM lParam, BOOL bDeep, BOOL bOnlyPerm)
+   void window::SendMessageToDescendants(UINT message, WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
    {
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);
@@ -1254,7 +1254,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::LockWindowUpdate()
+   bool window::LockWindowUpdate()
    {
       throw interface_only_exception();
    }
@@ -1264,7 +1264,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::RedrawWindow(LPCRECT lpRectUpdate, ::ca::region * prgnUpdate, UINT flags)
+   bool window::RedrawWindow(LPCRECT lpRectUpdate, ::ca::region * prgnUpdate, UINT flags)
    {
       UNREFERENCED_PARAMETER(lpRectUpdate);
       UNREFERENCED_PARAMETER(prgnUpdate);
@@ -1272,14 +1272,14 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::EnableScrollBar(int nSBFlags, UINT nArrowFlags)
+   bool window::EnableScrollBar(int nSBFlags, UINT nArrowFlags)
    {
       UNREFERENCED_PARAMETER(nSBFlags);
       UNREFERENCED_PARAMETER(nArrowFlags);
       throw interface_only_exception();
    }
 
-   BOOL window::DrawAnimatedRects(int idAni, CONST RECT *lprcFrom, CONST RECT * lprcTo)
+   bool window::DrawAnimatedRects(int idAni, CONST RECT *lprcFrom, CONST RECT * lprcTo)
    {
       UNREFERENCED_PARAMETER(idAni);
       UNREFERENCED_PARAMETER(lprcFrom);
@@ -1287,7 +1287,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::DrawCaption(::ca::graphics * pgraphics, LPCRECT lprc, UINT uFlags)
+   bool window::DrawCaption(::ca::graphics * pgraphics, LPCRECT lprc, UINT uFlags)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(lprc);
@@ -1303,18 +1303,18 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::KillTimer(UINT_PTR nIDEvent)
+   bool window::KillTimer(UINT_PTR nIDEvent)
    {
       UNREFERENCED_PARAMETER(nIDEvent);
       throw interface_only_exception();
    }
 
-   BOOL window::IsWindowEnabled()
+   bool window::IsWindowEnabled()
    {
       throw interface_only_exception();
    }
 
-   BOOL window::EnableWindow(BOOL bEnable)
+   bool window::EnableWindow(bool bEnable)
    {
       UNREFERENCED_PARAMETER(bEnable);
       throw interface_only_exception();
@@ -1374,7 +1374,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::DlgDirSelect(LPTSTR lpString, int nSize, int nIDListBox)
+   bool window::DlgDirSelect(LPTSTR lpString, int nSize, int nIDListBox)
    {
       UNREFERENCED_PARAMETER(lpString);
       UNREFERENCED_PARAMETER(nSize);
@@ -1382,7 +1382,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::DlgDirSelectComboBox(LPTSTR lpString, int nSize, int nIDComboBox)
+   bool window::DlgDirSelectComboBox(LPTSTR lpString, int nSize, int nIDComboBox)
    {
       UNREFERENCED_PARAMETER(lpString);
       UNREFERENCED_PARAMETER(nSize);
@@ -1397,7 +1397,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   UINT window::GetDlgItemInt(int nID, BOOL* lpTrans, BOOL bSigned) const
+   UINT window::GetDlgItemInt(int nID, bool* lpTrans, bool bSigned) const
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpTrans);
@@ -1413,14 +1413,14 @@ namespace ca
       throw interface_only_exception();
    }
 
-   window* window::GetNextDlgGroupItem(window* pWndCtl, BOOL bPrevious) const
+   window* window::GetNextDlgGroupItem(window* pWndCtl, bool bPrevious) const
    {
       UNREFERENCED_PARAMETER(pWndCtl);
       UNREFERENCED_PARAMETER(bPrevious);
       throw interface_only_exception();
    }
 
-   window* window::GetNextDlgTabItem(window* pWndCtl, BOOL bPrevious) const
+   window* window::GetNextDlgTabItem(window* pWndCtl, bool bPrevious) const
    {
       UNREFERENCED_PARAMETER(pWndCtl);
       UNREFERENCED_PARAMETER(bPrevious);
@@ -1442,7 +1442,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void window::SetDlgItemInt(int nID, UINT nValue, BOOL bSigned)
+   void window::SetDlgItemInt(int nID, UINT nValue, bool bSigned)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(nValue);
@@ -1471,7 +1471,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void window::ShowScrollBar(UINT nBar, BOOL bShow)
+   void window::ShowScrollBar(UINT nBar, bool bShow)
    {
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(bShow);
@@ -1525,13 +1525,13 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::FlashWindow(BOOL bInvert)
+   bool window::FlashWindow(bool bInvert)
    {
       UNREFERENCED_PARAMETER(bInvert);
       throw interface_only_exception();
    }
 
-   BOOL window::ChangeClipboardChain(HWND hWndNext)
+   bool window::ChangeClipboardChain(HWND hWndNext)
    {
       UNREFERENCED_PARAMETER(hWndNext);
       throw interface_only_exception();
@@ -1542,7 +1542,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::OpenClipboard()
+   bool window::OpenClipboard()
    {
       throw interface_only_exception();
    }
@@ -1603,7 +1603,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::SetForegroundWindow()
+   bool window::SetForegroundWindow()
    {
       throw interface_only_exception();
    }
@@ -1613,7 +1613,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::SendNotifyMessage(UINT message, WPARAM wParam, LPARAM lParam)
+   bool window::SendNotifyMessage(UINT message, WPARAM wParam, LPARAM lParam)
    {
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);
@@ -1637,7 +1637,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::SetWindowContextHelpId(DWORD dwContextHelpId)
+   bool window::SetWindowContextHelpId(DWORD dwContextHelpId)
    {
       UNREFERENCED_PARAMETER(dwContextHelpId);
       throw interface_only_exception();
@@ -1649,12 +1649,12 @@ namespace ca
    }
 
    // Default message ::collection::map implementations
-   void window::OnActivateApp(BOOL, DWORD)
+   void window::OnActivateApp(bool, DWORD)
    {
       throw interface_only_exception();
    }
 
-   void window::OnActivate(UINT, window*, BOOL)
+   void window::OnActivate(UINT, window*, bool)
    {
       throw interface_only_exception();
    }
@@ -1680,7 +1680,7 @@ namespace ca
    }
 
 #ifdef WINDOWS
-   int window::OnCopyData(window*, COPYDATASTRUCT*)
+   bool window::OnCopyData(window*, COPYDATASTRUCT*)
    {
       throw interface_only_exception();
    }
@@ -1691,17 +1691,17 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void window::OnEnable(BOOL)
+   void window::OnEnable(bool)
    {
       throw interface_only_exception();
    }
 
-   void window::OnEndSession(BOOL)
+   void window::OnEndSession(bool)
    {
       throw interface_only_exception();
    }
 
-   BOOL window::OnEraseBkgnd(::ca::graphics *)
+   bool window::OnEraseBkgnd(::ca::graphics *)
    {
       throw interface_only_exception();
    }
@@ -1742,27 +1742,27 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::OnQueryEndSession()
+   bool window::OnQueryEndSession()
    {
       throw interface_only_exception();
    }
 
-   BOOL window::OnQueryNewPalette()
+   bool window::OnQueryNewPalette()
    {
       throw interface_only_exception();
    }
 
-   BOOL window::OnQueryOpen()
+   bool window::OnQueryOpen()
    {
       throw interface_only_exception();
    }
 
-   BOOL window::OnSetCursor(window*, UINT, UINT)
+   bool window::OnSetCursor(window*, UINT, UINT)
    {
       throw interface_only_exception();
    }
 
-   void window::OnShowWindow(BOOL, UINT)
+   void window::OnShowWindow(bool, UINT)
    {
       throw interface_only_exception();
    }
@@ -1799,20 +1799,20 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::OnNcActivate(BOOL)
+   bool window::OnNcActivate(bool)
    {
       throw interface_only_exception();
    }
 
 
 #ifdef WINDOWS
-   void window::OnNcCalcSize(BOOL, NCCALCSIZE_PARAMS*)
+   void window::OnNcCalcSize(bool, NCCALCSIZE_PARAMS*)
    {
       throw interface_only_exception();
    }
 #endif
 
-   BOOL window::OnNcCreate(LPCREATESTRUCT)
+   bool window::OnNcCreate(LPCREATESTRUCT)
    {
       throw interface_only_exception();
    }
@@ -1987,7 +1987,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::OnMouseWheel(UINT, short, point)
+   bool window::OnMouseWheel(UINT, short, point)
    {
       throw interface_only_exception();
    }
@@ -2022,7 +2022,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void window::OnInitMenuPopup(::userbase::menu*, UINT, BOOL)
+   void window::OnInitMenuPopup(::userbase::menu*, UINT, bool)
    {
       throw interface_only_exception();
    }
@@ -2084,17 +2084,17 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void window::OnMDIActivate(BOOL, window*, window*)
+   void window::OnMDIActivate(bool, window*, window*)
    {
       throw interface_only_exception();
    }
 
-   void window::OnEnterMenuLoop(BOOL)
+   void window::OnEnterMenuLoop(bool)
    {
       throw interface_only_exception();
    }
 
-   void window::OnExitMenuLoop(BOOL)
+   void window::OnExitMenuLoop(bool)
    {
       throw interface_only_exception();
    }
@@ -2127,7 +2127,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::OnDeviceChange(UINT, DWORD_PTR)
+   bool window::OnDeviceChange(UINT, DWORD_PTR)
    {
       throw interface_only_exception();
    }
@@ -2177,7 +2177,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::OpenIcon()
+   bool window::OpenIcon()
    {
       throw interface_only_exception();
    }
@@ -2185,7 +2185,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // ::ca::window command handling
 
-   BOOL window::OnCommand(WPARAM wParam, LPARAM lParam)
+   bool window::OnCommand(WPARAM wParam, LPARAM lParam)
       // return TRUE if command invocation was attempted
    {
       UNREFERENCED_PARAMETER(wParam);
@@ -2250,7 +2250,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL window::_EnableToolTips(BOOL bEnable, UINT nFlag)
+   bool window::_EnableToolTips(bool bEnable, UINT nFlag)
    {
       UNREFERENCED_PARAMETER(bEnable);
       UNREFERENCED_PARAMETER(nFlag);
@@ -2333,7 +2333,7 @@ ca(papp),
    m_bEnabled = TRUE;  // assume it is enabled
 }
 
-void CTestCmdUI::Enable(BOOL bOn)
+void CTestCmdUI::Enable(bool bOn)
 {
    m_bEnabled = bOn;
    m_bEnableChanged = TRUE;
@@ -2344,7 +2344,7 @@ void CTestCmdUI::SetCheck(int)
    // do nothing -- just want to know about calls to Enable
 }
 
-void CTestCmdUI::SetRadio(BOOL)
+void CTestCmdUI::SetRadio(bool)
 {
    // do nothing -- just want to know about calls to Enable
 }

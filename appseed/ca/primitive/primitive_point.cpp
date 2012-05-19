@@ -30,9 +30,9 @@ void point::Offset(SIZE size) throw()
    { x += size.cx; y += size.cy; }
 void point::SetPoint(int X, int Y) throw()
    { x = X; y = Y; }
-BOOL point::operator==(POINT point) const throw()
+bool point::operator==(POINT point) const throw()
    { return (x == point.x && y == point.y); }
-BOOL point::operator!=(POINT point) const throw()
+bool point::operator!=(POINT point) const throw()
    { return (x != point.x || y != point.y); }
 void point::operator+=(SIZE size) throw()
    { x += size.cx; y += size.cy; }
@@ -104,9 +104,9 @@ void point64::Offset(__size64 size64) throw()
    { x += size64.cx; y += size64.cy; }
 void point64::SetPoint(__int64 X, __int64 Y) throw()
    { x = X; y = Y; }
-BOOL point64::operator==(__point64 point64) const throw()
+bool point64::operator==(__point64 point64) const throw()
    { return (x == point64.x && y == point64.y); }
-BOOL point64::operator!=(__point64 point64) const throw()
+bool point64::operator!=(__point64 point64) const throw()
    { return (x != point64.x || y != point64.y); }
 void point64::operator+=(__size64 size64) throw()
    { x += size64.cx; y += size64.cy; }
@@ -197,9 +197,9 @@ void pointd::Offset(SIZED size) throw()
    { x += size.cx; y += size.cy; }
 void pointd::SetPoint(int X, int Y) throw()
    { x = X; y = Y; }
-BOOL pointd::operator==(POINTD pointd) const throw()
+bool pointd::operator==(POINTD pointd) const throw()
    { return (x == pointd.x && y == pointd.y); }
-BOOL pointd::operator!=(POINTD pointd) const throw()
+bool pointd::operator!=(POINTD pointd) const throw()
    { return (x != pointd.x || y != pointd.y); }
 void pointd::operator+=(SIZED size) throw()
    { x += size.cx; y += size.cy; }

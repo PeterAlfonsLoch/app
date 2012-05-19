@@ -60,7 +60,7 @@ nsProbingState nsSingleByteCharSetProber::HandleData(const char* aBuf, PRUint32 
   return mState;
 }
 
-void  nsSingleByteCharSetProber::Reset(void)
+void  nsSingleByteCharSetProber::Reset()
 {
   mState = eDetecting;
   mLastOrder = 255;
@@ -73,7 +73,7 @@ void  nsSingleByteCharSetProber::Reset(void)
 
 //#define NEGATIVE_APPROACH 1
 
-float nsSingleByteCharSetProber::GetConfidence(void)
+float nsSingleByteCharSetProber::GetConfidence()
 {
 #ifdef NEGATIVE_APPROACH
   if (mTotalSeqs > 0)

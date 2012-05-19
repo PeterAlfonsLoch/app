@@ -61,8 +61,8 @@ public:
     mCurrentBytePos++;
     return mCurrentState;
   };
-  PRUint32  GetCurrentCharLen(void) {return mCurrentCharLen;};
-  void      Reset(void) {mCurrentState = eStart;};
+  PRUint32  GetCurrentCharLen() {return mCurrentCharLen;};
+  void      Reset() {mCurrentState = eStart;};
   const char * GetCodingStateMachine() {return mModel->name;};
 
 protected:

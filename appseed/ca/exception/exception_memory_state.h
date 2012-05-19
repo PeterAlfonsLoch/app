@@ -25,7 +25,7 @@ struct CLASS_DECL_ca memory_state
 
 // Operations
    void Checkpoint();  // fill with current state
-   BOOL Difference(const memory_state& oldState,
+   bool Difference(const memory_state& oldState,
                const memory_state& newState);  // fill with difference
    void UpdateData();
 

@@ -42,7 +42,7 @@ public:
    void insert_at(index nStartIndex, const string_array & NewArray);
 
    // stringa overrides
-   void add_tokens(const char * lpcsz, const char * lpcszSeparator, BOOL bAddEmpty);
+   void add_tokens(const char * lpcsz, const char * lpcszSeparator, bool bAddEmpty);
    void add_unique(const char * lpcsz);
    void add_normal(const char * lpcsz);
 
@@ -154,7 +154,7 @@ inline void str_sort_array::swap(index iA, index iB)
 }
 
 // stringa overrides
-inline void str_sort_array::add_tokens(const char * lpcsz, const char * lpcszSeparator, BOOL bAddEmpty)
+inline void str_sort_array::add_tokens(const char * lpcsz, const char * lpcszSeparator, bool bAddEmpty)
 {
    m_bSorted = false;
    m_stra.add_tokens(lpcsz, lpcszSeparator, bAddEmpty);

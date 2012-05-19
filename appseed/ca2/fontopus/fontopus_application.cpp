@@ -22,7 +22,7 @@ namespace ca2
          m_strInstallToken    = "fontopus2";    
       }
 
-      application::~application(void)
+      application::~application()
       {
       }
 

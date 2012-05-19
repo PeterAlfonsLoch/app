@@ -70,14 +70,14 @@ public:
 
 // Attributes
    UINT m_nBarID;      // ID of this bar
-   BOOL m_bVisible;    // visibility of this bar
-   BOOL m_bFloating;   // whether floating or not
-   BOOL m_bHorz;       // orientation of floating dockbar
-   BOOL m_bDockBar;    // TRUE if a dockbar
+   bool m_bVisible;    // visibility of this bar
+   bool m_bFloating;   // whether floating or not
+   bool m_bHorz;       // orientation of floating dockbar
+   bool m_bDockBar;    // TRUE if a dockbar
    point m_pointPos;  // topleft point of ::ca::window
 
    UINT m_nMRUWidth;   // MRUWidth for Dynamic Toolbars
-   BOOL m_bDocking;    // TRUE if this bar has a DockContext
+   bool m_bDocking;    // TRUE if this bar has a DockContext
    UINT m_uMRUDockID;  // most recent docked dockbar
    rect m_rectMRUDockPos; // most recent docked position
    DWORD m_dwMRUFloatStyle; // most recent floating orientation
@@ -87,8 +87,8 @@ public:
    ::userbase::control_bar * m_pBar;    // bar which this refers to (transient)
 
 //   void Serialize(CArchive& ar, BaseDockState* pDockState);
-   BOOL LoadState(const char * lpszProfileName, int nIndex, BaseDockState* pDockState);
-   BOOL SaveState(const char * lpszProfileName, int nIndex);
+   bool LoadState(const char * lpszProfileName, int nIndex, BaseDockState* pDockState);
+   bool SaveState(const char * lpszProfileName, int nIndex);
 };
 
 namespace userbase
@@ -108,7 +108,7 @@ namespace userbase
       DWORD GetBarStyle();
       void SetBarStyle(DWORD dwStyle);
 
-      BOOL m_bAutoDelete;
+      bool m_bAutoDelete;
 
       // getting and setting border space
       void SetBorders(LPCRECT lpRect);
@@ -116,15 +116,15 @@ namespace userbase
       rect GetBorders();
 
       userbase::frame_window* GetDockingFrame();
-      BOOL IsFloating();
-      virtual size CalcFixedLayout(BOOL bStretch, BOOL bHorz);
+      bool IsFloating();
+      virtual size CalcFixedLayout(bool bStretch, bool bHorz);
       virtual size CalcDynamicLayout(int nLength, DWORD nMode);
 
    // Operations
       void EnableDocking(DWORD dwDockStyle);
 
    // Overridables
-      virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, BOOL bDisableIfNoHndler) = 0;
+      virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler) = 0;
 
    // Implementation
    public:
@@ -135,12 +135,12 @@ namespace userbase
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
    #endif
-      virtual void DelayShow(BOOL bShow);
-      virtual BOOL IsVisible();
+      virtual void DelayShow(bool bShow);
+      virtual bool IsVisible();
       virtual DWORD RecalcDelayShow(__SIZEPARENTPARAMS* lpLayout);
 
-      virtual BOOL IsDockBar();
-      virtual BOOL DestroyWindow();
+      virtual bool IsDockBar();
+      virtual bool DestroyWindow();
       virtual void OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle);
 
       // info about bar (for status bar and toolbar)
@@ -168,7 +168,7 @@ namespace userbase
       DWORD m_dwCtrlStyle;
 
       virtual void pre_translate_message(gen::signal_object * pobj);
-      virtual BOOL pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual void PostNcDestroy();
 
       virtual void DoPaint(::ca::graphics * pgraphics);
@@ -176,9 +176,9 @@ namespace userbase
       void DrawGripper(::ca::graphics * pgraphics, const rect& rect);
 
       // implementation helpers
-      void CalcInsideRect(rect& rect, BOOL bHorz) const; // adjusts borders etc
-      //BOOL AllocElements(int nElements, int cbElement);
-      virtual BOOL SetStatusText(int nHit);
+      void CalcInsideRect(rect& rect, bool bHorz) const; // adjusts borders etc
+      //bool AllocElements(int nElements, int cbElement);
+      virtual bool SetStatusText(int nHit);
       void ResetTimer(UINT nEvent, UINT nTime);
       void EraseNonClient();
       void EraseNonClient(::ca::graphics * pdc);

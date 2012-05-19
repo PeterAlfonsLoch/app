@@ -144,7 +144,7 @@ namespace dynamic_source
 
 
       script_manager(::ca::application * papp);
-      ~script_manager(void);
+      ~script_manager();
 
       bool initialize_instance();
 

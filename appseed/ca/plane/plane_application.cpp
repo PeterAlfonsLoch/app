@@ -237,7 +237,7 @@ namespace plane
    }
 
 
-   BOOL application::run()
+   int application::run()
    {
 
       return ::planebase::application::run();

@@ -11,7 +11,7 @@ namespace filemanager
    {
    }
 
-   folder_list_data::~folder_list_data(void)
+   folder_list_data::~folder_list_data()
    {
    }
 

@@ -10,7 +10,7 @@ public:
 
 // Implementation
 public:
-   explicit memory_exception(BOOL bAutoDelete);
-   memory_exception(BOOL bAutoDelete, UINT nResourceID);
+   explicit memory_exception(bool bAutoDelete);
+   memory_exception(bool bAutoDelete, UINT nResourceID);
    virtual ~memory_exception();
 };

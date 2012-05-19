@@ -22,7 +22,7 @@ public:
 #endif
 
    DECL_GEN_SIGNAL(_001OnSize)
-   void layout(void);
+   void layout();
 
    void _001OnCreate(gen::signal_object * pobj);
 

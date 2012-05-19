@@ -12,17 +12,17 @@
 namespace ca
 {
 
-   BOOL draw_dib::open()
+   bool draw_dib::open()
    {
       throw interface_only_exception();
    }
 
-   BOOL draw_dib::close()
+   bool draw_dib::close()
    {
       throw interface_only_exception();
    }
 
-   BOOL draw_dib::Begin ( ::ca::graphics * pdc, int dxDest, int dyDest,
+   bool draw_dib::Begin ( ::ca::graphics * pdc, int dxDest, int dyDest,
       LPBITMAPINFOHEADER lpbi, int dxSrc, int dySrc, UINT wFlags )
    {
       UNREFERENCED_PARAMETER(pdc);
@@ -35,12 +35,12 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL draw_dib::End ()
+   bool draw_dib::End ()
    {
       throw interface_only_exception();
    }
 
-   BOOL draw_dib::draw ( ::ca::graphics * pdc, int xDst, int yDst,
+   bool draw_dib::draw ( ::ca::graphics * pdc, int xDst, int yDst,
       int dxDst, int dyDst, LPBITMAPINFOHEADER lpbi, LPVOID lpBits,
       int xSrc, int ySrc, int dxSrc, int dySrc, UINT wFlags )
    {
@@ -59,7 +59,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL draw_dib::draw (::ca::dib *dib, ::ca::graphics * pgraphics, int xDst, int yDst,
+   bool draw_dib::draw (::ca::dib *dib, ::ca::graphics * pgraphics, int xDst, int yDst,
       int dxDst, int dyDst, UINT wFlags)
    {
       UNREFERENCED_PARAMETER(dib);
@@ -72,7 +72,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL draw_dib::draw (
+   bool draw_dib::draw (
       ::ca::graphics * pdc,
       int      xDst,
       int      yDst,
@@ -107,7 +107,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL draw_dib::ProfileDisplay(LPBITMAPINFOHEADER lpbi)
+   bool draw_dib::ProfileDisplay(LPBITMAPINFOHEADER lpbi)
    {
       UNREFERENCED_PARAMETER(lpbi);
       throw interface_only_exception();
@@ -120,13 +120,13 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL draw_dib::set_palette(::ca::palette * ppal)
+   bool draw_dib::set_palette(::ca::palette * ppal)
    {
       UNREFERENCED_PARAMETER(ppal);
       throw interface_only_exception();
    }
 
-   BOOL draw_dib::ChangePalette(::ca::draw_dib * pdd, int iStart, int iLen, LPPALETTEENTRY lppe)
+   bool draw_dib::ChangePalette(::ca::draw_dib * pdd, int iStart, int iLen, LPPALETTEENTRY lppe)
    {
       UNREFERENCED_PARAMETER(pdd);
       UNREFERENCED_PARAMETER(iStart);
@@ -135,25 +135,25 @@ namespace ca
       throw interface_only_exception();
    }
 
-   UINT draw_dib::Realize(::ca::graphics * pdc, BOOL fBackground)
+   UINT draw_dib::Realize(::ca::graphics * pdc, bool fBackground)
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(fBackground);
       throw interface_only_exception();
    }
 
-   BOOL draw_dib::Start(LONG rate)
+   bool draw_dib::Start(LONG rate)
    {
       UNREFERENCED_PARAMETER(rate);
       throw interface_only_exception();
    }
 
-   BOOL draw_dib::Stop()
+   bool draw_dib::Stop()
    {
       throw interface_only_exception();
    }
 
-   BOOL draw_dib::time(LPDRAWDIBTIME lpddtime)
+   bool draw_dib::time(LPDRAWDIBTIME lpddtime)
    {
       UNREFERENCED_PARAMETER(lpddtime);
       throw interface_only_exception();

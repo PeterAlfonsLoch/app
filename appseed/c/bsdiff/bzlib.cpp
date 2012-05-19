@@ -1368,7 +1368,7 @@ int BZ_API(BZ2_bzBuffToBuffDecompress)
 /*--
    return version like "0.9.5d, 4-Sept-1999".
 --*/
-const char * BZ_API(BZ2_bzlibVersion)(void)
+const char * BZ_API(BZ2_bzlibVersion)()
 {
    return BZ_VERSION;
 }

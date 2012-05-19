@@ -72,7 +72,7 @@ namespace dynamic_source
 
    }
 
-   script_manager::~script_manager(void)
+   script_manager::~script_manager()
    {
       if(m_pcache != NULL)
       {

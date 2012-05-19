@@ -181,7 +181,7 @@ namespace fs
 
    }
 
-   BOOL list::pre_create_window(CREATESTRUCT& cs)
+   bool list::pre_create_window(CREATESTRUCT& cs)
    {
 
       cs.style |= WS_CLIPCHILDREN;

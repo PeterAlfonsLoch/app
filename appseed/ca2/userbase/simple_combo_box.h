@@ -13,6 +13,6 @@ public:
    virtual void _001OnDraw(::ca::graphics * pdc);
    virtual ~simple_combo_box();
 
-   BOOL OnEraseBkgnd(::ca::graphics * pgraphics);
+   bool OnEraseBkgnd(::ca::graphics * pgraphics);
 };
 

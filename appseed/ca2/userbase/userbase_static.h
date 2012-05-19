@@ -31,7 +31,7 @@ namespace userbase
       virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
 #endif
 
-      virtual BOOL OnChildNotify(UINT, WPARAM, LPARAM, LRESULT*);
+      virtual bool OnChildNotify(UINT, WPARAM, LPARAM, LRESULT*);
    };
 
 

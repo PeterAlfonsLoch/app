@@ -48,9 +48,9 @@ namespace visual
       void OnSetFont();
       int GetMegaHeight();
       void AddGlyphs(const char * lpStr);
-      BOOL AddGlyph(WCHAR wchar);
-      BOOL AddGlyph(CHAR ch);
-      BOOL AddGlyph(UINT ui);
+      bool AddGlyph(WCHAR wchar);
+      bool AddGlyph(CHAR ch);
+      bool AddGlyph(UINT ui);
 
 
       void AddXFGlyphs(string2a *p2DTokens);

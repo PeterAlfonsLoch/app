@@ -17,13 +17,13 @@ public:
 
 
    base_exception(unsigned int uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = TRUE
-   explicit base_exception(BOOL bAutoDelete, unsigned int uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
+   explicit base_exception(bool bAutoDelete, unsigned int uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
 // Implementation (setting m_bAutoDelete to FALSE is advanced)
    virtual ~base_exception();
 
    void Delete();  // use to delete exception in 'catch' block
 
-   virtual BOOL GetErrorMessage(string & str, PUINT pnHelpContext = NULL);
+   virtual bool GetErrorMessage(string & str, PUINT pnHelpContext = NULL);
    virtual int ReportError(UINT nType = MB_OK, const char * pszMessageID = NULL);
 
 

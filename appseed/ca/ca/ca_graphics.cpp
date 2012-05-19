@@ -36,7 +36,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-   BOOL graphics::Attach(HDC hdc)
+   bool graphics::Attach(HDC hdc)
    {
       throw interface_only_exception();
    }
@@ -53,21 +53,12 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::IsPrinting() const
+   bool graphics::IsPrinting() const
    {
       throw interface_only_exception();
    }
 
-   BOOL graphics::CreateDC(const char * lpszDriverName,  const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
-   {
-      UNREFERENCED_PARAMETER(lpszDriverName);
-      UNREFERENCED_PARAMETER(lpszDeviceName);
-      UNREFERENCED_PARAMETER(lpszOutput);
-      UNREFERENCED_PARAMETER(lpInitData);
-      throw interface_only_exception();
-   }
-
-   BOOL graphics::CreateIC(const char * lpszDriverName,  const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
+   bool graphics::CreateDC(const char * lpszDriverName,  const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
    {
       UNREFERENCED_PARAMETER(lpszDriverName);
       UNREFERENCED_PARAMETER(lpszDeviceName);
@@ -76,7 +67,16 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::CreateCompatibleDC(::ca::graphics * pgraphics)
+   bool graphics::CreateIC(const char * lpszDriverName,  const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
+   {
+      UNREFERENCED_PARAMETER(lpszDriverName);
+      UNREFERENCED_PARAMETER(lpszDeviceName);
+      UNREFERENCED_PARAMETER(lpszOutput);
+      UNREFERENCED_PARAMETER(lpInitData);
+      throw interface_only_exception();
+   }
+
+   bool graphics::CreateCompatibleDC(::ca::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       throw interface_only_exception();
@@ -233,7 +233,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-   BOOL graphics::GetWorldTransform(XFORM* pXform) const
+   bool graphics::GetWorldTransform(XFORM* pXform) const
    {
       UNREFERENCED_PARAMETER(pXform);
       throw interface_only_exception();
@@ -312,14 +312,14 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::FillRgn(::ca::region* pRgn, ::ca::brush* pBrush)
+   bool graphics::FillRgn(::ca::region* pRgn, ::ca::brush* pBrush)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(pBrush);
       throw interface_only_exception();
    }
 
-   BOOL graphics::FrameRgn(::ca::region* pRgn, ::ca::brush* pBrush, int nWidth, int nHeight)
+   bool graphics::FrameRgn(::ca::region* pRgn, ::ca::brush* pBrush, int nWidth, int nHeight)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(pBrush);
@@ -328,32 +328,32 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::InvertRgn(::ca::region* pRgn)
+   bool graphics::InvertRgn(::ca::region* pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
       throw interface_only_exception();
    }
 
-   BOOL graphics::PaintRgn(::ca::region* pRgn)
+   bool graphics::PaintRgn(::ca::region* pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
       throw interface_only_exception();
    }
 
-   BOOL graphics::PtVisible(int x, int y) const
+   bool graphics::PtVisible(int x, int y) const
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
       throw interface_only_exception();
    }
 
-   BOOL graphics::PtVisible(POINT point) const
+   bool graphics::PtVisible(POINT point) const
    {
       UNREFERENCED_PARAMETER(point);
       throw interface_only_exception();
    }
 
-   BOOL graphics::RectVisible(LPCRECT lpRect) const
+   bool graphics::RectVisible(LPCRECT lpRect) const
    {
       UNREFERENCED_PARAMETER(lpRect);
       throw interface_only_exception();
@@ -369,12 +369,12 @@ namespace ca
       return MoveTo((double)point.x, (double)point.y);
    }
 
-   BOOL graphics::LineTo(POINT point)
+   bool graphics::LineTo(POINT point)
    {
       return LineTo(double(point.x), double(point.y));
    }
 
-   BOOL graphics::Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
+   bool graphics::Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
    {
       UNREFERENCED_PARAMETER(x1);
       UNREFERENCED_PARAMETER(y1);
@@ -387,7 +387,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::Arc(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
+   bool graphics::Arc(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(ptStart);
@@ -396,7 +396,7 @@ namespace ca
    }
 
 
-   BOOL graphics::Arc(int x1, int y1, int x2, int y2, double start, double extends)
+   bool graphics::Arc(int x1, int y1, int x2, int y2, double start, double extends)
    {
 
       point ptCenter;
@@ -417,12 +417,12 @@ namespace ca
 
    }
 
-   BOOL graphics::Arc(LPCRECT lpRect, double start, double extends)
+   bool graphics::Arc(LPCRECT lpRect, double start, double extends)
    {
       return Arc(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom, start, extends);
    }
 
-   BOOL graphics::Polyline(const POINT* lpPoints, int nCount)
+   bool graphics::Polyline(const POINT* lpPoints, int nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
@@ -449,7 +449,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::DrawIcon(int x, int y, ::visual::icon * picon)
+   bool graphics::DrawIcon(int x, int y, ::visual::icon * picon)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -457,14 +457,14 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::DrawIcon(POINT point, ::visual::icon * picon)
+   bool graphics::DrawIcon(POINT point, ::visual::icon * picon)
    {
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(picon);
       throw interface_only_exception();
    }
 
-   BOOL graphics::DrawIcon(int x, int y, ::visual::icon * picon, int cx, int cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags)
+   bool graphics::DrawIcon(int x, int y, ::visual::icon * picon, int cx, int cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -477,7 +477,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::DrawState(point pt, size size, HBITMAP hBitmap, UINT nFlags, HBRUSH hBrush)
+   bool graphics::DrawState(point pt, size size, HBITMAP hBitmap, UINT nFlags, HBRUSH hBrush)
    {
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(size);
@@ -487,7 +487,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::DrawState(point pt, size size, ::ca::bitmap* pBitmap, UINT nFlags, ::ca::brush* pBrush)
+   bool graphics::DrawState(point pt, size size, ::ca::bitmap* pBitmap, UINT nFlags, ::ca::brush* pBrush)
    {
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(size);
@@ -499,7 +499,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-   BOOL graphics::DrawState(point pt, size size, HICON hIcon, UINT nFlags, HBRUSH hBrush)
+   bool graphics::DrawState(point pt, size size, HICON hIcon, UINT nFlags, HBRUSH hBrush)
    {
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(size);
@@ -509,7 +509,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::DrawState(point pt, size size, HICON hIcon, UINT nFlags, ::ca::brush* pBrush)
+   bool graphics::DrawState(point pt, size size, HICON hIcon, UINT nFlags, ::ca::brush* pBrush)
    {
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(size);
@@ -521,7 +521,7 @@ namespace ca
 
 #endif
 
-   BOOL graphics::DrawState(point pt, size size, const char * lpszText, UINT nFlags, BOOL bPrefixText, int nTextLen, HBRUSH hBrush)
+   bool graphics::DrawState(point pt, size size, const char * lpszText, UINT nFlags, bool bPrefixText, int nTextLen, HBRUSH hBrush)
    {
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(size);
@@ -533,7 +533,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::DrawState(point pt, size size, const char * lpszText, UINT nFlags, BOOL bPrefixText, int nTextLen, ::ca::brush* pBrush)
+   bool graphics::DrawState(point pt, size size, const char * lpszText, UINT nFlags, bool bPrefixText, int nTextLen, ::ca::brush* pBrush)
    {
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(size);
@@ -547,7 +547,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-   BOOL graphics::DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc, LPARAM lData, UINT nFlags, HBRUSH hBrush)
+   bool graphics::DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc, LPARAM lData, UINT nFlags, HBRUSH hBrush)
    {
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(size);
@@ -558,7 +558,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc, LPARAM lData, UINT nFlags, ::ca::brush* pBrush)
+   bool graphics::DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc, LPARAM lData, UINT nFlags, ::ca::brush* pBrush)
    {
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(size);
@@ -571,7 +571,7 @@ namespace ca
 
 #endif
 
-   BOOL graphics::DrawEdge(LPRECT lpRect, UINT nEdge, UINT nFlags)
+   bool graphics::DrawEdge(LPRECT lpRect, UINT nEdge, UINT nFlags)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(nEdge);
@@ -579,7 +579,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::DrawFrameControl(LPRECT lpRect, UINT nType, UINT nState)
+   bool graphics::DrawFrameControl(LPRECT lpRect, UINT nType, UINT nState)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(nType);
@@ -587,7 +587,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::Chord(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
+   bool graphics::Chord(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
    {
       UNREFERENCED_PARAMETER(x1);
       UNREFERENCED_PARAMETER(y1);
@@ -600,7 +600,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::Chord(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
+   bool graphics::Chord(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(ptStart);
@@ -614,30 +614,30 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::Ellipse(int x1, int y1, int x2, int y2)
+   bool graphics::Ellipse(int x1, int y1, int x2, int y2)
    {
 
-      BOOL bFill = FillEllipse(x1, y1, x2, y2);
+      bool bFill = FillEllipse(x1, y1, x2, y2);
 
-      BOOL bDraw = DrawEllipse(x1, y1, x2, y2);
+      bool bDraw = DrawEllipse(x1, y1, x2, y2);
 
       return bFill && bDraw;
 
    }
 
-   BOOL graphics::Ellipse(LPCRECT lpRect)
+   bool graphics::Ellipse(LPCRECT lpRect)
    {
 
-      BOOL bFill = FillEllipse(lpRect);
+      bool bFill = FillEllipse(lpRect);
 
-      BOOL bDraw = DrawEllipse(lpRect);
+      bool bDraw = DrawEllipse(lpRect);
 
       return bFill && bDraw;
 
    }
 
 
-   BOOL graphics::DrawEllipse(int x1, int y1, int x2, int y2)
+   bool graphics::DrawEllipse(int x1, int y1, int x2, int y2)
    {
       UNREFERENCED_PARAMETER(x1);
       UNREFERENCED_PARAMETER(y1);
@@ -646,13 +646,13 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::DrawEllipse(LPCRECT lpRect)
+   bool graphics::DrawEllipse(LPCRECT lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
       throw interface_only_exception();
    }
 
-   BOOL graphics::FillEllipse(int x1, int y1, int x2, int y2)
+   bool graphics::FillEllipse(int x1, int y1, int x2, int y2)
    {
       UNREFERENCED_PARAMETER(x1);
       UNREFERENCED_PARAMETER(y1);
@@ -661,13 +661,13 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::FillEllipse(LPCRECT lpRect)
+   bool graphics::FillEllipse(LPCRECT lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
       throw interface_only_exception();
    }
 
-   BOOL graphics::Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
+   bool graphics::Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
    {
       UNREFERENCED_PARAMETER(x1);
       UNREFERENCED_PARAMETER(y1);
@@ -680,7 +680,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
+   bool graphics::Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(ptStart);
@@ -688,14 +688,14 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::Polygon(const POINT* lpPoints, int nCount)
+   bool graphics::Polygon(const POINT* lpPoints, int nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
       throw interface_only_exception();
    }
 
-   BOOL graphics::PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int nCount)
+   bool graphics::PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(lpPolyCounts);
@@ -703,12 +703,12 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::Polygon(point_array & pta)
+   bool graphics::Polygon(point_array & pta)
    {
       return Polygon(pta.get_data(), (int) pta.get_count());
    }
 
-   BOOL graphics::Rectangle(int x1, int y1, int x2, int y2)
+   bool graphics::Rectangle(int x1, int y1, int x2, int y2)
    {
       UNREFERENCED_PARAMETER(x1);
       UNREFERENCED_PARAMETER(y1);
@@ -717,13 +717,13 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::Rectangle(LPCRECT lpRect)
+   bool graphics::Rectangle(LPCRECT lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
       throw interface_only_exception();
    }
 
-   BOOL graphics::DrawRectangle(int x1, int y1, int x2, int y2)
+   bool graphics::DrawRectangle(int x1, int y1, int x2, int y2)
    {
       UNREFERENCED_PARAMETER(x1);
       UNREFERENCED_PARAMETER(y1);
@@ -732,13 +732,13 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::DrawRectangle(LPCRECT lpRect)
+   bool graphics::DrawRectangle(LPCRECT lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
       throw interface_only_exception();
    }
 
-   BOOL graphics::FillRectangle(int x1, int y1, int x2, int y2)
+   bool graphics::FillRectangle(int x1, int y1, int x2, int y2)
    {
       UNREFERENCED_PARAMETER(x1);
       UNREFERENCED_PARAMETER(y1);
@@ -747,13 +747,13 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::FillRectangle(LPCRECT lpRect)
+   bool graphics::FillRectangle(LPCRECT lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
       throw interface_only_exception();
    }
 
-   BOOL graphics::RoundRect(int x1, int y1, int x2, int y2, int x3, int y3)
+   bool graphics::RoundRect(int x1, int y1, int x2, int y2, int x3, int y3)
    {
       UNREFERENCED_PARAMETER(x1);
       UNREFERENCED_PARAMETER(y1);
@@ -764,14 +764,14 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::RoundRect(LPCRECT lpRect, POINT point)
+   bool graphics::RoundRect(LPCRECT lpRect, POINT point)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(point);
       throw interface_only_exception();
    }
 
-   BOOL graphics::PatBlt(int x, int y, int nWidth, int nHeight, DWORD dwRop)
+   bool graphics::PatBlt(int x, int y, int nWidth, int nHeight, DWORD dwRop)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -781,7 +781,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::BitBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, DWORD dwRop)
+   bool graphics::BitBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, DWORD dwRop)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -794,7 +794,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::StretchBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, DWORD dwRop)
+   bool graphics::StretchBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, DWORD dwRop)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -837,7 +837,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::FloodFill(int x, int y, COLORREF crColor)
+   bool graphics::FloodFill(int x, int y, COLORREF crColor)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -845,7 +845,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::ExtFloodFill(int x, int y, COLORREF crColor, UINT nFillType)
+   bool graphics::ExtFloodFill(int x, int y, COLORREF crColor, UINT nFillType)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -854,7 +854,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::TextOut(int x, int y, const char * lpszString, int nCount)
+   bool graphics::TextOut(int x, int y, const char * lpszString, int nCount)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -863,7 +863,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::TextOut(int x, int y, const string & str)
+   bool graphics::TextOut(int x, int y, const string & str)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -871,7 +871,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::TextOut(double x, double y, const char * lpszString, int nCount)
+   bool graphics::TextOut(double x, double y, const char * lpszString, int nCount)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -880,7 +880,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::TextOut(double x, double y, const string & str)
+   bool graphics::TextOut(double x, double y, const string & str)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -889,7 +889,7 @@ namespace ca
    }
 
 
-   BOOL graphics::ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect, const char * lpszString, UINT nCount, LPINT lpDxWidths)
+   bool graphics::ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect, const char * lpszString, UINT nCount, LPINT lpDxWidths)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -901,7 +901,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect, const string & str, LPINT lpDxWidths)
+   bool graphics::ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect, const string & str, LPINT lpDxWidths)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -969,7 +969,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::GrayString(::ca::brush* pBrush, BOOL (CALLBACK* lpfnOutput)(HDC, LPARAM, int),
+   bool graphics::GrayString(::ca::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int),
       LPARAM lpData, int nCount, int x, int y, int nWidth, int nHeight)
    {
       UNREFERENCED_PARAMETER(pBrush);
@@ -1003,13 +1003,13 @@ namespace ca
 
 #ifdef WINDOWS
 
-   BOOL graphics::___FUNCNAME(GetTextMetrics)(LPTEXTMETRIC lpMetrics) const
+   bool graphics::___FUNCNAME(GetTextMetrics)(LPTEXTMETRIC lpMetrics) const
    {
       UNREFERENCED_PARAMETER(lpMetrics);
       throw interface_only_exception();
    }
 
-   BOOL graphics::GetOutputTextMetrics(LPTEXTMETRIC lpMetrics) const
+   bool graphics::GetOutputTextMetrics(LPTEXTMETRIC lpMetrics) const
    {
       UNREFERENCED_PARAMETER(lpMetrics);
       throw interface_only_exception();
@@ -1022,7 +1022,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const
+   bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const
    {
       UNREFERENCED_PARAMETER(nFirstChar);
       UNREFERENCED_PARAMETER(nLastChar);
@@ -1030,7 +1030,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const
+   bool graphics::GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const
    {
       UNREFERENCED_PARAMETER(nFirstChar);
       UNREFERENCED_PARAMETER(nLastChar);
@@ -1071,7 +1071,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::ScrollDC(int dx, int dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::ca::region * pRgnUpdate, LPRECT lpRectUpdate)
+   bool graphics::ScrollDC(int dx, int dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::ca::region * pRgnUpdate, LPRECT lpRectUpdate)
    {
       UNREFERENCED_PARAMETER(dx);
       UNREFERENCED_PARAMETER(dy);
@@ -1109,7 +1109,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-   BOOL graphics::ResetDC(const DEVMODE* lpDevMode)
+   bool graphics::ResetDC(const DEVMODE* lpDevMode)
    {
       UNREFERENCED_PARAMETER(lpDevMode);
       throw interface_only_exception();
@@ -1122,7 +1122,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC lpabc) const
+   bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC lpabc) const
    {
       UNREFERENCED_PARAMETER(nFirstChar);
       UNREFERENCED_PARAMETER(nLastChar);
@@ -1180,7 +1180,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   int graphics::SetAbortProc(BOOL (CALLBACK* lpfn)(HDC, int))
+   int graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, int))
    {
       UNREFERENCED_PARAMETER(lpfn);
       throw interface_only_exception();
@@ -1196,7 +1196,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::MaskBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc,
+   bool graphics::MaskBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc,
       int xSrc, int ySrc, ::ca::bitmap& maskBitmap, int xMask, int yMask, DWORD dwRop)
    {
       UNREFERENCED_PARAMETER(x);
@@ -1213,7 +1213,7 @@ namespace ca
 
       throw interface_only_exception();
    }
-   BOOL graphics::PlgBlt(LPPOINT lpPoint, ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc,
+   bool graphics::PlgBlt(LPPOINT lpPoint, ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc,
       int nWidth, int nHeight, ::ca::bitmap& maskBitmap, int xMask, int yMask)
    {
       UNREFERENCED_PARAMETER(lpPoint);
@@ -1229,7 +1229,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::SetPixelV(int x, int y, COLORREF crColor)
+   bool graphics::SetPixelV(int x, int y, COLORREF crColor)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -1237,14 +1237,14 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::SetPixelV(POINT point, COLORREF crColor)
+   bool graphics::SetPixelV(POINT point, COLORREF crColor)
    {
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(crColor);
       throw interface_only_exception();
    }
 
-   BOOL graphics::AngleArc(int x, int y, int nRadius, float fStartAngle, float fSweepAngle)
+   bool graphics::AngleArc(int x, int y, int nRadius, float fStartAngle, float fSweepAngle)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -1254,7 +1254,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::ArcTo(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
+   bool graphics::ArcTo(LPCRECT lpRect, POINT ptStart, POINT ptEnd)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(ptStart);
@@ -1267,7 +1267,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::PolyPolyline(const POINT* lpPoints, const DWORD* lpPolyPoints, int nCount)
+   bool graphics::PolyPolyline(const POINT* lpPoints, const DWORD* lpPolyPoints, int nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(lpPolyPoints);
@@ -1277,7 +1277,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-   BOOL graphics::GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const
+   bool graphics::GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const
    {
       UNREFERENCED_PARAMETER(lpColorAdjust);
       throw interface_only_exception();
@@ -1310,7 +1310,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::PolyBezier(const POINT* lpPoints, int nCount)
+   bool graphics::PolyBezier(const POINT* lpPoints, int nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
@@ -1337,7 +1337,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-   BOOL graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT lpABCF) const
+   bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT lpABCF) const
    {
       UNREFERENCED_PARAMETER(nFirstChar);
       UNREFERENCED_PARAMETER(nLastChar);
@@ -1347,7 +1347,7 @@ namespace ca
 
 #endif
 
-   BOOL graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, float * lpFloatBuffer) const
+   bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, float * lpFloatBuffer) const
    {
       UNREFERENCED_PARAMETER(nFirstChar);
       UNREFERENCED_PARAMETER(nLastChar);
@@ -1355,32 +1355,32 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::AbortPath()
+   bool graphics::AbortPath()
    {
       throw interface_only_exception();
    }
 
-   BOOL graphics::BeginPath()
+   bool graphics::BeginPath()
    {
       throw interface_only_exception();
    }
 
-   BOOL graphics::CloseFigure()
+   bool graphics::CloseFigure()
    {
       throw interface_only_exception();
    }
 
-   BOOL graphics::EndPath()
+   bool graphics::EndPath()
    {
       throw interface_only_exception();
    }
 
-   BOOL graphics::FillPath()
+   bool graphics::FillPath()
    {
       throw interface_only_exception();
    }
 
-   BOOL graphics::FlattenPath()
+   bool graphics::FlattenPath()
    {
       throw interface_only_exception();
    }
@@ -1398,28 +1398,28 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::SetMiterLimit(float fMiterLimit)
+   bool graphics::SetMiterLimit(float fMiterLimit)
    {
       UNREFERENCED_PARAMETER(fMiterLimit);
       throw interface_only_exception();
    }
 
-   BOOL graphics::StrokeAndFillPath()
+   bool graphics::StrokeAndFillPath()
    {
       throw interface_only_exception();
    }
 
-   BOOL graphics::StrokePath()
+   bool graphics::StrokePath()
    {
       throw interface_only_exception();
    }
 
-   BOOL graphics::WidenPath()
+   bool graphics::WidenPath()
    {
       throw interface_only_exception();
    }
 
-   BOOL graphics::AddMetaFileComment(UINT nDataSize, const BYTE* pCommentData)
+   bool graphics::AddMetaFileComment(UINT nDataSize, const BYTE* pCommentData)
    {
       UNREFERENCED_PARAMETER(nDataSize);
       UNREFERENCED_PARAMETER(pCommentData);
@@ -1428,7 +1428,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-   BOOL graphics::PlayMetaFile(HENHMETAFILE hEnhMF, LPCRECT lpBounds)
+   bool graphics::PlayMetaFile(HENHMETAFILE hEnhMF, LPCRECT lpBounds)
    {
       UNREFERENCED_PARAMETER(hEnhMF);
       UNREFERENCED_PARAMETER(lpBounds);
@@ -1437,7 +1437,7 @@ namespace ca
 
 #endif
 
-   BOOL graphics::TransparentBlt(int xDest, int yDest, int nDestWidth, int nDestHeight,
+   bool graphics::TransparentBlt(int xDest, int yDest, int nDestWidth, int nDestHeight,
       ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, UINT crTransparent)
    {
       UNREFERENCED_PARAMETER(xDest);
@@ -1453,7 +1453,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::GradientFill(TRIVERTEX* pVertices, ULONG nVertices, void * pMesh, ULONG nMeshElements, DWORD dwMode)
+   bool graphics::GradientFill(TRIVERTEX* pVertices, ULONG nVertices, void * pMesh, ULONG nMeshElements, DWORD dwMode)
    {
       UNREFERENCED_PARAMETER(pVertices);
       UNREFERENCED_PARAMETER(nVertices);
@@ -1487,7 +1487,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) const
+   bool graphics::GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) const
    {
       UNREFERENCED_PARAMETER(giFirst);
       UNREFERENCED_PARAMETER(cgi);
@@ -1496,7 +1496,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, LPINT lpBuffer) const
+   bool graphics::GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, LPINT lpBuffer) const
    {
       UNREFERENCED_PARAMETER(giFirst);
       UNREFERENCED_PARAMETER(cgi);
@@ -1505,7 +1505,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::GetTextExtentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE lpSize) const
+   bool graphics::GetTextExtentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE lpSize) const
    {
       UNREFERENCED_PARAMETER(pgiIn);
       UNREFERENCED_PARAMETER(cgi);
@@ -1516,7 +1516,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::GetTextExtentPointI(LPWORD pgiIn, int cgi, LPSIZE lpSize) const
+   bool graphics::GetTextExtentPointI(LPWORD pgiIn, int cgi, LPSIZE lpSize) const
    {
       UNREFERENCED_PARAMETER(pgiIn);
       UNREFERENCED_PARAMETER(cgi);
@@ -1628,7 +1628,7 @@ namespace ca
 
 
 
-   BOOL graphics::DeleteDC()
+   bool graphics::DeleteDC()
    {
       throw interface_only_exception();
    }
@@ -1647,7 +1647,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::RestoreDC(int nSavedDC)
+   bool graphics::RestoreDC(int nSavedDC)
    {
       UNREFERENCED_PARAMETER(nSavedDC);
       throw interface_only_exception();
@@ -1690,7 +1690,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   ::ca::palette* graphics::SelectPalette(::ca::palette * pPalette, BOOL bForceBackground)
+   ::ca::palette* graphics::SelectPalette(::ca::palette * pPalette, bool bForceBackground)
    {
       UNREFERENCED_PARAMETER(pPalette);
       UNREFERENCED_PARAMETER(bForceBackground);
@@ -1741,13 +1741,13 @@ namespace ca
 
 #ifdef WINDOWS
 
-   BOOL graphics::SetWorldTransform(const XFORM* pXform)
+   bool graphics::SetWorldTransform(const XFORM* pXform)
    {
       UNREFERENCED_PARAMETER(pXform);
       throw interface_only_exception();
    }
 
-   BOOL graphics::ModifyWorldTransform(const XFORM* pXform, DWORD iMode)
+   bool graphics::ModifyWorldTransform(const XFORM* pXform, DWORD iMode)
    {
       UNREFERENCED_PARAMETER(pXform);
       UNREFERENCED_PARAMETER(iMode);
@@ -1891,12 +1891,12 @@ namespace ca
       return MoveTo((double)x, (double)y);
    }
 
-   BOOL graphics::LineTo(int x, int y)
+   bool graphics::LineTo(int x, int y)
    {
       return LineTo((double) x, (double) y);
    }
 
-   BOOL graphics::LineTo(double x, double y)
+   bool graphics::LineTo(double x, double y)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -1942,7 +1942,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // Advanced Win32 GDI functions
 
-   BOOL graphics::ArcTo(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
+   bool graphics::ArcTo(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
    {
       UNREFERENCED_PARAMETER(x1);
       UNREFERENCED_PARAMETER(y1);
@@ -1961,7 +1961,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, int nCount)
+   bool graphics::PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, int nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(lpTypes);
@@ -1969,7 +1969,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL graphics::PolylineTo(const POINT* lpPoints, int nCount)
+   bool graphics::PolylineTo(const POINT* lpPoints, int nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
@@ -1978,7 +1978,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-   BOOL graphics::SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust)
+   bool graphics::SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust)
    {
       UNREFERENCED_PARAMETER(lpColorAdjust);
       throw interface_only_exception();
@@ -1986,14 +1986,14 @@ namespace ca
 
 #endif
 
-   BOOL graphics::PolyBezierTo(const POINT* lpPoints, int nCount)
+   bool graphics::PolyBezierTo(const POINT* lpPoints, int nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
       throw interface_only_exception();
    }
 
-   BOOL graphics::SelectClipPath(int nMode)
+   bool graphics::SelectClipPath(int nMode)
    {
       UNREFERENCED_PARAMETER(nMode);
       throw interface_only_exception();
@@ -2008,7 +2008,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-   BOOL graphics::PlayMetaFile(HMETAFILE hMF)
+   bool graphics::PlayMetaFile(HMETAFILE hMF)
    {
       UNREFERENCED_PARAMETER(hMF);
       throw interface_only_exception();
@@ -2133,7 +2133,7 @@ namespace ca
 
 #pragma push_macro("GetTextMetrics")
 #undef GetTextMetrics
-   BOOL graphics::GetTextMetrics(LPTEXTMETRIC lpMetrics) const
+   bool graphics::GetTextMetrics(LPTEXTMETRIC lpMetrics) const
    {
       UNREFERENCED_PARAMETER(lpMetrics);
       throw interface_only_exception();
@@ -2367,7 +2367,7 @@ namespace ca
 
    }
 
-   BOOL graphics::DrawRect(int x1, int y1, int x2, int y2)
+   bool graphics::DrawRect(int x1, int y1, int x2, int y2)
    {
 
       // SIOOT - Should implemennt one of them
@@ -2379,7 +2379,7 @@ namespace ca
 
    }
 
-   BOOL graphics::drawRect(int x1, int y1, int x2, int y2)
+   bool graphics::drawRect(int x1, int y1, int x2, int y2)
    {
 
       // SIOOT - Should implemennt one of them
@@ -2389,7 +2389,7 @@ namespace ca
 
    }
 
-   BOOL graphics::draw_rect(int x1, int y1, int x2, int y2)
+   bool graphics::draw_rect(int x1, int y1, int x2, int y2)
    {
 
       // SIOOT - Should implemennt one of them

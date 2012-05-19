@@ -29,7 +29,7 @@
 
 #ifdef _WINDOWS
 
-CLASS_DECL_ca BOOL IsWow64();
+CLASS_DECL_ca bool IsWow64();
 
 
 

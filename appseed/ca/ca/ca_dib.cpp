@@ -35,12 +35,12 @@ namespace ca
       return NULL;
    }
 
-   BOOL dib::create(class size size)
+   bool dib::create(class size size)
    {
       return create(size.cx, size.cy);
    }
 
-   BOOL dib::create(int width, int height)
+   bool dib::create(int width, int height)
    {
       UNREFERENCED_PARAMETER(width);
       UNREFERENCED_PARAMETER(height);
@@ -53,7 +53,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL dib::create(::ca::graphics * pdc)
+   bool dib::create(::ca::graphics * pdc)
    {
       ::ca::bitmap & bitmap = pdc->GetCurrentBitmap();
       if(&bitmap == NULL)
@@ -71,7 +71,7 @@ namespace ca
       return TRUE;
    }
 
-   BOOL dib::Destroy ()
+   bool dib::Destroy ()
    {
       throw interface_only_exception();
    }

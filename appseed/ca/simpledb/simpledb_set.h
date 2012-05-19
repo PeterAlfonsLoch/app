@@ -64,7 +64,7 @@ namespace simpledb
       /* as open, but with our query exept Sql */
       virtual bool query(const char *query);
       /* func. closes a query */
-      virtual void close(void);
+      virtual void close();
       /* Cancel changes, made in insert or edit states of set */
       virtual void cancel();
       /* sequence numbers */

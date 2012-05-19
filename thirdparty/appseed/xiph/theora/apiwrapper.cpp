@@ -19,11 +19,11 @@
 
 
 
-const char *theora_version_string(void){
+const char *theora_version_string(){
   return th_version_string();
 }
 
-ogg_uint32_t theora_version_number(void){
+ogg_uint32_t theora_version_number(){
   return th_version_number();
 }
 

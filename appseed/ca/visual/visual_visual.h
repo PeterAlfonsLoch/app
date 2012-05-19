@@ -13,7 +13,7 @@ namespace visual
       ::ca::graphics * m_pdc;
 
    public:
-      virtual ~visual(void);
+      virtual ~visual();
    };
 
 } // namespace visual

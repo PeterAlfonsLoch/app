@@ -7,7 +7,7 @@
 extern CLASS_DECL_ca uint32 g_CrcTable[];
 
 /* Call CrcGenerateTable one time before other CRC functions */
-CLASS_DECL_ca void CrcGenerateTable(void);
+CLASS_DECL_ca void CrcGenerateTable();
 
 #define CRC_INIT_VAL 0xFFFFFFFF
 #define CRC_GET_DIGEST(crc) ((crc) ^ CRC_INIT_VAL)

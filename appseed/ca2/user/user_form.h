@@ -95,10 +95,10 @@ namespace ca2
          bool operator == (const control & control) const;
 
          bool BaseOnControlEvent(::user::control_event * pevent);
-         void _001SetControlFactory(void);
+         void _001SetControlFactory();
 
 
-         virtual void OnBeforeNavigate2(var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, BOOL* pbCancel);
+         virtual void OnBeforeNavigate2(var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel);
 
 
       };

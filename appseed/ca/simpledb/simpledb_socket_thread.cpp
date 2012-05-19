@@ -16,7 +16,7 @@ namespace simpledb
 
       }
 
-      socket_thread::~socket_thread(void)
+      socket_thread::~socket_thread()
       {
       }
 

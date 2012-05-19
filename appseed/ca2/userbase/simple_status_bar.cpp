@@ -24,7 +24,7 @@ simple_status_bar::~simple_status_bar()
 
 
 /*
-BOOL simple_status_bar::OnEraseBkgnd(::ca::graphics * pgraphics) 
+bool simple_status_bar::OnEraseBkgnd(::ca::graphics * pgraphics) 
 {
    return TRUE;
 }
@@ -48,7 +48,7 @@ void simple_status_bar::_001OnDraw(::ca::graphics *pdc)
       208);
 
    
-//xxx   BOOL bWin4 = afxData.bWin4;
+//xxx   bool bWin4 = afxData.bWin4;
    /*::CallWindowProc(
       *GetSuperWndProcAddr(),
       get_handle(), (bWin4 ? WM_PRINT : WM_PAINT),

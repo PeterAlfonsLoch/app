@@ -78,7 +78,7 @@ static int dev_random_fdes = RAND_SOURCE_NOT_READY;
 
 
 err_status_t
-rand_source_init(void) {
+rand_source_init() {
   if (dev_random_fdes >= 0) {
     /* already open */
     return err_status_ok;
@@ -141,7 +141,7 @@ rand_source_get_octet_string(void *dest, uint32_t len) {
 }
  
 err_status_t
-rand_source_deinit(void) {
+rand_source_deinit() {
   if (dev_random_fdes < 0)
     return err_status_dealloc_fail;  /* well, we haven't really failed, *
                   * but there is something wrong    */

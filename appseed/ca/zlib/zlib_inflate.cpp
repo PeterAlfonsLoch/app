@@ -98,7 +98,7 @@
 zlib_local void fixedtables OF((struct inflate_state FAR *state));
 zlib_local int updatewindow OF((z_streamp strm, unsigned out));
 #ifdef BUILDFIXED
-   void makefixed OF((void));
+   void makefixed OF(());
 #endif
 zlib_local unsigned syncsearch OF((unsigned FAR *have, unsigned char FAR *buf,
                               unsigned len));
@@ -257,9 +257,9 @@ struct inflate_state FAR *state)
    those tables to stdout, which would be piped to inffixed.h.  A small program
    can simply call makefixed to do this:
 
-    void makefixed(void);
+    void makefixed();
 
-    int main(void)
+    int main()
     {
         makefixed();
         return 0;

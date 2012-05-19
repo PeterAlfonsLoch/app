@@ -16,7 +16,7 @@ namespace nature
 
 
       application();
-      virtual ~application(void);
+      virtual ~application();
 
       using ::ca::thread::construct;
       using ::ca::application::construct;

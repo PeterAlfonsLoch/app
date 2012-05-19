@@ -41,12 +41,12 @@ namespace userbase
       IGUI_WIN_MSG_LINK(SB_SETMINHEIGHT      , pinterface, this, &status_bar::_001OnSetMinHeight);
    }
 
-   BOOL status_bar::create(::user::interaction* pParentWnd, DWORD dwStyle, id strId)
+   bool status_bar::create(::user::interaction* pParentWnd, DWORD dwStyle, id strId)
    {
       return CreateEx(pParentWnd, 0, dwStyle, strId);
    }
 
-   BOOL status_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle, DWORD dwStyle, id strId)
+   bool status_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle, DWORD dwStyle, id strId)
    {
       ASSERT_VALID(pParentWnd);   // must have a parent
 
@@ -69,7 +69,7 @@ namespace userbase
       return ::user::interaction::create(STATUSCLASSNAME, NULL, dwStyle, rect, pParentWnd, strId);
    }
 
-   BOOL status_bar::pre_create_window(CREATESTRUCT& cs)
+   bool status_bar::pre_create_window(CREATESTRUCT& cs)
    {
       // in Win4, status bars do not have a border at all, since it is
       //  provided by the client area.
@@ -79,7 +79,7 @@ namespace userbase
       return ::userbase::control_bar::pre_create_window(cs);
    }
 
-   BOOL status_bar::SetIndicators(stringa & stra)
+   bool status_bar::SetIndicators(stringa & stra)
    {
       ASSERT_VALID(this);
       ASSERT(stra.get_count() >= 1);  // must be at least one of them
@@ -93,7 +93,7 @@ namespace userbase
    //   ASSERT(nIDCount == m_panea.get_count());
 
       // copy initial data from indicator base_array
-      BOOL bResult = TRUE;
+      bool bResult = TRUE;
       //if (lpIDArray != NULL)
       //{
          HFONT hFont = (HFONT)SendMessage(WM_GETFONT);
@@ -143,7 +143,7 @@ namespace userbase
    }
 
    /*
-   BOOL status_bar::AllocElements(int nElements, int cbElement)
+   bool status_bar::AllocElements(int nElements, int cbElement)
    {
       int i;
 
@@ -173,7 +173,7 @@ namespace userbase
    }
    */
 
-   void status_bar::CalcInsideRect(rect& rect, BOOL bHorz)
+   void status_bar::CalcInsideRect(rect& rect, bool bHorz)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -196,7 +196,7 @@ namespace userbase
       }
    }
 
-   void status_bar::UpdateAllPanes(BOOL bUpdateRects, BOOL bUpdateText)
+   void status_bar::UpdateAllPanes(bool bUpdateRects, bool bUpdateText)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -212,7 +212,7 @@ namespace userbase
          rect.offset(-rect.left, -rect.top);
          CalcInsideRect(rect, TRUE);
          int rgBorders[3];
-         VERIFY((BOOL)DefWindowProc(SB_GETBORDERS, 0, (LPARAM)&rgBorders));
+         VERIFY((bool)DefWindowProc(SB_GETBORDERS, 0, (LPARAM)&rgBorders));
 
          // determine extra space for stretchy pane
          int cxExtra = rect.width() + rgBorders[2];
@@ -349,7 +349,7 @@ namespace userbase
    {
       ASSERT_VALID(this);
 
-      BOOL bChanged = FALSE;
+      bool bChanged = FALSE;
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
       pSBP->id = id;
       if (pSBP->nStyle != nStyle)
@@ -390,7 +390,7 @@ namespace userbase
       return pSBP->strText;
    }
 
-   BOOL status_bar::SetPaneText(int nIndex, const char * lpszNewText, BOOL bUpdate)
+   bool status_bar::SetPaneText(int nIndex, const char * lpszNewText, bool bUpdate)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -437,7 +437,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // status_bar implementation
 
-   size status_bar::CalcFixedLayout(BOOL, BOOL bHorz)
+   size status_bar::CalcFixedLayout(bool, bool bHorz)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -529,7 +529,7 @@ namespace userbase
       ASSERT(FALSE);
    }
 
-   BOOL status_bar::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
+   bool status_bar::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
    {
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);
@@ -664,7 +664,7 @@ namespace userbase
    public: // re-implementations only
 
       CStatusCmdUI(::ca::application *papp);
-      virtual void Enable(BOOL bOn);
+      virtual void Enable(bool bOn);
       virtual void SetCheck(check::e_check echeck = check::checked);
       virtual void SetText(const char * lpszText);
    };
@@ -677,7 +677,7 @@ namespace userbase
    {
    }
 
-   void CStatusCmdUI::Enable(BOOL bOn)
+   void CStatusCmdUI::Enable(bool bOn)
    {
       m_bEnableChanged = TRUE;
       status_bar* pStatusBar = dynamic_cast < status_bar * > (m_pOther);
@@ -715,7 +715,7 @@ namespace userbase
    }
 
 
-   void status_bar::OnUpdateCmdUI(userbase::frame_window* pTarget, BOOL bDisableIfNoHndler)
+   void status_bar::OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler)
    {
       CStatusCmdUI state(get_app());
       state.m_pOther = this;

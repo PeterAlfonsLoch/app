@@ -1606,7 +1606,7 @@ int GeoIP_id_by_code(const char *country)
    return 0;
 }
 
-unsigned GeoIP_num_countries(void)
+unsigned GeoIP_num_countries()
 {
    return num_GeoIP_countries;
 }

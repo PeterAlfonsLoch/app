@@ -27,9 +27,9 @@ namespace ca4
 
 
 
-   BOOL port_forward::IsAnyThreadRunning() const
+   bool port_forward::IsAnyThreadRunning() const
    {
-	   BOOL bRet = FALSE;
+	   bool bRet = FALSE;
 	   return bRet;
    }
 
@@ -135,7 +135,7 @@ namespace ca4
    //        GetPortMappingVector() function to get a copy of the current contents of
    //        std::vector< port_forward::PortMappingContainer > m_MappingContainer
 
-   BOOL port_forward::GetMappingsUsingThread( HWND hWnd )
+   bool port_forward::GetMappingsUsingThread( HWND hWnd )
    {
       UNREFERENCED_PARAMETER(hWnd);
 	   // returns TRUE if thread was started successfully
@@ -159,7 +159,7 @@ namespace ca4
    //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL). 
 
 
-   BOOL port_forward::EditMappingUsingThread( port_forward::port_map & oldMapping, port_forward::port_map & newMapping, HWND hWnd )
+   bool port_forward::EditMappingUsingThread( port_forward::port_map & oldMapping, port_forward::port_map & newMapping, HWND hWnd )
    {
       UNREFERENCED_PARAMETER(oldMapping);
       UNREFERENCED_PARAMETER(newMapping);
@@ -184,7 +184,7 @@ namespace ca4
    //  WPARAM == port_forward::EnumAddMappingDone when the thread is finished, where
    //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL). 
 
-   BOOL port_forward::AddMappingUsingThread(port_forward::port_map & newMapping, HWND hWnd )
+   bool port_forward::AddMappingUsingThread(port_forward::port_map & newMapping, HWND hWnd )
    {
       UNREFERENCED_PARAMETER(newMapping);
       UNREFERENCED_PARAMETER(hWnd);	
@@ -207,7 +207,7 @@ namespace ca4
    //  WPARAM == port_forward::EnumDeleteMappingDone when the thread is finished, where
    //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL). 
 
-   BOOL port_forward::DeleteMappingUsingThread(port_forward::port_map & oldMapping, HWND hWnd )
+   bool port_forward::DeleteMappingUsingThread(port_forward::port_map & oldMapping, HWND hWnd )
    {
       UNREFERENCED_PARAMETER(oldMapping);
       UNREFERENCED_PARAMETER(hWnd);	
@@ -231,7 +231,7 @@ namespace ca4
    //      GetDeviceInformationContainer() function to retrieve a copy of the current contents of 
    //      port_forward::DeviceInformationContainer m_DeviceInfo
 
-   BOOL port_forward::GetDeviceInformationUsingThread( HWND hWnd )
+   bool port_forward::GetDeviceInformationUsingThread( HWND hWnd )
    {	
       UNREFERENCED_PARAMETER(hWnd);	
       return FALSE;

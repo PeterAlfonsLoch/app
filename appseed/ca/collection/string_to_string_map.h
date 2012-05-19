@@ -38,10 +38,10 @@ public:
    bool has_elements(count countMinimum = 1) const;
 
 	// Lookup
-	BOOL Lookup(const string & key, string & rValue) const;
+	bool Lookup(const string & key, string & rValue) const;
 	const pair *PLookup(const string & key) const;
 	pair *PLookup(const string & key);
-	BOOL LookupKey(const string & key, string & rKey) const;
+	bool LookupKey(const string & key, string & rKey) const;
 
 // Operations
 	// Lookup and add if not there
@@ -51,7 +51,7 @@ public:
 	void set_at(const string & key, const string & newValue);
 
 	// removing existing (key, ?) pair
-	BOOL RemoveKey(const string & key);
+	bool RemoveKey(const string & key);
 	void remove_all();
 
 	// iterating all (key, value) pairs
@@ -67,7 +67,7 @@ public:
 
 	// advanced features for derived classes
 	UINT GetHashTableSize() const;
-	void InitHashTable(UINT hashSize, BOOL bAllocNow = TRUE);
+	void InitHashTable(UINT hashSize, bool bAllocNow = TRUE);
 
    void _001ReplaceVars(string & str);
 

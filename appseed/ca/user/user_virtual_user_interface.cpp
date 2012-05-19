@@ -31,7 +31,7 @@ virtual_user_interface::~virtual_user_interface()
    return get_wnd()->GetDC();
 }
 
-BOOL virtual_user_interface::ReleaseDC(::ca::graphics * pdc)
+bool virtual_user_interface::ReleaseDC(::ca::graphics * pdc)
 {
    return get_wnd()->ReleaseDC(pdc);
 }
@@ -151,7 +151,7 @@ bool virtual_user_interface::create_message_window()
    return true;
 }
 
-BOOL virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassName,
+bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
       ::user::interaction* pparent, id id,
@@ -234,7 +234,7 @@ BOOL virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
 
 
 
-BOOL virtual_user_interface::create(const char * lpszClassName,
+bool virtual_user_interface::create(const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
       ::user::interaction* pparent, id id,
@@ -387,7 +387,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    return true;
 }
 
-/*   BOOL virtual_user_interface::create(const char * lpszClassName,
+/*   bool virtual_user_interface::create(const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
       ::user::interaction* pParentWnd, UINT nID,
@@ -397,7 +397,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    }
 
    // advanced creation (allows access to extended styles)
-   BOOL virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassName,
+   bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       int x, int y, int nWidth, int nHeight,
       HWND hWndParent, HMENU nIDorHMenu, LPVOID lpParam)
@@ -405,7 +405,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
       return FALSE;
    }
 
-   BOOL virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassName,
+   bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       const RECT& rect,
       ::ca::window* pParentWnd, UINT nID,
@@ -512,7 +512,7 @@ LRESULT virtual_user_interface::SendMessage(UINT uiMessage, WPARAM wparam, LPARA
    return NULL;
 }
 
-BOOL virtual_user_interface::IsWindowEnabled()
+bool virtual_user_interface::IsWindowEnabled()
 {
    return m_bEnabled && ((m_pguie == NULL || m_pguie->GetParent() == NULL) ? true : m_pguie->GetParent()->IsWindowEnabled());
 }
@@ -548,7 +548,7 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
 ::user::interaction * pwnd, LPCRECT lpRect);
 
 
-void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, BOOL bStretch)
+void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch)
 {
    
    UNREFERENCED_PARAMETER(nIDFirst);
@@ -828,7 +828,7 @@ void virtual_user_interface::SetWindowText(const char * psz)
    m_strWindowText = psz;
 }
 
-BOOL virtual_user_interface::DestroyWindow()
+bool virtual_user_interface::DestroyWindow()
 {
    if(!m_bCreate)
       return FALSE;
@@ -981,7 +981,7 @@ void virtual_user_interface::message_handler(gen::signal_object * pobj)
 }
 
 
-BOOL virtual_user_interface::IsWindow()
+bool virtual_user_interface::IsWindow()
 {
    return
       m_bCreate
@@ -989,7 +989,7 @@ BOOL virtual_user_interface::IsWindow()
 }
 
 
-BOOL virtual_user_interface::ShowWindow(int nCmdShow)
+bool virtual_user_interface::ShowWindow(int nCmdShow)
 {
    if(nCmdShow != SW_HIDE)
    {
@@ -1011,7 +1011,7 @@ BOOL virtual_user_interface::ShowWindow(int nCmdShow)
 }
 
 
-void virtual_user_interface::SetFont(::ca::font* pFont, BOOL bRedraw)
+void virtual_user_interface::SetFont(::ca::font* pFont, bool bRedraw)
 {
    if(pFont == NULL)
       return;
@@ -1037,7 +1037,7 @@ UINT_PTR virtual_user_interface::SetTimer(UINT_PTR nIDEvent, UINT nElapse,
    return nIDEvent;
 }
 
-BOOL virtual_user_interface::KillTimer(UINT_PTR nIDEvent)
+bool virtual_user_interface::KillTimer(UINT_PTR nIDEvent)
 {
    m_pguie->m_pthread->unset_timer(m_pguie, nIDEvent);
    return TRUE;
@@ -1141,7 +1141,7 @@ void virtual_user_interface::on_delete(::ca::ca * pui)
 }
 */
 
-void virtual_user_interface::SendMessageToDescendants(UINT message,   WPARAM wParam, LPARAM lParam, BOOL bDeep, BOOL bOnlyPerm)
+void virtual_user_interface::SendMessageToDescendants(UINT message,   WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
 {
 
    // walk through HWNDs to avoid creating temporary window objects
@@ -1206,7 +1206,7 @@ void virtual_user_interface::_001OnClose(gen::signal_object * pobj)
    
 }
 
-BOOL virtual_user_interface::IsWindowVisible()
+bool virtual_user_interface::IsWindowVisible()
 {
    if(!IsWindow())
       return FALSE;
@@ -1223,7 +1223,7 @@ BOOL virtual_user_interface::IsWindowVisible()
 }
 
 
-BOOL virtual_user_interface::PostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+bool virtual_user_interface::PostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam)
 {
    if(m_pthread != NULL)
    {

@@ -30,7 +30,7 @@ public:
 
 // Implementation
 protected:
-   BOOL m_bScaling;
+   bool m_bScaling;
    rect m_rectDevice;
    rect m_rectClip;
    size m_sizeLogical;

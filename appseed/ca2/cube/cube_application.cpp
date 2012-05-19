@@ -334,7 +334,7 @@ namespace cube
    }
 
 
-   BOOL application::run()
+   int application::run()
    {
 
       return ::cube2::application::run();

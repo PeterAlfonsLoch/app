@@ -30,7 +30,7 @@ public:
 
 private:
    using waitable::unlock;
-   BOOL Init();
+   bool Init();
 
 };
 

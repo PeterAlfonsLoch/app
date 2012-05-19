@@ -26,7 +26,7 @@
 
 nsUniversalDetector* det;
 
-int CharGuessInit(void)
+int CharGuessInit()
 {
    det = new nsUniversalDetector;
    if (det)
@@ -52,7 +52,7 @@ const char* GuessChardet(const char *str)
    return tmp;
 }
 
-int CharGuessDone(void)
+int CharGuessDone()
 {
    if (det)
       delete det;

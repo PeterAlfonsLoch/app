@@ -86,7 +86,7 @@ namespace gen
       property(const char * pszName);
       property(index iIndex);
       property(const char * pszName, var & var);
-      ~property(void);
+      ~property();
 
       inline string & name()
       {

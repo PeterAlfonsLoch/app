@@ -64,7 +64,7 @@ HANDLE SymGetProcessHandle()
       return (HANDLE)GetCurrentProcessId();
 }
 
-BOOL __stdcall My_ReadProcessMemory (HANDLE, LPCVOID lpBaseAddress, LPVOID lpBuffer, DWORD nSize, SIZE_T * lpNumberOfBytesRead)
+bool __stdcall My_ReadProcessMemory (HANDLE, LPCVOID lpBaseAddress, LPVOID lpBuffer, DWORD nSize, SIZE_T * lpNumberOfBytesRead)
 {
    return ReadProcessMemory(GetCurrentProcess(), lpBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead);
 }
@@ -203,7 +203,7 @@ namespace exception
 
       SetLastError(0);
       HANDLE hprocess = SymGetProcessHandle();
-      BOOL r = StackWalk (IMAGE_FILE_MACHINE_I386,
+      bool r = StackWalk (IMAGE_FILE_MACHINE_I386,
          hprocess,
          GetCurrentThread(),
          m_pstackframe,
@@ -320,7 +320,7 @@ namespace exception
             // enumerate modules
             if (IsNT())
             {
-               typedef BOOL (WINAPI *ENUMPROCESSMODULES)(HANDLE, HMODULE*, DWORD, LPDWORD);
+               typedef bool (WINAPI *ENUMPROCESSMODULES)(HANDLE, HMODULE*, DWORD, LPDWORD);
 
                HINSTANCE hInst = LoadLibrary("psapi.dll");
                if (hInst)
@@ -362,7 +362,7 @@ namespace exception
             else
             {
                typedef HANDLE (WINAPI *CREATESNAPSHOT)(DWORD, DWORD);
-               typedef BOOL (WINAPI *MODULEWALK)(HANDLE, LPMODULEENTRY32);
+               typedef bool (WINAPI *MODULEWALK)(HANDLE, LPMODULEENTRY32);
 
                HMODULE hMod = GetModuleHandle("kernel32");
                CREATESNAPSHOT fnCreateToolhelp32Snapshot = (CREATESNAPSHOT)GetProcAddress(hMod, "CreateToolhelp32Snapshot");
@@ -520,7 +520,7 @@ namespace exception
       current_context context;
       memset(&context, 0, sizeof(current_context));
 
-      BOOL bOk = DuplicateHandle(GetCurrentProcess(), GetCurrentThread(), GetCurrentProcess(),
+      bool bOk = DuplicateHandle(GetCurrentProcess(), GetCurrentThread(), GetCurrentProcess(),
          &context.thread, 0, 0, DUPLICATE_SAME_ACCESS);
 
       _ASSERTE(bOk);

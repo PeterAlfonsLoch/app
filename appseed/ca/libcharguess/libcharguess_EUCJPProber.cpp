@@ -23,7 +23,7 @@
 
 #include "EUCJPProber.h"
 
-void  nsEUCJPProber::Reset(void)
+void  nsEUCJPProber::Reset()
 {
   mCodingSM->Reset(); 
   mState = eDetecting;
@@ -73,7 +73,7 @@ nsProbingState nsEUCJPProber::HandleData(const char* aBuf, PRUint32 aLen)
   return mState;
 }
 
-float nsEUCJPProber::GetConfidence(void)
+float nsEUCJPProber::GetConfidence()
 {
   float contxtCf = mContextAnalyser.GetConfidence();
   float distribCf = mDistributionAnalyser.GetConfidence();

@@ -6,7 +6,7 @@ const LPCTSTR DRV_NAME = _T("ListOpenedFileDrv");
 const LPCTSTR DRV_FILE_NAME = _T("ListOpenedFileDrv.sys");
 
 // Function resolves the fosedevice name to drive name
-BOOL GetDrive( LPCTSTR pszDosName, string& csDrive, bool bDriveLetterOnly )
+bool GetDrive( LPCTSTR pszDosName, string& csDrive, bool bDriveLetterOnly )
 {
 	TCHAR tcDeviceName[50];
 	TCHAR tcDrive[3] = _T("A:");
@@ -156,21 +156,21 @@ HANDLE ExtractAndInstallDrv()
 }
 
 // Function stops the service and then deletes it.
-BOOL StopAndUninstallDrv( HANDLE hDrvHandle )
+bool StopAndUninstallDrv( HANDLE hDrvHandle )
 {
 	CloseHandle( hDrvHandle );
 	SC_HANDLE hSCManager = OpenSCManager( NULL, NULL, SC_MANAGER_ALL_ACCESS );
 	SC_HANDLE hService = OpenService( hSCManager , DRV_NAME, SERVICE_ALL_ACCESS );
 	SERVICE_STATUS  stSrvStatus = {0};
 	ControlService( hService, SERVICE_CONTROL_STOP, &stSrvStatus );
-	BOOL bDeleted = DeleteService(hService);
+	bool bDeleted = DeleteService(hService);
 	CloseServiceHandle(hService);
 	CloseServiceHandle(hSCManager);	
 	return bDeleted;
 }
 
 
-BOOL EnableTokenPrivilege(LPCTSTR pszPrivilege)
+bool EnableTokenPrivilege(LPCTSTR pszPrivilege)
 {
 	// do it only once
 	static bool bEnabled = false;

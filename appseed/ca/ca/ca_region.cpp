@@ -14,7 +14,7 @@ namespace ca
    }
 
 
-   BOOL region::CreateRectRgn(int x1, int y1, int x2, int y2)
+   bool region::CreateRectRgn(int x1, int y1, int x2, int y2)
    {
 
       m_pta.remove_all();
@@ -30,7 +30,7 @@ namespace ca
 
    }
 
-   BOOL region::CreateRectRgnIndirect(LPCRECT lpRect)
+   bool region::CreateRectRgnIndirect(LPCRECT lpRect)
    {
 
       m_pta.remove_all();
@@ -46,7 +46,7 @@ namespace ca
 
    }
 
-   BOOL region::CreateEllipticRgn(int x1, int y1, int x2, int y2)
+   bool region::CreateEllipticRgn(int x1, int y1, int x2, int y2)
    {
 
       m_pta.remove_all();
@@ -62,7 +62,7 @@ namespace ca
 
    }
 
-   BOOL region::CreateEllipticRgnIndirect(LPCRECT lpRect)
+   bool region::CreateEllipticRgnIndirect(LPCRECT lpRect)
    {
 
       m_pta.remove_all();
@@ -78,7 +78,7 @@ namespace ca
 
    }
 
-   BOOL region::CreatePolygonRgn(LPPOINT lpPoints, int nCount, int nMode)
+   bool region::CreatePolygonRgn(LPPOINT lpPoints, int nCount, int nMode)
    {
 
       m_pta.remove_all();
@@ -96,7 +96,7 @@ namespace ca
 
    }
 
-   BOOL region::CreatePolyPolygonRgn(LPPOINT lpPoints, LPINT lpPolyCounts, int nCount, int nPolyFillMode)
+   bool region::CreatePolyPolygonRgn(LPPOINT lpPoints, LPINT lpPolyCounts, int nCount, int nPolyFillMode)
    {
 
       m_pta.remove_all();
@@ -122,7 +122,7 @@ namespace ca
 
    }
 
-   BOOL region::CreateRoundRectRgn(int x1, int y1, int x2, int y2, int x3, int y3)
+   bool region::CreateRoundRectRgn(int x1, int y1, int x2, int y2, int x3, int y3)
    {
 
       m_pta.remove_all();
@@ -140,7 +140,7 @@ namespace ca
 
    }
 
-   BOOL region::CreateFromPath(::ca::graphics * pgraphics)
+   bool region::CreateFromPath(::ca::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       throw interface_only_exception();
@@ -148,7 +148,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-   BOOL region::CreateFromData(const XFORM* lpXForm, int nCount, const RGNDATA* pRgnData)
+   bool region::CreateFromData(const XFORM* lpXForm, int nCount, const RGNDATA* pRgnData)
    {
       UNREFERENCED_PARAMETER(lpXForm);
       UNREFERENCED_PARAMETER(nCount);
@@ -194,7 +194,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL region::EqualRgn(const region* pRgn) const
+   bool region::EqualRgn(const region* pRgn) const
    {
       UNREFERENCED_PARAMETER(pRgn);
       throw interface_only_exception();
@@ -227,20 +227,20 @@ namespace ca
       return iRgn;
    }
 
-   BOOL region::PtInRegion(int x, int y) const
+   bool region::PtInRegion(int x, int y) const
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
       throw interface_only_exception();
    }
 
-   BOOL region::PtInRegion(POINT point) const
+   bool region::PtInRegion(POINT point) const
    {
       UNREFERENCED_PARAMETER(point);
       throw interface_only_exception();
    }
 
-   BOOL region::RectInRegion(LPCRECT lpRect) const
+   bool region::RectInRegion(LPCRECT lpRect) const
    {
       UNREFERENCED_PARAMETER(lpRect);
       throw interface_only_exception();

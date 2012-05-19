@@ -22,7 +22,7 @@
 
 #include "big5Prober.h"
 
-void  nsBig5Prober::Reset(void)
+void  nsBig5Prober::Reset()
 {
   mCodingSM->Reset(); 
   mState = eDetecting;
@@ -69,7 +69,7 @@ nsProbingState nsBig5Prober::HandleData(const char* aBuf, PRUint32 aLen)
   return mState;
 }
 
-float nsBig5Prober::GetConfidence(void)
+float nsBig5Prober::GetConfidence()
 {
   float distribCf = mDistributionAnalyser.GetConfidence();
 

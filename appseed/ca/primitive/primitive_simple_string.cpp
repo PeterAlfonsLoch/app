@@ -12,7 +12,7 @@
    if(g_pfixedallocaWstring != NULL)
       return g_pfixedallocaWstring;
    fixed_alloc_array * pa = new fixed_alloc_array();
-   BOOL bEnable = __enable_memory_tracking(FALSE);
+   bool bEnable = __enable_memory_tracking(FALSE);
    int iCharSize = 2;
    try
    {

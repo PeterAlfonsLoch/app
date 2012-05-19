@@ -79,7 +79,7 @@ void html_view::dump(dump_context & dumpcontext) const
 #endif //_DEBUG
 
 
-BOOL html_view::pre_create_window(CREATESTRUCT& cs)
+bool html_view::pre_create_window(CREATESTRUCT& cs)
 {
    cs.lpszClass = System.RegisterWndClass(
       CS_DBLCLKS |

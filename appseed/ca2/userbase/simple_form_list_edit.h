@@ -21,7 +21,7 @@ public:
    ::user::list * GetBaseListInterface();
    
 
-   BOOL OnEraseBkgnd(::ca::graphics * pgraphics);
+   bool OnEraseBkgnd(::ca::graphics * pgraphics);
    int OnCreate(LPCREATESTRUCT lpCreateStruct);
    void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
    void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);

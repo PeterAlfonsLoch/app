@@ -142,7 +142,7 @@ zlib_local static_tree_desc  static_bl_desc =
  * Local (static) routines in this spfile->
  */
 
-zlib_local void tr_static_init OF((void));
+zlib_local void tr_static_init OF(());
 zlib_local void init_block     OF((deflate_state *s));
 zlib_local void pqdownheap     OF((deflate_state *s, ct_data *tree, int k));
 zlib_local void gen_bitlen     OF((deflate_state *s, tree_desc *desc));
@@ -163,7 +163,7 @@ zlib_local void copy_block     OF((deflate_state *s, charf *buf, unsigned len,
                               int header));
 
 #ifdef GEN_TREES_H
-zlib_local void gen_trees_header OF((void));
+zlib_local void gen_trees_header OF(());
 #endif
 
 #ifndef DEBUG

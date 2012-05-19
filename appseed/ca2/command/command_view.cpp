@@ -78,7 +78,7 @@ namespace command
    // view
 
 
-   BOOL view::pre_create_window(CREATESTRUCT& cs)
+   bool view::pre_create_window(CREATESTRUCT& cs)
    {
       cs.lpszClass = Application.RegisterWndClass(
 		   CS_DBLCLKS |

@@ -45,16 +45,16 @@ public:
    virtual void add_document_template(document_template * ptemplate);
    virtual count get_template_count() const;
    virtual document_template * get_template(index index) const;
-   virtual void RegisterShellFileTypes(BOOL bCompat);
+   virtual void RegisterShellFileTypes(bool bCompat);
    void UnregisterShellFileTypes();
    virtual void request(::ca::create_context * pcreatecontext); // open named file
-   virtual BOOL save_all_modified(); // save before exit
-   virtual void close_all_documents(BOOL bEndSession); // close documents before exiting
+   virtual bool save_all_modified(); // save before exit
+   virtual void close_all_documents(bool bEndSession); // close documents before exiting
    virtual count get_open_document_count();
 
-   virtual BOOL do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, BOOL bOpenFileDialog, document_template * ptemplate, ::document * pdocument);
+   virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate, ::document * pdocument);
 
-   virtual BOOL OnDDECommand(LPTSTR lpszCommand);
+   virtual bool OnDDECommand(LPTSTR lpszCommand);
    virtual void _001OnFileNew();
    virtual void on_file_open();
 

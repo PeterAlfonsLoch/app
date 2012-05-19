@@ -16,7 +16,7 @@ namespace userbase
 
       virtual void ResizeToFit();
 
-      virtual ::ca::font * _001GetFont(void);
+      virtual ::ca::font * _001GetFont();
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 

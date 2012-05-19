@@ -16,7 +16,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 
-BOOL __extract_sub_string(string & rString, const char * lpszFullString,
+bool __extract_sub_string(string & rString, const char * lpszFullString,
    int iSubString, char chSep)
 {
    if (lpszFullString == NULL)

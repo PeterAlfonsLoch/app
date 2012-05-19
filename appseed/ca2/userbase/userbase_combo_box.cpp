@@ -25,7 +25,7 @@ namespace userbase
    void combo_box::DeleteItem(LPDELETEITEMSTRUCT)
       { /* default to nothing */ }
 
-   BOOL combo_box::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam,
+   bool combo_box::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam,
       LRESULT* pResult)
    {
       UNREFERENCED_PARAMETER(wParam);
@@ -70,17 +70,17 @@ namespace userbase
    index combo_box::set_cur_sel(index nSelect)
       { ASSERT(IsWindow()); return (index)SendMessage( CB_SETCURSEL, nSelect, 0); }
    //IA64: Assuming retval of CB_GETEDITSEL won't be expanded
-   BOOL combo_box::GetEditSel(strsize & nStartChar, strsize & nEndChar)
+   bool combo_box::GetEditSel(strsize & nStartChar, strsize & nEndChar)
    { 
       ASSERT(IsWindow()); DWORD dw = DWORD(SendMessage( CB_GETEDITSEL, 0, 0)); 
       nStartChar = LOWORD(dw);
       nEndChar = LOWORD(dw);
       return TRUE;
    }
-   BOOL combo_box::LimitText(strsize nMaxChars)
-      { ASSERT(IsWindow()); return (BOOL)SendMessage( CB_LIMITTEXT, nMaxChars, 0); }
-   BOOL combo_box::SetEditSel(strsize nStartChar, strsize nEndChar)
-      { ASSERT(IsWindow()); return (BOOL)SendMessage( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)); }
+   bool combo_box::LimitText(strsize nMaxChars)
+      { ASSERT(IsWindow()); return (bool)SendMessage( CB_LIMITTEXT, nMaxChars, 0); }
+   bool combo_box::SetEditSel(strsize nStartChar, strsize nEndChar)
+      { ASSERT(IsWindow()); return (bool)SendMessage( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)); }
    DWORD_PTR combo_box::GetItemData(index nIndex)
    { 
       
@@ -129,7 +129,7 @@ namespace userbase
 
    }
 
-   void combo_box::ShowDropDown(BOOL bShowIt)
+   void combo_box::ShowDropDown(bool bShowIt)
    { 
       
       ASSERT(IsWindow());
@@ -264,7 +264,7 @@ namespace userbase
    
    }
    
-   int combo_box::SetExtendedUI(BOOL bExtended)
+   int combo_box::SetExtendedUI(bool bExtended)
    { 
       
       ASSERT(IsWindow()); 
@@ -273,12 +273,12 @@ namespace userbase
    
    }
 
-   BOOL combo_box::GetExtendedUI()
+   bool combo_box::GetExtendedUI()
    {
       
       ASSERT(IsWindow()); 
       
-      return (BOOL)SendMessage( CB_GETEXTENDEDUI, 0, 0L);
+      return (bool)SendMessage( CB_GETEXTENDEDUI, 0, 0L);
    
    }
 
@@ -291,12 +291,12 @@ namespace userbase
    
    }
 
-   BOOL combo_box::GetDroppedState()
+   bool combo_box::GetDroppedState()
    { 
       
       ASSERT(IsWindow()); 
       
-      return (BOOL)SendMessage( CB_GETDROPPEDSTATE, 0, 0L);
+      return (bool)SendMessage( CB_GETDROPPEDSTATE, 0, 0L);
    
    }
 

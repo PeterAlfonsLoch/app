@@ -15,14 +15,23 @@ namespace filemanager
    {
    public:
 
+      
       class create_image_list_thread :
          public ::radix::thread
       {
       public:
-         create_image_list_thread(::ca::application * papp);
-         virtual BOOL run();
+         
+         
          SimpleFileListInterface * m_plist;
+
+
+         create_image_list_thread(::ca::application * papp);
+
+         virtual int run();
+
+
       };
+
 
       enum EArrange
       {

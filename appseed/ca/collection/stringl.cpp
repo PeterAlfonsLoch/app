@@ -108,7 +108,7 @@ void stringl::explode(const char * lpcszSeparator, const char * psz)
 }
 
 
-void stringl::add_tail_tokens(const char * lpcsz, const char * lpcszSeparator, BOOL bAddEmpty)
+void stringl::add_tail_tokens(const char * lpcsz, const char * lpcszSeparator, bool bAddEmpty)
 {
    string_tokenizer strTokenizer(lpcsz);
    string strToken;

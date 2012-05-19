@@ -20,7 +20,7 @@ namespace userbase
 
 
 
-   BOOL split_bar::create(split_layout * pparent)
+   bool split_bar::create(split_layout * pparent)
    {
       m_pparent = pparent;
 //      int nClassStyle = 0;
@@ -66,7 +66,7 @@ namespace userbase
    }
 
 
-   BOOL split_bar::pre_create_window(CREATESTRUCT& cs)
+   bool split_bar::pre_create_window(CREATESTRUCT& cs)
    {
       cs.style &= ~WS_BORDER;
 

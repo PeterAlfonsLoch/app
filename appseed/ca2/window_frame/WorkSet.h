@@ -137,7 +137,7 @@ namespace window_frame
 
       void SetAppearanceTransparency(EAppearanceTransparency nTransparency);
       void SetFrameSchemaStyle(int nStyle);
-      void SetActiveFlag(BOOL fActive);
+      void SetActiveFlag(bool fActive);
       void SetSWPFlags(UINT uiFlags);
 
       EAppearanceMode GetAppearanceMode();

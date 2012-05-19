@@ -49,7 +49,7 @@ void getWord( char **inBuf, char *outBuf, int len );
 DWORD genCDPlayerIniIndex( HCDROM hCD );
 void MSB2DWORD( DWORD *d, BYTE *b );
 DWORD getDiskInfoCDPlayerIni( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int maxLen );
-BOOL isCDinCDPlayerIni( char *s );
+bool isCDinCDPlayerIni( char *s );
 void addCDPlayerCDDBIndex( DWORD cdpIdx, DWORD cddbId, DWORD numTracks, DWORD offsets[100] );
 void writeCDPlayerIniEntry( LPCDDBQUERYITEM lpq, char *szCDDBEntry );
 char *base64Encode( char *tgt, BYTE *src );
@@ -75,8 +75,8 @@ extern BYTE alAspiErr;
 
 extern DWORD (*pfnSendASPI32Command)(LPSRB);
 
-//static BOOL bCacheInitMutex = FALSE;
-static BOOL bCacheInit = FALSE;
+//static bool bCacheInitMutex = FALSE;
+static bool bCacheInit = FALSE;
 
 static char szCacheDir[MAX_PATH+1];
 //static HANDLE hCacheMutex = NULL;
@@ -85,20 +85,20 @@ static char szCacheDir[MAX_PATH+1];
 static char szCDPlayerIni[] = "cdplayer.ini";
 static char szProxyAddr[256] = "";
 static char szUserAuth[129] = "";
-static BOOL bProxyAuth = FALSE;
+static bool bProxyAuth = FALSE;
 static int  iProxyPort = 0;
 static char szCDDBServer[256] = "freedb.freedb.org";
-static BOOL bUseProxy = FALSE;
+static bool bUseProxy = FALSE;
 static char szAgent[61] = "akrip32dll 0.91";
 static char szUser[65] = "user@akrip.sourceforge.net";
 static char szCddbCGI[81] = "/~cddb/cddb.cgi";
 static char szSubmitCGI[81] = "/~cddb/submit.cgi";
 static int  iHTTPPort = 80;
-static BOOL bUseCDPlayerIni = TRUE;
+static bool bUseCDPlayerIni = TRUE;
 //static DWORD dwCDDB2CDPlayer[20][3];
 static CDDB2CDPLAYER cddb2cdplayer[20];
 static int iNextIndex = -1;
-static BOOL bUseHTTP1_0 = TRUE;
+static bool bUseHTTP1_0 = TRUE;
 static int protoLevel = 5;
 
 DWORD CDDBSum( DWORD n )
@@ -135,7 +135,7 @@ DWORD GetCDDBDiskID( HCDROM hCD, DWORD *pID, int numEntries )
   DWORD n;
   int i;
   int j;
-  BOOL bMSF;
+  bool bMSF;
 
   *pID = 0;
 
@@ -193,7 +193,7 @@ DWORD GetCDDBDiskID( HCDROM hCD, DWORD *pID, int numEntries )
 }
 
 
-BOOL InitCache( const char * lpszDir )
+bool InitCache( const char * lpszDir )
 {
   if ( bCacheInit )
     return FALSE;
@@ -396,9 +396,9 @@ DWORD CDDBQuery( HCDROM hCD, LPCDDBQUERY lpq )
       return SS_ERR;
     }
 
-  pdwId = GlobalAlloc( GPTR, 103 * sizeof(DWORD) );
-  cmd = GlobalAlloc( GPTR, 1024 );
-  retBuf = GlobalAlloc( GPTR, 2048 );
+  pdwId = (LPDWORD) GlobalAlloc( GPTR, 103 * sizeof(DWORD) );
+  cmd = (char *) GlobalAlloc( GPTR, 1024 );
+  retBuf = (char *) GlobalAlloc( GPTR, 2048 );
   if ( !cmd || !pdwId || !retBuf )
     {
       if ( cmd ) GlobalFree( (HGLOBAL)cmd );
@@ -514,7 +514,7 @@ void CDDBSetOption( int what, char *szVal, int iVal )
       break;
 
     case CDDB_OPT_USEPROXY:
-      bUseProxy = (BOOL)iVal;
+      bUseProxy = (bool)iVal;
       break;
 
     case CDDB_OPT_HTTPPORT:
@@ -522,18 +522,18 @@ void CDDBSetOption( int what, char *szVal, int iVal )
       break;
 
     case CDDB_OPT_USECDPLAYERINI:
-      bUseCDPlayerIni = (BOOL)iVal;
+      bUseCDPlayerIni = (bool)iVal;
       break;
 
     case CDDB_OPT_USEHTTP1_0:
-      bUseHTTP1_0 = (BOOL)iVal;
+      bUseHTTP1_0 = (bool)iVal;
       break;
     
     case CDDB_OPT_USERAUTH:
       if ( szVal != NULL )
       {
         char tmp[121];
-        base64Encode( tmp, szVal );
+        base64Encode( tmp, (BYTE *) szVal );
         lstrcpyn( szUserAuth, tmp, 129 );
         bProxyAuth = TRUE;
       }
@@ -1014,7 +1014,7 @@ void getWord( char **inBuf, char *outBuf, int len )
 DWORD genCDPlayerIniIndex( HCDROM hCD )
 {
   DWORD retVal = 0;
-  BOOL bMSF;
+  bool bMSF;
   int idx = (int)hCD - 1;
   int i;
   TOC toc;
@@ -1159,13 +1159,13 @@ DWORD getDiskInfoCDPlayerIni( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int maxLen
 }
 
 
-BOOL isCDinCDPlayerIni( char *s )
+bool isCDinCDPlayerIni( char *s )
 {
   UINT uiVal;
 
   uiVal = GetPrivateProfileInt( s, "NUMTRACKS", 0, "cdplayer.ini" );
 
-  return (BOOL)uiVal;
+  return (bool)uiVal;
 }
 
 
@@ -1268,7 +1268,7 @@ void writeCDPlayerIniEntry( LPCDDBQUERYITEM lpq, char *szCDDBEntry )
 }
 
 
-DWORD CDDBSubmit( DWORD dwDiscID, BOOL bTest, char *szEmail, char *szCategory,
+DWORD CDDBSubmit( DWORD dwDiscID, bool bTest, char *szEmail, char *szCategory,
 		  char *szEntry )
 {
   DWORD dwRetVal = SS_COMP;
@@ -1341,7 +1341,7 @@ static char base64_pad = '=';
 
 char *base64Encode( char *tgt, BYTE *src )
 {
-  int len = lstrlen( src );
+  int len = lstrlen( (LPCTSTR) src );
   int i = 0;
   
   while( len > 2 ) {

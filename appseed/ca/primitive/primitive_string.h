@@ -160,7 +160,7 @@ public:
    static void                   ConvertToAnsi(char* pstrString,size_t size);
    static void          __cdecl  FloodCharacters(char ch,strsize nLength, char* pch ) throw();
    static BSTR          __cdecl  AllocSysString( const char* pchData, strsize nDataLength ) throw();
-   static BOOL          __cdecl  ReAllocSysString( const char* pchData,BSTR* pbstr,strsize nDataLength ) throw();
+   static bool          __cdecl  ReAllocSysString( const char* pchData,BSTR* pbstr,strsize nDataLength ) throw();
    static DWORD         __cdecl  FormatMessage(DWORD dwFlags, LPCVOID pSource, DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer, DWORD nSize, va_list* pArguments ) throw();
    static DWORD         __cdecl  format_message(DWORD dwFlags, LPCVOID pSource, DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer, DWORD nSize, va_list* pArguments ) throw();
    static strsize           __cdecl  SafeStringLen( const char * psz ) throw();
@@ -572,13 +572,13 @@ public:
    BSTR SetSysString(BSTR* pbstr ) const;
 
    // Set the string to the value of environment var 'pszVar'
-   BOOL GetEnvironmentVariable(PCXSTR pszVar );
+   bool GetEnvironmentVariable(PCXSTR pszVar );
 
    // Load the string from resource 'nID'
    bool load_string(::ca::application * papp, id id);
 
    // Load the string from resource 'nID' in module 'hInstance'
-   /*    BOOL load_string(HINSTANCE hInstance,strsize nID )
+   /*    bool load_string(HINSTANCE hInstance,strsize nID )
    {
    const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID );
    if( pImage == NULL )
@@ -595,7 +595,7 @@ public:
    }*/
 
    // Load the string from resource 'nID' in module 'hInstance', using language 'wLanguageID'
-   /*BOOL load_string(HINSTANCE hInstance,strsize nID,WORD wLanguageID )
+   /*bool load_string(HINSTANCE hInstance,strsize nID,WORD wLanguageID )
    {
    const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID, wLanguageID );
    if( pImage == NULL )

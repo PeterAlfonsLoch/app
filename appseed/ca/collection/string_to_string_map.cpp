@@ -21,7 +21,7 @@ base_string_to_string_map::base_string_to_string_map(INT_PTR nBlockSize)
 }
 
 void base_string_to_string_map::InitHashTable(
-   UINT nHashSize, BOOL bAllocNow)
+   UINT nHashSize, bool bAllocNow)
 //
 // Used to force allocation of a hash table or to override the default
 //   hash table size of (which is fairly small)
@@ -175,7 +175,7 @@ base_string_to_string_map::pair *base_string_to_string_map::PLookup(const string
    return pAssoc;
 }
 
-BOOL base_string_to_string_map::Lookup(const string & key, string & rValue) const
+bool base_string_to_string_map::Lookup(const string & key, string & rValue) const
 {
    ASSERT_VALID(this);
 
@@ -188,7 +188,7 @@ BOOL base_string_to_string_map::Lookup(const string & key, string & rValue) cons
    return TRUE;
 }
 
-BOOL base_string_to_string_map::LookupKey(const string & key, string & rKey) const
+bool base_string_to_string_map::LookupKey(const string & key, string & rKey) const
 {
    ASSERT_VALID(this);
 
@@ -225,7 +225,7 @@ string & base_string_to_string_map::operator[](const string & key)
 }
 
 
-BOOL base_string_to_string_map::RemoveKey(const string & key)
+bool base_string_to_string_map::RemoveKey(const string & key)
 // remove key - return TRUE if removed
 {
    ASSERT_VALID(this);

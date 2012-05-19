@@ -178,7 +178,7 @@ namespace plugin
       }
    }
 
-   BOOL host_interaction::IsWindowVisible()
+   bool host_interaction::IsWindowVisible()
    {
       // it is a regular operational system invisible window whose visibility should be controlled by plugin.
       // So, do not let children be invisible because this invisible host is invisible...
@@ -193,7 +193,7 @@ namespace plugin
    }
    
 
-   BOOL host_interaction::RedrawWindow(LPCRECT lpRectUpdate, ::ca::region* prgnUpdate, UINT flags)
+   bool host_interaction::RedrawWindow(LPCRECT lpRectUpdate, ::ca::region* prgnUpdate, UINT flags)
    { 
       UNREFERENCED_PARAMETER(lpRectUpdate);
       UNREFERENCED_PARAMETER(prgnUpdate);

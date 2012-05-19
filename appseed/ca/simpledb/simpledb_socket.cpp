@@ -31,7 +31,7 @@ namespace simpledb
       m_memfileBody.Truncate(0);*/
    }
 
-   socket::~socket(void)
+   socket::~socket()
    {
    }
 

@@ -51,7 +51,7 @@ public:
 
    bool                    m_bQueueDocumentOpening;
    gen::property_set       m_set;
-   BOOL                    m_bAutoDelete;
+   bool                    m_bAutoDelete;
    // back pointer to OLE or other server (NULL if none or disabled)
    ::radix::object *       m_pAttachedFactory;
 
@@ -92,18 +92,18 @@ public:
    virtual void add_document(::user::document_interface * pDoc);      // must override
    virtual void remove_document(::user::document_interface * pDoc);   // must override
 
-   virtual BOOL GetDocString(string & rString, enum DocStringIndex index) const; // get one of the info strings
+   virtual bool GetDocString(string & rString, enum DocStringIndex index) const; // get one of the info strings
    //frame_window* CreateOleFrame(::ca::window* pParentWnd, ::user::document_interface * pDoc,
-   //   BOOL bCreateView);
+   //   bool bCreateView);
 
    void update_all_views(::view * pviewSender, LPARAM lhint, ::radix::object * puh);
 
    virtual Confidence MatchDocType(const char * lpszPathName, ::user::document_interface *& rpDocMatch);
    virtual ::user::document_interface * create_new_document();
    virtual frame_window* create_new_frame(::user::document_interface * pDoc, frame_window* pOther, ::ca::create_context * pcreatecontext);
-   virtual void InitialUpdateFrame(frame_window* pFrame, ::user::document_interface * pDoc, BOOL bMakeVisible = TRUE);
-   virtual BOOL save_all_modified();     // for all documents
-   virtual void close_all_documents(BOOL bEndSession);
+   virtual void InitialUpdateFrame(frame_window* pFrame, ::user::document_interface * pDoc, bool bMakeVisible = TRUE);
+   virtual bool save_all_modified();     // for all documents
+   virtual void close_all_documents(bool bEndSession);
    virtual void request(::ca::create_context * pcreatecontext) = 0;
                // open named file
                // if lpszPathName == NULL => create new file with this type

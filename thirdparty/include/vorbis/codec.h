@@ -179,7 +179,7 @@ extern void     vorbis_dsp_clear(vorbis_dsp_state *v);
 extern double   vorbis_granule_time(vorbis_dsp_state *v,
                                     ogg_int64_t granulepos);
 
-extern const char *vorbis_version_string(void);
+extern const char *vorbis_version_string();
 
 /* Vorbis PRIMITIVES: analysis/DSP layer ****************************/
 

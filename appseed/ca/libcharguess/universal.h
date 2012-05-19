@@ -42,9 +42,9 @@ public:
    nsUniversalDetector();
    virtual ~nsUniversalDetector();
    virtual void HandleData(const char* aBuf, PRUint32 aLen);
-   virtual void DataEnd(void);
+   virtual void DataEnd();
    virtual void Reset();
-   virtual const char* GetCharset(void);
+   virtual const char* GetCharset();
 
 protected:
    virtual void Report(const char* aCharset);

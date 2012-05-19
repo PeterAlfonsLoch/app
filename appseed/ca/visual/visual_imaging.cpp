@@ -1562,7 +1562,7 @@ void imaging::BitmapBlend24CC(
       bf.SourceConstantAlpha = 0xFF;
       bf.AlphaFormat = AC_SRC_ALPHA;
 
-      BOOL bOk;
+      bool bOk;
 
       try
       {
@@ -1663,7 +1663,7 @@ void imaging::BitmapBlend24CC(
    bf.SourceConstantAlpha = uchAlphaConstant;
    bf.AlphaFormat = AC_SRC_ALPHA;
 
-   BOOL bOk;
+   bool bOk;
    try
    {
       pdibB->get_graphics()->alpha_blend(size, pdibA->get_graphics(), bf);
@@ -1754,7 +1754,7 @@ void imaging::BitmapBlend24CC(
    bf.SourceConstantAlpha = uchAlphaConstant;
    bf.AlphaFormat = AC_SRC_ALPHA;
 
-   BOOL bOk;
+   bool bOk;
    try
    {
       pdibB->get_graphics()->alpha_blend(size, pdibC->get_graphics(), bf);
@@ -1859,7 +1859,7 @@ bool imaging::BitmapBlend2(
    bf.SourceConstantAlpha = 0xFF;
    bf.AlphaFormat = AC_SRC_ALPHA;
 
-   BOOL bOk;
+   bool bOk;
    try
    {
       dibB->get_graphics()->alpha_blend(size, dibA->get_graphics(), bf);
@@ -2558,7 +2558,7 @@ bool imaging::prepare_blend(::ca::dib * pdib, point pt, size size, COLORREF cr, 
 
    pdibWork->mult_alpha(NULL);
 
-   BOOL bOk ;
+   bool bOk ;
    try
    {
       bOk = pdib->get_graphics()->BitBlt(pt.x, pt.y, size.cx, size.cy, pdibWork->get_graphics(), null_point().x, null_point().y, SRCCOPY);
@@ -2958,7 +2958,7 @@ bool imaging::CreateBitmap(::ca::graphics *pdc, ::ca::bitmap * pbitmapOld, ::ca:
 
 /*
 HBITMAP
-imaging::LoadSysColorBitmap(::ca::graphics * pdcCompatible, HINSTANCE hInst, HRSRC hRsrc, BOOL bMono)
+imaging::LoadSysColorBitmap(::ca::graphics * pdcCompatible, HINSTANCE hInst, HRSRC hRsrc, bool bMono)
 {
    HGLOBAL hglb;
    if ((hglb = LoadResource(hInst, hRsrc)) == NULL)

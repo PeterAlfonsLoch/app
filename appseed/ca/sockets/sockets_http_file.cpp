@@ -28,7 +28,7 @@ namespace sockets
 
       }
       
-      BOOL file::open(const char * lpszFileName, UINT nOpenFlags, ex1::file_exception_sp * pError)
+      bool file::open(const char * lpszFileName, UINT nOpenFlags, ex1::file_exception_sp * pError)
       {
          UNREFERENCED_PARAMETER(pError);
          ca4::http::signal * psignal = new ca4::http::signal;

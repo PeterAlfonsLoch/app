@@ -121,7 +121,7 @@ namespace user
       void set_timer(array_ptr_alloc < timer_item > timera);
 
 
-      virtual BOOL IsWindow();
+      virtual bool IsWindow();
 
       virtual LONG GetWindowLong(int nIndex);
       virtual LONG SetWindowLong(int nIndex, LONG lValue);
@@ -140,13 +140,13 @@ namespace user
 
 
 
-      virtual BOOL CheckAutoCenter();
+      virtual bool CheckAutoCenter();
 
       virtual void track_mouse_hover();
       virtual void track_mouse_leave();
 
       // dialog support
-      void UpdateDialogControls(command_target* pTarget, BOOL bDisableIfNoHndler);
+      void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
       virtual void CenterWindow(interaction * pAlternateOwner = NULL);
       virtual id   RunModalLoop(DWORD dwFlags = 0, ::ca::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int iLevel);
@@ -166,8 +166,8 @@ namespace user
       virtual bool ShowWindowFullScreen(bool bFullScreen = true);
       virtual bool IsIconic();
       virtual void MoveWindow(int x, int y, int nWidth, int nHeight,
-               BOOL bRepaint = TRUE);
-      virtual void MoveWindow(LPCRECT lpRect, BOOL bRepaint = TRUE);
+               bool bRepaint = TRUE);
+      virtual void MoveWindow(LPCRECT lpRect, bool bRepaint = TRUE);
       virtual void GetClientRect(LPRECT lprect);
       virtual void GetClientRect(__rect64 * lprect);
       virtual void GetWindowRect(LPRECT lprect);
@@ -184,7 +184,7 @@ namespace user
       virtual void ScreenToClient(__point64 * lprect);
       virtual bool SetWindowPos(int z, int x, int y, int cx, int cy, UINT nFlags);
       virtual bool set_placement(LPRECT lprect);
-      virtual int SetWindowRgn(HRGN hRgn, BOOL bRedraw);
+      virtual int SetWindowRgn(HRGN hRgn, bool bRedraw);
       virtual int GetWindowRgn(HRGN hRgn);
 
       virtual void layout();
@@ -192,14 +192,14 @@ namespace user
       virtual bool BringWindowToTop();
 
 
-      virtual BOOL GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
-      virtual BOOL SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
+      virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
+      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
 
 
-      virtual BOOL SendChildNotifyLastMsg(LRESULT* pResult = NULL);
+      virtual bool SendChildNotifyLastMsg(LRESULT* pResult = NULL);
 
 
-      virtual BOOL pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(CREATESTRUCT& cs);
 
 
       virtual bool subclass_window(void * posdata);
@@ -207,23 +207,23 @@ namespace user
 
 
       virtual bool create(interaction *pparent, id id);
-      virtual BOOL create_window(const char * lpszClassName,
+      virtual bool create_window(const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
          const RECT& rect,
          interaction* pParentWnd, id id,
          ::ca::create_context* pContext = NULL);
       using ::ex1::request_interface::create;
-      virtual BOOL create(const char * lpszClassName,
+      virtual bool create(const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
          const RECT& rect,
          interaction* pParentWnd, id id,
          ::ca::create_context* pContext = NULL);
-      virtual BOOL CreateEx(DWORD dwExStyle, const char * lpszClassName,
+      virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
          const RECT& rect,
          interaction* pParentWnd, id id,
          LPVOID lpParam = NULL);
-      virtual BOOL create_window_ex(DWORD dwExStyle, const char * lpszClassName,
+      virtual bool create_window_ex(DWORD dwExStyle, const char * lpszClassName,
          const char * lpszWindowName, DWORD dwStyle,
          const RECT& rect,
          interaction* pParentWnd, id id,
@@ -232,33 +232,33 @@ namespace user
       virtual void CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType = adjustBorder);
       virtual frame_window * GetParentFrame();
 
-      virtual BOOL IsTopParentActive();
+      virtual bool IsTopParentActive();
       virtual void ActivateTopParent();
 
-      virtual BOOL DestroyWindow();
+      virtual bool DestroyWindow();
 
 
 #ifdef WINDOWS
-      virtual BOOL RedrawWindow(LPCRECT lpRectUpdate = NULL,
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
          ::ca::region* prgnUpdate = NULL,
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
 #else
-      virtual BOOL RedrawWindow(LPCRECT lpRectUpdate = NULL,
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
          ::ca::region* prgnUpdate = NULL,
          UINT flags = 0);
 #endif
 
 
       virtual void UpdateWindow();
-      virtual void SetRedraw(BOOL bRedraw = TRUE);
-      virtual BOOL GetUpdateRect(LPRECT lpRect, BOOL bErase = FALSE);
-      virtual int GetUpdateRgn(::ca::region* pRgn, BOOL bErase = FALSE);
-      virtual void Invalidate(BOOL bErase = TRUE);
-      virtual void InvalidateRect(LPCRECT lpRect, BOOL bErase = TRUE);
-      virtual void InvalidateRgn(::ca::region* pRgn, BOOL bErase = TRUE);
+      virtual void SetRedraw(bool bRedraw = TRUE);
+      virtual bool GetUpdateRect(LPRECT lpRect, bool bErase = FALSE);
+      virtual int GetUpdateRgn(::ca::region* pRgn, bool bErase = FALSE);
+      virtual void Invalidate(bool bErase = TRUE);
+      virtual void InvalidateRect(LPCRECT lpRect, bool bErase = TRUE);
+      virtual void InvalidateRgn(::ca::region* pRgn, bool bErase = TRUE);
       virtual void ValidateRect(LPCRECT lpRect);
       virtual void ValidateRgn(::ca::region* pRgn);
-      virtual void ShowOwnedPopups(BOOL bShow = TRUE);
+      virtual void ShowOwnedPopups(bool bShow = TRUE);
 
 
       virtual DWORD GetStyle();
@@ -266,31 +266,31 @@ namespace user
       virtual LRESULT Default();
 
       virtual LRESULT SendMessage(::gen::message::base * pbase);
-      virtual BOOL PostMessage(::gen::message::base * pbase);
+      virtual bool PostMessage(::gen::message::base * pbase);
       virtual LRESULT SendMessage(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
-      virtual BOOL PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
+      virtual bool PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
 
-      virtual BOOL ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
-      virtual BOOL ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
-      virtual BOOL ShowWindow(int nCmdShow);
-      virtual BOOL IsFrameWnd();
+      virtual bool ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
+      virtual bool ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
+      virtual bool ShowWindow(int nCmdShow);
+      virtual bool IsFrameWnd();
 
    // Timer Functions
       virtual UINT_PTR SetTimer(UINT_PTR nIDEvent, UINT nElapse,
          void (CALLBACK* lpfnTimer)(HWND, UINT, UINT_PTR, DWORD));
-      virtual BOOL KillTimer(UINT_PTR nIDEvent);
+      virtual bool KillTimer(UINT_PTR nIDEvent);
 
-      virtual BOOL IsWindowEnabled();
-      virtual BOOL EnableWindow(BOOL bEnable = TRUE);
+      virtual bool IsWindowEnabled();
+      virtual bool EnableWindow(bool bEnable = TRUE);
 
       virtual void _001Print(::ca::graphics * pdc);
       virtual void _000OnDraw(::ca::graphics *pdc);
       virtual void _001DrawThis(::ca::graphics *pdc);
       virtual void _001DrawChildren(::ca::graphics *pdc);
       virtual ::ca::graphics * GetDC();
-      virtual BOOL ReleaseDC(::ca::graphics *);
+      virtual bool ReleaseDC(::ca::graphics *);
 
-      virtual BOOL IsChild(interaction *  pWnd);
+      virtual bool IsChild(interaction *  pWnd);
       virtual window_interface * window_interface_get_parent();
       virtual interaction * GetParent();
       virtual interaction * SetParent(interaction * pguieParent);
@@ -303,7 +303,7 @@ namespace user
 
       virtual bool has_focus();
       virtual interaction * SetFocus();
-      virtual BOOL SetForegroundWindow();
+      virtual bool SetForegroundWindow();
       virtual interaction * GetActiveWindow();
       virtual interaction * SetActiveWindow();
 
@@ -316,11 +316,11 @@ namespace user
       virtual strsize GetWindowText(LPTSTR lpszStringBuf, int nMaxCount);
       virtual void GetWindowText(string & rString);
       virtual strsize GetWindowTextLength();
-      virtual void SetFont(::ca::font* pFont, BOOL bRedraw = TRUE);
+      virtual void SetFont(::ca::font* pFont, bool bRedraw = TRUE);
       virtual ::ca::font* GetFont();
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
-      virtual BOOL IsWindowVisible();
+      virtual bool IsWindowVisible();
 
       virtual void _000OnMouse(::gen::message::mouse * pmouse);
       virtual void _000OnKey(::gen::message::key * pkey);
@@ -371,7 +371,7 @@ namespace user
       virtual interaction* GetTopLevelParent();
       virtual interaction* EnsureTopLevelParent();
       virtual ::frame_window * GetTopLevelFrame();
-      virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0, LPARAM lParam = 0, BOOL bDeep = TRUE, BOOL bOnlyPerm = FALSE);
+      virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0, LPARAM lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
       virtual void pre_translate_message(gen::signal_object * pobj);
 
 
@@ -389,7 +389,7 @@ namespace user
          reposNoPosLeftOver=0x8000
       };
 
-      virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlag = reposDefault, LPRECT lpRectParam = NULL, LPCRECT lpRectClient = NULL, BOOL bStretch = TRUE);
+      virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlag = reposDefault, LPRECT lpRectParam = NULL, LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
       virtual interaction * GetOwner();
       virtual void SetOwner(interaction * pguie);
@@ -435,12 +435,12 @@ namespace user
    #ifdef WIN32
       HWND get_safe_handle();
       virtual HWND _get_handle();
-      virtual BOOL Attach(HWND hWndNew);
+      virtual bool Attach(HWND hWndNew);
       virtual HWND Detach();
    #else
       int get_safe_handle();
       virtual int _get_handle();
-      virtual BOOL Attach(int hWndNew);
+      virtual bool Attach(int hWndNew);
       virtual int Detach();
    #endif
 

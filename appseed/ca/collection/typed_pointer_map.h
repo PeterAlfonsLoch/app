@@ -13,7 +13,7 @@ public:
    }
 
    // Lookup
-   BOOL Lookup(typename BASE_CLASS::BASE_ARG_KEY key, VALUE& rValue) const
+   bool Lookup(typename BASE_CLASS::BASE_ARG_KEY key, VALUE& rValue) const
       { return BASE_CLASS::Lookup(key, (typename BASE_CLASS::BASE_VALUE&)rValue); }
 
    // Lookup and add if not there
@@ -25,7 +25,7 @@ public:
       { BASE_CLASS::set_at(key, newValue); }
 
    // removing existing (key, ?) pair
-   BOOL remove_key(KEY key)
+   bool remove_key(KEY key)
       { return BASE_CLASS::remove_key(key); }
 
    // iteration

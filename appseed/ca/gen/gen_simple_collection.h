@@ -126,7 +126,7 @@ namespace gen
       {
          return m_nSize;
          }
-         BOOL add(const T& t)
+         bool add(const T& t)
          {
             if(m_nSize == m_nAllocSize)
             {
@@ -155,14 +155,14 @@ namespace gen
             m_nSize++;
             return TRUE;
          }
-      BOOL remove(const T& t)
+      bool remove(const T& t)
       {
          int nIndex = find(t);
          if(nIndex == -1)
             return FALSE;
          return remove_at(nIndex);
       }
-      BOOL remove_at(int nIndex)
+      bool remove_at(int nIndex)
       {
          ASSERT(nIndex >= 0 && nIndex < m_nSize);
          if (nIndex < 0 || nIndex >= m_nSize)
@@ -218,7 +218,7 @@ namespace gen
          return -1;  // not found
       }
 
-      BOOL SetAtIndex(int nIndex, const T& t)
+      bool SetAtIndex(int nIndex, const T& t)
       {
          if (nIndex < 0 || nIndex >= m_nSize)
             return FALSE;
@@ -291,7 +291,7 @@ namespace gen
       {
          return m_nSize;
       }
-      BOOL add(const TKey& key, const TVal& val)
+      bool add(const TKey& key, const TVal& val)
       {
          TKey* pKey;
          pKey = (TKey*)_recalloc(m_aKey, (m_nSize + 1), sizeof(TKey));
@@ -307,14 +307,14 @@ namespace gen
          m_nSize++;
          return TRUE;
       }
-      BOOL remove(const TKey& key)
+      bool remove(const TKey& key)
       {
          int nIndex = FindKey(key);
          if(nIndex == -1)
             return FALSE;
          return remove_at(nIndex);
       }
-      BOOL remove_at(int nIndex)
+      bool remove_at(int nIndex)
       {
          ASSERT(nIndex >= 0 && nIndex < m_nSize);
          if (nIndex < 0 || nIndex >= m_nSize)
@@ -357,7 +357,7 @@ namespace gen
 
          m_nSize = 0;
       }
-      BOOL set_at(const TKey& key, const TVal& val)
+      bool set_at(const TKey& key, const TVal& val)
       {
          int nIndex = FindKey(key);
          if(nIndex == -1)
@@ -418,7 +418,7 @@ namespace gen
          return -1;  // not found
       }
 
-      BOOL SetAtIndex(int nIndex, const TKey& key, const TVal& val)
+      bool SetAtIndex(int nIndex, const TKey& key, const TVal& val)
       {
          if (nIndex < 0 || nIndex >= m_nSize)
             return FALSE;

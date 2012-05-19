@@ -619,7 +619,7 @@ int ZEXPORTVA gzprintf (gzFile file, const char *format, /* args */ ...)
     va_start(va, format);
 #ifdef NO_vsnprintf
 #  ifdef HAS_vsprintf_void
-    (void)vsprintf(buf, format, va);
+    ()vsprintf(buf, format, va);
     va_end(va);
     for (len = 0; len < sizeof(buf); len++)
         if (buf[len] == 0) break;
@@ -629,7 +629,7 @@ int ZEXPORTVA gzprintf (gzFile file, const char *format, /* args */ ...)
 #  endif
 #else
 #  ifdef HAS_vsnprintf_void
-    (void)vsnprintf(buf, sizeof(buf), format, va);
+    ()vsnprintf(buf, sizeof(buf), format, va);
     va_end(va);
     len = strlen(buf);
 #  else

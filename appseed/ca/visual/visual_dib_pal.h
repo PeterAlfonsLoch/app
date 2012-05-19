@@ -9,7 +9,7 @@ typedef void * HPALETTE;
 class DibPal
 {
 public:
-   DibPal(void);
+   DibPal();
 
    void create(::ca::dib * pdib);
 
@@ -17,5 +17,5 @@ public:
    HPALETTE m_hpalette;
 
 public:
-   virtual ~DibPal(void);
+   virtual ~DibPal();
 };

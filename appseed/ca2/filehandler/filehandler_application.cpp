@@ -11,7 +11,7 @@ namespace filehandler
       m_ppaneview       = NULL;
    }
 
-   application::~application(void)
+   application::~application()
    {
    }
 
@@ -50,9 +50,26 @@ namespace filehandler
       return TRUE;
    }
 
-   BOOL application::exit_instance()
+   int application::exit_instance()
    {
-      return TRUE;
+
+      int iExitCode = 0;
+
+      try
+      {
+         
+         iExitCode = ::cubebase::application::exit_instance();
+
+      }
+      catch(...)
+      {
+         
+         iExitCode = -1;
+
+      }
+
+      return  iExitCode;
+
    }
 
    void application::on_request(::ca::create_context * pcreatecontext)

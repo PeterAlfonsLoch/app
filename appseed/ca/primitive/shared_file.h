@@ -16,7 +16,7 @@ namespace primitive
 #endif
 
       virtual HGLOBAL detach_storage();
-      virtual void SetHandle(HGLOBAL hGlobalMemory, BOOL bAllowGrow = TRUE);
+      virtual void SetHandle(HGLOBAL hGlobalMemory, bool bAllowGrow = TRUE);
 
    public:
       virtual ~shared_file();

@@ -17,7 +17,7 @@ namespace dynamic_source
 
 
       script_cache(::ca::application * papp);
-      ~script_cache(void);
+      ~script_cache();
 
       script_manager * m_pmanager;
       script_instance * create_instance(const char * lpcszName);

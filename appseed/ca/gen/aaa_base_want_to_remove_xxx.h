@@ -57,7 +57,7 @@ struct __TERMFUNC_ELEM
 struct __OBJMAP_ENTRY20
 {
    const CLSID* pclsid;
-   HRESULT (WINAPI *pfnUpdateRegistry)(BOOL bRegister);
+   HRESULT (WINAPI *pfnUpdateRegistry)(bool bRegister);
    __CREATORFUNC* pfnGetClassObject;
    __CREATORFUNC* pfnCreateInstance;
    IUnknown* pCF;
@@ -71,7 +71,7 @@ struct __OBJMAP_ENTRY20
 /*struct __OBJMAP_ENTRY30
 {
    const CLSID* pclsid;
-   HRESULT (WINAPI *pfnUpdateRegistry)(BOOL bRegister);
+   HRESULT (WINAPI *pfnUpdateRegistry)(bool bRegister);
    __CREATORFUNC* pfnGetClassObject;
    __CREATORFUNC* pfnCreateInstance;
    IUnknown* pCF;
@@ -302,7 +302,7 @@ struct __INTMAP_ENTRY
 API gen_MarshalPtrInProc(IUnknown* pUnk, const IID& iid, IStream** ppStream);
 API gen_UnmarshalPtr(IStream* pStream, const IID& iid, IUnknown** ppUnk);
 
-API_(BOOL) gen_WaitWithMessageLoop(HANDLE hEvent);
+API_(bool) gen_WaitWithMessageLoop(HANDLE hEvent);
 
 /////////////////////////////////////////////////////////////////////////////
 // Connection Point Helpers
@@ -325,13 +325,13 @@ API gen_Unadvise(IUnknown* pUnkCP, const IID& iid, DWORD dw);
 
 //API gen_ComModuleGetClassObject(__COM_MODULE* pComModule, REFCLSID rclsid, REFIID riid, LPVOID* ppv);
 
-//API gen_ComModuleRegisterServer(__COM_MODULE* pComModule, BOOL bRegTypeLib, const CLSID* pCLSID = NULL);
-//API gen_ComModuleUnregisterServer(__COM_MODULE* pComModule, BOOL bUnRegTypeLib, const CLSID* pCLSID = NULL);
+//API gen_ComModuleRegisterServer(__COM_MODULE* pComModule, bool bRegTypeLib, const CLSID* pCLSID = NULL);
+//API gen_ComModuleUnregisterServer(__COM_MODULE* pComModule, bool bUnRegTypeLib, const CLSID* pCLSID = NULL);
 
-//API gen_RegisterClassCategoriesHelper( REFCLSID clsid, const struct __CATMAP_ENTRY* pCatMap, BOOL bRegister );
+//API gen_RegisterClassCategoriesHelper( REFCLSID clsid, const struct __CATMAP_ENTRY* pCatMap, bool bRegister );
 
 /*API gen_UpdateRegistryFromResourceD(HINSTANCE hInst, LPCOLESTR lpszRes,
-   BOOL bRegister, struct __REGMAP_ENTRY* pMapEntries, IRegistrar* pReg = NULL);*/
+   bool bRegister, struct __REGMAP_ENTRY* pMapEntries, IRegistrar* pReg = NULL);*/
 
 /*API gen_RegisterTypeLib(HINSTANCE hInstTypeLib, LPCOLESTR lpszIndex);
 API gen_UnRegisterTypeLib(HINSTANCE hInstTypeLib, LPCOLESTR lpszIndex);
@@ -340,12 +340,12 @@ API gen_LoadTypeLib(HINSTANCE hInstTypeLib, LPCOLESTR lpszIndex, BSTR* pbstrPath
 API_(DWORD) gen_GetVersion(void * pReserved);*/
 
 /*API gen_ModuleAddTermFunc(__MODULE* pModule, __TERMFUNC* pFunc, DWORD_PTR dw);
-API_(void) gen_CallTermFunc(__MODULE* pModule);
+API_() gen_CallTermFunc(__MODULE* pModule);
 
 API gen_WinModuleInit(__WIN_MODULE* pWinModule);
 APIINL gen_WinModuleTerm(__WIN_MODULE* pWinModule, HINSTANCE hInst);
 
-API_(void) gen_WinModuleAddCreateWndData(__WIN_MODULE* pWinModule, _AtlCreateWndData* pData, void * pObject);
+API_() gen_WinModuleAddCreateWndData(__WIN_MODULE* pWinModule, _AtlCreateWndData* pData, void * pObject);
 API_(void *) gen_WinModuleExtractCreateWndData(__WIN_MODULE* pWinModule);
 */
 /////////////////////////////////////////////////////////////////////////////
@@ -355,7 +355,7 @@ API_(void *) gen_WinModuleExtractCreateWndData(__WIN_MODULE* pWinModule);
 
 /////////////////////////////////////////////////////////////////////////////
 // GUID comparison
-/*inline BOOL WINAPI InlineIsEqualUnknown(REFGUID rguid1)
+/*inline bool WINAPI InlineIsEqualUnknown(REFGUID rguid1)
 {
    return (
      ((PLONG) &rguid1)[0] == 0 &&

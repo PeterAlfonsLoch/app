@@ -66,8 +66,8 @@ struct CLASS_DECL_ca AUX_DATA
    HBITMAP hbmMenuDot;
 
    // other system information
-   BOOL    bWin95;         // TRUE if Windows 95 (not NT)
-   BOOL    bWin4;
+   bool    bWin95;         // TRUE if Windows 95 (not NT)
+   bool    bWin4;
 
 // Implementation
    AUX_DATA();
@@ -188,12 +188,12 @@ typedef struct
 // Special helpers
 
 CLASS_DECL_ca ::user::interaction * __get_parent_owner(::user::interaction * hWnd);
-CLASS_DECL_ca BOOL __is_descendant(::user::interaction * hWndParent, ::user::interaction * hWndChild);
+CLASS_DECL_ca bool __is_descendant(::user::interaction * hWndParent, ::user::interaction * hWndChild);
 
 
 /*// UNICODE/MBCS abstractions
 #ifdef _MBCS
-   extern CLASS_DECL_ca const BOOL gen_DBCS;
+   extern CLASS_DECL_ca const bool gen_DBCS;
 #else
    #define gen_DBCS FALSE
 #endif
@@ -278,7 +278,7 @@ public:
 };
 
 CLASS_DECL_ca string __string_from_clsid(REFCLSID rclsid);
-CLASS_DECL_ca BOOL __get_in_proc_server(const char * lpszCLSID, string & str);
+CLASS_DECL_ca bool __get_in_proc_server(const char * lpszCLSID, string & str);
 #endif // ___NO_OLE_SUPPORT
 
 #define NULL_TLS ((DWORD)-1)
@@ -292,7 +292,7 @@ CLASS_DECL_ca BOOL __get_in_proc_server(const char * lpszCLSID, string & str);
 // Debugging/Tracing helpers
 
 #ifdef _DEBUG
-   CLASS_DECL_ca BOOL __check_dialog_template(const char * lpszResource, BOOL bInvisibleChild);
+   CLASS_DECL_ca bool __check_dialog_template(const char * lpszResource, bool bInvisibleChild);
 #endif
 
 

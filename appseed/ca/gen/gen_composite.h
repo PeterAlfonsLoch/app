@@ -54,7 +54,7 @@ namespace gen
    class composite
    {
    public:
-      inline composite(void);
+      inline composite();
       inline composite(TYPE & t);
 
       inline operator TYPE();
@@ -67,7 +67,7 @@ namespace gen
    protected:
       TYPE * m_pptr;
    public:
-      virtual ~composite(void);
+      virtual ~composite();
    };
 
 

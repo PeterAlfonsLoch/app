@@ -124,7 +124,7 @@ namespace command
    }
 
 
-   BOOL pane_view::pre_create_window(CREATESTRUCT& cs)
+   bool pane_view::pre_create_window(CREATESTRUCT& cs)
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 

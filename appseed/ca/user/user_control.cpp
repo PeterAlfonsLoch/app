@@ -505,7 +505,7 @@ namespace user
       }
    }
 
-   void control_cmd_ui::Enable(BOOL bOn)
+   void control_cmd_ui::Enable(bool bOn)
    {
        m_pcmdui->m_bEnableChanged = TRUE;
        ::user::interaction* pwnd = (::user::interaction*)m_pcmdui->m_pOther;
@@ -595,7 +595,7 @@ namespace user
       ::user::interaction * pview = GetWnd();
 
        // handle delay hide/show
-       BOOL bVis = pview->GetStyle() & WS_VISIBLE;
+       bool bVis = pview->GetStyle() & WS_VISIBLE;
 
        // the style must be visible
        if (bVis)
@@ -604,13 +604,13 @@ namespace user
            if (pTarget == NULL || !pTarget->IsFrameWnd())
                pTarget = dynamic_cast < ::frame_window * > (pview->GetParentFrame());
            if (pTarget != NULL)
-               BaseControlExOnUpdateCmdUI(pTarget, (BOOL)wParam);
+               BaseControlExOnUpdateCmdUI(pTarget, (bool)wParam);
        }
        return 0L;
    }
 
 
-   void control_view_impl::BaseControlExOnUpdateCmdUI(::frame_window* pTarget, BOOL bDisableIfNoHndler)
+   void control_view_impl::BaseControlExOnUpdateCmdUI(::frame_window* pTarget, bool bDisableIfNoHndler)
    {
       ::user::interaction * pview = GetWnd();
 
@@ -672,7 +672,7 @@ namespace user
    }
 
 
-   BOOL control_view_impl::BaseControlExOnCommand(WPARAM wParam, LPARAM lParam)
+   bool control_view_impl::BaseControlExOnCommand(WPARAM wParam, LPARAM lParam)
    {
       UNREFERENCED_PARAMETER(lParam);
       if(GetWnd() != NULL)

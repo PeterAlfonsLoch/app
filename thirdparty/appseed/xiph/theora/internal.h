@@ -286,7 +286,7 @@ struct oc_base_opt_vtable{
    int _dst_frame,int _src_frame,int _pli);
   void (*state_loop_filter_frag_rows)(const oc_theora_state *_state,
    int _bv[256],int _refi,int _pli,int _fragy0,int _fragy_end);  
-  void (*restore_fpu)(void);
+  void (*restore_fpu)();
 };
 
 /*The shared (encoder and decoder) tables that vary according to which variants
@@ -481,7 +481,7 @@ void oc_state_frag_copy_list_c(const oc_theora_state *_state,
  int _dst_frame,int _src_frame,int _pli);
 void oc_state_loop_filter_frag_rows_c(const oc_theora_state *_state,
  int _bv[256],int _refi,int _pli,int _fragy0,int _fragy_end);
-void oc_restore_fpu_c(void);
+void oc_restore_fpu_c();
 
 /*We need a way to call a few encoder functions without introducing a link-time
    dependency into the decoder, while still allowing the old alpha API which

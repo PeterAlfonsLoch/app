@@ -28,7 +28,7 @@
 
 #include "SJISProber.h"
 
-void  nsSJISProber::Reset(void)
+void  nsSJISProber::Reset()
 {
   mCodingSM->Reset(); 
   mState = eDetecting;
@@ -79,7 +79,7 @@ nsProbingState nsSJISProber::HandleData(const char* aBuf, PRUint32 aLen)
   return mState;
 }
 
-float nsSJISProber::GetConfidence(void)
+float nsSJISProber::GetConfidence()
 {
   float contxtCf = mContextAnalyser.GetConfidence();
   float distribCf = mDistributionAnalyser.GetConfidence();

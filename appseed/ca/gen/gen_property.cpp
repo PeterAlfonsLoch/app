@@ -212,7 +212,7 @@ namespace gen
    }
 
 
-   property::property(void)
+   property::property()
    {
       m_pset = NULL;
    }

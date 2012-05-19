@@ -48,7 +48,7 @@ void simple_list_view::dump(dump_context & dumpcontext) const
 }
 #endif //_DEBUG
 
-BOOL simple_list_view::pre_create_window(CREATESTRUCT& cs)
+bool simple_list_view::pre_create_window(CREATESTRUCT& cs)
 {
    cs.style |= WS_CLIPCHILDREN;
 

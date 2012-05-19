@@ -344,7 +344,7 @@ bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
    return (false);
 }
 
-bool LiteHTMLElemAttr::isHexColorValue(void) const
+bool LiteHTMLElemAttr::isHexColorValue() const
 {
    // zero-length attribute value?
    if (m_strValue.is_empty())

@@ -28,46 +28,46 @@ namespace database
       /* sets a new host name */
       void setHostName(const char *newHost) { host = newHost; }
       /* gets a host name */
-      string getHostName(void) const { return host; }
+      string getHostName() const { return host; }
       /* sets a new port */
       void setPort(const char *newPort) { port = newPort; }
       /* gets a port */
-      string getPort(void) const { return port; }
+      string getPort() const { return port; }
       /* sets a new database name */
       void setDatabase(const char *newDb) { db = newDb; }
       /* gets a database name */
-      string getDatabase(void) const { return db; }
+      string getDatabase() const { return db; }
       /* sets a new login to database */
       void setLogin(const char *newLogin) { login = newLogin; }
       /* gets a login */
-      string getLogin(void) const { return login; }
+      string getLogin() const { return login; }
       /* sets a password */
       void setPasswd(const char *newPasswd) { passwd = newPasswd; }
       /* gets a password */
-      string getPasswd(void) const { return passwd; }
+      string getPasswd() const { return passwd; }
       /* active status is OK state */
-      virtual bool isActive(void) const { return active; }
+      virtual bool isActive() const { return active; }
       /* Set new name of sequence table */
       void setSequenceTable(const char *new_seq_table) { sequence_table = new_seq_table; };
       /* get name of sequence table */
-      const char *getSequenceTable(void) { return sequence_table; }
+      const char *getSequenceTable() { return sequence_table; }
 
 
       /* virtual methods that must be overloaded in derived classes */
 
-      virtual int init(void) { return DB_COMMAND_OK; }
-      virtual int status(void) { return DB_CONNECTION_NONE; }
+      virtual int init() { return DB_COMMAND_OK; }
+      virtual int status() { return DB_CONNECTION_NONE; }
       virtual int setErr(int err_code)=0;
-      virtual const char *getErrorMsg(void) { return error; }
+      virtual const char *getErrorMsg() { return error; }
 
-      virtual int connect(void) { return DB_COMMAND_OK; }
+      virtual int connect() { return DB_COMMAND_OK; }
       virtual int connectFull( const char *newDb, const char *newHost=NULL,
          const char *newLogin=NULL, const char *newPasswd=NULL,const char *newPort=NULL);
-      virtual void disconnect(void) { active = false; }
-      virtual int reset(void) { return DB_COMMAND_OK; }
+      virtual void disconnect() { active = false; }
+      virtual int reset() { return DB_COMMAND_OK; }
       using ::ex1::request_interface::create;
-      virtual int create(void) { return DB_COMMAND_OK; }
-      virtual int drop(void) { return DB_COMMAND_OK; }
+      virtual int create() { return DB_COMMAND_OK; }
+      virtual int drop() { return DB_COMMAND_OK; }
       virtual long nextid(const char* seq_name)=0;
 
       /* virtual methods for transaction */

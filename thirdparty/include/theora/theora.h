@@ -428,7 +428,7 @@ typedef struct theora_comment{
  * Retrieve a human-readable string to identify the encoder vendor and version.
  * \returns A version string.
  */
-extern const char *theora_version_string(void);
+extern const char *theora_version_string();
 
 /**
  * Retrieve a 32-bit version number.
@@ -439,7 +439,7 @@ extern const char *theora_version_string(void);
 </pre>
 * \returns The version number.
 */
-extern ogg_uint32_t theora_version_number(void);
+extern ogg_uint32_t theora_version_number();
 
 /**
  * Initialize the theora encoder.

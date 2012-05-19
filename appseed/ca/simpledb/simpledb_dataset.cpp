@@ -728,13 +728,13 @@ namespace simpledb
       fill_fields();
    }
 
-   void set::prev(void)
+   void set::prev()
    {
       ::database::set::prev();
       fill_fields();
    }
 
-   void set::next(void)
+   void set::next()
    {
       ::database::set::next();
       if (!eof())

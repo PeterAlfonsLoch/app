@@ -40,7 +40,7 @@ namespace user
       pParentWnd->SendMessage(pscroll);
    }
 
-   BOOL scroll_bar::create(e_orientation eorientation, DWORD dwStyle, rect &rect, ::user::interaction *pParentWnd, UINT nID)
+   bool scroll_bar::create(e_orientation eorientation, DWORD dwStyle, rect &rect, ::user::interaction *pParentWnd, UINT nID)
    {
        m_eorientation = eorientation;
        return ::user::interaction::create(NULL, NULL, dwStyle, rect, pParentWnd, nID);

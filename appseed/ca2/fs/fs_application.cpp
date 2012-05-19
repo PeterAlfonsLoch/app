@@ -13,7 +13,7 @@ namespace ca2
       {
       }
 
-      application::~application(void)
+      application::~application()
       {
       }
 

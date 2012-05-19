@@ -100,7 +100,7 @@ namespace compress
 
 #define RIF(x) { if (!(x)) return false; }
 
-      bool decoder::ReadTables(void)
+      bool decoder::ReadTables()
       {
          byte levelLevels[kLevelTableSize];
          byte newLevels[kMaxTableSize];

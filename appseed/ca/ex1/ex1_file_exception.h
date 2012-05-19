@@ -63,9 +63,9 @@ namespace ex1
 
       virtual void dump(dump_context&) const;
       
-      virtual BOOL GetErrorMessage(string & str, PUINT pnHelpContext = NULL) const;
+      virtual bool GetErrorMessage(string & str, PUINT pnHelpContext = NULL) const;
 
-      virtual BOOL get_friendly_error_message(string & str, PUINT pnHelpContext = NULL) const;
+      virtual bool get_friendly_error_message(string & str, PUINT pnHelpContext = NULL) const;
 
 
    };

@@ -20,7 +20,7 @@ namespace userbase
       ASSERT(FALSE);
    }
 
-   BOOL base_static::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam,
+   bool base_static::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam,
       LRESULT* pResult)
    {
       UNREFERENCED_PARAMETER(message);

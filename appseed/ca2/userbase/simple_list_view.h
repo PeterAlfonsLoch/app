@@ -18,7 +18,7 @@ public:
    virtual ::user::interaction* _GetWnd();
 
    virtual void OnDraw(::ca::graphics * pgraphics);     
-   virtual BOOL pre_create_window(CREATESTRUCT& cs);
+   virtual bool pre_create_window(CREATESTRUCT& cs);
    
    
 #ifdef _DEBUG

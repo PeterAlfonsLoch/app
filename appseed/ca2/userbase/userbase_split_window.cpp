@@ -12,7 +12,7 @@ BaseSplitWnd::~BaseSplitWnd()
 {
 }
 
-BOOL BaseSplitWnd::pre_create_window(CREATESTRUCT& cs) 
+bool BaseSplitWnd::pre_create_window(CREATESTRUCT& cs) 
 {
    cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
    

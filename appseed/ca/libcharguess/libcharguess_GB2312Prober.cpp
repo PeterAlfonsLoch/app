@@ -28,7 +28,7 @@
 
 #include "GB2312Prober.h"
 
-void  nsGB18030Prober::Reset(void)
+void  nsGB18030Prober::Reset()
 {
   mCodingSM->Reset(); 
   mState = eDetecting;
@@ -78,7 +78,7 @@ nsProbingState nsGB18030Prober::HandleData(const char* aBuf, PRUint32 aLen)
   return mState;
 }
 
-float nsGB18030Prober::GetConfidence(void)
+float nsGB18030Prober::GetConfidence()
 {
   float distribCf = mDistributionAnalyser.GetConfidence();
 

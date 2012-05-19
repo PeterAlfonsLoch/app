@@ -65,7 +65,7 @@ namespace userbase
 
    }
 
-   BOOL tab_view::pre_create_window(CREATESTRUCT& cs) 
+   bool tab_view::pre_create_window(CREATESTRUCT& cs) 
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;   
 

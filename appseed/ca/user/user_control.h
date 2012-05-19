@@ -247,7 +247,7 @@ namespace user
 
 
       ::collection::map < id, id, id, id > m_mapControlCommand;
-      virtual void Enable(BOOL bOn);
+      virtual void Enable(bool bOn);
       virtual void SetCheck(int nCheck);
       virtual void SetText(const char * lpszText);
       id GetControlCommand(id id);
@@ -260,8 +260,8 @@ namespace user
       control_view_impl();
 
       virtual LRESULT BaseControlExOnIdleUpdateCmdUI(WPARAM wParam, LPARAM);
-      virtual void BaseControlExOnUpdateCmdUI(::frame_window * pTarget, BOOL bDisableIfNoHndler);
-      virtual BOOL BaseControlExOnCommand(WPARAM wParam, LPARAM lParam) ;
+      virtual void BaseControlExOnUpdateCmdUI(::frame_window * pTarget, bool bDisableIfNoHndler);
+      virtual bool BaseControlExOnCommand(WPARAM wParam, LPARAM lParam) ;
       virtual ::user::interaction * GetWnd();
 
       control_cmd_ui  m_cmdui; // cmd_ui derived class used to update

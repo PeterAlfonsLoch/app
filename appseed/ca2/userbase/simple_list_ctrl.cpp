@@ -21,7 +21,7 @@ simple_list_control::~simple_list_control()
    return this;
 }
 
-BOOL simple_list_control::pre_create_window(CREATESTRUCT& cs)
+bool simple_list_control::pre_create_window(CREATESTRUCT& cs)
 {
 
    cs.style |= WS_CLIPCHILDREN;

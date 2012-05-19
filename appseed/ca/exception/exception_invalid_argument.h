@@ -8,8 +8,8 @@ public:
 
    invalid_argument_exception();
    invalid_argument_exception(const char * pszMessage);
-   invalid_argument_exception(BOOL bAutoDelete);
-   invalid_argument_exception(BOOL bAutoDelete, UINT nResourceID);
+   invalid_argument_exception(bool bAutoDelete);
+   invalid_argument_exception(bool bAutoDelete, UINT nResourceID);
    virtual ~invalid_argument_exception();
 
 

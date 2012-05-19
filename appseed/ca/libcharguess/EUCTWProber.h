@@ -27,14 +27,14 @@
 
 class nsEUCTWProber: public nsCharSetProber {
 public:
-  nsEUCTWProber(void){mCodingSM = new nsCodingStateMachine(&EUCTWSMModel);
+  nsEUCTWProber(){mCodingSM = new nsCodingStateMachine(&EUCTWSMModel);
                       Reset();};
-  virtual ~nsEUCTWProber(void){delete mCodingSM;};
+  virtual ~nsEUCTWProber(){delete mCodingSM;};
   nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
   const char* GetCharSetName() {return "x-euc-tw";};
-  nsProbingState GetState(void) {return mState;};
-  void      Reset(void);
-  float     GetConfidence(void);
+  nsProbingState GetState() {return mState;};
+  void      Reset();
+  float     GetConfidence();
   void      SetOpion() {};
 
 protected:

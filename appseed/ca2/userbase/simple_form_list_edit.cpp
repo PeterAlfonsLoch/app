@@ -13,7 +13,7 @@ simple_form_list_edit::~simple_form_list_edit()
 {
 }
 
-BOOL simple_form_list_edit::OnEraseBkgnd(::ca::graphics * pgraphics) 
+bool simple_form_list_edit::OnEraseBkgnd(::ca::graphics * pgraphics) 
 {
    UNREFERENCED_PARAMETER(pgraphics);
    return TRUE;   

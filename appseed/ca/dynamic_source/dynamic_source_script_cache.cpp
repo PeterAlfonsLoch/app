@@ -11,7 +11,7 @@ namespace dynamic_source
 
    }
 
-   script_cache::~script_cache(void)
+   script_cache::~script_cache()
    {
       POSITION pos = m_map.get_start_position();
       string strKey;

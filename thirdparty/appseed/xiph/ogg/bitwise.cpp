@@ -609,7 +609,7 @@ void cliptestB(unsigned long *b,int vals,int bits,int *comp,int compsize){
   if(oggpackB_bytes(&r)!=bytes)report("leftover bytes after read!\n");
 }
 
-int main(void){
+int main(){
   unsigned char *buffer;
   long bytes,i;
   static unsigned long testbuffer1[]=

@@ -139,18 +139,18 @@ string::string(const YCHAR* pch,strsize nLength,string_manager * pstringmanager 
 
 void fixed_string_log::OnAllocateSpill(strsize nActualChars,strsize nFixedChars,const string_data* pData ) throw()
 {
-   (void)nActualChars;
-   (void)nFixedChars;
-   (void)pData;
+   ()nActualChars;
+   ()nFixedChars;
+   ()pData;
 //   TRACE(gen::trace::category_String, 0, _T( "fixed_string_manager::allocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
    ::OutputDebugStringA("fixed_string_log::OnAllocateSpill");
 }
 
 void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChars,const string_data* pData ) throw()
 {
-   (void)nActualChars;
-   (void)nFixedChars;
-   (void)pData;
+   ()nActualChars;
+   ()nFixedChars;
+   ()pData;
 //   TRACE(gen::trace::category_String, 0, _T( "fixed_string_manager::Reallocate() spilling to heap.  %d chars (fixed size = %d chars)\n" ), nActualChars, nFixedChars );
    ::OutputDebugStringA("fixed_string_log::OnReallocateSpill");
 }
@@ -463,14 +463,14 @@ void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, 
 
 void crt_char_traits::ConvertToOem(char* pstrString) throw()
 {
-   BOOL fSuccess=::CharToOemA(pstrString, pstrString);
+   bool fSuccess=::CharToOemA(pstrString, pstrString) != 0;
    // old version can't report error
    ASSERT(fSuccess);
 }
 
 void crt_char_traits::ConvertToAnsi(char* pstrString) throw()
 {
-   BOOL fSuccess=::OemToCharA(pstrString, pstrString);
+   bool fSuccess=::OemToCharA(pstrString, pstrString) != 0;
    // old version can't report error
    ASSERT(fSuccess);
 }
@@ -497,12 +497,12 @@ BSTR __cdecl crt_char_traits::AllocSysString( const char* pchData, strsize nData
 
 }
 
-BOOL __cdecl crt_char_traits::ReAllocSysString( const char* pchData,BSTR* pbstr,strsize nDataLength ) throw()
+bool __cdecl crt_char_traits::ReAllocSysString( const char* pchData,BSTR* pbstr,strsize nDataLength ) throw()
 {
 
    strsize nLen = ::MultiByteToWideChar( _gen_GetConversionACP(), 0, pchData, (int) nDataLength, NULL, NULL );
 
-   BOOL bSuccess = ::SysReAllocStringLen( pbstr, NULL, (UINT) nLen );
+   bool bSuccess = ::SysReAllocStringLen( pbstr, NULL, (UINT) nLen ) != 0;
 
    if( bSuccess )
    {
@@ -567,7 +567,7 @@ void crt_char_traits::ConvertToAnsi(char* pstrString,size_t size)
       throw hresult_exception(E_INVALIDARG);
    }
    DWORD dwSize=static_cast<DWORD>(size);
-   BOOL fSuccess=::OemToCharBuffA(pstrString, pstrString, dwSize);
+   bool fSuccess=::OemToCharBuffA(pstrString, pstrString, dwSize) != 0;
    if(!fSuccess)
    {
       throw last_error_exception();
@@ -581,7 +581,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
       throw hresult_exception(E_INVALIDARG);
    }
    DWORD dwSize=static_cast<DWORD>(size);
-   BOOL fSuccess=::CharToOemBuffA(pstrString, pstrString, dwSize);
+   bool fSuccess=::CharToOemBuffA(pstrString, pstrString, dwSize) != 0;
    if(!fSuccess)
    {
       throw last_error_exception();
@@ -2349,10 +2349,10 @@ string::string(strsize nLength, char ch) :
    }
 
    // Set the string to the value of environment var 'pszVar'
-    BOOL string::GetEnvironmentVariable(PCXSTR pszVar )
+    bool string::GetEnvironmentVariable(PCXSTR pszVar )
    {
       ULONG nLength = string_trait::GetEnvironmentVariable( pszVar, NULL, 0 );
-      BOOL bRetVal = FALSE;
+      bool bRetVal = FALSE;
 
       if( nLength == 0 )
       {
@@ -2372,10 +2372,10 @@ string::string(strsize nLength, char ch) :
 
 
    // Load the string from resource 'nID'
-   //BOOL load_string(id id);
+   //bool load_string(id id);
 
    // Load the string from resource 'nID' in module 'hInstance'
-/*    BOOL load_string(HINSTANCE hInstance,UINT nID )
+/*    bool load_string(HINSTANCE hInstance,UINT nID )
    {
       const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID );
       if( pImage == NULL )
@@ -2392,7 +2392,7 @@ string::string(strsize nLength, char ch) :
    }*/
 
    // Load the string from resource 'nID' in module 'hInstance', using language 'wLanguageID'
-    /*BOOL load_string(HINSTANCE hInstance,UINT nID,WORD wLanguageID )
+    /*bool load_string(HINSTANCE hInstance,UINT nID,WORD wLanguageID )
    {
       const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID, wLanguageID );
       if( pImage == NULL )

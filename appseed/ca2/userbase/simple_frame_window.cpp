@@ -260,13 +260,13 @@ void simple_frame_window::_001OnMove(gen::signal_object * pobj)
 
 }
 
-BOOL simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext) 
+bool simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext) 
 {
 // trans   HICON hicon = GetIcon(false);
    return userbase::frame_window::OnCreateClient(lpcs, pContext);
 }
 
-BOOL simple_frame_window::pre_create_window(CREATESTRUCT& cs) 
+bool simple_frame_window::pre_create_window(CREATESTRUCT& cs) 
 {
 
    if(cs.lpszClass == NULL)
@@ -610,7 +610,7 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
    
 }
 
-void simple_frame_window::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp) 
+void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp) 
 {
    UNREFERENCED_PARAMETER(bCalcValidRects);
    if(m_workset.IsEnabled() && m_workset.m_pframeschema != NULL)
@@ -655,7 +655,7 @@ void simple_frame_window::_001OnNcActivate(gen::signal_object * pobj)
 
 
 
-BOOL simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle, ::user::interaction* pParentWnd, ::ca::create_context* pContext)
+bool simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle, ::user::interaction* pParentWnd, ::ca::create_context* pContext)
 {
 
    UNREFERENCED_PARAMETER(pParentWnd);
@@ -699,7 +699,7 @@ BOOL simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle
    return TRUE;
 }
 
-/*BOOL simple_frame_window::create(const char * lpszClassName,
+/*bool simple_frame_window::create(const char * lpszClassName,
    const char * lpszWindowName,
    DWORD dwStyle,
    const RECT& rect,
@@ -1017,7 +1017,7 @@ void simple_frame_window::WfiOnUp()
 }
 
 
-BOOL simple_frame_window::create(const char * lpszClassName,
+bool simple_frame_window::create(const char * lpszClassName,
          const char * lpszWindowName,
          DWORD dwStyle,
          const RECT& rect,

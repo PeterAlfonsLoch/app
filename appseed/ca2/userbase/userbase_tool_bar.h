@@ -19,7 +19,7 @@ namespace userbase
 #endif
       HINSTANCE m_hInstImageWell; // instance handle to load image well from
       HBITMAP m_hbmImageWell; // contains color mapped button images
-      BOOL m_bDelayedButtonLayout; // used to manage when button layout should be done
+      bool m_bDelayedButtonLayout; // used to manage when button layout should be done
 
       size m_sizeImage;  // current image size
       size m_sizeButton; // current button size
@@ -32,17 +32,17 @@ namespace userbase
 
 
       using ::userbase::control_bar::create;
-      BOOL create(::user::interaction* pParentWnd,
+      bool create(::user::interaction* pParentWnd,
          DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
          UINT nID = __IDW_TOOLBAR);
       using ::userbase::control_bar::CreateEx;
 #ifdef WINDOWS
-      BOOL CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = TBSTYLE_FLAT,
+      bool CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = TBSTYLE_FLAT,
          DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
          rect rcBorders = rect(0, 0, 0, 0),
          UINT nID = __IDW_TOOLBAR);
 #else
-      BOOL CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = 0,
+      bool CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = 0,
          DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
          rect rcBorders = rect(0, 0, 0, 0),
          UINT nID = __IDW_TOOLBAR);
@@ -52,12 +52,12 @@ namespace userbase
          // button size should be bigger than image
       void SetHeight(int cyHeight);
          // call after SetSizes, height overrides bitmap size
-      //BOOL LoadToolBar(const char * lpszResourceName);
-      //BOOL LoadToolBar(UINT nIDResource);
-      //BOOL LoadBitmap(const char * lpszResourceName);
-      //BOOL LoadBitmap(UINT nIDResource);
-      BOOL from(HBITMAP hbmImageWell);
-      BOOL SetButtons(const UINT* lpIDArray, int nIDCount);
+      //bool LoadToolBar(const char * lpszResourceName);
+      //bool LoadToolBar(UINT nIDResource);
+      //bool LoadBitmap(const char * lpszResourceName);
+      //bool LoadBitmap(UINT nIDResource);
+      bool from(HBITMAP hbmImageWell);
+      bool SetButtons(const UINT* lpIDArray, int nIDCount);
          // lpIDArray can be NULL to allocate is_empty buttons
 
 
@@ -71,7 +71,7 @@ namespace userbase
       // for changing button info
       void GetButtonInfo(int nIndex, UINT& nID, UINT& nStyle, int& iImage);
       void SetButtonInfo(int nIndex, UINT nID, UINT nStyle, int iImage);
-      BOOL SetButtonText(int nIndex, const char * lpszText);
+      bool SetButtonText(int nIndex, const char * lpszText);
       string GetButtonText(int nIndex) const;
       void GetButtonText(int nIndex, string & rString) const;
 
@@ -79,11 +79,11 @@ namespace userbase
       inline tool_bar_control& GetToolBarCtrl() const;
 
       size CalcSimpleLayout();
-      virtual size CalcFixedLayout(BOOL bStretch, BOOL bHorz);
+      virtual size CalcFixedLayout(bool bStretch, bool bHorz);
       virtual size CalcDynamicLayout(int nLength, DWORD nMode);
-      //virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, BOOL bDisableIfNoHndler);
+      //virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler);
       void SetOwner(::user::interaction* pOwnerWnd);
-      BOOL AddReplaceBitmap(HBITMAP hbmImageWell);
+      bool AddReplaceBitmap(HBITMAP hbmImageWell);
       virtual void OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle);
 
    #ifdef _DEBUG
@@ -105,7 +105,7 @@ namespace userbase
 #ifdef WINDOWS
       size CalcSize(TBBUTTON* pData, int nCount);
       int WrapToolBar(TBBUTTON* pData, int nCount, int nWidth);
-      void SizeToolBar(TBBUTTON* pData, int nCount, int nLength, BOOL bVert = FALSE);
+      void SizeToolBar(TBBUTTON* pData, int nCount, int nLength, bool bVert = FALSE);
 #endif
       void layout(); // called for for delayed button layout
 

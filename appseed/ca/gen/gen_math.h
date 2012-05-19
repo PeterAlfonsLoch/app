@@ -80,7 +80,7 @@ namespace gen
             double dValueMax);
          double GetPi();
 
-         static BOOL IsPowerOfTwo(unsigned int uiValue);
+         static bool IsPowerOfTwo(unsigned int uiValue);
          static unsigned int ReverseBits (unsigned index, unsigned NumBits );
       //   template <class N> static inline void MaxClip(N * pnClipValue, N nMaxValue);
       //   template <class N> static inline void MinClip(N * pnClipValue, N nMinValue);

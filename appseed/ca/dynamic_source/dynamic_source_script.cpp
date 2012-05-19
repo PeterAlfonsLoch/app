@@ -272,11 +272,11 @@ namespace dynamic_source
 
 #ifdef WINDOWS
          HMODULE hmodule = ::GetModuleHandleW(gen::international::utf8_to_unicode("\\\\?\\" + m_strScriptPath));
-         BOOL b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + m_strScriptPath), &hmodule);
+         bool b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + m_strScriptPath), &hmodule);
          if(hmodule != NULL && !::FreeLibrary(hmodule))
          {
             DWORD dwError = ::GetLastError();
-            TRACE("ds_script::GetModuleHandle return BOOL(%d) Unload Error close Handle %s %d\r\n", b, m_strScriptPath, dwError);
+            TRACE("ds_script::GetModuleHandle return bool(%d) Unload Error close Handle %s %d\r\n", b, m_strScriptPath, dwError);
          }
          string strPdb;
          strPdb = m_strScriptPath;
@@ -302,7 +302,7 @@ namespace dynamic_source
 
 
 
-   ds_script::~ds_script(void)
+   ds_script::~ds_script()
    {
    }
 

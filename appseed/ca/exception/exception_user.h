@@ -9,8 +9,8 @@ public:
 
 // Implementation
 public:
-   explicit user_exception(BOOL bAutoDelete);
-   user_exception(BOOL bAutoDelete, UINT nResourceID);
+   explicit user_exception(bool bAutoDelete);
+   user_exception(bool bAutoDelete, UINT nResourceID);
    virtual ~user_exception();
 };
 

@@ -8,6 +8,6 @@ public:
    virtual ~simple_child_frame();
 
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
-   virtual BOOL pre_create_window(CREATESTRUCT& cs);
+   virtual bool pre_create_window(CREATESTRUCT& cs);
 };
 

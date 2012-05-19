@@ -30,7 +30,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   BOOL pen::CreatePen(int nPenStyle, double dWidth, COLORREF crColor)
+   bool pen::CreatePen(int nPenStyle, double dWidth, COLORREF crColor)
    {
 
       m_nPenStyle             = nPenStyle;
@@ -42,7 +42,7 @@ namespace ca
 
    }
 
-   BOOL pen::CreatePen(int nPenStyle, double dWidth, const LOGBRUSH* pLogBrush, int nStyleCount, const DWORD* lpStyle)
+   bool pen::CreatePen(int nPenStyle, double dWidth, const LOGBRUSH* pLogBrush, int nStyleCount, const DWORD* lpStyle)
    {
 
       m_nPenStyle             = nPenStyle;

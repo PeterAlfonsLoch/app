@@ -105,17 +105,17 @@ enum e_memdbg // primitive::memory debug/diagnostic flags
 #define __output_debug_string TRACE
 
 // turn on/off tracking for a short while
-CLASS_DECL_ca BOOL __enable_memory_tracking(BOOL bTrack);
+CLASS_DECL_ca bool __enable_memory_tracking(bool bTrack);
 
 // Turn on/off the global flag gen_MemoryLeakOverride. if bEnable is TRUE
 // then further calls to __enable_memory_tracking() wont change the current
-// primitive::memory tracking state, until __enable_memory_leak_override(BOOL bEnable)
+// primitive::memory tracking state, until __enable_memory_leak_override(bool bEnable)
 // is called again with bEnable == FALSE.
-CLASS_DECL_ca BOOL __enable_memory_leak_override(BOOL bEnable);
+CLASS_DECL_ca bool __enable_memory_leak_override(bool bEnable);
 
 
 // A failure hook returns whether to permit allocation
-typedef BOOL (* __ALLOC_HOOK)(size_t nSize, BOOL bObject, LONG lRequestNumber);
+typedef bool (* __ALLOC_HOOK)(size_t nSize, bool bObject, LONG lRequestNumber);
 
 // Set new hook, return old (never NULL)
 CLASS_DECL_ca __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnAllocHook);
@@ -144,7 +144,7 @@ void gen::DoForAllClasses(void (c_cdecl *pfn)(::ca::type_info pClass,
 #ifndef _DEBUG
 #define __diagnostic_init() TRUE
 #else
-BOOL __diagnostic_init(void);
+bool __diagnostic_init();
 #endif
 
 #endif // _DEBUG
@@ -211,7 +211,7 @@ namespace radix
 
 
 
-CLASS_DECL_ca BOOL __assert_failed_line(const char * lpszFileName, int nLine);
+CLASS_DECL_ca bool __assert_failed_line(const char * lpszFileName, int nLine);
 
 CLASS_DECL_ca void c_cdecl __trace(const char * lpszFormat, ...);
 // Note: file names are still ANSI strings (filenames rarely need UNICODE)
@@ -248,10 +248,10 @@ CLASS_DECL_ca void __dump(const ::radix::object* pOb); // dump an object from Co
 
 #else
 
-#define DEBUG_ONLY(f)      ((void)0)
+#define DEBUG_ONLY(f)      (()0)
 
-#define VERIFY(f)          ((void)(f))
-#define DEBUG_ONLY(f)      ((void)0)
+#define VERIFY(f)          (()(f))
+#define DEBUG_ONLY(f)      (()0)
 #pragma warning(push)
 #pragma warning(disable : 4793)
 inline void c_cdecl __trace(...) { }
@@ -269,7 +269,7 @@ inline void c_cdecl __trace(...) { }
 
 #ifdef _DEBUG
 
-//#define ASSERT(f)          DEBUG_ONLY((void) ((f) || !::__assert_failed_line(THIS_FILE, __LINE__) || (__debug_break(), 0)))
+//#define ASSERT(f)          DEBUG_ONLY(() ((f) || !::__assert_failed_line(THIS_FILE, __LINE__) || (__debug_break(), 0)))
 #define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && (!::__assert_failed_line(__FILE__, __LINE__) || (__debug_break(), 0))) || (!is_debugger_attached() && (throw assert_exception(__FILE__, __LINE__), 0))))
 /* see gen headers for commentary on this */
 /* We use the name AFXASSUME to avoid name clashes */

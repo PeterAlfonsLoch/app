@@ -41,7 +41,7 @@ namespace user
 
 
       using user::interaction::create;
-      virtual BOOL create(e_orientation eorientation, DWORD dwStyle, rect & rect, ::user::interaction * pParentWnd, UINT nID);
+      virtual bool create(e_orientation eorientation, DWORD dwStyle, rect & rect, ::user::interaction * pParentWnd, UINT nID);
 
       virtual void send_scroll_message(UINT nSBCode);
 

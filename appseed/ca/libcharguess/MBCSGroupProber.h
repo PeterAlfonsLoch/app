@@ -37,9 +37,9 @@ public:
   virtual ~nsMBCSGroupProber();
   nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
   const char* GetCharSetName();
-  nsProbingState GetState(void) {return mState;};
-  void      Reset(void);
-  float     GetConfidence(void);
+  nsProbingState GetState() {return mState;};
+  void      Reset();
+  float     GetConfidence();
   void      SetOpion() {};
 
 #ifdef DEBUG_chardet

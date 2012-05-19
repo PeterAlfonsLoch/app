@@ -2,7 +2,7 @@
 #include <gdiplus.h>
 
 
-typedef BOOL
+typedef bool
 (WINAPI * LPFN_ChangeWindowMessageFilter)(
     _In_ UINT message,
     _In_ DWORD dwFlag);
@@ -26,7 +26,7 @@ LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 
 
 
-BOOL os_initialize()
+bool os_initialize()
 {
 
    //Sleep(15 * 1000);
@@ -48,7 +48,7 @@ BOOL os_initialize()
 } 
 
 
-BOOL os_finalize()
+bool os_finalize()
 {
 
    finalize_primitive_trace();
@@ -97,7 +97,7 @@ ULONG_PTR                        g_gdiplusToken             = NULL;
 ULONG_PTR                        g_gdiplusHookToken         = NULL;
 
 
-BOOL main_initialize()
+bool main_initialize()
 {
 
    //Sleep(15 * 1000);
@@ -123,7 +123,7 @@ BOOL main_initialize()
 } 
 
 
-BOOL main_finalize()
+bool main_finalize()
 {
 
 

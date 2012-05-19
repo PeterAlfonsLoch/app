@@ -8,7 +8,7 @@ plain_service::plain_service(::ca::application * papp) :
 {
 }
 
-plain_service::~plain_service(void)
+plain_service::~plain_service()
 {
 }
 

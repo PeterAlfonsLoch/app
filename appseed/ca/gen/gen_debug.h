@@ -3,7 +3,7 @@
 #ifdef _DEBUG
    void CLASS_DECL_ca TRACELASTERROR();
 #else
-   #define TRACELASTERROR() ((void)0)
+   #define TRACELASTERROR() (()0)
 #endif
 
 
@@ -42,17 +42,17 @@ void __stdcall gen_TraceSnapshotProcess( DWORD_PTR dwProcess );
 
 /*DWORD_PTR __stdcall gen_TraceRegister(HINSTANCE hInst,
    int (__cdecl *fnCrtDbgReport)(int,const char *,int,const char *,const char *,va_list));
-BOOL __stdcall gen_TraceUnregister(DWORD_PTR dwModule);*/
+bool __stdcall gen_TraceUnregister(DWORD_PTR dwModule);*/
 
 /*DWORD_PTR __stdcall gen_TraceRegisterCategoryA(DWORD_PTR dwModule, const CHAR szCategoryName[TRACE_MAX_NAME_SIZE]);
 DWORD_PTR __stdcall gen_TraceRegisterCategoryU(DWORD_PTR dwModule, const WCHAR szCategoryName[TRACE_MAX_NAME_SIZE]);*/
 
-/*BOOL __stdcall gen_TraceModifyProcess(DWORD_PTR dwProcess, UINT nLevel, BOOL bEnabled, BOOL bFuncAndCategoryNames, BOOL bFileNameAndLineNo);
-BOOL __stdcall gen_TraceModifyModule(DWORD_PTR dwProcess, DWORD_PTR dwModule, UINT nLevel, trace::e_status eStatus);
-BOOL __stdcall gen_TraceModifyCategory(DWORD_PTR dwProcess, DWORD_PTR dwCategory, UINT nLevel, TRACESTATUS eStatus);
-BOOL __stdcall gen_TraceGetProcess(DWORD_PTR dwProcess, UINT *pnLevel, BOOL *pbEnabled, BOOL *pbFuncAndCategoryNames, BOOL *pbFileNameAndLineNo);
-BOOL __stdcall gen_TraceGetModule(DWORD_PTR dwProcess, DWORD_PTR dwModule, UINT *pnLevel, TRACESTATUS *pStatus);
-BOOL __stdcall gen_TraceGetCategory(DWORD_PTR dwProcess, DWORD_PTR dwCategory, UINT *pnLevel, TRACESTATUS *pStatus);
+/*bool __stdcall gen_TraceModifyProcess(DWORD_PTR dwProcess, UINT nLevel, bool bEnabled, bool bFuncAndCategoryNames, bool bFileNameAndLineNo);
+bool __stdcall gen_TraceModifyModule(DWORD_PTR dwProcess, DWORD_PTR dwModule, UINT nLevel, trace::e_status eStatus);
+bool __stdcall gen_TraceModifyCategory(DWORD_PTR dwProcess, DWORD_PTR dwCategory, UINT nLevel, TRACESTATUS eStatus);
+bool __stdcall gen_TraceGetProcess(DWORD_PTR dwProcess, UINT *pnLevel, bool *pbEnabled, bool *pbFuncAndCategoryNames, bool *pbFileNameAndLineNo);
+bool __stdcall gen_TraceGetModule(DWORD_PTR dwProcess, DWORD_PTR dwModule, UINT *pnLevel, TRACESTATUS *pStatus);
+bool __stdcall gen_TraceGetCategory(DWORD_PTR dwProcess, DWORD_PTR dwCategory, UINT *pnLevel, TRACESTATUS *pStatus);
 
 _INSECURE_DEPRECATE("gen_TraceGetUpdateEventNameA is unsafe. Instead use AtlTraceGetUpdateEventNameA_s") 
 void __stdcall gen_TraceGetUpdateEventNameA(CHAR *pszEventName);
@@ -67,10 +67,10 @@ void __cdecl gen_TraceVA(DWORD_PTR dwModule, const char *pszFileName, int nLineN
 void __cdecl gen_TraceVU(DWORD_PTR dwModule,const char *pszFileName, int nLineNo,
                   DWORD_PTR dwCategory, UINT nLevel, const WCHAR *pszFormat, va_list ptr);
 
-BOOL __stdcall gen_TraceLoadSettingsA(const CHAR *pszFileName, DWORD_PTR dwProcess = 0);
-BOOL __stdcall gen_TraceLoadSettingsU(const WCHAR *pszFileName, DWORD_PTR dwProcess = 0);
-BOOL __stdcall gen_TraceSaveSettingsA(const CHAR *pszFileName, DWORD_PTR dwProcess = 0);
-BOOL __stdcall gen_TraceSaveSettingsU(const WCHAR *pszFileName, DWORD_PTR dwProcess = 0);
+bool __stdcall gen_TraceLoadSettingsA(const CHAR *pszFileName, DWORD_PTR dwProcess = 0);
+bool __stdcall gen_TraceLoadSettingsU(const WCHAR *pszFileName, DWORD_PTR dwProcess = 0);
+bool __stdcall gen_TraceSaveSettingsA(const CHAR *pszFileName, DWORD_PTR dwProcess = 0);
+bool __stdcall gen_TraceSaveSettingsU(const WCHAR *pszFileName, DWORD_PTR dwProcess = 0);
 
 /*typedef struct TRACESETTINGS
 {
@@ -81,7 +81,7 @@ BOOL __stdcall gen_TraceSaveSettingsU(const WCHAR *pszFileName, DWORD_PTR dwProc
 typedef struct TRACEPROCESSSETTINGS
 {
    UINT nLevel;
-   BOOL bEnabled, bFuncAndCategoryNames, bFileNameAndLineNo;
+   bool bEnabled, bFuncAndCategoryNames, bFileNameAndLineNo;
 } TRACEPROCESSSETTINGS;
 
 typedef struct TRACEPROCESSINFO
@@ -107,7 +107,7 @@ typedef struct TRACECATEGORYINFO
    DWORD_PTR dwCategory;
 } TRACECATEGORYINFO;
 
-BOOL __stdcall gen_TraceGetProcessInfo(DWORD_PTR dwProcess, TRACEPROCESSINFO* pProcessInfo);
+bool __stdcall gen_TraceGetProcessInfo(DWORD_PTR dwProcess, TRACEPROCESSINFO* pProcessInfo);
 void __stdcall gen_TraceGetModuleInfo(DWORD_PTR dwProcess, int iModule, TRACEMODULEINFO* pModuleInfo);
 void __stdcall gen_TraceGetCategoryInfo(DWORD_PTR dwProcess, DWORD_PTR dwModule, int iCategory, TRACECATEGORYINFO* pAtlTraceCategoryInfo);
 */

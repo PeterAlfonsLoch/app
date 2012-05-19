@@ -34,7 +34,7 @@ namespace userbase
       virtual void OnAddRef();
       virtual void OnRelease();
 
-      bool IsPopup(void);
+      bool IsPopup();
       menu_item * find(id id);
 
 
