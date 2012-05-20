@@ -1,12 +1,12 @@
 // This is ca2 API library.
-// 
-// 
 //
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
+//
+//
 
 #include "StdAfx.h"
 
@@ -34,9 +34,9 @@ dump_context& operator <<(dump_context & dumpcontext, class time time)
 /*CArchive& class time::Serialize64(CArchive& ar)
 {
    if (ar.IsStoring())
-      return ar << (__int64) m_time;
+      return ar << (int64_t) m_time;
    else
-      return ar >> (__int64) m_time;
+      return ar >> (int64_t) m_time;
 }
 const __int32 cTime64Mark = INT_MIN + 10;
 CArchive& operator <<(CArchive& ar, class time time)
@@ -44,8 +44,8 @@ CArchive& operator <<(CArchive& ar, class time time)
    // This version serializes 32 bits of invalid time and after 64 bits
    // time64. New code will support both 64 serialization and 32/64 deserialization.
    __time64_t ttime = time.get_time();
-   ar << (DWORD)cTime64Mark;   
-   return ar << (__int64) ttime;
+   ar << (DWORD)cTime64Mark;
+   return ar << (int64_t) ttime;
 }
 
 CArchive& operator >>(CArchive& ar, class time& rtime)
@@ -58,7 +58,7 @@ CArchive& operator >>(CArchive& ar, class time& rtime)
    if (static_cast<__int32>(timeOld)==cTime64Mark)
    {
       __time64_t t64;
-      ar >> (__int64) t64;
+      ar >> (int64_t) t64;
       rtime = t64;
    } else
    {
@@ -83,9 +83,9 @@ dump_context& operator <<(dump_context & dumpcontext, time_span timeSpan)
 /*CArchive& time_span::Serialize64(CArchive& ar)
 {
    if (ar.IsStoring())
-      return ar << (__int64) m_timeSpan;
+      return ar << (int64_t) m_timeSpan;
    else
-      return ar >> (__int64) m_timeSpan;
+      return ar >> (int64_t) m_timeSpan;
 }
 
 CArchive& operator <<(CArchive& ar, time_span timeSpan)

@@ -40,7 +40,7 @@ namespace ex1
    {
       ::count count = this->get_count();
       if(ostream.m_b64bit)
-         ostream << (__int64) count;
+         ostream << (int64_t) count;
       else
          ostream << count;
       for(index index = 0; index < count; index++)
@@ -73,12 +73,12 @@ namespace ex1
       virtual public byte_serializable
    {
    public:
-      
-      
+
+
       byte_serializable_map(INT_PTR nBlockSize = 10);
       byte_serializable_map(const byte_serializable_map & map);
-      
-      
+
+
       virtual void write(byte_output_stream & ostream);
       virtual void read(byte_input_stream & istream);
       virtual void on_after_read();

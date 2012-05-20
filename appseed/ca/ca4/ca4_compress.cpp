@@ -72,7 +72,7 @@ namespace ca4
    bool compress::ungz(::gen::memory_file & memoryfile)
    {
 
-      __int64 dataLength = memoryfile.get_length();
+      int64_t dataLength = memoryfile.get_length();
 
       bool done = false;
       int status;

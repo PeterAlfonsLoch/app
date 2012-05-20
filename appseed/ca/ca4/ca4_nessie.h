@@ -5,7 +5,7 @@
 #include <limits.h>
 
 /* Definition of minimum-width integer types
- * 
+ *
  * u8   -> unsigned integer type, at least 8 bits, equivalent to unsigned char
  * u16  -> unsigned integer type, at least 16 bits
  * u32  -> unsigned integer type, at least 32 bits
@@ -48,7 +48,7 @@ typedef unsigned long u32;
 
 #ifdef _MSC_VER
 typedef uint64_t u64;
-typedef signed __int64 s64;
+typedef signed int64_t s64;
 #define LL(v)   (v##ui64)
 #define ONE64   LL(0xffffffffffffffff)
 #else  /* !_MSC_VER */

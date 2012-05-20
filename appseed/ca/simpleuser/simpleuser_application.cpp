@@ -21,7 +21,7 @@ namespace user
 
       m_dwAlive = ::GetTickCount();
 
-      if(!visual::application::initialize1())     
+      if(!visual::application::initialize1())
          return false;
       return true;
    }
@@ -35,12 +35,12 @@ namespace user
       {
          System.factory().creatable_small < keyboard_layout > ();
       }
-      
+
       m_pshellimageset = new filemanager::_shell::ImageSet(this);
 
 
 
-      if(!visual::application::initialize())     
+      if(!visual::application::initialize())
          return false;
 
       xml::node nodeUser(this);
@@ -65,7 +65,7 @@ namespace user
          set_style(strStyleUser, false);
 
 
-      if(m_strLicense.has_char())    
+      if(m_strLicense.has_char())
       {
 
          if(&ApplicationUser == NULL)
@@ -82,16 +82,16 @@ namespace user
 retry_license:
          iRetry--;
          if(!App(this).is_licensed(m_strLicense))
-         {      
+         {
             App(this).license().m_mapInfo.remove_key(m_strLicense);
             if(iRetry > 0)
                goto retry_license;
-            return false;      
-         }   
-      }     
+            return false;
+         }
+      }
 
-      
-      
+
+
       return true;
    }
 
@@ -229,7 +229,7 @@ retry_license:
 
    bool application::get_fs_size(string & strSize, const char * pszPath, bool & bPending)
    {
-      __int64 i64Size;
+      int64_t i64Size;
       if(!get_fs_size(i64Size, pszPath, bPending))
       {
          strSize.Empty();
@@ -265,7 +265,7 @@ retry_license:
       return true;
    }
 
-   bool application::get_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending)
+   bool application::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
    {
       db_server * pcentral = dynamic_cast < db_server * > (&System.db());
       if(pcentral == NULL)

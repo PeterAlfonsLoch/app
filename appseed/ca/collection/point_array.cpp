@@ -23,7 +23,7 @@ void point_array::offset(int x, int y)
 
 void point_array::rotate(double dAngle)
 {
-   
+
    int x;
    int y;
    double dCos = cos(dAngle);
@@ -52,7 +52,7 @@ void point_array::rotate(double dAngle)
 
 void point_array::get_bounding_rect(LPRECT lprect) const
 {
-   
+
    get_bounding_rect(lprect, get_data(), get_count());
 
 }
@@ -105,7 +105,7 @@ point64_array::~point64_array()
 {
 }
 
-void point64_array::offset(__int64 x, __int64 y)
+void point64_array::offset(int64_t x, int64_t y)
 {
    for(int i = 0; i < this->get_size(); i++)
    {
@@ -133,7 +133,7 @@ void pointd_array::offset(double x, double y)
 
 void pointd_array::get_bounding_rect(LPRECTD lprect) const
 {
-   
+
    get_bounding_rect(lprect, get_data(), get_count());
 
 }

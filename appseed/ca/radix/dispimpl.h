@@ -1,12 +1,12 @@
 // This is ca2 API library.
-// 
-// 
 //
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
+//
+//
 
 /////////////////////////////////////////////////////////////////////////////
 // Platform specific defines
@@ -17,7 +17,7 @@
 #define _STACK_CHAR     long
 #define _STACK_SHORT    long
 #define _STACK_LONG     long
-#define _STACK_LONGLONG __int64
+#define _STACK_LONGLONG int64_t
 #define _STACK_FLOAT    float
 #define _STACK_DOUBLE   double
 #define _STACK_PTR      void *
@@ -30,11 +30,11 @@
 #define _ALIGN_DOUBLES  8
 #define _ALIGN_STACKPOINTER   16
 #define _ALIGN_STACK   8
-#define _STACK_CHAR      __int64
-#define _STACK_SHORT   __int64
-#define _STACK_INT      __int64
-#define _STACK_LONG     __int64
-#define _STACK_LONGLONG   __int64
+#define _STACK_CHAR      int64_t
+#define _STACK_SHORT   int64_t
+#define _STACK_INT      int64_t
+#define _STACK_LONG     int64_t
+#define _STACK_LONGLONG   int64_t
 #define _STACK_FLOAT    float
 #define _STACK_DOUBLE   double
 #define _STACK_PTR      void *
@@ -47,11 +47,11 @@
 //#define _ALIGN_DOUBLES  8
 #define _ALIGN_STACKPOINTER   16
 #define _ALIGN_STACK   8
-#define _STACK_CHAR      __int64
-#define _STACK_SHORT   __int64
-#define _STACK_INT      __int64
-#define _STACK_LONG     __int64
-#define _STACK_LONGLONG   __int64
+#define _STACK_CHAR      int64_t
+#define _STACK_SHORT   int64_t
+#define _STACK_INT      int64_t
+#define _STACK_LONG     int64_t
+#define _STACK_LONGLONG   int64_t
 #define _STACK_FLOAT    float
 #define _STACK_DOUBLE   double
 #define _STACK_PTR      void *

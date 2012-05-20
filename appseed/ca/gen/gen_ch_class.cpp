@@ -2,7 +2,7 @@
 #include "x/x_charcategory2.h"
 #include "x/x_charcategory_names.h"
 
-inline bool is_legal_uni_index(__int64 c)
+inline bool is_legal_uni_index(int64_t c)
 {
    return c >= ((uint64_t) 0xffff) ? false : true;
 }
@@ -21,7 +21,7 @@ namespace gen
      clear();
      delete [] infoIndex;
    }
-   
+
    /**
      Creates ch_class object from regexp character class syntax.
      Extensions (comparing to Perl):
@@ -51,7 +51,7 @@ namespace gen
       {
          if(ccs[pos] == ']')
          {
-            if(retPos != NULL) 
+            if(retPos != NULL)
                *retPos = pos;
             if(inverse)
             {
@@ -70,7 +70,7 @@ namespace gen
                return 0;
             if(categ == "ALL")
                cc->fill();
-            else if (categ == "ASSIGNED") 
+            else if (categ == "ASSIGNED")
                cc->add_category("");
             else if (categ == "UNASSIGNED")
             {
@@ -79,7 +79,7 @@ namespace gen
                cc->fill();
                cc->clear_class(cc_temp);
             }
-            else if(categ.get_length()) 
+            else if(categ.get_length())
                cc->add_category(*categ);
             pos += categ.get_length() + 1;
             prev_char = BAD_WCHAR;
@@ -131,7 +131,7 @@ namespace gen
                index retEnd;
                prev_char = gen::str::uni_to_utf8(
                   gen::str::get_escaped_char(ccs, pos, retEnd));
-               if(prev_char.is_empty()) 
+               if(prev_char.is_empty())
                   break;
                cc->add_char(prev_char);
                pos = retEnd-1;
@@ -192,12 +192,12 @@ namespace gen
             prev_char = BAD_WCHAR;
             continue;
          }
-         
+
          if(ccs[pos] == '-' && prev_char.has_char() && natural(pos+1) < strlen(ccs) && ccs[pos+1] != ']')
          {
-            
+
             index retEnd;
-            
+
             string nextc = gen::str::uni_to_utf8(gen::str::get_escaped_char(ccs, pos+1, retEnd));
 
             if(nextc.is_empty())
@@ -222,7 +222,7 @@ namespace gen
 
    void ch_class::add_char(const char * pszUtf8Char)
    {
-      __int64 iChar = gen::ch::uni_index(pszUtf8Char);
+      int64_t iChar = gen::ch::uni_index(pszUtf8Char);
       bit_array * tablePos = infoIndex[iChar >> 8];
       if (!tablePos)
       {
@@ -234,20 +234,20 @@ namespace gen
 
    void ch_class::clear_char(const char * pszUtf8Char)
    {
-      __int64 iChar = gen::ch::uni_index(pszUtf8Char);
+      int64_t iChar = gen::ch::uni_index(pszUtf8Char);
       bit_array *tablePos = infoIndex[iChar >> 8];
-      if(!tablePos) 
+      if(!tablePos)
          return;
       tablePos->clear_bit(iChar & 0xFF);
    }
 
    void ch_class::add_range(const char * s, const char * e)
    {
-      __int64 iCharStart = gen::ch::uni_index(s);
-      __int64 iCharEnd = gen::ch::uni_index(e);
-      for(__int64 ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
+      int64_t iCharStart = gen::ch::uni_index(s);
+      int64_t iCharEnd = gen::ch::uni_index(e);
+      for(int64_t ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
       {
-         if (!infoIndex[ti]) 
+         if (!infoIndex[ti])
             infoIndex[ti] = new bit_array();
          infoIndex[ti]->add_range(
             (ti == iCharStart >> 8) ? iCharStart & 0xFF : 0,
@@ -257,21 +257,21 @@ namespace gen
 
    void ch_class::clear_range(const char * s, const char * e)
    {
-      __int64 iCharStart = gen::ch::uni_index(s);
-      __int64 iCharEnd = gen::ch::uni_index(e);
-      for(__int64 ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
+      int64_t iCharStart = gen::ch::uni_index(s);
+      int64_t iCharEnd = gen::ch::uni_index(e);
+      for(int64_t ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
       {
-         if (!infoIndex[ti]) 
+         if (!infoIndex[ti])
             infoIndex[ti] = new bit_array();
          infoIndex[ti]->clear_range(
-            ti == iCharStart >> 8 ? iCharStart & 0xFF : 0, 
+            ti == iCharStart >> 8 ? iCharStart & 0xFF : 0,
             ti == iCharEnd >> 8 ? iCharEnd & 0xFF:0xFF);
       }
    }
 
    void ch_class::add_category(ECharCategory cat)
    {
-      if(!cat || cat >= CHAR_CATEGORY_LAST) 
+      if(!cat || cat >= CHAR_CATEGORY_LAST)
          return;
       for (int i = 0; i < 256; i++)
       {
@@ -287,7 +287,7 @@ namespace gen
          tablePos->add_bit_array((char*)(arr_idxCharCategory+pos), 8*4);
       }
    }
-   
+
    void ch_class::add_category(string cat)
    {
       for(int pos = 0; pos < ARRAY_SIZE(char_category_names); pos++)
@@ -317,7 +317,7 @@ namespace gen
          tablePos->clear_bit_array((char*)(arr_idxCharCategory+pos), 8*4);
       }
    }
-   
+
    void ch_class::clear_category(string cat)
    {
       for(int pos = 0; pos < ARRAY_SIZE(char_category_names); pos++)
@@ -332,7 +332,7 @@ namespace gen
    {
       for(int p = 0; p < 256; p++)
       {
-         if (infoIndex[p] == NULL) 
+         if (infoIndex[p] == NULL)
             infoIndex[p] = new bit_array();
          infoIndex[p]->add_bit_array(*cclass.infoIndex[p]);
       }
@@ -371,7 +371,7 @@ namespace gen
          }
       }
    }
-   
+
    void ch_class::fill()
    {
       for(int i = 0; i < 256; i++)
@@ -384,7 +384,7 @@ namespace gen
 
    bool ch_class::in_class(const char * pszUtf8Char) const
    {
-      __int64 c = gen::ch::uni_index(pszUtf8Char);
+      int64_t c = gen::ch::uni_index(pszUtf8Char);
       if(!is_legal_uni_index(c))
          return false;
       bit_array * tablePos = infoIndex[c>>8];
@@ -414,7 +414,7 @@ namespace gen
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

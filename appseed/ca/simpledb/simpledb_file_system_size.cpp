@@ -93,7 +93,7 @@ void file_size_table::item::ls(::ca::application * papp, index & iIteration)
    if(m_bDir)
    {
       stringa               straName;
-      base_array < __int64, __int64 > iaSize;
+      base_array < int64_t, int64_t > iaSize;
       base_array < bool, bool > baIsDir;
       if(path().is_empty())
       {
@@ -240,7 +240,7 @@ DBFileSystemSizeSet::~DBFileSystemSizeSet()
 }
 
 
-bool DBFileSystemSizeSet::get_cache_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending)
+bool DBFileSystemSizeSet::get_cache_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
 {
    return false;
    single_lock sl(m_table.m_pmutex, FALSE);
@@ -284,7 +284,7 @@ bool DBFileSystemSizeSet::get_cache_fs_size(__int64 & i64Size, const char * pszP
     }*/
 }
 
-bool DBFileSystemSizeSet::get_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending)
+bool DBFileSystemSizeSet::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
 {
    index iIteration = 0;
    single_lock sl(m_table.m_pmutex, FALSE);
@@ -296,7 +296,7 @@ bool DBFileSystemSizeSet::get_fs_size(__int64 & i64Size, const char * pszPath, b
    return true;
 }
 
-bool DBFileSystemSizeSet::get_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending, index & iIteration)
+bool DBFileSystemSizeSet::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending, index & iIteration)
 {
    single_lock sl(m_table.m_pmutex, FALSE);
    if(!sl.lock(duration::zero()))
@@ -360,7 +360,7 @@ bool FileSystemSizeWnd::CreateServer()
    return true;
 }
 
-bool FileSystemSizeWnd::get_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending)
+bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
 {
    db_server * pcentral = dynamic_cast < db_server * > (&System.db());
    HWND hwnd = pcentral->m_pfilesystemsizeset->m_table.m_hwndServer;

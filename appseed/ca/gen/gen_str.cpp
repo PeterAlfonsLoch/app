@@ -1332,10 +1332,10 @@ namespace gen
 
 #endif
 
-   __int64 str::get_hex(const char * pszUtf8Char)
+   int64_t str::get_hex(const char * pszUtf8Char)
    {
       string low = gen::ch::to_lower_case(pszUtf8Char);
-      __int64 ch = gen::ch::uni_index(low);
+      int64_t ch = gen::ch::uni_index(low);
       ch -= '0';
       if(ch >= 'a'-'0' && ch <= 'f'-'0')
       {
@@ -1351,7 +1351,7 @@ namespace gen
       }
    }
 
-   string str::uni_to_utf8(__int64 w)
+   string str::uni_to_utf8(int64_t w)
    {
       string str;
       if(w < 0x0080 )
@@ -1680,8 +1680,8 @@ namespace gen
             }
             else
             {
-               __int64 hex = get_hex_number(string(&lpcsz[pos+2], 2));
-               if(__int64(strlen(lpcsz)) <= pos + 2 || hex== -1)
+               int64_t hex = get_hex_number(string(&lpcsz[pos+2], 2));
+               if(int64_t(strlen(lpcsz)) <= pos + 2 || hex== -1)
                {
                   return BAD_WCHAR;
                }
@@ -1694,14 +1694,14 @@ namespace gen
       return lpcsz[pos];
    }
 
-   __int64 str::get_hex_number(const char * lpcsz)
+   int64_t str::get_hex_number(const char * lpcsz)
    {
-      __int64 r = 0, num = 0;
+      int64_t r = 0, num = 0;
       if(lpcsz == NULL)
          return -1;
-      for(__int64 i = strlen(lpcsz)-1; i >= 0; i--)
+      for(int64_t i = strlen(lpcsz)-1; i >= 0; i--)
       {
-         __int64 d = get_hex(&(lpcsz)[i]);
+         int64_t d = get_hex(&(lpcsz)[i]);
          if(d == -1)
             return -1;
          num += d << r;

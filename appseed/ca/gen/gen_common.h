@@ -165,7 +165,7 @@ namespace gen
 #endif
    }
 
-   inline void __cdecl i64toa_s(__int64 _Val, char *_Buf, size_t _SizeInChars, int _Radix)
+   inline void __cdecl i64toa_s(int64_t _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_i64toa_s(_Val, _Buf, _SizeInChars, _Radix));
@@ -174,7 +174,7 @@ namespace gen
 #endif
    }
 
-   inline void __cdecl i64tow_s(__int64 _Val, wchar_t *_Buf, size_t _SizeInChars, int _Radix)
+   inline void __cdecl i64tow_s(int64_t _Val, wchar_t *_Buf, size_t _SizeInChars, int _Radix)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_i64tow_s(_Val, _Buf, _SizeInChars, _Radix));

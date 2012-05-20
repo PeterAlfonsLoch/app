@@ -32,7 +32,7 @@ namespace datetime
 
    time_span::time_span(LONG lDays, int nHours, int nMins, int nSecs) throw()
    {
-      m_timeSpan = nSecs + 60* (nMins + 60* (nHours + __int64(24) * lDays));
+      m_timeSpan = nSecs + 60* (nMins + 60* (nHours + int64_t(24) * lDays));
    }
 
    LONGLONG time_span::GetDays() const throw()
@@ -916,9 +916,9 @@ dump_context& operator <<(dump_context & dumpcontext, ::datetime::time time)
 /*CArchive& ::datetime::time::Serialize64(CArchive& ar)
 {
 if (ar.IsStoring())
-return ar << (__int64) m_time;
+return ar << (int64_t) m_time;
 else
-return ar >> (__int64) m_time;
+return ar >> (int64_t) m_time;
 }
 const __int32 cTime64Mark = INT_MIN + 10;
 CArchive& operator <<(CArchive& ar, ::datetime::time time)
@@ -926,8 +926,8 @@ CArchive& operator <<(CArchive& ar, ::datetime::time time)
 // This version serializes 32 bits of invalid time and after 64 bits
 // time64. New code will support both 64 serialization and 32/64 deserialization.
 __time64_t ttime = time.get_time();
-ar << (DWORD)cTime64Mark;   
-return ar << (__int64) ttime;
+ar << (DWORD)cTime64Mark;
+return ar << (int64_t) ttime;
 }
 
 CArchive& operator >>(CArchive& ar, ::datetime::time& rtime)
@@ -940,7 +940,7 @@ CArchive& retRef = ar >> (DWORD&) timeOld;
 if (static_cast<__int32>(timeOld)==cTime64Mark)
 {
 __time64_t t64;
-ar >> (__int64) t64;
+ar >> (int64_t) t64;
 rtime = t64;
 } else
 {
@@ -964,9 +964,9 @@ dump_context& operator <<(dump_context & dumpcontext, ::datetime::time_span time
 /*CArchive& time_span::Serialize64(CArchive& ar)
 {
 if (ar.IsStoring())
-return ar << (__int64) m_timeSpan;
+return ar << (int64_t) m_timeSpan;
 else
-return ar >> (__int64) m_timeSpan;
+return ar >> (int64_t) m_timeSpan;
 }
 
 CArchive& operator <<(CArchive& ar, time_span timeSpan)

@@ -64,7 +64,7 @@ void mul64(uint64_t v1, uint64_t v2, uint64_t & hi, uint64_t & lo)
   hi += a * c;                  /* AC */
 }
 
-void mul64(__int64 v1, __int64 v2, __int64 & hi, uint64_t & lo)
+void mul64(int64_t v1, int64_t v2, int64_t & hi, uint64_t & lo)
 {
    if(v1 > 0)
    {
@@ -74,9 +74,9 @@ void mul64(__int64 v1, __int64 v2, __int64 & hi, uint64_t & lo)
       }
       else
       {
-         mul64((uint64_t) v1, (uint64_t) -(__int64)v2, (uint64_t &) hi, lo);
+         mul64((uint64_t) v1, (uint64_t) -(int64_t)v2, (uint64_t &) hi, lo);
          hi = -hi;
-         lo = (uint64_t)-(__int64)lo;
+         lo = (uint64_t)-(int64_t)lo;
       }
    }
    else
@@ -85,11 +85,11 @@ void mul64(__int64 v1, __int64 v2, __int64 & hi, uint64_t & lo)
       {
          mul64((uint64_t) -v1, (uint64_t) v2, (uint64_t &) hi, lo);
          hi = -hi;
-         lo = (uint64_t)-(__int64)lo;
+         lo = (uint64_t)-(int64_t)lo;
       }
       else
       {
-         mul64((uint64_t) -(__int64)v1, (uint64_t) -(__int64)v2, (uint64_t &) hi, lo);
+         mul64((uint64_t) -(int64_t)v1, (uint64_t) -(int64_t)v2, (uint64_t &) hi, lo);
       }
    }
 }
@@ -105,7 +105,7 @@ uint64_t div128_64(uint64_t hi, uint64_t lo, uint64_t div, uint64_t & remainder)
 {
    for(size_t i = 1; i <= 64; ++i)
    {
-      uint64_t t = __int64(hi) >> 63;
+      uint64_t t = int64_t(hi) >> 63;
       // t is all ones if x(63) = 1
       // Shift the hi|lo left one bit
       hi = (hi << 1) | (lo >> 63);
@@ -121,7 +121,7 @@ uint64_t div128_64(uint64_t hi, uint64_t lo, uint64_t div, uint64_t & remainder)
    return lo;
 }
 
-__int64 div128_64(__int64 hi, uint64_t lo, __int64 div, uint64_t & remainder)
+int64_t div128_64(int64_t hi, uint64_t lo, int64_t div, uint64_t & remainder)
 {
    if(hi > 0)
    {
@@ -131,25 +131,25 @@ __int64 div128_64(__int64 hi, uint64_t lo, __int64 div, uint64_t & remainder)
       }
       else
       {
-         return -(__int64)div128_64((uint64_t) hi, lo, (uint64_t) -(__int64)div, remainder);
+         return -(int64_t)div128_64((uint64_t) hi, lo, (uint64_t) -(int64_t)div, remainder);
       }
    }
    else
    {
       if(div > 0)
       {
-         return -(__int64)div128_64((uint64_t) -(__int64)hi, (uint64_t)-(__int64)lo, (uint64_t) div, remainder);
+         return -(int64_t)div128_64((uint64_t) -(int64_t)hi, (uint64_t)-(int64_t)lo, (uint64_t) div, remainder);
       }
       else
       {
-         return div128_64((uint64_t) -(__int64)hi, (uint64_t)-(__int64)lo, (uint64_t) -(__int64)div, remainder);
+         return div128_64((uint64_t) -(int64_t)hi, (uint64_t)-(int64_t)lo, (uint64_t) -(int64_t)div, remainder);
       }
    }
 }
 
 
 
-/*void div128(__int64 hi, __int64 lo, __int64 divisor, __int64 & result_hi, __int64 & result_lo, __int64 & remainder)
+/*void div128(int64_t hi, int64_t lo, int64_t divisor, int64_t & result_hi, int64_t & result_lo, int64_t & remainder)
 {
 
    result_hi = hi / divisor;
@@ -242,9 +242,9 @@ inline unsigned int msb(uint64_t value)
 }*/
 
 //
-__int64 _stdcall muldiv64(__int64 number, __int64 numerator, __int64 denominator)
+int64_t _stdcall muldiv64(int64_t number, int64_t numerator, int64_t denominator)
 {
-   __int64 hi;
+   int64_t hi;
    uint64_t lo;
    mul64(number, numerator, hi, lo);
    uint64_t remainder;
@@ -502,7 +502,7 @@ done:
  *     Xscaled = (Xstart * Multiplier) SHR rshift
  * Uses 128 bit intermediate result
  */
-__int64 _stdcall mulshr64(__int64 operant, __int64 multiplier, unsigned char rshift)
+int64_t _stdcall mulshr64(int64_t operant, int64_t multiplier, unsigned char rshift)
 {
    return (operant * multiplier) >> rshift;
 /*   // Declare 128bit storage

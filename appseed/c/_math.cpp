@@ -169,10 +169,10 @@ CLASS_DECL_c  int rand_dup()
 }
 
 
-/*__int64 ftoi64(double d)
+/*int64_t ftoi64(double d)
 {
-   __int64 u = 0x7fffffffffffffff;
-   __int64 l = 0x8000000000000000;
+   int64_t u = 0x7fffffffffffffff;
+   int64_t l = 0x8000000000000000;
    double m;
    while(true)
    {

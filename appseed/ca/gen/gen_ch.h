@@ -42,11 +42,11 @@ namespace gen
    namespace ch
    {
 
-      CLASS_DECL_ca  __int64 uni_index(const char * pszUtf8);
-      CLASS_DECL_ca  __int64 uni_index(const char * pszUtf8, const char * pszEnd);
+      CLASS_DECL_ca  int64_t uni_index(const char * pszUtf8);
+      CLASS_DECL_ca  int64_t uni_index(const char * pszUtf8, const char * pszEnd);
 
 
-      inline bool is_legal_uni_index(__int64 c)
+      inline bool is_legal_uni_index(int64_t c)
       {
          return c >= ((uint64_t) 0xffff) ? false : true;
       }
@@ -95,7 +95,7 @@ namespace gen
 
       inline bool to_numeric_value(const char * pszUtf8Char, float *f)
       {
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         unsigned long c1 = CHAR_PROP(c);

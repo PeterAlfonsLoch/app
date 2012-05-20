@@ -5,15 +5,15 @@ class CLASS_DECL_ca duration
 {
 public:
 
-   __int64     m_iNanoseconds;
-   __int64     m_iSeconds;
+   int64_t     m_iNanoseconds;
+   int64_t     m_iSeconds;
 
    inline duration();
-   inline duration(__int64 iSeconds, __int64 iNanoseconds, bool bNormalize = true);
+   inline duration(int64_t iSeconds, int64_t iNanoseconds, bool bNormalize = true);
    inline duration(const duration & duration);
 
-   inline __int64 get_total_milliseconds() const;
-   inline __int64 total_milliseconds() const;
+   inline int64_t get_total_milliseconds() const;
+   inline int64_t total_milliseconds() const;
    inline bool is_pos_infinity() const;
    inline static duration infinite();
    inline static duration pos_infinity();
@@ -38,7 +38,7 @@ duration::duration()
 }
 
 
-duration::duration(__int64 iSeconds, __int64 iNanoseconds, bool bNormalize)
+duration::duration(int64_t iSeconds, int64_t iNanoseconds, bool bNormalize)
 {
    m_iSeconds     = iSeconds;
    m_iNanoseconds = iNanoseconds;
@@ -54,7 +54,7 @@ duration::duration(const duration & duration)
    m_iNanoseconds    = duration.m_iNanoseconds;
 }
 
-__int64 duration::get_total_milliseconds() const
+int64_t duration::get_total_milliseconds() const
 {
    return m_iSeconds * 1000 + m_iNanoseconds / 1000000;
 }
@@ -74,7 +74,7 @@ duration::operator ::os_lock_duration() const
    return ::duration::os_lock_duration();
 }
 
-__int64 duration::total_milliseconds() const
+int64_t duration::total_milliseconds() const
 {
    return get_total_milliseconds();
 }
@@ -120,7 +120,7 @@ class CLASS_DECL_ca millis :
 public:
 
 
-   inline millis(__int64 iMillis = 0);
+   inline millis(int64_t iMillis = 0);
    inline millis(int iMillis);
    inline millis(DWORD dwMillis);
    millis(double dMillis);
@@ -134,7 +134,7 @@ class CLASS_DECL_ca seconds :
 public:
 
 
-   inline seconds(__int64 iSeconds = 0);
+   inline seconds(int64_t iSeconds = 0);
    inline seconds(int iSeconds);
    inline seconds(DWORD dwSeconds);
    inline seconds(double dSeconds);
@@ -149,7 +149,7 @@ class CLASS_DECL_ca minutes :
 public:
 
 
-   inline minutes(__int64 iMinutes = 0);
+   inline minutes(int64_t iMinutes = 0);
    inline minutes(int iMinutes);
    inline minutes(DWORD dwMinutes);
    inline minutes(double dMinutes);
@@ -164,7 +164,7 @@ class CLASS_DECL_ca hours :
 public:
 
 
-   inline hours(__int64 iHours = 0);
+   inline hours(int64_t iHours = 0);
    inline hours(int iHours);
    inline hours(DWORD dwHours);
    inline hours(double dHours);
@@ -179,7 +179,7 @@ class CLASS_DECL_ca days :
 public:
 
 
-   inline days(__int64 iDays = 0);
+   inline days(int64_t iDays = 0);
    inline days(int iDays);
    inline days(DWORD dwDays);
    inline days(double dDays);
@@ -190,7 +190,7 @@ public:
 
 
 
-millis::millis(__int64 i) :
+millis::millis(int64_t i) :
    duration(i / 1000, (i % 1000) * 1000000)
 {
 }
@@ -206,7 +206,7 @@ millis::millis(DWORD dw) :
 }
 
 
-seconds::seconds(__int64 i) :
+seconds::seconds(int64_t i) :
    millis(i * 1000)
 {
 }
@@ -226,7 +226,7 @@ seconds::seconds(double d) :
 {
 }
 
-minutes::minutes(__int64 i) :
+minutes::minutes(int64_t i) :
    seconds(i * 60)
 {
 }
@@ -246,7 +246,7 @@ minutes::minutes(double d) :
 {
 }
 
-hours::hours(__int64 i) :
+hours::hours(int64_t i) :
    minutes(i * 60)
 {
 }
@@ -266,7 +266,7 @@ hours::hours(double d) :
 {
 }
 
-days::days(__int64 i) :
+days::days(int64_t i) :
    hours(i * 24)
 {
 }

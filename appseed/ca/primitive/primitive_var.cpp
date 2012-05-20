@@ -51,7 +51,7 @@ var::var(int i)
    operator = (i);
 }
 
-var::var(__int64 i)
+var::var(int64_t i)
 {
    m_etype = type_new;
    m_pca2 = NULL;
@@ -72,7 +72,7 @@ var::var(int * pi)
    operator = (pi);
 }
 
-var::var(__int64 * pi)
+var::var(int64_t * pi)
 {
    m_etype = type_new;
    m_pca2 = NULL;
@@ -381,7 +381,7 @@ class var & var::operator = (int i)
 }
 
 
-class var & var::operator = (__int64 i)
+class var & var::operator = (int64_t i)
 {
    if(get_type() == type_pint64)
    {
@@ -447,7 +447,7 @@ class var & var::operator = (int * pi)
    return *this;
 }
 
-class var & var::operator = (__int64 * pi)
+class var & var::operator = (int64_t * pi)
 {
    set_type(type_pint64, false);
    m_pi64 = pi;
@@ -788,7 +788,7 @@ var::operator int()
 }
 
 // returns 0 for unknown conversions
-var::operator __int64()
+var::operator int64_t()
 {
    switch(m_etype)
    {
@@ -1570,7 +1570,7 @@ string & var::get_ref_string(const char * pszOnNull)
    {
       return *m_pstr;
    }
-   else 
+   else
    {
       m_str = get_string(pszOnNull);
       set_type(type_string, false);
@@ -1592,7 +1592,7 @@ inline id var::get_id(const char * pszOnNull) const
    }
    else if(m_etype != type_id)
    {
-      
+
       ::id id;
 
       if(m_etype == var::type_null)
@@ -2006,7 +2006,7 @@ string var::implode(const char * pszGlue) const
 
 var var::explode(const char * pszGlue, bool bAddEmpty) const
 {
-   
+
    class var var;
 
    var.stra().add_tokens(get_string(), pszGlue, bAddEmpty);
@@ -3378,7 +3378,7 @@ void var::parse_json(const char * & pszJson, const char * pszEnd)
 
 bool var::is_numeric() const
 {
-   
+
    switch(get_type())
    {
       case type_parareturn:

@@ -10,7 +10,7 @@ namespace ca
 
 
 #ifdef WINDOWS
-      __int64 g_iFrequency = 0;
+      int64_t g_iFrequency = 0;
 #endif
 
 

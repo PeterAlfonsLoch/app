@@ -25,7 +25,7 @@ namespace mysql
    public:
 
 
-      __int64 m_iLastUsedTime;
+      int64_t m_iLastUsedTime;
 
 
       database(::ca::application * papp);

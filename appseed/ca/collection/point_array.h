@@ -34,7 +34,7 @@ class CLASS_DECL_ca point64_array :
 public:
    virtual ~point64_array();
 
-   void offset(__int64 x, __int64 y);
+   void offset(int64_t x, int64_t y);
    void offset(class point64 point);
 };
 

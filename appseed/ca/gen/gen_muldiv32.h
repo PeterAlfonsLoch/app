@@ -103,7 +103,7 @@
 #else
 
         //
-        //  Use C9 __int64 support for Daytona RISC platforms.
+        //  Use C9 int64_t support for Daytona RISC platforms.
         //
 
         INLINE LONG MulDiv32( LONG a, LONG b, LONG c )

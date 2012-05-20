@@ -73,7 +73,7 @@ namespace gen
 {
 
    template < class ca_derived >
-   inline __int64 add_ref(ca_derived * pca)
+   inline int64_t add_ref(ca_derived * pca)
    {
       if(pca == NULL)
          return -1;
@@ -81,17 +81,17 @@ namespace gen
    }
 
    template < class ca_derived >
-   inline __int64 release(ca_derived * & pca)
+   inline int64_t release(ca_derived * & pca)
    {
       if(pca == NULL)
          return -1;
-      __int64 count = pca->release();
+      int64_t count = pca->release();
       pca = NULL;
       return count;
    }
 
    template < class ca_derived >
-   inline __int64 ref_count(ca_derived * pca)
+   inline int64_t ref_count(ca_derived * pca)
    {
       if(pca == NULL)
          return -1;
@@ -155,7 +155,7 @@ namespace ca
       ::ca::application *     m_papp;
       ::plane::system *       m_psystem;
       ::plane::session *      m_psession;
-      __int64                 m_countReference;
+      int64_t                 m_countReference;
       ::ca::ptra *            m_pptraListener;
       ::ca::ptra *            m_pptraListened;
       factory_item_base *     m_pfactoryitembase;
@@ -200,17 +200,17 @@ namespace ca
 
       virtual void on_delete(::ca::ca * pca);
 
-      inline __int64 get_ref_count()
+      inline int64_t get_ref_count()
       {
          return m_countReference;
       }
 
-      inline __int64 add_ref()
+      inline int64_t add_ref()
       {
          return m_countReference++;
       }
 
-      inline __int64 release()
+      inline int64_t release()
       {
          if(m_countReference > 0)
          {

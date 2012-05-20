@@ -41,7 +41,7 @@ int atoi_dup(const char *psz, const char ** pszEnd)
 }
 
 
-/*__int64 atoi64_dup(const char *str)
+/*int64_t atoi64_dup(const char *str)
 {
 return atol64_dup(str, NULL, 10);
 /*    while (isspace_dup(*str))			// skip whitespace
@@ -209,7 +209,7 @@ int natoi_dup(const char *psz, const char ** pszEnd, int iLen)
 }
 
 
-/*__int64 atoi64_dup(const char *str)
+/*int64_t atoi64_dup(const char *str)
 {
 return atol64_dup(str, NULL, 10);
 /*    while (isspace_dup(*str))			// skip whitespace

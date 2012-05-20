@@ -277,7 +277,7 @@ void itoa_dup(char * sz, int i, int iBase)
 
 
 
-/*void l64toa_dup(char * sz, __int64 i, __int64 iBase)
+/*void l64toa_dup(char * sz, int64_t i, int64_t iBase)
 {
    if(i == 0)
    {
@@ -291,10 +291,10 @@ void itoa_dup(char * sz, int i, int iBase)
       i = -i;
       bNegative = true;
    }
-   __int64 iIndex = 0;
+   int64_t iIndex = 0;
    while(i > 0)
    {
-      __int64 iDigit = (i % iBase);
+      int64_t iDigit = (i % iBase);
       char ch;
       if(iDigit <= 9)
       {
@@ -317,7 +317,7 @@ void itoa_dup(char * sz, int i, int iBase)
    str_reverse(sz);
 }
 
-void i64toa_dup(char * sz, __int64 i)
+void i64toa_dup(char * sz, int64_t i)
 {
   l64toa_dup(sz, i, 10);
 }*/
@@ -749,7 +749,7 @@ CLASS_DECL_c vsstring itohexpad_dup(int i, int iPad)
    return str;
 }
 
-/*CLASS_DECL_c vsstring i64toa_dup(__int64 i)
+/*CLASS_DECL_c vsstring i64toa_dup(int64_t i)
 {
    char sz[512];
    i64toa_dup(sz, i);

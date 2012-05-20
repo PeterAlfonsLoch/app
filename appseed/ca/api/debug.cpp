@@ -69,12 +69,12 @@ CLASS_DECL_ca int __cdecl _CrtSetDbgFlag(int)
    return TRUE;
 }
 
-CLASS_DECL_ca int __cdecl _CrtDumpMemoryLeaks(void)
+CLASS_DECL_ca int __cdecl _CrtDumpMemoryLeaks()
 {
    return TRUE;
 }
 
-CLASS_DECL_ca int DECL_C _CrtCheckMemory(void)
+CLASS_DECL_ca int DECL_C _CrtCheckMemory()
 {
    return 1;
 }

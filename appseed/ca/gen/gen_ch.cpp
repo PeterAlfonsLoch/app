@@ -13,7 +13,7 @@ namespace gen
 
 
       string to_lower_case(const char * pszUtf8Char){
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return "";
         unsigned long c1 = CHAR_PROP(c);
@@ -22,7 +22,7 @@ namespace gen
         return string(wchar_t(c - (c1>>16)));
       }
       string to_upper_case(const char * pszUtf8Char){
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return "";
         unsigned long c1 = CHAR_PROP(c);
@@ -32,7 +32,7 @@ namespace gen
       }
       string to_title_case(const char * pszUtf8Char)
       {
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return "";
         unsigned long c1 = CHAR_PROP(c);
@@ -48,19 +48,19 @@ namespace gen
 
 
       bool is_lower_case(const char * pszUtf8Char){
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return CHAR_CATEGORY(CHAR_PROP(c)) == CHAR_CATEGORY_Ll;
       }
       bool is_upper_case(const char * pszUtf8Char){
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return CHAR_CATEGORY(CHAR_PROP(c)) == CHAR_CATEGORY_Lu;
       }
       bool is_title_case(const char * pszUtf8Char){
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return CHAR_CATEGORY(CHAR_PROP(c)) == CHAR_CATEGORY_Lt;
@@ -68,7 +68,7 @@ namespace gen
 
 
       bool is_letter(const char * pszUtf8Char){
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         unsigned long c1 = CHAR_CATEGORY(CHAR_PROP(c));
@@ -80,7 +80,7 @@ namespace gen
                  ) >> c1) & 1) != 0;
       }
       bool is_letter_or_digit(const char * pszUtf8Char){
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         unsigned long c1 = CHAR_CATEGORY(CHAR_PROP(c));
@@ -94,21 +94,21 @@ namespace gen
       }
 
       bool is_digit(const char * pszUtf8Char){
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return CHAR_CATEGORY(CHAR_PROP(c)) == CHAR_CATEGORY_Nd;
       }
 
       bool is_assigned(const char * pszUtf8Char){
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return CHAR_CATEGORY(CHAR_PROP(c)) != CHAR_CATEGORY_Cn;
       }
 
       bool is_space_char(const char * pszUtf8Char){
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return  ((((1 << CHAR_CATEGORY_Zs) |
@@ -117,7 +117,7 @@ namespace gen
                   ) >> CHAR_CATEGORY(CHAR_PROP(c))) & 1) != 0;
       }
       bool is_whitespace(const char * pszUtf8Char){
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return  (c == 0x20)
@@ -134,7 +134,7 @@ namespace gen
                    ) >> CHAR_CATEGORY(CHAR_PROP(c))) & 1) != 0);
       }
       bool is_whitespace(const char * pszUtf8Char, const char * pszEnd){
-         __int64 c = uni_index(pszUtf8Char, pszEnd);
+         int64_t c = uni_index(pszUtf8Char, pszEnd);
          if(!is_legal_uni_index(c))
             return false;
         return  (c == 0x20)
@@ -152,7 +152,7 @@ namespace gen
       }
 
       bool is_number(const char * pszUtf8Char){
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return NUMBER(CHAR_PROP(c)) != 0;
@@ -160,27 +160,27 @@ namespace gen
 
 
       ECharCategory get_category(const char * pszUtf8Char){
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return CHAR_CATEGORY_LAST;
         return ECharCategory(CHAR_CATEGORY(CHAR_PROP(c)));
       }
 
       string get_category_name(const char * pszUtf8Char){
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return "";
         return string(char_category_names[CHAR_CATEGORY(CHAR_PROP(c))]);
       }
 
       int get_combining_class(const char * pszUtf8Char){
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return COMBINING_CLASS(CHAR_PROP(c));
       }
       bool is_mirrored(const char * pszUtf8Char){
-         __int64 c = uni_index(pszUtf8Char);
+         int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
         return MIRRORED(CHAR_PROP(c)) != 0;
@@ -220,10 +220,10 @@ namespace gen
 
 
 
-      __int64 uni_index(const char * pszUtf8)
+      int64_t uni_index(const char * pszUtf8)
       {
          unsigned char * source = (unsigned char *) pszUtf8;
-         __int64 ch = 0;
+         int64_t ch = 0;
          int extraBytesToRead = trailingBytesForUTF8[*source];
 /*         if(natural(extraBytesToRead) >= strlen(pszUtf8))
          }*/
@@ -250,10 +250,10 @@ namespace gen
          return ch;
       }
 
-      __int64 uni_index(const char * pszUtf8, const char * pszEnd)
+      int64_t uni_index(const char * pszUtf8, const char * pszEnd)
       {
          unsigned char * source = (unsigned char *) pszUtf8;
-         __int64 ch = 0;
+         int64_t ch = 0;
          int extraBytesToRead = trailingBytesForUTF8[*source];
          if(*source == '\0') return -1;
          if((source + extraBytesToRead + 1) > (unsigned char *) pszEnd)

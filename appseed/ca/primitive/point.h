@@ -12,7 +12,7 @@ public:
    // create an uninitialized point
    point() throw();
    // create from two integers
-   point(__int64 initX, __int64 initY) throw();
+   point(int64_t initX, int64_t initY) throw();
    // create from another point
    point(POINT initPt) throw();
    point(const POINT * pinitPt) throw();
@@ -72,7 +72,7 @@ public:
    // create an uninitialized point64
    point64() throw();
    // create from two integers
-   point64(__int64 initX, __int64 initY) throw();
+   point64(int64_t initX, int64_t initY) throw();
    // create from another point64
    point64(__point64 initPt) throw();
    point64(POINT pt) throw();
@@ -88,10 +88,10 @@ public:
 // Operations
 
 // translate the point64
-   void Offset(__int64 xOffset, __int64 yOffset) throw();
+   void Offset(int64_t xOffset, int64_t yOffset) throw();
    void Offset(__point64 point64) throw();
    void Offset(__size64 size) throw();
-   void SetPoint(__int64 X, __int64 Y) throw();
+   void SetPoint(int64_t X, int64_t Y) throw();
 
    bool operator==(__point64 point64) const throw();
    bool operator!=(__point64 point64) const throw();

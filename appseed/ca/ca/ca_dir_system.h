@@ -39,7 +39,7 @@ namespace ca
          {
          public:
 
-            
+
             bool        m_bIsDir;
             DWORD       m_dwLastCheck;
 
@@ -52,7 +52,7 @@ namespace ca
          {
          public:
 
-            
+
             mutex             m_mutex;
             DWORD             m_dwTimeOut;
 
@@ -73,14 +73,14 @@ namespace ca
          zip::Util *       m_pziputil;
          is_dir_map        m_isdirmap;
          mutex             m_mutex;
-         
+
 
          system(::ca::application * papp);
          virtual ~system();
 
 
          virtual class path & path();
-      
+
 
          virtual string path(const string & strFolder, const string & strRelative, bool bUrl);
          virtual string path(const string & strFolder, const string & strRelative, const string & str2, bool bUrl);
@@ -98,15 +98,15 @@ namespace ca
 
 
          virtual string relpath(const char * lpcszSource, const char * lpcszRelative, const char * lpcsz2 = NULL);
-         virtual void  ls_pattern(::ca::application * papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < __int64, __int64 > * piaSize = NULL);
-         virtual void  ls(::ca::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < __int64, __int64 > * piaSize = NULL);
-         virtual void  rls_pattern(::ca::application * papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < __int64, __int64 > * piaSize = NULL, e_extract eextract = extract_first);
+         virtual void  ls_pattern(::ca::application * papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < int64_t, int64_t > * piaSize = NULL);
+         virtual void  ls(::ca::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < int64_t, int64_t > * piaSize = NULL);
+         virtual void  rls_pattern(::ca::application * papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, base_array < bool, bool > * pbaIsDir = NULL, base_array < int64_t, int64_t > * piaSize = NULL, e_extract eextract = extract_first);
          virtual void  rls(::ca::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, e_extract eextract = extract_first);
          virtual void  rls_dir(::ca::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL);
          virtual void  ls_dir(::ca::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
          virtual bool  has_subdir(::ca::application * papp, const char * lpcsz);
          virtual void  ls_file(::ca::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
-         
+
          virtual bool  is(const char * lpcsz, ::ca::application * papp);
          virtual bool  is(const string & str, ::ca::application * papp);
          virtual bool  is(const var & var, ::ca::application * papp);
@@ -166,7 +166,7 @@ namespace ca
          virtual string trash_that_is_not_trash(const char * psz);
 
          virtual string appdata(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
-      
+
          virtual string usersystemappdata(::ca::application * papp, const char * lpcszPrefix, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string userappdata(::ca::application * papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string userdata(::ca::application * papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);

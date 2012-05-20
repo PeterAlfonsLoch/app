@@ -260,7 +260,7 @@ namespace gen
          return *this;
       }
 
-      property & operator =(__int64 i)
+      property & operator =(int64_t i)
       {
          get_value() = i;
          return *this;
@@ -327,7 +327,7 @@ namespace gen
          return get_value().get_integer();
       }
 
-      operator __int64()
+      operator int64_t()
       {
          return get_value().get_integer();
       }
@@ -563,8 +563,8 @@ namespace gen
       public ex1::byte_serializable_array < base_array < property > >
    {
    public:
-      
-      
+
+
       property_array();
 
 
@@ -576,9 +576,9 @@ namespace gen
       public ::collection::string_to_intptr
    {
    public:
-      
 
-      
+
+
       property_map();
 
 

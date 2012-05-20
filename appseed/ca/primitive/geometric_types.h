@@ -36,8 +36,8 @@ class rectd;
 class CLASS_DECL_ca __point64
 {
 public:
-    __int64    x;
-    __int64    y;
+    int64_t    x;
+    int64_t    y;
 };
 
 typedef unsigned char      byte;
@@ -66,17 +66,17 @@ class rectd;
 class CLASS_DECL_ca __size64
 {
 public:
-   __int64     cx;
-   __int64     cy;
+   int64_t     cx;
+   int64_t     cy;
 };
 
 class CLASS_DECL_ca __rect64
 {
 public:
-   __int64     left;
-   __int64     top;
-   __int64     right;
-   __int64     bottom;
+   int64_t     left;
+   int64_t     top;
+   int64_t     right;
+   int64_t     bottom;
 };
 
 
@@ -110,8 +110,8 @@ typedef const RECTD FAR* LPCRECTD;
 #include "rectangle.h"
 
 
-CLASS_DECL_ca __int64 MulDiv(__int64 nNumber, __int64 nNumerator, __int64 nDenominator);
-CLASS_DECL_ca inline bool is64(__int64 i)
+CLASS_DECL_ca int64_t MulDiv(int64_t nNumber, int64_t nNumerator, int64_t nDenominator);
+CLASS_DECL_ca inline bool is64(int64_t i)
 {
    return (i & 0xffffffff00000000 ) != 0;
 }
@@ -140,12 +140,12 @@ CLASS_DECL_ca bool copy(__rect64 * prectDest, const RECT * prectSrc);
 CLASS_DECL_ca bool copy(RECT * prectDest, const __rect64 * prectSrc);
 CLASS_DECL_ca bool is_empty(const __rect64 * prect);
 CLASS_DECL_ca bool contains(const __rect64 * prect, point64 pt);
-CLASS_DECL_ca bool set(__rect64 * prectDest, __int64 x1, __int64 y1, __int64 x2, __int64 y2);
+CLASS_DECL_ca bool set(__rect64 * prectDest, int64_t x1, int64_t y1, int64_t x2, int64_t y2);
 CLASS_DECL_ca bool null(__rect64 * prectDest);
 CLASS_DECL_ca bool is_equal(const __rect64 * prect1, const __rect64 * prect2);
-CLASS_DECL_ca bool inflate(__rect64 * prect, __int64 x, __int64 y);
-CLASS_DECL_ca bool deflate(__rect64 * prect, __int64 x, __int64 y);
-CLASS_DECL_ca bool offset(__rect64 * prect, __int64 x, __int64 y);
+CLASS_DECL_ca bool inflate(__rect64 * prect, int64_t x, int64_t y);
+CLASS_DECL_ca bool deflate(__rect64 * prect, int64_t x, int64_t y);
+CLASS_DECL_ca bool offset(__rect64 * prect, int64_t x, int64_t y);
 CLASS_DECL_ca bool x_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
 CLASS_DECL_ca bool y_intersect_rect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
 CLASS_DECL_ca bool intersect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);

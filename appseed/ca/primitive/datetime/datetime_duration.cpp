@@ -10,7 +10,7 @@ void duration::normalize()
 
 
 millis::millis(double d) :
-   duration((__int64)( d / 1000.0), (__int64) fmod(d * 1000000.0, 1000000000.0))
+   duration((int64_t)( d / 1000.0), (int64_t) fmod(d * 1000000.0, 1000000000.0))
 {
 }
 

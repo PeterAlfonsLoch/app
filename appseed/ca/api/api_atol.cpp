@@ -110,7 +110,7 @@ int64_t atoi64_dup(const char * psz, char ** pszEnd, int iBase)
       return 0;
 }
 
-/*__int64 atol64_dup(const char * sz, const char ** pszEnd, int iBase)
+/*int64_t atol64_dup(const char * sz, const char ** pszEnd, int iBase)
 {
    const char * szIter = sz;
    while(*szIter != '\0' && ((*szIter >= '0' && *szIter <= ('0' + min(9, iBase))) || (to_lower(*szIter) >= 'a' && to_lower(*szIter) <= ('a' + iBase - 10))))
@@ -122,8 +122,8 @@ int64_t atoi64_dup(const char * psz, char ** pszEnd, int iBase)
       *pszEnd = szIter;
    }
    szIter--;
-   __int64 iResult = 0;
-   __int64 iPow = 1;
+   int64_t iResult = 0;
+   int64_t iPow = 1;
    while(szIter >= sz)
    {
       char ch = *szIter;

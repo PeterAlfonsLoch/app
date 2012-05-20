@@ -17,7 +17,7 @@ public:
    // uninitialized rectangle
    rect() throw();
    // from left, top, right, and bottom
-   rect(__int64 l, __int64 t, __int64 r, __int64 b) throw();
+   rect(int64_t l, int64_t t, int64_t r, int64_t b) throw();
    // copy constructor
    rect(const RECT& srcRect) throw();
    rect(const __rect64& srcRect) throw();
@@ -139,7 +139,7 @@ public:
    rect operator|(const RECT& rect2) const throw();
    rect MulDiv(int nMultiplier, int nDivisor) const throw();
 
-   __int64 area();
+   int64_t area();
 
    bool contains(LPCRECT lpcrect) const;
    void ConstraintV5(LPCRECT lpcrect, const class size sizeMin);
@@ -172,26 +172,26 @@ public:
    // uninitialized rect64angle
    rect64() throw();
    // from left, top, right, and bottom
-   rect64(__int64 l, __int64 t, __int64 r, __int64 b) throw();
+   rect64(int64_t l, int64_t t, int64_t r, int64_t b) throw();
    // copy constructor
    rect64(const RECT& srcRect) throw();
    // copy constructor
    rect64(const __rect64 & srcRect) throw();
-   // from a po__int64er to another rect64
+   // from a point64_ter to another rect64
    rect64(const RECT * lpSrcRect) throw();
-   // from a po__int64er to another rect64
+   // from a point64_ter to another rect64
    rect64(const __rect64 * lpSrcRect) throw();
    // from a __point64 and size
    rect64(__point64 __point64, __size64 size) throw();
-   // from two po__int64s
+   // from two point64_ts
    rect64(__point64 topLeft, __point64 bottomRight) throw();
 
 // Attributes (in addition to RECT members)
 
    // retrieves the width
-   __int64 width() const throw();
+   int64_t width() const throw();
    // returns the height
-   __int64 height() const throw();
+   int64_t height() const throw();
    // returns the size
    size64 size() const throw();
    // reference to the top-left __point64
@@ -223,7 +223,7 @@ public:
 // Operations
 
    // set rect64angle from left, top, right, and bottom
-   void set(__int64 x1, __int64 y1, __int64 x2, __int64 y2) throw();
+   void set(int64_t x1, int64_t y1, int64_t x2, int64_t y2) throw();
    void set(__point64 topLeft, __point64 bottomRight) throw();
    // is_empty the rect64angle
    void null() throw();
@@ -235,7 +235,7 @@ public:
    // Inflate rect64angle's width and height by
    // x units to the left and right ends of the rect64angle
    // and y units to the top and bottom.
-   void inflate(__int64 x, __int64 y) throw();
+   void inflate(int64_t x, int64_t y) throw();
    // Inflate rect64angle's width and height by
    // size.cx units to the left and right ends of the rect64angle
    // and size.cy units to the top and bottom.
@@ -244,28 +244,28 @@ public:
    // Left side is moved to the left, right side is moved to the right,
    // top is moved up and bottom is moved down.
    void inflate(const __rect64 * lpRect) throw();
-   void inflate(__int64 l, __int64 t, __int64 r, __int64 b) throw();
+   void inflate(int64_t l, int64_t t, int64_t r, int64_t b) throw();
 
    // deflate the rect64angle's width and height without
    // moving its top or left
-   void deflate(__int64 x, __int64 y) throw();
+   void deflate(int64_t x, int64_t y) throw();
    void deflate(__size64 size) throw();
    void deflate(const __rect64 * lpRect) throw();
-   void deflate(__int64 l, __int64 t, __int64 r, __int64 b) throw();
+   void deflate(int64_t l, int64_t t, int64_t r, int64_t b) throw();
 
    // translate the rect64angle by moving its top and left
-   void offset(__int64 x, __int64 y) throw();
+   void offset(int64_t x, int64_t y) throw();
    void offset(__size64 size) throw();
    void offset(__point64 __point64) throw();
    void normalize() throw();
 
    // absolute position of rect64angle
-   void move_to_y(__int64 y) throw();
-   void move_to_x(__int64 x) throw();
-   void move_to(__int64 x, __int64 y) throw();
+   void move_to_y(int64_t y) throw();
+   void move_to_x(int64_t x) throw();
+   void move_to(int64_t x, int64_t y) throw();
    void move_to(__point64 pt) throw();
 
-   // set this rect64angle to __int64ersection of two others
+   // set this rect64angle to int64_tersection of two others
    bool intersect(const __rect64 * lpRect1, const __rect64 * lpRect2) throw();
 
    // set this rect64angle to bounding union of two others
@@ -296,19 +296,19 @@ public:
    rect64 operator-(const __rect64 * lpRect) const throw();
    rect64 operator&(const __rect64 & rect642) const throw();
    rect64 operator|(const __rect64& rect642) const throw();
-   rect64 MulDiv(__int64 nMultiplier, __int64 nDivisor) const throw();
+   rect64 MulDiv(int64_t nMultiplier, int64_t nDivisor) const throw();
 
-   __int64 area();
+   int64_t area();
    bool contains(const __rect64 * lpcrect) const;
    bool contains(const __rect64 * lpcrect);
    void ConstraintV5(const __rect64 * lpcrect, const class size sizeMin);
-   void Align(__int64 align, const __rect64 * lpcrect);
-   void ScaleHeightAspect(__int64 iNewHeight, __int64 iCenterX, __int64 iCenterY);
-   void ScaleRect(double dx, double dy, __int64 ix, __int64 iy);
+   void Align(int64_t align, const __rect64 * lpcrect);
+   void ScaleHeightAspect(int64_t iNewHeight, int64_t iCenterX, int64_t iCenterY);
+   void ScaleRect(double dx, double dy, int64_t ix, int64_t iy);
    void ExtendOnCenter(const __rect64 * lpcrect);
    void FitOnCenterOf(const __rect64 * lpcrect);
    void DeflateBottomRightSizeByRate(double dRate);
-   void SetBottomRightSize(__int64 iWidth, __int64 iHeight);
+   void SetBottomRightSize(int64_t iWidth, int64_t iHeight);
 
    inline point64 top_right() const throw();
    inline point64 bottom_left() const throw();

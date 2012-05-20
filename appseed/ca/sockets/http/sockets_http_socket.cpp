@@ -159,8 +159,8 @@ namespace sockets
       {
          m_request.lowattr(__str(remote_addr)) = GetRemoteSocketAddress()->Convert(false);
          {
-            __int64 count;
-            __int64 freq;
+            int64_t count;
+            int64_t freq;
             if(QueryPerformanceCounter((LARGE_INTEGER *) &count)
             && QueryPerformanceFrequency((LARGE_INTEGER *) &freq))
             {
@@ -323,10 +323,10 @@ namespace sockets
          msg += "Host: " + strHost + "\r\n";
          TRACE0("Host: " + strHost  + "\n");
       }
-      
-      
+
+
       bool bContentLength = m_response.lowattr(__str(http_status_code)) != 304;
-      
+
       if(!bContentLength)
          m_response.m_propertysetHeader.remove_by_name("Content-Length");
 
@@ -343,14 +343,14 @@ namespace sockets
          TRACE0(strKey + ": " + strValue +  + "\n");
          //TRACE(strTrace + "\n");
       }
-      
+
       msg += "\r\n";
 
       Send( msg );
 
       if(bContentLength)
       {
-       
+
          SendResponseBody();
 
       }
@@ -511,7 +511,7 @@ namespace sockets
 
    void http_socket::OnHeaderComplete()
    {
-   
+
       if(IsRequest())
       {
          m_body_size_left = atol(m_request.header("content-length"));
@@ -533,7 +533,7 @@ namespace sockets
       m_b_ssl_server    = psocket->m_b_ssl_server;
       m_b_enable_ssl    = psocket->m_b_enable_ssl;
       m_connected       = psocket->m_connected;
-      
+
       SetRemoteAddress(psocket->GetRemoteSocketAddress());
 
 

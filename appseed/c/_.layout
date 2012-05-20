@@ -7,10 +7,13 @@
 	<File name="_.cpp" open="0" top="0" tabpos="39">
 		<Cursor position="12" topLine="0" />
 	</File>
-	<File name="_math.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="19" topLine="3" />
+	<File name="_atol.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="4008" topLine="165" />
 	</File>
-	<File name="_mem.cpp" open="1" top="0" tabpos="1">
+	<File name="_math.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="2508" topLine="128" />
+	</File>
+	<File name="_mem.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="157" topLine="0" />
 	</File>
 	<File name="atol.h" open="0" top="0" tabpos="4">
@@ -46,6 +49,9 @@
 	<File name="c_c.h" open="0" top="0" tabpos="2">
 		<Cursor position="355" topLine="0" />
 	</File>
+	<File name="c_types.h" open="0" top="0" tabpos="0">
+		<Cursor position="427" topLine="0" />
+	</File>
 	<File name="ca_seed.h" open="0" top="0" tabpos="1">
 		<Cursor position="101" topLine="0" />
 	</File>
@@ -56,7 +62,7 @@
 		<Cursor position="3463" topLine="82" />
 	</File>
 	<File name="file.cpp" open="0" top="0" tabpos="34">
-		<Cursor position="21238" topLine="949" />
+		<Cursor position="8372" topLine="367" />
 	</File>
 	<File name="gdi.cpp" open="0" top="0" tabpos="19">
 		<Cursor position="79" topLine="0" />
@@ -134,7 +140,7 @@
 		<Cursor position="16" topLine="0" />
 	</File>
 	<File name="simple_array.h" open="0" top="0" tabpos="0">
-		<Cursor position="625" topLine="3" />
+		<Cursor position="5557" topLine="196" />
 	</File>
 	<File name="simple_event.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="492" topLine="0" />
@@ -154,8 +160,8 @@
 	<File name="spa/spa_http.cpp" open="0" top="0" tabpos="31">
 		<Cursor position="1417" topLine="33" />
 	</File>
-	<File name="spa/spa_installer.cpp" open="1" top="1" tabpos="24">
-		<Cursor position="22973" topLine="652" />
+	<File name="spa/spa_installer.cpp" open="0" top="0" tabpos="24">
+		<Cursor position="22973" topLine="646" />
 	</File>
 	<File name="spa/spa_plugin.cpp" open="0" top="0" tabpos="32">
 		<Cursor position="2571" topLine="104" />
@@ -173,16 +179,16 @@
 		<Cursor position="2780" topLine="107" />
 	</File>
 	<File name="str.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="14536" topLine="674" />
+		<Cursor position="15703" topLine="705" />
 	</File>
 	<File name="str.h" open="0" top="0" tabpos="1">
-		<Cursor position="2990" topLine="27" />
+		<Cursor position="2654" topLine="24" />
 	</File>
 	<File name="template.h" open="0" top="0" tabpos="0">
 		<Cursor position="281" topLine="0" />
 	</File>
 	<File name="types.h" open="0" top="0" tabpos="3">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="416" topLine="0" />
 	</File>
 	<File name="verisimple_string.cpp" open="0" top="0" tabpos="25">
 		<Cursor position="106" topLine="0" />

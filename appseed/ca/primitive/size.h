@@ -12,7 +12,7 @@ public:
    // construct an uninitialized size
    size() throw();
    // create from two integers
-   size(__int64 initCX, __int64 initCY) throw();
+   size(int64_t initCX, int64_t initCY) throw();
    // create from another size
    size(const SIZE * pinitSize) throw();
    size(SIZE initSize) throw();
@@ -46,7 +46,7 @@ public:
    rect operator+(LPCRECT lpRect) const throw();
    rect operator-(LPCRECT lpRect) const throw();
 
-   __int64 area();
+   int64_t area();
    inline bool is_empty() const throw();
 };
 
@@ -67,7 +67,7 @@ public:
    // construct an uninitialized size64
    size64() throw();
    // create from two integers
-   size64(__int64 initCX, __int64 initCY) throw();
+   size64(int64_t initCX, int64_t initCY) throw();
    // create from another size64
    size64(__size64 initSize) throw();
    size64(const __size64 *pinitSize) throw();
@@ -85,7 +85,7 @@ public:
    bool operator!=(__size64 size64) const throw();
    void operator+=(__size64 size64) throw();
    void operator-=(__size64 size64) throw();
-   void set_size(__int64 CX, __int64 CY) throw();
+   void set_size(int64_t CX, int64_t CY) throw();
 
 // Operators returning size64 values
    size64 operator+(__size64 size64) const throw();
@@ -100,7 +100,7 @@ public:
    rect64 operator+(const __rect64 * lpRect) const throw();
    rect64 operator-(const __rect64 * lpRect) const throw();
 
-   __int64 area();
+   int64_t area();
    inline bool is_empty() const throw();
 };
 

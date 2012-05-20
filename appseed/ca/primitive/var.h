@@ -82,10 +82,10 @@ public:
    e_type get_type() const;
 
    bool is_numeric() const;
-   
+
    inline bool is_number() const
    {
-      
+
       return is_numeric();
 
    }
@@ -96,7 +96,7 @@ public:
    inline var(e_type etype);
    var(bool b);
    var(int i);
-   var(__int64 i64);
+   var(int64_t i64);
    var(unsigned int ui);
    var(uint64_t ui64);
 #ifdef _WINDOWS
@@ -107,7 +107,7 @@ public:
    var(string str);
    var(bool * pb);
    var(int * pi);
-   var(__int64 * pi);
+   var(int64_t * pi);
    var(uint64_t * pui);
    var(const class ::time & time);
    var(const FILETIME & time);
@@ -132,10 +132,10 @@ public:
    {
       gen::para_return     m_parareturn;
       int                  m_i;
-      __int64              m_i64;
+      int64_t              m_i64;
       uint64_t     m_ui64;
       int *                m_pi;
-      __int64 *            m_pi64;
+      int64_t *            m_pi64;
       uint64_t *   m_pui64;
       bool *               m_pb;
       string *             m_pstr;
@@ -221,7 +221,7 @@ public:
    operator unsigned int();
    operator long();
    operator int();
-   operator __int64();
+   operator int64_t();
    operator string & ();
    operator string () const;
    operator id &();
@@ -241,8 +241,8 @@ public:
    var & operator = (bool * pb);
    var & operator = (int i);
    var & operator = (int * pi);
-   var & operator = (__int64 i);
-   var & operator = (__int64 * pi);
+   var & operator = (int64_t i);
+   var & operator = (int64_t * pi);
    var & operator = (uint64_t i);
    var & operator = (uint64_t * pi);
    var & operator = (const class ::time & time);

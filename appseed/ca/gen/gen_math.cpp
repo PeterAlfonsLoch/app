@@ -217,10 +217,10 @@ namespace gen
 //            FILETIME fta[3];
   //          memset(&fta, 0, sizeof(fta));
     //        GetSystemTimes(&fta[0], &fta[1], &fta[2]);
-      //      __int64 v1 = tick.QuadPart;
-        //    __int64 v2 = time(NULL);
-          //  __int64 v3 = ca4::crypt::crc32(tick.QuadPart % 0xffffffff, &pi, sizeof(pi));
-            //__int64 v4 = ca4::crypt::crc32(tick.QuadPart % 0xffffffff, fta, sizeof(fta));
+      //      int64_t v1 = tick.QuadPart;
+        //    int64_t v2 = time(NULL);
+          //  int64_t v3 = ca4::crypt::crc32(tick.QuadPart % 0xffffffff, &pi, sizeof(pi));
+            //int64_t v4 = ca4::crypt::crc32(tick.QuadPart % 0xffffffff, fta, sizeof(fta));
 
             int64_t v1 = (int64_t) timer.getTimeInMicroSec();
 

@@ -143,7 +143,7 @@ var veiev_post::get_page(::index iPage, ::index iMessageCountPerPage)
    return var;
 }
 
-__int64 veiev_post::get_count()
+int64_t veiev_post::get_count()
 {
    if(m_pdataserver == NULL)
       return 0;

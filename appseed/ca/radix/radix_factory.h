@@ -23,7 +23,7 @@ public:
 
    DWORD                   m_uiAllocSize;
    int                     m_iCount;
-   __int64                 m_iAllocCount;
+   int64_t                 m_iAllocCount;
    id                      m_idType;
    ::ca::application *     m_papp;
 

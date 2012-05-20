@@ -26,7 +26,7 @@ namespace simpledb
       mutex                         m_mutexTagName;
       string_to_string_map          m_tagname;
 
-      __int64                       m_iDatabaseWaitTimeOut;
+      int64_t                       m_iDatabaseWaitTimeOut;
 
       mutex                         m_mutexSession;
       ::collection::string_map < session * > m_mapSession;
@@ -44,7 +44,7 @@ namespace simpledb
       using ::radix::thread::handle;
       bool handle(socket * psocket);
       bool get_output_internal(const char * lpcszGet, primitive::memory & memeory);
-   
+
       virtual void message_window_message_handler(gen::signal_object * pobj);
 
    };

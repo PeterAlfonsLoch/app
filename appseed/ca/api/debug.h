@@ -31,11 +31,11 @@ typedef void *_HFILE; /* file handle pointer */
 #define _CRTDBG_FILE_STDERR   ((_HFILE)-5)
 #define _CRTDBG_REPORT_FILE   ((_HFILE)-6)
 #else
-#define _CRTDBG_INVALID_HFILE ((_HFILE)(__int64)-1)
-#define _CRTDBG_HFILE_ERROR   ((_HFILE)(__int64)-2)
-#define _CRTDBG_FILE_STDOUT   ((_HFILE)(__int64)-4)
-#define _CRTDBG_FILE_STDERR   ((_HFILE)(__int64)-5)
-#define _CRTDBG_REPORT_FILE   ((_HFILE)(__int64)-6)
+#define _CRTDBG_INVALID_HFILE ((_HFILE)(int64_t)-1)
+#define _CRTDBG_HFILE_ERROR   ((_HFILE)(int64_t)-2)
+#define _CRTDBG_FILE_STDOUT   ((_HFILE)(int64_t)-4)
+#define _CRTDBG_FILE_STDERR   ((_HFILE)(int64_t)-5)
+#define _CRTDBG_REPORT_FILE   ((_HFILE)(int64_t)-6)
 #endif
 
 typedef int (DECL_C * _CRT_REPORT_HOOK)(int, char *, int *);

@@ -19,7 +19,7 @@ public:
 
       string   m_strPath;
       bool     m_bPending;
-      __int64  m_iSize;
+      int64_t  m_iSize;
       bool     m_bRet;
       HWND     m_hwnd;
 
@@ -46,7 +46,7 @@ public:
       item *      m_pitemParent;
       string      m_strName;
       bool        m_bPending;
-      __int64     m_iSize;
+      int64_t     m_iSize;
       index       m_iStep;
       bool        m_bDir;
       bool        m_bPendingLs;
@@ -62,13 +62,13 @@ public:
 
       item * FindItem(::ca::application * papp, const char * pszPath, index & iIteration);
       index FindName(::ca::application * papp, const char * pszName, index & iIteration);
-      
+
       string path();
 
       void ls(::ca::application * papp, index & iIteration);
    };
 
-   
+
 
    item                    m_item;
    HANDLE                  m_hmap;
@@ -108,11 +108,11 @@ public:
 
 
 
-   bool get_cache_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending);
-   bool get_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending);
+   bool get_cache_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending);
+   bool get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending);
 
 
-   bool get_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending, index & iIteration);
+   bool get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending, index & iIteration);
 
 
 };
@@ -158,7 +158,7 @@ public:
 
    size_map                         m_map;
 
-   
+
    FileSystemSizeWnd(::ca::application * papp);
 
    bool CreateClient();
@@ -167,7 +167,7 @@ public:
 
 
    void ClientStartServer();
-   bool get_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending);
+   bool get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending);
 
    void install_message_handling(::gen::message::dispatch * pinterface);
 

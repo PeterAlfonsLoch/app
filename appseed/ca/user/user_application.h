@@ -43,7 +43,7 @@ namespace user
       virtual ::user::mouse_focus * get_mouse_focus_RButtonDown();
       virtual void set_mouse_focus_RButtonDown(::user::mouse_focus * pmousefocus);
 
-      
+
       string message_box(const char * pszMatter, gen::property_set & propertyset);
       using ::radix::application::simple_message_box;
       virtual int simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int iTimeout, UINT fuStyle = MB_OK);
@@ -51,8 +51,8 @@ namespace user
       virtual int track_popup_menu(const char * pszMatter, point pt, ::user::interaction * puie);
 
       virtual bool get_fs_size(string & strSize, const char * pszPath, bool & bPending);
-      virtual bool get_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending);
-   
+      virtual bool get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending);
+
       virtual void data_on_after_change(gen::signal_object * pobj);
 
       class keyboard & keyboard();

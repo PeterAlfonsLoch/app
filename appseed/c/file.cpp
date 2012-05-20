@@ -365,8 +365,8 @@ uint64_t file_length_dup(const char * path)
    if(hfile == INVALID_HANDLE_VALUE)
       return 0;
    DWORD dwHigh;
-   unsigned __int64 ui = ::GetFileSize(hfile, &dwHigh);
-   //ui |= ((unsigned __int64) dwHigh) << 32;
+   unsigned int64_t ui = ::GetFileSize(hfile, &dwHigh);
+   //ui |= ((unsigned int64_t) dwHigh) << 32;
    if(dwHigh != 0)
       return 0; // currently invalid for the purposes of this API
    ::CloseHandle(hfile);

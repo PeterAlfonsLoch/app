@@ -118,7 +118,7 @@ namespace database
       return false;
    }
 
-   bool client::data_set(class id id, class id idIndex, __int64 i, update_hint * puh)
+   bool client::data_set(class id id, class id idIndex, int64_t i, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
@@ -302,7 +302,7 @@ namespace database
       return false;
    }
 
-   bool client::data_get(class id id, class id idIndex, __int64 & i)
+   bool client::data_get(class id id, class id idIndex, int64_t & i)
    {
       if(m_pdataserver != NULL)
       {

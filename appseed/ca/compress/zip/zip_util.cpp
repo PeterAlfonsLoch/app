@@ -15,7 +15,7 @@ namespace zip
 
    }
 
-   void Util::ls(::ca::application * papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, base_array < bool, bool > * pbaIsDir, base_array < __int64, __int64 > * piaSize, e_extract eextract)
+   void Util::ls(::ca::application * papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, base_array < bool, bool > * pbaIsDir, base_array < int64_t, int64_t > * piaSize, e_extract eextract)
    {
       string strZip;
       string strRemain;
@@ -76,7 +76,7 @@ namespace zip
                NULL, // comment
                0);
             string strTitle(szTitle);
-            if(strRemain != strTitle && ((strRemain.is_empty() && 
+            if(strRemain != strTitle && ((strRemain.is_empty() &&
                (strTitle.find("/") < 0  || strTitle.find("/") == (strTitle.get_length() - 1)))
             || (strRemain.has_char() && gen::str::begins_eat_ci(strTitle, strRemain))))
             {
@@ -141,7 +141,7 @@ namespace zip
                pstraTitle->add(Sys(papp).dir().name(straTitle[i]));
             }
          }
-         
+
       }
 
    }
@@ -346,7 +346,7 @@ namespace zip
                   Sys(pfile->get_app()).dir().path(pszDir, strTitle),
                   ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::defer_create_directory);
 
-               
+
                if(spfile.is_set())
                {
                   infile.dump(spfile);

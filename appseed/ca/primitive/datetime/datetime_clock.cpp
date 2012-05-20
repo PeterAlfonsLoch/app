@@ -22,16 +22,16 @@ void clock::_001OnDraw(::ca::graphics * pdc)
 
    ::ca::pen_sp penHour(get_app(), PS_SOLID, 5, RGB(0, 0, 0));
    ::ca::pen_sp penMinute(get_app(), PS_SOLID, 1, RGB(0, 0, 0));
- 
+
    double dRIntH = rect.width() * 57  / 128;
    double dRIntM = rect.width() * 59  / 128;
    double dRExt = rect.width() * 60  / 128;
- 
+
    for(int i = 0; i < 60; i++)
    {
       double angle = System.math().GetPi() / 2.0 - i * System.math().GetPi() * 2.0 / (60.0);
       point ptInt;
-      point ptExt((__int64) (cos(angle) * dRExt), (__int64)(-sin(angle) * dRExt));
+      point ptExt((int64_t) (cos(angle) * dRExt), (int64_t)(-sin(angle) * dRExt));
       ptExt.Offset(ptCenter);
       if(i % 5 == 0)
       {
@@ -60,14 +60,14 @@ void clock::_001OnDraw(::ca::graphics * pdc)
    pdc->MoveTo(ptCenter);
    {
       double angle = System.math().GetPi() / 2.0 - timeNow.GetHour() * System.math().GetPi() * 2.0 / (12.0);
-      point ptHour((__int64)(cos(angle) * dRHour), (__int64)(-sin(angle) * dRHour));
+      point ptHour((int64_t)(cos(angle) * dRHour), (int64_t)(-sin(angle) * dRHour));
       ptHour.Offset(ptCenter);
       pdc->LineTo(ptHour);
    }
    pdc->MoveTo(ptCenter);
    {
       double angle = System.math().GetPi() / 2.0 - timeNow.GetMinute() * System.math().GetPi() * 2.0 / (60.0);
-      point ptMinute((__int64)(cos(angle) * dRMinute), (__int64)(-sin(angle) * dRMinute));
+      point ptMinute((int64_t)(cos(angle) * dRMinute), (int64_t)(-sin(angle) * dRMinute));
       ptMinute.Offset(ptCenter);
       pdc->LineTo(ptMinute);
    }
@@ -76,12 +76,12 @@ void clock::_001OnDraw(::ca::graphics * pdc)
    pdc->MoveTo(ptCenter);
    {
       double angle = System.math().GetPi() / 2.0 - timeNow.GetSecond() * System.math().GetPi() * 2.0 / (60.0);
-      point ptSecond((__int64)(cos(angle) * dRSecond), (__int64)(-sin(angle) * dRSecond));
+      point ptSecond((int64_t)(cos(angle) * dRSecond), (int64_t)(-sin(angle) * dRSecond));
       ptSecond.Offset(ptCenter);
       pdc->LineTo(ptSecond);
    }
 
-   
+
 
 }
 

@@ -48,7 +48,7 @@ namespace ca
 
       string system::path(const char * pszFolder, int iLenFolder, const char * pszRelative, int iLenRelative, const char * psz2, int iLen2)
       {
-         
+
          return path(pszFolder, iLenFolder, pszRelative, iLenRelative, psz2, iLen2, ::ca2::is_url(pszFolder));
 
       }
@@ -70,7 +70,7 @@ namespace ca
 
       string system::path(const string & strFolder, const string & strRelative, const string & str2)
       {
-         
+
          return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), str2, str2.get_length(), ::ca2::is_url(strFolder));
 
       }
@@ -97,11 +97,11 @@ namespace ca
 
       string system::path(const string & strFolder, const string & strRelative, const string & str2, bool bUrl)
       {
-         
+
          return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), str2, str2.get_length(), bUrl);
 
       }
-      
+
       inline bool myspace(char ch)
       {
          return ch == ' ' ||
@@ -128,12 +128,12 @@ namespace ca
                return "";
             return strFolder;
          }
-            
+
          strsize iFolderBeg = 0;
 
          strsize iFolderEnd = strFolder.get_length() - 1;
 
-         if(iFolderEnd >= iFolderBeg) 
+         if(iFolderEnd >= iFolderBeg)
          {
             //strFolder.trim();
             // passive left trimming
@@ -153,7 +153,7 @@ namespace ca
 
          strsize iRelativeEnd = strRelative.get_length() - 1;
 
-         if(iRelativeEnd >= iRelativeBeg) 
+         if(iRelativeEnd >= iRelativeBeg)
          {
             //strFolder.trim();
             // passive left trimming
@@ -182,8 +182,8 @@ namespace ca
             strncpy(&psz[iFolderEnd - iFolderBeg + 2], &((const char *)strRelative)[iRelativeBeg], iRelativeEnd - iRelativeBeg + 1);
             strPath.ReleaseBuffer(iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1);
          }
-      
-   
+
+
          return strPath;
       }
 
@@ -222,12 +222,12 @@ namespace ca
          }
 
          // none of them - 3 - are empty
-            
+
          strsize iFolderBeg = 0;
 
          strsize iFolderEnd = strFolder.get_length() - 1;
 
-         if(iFolderEnd >= iFolderBeg) 
+         if(iFolderEnd >= iFolderBeg)
          {
             //strFolder.trim();
             // passive left trimming
@@ -247,7 +247,7 @@ namespace ca
 
          strsize iRelativeEnd = strRelative.get_length() - 1;
 
-         if(iRelativeEnd >= iRelativeBeg) 
+         if(iRelativeEnd >= iRelativeBeg)
          {
             //strFolder.trim();
             // passive left trimming
@@ -263,12 +263,12 @@ namespace ca
                iRelativeBeg++;
          }
 
-         
+
          strsize iBeg2 = 0;
 
          strsize iEnd2 = str2.get_length() - 1;
 
-         if(iEnd2 >= iBeg2) 
+         if(iEnd2 >= iBeg2)
          {
             //strFolder.trim();
             // passive left trimming
@@ -330,7 +330,7 @@ namespace ca
          psz[iFolderEnd - iFolderBeg + 1 + 1 + iRelativeEnd - iRelativeBeg + 1] = '\\';
          strncpy(&psz[iFolderEnd - iFolderBeg + 1 + 1 + iRelativeEnd - iRelativeBeg + 1 + 1], &((const char *)str2)[iBeg2], iEnd2 - iBeg2 + 1);
          strPath.ReleaseBuffer(iEnd2 - iBeg2 + 1 + iRelativeEnd - iRelativeBeg + 1 + iFolderEnd - iFolderBeg + 1 + 1 + 1);
-   
+
          return strPath;
 
       }
@@ -350,7 +350,7 @@ namespace ca
          throw interface_only_exception("this is an interface");
       }
 
-      void system::rls_pattern(::ca::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, base_array < bool, bool > * pbaIsDir, base_array < __int64, __int64 > * piaSize, e_extract eextract)
+      void system::rls_pattern(::ca::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, base_array < bool, bool > * pbaIsDir, base_array < int64_t, int64_t > * piaSize, e_extract eextract)
       {
          UNREFERENCED_PARAMETER(pstraRelative);
          UNREFERENCED_PARAMETER(pszPattern);
@@ -361,11 +361,11 @@ namespace ca
             return;
          }
          throw not_implemented_exception("is really a directory or compressed directory/file??");
-      
+
       }
 
 
-      void system::ls_pattern(::ca::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < __int64, __int64 > * piaSize)
+      void system::ls_pattern(::ca::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < int64_t, int64_t > * piaSize)
       {
          UNREFERENCED_PARAMETER(pszPattern);
          if(papp->m_bZipIsDir && (gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0))
@@ -374,10 +374,10 @@ namespace ca
             return;
          }
          throw not_implemented_exception("is really a directory or compressed directory/file??");
-      
+
       }
 
-      void system::ls(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < __int64, __int64 > * piaSize)
+      void system::ls(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < int64_t, int64_t > * piaSize)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(pstraPath);
@@ -519,7 +519,7 @@ namespace ca
 
       bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir)
       {
-         
+
          if(strPath.get_length() <= 0)
          {
             bIsDir = false;
@@ -528,7 +528,7 @@ namespace ca
 
 
 
-         
+
          string strLookup(strPath);
 
 
@@ -555,7 +555,7 @@ namespace ca
 
       bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir, int iLast)
       {
-         
+
          if(iLast < 0)
          {
             bIsDir = true; // root_ones dir
@@ -743,7 +743,7 @@ namespace ca
 
       string system::locale_schema_matter(::ca::application * papp, const string & strLocale, const string & strSchema)
       {
-      
+
          single_lock sl(&papp->m_pappThis->m_mutexMatterLocator, true);
 
          return path(papp->m_pappThis->m_strMatterLocator, papp->m_pappThis->get_locale_schema_dir(strLocale, strSchema));
@@ -752,7 +752,7 @@ namespace ca
 
       string system::locale_schema_matter(const string & strLocator, const string & strLocale, const string & strSchema)
       {
-      
+
          return path(strLocator, simple_path(strLocale, strSchema));
 
       }
@@ -771,10 +771,10 @@ namespace ca
          if(System.file().exists(strPath, get_app()))
             return strPath;
 
-         
+
          for(int i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
          {
-            
+
             strLocale         = pcontext->localeschema().m_idaLocale[i];
             strSchema          = pcontext->localeschema().m_idaSchema[i];
             strLs             = locale_schema_matter(papp, strLocale, strSchema);
@@ -784,7 +784,7 @@ namespace ca
 
          }
 
-         
+
          strLs             = locale_schema_matter(papp, "en", "en");
          strPath           = path(locale_schema_matter(papp, "se", "se"), str, str2);
          if(System.file().exists(strPath, get_app()))
@@ -877,7 +877,7 @@ namespace ca
       string system::matter_from_locator(::user::str_context * pcontext, const string & strLocator)
       {
          string str;
-         
+
 
          string str2;
 
@@ -887,7 +887,7 @@ namespace ca
 
       string system::matter_from_locator(::user::str_context * pcontext, const string & strLocator, const string & str)
       {
-         
+
          string str2;
 
          return matter_from_locator(pcontext, strLocator, str, str2);
@@ -930,7 +930,7 @@ namespace ca
 
       string system::matter_from_locator(::user::str_context * pcontext, const string & strLocator,  const string & str, const string & str2)
       {
-         
+
          string strPath;
 
          string strLocale  = pcontext->m_plocaleschema->m_idLocale;
@@ -940,10 +940,10 @@ namespace ca
          if(System.file().exists(strPath, get_app()))
             return strPath;
 
-         
+
          for(int i = 0; i < pcontext->m_plocaleschema->m_idaLocale.get_count(); i++)
          {
-            
+
             strLocale         = pcontext->m_plocaleschema->m_idaLocale[i];
             strSchema          = pcontext->m_plocaleschema->m_idaSchema[i];
             strLs             = locale_schema_matter(strLocator, strLocale, strSchema);
@@ -953,7 +953,7 @@ namespace ca
 
          }
 
-         
+
          strLs             = locale_schema_matter(strLocator, "en", "en");
          strPath           = path(locale_schema_matter(strLocator, "se", "se"), str, str2);
          if(System.file().exists(strPath, get_app()))
@@ -967,7 +967,7 @@ namespace ca
 
       void system::appmatter_locators(string & strRoot, string & strDomain, ::ca::application * papp)
       {
-         
+
          if(papp->is_system())
          {
             strRoot     = "app";
@@ -987,7 +987,7 @@ namespace ca
 
       void system::appmatter_locators(string & strRoot, string & strDomain, const string & strAppName)
       {
-         
+
          appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
 
       }
@@ -1054,7 +1054,7 @@ namespace ca
 
       string system::appmatter_locator(::ca::application * papp)
       {
-         
+
          string strRoot;
          string strDomain;
 
@@ -1244,7 +1244,7 @@ namespace ca
          UNREFERENCED_PARAMETER(lpcsz2);
          return path(ca2("ccvotagus"), lpcsz, lpcsz2);
       }
- 
+
    }  // namespace dir
 
 } // namespace ca

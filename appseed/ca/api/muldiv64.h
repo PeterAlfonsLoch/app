@@ -7,7 +7,7 @@
  *      Header file with prototype for 64 bit scaling functions
  *
  *   $Log: $
- * 
+ *
  */
 
 /******************************************************************************/
@@ -23,7 +23,7 @@
  *     Xscaled = Xstart * Multiplier / Divider
  * Uses 128 bit intermediate result
  */
-CLASS_DECL_ca __int64 _stdcall muldiv64(__int64 operant, __int64 multiplier, __int64 divider);
+CLASS_DECL_ca int64_t _stdcall muldiv64(int64_t operant, int64_t multiplier, int64_t divider);
 
 
 /*
@@ -33,7 +33,7 @@ CLASS_DECL_ca __int64 _stdcall muldiv64(__int64 operant, __int64 multiplier, __i
  *     Xscaled = (Xstart * Multiplier) SHR rshift
  * Uses 128 bit intermediate result
  */
-CLASS_DECL_ca __int64 _stdcall mulshr64(__int64 operant, __int64 multiplier, unsigned char rshift);
+CLASS_DECL_ca int64_t _stdcall mulshr64(int64_t operant, int64_t multiplier, unsigned char rshift);
 
 
 #endif //__FULL_MULDIV64_

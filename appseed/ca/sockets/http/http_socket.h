@@ -4,15 +4,15 @@ namespace sockets
 {
 
    /** \defgroup http HTTP Sockets */
-   /** HTTP request/response base class. 
+   /** HTTP request/response base class.
       \ingroup http */
-   class CLASS_DECL_ca http_socket : 
+   class CLASS_DECL_ca http_socket :
       virtual public tcp_socket
    {
    public:
 
 
-      
+
 
       http::request        m_request;
       http::response       m_response;
@@ -31,7 +31,7 @@ namespace sockets
       int                  m_chunk_state;
       string               m_chunk_line;
 
-      __int64              m_iFirstTime;
+      int64_t              m_iFirstTime;
 
 
       http_socket(socket_handler_base& );
@@ -96,7 +96,7 @@ namespace sockets
       http::request & request();
       http::response & response();
 
-   
+
       /** Reset state of socket to sucessfully implement keep-alive. */
       virtual void Reset();
 

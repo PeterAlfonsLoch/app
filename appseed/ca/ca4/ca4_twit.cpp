@@ -1355,7 +1355,7 @@ namespace ca4
          gen::property_set headers;
          gen::property_set post;
          gen::property_set set(get_app());
-         __int64 iTime = ::time(NULL);
+         int64_t iTime = ::time(NULL);
          if( m_oauth.getOAuthHeader( eOAuthHttpPost,"https://twitter.com/oauth/request_token", set, headers ) )
          {
             if( performPost( "https://twitter.com/oauth/request_token", headers, post ) )

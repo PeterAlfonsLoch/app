@@ -16,7 +16,7 @@ namespace userpresence
 
 
          DWORD          m_dwLastActivity;
-         __int64        m_iShortStatusCynceTag;
+         int64_t        m_iShortStatusCynceTag;
          string         m_strLongStatus;
 
 

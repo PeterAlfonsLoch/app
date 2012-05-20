@@ -149,7 +149,7 @@ namespace sockets
          response().file().Truncate(0);
          response().file().write(file.get_data(), file.get_size());
       }
-      m_response.m_propertysetHeader.set("Content-Length", (__int64) m_response.file().get_size());
+      m_response.m_propertysetHeader.set("Content-Length", (int64_t) m_response.file().get_size());
       for(int i = 0; i < m_response.cookies().get_size(); i++)
       {
          m_response.m_propertysetHeader.add(

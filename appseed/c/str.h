@@ -22,8 +22,8 @@ CLASS_DECL_c void uitoa_dup(char * sz, unsigned int i, int iBase);
 CLASS_DECL_c void itoa_dup(char * sz, int i, int iBase);
 
 
-//CLASS_DECL_c void l64toa_dup(char * sz, __int64 i, __int64 iBase);
-//CLASS_DECL_c void i64toa_dup(char * sz, __int64 i);
+//CLASS_DECL_c void l64toa_dup(char * sz, int64_t i, int64_t iBase);
+//CLASS_DECL_c void i64toa_dup(char * sz, int64_t i);
 CLASS_DECL_c void str_reverse(char * sz);
 CLASS_DECL_c void zero_pad(char * sz, count iPad);
 CLASS_DECL_c int str_ends_ci_dup(const char * psz, const char * pszSuffix);
@@ -56,8 +56,8 @@ CLASS_DECL_c void uitow_dup(wchar_t * sz, unsigned int i, int iBase);
 CLASS_DECL_c void itow_dup(wchar_t * sz, int i, int iBase);
 
 
-//CLASS_DECL_c void l64toa_dup(char * sz, __int64 i, __int64 iBase);
-//CLASS_DECL_c void i64toa_dup(char * sz, __int64 i);
+//CLASS_DECL_c void l64toa_dup(char * sz, int64_t i, int64_t iBase);
+//CLASS_DECL_c void i64toa_dup(char * sz, int64_t i);
 CLASS_DECL_c void wcs_reverse(wchar_t * sz);
 CLASS_DECL_c void w_zero_pad(char * sz, count iPad);
 

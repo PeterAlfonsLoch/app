@@ -55,7 +55,7 @@ namespace dynamic_source
       {
       public:
 
-         
+
          string         m_strHost;
          string         m_strScript;
          string         m_strPlugin;
@@ -114,9 +114,9 @@ namespace dynamic_source
       raw_array < RSA * >     m_rsaptra;
       DWORD                   m_dwLastRsa;
 
-      
 
-      __int64  m_iDatabaseWaitTimeOut;
+
+      int64_t  m_iDatabaseWaitTimeOut;
 
       mutex                                     m_mutexSession;
       ::collection::string_map < session >      m_mapSession;
@@ -188,7 +188,7 @@ namespace dynamic_source
 
       virtual void register_plugin(const char * pszHost, const char * pszScript, const char * pszName, script * pscript);
 
-      
+
       virtual string get_root_plugin();
 
 
@@ -197,7 +197,7 @@ namespace dynamic_source
       ::sockets::link_in_socket * get_link_in(const char * pszServer, ::sockets::link_out_socket * poutsocket);
       bool is_online(const char * pszServer);
       ::sockets::link_out_socket * create_link_out(const char * pszServer, ::sockets::httpd_socket * phttpdsocket);
-      
+
 
    };
 

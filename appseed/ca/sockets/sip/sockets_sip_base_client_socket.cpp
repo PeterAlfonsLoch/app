@@ -165,8 +165,8 @@ namespace sockets
       {
          m_request.attr("remote_addr") = GetRemoteSocketAddress()->Convert(false);
          {
-            __int64 count;
-            __int64 freq;
+            int64_t count;
+            int64_t freq;
             if(QueryPerformanceCounter((LARGE_INTEGER *) &count)
             && QueryPerformanceFrequency((LARGE_INTEGER *) &freq))
             {

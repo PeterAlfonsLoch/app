@@ -426,11 +426,11 @@ HFONT CreateScaledFont(
 
 void GetMultiLineTextExtent(HDC hDC, stringa * pArray, LPSIZE lpSize)
 {
-   
+
    TEXTMETRIC tm;
-   
+
    GetTextMetrics(hDC,&tm);
-   
+
    index nIndex;
    count nSize;
 
@@ -454,21 +454,21 @@ void GetMultiLineTextExtent(HDC hDC, stringa * pArray, LPSIZE lpSize)
 
 void DrawMultiLineText(HDC hDC, stringa * pArray)
 {
-   
+
    TEXTMETRIC tm;
 
    GetTextMetrics(hDC, &tm);
-   
+
    index nIndex;
    count nSize;
 
    nSize = pArray->get_size();
-   
+
    int yPos = 0;
 
    for(nIndex = 0; nIndex < nSize; nIndex++)
    {
-      
+
       const string &str = pArray->get_at(nIndex);
 
       TextOut(hDC, 0, yPos, str, (int) str.get_length());
@@ -1554,7 +1554,7 @@ void imaging::BitmapBlend24CC(
       GdiFlush();
 
 
-//      __int64 a = size.area();
+//      int64_t a = size.area();
 
       BLENDFUNCTION bf;
       bf.BlendOp     = AC_SRC_OVER;
@@ -1640,10 +1640,10 @@ void imaging::BitmapBlend24CC(
 
    UINT32 * lpuiA = (UINT32 *) pdibA->get_data();
 
-   __int64 a = size.area();
-   __int64 i;
+   int64_t a = size.area();
+   int64_t i;
 
-   __int64 b = a - a % 4;
+   int64_t b = a - a % 4;
    for(i = 0; i < b; i +=4)
    {
       lpuiA[0] = 0xff000000 - ((lpuiA[0]) & 0xff000000);
@@ -1731,10 +1731,10 @@ void imaging::BitmapBlend24CC(
 
    UINT32 * lpuiA = (UINT32 *) pdibC->get_data();
 
-   __int64 a = size.area();
-   __int64 i;
+   int64_t a = size.area();
+   int64_t i;
 
-   __int64 b = a - a % 4;
+   int64_t b = a - a % 4;
    for(i = 0; i < b; i +=4)
    {
       lpuiA[0] = 0xff000000 - ((lpuiA[0]) & 0xff000000);
@@ -1833,10 +1833,10 @@ bool imaging::BitmapBlend2(
 
    UINT32 * lpuiA = (UINT32 *) dibA->get_data();
 
-//   __int64 a = size.area();
+//   int64_t a = size.area();
    //      int i;
 
-//   __int64 b = a - 4;
+//   int64_t b = a - 4;
    /*      for (i = 0; i < b; i +=4)
    {
    lpuiA[0] = ((lpuiA[0] << 8) & 0xff000000);
@@ -2253,7 +2253,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
    HBITMAP hbitmap = NULL;
 
    Gdiplus::Color colorBk(0, 0, 0, 0);
-   
+
    ((Gdiplus::Bitmap *) (pbitmap.m_p->get_os_data()))->GetHBITMAP(colorBk, &hbitmap);
 
    if(hbitmap == NULL)
@@ -2270,7 +2270,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
    // So we save these infos below. This is needed for palettized images only.
    int nColors = FreeImage_GetColorsUsed(fi);
    HDC hdc = ::CreateCompatibleDC(NULL);
-   
+
    GetDIBits(hdc, (HBITMAP) hbitmap, 0, FreeImage_GetHeight(fi), FreeImage_GetBits(fi), FreeImage_GetInfo(fi), DIB_RGB_COLORS);
 
    ::DeleteDC(hdc);
@@ -2403,16 +2403,16 @@ bool imaging::clip_color_blend(::ca::graphics * pdc, point pt, size size, COLORR
 {
 
    pdc->FillSolidRect(0, 0, size.cx, size.cy, ARGB(bA, GetRValue(cr), GetGValue(cr), GetBValue(cr)));
-   
+
    return true;
 
 }
 
 bool imaging::clip_color_blend(::ca::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha, ::ca::region * prgnClip)
 {
-   
+
    class rect rect(lpcrect);
-   
+
    return clip_color_blend(pdc, rect.top_left(), rect.size(), cr, alpha, prgnClip);
 
 }
@@ -2535,7 +2535,7 @@ bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr
 
 bool imaging::prepare_blend(::ca::dib * pdib, LPCRECT lpcrect, COLORREF cr, BYTE bA, ::ca::dib * pdibWork)
 {
-   
+
    rect rect(lpcrect);
 
    return prepare_blend(pdib, rect.top_left(), rect.size(), cr, bA, pdibWork);
@@ -3233,7 +3233,7 @@ bool imaging::blur(::ca::graphics *pdcDst, point ptDst, size size, ::ca::graphic
       fastblur(dibDst, max(3, iRadius));
    }
 
-   
+
    dibDst->to(pdcDst, ptDst, size);
 
    return true;
@@ -4352,7 +4352,7 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
 
 bool imaging::color_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork)
 {
-   
+
    class rect rect(lpcrect);
 
    return color_blend(pdc, rect.top_left(), rect.size(), pdcColorAlpha, ptAlpha, pdibWork);
@@ -4361,7 +4361,7 @@ bool imaging::color_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics 
 
 bool imaging::true_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork, ::ca::dib * pdibWork2, ::ca::dib * pdibWork3)
 {
-   
+
    class rect rect(lpcrect);
 
    return true_blend(pdc, rect.top_left(), rect.size(), pdcColorAlpha, ptAlpha, pdibWork, pdibWork2, pdibWork3);
@@ -4372,7 +4372,7 @@ bool imaging::true_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics *
 
 bool imaging::true_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork, ::ca::dib * pdibWork2, ::ca::dib * pdibWork3)
 {
-   
+
    return pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY) != FALSE;
 
 }
@@ -4380,9 +4380,9 @@ bool imaging::true_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphi
 
 bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork, ::ca::dib * pdibWork2)
 {
-   
-   
-   
+
+
+
    return pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, pdcColorAlpha, ptAlpha.x, ptAlpha.y, SRCCOPY) != FALSE;
 
 
@@ -4414,14 +4414,14 @@ bool imaging::color_blend(::ca::graphics * pdc, point pt, size size, ::ca::graph
    {
 
       ::visual::dib_sp dib(get_app());
-      
+
       if(!dib->create(size))
          return false;
 
       dib->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
       dib->from(point(0, 0), pdcColorAlpha, ptAlpha, size);
       dib->channel_multiply(visual::rgba::channel_alpha, dBlend);
-      
+
       return pdc->BitBlt(pt.x, pt.y, size.cx, size.cy, dib->get_graphics(), 0, 0, SRCCOPY) != FALSE;
 
    }
@@ -5243,7 +5243,7 @@ bool imaging::channel_spread(
       iRadius))
       return false;
 
-   
+
    if(!dibDst->to(pdcDst, ptDst, size))
       return false;
 
@@ -6505,7 +6505,7 @@ bool imaging::HueVRCP(::ca::dib * pdib, COLORREF crHue, double dCompress)
 {
 
 
-   
+
 
    COLORREF cra[256];
 
@@ -6521,9 +6521,9 @@ bool imaging::HueVRCP(::ca::dib * pdib, COLORREF crHue, double dCompress)
    LPBYTE lpb = (LPBYTE) pdib->get_data();
 
 
-   __int64 area = pdib->area();
+   int64_t area = pdib->area();
 
-   for(__int64 i = 0; i < area; i++)
+   for(int64_t i = 0; i < area; i++)
    {
       *((DWORD *) lpb) = (cra[(lpb[0] + lpb[1] + lpb[2]) / 3]) | lpb[3] << 24;
       lpb += 4;

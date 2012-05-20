@@ -204,7 +204,7 @@ namespace ca
    void dib::from_alpha()
    {
       BYTE *dst=(BYTE*)get_data();
-      __int64 size = area();
+      int64_t size = area();
 
       while ( size-- )
       {
@@ -221,7 +221,7 @@ namespace ca
       UNREFERENCED_PARAMETER(bPreserveAlpha);
 
       BYTE *dst=(BYTE*)get_data();
-      __int64 size = area();
+      int64_t size = area();
 
 
       // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
@@ -396,7 +396,7 @@ fill_last:
 
    void dib::channel_invert(visual::rgba::echannel echannel)
    {
-      __int64 size=area();
+      int64_t size=area();
       LPBYTE lpb = (LPBYTE) get_data();
       lpb += ((int)echannel) % 4;
       for ( int i=0; i<size; i++ )
@@ -410,13 +410,13 @@ fill_last:
    {
       if(dRate < 0)
          return;
-      register __int64 size = area();
+      register int64_t size = area();
       LPBYTE lpb = (LPBYTE) get_data();
       lpb += ((int)echannel) % 4;
       register int iDiv = 256 * 256;
       register int iMul = (int) (dRate * ((double) iDiv));
       register int iRes;
-      for(register __int64 i = 0; i < size; i++)
+      for(register int64_t i = 0; i < size; i++)
       {
          iRes = *lpb * iMul / iDiv;
          *lpb = (byte) (iRes > 255 ? 255 : iRes);
@@ -426,12 +426,12 @@ fill_last:
 
    void dib::channel_multiply(visual::rgba::echannel echannel, ::ca::dib * pdib)
    {
-      register __int64 size = area();
+      register int64_t size = area();
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
       lpb1 += ((int)echannel) % 4;
       lpb2 += ((int)echannel) % 4;
-      for(register __int64 i = 0; i < size; i++)
+      for(register int64_t i = 0; i < size; i++)
       {
          *lpb1 = (BYTE)(((unsigned int)*lpb1 * (unsigned int)*lpb2) / 255);
          lpb1 += 4;
@@ -441,12 +441,12 @@ fill_last:
 
    void dib::channel_darken(visual::rgba::echannel echannel, ::ca::dib * pdib)
    {
-      register __int64 size = area();
+      register int64_t size = area();
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
       lpb1 += ((int)echannel) % 4;
       lpb2 += ((int)echannel) % 4;
-      for(register __int64 i = 0; i < size; i++)
+      for(register int64_t i = 0; i < size; i++)
       {
          *lpb1 = *lpb1 < *lpb2 ? *lpb1 : *lpb2;
          lpb1 += 4;
@@ -456,12 +456,12 @@ fill_last:
 
    void dib::channel_lighten(visual::rgba::echannel echannel, ::ca::dib * pdib)
    {
-      register __int64 size = area();
+      register int64_t size = area();
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
       lpb1 += ((int)echannel) % 4;
       lpb2 += ((int)echannel) % 4;
-      for(register __int64 i = 0; i < size; i++)
+      for(register int64_t i = 0; i < size; i++)
       {
          *lpb1 = *lpb1 > *lpb2 ? *lpb1 : *lpb2;
          lpb1 += 4;
@@ -471,13 +471,13 @@ fill_last:
 
    void dib::channel_from(visual::rgba::echannel echannel, ::ca::dib * pdib)
    {
-      __int64 size = area();
-      register __int64 size64 = size / 64;
+      int64_t size = area();
+      register int64_t size64 = size / 64;
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
       lpb1 += ((int)echannel) % 4;
       lpb2 += ((int)echannel) % 4;
-      register __int64 i = 0;
+      register int64_t i = 0;
       for(; i < size64; i++)
       {
          lpb1[4 *  0]  =  lpb2[4 *  0];
@@ -610,7 +610,7 @@ fill_last:
    bool dib::bitmap_blend(::ca::graphics * pgraphics, LPCRECT lprect)
    {
       rect rect(lprect);
-      
+
       return System.imaging().bitmap_blend(
          pgraphics,
          rect.top_left(),
@@ -1361,7 +1361,7 @@ fill_last:
    void dib::transparent_color(color color)
    {
       COLORREF crFind = color.get_rgb();
-      __int64 iSize = area();
+      int64_t iSize = area();
 
       for (int i=0; i<iSize; i++ )
          if((get_data()[i] & 0x00ffffff) == crFind)
@@ -2431,9 +2431,9 @@ fill_last:
       throw interface_only_exception();
    }
 
-   __int64 dib::area()
+   int64_t dib::area()
    {
-      return ((__int64) width()) * ((__int64)height());
+      return ((int64_t) width()) * ((int64_t)height());
    }
 
    size dib::size()
@@ -2463,7 +2463,7 @@ fill_last:
          return;
       byte * lpDst = &((byte *) get_data())[((int)echannelDst)];
       byte * lpSrc = &((byte *) get_data())[((int)echannelSrc)];
-      __int64 iArea = area();
+      int64_t iArea = area();
       while(iArea > 0)
       {
          *lpDst = *lpSrc;
@@ -2515,7 +2515,7 @@ fill_last:
       {
          byte * puchSrc = (byte *) get_data();
          byte * puchDst = (byte *) pdib->get_data();
-         __int64 iArea = pdib->area();
+         int64_t iArea = pdib->area();
          while(iArea > 0)
          {
             *puchDst++ = *puchSrc++;
@@ -2545,7 +2545,7 @@ fill_last:
       if(iSize <= 1)
          return true;
 
-      
+
 
       int w = width();
       int h = height();
@@ -2694,7 +2694,7 @@ fill_last:
          }
 
       }
-         
+
       if(h % iSize != 0)
       {
          int y = yCount;
@@ -2819,9 +2819,9 @@ fill_last:
             }
          }
       }
-   
+
       return true;
-   
+
    }
 
 } // namespace ca

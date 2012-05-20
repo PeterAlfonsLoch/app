@@ -161,7 +161,7 @@ namespace ca
 
       virtual int width();
       virtual int height();
-      virtual __int64 area();
+      virtual int64_t area();
       virtual double pi();
       virtual class size size();
 
