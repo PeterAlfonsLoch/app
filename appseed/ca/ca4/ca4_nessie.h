@@ -48,7 +48,7 @@ typedef unsigned long u32;
 
 #ifdef _MSC_VER
 typedef uint64_t u64;
-typedef signed int64_t s64;
+typedef int64_t s64;
 #define LL(v)   (v##ui64)
 #define ONE64   LL(0xffffffffffffffff)
 #else  /* !_MSC_VER */

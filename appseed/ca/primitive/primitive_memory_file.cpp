@@ -104,7 +104,7 @@ namespace primitive
 
       LPBYTE lpb = get_data();
 
-      ASSERT(__is_valid_address(&(lpb)[m_dwPosition], (UINT_PTR) nCount, TRUE));
+      ASSERT(__is_valid_address(&(lpb)[m_dwPosition], (uint_ptr) nCount, TRUE));
 
       memcpy(&(lpb)[m_dwPosition], lpBuf, (size_t) nCount);
 

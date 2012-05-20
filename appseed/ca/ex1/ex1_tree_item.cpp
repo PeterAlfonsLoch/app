@@ -164,7 +164,7 @@ namespace ex1
 
    }
 
-   tree_item * tree_item::find_next_by_user_data(DWORD_PTR iUserData)
+   tree_item * tree_item::find_next_by_user_data(dword_ptr iUserData)
    {
       tree_item * pitem = this;
       while(true)
@@ -177,7 +177,7 @@ namespace ex1
       }
    }
 
-   tree_item * tree_item::get_child_by_user_data(DWORD_PTR iUserData)
+   tree_item * tree_item::get_child_by_user_data(dword_ptr iUserData)
    {
       tree_item * pitem = m_pchild;
       while(pitem != NULL)

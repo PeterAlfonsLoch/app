@@ -63,9 +63,9 @@ inline sync_object::operator HANDLE() const
 
 #endif
 
-inline INT_PTR sync_object::get_os_data() const
+inline int_ptr sync_object::get_os_data() const
 {
-   return (INT_PTR) m_object;
+   return (int_ptr) m_object;
 }
 
 inline bool sync_object::unlock(LONG /* lCount */, LPLONG /* lpPrevCount=NULL */)

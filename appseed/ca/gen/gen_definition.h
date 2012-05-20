@@ -351,7 +351,7 @@ this end
 #define TRY(x) TRYALLOC(x)
 #endif   //TRY
 
-#define offsetofclass(base, derived) ((DWORD_PTR)(static_cast<base*>((derived*)_PACKING))-_PACKING)
+#define offsetofclass(base, derived) ((dword_ptr)(static_cast<base*>((derived*)_PACKING))-_PACKING)
 
 /////////////////////////////////////////////////////////////////////////////
 // Master version numbers
@@ -439,14 +439,14 @@ that we consider it dangerous to even throw an exception
  * fix warning 6268. At least until those macros are not cleanend in PSDK.
    Same comes true for those definitions of constants which use the above macros
 */
-//#define MAKEINTRESOURCEA(i) ((char *)((ULONG_PTR)((WORD)(i))))
-//#define MAKEINTRESOURCEW(i) ((wchar_t *)((ULONG_PTR)((WORD)(i))))
+//#define MAKEINTRESOURCEA(i) ((char *)((ulong_ptr)((WORD)(i))))
+//#define MAKEINTRESOURCEW(i) ((wchar_t *)((ulong_ptr)((WORD)(i))))
 //#ifdef UNICODE
 //#define MAKEINTRESOURCE  MAKEINTRESOURCEW
 //#else
 //#define MAKEINTRESOURCE  MAKEINTRESOURCEA
 //#endif // !UNICODE
-#define IS_INTRESOURCE(_r) ((((ULONG_PTR)(_r)) >> 16) == 0)
+//#define IS_INTRESOURCE(_r) ((((ulong_ptr)(_r)) >> 16) == 0)
 
 /*
  * Predefined Resource Types
@@ -464,8 +464,8 @@ that we consider it dangerous to even throw an exception
 #define RT_MESSAGETABLE     MAKEINTRESOURCE(11)
 
 #define DIFFERENCE     11
-//#define RT_GROUP_CURSOR MAKEINTRESOURCE((ULONG_PTR)RT_CURSOR + DIFFERENCE)
-//#define RT_GROUP_ICON   MAKEINTRESOURCE((ULONG_PTR)RT_ICON + DIFFERENCE)
+//#define RT_GROUP_CURSOR MAKEINTRESOURCE((ulong_ptr)RT_CURSOR + DIFFERENCE)
+//#define RT_GROUP_ICON   MAKEINTRESOURCE((ulong_ptr)RT_ICON + DIFFERENCE)
 #define RT_VERSION      MAKEINTRESOURCE(16)
 #define RT_DLGINCLUDE   MAKEINTRESOURCE(17)
 #if(WINVER >= 0x0400)

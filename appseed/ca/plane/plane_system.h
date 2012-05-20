@@ -210,8 +210,8 @@ namespace plane
 #ifdef WINDOWS
 /*      Gdiplus::GdiplusStartupInput *   m_pgdiplusStartupInput;
       Gdiplus::GdiplusStartupOutput *  m_pgdiplusStartupOutput;
-      ULONG_PTR                        m_gdiplusToken;
-      ULONG_PTR                        m_gdiplusHookToken;*/
+      ulong_ptr                        m_gdiplusToken;
+      ulong_ptr                        m_gdiplusHookToken;*/
       mutex                            m_mutexGdiplus;
 #endif
 
@@ -961,9 +961,9 @@ void array_app_alloc<TYPE, ARG_TYPE>::set_at_grow(index iIndex, ARG_TYPE t)
    }
    else
    {
-      INT_PTR iOldSize = this->ptra().get_size();
+      int_ptr iOldSize = this->ptra().get_size();
       this->ptra().set_size(iIndex + 1);
-      INT_PTR iEmptySize = this->ptra().get_size() - 1;
+      int_ptr iEmptySize = this->ptra().get_size() - 1;
       index i;
       if(this->get_app() == NULL)
          set_app(t.get_app());

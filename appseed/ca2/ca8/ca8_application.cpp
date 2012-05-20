@@ -227,7 +227,7 @@ retry_license:
 
    bool application::get_fs_size(string & strSize, const char * pszPath, bool & bPending)
    {
-      __int64 i64Size;
+      int64_t i64Size;
       if(!get_fs_size(i64Size, pszPath, bPending))
       {
          strSize.Empty();
@@ -263,7 +263,7 @@ retry_license:
       return true;
    }
 
-   bool application::get_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending)
+   bool application::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
    {
       db_server * pcentral = dynamic_cast < db_server * > (&System.db());
       if(pcentral == NULL)

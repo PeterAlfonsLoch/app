@@ -81,7 +81,7 @@ namespace userbase
       { ASSERT(IsWindow()); return (bool)SendMessage( CB_LIMITTEXT, nMaxChars, 0); }
    bool combo_box::SetEditSel(strsize nStartChar, strsize nEndChar)
       { ASSERT(IsWindow()); return (bool)SendMessage( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)); }
-   DWORD_PTR combo_box::GetItemData(index nIndex)
+   dword_ptr combo_box::GetItemData(index nIndex)
    { 
       
       ASSERT(IsWindow());
@@ -90,7 +90,7 @@ namespace userbase
    
    }
    
-   index combo_box::SetItemData(index nIndex, DWORD_PTR dwItemData)
+   index combo_box::SetItemData(index nIndex, dword_ptr dwItemData)
    {
       
       ASSERT(IsWindow()); 
@@ -107,7 +107,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return SetItemData(nIndex, (DWORD_PTR)(LPVOID)pData);
+      return SetItemData(nIndex, (dword_ptr)(LPVOID)pData);
    
    }
 

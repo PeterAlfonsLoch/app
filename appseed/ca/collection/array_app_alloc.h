@@ -26,7 +26,7 @@ public:
    void copy(const array_app_alloc < TYPE, ARG_TYPE > & base_array);
 
    // Potentially growing the base_array
-   virtual void set_at_grow(INT_PTR nIndex, ARG_TYPE newElement);
+   virtual void set_at_grow(int_ptr nIndex, ARG_TYPE newElement);
 
    void set_size(::count iSize);
 

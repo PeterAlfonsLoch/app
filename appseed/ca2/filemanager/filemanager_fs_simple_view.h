@@ -25,8 +25,8 @@ namespace filemanager
 
             void install_message_handling(::gen::message::dispatch * pinterface);
 
-            void open_file(__int64 iFolder, const char * lpszFileName, const char * pszExt);
-            void open_folder(__int64 iFolder);
+            void open_file(int64_t iFolder, const char * lpszFileName, const char * pszExt);
+            void open_folder(int64_t iFolder);
             void start_music();
             void start_root();
             void CreateViews();

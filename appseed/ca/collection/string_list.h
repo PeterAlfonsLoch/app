@@ -283,7 +283,7 @@ protected:
 public:
 
 
-   string_list(INT_PTR nBlockSize = 10);
+   string_list(int_ptr nBlockSize = 10);
    virtual ~string_list();
 
    count get_count() const;

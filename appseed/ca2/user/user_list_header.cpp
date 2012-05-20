@@ -374,10 +374,10 @@ namespace user
                {
                   // The header item has been dragged
 
-                  INT_PTR iKeyA = plist->m_columna.OrderToKey(iItem);
-                  INT_PTR iKeyB = plist->m_columna.OrderToKey(iItem);
-                  INT_PTR iOrderA = plist->m_columna._001GetByKey(iKeyA)->m_iOrder;
-                  INT_PTR iOrderB = plist->m_columna._001GetByKey(iKeyB)->m_iOrder;
+                  int_ptr iKeyA = plist->m_columna.OrderToKey(iItem);
+                  int_ptr iKeyB = plist->m_columna.OrderToKey(iItem);
+                  int_ptr iOrderA = plist->m_columna._001GetByKey(iKeyA)->m_iOrder;
+                  int_ptr iOrderB = plist->m_columna._001GetByKey(iKeyB)->m_iOrder;
                   plist->m_columna._001GetByKey(iKeyA)->m_iOrder = iOrderB;
                   plist->m_columna._001GetByKey(iKeyB)->m_iOrder = iOrderA;
                   plist->_001OnColumnChange();

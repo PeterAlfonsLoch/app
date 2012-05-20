@@ -60,7 +60,7 @@ namespace ca
 
       virtual window * from_os_data(void * pdata);
 
-      virtual INT_PTR get_os_data() const;
+      virtual int_ptr get_os_data() const;
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
@@ -254,9 +254,9 @@ namespace ca
 
 
    // Timer Functions
-      virtual UINT_PTR SetTimer(UINT_PTR nIDEvent, UINT nElapse,
-         void (CALLBACK* lpfnTimer)(HWND, UINT, UINT_PTR, DWORD));
-      virtual bool KillTimer(UINT_PTR nIDEvent);
+      virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse,
+         void (CALLBACK* lpfnTimer)(HWND, UINT, uint_ptr, DWORD));
+      virtual bool KillTimer(uint_ptr nIDEvent);
 
    // Window State Functions
       virtual bool IsWindowEnabled();
@@ -407,9 +407,9 @@ namespace ca
       void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
       void OnHelpUsing();     // ID_HELP_USING
 #ifdef WINDOWS
-      virtual void WinHelp(DWORD_PTR dwData, UINT nCmd = HELP_CONTEXT);
-      virtual void HtmlHelp(DWORD_PTR dwData, UINT nCmd = 0x000F);
-      virtual void WinHelpInternal(DWORD_PTR dwData, UINT nCmd = HELP_CONTEXT);
+      virtual void WinHelp(dword_ptr dwData, UINT nCmd = HELP_CONTEXT);
+      virtual void HtmlHelp(dword_ptr dwData, UINT nCmd = 0x000F);
+      virtual void WinHelpInternal(dword_ptr dwData, UINT nCmd = HELP_CONTEXT);
 #endif
 
    // layout and other functions
@@ -552,7 +552,7 @@ namespace ca
       void OnRButtonDown(UINT nFlags, point point);
       void OnRButtonUp(UINT nFlags, point point);
       bool OnSetCursor(::ca::window* pWnd, UINT nHitTest, UINT message);
-      void OnTimer(UINT_PTR nIDEvent);
+      void OnTimer(uint_ptr nIDEvent);
 
    // Initialization message handler member functions
       void OnInitMenu(::userbase::menu* pMenu);
@@ -596,7 +596,7 @@ namespace ca
       void OnSizing(UINT nSide, LPRECT lpRect);
       void OnMoving(UINT nSide, LPRECT lpRect);
       void OnCaptureChanged(::ca::window* pWnd);
-      bool OnDeviceChange(UINT nEventType, DWORD_PTR dwData);
+      bool OnDeviceChange(UINT nEventType, dword_ptr dwData);
 
 #ifdef WINDOWS
       // Overridables and other helpers (for implementation of derived classes)

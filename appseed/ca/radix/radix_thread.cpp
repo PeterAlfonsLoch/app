@@ -38,12 +38,12 @@ namespace radix
    {
    }
 
-   INT_PTR thread::get_os_data() const
+   int_ptr thread::get_os_data() const
    {
       return m_p->get_os_data();
    }
 
-   INT_PTR thread::get_os_int() const
+   int_ptr thread::get_os_int() const
    {
       return m_p->get_os_int();
    }
@@ -257,12 +257,12 @@ namespace radix
    }
 
 
-   void thread::set_timer(::user::interaction * pui, UINT_PTR nIDEvent, UINT nEllapse)
+   void thread::set_timer(::user::interaction * pui, uint_ptr nIDEvent, UINT nEllapse)
    {
       m_p->set_timer(pui, nIDEvent, nEllapse);
    }
 
-   void thread::unset_timer(::user::interaction * pui, UINT_PTR nIDEvent)
+   void thread::unset_timer(::user::interaction * pui, uint_ptr nIDEvent)
    {
       m_p->unset_timer(pui, nIDEvent);
    }
@@ -361,7 +361,7 @@ namespace radix
       return m_p->item();
    }
 #else
-	INT_PTR thread::item() const
+	int_ptr thread::item() const
    {
       return m_p->item();
 

@@ -2,7 +2,7 @@
 
 #undef new
 
-static void _ConstructElements(string* pNewData, INT_PTR nCount)
+static void _ConstructElements(string* pNewData, int_ptr nCount)
 {
    ASSERT(nCount >= 0);
 
@@ -13,7 +13,7 @@ static void _ConstructElements(string* pNewData, INT_PTR nCount)
    }
 }
 
-static void _DestructElements(string* pOldData, INT_PTR nCount)
+static void _DestructElements(string* pOldData, int_ptr nCount)
 {
    ASSERT(nCount >= 0);
 

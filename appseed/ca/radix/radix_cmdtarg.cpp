@@ -29,7 +29,7 @@ bool command_target::handle(BaseCmdMsg * pcmdmsg)
 
 /*
 __STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
-   __PMSG pfn, void * pExtra, UINT_PTR nSig, 
+   __PMSG pfn, void * pExtra, uint_ptr nSig, 
       // return TRUE to stop routing
 {
    ENSURE_VALID(pTarget);

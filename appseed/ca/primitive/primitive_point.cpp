@@ -3,7 +3,7 @@
 // point
 point::point() throw()
    { /* random filled */ }
-point::point(__int64 initX, __int64 initY) throw()
+point::point(int64_t initX, int64_t initY) throw()
    { x = (int) initX; y = (int) initY; }
 point::point(POINT initPt) throw()
    { *(POINT*)this = initPt; }
@@ -73,7 +73,7 @@ LPARAM point::_001GetLparam()
 // point64
 point64::point64() throw()
    { /* random filled */ }
-point64::point64(__int64 initX, __int64 initY) throw()
+point64::point64(int64_t initX, int64_t initY) throw()
    { x = initX; y = initY; }
 point64::point64(__point64 initPt) throw()
    { *(__point64*)this = initPt; }
@@ -96,13 +96,13 @@ point64::operator const __point64 *() const throw()
    { return this; }
 
 
-void point64::Offset(__int64 xOffset, __int64 yOffset) throw()
+void point64::Offset(int64_t xOffset, int64_t yOffset) throw()
    { x += xOffset; y += yOffset; }
 void point64::Offset(__point64 point64) throw()
    { x += point64.x; y += point64.y; }
 void point64::Offset(__size64 size64) throw()
    { x += size64.cx; y += size64.cy; }
-void point64::SetPoint(__int64 X, __int64 Y) throw()
+void point64::SetPoint(int64_t X, int64_t Y) throw()
    { x = X; y = Y; }
 bool point64::operator==(__point64 point64) const throw()
    { return (x == point64.x && y == point64.y); }

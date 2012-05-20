@@ -45,7 +45,7 @@ namespace ex1
       }
 
       using ::ex1::writer::write;
-      void write(const void *data, DWORD_PTR size, DWORD_PTR *processedSize);
+      void write(const void *data, dword_ptr size, dword_ptr *processedSize);
 
 
    };

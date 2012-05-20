@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-stringl::stringl(INT_PTR nBlockSize) :
+stringl::stringl(int_ptr nBlockSize) :
    string_list(nBlockSize)
 {
 }

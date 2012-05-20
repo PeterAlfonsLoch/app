@@ -23,7 +23,7 @@ namespace user
 
       //static critical_section l_cs;
       //single_lock sl(&l_cs, TRUE);
-      INT_PTR iIndex, i;
+      int_ptr iIndex, i;
       stringa * pwstra;
       string str;
 

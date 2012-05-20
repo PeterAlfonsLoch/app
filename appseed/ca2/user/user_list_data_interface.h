@@ -14,11 +14,11 @@ namespace user
       virtual bool _001GetItemText(
          ::user::list * plist,
          string &str,
-         INT_PTR iItem,
-         INT_PTR iSubItem, 
-         INT_PTR iListItem) = 0;
+         int_ptr iItem,
+         int_ptr iSubItem, 
+         int_ptr iListItem) = 0;
 
-      virtual INT_PTR _001GetItemCount() = 0;
+      virtual int_ptr _001GetItemCount() = 0;
 
    };
 

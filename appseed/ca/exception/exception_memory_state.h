@@ -16,10 +16,10 @@ struct CLASS_DECL_ca memory_state
    };
 
    _CrtMemState m_memState;
-   LONG_PTR m_lCounts[nBlockUseMax];
-   LONG_PTR m_lSizes[nBlockUseMax];
-   LONG_PTR m_lHighWaterCount;
-   LONG_PTR m_lTotalCount;
+   long_ptr m_lCounts[nBlockUseMax];
+   long_ptr m_lSizes[nBlockUseMax];
+   long_ptr m_lHighWaterCount;
+   long_ptr m_lTotalCount;
 
    memory_state();
 

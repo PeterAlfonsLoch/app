@@ -283,7 +283,7 @@ namespace user
       return (int) (tree1.m_hwnd - tree2.m_hwnd);
    }
 
-   INT_PTR HwndTree::Array::find(HWND hwnd)
+   int_ptr HwndTree::Array::find(HWND hwnd)
    {
       HwndTree tree;
       tree.m_hwnd = hwnd;

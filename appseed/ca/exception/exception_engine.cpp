@@ -96,7 +96,7 @@ namespace exception
       return get_module_basename(hmodule, str);
    }
 
-   size_t engine::symbol(vsstring & str, DWORD_PTR * pdisplacement)
+   size_t engine::symbol(vsstring & str, dword_ptr * pdisplacement)
    {
       if (!check())
          return 0;
@@ -108,7 +108,7 @@ namespace exception
       pSym->MaxNameLength = sizeof(symbol) - sizeof(IMAGEHLP_SYMBOL);
 
       HANDLE hprocess = SymGetProcessHandle();
-      DWORD_PTR displacement = 0;
+      dword_ptr displacement = 0;
       int r = SymGetSymFromAddr(hprocess, m_uiAddress, &displacement, pSym);
       if (!r) return 0;
       if (pdisplacement)
@@ -120,7 +120,7 @@ namespace exception
       return str.get_length();
    }
 
-   index engine::fileline (vsstring & str, DWORD_PTR * pline, DWORD_PTR * pdisplacement)
+   index engine::fileline (vsstring & str, dword_ptr * pline, dword_ptr * pdisplacement)
    {
 
       if (!check())
@@ -131,7 +131,7 @@ namespace exception
       img_line.SizeOfStruct = sizeof(IMAGEHLP_LINE);
 
       HANDLE hprocess = SymGetProcessHandle();
-      DWORD_PTR displacement = 0;
+      dword_ptr displacement = 0;
       if (!get_line_from_address(hprocess, m_uiAddress, &displacement, &img_line))
          return 0;
       if (pdisplacement)
@@ -224,7 +224,7 @@ namespace exception
       // by StackWalk really exists. I've seen cases in which
       // StackWalk returns TRUE but the address doesn't belong to
       // a module in the process.
-      DWORD_PTR dwModBase = SymGetModuleBase (hprocess, m_pstackframe->AddrPC.Offset);
+      dword_ptr dwModBase = SymGetModuleBase (hprocess, m_pstackframe->AddrPC.Offset);
       if (!dwModBase)
       {
          ::OutputDebugString("engine::stack_next :: StackWalk returned TRUE but the address doesn't belong to a module in the process.");
@@ -235,7 +235,7 @@ namespace exception
       return true;
    }
 
-   bool engine::get_line_from_address (HANDLE hprocess, DWORD_PTR uiAddress, DWORD_PTR * puiDisplacement, IMAGEHLP_LINE * pline)
+   bool engine::get_line_from_address (HANDLE hprocess, dword_ptr uiAddress, dword_ptr * puiDisplacement, IMAGEHLP_LINE * pline)
    {
 #ifdef WORK_AROUND_SRCLINE_BUG
       // "Debugging Applications" John Robbins
@@ -445,7 +445,7 @@ namespace exception
       return true;
    }
 
-   bool engine::stack_trace(vsstring & str, CONTEXT * pcontext, DWORD_PTR uiSkip, const char * pszFormat)
+   bool engine::stack_trace(vsstring & str, CONTEXT * pcontext, dword_ptr uiSkip, const char * pszFormat)
    {
       if(!pszFormat) return false;
       engine engine(0);
@@ -511,7 +511,7 @@ namespace exception
       return 0;
    }
 
-   bool engine::stack_trace(vsstring & str, DWORD_PTR uiSkip, const char * pszFormat)
+   bool engine::stack_trace(vsstring & str, dword_ptr uiSkip, const char * pszFormat)
    {
       if(!pszFormat) return false;
 
@@ -575,7 +575,7 @@ namespace exception
    }
 
    bool engine::stack_trace(vsstring & str, engine& symengine,
-      CONTEXT * pcontext, DWORD_PTR uiSkip, const char * pszFormat)
+      CONTEXT * pcontext, dword_ptr uiSkip, const char * pszFormat)
    {
       if (!symengine.stack_first(pcontext))
          return false;
@@ -592,9 +592,9 @@ namespace exception
       {
          if (!uiSkip)
          {
-            DWORD_PTR uiLineNumber = 0;
-            DWORD_PTR uiLineDisplacement = 0;
-            DWORD_PTR uiSymbolDisplacement = 0;
+            dword_ptr uiLineNumber = 0;
+            dword_ptr uiLineDisplacement = 0;
+            dword_ptr uiSymbolDisplacement = 0;
             strFile.clear();
             strSymbol.clear();
 

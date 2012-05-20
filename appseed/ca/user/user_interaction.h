@@ -35,7 +35,7 @@ namespace user
 
 
          interaction *        m_pguie;
-         UINT_PTR             m_uiId;
+         uint_ptr             m_uiId;
          UINT                 m_uiElapse;
          UINT                 m_uiLastSent;
 
@@ -57,14 +57,14 @@ namespace user
 
 
          virtual void on_delete(interaction * poc);
-         UINT_PTR set(interaction * pguie, UINT_PTR uiId, UINT uiElapse);
+         uint_ptr set(interaction * pguie, uint_ptr uiId, UINT uiElapse);
          void check();
-         bool unset(interaction * pguie, UINT_PTR uiId);
+         bool unset(interaction * pguie, uint_ptr uiId);
          void unset(interaction * pguie);
          void detach(array_ptr_alloc < timer_item > & timera, interaction * pguie);
          void transfer(::ca::window * pwindow, interaction * pguie);
          interaction * find(::ca::ca * pca);
-         index find(interaction * pguie, UINT_PTR uiId);
+         index find(interaction * pguie, uint_ptr uiId);
          index find_from(interaction * pguie, index iStart);
 
          virtual void assert_valid() const;
@@ -100,7 +100,7 @@ namespace user
       int                                 m_iModal;
       int                                 m_iModalCount;
       bool                                m_bRectOk;
-      comparable_array < INT_PTR >        m_iaModalThread;
+      comparable_array < int_ptr >        m_iaModalThread;
       id                                  m_idModalResult; // for return values from ::ca::window::RunModalLoop
       COLORREF                            m_crDefaultBackgroundColor;
 
@@ -276,9 +276,9 @@ namespace user
       virtual bool IsFrameWnd();
 
    // Timer Functions
-      virtual UINT_PTR SetTimer(UINT_PTR nIDEvent, UINT nElapse,
-         void (CALLBACK* lpfnTimer)(HWND, UINT, UINT_PTR, DWORD));
-      virtual bool KillTimer(UINT_PTR nIDEvent);
+      virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse,
+         void (CALLBACK* lpfnTimer)(HWND, UINT, uint_ptr, DWORD));
+      virtual bool KillTimer(uint_ptr nIDEvent);
 
       virtual bool IsWindowEnabled();
       virtual bool EnableWindow(bool bEnable = TRUE);
@@ -476,7 +476,7 @@ namespace user
 #ifdef WINDOWS
    inline HWND interaction::get_safe_handle()
    {
-      if(((INT_PTR)this) < 16 * 1024) // consider invalid
+      if(((int_ptr)this) < 16 * 1024) // consider invalid
       {
          return NULL;
       }

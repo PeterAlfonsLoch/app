@@ -17,7 +17,7 @@ template<class ARG_KEY>
 inline UINT simple_HashKey(ARG_KEY key)
 {
    // default identity hash - works for most primitive values
-   return (DWORD)(((DWORD_PTR)key)>>4);
+   return (DWORD)(((dword_ptr)key)>>4);
 }
 
 template<> CLASS_DECL_c bool simple_CompareElements(const wstring * pElement1, const wstring * pElement2);

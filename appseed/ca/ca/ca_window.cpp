@@ -153,7 +153,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   INT_PTR window::get_os_data() const
+   int_ptr window::get_os_data() const
    {
       throw interface_only_exception();
    }
@@ -362,14 +362,14 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // window extensions for help support
 #ifdef WINDOWS
-   void window::WinHelp(DWORD_PTR dwData, UINT nCmd)
+   void window::WinHelp(dword_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
       throw interface_only_exception();
    }
 
-   void window::HtmlHelp(DWORD_PTR dwData, UINT nCmd)
+   void window::HtmlHelp(dword_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
@@ -383,7 +383,7 @@ namespace ca
    }
 
 #ifdef WINDOWS
-   void window::WinHelpInternal(DWORD_PTR dwData, UINT nCmd)
+   void window::WinHelpInternal(dword_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
@@ -1295,7 +1295,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   UINT_PTR window::SetTimer(UINT_PTR nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(HWND, UINT, UINT_PTR, DWORD))
+   uint_ptr window::SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(HWND, UINT, uint_ptr, DWORD))
    {
       UNREFERENCED_PARAMETER(nIDEvent);
       UNREFERENCED_PARAMETER(nElapse);
@@ -1303,7 +1303,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   bool window::KillTimer(UINT_PTR nIDEvent)
+   bool window::KillTimer(uint_ptr nIDEvent)
    {
       UNREFERENCED_PARAMETER(nIDEvent);
       throw interface_only_exception();
@@ -2012,7 +2012,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void window::OnTimer(UINT_PTR)
+   void window::OnTimer(uint_ptr)
    {
       throw interface_only_exception();
    }
@@ -2127,7 +2127,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   bool window::OnDeviceChange(UINT, DWORD_PTR)
+   bool window::OnDeviceChange(UINT, dword_ptr)
    {
       throw interface_only_exception();
    }

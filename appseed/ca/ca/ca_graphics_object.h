@@ -21,7 +21,7 @@ namespace ca
       virtual bool is_updated();
 
 
-      virtual INT_PTR get_os_data() const;
+      virtual int_ptr get_os_data() const;
 
 /*   #pragma push_macro("GetObject")
    #undef GetObject

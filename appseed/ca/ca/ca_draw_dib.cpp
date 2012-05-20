@@ -161,7 +161,7 @@ namespace ca
 
 #endif
 
-   INT_PTR draw_dib::get_os_data()
+   int_ptr draw_dib::get_os_data()
    {
       throw interface_only_exception();
    }

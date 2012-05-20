@@ -302,7 +302,7 @@ namespace ex1
 
 
 
-   void CALLBACK file_exception::CallBackFunc( OF_INFO_t OpenedFileInfo, UINT_PTR pUserContext )
+   void CALLBACK file_exception::CallBackFunc( OF_INFO_t OpenedFileInfo, uint_ptr pUserContext )
    {
       ((file_exception*)pUserContext)->OnFileFound( OpenedFileInfo );
    }
@@ -358,7 +358,7 @@ namespace ex1
 	      csPid.Format( _T("%d ( 0x%x )"), OpenedFileInfo.dwPID , OpenedFileInfo.dwPID );
          m_strAdd += "PID: " + csPid + " Process Name : " + stInfo.csProcess;
 	      //m_list.SetItemText( m_nCount, 2, OpenedFileInfo.lpFile );
-	      //m_list.SetItemData( m_nCount, (DWORD_PTR)OpenedFileInfo.hFile );
+	      //m_list.SetItemData( m_nCount, (dword_ptr)OpenedFileInfo.hFile );
 #endif
 
       }
@@ -386,7 +386,7 @@ namespace ex1
 
          wstr = gen::international::utf8_to_unicode(System.dir().name(m_strFileName));
 
-         GetOpenedFiles(wstr, ALL_TYPES, &file_exception::CallBackFunc, (ULONG_PTR)this);
+         GetOpenedFiles(wstr, ALL_TYPES, &file_exception::CallBackFunc, (ulong_ptr)this);
 
          if(m_strAdd.has_char())
          {

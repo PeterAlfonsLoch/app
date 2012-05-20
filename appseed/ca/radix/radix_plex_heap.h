@@ -9,7 +9,7 @@ public:
 
    void * data() { return this+1; }
 
-   static plex_heap* PASCAL create(plex_heap*& head, UINT_PTR nMax, UINT_PTR cbElement);
+   static plex_heap* PASCAL create(plex_heap*& head, uint_ptr nMax, uint_ptr cbElement);
          // like 'calloc' but no zero fill
          // may throw primitive::memory exceptions
 

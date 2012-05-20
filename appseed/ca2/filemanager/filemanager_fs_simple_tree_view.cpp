@@ -162,7 +162,7 @@ namespace filemanager
          }
 
 
-         ::ex1::tree_item * tree_view::FindTreeItem(__int64 iFolder)
+         ::ex1::tree_item * tree_view::FindTreeItem(int64_t iFolder)
          {
             int iUser;
 
@@ -178,7 +178,7 @@ namespace filemanager
                return NULL;
          }
 
-         int FolderArray::FindAbsolute(__int64 iFolder)
+         int FolderArray::FindAbsolute(int64_t iFolder)
          {
             for(int i = 0; i < this->get_size(); i++)
             {

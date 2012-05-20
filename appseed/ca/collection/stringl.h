@@ -7,7 +7,7 @@ class CLASS_DECL_ca stringl :
 {
 public:
 
-   stringl(INT_PTR nBlockSize = 10);
+   stringl(int_ptr nBlockSize = 10);
    virtual ~stringl();
 
 

@@ -172,8 +172,8 @@ namespace xml
       strsize iOffset = ((const char *)m_strData) - pszOldData;
       va_list ptr;
       va_start(ptr, useExtEnt);
-      INT_PTR p;
-      while((p = va_arg(ptr, INT_PTR)) != NULL)
+      int_ptr p;
+      while((p = va_arg(ptr, int_ptr)) != NULL)
       {
          const char ** ppch = (const char **) p;
          if(*ppch <= (pszOldData + iPos))

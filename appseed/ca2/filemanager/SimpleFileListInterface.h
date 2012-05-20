@@ -109,7 +109,7 @@ namespace filemanager
       ::user::buffer   m_gdibuffer;
       create_image_list_thread * m_pcreateimagelistthread;
 
-      __int64          m_iCreateImageListStep;
+      int64_t          m_iCreateImageListStep;
 
       string                  m_strPath;
 

@@ -32,7 +32,7 @@ namespace primitive
    {
       m_pbStorage          = NULL;
       allocate(dwSize);
-      ASSERT(__is_valid_address(pmemory, (UINT_PTR) dwSize, FALSE));
+      ASSERT(__is_valid_address(pmemory, (uint_ptr) dwSize, FALSE));
       memcpy(m_pbStorage, pmemory, (size_t) dwSize);
    }
 

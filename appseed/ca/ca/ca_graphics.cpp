@@ -28,7 +28,7 @@ namespace ca
       return get_os_data() != 0;
    }
 
-   INT_PTR graphics::get_os_data() const
+   int_ptr graphics::get_os_data() const
    {
       throw interface_only_exception();
       return 0;

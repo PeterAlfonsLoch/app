@@ -190,7 +190,7 @@ void window::OnPaint()
 
 #ifdef WINDOWS
 
-   void window::OnTimer(UINT_PTR nIDEvent)
+   void window::OnTimer(uint_ptr nIDEvent)
    {
 
       if(nIDEvent == 184)

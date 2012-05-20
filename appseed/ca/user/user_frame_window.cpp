@@ -341,7 +341,7 @@ void frame_window::BeginModalState()
       }
       hWnd = hWnd->GetWindow( GW_HWNDNEXT);
    }
-   INT_PTR nCount = arrDisabledWnds.get_count();
+   int_ptr nCount = arrDisabledWnds.get_count();
    if (nCount == 0)
    {
       return;
@@ -1156,10 +1156,10 @@ LRESULT frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
 LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
 {
    // unpack the DDE message
-   UINT_PTR unused;
+   uint_ptr unused;
    HGLOBAL hData;
    //IA64: Assume DDE LPARAMs are still 32-bit
-   VERIFY(UnpackDDElParam(WM_DDE_EXECUTE, lParam, &unused, (UINT_PTR*)&hData));
+   VERIFY(UnpackDDElParam(WM_DDE_EXECUTE, lParam, &unused, (uint_ptr*)&hData));
 
    // get the command string
    const char * lpsz = (const char *)GlobalLock(hData);
@@ -1180,7 +1180,7 @@ LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
    ::PostMessage((HWND)wParam, WM_DDE_ACK, (WPARAM)_get_handle(),
      //IA64: Assume DDE LPARAMs are still 32-bit
       ReuseDDElParam(lParam, WM_DDE_EXECUTE, WM_DDE_ACK,
-      (UINT)0x8000, (UINT_PTR)hData));
+      (UINT)0x8000, (uint_ptr)hData));
 
    // don't execute the command when the ::ca::window is disabled
    if (!IsWindowEnabled())

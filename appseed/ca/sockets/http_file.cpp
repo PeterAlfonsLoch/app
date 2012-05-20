@@ -5,7 +5,7 @@ namespace http
 
    bool file::read_string(string & str)
    {
-      DWORD_PTR nRead;
+      dword_ptr nRead;
       char ch;
       bool bR = false;
       str.Empty();
@@ -37,7 +37,7 @@ namespace http
 
    inline file & file::operator << (ex1::file & file)
       {
-         DWORD_PTR nRead;
+         dword_ptr nRead;
          primitive::memory mem;
          if(!mem.allocate(1024 * 1024))
          {

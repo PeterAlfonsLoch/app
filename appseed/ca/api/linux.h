@@ -16,7 +16,7 @@ CLASS_DECL__ bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 CLASS_DECL__ bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 
 
-typedef unsigned long * ULONG_PTR;
+typedef unsigned long * ulong_ptr;
 
 typedef unsigned long HRESULT;
 #define S_OK 0
@@ -29,5 +29,5 @@ typedef unsigned long HRESULT;
 
 
 
-void RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, const ULONG_PTR *lpArguments);
+void RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, const ulong_ptr *lpArguments);
 #define EXCEPTION_NONCONTINUABLE 1

@@ -615,7 +615,7 @@ namespace userbase
       }
       LPTSTR lpszDest = (LPTSTR)pbase->m_lparam;
 
-      INT_PTR nLen = 0;
+      int_ptr nLen = 0;
       int nIndex = CommandToIndex(0); // use pane with ID zero
       if (nIndex >= 0)
       {
@@ -637,7 +637,7 @@ namespace userbase
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
-      INT_PTR nLen = 0;
+      int_ptr nLen = 0;
       int nIndex = CommandToIndex(0); // use pane with ID zero
       if (nIndex >= 0)
       {

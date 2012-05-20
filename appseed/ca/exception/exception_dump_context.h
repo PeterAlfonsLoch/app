@@ -27,16 +27,16 @@ public:
    dump_context& dumpAsHex(BYTE b);
    dump_context& dumpAsHex(WORD w);
 #if defined(_LP64)
-   dump_context& operator<<(INT_PTR i);
-   dump_context& operator<<(LONG_PTR l);
-   dump_context& operator<<(DWORD_PTR dw);
+   dump_context& operator<<(int_ptr i);
+   dump_context& operator<<(long_ptr l);
+   dump_context& operator<<(dword_ptr dw);
    dump_context& operator<<(int n);
 #if !defined(MACOS)
    dump_context& operator<<(UINT u);
 #endif
-   dump_context& dumpAsHex(INT_PTR i);
-   dump_context& dumpAsHex(LONG_PTR l);
-   dump_context& dumpAsHex(DWORD_PTR dw);
+   dump_context& dumpAsHex(int_ptr i);
+   dump_context& dumpAsHex(long_ptr l);
+   dump_context& dumpAsHex(dword_ptr dw);
    dump_context& dumpAsHex(int n);
 #if !defined(MACOS)
    dump_context& dumpAsHex(UINT u);
@@ -52,17 +52,17 @@ public:
    dump_context& dumpAsHex(UINT u);
 #else
 #ifdef WINDOWS
-   dump_context& operator<<(LONG_PTR l);
-   dump_context& operator<<(DWORD_PTR dw);
+   dump_context& operator<<(long_ptr l);
+   dump_context& operator<<(dword_ptr dw);
 #endif
-   dump_context& operator<<(INT_PTR n);
-   dump_context& operator<<(UINT_PTR u);
+   dump_context& operator<<(int_ptr n);
+   dump_context& operator<<(uint_ptr u);
 #ifdef WINDOWS
-   dump_context& dumpAsHex(LONG_PTR l);
-   dump_context& dumpAsHex(DWORD_PTR dw);
+   dump_context& dumpAsHex(long_ptr l);
+   dump_context& dumpAsHex(dword_ptr dw);
 #endif
-   dump_context& dumpAsHex(INT_PTR n);
-   dump_context& dumpAsHex(UINT_PTR u);
+   dump_context& dumpAsHex(int_ptr n);
+   dump_context& dumpAsHex(uint_ptr u);
 #endif
    dump_context& operator<<(float f);
    dump_context& operator<<(double d);

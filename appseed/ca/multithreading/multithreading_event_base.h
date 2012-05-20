@@ -18,7 +18,7 @@ public:
 #ifdef WINDOWS
 	HANDLE      m_object;
 #else
-   INT_PTR     m_object;
+   int_ptr     m_object;
 #endif
 
 	/// internal member holding the owner of the waitable
@@ -32,13 +32,13 @@ public:
 #ifdef WINDOWS
 	explicit event_base( HANDLE   item = INVALID_HANDLE_VALUE);
 #else
-   explicit event_base( INT_PTR  item = -1);
+   explicit event_base( int_ptr  item = -1);
 #endif
 
 	///  \brief		resets ownership of the waitable item
 	void release_ownership();
 
-   virtual INT_PTR get_os_data() const;
+   virtual int_ptr get_os_data() const;
 
 
 #ifdef WINDOWS
@@ -47,10 +47,10 @@ public:
    operator HANDLE () const { return m_object; }
 	void set_item( HANDLE item );
 #else
-	virtual INT_PTR item() const;
-   operator INT_PTR () { return m_object; }
-   operator INT_PTR () const { return m_object; }
-	void set_item( INT_PTR item );
+	virtual int_ptr item() const;
+   operator int_ptr () { return m_object; }
+   operator int_ptr () const { return m_object; }
+	void set_item( int_ptr item );
 #endif
 
 	virtual void init_wait ();

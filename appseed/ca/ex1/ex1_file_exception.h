@@ -56,7 +56,7 @@ namespace ex1
       virtual LONG get_os_error();
       virtual string get_file_path();
 
-      static void CALLBACK CallBackFunc( OF_INFO_t OpenedFileInfo, UINT_PTR pUserContext );
+      static void CALLBACK CallBackFunc( OF_INFO_t OpenedFileInfo, uint_ptr pUserContext );
       void OnFileFound(OF_INFO_t OpenedFileInfo );
 
 

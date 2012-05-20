@@ -75,7 +75,7 @@ namespace ex1
    public:
 
 
-      byte_serializable_map(INT_PTR nBlockSize = 10);
+      byte_serializable_map(int_ptr nBlockSize = 10);
       byte_serializable_map(const byte_serializable_map & map);
 
 
@@ -89,7 +89,7 @@ namespace ex1
    };
 
    template < class type_map >
-   byte_serializable_map < type_map >::byte_serializable_map(INT_PTR nBlockSize) :
+   byte_serializable_map < type_map >::byte_serializable_map(int_ptr nBlockSize) :
       type_map(nBlockSize)
    {
    }

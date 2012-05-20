@@ -154,7 +154,7 @@ namespace user
       virtual int hit_test(point pt, e_element & eelement);
       virtual e_position DragHitTest(point pt);
       virtual void GetDragRect(LPRECT lprect, e_position eposition);
-      virtual INT_PTR GetTabCount();
+      virtual int_ptr GetTabCount();
       virtual bool get_element_rect(::index iTab, LPRECT lprect, e_element eelement);
 
       virtual void layout();

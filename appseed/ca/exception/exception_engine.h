@@ -47,13 +47,13 @@ namespace exception
       ~engine();
 
 
-      void address(DWORD_PTR a)      { m_uiAddress = a; }
-      DWORD_PTR address() const   { return m_uiAddress; }
+      void address(dword_ptr a)      { m_uiAddress = a; }
+      dword_ptr address() const   { return m_uiAddress; }
 
       // symbol handler queries
       size_t      module  (vsstring & str);
-      size_t      symbol  (vsstring & str, DWORD_PTR * = 0);
-      index       fileline(vsstring & str, DWORD_PTR *, DWORD_PTR * = 0);
+      size_t      symbol  (vsstring & str, dword_ptr * = 0);
+      index       fileline(vsstring & str, dword_ptr *, dword_ptr * = 0);
 
       // stack walk
       bool stack_first (CONTEXT* pctx);
@@ -72,13 +72,13 @@ namespace exception
          "%f(%l) : %m at %s\n"
          "%m.%s + %sd bytes, in %f:line %l\n"
       */
-      static bool stack_trace(vsstring & str, CONTEXT *, DWORD_PTR uiSkip = 0, const char * pszFormat = default_format());
-      static bool stack_trace(vsstring & str, DWORD_PTR uiSkip = 1, const char * pszFormat = default_format());
-      static bool stack_trace(vsstring & str, engine&, CONTEXT *, DWORD_PTR uiSkip = 1, const char * pszFormat = default_format());
+      static bool stack_trace(vsstring & str, CONTEXT *, dword_ptr uiSkip = 0, const char * pszFormat = default_format());
+      static bool stack_trace(vsstring & str, dword_ptr uiSkip = 1, const char * pszFormat = default_format());
+      static bool stack_trace(vsstring & str, engine&, CONTEXT *, dword_ptr uiSkip = 1, const char * pszFormat = default_format());
       static DWORD WINAPI stack_trace_ThreadProc(void * lpvoidParam);
     private:
       static const char * default_format(){ return "%f(%l) : %m at %s\n"; }
-      static bool get_line_from_address(HANDLE hProc, DWORD_PTR uiAddress, DWORD_PTR * puiDisplacement, IMAGEHLP_LINE * pline);
+      static bool get_line_from_address(HANDLE hProc, dword_ptr uiAddress, dword_ptr * puiDisplacement, IMAGEHLP_LINE * pline);
       static size_t get_module_basename(HMODULE hmodule, vsstring & strName);
 
 
@@ -86,7 +86,7 @@ namespace exception
       bool check();
 
     private:
-      DWORD_PTR      m_uiAddress;
+      dword_ptr      m_uiAddress;
       bool           m_bOk;
       STACKFRAME *   m_pstackframe;
       CONTEXT *      m_pcontext;

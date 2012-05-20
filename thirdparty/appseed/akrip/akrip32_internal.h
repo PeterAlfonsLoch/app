@@ -1,10 +1,11 @@
 #pragma once
 
-#define _CRT_SECURE_NO_WARNINGS
 
-#include <windows.h>
+#include "c/c.h"
 #include "akrip32.h"
 #include "scsidefs.h"
 #include "aspilib.h"
+#include "scsipt.h"
 #include <stdio.h>
+#include <stddef.h>
 

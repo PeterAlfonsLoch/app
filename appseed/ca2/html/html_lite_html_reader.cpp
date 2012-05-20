@@ -26,7 +26,7 @@
  */
 #include "framework.h"
 
-DWORD_PTR lite_html_reader::parseDocument()
+dword_ptr lite_html_reader::parseDocument()
 {
    ASSERT(m_lpszBuffer != NULL);
 
@@ -36,8 +36,8 @@ DWORD_PTR lite_html_reader::parseDocument()
    string   strCharacters;         // character data
    string   strComment;            // comment data
    string   strT;               // temporary storage
-   DWORD_PTR   dwCharDataStart = 0L;   // starting position of character data
-   DWORD_PTR   dwCharDataLen = 0L;      // length of character data
+   dword_ptr   dwCharDataStart = 0L;   // starting position of character data
+   dword_ptr   dwCharDataLen = 0L;      // length of character data
    LONG   lTemp = 0L;            // temporary storage
    char   ch = 0;               // character at current buffer position
    lite_html_tag   oTag;         // tag information
@@ -212,7 +212,7 @@ LEndParse:
  * @since 1.0
  * @author Gurmeet S. Kochar
  */
-DWORD_PTR lite_html_reader::read(const char * psz)
+dword_ptr lite_html_reader::read(const char * psz)
 {
    ASSERT(__is_valid_string(psz));
    m_strBuffer    = psz;
@@ -233,14 +233,14 @@ DWORD_PTR lite_html_reader::read(const char * psz)
  * @since 1.0
  * @author Gurmeet S. Kochar
  */
-DWORD_PTR lite_html_reader::ReadFile(HANDLE hFile)
+dword_ptr lite_html_reader::ReadFile(HANDLE hFile)
 {
    ASSERT(hFile != INVALID_HANDLE_VALUE);
    ASSERT(::GetFileType(hFile) == FILE_TYPE_DISK);
 
    HANDLE   hFileMap;
    const char *   lpsz;
-   DWORD_PTR   nRetVal;
+   dword_ptr   nRetVal;
 
    // determine file size
    m_dwBufLen = ::GetFileSize(hFile, NULL);

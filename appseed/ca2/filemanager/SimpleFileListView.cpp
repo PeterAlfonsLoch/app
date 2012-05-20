@@ -453,7 +453,7 @@ namespace filemanager
          return 0;
       DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
       bool bPendingSize;
-      __int64 i64Size;
+      int64_t i64Size;
       while(true)
       {
          bPendingSize = false;
@@ -485,7 +485,7 @@ namespace filemanager
          i = 0;
          while(i < get_fs_list_data()->m_itema.get_count() || IsWindowVisible())
          {
-            __int64 i64Size;
+            int64_t i64Size;
             bool bPendingSize;
             single_lock lock(m_pthread);
             if(!lock.lock(millis(1984)))

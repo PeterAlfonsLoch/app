@@ -1,6 +1,6 @@
 #include "framework.h"
 
-pointer_list::pointer_list(INT_PTR nBlockSize)
+pointer_list::pointer_list(int_ptr nBlockSize)
 {
    ASSERT(nBlockSize > 0);
 
@@ -57,7 +57,7 @@ pointer_list::NewNode(pointer_list::node* pPrev, pointer_list::node* pNext)
       node* pNode = (node*) pNewBlock->data();
       // free in reverse order to make it easier to debug
       pNode += m_nBlockSize - 1;
-      for (INT_PTR i = m_nBlockSize-1; i >= 0; i--, pNode--)
+      for (int_ptr i = m_nBlockSize-1; i >= 0; i--, pNode--)
       {
          pNode->pNext = m_pnodeFree;
          m_pnodeFree = pNode;
@@ -302,7 +302,7 @@ void pointer_list::remove_at(POSITION position)
 /////////////////////////////////////////////////////////////////////////////
 // slow operations
 
-POSITION pointer_list::find_index(INT_PTR nIndex) const
+POSITION pointer_list::find_index(int_ptr nIndex) const
 {
    ASSERT_VALID(this);
 

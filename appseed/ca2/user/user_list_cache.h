@@ -14,7 +14,7 @@ namespace user
       bool                                                              m_bCaching;
       int                                                               m_iCacheNextIndex;
       string2a                                                          m_cacheArray;
-      ::collection::map < INT_PTR, INT_PTR, stringa *, stringa *>       m_cacheMap;
+      ::collection::map < int_ptr, int_ptr, stringa *, stringa *>       m_cacheMap;
 
 
    public:
@@ -26,7 +26,7 @@ namespace user
 
       void _001Invalidate();
       
-      virtual void _001CacheHint(list * plist, INT_PTR iItemStart, INT_PTR iItemCount);
+      virtual void _001CacheHint(list * plist, int_ptr iItemStart, int_ptr iItemCount);
 
       virtual void _001GetItemText(::user::list_item * pitem);
 

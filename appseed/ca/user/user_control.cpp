@@ -97,7 +97,7 @@ namespace user
       return m_edatatype;
    }
 
-   void control::descriptor::set_ddx_dbflags(::database::id idSection, ::database::id idKey, ::database::id idIndex, INT_PTR value)
+   void control::descriptor::set_ddx_dbflags(::database::id idSection, ::database::id idKey, ::database::id idIndex, int_ptr value)
    {
       m_eddx = control::ddx_dbflags;
       m_ddx.m_pdbflags = new class ddx_dbflags(class ::database::key(idSection, idKey, idIndex), value);
@@ -344,7 +344,7 @@ namespace user
       return descriptor().m_data.m_pcombobox;
    }
 
-   control::ddx_dbflags::ddx_dbflags(::database::key key, INT_PTR value)
+   control::ddx_dbflags::ddx_dbflags(::database::key key, int_ptr value)
    {
       m_key       = key;
       m_value     = value;

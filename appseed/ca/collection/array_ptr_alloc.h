@@ -22,10 +22,10 @@ public:
    array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA > & operator = (const array_ptr_alloc <TYPE, ARG_TYPE, BASE_PTRA> & base_array);
 
    // Potentially growing the base_array
-   virtual void set_at_grow(INT_PTR nIndex, ARG_TYPE newElement);
+   virtual void set_at_grow(int_ptr nIndex, ARG_TYPE newElement);
 
 
-   virtual void set_size(INT_PTR nSize);
+   virtual void set_size(int_ptr nSize);
 
 };
 

@@ -180,7 +180,7 @@ namespace user
    }*/
 
    /*
-   INT_PTR keyboard_layout_cfg::_001GetItemCount()
+   int_ptr keyboard_layout_cfg::_001GetItemCount()
    {
       return m_layoutida.get_size();
    }

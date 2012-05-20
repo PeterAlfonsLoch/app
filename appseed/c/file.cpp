@@ -365,8 +365,8 @@ uint64_t file_length_dup(const char * path)
    if(hfile == INVALID_HANDLE_VALUE)
       return 0;
    DWORD dwHigh;
-   unsigned int64_t ui = ::GetFileSize(hfile, &dwHigh);
-   //ui |= ((unsigned int64_t) dwHigh) << 32;
+   uint64_t ui = ::GetFileSize(hfile, &dwHigh);
+   //ui |= ((uint64_t) dwHigh) << 32;
    if(dwHigh != 0)
       return 0; // currently invalid for the purposes of this API
    ::CloseHandle(hfile);
@@ -726,7 +726,7 @@ int iBufSize = 1024 * 1024;
 unsigned char * buf = (unsigned char *)  malloc(iBufSize);
 int iLen;
 ::md5::md5 ctx;
-UINT_PTR uiRead;
+uint_ptr uiRead;
 if(strVersion == "fileset v1")
 {
 while(true)
@@ -793,7 +793,7 @@ MD5_Update(pctx, (const char *) str, str.get_length());
 */
 /*   void file::read_n_number(FILE * pfile, ::md5::md5 * pctx, int & iNumber)
 {
-UINT_PTR uiRead;
+uint_ptr uiRead;
 vsstring str;
 char ch;
 while((uiRead = fread(&ch, 1, 1, pfile)) == 1)

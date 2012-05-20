@@ -252,9 +252,9 @@ namespace user
 
       rect rectItem;
       rect rectIntersect;
-      INT_PTR iItemCount = m_nDisplayCount;
-      INT_PTR iItemFirst = m_iTopIndex;
-      INT_PTR iItemLast;
+      int_ptr iItemCount = m_nDisplayCount;
+      int_ptr iItemFirst = m_iTopIndex;
+      int_ptr iItemLast;
       if(m_eview == ViewIcon)
       {
          iItemLast = iItemCount;
@@ -998,7 +998,7 @@ namespace user
 
 
 
-   INT_PTR list_column::CompareOrderSectEndNonVisible(list_column  * pcolumna, list_column * pcolumnb)
+   int_ptr list_column::CompareOrderSectEndNonVisible(list_column  * pcolumna, list_column * pcolumnb)
    {
       if(pcolumna->m_bVisible && pcolumnb->m_bVisible)
          return pcolumna->m_iOrder - pcolumnb->m_iOrder;
@@ -1010,12 +1010,12 @@ namespace user
          return 0;
    }
 
-   INT_PTR list_column::CompareOrder(list_column * pcolumna, list_column * pcolumnb)
+   int_ptr list_column::CompareOrder(list_column * pcolumna, list_column * pcolumnb)
    {
       return pcolumna->m_iOrder - pcolumnb->m_iOrder;
    }
 
-   INT_PTR list_column::CompareKey(list_column * pcolumna, list_column * pcolumnb)
+   int_ptr list_column::CompareKey(list_column * pcolumna, list_column * pcolumnb)
    {
       return pcolumna->m_iKey - pcolumnb->m_iKey;
    }
@@ -1059,7 +1059,7 @@ namespace user
 
       string str;
       bool bVisible;
-      INT_PTR iColumn;
+      int_ptr iColumn;
 
       for(iColumn = 0; iColumn < m_columna.VisibleGetCount(); iColumn++)
       {
@@ -1328,7 +1328,7 @@ namespace user
          }
       }
 
-      INT_PTR iItemCount;
+      int_ptr iItemCount;
       if(m_bFilter1 && (m_eview == ViewList || m_eview == ViewReport))
       {
          iItemCount = m_piaFilterList->get_count();
@@ -1337,8 +1337,8 @@ namespace user
       {
          iItemCount = m_nItemCount;
       }
-      INT_PTR iItemFirst = m_iTopIndex;
-      INT_PTR iItemLast = iItemFirst;
+      int_ptr iItemFirst = m_iTopIndex;
+      int_ptr iItemLast = iItemFirst;
       rect rectItem;
       rect rectIntersect;
       rect rectUpdate;
@@ -1347,7 +1347,7 @@ namespace user
       if(iItemFirst >= 0)
       {
          iItemLast = -1;
-         for(INT_PTR i = iItemFirst + 1; i < iItemCount; i++)
+         for(int_ptr i = iItemFirst + 1; i < iItemCount; i++)
          {
             item.m_iItem         = i;
             item.m_iDisplayItem  = i;
@@ -1425,9 +1425,9 @@ namespace user
       return false;
    }
 
-   bool list::_001DisplayHitTest(point point, INT_PTR &iItemParam, INT_PTR &iSubItemParam)
+   bool list::_001DisplayHitTest(point point, int_ptr &iItemParam, int_ptr &iSubItemParam)
    {
-      INT_PTR iItem;
+      int_ptr iItem;
       if(!_001DisplayHitTest(point, iItem))
       {
          return false;
@@ -1445,11 +1445,11 @@ namespace user
          }
          return true;
       }
-      INT_PTR iColumnCount = _001GetColumnCount();
-      INT_PTR iLeft =(index) m_scrollinfo.m_ptScroll.x - (m_scrollinfo.m_rectMargin.left * 2);
+      int_ptr iColumnCount = _001GetColumnCount();
+      int_ptr iLeft =(index) m_scrollinfo.m_ptScroll.x - (m_scrollinfo.m_rectMargin.left * 2);
       if(m_bGroup && m_bLateralGroup)
          iLeft += m_iLateralGroupWidth;
-      INT_PTR iRight;
+      int_ptr iRight;
       draw_list_item item(this);
       if(point.x < iLeft)
          return false;
@@ -1470,7 +1470,7 @@ namespace user
       return false;
    }
 
-   bool list::_001DisplayHitTest(POINT pt, INT_PTR &iItemParam)
+   bool list::_001DisplayHitTest(POINT pt, int_ptr &iItemParam)
    {
       if(m_eview == ViewReport)
       {
@@ -2104,7 +2104,7 @@ namespace user
       return false;
    }
 
-   bool list::Range::HasSubItem(INT_PTR iItem, INT_PTR iSubItem) const
+   bool list::Range::HasSubItem(int_ptr iItem, int_ptr iSubItem) const
    {
       for(index i = 0; i < m_itemrangea.get_size(); i++)
       {
@@ -2235,7 +2235,7 @@ namespace user
             Range range = m_rangeSelection;
             m_rangeSelection.clear();
 
-            INT_PTR iItem = m_iItemFocus;
+            int_ptr iItem = m_iItemFocus;
 
             if(iItem < 0)
             {
@@ -2307,7 +2307,7 @@ namespace user
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       pmouse->previous(); // give chance to child control and to base views
-      INT_PTR iItem;
+      int_ptr iItem;
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       if(!m_bHoverSelect)
@@ -2317,8 +2317,8 @@ namespace user
             if(_001DisplayHitTest(pt, iItem))
             {
                ItemRange itemrange;
-               INT_PTR iLItem = min(m_iShiftFirstSelection, iItem);
-               INT_PTR iUItem = max(m_iShiftFirstSelection, iItem);
+               int_ptr iLItem = min(m_iShiftFirstSelection, iItem);
+               int_ptr iUItem = max(m_iShiftFirstSelection, iItem);
                itemrange.Set(iLItem, iUItem, 0, m_columna.get_count() - 1, - 1, -1);
                m_rangeSelection.add_item(itemrange);
                m_iShiftFirstSelection = iItem;
@@ -2329,8 +2329,8 @@ namespace user
             if(_001DisplayHitTest(pt, iItem))
             {
                ItemRange itemrange;
-               INT_PTR iLItem = min(m_iShiftFirstSelection, iItem);
-               INT_PTR iUItem = max(m_iShiftFirstSelection, iItem);
+               int_ptr iLItem = min(m_iShiftFirstSelection, iItem);
+               int_ptr iUItem = max(m_iShiftFirstSelection, iItem);
                itemrange.Set(iLItem, iUItem, 0, m_columna.get_count() - 1, - 1, -1);
                m_rangeSelection.add_item(itemrange);
                m_iShiftFirstSelection = iItem;
@@ -2573,7 +2573,7 @@ namespace user
    {
       if(!_001HasConfigId(key))
          return;
-      INT_PTR iFilterSubItem = _001ConfigIdToColumnKey(key);
+      int_ptr iFilterSubItem = _001ConfigIdToColumnKey(key);
       Range & range = m_rangeSelection;
       for(index i = 0; i < range.get_item_count(); i++)
       {
@@ -3080,7 +3080,7 @@ namespace user
 
    void list_column_array::GlobalToVisibleOrder()
    {
-      INT_PTR iVisibleCount = VisibleGetCount();
+      int_ptr iVisibleCount = VisibleGetCount();
       for(index iVisibleKey = 0; iVisibleKey < iVisibleCount; iVisibleKey++)
       {
          list_column * pcolumn = _001GetVisible(iVisibleKey);
@@ -3172,11 +3172,11 @@ namespace user
    {
       list * plist = m_plist;
       //detects change
-      INT_PTR iVisibleCount = VisibleGetCount();
-      INT_PTR iChangeCount = 0;
-      INT_PTR iNew;
-      INT_PTR iOld;
-      for(INT_PTR iVisibleKey = 0; iVisibleKey < iVisibleCount; iVisibleKey++)
+      int_ptr iVisibleCount = VisibleGetCount();
+      int_ptr iChangeCount = 0;
+      int_ptr iNew;
+      int_ptr iOld;
+      for(int_ptr iVisibleKey = 0; iVisibleKey < iVisibleCount; iVisibleKey++)
       {
          list_column * column = _001GetVisible(iVisibleKey);
          if(VisibleGetOrderFromKey(column->m_iKey) != plist->HeaderCtrlMapColumnToOrder(iVisibleKey))
@@ -3232,7 +3232,7 @@ namespace user
 
    void list_column_array::DISaveOrder()
    {
-      INT_PTR iCount = this->get_size();
+      int_ptr iCount = this->get_size();
       string str;
       for(index iKey = 0; iKey < iCount; iKey++)
       {
@@ -3254,7 +3254,7 @@ namespace user
 
    void list_column_array::DILoadOrder()
    {
-      INT_PTR iCount = this->get_size();
+      int_ptr iCount = this->get_size();
       string str;
       for(index iKey = 0; iKey < iCount; iKey++)
       {
@@ -3861,8 +3861,8 @@ namespace user
    {
       if(m_pcache != NULL)
       {
-         INT_PTR iItemCount = m_nDisplayCount;
-         INT_PTR iItemFirst = m_iTopIndex;
+         int_ptr iItemCount = m_nDisplayCount;
+         int_ptr iItemFirst = m_iTopIndex;
          m_pcache->_001CacheHint(
             this,
             iItemFirst,

@@ -35,7 +35,7 @@ namespace primitive
 
       allocate(dwSize);
 
-      ASSERT(__is_valid_address(pMemory, (UINT_PTR) dwSize, FALSE));
+      ASSERT(__is_valid_address(pMemory, (uint_ptr) dwSize, FALSE));
 
       memcpy(m_pbStorage, pMemory, (size_t) dwSize);
 

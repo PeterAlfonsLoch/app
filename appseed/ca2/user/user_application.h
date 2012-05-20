@@ -103,7 +103,7 @@ namespace ca2
       // helpers for standard commdlg dialogs
       bool do_prompt_file_name(var & varFile, UINT nIDSTitle,
             DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate);
-      INT_PTR DoPrintDialog(CPrintDialog* pPD);
+      int_ptr DoPrintDialog(CPrintDialog* pPD);
    // Implementation
          // Server object for document creation
       //{{__MSG(App)

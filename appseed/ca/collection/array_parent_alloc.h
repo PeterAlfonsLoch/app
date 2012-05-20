@@ -15,9 +15,9 @@ public:
    virtual array_parent_alloc < TYPE, ARG_TYPE > & operator = (const array_parent_alloc <TYPE, ARG_TYPE> & base_array);
 
    // Potentially growing the base_array
-   virtual void set_at_grow(INT_PTR nIndex, ARG_TYPE newElement);
+   virtual void set_at_grow(int_ptr nIndex, ARG_TYPE newElement);
 
-   virtual void set_size(INT_PTR nSize);
+   virtual void set_size(int_ptr nSize);
 
 };
 
@@ -95,7 +95,7 @@ void array_parent_alloc<TYPE, ARG_TYPE>::set_at_grow(index iIndex, ARG_TYPE t)
    else
    {
       this->ptra().set_size(iIndex + 1);
-      INT_PTR iEmptySize = this->ptra().get_size() - 1;
+      int_ptr iEmptySize = this->ptra().get_size() - 1;
       index i;
       for(i = iIndex; i < iEmptySize; i++)
       {

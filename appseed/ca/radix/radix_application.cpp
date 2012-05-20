@@ -31,7 +31,7 @@ class CActivationContext
 {
 protected :
    HANDLE m_hCtxt;
-   ULONG_PTR m_uCookie;
+   ulong_ptr m_uCookie;
 
    // If pointers are NULL then we are on a platform that does not support WinSXS.
    typedef HANDLE (WINAPI * PFNCreateActCtx)(PCACTCTX);
@@ -40,10 +40,10 @@ protected :
    typedef void (WINAPI * PFNReleaseActCtx)(HANDLE);
    static PFNReleaseActCtx s_pfnReleaseActCtx;
 
-   typedef bool (WINAPI * PFNActivateActCtx)(HANDLE, ULONG_PTR*);
+   typedef bool (WINAPI * PFNActivateActCtx)(HANDLE, ulong_ptr*);
    static PFNActivateActCtx s_pfnActivateActCtx;
 
-   typedef bool (WINAPI * PFNDeactivateActCtx)(DWORD, ULONG_PTR);
+   typedef bool (WINAPI * PFNDeactivateActCtx)(DWORD, ulong_ptr);
    static PFNDeactivateActCtx s_pfnDeactivateActCtx;
 
    static bool s_bPFNInitialized;
@@ -159,7 +159,7 @@ public:
 
       if ( m_uCookie != 0 )
       {
-         ULONG_PTR uCookie = m_uCookie;
+         ulong_ptr uCookie = m_uCookie;
          m_uCookie = 0;
          return ( s_pfnDeactivateActCtx(0, uCookie) == TRUE );
       }
@@ -689,7 +689,7 @@ namespace radix
    // WinHelp Helper
 
 
-   void application::WinHelp(DWORD_PTR dwData, UINT nCmd)
+   void application::WinHelp(dword_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
@@ -706,7 +706,7 @@ namespace radix
    /////////////////////////////////////////////////////////////////////////////
    // HtmlHelp Helper
 
-   void application::HtmlHelp(DWORD_PTR dwData, UINT nCmd)
+   void application::HtmlHelp(dword_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
@@ -720,7 +720,7 @@ namespace radix
       // trans pMainWnd->HtmlHelp(dwData, nCmd);
    }
 
-   void application::WinHelpInternal(DWORD_PTR dwData, UINT nCmd)
+   void application::WinHelpInternal(dword_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
@@ -1879,7 +1879,7 @@ namespace radix
          // If we're doing DDE, hide ourselves
 
       case CCommandLineInfo::FileDDE:
-         m_pCmdInfo = (CCommandLineInfo*)(UINT_PTR)m_nCmdShow;
+         m_pCmdInfo = (CCommandLineInfo*)(uint_ptr)m_nCmdShow;
          m_nCmdShow = SW_HIDE;
          break;
 
@@ -2310,7 +2310,7 @@ namespace radix
          if (str.is_empty())
             return FALSE;
          ASSERT(str.get_length()%2 == 0);
-         INT_PTR nLen = str.get_length();
+         int_ptr nLen = str.get_length();
          *pBytes = UINT(nLen)/2;
          *ppData = new BYTE[*pBytes];
          for (int i=0;i<nLen;i+=2)

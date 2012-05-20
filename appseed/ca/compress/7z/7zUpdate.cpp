@@ -415,11 +415,11 @@ namespace n7z
          GetMethodFull(k_BCJ2, 4, methodFull);
          exeMethod.Methods.insert_at(0, methodFull);
          GetMethodFull(k_LZMA, 1, methodFull);
-         methodFull.Props[NCoderPropID::kAlgorithm] = (INT_PTR)kAlgorithmForBCJ2_LZMA;
-         methodFull.Props[NCoderPropID::kMatchFinder] = (INT_PTR)kMatchFinderForBCJ2_LZMA;
-         methodFull.Props[NCoderPropID::kDictionarySize] = (INT_PTR)kDictionaryForBCJ2_LZMA;
-         methodFull.Props[NCoderPropID::kNumFastBytes] = (INT_PTR)kNumFastBytesForBCJ2_LZMA;
-         methodFull.Props[NCoderPropID::kNumThreads] = (INT_PTR)1;
+         methodFull.Props[NCoderPropID::kAlgorithm] = (int_ptr)kAlgorithmForBCJ2_LZMA;
+         methodFull.Props[NCoderPropID::kMatchFinder] = (int_ptr)kMatchFinderForBCJ2_LZMA;
+         methodFull.Props[NCoderPropID::kDictionarySize] = (int_ptr)kDictionaryForBCJ2_LZMA;
+         methodFull.Props[NCoderPropID::kNumFastBytes] = (int_ptr)kNumFastBytesForBCJ2_LZMA;
+         methodFull.Props[NCoderPropID::kNumThreads] = (int_ptr)1;
 
          exeMethod.Methods.add(methodFull);
          exeMethod.Methods.add(methodFull);

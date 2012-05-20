@@ -403,7 +403,7 @@ namespace filemanager
 
          }
 
-         void list_view::PostFillTask(string & wstrFile, UINT_PTR uiTimer)
+         void list_view::PostFillTask(string & wstrFile, uint_ptr uiTimer)
          {
             UNREFERENCED_PARAMETER(wstrFile);
             UNREFERENCED_PARAMETER(uiTimer);

@@ -76,10 +76,10 @@ public:
 protected:
 	node* m_pnodeHead;
 	node* m_pnodeTail;
-	INT_PTR m_nCount;
+	int_ptr m_nCount;
 	node* m_pnodeFree;
 	struct plex* m_pBlocks;
-	INT_PTR m_nBlockSize;
+	int_ptr m_nBlockSize;
 
 	node* NewNode(node*, node*);
 	void FreeNode(node*);

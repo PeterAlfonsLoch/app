@@ -2244,8 +2244,8 @@ ExitModal:
    }
 
    // Timer Functions
-   UINT_PTR interaction::SetTimer(UINT_PTR nIDEvent, UINT nElapse,
-         void (CALLBACK* lpfnTimer)(HWND, UINT, UINT_PTR, DWORD))
+   uint_ptr interaction::SetTimer(uint_ptr nIDEvent, UINT nElapse,
+         void (CALLBACK* lpfnTimer)(HWND, UINT, uint_ptr, DWORD))
    {
       if(m_pimpl == NULL)
          return 0;
@@ -2253,7 +2253,7 @@ ExitModal:
          return m_pimpl->SetTimer(nIDEvent, nElapse, lpfnTimer);
    }
 
-   bool interaction::KillTimer(UINT_PTR nIDEvent)
+   bool interaction::KillTimer(uint_ptr nIDEvent)
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -2476,7 +2476,7 @@ ExitModal:
    }
 
 
-   UINT_PTR interaction::timer_array::set(interaction * pguie, UINT_PTR uiId, UINT uiElapse)
+   uint_ptr interaction::timer_array::set(interaction * pguie, uint_ptr uiId, UINT uiElapse)
    {
 
 
@@ -2601,7 +2601,7 @@ ExitModal:
       unset(pui);
    }
 
-   bool interaction::timer_array::unset(interaction * pguie, UINT_PTR uiId)
+   bool interaction::timer_array::unset(interaction * pguie, uint_ptr uiId)
    {
 
 
@@ -2676,7 +2676,7 @@ ExitModal:
 
    }
 
-   index interaction::timer_array::find(interaction * pguie, UINT_PTR uiId)
+   index interaction::timer_array::find(interaction * pguie, uint_ptr uiId)
    {
 
 

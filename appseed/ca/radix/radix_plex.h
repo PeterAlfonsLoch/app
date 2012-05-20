@@ -10,7 +10,7 @@ struct CLASS_DECL_ca plex     // warning var length structure
 
    void * data() { return ((byte*)(this+1)) + CA2_PALACE_SAFE_ZONE_BORDER_SIZE; }
 
-   static plex* PASCAL create(plex*& head, UINT_PTR nMax, UINT_PTR cbElement);
+   static plex* PASCAL create(plex*& head, uint_ptr nMax, uint_ptr cbElement);
          // like 'calloc' but no zero fill
          // may throw primitive::memory exceptions
 

@@ -14,8 +14,8 @@ CLASS_DECL_c DWORD call_sync(
    int iShow,
    int iRetry, 
    int iSleep, 
-   int (* pfnOnRetry)(int iTry, DWORD_PTR dwParam),
-   DWORD_PTR dwParam);
+   int (* pfnOnRetry)(int iTry, dword_ptr dwParam),
+   dword_ptr dwParam);
 
 
 CLASS_DECL_c vsstring consume_param(const char * pszCommandLine, const char ** pszEndPtr);

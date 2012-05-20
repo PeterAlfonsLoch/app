@@ -19,7 +19,7 @@ namespace gen
          m_p = NULL;
       }
 
-      scoped_ptr(INT_PTR i) 
+      scoped_ptr(int_ptr i) 
       {
          operator = ((T *) i);
       }

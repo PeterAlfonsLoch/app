@@ -22,8 +22,8 @@ namespace filemanager
          class Item
          {
          public:
-            __int64     m_iParent;
-            __int64     m_iFolder;
+            int64_t     m_iParent;
+            int64_t     m_iFolder;
             string      m_strTitle;
             string      m_strFileName;
             string      m_strExtension;
@@ -79,7 +79,7 @@ namespace filemanager
             ItemArray         m_itema; 
 
             image_list *          m_pil;
-            __int64 m_iParentFolder;
+            int64_t m_iParentFolder;
 
 
             int m_iIconFolder;
@@ -114,7 +114,7 @@ namespace filemanager
             void parse(const char * lpszSource);
             void KickBuild(int iItem = -1);
          
-            void PostFillTask(string & strFile, UINT_PTR uiTimer);
+            void PostFillTask(string & strFile, uint_ptr uiTimer);
 
             virtual void _001OnSort();
             bool GetSongPath(string & str, index iItem);

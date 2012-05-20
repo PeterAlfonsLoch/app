@@ -31,7 +31,7 @@ namespace ca8
       virtual int track_popup_menu(const char * pszMatter, point pt, ::user::interaction * puie);
 
       virtual bool get_fs_size(string & strSize, const char * pszPath, bool & bPending);
-      virtual bool get_fs_size(__int64 & i64Size, const char * pszPath, bool & bPending);
+      virtual bool get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending);
    
       virtual void data_on_after_change(gen::signal_object * pobj);
 

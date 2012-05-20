@@ -20,7 +20,7 @@ namespace filemanager
          class Folder
          {
          public:
-            __int64        m_iFolder;
+            int64_t        m_iFolder;
             string         m_strName;
             EFolderType    m_etype;
             int            m_iImage;
@@ -31,7 +31,7 @@ namespace filemanager
             public array_ptr_alloc < Folder, Folder & >
          {
          public:
-            int FindAbsolute(__int64 iFolder);
+            int FindAbsolute(int64_t iFolder);
          };
 
          class CLASS_DECL_ca2 tree_view :
@@ -46,7 +46,7 @@ namespace filemanager
             int                              m_iIconArtistSelected;
             ::filemanager::fs::simple::view *   m_pserver;
             FolderArray                         m_foldera; 
-            __int64                             m_iParentFolder;
+            int64_t                             m_iParentFolder;
 
 
             tree_view(::ca::application * papp);
@@ -60,7 +60,7 @@ namespace filemanager
 
             void parse(const char * lpszSource);
 
-            ::ex1::tree_item * FindTreeItem(__int64 iFolder);
+            ::ex1::tree_item * FindTreeItem(int64_t iFolder);
             index _001GetItemImage(::ex1::tree_item * pitem, bool bSelected);
 
 

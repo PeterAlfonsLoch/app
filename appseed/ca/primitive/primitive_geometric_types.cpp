@@ -3,7 +3,7 @@
 
 
 
-__int64 MulDiv(__int64 nNumber, __int64 nNumerator, __int64 nDenominator)
+int64_t MulDiv(int64_t nNumber, int64_t nNumerator, int64_t nDenominator)
 {
    return muldiv64(nNumber, nNumerator, nDenominator);
 }
@@ -267,7 +267,7 @@ bool contains(const __rect64 * prect, point64 pt)
       && pt.y >= prect->top && pt.y <= prect->bottom;
 }
 
-bool set(__rect64 * prectDest, __int64 x1, __int64 y1, __int64 x2, __int64 y2)
+bool set(__rect64 * prectDest, int64_t x1, int64_t y1, int64_t x2, int64_t y2)
 {
    prectDest->left      = x1;
    prectDest->top       = y1;
@@ -292,7 +292,7 @@ bool is_equal(const __rect64 * prect1, const __rect64 * prect2)
       prect1->bottom    == prect2->bottom;
 }
 
-bool inflate(__rect64 * prect, __int64 x, __int64 y)
+bool inflate(__rect64 * prect, int64_t x, int64_t y)
 {
    prect->left      -= x;
    prect->top       -= y;
@@ -301,7 +301,7 @@ bool inflate(__rect64 * prect, __int64 x, __int64 y)
    return TRUE;
 }
 
-bool deflate(__rect64 * prect, __int64 x, __int64 y)
+bool deflate(__rect64 * prect, int64_t x, int64_t y)
 {
    prect->left      += x;
    prect->top       += y;
@@ -310,7 +310,7 @@ bool deflate(__rect64 * prect, __int64 x, __int64 y)
    return TRUE;
 }
 
-bool offset(__rect64 * prect, __int64 x, __int64 y)
+bool offset(__rect64 * prect, int64_t x, int64_t y)
 {
    prect->left      += x;
    prect->top       += y;

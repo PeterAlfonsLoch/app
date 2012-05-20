@@ -869,7 +869,7 @@ namespace user
       return true;
    }
 
-   INT_PTR tab::GetTabCount()
+   int_ptr tab::GetTabCount()
    {
       return get_data()->m_panea.get_size();
    }

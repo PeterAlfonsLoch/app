@@ -74,9 +74,9 @@ public:
    bool create_message_window();
 
 // Timer Functions
-   virtual UINT_PTR SetTimer(UINT_PTR nIDEvent, UINT nElapse,
-      void (CALLBACK* lpfnTimer)(HWND, UINT, UINT_PTR, DWORD));
-   virtual bool KillTimer(UINT_PTR nIDEvent);
+   virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse,
+      void (CALLBACK* lpfnTimer)(HWND, UINT, uint_ptr, DWORD));
+   virtual bool KillTimer(uint_ptr nIDEvent);
 
 
    virtual bool IsWindow();

@@ -26,7 +26,7 @@ public:
 	};
 
 
-   base_string_to_string_map(INT_PTR nBlockSize = 10);
+   base_string_to_string_map(int_ptr nBlockSize = 10);
 	virtual ~base_string_to_string_map();
 
 
@@ -76,10 +76,10 @@ public:
 protected:
 	assoc** m_pHashTable;
 	UINT m_nHashTableSize;
-	INT_PTR m_nCount;
+	int_ptr m_nCount;
 	assoc* m_pFreeList;
 	struct plex* m_pBlocks;
-	INT_PTR m_nBlockSize;
+	int_ptr m_nBlockSize;
 
 	assoc* NewAssoc(const string & key);
 	void FreeAssoc(assoc*);
@@ -101,9 +101,9 @@ protected:
 
 
 
-inline INT_PTR base_string_to_string_map::get_count() const
+inline int_ptr base_string_to_string_map::get_count() const
    { return m_nCount; }
-inline INT_PTR base_string_to_string_map::get_size() const
+inline int_ptr base_string_to_string_map::get_size() const
    { return m_nCount; }
 inline bool base_string_to_string_map::is_empty(::count countMinimum) const
    { return m_nCount < countMinimum; }
@@ -125,7 +125,7 @@ class CLASS_DECL_ca string_to_string_map :
 public:
 
 
-   string_to_string_map(INT_PTR nBlockSize = 10);
+   string_to_string_map(int_ptr nBlockSize = 10);
    string_to_string_map(const string_to_string_map & map);
 	~string_to_string_map();
 

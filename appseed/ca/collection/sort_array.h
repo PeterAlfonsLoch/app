@@ -35,18 +35,18 @@ class sort_array :
 public:
 
 
-   bool BaseSortFind(ARG_TYPE t, INT_PTR & iIndex) const;
-   bool BaseSortFind(ARG_TYPE t, INT_PTR & iIndex, INT_PTR iStart, INT_PTR iEnd) const;
+   bool BaseSortFind(ARG_TYPE t, int_ptr & iIndex) const;
+   bool BaseSortFind(ARG_TYPE t, int_ptr & iIndex, int_ptr iStart, int_ptr iEnd) const;
 
 
    index BaseSortInsert(ARG_TYPE t);
-   index BaseSortInsert(ARG_TYPE t, INT_PTR iStart, INT_PTR iEnd);
+   index BaseSortInsert(ARG_TYPE t, int_ptr iStart, int_ptr iEnd);
 
    //void AddCoupledSwapInterface(CBaseSwapInterface * pswap);
 
    void QuickSort();
 
-   void QuickSort(INT_PTR i1, INT_PTR i2);
+   void QuickSort(int_ptr i1, int_ptr i2);
 
    //virtual void OnAfterSwap(index i1, index i2);
 

@@ -14,7 +14,7 @@
 
 typedef uint32_t DWORD;
 typedef uint8_t byte;
-typedef uint32_t DWORD_PTR;
+typedef uint32_t dword_ptr;
 typedef void * PVOID;
 #define NULL 0
 #define _strcmpi strcasecmp

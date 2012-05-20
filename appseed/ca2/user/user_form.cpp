@@ -427,7 +427,7 @@ namespace ca2
          int i;
          if(VmsDataGet(pcontrol->descriptor().m_dataid, 0, 0, i))
          {
-            INT_PTR iSel = pcontrol->GetComboBox()->m_dwaData.find_first((DWORD) i);
+            int_ptr iSel = pcontrol->GetComboBox()->m_dwaData.find_first((DWORD) i);
             if(iSel >= 0)
             {
                simple_combo_box * pcombo = (simple_combo_box *) GetDlgItem(pcontrol->m_id);

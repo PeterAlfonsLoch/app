@@ -168,7 +168,7 @@ namespace compress
 
    ::primitive::memory_size filter_coder::read(void *data, ::primitive::memory_size size)
    {
-      DWORD_PTR processedSize = 0;
+      dword_ptr processedSize = 0;
       while (size > 0)
       {
          if (_convertedPosBegin != _convertedPosEnd)

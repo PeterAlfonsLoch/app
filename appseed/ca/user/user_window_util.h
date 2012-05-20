@@ -48,7 +48,7 @@ namespace user
       {
       public:
          bool remove(HWND hwnd);
-         INT_PTR find(HWND hwnd);
+         int_ptr find(HWND hwnd);
          void EnumDescendants();
          Array & operator = (HWNDArray & hwnda);
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-plex_heap * PASCAL plex_heap::create(plex_heap*& pHead, UINT_PTR nMax, UINT_PTR cbElement)
+plex_heap * PASCAL plex_heap::create(plex_heap*& pHead, uint_ptr nMax, uint_ptr cbElement)
 {
    ASSERT(nMax > 0 && cbElement > 0);
    if (nMax == 0 || cbElement == 0)

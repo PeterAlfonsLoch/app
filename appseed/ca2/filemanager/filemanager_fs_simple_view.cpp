@@ -100,7 +100,7 @@ namespace filemanager
 
          }
 
-         void view::open_folder(__int64 iFolder)
+         void view::open_folder(int64_t iFolder)
          {
          
             ca4::http::signal * psignal = new ca4::http::signal;
@@ -114,7 +114,7 @@ namespace filemanager
 
          }
 
-         void view::open_file(__int64 iFolder, const char * lpszFileName, const char * pszExtension)
+         void view::open_file(int64_t iFolder, const char * lpszFileName, const char * pszExtension)
          {
             string strUrl;
 

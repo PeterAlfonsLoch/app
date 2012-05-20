@@ -20,7 +20,7 @@ public:
    using waitable::unlock;
    virtual bool unlock();
 
-   INT_PTR get_os_data() const;
+   int_ptr get_os_data() const;
 
    bool SetEvent();
    bool PulseEvent();

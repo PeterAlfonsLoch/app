@@ -21,12 +21,12 @@ namespace html
       reader();
       virtual ~reader();
 
-      virtual void BeginParse(DWORD_PTR dwAppData, bool &bAbort);
-      virtual void StartTag(lite_html_tag *pTag, DWORD_PTR dwAppData, bool &bAbort);
-      virtual void EndTag(lite_html_tag *pTag, DWORD_PTR dwAppData, bool &bAbort);
-      virtual void Characters(const string &rText, DWORD_PTR dwAppData, bool &bAbort);
-      virtual void Comment(const string &rComment, DWORD_PTR dwAppData, bool &bAbort);
-      virtual void EndParse(DWORD_PTR dwAppData, bool bIsAborted);
+      virtual void BeginParse(dword_ptr dwAppData, bool &bAbort);
+      virtual void StartTag(lite_html_tag *pTag, dword_ptr dwAppData, bool &bAbort);
+      virtual void EndTag(lite_html_tag *pTag, dword_ptr dwAppData, bool &bAbort);
+      virtual void Characters(const string &rText, dword_ptr dwAppData, bool &bAbort);
+      virtual void Comment(const string &rComment, dword_ptr dwAppData, bool &bAbort);
+      virtual void EndParse(dword_ptr dwAppData, bool bIsAborted);
 
       tag * detach_main_tag();
 

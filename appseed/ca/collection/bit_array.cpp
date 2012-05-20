@@ -13,14 +13,14 @@ bit_array::bit_array()
 
 bit_array::~bit_array()
 {
-   if(m_pdata != NULL && INT_PTR(m_pdata) != 1)
+   if(m_pdata != NULL && int_ptr(m_pdata) != 1)
       delete[] m_pdata;
 }
 
 void bit_array::ensure_size(int iSize, bool bSet)
 {
    if(m_pdata == NULL
-   || INT_PTR(m_pdata) == 1
+   || int_ptr(m_pdata) == 1
    || iSize > m_iBitCount)
    {
       set_size(iSize, bSet);
@@ -39,7 +39,7 @@ void bit_array::set_size(int iBitCount, bool bSet)
       m_pdata              = new int[m_iDataCount];
       if(m_pdata != NULL)
       {
-         if(INT_PTR(pdataOld) == 1)
+         if(int_ptr(pdataOld) == 1)
          {
             gen::bit::set(m_pdata, true, 0, m_iDataCount * 8 * sizeof(int) - 1);
          }
@@ -74,7 +74,7 @@ int bit_array::get_size()
 
 void bit_array::set_bit(int pos)
 {
-   if(INT_PTR(m_pdata)== 1)
+   if(int_ptr(m_pdata)== 1)
       return;
    ensure_size(pos + 1);
    m_pdata[pos>>5] |= 1 << (pos&0x1f);
@@ -90,7 +90,7 @@ void bit_array::clear_bit(int pos)
 
 void bit_array::add_range(int s, int e)
 {
-   if(INT_PTR(m_pdata) == 1)
+   if(int_ptr(m_pdata) == 1)
       return;
    ensure_size(e + 1);
    int cs = s>>5;
@@ -148,11 +148,11 @@ void bit_array::clear_range(int s, int e)
 
 void bit_array::add_bit_array(bit_array & ba)
 {
-   if(INT_PTR(m_pdata) == 1)
+   if(int_ptr(m_pdata) == 1)
       return;
    if(!&ba || !ba.m_pdata)
       return;
-   if(INT_PTR(ba.m_pdata) == 1)
+   if(int_ptr(ba.m_pdata) == 1)
    {
       m_pdata = (int*)1;
       return;
@@ -168,9 +168,9 @@ void bit_array::clear_bit_array(bit_array & ba)
      return;
   if(&ba == NULL || ba.m_pdata == NULL)
      return;
-  if(INT_PTR(ba.m_pdata) == 1)
+  if(int_ptr(ba.m_pdata) == 1)
   {
-    if(m_pdata != NULL && INT_PTR(m_pdata) != 1)
+    if(m_pdata != NULL && int_ptr(m_pdata) != 1)
        delete[] m_pdata;
     m_pdata = NULL;
     return;
@@ -190,7 +190,7 @@ void bit_array::intersect_bit_array(bit_array & ba)
       m_pdata = 0;
       return;
    }
-   if(INT_PTR(ba.m_pdata) == 1)
+   if(int_ptr(ba.m_pdata) == 1)
       return;
    ensure_size(ba.get_size(), true);
    for(int i = 0; i < ba.m_iDataCount && i < m_iDataCount; i++)
@@ -199,7 +199,7 @@ void bit_array::intersect_bit_array(bit_array & ba)
 
 void bit_array::add_bit_array(char *bits, int count)
 {
-   if (INT_PTR(m_pdata) == 1) return;
+   if (int_ptr(m_pdata) == 1) return;
    ensure_size(count * 8);
    for(int i = 0; i < count && i < m_iDataCount*4;i++)
       ((char*)m_pdata)[i] |= bits[i];
@@ -218,7 +218,7 @@ bool bit_array::get_bit(int pos) const
 {
    if(m_pdata == NULL)
       return false;
-   if(INT_PTR(m_pdata) == 1)
+   if(int_ptr(m_pdata) == 1)
       return true;
    if(pos >= m_iBitCount)
       return false;

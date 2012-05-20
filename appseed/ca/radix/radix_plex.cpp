@@ -6,7 +6,7 @@
 
 CLASS_DECL_ca plex_heap_alloc_array g_heap;
 
-plex* PASCAL plex::create(plex*& pHead, UINT_PTR nMax, UINT_PTR cbElement)
+plex* PASCAL plex::create(plex*& pHead, uint_ptr nMax, uint_ptr cbElement)
 {
 
    ::primitive::memory_size size = sizeof(plex) + nMax * cbElement + CA2_PALACE_SAFE_ZONE_BORDER_SIZE * 2;

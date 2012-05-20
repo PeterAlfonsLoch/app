@@ -37,13 +37,13 @@ namespace ca2
 
       vsstring strBin = consume_param(pszCmdLine, &pszEnd);
 
-      DWORD dwExitCode = call_sync(strBin, pszEnd, NULL, iShow, -1, 484, &process::s_on_retry, (DWORD_PTR) &onretry);
+      DWORD dwExitCode = call_sync(strBin, pszEnd, NULL, iShow, -1, 484, &process::s_on_retry, (dword_ptr) &onretry);
 
       return dwExitCode;
 
    }
 
-   int process::s_on_retry(int iTry, DWORD_PTR dwParam)
+   int process::s_on_retry(int iTry, dword_ptr dwParam)
    {
       
       UNREFERENCED_PARAMETER(iTry);

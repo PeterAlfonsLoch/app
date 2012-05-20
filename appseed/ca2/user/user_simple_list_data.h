@@ -29,10 +29,10 @@ namespace user
 
       virtual void _001GetItemText(list_item * pitem);
 
-      virtual INT_PTR _001GetItemCount();
+      virtual int_ptr _001GetItemCount();
 
    protected:
-      void SetItemText(INT_PTR iItem, INT_PTR iSubItem, const char * lpcsz);
+      void SetItemText(int_ptr iItem, int_ptr iSubItem, const char * lpcsz);
    };
 
 } // namespace user

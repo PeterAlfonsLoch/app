@@ -21,11 +21,11 @@ public:
 
    void copy(const array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA > & base_array);
 
-   inline const TYPE & element_at(INT_PTR nIndex) const;
-   inline TYPE & element_at(INT_PTR nIndex);
+   inline const TYPE & element_at(int_ptr nIndex) const;
+   inline TYPE & element_at(int_ptr nIndex);
 
-   inline const TYPE & operator[](INT_PTR nIndex) const;
-   inline TYPE& operator[](INT_PTR nIndex);
+   inline const TYPE & operator[](int_ptr nIndex) const;
+   inline TYPE& operator[](int_ptr nIndex);
 
    array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA > & operator = (const array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA > & base_array);
 };
@@ -108,28 +108,28 @@ count array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::add(const array_ptr_copy < T
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline const TYPE & array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::
-element_at(INT_PTR nIndex) const
+element_at(int_ptr nIndex) const
 {
    return *((TYPE*) this->ptra().element_at(nIndex));
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline TYPE & array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::
-element_at(INT_PTR nIndex)
+element_at(int_ptr nIndex)
 {
    return *((TYPE*) this->ptra().element_at(nIndex));
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline const TYPE & array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::
-operator[](INT_PTR nIndex) const
+operator[](int_ptr nIndex) const
 {
    return this->element_at(nIndex);
 }
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline TYPE & array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::
-operator[](INT_PTR nIndex)
+operator[](int_ptr nIndex)
 {
    return this->element_at(nIndex);
 }

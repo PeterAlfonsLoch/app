@@ -1157,8 +1157,8 @@ namespace ca
 #include <Psapi.h>
 
 
-void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR pUserContext );
-void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR pUserContext, HANDLE hDriver, GetFinalPathNameByHandleDef pGetFinalPathNameByHandle );
+void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pUserContext );
+void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pUserContext, HANDLE hDriver, GetFinalPathNameByHandleDef pGetFinalPathNameByHandle );
 
 const LPCTSTR DRV_DOS_NAME = _T("\\\\.\\ListFileDrv");
 const LPCTSTR DRV_NAME = _T("ListOpenedFileDrv");
@@ -1210,7 +1210,7 @@ HANDLE OnlyGetDrv()
 }
 
 extern "C" __declspec(dllexport) void GetOpenedFiles( LPCWSTR lpPath, OF_TYPE Filter, OF_CALLBACK CallBackProc,
-													  UINT_PTR pUserContext )
+													  uint_ptr pUserContext )
 {
 	string csPath = lpPath;
 	csPath.make_lower();
@@ -1299,7 +1299,7 @@ DWORD WINAPI ThreadProc( LPVOID lParam )
 	return 0;
 }
 
-void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR pUserContext, HANDLE hDriver,
+void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pUserContext, HANDLE hDriver,
 						   GetFinalPathNameByHandleDef pGetFinalPathNameByHandle )
 {
 	int nFileType = XP_FILETYPE;
@@ -1522,7 +1522,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR pU
 }
 
 
-void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, UINT_PTR pUserContext )
+void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pUserContext )
 {
 	string csShortName;
 	GetShortPathName( csPath, csShortName.GetBuffer( MAX_PATH), MAX_PATH );

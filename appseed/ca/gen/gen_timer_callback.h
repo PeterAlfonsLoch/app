@@ -38,7 +38,7 @@ namespace gen
       
       bool IsEnabled();
       void Enable(bool bEnable = true);
-      virtual void TimerProc(UINT_PTR nID) = 0;
+      virtual void TimerProc(uint_ptr nID) = 0;
       bool WishesQueueModel();
       // bool _000BeforeWndProc(UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
       // bool InstallTimerCallbackHook();

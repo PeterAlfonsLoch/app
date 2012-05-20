@@ -7,7 +7,7 @@
 
 
 class CLASS_DECL_ca base_sort_serializable_int_ptr_array :
-   virtual public ex1::byte_serializable_array < sort_array < INT_PTR, INT_PTR > >
+   virtual public ex1::byte_serializable_array < sort_array < int_ptr, int_ptr > >
 {
    virtual void on_after_read();
 };
@@ -63,9 +63,9 @@ template < class ENUM >
 bool flags < ENUM > ::signalize(ENUM eenum)
 {
    index i = 0;
-   if(!BaseSortFind((INT_PTR &) eenum, i))
+   if(!BaseSortFind((int_ptr &) eenum, i))
    {
-      BaseSortInsert((INT_PTR) eenum);
+      BaseSortInsert((int_ptr) eenum);
       return true;
    }
    else
@@ -98,7 +98,7 @@ bool flags < ENUM > ::unsignalize(ENUM eenum)
 {
    index i = 0;
    bool bRemove = false;
-   while(BaseSortFind((INT_PTR) eenum, i))
+   while(BaseSortFind((int_ptr) eenum, i))
    {
       remove_at(i);
       bRemove = true;
@@ -130,20 +130,20 @@ bool flags < ENUM > ::unsignalize_all()
 template < class ENUM >
 flags < ENUM > & flags < ENUM > ::operator = (const flags < ENUM > & f)
 {
-   sort_array < INT_PTR, INT_PTR >::copy(f);
+   sort_array < int_ptr, int_ptr >::copy(f);
    return *this;
 }
 
 template < class ENUM >
 bool flags < ENUM > ::operator == (const flags < ENUM > & f)
 {
-   return sort_array < INT_PTR, INT_PTR >::operator == (f);
+   return sort_array < int_ptr, int_ptr >::operator == (f);
 }
 
 template < class ENUM >
 bool flags < ENUM > ::operator != (const flags < ENUM > & f)
 {
-   return sort_array < INT_PTR, INT_PTR >::operator != (f);
+   return sort_array < int_ptr, int_ptr >::operator != (f);
 }
 
 template < class ENUM >

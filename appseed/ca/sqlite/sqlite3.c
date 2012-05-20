@@ -9657,7 +9657,7 @@ static double localtimeOffset(DateTime *p){
 */
 static int parseModifier(const char *zMod, DateTime *p){
   int rc = 1;
-  INT_PTR n;
+  int_ptr n;
   double r;
   char *z, zBuf[30];
   z = zBuf;
@@ -9978,7 +9978,7 @@ static void strftimeFunc(
 ){
   DateTime x;
   u64 n;
-  INT_PTR i, j;
+  int_ptr i, j;
   char *z;
   const char *zFmt = (const char*)sqlite3_value_text(argv[0]);
   char zBuf[100];
@@ -13599,7 +13599,7 @@ SQLITE_PRIVATE void sqlite3SetString(char **pz, ...){
   *zResult = 0;
   va_start(ap, pz);
   while( (z = va_arg(ap, const char*))!=0 ){
-    INT_PTR n = (int) strlen(z);
+    int_ptr n = (int) strlen(z);
     memcpy(zResult, z, n);
     zResult += n;
   }

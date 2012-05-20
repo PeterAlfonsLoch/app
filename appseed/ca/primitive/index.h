@@ -1,4 +1,4 @@
 #pragma once
 
-typedef INT_PTR index;
+typedef int_ptr index;
 

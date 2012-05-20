@@ -155,7 +155,7 @@ namespace hotplugin
    }
 
 #ifdef WINDOWS
-   UINT_PTR host::message_handler(UINT_PTR uiMessage, WPARAM wparam, LPARAM lparam)
+   uint_ptr host::message_handler(uint_ptr uiMessage, WPARAM wparam, LPARAM lparam)
    {
       if(m_pplugin != NULL)
       {

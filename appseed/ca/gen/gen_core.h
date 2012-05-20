@@ -25,7 +25,7 @@
 //// the primitive::memory must be writeable; if bReadWrite is FALSE, the primitive::memory
 //// may be const.
 //
-//bool __is_valid_address(const void * p, UINT_PTR nBytes,
+//bool __is_valid_address(const void * p, uint_ptr nBytes,
 //   bool bReadWrite /* = TRUE */)
 //{
 //   return __is_valid_address(p, nBytes, bReadWrite);

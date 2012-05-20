@@ -233,7 +233,7 @@ void rect64::DeflateBottomRightSizeByRate(double dRate)
     bottom -= (long) dy;
 }
 
-void rect64::SetBottomRightSize(__int64 iWidth, __int64 iHeight)
+void rect64::SetBottomRightSize(int64_t iWidth, int64_t iHeight)
 {
     right = left + iWidth;
     bottom = top + iHeight;
@@ -241,15 +241,15 @@ void rect64::SetBottomRightSize(__int64 iWidth, __int64 iHeight)
 
 void rect64::ExtendOnCenter(const __rect64 *  lpcrect)
 {
-    __int64 cx = width();
-    __int64 cy = height();
+    int64_t cx = width();
+    int64_t cy = height();
 
     double dx = (double) (lpcrect->right - lpcrect->left);
     double dy = (double) (lpcrect->bottom - lpcrect->top);
     double dr = max(dx / cx, dy / cy);
 
-    __int64 cw = (__int64) (cx * dr);
-   __int64 ch = (__int64) (cy * dr);
+    int64_t cw = (int64_t) (cx * dr);
+   int64_t ch = (int64_t) (cy * dr);
    left = (long) ((dx - cw) / 2.0);
    top = (long) ((dy - ch) / 2.0);
     right = left + cw;
@@ -259,22 +259,22 @@ void rect64::ExtendOnCenter(const __rect64 *  lpcrect)
 
 void rect64::FitOnCenterOf(const __rect64 *  lpcrect)
 {
-    __int64 cx = width();
-    __int64 cy = height();
+    int64_t cx = width();
+    int64_t cy = height();
 
     double dx = (double) (lpcrect->right - lpcrect->left);
     double dy = (double) (lpcrect->bottom - lpcrect->top);
     double dr = min(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
 
-    __int64 cw = cx == 0 ? (__int64) dx : ((__int64) (cx * dr));
-   __int64 ch = cy == 0 ? (__int64) dy : ((__int64) (cy * dr));
+    int64_t cw = cx == 0 ? (int64_t) dx : ((int64_t) (cx * dr));
+   int64_t ch = cy == 0 ? (int64_t) dy : ((int64_t) (cy * dr));
    left = (long) ((lpcrect->left) + (dx - cw) / 2.0);
    top = (long) ((lpcrect->top) + (dy - ch) / 2.0);
     right = left + cw;
     bottom = top + ch;
 }
 
-void rect64::ScaleRect(double dx, double dy, __int64 ix, __int64 iy)
+void rect64::ScaleRect(double dx, double dy, int64_t ix, int64_t iy)
 {
    left    = (long) (((left    - ix) * dx) + ix);
    top     = (long) (((top     - iy) * dy) + iy);
@@ -283,9 +283,9 @@ void rect64::ScaleRect(double dx, double dy, __int64 ix, __int64 iy)
 
 }
 
-void rect64::ScaleHeightAspect(__int64 iNewHeight, __int64 iCenterX, __int64 iCenterY)
+void rect64::ScaleHeightAspect(int64_t iNewHeight, int64_t iCenterX, int64_t iCenterY)
 {
-   __int64 iHeight = height();
+   int64_t iHeight = height();
    if(iHeight != 0)
    {
       double d = (double) iNewHeight / iHeight;
@@ -293,7 +293,7 @@ void rect64::ScaleHeightAspect(__int64 iNewHeight, __int64 iCenterX, __int64 iCe
    }
 }
 
-void rect64::Align(__int64 align, const __rect64 *  lpcrect)
+void rect64::Align(int64_t align, const __rect64 *  lpcrect)
 {
 
    point64 pt(0, 0);
@@ -465,7 +465,7 @@ void rect64::SubtractRectMinor(const __rect64 *  lpcrectMajor, const __rect64 * 
 // rect
 rect::rect() throw()
    { /* random filled */ }
-rect::rect(__int64 l, __int64 t, __int64 r, __int64 b) throw()
+rect::rect(int64_t l, int64_t t, int64_t r, int64_t b) throw()
    { left = (int) l; top = (int) t; right = (int) r; bottom = (int) b; }
 rect::rect(const RECT& srcRect) throw()
    { ::CopyRect(this, (LPCRECT) &srcRect); }
@@ -633,7 +633,7 @@ rect rect::MulDiv(int nMultiplier, int nDivisor) const throw()
          ::MulDiv(bottom, nMultiplier, nDivisor));
    }
 
-__int64 rect::area()
+int64_t rect::area()
    { return width() * height(); }
 
 
@@ -723,7 +723,7 @@ void rect::get_bounding_rect(const point_array & pointa)
 // rect64
 rect64::rect64() throw()
    { /* random filled */ }
-rect64::rect64(__int64 l, __int64 t, __int64 r, __int64 b) throw()
+rect64::rect64(int64_t l, int64_t t, int64_t r, int64_t b) throw()
    { left = l; top = t; right = r; bottom = b; }
 rect64::rect64(const __rect64 & srcRect) throw()
    { ::copy(this, &srcRect); }
@@ -738,9 +738,9 @@ rect64::rect64(__point64 point64, __size64 size64) throw()
 rect64::rect64(__point64 topLeft, __point64 bottomRight) throw()
    { left = topLeft.x; top = topLeft.y;
       right = bottomRight.x; bottom = bottomRight.y; }
-__int64 rect64::width() const throw()
+int64_t rect64::width() const throw()
    { return right - left; }
-__int64 rect64::height() const throw()
+int64_t rect64::height() const throw()
    { return bottom - top; }
 size64 rect64::size() const throw()
    { return size64(right - left, bottom - top); }
@@ -755,7 +755,7 @@ const point64& rect64::bottom_right() const throw()
 void rect64::swap_left_right() throw()
    { swap_left_right((__rect64 *)(this)); }
 void WINAPI rect64::swap_left_right(__rect64 * lpRect) throw()
-   { __int64 temp = lpRect->left; lpRect->left = lpRect->right; lpRect->right = temp; }
+   { int64_t temp = lpRect->left; lpRect->left = lpRect->right; lpRect->right = temp; }
 rect64::operator __rect64 *() throw()
    { return this; }
 rect64::operator const __rect64 *() const throw()
@@ -766,7 +766,7 @@ rect64::operator rect() const
 }
 bool rect64::contains(__point64 point) const throw()
    { return ::contains(this, point); }
-void rect64::set(__int64 x1, __int64 y1, __int64 x2, __int64 y2) throw()
+void rect64::set(int64_t x1, int64_t y1, int64_t x2, int64_t y2) throw()
    { ::set(this, x1, y1, x2, y2); }
 void rect64::set(__point64 topLeft, __point64 bottomRight) throw()
    { ::set(this, topLeft.x, topLeft.y, bottomRight.x, bottomRight.y); }
@@ -776,25 +776,25 @@ void rect64::copy(const __rect64 * lpSrcRect) throw()
    { ::copy(this, lpSrcRect); }
 bool rect64::is_equal(const __rect64 * lpRect) const throw()
    { return ::is_equal(this, lpRect); }
-void rect64::inflate(__int64 x, __int64 y) throw()
+void rect64::inflate(int64_t x, int64_t y) throw()
    { ::inflate(this, x, y); }
 void rect64::inflate(__size64 size64) throw()
    { ::inflate(this, size64.cx, size64.cy); }
-void rect64::deflate(__int64 x, __int64 y) throw()
+void rect64::deflate(int64_t x, int64_t y) throw()
    { ::inflate(this, -x, -y); }
 void rect64::deflate(__size64 size64) throw()
    { ::inflate(this, -size64.cx, -size64.cy); }
-void rect64::offset(__int64 x, __int64 y) throw()
+void rect64::offset(int64_t x, int64_t y) throw()
    { ::offset(this, x, y); }
 void rect64::offset(__point64 point64) throw()
    { ::offset(this, point64.x, point64.y); }
 void rect64::offset(__size64 size64) throw()
    { ::offset(this, size64.cx, size64.cy); }
-void rect64::move_to_y(__int64 y) throw()
+void rect64::move_to_y(int64_t y) throw()
    { bottom = height() + y; top = y; }
-void rect64::move_to_x(__int64 x) throw()
+void rect64::move_to_x(int64_t x) throw()
    { right = width() + x; left = x; }
-void rect64::move_to(__int64 x, __int64 y) throw()
+void rect64::move_to(int64_t x, int64_t y) throw()
    { move_to_x(x); move_to_y(y); }
 void rect64::move_to(__point64 pt) throw()
    { move_to_x(pt.x); move_to_y(pt.y); }
@@ -847,7 +847,7 @@ rect64 rect64::operator|(const __rect64& rect2) const throw()
 
 void rect64::normalize() throw()
    {
-      __int64 nTemp;
+      int64_t nTemp;
       if (left > right)
       {
          nTemp = left;
@@ -868,7 +868,7 @@ void rect64::inflate(const __rect64 * lpRect) throw()
       right += lpRect->right;      bottom += lpRect->bottom;
    }
 
-void rect64::inflate(__int64 l, __int64 t, __int64 r, __int64 b) throw()
+void rect64::inflate(int64_t l, int64_t t, int64_t r, int64_t b) throw()
    {
       left -= l;         top -= t;
       right += r;         bottom += b;
@@ -880,13 +880,13 @@ void rect64::deflate(const __rect64 * lpRect) throw()
       right -= lpRect->right;   bottom -= lpRect->bottom;
    }
 
-void rect64::deflate(__int64 l, __int64 t, __int64 r, __int64 b) throw()
+void rect64::deflate(int64_t l, int64_t t, int64_t r, int64_t b) throw()
    {
       left += l;      top += t;
       right -= r;      bottom -= b;
    }
 
-rect64 rect64::MulDiv(__int64 nMultiplier, __int64 nDivisor) const throw()
+rect64 rect64::MulDiv(int64_t nMultiplier, int64_t nDivisor) const throw()
    {
       return rect64(
          ::MulDiv(left, nMultiplier, nDivisor),
@@ -895,7 +895,7 @@ rect64 rect64::MulDiv(__int64 nMultiplier, __int64 nDivisor) const throw()
          ::MulDiv(bottom, nMultiplier, nDivisor));
    }
 
-__int64 rect64::area()
+int64_t rect64::area()
    { return width() * height(); }
 
 

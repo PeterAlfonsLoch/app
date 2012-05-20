@@ -4,7 +4,7 @@
 
 #undef new
 
-base_string_to_string_map::base_string_to_string_map(INT_PTR nBlockSize)
+base_string_to_string_map::base_string_to_string_map(int_ptr nBlockSize)
 {
    
    ASSERT(nBlockSize > 0);
@@ -102,7 +102,7 @@ base_string_to_string_map::NewAssoc(const string & key)
             (base_string_to_string_map::assoc*) newBlock->data();
       // free in reverse order to make it easier to debug
       pAssoc += m_nBlockSize - 1;
-      for (INT_PTR i = m_nBlockSize-1; i >= 0; i--, pAssoc--)
+      for (int_ptr i = m_nBlockSize-1; i >= 0; i--, pAssoc--)
       {
          pAssoc->pNext = m_pFreeList;
          m_pFreeList = pAssoc;
@@ -422,7 +422,7 @@ base_string_to_string_map::pair *base_string_to_string_map::PGetNextAssoc(const 
    }
    else
    {
-      DWORD_PTR nNewCount = ar.ReadCount();
+      dword_ptr nNewCount = ar.ReadCount();
       string newKey;
       string newValue;
       while (nNewCount--)
@@ -489,7 +489,7 @@ void base_string_to_string_map::_001ReplaceVars(string & str)
 
 
 
-string_to_string_map::string_to_string_map(INT_PTR nBlockSize) :
+string_to_string_map::string_to_string_map(int_ptr nBlockSize) :
    base_string_to_string_map(nBlockSize)
 {
    

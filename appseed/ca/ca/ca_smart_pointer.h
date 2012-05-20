@@ -17,7 +17,7 @@ namespace ca
       smart_pointer(const smart_pointer < T > & t);
       smart_pointer(T * p);
       smart_pointer(::ca::application * papp);
-      smart_pointer(DWORD_PTR dw);
+      smart_pointer(dword_ptr dw);
       smart_pointer(int i);
       smart_pointer(long int i);
       virtual ~smart_pointer();
@@ -37,7 +37,7 @@ namespace ca
 
       inline smart_pointer & operator = (T * p);
       inline smart_pointer & operator = (const smart_pointer < T > & t);
-      inline smart_pointer & operator = (DWORD_PTR dw);
+      inline smart_pointer & operator = (dword_ptr dw);
       inline smart_pointer & operator = (int i);
 
       inline smart_pointer & operator() (T * p);
@@ -91,7 +91,7 @@ namespace ca
    }
 
    template < class T >
-   smart_pointer < T > ::smart_pointer(DWORD_PTR dw) :
+   smart_pointer < T > ::smart_pointer(dword_ptr dw) :
       ca(dw != 0 ? ((T *) dw)->get_app() : NULL)
    {
       m_p = NULL;
@@ -209,7 +209,7 @@ namespace ca
    }
 
    template < class T >
-   inline smart_pointer < T > & smart_pointer < T > ::operator = (DWORD_PTR dw)
+   inline smart_pointer < T > & smart_pointer < T > ::operator = (dword_ptr dw)
    {
       return operator = ((T *) dw);
    }

@@ -9,7 +9,7 @@ public:
    array_release_ptr();
    virtual ~array_release_ptr();
 
-   void remove_at(INT_PTR iIndex);
+   void remove_at(int_ptr iIndex);
    count remove_all(bool bRelease = true);
    void remove_last(bool bRelease = true);
 

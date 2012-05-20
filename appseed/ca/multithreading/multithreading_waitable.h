@@ -50,7 +50,7 @@ public:
    virtual ~waitable();
 
 
-   virtual INT_PTR get_os_data() const;
+   virtual int_ptr get_os_data() const;
 
 
    virtual bool lock(const duration & durationTimeout = duration::infinite());

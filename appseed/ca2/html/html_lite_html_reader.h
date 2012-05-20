@@ -32,41 +32,41 @@ class ILiteHTMLReaderEvents
 
 // Events
 protected:
-   virtual void BeginParse(DWORD_PTR dwAppData, bool &bAbort)
+   virtual void BeginParse(dword_ptr dwAppData, bool &bAbort)
    {
       UNUSED_ALWAYS(dwAppData);
       bAbort = false;
    }
 
-   virtual void StartTag(lite_html_tag *pTag, DWORD_PTR dwAppData, bool &bAbort)
-   {
-      UNUSED_ALWAYS(pTag);
-      UNUSED_ALWAYS(dwAppData);
-      bAbort = false;
-   }
-
-   virtual void EndTag(lite_html_tag *pTag, DWORD_PTR dwAppData, bool &bAbort)
+   virtual void StartTag(lite_html_tag *pTag, dword_ptr dwAppData, bool &bAbort)
    {
       UNUSED_ALWAYS(pTag);
       UNUSED_ALWAYS(dwAppData);
       bAbort = false;
    }
 
-   virtual void Characters(const string &rText, DWORD_PTR dwAppData, bool &bAbort)
+   virtual void EndTag(lite_html_tag *pTag, dword_ptr dwAppData, bool &bAbort)
+   {
+      UNUSED_ALWAYS(pTag);
+      UNUSED_ALWAYS(dwAppData);
+      bAbort = false;
+   }
+
+   virtual void Characters(const string &rText, dword_ptr dwAppData, bool &bAbort)
    {
       UNUSED_ALWAYS(rText);
       UNUSED_ALWAYS(dwAppData);
       bAbort = false;
    }
 
-   virtual void Comment(const string &rComment, DWORD_PTR dwAppData, bool &bAbort)
+   virtual void Comment(const string &rComment, dword_ptr dwAppData, bool &bAbort)
    {
       UNUSED_ALWAYS(rComment);
       UNUSED_ALWAYS(dwAppData);
       bAbort = false;
    }
 
-   virtual void EndParse(DWORD_PTR dwAppData, bool bIsAborted)
+   virtual void EndParse(dword_ptr dwAppData, bool bIsAborted)
    {
       UNUSED_ALWAYS(dwAppData);
       UNUSED_ALWAYS(bIsAborted);
@@ -211,7 +211,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   DWORD_PTR getAppData() const
+   dword_ptr getAppData() const
       { return (m_dwAppData); }
 
    /**
@@ -224,9 +224,9 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   DWORD_PTR setAppData(DWORD dwNewAppData)
+   dword_ptr setAppData(DWORD dwNewAppData)
    {
-      DWORD_PTR   dwOldAppData = m_dwAppData;
+      dword_ptr   dwOldAppData = m_dwAppData;
       m_dwAppData = dwNewAppData;
       return (dwOldAppData);
    }
@@ -271,9 +271,9 @@ public:
 // Operations
 public:
    // parses an HTML document from the specified string
-   DWORD_PTR read(const char * psz);
+   dword_ptr read(const char * psz);
    // parses an HTML document from a file given its HANDLE
-   DWORD_PTR ReadFile(HANDLE hFile);
+   dword_ptr ReadFile(HANDLE hFile);
 
 // Helpers
 protected:
@@ -281,7 +281,7 @@ protected:
 
    // parses an HTML document, and returns the
    // number of characters successfully parsed
-   virtual DWORD_PTR parseDocument();
+   virtual dword_ptr parseDocument();
 
    // parses an HTML comment from the buffer starting from
    // the current buffer position and returns true on sucess
@@ -380,21 +380,21 @@ protected:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   DWORD_PTR   m_dwAppData;
+   dword_ptr   m_dwAppData;
 
    /**
     * position of the seek pointer
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   DWORD_PTR   m_dwBufPos;
+   dword_ptr   m_dwBufPos;
 
    /**
     * size, in TCHARs, of the buffer
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   DWORD_PTR   m_dwBufLen;
+   dword_ptr   m_dwBufLen;
 
    /**
     * Bit-mask flags to customize events notification(s)

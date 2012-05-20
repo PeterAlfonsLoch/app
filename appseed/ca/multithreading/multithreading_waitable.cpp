@@ -82,7 +82,7 @@ waitable::waitable(const waitable & objectSrc)
    UNREFERENCED_PARAMETER(objectSrc);
 }
 
-INT_PTR waitable::get_os_data() const
+int_ptr waitable::get_os_data() const
 {
    return System.get_mutex( const_cast < waitable * > (this))->get_os_data();
 }

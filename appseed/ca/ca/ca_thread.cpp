@@ -82,12 +82,12 @@ namespace ca
    }
 
 
-   INT_PTR thread::get_os_data() const
+   int_ptr thread::get_os_data() const
    {
       throw interface_only_exception();
    }
 
-   INT_PTR thread::get_os_int() const
+   int_ptr thread::get_os_int() const
    {
       throw interface_only_exception();
    }
@@ -316,7 +316,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void thread::set_timer(::user::interaction * pui, UINT_PTR nIDEvent, UINT nEllapse)
+   void thread::set_timer(::user::interaction * pui, uint_ptr nIDEvent, UINT nEllapse)
    {
       UNREFERENCED_PARAMETER(pui);
       UNREFERENCED_PARAMETER(nIDEvent);
@@ -324,7 +324,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void thread::unset_timer(::user::interaction * pui, UINT_PTR nIDEvent)
+   void thread::unset_timer(::user::interaction * pui, uint_ptr nIDEvent)
    {
       UNREFERENCED_PARAMETER(pui);
       UNREFERENCED_PARAMETER(nIDEvent);
@@ -385,7 +385,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void thread::set_os_int(INT_PTR iData)
+   void thread::set_os_int(int_ptr iData)
    {
       UNREFERENCED_PARAMETER(iData);
       throw interface_only_exception();

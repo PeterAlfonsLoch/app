@@ -30,7 +30,7 @@ namespace ca8
 
       virtual void _001GetItemText(::user::list_item * pitem);
 
-      virtual INT_PTR _001GetItemCount();
+      virtual int_ptr _001GetItemCount();
 
 
    private:

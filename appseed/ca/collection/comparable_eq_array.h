@@ -138,7 +138,7 @@ template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 void comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::
 intersect(const comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> & a)
 {
-   for(INT_PTR i = 0; i < this->get_size();)
+   for(int_ptr i = 0; i < this->get_size();)
    {
       if(a.contains(this->element_at(i)))
       {
@@ -155,7 +155,7 @@ template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 void comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::
 merge(const comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> & a)
 {
-   for(INT_PTR i = 0; i < a.get_size(); i++)
+   for(int_ptr i = 0; i < a.get_size(); i++)
    {
       if(!contains(a.element_at(i)))
       {

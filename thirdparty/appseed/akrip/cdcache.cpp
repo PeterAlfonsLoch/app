@@ -669,7 +669,7 @@ void GetLineFromBuf( char **src, char *tgt, int len )
  */
 int extractCDDBQueryInfo( LPCDDBQUERYITEM lpq, char *linebuf )
 {
-  INT_PTR i;
+  int_ptr i;
   char *p = linebuf;
   char *t;
 

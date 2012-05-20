@@ -2,17 +2,17 @@
 
 #ifdef _WIN64
 template <>
-inline UINT HashKey(INT_PTR key)
+inline UINT HashKey(int_ptr key)
 {
    // default identity hash - works for most primitive values
-   return (DWORD)(((DWORD_PTR)key)>>32);
+   return (DWORD)(((dword_ptr)key)>>32);
 }
 #else
 template <>
-inline UINT HashKey(INT_PTR key)
+inline UINT HashKey(int_ptr key)
 {
    // default identity hash - works for most primitive values
-   return (DWORD)(((DWORD_PTR)key)>>16);
+   return (DWORD)(((dword_ptr)key)>>16);
 }
 #endif
 
@@ -29,11 +29,11 @@ namespace user
       window_map();
       virtual ~window_map();
 
-      ::user::window_interface * get(INT_PTR iWindow);
+      ::user::window_interface * get(int_ptr iWindow);
 
 
-      void set(INT_PTR iWindow, const ::user::window_interface * pinterface);
-      ::collection::map < INT_PTR, INT_PTR, ::user::window_interface *, ::user::window_interface * > m_map;
+      void set(int_ptr iWindow, const ::user::window_interface * pinterface);
+      ::collection::map < int_ptr, int_ptr, ::user::window_interface *, ::user::window_interface * > m_map;
 
    };
 

@@ -47,7 +47,7 @@ const unsigned short LiteHTMLElemAttr::_percentMax = USHRT_MAX;
  * @since 1.0
  * @author Gurmeet S. Kochar
  */
-DWORD_PTR LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const char * lpszString)
+dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const char * lpszString)
 {
    ASSERT(__is_valid_string(lpszString));
 
@@ -189,14 +189,14 @@ DWORD_PTR LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
  * @since 1.0
  * @author Gurmeet S. Kochar
  */
-DWORD_PTR LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const char * lpszString)
+dword_ptr LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const char * lpszString)
 {
    ASSERT(__is_valid_string(lpszString));
 
    CElemAttrArray      *pcoll = NULL;
    LiteHTMLElemAttr   oElemAttr;
-   const DWORD_PTR         nStrLen = ::_tcslen(lpszString);
-   DWORD_PTR            nRetVal = 0U,
+   const dword_ptr         nStrLen = ::_tcslen(lpszString);
+   dword_ptr            nRetVal = 0U,
                   nTemp = 0U;
 
    do

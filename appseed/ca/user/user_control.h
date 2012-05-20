@@ -82,13 +82,13 @@ namespace user
          ddx_dbflags,
       };
 
-   // sort_array < INT_PR, INT_PTR >
+   // sort_array < INT_PR, int_ptr >
       class ddx_dbflags
       {
       public:
-         ddx_dbflags(::database::key key, INT_PTR value);
+         ddx_dbflags(::database::key key, int_ptr value);
          ::database::key                               m_key;
-         INT_PTR                                m_value;
+         int_ptr                                m_value;
       };
 
       class CLASS_DECL_ca descriptor
@@ -139,7 +139,7 @@ namespace user
          bool has_function(efunction efunction);
          edatatype get_data_type();
          void set_data_type(edatatype edatatype);
-         void set_ddx_dbflags(::database::id idSection, ::database::id idKey, ::database::id idIndex, INT_PTR value);
+         void set_ddx_dbflags(::database::id idSection, ::database::id idKey, ::database::id idIndex, int_ptr value);
 
 
       };

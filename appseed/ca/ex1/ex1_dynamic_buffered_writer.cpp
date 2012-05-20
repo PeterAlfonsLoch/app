@@ -18,7 +18,7 @@ namespace ex1
       memcpy(dest, _buffer, _size);
    }
 
-   void dynamic_buffered_writer::write(const void *data, DWORD_PTR size, DWORD_PTR *processedSize)
+   void dynamic_buffered_writer::write(const void *data, dword_ptr size, dword_ptr *processedSize)
    {
       if (processedSize)
          *processedSize = 0;

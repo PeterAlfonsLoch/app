@@ -98,7 +98,7 @@ namespace exception
       standard_access_violation (::ca::application * papp, EXCEPTION_POINTERS * ppointers) : ca(papp), standard_exception(papp, ppointers) {}
    public:
       bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
-      ULONG_PTR inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
+      ulong_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
    #endif
    };
 
@@ -111,7 +111,7 @@ namespace exception
       standard_sigfpe (::ca::application * papp, siginfo_t * psiginfo, void * pc) : ca(papp), standard_exception(papp, psiginfo, pc) {}
    public:
    //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
-     // ULONG_PTR inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
+     // ulong_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
    };
 
    #endif
@@ -187,7 +187,7 @@ protected:
    standard_sigsegv (::ca::application * papp, siginfo_t * psiginfo, void * pc) : ca(papp), standard_exception(papp, psiginfo, pc) {}
 public:
    //bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
-   //ULONG_PTR inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
+   //ulong_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
 };*/
 
 /*class standard_sigfpe : public standard_exception
@@ -197,7 +197,7 @@ protected:
    standard_sigfpe (::ca::application * papp, siginfo_t * psiginfo, void * pc) : ca(papp), standard_exception(papp, psiginfo, pc) {}
 public:
 //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
-  // ULONG_PTR inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
+  // ulong_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
 };
 
 #endif*/

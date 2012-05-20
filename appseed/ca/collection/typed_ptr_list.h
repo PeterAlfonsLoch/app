@@ -9,7 +9,7 @@ class _typed_ptr_list :
 {
 public:
 // Construction
-	_typed_ptr_list(INT_PTR nBlockSize = 10)
+	_typed_ptr_list(int_ptr nBlockSize = 10)
 		: BASE_CLASS(nBlockSize) { }
 
 	// peek at head or tail
@@ -87,7 +87,7 @@ class typed_ptr_list : public _typed_ptr_list < TYPE, BASE_CLASS >
 {
 public:
 // Construction
-	typed_ptr_list(INT_PTR nBlockSize = 10)
+	typed_ptr_list(int_ptr nBlockSize = 10)
 		: _typed_ptr_list<BASE_CLASS, TYPE>(nBlockSize) { }
 
 	// add before head or after tail
@@ -135,7 +135,7 @@ template<> class CLASS_DECL_ca typed_ptr_list < object_list * , object_list>
 {
 public:
 // Construction
-	typed_ptr_list(INT_PTR nBlockSize = 10)
+	typed_ptr_list(int_ptr nBlockSize = 10)
 		: _typed_ptr_list < object_list *,  object_list >(nBlockSize) { }
 
 	// add before head or after tail
@@ -157,7 +157,7 @@ template<> class CLASS_DECL_ca typed_ptr_list < pointer_list *, pointer_list >
 {
 public:
 // Construction
-	typed_ptr_list(INT_PTR nBlockSize = 10) :
+	typed_ptr_list(int_ptr nBlockSize = 10) :
       _typed_ptr_list < pointer_list *, pointer_list >(nBlockSize) 
    { 
    }

@@ -116,7 +116,7 @@ namespace plugin
          m_psystem->m_bInitializeProDevianMode = false;
 
          string strId;
-         strId.Format("npca2::%08x", (UINT_PTR) m_psystem);
+         strId.Format("npca2::%08x", (uint_ptr) m_psystem);
 
          m_psystem->command().m_varTopicQuery["local_mutex_id"] = strId;
 
@@ -626,7 +626,7 @@ namespace plugin
 
 
 
-   UINT_PTR plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   uint_ptr plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
       if(m_puiHost != NULL)
       {

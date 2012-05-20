@@ -35,8 +35,8 @@ CLASS_DECL_c DWORD call_sync(
    int iShow,
    int iRetry, 
    int iSleep, 
-   int (* pfnOnRetry)(int iTry, DWORD_PTR dwParam),
-   DWORD_PTR dwParam)
+   int (* pfnOnRetry)(int iTry, dword_ptr dwParam),
+   dword_ptr dwParam)
 {
 
    SHELLEXECUTEINFOA infoa;
@@ -92,14 +92,14 @@ int get_current_processor_index()
 int get_current_process_maximum_affinity()
 {
    
-   DWORD_PTR dwProcessAffinityMask;
-   DWORD_PTR dwSystemAffinityMask;
+   dword_ptr dwProcessAffinityMask;
+   dword_ptr dwSystemAffinityMask;
    if(!GetProcessAffinityMask(::GetCurrentProcess(), &dwProcessAffinityMask, & dwSystemAffinityMask))
    {
       return 0;
    }
    int iMax = -1;
-   DWORD_PTR dwMask = 1;
+   dword_ptr dwMask = 1;
    for(int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
    {
       if((dwMask & dwProcessAffinityMask) != 0)
@@ -117,14 +117,14 @@ int get_current_process_affinity_order()
 {
    
    
-   DWORD_PTR dwProcessAffinityMask;
-   DWORD_PTR dwSystemAffinityMask;
+   dword_ptr dwProcessAffinityMask;
+   dword_ptr dwSystemAffinityMask;
    if(!GetProcessAffinityMask(::GetCurrentProcess(), &dwProcessAffinityMask, & dwSystemAffinityMask))
    {
       return 0;
    }
    int iCount = 0;
-   DWORD_PTR dwMask = 1;
+   dword_ptr dwMask = 1;
    for(int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
    {
       if((dwMask & dwProcessAffinityMask) != 0)

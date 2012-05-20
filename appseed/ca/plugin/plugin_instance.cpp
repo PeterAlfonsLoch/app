@@ -64,7 +64,7 @@ namespace plugin
 
    void instance::shut()
    {
-      //::KillTimer(NULL, (UINT_PTR) this);
+      //::KillTimer(NULL, (uint_ptr) this);
 
       plugin::finalize();
 

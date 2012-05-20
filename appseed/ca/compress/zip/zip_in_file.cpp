@@ -250,7 +250,7 @@ namespace zip
          return 0;   // avoid Win32 "null-read"
 
       ASSERT(lpBuf != NULL);
-      ASSERT(__is_valid_address(lpBuf, (UINT_PTR) nCount));
+      ASSERT(__is_valid_address(lpBuf, (uint_ptr) nCount));
 
       uint64_t iRead;
       iRead = unzReadCurrentFile(get_zip_file()->m_pfUnzip, lpBuf, (unsigned int) nCount);
@@ -474,7 +474,7 @@ namespace zip
    {
    //   ::radix::object::dump(dumpcontext);
 
-      dumpcontext << "with handle " << (UINT_PTR)get_zip_file();
+      dumpcontext << "with handle " << (uint_ptr)get_zip_file();
       dumpcontext << " and name \"" << m_strFileName << "\"";
       dumpcontext << "\n";
    }

@@ -214,8 +214,8 @@ namespace spa
 
 
       void remove_spa_start(const char * pszId);
-      void ms_download_callback( int i, DWORD_PTR dwLen);
-      void ms_get_callback( int i, DWORD_PTR dwLen);
+      void ms_download_callback( int i, dword_ptr dwLen);
+      void ms_get_callback( int i, dword_ptr dwLen);
 
       // download rate
       void dlr(uint64_t dwDownload);

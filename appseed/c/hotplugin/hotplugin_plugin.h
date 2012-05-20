@@ -90,7 +90,7 @@ namespace hotplugin
       virtual void plugin_system_redraw();
 
 #ifdef WINDOWS
-      virtual UINT_PTR message_handler(UINT_PTR uiMessage, WPARAM wparam, LPARAM lparam);
+      virtual uint_ptr message_handler(uint_ptr uiMessage, WPARAM wparam, LPARAM lparam);
 #else
       virtual int message_handler(XEvent * pevent);
 #endif

@@ -119,7 +119,7 @@ bool small_ipc_rx_channel::create(const char * pszKey, const char * pszWindowPro
       return false;
    }
 
-   SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG_PTR) this);
+   SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (long_ptr) this);
 
    m_strWindowProcModule = pszWindowProcModule;
 

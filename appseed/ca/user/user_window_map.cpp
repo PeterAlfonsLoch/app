@@ -13,7 +13,7 @@ namespace user
 
    }
 
-   ::user::window_interface * window_map::get(INT_PTR iWindow)
+   ::user::window_interface * window_map::get(int_ptr iWindow)
    {
       ::user::window_interface * pinterface;
       if(m_map.Lookup(iWindow, pinterface))
@@ -22,7 +22,7 @@ namespace user
          return NULL;
    }
 
-   void window_map::set(INT_PTR iWindow, const ::user::window_interface *pinterface)
+   void window_map::set(int_ptr iWindow, const ::user::window_interface *pinterface)
    {
       m_map.set_at(iWindow, (::user::window_interface *) pinterface);
    }

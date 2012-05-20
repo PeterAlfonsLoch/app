@@ -24,7 +24,7 @@ namespace ca
       virtual bool open ();
       virtual bool close ();
 
-      virtual INT_PTR get_os_data();
+      virtual int_ptr get_os_data();
 
       virtual bool Begin (::ca::graphics * pdc, int dxDest, int dyDest, LPBITMAPINFOHEADER lpbi, int dxSrc, int dySrc, UINT wFlags);
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-typedef INT_PTR strsize;
+typedef int_ptr strsize;
 
 
 
@@ -598,7 +598,7 @@ public:
    void append(PCXSTR pszSrc,strsize nLength )
    {
       // See comment in SetString() about why we do this
-      UINT_PTR nOffset = pszSrc-GetString();
+      uint_ptr nOffset = pszSrc-GetString();
 
       strsize nOldLength = get_length();
       if (nOldLength < 0)
@@ -608,7 +608,7 @@ public:
       }
       strsize nNewLength = nOldLength+nLength;
       PXSTR pszBuffer = GetBuffer( nNewLength );
-      if( nOffset <= (UINT_PTR) nOldLength )
+      if( nOffset <= (uint_ptr) nOldLength )
       {
          pszSrc = pszBuffer+nOffset;
          // No need to call CopyCharsOverlapped, since the destination is
@@ -854,8 +854,8 @@ public:
          if(pszSrc == NULL)
             throw hresult_exception(E_INVALIDARG);
 
-         UINT_PTR nOldLength = (UINT_PTR) get_length();
-         UINT_PTR nOffset = (UINT_PTR) (pszSrc - GetString());
+         uint_ptr nOldLength = (uint_ptr) get_length();
+         uint_ptr nOffset = (uint_ptr) (pszSrc - GetString());
          // If 0 <= nOffset <= nOldLength, then pszSrc points into our
          // buffer
 

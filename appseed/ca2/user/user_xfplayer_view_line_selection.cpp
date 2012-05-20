@@ -147,7 +147,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, gen::si
    }
    else if(message == WM_TIMER)
    {
-      UINT_PTR nIDEvent = pbase->m_wparam;
+      uint_ptr nIDEvent = pbase->m_wparam;
       if(nIDEvent == gen::Timer::ID_HOVER)
       {
          point pt;

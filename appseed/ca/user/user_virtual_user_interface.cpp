@@ -697,7 +697,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    for (::user::interaction * hWndChild = GetTopWindow(); hWndChild != NULL;
       hWndChild = hWndChild->GetNextWindow(GW_HWNDNEXT))
    {
-      UINT_PTR nIDC = __get_dialog_control_id_(hWndChild);
+      uint_ptr nIDC = __get_dialog_control_id_(hWndChild);
       ::user::interaction* pWnd = hWndChild;
       if (nIDC == nIDLeftOver)
          hWndLeftOver = hWndChild;
@@ -708,7 +708,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    for (int i = 0; i < m_uiptra.get_count(); i++)
    {
       ::user::interaction * hWndChild = m_uiptra[i];
-      UINT_PTR nIDC = __get_dialog_control_id_(hWndChild);
+      uint_ptr nIDC = __get_dialog_control_id_(hWndChild);
       ::user::interaction* pWnd = hWndChild;
       if (nIDC == nIDLeftOver)
          hWndLeftOver = hWndChild;
@@ -1029,15 +1029,15 @@ void virtual_user_interface::SetFont(::ca::font* pFont, bool bRedraw)
    return m_spfont;
 }
 
-UINT_PTR virtual_user_interface::SetTimer(UINT_PTR nIDEvent, UINT nElapse,
-      void (CALLBACK* lpfnTimer)(HWND, UINT, UINT_PTR, DWORD))
+uint_ptr virtual_user_interface::SetTimer(uint_ptr nIDEvent, UINT nElapse,
+      void (CALLBACK* lpfnTimer)(HWND, UINT, uint_ptr, DWORD))
 {
    UNREFERENCED_PARAMETER(lpfnTimer);
    m_pguie->m_pthread->set_timer(m_pguie, nIDEvent, nElapse);
    return nIDEvent;
 }
 
-bool virtual_user_interface::KillTimer(UINT_PTR nIDEvent)
+bool virtual_user_interface::KillTimer(uint_ptr nIDEvent)
 {
    m_pguie->m_pthread->unset_timer(m_pguie, nIDEvent);
    return TRUE;

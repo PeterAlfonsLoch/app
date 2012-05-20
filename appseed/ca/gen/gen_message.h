@@ -349,7 +349,7 @@ namespace gen
          public:
 
 
-            UINT_PTR                m_nFlags;
+            uint_ptr                m_nFlags;
             point                   m_pt;
             ::visual::e_cursor      m_ecursor;
             bool                    m_bTranslated;
@@ -461,7 +461,7 @@ namespace gen
          public:
 
 
-            UINT_PTR m_nChar;
+            uint_ptr m_nChar;
             UINT m_nRepCnt;
             UINT m_nFlags;
 

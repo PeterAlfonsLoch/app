@@ -143,9 +143,9 @@ namespace visual
    }
 
 
-   INT_PTR glyph_set::add(class glyph &glyph)
+   int_ptr glyph_set::add(class glyph &glyph)
    {
-      INT_PTR i = base_array < class glyph , class glyph & >::add(glyph);
+      int_ptr i = base_array < class glyph , class glyph & >::add(glyph);
       QuickSort();
       return i;
    }

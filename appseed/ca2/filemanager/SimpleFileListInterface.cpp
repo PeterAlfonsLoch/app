@@ -1165,7 +1165,7 @@ namespace filemanager
       DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
       single_lock sl(pset->m_table.m_pmutex, TRUE);
 
-//      __int64 iSize;
+//      int64_t iSize;
 //      bool bPending;
       for(int i = 0; i < get_fs_list_data()->m_itema.get_count(); i++)
       {

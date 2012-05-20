@@ -6,7 +6,7 @@
 #include "elements.h"  // used for special creation
 
 
-string_list::string_list(INT_PTR nBlockSize)
+string_list::string_list(int_ptr nBlockSize)
 {
    ASSERT(nBlockSize > 0);
 
@@ -67,7 +67,7 @@ string_list::NewNode(string_list::node* m_pnodePrevious, string_list::node* m_pn
       node* pNode = (node*) pNewBlock->data();
       // free in reverse order to make it easier to debug
       pNode += m_nBlockSize - 1;
-      for (INT_PTR i = m_nBlockSize-1; i >= 0; i--, pNode--)
+      for (int_ptr i = m_nBlockSize-1; i >= 0; i--, pNode--)
       {
          pNode->m_pnodeNext = m_pnodeFree;
          m_pnodeFree = pNode;
@@ -334,7 +334,7 @@ void string_list::remove_at(POSITION position)
 /////////////////////////////////////////////////////////////////////////////
 // slow operations
 
-POSITION string_list::find_index(INT_PTR nIndex) const
+POSITION string_list::find_index(int_ptr nIndex) const
 {
    ASSERT_VALID(this);
 
@@ -353,7 +353,7 @@ POSITION string_list::find_index(INT_PTR nIndex) const
    return (POSITION) pNode;
 }
 
-POSITION string_list::reverse_find_index(INT_PTR nIndex) const
+POSITION string_list::reverse_find_index(int_ptr nIndex) const
 {
    ASSERT_VALID(this);
 
@@ -417,7 +417,7 @@ void string_list::Serialize(CArchive& ar)
    }
    else
    {
-      DWORD_PTR nNewCount = ar.ReadCount();
+      dword_ptr nNewCount = ar.ReadCount();
       string newData;
       while (nNewCount--)
       {

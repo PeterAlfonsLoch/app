@@ -162,7 +162,7 @@ dump_context& dump_context::dumpAsHex(WORD w)
 #ifdef _WIN64
 dump_context& dump_context::operator<<(UINT u)
 #else
-dump_context& dump_context::operator<<(UINT_PTR u)
+dump_context& dump_context::operator<<(uint_ptr u)
 #endif
 {
    char szBuffer[32];
@@ -176,7 +176,7 @@ dump_context& dump_context::operator<<(UINT_PTR u)
 #ifdef _WIN64
 dump_context& dump_context::operator<<(LONG l)
 #else
-dump_context& dump_context::operator<<(LONG_PTR l)
+dump_context& dump_context::operator<<(long_ptr l)
 #endif
 {
    char szBuffer[32];
@@ -192,7 +192,7 @@ dump_context& dump_context::operator<<(LONG_PTR l)
 #ifdef _WIN64
 dump_context& dump_context::operator<<(DWORD dw)
 #else
-dump_context& dump_context::operator<<(DWORD_PTR dw)
+dump_context& dump_context::operator<<(dword_ptr dw)
 #endif
 {
    char szBuffer[32];
@@ -208,7 +208,7 @@ dump_context& dump_context::operator<<(DWORD_PTR dw)
 #ifdef _WIN64
 dump_context& dump_context::operator<<(int n)
 #else
-dump_context& dump_context::operator<<(INT_PTR n)
+dump_context& dump_context::operator<<(int_ptr n)
 #endif
 {
    char szBuffer[32];
@@ -224,7 +224,7 @@ dump_context& dump_context::operator<<(INT_PTR n)
 #ifdef _WIN64
 dump_context& dump_context::dumpAsHex(UINT u)
 #else
-dump_context& dump_context::dumpAsHex(UINT_PTR u)
+dump_context& dump_context::dumpAsHex(uint_ptr u)
 #endif
 {
    char szBuffer[32];
@@ -240,7 +240,7 @@ dump_context& dump_context::dumpAsHex(UINT_PTR u)
 #ifdef _WIN64
 dump_context& dump_context::dumpAsHex(LONG l)
 #else
-dump_context& dump_context::dumpAsHex(LONG_PTR l)
+dump_context& dump_context::dumpAsHex(long_ptr l)
 #endif
 {
    char szBuffer[32];
@@ -254,7 +254,7 @@ dump_context& dump_context::dumpAsHex(LONG_PTR l)
 #ifdef _WIN64
 dump_context& dump_context::dumpAsHex(DWORD dw)
 #else
-dump_context& dump_context::dumpAsHex(DWORD_PTR dw)
+dump_context& dump_context::dumpAsHex(dword_ptr dw)
 #endif
 {
    char szBuffer[32];
@@ -268,7 +268,7 @@ dump_context& dump_context::dumpAsHex(DWORD_PTR dw)
 #ifdef _WIN64
 dump_context& dump_context::dumpAsHex(int n)
 #else
-dump_context& dump_context::dumpAsHex(INT_PTR n)
+dump_context& dump_context::dumpAsHex(int_ptr n)
 #endif
 {
    char szBuffer[32];

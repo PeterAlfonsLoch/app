@@ -9,7 +9,7 @@ template < class ARG_KEY >
 inline UINT HashKey(ARG_KEY key)
 {
    // default identity hash - works for most primitive values
-   return (DWORD)(((DWORD_PTR)key)>>4);
+   return (DWORD)(((dword_ptr)key)>>4);
 }
 
 
@@ -56,7 +56,7 @@ namespace gen
 
       inline static UINT HashKey (const id & key)
       {
-         return (UINT) (*((INT_PTR*)(&key.m_pstr)) >> 8);
+         return (UINT) (*((int_ptr*)(&key.m_pstr)) >> 8);
       }
 
    };

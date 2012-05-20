@@ -81,7 +81,7 @@ namespace mail
       return;
    }
 
-   INT_PTR list_interface::data::_001GetItemCount()
+   int_ptr list_interface::data::_001GetItemCount()
    {
       return m_straId.get_size();
    }

@@ -57,7 +57,7 @@ namespace ca2
          void Update(bool bSave);
          bool _001SetData(id uiId, bool bData);
          bool _001GetData(id uiId, bool & bData);
-         INT_PTR _001AddControl(class control::descriptor & descriptor);
+         int_ptr _001AddControl(class control::descriptor & descriptor);
          void _001FillCombo(control * pcontrol);
 
          virtual void WfiOnClose();

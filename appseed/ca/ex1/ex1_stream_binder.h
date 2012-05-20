@@ -16,8 +16,8 @@ namespace ex1
       manual_reset_event   _thereAreBytesToReadEvent;
       manual_reset_event   _readStreamIsClosedEvent;
       byte *               _data;
-      DWORD_PTR            _size;
-      DWORD_PTR            ProcessedSize;
+      dword_ptr            _size;
+      dword_ptr            ProcessedSize;
 
 
       stream_binder();

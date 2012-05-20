@@ -17,7 +17,7 @@
 
 #include "framework.h"
 
-object_list::object_list(INT_PTR nBlockSize)
+object_list::object_list(int_ptr nBlockSize)
 {
    ASSERT(nBlockSize > 0);
 
@@ -74,7 +74,7 @@ object_list::NewNode(object_list::node* m_pprevious, object_list::node* m_pnext)
       node* pNode = (node*) pNewBlock->data();
       // free in reverse order to make it easier to debug
       pNode += m_nBlockSize - 1;
-      for (INT_PTR i = m_nBlockSize-1; i >= 0; i--, pNode--)
+      for (int_ptr i = m_nBlockSize-1; i >= 0; i--, pNode--)
       {
          pNode->m_pnext = m_pnodeFree;
          m_pnodeFree = pNode;
@@ -319,7 +319,7 @@ void object_list::remove_at(POSITION position)
 /////////////////////////////////////////////////////////////////////////////
 // slow operations
 
-POSITION object_list::find_index(INT_PTR nIndex) const
+POSITION object_list::find_index(int_ptr nIndex) const
 {
    ASSERT_VALID(this);
 
@@ -377,7 +377,7 @@ void object_list::Serialize(CArchive& ar)
    }
    else
    {
-      DWORD_PTR nNewCount = ar.ReadCount();
+      dword_ptr nNewCount = ar.ReadCount();
       ::radix::object* newData;
       while (nNewCount--)
       {

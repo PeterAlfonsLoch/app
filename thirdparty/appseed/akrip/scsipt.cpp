@@ -35,9 +35,6 @@
 #include "framework.h"
 
 
-#include "scsipt.h"
-#include <stdio.h>
-#include <stddef.h>
 
 
 typedef struct {

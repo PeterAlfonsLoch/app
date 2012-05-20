@@ -15,7 +15,7 @@ namespace ca
        HWND          hwndItem;
        graphics *    m_pgraphics;
        RECT          rcItem;
-       ULONG_PTR     itemData;
+       ulong_ptr     itemData;
    };
 
 } // namespace ca

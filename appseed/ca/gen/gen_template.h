@@ -31,7 +31,7 @@ void SerializeElements(CArchive& ar, TYPE* pElements, count nCount)
    if (ar.IsStoring())
    {
      TYPE* pData;
-     UINT_PTR nElementsLeft;
+     uint_ptr nElementsLeft;
 
      nElementsLeft = nCount;
      pData = pElements;
@@ -48,7 +48,7 @@ void SerializeElements(CArchive& ar, TYPE* pElements, count nCount)
    else
    {
      TYPE* pData;
-     UINT_PTR nElementsLeft;
+     uint_ptr nElementsLeft;
 
      nElementsLeft = nCount;
      pData = pElements;
@@ -121,7 +121,7 @@ void SerializeElements(CArchive& ar, TYPE* pElements, count nCount)
    if (ar.IsStoring())
    {
      TYPE* pData;
-     UINT_PTR nElementsLeft;
+     uint_ptr nElementsLeft;
 
      nElementsLeft = nCount;
      pData = pElements;
@@ -138,7 +138,7 @@ void SerializeElements(CArchive& ar, TYPE* pElements, count nCount)
    else
    {
      TYPE* pData;
-     UINT_PTR nElementsLeft;
+     uint_ptr nElementsLeft;
 
      nElementsLeft = nCount;
      pData = pElements;

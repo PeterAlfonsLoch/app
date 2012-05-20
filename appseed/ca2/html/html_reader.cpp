@@ -22,7 +22,7 @@ namespace html
 
    }
 
-   void reader::BeginParse(DWORD_PTR dwAppData, bool &bAbort)
+   void reader::BeginParse(dword_ptr dwAppData, bool &bAbort)
    {
       m_ptag = NULL;
       m_ptagMain = NULL;
@@ -30,7 +30,7 @@ namespace html
       bAbort = false;
    }
 
-   void reader::StartTag(lite_html_tag *pTag, DWORD_PTR dwAppData, bool &bAbort)
+   void reader::StartTag(lite_html_tag *pTag, dword_ptr dwAppData, bool &bAbort)
    {
       UNREFERENCED_PARAMETER(dwAppData);
       if(m_ptag == NULL)
@@ -61,7 +61,7 @@ namespace html
       bAbort = false;
    }
 
-   void reader::EndTag(lite_html_tag *pTag, DWORD_PTR dwAppData, bool &bAbort)
+   void reader::EndTag(lite_html_tag *pTag, dword_ptr dwAppData, bool &bAbort)
    {
       UNUSED_ALWAYS(pTag);
       UNUSED_ALWAYS(dwAppData);
@@ -73,7 +73,7 @@ namespace html
       bAbort = false;
    }
    
-   void reader::Characters(const string &rText, DWORD_PTR dwAppData, bool &bAbort)
+   void reader::Characters(const string &rText, dword_ptr dwAppData, bool &bAbort)
    {
       UNREFERENCED_PARAMETER(dwAppData);
       if(m_ptag != NULL)
@@ -85,14 +85,14 @@ namespace html
       bAbort = false;
    }
    
-   void reader::Comment(const string &rComment, DWORD_PTR dwAppData, bool &bAbort)
+   void reader::Comment(const string &rComment, dword_ptr dwAppData, bool &bAbort)
    {
       UNUSED_ALWAYS(rComment);
       UNUSED_ALWAYS(dwAppData);
       bAbort = false;
    }
 
-   void reader::EndParse(DWORD_PTR dwAppData, bool bIsAborted)
+   void reader::EndParse(dword_ptr dwAppData, bool bIsAborted)
    {
       UNUSED_ALWAYS(dwAppData);
       UNUSED_ALWAYS(bIsAborted);

@@ -3,7 +3,7 @@
 
 #ifdef SetWindowLongPtrA
 #undef SetWindowLongPtrA
-inline LONG_PTR SetWindowLongPtrA( HWND hWnd, int nIndex, LONG_PTR dwNewLong )
+inline long_ptr SetWindowLongPtrA( HWND hWnd, int nIndex, long_ptr dwNewLong )
 {
    return( ::SetWindowLongA( hWnd, nIndex, LONG( dwNewLong ) ) );
 }
@@ -11,7 +11,7 @@ inline LONG_PTR SetWindowLongPtrA( HWND hWnd, int nIndex, LONG_PTR dwNewLong )
 
 #ifdef SetWindowLongPtrW
 #undef SetWindowLongPtrW
-inline LONG_PTR SetWindowLongPtrW( HWND hWnd, int nIndex, LONG_PTR dwNewLong )
+inline long_ptr SetWindowLongPtrW( HWND hWnd, int nIndex, long_ptr dwNewLong )
 {
    return( ::SetWindowLongW( hWnd, nIndex, LONG( dwNewLong ) ) );
 }
@@ -19,7 +19,7 @@ inline LONG_PTR SetWindowLongPtrW( HWND hWnd, int nIndex, LONG_PTR dwNewLong )
 
 #ifdef GetWindowLongPtrA
 #undef GetWindowLongPtrA
-inline LONG_PTR GetWindowLongPtrA( HWND hWnd, int nIndex )
+inline long_ptr GetWindowLongPtrA( HWND hWnd, int nIndex )
 {
    return( ::GetWindowLongA( hWnd, nIndex ) );
 }
@@ -27,7 +27,7 @@ inline LONG_PTR GetWindowLongPtrA( HWND hWnd, int nIndex )
 
 #ifdef GetWindowLongPtrW
 #undef GetWindowLongPtrW
-inline LONG_PTR GetWindowLongPtrW( HWND hWnd, int nIndex )
+inline long_ptr GetWindowLongPtrW( HWND hWnd, int nIndex )
 {
    return( ::GetWindowLongW( hWnd, nIndex ) );
 }
@@ -144,12 +144,12 @@ typedef struct tag__OLDTOOLINFO {
 #define __WNDOLECONTROL   __WNDCLASS("OleControl")
 
 // dialog/commdlg hook procs
-CLASS_DECL_ca INT_PTR CALLBACK __dialog_procedure(HWND, UINT, WPARAM, LPARAM);
-CLASS_DECL_ca UINT_PTR CALLBACK __common_dialog_procedure(HWND hWnd, UINT, WPARAM, LPARAM);
+CLASS_DECL_ca int_ptr CALLBACK __dialog_procedure(HWND, UINT, WPARAM, LPARAM);
+CLASS_DECL_ca uint_ptr CALLBACK __common_dialog_procedure(HWND hWnd, UINT, WPARAM, LPARAM);
 
 // support for standard dialogs
 extern UINT gen_MsgSETRGB;
-typedef UINT_PTR (CALLBACK* COMMDLGPROC)(HWND, UINT, WPARAM, LPARAM);
+typedef uint_ptr (CALLBACK* COMMDLGPROC)(HWND, UINT, WPARAM, LPARAM);
 
 // conversion helpers
 //int c_cdecl _wcstombsz(char* mbstr, const wchar_t* wcstr, size_t count);

@@ -13,7 +13,7 @@ event_base::event_base(HANDLE item)
 {
 }
 #else
-event_base::event_base(INT_PTR item)
+event_base::event_base(int_ptr item)
    : m_object(item), m_bOwn(true)
 {
 }
@@ -40,7 +40,7 @@ void event_base::set_item(HANDLE item)
 	m_bOwn = true;
 }
 #else
-void event_base::set_item(INT_PTR item)
+void event_base::set_item(int_ptr item)
 {
 	m_object = item;
 	m_bOwn = true;
@@ -61,15 +61,15 @@ HANDLE event_base::item() const
    return m_object;
 }
 #else
-INT_PTR event_base::item() const
+int_ptr event_base::item() const
 {
    return m_object;
 }
 #endif
 
-INT_PTR event_base::get_os_data() const
+int_ptr event_base::get_os_data() const
 {
-   return (INT_PTR) m_object;
+   return (int_ptr) m_object;
 }
 
 

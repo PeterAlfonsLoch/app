@@ -55,7 +55,7 @@ namespace spa
       
     #ifdef WINDOWS
 
-      void OnTimer(UINT_PTR nIDEvent);
+      void OnTimer(uint_ptr nIDEvent);
       static LRESULT CALLBACK s_window_proc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
       LRESULT window_proc(UINT message, WPARAM wParam, LPARAM lParam);
       ATOM register_class(HINSTANCE hInstance);

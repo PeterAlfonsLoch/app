@@ -727,7 +727,7 @@ namespace collection
       }
       else
       {
-         DWORD_PTR nNewCount = ar.ReadCount();
+         dword_ptr nNewCount = ar.ReadCount();
          while (nNewCount--)
          {
             KEY newKey[1];
@@ -783,7 +783,7 @@ namespace collection
    public:
 
 
-      attrib_map(INT_PTR nBlockSize = 10);
+      attrib_map(int_ptr nBlockSize = 10);
       attrib_map(const attrib_map & map);
 
       attrib_map & operator = (const attrib_map & map);
@@ -793,7 +793,7 @@ namespace collection
 
 
    template < class type_map >
-   attrib_map < type_map >::attrib_map(INT_PTR nBlockSize) :
+   attrib_map < type_map >::attrib_map(int_ptr nBlockSize) :
       type_map(nBlockSize)
    {
    }
@@ -1012,7 +1012,7 @@ namespace collection
    };
 
 
-   typedef CLASS_DECL_ca ::collection::string_map < INT_PTR, INT_PTR > string_to_intptr;
+   typedef CLASS_DECL_ca ::collection::string_map < int_ptr, int_ptr > string_to_intptr;
 
 
 } // namespace collection

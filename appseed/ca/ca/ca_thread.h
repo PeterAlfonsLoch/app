@@ -229,7 +229,7 @@ namespace ca
       ::user::interaction::timer_array *  m_ptimera;
       comparable_array < ::ca::ca * >     m_captraDeletePool;
       bool                                m_bAutoDelete;       // enables 'delete this' after thread termination
-      DWORD_PTR                           m_dwAlive;
+      dword_ptr                           m_dwAlive;
       bool                                m_bReady;
       int                                 m_iReturnCode;
       ::ca::application *                 m_pappDelete;
@@ -246,14 +246,14 @@ namespace ca
 		///  \brief		starts thread on first call
 		virtual void start ();
 
-      virtual INT_PTR get_os_data() const;
-      virtual INT_PTR get_os_int() const;
+      virtual int_ptr get_os_data() const;
+      virtual int_ptr get_os_int() const;
 
       virtual void set_p(::radix::thread * p);
 
 
       virtual void set_os_data(void * pvoidOsData);
-      virtual void set_os_int(INT_PTR iData);
+      virtual void set_os_int(int_ptr iData);
 
 
       friend bool __internal_pre_translate_message(MSG* pMsg);
@@ -321,8 +321,8 @@ namespace ca
 
       virtual ::count get_ui_count();
       virtual ::user::interaction * get_ui(index iIndex);
-      virtual void set_timer(::user::interaction * pui, UINT_PTR nIDEvent, UINT nEllapse);
-      virtual void unset_timer(::user::interaction * pui, UINT_PTR nIDEvent);
+      virtual void set_timer(::user::interaction * pui, uint_ptr nIDEvent, UINT nEllapse);
+      virtual void unset_timer(::user::interaction * pui, uint_ptr nIDEvent);
       virtual void set_auto_delete(bool bAutoDelete = true);
       virtual void set_run(bool bRun = true);
       virtual event & get_finish_event();

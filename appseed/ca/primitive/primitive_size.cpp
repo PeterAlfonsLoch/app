@@ -27,7 +27,7 @@
 // size
 size::size() throw()
    { /* random filled */ }
-size::size(__int64 initCX, __int64 initCY) throw()
+size::size(int64_t initCX, int64_t initCY) throw()
    { cx = (int) initCX; cy = (int) initCY; }
 size::size(SIZE initSize) throw()
    { *(SIZE*)this = initSize; }
@@ -95,7 +95,7 @@ rect size::operator+(LPCRECT lpRect) const throw()
 rect size::operator-(LPCRECT lpRect) const throw()
    { return rect(lpRect) - *this; }
 
-__int64 size::area()
+int64_t size::area()
    { return cx * cy; }
 
 
@@ -141,7 +141,7 @@ __int64 size::area()
 // size64
 size64::size64() throw()
    { /* random filled */ }
-size64::size64(__int64 initCX, __int64 initCY) throw()
+size64::size64(int64_t initCX, int64_t initCY) throw()
    { cx = initCX; cy = initCY; }
 size64::size64(__size64 initSize) throw()
    { *(__size64*)this = initSize; }
@@ -169,7 +169,7 @@ void size64::operator+=(__size64 size64) throw()
    { cx += size64.cx; cy += size64.cy; }
 void size64::operator-=(__size64 size64) throw()
    { cx -= size64.cx; cy -= size64.cy; }
-void size64::set_size(__int64 CX, __int64 CY) throw()
+void size64::set_size(int64_t CX, int64_t CY) throw()
    { cx = CX; cy = CY; }
 
 
@@ -188,7 +188,7 @@ rect64 size64::operator+(const __rect64 * lpRect) const throw()
 rect64 size64::operator-(const __rect64 * lpRect) const throw()
    { return rect64(lpRect) - *this; }
 
-__int64 size64::area()
+int64_t size64::area()
    { return cx * cy; }
 
 

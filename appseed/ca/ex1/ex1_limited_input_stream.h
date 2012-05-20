@@ -17,7 +17,7 @@ namespace ex1
 
       uint64_t SeekToPhys()
       { 
-         return _stream->seek((INT_PTR) _physPos, seek_begin); 
+         return _stream->seek((int_ptr) _physPos, seek_begin); 
       }
    public:
       void SetStream(byte_input_stream *stream)
