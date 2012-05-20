@@ -26,7 +26,7 @@ namespace filemanager
 
 
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void SimpleFolderTreeView::assert_valid() const
    {
       SimpleFolderTreeInterface::assert_valid();
@@ -36,7 +36,7 @@ namespace filemanager
    {
       SimpleFolderTreeInterface::dump(dumpcontext);
    }
-   #endif //_DEBUG
+   #endif //DEBUG
 
 
    void SimpleFolderTreeView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 

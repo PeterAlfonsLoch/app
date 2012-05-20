@@ -1,9 +1,9 @@
 #pragma once
 
-#ifdef _DEBUG
+#ifdef DEBUG
    void CLASS_DECL_ca TRACELASTERROR();
 #else
-   #define TRACELASTERROR() (()0)
+   #define TRACELASTERROR() ((void)0)
 #endif
 
 

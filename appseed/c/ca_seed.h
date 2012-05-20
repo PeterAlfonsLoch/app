@@ -21,11 +21,12 @@
 
 namespace ca
 {
+
+
    class application;
+
+
 } // namespace ca
-
-
-#pragma warning(disable: 4250)
 
 
 

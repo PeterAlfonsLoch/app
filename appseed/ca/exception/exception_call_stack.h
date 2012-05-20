@@ -27,7 +27,7 @@
 
 #pragma once
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 
 CLASS_DECL_ca bool IsWow64();
 
@@ -45,7 +45,7 @@ public:
    static vsstring get(unsigned int uiSkip = 2)
    {
       vsstring str;
-#ifndef _AMD64_
+#ifndef AMD64
       if(!IsWow64())
       {
          ::exception::engine::stack_trace(str, uiSkip);

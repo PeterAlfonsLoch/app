@@ -128,7 +128,7 @@ namespace platform
 
    }
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void view::assert_valid() const
    {
       form_view::assert_valid();
@@ -138,7 +138,7 @@ namespace platform
    {
       form_view::dump(dumpcontext);
    }
-   #endif //_DEBUG
+   #endif //DEBUG
 
    /////////////////////////////////////////////////////////////////////////////
    // ::view message handlers

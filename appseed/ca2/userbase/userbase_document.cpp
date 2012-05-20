@@ -35,7 +35,7 @@ namespace userbase
    }
 
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void document::dump(dump_context & dumpcontext) const
    {
       ::radix::object::dump(dumpcontext);
@@ -69,7 +69,7 @@ namespace userbase
          ASSERT_VALID(pview);
       }
    }
-   #endif //_DEBUG
+   #endif //DEBUG
 
 
    void document::on_alloc(::ca::application * papp)

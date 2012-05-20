@@ -11,7 +11,7 @@
 #include "framework.h"
 #include <stdarg.h>
 
-#ifdef _DEBUG   // entire file
+#ifdef DEBUG   // entire file
 
 
 
@@ -47,6 +47,6 @@ void c_cdecl __trace(const char * lpszFormat, ...)
 
    va_end(args);
 }
-#endif //_DEBUG
+#endif //DEBUG
 
 /////////////////////////////////////////////////////////////////////////////

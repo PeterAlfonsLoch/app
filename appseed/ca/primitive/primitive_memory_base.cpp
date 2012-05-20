@@ -80,7 +80,7 @@ namespace primitive
       catch(ex1::file_exception_sp * pe)
       {
          throw "smfOpenFile: read error on image!";
-   #ifdef _DEBUG
+   #ifdef DEBUG
          (*pe)->dump(g_dumpcontext);
    #endif
          delete pe;

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#ifdef _DEBUG
+#ifdef DEBUG
 
 void _base_comparable_array_debug()
 {

@@ -51,7 +51,7 @@ namespace sockets
 {
 
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    #define DEB(x) x
    #else
    #define DEB(x)

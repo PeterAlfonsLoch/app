@@ -58,7 +58,7 @@ public:
 	~simple_object_array();
 
 	void Serialize(CArchive&);
-#ifdef _DEBUG
+#ifdef DEBUG
 	void Dump(CDumpContext&) const;
 	void AssertValid() const;
 #endif

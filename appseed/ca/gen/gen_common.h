@@ -14,7 +14,7 @@ namespace gen
 
    inline void __cdecl memcpy_s(void *_S1, size_t _S1max, const void *_S2, size_t _N)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::memcpy_s(_S1, _S1max, _S2, _N));
 #else
       memcpy(_S1, _S2, _N);
@@ -23,7 +23,7 @@ namespace gen
 
    inline void __cdecl wmemcpy_s(wchar_t *_S1, size_t _N1, const wchar_t *_S2, size_t _N)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::wmemcpy_s(_S1, _N1, _S2, _N));
 #else
       memcpy(_S1, _S2, _N * sizeof(wchar_t));
@@ -32,7 +32,7 @@ namespace gen
 
    inline void __cdecl memmove_s(void *_S1, size_t _S1max, const void *_S2, size_t _N)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::memmove_s(_S1, _S1max, _S2, _N));
 #else
       memmove(_S1, _S2, _N);
@@ -41,7 +41,7 @@ namespace gen
 
    inline void __cdecl strcpy_s(char *_S1, size_t _S1max, const char *_S2)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::strcpy_s(_S1, _S1max, _S2));
 #else
       strcpy(_S1, _S2);
@@ -50,7 +50,7 @@ namespace gen
 
    inline void __cdecl wcscpy_s(wchar_t *_S1, size_t _S1max, const wchar_t *_S2)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::wcscpy_s(_S1, _S1max, _S2));
 #else
       wcscpy_dup(_S1, _S2);
@@ -59,7 +59,7 @@ namespace gen
 
    inline errno_t __cdecl strncpy_s(char *_Dest, size_t _SizeInChars, const char *_Source, size_t _Count)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       return C_RUNTIME_ERROR_CHECK(::strncpy_s(_Dest, _SizeInChars, _Source,_Count));
 #else
       strncpy(_Dest, _Source, _Count);
@@ -68,7 +68,7 @@ namespace gen
 
    inline errno_t __cdecl wcsncpy_s(wchar_t *_Dest, size_t _SizeInChars, const wchar_t *_Source, size_t _Count)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       return C_RUNTIME_ERROR_CHECK(::wcsncpy_s(_Dest, _SizeInChars, _Source,_Count));
 #else
       wcsncpy(_Dest, _Source, _Count);
@@ -77,7 +77,7 @@ namespace gen
 
    inline void __cdecl strcat_s(char * _Dst, size_t _SizeInChars, const char * _Src)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::strcat_s(_Dst, _SizeInChars, _Src));
 #else
       strcat(_Dst, _Src);
@@ -86,7 +86,7 @@ namespace gen
 
    inline void __cdecl wcscat_s(wchar_t * _Dst, size_t _SizeInChars, const wchar_t * _Src)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::wcscat_s(_Dst, _SizeInChars, _Src));
 #else
       wcscat_dup(_Dst, _Src);
@@ -95,7 +95,7 @@ namespace gen
 
    inline void __cdecl strlwr_s(char * _Str, size_t _SizeInChars)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_strlwr_s(_Str, _SizeInChars));
 #else
       strlwr(_Str);
@@ -104,7 +104,7 @@ namespace gen
 
    inline void __cdecl wcslwr_s(wchar_t * _Str, size_t _SizeInChars)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_wcslwr_s(_Str, _SizeInChars));
 #else
       C_RUNTIME_ERROR_CHECK(::wcslwr_s_dup(_Str, _SizeInChars));
@@ -113,7 +113,7 @@ namespace gen
 
    inline void __cdecl strupr_s(char * _Str, size_t _SizeInChars)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_strupr_s(_Str, _SizeInChars));
 #else
       strupr(_Str);
@@ -122,7 +122,7 @@ namespace gen
 
    inline void __cdecl wcsupr_s(wchar_t * _Str, size_t _SizeInChars)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_wcsupr_s(_Str, _SizeInChars));
 #else
       C_RUNTIME_ERROR_CHECK(::wcsupr_s_dup(_Str, _SizeInChars));
@@ -131,7 +131,7 @@ namespace gen
 
    inline void __cdecl itoa_s(int _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_itoa_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
       itoa_dup(_Buf, _Val, _Radix);
@@ -140,7 +140,7 @@ namespace gen
 
    inline void __cdecl ltoa_s(long _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ltoa_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
       itoa_dup(_Buf, _Val, _Radix);
@@ -149,7 +149,7 @@ namespace gen
 
    inline void __cdecl ultoa_s(unsigned long _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ultoa_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
       uitoa_dup(_Buf, _Val, _Radix);
@@ -158,7 +158,7 @@ namespace gen
 
    inline void __cdecl ultow_s(unsigned long _Val, wchar_t *_Buf, size_t _SizeInChars, int _Radix)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ultow_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
       uitow_dup(_Buf, _Val, _Radix);
@@ -167,7 +167,7 @@ namespace gen
 
    inline void __cdecl i64toa_s(__int64 _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_i64toa_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
       ltoa_dup(_Buf, _Val, _Radix);
@@ -176,7 +176,7 @@ namespace gen
 
    inline void __cdecl i64tow_s(__int64 _Val, wchar_t *_Buf, size_t _SizeInChars, int _Radix)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_i64tow_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
       ltow_dup(_Buf, _Val, _Radix);
@@ -185,7 +185,7 @@ namespace gen
 
    inline void __cdecl ui64toa_s(uint64_t _Val, char *_Buf, size_t _SizeInChars, int _Radix)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ui64toa_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
      ltoa_dup(_Buf, _Val, _Radix);
@@ -194,7 +194,7 @@ namespace gen
 
    inline void __cdecl ui64tow_s(uint64_t _Val, wchar_t *_Buf, size_t _SizeInChars, int _Radix)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ui64tow_s(_Val, _Buf, _SizeInChars, _Radix));
 #else
       ltow_dup(_Buf, _Val, _Radix);
@@ -203,7 +203,7 @@ namespace gen
 
    inline void __cdecl gcvt_s(char *_Buffer, size_t _SizeInChars, double _Value, int _Ndec)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_gcvt_s(_Buffer, _SizeInChars, _Value, _Ndec));
 #else
       gcvt(_Value, _Ndec, _Buffer);
@@ -229,7 +229,7 @@ namespace gen
 
    inline size_t __cdecl strnlen(const char *_Str, size_t _Maxsize)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       return ::strnlen(_Str, _Maxsize);
 #else
       return ::strlen(_Str);
@@ -238,7 +238,7 @@ namespace gen
 
    inline size_t __cdecl wcsnlen(const wchar_t *_Wcs, size_t _Maxsize)
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       return ::wcsnlen(_Wcs, _Maxsize);
 #else
       return ::wcslen_dup(_Wcs);

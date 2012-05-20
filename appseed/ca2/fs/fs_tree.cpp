@@ -20,7 +20,7 @@ namespace fs
    }
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
    void tree::assert_valid() const
    {
    }
@@ -28,7 +28,7 @@ namespace fs
    void tree::dump(dump_context & dumpcontext) const
    {
    }
-#endif //_DEBUG
+#endif //DEBUG
 
 
    void tree::install_message_handling(::gen::message::dispatch * pinterface)

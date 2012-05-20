@@ -667,7 +667,8 @@ namespace filemanager
       if(imagekey.m_iIcon <= -1)
       {
          string strTarget;
-         if(System.os().resolve_link(strTarget, strFilePath, System.window_from_os_data(hwnd)))
+         //if(System.os().resolve_link(strTarget, strFilePath, System.window_from_os_data(hwnd)))
+         if(System.os().resolve_link(strTarget, strFilePath, NULL))
          {
 
             wstring wstr = gen::international::utf8_to_unicode(strTarget);

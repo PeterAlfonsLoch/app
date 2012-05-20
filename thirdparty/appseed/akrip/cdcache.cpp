@@ -235,7 +235,7 @@ DWORD CDDBPostCmdProxy( char *szCGI, char *cmd, char *szExtraHeaders,
 
   if ( !h )
     {
-#ifdef _DEBUG
+#ifdef DEBUG
       dbprintf( "akrip32: CDDBPostCmdProxy: unable to resolve hostname" );
 #endif
       return 0;
@@ -514,7 +514,7 @@ void CDDBSetOption( int what, char *szVal, int iVal )
       break;
 
     case CDDB_OPT_USEPROXY:
-      bUseProxy = (bool)iVal;
+      bUseProxy = iVal != FALSE;
       break;
 
     case CDDB_OPT_HTTPPORT:
@@ -522,11 +522,11 @@ void CDDBSetOption( int what, char *szVal, int iVal )
       break;
 
     case CDDB_OPT_USECDPLAYERINI:
-      bUseCDPlayerIni = (bool)iVal;
+      bUseCDPlayerIni = iVal != FALSE;
       break;
 
     case CDDB_OPT_USEHTTP1_0:
-      bUseHTTP1_0 = (bool)iVal;
+      bUseHTTP1_0 = iVal != FALSE;
       break;
     
     case CDDB_OPT_USERAUTH:

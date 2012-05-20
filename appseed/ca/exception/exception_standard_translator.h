@@ -19,7 +19,7 @@
 
 #pragma once
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 #include <eh.h>
 #else
 #include <signal.h>
@@ -45,7 +45,7 @@ namespace exception
       translator();
       virtual ~translator();
 
-   #ifdef _WINDOWS
+   #ifdef WINDOWS
       void filter(unsigned int uiCode, _EXCEPTION_POINTERS * p);
       static void __cdecl filter2(unsigned int uiCode, _EXCEPTION_POINTERS * p);
       //void filter( _EXCEPTION_POINTERS * p);
@@ -66,7 +66,7 @@ namespace exception
     private:
        bool                      m_bSet;
        //LPTOP_LEVEL_EXCEPTION_FILTER m_pfn;
-   #ifdef _WINDOWS
+   #ifdef WINDOWS
        _se_translator_function   m_pfn;
    #endif
    };

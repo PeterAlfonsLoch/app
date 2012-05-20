@@ -142,7 +142,7 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
 
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 
 
 #define DEFINE_C_NUMBER(e, c, T) \
@@ -292,7 +292,7 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
 
 #endif
 
-//#ifdef _WINDOWS
+//#ifdef WINDOWS
 DEFINE_C_NUMBER(CLASS_DECL_ca, os_lock_duration, DWORD)
 //#endif
 

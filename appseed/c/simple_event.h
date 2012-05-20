@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 typedef void *HANDLE;
 #else
 #include <pthread.h>
@@ -11,7 +11,7 @@ class CLASS_DECL_c simple_event
 {
 public:
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
    HANDLE            m_hEvent;
 #else
    pthread_cond_t    m_cond;

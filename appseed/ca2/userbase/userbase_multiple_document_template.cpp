@@ -29,7 +29,7 @@ namespace userbase
 
    }
 
-#ifdef _DEBUG
+#ifdef DEBUG
    void multiple_document_template::dump(dump_context & dumpcontext) const
    {
       ::document_template::dump(dumpcontext);
@@ -39,6 +39,6 @@ namespace userbase
    {
       ::document_template::assert_valid();
    }
-#endif //_DEBUG
+#endif //DEBUG
 
 } // namespace userbase

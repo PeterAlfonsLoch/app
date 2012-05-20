@@ -29,7 +29,7 @@ namespace nature
       connect_command("edit_remove", &appearance_view::_001OnEditRemove);
    }
 
-#ifdef _DEBUG
+#ifdef DEBUG
    void appearance_view::assert_valid() const
    {
       ::userbase::view::assert_valid();
@@ -39,7 +39,7 @@ namespace nature
    {
       ::userbase::view::dump(dumpcontext);
    }
-#endif //_DEBUG
+#endif //DEBUG
 
    void appearance_view::_001OnCreate(gen::signal_object * pobj) 
    {

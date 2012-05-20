@@ -1,6 +1,9 @@
 #pragma once
 
 
+#if defined(LINUX)
+
+
 class CLASS_DECL_ca string_format_printer
 {
 public:
@@ -303,3 +306,4 @@ public:
 
 };
 
+#endif

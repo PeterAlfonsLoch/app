@@ -4,7 +4,7 @@
 #include "c/c_c.h"
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 #ifdef __CA__DLL
    #define CLASS_DECL_ca  _declspec(dllexport)
 #else

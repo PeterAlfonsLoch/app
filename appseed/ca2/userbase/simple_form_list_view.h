@@ -14,7 +14,7 @@ public:
    virtual bool pre_create_window(CREATESTRUCT& cs);
 
    virtual ~simple_form_list_view();
-#ifdef _DEBUG
+#ifdef DEBUG
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
 #endif

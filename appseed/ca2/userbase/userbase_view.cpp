@@ -328,7 +328,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // ::view diagnostics
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void view::dump(dump_context & dumpcontext) const
    {
       ::user::interaction::dump(dumpcontext);
@@ -343,7 +343,7 @@ namespace userbase
    {
       ::user::interaction::assert_valid();
    }
-   #endif //_DEBUG
+   #endif //DEBUG
 
 
    // // IMPLEMENT_DYNAMIC for ::view is in wincore.cpp for .OBJ granularity reasons

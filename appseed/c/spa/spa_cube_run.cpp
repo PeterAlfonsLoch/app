@@ -7,7 +7,7 @@ int cube_run(const char * id)
    vsstring strDir;
    vsstring strFile;
 
-#ifdef _X86_
+#ifdef X86
    strDir = dir::ca2("\\stage\\x86");
 #else
    strDir = dir::ca2("\\stage\\x64");

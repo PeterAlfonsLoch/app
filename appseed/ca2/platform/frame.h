@@ -32,7 +32,7 @@ namespace platform
 
 
       void ShowControlBars(bool bShow);
-   #ifdef _DEBUG
+   #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
    #endif

@@ -70,7 +70,7 @@ namespace filemanager
       virtual id data_get_current_list_layout_id();
 
       virtual ~SimpleFileListView();
-   #ifdef _DEBUG
+   #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
    #endif

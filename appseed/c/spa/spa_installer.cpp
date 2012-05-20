@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 #include <WinInet.h>
 #include <Winternl.h>
 #endif
@@ -20,7 +20,7 @@ bool g_bInstalling = false;
 
 typedef PVOID * PPVOID;
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 
 typedef int (* CA2MAIN)(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int nCmdShow);
 
@@ -116,11 +116,11 @@ vsstring get_command_line(HANDLE handleProcess)
    _ca_free(commandLineContents, 0);
    return str;
 }
-#else // _WINDOWS
+#else // WINDOWS
 
    typedef int (* CA2MAIN)(const char * lpCmdLine, int nCmdShow);
 
-#endif // !_WINDOWS
+#endif // !WINDOWS
 
 
 int run_file(const char * pszFile, int nCmdShow);
@@ -133,7 +133,7 @@ stra_dup g_straRestartProcess;
 vsstring g_strLastHost;
 vsstring g_strCurrentHost;
 bool g_bStarterStart = false;
-#ifdef _WINDOWS
+#ifdef WINDOWS
 MSG g_msg;
 #endif
 vsstring g_strPlatform = "";
@@ -285,7 +285,7 @@ install_begin:;
 
          set_progress(0.3);
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
          vsstring path;
          path.alloc(1024 * 4);
          ::GetModuleFileNameA(NULL, (char *) (const char *) path, 1024 * 4);
@@ -295,7 +295,7 @@ install_begin:;
 
          vsstring strUrl;
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
          HKEY hkey;
 
 
@@ -359,7 +359,7 @@ install_begin:;
             }
          }
 
-#endif // _WINDOWS
+#endif // WINDOWS
 
          set_progress(0.4);
 
@@ -531,7 +531,7 @@ install_begin:;
 
          simple_uint_array dwa;
 
-   #ifdef _X86_
+   #ifdef X86
          dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x86\\c.dll"));
          dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x86\\ca.dll"));
          dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x86\\ca2.dll"));
@@ -547,7 +547,7 @@ install_begin:;
          // TODO: simular virtualmente a cópia dos arquivos também, se tiver aquivo travado, também retornar
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 
          g_straRestartCommandLine.remove_all();
          g_straRestartProcess.remove_all();
@@ -1743,7 +1743,7 @@ install_begin:;
                }
                if(lpnode->childs[ui]->GetAttr("type") != NULL)
                {
-                  #ifdef _WINDOWS
+                  #ifdef WINDOWS
                   if(vsstring(lpnode->childs[ui]->GetAttrValue("type")) == "parse_file_name")
                   {
                      m_iStart = 4;
@@ -1885,7 +1885,7 @@ install_begin:;
       {
          vsstring strStage;
          strStage = dir::path(dir::beforeca2(),strExec.substr(16));
-         #ifdef _WINDOWS
+         #ifdef WINDOWS
 //         ::ShellExecute(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
   //       ::ShellExecute(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : install usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
          #else
@@ -1900,7 +1900,7 @@ install_begin:;
          vsstring str3 = str2.substr(iPos + 1);
          strStage = dir::path(dir::beforeca2(), "ca2");
          strStage = dir::path(strStage, str3);
-         #ifdef _WINDOWS
+         #ifdef WINDOWS
 //         ::ShellExecute(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
          #else
          throw "TODO";
@@ -2046,7 +2046,7 @@ install_begin:;
          vsstring strCa2sp = file_get_contents_dup(m_strFile);
          if(strCa2sp.length() == 0)
          {
-            #ifdef _WINDOWS
+            #ifdef WINDOWS
             strCa2sp = read_resource_as_string_dup(NULL, 1984, "CA2SP");
             #else
             throw "TODO";
@@ -2368,7 +2368,7 @@ install_begin:;
          ParseSpaIndex(node);
       }
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
       // Default stage.bz folder not present, would default to internet install
       // since the spa.xml is not present and contains turning information.
       if(!m_bOfflineInstall && !m_bInstallSet && (m_strApplicationId.length() == 0 || (!m_bForceUpdatedBuild && m_strBuildResource.length() == 0)))
@@ -2734,7 +2734,7 @@ install_begin:;
 
    bool installer::m_reboot()
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
 	   HANDLE hToken;
 	   TOKEN_PRIVILEGES tkp;
 	   if (!OpenProcessToken(GetCurrentProcess(),
@@ -2802,7 +2802,7 @@ install_begin:;
       int iSpabootInstallStrSize = MAX_PATH * 16;
       m_strPath.alloc(iSpabootInstallStrSize);
 
-   #ifdef _WINDOWS
+   #ifdef WINDOWS
 
       HINSTANCE hinstancePlugin = (HINSTANCE) ::GetModuleHandleA("npca2.dll");
       if(hinstancePlugin == NULL)
@@ -2903,7 +2903,7 @@ install_begin:;
 
       vsstring strPlatform = spa_get_platform();
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
       ::SetDllDirectory(dir::path(dir::beforeca2(), "ca2\\stage\\" + strPlatform));
 #endif
 

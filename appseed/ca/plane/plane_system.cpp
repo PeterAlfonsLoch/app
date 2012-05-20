@@ -1024,7 +1024,7 @@ namespace plane
       }
       if(iReportType == _CRT_ASSERT && is_debugger_attached())
       {
-#ifdef _DEBUG
+#ifdef DEBUG
          gen::property_set propertyset;
          propertyset["filepath"] = pszFileName;
          propertyset["linenumber"] = iLineNumber;
@@ -1046,7 +1046,7 @@ namespace plane
       if(!on_assert_failed_line(lpszFileName, iLine))
          return false;
       // may be in another thread than application thread
-   #ifdef _DEBUG
+   #ifdef DEBUG
    #ifndef ___NO_DEBUG_CRT
       // we remove WM_QUIT because if it is in the queue then the message box
       // won't display

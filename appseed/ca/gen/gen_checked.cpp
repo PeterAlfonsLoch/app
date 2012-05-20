@@ -7,7 +7,7 @@
 namespace gen
 {
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 
    CLASS_DECL_ca int get_errno()
    {

@@ -142,7 +142,7 @@ namespace numeric_info
       return 1;
    }
 
-   #ifdef _WINDOWS
+   #ifdef WINDOWS
 
    template <>
    inline DWORD get_maximum_value < DWORD > ()

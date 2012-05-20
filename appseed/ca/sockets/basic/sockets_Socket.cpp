@@ -39,7 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    #define DEB(x) x; fflush(stderr);
    #else
    #define DEB(x)

@@ -6,7 +6,7 @@ sync_object::sync_object(const char * pstrName)
 
    m_object = NULL;
 
-#ifdef _DEBUG
+#ifdef DEBUG
    m_strName = pstrName;
 #endif
 }

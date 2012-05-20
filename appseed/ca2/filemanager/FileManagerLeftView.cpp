@@ -19,7 +19,7 @@ FileManagerLeftView::~FileManagerLeftView()
 {
 }
 
-#ifdef _DEBUG
+#ifdef DEBUG
 void FileManagerLeftView::assert_valid() const
 {
    ::userbase::split_view::assert_valid();
@@ -30,7 +30,7 @@ void FileManagerLeftView::dump(dump_context & dumpcontext) const
    ::userbase::split_view::dump(dumpcontext);
 }
 
-#endif //_DEBUG
+#endif //DEBUG
 
 
 void FileManagerLeftView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 

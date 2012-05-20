@@ -38,7 +38,7 @@ namespace userex
 
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
    void minute_list_view::assert_valid() const
    {
       simple_list_view::assert_valid();
@@ -48,7 +48,7 @@ namespace userex
    {
       simple_list_view::dump(dumpcontext);
    }
-#endif //_DEBUG
+#endif //DEBUG
 
 
 

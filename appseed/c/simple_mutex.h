@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 typedef void *HANDLE;
 #elif defined(MACOS)
 #include <sys/sem.h>
@@ -17,7 +17,7 @@ public:
 
    vsstring          m_strName;
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
    HANDLE            m_hMutex;
 #else
    int               m_semid;

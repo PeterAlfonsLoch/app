@@ -280,7 +280,7 @@ namespace ca2
          &osvi,
          VER_MAJORVERSION | VER_MINORVERSION |
          VER_SERVICEPACKMAJOR | VER_SERVICEPACKMINOR,
-         dwlConditionMask);
+         dwlConditionMask) != FALSE;
    }
 #endif
 

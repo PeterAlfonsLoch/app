@@ -3,7 +3,7 @@
 namespace sockets
 {
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    #define DEB(x) x; fflush(stderr);
    #else
    #define DEB(x)

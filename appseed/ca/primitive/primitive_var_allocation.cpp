@@ -18,7 +18,7 @@ void * PASCAL var::operator new(size_t nSize)
    return g_fixedallocVar.Alloc();
 }
 
-#ifdef _DEBUG
+#ifdef DEBUG
 
 void * PASCAL var::operator new(size_t nSize, const char * lpszFileName, int nLine)
 {
@@ -32,7 +32,7 @@ inline void PASCAL var::operator delete(void * p)
    g_fixedallocVar.Free(p);
 }
 
-#ifdef _DEBUG
+#ifdef DEBUG
 
 inline void PASCAL var::operator delete(void * p, void *)
 {

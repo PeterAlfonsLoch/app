@@ -81,7 +81,7 @@ namespace userbase
       void CalcInsideRect(rect& rect, bool bHorz);
       virtual void OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle);
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
       void EnableDocking(DWORD dwDockStyle);

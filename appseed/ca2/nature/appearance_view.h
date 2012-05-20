@@ -31,7 +31,7 @@ namespace nature
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual ~appearance_view();
-   #ifdef _DEBUG
+   #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
    #endif

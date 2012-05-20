@@ -102,7 +102,7 @@ bool file_put_contents_dup(const char * path, const char * contents, int len)
    else
       dwWrite = len;
    DWORD dwWritten = 0;
-   bool bOk = ::WriteFile(hfile, contents, (DWORD) dwWrite, &dwWritten, NULL);
+   bool bOk = ::WriteFile(hfile, contents, (DWORD) dwWrite, &dwWritten, NULL) != FALSE;
    ::CloseHandle(hfile);
    return dwWrite == dwWritten && bOk != FALSE;
 
@@ -939,7 +939,7 @@ void dll_processes(simple_uint_array & dwa, stra_dup & straProcesses, const char
 bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
 {
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 
    return ::CopyFile(pszSrc, pszNew, bOverwrite ? FALSE : TRUE) ? true : false;
 

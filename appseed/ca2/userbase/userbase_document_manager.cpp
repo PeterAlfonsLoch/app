@@ -83,7 +83,7 @@ namespace userbase
    {
    }
 
-#ifdef _DEBUG
+#ifdef DEBUG
    void document_manager::assert_valid() const
    {
       ::document_manager::assert_valid();

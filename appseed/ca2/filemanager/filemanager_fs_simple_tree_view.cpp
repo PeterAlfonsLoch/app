@@ -35,7 +35,7 @@ namespace filemanager
 
 
 
-         #ifdef _DEBUG
+         #ifdef DEBUG
          void tree_view::assert_valid() const
          {
             ::userbase::view::assert_valid();
@@ -45,7 +45,7 @@ namespace filemanager
          {
             ::userbase::view::dump(dumpcontext);
          }
-         #endif //_DEBUG
+         #endif //DEBUG
 
 
          void tree_view::parse(const char * lpszSource)

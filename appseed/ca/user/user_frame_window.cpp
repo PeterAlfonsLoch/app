@@ -1216,13 +1216,13 @@ LRESULT frame_window::OnDDETerminate(WPARAM wParam, LPARAM lParam)
 
 void frame_window::SetActiveView(::view * pViewNew, bool bNotify)
 {
-#ifdef _DEBUG
+#ifdef DEBUG
    if (pViewNew != NULL)
    {
 //trans      ASSERT(IsChild(pViewNew));
 //trans      ASSERT_KINDOF(::view, pViewNew);
    }
-#endif //_DEBUG
+#endif //DEBUG
 
    ::view * pViewOld = m_pViewActive;
    if (pViewNew == pViewOld)

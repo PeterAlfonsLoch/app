@@ -34,7 +34,7 @@ simple_mutex::simple_mutex(const char * pszName, bool bInitialLock)
    {
       m_strName = pszName;
    }
-#ifdef _WINDOWS
+#ifdef WINDOWS
    if(m_strName.is_empty())
    {
       m_hMutex = ::CreateMutexW(NULL, bInitialLock ? TRUE : FALSE, NULL);
@@ -92,7 +92,7 @@ simple_mutex::simple_mutex(const char * pszName, bool bInitialLock)
 simple_mutex::~simple_mutex()
 {
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
    ::CloseHandle(m_hMutex);
 #else
    if(m_strName.is_empty())
@@ -111,7 +111,7 @@ simple_mutex::~simple_mutex()
 
 void simple_mutex::lock()
 {
-#ifdef _WINDOWS
+#ifdef WINDOWS
    WaitForSingleObject(m_hMutex, INFINITE);
 #else
    if(m_strName.is_empty())
@@ -141,7 +141,7 @@ void simple_mutex::lock()
 
 void simple_mutex::unlock()
 {
-#ifdef _WINDOWS
+#ifdef WINDOWS
    ReleaseMutex(m_hMutex);
 #else
    if(m_strName.is_empty())

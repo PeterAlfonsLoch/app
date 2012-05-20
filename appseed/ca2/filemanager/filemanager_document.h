@@ -52,7 +52,7 @@ namespace filemanager
       DECL_GEN_SIGNAL(_001OnUpdateFileSaveAs)
       virtual void OnFileManagerBrowse();
       virtual void OpenSelectionProperties();
-   #ifdef _DEBUG
+   #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
    #endif

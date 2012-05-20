@@ -14,7 +14,7 @@ namespace platform
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
       virtual ~pane_view();
-   #ifdef _DEBUG
+   #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
    #endif

@@ -756,7 +756,7 @@ CLASS_DECL_c vsstring itohexpad_dup(int i, int iPad)
    return vsstring(sz);
 }*/
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 
 vsstring read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszType)
 {

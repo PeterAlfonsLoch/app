@@ -24,7 +24,7 @@ FileManagerTabView::~FileManagerTabView()
 }
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
 void FileManagerTabView::assert_valid() const
 {
    ::userbase::tab_view::assert_valid();
@@ -35,7 +35,7 @@ void FileManagerTabView::dump(dump_context & dumpcontext) const
    ::userbase::tab_view::dump(dumpcontext);
 }
 
-#endif //_DEBUG
+#endif //DEBUG
 
 
 void FileManagerTabView::install_message_handling(::gen::message::dispatch * pinterface)

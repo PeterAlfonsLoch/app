@@ -24,11 +24,6 @@
 #endif
 #endif
 
-#ifdef _DEBUG
-#ifndef DEBUG
-#define DEBUG
-#endif
-#endif
 
 #ifdef _WIN64
 #define _SUPPORT_VT_I8  // Always support VT_I8 on Win64.
@@ -57,7 +52,7 @@ char (*__countof_helper(UNALIGNED _CountofType (&_Array)[_SizeOfArray]))[_SizeOf
 
 
 #ifndef ASSERT
-#ifdef _DEBUG
+#ifdef DEBUG
 #define ASSERT(expr) _ASSERTE(expr)
 #else
 #define ASSERT(expr)
@@ -131,7 +126,7 @@ So we've done a broad replace of all the member-related ASSERT to ASSUME.
 #endif // ASSERT
 
 #ifndef VERIFY
-#ifdef _DEBUG
+#ifdef DEBUG
 #define VERIFY(expr) ASSERT(expr)
 #else
 #define VERIFY(expr)
@@ -225,16 +220,11 @@ do {                                           \
 #endif
 #endif
 
-#ifdef _DEBUG
-#ifndef _DEBUG
-#define _DEBUG
-#endif // _DEBUG
-#endif // _DEBUG
 
 #ifdef _DEBUG_INTERFACES
-#ifndef _DEBUG
-#define _DEBUG
-#endif // _DEBUG
+#ifndef DEBUG
+#define DEBUG
+#endif // DEBUG
 #endif // _DEBUG_INTERFACES
 
 #ifndef _HEAPFLAGS

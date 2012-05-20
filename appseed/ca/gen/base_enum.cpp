@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#ifdef _DEBUG
+#ifdef DEBUG
 
 enum _vmsgenEDebugBaseEnum
 {

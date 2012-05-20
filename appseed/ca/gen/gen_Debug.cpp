@@ -22,7 +22,7 @@
 
 #include "gen_debug.h"
 
-#ifdef _DEBUG
+#ifdef DEBUG
 void TRACELASTERROR()
    {
                DWORD dwMessageId = GetLastError();

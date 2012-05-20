@@ -54,7 +54,7 @@ namespace filemanager
 
    }
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void document::assert_valid() const
    {
       ::userbase::document::assert_valid();
@@ -64,7 +64,7 @@ namespace filemanager
    {
       ::userbase::document::dump(dumpcontext);
    }
-   #endif //_DEBUG
+   #endif //DEBUG
 
    /////////////////////////////////////////////////////////////////////////////
    // document serialization

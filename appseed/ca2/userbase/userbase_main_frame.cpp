@@ -18,7 +18,7 @@ namespace userbase
 
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
    void main_frame::assert_valid() const
    {
       simple_frame_window::assert_valid();
@@ -28,7 +28,7 @@ namespace userbase
    {
       simple_frame_window::dump(dumpcontext);
    }
-#endif //_DEBUG
+#endif //DEBUG
 
    void main_frame::install_message_handling(::gen::message::dispatch * pinterface)
    {

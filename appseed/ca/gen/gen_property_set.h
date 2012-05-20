@@ -45,7 +45,7 @@ namespace gen
       property lowprop(const string & strName) const;
       property & operator[](index iIndex);
       property operator[](index iIndex) const;
-#ifdef _AMD64_
+#ifdef AMD64
       inline property & operator[](int iIndex) { return operator []((index) iIndex); }
       inline property operator[](int iIndex) const { return operator []((index) iIndex); }
 #endif

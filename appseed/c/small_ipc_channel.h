@@ -15,7 +15,7 @@ class CLASS_DECL_c small_ipc_channel_base
 {
 public:
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
    HWND        m_hwnd;
 #else
    key_t   m_key;
@@ -73,7 +73,7 @@ public:
    };
 
    receiver *        m_preceiver;
-#ifdef _WINDOWS
+#ifdef WINDOWS
    vsstring          m_strWindowProcModule;
 #else
    bool              m_bRunning;
@@ -86,7 +86,7 @@ public:
     virtual ~small_ipc_rx_channel();
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
    bool create(const char * pszKey, const char * pszWindowProcModule);
 #else
    bool create(const char * pszKey);
@@ -97,7 +97,7 @@ public:
    virtual void * on_receive(const char * pszMessage);
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
    ATOM register_class(HINSTANCE hInstance);
    static LRESULT CALLBACK s_message_window_proc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
    LRESULT message_window_proc(UINT message, WPARAM wParam, LPARAM lParam);

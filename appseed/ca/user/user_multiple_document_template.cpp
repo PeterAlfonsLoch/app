@@ -22,7 +22,7 @@ void multiple_document_template::load_template()
 
 multiple_document_template::~multiple_document_template()
 {
-#ifdef _DEBUG
+#ifdef DEBUG
    if (!m_docptra.is_empty())
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: destroying multiple_document_template with %d documents alive.\n", m_docptra.get_count());
 #endif

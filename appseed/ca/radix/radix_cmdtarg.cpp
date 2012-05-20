@@ -306,14 +306,14 @@ bool command_target::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
       if (lpEntry != NULL)
       {
          // found it
-#ifdef _DEBUG
+#ifdef DEBUG
          if (nCode == CN_COMMAND)
             TRACE(traceCmdRouting, 1, "SENDING command id 0x%04X to %hs target.\n", nID,
                typeid(*this).name());
          else if (nCode > CN_COMMAND)
             TRACE(traceCmdRouting, 1, "SENDING control notification %d from control id 0x%04X to %hs ::ca::window.\n",
                nCode, nID, typeid(*this).name());
-#endif //_DEBUG
+#endif //DEBUG
          return _gen::DispatchCmdMsg(this, nID, nCode,
             lpEntry->pfn, pExtra, lpEntry->nSig, pHandlerInfo);
       }

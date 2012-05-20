@@ -19,7 +19,7 @@ namespace dynamic_source
       m_folderwatchFribox(papp)
    {
 
-#ifdef _DEBUG
+#ifdef DEBUG
 
       m_strDynamicSourceConfiguration = "basis";
 
@@ -193,7 +193,7 @@ namespace dynamic_source
 
       pscript->m_strCppPath.Format(System.dir().path(m_strTime, "dynamic_source\\%s.cpp", false), strTransformName);
       pscript->m_strBuildBat.Format(System.dir().stage("front\\dynamic_source\\BuildBat\\%s.bat"), strTransformName);
-   //#ifdef _DEBUG
+   //#ifdef DEBUG
       strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_script\\%s\\%s.obj", false), strTransformName, System.file().name_(strTransformName));
       strP.Format(System.dir().stage(m_strPlatform+"\\dynamic_source\\%s.pdb"), System.dir().path(System.dir().name(strTransformName), strScript, false));
       strL.Format(System.dir().stage(m_strPlatform+"\\dynamic_source\\%s.lib"), System.dir().path(System.dir().name(strTransformName), strScript, false));
@@ -357,7 +357,7 @@ namespace dynamic_source
       string strN = m_pmanager->m_strNetnodePath;
 
       string strBuildCmd;
-   //#ifdef _DEBUG
+   //#ifdef DEBUG
       strBuildCmd.Format(System.dir().votagus("app\\stage\\app\\matter\\dynamic_source_" + m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bat"));
    //#else
      // strBuildCmd.Format(System.dir().stage("front\\dynamic_source_cl.bat"));
@@ -610,7 +610,7 @@ namespace dynamic_source
 
       string strN = m_pmanager->m_strNetnodePath;
 
-   //#ifdef _DEBUG
+   //#ifdef DEBUG
       strTemplate = System.dir().path(strVotagusFolder, strSource, false );
    //#else
      // strTemplate = System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\matter\\dynamic_source_cl.bat", false);
@@ -628,7 +628,7 @@ namespace dynamic_source
       string strDest = "stage\\front\\";
       strDest += lpcszDest;
       string strCmd;
-   //#ifdef _DEBUG
+   //#ifdef DEBUG
       strCmd = System.dir().path(strVotagusFolder, strDest, false);
    //#else
      // strCmd = System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
@@ -751,7 +751,7 @@ namespace dynamic_source
       string strLib(System.file().name_(strName));
 
 
-   //#ifdef _DEBUG
+   //#ifdef DEBUG
       m_strLibraryPath.Format(System.dir().stage(m_strPlatform + "\\dynamic_source\\library\\%s.dll"), System.dir().path(System.dir().name(strName), strLib, false));
    //#else
      // plib->m_strLibraryPath.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
@@ -777,7 +777,7 @@ namespace dynamic_source
          string str1;
          str1 = "library/source/" + strRel;
          string strCmd;
-   //#ifdef _DEBUG
+   //#ifdef DEBUG
          strCmd.Format(System.dir().ca2("stage\\front\\dynamic_source_" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat"));
    //#else
      //    strCmd.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
@@ -851,7 +851,7 @@ namespace dynamic_source
          strObjs += " ";
       }
       string strCmd;
-   //#ifdef _DEBUG
+   //#ifdef DEBUG
       strCmd.Format(System.dir().stage("front\\dynamic_source_" + m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bat"));
    //#else
      // strCmd.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));

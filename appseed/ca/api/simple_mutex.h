@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 #if defined(__CA2__DLL) || defined(SPALIB_DLL)
    #define MUTEX_LOCK_DECL  _declspec(dllexport)
 #else
@@ -12,7 +12,7 @@
 #endif
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 typedef void *HANDLE;
 #else
 #include <pthread.h>
@@ -22,7 +22,7 @@ class MUTEX_LOCK_DECL simple_mutex
 {
 public:
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
    HANDLE            m_hMutex;
 #else
    pthread_mutex_t   m_mutex;

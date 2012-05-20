@@ -40,7 +40,7 @@ namespace calculator
 
    }
 
-#ifdef _DEBUG
+#ifdef DEBUG
    void view::assert_valid() const
    {
       ::userbase::view::assert_valid();
@@ -50,7 +50,7 @@ namespace calculator
    {
       ::userbase::view::dump(dumpcontext);
    }
-#endif //_DEBUG
+#endif //DEBUG
 
    /////////////////////////////////////////////////////////////////////////////
    // view message handlers

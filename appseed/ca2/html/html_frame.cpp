@@ -201,7 +201,7 @@ bool html_frame::pre_create_window(CREATESTRUCT& cs)
 /////////////////////////////////////////////////////////////////////////////
 // html_frame diagnostics
 
-#ifdef _DEBUG
+#ifdef DEBUG
 void html_frame::assert_valid() const
 {
    simple_frame_window::assert_valid();
@@ -213,7 +213,7 @@ void html_frame::dump(dump_context & dumpcontext) const
 }
 
 
-#endif //_DEBUG
+#endif //DEBUG
 
 
 

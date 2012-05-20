@@ -166,7 +166,7 @@ size_t base_ca2_msize(void * pvoid, int iBlockType)
 /////////////////////////////////////////////////////////////////////////////
 // Debug primitive::memory globals and implementation helpers
 
-#ifdef _DEBUG       // most of this file is for debugging
+#ifdef DEBUG       // most of this file is for debugging
 
 #undef new
 

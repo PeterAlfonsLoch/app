@@ -3,7 +3,7 @@
 
 simple_event::simple_event(bool bInitialWait)
 {
-#ifdef _WINDOWS
+#ifdef WINDOWS
    m_hEvent = ::CreateEvent;
 #else
    pthread_cond_init(&m_cond, NULL);
@@ -14,7 +14,7 @@ simple_event::simple_event(bool bInitialWait)
 simple_event::~simple_event()
 {
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
    ::CloseHandle(m_hEvent);
 #else
    pthread_cond_destroy(&m_cond);
@@ -24,7 +24,7 @@ simple_event::~simple_event()
 
 void simple_event::wait()
 {
-#ifdef _WINDOWS
+#ifdef WINDOWS
    WaitForSingleObject(m_hEvent, INFINITE);
 #else
    mutex_lock lockMutex(&m_mutex, true);

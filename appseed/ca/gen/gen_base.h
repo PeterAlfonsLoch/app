@@ -370,7 +370,7 @@ API_(void *) gen_WinModuleExtractCreateWndData(_WIN_MODULE* pWinModule);
 /*template <class T>
 const char * gen_DebugGetClassName(T*)
 {
-//#ifdef _DEBUG
+//#ifdef DEBUG
    const _INTMAP_ENTRY* pEntries = T::_GetEntries();
    return (const char *)pEntries[-1].dw;
 //#else

@@ -22,10 +22,10 @@ namespace userbase
 
       virtual void on_alloc(::ca::application * papp);
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
       virtual void dump(dump_context&) const;
       virtual void assert_valid() const;
-   #endif //_DEBUG
+   #endif //DEBUG
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
          

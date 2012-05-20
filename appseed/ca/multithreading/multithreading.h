@@ -33,7 +33,7 @@ class multi_lock;
 
 #include "multithreading_manual_reset_event.h"
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 #include <Winsvc.h>
 #endif
 

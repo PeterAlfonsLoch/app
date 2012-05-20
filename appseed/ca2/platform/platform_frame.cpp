@@ -50,7 +50,7 @@ namespace platform
       return TRUE;
    }
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void frame::assert_valid() const
    {
       simple_frame_window::assert_valid();
@@ -62,7 +62,7 @@ namespace platform
    }
 
 
-   #endif //_DEBUG
+   #endif //DEBUG
 
    void frame::install_message_handling(::gen::message::dispatch * pinterface)
    {

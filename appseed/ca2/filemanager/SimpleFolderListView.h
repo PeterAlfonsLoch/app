@@ -22,7 +22,7 @@ public:
    virtual bool pre_create_window(CREATESTRUCT& cs);
 
    virtual ~SimpleFolderListView ();
-#ifdef _DEBUG
+#ifdef DEBUG
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
 #endif

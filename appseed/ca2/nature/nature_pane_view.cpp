@@ -27,7 +27,7 @@ namespace nature
    {
    }
 
-#ifdef _DEBUG
+#ifdef DEBUG
    void pane_view::assert_valid() const
    {
       ::userex::pane_tab_view::assert_valid();
@@ -37,7 +37,7 @@ namespace nature
    {
       ::userex::pane_tab_view::dump(dumpcontext);
    }
-#endif //_DEBUG
+#endif //DEBUG
 
 
    void pane_view::_001OnCreate(gen::signal_object * pobj) 

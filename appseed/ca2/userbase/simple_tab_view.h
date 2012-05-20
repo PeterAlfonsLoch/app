@@ -14,7 +14,7 @@ public:
 
    virtual void _001OnDraw(::ca::graphics * pdc);
 
-#ifdef _DEBUG
+#ifdef DEBUG
    virtual void assert_valid() const;
 #ifndef _WIN32_WCE
    virtual void dump(dump_context & dumpcontext) const;

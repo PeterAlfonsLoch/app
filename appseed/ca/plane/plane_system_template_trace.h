@@ -5,18 +5,22 @@ namespace gen
 {
 
 
-   class CLASS_DECL_ca trace_add_file_and_line :
-      public string_format_printer
+   class CLASS_DECL_ca trace_add_file_and_line 
+#if defined(LINUX)
+      : public string_format_printer
+#endif
    {
    public:
+
 
       ::ca::application *     m_papp;
       const char * const      m_pszFileName;
       const int               m_nLineNo;
       string                  m_str;
 
+#if defined(LINUX)
 
-      class category_level
+      class CLASS_DECL_ca category_level
       {
       public:
 
@@ -27,6 +31,7 @@ namespace gen
 
       };
 
+#endif
 
       trace_add_file_and_line(::ca::application * papp, const char *pszFileName, int nLineNo)
          : m_papp(papp), m_pszFileName(pszFileName), m_nLineNo(nLineNo)

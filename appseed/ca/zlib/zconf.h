@@ -67,7 +67,7 @@
 #if (defined(OS_2) || defined(__OS2__)) && !defined(OS2)
 #  define OS2
 #endif
-#if defined(_WINDOWS) && !defined(WINDOWS)
+#if defined(WINDOWS) && !defined(WINDOWS)
 #  define WINDOWS
 #endif
 #if defined(_WIN32) || defined(_WIN32_WCE) || defined(__WIN32__)
@@ -252,7 +252,7 @@
 #  define ZEXPORT
 #endif*/
 #define ZEXPORT
-#ifdef _WINDOWS
+#ifdef WINDOWS
 #ifdef __CA__DLL
    #define ZEXTERN  _declspec(dllexport)
 #else

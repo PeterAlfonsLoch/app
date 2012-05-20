@@ -24,7 +24,7 @@ namespace userbase
 
       bool LoadMenu(xml::node * pnode, ::user::interaction* pguieNotify, UINT uiCallbackMessage);
          
-   #ifdef _DEBUG
+   #ifdef DEBUG
       virtual void assert_valid() const;
    #ifndef _WIN32_WCE
       virtual void dump(dump_context & dumpcontext) const;

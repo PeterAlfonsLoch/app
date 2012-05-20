@@ -109,7 +109,7 @@ There is no ternary operator implemented yet
 
 #include "framework.h"
 
-#ifdef _DEBUG
+#ifdef DEBUG
 #	ifdef _MSC_VER
 #		define new DEBUG_NEW
 #	else
@@ -976,7 +976,7 @@ CScriptVarLink *CScriptVar::addChild(const string &childName, CScriptVar *child)
    // if no child supplied, create one
    if (!child)
       child = new CScriptVar();
-#ifdef _DEBUG
+#ifdef DEBUG
    if(findChild(childName))
       ASSERT(0); // addCild - the child exists
 #endif
@@ -1008,7 +1008,7 @@ CScriptVarLink *CScriptVar::addChildNoDup(const string &childName, CScriptVar *c
 
 bool CScriptVar::removeLink(CScriptVarLink *&link) {
    if (!link) return false;
-#ifdef _DEBUG
+#ifdef DEBUG
    if(findChild(link->name) != link)
       ASSERT(0); // removeLink - the link is not atached to this var
 #endif

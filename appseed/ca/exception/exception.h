@@ -80,7 +80,7 @@ CLASS_DECL_ca dump_context & operator<<(dump_context & dumpcontext, const ::date
 CLASS_DECL_ca dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time & dateSrc);
 
 
-#if defined(_DEBUG) && !defined(___NO_DEBUG_CRT)
+#if defined(DEBUG) && !defined(___NO_DEBUG_CRT)
 
 
 
@@ -141,13 +141,13 @@ void gen::DoForAllClasses(void (c_cdecl *pfn)(::ca::type_info pClass,
 #define __output_debug_string(lpsz) ::OutputDebugString(lpsz)
 
 // diagnostic initialization
-#ifndef _DEBUG
+#ifndef DEBUG
 #define __diagnostic_init() TRUE
 #else
 bool __diagnostic_init();
 #endif
 
-#endif // _DEBUG
+#endif // DEBUG
 
 
 
@@ -155,7 +155,7 @@ bool __diagnostic_init();
 #define __stack_dump_TARGET_CLIPBOARD 0x0002
 #define __stack_dump_TARGET_BOTH                      0x0003
 #define __stack_dump_TARGET_ODS                       0x0004
-#ifdef _DEBUG
+#ifdef DEBUG
 #define __stack_dump_TARGET_DEFAULT           __stack_dump_TARGET_TRACE
 #else
 #define __stack_dump_TARGET_DEFAULT           __stack_dump_TARGET_CLIPBOARD
@@ -165,12 +165,12 @@ void __dump_stack(DWORD dwFlags = __stack_dump_TARGET_DEFAULT);
 
 #include "exception_dump_context.h"
 
-#ifdef _DEBUG
+#ifdef DEBUG
 extern __DATA dump_context g_dumpcontext;
 extern __DATA bool g_bTraceEnabled;
 #endif
 
-#ifdef _DEBUG
+#ifdef DEBUG
 #define AFXDUMP( exp ) (void)(g_dumpcontext<<exp)
 #else
 #define AFXDUMP( exp )
@@ -195,7 +195,7 @@ namespace radix
 } // namespace radix
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
 #define DEBUG_NEW new(__FILE__, __LINE__)
 #endif
 
@@ -221,7 +221,7 @@ CLASS_DECL_ca void __dump(const ::radix::object* pOb); // dump an object from Co
 
 
 // extern gen::CTrace TRACE;
-#ifdef _DEBUG
+#ifdef DEBUG
 #ifndef TRACE
 #define TRACE ::gen::trace_add_file_and_line(m_papp, __FILE__, __LINE__)
 #define APPTRACE(papp) ::gen::trace_add_file_and_line(papp, __FILE__, __LINE__)
@@ -248,10 +248,10 @@ CLASS_DECL_ca void __dump(const ::radix::object* pOb); // dump an object from Co
 
 #else
 
-#define DEBUG_ONLY(f)      (()0)
+#define DEBUG_ONLY(f)      ((void)0)
 
-#define VERIFY(f)          (()(f))
-#define DEBUG_ONLY(f)      (()0)
+#define VERIFY(f)          ((void)(f))
+#define DEBUG_ONLY(f)      ((void)0)
 #pragma warning(push)
 #pragma warning(disable : 4793)
 inline void c_cdecl __trace(...) { }
@@ -262,12 +262,12 @@ inline void c_cdecl __trace(...) { }
 #define TRACE2(sz, p1, p2)
 #define TRACE3(sz, p1, p2, p3)
 
-#endif // !_DEBUG*/
+#endif // !DEBUG*/
 
 #include "exception_debug.h"
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
 
 //#define ASSERT(f)          DEBUG_ONLY(() ((f) || !::__assert_failed_line(THIS_FILE, __LINE__) || (__debug_break(), 0)))
 #define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && (!::__assert_failed_line(__FILE__, __LINE__) || (__debug_break(), 0))) || (!is_debugger_attached() && (throw assert_exception(__FILE__, __LINE__), 0))))
@@ -309,14 +309,14 @@ inline void c_cdecl __trace(...) { }
 #endif
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
 #	define UNUSED(x) x
 #else
 #  define UNUSED(x) UNUSED_ALWAYS(x)
 #endif
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
 #define REPORT_EXCEPTION(pException, szMsg) \
    do { \
       string str; \
@@ -382,7 +382,7 @@ inline errno_t c_runtime_error_check(errno_t error)
         case ERANGE:
             throw invalid_argument_exception();
             break;
-#if defined(_WINDOWS)
+#if defined(WINDOWS)
         case STRUNCATE:
 #endif
         case 0:
@@ -396,7 +396,7 @@ inline errno_t c_runtime_error_check(errno_t error)
 
 inline void __cdecl __clearerr_s(FILE *stream)
 {
-#ifdef _WINDOWS
+#ifdef WINDOWS
    C_RUNTIME_ERROR_CHECK(::clearerr_s(stream));
 #else
    ::clearerr(stream);

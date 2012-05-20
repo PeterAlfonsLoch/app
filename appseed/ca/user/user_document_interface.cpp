@@ -21,7 +21,7 @@ namespace user
    document_interface::~document_interface()
    {
    // do not call delete_contents here !
-#ifdef _DEBUG
+#ifdef DEBUG
    if (is_modified())
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: destroying an unsaved document_interface.\n");
 #endif
@@ -525,7 +525,7 @@ namespace user
 
    bool document_interface::on_new_document()
    {
-   #ifdef _DEBUG
+   #ifdef DEBUG
       if(is_modified())
          TRACE(::radix::trace::category_AppMsg, 0, "Warning: on_new_document replaces an unsaved document_interface.\n");
    #endif
@@ -539,7 +539,7 @@ namespace user
 
    bool document_interface::on_open_document(var varFile)
    {
-   #ifdef _DEBUG
+   #ifdef DEBUG
       if (is_modified())
          TRACE(::radix::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document_interface.\n");
    #endif

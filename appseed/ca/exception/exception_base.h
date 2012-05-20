@@ -9,7 +9,7 @@ class string;
 
 class CLASS_DECL_ca base_exception :
    virtual public ::ca::exception
-#ifdef _WINDOWS
+#ifdef WINDOWS
    ,public call_stack
 #endif
 {

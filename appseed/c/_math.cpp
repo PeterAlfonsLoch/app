@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#ifndef _X86_
+#ifndef X86
 #include <math.h>
 #endif
 
@@ -32,7 +32,7 @@ CLASS_DECL_c double fabs_dup(double f)
 #ifdef SUPORTA_MATEMATICA_AVANCADA
 CLASS_DECL_c double atan_dup(double d)
 {
-#ifdef _X86_
+#ifdef X86
     _asm
     {
         fld DWORD PTR [d]
@@ -57,7 +57,7 @@ CLASS_DECL_c double acos_dup(double d)
 
 CLASS_DECL_c double sqrt_dup(double d)
 {
-#ifdef _X86_
+#ifdef X86
     _asm
     {
         fld DWORD PTR [d]
@@ -83,7 +83,7 @@ CLASS_DECL_c double fmod_dup(double x, double y)
 
 CLASS_DECL_c double exp_dup(double d)
 {
-#ifdef _X86_
+#ifdef X86
     _asm
     {
         fld DWORD PTR [d]
@@ -98,7 +98,7 @@ CLASS_DECL_c double exp_dup(double d)
 
 CLASS_DECL_c double log_dup(double d)
 {
-#ifdef _X86_
+#ifdef X86
     _asm
     {
         fld DWORD PTR [d]
@@ -113,7 +113,7 @@ CLASS_DECL_c double log_dup(double d)
 
 CLASS_DECL_c double tan_dup(double d)
 {
-#ifdef _X86_
+#ifdef X86
     _asm
     {
         fld DWORD PTR [d]
@@ -128,7 +128,7 @@ CLASS_DECL_c double tan_dup(double d)
 
 CLASS_DECL_c double sin_dup(double d)
 {
-#ifdef _X86_
+#ifdef X86
     _asm
     {
         fld DWORD PTR [d]
@@ -143,7 +143,7 @@ CLASS_DECL_c double sin_dup(double d)
 
 CLASS_DECL_c double cos_dup(double d)
 {
-#ifdef _X86_
+#ifdef X86
     _asm
     {
         fld DWORD PTR [d]

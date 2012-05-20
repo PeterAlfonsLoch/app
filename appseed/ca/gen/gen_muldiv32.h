@@ -24,7 +24,7 @@
     //
     //----------------------------------------------------------------------;
 
-    #ifdef _X86_
+    #ifdef X86
 
         //
         //  Use 32-bit x86 assembly.
@@ -93,7 +93,7 @@
         #pragma warning(default:4035 4704)
 
 
-#elif defined(_AMD64_)
+#elif defined(AMD64)
 
         #define MulDivRN MulDiv   // Doesn't work with /Ox; MSVC20 messes up
                         // the inline asm code, instead of including

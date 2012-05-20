@@ -66,7 +66,7 @@ void html_view::install_message_handling(::gen::message::dispatch * pinterface)
 /////////////////////////////////////////////////////////////////////////////
 // html_view diagnostics
 
-#ifdef _DEBUG
+#ifdef DEBUG
 void html_view::assert_valid() const
 {
    ::userbase::view::assert_valid();
@@ -76,7 +76,7 @@ void html_view::dump(dump_context & dumpcontext) const
 {
    ::userbase::view::dump(dumpcontext);
 }
-#endif //_DEBUG
+#endif //DEBUG
 
 
 bool html_view::pre_create_window(CREATESTRUCT& cs)

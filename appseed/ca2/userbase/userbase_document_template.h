@@ -17,7 +17,7 @@ namespace userbase
       virtual ~document_template();
 
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
       virtual void dump(dump_context&) const;
       virtual void assert_valid() const;
    #endif

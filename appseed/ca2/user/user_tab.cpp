@@ -243,6 +243,7 @@ namespace user
          if(!GetParentFrame()->IsFullScreen())
          {
             m_bShowTabs = true;
+            layout();
          }
          else
          {
@@ -256,6 +257,7 @@ namespace user
          ClientToScreen(rectTab);
          point ptCursor = Bergedge.m_ptCursor;
          m_bShowTabs = rectTab.contains(ptCursor);
+         layout();
          if(!m_bShowTabs)
             return;
       }
@@ -529,7 +531,7 @@ namespace user
             m_rectTab.height(),
             0);*/
 
-         get_data()->m_rectTabClient.left       = get_data()->m_rectTab.right;
+         get_data()->m_rectTabClient.left       = m_bShowTabs ? get_data()->m_rectTab.right : rectClient.left;
          get_data()->m_rectTabClient.top        = get_data()->m_rectTab.top;
          get_data()->m_rectTabClient.right      = rectClient.right;
          get_data()->m_rectTabClient.bottom     = get_data()->m_rectTab.bottom;
@@ -598,7 +600,7 @@ namespace user
             0);*/
 
          get_data()->m_rectTabClient.left       = get_data()->m_rectTab.left;
-         get_data()->m_rectTabClient.top        = get_data()->m_rectTab.bottom;
+         get_data()->m_rectTabClient.top        = m_bShowTabs ? get_data()->m_rectTab.bottom : rectClient.top;
          get_data()->m_rectTabClient.right      = get_data()->m_rectTab.right;
          get_data()->m_rectTabClient.bottom     = rectClient.bottom;
       }
@@ -1460,6 +1462,7 @@ namespace user
                if(GetParentFrame()->IsFullScreen())
                {
                   m_bShowTabs = true;
+                  layout();
                }
             }
          }

@@ -46,7 +46,7 @@ namespace nature
    {
    }
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void document::assert_valid() const
    {
       ::userbase::document::assert_valid();
@@ -56,7 +56,7 @@ namespace nature
    {
       ::userbase::document::dump(dumpcontext);
    }
-   #endif //_DEBUG
+   #endif //DEBUG
 
    /////////////////////////////////////////////////////////////////////////////
    // document serialization

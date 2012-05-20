@@ -5,7 +5,7 @@
 
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 #ifdef __CA2__DLL
    #define CLASS_DECL_ca2  _declspec(dllexport)
 #else

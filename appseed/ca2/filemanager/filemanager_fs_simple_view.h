@@ -34,7 +34,7 @@ namespace filemanager
             void set_request_interface(::ex1::request_interface * prequestinterface);
 
             virtual ~view();
-         #ifdef _DEBUG
+         #ifdef DEBUG
             virtual void assert_valid() const;
             virtual void dump(dump_context & dumpcontext) const;
          #endif

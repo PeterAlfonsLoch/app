@@ -190,7 +190,7 @@ namespace nature
    /////////////////////////////////////////////////////////////////////////////
    // frame diagnostics
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void frame::assert_valid() const
    {
       simple_frame_window::assert_valid();
@@ -202,7 +202,7 @@ namespace nature
    }
 
 
-   #endif //_DEBUG
+   #endif //DEBUG
 
    /////////////////////////////////////////////////////////////////////////////
    // frame message handlers

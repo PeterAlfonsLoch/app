@@ -33,7 +33,7 @@ namespace filemanager
          }
 
 
-         #ifdef _DEBUG
+         #ifdef DEBUG
          void view::assert_valid() const
          {
             ::userbase::split_view::assert_valid();
@@ -43,7 +43,7 @@ namespace filemanager
          {
             ::userbase::split_view::dump(dumpcontext);
          }
-         #endif //_DEBUG
+         #endif //DEBUG
 
          void view::CreateViews()
          {

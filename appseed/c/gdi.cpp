@@ -337,7 +337,7 @@ HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam)
 bool TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
 {
    WCHAR * pwsz = utf8_to_16(pszUtf8);
-   bool b = TextOutW(hdc, x, y, pwsz, (int) wcslen_dup(pwsz));
+   bool b = TextOutW(hdc, x, y, pwsz, (int) wcslen_dup(pwsz)) != FALSE;
    delete  [] pwsz;
    return b;
 }

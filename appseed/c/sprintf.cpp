@@ -44,7 +44,7 @@ int vsnprintf_dup(char *dest, size_t n, const char *fmt, va_list args)
 
 int vsprintf_dup(char *dest, const char *fmt, va_list args)
 {
-   #ifdef _WINDOWS
+   #ifdef WINDOWS
 	int retValue = wvsprintfA(dest, fmt, args);
 	#else
 	int retValue = vsprintf(dest, fmt, args);
@@ -79,7 +79,7 @@ int swnprintf_dup(wchar_t *dest, size_t n, const wchar_t *fmt, ...)
 int vswprintf_dup(wchar_t *dest, size_t n, const wchar_t *fmt, va_list args)
 {
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 	int retValue = wvsprintfW(dest, fmt, args);
 #else
 	int retValue = vswprintf(dest, n, fmt, args);

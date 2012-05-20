@@ -71,7 +71,7 @@ DWORD readCDAudioLBA_D8( HCDROM hCD, LPTRACKBUF t )
       cdHandles[idx].bInit = TRUE;
     }
 
-#ifdef _DEBUG
+#ifdef DEBUG
   dbprintf( "akrip32: readCDAudioLBA_D8: (%d:%d:%d) %08X:%02X", 
 	    cdHandles[idx].ha, cdHandles[idx].tgt, cdHandles[idx].lun,
 	    t->startFrame, t->numFrames );
@@ -107,7 +107,7 @@ DWORD readCDAudioLBA_D8( HCDROM hCD, LPTRACKBUF t )
 
   if ( s.SRB_Status != SS_COMP )
     {
-#ifdef _DEBUG
+#ifdef DEBUG
       BYTE *p;
       dbprintf( "akrip32: readCDAudioLBA_D8: ERROR! 0x%08X\n", s.SRB_Status );
       dbprintf( "akrip32:  haStat == %d (0x%04X), tgtStat == %d (0x%04X)",

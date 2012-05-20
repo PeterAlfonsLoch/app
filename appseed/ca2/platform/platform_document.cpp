@@ -49,7 +49,7 @@ namespace platform
 
 
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void document::assert_valid() const
    {
       ::userbase::document::assert_valid();
@@ -59,7 +59,7 @@ namespace platform
    {
       ::userbase::document::dump(dumpcontext);
    }
-   #endif //_DEBUG
+   #endif //DEBUG
 
    /////////////////////////////////////////////////////////////////////////////
    // document serialization

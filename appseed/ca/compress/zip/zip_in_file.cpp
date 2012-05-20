@@ -486,7 +486,7 @@ namespace zip
    /////////////////////////////////////////////////////////////////////////////
    // FileException helpers
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    static const char * rgszFileExceptionCause[] =
    {
       "none",
@@ -512,7 +512,7 @@ namespace zip
    /*void vfxThrowFileException(int cause, LONG lOsError,
    //   const wchar_t * lpszFileName /* == NULL */
    /*{
-   #ifdef _DEBUG
+   #ifdef DEBUG
       const char * lpsz;
       if (cause >= 0 && cause < _countof(rgszFileExceptionCause))
          lpsz = rgszFileExceptionCause[cause];

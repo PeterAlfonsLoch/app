@@ -58,7 +58,7 @@ namespace platform
    /////////////////////////////////////////////////////////////////////////////
    // pane_view diagnostics
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void pane_view::assert_valid() const
    {
       ::userbase::view::assert_valid();
@@ -68,7 +68,7 @@ namespace platform
    {
       ::userbase::view::dump(dumpcontext);
    }
-   #endif //_DEBUG
+   #endif //DEBUG
 
    /////////////////////////////////////////////////////////////////////////////
    // pane_view message handlers

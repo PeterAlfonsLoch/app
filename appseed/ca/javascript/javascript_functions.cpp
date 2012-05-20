@@ -25,7 +25,7 @@
 
 #include "framework.h"
 
-#ifdef _DEBUG
+#ifdef DEBUG
 #	ifdef _MSC_VER
 #		define new DEBUG_NEW
 #	endif

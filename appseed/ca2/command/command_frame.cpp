@@ -159,7 +159,7 @@ namespace command
    /////////////////////////////////////////////////////////////////////////////
    // frame diagnostics
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void frame::assert_valid() const
    {
 	   simple_frame_window::assert_valid();
@@ -171,7 +171,7 @@ namespace command
    }
 
 
-   #endif //_DEBUG
+   #endif //DEBUG
 
 
    void frame::_001OnTimer(gen::signal_object * pobj) 

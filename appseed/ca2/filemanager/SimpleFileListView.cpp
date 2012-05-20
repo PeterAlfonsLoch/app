@@ -66,7 +66,7 @@ namespace filemanager
 
 
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void SimpleFileListView::assert_valid() const
    {
       ::userbase::view::assert_valid();
@@ -76,7 +76,7 @@ namespace filemanager
    {
       ::userbase::view::dump(dumpcontext);
    }
-   #endif //_DEBUG
+   #endif //DEBUG
 
    void SimpleFileListView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
    {

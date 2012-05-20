@@ -20,7 +20,7 @@ namespace userbase
    {
    }
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void tab_view::assert_valid() const
    {
       view::assert_valid();
@@ -30,7 +30,7 @@ namespace userbase
    {
       view::dump(dumpcontext);
    }
-   #endif //_DEBUG
+   #endif //DEBUG
 
 
    void tab_view::_001OnCreate(gen::signal_object * pobj) 

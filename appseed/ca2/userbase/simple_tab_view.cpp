@@ -17,7 +17,7 @@ simple_tab_view::~simple_tab_view()
 
 // simple_tab_view diagnostics
 
-#ifdef _DEBUG
+#ifdef DEBUG
 void simple_tab_view::assert_valid() const
 {
    ::userbase::view::assert_valid();
@@ -29,7 +29,7 @@ void simple_tab_view::dump(dump_context & dumpcontext) const
    ::userbase::view::dump(dumpcontext);
 }
 #endif
-#endif //_DEBUG
+#endif //DEBUG
 
 void simple_tab_view::layout()
 {

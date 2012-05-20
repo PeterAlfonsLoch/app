@@ -143,7 +143,7 @@ namespace ex1
    /////////////////////////////////////////////////////////////////////////////
    // file_exception helpers
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    static const char * rgszFileExceptionCause[] =
    {
       "none",
@@ -169,7 +169,7 @@ namespace ex1
    /*void vfxThrowFileException(int cause, LONG lOsError,
    //   const char * lpszFileName /* == NULL */
    /*{
-   #ifdef _DEBUG
+   #ifdef DEBUG
       const char * lpsz;
       if (cause >= 0 && cause < _countof(rgszFileExceptionCause))
          lpsz = rgszFileExceptionCause[cause];
@@ -461,7 +461,7 @@ namespace ex1
    void vfxThrowFileException(::ca::application  * papp, int cause, LONG lOsError,
       const char * lpszFileName /* == NULL */)
    {
-   #ifdef _DEBUG
+   #ifdef DEBUG
       const char * lpsz;
       if (cause >= 0 && cause < _countof(rgszFileExceptionCause))
          lpsz = rgszFileExceptionCause[cause];

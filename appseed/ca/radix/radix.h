@@ -16,14 +16,14 @@
 #error <atldbgmem.h> cannot be used in ca2 API projects. See __enable_memory_tracking
 #endif
 
-#if defined(_MFC_DLL_BLD) && defined(_DEBUG)
+#if defined(_MFC_DLL_BLD) && defined(DEBUG)
 #ifndef _CRTDBG_MAP_ALLOC
 #define _CRTDBG_MAP_ALLOC
 #endif
 #endif
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 #include <new.h>
 #endif
 
@@ -149,7 +149,7 @@ class dump_context;
 #pragma warning(disable: 4705)  // statement has no effect in optimized code
 #pragma warning(disable: 4191)  // pointer-to-function casting
 // warnings caused by normal optimizations
-#ifndef _DEBUG
+#ifndef DEBUG
 #pragma warning(disable: 4701)  // local var *may* be used without init
 #pragma warning(disable: 4702)  // unreachable code caused by optimizations
 #pragma warning(disable: 4791)  // loss of debugging info in release version
@@ -411,7 +411,7 @@ typedef struct tag_TimerCallbackCreateTimer
 #include "ca/gen/gen_base.h"
 #include "ca/radix/radix_constraint.h"
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 #ifndef _INC_SHELLAPI
    #include <shellapi.h>
 #endif
@@ -567,12 +567,12 @@ enum __HELP_TYPE
 
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
 // Diagnostic Output
 CLASS_DECL_ca dump_context& operator<<(dump_context & dumpcontext, SIZE size);
 CLASS_DECL_ca dump_context& operator<<(dump_context & dumpcontext, POINT point);
 CLASS_DECL_ca dump_context& operator<<(dump_context & dumpcontext, const RECT& rect);
-#endif //_DEBUG
+#endif //DEBUG
 
 // Serialization
 /*CLASS_DECL_ca CArchive& operator<<(CArchive& ar, SIZE size);

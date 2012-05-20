@@ -23,7 +23,7 @@ namespace gen
       return g_fixedallocVar.Alloc();
    }
 
-#ifdef _DEBUG
+#ifdef DEBUG
 
    void * PASCAL property::operator new(size_t nSize, const char * lpszFileName, int nLine)
    {
@@ -42,7 +42,7 @@ namespace gen
       g_fixedallocVar.Free(p);
    }
 
-#ifdef _DEBUG
+#ifdef DEBUG
 
    inline void PASCAL property::operator delete(void *pvar, const char *, int)
    {

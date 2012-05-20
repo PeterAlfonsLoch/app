@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#ifdef _DEBUG
+#ifdef DEBUG
 
 void _debug_arrayPtrAlloc()
 {
@@ -15,4 +15,4 @@ void _debug_arrayPtrAlloc()
 
 }
 
-#endif // _DEBUG
+#endif // DEBUG

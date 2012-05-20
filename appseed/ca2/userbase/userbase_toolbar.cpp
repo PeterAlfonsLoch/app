@@ -1393,7 +1393,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // tool_bar diagnostics
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void tool_bar::assert_valid() const
    {
       // Note: ::userbase::control_bar::assert_valid is not called because it checks for

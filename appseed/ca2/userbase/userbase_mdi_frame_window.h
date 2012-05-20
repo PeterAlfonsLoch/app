@@ -37,7 +37,7 @@ namespace userbase
    public:
       ::user::interaction* m_pguieMdiClient;       // MDI Client ::ca::window handle
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
    #endif

@@ -73,7 +73,7 @@ namespace bergedge
       return TRUE;
    }
 
-#ifdef _DEBUG
+#ifdef DEBUG
    void frame::assert_valid() const
    {
       simple_frame_window::assert_valid();
@@ -83,7 +83,7 @@ namespace bergedge
    {
       simple_frame_window::dump(dumpcontext);
    }
-#endif //_DEBUG
+#endif //DEBUG
 
 
    void frame::_001OnTimer(gen::signal_object * pobj) 

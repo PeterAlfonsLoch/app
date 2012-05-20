@@ -30,7 +30,7 @@ void simple_form_list_view::install_message_handling(::gen::message::dispatch * 
 
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
 void simple_form_list_view::assert_valid() const
 {
    ::userbase::view::assert_valid();
@@ -40,7 +40,7 @@ void simple_form_list_view::dump(dump_context & dumpcontext) const
 {
    ::userbase::view::dump(dumpcontext);
 }
-#endif //_DEBUG
+#endif //DEBUG
 
 bool simple_form_list_view::pre_create_window(CREATESTRUCT& cs) 
 {

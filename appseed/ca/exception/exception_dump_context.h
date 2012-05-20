@@ -74,7 +74,7 @@ public:
 #endif
    dump_context& operator<<(HWND h);
    dump_context& operator<<(HDC h);
-#ifdef _WINDOWS
+#ifdef WINDOWS
    dump_context& operator<<(HMENU h);
    dump_context& operator<<(HACCEL h);
 #endif

@@ -20,7 +20,7 @@ namespace nature
 
       view(::ca::application * papp);
       virtual ~view();
-   #ifdef _DEBUG
+   #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
    #endif

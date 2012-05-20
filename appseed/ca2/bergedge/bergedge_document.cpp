@@ -29,7 +29,7 @@ namespace bergedge
    }
 
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void document::assert_valid() const
    {
       ::userbase::document::assert_valid();
@@ -39,7 +39,7 @@ namespace bergedge
    {
       ::userbase::document::dump(dumpcontext);
    }
-   #endif //_DEBUG
+   #endif //DEBUG
 
 
 

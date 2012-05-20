@@ -270,14 +270,14 @@ namespace gen
               }
               else
               {
-               #ifdef _DEBUG
+               #ifdef DEBUG
                   g_dumpcontext << "File could not be opened \n";
                #endif
               }
            }
            catch(ex1::file_exception_sp * pe)
            {
-         #ifdef _DEBUG
+         #ifdef DEBUG
    //         g_dumpcontext << "File could not be opened " << pe->m_cause << "\n";
          #endif
            }
@@ -529,7 +529,7 @@ namespace gen
          }
          catch(ex1::file_exception_sp * pe)
          {
-            #ifdef _DEBUG
+            #ifdef DEBUG
    //            g_dumpcontext << "File could not be opened " << pe->m_cause << "\n";
             #endif
          }

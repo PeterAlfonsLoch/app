@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 #include <shlobj.h>
 #endif
 

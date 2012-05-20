@@ -31,7 +31,7 @@ CLASS_DECL_c void spa_set_id(const char * psz)
 
 CLASS_DECL_c vsstring spa_get_platform()
 {
-#ifdef _X86_
+#ifdef X86
    return "x86";
 #else
    return "x64";

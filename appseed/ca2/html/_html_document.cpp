@@ -35,7 +35,7 @@ html_document::~html_document()
 
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
 void html_document::assert_valid() const
 {
    ::userbase::document::assert_valid();
@@ -45,7 +45,7 @@ void html_document::dump(dump_context & dumpcontext) const
 {
    ::userbase::document::dump(dumpcontext);
 }
-#endif //_DEBUG
+#endif //DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // html_document serialization

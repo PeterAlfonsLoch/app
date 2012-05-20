@@ -93,7 +93,7 @@ namespace hotplugin
       virtual void deferred_prodevian_redraw();
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
       virtual UINT_PTR message_handler(UINT_PTR uiMessage, WPARAM wparam, LPARAM lparam);
 #else
       virtual int message_handler(XEvent * pevent);

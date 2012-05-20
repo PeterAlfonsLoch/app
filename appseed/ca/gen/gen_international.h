@@ -17,7 +17,7 @@ namespace gen
       {
          CodePageShiftJIS = 932,
          CodePageLatin1 = 1252,
-#ifdef _WINDOWS
+#ifdef WINDOWS
          CodePageUtf8 = CP_UTF8,
          CodePageAnsi = CP_ACP,
          CodePageOem = CP_OEMCP,

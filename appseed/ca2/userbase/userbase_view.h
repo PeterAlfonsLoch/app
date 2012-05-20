@@ -59,10 +59,10 @@ namespace userbase
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
 
       virtual ~view();
-#ifdef _DEBUG
+#ifdef DEBUG
       virtual void dump(dump_context&) const;
       virtual void assert_valid() const;
-#endif //_DEBUG
+#endif //DEBUG
 
 
 

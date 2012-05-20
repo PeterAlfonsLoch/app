@@ -29,7 +29,7 @@ namespace filehandler
    /////////////////////////////////////////////////////////////////////////////
    // frame diagnostics
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void frame::assert_valid() const
    {
       simple_frame_window::assert_valid();
@@ -41,7 +41,7 @@ namespace filehandler
    }
 
 
-   #endif //_DEBUG
+   #endif //DEBUG
 
 
 } // namespace filehandler

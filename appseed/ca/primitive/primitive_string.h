@@ -75,7 +75,7 @@ CLASS_DECL_ca int64_t strtoi(const wchar_t * psz);
 
 inline UINT _gen_GetConversionACP()
 {
-#ifdef _WINDOWS
+#ifdef WINDOWS
    return CP_UTF8;
 #else
    return 0;
@@ -215,8 +215,10 @@ class fixed_alloc_array;
 
 
 class CLASS_DECL_ca string :
-   public simple_string,
-   public string_format_printer
+   public simple_string
+#if defined(LINUX)
+   , public string_format_printer
+#endif
 {
 public:
 
@@ -300,7 +302,7 @@ public:
 
    // Comparison
    int Compare(PCXSTR psz ) const;
-   int CompareNoCase(PCXSTR psz) const throw();
+   int CompareNoCase(PCXSTR psz) const RELEASENOTHROW;
 
 
 
@@ -1088,7 +1090,7 @@ inline int string::Compare(PCXSTR psz ) const
    return( string_trait::StringCompare( GetString(), psz ) );
 }
 
-inline int string::CompareNoCase(PCXSTR psz ) const throw()
+inline int string::CompareNoCase(PCXSTR psz ) const RELEASENOTHROW
 {
    ASSERT( __is_valid_string( psz ) );
    return( string_trait::StringCompareIgnore( GetString(), psz ) );

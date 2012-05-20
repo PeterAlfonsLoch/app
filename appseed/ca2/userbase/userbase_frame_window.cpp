@@ -268,7 +268,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // frame_window Diagnostics
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void frame_window::assert_valid() const
    {
       try
@@ -305,7 +305,7 @@ namespace userbase
 
       dumpcontext << "\n";
    }
-   #endif //_DEBUG
+   #endif //DEBUG
 
 
 

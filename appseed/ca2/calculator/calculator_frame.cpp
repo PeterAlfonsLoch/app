@@ -165,7 +165,7 @@ namespace calculator
    /////////////////////////////////////////////////////////////////////////////
    // frame diagnostics
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void frame::assert_valid() const
    {
       simple_frame_window::assert_valid();
@@ -177,7 +177,7 @@ namespace calculator
    }
 
 
-   #endif //_DEBUG
+   #endif //DEBUG
 
    void frame::OnTimer(UINT nIDEvent) 
    {

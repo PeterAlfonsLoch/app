@@ -1,16 +1,22 @@
-#include "c/c.h"
-
-
-#include "ca_seed.h"
-
-
 #pragma once
 
 
-#include "c/vms/vms.h"
+#include "c/c.h"
 
 
-#include "nodeapp/operational_system/ca2.h"
+#include "nodeapp/operational_system/operational_system.h"
+
+
+#ifdef WINDOWS
+#ifdef __CA__DLL
+   #define CLASS_DECL_ca  _declspec(dllexport)
+#else
+   #define CLASS_DECL_ca  _declspec(dllimport)
+#endif
+#else
+   #define CLASS_DECL_ca
+#endif
+
 
 
 namespace plane
@@ -60,13 +66,12 @@ extern "C"
 #define rgba_get_b(rgba)      ((byte)((rgba >> 16) & 0xff))
 #define rgba_get_a(rgba)      ((byte)((rgba >> 24) & 0xff))
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 #include <crtdbg.h>
 #else
 #include "api/debug.h"
 #endif
 
-#pragma pointers_to_members( full_generality, virtual_inheritance )
 
 #if defined(MACOS)
 #include "macos/macos.h"

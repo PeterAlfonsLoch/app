@@ -1020,7 +1020,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // control_bar diagnostics
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void control_bar::assert_valid() const
    {
       ::user::interaction::assert_valid();

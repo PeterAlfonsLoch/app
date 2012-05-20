@@ -5,7 +5,7 @@
 
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
 
 namespace ___FlagsDebug
 {
@@ -47,7 +47,7 @@ namespace ___FlagsDebug
 
 } // namespace ___FlagsDebug
 
-#endif // _DEBUG
+#endif // DEBUG
 
 
 

@@ -24,7 +24,7 @@ namespace gen
 
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
 
 void ___arrayStdSortTest()
 {
@@ -35,7 +35,7 @@ void ___arrayStdSortTest()
 
 }
 
-#endif // _DEBUG
+#endif // DEBUG
 
 
 

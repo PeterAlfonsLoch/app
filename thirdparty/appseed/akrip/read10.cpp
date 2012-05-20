@@ -102,7 +102,7 @@ DWORD initREAD10_2( HCDROM hCD )
 
       if ( s.SRB_Status != SS_COMP )
 	{
-#ifdef _DEBUG
+#ifdef DEBUG
 	  dbprintf( "akrip32: init10: #%d failed -> 0x%04X", i, s.SRB_Status );
 #endif
 	  alErrCode = ALERR_ASPI;
@@ -177,7 +177,7 @@ DWORD initREAD10( HCDROM hCD )
 
   if ( s.SRB_Status != SS_COMP )
     {
-#ifdef _DEBUG
+#ifdef DEBUG
       dbprintf( "akrip32: init10 failed -> 0x%04X", s.SRB_Status );
 #endif
       alErrCode = ALERR_ASPI;
@@ -312,7 +312,7 @@ DWORD readCDAudioLBA_READ10( HCDROM hCD, LPTRACKBUF t )
 
   if ( s.SRB_Status != SS_COMP )
     {
-#ifdef _DEBUG
+#ifdef DEBUG
       BYTE *p;
       dbprintf( "akrip32: readCDAudioLBA_READ10: ERROR! 0x%08X\n", s.SRB_Status );
       dbprintf( "akrip32:  haStat == %d (0x%04X), tgtStat == %d (0x%04X)",

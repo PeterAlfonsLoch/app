@@ -36,7 +36,7 @@ namespace userex
    }
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
    void second_list_view::assert_valid() const
    {
       simple_list_view::assert_valid();
@@ -46,7 +46,7 @@ namespace userex
    {
       simple_list_view::dump(dumpcontext);
    }
-#endif //_DEBUG
+#endif //DEBUG
 
 
    void second_list_view::install_message_handling(::gen::message::dispatch * pinterface)

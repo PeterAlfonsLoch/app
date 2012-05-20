@@ -113,7 +113,7 @@ namespace fs
    }
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
    void list::assert_valid() const
    {
       ::fs::list_interface::assert_valid();
@@ -123,7 +123,7 @@ namespace fs
    {
       ::fs::list_interface::dump(dumpcontext);
    }
-#endif //_DEBUG
+#endif //DEBUG
 
    void list::on_update(::view * pSender, LPARAM lHint, ::radix::object * phint)
    {

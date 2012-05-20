@@ -291,7 +291,7 @@ CLASS_DECL_ca bool __get_in_proc_server(const char * lpszCLSID, string & str);
 /////////////////////////////////////////////////////////////////////////////
 // Debugging/Tracing helpers
 
-#ifdef _DEBUG
+#ifdef DEBUG
    CLASS_DECL_ca bool __check_dialog_template(const char * lpszResource, bool bInvisibleChild);
 #endif
 

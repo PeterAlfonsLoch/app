@@ -27,7 +27,7 @@ namespace command
 
       DECL_GEN_SIGNAL(_001OnMenuMessage)
 	   virtual ~pane_view();
-   #ifdef _DEBUG
+   #ifdef DEBUG
 	   virtual void assert_valid() const;
 	   virtual void dump(dump_context & dumpcontext) const;
    #endif

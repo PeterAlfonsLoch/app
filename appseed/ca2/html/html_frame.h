@@ -23,7 +23,7 @@ public:
    void AnimateStatusBar();
    void SetAnimatedStatusBarText(const char * lpcsz);
    virtual ~html_frame();
-#ifdef _DEBUG
+#ifdef DEBUG
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
 #endif

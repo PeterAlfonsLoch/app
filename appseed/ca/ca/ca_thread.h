@@ -211,7 +211,7 @@ namespace ca
       virtual public ::exception::translator,
       virtual public pha(::user::interaction),
       virtual public ::ca::live_object
-#ifdef _WINDOWS
+#ifdef WINDOWS
       ,virtual public event_base
 #endif
    {

@@ -13,7 +13,7 @@ single_document_template::single_document_template(
 
 single_document_template::~single_document_template()
 {
-#ifdef _DEBUG
+#ifdef DEBUG
    if (m_pdocument != NULL)
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::document_interface.\n");
 #endif

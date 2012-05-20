@@ -715,7 +715,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="ca\ca_print_job.h" />
     <ClInclude Include="ca\ca_profiler.h" />
     <ClInclude Include="ca\ca_region.h" />
-    <ClInclude Include="ca\ca_seed.h" />
     <ClInclude Include="ca\ca_se_translator.h" />
     <ClInclude Include="ca\ca_se_translator.want_to_remove.h" />
     <ClInclude Include="ca\ca_smart_pointer.h" />

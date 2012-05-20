@@ -27,7 +27,7 @@ namespace nature
       void on_update(::view * pview, LPARAM lHint, ::radix::object* pHint);
 
       virtual ~pane_view();
-   #ifdef _DEBUG
+   #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
    #endif

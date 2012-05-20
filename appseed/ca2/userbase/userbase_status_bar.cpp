@@ -741,7 +741,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // status_bar diagnostics
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void status_bar::assert_valid() const
    {
       ::userbase::control_bar::assert_valid();
@@ -766,7 +766,7 @@ namespace userbase
       }
       dumpcontext << "\n";
    }
-   #endif //_DEBUG
+   #endif //DEBUG
 
    #ifdef __INIT_SEG
    #pragma code_seg(__INIT_SEG)

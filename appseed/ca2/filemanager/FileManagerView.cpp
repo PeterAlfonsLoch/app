@@ -20,7 +20,7 @@ FileManagerAView::~FileManagerAView()
 {
 }
 
-#ifdef _DEBUG
+#ifdef DEBUG
 void FileManagerAView::assert_valid() const
 {
    ::userbase::split_view::assert_valid();
@@ -31,7 +31,7 @@ void FileManagerAView::dump(dump_context & dumpcontext) const
    ::userbase::split_view::dump(dumpcontext);
 }
 
-#endif //_DEBUG
+#endif //DEBUG
 
 
 void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
@@ -269,7 +269,7 @@ FileManagerView::~FileManagerView()
 /////////////////////////////////////////////////////////////////////////////
 // FileManagerView diagnostics
 
-#ifdef _DEBUG
+#ifdef DEBUG
 void FileManagerView::assert_valid() const
 {
    ::userbase::split_view::assert_valid();
@@ -280,7 +280,7 @@ void FileManagerView::dump(dump_context & dumpcontext) const
    ::userbase::split_view::dump(dumpcontext);
 }
 
-#endif //_DEBUG
+#endif //DEBUG
 
 
 

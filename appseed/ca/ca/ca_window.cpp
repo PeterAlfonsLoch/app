@@ -2232,7 +2232,7 @@ namespace ca
       return FALSE;
       }
 
-      #ifdef _DEBUG
+      #ifdef DEBUG
       if (nCode < 0 && nCode != (int)0x8000)
       TRACE(::radix::trace::category_AppMsg, 0, "Implementation Warning: control notification = $%X.\n",
       nCode);

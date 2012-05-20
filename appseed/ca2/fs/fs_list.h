@@ -31,7 +31,7 @@ namespace fs
       DECL_GEN_SIGNAL(_001OnLButtonDblClk)
       DECL_GEN_SIGNAL(_001OnCancelMode)
 
-#ifdef _DEBUG
+#ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 #endif

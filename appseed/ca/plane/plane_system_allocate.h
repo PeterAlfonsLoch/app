@@ -22,7 +22,7 @@ namespace radix
    }
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
 
    inline void * PASCAL object::operator new(size_t nSize, const char * lpszFileName, int nLine)
    {

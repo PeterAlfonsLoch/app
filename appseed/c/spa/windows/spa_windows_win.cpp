@@ -11,7 +11,7 @@ bool __internal_pump_message()
 MSG g_msgSpaAdminWindow;
 	if (!::GetMessage(&g_msgSpaAdminWindow, NULL, NULL, NULL))
 	{
-#ifdef _DEBUG
+#ifdef DEBUG
 /*		TRACE(traceAppMsg, 1, "CWinThread::PumpMessage - Received WM_QUIT.\n");
 			pState->m_nDisablePumpCount++; // application must die*/
 #endif

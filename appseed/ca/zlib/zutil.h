@@ -11,7 +11,7 @@
 /* @(#) $Id$ */
 
 // undef DEBUG for zlib
-#undef DEBUG 
+//#undef DEBUG 
 
 
 #ifndef ZUTIL_H

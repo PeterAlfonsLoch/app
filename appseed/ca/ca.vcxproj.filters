@@ -1493,9 +1493,6 @@
     <ClInclude Include="ca\ca_se_translator.want_to_remove.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_seed.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_smart_pointer.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>

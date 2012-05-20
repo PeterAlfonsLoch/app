@@ -93,7 +93,7 @@ public:
    var(__int64 i64);
    var(unsigned int ui);
    var(uint64_t ui64);
-#ifdef _WINDOWS
+#ifdef WINDOWS
    var(unsigned long ul);
 #endif
    var(double d);
@@ -248,7 +248,7 @@ public:
    var & operator = (const ::datetime::time & time);
    var & operator = (const FILETIME & time);
    var & operator = (const SYSTEMTIME & time);
-#ifdef _WINDOWS
+#ifdef WINDOWS
    var & operator = (unsigned long ul);
 #endif
 #ifndef LINUX
@@ -372,25 +372,25 @@ public:
    const var & operator[] (var varKey) const;
    const var & operator[] (const char * pszKey) const;
    const var & operator[] (index iKey) const;
-#ifdef _AMD64_
+#ifdef AMD64
    inline const var & operator[] (int iKey) const { return operator[]((index) iKey); }
 #endif
    var & operator[] (var varKey);
    var & operator[] (const char * pszKey);
    var & operator[] (index iKey);
-#ifdef _AMD64_
+#ifdef AMD64
    inline var & operator[] (int iKey) { return operator[]((index) iKey); }
 #endif
    var at(index i) const;
-#ifdef _AMD64_
+#ifdef AMD64
    inline var at(int i) const { return at((index) i); }
 #endif
    var at(index i);
-#ifdef _AMD64_
+#ifdef AMD64
    inline var at(int i) { return at((index) i); }
 #endif
    var key(index i) const;
-#ifdef _AMD64_
+#ifdef AMD64
    inline var key(int i) const { return key((index) i); }
 #endif
    inline count array_get_count() const;
@@ -500,7 +500,7 @@ public:
    void PASCAL operator delete(void * p, void * pPlace);
 #endif
 
-#if defined(_DEBUG) && !defined(___NO_DEBUG_CRT)  || defined(LINUX)
+#if defined(DEBUG) && !defined(___NO_DEBUG_CRT)  || defined(LINUX)
    // for file name/line number tracking using DEBUG_NEW
    void * PASCAL operator new(size_t nSize, const char * lpszFileName, int nLine);
 #if _MSC_VER >= 1200  || defined(LINUX)

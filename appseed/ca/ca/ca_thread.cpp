@@ -64,7 +64,7 @@ namespace ca
 
       /*      ___THREAD_STATE* pState = __get_thread_state();
       // initialize message pump
-      #ifdef _DEBUG
+      #ifdef DEBUG
       pState->m_nDisablePumpCount = 0;
       #endif
       pState->m_msgCur.message = WM_NULL;

@@ -1,3 +1,6 @@
+#pragma once
+
+
 #define CarlosGustavoCecynLundgren "CarlosGustavoCecynLundgren" // 1 000_00000
 #define CamiloSasukeTsumanuma "CamiloSasukeTsumanuma" // 2
 #define carlosgustavocecynlundgren "carlosgustavocecynlundgren" // 3
@@ -6,14 +9,6 @@
 #define kamiiro "kamiiro" // 6 - Camilo (Camílo, Camiilo)
 #define zack "zack" // 7 - Camilo, Zaque
 #define car "car" // 8 - Carlos
-
-// reserved defines
-
-
-#pragma once
-
-
-
 
 
 #ifdef __cplusplus

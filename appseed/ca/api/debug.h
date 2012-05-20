@@ -148,13 +148,13 @@ typedef struct _CrtMemState
 
 /* _STATIC_ASSERT is for enforcing boolean/integral conditions at compile time.
    Since it is purely a compile-time mechanism that generates no code, the check
-   is left in even if _DEBUG is not defined. */
+   is left in even if DEBUG is not defined. */
 
 #ifndef _STATIC_ASSERT
 #define _STATIC_ASSERT(expr) typedef char __static_assert_t[ (expr) ]
 #endif
 
-#ifndef _DEBUG
+#ifndef DEBUG
 
  /****************************************************************************
  *
@@ -292,7 +292,7 @@ typedef struct _CrtMemState
 #define _CrtSetCheckCount(f)                ((int)0)
 #define _CrtGetCheckCount()                 ((int)0)
 
-#else   /* _DEBUG */
+#else   /* DEBUG */
 
 
  /****************************************************************************
@@ -891,5 +891,5 @@ CLASS_DECL__ int DECL_C _CrtDumpMemoryLeaks();
 CLASS_DECL__ int DECL_C _CrtSetCheckCount(int _CheckCount);
 CLASS_DECL__ int DECL_C _CrtGetCheckCount();
 
-#endif  /* _DEBUG */
+#endif  /* DEBUG */
 

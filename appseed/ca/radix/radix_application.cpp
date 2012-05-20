@@ -1723,7 +1723,7 @@ namespace radix
          }
       }
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
   //    if ((nType & MB_ICONMASK) == 0)
 //         TRACE(::radix::trace::category_AppMsg, 0, "Warning: no icon specified for message box.\n");
    #endif

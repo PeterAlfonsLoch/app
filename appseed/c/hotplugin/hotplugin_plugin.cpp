@@ -164,7 +164,7 @@ namespace hotplugin
       on_bare_paint(hdcWindow, lprect);
    }
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
    UINT_PTR plugin::message_handler(UINT_PTR uiMessage, WPARAM wparam, LPARAM lparam)
    {
       return 0;

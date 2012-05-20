@@ -29,18 +29,18 @@ It is provided "as is" without express or implied warranty.
 #undef VERIFY
 #endif // VERIFY
 
-#ifdef _DEBUG
+#ifdef DEBUG
 #define VERIFY(x) _ASSERTE(x)
 #else
 #define VERIFY(x) (x)
-#endif //_DEBUG
+#endif //DEBUG
 
 #define WORK_AROUND_SRCLINE_BUG
 
-#ifdef _DEBUG
+#ifdef DEBUG
 //#if 1
 // #define SYM_ENGINE_TRACE_SPIN_COUNT
-#endif //_DEBUG
+#endif //DEBUG
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -158,14 +158,14 @@ namespace exception
 
       memset(m_pstackframe, 0, sizeof(STACKFRAME));
 
-#ifdef _AMD64_
+#ifdef AMD64
       m_pstackframe->AddrPC.Offset       = pcontext->Rip;
       m_pstackframe->AddrPC.Mode         = AddrModeFlat;
       m_pstackframe->AddrStack.Offset    = pcontext->Rsp;
       m_pstackframe->AddrStack.Mode      = AddrModeFlat;
       m_pstackframe->AddrFrame.Offset    = pcontext->Rbp;
       m_pstackframe->AddrFrame.Mode      = AddrModeFlat;
-#elif defined(_X86_)
+#elif defined(X86)
       m_pstackframe->AddrPC.Offset       = pcontext->Eip;
       m_pstackframe->AddrPC.Mode         = AddrModeFlat;
       m_pstackframe->AddrStack.Offset    = pcontext->Esp;
@@ -464,7 +464,7 @@ namespace exception
    DWORD WINAPI engine::stack_trace_ThreadProc(void * lpvoidParam)
    {
 
-#ifdef _AMD64_
+#ifdef AMD64
 
       return -1;
 

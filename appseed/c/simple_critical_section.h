@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 
 
 class CLASS_DECL_c simple_critical_section
@@ -40,7 +40,7 @@ public:
 #endif
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 
 
 inline void simple_critical_section::lock()

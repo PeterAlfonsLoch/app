@@ -6,18 +6,18 @@
 #endif
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 #include <process.h>
 #endif
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 
 void simple_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
 {
    //throw 0;
 }
 
-#endif // defined _WINDOWS
+#endif // defined WINDOWS
 
 
 namespace spa
@@ -60,8 +60,8 @@ namespace spa
       if(is_ca2_installed())
       {
          
-#ifdef _WINDOWS
-#ifdef _X86_
+#ifdef WINDOWS
+#ifdef X86
          ::SetDllDirectory(dir::ca2("stage\\x86"));
 #else
          ::SetDllDirectory(dir::ca2("stage\\x64"));

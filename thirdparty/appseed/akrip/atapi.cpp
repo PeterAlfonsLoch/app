@@ -65,7 +65,7 @@ DWORD readCDAudioLBA_ATAPI( HCDROM hCD, LPTRACKBUF t )
       return SS_ERR;
     }
 
-#ifdef _DEBUG
+#ifdef DEBUG
   dbprintf( "akrip32: readCDAudioLBA_ATAPI: (%d:%d:%d) %06X:%02X", 
 	    cdHandles[idx].ha, cdHandles[idx].tgt, cdHandles[idx].lun,
 	    t->startFrame, t->numFrames );
@@ -102,7 +102,7 @@ DWORD readCDAudioLBA_ATAPI( HCDROM hCD, LPTRACKBUF t )
 
   if ( s.SRB_Status != SS_COMP )
     {
-#ifdef _DEBUG
+#ifdef DEBUG
       BYTE *p;
       dbprintf( "akrip32: readCDAudioLBA_ATAPI: ERROR! 0x%08X\n", s.SRB_Status );
       dbprintf( "akrip32:  haStat == %d (0x%04X), tgtStat == %d (0x%04X)",

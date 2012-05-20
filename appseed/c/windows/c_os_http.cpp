@@ -127,10 +127,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
       1);
 
    if (hRequest)
-      bResults = HttpSendRequest(
-      hRequest,
-      NULL, 0,
-      NULL, 0);
+      bResults = HttpSendRequest(hRequest, NULL, 0, NULL, 0) != FALSE;
 
    if(hRequest != g_hPreviousRequest)
    {
@@ -142,12 +139,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    DWORD dwBufferLen = sizeof(dwStatusCode);
    DWORD dwIndex = 0;
    if(bResults)
-      bResults = HttpQueryInfo(
-      hRequest,
-      HTTP_QUERY_STATUS_CODE | HTTP_QUERY_FLAG_NUMBER,
-      &dwStatusCode,
-      &dwBufferLen,
-      &dwIndex);
+      bResults = HttpQueryInfo(hRequest, HTTP_QUERY_STATUS_CODE | HTTP_QUERY_FLAG_NUMBER, &dwStatusCode, &dwBufferLen, &dwIndex) != FALSE;
    if(piStatus != NULL)
       *piStatus = dwStatusCode;
    dwBufferLen = 1024;
@@ -381,10 +373,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
 
    if(hRequest)
       bResults =
-      HttpSendRequest(
-      hRequest,
-      NULL, 0,
-      NULL, 0);
+      HttpSendRequest(hRequest, NULL, 0, NULL, 0) != FALSE;
 
    if(!bResults)
    {
@@ -398,12 +387,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    DWORD dwBufferLen = sizeof(dwStatusCode);
    DWORD dwIndex = 0;
    if(bResults)
-      bResults = HttpQueryInfo(
-      hRequest,
-      HTTP_QUERY_STATUS_CODE | HTTP_QUERY_FLAG_NUMBER,
-      &dwStatusCode,
-      &dwBufferLen,
-      &dwIndex);
+      bResults = HttpQueryInfo(hRequest, HTTP_QUERY_STATUS_CODE | HTTP_QUERY_FLAG_NUMBER, &dwStatusCode, &dwBufferLen, &dwIndex) != FALSE;
    dwBufferLen = 1024;
    char * pszStatus = (char *) _ca_alloc(dwBufferLen);
    if(pszStatus != NULL)

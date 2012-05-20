@@ -23,7 +23,7 @@ void simple_tree_view::install_message_handling(::gen::message::dispatch * pinte
 
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
 void simple_tree_view::assert_valid() const
 {
    ::userbase::view::assert_valid();
@@ -33,7 +33,7 @@ void simple_tree_view::dump(dump_context & dumpcontext) const
 {
    ::userbase::view::dump(dumpcontext);
 }
-#endif //_DEBUG
+#endif //DEBUG
 
 
 void simple_tree_view::_001OnCreate(gen::signal_object * pobj)

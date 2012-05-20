@@ -27,7 +27,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // split_view diagnostics
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void split_view::assert_valid() const
    {
       view::assert_valid();
@@ -37,7 +37,7 @@ namespace userbase
    {
       view::dump(dumpcontext);
    }
-   #endif //_DEBUG
+   #endif //DEBUG
 
 
    void split_view::_001OnSize(gen::signal_object * pobj) 

@@ -49,11 +49,11 @@ namespace windows
 /////////////////////////////////////////////////////////////////////////////
 // Extra diagnostic tracing options
 
-#ifdef _DEBUG
+#ifdef DEBUG
 extern CLASS_DECL_ca UINT g_uiTraceFlags;
-#endif // _DEBUG
+#endif // DEBUG
 
-#ifdef _DEBUG
+#ifdef DEBUG
 #define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_ca ::gen::trace::category name;
 #else
 #define DECLARE___TRACE_CATEGORY( name ) const DWORD_PTR name = 0;

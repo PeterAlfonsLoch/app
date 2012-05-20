@@ -13,7 +13,7 @@ void * memset_dup(void * p, int uch, size_t iSize)
 }
 
 
-//#if (defined(WINDOWS) && defined(_X86_)) && !defined(_DEBUG)
+//#if (defined(WINDOWS) && defined(X86)) && !defined(DEBUG)
 
 #pragma function(memcpy)
 

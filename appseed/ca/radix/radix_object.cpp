@@ -130,8 +130,8 @@ namespace radix
       return p; 
    }
 #define new DEBUG_NEW
-#ifndef _DEBUG
-// _DEBUG versions in afxmem.cpp
+#ifndef DEBUG
+// DEBUG versions in afxmem.cpp
 //void PASCAL object::operator delete(void * p)
   // { ::operator delete(p); }
 #if _MSC_VER >= 1200
@@ -140,12 +140,12 @@ namespace radix
 #endif
 //void * PASCAL object::operator new(size_t nSize)
   // { return ::operator new(nSize); }
-// _DEBUG versions in objcore.cpp
+// DEBUG versions in objcore.cpp
 //void ::radix::object::AssertValid() const
 //   { /* no asserts in release builds */ }
 //void ::radix::object::Dump(dump_context&) const
 //   { /* no dumping in release builds */ }
-#endif //!_DEBUG
+#endif //!DEBUG
 
 
    ::gen::command_thread & object::command_thread()
@@ -160,7 +160,7 @@ namespace radix
 /////////////////////////////////////////////////////////////////////////////
 // Diagnostic Support
 
-//#ifdef _DEBUG
+//#ifdef DEBUG
 void assert_valid_object(const ::radix::object * pOb, const char * lpszFileName, int nLine)
 {
    if (pOb == NULL)

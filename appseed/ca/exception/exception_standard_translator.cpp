@@ -17,7 +17,7 @@ It is provided "as is" without express or implied warranty.
 #include "framework.h"
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 
 // 0x40010005 control C
 // 0xc0000135 Dll Not Found
@@ -72,7 +72,7 @@ namespace exception
    {
    }
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
    void __cdecl translator::filter2(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
    {
       UNREFERENCED_PARAMETER(uiCode);
@@ -113,7 +113,7 @@ namespace exception
    {
       if(!m_bSet)
       {
-#ifdef _WINDOWS
+#ifdef WINDOWS
          m_pfn = _set_se_translator(&translator::filter2);
          //m_pfn = SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER) GetThunk());
          //PreventSetUnhandledExceptionFilter();
@@ -152,7 +152,7 @@ namespace exception
    {
       if(m_bSet)
       {
-#ifdef _WINDOWS
+#ifdef WINDOWS
          _set_se_translator(m_pfn);
 #else
          sigaction(SIGSEGV, &m_saSegOld, NULL);

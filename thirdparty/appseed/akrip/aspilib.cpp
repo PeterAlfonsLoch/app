@@ -273,7 +273,7 @@ int  getSCSIDevType( BYTE bHostAdapter, BYTE bTarget, BYTE bLUN,
   switch( dwStatus )
     {
     case SS_COMP:
-#ifdef _DEBUG
+#ifdef DEBUG
       dbprintf( "akrip32: getSCSIDevType() -> SS_COMP: %04X",
 		s.SRB_DeviceType );
       dbprintf( "akrip32: getSCSIDevType(): pDevType == 0x%08X", pDevType );
@@ -285,7 +285,7 @@ int  getSCSIDevType( BYTE bHostAdapter, BYTE bTarget, BYTE bLUN,
       break;
 
     case SS_NO_DEVICE:
-#ifdef _DEBUG
+#ifdef DEBUG
       dbprintf( "akrip32: getSCSIDevType() -> SS_NO_DEVICE" );
 #endif
       if ( pDevType )
@@ -295,7 +295,7 @@ int  getSCSIDevType( BYTE bHostAdapter, BYTE bTarget, BYTE bLUN,
       return FALSE;
 
     default:
-#ifdef _DEBUG
+#ifdef DEBUG
       dbprintf( "akrip32: getSCSIDevType(): unexpected return from ASPI (%04X)", dwStatus );
 #endif
       if ( pDevType )
@@ -375,7 +375,7 @@ int loadAspi( void )
 	  else
 	    alErrCode = ALERR_NOSENDASPICMD;
 
-#ifdef _DEBUG
+#ifdef DEBUG
 	  dbprintf( "akrip32: GetASPI32SupportInfo == 0x%08X", 
 		   pfnGetASPI32SupportInfo );
 	  dbprintf( "akrip32: SendASPI32Command == 0x%08X", pfnSendASPI32Command );
@@ -402,7 +402,7 @@ int loadAspi( void )
       pfnTranslateASPI32Address = dummyTranslateASPI32Address;
       pfnGetASPI32DLLVersion = dummyGetASPI32DLLVersion;
 
-#ifdef _DEBUG
+#ifdef DEBUG
       dwErr = GetLastError();
       dbprintf( "Unable to load WNASPI32.DLL" );
       dbprintf( "akrip32: GetLastError() -> %d (%04X)", dwErr, dwErr );
@@ -453,7 +453,7 @@ int GetNumAdapters( void )
       alErrCode = ALERR_ASPI;
       alAspiErr = bASPIStatus;
 
-#ifdef _DEBUG
+#ifdef DEBUG
       dbprintf( "akrip32: GetNumAdapters: bASPIStatus == 0x%02X", bASPIStatus );
 #endif
       return -1;
@@ -507,13 +507,13 @@ DWORD GetDriveInfo( BYTE ha, BYTE tgt, BYTE lun, LPCDREC cdrec )
       alErrCode = ALERR_ASPI;
       alAspiErr = s.SRB_Status;
 
-#ifdef _DEBUG
+#ifdef DEBUG
       dbprintf( "akrip32: GetDriveInfo: Error status: 0x%04X\n", s.SRB_Status );
 #endif
       return SS_ERR;
     }
 
-#ifdef _DEBUG
+#ifdef DEBUG
   {
     FILE *fp = fopen( "inquiry.dat", "wb" );
     fwrite( buf, 1, 100, fp );
@@ -528,7 +528,7 @@ DWORD GetDriveInfo( BYTE ha, BYTE tgt, BYTE lun, LPCDREC cdrec )
   wsprintf( outBuf, "%s, %s v%s (%d:%d:%d)", 
 	    cdrecTmp.info.vendor, cdrecTmp.info.prodId, cdrecTmp.info.rev,
 	    ha, tgt, lun );
-#ifdef _DEBUG
+#ifdef DEBUG
   dbprintf( "akrip32: GetDriveInfo: %s", outBuf );
 #endif
 
@@ -609,7 +609,7 @@ DWORD ReadTOC( HCDROM hCD, LPTOC toc )
       retVal = SS_ERR;
     }
 
-#ifdef _DEBUG
+#ifdef DEBUG
   {
     FILE *fp = fopen( "toc.dat", "wb" );
     fwrite( toc, 1, sizeof(TOC), fp );
@@ -649,7 +649,7 @@ void resetSCSIBus( void )
     }
   CloseHandle( heventSRB );
 
-#ifdef _DEBUG
+#ifdef DEBUG
   if ( s.SRB_Status != SS_COMP )
     {
       dbprintf( "akrip32: RESET BUS aspi status: 0x%08X\n", s.SRB_Status );
@@ -677,7 +677,7 @@ int GetCDList( LPCDLIST cd )
   cd->max = maxTgt;
 
   numAdapters = GetNumAdapters();
-#ifdef _DEBUG
+#ifdef DEBUG
   dbprintf( "AKRip32: GetCDList(): numAdapters == %d", numAdapters );
 #endif
   if ( numAdapters == 0 )
@@ -723,7 +723,7 @@ int GetCDList( LPCDLIST cd )
 		      GetDriveInfo( (BYTE)i, (BYTE)j, (BYTE)k, &(cd->cd[cd->num]) );
 		      cd->num++;
 		    }
-#ifdef _DEBUG
+#ifdef DEBUG
 		  else
 		    {
 		      dbprintf( "       : sd.SRB_DeviceType == %d", sd.SRB_DeviceType );
@@ -844,7 +844,7 @@ DWORD readCDAudioLBA_ANY( HCDROM hCD, LPTRACKBUF t )
 
   for( i = 0; i < 7; i++ )
     {
-#ifdef _DEBUG
+#ifdef DEBUG
       dbprintf( "akrip32: testing read fn %d", ord[i] );
 #endif
 
@@ -1021,7 +1021,7 @@ bool QueryCDParms( HCDROM hCD, int which, DWORD *pNum )
   if ( WaitForSingleObject( cdMutexes[idx], TIMEOUT ) != WAIT_OBJECT_0 )
     {
       alErrCode = ALERR_LOCK;
-      return SS_ERR;
+      return SS_ERR != FALSE;
     }
 
   if ( pNum )
@@ -1260,7 +1260,7 @@ bool ModifyCDParms( HCDROM hCD, int which, DWORD val )
   if ( WaitForSingleObject( cdMutexes[idx], TIMEOUT ) != WAIT_OBJECT_0 )
     {
       alErrCode = ALERR_LOCK;
-      return SS_ERR;
+      return SS_ERR != FALSE;
     }
 
 #if 0
@@ -1671,14 +1671,14 @@ DWORD ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF t, LPTRACKBUF tOver )
 	    {
 	      t->numFrames += o;
 	    }
-#ifdef _DEBUG
+#ifdef DEBUG
 	  dbprintf( "rolling back start frame to %d", t->startFrame );
 #endif
 	}
       else
 	{
 	  tOver->len = tOver->startFrame = tOver->numFrames = 0;
-#ifdef _DEBUG
+#ifdef DEBUG
 	  dbprintf( "zeroing out overlap buffer" );
 #endif
 	}
@@ -1693,7 +1693,7 @@ DWORD ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF t, LPTRACKBUF tOver )
 	  j = cdHandles[idx].numCheck;
 	  if ( !jitterAdjust( t, tOver, j ) )
 	    {
-#ifdef _DEBUG
+#ifdef DEBUG
 	      dbprintf( "akrip32: ... jitterAdjust failed!" );
 #endif
 	      alErrCode = ALERR_JITTER;
@@ -1717,14 +1717,14 @@ DWORD ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF t, LPTRACKBUF tOver )
 	  tOver->startFrame = tOver->numFrames = tOver->len = 0;
 	}
     }
-#ifdef _DEBUG
+#ifdef DEBUG
   else
     dbprintf( "akrip32: ReadCDAudioLBAEx: read failed" );
 #endif
 
   ReleaseMutex( cdMutexes[idx] );
 
-#ifdef _DEBUG
+#ifdef DEBUG
   dbprintf( "akrip32: readCDAudioLBAEx: returning %04X", retVal );
 #endif
 

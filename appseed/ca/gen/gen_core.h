@@ -72,7 +72,7 @@ inline void __assert_valid_object(const T *pOb)
    if(pOb)
       pOb->assert_valid();
 }*/
-/*#ifdef _DEBUG
+/*#ifdef DEBUG
 #define ASSERT_VALID(x) __assert_valid_object(x)
 #else
 #define ASSERT_VALID(x) __noop;

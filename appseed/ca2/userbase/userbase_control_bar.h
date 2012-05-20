@@ -131,7 +131,7 @@ namespace userbase
       virtual void _001OnDraw(::ca::graphics * pdc);
       virtual void message_handler(gen::signal_object * pobj);
       virtual ~control_bar();
-   #ifdef _DEBUG
+   #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
    #endif

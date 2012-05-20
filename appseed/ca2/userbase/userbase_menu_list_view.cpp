@@ -24,7 +24,7 @@ namespace userbase
    {
    }
 
-#ifdef _DEBUG
+#ifdef DEBUG
    void menu_list_view::assert_valid() const
    {
       view::assert_valid();
@@ -37,7 +37,7 @@ namespace userbase
    }
    #endif
 
-#endif //_DEBUG
+#endif //DEBUG
 
    void menu_list_view::GuieProc(gen::signal_object * pobj)
    {

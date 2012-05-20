@@ -17,12 +17,12 @@ struct CLASS_DECL_ca string_data
    // XCHAR data[nAllocLength+1]  // A string_data is always followed in primitive::memory by the actual base_array of character data
 
    inline char * data() NOTHROW;
-   inline void AddRef() NOTHROW;
+   inline void AddRef() RELEASENOTHROW;
    inline bool IsLocked() const NOTHROW;
    inline bool IsShared() const NOTHROW;
-   inline void lock() NOTHROW;
-   inline void Release() NOTHROW;
-   inline void unlock() NOTHROW;
+   inline void lock() RELEASENOTHROW;
+   inline void Release() RELEASENOTHROW;
+   inline void unlock() RELEASENOTHROW;
 };
 
 
@@ -923,7 +923,7 @@ public:
 #if _SECURE_TEMPLATE
    static void __cdecl CopyChars(XCHAR* pchDest,size_t nDestLen,const XCHAR* pchSrc,strsize nChars ) NOTHROW
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       memcpy_s(pchDest, nDestLen * sizeof(XCHAR), pchSrc, nChars * sizeof(XCHAR));
 #else
       memcpy(pchDest, pchSrc, nChars * sizeof(XCHAR));
@@ -939,7 +939,7 @@ public:
 #if _SECURE_TEMPLATE
    static void __cdecl CopyCharsOverlapped(XCHAR* pchDest,size_t nDestLen,const XCHAR* pchSrc,strsize nChars ) NOTHROW
    {
-#ifdef _WINDOWS
+#ifdef WINDOWS
       memmove_s(pchDest, nDestLen * sizeof(XCHAR), pchSrc, nChars * sizeof(XCHAR));
 #else
       memmove(pchDest, pchSrc, nChars * sizeof(XCHAR));
@@ -1142,7 +1142,7 @@ public:
    explicit string_buffer(StringType& str ) THROWS :
    m_str( str ),
       m_pszBuffer( NULL ),
-#ifdef _DEBUG
+#ifdef DEBUG
       m_nBufferLength( str.get_length() ),
 #endif
       m_nLength( str.get_length() )
@@ -1153,7 +1153,7 @@ public:
    string_buffer(StringType& str,strsize nMinLength,DWORD dwFlags = AUTO_LENGTH ) THROWS :
    m_str( str ),
       m_pszBuffer( NULL ),
-#ifdef _DEBUG
+#ifdef DEBUG
       m_nBufferLength( nMinLength ),
 #endif
       m_nLength( (dwFlags&AUTO_LENGTH) ? -1 : nMinLength )
@@ -1198,7 +1198,7 @@ private:
    StringType& m_str;
    PXSTR m_pszBuffer;
    strsize m_nLength;
-#ifdef _DEBUG
+#ifdef DEBUG
    strsize m_nBufferLength;
 #endif
 
@@ -1216,7 +1216,7 @@ inline char * string_data::data() NOTHROW
    return reinterpret_cast < char *> (this+1);
 }
 
-inline void string_data::AddRef() NOTHROW
+inline void string_data::AddRef() RELEASENOTHROW
 {
    ASSERT(nRefs > 0);
    _gen_InterlockedIncrement(&nRefs);
@@ -1229,7 +1229,7 @@ inline bool string_data::IsShared() const NOTHROW
 {
    return( nRefs > 1 );
 }
-inline void string_data::lock() NOTHROW
+inline void string_data::lock() RELEASENOTHROW
 {
    ASSERT( nRefs <= 1 );
    nRefs--;  // Locked buffers can't be shared, so no interlocked operation necessary
@@ -1238,7 +1238,7 @@ inline void string_data::lock() NOTHROW
       nRefs = -1;
    }
 }
-inline void string_data::Release() NOTHROW
+inline void string_data::Release() RELEASENOTHROW
 {
    ASSERT( nRefs != 0 );
 
@@ -1247,7 +1247,7 @@ inline void string_data::Release() NOTHROW
       pstringmanager->Free( this );
    }
 }
-inline void string_data::unlock() NOTHROW
+inline void string_data::unlock() RELEASENOTHROW
 {
    ASSERT( IsLocked() );
 

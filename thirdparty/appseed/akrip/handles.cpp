@@ -68,7 +68,7 @@ HCDROM  GetCDHandle( LPGETCDHAND lpcd )
 
   if ( !lpcd )
     {
-#ifdef _DEBUG
+#ifdef DEBUG
       dbprintf( "AKRip32: Error: GetCDHandle( NULL )" );
 #endif
       alErrCode = ALERR_INVPTR;
@@ -81,7 +81,7 @@ HCDROM  GetCDHandle( LPGETCDHAND lpcd )
       return NULL;
     }
 
-#ifdef _DEBUG
+#ifdef DEBUG
   dbprintf( "AKRip32: GetCDHandle( %02X, %02X, %02X, %02X )",
 	    lpcd->ha, lpcd->tgt, lpcd->lun, lpcd->readType );
 #endif
@@ -91,7 +91,7 @@ HCDROM  GetCDHandle( LPGETCDHAND lpcd )
       alErrCode = ALERR_LOCK;
       if ( hMutex )
 	CloseHandle( hMutex );
-#ifdef _DEBUG
+#ifdef DEBUG
       dbprintf( "AKRip32: GetCDHandle() -> failed to lock mutex" );
 #endif
       return NULL;
@@ -102,7 +102,7 @@ HCDROM  GetCDHandle( LPGETCDHAND lpcd )
       if ( (cdHandles[i].ha == lpcd->ha) && (cdHandles[i].tgt == lpcd->tgt) &&
 	   (cdHandles[i].lun == lpcd->lun) && (cdHandles[i].used) )
 	{
-#ifdef _DEBUG
+#ifdef DEBUG
 	  dbprintf( "akrip32: GetCDHandle() -> ERROR:cd already allocated" );
 #endif
 	  alErrCode = ALERR_DUPHAND;
@@ -113,7 +113,7 @@ HCDROM  GetCDHandle( LPGETCDHAND lpcd )
 	}
     }
 
-#ifdef _DEBUG
+#ifdef DEBUG
   dbprintf( "AKRip32: GetCDHandle( %02X, %02X, %02X, %02X )",
 	    lpcd->ha, lpcd->tgt, lpcd->lun, lpcd->readType );
 #endif
@@ -125,7 +125,7 @@ HCDROM  GetCDHandle( LPGETCDHAND lpcd )
 	alErrCode = ALERR_NOTACD;
       ReleaseMutex( hMutex );
       CloseHandle( hMutex );
-#ifdef _DEBUG
+#ifdef DEBUG
       dbprintf( "AKRip32: GetCDHandle() -> ALERR_NOTACD, i == %d, devType == %d", i, devType );
 #endif
       return NULL;

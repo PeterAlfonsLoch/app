@@ -53,7 +53,7 @@ void SimpleFolderListView::OnDraw(::ca::graphics * pgraphics)
 /////////////////////////////////////////////////////////////////////////////
 // SimpleFolderListView diagnostics
 
-#ifdef _DEBUG
+#ifdef DEBUG
 void SimpleFolderListView::assert_valid() const
 {
    ::userbase::view::assert_valid();
@@ -63,7 +63,7 @@ void SimpleFolderListView::dump(dump_context & dumpcontext) const
 {
    ::userbase::view::dump(dumpcontext);
 }
-#endif //_DEBUG
+#endif //DEBUG
 
 void SimpleFolderListView::on_update(::view * pSender, LPARAM lHint, ::radix::object * phint) 
 {

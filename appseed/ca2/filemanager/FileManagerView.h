@@ -23,7 +23,7 @@ public:
 
    virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
    virtual ~FileManagerAView();
-#ifdef _DEBUG
+#ifdef DEBUG
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
 #endif
@@ -54,7 +54,7 @@ public:
    virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
 
    virtual ~FileManagerView();
-#ifdef _DEBUG
+#ifdef DEBUG
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
 #endif

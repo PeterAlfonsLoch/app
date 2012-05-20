@@ -43,7 +43,7 @@ namespace nature
 
    }
 
-   #ifdef _DEBUG
+   #ifdef DEBUG
    void view::assert_valid() const
    {
       ::userbase::view::assert_valid();
@@ -53,7 +53,7 @@ namespace nature
    {
       ::userbase::view::dump(dumpcontext);
    }
-   #endif //_DEBUG
+   #endif //DEBUG
 
 
    bool view::pre_create_window(CREATESTRUCT& cs)

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#ifdef _WINDOWS
+#ifdef WINDOWS
 
 
 simple_critical_section::simple_critical_section()
@@ -16,7 +16,7 @@ simple_critical_section::~simple_critical_section()
 }
 
 
-#endif // _WINDOWS
+#endif // WINDOWS
 
 
 

@@ -7,7 +7,7 @@
 #include "radix_heap.h"
 
 
-//#ifdef _DEBUG
+//#ifdef DEBUG
 // Special _CLIENT_BLOCK type to identifiy CObjects.
 #define ___CLIENT_BLOCK (_CLIENT_BLOCK|(0xc0<<16))
 //#endif
@@ -178,7 +178,7 @@ inline void __cdecl operator delete[](void * p, int nType, const char * lpszFile
 
 
 
-#ifdef _DEBUG       // most of this file is for debugging
+#ifdef DEBUG       // most of this file is for debugging
 
 #undef new
 
@@ -220,7 +220,7 @@ CLASS_DECL_ca void AFXAPI __do_for_all_objects(void (c_cdecl *pfn)(::radix::obje
 CLASS_DECL_ca bool __dump_memory_leaks();
 
 #endif // ___NO_DEBUG_CRT
-#endif // _DEBUG
+#endif // DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // Non-diagnostic primitive::memory routines
@@ -275,7 +275,7 @@ inline void PASCAL ::radix::object::operator delete(void * p, void *)
    ca2_free_dbg(p, ___CLIENT_BLOCK);
 }
 
-#ifdef _DEBUG
+#ifdef DEBUG
 
 inline void PASCAL ::radix::object::operator delete(void *pObject, const char *, int)
 {
