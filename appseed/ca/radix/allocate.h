@@ -210,7 +210,7 @@ struct CLASS_DECL_ca _AFX_ENUM_CONTEXT
 };
 
 CLASS_DECL_ca __STATIC void _AfxDoForAllObjectsProxy(void * pObject, void * pContext);
-CLASS_DECL_ca void AFXAPI AfxDoForAllObjects(void (AFX_CDECL *pfn)(::radix::object*, void *), void * pContext);
+CLASS_DECL_ca void AFXAPI AfxDoForAllObjects(void (c_cdecl *pfn)(::radix::object*, void *), void * pContext);
 
 /////////////////////////////////////////////////////////////////////////////
 // Automatic debug primitive::memory diagnostics
@@ -223,7 +223,7 @@ CLASS_DECL_ca BOOL AfxDumpMemoryLeaks();
 /////////////////////////////////////////////////////////////////////////////
 // Non-diagnostic primitive::memory routines
 
-CLASS_DECL_ca int AFX_CDECL AfxNewHandler(size_t /* nSize */);
+CLASS_DECL_ca int c_cdecl AfxNewHandler(size_t /* nSize */);
 
 #undef new
 #undef delete

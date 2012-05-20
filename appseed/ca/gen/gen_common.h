@@ -63,15 +63,17 @@ namespace gen
       return C_RUNTIME_ERROR_CHECK(::strncpy_s(_Dest, _SizeInChars, _Source,_Count));
 #else
       strncpy(_Dest, _Source, _Count);
+      return errno;
 #endif
    }
 
    inline errno_t __cdecl wcsncpy_s(wchar_t *_Dest, size_t _SizeInChars, const wchar_t *_Source, size_t _Count)
    {
 #ifdef WINDOWS
-      return C_RUNTIME_ERROR_CHECK(::wcsncpy_s(_Dest, _SizeInChars, _Source,_Count));
+       return C_RUNTIME_ERROR_CHECK(::wcsncpy_s(_Dest, _SizeInChars, _Source,_Count));
 #else
-      wcsncpy(_Dest, _Source, _Count);
+       wcsncpy(_Dest, _Source, _Count);
+       return errno;
 #endif
    }
 

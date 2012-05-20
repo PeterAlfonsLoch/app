@@ -1151,7 +1151,7 @@ namespace ca
 
 #include "OpenedFiles.h"
 
-#ifndef LINUX
+#if !defined(LINUX) && !defined(MACOS)
 
 #include <Tlhelp32.h>
 #include <Psapi.h>

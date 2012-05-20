@@ -26,7 +26,7 @@ comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
 comparable_array(const comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a) :
 ARRAY_TYPE(a)
 {
-   operator = (a);
+   this->operator = (a);
 }
 
 

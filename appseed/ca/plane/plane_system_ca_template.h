@@ -53,7 +53,7 @@ namespace ca
 
 		// TEMPLATE operator>>
    template < size_t _Bits >
-	inline ::ex1::byte_input_stream & operator>>(::ex1::byte_input_stream  _Istr, bitset<_Bits>& _Right)
+	inline ::ex1::byte_input_stream & operator >>( ::ex1::byte_input_stream &  _Istr, bitset<_Bits>& _Right)
 	{	
       // extract bitset as a string
    	string _Str;

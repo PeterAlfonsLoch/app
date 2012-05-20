@@ -447,9 +447,6 @@ namespace primitive
    inline void memory_base::assign(const void * pdata, memory_position iStart, memory_size iCount)
    {
 
-      if(iCount < 0)
-         iCount = 0;
-
       allocate(iCount);
 
       memcpy(get_data(), &((LPBYTE)pdata)[iStart], (size_t) iCount);
@@ -458,9 +455,6 @@ namespace primitive
 
    inline void memory_base::append(memory_size iCount, unsigned char uch)
    {
-
-      if(iCount < 0)
-         iCount = 0;
 
       allocate_add_up(iCount);
 
@@ -479,9 +473,6 @@ namespace primitive
 
    inline void memory_base::assign(memory_size iCount, unsigned char uch)
    {
-
-      if(iCount < 0)
-         iCount = 0;
 
       allocate(iCount);
 

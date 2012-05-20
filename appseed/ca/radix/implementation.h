@@ -152,8 +152,8 @@ extern UINT _afxMsgSETRGB;
 typedef UINT_PTR (CALLBACK* COMMDLGPROC)(HWND, UINT, WPARAM, LPARAM);
 
 // conversion helpers
-//int AFX_CDECL _wcstombsz(char* mbstr, const wchar_t* wcstr, size_t count);
-//int AFX_CDECL _mbstowcsz(wchar_t* wcstr, const char* mbstr, size_t count);
+//int c_cdecl _wcstombsz(char* mbstr, const wchar_t* wcstr, size_t count);
+//int c_cdecl _mbstowcsz(wchar_t* wcstr, const char* mbstr, size_t count);
 
 /////////////////////////////////////////////////////////////////////////////
 // Extended dialog templates (new in Win95)
@@ -204,7 +204,7 @@ CLASS_DECL_ca BOOL AfxIsDescendant(::user::interaction * hWndParent, ::user::int
 #endif
 
 #ifndef _AFX_PORTABLE
-int AFX_CDECL AfxCriticalNewHandler(size_t nSize);
+int c_cdecl AfxCriticalNewHandler(size_t nSize);
 #endif
 
 

@@ -55,7 +55,7 @@ comparable_eq_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
 comparable_eq_array(const comparable_eq_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a) :
 ARRAY_TYPE(a)
 {
-   operator = (a);
+   this->operator = (a);
 }
 
 
@@ -111,7 +111,7 @@ bool comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::add_unique(ARG_TYPE t)
 {
    if(contains(t))
       return false;
-   add(t);
+   this->add(t);
    return true;
 }
 

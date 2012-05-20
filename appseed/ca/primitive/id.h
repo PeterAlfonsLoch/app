@@ -203,11 +203,6 @@ public:
 
    inline operator const char *() const;
 
-   inline operator const string & () const
-   {
-      return *m_pstr;
-   }
-
    inline bool is_null() const
    {
       return this == NULL || m_chType == IDTYPE_TYPE_NULL || (m_chType == IDTYPE_TYPE_TEXT && m_pstr == NULL);

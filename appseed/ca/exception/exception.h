@@ -166,8 +166,8 @@ void __dump_stack(DWORD dwFlags = __stack_dump_TARGET_DEFAULT);
 #include "exception_dump_context.h"
 
 #ifdef DEBUG
-extern __DATA dump_context g_dumpcontext;
-extern __DATA bool g_bTraceEnabled;
+extern CLASS_DECL_ca dump_context g_dumpcontext;
+extern CLASS_DECL_ca bool g_bTraceEnabled;
 #endif
 
 #ifdef DEBUG

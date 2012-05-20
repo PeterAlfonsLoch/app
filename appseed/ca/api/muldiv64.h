@@ -36,4 +36,6 @@ CLASS_DECL_ca int64_t _stdcall muldiv64(int64_t operant, int64_t multiplier, int
 CLASS_DECL_ca int64_t _stdcall mulshr64(int64_t operant, int64_t multiplier, unsigned char rshift);
 
 
+CLASS_DECL_ca void mul64(uint64_t v1, uint64_t v2, uint64_t & hi, uint64_t & lo);
+
 #endif //__FULL_MULDIV64_
