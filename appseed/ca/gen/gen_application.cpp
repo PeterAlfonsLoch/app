@@ -1,8 +1,11 @@
 #include "framework.h"
 
+
 #ifdef LINUX
+#define __USE_GNU
 #include <dlfcn.h>
 #include <link.h>
+#undef __USE_GNU
 #include <ctype.h>
 #endif
 

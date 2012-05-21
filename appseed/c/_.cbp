@@ -107,6 +107,7 @@
 		<Unit filename="linux/c_os_message_loop.cpp" />
 		<Unit filename="linux/c_os_process.cpp" />
 		<Unit filename="linux/c_os_process.h" />
+		<Unit filename="linux/c_os_simple_shell_launcher.cpp" />
 		<Unit filename="linux/c_os_small_ipc_channel.cpp" />
 		<Unit filename="md5.cpp" />
 		<Unit filename="md5.h" />
@@ -116,7 +117,6 @@
 		<Unit filename="mutex_lock.h" />
 		<Unit filename="natural.h" />
 		<Unit filename="printf.h" />
-		<Unit filename="radix.h" />
 		<Unit filename="simple_array.cpp" />
 		<Unit filename="simple_array.h" />
 		<Unit filename="simple_critical_section.cpp" />

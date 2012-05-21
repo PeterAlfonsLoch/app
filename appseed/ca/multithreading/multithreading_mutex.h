@@ -8,11 +8,39 @@ public:
 
 
 #ifndef WINDOWS
+
+
+   // thread mutex
    pthread_mutex_t      m_mutex;
+
+
+   // named process mutex
+   string               m_strName;
+   key_t                m_key;
+   int                  m_semid;
+
 #endif
 
 
    mutex(bool bInitiallyOwn = FALSE, LPCTSTR lpszName = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
+
+
+protected:
+
+#ifdef WINDOWS
+
+   mutex(const char * pstrName, HANDLE h);
+
+#else
+
+   mutex(const char * pstrName, key_t key, int semid);
+
+#endif
+
+
+public:
+
+
    virtual ~mutex();
 
 
@@ -27,7 +55,7 @@ public:
    virtual bool unlock();
 
 
-
+   static CLASS_DECL_ca mutex * open_mutex(const char * pstrName);
 
 
 };

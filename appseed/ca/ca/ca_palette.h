@@ -5,9 +5,6 @@ namespace ca
 {
 
 
-#ifdef WINDOWS
-
-
    class CLASS_DECL_ca palette :
       virtual public ::ca::graphics_object
    {
@@ -35,9 +32,6 @@ namespace ca
 
 
    typedef smart_pointer < palette > palette_sp;
-
-
-#endif
 
 
 } // namespace ca

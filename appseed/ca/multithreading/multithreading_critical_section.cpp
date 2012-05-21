@@ -128,7 +128,7 @@ bool critical_section::lock()
 bool critical_section::lock(const duration & durationTimeout)
 {
    ASSERT(durationTimeout.is_pos_infinity());
-   ()durationTimeout;
+   (void)durationTimeout;
    return lock();
 }
 

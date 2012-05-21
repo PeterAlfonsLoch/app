@@ -249,7 +249,7 @@ namespace plane
       System.factory().cloneable_large < ::ca::palette_sp >();
       System.factory().cloneable_large < ::ca::region_sp >();
 //      System.factory().cloneable_large < var >();
-      System.factory().creatable < ::ca2::log >(System.template type_info < ::ca::log > (), 1);
+      System.factory().creatable < ::ca2::log >(System.type_info < ::ca::log > (), 1);
 
       m_puserstr = new ::user::str(this);
       if(m_puserstr == NULL)
@@ -787,8 +787,9 @@ namespace plane
    {
       if(string(pszId).has_char())
       {
-         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_id_mutex_name(pszAppName, pszId));
-         if(h == NULL)
+//         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_id_mutex_name(pszAppName, pszId));
+         ::mutex * pmutex = mutex::open_mutex(get_global_id_mutex_name(pszAppName, pszId));
+         if(pmutex == NULL)
          {
             string strApp = pszAppName;
             strApp += "app.exe";
@@ -799,14 +800,15 @@ namespace plane
          }
          else
          {
-            ::CloseHandle(h);
+            delete pmutex;
          }
          return true;
       }
       else
       {
-         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_mutex_name(pszAppName));
-         if(h == NULL)
+         //HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_mutex_name(pszAppName));
+         ::mutex * pmutex = mutex::open_mutex(get_global_mutex_name(pszAppName));
+         if(pmutex == NULL)
          {
             string strApp = pszAppName;
             strApp += "app.exe";
@@ -815,7 +817,8 @@ namespace plane
          }
          else
          {
-            ::CloseHandle(h);
+            //::CloseHandle(h);
+            delete pmutex;
          }
          return true;
       }
@@ -827,8 +830,9 @@ namespace plane
       string strId(pszId);
       if(strId.has_char())
       {
-         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_id_mutex_name(pszAppName, strId));
-         if(h == NULL)
+         //HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_id_mutex_name(pszAppName, strId));
+         ::mutex * pmutex = mutex::open_mutex(get_local_id_mutex_name(pszAppName, strId));
+         if(pmutex == NULL)
          {
             string strApp;
             strApp = "app.exe";
@@ -839,14 +843,16 @@ namespace plane
          }
          else
          {
-            ::CloseHandle(h);
+            //::CloseHandle(h);
+            delete pmutex;
          }
          return true;
       }
       else
       {
-         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_mutex_name(pszAppName));
-         if(h == NULL)
+//         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_mutex_name(pszAppName));
+         ::mutex * pmutex = mutex::open_mutex(get_local_mutex_name(pszAppName));
+         if(pmutex == NULL)
          {
             string strApp;
             strApp = "app.exe";
@@ -857,7 +863,8 @@ namespace plane
          }
          else
          {
-            ::CloseHandle(h);
+            //::CloseHandle(h);
+            delete pmutex;
          }
          return true;
       }
