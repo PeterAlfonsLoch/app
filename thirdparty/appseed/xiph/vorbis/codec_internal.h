@@ -21,6 +21,8 @@
 #include "envelope.h"
 #include "codebook.h"
 
+BEGIN_EXTERN_C
+
 #define BLOCKTYPE_IMPULSE    0
 #define BLOCKTYPE_PADDING    1
 #define BLOCKTYPE_TRANSITION 0
@@ -164,4 +166,7 @@ extern int *floor1_interpolate_fit(vorbis_block *vb,vorbis_look_floor1 *look,
 extern int floor1_encode(oggpack_buffer *opb,vorbis_block *vb,
                   vorbis_look_floor1 *look,
                   int *post,int *ilogmask);
+
+
+END_EXTERN_C
 #endif

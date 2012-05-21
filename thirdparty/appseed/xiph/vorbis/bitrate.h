@@ -22,6 +22,8 @@
 #include "codec_internal.h"
 #include "os.h"
 
+BEGIN_EXTERN_C
+
 /* encode side bitrate tracking */
 typedef struct bitrate_manager_state {
   int            managed;
@@ -55,5 +57,8 @@ extern void vorbis_bitrate_clear(bitrate_manager_state *bs);
 extern int vorbis_bitrate_managed(vorbis_block *vb);
 extern int vorbis_bitrate_addblock(vorbis_block *vb);
 extern int vorbis_bitrate_flushpacket(vorbis_dsp_state *vd, ogg_packet *op);
+
+
+END_EXTERN_C
 
 #endif

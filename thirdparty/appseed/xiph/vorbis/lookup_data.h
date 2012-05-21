@@ -17,6 +17,17 @@
 
 #ifndef _V_LOOKUP_DATA_H_
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 #ifdef FLOAT_LOOKUP
 #define COS_LOOKUP_SZ 128
 static const float COS_LOOKUP[COS_LOOKUP_SZ+1]={
@@ -188,5 +199,8 @@ static const long COS_LOOKUP_I[COS_LOOKUP_I_SZ+1]={
 };
 
 #endif
+
+
+END_EXTERN_C
 
 #endif

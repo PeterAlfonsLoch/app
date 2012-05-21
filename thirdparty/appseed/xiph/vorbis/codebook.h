@@ -20,6 +20,9 @@
 
 #include <ogg/ogg.h>
 
+
+BEGIN_EXTERN_C
+
 /* This structure encapsulates huffman and VQ style encoding books; it
    doesn't do anything specific to either.
 
@@ -114,6 +117,6 @@ extern long vorbis_book_decodevv_add(codebook *book, float **a,
                                      long off,int ch,
                                     oggpack_buffer *b,int n);
 
-
+END_EXTERN_C
 
 #endif

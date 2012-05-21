@@ -26,7 +26,7 @@ static const double stereo_threshholds_limited[]={0.0, .5, 1.0, 1.5, 2.0, 2.5, 4
 vorbis_look_psy_global *_vp_global_look(vorbis_info *vi){
   codec_setup_info *ci=vi->codec_setup;
   vorbis_info_psy_global *gi=&ci->psy_g_param;
-  vorbis_look_psy_global *look=_ogg_calloc(1,sizeof(*look));
+  vorbis_look_psy_global *look=(vorbis_look_psy_global *) _ogg_calloc(1,sizeof(*look));
 
   look->channels=vi->channels;
 
@@ -79,9 +79,9 @@ static float ***setup_tone_curves(float curveatt_dB[P_BANDS],float binHz,int n,
   float ath[EHMER_MAX];
   float workc[P_BANDS][P_LEVELS][EHMER_MAX];
   float athc[P_LEVELS][EHMER_MAX];
-  float *brute_buffer=alloca(n*sizeof(*brute_buffer));
+  float *brute_buffer= (float *) alloca(n*sizeof(*brute_buffer));
 
-  float ***ret=_ogg_malloc(sizeof(*ret)*P_BANDS);
+  float ***ret= (float ***) _ogg_malloc(sizeof(*ret)*P_BANDS);
 
   memset(workc,0,sizeof(workc));
 
@@ -148,7 +148,7 @@ static float ***setup_tone_curves(float curveatt_dB[P_BANDS],float binHz,int n,
 
   for(i=0;i<P_BANDS;i++){
     int hi_curve,lo_curve,bin;
-    ret[i]=_ogg_malloc(sizeof(**ret)*P_LEVELS);
+    ret[i]= (float **) _ogg_malloc(sizeof(**ret)*P_LEVELS);
 
     /* low frequency curves are measured with greater resolution than
        the MDCT/FFT will actually give us; we want the curve applied
@@ -168,7 +168,7 @@ static float ***setup_tone_curves(float curveatt_dB[P_BANDS],float binHz,int n,
     if(hi_curve>=P_BANDS)hi_curve=P_BANDS-1;
 
     for(m=0;m<P_LEVELS;m++){
-      ret[i][m]=_ogg_malloc(sizeof(***ret)*(EHMER_MAX+2));
+      ret[i][m]= (float *) _ogg_malloc(sizeof(***ret)*(EHMER_MAX+2));
 
       for(j=0;j<n;j++)brute_buffer[j]=999.;
 
@@ -266,10 +266,10 @@ void _vp_psy_init(vorbis_look_psy *p,vorbis_info_psy *vi,
   p->firstoc=toOC(.25f*rate*.5/n)*(1<<(p->shiftoc+1))-gi->eighth_octave_lines;
   maxoc=toOC((n+.25f)*rate*.5/n)*(1<<(p->shiftoc+1))+.5f;
   p->total_octave_lines=maxoc-p->firstoc+1;
-  p->ath=_ogg_malloc(n*sizeof(*p->ath));
+  p->ath = (float *) _ogg_malloc(n*sizeof(*p->ath));
 
-  p->octave=_ogg_malloc(n*sizeof(*p->octave));
-  p->bark=_ogg_malloc(n*sizeof(*p->bark));
+  p->octave = (long *) _ogg_malloc(n*sizeof(*p->octave));
+  p->bark = (long *) _ogg_malloc(n*sizeof(*p->bark));
   p->vi=vi;
   p->n=n;
   p->rate=rate;
@@ -318,9 +318,9 @@ void _vp_psy_init(vorbis_look_psy *p,vorbis_info_psy *vi,
                                   vi->tone_centerboost,vi->tone_decay);
 
   /* set up rolling noise median */
-  p->noiseoffset=_ogg_malloc(P_NOISECURVES*sizeof(*p->noiseoffset));
+  p->noiseoffset = (float **) _ogg_malloc(P_NOISECURVES*sizeof(*p->noiseoffset));
   for(i=0;i<P_NOISECURVES;i++)
-    p->noiseoffset[i]=_ogg_malloc(n*sizeof(**p->noiseoffset));
+    p->noiseoffset[i] = (float *) _ogg_malloc(n*sizeof(**p->noiseoffset));
 
   for(i=0;i<n;i++){
     float halfoc=toOC((i+.5)*rate/(2.*n))*2.;
@@ -439,8 +439,8 @@ static void seed_loop(vorbis_look_psy *p,
 }
 
 static void seed_chase(float *seeds, int linesper, long n){
-  long  *posstack=alloca(n*sizeof(*posstack));
-  float *ampstack=alloca(n*sizeof(*ampstack));
+  long  *posstack = (long *) alloca(n*sizeof(*posstack));
+  float *ampstack = (float *) alloca(n*sizeof(*ampstack));
   long   stack=0;
   long   pos=0;
   long   i;
@@ -536,11 +536,11 @@ static void bark_noise_hybridmp(int n,const long *b,
                                 const float offset,
                                 const int fixed){
 
-  float *N=alloca(n*sizeof(*N));
-  float *X=alloca(n*sizeof(*N));
-  float *XX=alloca(n*sizeof(*N));
-  float *Y=alloca(n*sizeof(*N));
-  float *XY=alloca(n*sizeof(*N));
+  float *N     = (float *) alloca(n*sizeof(*N));
+  float *X     = (float *) alloca(n*sizeof(*N));
+  float *XX    = (float *) alloca(n*sizeof(*N));
+  float *Y     = (float *) alloca(n*sizeof(*N));
+  float *XY    = (float *) alloca(n*sizeof(*N));
 
   float tN, tX, tXX, tY, tXY;
   int i;
@@ -690,7 +690,7 @@ void _vp_noisemask(vorbis_look_psy *p,
                    float *logmask){
 
   int i,n=p->n;
-  float *work=alloca(n*sizeof(*work));
+  float *work = (float *) alloca(n*sizeof(*work));
 
   bark_noise_hybridmp(n,p->bark,logmdct,logmask,
                       140.,-1);
@@ -741,7 +741,7 @@ void _vp_tonemask(vorbis_look_psy *p,
 
   int i,n=p->n;
 
-  float *seed=alloca(sizeof(*seed)*p->total_octave_lines);
+  float *seed=(float *) alloca(sizeof(*seed)*p->total_octave_lines);
   float att=local_specmax+p->vi->ath_adjatt;
   for(i=0;i<p->total_octave_lines;i++)seed[i]=NEGINF;
 
@@ -923,7 +923,7 @@ static void flag_lossless(int limit, float prepoint, float postpoint, float *mdc
 static float noise_normalize(vorbis_look_psy *p, int limit, float *r, float *q, float *f, int *flags, float acc, int i, int n, int *out){
 
   vorbis_info_psy *vi=p->vi;
-  float **sort = alloca(n*sizeof(*sort));
+  float **sort = (float **) alloca(n*sizeof(*sort));
   int j,count=0;
   int start = (vi->normal_p ? vi->normal_start-i : n);
   if(start>n)start=n;
@@ -1015,31 +1015,31 @@ void _vp_couple_quantize_normalize(int blobno,
   /* inout passes in the ifloor, passes back quantized result */
 
   /* unquantized energy (negative indicates amplitude has negative sign) */
-  float **raw = alloca(ch*sizeof(*raw));
+  float **raw = (float **)  alloca(ch*sizeof(*raw));
 
   /* dual pupose; quantized energy (if flag set), othersize fabs(raw) */
-  float **quant = alloca(ch*sizeof(*quant));
+  float **quant =  (float **) alloca(ch*sizeof(*quant));
 
   /* floor energy */
-  float **floor = alloca(ch*sizeof(*floor));
+  float **floor =  (float **) alloca(ch*sizeof(*floor));
 
   /* flags indicating raw/quantized status of elements in raw vector */
-  int   **flag  = alloca(ch*sizeof(*flag));
+  int   **flag  =  (int **) alloca(ch*sizeof(*flag));
 
   /* non-zero flag working vector */
-  int    *nz    = alloca(ch*sizeof(*nz));
+  int    *nz    = (int *) alloca(ch*sizeof(*nz));
 
   /* energy surplus/defecit tracking */
-  float  *acc   = alloca((ch+vi->coupling_steps)*sizeof(*acc));
+  float  *acc   = (float *) alloca((ch+vi->coupling_steps)*sizeof(*acc));
 
   /* The threshold of a stereo is changed with the size of n */
   if(n > 1000)
     postpoint=stereo_threshholds_limited[g->coupling_postpointamp[blobno]];
 
-  raw[0]   = alloca(ch*partition*sizeof(**raw));
-  quant[0] = alloca(ch*partition*sizeof(**quant));
-  floor[0] = alloca(ch*partition*sizeof(**floor));
-  flag[0]  = alloca(ch*partition*sizeof(**flag));
+  raw[0]   = (float *) alloca(ch*partition*sizeof(**raw));
+  quant[0] = (float *) alloca(ch*partition*sizeof(**quant));
+  floor[0] = (float *) alloca(ch*partition*sizeof(**floor));
+  flag[0]  = (int *) alloca(ch*partition*sizeof(**flag));
 
   for(i=1;i<ch;i++){
     raw[i]   = &raw[0][partition*i];

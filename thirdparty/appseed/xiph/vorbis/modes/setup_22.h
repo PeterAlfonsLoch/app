@@ -15,6 +15,17 @@
 
  ********************************************************************/
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 static const double rate_mapping_22[4]={
   15000.,20000.,44000.,86000.
 };
@@ -126,3 +137,15 @@ static const ve_setup_data_template ve_setup_22_uncoupled={
 
   _mapres_template_16_uncoupled
 };
+
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

@@ -19,6 +19,17 @@
 #define _V_RANDOM_H_
 #include "vorbis/codec.h"
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 extern void *_vorbis_block_alloc(vorbis_block *vb,long bytes);
 extern void _vorbis_block_ripcord(vorbis_block *vb);
 
@@ -49,6 +60,16 @@ extern void _VDBG_free(void *ptr,char *file,long line);
 #define _ogg_free(x) _VDBG_free((x),__FILE__,__LINE__)
 #endif
 #endif
+
+
+
+
+END_EXTERN_C
+
+
+
+
+
 
 #endif
 

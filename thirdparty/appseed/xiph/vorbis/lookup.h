@@ -17,6 +17,17 @@
 
 #ifndef _V_LOOKUP_H_
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 #ifdef FLOAT_LOOKUP
 extern float vorbis_coslook(float a);
 extern float vorbis_invsqlook(float a);
@@ -29,4 +40,5 @@ extern long vorbis_coslook_i(long a);
 extern float vorbis_fromdBlook_i(long a);
 #endif
 
+END_EXTERN_C
 #endif

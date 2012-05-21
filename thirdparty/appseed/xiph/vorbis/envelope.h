@@ -20,6 +20,8 @@
 
 #include "mdct.h"
 
+BEGIN_EXTERN_C
+
 #define VE_PRE    16
 #define VE_WIN    4
 #define VE_POST   2
@@ -76,5 +78,6 @@ extern long _ve_envelope_search(vorbis_dsp_state *v);
 extern void _ve_envelope_shift(envelope_lookup *e,long shift);
 extern int  _ve_envelope_mark(vorbis_dsp_state *v);
 
+END_EXTERN_C
 
 #endif

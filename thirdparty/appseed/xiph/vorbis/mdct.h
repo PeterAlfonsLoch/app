@@ -24,6 +24,17 @@
 
 
 
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
+
+
 /*#define MDCT_INTEGERIZED  <- be warned there could be some hurt left here*/
 #ifdef MDCT_INTEGERIZED
 
@@ -67,5 +78,15 @@ extern void mdct_init(mdct_lookup *lookup,int n);
 extern void mdct_clear(mdct_lookup *l);
 extern void mdct_forward(mdct_lookup *init, DATA_TYPE *in, DATA_TYPE *out);
 extern void mdct_backward(mdct_lookup *init, DATA_TYPE *in, DATA_TYPE *out);
+
+
+
+
+END_EXTERN_C
+
+
+
+
+
 
 #endif

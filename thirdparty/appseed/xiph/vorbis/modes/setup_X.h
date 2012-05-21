@@ -15,6 +15,17 @@
 
  ********************************************************************/
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 static const double rate_mapping_X[12]={
   -1.,-1.,-1.,-1.,-1.,-1.,
   -1.,-1.,-1.,-1.,-1.,-1.
@@ -223,3 +234,17 @@ static const ve_setup_data_template ve_setup_XX_uncoupled={
 
   _mapres_template_8_uncoupled
 };
+
+
+
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

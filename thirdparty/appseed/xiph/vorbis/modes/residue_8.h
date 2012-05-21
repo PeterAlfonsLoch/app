@@ -18,6 +18,17 @@
 #include "vorbis/codec.h"
 #include "backends.h"
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 /***** residue backends *********************************************/
 
 static const static_bookblock _resbook_8s_0={
@@ -107,3 +118,15 @@ static const vorbis_mapping_template _mapres_template_8_uncoupled[2]={
   { _map_nominal_u, _res_8u_0 }, /* 0 */
   { _map_nominal_u, _res_8u_1 }, /* 1 */
 };
+
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

@@ -19,6 +19,17 @@
 #include "backends.h"
 #include "books/uncoupled/res_books_uncoupled.h"
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 /***** residue backends *********************************************/
 
 
@@ -316,3 +327,14 @@ static const vorbis_mapping_template _mapres_template_44_uncoupled[]={
   { _map_nominal_u, _res_44u_8 }, /* 8 */
   { _map_nominal_u, _res_44u_9 }, /* 9 */
 };
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

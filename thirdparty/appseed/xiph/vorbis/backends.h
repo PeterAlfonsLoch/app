@@ -25,6 +25,8 @@
 
 #include "codec_internal.h"
 
+BEGIN_EXTERN_C
+
 /* this would all be simpler/shorter with templates, but.... */
 /* Floor backend generic *****************************************/
 typedef struct{
@@ -140,5 +142,7 @@ typedef struct vorbis_info_mapping0{
   int   coupling_ang[256];
 
 } vorbis_info_mapping0;
+
+END_EXTERN_C
 
 #endif

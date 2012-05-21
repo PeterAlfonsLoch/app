@@ -24,6 +24,17 @@
 #ifndef _OV_ENC_H_
 #define _OV_ENC_H_
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -432,5 +443,16 @@ struct ovectl_ratemanage2_arg {
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+
 
 #endif

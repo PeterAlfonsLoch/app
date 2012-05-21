@@ -15,6 +15,17 @@
 
  ********************************************************************/
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 /* stereo mode by base quality level */
 static const adj_stereo _psy_stereo_modes_16[4]={
   /*  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  */
@@ -131,3 +142,14 @@ static const int _psy_ath_floater_16[4]={
 static const int _psy_ath_abs_16[4]={
   -130,-130,-130,-140,
 };
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

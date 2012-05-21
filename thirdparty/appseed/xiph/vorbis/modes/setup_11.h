@@ -17,6 +17,17 @@
 
 #include "psych_11.h"
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 static const int blocksize_11[2]={
   512,512
 };
@@ -141,3 +152,14 @@ static const ve_setup_data_template ve_setup_11_uncoupled={
 
   _mapres_template_8_uncoupled
 };
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

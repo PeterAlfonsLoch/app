@@ -47,10 +47,10 @@ int vorbis_staticbook_pack(const static_codebook *c,oggpack_buffer *opb){
     oggpack_write(opb,c->lengthlist[0]-1,5); /* 1 to 32 */
 
     for(i=1;i<c->entries;i++){
-      long this=c->lengthlist[i];
+      long thiscount=c->lengthlist[i];
       long last=c->lengthlist[i-1];
-      if(this>last){
-        for(j=last;j<this;j++){
+      if(thiscount>last){
+        for(j=last;j<thiscount;j++){
           oggpack_write(opb,i-count,_ilog(c->entries-count));
           count=i;
         }
@@ -142,7 +142,7 @@ int vorbis_staticbook_pack(const static_codebook *c,oggpack_buffer *opb){
    readies the codebook auxiliary structures for decode *************/
 static_codebook *vorbis_staticbook_unpack(oggpack_buffer *opb){
   long i,j;
-  static_codebook *s=_ogg_calloc(1,sizeof(*s));
+  static_codebook *s=(static_codebook *) _ogg_calloc(1,sizeof(*s));
   s->allocedp=1;
 
   /* make sure alignment is correct */
@@ -164,7 +164,7 @@ static_codebook *vorbis_staticbook_unpack(oggpack_buffer *opb){
     if((s->entries*(unused?1:5)+7)>>3>opb->storage-oggpack_bytes(opb))
       goto _eofout;
     /* unordered */
-    s->lengthlist=_ogg_malloc(sizeof(*s->lengthlist)*s->entries);
+    s->lengthlist=(long *) _ogg_malloc(sizeof(*s->lengthlist)*s->entries);
 
     /* allocated but unused entries? */
     if(unused){
@@ -194,7 +194,7 @@ static_codebook *vorbis_staticbook_unpack(oggpack_buffer *opb){
     {
       long length=oggpack_read(opb,5)+1;
       if(length==0)goto _eofout;
-      s->lengthlist=_ogg_malloc(sizeof(*s->lengthlist)*s->entries);
+      s->lengthlist=(long *) _ogg_malloc(sizeof(*s->lengthlist)*s->entries);
 
       for(i=0;i<s->entries;){
         long num=oggpack_read(opb,_ilog(s->entries-i));
@@ -244,7 +244,7 @@ static_codebook *vorbis_staticbook_unpack(oggpack_buffer *opb){
       /* quantized values */
       if(((quantvals*s->q_quant+7)>>3)>opb->storage-oggpack_bytes(opb))
         goto _eofout;
-      s->quantlist=_ogg_malloc(sizeof(*s->quantlist)*quantvals);
+      s->quantlist= (long *) _ogg_malloc(sizeof(*s->quantlist)*quantvals);
       for(i=0;i<quantvals;i++)
         s->quantlist[i]=oggpack_read(opb,s->q_quant);
 
@@ -364,8 +364,8 @@ long vorbis_book_decode(codebook *book, oggpack_buffer *b){
 long vorbis_book_decodevs_add(codebook *book,float *a,oggpack_buffer *b,int n){
   if(book->used_entries>0){
     int step=n/book->dim;
-    long *entry = alloca(sizeof(*entry)*step);
-    float **t = alloca(sizeof(*t)*step);
+    long *entry = (long *) alloca(sizeof(*entry)*step);
+    float **t = (float **) alloca(sizeof(*t)*step);
     int i,j,o;
 
     for (i = 0; i < step; i++) {

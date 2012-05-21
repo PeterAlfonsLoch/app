@@ -17,6 +17,17 @@
 
 /***** residue backends *********************************************/
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 static const static_bookblock _resbook_16s_0={
   {
     {0},
@@ -161,3 +172,13 @@ static const vorbis_mapping_template _mapres_template_16_uncoupled[3]={
   { _map_nominal_u, _res_16u_1 }, /* 1 */
   { _map_nominal_u, _res_16u_2 }, /* 2 */
 };
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

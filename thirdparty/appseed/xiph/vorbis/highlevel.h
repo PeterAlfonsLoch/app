@@ -15,6 +15,17 @@
 
  ********************************************************************/
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 typedef struct highlevel_byblocktype {
   double tone_mask_setting;
   double tone_peaklimit_setting;
@@ -56,3 +67,5 @@ typedef struct highlevel_encode_setup {
   highlevel_byblocktype block[4]; /* padding, impulse, transition, long */
 
 } highlevel_encode_setup;
+
+END_EXTERN_C

@@ -18,6 +18,17 @@
 #include "psych_8.h"
 #include "residue_8.h"
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 static const int blocksize_8[2]={
   512,512
 };
@@ -147,3 +158,16 @@ static const ve_setup_data_template ve_setup_8_uncoupled={
 
   _mapres_template_8_uncoupled
 };
+
+
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

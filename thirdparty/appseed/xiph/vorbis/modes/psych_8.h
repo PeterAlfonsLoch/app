@@ -15,6 +15,17 @@
 
  ********************************************************************/
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 static const att3 _psy_tone_masteratt_8[3]={
   {{ 32,  25,  12},  0,   0},  /* 0 */
   {{ 30,  25,  12},  0,   0},  /* 0 */
@@ -99,3 +110,14 @@ static const int _psy_ath_floater_8[3]={
 static const int _psy_ath_abs_8[3]={
   -130,-130,-140,
 };
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

@@ -22,6 +22,17 @@
 #include "backends.h"
 #include "envelope.h"
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 #ifndef EHMER_MAX
 #define EHMER_MAX 56
 #endif
@@ -150,5 +161,15 @@ extern void _vp_couple_quantize_normalize(int blobno,
                                           int    *nonzero,
                                           int     sliding_lowpass,
                                           int     ch);
+
+
+
+
+END_EXTERN_C
+
+
+
+
+
 
 #endif

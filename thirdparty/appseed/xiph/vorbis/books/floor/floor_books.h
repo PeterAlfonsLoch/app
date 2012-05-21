@@ -17,6 +17,8 @@
 
 #include "codebook.h"
 
+BEGIN_EXTERN_C
+
 static const long _huff_lengthlist_line_256x7_0sub1[] = {
          0, 2, 3, 3, 3, 3, 4, 3, 4,
 };
@@ -1545,3 +1547,4 @@ static const static_codebook _huff_book_line_256x4low_0sub3 = {
         0
 };
 
+END_EXTERN_C

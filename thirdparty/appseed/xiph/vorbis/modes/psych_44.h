@@ -18,6 +18,17 @@
 
 /* preecho trigger settings *****************************************/
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 static const vorbis_info_psy_global _psy_global_44[5]={
 
   {8,   /* lines per eighth octave */
@@ -640,3 +651,14 @@ static const double _noise_thresh_44[11]={
 static const double _noise_thresh_5only[2]={
  .5,.5,
 };
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

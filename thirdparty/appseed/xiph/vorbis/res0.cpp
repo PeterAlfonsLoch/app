@@ -195,7 +195,7 @@ void res0_pack(vorbis_info_residue *vr,oggpack_buffer *opb){
 /* vorbis_info is for range checking */
 vorbis_info_residue *res0_unpack(vorbis_info *vi,oggpack_buffer *opb){
   int j,acc=0;
-  vorbis_info_residue0 *info=_ogg_calloc(1,sizeof(*info));
+  vorbis_info_residue0 *info= (vorbis_info_residue0 *) _ogg_calloc(1,sizeof(*info));
   codec_setup_info     *ci=vi->codec_setup;
 
   info->begin=oggpack_read(opb,24);
@@ -259,8 +259,8 @@ vorbis_info_residue *res0_unpack(vorbis_info *vi,oggpack_buffer *opb){
 
 vorbis_look_residue *res0_look(vorbis_dsp_state *vd,
                                vorbis_info_residue *vr){
-  vorbis_info_residue0 *info=(vorbis_info_residue0 *)vr;
-  vorbis_look_residue0 *look=_ogg_calloc(1,sizeof(*look));
+  vorbis_info_residue0 *info= (vorbis_info_residue0 *) vr;
+  vorbis_look_residue0 *look= (vorbis_look_residue0 *) _ogg_calloc(1,sizeof(*look));
   codec_setup_info     *ci=vd->vi->codec_setup;
 
   int j,k,acc=0;
@@ -273,13 +273,13 @@ vorbis_look_residue *res0_look(vorbis_dsp_state *vd,
   look->phrasebook=ci->fullbooks+info->groupbook;
   dim=look->phrasebook->dim;
 
-  look->partbooks=_ogg_calloc(look->parts,sizeof(*look->partbooks));
+  look->partbooks= (codebook ***) _ogg_calloc(look->parts,sizeof(*look->partbooks));
 
   for(j=0;j<look->parts;j++){
     int stages=ilog(info->secondstages[j]);
     if(stages){
       if(stages>maxstage)maxstage=stages;
-      look->partbooks[j]=_ogg_calloc(stages,sizeof(*look->partbooks[j]));
+      look->partbooks[j]= (codebook **) _ogg_calloc(stages,sizeof(*look->partbooks[j]));
       for(k=0;k<stages;k++)
         if(info->secondstages[j]&(1<<k)){
           look->partbooks[j][k]=ci->fullbooks+info->booklist[acc++];
@@ -296,11 +296,11 @@ vorbis_look_residue *res0_look(vorbis_dsp_state *vd,
       look->partvals*=look->parts;
 
   look->stages=maxstage;
-  look->decodemap=_ogg_malloc(look->partvals*sizeof(*look->decodemap));
+  look->decodemap= (int **) _ogg_malloc(look->partvals*sizeof(*look->decodemap));
   for(j=0;j<look->partvals;j++){
     long val=j;
     long mult=look->partvals/look->parts;
-    look->decodemap[j]=_ogg_malloc(dim*sizeof(*look->decodemap[j]));
+    look->decodemap[j]= (int *) _ogg_malloc(dim*sizeof(*look->decodemap[j]));
     for(k=0;k<dim;k++){
       long deco=val/mult;
       val-=deco*mult;
@@ -353,14 +353,14 @@ static int local_book_besterror(codebook *book,int *a){
     int maxval = book->minval + book->delta*(book->quantvals-1);
     for(i=0;i<book->entries;i++){
       if(c->lengthlist[i]>0){
-        int this=0;
+        int thiscount=0;
         for(j=0;j<dim;j++){
           int val=(e[j]-a[j]);
-          this+=val*val;
+          thiscount+=val*val;
         }
-        if(best==-1 || this<best){
+        if(best==-1 || thiscount<best){
           memcpy(p,e,sizeof(p));
-          best=this;
+          best=thiscount;
           index=i;
         }
       }
@@ -415,7 +415,7 @@ static long **_01class(vorbis_block *vb,vorbis_look_residue *vl,
   int n=info->end-info->begin;
 
   int partvals=n/samples_per_partition;
-  long **partword=_vorbis_block_alloc(vb,ch*sizeof(*partword));
+  long **partword= (long **) _vorbis_block_alloc(vb,ch*sizeof(*partword));
   float scale=100./samples_per_partition;
 
   /* we find the partition type for each partition of each
@@ -423,7 +423,7 @@ static long **_01class(vorbis_block *vb,vorbis_look_residue *vl,
      bit.  For now, clarity */
 
   for(i=0;i<ch;i++){
-    partword[i]=_vorbis_block_alloc(vb,n/samples_per_partition*sizeof(*partword[i]));
+    partword[i]= (long *) _vorbis_block_alloc(vb,n/samples_per_partition*sizeof(*partword[i]));
     memset(partword[i],0,n/samples_per_partition*sizeof(*partword[i]));
   }
 
@@ -482,14 +482,14 @@ static long **_2class(vorbis_block *vb,vorbis_look_residue *vl,int **in,
   int n=info->end-info->begin;
 
   int partvals=n/samples_per_partition;
-  long **partword=_vorbis_block_alloc(vb,sizeof(*partword));
+  long **partword= (long **) _vorbis_block_alloc(vb,sizeof(*partword));
 
 #if defined(TRAIN_RES) || defined (TRAIN_RESAUX)
   FILE *of;
   char buffer[80];
 #endif
 
-  partword[0]=_vorbis_block_alloc(vb,partvals*sizeof(*partword[0]));
+  partword[0]= (long *) _vorbis_block_alloc(vb,partvals*sizeof(*partword[0]));
   memset(partword[0],0,partvals*sizeof(*partword[0]));
 
   for(i=0,l=info->begin/ch;i<partvals;i++){
@@ -665,10 +665,10 @@ static int _01inverse(vorbis_block *vb,vorbis_look_residue *vl,
   if(n>0){
     int partvals=n/samples_per_partition;
     int partwords=(partvals+partitions_per_word-1)/partitions_per_word;
-    int ***partword=alloca(ch*sizeof(*partword));
+    int ***partword= (int ***) alloca(ch*sizeof(*partword));
 
     for(j=0;j<ch;j++)
-      partword[j]=_vorbis_block_alloc(vb,partwords*sizeof(*partword[j]));
+      partword[j]= (int **) _vorbis_block_alloc(vb,partwords*sizeof(*partword[j]));
 
     for(s=0;s<look->stages;s++){
 
@@ -778,7 +778,7 @@ int res2_forward(oggpack_buffer *opb,
   /* don't duplicate the code; use a working vector hack for now and
      reshape ourselves into a single channel res1 */
   /* ugly; reallocs for each coupling pass :-( */
-  int *work=_vorbis_block_alloc(vb,ch*n*sizeof(*work));
+  int * work = (int *) _vorbis_block_alloc(vb,ch*n*sizeof(*work));
   for(i=0;i<ch;i++){
     int *pcm=in[i];
     if(nonzero[i])used++;
@@ -810,7 +810,7 @@ int res2_inverse(vorbis_block *vb,vorbis_look_residue *vl,
   if(n>0){
     int partvals=n/samples_per_partition;
     int partwords=(partvals+partitions_per_word-1)/partitions_per_word;
-    int **partword=_vorbis_block_alloc(vb,partwords*sizeof(*partword));
+    int **partword= (int **) _vorbis_block_alloc(vb,partwords*sizeof(*partword));
 
     for(i=0;i<ch;i++)if(nonzero[i])break;
     if(i==ch)return(0); /* no nonzero vectors */
@@ -847,7 +847,7 @@ int res2_inverse(vorbis_block *vb,vorbis_look_residue *vl,
 }
 
 
-const vorbis_func_residue residue0_exportbundle={
+extern "C" const vorbis_func_residue residue0_exportbundle={
   NULL,
   &res0_unpack,
   &res0_look,
@@ -858,7 +858,7 @@ const vorbis_func_residue residue0_exportbundle={
   &res0_inverse
 };
 
-const vorbis_func_residue residue1_exportbundle={
+extern "C" const vorbis_func_residue residue1_exportbundle={
   &res0_pack,
   &res0_unpack,
   &res0_look,
@@ -869,7 +869,7 @@ const vorbis_func_residue residue1_exportbundle={
   &res1_inverse
 };
 
-const vorbis_func_residue residue2_exportbundle={
+extern "C" const vorbis_func_residue residue2_exportbundle={
   &res0_pack,
   &res0_unpack,
   &res0_look,

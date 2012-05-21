@@ -183,7 +183,7 @@ static void vorbis_encode_floor_setup(vorbis_info *vi,int s,
                                      const vorbis_info_floor1 *in,
                                      const int *x){
   int i,k,is=s;
-  vorbis_info_floor1 *f=_ogg_calloc(1,sizeof(*f));
+  vorbis_info_floor1 *f=(vorbis_info_floor1 *)  _ogg_calloc(1,sizeof(*f));
   codec_setup_info *ci=vi->codec_setup;
 
   memcpy(f,in+x[is],sizeof(*f));
@@ -305,7 +305,7 @@ static void vorbis_encode_psyset_setup(vorbis_info *vi,double s,
   if(block>=ci->psys)
     ci->psys=block+1;
   if(!p){
-    p=_ogg_calloc(1,sizeof(*p));
+    p = (vorbis_info_psy *) _ogg_calloc(1,sizeof(*p));
     ci->psy_param[block]=p;
   }
 
@@ -451,8 +451,8 @@ static void vorbis_encode_residue_setup(vorbis_info *vi,
   codec_setup_info *ci=vi->codec_setup;
   int i;
 
-  vorbis_info_residue0 *r=ci->residue_param[number]=
-    _ogg_malloc(sizeof(*r));
+  ci->residue_param[number]= (vorbis_info_residue0 * ) _ogg_malloc(sizeof(vorbis_info_residue0));
+  vorbis_info_residue0 *r = (vorbis_info_residue0 * ) ci->residue_param[number];
 
   memcpy(r,res->res,sizeof(*r));
   if(ci->residues<=number)ci->residues=number+1;
@@ -508,7 +508,7 @@ static void vorbis_encode_residue_setup(vorbis_info *vi,
   /* lowpass setup/pointlimit */
   {
     double freq=ci->hi.lowpass_kHz*1000.;
-    vorbis_info_floor1 *f=ci->floor_param[block]; /* by convention */
+    vorbis_info_floor1 *f = (vorbis_info_floor1 *) ci->floor_param[block]; /* by convention */
     double nyq=vi->rate/2.;
     long blocksize=ci->blocksizes[block]>>1;
 
@@ -591,7 +591,7 @@ static void vorbis_encode_map_n_res_setup(vorbis_info *vi,double s,
   for(i=0;i<modes;i++){
 
     ci->map_param[i]=_ogg_calloc(1,sizeof(*map));
-    ci->mode_param[i]=_ogg_calloc(1,sizeof(*mode));
+    ci->mode_param[i]=(vorbis_info_mode *) _ogg_calloc(1,sizeof(*mode));
 
     memcpy(ci->mode_param[i],mode+i,sizeof(*_mode_template));
     if(i>=ci->modes)ci->modes=i+1;
@@ -855,7 +855,7 @@ static void vorbis_encode_setup_setting(vorbis_info *vi,
   int i,is;
   codec_setup_info *ci=vi->codec_setup;
   highlevel_encode_setup *hi=&ci->hi;
-  const ve_setup_data_template *setup=hi->setup;
+  const ve_setup_data_template *setup = (const ve_setup_data_template *) hi->setup;
   double ds;
 
   vi->version=0;

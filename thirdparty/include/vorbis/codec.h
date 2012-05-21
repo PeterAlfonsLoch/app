@@ -25,6 +25,15 @@ extern "C"
 
 #include <ogg/ogg.h>
 
+   
+
+
+
+   struct codec_setup_info;
+
+   struct private_state;
+
+
 typedef struct vorbis_info{
   int version;
   int channels;
@@ -50,7 +59,7 @@ typedef struct vorbis_info{
   long bitrate_lower;
   long bitrate_window;
 
-  void *codec_setup;
+  codec_setup_info * codec_setup;
 } vorbis_info;
 
 /* vorbis_dsp_state buffers the current vorbis audio
@@ -82,7 +91,7 @@ typedef struct vorbis_dsp_state{
   ogg_int64_t floor_bits;
   ogg_int64_t res_bits;
 
-  void       *backend_state;
+  private_state       *backend_state;
 } vorbis_dsp_state;
 
 typedef struct vorbis_block{

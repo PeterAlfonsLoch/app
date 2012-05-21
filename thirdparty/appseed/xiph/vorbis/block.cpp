@@ -83,15 +83,15 @@ int vorbis_block_init(vorbis_dsp_state *v, vorbis_block *vb){
   vb->localalloc=0;
   vb->localstore=NULL;
   if(v->analysisp){
-    vorbis_block_internal *vbi=
-      vb->internal=_ogg_calloc(1,sizeof(vorbis_block_internal));
+     vb->internal= (vorbis_block_internal *)_ogg_calloc(1,sizeof(vorbis_block_internal));
+    vorbis_block_internal *vbi=(vorbis_block_internal *) vb->internal;
     vbi->ampmax=-9999;
 
     for(i=0;i<PACKETBLOBS;i++){
       if(i==PACKETBLOBS/2){
         vbi->packetblob[i]=&vb->opb;
       }else{
-        vbi->packetblob[i]=
+        vbi->packetblob[i]=(oggpack_buffer *)
           _ogg_calloc(1,sizeof(oggpack_buffer));
       }
       oggpack_writeinit(vbi->packetblob[i]);
@@ -106,7 +106,7 @@ void *_vorbis_block_alloc(vorbis_block *vb,long bytes){
   if(bytes+vb->localtop>vb->localalloc){
     /* can't just _ogg_realloc... there are outstanding pointers */
     if(vb->localstore){
-      struct alloc_chain *link=_ogg_malloc(sizeof(*link));
+      struct alloc_chain *link=(alloc_chain *) _ogg_malloc(sizeof(*link));
       vb->totaluse+=vb->localtop;
       link->next=vb->reap;
       link->ptr=vb->localstore;
@@ -149,7 +149,7 @@ void _vorbis_block_ripcord(vorbis_block *vb){
 
 int vorbis_block_clear(vorbis_block *vb){
   int i;
-  vorbis_block_internal *vbi=vb->internal;
+  vorbis_block_internal *vbi=(vorbis_block_internal *) vb->internal;
 
   _vorbis_block_ripcord(vb);
   if(vb->localstore)_ogg_free(vb->localstore);
@@ -171,7 +171,7 @@ int vorbis_block_clear(vorbis_block *vb){
 
 static int _vds_shared_init(vorbis_dsp_state *v,vorbis_info *vi,int encp){
   int i;
-  codec_setup_info *ci=vi->codec_setup;
+  codec_setup_info *ci=(codec_setup_info *) vi->codec_setup;
   private_state *b=NULL;
   int hs;
 
@@ -179,20 +179,21 @@ static int _vds_shared_init(vorbis_dsp_state *v,vorbis_info *vi,int encp){
   hs=ci->halfrate_flag;
 
   memset(v,0,sizeof(*v));
-  b=v->backend_state=_ogg_calloc(1,sizeof(*b));
+  v->backend_state=(private_state *)_ogg_calloc(1,sizeof(*b));
+  b= (private_state *)v->backend_state;
 
   v->vi=vi;
   b->modebits=ilog2(ci->modes);
 
-  b->transform[0]=_ogg_calloc(VI_TRANSFORMB,sizeof(*b->transform[0]));
-  b->transform[1]=_ogg_calloc(VI_TRANSFORMB,sizeof(*b->transform[1]));
+  b->transform[0]=(vorbis_look_transform **)_ogg_calloc(VI_TRANSFORMB,sizeof(*b->transform[0]));
+  b->transform[1]=(vorbis_look_transform **)_ogg_calloc(VI_TRANSFORMB,sizeof(*b->transform[1]));
 
   /* MDCT is tranform 0 */
 
-  b->transform[0][0]=_ogg_calloc(1,sizeof(mdct_lookup));
-  b->transform[1][0]=_ogg_calloc(1,sizeof(mdct_lookup));
-  mdct_init(b->transform[0][0],ci->blocksizes[0]>>hs);
-  mdct_init(b->transform[1][0],ci->blocksizes[1]>>hs);
+  b->transform[0][0]=(vorbis_look_transform *)_ogg_calloc(1,sizeof(mdct_lookup));
+  b->transform[1][0]=(vorbis_look_transform *)_ogg_calloc(1,sizeof(mdct_lookup));
+  mdct_init((mdct_lookup *) b->transform[0][0],ci->blocksizes[0]>>hs);
+  mdct_init((mdct_lookup *) b->transform[1][0],ci->blocksizes[1]>>hs);
 
   /* Vorbis I uses only window type 0 */
   b->window[0]=ilog2(ci->blocksizes[0])-6;
@@ -206,12 +207,12 @@ static int _vds_shared_init(vorbis_dsp_state *v,vorbis_info *vi,int encp){
 
     /* finish the codebooks */
     if(!ci->fullbooks){
-      ci->fullbooks=_ogg_calloc(ci->books,sizeof(*ci->fullbooks));
+      ci->fullbooks=(codebook *) _ogg_calloc(ci->books,sizeof(*ci->fullbooks));
       for(i=0;i<ci->books;i++)
         vorbis_book_init_encode(ci->fullbooks+i,ci->book_param[i]);
     }
 
-    b->psy=_ogg_calloc(ci->psys,sizeof(*b->psy));
+    b->psy=(vorbis_look_psy *)_ogg_calloc(ci->psys,sizeof(*b->psy));
     for(i=0;i<ci->psys;i++){
       _vp_psy_init(b->psy+i,
                    ci->psy_param[i],
@@ -224,7 +225,7 @@ static int _vds_shared_init(vorbis_dsp_state *v,vorbis_info *vi,int encp){
   }else{
     /* finish the codebooks */
     if(!ci->fullbooks){
-      ci->fullbooks=_ogg_calloc(ci->books,sizeof(*ci->fullbooks));
+      ci->fullbooks=(codebook *) _ogg_calloc(ci->books,sizeof(*ci->fullbooks));
       for(i=0;i<ci->books;i++){
         if(ci->book_param[i]==NULL)
           goto abort_books;
@@ -240,12 +241,12 @@ static int _vds_shared_init(vorbis_dsp_state *v,vorbis_info *vi,int encp){
   /* initialize the storage vectors. blocksize[1] is small for encode,
      but the correct size for decode */
   v->pcm_storage=ci->blocksizes[1];
-  v->pcm=_ogg_malloc(vi->channels*sizeof(*v->pcm));
-  v->pcmret=_ogg_malloc(vi->channels*sizeof(*v->pcmret));
+  v->pcm=(float **) _ogg_malloc(vi->channels*sizeof(*v->pcm));
+  v->pcmret=(float **) _ogg_malloc(vi->channels*sizeof(*v->pcmret));
   {
     int i;
     for(i=0;i<vi->channels;i++)
-      v->pcm[i]=_ogg_calloc(v->pcm_storage,sizeof(*v->pcm[i]));
+      v->pcm[i]=(float *) _ogg_calloc(v->pcm_storage,sizeof(*v->pcm[i]));
   }
 
   /* all 1 (large block) or 0 (small block) */
@@ -259,8 +260,8 @@ static int _vds_shared_init(vorbis_dsp_state *v,vorbis_info *vi,int encp){
   v->pcm_current=v->centerW;
 
   /* initialize all the backend lookups */
-  b->flr=_ogg_calloc(ci->floors,sizeof(*b->flr));
-  b->residue=_ogg_calloc(ci->residues,sizeof(*b->residue));
+  b->flr=(vorbis_look_floor **) _ogg_calloc(ci->floors,sizeof(*b->flr));
+  b->residue=(vorbis_look_residue **) _ogg_calloc(ci->residues,sizeof(*b->residue));
 
   for(i=0;i<ci->floors;i++)
     b->flr[i]=_floor_P[ci->floor_type[i]]->
@@ -287,11 +288,11 @@ int vorbis_analysis_init(vorbis_dsp_state *v,vorbis_info *vi){
   private_state *b=NULL;
 
   if(_vds_shared_init(v,vi,1))return 1;
-  b=v->backend_state;
+  b=(private_state *) v->backend_state;
   b->psy_g_look=_vp_global_look(vi);
 
   /* Initialize the envelope state storage */
-  b->ve=_ogg_calloc(1,sizeof(*b->ve));
+  b->ve=(envelope_lookup *) _ogg_calloc(1,sizeof(*b->ve));
   _ve_envelope_init(b->ve,vi);
 
   vorbis_bitrate_init(vi,&b->bms);
@@ -307,8 +308,8 @@ void vorbis_dsp_clear(vorbis_dsp_state *v){
   int i;
   if(v){
     vorbis_info *vi=v->vi;
-    codec_setup_info *ci=(vi?vi->codec_setup:NULL);
-    private_state *b=v->backend_state;
+    codec_setup_info *ci=(codec_setup_info *) (vi?vi->codec_setup:NULL);
+    private_state *b=(private_state *) v->backend_state;
 
     if(b){
 
@@ -318,12 +319,12 @@ void vorbis_dsp_clear(vorbis_dsp_state *v){
       }
 
       if(b->transform[0]){
-        mdct_clear(b->transform[0][0]);
+        mdct_clear((mdct_lookup* ) b->transform[0][0]);
         _ogg_free(b->transform[0][0]);
         _ogg_free(b->transform[0]);
       }
       if(b->transform[1]){
-        mdct_clear(b->transform[1][0]);
+        mdct_clear((mdct_lookup* ) b->transform[1][0]);
         _ogg_free(b->transform[1][0]);
         _ogg_free(b->transform[1]);
       }
@@ -380,7 +381,7 @@ void vorbis_dsp_clear(vorbis_dsp_state *v){
 float **vorbis_analysis_buffer(vorbis_dsp_state *v, int vals){
   int i;
   vorbis_info *vi=v->vi;
-  private_state *b=v->backend_state;
+  private_state *b=(private_state *) v->backend_state;
 
   /* free header, header1, header2 */
   if(b->header)_ogg_free(b->header);b->header=NULL;
@@ -394,7 +395,7 @@ float **vorbis_analysis_buffer(vorbis_dsp_state *v, int vals){
     v->pcm_storage=v->pcm_current+vals*2;
 
     for(i=0;i<vi->channels;i++){
-      v->pcm[i]=_ogg_realloc(v->pcm[i],v->pcm_storage*sizeof(*v->pcm[i]));
+      v->pcm[i]=(float *) _ogg_realloc(v->pcm[i],v->pcm_storage*sizeof(*v->pcm[i]));
     }
   }
 
@@ -407,8 +408,8 @@ float **vorbis_analysis_buffer(vorbis_dsp_state *v, int vals){
 static void _preextrapolate_helper(vorbis_dsp_state *v){
   int i;
   int order=16;
-  float *lpc=alloca(order*sizeof(*lpc));
-  float *work=alloca(v->pcm_current*sizeof(*work));
+  float *lpc=(float *) alloca(order*sizeof(*lpc));
+  float *work=(float *) alloca(v->pcm_current*sizeof(*work));
   long j;
   v->preextrapolate=1;
 
@@ -450,12 +451,12 @@ static void _preextrapolate_helper(vorbis_dsp_state *v){
 
 int vorbis_analysis_wrote(vorbis_dsp_state *v, int vals){
   vorbis_info *vi=v->vi;
-  codec_setup_info *ci=vi->codec_setup;
+  codec_setup_info *ci=(codec_setup_info* )vi->codec_setup;
 
   if(vals<=0){
     int order=32;
     int i;
-    float *lpc=alloca(order*sizeof(*lpc));
+    float *lpc=(float *) alloca(order*sizeof(*lpc));
 
     /* if it wasn't done earlier (very short sample) */
     if(!v->preextrapolate)
@@ -515,8 +516,8 @@ int vorbis_analysis_wrote(vorbis_dsp_state *v, int vals){
 int vorbis_analysis_blockout(vorbis_dsp_state *v,vorbis_block *vb){
   int i;
   vorbis_info *vi=v->vi;
-  codec_setup_info *ci=vi->codec_setup;
-  private_state *b=v->backend_state;
+  codec_setup_info *ci=(codec_setup_info *) vi->codec_setup;
+  private_state *b=(private_state *)v->backend_state;
   vorbis_look_psy_global *g=b->psy_g_look;
   long beginW=v->centerW-ci->blocksizes[v->W]/2,centerNext;
   vorbis_block_internal *vbi=(vorbis_block_internal *)vb->internal;
@@ -608,10 +609,10 @@ int vorbis_analysis_blockout(vorbis_dsp_state *v,vorbis_block *vb){
   g->ampmax=_vp_ampmax_decay(g->ampmax,v);
   vbi->ampmax=g->ampmax;
 
-  vb->pcm=_vorbis_block_alloc(vb,sizeof(*vb->pcm)*vi->channels);
-  vbi->pcmdelay=_vorbis_block_alloc(vb,sizeof(*vbi->pcmdelay)*vi->channels);
+  vb->pcm=(float **) _vorbis_block_alloc(vb,sizeof(*vb->pcm)*vi->channels);
+  vbi->pcmdelay=(float **) _vorbis_block_alloc(vb,sizeof(*vbi->pcmdelay)*vi->channels);
   for(i=0;i<vi->channels;i++){
-    vbi->pcmdelay[i]=
+    vbi->pcmdelay[i]=(float *) 
       _vorbis_block_alloc(vb,(vb->pcmend+beginW)*sizeof(*vbi->pcmdelay[i]));
     memcpy(vbi->pcmdelay[i],v->pcm[i],(vb->pcmend+beginW)*sizeof(*vbi->pcmdelay[i]));
     vb->pcm[i]=vbi->pcmdelay[i]+beginW;
@@ -762,14 +763,14 @@ int vorbis_synthesis_blockin(vorbis_dsp_state *v,vorbis_block *vb){
       if(v->lW){
         if(v->W){
           /* large/large */
-          float *w=_vorbis_window_get(b->window[1]-hs);
+          const float *w=_vorbis_window_get(b->window[1]-hs);
           float *pcm=v->pcm[j]+prevCenter;
           float *p=vb->pcm[j];
           for(i=0;i<n1;i++)
             pcm[i]=pcm[i]*w[n1-i-1] + p[i]*w[i];
         }else{
           /* large/small */
-          float *w=_vorbis_window_get(b->window[0]-hs);
+          const float *w=_vorbis_window_get(b->window[0]-hs);
           float *pcm=v->pcm[j]+prevCenter+n1/2-n0/2;
           float *p=vb->pcm[j];
           for(i=0;i<n0;i++)
@@ -778,7 +779,7 @@ int vorbis_synthesis_blockin(vorbis_dsp_state *v,vorbis_block *vb){
       }else{
         if(v->W){
           /* small/large */
-          float *w=_vorbis_window_get(b->window[0]-hs);
+          const float *w=_vorbis_window_get(b->window[0]-hs);
           float *pcm=v->pcm[j]+prevCenter;
           float *p=vb->pcm[j]+n1/2-n0/2;
           for(i=0;i<n0;i++)
@@ -787,7 +788,7 @@ int vorbis_synthesis_blockin(vorbis_dsp_state *v,vorbis_block *vb){
             pcm[i]=p[i];
         }else{
           /* small/small */
-          float *w=_vorbis_window_get(b->window[0]-hs);
+          const float *w=_vorbis_window_get(b->window[0]-hs);
           float *pcm=v->pcm[j]+prevCenter;
           float *p=vb->pcm[j];
           for(i=0;i<n0;i++)
@@ -1035,7 +1036,7 @@ extern float * vorbis_window(vorbis_dsp_state *v,int W)
   private_state *b=v->backend_state;
 
   if(b->window[W]-1<0)return NULL;
-  return _vorbis_window_get(b->window[W]-hs);
+  return (float *) _vorbis_window_get(b->window[W]-hs);
 
 }
 

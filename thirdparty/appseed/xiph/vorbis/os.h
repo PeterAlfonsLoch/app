@@ -28,6 +28,17 @@
 
 #include "misc.h"
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 #ifndef _V_IFDEFJAIL_H_
 #  define _V_IFDEFJAIL_H_
 
@@ -187,5 +198,16 @@ static int vorbis_ftoi(double f){
 #  define vorbis_fpu_restore(vorbis_fpu_control) {}
 
 #endif /* default implementation */
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+
 
 #endif /* _OS_H */

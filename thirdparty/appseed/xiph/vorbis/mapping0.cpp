@@ -92,7 +92,7 @@ static void mapping0_pack(vorbis_info *vi,vorbis_info_mapping *vm,
 /* also responsible for range checking */
 static vorbis_info_mapping *mapping0_unpack(vorbis_info *vi,oggpack_buffer *opb){
   int i,b;
-  vorbis_info_mapping0 *info=_ogg_calloc(1,sizeof(*info));
+  vorbis_info_mapping0 *info=(vorbis_info_mapping0 *) _ogg_calloc(1,sizeof(*info));
   codec_setup_info     *ci=vi->codec_setup;
   memset(info,0,sizeof(*info));
 
@@ -235,17 +235,17 @@ static int mapping0_forward(vorbis_block *vb){
   int                    n=vb->pcmend;
   int i,j,k;
 
-  int    *nonzero    = alloca(sizeof(*nonzero)*vi->channels);
-  float  **gmdct     = _vorbis_block_alloc(vb,vi->channels*sizeof(*gmdct));
-  int    **iwork      = _vorbis_block_alloc(vb,vi->channels*sizeof(*iwork));
-  int ***floor_posts = _vorbis_block_alloc(vb,vi->channels*sizeof(*floor_posts));
+  int    *nonzero    = (int *)  alloca(sizeof(*nonzero)*vi->channels);
+  float  **gmdct     = (float **) _vorbis_block_alloc(vb,vi->channels*sizeof(*gmdct));
+  int    **iwork      = (int **) _vorbis_block_alloc(vb,vi->channels*sizeof(*iwork));
+  int ***floor_posts = (int ***) _vorbis_block_alloc(vb,vi->channels*sizeof(*floor_posts));
 
   float global_ampmax=vbi->ampmax;
-  float *local_ampmax=alloca(sizeof(*local_ampmax)*vi->channels);
+  float *local_ampmax = (float *) alloca(sizeof(*local_ampmax)*vi->channels);
   int blocktype=vbi->blocktype;
 
   int modenumber=vb->W;
-  vorbis_info_mapping0 *info=ci->map_param[modenumber];
+  vorbis_info_mapping0 *info=(vorbis_info_mapping0 *) ci->map_param[modenumber];
   vorbis_look_psy *psy_look=b->psy+blocktype+(vb->W?2:0);
 
   vb->mode=modenumber;
@@ -257,8 +257,8 @@ static int mapping0_forward(vorbis_block *vb){
     float *pcm     =vb->pcm[i];
     float *logfft  =pcm;
 
-    iwork[i]=_vorbis_block_alloc(vb,n/2*sizeof(**iwork));
-    gmdct[i]=_vorbis_block_alloc(vb,n/2*sizeof(**gmdct));
+    iwork[i]=(int *) _vorbis_block_alloc(vb,n/2*sizeof(**iwork));
+    gmdct[i]=(float *) _vorbis_block_alloc(vb,n/2*sizeof(**gmdct));
 
     scale_dB=todB(&scale) + .345; /* + .345 is a hack; the original
                                      todB estimation used on IEEE 754
@@ -302,7 +302,7 @@ static int mapping0_forward(vorbis_block *vb){
 
     /* transform the PCM data */
     /* only MDCT right now.... */
-    mdct_forward(b->transform[vb->W][0],pcm,gmdct[i]);
+    mdct_forward((mdct_lookup *) b->transform[vb->W][0],pcm,gmdct[i]);
 
     /* FFT yields more accurate tonal estimation (not phase sensitive) */
     drft_forward(&b->fft_look[vb->W],pcm);
@@ -359,8 +359,8 @@ static int mapping0_forward(vorbis_block *vb){
   }
 
   {
-    float   *noise        = _vorbis_block_alloc(vb,n/2*sizeof(*noise));
-    float   *tone         = _vorbis_block_alloc(vb,n/2*sizeof(*tone));
+    float   *noise        = (float *) _vorbis_block_alloc(vb,n/2*sizeof(*noise));
+    float   *tone         = (float *) _vorbis_block_alloc(vb,n/2*sizeof(*tone));
 
     for(i=0;i<vi->channels;i++){
       /* the encoder setup assumes that all the modes used by any
@@ -377,7 +377,7 @@ static int mapping0_forward(vorbis_block *vb){
 
       vb->mode=modenumber;
 
-      floor_posts[i]=_vorbis_block_alloc(vb,PACKETBLOBS*sizeof(**floor_posts));
+      floor_posts[i] = (int **) _vorbis_block_alloc(vb,PACKETBLOBS*sizeof(**floor_posts));
       memset(floor_posts[i],0,sizeof(**floor_posts)*PACKETBLOBS);
 
       for(j=0;j<n/2;j++)
@@ -497,7 +497,7 @@ static int mapping0_forward(vorbis_block *vb){
       if(ci->floor_type[info->floorsubmap[submap]]!=1)return(-1);
 
       floor_posts[i][PACKETBLOBS/2]=
-        floor1_fit(vb,b->flr[info->floorsubmap[submap]],
+        floor1_fit(vb, (vorbis_look_floor1 *) b->flr[info->floorsubmap[submap]],
                    logmdct,
                    logmask);
 
@@ -526,7 +526,7 @@ static int mapping0_forward(vorbis_block *vb){
 #endif
 
         floor_posts[i][PACKETBLOBS-1]=
-          floor1_fit(vb,b->flr[info->floorsubmap[submap]],
+          floor1_fit(vb,(vorbis_look_floor1 *) b->flr[info->floorsubmap[submap]],
                      logmdct,
                      logmask);
 
@@ -551,7 +551,7 @@ static int mapping0_forward(vorbis_block *vb){
 #endif
 
         floor_posts[i][0]=
-          floor1_fit(vb,b->flr[info->floorsubmap[submap]],
+          floor1_fit(vb,(vorbis_look_floor1 *) b->flr[info->floorsubmap[submap]],
                      logmdct,
                      logmask);
 
@@ -559,13 +559,13 @@ static int mapping0_forward(vorbis_block *vb){
            intermediate rates */
         for(k=1;k<PACKETBLOBS/2;k++)
           floor_posts[i][k]=
-            floor1_interpolate_fit(vb,b->flr[info->floorsubmap[submap]],
+            floor1_interpolate_fit(vb,(vorbis_look_floor1 *) b->flr[info->floorsubmap[submap]],
                                    floor_posts[i][0],
                                    floor_posts[i][PACKETBLOBS/2],
                                    k*65536/(PACKETBLOBS/2));
         for(k=PACKETBLOBS/2+1;k<PACKETBLOBS-1;k++)
           floor_posts[i][k]=
-            floor1_interpolate_fit(vb,b->flr[info->floorsubmap[submap]],
+            floor1_interpolate_fit(vb,(vorbis_look_floor1 *) b->flr[info->floorsubmap[submap]],
                                    floor_posts[i][PACKETBLOBS/2],
                                    floor_posts[i][PACKETBLOBS-1],
                                    (k-PACKETBLOBS/2)*65536/(PACKETBLOBS/2));
@@ -589,8 +589,8 @@ static int mapping0_forward(vorbis_block *vb){
   /* iterate over the many masking curve fits we've created */
 
   {
-    int **couple_bundle=alloca(sizeof(*couple_bundle)*vi->channels);
-    int *zerobundle=alloca(sizeof(*zerobundle)*vi->channels);
+    int **couple_bundle = (int **) alloca(sizeof(*couple_bundle)*vi->channels);
+    int *zerobundle = (int *) alloca(sizeof(*zerobundle)*vi->channels);
 
     for(k=(vorbis_bitrate_managed(vb)?0:PACKETBLOBS/2);
         k<=(vorbis_bitrate_managed(vb)?PACKETBLOBS-1:PACKETBLOBS/2);
@@ -613,7 +613,7 @@ static int mapping0_forward(vorbis_block *vb){
         int submap=info->chmuxlist[i];
         int *ilogmask=iwork[i];
 
-        nonzero[i]=floor1_encode(opb,vb,b->flr[info->floorsubmap[submap]],
+        nonzero[i]=floor1_encode(opb,vb,(vorbis_look_floor1 *) b->flr[info->floorsubmap[submap]],
                                  floor_posts[i][k],
                                  ilogmask);
 #if 0
@@ -704,11 +704,11 @@ static int mapping0_inverse(vorbis_block *vb,vorbis_info_mapping *l){
   int                   i,j;
   long                  n=vb->pcmend=ci->blocksizes[vb->W];
 
-  float **pcmbundle=alloca(sizeof(*pcmbundle)*vi->channels);
-  int    *zerobundle=alloca(sizeof(*zerobundle)*vi->channels);
+  float **pcmbundle =  (float **) alloca(sizeof(*pcmbundle)*vi->channels);
+  int    *zerobundle= (int *) alloca(sizeof(*zerobundle)*vi->channels);
 
-  int   *nonzero  =alloca(sizeof(*nonzero)*vi->channels);
-  void **floormemo=alloca(sizeof(*floormemo)*vi->channels);
+  int   *nonzero  = (int *) alloca(sizeof(*nonzero)*vi->channels);
+  void **floormemo= (void **) alloca(sizeof(*floormemo)*vi->channels);
 
   /* recover the spectral envelope; store it in the PCM vector for now */
   for(i=0;i<vi->channels;i++){
@@ -790,7 +790,7 @@ static int mapping0_inverse(vorbis_block *vb,vorbis_info_mapping *l){
   /* only MDCT right now.... */
   for(i=0;i<vi->channels;i++){
     float *pcm=vb->pcm[i];
-    mdct_backward(b->transform[vb->W][0],pcm,pcm);
+    mdct_backward((mdct_lookup *) b->transform[vb->W][0],pcm,pcm);
   }
 
   /* all done! */
@@ -798,7 +798,7 @@ static int mapping0_inverse(vorbis_block *vb,vorbis_info_mapping *l){
 }
 
 /* export hooks */
-const vorbis_func_mapping mapping0_exportbundle={
+extern "C" const vorbis_func_mapping mapping0_exportbundle={
   &mapping0_pack,
   &mapping0_unpack,
   &mapping0_free_info,

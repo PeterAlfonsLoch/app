@@ -17,6 +17,17 @@
 
 #include "codebook.h"
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 static const long _vq_quantlist__16c0_s_p1_0[] = {
         1,
         0,
@@ -15780,4 +15791,14 @@ static const static_codebook _huff_book__44cn1_sm_short = {
         NULL,
         0
 };
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
 

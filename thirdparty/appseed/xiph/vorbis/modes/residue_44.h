@@ -19,6 +19,17 @@
 #include "backends.h"
 #include "books/coupled/res_books_stereo.h"
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 /***** residue backends *********************************************/
 
 static const vorbis_info_residue0 _residue_44_low={
@@ -290,3 +301,14 @@ static const vorbis_mapping_template _mapres_template_44_stereo[]={
   { _map_nominal, _res_44s_8 }, /* 8 */
   { _map_nominal, _res_44s_9 }, /* 9 */
 };
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

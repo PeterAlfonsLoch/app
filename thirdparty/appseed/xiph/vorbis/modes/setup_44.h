@@ -19,6 +19,17 @@
 #include "modes/residue_44.h"
 #include "modes/psych_44.h"
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 static const double rate_mapping_44_stereo[12]={
   22500.,32000.,40000.,48000.,56000.,64000.,
   80000.,96000.,112000.,128000.,160000.,250001.
@@ -115,3 +126,16 @@ static const ve_setup_data_template ve_setup_44_stereo={
 
   _mapres_template_44_stereo
 };
+
+
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

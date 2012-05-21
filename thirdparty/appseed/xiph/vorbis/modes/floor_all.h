@@ -19,6 +19,8 @@
 #include "backends.h"
 #include "books/floor/floor_books.h"
 
+BEGIN_EXTERN_C
+
 static const static_codebook*const _floor_128x4_books[]={
   &_huff_book_line_128x4_class0,
   &_huff_book_line_128x4_0sub0,
@@ -258,3 +260,6 @@ static const vorbis_info_floor1 _floor[11]={
   },
 
 };
+
+
+END_EXTERN_C

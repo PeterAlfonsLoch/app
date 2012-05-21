@@ -21,6 +21,17 @@
 #include <math.h>
 #include "os.h"
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 #ifdef _MSC_VER
 /* MS Visual Studio doesn't have C99 inline keyword. */
 #define inline __inline
@@ -86,5 +97,16 @@ static float unitnorm(float x){
 
 #define toOC(n)     (log(n)*1.442695f-5.965784f)
 #define fromOC(o)   (exp(((o)+5.965784f)*.693147f))
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+
 
 #endif

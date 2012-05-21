@@ -18,6 +18,17 @@
 #include "psych_16.h"
 #include "residue_16.h"
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 static const int blocksize_16_short[3]={
   1024,512,512
 };
@@ -151,3 +162,16 @@ static const ve_setup_data_template ve_setup_16_uncoupled={
 
   _mapres_template_16_uncoupled
 };
+
+
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+

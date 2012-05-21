@@ -18,6 +18,17 @@
 #ifndef _V_MASKING_H_
 #define _V_MASKING_H_
 
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+
+
+
 /* more detailed ATH; the bass if flat to save stressing the floor
    overly for only a bin or two of savings. */
 
@@ -781,5 +792,17 @@ static const float tonemasks[P_BANDS][6][EHMER_MAX]={
     -999, -999, -999, -999, -999, -999, -999, -999,
     -999, -999, -999, -999, -999, -999, -999, -999}}
 };
+
+
+
+
+
+END_EXTERN_C
+
+
+
+
+
+
 
 #endif
