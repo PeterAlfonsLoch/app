@@ -21,9 +21,6 @@
     <Filter Include="Header Files\math">
       <UniqueIdentifier>{ea69b92a-78e5-4384-a578-f69e1f88c3e6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\kissfft\C Source Files">
-      <UniqueIdentifier>{c092d443-4f49-4c09-a8aa-8bc37c3517d8}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\math.h">
@@ -44,14 +41,14 @@
     <ClInclude Include="kissfft\kiss_fft.h">
       <Filter>Header Files\kissfft</Filter>
     </ClInclude>
-    <ClInclude Include="kissfft\_vmskissfftfKiss.h">
-      <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\_kiss_fft_guts.h">
-      <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\aaa_vmskissfftfKiss_want_to_remove_xxx.h">
+      <Filter>Header Files\kissfft</Filter>
+    </ClInclude>
+    <ClInclude Include="kissfft\kiss_fft_guts.h">
+      <Filter>Header Files\kissfft</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -61,17 +58,17 @@
     <ClCompile Include="kissfft\kissfft_fftd.cpp">
       <Filter>Source Files\kissfft</Filter>
     </ClCompile>
-    <ClCompile Include="kissfft\kiss_fft.c">
-      <Filter>Source Files\kissfft\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kissfft\kiss_ifft.c">
-      <Filter>Source Files\kissfft\C Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kissfft\kiss_fft_shared.c">
-      <Filter>Source Files\kissfft\C Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kiss_fft.cpp">
+      <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kiss_fft_shared.cpp">
+      <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="kissfft\kiss_ifft.cpp">
+      <Filter>Source Files\kissfft</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

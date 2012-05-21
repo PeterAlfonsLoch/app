@@ -1165,7 +1165,7 @@ bool isCDinCDPlayerIni( char *s )
 
   uiVal = GetPrivateProfileInt( s, "NUMTRACKS", 0, "cdplayer.ini" );
 
-  return (bool)uiVal;
+  return uiVal != FALSE;
 }
 
 

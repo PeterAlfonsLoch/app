@@ -581,8 +581,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="kissfft\kissfft_ifftd.h" />
     <ClInclude Include="kissfft\kiss_fft.h" />
     <ClInclude Include="kissfft\kiss_ifft.h" />
-    <ClInclude Include="kissfft\_kiss_fft_guts.h" />
-    <ClInclude Include="kissfft\_vmskissfftfKiss.h" />
+    <ClInclude Include="kissfft\kiss_fft_guts.h" />
+    <ClInclude Include="kissfft\aaa_vmskissfftfKiss_want_to_remove_xxx.h" />
     <ClInclude Include="math\math.h" />
     <ClInclude Include="framework.h" />
   </ItemGroup>
@@ -600,19 +600,19 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
   <ItemGroup>
     <ClCompile Include="kissfft\kissfft_fftd.cpp" />
     <ClCompile Include="kissfft\kissfft_ifftd.cpp" />
-    <ClCompile Include="kissfft\kiss_fft.c">
+    <ClCompile Include="kissfft\kiss_fft.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="kissfft\kiss_fft_shared.c">
+    <ClCompile Include="kissfft\kiss_fft_shared.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="kissfft\kiss_ifft.c">
+    <ClCompile Include="kissfft\kiss_ifft.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>

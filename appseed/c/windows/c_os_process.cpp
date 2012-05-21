@@ -1,5 +1,5 @@
 #include "framework.h"
-#include <ShellAPI.h> // TODO: try to remove - by replacing -  SHELLEXECUTEINFOA from execute_sync
+#include <Shellapi.h>
 
 
 

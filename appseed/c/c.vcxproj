@@ -736,6 +736,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="simple_map.h" />
     <ClInclude Include="simple_mutex.h" />
     <ClInclude Include="simple_obj.h" />
+    <ClInclude Include="simple_shell_launcher.h" />
     <ClInclude Include="small_ipc_channel.h" />
     <ClInclude Include="spa\resource.h" />
     <ClInclude Include="spa\spa.h" />
@@ -871,6 +872,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="simple_list.cpp" />
     <ClCompile Include="simple_mutex.cpp" />
     <ClCompile Include="simple_obj.cpp" />
+    <ClCompile Include="simple_shell_launcher.cpp" />
     <ClCompile Include="spa\spa.cpp" />
     <ClCompile Include="spa\spa_boot.cpp" />
     <ClCompile Include="spa\spa_bz.cpp" />

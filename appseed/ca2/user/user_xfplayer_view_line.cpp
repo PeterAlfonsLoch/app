@@ -732,7 +732,7 @@ void XfplayerViewLine::CalcCharsPositions(
 
 //   pdc->SelectObject(fontOriginal);
    TEXTMETRIC tm;
-   pdc->GetTextMetrics(&tm);
+   pdc->get_text_metrics(&tm);
   // lf.lfWidth = (long) (tm.tmAveCharWidth * m_floatRateX - 1);
 
   // if(m_font->get_os_data() != NULL)

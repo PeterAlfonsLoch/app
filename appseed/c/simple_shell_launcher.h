@@ -18,10 +18,21 @@ public:
    vsstring    m_vssDirectory;
    int         m_iShow;
 
-
 #ifdef WINDOWS
 
    HINSTANCE   m_h;
+   HINSTANCE   m_hinstApp;       // out when SEE_MASK_NOCLOSEPROCESS is specified
+   ULONG       m_fMask;          // in, SEE_MASK_XXX values
+   void *      m_lpIDList;       // in, valid when SEE_MASK_IDLIST is specified, PCIDLIST_ABSOLUTE, for use with SEE_MASK_IDLIST & SEE_MASK_INVOKEIDLIST
+   LPCSTR      m_vssClass;       // in, valid when SEE_MASK_CLASSNAME is specified
+   HKEY        m_hkeyClass;      // in, valid when SEE_MASK_CLASSKEY is specified
+   DWORD       m_dwHotKey;       // in, valid when SEE_MASK_HOTKEY is specified
+   union                       
+   {                           
+      HANDLE   m_hIcon;          // not used
+      HANDLE   n_hMonitor;
+   };           
+   HANDLE      m_hProcess;       // out, valid when SEE_MASK_NOCLOSEPROCESS specified
 
 #else
 
@@ -30,13 +41,27 @@ public:
 
 #endif
 
+protected:
 
+
+   int         m_iMode;
+
+
+public:
+
+
+   simple_shell_launcher();
    simple_shell_launcher(HWND hwnd, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, int iShow);
 
 
    void execute();
 
 
+   bool succeeded();
+
+
 };
+
+
 
 

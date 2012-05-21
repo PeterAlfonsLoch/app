@@ -522,11 +522,12 @@ install_begin:;
          simple_shell_launcher launcher(g_hwnd, "open", strStage, strParam, dir::name(strStage), SW_SHOWNORMAL)
          launcher.execute();
 
-            int i = (int) launcher.m_h;
-            if(i >= 32)
-            {
-               ::PostMessage(g_hwnd, WM_CLOSE, 0, 0);
-            }
+            
+         if(launcher.succeeded())
+         {
+            ::PostMessage(g_hwnd, WM_CLOSE, 0, 0);
+         }
+
          }*/
 
          set_ca2_updated(m_strBuild);
@@ -1890,9 +1891,12 @@ install_begin:;
          strStage = dir::path(dir::beforeca2(),strExec.substr(16));
 
          simple_shell_launcher launcher1(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
-         launcher.execute();
+         
+         launcher1.execute();
+
          simple_shell_launcher launcher2(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : install usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
-         launcher.execute();
+         
+         launcher2.execute();
 
       }
       else if(strExec.substr(0, 10) == "install_ex")
@@ -1903,8 +1907,11 @@ install_begin:;
          vsstring str3 = str2.substr(iPos + 1);
          strStage = dir::path(dir::beforeca2(), "ca2");
          strStage = dir::path(strStage, str3);
+         
          simple_shell_launcher launcher(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
+         
          launcher.execute();
+
       }
       return true;
    }

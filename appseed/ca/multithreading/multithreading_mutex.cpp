@@ -280,7 +280,7 @@ mutex * mutex::open_mutex(const char * pstrName)
 
 #ifdef WINDOWS
 
-   HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_id_mutex_name(pszAppName, pszId));
+   HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, pstrName);
 
    if(h == NULL || h == INVALID_HANDLE_VALUE)
       return NULL;

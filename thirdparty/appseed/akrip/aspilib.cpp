@@ -1279,7 +1279,7 @@ bool ModifyCDParms( HCDROM hCD, int which, DWORD val )
       break;
 
     case CDP_MSF:
-      cdHandles[idx].bMSF = (bool)val;
+      cdHandles[idx].bMSF = val != FALSE;
       retVal = TRUE;
       break;
 

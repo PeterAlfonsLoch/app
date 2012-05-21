@@ -160,20 +160,24 @@ bool html_document::_001OnUpdateCmdUi(cmd_ui * pcmdui)
  
 bool html_document::_001OnCommand(id id)
 {
+   
    if(id == "viewindefaultbrowser")
    {
+      
       gen::property_set propertyset;
+      
       System.message_box("html_reader\\going_to_open_in_default_browser.xml", propertyset);
 
-      simple_shell_launcher launcher(NULL, "open", get_path_name(), NULL, System.dir().name(get_path_name()), SW_SHOWNORMAL)
+      simple_shell_launcher launcher(NULL, "open", get_path_name(), NULL, System.dir().name(get_path_name()), SW_SHOWNORMAL);
          
       launcher.execute();
-
       
       return true;
 
    }
+
    return false;
+
 }
 
 
