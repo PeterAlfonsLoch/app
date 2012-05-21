@@ -53,10 +53,10 @@ wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, DWORD 
    else
       iResult = ::MsgWaitForMultipleObjects((DWORD) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration(), dwWakeMask);
 
-   DWORD dwUpperBound = WAIT_OBJECT_0 + (DWORD) m_objecta.get_count();
-   if (iResult >= WAIT_OBJECT_0 && iResult < dwUpperBound)
+   index iUpperBound = WAIT_OBJECT_0 + m_objecta.get_count();
+   if (iResult >= WAIT_OBJECT_0 && iResult < iUpperBound)
    {
-      if (dwUpperBound >= (DWORD) m_objecta.get_count() && dwUpperBound >= WAIT_OBJECT_0)
+      if (iUpperBound >= m_objecta.get_count() && iUpperBound >= WAIT_OBJECT_0)
       {
          if (bWaitForAll)
          {

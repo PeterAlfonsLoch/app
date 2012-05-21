@@ -757,7 +757,11 @@ namespace platform
       }
       else if(iHitArea == m_i_veriwell)
       {
-         ::ShellExecute(NULL, NULL, System.dir().votagus("cast\\ccvotagus\\spaadmin.exe"), NULL, NULL, SW_SHOW);
+         
+         simple_shell_launcher launcher(NULL, NULL, System.dir().votagus("cast\\ccvotagus\\spaadmin.exe"), NULL, NULL, SW_SHOW);
+         
+         launcher.execute();
+
       }
       else if(iHitArea == m_i_winactionarea)
       {
@@ -798,13 +802,16 @@ namespace platform
             ::PostMessage(m_hwndWinutil, WM_APP + 2000, 3, 6);
             ::PostMessage(m_hwndWinservice1, WM_APP + 2000, 3, 6);
 
-            ::ShellExecute(
+
+         simple_shell_launcher launcher(
                NULL,
                NULL,
                System.dir().ca2("ccvotagus/spaadmin.exe"),
                " uninstall _set_windesk",
                System.dir().ca2("ccvotagus"),
                SW_HIDE);
+         launcher.execute();
+
 
             return;
             // spa boot should cling (app-install.exe should catch

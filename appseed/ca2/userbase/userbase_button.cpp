@@ -121,7 +121,7 @@ namespace userbase
 
       string strText(m_istrButtonText);
       pdc->SelectObject(m_pschema->m_font);
-      pdc->DrawText(strText, rectText, DT_LEFT | DT_TOP);
+      pdc->draw_text(strText, rectText, DT_LEFT | DT_TOP);
 
    }
 

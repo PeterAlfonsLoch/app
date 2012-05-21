@@ -1397,7 +1397,7 @@ namespace window_frame
 
       TEXTMETRIC tm;
       pdc->SelectObject(m_fontMarlett);
-      pdc->GetTextMetrics(&tm);
+      pdc->get_text_metrics(&tm);
 
       int iMargin = GetMargin();
       int iCaptionHeight = tm.tmHeight + m_iButtonMargin * 3 + iMargin * 2 ;
@@ -1416,7 +1416,7 @@ namespace window_frame
 
       TEXTMETRIC tm;
       pdc->SelectObject(m_fontMarlett);
-      pdc->GetTextMetrics(&tm);
+      pdc->get_text_metrics(&tm);
 
 //      int iMargin = GetMargin();
       int iButtonSize = tm.tmHeight + m_iButtonMargin * 3;

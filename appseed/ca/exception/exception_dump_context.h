@@ -13,11 +13,7 @@ public:
 
 // Operations
    dump_context& operator<<(const char * lpsz);
-#ifdef _UNICODE
-   dump_context& operator<<(const char * lpsz);  // automatically widened
-#else
    dump_context& operator<<(const wchar_t * lpsz); // automatically thinned
-#endif
    dump_context& operator<<(const string & str);
    dump_context& operator<<(const void * lp);
    dump_context& operator<<(const ::radix::object* pOb);

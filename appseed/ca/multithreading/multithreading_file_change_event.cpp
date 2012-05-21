@@ -57,11 +57,16 @@ wait_result file_change_event::wait (const duration & duration)
 ///				notification handle the next time it detects an appropriate
 ///				change
 bool file_change_event::next ()
-{ return ::FindNextChangeNotification(item()); }
+{ 
+   return ::FindNextChangeNotification(item()) != FALSE;
+
+}
 
 ///  \brief		stops change notification handle monitoring
 void file_change_event::close ()
-{ ::FindCloseChangeNotification(item()); }
+{
+   ::FindCloseChangeNotification(item());
+}
 
 
 

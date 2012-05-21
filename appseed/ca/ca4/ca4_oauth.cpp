@@ -45,8 +45,7 @@ SHA1(A million repetitions of "a") =
 
 
 #ifdef SHA1_UTILITY_FUNCTIONS
-#include <stdio.h>  // Needed for file access and sprintf
-#include <string.h> // Needed for strcat and strcpy
+//#include <string.h> // Needed for strcat and strcpy
 #endif
 
 //#ifdef _MSC_VER

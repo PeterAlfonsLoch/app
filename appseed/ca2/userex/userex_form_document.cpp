@@ -15,7 +15,9 @@ void form_document::OnBeforeNavigate2(html::data * pdata, var & varFile, DWORD n
    if(gen::str::begins_eat(strUrl, "ext://"))
    {
       Application.open_link(strUrl, lpszTargetFrameName);
-      //::ShellExecute(NULL, "open", strUrl, "", "", SW_SHOWNORMAL);
+/*         simple_shell_launcher launcher(NULL, "open", strUrl, "", "", SW_SHOWNORMAL);
+         launcher.execute();*/
+
       *pbCancel = true;
       return;
    }

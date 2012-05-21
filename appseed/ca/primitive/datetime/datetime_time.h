@@ -43,12 +43,8 @@ namespace datetime
       bool operator>=( time_span span ) const NOTHROW;
 
    public:
+
       string Format( const char * pszFormat ) const;
-      //string Format( UINT nID ) const;
-#if defined(_AFX) && defined(_UNICODE)
-      // for compatibility with ca2 API 3.x
-      string Format(const char * pFormat) const;
-#endif
 
 #ifdef _AFX
       //   CArchive& Serialize64(CArchive& ar);

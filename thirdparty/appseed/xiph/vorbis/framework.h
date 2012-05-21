@@ -1,8 +1,10 @@
 #pragma once
 
 
+#include "ca/ca.h"
+
+
 #include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
 #include <math.h>
 #include <ogg/ogg.h>
@@ -12,18 +14,12 @@
 #include "scales.h"
 #include "os.h"
 #include "misc.h"
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <ogg/ogg.h>
 #include "codec_internal.h"
 #include "os.h"
 #include "misc.h"
 #include "bitrate.h"
 
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <errno.h>
 #include <string.h>
 #include <math.h>

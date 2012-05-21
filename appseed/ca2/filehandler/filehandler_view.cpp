@@ -124,7 +124,7 @@ namespace filehandler
       pdc->Draw3dRect(m_rectItem, cr1, cr2);
       cr |= 0xff000000;
       pdc->set_color(cr);
-      pdc->DrawText(pitem->m_strApp, m_rectName, DT_LEFT | DT_BOTTOM);
+      pdc->draw_text(pitem->m_strApp, m_rectName, DT_LEFT | DT_BOTTOM);
    }
 
 

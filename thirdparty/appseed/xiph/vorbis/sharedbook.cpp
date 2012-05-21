@@ -441,7 +441,6 @@ long vorbis_book_codelen(codebook *book,int entry){
    cross-platform, I simply want to be sure that special mapping cases
    actually work properly; a bug could go unnoticed for a while */
 
-#include <stdio.h>
 
 /* cases:
 

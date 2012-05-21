@@ -519,7 +519,10 @@ install_begin:;
             strStage = dir::path(dir::stage(), "ca2\\stage\\ca2\\fontopus\\app\\main\\front\\Release\\bergedgeapp.exe");
             vsstring strParam;
             strParam = "start=" + file_name_dup(strUrl);
-            int i = (int) ::ShellExecute(g_hwnd, "open", strStage, strParam, dir::name(strStage), SW_SHOWNORMAL);
+         simple_shell_launcher launcher(g_hwnd, "open", strStage, strParam, dir::name(strStage), SW_SHOWNORMAL)
+         launcher.execute();
+
+            int i = (int) launcher.m_h;
             if(i >= 32)
             {
                ::PostMessage(g_hwnd, WM_CLOSE, 0, 0);
@@ -1885,12 +1888,12 @@ install_begin:;
       {
          vsstring strStage;
          strStage = dir::path(dir::beforeca2(),strExec.substr(16));
-         #ifdef WINDOWS
-//         ::ShellExecute(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
-  //       ::ShellExecute(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : install usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
-         #else
-         throw "TODO";
-         #endif
+
+         simple_shell_launcher launcher1(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
+         launcher.execute();
+         simple_shell_launcher launcher2(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : install usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
+         launcher.execute();
+
       }
       else if(strExec.substr(0, 10) == "install_ex")
       {
@@ -1900,11 +1903,8 @@ install_begin:;
          vsstring str3 = str2.substr(iPos + 1);
          strStage = dir::path(dir::beforeca2(), "ca2");
          strStage = dir::path(strStage, str3);
-         #ifdef WINDOWS
-//         ::ShellExecute(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
-         #else
-         throw "TODO";
-         #endif
+         simple_shell_launcher launcher(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
+         launcher.execute();
       }
       return true;
    }

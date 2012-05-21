@@ -137,7 +137,7 @@ void MetaButton::_001OnDraw(::ca::graphics * pdc)
    pdc->set_font(GetFont());
    pdc->set_color(crText);
    pdc->set_alpha_mode(::ca::alpha_mode_set);
-   pdc->DrawText(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+   pdc->draw_text(str, rectClient, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
 
 }

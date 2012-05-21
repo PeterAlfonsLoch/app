@@ -386,7 +386,7 @@ namespace visual
       ::ca::graphics_sp spgraphics(&System);
       spgraphics->CreateCompatibleDC(NULL);
       ::ca::font * pFontOld = spgraphics->SelectObject(m_spfont);
-      spgraphics->GetTextMetrics(&m_tm);
+      spgraphics->get_text_metrics(&m_tm);
       m_iFontHiHeight = m_tm.tmAscent + m_tm.tmDescent;
       spgraphics->SelectObject(pFontOld);
       spgraphics->DeleteDC();
@@ -401,10 +401,10 @@ bool CLASS_DECL_ca TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
 {
    if(lpString == NULL)
    {
-      return ::TextOutW(hdc, x, y, NULL, c);
+      return ::TextOutW(hdc, x, y, NULL, c) != FALSE;
    }
    wstring wstr = gen::international::utf8_to_unicode(lpString, c);
-   bool bRet = ::TextOutW(hdc, x, y, wstr, (int) wstr.get_length());
+   bool bRet = ::TextOutW(hdc, x, y, wstr, (int) wstr.get_length()) != FALSE;
    return bRet;
 }
 
@@ -412,10 +412,10 @@ CLASS_DECL_ca bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, 
 {
    if(lpString == NULL)
    {
-      return ::GetTextExtentPoint32W(hdc, NULL, c, psizl);
+      return ::GetTextExtentPoint32W(hdc, NULL, c, psizl) != FALSE;
    }
    wstring wstr = gen::international::utf8_to_unicode(lpString, c);
-   bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (int) wstr.get_length(), psizl);
+   bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (int) wstr.get_length(), psizl) != FALSE;
    return bRet;
 }
 
@@ -427,6 +427,6 @@ CLASS_DECL_ca int  DrawTextU(HDC hdc, const char * lpchText, int cchText, LPRECT
       return ::DrawTextW(hdc, NULL, cchText, lprc, format);
    }
    wstring wstr = gen::international::utf8_to_unicode(lpchText, cchText);
-   bool bRet = ::DrawTextW(hdc, wstr, (int) wcslen(wstr), lprc, format);
+   bool bRet = ::DrawTextW(hdc, wstr, (int) wcslen(wstr), lprc, format) != FALSE;
    return bRet;
 }

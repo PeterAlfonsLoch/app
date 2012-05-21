@@ -887,9 +887,13 @@ namespace filemanager
          ::fs::item_array itema;
          GetSelected(itema);
          string strPath = itema[0].m_strPath;
-         ::ShellExecute(NULL, "open", m_straOpenWith[iPos], strPath,
-            System.dir().name(strPath), SW_SHOW);
+
+         simple_shell_launcher launcher(NULL, "open", m_straOpenWith[iPos], strPath, System.dir().name(strPath), SW_SHOW);
+         
+         launcher.execute();
+
          return true;
+
       }
       else
       {

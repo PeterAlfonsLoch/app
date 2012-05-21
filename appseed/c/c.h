@@ -101,6 +101,7 @@ extern "C"
 #include "file.h"
 
 #include "launcher.h"
+#include "simple_shell_launcher.h"
 
 #include "small_ipc_channel.h"
 

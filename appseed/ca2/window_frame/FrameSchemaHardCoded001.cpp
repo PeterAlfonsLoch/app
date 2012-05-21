@@ -1961,7 +1961,7 @@ namespace window_frame
 
       TEXTMETRIC tm;
       pdc->SelectObject(m_fontMarlett);
-      pdc->GetTextMetrics(&tm);
+      pdc->get_text_metrics(&tm);
 
       int iButtonSize = tm.tmHeight + m_iButtonMargin * 3;
 

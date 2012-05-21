@@ -32,7 +32,7 @@ void calendar::_001OnDraw(::ca::graphics * pdc)
       rectDay.deflate(m_iColWidth / 10, m_iLineHeight / 10);
       string strDay;
       strDay.Format("%s", GetTinyWeekDay(pdc->str_context(), iDay));
-      pdc->DrawText(strDay, rectDay, DT_BOTTOM | DT_RIGHT);
+      pdc->draw_text(strDay, rectDay, DT_BOTTOM | DT_RIGHT);
    }
    for(iDay = 1; iDay <= 33; iDay++)
    {
@@ -55,7 +55,7 @@ void calendar::_001OnDraw(::ca::graphics * pdc)
       rectDay.deflate(m_iColWidth / 5, m_iLineHeight / 5);
       string strDay;
       strDay.Format("%d", iDay);
-      pdc->DrawText(strDay, rectDay, DT_BOTTOM | DT_RIGHT);
+      pdc->draw_text(strDay, rectDay, DT_BOTTOM | DT_RIGHT);
       time += timespan;
       if(time.GetMonth() != iMonth)
          break;
@@ -73,7 +73,7 @@ void calendar::_001OnDraw(::ca::graphics * pdc)
       rectDay.deflate(m_iColWidth / 5, m_iLineHeight / 5);
       string strDay;
       strDay.Format("%d", timeNow.GetDay());
-      pdc->DrawText(strDay, rectDay, DT_BOTTOM | DT_RIGHT);
+      pdc->draw_text(strDay, rectDay, DT_BOTTOM | DT_RIGHT);
    }
    ::datetime::time timeEmp = m_time;
    for(int iDay = timeEmp.GetDay(); time.GetYear() == iYear 
@@ -90,7 +90,7 @@ void calendar::_001OnDraw(::ca::graphics * pdc)
       rectDay.deflate(m_iColWidth / 5, m_iLineHeight / 5);
       string strDay;
       strDay.Format("%d", timeEmp.GetDay());
-      pdc->DrawText(strDay, rectDay, DT_BOTTOM | DT_RIGHT);
+      pdc->draw_text(strDay, rectDay, DT_BOTTOM | DT_RIGHT);
    }
    
    pdc->SelectObject(m_fontYear);
@@ -98,23 +98,23 @@ void calendar::_001OnDraw(::ca::graphics * pdc)
    GetRect(rect, ElementYearTitle);
    string strYear;
    strYear.Format("%d", iYear);
-   pdc->DrawText(strYear, rect, DT_CENTER | DT_VCENTER);
+   pdc->draw_text(strYear, rect, DT_CENTER | DT_VCENTER);
 
    pdc->SelectObject(m_fontMonth);
    GetRect(rect, ElementMonthTitle);
    string strMonth;
    strMonth = GetMonth(pdc->str_context(), iMonth);
-   pdc->DrawText(strMonth, rect, DT_CENTER | DT_VCENTER);
+   pdc->draw_text(strMonth, rect, DT_CENTER | DT_VCENTER);
 
    pdc->SelectObject(m_fontSpin);
    GetRect(rect, ElementPreviousYear);
-   pdc->DrawText("<<", rect, DT_CENTER | DT_VCENTER);
+   pdc->draw_text("<<", rect, DT_CENTER | DT_VCENTER);
    GetRect(rect, ElementNextYear);
-   pdc->DrawText(">>", rect, DT_CENTER | DT_VCENTER);
+   pdc->draw_text(">>", rect, DT_CENTER | DT_VCENTER);
    GetRect(rect, ElementPreviousMonth);
-   pdc->DrawText("<", rect, DT_CENTER | DT_VCENTER);
+   pdc->draw_text("<", rect, DT_CENTER | DT_VCENTER);
    GetRect(rect, ElementNextMonth);
-   pdc->DrawText(">", rect, DT_CENTER | DT_VCENTER);
+   pdc->draw_text(">", rect, DT_CENTER | DT_VCENTER);
 }
 
 void calendar::_001GetHtml(::ca2::html_file * pfile)

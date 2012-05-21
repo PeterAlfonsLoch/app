@@ -2229,7 +2229,6 @@ int oc_enc_analyze_inter(oc_enc_ctx *_enc,int _allow_keyframe,int _recode){
 }
 
 #if defined(OC_COLLECT_METRICS)
-# include <stdio.h>
 # include <math.h>
 
 /*TODO: It may be helpful (for block-level quantizers especially) to separate

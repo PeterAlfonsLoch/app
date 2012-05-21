@@ -26,21 +26,21 @@
 void TRACELASTERROR()
    {
                DWORD dwMessageId = GetLastError();
-         LPTSTR lpBuffer;
+         LPWSTR lpBuffer;
 //         TRACE("Error Message Id: %d\n", dwMessageId);
 
 #ifdef WINDOWS
 
-         ___FUNCNAME(FormatMessage)(
+         FormatMessageW(
             FORMAT_MESSAGE_ALLOCATE_BUFFER |
             FORMAT_MESSAGE_FROM_SYSTEM,
             NULL,
             dwMessageId,
             0,
-            (LPTSTR) &lpBuffer,
+            (LPWSTR) &lpBuffer,
             1,
             NULL);
-         //TRACE("Error Message :\n%s\n", lpBuffer);
+         //TRACE("Error Message :\n%s\n", gen::international::unicode_to_utf8(lpBuffer));
          LocalFree(lpBuffer);
 #endif
 
@@ -50,20 +50,20 @@ void TRACELASTERROR()
 string FormatMessageFromSystem(DWORD dwError)
 {
    string strError;
-   LPTSTR pszError = NULL;
+   LPWSTR pszError = NULL;
 
 #ifdef WINDOWS
 
-   ___FUNCNAME(FormatMessage)(
+   FormatMessageW(
      FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
      NULL,
      dwError,
      0,
-     (LPTSTR) &pszError,
+     (LPWSTR) &pszError,
      8,
      NULL);
 
-   strError = pszError;
+   strError = gen::international::unicode_to_utf8(pszError);
 
    ::LocalFree(pszError);
 

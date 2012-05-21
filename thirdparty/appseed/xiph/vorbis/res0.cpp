@@ -28,7 +28,6 @@ BEGIN_EXTERN_C
 //#define TRAIN_RESAUX 1
 
 #if defined(TRAIN_RES) || defined (TRAIN_RESAUX)
-#include <stdio.h>
 #endif
 
 typedef struct {

@@ -795,7 +795,11 @@ namespace plane
             strApp += "app.exe";
             string strParameters;
             strParameters = ": global_mutex_id=\"" + string(pszId) + "\"";
-            ::ShellExecute(NULL, NULL, dir().path(get_module_folder(), strApp), strParameters, NULL, SW_SHOW);
+
+            simple_shell_launcher launcher(NULL, NULL, dir().path(get_module_folder(), strApp), strParameters, NULL, SW_SHOW);
+
+            launcher.execute();
+
             return false;
          }
          else
@@ -812,7 +816,11 @@ namespace plane
          {
             string strApp = pszAppName;
             strApp += "app.exe";
-            ::ShellExecute(NULL, NULL, dir().path(get_module_folder(), strApp), NULL, NULL, SW_SHOW);
+
+            simple_shell_launcher launcher(NULL, NULL, dir().path(get_module_folder(), strApp), NULL, NULL, SW_SHOW);
+
+            launcher.execute();
+
             return false;
          }
          else
@@ -838,7 +846,11 @@ namespace plane
             strApp = "app.exe";
             string strParameters;
             strParameters = ": app=" + strAppName + " local_mutex_id=\"" + strId + "\"";
-            ::ShellExecute(NULL, NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
+
+            simple_shell_launcher launcher(NULL, NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
+
+            launcher.execute();
+
             return false;
          }
          else
@@ -858,7 +870,11 @@ namespace plane
             strApp = "app.exe";
             string strParameters;
             strParameters = ": app=" + strAppName;
-            ::ShellExecute(NULL, NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
+
+            simple_shell_launcher launcher(NULL, NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
+
+            launcher.execute();
+
             return false;
          }
          else
@@ -1058,7 +1074,7 @@ namespace plane
       // we remove WM_QUIT because if it is in the queue then the message box
       // won't display
       MSG msg;
-      bool bQuit = PeekMessage(&msg, NULL, WM_QUIT, WM_QUIT, PM_REMOVE);
+      bool bQuit = PeekMessage(&msg, NULL, WM_QUIT, WM_QUIT, PM_REMOVE) != FALSE;
       va_list list = NULL;
       bool bResult = ________ca2_votagus_logging_Report(_CRT_ASSERT, lpszFileName, iLine, NULL, NULL, list) != 0;
       if (bQuit)

@@ -421,7 +421,7 @@ namespace user
             {
                pdc->set_color(ARGB(0xff, 0, 0, 0));
             }
-            pdc->DrawText("x", rectClose, DT_CENTER | DT_VCENTER);
+            pdc->draw_text("x", rectClose, DT_CENTER | DT_VCENTER);
          }
 
 

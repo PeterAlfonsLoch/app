@@ -999,9 +999,7 @@ namespace radix
       MutexAttributes.bInheritHandle = FALSE; // object uninheritable
       // declare and initialize a security descriptor
       SECURITY_DESCRIPTOR SD;
-      bool bInitOk = InitializeSecurityDescriptor(
-                        &SD,
-                        SECURITY_DESCRIPTOR_REVISION );
+      bool bInitOk = InitializeSecurityDescriptor(&SD, SECURITY_DESCRIPTOR_REVISION) != FALSE;
       if ( bInitOk )
       {
          // give the security descriptor a Null Dacl
@@ -1009,7 +1007,7 @@ namespace radix
          bool bSetOk = SetSecurityDescriptorDacl( &SD,
                                                TRUE,
                                                (PACL)NULL,
-                                               FALSE );
+                                               FALSE ) != FALSE;
          bool bResourceException;
          if ( bSetOk )
          {
@@ -1591,9 +1589,6 @@ namespace radix
    }
 
 
-   /////////////////////////////////////////////////////////////////////////////
-   // DDE and ShellExecute support
-
    bool application::OnDDECommand(__in LPTSTR lpszCommand)
    {
 /*      if (m_pdocmanager != NULL)
@@ -1836,9 +1831,6 @@ namespace radix
 
 
 
-
-   /////////////////////////////////////////////////////////////////////////////
-   // DDE and ShellExecute support
 
    /*bool application::ProcessShellCommand(CCommandLineInfo& rCmdInfo)
    {

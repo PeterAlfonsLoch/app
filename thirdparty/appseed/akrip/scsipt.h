@@ -101,10 +101,11 @@ typedef struct {
 /*
  * file access values
  */
+#ifndef WINDOWS
 #define  FILE_ANY_ACCESS      0
 #define  FILE_READ_ACCESS     (0x0001)
 #define  FILE_WRITE_ACCESS    (0x0002)
-
+#endif
 
 #define IOCTL_SCSI_BASE    0x00000004
 

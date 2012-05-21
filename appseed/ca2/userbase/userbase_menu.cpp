@@ -246,7 +246,7 @@ namespace userbase
          {
             rect.bottom = rect.top + m_iItemHeight;
             str = pitem->m_str;
-            pdc->DrawText(str, rect, DT_LEFT | DT_BOTTOM);
+            pdc->draw_text(str, rect, DT_LEFT | DT_BOTTOM);
          }
          if(pitem->IsPopup())
          {

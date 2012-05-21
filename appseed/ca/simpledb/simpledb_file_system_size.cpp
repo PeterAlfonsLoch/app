@@ -482,7 +482,12 @@ void FileSystemSizeWnd::ClientStartServer()
    if(GetTickCount() - m_dwLastStartTime > 2000)
    {
       m_dwLastStartTime = GetTickCount();
-      ::ShellExecute(NULL, NULL, System.dir().path(System.get_module_folder(), "winservice_filesystemsizeapp"), NULL, NULL, SW_HIDE);
+
+      simple_shell_launcher launcher(NULL, NULL, System.dir().path(System.get_module_folder(), "winservice_filesystemsizeapp"), NULL, NULL, SW_HIDE);
+
+      launcher.execute();
+
+
    }
    pcentral->m_pfilesystemsizeset->m_table.m_hwndServer = ::FindWindowEx(HWND_MESSAGE, NULL, NULL, "Local\\ca2::fontopus::FileSystemSizeWnd::Server");
 }

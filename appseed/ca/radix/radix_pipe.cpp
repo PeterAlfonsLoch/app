@@ -82,7 +82,7 @@ namespace gen
    {
       DWORD dwWritten;
       bool bSuccess = FALSE;
-      bSuccess = WriteFile(m_hWrite, (const char *) psz, (DWORD) strlen(psz), &dwWritten, NULL);
+      bSuccess = WriteFile(m_hWrite, (const char *) psz, (DWORD) strlen(psz), &dwWritten, NULL) != FALSE;
       return bSuccess != FALSE;
    }
 
@@ -99,7 +99,7 @@ namespace gen
 
          try
          {
-            bSuccess = ReadFile( m_hRead, chBuf, BUFSIZE, &dwRead, NULL);
+            bSuccess = ReadFile( m_hRead, chBuf, BUFSIZE, &dwRead, NULL) != FALSE;
          }
          catch(...)
          {
@@ -125,7 +125,7 @@ namespace gen
 
       try
       {
-         bSuccess = ReadFile( m_hRead, chBuf, BUFSIZE, &dwRead, NULL);
+         bSuccess = ReadFile( m_hRead, chBuf, BUFSIZE, &dwRead, NULL) != FALSE;
       }
       catch(...)
       {

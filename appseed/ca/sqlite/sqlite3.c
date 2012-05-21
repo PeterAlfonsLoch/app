@@ -6144,8 +6144,6 @@ SQLITE_PRIVATE void sqlite3HashClear(Hash*);
 
 /************** End of parse.h ***********************************************/
 /************** Continuing where we left off in sqliteInt.h ******************/
-#include <stdio.h>
-//#include <stdlib.h>
 #include <string.h>
 #include <assert.h>
 #include <stddef.h>

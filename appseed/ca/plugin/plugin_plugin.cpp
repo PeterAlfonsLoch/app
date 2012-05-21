@@ -644,7 +644,7 @@ namespace plugin
          }
          ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_puiHost->m_pimpl);
          HWND hwnd = pwindow->_get_handle();
-         bool bIsWindow = ::IsWindow(hwnd);
+         bool bIsWindow = ::IsWindow(hwnd) != FALSE;
          if(bIsWindow)
          {
             LRESULT l = m_puiHost->SendMessageA(uiMessage, wparam, lparam);

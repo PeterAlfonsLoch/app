@@ -651,7 +651,11 @@ namespace bergedge
       UNREFERENCED_PARAMETER(pobj);
       if(get_view_id() == ::bergedge::PaneViewWinActionArea)
       {
-         ::ShellExecute(NULL, NULL, "control.exe", "desk.cpl", NULL, SW_SHOWNORMAL);
+         
+         simple_shell_launcher launcher(NULL, NULL, "control.exe", "desk.cpl", NULL, SW_SHOWNORMAL);
+         
+         launcher.execute();
+
       }
    }
 

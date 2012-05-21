@@ -1003,13 +1003,13 @@ namespace ca
 
 #ifdef WINDOWS
 
-   bool graphics::___FUNCNAME(GetTextMetrics)(LPTEXTMETRIC lpMetrics) const
+   bool graphics::get_text_metrics(LPTEXTMETRIC lpMetrics) const
    {
       UNREFERENCED_PARAMETER(lpMetrics);
       throw interface_only_exception();
    }
 
-   bool graphics::GetOutputTextMetrics(LPTEXTMETRIC lpMetrics) const
+   bool graphics::get_output_text_metrics(LPTEXTMETRIC lpMetrics) const
    {
       UNREFERENCED_PARAMETER(lpMetrics);
       throw interface_only_exception();
@@ -2041,7 +2041,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-   int graphics::DrawTextEx(LPTSTR lpszString, int nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
+   int graphics::draw_text_ex(LPTSTR lpszString, int nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);
@@ -2051,7 +2051,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   int graphics::DrawTextEx(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
+   int graphics::draw_text_ex(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
    {
       UNREFERENCED_PARAMETER(str);
       UNREFERENCED_PARAMETER(lpRect);
@@ -2120,23 +2120,6 @@ namespace ca
       throw interface_only_exception();
    }
 
-#ifdef WINDOWS
-
-#pragma push_macro("GetTextMetrics")
-#undef GetTextMetrics
-   bool graphics::GetTextMetrics(LPTEXTMETRIC lpMetrics) const
-   {
-      UNREFERENCED_PARAMETER(lpMetrics);
-      throw interface_only_exception();
-   }
-#pragma pop_macro("GetTextMetrics")
-   #pragma push_macro("DrawText")
-   #pragma push_macro("DrawTextEx")
-   #undef DrawText
-   #undef DrawTextEx
-
-#endif
-
    int graphics::draw_text(const char * lpszString, int nCount, LPRECT lpRect, UINT nFormat)
    {
       UNREFERENCED_PARAMETER(lpszString);
@@ -2145,40 +2128,6 @@ namespace ca
       UNREFERENCED_PARAMETER(nFormat);
       throw interface_only_exception();
    }
-
-#ifdef WINDOWS
-
-   int graphics::draw_text(const string & str, LPRECT lpRect, UINT nFormat)
-   {
-      UNREFERENCED_PARAMETER(str);
-      UNREFERENCED_PARAMETER(lpRect);
-      UNREFERENCED_PARAMETER(nFormat);
-      throw interface_only_exception();
-   }
-
-   int graphics::DrawTextEx(LPTSTR lpszString, int nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
-   {
-      UNREFERENCED_PARAMETER(lpszString);
-      UNREFERENCED_PARAMETER(nCount);
-      UNREFERENCED_PARAMETER(lpRect);
-      UNREFERENCED_PARAMETER(nFormat);
-      UNREFERENCED_PARAMETER(lpDTParams);
-      throw interface_only_exception();
-   }
-
-   int graphics::DrawTextEx(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
-   {
-      UNREFERENCED_PARAMETER(str);
-      UNREFERENCED_PARAMETER(lpRect);
-      UNREFERENCED_PARAMETER(nFormat);
-      UNREFERENCED_PARAMETER(lpDTParams);
-      throw interface_only_exception();
-   }
-
-   #pragma pop_macro("DrawText")
-   #pragma pop_macro("DrawTextEx")
-
-#endif
 
    bool graphics::from(point ptDst, size size, ::ca::graphics * pgraphicsSrc, point ptSrc, DWORD dwRop)
    {

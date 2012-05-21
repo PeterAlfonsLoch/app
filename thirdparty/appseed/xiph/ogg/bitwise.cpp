@@ -35,7 +35,7 @@ static const unsigned int mask8B[]=
 
 void oggpack_writeinit(oggpack_buffer *b){
   memset(b,0,sizeof(*b));
-  b->ptr=b->buffer=_ogg_malloc(BUFFER_INCREMENT);
+  b->ptr=b->buffer= (unsigned char *) _ogg_malloc(BUFFER_INCREMENT);
   b->buffer[0]='\0';
   b->storage=BUFFER_INCREMENT;
 }
@@ -84,7 +84,7 @@ void oggpack_write(oggpack_buffer *b,unsigned long value,int bits){
     if(b->storage>LONG_MAX-BUFFER_INCREMENT) goto err;
     ret=_ogg_realloc(b->buffer,b->storage+BUFFER_INCREMENT);
     if(!ret) goto err;
-    b->buffer=ret;
+    b->buffer = (unsigned char *) ret;
     b->storage+=BUFFER_INCREMENT;
     b->ptr=b->buffer+b->endbyte;
   }
@@ -127,7 +127,7 @@ void oggpackB_write(oggpack_buffer *b,unsigned long value,int bits){
     if(b->storage>LONG_MAX-BUFFER_INCREMENT) goto err;
     ret=_ogg_realloc(b->buffer,b->storage+BUFFER_INCREMENT);
     if(!ret) goto err;
-    b->buffer=ret;
+    b->buffer= (unsigned char *) ret;
     b->storage+=BUFFER_INCREMENT;
     b->ptr=b->buffer+b->endbyte;
   }
@@ -199,7 +199,7 @@ static void oggpack_writecopy_helper(oggpack_buffer *b,
       b->storage=b->endbyte+bytes+BUFFER_INCREMENT;
       ret=_ogg_realloc(b->buffer,b->storage);
       if(!ret) goto err;
-      b->buffer=ret;
+      b->buffer= (unsigned char *) ret;
       b->ptr=b->buffer+b->endbyte;
     }
 
@@ -520,7 +520,6 @@ unsigned char *oggpackB_get_buffer(oggpack_buffer *b){
    them, so they damned well better be solid. */
 
 #ifdef _V_SELFTEST
-#include <stdio.h>
 
 static int ilog(unsigned int v){
   int ret=0;

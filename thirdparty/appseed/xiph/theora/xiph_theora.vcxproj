@@ -194,6 +194,7 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CompileAs>Default</CompileAs>
     </ClCompile>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
@@ -541,6 +542,12 @@
     <None Include="xiph_theora.def" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\appseed\ca\ca.vcxproj">
+      <Project>{acb3ff4b-0b61-45a7-881d-e102e0f85808}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\appseed\c\c.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\ogg\xiph_ogg.vcxproj">
       <Project>{15cbfeff-7965-41f5-b4e2-21e8795c9159}</Project>
     </ProjectReference>

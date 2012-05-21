@@ -164,8 +164,14 @@ bool html_document::_001OnCommand(id id)
    {
       gen::property_set propertyset;
       System.message_box("html_reader\\going_to_open_in_default_browser.xml", propertyset);
-      ::ShellExecute(NULL, "open", get_path_name(), NULL, System.dir().name(get_path_name()), SW_SHOWNORMAL);
+
+      simple_shell_launcher launcher(NULL, "open", get_path_name(), NULL, System.dir().name(get_path_name()), SW_SHOWNORMAL)
+         
+      launcher.execute();
+
+      
       return true;
+
    }
    return false;
 }

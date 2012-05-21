@@ -12,19 +12,6 @@
 
 #ifdef WINDOWS
 
-/* _FILE, as defined in stdio.h
-struct _iobuf {
-        char *_ptr;
-        int   _cnt;
-        char *_base;				Used to store HANDLE
-        int   _flag;
-        int   _file;
-        int   _charbuf;
-        int   _bufsiz;
-        char *_tmpfname;
-        };
-typedef struct _iobuf _FILE;
-*/
 
 //_flag values (not the ones used by the normal CRT
 

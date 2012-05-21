@@ -94,7 +94,7 @@ namespace user
          }
       }
 
-      pdc->DrawText(strText, m_rectText, DT_LEFT | DT_TOP);
+      pdc->draw_text(strText, m_rectText, DT_LEFT | DT_TOP);
 
    }
 

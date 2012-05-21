@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "ca/ca.h"
+
+
 #include <stdlib.h>
 #include <ctype.h>
 #include "mathops.h"
@@ -31,7 +34,6 @@
 # include "x86/x86enc.h"
 #endif
 #if defined(OC_DUMP_IMAGES)
-# include <stdio.h>
 # include "png.h"
 #endif
 

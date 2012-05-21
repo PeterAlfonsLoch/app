@@ -299,6 +299,9 @@
     <ClInclude Include="simple_app.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="simple_shell_launcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -537,6 +540,12 @@
     </ClCompile>
     <ClCompile Include="windows\c_os_simple_app.cpp">
       <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_simple_shell_launcher.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_shell_launcher.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

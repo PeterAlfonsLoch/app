@@ -322,9 +322,6 @@ zlib_local void tr_static_init()
  * Genererate the file trees.h describing the static trees.
  */
 #ifdef GEN_TREES_H
-#  ifndef DEBUG
-#    include <stdio.h>
-#  endif
 
 #  define SEPARATOR(i, last, width) \
       ((i) == (last)? "\n};\n\n" :    \

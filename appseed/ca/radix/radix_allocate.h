@@ -212,7 +212,7 @@ struct CLASS_DECL_ca ___ENUM_CONTEXT
 };
 
 CLASS_DECL_ca __STATIC void __do_for_all_objects_proxy(void * pObject, void * pContext);
-CLASS_DECL_ca void _API __do_for_all_objects(void (c_cdecl *pfn)(::radix::object*, void *), void * pContext);
+CLASS_DECL_ca void __do_for_all_objects(void (c_cdecl *pfn)(::radix::object*, void *), void * pContext);
 
 /////////////////////////////////////////////////////////////////////////////
 // Automatic debug primitive::memory diagnostics

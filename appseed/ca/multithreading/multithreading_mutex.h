@@ -55,7 +55,7 @@ public:
    virtual bool unlock();
 
 
-   static CLASS_DECL_ca mutex * open_mutex(const char * pstrName);
+   static mutex * open_mutex(const char * pstrName);
 
 
 };
