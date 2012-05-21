@@ -87,9 +87,9 @@
 #ifdef HAVE_STDINT_H
 #include <stdint.h>
 #endif
-#ifdef HAVE_INTTYPES_H
-#include <inttypes.h>
-#endif
+//#ifdef HAVE_INTTYPES_H
+//#include <inttypes.h>
+//#endif
 
 /*
 ** If possible, use the C99 intptr_t type to define an integral type of
@@ -6145,7 +6145,7 @@ SQLITE_PRIVATE void sqlite3HashClear(Hash*);
 /************** End of parse.h ***********************************************/
 /************** Continuing where we left off in sqliteInt.h ******************/
 #include <stdio.h>
-#include <stdlib.h>
+//#include <stdlib.h>
 #include <string.h>
 #include <assert.h>
 #include <stddef.h>

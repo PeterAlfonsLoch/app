@@ -6,9 +6,7 @@
 
 //Copy file using mmap()
 
-#include <stdio.h>
 #include <fcntl.h>
-#include <unistd.h>
 #include <sys/mman.h>
 
 #define PACKAGE "mmap"

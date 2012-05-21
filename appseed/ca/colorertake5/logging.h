@@ -1,8 +1,5 @@
 #pragma once
 
-//#include <stdio.h>
-//#include <stdarg.h>
-
 
 #define COLORER_FEATURE_LOGLEVEL_QUIET 0
 #define COLORER_FEATURE_LOGLEVEL_ERROR 1
@@ -51,7 +48,7 @@ void colorer_logger_set_target(const char *logfile);
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

@@ -1,6 +1,4 @@
 #include "framework.h"
-#include <stdlib.h>
-#include <stdio.h>
 #include <signal.h>
 #include <errno.h>
 
@@ -90,8 +88,8 @@ CLASS_DECL_c DWORD call_sync(
                              int iShow,
                              int iRetry,
                              int iSleep,
-                             int (* pfnOnRetry)(int iTry, DWORD_PTR dwParam),
-                             DWORD_PTR dwParam)
+                             int (* pfnOnRetry)(int iTry, dword_ptr dwParam),
+                             dword_ptr dwParam)
 {
     vsstring strCmdLine;
 

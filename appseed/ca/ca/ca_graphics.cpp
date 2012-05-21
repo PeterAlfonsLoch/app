@@ -2031,16 +2031,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   int graphics::___FUNCNAME(DrawText)(const char * lpszString, int nCount, LPRECT lpRect, UINT nFormat)
-   {
-      UNREFERENCED_PARAMETER(lpszString);
-      UNREFERENCED_PARAMETER(nCount);
-      UNREFERENCED_PARAMETER(lpRect);
-      UNREFERENCED_PARAMETER(nFormat);
-      throw interface_only_exception();
-   }
-
-   int graphics::DrawText(const string & str, LPRECT lpRect, UINT nFormat)
+   int graphics::draw_text(const string & str, LPRECT lpRect, UINT nFormat)
    {
       UNREFERENCED_PARAMETER(str);
       UNREFERENCED_PARAMETER(lpRect);
@@ -2146,7 +2137,7 @@ namespace ca
 
 #endif
 
-   int graphics::DrawText(const char * lpszString, int nCount, LPRECT lpRect, UINT nFormat)
+   int graphics::draw_text(const char * lpszString, int nCount, LPRECT lpRect, UINT nFormat)
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);
@@ -2157,7 +2148,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-   int graphics::DrawText(const string & str, LPRECT lpRect, UINT nFormat)
+   int graphics::draw_text(const string & str, LPRECT lpRect, UINT nFormat)
    {
       UNREFERENCED_PARAMETER(str);
       UNREFERENCED_PARAMETER(lpRect);

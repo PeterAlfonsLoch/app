@@ -1,9 +1,5 @@
 #include "framework.h"
 
-#include <stdio.h>
-#ifdef WIN32
-#include <windows.h>
-#endif
 
 namespace ca
 {

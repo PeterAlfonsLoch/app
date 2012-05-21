@@ -1021,26 +1021,13 @@ namespace ca
       throw interface_only_exception();
    }
 
-   LRESULT window::___FUNCNAME(SendMessage)(UINT message, WPARAM wParam, LPARAM lParam)
+   LRESULT window::send_message(UINT message, WPARAM wParam, LPARAM lParam)
    {
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);
       UNREFERENCED_PARAMETER(lParam);
       throw interface_only_exception();
    }
-
-#pragma push_macro("SendMessage")
-#undef SendMessage
-
-   LRESULT window::SendMessage(UINT message, WPARAM wParam, LPARAM lParam)
-   {
-      UNREFERENCED_PARAMETER(message);
-      UNREFERENCED_PARAMETER(wParam);
-      UNREFERENCED_PARAMETER(lParam);
-      throw interface_only_exception();
-   }
-
-#pragma pop_macro("SendMessage")
 
    bool window::PostMessage(UINT message, WPARAM wParam, LPARAM lParam)
    {

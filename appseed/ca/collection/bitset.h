@@ -122,7 +122,7 @@ public:
 		{	// subscript mutable sequence
  #if _ITERATOR_DEBUG_LEVEL == 2
 		if (_Bits <= _Pos)
-			_DEBUG_ERROR("bitset index outside range");
+			DEBUG_ERROR("bitset index outside range");
 
  #elif _ITERATOR_DEBUG_LEVEL == 1
 		_SCL_SECURE_VALIDATE_RANGE(_Pos < _Bits);

@@ -214,18 +214,12 @@ do {                                           \
 #endif
 #endif
 
-#ifdef _DEBUG_REFCOUNT
-#ifndef _DEBUG_INTERFACES
-#define _DEBUG_INTERFACES
+#ifdef DEBUG_REFCOUNT
+#ifndef DEBUG_INTERFACES
+#define DEBUG_INTERFACES
 #endif
 #endif
 
-
-#ifdef _DEBUG_INTERFACES
-#ifndef DEBUG
-#define DEBUG
-#endif // DEBUG
-#endif // _DEBUG_INTERFACES
 
 #ifndef _HEAPFLAGS
 #ifdef _MALLOC_ZEROINIT

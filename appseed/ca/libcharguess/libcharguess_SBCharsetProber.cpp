@@ -21,7 +21,6 @@
 
 
 
-#include <stdio.h>
 #include "SBCharsetProber.h"
 
 nsProbingState nsSingleByteCharSetProber::HandleData(const char* aBuf, PRUint32 aLen)
@@ -95,7 +94,7 @@ float nsSingleByteCharSetProber::GetConfidence()
 }
 
 #ifdef DEBUG_chardet
-void 
+void
 nsSingleByteCharSetProber::dumpStatus()
 {
   printf("[%s] prober has confidence %f\r\n", GetCharSetName(), GetConfidence());

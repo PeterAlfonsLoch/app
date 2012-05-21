@@ -72,7 +72,7 @@ bool __delete_reg_key(const char * lpszKey)
    return TRUE;
 }
 
-__STATIC bool AFXAPI
+__STATIC bool _API
 __set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName)
 {
    if (lpszValueName == NULL)
@@ -658,7 +658,7 @@ void document_manager::_001OnFileNew()
 void document_manager::on_file_open()
 {
    // prompt the ::fontopus::user (with all document templates)
-   
+
    ::ca::create_context_sp createcontext(get_app());
 
    if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL, NULL))

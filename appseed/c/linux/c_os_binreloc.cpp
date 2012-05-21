@@ -21,10 +21,7 @@
 	#include <sys/stat.h>
 	#include <unistd.h>
 #endif /* ENABLE_BINRELOC */
-#include <stdio.h>
-#include <stdlib.h>
 #include <limits.h>
-#include <string.h>
 
 #ifdef __cplusplus
 extern "C" {

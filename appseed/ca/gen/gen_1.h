@@ -14,7 +14,7 @@
 
 
 // Implementation structures
-struct AFX_SIZEPARENTPARAMS;    // control bar implementationpropergen_property.h
+struct __SIZEPARENTPARAMS;    // control bar implementationpropergen_property.h
 
 // Classes declared in this file
 
@@ -39,18 +39,18 @@ class CDockContext;                     // for dragging control bars
 #define IS_COMMAND_ID(nID)  ((nID) & 0x8000)
 
 // 8000 -> DFFF : ::fontopus::user commands
-// E000 -> EFFF : AFX commands and other things
+// E000 -> EFFF : _ commands and other things
 // F000 -> FFFF : standard windows commands and other things etc
    // E000 -> E7FF standard commands
    // E800 -> E8FF control bars (first 32 are special)
    // E900 -> EEFF standard ::ca::window controls/components
    // EF00 -> EFFF SC_ menu help
    // F000 -> FFFF standard strings
-#define ID_COMMAND_FROM_SC(sc)  (((sc - 0xF000) >> 4) + AFX_IDS_SCFIRST)
+#define ID_COMMAND_FROM_SC(sc)  (((sc - 0xF000) >> 4) + __IDS_SCFIRST)
 
 // 0000 -> 7FFF IDR range
 // 0000 -> 6FFF : ::fontopus::user resources
-// 7000 -> 7FFF : AFX (and standard windows) resources
+// 7000 -> 7FFF : _ (and standard windows) resources
 // IDR ranges (NOTE: IDR_ values must be <32768)
 #define ASSERT_VALID_IDR(nIDR) ASSERT((nIDR) != 0 && (nIDR) < 0x8000)
 
@@ -66,11 +66,11 @@ class CDockContext;                     // for dragging control bars
 #define HID_BASE_DISPATCH   0x00060000UL        // IDispatch help codes
 
 /////////////////////////////////////////////////////////////////////////////
-// Internal AFX Windows messages (see Technical note TN024 for more details)
+// Internal _ Windows messages (see Technical note TN024 for more details)
 // (0x0360 - 0x037F are reserved for ca2 API)
 
 #define WM_QUERYAFXWNDPROC  0x0360  // lResult = 1 if processed by gen::WndProc
-#define WM_SIZEPARENT       0x0361  // lParam = &AFX_SIZEPARENTPARAMS
+#define WM_SIZEPARENT       0x0361  // lParam = &__SIZEPARENTPARAMS
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
                            // lParam = lpszOther (or NULL)
 #define WM_IDLEUPDATECMDUI  0x0363  // wParam == bDisableIfNoHandler
@@ -147,7 +147,7 @@ class CDockContext;                     // for dragging control bars
 // like ON_MESSAGE but no return value
 #define ON_MESSAGE_VOID(message, memberFxn) \
    { message, 0, 0, 0, gen::Sig_vv, \
-      (AFX_PMSG)(AFX_PMSGW)(void (AFX_MSG_CALL ::ca::window::*)(void))&memberFxn },
+      (__PMSG)(__PMSGW)(void (__MSG_CALL ::ca::window::*)(void))&memberFxn },
 
 #if defined(LINUX) || defined(MACOS)
 
@@ -157,7 +157,7 @@ typedef void * HDWP;
 
 
 // special struct for WM_SIZEPARENT
-struct AFX_SIZEPARENTPARAMS
+struct __SIZEPARENTPARAMS
 {
    HDWP hDWP;       // handle for DeferWindowPos
    RECT rect;       // parent client rectangle (trim as appropriate)
@@ -171,7 +171,7 @@ enum {  FS_SHOW = 0x01, FS_HIDE = 0x02,
       FS_ENABLE = 0x10, FS_DISABLE = 0x20,
       FS_SYNCACTIVE = 0x40 };
 
-CLASS_DECL_ca void gen::RepositionWindow(AFX_SIZEPARENTPARAMS* lpLayout,
+CLASS_DECL_ca void gen::RepositionWindow(__SIZEPARENTPARAMS* lpLayout,
    ::user::interaction * hWnd, LPCRECT lpRect);
 
 #ifndef LAYOUT_LTR

@@ -12,7 +12,6 @@ static geoipv6_t IPV6_NULL;
 #if defined(LINUX)
 
 #include <sys/mman.h>
-#include <stdio.h>
 #include <netdb.h>
 
 #endif

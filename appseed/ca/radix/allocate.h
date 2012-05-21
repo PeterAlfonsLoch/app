@@ -5,7 +5,7 @@
 
 #include "heap.h"
 
-#ifdef _DEBUG
+#ifdef DEBUG
 // Special _CLIENT_BLOCK type to identifiy CObjects.
 #define _AFX_CLIENT_BLOCK (_CLIENT_BLOCK|(0xc0<<16))
 #endif
@@ -176,7 +176,7 @@ inline void __cdecl operator delete[](void * p, int nType, const char * lpszFile
 
 
 
-#ifdef _DEBUG       // most of this file is for debugging
+#ifdef DEBUG       // most of this file is for debugging
 
 #undef new
 
@@ -195,7 +195,7 @@ CLASS_DECL_ca void AfxFreeMemoryDebug(void * pbData, BOOL bIsObject);
 CLASS_DECL_ca BOOL _AfxDefaultAllocHook(size_t, BOOL, LONG);
 
 CLASS_DECL_ca int __cdecl _AfxAllocHookProxy(int nAllocType, void * pvData, size_t nSize, int nBlockUse, long lRequest, const unsigned char * szFilename, int nLine);
-CLASS_DECL_ca AFX_ALLOC_HOOK AfxSetAllocHook(AFX_ALLOC_HOOK pfnNewHook);
+CLASS_DECL_ca __ALLOC_HOOK AfxSetAllocHook(__ALLOC_HOOK pfnNewHook);
 
 CLASS_DECL_ca BOOL AfxEnableMemoryLeakOverride(BOOL bEnable);
 CLASS_DECL_ca BOOL AfxEnableMemoryTracking(BOOL bTrack);
@@ -210,7 +210,7 @@ struct CLASS_DECL_ca _AFX_ENUM_CONTEXT
 };
 
 CLASS_DECL_ca __STATIC void _AfxDoForAllObjectsProxy(void * pObject, void * pContext);
-CLASS_DECL_ca void AFXAPI AfxDoForAllObjects(void (c_cdecl *pfn)(::radix::object*, void *), void * pContext);
+CLASS_DECL_ca void _API AfxDoForAllObjects(void (c_cdecl *pfn)(::radix::object*, void *), void * pContext);
 
 /////////////////////////////////////////////////////////////////////////////
 // Automatic debug primitive::memory diagnostics
@@ -218,7 +218,7 @@ CLASS_DECL_ca void AFXAPI AfxDoForAllObjects(void (c_cdecl *pfn)(::radix::object
 CLASS_DECL_ca BOOL AfxDumpMemoryLeaks();
 
 #endif // _AFX_NO_DEBUG_CRT
-#endif // _DEBUG
+#endif // DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // Non-diagnostic primitive::memory routines

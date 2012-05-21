@@ -133,7 +133,7 @@ typedef struct tag__OLDTOOLINFO {
    LPTSTR lpszText;
 } __OLDTOOLINFO;
 
-// special AFX ::ca::window class name mangling
+// special _ ::ca::window class name mangling
 
 
 #define __WNDCLASS(s)    "ca2" _T(s)

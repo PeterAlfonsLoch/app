@@ -1,7 +1,7 @@
 /*
- Copyright (c) 2001 
- Author: Konstantin Boukreev 
- E-mail: konstantin@mail.primorye.ru 
+ Copyright (c) 2001
+ Author: Konstantin Boukreev
+ E-mail: konstantin@mail.primorye.ru
  Created: 28.08.2001 18:38:49
  Version: 1.0.0
 
@@ -13,14 +13,14 @@
  about the suitability of this software for any purpose.
  It is provided "as is" without express or implied warranty.
 
- Common header file 
+ Common header file
  based on CmdHdr.h by Jeffrey Richter
 */
 
 \\\\#ifndef _kbase_8998f07c_472c_4ff3_90b6_ffd5738d85e6
 #define _kbase_8998f07c_472c_4ff3_90b6_ffd5738d85e6
 
-#if _MSC_VER > 1000 
+#if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
 
@@ -30,7 +30,7 @@
 
 // Exclude rarely-used stuff from Windows headers
 //#define WIN32_LEAN_AND_MEAN
-//#define VC_EXTRALEAN      
+//#define VC_EXTRALEAN
 
 #ifndef _WIN32_WINNT
 #define _WIN32_WINNT 0x0500
@@ -56,7 +56,7 @@
 #if (WINVER < 0x0500)
 #include <winable.h>
 #endif // (WINVER < 0x0500)
-//#pragma warning(pop) 
+//#pragma warning(pop)
 //#pragma warning(push, 4)
 
 #ifndef WT_EXECUTEINPERSISTENTIOTHREAD
@@ -65,7 +65,7 @@
 #pragma message("You may install the Platform SDK from http://msdn.microsoft.com/downloads/")
 #endif
 
-#ifdef _DEBUG
+#ifdef DEBUG
 #pragma warning(disable:4127)      // conditional expression is constant
 #endif
 
@@ -74,7 +74,7 @@
 #pragma warning(disable:4097)      // typedef-name 'identifier1' used as synonym for class-name 'identifier2'
 #pragma warning(disable:4001)      // nonstandard extension 'single line comment' was used
 #pragma warning(disable:4100)      // unreferenced formal parameter
-#pragma warning(disable:4699)      // Note: Creating precompiled header 
+#pragma warning(disable:4699)      // Note: Creating precompiled header
 #pragma warning(disable:4710)      // function not inlined
 #pragma warning(disable:4514)      // unreferenced inline function has been removed
 #pragma warning(disable:4512)      // assignment operator could not be generated
@@ -108,14 +108,14 @@
 namespace kbase_2001
 {
 
-inline void MsgBox(char* sMsg, UINT uType = MB_OK) 
+inline void MsgBox(char* sMsg, UINT uType = MB_OK)
 {
    char title[MAX_PATH];
    GetModuleFileNameA(0, title, DIM_OF(title));
    MessageBoxA(GetActiveWindow(), sMsg, title, uType);
 }
 
-inline void MsgBox(wchar_t* sMsg, UINT uType = MB_OK) 
+inline void MsgBox(wchar_t* sMsg, UINT uType = MB_OK)
 {
    wchar_t title[MAX_PATH];
    GetModuleFileNameW(0, title, DIM_OF(title));
@@ -145,7 +145,7 @@ inline int MsgBox (UINT uType, wchar_t* title, wchar_t* fmt, ...)
 }
 
 /*
-inline void Fail(char* msg) 
+inline void Fail(char* msg)
 {
    char title[MAX_PATH];
    GetModuleFileNameA(0, title, DIM_OF(title));
@@ -153,17 +153,17 @@ inline void Fail(char* msg)
    DebugBreak();
 }
 
-inline void Fail(char* file, int line, char* expr) 
+inline void Fail(char* file, int line, char* expr)
 {
    char title[MAX_PATH];
    GetModuleFileNameA(0, title, DIM_OF(title));
-   MsgBox(MB_ICONSTOP, title, 
+   MsgBox(MB_ICONSTOP, title,
       "Assertion Failed!\n\nFile %s, line %d : %s", file, line, expr);
    DebugBreak();
 }
 */
 
-class SystemInfo : public SYSTEM_INFO 
+class SystemInfo : public SYSTEM_INFO
 {
 public:
    SystemInfo() {GetSystemInfo(this);}
@@ -175,16 +175,16 @@ struct OSVersionInfo : public OSVERSIONINFO
    {
 //      memset(this, 0, sizeof(OSVERSIONINFO));
       dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-      GetVersionEx(this);      
+      GetVersionEx(this);
    }
 };
 
-inline void Windows9xNotAllowed() 
+inline void Windows9xNotAllowed()
 {
   // OSVERSIONINFO vi = { sizeof(vi)};
   // GetVersionEx(&vi);
    OSVersionInfo vi;
-   if (vi.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS) 
+   if (vi.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
    {
       MsgBox("This application requires features not present in Windows 9x.", MB_ICONWARNING);
       ExitProcess(0);
@@ -193,18 +193,18 @@ inline void Windows9xNotAllowed()
 
 inline bool IsNT()
 {
-//   OSVERSIONINFO vi = { sizeof(vi)};   
+//   OSVERSIONINFO vi = { sizeof(vi)};
 //   ::GetVersionEx(&vi);
    OSVersionInfo vi;
    return vi.dwPlatformId == VER_PLATFORM_WIN32_NT;
 }
 
-inline void Windows2000Required() 
+inline void Windows2000Required()
 {
 //   OSVERSIONINFO vi = { sizeof(vi) };
 //   GetVersionEx(&vi);
    OSVersionInfo vi;
-   if ((vi.dwPlatformId != VER_PLATFORM_WIN32_NT) && (vi.dwMajorVersion < 5)) 
+   if ((vi.dwPlatformId != VER_PLATFORM_WIN32_NT) && (vi.dwMajorVersion < 5))
    {
       MsgBox("This application requires features present in Windows 2000.", MB_ICONWARNING);
       ExitProcess(0);
@@ -212,13 +212,13 @@ inline void Windows2000Required()
 }
 
 template <class TV, class TM>
-inline TV RoundDown(TV Value, TM Multiple) 
+inline TV RoundDown(TV Value, TM Multiple)
 {
    return((Value / Multiple) * Multiple);
 }
 
 template <class TV, class TM>
-inline TV RoundUp(TV Value, TM Multiple) 
+inline TV RoundUp(TV Value, TM Multiple)
 {
    return(RoundDown(Value, Multiple) + (((Value % Multiple) > 0) ? Multiple : 0));
 }
@@ -227,16 +227,16 @@ inline TV RoundUp(TV Value, TM Multiple)
 
 // Since Windows 98 does not support Unicode, issue an error and terminate
 // the process if this is a native Unicode build running on Windows 98
-// This is accomplished by creating a global C++ object. Its constructor is 
+// This is accomplished by creating a global C++ object. Its constructor is
 // executed before WinMain.
 
 #ifdef UNICODE
 
-struct UnicodeSupported 
+struct UnicodeSupported
 {
-   UnicodeSupported () 
+   UnicodeSupported ()
    {
-      if (GetWindowsDirectoryW(NULL, 0) <= 0) 
+      if (GetWindowsDirectoryW(NULL, 0) <= 0)
      {
          MsgBox("This application requires an App that supports Unicode.", MB_ICONWARNING);
          ExitProcess(0);
@@ -252,22 +252,22 @@ static UnicodeSupported g_UnicodeSupported;
 
 inline void  dprintf (char* pStr, ...)
 {
-   char buffer[1024] = {0};   
-   va_list args;   
+   char buffer[1024] = {0};
+   va_list args;
    va_start(args, pStr);
    wvsprintfA(buffer, pStr, args);
    va_end(args);
-   OutputDebugStringA(buffer);   
+   OutputDebugStringA(buffer);
 }
 
 inline void  dprintf (wchar_t* pStr, ...)
 {
-   wchar_t buffer[1024] = {0};   
-   va_list args;   
+   wchar_t buffer[1024] = {0};
+   va_list args;
    va_start(args, pStr);
    wvsprintfW(buffer, pStr, args);
    va_end(args);
-   OutputDebugStringW(buffer);   
+   OutputDebugStringW(buffer);
 }
 
 inline void dummy_func(...) {}
@@ -278,20 +278,20 @@ inline void dummy_func(...) {}
 // namespace kb = kbase_2001;
 
 /*
-#ifdef _DEBUG
+#ifdef DEBUG
 #define ASSERT(x) if (!(x)) kbase_2001::Fail(__FILE__, __LINE__, #x);
 #else
 #define ASSERT(x)
 #endif
 */
 
-#ifdef _DEBUG
+#ifdef DEBUG
 #define VERIFY(x) _ASSERTE(x)
 #else
 #define VERIFY(x) (x)
 #endif
 
-#ifdef _DEBUG
+#ifdef DEBUG
 #define TRACE kbase_2001::dprintf
 #else
 #define TRACE kbase_2001::dummy_func

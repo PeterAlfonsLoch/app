@@ -132,7 +132,7 @@ void gen::DoForAllClasses(void (c_cdecl *pfn)(::ca::type_info pClass,
 
 #else
 
-// non-_DEBUG_ALLOC version that assume everything is OK
+// non-DEBUG_ALLOC version that assume everything is OK
 #define DEBUG_NEW new
 #define __check_memory() TRUE
 #define __is_memory_block(p, nBytes) TRUE
@@ -171,9 +171,9 @@ extern CLASS_DECL_ca bool g_bTraceEnabled;
 #endif
 
 #ifdef DEBUG
-#define AFXDUMP( exp ) (void)(g_dumpcontext<<exp)
+#define _DUMP( exp ) (void)(g_dumpcontext<<exp)
 #else
-#define AFXDUMP( exp )
+#define _DUMP( exp )
 #endif
 
 
@@ -272,13 +272,13 @@ inline void c_cdecl __trace(...) { }
 //#define ASSERT(f)          DEBUG_ONLY(() ((f) || !::__assert_failed_line(THIS_FILE, __LINE__) || (__debug_break(), 0)))
 #define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && (!::__assert_failed_line(__FILE__, __LINE__) || (__debug_break(), 0))) || (!is_debugger_attached() && (throw assert_exception(__FILE__, __LINE__), 0))))
 /* see gen headers for commentary on this */
-/* We use the name AFXASSUME to avoid name clashes */
-#define AFXASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
+/* We use the name _ASSUME to avoid name clashes */
+#define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
 //#define ASSERT_VALID(pOb)  DEBUG_ONLY((::assert_valid_object(pOb, THIS_FILE, __LINE__)))
 #define ASSERT_VALID(pOb)  ((::assert_valid_object(pOb, __FILE__, __LINE__)))
 #else
 #define ASSERT(f)
-#define AFXASSUME(cond)
+#define _ASSUME(cond)
 #define ASSERT_VALID(cond) __noop;
 #endif
 

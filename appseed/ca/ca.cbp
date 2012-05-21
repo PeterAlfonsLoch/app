@@ -18,14 +18,14 @@
 					<Add option="-g" />
 					<Add option="-fPIC" />
 					<Add directory="." />
+					<Add directory=".." />
+					<Add directory="../../.." />
 					<Add directory="../ca" />
 					<Add directory="../../appseedcore" />
 					<Add directory="../../../app" />
 					<Add directory="../../nodeapp/linux" />
 					<Add directory="../ca2" />
 					<Add directory="../../nodeapp/linux/include" />
-					<Add directory="../../.." />
-					<Add directory=".." />
 					<Add directory="../../../app/thirdparty/include" />
 					<Add directory="../../../app/thirdparty/appseed" />
 				</Compiler>
@@ -33,8 +33,8 @@
 		</Build>
 		<Compiler>
 			<Add option="-std=c++0x" />
+			<Add option="-D_DEBUG" />
 		</Compiler>
-		<Unit filename="StdAfx.h" />
 		<Unit filename="api/api_atol.cpp" />
 		<Unit filename="api/api_muldiv64.cpp" />
 		<Unit filename="api/api_str.cpp" />
@@ -1317,9 +1317,6 @@
 		<Unit filename="radix/DispatchPtrArray.h" />
 		<Unit filename="radix/allocate.h" />
 		<Unit filename="radix/base.h" />
-		<Unit filename="radix/c_priv2_want_to_remove.h" />
-		<Unit filename="radix/c_priv_want_to_remove.h" />
-		<Unit filename="radix/cafxdllx_want_to_remove.h" />
 		<Unit filename="radix/command.h" />
 		<Unit filename="radix/command_target.h" />
 		<Unit filename="radix/comparable.h" />
@@ -1337,17 +1334,10 @@
 		<Unit filename="radix/implementation.h" />
 		<Unit filename="radix/inline.h" />
 		<Unit filename="radix/kbase.h" />
-		<Unit filename="radix/kbase_xxx.h" />
 		<Unit filename="radix/keep_ptr.h" />
 		<Unit filename="radix/language_string.h" />
 		<Unit filename="radix/machine_event_central.cpp" />
-		<Unit filename="radix/machine_event_central.h" />
-		<Unit filename="radix/pipe.h" />
-		<Unit filename="radix/process_data.h" />
 		<Unit filename="radix/radix.h" />
-		<Unit filename="radix/radix_1.h" />
-		<Unit filename="radix/radix_2.h" />
-		<Unit filename="radix/radix_5.h" />
 		<Unit filename="radix/radix_afxcrit.cpp" />
 		<Unit filename="radix/radix_allocate.h" />
 		<Unit filename="radix/radix_allocation_base_ca2.cpp" />
@@ -1404,13 +1394,11 @@
 		<Unit filename="radix/rawdllmainproxy.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="radix/service.h" />
 		<Unit filename="radix/simple_list.h" />
 		<Unit filename="radix/sockets.h" />
 		<Unit filename="radix/specialty.h" />
 		<Unit filename="radix/this_build_number.h" />
 		<Unit filename="radix/util.h" />
-		<Unit filename="radix/wait_cursor.h" />
 		<Unit filename="simpledb/DBFileSystemSize.h" />
 		<Unit filename="simpledb/application.h" />
 		<Unit filename="simpledb/db_long_set.h" />

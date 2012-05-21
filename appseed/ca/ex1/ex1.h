@@ -1,20 +1,7 @@
 #pragma once
 
 
-#include "radix/radix.h"
-
-
-
-
-
-
-
-
-
-
-
-
-
+#include "ca/radix/radix.h"
 
 
 #include "ca/radix/radix_os_history.h"
@@ -178,7 +165,7 @@ class CDockContext;                     // for dragging control bars
 #define IS_COMMAND_ID(nID)  ((nID) & 0x8000)
 
 // 8000 -> DFFF : ::fontopus::user commands
-// E000 -> EFFF : AFX commands and other things
+// E000 -> EFFF : _ commands and other things
 // F000 -> FFFF : standard windows commands and other things etc
    // E000 -> E7FF standard commands
    // E800 -> E8FF control bars (first 32 are special)
@@ -189,7 +176,7 @@ class CDockContext;                     // for dragging control bars
 
 // 0000 -> 7FFF IDR range
 // 0000 -> 6FFF : ::fontopus::user resources
-// 7000 -> 7FFF : AFX (and standard windows) resources
+// 7000 -> 7FFF : _ (and standard windows) resources
 // IDR ranges (NOTE: IDR_ values must be <32768)
 #define ASSERT_VALID_IDR(nIDR) ASSERT((nIDR) != 0 && (nIDR) < 0x8000)
 
@@ -205,7 +192,7 @@ class CDockContext;                     // for dragging control bars
 #define HID_BASE_DISPATCH   0x00060000UL        // IDispatch help codes
 
 /////////////////////////////////////////////////////////////////////////////
-// Internal AFX Windows messages (see Technical note TN024 for more details)
+// Internal _ Windows messages (see Technical note TN024 for more details)
 // (0x0360 - 0x037F are reserved for ca2 API)
 
 #define WM_QUERYAFXWNDPROC  0x0360  // lResult = 1 if processed by __window_procedure

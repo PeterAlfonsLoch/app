@@ -1,10 +1,12 @@
 #pragma once
 
 
-#include "c/c.h"
+#include "app/appseed/c/c.h"
 
 
 #include "nodeapp/operational_system/operational_system.h"
+
+
 
 
 #ifdef WINDOWS
@@ -79,11 +81,6 @@ extern "C"
 #include "linux/os.h"
 #endif
 
-#include <stdio.h>
-
-
-
-//#include "ca/api/allocate.h"
 
 #include "ca/primitive/count.h"
 

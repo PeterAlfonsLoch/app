@@ -3,7 +3,7 @@
 
 #ifdef SetWindowLongPtrA
 #undef SetWindowLongPtrA
-inline LONG_PTR SetWindowLongPtrA( HWND hWnd, int nIndex, LONG_PTR dwNewLong )
+inline long_ptr SetWindowLongPtrA( HWND hWnd, int nIndex, long_ptr dwNewLong )
 {
    return( ::SetWindowLongA( hWnd, nIndex, LONG( dwNewLong ) ) );
 }
@@ -11,7 +11,7 @@ inline LONG_PTR SetWindowLongPtrA( HWND hWnd, int nIndex, LONG_PTR dwNewLong )
 
 #ifdef SetWindowLongPtrW
 #undef SetWindowLongPtrW
-inline LONG_PTR SetWindowLongPtrW( HWND hWnd, int nIndex, LONG_PTR dwNewLong )
+inline long_ptr SetWindowLongPtrW( HWND hWnd, int nIndex, long_ptr dwNewLong )
 {
    return( ::SetWindowLongW( hWnd, nIndex, LONG( dwNewLong ) ) );
 }
@@ -19,7 +19,7 @@ inline LONG_PTR SetWindowLongPtrW( HWND hWnd, int nIndex, LONG_PTR dwNewLong )
 
 #ifdef GetWindowLongPtrA
 #undef GetWindowLongPtrA
-inline LONG_PTR GetWindowLongPtrA( HWND hWnd, int nIndex )
+inline long_ptr GetWindowLongPtrA( HWND hWnd, int nIndex )
 {
    return( ::GetWindowLongA( hWnd, nIndex ) );
 }
@@ -27,7 +27,7 @@ inline LONG_PTR GetWindowLongPtrA( HWND hWnd, int nIndex )
 
 #ifdef GetWindowLongPtrW
 #undef GetWindowLongPtrW
-inline LONG_PTR GetWindowLongPtrW( HWND hWnd, int nIndex )
+inline long_ptr GetWindowLongPtrW( HWND hWnd, int nIndex )
 {
    return( ::GetWindowLongW( hWnd, nIndex ) );
 }
@@ -94,29 +94,29 @@ extern CLASS_DECL_ca AUX_DATA afxData;
 // Window class names and other ::ca::window creation support
 
 
-#define AFX_WND_REG                                             0x00001
-#define AFX_WNDCONTROLBAR_REG                   0x00002
-#define AFX_WNDMDIFRAME_REG                             0x00004
-#define AFX_WNDFRAMEORVIEW_REG                  0x00008
-#define AFX_WNDCOMMCTLS_REG                             0x00010 // means all original Win95
-#define AFX_WNDOLECONTROL_REG                   0x00020
-#define AFX_WNDCOMMCTL_UPDOWN_REG       0x00040 // these are original Win95
-#define AFX_WNDCOMMCTL_TREEVIEW_REG     0x00080
-#define AFX_WNDCOMMCTL_TAB_REG                  0x00100
-#define AFX_WNDCOMMCTL_PROGRESS_REG             0x00200
-#define AFX_WNDCOMMCTL_LISTVIEW_REG         0x00400
-#define AFX_WNDCOMMCTL_HOTKEY_REG           0x00800
-#define AFX_WNDCOMMCTL_BAR_REG              0x01000
-#define AFX_WNDCOMMCTL_ANIMATE_REG              0x02000
-#define AFX_WNDCOMMCTL_INTERNET_REG             0x04000 // these are new in IE4
-#define AFX_WNDCOMMCTL_COOL_REG             0x08000
-#define AFX_WNDCOMMCTL_USEREX_REG       0x10000
-#define AFX_WNDCOMMCTL_DATE_REG             0x20000
-#define AFX_WNDCOMMCTL_LINK_REG             0x40000      // new in IE6
+#define __WND_REG                                             0x00001
+#define __WNDCONTROLBAR_REG                   0x00002
+#define __WNDMDIFRAME_REG                             0x00004
+#define __WNDFRAMEORVIEW_REG                  0x00008
+#define __WNDCOMMCTLS_REG                             0x00010 // means all original Win95
+#define __WNDOLECONTROL_REG                   0x00020
+#define __WNDCOMMCTL_UPDOWN_REG       0x00040 // these are original Win95
+#define __WNDCOMMCTL_TREEVIEW_REG     0x00080
+#define __WNDCOMMCTL_TAB_REG                  0x00100
+#define __WNDCOMMCTL_PROGRESS_REG             0x00200
+#define __WNDCOMMCTL_LISTVIEW_REG         0x00400
+#define __WNDCOMMCTL_HOTKEY_REG           0x00800
+#define __WNDCOMMCTL_BAR_REG              0x01000
+#define __WNDCOMMCTL_ANIMATE_REG              0x02000
+#define __WNDCOMMCTL_INTERNET_REG             0x04000 // these are new in IE4
+#define __WNDCOMMCTL_COOL_REG             0x08000
+#define __WNDCOMMCTL_USEREX_REG       0x10000
+#define __WNDCOMMCTL_DATE_REG             0x20000
+#define __WNDCOMMCTL_LINK_REG             0x40000      // new in IE6
 
-#define AFX_WIN95CTLS_MASK                              0x03FC0 // UPDOWN -> ANIMATE
-#define AFX_WNDCOMMCTLSALL_REG                  0x7C010 // COMMCTLS|INTERNET|COOL|USEREX|DATE|LINK
-#define AFX_WNDCOMMCTLSNEW_REG                  0x7C000 // INTERNET|COOL|USEREX|DATE
+#define __WIN95CTLS_MASK                              0x03FC0 // UPDOWN -> ANIMATE
+#define __WNDCOMMCTLSALL_REG                  0x7C010 // COMMCTLS|INTERNET|COOL|USEREX|DATE|LINK
+#define __WNDCOMMCTLSNEW_REG                  0x7C000 // INTERNET|COOL|USEREX|DATE
 
 
 // ca2 API has its own version of the TOOLINFO structure containing the
@@ -131,25 +131,25 @@ typedef struct tagAFX_OLDTOOLINFO {
    RECT rect;
    HINSTANCE hinst;
    LPTSTR lpszText;
-} AFX_OLDTOOLINFO;
+} __OLDTOOLINFO;
 
-// special AFX ::ca::window class name mangling
+// special _ ::ca::window class name mangling
 
 
-#define AFX_WNDCLASS(s)    "ca2" _T(s)
-#define AFX_WND             AFX_WNDCLASS("Wnd")
-#define AFX_WNDCONTROLBAR   AFX_WNDCLASS("ControlBar")
-#define AFX_WNDMDIFRAME     AFX_WNDCLASS("MDIFrame")
-#define AFX_WNDFRAMEORVIEW  AFX_WNDCLASS("FrameOrView")
-#define AFX_WNDOLECONTROL   AFX_WNDCLASS("OleControl")
+#define __WNDCLASS(s)    "ca2" _T(s)
+#define __WND             __WNDCLASS("Wnd")
+#define __WNDCONTROLBAR   __WNDCLASS("ControlBar")
+#define __WNDMDIFRAME     __WNDCLASS("MDIFrame")
+#define __WNDFRAMEORVIEW  __WNDCLASS("FrameOrView")
+#define __WNDOLECONTROL   __WNDCLASS("OleControl")
 
 // dialog/commdlg hook procs
-CLASS_DECL_ca INT_PTR CALLBACK AfxDlgProc(HWND, UINT, WPARAM, LPARAM);
-CLASS_DECL_ca UINT_PTR CALLBACK _AfxCommDlgProc(HWND hWnd, UINT, WPARAM, LPARAM);
+CLASS_DECL_ca int_ptr CALLBACK AfxDlgProc(HWND, UINT, WPARAM, LPARAM);
+CLASS_DECL_ca uint_ptr CALLBACK _AfxCommDlgProc(HWND hWnd, UINT, WPARAM, LPARAM);
 
 // support for standard dialogs
 extern UINT _afxMsgSETRGB;
-typedef UINT_PTR (CALLBACK* COMMDLGPROC)(HWND, UINT, WPARAM, LPARAM);
+typedef uint_ptr (CALLBACK* COMMDLGPROC)(HWND, UINT, WPARAM, LPARAM);
 
 // conversion helpers
 //int c_cdecl _wcstombsz(char* mbstr, const wchar_t* wcstr, size_t count);
@@ -258,7 +258,7 @@ extern resource_exception _simpleResourceException;
 
 
 /////////////////////////////////////////////////////////////////////////////
-// AFX_CRITICAL_SECTION
+// __CRITICAL_SECTION
 
 // these globals are protected by the same critical section
 #define CRIT_DYNLINKLIST    0
@@ -349,7 +349,7 @@ private:
 CLASS_DECL_ca void AfxGetRoot(const char * lpszPath, string & strRoot);
 
 #ifndef _AFX_NO_OLE_SUPPORT
-class CLASS_DECL_ca AFX_COM
+class CLASS_DECL_ca __COM
 {
 public:
    HRESULT CreateInstance(REFCLSID rclsid, LPUNKNOWN pUnkOuter,
@@ -371,7 +371,7 @@ CLASS_DECL_ca BOOL AfxGetInProcServer(const char * lpszCLSID, string & str);
 /////////////////////////////////////////////////////////////////////////////
 // Debugging/Tracing helpers
 
-#ifdef _DEBUG
+#ifdef DEBUG
    CLASS_DECL_ca BOOL _AfxCheckDialogTemplate(const char * lpszResource, BOOL bInvisibleChild);
 #endif
 

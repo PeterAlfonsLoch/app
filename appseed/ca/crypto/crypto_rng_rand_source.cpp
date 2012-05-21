@@ -7,26 +7,26 @@
  * Cisco Systems, Inc.
  */
 /*
- *   
+ *
  * Copyright(c) 2001-2006 Cisco Systems, Inc.
- * 
- * 
+ *
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- * 
+ *
  *   Redistributions of source code must retain the above copyright
  *   notice, this list of conditions and the following disclaimer.
- * 
+ *
  *   Redistributions in binary form must reproduce the above
  *   copyright notice, this list of conditions and the following
  *   disclaimer in the documentation and/or other materials provided
  *   with the distribution.
- * 
+ *
  *   Neither the name of the Cisco Systems, Inc. nor the names of its
  *   contributors may be used to endorse or promote products derived
  *   from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -50,18 +50,15 @@
 # include <unistd.h>         /* for close() */
 #elif (_MSC_VER >= 1400)
 #define _CRT_RAND_S
-# include <stdlib.h>         
-# include <stdio.h>
-#else
-# include <stdio.h>
+//# include <stdlib.h>
 #endif
 
 #include "rand_source.h"
 
 
-/* 
- * global dev_rand_fdes is file descriptor for /dev/random 
- * 
+/*
+ * global dev_rand_fdes is file descriptor for /dev/random
+ *
  * This var is also used to indicate that the random source has
  * been initialized.  When this var is set to the value of the
  * #define RAND_SOURCE_NOT_READY, it indicates that the random source
@@ -101,10 +98,10 @@ rand_source_init() {
 err_status_t
 rand_source_get_octet_string(void *dest, uint32_t len) {
 
-  /* 
+  /*
    * read len octets from /dev/random to dest, and
    * check return value to make sure enough octets were
-   * written 
+   * written
    */
 #ifdef DEV_URANDOM
   if (read(dev_random_fdes, dest, len) != len)
@@ -119,7 +116,7 @@ rand_source_get_octet_string(void *dest, uint32_t len) {
          {
               return err_status_fail;
           }
-  
+
       *dst++ = val;
      len--;
   }
@@ -139,16 +136,16 @@ rand_source_get_octet_string(void *dest, uint32_t len) {
 #endif
   return err_status_ok;
 }
- 
+
 err_status_t
 rand_source_deinit() {
   if (dev_random_fdes < 0)
     return err_status_dealloc_fail;  /* well, we haven't really failed, *
                   * but there is something wrong    */
 #ifdef DEV_URANDOM
-  close(dev_random_fdes);  
+  close(dev_random_fdes);
 #endif
   dev_random_fdes = RAND_SOURCE_NOT_READY;
-  
-  return err_status_ok;  
+
+  return err_status_ok;
 }

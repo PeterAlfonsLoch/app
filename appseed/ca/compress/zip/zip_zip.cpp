@@ -7,16 +7,14 @@
 */
 #include "framework.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 #include <time.h>
 #include "zipImpl.h"
 
 #ifdef STDC
 #  include <stddef.h>
 #  include <string.h>
-#  include <stdlib.h>
+//#  include <stdlib.h>
 #endif
 #ifdef NO_ERRNO_H
     extern int errno;

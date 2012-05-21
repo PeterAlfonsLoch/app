@@ -126,9 +126,9 @@ void base_ca2_free(void * pvoid, int iBlockType)
 
 size_t base_ca2_msize(void * pvoid, int iBlockType)
 {
-   
+
    byte * p = (byte *) pvoid;
-   
+
    if(p == NULL)
       return 0;
 
@@ -319,7 +319,7 @@ __STATIC void __do_for_all_objects_proxy(void * pObject, void * pContext)
    (*p->m_pfn)((::radix::object*)pObject, p->m_pContext);
 }
 
-void AFXAPI
+void _API
 __do_for_all_objects(void (c_cdecl *pfn)(::radix::object*, void *), void * pContext)
 {
    if (pfn == NULL)

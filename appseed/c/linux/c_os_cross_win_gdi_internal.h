@@ -63,7 +63,7 @@ struct tagEXTLOGPEN :
     DWORD       elpWidth;
     UINT        elpBrushStyle;
     COLORREF    elpColor;
-    ULONG_PTR   elpHatch;
+    ulong_ptr   elpHatch;
     DWORD       elpNumEntries;
     DWORD       elpStyleEntry[1];
 };
@@ -74,7 +74,7 @@ struct tagEXTLOGBRUSH :
 {
 	UINT        lbStyle;
 	COLORREF    lbColor;
-	ULONG_PTR   lbHatch;
+	ulong_ptr   lbHatch;
 };
 
 

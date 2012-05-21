@@ -62,7 +62,7 @@
 /* #undef HAVE_STDINT_H */
 
 /* Define to 1 if you have the <stdlib.h> header spfile-> */
-#define HAVE_STDLIB_H 1
+//#define HAVE_STDLIB_H 1
 
 /* Define to 1 if you have the <strings.h> header spfile-> */
 #define HAVE_STRINGS_H 1

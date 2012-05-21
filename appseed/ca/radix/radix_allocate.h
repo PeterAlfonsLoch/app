@@ -195,7 +195,7 @@ CLASS_DECL_ca void __free_memory_debug(void * pbData, bool bIsObject);
 // allocation failure hook, tracking turn on
 
 CLASS_DECL_ca bool __default_alloc_hook(size_t, bool, LONG);
-   
+
 CLASS_DECL_ca int __cdecl __alloc_alloc_hook(int nAllocType, void * pvData, size_t nSize, int nBlockUse, long lRequest, const unsigned char * szFilename, int nLine);
 CLASS_DECL_ca __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnNewHook);
 
@@ -212,7 +212,7 @@ struct CLASS_DECL_ca ___ENUM_CONTEXT
 };
 
 CLASS_DECL_ca __STATIC void __do_for_all_objects_proxy(void * pObject, void * pContext);
-CLASS_DECL_ca void AFXAPI __do_for_all_objects(void (c_cdecl *pfn)(::radix::object*, void *), void * pContext);
+CLASS_DECL_ca void _API __do_for_all_objects(void (c_cdecl *pfn)(::radix::object*, void *), void * pContext);
 
 /////////////////////////////////////////////////////////////////////////////
 // Automatic debug primitive::memory diagnostics
@@ -279,7 +279,7 @@ inline void PASCAL ::radix::object::operator delete(void * p, void *)
 
 inline void PASCAL ::radix::object::operator delete(void *pObject, const char *, int)
 {
-   ca2_free_dbg(pObject, ___CLIENT_BLOCK); 
+   ca2_free_dbg(pObject, ___CLIENT_BLOCK);
 }
 
 #endif

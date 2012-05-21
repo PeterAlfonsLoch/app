@@ -19,6 +19,7 @@
 					<Add option="-fno-pie" />
 					<Add option="-fno-stack-protector" />
 					<Add option="-Wno-pointer-arith" />
+					<Add option="-D_DEBUG" />
 					<Add directory="." />
 					<Add directory=".." />
 					<Add directory="../.." />
@@ -32,18 +33,15 @@
 		<Compiler>
 			<Add option="-fPIC" />
 		</Compiler>
-		<Unit filename="StdAfx.h" />
 		<Unit filename="_.cpp" />
 		<Unit filename="_argcargv.cpp" />
 		<Unit filename="_atol.cpp" />
-		<Unit filename="_heap.h" />
 		<Unit filename="_initterm.cpp" />
 		<Unit filename="_libct.h" />
 		<Unit filename="_math.cpp" />
 		<Unit filename="_mem.cpp" />
 		<Unit filename="_printf.cpp" />
 		<Unit filename="_std_file.cpp" />
-		<Unit filename="_types.h" />
 		<Unit filename="atol.h" />
 		<Unit filename="bsdiff/blocksort.cpp" />
 		<Unit filename="bsdiff/bsdiff.cpp" />
@@ -63,7 +61,6 @@
 		<Unit filename="c_c.h" />
 		<Unit filename="c_natural.h" />
 		<Unit filename="c_types.h" />
-		<Unit filename="ca_seed.h" />
 		<Unit filename="conv.cpp" />
 		<Unit filename="conv.h" />
 		<Unit filename="count.h" />
@@ -111,7 +108,6 @@
 		<Unit filename="linux/c_os_process.cpp" />
 		<Unit filename="linux/c_os_process.h" />
 		<Unit filename="linux/c_os_small_ipc_channel.cpp" />
-		<Unit filename="math.h" />
 		<Unit filename="md5.cpp" />
 		<Unit filename="md5.h" />
 		<Unit filename="mem.h" />

@@ -7,7 +7,6 @@
 // 08/12/06 (mv)
 
 #include "framework.h"
-#include <stdio.h>
 #include <stdarg.h>
 #include <wchar.h>
 

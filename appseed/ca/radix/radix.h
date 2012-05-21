@@ -1,7 +1,9 @@
 #pragma once
 
 
-#include "ca/ca/ca.h"
+#include "app/appseed/ca/ca/ca.h"
+
+
 
 
 // Since ca2 API itself is built with wchar_t as a native type, it will not have
@@ -29,11 +31,6 @@
 
 
 
-#ifdef _WIN64
-#ifndef ___NO_DAO_SUPPORT
-#define ___NO_DAO_SUPPORT
-#endif
-#endif
 
 
 /////////////////////////////////////////////////////////
@@ -64,40 +61,6 @@ namespace ex1
 struct memory_state;
 class dump_context;
 
-/////////////////////////////////////////////////////////////////////////////
-// Other includes from standard "C" runtimes
-
-//#ifndef _INC_STRING
-  // #include <string.h>
-//#endif
-#ifndef _INC_STDIO
-   #include <stdio.h>
-#endif
-#ifndef _INC_STDLIB
-   #include <stdlib.h>
-
-    #ifndef WINDOWS
-    /* Minimum and maximum macros */
-    #define __max(a,b)  (((a) > (b)) ? (a) : (b))
-    #define __min(a,b)  (((a) < (b)) ? (a) : (b))
-    #endif
-
-#endif
-#ifndef _INC_TIME
-   #include <time.h>
-#endif
-#ifndef _INC_LIMITS
-   #include <limits.h>
-#endif
-#ifndef _INC_STDDEF
-   #include <stddef.h>
-#endif
-#ifndef _INC_STDARG
-   #include <stdarg.h>
-#endif
-#ifndef _INC_ERRNO
-#include <errno.h>
-#endif
 
 #ifdef MACOS
 #include <malloc/malloc.h>
@@ -124,7 +87,7 @@ class dump_context;
 /////////////////////////////////////////////////////////////////////////////
 // Turn off warnings for /W4
 // To resume any of these warning: #pragma warning(default: 4xxx)
-// which should be placed after the AFX include files
+// which should be placed after the _ include files
 
 #pragma warning(disable: 4505)  // unreferenced local function has been removed
 #pragma warning(disable: 4511)  // private copy constructors are good to have
@@ -687,7 +650,7 @@ protected:
 
 
 
-CLASS_DECL_ca bool AFXAPI
+CLASS_DECL_ca bool _API
 __set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName = NULL);
 
 */

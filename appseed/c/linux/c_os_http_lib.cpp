@@ -51,7 +51,7 @@ static const char *rcsid="$Id: http_lib.c,v 3.5 1998/09/23 06:19:15 dl Exp $";
 #include <ctype.h>
 //#include <string.h>
 #include <unistd.h>
-#include <stdlib.h>
+//#include <stdlib.h>
 
 #else
 /* OS/9 includes */
@@ -65,7 +65,6 @@ static const char *rcsid="$Id: http_lib.c,v 3.5 1998/09/23 06:19:15 dl Exp $";
 extern char *malloc();
 #endif /* OS9/Unix */
 
-#include <stdio.h>
 
 #define SERVER_DEFAULT "adonis"
 
@@ -112,7 +111,7 @@ int tiny_http::t_read_line (int fd, char * buffer, int max)
  * returns the number of bytes read. negative if a read error (EOF) occured
  * before the requested length.
  */
-int tiny_http::t_read_buffer (int fd, char * buffer, int length, void (*callback)(void *, int, DWORD_PTR), void * callback_param)
+int tiny_http::t_read_buffer (int fd, char * buffer, int length, void (*callback)(void *, int, dword_ptr), void * callback_param)
 {
   int n,r;
   for (n=0; n<length; n+=r) {
@@ -252,7 +251,7 @@ tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * u
     // int overwrite;   /* flag to request to overwrite the ressource if it
 			 // was already existing */
      //char *type;      /* type of the data, if NULL default type is used */
-tiny_http::http_retcode tiny_http::t_put(const char * data, int length, int overwrite, void (*callback)(void *, int, DWORD_PTR), void * callback_param)
+tiny_http::http_retcode tiny_http::t_put(const char * data, int length, int overwrite, void (*callback)(void *, int, dword_ptr), void * callback_param)
 {
   char header[MAXBUF];
   if (m_strContentType.get_length() > 0)
@@ -289,7 +288,7 @@ tiny_http::http_retcode tiny_http::t_put(const char * data, int length, int over
 //		      length of the read data */
   //   char *typebuf; /* allocated buffer where the read data type is returned.
 	//	    If NULL, the type is not returned */
-tiny_http::http_retcode tiny_http::t_get(char ** pdata, int * plength, void (*callback)(void *, int, DWORD_PTR), void * callback_param)
+tiny_http::http_retcode tiny_http::t_get(char ** pdata, int * plength, void (*callback)(void *, int, dword_ptr), void * callback_param)
 {
   http_retcode ret;
 

@@ -229,7 +229,7 @@ public:
 
    BOOL m_bEnableChanged;
    BOOL m_bContinueRouting;
-   
+
 
    ::userbase::menu* m_pParentMenu;   // NULL if parent menu not easily determined
                      //  (probably a secondary popup menu)
@@ -280,36 +280,36 @@ public: // re-implementations only
 //  like toolbar buttons and status indicators
 
 // pointer to member function
-#ifndef AFX_MSG_CALL
-#define AFX_MSG_CALL
+#ifndef __MSG_CALL
+#define __MSG_CALL
 #endif
-typedef void (AFX_MSG_CALL command_target::*AFX_PMSG)(void);
+typedef void (__MSG_CALL command_target::*__PMSG)(void);
 
-enum AFX_DISPMAP_FLAGS
+enum __DISPMAP_FLAGS
 {
    afxDispCustom = 0,
    afxDispStock = 1
 };
 
-//IA64: AFX_DISPMAP_ENTRY could be ordered more efficiently to reduce size
+//IA64: __DISPMAP_ENTRY could be ordered more efficiently to reduce size
 // bloat from alignment
 #pragma warning( disable: 4121 )
-struct CLASS_DECL_ca AFX_DISPMAP_ENTRY
+struct CLASS_DECL_ca __DISPMAP_ENTRY
 {
    const char * lpszName;       // member/property name
    long lDispID;           // DISPID (may be DISPID_UNKNOWN)
    const char * lpszParams;      // member parameter description
    WORD vt;                // return value type / or type of property
-   AFX_PMSG pfn;           // normal member On<membercall> or, OnGet<property>
-   AFX_PMSG pfnSet;        // special member for OnSet<property>
+   __PMSG pfn;           // normal member On<membercall> or, OnGet<property>
+   __PMSG pfnSet;        // special member for OnSet<property>
    size_t nPropOffset;     // property offset
-   AFX_DISPMAP_FLAGS flags;// flags (e.g. stock/custom)
+   __DISPMAP_FLAGS flags;// flags (e.g. stock/custom)
 };
 #pragma warning( default: 4121 )
 
-struct CLASS_DECL_ca AFX_EVENTSINKMAP_ENTRY
+struct CLASS_DECL_ca __EVENTSINKMAP_ENTRY
 {
-   AFX_DISPMAP_ENTRY dispEntry;
+   __DISPMAP_ENTRY dispEntry;
    UINT nCtrlIDFirst;
    UINT nCtrlIDLast;
 };

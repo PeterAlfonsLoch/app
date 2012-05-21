@@ -12,7 +12,7 @@
 // Copyright (c) 2003 Song Ho Ahn
 //////////////////////////////////////////////////////////////////////////////
 #include "framework.h"
-#include <stdlib.h>
+//#include <stdlib.h>
 
 
 namespace gen

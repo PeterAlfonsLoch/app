@@ -11,7 +11,7 @@ compatibility with older software. The following is from the original crypt.c. C
 woven in by Terry Thorsen 1/2003.
 */
 /*
-  Copyright (c) 1990-2000 Info-ZIP.  
+  Copyright (c) 1990-2000 Info-ZIP.
 
   See the accompanying file LICENSE, version 2000-Apr-09 or later
   (the contents of which are also included in zip.h) for terms of use.
@@ -35,15 +35,13 @@ woven in by Terry Thorsen 1/2003.
  */
 #include "framework.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 #include "unzip.h"
 
 #ifdef STDC
 #  include <stddef.h>
 #  include <string.h>
-#  include <stdlib.h>
+//#  include <stdlib.h>
 #endif
 #ifdef NO_ERRNO_H
     extern int errno;
@@ -546,7 +544,7 @@ extern int CLASS_DECL_ca unzGetGlobalInfo (unzFile file,
 /*
    Translate date/time from Dos format to tm_unz (readable more easilty)
 */
-local void unzlocal_DosDateToTmuDate( 
+local void unzlocal_DosDateToTmuDate(
     uLong ulDosDate,
     tm_unz* ptm)
 {

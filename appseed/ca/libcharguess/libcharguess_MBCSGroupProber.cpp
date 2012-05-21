@@ -21,14 +21,13 @@
 
 
 
-// #include <stdio.h>
 // #include "prmem.h"
 #include "types.h"
 
 #include "MBCSGroupProber.h"
 
 #ifdef DEBUG_chardet
-char *ProberName[] = 
+char *ProberName[] =
 {
   "UTF8",
   "SJIS",
@@ -168,12 +167,12 @@ float nsMBCSGroupProber::GetConfidence()
 }
 
 #ifdef DEBUG_chardet
-void 
+void
 nsMBCSGroupProber::dumpStatus()
 {
   PRUint32 i;
   float cf;
-  
+
   GetConfidence();
   for (i = 0; i < NUM_OF_PROBERS; i++)
   {

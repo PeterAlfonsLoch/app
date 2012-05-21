@@ -1,3 +1,3 @@
 #pragma once
 
-typedef INT_PTR count;
+typedef int_ptr count;

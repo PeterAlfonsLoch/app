@@ -12,19 +12,19 @@ void base_simple_list::add_head(void * p)
    m_pHead = p;
 }
 
-BOOL base_simple_list::remove(void * p)
+bool base_simple_list::remove(void * p)
 {
    ASSERT(p != NULL);
 
    if (m_pHead == NULL)
-      return FALSE;
+      return false;
 
-   BOOL bResult = FALSE;
+   bool bResult = false;
    if (m_pHead == p)
    {
       m_pHead = *GetNextPtr(p);
       DEBUG_ONLY(*GetNextPtr(p) = NULL);
-      bResult = TRUE;
+      bResult = true;
    }
    else
    {
@@ -35,7 +35,7 @@ BOOL base_simple_list::remove(void * p)
       {
          *GetNextPtr(pTest) = *GetNextPtr(p);
          DEBUG_ONLY(*GetNextPtr(p) = NULL);
-         bResult = TRUE;
+         bResult = true;
       }
    }
    return bResult;

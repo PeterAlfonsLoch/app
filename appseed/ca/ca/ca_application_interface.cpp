@@ -1,7 +1,9 @@
 #include "framework.h"
 
+
 namespace ca
 {
+
 
    application_interface::application_interface()
    {
@@ -12,10 +14,16 @@ namespace ca
       // can get the application_interface of that module by dynamic-casting the application object.
    }
 
+
    /* template for application_interface implementation
    void application_interface::on_application_signal(::radix::application_signal_object * psignal)
    {
+
    }
    */
 
+
 } // namespace kar
+
+
+

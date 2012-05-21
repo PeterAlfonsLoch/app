@@ -12,7 +12,7 @@
 
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
 dump_context& operator <<(dump_context & dumpcontext, class time time)
 {
    char psz[32];
@@ -70,7 +70,7 @@ CArchive& operator >>(CArchive& ar, class time& rtime)
 /////////////////////////////////////////////////////////////////////////////
 // time_span - relative time
 
-#ifdef _DEBUG
+#ifdef DEBUG
 dump_context& operator <<(dump_context & dumpcontext, time_span timeSpan)
 {
    return dumpcontext << "time_span(" << timeSpan.GetDays() << " days, " <<

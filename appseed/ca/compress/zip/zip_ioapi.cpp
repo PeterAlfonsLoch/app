@@ -8,9 +8,6 @@
 #include "framework.h"
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 #include "c/c_c.h"
 #include "ca/zlib/zlib.h"
@@ -82,7 +79,7 @@ voidpf ZCALLBACK fopen_file_func (voidpf opaque, const char * filename, int mode
     if (mode & ZLIB_FILEFUNC_MODE_CREATE)
         mode_fopen = "wb";
 
-    
+
     if ((filename!=NULL) && (mode_fopen != NULL))
         err = fopen_s(&file, filename, mode_fopen);
     if(err != 0)

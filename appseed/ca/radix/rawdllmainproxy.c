@@ -94,7 +94,7 @@ static BOOL __cdecl _ValidateImageBase(
 
 static PIMAGE_SECTION_HEADER __cdecl _FindPESection(
 	PBYTE     pImageBase,
-	DWORD_PTR rva
+	dword_ptr rva
 	)
 {
 	PIMAGE_NT_HEADERS     pNTHeader;
@@ -155,7 +155,7 @@ static BOOL __cdecl _IsNonwritableInCurrentImage(
 	)
 {
 	PBYTE                 pImageBase;
-	DWORD_PTR             rvaTarget;
+	dword_ptr             rvaTarget;
 	PIMAGE_SECTION_HEADER pSection;
 
 	pImageBase = (PBYTE)&__ImageBase;
@@ -227,7 +227,7 @@ BOOL WINAPI _RawDllMainProxy(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReser
 		if (!_IsNonwritableInCurrentImage((PBYTE)&_pActualRawDllMain))
 		{
 			/* _pActualRawDllMain cannot be in a R/W section */
-#ifdef _DEBUG
+#ifdef DEBUG
 			MessageBoxA(NULL,
 				"_pActualRawDllMain cannot be in a R/W section",
 				"Microsoft Foundation Classes C++ Library",

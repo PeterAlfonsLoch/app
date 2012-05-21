@@ -169,11 +169,11 @@ typedef struct _CrtMemState
     multiple definition problems */
 
 #ifndef _ASSERT
-#define _ASSERT(expr) (()0)
+#define _ASSERT(expr) ((void)0)
 #endif
 
 #ifndef _ASSERTE
-#define _ASSERTE(expr) (()0)
+#define _ASSERTE(expr) ((void)0)
 #endif
 
 #ifndef _ASSERT_EXPR
@@ -354,7 +354,7 @@ CLASS_DECL__ int DECL_C _CrtDbgReportW(int _ReportType, const wchar_t * _Filenam
 /* Asserts */
 /* We use !! below to ensure that any overloaded operators used to evaluate expr do not end up at operator || */
 #define _ASSERT_EXPR(expr, msg) \
-        () ((!!(expr)) || \
+        (void) ((!!(expr)) || \
                 (1 != _CrtDbgReportW(_CRT_ASSERT, _WIDEN(__FILE__), __LINE__, NULL, msg)) || \
                 (_CrtDbgBreak(), 0))
 

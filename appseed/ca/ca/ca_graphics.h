@@ -10,11 +10,11 @@
 #include "ca_palette.h"
 
 
-#ifdef UNICODE
+/*#ifdef UNICODE
 #define ___FUNCNAME(_Name) _Name##W
 #else
 #define ___FUNCNAME(_Name) _Name##A
-#endif
+#endif*/
 
 
 namespace user
@@ -422,29 +422,16 @@ namespace ca
       virtual size TabbedTextOut(int x, int y, const string & str,
                int nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin);
 
-   #pragma push_macro("DrawText")
-   #pragma push_macro("DrawTextEx")
-   #undef DrawText
-   #undef DrawTextEx
-      virtual int ___FUNCNAME(DrawText)(const char * lpszString, int nCount, LPRECT lpRect,
-               UINT nFormat);
-      virtual int ___FUNCNAME(DrawText)(const string & str, LPRECT lpRect, UINT nFormat);
-#ifdef WINDOWS
-      virtual int ___FUNCNAME(DrawTextEx)(LPTSTR lpszString, int nCount, LPRECT lpRect,
-               UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
-      virtual int ___FUNCNAME(DrawTextEx)(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
-#endif
 
-      virtual int DrawText(const char * lpszString, int nCount, LPRECT lpRect,
-               UINT nFormat);
-      virtual int DrawText(const string & str, LPRECT lpRect, UINT nFormat);
+      virtual int draw_text(const char * lpszString, int nCount, LPRECT lpRect, UINT nFormat);
+      virtual int draw_text(const string & str, LPRECT lpRect, UINT nFormat);
+
 #ifdef WINDOWS
-      virtual int DrawTextEx(LPTSTR lpszString, int nCount, LPRECT lpRect,
-               UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
-      virtual int DrawTextEx(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
+
+      virtual int draw_text_ex(LPTSTR lpszString, int nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
+      virtual int draw_text_ex(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
+
 #endif
-   #pragma pop_macro("DrawText")
-   #pragma pop_macro("DrawTextEx")
 
       virtual size GetTextExtent(const char * lpszString, int nCount, int iIndex) const;
       virtual size GetTextExtent(const char * lpszString, int nCount) const;
@@ -469,16 +456,15 @@ namespace ca
       virtual UINT SetTextAlign(UINT nFlags);
       virtual int GetTextFace(int nCount, LPTSTR lpszFacename) const;
       virtual int GetTextFace(string & rString) const;
-   #pragma push_macro("GetTextMetrics")
-   #undef GetTextMetrics
+
+
 #ifdef WINDOWS
-      virtual bool ___FUNCNAME(GetTextMetrics)(LPTEXTMETRIC lpMetrics) const;
-      virtual bool GetTextMetrics(LPTEXTMETRIC lpMetrics) const;
+
+      virtual bool get_text_metrics(LPTEXTMETRIC lpMetrics) const;
+      virtual bool get_output_text_metrics(LPTEXTMETRIC lpMetrics) const;
+
 #endif
-   #pragma pop_macro("GetTextMetrics")
-#ifdef WINDOWS
-      virtual bool GetOutputTextMetrics(LPTEXTMETRIC lpMetrics) const;
-#endif
+
       virtual int SetTextJustification(int nBreakExtra, int nBreakCount);
       virtual int GetTextCharacterExtra() const;
       virtual int SetTextCharacterExtra(int nCharExtra);

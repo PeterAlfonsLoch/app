@@ -43,14 +43,15 @@ SHA1(A million repetitions of "a") =
 
 #include <memory.h> // Needed for memset and memcpy
 
+
 #ifdef SHA1_UTILITY_FUNCTIONS
 #include <stdio.h>  // Needed for file access and sprintf
 #include <string.h> // Needed for strcat and strcpy
 #endif
 
-#ifdef _MSC_VER
-#include <stdlib.h>
-#endif
+//#ifdef _MSC_VER
+//#include <stdlib.h>
+//#endif
 
 // You can define the endian mode in your files, without modifying the SHA1
 // source files. Just #define SHA1_LITTLE_ENDIAN or #define SHA1_BIG_ENDIAN

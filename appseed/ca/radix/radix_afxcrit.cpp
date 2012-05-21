@@ -25,7 +25,7 @@ __STATIC_DATA BOOL _afxCriticalInit = 0;   // set _afxGlobalLock, _afxTempLock i
 __STATIC_DATA CRITICAL_SECTION _afxResourceLock[CRIT_MAX] = { { 0 } };
 __STATIC_DATA CRITICAL_SECTION _afxLockInitLock = { 0 };
 __STATIC_DATA BOOL _afxLockInit[CRIT_MAX] = { 0 };
-#ifdef _DEBUG
+#ifdef DEBUG
 __STATIC_DATA BOOL _afxResourceLocked[CRIT_MAX] = { 0 };
 #endif
 
@@ -53,7 +53,7 @@ void AfxCriticalTerm()
       // delete specific resource critical sections
       for (int i = 0; i < CRIT_MAX; i++)
       {
-#ifdef _DEBUG
+#ifdef DEBUG
          ASSERT(!_afxResourceLocked[i]);
 #endif
          if (_afxLockInit[i])
@@ -90,7 +90,7 @@ void AfxLockGlobals(int nLockType)
 
    // lock specific resource
    EnterCriticalSection(&_afxResourceLock[nLockType]);
-#ifdef _DEBUG
+#ifdef DEBUG
    ASSERT(++_afxResourceLocked[nLockType] > 0);
 #endif
 }
@@ -102,7 +102,7 @@ void AfxUnlockGlobals(int nLockType)
 
    // unlock specific resource
    ASSERT(_afxLockInit[nLockType]);
-#ifdef _DEBUG
+#ifdef DEBUG
    ASSERT(--_afxResourceLocked[nLockType] >= 0);
 #endif
    LeaveCriticalSection(&_afxResourceLock[nLockType]);
