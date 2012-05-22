@@ -257,7 +257,7 @@ bool file_operation::finish()
    }
    if(m_hwndCallback != NULL)
    {
-      m_hwndCallback->SendMessage(m_uiCallbackMessage, m_wparamCallback, 0);
+      m_hwndCallback->send_message(m_uiCallbackMessage, m_wparamCallback, 0);
    }
    return true;
 }

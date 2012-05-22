@@ -384,24 +384,32 @@ cmd_ui::cmd_ui(::ca::application * papp)  :
 // default cmd_ui implementation only works for Menu Items
 void cmd_ui::Enable(bool bOn)
 {
+
    if (m_pMenu != NULL)
    {
+
       if (m_pSubMenu != NULL)
          return; // don't change popup menus indirectly
 
       ENSURE(m_iIndex < m_iCount);
+
    }
    else
    {
+
       // enable/disable a control (i.e. child ::ca::window)
       ENSURE(m_pOther != NULL);
 
       // if control has the focus, move the focus before disabling
       if (!bOn && (System.get_focus_guie() == m_pOther))
-         m_pOther->GetParent()->SendMessage(WM_NEXTDLGCTL, 0, FALSE);
+         m_pOther->GetParent()->send_message(WM_NEXTDLGCTL, 0, FALSE);
+
       m_pOther->EnableWindow(bOn);
+
    }
+
    m_bEnableChanged = TRUE;
+
 }
 
 
@@ -420,8 +428,8 @@ void cmd_ui::_001SetCheck(check::e_check nCheck)
    {
       // we can only check buttons or controls acting like buttons
       ENSURE(m_pOther != NULL);
-      if (m_pOther->SendMessage(WM_GETDLGCODE) & DLGC_BUTTON)
-         m_pOther->SendMessage(BM_SETCHECK, nCheck);
+      if (m_pOther->send_message(WM_GETDLGCODE) & DLGC_BUTTON)
+         m_pOther->send_message(BM_SETCHECK, nCheck);
       // otherwise ignore it
    }
 }

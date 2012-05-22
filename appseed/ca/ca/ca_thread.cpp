@@ -467,7 +467,7 @@ namespace win
 
    LRESULT message::send()
    {
-      return m_pguie->SendMessage(m_uiMessage, m_wparam, m_lparam);
+      return m_pguie->send_message(m_uiMessage, m_wparam, m_lparam);
    }
 
    UINT message::ThreadProcSendMessage(LPVOID lp)

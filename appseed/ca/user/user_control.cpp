@@ -626,10 +626,7 @@ namespace user
          pcontrolex = NULL;
          if(pwnd != NULL)
          {
-            pwnd->SendMessage(
-            control::g_uiMessage,
-            control::MessageParamGetBaseControlExPtr,
-            (LPARAM) &pcontrolex);
+            pwnd->send_message(control::g_uiMessage, control::MessageParamGetBaseControlExPtr, (LPARAM) &pcontrolex);
          }
          if(pcontrolex != NULL)
          {

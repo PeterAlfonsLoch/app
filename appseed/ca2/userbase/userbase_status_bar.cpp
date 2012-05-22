@@ -96,7 +96,7 @@ namespace userbase
       bool bResult = TRUE;
       //if (lpIDArray != NULL)
       //{
-         HFONT hFont = (HFONT)SendMessage(WM_GETFONT);
+         HFONT hFont = (HFONT)send_message(WM_GETFONT);
          ::ca::graphics_sp spgraphicsScreen(get_app());
          HGDIOBJ hOldFont = NULL;
          if (hFont != NULL)

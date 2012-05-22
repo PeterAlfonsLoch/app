@@ -59,7 +59,7 @@ bool simple_menu_bar::LoadMenuBar(UINT nIDResource)
 
 
 
-   SendMessage(TB_SETUNICODEFORMAT, 1, 0);
+   send_message(TB_SETUNICODEFORMAT, 1, 0);
    string str;
 
    TBBUTTON tbb;
@@ -252,9 +252,9 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(point point)
          //            SendMessage(WM_KEYDOWN, VK_ESCAPE);
          //            if(m_iTracking >= 0)
          //          {
-                SendMessage(WM_CANCELMODE);
+                send_message(WM_CANCELMODE);
     //        }
-            SendMessage(WM_USER, 33, iItem);
+            send_message(WM_USER, 33, iItem);
             //return _TrackPopupMenu(iItem);
         }
     }
@@ -788,7 +788,7 @@ int simple_menu_bar::_001GetHoverItem()
 void simple_menu_bar::_001OnAppLanguage(gen::signal_object * pobj)
 {
    SCAST_PTR(::gen::message::base, pbase, pobj)
-   SendMessage(WM_CANCELMODE);
+   send_message(WM_CANCELMODE);
    LoadMenuBar(m_uiResourceID);
    _001RedrawWindow();
    pbase->m_bRet = false;

@@ -605,7 +605,6 @@ namespace window_frame
          DrawBorder(pdc, rectNClient);
       }
 
-      
 
       ///////////////////////
       //

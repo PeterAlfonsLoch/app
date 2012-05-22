@@ -628,34 +628,57 @@ namespace plugin
 
    uint_ptr plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
+
       if(m_puiHost != NULL)
       {
+
          if(uiMessage >= WM_MOUSEFIRST && uiMessage <= WM_MOUSELAST)
          {
+
             point pt = point(lparam);
+
             //pt.x -= m_rect.left;
+
             //pt.y -= m_rect.top;
+
             lparam = pt._001GetLparam();
+
          }
+
          if(uiMessage == WM_MOUSEMOVE)
          {
+
             ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_puiHost->m_pimpl);
+
             pwindow->m_bMouseHover = true; // avoids tracking mouse leave;
+
          }
+
          ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_puiHost->m_pimpl);
+
          HWND hwnd = pwindow->_get_handle();
+
          bool bIsWindow = ::IsWindow(hwnd) != FALSE;
+
          if(bIsWindow)
          {
-            LRESULT l = m_puiHost->SendMessageA(uiMessage, wparam, lparam);
+
+            LRESULT l = m_puiHost->send_message(uiMessage, wparam, lparam);
+
             return l;
+
          }
          else
          {
+
             return 0;
+
          }
+
       }
+
       return 0;
+
    }
 
    bool plugin::os_native_bergedge_start()
@@ -671,22 +694,38 @@ namespace plugin
 
    void plugin::set_window_rect(LPCRECT lpcrect)
    {
+      
       m_rect = *lpcrect;
+      
       if(m_puiHost != NULL)
       {
+         
          m_puiHost->m_bRectOk = true;
+         
          m_puiHost->m_pimpl->m_bRectOk = true;
+         
          m_puiHost->m_rectParentClient =  m_rect;
+         
          m_puiHost->m_rectParentClient.offset(-point64(m_puiHost->m_rectParentClient.top_left()));
+         
          m_puiHost->m_pimpl->m_rectParentClient = m_puiHost->m_rectParentClient;
+         
          rect64 rectWindow64;
+         
          m_puiHost->GetWindowRect(rectWindow64);
+         
          class rect rectWindow;
+         
          rectWindow = rectWindow64;
+         
          m_puiHost->SetWindowPos(ZORDER_TOP, rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), 0);
-         m_puiHost->SendMessageA(WM_SIZE);
-         m_puiHost->SendMessageA(WM_MOVE);
+         
+         m_puiHost->send_message(WM_SIZE);
+         
+         m_puiHost->send_message(WM_MOVE);
+
       }
+
    }
 
 

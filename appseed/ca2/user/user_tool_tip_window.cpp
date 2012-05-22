@@ -577,7 +577,7 @@ namespace user
       }
 
       CText text;
-      if(!m_pwnd->SendMessage(MessageBaseToolTipText, iTool, (LPARAM) &text))
+      if(!m_pwnd->send_message(MessageBaseToolTipText, iTool, (LPARAM) &text))
          return false;
       str = text.m_str;
 

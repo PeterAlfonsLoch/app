@@ -37,7 +37,7 @@ namespace user
          pscroll->m_uiMessage = WM_VSCROLL;
       }
       ::user::interaction * pParentWnd = GetParent();
-      pParentWnd->SendMessage(pscroll);
+      pParentWnd->send_message(pscroll);
    }
 
    bool scroll_bar::create(e_orientation eorientation, DWORD dwStyle, rect &rect, ::user::interaction *pParentWnd, UINT nID)

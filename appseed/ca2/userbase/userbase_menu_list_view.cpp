@@ -46,11 +46,11 @@ namespace userbase
       {
          if(base < ::user::place_holder >::bases(GetParent()))
          {
-            pbase->set_lresult(GetParent()->GetParent()->SendMessage(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
+            pbase->set_lresult(GetParent()->GetParent()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
          }
          else
          {
-            pbase->set_lresult(GetParent()->SendMessage(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
+            pbase->set_lresult(GetParent()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
          }
          pbase->m_bRet = true;
          return;

@@ -76,7 +76,7 @@ namespace user
 
                m_iControlItem             = iItem;
 
-               SendMessage(::gen::message_event, 0, (LPARAM) &ev);
+               send_message(::gen::message_event, 0, (LPARAM) &ev);
 
             }
          }
@@ -480,7 +480,7 @@ namespace user
                   pui->_000OnMouse(pmouse);
                   if(pmouse->m_bRet)
                      return;
-                  pui->SendMessage(pmouse);
+                  pui->send_message(pmouse);
                   if(pmouse->get_lresult() != 0)
                      return;
                }

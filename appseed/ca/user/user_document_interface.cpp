@@ -744,7 +744,7 @@ namespace user
          pupdate->m_lHint = lHint;
          pupdate->m_pHint = pHint;
          if (pview != pSender)
-            pview->SendMessage(WM_VIEW, 0, (LPARAM) pupdate);
+            pview->send_message(WM_VIEW, 0, (LPARAM) pupdate);
       }
    }
 

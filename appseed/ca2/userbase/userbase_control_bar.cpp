@@ -248,7 +248,7 @@ namespace userbase
          // handle setnew case
          if (!(m_nStateFlags & statusSet))
          {
-            pOwner->SendMessage(WM_SETMESSAGESTRING, nHit);
+            pOwner->send_message(WM_SETMESSAGESTRING, nHit);
             m_nStateFlags |= statusSet;
             ResetTimer(ID_TIMER_CHECK, 200);
             return TRUE;
@@ -340,7 +340,7 @@ namespace userbase
    //      else
          {
             // try owner next
-            lResult = GetOwner()->SendMessage(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam);
+            lResult = GetOwner()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam);
 
             // special case for TTN_NEEDTEXTA and TTN_NEEDTEXTW
             if(pbase->m_uiMessage == WM_NOTIFY)

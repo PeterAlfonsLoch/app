@@ -1089,8 +1089,8 @@ void simple_toolbar::SetSizes(SIZE sizeButton, SIZE sizeImage)
    if(false)
    {
       // set the sizes via TB_SETBITMAPSIZE and TB_SETBUTTONSIZE
-      VERIFY(SendMessage(TB_SETBITMAPSIZE, 0, MAKELONG(sizeImage.cx, sizeImage.cy)));
-      VERIFY(SendMessage(TB_SETBUTTONSIZE, 0, MAKELONG(sizeButton.cx, sizeButton.cy)));
+      VERIFY(send_message(TB_SETBITMAPSIZE, 0, MAKELONG(sizeImage.cx, sizeImage.cy)));
+      VERIFY(send_message(TB_SETBUTTONSIZE, 0, MAKELONG(sizeButton.cx, sizeButton.cy)));
 
       Invalidate();   // just to be nice if called when toolbar is visible
    }

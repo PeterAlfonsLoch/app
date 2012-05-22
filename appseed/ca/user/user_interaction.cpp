@@ -941,7 +941,7 @@ namespace user
    // pbase object should be allocated with new in
    // base or derived object and will be delete after
    // handling
-   LRESULT interaction::SendMessage(gen::message::base * pbase)
+   LRESULT interaction::send_message(gen::message::base * pbase)
    {
       message_handler(pbase);
       return pbase->get_lresult();
@@ -955,12 +955,12 @@ namespace user
       return PostMessage(WM_APP + 2014, 1, (LPARAM) pbase);
    }
 
-   LRESULT interaction::SendMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   LRESULT interaction::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
       if(m_pimpl == NULL)
          return FALSE;
       else
-         return m_pimpl->SendMessage(uiMessage, wparam, lparam);
+         return m_pimpl->send_message(uiMessage, wparam, lparam);
    }
 
    bool interaction::IsWindowVisible()
@@ -2070,7 +2070,7 @@ namespace user
             if (!(dwFlags & MLF_NOIDLEMSG) && puieParent != NULL && lIdleCount == 0)
             {
                // send WM_ENTERIDLE to the parent
-               puieParent->SendMessage(WM_ENTERIDLE, MSGF_DIALOGBOX, NULL);
+               puieParent->send_message(WM_ENTERIDLE, MSGF_DIALOGBOX, NULL);
             }
             /*if ((dwFlags & MLF_NOKICKIDLE) ||
                !__call_window_procedure(this, get_handle(), WM_KICKIDLE, MSGF_DIALOGBOX, lIdleCount++))
@@ -2458,7 +2458,7 @@ ExitModal:
          
          try
          {
-            m_pguie->SendMessage(WM_TIMER, m_uiId);
+            m_pguie->send_message(WM_TIMER, m_uiId);
          }
          catch(...)
          {

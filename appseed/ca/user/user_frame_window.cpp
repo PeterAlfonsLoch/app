@@ -334,7 +334,7 @@ void frame_window::BeginModalState()
    {
       if (hWnd->IsWindowEnabled() &&
          __is_descendant(pParent, hWnd) &&
-         hWnd->SendMessage(WM_DISABLEMODAL, 0, 0) == 0)
+         hWnd->send_message(WM_DISABLEMODAL, 0, 0) == 0)
       {
          hWnd->EnableWindow(FALSE);
          arrDisabledWnds.add(hWnd);
@@ -430,12 +430,12 @@ void frame_window::OnEnable(bool bEnable)
 
       // cause normal focus logic to kick in
       if (System.get_active_guie() == this)
-         SendMessage(WM_ACTIVATE, WA_ACTIVE);
+         send_message(WM_ACTIVATE, WA_ACTIVE);
    }
 
    // force WM_NCACTIVATE because Windows may think it is unecessary
    if (bEnable && (m_nFlags & WF_STAYACTIVE))
-      SendMessage(WM_NCACTIVATE, TRUE);
+      send_message(WM_NCACTIVATE, TRUE);
    // force WM_NCACTIVATE for floating windows too
 }
 
@@ -1000,7 +1000,7 @@ void frame_window::_001OnActivate(gen::signal_object * pobj)
       (pTopLevel == pActive ||
       (pActive && pTopLevel == dynamic_cast < frame_window * > (pActive->GetTopLevelFrame()) &&
       (pActive == pTopLevel ||
-         (pActive && pActive->SendMessage(WM_FLOATSTATUS, FS_SYNCACTIVE) != 0))));
+         (pActive && pActive->send_message(WM_FLOATSTATUS, FS_SYNCACTIVE) != 0))));
    pTopLevel->m_nFlags &= ~WF_STAYACTIVE;
    if (bStayActive)
       pTopLevel->m_nFlags |= WF_STAYACTIVE;
@@ -1308,7 +1308,7 @@ LRESULT frame_window::OnPopMessageString(WPARAM wParam, LPARAM lParam)
    if (m_nFlags & WF_NOPOPMSG)
       return 0;
 
-   return SendMessage(WM_SETMESSAGESTRING, wParam, lParam);
+   return send_message(WM_SETMESSAGESTRING, wParam, lParam);
 }
 
 LRESULT frame_window::OnSetMessageString(WPARAM wParam, LPARAM lParam)
@@ -1379,12 +1379,12 @@ void frame_window::OnEnterIdle(UINT nWhy, ::user::interaction* pWho)
 
 void frame_window::SetMessageText(const char * lpszText)
 {
-   SendMessage(WM_SETMESSAGESTRING, 0, (LPARAM)lpszText);
+   send_message(WM_SETMESSAGESTRING, 0, (LPARAM)lpszText);
 }
 
 void frame_window::SetMessageText(UINT nID)
 {
-   SendMessage(WM_SETMESSAGESTRING, (WPARAM)nID);
+   send_message(WM_SETMESSAGESTRING, (WPARAM)nID);
 }
 
 
@@ -1644,7 +1644,7 @@ LRESULT frame_window::OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam)
    const HWND hwDesktop = ::GetDesktopWindow();
 
    if (hwFocus == NULL)
-      lResult = SendMessage(WM_MOUSEWHEEL, (wParam << 16) | keyState, lParam);
+      lResult = send_message(WM_MOUSEWHEEL, (wParam << 16) | keyState, lParam);
    else
    {
       do {

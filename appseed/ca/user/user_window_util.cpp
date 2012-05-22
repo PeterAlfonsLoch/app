@@ -753,7 +753,7 @@ namespace user
       {
          try
          {
-            this->element_at(i)->SendMessageA(uiMessage, wparam, lparam);
+            this->element_at(i)->send_message(uiMessage, wparam, lparam);
          }
          catch(...)
          {

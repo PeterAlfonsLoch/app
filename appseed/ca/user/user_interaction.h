@@ -265,9 +265,9 @@ namespace user
       virtual DWORD GetExStyle();
       virtual LRESULT Default();
 
-      virtual LRESULT SendMessage(::gen::message::base * pbase);
+      virtual LRESULT send_message(::gen::message::base * pbase);
       virtual bool PostMessage(::gen::message::base * pbase);
-      virtual LRESULT SendMessage(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
+      virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
       virtual bool PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
 
       virtual bool ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);

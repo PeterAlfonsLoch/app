@@ -99,7 +99,7 @@ namespace ca2
             ::user::interaction * pwnd = wnda.element_at(i);
             if(pwnd != NULL && pwnd->IsWindow())
             {
-               pwnd->SendMessage(message, wparam, lparam);
+               pwnd->send_message(message, wparam, lparam);
                pwnd->SendMessageToDescendants(message, wparam, lparam);
             }
          }

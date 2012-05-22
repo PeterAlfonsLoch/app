@@ -360,15 +360,15 @@ namespace userbase
          {
             if(m_bAutoClose)
             {
-               SendMessage(WM_CLOSE);
+               send_message(WM_CLOSE);
             }
             if(base < ::user::place_holder > ::bases(GetParent()))
             {
-               GetParent()->GetParent()->SendMessage(m_uiMessage, 0, 0);
+               GetParent()->GetParent()->send_message(m_uiMessage, 0, 0);
             }
             else
             {
-               GetParent()->SendMessage(m_uiMessage, 0, 0);
+               GetParent()->send_message(m_uiMessage, 0, 0);
             }
          }
          else
@@ -381,15 +381,15 @@ namespace userbase
                   m_pwndNotify->_001SendCommand(pitem->m_id);
                   if(m_bAutoClose)
                   {
-                     SendMessage(WM_CLOSE);
+                     send_message(WM_CLOSE);
                   }
                   if(base < ::user::place_holder > ::bases(GetParent()))
                   {
-                     GetParent()->GetParent()->SendMessage(m_uiMessage, 0, 0);
+                     GetParent()->GetParent()->send_message(m_uiMessage, 0, 0);
                   }
                   else
                   {
-                     GetParent()->SendMessage(m_uiMessage, 0, 0);
+                     GetParent()->send_message(m_uiMessage, 0, 0);
                   }
                }
             }

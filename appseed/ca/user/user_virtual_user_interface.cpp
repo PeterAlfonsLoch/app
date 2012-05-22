@@ -84,11 +84,11 @@ bool virtual_user_interface::SetWindowPos(int z, int x, int y, int cx, int cy, U
    }
    if(rectOld.size() != m_rectParentClient.size())
    {
-      SendMessage(WM_SIZE, 0, MAKELONG(max(0, m_rectParentClient.width()), max(0, m_rectParentClient.height())));
+      send_message(WM_SIZE, 0, MAKELONG(max(0, m_rectParentClient.width()), max(0, m_rectParentClient.height())));
    }
    if(rectOld.top_left() != m_rectParentClient.top_left())
    {
-      SendMessage(WM_MOVE);
+      send_message(WM_MOVE);
    }
    if(nFlags & SWP_SHOWWINDOW)
    {
@@ -225,9 +225,9 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
    cs.lpCreateParams = lpParam;
    m_pguie->pre_create_window(cs);
    //m_pguie->install_message_handling(dynamic_cast < ::gen::message::dispatch * > (this));
-   SendMessage(WM_CREATE, 0, (LPARAM) &cs);
+   send_message(WM_CREATE, 0, (LPARAM) &cs);
    m_pguie->SetWindowPos(NULL, rect.left, rect.top, cs.cx, cs.cy, 0);
-   SendMessage(WM_SIZE, 0, 0);
+   send_message(WM_SIZE, 0, 0);
    on_set_parent(pparent);
    return true;
 }
@@ -303,11 +303,11 @@ bool virtual_user_interface::create(const char * lpszClassName,
    cs.hInstance = System.m_hInstance;
    cs.lpCreateParams = (LPVOID) pContext;
    m_pguie->pre_create_window(cs);
-   SendMessage(WM_CREATE, 0, (LPARAM) &cs);
+   send_message(WM_CREATE, 0, (LPARAM) &cs);
    if(rect.bottom != 0 && rect.left != 0 && rect.right != 0 && rect.top != 0)
    {
       m_pguie->SetWindowPos(NULL, rect.left, rect.top, cs.cx, cs.cy, SWP_SHOWWINDOW);
-      SendMessage(WM_SIZE, 0, 0);
+      send_message(WM_SIZE, 0, 0);
    }
    on_set_parent(pparent);
    return true;
@@ -380,9 +380,9 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    cs.hInstance = System.m_hInstance;
    cs.lpCreateParams = (LPVOID) NULL;
    m_pguie->pre_create_window(cs);
-   SendMessage(WM_CREATE, 0, (LPARAM) &cs);
+   send_message(WM_CREATE, 0, (LPARAM) &cs);
    m_pguie->SetWindowPos(NULL, 0, 0, cs.cx, cs.cy, 0);
-   SendMessage(WM_SIZE, 0, 0);
+   send_message(WM_SIZE, 0, 0);
    on_set_parent(pparent);
    return true;
 }
@@ -471,7 +471,7 @@ void virtual_user_interface::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustTyp
 }
 
 
-LRESULT virtual_user_interface::SendMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
 {
    ::ca::smart_pointer < ::gen::message::base > spbase;
    spbase(get_base(m_pguie, uiMessage, wparam, lparam));
@@ -594,7 +594,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
          if (nIDC == nIDLeftOver)
             hWndLeftOver = hWndChild;
          else if(pWnd != NULL)
-            hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
+            hWndChild->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
       for (::user::interaction * hWndChild = m_pguie->get_top_child(); hWndChild != NULL;
          hWndChild = hWndChild->under_sibling())
@@ -604,7 +604,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
          if (nIDC == nIDLeftOver)
             hWndLeftOver = hWndChild;
          else if (pWnd != NULL)
-            hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
+            hWndChild->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
    }
    else
@@ -617,7 +617,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
          if (nIDC == nIDLeftOver)
             hWndLeftOver = hWndChild;
          else if (pWnd != NULL)
-            hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
+            hWndChild->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
       for (::user::interaction * hWndChild = m_pguie->get_top_child(); hWndChild != NULL;
          hWndChild = hWndChild->under_sibling())
@@ -627,7 +627,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
          if (nIDC == nIDLeftOver)
             hWndLeftOver = hWndChild;
          else if (pWnd != NULL)
-            hWndChild->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
+            hWndChild->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
       }
    }
 
@@ -837,7 +837,7 @@ bool virtual_user_interface::DestroyWindow()
 
    try
    {
-      SendMessage(WM_DESTROY);
+      send_message(WM_DESTROY);
    }
    catch(...)
    {
@@ -890,7 +890,7 @@ bool virtual_user_interface::DestroyWindow()
 
    try
    {
-      SendMessage(WM_NCDESTROY);
+      send_message(WM_NCDESTROY);
    }
    catch(...)
    {
@@ -1153,7 +1153,7 @@ void virtual_user_interface::SendMessageToDescendants(UINT message,   WPARAM wPa
    {
       try
       {
-         pui->SendMessage(message, wParam, lParam);
+         pui->send_message(message, wParam, lParam);
       }
       catch(...)
       {

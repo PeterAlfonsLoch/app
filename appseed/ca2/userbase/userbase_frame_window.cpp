@@ -89,12 +89,12 @@ namespace userbase
             // Excel will try to Activate itself when it receives a
             // WM_NCACTIVATE so we need to keep it from doing that here.
             m_nFlags |= WF_KEEPMINIACTIVE;
-            pParent->SendMessage(WM_NCACTIVATE, TRUE);
+            pParent->send_message(WM_NCACTIVATE, TRUE);
             m_nFlags &= ~WF_KEEPMINIACTIVE;
          }
          else
          {
-            pParent->SendMessage(WM_NCACTIVATE, FALSE);
+            pParent->send_message(WM_NCACTIVATE, FALSE);
          }
       }
 
@@ -103,7 +103,7 @@ namespace userbase
       while (hWnd != NULL)
       {
          if (__is_descendant(pParent, hWnd))
-            hWnd->SendMessage(WM_FLOATSTATUS, dwFlags, 0);
+            hWnd->send_message(WM_FLOATSTATUS, dwFlags, 0);
          hWnd = hWnd->GetWindow(GW_HWNDNEXT);
       }
    }

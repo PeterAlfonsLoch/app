@@ -155,12 +155,12 @@ namespace visual
          bConv = false;
       }
       
-      bool bOk = FreeImage_SaveToMemory(eformat, pfi8, pfm1 , PNG_DEFAULT);
+      bool bOk = FreeImage_SaveToMemory(eformat, pfi8, pfm1 , PNG_DEFAULT) != FALSE;
 
       BYTE * pbData;
       DWORD dwSize;
       if(bOk)
-         bOk = FreeImage_AcquireMemory(pfm1, &pbData, &dwSize);
+         bOk = FreeImage_AcquireMemory(pfm1, &pbData, &dwSize) != FALSE;
       if(bOk)
       {
          try

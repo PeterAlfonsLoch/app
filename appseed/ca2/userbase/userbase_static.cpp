@@ -38,21 +38,21 @@ namespace userbase
       ca(papp)
       { }
    HICON base_static::SetIcon(HICON hIcon)
-      { ASSERT(IsWindow()); return (HICON)SendMessage( STM_SETICON, (WPARAM)hIcon, 0L); }
+      { ASSERT(IsWindow()); return (HICON)send_message( STM_SETICON, (WPARAM)hIcon, 0L); }
    HICON base_static::GetIcon() 
-      { ASSERT(IsWindow()); return (HICON)SendMessage( STM_GETICON, 0, 0L); }
+      { ASSERT(IsWindow()); return (HICON)send_message( STM_GETICON, 0, 0L); }
    HENHMETAFILE base_static::SetEnhMetaFile(HENHMETAFILE hMetaFile)
-      { ASSERT(IsWindow()); return (HENHMETAFILE)SendMessage( STM_SETIMAGE, IMAGE_ENHMETAFILE, (LPARAM)hMetaFile); }
+      { ASSERT(IsWindow()); return (HENHMETAFILE)send_message( STM_SETIMAGE, IMAGE_ENHMETAFILE, (LPARAM)hMetaFile); }
    HENHMETAFILE base_static::GetEnhMetaFile() 
-      { ASSERT(IsWindow()); return (HENHMETAFILE)SendMessage( STM_GETIMAGE, IMAGE_ENHMETAFILE, 0L); }
+      { ASSERT(IsWindow()); return (HENHMETAFILE)send_message( STM_GETIMAGE, IMAGE_ENHMETAFILE, 0L); }
    HBITMAP base_static::from(HBITMAP hBitmap)
-      { ASSERT(IsWindow()); return (HBITMAP)SendMessage( STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)hBitmap); }
+      { ASSERT(IsWindow()); return (HBITMAP)send_message( STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)hBitmap); }
    HBITMAP base_static::GetBitmap() 
-      { ASSERT(IsWindow()); return (HBITMAP)SendMessage( STM_GETIMAGE, IMAGE_BITMAP, 0L); }
+      { ASSERT(IsWindow()); return (HBITMAP)send_message( STM_GETIMAGE, IMAGE_BITMAP, 0L); }
    HCURSOR base_static::SetCursor(HCURSOR hCursor)
-      { ASSERT(IsWindow()); return (HCURSOR)SendMessage( STM_SETIMAGE, IMAGE_CURSOR, (LPARAM)hCursor); }
+      { ASSERT(IsWindow()); return (HCURSOR)send_message( STM_SETIMAGE, IMAGE_CURSOR, (LPARAM)hCursor); }
    HCURSOR base_static::GetCursor()
-      { ASSERT(IsWindow()); return (HCURSOR)SendMessage( STM_GETIMAGE, IMAGE_CURSOR, 0L); }
+      { ASSERT(IsWindow()); return (HCURSOR)send_message( STM_GETIMAGE, IMAGE_CURSOR, 0L); }
 
 
 

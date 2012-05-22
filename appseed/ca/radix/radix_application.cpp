@@ -1520,9 +1520,13 @@ namespace radix
 
    void application::OnAppExit()
    {
+      
       // same as double-clicking on main ::ca::window close box
+      
       ASSERT(GetMainWnd() != NULL);
-      GetMainWnd()->SendMessage(WM_CLOSE);
+      
+      GetMainWnd()->send_message(WM_CLOSE);
+
    }
 
 

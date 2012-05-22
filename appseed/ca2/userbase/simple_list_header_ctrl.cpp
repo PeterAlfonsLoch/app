@@ -62,7 +62,7 @@ void simple_list_header_control::_001OnEndTrack(gen::signal_object * pobj)
       }
    }*/
 
-   GetParent()->SendMessage(::user::list::MESSAGE_ENDCOLUMNHEADERTRACK);
+   GetParent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERTRACK);
    pnotify->m_bRet = false;
 }
 
@@ -82,7 +82,7 @@ void simple_list_header_control::_001OnTrack(gen::signal_object * pobj)
       }
    }*/
 
-   GetParent()->SendMessage(::user::list::MESSAGE_COLUMNHEADERTRACK);
+   GetParent()->send_message(::user::list::MESSAGE_COLUMNHEADERTRACK);
    pnotify->m_bRet = false;
 }
 
@@ -102,7 +102,7 @@ void simple_list_header_control::_001OnEndDrag(gen::signal_object * pobj)
 {
    SCAST_PTR(::gen::message::notify, pnotify, pobj)
 //   LPNMHEADER lpnmhd = (LPNMHEADER) pnotify->get_lpnmhdr();
-   GetParent()->SendMessage(::user::list::MESSAGE_ENDCOLUMNHEADERDRAG);
+   GetParent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERDRAG);
 /*   CTransparentWndInterface * ptwi = NULL;
    GetParent()->SendMessage(
       WM_APP_GET_TRANSPARENT_INTERFACE, (WPARAM) &ptwi, 0);

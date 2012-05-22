@@ -36,12 +36,12 @@ namespace user
       ev.m_bUser = bUser;
       if(get_form() != NULL)
       {
-         get_form()->SendMessage(
+         get_form()->send_message(
             ::gen::message_event, 0, (LPARAM) &ev);
       }
       else
       {
-         GetParent()->SendMessage(
+         GetParent()->send_message(
             ::gen::message_event, 0, (LPARAM) &ev);
       }
    }

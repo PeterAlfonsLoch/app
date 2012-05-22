@@ -425,7 +425,7 @@ namespace bergedge
             pre_translate_message(spbase);
             if(!spbase->m_bRet)
             {
-               SendMessage(spbase);
+               send_message(spbase);
             }
          }
 

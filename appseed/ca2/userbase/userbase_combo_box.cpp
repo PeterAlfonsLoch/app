@@ -64,29 +64,29 @@ namespace userbase
    combo_box::combo_box()
       { }
    count combo_box::get_count()
-      { ASSERT(IsWindow()); return (count)SendMessage( CB_GETCOUNT, 0, 0); }
+      { ASSERT(IsWindow()); return (count)send_message( CB_GETCOUNT, 0, 0); }
    index combo_box::get_cur_sel()
-      { ASSERT(IsWindow()); return (index)SendMessage( CB_GETCURSEL, 0, 0); }
+      { ASSERT(IsWindow()); return (index)send_message( CB_GETCURSEL, 0, 0); }
    index combo_box::set_cur_sel(index nSelect)
-      { ASSERT(IsWindow()); return (index)SendMessage( CB_SETCURSEL, nSelect, 0); }
+      { ASSERT(IsWindow()); return (index)send_message( CB_SETCURSEL, nSelect, 0); }
    //IA64: Assuming retval of CB_GETEDITSEL won't be expanded
    bool combo_box::GetEditSel(strsize & nStartChar, strsize & nEndChar)
    { 
-      ASSERT(IsWindow()); DWORD dw = DWORD(SendMessage( CB_GETEDITSEL, 0, 0)); 
+      ASSERT(IsWindow()); DWORD dw = DWORD(send_message( CB_GETEDITSEL, 0, 0)); 
       nStartChar = LOWORD(dw);
       nEndChar = LOWORD(dw);
       return TRUE;
    }
    bool combo_box::LimitText(strsize nMaxChars)
-      { ASSERT(IsWindow()); return (bool)SendMessage( CB_LIMITTEXT, nMaxChars, 0); }
+      { ASSERT(IsWindow()); return (bool)send_message( CB_LIMITTEXT, nMaxChars, 0); }
    bool combo_box::SetEditSel(strsize nStartChar, strsize nEndChar)
-      { ASSERT(IsWindow()); return (bool)SendMessage( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)); }
+      { ASSERT(IsWindow()); return (bool)send_message( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)); }
    dword_ptr combo_box::GetItemData(index nIndex)
    { 
       
       ASSERT(IsWindow());
       
-      return SendMessage( CB_GETITEMDATA, nIndex, 0);
+      return send_message( CB_GETITEMDATA, nIndex, 0);
    
    }
    
@@ -95,7 +95,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
 
-      return (index)SendMessage( CB_SETITEMDATA, nIndex, (LPARAM)dwItemData); 
+      return (index)send_message( CB_SETITEMDATA, nIndex, (LPARAM)dwItemData); 
 
    }
 
@@ -116,7 +116,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (index)SendMessage( CB_GETLBTEXT, nIndex, (LPARAM)lpszText);
+      return (index)send_message( CB_GETLBTEXT, nIndex, (LPARAM)lpszText);
    
    }
    
@@ -125,7 +125,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (strsize)SendMessage( CB_GETLBTEXTLEN, nIndex, 0);
+      return (strsize)send_message( CB_GETLBTEXTLEN, nIndex, 0);
 
    }
 
@@ -134,7 +134,7 @@ namespace userbase
       
       ASSERT(IsWindow());
       
-      SendMessage( CB_SHOWDROPDOWN, bShowIt, 0);
+      send_message( CB_SHOWDROPDOWN, bShowIt, 0);
    
    }
 
@@ -143,7 +143,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (index) SendMessage( CB_ADDSTRING, 0, (LPARAM)lpszString);
+      return (index) send_message( CB_ADDSTRING, 0, (LPARAM)lpszString);
    
    }
 
@@ -152,7 +152,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (index) SendMessage( CB_DELETESTRING, nIndex, 0);
+      return (index) send_message( CB_DELETESTRING, nIndex, 0);
    
    }
    
@@ -161,7 +161,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (int)SendMessage( CB_INSERTSTRING, nIndex, (LPARAM)lpszString);
+      return (int)send_message( CB_INSERTSTRING, nIndex, (LPARAM)lpszString);
 
    }
 
@@ -170,7 +170,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      SendMessage( CB_RESETCONTENT, 0, 0);
+      send_message( CB_RESETCONTENT, 0, 0);
    
    }
 
@@ -179,7 +179,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (index)SendMessage( CB_DIR, attr, (LPARAM)lpszWildCard);
+      return (index)send_message( CB_DIR, attr, (LPARAM)lpszWildCard);
    
    }
    
@@ -188,7 +188,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (index)SendMessage( CB_FINDSTRING, nStartAfter, (LPARAM)lpszString);
+      return (index)send_message( CB_FINDSTRING, nStartAfter, (LPARAM)lpszString);
    
    }
 
@@ -197,7 +197,7 @@ namespace userbase
       
       ASSERT(IsWindow());
       
-      return (index)SendMessage( CB_SELECTSTRING, nStartAfter, (LPARAM)lpszString);
+      return (index)send_message( CB_SELECTSTRING, nStartAfter, (LPARAM)lpszString);
    
    }
    
@@ -206,7 +206,7 @@ namespace userbase
       
       ASSERT(IsWindow());
       
-      SendMessage(WM_CLEAR, 0, 0);
+      send_message(WM_CLEAR, 0, 0);
    
    }
 
@@ -215,7 +215,7 @@ namespace userbase
       
       ASSERT(IsWindow());
       
-      SendMessage(WM_COPY, 0, 0);
+      send_message(WM_COPY, 0, 0);
    
    }
 
@@ -224,7 +224,7 @@ namespace userbase
       
       ASSERT(IsWindow());
       
-      SendMessage( WM_CUT, 0, 0);
+      send_message( WM_CUT, 0, 0);
    
    }
 
@@ -233,7 +233,7 @@ namespace userbase
       
       ASSERT(IsWindow());
       
-      SendMessage( WM_PASTE, 0, 0);
+      send_message( WM_PASTE, 0, 0);
    
    }
 
@@ -242,7 +242,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (int)SendMessage( CB_SETITEMHEIGHT, nIndex, MAKELONG(cyItemHeight, 0));
+      return (int)send_message( CB_SETITEMHEIGHT, nIndex, MAKELONG(cyItemHeight, 0));
    
    }
    
@@ -251,7 +251,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (int)SendMessage( CB_GETITEMHEIGHT, nIndex, 0L);
+      return (int)send_message( CB_GETITEMHEIGHT, nIndex, 0L);
    
    }
    
@@ -260,7 +260,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (index)SendMessage( CB_FINDSTRINGEXACT, nIndexStart, (LPARAM)lpszFind);
+      return (index)send_message( CB_FINDSTRINGEXACT, nIndexStart, (LPARAM)lpszFind);
    
    }
    
@@ -269,7 +269,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (int)SendMessage( CB_SETEXTENDEDUI, bExtended, 0L);
+      return (int)send_message( CB_SETEXTENDEDUI, bExtended, 0L);
    
    }
 
@@ -278,7 +278,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (bool)SendMessage( CB_GETEXTENDEDUI, 0, 0L);
+      return (bool)send_message( CB_GETEXTENDEDUI, 0, 0L);
    
    }
 
@@ -287,7 +287,7 @@ namespace userbase
       
       ASSERT(IsWindow());
       
-      SendMessage( CB_GETDROPPEDCONTROLRECT, 0, (LPARAM)lprect);
+      send_message( CB_GETDROPPEDCONTROLRECT, 0, (LPARAM)lprect);
    
    }
 
@@ -296,7 +296,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (bool)SendMessage( CB_GETDROPPEDSTATE, 0, 0L);
+      return (bool)send_message( CB_GETDROPPEDSTATE, 0, 0L);
    
    }
 
@@ -305,7 +305,7 @@ namespace userbase
       
       ASSERT(IsWindow());
       
-      return (LCID)SendMessage( CB_GETLOCALE, 0, 0);
+      return (LCID)send_message( CB_GETLOCALE, 0, 0);
    
    }
    
@@ -314,7 +314,7 @@ namespace userbase
       
       ASSERT(IsWindow());
       
-      return (LCID)SendMessage( CB_SETLOCALE, (WPARAM)nNewLocale, 0);
+      return (LCID)send_message( CB_SETLOCALE, (WPARAM)nNewLocale, 0);
    
    }
    
@@ -323,7 +323,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (index)SendMessage( CB_GETTOPINDEX, 0, 0);
+      return (index)send_message( CB_GETTOPINDEX, 0, 0);
    
    }
    
@@ -332,7 +332,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (index)SendMessage( CB_SETTOPINDEX, nIndex, 0); 
+      return (index)send_message( CB_SETTOPINDEX, nIndex, 0); 
    
    }
    
@@ -341,7 +341,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (count)SendMessage( CB_INITSTORAGE, (WPARAM)nItems, nBytes);
+      return (count)send_message( CB_INITSTORAGE, (WPARAM)nItems, nBytes);
    
    }
    
@@ -350,7 +350,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      SendMessage( CB_SETHORIZONTALEXTENT, nExtent, 0);
+      send_message( CB_SETHORIZONTALEXTENT, nExtent, 0);
    
    }
    
@@ -359,7 +359,7 @@ namespace userbase
       
       ASSERT(IsWindow());
       
-      return (UINT)SendMessage( CB_GETHORIZONTALEXTENT, 0, 0);
+      return (UINT)send_message( CB_GETHORIZONTALEXTENT, 0, 0);
    
    }
 
@@ -368,7 +368,7 @@ namespace userbase
       
       ASSERT(IsWindow());
       
-      return (int)SendMessage( CB_SETDROPPEDWIDTH, nWidth, 0);
+      return (int)send_message( CB_SETDROPPEDWIDTH, nWidth, 0);
    
    }
    
@@ -377,7 +377,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (int)SendMessage( CB_GETDROPPEDWIDTH, 0, 0);
+      return (int)send_message( CB_GETDROPPEDWIDTH, 0, 0);
    
    }
 

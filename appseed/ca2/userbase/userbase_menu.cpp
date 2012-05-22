@@ -350,7 +350,7 @@ namespace userbase
                {
                   ::user::interaction * pwndParent = m_hwndParent;
                   id id = pevent->m_puie->m_id;
-                  SendMessage(WM_CLOSE);
+                  send_message(WM_CLOSE);
                   // this may be destroyed by WM_CLOSE above
                   pwndParent->_001SendCommand(id);
                }
@@ -369,7 +369,7 @@ namespace userbase
                if(m_psubmenu != NULL
                && m_idSubMenu.has_char())
                {
-                  m_psubmenu->SendMessage(WM_CLOSE);
+                  m_psubmenu->send_message(WM_CLOSE);
                   m_psubmenu = NULL;
                   m_idSubMenu = "";
                }
@@ -423,7 +423,7 @@ namespace userbase
          KillTimer(BaseWndMenuTimer);
          if(m_idSubMenu.has_char())
          {
-            m_psubmenu->SendMessage(WM_CLOSE);
+            m_psubmenu->send_message(WM_CLOSE);
             m_psubmenu = NULL;
             m_idSubMenu.is_empty();
          }

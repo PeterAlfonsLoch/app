@@ -143,7 +143,8 @@ namespace plugin
       if(!m_pplugin->is_ok())
          return false;
 
-      return SendMessage((UINT)message_check, 0, (LPARAM) echeck) != 0;
+      return send_message((UINT)message_check, 0, (LPARAM) echeck) != 0;
+
    }
 
 
