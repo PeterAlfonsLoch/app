@@ -456,33 +456,27 @@ namespace ca
       virtual int GetTextFace(string & rString) const;
 
 
-#ifdef WINDOWS
-
       virtual bool get_text_metrics(LPTEXTMETRIC lpMetrics) const;
       virtual bool get_output_text_metrics(LPTEXTMETRIC lpMetrics) const;
 
-#endif
-<<<<<<< .mine
-   #pragma pop_macro("GetTextMetrics")
-#ifdef WINDOWS
-      virtual bool GetOutputTextMetrics(LPTEXTMETRIC lpMetrics) const;
-#endif
-=======
 
->>>>>>> .r4408
       virtual int SetTextJustification(int nBreakExtra, int nBreakCount);
       virtual int GetTextCharacterExtra() const;
       virtual int SetTextCharacterExtra(int nCharExtra);
+
 #ifdef WINDOWS
+
       virtual DWORD GetCharacterPlacement(const char * lpString, int nCount, int nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const;
       virtual DWORD GetCharacterPlacement(string & str, int nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const;
+
 #endif
-   #if (_WIN32_WINNT >= 0x0500)
+
+#if (_WIN32_WINNT >= 0x0500)
 
       virtual bool GetTextExtentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE lpSize) const;
       virtual bool GetTextExtentPointI(LPWORD pgiIn, int cgi, __out_opt LPSIZE lpSize) const;
 
-   #endif
+#endif
 
 
 

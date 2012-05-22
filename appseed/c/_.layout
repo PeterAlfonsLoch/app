@@ -79,8 +79,8 @@
 	<File name="index.h" open="0" top="0" tabpos="0">
 		<Cursor position="17" topLine="0" />
 	</File>
-	<File name="launcher.h" open="1" top="0" tabpos="8">
-		<Cursor position="520" topLine="1" />
+	<File name="launcher.h" open="0" top="0" tabpos="8">
+		<Cursor position="190" topLine="0" />
 	</File>
 	<File name="linux/c_os.h" open="0" top="0" tabpos="1">
 		<Cursor position="939" topLine="18" />
@@ -133,8 +133,8 @@
 	<File name="linux/c_os_process.h" open="0" top="0" tabpos="38">
 		<Cursor position="29" topLine="0" />
 	</File>
-	<File name="linux/c_os_simple_shell_launcher.cpp" open="1" top="1" tabpos="9">
-		<Cursor position="0" topLine="0" />
+	<File name="linux/c_os_simple_shell_launcher.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="316" topLine="0" />
 	</File>
 	<File name="mem.h" open="0" top="0" tabpos="26">
 		<Cursor position="270" topLine="0" />
@@ -154,7 +154,7 @@
 	<File name="simple_event.h" open="0" top="0" tabpos="9">
 		<Cursor position="232" topLine="0" />
 	</File>
-	<File name="simple_mutex.cpp" open="1" top="0" tabpos="5">
+	<File name="simple_mutex.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="2327" topLine="108" />
 	</File>
 	<File name="simple_mutex.h" open="0" top="0" tabpos="4">

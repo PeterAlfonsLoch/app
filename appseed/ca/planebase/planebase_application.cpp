@@ -56,7 +56,7 @@ namespace planebase
       else
       {
 
-         
+
          pcaapp = System.get_new_app(this, pszId);
 
          if(pcaapp == NULL)
@@ -101,9 +101,9 @@ namespace planebase
          (!Application.command().m_varTopicQuery.has_property("install")
          && !Application.command().m_varTopicQuery.has_property("uninstall")))
       {
-         
+
          TRACE("Failed to instantiate %s, going to try installation through ca2_cube_install", strId);
-         
+
          string strCommandLine;
 
          strCommandLine    =" : app=" + strId;
@@ -112,7 +112,7 @@ namespace planebase
          strCommandLine    += " install";
 
          System.install().start(strCommandLine);
-         
+
          throw installing_exception();
 
          return NULL;
@@ -155,17 +155,22 @@ namespace planebase
    int application::pre_run()
    {
 
-      m_dir.m_psystem = m_psystem;
-      m_file.m_psystem = m_psystem;
+      m_dir.m_psystem      = m_psystem;
+      m_file.m_psystem     = m_psystem;
+
+#ifdef WINDOWS
 
       MSG msg;
 
+      // Create Windows Message Queue
       ::PeekMessageA(&msg, NULL, 0, 0xffff, 0);
 
       if(!is_system() && (bool)oprop("SessionSynchronizedInput"))
       {
          ::AttachThreadInput(GetCurrentThreadId(), (DWORD) System.::ca::thread_sp::m_p->get_os_int(), TRUE);
       }
+
+#endif
 
       if(is_system())
       {
@@ -723,7 +728,7 @@ InitFailure:
 
       try
       {
-   
+
          m_iReturnCode = 0;
 
 
@@ -759,7 +764,7 @@ InitFailure:
 
    bool application::is_licensed(const char * pszId, bool bInteractive)
    {
-      
+
       if(directrix().m_varTopicQuery.has_property("install"))
          return true;
 
@@ -968,7 +973,7 @@ InitFailure:
 
    }
 
-  
+
    int application::run()
    {
 
@@ -1118,9 +1123,9 @@ InitFailure:
 
                stringa stra;
                stra.add_tokens(App(this).m_strAppName, "_", FALSE);
-         
+
                string strLibrary;
-         
+
                strLibrary = App(this).m_strLibraryName;
 
                if(strLibrary.has_char() && strLibrary.CompareNoCase("app_" + App(this).m_strAppName) == 0)
@@ -1128,7 +1133,7 @@ InitFailure:
 
                if(strLibrary.has_char())
                {
-          
+
                   ::ca2::library library;
 
                   if(library.open(this, strLibrary))
@@ -1270,8 +1275,8 @@ InitFailure:
 
 
       localeschema.add_locale_variant(strLocale, strSchema);
-      
-      
+
+
       if(Application.directrix().m_varTopicQuery["style"].has_char() && Application.directrix().m_varTopicQuery["style"].get_string().CompareNoCase("_std") != 0)
       {
          localeschema.add_locale_variant(get_locale(), Application.directrix().m_varTopicQuery["style"]);
@@ -1304,13 +1309,13 @@ InitFailure:
 
    bool application::update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession,const char * pszRoot, const char * pszRelative)
    {
-      
+
       gen::international::locale_schema localeschema(this);
 
       fill_locale_schema(localeschema);
 
       //update_appmatter(h, psession, pszRoot, pszRelative, localeschema.m_idLocale, localeschema.m_idSchema);
-      
+
       for(int i = 0; i < localeschema.m_idaLocale.get_count(); i++)
       {
          update_appmatter(h, psession, pszRoot, pszRelative, localeschema.m_idaLocale[i], localeschema.m_idaSchema[i]);
@@ -1321,7 +1326,7 @@ InitFailure:
       return true;
 
    }
-   
+
    bool application::update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession,const char * pszRoot, const char * pszRelative, const char * pszLocale, const char * pszStyle)
    {
 
@@ -1394,9 +1399,9 @@ InitFailure:
 
    bool application::add_library(::ca2::library * plibrary)
    {
-      
+
       plibrary->set_app(this);
-      
+
       System.add_library(plibrary);
 
       return true;
