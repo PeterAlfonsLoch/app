@@ -715,16 +715,8 @@
 		9A88B0C514C2CA2E006B4023 /* ex2_transfer_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A96114C2CA2C006B4023 /* ex2_transfer_file.cpp */; };
 		9A88B0C614C2CA2E006B4023 /* ex2_transfer_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A96214C2CA2C006B4023 /* ex2_transfer_file.h */; };
 		9A88B0C714C2CA2E006B4023 /* exception_assert.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A96514C2CA2C006B4023 /* exception_assert.h */; };
-		9A88B0C814C2CA2E006B4023 /* base_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A96614C2CA2C006B4023 /* base_exception.h */; };
-		9A88B0C914C2CA2E006B4023 /* class.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A96714C2CA2C006B4023 /* class.h */; };
-		9A88B0CA14C2CA2E006B4023 /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A96814C2CA2C006B4023 /* debug.h */; };
-		9A88B0CB14C2CA2E006B4023 /* debug_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A96914C2CA2C006B4023 /* debug_stream.h */; };
-		9A88B0CC14C2CA2E006B4023 /* dump_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A96A14C2CA2C006B4023 /* dump_context.h */; };
-		9A88B0CD14C2CA2E006B4023 /* error_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A96B14C2CA2C006B4023 /* error_exception.h */; };
 		9A88B0CE14C2CA2E006B4023 /* exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A96C14C2CA2C006B4023 /* exception.cpp */; };
 		9A88B0CF14C2CA2E006B4023 /* exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A96D14C2CA2C006B4023 /* exception.h */; };
-		9A88B0D014C2CA2E006B4023 /* exception2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A96E14C2CA2C006B4023 /* exception2.h */; };
-		9A88B0D114C2CA2E006B4023 /* exception_0.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A96F14C2CA2C006B4023 /* exception_0.h */; };
 		9A88B0D214C2CA2E006B4023 /* exception_archive_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A97014C2CA2C006B4023 /* exception_archive_exception.cpp */; };
 		9A88B0D314C2CA2E006B4023 /* exception_base_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A97114C2CA2C006B4023 /* exception_base_exception.cpp */; };
 		9A88B0D414C2CA2E006B4023 /* exception_debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A97214C2CA2C006B4023 /* exception_debug.cpp */; };
@@ -746,32 +738,13 @@
 		9A88B0E414C2CA2E006B4023 /* exception_range_error.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A98214C2CA2C006B4023 /* exception_range_error.h */; };
 		9A88B0E514C2CA2E006B4023 /* exception_runtime_error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A98314C2CA2C006B4023 /* exception_runtime_error.cpp */; };
 		9A88B0E614C2CA2E006B4023 /* exception_runtime_error.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A98414C2CA2C006B4023 /* exception_runtime_error.h */; };
-		9A88B0E714C2CA2E006B4023 /* exception_se_translator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A98514C2CA2C006B4023 /* exception_se_translator.cpp */; };
 		9A88B0E814C2CA2E006B4023 /* exception_simple_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A98614C2CA2C006B4023 /* exception_simple_exception.cpp */; };
-		9A88B0E914C2CA2E006B4023 /* exception_SymEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A98714C2CA2C006B4023 /* exception_SymEngine.cpp */; };
 		9A88B0EA14C2CA2E006B4023 /* exception_temporary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A98814C2CA2C006B4023 /* exception_temporary.cpp */; };
 		9A88B0EB14C2CA2E006B4023 /* exception_temporary.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A98914C2CA2C006B4023 /* exception_temporary.h */; };
 		9A88B0EC14C2CA2E006B4023 /* exception_trap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A98A14C2CA2C006B4023 /* exception_trap.h */; };
 		9A88B0ED14C2CA2E006B4023 /* exception_VMSException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A98B14C2CA2C006B4023 /* exception_VMSException.cpp */; };
 		9A88B0EE14C2CA2E006B4023 /* exception_void_implementation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A98C14C2CA2C006B4023 /* exception_void_implementation.cpp */; };
 		9A88B0EF14C2CA2E006B4023 /* exception_void_implementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A98D14C2CA2C006B4023 /* exception_void_implementation.h */; };
-		9A88B0F014C2CA2E006B4023 /* hresult_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A98E14C2CA2C006B4023 /* hresult_exception.h */; };
-		9A88B0F114C2CA2E006B4023 /* interface_only.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A98F14C2CA2C006B4023 /* interface_only.h */; };
-		9A88B0F214C2CA2E006B4023 /* invalid_argument.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A99014C2CA2C006B4023 /* invalid_argument.h */; };
-		9A88B0F314C2CA2E006B4023 /* memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A99114C2CA2C006B4023 /* memory.h */; };
-		9A88B0F414C2CA2E006B4023 /* memory_state.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A99214C2CA2C006B4023 /* memory_state.h */; };
-		9A88B0F514C2CA2E006B4023 /* misc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A99314C2CA2C006B4023 /* misc.h */; };
-		9A88B0F614C2CA2E006B4023 /* not_implemented.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A99414C2CA2C006B4023 /* not_implemented.h */; };
-		9A88B0F714C2CA2E006B4023 /* not_licensed.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A99514C2CA2C006B4023 /* not_licensed.h */; };
-		9A88B0F814C2CA2E006B4023 /* not_supported.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A99614C2CA2C006B4023 /* not_supported.h */; };
-		9A88B0F914C2CA2E006B4023 /* resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A99714C2CA2C006B4023 /* resource.h */; };
-		9A88B0FA14C2CA2E006B4023 /* se_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A99814C2CA2C006B4023 /* se_exception.h */; };
-		9A88B0FB14C2CA2E006B4023 /* se_translator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A99914C2CA2C006B4023 /* se_translator.h */; };
-		9A88B0FC14C2CA2E006B4023 /* simple_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A99A14C2CA2C006B4023 /* simple_exception.h */; };
-		9A88B0FD14C2CA2E006B4023 /* SymEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A99B14C2CA2C006B4023 /* SymEngine.h */; };
-		9A88B0FE14C2CA2E006B4023 /* unhandled_report.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A99C14C2CA2C006B4023 /* unhandled_report.h */; };
-		9A88B0FF14C2CA2E006B4023 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A99D14C2CA2C006B4023 /* user.h */; };
-		9A88B10014C2CA2E006B4023 /* VMSException.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A99E14C2CA2C006B4023 /* VMSException.h */; };
 		9A88B10114C2CA2E006B4023 /* fontopus.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A9A014C2CA2C006B4023 /* fontopus.h */; };
 		9A88B10214C2CA2E006B4023 /* fontopus_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A9A114C2CA2C006B4023 /* fontopus_application.cpp */; };
 		9A88B10314C2CA2E006B4023 /* fontopus_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A9A214C2CA2C006B4023 /* fontopus_application.h */; };
@@ -1023,7 +996,6 @@
 		9A88B24614C2CA2F006B4023 /* align.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AB0114C2CA2C006B4023 /* align.h */; };
 		9A88B24714C2CA2F006B4023 /* check.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AB0214C2CA2C006B4023 /* check.h */; };
 		9A88B24914C2CA2F006B4023 /* color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AB0414C2CA2C006B4023 /* color.h */; };
-		9A88B24A14C2CA2F006B4023 /* comparable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AB0514C2CA2C006B4023 /* comparable.cpp */; };
 		9A88B24C14C2CA2F006B4023 /* count.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AB0714C2CA2C006B4023 /* count.h */; };
 		9A88B24D14C2CA2F006B4023 /* datetime.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AB0914C2CA2C006B4023 /* datetime.h */; };
 		9A88B24E14C2CA2F006B4023 /* datetime_calendar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AB0A14C2CA2C006B4023 /* datetime_calendar.cpp */; };
@@ -1667,6 +1639,35 @@
 		CE01CA1C1567D7B200BEE947 /* gen_time.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01C9F91567D7B200BEE947 /* gen_time.h */; };
 		CE01CA1D1567D7B200BEE947 /* gen_trace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE01C9FA1567D7B200BEE947 /* gen_trace.cpp */; };
 		CE01CA1E1567D7B200BEE947 /* gen_trace.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01C9FB1567D7B200BEE947 /* gen_trace.h */; };
+		CE01CA42156A724400BEE947 /* exception_base.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA2A156A724400BEE947 /* exception_base.h */; };
+		CE01CA43156A724400BEE947 /* exception_call_stack.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA2B156A724400BEE947 /* exception_call_stack.h */; };
+		CE01CA44156A724400BEE947 /* exception_debug_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA2C156A724400BEE947 /* exception_debug_stream.h */; };
+		CE01CA45156A724400BEE947 /* exception_debug.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA2D156A724400BEE947 /* exception_debug.h */; };
+		CE01CA46156A724400BEE947 /* exception_dump_context.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA2E156A724400BEE947 /* exception_dump_context.h */; };
+		CE01CA47156A724400BEE947 /* exception_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE01CA2F156A724400BEE947 /* exception_engine.cpp */; };
+		CE01CA48156A724400BEE947 /* exception_engine.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA30156A724400BEE947 /* exception_engine.h */; };
+		CE01CA49156A724400BEE947 /* exception_error.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA31156A724400BEE947 /* exception_error.h */; };
+		CE01CA4A156A724400BEE947 /* exception_hresult.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA32156A724400BEE947 /* exception_hresult.h */; };
+		CE01CA4B156A724400BEE947 /* exception_interface_only.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA33156A724400BEE947 /* exception_interface_only.h */; };
+		CE01CA4C156A724400BEE947 /* exception_invalid_argument.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA34156A724400BEE947 /* exception_invalid_argument.h */; };
+		CE01CA4D156A724400BEE947 /* exception_last_error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE01CA35156A724400BEE947 /* exception_last_error.cpp */; };
+		CE01CA4E156A724400BEE947 /* exception_last_error.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA36156A724400BEE947 /* exception_last_error.h */; };
+		CE01CA4F156A724400BEE947 /* exception_memory_state.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA37156A724400BEE947 /* exception_memory_state.h */; };
+		CE01CA50156A724400BEE947 /* exception_memory.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA38156A724400BEE947 /* exception_memory.h */; };
+		CE01CA51156A724400BEE947 /* exception_misc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA39156A724400BEE947 /* exception_misc.h */; };
+		CE01CA52156A724400BEE947 /* exception_not_implemented.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA3A156A724400BEE947 /* exception_not_implemented.h */; };
+		CE01CA53156A724400BEE947 /* exception_not_licensed.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA3B156A724400BEE947 /* exception_not_licensed.h */; };
+		CE01CA54156A724400BEE947 /* exception_not_supported.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA3C156A724400BEE947 /* exception_not_supported.h */; };
+		CE01CA55156A724400BEE947 /* exception_resource.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA3D156A724400BEE947 /* exception_resource.h */; };
+		CE01CA56156A724400BEE947 /* exception_simple.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA3E156A724400BEE947 /* exception_simple.h */; };
+		CE01CA57156A724400BEE947 /* exception_standard_translator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE01CA3F156A724400BEE947 /* exception_standard_translator.cpp */; };
+		CE01CA58156A724400BEE947 /* exception_standard_translator.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA40156A724400BEE947 /* exception_standard_translator.h */; };
+		CE01CA59156A724400BEE947 /* exception_standard.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA41156A724400BEE947 /* exception_standard.h */; };
+		CE01CA5D156A728700BEE947 /* exception_unhandled_report.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA5A156A728700BEE947 /* exception_unhandled_report.h */; };
+		CE01CA5E156A728700BEE947 /* exception_user.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA5B156A728700BEE947 /* exception_user.h */; };
+		CE01CA5F156A728700BEE947 /* exception_vms.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA5C156A728700BEE947 /* exception_vms.h */; };
+		CE01CA64156A873200BEE947 /* primitive_string_format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE01CA62156A873200BEE947 /* primitive_string_format.cpp */; };
+		CE01CA65156A873200BEE947 /* primitive_string_format.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA63156A873200BEE947 /* primitive_string_format.h */; };
 		CE931719155F1C02005F90F6 /* c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931718155F1C02005F90F6 /* c.dylib */; };
 		CE980ABD156679A800CD7C45 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE980ABB156679A800CD7C45 /* framework.cpp */; };
 		CE980ABE156679A800CD7C45 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = CE980ABC156679A800CD7C45 /* framework.h */; };
@@ -2383,18 +2384,9 @@
 		9A88A96014C2CA2C006B4023 /* ex2_folder_watch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ex2_folder_watch.h; sourceTree = "<group>"; };
 		9A88A96114C2CA2C006B4023 /* ex2_transfer_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ex2_transfer_file.cpp; sourceTree = "<group>"; };
 		9A88A96214C2CA2C006B4023 /* ex2_transfer_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ex2_transfer_file.h; sourceTree = "<group>"; };
-		9A88A96414C2CA2C006B4023 /* _exception.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _exception.txt; sourceTree = "<group>"; };
 		9A88A96514C2CA2C006B4023 /* exception_assert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_assert.h; sourceTree = "<group>"; };
-		9A88A96614C2CA2C006B4023 /* base_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_exception.h; sourceTree = "<group>"; };
-		9A88A96714C2CA2C006B4023 /* class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = class.h; sourceTree = "<group>"; };
-		9A88A96814C2CA2C006B4023 /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
-		9A88A96914C2CA2C006B4023 /* debug_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug_stream.h; sourceTree = "<group>"; };
-		9A88A96A14C2CA2C006B4023 /* dump_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dump_context.h; sourceTree = "<group>"; };
-		9A88A96B14C2CA2C006B4023 /* error_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = error_exception.h; sourceTree = "<group>"; };
 		9A88A96C14C2CA2C006B4023 /* exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception.cpp; sourceTree = "<group>"; };
 		9A88A96D14C2CA2C006B4023 /* exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception.h; sourceTree = "<group>"; };
-		9A88A96E14C2CA2C006B4023 /* exception2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception2.h; sourceTree = "<group>"; };
-		9A88A96F14C2CA2C006B4023 /* exception_0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_0.h; sourceTree = "<group>"; };
 		9A88A97014C2CA2C006B4023 /* exception_archive_exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_archive_exception.cpp; sourceTree = "<group>"; };
 		9A88A97114C2CA2C006B4023 /* exception_base_exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_base_exception.cpp; sourceTree = "<group>"; };
 		9A88A97214C2CA2C006B4023 /* exception_debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_debug.cpp; sourceTree = "<group>"; };
@@ -2416,32 +2408,13 @@
 		9A88A98214C2CA2C006B4023 /* exception_range_error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_range_error.h; sourceTree = "<group>"; };
 		9A88A98314C2CA2C006B4023 /* exception_runtime_error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_runtime_error.cpp; sourceTree = "<group>"; };
 		9A88A98414C2CA2C006B4023 /* exception_runtime_error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_runtime_error.h; sourceTree = "<group>"; };
-		9A88A98514C2CA2C006B4023 /* exception_se_translator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_se_translator.cpp; sourceTree = "<group>"; };
 		9A88A98614C2CA2C006B4023 /* exception_simple_exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_simple_exception.cpp; sourceTree = "<group>"; };
-		9A88A98714C2CA2C006B4023 /* exception_SymEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_SymEngine.cpp; sourceTree = "<group>"; };
 		9A88A98814C2CA2C006B4023 /* exception_temporary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_temporary.cpp; sourceTree = "<group>"; };
 		9A88A98914C2CA2C006B4023 /* exception_temporary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_temporary.h; sourceTree = "<group>"; };
 		9A88A98A14C2CA2C006B4023 /* exception_trap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_trap.h; sourceTree = "<group>"; };
 		9A88A98B14C2CA2C006B4023 /* exception_VMSException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_VMSException.cpp; sourceTree = "<group>"; };
 		9A88A98C14C2CA2C006B4023 /* exception_void_implementation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_void_implementation.cpp; sourceTree = "<group>"; };
 		9A88A98D14C2CA2C006B4023 /* exception_void_implementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_void_implementation.h; sourceTree = "<group>"; };
-		9A88A98E14C2CA2C006B4023 /* hresult_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hresult_exception.h; sourceTree = "<group>"; };
-		9A88A98F14C2CA2C006B4023 /* interface_only.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interface_only.h; sourceTree = "<group>"; };
-		9A88A99014C2CA2C006B4023 /* invalid_argument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = invalid_argument.h; sourceTree = "<group>"; };
-		9A88A99114C2CA2C006B4023 /* memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory.h; sourceTree = "<group>"; };
-		9A88A99214C2CA2C006B4023 /* memory_state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory_state.h; sourceTree = "<group>"; };
-		9A88A99314C2CA2C006B4023 /* misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = misc.h; sourceTree = "<group>"; };
-		9A88A99414C2CA2C006B4023 /* not_implemented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = not_implemented.h; sourceTree = "<group>"; };
-		9A88A99514C2CA2C006B4023 /* not_licensed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = not_licensed.h; sourceTree = "<group>"; };
-		9A88A99614C2CA2C006B4023 /* not_supported.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = not_supported.h; sourceTree = "<group>"; };
-		9A88A99714C2CA2C006B4023 /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
-		9A88A99814C2CA2C006B4023 /* se_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = se_exception.h; sourceTree = "<group>"; };
-		9A88A99914C2CA2C006B4023 /* se_translator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = se_translator.h; sourceTree = "<group>"; };
-		9A88A99A14C2CA2C006B4023 /* simple_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_exception.h; sourceTree = "<group>"; };
-		9A88A99B14C2CA2C006B4023 /* SymEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SymEngine.h; sourceTree = "<group>"; };
-		9A88A99C14C2CA2C006B4023 /* unhandled_report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unhandled_report.h; sourceTree = "<group>"; };
-		9A88A99D14C2CA2C006B4023 /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
-		9A88A99E14C2CA2C006B4023 /* VMSException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VMSException.h; sourceTree = "<group>"; };
 		9A88A9A014C2CA2C006B4023 /* fontopus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fontopus.h; sourceTree = "<group>"; };
 		9A88A9A114C2CA2C006B4023 /* fontopus_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fontopus_application.cpp; sourceTree = "<group>"; };
 		9A88A9A214C2CA2C006B4023 /* fontopus_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fontopus_application.h; sourceTree = "<group>"; };
@@ -2696,7 +2669,6 @@
 		9A88AB0114C2CA2C006B4023 /* align.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = align.h; sourceTree = "<group>"; };
 		9A88AB0214C2CA2C006B4023 /* check.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = check.h; sourceTree = "<group>"; };
 		9A88AB0414C2CA2C006B4023 /* color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
-		9A88AB0514C2CA2C006B4023 /* comparable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = comparable.cpp; sourceTree = "<group>"; };
 		9A88AB0714C2CA2C006B4023 /* count.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = count.h; sourceTree = "<group>"; };
 		9A88AB0914C2CA2C006B4023 /* datetime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datetime.h; sourceTree = "<group>"; };
 		9A88AB0A14C2CA2C006B4023 /* datetime_calendar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = datetime_calendar.cpp; sourceTree = "<group>"; };
@@ -3345,6 +3317,35 @@
 		CE01C9F91567D7B200BEE947 /* gen_time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gen_time.h; sourceTree = "<group>"; };
 		CE01C9FA1567D7B200BEE947 /* gen_trace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gen_trace.cpp; sourceTree = "<group>"; };
 		CE01C9FB1567D7B200BEE947 /* gen_trace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gen_trace.h; sourceTree = "<group>"; };
+		CE01CA2A156A724400BEE947 /* exception_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_base.h; sourceTree = "<group>"; };
+		CE01CA2B156A724400BEE947 /* exception_call_stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_call_stack.h; sourceTree = "<group>"; };
+		CE01CA2C156A724400BEE947 /* exception_debug_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_debug_stream.h; sourceTree = "<group>"; };
+		CE01CA2D156A724400BEE947 /* exception_debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_debug.h; sourceTree = "<group>"; };
+		CE01CA2E156A724400BEE947 /* exception_dump_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_dump_context.h; sourceTree = "<group>"; };
+		CE01CA2F156A724400BEE947 /* exception_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_engine.cpp; sourceTree = "<group>"; };
+		CE01CA30156A724400BEE947 /* exception_engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_engine.h; sourceTree = "<group>"; };
+		CE01CA31156A724400BEE947 /* exception_error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_error.h; sourceTree = "<group>"; };
+		CE01CA32156A724400BEE947 /* exception_hresult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_hresult.h; sourceTree = "<group>"; };
+		CE01CA33156A724400BEE947 /* exception_interface_only.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_interface_only.h; sourceTree = "<group>"; };
+		CE01CA34156A724400BEE947 /* exception_invalid_argument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_invalid_argument.h; sourceTree = "<group>"; };
+		CE01CA35156A724400BEE947 /* exception_last_error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_last_error.cpp; sourceTree = "<group>"; };
+		CE01CA36156A724400BEE947 /* exception_last_error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_last_error.h; sourceTree = "<group>"; };
+		CE01CA37156A724400BEE947 /* exception_memory_state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_memory_state.h; sourceTree = "<group>"; };
+		CE01CA38156A724400BEE947 /* exception_memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_memory.h; sourceTree = "<group>"; };
+		CE01CA39156A724400BEE947 /* exception_misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_misc.h; sourceTree = "<group>"; };
+		CE01CA3A156A724400BEE947 /* exception_not_implemented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_not_implemented.h; sourceTree = "<group>"; };
+		CE01CA3B156A724400BEE947 /* exception_not_licensed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_not_licensed.h; sourceTree = "<group>"; };
+		CE01CA3C156A724400BEE947 /* exception_not_supported.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_not_supported.h; sourceTree = "<group>"; };
+		CE01CA3D156A724400BEE947 /* exception_resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_resource.h; sourceTree = "<group>"; };
+		CE01CA3E156A724400BEE947 /* exception_simple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_simple.h; sourceTree = "<group>"; };
+		CE01CA3F156A724400BEE947 /* exception_standard_translator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_standard_translator.cpp; sourceTree = "<group>"; };
+		CE01CA40156A724400BEE947 /* exception_standard_translator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_standard_translator.h; sourceTree = "<group>"; };
+		CE01CA41156A724400BEE947 /* exception_standard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_standard.h; sourceTree = "<group>"; };
+		CE01CA5A156A728700BEE947 /* exception_unhandled_report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_unhandled_report.h; sourceTree = "<group>"; };
+		CE01CA5B156A728700BEE947 /* exception_user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_user.h; sourceTree = "<group>"; };
+		CE01CA5C156A728700BEE947 /* exception_vms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_vms.h; sourceTree = "<group>"; };
+		CE01CA62156A873200BEE947 /* primitive_string_format.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_string_format.cpp; sourceTree = "<group>"; };
+		CE01CA63156A873200BEE947 /* primitive_string_format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_string_format.h; sourceTree = "<group>"; };
 		CE931718155F1C02005F90F6 /* c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE980ABB156679A800CD7C45 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		CE980ABC156679A800CD7C45 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
@@ -4265,18 +4266,36 @@
 		9A88A96314C2CA2C006B4023 /* exception */ = {
 			isa = PBXGroup;
 			children = (
-				9A88A96414C2CA2C006B4023 /* _exception.txt */,
+				CE01CA5A156A728700BEE947 /* exception_unhandled_report.h */,
+				CE01CA5B156A728700BEE947 /* exception_user.h */,
+				CE01CA5C156A728700BEE947 /* exception_vms.h */,
+				CE01CA2A156A724400BEE947 /* exception_base.h */,
+				CE01CA2B156A724400BEE947 /* exception_call_stack.h */,
+				CE01CA2C156A724400BEE947 /* exception_debug_stream.h */,
+				CE01CA2D156A724400BEE947 /* exception_debug.h */,
+				CE01CA2E156A724400BEE947 /* exception_dump_context.h */,
+				CE01CA2F156A724400BEE947 /* exception_engine.cpp */,
+				CE01CA30156A724400BEE947 /* exception_engine.h */,
+				CE01CA31156A724400BEE947 /* exception_error.h */,
+				CE01CA32156A724400BEE947 /* exception_hresult.h */,
+				CE01CA33156A724400BEE947 /* exception_interface_only.h */,
+				CE01CA34156A724400BEE947 /* exception_invalid_argument.h */,
+				CE01CA35156A724400BEE947 /* exception_last_error.cpp */,
+				CE01CA36156A724400BEE947 /* exception_last_error.h */,
+				CE01CA37156A724400BEE947 /* exception_memory_state.h */,
+				CE01CA38156A724400BEE947 /* exception_memory.h */,
+				CE01CA39156A724400BEE947 /* exception_misc.h */,
+				CE01CA3A156A724400BEE947 /* exception_not_implemented.h */,
+				CE01CA3B156A724400BEE947 /* exception_not_licensed.h */,
+				CE01CA3C156A724400BEE947 /* exception_not_supported.h */,
+				CE01CA3D156A724400BEE947 /* exception_resource.h */,
+				CE01CA3E156A724400BEE947 /* exception_simple.h */,
+				CE01CA3F156A724400BEE947 /* exception_standard_translator.cpp */,
+				CE01CA40156A724400BEE947 /* exception_standard_translator.h */,
+				CE01CA41156A724400BEE947 /* exception_standard.h */,
 				9A88A96514C2CA2C006B4023 /* exception_assert.h */,
-				9A88A96614C2CA2C006B4023 /* base_exception.h */,
-				9A88A96714C2CA2C006B4023 /* class.h */,
-				9A88A96814C2CA2C006B4023 /* debug.h */,
-				9A88A96914C2CA2C006B4023 /* debug_stream.h */,
-				9A88A96A14C2CA2C006B4023 /* dump_context.h */,
-				9A88A96B14C2CA2C006B4023 /* error_exception.h */,
 				9A88A96C14C2CA2C006B4023 /* exception.cpp */,
 				9A88A96D14C2CA2C006B4023 /* exception.h */,
-				9A88A96E14C2CA2C006B4023 /* exception2.h */,
-				9A88A96F14C2CA2C006B4023 /* exception_0.h */,
 				9A88A97014C2CA2C006B4023 /* exception_archive_exception.cpp */,
 				9A88A97114C2CA2C006B4023 /* exception_base_exception.cpp */,
 				9A88A97214C2CA2C006B4023 /* exception_debug.cpp */,
@@ -4300,32 +4319,13 @@
 				9A88A98214C2CA2C006B4023 /* exception_range_error.h */,
 				9A88A98314C2CA2C006B4023 /* exception_runtime_error.cpp */,
 				9A88A98414C2CA2C006B4023 /* exception_runtime_error.h */,
-				9A88A98514C2CA2C006B4023 /* exception_se_translator.cpp */,
 				9A88A98614C2CA2C006B4023 /* exception_simple_exception.cpp */,
-				9A88A98714C2CA2C006B4023 /* exception_SymEngine.cpp */,
 				9A88A98814C2CA2C006B4023 /* exception_temporary.cpp */,
 				9A88A98914C2CA2C006B4023 /* exception_temporary.h */,
 				9A88A98A14C2CA2C006B4023 /* exception_trap.h */,
 				9A88A98B14C2CA2C006B4023 /* exception_VMSException.cpp */,
 				9A88A98C14C2CA2C006B4023 /* exception_void_implementation.cpp */,
 				9A88A98D14C2CA2C006B4023 /* exception_void_implementation.h */,
-				9A88A98E14C2CA2C006B4023 /* hresult_exception.h */,
-				9A88A98F14C2CA2C006B4023 /* interface_only.h */,
-				9A88A99014C2CA2C006B4023 /* invalid_argument.h */,
-				9A88A99114C2CA2C006B4023 /* memory.h */,
-				9A88A99214C2CA2C006B4023 /* memory_state.h */,
-				9A88A99314C2CA2C006B4023 /* misc.h */,
-				9A88A99414C2CA2C006B4023 /* not_implemented.h */,
-				9A88A99514C2CA2C006B4023 /* not_licensed.h */,
-				9A88A99614C2CA2C006B4023 /* not_supported.h */,
-				9A88A99714C2CA2C006B4023 /* resource.h */,
-				9A88A99814C2CA2C006B4023 /* se_exception.h */,
-				9A88A99914C2CA2C006B4023 /* se_translator.h */,
-				9A88A99A14C2CA2C006B4023 /* simple_exception.h */,
-				9A88A99B14C2CA2C006B4023 /* SymEngine.h */,
-				9A88A99C14C2CA2C006B4023 /* unhandled_report.h */,
-				9A88A99D14C2CA2C006B4023 /* user.h */,
-				9A88A99E14C2CA2C006B4023 /* VMSException.h */,
 			);
 			path = exception;
 			sourceTree = "<group>";
@@ -4714,6 +4714,8 @@
 		9A88AAFE14C2CA2C006B4023 /* primitive */ = {
 			isa = PBXGroup;
 			children = (
+				CE01CA62156A873200BEE947 /* primitive_string_format.cpp */,
+				CE01CA63156A873200BEE947 /* primitive_string_format.h */,
 				CE01C9241567D5CA00BEE947 /* primitive_color.cpp */,
 				CE01C9251567D5CA00BEE947 /* primitive_count.cpp */,
 				CE01C9261567D5CA00BEE947 /* primitive_fixed_string.cpp */,
@@ -4742,7 +4744,6 @@
 				9A88AB0114C2CA2C006B4023 /* align.h */,
 				9A88AB0214C2CA2C006B4023 /* check.h */,
 				9A88AB0414C2CA2C006B4023 /* color.h */,
-				9A88AB0514C2CA2C006B4023 /* comparable.cpp */,
 				9A88AB0714C2CA2C006B4023 /* count.h */,
 				9A88AB0814C2CA2C006B4023 /* datetime */,
 				9A88AB1514C2CA2C006B4023 /* fixed_string.h */,
@@ -5908,38 +5909,13 @@
 				9A88B0C414C2CA2E006B4023 /* ex2_folder_watch.h in Headers */,
 				9A88B0C614C2CA2E006B4023 /* ex2_transfer_file.h in Headers */,
 				9A88B0C714C2CA2E006B4023 /* exception_assert.h in Headers */,
-				9A88B0C814C2CA2E006B4023 /* base_exception.h in Headers */,
-				9A88B0C914C2CA2E006B4023 /* class.h in Headers */,
-				9A88B0CA14C2CA2E006B4023 /* debug.h in Headers */,
-				9A88B0CB14C2CA2E006B4023 /* debug_stream.h in Headers */,
-				9A88B0CC14C2CA2E006B4023 /* dump_context.h in Headers */,
-				9A88B0CD14C2CA2E006B4023 /* error_exception.h in Headers */,
 				9A88B0CF14C2CA2E006B4023 /* exception.h in Headers */,
-				9A88B0D014C2CA2E006B4023 /* exception2.h in Headers */,
-				9A88B0D114C2CA2E006B4023 /* exception_0.h in Headers */,
 				9A88B0DC14C2CA2E006B4023 /* exception_installing.h in Headers */,
 				9A88B0E414C2CA2E006B4023 /* exception_range_error.h in Headers */,
 				9A88B0E614C2CA2E006B4023 /* exception_runtime_error.h in Headers */,
 				9A88B0EB14C2CA2E006B4023 /* exception_temporary.h in Headers */,
 				9A88B0EC14C2CA2E006B4023 /* exception_trap.h in Headers */,
 				9A88B0EF14C2CA2E006B4023 /* exception_void_implementation.h in Headers */,
-				9A88B0F014C2CA2E006B4023 /* hresult_exception.h in Headers */,
-				9A88B0F114C2CA2E006B4023 /* interface_only.h in Headers */,
-				9A88B0F214C2CA2E006B4023 /* invalid_argument.h in Headers */,
-				9A88B0F314C2CA2E006B4023 /* memory.h in Headers */,
-				9A88B0F414C2CA2E006B4023 /* memory_state.h in Headers */,
-				9A88B0F514C2CA2E006B4023 /* misc.h in Headers */,
-				9A88B0F614C2CA2E006B4023 /* not_implemented.h in Headers */,
-				9A88B0F714C2CA2E006B4023 /* not_licensed.h in Headers */,
-				9A88B0F814C2CA2E006B4023 /* not_supported.h in Headers */,
-				9A88B0F914C2CA2E006B4023 /* resource.h in Headers */,
-				9A88B0FA14C2CA2E006B4023 /* se_exception.h in Headers */,
-				9A88B0FB14C2CA2E006B4023 /* se_translator.h in Headers */,
-				9A88B0FC14C2CA2E006B4023 /* simple_exception.h in Headers */,
-				9A88B0FD14C2CA2E006B4023 /* SymEngine.h in Headers */,
-				9A88B0FE14C2CA2E006B4023 /* unhandled_report.h in Headers */,
-				9A88B0FF14C2CA2E006B4023 /* user.h in Headers */,
-				9A88B10014C2CA2E006B4023 /* VMSException.h in Headers */,
 				9A88B10114C2CA2E006B4023 /* fontopus.h in Headers */,
 				9A88B10314C2CA2E006B4023 /* fontopus_application.h in Headers */,
 				9A88B10414C2CA2E006B4023 /* fontopus_authentication_map.h in Headers */,
@@ -6435,6 +6411,31 @@
 				CE01CA1B1567D7B200BEE947 /* gen_std_pair.h in Headers */,
 				CE01CA1C1567D7B200BEE947 /* gen_time.h in Headers */,
 				CE01CA1E1567D7B200BEE947 /* gen_trace.h in Headers */,
+				CE01CA42156A724400BEE947 /* exception_base.h in Headers */,
+				CE01CA43156A724400BEE947 /* exception_call_stack.h in Headers */,
+				CE01CA44156A724400BEE947 /* exception_debug_stream.h in Headers */,
+				CE01CA45156A724400BEE947 /* exception_debug.h in Headers */,
+				CE01CA46156A724400BEE947 /* exception_dump_context.h in Headers */,
+				CE01CA48156A724400BEE947 /* exception_engine.h in Headers */,
+				CE01CA49156A724400BEE947 /* exception_error.h in Headers */,
+				CE01CA4A156A724400BEE947 /* exception_hresult.h in Headers */,
+				CE01CA4B156A724400BEE947 /* exception_interface_only.h in Headers */,
+				CE01CA4C156A724400BEE947 /* exception_invalid_argument.h in Headers */,
+				CE01CA4E156A724400BEE947 /* exception_last_error.h in Headers */,
+				CE01CA4F156A724400BEE947 /* exception_memory_state.h in Headers */,
+				CE01CA50156A724400BEE947 /* exception_memory.h in Headers */,
+				CE01CA51156A724400BEE947 /* exception_misc.h in Headers */,
+				CE01CA52156A724400BEE947 /* exception_not_implemented.h in Headers */,
+				CE01CA53156A724400BEE947 /* exception_not_licensed.h in Headers */,
+				CE01CA54156A724400BEE947 /* exception_not_supported.h in Headers */,
+				CE01CA55156A724400BEE947 /* exception_resource.h in Headers */,
+				CE01CA56156A724400BEE947 /* exception_simple.h in Headers */,
+				CE01CA58156A724400BEE947 /* exception_standard_translator.h in Headers */,
+				CE01CA59156A724400BEE947 /* exception_standard.h in Headers */,
+				CE01CA5D156A728700BEE947 /* exception_unhandled_report.h in Headers */,
+				CE01CA5E156A728700BEE947 /* exception_user.h in Headers */,
+				CE01CA5F156A728700BEE947 /* exception_vms.h in Headers */,
+				CE01CA65156A873200BEE947 /* primitive_string_format.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6794,9 +6795,7 @@
 				9A88B0E214C2CA2E006B4023 /* exception_not_supported_exception.cpp in Sources */,
 				9A88B0E314C2CA2E006B4023 /* exception_range_error.cpp in Sources */,
 				9A88B0E514C2CA2E006B4023 /* exception_runtime_error.cpp in Sources */,
-				9A88B0E714C2CA2E006B4023 /* exception_se_translator.cpp in Sources */,
 				9A88B0E814C2CA2E006B4023 /* exception_simple_exception.cpp in Sources */,
-				9A88B0E914C2CA2E006B4023 /* exception_SymEngine.cpp in Sources */,
 				9A88B0EA14C2CA2E006B4023 /* exception_temporary.cpp in Sources */,
 				9A88B0ED14C2CA2E006B4023 /* exception_VMSException.cpp in Sources */,
 				9A88B0EE14C2CA2E006B4023 /* exception_void_implementation.cpp in Sources */,
@@ -6914,7 +6913,6 @@
 				9A88B23E14C2CA2F006B4023 /* plugin_plugin.cpp in Sources */,
 				9A88B24014C2CA2F006B4023 /* plugin_run_start_installer.cpp in Sources */,
 				9A88B24214C2CA2F006B4023 /* plugin_system.cpp in Sources */,
-				9A88B24A14C2CA2F006B4023 /* comparable.cpp in Sources */,
 				9A88B24E14C2CA2F006B4023 /* datetime_calendar.cpp in Sources */,
 				9A88B25014C2CA2F006B4023 /* datetime_calendar_interface.cpp in Sources */,
 				9A88B25214C2CA2F006B4023 /* datetime_clock.cpp in Sources */,
@@ -7206,6 +7204,10 @@
 				CE01CA121567D7B200BEE947 /* gen_microtimer.cpp in Sources */,
 				CE01CA191567D7B200BEE947 /* gen_simple_thread.cpp in Sources */,
 				CE01CA1D1567D7B200BEE947 /* gen_trace.cpp in Sources */,
+				CE01CA47156A724400BEE947 /* exception_engine.cpp in Sources */,
+				CE01CA4D156A724400BEE947 /* exception_last_error.cpp in Sources */,
+				CE01CA57156A724400BEE947 /* exception_standard_translator.cpp in Sources */,
+				CE01CA64156A873200BEE947 /* primitive_string_format.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7225,7 +7227,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					TARGET_CPU_X64,
-					"DEBUG=1",
+					_DEBUG,
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;

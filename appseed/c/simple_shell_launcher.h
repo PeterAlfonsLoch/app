@@ -37,6 +37,7 @@ public:
 #else
 
    bool        m_bOk;
+   int         m_dwResult;
    int         m_pid;
 
 #endif

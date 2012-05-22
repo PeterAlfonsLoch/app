@@ -426,12 +426,10 @@ namespace ca
       virtual int draw_text(const char * lpszString, int nCount, LPRECT lpRect, UINT nFormat);
       virtual int draw_text(const string & str, LPRECT lpRect, UINT nFormat);
 
-#ifdef WINDOWS
 
       virtual int draw_text_ex(LPTSTR lpszString, int nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
       virtual int draw_text_ex(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
 
-#endif
 
       virtual size GetTextExtent(const char * lpszString, int nCount, int iIndex) const;
       virtual size GetTextExtent(const char * lpszString, int nCount) const;
@@ -464,7 +462,14 @@ namespace ca
       virtual bool get_output_text_metrics(LPTEXTMETRIC lpMetrics) const;
 
 #endif
+<<<<<<< .mine
+   #pragma pop_macro("GetTextMetrics")
+#ifdef WINDOWS
+      virtual bool GetOutputTextMetrics(LPTEXTMETRIC lpMetrics) const;
+#endif
+=======
 
+>>>>>>> .r4408
       virtual int SetTextJustification(int nBreakExtra, int nBreakCount);
       virtual int GetTextCharacterExtra() const;
       virtual int SetTextCharacterExtra(int nCharExtra);

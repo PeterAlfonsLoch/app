@@ -31,7 +31,7 @@ extern IMAGE_DOS_HEADER __ImageBase;
 #endif
 
 /***
-*BOOL _ValidateImageBase
+*WINBOOL _ValidateImageBase
 *
 *Purpose:
 *       Check if a PE image is located at a potential image base address.
@@ -45,7 +45,7 @@ extern IMAGE_DOS_HEADER __ImageBase;
 *
 *******************************************************************************/
 
-static BOOL __cdecl _ValidateImageBase(
+static WINBOOL __cdecl _ValidateImageBase(
 	PBYTE pImageBase
 	)
 {
@@ -131,7 +131,7 @@ static PIMAGE_SECTION_HEADER __cdecl _FindPESection(
 }
 
 /***
-*BOOL _IsNonwritableInCurrentImage
+*WINBOOL _IsNonwritableInCurrentImage
 *
 *Purpose:
 *       Check if an address is located within the current PE image (the one
@@ -150,7 +150,7 @@ static PIMAGE_SECTION_HEADER __cdecl _FindPESection(
 *
 *******************************************************************************/
 
-static BOOL __cdecl _IsNonwritableInCurrentImage(
+static WINBOOL __cdecl _IsNonwritableInCurrentImage(
 	PBYTE pTarget
 	)
 {
@@ -205,17 +205,17 @@ static BOOL __cdecl _IsNonwritableInCurrentImage(
 /////////////////////////////////////////////////////////////////////////////
 // make sure we call RawDllMain only if the user has not defined its own DllMain
 
-BOOL WINAPI _RawDllMainProxy(HINSTANCE, DWORD dwReason, LPVOID);
+WINBOOL WINAPI _RawDllMainProxy(HINSTANCE, DWORD dwReason, LPVOID);
 
 #pragma warning(push)
 #pragma warning(disable:4132)
 /* _pActualRawDllMain is a communal, and it's really treated as a const pointer */
-BOOL (WINAPI * const _pActualRawDllMain)(HINSTANCE , DWORD , LPVOID);
+WINBOOL (WINAPI * const _pActualRawDllMain)(HINSTANCE , DWORD , LPVOID);
 #pragma warning(pop)
 
-BOOL (WINAPI * const _pRawDllMain)(HINSTANCE , DWORD , LPVOID) = &_RawDllMainProxy;
+WINBOOL (WINAPI * const _pRawDllMain)(HINSTANCE , DWORD , LPVOID) = &_RawDllMainProxy;
 
-BOOL WINAPI _RawDllMainProxy(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
+WINBOOL WINAPI _RawDllMainProxy(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 {
 #ifndef _AFXDLL
 	hInstance;

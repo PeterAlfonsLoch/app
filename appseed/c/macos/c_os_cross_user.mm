@@ -1,8 +1,8 @@
-#include <Cocoa/Cocoa.h>
 #include "c_os_internal.h"
+#include <Cocoa/Cocoa.h>
 
 
-BOOL IsWindowVisible(HWND hwnd)
+WINBOOL IsWindowVisible(HWND hwnd)
 {
    
    return 1;
@@ -10,7 +10,7 @@ BOOL IsWindowVisible(HWND hwnd)
 }
 
 
-BOOL IsIconic(HWND hwnd)
+WINBOOL IsIconic(HWND hwnd)
 {
    
    [((NSWindow * ) hwnd->m_pnswindow) miniaturize : 0];
@@ -22,7 +22,7 @@ BOOL IsIconic(HWND hwnd)
 
 
 
-BOOL set_nswindow_frame(HWND hwnd, LPCRECT lpcrect, int iDisplay)
+WINBOOL set_nswindow_frame(HWND hwnd, LPCRECT lpcrect, int iDisplay)
 {
 
    NSRect rect;
@@ -41,7 +41,7 @@ BOOL set_nswindow_frame(HWND hwnd, LPCRECT lpcrect, int iDisplay)
 
 
 
-BOOL move_nswindow(HWND hwnd, int x, int y)
+WINBOOL move_nswindow(HWND hwnd, int x, int y)
 {
    
    NSPoint point;

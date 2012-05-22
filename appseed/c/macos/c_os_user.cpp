@@ -10,12 +10,25 @@
 #include "c_os_internal.h"
 
 
-
+#ifdef DEBUG
+#undef DEBUG
+#define DEBUG 1
+#else
+#define DEBUG 0
+#endif
 
 #include <Carbon/Carbon.h>
 #include <CoreFoundation/CoreFoundation.h>
 
-BOOL SetWindowPos(HWND hwnd, HWND hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
+#if DEBUG
+#undef DEBUG
+#define DEBUG
+#else
+#undef DEBUG
+#endif
+
+
+WINBOOL SetWindowPos(HWND hwnd, HWND hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
 {
    
 //   int   value_mask = 0;
@@ -127,7 +140,7 @@ int MessageBoxA(HWND hwnd, const char* header, const char* message, unsigned int
 }
 
 
-BOOL RedrawWindow(HWND hWnd, CONST RECT *lprcUpdate, HRGN hrgnUpdate, UINT flags)
+WINBOOL RedrawWindow(HWND hWnd, CONST RECT *lprcUpdate, HRGN hrgnUpdate, UINT flags)
 {
    
    return TRUE;

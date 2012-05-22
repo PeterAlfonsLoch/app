@@ -12,14 +12,22 @@ void base_simple_list::add_head(void * p)
    m_pHead = p;
 }
 
+<<<<<<< .mine
+WINBOOL base_simple_list::remove(void * p)
+=======
 bool base_simple_list::remove(void * p)
+>>>>>>> .r4408
 {
    ASSERT(p != NULL);
 
    if (m_pHead == NULL)
       return false;
 
+<<<<<<< .mine
+   WINBOOL bResult = FALSE;
+=======
    bool bResult = false;
+>>>>>>> .r4408
    if (m_pHead == p)
    {
       m_pHead = *GetNextPtr(p);

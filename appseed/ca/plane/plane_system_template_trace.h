@@ -6,7 +6,7 @@ namespace gen
 
 
    class CLASS_DECL_ca trace_add_file_and_line 
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
       : public string_format_printer
 #endif
    {
@@ -18,7 +18,7 @@ namespace gen
       const int               m_nLineNo;
       string                  m_str;
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
 
       class CLASS_DECL_ca category_level
       {
@@ -48,7 +48,7 @@ namespace gen
          return m_papp;
       }
 
-   #ifdef WINDOWS
+#ifdef WINDOWS
 
       inline void __cdecl operator()(DWORD dwCategory, UINT nLevel, const char *pszFmt, ...) const
       {

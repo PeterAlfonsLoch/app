@@ -19,17 +19,17 @@
 
 #ifdef _MT
 
-__STATIC_DATA BOOL _afxCriticalInit = 0;   // set _afxGlobalLock, _afxTempLock init
+__STATIC_DATA WINBOOL _afxCriticalInit = 0;   // set _afxGlobalLock, _afxTempLock init
 
 // _afxResourceLock and _afxLockInit are used to lock each ca2 API global resource
 __STATIC_DATA CRITICAL_SECTION _afxResourceLock[CRIT_MAX] = { { 0 } };
 __STATIC_DATA CRITICAL_SECTION _afxLockInitLock = { 0 };
-__STATIC_DATA BOOL _afxLockInit[CRIT_MAX] = { 0 };
+__STATIC_DATA WINBOOL _afxLockInit[CRIT_MAX] = { 0 };
 #ifdef DEBUG
-__STATIC_DATA BOOL _afxResourceLocked[CRIT_MAX] = { 0 };
+__STATIC_DATA WINBOOL _afxResourceLocked[CRIT_MAX] = { 0 };
 #endif
 
-BOOL AfxCriticalInit()
+WINBOOL AfxCriticalInit()
 {
    // Note: this must be initialized with only one thread running
    if (!_afxCriticalInit)

@@ -227,8 +227,8 @@ public:
    // if from some other ::ca::window
    ::user::interaction * m_pOther;         // NULL if a menu or not a ::ca::window
 
-   BOOL m_bEnableChanged;
-   BOOL m_bContinueRouting;
+   WINBOOL m_bEnableChanged;
+   WINBOOL m_bContinueRouting;
 
 
    ::userbase::menu* m_pParentMenu;   // NULL if parent menu not easily determined
@@ -239,17 +239,17 @@ public:
 
 
 // Operations to do in ON_UPDATE_COMMAND_UI
-   virtual void Enable(BOOL bOn = TRUE);
+   virtual void Enable(WINBOOL bOn = TRUE);
    using ::user::check_interface::_001SetCheck;
    virtual void _001SetCheck(check::e_check echeck);   // 0, 1 or 2 (indeterminate)
-   virtual void SetRadio(BOOL bOn = TRUE);
+   virtual void SetRadio(WINBOOL bOn = TRUE);
    virtual void SetText(const char * lpszText);
 
 // Advanced operation
    void ContinueRouting();
 
 
-   BOOL DoUpdate(command_target* pTarget, BOOL bDisableIfNoHndler);
+   WINBOOL DoUpdate(command_target* pTarget, WINBOOL bDisableIfNoHndler);
 };
 
 // cmd_ui
@@ -267,12 +267,12 @@ public:
    CTestCmdUI(::ca::application * papp);
 
 public: // re-implementations only
-   virtual void Enable(BOOL bOn);
+   virtual void Enable(WINBOOL bOn);
    virtual void SetCheck(int nCheck);
-   virtual void SetRadio(BOOL bOn);
+   virtual void SetRadio(WINBOOL bOn);
    virtual void SetText(const char *);
 
-   BOOL m_bEnabled;
+   WINBOOL m_bEnabled;
 };
 
 

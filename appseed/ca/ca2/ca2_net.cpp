@@ -1,6 +1,10 @@
 #include "framework.h"
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
+#if defined(MACOS)
+#define	NI_MAXHOST	1025
+#define	NI_MAXSERV	32
+#endif
 #define __USE_MISC
 #include <ctype.h>
 #include <sys/socket.h>

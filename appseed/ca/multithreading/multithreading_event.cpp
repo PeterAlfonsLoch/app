@@ -84,12 +84,18 @@ event::~event()
 
 bool event::SetEvent()
 {
+<<<<<<< .mine
+#ifdef WINDOWS
+   ASSERT(m_object != NULL);
+   return ::SetEvent(m_object);
+=======
 #ifdef WINDOWS
    
    ASSERT(m_object != NULL);
    
    return ::SetEvent(m_object) != FALSE;
 
+>>>>>>> .r4408
 #else
 
    sembuf sb;
@@ -100,6 +106,16 @@ bool event::SetEvent()
 
    semop(m_object, &sb, 1);
 
+<<<<<<< .mine
+#endif
+}
+
+bool event::PulseEvent()
+{
+#ifdef WINDOWS
+   ASSERT(m_object != NULL);
+   return ::PulseEvent(m_object);
+=======
 #endif
 }
 
@@ -111,6 +127,7 @@ bool event::PulseEvent()
    
    return ::PulseEvent(m_object) != FALSE;
 
+>>>>>>> .r4408
 #else
 
    sembuf sb;
@@ -121,6 +138,16 @@ bool event::PulseEvent()
 
    semop(m_object, &sb, 1);
 
+<<<<<<< .mine
+#endif
+}
+
+bool event::ResetEvent()
+{
+#ifdef WINDOWS
+   ASSERT(m_object != NULL);
+   return ::ResetEvent(m_object);
+=======
 #endif
 }
 
@@ -132,6 +159,7 @@ bool event::ResetEvent()
    
    return ::ResetEvent(m_object) != FALSE;
 
+>>>>>>> .r4408
 #else
 
    sembuf sb;

@@ -14,7 +14,7 @@ void prepare_http()
 }
 
 
-bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int * piStatus, void (*callback)(void *, int, DWORD_PTR), void * callback_param )
+bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int * piStatus, void (*callback)(void *, int, dword_ptr), void * callback_param )
 {
 
    if(piStatus != NULL)
@@ -59,7 +59,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    }
    DWORD dwSize = 0;
    LPSTR pszOutBuffer;
-   BOOL  bResults = FALSE;
+   WINBOOL  bResults = FALSE;
 
    WCHAR * pwzHost = utf8_to_16(strHost);
 
@@ -81,7 +81,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
 
 
 
-vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int, DWORD_PTR), void * callback_param)
+vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int, dword_ptr), void * callback_param)
 {
 
    prepare_http();
@@ -97,7 +97,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    DWORD dwSize = 0;
    DWORD dwDownloaded = 0;
    LPSTR pszOutBuffer;
-   BOOL  bResults = FALSE;
+   WINBOOL  bResults = FALSE;
 
    g_tinyhttp.m_strUserAgent = "ccvotagus_ca2_fontopus/linux";
 
@@ -186,7 +186,7 @@ iPort = 443;
 DWORD dwSize = 0;
 DWORD dwDownloaded = 0;
 LPSTR pszOutBuffer;
-BOOL  bResults = FALSE;
+WINBOOL  bResults = FALSE;
 HINTERNET  hSession = NULL,
 hConnect = NULL,
 hRequest = NULL;

@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "ca_seed.h"
+#include "c.h"
 
 #define NEAR
 #define FAR
@@ -46,7 +46,7 @@ typedef const RECT FAR* LPCRECT;
 CGContextRef get_nswindow_cgcontext(HWND pnswindow);
 
 
-BOOL get_nswindow_rect(HWND hwnd, LPRECT lprect);
+WINBOOL get_nswindow_rect(HWND hwnd, LPRECT lprect);
 
 
 inline int wxRound(double x)
@@ -278,7 +278,7 @@ public:
 
 
 CGColorRef mac_create_color(COLORREF crText);
-BOOL mac_release_color(CGColorRef colorref);
+WINBOOL mac_release_color(CGColorRef colorref);
 
 
 
@@ -296,5 +296,5 @@ BOOL mac_release_color(CGColorRef colorref);
 
 
 
-BOOL set_nswindow_frame(HWND hwnd, LPCRECT prect, int iDisplay);
-BOOL move_nswindow(HWND hwnd, int x, int y);
+WINBOOL set_nswindow_frame(HWND hwnd, LPCRECT prect, int iDisplay);
+WINBOOL move_nswindow(HWND hwnd, int x, int y);

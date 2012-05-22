@@ -6,8 +6,8 @@
 //  Copyright (c) 2011 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 
-#include <Cocoa/Cocoa.h>
 #include "c_os_internal.h"
+#include <Cocoa/Cocoa.h>
 
 
 CGContextRef get_nswindow_cgcontext(HWND hwnd)
@@ -17,7 +17,7 @@ CGContextRef get_nswindow_cgcontext(HWND hwnd)
 
 }
 
-BOOL get_nswindow_rect(HWND hwnd, LPRECT lprect)
+WINBOOL get_nswindow_rect(HWND hwnd, LPRECT lprect)
 {
     
     NSRect rect = [((NSWindow *) hwnd->m_pnswindow) frame];

@@ -47,7 +47,7 @@ SetFilePointer(
 }
 
 
-BOOL
+WINBOOL
 WINAPI
 WriteFile(
           HANDLE hFile,
@@ -67,7 +67,7 @@ WriteFile(
     return TRUE;
 }
 
-BOOL
+WINBOOL
 WINAPI
 ReadFile(
          HANDLE hFile,
@@ -87,7 +87,7 @@ ReadFile(
     return TRUE;
 }
 
-BOOL
+WINBOOL
 WINAPI
 FlushFileBuffers(
                  HANDLE hFile
@@ -100,7 +100,7 @@ FlushFileBuffers(
 }
 
 
-BOOL
+WINBOOL
 WINAPI
 __win_CloseFile(
             HANDLE hFile
@@ -113,7 +113,7 @@ __win_CloseFile(
     return fclose(hFile->m_data.m_pfile) != FALSE;
 }
 
-BOOL
+WINBOOL
 WINAPI
 CloseHandle(
             HANDLE hObject

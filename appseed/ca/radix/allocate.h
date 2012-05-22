@@ -186,19 +186,19 @@ inline void __cdecl operator delete[](void * p, int nType, const char * lpszFile
 
 #ifndef _AFX_NO_DEBUG_CRT
 
-CLASS_DECL_ca void * AfxAllocMemoryDebug(size_t nSize, BOOL bIsObject,  const char * lpszFileName, int nLine);
-CLASS_DECL_ca void AfxFreeMemoryDebug(void * pbData, BOOL bIsObject);
+CLASS_DECL_ca void * AfxAllocMemoryDebug(size_t nSize, WINBOOL bIsObject,  const char * lpszFileName, int nLine);
+CLASS_DECL_ca void AfxFreeMemoryDebug(void * pbData, WINBOOL bIsObject);
 
 /////////////////////////////////////////////////////////////////////////////
 // allocation failure hook, tracking turn on
 
-CLASS_DECL_ca BOOL _AfxDefaultAllocHook(size_t, BOOL, LONG);
+CLASS_DECL_ca WINBOOL _AfxDefaultAllocHook(size_t, WINBOOL, LONG);
 
 CLASS_DECL_ca int __cdecl _AfxAllocHookProxy(int nAllocType, void * pvData, size_t nSize, int nBlockUse, long lRequest, const unsigned char * szFilename, int nLine);
 CLASS_DECL_ca __ALLOC_HOOK AfxSetAllocHook(__ALLOC_HOOK pfnNewHook);
 
-CLASS_DECL_ca BOOL AfxEnableMemoryLeakOverride(BOOL bEnable);
-CLASS_DECL_ca BOOL AfxEnableMemoryTracking(BOOL bTrack);
+CLASS_DECL_ca WINBOOL AfxEnableMemoryLeakOverride(WINBOOL bEnable);
+CLASS_DECL_ca WINBOOL AfxEnableMemoryTracking(WINBOOL bTrack);
 
 /////////////////////////////////////////////////////////////////////////////
 // Enumerate all objects allocated in the diagnostic primitive::memory heap
@@ -215,7 +215,7 @@ CLASS_DECL_ca void _API AfxDoForAllObjects(void (c_cdecl *pfn)(::radix::object*,
 /////////////////////////////////////////////////////////////////////////////
 // Automatic debug primitive::memory diagnostics
 
-CLASS_DECL_ca BOOL AfxDumpMemoryLeaks();
+CLASS_DECL_ca WINBOOL AfxDumpMemoryLeaks();
 
 #endif // _AFX_NO_DEBUG_CRT
 #endif // DEBUG

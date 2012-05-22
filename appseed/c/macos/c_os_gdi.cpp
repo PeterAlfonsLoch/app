@@ -1,9 +1,22 @@
 #include "framework.h"
 #include "c_os_internal.h"
 
+#ifdef DEBUG
+#undef DEBUG
+#define DEBUG 1
+#else
+#define DEBUG 0
+#endif
 
 #include <Carbon/Carbon.h>
 #include <CoreFoundation/CoreFoundation.h>
+
+#if DEBUG
+#undef DEBUG
+#define DEBUG
+#else
+#undef DEBUG
+#endif
 
 
 device_context::device_context()
@@ -58,7 +71,7 @@ CGColorRef mac_create_color(COLORREF cr)
 }
 
 
-BOOL mac_release_color(CGColorRef colorref)
+WINBOOL mac_release_color(CGColorRef colorref)
 {
    CGColorRelease(colorref);
     return TRUE;
@@ -106,7 +119,7 @@ HDC GetDC(HWND hwnd)
 }
 
 
-BOOL ReleaseDC(HWND hwnd, HDC hdc)
+WINBOOL ReleaseDC(HWND hwnd, HDC hdc)
 {
 
    if(hdc == NULL)
@@ -125,7 +138,7 @@ BOOL ReleaseDC(HWND hwnd, HDC hdc)
 }
 
 
-BOOL GetClientRect(HWND hwnd, LPRECT lprect)
+WINBOOL GetClientRect(HWND hwnd, LPRECT lprect)
 {
 /*   XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
@@ -151,7 +164,7 @@ BOOL GetClientRect(HWND hwnd, LPRECT lprect)
 }
 
 
-BOOL GetWindowRect(HWND hwnd, LPRECT lprect)
+WINBOOL GetWindowRect(HWND hwnd, LPRECT lprect)
 {
   /* XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
@@ -201,7 +214,7 @@ HDC BeginPaint(HWND hwnd, PAINTSTRUCT * ps)
 }
 
 
-BOOL EndPaint(HWND hwnd, PAINTSTRUCT * ps)
+WINBOOL EndPaint(HWND hwnd, PAINTSTRUCT * ps)
 {
 
    return ReleaseDC(hwnd, ps->hdc);
@@ -209,7 +222,7 @@ BOOL EndPaint(HWND hwnd, PAINTSTRUCT * ps)
 }
 
 
-BOOL GetCursorPos(LPPOINT lpptCursor)
+WINBOOL GetCursorPos(LPPOINT lpptCursor)
 {
    
    HIPoint point;
@@ -252,15 +265,15 @@ HGDIOBJ GetStockObject(int iStockObject)
 {
     return NULL;
 }
-BOOL SelectObject(HDC hdc, HGDIOBJ hgdiobj)
+WINBOOL SelectObject(HDC hdc, HGDIOBJ hgdiobj)
 {
     return FALSE;
 }
-BOOL Rectangle(HDC hdc, int x1, int y1, int x2, int y2)
+WINBOOL Rectangle(HDC hdc, int x1, int y1, int x2, int y2)
 {
     return FALSE;
 }
-BOOL DeleteObject(HGDIOBJ hgdiobj)
+WINBOOL DeleteObject(HGDIOBJ hgdiobj)
 {
     return FALSE;
 }
@@ -272,30 +285,30 @@ HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *lpbmi, UINT usage, vo
 {
     return NULL;
 }
-BOOL SetBkMode(HDC hdc, int iMode)
+WINBOOL SetBkMode(HDC hdc, int iMode)
 {
     return FALSE;
 }
-BOOL DeleteDC(HDC hdc)
+WINBOOL DeleteDC(HDC hdc)
 {
     return FALSE;
 }
-BOOL AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn)
+WINBOOL AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn)
 {
     return FALSE;
 }
-BOOL GetObject(HGDIOBJ hgdiobj, int iSize, void * object)
+WINBOOL GetObject(HGDIOBJ hgdiobj, int iSize, void * object)
 {
     return FALSE;
 }
-BOOL GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE * psize)
+WINBOOL GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE * psize)
 {
     return FALSE;
 }
 
 
 
-BOOL SetTextColor(HDC hdc, COLORREF crText)
+WINBOOL SetTextColor(HDC hdc, COLORREF crText)
 {
    
    mac_release_color(hdc->m_cgcolorrefText);

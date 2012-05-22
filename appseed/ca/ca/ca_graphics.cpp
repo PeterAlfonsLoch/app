@@ -1001,9 +1001,13 @@ namespace ca
       throw interface_only_exception();
    }
 
+<<<<<<< .mine
 #ifdef WINDOWS
 
+   bool graphics::___FUNCNAME(GetTextMetrics)(LPTEXTMETRIC lpMetrics) const
+=======
    bool graphics::get_text_metrics(LPTEXTMETRIC lpMetrics) const
+>>>>>>> .r4408
    {
       UNREFERENCED_PARAMETER(lpMetrics);
       throw interface_only_exception();
@@ -2119,9 +2123,34 @@ namespace ca
       UNREFERENCED_PARAMETER(str);
       throw interface_only_exception();
    }
+<<<<<<< .mine
+
+#ifdef WINDOWS
+
+#pragma push_macro("GetTextMetrics")
+#undef GetTextMetrics
+   bool graphics::GetTextMetrics(LPTEXTMETRIC lpMetrics) const
+=======
 
    int graphics::draw_text(const char * lpszString, int nCount, LPRECT lpRect, UINT nFormat)
+>>>>>>> .r4408
    {
+<<<<<<< .mine
+      UNREFERENCED_PARAMETER(lpMetrics);
+      throw interface_only_exception();
+   }
+#pragma pop_macro("GetTextMetrics")
+   #pragma push_macro("DrawText")
+   #pragma push_macro("DrawTextEx")
+   #undef DrawText
+   #undef DrawTextEx
+
+#endif
+
+   int graphics::DrawText(const char * lpszString, int nCount, LPRECT lpRect, UINT nFormat)
+   {
+=======
+>>>>>>> .r4408
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);
       UNREFERENCED_PARAMETER(lpRect);
@@ -2129,6 +2158,43 @@ namespace ca
       throw interface_only_exception();
    }
 
+<<<<<<< .mine
+#ifdef WINDOWS
+
+   int graphics::DrawText(const string & str, LPRECT lpRect, UINT nFormat)
+   {
+      UNREFERENCED_PARAMETER(str);
+      UNREFERENCED_PARAMETER(lpRect);
+      UNREFERENCED_PARAMETER(nFormat);
+      throw interface_only_exception();
+   }
+
+   int graphics::DrawTextEx(LPTSTR lpszString, int nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
+   {
+      UNREFERENCED_PARAMETER(lpszString);
+      UNREFERENCED_PARAMETER(nCount);
+      UNREFERENCED_PARAMETER(lpRect);
+      UNREFERENCED_PARAMETER(nFormat);
+      UNREFERENCED_PARAMETER(lpDTParams);
+      throw interface_only_exception();
+   }
+
+   int graphics::DrawTextEx(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
+   {
+      UNREFERENCED_PARAMETER(str);
+      UNREFERENCED_PARAMETER(lpRect);
+      UNREFERENCED_PARAMETER(nFormat);
+      UNREFERENCED_PARAMETER(lpDTParams);
+      throw interface_only_exception();
+   }
+
+   #pragma pop_macro("DrawText")
+   #pragma pop_macro("DrawTextEx")
+
+#endif
+
+=======
+>>>>>>> .r4408
    bool graphics::from(point ptDst, size size, ::ca::graphics * pgraphicsSrc, point ptSrc, DWORD dwRop)
    {
       return BitBlt(ptDst.x, ptDst.y, size.cx, size.cy, pgraphicsSrc, ptSrc.x, ptSrc.y, dwRop) != FALSE;

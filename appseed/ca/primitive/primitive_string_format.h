@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
 
 
 class CLASS_DECL_ca string_format_printer

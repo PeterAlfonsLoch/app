@@ -66,8 +66,8 @@ struct CLASS_DECL_ca AUX_DATA
    HBITMAP hbmMenuDot;
 
    // other system information
-   BOOL    bWin95;         // TRUE if Windows 95 (not NT)
-   BOOL    bWin4;
+   WINBOOL    bWin95;         // TRUE if Windows 95 (not NT)
+   WINBOOL    bWin4;
 
 // Implementation
    AUX_DATA();
@@ -188,12 +188,12 @@ typedef struct
 // Special helpers
 
 CLASS_DECL_ca ::user::interaction * AfxGetParentOwner(::user::interaction * hWnd);
-CLASS_DECL_ca BOOL AfxIsDescendant(::user::interaction * hWndParent, ::user::interaction * hWndChild);
+CLASS_DECL_ca WINBOOL AfxIsDescendant(::user::interaction * hWndParent, ::user::interaction * hWndChild);
 
 
 /*// UNICODE/MBCS abstractions
 #ifdef _MBCS
-   extern CLASS_DECL_ca const BOOL _afxDBCS;
+   extern CLASS_DECL_ca const WINBOOL _afxDBCS;
 #else
    #define _afxDBCS FALSE
 #endif
@@ -287,7 +287,7 @@ extern resource_exception _simpleResourceException;
 #ifdef _MT
 CLASS_DECL_ca void AfxLockGlobals(int nLockType);
 CLASS_DECL_ca void AfxUnlockGlobals(int nLockType);
-CLASS_DECL_ca BOOL AfxCriticalInit();
+CLASS_DECL_ca WINBOOL AfxCriticalInit();
 CLASS_DECL_ca void AfxCriticalTerm();
 #else
 #define AfxLockGlobals(nLockType)
@@ -358,7 +358,7 @@ public:
 };
 
 CLASS_DECL_ca string AfxStringFromCLSID(REFCLSID rclsid);
-CLASS_DECL_ca BOOL AfxGetInProcServer(const char * lpszCLSID, string & str);
+CLASS_DECL_ca WINBOOL AfxGetInProcServer(const char * lpszCLSID, string & str);
 #endif // _AFX_NO_OLE_SUPPORT
 
 #define NULL_TLS ((DWORD)-1)
@@ -372,7 +372,7 @@ CLASS_DECL_ca BOOL AfxGetInProcServer(const char * lpszCLSID, string & str);
 // Debugging/Tracing helpers
 
 #ifdef DEBUG
-   CLASS_DECL_ca BOOL _AfxCheckDialogTemplate(const char * lpszResource, BOOL bInvisibleChild);
+   CLASS_DECL_ca WINBOOL _AfxCheckDialogTemplate(const char * lpszResource, WINBOOL bInvisibleChild);
 #endif
 
 

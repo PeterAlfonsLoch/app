@@ -162,7 +162,7 @@ struct __SIZEPARENTPARAMS
    HDWP hDWP;       // handle for DeferWindowPos
    RECT rect;       // parent client rectangle (trim as appropriate)
    SIZE sizeTotal;  // total size on each side as layout proceeds
-   BOOL bStretch;   // should stretch to fill all space
+   WINBOOL bStretch;   // should stretch to fill all space
 };
 
 // flags for wParam in the WM_FLOATSTATUS message

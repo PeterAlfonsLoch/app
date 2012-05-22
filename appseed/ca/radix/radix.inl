@@ -8,20 +8,20 @@ _AFX_INLINE base_exception::~base_exception()
    { }
 _AFX_INLINE simple_exception::simple_exception()
    { m_bInitialized = FALSE; m_bLoaded = FALSE; }
-_AFX_INLINE simple_exception::simple_exception(BOOL bAutoDelete)
+_AFX_INLINE simple_exception::simple_exception(WINBOOL bAutoDelete)
    : base_exception(bAutoDelete) { m_bInitialized = FALSE; m_bLoaded = FALSE; }
 _AFX_INLINE simple_exception::~simple_exception()
    { }
 
 _AFX_INLINE memory_exception::memory_exception()
    : simple_exception() { }
-_AFX_INLINE memory_exception::memory_exception(BOOL bAutoDelete, UINT nResourceID)
+_AFX_INLINE memory_exception::memory_exception(WINBOOL bAutoDelete, UINT nResourceID)
    : simple_exception(bAutoDelete) { m_nResourceID = nResourceID; }
 _AFX_INLINE memory_exception::~memory_exception()
    { }
 _AFX_INLINE invalid_argument_exception::invalid_argument_exception()
    : simple_exception() { }
-_AFX_INLINE invalid_argument_exception::invalid_argument_exception(BOOL bAutoDelete, UINT nResourceID)
+_AFX_INLINE invalid_argument_exception::invalid_argument_exception(WINBOOL bAutoDelete, UINT nResourceID)
    : simple_exception(bAutoDelete) { m_nResourceID = nResourceID; }
 _AFX_INLINE invalid_argument_exception::~invalid_argument_exception()
    { }
@@ -56,32 +56,32 @@ _AFX_INLINE void ::ex1::filesp::SetFilePath(LPCTSTR lpszNewName)
 }
 /*
 // CFileFind
-_AFX_INLINE BOOL CFileFind::IsReadOnly() const
+_AFX_INLINE WINBOOL CFileFind::IsReadOnly() const
    { return MatchesMask(FILE_ATTRIBUTE_READONLY); }
-_AFX_INLINE BOOL CFileFind::IsDirectory() const
+_AFX_INLINE WINBOOL CFileFind::IsDirectory() const
    { return MatchesMask(FILE_ATTRIBUTE_DIRECTORY); }
-_AFX_INLINE BOOL CFileFind::IsCompressed() const
+_AFX_INLINE WINBOOL CFileFind::IsCompressed() const
    { return MatchesMask(FILE_ATTRIBUTE_COMPRESSED); }
-_AFX_INLINE BOOL CFileFind::IsSystem() const
+_AFX_INLINE WINBOOL CFileFind::IsSystem() const
    { return MatchesMask(FILE_ATTRIBUTE_SYSTEM); }
-_AFX_INLINE BOOL CFileFind::IsHidden() const
+_AFX_INLINE WINBOOL CFileFind::IsHidden() const
    { return MatchesMask(FILE_ATTRIBUTE_HIDDEN); }
-_AFX_INLINE BOOL CFileFind::IsTemporary() const
+_AFX_INLINE WINBOOL CFileFind::IsTemporary() const
    { return MatchesMask(FILE_ATTRIBUTE_TEMPORARY); }
-_AFX_INLINE BOOL CFileFind::IsNormal() const
+_AFX_INLINE WINBOOL CFileFind::IsNormal() const
    { return MatchesMask(FILE_ATTRIBUTE_NORMAL); }
-_AFX_INLINE BOOL CFileFind::IsArchived() const
+_AFX_INLINE WINBOOL CFileFind::IsArchived() const
    { return MatchesMask(FILE_ATTRIBUTE_ARCHIVE); }
 
 // CArchive
 /*
-_AFX_INLINE BOOL CArchive::IsLoading() const
+_AFX_INLINE WINBOOL CArchive::IsLoading() const
    { return (m_nMode & CArchive::load) != 0; }
-_AFX_INLINE BOOL CArchive::IsStoring() const
+_AFX_INLINE WINBOOL CArchive::IsStoring() const
    { return (m_nMode & CArchive::load) == 0; }
-_AFX_INLINE BOOL CArchive::IsByteSwapping() const
+_AFX_INLINE WINBOOL CArchive::IsByteSwapping() const
    { return FALSE; }
-_AFX_INLINE BOOL CArchive::IsBufferEmpty() const
+_AFX_INLINE WINBOOL CArchive::IsBufferEmpty() const
    { return m_lpBufCur == m_lpBufMax; }
 _AFX_INLINE ::ex1::file * CArchive::GetFile() const
    { return m_pFile; }

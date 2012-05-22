@@ -90,7 +90,7 @@ int base_exception::ReportError(UINT nType /* = MB_OK */,
 bool IsWow64()
 {
 
-   BOOL bIsWow64 = FALSE;
+   WINBOOL bIsWow64 = FALSE;
 
    if (!IsWow64Process(GetCurrentProcess(),&bIsWow64))
    {

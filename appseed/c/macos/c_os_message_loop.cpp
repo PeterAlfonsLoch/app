@@ -11,7 +11,7 @@ public:
    simple_array < MSG * >           m_msgptra;
 
 
-   BOOL GetMessage(MSG * pmsg);
+   WINBOOL GetMessage(MSG * pmsg);
 
 
 };
@@ -28,7 +28,7 @@ public:
    sys_thread(pthread_t pthread);
 
 
-   BOOL GetMessage(MSG * pmsg);
+   WINBOOL GetMessage(MSG * pmsg);
 
 
 };
@@ -50,19 +50,19 @@ public:
 
 static sys_thread_pool * g_psysthreadpool;
 
-BOOL GetMessage(MSG * pmsg)
+WINBOOL GetMessage(MSG * pmsg)
 {
 
    return TRUE;
 }
 
-BOOL TranslateMessage(MSG * pmsg)
+WINBOOL TranslateMessage(MSG * pmsg)
 {
 
    return TRUE;
 }
 
-BOOL DispatchMessage(MSG * pmsg)
+WINBOOL DispatchMessage(MSG * pmsg)
 {
 
    return TRUE;
@@ -84,7 +84,7 @@ void _c_simple_message_loop()
 
 }
 
-BOOL sys_message_queue::GetMessage(MSG * pmsg)
+WINBOOL sys_message_queue::GetMessage(MSG * pmsg)
 {
    mutex_lock lockMutex(&m_mutex, false);
    while(true)
@@ -118,7 +118,7 @@ sys_thread::sys_thread(pthread_t pthread) :
 {
 }
 
-BOOL sys_thread::GetMessage(MSG * pmsg)
+WINBOOL sys_thread::GetMessage(MSG * pmsg)
 {
       return m_messagequeue.GetMessage(pmsg);
 }
