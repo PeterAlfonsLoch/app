@@ -133,7 +133,7 @@
 	<File name="linux/c_os_process.h" open="0" top="0" tabpos="38">
 		<Cursor position="29" topLine="0" />
 	</File>
-	<File name="linux/c_os_simple_shell_launcher.cpp" open="1" top="0" tabpos="1">
+	<File name="linux/c_os_simple_shell_launcher.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="316" topLine="0" />
 	</File>
 	<File name="mem.h" open="0" top="0" tabpos="26">

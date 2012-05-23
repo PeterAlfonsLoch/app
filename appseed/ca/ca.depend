@@ -1864,11 +1864,11 @@
 
 1335690128 /cecyn1/app/appseed/ca/user/user_window_id.h
 
-1337535778 /cecyn1/app/appseed/ca/user/user_interaction.h
+1337743006 /cecyn1/app/appseed/ca/user/user_interaction.h
 	"gen/gen_holder.h"
 	"ca/user/user_window_interface.h"
 
-1337535778 /cecyn1/app/appseed/ca/user/user_virtual_user_interface.h
+1337743006 /cecyn1/app/appseed/ca/user/user_virtual_user_interface.h
 
 1335690122 /cecyn1/app/appseed/ca/database/database1.h
 	"database_id.h"
@@ -3613,7 +3613,7 @@
 1337210661 source:/cecyn1/app/appseed/ca/ca/ca_system.cpp
 	"framework.h"
 
-1337680384 source:/cecyn1/app/appseed/ca/ca/ca_thread.cpp
+1337743005 source:/cecyn1/app/appseed/ca/ca/ca_thread.cpp
 	"framework.h"
 
 1337210661 source:/cecyn1/app/appseed/ca/ca/ca_type_info.cpp
@@ -5737,7 +5737,7 @@
 1337210656 source:/cecyn1/app/appseed/ca/plugin/plugin_history.cpp
 	"framework.h"
 
-1337502991 source:/cecyn1/app/appseed/ca/plugin/plugin_host_interaction.cpp
+1337743005 source:/cecyn1/app/appseed/ca/plugin/plugin_host_interaction.cpp
 	"framework.h"
 
 1337502992 source:/cecyn1/app/appseed/ca/plane/plane_session.cpp
@@ -5759,7 +5759,7 @@
 1337210663 source:/cecyn1/app/appseed/ca/primitive/datetime/datetime_clock_interface.cpp
 	"framework.h"
 
-1337210663 source:/cecyn1/app/appseed/ca/primitive/datetime/datetime_duration.cpp
+1337503416 source:/cecyn1/app/appseed/ca/primitive/datetime/datetime_duration.cpp
 	"framework.h"
 	<math.h>
 
