@@ -1,5 +1,5 @@
 #include "framework.h"
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
 #define _O_BINARY 0
 #define _O_RDONLY O_RDONLY
 #else
@@ -9,7 +9,7 @@
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#if !defined(LINUX)
+#if !defined(LINUX) && !defined(MACOS)
 #include <share.h>
 #endif
 
