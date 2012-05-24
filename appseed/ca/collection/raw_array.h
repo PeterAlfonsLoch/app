@@ -4,6 +4,14 @@
 
 #define new DEBUG_NEW
 
+#ifdef DEBUG
+#define TEMPLATE_TYPE_NEW new(__FILE__ + string(typeid(TYPE).raw_name()), __LINE__)
+#else
+#define TEMPLATE_TYPE_NEW ne
+#endif
+
+#define new TEMPLATE_TYPE_NEW
+
 #ifndef __max
 #define __max(a,b)  (((a) > (b)) ? (a) : (b))
 #endif
