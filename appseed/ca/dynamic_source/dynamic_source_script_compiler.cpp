@@ -19,7 +19,11 @@ namespace dynamic_source
       m_folderwatchFribox(papp)
    {
 
-#ifdef DEBUG
+#if defined(MEMDLEAK)
+
+      m_strDynamicSourceConfiguration = "memdleak";
+
+#elif defined(DEBUG)
 
       m_strDynamicSourceConfiguration = "basis";
 

@@ -40,7 +40,11 @@ public:
    inline void * alloc()
    {
       m_iAllocCount++;
+#if MEMDLEAK
+      return ca2_alloc_dbg(m_uiAllocSize, 0, "typeid://" + *m_idType.m_pstr, 0);
+#else
       return ca2_alloc(m_uiAllocSize);
+#endif
    }
 
 

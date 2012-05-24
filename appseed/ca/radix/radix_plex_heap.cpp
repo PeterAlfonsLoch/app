@@ -1,6 +1,8 @@
 #include "framework.h"
 
 
+plex_heap_alloc_array::memdleak_block * plex_heap_alloc_array::s_pmemdleakList = NULL;
+
 plex_heap * PASCAL plex_heap::create(plex_heap*& pHead, uint_ptr nMax, uint_ptr cbElement)
 {
    ASSERT(nMax > 0 && cbElement > 0);
@@ -197,7 +199,7 @@ plex_heap_alloc_array::~plex_heap_alloc_array()
    }
 }
 
-
+static simple_mutex g_mutex2;
 
 void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int nBlockUse, const char * pszFileName, int iLine)
 {
@@ -213,26 +215,60 @@ void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int nBlockUse, const 
    }
    
    pblock->m_iBlockUse     = nBlockUse;
-   pblock->m_pszFileName   = *((id) pszFileName).m_pstr;
+   pblock->m_pszFileName   = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
    pblock->m_iLine         = iLine;
+   
+   
+   
 
-   return pblock + sizeof(memdleak_block);
+   mutex_lock lock(&g_mutex2, true);
+   pblock->m_pprevious                 = NULL;
+   pblock->m_pnext                     = s_pmemdleakList;
+   if(s_pmemdleakList != NULL)
+   {
+      s_pmemdleakList->m_pprevious        = pblock;
+   }
+   s_pmemdleakList                     = pblock;
+   lock.unlock();
+
+
+   return &pblock[1];
 
 }
 
 
 void plex_heap_alloc_array::free_dbg(void * p, size_t nAllocSize)
 {
-
+   
    plex_heap_alloc * palloc = find(nAllocSize + sizeof(memdleak_block));
 
-   if(palloc != NULL)
+   memdleak_block * pblock = &((memdleak_block *)p)[-1];
+
+   mutex_lock lock(&g_mutex2, true);
+
+   if(s_pmemdleakList == pblock)
    {
-      return palloc->Free(p);
+      s_pmemdleakList = pblock->m_pnext;
+      s_pmemdleakList->m_pprevious = NULL;
    }
    else
    {
-      return ::system_heap_free(p);
+      pblock->m_pprevious->m_pnext = pblock->m_pnext;
+      if(pblock->m_pnext != NULL)
+      {
+         pblock->m_pnext->m_pprevious = pblock->m_pprevious;
+      }
+   }
+
+   ::free((void *) pblock->m_pszFileName);
+
+   if(palloc != NULL)
+   {
+      return palloc->Free(pblock);
+   }
+   else
+   {
+      return ::system_heap_free(pblock);
    }
 
 }
@@ -242,7 +278,28 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
 {
    plex_heap_alloc * pallocOld = find(nOldAllocSize + sizeof(memdleak_block));
    plex_heap_alloc * pallocNew = find(nNewAllocSize + sizeof(memdleak_block));
-   memdleak_block * pblock;
+
+
+   memdleak_block * pblock = &((memdleak_block *)pOld)[-1];
+
+   mutex_lock lock(&g_mutex2, true);
+
+   if(s_pmemdleakList == pblock)
+   {
+      s_pmemdleakList = pblock->m_pnext;
+      s_pmemdleakList->m_pprevious = NULL;
+   }
+   else
+   {
+      pblock->m_pprevious->m_pnext = pblock->m_pnext;
+      if(pblock->m_pnext != NULL)
+      {
+         pblock->m_pnext->m_pprevious = pblock->m_pprevious;
+      }
+   }
+
+   ::free((void *) pblock->m_pszFileName);
+
    if(pallocOld == NULL && pallocNew == NULL)
    {
       pblock = (memdleak_block *) ::system_heap_realloc(pOld, nNewAllocSize + sizeof(memdleak_block));
@@ -281,9 +338,71 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
    }
 
    pblock->m_iBlockUse     = nBlockUse;
-   pblock->m_pszFileName   = *((id) pszFileName).m_pstr;
+   pblock->m_pszFileName   = strdup(pszFileName);
    pblock->m_iLine         = iLine;
 
+   
+   pblock->m_pprevious                 = NULL;
+   pblock->m_pnext                     = s_pmemdleakList;
+   if(s_pmemdleakList != NULL)
+   {
+      s_pmemdleakList->m_pprevious        = pblock;
+   }
+   s_pmemdleakList                     = pblock;
+   lock.unlock();
+
+
    return pblock + sizeof(memdleak_block);
+
+}
+
+
+count plex_heap_alloc_array::get_mem_info(int ** ppiUse, const char *** ppszFile, int ** ppiLine)
+{
+   
+   mutex_lock lock(&g_mutex2, true);
+
+   memdleak_block * pblock = s_pmemdleakList;
+
+   count c = 0;
+
+   while(pblock != NULL)
+   {
+
+      c++;
+
+      pblock = pblock->m_pnext;
+
+   }
+
+
+   int * piUse =(int *)  malloc(sizeof(int) * c);
+   const char ** pszFile = (const char **) malloc(sizeof(const char *) * c);
+   int * piLine =(int *)  malloc(sizeof(int) * c);
+
+   index i = 0;
+
+   pblock = s_pmemdleakList;
+
+   while(pblock != NULL && i < c)
+   {
+      piUse[i] = pblock->m_iBlockUse;
+      pszFile[i] = strdup(pblock->m_pszFileName);
+      piLine[i] = pblock->m_iLine;
+
+      i++;
+
+      pblock = pblock->m_pnext;
+
+
+      
+   }
+
+   *ppiUse = piUse;
+   *ppszFile = pszFile;
+   *ppiLine = piLine;
+
+
+   return c;
 
 }

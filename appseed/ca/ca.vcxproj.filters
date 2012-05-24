@@ -5290,6 +5290,9 @@
     <ClCompile Include="gen\gen_go_thread.cpp">
       <Filter>Source Files\gen</Filter>
     </ClCompile>
+    <ClCompile Include="radix\radix_allocation_system_heap.cpp">
+      <Filter>Source Files\radix</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca.def">

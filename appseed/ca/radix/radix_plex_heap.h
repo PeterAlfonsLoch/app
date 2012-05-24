@@ -190,7 +190,6 @@ inline void plex_heap_alloc::Free(void * p)
 
 
 
-
 class CLASS_DECL_ca plex_heap_alloc_array :
    public simple_array < plex_heap_alloc * >
 {
@@ -204,12 +203,20 @@ public:
       int               m_iBlockUse;
       const char *      m_pszFileName;
       int               m_iLine;
-
+      memdleak_block *  m_pnext;
+      memdleak_block *  m_pprevious;
 
    };
 
+
+   static memdleak_block * s_pmemdleakList;
+
    plex_heap_alloc_array();
    virtual ~plex_heap_alloc_array();
+
+
+   static count get_mem_info(int ** ppiUse, const char *** ppszFile, int ** ppiLine);
+
 
    inline void * alloc(size_t nAllocSize);
    inline void * realloc(void * p, size_t nOldAllocSize, size_t nNewAllocSize);

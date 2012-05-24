@@ -30,3 +30,7 @@ ARRAY_TYPE(a)
 }
 
 
+class CLASS_DECL_ca const_char_ptra :
+   public comparable_array < const char * >
+{
+};
