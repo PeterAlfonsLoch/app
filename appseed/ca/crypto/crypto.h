@@ -1,58 +1,33 @@
 #pragma once
 
 
-
-extern "C"
-{
-   
-   #include "crypto_kernel.h"
-   #include "sha1.h"
-   #include "hmac.h"
-
-} // extern "C"
-
-#ifdef inline
-#undef inline
-#endif
-
-
-#include "7z_crc.h"
-
-
-
-// compress interface
-#include "compress_progress_info_interface.h"
-#include "compress_coder_interface.h"
-#include "compress_coder2_interface.h"
-#include "compress_set_coder_properties_interface.h"
-#include "compress_codecs_info_interface.h"
-#include "compress_filter_interface.h"
-#include "compress_set_decoder_properties2_interface.h"
-#include "compress_write_coder_properties_interface.h"
-#include "compress_get_input_stream_processed_size_interface.h"
-#include "compress_set_coder_mt_interface.h"
-#include "compress_get_sub_stream_size_interface.h"
-#include "compress_set_input_stream_interface.h"
-#include "compress_set_output_stream_interface.h"
-#include "compress_set_codecs_info_interface.h"
+#include "crypto_err.h"
+#include "crypto_config.h"
+#include "crypto_integers.h"
+#include "crypto_datatypes.h"
+#include "crypto_alloc.h"
+#include "crypto_rand_source.h"       
+#include "crypto_gf2_8.h"
+#include "crypto_aes.h"
+#include "crypto_rdbx.h"
+#include "crypto_cipher.h"    
+#include "crypto_aes_cbc.h"
+#include "crypto_aes_icm.h"
+#include "crypto_prng.h"
+#include "crypto_auth.h"
+#include "crypto_alg.h"
+#include "crypto_stat.h"
+#include "crypto_types.h"
+#include "crypto_rdbx.h"
+#include "crypto_key.h"
+#include "crypto_c_crypto.h"
 
 
-// crypto interface
-#include "crypto_properties_interface.h"
-#include "crypto_reset_init_vector_interface.h"
-#include "crypto_set_password_interface.h"
-#include "crypto_get_text_password_interface.h"
-#include "crypto_get_text_password2_interface.h"
-
-
-// coders
-#include "aes_cbc_coder.h"
-
-
-// hash
+#include "crypto_kernel.h"
 #include "crypto_sha1.h"
+#include "crypto_hmac.h"
+
+
 #include "crypto_hmac_sha1.h"
 
 
-// compress filters
-#include "rar20.h"

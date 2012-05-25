@@ -10,6 +10,8 @@
 #define TEMPLATE_TYPE_NEW ne
 #endif
 
+#undef new
+
 #define new TEMPLATE_TYPE_NEW
 
 #ifndef __max

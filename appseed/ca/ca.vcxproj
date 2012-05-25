@@ -848,29 +848,63 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="compress\7z\7zProperties.h" />
     <ClInclude Include="compress\7z\7zSpecStream.h" />
     <ClInclude Include="compress\7z\7zUpdate.h" />
-    <ClInclude Include="compress\archive.h" />
-    <ClInclude Include="compress\bzip_helper.h" />
-    <ClInclude Include="compress\coder.h" />
-    <ClInclude Include="compress\coder_mixer.h" />
-    <ClInclude Include="compress\coder_mixer2.h" />
-    <ClInclude Include="compress\coder_mixer2mt.h" />
+    <ClInclude Include="compress\compress\compress.h" />
+    <ClInclude Include="compress\compress\compress_codecs_info_interface.h" />
+    <ClInclude Include="compress\compress\compress_coder2_interface.h" />
+    <ClInclude Include="compress\compress\compress_coder_interface.h" />
+    <ClInclude Include="compress\compress\compress_filter_interface.h" />
+    <ClInclude Include="compress\compress\compress_get_input_stream_processed_size_interface.h" />
+    <ClInclude Include="compress\compress\compress_progress_info_interface.h" />
+    <ClInclude Include="compress\compress\compress_set_codecs_info_interface.h" />
+    <ClInclude Include="compress\compress\compress_set_coder_mt_interface.h" />
+    <ClInclude Include="compress\compress\compress_set_coder_properties_interface.h" />
+    <ClInclude Include="compress\compress\compress_set_decoder_properties2_interface.h" />
+    <ClInclude Include="compress\compress\compress_set_input_stream_interface.h" />
+    <ClInclude Include="compress\compress\compress_set_output_stream_interface.h" />
+    <ClInclude Include="compress\compress\compress_write_coder_properties_interface.h" />
+    <ClInclude Include="compress\compress\compress_get_sub_stream_size_interface.h" />
+    <ClInclude Include="compress\compress_archive.h" />
+    <ClInclude Include="compress\compress_bzip_helper.h" />
+    <ClInclude Include="compress\compress_coder.h" />
+    <ClInclude Include="compress\compress_coder_mixer.h" />
+    <ClInclude Include="compress\compress_coder_mixer2.h" />
+    <ClInclude Include="compress\compress_coder_mixer2mt.h" />
     <ClInclude Include="compress\compress.h" />
-    <ClInclude Include="compress\copy_coder.h" />
-    <ClInclude Include="compress\create_coder.h" />
-    <ClInclude Include="compress\filter_coder.h" />
-    <ClInclude Include="compress\gzip_helper.h" />
-    <ClInclude Include="compress\huffman_decoder.h" />
-    <ClInclude Include="compress\input_stream_with_crc.h" />
-    <ClInclude Include="compress\int_to_string.h" />
-    <ClInclude Include="compress\item_name.h" />
-    <ClInclude Include="compress\local_progress.h" />
-    <ClInclude Include="compress\lz_out_window.h" />
-    <ClInclude Include="compress\method_properties.h" />
-    <ClInclude Include="compress\out_handler.h" />
-    <ClInclude Include="compress\ppmd.h" />
-    <ClInclude Include="compress\ppmd7.h" />
-    <ClInclude Include="compress\ppmd8.h" />
-    <ClInclude Include="compress\prop_id.h" />
+    <ClInclude Include="compress\compress_get_input_stream_processed_size_interface.h" />
+    <ClInclude Include="compress\compress_get_sub_stream_size_interface.h" />
+    <ClInclude Include="compress\compress_progress_info_interface.h" />
+    <ClInclude Include="compress\compress_set_codecs_info_interface.h" />
+    <ClInclude Include="compress\compress_set_coder_mt_interface.h" />
+    <ClInclude Include="compress\compress_set_coder_properties_interface.h" />
+    <ClInclude Include="compress\compress_set_decoder_properties2_interface.h" />
+    <ClInclude Include="compress\compress_set_input_stream_interface.h" />
+    <ClInclude Include="compress\compress_set_output_stream_interface.h" />
+    <ClInclude Include="compress\compress_write_coder_properties_interface.h" />
+    <ClInclude Include="compress\compress_copy_coder.h" />
+    <ClInclude Include="compress\compress_create_coder.h" />
+    <ClInclude Include="compress\compress_filter_coder.h" />
+    <ClInclude Include="compress\compress_gzip_helper.h" />
+    <ClInclude Include="compress\compress_huffman_decoder.h" />
+    <ClInclude Include="compress\compress_input_stream_with_crc.h" />
+    <ClInclude Include="compress\compress_int_to_string.h" />
+    <ClInclude Include="compress\compress_item_name.h" />
+    <ClInclude Include="compress\compress_local_progress.h" />
+    <ClInclude Include="compress\compress_lz_out_window.h" />
+    <ClInclude Include="compress\compress_method_properties.h" />
+    <ClInclude Include="compress\compress_out_handler.h" />
+    <ClInclude Include="compress\compress_ppmd.h" />
+    <ClInclude Include="compress\compress_ppmd7.h" />
+    <ClInclude Include="compress\compress_ppmd8.h" />
+    <ClInclude Include="compress\compress_prop_id.h" />
+    <ClInclude Include="compress\crypto\crypto.h" />
+    <ClInclude Include="compress\crypto\crypto_7z_crc.h" />
+    <ClInclude Include="compress\crypto\crypto_aes_cbc_coder.h" />
+    <ClInclude Include="compress\crypto\crypto_get_text_password2_interface.h" />
+    <ClInclude Include="compress\crypto\crypto_get_text_password_interface.h" />
+    <ClInclude Include="compress\crypto\crypto_properties_interface.h" />
+    <ClInclude Include="compress\crypto\crypto_rar20.h" />
+    <ClInclude Include="compress\crypto\crypto_reset_init_vector_interface.h" />
+    <ClInclude Include="compress\crypto\crypto_set_password_interface.h" />
     <ClInclude Include="compress\rar\aes.h" />
     <ClInclude Include="compress\rar\folder_reader.h" />
     <ClInclude Include="compress\rar\handler.h" />
@@ -882,9 +916,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="compress\rar\rar2_decoder.h" />
     <ClInclude Include="compress\rar\rar3_decoder.h" />
     <ClInclude Include="compress\rar\rar3_vm.h" />
-    <ClInclude Include="compress\reader_with_crc.h" />
-    <ClInclude Include="compress\register_codec.h" />
-    <ClInclude Include="compress\writer_with_crc.h" />
+    <ClInclude Include="compress\compress_reader_with_crc.h" />
+    <ClInclude Include="compress\compress_register_codec.h" />
+    <ClInclude Include="compress\compress_writer_with_crc.h" />
     <ClInclude Include="compress\zip\api.h" />
     <ClInclude Include="compress\zip\crypt.h" />
     <ClInclude Include="compress\zip\File.h" />
@@ -898,60 +932,37 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="compress\zip\zipImpl.h" />
     <ClInclude Include="compress\zip\zip_internal.h" />
     <ClInclude Include="count.h" />
-    <ClInclude Include="crypto\7z_crc.h" />
-    <ClInclude Include="crypto\aes.h" />
-    <ClInclude Include="crypto\aes_cbc.h" />
-    <ClInclude Include="crypto\aes_cbc_coder.h" />
-    <ClInclude Include="crypto\aes_icm.h" />
-    <ClInclude Include="crypto\alloc.h" />
-    <ClInclude Include="crypto\auth.h" />
-    <ClInclude Include="crypto\cipher.h" />
-    <ClInclude Include="crypto\compress_codecs_info_interface.h" />
-    <ClInclude Include="crypto\compress_coder2_interface.h" />
-    <ClInclude Include="crypto\compress_coder_interface.h" />
-    <ClInclude Include="crypto\compress_filter_interface.h" />
-    <ClInclude Include="crypto\compress_get_input_stream_processed_size_interface.h" />
-    <ClInclude Include="crypto\compress_get_sub_stream_size_interface.h" />
-    <ClInclude Include="crypto\compress_progress_info_interface.h" />
-    <ClInclude Include="crypto\compress_set_codecs_info_interface.h" />
-    <ClInclude Include="crypto\compress_set_coder_mt_interface.h" />
-    <ClInclude Include="crypto\compress_set_coder_properties_interface.h" />
-    <ClInclude Include="crypto\compress_set_decoder_properties2_interface.h" />
-    <ClInclude Include="crypto\compress_set_input_stream_interface.h" />
-    <ClInclude Include="crypto\compress_set_output_stream_interface.h" />
-    <ClInclude Include="crypto\compress_write_coder_properties_interface.h" />
-    <ClInclude Include="crypto\config.h" />
     <ClInclude Include="crypto\crypto.h" />
-    <ClInclude Include="crypto\cryptoalg.h" />
-    <ClInclude Include="crypto\crypto_get_text_password2_interface.h" />
-    <ClInclude Include="crypto\crypto_get_text_password_interface.h" />
+    <ClInclude Include="crypto\crypto_aes.h" />
+    <ClInclude Include="crypto\crypto_aes_cbc.h" />
+    <ClInclude Include="crypto\crypto_aes_icm.h" />
+    <ClInclude Include="crypto\crypto_alg.h" />
+    <ClInclude Include="crypto\crypto_alloc.h" />
+    <ClInclude Include="crypto\crypto_auth.h" />
+    <ClInclude Include="crypto\crypto_cipher.h" />
+    <ClInclude Include="crypto\crypto_config.h" />
+    <ClInclude Include="crypto\crypto_c_crypto.h" />
+    <ClInclude Include="crypto\crypto_datatypes.h" />
+    <ClInclude Include="crypto\crypto_err.h" />
+    <ClInclude Include="crypto\crypto_gf2_8.h" />
+    <ClInclude Include="crypto\crypto_hmac.h" />
     <ClInclude Include="crypto\crypto_hmac_sha1.h" />
+    <ClInclude Include="crypto\crypto_integers.h" />
     <ClInclude Include="crypto\crypto_kernel.h" />
+    <ClInclude Include="crypto\crypto_kernel_compat.h" />
+    <ClInclude Include="crypto\crypto_key.h" />
     <ClInclude Include="crypto\crypto_math.h" />
-    <ClInclude Include="crypto\crypto_properties_interface.h" />
-    <ClInclude Include="crypto\crypto_reset_init_vector_interface.h" />
-    <ClInclude Include="crypto\crypto_set_password_interface.h" />
+    <ClInclude Include="crypto\crypto_null_auth.h" />
+    <ClInclude Include="crypto\crypto_null_cipher.h" />
+    <ClInclude Include="crypto\crypto_prng.h" />
+    <ClInclude Include="crypto\crypto_rand_source.h" />
+    <ClInclude Include="crypto\crypto_rdb.h" />
+    <ClInclude Include="crypto\crypto_rdbx.h" />
     <ClInclude Include="crypto\crypto_sha1.h" />
+    <ClInclude Include="crypto\crypto_stat.h" />
     <ClInclude Include="crypto\crypto_types.h" />
-    <ClInclude Include="crypto\c_crypto.h" />
-    <ClInclude Include="crypto\datatypes.h" />
-    <ClInclude Include="crypto\err.h" />
-    <ClInclude Include="crypto\gf2_8.h" />
-    <ClInclude Include="crypto\hmac.h" />
-    <ClInclude Include="crypto\integers.h" />
-    <ClInclude Include="crypto\kernel_compat.h" />
-    <ClInclude Include="crypto\key.h" />
-    <ClInclude Include="crypto\null_auth.h" />
-    <ClInclude Include="crypto\null_cipher.h" />
-    <ClInclude Include="crypto\prng.h" />
-    <ClInclude Include="crypto\rand_source.h" />
-    <ClInclude Include="crypto\rar20.h" />
-    <ClInclude Include="crypto\rdb.h" />
-    <ClInclude Include="crypto\rdbx.h" />
-    <ClInclude Include="crypto\sha1.h" />
-    <ClInclude Include="crypto\stat.h" />
-    <ClInclude Include="crypto\ut_sim.h" />
-    <ClInclude Include="crypto\xfm.h" />
+    <ClInclude Include="crypto\crypto_ut_sim.h" />
+    <ClInclude Include="crypto\crypto_xfm.h" />
     <ClInclude Include="database\database.h" />
     <ClInclude Include="database\database1.h" />
     <ClInclude Include="database\database_application.h" />
@@ -1722,6 +1733,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="compress\compress_ppmd7_enc.cpp" />
     <ClCompile Include="compress\compress_ppmd8.cpp" />
     <ClCompile Include="compress\compress_reader_with_crc.cpp" />
+    <ClCompile Include="compress\crypto\crypto_7z_crc.cpp" />
+    <ClCompile Include="compress\crypto\crypto_rar20.cpp" />
     <ClCompile Include="compress\gzip_helper.cpp" />
     <ClCompile Include="compress\method_properties.cpp" />
     <ClCompile Include="compress\out_handler.cpp" />
@@ -1767,202 +1780,32 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="crypto\crypto_7z_crc.cpp" />
-    <ClCompile Include="crypto\crypto_ae_xfm.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_cipher_aes.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_cipher_aes_cbc.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_cipher_aes_icm.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_cipher_cipher.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_cipher_null_cipher.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="crypto\crypto_ae_xfm.cpp" />
+    <ClCompile Include="crypto\crypto_cipher_aes.cpp" />
+    <ClCompile Include="crypto\crypto_cipher_aes_cbc.cpp" />
+    <ClCompile Include="crypto\crypto_cipher_aes_icm.cpp" />
+    <ClCompile Include="crypto\crypto_cipher_cipher.cpp" />
+    <ClCompile Include="crypto\crypto_cipher_null_cipher.cpp" />
+    <ClCompile Include="crypto\crypto_gf2_8.cpp" />
+    <ClCompile Include="crypto\crypto_hash_auth.cpp" />
+    <ClCompile Include="crypto\crypto_hash_hmac.cpp" />
+    <ClCompile Include="crypto\crypto_hash_null_auth.cpp" />
+    <ClCompile Include="crypto\crypto_hash_sha1.cpp" />
     <ClCompile Include="crypto\crypto_hmac_sha1.cpp" />
-    <ClCompile Include="crypto\crypto_math.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_rar20.cpp" />
+    <ClCompile Include="crypto\crypto_kernel_alloc.cpp" />
+    <ClCompile Include="crypto\crypto_kernel_crypto_kernel.cpp" />
+    <ClCompile Include="crypto\crypto_kernel_err.cpp" />
+    <ClCompile Include="crypto\crypto_kernel_key.cpp" />
+    <ClCompile Include="crypto\crypto_math.cpp" />
+    <ClCompile Include="crypto\crypto_math_stat.cpp" />
+    <ClCompile Include="crypto\crypto_my_aes.cpp" />
+    <ClCompile Include="crypto\crypto_replay_rdb.cpp" />
+    <ClCompile Include="crypto\crypto_replay_rdbx.cpp" />
+    <ClCompile Include="crypto\crypto_replay_ut_sim.cpp" />
+    <ClCompile Include="crypto\crypto_rng_ctr_prng.cpp" />
+    <ClCompile Include="crypto\crypto_rng_prng.cpp" />
+    <ClCompile Include="crypto\crypto_rng_rand_source.cpp" />
     <ClCompile Include="crypto\crypto_sha1.cpp" />
-    <ClCompile Include="crypto\crypto_gf2_8.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_hash_auth.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_hash_hmac.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_hash_null_auth.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_hash_sha1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_kernel_alloc.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_kernel_crypto_kernel.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_kernel_err.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_kernel_key.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_math_stat.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_my_aes.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_replay_rdb.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_replay_rdbx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_replay_ut_sim.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_rng_ctr_prng.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_rng_prng.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_rng_rand_source.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="database\database_application.cpp" />
     <ClCompile Include="database\database_base.cpp" />
     <ClCompile Include="database\database_client.cpp" />

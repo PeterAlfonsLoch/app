@@ -333,6 +333,15 @@
     <Filter Include="Source Files\filehandler">
       <UniqueIdentifier>{f3517830-9e05-4d8a-8327-57e6ac47c4d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\compress\crypto">
+      <UniqueIdentifier>{92a9349d-bc31-49af-bce5-eceada38f70d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\compress\crypto">
+      <UniqueIdentifier>{2478059a-cebb-423e-acc6-72cd827ace32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\compress\compress">
+      <UniqueIdentifier>{5beb4c25-3470-40ae-a8cf-4ff862d939bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libcharguess\big5Prober.h">
@@ -902,82 +911,7 @@
     <ClInclude Include="ex1\ex1_writer.h">
       <Filter>Header Files\ex1</Filter>
     </ClInclude>
-    <ClInclude Include="compress\archive.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\register_codec.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\bzip_helper.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\coder.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\coder_mixer.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\coder_mixer2.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\coder_mixer2mt.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
     <ClInclude Include="compress\compress.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\copy_coder.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\create_coder.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\filter_coder.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\gzip_helper.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\huffman_decoder.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\input_stream_with_crc.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\int_to_string.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\item_name.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\local_progress.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\lz_out_window.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\method_properties.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\out_handler.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\ppmd.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\ppmd7.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\ppmd8.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\prop_id.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\reader_with_crc.h">
-      <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="compress\writer_with_crc.h">
       <Filter>Header Files\compress</Filter>
     </ClInclude>
     <ClInclude Include="compress\7z\7z.h">
@@ -2345,162 +2279,6 @@
     <ClInclude Include="user\user_job.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="crypto\xfm.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\ut_sim.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\stat.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\rdbx.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\rdb.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\rar20.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\rand_source.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\prng.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\null_cipher.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\null_auth.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\key.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\kernel_compat.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\integers.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\hmac.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\gf2_8.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\err.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\datatypes.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\cryptoalg.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\crypto_types.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\crypto_sha1.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\crypto_set_password_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\crypto_reset_init_vector_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\crypto_properties_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\crypto_math.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\crypto_kernel.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\crypto_get_text_password2_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\crypto_get_text_password_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\crypto.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\config.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\compress_write_coder_properties_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\compress_set_output_stream_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\compress_set_input_stream_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\compress_set_decoder_properties2_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\compress_set_coder_properties_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\compress_set_coder_mt_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\compress_set_codecs_info_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\compress_progress_info_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\compress_get_sub_stream_size_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\compress_get_input_stream_processed_size_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\compress_filter_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\compress_coder2_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\compress_coder_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\compress_codecs_info_interface.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\cipher.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\c_crypto.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\auth.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\alloc.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\aes_icm.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\aes_cbc_coder.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\aes_cbc.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\aes.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\7z_crc.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
     <ClInclude Include="calculator\calculator.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
@@ -2617,12 +2395,6 @@
     </ClInclude>
     <ClInclude Include="exception\exception_overflow_error.h">
       <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\sha1.h">
-      <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\crypto_hmac_sha1.h">
-      <Filter>Header Files\crypto</Filter>
     </ClInclude>
     <ClInclude Include="ca\OpenedFiles.h">
       <Filter>Header Files\ca</Filter>
@@ -3148,6 +2920,276 @@
     </ClInclude>
     <ClInclude Include="gen\aaa_base_rect_array_want_to_remove_xxx.h">
       <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_get_input_stream_processed_size_interface.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_get_sub_stream_size_interface.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_progress_info_interface.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_set_codecs_info_interface.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_set_coder_mt_interface.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_set_coder_properties_interface.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_set_decoder_properties2_interface.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_set_input_stream_interface.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_set_output_stream_interface.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_write_coder_properties_interface.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_coder_mixer2mt.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_coder_mixer2.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_coder_mixer.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_coder.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_bzip_helper.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_archive.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_create_coder.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_copy_coder.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_filter_coder.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_gzip_helper.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_huffman_decoder.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_input_stream_with_crc.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_int_to_string.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_item_name.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_local_progress.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_lz_out_window.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_method_properties.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_out_handler.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_ppmd.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_ppmd7.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_ppmd8.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_prop_id.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_reader_with_crc.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_register_codec.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress_writer_with_crc.h">
+      <Filter>Header Files\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress\compress.h">
+      <Filter>Header Files\compress\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\crypto\crypto.h">
+      <Filter>Header Files\compress\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress\compress_codecs_info_interface.h">
+      <Filter>Header Files\compress\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress\compress_coder2_interface.h">
+      <Filter>Header Files\compress\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress\compress_coder_interface.h">
+      <Filter>Header Files\compress\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress\compress_filter_interface.h">
+      <Filter>Header Files\compress\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress\compress_get_input_stream_processed_size_interface.h">
+      <Filter>Header Files\compress\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress\compress_progress_info_interface.h">
+      <Filter>Header Files\compress\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress\compress_set_codecs_info_interface.h">
+      <Filter>Header Files\compress\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress\compress_set_coder_mt_interface.h">
+      <Filter>Header Files\compress\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress\compress_set_coder_properties_interface.h">
+      <Filter>Header Files\compress\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress\compress_set_decoder_properties2_interface.h">
+      <Filter>Header Files\compress\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress\compress_set_input_stream_interface.h">
+      <Filter>Header Files\compress\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress\compress_set_output_stream_interface.h">
+      <Filter>Header Files\compress\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress\compress_write_coder_properties_interface.h">
+      <Filter>Header Files\compress\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\crypto\crypto_get_text_password2_interface.h">
+      <Filter>Header Files\compress\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\crypto\crypto_properties_interface.h">
+      <Filter>Header Files\compress\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\crypto\crypto_reset_init_vector_interface.h">
+      <Filter>Header Files\compress\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\crypto\crypto_set_password_interface.h">
+      <Filter>Header Files\compress\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\compress\compress_get_sub_stream_size_interface.h">
+      <Filter>Header Files\compress\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_aes.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_aes_cbc.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_aes_icm.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_alg.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_alloc.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_auth.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_c_crypto.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_cipher.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_config.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_datatypes.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_err.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_gf2_8.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_hmac.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_hmac_sha1.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_integers.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_kernel.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_kernel_compat.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_key.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_math.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_null_auth.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_null_cipher.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_prng.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_rand_source.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_rdb.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_rdbx.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_sha1.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_stat.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_types.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_ut_sim.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_xfm.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\crypto\crypto_7z_crc.h">
+      <Filter>Header Files\compress\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\crypto\crypto_get_text_password_interface.h">
+      <Filter>Header Files\compress\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\crypto\crypto_rar20.h">
+      <Filter>Header Files\compress\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="compress\crypto\crypto_aes_cbc_coder.h">
+      <Filter>Header Files\compress\crypto</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4573,12 +4615,6 @@
     <ClCompile Include="ca2\ca2_url_domain.cpp">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\crypto_rar20.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_sha1.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_check_interface.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -4843,9 +4879,6 @@
     <ClCompile Include="exception\exception_overflow_error.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\crypto_hmac_sha1.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="windows\os_library_initialize.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
@@ -5010,81 +5043,6 @@
     </ClCompile>
     <ClCompile Include="fs\fs_remote_native_file.cpp">
       <Filter>Source Files\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_math.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_7z_crc.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_ae_xfm.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_cipher_aes.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_cipher_aes_cbc.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_cipher_aes_icm.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_cipher_cipher.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_cipher_null_cipher.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_gf2_8.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_hash_auth.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_hash_hmac.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_hash_null_auth.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_hash_sha1.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_kernel_alloc.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_kernel_crypto_kernel.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_kernel_err.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_kernel_key.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_math_stat.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_my_aes.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_replay_rdb.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_replay_rdbx.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_replay_ut_sim.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_rng_ctr_prng.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_rng_prng.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\crypto_rng_rand_source.cpp">
-      <Filter>Source Files\crypto</Filter>
     </ClCompile>
     <ClCompile Include="zlib\zlib_zutil.cpp">
       <Filter>Source Files\zlib</Filter>
@@ -5292,6 +5250,90 @@
     </ClCompile>
     <ClCompile Include="radix\radix_allocation_system_heap.cpp">
       <Filter>Source Files\radix</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_ae_xfm.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_cipher_aes.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_cipher_aes_cbc.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_cipher_aes_icm.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_cipher_cipher.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_cipher_null_cipher.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_gf2_8.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_hash_auth.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_hash_hmac.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_hash_null_auth.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_hash_sha1.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_hmac_sha1.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_kernel_alloc.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_kernel_crypto_kernel.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_kernel_err.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_kernel_key.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_math.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_math_stat.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_my_aes.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_replay_rdb.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_replay_rdbx.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_replay_ut_sim.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_rng_ctr_prng.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_rng_prng.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_rng_rand_source.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_sha1.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\crypto\crypto_7z_crc.cpp">
+      <Filter>Source Files\compress\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\crypto\crypto_rar20.cpp">
+      <Filter>Source Files\compress\crypto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
