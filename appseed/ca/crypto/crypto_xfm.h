@@ -6,6 +6,9 @@
  * David A. McGrew
  * Cisco Systems, Inc.
  */
+#pragma once
+
+
 
 #ifndef XFM_H
 #define XFM_H

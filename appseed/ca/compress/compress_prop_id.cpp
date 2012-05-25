@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "prop_id.h"
 
 
 void StringToProp(const string &s, var * value)

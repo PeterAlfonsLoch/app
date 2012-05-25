@@ -3541,12 +3541,6 @@
     <ClCompile Include="ex2\ex2_transfer_file.cpp">
       <Filter>Source Files\ex2</Filter>
     </ClCompile>
-    <ClCompile Include="compress\7z_crc_opt.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\bzip_helper.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
     <ClCompile Include="compress\compress_archive.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
@@ -3602,21 +3596,6 @@
       <Filter>Source Files\compress</Filter>
     </ClCompile>
     <ClCompile Include="compress\compress_reader_with_crc.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\gzip_helper.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\method_properties.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\out_handler.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\prop_id.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\writer_with_crc.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
     <ClCompile Include="compress\7z\7zDecode.cpp">
@@ -5334,6 +5313,24 @@
     </ClCompile>
     <ClCompile Include="compress\crypto\crypto_rar20.cpp">
       <Filter>Source Files\compress\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_7z_crc_opt.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_bzip_helper.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_gzip_helper.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_out_handler.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_prop_id.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\compress_writer_with_crc.cpp">
+      <Filter>Source Files\compress</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

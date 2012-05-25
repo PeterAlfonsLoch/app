@@ -1,11 +1,13 @@
 #include "framework.h"
-#include <math.h>
 
 
 namespace gcom
 {
+
+
    namespace backview
    {
+
 
       TransitionEffect::Tool001::Tool001(Main & viewinterface) :
          ::ca::ca(viewinterface.get_app()),
@@ -1293,4 +1295,8 @@ namespace gcom
             lppoint);
       }
    }
+
+
 } // namespace gcom
+
+

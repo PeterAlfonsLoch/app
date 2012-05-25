@@ -44,7 +44,6 @@
  */
 #include "framework.h"
 
-#include "rdbx.h"
 
 #define rdbx_high_bit_in_bitmask 127
 

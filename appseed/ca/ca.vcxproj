@@ -245,7 +245,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>freetype.lib;Shlwapi.lib;Gdiplus.lib;WinInet.lib;libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>freetype2.3.5-1.lib;Shlwapi.lib;Gdiplus.lib;WinInet.lib;libmysql.lib;libcrypto.lib;FreeImage.lib;libssl.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -1712,33 +1712,33 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="compress\7z\7zRegister.cpp" />
     <ClCompile Include="compress\7z\7zSpecStream.cpp" />
     <ClCompile Include="compress\7z\7zUpdate.cpp" />
-    <ClCompile Include="compress\7z_crc_opt.cpp" />
-    <ClCompile Include="compress\bzip_helper.cpp" />
+    <ClCompile Include="compress\compress_7z_crc_opt.cpp" />
     <ClCompile Include="compress\compress_archive.cpp" />
     <ClCompile Include="compress\compress_archive_item_name.cpp" />
+    <ClCompile Include="compress\compress_bzip_helper.cpp" />
     <ClCompile Include="compress\compress_coder_mixer.cpp" />
     <ClCompile Include="compress\compress_coder_mixer2.cpp" />
     <ClCompile Include="compress\compress_coder_mixer2mt.cpp" />
     <ClCompile Include="compress\compress_copy_coder.cpp" />
     <ClCompile Include="compress\compress_create_coder.cpp" />
     <ClCompile Include="compress\compress_filter_coder.cpp" />
+    <ClCompile Include="compress\compress_gzip_helper.cpp" />
     <ClCompile Include="compress\compress_int_to_string.cpp" />
     <ClCompile Include="compress\compress_local_progress.cpp" />
     <ClCompile Include="compress\compress_lz_out_window.cpp" />
     <ClCompile Include="compress\compress_method_id.cpp" />
     <ClCompile Include="compress\compress_method_properties.cpp" />
+    <ClCompile Include="compress\compress_out_handler.cpp" />
     <ClCompile Include="compress\compress_parse_properties.cpp" />
     <ClCompile Include="compress\compress_ppmd7.cpp" />
     <ClCompile Include="compress\compress_ppmd7_dec.cpp" />
     <ClCompile Include="compress\compress_ppmd7_enc.cpp" />
     <ClCompile Include="compress\compress_ppmd8.cpp" />
+    <ClCompile Include="compress\compress_prop_id.cpp" />
     <ClCompile Include="compress\compress_reader_with_crc.cpp" />
+    <ClCompile Include="compress\compress_writer_with_crc.cpp" />
     <ClCompile Include="compress\crypto\crypto_7z_crc.cpp" />
     <ClCompile Include="compress\crypto\crypto_rar20.cpp" />
-    <ClCompile Include="compress\gzip_helper.cpp" />
-    <ClCompile Include="compress\method_properties.cpp" />
-    <ClCompile Include="compress\out_handler.cpp" />
-    <ClCompile Include="compress\prop_id.cpp" />
     <ClCompile Include="compress\rar\rar1_decoder.cpp" />
     <ClCompile Include="compress\rar\rar2_decoder.cpp" />
     <ClCompile Include="compress\rar\rar3_decoder.cpp" />
@@ -1750,7 +1750,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="compress\rar\rar_input_file.cpp" />
     <ClCompile Include="compress\rar\rar_item.cpp" />
     <ClCompile Include="compress\rar\rar_volume_input_stream.cpp" />
-    <ClCompile Include="compress\writer_with_crc.cpp" />
     <ClCompile Include="compress\zip\zip_api.cpp" />
     <ClCompile Include="compress\zip\zip_file.cpp" />
     <ClCompile Include="compress\zip\zip_in_file.cpp" />

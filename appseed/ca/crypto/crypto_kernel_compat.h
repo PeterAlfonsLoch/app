@@ -42,6 +42,9 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+#pragma once
+
+
 
 #ifndef KERNEL_COMPAT_H
 #define KERNEL_COMPAT_H

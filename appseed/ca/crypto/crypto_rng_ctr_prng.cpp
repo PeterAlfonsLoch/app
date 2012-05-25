@@ -44,8 +44,6 @@
 #include "framework.h"
 
 
-#include "prng.h"
-
 /* single, global prng structure */
 
 ctr_prng_t ctr_prng;

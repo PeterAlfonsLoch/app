@@ -45,9 +45,6 @@
  */
 #include "framework.h"
 
-#include "datatypes.h"
-#include "null_cipher.h"
-#include "alloc.h"
 
 /* the null_cipher uses the cipher debug module  */
 

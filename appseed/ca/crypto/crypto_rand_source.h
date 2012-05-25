@@ -41,6 +41,9 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+#pragma once
+
+
 
 
 #ifndef RAND_SOURCE

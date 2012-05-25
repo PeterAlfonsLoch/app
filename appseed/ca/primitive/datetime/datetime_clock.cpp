@@ -1,5 +1,5 @@
 #include "framework.h"
-#include <math.h>
+
 
 clock::clock(::ca::application * papp) :
    ca(papp),

@@ -2,7 +2,6 @@
  * This code can be freely copied and modified.
  */
 #include "framework.h"
-#include <math.h>
 
 
 namespace datetime

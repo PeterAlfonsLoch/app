@@ -6,6 +6,9 @@
  * David A. McGrew
  * Cisco Systems, Inc.
  */
+#pragma once
+
+
 
 #ifndef CRYPTO_H
 #define CRYPTO_H

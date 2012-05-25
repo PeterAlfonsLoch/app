@@ -22,3 +22,10 @@
 #include "compress_set_codecs_info_interface.h"
 
 
+
+// compress filters
+#include "ca/compress/crypto/crypto_rar20.h"
+
+
+// coders
+#include "ca/compress/crypto/crypto_aes_cbc_coder.h"

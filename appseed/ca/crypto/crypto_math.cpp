@@ -43,7 +43,7 @@
  */
 #include "framework.h"
 
-#include "crypto_math.h"
+
 
 int 
 octet_weight[256] = {

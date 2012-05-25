@@ -42,6 +42,9 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+#pragma once
+
+
 
 #ifndef AUTH_H
 #define AUTH_H

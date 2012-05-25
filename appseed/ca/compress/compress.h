@@ -51,7 +51,7 @@ namespace compress
 #include "7z/7z.h"
 
 // bzip
-#include "bzip_helper.h"
+#include "compress_bzip_helper.h"
 
 // rar
 #include "rar/rar.h"
@@ -60,4 +60,4 @@ namespace compress
 #include "zip/zip.h"
 
 
-#include "register_codec.h"
+#include "compress_register_codec.h"

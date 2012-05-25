@@ -42,6 +42,9 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+#pragma once
+
+
 
 #ifndef _AES_H
 #define _AES_H

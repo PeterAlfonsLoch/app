@@ -10,7 +10,7 @@ namespace compress
 
    #define IUnknown ::radix::object
 
-   HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, IUnknown *coder)
+   HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, ::ca::ca *coder)
    {
       bool tryReduce = false;
       uint32 reducedDictionarySize = 1 << 10;

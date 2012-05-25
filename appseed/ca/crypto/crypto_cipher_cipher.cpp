@@ -45,9 +45,6 @@
  */
 #include "framework.h"
 
-#include "cipher.h"
-#include "rand_source.h"        /* used in invertibiltiy tests        */
-#include "alloc.h"              /* for crypto_alloc(), crypto_free()  */
 
 debug_module_t mod_cipher = {
   0,                 /* debugging is off by default */

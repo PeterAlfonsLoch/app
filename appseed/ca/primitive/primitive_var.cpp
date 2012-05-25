@@ -1,5 +1,4 @@
 #include "framework.h"
-#include <math.h>
 
 
 var::var(const char * psz)

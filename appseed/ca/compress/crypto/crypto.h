@@ -9,11 +9,7 @@
 #include "crypto_get_text_password2_interface.h"
 
 
-// compress filters
 #include "crypto_7z_crc.h"
-#include "crypto_rar20.h"
 
 
-// coders
-#include "crypto_aes_cbc_coder.h"
 

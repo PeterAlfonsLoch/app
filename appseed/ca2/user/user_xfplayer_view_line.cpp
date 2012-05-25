@@ -1,7 +1,5 @@
 #include "framework.h"
 
-#include <math.h>
-
 const int XfplayerViewLine::AlignLeft = 1;
 const int XfplayerViewLine::AlignRight = 2;
 

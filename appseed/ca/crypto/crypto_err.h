@@ -41,6 +41,9 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+#pragma once
+
+
 
 
 #ifndef ERR_H

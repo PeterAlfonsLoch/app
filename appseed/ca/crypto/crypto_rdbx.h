@@ -7,6 +7,9 @@
  * Cisco Systems, Inc.
  *
  */
+#pragma once
+
+
 
 #ifndef RDBX_H
 #define RDBX_H

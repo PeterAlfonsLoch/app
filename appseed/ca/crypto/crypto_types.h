@@ -41,6 +41,9 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+#pragma once
+
+
 
 #ifndef CRYPTO_TYPES_H
 #define CRYPTO_TYPES_H

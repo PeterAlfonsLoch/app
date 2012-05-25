@@ -39,7 +39,6 @@
  */
 #include "framework.h"
 
-#include "sha1.h"
 
 /*
  *  Define the circular shift macro

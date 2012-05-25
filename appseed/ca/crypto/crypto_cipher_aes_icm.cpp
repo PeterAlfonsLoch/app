@@ -47,8 +47,6 @@
 
 #define ALIGN_32 0
 
-#include "aes_icm.h"
-#include "alloc.h"
 
 
 debug_module_t mod_aes_icm = {

@@ -43,7 +43,6 @@
  */
 #include "framework.h"
 
-#include "config.h"
 
 #ifdef DEV_URANDOM
 # include <fcntl.h>          /* for open()  */
@@ -52,8 +51,6 @@
 #define _CRT_RAND_S
 //# include <stdlib.h>
 #endif
-
-#include "rand_source.h"
 
 
 /*

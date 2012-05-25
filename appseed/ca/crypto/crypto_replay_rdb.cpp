@@ -45,8 +45,6 @@
 #include "framework.h"
 
 
-#include "rdb.h"
-
 
 /*
  * this implementation of a replay database works as follows:

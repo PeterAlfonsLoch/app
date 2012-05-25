@@ -45,8 +45,6 @@
 
 #include "framework.h"
 
-#include "aes_cbc.h"
-#include "alloc.h"
 
 debug_module_t mod_aes_cbc = {
   0,                 /* debugging is off by default */

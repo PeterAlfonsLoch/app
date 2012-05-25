@@ -43,13 +43,14 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+#pragma once
+
+
 
 
 #ifndef NULL_CIPHER_H
 #define NULL_CIPHER_H
 
-#include "datatypes.h"
-#include "cipher.h"
 
 typedef struct {
   char foo ;/* is_empty, for now */

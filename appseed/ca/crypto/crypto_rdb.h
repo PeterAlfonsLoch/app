@@ -6,14 +6,14 @@
  * David A. McGrew
  * Cisco Systems, Inc.
  */
+#pragma once
+
+
 
 
 #ifndef REPLAY_DB_H
 #define REPLAY_DB_H
 
-#include "integers.h"         /* for uint32_t     */
-#include "datatypes.h"        /* for v128_t       */
-#include "err.h"              /* for err_status_t */
 
 /*
  * if the ith least significant bit is one, then the packet index

@@ -43,9 +43,6 @@
  */
 #include "framework.h"
 
-#include "alloc.h"
-#include "crypto_kernel.h"
-
 /* the debug module for primitive::memory allocation */
 
 debug_module_t mod_alloc = {

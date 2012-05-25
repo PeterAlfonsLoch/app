@@ -41,11 +41,13 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+#pragma once
+
+
 
 #ifndef NULL_AUTH_H
 #define NULL_AUTH_H
 
-#include "auth.h"
 
 typedef struct {
    char foo;

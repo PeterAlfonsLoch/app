@@ -41,6 +41,9 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+#pragma once
+
+
 
 #ifndef KEY_H
 #define KEY_H

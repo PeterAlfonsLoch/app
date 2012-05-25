@@ -43,8 +43,6 @@
  */
 #include "framework.h"
 
-#include "hmac.h" 
-#include "alloc.h"
 
 /* the debug module for authentiation */
 

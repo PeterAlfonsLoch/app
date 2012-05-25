@@ -43,15 +43,15 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+#pragma once
+
+
 
 
 
 #ifndef UT_SIM_H
 #define UT_SIM_H
 
-#include "c/c_c.h"
-
-#include "integers.h"  /* for uint32_t */
 
 #define UT_BUF 160      /* maximum amount of packet reorder */
 

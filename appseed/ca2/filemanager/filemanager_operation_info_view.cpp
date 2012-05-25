@@ -1,8 +1,4 @@
 #include "framework.h"
-#include <math.h>
-
-
-
 
 
 void DoBar(::ca::graphics * pdc, int ileft, int iTop, int cx, int cy, double dAnime)

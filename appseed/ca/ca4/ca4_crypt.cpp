@@ -2,12 +2,6 @@
 #include <openssl/ssl.h>
 
 
-extern "C"
-{
-
-   #include "crypto/hmac.h"
-
-}
 
 
 #include "ca4_nessie.h"

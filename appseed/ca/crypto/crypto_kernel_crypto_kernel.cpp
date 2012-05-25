@@ -44,9 +44,6 @@
 
 #include "framework.h"
 
-#include "alloc.h"
-
-#include "crypto_kernel.h"
 
 /* the debug module for the crypto_kernel */
 

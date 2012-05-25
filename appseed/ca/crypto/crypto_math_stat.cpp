@@ -8,7 +8,7 @@
  */
 #include "framework.h"
 
-#include "stat.h"
+
 
 debug_module_t mod_stat = {
   0,                 /* debugging is off by default */

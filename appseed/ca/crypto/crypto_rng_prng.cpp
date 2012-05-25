@@ -44,8 +44,6 @@
 #include "framework.h"
 
 
-#include "prng.h"
-
 /* single, global prng structure */
 
 x917_prng_t x917_prng;

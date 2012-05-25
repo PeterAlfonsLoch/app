@@ -43,8 +43,6 @@
  */
 #include "framework.h"
 
-#include "key.h"
-
 #define soft_limit 0x10000
 
 err_status_t

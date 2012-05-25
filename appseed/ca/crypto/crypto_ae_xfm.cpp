@@ -8,10 +8,6 @@
  */
 #include "framework.h"
 
-#include "cryptoalg.h"
-#include "aes_cbc.h"
-#include "hmac.h"
-#include "crypto_kernel.h"   /* for crypto_get_random() */
 
 #define KEY_LEN     16
 #define ENC_KEY_LEN 16

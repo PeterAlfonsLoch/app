@@ -46,8 +46,6 @@
 
 #include "framework.h"
 
-#include "datatypes.h"
-#include "gf2_8.h"
 
 /* gf2_8_shift() moved to gf2_8.h as an inline function */
 

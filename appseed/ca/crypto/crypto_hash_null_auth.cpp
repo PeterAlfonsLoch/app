@@ -46,8 +46,6 @@
 
 #include "framework.h"
 
-#include "null_auth.h" 
-#include "alloc.h"
 
 /* null_auth uses the auth debug module */
 

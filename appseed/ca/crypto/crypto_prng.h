@@ -6,6 +6,9 @@
  * David A. McGrew
  * Cisco Systems, Inc.
  */
+#pragma once
+
+
 
 #ifndef PRNG_H
 #define PRNG_H

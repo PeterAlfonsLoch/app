@@ -41,11 +41,12 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+#pragma once
+
+
 
 #ifndef MATH_H
 #define MATH_H
-
-#include "datatypes.h"
 
 unsigned char
 v32_weight(v32_t a);

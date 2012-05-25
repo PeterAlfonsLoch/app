@@ -44,7 +44,6 @@
  */
 #include "framework.h"
 
-#include "auth.h"
 
 /* the debug module for authentiation */
 

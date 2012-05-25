@@ -49,6 +49,9 @@ by Chien-Chung, Chung (Jim Chung) <jimchung1221@gmail.com>
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+#pragma once
+
+
 
 #ifndef HMAC_H
 #define HMAC_H
