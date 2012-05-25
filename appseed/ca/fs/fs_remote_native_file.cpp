@@ -64,7 +64,8 @@ namespace fs
 
       string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/get?path=" + System.url().url_encode(m_strPath);
+      strUrl = "http://fs.veriwell.net/fs/get?path=" + System.url().url_encode(System.url().get_script(m_strPath))
+         + "&server=" + System.url().url_encode(System.url().get_server(m_strPath));
 
       DWORD dwAdd = 0;
 
@@ -84,7 +85,8 @@ namespace fs
       if(m_varFile["xmledit"].ca2 < gen::memory_file > () != NULL)
       {
 
-         strUrl = "http://fs.veriwell.net/fs/xmledit?path=" + System.url().url_encode(m_varFile["url"]);
+         strUrl = "http://fs.veriwell.net/fs/xmledit?path=" + System.url().url_encode(System.url().get_script(m_varFile["url"]))
+            + "&server=" + System.url().url_encode(System.url().get_server(m_varFile["url"]));
 
          string strResponse;
 
@@ -100,7 +102,8 @@ namespace fs
          if(strMd5Here == strMd5There)
             return;
 
-         strUrl = "http://fs.veriwell.net/fs/set?path=" + System.url().url_encode(m_varFile["url"]);
+         strUrl = "http://fs.veriwell.net/fs/set?path=" + System.url().url_encode(System.url().get_script(m_varFile["url"]))
+            + "&server=" + System.url().url_encode(System.url().get_server(m_varFile["url"]));
 
          Application.http().put(strUrl, m_varFile["xml"].ca2 < gen::memory_file >());
 
@@ -108,7 +111,8 @@ namespace fs
       }
 
 
-      strUrl = "http://fs.veriwell.net/fs/set?path=" + System.url().url_encode(m_strPath);
+      strUrl = "http://fs.veriwell.net/fs/set?path=" + System.url().url_encode(System.url().get_script(m_strPath))
+         + "&server=" + System.url().url_encode(System.url().get_server(m_strPath));
 
       Application.http().put(strUrl, &m_memfile);
 

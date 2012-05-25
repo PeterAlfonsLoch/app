@@ -690,6 +690,12 @@ InitFailure:
             return NULL;
          spfile(AppUser(this).m_pifs->get_file(varFile, nOpenFlags, pe));
       }
+      else if(gen::str::begins(strPath, "fs://"))
+      {
+         if(&Session == NULL)
+            return NULL;
+         spfile(Session.m_prfs->get_file(varFile, nOpenFlags, pe));
+      }
       else if(gen::str::begins_eat_ci(strPath, "matter://"))
       {
          ::ca::application * papp;

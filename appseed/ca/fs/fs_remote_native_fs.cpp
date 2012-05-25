@@ -81,7 +81,8 @@ namespace fs
 
       string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/ls?path=" + System.url().url_encode(System.url().get_script(pszDir)) + "&server=" + System.url().url_encode(System.url().get_server(pszDir));
+      strUrl = "http://fs.veriwell.net/fs/ls?path=" + System.url().url_encode(System.url().get_script(pszDir))
+         + "&server=" + System.url().url_encode(System.url().get_server(pszDir));
 
       string strSource;
 
@@ -271,7 +272,7 @@ namespace fs
    ex1::filesp remote_native::get_file(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp * pexception)
    {
 
-      ex1::filesp spfile(new ifs_file(get_app(), varFile));
+      ex1::filesp spfile(new remote_native_file(get_app(), varFile));
 
       if(!spfile->open(varFile.get_string(), nOpenFlags, pexception))
       {
