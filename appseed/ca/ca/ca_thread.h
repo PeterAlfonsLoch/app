@@ -236,7 +236,7 @@ namespace ca
       ::ca::application *                 m_pappDelete;
       ph(::user::interaction)             m_puiMain;           // main window (usually same System.GetMainWnd())
       ph(::user::interaction)             m_puiActive;         // active main window (may not be GetMainWnd())
-      event *                             m_peventReady;
+      bool *                              m_pbReady;
       gen::property_set                   m_set;
       string                              m_strWorkUrl;
 

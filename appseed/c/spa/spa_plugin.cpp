@@ -29,7 +29,7 @@ namespace spa
       m_iHealingSurface       = 0;
       m_iEdge                 = -1;
       m_bAppStarted           = false;
-      m_hEventReady           = NULL;
+      m_pbReady               = NULL;
 
    }
 
@@ -279,7 +279,7 @@ install:
       try
       {
          iExitCode = papp->exit_instance();
-         //TRACE("Exit Code from retract_app %d (exit_instance %s)", iExitCode, typeid(*papp).raw_name());
+         //TRACE("Exit Code from retract_app %d (exit_instance %s)", iExitCode, typeid(*papp).name());
       }
       catch(...)
       {

@@ -584,7 +584,7 @@ namespace plane
    ::ca::ca * system::on_alloc(::ca::application * papp, ::ca::type_info & info)
    {
       /*string str;
-      str.Format("Could not alloc %s", info.raw_name());
+      str.Format("Could not alloc %s", info.name());
       simple_message_box(str);*/
       ::ca::ca * pobj = Sys(papp).factory().create(papp, info);
       if(pobj != NULL)
@@ -1077,8 +1077,10 @@ namespace plane
       #ifdef WINDOWS
       MSG msg;
       bool bQuit = PeekMessage(&msg, NULL, WM_QUIT, WM_QUIT, PM_REMOVE) != FALSE;
-      #endif
+      va_list list = NULL;
+      #else
       va_list list = {};
+      #endif
       bool bResult = ________ca2_votagus_logging_Report(_CRT_ASSERT, lpszFileName, iLine, NULL, NULL, list) != 0;
       #ifdef WINDOWS
       if (bQuit)
@@ -1098,7 +1100,7 @@ namespace plane
    void system::on_allocation_error(::ca::application * papp, ::ca::type_info & info)
    {
       UNREFERENCED_PARAMETER(papp);
-      simple_message_box(NULL, MB_ICONINFORMATION, "Implement \"%s\" allocation\n", info.raw_name());
+      simple_message_box(NULL, MB_ICONINFORMATION, "Implement \"%s\" allocation\n", info.name());
    }
 
 

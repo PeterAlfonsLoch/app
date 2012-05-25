@@ -19,7 +19,7 @@ namespace plugin
       m_iEdge                 = -1;
       m_psession              = NULL;
       m_bAppStarted           = false;
-      m_hEventReady           = NULL;
+      m_pbReady               = NULL;
       m_psystem               = NULL;
       m_bMainReady            = false;
       m_bOpenUrl              = false;
@@ -145,8 +145,8 @@ namespace plugin
       m_psystem->add_frame(m_puiHost);
       m_puiHost->layout();
 
-      if(m_hEventReady == NULL)
-         m_hEventReady = ::CreateEventA(NULL, TRUE, FALSE, NULL);
+      if(m_pbReady == NULL)
+         m_pbReady = (bool *) ca2_alloc(sizeof(bool));
 
       // Create Message Queue
       MSG msg;
@@ -510,7 +510,10 @@ namespace plugin
                   }
                   if(!m_bApp)
                   {
-                     ::WaitForSingleObject(m_hEventReady, (1984 + 1977) * 20);
+                     while(!*m_pbReady)
+                     {
+                        Sleep(284);
+                     }
                      if(!m_bApp)
                      {
                         printf("Bergedge application is not initialized. Cannot start mplite.");
@@ -599,14 +602,19 @@ namespace plugin
 
       if(pthread->m_bRun)
       {
-         ::ResetEvent(m_hEventReady);
-         pthread->m_peventReady = m_hEventReady;
+         *m_pbReady = false;
+         pthread->m_pbReady = m_pbReady;
          pthread->m_bRun = false;
-         ::WaitForSingleObject(m_hEventReady, (1984 + 1977) * 20);
+         int iRepeat = 0;
+         while(!*m_pbReady && iRepeat < 49)
+         {
+            Sleep(284);
+            iRepeat++;
+         }
       }
       try
       {
-         ::DeleteObject(m_hEventReady);
+         ca2_free(m_pbReady);
       }
       catch(...)
       {

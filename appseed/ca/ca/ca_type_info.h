@@ -41,8 +41,8 @@ namespace ca
       bool operator != (::ca::type_info info) const;
       bool operator != (const char * pszRawName) const;
 
-      virtual void raw_name(const char * pszRawName);
-      virtual const char * raw_name() const;
+      virtual void name(const char * pszRawName);
+      virtual const char * name() const;
 
       virtual ptra * new_ptra();
 

@@ -13,8 +13,8 @@ template < class T >
 void factory::creatable(int iCount, bool bOverwrite)
 {
 
-   if(bOverwrite || !is_set(System.type_info < T > ().raw_name()))
-      set_at(System.type_info < T > ().raw_name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
+   if(bOverwrite || !is_set(System.type_info < T > ().name()))
+      set_at(System.type_info < T > ().name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
 
 }
 
@@ -23,8 +23,8 @@ template < class T >
 void factory::cloneable(int iCount, bool bOverwrite)
 {
 
-   if(bOverwrite || !is_set(System.type_info < T > ().raw_name()))
-      set_at(System.type_info < T > ().raw_name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
+   if(bOverwrite || !is_set(System.type_info < T > ().name()))
+      set_at(System.type_info < T > ().name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
 
 }
 
@@ -32,14 +32,14 @@ template < class T >
 factory_allocator * factory::get_allocator(int iCount)
 {
 
-   factory_allocator * pallocator = get_allocator(System.type_info < T > ().raw_name());
+   factory_allocator * pallocator = get_allocator(System.type_info < T > ().name());
 
    if(pallocator != NULL)
       return pallocator;
 
    pallocator = new factory_allocator_impl < T > (get_app(), iCount);
 
-   set_at(System.type_info < T > ().raw_name(), pallocator);
+   set_at(System.type_info < T > ().name(), pallocator);
 
    return pallocator;
 

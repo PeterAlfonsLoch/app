@@ -26,7 +26,7 @@ namespace hotplugin
       DWORD                         m_last_redraw;
       int                           m_iEdge;
       bool                          m_bAppStarted;
-      HANDLE                        m_hEventReady;
+      bool *                        m_pbReady;
       bool                          m_bApp;
       host *                        m_phost;
       bool                          m_bOk;

@@ -75,7 +75,7 @@ void factory::set_at(const char * pszType, factory_allocator * pallocator)
 void factory::discard(::ca::ca * pobject)
 {
    single_lock sl(m_pmutex, TRUE);
-   factory_allocator * pallocator = get_allocator(typeid(*pobject).raw_name());
+   factory_allocator * pallocator = get_allocator(typeid(*pobject).name());
    sl.unlock();
    if(pallocator == NULL)
    {
@@ -203,7 +203,7 @@ factory_allocator * factory::get_allocator(const char * pszType)
    
    index iFind;
 
-   if(!m_pstrida->find((id) typeid(*pobject).raw_name(), iFind))
+   if(!m_pstrida->find((id) typeid(*pobject).name(), iFind))
       return NULL;
 
    factory_item_base * pitem = m_itemptra.element_at(iFind);

@@ -100,7 +100,7 @@ document_template::Confidence document_template::MatchDocType(const char * lpszP
    if (pdocument == NULL)
    {
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::document_interface type %hs failed.\n",
-         m_typeinfoDocument.raw_name());
+         m_typeinfoDocument.name());
       return NULL;
    }
    pdocument->on_alloc(get_app());
@@ -141,7 +141,7 @@ frame_window* document_template::create_new_frame(::user::document_interface * p
    if (pFrame == NULL)
    {
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: Dynamic create of frame %hs failed.\n",
-         m_typeinfoFrame.raw_name());
+         m_typeinfoFrame.name());
       return NULL;
    }
    ASSERT_KINDOF(frame_window, pFrame);
@@ -267,7 +267,7 @@ void document_template::dump(dump_context & dumpcontext) const
    dumpcontext << "\nm_strDocStrings: " << m_strDocStrings;
 
    if (m_typeinfoDocument)
-      dumpcontext << "\nm_pDocClass = " << m_typeinfoDocument.raw_name();
+      dumpcontext << "\nm_pDocClass = " << m_typeinfoDocument.name();
    else
       dumpcontext << "\nm_pDocClass = NULL";
 

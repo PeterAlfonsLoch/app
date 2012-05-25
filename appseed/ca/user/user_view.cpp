@@ -475,7 +475,7 @@ void view::_001OnView(gen::signal_object * pobj)
    }
    if(id == NULL)
    {
-      id = cc->m_typeinfoNewView.raw_name();
+      id = cc->m_typeinfoNewView.name();
    }
    return s_create_view(cacc, pwndParent, id);
 }
@@ -511,7 +511,7 @@ void view::_001OnView(gen::signal_object * pobj)
       pguie = dynamic_cast < ::user::interaction * > (App(papp).alloc(pContext->m_user->m_typeinfoNewView));
       if (pguie == NULL)
       {
-//         TRACE1("Warning: Dynamic create of ::view type %hs failed.\n", pContext->m_typeinfoNewView.raw_name());
+//         TRACE1("Warning: Dynamic create of ::view type %hs failed.\n", pContext->m_typeinfoNewView.name());
          return NULL;
       }
    }

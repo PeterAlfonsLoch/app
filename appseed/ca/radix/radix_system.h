@@ -51,7 +51,7 @@ namespace radix
    inline id system::id(const std_type_info & info)
    {
 #ifdef WINDOWS
-      return s_idspace(info.raw_name());
+      return s_idspace(info.name());
 #else
       return s_idspace(info.name());
 #endif

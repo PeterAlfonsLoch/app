@@ -37,7 +37,7 @@ namespace ca
    type_info::type_info(const std_type_info & info)
    {
 #ifdef WINDOWS
-      m_id = info.raw_name();
+      m_id = info.name();
 #else
       m_id = info.name();
 #endif
@@ -47,7 +47,7 @@ namespace ca
    type_info::type_info(const std_type_info * pinfo)
    {
 #ifdef WINDOWS
-      m_id = pinfo->raw_name();
+      m_id = pinfo->name();
 #else
       m_id = pinfo->name();
 #endif
@@ -71,7 +71,7 @@ namespace ca
    type_info & type_info::operator = (const std_type_info & info)
    {
 #ifdef WINDOWS
-      m_id = info.raw_name();
+      m_id = info.name();
 #else
       m_id = info.name();
 #endif
@@ -111,7 +111,7 @@ namespace ca
    bool type_info::operator == (const std_type_info & info) const
    {
       #ifdef WINDOWS
-      return m_id == info.raw_name();
+      return m_id == info.name();
       #else
       return m_id == info.name();
       #endif
@@ -119,7 +119,7 @@ namespace ca
    bool type_info::operator != (const std_type_info & info) const
    {
        #ifdef WINDOWS
-      return m_id != info.raw_name();
+      return m_id != info.name();
       #else
       return m_id != info.name();
       #endif
@@ -134,12 +134,12 @@ namespace ca
       return m_id != pszRawName;
    }
 
-   const char * type_info::raw_name() const
+   const char * type_info::name() const
    {
       return m_id;
    }
 
-   void type_info::raw_name(const char * pszRawName)
+   void type_info::name(const char * pszRawName)
    {
       m_id = pszRawName;
    }
@@ -156,18 +156,18 @@ namespace ca
 CLASS_DECL_ca bool operator == (const std_type_info & info1, ::ca::type_info info2)
 {
    #ifdef WINDOWS
-   return !strcmp(info1.raw_name(), info2.raw_name());
+   return !strcmp(info1.name(), info2.name());
    #else
-   return !strcmp(info1.name(), info2.raw_name());
+   return !strcmp(info1.name(), info2.name());
    #endif
 }
 
 CLASS_DECL_ca bool operator != (const std_type_info & info1, ::ca::type_info info2)
 {
    #ifdef WINDOWS
-   return !strcmp(info1.raw_name(), info2.raw_name());
+   return !strcmp(info1.name(), info2.name());
    #else
-   return !strcmp(info1.name(), info2.raw_name());
+   return !strcmp(info1.name(), info2.name());
    #endif
 }
 

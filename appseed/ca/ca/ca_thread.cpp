@@ -51,7 +51,7 @@ namespace ca
    {
       m_pappDelete      = NULL;
       m_puiMain         = NULL;
-      m_peventReady     = NULL;
+      m_pbReady         = NULL;
       m_bReady          = false;
 /*      m_ptimera = NULL;
       m_puieptra = NULL;

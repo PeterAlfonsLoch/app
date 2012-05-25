@@ -12,7 +12,7 @@ template<>
 inline UINT HashKey(::ca::type_info key)
 {
    // default identity hash - works for most primitive values
-   return HashKey(key.raw_name());
+   return HashKey(key.name());
 }
 
 
@@ -60,7 +60,7 @@ public:
 
 #ifdef WINDOWS
    factory_allocator_impl(::ca::application * papp, int iCount) :
-      factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).raw_name())
+      factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name())
    {
    }
 #else
@@ -232,15 +232,15 @@ public:
    template < class T >
    void creatable(::ca::type_info info, int iCount, bool bOverwrite = false)
    {
-      if(bOverwrite || !is_set(info.raw_name()))
-         set_at(info.raw_name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
+      if(bOverwrite || !is_set(info.name()))
+         set_at(info.name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
    }
 
    template < class T >
    void cloneable(::ca::type_info  info, int iCount, bool bOverwrite = false)
    {
-      if(bOverwrite || !is_set(info.raw_name()))
-         set_at(info.raw_name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
+      if(bOverwrite || !is_set(info.name()))
+         set_at(info.name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
    }
 
    virtual ::ca::ca * create(::ca::application * papp, ::ca::type_info & info);

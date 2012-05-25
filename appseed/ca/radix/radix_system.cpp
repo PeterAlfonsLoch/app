@@ -30,7 +30,7 @@ namespace radix
          return new class ::ca2::log(this); // NULL log implementation
       }
       /*string str;
-      str.Format("Could not alloc %s", info.raw_name());
+      str.Format("Could not alloc %s", info.name());
       simple_message_box(str);*/
       on_allocation_error(papp, info);
       return NULL;

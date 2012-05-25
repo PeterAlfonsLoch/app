@@ -453,12 +453,12 @@ namespace plane
 
       void set_enum_name(::ca::type_info etype, int i, const char * psz)
       {
-         m_mapEnumToName[etype.raw_name()][i] = psz;
-         m_mapNameToEnum[etype.raw_name()][psz] = i;
+         m_mapEnumToName[etype.name()][i] = psz;
+         m_mapNameToEnum[etype.name()][psz] = i;
       }
       string get_enum_name(::ca::type_info info, int i)
       {
-         return m_mapEnumToName[info.raw_name()].get(i, "");
+         return m_mapEnumToName[info.name()].get(i, "");
       }
 
       template < class E , E edefault>
@@ -476,12 +476,12 @@ namespace plane
 
       int enum_from_name(::ca::type_info info, const char * psz, int iDefault = 0)
       {
-         return m_mapNameToEnum[info.raw_name()].get(psz, iDefault);
+         return m_mapNameToEnum[info.name()].get(psz, iDefault);
       }
       int enum_from_name(const std_type_info & info, const char * psz, int iDefault = 0)
       {
           #ifdef WINDOWS
-         return m_mapNameToEnum[info.raw_name()].get(psz, iDefault);
+         return m_mapNameToEnum[info.name()].get(psz, iDefault);
          #else
          return m_mapNameToEnum[info.name()].get(psz, iDefault);
          #endif

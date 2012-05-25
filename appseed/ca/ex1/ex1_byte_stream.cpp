@@ -155,7 +155,7 @@ namespace ex1
       char * psz = (char *) malloc(iLen + 1);
       read(psz, iLen);
       psz[iLen] = '\0';
-      info.raw_name(psz);
+      info.name(psz);
       free((void *) psz);
       return *this;
    }
@@ -369,9 +369,9 @@ namespace ex1
 
    byte_output_stream & byte_output_stream::operator << (::ca::type_info & info)
    {
-      strsize iLen = strlen(info.raw_name());
+      strsize iLen = strlen(info.name());
       write(&iLen, sizeof(iLen));
-      write(info.raw_name(), iLen);
+      write(info.name(), iLen);
       return *this;
    }
 

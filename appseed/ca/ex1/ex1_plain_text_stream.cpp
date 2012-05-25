@@ -211,7 +211,7 @@ namespace ex1
       char * psz = (char *) malloc(iLen + 1);
       read(psz, iLen);
       psz[iLen] = '\0';
-      info.raw_name(psz);
+      info.name(psz);
       free((void *) psz);
       return *this;
    }
@@ -362,7 +362,7 @@ namespace ex1
 
    plain_text_output_stream & plain_text_output_stream::operator << (::ca::type_info & info)
    {
-      return raw_print(info.raw_name());
+      return raw_print(info.name());
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (plain_text_serializable & serializable)

@@ -718,7 +718,7 @@ namespace user
    {
       for(int i = 0; i < this->get_size(); i++)
       {
-         if(typeid(*this->element_at(i)).raw_name() == info.raw_name())
+         if(typeid(*this->element_at(i)).name() == info.name())
          {
             return this->element_at(i);
          }
