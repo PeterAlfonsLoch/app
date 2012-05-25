@@ -110,6 +110,9 @@ namespace ca
 
 #endif
 
+
+#ifdef WINDOWS
+
    template < class T >
    smart_pointer < T > ::smart_pointer(long int i) :
       ca(i != 0 ? ((T *) i)->get_app() : NULL)
@@ -117,6 +120,8 @@ namespace ca
       m_p = NULL;
       operator = ((T *) i);
    }
+
+#endif
 
    template < class T >
    smart_pointer < T > ::~smart_pointer()

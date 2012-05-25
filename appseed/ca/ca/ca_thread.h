@@ -43,6 +43,7 @@
 //#include <limits>
 
 
+class event;
 
 
 namespace radix
@@ -235,7 +236,7 @@ namespace ca
       ::ca::application *                 m_pappDelete;
       ph(::user::interaction)             m_puiMain;           // main window (usually same System.GetMainWnd())
       ph(::user::interaction)             m_puiActive;         // active main window (may not be GetMainWnd())
-      void *                              m_peventReady;
+      event *                             m_peventReady;
       gen::property_set                   m_set;
       string                              m_strWorkUrl;
 

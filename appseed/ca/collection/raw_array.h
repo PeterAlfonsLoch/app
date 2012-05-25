@@ -5,10 +5,12 @@
 #define new DEBUG_NEW
 
 #ifdef DEBUG
-#define TEMPLATE_TYPE_NEW new(__FILE__ + string(typeid(TYPE).raw_name()), __LINE__)
+#define TEMPLATE_TYPE_NEW new(__FILE__ + string(" - ") + typeid(TYPE).name(), __LINE__)
 #else
 #define TEMPLATE_TYPE_NEW ne
 #endif
+
+#undef new
 
 #undef new
 

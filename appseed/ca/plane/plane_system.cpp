@@ -890,7 +890,7 @@ namespace plane
    {
       if(m_plog != NULL)
          return true;
-      m_plog = dynamic_cast < class ::ca2::log * > (alloc(this, System.template type_info < class ::ca::log > ()));
+      m_plog = dynamic_cast < class ::ca2::log * > (alloc(this, System.type_info < class ::ca::log > ()));
       m_plog->set_extended_log();
       m_plog->set_app(this);
       if(!m_plog->initialize(pszId))
@@ -1068,17 +1068,22 @@ namespace plane
    {
       if(!on_assert_failed_line(lpszFileName, iLine))
          return false;
+
       // may be in another thread than application thread
    #ifdef DEBUG
    #ifndef ___NO_DEBUG_CRT
       // we remove WM_QUIT because if it is in the queue then the message box
       // won't display
+      #ifdef WINDOWS
       MSG msg;
       bool bQuit = PeekMessage(&msg, NULL, WM_QUIT, WM_QUIT, PM_REMOVE) != FALSE;
-      va_list list = NULL;
+      #endif
+      va_list list = {};
       bool bResult = ________ca2_votagus_logging_Report(_CRT_ASSERT, lpszFileName, iLine, NULL, NULL, list) != 0;
+      #ifdef WINDOWS
       if (bQuit)
          PostQuitMessage((int)msg.wParam);
+      #endif
       return bResult;
    #else
       // Not supported.
@@ -1156,7 +1161,7 @@ namespace plane
       {
          post.clear();
          headers.clear();
-         ::DeleteFile(filename);
+         file().del(filename);
          return http().download(str, headers["Location"], post, headers, set, pcookies, puser);
       }
       str = Application.file().as_string(filename);
@@ -1304,7 +1309,7 @@ namespace plane
    {
       if(m_ptwf != NULL)
          return true;
-      m_ptwf = dynamic_cast < ::ca::window_draw * > (alloc(this, System.template type_info < ::ca::window_draw > ()));
+      m_ptwf = dynamic_cast < ::ca::window_draw * > (alloc(this, System.type_info < ::ca::window_draw > ()));
       m_ptwf->start();
       return true;
    }
@@ -1404,7 +1409,7 @@ namespace plane
    ::ca::type_info & system::get_type_info(const ::std_type_info & info)
    {
 
-      ::ca::type_info & typeinfo = m_typemap[info.raw_name()];
+      ::ca::type_info & typeinfo = m_typemap[info.name()];
 
       if(typeinfo.m_id.is_null())
          typeinfo = info;

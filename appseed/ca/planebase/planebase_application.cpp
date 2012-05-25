@@ -490,7 +490,7 @@ InitFailure:
       try
       {
          ::radix::thread * pthread = dynamic_cast < ::radix::thread * > (::ca::smart_pointer < ::ca::thread >::m_p);
-         ::SetEvent((HANDLE) pthread->m_peventReady);
+         pthread->m_peventReady->SetEvent();
       }
       catch(...)
       {
