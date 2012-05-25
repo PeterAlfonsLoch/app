@@ -19,7 +19,7 @@ namespace fs
       }
       else
       {
-         return strcmp(typeid(*pitem1).raw_name(), typeid(*pitem2).raw_name());
+         return strcmp(typeid(*pitem1).name(), typeid(*pitem2).name());
       }
 
    }

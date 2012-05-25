@@ -460,8 +460,8 @@ namespace filemanager
 
       ::fs::tree_item * pitemFolder = NULL;
 
-      string strRawName1 = typeid(*pitemParent).raw_name();
-      string strRawName2 = typeid(::fs::tree_item).raw_name();
+      string strRawName1 = typeid(*pitemParent).name();
+      string strRawName2 = typeid(::fs::tree_item).name();
       if(strRawName1 == strRawName2)
       {
          pitemFolder = (::fs::tree_item *) pitemParent;
