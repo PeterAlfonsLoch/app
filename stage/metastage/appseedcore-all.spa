@@ -4,6 +4,7 @@ stage\basis\app-sentinel.exe
 stage\basis\c.dll
 stage\basis\ca.dll
 stage\basis\FreeImage.dll
+stage\basis\freetype2.3.5-1.dll
 stage\basis\libeay32.dll
 stage\basis\libmysql.dll
 stage\basis\libssl32.dll
