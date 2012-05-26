@@ -355,7 +355,8 @@ namespace userbase
    {
       if(m_bLayered)
       {
-         return !System.savings().is_trying_to_save(gen::resource_processing);
+         return !Session.savings().is_trying_to_save(gen::resource_processing) 
+            && !Session.savings().is_trying_to_save(gen::resource_display_bandwidth);
       }
       else 
       {

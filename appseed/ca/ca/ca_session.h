@@ -15,6 +15,9 @@ namespace ca
       virtual ~session();
 
 
+      virtual bool is_remote_session();
+
+
    };
 
 

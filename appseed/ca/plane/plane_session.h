@@ -136,6 +136,9 @@ namespace plane
       virtual FileManagerTemplate * GetStdFileManagerTemplate();
 
 
+      virtual bool is_remote_session();
+
+
    };
 
 

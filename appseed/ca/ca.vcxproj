@@ -1269,7 +1269,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="planebase\planebase.h" />
     <ClInclude Include="plane\plane.h" />
     <ClInclude Include="plane\plane_application.h" />
-    <ClInclude Include="plane\plane_bergedge_interface.h" />
     <ClInclude Include="plane\plane_system_primitive_var.h" />
     <ClInclude Include="plane\plane_session.h" />
     <ClInclude Include="plane\plane_library.h" />

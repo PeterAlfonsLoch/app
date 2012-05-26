@@ -267,6 +267,14 @@ namespace ca
    }
 
 
+   bool os::is_remote_session()
+   {
+
+      return false;
+
+   }
+
+
 } // namespace ca
 
 

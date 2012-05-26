@@ -2666,9 +2666,6 @@
     <ClInclude Include="math\value.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
-    <ClInclude Include="plane\plane_bergedge_interface.h">
-      <Filter>Header Files\plane</Filter>
-    </ClInclude>
     <ClInclude Include="filehandler\filehandler_handler.h">
       <Filter>Header Files\filehandler</Filter>
     </ClInclude>

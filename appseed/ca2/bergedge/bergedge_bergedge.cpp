@@ -94,6 +94,16 @@ namespace bergedge
          return false;
       }
 
+      if(Session.is_remote_session())
+      {
+         
+         Session.savings().save(gen::resource_display_bandwidth);
+         Session.savings().save(gen::resource_blur_background);
+         Session.savings().save(gen::resource_blurred_text_embossing);
+         Session.savings().save(gen::resource_translucent_background);
+
+      }
+
 
       return true;
    }

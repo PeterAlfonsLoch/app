@@ -1074,6 +1074,16 @@ namespace plane
 
    }
 
+   
+   bool session::is_remote_session()
+   {
+
+
+      return System.os().is_remote_session() || m_pbergedgeInterface->is_remote_session();
+
+
+   }
+
 
 } // namespace plane
 

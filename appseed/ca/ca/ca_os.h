@@ -75,6 +75,10 @@ namespace ca
 
       DECLSPEC_NO_RETURN void raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
 
+
+      virtual bool is_remote_session();
+
+
    };
 
 
