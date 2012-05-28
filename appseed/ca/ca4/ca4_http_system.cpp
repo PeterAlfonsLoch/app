@@ -639,6 +639,25 @@ retry:
          DWORD dw1;
          DWORD dw2;
 
+
+         if(psession->GetSocket() == INVALID_SOCKET)
+         {
+            try
+            {
+               
+               delete psession;
+
+            }
+            catch(...)
+            {
+            }
+
+            psession = open(handler, System.url().get_server(pszRequest), System.url().get_protocol(pszRequest),
+               set, puser, pszVersion);
+            if(psession == NULL)
+               return NULL;
+         }
+
          DWORD dwTimeTelmo1 = GetTickCount();
 
          ::ca::application * papp = handler.get_app();
@@ -808,23 +827,26 @@ retry:
 
 
 
-      bool system::get(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszRequest, primitive::memory_base & memory, ::fontopus::user * puser)
+      ::sockets::http_session * system::get(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszRequest, primitive::memory_base & memory, ::fontopus::user * puser)
       {
 
          gen::property_set post(get_app());
+
          gen::property_set headers(get_app());
+
          gen::property_set set(get_app());
          
-         request(handler, psession, pszRequest, post, headers, set, NULL, puser, NULL, NULL);
+         psession = request(handler, psession, pszRequest, post, headers, set, NULL, puser, NULL, NULL);
          
          if(psession == NULL)
-            return false;
+            return NULL;
          
          memory.allocate(psession->GetDataLength());
 
          memcpy(memory.get_data(), psession->GetDataPtr(), memory.get_size());
 
-         return true;
+         return psession;
+
       }
 
 

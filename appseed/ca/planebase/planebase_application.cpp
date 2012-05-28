@@ -1366,7 +1366,7 @@ InitFailure:
          }
       }
 
-      System.http().get(h, psession, strUrl, mem);
+      psession = System.http().get(h, psession, strUrl, mem);
 
       primitive::memory_file file(get_app(), &mem);
 
