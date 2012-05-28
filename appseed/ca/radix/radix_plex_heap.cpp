@@ -359,6 +359,12 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
 
 count plex_heap_alloc_array::get_mem_info(int ** ppiUse, const char *** ppszFile, int ** ppiLine)
 {
+
+#ifndef MEMDLEAK
+
+   throw simple_exception("plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
+
+#endif
    
    mutex_lock lock(&g_mutex2, true);
 
