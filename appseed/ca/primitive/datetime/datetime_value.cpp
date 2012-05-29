@@ -159,7 +159,11 @@ namespace datetime
                /*time_t now = _time64(NULL);
                time_t nowUtc = mktime(gmtime(&now));
                time_t tDiff = difftime(nowUtc, now);*/
+#ifdef WINDOWS
                time = ::datetime::time(_mkgmtime64(&atm));
+#else
+               time = ::datetime::time(mkgmtime_dup(&atm));
+#endif
             }
             else
             {

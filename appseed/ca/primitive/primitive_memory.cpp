@@ -22,14 +22,14 @@ namespace primitive
          ASSERT(FALSE);
          return false;
       }
-   
+
       if(dwNewLength <= 0)
       {
          return true;
       }
-   
+
       remove_offset();
-   
+
       if(m_pbStorage == NULL)
       {
          m_iOffset = 0;
@@ -39,12 +39,12 @@ namespace primitive
          {
             return false;
          }
-         else 
+         else
          {
             m_dwAllocation = dwAllocation;
             if(m_pcontainer != NULL)
             {
-               m_pcontainer->offset_kept_pointers((int) m_pbStorage);
+               m_pcontainer->offset_kept_pointers((int_ptr) m_pbStorage);
             }
             return true;
          }
@@ -66,7 +66,7 @@ namespace primitive
                {
                   m_pcontainer->offset_kept_pointers(iOffset);
                }
-            
+
                m_dwAllocation = dwAllocation;
                m_pbStorage = (LPBYTE) lpVoid;
                return true;
@@ -76,13 +76,13 @@ namespace primitive
          {
             return true;
          }
-      
+
       }
    }
 
    LPBYTE memory::detach()
    {
-      
+
       LPBYTE pbStorage = m_pbStorage;
 
       m_pbStorage = NULL;

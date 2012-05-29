@@ -165,15 +165,34 @@ bool GetSecondsSince1601(unsigned year, unsigned month, unsigned day,
   return true;
 }
 
-void GetCurUtcFileTime(FILETIME &ft)
-{
-  SYSTEMTIME st;
-  GetSystemTime(&st);
-  SystemTimeToFileTime(&st, &ft);
-}
+
+
+
+
+#if defined(WINDOWS)
+
+
+      void GetCurUtcFileTime(FILETIME &ft)
+      {
+
+        SYSTEMTIME st;
+
+        GetSystemTime(&st);
+
+        SystemTimeToFileTime(&st, &ft);
+
+      }
+
+
+#endif
+
+
+
+
 
    } // namespace file_time
 
 
 } // namespace windows
+
 

@@ -74,7 +74,9 @@ namespace plugin
 
          psystem->init_main_data(pinitmaindata);*/
 
+#ifdef WINDOWS
          psystem->m_hInstance = ::GetModuleHandle("ca.dll");
+#endif
 
          if(!psystem->InitApplication())
             return 0;
@@ -101,7 +103,9 @@ namespace plugin
 
          m_psystem->m_pplugin = this;
 
+#ifdef WINDOWS
          m_psystem->m_hInstance = ::GetModuleHandle("ca.dll");
+#endif
 
          if(!m_psystem->InitApplication())
             return 0;
@@ -148,9 +152,13 @@ namespace plugin
       if(m_pbReady == NULL)
          m_pbReady = (bool *) ca2_alloc(sizeof(bool));
 
+
+#ifdef WINDOWS
       // Create Message Queue
       MSG msg;
 	   PeekMessage(&msg, NULL, 0, 0xffffffffu, FALSE);
+#endif
+
 
       if(bNew || !m_bAppStarted)
       {
@@ -281,7 +289,7 @@ namespace plugin
 
    void plugin::on_ready()
    {
-      m_puiHost->PostMessageA(host_interaction::message_check, 0, 1);
+      m_puiHost->PostMessage(host_interaction::message_check, 0, 1);
    }
 
    void plugin::start_ca2_login()
@@ -461,7 +469,11 @@ namespace plugin
                if(!m_psystem->install().is("fontopus2"))
                {
                   Sys(m_psystem).install().start(": app=session session_start=fontopus2 install");
+#ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
+#else
+                  kill(0, SIGSTOP);
+#endif
                   m_bMainReady = false;
                   return;
                }
@@ -474,7 +486,11 @@ namespace plugin
                if(!m_psystem->install().is("fontopus2"))
                {
                   Sys(m_psystem).install().start(": app=session session_start=fontopus2 install");
+#ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
+#else
+                  kill(0, SIGSTOP);
+#endif
                   m_bMainReady = false;
                   return;
                }
@@ -553,7 +569,11 @@ namespace plugin
 
                         Sys(m_psystem).install().start(strCommandLine);
 
+#ifdef WINDOWS
                         ::TerminateProcess(::GetCurrentProcess(), 0);
+#else
+                        kill(0, SIGSTOP);
+#endif
 
                         m_bMainReady = false;
 
@@ -578,7 +598,11 @@ namespace plugin
       }
       catch(installing_exception &)
       {
+#ifdef WINDOWS
          ::TerminateProcess(::GetCurrentProcess(), 0);
+#else
+         kill(0, SIGSTOP);
+#endif
       }
    }
 
@@ -598,7 +622,7 @@ namespace plugin
       {
       }
 
-      ::radix::thread * pthread = dynamic_cast < ::radix::thread * > (m_psystem->smart_pointer < ::ca::thread >::m_p);
+      ::radix::thread * pthread = dynamic_cast < ::radix::thread * > (m_psystem->::ca::smart_pointer < ::ca::thread >::m_p);
 
       if(pthread->m_bRun)
       {
@@ -632,7 +656,7 @@ namespace plugin
 
 
 
-
+#ifdef WINDOWS
 
    uint_ptr plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
@@ -689,6 +713,17 @@ namespace plugin
 
    }
 
+#else
+
+   int plugin::message_handler(XEvent * pevent)
+   {
+
+      return 0;
+
+   }
+
+#endif
+
    bool plugin::os_native_bergedge_start()
    {
 
@@ -702,34 +737,34 @@ namespace plugin
 
    void plugin::set_window_rect(LPCRECT lpcrect)
    {
-      
+
       m_rect = *lpcrect;
-      
+
       if(m_puiHost != NULL)
       {
-         
+
          m_puiHost->m_bRectOk = true;
-         
+
          m_puiHost->m_pimpl->m_bRectOk = true;
-         
+
          m_puiHost->m_rectParentClient =  m_rect;
-         
+
          m_puiHost->m_rectParentClient.offset(-point64(m_puiHost->m_rectParentClient.top_left()));
-         
+
          m_puiHost->m_pimpl->m_rectParentClient = m_puiHost->m_rectParentClient;
-         
+
          rect64 rectWindow64;
-         
+
          m_puiHost->GetWindowRect(rectWindow64);
-         
+
          class rect rectWindow;
-         
+
          rectWindow = rectWindow64;
-         
+
          m_puiHost->SetWindowPos(ZORDER_TOP, rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), 0);
-         
+
          m_puiHost->send_message(WM_SIZE);
-         
+
          m_puiHost->send_message(WM_MOVE);
 
       }

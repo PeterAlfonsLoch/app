@@ -632,7 +632,7 @@ InitFailure:
       }
       catch(...)
       {
-         return NULL;
+         return ::ca::null();
       }
    }
 
@@ -666,11 +666,11 @@ InitFailure:
       {
          zip::InFile * pinfile = new zip::InFile(get_app());
          if(pinfile == NULL)
-            return NULL;
+            return ::ca::null();
          if(!pinfile->unzip_open(strPath, 0, NULL))
          {
             delete pinfile;
-            return NULL;
+            return ::ca::null();
          }
          spfile(pinfile);
       }
@@ -687,13 +687,13 @@ InitFailure:
          ||   gen::str::begins(strPath, "uifs://"))
       {
          if(&AppUser(this) == NULL)
-            return NULL;
+            return ::ca::null();
          spfile(AppUser(this).m_pifs->get_file(varFile, nOpenFlags, pe));
       }
       else if(gen::str::begins(strPath, "fs://"))
       {
          if(&Session == NULL)
-            return NULL;
+            return ::ca::null();
          spfile(Session.m_prfs->get_file(varFile, nOpenFlags, pe));
       }
       else if(gen::str::begins_eat_ci(strPath, "matter://"))
@@ -756,7 +756,7 @@ InitFailure:
       {
          if(System.appptra().get_count() <= 1)
          {
-            System.PostThreadMessageA(WM_QUIT, 0, 0);
+            System.PostThreadMessage(WM_QUIT, 0, 0);
          }
       }
       catch(...)
@@ -1357,13 +1357,21 @@ InitFailure:
 
       if(psession == NULL)
       {
+
          while(true)
          {
-            psession = System.http().open(h, System.url().get_server(strUrl), System.url().get_protocol(strUrl), gen::property_set(get_app()), NULL, NULL);
+
+            gen::property_set setEmpty(get_app());
+
+            psession = System.http().open(h, System.url().get_server(strUrl), System.url().get_protocol(strUrl), setEmpty, NULL, NULL);
+
             if(psession != NULL)
                break;
+
             Sleep(184);
+
          }
+
       }
 
       psession = System.http().get(h, psession, strUrl, mem);

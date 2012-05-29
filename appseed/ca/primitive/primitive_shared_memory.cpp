@@ -7,7 +7,7 @@ namespace primitive
 
    shared_memory::shared_memory(const memory_base & s)
    {
-      
+
       m_nAllocFlags     = 0;
       m_hGlobalMemory   = NULL;
       m_bAllowGrow      = TRUE;
@@ -28,7 +28,7 @@ namespace primitive
 
    shared_memory::shared_memory(primitive::memory_container * pcontainer, void * pMemory, memory_size dwSize)
    {
-      
+
       m_nAllocFlags     = 0;
       m_pcontainer      = pcontainer;
       m_bAllowGrow      = TRUE;
@@ -91,7 +91,7 @@ namespace primitive
             m_dwAllocation = dwAllocation;
             if(m_pcontainer != NULL)
             {
-               m_pcontainer->offset_kept_pointers((int) m_pbStorage);
+               m_pcontainer->offset_kept_pointers((int_ptr) m_pbStorage);
             }
             return true;
          }
@@ -352,4 +352,6 @@ namespace primitive
 
 
 } // namespace primitive
+
+
 

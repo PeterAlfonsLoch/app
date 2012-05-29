@@ -23,6 +23,8 @@ namespace ca2
       throw interface_only_exception();
    }
 
+#ifdef WINDOWS
+
    void html_file::printf(const char * lpcsz, ...)
    {
       UNREFERENCED_PARAMETER(lpcsz);
@@ -34,6 +36,16 @@ namespace ca2
       UNREFERENCED_PARAMETER(lpcsz);
       throw interface_only_exception();
    }
+
+#else
+
+   void html_file::trace(void *, const char * psz)
+   {
+      print(psz);
+   }
+
+#endif
+
 
    void html_file::dprint(const char * lpcsz)
    {

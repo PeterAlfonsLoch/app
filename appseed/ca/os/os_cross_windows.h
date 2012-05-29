@@ -9,7 +9,12 @@
 #include <stddef.h> // for wchar_t
 #include <string.h>
 
+
 #include "os_cross_windows_guid_def.h"
+#include "os_cross_windows_winnt.h"
+#include "os_cross_windows_shared_memory.h"
+#include "os_cross_windows_time.h"
+
 
 typedef char CHAR;
 typedef unsigned char UCHAR;
@@ -198,3 +203,5 @@ typedef enum tagSTREAM_SEEK
 } STREAM_SEEK;
 
 #endif  // !defined(WINDOWS)
+
+

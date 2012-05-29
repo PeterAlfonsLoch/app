@@ -15,12 +15,12 @@ namespace primitive
       HGLOBAL                                m_hGlobalMemory;
       bool                                   m_bAllowGrow;
 
-   
+
       shared_memory(const memory_base & memory);
       shared_memory(memory_container * pmsc = NULL, memory_size dwAllocationAddUp = 4096, UINT nAllocFlags = 0);
       shared_memory(memory_container * pmsc, void * pMemory, memory_size dwSize);
       virtual ~shared_memory();
-      
+
 
       virtual void SetHandle(HGLOBAL hGlobalMemory, bool bAllowGrow = TRUE);
       virtual BYTE* Alloc(SIZE_T nBytes);
@@ -37,8 +37,10 @@ namespace primitive
 
 
    };
-   
+
 
 } // namespace primitive
+
+
 
 

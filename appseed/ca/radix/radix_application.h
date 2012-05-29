@@ -74,9 +74,16 @@ namespace radix
       ::ca::application_bias        m_biasCalling;
 
 
+#ifdef WINDOWS
+
 
       HGLOBAL                       m_hDevMode;             // printer Dev Mode
       HGLOBAL                       m_hDevNames;            // printer Device Names
+
+
+#endif
+
+
       DWORD                         m_dwPromptContext;        // help context override for message box
    // LKG
    //   DWORD m_dwPolicies;            // block for storing boolean system policies
@@ -93,7 +100,9 @@ namespace radix
       ::mutex *                     m_pmutexGlobal;
       ::mutex *                     m_pmutexGlobalId;
       // This module's hInstance.
+#ifdef WINDOWS
       HINSTANCE                     m_hInstance;
+#endif
       // Pointer to the command-line.
       string                        m_strCmdLine;
       // Initial state of the application's ::ca::window; normally,

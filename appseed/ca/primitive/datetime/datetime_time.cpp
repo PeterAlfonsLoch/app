@@ -207,15 +207,20 @@ namespace datetime
    }
 
 
-   /////////////////////////////////////////////////////////////////////////////
-   // time
-   /////////////////////////////////////////////////////////////////////////////
-#pragma push_macro("get_current_time")
-   ::datetime::time WINAPI ::datetime::time::get_current_time() throw()
+   ::datetime::time WINAPI time::get_current_time() throw()
    {
-      return( time( ::_time64( NULL ) ) );
+
+#ifdef WINDOWS
+
+      return time( ::_time64( NULL ) ) ;
+
+#else
+
+      return time( ::time( NULL ) );
+
+#endif
+
    }
-#pragma pop_macro("get_current_time")
 
    bool WINAPI time::is_valid_FILETIME(const FILETIME& fileTime) throw()
    {
@@ -264,7 +269,16 @@ namespace datetime
       atm.tm_year = nYear - 1900;     // tm_year is 1900 based
       atm.tm_isdst = nDST;
 
+#ifdef WINDOWS
+
       m_time = _mktime64(&atm);
+
+#else
+
+      m_time = mktime(&atm);
+
+#endif
+
       /*
       Remember that:
       ENSURE( nYear >= 1900 );
@@ -282,6 +296,7 @@ namespace datetime
 
    time::time(WORD wDosDate, WORD wDosTime, int nDST)
    {
+
       struct tm atm;
       atm.tm_sec = (wDosTime & ~0xFFE0) << 1;
       atm.tm_min = (wDosTime & ~0xF800) >> 5;
@@ -291,7 +306,17 @@ namespace datetime
       atm.tm_mon = ((wDosDate & ~0xFE00) >> 5) - 1;
       atm.tm_year = (wDosDate >> 9) + 80;
       atm.tm_isdst = nDST;
+
+#ifdef WINDOWS
+
       m_time = _mktime64(&atm);
+
+#else
+
+      m_time = mktime(&atm);
+
+#endif
+
       ASSUME(m_time != -1);       // indicates an illegal input time
 
       if(m_time == -1)

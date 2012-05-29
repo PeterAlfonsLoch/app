@@ -142,7 +142,7 @@ namespace fs
       UNREFERENCED_PARAMETER(varFile);
       UNREFERENCED_PARAMETER(nOpenFlags);
       UNREFERENCED_PARAMETER(pexception);
-      return 0;
+      return ::ca::null();
    }
 
    ::ex1::byte_stream data::get_byte_stream(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp * pexception)

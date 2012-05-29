@@ -4,6 +4,18 @@
 namespace ca
 {
 
+
+   class CLASS_DECL_ca null
+   {
+   public:
+
+
+      null() {}
+
+
+   };
+
+
    template < class T >
    class smart_pointer :
       virtual public ::radix::object
@@ -13,13 +25,12 @@ namespace ca
 
       T * m_p;
 
+
       smart_pointer();
       smart_pointer(const smart_pointer < T > & t);
       smart_pointer(T * p);
       smart_pointer(::ca::application * papp);
-      smart_pointer(dword_ptr dw);
-      smart_pointer(int i);
-      smart_pointer(long int i);
+      smart_pointer(const ::ca::null &);
       virtual ~smart_pointer();
 
 
@@ -72,6 +83,12 @@ namespace ca
       operator = (t);
    }
 
+   template < class T >
+   smart_pointer < T > ::smart_pointer(const ::ca::null &)
+   {
+      m_p = NULL;
+   }
+
 
    template < class T >
    smart_pointer < T > ::smart_pointer(T * p) :
@@ -89,39 +106,6 @@ namespace ca
       m_p = NULL;
       create(papp);
    }
-
-   template < class T >
-   smart_pointer < T > ::smart_pointer(dword_ptr dw) :
-      ca(dw != 0 ? ((T *) dw)->get_app() : NULL)
-   {
-      m_p = NULL;
-      operator = ((T *) dw);
-   }
-
-#ifndef _LP64
-
-   template < class T >
-   smart_pointer < T > ::smart_pointer(int i) :
-      ca(i != 0 ? ((T *) i)->get_app() : NULL)
-   {
-      m_p = NULL;
-      operator = ((T *) i);
-   }
-
-#endif
-
-
-#ifdef WINDOWS
-
-   template < class T >
-   smart_pointer < T > ::smart_pointer(long int i) :
-      ca(i != 0 ? ((T *) i)->get_app() : NULL)
-   {
-      m_p = NULL;
-      operator = ((T *) i);
-   }
-
-#endif
 
    template < class T >
    smart_pointer < T > ::~smart_pointer()

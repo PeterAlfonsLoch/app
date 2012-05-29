@@ -553,7 +553,11 @@ namespace ca
       void OnInitMenu(::userbase::menu* pMenu);
       void OnInitMenuPopup(::userbase::menu* pPopupMenu, UINT nIndex, bool bSysMenu);
 
-   // Clipboard message handler member functions
+
+#ifdef WINDOWS
+
+
+      // Clipboard message handler member functions
       void OnAskCbFormatName(UINT nMaxCount, LPTSTR lpszString);
       void OnChangeCbChain(HWND hWndRemove, HWND hWndAfter);
       void OnDestroyClipboard();
@@ -566,13 +570,22 @@ namespace ca
       void OnVScrollClipboard(::ca::window* pClipAppWnd, UINT nSBCode, UINT nPos);
 
 
-      // control message handler member functions
+#endif
+
+
 #ifdef WINDOWS
+
+
+      // control message handler member functions
       int  OnCompareItem (int nIDCtl,   LPCOMPAREITEMSTRUCT    lpCompareItemStruct);
       void OnDeleteItem  (int nIDCtl,   LPDELETEITEMSTRUCT     lpDeleteItemStruct);
       void OnDrawItem    (int nIDCtl,   LPDRAWITEMSTRUCT       lpDrawItemStruct);
       void OnMeasureItem (int nIDCtl,   LPMEASUREITEMSTRUCT    lpMeasureItemStruct);
+
+
 #endif
+
+
       UINT OnGetDlgCode();
 
 

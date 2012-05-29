@@ -1,8 +1,11 @@
 #pragma once
 
+
 //#undef new
 
+
 #define new DEBUG_NEW
+
 
 #ifdef DEBUG
 #define TEMPLATE_TYPE_NEW new(__FILE__ + string(" - ") + typeid(TYPE).name(), __LINE__)
@@ -10,21 +13,24 @@
 #define TEMPLATE_TYPE_NEW new
 #endif
 
-#undef new
 
 #undef new
+
 
 #define new TEMPLATE_TYPE_NEW
+
 
 #ifndef __max
 #define __max(a,b)  (((a) > (b)) ? (a) : (b))
 #endif
+
 
 // raw array is a special array and should be used with care
 // it uses operations like memmove and memcopy to move objects and does not
 // call constructors and destructors for the elements
 // it is faster than the more generic arrays and is proper for use
 // with strict structs and primitive data types
+
 
 template<class TYPE, class ARG_TYPE = const TYPE &>
 class raw_array :
@@ -736,6 +742,8 @@ typename  raw_array<TYPE, ARG_TYPE>::iterator raw_array<TYPE, ARG_TYPE>::erase(i
       return end();
    }
 }
+
+
 #define new DEBUG_NEW
 
 

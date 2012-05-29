@@ -2014,6 +2014,10 @@ namespace ca
       throw interface_only_exception();
    }
 
+
+#ifdef WINDOWS
+
+
    void window::OnAskCbFormatName(UINT nMaxCount, LPTSTR pszName)
    {
       UNREFERENCED_PARAMETER(nMaxCount);
@@ -2065,6 +2069,8 @@ namespace ca
    {
       throw interface_only_exception();
    }
+
+#endif
 
    UINT window::OnGetDlgCode()
    {

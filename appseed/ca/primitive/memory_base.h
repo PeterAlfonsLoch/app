@@ -14,7 +14,7 @@ namespace primitive
    {
    public:
 
-      
+
       LPBYTE                  m_pbStorage;
 
       memory_offset           m_iOffset;
@@ -45,8 +45,8 @@ namespace primitive
 
       inline ::primitive::memory_size read(ex1::file & file);
 
-      inline void write(ex1::byte_output_stream & ostream);
-      inline void read(ex1::byte_input_stream & ostream);
+      void write(ex1::byte_output_stream & ostream);
+      void read(ex1::byte_input_stream & ostream);
 
       inline  void allocate_add_up(memory_size dwAddUp);
 
@@ -59,7 +59,7 @@ namespace primitive
 
       memory_base & operator = (const memory_base & s);
 
-      
+
       inline void from_string(const wchar_t * pwsz);
       inline void from_string(const char * psz);
       inline void from_string(const string & str);
@@ -143,7 +143,7 @@ namespace primitive
    }
 
 
-   
+
    inline const LPBYTE memory_base::get_data() const
    {
 
@@ -283,7 +283,7 @@ namespace primitive
 
    inline void memory_base::From(const char * psz)
    {
-      
+
       char ch;
 
       strsize iLen = strlen(psz);
@@ -324,11 +324,11 @@ namespace primitive
 
    inline void memory_base::ToAsc(string & str)
    {
-      
+
       string strTo;
-      
+
       To(strTo);
-      
+
       char ch;
 
       strsize iLen = strTo.get_length() - 1;
@@ -351,10 +351,10 @@ namespace primitive
       }
 
    }
-   
+
    inline void memory_base::FromAsc(const char * psz)
    {
-      
+
       string str;
 
       while(*psz)

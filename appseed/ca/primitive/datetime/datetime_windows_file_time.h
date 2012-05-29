@@ -14,7 +14,13 @@ namespace windows
       void UnixTimeToFileTime(uint32_t unixTime, FILETIME & fileTime);
       bool FileTimeToUnixTime(const FILETIME & fileTime, uint32_t & unixTime);
       bool GetSecondsSince1601(unsigned year, unsigned month, unsigned day, unsigned hour, unsigned min, unsigned sec, uint64_t &resSeconds);
+
+#if defined(WINDOWS)
+
       void GetCurUtcFileTime(FILETIME & ft);
+
+#endif
+
 
 
    } // namespace file_time

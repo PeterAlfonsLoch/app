@@ -226,5 +226,5 @@ rectd pointd::operator-(LPCRECTD lpRect) const throw()
 
 LPARAM pointd::_001GetLparam()
 {
-   return MAKELPARAM(x, y);
+   return MAKELPARAM((int) x, (int) y);
 }

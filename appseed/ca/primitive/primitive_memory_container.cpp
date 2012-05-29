@@ -1,9 +1,6 @@
 #include "framework.h"
 
 
-#pragma once
-
-
 namespace primitive
 {
 

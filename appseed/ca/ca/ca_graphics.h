@@ -90,10 +90,10 @@ namespace ca
       virtual int_ptr get_os_data() const;
       virtual void attach(void * pdata);
 
-#ifdef WINDOWS
+
       virtual bool Attach(HDC hdc);
       virtual HDC Detach();
-#endif
+
 
       virtual ::user::str_context * str_context();
       virtual ::user::draw_context * draw_context();

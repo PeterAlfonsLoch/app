@@ -73,7 +73,7 @@ namespace primitive
 
    inline LPBYTE memory_container ::get_data()
    {
-      
+
       if(m_spmemory.is_null())
          return NULL;
       else
@@ -83,7 +83,7 @@ namespace primitive
 
    inline const LPBYTE memory_container ::get_data() const
    {
-      
+
       if(m_spmemory.is_null())
          return NULL;
       else
