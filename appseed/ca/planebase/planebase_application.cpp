@@ -1197,7 +1197,21 @@ InitFailure:
 
             fill_locale_schema(localeschema);
 
+            int iStdStdCount = 0;
+
+            for(int i = 0; i < localeschema.m_idaLocale.get_count(); i++)
+            {
+               if(localeschema.m_idaLocale[i] == __id(std) &&
+                  localeschema.m_idaSchema[i] == __id(std))
+               {
+                  iStdStdCount++; 
+               }
+
+            }
+
             g_iCountProgress *= localeschema.m_idaLocale.get_count();
+
+            g_iCountProgress -= iStdStdCount * (1 + 1); // ('main' + 'bergedge') * StdStd are not downloaded on session install but on spa boot
 
 
             double d1 = ::GetTickCount();
@@ -1320,10 +1334,14 @@ InitFailure:
 
       fill_locale_schema(localeschema);
 
+      bool bIgnoreStdStd = string(pszRoot) == "app" && (string(pszRelative) == "main" || string(pszRelative) == "bergedge");
+
       //update_appmatter(h, psession, pszRoot, pszRelative, localeschema.m_idLocale, localeschema.m_idSchema);
 
       for(int i = 0; i < localeschema.m_idaLocale.get_count(); i++)
       {
+         if(localeschema.m_idaLocale[i] == __id(std) && localeschema.m_idaSchema[i] == __id(std) && bIgnoreStdStd)
+            continue;
          update_appmatter(h, psession, pszRoot, pszRelative, localeschema.m_idaLocale[i], localeschema.m_idaSchema[i]);
          progress();
       }
