@@ -437,59 +437,8 @@ namespace plane
             return;
          }
 
-         ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get(strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
-         if(papp == NULL)
-            return;
+         start_application(strApp, pcreatecontext);
 
-         if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
-         || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
-         {
-            System.appptra().remove(papp);
-            return;
-         }
-
-         pcreatecontext->m_spCommandLine->m_eventReady.ResetEvent();
-
-         if(strApp != "session")
-         {
-
-            if(strApp == "bergedge")
-            {
-
-               m_pbergedge             = papp->get_bergedge();
-
-               m_pbergedgeInterface    = dynamic_cast < ::bergedge_interface * > (papp);
-
-               if(m_pbergedgeInterface == NULL)
-               {
-
-                  try
-                  {
-
-                     delete papp;
-
-                  }
-                  catch(...)
-                  {
-                  }
-
-                  return;
-
-               }
-
-            }
-
-
-            UINT uiMessage = WM_APP + 2043;
-
-            papp->PostThreadMessage(uiMessage, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
-
-            pcreatecontext->m_spCommandLine->m_eventReady.wait();
-
-
-         }
-
-         m_pappCurrent = papp;
 
       }
 
@@ -539,6 +488,68 @@ namespace plane
 
       */
 
+
+   }
+
+
+   void session::start_application(const char * pszAppId, ::ca::create_context * pcreatecontext)
+   {
+      
+      string strApp(pszAppId);
+
+      ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get(strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
+      if(papp == NULL)
+         return;
+
+      if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
+      || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
+      {
+         System.appptra().remove(papp);
+         return;
+      }
+
+      pcreatecontext->m_spCommandLine->m_eventReady.ResetEvent();
+
+      if(strApp != "session")
+      {
+
+         if(strApp == "bergedge")
+         {
+
+            m_pbergedge             = papp->get_bergedge();
+
+            m_pbergedgeInterface    = dynamic_cast < ::bergedge_interface * > (papp);
+
+            if(m_pbergedgeInterface == NULL)
+            {
+
+               try
+               {
+
+                  delete papp;
+
+               }
+               catch(...)
+               {
+               }
+
+               return;
+
+            }
+
+         }
+
+
+         UINT uiMessage = WM_APP + 2043;
+
+         papp->PostThreadMessage(uiMessage, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
+
+         pcreatecontext->m_spCommandLine->m_eventReady.wait();
+
+
+      }
+
+      m_pappCurrent = papp;
 
    }
 
