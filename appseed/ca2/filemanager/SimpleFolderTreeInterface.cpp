@@ -56,6 +56,9 @@ namespace filemanager
 
       m_bDelayedListUpdate = false;
 
+
+      
+
    }
 
    SimpleFolderTreeInterface::~SimpleFolderTreeInterface()
@@ -306,6 +309,9 @@ namespace filemanager
    {
       if(lpcsz == NULL)
          lpcsz = "";
+
+
+      m_pimagelist = System.shellimageset().GetImageList16();
       /*if(lpcsz == NULL)
       {
       if(zip::Util(get_app()).IsUnzipable(pitemParent->m_strPath))
@@ -414,7 +420,13 @@ namespace filemanager
          pitemChild->m_strName = System.file().name_(strNew);
 
          pitemChild->m_flags.signalize(::fs::FlagFolder);
-         pitemChild->m_iImage = m_iDefaultImage;
+//         pitemChild->m_iImage = m_iDefaultImage;
+         pitemChild->m_iImage = System.shellimageset().GetImage(
+            _GetWnd()->GetTopLevelParent()->_get_handle(),
+            pitemChild->m_strPath,
+            NULL,
+            _shell::IconNormal,
+            get_document()->set().is_dir(pitemChild->m_strPath));
          pitemChild->m_iImageSelected = m_iDefaultImageSelected;
 
          pitem = find_item(pitemChild->m_strPath);
@@ -603,8 +615,26 @@ namespace filemanager
          }*/
 
          pitemChild->m_flags.signalize(::fs::FlagFolder);
-         pitemChild->m_iImage = m_iDefaultImage;
-         pitemChild->m_iImageSelected = m_iDefaultImageSelected;
+         try
+         {
+            pitemChild->m_iImage = System.shellimageset().GetImage(
+               NULL,
+               pitemChild->m_strPath,
+               NULL,
+               _shell::IconNormal,
+               true);
+            pitemChild->m_iImageSelected = System.shellimageset().GetImage(
+               NULL,
+               pitemChild->m_strPath,
+               NULL,
+               _shell::IconOpen,
+               true);
+         }
+         catch(...)
+         {
+            pitemChild->m_iImage = m_iDefaultImage;
+            pitemChild->m_iImageSelected = m_iDefaultImageSelected;
+         }
 
          pitem = find_item(pitemChild->m_strPath);
          if(pitem != NULL)

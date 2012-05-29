@@ -441,7 +441,7 @@ namespace filemanager
 
    ImageKey::ImageKey()
    {
-      m_iIcon = -1;
+      m_iIcon = 0x80000000;
    }
 
    ImageKey::ImageKey(const ImageKey & key)
@@ -502,7 +502,7 @@ namespace filemanager
 
       SHFILEINFO shfi16;
 
-      int iImage = -1;
+      int iImage = 0x80000000;
 
       imagekey.m_strPath.Format(":%s:%d:%d", lpcsz, eattribute, eicon);
       imagekey.m_strExtension = str.Mid(str.reverse_find('.'));
@@ -552,7 +552,7 @@ namespace filemanager
       EIcon eicon)
    {
       if(lpsf == NULL)
-         return -1;
+         return 0x80000000;
       int iType;
       switch(eicon)
       {
@@ -565,7 +565,7 @@ namespace filemanager
       default:
          // unexpected icon type
          ASSERT(FALSE);
-         return -1;
+         return 0x80000000;
       }
 
 
@@ -582,7 +582,7 @@ namespace filemanager
 
       CHAR szPath[_MAX_PATH * 10];
       string strPath;
-      int iImage = -1;
+      int iImage = 0x80000000;
 
       HICON hicon16 = NULL;
       HICON hicon48 = NULL;
@@ -603,7 +603,7 @@ namespace filemanager
 
 
 
-      int iIcon = -1;
+      int iIcon = 0x80000000;
       UINT uiFlags = 0;
 
       SHFILEINFO shfi16;
@@ -614,7 +614,7 @@ namespace filemanager
       /*EFolder efolder = GetFolderType(wszFilePath);
       if(efolder !)
       {
-         iconkey.m_iIcon         = -1;
+         iconkey.m_iIcon         = 0x80000000;
          iconkey.m_strExtension  = "folder";
          iconkey.m_strPath.Empty();
       }
@@ -626,7 +626,7 @@ namespace filemanager
             gen::international::UnicodeToOEM(strName, item.m_strExtra);
             iFind = strName.reverse_find('.');
 
-            iconkey.m_iIcon         = -1;
+            iconkey.m_iIcon         = 0x80000000;
             iconkey.m_strExtension  = strName.Mid(iFind);
             iconkey.m_strPath.Empty();
 
@@ -652,7 +652,7 @@ namespace filemanager
             {
                strsize iFind = strFilePath.reverse_find('.');
 
-               imagekey.m_iIcon         = -1;
+               imagekey.m_iIcon         = 0x80000000;
                imagekey.m_strExtension  = strFilePath.Mid(iFind);
                imagekey.m_strPath.Empty();
             }
@@ -664,7 +664,7 @@ namespace filemanager
             }
          }
       }
-      if(imagekey.m_iIcon <= -1)
+      if(imagekey.m_iIcon == 0x80000000)
       {
          string strTarget;
          //if(System.os().resolve_link(strTarget, strFilePath, System.window_from_os_data(hwnd)))
@@ -717,7 +717,7 @@ namespace filemanager
       if(!m_imagemap.Lookup(imagekey, iImage))
       {
 
-         if(imagekey.m_iIcon == -1)
+         if(imagekey.m_iIcon == 0x80000000)
          {
             if(imagekey.m_strExtension == "folder")
             {
@@ -976,7 +976,7 @@ namespace filemanager
    {
 
       if(pszPath == NULL)
-         return -1;
+         return 0x80000000;
 
       string strPath(pszPath);
 
@@ -994,11 +994,11 @@ namespace filemanager
       default:
          // unexpected icon type
          ASSERT(FALSE);
-         return -1;
+         return 0x80000000;
       }
 
 
-      int iImage = -1;
+      int iImage = 0x80000000;
 
       HICON hicon16 = NULL;
       HICON hicon48 = NULL;
@@ -1010,14 +1010,14 @@ namespace filemanager
       string strExtra;
 
 
-      int iIcon = -1;
+      int iIcon = 0x80000000;
       UINT uiFlags = 0;
 
       SHFILEINFO shfi16;
       SHFILEINFO shfi48;
 
 
-      imagekey.m_iIcon         = -1;
+      imagekey.m_iIcon         = 0x80000000;
       if(bFolder && !strExtension.has_char())
       {
          imagekey.m_strExtension  = "folder";
@@ -1135,7 +1135,7 @@ namespace filemanager
 
       CHAR szPath[_MAX_PATH * 10];
       string strPath;
-   //   int iImage = -1;
+   //   int iImage = 0x80000000;
 
       HICON hicon16 = NULL;
       HICON hicon48 = NULL;
@@ -1156,7 +1156,7 @@ namespace filemanager
 
 
 
-      int iIcon = -1;
+      int iIcon = 0x80000000;
       UINT uiFlags = 0;
 
       SHFILEINFO shfi16;
@@ -1167,7 +1167,7 @@ namespace filemanager
       /*EFolder efolder = GetFolderType(wszFilePath);
       if(efolder !)
       {
-         iconkey.m_iIcon         = -1;
+         iconkey.m_iIcon         = 0x80000000;
          iconkey.m_strExtension  = "folder";
          iconkey.m_strPath.Empty();
       }
@@ -1179,7 +1179,7 @@ namespace filemanager
             gen::international::UnicodeToOEM(strName, item.m_strExtra);
             iFind = strName.reverse_find('.');
 
-            iconkey.m_iIcon         = -1;
+            iconkey.m_iIcon         = 0x80000000;
             iconkey.m_strExtension  = strName.Mid(iFind);
             iconkey.m_strPath.Empty();
 
@@ -1205,7 +1205,7 @@ namespace filemanager
             {
                strsize iFind = strFilePath.reverse_find('.');
 
-               imagekey.m_iIcon         = -1;
+               imagekey.m_iIcon         = 0x80000000;
                imagekey.m_strExtension  = strFilePath.Mid(iFind);
                imagekey.m_strPath.Empty();
             }
@@ -1219,7 +1219,7 @@ namespace filemanager
       }
          if(Application.dir().is(gen::international::unicode_to_utf8(szFilePath)))
          {
-            if(imagekey.m_iIcon == -1)
+            if(imagekey.m_iIcon == 0x80000000)
             {
                SHGetFileInfo(
                   "foo",
@@ -1409,7 +1409,7 @@ namespace filemanager
    {
       string strPath(psz);
 
-      int iImage = -1;
+      int iImage = 0x80000000;
 
       if(gen::str::ends_ci(strPath, ".ca2"))
       {

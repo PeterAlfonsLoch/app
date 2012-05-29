@@ -7,6 +7,7 @@ namespace fs
    tree_item::tree_item()
    {
       m_iImage = -1;
+      m_iImageSelected = 1;
    }
 
 
@@ -46,11 +47,11 @@ namespace fs
    {
       if(ptree->is_selected(this))
       {
-         return -1;
+         return m_iImageSelected;
       }
       else
       {
-         return -1;
+         return m_iImage;
       }
 
    }
