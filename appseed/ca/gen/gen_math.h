@@ -33,39 +33,8 @@ namespace gen
          virtual ~math();
 
 
-         int RandRange(int iMin, int iMax);
-         unsigned int RandRange(unsigned int iMin, unsigned int iMax);
          int64_t RandRange(int64_t iMin, int64_t iMax);
-         uint64_t RandRange(uint64_t iMin, uint64_t iMax);
 
-         inline int64_t RandRange(int iMin, unsigned int uiMax) { return RandRange((int64_t) iMin, (int64_t) uiMax); }
-         inline int64_t RandRange(unsigned int uiMin, int iMax) { return RandRange((int64_t) uiMin, (int64_t) iMax); }
-         inline int64_t RandRange(int iMin, int64_t iMax) { return RandRange((int64_t) iMin, (int64_t) iMax); }
-         inline int64_t RandRange(int64_t iMin, int iMax) { return RandRange((int64_t) iMin, (int64_t) iMax); }
-         inline int64_t RandRange(int iMin, uint64_t uiMax) { return RandRange((int64_t) iMin, (int64_t) uiMax); }
-         inline int64_t RandRange(uint64_t uiMin, int iMax) { return RandRange((int64_t) uiMin, (int64_t) iMax); }
-
-         inline int64_t RandRange(unsigned int uiMin, int64_t iMax) { return RandRange((int64_t) uiMin, (int64_t) iMax); }
-         inline int64_t RandRange(int64_t iMin, unsigned int uiMax) { return RandRange((int64_t) iMin, (int64_t) uiMax); }
-         inline int64_t RandRange(unsigned int iMin, uint64_t uiMax) { return RandRange((int64_t) iMin, (int64_t) uiMax); }
-         inline int64_t RandRange(uint64_t uiMin, unsigned int iMax) { return RandRange((int64_t) uiMin, (int64_t) iMax); }
-
-         inline int64_t RandRange(int64_t iMin, uint64_t uiMax) { return RandRange((int64_t) iMin, (int64_t) uiMax); }
-         inline int64_t RandRange(uint64_t uiMin, int64_t iMax) { return RandRange((int64_t) uiMin, (int64_t) iMax); }
-
-#if !defined(LINUX)
-
-         inline int64_t RandRange(unsigned long ulMin, unsigned long ulMax) { return RandRange((int64_t) ulMin, (int64_t) ulMax); }
-         inline int64_t RandRange(unsigned long ulMin, int iMax) { return RandRange((int64_t) ulMin, (int64_t) iMax); }
-         inline int64_t RandRange(int iMin, unsigned long ulMax) { return RandRange((int64_t) iMin, (int64_t) ulMax); }
-         inline int64_t RandRange(unsigned long ulMin, unsigned int uiMax) { return RandRange((int64_t) ulMin, (int64_t) uiMax); }
-         inline int64_t RandRange(unsigned int uiMin, unsigned long ulMax) { return RandRange((int64_t) uiMin, (int64_t) ulMax); }
-         inline int64_t RandRange(unsigned long ulMin, int64_t iMax) { return RandRange((int64_t) ulMin, (int64_t) iMax); }
-         inline int64_t RandRange(int64_t iMin, unsigned long ulMax) { return RandRange((int64_t) iMin, (int64_t) ulMax); }
-         inline int64_t RandRange(unsigned long ulMin, uint64_t uiMax) { return RandRange((int64_t) ulMin, (int64_t) uiMax); }
-         inline int64_t RandRange(uint64_t uiMin, unsigned long ulMax) { return RandRange((int64_t) uiMin, (int64_t) ulMax); }
-
-#endif
 
          int LinearMap(int iMin, int iMax, int iValue, int iValueMin, int iValueMax);
          int gen_rand();

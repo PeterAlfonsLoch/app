@@ -15,10 +15,31 @@ BYTE OriginalBytes[5] = {0};
 
 bool is_debugger_attached()
 {
+
 #ifdef WINDOWS
+
+   
    return ::IsDebuggerPresent() != FALSE;
-#else
+
+   
+#elif defined(LINUX)
+   
+    
    return ::is_gdb_present();
+   
+
+#elif defined(MACOS)
+   
+   
+   return ::AmIBeingDebugged();
+   
+   
+#else
+   
+   
+   throw not_implemented_exception();
+   
+   
 #endif
 /*    DWORD dw;
 

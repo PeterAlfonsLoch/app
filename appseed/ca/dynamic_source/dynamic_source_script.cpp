@@ -1,6 +1,9 @@
 #include "framework.h"
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
+#if defined(MACOS)
+#define _DARWIN_C_SOURCE
+#endif
 #include <dlfcn.h>
 #endif
 

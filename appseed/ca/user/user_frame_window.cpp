@@ -1419,13 +1419,18 @@ void frame_window::UpdateFrameTitleForDocument(const char * lpszDocName)
          // add current ::ca::window # if needed
          if (m_nWindow > 0)
          {
-            char szText[32];
+            
+            string strText;
 
             // :%d will produce a maximum of 11 TCHARs
-            _stprintf_s(szText, _countof(szText), ":%d", m_nWindow);
+            str.Format(":%d", m_nWindow);
+            
             WindowText += szText;
+            
          }
+         
          WindowText += " - ";
+         
       }
       WindowText += m_strTitle;
    }
@@ -1441,11 +1446,14 @@ void frame_window::UpdateFrameTitleForDocument(const char * lpszDocName)
          // add current ::ca::window # if needed
          if (m_nWindow > 0)
          {
-            char szText[32];
+            
+            string str;
 
             // :%d will produce a maximum of 11 TCHARs
-            _stprintf_s(szText, _countof(szText), ":%d", m_nWindow);
+            str.Format(":%d", m_nWindow);
+            
             WindowText += szText;
+            
          }
       }
    }

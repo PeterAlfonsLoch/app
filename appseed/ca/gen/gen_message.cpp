@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 // Ubuntu apt-get install libx11-dev
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>

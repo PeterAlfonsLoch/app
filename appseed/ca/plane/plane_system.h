@@ -966,7 +966,7 @@ void array_app_alloc<TYPE, ARG_TYPE>::set_at_grow(index iIndex, ARG_TYPE t)
       int_ptr iEmptySize = this->ptra().get_size() - 1;
       index i;
       if(this->get_app() == NULL)
-         set_app(t.get_app());
+         this->set_app(t.get_app());
       for(i = iOldSize; i < iEmptySize; i++)
       {
          this->ptra().element_at(i) = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info < TYPE > ()));

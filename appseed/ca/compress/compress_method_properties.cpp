@@ -63,7 +63,7 @@ namespace compress
                      if (atoi(prop.name()) == NCoderPropID::kDictionarySize)
                         if (value.is_integer())
                            if (reducedDictionarySize < value.get_ulong())
-                              value = (unsigned long) reducedDictionarySize;
+                              value = (uint64) reducedDictionarySize;
                }
                ::ca::smart_pointer < ::compress::set_coder_properties_interface > setCoderProperties;
                setCoderProperties = dynamic_cast < ::compress::set_coder_properties_interface *> (coder);

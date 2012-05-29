@@ -1244,6 +1244,32 @@ namespace ca
          UNREFERENCED_PARAMETER(lpcsz2);
          return path(ca2("ccvotagus"), lpcsz, lpcsz2);
       }
+      
+      string system::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode, ::ca::application * papp)
+      {
+         
+         stringa stra;
+         
+         stra.add_tokens(pszEnv, ":", false);
+         
+         string strCandidate;
+         
+         for(int i = 0; i < stra.get_count(); i++)
+         {
+            
+            strCandidate = path(stra[i], pszTopic);
+            
+            if(App(papp).file().exists(strCandidate))
+            {
+               return strCandidate;
+            }
+               
+         }
+         
+         return "";
+               
+      }
+      
 
    }  // namespace dir
 

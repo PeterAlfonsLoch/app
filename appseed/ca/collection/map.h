@@ -815,7 +815,7 @@ namespace collection
          const typename type_map::pair * ppair = attribmap.PGetFirstAssoc();
          while(ppair != NULL)
          {
-            set_at(ppair->m_key, ppair->m_value);
+            this->set_at(ppair->m_key, ppair->m_value);
             ppair  = attribmap.PGetNextAssoc(ppair);
          }
       }

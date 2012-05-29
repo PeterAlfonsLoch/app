@@ -24,6 +24,7 @@ public:
    dump_context& dumpAsHex(WORD w);
 #if defined(_LP64)
    dump_context& operator<<(int_ptr i);
+   dump_context& operator<<(uint_ptr ui);
    dump_context& operator<<(long_ptr l);
    dump_context& operator<<(dword_ptr dw);
    dump_context& operator<<(int n);

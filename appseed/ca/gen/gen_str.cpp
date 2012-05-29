@@ -1186,9 +1186,17 @@ namespace gen
          return false;
 
       char * pszEnd;
+      
+#ifdef WINDOWS
 
       int64_t iConversion = ::_strtoi64(psz, &pszEnd, iBase);
+      
+#else
 
+      int64_t iConversion = ::atoi64_dup(psz, &pszEnd, iBase);
+      
+#endif
+      
       if(pszEnd == psz)
          return false;
 
@@ -1206,7 +1214,15 @@ namespace gen
 
       char * pszEnd;
 
+#ifdef WINDOWS
+      
       int64_t iConversion = ::_strtoi64(psz, &pszEnd, iBase);
+      
+#else
+      
+      int64_t iConversion = ::atoi64_dup(psz, &pszEnd, iBase);
+      
+#endif
 
       if(pszEnd == psz)
          return false;

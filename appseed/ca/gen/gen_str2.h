@@ -209,13 +209,20 @@ namespace gen
          return str;
       }
 
-      inline CLASS_DECL_ca  string  itoa(int64_t i)
+      inline CLASS_DECL_ca  string  itoa(long l)
       {
          string str;
-         itoa(str, i);
+         itoa(str, (long long) l);
          return str;
       }
 
+      inline CLASS_DECL_ca  string  itoa(long long ll)
+      {
+         string str;
+         itoa(str, ll);
+         return str;
+      }
+      
       inline CLASS_DECL_ca  string  itoa(unsigned int ui)
       {
          string str;
@@ -223,7 +230,7 @@ namespace gen
          return str;
       }
 
-#if !defined(LINUX)
+#if !defined(LINUX) && !defined(MACOS)
 
       inline CLASS_DECL_ca  string  itoa(unsigned long ui)
       {
@@ -248,11 +255,16 @@ namespace gen
          return str;
       }
 
-      inline CLASS_DECL_ca  string &         itoa(string & str, int64_t i)
+      inline CLASS_DECL_ca  string & itoa(string & str, long l)
       {
-         return i64toa(str, i);
+         return i64toa(str, l);
       }
 
+      inline CLASS_DECL_ca  string & itoa(string & str, long long ll)
+      {
+         return i64toa(str, ll);
+      }
+      
       inline CLASS_DECL_ca bool     trimmed_is_empty(const char * psz)
       {
 

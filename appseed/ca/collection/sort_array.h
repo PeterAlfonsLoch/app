@@ -149,7 +149,7 @@ BaseSortInsert(ARG_TYPE t)
 {
    index iIndex = 0;
    BaseSortFind(t, iIndex);
-   insert_at(iIndex, t);
+   this->insert_at(iIndex, t);
    return iIndex;
 }
 

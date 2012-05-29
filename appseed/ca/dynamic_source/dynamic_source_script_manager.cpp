@@ -1,8 +1,16 @@
 #include "framework.h"
 #include <openssl/ssl.h>
 
-#ifdef LINUX
+#if defined(LINUX)
+
 #include <sys/inotify.h>
+
+#elif defined(MACOS)
+
+#include <sys/event.h>
+#include <sys/time.h>
+#include <sys/types.h>
+
 #endif
 
 
@@ -455,14 +463,18 @@ namespace dynamic_source
 
    UINT c_cdecl script_manager::clear_include_matches_FolderWatchThread(LPVOID lpParam) // thread procedure
    {
+      
+      clear_include_matches_folder_watch * pwatch = (clear_include_matches_folder_watch *) lpParam;
+      
+      string strDir = pwatch->m_strPath;
 
 #ifdef WINDOWS
-      clear_include_matches_folder_watch * pwatch = (clear_include_matches_folder_watch *) lpParam;
+      
       HANDLE hDirectory =
-         ::CreateFile((const char *)pwatch->m_strPath,    // folder path
-         FILE_LIST_DIRECTORY,
-         FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE,
-         NULL, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
+         ::CreateFile(strDir,    // folder path
+                      FILE_LIST_DIRECTORY,
+                      FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE,
+                      NULL, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
 
       if(INVALID_HANDLE_VALUE == hDirectory)
       {
@@ -510,15 +522,46 @@ namespace dynamic_source
          }while(pfni->NextEntryOffset != 0);
       }
       ::CloseHandle(hDirectory);
-      delete pwatch;
-      return 0;
+      
+#elif defined(MACOS)
+      
+      // Open an event-only file descriptor associated with the directory
+      int dirFD = ::open(strDir, O_EVTONLY);
+      if (dirFD < 0) 
+         return -1;
+      
+      // Create a new kernel event queue
+      int kq = kqueue();
+      if (kq < 0)
+      {
+         close(dirFD);
+         return -1;
+      }
+      
+      // Set up a kevent to monitor
+      struct kevent eventToAdd;			// Register an (ident, filter) pair with the kqueue
+      eventToAdd.ident  = dirFD;			// The object to watch (the directory FD)
+      eventToAdd.filter = EVFILT_VNODE;		// Watch for certain events on the VNODE spec'd by ident
+      eventToAdd.flags  = EV_ADD | EV_CLEAR;		// Add a resetting kevent
+      eventToAdd.fflags = NOTE_WRITE;			// The events to watch for on the VNODE spec'd by ident (writes)
+      eventToAdd.data   = 0;				// No filter-specific data
+      eventToAdd.udata  = NULL;			// No user data
+      
+      // Add a kevent to monitor
+      if (kevent(kq, &eventToAdd, 1, NULL, 0, NULL))
+      {
+         close(kq);
+         close(dirFD);
+         return;
+      }
+      
 #else
 
-      clear_include_matches_folder_watch * pwatch = (clear_include_matches_folder_watch *) lpParam;
+
 
       int iNotify = inotify_init();
 
-      string strDir = pwatch->m_strPath;
+      
       int_array ia;
 
       stringa stra;
@@ -600,11 +643,12 @@ namespace dynamic_source
       }
 
       close(iNotify);
-      delete pwatch;
-      return 0;
 
 #endif
 
+      delete pwatch;
+      return 0;
+      
 
    }
 

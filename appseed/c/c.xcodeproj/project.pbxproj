@@ -21,6 +21,8 @@
 		CE4BB218156B8C2E00DD13ED /* simple_list.h in Headers */ = {isa = PBXBuildFile; fileRef = CE4BB214156B8C2E00DD13ED /* simple_list.h */; };
 		CE4BB219156B8C2E00DD13ED /* simple_shell_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB215156B8C2E00DD13ED /* simple_shell_launcher.cpp */; };
 		CE4BB21A156B8C2E00DD13ED /* simple_shell_launcher.h in Headers */ = {isa = PBXBuildFile; fileRef = CE4BB216156B8C2E00DD13ED /* simple_shell_launcher.h */; };
+		CE8ED9901572DDDA0082203F /* os_binreloc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8ED98E1572DDDA0082203F /* os_binreloc.cpp */; };
+		CE8ED9911572DDDA0082203F /* os_binreloc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE8ED98F1572DDDA0082203F /* os_binreloc.h */; };
 		CE931715155F1599005F90F6 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
 		CEA7AABF14412789007E04DE /* _argcargv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA7AA0E14412789007E04DE /* _argcargv.cpp */; };
 		CEA7AAC014412789007E04DE /* _atol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA7AA0F14412789007E04DE /* _atol.cpp */; };
@@ -197,6 +199,8 @@
 		CE4BB214156B8C2E00DD13ED /* simple_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_list.h; sourceTree = "<group>"; };
 		CE4BB215156B8C2E00DD13ED /* simple_shell_launcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_shell_launcher.cpp; sourceTree = "<group>"; };
 		CE4BB216156B8C2E00DD13ED /* simple_shell_launcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_shell_launcher.h; sourceTree = "<group>"; };
+		CE8ED98E1572DDDA0082203F /* os_binreloc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = os_binreloc.cpp; path = os/os_binreloc.cpp; sourceTree = "<group>"; };
+		CE8ED98F1572DDDA0082203F /* os_binreloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = os_binreloc.h; path = os/os_binreloc.h; sourceTree = "<group>"; };
 		CE931714155F1599005F90F6 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = ../../../../System/Library/Frameworks/Carbon.framework; sourceTree = "<group>"; };
 		CEA7AA0E14412789007E04DE /* _argcargv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _argcargv.cpp; sourceTree = "<group>"; };
 		CEA7AA0F14412789007E04DE /* _atol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _atol.cpp; sourceTree = "<group>"; };
@@ -374,6 +378,8 @@
 		A10D34E215131BCC004FD312 /* os */ = {
 			isa = PBXGroup;
 			children = (
+				CE8ED98E1572DDDA0082203F /* os_binreloc.cpp */,
+				CE8ED98F1572DDDA0082203F /* os_binreloc.h */,
 				A10D34E415131C06004FD312 /* os_process.cpp */,
 				A10D34E515131C06004FD312 /* os_process.h */,
 				A10D34E615131C06004FD312 /* os.h */,
@@ -680,6 +686,7 @@
 				CE4BB210156B8B2600DD13ED /* framework.h in Headers */,
 				CE4BB218156B8C2E00DD13ED /* simple_list.h in Headers */,
 				CE4BB21A156B8C2E00DD13ED /* simple_shell_launcher.h in Headers */,
+				CE8ED9911572DDDA0082203F /* os_binreloc.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,6 +827,7 @@
 				CE4BB212156B8B4300DD13ED /* c_os_simple_shell_launcher.cpp in Sources */,
 				CE4BB217156B8C2E00DD13ED /* simple_list.cpp in Sources */,
 				CE4BB219156B8C2E00DD13ED /* simple_shell_launcher.cpp in Sources */,
+				CE8ED9901572DDDA0082203F /* os_binreloc.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

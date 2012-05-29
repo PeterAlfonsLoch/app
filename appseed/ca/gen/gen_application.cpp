@@ -7,6 +7,8 @@
 #include <link.h>
 #undef __USE_GNU
 #include <ctype.h>
+#elif defined(MACOS)
+#include <dlfcn.h>
 #endif
 
 
@@ -100,6 +102,9 @@ namespace gen
             free(lpszModuleFolder);
 
          }
+         
+         
+#ifdef RTLD_DI_LINKMAP
 
          {
 
@@ -118,6 +123,37 @@ namespace gen
 
 
          }
+         
+#else
+         
+         {
+            
+            char * pszCurDir = getcwd(NULL, 0);
+            
+            string strCurDir = pszCurDir;
+            
+            free(pszCurDir);
+            
+            if(App(this).file().exists(System.dir().path(strCurDir, "ca2.dylib")))
+            {
+               m_strCa2ModuleFolder = strCurDir;
+               goto finishedCa2ModuleFolder;
+            }
+            
+            
+            if(App(this).file().exists(System.dir().path(m_strModuleFolder, "ca2.dylib")))
+            {
+               m_strCa2ModuleFolder = m_strModuleFolder;
+               goto finishedCa2ModuleFolder;
+            }
+            
+            m_strCa2ModuleFolder = pathfind(getenv("LD_LIBRARY_PATH"), "ca2.dylib", "rfs"); // readable - normal file - non zero sized
+            
+         }
+         
+finishedCa2ModuleFolder:;
+         
+#endif
 
 #endif
 

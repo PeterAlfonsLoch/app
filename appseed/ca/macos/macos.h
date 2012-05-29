@@ -55,3 +55,10 @@ namespace ex1
 
 
 typedef ::ex1::file * HFILE;
+
+
+
+CLASS_DECL_ca bool AmIBeingDebugged();
+
+
+

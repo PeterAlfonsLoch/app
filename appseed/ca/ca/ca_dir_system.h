@@ -179,6 +179,8 @@ namespace ca
          virtual string userprograms(::ca::application * papp, const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
 
          virtual string commonprograms(const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
+         
+         virtual string pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode, ::ca::application * papp);
 
          virtual bool initialize();
       };

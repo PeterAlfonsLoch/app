@@ -258,8 +258,8 @@ ex1::HRes handler::GetProperty(uint32 index, int propID,  var *value)
     case ::compress::kpidCTime:  SetPropFromUInt64Def(_db.CTime, index2, prop); break;
     case ::compress::kpidATime:  SetPropFromUInt64Def(_db.ATime, index2, prop); break;
     case ::compress::kpidMTime:  SetPropFromUInt64Def(_db.MTime, index2, prop); break;
-    case ::compress::kpidAttrib:  if (item.AttribDefined) prop = (unsigned long) item.Attrib; break;
-    case ::compress::kpidCRC:  if (item.CrcDefined) prop = (unsigned long) item.Crc; break;
+    case ::compress::kpidAttrib:  if (item.AttribDefined) prop = (uint64) item.Attrib; break;
+    case ::compress::kpidCRC:  if (item.CrcDefined) prop = (uint64) item.Crc; break;
     case ::compress::kpidEncrypted:  prop = IsEncrypted(index2); break;
     case ::compress::kpidIsAnti:  prop = _db.IsItemAnti(index2); break;
     #ifndef _SFX
@@ -358,7 +358,7 @@ ex1::HRes handler::GetProperty(uint32 index, int propID,  var *value)
       {
         CNum folderIndex = _db.FileIndexToFolderIndexMap[index2];
         if (folderIndex != kNumNoIndex)
-          prop = (unsigned long)folderIndex;
+          prop = (uint64) folderIndex;
       }
       break;
     case kpidPackedSize0:

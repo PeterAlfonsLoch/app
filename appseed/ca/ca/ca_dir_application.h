@@ -54,7 +54,8 @@ namespace ca
          virtual void  root_ones(stringa & stra);
          virtual bool  mk(const char * lpcsz);
          virtual bool  rm(const char * psz, bool bRecursive = true);
-
+         
+         virtual string pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode);
 
       };
 

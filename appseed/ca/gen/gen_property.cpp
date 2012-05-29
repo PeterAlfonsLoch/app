@@ -59,7 +59,7 @@ namespace gen
          return pair_set_interface_get_value(iFind);
       if(get_auto_add())
       {
-         pair_set_interface_set(pszName, ::var(::var::e_type::type_new));
+         pair_set_interface_set(pszName, ::var(::var::type_new));
          iFind = pair_set_interface_find(pszName);
          if(iFind >= 0)
             return pair_set_interface_get_value(iFind);
@@ -74,7 +74,7 @@ namespace gen
       int iFind = pair_set_interface_find(pszName);
       if(iFind >= 0)
          return pair_set_interface_get_value(iFind);
-      return ::var(::var::e_type::type_new);
+      return ::var(::var::type_new);
    }
 
    str_str_interface::str_str_interface()

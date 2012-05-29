@@ -1,5 +1,6 @@
 #include "framework.h"
 #include <openssl/ssl.h>
+#include <openssl/md5.h>
 
 
 void NESSIEinit(struct NESSIEstruct * const structpointer);

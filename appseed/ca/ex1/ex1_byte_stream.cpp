@@ -488,7 +488,7 @@ namespace ex1
       *processedSize = 0;
       while (size != 0)
       {
-         ::primitive::memory_size curSize = (size < kBlockSize) ? (uint32)size : kBlockSize;
+         ::primitive::memory_size curSize = min(size, kBlockSize);
          ::primitive::memory_size processedSizeLoc;
          HRESULT res = S_OK;
          try

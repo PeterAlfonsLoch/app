@@ -47,12 +47,3 @@ DWORD GetTickCount();
 
 
 
-union semun
-{
-    
-    int val;
-    struct semid_ds * buf;
-    USHORT * array;
-    
-};
-

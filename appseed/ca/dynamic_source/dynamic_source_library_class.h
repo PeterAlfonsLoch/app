@@ -1,6 +1,23 @@
 #pragma once
 
+
 #include <sys/stat.h>
+
+
+#if defined(MACOS) 
+
+
+#if defined(_LP64)
+
+
+#define stat64 stat
+
+
+#endif
+
+
+#endif
+
 
 
 namespace dynamic_source

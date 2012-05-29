@@ -162,7 +162,7 @@ public:
       }
       else
       {
-         insert_at(iFind, newElement);
+         this->insert_at(iFind, newElement);
          return iFind;
       }
    }
@@ -252,7 +252,7 @@ template < class TYPE >
 numeric_array < TYPE >::
    numeric_array(const numeric_array < TYPE > & a)
 {
-   operator = (a);
+   this->operator = (a);
 }
 
 
@@ -332,21 +332,21 @@ void numeric_array < TYPE >::
 {
    if(increment == 0)
    {
-      add(iterator);
-      add(end);
+      this->add(iterator);
+      this->add(end);
    }
    else if(increment > 0)
    {
       for(; iterator <= end; iterator +=increment)
       {
-         add(iterator);
+         this->add(iterator);
       }
    }
    else
    {
       for(; iterator >= end; iterator +=increment)
       {
-         add(iterator);
+         this->add(iterator);
       }
    }
 }

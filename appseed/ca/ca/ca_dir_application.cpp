@@ -164,6 +164,16 @@ namespace ca
       {
          return m_psystem->m_spdir.m_p->rm(m_papp, psz, bRecursive);
       }
+      
+      string application::pathfind(const char * pszEnv, const char * pszTopic)
+      {  
+         return System.dir().pathfind(pszEnv, pszTopic, m_papp);
+      }
+   
+      string application::pathfind(const char * pszEnv, const char * pszFile, const char * pszMode)
+      {
+         return System.dir().pathfind(pszEnv, pszTopic, pszMode, m_papp);
+      }
 
 
    } // namespace dir

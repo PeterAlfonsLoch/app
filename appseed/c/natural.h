@@ -20,6 +20,11 @@ inline uint64_t natural(uint64_t ui)
    return ui;
 }
 
+inline unsigned long natural(long l)
+{
+   return l >= 0 ? (unsigned long) l : 0;
+}
+
 
 // return minimum zero or positive integer
 // otherwise, return third optional default -1 argument

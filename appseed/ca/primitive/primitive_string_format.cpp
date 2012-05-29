@@ -81,6 +81,21 @@ void string_format::format(int i)
 
 }
 
+void string_format::format(int64_t i)
+{
+   // TODO: use specs
+   append(gen::str::itoa(i));
+   
+}
+
+void string_format::format(const void * p)
+{
+   // TODO: use specs
+   append(gen::str::itoa((uint_ptr)p));
+   
+}
+
+
 
 void string_format::format(const char * psz)
 {

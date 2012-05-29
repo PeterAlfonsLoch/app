@@ -97,7 +97,6 @@
 		9A88AE3B14C2CA2E006B4023 /* ca_region.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A6B914C2CA2C006B4023 /* ca_region.h */; };
 		9A88AE3C14C2CA2E006B4023 /* ca_se_translator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A6BA14C2CA2C006B4023 /* ca_se_translator.h */; };
 		9A88AE3D14C2CA2E006B4023 /* ca_se_translator.want_to_remove.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A6BB14C2CA2C006B4023 /* ca_se_translator.want_to_remove.h */; };
-		9A88AE3E14C2CA2E006B4023 /* ca_seed.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A6BC14C2CA2C006B4023 /* ca_seed.h */; };
 		9A88AE3F14C2CA2E006B4023 /* ca_session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A6BD14C2CA2C006B4023 /* ca_session.cpp */; };
 		9A88AE4014C2CA2E006B4023 /* ca_session.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A6BE14C2CA2C006B4023 /* ca_session.h */; };
 		9A88AE4114C2CA2E006B4023 /* ca_smart_pointer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A6BF14C2CA2C006B4023 /* ca_smart_pointer.cpp */; };
@@ -345,7 +344,6 @@
 		9A88AF3814C2CA2E006B4023 /* text_parser_helpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A7C514C2CA2C006B4023 /* text_parser_helpers.h */; };
 		9A88AF3914C2CA2E006B4023 /* text_parser_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A7C614C2CA2C006B4023 /* text_parser_impl.h */; };
 		9A88AF3A14C2CA2E006B4023 /* text_region.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A7C714C2CA2C006B4023 /* text_region.h */; };
-		9A88AF3B14C2CA2E006B4023 /* TextConsoleViewer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A7C814C2CA2C006B4023 /* TextConsoleViewer.cpp */; };
 		9A88AF3C14C2CA2E006B4023 /* Writer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A7C914C2CA2C006B4023 /* Writer.h */; };
 		9A88AF3D14C2CA2E006B4023 /* xmldom.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A7CA14C2CA2C006B4023 /* xmldom.h */; };
 		9A88AF3E14C2CA2E006B4023 /* 7z.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A7CD14C2CA2C006B4023 /* 7z.h */; };
@@ -376,14 +374,6 @@
 		9A88AF5714C2CA2E006B4023 /* 7zSpecStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A7E614C2CA2C006B4023 /* 7zSpecStream.h */; };
 		9A88AF5814C2CA2E006B4023 /* 7zUpdate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A7E714C2CA2C006B4023 /* 7zUpdate.cpp */; };
 		9A88AF5914C2CA2E006B4023 /* 7zUpdate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A7E814C2CA2C006B4023 /* 7zUpdate.h */; };
-		9A88AF5A14C2CA2E006B4023 /* 7z_crc_opt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A7E914C2CA2C006B4023 /* 7z_crc_opt.cpp */; };
-		9A88AF5B14C2CA2E006B4023 /* archive.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A7EA14C2CA2C006B4023 /* archive.h */; };
-		9A88AF5C14C2CA2E006B4023 /* bzip_helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A7EB14C2CA2C006B4023 /* bzip_helper.cpp */; };
-		9A88AF5D14C2CA2E006B4023 /* bzip_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A7EC14C2CA2C006B4023 /* bzip_helper.h */; };
-		9A88AF5E14C2CA2E006B4023 /* coder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A7ED14C2CA2C006B4023 /* coder.h */; };
-		9A88AF5F14C2CA2E006B4023 /* coder_mixer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A7EE14C2CA2C006B4023 /* coder_mixer.h */; };
-		9A88AF6014C2CA2E006B4023 /* coder_mixer2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A7EF14C2CA2C006B4023 /* coder_mixer2.h */; };
-		9A88AF6114C2CA2E006B4023 /* coder_mixer2mt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A7F014C2CA2C006B4023 /* coder_mixer2mt.h */; };
 		9A88AF6214C2CA2E006B4023 /* compress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A7F114C2CA2C006B4023 /* compress.h */; };
 		9A88AF6314C2CA2E006B4023 /* compress_archive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A7F214C2CA2C006B4023 /* compress_archive.cpp */; };
 		9A88AF6414C2CA2E006B4023 /* compress_archive_item_name.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A7F314C2CA2C006B4023 /* compress_archive_item_name.cpp */; };
@@ -404,26 +394,6 @@
 		9A88AF7314C2CA2E006B4023 /* compress_ppmd7_enc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A80214C2CA2C006B4023 /* compress_ppmd7_enc.cpp */; };
 		9A88AF7414C2CA2E006B4023 /* compress_ppmd8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A80314C2CA2C006B4023 /* compress_ppmd8.cpp */; };
 		9A88AF7514C2CA2E006B4023 /* compress_reader_with_crc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A80414C2CA2C006B4023 /* compress_reader_with_crc.cpp */; };
-		9A88AF7614C2CA2E006B4023 /* copy_coder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A80514C2CA2C006B4023 /* copy_coder.h */; };
-		9A88AF7714C2CA2E006B4023 /* create_coder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A80614C2CA2C006B4023 /* create_coder.h */; };
-		9A88AF7814C2CA2E006B4023 /* filter_coder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A80714C2CA2C006B4023 /* filter_coder.h */; };
-		9A88AF7914C2CA2E006B4023 /* gzip_helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A80814C2CA2C006B4023 /* gzip_helper.cpp */; };
-		9A88AF7A14C2CA2E006B4023 /* gzip_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A80914C2CA2C006B4023 /* gzip_helper.h */; };
-		9A88AF7B14C2CA2E006B4023 /* huffman_decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A80A14C2CA2C006B4023 /* huffman_decoder.h */; };
-		9A88AF7C14C2CA2E006B4023 /* input_stream_with_crc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A80B14C2CA2C006B4023 /* input_stream_with_crc.h */; };
-		9A88AF7D14C2CA2E006B4023 /* int_to_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A80C14C2CA2C006B4023 /* int_to_string.h */; };
-		9A88AF7E14C2CA2E006B4023 /* item_name.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A80D14C2CA2C006B4023 /* item_name.h */; };
-		9A88AF7F14C2CA2E006B4023 /* local_progress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A80E14C2CA2C006B4023 /* local_progress.h */; };
-		9A88AF8014C2CA2E006B4023 /* lz_out_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A80F14C2CA2C006B4023 /* lz_out_window.h */; };
-		9A88AF8114C2CA2E006B4023 /* method_properties.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A81014C2CA2C006B4023 /* method_properties.cpp */; };
-		9A88AF8214C2CA2E006B4023 /* method_properties.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A81114C2CA2C006B4023 /* method_properties.h */; };
-		9A88AF8314C2CA2E006B4023 /* out_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A81214C2CA2C006B4023 /* out_handler.cpp */; };
-		9A88AF8414C2CA2E006B4023 /* out_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A81314C2CA2C006B4023 /* out_handler.h */; };
-		9A88AF8514C2CA2E006B4023 /* ppmd.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A81414C2CA2C006B4023 /* ppmd.h */; };
-		9A88AF8614C2CA2E006B4023 /* ppmd7.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A81514C2CA2C006B4023 /* ppmd7.h */; };
-		9A88AF8714C2CA2E006B4023 /* ppmd8.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A81614C2CA2C006B4023 /* ppmd8.h */; };
-		9A88AF8814C2CA2E006B4023 /* prop_id.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A81714C2CA2C006B4023 /* prop_id.cpp */; };
-		9A88AF8914C2CA2E006B4023 /* prop_id.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A81814C2CA2C006B4023 /* prop_id.h */; };
 		9A88AF8A14C2CA2E006B4023 /* aes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A81A14C2CA2C006B4023 /* aes.h */; };
 		9A88AF8B14C2CA2E006B4023 /* folder_reader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A81B14C2CA2C006B4023 /* folder_reader.h */; };
 		9A88AF8C14C2CA2E006B4023 /* handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A81C14C2CA2C006B4023 /* handler.h */; };
@@ -446,10 +416,6 @@
 		9A88AF9D14C2CA2E006B4023 /* rar_input_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A82D14C2CA2C006B4023 /* rar_input_file.cpp */; };
 		9A88AF9E14C2CA2E006B4023 /* rar_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A82E14C2CA2C006B4023 /* rar_item.cpp */; };
 		9A88AF9F14C2CA2E006B4023 /* rar_volume_input_stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A82F14C2CA2C006B4023 /* rar_volume_input_stream.cpp */; };
-		9A88AFA014C2CA2E006B4023 /* reader_with_crc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A83014C2CA2C006B4023 /* reader_with_crc.h */; };
-		9A88AFA114C2CA2E006B4023 /* register_codec.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A83114C2CA2C006B4023 /* register_codec.h */; };
-		9A88AFA214C2CA2E006B4023 /* writer_with_crc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A83214C2CA2C006B4023 /* writer_with_crc.cpp */; };
-		9A88AFA314C2CA2E006B4023 /* writer_with_crc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A83314C2CA2C006B4023 /* writer_with_crc.h */; };
 		9A88AFA414C2CA2E006B4023 /* api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A83614C2CA2C006B4023 /* api.h */; };
 		9A88AFA514C2CA2E006B4023 /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A83714C2CA2C006B4023 /* crypt.h */; };
 		9A88AFA614C2CA2E006B4023 /* File.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A83814C2CA2C006B4023 /* File.h */; };
@@ -464,96 +430,15 @@
 		9A88AFAF14C2CA2E006B4023 /* zip_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A84114C2CA2C006B4023 /* zip_file.cpp */; };
 		9A88AFB014C2CA2E006B4023 /* zip_in_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A84214C2CA2C006B4023 /* zip_in_file.cpp */; };
 		9A88AFB114C2CA2E006B4023 /* zip_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A84314C2CA2C006B4023 /* zip_internal.h */; };
-		9A88AFB214C2CA2E006B4023 /* zip_ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A84414C2CA2C006B4023 /* zip_ioapi.c */; };
-		9A88AFB314C2CA2E006B4023 /* zip_iowin32.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A84514C2CA2C006B4023 /* zip_iowin32.c */; };
 		9A88AFB414C2CA2E006B4023 /* zip_memory_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A84614C2CA2C006B4023 /* zip_memory_file.cpp */; };
-		9A88AFB514C2CA2E006B4023 /* zip_unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A84714C2CA2C006B4023 /* zip_unzip.c */; };
 		9A88AFB614C2CA2E006B4023 /* zip_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A84814C2CA2C006B4023 /* zip_util.cpp */; };
-		9A88AFB714C2CA2E006B4023 /* zip_zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A84914C2CA2C006B4023 /* zip_zip.c */; };
 		9A88AFB814C2CA2E006B4023 /* zipImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A84A14C2CA2C006B4023 /* zipImpl.h */; };
-		9A88AFB914C2CA2E006B4023 /* 7z_crc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A84C14C2CA2C006B4023 /* 7z_crc.cpp */; };
-		9A88AFBA14C2CA2E006B4023 /* 7z_crc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A84D14C2CA2C006B4023 /* 7z_crc.h */; };
-		9A88AFBB14C2CA2E006B4023 /* ae_xfm.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A84E14C2CA2C006B4023 /* ae_xfm.c */; };
-		9A88AFBC14C2CA2E006B4023 /* aes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A84F14C2CA2C006B4023 /* aes.h */; };
-		9A88AFBD14C2CA2E006B4023 /* aes_cbc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A85014C2CA2C006B4023 /* aes_cbc.h */; };
-		9A88AFBE14C2CA2E006B4023 /* aes_cbc_coder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A85114C2CA2C006B4023 /* aes_cbc_coder.h */; };
-		9A88AFBF14C2CA2E006B4023 /* aes_icm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A85214C2CA2C006B4023 /* aes_icm.h */; };
-		9A88AFC014C2CA2E006B4023 /* alloc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A85314C2CA2C006B4023 /* alloc.h */; };
-		9A88AFC114C2CA2E006B4023 /* auth.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A85414C2CA2C006B4023 /* auth.h */; };
-		9A88AFC214C2CA2E006B4023 /* c_crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A85514C2CA2C006B4023 /* c_crypto.h */; };
-		9A88AFC314C2CA2E006B4023 /* cipher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A85614C2CA2C006B4023 /* cipher.h */; };
-		9A88AFC414C2CA2E006B4023 /* cipher_aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A85714C2CA2C006B4023 /* cipher_aes.c */; };
-		9A88AFC514C2CA2E006B4023 /* cipher_aes_cbc.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A85814C2CA2C006B4023 /* cipher_aes_cbc.c */; };
-		9A88AFC614C2CA2E006B4023 /* cipher_aes_icm.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A85914C2CA2C006B4023 /* cipher_aes_icm.c */; };
-		9A88AFC714C2CA2E006B4023 /* cipher_cipher.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A85A14C2CA2C006B4023 /* cipher_cipher.c */; };
-		9A88AFC814C2CA2E006B4023 /* cipher_null_cipher.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A85B14C2CA2C006B4023 /* cipher_null_cipher.c */; };
-		9A88AFC914C2CA2E006B4023 /* compress_codecs_info_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A85C14C2CA2C006B4023 /* compress_codecs_info_interface.h */; };
-		9A88AFCA14C2CA2E006B4023 /* compress_coder2_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A85D14C2CA2C006B4023 /* compress_coder2_interface.h */; };
-		9A88AFCB14C2CA2E006B4023 /* compress_coder_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A85E14C2CA2C006B4023 /* compress_coder_interface.h */; };
-		9A88AFCC14C2CA2E006B4023 /* compress_filter_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A85F14C2CA2C006B4023 /* compress_filter_interface.h */; };
-		9A88AFCD14C2CA2E006B4023 /* compress_get_input_stream_processed_size_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A86014C2CA2C006B4023 /* compress_get_input_stream_processed_size_interface.h */; };
-		9A88AFCE14C2CA2E006B4023 /* compress_get_sub_stream_size_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A86114C2CA2C006B4023 /* compress_get_sub_stream_size_interface.h */; };
-		9A88AFCF14C2CA2E006B4023 /* compress_progress_info_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A86214C2CA2C006B4023 /* compress_progress_info_interface.h */; };
-		9A88AFD014C2CA2E006B4023 /* compress_set_codecs_info_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A86314C2CA2C006B4023 /* compress_set_codecs_info_interface.h */; };
-		9A88AFD114C2CA2E006B4023 /* compress_set_coder_mt_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A86414C2CA2C006B4023 /* compress_set_coder_mt_interface.h */; };
-		9A88AFD214C2CA2E006B4023 /* compress_set_coder_properties_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A86514C2CA2C006B4023 /* compress_set_coder_properties_interface.h */; };
-		9A88AFD314C2CA2E006B4023 /* compress_set_decoder_properties2_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A86614C2CA2C006B4023 /* compress_set_decoder_properties2_interface.h */; };
-		9A88AFD414C2CA2E006B4023 /* compress_set_input_stream_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A86714C2CA2C006B4023 /* compress_set_input_stream_interface.h */; };
-		9A88AFD514C2CA2E006B4023 /* compress_set_output_stream_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A86814C2CA2C006B4023 /* compress_set_output_stream_interface.h */; };
-		9A88AFD614C2CA2E006B4023 /* compress_write_coder_properties_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A86914C2CA2C006B4023 /* compress_write_coder_properties_interface.h */; };
-		9A88AFD714C2CA2E006B4023 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A86A14C2CA2C006B4023 /* config.h */; };
 		9A88AFD814C2CA2E006B4023 /* crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A86B14C2CA2C006B4023 /* crypto.h */; };
-		9A88AFD914C2CA2E006B4023 /* crypto_get_text_password2_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A86C14C2CA2C006B4023 /* crypto_get_text_password2_interface.h */; };
-		9A88AFDA14C2CA2E006B4023 /* crypto_get_text_password_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A86D14C2CA2C006B4023 /* crypto_get_text_password_interface.h */; };
 		9A88AFDB14C2CA2E006B4023 /* crypto_kernel.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A86E14C2CA2C006B4023 /* crypto_kernel.h */; };
-		9A88AFDC14C2CA2E006B4023 /* crypto_math.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A86F14C2CA2C006B4023 /* crypto_math.c */; };
 		9A88AFDD14C2CA2E006B4023 /* crypto_math.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A87014C2CA2C006B4023 /* crypto_math.h */; };
-		9A88AFDE14C2CA2E006B4023 /* crypto_properties_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A87114C2CA2C006B4023 /* crypto_properties_interface.h */; };
-		9A88AFDF14C2CA2E006B4023 /* crypto_rar20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A87214C2CA2C006B4023 /* crypto_rar20.cpp */; };
-		9A88AFE014C2CA2E006B4023 /* crypto_reset_init_vector_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A87314C2CA2C006B4023 /* crypto_reset_init_vector_interface.h */; };
-		9A88AFE114C2CA2E006B4023 /* crypto_set_password_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A87414C2CA2C006B4023 /* crypto_set_password_interface.h */; };
 		9A88AFE214C2CA2E006B4023 /* crypto_sha1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A87514C2CA2C006B4023 /* crypto_sha1.cpp */; };
 		9A88AFE314C2CA2E006B4023 /* crypto_sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A87614C2CA2C006B4023 /* crypto_sha1.h */; };
 		9A88AFE414C2CA2E006B4023 /* crypto_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A87714C2CA2C006B4023 /* crypto_types.h */; };
-		9A88AFE514C2CA2E006B4023 /* cryptoalg.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A87814C2CA2C006B4023 /* cryptoalg.h */; };
-		9A88AFE614C2CA2E006B4023 /* datatypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A87914C2CA2C006B4023 /* datatypes.h */; };
-		9A88AFE714C2CA2E006B4023 /* err.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A87A14C2CA2C006B4023 /* err.h */; };
-		9A88AFE814C2CA2E006B4023 /* gf2_8.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A87B14C2CA2C006B4023 /* gf2_8.c */; };
-		9A88AFE914C2CA2E006B4023 /* gf2_8.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A87C14C2CA2C006B4023 /* gf2_8.h */; };
-		9A88AFEA14C2CA2E006B4023 /* hash_auth.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A87D14C2CA2C006B4023 /* hash_auth.c */; };
-		9A88AFEB14C2CA2E006B4023 /* hash_hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A87E14C2CA2C006B4023 /* hash_hmac.c */; };
-		9A88AFEC14C2CA2E006B4023 /* hash_null_auth.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A87F14C2CA2C006B4023 /* hash_null_auth.c */; };
-		9A88AFED14C2CA2E006B4023 /* hash_sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A88014C2CA2C006B4023 /* hash_sha1.c */; };
-		9A88AFEE14C2CA2E006B4023 /* hmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A88114C2CA2C006B4023 /* hmac.h */; };
-		9A88AFEF14C2CA2E006B4023 /* integers.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A88214C2CA2C006B4023 /* integers.h */; };
-		9A88AFF014C2CA2E006B4023 /* kernel_alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A88314C2CA2C006B4023 /* kernel_alloc.c */; };
-		9A88AFF114C2CA2E006B4023 /* kernel_compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A88414C2CA2C006B4023 /* kernel_compat.h */; };
-		9A88AFF214C2CA2E006B4023 /* kernel_crypto_kernel.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A88514C2CA2C006B4023 /* kernel_crypto_kernel.c */; };
-		9A88AFF314C2CA2E006B4023 /* kernel_err.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A88614C2CA2C006B4023 /* kernel_err.c */; };
-		9A88AFF414C2CA2E006B4023 /* kernel_key.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A88714C2CA2C006B4023 /* kernel_key.c */; };
-		9A88AFF514C2CA2E006B4023 /* key.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A88814C2CA2C006B4023 /* key.h */; };
-		9A88AFF614C2CA2E006B4023 /* math_datatypes.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A88914C2CA2C006B4023 /* math_datatypes.c */; };
-		9A88AFF714C2CA2E006B4023 /* math_stat.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A88A14C2CA2C006B4023 /* math_stat.c */; };
-		9A88AFF814C2CA2E006B4023 /* my_aes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A88B14C2CA2C006B4023 /* my_aes.cpp */; };
-		9A88AFF914C2CA2E006B4023 /* null_auth.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A88C14C2CA2C006B4023 /* null_auth.h */; };
-		9A88AFFA14C2CA2E006B4023 /* null_cipher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A88D14C2CA2C006B4023 /* null_cipher.h */; };
-		9A88AFFB14C2CA2E006B4023 /* prng.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A88E14C2CA2C006B4023 /* prng.h */; };
-		9A88AFFC14C2CA2E006B4023 /* rand_source.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A88F14C2CA2C006B4023 /* rand_source.h */; };
-		9A88AFFD14C2CA2E006B4023 /* rar20.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A89014C2CA2C006B4023 /* rar20.h */; };
-		9A88AFFE14C2CA2E006B4023 /* rdb.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A89114C2CA2C006B4023 /* rdb.h */; };
-		9A88AFFF14C2CA2E006B4023 /* rdbx.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A89214C2CA2C006B4023 /* rdbx.h */; };
-		9A88B00014C2CA2E006B4023 /* replay_rdb.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A89314C2CA2C006B4023 /* replay_rdb.c */; };
-		9A88B00114C2CA2E006B4023 /* replay_rdbx.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A89414C2CA2C006B4023 /* replay_rdbx.c */; };
-		9A88B00214C2CA2E006B4023 /* replay_ut_sim.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A89514C2CA2C006B4023 /* replay_ut_sim.c */; };
-		9A88B00314C2CA2E006B4023 /* rng_ctr_prng.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A89614C2CA2C006B4023 /* rng_ctr_prng.c */; };
-		9A88B00414C2CA2E006B4023 /* rng_prng.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A89714C2CA2C006B4023 /* rng_prng.c */; };
-		9A88B00514C2CA2E006B4023 /* rng_rand_source.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A89814C2CA2C006B4023 /* rng_rand_source.c */; };
-		9A88B00614C2CA2E006B4023 /* sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A89914C2CA2C006B4023 /* sha1.h */; };
-		9A88B00714C2CA2E006B4023 /* stat.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A89A14C2CA2C006B4023 /* stat.h */; };
-		9A88B00814C2CA2E006B4023 /* ut_sim.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A89B14C2CA2C006B4023 /* ut_sim.h */; };
-		9A88B00914C2CA2E006B4023 /* xfm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A89C14C2CA2C006B4023 /* xfm.h */; };
-		9A88B00A14C2CA2E006B4023 /* cube4_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A89E14C2CA2C006B4023 /* cube4_application.cpp */; };
-		9A88B00B14C2CA2E006B4023 /* planebase_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A89F14C2CA2C006B4023 /* planebase_application.cpp */; };
 		9A88B00C14C2CA2E006B4023 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A8A114C2CA2C006B4023 /* database.h */; };
 		9A88B00D14C2CA2E006B4023 /* database1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A8A214C2CA2C006B4023 /* database1.h */; };
 		9A88B00E14C2CA2E006B4023 /* database_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A8A314C2CA2C006B4023 /* database_application.cpp */; };
@@ -633,8 +518,6 @@
 		9A88B07314C2CA2E006B4023 /* ex1_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A90E14C2CA2C006B4023 /* ex1_file.cpp */; };
 		9A88B07414C2CA2E006B4023 /* ex1_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A90F14C2CA2C006B4023 /* ex1_file.h */; };
 		9A88B07514C2CA2E006B4023 /* ex1_file_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A91014C2CA2C006B4023 /* ex1_file_exception.h */; };
-		9A88B07614C2CA2E006B4023 /* ex1_file_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A91114C2CA2C006B4023 /* ex1_file_set.cpp */; };
-		9A88B07714C2CA2E006B4023 /* ex1_file_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A91214C2CA2C006B4023 /* ex1_file_set.h */; };
 		9A88B07814C2CA2E006B4023 /* ex1_file_status.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A91314C2CA2C006B4023 /* ex1_file_status.h */; };
 		9A88B07914C2CA2E006B4023 /* ex1_file_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A91414C2CA2C006B4023 /* ex1_file_system.cpp */; };
 		9A88B07A14C2CA2E006B4023 /* ex1_file_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A91514C2CA2C006B4023 /* ex1_file_system.h */; };
@@ -773,12 +656,6 @@
 		9A88B11A14C2CA2E006B4023 /* fs_item_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A9BB14C2CA2C006B4023 /* fs_item_array.h */; };
 		9A88B11B14C2CA2E006B4023 /* fs_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A9BC14C2CA2C006B4023 /* fs_set.cpp */; };
 		9A88B11C14C2CA2E006B4023 /* fs_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A9BD14C2CA2C006B4023 /* fs_set.h */; };
-		9A88B11D14C2CA2E006B4023 /* ifs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A9BE14C2CA2C006B4023 /* ifs.cpp */; };
-		9A88B11E14C2CA2E006B4023 /* ifs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A9BF14C2CA2C006B4023 /* ifs.h */; };
-		9A88B11F14C2CA2E006B4023 /* ifs_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A9C014C2CA2C006B4023 /* ifs_file.cpp */; };
-		9A88B12014C2CA2E006B4023 /* ifs_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A9C114C2CA2C006B4023 /* ifs_file.h */; };
-		9A88B12114C2CA2E006B4023 /* native_fs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A9C214C2CA2C006B4023 /* native_fs.cpp */; };
-		9A88B12214C2CA2E006B4023 /* native_fs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A9C314C2CA2C006B4023 /* native_fs.h */; };
 		9A88B12914C2CA2E006B4023 /* base_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A9CB14C2CA2C006B4023 /* base_enum.cpp */; };
 		9A88B12C14C2CA2E006B4023 /* gen.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A9CE14C2CA2C006B4023 /* gen.h */; };
 		9A88B12D14C2CA2E006B4023 /* gen_0.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A9CF14C2CA2C006B4023 /* gen_0.h */; };
@@ -870,13 +747,6 @@
 		9A88B18A14C2CA2F006B4023 /* gen_var_property_allocation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA2C14C2CA2C006B4023 /* gen_var_property_allocation.cpp */; };
 		9A88B18B14C2CA2F006B4023 /* gen_variable_strict_compare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA2D14C2CA2C006B4023 /* gen_variable_strict_compare.cpp */; };
 		9A88B18C14C2CA2F006B4023 /* gen_variable_strict_compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA2E14C2CA2C006B4023 /* gen_variable_strict_compare.h */; };
-		9A88B18D14C2CA2F006B4023 /* go_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA2F14C2CA2C006B4023 /* go_thread.cpp */; };
-		9A88B18E14C2CA2F006B4023 /* go_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA3014C2CA2C006B4023 /* go_thread.h */; };
-		9A88B18F14C2CA2F006B4023 /* muldiv32.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA3114C2CA2C006B4023 /* muldiv32.h */; };
-		9A88B19014C2CA2F006B4023 /* muldiv64.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA3214C2CA2C006B4023 /* muldiv64.h */; };
-		9A88B19114C2CA2F006B4023 /* reference.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA3314C2CA2C006B4023 /* reference.h */; };
-		9A88B19214C2CA2F006B4023 /* simple_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA3414C2CA2C006B4023 /* simple_thread.cpp */; };
-		9A88B19314C2CA2F006B4023 /* simple_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA3514C2CA2C006B4023 /* simple_thread.h */; };
 		9A88B19414C2CA2F006B4023 /* geoip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA3714C2CA2C006B4023 /* geoip.cpp */; };
 		9A88B19514C2CA2F006B4023 /* geoip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA3814C2CA2C006B4023 /* geoip.h */; };
 		9A88B19614C2CA2F006B4023 /* geoip_city.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA3914C2CA2C006B4023 /* geoip_city.cpp */; };
@@ -887,8 +757,6 @@
 		9A88B19B14C2CA2F006B4023 /* geoip_update.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA3E14C2CA2C006B4023 /* geoip_update.cpp */; };
 		9A88B19C14C2CA2F006B4023 /* geoip_update.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA3F14C2CA2C006B4023 /* geoip_update.h */; };
 		9A88B19D14C2CA2F006B4023 /* global.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA4014C2CA2C006B4023 /* global.h */; };
-		9A88B19E14C2CA2F006B4023 /* region_name.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA4114C2CA2C006B4023 /* region_name.cpp */; };
-		9A88B19F14C2CA2F006B4023 /* time_zone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA4214C2CA2C006B4023 /* time_zone.cpp */; };
 		9A88B1A014C2CA2F006B4023 /* install.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA4414C2CA2C006B4023 /* install.h */; };
 		9A88B1A114C2CA2F006B4023 /* install_install.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA4514C2CA2C006B4023 /* install_install.cpp */; };
 		9A88B1A214C2CA2F006B4023 /* install_install.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA4614C2CA2C006B4023 /* install_install.h */; };
@@ -1668,6 +1536,128 @@
 		CE01CA5F156A728700BEE947 /* exception_vms.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA5C156A728700BEE947 /* exception_vms.h */; };
 		CE01CA64156A873200BEE947 /* primitive_string_format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE01CA62156A873200BEE947 /* primitive_string_format.cpp */; };
 		CE01CA65156A873200BEE947 /* primitive_string_format.h in Headers */ = {isa = PBXBuildFile; fileRef = CE01CA63156A873200BEE947 /* primitive_string_format.h */; };
+		CE4BB24C156F7CA800DD13ED /* crypto_ae_xfm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB231156F7CA800DD13ED /* crypto_ae_xfm.cpp */; };
+		CE4BB24D156F7CA800DD13ED /* crypto_cipher_aes_cbc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB232156F7CA800DD13ED /* crypto_cipher_aes_cbc.cpp */; };
+		CE4BB24E156F7CA800DD13ED /* crypto_cipher_aes_icm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB233156F7CA800DD13ED /* crypto_cipher_aes_icm.cpp */; };
+		CE4BB24F156F7CA800DD13ED /* crypto_cipher_aes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB234156F7CA800DD13ED /* crypto_cipher_aes.cpp */; };
+		CE4BB250156F7CA800DD13ED /* crypto_cipher_cipher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB235156F7CA800DD13ED /* crypto_cipher_cipher.cpp */; };
+		CE4BB251156F7CA800DD13ED /* crypto_cipher_null_cipher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB236156F7CA800DD13ED /* crypto_cipher_null_cipher.cpp */; };
+		CE4BB252156F7CA800DD13ED /* crypto_gf2_8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB237156F7CA800DD13ED /* crypto_gf2_8.cpp */; };
+		CE4BB253156F7CA800DD13ED /* crypto_hash_auth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB238156F7CA800DD13ED /* crypto_hash_auth.cpp */; };
+		CE4BB254156F7CA800DD13ED /* crypto_hash_hmac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB239156F7CA800DD13ED /* crypto_hash_hmac.cpp */; };
+		CE4BB255156F7CA800DD13ED /* crypto_hash_null_auth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB23A156F7CA800DD13ED /* crypto_hash_null_auth.cpp */; };
+		CE4BB256156F7CA800DD13ED /* crypto_hash_sha1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB23B156F7CA800DD13ED /* crypto_hash_sha1.cpp */; };
+		CE4BB257156F7CA800DD13ED /* crypto_hmac_sha1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB23C156F7CA800DD13ED /* crypto_hmac_sha1.cpp */; };
+		CE4BB258156F7CA800DD13ED /* crypto_hmac_sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = CE4BB23D156F7CA800DD13ED /* crypto_hmac_sha1.h */; };
+		CE4BB259156F7CA800DD13ED /* crypto_kernel_alloc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB23E156F7CA800DD13ED /* crypto_kernel_alloc.cpp */; };
+		CE4BB25A156F7CA800DD13ED /* crypto_kernel_crypto_kernel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB23F156F7CA800DD13ED /* crypto_kernel_crypto_kernel.cpp */; };
+		CE4BB25B156F7CA800DD13ED /* crypto_kernel_err.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB240156F7CA800DD13ED /* crypto_kernel_err.cpp */; };
+		CE4BB25C156F7CA800DD13ED /* crypto_kernel_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB241156F7CA800DD13ED /* crypto_kernel_key.cpp */; };
+		CE4BB25D156F7CA800DD13ED /* crypto_math_stat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB242156F7CA800DD13ED /* crypto_math_stat.cpp */; };
+		CE4BB25E156F7CA800DD13ED /* crypto_math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB243156F7CA800DD13ED /* crypto_math.cpp */; };
+		CE4BB25F156F7CA800DD13ED /* crypto_my_aes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB244156F7CA800DD13ED /* crypto_my_aes.cpp */; };
+		CE4BB260156F7CA800DD13ED /* crypto_replay_rdb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB245156F7CA800DD13ED /* crypto_replay_rdb.cpp */; };
+		CE4BB261156F7CA800DD13ED /* crypto_replay_rdbx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB246156F7CA800DD13ED /* crypto_replay_rdbx.cpp */; };
+		CE4BB262156F7CA800DD13ED /* crypto_replay_ut_sim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB247156F7CA800DD13ED /* crypto_replay_ut_sim.cpp */; };
+		CE4BB263156F7CA800DD13ED /* crypto_rng_ctr_prng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB248156F7CA800DD13ED /* crypto_rng_ctr_prng.cpp */; };
+		CE4BB264156F7CA800DD13ED /* crypto_rng_prng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB249156F7CA800DD13ED /* crypto_rng_prng.cpp */; };
+		CE4BB265156F7CA800DD13ED /* crypto_rng_rand_source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB24A156F7CA800DD13ED /* crypto_rng_rand_source.cpp */; };
+		CE4D2C5C1571667300D43A55 /* macos_debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4D2C5B1571667300D43A55 /* macos_debug.cpp */; };
+		CE92A61015707A7A0016C580 /* crypto_aes_cbc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A5F715707A750016C580 /* crypto_aes_cbc.h */; };
+		CE92A61115707A7A0016C580 /* crypto_aes_icm.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A5F815707A750016C580 /* crypto_aes_icm.h */; };
+		CE92A61215707A7A0016C580 /* crypto_aes.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A5F915707A750016C580 /* crypto_aes.h */; };
+		CE92A61315707A7A0016C580 /* crypto_alg.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A5FA15707A750016C580 /* crypto_alg.h */; };
+		CE92A61415707A7A0016C580 /* crypto_alloc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A5FB15707A750016C580 /* crypto_alloc.h */; };
+		CE92A61515707A7A0016C580 /* crypto_auth.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A5FC15707A750016C580 /* crypto_auth.h */; };
+		CE92A61615707A7A0016C580 /* crypto_c_crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A5FD15707A750016C580 /* crypto_c_crypto.h */; };
+		CE92A61715707A7A0016C580 /* crypto_cipher.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A5FE15707A750016C580 /* crypto_cipher.h */; };
+		CE92A61815707A7A0016C580 /* crypto_config.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A5FF15707A750016C580 /* crypto_config.h */; };
+		CE92A61915707A7A0016C580 /* crypto_datatypes.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A60015707A760016C580 /* crypto_datatypes.h */; };
+		CE92A61A15707A7A0016C580 /* crypto_err.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A60115707A760016C580 /* crypto_err.h */; };
+		CE92A61B15707A7A0016C580 /* crypto_gf2_8.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A60215707A760016C580 /* crypto_gf2_8.h */; };
+		CE92A61C15707A7A0016C580 /* crypto_hmac.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A60315707A760016C580 /* crypto_hmac.h */; };
+		CE92A61D15707A7A0016C580 /* crypto_integers.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A60415707A760016C580 /* crypto_integers.h */; };
+		CE92A61E15707A7B0016C580 /* crypto_kernel_compat.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A60515707A770016C580 /* crypto_kernel_compat.h */; };
+		CE92A61F15707A7B0016C580 /* crypto_key.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A60615707A770016C580 /* crypto_key.h */; };
+		CE92A62015707A7B0016C580 /* crypto_null_auth.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A60715707A770016C580 /* crypto_null_auth.h */; };
+		CE92A62115707A7B0016C580 /* crypto_null_cipher.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A60815707A770016C580 /* crypto_null_cipher.h */; };
+		CE92A62215707A7B0016C580 /* crypto_prng.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A60915707A770016C580 /* crypto_prng.h */; };
+		CE92A62315707A7B0016C580 /* crypto_rand_source.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A60A15707A770016C580 /* crypto_rand_source.h */; };
+		CE92A62415707A7B0016C580 /* crypto_rdb.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A60B15707A780016C580 /* crypto_rdb.h */; };
+		CE92A62515707A7B0016C580 /* crypto_rdbx.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A60C15707A780016C580 /* crypto_rdbx.h */; };
+		CE92A62615707A7B0016C580 /* crypto_stat.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A60D15707A780016C580 /* crypto_stat.h */; };
+		CE92A62715707A7B0016C580 /* crypto_ut_sim.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A60E15707A790016C580 /* crypto_ut_sim.h */; };
+		CE92A62815707A7B0016C580 /* crypto_xfm.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A60F15707A790016C580 /* crypto_xfm.h */; };
+		CE92A64815707AF90016C580 /* compress_7z_crc_opt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A62915707AF90016C580 /* compress_7z_crc_opt.cpp */; };
+		CE92A64915707AF90016C580 /* compress_archive.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A62A15707AF90016C580 /* compress_archive.h */; };
+		CE92A64A15707AF90016C580 /* compress_bzip_helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A62B15707AF90016C580 /* compress_bzip_helper.cpp */; };
+		CE92A64B15707AF90016C580 /* compress_bzip_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A62C15707AF90016C580 /* compress_bzip_helper.h */; };
+		CE92A64C15707AF90016C580 /* compress_coder_mixer.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A62D15707AF90016C580 /* compress_coder_mixer.h */; };
+		CE92A64D15707AF90016C580 /* compress_coder_mixer2.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A62E15707AF90016C580 /* compress_coder_mixer2.h */; };
+		CE92A64E15707AF90016C580 /* compress_coder_mixer2mt.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A62F15707AF90016C580 /* compress_coder_mixer2mt.h */; };
+		CE92A64F15707AF90016C580 /* compress_coder.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A63015707AF90016C580 /* compress_coder.h */; };
+		CE92A65015707AF90016C580 /* compress_copy_coder.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A63115707AF90016C580 /* compress_copy_coder.h */; };
+		CE92A65115707AF90016C580 /* compress_create_coder.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A63215707AF90016C580 /* compress_create_coder.h */; };
+		CE92A65215707AF90016C580 /* compress_filter_coder.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A63315707AF90016C580 /* compress_filter_coder.h */; };
+		CE92A65315707AF90016C580 /* compress_gzip_helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A63415707AF90016C580 /* compress_gzip_helper.cpp */; };
+		CE92A65415707AF90016C580 /* compress_gzip_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A63515707AF90016C580 /* compress_gzip_helper.h */; };
+		CE92A65515707AF90016C580 /* compress_huffman_decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A63615707AF90016C580 /* compress_huffman_decoder.h */; };
+		CE92A65615707AF90016C580 /* compress_input_stream_with_crc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A63715707AF90016C580 /* compress_input_stream_with_crc.h */; };
+		CE92A65715707AF90016C580 /* compress_int_to_string.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A63815707AF90016C580 /* compress_int_to_string.h */; };
+		CE92A65815707AF90016C580 /* compress_item_name.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A63915707AF90016C580 /* compress_item_name.h */; };
+		CE92A65915707AF90016C580 /* compress_local_progress.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A63A15707AF90016C580 /* compress_local_progress.h */; };
+		CE92A65A15707AF90016C580 /* compress_lz_out_window.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A63B15707AF90016C580 /* compress_lz_out_window.h */; };
+		CE92A65B15707AF90016C580 /* compress_method_properties.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A63C15707AF90016C580 /* compress_method_properties.h */; };
+		CE92A65C15707AF90016C580 /* compress_out_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A63D15707AF90016C580 /* compress_out_handler.cpp */; };
+		CE92A65D15707AF90016C580 /* compress_out_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A63E15707AF90016C580 /* compress_out_handler.h */; };
+		CE92A65E15707AF90016C580 /* compress_ppmd.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A63F15707AF90016C580 /* compress_ppmd.h */; };
+		CE92A65F15707AF90016C580 /* compress_ppmd7.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A64015707AF90016C580 /* compress_ppmd7.h */; };
+		CE92A66015707AF90016C580 /* compress_ppmd8.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A64115707AF90016C580 /* compress_ppmd8.h */; };
+		CE92A66115707AF90016C580 /* compress_prop_id.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A64215707AF90016C580 /* compress_prop_id.cpp */; };
+		CE92A66215707AF90016C580 /* compress_prop_id.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A64315707AF90016C580 /* compress_prop_id.h */; };
+		CE92A66315707AF90016C580 /* compress_reader_with_crc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A64415707AF90016C580 /* compress_reader_with_crc.h */; };
+		CE92A66415707AF90016C580 /* compress_register_codec.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A64515707AF90016C580 /* compress_register_codec.h */; };
+		CE92A66515707AF90016C580 /* compress_writer_with_crc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A64615707AF90016C580 /* compress_writer_with_crc.cpp */; };
+		CE92A66615707AF90016C580 /* compress_writer_with_crc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A64715707AF90016C580 /* compress_writer_with_crc.h */; };
+		CE92A67715707B420016C580 /* compress_codecs_info_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A66815707B420016C580 /* compress_codecs_info_interface.h */; };
+		CE92A67815707B420016C580 /* compress_coder_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A66915707B420016C580 /* compress_coder_interface.h */; };
+		CE92A67915707B420016C580 /* compress_coder2_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A66A15707B420016C580 /* compress_coder2_interface.h */; };
+		CE92A67A15707B420016C580 /* compress_filter_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A66B15707B420016C580 /* compress_filter_interface.h */; };
+		CE92A67B15707B420016C580 /* compress_get_input_stream_processed_size_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A66C15707B420016C580 /* compress_get_input_stream_processed_size_interface.h */; };
+		CE92A67C15707B420016C580 /* compress_get_sub_stream_size_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A66D15707B420016C580 /* compress_get_sub_stream_size_interface.h */; };
+		CE92A67D15707B420016C580 /* compress_progress_info_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A66E15707B420016C580 /* compress_progress_info_interface.h */; };
+		CE92A67E15707B420016C580 /* compress_set_codecs_info_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A66F15707B420016C580 /* compress_set_codecs_info_interface.h */; };
+		CE92A67F15707B420016C580 /* compress_set_coder_mt_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A67015707B420016C580 /* compress_set_coder_mt_interface.h */; };
+		CE92A68015707B420016C580 /* compress_set_coder_properties_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A67115707B420016C580 /* compress_set_coder_properties_interface.h */; };
+		CE92A68115707B420016C580 /* compress_set_decoder_properties2_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A67215707B420016C580 /* compress_set_decoder_properties2_interface.h */; };
+		CE92A68215707B420016C580 /* compress_set_input_stream_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A67315707B420016C580 /* compress_set_input_stream_interface.h */; };
+		CE92A68315707B420016C580 /* compress_set_output_stream_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A67415707B420016C580 /* compress_set_output_stream_interface.h */; };
+		CE92A68415707B420016C580 /* compress_write_coder_properties_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A67515707B420016C580 /* compress_write_coder_properties_interface.h */; };
+		CE92A68515707B420016C580 /* compress.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A67615707B420016C580 /* compress.h */; };
+		CE92A69215707B800016C580 /* crypto_7z_crc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A68715707B800016C580 /* crypto_7z_crc.cpp */; };
+		CE92A69315707B800016C580 /* crypto_7z_crc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A68815707B800016C580 /* crypto_7z_crc.h */; };
+		CE92A69415707B800016C580 /* crypto_aes_cbc_coder.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A68915707B800016C580 /* crypto_aes_cbc_coder.h */; };
+		CE92A69515707B800016C580 /* crypto_get_text_password_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A68A15707B800016C580 /* crypto_get_text_password_interface.h */; };
+		CE92A69615707B800016C580 /* crypto_get_text_password2_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A68B15707B800016C580 /* crypto_get_text_password2_interface.h */; };
+		CE92A69715707B800016C580 /* crypto_properties_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A68C15707B800016C580 /* crypto_properties_interface.h */; };
+		CE92A69815707B800016C580 /* crypto_rar20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A68D15707B800016C580 /* crypto_rar20.cpp */; };
+		CE92A69915707B800016C580 /* crypto_rar20.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A68E15707B800016C580 /* crypto_rar20.h */; };
+		CE92A69A15707B800016C580 /* crypto_reset_init_vector_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A68F15707B800016C580 /* crypto_reset_init_vector_interface.h */; };
+		CE92A69B15707B800016C580 /* crypto_set_password_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A69015707B800016C580 /* crypto_set_password_interface.h */; };
+		CE92A69C15707B800016C580 /* crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A69115707B800016C580 /* crypto.h */; };
+		CE92A6A715707CA50016C580 /* fs_ifs_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A69D15707CA50016C580 /* fs_ifs_file.cpp */; };
+		CE92A6A815707CA50016C580 /* fs_ifs_file.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A69E15707CA50016C580 /* fs_ifs_file.h */; };
+		CE92A6A915707CA50016C580 /* fs_ifs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A69F15707CA50016C580 /* fs_ifs.cpp */; };
+		CE92A6AA15707CA50016C580 /* fs_ifs.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A6A015707CA50016C580 /* fs_ifs.h */; };
+		CE92A6AB15707CA50016C580 /* fs_native_fs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A6A115707CA50016C580 /* fs_native_fs.cpp */; };
+		CE92A6AC15707CA50016C580 /* fs_native_fs.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A6A215707CA50016C580 /* fs_native_fs.h */; };
+		CE92A6AD15707CA50016C580 /* fs_remote_native_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A6A315707CA50016C580 /* fs_remote_native_file.cpp */; };
+		CE92A6AE15707CA50016C580 /* fs_remote_native_file.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A6A415707CA50016C580 /* fs_remote_native_file.h */; };
+		CE92A6AF15707CA50016C580 /* fs_remote_native_fs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A6A515707CA50016C580 /* fs_remote_native_fs.cpp */; };
+		CE92A6B015707CA50016C580 /* fs_remote_native_fs.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A6A615707CA50016C580 /* fs_remote_native_fs.h */; };
+		CE92A6B4157110520016C580 /* zip_ioapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A6B1157110520016C580 /* zip_ioapi.cpp */; };
+		CE92A6B5157110520016C580 /* zip_unzip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A6B2157110520016C580 /* zip_unzip.cpp */; };
+		CE92A6B6157110520016C580 /* zip_zip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A6B3157110520016C580 /* zip_zip.cpp */; };
 		CE931719155F1C02005F90F6 /* c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931718155F1C02005F90F6 /* c.dylib */; };
 		CE980ABD156679A800CD7C45 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE980ABB156679A800CD7C45 /* framework.cpp */; };
 		CE980ABE156679A800CD7C45 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = CE980ABC156679A800CD7C45 /* framework.h */; };
@@ -1765,7 +1755,6 @@
 		9A88A6B914C2CA2C006B4023 /* ca_region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_region.h; sourceTree = "<group>"; };
 		9A88A6BA14C2CA2C006B4023 /* ca_se_translator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_se_translator.h; sourceTree = "<group>"; };
 		9A88A6BB14C2CA2C006B4023 /* ca_se_translator.want_to_remove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_se_translator.want_to_remove.h; sourceTree = "<group>"; };
-		9A88A6BC14C2CA2C006B4023 /* ca_seed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_seed.h; sourceTree = "<group>"; };
 		9A88A6BD14C2CA2C006B4023 /* ca_session.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca_session.cpp; sourceTree = "<group>"; };
 		9A88A6BE14C2CA2C006B4023 /* ca_session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca_session.h; sourceTree = "<group>"; };
 		9A88A6BF14C2CA2C006B4023 /* ca_smart_pointer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca_smart_pointer.cpp; sourceTree = "<group>"; };
@@ -2014,7 +2003,6 @@
 		9A88A7C514C2CA2C006B4023 /* text_parser_helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text_parser_helpers.h; sourceTree = "<group>"; };
 		9A88A7C614C2CA2C006B4023 /* text_parser_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text_parser_impl.h; sourceTree = "<group>"; };
 		9A88A7C714C2CA2C006B4023 /* text_region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text_region.h; sourceTree = "<group>"; };
-		9A88A7C814C2CA2C006B4023 /* TextConsoleViewer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextConsoleViewer.cpp; sourceTree = "<group>"; };
 		9A88A7C914C2CA2C006B4023 /* Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Writer.h; sourceTree = "<group>"; };
 		9A88A7CA14C2CA2C006B4023 /* xmldom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmldom.h; sourceTree = "<group>"; };
 		9A88A7CD14C2CA2C006B4023 /* 7z.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 7z.h; sourceTree = "<group>"; };
@@ -2045,14 +2033,6 @@
 		9A88A7E614C2CA2C006B4023 /* 7zSpecStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 7zSpecStream.h; sourceTree = "<group>"; };
 		9A88A7E714C2CA2C006B4023 /* 7zUpdate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = 7zUpdate.cpp; sourceTree = "<group>"; };
 		9A88A7E814C2CA2C006B4023 /* 7zUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 7zUpdate.h; sourceTree = "<group>"; };
-		9A88A7E914C2CA2C006B4023 /* 7z_crc_opt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = 7z_crc_opt.cpp; sourceTree = "<group>"; };
-		9A88A7EA14C2CA2C006B4023 /* archive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = archive.h; sourceTree = "<group>"; };
-		9A88A7EB14C2CA2C006B4023 /* bzip_helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bzip_helper.cpp; sourceTree = "<group>"; };
-		9A88A7EC14C2CA2C006B4023 /* bzip_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bzip_helper.h; sourceTree = "<group>"; };
-		9A88A7ED14C2CA2C006B4023 /* coder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coder.h; sourceTree = "<group>"; };
-		9A88A7EE14C2CA2C006B4023 /* coder_mixer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coder_mixer.h; sourceTree = "<group>"; };
-		9A88A7EF14C2CA2C006B4023 /* coder_mixer2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coder_mixer2.h; sourceTree = "<group>"; };
-		9A88A7F014C2CA2C006B4023 /* coder_mixer2mt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coder_mixer2mt.h; sourceTree = "<group>"; };
 		9A88A7F114C2CA2C006B4023 /* compress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress.h; sourceTree = "<group>"; };
 		9A88A7F214C2CA2C006B4023 /* compress_archive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress_archive.cpp; sourceTree = "<group>"; };
 		9A88A7F314C2CA2C006B4023 /* compress_archive_item_name.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress_archive_item_name.cpp; sourceTree = "<group>"; };
@@ -2073,26 +2053,6 @@
 		9A88A80214C2CA2C006B4023 /* compress_ppmd7_enc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress_ppmd7_enc.cpp; sourceTree = "<group>"; };
 		9A88A80314C2CA2C006B4023 /* compress_ppmd8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress_ppmd8.cpp; sourceTree = "<group>"; };
 		9A88A80414C2CA2C006B4023 /* compress_reader_with_crc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress_reader_with_crc.cpp; sourceTree = "<group>"; };
-		9A88A80514C2CA2C006B4023 /* copy_coder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = copy_coder.h; sourceTree = "<group>"; };
-		9A88A80614C2CA2C006B4023 /* create_coder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = create_coder.h; sourceTree = "<group>"; };
-		9A88A80714C2CA2C006B4023 /* filter_coder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filter_coder.h; sourceTree = "<group>"; };
-		9A88A80814C2CA2C006B4023 /* gzip_helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gzip_helper.cpp; sourceTree = "<group>"; };
-		9A88A80914C2CA2C006B4023 /* gzip_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gzip_helper.h; sourceTree = "<group>"; };
-		9A88A80A14C2CA2C006B4023 /* huffman_decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = huffman_decoder.h; sourceTree = "<group>"; };
-		9A88A80B14C2CA2C006B4023 /* input_stream_with_crc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = input_stream_with_crc.h; sourceTree = "<group>"; };
-		9A88A80C14C2CA2C006B4023 /* int_to_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = int_to_string.h; sourceTree = "<group>"; };
-		9A88A80D14C2CA2C006B4023 /* item_name.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = item_name.h; sourceTree = "<group>"; };
-		9A88A80E14C2CA2C006B4023 /* local_progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = local_progress.h; sourceTree = "<group>"; };
-		9A88A80F14C2CA2C006B4023 /* lz_out_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lz_out_window.h; sourceTree = "<group>"; };
-		9A88A81014C2CA2C006B4023 /* method_properties.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = method_properties.cpp; sourceTree = "<group>"; };
-		9A88A81114C2CA2C006B4023 /* method_properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = method_properties.h; sourceTree = "<group>"; };
-		9A88A81214C2CA2C006B4023 /* out_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = out_handler.cpp; sourceTree = "<group>"; };
-		9A88A81314C2CA2C006B4023 /* out_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = out_handler.h; sourceTree = "<group>"; };
-		9A88A81414C2CA2C006B4023 /* ppmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ppmd.h; sourceTree = "<group>"; };
-		9A88A81514C2CA2C006B4023 /* ppmd7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ppmd7.h; sourceTree = "<group>"; };
-		9A88A81614C2CA2C006B4023 /* ppmd8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ppmd8.h; sourceTree = "<group>"; };
-		9A88A81714C2CA2C006B4023 /* prop_id.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = prop_id.cpp; sourceTree = "<group>"; };
-		9A88A81814C2CA2C006B4023 /* prop_id.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prop_id.h; sourceTree = "<group>"; };
 		9A88A81A14C2CA2C006B4023 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
 		9A88A81B14C2CA2C006B4023 /* folder_reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = folder_reader.h; sourceTree = "<group>"; };
 		9A88A81C14C2CA2C006B4023 /* handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = handler.h; sourceTree = "<group>"; };
@@ -2115,10 +2075,6 @@
 		9A88A82D14C2CA2C006B4023 /* rar_input_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rar_input_file.cpp; sourceTree = "<group>"; };
 		9A88A82E14C2CA2C006B4023 /* rar_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rar_item.cpp; sourceTree = "<group>"; };
 		9A88A82F14C2CA2C006B4023 /* rar_volume_input_stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rar_volume_input_stream.cpp; sourceTree = "<group>"; };
-		9A88A83014C2CA2C006B4023 /* reader_with_crc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader_with_crc.h; sourceTree = "<group>"; };
-		9A88A83114C2CA2C006B4023 /* register_codec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = register_codec.h; sourceTree = "<group>"; };
-		9A88A83214C2CA2C006B4023 /* writer_with_crc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = writer_with_crc.cpp; sourceTree = "<group>"; };
-		9A88A83314C2CA2C006B4023 /* writer_with_crc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer_with_crc.h; sourceTree = "<group>"; };
 		9A88A83514C2CA2C006B4023 /* algorithm.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = algorithm.txt; sourceTree = "<group>"; };
 		9A88A83614C2CA2C006B4023 /* api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api.h; sourceTree = "<group>"; };
 		9A88A83714C2CA2C006B4023 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
@@ -2134,96 +2090,15 @@
 		9A88A84114C2CA2C006B4023 /* zip_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zip_file.cpp; sourceTree = "<group>"; };
 		9A88A84214C2CA2C006B4023 /* zip_in_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zip_in_file.cpp; sourceTree = "<group>"; };
 		9A88A84314C2CA2C006B4023 /* zip_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip_internal.h; sourceTree = "<group>"; };
-		9A88A84414C2CA2C006B4023 /* zip_ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_ioapi.c; sourceTree = "<group>"; };
-		9A88A84514C2CA2C006B4023 /* zip_iowin32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_iowin32.c; sourceTree = "<group>"; };
 		9A88A84614C2CA2C006B4023 /* zip_memory_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zip_memory_file.cpp; sourceTree = "<group>"; };
-		9A88A84714C2CA2C006B4023 /* zip_unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_unzip.c; sourceTree = "<group>"; };
 		9A88A84814C2CA2C006B4023 /* zip_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zip_util.cpp; sourceTree = "<group>"; };
-		9A88A84914C2CA2C006B4023 /* zip_zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip_zip.c; sourceTree = "<group>"; };
 		9A88A84A14C2CA2C006B4023 /* zipImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zipImpl.h; sourceTree = "<group>"; };
-		9A88A84C14C2CA2C006B4023 /* 7z_crc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = 7z_crc.cpp; sourceTree = "<group>"; };
-		9A88A84D14C2CA2C006B4023 /* 7z_crc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 7z_crc.h; sourceTree = "<group>"; };
-		9A88A84E14C2CA2C006B4023 /* ae_xfm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ae_xfm.c; sourceTree = "<group>"; };
-		9A88A84F14C2CA2C006B4023 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
-		9A88A85014C2CA2C006B4023 /* aes_cbc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes_cbc.h; sourceTree = "<group>"; };
-		9A88A85114C2CA2C006B4023 /* aes_cbc_coder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes_cbc_coder.h; sourceTree = "<group>"; };
-		9A88A85214C2CA2C006B4023 /* aes_icm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes_icm.h; sourceTree = "<group>"; };
-		9A88A85314C2CA2C006B4023 /* alloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alloc.h; sourceTree = "<group>"; };
-		9A88A85414C2CA2C006B4023 /* auth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = auth.h; sourceTree = "<group>"; };
-		9A88A85514C2CA2C006B4023 /* c_crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_crypto.h; sourceTree = "<group>"; };
-		9A88A85614C2CA2C006B4023 /* cipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cipher.h; sourceTree = "<group>"; };
-		9A88A85714C2CA2C006B4023 /* cipher_aes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cipher_aes.c; sourceTree = "<group>"; };
-		9A88A85814C2CA2C006B4023 /* cipher_aes_cbc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cipher_aes_cbc.c; sourceTree = "<group>"; };
-		9A88A85914C2CA2C006B4023 /* cipher_aes_icm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cipher_aes_icm.c; sourceTree = "<group>"; };
-		9A88A85A14C2CA2C006B4023 /* cipher_cipher.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cipher_cipher.c; sourceTree = "<group>"; };
-		9A88A85B14C2CA2C006B4023 /* cipher_null_cipher.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cipher_null_cipher.c; sourceTree = "<group>"; };
-		9A88A85C14C2CA2C006B4023 /* compress_codecs_info_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_codecs_info_interface.h; sourceTree = "<group>"; };
-		9A88A85D14C2CA2C006B4023 /* compress_coder2_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_coder2_interface.h; sourceTree = "<group>"; };
-		9A88A85E14C2CA2C006B4023 /* compress_coder_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_coder_interface.h; sourceTree = "<group>"; };
-		9A88A85F14C2CA2C006B4023 /* compress_filter_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_filter_interface.h; sourceTree = "<group>"; };
-		9A88A86014C2CA2C006B4023 /* compress_get_input_stream_processed_size_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_get_input_stream_processed_size_interface.h; sourceTree = "<group>"; };
-		9A88A86114C2CA2C006B4023 /* compress_get_sub_stream_size_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_get_sub_stream_size_interface.h; sourceTree = "<group>"; };
-		9A88A86214C2CA2C006B4023 /* compress_progress_info_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_progress_info_interface.h; sourceTree = "<group>"; };
-		9A88A86314C2CA2C006B4023 /* compress_set_codecs_info_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_set_codecs_info_interface.h; sourceTree = "<group>"; };
-		9A88A86414C2CA2C006B4023 /* compress_set_coder_mt_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_set_coder_mt_interface.h; sourceTree = "<group>"; };
-		9A88A86514C2CA2C006B4023 /* compress_set_coder_properties_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_set_coder_properties_interface.h; sourceTree = "<group>"; };
-		9A88A86614C2CA2C006B4023 /* compress_set_decoder_properties2_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_set_decoder_properties2_interface.h; sourceTree = "<group>"; };
-		9A88A86714C2CA2C006B4023 /* compress_set_input_stream_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_set_input_stream_interface.h; sourceTree = "<group>"; };
-		9A88A86814C2CA2C006B4023 /* compress_set_output_stream_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_set_output_stream_interface.h; sourceTree = "<group>"; };
-		9A88A86914C2CA2C006B4023 /* compress_write_coder_properties_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_write_coder_properties_interface.h; sourceTree = "<group>"; };
-		9A88A86A14C2CA2C006B4023 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		9A88A86B14C2CA2C006B4023 /* crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto.h; sourceTree = "<group>"; };
-		9A88A86C14C2CA2C006B4023 /* crypto_get_text_password2_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_get_text_password2_interface.h; sourceTree = "<group>"; };
-		9A88A86D14C2CA2C006B4023 /* crypto_get_text_password_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_get_text_password_interface.h; sourceTree = "<group>"; };
 		9A88A86E14C2CA2C006B4023 /* crypto_kernel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_kernel.h; sourceTree = "<group>"; };
-		9A88A86F14C2CA2C006B4023 /* crypto_math.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypto_math.c; sourceTree = "<group>"; };
 		9A88A87014C2CA2C006B4023 /* crypto_math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_math.h; sourceTree = "<group>"; };
-		9A88A87114C2CA2C006B4023 /* crypto_properties_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_properties_interface.h; sourceTree = "<group>"; };
-		9A88A87214C2CA2C006B4023 /* crypto_rar20.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_rar20.cpp; sourceTree = "<group>"; };
-		9A88A87314C2CA2C006B4023 /* crypto_reset_init_vector_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_reset_init_vector_interface.h; sourceTree = "<group>"; };
-		9A88A87414C2CA2C006B4023 /* crypto_set_password_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_set_password_interface.h; sourceTree = "<group>"; };
 		9A88A87514C2CA2C006B4023 /* crypto_sha1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_sha1.cpp; sourceTree = "<group>"; };
 		9A88A87614C2CA2C006B4023 /* crypto_sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_sha1.h; sourceTree = "<group>"; };
 		9A88A87714C2CA2C006B4023 /* crypto_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_types.h; sourceTree = "<group>"; };
-		9A88A87814C2CA2C006B4023 /* cryptoalg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cryptoalg.h; sourceTree = "<group>"; };
-		9A88A87914C2CA2C006B4023 /* datatypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datatypes.h; sourceTree = "<group>"; };
-		9A88A87A14C2CA2C006B4023 /* err.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = err.h; sourceTree = "<group>"; };
-		9A88A87B14C2CA2C006B4023 /* gf2_8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gf2_8.c; sourceTree = "<group>"; };
-		9A88A87C14C2CA2C006B4023 /* gf2_8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gf2_8.h; sourceTree = "<group>"; };
-		9A88A87D14C2CA2C006B4023 /* hash_auth.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hash_auth.c; sourceTree = "<group>"; };
-		9A88A87E14C2CA2C006B4023 /* hash_hmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hash_hmac.c; sourceTree = "<group>"; };
-		9A88A87F14C2CA2C006B4023 /* hash_null_auth.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hash_null_auth.c; sourceTree = "<group>"; };
-		9A88A88014C2CA2C006B4023 /* hash_sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hash_sha1.c; sourceTree = "<group>"; };
-		9A88A88114C2CA2C006B4023 /* hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hmac.h; sourceTree = "<group>"; };
-		9A88A88214C2CA2C006B4023 /* integers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = integers.h; sourceTree = "<group>"; };
-		9A88A88314C2CA2C006B4023 /* kernel_alloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kernel_alloc.c; sourceTree = "<group>"; };
-		9A88A88414C2CA2C006B4023 /* kernel_compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kernel_compat.h; sourceTree = "<group>"; };
-		9A88A88514C2CA2C006B4023 /* kernel_crypto_kernel.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kernel_crypto_kernel.c; sourceTree = "<group>"; };
-		9A88A88614C2CA2C006B4023 /* kernel_err.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kernel_err.c; sourceTree = "<group>"; };
-		9A88A88714C2CA2C006B4023 /* kernel_key.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kernel_key.c; sourceTree = "<group>"; };
-		9A88A88814C2CA2C006B4023 /* key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = key.h; sourceTree = "<group>"; };
-		9A88A88914C2CA2C006B4023 /* math_datatypes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = math_datatypes.c; sourceTree = "<group>"; };
-		9A88A88A14C2CA2C006B4023 /* math_stat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = math_stat.c; sourceTree = "<group>"; };
-		9A88A88B14C2CA2C006B4023 /* my_aes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = my_aes.cpp; sourceTree = "<group>"; };
-		9A88A88C14C2CA2C006B4023 /* null_auth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = null_auth.h; sourceTree = "<group>"; };
-		9A88A88D14C2CA2C006B4023 /* null_cipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = null_cipher.h; sourceTree = "<group>"; };
-		9A88A88E14C2CA2C006B4023 /* prng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prng.h; sourceTree = "<group>"; };
-		9A88A88F14C2CA2C006B4023 /* rand_source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rand_source.h; sourceTree = "<group>"; };
-		9A88A89014C2CA2C006B4023 /* rar20.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rar20.h; sourceTree = "<group>"; };
-		9A88A89114C2CA2C006B4023 /* rdb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rdb.h; sourceTree = "<group>"; };
-		9A88A89214C2CA2C006B4023 /* rdbx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rdbx.h; sourceTree = "<group>"; };
-		9A88A89314C2CA2C006B4023 /* replay_rdb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = replay_rdb.c; sourceTree = "<group>"; };
-		9A88A89414C2CA2C006B4023 /* replay_rdbx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = replay_rdbx.c; sourceTree = "<group>"; };
-		9A88A89514C2CA2C006B4023 /* replay_ut_sim.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = replay_ut_sim.c; sourceTree = "<group>"; };
-		9A88A89614C2CA2C006B4023 /* rng_ctr_prng.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rng_ctr_prng.c; sourceTree = "<group>"; };
-		9A88A89714C2CA2C006B4023 /* rng_prng.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rng_prng.c; sourceTree = "<group>"; };
-		9A88A89814C2CA2C006B4023 /* rng_rand_source.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rng_rand_source.c; sourceTree = "<group>"; };
-		9A88A89914C2CA2C006B4023 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
-		9A88A89A14C2CA2C006B4023 /* stat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stat.h; sourceTree = "<group>"; };
-		9A88A89B14C2CA2C006B4023 /* ut_sim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ut_sim.h; sourceTree = "<group>"; };
-		9A88A89C14C2CA2C006B4023 /* xfm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xfm.h; sourceTree = "<group>"; };
-		9A88A89E14C2CA2C006B4023 /* cube4_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cube4_application.cpp; sourceTree = "<group>"; };
-		9A88A89F14C2CA2C006B4023 /* planebase_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = planebase_application.cpp; sourceTree = "<group>"; };
 		9A88A8A114C2CA2C006B4023 /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database.h; sourceTree = "<group>"; };
 		9A88A8A214C2CA2C006B4023 /* database1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database1.h; sourceTree = "<group>"; };
 		9A88A8A314C2CA2C006B4023 /* database_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_application.cpp; sourceTree = "<group>"; };
@@ -2303,8 +2178,6 @@
 		9A88A90E14C2CA2C006B4023 /* ex1_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ex1_file.cpp; sourceTree = "<group>"; };
 		9A88A90F14C2CA2C006B4023 /* ex1_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ex1_file.h; sourceTree = "<group>"; };
 		9A88A91014C2CA2C006B4023 /* ex1_file_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ex1_file_exception.h; sourceTree = "<group>"; };
-		9A88A91114C2CA2C006B4023 /* ex1_file_set.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ex1_file_set.cpp; sourceTree = "<group>"; };
-		9A88A91214C2CA2C006B4023 /* ex1_file_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ex1_file_set.h; sourceTree = "<group>"; };
 		9A88A91314C2CA2C006B4023 /* ex1_file_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ex1_file_status.h; sourceTree = "<group>"; };
 		9A88A91414C2CA2C006B4023 /* ex1_file_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ex1_file_system.cpp; sourceTree = "<group>"; };
 		9A88A91514C2CA2C006B4023 /* ex1_file_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ex1_file_system.h; sourceTree = "<group>"; };
@@ -2431,7 +2304,6 @@
 		9A88A9AD14C2CA2C006B4023 /* fontopus_usera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fontopus_usera.cpp; sourceTree = "<group>"; };
 		9A88A9AE14C2CA2C006B4023 /* fontopus_usera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fontopus_usera.h; sourceTree = "<group>"; };
 		9A88A9AF14C2CA2C006B4023 /* fontopus_validate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fontopus_validate.cpp; sourceTree = "<group>"; };
-		9A88A9B014C2CA2C006B4023 /* fontopus_validate.cpp.cbTemp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fontopus_validate.cpp.cbTemp; sourceTree = "<group>"; };
 		9A88A9B114C2CA2C006B4023 /* fontopus_validate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fontopus_validate.h; sourceTree = "<group>"; };
 		9A88A9B314C2CA2C006B4023 /* fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs.h; sourceTree = "<group>"; };
 		9A88A9B414C2CA2C006B4023 /* fs_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fs_application.cpp; sourceTree = "<group>"; };
@@ -2444,12 +2316,6 @@
 		9A88A9BB14C2CA2C006B4023 /* fs_item_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_item_array.h; sourceTree = "<group>"; };
 		9A88A9BC14C2CA2C006B4023 /* fs_set.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fs_set.cpp; sourceTree = "<group>"; };
 		9A88A9BD14C2CA2C006B4023 /* fs_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_set.h; sourceTree = "<group>"; };
-		9A88A9BE14C2CA2C006B4023 /* ifs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ifs.cpp; sourceTree = "<group>"; };
-		9A88A9BF14C2CA2C006B4023 /* ifs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ifs.h; sourceTree = "<group>"; };
-		9A88A9C014C2CA2C006B4023 /* ifs_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ifs_file.cpp; sourceTree = "<group>"; };
-		9A88A9C114C2CA2C006B4023 /* ifs_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ifs_file.h; sourceTree = "<group>"; };
-		9A88A9C214C2CA2C006B4023 /* native_fs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = native_fs.cpp; sourceTree = "<group>"; };
-		9A88A9C314C2CA2C006B4023 /* native_fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = native_fs.h; sourceTree = "<group>"; };
 		9A88A9CB14C2CA2C006B4023 /* base_enum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_enum.cpp; sourceTree = "<group>"; };
 		9A88A9CE14C2CA2C006B4023 /* gen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gen.h; sourceTree = "<group>"; };
 		9A88A9CF14C2CA2C006B4023 /* gen_0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gen_0.h; sourceTree = "<group>"; };
@@ -2541,13 +2407,6 @@
 		9A88AA2C14C2CA2C006B4023 /* gen_var_property_allocation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gen_var_property_allocation.cpp; sourceTree = "<group>"; };
 		9A88AA2D14C2CA2C006B4023 /* gen_variable_strict_compare.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gen_variable_strict_compare.cpp; sourceTree = "<group>"; };
 		9A88AA2E14C2CA2C006B4023 /* gen_variable_strict_compare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gen_variable_strict_compare.h; sourceTree = "<group>"; };
-		9A88AA2F14C2CA2C006B4023 /* go_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = go_thread.cpp; sourceTree = "<group>"; };
-		9A88AA3014C2CA2C006B4023 /* go_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = go_thread.h; sourceTree = "<group>"; };
-		9A88AA3114C2CA2C006B4023 /* muldiv32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = muldiv32.h; sourceTree = "<group>"; };
-		9A88AA3214C2CA2C006B4023 /* muldiv64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = muldiv64.h; sourceTree = "<group>"; };
-		9A88AA3314C2CA2C006B4023 /* reference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reference.h; sourceTree = "<group>"; };
-		9A88AA3414C2CA2C006B4023 /* simple_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_thread.cpp; sourceTree = "<group>"; };
-		9A88AA3514C2CA2C006B4023 /* simple_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_thread.h; sourceTree = "<group>"; };
 		9A88AA3714C2CA2C006B4023 /* geoip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip.cpp; sourceTree = "<group>"; };
 		9A88AA3814C2CA2C006B4023 /* geoip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoip.h; sourceTree = "<group>"; };
 		9A88AA3914C2CA2C006B4023 /* geoip_city.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip_city.cpp; sourceTree = "<group>"; };
@@ -2558,8 +2417,6 @@
 		9A88AA3E14C2CA2C006B4023 /* geoip_update.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geoip_update.cpp; sourceTree = "<group>"; };
 		9A88AA3F14C2CA2C006B4023 /* geoip_update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geoip_update.h; sourceTree = "<group>"; };
 		9A88AA4014C2CA2C006B4023 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
-		9A88AA4114C2CA2C006B4023 /* region_name.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = region_name.cpp; sourceTree = "<group>"; };
-		9A88AA4214C2CA2C006B4023 /* time_zone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time_zone.cpp; sourceTree = "<group>"; };
 		9A88AA4414C2CA2C006B4023 /* install.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = install.h; sourceTree = "<group>"; };
 		9A88AA4514C2CA2C006B4023 /* install_install.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = install_install.cpp; sourceTree = "<group>"; };
 		9A88AA4614C2CA2C006B4023 /* install_install.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = install_install.h; sourceTree = "<group>"; };
@@ -3195,7 +3052,6 @@
 		CE01C9021567D53000BEE947 /* radix_machine_event_central.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = radix_machine_event_central.cpp; sourceTree = "<group>"; };
 		CE01C9031567D53000BEE947 /* radix_machine_event_central.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = radix_machine_event_central.h; sourceTree = "<group>"; };
 		CE01C9041567D53000BEE947 /* radix_os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = radix_os.h; sourceTree = "<group>"; };
-		CE01C9051567D53000BEE947 /* radix_pcre_util.cpp.bak */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = radix_pcre_util.cpp.bak; sourceTree = "<group>"; };
 		CE01C9061567D53000BEE947 /* radix_pipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = radix_pipe.h; sourceTree = "<group>"; };
 		CE01C9071567D53000BEE947 /* radix_plex_heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = radix_plex_heap.h; sourceTree = "<group>"; };
 		CE01C9081567D53000BEE947 /* radix_plex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = radix_plex.h; sourceTree = "<group>"; };
@@ -3346,6 +3202,128 @@
 		CE01CA5C156A728700BEE947 /* exception_vms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_vms.h; sourceTree = "<group>"; };
 		CE01CA62156A873200BEE947 /* primitive_string_format.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive_string_format.cpp; sourceTree = "<group>"; };
 		CE01CA63156A873200BEE947 /* primitive_string_format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_string_format.h; sourceTree = "<group>"; };
+		CE4BB231156F7CA800DD13ED /* crypto_ae_xfm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_ae_xfm.cpp; sourceTree = "<group>"; };
+		CE4BB232156F7CA800DD13ED /* crypto_cipher_aes_cbc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_cipher_aes_cbc.cpp; sourceTree = "<group>"; };
+		CE4BB233156F7CA800DD13ED /* crypto_cipher_aes_icm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_cipher_aes_icm.cpp; sourceTree = "<group>"; };
+		CE4BB234156F7CA800DD13ED /* crypto_cipher_aes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_cipher_aes.cpp; sourceTree = "<group>"; };
+		CE4BB235156F7CA800DD13ED /* crypto_cipher_cipher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_cipher_cipher.cpp; sourceTree = "<group>"; };
+		CE4BB236156F7CA800DD13ED /* crypto_cipher_null_cipher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_cipher_null_cipher.cpp; sourceTree = "<group>"; };
+		CE4BB237156F7CA800DD13ED /* crypto_gf2_8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_gf2_8.cpp; sourceTree = "<group>"; };
+		CE4BB238156F7CA800DD13ED /* crypto_hash_auth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_hash_auth.cpp; sourceTree = "<group>"; };
+		CE4BB239156F7CA800DD13ED /* crypto_hash_hmac.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_hash_hmac.cpp; sourceTree = "<group>"; };
+		CE4BB23A156F7CA800DD13ED /* crypto_hash_null_auth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_hash_null_auth.cpp; sourceTree = "<group>"; };
+		CE4BB23B156F7CA800DD13ED /* crypto_hash_sha1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_hash_sha1.cpp; sourceTree = "<group>"; };
+		CE4BB23C156F7CA800DD13ED /* crypto_hmac_sha1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_hmac_sha1.cpp; sourceTree = "<group>"; };
+		CE4BB23D156F7CA800DD13ED /* crypto_hmac_sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_hmac_sha1.h; sourceTree = "<group>"; };
+		CE4BB23E156F7CA800DD13ED /* crypto_kernel_alloc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_kernel_alloc.cpp; sourceTree = "<group>"; };
+		CE4BB23F156F7CA800DD13ED /* crypto_kernel_crypto_kernel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_kernel_crypto_kernel.cpp; sourceTree = "<group>"; };
+		CE4BB240156F7CA800DD13ED /* crypto_kernel_err.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_kernel_err.cpp; sourceTree = "<group>"; };
+		CE4BB241156F7CA800DD13ED /* crypto_kernel_key.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_kernel_key.cpp; sourceTree = "<group>"; };
+		CE4BB242156F7CA800DD13ED /* crypto_math_stat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_math_stat.cpp; sourceTree = "<group>"; };
+		CE4BB243156F7CA800DD13ED /* crypto_math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_math.cpp; sourceTree = "<group>"; };
+		CE4BB244156F7CA800DD13ED /* crypto_my_aes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_my_aes.cpp; sourceTree = "<group>"; };
+		CE4BB245156F7CA800DD13ED /* crypto_replay_rdb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_replay_rdb.cpp; sourceTree = "<group>"; };
+		CE4BB246156F7CA800DD13ED /* crypto_replay_rdbx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_replay_rdbx.cpp; sourceTree = "<group>"; };
+		CE4BB247156F7CA800DD13ED /* crypto_replay_ut_sim.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_replay_ut_sim.cpp; sourceTree = "<group>"; };
+		CE4BB248156F7CA800DD13ED /* crypto_rng_ctr_prng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_rng_ctr_prng.cpp; sourceTree = "<group>"; };
+		CE4BB249156F7CA800DD13ED /* crypto_rng_prng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_rng_prng.cpp; sourceTree = "<group>"; };
+		CE4BB24A156F7CA800DD13ED /* crypto_rng_rand_source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_rng_rand_source.cpp; sourceTree = "<group>"; };
+		CE4D2C5B1571667300D43A55 /* macos_debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = macos_debug.cpp; path = macos/macos_debug.cpp; sourceTree = "<group>"; };
+		CE92A5F715707A750016C580 /* crypto_aes_cbc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_aes_cbc.h; sourceTree = "<group>"; };
+		CE92A5F815707A750016C580 /* crypto_aes_icm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_aes_icm.h; sourceTree = "<group>"; };
+		CE92A5F915707A750016C580 /* crypto_aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_aes.h; sourceTree = "<group>"; };
+		CE92A5FA15707A750016C580 /* crypto_alg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_alg.h; sourceTree = "<group>"; };
+		CE92A5FB15707A750016C580 /* crypto_alloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_alloc.h; sourceTree = "<group>"; };
+		CE92A5FC15707A750016C580 /* crypto_auth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_auth.h; sourceTree = "<group>"; };
+		CE92A5FD15707A750016C580 /* crypto_c_crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_c_crypto.h; sourceTree = "<group>"; };
+		CE92A5FE15707A750016C580 /* crypto_cipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_cipher.h; sourceTree = "<group>"; };
+		CE92A5FF15707A750016C580 /* crypto_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_config.h; sourceTree = "<group>"; };
+		CE92A60015707A760016C580 /* crypto_datatypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_datatypes.h; sourceTree = "<group>"; };
+		CE92A60115707A760016C580 /* crypto_err.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_err.h; sourceTree = "<group>"; };
+		CE92A60215707A760016C580 /* crypto_gf2_8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_gf2_8.h; sourceTree = "<group>"; };
+		CE92A60315707A760016C580 /* crypto_hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_hmac.h; sourceTree = "<group>"; };
+		CE92A60415707A760016C580 /* crypto_integers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_integers.h; sourceTree = "<group>"; };
+		CE92A60515707A770016C580 /* crypto_kernel_compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_kernel_compat.h; sourceTree = "<group>"; };
+		CE92A60615707A770016C580 /* crypto_key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_key.h; sourceTree = "<group>"; };
+		CE92A60715707A770016C580 /* crypto_null_auth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_null_auth.h; sourceTree = "<group>"; };
+		CE92A60815707A770016C580 /* crypto_null_cipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_null_cipher.h; sourceTree = "<group>"; };
+		CE92A60915707A770016C580 /* crypto_prng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_prng.h; sourceTree = "<group>"; };
+		CE92A60A15707A770016C580 /* crypto_rand_source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_rand_source.h; sourceTree = "<group>"; };
+		CE92A60B15707A780016C580 /* crypto_rdb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_rdb.h; sourceTree = "<group>"; };
+		CE92A60C15707A780016C580 /* crypto_rdbx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_rdbx.h; sourceTree = "<group>"; };
+		CE92A60D15707A780016C580 /* crypto_stat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_stat.h; sourceTree = "<group>"; };
+		CE92A60E15707A790016C580 /* crypto_ut_sim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_ut_sim.h; sourceTree = "<group>"; };
+		CE92A60F15707A790016C580 /* crypto_xfm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_xfm.h; sourceTree = "<group>"; };
+		CE92A62915707AF90016C580 /* compress_7z_crc_opt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress_7z_crc_opt.cpp; sourceTree = "<group>"; };
+		CE92A62A15707AF90016C580 /* compress_archive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_archive.h; sourceTree = "<group>"; };
+		CE92A62B15707AF90016C580 /* compress_bzip_helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress_bzip_helper.cpp; sourceTree = "<group>"; };
+		CE92A62C15707AF90016C580 /* compress_bzip_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_bzip_helper.h; sourceTree = "<group>"; };
+		CE92A62D15707AF90016C580 /* compress_coder_mixer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_coder_mixer.h; sourceTree = "<group>"; };
+		CE92A62E15707AF90016C580 /* compress_coder_mixer2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_coder_mixer2.h; sourceTree = "<group>"; };
+		CE92A62F15707AF90016C580 /* compress_coder_mixer2mt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_coder_mixer2mt.h; sourceTree = "<group>"; };
+		CE92A63015707AF90016C580 /* compress_coder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_coder.h; sourceTree = "<group>"; };
+		CE92A63115707AF90016C580 /* compress_copy_coder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_copy_coder.h; sourceTree = "<group>"; };
+		CE92A63215707AF90016C580 /* compress_create_coder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_create_coder.h; sourceTree = "<group>"; };
+		CE92A63315707AF90016C580 /* compress_filter_coder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_filter_coder.h; sourceTree = "<group>"; };
+		CE92A63415707AF90016C580 /* compress_gzip_helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress_gzip_helper.cpp; sourceTree = "<group>"; };
+		CE92A63515707AF90016C580 /* compress_gzip_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_gzip_helper.h; sourceTree = "<group>"; };
+		CE92A63615707AF90016C580 /* compress_huffman_decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_huffman_decoder.h; sourceTree = "<group>"; };
+		CE92A63715707AF90016C580 /* compress_input_stream_with_crc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_input_stream_with_crc.h; sourceTree = "<group>"; };
+		CE92A63815707AF90016C580 /* compress_int_to_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_int_to_string.h; sourceTree = "<group>"; };
+		CE92A63915707AF90016C580 /* compress_item_name.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_item_name.h; sourceTree = "<group>"; };
+		CE92A63A15707AF90016C580 /* compress_local_progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_local_progress.h; sourceTree = "<group>"; };
+		CE92A63B15707AF90016C580 /* compress_lz_out_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_lz_out_window.h; sourceTree = "<group>"; };
+		CE92A63C15707AF90016C580 /* compress_method_properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_method_properties.h; sourceTree = "<group>"; };
+		CE92A63D15707AF90016C580 /* compress_out_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress_out_handler.cpp; sourceTree = "<group>"; };
+		CE92A63E15707AF90016C580 /* compress_out_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_out_handler.h; sourceTree = "<group>"; };
+		CE92A63F15707AF90016C580 /* compress_ppmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_ppmd.h; sourceTree = "<group>"; };
+		CE92A64015707AF90016C580 /* compress_ppmd7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_ppmd7.h; sourceTree = "<group>"; };
+		CE92A64115707AF90016C580 /* compress_ppmd8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_ppmd8.h; sourceTree = "<group>"; };
+		CE92A64215707AF90016C580 /* compress_prop_id.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress_prop_id.cpp; sourceTree = "<group>"; };
+		CE92A64315707AF90016C580 /* compress_prop_id.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_prop_id.h; sourceTree = "<group>"; };
+		CE92A64415707AF90016C580 /* compress_reader_with_crc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_reader_with_crc.h; sourceTree = "<group>"; };
+		CE92A64515707AF90016C580 /* compress_register_codec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_register_codec.h; sourceTree = "<group>"; };
+		CE92A64615707AF90016C580 /* compress_writer_with_crc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress_writer_with_crc.cpp; sourceTree = "<group>"; };
+		CE92A64715707AF90016C580 /* compress_writer_with_crc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress_writer_with_crc.h; sourceTree = "<group>"; };
+		CE92A66815707B420016C580 /* compress_codecs_info_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = compress_codecs_info_interface.h; path = compress/compress/compress_codecs_info_interface.h; sourceTree = "<group>"; };
+		CE92A66915707B420016C580 /* compress_coder_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = compress_coder_interface.h; path = compress/compress/compress_coder_interface.h; sourceTree = "<group>"; };
+		CE92A66A15707B420016C580 /* compress_coder2_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = compress_coder2_interface.h; path = compress/compress/compress_coder2_interface.h; sourceTree = "<group>"; };
+		CE92A66B15707B420016C580 /* compress_filter_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = compress_filter_interface.h; path = compress/compress/compress_filter_interface.h; sourceTree = "<group>"; };
+		CE92A66C15707B420016C580 /* compress_get_input_stream_processed_size_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = compress_get_input_stream_processed_size_interface.h; path = compress/compress/compress_get_input_stream_processed_size_interface.h; sourceTree = "<group>"; };
+		CE92A66D15707B420016C580 /* compress_get_sub_stream_size_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = compress_get_sub_stream_size_interface.h; path = compress/compress/compress_get_sub_stream_size_interface.h; sourceTree = "<group>"; };
+		CE92A66E15707B420016C580 /* compress_progress_info_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = compress_progress_info_interface.h; path = compress/compress/compress_progress_info_interface.h; sourceTree = "<group>"; };
+		CE92A66F15707B420016C580 /* compress_set_codecs_info_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = compress_set_codecs_info_interface.h; path = compress/compress/compress_set_codecs_info_interface.h; sourceTree = "<group>"; };
+		CE92A67015707B420016C580 /* compress_set_coder_mt_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = compress_set_coder_mt_interface.h; path = compress/compress/compress_set_coder_mt_interface.h; sourceTree = "<group>"; };
+		CE92A67115707B420016C580 /* compress_set_coder_properties_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = compress_set_coder_properties_interface.h; path = compress/compress/compress_set_coder_properties_interface.h; sourceTree = "<group>"; };
+		CE92A67215707B420016C580 /* compress_set_decoder_properties2_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = compress_set_decoder_properties2_interface.h; path = compress/compress/compress_set_decoder_properties2_interface.h; sourceTree = "<group>"; };
+		CE92A67315707B420016C580 /* compress_set_input_stream_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = compress_set_input_stream_interface.h; path = compress/compress/compress_set_input_stream_interface.h; sourceTree = "<group>"; };
+		CE92A67415707B420016C580 /* compress_set_output_stream_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = compress_set_output_stream_interface.h; path = compress/compress/compress_set_output_stream_interface.h; sourceTree = "<group>"; };
+		CE92A67515707B420016C580 /* compress_write_coder_properties_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = compress_write_coder_properties_interface.h; path = compress/compress/compress_write_coder_properties_interface.h; sourceTree = "<group>"; };
+		CE92A67615707B420016C580 /* compress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = compress.h; path = compress/compress/compress.h; sourceTree = "<group>"; };
+		CE92A68715707B800016C580 /* crypto_7z_crc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = crypto_7z_crc.cpp; path = crypto/crypto_7z_crc.cpp; sourceTree = "<group>"; };
+		CE92A68815707B800016C580 /* crypto_7z_crc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypto_7z_crc.h; path = crypto/crypto_7z_crc.h; sourceTree = "<group>"; };
+		CE92A68915707B800016C580 /* crypto_aes_cbc_coder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypto_aes_cbc_coder.h; path = crypto/crypto_aes_cbc_coder.h; sourceTree = "<group>"; };
+		CE92A68A15707B800016C580 /* crypto_get_text_password_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypto_get_text_password_interface.h; path = crypto/crypto_get_text_password_interface.h; sourceTree = "<group>"; };
+		CE92A68B15707B800016C580 /* crypto_get_text_password2_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypto_get_text_password2_interface.h; path = crypto/crypto_get_text_password2_interface.h; sourceTree = "<group>"; };
+		CE92A68C15707B800016C580 /* crypto_properties_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypto_properties_interface.h; path = crypto/crypto_properties_interface.h; sourceTree = "<group>"; };
+		CE92A68D15707B800016C580 /* crypto_rar20.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = crypto_rar20.cpp; path = crypto/crypto_rar20.cpp; sourceTree = "<group>"; };
+		CE92A68E15707B800016C580 /* crypto_rar20.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypto_rar20.h; path = crypto/crypto_rar20.h; sourceTree = "<group>"; };
+		CE92A68F15707B800016C580 /* crypto_reset_init_vector_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypto_reset_init_vector_interface.h; path = crypto/crypto_reset_init_vector_interface.h; sourceTree = "<group>"; };
+		CE92A69015707B800016C580 /* crypto_set_password_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypto_set_password_interface.h; path = crypto/crypto_set_password_interface.h; sourceTree = "<group>"; };
+		CE92A69115707B800016C580 /* crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypto.h; path = crypto/crypto.h; sourceTree = "<group>"; };
+		CE92A69D15707CA50016C580 /* fs_ifs_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fs_ifs_file.cpp; sourceTree = "<group>"; };
+		CE92A69E15707CA50016C580 /* fs_ifs_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_ifs_file.h; sourceTree = "<group>"; };
+		CE92A69F15707CA50016C580 /* fs_ifs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fs_ifs.cpp; sourceTree = "<group>"; };
+		CE92A6A015707CA50016C580 /* fs_ifs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_ifs.h; sourceTree = "<group>"; };
+		CE92A6A115707CA50016C580 /* fs_native_fs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fs_native_fs.cpp; sourceTree = "<group>"; };
+		CE92A6A215707CA50016C580 /* fs_native_fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_native_fs.h; sourceTree = "<group>"; };
+		CE92A6A315707CA50016C580 /* fs_remote_native_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fs_remote_native_file.cpp; sourceTree = "<group>"; };
+		CE92A6A415707CA50016C580 /* fs_remote_native_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_remote_native_file.h; sourceTree = "<group>"; };
+		CE92A6A515707CA50016C580 /* fs_remote_native_fs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fs_remote_native_fs.cpp; sourceTree = "<group>"; };
+		CE92A6A615707CA50016C580 /* fs_remote_native_fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_remote_native_fs.h; sourceTree = "<group>"; };
+		CE92A6B1157110520016C580 /* zip_ioapi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zip_ioapi.cpp; sourceTree = "<group>"; };
+		CE92A6B2157110520016C580 /* zip_unzip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zip_unzip.cpp; sourceTree = "<group>"; };
+		CE92A6B3157110520016C580 /* zip_zip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zip_zip.cpp; sourceTree = "<group>"; };
 		CE931718155F1C02005F90F6 /* c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE980ABB156679A800CD7C45 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		CE980ABC156679A800CD7C45 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
@@ -3367,6 +3345,7 @@
 			isa = PBXGroup;
 			children = (
 				9A5E0A0914D3DB5900E91EC4 /* macos.h */,
+				CE4D2C5B1571667300D43A55 /* macos_debug.cpp */,
 			);
 			name = macos;
 			sourceTree = "<group>";
@@ -3383,7 +3362,6 @@
 				9A88A78014C2CA2C006B4023 /* colorertake5 */,
 				9A88A7CB14C2CA2C006B4023 /* compress */,
 				9A88A84B14C2CA2C006B4023 /* crypto */,
-				9A88A89D14C2CA2C006B4023 /* cube5 */,
 				9A88A8A014C2CA2C006B4023 /* database */,
 				9A88A8D514C2CA2C006B4023 /* dynamic_source */,
 				9A88A8F114C2CA2C006B4023 /* ex1 */,
@@ -3527,7 +3505,6 @@
 				9A88A6B914C2CA2C006B4023 /* ca_region.h */,
 				9A88A6BA14C2CA2C006B4023 /* ca_se_translator.h */,
 				9A88A6BB14C2CA2C006B4023 /* ca_se_translator.want_to_remove.h */,
-				9A88A6BC14C2CA2C006B4023 /* ca_seed.h */,
 				9A88A6BD14C2CA2C006B4023 /* ca_session.cpp */,
 				9A88A6BE14C2CA2C006B4023 /* ca_session.h */,
 				9A88A6BF14C2CA2C006B4023 /* ca_smart_pointer.cpp */,
@@ -3812,7 +3789,6 @@
 				9A88A7C514C2CA2C006B4023 /* text_parser_helpers.h */,
 				9A88A7C614C2CA2C006B4023 /* text_parser_impl.h */,
 				9A88A7C714C2CA2C006B4023 /* text_region.h */,
-				9A88A7C814C2CA2C006B4023 /* TextConsoleViewer.cpp */,
 				9A88A7C914C2CA2C006B4023 /* Writer.h */,
 				9A88A7CA14C2CA2C006B4023 /* xmldom.h */,
 			);
@@ -3822,15 +3798,40 @@
 		9A88A7CB14C2CA2C006B4023 /* compress */ = {
 			isa = PBXGroup;
 			children = (
+				CE92A66715707B0C0016C580 /* compress */,
+				CE92A68615707B4E0016C580 /* crypto */,
+				CE92A62915707AF90016C580 /* compress_7z_crc_opt.cpp */,
+				CE92A62A15707AF90016C580 /* compress_archive.h */,
+				CE92A62B15707AF90016C580 /* compress_bzip_helper.cpp */,
+				CE92A62C15707AF90016C580 /* compress_bzip_helper.h */,
+				CE92A62D15707AF90016C580 /* compress_coder_mixer.h */,
+				CE92A62E15707AF90016C580 /* compress_coder_mixer2.h */,
+				CE92A62F15707AF90016C580 /* compress_coder_mixer2mt.h */,
+				CE92A63015707AF90016C580 /* compress_coder.h */,
+				CE92A63115707AF90016C580 /* compress_copy_coder.h */,
+				CE92A63215707AF90016C580 /* compress_create_coder.h */,
+				CE92A63315707AF90016C580 /* compress_filter_coder.h */,
+				CE92A63415707AF90016C580 /* compress_gzip_helper.cpp */,
+				CE92A63515707AF90016C580 /* compress_gzip_helper.h */,
+				CE92A63615707AF90016C580 /* compress_huffman_decoder.h */,
+				CE92A63715707AF90016C580 /* compress_input_stream_with_crc.h */,
+				CE92A63815707AF90016C580 /* compress_int_to_string.h */,
+				CE92A63915707AF90016C580 /* compress_item_name.h */,
+				CE92A63A15707AF90016C580 /* compress_local_progress.h */,
+				CE92A63B15707AF90016C580 /* compress_lz_out_window.h */,
+				CE92A63C15707AF90016C580 /* compress_method_properties.h */,
+				CE92A63D15707AF90016C580 /* compress_out_handler.cpp */,
+				CE92A63E15707AF90016C580 /* compress_out_handler.h */,
+				CE92A63F15707AF90016C580 /* compress_ppmd.h */,
+				CE92A64015707AF90016C580 /* compress_ppmd7.h */,
+				CE92A64115707AF90016C580 /* compress_ppmd8.h */,
+				CE92A64215707AF90016C580 /* compress_prop_id.cpp */,
+				CE92A64315707AF90016C580 /* compress_prop_id.h */,
+				CE92A64415707AF90016C580 /* compress_reader_with_crc.h */,
+				CE92A64515707AF90016C580 /* compress_register_codec.h */,
+				CE92A64615707AF90016C580 /* compress_writer_with_crc.cpp */,
+				CE92A64715707AF90016C580 /* compress_writer_with_crc.h */,
 				9A88A7CC14C2CA2C006B4023 /* 7z */,
-				9A88A7E914C2CA2C006B4023 /* 7z_crc_opt.cpp */,
-				9A88A7EA14C2CA2C006B4023 /* archive.h */,
-				9A88A7EB14C2CA2C006B4023 /* bzip_helper.cpp */,
-				9A88A7EC14C2CA2C006B4023 /* bzip_helper.h */,
-				9A88A7ED14C2CA2C006B4023 /* coder.h */,
-				9A88A7EE14C2CA2C006B4023 /* coder_mixer.h */,
-				9A88A7EF14C2CA2C006B4023 /* coder_mixer2.h */,
-				9A88A7F014C2CA2C006B4023 /* coder_mixer2mt.h */,
 				9A88A7F114C2CA2C006B4023 /* compress.h */,
 				9A88A7F214C2CA2C006B4023 /* compress_archive.cpp */,
 				9A88A7F314C2CA2C006B4023 /* compress_archive_item_name.cpp */,
@@ -3851,31 +3852,7 @@
 				9A88A80214C2CA2C006B4023 /* compress_ppmd7_enc.cpp */,
 				9A88A80314C2CA2C006B4023 /* compress_ppmd8.cpp */,
 				9A88A80414C2CA2C006B4023 /* compress_reader_with_crc.cpp */,
-				9A88A80514C2CA2C006B4023 /* copy_coder.h */,
-				9A88A80614C2CA2C006B4023 /* create_coder.h */,
-				9A88A80714C2CA2C006B4023 /* filter_coder.h */,
-				9A88A80814C2CA2C006B4023 /* gzip_helper.cpp */,
-				9A88A80914C2CA2C006B4023 /* gzip_helper.h */,
-				9A88A80A14C2CA2C006B4023 /* huffman_decoder.h */,
-				9A88A80B14C2CA2C006B4023 /* input_stream_with_crc.h */,
-				9A88A80C14C2CA2C006B4023 /* int_to_string.h */,
-				9A88A80D14C2CA2C006B4023 /* item_name.h */,
-				9A88A80E14C2CA2C006B4023 /* local_progress.h */,
-				9A88A80F14C2CA2C006B4023 /* lz_out_window.h */,
-				9A88A81014C2CA2C006B4023 /* method_properties.cpp */,
-				9A88A81114C2CA2C006B4023 /* method_properties.h */,
-				9A88A81214C2CA2C006B4023 /* out_handler.cpp */,
-				9A88A81314C2CA2C006B4023 /* out_handler.h */,
-				9A88A81414C2CA2C006B4023 /* ppmd.h */,
-				9A88A81514C2CA2C006B4023 /* ppmd7.h */,
-				9A88A81614C2CA2C006B4023 /* ppmd8.h */,
-				9A88A81714C2CA2C006B4023 /* prop_id.cpp */,
-				9A88A81814C2CA2C006B4023 /* prop_id.h */,
 				9A88A81914C2CA2C006B4023 /* rar */,
-				9A88A83014C2CA2C006B4023 /* reader_with_crc.h */,
-				9A88A83114C2CA2C006B4023 /* register_codec.h */,
-				9A88A83214C2CA2C006B4023 /* writer_with_crc.cpp */,
-				9A88A83314C2CA2C006B4023 /* writer_with_crc.h */,
 				9A88A83414C2CA2C006B4023 /* zip */,
 			);
 			path = compress;
@@ -3948,6 +3925,9 @@
 		9A88A83414C2CA2C006B4023 /* zip */ = {
 			isa = PBXGroup;
 			children = (
+				CE92A6B1157110520016C580 /* zip_ioapi.cpp */,
+				CE92A6B2157110520016C580 /* zip_unzip.cpp */,
+				CE92A6B3157110520016C580 /* zip_zip.cpp */,
 				9A88A83514C2CA2C006B4023 /* algorithm.txt */,
 				9A88A83614C2CA2C006B4023 /* api.h */,
 				9A88A83714C2CA2C006B4023 /* crypt.h */,
@@ -3963,12 +3943,8 @@
 				9A88A84114C2CA2C006B4023 /* zip_file.cpp */,
 				9A88A84214C2CA2C006B4023 /* zip_in_file.cpp */,
 				9A88A84314C2CA2C006B4023 /* zip_internal.h */,
-				9A88A84414C2CA2C006B4023 /* zip_ioapi.c */,
-				9A88A84514C2CA2C006B4023 /* zip_iowin32.c */,
 				9A88A84614C2CA2C006B4023 /* zip_memory_file.cpp */,
-				9A88A84714C2CA2C006B4023 /* zip_unzip.c */,
 				9A88A84814C2CA2C006B4023 /* zip_util.cpp */,
-				9A88A84914C2CA2C006B4023 /* zip_zip.c */,
 				9A88A84A14C2CA2C006B4023 /* zipImpl.h */,
 			);
 			path = zip;
@@ -3977,98 +3953,65 @@
 		9A88A84B14C2CA2C006B4023 /* crypto */ = {
 			isa = PBXGroup;
 			children = (
-				9A88A84C14C2CA2C006B4023 /* 7z_crc.cpp */,
-				9A88A84D14C2CA2C006B4023 /* 7z_crc.h */,
-				9A88A84E14C2CA2C006B4023 /* ae_xfm.c */,
-				9A88A84F14C2CA2C006B4023 /* aes.h */,
-				9A88A85014C2CA2C006B4023 /* aes_cbc.h */,
-				9A88A85114C2CA2C006B4023 /* aes_cbc_coder.h */,
-				9A88A85214C2CA2C006B4023 /* aes_icm.h */,
-				9A88A85314C2CA2C006B4023 /* alloc.h */,
-				9A88A85414C2CA2C006B4023 /* auth.h */,
-				9A88A85514C2CA2C006B4023 /* c_crypto.h */,
-				9A88A85614C2CA2C006B4023 /* cipher.h */,
-				9A88A85714C2CA2C006B4023 /* cipher_aes.c */,
-				9A88A85814C2CA2C006B4023 /* cipher_aes_cbc.c */,
-				9A88A85914C2CA2C006B4023 /* cipher_aes_icm.c */,
-				9A88A85A14C2CA2C006B4023 /* cipher_cipher.c */,
-				9A88A85B14C2CA2C006B4023 /* cipher_null_cipher.c */,
-				9A88A85C14C2CA2C006B4023 /* compress_codecs_info_interface.h */,
-				9A88A85D14C2CA2C006B4023 /* compress_coder2_interface.h */,
-				9A88A85E14C2CA2C006B4023 /* compress_coder_interface.h */,
-				9A88A85F14C2CA2C006B4023 /* compress_filter_interface.h */,
-				9A88A86014C2CA2C006B4023 /* compress_get_input_stream_processed_size_interface.h */,
-				9A88A86114C2CA2C006B4023 /* compress_get_sub_stream_size_interface.h */,
-				9A88A86214C2CA2C006B4023 /* compress_progress_info_interface.h */,
-				9A88A86314C2CA2C006B4023 /* compress_set_codecs_info_interface.h */,
-				9A88A86414C2CA2C006B4023 /* compress_set_coder_mt_interface.h */,
-				9A88A86514C2CA2C006B4023 /* compress_set_coder_properties_interface.h */,
-				9A88A86614C2CA2C006B4023 /* compress_set_decoder_properties2_interface.h */,
-				9A88A86714C2CA2C006B4023 /* compress_set_input_stream_interface.h */,
-				9A88A86814C2CA2C006B4023 /* compress_set_output_stream_interface.h */,
-				9A88A86914C2CA2C006B4023 /* compress_write_coder_properties_interface.h */,
-				9A88A86A14C2CA2C006B4023 /* config.h */,
+				CE92A5F715707A750016C580 /* crypto_aes_cbc.h */,
+				CE92A5F815707A750016C580 /* crypto_aes_icm.h */,
+				CE92A5F915707A750016C580 /* crypto_aes.h */,
+				CE92A5FA15707A750016C580 /* crypto_alg.h */,
+				CE92A5FB15707A750016C580 /* crypto_alloc.h */,
+				CE92A5FC15707A750016C580 /* crypto_auth.h */,
+				CE92A5FD15707A750016C580 /* crypto_c_crypto.h */,
+				CE92A5FE15707A750016C580 /* crypto_cipher.h */,
+				CE92A5FF15707A750016C580 /* crypto_config.h */,
+				CE92A60015707A760016C580 /* crypto_datatypes.h */,
+				CE92A60115707A760016C580 /* crypto_err.h */,
+				CE92A60215707A760016C580 /* crypto_gf2_8.h */,
+				CE92A60315707A760016C580 /* crypto_hmac.h */,
+				CE92A60415707A760016C580 /* crypto_integers.h */,
+				CE92A60515707A770016C580 /* crypto_kernel_compat.h */,
+				CE92A60615707A770016C580 /* crypto_key.h */,
+				CE92A60715707A770016C580 /* crypto_null_auth.h */,
+				CE92A60815707A770016C580 /* crypto_null_cipher.h */,
+				CE92A60915707A770016C580 /* crypto_prng.h */,
+				CE92A60A15707A770016C580 /* crypto_rand_source.h */,
+				CE92A60B15707A780016C580 /* crypto_rdb.h */,
+				CE92A60C15707A780016C580 /* crypto_rdbx.h */,
+				CE92A60D15707A780016C580 /* crypto_stat.h */,
+				CE92A60E15707A790016C580 /* crypto_ut_sim.h */,
+				CE92A60F15707A790016C580 /* crypto_xfm.h */,
+				CE4BB231156F7CA800DD13ED /* crypto_ae_xfm.cpp */,
+				CE4BB232156F7CA800DD13ED /* crypto_cipher_aes_cbc.cpp */,
+				CE4BB233156F7CA800DD13ED /* crypto_cipher_aes_icm.cpp */,
+				CE4BB234156F7CA800DD13ED /* crypto_cipher_aes.cpp */,
+				CE4BB235156F7CA800DD13ED /* crypto_cipher_cipher.cpp */,
+				CE4BB236156F7CA800DD13ED /* crypto_cipher_null_cipher.cpp */,
+				CE4BB237156F7CA800DD13ED /* crypto_gf2_8.cpp */,
+				CE4BB238156F7CA800DD13ED /* crypto_hash_auth.cpp */,
+				CE4BB239156F7CA800DD13ED /* crypto_hash_hmac.cpp */,
+				CE4BB23A156F7CA800DD13ED /* crypto_hash_null_auth.cpp */,
+				CE4BB23B156F7CA800DD13ED /* crypto_hash_sha1.cpp */,
+				CE4BB23C156F7CA800DD13ED /* crypto_hmac_sha1.cpp */,
+				CE4BB23D156F7CA800DD13ED /* crypto_hmac_sha1.h */,
+				CE4BB23E156F7CA800DD13ED /* crypto_kernel_alloc.cpp */,
+				CE4BB23F156F7CA800DD13ED /* crypto_kernel_crypto_kernel.cpp */,
+				CE4BB240156F7CA800DD13ED /* crypto_kernel_err.cpp */,
+				CE4BB241156F7CA800DD13ED /* crypto_kernel_key.cpp */,
+				CE4BB242156F7CA800DD13ED /* crypto_math_stat.cpp */,
+				CE4BB243156F7CA800DD13ED /* crypto_math.cpp */,
+				CE4BB244156F7CA800DD13ED /* crypto_my_aes.cpp */,
+				CE4BB245156F7CA800DD13ED /* crypto_replay_rdb.cpp */,
+				CE4BB246156F7CA800DD13ED /* crypto_replay_rdbx.cpp */,
+				CE4BB247156F7CA800DD13ED /* crypto_replay_ut_sim.cpp */,
+				CE4BB248156F7CA800DD13ED /* crypto_rng_ctr_prng.cpp */,
+				CE4BB249156F7CA800DD13ED /* crypto_rng_prng.cpp */,
+				CE4BB24A156F7CA800DD13ED /* crypto_rng_rand_source.cpp */,
 				9A88A86B14C2CA2C006B4023 /* crypto.h */,
-				9A88A86C14C2CA2C006B4023 /* crypto_get_text_password2_interface.h */,
-				9A88A86D14C2CA2C006B4023 /* crypto_get_text_password_interface.h */,
 				9A88A86E14C2CA2C006B4023 /* crypto_kernel.h */,
-				9A88A86F14C2CA2C006B4023 /* crypto_math.c */,
 				9A88A87014C2CA2C006B4023 /* crypto_math.h */,
-				9A88A87114C2CA2C006B4023 /* crypto_properties_interface.h */,
-				9A88A87214C2CA2C006B4023 /* crypto_rar20.cpp */,
-				9A88A87314C2CA2C006B4023 /* crypto_reset_init_vector_interface.h */,
-				9A88A87414C2CA2C006B4023 /* crypto_set_password_interface.h */,
 				9A88A87514C2CA2C006B4023 /* crypto_sha1.cpp */,
 				9A88A87614C2CA2C006B4023 /* crypto_sha1.h */,
 				9A88A87714C2CA2C006B4023 /* crypto_types.h */,
-				9A88A87814C2CA2C006B4023 /* cryptoalg.h */,
-				9A88A87914C2CA2C006B4023 /* datatypes.h */,
-				9A88A87A14C2CA2C006B4023 /* err.h */,
-				9A88A87B14C2CA2C006B4023 /* gf2_8.c */,
-				9A88A87C14C2CA2C006B4023 /* gf2_8.h */,
-				9A88A87D14C2CA2C006B4023 /* hash_auth.c */,
-				9A88A87E14C2CA2C006B4023 /* hash_hmac.c */,
-				9A88A87F14C2CA2C006B4023 /* hash_null_auth.c */,
-				9A88A88014C2CA2C006B4023 /* hash_sha1.c */,
-				9A88A88114C2CA2C006B4023 /* hmac.h */,
-				9A88A88214C2CA2C006B4023 /* integers.h */,
-				9A88A88314C2CA2C006B4023 /* kernel_alloc.c */,
-				9A88A88414C2CA2C006B4023 /* kernel_compat.h */,
-				9A88A88514C2CA2C006B4023 /* kernel_crypto_kernel.c */,
-				9A88A88614C2CA2C006B4023 /* kernel_err.c */,
-				9A88A88714C2CA2C006B4023 /* kernel_key.c */,
-				9A88A88814C2CA2C006B4023 /* key.h */,
-				9A88A88914C2CA2C006B4023 /* math_datatypes.c */,
-				9A88A88A14C2CA2C006B4023 /* math_stat.c */,
-				9A88A88B14C2CA2C006B4023 /* my_aes.cpp */,
-				9A88A88C14C2CA2C006B4023 /* null_auth.h */,
-				9A88A88D14C2CA2C006B4023 /* null_cipher.h */,
-				9A88A88E14C2CA2C006B4023 /* prng.h */,
-				9A88A88F14C2CA2C006B4023 /* rand_source.h */,
-				9A88A89014C2CA2C006B4023 /* rar20.h */,
-				9A88A89114C2CA2C006B4023 /* rdb.h */,
-				9A88A89214C2CA2C006B4023 /* rdbx.h */,
-				9A88A89314C2CA2C006B4023 /* replay_rdb.c */,
-				9A88A89414C2CA2C006B4023 /* replay_rdbx.c */,
-				9A88A89514C2CA2C006B4023 /* replay_ut_sim.c */,
-				9A88A89614C2CA2C006B4023 /* rng_ctr_prng.c */,
-				9A88A89714C2CA2C006B4023 /* rng_prng.c */,
-				9A88A89814C2CA2C006B4023 /* rng_rand_source.c */,
-				9A88A89914C2CA2C006B4023 /* sha1.h */,
-				9A88A89A14C2CA2C006B4023 /* stat.h */,
-				9A88A89B14C2CA2C006B4023 /* ut_sim.h */,
-				9A88A89C14C2CA2C006B4023 /* xfm.h */,
 			);
 			path = crypto;
-			sourceTree = "<group>";
-		};
-		9A88A89D14C2CA2C006B4023 /* cube5 */ = {
-			isa = PBXGroup;
-			children = (
-				9A88A89E14C2CA2C006B4023 /* cube4_application.cpp */,
-				9A88A89F14C2CA2C006B4023 /* planebase_application.cpp */,
-			);
-			path = cube5;
 			sourceTree = "<group>";
 		};
 		9A88A8A014C2CA2C006B4023 /* database */ = {
@@ -4171,8 +4114,6 @@
 				9A88A90E14C2CA2C006B4023 /* ex1_file.cpp */,
 				9A88A90F14C2CA2C006B4023 /* ex1_file.h */,
 				9A88A91014C2CA2C006B4023 /* ex1_file_exception.h */,
-				9A88A91114C2CA2C006B4023 /* ex1_file_set.cpp */,
-				9A88A91214C2CA2C006B4023 /* ex1_file_set.h */,
 				9A88A91314C2CA2C006B4023 /* ex1_file_status.h */,
 				9A88A91414C2CA2C006B4023 /* ex1_file_system.cpp */,
 				9A88A91514C2CA2C006B4023 /* ex1_file_system.h */,
@@ -4349,7 +4290,6 @@
 				9A88A9AD14C2CA2C006B4023 /* fontopus_usera.cpp */,
 				9A88A9AE14C2CA2C006B4023 /* fontopus_usera.h */,
 				9A88A9AF14C2CA2C006B4023 /* fontopus_validate.cpp */,
-				9A88A9B014C2CA2C006B4023 /* fontopus_validate.cpp.cbTemp */,
 				9A88A9B114C2CA2C006B4023 /* fontopus_validate.h */,
 			);
 			path = fontopus;
@@ -4358,6 +4298,16 @@
 		9A88A9B214C2CA2C006B4023 /* fs */ = {
 			isa = PBXGroup;
 			children = (
+				CE92A69D15707CA50016C580 /* fs_ifs_file.cpp */,
+				CE92A69E15707CA50016C580 /* fs_ifs_file.h */,
+				CE92A69F15707CA50016C580 /* fs_ifs.cpp */,
+				CE92A6A015707CA50016C580 /* fs_ifs.h */,
+				CE92A6A115707CA50016C580 /* fs_native_fs.cpp */,
+				CE92A6A215707CA50016C580 /* fs_native_fs.h */,
+				CE92A6A315707CA50016C580 /* fs_remote_native_file.cpp */,
+				CE92A6A415707CA50016C580 /* fs_remote_native_file.h */,
+				CE92A6A515707CA50016C580 /* fs_remote_native_fs.cpp */,
+				CE92A6A615707CA50016C580 /* fs_remote_native_fs.h */,
 				9A88A9B314C2CA2C006B4023 /* fs.h */,
 				9A88A9B414C2CA2C006B4023 /* fs_application.cpp */,
 				9A88A9B514C2CA2C006B4023 /* fs_application.h */,
@@ -4369,12 +4319,6 @@
 				9A88A9BB14C2CA2C006B4023 /* fs_item_array.h */,
 				9A88A9BC14C2CA2C006B4023 /* fs_set.cpp */,
 				9A88A9BD14C2CA2C006B4023 /* fs_set.h */,
-				9A88A9BE14C2CA2C006B4023 /* ifs.cpp */,
-				9A88A9BF14C2CA2C006B4023 /* ifs.h */,
-				9A88A9C014C2CA2C006B4023 /* ifs_file.cpp */,
-				9A88A9C114C2CA2C006B4023 /* ifs_file.h */,
-				9A88A9C214C2CA2C006B4023 /* native_fs.cpp */,
-				9A88A9C314C2CA2C006B4023 /* native_fs.h */,
 			);
 			path = fs;
 			sourceTree = "<group>";
@@ -4517,13 +4461,6 @@
 				9A88AA2C14C2CA2C006B4023 /* gen_var_property_allocation.cpp */,
 				9A88AA2D14C2CA2C006B4023 /* gen_variable_strict_compare.cpp */,
 				9A88AA2E14C2CA2C006B4023 /* gen_variable_strict_compare.h */,
-				9A88AA2F14C2CA2C006B4023 /* go_thread.cpp */,
-				9A88AA3014C2CA2C006B4023 /* go_thread.h */,
-				9A88AA3114C2CA2C006B4023 /* muldiv32.h */,
-				9A88AA3214C2CA2C006B4023 /* muldiv64.h */,
-				9A88AA3314C2CA2C006B4023 /* reference.h */,
-				9A88AA3414C2CA2C006B4023 /* simple_thread.cpp */,
-				9A88AA3514C2CA2C006B4023 /* simple_thread.h */,
 			);
 			path = gen;
 			sourceTree = "<group>";
@@ -4541,8 +4478,6 @@
 				9A88AA3E14C2CA2C006B4023 /* geoip_update.cpp */,
 				9A88AA3F14C2CA2C006B4023 /* geoip_update.h */,
 				9A88AA4014C2CA2C006B4023 /* global.h */,
-				9A88AA4114C2CA2C006B4023 /* region_name.cpp */,
-				9A88AA4214C2CA2C006B4023 /* time_zone.cpp */,
 			);
 			path = geoip;
 			sourceTree = "<group>";
@@ -4824,7 +4759,6 @@
 				CE01C9021567D53000BEE947 /* radix_machine_event_central.cpp */,
 				CE01C9031567D53000BEE947 /* radix_machine_event_central.h */,
 				CE01C9041567D53000BEE947 /* radix_os.h */,
-				CE01C9051567D53000BEE947 /* radix_pcre_util.cpp.bak */,
 				CE01C9061567D53000BEE947 /* radix_pipe.h */,
 				CE01C9071567D53000BEE947 /* radix_plex_heap.h */,
 				CE01C9081567D53000BEE947 /* radix_plex.h */,
@@ -5484,6 +5418,47 @@
 			name = libcharguess;
 			sourceTree = "<group>";
 		};
+		CE92A66715707B0C0016C580 /* compress */ = {
+			isa = PBXGroup;
+			children = (
+				CE92A66815707B420016C580 /* compress_codecs_info_interface.h */,
+				CE92A66915707B420016C580 /* compress_coder_interface.h */,
+				CE92A66A15707B420016C580 /* compress_coder2_interface.h */,
+				CE92A66B15707B420016C580 /* compress_filter_interface.h */,
+				CE92A66C15707B420016C580 /* compress_get_input_stream_processed_size_interface.h */,
+				CE92A66D15707B420016C580 /* compress_get_sub_stream_size_interface.h */,
+				CE92A66E15707B420016C580 /* compress_progress_info_interface.h */,
+				CE92A66F15707B420016C580 /* compress_set_codecs_info_interface.h */,
+				CE92A67015707B420016C580 /* compress_set_coder_mt_interface.h */,
+				CE92A67115707B420016C580 /* compress_set_coder_properties_interface.h */,
+				CE92A67215707B420016C580 /* compress_set_decoder_properties2_interface.h */,
+				CE92A67315707B420016C580 /* compress_set_input_stream_interface.h */,
+				CE92A67415707B420016C580 /* compress_set_output_stream_interface.h */,
+				CE92A67515707B420016C580 /* compress_write_coder_properties_interface.h */,
+				CE92A67615707B420016C580 /* compress.h */,
+			);
+			name = compress;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		CE92A68615707B4E0016C580 /* crypto */ = {
+			isa = PBXGroup;
+			children = (
+				CE92A68715707B800016C580 /* crypto_7z_crc.cpp */,
+				CE92A68815707B800016C580 /* crypto_7z_crc.h */,
+				CE92A68915707B800016C580 /* crypto_aes_cbc_coder.h */,
+				CE92A68A15707B800016C580 /* crypto_get_text_password_interface.h */,
+				CE92A68B15707B800016C580 /* crypto_get_text_password2_interface.h */,
+				CE92A68C15707B800016C580 /* crypto_properties_interface.h */,
+				CE92A68D15707B800016C580 /* crypto_rar20.cpp */,
+				CE92A68E15707B800016C580 /* crypto_rar20.h */,
+				CE92A68F15707B800016C580 /* crypto_reset_init_vector_interface.h */,
+				CE92A69015707B800016C580 /* crypto_set_password_interface.h */,
+				CE92A69115707B800016C580 /* crypto.h */,
+			);
+			name = crypto;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -5540,7 +5515,6 @@
 				9A88AE3B14C2CA2E006B4023 /* ca_region.h in Headers */,
 				9A88AE3C14C2CA2E006B4023 /* ca_se_translator.h in Headers */,
 				9A88AE3D14C2CA2E006B4023 /* ca_se_translator.want_to_remove.h in Headers */,
-				9A88AE3E14C2CA2E006B4023 /* ca_seed.h in Headers */,
 				9A88AE4014C2CA2E006B4023 /* ca_session.h in Headers */,
 				9A88AE4214C2CA2E006B4023 /* ca_smart_pointer.h in Headers */,
 				9A88AE4414C2CA2E006B4023 /* ca_system.h in Headers */,
@@ -5714,29 +5688,7 @@
 				9A88AF5414C2CA2E006B4023 /* 7zProperties.h in Headers */,
 				9A88AF5714C2CA2E006B4023 /* 7zSpecStream.h in Headers */,
 				9A88AF5914C2CA2E006B4023 /* 7zUpdate.h in Headers */,
-				9A88AF5B14C2CA2E006B4023 /* archive.h in Headers */,
-				9A88AF5D14C2CA2E006B4023 /* bzip_helper.h in Headers */,
-				9A88AF5E14C2CA2E006B4023 /* coder.h in Headers */,
-				9A88AF5F14C2CA2E006B4023 /* coder_mixer.h in Headers */,
-				9A88AF6014C2CA2E006B4023 /* coder_mixer2.h in Headers */,
-				9A88AF6114C2CA2E006B4023 /* coder_mixer2mt.h in Headers */,
 				9A88AF6214C2CA2E006B4023 /* compress.h in Headers */,
-				9A88AF7614C2CA2E006B4023 /* copy_coder.h in Headers */,
-				9A88AF7714C2CA2E006B4023 /* create_coder.h in Headers */,
-				9A88AF7814C2CA2E006B4023 /* filter_coder.h in Headers */,
-				9A88AF7A14C2CA2E006B4023 /* gzip_helper.h in Headers */,
-				9A88AF7B14C2CA2E006B4023 /* huffman_decoder.h in Headers */,
-				9A88AF7C14C2CA2E006B4023 /* input_stream_with_crc.h in Headers */,
-				9A88AF7D14C2CA2E006B4023 /* int_to_string.h in Headers */,
-				9A88AF7E14C2CA2E006B4023 /* item_name.h in Headers */,
-				9A88AF7F14C2CA2E006B4023 /* local_progress.h in Headers */,
-				9A88AF8014C2CA2E006B4023 /* lz_out_window.h in Headers */,
-				9A88AF8214C2CA2E006B4023 /* method_properties.h in Headers */,
-				9A88AF8414C2CA2E006B4023 /* out_handler.h in Headers */,
-				9A88AF8514C2CA2E006B4023 /* ppmd.h in Headers */,
-				9A88AF8614C2CA2E006B4023 /* ppmd7.h in Headers */,
-				9A88AF8714C2CA2E006B4023 /* ppmd8.h in Headers */,
-				9A88AF8914C2CA2E006B4023 /* prop_id.h in Headers */,
 				9A88AF8A14C2CA2E006B4023 /* aes.h in Headers */,
 				9A88AF8B14C2CA2E006B4023 /* folder_reader.h in Headers */,
 				9A88AF8C14C2CA2E006B4023 /* handler.h in Headers */,
@@ -5748,9 +5700,6 @@
 				9A88AF9414C2CA2E006B4023 /* rar2_decoder.h in Headers */,
 				9A88AF9614C2CA2E006B4023 /* rar3_decoder.h in Headers */,
 				9A88AF9814C2CA2E006B4023 /* rar3_vm.h in Headers */,
-				9A88AFA014C2CA2E006B4023 /* reader_with_crc.h in Headers */,
-				9A88AFA114C2CA2E006B4023 /* register_codec.h in Headers */,
-				9A88AFA314C2CA2E006B4023 /* writer_with_crc.h in Headers */,
 				9A88AFA414C2CA2E006B4023 /* api.h in Headers */,
 				9A88AFA514C2CA2E006B4023 /* crypt.h in Headers */,
 				9A88AFA614C2CA2E006B4023 /* File.h in Headers */,
@@ -5763,59 +5712,11 @@
 				9A88AFAD14C2CA2E006B4023 /* zip.h in Headers */,
 				9A88AFB114C2CA2E006B4023 /* zip_internal.h in Headers */,
 				9A88AFB814C2CA2E006B4023 /* zipImpl.h in Headers */,
-				9A88AFBA14C2CA2E006B4023 /* 7z_crc.h in Headers */,
-				9A88AFBC14C2CA2E006B4023 /* aes.h in Headers */,
-				9A88AFBD14C2CA2E006B4023 /* aes_cbc.h in Headers */,
-				9A88AFBE14C2CA2E006B4023 /* aes_cbc_coder.h in Headers */,
-				9A88AFBF14C2CA2E006B4023 /* aes_icm.h in Headers */,
-				9A88AFC014C2CA2E006B4023 /* alloc.h in Headers */,
-				9A88AFC114C2CA2E006B4023 /* auth.h in Headers */,
-				9A88AFC214C2CA2E006B4023 /* c_crypto.h in Headers */,
-				9A88AFC314C2CA2E006B4023 /* cipher.h in Headers */,
-				9A88AFC914C2CA2E006B4023 /* compress_codecs_info_interface.h in Headers */,
-				9A88AFCA14C2CA2E006B4023 /* compress_coder2_interface.h in Headers */,
-				9A88AFCB14C2CA2E006B4023 /* compress_coder_interface.h in Headers */,
-				9A88AFCC14C2CA2E006B4023 /* compress_filter_interface.h in Headers */,
-				9A88AFCD14C2CA2E006B4023 /* compress_get_input_stream_processed_size_interface.h in Headers */,
-				9A88AFCE14C2CA2E006B4023 /* compress_get_sub_stream_size_interface.h in Headers */,
-				9A88AFCF14C2CA2E006B4023 /* compress_progress_info_interface.h in Headers */,
-				9A88AFD014C2CA2E006B4023 /* compress_set_codecs_info_interface.h in Headers */,
-				9A88AFD114C2CA2E006B4023 /* compress_set_coder_mt_interface.h in Headers */,
-				9A88AFD214C2CA2E006B4023 /* compress_set_coder_properties_interface.h in Headers */,
-				9A88AFD314C2CA2E006B4023 /* compress_set_decoder_properties2_interface.h in Headers */,
-				9A88AFD414C2CA2E006B4023 /* compress_set_input_stream_interface.h in Headers */,
-				9A88AFD514C2CA2E006B4023 /* compress_set_output_stream_interface.h in Headers */,
-				9A88AFD614C2CA2E006B4023 /* compress_write_coder_properties_interface.h in Headers */,
-				9A88AFD714C2CA2E006B4023 /* config.h in Headers */,
 				9A88AFD814C2CA2E006B4023 /* crypto.h in Headers */,
-				9A88AFD914C2CA2E006B4023 /* crypto_get_text_password2_interface.h in Headers */,
-				9A88AFDA14C2CA2E006B4023 /* crypto_get_text_password_interface.h in Headers */,
 				9A88AFDB14C2CA2E006B4023 /* crypto_kernel.h in Headers */,
 				9A88AFDD14C2CA2E006B4023 /* crypto_math.h in Headers */,
-				9A88AFDE14C2CA2E006B4023 /* crypto_properties_interface.h in Headers */,
-				9A88AFE014C2CA2E006B4023 /* crypto_reset_init_vector_interface.h in Headers */,
-				9A88AFE114C2CA2E006B4023 /* crypto_set_password_interface.h in Headers */,
 				9A88AFE314C2CA2E006B4023 /* crypto_sha1.h in Headers */,
 				9A88AFE414C2CA2E006B4023 /* crypto_types.h in Headers */,
-				9A88AFE514C2CA2E006B4023 /* cryptoalg.h in Headers */,
-				9A88AFE614C2CA2E006B4023 /* datatypes.h in Headers */,
-				9A88AFE714C2CA2E006B4023 /* err.h in Headers */,
-				9A88AFE914C2CA2E006B4023 /* gf2_8.h in Headers */,
-				9A88AFEE14C2CA2E006B4023 /* hmac.h in Headers */,
-				9A88AFEF14C2CA2E006B4023 /* integers.h in Headers */,
-				9A88AFF114C2CA2E006B4023 /* kernel_compat.h in Headers */,
-				9A88AFF514C2CA2E006B4023 /* key.h in Headers */,
-				9A88AFF914C2CA2E006B4023 /* null_auth.h in Headers */,
-				9A88AFFA14C2CA2E006B4023 /* null_cipher.h in Headers */,
-				9A88AFFB14C2CA2E006B4023 /* prng.h in Headers */,
-				9A88AFFC14C2CA2E006B4023 /* rand_source.h in Headers */,
-				9A88AFFD14C2CA2E006B4023 /* rar20.h in Headers */,
-				9A88AFFE14C2CA2E006B4023 /* rdb.h in Headers */,
-				9A88AFFF14C2CA2E006B4023 /* rdbx.h in Headers */,
-				9A88B00614C2CA2E006B4023 /* sha1.h in Headers */,
-				9A88B00714C2CA2E006B4023 /* stat.h in Headers */,
-				9A88B00814C2CA2E006B4023 /* ut_sim.h in Headers */,
-				9A88B00914C2CA2E006B4023 /* xfm.h in Headers */,
 				9A88B00C14C2CA2E006B4023 /* database.h in Headers */,
 				9A88B00D14C2CA2E006B4023 /* database1.h in Headers */,
 				9A88B00F14C2CA2E006B4023 /* database_application.h in Headers */,
@@ -5863,7 +5764,6 @@
 				9A88B07214C2CA2E006B4023 /* ex1_exception.h in Headers */,
 				9A88B07414C2CA2E006B4023 /* ex1_file.h in Headers */,
 				9A88B07514C2CA2E006B4023 /* ex1_file_exception.h in Headers */,
-				9A88B07714C2CA2E006B4023 /* ex1_file_set.h in Headers */,
 				9A88B07814C2CA2E006B4023 /* ex1_file_status.h in Headers */,
 				9A88B07A14C2CA2E006B4023 /* ex1_file_system.h in Headers */,
 				9A88B07C14C2CA2E006B4023 /* ex1_fs_interface.h in Headers */,
@@ -5932,9 +5832,6 @@
 				9A88B11814C2CA2E006B4023 /* fs_item.h in Headers */,
 				9A88B11A14C2CA2E006B4023 /* fs_item_array.h in Headers */,
 				9A88B11C14C2CA2E006B4023 /* fs_set.h in Headers */,
-				9A88B11E14C2CA2E006B4023 /* ifs.h in Headers */,
-				9A88B12014C2CA2E006B4023 /* ifs_file.h in Headers */,
-				9A88B12214C2CA2E006B4023 /* native_fs.h in Headers */,
 				9A88B12C14C2CA2E006B4023 /* gen.h in Headers */,
 				9A88B12D14C2CA2E006B4023 /* gen_0.h in Headers */,
 				9A88B12E14C2CA2E006B4023 /* gen_1.h in Headers */,
@@ -5983,11 +5880,6 @@
 				9A88B18714C2CA2F006B4023 /* gen_var.h in Headers */,
 				9A88B18914C2CA2F006B4023 /* gen_var_array.h in Headers */,
 				9A88B18C14C2CA2F006B4023 /* gen_variable_strict_compare.h in Headers */,
-				9A88B18E14C2CA2F006B4023 /* go_thread.h in Headers */,
-				9A88B18F14C2CA2F006B4023 /* muldiv32.h in Headers */,
-				9A88B19014C2CA2F006B4023 /* muldiv64.h in Headers */,
-				9A88B19114C2CA2F006B4023 /* reference.h in Headers */,
-				9A88B19314C2CA2F006B4023 /* simple_thread.h in Headers */,
 				9A88B19514C2CA2F006B4023 /* geoip.h in Headers */,
 				9A88B19714C2CA2F006B4023 /* geoip_city.h in Headers */,
 				9A88B19814C2CA2F006B4023 /* geoip_internal.h in Headers */,
@@ -6436,6 +6328,86 @@
 				CE01CA5E156A728700BEE947 /* exception_user.h in Headers */,
 				CE01CA5F156A728700BEE947 /* exception_vms.h in Headers */,
 				CE01CA65156A873200BEE947 /* primitive_string_format.h in Headers */,
+				CE4BB258156F7CA800DD13ED /* crypto_hmac_sha1.h in Headers */,
+				CE92A61015707A7A0016C580 /* crypto_aes_cbc.h in Headers */,
+				CE92A61115707A7A0016C580 /* crypto_aes_icm.h in Headers */,
+				CE92A61215707A7A0016C580 /* crypto_aes.h in Headers */,
+				CE92A61315707A7A0016C580 /* crypto_alg.h in Headers */,
+				CE92A61415707A7A0016C580 /* crypto_alloc.h in Headers */,
+				CE92A61515707A7A0016C580 /* crypto_auth.h in Headers */,
+				CE92A61615707A7A0016C580 /* crypto_c_crypto.h in Headers */,
+				CE92A61715707A7A0016C580 /* crypto_cipher.h in Headers */,
+				CE92A61815707A7A0016C580 /* crypto_config.h in Headers */,
+				CE92A61915707A7A0016C580 /* crypto_datatypes.h in Headers */,
+				CE92A61A15707A7A0016C580 /* crypto_err.h in Headers */,
+				CE92A61B15707A7A0016C580 /* crypto_gf2_8.h in Headers */,
+				CE92A61C15707A7A0016C580 /* crypto_hmac.h in Headers */,
+				CE92A61D15707A7A0016C580 /* crypto_integers.h in Headers */,
+				CE92A61E15707A7B0016C580 /* crypto_kernel_compat.h in Headers */,
+				CE92A61F15707A7B0016C580 /* crypto_key.h in Headers */,
+				CE92A62015707A7B0016C580 /* crypto_null_auth.h in Headers */,
+				CE92A62115707A7B0016C580 /* crypto_null_cipher.h in Headers */,
+				CE92A62215707A7B0016C580 /* crypto_prng.h in Headers */,
+				CE92A62315707A7B0016C580 /* crypto_rand_source.h in Headers */,
+				CE92A62415707A7B0016C580 /* crypto_rdb.h in Headers */,
+				CE92A62515707A7B0016C580 /* crypto_rdbx.h in Headers */,
+				CE92A62615707A7B0016C580 /* crypto_stat.h in Headers */,
+				CE92A62715707A7B0016C580 /* crypto_ut_sim.h in Headers */,
+				CE92A62815707A7B0016C580 /* crypto_xfm.h in Headers */,
+				CE92A64915707AF90016C580 /* compress_archive.h in Headers */,
+				CE92A64B15707AF90016C580 /* compress_bzip_helper.h in Headers */,
+				CE92A64C15707AF90016C580 /* compress_coder_mixer.h in Headers */,
+				CE92A64D15707AF90016C580 /* compress_coder_mixer2.h in Headers */,
+				CE92A64E15707AF90016C580 /* compress_coder_mixer2mt.h in Headers */,
+				CE92A64F15707AF90016C580 /* compress_coder.h in Headers */,
+				CE92A65015707AF90016C580 /* compress_copy_coder.h in Headers */,
+				CE92A65115707AF90016C580 /* compress_create_coder.h in Headers */,
+				CE92A65215707AF90016C580 /* compress_filter_coder.h in Headers */,
+				CE92A65415707AF90016C580 /* compress_gzip_helper.h in Headers */,
+				CE92A65515707AF90016C580 /* compress_huffman_decoder.h in Headers */,
+				CE92A65615707AF90016C580 /* compress_input_stream_with_crc.h in Headers */,
+				CE92A65715707AF90016C580 /* compress_int_to_string.h in Headers */,
+				CE92A65815707AF90016C580 /* compress_item_name.h in Headers */,
+				CE92A65915707AF90016C580 /* compress_local_progress.h in Headers */,
+				CE92A65A15707AF90016C580 /* compress_lz_out_window.h in Headers */,
+				CE92A65B15707AF90016C580 /* compress_method_properties.h in Headers */,
+				CE92A65D15707AF90016C580 /* compress_out_handler.h in Headers */,
+				CE92A65E15707AF90016C580 /* compress_ppmd.h in Headers */,
+				CE92A65F15707AF90016C580 /* compress_ppmd7.h in Headers */,
+				CE92A66015707AF90016C580 /* compress_ppmd8.h in Headers */,
+				CE92A66215707AF90016C580 /* compress_prop_id.h in Headers */,
+				CE92A66315707AF90016C580 /* compress_reader_with_crc.h in Headers */,
+				CE92A66415707AF90016C580 /* compress_register_codec.h in Headers */,
+				CE92A66615707AF90016C580 /* compress_writer_with_crc.h in Headers */,
+				CE92A67715707B420016C580 /* compress_codecs_info_interface.h in Headers */,
+				CE92A67815707B420016C580 /* compress_coder_interface.h in Headers */,
+				CE92A67915707B420016C580 /* compress_coder2_interface.h in Headers */,
+				CE92A67A15707B420016C580 /* compress_filter_interface.h in Headers */,
+				CE92A67B15707B420016C580 /* compress_get_input_stream_processed_size_interface.h in Headers */,
+				CE92A67C15707B420016C580 /* compress_get_sub_stream_size_interface.h in Headers */,
+				CE92A67D15707B420016C580 /* compress_progress_info_interface.h in Headers */,
+				CE92A67E15707B420016C580 /* compress_set_codecs_info_interface.h in Headers */,
+				CE92A67F15707B420016C580 /* compress_set_coder_mt_interface.h in Headers */,
+				CE92A68015707B420016C580 /* compress_set_coder_properties_interface.h in Headers */,
+				CE92A68115707B420016C580 /* compress_set_decoder_properties2_interface.h in Headers */,
+				CE92A68215707B420016C580 /* compress_set_input_stream_interface.h in Headers */,
+				CE92A68315707B420016C580 /* compress_set_output_stream_interface.h in Headers */,
+				CE92A68415707B420016C580 /* compress_write_coder_properties_interface.h in Headers */,
+				CE92A68515707B420016C580 /* compress.h in Headers */,
+				CE92A69315707B800016C580 /* crypto_7z_crc.h in Headers */,
+				CE92A69415707B800016C580 /* crypto_aes_cbc_coder.h in Headers */,
+				CE92A69515707B800016C580 /* crypto_get_text_password_interface.h in Headers */,
+				CE92A69615707B800016C580 /* crypto_get_text_password2_interface.h in Headers */,
+				CE92A69715707B800016C580 /* crypto_properties_interface.h in Headers */,
+				CE92A69915707B800016C580 /* crypto_rar20.h in Headers */,
+				CE92A69A15707B800016C580 /* crypto_reset_init_vector_interface.h in Headers */,
+				CE92A69B15707B800016C580 /* crypto_set_password_interface.h in Headers */,
+				CE92A69C15707B800016C580 /* crypto.h in Headers */,
+				CE92A6A815707CA50016C580 /* fs_ifs_file.h in Headers */,
+				CE92A6AA15707CA50016C580 /* fs_ifs.h in Headers */,
+				CE92A6AC15707CA50016C580 /* fs_native_fs.h in Headers */,
+				CE92A6AE15707CA50016C580 /* fs_remote_native_file.h in Headers */,
+				CE92A6B015707CA50016C580 /* fs_remote_native_fs.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6617,7 +6589,6 @@
 				9A88AF0B14C2CA2E006B4023 /* colorertake5_text_lines.cpp in Sources */,
 				9A88AF0C14C2CA2E006B4023 /* colorertake5_text_parser_helpers.cpp in Sources */,
 				9A88AF0D14C2CA2E006B4023 /* colorertake5_text_parser_impl.cpp in Sources */,
-				9A88AF3B14C2CA2E006B4023 /* TextConsoleViewer.cpp in Sources */,
 				9A88AF4014C2CA2E006B4023 /* 7zDecode.cpp in Sources */,
 				9A88AF4214C2CA2E006B4023 /* 7zEncode.cpp in Sources */,
 				9A88AF4414C2CA2E006B4023 /* 7zExtract.cpp in Sources */,
@@ -6632,8 +6603,6 @@
 				9A88AF5514C2CA2E006B4023 /* 7zRegister.cpp in Sources */,
 				9A88AF5614C2CA2E006B4023 /* 7zSpecStream.cpp in Sources */,
 				9A88AF5814C2CA2E006B4023 /* 7zUpdate.cpp in Sources */,
-				9A88AF5A14C2CA2E006B4023 /* 7z_crc_opt.cpp in Sources */,
-				9A88AF5C14C2CA2E006B4023 /* bzip_helper.cpp in Sources */,
 				9A88AF6314C2CA2E006B4023 /* compress_archive.cpp in Sources */,
 				9A88AF6414C2CA2E006B4023 /* compress_archive_item_name.cpp in Sources */,
 				9A88AF6514C2CA2E006B4023 /* compress_coder_mixer.cpp in Sources */,
@@ -6653,10 +6622,6 @@
 				9A88AF7314C2CA2E006B4023 /* compress_ppmd7_enc.cpp in Sources */,
 				9A88AF7414C2CA2E006B4023 /* compress_ppmd8.cpp in Sources */,
 				9A88AF7514C2CA2E006B4023 /* compress_reader_with_crc.cpp in Sources */,
-				9A88AF7914C2CA2E006B4023 /* gzip_helper.cpp in Sources */,
-				9A88AF8114C2CA2E006B4023 /* method_properties.cpp in Sources */,
-				9A88AF8314C2CA2E006B4023 /* out_handler.cpp in Sources */,
-				9A88AF8814C2CA2E006B4023 /* prop_id.cpp in Sources */,
 				9A88AF9114C2CA2E006B4023 /* rar1_decoder.cpp in Sources */,
 				9A88AF9314C2CA2E006B4023 /* rar2_decoder.cpp in Sources */,
 				9A88AF9514C2CA2E006B4023 /* rar3_decoder.cpp in Sources */,
@@ -6668,46 +6633,12 @@
 				9A88AF9D14C2CA2E006B4023 /* rar_input_file.cpp in Sources */,
 				9A88AF9E14C2CA2E006B4023 /* rar_item.cpp in Sources */,
 				9A88AF9F14C2CA2E006B4023 /* rar_volume_input_stream.cpp in Sources */,
-				9A88AFA214C2CA2E006B4023 /* writer_with_crc.cpp in Sources */,
 				9A88AFAE14C2CA2E006B4023 /* zip_api.cpp in Sources */,
 				9A88AFAF14C2CA2E006B4023 /* zip_file.cpp in Sources */,
 				9A88AFB014C2CA2E006B4023 /* zip_in_file.cpp in Sources */,
-				9A88AFB214C2CA2E006B4023 /* zip_ioapi.c in Sources */,
-				9A88AFB314C2CA2E006B4023 /* zip_iowin32.c in Sources */,
 				9A88AFB414C2CA2E006B4023 /* zip_memory_file.cpp in Sources */,
-				9A88AFB514C2CA2E006B4023 /* zip_unzip.c in Sources */,
 				9A88AFB614C2CA2E006B4023 /* zip_util.cpp in Sources */,
-				9A88AFB714C2CA2E006B4023 /* zip_zip.c in Sources */,
-				9A88AFB914C2CA2E006B4023 /* 7z_crc.cpp in Sources */,
-				9A88AFBB14C2CA2E006B4023 /* ae_xfm.c in Sources */,
-				9A88AFC414C2CA2E006B4023 /* cipher_aes.c in Sources */,
-				9A88AFC514C2CA2E006B4023 /* cipher_aes_cbc.c in Sources */,
-				9A88AFC614C2CA2E006B4023 /* cipher_aes_icm.c in Sources */,
-				9A88AFC714C2CA2E006B4023 /* cipher_cipher.c in Sources */,
-				9A88AFC814C2CA2E006B4023 /* cipher_null_cipher.c in Sources */,
-				9A88AFDC14C2CA2E006B4023 /* crypto_math.c in Sources */,
-				9A88AFDF14C2CA2E006B4023 /* crypto_rar20.cpp in Sources */,
 				9A88AFE214C2CA2E006B4023 /* crypto_sha1.cpp in Sources */,
-				9A88AFE814C2CA2E006B4023 /* gf2_8.c in Sources */,
-				9A88AFEA14C2CA2E006B4023 /* hash_auth.c in Sources */,
-				9A88AFEB14C2CA2E006B4023 /* hash_hmac.c in Sources */,
-				9A88AFEC14C2CA2E006B4023 /* hash_null_auth.c in Sources */,
-				9A88AFED14C2CA2E006B4023 /* hash_sha1.c in Sources */,
-				9A88AFF014C2CA2E006B4023 /* kernel_alloc.c in Sources */,
-				9A88AFF214C2CA2E006B4023 /* kernel_crypto_kernel.c in Sources */,
-				9A88AFF314C2CA2E006B4023 /* kernel_err.c in Sources */,
-				9A88AFF414C2CA2E006B4023 /* kernel_key.c in Sources */,
-				9A88AFF614C2CA2E006B4023 /* math_datatypes.c in Sources */,
-				9A88AFF714C2CA2E006B4023 /* math_stat.c in Sources */,
-				9A88AFF814C2CA2E006B4023 /* my_aes.cpp in Sources */,
-				9A88B00014C2CA2E006B4023 /* replay_rdb.c in Sources */,
-				9A88B00114C2CA2E006B4023 /* replay_rdbx.c in Sources */,
-				9A88B00214C2CA2E006B4023 /* replay_ut_sim.c in Sources */,
-				9A88B00314C2CA2E006B4023 /* rng_ctr_prng.c in Sources */,
-				9A88B00414C2CA2E006B4023 /* rng_prng.c in Sources */,
-				9A88B00514C2CA2E006B4023 /* rng_rand_source.c in Sources */,
-				9A88B00A14C2CA2E006B4023 /* cube4_application.cpp in Sources */,
-				9A88B00B14C2CA2E006B4023 /* planebase_application.cpp in Sources */,
 				9A88B00E14C2CA2E006B4023 /* database_application.cpp in Sources */,
 				9A88B01014C2CA2E006B4023 /* database_base.cpp in Sources */,
 				9A88B01314C2CA2E006B4023 /* database_client.cpp in Sources */,
@@ -6740,7 +6671,6 @@
 				9A88B06F14C2CA2E006B4023 /* ex1_edit_file.cpp in Sources */,
 				9A88B07114C2CA2E006B4023 /* ex1_exception.cpp in Sources */,
 				9A88B07314C2CA2E006B4023 /* ex1_file.cpp in Sources */,
-				9A88B07614C2CA2E006B4023 /* ex1_file_set.cpp in Sources */,
 				9A88B07914C2CA2E006B4023 /* ex1_file_system.cpp in Sources */,
 				9A88B07B14C2CA2E006B4023 /* ex1_fs_interface.cpp in Sources */,
 				9A88B07D14C2CA2E006B4023 /* ex1_in_buffer.cpp in Sources */,
@@ -6811,9 +6741,6 @@
 				9A88B11714C2CA2E006B4023 /* fs_item.cpp in Sources */,
 				9A88B11914C2CA2E006B4023 /* fs_item_array.cpp in Sources */,
 				9A88B11B14C2CA2E006B4023 /* fs_set.cpp in Sources */,
-				9A88B11D14C2CA2E006B4023 /* ifs.cpp in Sources */,
-				9A88B11F14C2CA2E006B4023 /* ifs_file.cpp in Sources */,
-				9A88B12114C2CA2E006B4023 /* native_fs.cpp in Sources */,
 				9A88B12914C2CA2E006B4023 /* base_enum.cpp in Sources */,
 				9A88B13014C2CA2E006B4023 /* gen_application.cpp in Sources */,
 				9A88B13214C2CA2E006B4023 /* gen_base64.cpp in Sources */,
@@ -6857,15 +6784,11 @@
 				9A88B18814C2CA2F006B4023 /* gen_var_array.cpp in Sources */,
 				9A88B18A14C2CA2F006B4023 /* gen_var_property_allocation.cpp in Sources */,
 				9A88B18B14C2CA2F006B4023 /* gen_variable_strict_compare.cpp in Sources */,
-				9A88B18D14C2CA2F006B4023 /* go_thread.cpp in Sources */,
-				9A88B19214C2CA2F006B4023 /* simple_thread.cpp in Sources */,
 				9A88B19414C2CA2F006B4023 /* geoip.cpp in Sources */,
 				9A88B19614C2CA2F006B4023 /* geoip_city.cpp in Sources */,
 				9A88B19914C2CA2F006B4023 /* geoip_region_name.cpp in Sources */,
 				9A88B19A14C2CA2F006B4023 /* geoip_time_zone.cpp in Sources */,
 				9A88B19B14C2CA2F006B4023 /* geoip_update.cpp in Sources */,
-				9A88B19E14C2CA2F006B4023 /* region_name.cpp in Sources */,
-				9A88B19F14C2CA2F006B4023 /* time_zone.cpp in Sources */,
 				9A88B1A114C2CA2F006B4023 /* install_install.cpp in Sources */,
 				9A88B1A314C2CA2F006B4023 /* javascript.cpp in Sources */,
 				9A88B1A514C2CA2F006B4023 /* javascript_functions.cpp in Sources */,
@@ -7208,6 +7131,48 @@
 				CE01CA4D156A724400BEE947 /* exception_last_error.cpp in Sources */,
 				CE01CA57156A724400BEE947 /* exception_standard_translator.cpp in Sources */,
 				CE01CA64156A873200BEE947 /* primitive_string_format.cpp in Sources */,
+				CE4BB24C156F7CA800DD13ED /* crypto_ae_xfm.cpp in Sources */,
+				CE4BB24D156F7CA800DD13ED /* crypto_cipher_aes_cbc.cpp in Sources */,
+				CE4BB24E156F7CA800DD13ED /* crypto_cipher_aes_icm.cpp in Sources */,
+				CE4BB24F156F7CA800DD13ED /* crypto_cipher_aes.cpp in Sources */,
+				CE4BB250156F7CA800DD13ED /* crypto_cipher_cipher.cpp in Sources */,
+				CE4BB251156F7CA800DD13ED /* crypto_cipher_null_cipher.cpp in Sources */,
+				CE4BB252156F7CA800DD13ED /* crypto_gf2_8.cpp in Sources */,
+				CE4BB253156F7CA800DD13ED /* crypto_hash_auth.cpp in Sources */,
+				CE4BB254156F7CA800DD13ED /* crypto_hash_hmac.cpp in Sources */,
+				CE4BB255156F7CA800DD13ED /* crypto_hash_null_auth.cpp in Sources */,
+				CE4BB256156F7CA800DD13ED /* crypto_hash_sha1.cpp in Sources */,
+				CE4BB257156F7CA800DD13ED /* crypto_hmac_sha1.cpp in Sources */,
+				CE4BB259156F7CA800DD13ED /* crypto_kernel_alloc.cpp in Sources */,
+				CE4BB25A156F7CA800DD13ED /* crypto_kernel_crypto_kernel.cpp in Sources */,
+				CE4BB25B156F7CA800DD13ED /* crypto_kernel_err.cpp in Sources */,
+				CE4BB25C156F7CA800DD13ED /* crypto_kernel_key.cpp in Sources */,
+				CE4BB25D156F7CA800DD13ED /* crypto_math_stat.cpp in Sources */,
+				CE4BB25E156F7CA800DD13ED /* crypto_math.cpp in Sources */,
+				CE4BB25F156F7CA800DD13ED /* crypto_my_aes.cpp in Sources */,
+				CE4BB260156F7CA800DD13ED /* crypto_replay_rdb.cpp in Sources */,
+				CE4BB261156F7CA800DD13ED /* crypto_replay_rdbx.cpp in Sources */,
+				CE4BB262156F7CA800DD13ED /* crypto_replay_ut_sim.cpp in Sources */,
+				CE4BB263156F7CA800DD13ED /* crypto_rng_ctr_prng.cpp in Sources */,
+				CE4BB264156F7CA800DD13ED /* crypto_rng_prng.cpp in Sources */,
+				CE4BB265156F7CA800DD13ED /* crypto_rng_rand_source.cpp in Sources */,
+				CE92A64815707AF90016C580 /* compress_7z_crc_opt.cpp in Sources */,
+				CE92A64A15707AF90016C580 /* compress_bzip_helper.cpp in Sources */,
+				CE92A65315707AF90016C580 /* compress_gzip_helper.cpp in Sources */,
+				CE92A65C15707AF90016C580 /* compress_out_handler.cpp in Sources */,
+				CE92A66115707AF90016C580 /* compress_prop_id.cpp in Sources */,
+				CE92A66515707AF90016C580 /* compress_writer_with_crc.cpp in Sources */,
+				CE92A69215707B800016C580 /* crypto_7z_crc.cpp in Sources */,
+				CE92A69815707B800016C580 /* crypto_rar20.cpp in Sources */,
+				CE92A6A715707CA50016C580 /* fs_ifs_file.cpp in Sources */,
+				CE92A6A915707CA50016C580 /* fs_ifs.cpp in Sources */,
+				CE92A6AB15707CA50016C580 /* fs_native_fs.cpp in Sources */,
+				CE92A6AD15707CA50016C580 /* fs_remote_native_file.cpp in Sources */,
+				CE92A6AF15707CA50016C580 /* fs_remote_native_fs.cpp in Sources */,
+				CE92A6B4157110520016C580 /* zip_ioapi.cpp in Sources */,
+				CE92A6B5157110520016C580 /* zip_unzip.cpp in Sources */,
+				CE92A6B6157110520016C580 /* zip_zip.cpp in Sources */,
+				CE4D2C5C1571667300D43A55 /* macos_debug.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

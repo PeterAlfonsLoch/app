@@ -1,13 +1,7 @@
 #include "framework.h"
 #include <openssl/ssl.h>
-
-
-
-
+#include <openssl/md5.h>
 #include "ca4_nessie.h"
-
-#ifdef WINDOWS
-#endif
 
 
 void NESSIEinit(struct NESSIEstruct * const structpointer);
@@ -22,6 +16,7 @@ void NESSIEfinalize(struct NESSIEstruct * const structpointer, unsigned char * c
 namespace ca4
 {
 
+   
    crypt::crypt(::ca::application * papp) :
       ca(papp)
    {

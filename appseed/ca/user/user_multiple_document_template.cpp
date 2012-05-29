@@ -145,9 +145,13 @@ void multiple_document_template::set_default_title(user::document_interface * pd
    if (GetDocString(strDocName, document_template::docName) &&
       !strDocName.is_empty())
    {
-      char szNum[16];
-      _stprintf_s(szNum, _countof(szNum), "%d", m_nUntitledCount+1);
+      
+      string strNum;
+      
+      str.Format("%d", m_nUntitledCount+1);
+      
       strDocName += szNum;
+      
    }
    else
    {

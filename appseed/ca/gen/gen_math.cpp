@@ -289,7 +289,7 @@ namespace gen
           return rev;
       }
 
-      int math::RandRange(int i1, int i2)
+/*      int math::RandRange(int i1, int i2)
       {
          // dRandRange == 0.0 is impossible event due this next statement;
          if(i1 == i2)
@@ -335,7 +335,7 @@ namespace gen
          dRand += (double) iMin;
          dRand += 0.5;
          return (int) dRand;
-      }
+      }*/
 
       int64_t math::RandRange(int64_t i1, int64_t i2)
       {
@@ -360,6 +360,8 @@ namespace gen
          dRand += 0.5;
          return (int) dRand;
       }
+      
+      /*
 
       uint64_t math::RandRange(uint64_t ui1, uint64_t ui2)
       {
@@ -384,6 +386,9 @@ namespace gen
          dRand += 0.5;
          return (int) dRand;
       }
+       
+       
+       */
 
       int math::LinearMap(int iMin, int iMax, int iValue, int iValueMin, int iValueMax)
       {

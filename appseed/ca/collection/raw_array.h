@@ -7,7 +7,7 @@
 #ifdef DEBUG
 #define TEMPLATE_TYPE_NEW new(__FILE__ + string(" - ") + typeid(TYPE).name(), __LINE__)
 #else
-#define TEMPLATE_TYPE_NEW ne
+#define TEMPLATE_TYPE_NEW new
 #endif
 
 #undef new

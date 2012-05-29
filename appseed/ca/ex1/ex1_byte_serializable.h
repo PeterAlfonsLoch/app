@@ -110,7 +110,7 @@ namespace ex1
       {
          ostream << p->m_key;
          ostream << p->m_value;
-         p = PGetNextAssoc(p);
+         p = this->PGetNextAssoc(p);
       }
    }
 
@@ -125,7 +125,7 @@ namespace ex1
       {
          istream >> key;
          istream >> value;
-         set_at(key, value);
+         this->set_at(key, value);
       }
       on_after_read();
    }
