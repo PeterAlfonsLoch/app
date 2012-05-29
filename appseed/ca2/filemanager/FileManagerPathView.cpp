@@ -107,7 +107,7 @@ void FileManagerPathView::_001OnAfterChangeText()
 
    string str;
    _001GetText(str);
-   if(Application.dir().is(str))
+   if(GetFileManager()->get_fs_data()->is_dir(str))
    {
       GetFileManager()->FileManagerBrowse(str);
    }

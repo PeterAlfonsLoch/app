@@ -422,11 +422,11 @@ namespace filemanager
          pitemChild->m_flags.signalize(::fs::FlagFolder);
 //         pitemChild->m_iImage = m_iDefaultImage;
          pitemChild->m_iImage = System.shellimageset().GetImage(
-            _GetWnd()->GetTopLevelParent()->_get_handle(),
+            NULL,
             pitemChild->m_strPath,
             NULL,
             _shell::IconNormal,
-            get_document()->set().is_dir(pitemChild->m_strPath));
+            true);
          pitemChild->m_iImageSelected = m_iDefaultImageSelected;
 
          pitem = find_item(pitemChild->m_strPath);
