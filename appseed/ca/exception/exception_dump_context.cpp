@@ -349,7 +349,7 @@ dump_context& dump_context::dumpAsHex(LONGLONG n)
 
    str.Format("0x%016I64x", n);
    
-   OutputString(szBuffer);
+   OutputString(str);
 
    return *this;
    
@@ -362,7 +362,7 @@ dump_context& dump_context::dumpAsHex(ULONGLONG n)
 
    str.Format("0x%016I64x", n);
    
-   OutputString(szBuffer);
+   OutputString(str);
 
    return *this;
    

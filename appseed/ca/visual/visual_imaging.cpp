@@ -40,7 +40,7 @@ imaging::~imaging()
       DIB_RGB_COLORS))
    {
       TRACELASTERROR();
-      return NULL;
+      return ::ca::null();
    }
    return bitmap;
 }
@@ -2288,8 +2288,9 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
 
 ::ca::bitmap_sp imaging::FItoHBITMAP(FIBITMAP * pfibitmap, bool bUnloadFI)
 {
-   if(pfibitmap== NULL)
-      return NULL;
+   
+   if(pfibitmap == NULL)
+      return ::ca::null();
 
 //   BITMAPINFO * pbi = FreeImage_GetInfo(pfibitmap);
   // void * pData = FreeImage_GetBits(pfibitmap);
@@ -2347,17 +2348,19 @@ gen::international::UTF8ToUnicode(str, lpcszImageFilePath);
 return LoadImageSync(str);
 }*/
 
+
 ::ca::bitmap_sp imaging::LoadImageSync(const char * lpcszImageFilePath, ::ca::application * papp)
 {
 
    FIBITMAP * pfi = imaging::LoadImageFile(lpcszImageFilePath, papp);
 
    if(pfi == NULL)
-      return NULL;
+      return ::ca::null();
 
    return FItoHBITMAP(pfi, true);
 
 }
+
 
 bool imaging::LoadImageSync(::ca::dib * pdib, const char * lpcszImageFilePath, ::ca::application * papp)
 {
@@ -2368,6 +2371,7 @@ bool imaging::LoadImageSync(::ca::dib * pdib, const char * lpcszImageFilePath, :
    return true;
 
 }
+
 
 bool imaging::color_blend_3dRect(::ca::graphics *pdc, LPCRECT lpcrect, COLORREF crTopLeft, BYTE bAlphaTopLeft, COLORREF crBottomRight, BYTE bAlphaBottomRight)
 {

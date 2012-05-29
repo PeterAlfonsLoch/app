@@ -150,27 +150,26 @@ namespace ca
          return m_psystem->m_spdir.m_p->is_inside_time(lpcsz, m_papp);
       }
 
+
       void application::root_ones(stringa & stra)
       {
          return m_psystem->m_spdir.m_p->root_ones(stra, m_papp);
       }
+
 
       bool application::mk(const char * lpcsz)
       {
          return m_psystem->m_spdir.m_p->mk(lpcsz, m_papp);
       }
 
+
       bool application::rm(const char * psz, bool bRecursive)
       {
          return m_psystem->m_spdir.m_p->rm(m_papp, psz, bRecursive);
       }
-      
-      string application::pathfind(const char * pszEnv, const char * pszTopic)
-      {  
-         return System.dir().pathfind(pszEnv, pszTopic, m_papp);
-      }
-   
-      string application::pathfind(const char * pszEnv, const char * pszFile, const char * pszMode)
+
+
+      string application::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
       {
          return System.dir().pathfind(pszEnv, pszTopic, pszMode, m_papp);
       }

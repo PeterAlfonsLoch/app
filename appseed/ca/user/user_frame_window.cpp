@@ -1423,9 +1423,9 @@ void frame_window::UpdateFrameTitleForDocument(const char * lpszDocName)
             string strText;
 
             // :%d will produce a maximum of 11 TCHARs
-            str.Format(":%d", m_nWindow);
+            strText.Format(":%d", m_nWindow);
             
-            WindowText += szText;
+            WindowText += strText;
             
          }
          
@@ -1447,12 +1447,12 @@ void frame_window::UpdateFrameTitleForDocument(const char * lpszDocName)
          if (m_nWindow > 0)
          {
             
-            string str;
+            string strText;
 
             // :%d will produce a maximum of 11 TCHARs
-            str.Format(":%d", m_nWindow);
+            strText.Format(":%d", m_nWindow);
             
-            WindowText += szText;
+            WindowText += strText;
             
          }
       }

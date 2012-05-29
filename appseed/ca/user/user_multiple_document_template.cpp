@@ -148,9 +148,9 @@ void multiple_document_template::set_default_title(user::document_interface * pd
       
       string strNum;
       
-      str.Format("%d", m_nUntitledCount+1);
+      strNum.Format("%d", m_nUntitledCount+1);
       
-      strDocName += szNum;
+      strDocName += strNum;
       
    }
    else
