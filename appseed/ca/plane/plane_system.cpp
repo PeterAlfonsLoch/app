@@ -413,7 +413,10 @@ namespace plane
 
       m_pbergedgemap = new ::plane::session::map;
 
+
+
       return true;
+
    }
 
 

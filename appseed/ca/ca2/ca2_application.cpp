@@ -848,6 +848,11 @@ namespace ca2
 
    }
 
+   bool application::is_running()
+   {
+      return is_alive();
+   }
+
 
 } //namespace _001ca1api00001
 

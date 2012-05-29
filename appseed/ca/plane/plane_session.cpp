@@ -97,6 +97,21 @@ namespace plane
       }
 
 
+      if(!System.directrix().m_varTopicQuery.has_property("install")
+      && !System.directrix().m_varTopicQuery.has_property("uninstall"))
+      {
+
+         ::ca::application * papp = System.get_new_app(this, "core_deepfish");
+
+         if(papp == NULL)
+         {
+            simple_message_box(NULL, "deepfish subsystem - responsible for running background applications - could not be started");
+            return false;
+         }
+
+      }
+
+
       return true;
    }
 

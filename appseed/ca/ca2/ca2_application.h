@@ -152,6 +152,9 @@ namespace ca2
       virtual void set_key_pressed(int iKey, bool bPressed);
 
 
+      virtual bool is_running();
+
+
    };
 
 
