@@ -494,7 +494,7 @@ namespace plane
    }
 
 
-   ::ca::application * session::start_application(const char * pszAppId, ::ca::create_context * pcreatecontext)
+   ::planebase::application * session::start_application(const char * pszAppId, ::ca::create_context * pcreatecontext)
    {
       
       string strApp(pszAppId);

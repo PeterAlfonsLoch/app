@@ -44,6 +44,9 @@ namespace plane
 
       virtual void on_user_login(::fontopus::user * puser);
 
+
+      virtual ::planebase::application * assert_running(const char * pszAppdId);
+
    };
 
 

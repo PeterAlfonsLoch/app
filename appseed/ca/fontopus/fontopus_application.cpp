@@ -93,6 +93,16 @@ namespace fontopus
          }
          m_puser = create_user(puser);
          System.userset().add(m_puser);
+
+         if(m_puser != NULL)
+         {
+
+            on_user_login(m_puser);
+
+         }
+
+
+
       }
       return m_puser;
    }
@@ -129,13 +139,6 @@ namespace fontopus
          authuser.oprop("defer_registration") = "defer_registration";
          authuser.propset().merge(set);
          puser = authuser.get_user();
-
-      }
-
-      if(puser != NULL)
-      {
-
-         on_user_login(puser);
 
       }
 

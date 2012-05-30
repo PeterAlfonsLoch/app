@@ -267,6 +267,104 @@ namespace plane
    }
 
 
+   ::planebase::application * application::assert_running(const char * pszAppId)
+   {
+
+      
+      ::planebase::application * papp = NULL;
+
+
+      try
+      {
+         
+         bool bFound = false;
+
+         for(int i  = 0; i < System.m_appptra.get_count(); i++)
+         {
+            try
+            {
+
+               papp = dynamic_cast < ::planebase::application * > (System.m_appptra[i]);
+
+               if(papp->m_strAppName == pszAppId)
+               {
+                  bFound = true;
+                  break;
+               }
+
+            }
+            catch(...)
+            {
+            }
+
+         }
+
+         bool bCreate = !bFound;
+
+         if(bFound)
+         {
+
+            bool bRunning = false;
+
+            try
+            {
+               if(papp->is_running())
+               {
+                  bRunning = true;
+               }
+            }
+            catch(...)
+            {
+            }
+
+            if(!bRunning)
+            {
+               
+               try
+               {
+                  papp->PostThreadMessage(WM_QUIT, 0, 0);
+               }
+               catch(...)
+               {
+               }
+               try
+               {
+                  delete papp;
+               }
+               catch(...)
+               {
+               }
+
+               bCreate = true;
+
+            }
+
+            
+         }
+
+         if(bCreate)
+         {
+
+            ::ca::create_context_sp spcreatecontext(get_app());
+
+            papp = Session.start_application(pszAppId, spcreatecontext);
+
+         }
+
+      }
+      catch(...)
+      {
+
+         papp = NULL;
+
+      }
+
+
+      return papp;
+
+   }
+
+
 } //namespace plane
 
 
