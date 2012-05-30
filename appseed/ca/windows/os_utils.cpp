@@ -163,7 +163,7 @@ bool StopAndUninstallDrv( HANDLE hDrvHandle )
 	SC_HANDLE hService = OpenService( hSCManager , DRV_NAME, SERVICE_ALL_ACCESS );
 	SERVICE_STATUS  stSrvStatus = {0};
 	ControlService( hService, SERVICE_CONTROL_STOP, &stSrvStatus );
-	bool bDeleted = DeleteService(hService);
+	bool bDeleted = DeleteService(hService) != FALSE;
 	CloseServiceHandle(hService);
 	CloseServiceHandle(hSCManager);	
 	return bDeleted;

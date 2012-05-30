@@ -97,19 +97,6 @@ namespace plane
       }
 
 
-      if(!System.directrix().m_varTopicQuery.has_property("install")
-      && !System.directrix().m_varTopicQuery.has_property("uninstall"))
-      {
-
-         ::ca::application * papp = System.get_new_app(this, "core_deepfish");
-
-         if(papp == NULL)
-         {
-            simple_message_box(NULL, "deepfish subsystem - responsible for running background applications - could not be started");
-            return false;
-         }
-
-      }
 
 
       return true;
@@ -507,20 +494,20 @@ namespace plane
    }
 
 
-   void session::start_application(const char * pszAppId, ::ca::create_context * pcreatecontext)
+   ::ca::application * session::start_application(const char * pszAppId, ::ca::create_context * pcreatecontext)
    {
       
       string strApp(pszAppId);
 
       ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get(strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
       if(papp == NULL)
-         return;
+         return NULL;
 
       if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
       || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
       {
          System.appptra().remove(papp);
-         return;
+         return NULL;
       }
 
       pcreatecontext->m_spCommandLine->m_eventReady.ResetEvent();
@@ -548,7 +535,7 @@ namespace plane
                {
                }
 
-               return;
+               return NULL;
 
             }
 
@@ -565,6 +552,8 @@ namespace plane
       }
 
       m_pappCurrent = papp;
+
+      return papp;
 
    }
 

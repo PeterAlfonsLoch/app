@@ -42,7 +42,7 @@ namespace plane
 
       ::ca::application * get_system();
 
-      
+      virtual void on_user_login(::fontopus::user * puser);
 
    };
 

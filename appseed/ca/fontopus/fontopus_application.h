@@ -45,7 +45,7 @@ namespace fontopus
 
       virtual bool check_license(const char * pszId, bool bInteractive);
 
-
+      virtual void on_user_login(::fontopus::user * puser);
 
    };
 

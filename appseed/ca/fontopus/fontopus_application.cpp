@@ -114,15 +114,33 @@ namespace fontopus
       }*/
       //class validate authuser(papp, "system\\user\\authenticate.xhtml", true);
 
+      user * puser = NULL;
+
       if(m_psession != NULL && m_psession->m_pbergedge != NULL)
       {
-         return m_psession->m_pbergedgeInterface->login(set);
+       
+         puser = m_psession->m_pbergedgeInterface->login(set);
+
+      }
+      else
+      {
+
+         class validate authuser(this, "system\\user\\authenticate.xhtml", true);
+         authuser.oprop("defer_registration") = "defer_registration";
+         authuser.propset().merge(set);
+         puser = authuser.get_user();
+
       }
 
-      class validate authuser(this, "system\\user\\authenticate.xhtml", true);
-      authuser.oprop("defer_registration") = "defer_registration";
-      authuser.propset().merge(set);
-      return authuser.get_user();
+      if(puser != NULL)
+      {
+
+         on_user_login(puser);
+
+      }
+
+      return puser;
+
    }
 
    bool application::get_auth(const char * psz, string & strUsername, string & strPassword)
@@ -236,6 +254,11 @@ namespace fontopus
       class validate authuser(papp, "err\\user\\authentication\\not_licensed.xhtml", true, bInteractive);
       return authuser.get_license(pszId);
 
+   }
+
+   void application::on_user_login(user * puser)
+   {
+      UNREFERENCED_PARAMETER(puser);
    }
 
 } // namespace fontopus

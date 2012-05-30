@@ -139,7 +139,7 @@ namespace plane
       virtual bool is_remote_session();
 
       using ::plane::application::start_application;
-      void start_application(const char * pszAppId, ::ca::create_context * pcreatecontext);
+      ::ca::application * start_application(const char * pszAppId, ::ca::create_context * pcreatecontext);
 
 
    };
