@@ -523,7 +523,7 @@ InitFailure:
             {
                
                string strId = m_strId;
-               MessageBox(NULL, "on_install1", strId, 0);
+               //MessageBox(NULL, "on_install1", strId, 0);
                if(strId.is_empty())
                   strId = m_strAppName;
                if(command().m_varTopicQuery.has_property("app") && strId == command().m_varTopicQuery["app"])
@@ -533,10 +533,10 @@ InitFailure:
                }
                else if(command().m_varTopicQuery.has_property("session_start") && strId == command().m_varTopicQuery["session_start"])
                {
-                  MessageBox(NULL, "on_install2", "on_install2", 0);
+                  //MessageBox(NULL, "on_install2", "on_install2", 0);
                   System.install().remove_spa_start(strId);
                   System.install().add_app_install(strId);
-                  MessageBox(NULL, "on_install3", "on_install3", 0);
+                  //MessageBox(NULL, "on_install3", "on_install3", 0);
                }
                else if(m_strInstallToken.has_char())
                {
