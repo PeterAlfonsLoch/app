@@ -602,7 +602,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
       //   delete psf;
       */
 
-         int iRate1 = 50;
+         int iRate1 = 25;
 
          int iARange = (184 - 23) * 2;
          int iAClip = iARange / 2;
@@ -624,7 +624,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
 
          graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
-         int iRate = 25;
+         int iRate = 10;
 
          const int iRowCount = cx - cx / (iRate / 2);
          int iProgressCount = max(min((int) (iRowCount * dRate), iRowCount), 0);
@@ -633,7 +633,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
          graphics2.SetClip(rectClip1, Gdiplus::CombineModeReplace);
 
 
-         Gdiplus::Rect rectClip(lprect->left + cx / iRate - 1 , lprect->top + (cy - 23) / 2 - 1, iRowCount + 2, 23 + 2);
+         Gdiplus::Rect rectClip(lprect->left + cx / iRate - 5 , lprect->top + (cy - 23) / 2 - 5, iRowCount + 10, 23 + 10);
          graphics2.SetClip(rectClip, Gdiplus::CombineModeExclude);
 
          Gdiplus::Point pa[4];
