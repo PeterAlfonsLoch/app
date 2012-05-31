@@ -1345,7 +1345,10 @@ namespace plane
 
       string strId(pszAppId);
 
-      if(strId.has_char() && !install().is(strId))
+      if(!System.directrix().m_varTopicQuery.has_property("install")
+         && !System.directrix().m_varTopicQuery.has_property("uninstall")
+         && strId.has_char() 
+         && !install().is(strId))
       {
 
          hotplugin::host::starter_start(": app=session session_start=" + strId + " install", NULL);
