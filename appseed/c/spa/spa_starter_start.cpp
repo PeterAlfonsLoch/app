@@ -238,7 +238,7 @@ UINT spa_starter_start::start()
    //set_installing_ca2(false);
 
    //if(is_ca2_installed() && is_installed(m_strId) && is_ca2_updated())
-   if(is_ca2_installed() && is_installed(strId))
+   if(is_ca2_installed() && is_installed(strId) && m_pplugin != NULL)
    {
       defer_play_small_bell();
       m_pplugin->set_ca2_installation_ready();

@@ -27,7 +27,7 @@ int c_dll_main(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
 */
 
 extern "C"
-bool WINAPI DllMain(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
+BOOL WINAPI DllMain(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
 {
    return c_dll_main(hinstance, dwReason, lpReserved);
 }

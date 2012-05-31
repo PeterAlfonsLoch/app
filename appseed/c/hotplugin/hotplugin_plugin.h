@@ -37,6 +37,8 @@ namespace hotplugin
 
       vsstring                      m_strStatus;
 
+      DWORD                         m_nCa2StarterStartThreadID;
+
 
       plugin();
       virtual ~plugin();

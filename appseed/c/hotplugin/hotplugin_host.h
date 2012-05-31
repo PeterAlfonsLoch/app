@@ -20,7 +20,6 @@ namespace hotplugin
 
 
       bool                          m_bCa2InstallationReady;
-      DWORD                         m_nCa2StarterStartThreadID;
       // this flag is only set if spaadmin is installing ca2 files while npca2 is *started*
       // it isn't set when npca2 is already running and spaadmin starts, may be only in the case above, when npca2 *restarts*.
       // this enables spaadmin to install ca2 files to ca2 folder, because npca2 would not use any ca2 shared libraries.
@@ -88,6 +87,8 @@ namespace hotplugin
 
 
       virtual int starter_start(const char * pszCommandLine);
+
+      static int starter_start(const char * pszCommandLine, plugin * pplugin);
 
 
       virtual void deferred_prodevian_redraw();

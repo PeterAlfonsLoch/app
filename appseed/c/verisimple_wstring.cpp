@@ -232,7 +232,7 @@ CLASS_DECL_c wstring gen_utf8_to_16(const char * psz)
 
 template<> CLASS_DECL_c bool simple_CompareElements(const wstring * pElement1, const wstring * pElement2)
 {
-   return pElement1->Compare(*pElement2);
+   return pElement1->Compare(*pElement2) != FALSE;
 }
 
 
