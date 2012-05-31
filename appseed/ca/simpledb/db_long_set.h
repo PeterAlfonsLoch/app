@@ -10,8 +10,10 @@ class CLASS_DECL_ca db_long_set :
 protected:
 
 
-   bool                    m_bIndexed;
+   bool                       m_bIndexed;
 
+   sockets::socket_handler    m_handler;
+   sockets::http_session *    m_phttpsession;
 
 public:
 

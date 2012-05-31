@@ -6,6 +6,9 @@ db_long_set::db_long_set(db_server * pserver) :
    ca(pserver->get_app()),
    db_set(pserver, "integertable")
 {
+
+   m_phttpsession = NULL;
+
 }
 
 db_long_set::~db_long_set()
@@ -16,7 +19,7 @@ db_long_set::~db_long_set()
 // Adiciona na matriz System nomes dos diretórios de imagens.
 bool db_long_set::load(const char * lpKey, long *plValue)
 {
-   single_lock slDatabase(db()->GetImplCriticalSection());
+/*   single_lock slDatabase(db()->GetImplCriticalSection());
 
    string strKey;
    strKey = lpKey;
@@ -43,6 +46,30 @@ bool db_long_set::load(const char * lpKey, long *plValue)
 
    *plValue = m_pdataset->fv("value");
 
+   return true;*/
+
+   gen::property_set post(get_app());
+   gen::property_set headers(get_app());
+   gen::property_set set(get_app());
+
+   ca4::http::e_status estatus;
+
+   string strUrl;
+
+   strUrl = "https://api.ca2.cc/account/long_set_load?key=";
+   strUrl += System.url().url_encode(lpKey);
+
+   m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, 0, 0, 0, &estatus);
+
+   if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
+   {
+      return false;
+   }
+
+   *plValue = gen::str::itoa((m_phttpsession->m_memoryfile.get_memory()->get_data(),
+                     m_phttpsession->m_memoryfile.get_memory()->get_size()));
+
+
    return true;
 }
 
@@ -60,7 +87,29 @@ bool db_long_set::load(const char * lpKey, int & iValue)
 
 bool db_long_set::save(const char * lpKey, long lValue)
 {
-   single_lock slDatabase(db()->GetImplCriticalSection());
+
+   gen::property_set post(get_app());
+   gen::property_set headers(get_app());
+   gen::property_set set(get_app());
+
+   ca4::http::e_status estatus;
+
+   string strUrl;
+
+   strUrl = "https://api.ca2.cc/account/str_set_load?key=";
+   strUrl += System.url().url_encode(lpKey);
+   strUrl += "&value=";
+   strUrl += gen::str::itoa(lValue);
+
+   m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, 0, 0, 0, &estatus);
+
+   if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
+   {
+      return false;
+   }
+
+   return true;
+  /* single_lock slDatabase(db()->GetImplCriticalSection());
    string strKey;
    strKey = lpKey;
    strKey.replace("'", "''");
@@ -112,7 +161,7 @@ bool db_long_set::save(const char * lpKey, long lValue)
       }
    }
 
-   return true;
+   return true;*/
 }
 
 bool db_long_set::save(const char * lpKey, int iValue)

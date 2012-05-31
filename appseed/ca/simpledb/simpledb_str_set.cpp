@@ -10,8 +10,9 @@ db_str_set::db_str_set(db_server * pserver) :
    ::sqlite::base * pdb = db()->GetImplDatabase();
    ::sqlite::set *  pds = (::sqlite::set *) pdb->CreateDataset();
    
+   m_psession = NULL;
    //create string Table if necessary
-   try
+   /*try
    {
       pdb->start_transaction();
       pds->query("select * from sqlite_master where type like 'table' and name like 'stringtable'");
@@ -25,7 +26,7 @@ db_str_set::db_str_set(db_server * pserver) :
    {
       pdb->rollback_transaction();
       return;
-   }
+   }*/
 
    m_pdataset = pds;
 
@@ -46,7 +47,29 @@ bool db_str_set::remove(const char * lpKey)
 
 bool db_str_set::load(const char * lpKey, string & strValue)
 {
-   if(m_pdataserver == NULL)
+
+   gen::property_set post(get_app());
+   gen::property_set headers(get_app());
+   gen::property_set set(get_app());
+
+   ca4::http::e_status estatus;
+
+   string strUrl;
+
+   strUrl = "https://api.ca2.cc/account/str_set_load?key=";
+   strUrl += System.url().url_encode(lpKey);
+
+   m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, 0, 0, 0, &estatus);
+
+   if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
+   {
+      return false;
+   }
+
+   strValue = string(m_phttpsession->m_memoryfile.get_memory()->get_data(),
+                     m_phttpsession->m_memoryfile.get_memory()->get_size());
+
+   /*if(m_pdataserver == NULL)
       return false;
 
    single_lock slDatabase(db()->GetImplCriticalSection());
@@ -74,18 +97,18 @@ bool db_str_set::load(const char * lpKey, string & strValue)
    if(m_pdataset->num_rows() <= 0)
       return false;
 
-   strValue = m_pdataset->fv("value");
+   strValue = m_pdataset->fv("value");*/
 
    return true;
 }
 
 bool db_str_set::save(const char * lpKey, const char * lpcsz)
 {
-   if(db() == NULL)
-      return false;
-   single_lock slDatabase(db()->GetImplCriticalSection());
+  // if(db() == NULL)
+    //  return false;
+//   single_lock slDatabase(db()->GetImplCriticalSection());
 
-   string strKey;
+/*   string strKey;
    strKey = lpKey;
    strKey.replace("'", "''");
 
@@ -127,5 +150,29 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
       }
       pdb->commit_transaction();
    }
+   return true;*/
+
+
+   gen::property_set post(get_app());
+   gen::property_set headers(get_app());
+   gen::property_set set(get_app());
+
+   ca4::http::e_status estatus;
+
+   string strUrl;
+
+   strUrl = "https://api.ca2.cc/account/str_set_load?key=";
+   strUrl += System.url().url_encode(lpKey);
+   strUrl += "&value=";
+   strUrl += System.url().url_encode(lpcsz);
+
+   m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, 0, 0, 0, &estatus);
+
+   if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
+   {
+      return false;
+   }
+
+
    return true;
 }
