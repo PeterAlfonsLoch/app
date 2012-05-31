@@ -638,11 +638,11 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
 
          Gdiplus::Point pa[4];
 
-         Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + 23, 177 + 23, 177 + 19));
-         graphics2.FillRectangle(pbr, lprect->left , lprect->top, lprect->left + cx, lprect->top + cy);
-         delete pbr;
+         //Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + 23, 177 + 23, 177 + 19));
+         //graphics2.FillRectangle(pbr, lprect->left , lprect->top, lprect->left + cx, lprect->top + cy);
+         //delete pbr;
 
-         pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 184 + 23, 184 + 23, 184 + 19));
+         Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 184 + 23, 184 + 23, 184 + 19));
 
          for(int x = 0; x < (cx + cy); x += 46)
          {
