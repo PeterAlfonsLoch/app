@@ -1343,6 +1343,46 @@ namespace plane
    ::ca::application * system::get_new_app(::ca::application * pappNewApplicationParent, const char * pszAppId)
    {
 
+      string strId(pszAppId);
+
+      if(strId.has_char() && !install().is(strId))
+      {
+
+         string strCommandLine;
+
+
+         strCommandLine = ": app=session session_start=" + strId;
+         gen::property_set set(get_app());
+         set.parse_url_query(str);
+         for(int i = 0; i < set.m_propertya.get_count(); i++)
+         {
+            strCommandLine += " ";
+            strCommandLine += set.m_propertya[i].name();
+            if(set.m_propertya[i].get_string().has_char())
+            {
+               strCommandLine += "=";
+               strCommandLine += set.m_propertya[i].get_string();
+            }
+         }
+
+         strCommandLine += " install";
+
+         Sys(m_psystem).install().start(strCommandLine);
+
+#ifdef WINDOWS
+         ::TerminateProcess(::GetCurrentProcess(), 0);
+#else
+         kill(0, SIGSTOP);
+#endif
+
+         m_bMainReady = false;
+
+         return;
+         //m_puiHost->SetTimer(19841115, (1984 + 1977 )* 2, NULL);
+
+      }
+
+
       ca2::library library;
 
       string strLibrary = m_mapAppLibrary[pszAppId];
