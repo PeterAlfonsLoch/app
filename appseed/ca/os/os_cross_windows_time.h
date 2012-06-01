@@ -30,8 +30,8 @@ typedef struct _RTL_TIME_ZONE_INFORMATION {
 } RTL_TIME_ZONE_INFORMATION, *PRTL_TIME_ZONE_INFORMATION;
 
 
-BOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft );
-BOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft );
-BOOL WINAPI FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst );
-BOOL WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft );
+bool WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft );
+bool WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft );
+bool WINAPI FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst );
+bool WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft );
 

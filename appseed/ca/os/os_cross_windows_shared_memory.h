@@ -23,7 +23,7 @@ HGLOBAL WINAPI GlobalReAlloc(HGLOBAL hMem, SIZE_T dwBytes, UINT uFlags);
 HGLOBAL WINAPI GlobalFree(HGLOBAL hMem);
 
 LPVOID WINAPI GlobalLock(HGLOBAL hMem);
-BOOL WINAPI GlobalUnlock(HGLOBAL hMem);
+bool WINAPI GlobalUnlock(HGLOBAL hMem);
 
 SIZE_T WINAPI GlobalSize(HGLOBAL hMem);
 

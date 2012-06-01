@@ -32,19 +32,19 @@ namespace gen
 
 #endif
 
-   inline void PASCAL property::operator delete(void * p)
+   void PASCAL property::operator delete(void * p)
    {
       g_fixedallocVar.Free(p);
    }
 
-   inline void PASCAL property::operator delete(void * p, void *)
+   void PASCAL property::operator delete(void * p, void *)
    {
       g_fixedallocVar.Free(p);
    }
 
 #ifdef DEBUG
 
-   inline void PASCAL property::operator delete(void *pvar, const char *, int)
+   void PASCAL property::operator delete(void *pvar, const char *, int)
    {
       g_fixedallocVar.Free(pvar);
    }
