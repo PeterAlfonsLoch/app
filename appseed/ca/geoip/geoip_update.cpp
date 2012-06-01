@@ -1,7 +1,8 @@
 #include "framework.h"
 #include <openssl/ssl.h>
+#include <openssl/md5.h>
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
 #include <netdb.h>
 #endif
 

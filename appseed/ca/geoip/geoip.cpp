@@ -9,7 +9,7 @@ static geoipv6_t IPV6_NULL;
 
 #define GEOIPDATADIR "/ca2/geoip"
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
 
 #include <sys/mman.h>
 #include <netdb.h>

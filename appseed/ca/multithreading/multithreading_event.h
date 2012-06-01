@@ -6,7 +6,7 @@ class CLASS_DECL_ca event :
 {
 public:
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
    bool     m_bManualReset;
 #endif
 

@@ -760,24 +760,15 @@
 		9A88B1A014C2CA2F006B4023 /* install.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA4414C2CA2C006B4023 /* install.h */; };
 		9A88B1A114C2CA2F006B4023 /* install_install.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA4514C2CA2C006B4023 /* install_install.cpp */; };
 		9A88B1A214C2CA2F006B4023 /* install_install.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA4614C2CA2C006B4023 /* install_install.h */; };
-		9A88B1A314C2CA2F006B4023 /* javascript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA4914C2CA2C006B4023 /* javascript.cpp */; };
 		9A88B1A414C2CA2F006B4023 /* javascript.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA4A14C2CA2C006B4023 /* javascript.h */; };
 		9A88B1A514C2CA2F006B4023 /* javascript_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA4B14C2CA2C006B4023 /* javascript_functions.cpp */; };
 		9A88B1A614C2CA2F006B4023 /* javascript_functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA4C14C2CA2C006B4023 /* javascript_functions.h */; };
-		9A88B1A714C2CA2F006B4023 /* javascript_script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA4D14C2CA2C006B4023 /* javascript_script.cpp */; };
 		9A88B1A814C2CA2F006B4023 /* javascript_tinyjs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA4E14C2CA2C006B4023 /* javascript_tinyjs.h */; };
 		9A88B1DA14C2CA2F006B4023 /* mail.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA8D14C2CA2C006B4023 /* mail.h */; };
 		9A88B1DB14C2CA2F006B4023 /* mail_pop3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA8E14C2CA2C006B4023 /* mail_pop3.cpp */; };
 		9A88B1DC14C2CA2F006B4023 /* mail_pop3.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA8F14C2CA2C006B4023 /* mail_pop3.h */; };
 		9A88B1DD14C2CA2F006B4023 /* mail_pop3_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA9014C2CA2C006B4023 /* mail_pop3_socket.cpp */; };
 		9A88B1DE14C2CA2F006B4023 /* mail_simple_pop3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA9114C2CA2C006B4023 /* mail_simple_pop3.cpp */; };
-		9A88B1DF14C2CA2F006B4023 /* pop3_format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA9214C2CA2C006B4023 /* pop3_format.cpp */; };
-		9A88B1E014C2CA2F006B4023 /* pop3_objects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA9314C2CA2C006B4023 /* pop3_objects.cpp */; };
-		9A88B1E114C2CA2F006B4023 /* pop3_parsing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA9414C2CA2C006B4023 /* pop3_parsing.cpp */; };
-		9A88B1E214C2CA2F006B4023 /* pop3_queries.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA9514C2CA2C006B4023 /* pop3_queries.cpp */; };
-		9A88B1E314C2CA2F006B4023 /* pop3_session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA9614C2CA2C006B4023 /* pop3_session.cpp */; };
-		9A88B1E414C2CA2F006B4023 /* pop3_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA9714C2CA2C006B4023 /* pop3_socket.cpp */; };
-		9A88B1E514C2CA2F006B4023 /* pop3_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA9814C2CA2C006B4023 /* pop3_socket.h */; };
 		9A88B1E614C2CA2F006B4023 /* simple_pop3.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA9914C2CA2C006B4023 /* simple_pop3.h */; };
 		9A88B1E714C2CA2F006B4023 /* _double.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA9B14C2CA2C006B4023 /* _double.cpp */; };
 		9A88B1E814C2CA2F006B4023 /* _double.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA9C14C2CA2C006B4023 /* _double.h */; };
@@ -1563,6 +1554,8 @@
 		CE4BB264156F7CA800DD13ED /* crypto_rng_prng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB249156F7CA800DD13ED /* crypto_rng_prng.cpp */; };
 		CE4BB265156F7CA800DD13ED /* crypto_rng_rand_source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB24A156F7CA800DD13ED /* crypto_rng_rand_source.cpp */; };
 		CE4D2C5C1571667300D43A55 /* macos_debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE4D2C5B1571667300D43A55 /* macos_debug.cpp */; };
+		CE8ED99F1578B4880082203F /* os_multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8ED99D1578B4880082203F /* os_multithreading.cpp */; };
+		CE8ED9A01578B4880082203F /* os_multithreading.h in Headers */ = {isa = PBXBuildFile; fileRef = CE8ED99E1578B4880082203F /* os_multithreading.h */; };
 		CE92A61015707A7A0016C580 /* crypto_aes_cbc.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A5F715707A750016C580 /* crypto_aes_cbc.h */; };
 		CE92A61115707A7A0016C580 /* crypto_aes_icm.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A5F815707A750016C580 /* crypto_aes_icm.h */; };
 		CE92A61215707A7A0016C580 /* crypto_aes.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A5F915707A750016C580 /* crypto_aes.h */; };
@@ -2420,25 +2413,15 @@
 		9A88AA4414C2CA2C006B4023 /* install.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = install.h; sourceTree = "<group>"; };
 		9A88AA4514C2CA2C006B4023 /* install_install.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = install_install.cpp; sourceTree = "<group>"; };
 		9A88AA4614C2CA2C006B4023 /* install_install.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = install_install.h; sourceTree = "<group>"; };
-		9A88AA4814C2CA2C006B4023 /* from_tiny_js_42.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = from_tiny_js_42.txt; sourceTree = "<group>"; };
-		9A88AA4914C2CA2C006B4023 /* javascript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = javascript.cpp; sourceTree = "<group>"; };
 		9A88AA4A14C2CA2C006B4023 /* javascript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = javascript.h; sourceTree = "<group>"; };
 		9A88AA4B14C2CA2C006B4023 /* javascript_functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = javascript_functions.cpp; sourceTree = "<group>"; };
 		9A88AA4C14C2CA2C006B4023 /* javascript_functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = javascript_functions.h; sourceTree = "<group>"; };
-		9A88AA4D14C2CA2C006B4023 /* javascript_script.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = javascript_script.cpp; sourceTree = "<group>"; };
 		9A88AA4E14C2CA2C006B4023 /* javascript_tinyjs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = javascript_tinyjs.h; sourceTree = "<group>"; };
 		9A88AA8D14C2CA2C006B4023 /* mail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mail.h; sourceTree = "<group>"; };
 		9A88AA8E14C2CA2C006B4023 /* mail_pop3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mail_pop3.cpp; sourceTree = "<group>"; };
 		9A88AA8F14C2CA2C006B4023 /* mail_pop3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mail_pop3.h; sourceTree = "<group>"; };
 		9A88AA9014C2CA2C006B4023 /* mail_pop3_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mail_pop3_socket.cpp; sourceTree = "<group>"; };
 		9A88AA9114C2CA2C006B4023 /* mail_simple_pop3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mail_simple_pop3.cpp; sourceTree = "<group>"; };
-		9A88AA9214C2CA2C006B4023 /* pop3_format.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pop3_format.cpp; sourceTree = "<group>"; };
-		9A88AA9314C2CA2C006B4023 /* pop3_objects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pop3_objects.cpp; sourceTree = "<group>"; };
-		9A88AA9414C2CA2C006B4023 /* pop3_parsing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pop3_parsing.cpp; sourceTree = "<group>"; };
-		9A88AA9514C2CA2C006B4023 /* pop3_queries.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pop3_queries.cpp; sourceTree = "<group>"; };
-		9A88AA9614C2CA2C006B4023 /* pop3_session.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pop3_session.cpp; sourceTree = "<group>"; };
-		9A88AA9714C2CA2C006B4023 /* pop3_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pop3_socket.cpp; sourceTree = "<group>"; };
-		9A88AA9814C2CA2C006B4023 /* pop3_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pop3_socket.h; sourceTree = "<group>"; };
 		9A88AA9914C2CA2C006B4023 /* simple_pop3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_pop3.h; sourceTree = "<group>"; };
 		9A88AA9B14C2CA2C006B4023 /* _double.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _double.cpp; sourceTree = "<group>"; };
 		9A88AA9C14C2CA2C006B4023 /* _double.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _double.h; sourceTree = "<group>"; };
@@ -3229,6 +3212,8 @@
 		CE4BB249156F7CA800DD13ED /* crypto_rng_prng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_rng_prng.cpp; sourceTree = "<group>"; };
 		CE4BB24A156F7CA800DD13ED /* crypto_rng_rand_source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_rng_rand_source.cpp; sourceTree = "<group>"; };
 		CE4D2C5B1571667300D43A55 /* macos_debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = macos_debug.cpp; path = macos/macos_debug.cpp; sourceTree = "<group>"; };
+		CE8ED99D1578B4880082203F /* os_multithreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = os_multithreading.cpp; path = macos/os_multithreading.cpp; sourceTree = "<group>"; };
+		CE8ED99E1578B4880082203F /* os_multithreading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = os_multithreading.h; path = macos/os_multithreading.h; sourceTree = "<group>"; };
 		CE92A5F715707A750016C580 /* crypto_aes_cbc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_aes_cbc.h; sourceTree = "<group>"; };
 		CE92A5F815707A750016C580 /* crypto_aes_icm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_aes_icm.h; sourceTree = "<group>"; };
 		CE92A5F915707A750016C580 /* crypto_aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_aes.h; sourceTree = "<group>"; };
@@ -3344,6 +3329,8 @@
 		9A5E0A0714D3DA8D00E91EC4 /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				CE8ED99D1578B4880082203F /* os_multithreading.cpp */,
+				CE8ED99E1578B4880082203F /* os_multithreading.h */,
 				9A5E0A0914D3DB5900E91EC4 /* macos.h */,
 				CE4D2C5B1571667300D43A55 /* macos_debug.cpp */,
 			);
@@ -4495,12 +4482,9 @@
 		9A88AA4714C2CA2C006B4023 /* javascript */ = {
 			isa = PBXGroup;
 			children = (
-				9A88AA4814C2CA2C006B4023 /* from_tiny_js_42.txt */,
-				9A88AA4914C2CA2C006B4023 /* javascript.cpp */,
 				9A88AA4A14C2CA2C006B4023 /* javascript.h */,
 				9A88AA4B14C2CA2C006B4023 /* javascript_functions.cpp */,
 				9A88AA4C14C2CA2C006B4023 /* javascript_functions.h */,
-				9A88AA4D14C2CA2C006B4023 /* javascript_script.cpp */,
 				9A88AA4E14C2CA2C006B4023 /* javascript_tinyjs.h */,
 			);
 			path = javascript;
@@ -4514,13 +4498,6 @@
 				9A88AA8F14C2CA2C006B4023 /* mail_pop3.h */,
 				9A88AA9014C2CA2C006B4023 /* mail_pop3_socket.cpp */,
 				9A88AA9114C2CA2C006B4023 /* mail_simple_pop3.cpp */,
-				9A88AA9214C2CA2C006B4023 /* pop3_format.cpp */,
-				9A88AA9314C2CA2C006B4023 /* pop3_objects.cpp */,
-				9A88AA9414C2CA2C006B4023 /* pop3_parsing.cpp */,
-				9A88AA9514C2CA2C006B4023 /* pop3_queries.cpp */,
-				9A88AA9614C2CA2C006B4023 /* pop3_session.cpp */,
-				9A88AA9714C2CA2C006B4023 /* pop3_socket.cpp */,
-				9A88AA9814C2CA2C006B4023 /* pop3_socket.h */,
 				9A88AA9914C2CA2C006B4023 /* simple_pop3.h */,
 			);
 			path = mail;
@@ -5892,7 +5869,6 @@
 				9A88B1A814C2CA2F006B4023 /* javascript_tinyjs.h in Headers */,
 				9A88B1DA14C2CA2F006B4023 /* mail.h in Headers */,
 				9A88B1DC14C2CA2F006B4023 /* mail_pop3.h in Headers */,
-				9A88B1E514C2CA2F006B4023 /* pop3_socket.h in Headers */,
 				9A88B1E614C2CA2F006B4023 /* simple_pop3.h in Headers */,
 				9A88B1E814C2CA2F006B4023 /* _double.h in Headers */,
 				9A88B1EA14C2CA2F006B4023 /* _float.h in Headers */,
@@ -6408,6 +6384,7 @@
 				CE92A6AC15707CA50016C580 /* fs_native_fs.h in Headers */,
 				CE92A6AE15707CA50016C580 /* fs_remote_native_file.h in Headers */,
 				CE92A6B015707CA50016C580 /* fs_remote_native_fs.h in Headers */,
+				CE8ED9A01578B4880082203F /* os_multithreading.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6790,18 +6767,10 @@
 				9A88B19A14C2CA2F006B4023 /* geoip_time_zone.cpp in Sources */,
 				9A88B19B14C2CA2F006B4023 /* geoip_update.cpp in Sources */,
 				9A88B1A114C2CA2F006B4023 /* install_install.cpp in Sources */,
-				9A88B1A314C2CA2F006B4023 /* javascript.cpp in Sources */,
 				9A88B1A514C2CA2F006B4023 /* javascript_functions.cpp in Sources */,
-				9A88B1A714C2CA2F006B4023 /* javascript_script.cpp in Sources */,
 				9A88B1DB14C2CA2F006B4023 /* mail_pop3.cpp in Sources */,
 				9A88B1DD14C2CA2F006B4023 /* mail_pop3_socket.cpp in Sources */,
 				9A88B1DE14C2CA2F006B4023 /* mail_simple_pop3.cpp in Sources */,
-				9A88B1DF14C2CA2F006B4023 /* pop3_format.cpp in Sources */,
-				9A88B1E014C2CA2F006B4023 /* pop3_objects.cpp in Sources */,
-				9A88B1E114C2CA2F006B4023 /* pop3_parsing.cpp in Sources */,
-				9A88B1E214C2CA2F006B4023 /* pop3_queries.cpp in Sources */,
-				9A88B1E314C2CA2F006B4023 /* pop3_session.cpp in Sources */,
-				9A88B1E414C2CA2F006B4023 /* pop3_socket.cpp in Sources */,
 				9A88B1E714C2CA2F006B4023 /* _double.cpp in Sources */,
 				9A88B1E914C2CA2F006B4023 /* _float.cpp in Sources */,
 				9A88B1EB14C2CA2F006B4023 /* _integer.cpp in Sources */,
@@ -7173,6 +7142,7 @@
 				CE92A6B5157110520016C580 /* zip_unzip.cpp in Sources */,
 				CE92A6B6157110520016C580 /* zip_zip.cpp in Sources */,
 				CE4D2C5C1571667300D43A55 /* macos_debug.cpp in Sources */,
+				CE8ED99F1578B4880082203F /* os_multithreading.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

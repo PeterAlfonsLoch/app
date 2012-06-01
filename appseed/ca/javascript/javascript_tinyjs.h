@@ -306,7 +306,6 @@ public:
 	const string &getString();
 	string getParsableString(); ///< get Data as a parsable javascript string
 	string getVarType(); ///< get Data as a parsable javascript string
-	void setInt(int num);
    void setInt(int64_t num);
 	void setBool(bool val);
 	void setDouble(double val);
