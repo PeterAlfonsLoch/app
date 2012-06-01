@@ -513,14 +513,14 @@ namespace datetime
 
          struct tm tmTemp;
 
-         errno_t err = _localtime64_s(&ptmTemp, &m_time);
+         errno_t err = _localtime64_s(&tmTemp, &m_time);
 
          if (err != 0)
          {
             return NULL;    // indicates that m_time was not initialized!
          }
 
-         *ptm = ptmTemp;
+         *ptm = tmTemp;
 
          return ptm;
 

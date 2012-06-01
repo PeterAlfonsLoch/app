@@ -1133,12 +1133,8 @@ void CScriptVar::setInt(int64_t val)
    intData = val;
 }
 
-void CScriptVar::setInt(int val)
+void CScriptVar::setBool(bool val) 
 {
-   setInt((int64_t) val);
-}
-
-void CScriptVar::setBool(bool val) {
    init();
    flags = (flags&~SCRIPTVAR_VARTYPEMASK) | SCRIPTVAR_BOOLEAN;
    intData = val?1:0;

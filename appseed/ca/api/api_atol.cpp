@@ -259,3 +259,146 @@ int64_t natoi64_dup(const char * psz, char ** pszEnd, int iBase, int iLen)
    else
       return 0;
 }
+
+int64_t nwtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int iBase, int iLen)
+{
+   while (iLen > 0 && iswspace_dup(*str))			// skip whitespace
+   {
+      ++str;
+      iLen--;
+   }
+
+   if(iLen <= 0)
+      return 0;
+
+   int cur = *str++;
+   int neg = cur;					// Save the negative sign, if it exists
+
+   if (cur == L'-' || cur == L'+')
+   {
+      cur = *str++;
+      iLen--;
+      if(iLen <= 0)
+         return 0;
+   }
+
+
+   // While we have digits, add 'em up.
+
+   int64_t total = 0;
+   int iDigit;
+   while (iswalnum_dup(cur))
+   {
+      iLen--;
+      if(iLen <= 0)
+         break;
+      if(cur >= L'0' && cur <= L'9')
+      {
+         iDigit = cur - L'0';
+      }
+      else if(cur >= L'A' && cur <= L'Z')
+      {
+         iDigit = cur - L'A';
+      }
+      else if(cur >= L'a' && cur <= L'z')
+      {
+         iDigit = cur - L'a';
+      }
+      else
+      {
+         break;
+      }
+      if(iDigit >= iBase)
+         break;
+      total = iBase * total + iDigit;			// Add this digit to the total.
+      cur = *str++;							// Do the next character.
+   }
+
+   if(pszEnd != NULL)
+   {
+      *pszEnd = str;
+   }
+
+   // If we have a negative sign, convert the value.
+   if (neg == L'-')
+      return -total;
+   else
+      return total;
+}
+
+
+int64_t wtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int iBase)
+{
+
+   while(*str != L'\0' && iswspace_dup(*str))			// skip whitespace
+   {
+      ++str;
+   }
+
+
+   int cur = *str++;
+   int neg = cur;					// Save the negative sign, if it exists
+
+   if(cur == L'\0')
+      return 0;
+
+   if (cur == L'-' || cur == L'+')
+   {
+      cur = *str++;
+   }
+
+
+   // While we have digits, add 'em up.
+
+   int64_t total = 0;
+   int iDigit;
+   while(cur != L'\0' && iswalnum_dup(cur))
+   {
+      if(cur >= L'0' && cur <= L'9')
+      {
+         iDigit = cur - L'0';
+      }
+      else if(cur >= L'A' && cur <= L'Z')
+      {
+         iDigit = cur - L'A';
+      }
+      else if(cur >= L'a' && cur <= L'z')
+      {
+         iDigit = cur - L'a';
+      }
+      else
+      {
+         break;
+      }
+      if(iDigit >= iBase)
+         break;
+      total = iBase * total + iDigit;			// Add this digit to the total.
+      cur = *str++;							// Do the next character.
+   }
+
+   if(pszEnd != NULL)
+   {
+      *pszEnd = str;
+   }
+
+   // If we have a negative sign, convert the value.
+   if (neg == L'-')
+      return -total;
+   else
+      return total;
+}
+
+
+CLASS_DECL_ca int64_t wtoi64_dup(const wchar_t * sz, const wchar_t ** pszEnd)
+{
+
+   return wtoi64_dup(sz, NULL, 10);
+
+}
+
+CLASS_DECL_ca int64_t wtoi64_dup(const wchar_t * sz)
+{
+
+   return wtoi64_dup(sz, NULL);
+
+}
