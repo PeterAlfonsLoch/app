@@ -7,15 +7,27 @@ class db_server;
 class CLASS_DECL_ca db_long_set :
    public db_set
 {
-protected:
+public:
+
+   class CLASS_DECL_ca long_item
+   {
+   public:
+
+      DWORD       m_dwTimeout;
+      long        m_l;
+
+   };
 
 
+   ::collection::string_map < long_item > m_map;
    bool                       m_bIndexed;
 
    sockets::socket_handler    m_handler;
-   sockets::http_session *    m_phttpsession;
+   sockets::http_session *           m_phttpsession;
 
-public:
+   
+
+   
 
 
    db_long_set(db_server * pdatacentral);

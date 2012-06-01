@@ -34,6 +34,8 @@ namespace planebase
 
 
       virtual bool is_serviceable();
+      virtual bool is_installing();
+      virtual bool is_uninstalling();
 
 
       virtual int run();

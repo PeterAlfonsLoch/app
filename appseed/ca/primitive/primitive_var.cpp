@@ -781,6 +781,12 @@ var::operator int()
       return 0;
    case type_pvar:
       return m_pvar->operator int();
+   case type_pstring:
+      return atoi(*m_pstr);
+   case type_id:
+      return m_id;
+   case type_pid:
+      return *m_pid;
    default:
       return 0;
    }

@@ -71,6 +71,17 @@ namespace ca
    {
       return false;
    }
+   
+   bool application::is_installing()
+   {
+      return false;
+   }
+
+   bool application::is_uninstalling()
+   {
+      return false;
+   }
+
 
    bool application::init_main_data(main_init_data * pdata)
    {

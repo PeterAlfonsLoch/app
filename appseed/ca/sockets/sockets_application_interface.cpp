@@ -17,8 +17,13 @@ namespace sockets
    {
       if(papplicationsignal->m_esignal == ::ca::application_signal_initialize1)
       {
+
+         
          if(App(dynamic_cast < ::ca::application * >(this)).is_system())
          {
+
+            ::sockets::SSLInitializer ssl_init(m_psystem);
+
             System.factory().creatable_small < ::http::memory_file > ();
             System.factory().cloneable_small < ::sockets::ipv4_address > ();
             System.factory().cloneable_small < ::sockets::ipv6_address > ();

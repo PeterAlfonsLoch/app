@@ -13,8 +13,15 @@ namespace database
       ::gen::byte_stream_memory_file memfile(get_app());
       if(!data_server_load(idSection, id, idIndex, memfile, puh))
          return false;
-      memfile.seek_to_begin();
-      memfile >> var;
+      try
+      {
+         memfile.seek_to_begin();
+         memfile >> var;
+      }
+      catch(...)
+      {
+         return false;
+      }
       return true;
    }
 
@@ -33,8 +40,15 @@ namespace database
       ::gen::byte_stream_memory_file memfile(get_app());
       if(!data_server_load(idSection, id, idIndex, memfile, puh))
          return false;
-      memfile.seek_to_begin();
-      obj.read(memfile);
+      try
+      {
+         memfile.seek_to_begin();
+         obj.read(memfile);
+      }
+      catch(...)
+      {
+         return false;
+      }
       return true;
    }
 
@@ -43,8 +57,15 @@ namespace database
       _template_std_stringstream strstream;
       if(!data_server_load(idSection, id, idIndex, strstream, puh))
          return false;
-      strstream.m_dwPos = 0;
-      obj.read(strstream);
+      try
+      {
+         strstream.m_dwPos = 0;
+         obj.read(strstream);
+      }
+      catch(...)
+      {
+         return false;
+      }
       return true;
    }
 

@@ -634,189 +634,298 @@ namespace ca4
                      const char * pszVersion,
                      e_status * pestatus)
       {
-retry:
 
          DWORD dw1;
          DWORD dw2;
+         bool bSeemsOk;
 
+         int iTry = 0;
 
-         if(psession->GetSocket() == INVALID_SOCKET)
+retry:
+
+         iTry++;
+
+         bSeemsOk = true;
+
+         try
+         {
+
+            if(psession == NULL || psession->GetSocket() == INVALID_SOCKET)
+            {
+
+               bSeemsOk = false;
+
+            }
+
+         }
+         catch(...)
+         {
+
+            bSeemsOk = false;
+
+         }
+
+         if(!bSeemsOk)
          {
             try
             {
-               
-               delete psession;
-
+               psession = open(handler, System.url().get_server(pszRequest), System.url().get_protocol(pszRequest),
+                  set, puser, pszVersion);
+               if(psession == NULL)
+                  return NULL;
             }
             catch(...)
             {
-            }
-
-            psession = open(handler, System.url().get_server(pszRequest), System.url().get_protocol(pszRequest),
-               set, puser, pszVersion);
-            if(psession == NULL)
                return NULL;
-         }
-
-         DWORD dwTimeTelmo1 = GetTickCount();
-
-         ::ca::application * papp = handler.get_app();
-
-
-         string strRequest = System.url().get_object(pszRequest);
-
-
-         string strUrl = psession->m_strProtocol + "://" + psession->m_strHost + strRequest;
-
-         psession->inheaders().clear();
-         psession->outheaders().clear();
-         psession->inattrs().clear();
-         psession->m_memoryfile.Truncate(0);
-
-
-         psession->inheaders().add(headers);
-         if(set.has_property("minimal_headers") && (bool)set["minimal_headers"])
-         {
-            psession->m_request.attrs()["minimal_headers"] = true;
-         }
-         if(set.has_property("file"))
-         {
-            psession->m_pfile = set["file"].ca2 < ::ex1::file >();
-         }
-         if(pcookies != NULL && pcookies->get_size() > 0)
-         {
-            psession->request().header("Cookie") = pcookies->get_cookie_header();
-         }
-         if(puser != NULL && puser->m_phttpcookies != NULL && !(bool)set["disable_ca2_user_cookies"])
-         {
-            psession->request().header("Cookie") = puser->m_phttpcookies->get_cookie_header();
-         }
-         if(set.has_property("Cookie") && set["Cookie"].get_string().has_char())
-         {
-            psession->request().header("Cookie") = set["Cookie"];
-         }
-
-         bool bPost;
-         bool bPut;
-         if(set["put"].ca2 < ::ex1::file >() != NULL || set["http_request"] == "PUT")
-         {
-            bPost = false;
-            bPut = true;
-            psession->request("PUT", strRequest);
-            dynamic_cast < ::sockets::http_put_socket * > (psession)->m_file = set["put"].ca2 < ::ex1::file >();
-         }
-         else if(post.m_propertya.get_count() > 0 || set["http_request"] == "POST")
-         {
-            bPost = true;
-            bPut = false;
-            psession->request("POST", strRequest);
-            dynamic_cast < ::sockets::http_post_socket * > (psession)->m_fields = post;
-         }
-         else
-         {
-            bPost = false;
-            bPut = false;
-            psession->request("GET", strRequest);
-         }
-
-         handler.add(psession);
-
-         int iIteration = 0;
-         ::ca::live_signal keeplive;
-         
-         if(papp != NULL)
-         {
-            keeplive.add(papp);
-            keeplive.add(&Sess(papp));
-            keeplive.add(&Sys(papp));
-         }
-         oprop("dw").get_value().set_type(var::type_ulong);
-         dw1 = oprop("dw").get_value().m_ul;
-         dw2 = ::GetTickCount();
-         
-         TRACE("intertime system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
-         
-         while(handler.get_count() > 0 && !psession->m_bRequestComplete)
-         {
-            dw1 = ::GetTickCount();
-            handler.Select(23, 0);
-            keeplive.keep_alive();
-            if(psession->m_estatus == sockets::socket::status_connection_timed_out)
-            {
-               break;
             }
-            if(set["file_out"].ca2 < ::ex1::timeout_file >() != NULL)
-            {
-               if(psession->m_content_length != ((size_t) -1) && set["file_out"].ca2 < ::ex1::timeout_file >()->m_uiExpectedSize != psession->m_content_length)
-               {
-                  set["file_out"].ca2 < ::ex1::timeout_file >()->m_uiExpectedSize = psession->m_content_length;
-               }
-            }
-            dw2 = ::GetTickCount();
-            TRACE("system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
-            iIteration++;
          }
 
-         keeplive.keep_alive();
 
-         oprop("dw").get_value().m_ul = (unsigned long) ::GetTickCount();
+         try
+         {
+
+            DWORD dwTimeTelmo1 = GetTickCount();
+
+            ::ca::application * papp = handler.get_app();
 
 
-         headers = psession->outheaders();
+            string strRequest = System.url().get_object(pszRequest);
+
+
+
+
+
+            string strUrl = psession->m_strProtocol + "://" + psession->m_strHost + strRequest;
+
+
+
+         // Format of script name example "system://server.com/the rain.mp3" => "system://server.com/the%20rain.mp3"
+         {
+            string strScript = System.url().url_encode(System.url().url_decode(System.url().get_script(strUrl)));
+            strScript.replace("+", "%20");
+            strScript.replace("%2F", "/");
+            strUrl = System.url().set_script(strUrl, strScript);
+         }
+
+         
+
+         gen::property_set setQuery(get_app());
+
+         setQuery.parse_url_query(System.url().get_query(strUrl));
+
+
 
          string strSessId;
-
-         if(psession->IsSSL())
+         if(!(bool)set["disable_ca2_sessid"] && !setQuery.has_property("authnone"))
          {
-            strSessId = psession->m_response.m_cookies["sessid"];
-            if(strSessId.has_char())
+            if((bool)set["optional_ca2_sessid"])
             {
-               System.m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psession->m_spsslclientcontext;
+               
+               
+               if(papp != NULL)
+               {
+                  
+                  string strFontopusServer = Sys(papp).get_fontopus_server(strUrl, papp);
+                  
+                  url_domain domainFontopus;
+
+                  domainFontopus.create(strFontopusServer);
+
+                  if(domainFontopus.m_strRadix == "ca2")
+                  {
+                     puser = &AppUser(papp);
+                     if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+                        if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
+                     {
+                        System.url().set(strUrl, "sessid", strSessId);
+                     }
+                  }
+
+               }
+
+            }
+            if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+               if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
+            {
+               System.url().set(strUrl, "sessid", strSessId);
+            }
+            else if(if_then(set.has_property("optional_ca2_login"), (bool)set["optional_ca2_login"]))
+            {
+            }
+            else
+            {
+               System.url().set(strUrl, "authnone", 1);
             }
          }
 
-         string strCookie = psession->response().cookies().get_cookie_header();
-         set["Cookie"] = strCookie;
+         strRequest = System.url().get_object(strUrl);
 
-         if(pestatus != NULL)
-         {
-            int iStatusCode = psession->outattr("http_status_code");
-            if(iStatusCode == 0)
+            psession->inheaders().clear();
+            psession->outheaders().clear();
+            psession->inattrs().clear();
+            psession->m_memoryfile.Truncate(0);
+
+
+            psession->inheaders().add(headers);
+            if(set.has_property("minimal_headers") && (bool)set["minimal_headers"])
             {
-               if(psession->m_spsslclientcontext.is_set() && psession->m_spsslclientcontext->m_iRetry == 1)
+               psession->m_request.attrs()["minimal_headers"] = true;
+            }
+            if(set.has_property("file"))
+            {
+               psession->m_pfile = set["file"].ca2 < ::ex1::file >();
+            }
+            if(pcookies != NULL && pcookies->get_size() > 0)
+            {
+               psession->request().header("Cookie") = pcookies->get_cookie_header();
+            }
+            if(puser != NULL && puser->m_phttpcookies != NULL && !(bool)set["disable_ca2_user_cookies"])
+            {
+               psession->request().header("Cookie") = puser->m_phttpcookies->get_cookie_header();
+            }
+            if(set.has_property("Cookie") && set["Cookie"].get_string().has_char())
+            {
+               psession->request().header("Cookie") = set["Cookie"];
+            }
+
+            bool bPost;
+            bool bPut;
+            if(set["put"].ca2 < ::ex1::file >() != NULL || set["http_request"] == "PUT")
+            {
+               bPost = false;
+               bPut = true;
+               psession->request("PUT", strRequest);
+               dynamic_cast < ::sockets::http_put_socket * > (psession)->m_file = set["put"].ca2 < ::ex1::file >();
+            }
+            else if(post.m_propertya.get_count() > 0 || set["http_request"] == "POST")
+            {
+               bPost = true;
+               bPut = false;
+               psession->request("POST", strRequest);
+               dynamic_cast < ::sockets::http_post_socket * > (psession)->m_fields = post;
+            }
+            else
+            {
+               bPost = false;
+               bPut = false;
+               psession->request("GET", strRequest);
+            }
+
+            handler.add(psession);
+
+            int iIteration = 0;
+            ::ca::live_signal keeplive;
+         
+            if(papp != NULL)
+            {
+               keeplive.add(papp);
+               keeplive.add(&Sess(papp));
+               keeplive.add(&Sys(papp));
+            }
+            oprop("dw").get_value().set_type(var::type_ulong);
+            dw1 = oprop("dw").get_value().m_ul;
+            dw2 = ::GetTickCount();
+         
+            TRACE("intertime system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
+         
+            while(handler.get_count() > 0 && !psession->m_bRequestComplete)
+            {
+               dw1 = ::GetTickCount();
+               handler.Select(23, 0);
+               keeplive.keep_alive();
+               if(psession->m_estatus == sockets::socket::status_connection_timed_out)
+               {
+                  break;
+               }
+               if(set["file_out"].ca2 < ::ex1::timeout_file >() != NULL)
+               {
+                  if(psession->m_content_length != ((size_t) -1) && set["file_out"].ca2 < ::ex1::timeout_file >()->m_uiExpectedSize != psession->m_content_length)
+                  {
+                     set["file_out"].ca2 < ::ex1::timeout_file >()->m_uiExpectedSize = psession->m_content_length;
+                  }
+               }
+               dw2 = ::GetTickCount();
+               TRACE("system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
+               iIteration++;
+            }
+
+            keeplive.keep_alive();
+
+            oprop("dw").get_value().m_ul = (unsigned long) ::GetTickCount();
+
+
+            headers = psession->outheaders();
+
+//            string strSessId;
+
+            if(psession->IsSSL())
+            {
+               strSessId = psession->m_response.m_cookies["sessid"];
+               if(strSessId.has_char())
+               {
+                  System.m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psession->m_spsslclientcontext;
+               }
+            }
+
+            string strCookie = psession->response().cookies().get_cookie_header();
+            set["Cookie"] = strCookie;
+
+            int iStatusCode = psession->outattr("http_status_code");
+
+            if(iStatusCode != 200)
+            {
+               if(iTry < 8)
                {
                   goto retry;
                }
             }
-            if(iStatusCode == 200 || psession->outattr("http_status_code").is_empty())
+
+            if(pestatus != NULL)
             {
-               *pestatus = status_ok;
-            }
-            else if(psession->m_estatus == sockets::socket::status_connection_timed_out)
-            {
-               *pestatus = status_connection_timed_out;
-            }
-            else if(iStatusCode >= 300 && iStatusCode <= 399)
-            {
-               string strCa2Realm = psession->outheader("ca2realm-x");
-               if(gen::str::begins_ci(strCa2Realm, "not licensed: "))
+               if(iStatusCode == 0)
                {
-                  DWORD dwTimeTelmo2 = GetTickCount();
-                  TRACE0("Not Licensed Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::itoa(dwTimeTelmo2 - dwTimeTelmo1));
-                  string strLocation = psession->outheader("Location");
-                  delete psession;
-                  throw not_licensed(strCa2Realm, strLocation);
-                  return NULL;
+                  if(psession->m_spsslclientcontext.is_set() && psession->m_spsslclientcontext->m_iRetry == 1)
+                  {
+                     goto retry;
+                  }
+               }
+               if(iStatusCode == 200 || psession->outattr("http_status_code").is_empty())
+               {
+                  *pestatus = status_ok;
+               }
+               else if(psession->m_estatus == sockets::socket::status_connection_timed_out)
+               {
+                  *pestatus = status_connection_timed_out;
+               }
+               else if(iStatusCode >= 300 && iStatusCode <= 399)
+               {
+                  string strCa2Realm = psession->outheader("ca2realm-x");
+                  if(gen::str::begins_ci(strCa2Realm, "not licensed: "))
+                  {
+                     DWORD dwTimeTelmo2 = GetTickCount();
+                     TRACE0("Not Licensed Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::itoa(dwTimeTelmo2 - dwTimeTelmo1));
+                     string strLocation = psession->outheader("Location");
+                     delete psession;
+                     throw not_licensed(strCa2Realm, strLocation);
+                     return NULL;
+                  }
+               }
+               else
+               {
+                  *pestatus = status_failed;
                }
             }
-            else
-            {
-               *pestatus = status_failed;
-            }
-         }
 
-         DWORD dwTimeTelmo2 = GetTickCount();
-         TRACE0("Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::itoa(dwTimeTelmo2 - dwTimeTelmo1));
+            DWORD dwTimeTelmo2 = GetTickCount();
+            TRACE0("Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::itoa(dwTimeTelmo2 - dwTimeTelmo1));
+
+         }
+         catch(...)
+         {
+            if(iTry > 8)
+               return NULL;
+            goto retry;
+         }
 
          return psession;
 

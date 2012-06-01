@@ -3,14 +3,15 @@
 
 db_str_set::db_str_set(db_server * pserver) : 
    ca(pserver->get_app()),
-   db_set(pserver, "stringtable")
+   db_set(pserver, "stringtable"),
+   m_handler(pserver->get_app())
 {
    //::simpledb::base * pdb = db()->m_pbase;
    //::simpledb::set *  pds = (::simpledb::set *) pdb->create_dataset();
    ::sqlite::base * pdb = db()->GetImplDatabase();
    ::sqlite::set *  pds = (::sqlite::set *) pdb->CreateDataset();
    
-   m_psession = NULL;
+   m_phttpsession = NULL;
    //create string Table if necessary
    /*try
    {
@@ -48,26 +49,44 @@ bool db_str_set::remove(const char * lpKey)
 bool db_str_set::load(const char * lpKey, string & strValue)
 {
 
+   str_item stritem;
+
+   if(m_map.Lookup(lpKey, stritem) && stritem.m_dwTimeout > GetTickCount())
+   {
+      strValue = stritem.m_str;
+      return true;
+   }
+   
+
    gen::property_set post(get_app());
    gen::property_set headers(get_app());
    gen::property_set set(get_app());
 
    ca4::http::e_status estatus;
 
+   set["interactive_user"] = true;
+
    string strUrl;
 
    strUrl = "https://api.ca2.cc/account/str_set_load?key=";
    strUrl += System.url().url_encode(lpKey);
 
-   m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, 0, 0, 0, &estatus);
+   m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
    if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
    {
       return false;
    }
 
-   strValue = string(m_phttpsession->m_memoryfile.get_memory()->get_data(),
+   strValue = string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(),
                      m_phttpsession->m_memoryfile.get_memory()->get_size());
+
+
+   stritem.m_dwTimeout = GetTickCount() + 23 * (1984 + 1977);
+   stritem.m_str = strValue;
+
+   m_map.set_at(lpKey, stritem);
+
 
    /*if(m_pdataserver == NULL)
       return false;
@@ -159,20 +178,36 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
 
    ca4::http::e_status estatus;
 
+   set["interactive_user"] = true;
+
    string strUrl;
 
-   strUrl = "https://api.ca2.cc/account/str_set_load?key=";
+   strUrl = "https://api.ca2.cc/account/str_set_save?key=";
    strUrl += System.url().url_encode(lpKey);
    strUrl += "&value=";
    strUrl += System.url().url_encode(lpcsz);
 
-   m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, 0, 0, 0, &estatus);
+   m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
    if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
    {
       return false;
    }
 
+   string strResult = string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(),
+                     m_phttpsession->m_memoryfile.get_memory()->get_size());
+
+   if(strResult != "ok")
+      return false;
+
+   str_item stritem;
+
+   stritem.m_dwTimeout = GetTickCount() + 23 * (1984 + 1977);
+   stritem.m_str = lpcsz;
+
+   m_map.set_at(lpKey, stritem);
+
 
    return true;
+
 }

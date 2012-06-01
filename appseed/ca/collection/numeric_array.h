@@ -67,6 +67,10 @@ public:
    index Cmp(const numeric_array  < TYPE > & array1);
 
 
+   numeric_array unique() const;
+   void unique();
+
+
    void QuickSort(bool bAsc = true);
 
    bool sort_type(TYPE t, index & iIndex, index iStart, index iEnd) const
@@ -323,6 +327,37 @@ string numeric_array < TYPE >::surround_and_implode(const char * pszSeparator, c
       }
    }
    return str;
+}
+
+
+template < class TYPE >
+numeric_array < TYPE > numeric_array < TYPE >::unique() const
+{
+   
+   numeric_array < TYPE > a;
+
+   for(int i = 0; i < get_count(); i++)
+   {
+      a.add_unique(element_at(i));
+   }
+
+   return a;
+
+}
+
+template < class TYPE >
+void numeric_array < TYPE >::unique()
+{
+
+   numeric_array < TYPE > a;
+
+   for(int i = 0; i < get_count(); i++)
+   {
+      a.add_unique(element_at(i));
+   }
+
+   *this = a;
+
 }
 
 

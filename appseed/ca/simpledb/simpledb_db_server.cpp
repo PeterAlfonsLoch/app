@@ -68,9 +68,9 @@ bool db_server::initialize()
    m_pfilesystemsizeset = new DBFileSystemSizeSet(&System);
 
 
-   var varChange;
-   data_server_load("ca2_fontopus_votagus", "database_change", "change", varChange);
-   g_idbchange = varChange;
+   //var varChange;
+   //data_server_load("ca2_fontopus_votagus", "database_change", "change", varChange);
+   //g_idbchange = varChange;
 
    if(!create_message_window())
       return false;

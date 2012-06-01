@@ -831,6 +831,115 @@ InitFailure:
       if(!fontopus::application::initialize())
          return false;
 
+      if(!is_system() && !is_session() && !is_bergedge() && !is_cube() && !is_installing() && !is_uninstalling())
+      {
+      
+         string str;
+         // if system locale has changed (compared to last recorded one by ca2)
+         // use the system locale
+         if(data_get("system_locale", str))
+         {
+            if(str.has_char())
+            {
+               if(str != get_locale())
+               {
+                  try
+                  {
+                     data_set("system_locale", get_locale());
+                     data_set("locale", get_locale());
+                  }
+                  catch(...)
+                  {
+                  }
+               }
+            }
+         }
+         else
+         {
+            data_set("system_locale", get_locale());
+         }
+
+         if(command().m_varTopicQuery["locale"].get_string().has_char())
+         {
+            str = command().m_varTopicQuery["locale"];
+            data_set("system_locale", str);
+            data_set("locale", str);
+            set_locale(str, false);
+         }
+         else if(command().m_varTopicQuery["lang"].get_string().has_char())
+         {
+            str = command().m_varTopicQuery["lang"];
+            data_set("system_locale", str);
+            data_set("locale", str);
+            set_locale(str, false);
+         }
+         else if(data_get("locale", str))
+         {
+            if(str.has_char())
+            {
+               set_locale(str, false);
+            }
+         }
+         // if system schema has changed (compared to last recorded one by ca2)
+         // use the system schema
+         if(data_get("system_schema", str))
+         {
+            if(str.has_char())
+            {
+               if(str != get_schema())
+               {
+                  try
+                  {
+                     data_set("system_schema", get_schema());
+                     data_set("schema", get_schema());
+                  }
+                  catch(...)
+                  {
+                  }
+               }
+            }
+         }
+         else
+         {
+            data_set("system_schema", get_schema());
+         }
+
+         if(command().m_varTopicQuery["schema"].get_string().has_char())
+         {
+            str = command().m_varTopicQuery["schema"];
+            data_set("system_schema", str);
+            data_set("schema", str);
+            set_schema(str, false);
+         }
+         else if(data_get("schema", str))
+         {
+            if(str.has_char())
+            {
+               set_schema(str, false);
+            }
+         }
+      
+         // keyboard layout
+         if(data_get("keyboard_layout", str) && str.has_char())
+         {
+            set_keyboard_layout(str, false);
+         }
+         else
+         {
+            set_keyboard_layout(NULL, false);
+         }
+
+         data_pulse_change("ca2_fontopus_votagus", "savings", NULL);
+
+
+         App(this).fill_locale_schema(*str_context()->m_plocaleschema);
+
+
+         Sys(this).appa_load_string_table();
+
+   }
+
+
       return true;
 
    }
@@ -953,6 +1062,23 @@ InitFailure:
    {
       return false;
    }
+
+
+   bool application::is_installing()
+   {
+
+      return directrix().has_property("install");
+
+   }
+
+
+   bool application::is_uninstalling()
+   {
+
+      return directrix().has_property("uninstall");
+
+   }
+
 
    bool application::create_service()
    {

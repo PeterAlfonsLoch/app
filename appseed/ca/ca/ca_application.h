@@ -124,6 +124,9 @@ namespace ca
       virtual bool is_cube();
       virtual bool is_bergedge();
 
+      virtual bool is_installing();
+      virtual bool is_uninstalling();
+
       virtual bool app_map_lookup(const char * psz, void * &) = 0;
       virtual void app_map_set(const char * psz, void *) = 0;
 

@@ -398,7 +398,14 @@ retry_license:
 
          if(&keyboard().layout() != NULL)
          {
-            data_set("keyboard_layout", keyboard().layout().m_strPath);
+            
+            if(Application.m_puser != NULL)
+            {
+            
+               data_set("keyboard_layout", keyboard().layout().m_strPath);
+
+            }
+
             return true;
          }
 
@@ -408,7 +415,12 @@ retry_license:
          if(!set_keyboard_layout(keyboard().get_current_system_layout(), false))
             return false;
 
-         data_set("keyboard_layout", keyboard().layout().m_strPath);
+         if(Application.m_puser != NULL)
+         {
+
+            data_set("keyboard_layout", keyboard().layout().m_strPath);
+
+         }
 
          return true;
       }

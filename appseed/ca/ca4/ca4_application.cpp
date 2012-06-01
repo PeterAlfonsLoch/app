@@ -139,11 +139,6 @@ namespace ca4
 
 
 
-         ::sockets::SSLInitializer ssl_init(m_psystem);
-
-
-
-
          System.m_spcopydesk.create(this);
 
          if(!System.m_spcopydesk->initialize())

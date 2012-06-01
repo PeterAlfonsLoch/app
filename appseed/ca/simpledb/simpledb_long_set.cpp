@@ -4,7 +4,8 @@
 
 db_long_set::db_long_set(db_server * pserver) :
    ca(pserver->get_app()),
-   db_set(pserver, "integertable")
+   db_set(pserver, "integertable"),
+   m_handler(pserver->get_app())
 {
 
    m_phttpsession = NULL;
@@ -19,6 +20,17 @@ db_long_set::~db_long_set()
 // Adiciona na matriz System nomes dos diretórios de imagens.
 bool db_long_set::load(const char * lpKey, long *plValue)
 {
+
+   long_item longitem;
+
+   if(m_map.Lookup(lpKey, longitem) && longitem.m_dwTimeout > GetTickCount())
+   {
+      *plValue = longitem.m_l;
+      return true;
+   }
+   
+
+
 /*   single_lock slDatabase(db()->GetImplCriticalSection());
 
    string strKey;
@@ -56,19 +68,25 @@ bool db_long_set::load(const char * lpKey, long *plValue)
 
    string strUrl;
 
+   set["interactive_user"] = true;
+
    strUrl = "https://api.ca2.cc/account/long_set_load?key=";
    strUrl += System.url().url_encode(lpKey);
 
-   m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, 0, 0, 0, &estatus);
+   m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
    if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
    {
       return false;
    }
 
-   *plValue = gen::str::itoa((m_phttpsession->m_memoryfile.get_memory()->get_data(),
+   *plValue = gen::str::atoi64(string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(),
                      m_phttpsession->m_memoryfile.get_memory()->get_size()));
 
+   longitem.m_dwTimeout = GetTickCount() + 23 * (1984 + 1977);
+   longitem.m_l = *plValue;
+
+   m_map.set_at(lpKey, longitem);
 
    return true;
 }
@@ -96,17 +114,32 @@ bool db_long_set::save(const char * lpKey, long lValue)
 
    string strUrl;
 
-   strUrl = "https://api.ca2.cc/account/str_set_load?key=";
+   set["interactive_user"] = true;
+
+   strUrl = "https://api.ca2.cc/account/long_set_load?key=";
    strUrl += System.url().url_encode(lpKey);
    strUrl += "&value=";
    strUrl += gen::str::itoa(lValue);
 
-   m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, 0, 0, 0, &estatus);
+   m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
    if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
    {
       return false;
    }
+
+   string strResult = string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(),
+                     m_phttpsession->m_memoryfile.get_memory()->get_size());
+
+   if(strResult != "ok")
+      return false;
+
+   long_item longitem;
+
+   longitem.m_dwTimeout = GetTickCount() + 23 * (1984 + 1977);
+   longitem.m_l = lValue;
+
+   m_map.set_at(lpKey, longitem);
 
    return true;
   /* single_lock slDatabase(db()->GetImplCriticalSection());
