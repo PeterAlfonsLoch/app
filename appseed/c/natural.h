@@ -20,10 +20,14 @@ inline uint64_t natural(uint64_t ui)
    return ui;
 }
 
+#if !defined(_LP64)
+
 inline unsigned long natural(long l)
 {
    return l >= 0 ? (unsigned long) l : 0;
 }
+
+#endif
 
 
 // return minimum zero or positive integer

@@ -1245,6 +1245,11 @@
 		<Unit filename="os/os_cross_windows.cpp" />
 		<Unit filename="os/os_cross_windows.h" />
 		<Unit filename="os/os_cross_windows_guid_def.h" />
+		<Unit filename="os/os_cross_windows_shared_memory.cpp" />
+		<Unit filename="os/os_cross_windows_shared_memory.h" />
+		<Unit filename="os/os_cross_windows_time.cpp" />
+		<Unit filename="os/os_cross_windows_time.h" />
+		<Unit filename="os/os_cross_windows_winnt.h" />
 		<Unit filename="os/os_windows_defs.h" />
 		<Unit filename="plane/plane.h" />
 		<Unit filename="plane/plane_application.cpp" />
@@ -1384,14 +1389,14 @@
 		<Unit filename="radix/kbase.h" />
 		<Unit filename="radix/keep_ptr.h" />
 		<Unit filename="radix/language_string.h" />
-		<Unit filename="radix/machine_event_central.cpp" />
 		<Unit filename="radix/radix.h" />
+		<Unit filename="radix/radix.inl" />
 		<Unit filename="radix/radix_afxcrit.cpp" />
 		<Unit filename="radix/radix_allocate.h" />
 		<Unit filename="radix/radix_allocation_base_ca2.cpp" />
 		<Unit filename="radix/radix_allocation_ca2_heap.cpp" />
 		<Unit filename="radix/radix_allocation_mid_big.cpp" />
-		<Unit filename="radix/radix_allocator.cpp" />
+		<Unit filename="radix/radix_allocation_system_heap.cpp" />
 		<Unit filename="radix/radix_allocator.h" />
 		<Unit filename="radix/radix_application.cpp" />
 		<Unit filename="radix/radix_application.h" />
@@ -1417,7 +1422,8 @@
 		<Unit filename="radix/radix_heap.h" />
 		<Unit filename="radix/radix_html_file.cpp" />
 		<Unit filename="radix/radix_language_string.cpp" />
-		<Unit filename="radix/radix_load_and_save.cpp" />
+		<Unit filename="radix/radix_machine_event_central.cpp" />
+		<Unit filename="radix/radix_machine_event_central.h" />
 		<Unit filename="radix/radix_object.cpp" />
 		<Unit filename="radix/radix_object.h" />
 		<Unit filename="radix/radix_os.h" />
@@ -1425,11 +1431,14 @@
 		<Unit filename="radix/radix_os_history.h" />
 		<Unit filename="radix/radix_pcre_util.cpp" />
 		<Unit filename="radix/radix_pipe.cpp" />
+		<Unit filename="radix/radix_pipe.h" />
 		<Unit filename="radix/radix_plex.cpp" />
 		<Unit filename="radix/radix_plex.h" />
 		<Unit filename="radix/radix_plex_heap.cpp" />
 		<Unit filename="radix/radix_plex_heap.h" />
+		<Unit filename="radix/radix_process_data.h" />
 		<Unit filename="radix/radix_service.cpp" />
+		<Unit filename="radix/radix_service.h" />
 		<Unit filename="radix/radix_system.cpp" />
 		<Unit filename="radix/radix_system.h" />
 		<Unit filename="radix/radix_template.h" />
@@ -1437,8 +1446,8 @@
 		<Unit filename="radix/radix_thread.h" />
 		<Unit filename="radix/radix_timecore.cpp" />
 		<Unit filename="radix/radix_util.cpp" />
-		<Unit filename="radix/radix_validadd.cpp" />
 		<Unit filename="radix/radix_wait_cursor.cpp" />
+		<Unit filename="radix/radix_wait_cursor.h" />
 		<Unit filename="radix/rawdllmainproxy.c">
 			<Option compilerVar="CC" />
 		</Unit>

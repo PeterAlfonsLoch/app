@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca dump_context : 
+class CLASS_DECL_ca dump_context :
    virtual public ::ca::ca
 {
 public:
@@ -26,7 +26,7 @@ public:
    dump_context& operator<<(int_ptr i);
    dump_context& operator<<(uint_ptr ui);
    dump_context& operator<<(long_ptr l);
-   dump_context& operator<<(dword_ptr dw);
+//   dump_context& operator<<(dword_ptr dw);
    dump_context& operator<<(int n);
 #if !defined(MACOS)
    dump_context& operator<<(UINT u);

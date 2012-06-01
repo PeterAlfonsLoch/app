@@ -1013,3 +1013,22 @@ BOOL WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
     return TRUE;
 }
 
+
+
+
+/***********************************************************************
+ *              GetSystemTimeAsFileTime  (KERNEL32.@)
+ *
+ *  Get the current time in utc format.
+ *
+ *  RETURNS
+ *   Nothing.
+ */
+VOID WINAPI GetSystemTimeAsFileTime(
+    LPFILETIME time) /* [out] Destination for the current utc time */
+{
+    LARGE_INTEGER t;
+    NtQuerySystemTime( &t );
+    time->dwLowDateTime = t.u.LowPart;
+    time->dwHighDateTime = t.u.HighPart;
+}

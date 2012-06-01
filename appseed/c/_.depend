@@ -80,7 +80,7 @@
 
 1337537844 /cecyn1/nodeapp/operational_system/linux_system.h
 
-1337674862 /cecyn1/nodeapp/operational_system/bare_operational_system.h
+1338539041 /cecyn1/nodeapp/operational_system/bare_operational_system.h
 	<stdlib.h>
 	<stdio.h>
 	<stdarg.h>
@@ -156,7 +156,7 @@
 
 1337503407 /cecyn1/app/appseed/c/c_types.h
 
-1335690118 /cecyn1/app/appseed/c/natural.h
+1338509235 /cecyn1/app/appseed/c/natural.h
 
 1335690118 /cecyn1/app/appseed/c/cpu_architecture.h
 
@@ -243,9 +243,9 @@
 	"hotplugin_plugin.h"
 	"hotplugin_host.h"
 
-1337996660 /cecyn1/app/appseed/c/hotplugin/hotplugin_plugin.h
+1338509000 /cecyn1/app/appseed/c/hotplugin/hotplugin_plugin.h
 
-1337680382 /cecyn1/app/appseed/c/hotplugin/hotplugin_host.h
+1338509000 /cecyn1/app/appseed/c/hotplugin/hotplugin_host.h
 
 1335690116 /cecyn1/app/appseed/c/spa/spa.h
 	"spa_spa.h"
@@ -306,15 +306,17 @@
 
 1337543279 /cecyn1/app/appseed/c/bsdiff/bzlib.h
 
-1335690117 /cecyn1/app/appseed/c/os/os.h
+1338290024 /cecyn1/app/appseed/c/os/os.h
 	"os_process.h"
+	"os_binreloc.h"
 	"c/macos/c_os.h"
+	"os_binreloc.h"
 	"c/linux/c_os.h"
 	"windows/c_os.h"
 
 1337680382 /cecyn1/app/appseed/c/os/os_process.h
 
-1336871533 /cecyn1/app/appseed/c/macos/c_os.h
+1338290023 /cecyn1/app/appseed/c/macos/c_os.h
 	<stdarg.h>
 	<wchar.h>
 	"c_os_http_lib.h"
@@ -504,10 +506,10 @@
 	<malloc/malloc.h>
 	<malloc.h>
 
-1337680382 source:/cecyn1/app/appseed/c/hotplugin/hotplugin_host.cpp
+1338509000 source:/cecyn1/app/appseed/c/hotplugin/hotplugin_host.cpp
 	"framework.h"
 
-1337535774 source:/cecyn1/app/appseed/c/hotplugin/hotplugin_plugin.cpp
+1338509000 source:/cecyn1/app/appseed/c/hotplugin/hotplugin_plugin.cpp
 	"framework.h"
 	<GdiPlus.h>
 	"c/linux/c_os_cross_win_gdi_internal.h"
@@ -654,7 +656,7 @@
 1337502972 source:/cecyn1/app/appseed/c/spa/spa_spa.cpp
 	"framework.h"
 
-1337210652 source:/cecyn1/app/appseed/c/spa/spa_starter_start.cpp
+1338509000 source:/cecyn1/app/appseed/c/spa/spa_starter_start.cpp
 	"framework.h"
 
 1337210652 source:/cecyn1/app/appseed/c/spa/spa_trace.cpp
@@ -708,7 +710,7 @@
 1337210653 source:/cecyn1/app/appseed/c/verisimple_string.cpp
 	"framework.h"
 
-1337502977 source:/cecyn1/app/appseed/c/verisimple_wstring.cpp
+1338509000 source:/cecyn1/app/appseed/c/verisimple_wstring.cpp
 	"framework.h"
 
 1337210653 source:/cecyn1/app/appseed/c/vsstringtow.cpp
@@ -732,4 +734,6 @@
 
 1337680506 source:/cecyn1/app/appseed/c/linux/c_os_simple_shell_launcher.cpp
 	"framework.h"
+
+1338290024 /cecyn1/app/appseed/c/os/os_binreloc.h
 

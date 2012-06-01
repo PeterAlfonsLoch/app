@@ -117,6 +117,14 @@ So we've done a broad replace of all the member-related ASSERT to ASSUME.
 
 */
 
+#ifndef __analysis_assume // [
+#ifdef _PREFAST_ // [
+#define __analysis_assume(expr) __assume(expr)
+#else // ][
+#define __analysis_assume(expr)
+#endif // ]
+#endif // ]
+
 #ifndef ASSUME
 #if defined(VC6) || defined(VC71)
 #define ASSUME(expr) (expr);

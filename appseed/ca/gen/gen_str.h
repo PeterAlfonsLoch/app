@@ -154,10 +154,11 @@ namespace gen
 
 
       CLASS_DECL_ca  string &       itoa(string & str, int i);
-      CLASS_DECL_ca  string &       itoa(string & str, int64_t i);
+      CLASS_DECL_ca  string &       itoa(string & str, long l);
+      CLASS_DECL_ca  string &       itoa(string & str, long long ll);
       CLASS_DECL_ca  string &       itoa(string & str, unsigned int ui);
       CLASS_DECL_ca  string &       itoa(string & str, unsigned long ui);
-      CLASS_DECL_ca  string &       itoa(string & str, uint64_t ui);
+      CLASS_DECL_ca  string &       itoa(string & str, unsigned long long ui);
       inline CLASS_DECL_ca string & itoa(string & str, const var & var);
       inline CLASS_DECL_ca string & itoa(string & str, const id & id);
 

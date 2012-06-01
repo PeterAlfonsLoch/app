@@ -16,7 +16,7 @@
 	<File name="_printf.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="142" topLine="0" />
 	</File>
-	<File name="atol.h" open="0" top="0" tabpos="4">
+	<File name="atol.h" open="1" top="0" tabpos="7">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="bsdiff/blocksort.cpp" open="0" top="0" tabpos="3">
@@ -144,6 +144,9 @@
 	</File>
 	<File name="mutex_lock.h" open="0" top="0" tabpos="10">
 		<Cursor position="18" topLine="0" />
+	</File>
+	<File name="natural.h" open="0" top="0" tabpos="0">
+		<Cursor position="312" topLine="0" />
 	</File>
 	<File name="simple_array.h" open="0" top="0" tabpos="0">
 		<Cursor position="5557" topLine="196" />

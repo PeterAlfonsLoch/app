@@ -9,7 +9,7 @@ CLASS_DECL_ca int64_t strtoi(const char * psz)
 
 CLASS_DECL_ca int64_t strtoi(const wchar_t * psz)
 {
-   return _wtoi64(psz);
+   return wtoi64_dup(psz);
 }
 
 

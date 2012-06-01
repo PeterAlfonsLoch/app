@@ -484,7 +484,9 @@ namespace datetime
 #else
       if (ptm != NULL)
       {
+
          struct tm * ptmTemp;
+
          ptmTemp = _gmtime64(&m_time);
 
          if(ptmTemp == NULL)
@@ -493,6 +495,7 @@ namespace datetime
          *ptm = *ptmTemp;
 
          return ptm;
+
       }
       else
          return _gmtime64(&m_time);
@@ -501,13 +504,15 @@ namespace datetime
 
    struct tm* time::GetLocalTm(struct tm* ptm) const
    {
-#if _SECURE_TEMPLATE
-      // Ensure ptm is valid
-      ENSURE( ptm != NULL );
 
       if (ptm != NULL)
       {
-         struct tm ptmTemp;
+
+
+#ifdef WINDOWS
+
+         struct tm tmTemp;
+
          errno_t err = _localtime64_s(&ptmTemp, &m_time);
 
          if (err != 0)
@@ -516,23 +521,29 @@ namespace datetime
          }
 
          *ptm = ptmTemp;
-         return ptm;
-      }
 
-      return NULL;
+         return ptm;
+
 #else
-      if (ptm != NULL)
-      {
-         struct tm* ptmTemp = _localtime64(&m_time);
-         if (ptmTemp == NULL)
-            return NULL;    // indicates the m_time was not initialized!
+
+         struct tm * ptmTemp;
+
+         ptmTemp = localtime(&m_time);
+
+         if(ptmTemp == NULL)
+            return NULL;
+
+         if(errno != 0)
+            return NULL;
 
          *ptm = *ptmTemp;
+
          return ptm;
-      }
-      else
-         return _localtime64(&m_time);
+
 #endif
+
+      }
+
    }
 
    bool time::get_as_system_time(SYSTEMTIME& timeDest) const throw()
@@ -556,12 +567,12 @@ namespace datetime
       return true;
    }
 
-   __time64_t time::get_time() const throw()
+   __time64_t time::get_time() const NOTHROW
    {
       return( m_time );
    }
 
-   int time::GetYear() const
+   int time::GetYear() const NOTHROW
    {
       struct tm ttm;
       struct tm * ptm;
@@ -570,7 +581,7 @@ namespace datetime
       return ptm ? (ptm->tm_year) + 1900 : 0 ;
    }
 
-   int time::GetMonth() const
+   int time::GetMonth() const NOTHROW
    {
       struct tm ttm;
       struct tm * ptm;
@@ -579,7 +590,7 @@ namespace datetime
       return ptm ? ptm->tm_mon + 1 : 0;
    }
 
-   int time::GetDay() const
+   int time::GetDay() const NOTHROW
    {
       struct tm ttm;
       struct tm * ptm;
@@ -588,7 +599,7 @@ namespace datetime
       return ptm ? ptm->tm_mday : 0 ;
    }
 
-   int time::GetHour() const
+   int time::GetHour() const NOTHROW
    {
       struct tm ttm;
       struct tm * ptm;
@@ -597,7 +608,7 @@ namespace datetime
       return ptm ? ptm->tm_hour : -1 ;
    }
 
-   int time::GetMinute() const
+   int time::GetMinute() const NOTHROW
    {
       struct tm ttm;
       struct tm * ptm;
@@ -606,7 +617,7 @@ namespace datetime
       return ptm ? ptm->tm_min : -1 ;
    }
 
-   int time::GetSecond() const
+   int time::GetSecond() const NOTHROW
    {
       struct tm ttm;
       struct tm * ptm;
@@ -615,7 +626,7 @@ namespace datetime
       return ptm ? ptm->tm_sec : -1 ;
    }
 
-   int time::GetDayOfWeek() const
+   int time::GetDayOfWeek() const NOTHROW
    {
       struct tm ttm;
       struct tm * ptm;
@@ -624,7 +635,7 @@ namespace datetime
       return ptm ? ptm->tm_wday + 1 : 0 ;
    }
 
-   int time::GetGmtYear() const
+   int time::GetGmtYear() const NOTHROW
    {
       struct tm ttm;
       struct tm * ptm;
@@ -633,7 +644,7 @@ namespace datetime
       return ptm ? (ptm->tm_year) + 1900 : 0 ;
    }
 
-   int time::GetGmtMonth() const
+   int time::GetGmtMonth() const NOTHROW
    {
       struct tm ttm;
       struct tm * ptm;
@@ -642,7 +653,7 @@ namespace datetime
       return ptm ? ptm->tm_mon + 1 : 0;
    }
 
-   int time::GetGmtDay() const
+   int time::GetGmtDay() const NOTHROW
    {
       struct tm ttm;
       struct tm * ptm;
@@ -651,7 +662,7 @@ namespace datetime
       return ptm ? ptm->tm_mday : 0 ;
    }
 
-   int time::GetGmtHour() const
+   int time::GetGmtHour() const NOTHROW
    {
       struct tm ttm;
       struct tm * ptm;
@@ -660,7 +671,7 @@ namespace datetime
       return ptm ? ptm->tm_hour : -1 ;
    }
 
-   int time::GetGmtMinute() const
+   int time::GetGmtMinute() const NOTHROW
    {
       struct tm ttm;
       struct tm * ptm;
@@ -669,7 +680,7 @@ namespace datetime
       return ptm ? ptm->tm_min : -1 ;
    }
 
-   int time::GetGmtSecond() const
+   int time::GetGmtSecond() const NOTHROW
    {
       struct tm ttm;
       struct tm * ptm;
@@ -678,7 +689,7 @@ namespace datetime
       return ptm ? ptm->tm_sec : -1 ;
    }
 
-   int time::GetGmtDayOfWeek() const
+   int time::GetGmtDayOfWeek() const NOTHROW
    {
       struct tm ttm;
       struct tm * ptm;
