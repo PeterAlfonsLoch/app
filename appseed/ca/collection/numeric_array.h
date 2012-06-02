@@ -336,9 +336,9 @@ numeric_array < TYPE > numeric_array < TYPE >::unique() const
    
    numeric_array < TYPE > a;
 
-   for(int i = 0; i < get_count(); i++)
+   for(int i = 0; i < this->get_count(); i++)
    {
-      a.add_unique(element_at(i));
+      a.add_unique(this->element_at(i));
    }
 
    return a;
@@ -351,9 +351,9 @@ void numeric_array < TYPE >::unique()
 
    numeric_array < TYPE > a;
 
-   for(int i = 0; i < get_count(); i++)
+   for(int i = 0; i < this->get_count(); i++)
    {
-      a.add_unique(element_at(i));
+      a.add_unique(this->element_at(i));
    }
 
    *this = a;

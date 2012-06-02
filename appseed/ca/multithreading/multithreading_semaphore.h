@@ -7,7 +7,7 @@ class CLASS_DECL_ca semaphore :
 public:
 
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
 
    LONG             m_lMaxCount;
    int              m_object;
