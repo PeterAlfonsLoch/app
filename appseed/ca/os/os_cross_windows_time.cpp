@@ -51,14 +51,14 @@
 
 static int init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi);
 
-static RTL_CRITICAL_SECTION TIME_tz_section;
+extern RTL_CRITICAL_SECTION TIME_tz_section;
 static RTL_CRITICAL_SECTION_DEBUG critsect_debug =
 {
     0, 0, &TIME_tz_section,
     { &critsect_debug.ProcessLocksList, &critsect_debug.ProcessLocksList },
-      0, 0, { (DWORD_PTR)(__FILE__ ": TIME_tz_section") }
+      0, 0, { (dword_ptr)(__FILE__ ": TIME_tz_section") }
 };
-static RTL_CRITICAL_SECTION TIME_tz_section = { &critsect_debug, -1, 0, 0, 0, 0 };
+RTL_CRITICAL_SECTION TIME_tz_section = { &critsect_debug, -1, 0, 0, 0, 0 };
 
 #define TICKSPERSEC        10000000
 #define TICKSPERMSEC       10000
@@ -176,7 +176,7 @@ VOID WINAPI RtlTimeToTimeFields(
  *   Success: TRUE.
  *   Failure: FALSE.
  */
-BOOLEAN WINAPI RtlTimeFieldsToTime(
+WINBOOLEAN WINAPI RtlTimeFieldsToTime(
 	PTIME_FIELDS tfTimeFields,
 	PLARGE_INTEGER Time)
 {
@@ -327,7 +327,7 @@ NTSTATUS WINAPI RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
  *   Success: TRUE.
  *   Failure: FALSE, if the resulting value will not fit in a DWORD.
  */
-BOOLEAN WINAPI RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Seconds )
+WINBOOLEAN WINAPI RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Seconds )
 {
     ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
     tmp = tmp / TICKSPERSEC - SECS_1601_TO_1970;
@@ -349,7 +349,7 @@ BOOLEAN WINAPI RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Sec
  *   Success: TRUE.
  *   Failure: FALSE, if the resulting value will not fit in a DWORD.
  */
-BOOLEAN WINAPI RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Seconds )
+WINBOOLEAN WINAPI RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Seconds )
 {
     ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
     tmp = tmp / TICKSPERSEC - SECS_1601_TO_1980;
@@ -531,7 +531,7 @@ static int weekday_to_mday(int year, int day, int mon, int day_of_week)
     return mday;
 }
 
-static BOOL match_tz_date(const RTL_SYSTEM_TIME *st, const RTL_SYSTEM_TIME *reg_st)
+static WINBOOL match_tz_date(const RTL_SYSTEM_TIME *st, const RTL_SYSTEM_TIME *reg_st)
 {
     WORD wDay;
 
@@ -552,7 +552,7 @@ static BOOL match_tz_date(const RTL_SYSTEM_TIME *st, const RTL_SYSTEM_TIME *reg_
     return TRUE;
 }
 
-static BOOL match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE_INFORMATION *reg_tzi)
+static WINBOOL match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE_INFORMATION *reg_tzi)
 {
     if (tzi->Bias == reg_tzi->Bias &&
         match_tz_date(&tzi->StandardDate, &reg_tzi->StandardDate) &&
@@ -562,7 +562,7 @@ static BOOL match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_Z
     return FALSE;
 }
 
-static BOOL reg_query_value(HKEY hkey, LPCWSTR name, DWORD type, void *data, DWORD count)
+static WINBOOL reg_query_value(HKEY hkey, LPCWSTR name, DWORD type, void *data, DWORD count)
 {
     UNICODE_STRING nameW;
     char buf[256];
@@ -928,7 +928,7 @@ NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *Old
 /*********************************************************************
  *      LocalFileTimeToFileTime                         (KERNEL32.@)
  */
-BOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
+WINBOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
 {
     NTSTATUS status;
     LARGE_INTEGER local, utc;
@@ -948,7 +948,7 @@ BOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
 /*********************************************************************
  *      FileTimeToLocalFileTime                         (KERNEL32.@)
  */
-BOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
+WINBOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
 {
     NTSTATUS status;
     LARGE_INTEGER local, utc;
@@ -968,7 +968,7 @@ BOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
 /*********************************************************************
  *      FileTimeToSystemTime                            (KERNEL32.@)
  */
-BOOL WINAPI FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
+WINBOOL WINAPI FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
 {
     TIME_FIELDS tf;
     LARGE_INTEGER t;
@@ -991,7 +991,7 @@ BOOL WINAPI FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
 /*********************************************************************
  *      SystemTimeToFileTime                            (KERNEL32.@)
  */
-BOOL WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
+WINBOOL WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
 {
     TIME_FIELDS tf;
     LARGE_INTEGER t;

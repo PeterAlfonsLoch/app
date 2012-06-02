@@ -38,7 +38,7 @@ HDC GetWindowDC(HWND hwnd)
 }
 
 
-BOOL ReleaseDC(HWND hwnd, HDC hdc)
+WINBOOL ReleaseDC(HWND hwnd, HDC hdc)
 {
 
    if(hdc == NULL)
@@ -53,7 +53,7 @@ BOOL ReleaseDC(HWND hwnd, HDC hdc)
 }
 
 
-BOOL GetClientRect(HWND hwnd, LPRECT lprect)
+WINBOOL GetClientRect(HWND hwnd, LPRECT lprect)
 {
    XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
@@ -68,7 +68,7 @@ BOOL GetClientRect(HWND hwnd, LPRECT lprect)
 }
 
 
-BOOL GetWindowRect(HWND hwnd, LPRECT lprect)
+WINBOOL GetWindowRect(HWND hwnd, LPRECT lprect)
 {
    XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
@@ -103,7 +103,7 @@ HDC BeginPaint(HWND hwnd, PAINTSTRUCT * ps)
 }
 
 
-BOOL EndPaint(HWND hwnd, PAINTSTRUCT * ps)
+WINBOOL EndPaint(HWND hwnd, PAINTSTRUCT * ps)
 {
 
    return ReleaseDC(hwnd, ps->hdc);
@@ -111,7 +111,7 @@ BOOL EndPaint(HWND hwnd, PAINTSTRUCT * ps)
 }
 
 
-BOOL GetCursorPos(LPPOINT lpptCursor)
+WINBOOL GetCursorPos(LPPOINT lpptCursor)
 {
 
    Window root_return;
@@ -132,7 +132,7 @@ BOOL GetCursorPos(LPPOINT lpptCursor)
 
 
 
-BOOL SetWindowPos(HWND hwnd, HWND hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
+WINBOOL SetWindowPos(HWND hwnd, HWND hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
 {
 
    Display * display = XOpenDisplay(NULL);

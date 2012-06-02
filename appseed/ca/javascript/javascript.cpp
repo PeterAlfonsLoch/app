@@ -1133,7 +1133,7 @@ void CScriptVar::setInt(int64_t val)
    intData = val;
 }
 
-void CScriptVar::setBool(bool val) 
+void CScriptVar::setBool(bool val)
 {
    init();
    flags = (flags&~SCRIPTVAR_VARTYPEMASK) | SCRIPTVAR_BOOLEAN;
@@ -1408,7 +1408,7 @@ string CScriptVar::getFlagsAsString() {
    if (flags&SCRIPTVAR_NATIVE) flagstr = flagstr + "NATIVE ";
    if (flags&SCRIPTVAR_DOUBLE) flagstr = flagstr + "DOUBLE ";
    if (flags&SCRIPTVAR_INTEGER) flagstr = flagstr + "INTEGER ";
-   if (flags&SCRIPTVAR_BOOLEAN) flagstr = flagstr + "BOOLEAN ";
+   if (flags&SCRIPTVAR_BOOLEAN) flagstr = flagstr + "WINBOOLEAN ";
    if (flags&SCRIPTVAR_STRING) flagstr = flagstr + "STRING ";
    return flagstr;
 }

@@ -16,7 +16,7 @@
 	<File name="_printf.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="142" topLine="0" />
 	</File>
-	<File name="atol.h" open="1" top="0" tabpos="7">
+	<File name="atol.h" open="0" top="0" tabpos="7">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="bsdiff/blocksort.cpp" open="0" top="0" tabpos="3">
@@ -97,17 +97,17 @@
 	<File name="linux/c_os_cross_win_file.h" open="0" top="0" tabpos="6">
 		<Cursor position="62" topLine="0" />
 	</File>
-	<File name="linux/c_os_cross_win_gdi.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="3302" topLine="155" />
+	<File name="linux/c_os_cross_win_gdi.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="1103" topLine="42" />
 	</File>
 	<File name="linux/c_os_cross_win_gdi.h" open="0" top="0" tabpos="5">
-		<Cursor position="192" topLine="0" />
+		<Cursor position="928" topLine="0" />
 	</File>
 	<File name="linux/c_os_cross_win_gdi_internal.h" open="0" top="0" tabpos="1">
 		<Cursor position="942" topLine="30" />
 	</File>
-	<File name="linux/c_os_http.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="1874" topLine="37" />
+	<File name="linux/c_os_http.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="1401" topLine="28" />
 	</File>
 	<File name="linux/c_os_http.h" open="0" top="0" tabpos="37">
 		<Cursor position="474" topLine="0" />
@@ -125,7 +125,7 @@
 		<Cursor position="229" topLine="0" />
 	</File>
 	<File name="linux/c_os_message_loop.cpp" open="0" top="0" tabpos="30">
-		<Cursor position="985" topLine="67" />
+		<Cursor position="1582" topLine="74" />
 	</File>
 	<File name="linux/c_os_process.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="23" topLine="0" />

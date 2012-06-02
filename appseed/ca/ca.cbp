@@ -17,6 +17,7 @@
 					<Add option="-std=c++0x" />
 					<Add option="-g" />
 					<Add option="-fPIC" />
+					<Add option="-Wno-attributes" />
 					<Add directory="." />
 					<Add directory=".." />
 					<Add directory="../../.." />
@@ -1244,7 +1245,10 @@
 		<Unit filename="os/os.h" />
 		<Unit filename="os/os_cross_windows.cpp" />
 		<Unit filename="os/os_cross_windows.h" />
+		<Unit filename="os/os_cross_windows_crt.cpp" />
+		<Unit filename="os/os_cross_windows_crt.h" />
 		<Unit filename="os/os_cross_windows_guid_def.h" />
+		<Unit filename="os/os_cross_windows_internals.h" />
 		<Unit filename="os/os_cross_windows_shared_memory.cpp" />
 		<Unit filename="os/os_cross_windows_shared_memory.h" />
 		<Unit filename="os/os_cross_windows_time.cpp" />

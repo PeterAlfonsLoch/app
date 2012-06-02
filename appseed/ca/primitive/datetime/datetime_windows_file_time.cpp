@@ -24,7 +24,7 @@ static const uint64_t kUnixTimeStartValue = ((uint64_t)kNumTimeQuantumsInSecond)
 bool DosTimeToFileTime(uint32_t dosTime, FILETIME &ft)
 {
   #if defined(_WIN32) && !defined(UNDER_CE)
-  return BOOLToBool(::DosDateTimeToFileTime((uint16_t)(dosTime >> 16), (uint16_t)(dosTime & 0xFFFF), &ft));
+  return WINBOOLToBool(::DosDateTimeToFileTime((uint16_t)(dosTime >> 16), (uint16_t)(dosTime & 0xFFFF), &ft));
   #else
   ft.dwLowDateTime = 0;
   ft.dwHighDateTime = 0;

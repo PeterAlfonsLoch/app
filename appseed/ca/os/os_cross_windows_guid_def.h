@@ -15,19 +15,7 @@
 #define REFGUID const GUID *
 #endif
 
-#define REFCLSID REFGUID
-#define REFIID REFGUID
 
-#ifdef __cplusplus
-inline int operator==(REFGUID g1, REFGUID g2)
-{
-  for (int i = 0; i < (int)sizeof(g1); i++)
-    if (((unsigned char *)&g1)[i] != ((unsigned char *)&g2)[i])
-      return 0;
-  return 1;
-}
-inline int operator!=(REFGUID g1, REFGUID g2) { return !(g1 == g2); }
-#endif
 
 #ifdef __cplusplus
   #define MY_EXTERN_C extern "C"

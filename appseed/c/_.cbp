@@ -19,6 +19,7 @@
 					<Add option="-fno-pie" />
 					<Add option="-fno-stack-protector" />
 					<Add option="-Wno-pointer-arith" />
+					<Add option="-Wno-attributes" />
 					<Add option="-D_DEBUG" />
 					<Add directory="." />
 					<Add directory=".." />

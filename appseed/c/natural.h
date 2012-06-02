@@ -1,34 +1,34 @@
 #pragma once
 
-inline uint32_t natural(int32_t i)
+inline unsigned int natural(int i)
 {
-   return i >= 0 ? (uint32_t) i : 0;
+   return i >= 0 ? (unsigned int) i : 0;
 }
 
-inline uint64_t natural(int64_t i)
-{
-   return i >= 0 ? (uint64_t) i : 0;
-}
-
-inline uint32_t natural(uint32_t ui)
+inline unsigned int natural(unsigned int ui)
 {
    return ui;
 }
-
-inline uint64_t natural(uint64_t ui)
-{
-   return ui;
-}
-
-#if defined(_LP64)
 
 inline unsigned long natural(long l)
 {
    return l >= 0 ? (unsigned long) l : 0;
 }
 
-#endif
+inline unsigned long natural(unsigned long ul)
+{
+   return ul;
+}
 
+inline unsigned long long natural(long long ll)
+{
+   return ll >= 0 ? (unsigned long long) ll: 0;
+}
+
+inline unsigned long long natural(unsigned long long ull)
+{
+   return ull;
+}
 
 // return minimum zero or positive integer
 // otherwise, return third optional default -1 argument

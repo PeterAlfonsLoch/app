@@ -11,9 +11,11 @@
 
 
 #include "os_cross_windows_guid_def.h"
+#include "os_cross_windows_internals.h"
 #include "os_cross_windows_winnt.h"
 #include "os_cross_windows_shared_memory.h"
 #include "os_cross_windows_time.h"
+#include "os_cross_windows_crt.h"
 
 
 typedef char CHAR;
@@ -42,8 +44,6 @@ typedef UINT32 DWORD;
 typedef int64_t LONGLONG;
 typedef uint64_t ULONGLONG;
 
-typedef struct LARGE_INTEGER { LONGLONG QuadPart; }LARGE_INTEGER;
-typedef struct _ULARGE_INTEGER { ULONGLONG QuadPart;} ULARGE_INTEGER;
 
 typedef const CHAR *LPCSTR;
 typedef CHAR TCHAR;
@@ -76,16 +76,10 @@ typedef LONG SCODE;
 #define E_OUTOFMEMORY ((HRESULT)0x8007000EL)
 #define E_INVALIDARG ((HRESULT)0x80070057L)
 */
-#ifdef _MSC_VER
-#define STDMETHODCALLTYPE __stdcall
-#else
-#define STDMETHODCALLTYPE
-#endif
 
 #define STDMETHOD_(t, f) virtual t STDMETHODCALLTYPE f
 #define STDMETHOD(f) STDMETHOD_(HRESULT, f)
 #define STDMETHODIMP_(type) type STDMETHODCALLTYPE
-#define STDMETHODIMP STDMETHODIMP_(HRESULT)
 
 #define PURE = 0
 

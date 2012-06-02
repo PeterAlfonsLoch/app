@@ -4,9 +4,9 @@
 //#include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
-//#include <sys/stat.h>
+#include <sys/stat.h>
 //#include <unistd.h>
-//#include <fcntl.h>
+#include <fcntl.h>
 //#include <sys/mman.h>
 
 
@@ -140,7 +140,7 @@ SIZE_T WINAPI GlobalSize(HGLOBAL hglobal)
 }
 
 
-BOOL WINAPI GlobalUnlock(HGLOBAL hglobal)
+WINBOOL WINAPI GlobalUnlock(HGLOBAL hglobal)
 {
 
    if(hblobal->m_map == NULL)

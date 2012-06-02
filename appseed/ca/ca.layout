@@ -154,6 +154,9 @@
 	<File name="collection/logic_array.h" open="0" top="0" tabpos="0">
 		<Cursor position="145" topLine="0" />
 	</File>
+	<File name="collection/numeric_array.h" open="0" top="0" tabpos="0">
+		<Cursor position="8652" topLine="297" />
+	</File>
 	<File name="collection/point_array.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2221" topLine="61" />
 	</File>
@@ -305,7 +308,10 @@
 		<Cursor position="3156" topLine="60" />
 	</File>
 	<File name="ex1/ex1_file.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="8990" topLine="329" />
+		<Cursor position="5160" topLine="193" />
+	</File>
+	<File name="ex1/ex1_io_temp_buffer.cpp" open="1" top="1" tabpos="11">
+		<Cursor position="299" topLine="0" />
 	</File>
 	<File name="ex1/ex1_out_buffer.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="646" topLine="0" />
@@ -337,11 +343,11 @@
 	<File name="exception/dump_context.h" open="1" top="0" tabpos="41">
 		<Cursor position="18" topLine="0" />
 	</File>
-	<File name="exception/exception.h" open="1" top="0" tabpos="2">
+	<File name="exception/exception.h" open="0" top="0" tabpos="2">
 		<Cursor position="7153" topLine="252" />
 	</File>
 	<File name="exception/exception_base_exception.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="3258" topLine="101" />
+		<Cursor position="2197" topLine="58" />
 	</File>
 	<File name="exception/exception_debug.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="5029" topLine="233" />
@@ -412,7 +418,7 @@
 	<File name="gen/gen_common.h" open="0" top="0" tabpos="0">
 		<Cursor position="59" topLine="0" />
 	</File>
-	<File name="gen/gen_definition.h" open="1" top="0" tabpos="3">
+	<File name="gen/gen_definition.h" open="0" top="0" tabpos="3">
 		<Cursor position="3801" topLine="100" />
 	</File>
 	<File name="gen/gen_math.cpp" open="0" top="0" tabpos="0">
@@ -451,6 +457,9 @@
 	<File name="geoip/geoip_update.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="7559" topLine="225" />
 	</File>
+	<File name="javascript/javascript.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="42547" topLine="1364" />
+	</File>
 	<File name="libcharguess/libcharguess_MBCSGroupProber.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="957" topLine="0" />
 	</File>
@@ -463,8 +472,8 @@
 	<File name="linux/os.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="19" topLine="0" />
 	</File>
-	<File name="linux/os.h" open="0" top="0" tabpos="5">
-		<Cursor position="801" topLine="0" />
+	<File name="linux/os.h" open="1" top="0" tabpos="6">
+		<Cursor position="869" topLine="0" />
 	</File>
 	<File name="linux/os_allocate_debug.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="19" topLine="0" />
@@ -474,6 +483,12 @@
 	</File>
 	<File name="linux/os_debug.h" open="0" top="0" tabpos="0">
 		<Cursor position="97" topLine="0" />
+	</File>
+	<File name="linux/os_multithreading.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1080" topLine="10" />
+	</File>
+	<File name="linux/os_multithreading.h" open="0" top="0" tabpos="0">
+		<Cursor position="355" topLine="0" />
 	</File>
 	<File name="macos/macos.h" open="0" top="0" tabpos="0">
 		<Cursor position="1320" topLine="10" />
@@ -556,26 +571,38 @@
 	<File name="multithreading/multithreading_waitable.h" open="0" top="0" tabpos="16">
 		<Cursor position="1936" topLine="47" />
 	</File>
-	<File name="os/os.h" open="1" top="0" tabpos="12">
+	<File name="os/os.h" open="0" top="0" tabpos="12">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="os/os_cross_windows.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1928" topLine="72" />
 	</File>
-	<File name="os/os_cross_windows.h" open="1" top="0" tabpos="11">
-		<Cursor position="298" topLine="0" />
+	<File name="os/os_cross_windows.h" open="1" top="0" tabpos="5">
+		<Cursor position="891" topLine="23" />
 	</File>
-	<File name="os/os_cross_windows_guid_def.h" open="0" top="0" tabpos="0">
-		<Cursor position="663" topLine="0" />
+	<File name="os/os_cross_windows_crt.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="434" topLine="0" />
 	</File>
-	<File name="os/os_cross_windows_shared_memory.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="46" topLine="0" />
+	<File name="os/os_cross_windows_crt.h" open="0" top="0" tabpos="0">
+		<Cursor position="94" topLine="0" />
 	</File>
-	<File name="os/os_cross_windows_time.cpp" open="1" top="1" tabpos="13">
-		<Cursor position="1809" topLine="35" />
+	<File name="os/os_cross_windows_guid_def.h" open="1" top="0" tabpos="7">
+		<Cursor position="238" topLine="0" />
 	</File>
-	<File name="os/os_cross_windows_time.h" open="1" top="0" tabpos="9">
-		<Cursor position="1293" topLine="0" />
+	<File name="os/os_cross_windows_internals.h" open="1" top="0" tabpos="4">
+		<Cursor position="100558" topLine="2331" />
+	</File>
+	<File name="os/os_cross_windows_shared_memory.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="364" topLine="0" />
+	</File>
+	<File name="os/os_cross_windows_time.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="3665" topLine="79" />
+	</File>
+	<File name="os/os_cross_windows_time.h" open="1" top="0" tabpos="10">
+		<Cursor position="23" topLine="0" />
+	</File>
+	<File name="os/os_cross_windows_winnt.h" open="1" top="0" tabpos="3">
+		<Cursor position="439" topLine="0" />
 	</File>
 	<File name="plane/plane.h" open="0" top="0" tabpos="0">
 		<Cursor position="43" topLine="0" />
@@ -613,14 +640,14 @@
 	<File name="primitive/datetime/datetime_duration.h" open="0" top="0" tabpos="11">
 		<Cursor position="4621" topLine="222" />
 	</File>
-	<File name="primitive/datetime/datetime_time.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="18815" topLine="801" />
+	<File name="primitive/datetime/datetime_time.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="21636" topLine="916" />
 	</File>
-	<File name="primitive/datetime/datetime_time.h" open="1" top="0" tabpos="7">
+	<File name="primitive/datetime/datetime_time.h" open="0" top="0" tabpos="7">
 		<Cursor position="294" topLine="17" />
 	</File>
 	<File name="primitive/datetime/datetime_windows_file_time.cpp" open="0" top="0" tabpos="14">
-		<Cursor position="4748" topLine="141" />
+		<Cursor position="651" topLine="26" />
 	</File>
 	<File name="primitive/datetime/datetime_windows_file_time.h" open="0" top="0" tabpos="13">
 		<Cursor position="187" topLine="0" />
@@ -634,16 +661,16 @@
 	<File name="primitive/point.h" open="0" top="0" tabpos="0">
 		<Cursor position="2809" topLine="47" />
 	</File>
-	<File name="primitive/primitive_string.cpp" open="1" top="0" tabpos="8">
+	<File name="primitive/primitive_string.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="5173" topLine="164" />
 	</File>
 	<File name="primitive/primitive_string.h" open="0" top="0" tabpos="3">
 		<Cursor position="2303" topLine="67" />
 	</File>
-	<File name="primitive/primitive_string_core.cpp" open="1" top="0" tabpos="5">
+	<File name="primitive/primitive_string_core.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="194" topLine="0" />
 	</File>
-	<File name="primitive/primitive_var.cpp" open="1" top="0" tabpos="6">
+	<File name="primitive/primitive_var.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="6211" topLine="379" />
 	</File>
 	<File name="primitive/primitive_var.h" open="0" top="0" tabpos="7">
