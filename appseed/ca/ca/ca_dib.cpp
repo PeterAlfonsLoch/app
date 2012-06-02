@@ -329,9 +329,6 @@ namespace ca
    {
       if(op == 123) // zero dest RGB, invert alpha, and OR src RGB
       {
-         int isize=width()*height();
-         LPDWORD lpbitsSrc= (LPDWORD) pdib->get_data();
-         LPDWORD lpbitsDest= (LPDWORD) get_data();
 
          COLORREF _colorref = RGB ( 0, 0, 0 ) | (255 << 24);
          COLORREF colorrefa[2];
@@ -341,11 +338,17 @@ namespace ca
          COLORREF _colorrefN = RGB ( 255, 255, 255) | (0 << 24);
          COLORREF colorrefaN[2];
          colorrefaN[0] = _colorrefN;
+         
          colorrefaN[1] = _colorrefN;
 #ifdef AMD64
 
          //x64
 #else
+         
+         int isize=width()*height();
+         LPDWORD lpbitsSrc= (LPDWORD) pdib->get_data();
+         LPDWORD lpbitsDest= (LPDWORD) get_data();
+         
     #ifdef WINDOWS
          _asm
          {

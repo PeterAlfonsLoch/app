@@ -15,8 +15,6 @@
 		9A88ADE214C2CA2E006B4023 /* api_str.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A65F14C2CA2C006B4023 /* api_str.cpp */; };
 		9A88ADE314C2CA2E006B4023 /* debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A66014C2CA2C006B4023 /* debug.cpp */; };
 		9A88ADE414C2CA2E006B4023 /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A66114C2CA2C006B4023 /* debug.h */; };
-		9A88ADE514C2CA2E006B4023 /* linux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88A66214C2CA2C006B4023 /* linux.cpp */; };
-		9A88ADE614C2CA2E006B4023 /* linux.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A66314C2CA2C006B4023 /* linux.h */; };
 		9A88ADE714C2CA2E006B4023 /* muldiv64.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A66414C2CA2C006B4023 /* muldiv64.h */; };
 		9A88ADE814C2CA2E006B4023 /* rotate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A66514C2CA2C006B4023 /* rotate.h */; };
 		9A88ADE914C2CA2E006B4023 /* simple_critical_section.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88A66614C2CA2C006B4023 /* simple_critical_section.h */; };
@@ -929,13 +927,11 @@
 		9A88B2C314C2CA2F006B4023 /* radix_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AB8114C2CA2C006B4023 /* radix_application.cpp */; };
 		9A88B2C414C2CA2F006B4023 /* radix_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AB8214C2CA2C006B4023 /* radix_application.h */; };
 		9A88B2C514C2CA2F006B4023 /* radix_assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AB8314C2CA2C006B4023 /* radix_assert.cpp */; };
-		9A88B2C614C2CA2F006B4023 /* radix_auxdata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AB8414C2CA2C006B4023 /* radix_auxdata.cpp */; };
 		9A88B2C714C2CA2F006B4023 /* radix_bstr.CPP in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AB8514C2CA2C006B4023 /* radix_bstr.CPP */; };
 		9A88B2C814C2CA2F006B4023 /* radix_cmdtarg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AB8614C2CA2C006B4023 /* radix_cmdtarg.cpp */; };
 		9A88B2C914C2CA2F006B4023 /* radix_command_target.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AB8714C2CA2C006B4023 /* radix_command_target.cpp */; };
 		9A88B2CA14C2CA2F006B4023 /* radix_composite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AB8814C2CA2C006B4023 /* radix_composite.cpp */; };
 		9A88B2CB14C2CA2F006B4023 /* radix_constraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AB8914C2CA2C006B4023 /* radix_constraint.cpp */; };
-		9A88B2CC14C2CA2F006B4023 /* radix_datetime_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AB8A14C2CA2C006B4023 /* radix_datetime_value.cpp */; };
 		9A88B2CE14C2CA2F006B4023 /* radix_externs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AB8C14C2CA2D006B4023 /* radix_externs.cpp */; };
 		9A88B2CF14C2CA2F006B4023 /* radix_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AB8D14C2CA2D006B4023 /* radix_factory.cpp */; };
 		9A88B2D014C2CA2F006B4023 /* radix_fixed_alloc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AB8E14C2CA2D006B4023 /* radix_fixed_alloc.cpp */; };
@@ -1666,8 +1662,6 @@
 		9A88A65F14C2CA2C006B4023 /* api_str.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api_str.cpp; sourceTree = "<group>"; };
 		9A88A66014C2CA2C006B4023 /* debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = debug.cpp; sourceTree = "<group>"; };
 		9A88A66114C2CA2C006B4023 /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
-		9A88A66214C2CA2C006B4023 /* linux.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = linux.cpp; sourceTree = "<group>"; };
-		9A88A66314C2CA2C006B4023 /* linux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = linux.h; sourceTree = "<group>"; };
 		9A88A66414C2CA2C006B4023 /* muldiv64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = muldiv64.h; sourceTree = "<group>"; };
 		9A88A66514C2CA2C006B4023 /* rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rotate.h; sourceTree = "<group>"; };
 		9A88A66614C2CA2C006B4023 /* simple_critical_section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_critical_section.h; sourceTree = "<group>"; };
@@ -2584,13 +2578,11 @@
 		9A88AB8114C2CA2C006B4023 /* radix_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = radix_application.cpp; sourceTree = "<group>"; };
 		9A88AB8214C2CA2C006B4023 /* radix_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = radix_application.h; sourceTree = "<group>"; };
 		9A88AB8314C2CA2C006B4023 /* radix_assert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = radix_assert.cpp; sourceTree = "<group>"; };
-		9A88AB8414C2CA2C006B4023 /* radix_auxdata.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = radix_auxdata.cpp; sourceTree = "<group>"; };
 		9A88AB8514C2CA2C006B4023 /* radix_bstr.CPP */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = radix_bstr.CPP; sourceTree = "<group>"; };
 		9A88AB8614C2CA2C006B4023 /* radix_cmdtarg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = radix_cmdtarg.cpp; sourceTree = "<group>"; };
 		9A88AB8714C2CA2C006B4023 /* radix_command_target.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = radix_command_target.cpp; sourceTree = "<group>"; };
 		9A88AB8814C2CA2C006B4023 /* radix_composite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = radix_composite.cpp; sourceTree = "<group>"; };
 		9A88AB8914C2CA2C006B4023 /* radix_constraint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = radix_constraint.cpp; sourceTree = "<group>"; };
-		9A88AB8A14C2CA2C006B4023 /* radix_datetime_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = radix_datetime_value.cpp; sourceTree = "<group>"; };
 		9A88AB8C14C2CA2D006B4023 /* radix_externs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = radix_externs.cpp; sourceTree = "<group>"; };
 		9A88AB8D14C2CA2D006B4023 /* radix_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = radix_factory.cpp; sourceTree = "<group>"; };
 		9A88AB8E14C2CA2D006B4023 /* radix_fixed_alloc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = radix_fixed_alloc.cpp; sourceTree = "<group>"; };
@@ -3403,8 +3395,6 @@
 				9A88A65F14C2CA2C006B4023 /* api_str.cpp */,
 				9A88A66014C2CA2C006B4023 /* debug.cpp */,
 				9A88A66114C2CA2C006B4023 /* debug.h */,
-				9A88A66214C2CA2C006B4023 /* linux.cpp */,
-				9A88A66314C2CA2C006B4023 /* linux.h */,
 				9A88A66414C2CA2C006B4023 /* muldiv64.h */,
 				9A88A66514C2CA2C006B4023 /* rotate.h */,
 				9A88A66614C2CA2C006B4023 /* simple_critical_section.h */,
@@ -4773,13 +4763,11 @@
 				9A88AB8114C2CA2C006B4023 /* radix_application.cpp */,
 				9A88AB8214C2CA2C006B4023 /* radix_application.h */,
 				9A88AB8314C2CA2C006B4023 /* radix_assert.cpp */,
-				9A88AB8414C2CA2C006B4023 /* radix_auxdata.cpp */,
 				9A88AB8514C2CA2C006B4023 /* radix_bstr.CPP */,
 				9A88AB8614C2CA2C006B4023 /* radix_cmdtarg.cpp */,
 				9A88AB8714C2CA2C006B4023 /* radix_command_target.cpp */,
 				9A88AB8814C2CA2C006B4023 /* radix_composite.cpp */,
 				9A88AB8914C2CA2C006B4023 /* radix_constraint.cpp */,
-				9A88AB8A14C2CA2C006B4023 /* radix_datetime_value.cpp */,
 				9A88AB8C14C2CA2D006B4023 /* radix_externs.cpp */,
 				9A88AB8D14C2CA2D006B4023 /* radix_factory.cpp */,
 				9A88AB8E14C2CA2D006B4023 /* radix_fixed_alloc.cpp */,
@@ -5444,7 +5432,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A88ADE414C2CA2E006B4023 /* debug.h in Headers */,
-				9A88ADE614C2CA2E006B4023 /* linux.h in Headers */,
 				9A88ADE714C2CA2E006B4023 /* muldiv64.h in Headers */,
 				9A88ADE814C2CA2E006B4023 /* rotate.h in Headers */,
 				9A88ADE914C2CA2E006B4023 /* simple_critical_section.h in Headers */,
@@ -6442,7 +6429,6 @@
 				9A88ADE114C2CA2E006B4023 /* api_muldiv64.cpp in Sources */,
 				9A88ADE214C2CA2E006B4023 /* api_str.cpp in Sources */,
 				9A88ADE314C2CA2E006B4023 /* debug.cpp in Sources */,
-				9A88ADE514C2CA2E006B4023 /* linux.cpp in Sources */,
 				9A88ADEF14C2CA2E006B4023 /* ca_application.cpp in Sources */,
 				9A88ADF114C2CA2E006B4023 /* ca_application_bias.cpp in Sources */,
 				9A88ADF314C2CA2E006B4023 /* ca_application_interface.cpp in Sources */,
@@ -6820,13 +6806,11 @@
 				9A88B2C114C2CA2F006B4023 /* radix_allocation_mid_big.cpp in Sources */,
 				9A88B2C314C2CA2F006B4023 /* radix_application.cpp in Sources */,
 				9A88B2C514C2CA2F006B4023 /* radix_assert.cpp in Sources */,
-				9A88B2C614C2CA2F006B4023 /* radix_auxdata.cpp in Sources */,
 				9A88B2C714C2CA2F006B4023 /* radix_bstr.CPP in Sources */,
 				9A88B2C814C2CA2F006B4023 /* radix_cmdtarg.cpp in Sources */,
 				9A88B2C914C2CA2F006B4023 /* radix_command_target.cpp in Sources */,
 				9A88B2CA14C2CA2F006B4023 /* radix_composite.cpp in Sources */,
 				9A88B2CB14C2CA2F006B4023 /* radix_constraint.cpp in Sources */,
-				9A88B2CC14C2CA2F006B4023 /* radix_datetime_value.cpp in Sources */,
 				9A88B2CE14C2CA2F006B4023 /* radix_externs.cpp in Sources */,
 				9A88B2CF14C2CA2F006B4023 /* radix_factory.cpp in Sources */,
 				9A88B2D014C2CA2F006B4023 /* radix_fixed_alloc.cpp in Sources */,

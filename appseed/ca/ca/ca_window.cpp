@@ -593,14 +593,6 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void __reposition_window(__SIZEPARENTPARAMS * lpLayout, ::user::interaction * hWnd, LPCRECT lpRect)
-   {
-      UNREFERENCED_PARAMETER(lpLayout);
-      UNREFERENCED_PARAMETER(hWnd);
-      UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception();
-   }
-
    void window::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType)
    {
       UNREFERENCED_PARAMETER(lpClientRect);

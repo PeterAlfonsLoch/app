@@ -1,8 +1,23 @@
 #pragma once
 
+
+CLASS_DECL_ca int SWN(int y, int m, int d );
+//where DP ("Days Passed") is given by:
+//   DP( y, 1 ) = 0
+//  DP( y, m+1 ) = DP( y, m ) + ML( y, m )
+CLASS_DECL_ca int DP(int y, int m);
+CLASS_DECL_ca int ML(int y, int m);
+CLASS_DECL_ca int LEAP(int y );
+CLASS_DECL_ca int dayofweek(int y, int m, int d);	/* 0 = Sunday */
+CLASS_DECL_ca int SDOW(int y,int m, int d ); // ( 0 = Monday, ..., 6 = Sunday )
+CLASS_DECL_ca int DOW(int y, int m, int d);
+CLASS_DECL_ca int getDayOfWeek(int month, int day, int year, int CalendarSystem);
+
+
 namespace ca2
 {
 
+   
    class CLASS_DECL_ca datetime :
       virtual public ::radix::object
    {

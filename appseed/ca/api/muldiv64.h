@@ -38,4 +38,17 @@ CLASS_DECL_ca int64_t _stdcall mulshr64(int64_t operant, int64_t multiplier, uns
 
 CLASS_DECL_ca void mul64(uint64_t v1, uint64_t v2, uint64_t & hi, uint64_t & lo);
 
+
+CLASS_DECL_ca void mul64(int64_t v1, int64_t v2, int64_t & hi, uint64_t & lo);
+
+
+CLASS_DECL_ca uint64_t div128_64(uint64_t hi, uint64_t lo, uint64_t div, uint64_t & remainder);
+
+
+CLASS_DECL_ca int64_t div128_64(int64_t hi, uint64_t lo, int64_t div, uint64_t & remainder);
+
+
+CLASS_DECL_ca int64_t div128_64(int64_t hi, uint64_t lo, int64_t div, uint64_t & remainder);
+
+
 #endif //__FULL_MULDIV64_

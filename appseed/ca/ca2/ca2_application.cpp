@@ -183,8 +183,8 @@ namespace ca2
 
       string strLocale;
       string strSchema;
-      LANGID langid = ::GetUserDefaultLangID();
 #ifdef WINDOWS
+      LANGID langid = ::GetUserDefaultLangID();
 #define SPR_DEUTSCH LANG_GERMAN
       if(langid == LANG_SWEDISH)
       {
@@ -816,7 +816,7 @@ namespace ca2
          }
          try
          {
-            MSG msg;
+//            MSG msg;
             while(true)
             {
                // phase1: check to see if we can do idle work

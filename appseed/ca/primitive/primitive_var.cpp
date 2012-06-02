@@ -85,6 +85,7 @@ var::var(double d)
    operator = (d);
 }
 
+#ifdef WINDOWS
 
 var::var(unsigned long ul)
 {
@@ -92,6 +93,8 @@ var::var(unsigned long ul)
    m_pca2 = NULL;
    operator = (ul);
 }
+
+#endif
 
 var::var(const stringa & var)
 {
@@ -380,23 +383,6 @@ class var & var::operator = (int i)
 }
 
 
-class var & var::operator = (int64_t i)
-{
-   if(get_type() == type_pint64)
-   {
-      *m_pi64 = i;
-   }
-   else if(get_type() == type_pvar)
-   {
-      *m_pvar = i;
-   }
-   else
-   {
-      set_type(type_int64, false);
-      m_i64 = i;
-   }
-   return *this;
-}
 
 #ifdef LINUX
 
@@ -419,25 +405,6 @@ class var & var::operator = (long int i)
 }
 
 #endif
-
-class var & var::operator = (uint64_t ui)
-{
-   if(get_type() == type_puint64)
-   {
-      *m_pui64 = ui;
-   }
-   else if(get_type() == type_pvar)
-   {
-      *m_pvar = ui;
-   }
-   else
-   {
-      set_type(type_uint64, false);
-      m_ui64 = ui;
-   }
-   return *this;
-}
-
 
 class var & var::operator = (int * pi)
 {
@@ -474,10 +441,75 @@ class var & var::operator = (const FILETIME & filetime)
    return *this;
 }
 
+class var & var::operator = (long l)
+{
+   if(get_type() == type_pint64)
+   {
+      *m_pi64 = l;
+   }
+   else if(get_type() == type_pvar)
+   {
+      *m_pvar = l;
+   }
+   else
+   {
+      set_type(type_int64, false);
+      m_i64 = l;
+   }
+   return *this;
+}
+
 class var & var::operator = (unsigned long ul)
 {
-   set_type(type_ulong, false);
-   m_ul = ul;
+   if(get_type() == type_puint64)
+   {
+      *m_pui64 = ul;
+   }
+   else if(get_type() == type_pvar)
+   {
+      *m_pvar = ul;
+   }
+   else
+   {
+      set_type(type_uint64, false);
+      m_ui64 = ul;
+   }
+   return *this;
+}
+
+class var & var::operator = (long long ll)
+{
+   if(get_type() == type_pint64)
+   {
+      *m_pi64 = ll;
+   }
+   else if(get_type() == type_pvar)
+   {
+      *m_pvar = ll;
+   }
+   else
+   {
+      set_type(type_int64, false);
+      m_i64 = ll;
+   }
+   return *this;
+}
+
+class var & var::operator = (unsigned long long ull)
+{
+   if(get_type() == type_puint64)
+   {
+      *m_pui64 = ull;
+   }
+   else if(get_type() == type_pvar)
+   {
+      *m_pvar = ull;
+   }
+   else
+   {
+      set_type(type_uint64, false);
+      m_ui64 = ull;
+   }
    return *this;
 }
 

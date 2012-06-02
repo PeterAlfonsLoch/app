@@ -370,24 +370,18 @@ _INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringLowe
 
 char * __cdecl crt_char_traits::StringUppercase(char * psz,size_t size ) throw()
 {
-#if _SECURE_TEMPLATE
+   
    ::gen::strupr_s(psz, size);
-#else
-   UNREFERENCED_PARAMETER(size);
-   return reinterpret_cast< char * >( _mbsupr( reinterpret_cast< unsigned char* >( psz ) ) );
-#endif
+
    return psz;
+   
 }
 
 char * __cdecl crt_char_traits::StringLowercase(char * psz,size_t size ) throw()
 {
-#if _SECURE_TEMPLATE
+
    ::gen::strlwr_s(psz, size);
-#else
-   UNREFERENCED_PARAMETER(size);
-   return reinterpret_cast< char * >( _mbslwr( reinterpret_cast< unsigned char* >( psz ) ) );
-#endif
-   return psz;
+   
 }
 
 char * __cdecl crt_char_traits::StringReverse( char * psz ) throw()
@@ -404,12 +398,12 @@ char * __cdecl crt_char_traits::StringReverse( char * psz ) throw()
    return psz;
    //return reinterpret_cast< char * >( _mbsrev( reinterpret_cast< unsigned char* >( psz ) ) );
 }
-
+/*
 strsize __cdecl crt_char_traits::GetFormattedLength(const char * pszFormat, va_list args ) throw()
 {
    return _vscprintf( pszFormat, args );
 }
-
+*/
 strsize __cdecl crt_char_traits::Format(char * pszBuffer,const char * pszFormat, va_list args ) throw()
 {
    return vsprintf( pszBuffer, pszFormat, args );

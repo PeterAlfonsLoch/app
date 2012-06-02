@@ -143,7 +143,7 @@ public:
    static char *        __cdecl  StringUppercase(char * psz,size_t size ) throw();
    static char *        __cdecl  StringLowercase(char * psz,size_t size ) throw();
    static char *        __cdecl  StringReverse( char * psz ) throw();
-   static strsize           __cdecl  GetFormattedLength(const char * pszFormat, va_list args ) throw();
+//   static strsize           __cdecl  GetFormattedLength(const char * pszFormat, va_list args ) throw();
    static strsize           __cdecl  Format(char * pszBuffer,const char * pszFormat, va_list args ) throw();
 #if _SECURE_TEMPLATE
    static strsize           __cdecl  Format(char * pszBuffer,size_t nlength,const char * pszFormat, va_list args ) throw();
