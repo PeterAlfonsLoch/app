@@ -20,7 +20,7 @@ inline uint64_t natural(uint64_t ui)
    return ui;
 }
 
-#if !defined(_LP64)
+#if defined(_LP64)
 
 inline unsigned long natural(long l)
 {
