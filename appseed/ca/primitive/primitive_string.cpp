@@ -381,6 +381,8 @@ char * __cdecl crt_char_traits::StringLowercase(char * psz,size_t size ) throw()
 {
 
    ::gen::strlwr_s(psz, size);
+
+   return psz;
    
 }
 
@@ -398,12 +400,17 @@ char * __cdecl crt_char_traits::StringReverse( char * psz ) throw()
    return psz;
    //return reinterpret_cast< char * >( _mbsrev( reinterpret_cast< unsigned char* >( psz ) ) );
 }
-/*
+
+#ifdef WINDOWS
+
 strsize __cdecl crt_char_traits::GetFormattedLength(const char * pszFormat, va_list args ) throw()
 {
    return _vscprintf( pszFormat, args );
 }
-*/
+
+#endif
+
+
 strsize __cdecl crt_char_traits::Format(char * pszBuffer,const char * pszFormat, va_list args ) throw()
 {
    return vsprintf( pszBuffer, pszFormat, args );
@@ -456,14 +463,14 @@ void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, 
    ::WideCharToMultiByte( _gen_GetConversionACP(), 0, pszSrc, (int) nSrcLength, pszDest, (int) nDestLength, NULL, NULL );
 }
 
-void crt_char_traits::ConvertToOem(char* pstrString) throw()
+void crt_char_traits::ConvertToOem(char* pstrString) RELEASENOTHROW
 {
    bool fSuccess=::CharToOemA(pstrString, pstrString) != 0;
    // old version can't report error
    ASSERT(fSuccess);
 }
 
-void crt_char_traits::ConvertToAnsi(char* pstrString) throw()
+void crt_char_traits::ConvertToAnsi(char* pstrString) RELEASENOTHROW
 {
    bool fSuccess=::OemToCharA(pstrString, pstrString) != 0;
    // old version can't report error
@@ -982,13 +989,13 @@ string & string::assign(uint64 n, uint64 c)
 // Comparison
 
 
-int string::Collate(PCXSTR psz ) const throw()
+int string::Collate(PCXSTR psz ) const RELEASENOTHROW
 {
    ASSERT( __is_valid_string( psz ) );
    return( string_trait::StringCollate( GetString(), psz ) );
 }
 
-int string::CollateNoCase(PCXSTR psz ) const throw()
+int string::CollateNoCase(PCXSTR psz ) const RELEASENOTHROW
 {
    ASSERT( __is_valid_string( psz ) );
    return( string_trait::StringCollateIgnore( GetString(), psz ) );
@@ -1415,7 +1422,7 @@ string string::Tokenize(PCXSTR pszTokens, strsize& iStart ) const
 // find routines
 
 // find the first occurrence of character 'ch', starting at strsize 'iStart'
-strsize string::find(XCHAR ch,strsize iStart, strsize nCount) const throw()
+strsize string::find(XCHAR ch,strsize iStart, strsize nCount) const RELEASENOTHROW
 {
    // iStart is in XCHARs
    ASSERT( iStart >= 0 );
@@ -1448,7 +1455,7 @@ strsize string::find(XCHAR ch,strsize iStart, strsize nCount) const throw()
 }
 
 // find the first occurrence of character 'ch', starting at strsize 'iStart'
-strsize string::find_ci(XCHAR ch,strsize iStart, strsize nCount) const throw()
+strsize string::find_ci(XCHAR ch,strsize iStart, strsize nCount) const RELEASENOTHROW
 {
    // iStart is in XCHARs
    ASSERT( iStart >= 0 );
@@ -1487,7 +1494,7 @@ strsize string::find_first_of(XCHAR ch,strsize iStart) const throw()
 // look for a specific sub-string
 
 // find the first occurrence of string 'pszSub', starting at strsize 'iStart'
-strsize string::find(PCXSTR pszSub,strsize iStart, strsize nCount) const throw()
+strsize string::find(PCXSTR pszSub,strsize iStart, strsize nCount) const RELEASENOTHROW
 {
    // iStart is in XCHARs
    ASSERT( iStart >= 0 );
@@ -1536,7 +1543,7 @@ strsize string::find(PCXSTR pszSub,strsize iStart, strsize nCount) const throw()
 }
 
 // find the first occurrence of string 'pszSub', starting at strsize 'iStart'
-strsize string::find_ci(PCXSTR pszSub,strsize iStart, strsize nCount) const throw()
+strsize string::find_ci(PCXSTR pszSub,strsize iStart, strsize nCount) const RELEASENOTHROW
 {
    // iStart is in XCHARs
    ASSERT( iStart >= 0 );
@@ -1584,7 +1591,7 @@ strsize string::find_ci(PCXSTR pszSub,strsize iStart, strsize nCount) const thro
 }
 
 // find the first occurrence of string 'pszSub', starting at strsize 'iStart'
-strsize string::find_w(PCXSTR pszSub,strsize iStart, strsize nCount) const throw()
+strsize string::find_w(PCXSTR pszSub,strsize iStart, strsize nCount) const RELEASENOTHROW
 {
    // iStart is in XCHARs
    ASSERT( iStart >= 0 );
@@ -1634,7 +1641,7 @@ strsize string::find_w(PCXSTR pszSub,strsize iStart, strsize nCount) const throw
 }
 
 // find the first occurrence of string 'pszSub', starting at strsize 'iStart'
-strsize string::find_wci(PCXSTR pszSub,strsize iStart, strsize nCount) const throw()
+strsize string::find_wci(PCXSTR pszSub,strsize iStart, strsize nCount) const RELEASENOTHROW
 {
    // iStart is in XCHARs
    ASSERT( iStart >= 0 );
@@ -1684,7 +1691,7 @@ strsize string::find_wci(PCXSTR pszSub,strsize iStart, strsize nCount) const thr
 }
 
 // find the first occurrence of any of the characters in string 'pszCharSet'
-strsize string::FindOneOf(PCXSTR pszCharSet, strsize iStart, strsize n) const throw()
+strsize string::FindOneOf(PCXSTR pszCharSet, strsize iStart, strsize n) const RELEASENOTHROW
 {
    string strCharSet(pszCharSet, n);
    // iStart is in XCHARs

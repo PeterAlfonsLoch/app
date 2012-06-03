@@ -7,17 +7,11 @@
 #endif
 
 
-//#include "template/base.h"
-
-//#include "radix/fixed_alloc.h"
-
-
 CLASS_DECL_ca string_manager * __get_string_manager();
 
 
 class string;
 class istring;
-
 
 
 class CLASS_DECL_ca string_interface
@@ -136,26 +130,30 @@ public:
    static const char *  __cdecl  StringFindCharRev(const char * psz,char ch, strsize iStart ) throw();
    static const char *  __cdecl  StringFindStrRev(const char * psz,const char * pszFind, strsize iStart ) throw();
    static const char *  __cdecl  StringScanSet(const char * pszBlock,const char * pszMatch ) throw();
-   static strsize           __cdecl  StringSpanIncluding(const char * pszBlock,const char * pszSet ) throw();
-   static strsize           __cdecl  StringSpanExcluding(const char * pszBlock,const char * pszSet ) throw();
+   static strsize       __cdecl  StringSpanIncluding(const char * pszBlock,const char * pszSet ) throw();
+   static strsize       __cdecl  StringSpanExcluding(const char * pszBlock,const char * pszSet ) throw();
    static char *        __cdecl  StringUppercase( char * psz ) throw();
    static char *        __cdecl  StringLowercase( char * psz ) throw();
    static char *        __cdecl  StringUppercase(char * psz,size_t size ) throw();
    static char *        __cdecl  StringLowercase(char * psz,size_t size ) throw();
    static char *        __cdecl  StringReverse( char * psz ) throw();
-//   static strsize           __cdecl  GetFormattedLength(const char * pszFormat, va_list args ) throw();
-   static strsize           __cdecl  Format(char * pszBuffer,const char * pszFormat, va_list args ) throw();
-#if _SECURE_TEMPLATE
-   static strsize           __cdecl  Format(char * pszBuffer,size_t nlength,const char * pszFormat, va_list args ) throw();
+
+#ifdef WINDOWS
+
+   static strsize       __cdecl  GetFormattedLength(const char * pszFormat, va_list args ) throw();
+
 #endif
-   static strsize           __cdecl  GetcharLength(const char * pszSrc ) throw();
-   static strsize           __cdecl  GetcharLength(const char * pszSrc, strsize nLength ) throw();
-   static strsize           __cdecl  GetcharLength(const wchar_t * pszSource ) throw();
-   static strsize           __cdecl  GetcharLength(const wchar_t * pszSource, strsize nLength ) throw();
+
+   static strsize       __cdecl  Format(char * pszBuffer,const char * pszFormat, va_list args ) throw();
+   static strsize       __cdecl  Format(char * pszBuffer,size_t nlength,const char * pszFormat, va_list args ) throw();
+   static strsize       __cdecl  GetcharLength(const char * pszSrc ) throw();
+   static strsize       __cdecl  GetcharLength(const char * pszSrc, strsize nLength ) throw();
+   static strsize       __cdecl  GetcharLength(const wchar_t * pszSource ) throw();
+   static strsize       __cdecl  GetcharLength(const wchar_t * pszSource, strsize nLength ) throw();
    static void          __cdecl  ConvertTochar(char * pszDest,strsize nDestLength, const char * pszSrc, strsize nSrcLength = -1 ) throw();
    static void          __cdecl  ConvertTochar(char * pszDest,strsize nDestLength, const wchar_t * pszSrc,strsize nSrcLength = -1) throw();
-   static void                   ConvertToOem(char* pstrString) throw();
-   static void                   ConvertToAnsi(char* pstrString) throw();
+   static void                   ConvertToOem(char* pstrString) RELEASENOTHROW;
+   static void                   ConvertToAnsi(char* pstrString) RELEASENOTHROW;
    static void                   ConvertToOem(char* pstrString,size_t size);
    static void                   ConvertToAnsi(char* pstrString,size_t size);
    static void          __cdecl  FloodCharacters(char ch,strsize nLength, char* pch ) throw();
@@ -163,10 +161,10 @@ public:
    static bool          __cdecl  ReAllocSysString( const char* pchData,BSTR* pbstr,strsize nDataLength ) throw();
    static DWORD         __cdecl  FormatMessage(DWORD dwFlags, LPCVOID pSource, DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer, DWORD nSize, va_list* pArguments ) throw();
    static DWORD         __cdecl  format_message(DWORD dwFlags, LPCVOID pSource, DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer, DWORD nSize, va_list* pArguments ) throw();
-   static strsize           __cdecl  SafeStringLen( const char * psz ) throw();
-   static strsize           __cdecl  SafeStringLen( const wchar_t * psz ) throw();
-   static strsize           __cdecl  GetCharLen(const wchar_t* pch ) throw();
-   static strsize           __cdecl  GetCharLen(const char* pch ) throw();
+   static strsize       __cdecl  SafeStringLen( const char * psz ) throw();
+   static strsize       __cdecl  SafeStringLen( const wchar_t * psz ) throw();
+   static strsize       __cdecl  GetCharLen(const wchar_t* pch ) throw();
+   static strsize       __cdecl  GetCharLen(const char* pch ) throw();
    static DWORD         __cdecl  GetEnvironmentVariable(const char * pszVar, char * pszBuffer,DWORD dwSize ) throw();
 
 };
@@ -306,8 +304,8 @@ public:
 
 
 
-   int Collate(PCXSTR psz ) const throw();
-   int CollateNoCase(PCXSTR psz ) const throw();
+   int Collate(PCXSTR psz ) const RELEASENOTHROW;
+   int CollateNoCase(PCXSTR psz ) const RELEASENOTHROW;
 
    int compare(PCXSTR psz ) const;
    int compare_no_case(PCXSTR psz ) const throw();
@@ -373,19 +371,19 @@ public:
    // find routines
 
    // find the first occurrence of character 'ch', starting at index 'iStart'
-   strsize find(XCHAR ch, strsize start = 0, strsize count = -1) const throw();
-   strsize find_ci(XCHAR ch, strsize start = 0, strsize count = -1) const throw();
+   strsize find(XCHAR ch, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find_ci(XCHAR ch, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
 
    // look for a specific sub-string
 
    // find the first occurrence of string 'pszSub', starting at index 'iStart'
-   strsize find(PCXSTR pszSub, strsize start = 0, strsize count = -1) const throw();
-   strsize find_w(PCXSTR pszSub, strsize start = 0, strsize count = -1) const throw();
-   strsize find_ci(PCXSTR pszSub, strsize start = 0, strsize count = -1) const throw();
-   strsize find_wci(PCXSTR pszSub, strsize start = 0, strsize count = -1) const throw();
+   strsize find(PCXSTR pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find_w(PCXSTR pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find_ci(PCXSTR pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find_wci(PCXSTR pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
 
    // find the first occurrence of any of the characters in string 'pszCharSet'
-   strsize FindOneOf(PCXSTR pszCharSet, strsize iStart = 0, strsize n = -1 ) const throw();
+   strsize FindOneOf(PCXSTR pszCharSet, strsize iStart = 0, strsize n = -1 ) const RELEASENOTHROW;
 
    strsize find_first_in(const string & str, strsize pos = 0) const;
    strsize find_first_in(const char * s, strsize pos, strsize n) const;
@@ -1333,97 +1331,120 @@ inline   bool CLASS_DECL_ca operator>(const string & str1,string::PCXSTR psz2 ) 
    return( str1.Compare( psz2 ) > 0 );
 }
 
+
 inline   bool CLASS_DECL_ca operator>(string::PCXSTR psz1,const string & str2 ) throw()
 {
    return( str2.Compare( psz1 ) < 0 );
 }
+
 
 inline   bool CLASS_DECL_ca operator>(const string & str1, int i)
 {
    return strtoi(str1.operator string::PCXSTR()) > i;
 }
 
+
 inline   bool CLASS_DECL_ca operator>(int i, const string & str1)
 {
    return i > strtoi(str1.operator string::PCXSTR());
 }
+
 
 inline   bool CLASS_DECL_ca operator<=(const string & str1,const string & str2 ) throw()
 {
    return( str1.Compare( str2 ) <= 0 );
 }
 
+
 inline   bool CLASS_DECL_ca operator<=(const string & str1,string::PCXSTR psz2 ) throw()
 {
    return( str1.Compare( psz2 ) <= 0 );
 }
+
 
 inline   bool CLASS_DECL_ca operator<=(string::PCXSTR psz1,const string & str2 ) throw()
 {
    return( str2.Compare( psz1 ) >= 0 );
 }
 
+
 inline   bool CLASS_DECL_ca operator<=(const string & str1, int i)
 {
    return strtoi(str1.operator string::PCXSTR()) <= i;
 }
+
 
 inline bool CLASS_DECL_ca operator<=(int i, const string & str1)
 {
    return i <= strtoi(str1.operator string::PCXSTR());
 }
 
+
 inline   bool CLASS_DECL_ca operator>=(const string & str1,const string & str2 ) throw()
 {
    return( str1.Compare( str2 ) >= 0 );
 }
+
 
 inline   bool CLASS_DECL_ca operator>=(const string & str1,string::PCXSTR psz2 ) throw()
 {
    return( str1.Compare( psz2 ) >= 0 );
 }
 
+
 inline   bool CLASS_DECL_ca operator>=(string::PCXSTR psz1,const string & str2 ) throw()
 {
    return( str2.Compare( psz1 ) <= 0 );
 }
+
 
 inline bool CLASS_DECL_ca operator>=(const string & str1, int i)
 {
    return strtoi(str1.operator string::PCXSTR()) >= i;
 }
 
+
 inline   bool CLASS_DECL_ca operator>=(int i, const string & str1)
 {
    return i >= strtoi(str1.operator string::PCXSTR());
 }
+
 
 inline   bool CLASS_DECL_ca operator==(string::XCHAR ch1,const string & str2 ) throw()
 {
    return( (str2.get_length() == 1) && (str2[0] == ch1) );
 }
 
+
 inline   bool CLASS_DECL_ca operator==(const string & str1,string::XCHAR ch2 ) throw()
 {
    return( (str1.get_length() == 1) && (str1[0] == ch2) );
 }
+
 
 inline   bool CLASS_DECL_ca operator!=(string::XCHAR ch1,const string & str2 ) throw()
 {
    return( (str2.get_length() != 1) || (str2[0] != ch1) );
 }
 
+
 inline   bool CLASS_DECL_ca operator!=(const string & str1,string::XCHAR ch2 ) throw()
 {
    return( (str1.get_length() != 1) || (str1[0] != ch2) );
 }
+
 
 inline string::operator PCXSTR() const throw()
 {
    return simple_string::operator PCXSTR();
 }
 
+
 inline string::PCXSTR string::c_str() const throw()
 {
    return simple_string::operator PCXSTR();
 }
+
+
+
+

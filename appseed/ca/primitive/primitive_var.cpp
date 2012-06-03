@@ -50,14 +50,35 @@ var::var(int i)
    operator = (i);
 }
 
-var::var(int64_t i)
+var::var(unsigned int ui )
+{
+   m_etype = type_uint;
+   m_pca2 = NULL;
+   operator = (ui);
+}
+
+var::var(long i)
 {
    m_etype = type_new;
    m_pca2 = NULL;
    operator = (i);
 }
 
-var::var(unsigned int ui )
+var::var(unsigned long ui )
+{
+   m_etype = type_uint;
+   m_pca2 = NULL;
+   operator = (ui);
+}
+
+var::var(long long i)
+{
+   m_etype = type_new;
+   m_pca2 = NULL;
+   operator = (i);
+}
+
+var::var(unsigned long long ui )
 {
    m_etype = type_uint;
    m_pca2 = NULL;
@@ -84,17 +105,6 @@ var::var(double d)
    m_pca2 = NULL;
    operator = (d);
 }
-
-#ifdef WINDOWS
-
-var::var(unsigned long ul)
-{
-   m_etype = type_new;
-   m_pca2 = NULL;
-   operator = (ul);
-}
-
-#endif
 
 var::var(const stringa & var)
 {
