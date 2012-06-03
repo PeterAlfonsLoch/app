@@ -106,7 +106,7 @@
 	<File name="linux/c_os_cross_win_gdi_internal.h" open="0" top="0" tabpos="1">
 		<Cursor position="942" topLine="30" />
 	</File>
-	<File name="linux/c_os_http.cpp" open="1" top="0" tabpos="7">
+	<File name="linux/c_os_http.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="1401" topLine="28" />
 	</File>
 	<File name="linux/c_os_http.h" open="0" top="0" tabpos="37">

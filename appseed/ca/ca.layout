@@ -310,8 +310,8 @@
 	<File name="ex1/ex1_file.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="5160" topLine="193" />
 	</File>
-	<File name="ex1/ex1_io_temp_buffer.cpp" open="1" top="1" tabpos="11">
-		<Cursor position="299" topLine="0" />
+	<File name="ex1/ex1_io_temp_buffer.cpp" open="1" top="1" tabpos="9">
+		<Cursor position="353" topLine="0" />
 	</File>
 	<File name="ex1/ex1_out_buffer.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="646" topLine="0" />
@@ -598,7 +598,7 @@
 	<File name="os/os_cross_windows_time.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="3665" topLine="79" />
 	</File>
-	<File name="os/os_cross_windows_time.h" open="1" top="0" tabpos="10">
+	<File name="os/os_cross_windows_time.h" open="1" top="0" tabpos="8">
 		<Cursor position="23" topLine="0" />
 	</File>
 	<File name="os/os_cross_windows_winnt.h" open="1" top="0" tabpos="3">
