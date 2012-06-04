@@ -210,17 +210,17 @@ namespace ex1
 
       seek_to_end();
 
-      UINT uiLength = get_position();
+      ::file_position uiLength = get_position();
 
       seek_to_begin();
 
-      UINT uiCount = uiLength;
+      ::file_position uiCount = uiLength;
 
-      UINT uiPos = 0;
+      ::file_position uiPos = 0;
       LPSTR lpstr = str.GetBufferSetLength(uiLength + 1);
       while(uiCount > 0)
       {
-         UINT uiRead = read(&lpstr[uiPos], uiCount);
+         ::primitive::memory_size uiRead = read(&lpstr[uiPos], uiCount);
          uiCount -= uiRead;
          uiPos+=uiRead;
          if(uiCount > 0)

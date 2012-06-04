@@ -1,48 +1,48 @@
 #pragma once
 
 
-#include "raw_array.h"
-#include "comparable_eq_array.h"
-#include "comparable_array.h"
-#include "comparable_raw_array.h"
-#include "comparable_primitive_array.h"
-
-#include "ca/primitive/numeric_info.h"
-
+#include "collection_raw_array.h"
+#include "collection_comparable_eq_array.h"
+#include "collection_comparable_array.h"
+#include "collection_comparable_raw_array.h"
+#include "collection_comparable_primitive_array.h"
+          
 #include "ca/ex1/ex1_byte_serializable.h"
+          
+#include "collection_primitive_array.h"
+#include "collection_numeric_array.h"
+          
+#include "collection_logic_array.h"
+          
+#include "collection_list.h"
+#include "collection_comparable_eq_list.h"
+#include "collection_comparable_list.h"
+          
+          
+#include "collection_typed_ptr_array.h"
+#include "collection_typed_pointer_array.h"
+          
+          
+#include "collection_array_ptr.h"
+#include "collection_array_del_ptr.h"
+#include "collection_array_ptr_copy.h"
+#include "collection_array_ptr_alloc.h"
+          
+#include "collection_array_release_ptr.h"
+#include "collection_array_smart_ptr.h"
+          
+#include "collection_array_parent_alloc.h"
+          
+#include "collection_array_app_alloc.h"
+          
+#include "collection_sort_array.h"
+#include "collection_class_sort_array.h"
+          
+          
+#include "collection_map.h"
+#include "collection_fifo_map.h"
+#include "collection_sort_map.h"
 
-#include "primitive_array.h"
-#include "numeric_array.h"
-
-#include "ca/ex1/ex1_byte_serializable.h"
-#include "logic_array.h"
-
-#include "list.h"
-#include "comparable_eq_list.h"
-#include "comparable_list.h"
-
-
-#include "typed_ptr_array.h"
-#include "typed_pointer_array.h"
-
-
-#include "array_ptr.h"
-#include "array_del_ptr.h"
-#include "array_ptr_copy.h"
-#include "array_ptr_alloc.h"
-
-#include "array_release_ptr.h"
-#include "array_smart_ptr.h"
-
-#include "array_parent_alloc.h"
-
-#include "array_app_alloc.h"
-
-#include "sort_array.h"
-#include "class_sort_array.h"
-
-
-#include "map.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // Classes declared in this file
@@ -78,11 +78,11 @@
 
 
 
-#include "pointer_list.h"
-#include "object_list.h"
-#include "typed_ptr_list.h"
-#include "typed_pointer_list.h"
-#include "string_list.h"
+#include "collection_pointer_list.h"
+#include "collection_object_list.h"
+#include "collection_typed_ptr_list.h"
+#include "collection_typed_pointer_list.h"
+#include "collection_string_list.h"
 
 
 class CLASS_DECL_ca map_word_to_ptr :
@@ -133,23 +133,39 @@ public:
 
 
 
-#include "string_to_string_map.h"
-#include "bit_array.h"
-#include "collection/string_array.h"
+#include "collection_string_to_string_map.h"
+#include "collection_bit_array.h"
+#include "collection_string_array.h"
+
 #include "gen/gen_variable_strict_compare.h"
+
 #include "ca/primitive/primitive_var.h"
+
+#include "gen/gen_var.h"
+
+
+#include "collection_stringa.h"
+
+
 #include "gen/gen_var_array.h"
 #include "gen/gen_property.h"
+
+
+
+
 #include "gen/gen_signal.h"
 #include "gen/gen_property_set.h"
 #include "gen/gen_international2.h"
-#include "point_array.h"
-#include "rect_array.h"
 
 
-#include "string_to_string_map.h"
+#include "collection_point_array.h"
+#include "collection_rect_array.h"
 
-#include "typed_pointer_map.h"
+
+#include "collection_string_to_string_map.h"
+
+
+#include "collection_typed_pointer_map.h"
 
 // inline
 #include "collection.inl"
@@ -169,15 +185,17 @@ public:
 
 
 
-#include "sort.h"
+#include "collection_sort.h"
 
-#include "id_array.h"
+#include "collection_id_array.h"
 
-#include "array.h"
+#include "collection_array.h"
 
-#include "bitset.h"
+#include "collection_bitset.h"
 
-#include "spreadset.h"
+#include "collection_packset.h"
+
+#include "collection_spreadset.h"
 
 
 

@@ -935,7 +935,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   size graphics::GetTabbedTextExtent(const char * lpszString, int nCount, int nTabPositions, LPINT lpnTabStopPositions) const
+   size graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, int nTabPositions, LPINT lpnTabStopPositions) const
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);
@@ -952,7 +952,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   size graphics::GetOutputTabbedTextExtent(const char * lpszString, int nCount, int nTabPositions, LPINT lpnTabStopPositions) const
+   size graphics::GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, int nTabPositions, LPINT lpnTabStopPositions) const
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);
@@ -969,8 +969,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   bool graphics::GrayString(::ca::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int),
-      LPARAM lpData, int nCount, int x, int y, int nWidth, int nHeight)
+   bool graphics::GrayString(::ca::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData, int nCount, int x, int y, int nWidth, int nHeight)
    {
       UNREFERENCED_PARAMETER(pBrush);
       UNREFERENCED_PARAMETER(lpfnOutput);
@@ -2027,7 +2026,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   size graphics::GetTextExtent(const char * lpszString, int nCount, int iIndex) const
+   size graphics::GetTextExtent(const char * lpszString, strsize nCount, int iIndex) const
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);
@@ -2035,7 +2034,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   size graphics::GetTextExtent(const char * lpszString, int nCount) const
+   size graphics::GetTextExtent(const char * lpszString, strsize nCount) const
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);
@@ -2048,7 +2047,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   bool graphics::GetTextExtent(sized & size, const char * lpszString, int nCount, int iIndex) const
+   bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, int iIndex) const
    {
       UNREFERENCED_PARAMETER(size);
       UNREFERENCED_PARAMETER(lpszString);
@@ -2057,7 +2056,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   bool graphics::GetTextExtent(sized & size, const char * lpszString, int nCount) const
+   bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount) const
    {
       UNREFERENCED_PARAMETER(size);
       UNREFERENCED_PARAMETER(lpszString);
@@ -2072,7 +2071,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   size graphics::GetOutputTextExtent(const char * lpszString, int nCount) const
+   size graphics::GetOutputTextExtent(const char * lpszString, strsize nCount) const
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);
@@ -2085,7 +2084,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   int graphics::draw_text(const char * lpszString, int nCount, LPRECT lpRect, UINT nFormat)
+   int graphics::draw_text(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat)
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);
@@ -2102,7 +2101,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   int graphics::draw_text_ex(LPTSTR lpszString, int nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
+   int graphics::draw_text_ex(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);

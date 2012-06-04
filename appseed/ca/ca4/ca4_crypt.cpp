@@ -259,7 +259,7 @@ namespace ca4
       string strFormat;
       for(int i = 0; i < V5_FINAL_HASH_BYTES - DIGESTBYTES; i+=2)
       {
-         int iDigit = System.math().RandRange(0, 255);
+         int64_t iDigit = System.math().RandRange(0, 255);
          strFormat.Format("%02x", iDigit);
          strSalt += strFormat;
       }

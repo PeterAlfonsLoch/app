@@ -991,7 +991,7 @@ set_size(::count iSize)
 }
 
 
-#include "ca/collection/gen_lemon_array.h"
+#include "ca/collection/collection_gen_lemon_array.h"
 
 
 

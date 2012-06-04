@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "memory_base.h"
+
 
 
 namespace primitive
@@ -37,8 +37,3 @@ namespace primitive
 } // namespace primitive
 
 
-#include "virtual_memory.h"
-#include "shared_memory.h"
-#include "memory_container.h"
-#include "memory_file.h"
-#include "shared_file.h"

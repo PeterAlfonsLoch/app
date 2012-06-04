@@ -1,7 +1,6 @@
 #pragma once
 
 
-#include "collection/stringa.h"
 
 
 class CLASS_DECL_ca var_array : 

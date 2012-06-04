@@ -1,8 +1,6 @@
 #pragma once
 
 
-#include "ca/collection/array_del_ptr.h"
-#include "ca/collection/array_ptr_alloc.h"
 
 
 namespace gen
@@ -87,7 +85,7 @@ namespace gen
       inline ::count size() { return ::comparable_array < signalizable * >::size(); }
       inline ::count count() { return ::comparable_array < signalizable * >::count(); }
 
-      virtual void install_handlers(signalizable * psignalizable) {}
+      virtual void install_handlers(signalizable *) {}
 
    };
 

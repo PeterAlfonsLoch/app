@@ -1,15 +1,36 @@
 #pragma once
 
 
-#include "logic.h"
-#include "natural.h"
-#include "index.h"
-#include "img.h"
-#include "scalar.h"
-#include "check.h"
-#include "string.h"
+// logic
+#include "primitive_logic.h"
+
+
+// maths
+#include "primitive_natural.h"
+#include "primitive_index.h"
+#include "primitive_numeric_info.h"
+#include "primitive_scalar.h"
+
+
+// geometry
+#include "primitive_align.h"
+#include "primitive_geometric_types.h"
+#include "primitive_size.h"
+#include "primitive_point.h"
+#include "primitive_rectangle.h"
+
+
+// visual
+#include "primitive_img.h"
+#include "primitive_color.h"
+
+
+// physics
 #include "ca/gen/gen_time.h"
-#include "geometric_types.h"
+
+
+// user
+#include "primitive_check.h"
 
 
 #include "datetime/datetime.h"

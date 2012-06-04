@@ -6,7 +6,7 @@
 
 
 
-template<class TYPE, class ARG_TYPE = const TYPE&>
+template < class TYPE, class ARG_TYPE = const TYPE & >
 class base_array :
    virtual public ::radix::object
 {

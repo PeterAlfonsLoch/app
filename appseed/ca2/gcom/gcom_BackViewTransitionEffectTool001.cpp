@@ -1080,8 +1080,8 @@ namespace gcom
       {
 //         Main & viewinterface = HelperGetMain();
 
-         int iRandX = System.math().RandRange(-iMaxRand, iMaxRand);
-         int iRandY = System.math().RandRange(-iMaxRand, iMaxRand);
+         int iRandX = (int) System.math().RandRange(-iMaxRand, iMaxRand);
+         int iRandY = (int) System.math().RandRange(-iMaxRand, iMaxRand);
 
          rect rect(lpcrect);
 
@@ -1113,7 +1113,7 @@ namespace gcom
       {
 //         Main & viewinterface = HelperGetMain();
 
-         int iRand = System.math().RandRange(-iMaxRand, iMaxRand);
+         int iRand = (int) System.math().RandRange(-iMaxRand, iMaxRand);
 
          rect rect(lpcrect);
 

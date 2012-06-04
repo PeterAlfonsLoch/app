@@ -445,6 +445,15 @@ public:
    // Reverse the string
    string& MakeReverse();
 
+   // Convert the string to uppercase
+   string uppered() const;
+
+   // Convert the string to lowercase
+   string lowered() const;
+
+   // Convert the string to lowercase
+   string reversed() const;
+
    // trimming
 
    // remove all trailing whitespace
@@ -475,6 +484,37 @@ public:
 
    // remove all leading occurrences of any of the characters in string 'pszTargets'
    string& trim_left(PCXSTR pszTargets );
+
+
+   // remove all trailing whitespace
+   string right_trimmed() const;
+
+   // remove all leading whitespace
+   string left_trimmed() const;
+
+   // remove all leading and trailing whitespace
+   string trimmed() const;
+
+   // remove all leading and trailing occurrences of character 'chTarget'
+   string trimmed(XCHAR chTarget) const;
+
+   // remove all leading and trailing occurrences of any of the characters in the string 'pszTargets'
+   string trimmed(PCXSTR pszTargets) const;
+
+   // trimming anything (either side)
+
+   // remove all trailing occurrences of character 'chTarget'
+   string right_trimmed(XCHAR chTarget) const;
+
+   // remove all trailing occurrences of any of the characters in string 'pszTargets'
+   string right_trimmed(PCXSTR pszTargets) const;
+
+   // remove all leading occurrences of character 'chTarget'
+   string left_trimmed(XCHAR chTarget) const;
+
+   // remove all leading occurrences of any of the characters in string 'pszTargets'
+   string left_trimmed(PCXSTR pszTargets) const;
+
 
    // Convert the string to the OEM character set
    void AnsiToOem();
@@ -832,7 +872,7 @@ public:
 };
 
 
-#include "fixed_string.h"
+
 
 namespace gen
 {
@@ -847,7 +887,7 @@ namespace gen
 
 #include "x/x_charcategory.h"
 #include "gen/gen_bit.h"
-#include "collection/bit_array.h"
+#include "collection/collection_bit_array.h"
 
 #include "gen/gen_ch.h"
 #include "gen/gen_ch_class.h"

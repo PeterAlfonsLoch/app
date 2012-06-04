@@ -25,10 +25,7 @@ bool copy(tagRECTD * prectDest, const RECT * prectSrc)
 
 bool copy(RECT * prectDest, const tagRECTD * prectSrc)
 {
-   if(is64(prectSrc->left)
-   || is64(prectSrc->top)
-   || is64(prectSrc->right)
-   || is64(prectSrc->bottom))
+   if(is64integer(prectSrc->left) || is64integer(prectSrc->top) || is64integer(prectSrc->right) || is64integer(prectSrc->bottom))
       return FALSE;
    prectDest->left      = (LONG) prectSrc->left;
    prectDest->top       = (LONG) prectSrc->top;
@@ -39,10 +36,12 @@ bool copy(RECT * prectDest, const tagRECTD * prectSrc)
 
 bool copy(tagRECTD * prectDest, const __rect64 * prectSrc)
 {
-   prectDest->left      = prectSrc->left;
-   prectDest->top       = prectSrc->top;
-   prectDest->right     = prectSrc->right;
-   prectDest->bottom    = prectSrc->bottom;
+   if(!is_double(prectSrc->left) || !is_double(prectSrc->top) || !is_double(prectSrc->right) || !is_double(prectSrc->bottom))
+      return FALSE;
+   prectDest->left      = (double) prectSrc->left;
+   prectDest->top       = (double) prectSrc->top;
+   prectDest->right     = (double) prectSrc->right;
+   prectDest->bottom    = (double) prectSrc->bottom;
    return TRUE;
 }
 
@@ -242,10 +241,7 @@ bool copy(__rect64 * prectDest, const RECT * prectSrc)
 
 bool copy(RECT * prectDest, const __rect64 * prectSrc)
 {
-   if(is64(prectSrc->left)
-   || is64(prectSrc->top)
-   || is64(prectSrc->right)
-   || is64(prectSrc->bottom))
+   if(!is32integer(prectSrc->left) || !is32integer(prectSrc->top) || !is32integer(prectSrc->right) || !is32integer(prectSrc->bottom))
       return FALSE;
    prectDest->left      = (LONG) prectSrc->left;
    prectDest->top       = (LONG) prectSrc->top;

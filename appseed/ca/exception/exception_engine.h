@@ -28,9 +28,6 @@
 #pragma once
 
 
-#ifdef WINDOWS
-
-
 #include <imagehlp.h>
 
 
@@ -114,9 +111,6 @@ namespace exception
 
 
 } // namespace exception
-
-
-#endif
 
 
 // Change Log:

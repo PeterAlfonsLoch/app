@@ -20,9 +20,6 @@
 #include "gen_std_pair.h"
 
 
-#include "gen_equals.h"
-#include "gen_compare.h"
-
 #include "gen_c_number.h"
 
 
@@ -49,11 +46,11 @@
 #include "gen_template.h"
 
 
-#include "ca/collection/Base2DArray.h"
-#include "ca/collection/string_array.h"
-#include "ca/collection/stringa.h"
-#include "ca/collection/stringl.h"
-#include "ca/collection/string_sort_array.h"
+#include "ca/collection/collection_base_2array.h"
+#include "ca/collection/collection_string_array.h"
+#include "ca/collection/collection_stringa.h"
+#include "ca/collection/collection_stringl.h"
+#include "ca/collection/collection_string_sort_array.h"
 
 #include "gen_string_tokenizer.h"
 
@@ -65,7 +62,7 @@
 #include "gen_full_pointer.h"
 #include "gen_time.h"
 #include "ca/ex1/ex1_byte_serializable.h"
-#include "collection/stringa.h"
+#include "collection/collection_stringa.h"
 #include "gen_var.h"
 #include "gen_var_array.h"
 
@@ -74,7 +71,6 @@
 #include "ca/radix/radix_pipe.h"
 #include "gen_process.h"
 
-#include "ca/primitive/memory.h"
 
 #include "gen_savings.h"
 
@@ -90,7 +86,9 @@
 
 
 #include "gen_str.h"
-#include "primitive/int_biunique.h"
+
+
+#include "primitive/primitive_int_biunique.h"
 
 
 #include "gen_memory_file.h"

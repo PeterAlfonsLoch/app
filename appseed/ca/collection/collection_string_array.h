@@ -26,6 +26,8 @@ public:
    index get_upper_bound(index i, count count) const;
    void set_size(count nNewSize, count nGrowBy = -1);
 
+   count size() const;
+
    void free_extra();
    void remove_all();
    void clear();
@@ -70,6 +72,8 @@ public:
    void add(const id & id);
 
    index add(const string & newElement);
+
+   void push_back(const string & newElement);
 
    count add(const string_array & src);
 
@@ -165,3 +169,6 @@ inline index string_array::get_upper_bound() const
    { return m_nSize - 1; }
 inline index string_array::get_upper_bound(count count) const
    { return m_nSize - 1 - count; }
+
+inline count string_array::size() const
+   { return m_nSize; }

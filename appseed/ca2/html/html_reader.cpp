@@ -24,9 +24,9 @@ namespace html
 
    void reader::BeginParse(dword_ptr dwAppData, bool &bAbort)
    {
+      UNREFERENCED_PARAMETER(dwAppData);
       m_ptag = NULL;
       m_ptagMain = NULL;
-      UNUSED_ALWAYS(dwAppData);
       bAbort = false;
    }
 
@@ -63,8 +63,8 @@ namespace html
 
    void reader::EndTag(lite_html_tag *pTag, dword_ptr dwAppData, bool &bAbort)
    {
-      UNUSED_ALWAYS(pTag);
-      UNUSED_ALWAYS(dwAppData);
+      UNREFERENCED_PARAMETER(pTag);
+      UNREFERENCED_PARAMETER(dwAppData);
       if(m_ptag->parent() != NULL && pTag->getTagName() != "visual")
       {
          m_ptag = m_ptag->parent();
@@ -87,15 +87,15 @@ namespace html
    
    void reader::Comment(const string &rComment, dword_ptr dwAppData, bool &bAbort)
    {
-      UNUSED_ALWAYS(rComment);
-      UNUSED_ALWAYS(dwAppData);
+      UNREFERENCED_PARAMETER(rComment);
+      UNREFERENCED_PARAMETER(dwAppData);
       bAbort = false;
    }
 
    void reader::EndParse(dword_ptr dwAppData, bool bIsAborted)
    {
-      UNUSED_ALWAYS(dwAppData);
-      UNUSED_ALWAYS(bIsAborted);
+      UNREFERENCED_PARAMETER(dwAppData);
+      UNREFERENCED_PARAMETER(bIsAborted);
    }
 
    tag * reader::detach_main_tag()

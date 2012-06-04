@@ -22,7 +22,7 @@ namespace xml
 
       
       e_action       m_eaction;
-      int_array      m_iaPath;
+      index_array    m_iaPath;
       string         m_strName;
       string         m_strValue;
 

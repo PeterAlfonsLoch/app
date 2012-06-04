@@ -1,17 +1,19 @@
 #pragma once
 
-#include "primitive/img.h"
 
 struct FIBITMAP;
 
+
 namespace ca
 {
+
 
    //////////////////////////////////////////////////////////////////////
    //   Creator : El Barto (ef00@luc.ac.be)
    //   Location : http://www.luc.ac.be/~ef00/ebgfx
    //   Date : 09-04-98
    //////////////////////////////////////////////////////////////////////
+
 
    class CLASS_DECL_ca dib :
       virtual public ::radix::object,
@@ -195,4 +197,9 @@ namespace ca
 
    };
 
+
 } // namespace ca
+
+
+
+

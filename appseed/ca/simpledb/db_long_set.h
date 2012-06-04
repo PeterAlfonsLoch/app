@@ -9,21 +9,22 @@ class CLASS_DECL_ca db_long_set :
 {
 public:
 
+
    class CLASS_DECL_ca long_item
    {
    public:
 
-      DWORD       m_dwTimeout;
-      long        m_l;
+      DWORD          m_dwTimeout;
+      int64_t        m_l;
 
    };
 
 
-   ::collection::string_map < long_item > m_map;
-   bool                       m_bIndexed;
+   ::collection::string_map < long_item >       m_map;
+   bool                                         m_bIndexed;
 
-   sockets::socket_handler    m_handler;
-   sockets::http_session *           m_phttpsession;
+   sockets::socket_handler                      m_handler;
+   sockets::http_session *                      m_phttpsession;
 
    
 
@@ -36,15 +37,36 @@ public:
 
 
    // load Functions
-   bool load(const char * lpKey, long *lValue);
-   bool load(const char * lpKey, int &lValue);
+   template < typename T >
+   inline bool load(const char * lpKey, T & rvalue)
+   {
+      
+      int64_t i;
+
+      if(!load(lpKey, &i))
+         return false;
+
+      rvalue = (T &) i;
+
+      return true;
+
+   }
+
+   bool load(const char * lpKey, int64_t * lValue);
    bool load(const char * lpKey, LPRECT lpRect);
    bool load(const char * lpKey, WINDOWPLACEMENT & wp);
    bool load(const char * lpKey, LPPOINT lpPoint);
 
    // save Functions
-   bool save(const char * lpKey, long lValue);
-   bool save(const char * lpKey, int lValue);
+   template < typename T >
+   inline bool save(const char * lpKey, T value)
+   {
+      
+      return save(lpKey, (int64_t) value);
+
+   }
+
+   bool save(const char * lpKey, int64_t lValue);
    bool save(const char * lpKey, LPCRECT lpRect);
    bool save(const char * lpKey, WINDOWPLACEMENT & wp);
    bool save(const char * lpKey, LPPOINT lpPoint);

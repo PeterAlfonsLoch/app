@@ -202,7 +202,10 @@ namespace bergedge
 
    void frame::_001OnMouseLeave(gen::signal_object * pobj)
    {
-      SCAST_PTR(gen::message::mouse, pmouse, pobj);
+      
+      UNREFERENCED_PARAMETER(pobj);
+
+//      SCAST_PTR(gen::message::mouse, pmouse, pobj);
 //      m_bMouseOver = false;
 //      bergedge::application * papp = dynamic_cast < bergedge::application * > (get_app());
    }

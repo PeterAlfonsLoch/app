@@ -97,7 +97,7 @@ bool IsWow64()
       return FALSE;
    }
    
-   return bIsWow64;
+   return bIsWow64 != FALSE;
 
 }
 

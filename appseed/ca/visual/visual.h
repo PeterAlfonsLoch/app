@@ -13,8 +13,6 @@ namespace visual
    class application;
 } // namespace visual
 
-#include "primitive/img.h"
-#include "primitive/color.h"
 
 CLASS_DECL_ca bool TextOutU(HDC hdc, int x, int y, const char * lpString, int c);
 CLASS_DECL_ca bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, LPSIZE psizl);

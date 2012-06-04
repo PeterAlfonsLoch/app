@@ -684,6 +684,11 @@ int isdigit_dup(int ch)
    return ch >= '0' && ch <= '9';
 }
 
+int isxdigit_dup(int ch)
+{
+   return (ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'f') || (ch >= 'A' && ch <= 'F');
+}
+
 int isalpha_dup(int ch)
 {
    return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z');

@@ -17,8 +17,9 @@ db_long_set::~db_long_set()
 }
 
 
+
 // Adiciona na matriz System nomes dos diretórios de imagens.
-bool db_long_set::load(const char * lpKey, long *plValue)
+bool db_long_set::load(const char * lpKey, int64_t * plValue)
 {
 
    long_item longitem;
@@ -91,19 +92,7 @@ bool db_long_set::load(const char * lpKey, long *plValue)
    return true;
 }
 
-bool db_long_set::load(const char * lpKey, int & iValue)
-{
-   long lValue;
-   if(load(lpKey, &lValue))
-   {
-      iValue = (int) lValue;
-      return true;
-   }
-   else
-      return false;
-}
-
-bool db_long_set::save(const char * lpKey, long lValue)
+bool db_long_set::save(const char * lpKey, int64_t lValue)
 {
 
    gen::property_set post(get_app());
@@ -197,11 +186,6 @@ bool db_long_set::save(const char * lpKey, long lValue)
    return true;*/
 }
 
-bool db_long_set::save(const char * lpKey, int iValue)
-{
-   return save(lpKey, (long) iValue);
-}
-
 bool db_long_set::find(const char * lpKey)
 {
    UNREFERENCED_PARAMETER(lpKey);
@@ -289,18 +273,27 @@ bool db_long_set::find(const char * lpKey)
 
 bool db_long_set::load(const char * lpKey, LPRECT lpRect)
 {
+
    rect rect;
+
    string strKey = lpKey;
-   if(!load(strKey + ".left", &rect.left))
-      return FALSE;
-   if(!load(strKey + ".top", &rect.top))
-      return FALSE;
-   if(!load(strKey + ".right", &rect.right))
-      return FALSE;
-   if(!load(strKey + ".bottom", &rect.bottom))
-      return FALSE;
+
+   if(!load(strKey + ".left", rect.left))
+      return false;
+
+   if(!load(strKey + ".top", rect.top))
+      return false;
+
+   if(!load(strKey + ".right", rect.right))
+      return false;
+
+   if(!load(strKey + ".bottom", rect.bottom))
+      return false;
+
    *lpRect = rect;
-   return TRUE;
+
+   return true;
+
 }
 
 //////////////////////////////
@@ -311,15 +304,21 @@ bool db_long_set::load(const char * lpKey, LPRECT lpRect)
 
 bool db_long_set::save(const char * lpKey, LPCRECT lpRect)
 {
+   
    string strKey = lpKey;
+
    if(!save(strKey + ".left", lpRect->left))
       return false;
+
    if(!save(strKey + ".top", lpRect->top))
       return false;
+
    if(!save(strKey + ".right", lpRect->right))
       return false;
+
    if(!save(strKey + ".bottom", lpRect->bottom))
       return false;
+
    return true;
 
 }
@@ -559,19 +558,20 @@ bool db_long_set::load(const char * lpKey, WINDOWPLACEMENT & wp)
 {
 
    load(lpKey , &wp.rcNormalPosition);
-    string strKey;
-    strKey = lpKey;
-    strKey += ".ptMinPosition";
-    load(strKey, &wp.ptMinPosition);
-    strKey = lpKey;
-    strKey += ".ptMaxPosition";
-    load(strKey, &wp.ptMaxPosition);
-    strKey = lpKey;
-    strKey += ".showCmd";
-    load(strKey, (int &) wp.showCmd);
-    strKey = lpKey;
-    strKey += ".flags";
-    load(strKey, (int &) wp.flags);
+
+   string strKey;
+   strKey = lpKey;
+   strKey += ".ptMinPosition";
+   load(strKey, &wp.ptMinPosition);
+   strKey = lpKey;
+   strKey += ".ptMaxPosition";
+   load(strKey, &wp.ptMaxPosition);
+   strKey = lpKey;
+   strKey += ".showCmd";
+   load(strKey, (int &) wp.showCmd);
+   strKey = lpKey;
+   strKey += ".flags";
+   load(strKey, (int &) wp.flags);
 
    return true;
 }
@@ -579,24 +579,35 @@ bool db_long_set::load(const char * lpKey, WINDOWPLACEMENT & wp)
 
 bool db_long_set::load(const char * lpKey, LPPOINT lpPoint)
 {
+
    point point;
+
    string strKey = lpKey;
-   if(!load(strKey + ".x", &point.x))
-      return FALSE;
-   if(!load(strKey + ".y", &point.y))
-      return FALSE;
+
+   if(!load(strKey + ".x", point.x))
+      return false;
+
+   if(!load(strKey + ".y", point.y))
+      return false;
+
    *lpPoint = point;
-   return TRUE;
+
+   return true;
 
 }
 
 bool db_long_set::save(const char * lpKey, LPPOINT lpPoint)
 {
+   
    string strKey = lpKey;
+
    if(!save(strKey + ".x", lpPoint->x))
       return false;
+
    if(!save(strKey + ".y", lpPoint->y))
       return false;
+
    return true;
+
 }
 

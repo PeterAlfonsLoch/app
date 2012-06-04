@@ -25,7 +25,7 @@ namespace fs
    {
    }
 
-   void tree::dump(dump_context & dumpcontext) const
+   void tree::dump(dump_context &) const
    {
    }
 #endif //DEBUG

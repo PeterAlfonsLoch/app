@@ -482,7 +482,7 @@ public:
       ENSURE( pstringmanager != NULL );
 
       if(pchSrc == NULL && nLength != 0)
-         throw hresult_exception(E_INVALIDARG);
+         throw invalid_argument_exception();
 
       if(nLength < 0)
          nLength = (strsize) strlen(pchSrc);
@@ -576,14 +576,46 @@ public:
       return( *this );
    }
 
-   XCHAR operator[](strsize iChar ) const
+   XCHAR operator [](strsize iChar ) const
    {
       ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
 
       if( (iChar < 0) || (iChar > get_length()) )
-         throw hresult_exception(E_INVALIDARG);
+         throw invalid_argument_exception();
 
       return( m_pszData[iChar] );
+   }
+
+   XCHAR & operator [](strsize iChar )
+   {
+      ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
+
+      if( (iChar < 0) || (iChar > get_length()) )
+         throw invalid_argument_exception();
+
+      return m_pszData[iChar];
+   }
+
+   // non error at
+   XCHAR s_at(strsize iChar) const
+   {
+
+      if((iChar < 0) || (iChar > get_length()))
+         throw '\0';
+
+      return m_pszData[iChar];
+
+   }
+
+   // non error at
+   XCHAR & s_at(strsize iChar )
+   {
+
+      if((iChar < 0) || (iChar > get_length()))
+         throw '\0';
+
+      return m_pszData[iChar];
+
    }
 
    inline operator PCXSTR() const NOTHROW
@@ -709,7 +741,7 @@ public:
    {
       ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
       if( (iChar < 0) || (iChar > get_length()) )
-         throw hresult_exception(E_INVALIDARG);
+         throw invalid_argument_exception();
 
       return( m_pszData[iChar] );
    }
@@ -816,7 +848,7 @@ public:
       ASSERT( (iChar >= 0) && (iChar < get_length()) );
 
       if( (iChar < 0) || (iChar >= get_length()) )
-         throw hresult_exception(E_INVALIDARG);
+         throw invalid_argument_exception();
 
       strsize nLength = get_length();
       PXSTR pszBuffer = GetBuffer();
@@ -852,7 +884,7 @@ public:
          // into the newly allocated buffer instead.
 
          if(pszSrc == NULL)
-            throw hresult_exception(E_INVALIDARG);
+            throw invalid_argument_exception();
 
          uint_ptr nOldLength = (uint_ptr) get_length();
          uint_ptr nOffset = (uint_ptr) (pszSrc - GetString());
@@ -1188,7 +1220,7 @@ public:
       ASSERT( nLength <= m_nBufferLength );
 
       if( nLength < 0 )
-         throw hresult_exception(E_INVALIDARG);
+         throw invalid_argument_exception();
 
       m_nLength = nLength;
    }

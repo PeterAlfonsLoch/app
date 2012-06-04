@@ -69,6 +69,8 @@ namespace primitive
       virtual HGLOBAL           detach_shared_storage();
       virtual LPBYTE            detach_virtual_storage();
 
+      string str() const;
+
    };
 
    inline LPBYTE memory_container ::get_data()
@@ -148,6 +150,12 @@ namespace primitive
 
    }
 
+   inline string memory_container::str() const
+   {
+      
+      return string((const char *) get_data(), get_size());
+
+   }
 
 } // namespace primitive
 

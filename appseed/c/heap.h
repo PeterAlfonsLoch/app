@@ -92,12 +92,12 @@ public:
 
 };
 
-inline CLASS_DECL_c void * __cdecl operator new (size_t size, const c_class & c)
+inline CLASS_DECL_c void * __cdecl operator new (size_t size, const c_class &)
 {
    return _ca_alloc(size);
 }
 
-inline CLASS_DECL_c void * __cdecl operator new[](size_t size, const c_class & c)
+inline CLASS_DECL_c void * __cdecl operator new[](size_t size, const c_class &)
 {
    return _ca_alloc(size);
 }

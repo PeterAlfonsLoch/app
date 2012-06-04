@@ -204,13 +204,13 @@ zlib_local void write_table(out, table)
 /* =========================================================================
  * This function can be used by asm versions of crc32()
  */
-const unsigned long FAR * ZEXPORT get_crc_table()
+const uint32_t FAR * ZEXPORT get_crc_table()
 {
 #ifdef DYNAMIC_CRC_TABLE
     if (crc_table_empty)
         make_crc_table();
 #endif /* DYNAMIC_CRC_TABLE */
-    return (const unsigned long FAR *)crc_table;
+    return (const uint32_t FAR *)crc_table;
 }
 
 /* ========================================================================= */
@@ -218,10 +218,7 @@ const unsigned long FAR * ZEXPORT get_crc_table()
 #define DO8 DO1; DO1; DO1; DO1; DO1; DO1; DO1; DO1
 
 /* ========================================================================= */
-unsigned long ZEXPORT crc32(
-    unsigned long crc,
-    const unsigned char FAR *buf,
-    uint64_t len)
+uint32_t ZEXPORT crc32(uint32_t crc, const unsigned char FAR *buf, uint64_t len)
 {
     if (buf == Z_NULL) return 0UL;
 
@@ -369,9 +366,9 @@ zlib_local void gf2_matrix_square(
 }
 
 /* ========================================================================= */
-uLong ZEXPORT crc32_combine(
-    uLong crc1,
-    uLong crc2,
+uint32_t ZEXPORT crc32_combine(
+    uint32_t crc1,
+    uint32_t crc2,
     z_off_t len2)
 {
     int n;

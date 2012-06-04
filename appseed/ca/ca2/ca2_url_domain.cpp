@@ -283,7 +283,7 @@ url_domain_base::url_domain_base()
    }
 
 
-   bool CLASS_DECL_ca server_is_top_domain(const char * pszTop1, int blen, const char * pszTop2, int alen)
+   bool CLASS_DECL_ca server_is_top_domain(const char * pszTop1, strsize blen, const char * pszTop2, strsize alen)
    {
       char a1;
       char a2;

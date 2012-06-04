@@ -275,7 +275,7 @@ namespace dynamic_source
 
 #ifdef WINDOWS
          HMODULE hmodule = ::GetModuleHandleW(gen::international::utf8_to_unicode("\\\\?\\" + m_strScriptPath));
-         bool b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + m_strScriptPath), &hmodule);
+         bool b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + m_strScriptPath), &hmodule) != FALSE;
          if(hmodule != NULL && !::FreeLibrary(hmodule))
          {
             DWORD dwError = ::GetLastError();
@@ -285,7 +285,7 @@ namespace dynamic_source
          strPdb = m_strScriptPath;
          gen::str::ends_eat_ci(strPdb, ".dll");
          strPdb += ".pdb";
-         b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + strPdb), &hmodule);
+         b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + strPdb), &hmodule) != FALSE;
          if(hmodule != NULL && !::FreeLibrary(hmodule))
          {
             DWORD dwError = ::GetLastError();

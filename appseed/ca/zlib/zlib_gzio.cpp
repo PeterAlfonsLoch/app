@@ -63,7 +63,7 @@ typedef struct gz_stream {
     FILE     *file;   /* .gz file */
     Byte     *inbuf;  /* input buffer */
     Byte     *outbuf; /* output buffer */
-    uLong    crc;     /* crc32 of uncompressed data */
+    uint32_t    crc;     /* crc32 of uncompressed data */
     char     *msg;    /* error message */
     char     *path;   /* path name for debugging only */
     int      transparent; /* 1 if input file is not a .gz file */

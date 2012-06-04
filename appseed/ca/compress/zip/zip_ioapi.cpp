@@ -113,24 +113,33 @@ long ZCALLBACK ftell_file_func (voidpf opaque, voidpf stream)
 
 long ZCALLBACK fseek_file_func (voidpf opaque, voidpf stream, uLong offset, int origin)
 {
-    int fseek_origin=0;
-    long ret;
-    switch (origin)
-    {
-    case ZLIB_FILEFUNC_SEEK_CUR :
-        fseek_origin = SEEK_CUR;
-        break;
-    case ZLIB_FILEFUNC_SEEK_END :
-        fseek_origin = SEEK_END;
-        break;
-    case ZLIB_FILEFUNC_SEEK_SET :
-        fseek_origin = SEEK_SET;
-        break;
-    default: return -1;
-    }
-    ret = 0;
-    fseek((FILE *)stream, offset, fseek_origin);
-    return ret;
+   int fseek_origin=0;
+   long ret;
+   switch (origin)
+   {
+      case ZLIB_FILEFUNC_SEEK_CUR :
+      fseek_origin = SEEK_CUR;
+      break;
+   case ZLIB_FILEFUNC_SEEK_END :
+      fseek_origin = SEEK_END;
+      break;
+   case ZLIB_FILEFUNC_SEEK_SET :
+      fseek_origin = SEEK_SET;
+      break;
+   default: return -1;
+   }
+   ret = 0;
+   int iSeek = (int) min(INT_MAX, offset);
+   fseek((FILE *)stream, iSeek, fseek_origin);
+   while(true)
+   {
+      offset -= iSeek;
+      if(offset <= 0)
+         break;
+      iSeek = (int) min(INT_MAX, offset);
+      fseek((FILE *)stream, fseek_origin == ZLIB_FILEFUNC_SEEK_END ? -iSeek : iSeek, SEEK_CUR);
+   }
+   return ret;
 }
 
 int ZCALLBACK fclose_file_func (voidpf opaque, voidpf stream)

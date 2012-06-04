@@ -290,7 +290,7 @@ namespace datetime
       ASSUME(m_time != -1);   */    // indicates an illegal input time
       if(m_time == -1)
       {
-         throw hresult_exception(E_INVALIDARG);
+         throw invalid_argument_exception();
       }
    }
 
@@ -320,7 +320,7 @@ namespace datetime
       ASSUME(m_time != -1);       // indicates an illegal input time
 
       if(m_time == -1)
-         throw hresult_exception(E_INVALIDARG);
+         throw invalid_argument_exception();
 
    }
 
@@ -349,7 +349,7 @@ namespace datetime
       if (!FileTimeToLocalFileTime(&fileTime, &localTime))
       {
          m_time = 0;
-         throw hresult_exception(E_INVALIDARG);
+         throw invalid_argument_exception();
          return;
       }
 
@@ -358,7 +358,7 @@ namespace datetime
       if (!FileTimeToSystemTime(&localTime, &sysTime))
       {
          m_time = 0;
-         throw hresult_exception(E_INVALIDARG);
+         throw invalid_argument_exception();
          return;
       }
 
@@ -464,42 +464,52 @@ namespace datetime
 
    struct tm* time::GetGmtTm(struct tm* ptm) const
    {
-#if _SECURE_TEMPLATE
-      // Ensure ptm is valid
-      ENSURE( ptm != NULL );
-
       if (ptm != NULL)
       {
-         struct tm ptmTemp;
-         errno_t err = _gmtime64_s(&ptmTemp, &m_time);
 
-         // Be sure the call succeeded
-         if(err != 0) { return NULL; }
 
-         *ptm = ptmTemp;
+#ifdef WINDOWS
+
+         struct tm tmTemp;
+
+         errno_t err = _gmtime64_s(&tmTemp, &m_time);
+
+         if (err != 0)
+         {
+            return NULL;    // indicates that m_time was not initialized!
+         }
+
+         *ptm = tmTemp;
+
          return ptm;
-      }
 
-      return NULL;
 #else
-      if (ptm != NULL)
-      {
 
          struct tm * ptmTemp;
 
-         ptmTemp = _gmtime64(&m_time);
+         ptmTemp = gmtime(&m_time);
 
          if(ptmTemp == NULL)
+            return NULL;
+
+         if(errno != 0)
             return NULL;
 
          *ptm = *ptmTemp;
 
          return ptm;
 
+#endif
+
       }
       else
-         return _gmtime64(&m_time);
-#endif
+      {
+
+         return NULL;
+
+      }
+
+
    }
 
    struct tm* time::GetLocalTm(struct tm* ptm) const
@@ -541,6 +551,12 @@ namespace datetime
          return ptm;
 
 #endif
+
+      }
+      else
+      {
+
+         return NULL;
 
       }
 

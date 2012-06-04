@@ -34,7 +34,9 @@ public:
    void set_at_grow(index nIndex, const string & newElement);
    index add(const char * newElement);
    index add(const string & newElement);
+   void push(const string & newElement);
    count add(const string_array& src);
+
    void copy(const string_array& src);
    string & operator[](index nIndex);
    void insert_at(index nIndex, const char * newElement, count nCount = 1);
@@ -102,6 +104,12 @@ inline index str_sort_array::add(const string & newElement)
 {
    m_bSorted = false;
    return m_stra.add(newElement);
+}
+
+inline void str_sort_array::push(const string & newElement)
+{
+   m_bSorted = false;
+   return m_stra.push_back(newElement);
 }
 
 inline count str_sort_array::add(const string_array& src)

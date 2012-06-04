@@ -966,22 +966,24 @@ double rectd::width() const throw()
    { return right - left; }
 double rectd::height() const throw()
    { return bottom - top; }
-class size rectd::size() const throw()
-   {
-      class size sizeRet(right - left, bottom - top);
-      return sizeRet; }
-point& rectd::top_left() throw()
-   { return *((point*)this); }
-point& rectd::bottom_right() throw()
-   { return *((point*)this+1); }
-const point& rectd::top_left() const throw()
-   { return *((point*)this); }
-const point& rectd::bottom_right() const throw()
-   { return *((point*)this+1); }
+class sized rectd::size() const throw()
+{
+   class sized sizeRet(right - left, bottom - top);
+   return sizeRet;
+}
+
+pointd & rectd::top_left() throw()
+   { return *((pointd*)this); }
+pointd & rectd::bottom_right() throw()
+   { return *((pointd*)this+1); }
+const pointd & rectd::top_left() const throw()
+   { return *((pointd*)this); }
+const pointd & rectd::bottom_right() const throw()
+   { return *((pointd*)this+1); }
 void rectd::swap_left_right() throw()
    { swap_left_right(LPRECTD(this)); }
 void WINAPI rectd::swap_left_right(LPRECTD lpRect) throw()
-   { LONG temp = lpRect->left; lpRect->left = lpRect->right; lpRect->right = temp; }
+   { double temp = lpRect->left; lpRect->left = lpRect->right; lpRect->right = temp; }
 rectd::operator LPRECTD() throw()
    { return this; }
 rectd::operator LPCRECTD() const throw()

@@ -56,8 +56,8 @@ namespace gen
 
       void geometry::RandomPoint(POINT & pt, LPCRECT lpcrect)
       {
-         pt.x = System.math().RandRange(lpcrect->left, lpcrect->right);
-         pt.y = System.math().RandRange(lpcrect->top, lpcrect->bottom);
+         pt.x = (LONG) System.math().RandRange(lpcrect->left, lpcrect->right);
+         pt.y = (LONG) System.math().RandRange(lpcrect->top, lpcrect->bottom);
       }
 
       //////////////////////////////////////////////////////////////////////

@@ -149,7 +149,7 @@ class dump_context;
 
 
 
-#include "ca/primitive/numeric_info.h"
+#include "ca/primitive/primitive_numeric_info.h"
 #include "ca/gen/gen_c_number.h"
 
 #include "ca/multithreading/multithreading_wait_result.h"
@@ -171,13 +171,14 @@ class dump_context;
 #include "ca/radix/radix_plex_heap.h"
 #include "ca/radix/radix_fixed_alloc.h"
 
-#include "ca/primitive/simple_string.h"
+#include "ca/primitive/primitive_simple_string.h"
 
 #include "ca/gen/gen_ch.h"
 #include "ca/gen/gen_str.h"
 
-#include "ca/primitive/id.h"
+#include "ca/primitive/primitive_id.h"
 #include "ca/primitive/primitive_string_format.h"
+#include "ca/primitive/primitive_fixed_string.h"
 #include "ca/primitive/primitive_string.h"
 #include "ca/primitive/datetime/datetime_time.h"
 
@@ -186,17 +187,16 @@ class dump_context;
 
 #include "ca/radix/radix_object.h"
 
-#include "ca/primitive/rectangle.h"
-
 #include "ca/gen/gen_hash.h"
 #include "ca/gen/gen_equals.h"
+#include "ca/gen/gen_compare.h"
 #include "ca/gen/gen.h"
 
 
 #include "ca/gen/gen_template.h"
 
 
-#include "ca/collection/base_array.h"
+#include "ca/collection/collection_base_array.h"
 
 #include "ca/ca_smart_pointer.h"
 
@@ -238,7 +238,7 @@ class dump_context;
 #include "ca/collection/collection.h"
 
 
-   #include "ca/radix/radix_plex_heap.h"
+#include "ca/radix/radix_plex_heap.h"
 
 
 
@@ -564,7 +564,6 @@ CLASS_DECL_ca void __draw_dithered_bitmap(::ca::application * papp, ::ca::graphi
 #include "radix/radix_fixed_alloc.h"
 #include "ca/gen/gen_request_signal.h"
 
-#include "ca/collection/array_del_ptr.h"
 #include "ca/visual/visual_const.h"
 
 #include "ca/gen/gen_var_array.h"
@@ -715,8 +714,10 @@ namespace user
 #include "ca/user/user_draw_interface.h"
 #include "ca/user/user_mouse_focus.h"
 #include "ca/user/user_keyboard_focus.h"
-
 #include "ca/user/user_elemental.h"
+#include "ca/user/user_window_util.h"
+#include "ca/user/user_text_interface.h"
+#include "ca/user/user_check_interface.h"
 #include "ca/user/user_window_interface.h"
 #include "ca/user/user_text_interface.h"
 #include "ca/user/user_check_interface.h"

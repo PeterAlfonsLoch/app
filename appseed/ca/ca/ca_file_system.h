@@ -1,6 +1,13 @@
 #pragma once
 
 
+#if defined(WINDOWS)
+
+CLASS_DECL_ca bool IsWow64();
+
+#endif
+
+
 namespace ca
 {
 

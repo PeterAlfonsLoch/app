@@ -47,7 +47,7 @@ namespace ca2
       string name(const char * psz);
       string url_encode(const char * psz);
       string url_decode(const char * psz);
-      string url_decode(const char * psz, int iLen);
+      string url_decode(const char * psz, strsize iLen);
 
       string query_append(const char * pszUrl, const char * pszQuery);
       string query_remove(const char * pszQuery, stringa & straKey);

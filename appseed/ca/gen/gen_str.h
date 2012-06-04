@@ -87,17 +87,17 @@ namespace gen
 
       string CLASS_DECL_ca random_replace(::ca::application * papp, const stringa & straReplacement, const stringa & straSearch, const char * psz);
 
-      index CLASS_DECL_ca find_first(const stringa & straSearch, index & iFound, const string & str, index iStart = 0);
+      strsize CLASS_DECL_ca find_first(const stringa & straSearch, index & iFound, const string & str, index iStart = 0);
 
-      index CLASS_DECL_ca find_ci(const string & strFind   , const string & str, index iStart = 0);
-      index CLASS_DECL_ca find_ci(const string & strFind   , const char   * psz, index iStart = 0);
-      index CLASS_DECL_ca find_ci(const char   * pszFind   , const string & str, index iStart = 0);
-      index CLASS_DECL_ca find_ci(const char   * pszFind   , const char   * psz, index iStart = 0);
+      strsize CLASS_DECL_ca find_ci(const string & strFind   , const string & str, strsize iStart = 0);
+      strsize CLASS_DECL_ca find_ci(const string & strFind   , const char   * psz, strsize iStart = 0);
+      strsize CLASS_DECL_ca find_ci(const char   * pszFind   , const string & str, strsize iStart = 0);
+      strsize CLASS_DECL_ca find_ci(const char   * pszFind   , const char   * psz, strsize iStart = 0);
 
-      index CLASS_DECL_ca find_ww(const char * pszFind, const char * psz, index iStart = 0);
-      index CLASS_DECL_ca find_wwci(const char * pszFind, const char * psz, index iStart = 0);
-      index CLASS_DECL_ca find_aww(const char * pszFind, const char * psz, index iStart = 0);
-      index CLASS_DECL_ca find_awwci(const char * pszFind, const char * psz, index iStart = 0);
+      strsize CLASS_DECL_ca find_ww(const char * pszFind, const char * psz, strsize iStart = 0);
+      strsize CLASS_DECL_ca find_wwci(const char * pszFind, const char * psz, strsize iStart = 0);
+      strsize CLASS_DECL_ca find_aww(const char * pszFind, const char * psz, strsize iStart = 0);
+      strsize CLASS_DECL_ca find_awwci(const char * pszFind, const char * psz, strsize iStart = 0);
       string CLASS_DECL_ca has_char(const char * pszIfHasChar, const char * pszBefore = NULL, const char * pszAfter = NULL);
       bool CLASS_DECL_ca has_upper(const char * psz);
       bool CLASS_DECL_ca has_lower(const char * psz);
@@ -172,7 +172,8 @@ namespace gen
       CLASS_DECL_ca  bool           get_curly_content(const char * psz, string & str);
       CLASS_DECL_ca  bool           is_simple_natural(const char * psz);
 
-
+      CLASS_DECL_ca string          to_lower(const char * psz);
+      CLASS_DECL_ca string          to_upper(const char * psz);
 
 
       string CLASS_DECL_ca get_window_text(HWND hwnd);
@@ -228,6 +229,8 @@ namespace gen
 
 
       inline CLASS_DECL_ca  string         itoa(int64_t i);
+
+      bool CLASS_DECL_ca simple_escaped(const string & str, strsize pos);
 
    } // namespace str
 

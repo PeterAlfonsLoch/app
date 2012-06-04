@@ -647,6 +647,11 @@ index string_array::add(const string & newElement)
    return nIndex;
 }
 
+void string_array::push_back(const string & newElement)
+{
+   index nIndex = m_nSize;
+   set_at_grow(nIndex, newElement);
+}
 
 void string_array::add(const var & var)
 {

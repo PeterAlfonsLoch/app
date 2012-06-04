@@ -1,8 +1,6 @@
 #pragma once
 
 
-#include "gen/gen_var.h"
-#include "ca/collection/string_array.h"
 
 
 class CLASS_DECL_ca stringa :
@@ -82,7 +80,11 @@ public:
    count remove_ci(const string_array & stra);
    count remove(const string_array & stra);
 
-   void explode(const char * lpcszSeparator, const char * psz);
+   stringa & explode(const char * lpcszSeparator, const char * psz);
+
+   // csstidy: Same as explode, but not within a string
+   stringa & csstidy_explode_ws(char sep, const char * psz);
+
    void implode(string & rwstr, const char * lpcszSeparator = NULL, index iStart = 0, count iCount = -1) const;
    string implode(const char * lpcszSeparator = NULL, index iStart = 0, count iCount = -1) const;
    void reverse_implode(string & rwstr, const char * lpcszSeparator = NULL, index iStart = 0, count iCount = -1) const;

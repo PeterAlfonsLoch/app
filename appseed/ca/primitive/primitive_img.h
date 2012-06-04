@@ -26,4 +26,3 @@ namespace visual
 #define bgr_get_a_value(bgr)      (LOBYTE((bgr)>>24))
 
 
-#include "color.h"

@@ -27,15 +27,10 @@
 
 #pragma once
 
-#ifdef WINDOWS
-
-CLASS_DECL_ca bool IsWow64();
-
-
-
 class CLASS_DECL_ca call_stack
 {
 public:
+   vsstring m_str;
 
    call_stack (unsigned int uiSkip = 3) :
       m_str((uiSkip == 0xffffffff) ? "" : call_stack::get(uiSkip))
@@ -45,25 +40,11 @@ public:
    static vsstring get(unsigned int uiSkip = 2)
    {
       vsstring str;
-#ifndef AMD64
-      if(!IsWow64())
-      {
-         ::exception::engine::stack_trace(str, uiSkip);
-      }
-#endif
+      ::exception::engine::stack_trace(str, uiSkip);
       return str;
    }
 
    const char * stack_trace() const { return m_str; }
-private:
-   vsstring m_str;
 };
 
 
-#pragma inline_depth() // restore back the default value
-
-
-
-
-
-#endif

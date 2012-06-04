@@ -56,12 +56,8 @@ namespace plane
 
 
 
-extern "C"
-{
+#include "ca/api/api_rotate.h"
 
-   #include "ca/api/rotate.h"
-
-} // extern "C"
 
 #define rgba_get_r(rgba)      ((byte)(rgba & 0xff))
 #define rgba_get_g(rgba)      ((byte)((rgba >> 8) & 0xff))
@@ -84,18 +80,8 @@ extern "C"
 
 #include "ca/primitive/count.h"
 
-#include "ca/api/muldiv64.h"
 
-#include "ca/api/atol.h"
-
-#include "ca/api/str.h"
-
-
-#include "zlib/zconf.h"
-#include "zlib/zlib.h"
-#include "zlib/zutil.h"
-#include "sqlite/sqlite.h"
+#include "ca/api/api.h"
 
 
 
-#include "libcharguess/libcharguess.h"

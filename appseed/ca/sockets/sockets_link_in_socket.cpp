@@ -48,7 +48,7 @@ namespace sockets
    }
 
 
-   void link_in_socket::link_write(void * p, int n)
+   void link_in_socket::link_write(void * p, size_t n)
    {
       
       m_in->SendBuf((const char *) p, n);

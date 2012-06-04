@@ -287,7 +287,7 @@ namespace window_frame
          bf);*/
       pdc->BitBlt(rectClient.left, rectClient.top, rectClient.width(), rectClient.height(),
         spdib->get_graphics(), iInflate, iInflate, SRCCOPY);
-      b = ::ReleaseDC(NULL, hdcScreen);
+      b = ::ReleaseDC(NULL, hdcScreen) != FALSE;
    }
 
    void FrameSchema::OnMove(::user::interaction * pwnd)

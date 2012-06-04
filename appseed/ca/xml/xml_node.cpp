@@ -1539,7 +1539,7 @@ namespace xml
       return pnode;
    }
 
-   node * node::get_node_from_indexed_path(const int_array & iaPath)
+   node * node::get_node_from_indexed_path(const index_array & iaPath)
    {
 
       node * pnode = this;
@@ -1547,7 +1547,7 @@ namespace xml
       if(pnode == NULL)
          return NULL;
 
-      for(int iLevel = 0; iLevel < iaPath.get_count(); iLevel++)
+      for(index iLevel = 0; iLevel < iaPath.get_count(); iLevel++)
       {
          
          index iIndex = iaPath[iLevel];
@@ -1583,7 +1583,7 @@ namespace xml
       return str;
    }
 
-   void node::get_child_indexed_path(int_array & iaPath, const node * pnode) const
+   void node::get_child_indexed_path(index_array & iaPath, const node * pnode) const
    {
       
       iaPath.remove_all();
@@ -1595,10 +1595,10 @@ namespace xml
 
    }
 
-   int_array node::get_child_indexed_path(const node * pnode) const
+   index_array node::get_child_indexed_path(const node * pnode) const
    {
       
-      int_array iaPath;
+      index_array iaPath;
       get_child_indexed_path(iaPath, pnode);
       return iaPath;
 
@@ -2219,14 +2219,14 @@ namespace xml
 
    }
 
-   int_array node::get_indexed_path() const
+   index_array node::get_indexed_path() const
    {
 
       return get_document()->get_child_indexed_path(this);
 
    }
 
-   void node::get_indexed_path(int_array & iaPath) const
+   void node::get_indexed_path(index_array & iaPath) const
    {
 
       return get_document()->get_child_indexed_path(iaPath, this);

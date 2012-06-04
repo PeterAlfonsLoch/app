@@ -76,9 +76,9 @@ namespace gen
             _add_locale_variant(idLocale2, idSchema2);
          }
 
-         int iStart = idLocale2.m_pstr->get_length() + 1;
-         int iEnd;
-         int iLen;
+         strsize iStart = idLocale2.m_pstr->get_length() + 1;
+         strsize iEnd;
+         strsize iLen;
          string str;
          bool bEnd = false;
          while(!bEnd)
@@ -117,7 +117,7 @@ namespace gen
       }
 
 
-      ::id locale_schema::localeid(const char * pszLocale, int iLen)
+      ::id locale_schema::localeid(const char * pszLocale, strsize iLen)
       {
 
          if(iLen == 4)
@@ -304,7 +304,7 @@ namespace gen
       }
 
 
-      bool locale_schema::_add_locale_variant(const char * psz, int iLen, id idSchema)
+      bool locale_schema::_add_locale_variant(const char * psz, strsize iLen, id idSchema)
       {
 
 
@@ -536,7 +536,7 @@ restart:
             if(i >= m_idaSchema.get_count())
                m_idaSchema.add(m_idSchema);
             id idSchema = m_idaSchema[i];
-            int iFind = strLocale.find("-");
+            strsize iFind = strLocale.find("-");
             if(iFind >= 0)
             {
                id idLocale2 = strLocale.Left(iFind);

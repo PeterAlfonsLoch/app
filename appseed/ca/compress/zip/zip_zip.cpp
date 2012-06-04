@@ -120,11 +120,11 @@ typedef struct
     int  raw;                   /* 1 for directly writing raw data */
     byte buffered_data[Z_BUFSIZE];/* buffer contain compressed data to be writ*/
     uLong dosDate;
-    uLong crc32;
+    uint32_t crc32;
     int  encrypt;
 #ifndef NOCRYPT
-    unsigned long keys[3];     /* keys defining the pseudo-random sequence */
-    const unsigned long* pcrc_32_tab;
+    uint32_t  keys[3];     /* keys defining the pseudo-random sequence */
+    const uint32_t * pcrc_32_tab;
     int crypt_header_size;
 #endif
 } curfile_info;
@@ -657,7 +657,7 @@ extern int CLASS_DECL_ca zipOpenNewFileInZip3 (
     int memLevel,
     int strategy,
     const char* password,
-    uLong crcForCrypting)
+    uint32_t  crcForCrypting)
 {
     zip_internal* zi;
     uInt size_filename;

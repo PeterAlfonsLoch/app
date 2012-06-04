@@ -595,7 +595,7 @@ namespace user
       ::user::interaction * pview = GetWnd();
 
        // handle delay hide/show
-       bool bVis = pview->GetStyle() & WS_VISIBLE;
+       bool bVis = (pview->GetStyle() & WS_VISIBLE) != 0;
 
        // the style must be visible
        if (bVis)
@@ -604,7 +604,7 @@ namespace user
            if (pTarget == NULL || !pTarget->IsFrameWnd())
                pTarget = dynamic_cast < ::frame_window * > (pview->GetParentFrame());
            if (pTarget != NULL)
-               BaseControlExOnUpdateCmdUI(pTarget, (bool)wParam);
+               BaseControlExOnUpdateCmdUI(pTarget, wParam != FALSE);
        }
        return 0L;
    }

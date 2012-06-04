@@ -41,7 +41,7 @@ namespace gen
 
       #undef CNAME
       #define CNAME "ch_class"
-      #include "primitive/memory_operator.h"
+      #include "primitive/primitive_memory_operator.h"
 
    };
 

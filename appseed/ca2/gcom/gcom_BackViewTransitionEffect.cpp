@@ -1929,7 +1929,7 @@ namespace gcom
             catch(...)
             {
             }
-            uiRet = -3;
+            uiRet = (UINT) -3;
          }
          peffect->m_eventThreadExit.SetEvent();
          return uiRet;

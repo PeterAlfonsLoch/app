@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include "geometric_types.h"
-
-
 class point_array;
 
 
@@ -427,17 +424,17 @@ public:
    // returns the height
    double height() const throw();
    // returns the size
-   class size size() const throw();
+   class sized size() const throw();
    // reference to the top-left point
-   point& top_left() throw();
+   pointd& top_left() throw();
    // reference to the bottom-right point
-   point& bottom_right() throw();
+   pointd& bottom_right() throw();
    // const reference to the top-left point
-   const point& top_left() const throw();
+   const pointd& top_left() const throw();
    // const reference to the bottom-right point
-   const point& bottom_right() const throw();
+   const pointd& bottom_right() const throw();
    // the geometric center point of the rectangle
-   point center() const throw();
+   pointd center() const throw();
    // swap the left and right
    void swap_left_right() throw();
    static void WINAPI swap_left_right(LPRECTD lpRect) throw();
@@ -542,8 +539,8 @@ public:
    void FitOnCenterOf(LPCRECTD lpcrect);
    void DeflateBottomRightSizeByRate(double dRate);
    void SetBottomRightSize(double iWidth, double iHeight);
-   inline point top_right();
-   inline point bottom_left();
+   inline pointd top_right();
+   inline pointd bottom_left();
 
    void SubtractRectMajor(LPCRECTD lpcrectMajor, LPCRECTD lpcrectMinor);
    void SubtractRectMinor(LPCRECTD lpcrectMajor, LPCRECTD lpcrectMinor);

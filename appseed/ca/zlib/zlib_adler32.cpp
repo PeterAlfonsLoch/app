@@ -56,9 +56,9 @@
 #endif
 
 /* ========================================================================= */
-uLong ZEXPORT adler32(uLong adler, const Bytef * buf, uInt len)
+uint32_t ZEXPORT adler32(uint32_t adler, const Bytef * buf, uInt len)
 {
-    unsigned long sum2;
+    uint32_t sum2;
     unsigned n;
 
     /* split Adler-32 into component sums */
@@ -124,10 +124,10 @@ uLong ZEXPORT adler32(uLong adler, const Bytef * buf, uInt len)
 }
 
 /* ========================================================================= */
-uLong ZEXPORT adler32_combine(uLong adler1, uLong adler2, z_off_t len2)
+uint32_t ZEXPORT adler32_combine(uint32_t adler1, uint32_t adler2, z_off_t len2)
 {
-    unsigned long sum1;
-    unsigned long sum2;
+    uint32_t sum1;
+    uint32_t sum2;
     unsigned rem;
 
     /* the derivation of this formula is left as an exercise for the reader */

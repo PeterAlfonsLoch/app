@@ -1,11 +1,11 @@
 #pragma once
 
 
-#include "ca/collection/point_array.h"
 
 
 namespace ca
 {
+
 
    class CLASS_DECL_ca region :
       virtual public graphics_object
@@ -64,6 +64,11 @@ namespace ca
 
    };
 
+
    typedef smart_pointer < region > region_sp;
 
+
 } // namespace ca
+
+
+

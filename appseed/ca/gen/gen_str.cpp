@@ -2304,7 +2304,7 @@ namespace gen
    {
 
       strsize iPrefixLen = wcslen_dup(lpcszPrefix);
-      if(wstr.storage_size() >= ((wstr.get_length() + iPrefixLen + 1) * sizeof(wchar_t)))
+      if(natural(wstr.storage_size()) >= ((wstr.get_length() + iPrefixLen + 1) * sizeof(wchar_t)))
       {
          memmove(&wstr[iPrefixLen], (const wchar_t *) wstr, (wstr.get_length() + 1) * sizeof(wchar_t));
          memcpy_dup(wstr, lpcszPrefix, iPrefixLen);
@@ -2479,11 +2479,37 @@ namespace gen
    }
 
 
+   CLASS_DECL_ca string          str::to_lower(const char * psz)
+   {
+         
+      return string(psz).make_lower();
+         
+   }
+
+
+   CLASS_DECL_ca string          str::to_upper(const char * psz)
+   {
+
+      return string(psz).make_upper();
+
+   }
+
 
    /** End \file Utility.cpp
    **   \date  2004-02-13
    **   \author grymse@alhem.net
    **/
+
+
+   bool str::simple_escaped(const string & str, strsize pos) 
+   {
+      
+      if(pos == 0)
+         return false;
+
+      return str[pos - 1] == '\\' && !simple_escaped(str, pos - 1);
+
+   }
 
 
 } // namespace gen

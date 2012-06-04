@@ -1209,10 +1209,10 @@ InitFailure:
 
    }
 
-   int g_iCountProgress;
-   int g_iStepProgress;
+   count g_iCountProgress;
+   index g_iStepProgress;
 
-   void trace_progress(int iStep)
+   void trace_progress(index iStep)
    {
       double dProgressStart   = 0.8;
       double dProgressEnd     = 1.0;

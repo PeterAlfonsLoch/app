@@ -34,7 +34,7 @@ namespace ca
 
 
 
-      string system::path(const char * pszFolder, int iLenFolder, const char * pszRelative, int iLenRelative, const char * psz2, int iLen2, bool bUrl)
+      string system::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2, bool bUrl)
       {
          UNREFERENCED_PARAMETER(pszFolder);
          UNREFERENCED_PARAMETER(iLenFolder);
@@ -46,18 +46,11 @@ namespace ca
          throw interface_only_exception("this is an interface");
       }
 
-      string system::path(const char * pszFolder, int iLenFolder, const char * pszRelative, int iLenRelative, const char * psz2, int iLen2)
+      string system::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2)
       {
 
          return path(pszFolder, iLenFolder, pszRelative, iLenRelative, psz2, iLen2, ::ca2::is_url(pszFolder));
 
-      }
-
-      inline int safe_strlen(const char * psz)
-      {
-         if(psz == NULL || *psz == '\0')
-            return 0;
-         return strlen(psz);
       }
 
       string system::path(const string & strFolder, const string & strRelative)

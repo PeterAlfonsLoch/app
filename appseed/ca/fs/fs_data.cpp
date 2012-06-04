@@ -43,13 +43,13 @@ namespace fs
    {
       string strPath(pszPath);
       strsize iFind;
-      int iStart = strPath.get_length() - 1;
+      strsize iStart = strPath.get_length() - 1;
       if(iCount <= 0)
          return pszPath;
       while(iCount > 0)
       {
          iFind = strPath.reverse_find('/', iStart);
-         int iPos = iFind - 1;
+         strsize iPos = iFind - 1;
          if(iPos >= 0 && strPath[iPos] == '/')
          {
             iPos--;

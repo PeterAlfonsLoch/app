@@ -12,7 +12,8 @@ namespace ca2
    public:
 
 
-      ::xml::document      m_xmldocument;
+      xml_data(::ca::application * papp, ::xml::parse_info * pparseinfo = NULL);
+      virtual ~xml_data();
 
 
       virtual void write(ex1::byte_output_stream & ostream);
@@ -22,6 +23,6 @@ namespace ca2
    };
 
 
-};
+} // namespace ca2
 
 

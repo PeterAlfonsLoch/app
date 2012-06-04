@@ -108,7 +108,7 @@ typedef struct
     uInt  size_local_extrafield;/* size of the local extra field */
     uLong pos_local_extrafield;   /* position in the local extra field in read*/
 
-    uLong crc32;                /* crc32 of all data uncompressed */
+    uint32_t crc32;                /* crc32 of all data uncompressed */
     uLong crc32_wait;           /* crc32 we must obtain after decompress all */
     uLong rest_read_compressed; /* number of byte to be decompressed */
     uLong rest_read_uncompressed;/*number of byte to be obtained after decomp*/
@@ -143,8 +143,8 @@ typedef struct
                                         file if we are decompressing it */
     int encrypted;
 #    ifndef NOUNCRYPT
-    unsigned long keys[3];     /* keys defining the pseudo-random sequence */
-    const unsigned long* pcrc_32_tab;
+    uint32_t keys[3];     /* keys defining the pseudo-random sequence */
+    const uint32_t * pcrc_32_tab;
 #    endif
 } unz_s;
 
@@ -589,7 +589,7 @@ local int unzlocal_GetCurrentFileInfoInternal (
     unz_file_info_internal file_info_internal;
     int err=UNZ_OK;
     uLong uMagic;
-    long lSeek=0;
+    int64_t lSeek=0;
 
     if (file==NULL)
         return UNZ_PARAMERROR;

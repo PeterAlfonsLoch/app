@@ -49,6 +49,8 @@ public:
 
       iterator(index i, raw_array * parray)
       {
+         m_i         = i;
+         m_parray    = parray;
       }
 
       iterator(const iterator & it)
@@ -159,6 +161,7 @@ public:
    index append(const raw_array& src);
    void copy(const raw_array& src);
    index push(ARG_TYPE newElement);
+   void push_back(const TYPE & newElement);
 
 
 
@@ -344,6 +347,12 @@ inline index raw_array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
    index nIndex = m_nSize;
    set_at_grow(nIndex, newElement);
    return nIndex;
+}
+
+template<class TYPE, class ARG_TYPE>
+inline void raw_array<TYPE, ARG_TYPE>::push_back(const TYPE & newElement)
+{
+   set_at_grow(m_nSize, newElement);
 }
 
 template<class TYPE, class ARG_TYPE>

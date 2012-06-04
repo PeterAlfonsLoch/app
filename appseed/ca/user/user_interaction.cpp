@@ -2529,7 +2529,7 @@ ExitModal:
          m_iItem = 0;
 
 
-      int iPreviousItem = m_iItem;
+      index iPreviousItem = m_iItem;
 
       for(; m_iItem < m_timera.get_count(); )
       {

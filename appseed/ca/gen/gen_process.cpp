@@ -105,7 +105,7 @@ namespace gen
          NULL,          // use parent's environment
          pszDir,
          &m_si,  // STARTUPINFO pointer
-         &m_pi);  // receives PROCESS_INFORMATION
+         &m_pi) != FALSE;  // receives PROCESS_INFORMATION
 
       // If an error occurs, exit the application.
       if ( ! bSuccess )

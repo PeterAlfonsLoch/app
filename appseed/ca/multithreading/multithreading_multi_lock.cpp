@@ -65,8 +65,8 @@ wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, DWORD 
          }
          else
          {
-            ASSERT((iResult >= WAIT_OBJECT_0) && ((iResult - WAIT_OBJECT_0) <= iResult));
-            if ((iResult >= WAIT_OBJECT_0) && ((iResult - WAIT_OBJECT_0) <= iResult))
+            ASSERT((iResult >= WAIT_OBJECT_0) && (iResult - WAIT_OBJECT_0) <= natural(iResult));
+            if ((iResult >= WAIT_OBJECT_0) && (iResult - WAIT_OBJECT_0 <= natural(iResult)))
                m_baLocked[(index)(iResult - WAIT_OBJECT_0)] = TRUE;
          }
       }

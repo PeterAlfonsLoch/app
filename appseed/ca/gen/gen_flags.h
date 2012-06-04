@@ -1,15 +1,14 @@
 #pragma once
 
-#include "ex1/ex1_byte_serializable.h"
-#include "collection/sort_array.h"
-
-
-
 
 class CLASS_DECL_ca base_sort_serializable_int_ptr_array :
    virtual public ex1::byte_serializable_array < sort_array < int_ptr, int_ptr > >
 {
+
+
    virtual void on_after_read();
+
+
 };
 
 
@@ -18,6 +17,8 @@ class flags :
    virtual public base_sort_serializable_int_ptr_array
 {
 public:
+
+
    flags();
    flags(ENUM eenum);
    flags(const flags & f);
@@ -31,11 +32,14 @@ public:
    virtual bool unsignalize_all();
    virtual bool toggle_signalization(ENUM eenum);
 
+
    flags < ENUM > & operator = (const flags < ENUM >  & f);
    bool operator == (const flags < ENUM >  & f);
    bool operator != (const flags < ENUM >  & f);
 
+
 };
+
 
 template < class ENUM >
 flags < ENUM > ::flags()
@@ -285,5 +289,6 @@ void flags_ex < ENUM > ::on_change_signalization(ENUM eenum)
    m_signal.emit(&obj);
 
 }
+
 
 

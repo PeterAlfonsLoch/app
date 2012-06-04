@@ -35,7 +35,7 @@ namespace sockets
       virtual ~link_out_socket();
 
       virtual void OnRead( char *buf, size_t n );
-      void link_write(void * p, int size);
+      void link_write(void * p, size_t size);
 
 
       void server_to_link_out(httpd_socket * psocket);

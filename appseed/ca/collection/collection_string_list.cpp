@@ -1,11 +1,6 @@
 #include "framework.h"
 
 
-
-
-#include "elements.h"  // used for special creation
-
-
 string_list::string_list(int_ptr nBlockSize)
 {
    ASSERT(nBlockSize > 0);

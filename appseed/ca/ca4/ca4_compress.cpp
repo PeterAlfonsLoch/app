@@ -87,6 +87,7 @@ namespace ca4
       ::gen::memory_file memoryfileOut(get_app());
       class primitive::memory memory;
       memory.allocate(1024 * 256);
+      ASSERT(memory.get_size() <= UINT_MAX);
 
       // inflateInit2 knows how to deal with gzip format
       if (inflateInit2(&strm, (15+32)) != Z_OK)
@@ -98,7 +99,7 @@ namespace ca4
       {
 
 	      strm.next_out = memory.get_data();
-	      strm.avail_out = memory.get_size();
+	      strm.avail_out = (uint32_t) memory.get_size();
 
 	      // Inflate another chunk.
 	      status = inflate (&strm, Z_SYNC_FLUSH);
@@ -226,16 +227,16 @@ namespace ca4
       return System.file().output(papp, lpcszGzFileCompressed, this, &compress::bz, lpcszUncompressed);
    }
 
-   bool compress::_compress(class primitive::memory & memory, void * pdata, unsigned long ulSize)
+   bool compress::_compress(class primitive::memory & memory, void * pdata, ::primitive::memory_size ulSize)
    {
       memory.allocate(compressBound(ulSize) * 2);
-      unsigned long ulDestSize = (unsigned long) memory.get_size();
+      uLong ulDestSize = (unsigned long) memory.get_size();
       int i = ::zlib_compress(memory.get_data(), &ulDestSize, (BYTE *) pdata, ulSize);
       memory.allocate(ulDestSize);
       return i == Z_OK;
    }
 
-   bool compress::_uncompress(primitive::memory & memoryUncompressed, primitive::memory & memoryCompressed, unsigned long ulSizeUncompressed)
+   bool compress::_uncompress(primitive::memory & memoryUncompressed, primitive::memory & memoryCompressed, ::primitive::memory_size ulSizeUncompressed)
    {
       memoryUncompressed.allocate(ulSizeUncompressed);
       int i = ::uncompress(memoryUncompressed.get_data(), &ulSizeUncompressed, memoryCompressed.get_data(), (uLong) memoryCompressed.get_size());

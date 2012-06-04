@@ -25,8 +25,8 @@ namespace ca4
 
       bool bz_stream(ex1::writer & ostreamBzFileCompressed, ex1::reader & istreamFileUncompressed);
 
-      bool _compress(class primitive::memory & memory, void * pdata, unsigned long ulSizeUncompressed);
-      bool _uncompress(primitive::memory & memoryUncompressed, primitive::memory & memoryCompressed, unsigned long ulSizeUncompressed);
+      bool _compress(class primitive::memory & memory, void * pdata, ::primitive::memory_size ulSizeUncompressed);
+      bool _uncompress(primitive::memory & memoryUncompressed, primitive::memory & memoryCompressed, ::primitive::memory_size ulSizeUncompressed);
 
 
       static bool null(ex1::writer & ostream, ex1::reader & istream);

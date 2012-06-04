@@ -571,7 +571,7 @@ namespace gen
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_nState = (UINT)(LOWORD(wparam));
          m_pWndOther = System.window_from_os_data((HWND)lparam);
-         m_bMinimized = (bool)HIWORD(wparam);
+         m_bMinimized = HIWORD(wparam) != FALSE;
       }
 
 
@@ -610,7 +610,7 @@ namespace gen
       void nc_activate::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         m_bActive = static_cast<bool>(wparam);
+         m_bActive = wparam != FALSE;
       }
 
       void size::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
@@ -702,7 +702,7 @@ namespace gen
       void show_window::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         m_bShow = static_cast<UINT>(wparam);
+         m_bShow = wparam != FALSE;
          m_nStatus = static_cast<UINT>(lparam);
       }
 
@@ -733,7 +733,7 @@ namespace gen
 
       bool nc_calc_size::GetCalcValidRects()
       {
-         return static_cast<bool>(m_wparam);
+         return m_wparam != FALSE;
       }
 
 

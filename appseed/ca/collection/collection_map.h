@@ -55,30 +55,26 @@ namespace collection
             m_pmap   = NULL;
          }
 
+         iterator(const iterator & iterator)
+         {
+            m_ppair  = iterator.m_ppair;
+            m_pmap   = iterator.m_pmap;
+         }
+
          iterator(pair * ppair, map * pmap)
          {
             m_ppair  = ppair;
             m_pmap   = pmap;
          }
 
-         pair & operator * ()
+         pair * operator -> ()
          {
-            return *m_ppair;
+            return m_ppair;
          }
 
-         const pair & operator * () const
+         const pair * operator -> () const
          {
-            return *m_ppair;
-         }
-
-         pair & operator -> ()
-         {
-            return *m_ppair;
-         }
-
-         const pair & operator -> () const
-         {
-            return *m_ppair;
+            return m_ppair;
          }
 
 
@@ -89,7 +85,7 @@ namespace collection
             return *m_ppair;
          }
 
-         bool operator == (const iterator & it)
+         bool operator == (const iterator & it) const
          {
             if(this == &it)
                return true;
@@ -98,6 +94,21 @@ namespace collection
             if(m_pmap != it.m_pmap)
                return false;
             return m_ppair == it.m_ppair;
+         }
+
+         bool operator != (const iterator & it) const
+         {
+            return !operator == (it);
+         }
+
+         iterator & operator = (const iterator & it)
+         {
+            if(this != &it)
+            {
+               m_pmap         = it.m_pmap;
+               m_ppair        = it.m_ppair;
+            }
+            return *this;
          }
 
       };
@@ -140,8 +151,17 @@ namespace collection
 
       // removing existing (key, ?) pair
       bool remove_key(ARG_KEY key);
+      void erase(iterator it);
+      ::count erase(const KEY & key);
+      // the following funtion is available in a sort_map
+      //void erase ( iterator first, iterator last );
       void remove_all();
       void clear();
+      
+
+      ::count count(const KEY & t) const;
+      bool has(const KEY & t) const;
+      bool contains(const KEY & t) const;
 
       // iterating all (key, value) pairs
       POSITION get_start_position() const;
@@ -572,6 +592,46 @@ namespace collection
          ppAssocPrev = &pAssoc->pNext;
       }
       return FALSE;  // not found
+   }
+
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   inline ::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::count(const KEY & key) const
+   {
+
+      return this->PLookup(key) != NULL ? 1 : 0;
+
+   }
+
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::has(const KEY & key) const
+   {
+
+      return this->PLookup(key) != NULL ? 1 : 0;
+
+   }
+
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::contains(const KEY & key) const
+   {
+
+      return this->PLookup(key) != NULL ? 1 : 0;
+
+   }
+
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   ::count map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::erase(const KEY & key)
+   {
+
+      return remove_key(key) ? 1 : 0;
+
+   }
+
+   template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
+   void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::erase(iterator it)
+   {
+
+      remove_key(it->m_key);
+
    }
 
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >

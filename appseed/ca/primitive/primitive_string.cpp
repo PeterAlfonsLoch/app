@@ -109,7 +109,7 @@ string::string(const YCHAR* pch,strsize nLength ) :
    {
       ASSERT(__is_valid_address( pch, nLength*sizeof( YCHAR ), FALSE ) );
       if(pch == NULL)
-         throw hresult_exception(E_INVALIDARG);
+         throw invalid_argument_exception();
 
       strsize nDestLength = string_trait::GetcharLength( pch, nLength );
       PXSTR pszBuffer = GetBuffer( nDestLength );
@@ -126,7 +126,7 @@ string::string(const YCHAR* pch,strsize nLength,string_manager * pstringmanager 
    {
       ASSERT( __is_valid_address( pch, nLength*sizeof( YCHAR ), FALSE ) );
       if(pch == NULL)
-         throw hresult_exception(E_INVALIDARG);
+         throw invalid_argument_exception();
 
       strsize nDestLength = string_trait::GetcharLength( pch, nLength );
       PXSTR pszBuffer = GetBuffer( nDestLength );
@@ -566,7 +566,7 @@ void crt_char_traits::ConvertToAnsi(char* pstrString,size_t size)
    if(size>UINT_MAX)
    {
       // API only allows DWORD size
-      throw hresult_exception(E_INVALIDARG);
+      throw invalid_argument_exception();
    }
    DWORD dwSize=static_cast<DWORD>(size);
    bool fSuccess=::OemToCharBuffA(pstrString, pstrString, dwSize) != 0;
@@ -580,7 +580,7 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    if(size>UINT_MAX)
    {
       // API only allows DWORD size
-      throw hresult_exception(E_INVALIDARG);
+      throw invalid_argument_exception();
    }
    DWORD dwSize=static_cast<DWORD>(size);
    bool fSuccess=::CharToOemBuffA(pstrString, pstrString, dwSize) != 0;
@@ -1381,7 +1381,7 @@ string string::Tokenize(PCXSTR pszTokens, strsize& iStart ) const
    ASSERT( iStart >= 0 );
 
    if(iStart < 0)
-      throw hresult_exception(E_INVALIDARG);
+      throw invalid_argument_exception();
 
    if( (pszTokens == NULL) || (*pszTokens == (XCHAR)0) )
    {
@@ -2141,6 +2141,90 @@ string& string::trim_left(PCXSTR pszTargets )
    return( *this );
 }
 
+
+// remove all trailing whitespace
+string string::right_trimmed() const
+{
+
+   return string(*this).trim_right();
+
+}
+
+
+// remove all leading whitespace
+string string::left_trimmed() const
+{
+
+   return string(*this).trim_left();
+
+}
+
+
+// remove all leading and trailing whitespace
+string string::trimmed() const
+{
+
+   return string(*this).trim();
+
+}
+
+
+// remove all leading and trailing occurrences of character 'chTarget'
+string string::trimmed(XCHAR chTarget) const
+{
+
+   return string(*this).trim(chTarget);
+
+}
+
+
+// remove all leading and trailing occurrences of any of the characters in the string 'pszTargets'
+string string::trimmed(PCXSTR pszTargets) const
+{
+
+   return string(*this).trim(pszTargets);
+
+}
+
+
+// trimming anything (either side)
+
+// remove all trailing occurrences of character 'chTarget'
+string string::right_trimmed(XCHAR chTarget) const
+{
+
+   return string(*this).trim_right(chTarget);
+
+}
+
+
+// remove all trailing occurrences of any of the characters in string 'pszTargets'
+string string::right_trimmed(PCXSTR pszTargets) const
+{
+
+   return string(*this).trim_right(pszTargets);
+
+}
+
+
+// remove all leading occurrences of character 'chTarget'
+string string::left_trimmed(XCHAR chTarget) const
+{
+
+   return string(*this).trim_left(chTarget);
+
+}
+
+
+// remove all leading occurrences of any of the characters in string 'pszTargets'
+string string::left_trimmed(PCXSTR pszTargets) const
+{
+
+   return string(*this).trim_left(pszTargets);
+
+}
+
+
 // Convert the string to the OEM character set
 void string::AnsiToOem()
 {
@@ -2260,7 +2344,7 @@ string string::SpanIncluding(PCXSTR pszCharSet ) const
 {
    ASSERT( __is_valid_string( pszCharSet ) );
    if(pszCharSet == NULL)
-      throw hresult_exception(E_INVALIDARG);
+      throw invalid_argument_exception();
 
    return( Left( string_trait::StringSpanIncluding( GetString(), pszCharSet ) ) );
 }
@@ -2270,7 +2354,7 @@ string string::SpanExcluding(PCXSTR pszCharSet ) const
 {
    ASSERT( __is_valid_string( pszCharSet ) );
    if(pszCharSet == NULL)
-      throw hresult_exception(E_INVALIDARG);
+      throw invalid_argument_exception();
 
    return( Left( string_trait::StringSpanExcluding( GetString(), pszCharSet ) ) );
 }
@@ -2295,7 +2379,7 @@ void string::FormatV(PCXSTR pszFormat, va_list args )
 {
    ASSERT( __is_valid_string( pszFormat ) );
    if(pszFormat == NULL)
-      throw hresult_exception(E_INVALIDARG);
+      throw invalid_argument_exception();
 
    strsize nLength = string_trait::GetFormattedLength( pszFormat, args );
    PXSTR pszBuffer = GetBuffer( nLength );
@@ -2443,7 +2527,7 @@ void __cdecl string::AppendFormat(PCXSTR pszFormat, ... )
 void __cdecl string::format_message(PCXSTR pszFormat, ... )
 {
    if(pszFormat == NULL)
-      throw hresult_exception(E_INVALIDARG);
+      throw invalid_argument_exception();
 
    va_list argList;
    va_start( argList, pszFormat );
@@ -2464,4 +2548,30 @@ bool string::load_string(::ca::application * papp, id id)
 void string::reserve(strsize res_arg)
 {
    GetBufferSetLength(res_arg + 1);
+}
+
+
+
+// Convert the string to uppercase
+string string::uppered() const
+{
+
+   return string(*this).make_upper();
+
+}
+
+// Convert the string to lowercase
+string string::lowered() const
+{
+
+   return string(*this).make_lower();
+
+}
+
+// Convert the string to lowercase
+string string::reversed() const
+{
+
+   return string(*this).MakeReverse();
+
 }

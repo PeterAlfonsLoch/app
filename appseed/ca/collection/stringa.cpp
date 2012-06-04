@@ -755,12 +755,67 @@ string stringa::reverse_implode(const char * lpcszSeparator, index iStart, index
    return str;
 }
 
-void stringa::explode(const char * lpcszSeparator, const char * psz)
+stringa & stringa::explode(const char * lpcszSeparator, const char * psz)
 {
+   
    remove_all();
+   
    add_tokens(psz, lpcszSeparator, true);
+   
+   return * this;
+
 }
 
+
+stringa & stringa::csstidy_explode_ws(char sep, const char * psz)
+{
+   
+   string istring(psz);
+
+   // 1 = st // 2 = str
+   int status = 1;
+   char to;
+
+   add("");
+   strsize num = 0;
+   strsize len = istring.length();
+   for(strsize i = 0; i < len; i++)
+   {
+
+      switch(status)
+      {
+      case 1:
+         if(istring[i] == sep && !gen::str::simple_escaped(istring, i))
+         {
+            ++num;
+            add("");
+         }
+         else if(istring[i] == '"' || istring[i] == '\'' || istring[i] == '(' && !gen::str::simple_escaped(istring,i))
+         {
+            status = 2;
+            to = (istring[i] == '(') ? ')' : istring[i];
+            element_at(num) += istring[i];
+         }
+         else
+         {
+            element_at(num) += istring[i];
+         }
+         break;
+
+      case 2:
+         if(istring[i] == to && !gen::str::simple_escaped(istring,i))
+         {
+            status = 1;
+         }
+         element_at(num) += istring[i];
+         break;
+      }
+
+   }
+
+   return *this;
+
+}
 
 void stringa::replace(const char * lpszSearch, const char * lpszReplace)
 {

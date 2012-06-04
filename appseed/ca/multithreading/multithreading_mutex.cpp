@@ -285,7 +285,7 @@ mutex * mutex::open_mutex(const char * pstrName)
    if(h == NULL || h == INVALID_HANDLE_VALUE)
       return NULL;
 
-   mutex * pmutex = new mutex(h);
+   mutex * pmutex = new mutex(pstrName, h);
 
    return pmutex;
 

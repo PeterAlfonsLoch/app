@@ -40,7 +40,7 @@ namespace sockets
 
 
       void OnRead( char *buf, size_t n );
-      void link_write(void * p, int size);
+      void link_write(void * p, size_t size);
 
 
       static link_in_socket * from_server(httpd_socket * psocket);

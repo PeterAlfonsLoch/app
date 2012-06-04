@@ -1320,8 +1320,8 @@ namespace sort
 
 
 
-#include "sort_array.h"
-#include "key_sort_array.h"
+#include "collection_sort_array.h"
+#include "collection_key_sort_array.h"
 
 
 template < class TYPE, class ARG_TYPE, class ARRAY_TYPE >

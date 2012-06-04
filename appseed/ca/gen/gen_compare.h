@@ -4,12 +4,14 @@
 namespace gen
 {
 
-   class CLASS_DECL_ca compare
+
+   template < typename TYPE >
+   class compare
    {
    public:
       
-      template < class TYPE, class ARG_TYPE >
-      int CompareElements(const TYPE * pElement1, const ARG_TYPE * pElement2)
+      
+      inline static int CompareElements(const TYPE * pElement1, const TYPE * pElement2)
       {
          if(*pElement1 > *pElement2)
             return 1;
@@ -17,6 +19,20 @@ namespace gen
             return -1;
          else
             return 0;
+      }
+
+
+   };
+
+   template < >
+   class CLASS_DECL_ca compare < int >
+   {
+   public:
+      
+      
+      inline static int CompareElements(const int * pElement1, const int * pElement2)
+      {
+         return *pElement1 - *pElement2;
       }
 
 

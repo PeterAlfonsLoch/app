@@ -308,7 +308,7 @@ namespace ca2
 
    }
 
-   string url::url_decode(const char * lpszUrl, int iLen)
+   string url::url_decode(const char * lpszUrl, strsize iLen)
    {
 
       string strDecode;
@@ -690,7 +690,7 @@ namespace ca2
 
       if(gen::str::begins(strQuery, strKeyEqual))
       {
-         int iPos = strQuery.find("&");
+         strsize iPos = strQuery.find("&");
          if(iPos < 0)
          {
             strQuery = strKeyEqual2 + strValue;
@@ -702,7 +702,7 @@ namespace ca2
       }
       else if(gen::str::begins(strQuery, strKeyEqual2))
       {
-         int iPos = strQuery.find("&");
+         strsize iPos = strQuery.find("&");
          if(iPos < 0)
          {
             strQuery = strKeyEqual2 + strValue;
@@ -714,7 +714,7 @@ namespace ca2
       }
       else
       {
-         int iPos = strQuery.find(strAndKeyEqual);
+         strsize iPos = strQuery.find(strAndKeyEqual);
          if(iPos < 0)
          {
             if(strQuery.has_char())
@@ -765,7 +765,7 @@ namespace ca2
 
       if(gen::str::begins(strQuery, strKeyEqual))
       {
-         int iPos = strQuery.find("&");
+         strsize iPos = strQuery.find("&");
          if(iPos < 0)
          {
             strQuery = strKey + strParam;
@@ -777,7 +777,7 @@ namespace ca2
       }
       else
       {
-         int iPos = strQuery.find(strAndKeyEqual);
+         strsize iPos = strQuery.find(strAndKeyEqual);
          if(iPos < 0)
          {
             if(strQuery.has_char())
@@ -820,10 +820,10 @@ namespace ca2
 
       while(true)
       {
-         int iFind = strQuery.find(pszAndKeyEqual);
+         strsize iFind = strQuery.find(pszAndKeyEqual);
          if(iFind < 0)
             break;
-         int iNextParam = strQuery.find("&", iFind + 1);
+         strsize iNextParam = strQuery.find("&", iFind + 1);
          if(iNextParam < 0)
          {
             strQuery = strQuery.Left(iFind);
@@ -865,7 +865,7 @@ namespace ca2
 
       var varValue;
 
-      int iPos = 0;
+      strsize iPos = 0;
 
       if(gen::str::begins(strQuery, strKeyEqual))
       {
@@ -886,7 +886,7 @@ namespace ca2
          iPos = strQuery.find(strAndKeyEqual, iPos);
          if(iPos < 0)
             break;
-         int iEnd = strQuery.find('&', iPos + 1);
+         strsize iEnd = strQuery.find('&', iPos + 1);
          if(iEnd < 0)
          {
             if(varValue.is_new())
@@ -931,7 +931,7 @@ namespace ca2
 
       string strValue;
 
-      int iPos = 0;
+      strsize iPos = 0;
 
       if(gen::str::begins(strQuery, strKeyEqual))
       {
@@ -950,7 +950,7 @@ namespace ca2
       iPos = strQuery.find(strAndKeyEqual, iPos);
       if(iPos < 0)
          return "";
-      int iEnd = strQuery.find('&', iPos + 1);
+      strsize iEnd = strQuery.find('&', iPos + 1);
       if(iEnd < 0)
       {
          strValue = strQuery.Mid(iPos + strKeyEqual.get_length());

@@ -4,11 +4,28 @@
 namespace ca2
 {
 
+
+   xml_data::xml_data(::ca::application * papp, ::xml::parse_info * pparseinfo) :
+      ::xml::document(papp, pparseinfo)
+   {
+
+
+
+   }
+
+
+   xml_data::~xml_data()
+   {
+
+
+
+   }
    
+
    void xml_data::write(ex1::byte_output_stream & ostream)
    {
 
-      ostream << m_xmldocument;
+      ostream << (::xml::document &) *this;
 
    }
    
@@ -16,9 +33,12 @@ namespace ca2
    void xml_data::read(ex1::byte_input_stream & istream)
    {
 
-      istream >> m_xmldocument;
+      istream >> (::xml::document &) *this;
 
    }
 
 
 } // namespace ca2
+
+
+

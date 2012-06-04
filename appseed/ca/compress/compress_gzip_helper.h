@@ -52,11 +52,11 @@ class CLASS_DECL_ca gzip
 public:
 
 
-   ex1::byte_output_stream     m_ostream;
-   primitive::memory                  m_memory;
-   z_stream                m_zstream;
-   int                     m_z_err;   /* error code for last stream operation */
-   uLong                   m_crc;     /* crc32 of uncompressed data */
+   ex1::byte_output_stream       m_ostream;
+   primitive::memory             m_memory;
+   z_stream                      m_zstream;
+   int                           m_z_err;   /* error code for last stream operation */
+   uint32_t                      m_crc;     /* crc32 of uncompressed data */
 
 
    gzip(ex1::file * pfileDest);

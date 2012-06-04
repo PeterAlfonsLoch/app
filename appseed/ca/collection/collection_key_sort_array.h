@@ -1,6 +1,5 @@
 #pragma once
 
-#include "sort.h"
 
 template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
 class key_sort_array

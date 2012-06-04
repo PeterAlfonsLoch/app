@@ -33,6 +33,7 @@ CLASS_DECL_c char * strpbrk_dup(char * sz, const char * szFind);
 CLASS_DECL_c char to_lower(int ch);
 CLASS_DECL_c char * to_lower(char * pch);
 CLASS_DECL_c int isdigit_dup(int ch);
+CLASS_DECL_c int isxdigit_dup(int ch);
 CLASS_DECL_c int isalpha_dup(int ch);
 CLASS_DECL_c int isspace_dup(int ch);
 
@@ -92,4 +93,12 @@ CLASS_DECL_c char * utf16_to_8(const wchar_t * psz);
 
 #endif
 
+
+
+inline size_t safe_strlen(const char * psz)
+{
+   if(psz == NULL || *psz == '\0')
+      return 0;
+   return strlen_dup(psz);
+}
 

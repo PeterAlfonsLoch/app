@@ -18,9 +18,13 @@ namespace windows
 
 
 
-#include "ca/collection/sort_array.h"
-#include "ca/primitive/id_space.h"
-#include "ca/primitive/id_space.h"
+#include "ca/collection/collection_sort_array.h"
+
+
+#include "ca/primitive/primitive_id_space.h"
+#include "ca/primitive/primitive_id_space.h"
+
+
 #include "ca/gen/gen_international_locale_schema.h"
 
 
@@ -125,13 +129,27 @@ CLASS_DECL_ca bool __extract_sub_string(string & rString, const char * lpszFullS
 #include "ex1_file_stream.h"
 
 
-#include "primitive/memory.h"
+// memory primitives
+#include "primitive/primitive_memory_base.h"
+#include "primitive/primitive_memory.h"
+#include "primitive/primitive_virtual_memory.h"
+#include "primitive/primitive_shared_memory.h"
+#include "primitive/primitive_memory_container.h"
+#include "primitive/primitive_memory_file.h"
+#include "primitive/primitive_shared_file.h"
 
 
 
+#include "zlib/zconf.h"
+#include "zlib/zlib.h"
+#include "zlib/zutil.h"
+#include "sqlite/sqlite.h"
 
 
-#include "primitive/shared_file.h"
+
+#include "libcharguess/libcharguess.h"
+
+
 
 
 #if !defined(_INC_MALLOC) && !defined(MACOS)

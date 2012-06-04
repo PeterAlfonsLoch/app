@@ -127,7 +127,6 @@ CLASS_DECL_c vsstring itoa_dup(int i);
 CLASS_DECL_c vsstring itohex_dup(int i);
 CLASS_DECL_c vsstring itohexpad_dup(int i, int iPad);
 
-CLASS_DECL_c vsstring i64toa_dup(int64_t i);
 
 #ifdef WINDOWS
 

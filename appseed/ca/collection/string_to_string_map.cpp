@@ -1,8 +1,8 @@
 #include "framework.h"
 
-#include "elements.h"  // used for special creation
 
 #undef new
+
 
 base_string_to_string_map::base_string_to_string_map(int_ptr nBlockSize)
 {

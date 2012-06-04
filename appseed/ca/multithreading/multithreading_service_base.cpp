@@ -219,7 +219,7 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount,
 
     if (1 != argumentCount || 0 == arguments || 0 == arguments[0])
     {
-        throw hresult_exception(E_INVALIDARG);
+        throw invalid_argument_exception();
     }
 
     m_service->m_serviceName = arguments[0];

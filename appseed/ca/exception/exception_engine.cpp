@@ -66,7 +66,7 @@ HANDLE SymGetProcessHandle()
 
 bool __stdcall My_ReadProcessMemory (HANDLE, LPCVOID lpBaseAddress, LPVOID lpBuffer, DWORD nSize, SIZE_T * lpNumberOfBytesRead)
 {
-   return ReadProcessMemory(GetCurrentProcess(), lpBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead);
+   return ReadProcessMemory(GetCurrentProcess(), lpBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead) != FALSE;
 }
 
 namespace exception
@@ -211,7 +211,7 @@ namespace exception
          (PREAD_PROCESS_MEMORY_ROUTINE)My_ReadProcessMemory,
          SymFunctionTableAccess,
          SymGetModuleBase,
-         0);
+         0) != FALSE;
 
       if (!r || !m_pstackframe->AddrFrame.Offset)
       {
@@ -520,8 +520,7 @@ namespace exception
       current_context context;
       memset(&context, 0, sizeof(current_context));
 
-      bool bOk = DuplicateHandle(GetCurrentProcess(), GetCurrentThread(), GetCurrentProcess(),
-         &context.thread, 0, 0, DUPLICATE_SAME_ACCESS);
+      bool bOk = DuplicateHandle(GetCurrentProcess(), GetCurrentThread(), GetCurrentProcess(), &context.thread, 0, 0, DUPLICATE_SAME_ACCESS) != FALSE;
 
       _ASSERTE(bOk);
       _ASSERTE(context.thread);
@@ -636,13 +635,13 @@ namespace exception
                      }
                      if (*(p + 1) == 'd')
                      {
-                        strBuf = itoa_dup(uiLineDisplacement);
+                        strBuf = i64toa_dup(uiLineDisplacement);
                         str += strBuf;
                         ++p;
                      }
                      else
                      {
-                        strBuf = itoa_dup(uiLineNumber);
+                        strBuf = i64toa_dup(uiLineNumber);
                         str += strBuf;
                      }
                      break;
@@ -656,7 +655,7 @@ namespace exception
                      }
                      if (*(p + 1) == 'd')
                      {
-                        strBuf = itoa_dup(uiSymbolDisplacement);
+                        strBuf = i64toa_dup(uiSymbolDisplacement);
                         str += strBuf;
                         ++p;
                      }

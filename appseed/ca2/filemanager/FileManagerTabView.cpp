@@ -229,7 +229,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
       }
       if(pdoc == NULL)
          return;
-      ::view * pview = pdoc->get_view(0);
+//      ::view * pview = pdoc->get_view(0);
       //pcreatordata->m_pwnd = dynamic_cast < ::user::interaction * >(pview->GetParentFrame());
       //      FileManagerChildFrame * pframe = dynamic_cast < FileManagerChildFrame * >(pcreatordata->m_pwnd);
       //pframe->m_iTabId = iId;

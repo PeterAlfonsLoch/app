@@ -423,33 +423,27 @@ namespace ca
                int nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin);
 
 
-      virtual int draw_text(const char * lpszString, int nCount, LPRECT lpRect, UINT nFormat);
+      virtual int draw_text(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat);
       virtual int draw_text(const string & str, LPRECT lpRect, UINT nFormat);
 
 
-      virtual int draw_text_ex(LPTSTR lpszString, int nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
+      virtual int draw_text_ex(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
       virtual int draw_text_ex(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
 
 
-      virtual size GetTextExtent(const char * lpszString, int nCount, int iIndex) const;
-      virtual size GetTextExtent(const char * lpszString, int nCount) const;
+      virtual size GetTextExtent(const char * lpszString, strsize nCount, int iIndex) const;
+      virtual size GetTextExtent(const char * lpszString, strsize nCount) const;
       virtual size GetTextExtent(const string & str) const;
-      virtual bool GetTextExtent(sized & size, const char * lpszString, int nCount, int iIndex) const;
-      virtual bool GetTextExtent(sized & size, const char * lpszString, int nCount) const;
+      virtual bool GetTextExtent(sized & size, const char * lpszString, strsize nCount, int iIndex) const;
+      virtual bool GetTextExtent(sized & size, const char * lpszString, strsize nCount) const;
       virtual bool GetTextExtent(sized & size, const string & str) const;
-      virtual size GetOutputTextExtent(const char * lpszString, int nCount) const;
+      virtual size GetOutputTextExtent(const char * lpszString, strsize nCount) const;
       virtual size GetOutputTextExtent(const string & str) const;
-      virtual size GetTabbedTextExtent(const char * lpszString, int nCount,
-         int nTabPositions, LPINT lpnTabStopPositions) const;
-      virtual size GetTabbedTextExtent(const string & str,
-         int nTabPositions, LPINT lpnTabStopPositions) const;
-      virtual size GetOutputTabbedTextExtent(const char * lpszString, int nCount,
-         int nTabPositions, LPINT lpnTabStopPositions) const;
-      virtual size GetOutputTabbedTextExtent(const string & str,
-         int nTabPositions, LPINT lpnTabStopPositions) const;
-      virtual bool GrayString(::ca::brush* pBrush,
-         bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData,
-            int nCount, int x, int y, int nWidth, int nHeight);
+      virtual size GetTabbedTextExtent(const char * lpszString, strsize nCount, int nTabPositions, LPINT lpnTabStopPositions) const;
+      virtual size GetTabbedTextExtent(const string & str, int nTabPositions, LPINT lpnTabStopPositions) const;
+      virtual size GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, int nTabPositions, LPINT lpnTabStopPositions) const;
+      virtual size GetOutputTabbedTextExtent(const string & str, int nTabPositions, LPINT lpnTabStopPositions) const;
+      virtual bool GrayString(::ca::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData, int nCount, int x, int y, int nWidth, int nHeight);
       virtual UINT GetTextAlign() const;
       virtual UINT SetTextAlign(UINT nFlags);
       virtual int GetTextFace(int nCount, LPTSTR lpszFacename) const;

@@ -52,7 +52,7 @@ namespace user
 
          mutex                               m_mutex;
          array_ptr_alloc < timer_item >      m_timera;
-         int                                 m_iItem;
+         index                               m_iItem;
 
 
 

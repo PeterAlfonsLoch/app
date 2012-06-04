@@ -208,7 +208,7 @@ namespace xml
 //      ::xml::attr * pattr;
 
 
-      for(int iEdit = pedit->m_iEdit; iEdit < pedit->get_count(); iEdit++)
+      for(index iEdit = pedit->m_iEdit; iEdit < pedit->get_count(); iEdit++)
       {
 
          ::xml::edit_item * pitem = pedit->ptr_at(iEdit);

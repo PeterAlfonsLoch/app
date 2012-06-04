@@ -125,7 +125,7 @@ namespace ca
          straParam.add_smallest_tokens(lpcsz, straSeparator, FALSE);
          if(straParam.get_count() > 0)
          {
-            int iFind = straParam[0].find(':');
+            strsize iFind = straParam[0].find(':');
             if(iFind >= 2)
             {
                straParam[0] += "//";

@@ -1,7 +1,7 @@
 #pragma once
 
 
-template < class TYPE, class ARG_TYPE = const TYPE&, class ARRAY_TYPE = base_array < TYPE, ARG_TYPE > >
+template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = base_array < TYPE, ARG_TYPE > >
 class comparable_eq_array :
    virtual public ARRAY_TYPE
 {
@@ -9,15 +9,15 @@ public:
    comparable_eq_array();
    comparable_eq_array(const comparable_eq_array & base_array);
 
-   index find_first(const TYPE &t, index find = 0, index last = -1) const;
+   index find_first(ARG_TYPE t, index find = 0, index last = -1) const;
    ::count get_count() const;
-   ::count get_count(const TYPE & t, index start = 0, index last = -1, ::count countMax = -1) const;
-   bool contains(const TYPE & t, index start = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
-   index remove_first(const TYPE & t, index find = 0, index last = -1);
-   index remove(const TYPE & t, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
+   ::count get_count(ARG_TYPE t, index start = 0, index last = -1, ::count countMax = -1) const;
+   bool contains(ARG_TYPE t, index start = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
+   index remove_first(ARG_TYPE t, index find = 0, index last = -1);
+   index remove(ARG_TYPE t, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
    typename ARRAY_TYPE::iterator erase(typename ARRAY_TYPE::iterator it);
    typename ARRAY_TYPE::iterator erase(typename ARRAY_TYPE::iterator first, typename ARRAY_TYPE::iterator last);
-   index erase(const TYPE & t, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
+   index erase(ARG_TYPE t, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
    ::count remove(const comparable_eq_array & a);
 
 
@@ -61,7 +61,7 @@ ARRAY_TYPE(a)
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-find_first(const TYPE & t, index find, index last) const
+find_first(ARG_TYPE t, index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -85,7 +85,7 @@ get_count() const
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 ::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-get_count(const TYPE & t, index find, index last, ::count countMax) const
+get_count(ARG_TYPE t, index find, index last, ::count countMax) const
 {
    ::count count = 0;
    while((countMax >= 0 && count <= countMax)
@@ -96,7 +96,7 @@ get_count(const TYPE & t, index find, index last, ::count countMax) const
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-contains(const TYPE & t, index find, index last, ::count countMin, ::count countMax) const
+contains(ARG_TYPE t, index find, index last, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
@@ -211,7 +211,7 @@ operator |= (const comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> & a)
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 index comparable_eq_array < TYPE, ARG_TYPE , ARRAY_TYPE >::
-remove_first(const TYPE & t, index find, index last)
+remove_first(ARG_TYPE t, index find, index last)
 {
    if((find = find_first(t, find, last)) >= 0)
    {
@@ -228,7 +228,7 @@ remove_first(const TYPE & t, index find, index last)
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 ::count comparable_eq_array < TYPE, ARG_TYPE , ARRAY_TYPE >::
-remove(const TYPE & t, index find, index last, ::count countMin, ::count countMax)
+remove(ARG_TYPE t, index find, index last, ::count countMin, ::count countMax)
 {
    ::count count = 0;
    if(contains(t, find, last, countMin, countMax))
@@ -240,7 +240,7 @@ remove(const TYPE & t, index find, index last, ::count countMin, ::count countMa
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 ::count comparable_eq_array < TYPE, ARG_TYPE , ARRAY_TYPE >::
-erase(const TYPE & t, index find, index last, ::count countMin, ::count countMax)
+erase(ARG_TYPE t, index find, index last, ::count countMin, ::count countMax)
 {
    return remove(t, find, last, countMin, countMax);
 }

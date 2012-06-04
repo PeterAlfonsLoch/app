@@ -1,7 +1,5 @@
 #pragma once
 
-#include "api/muldiv64.h"
-#include "align.h"
 
 #define MAKELONG64(a, b)      (((uint64_t)(((unsigned int)(((uint64_t)(a)) & 0xffffffff)) | ((uint64_t)((unsigned int)(((uint64_t)(b)) & 0xffffffff))) << 32)))
 #define LODWORD(l)           ((unsigned int)(((uint64_t)(l)) & 0xffffffff))
@@ -105,15 +103,59 @@ typedef const RECTD FAR* LPCRECTD;
 
 
 
-#include "size.h"
-#include "point.h"
-#include "rectangle.h"
 
 
 CLASS_DECL_ca int64_t MulDiv(int64_t nNumber, int64_t nNumerator, int64_t nDenominator);
-CLASS_DECL_ca inline bool is64(int64_t i)
+CLASS_DECL_ca inline bool is64integer(int64_t i)
 {
    return (i & 0xffffffff00000000 ) != 0;
+}
+CLASS_DECL_ca inline bool is64natural(uint64_t ui)
+{
+   return (ui & 0xffffffff00000000u ) != 0;
+}
+CLASS_DECL_ca inline bool is64integer(double d)
+{
+   return (d >= ((double) (int64_t) (0xfff0000000000000))) && (d < ((double) (uint64_t) 0xfffffffffffffu));
+}
+CLASS_DECL_ca inline bool is64natural(double d)
+{
+   return (d >= 0.0) && (d < ((double) (uint64_t) 0xfffffffffffffu));
+}
+CLASS_DECL_ca inline bool is32integer(double d)
+{
+   return (d >= ((double) (int64_t) (0x80000000))) && (d < ((double) (uint64_t) 0x7fffffffu));
+}
+CLASS_DECL_ca inline bool is32natural(double d)
+{
+   return (d >= 0.0) && (d < ((double) (uint64_t) 0xffffffffu));
+}
+CLASS_DECL_ca inline bool is32integer(int64_t i)
+{
+   return (i & 0xffffffff00000000 ) == 0;
+}
+CLASS_DECL_ca inline bool is32natural(int64_t i)
+{
+   return (i & 0xffffffff00000000 ) == 0;
+}
+CLASS_DECL_ca inline bool is32natural(uint64_t ui)
+{
+   return (ui & 0xffffffff00000000 ) == 0;
+}
+CLASS_DECL_ca inline bool is_double(int64_t i)
+{
+   if(i >= 0)
+   {
+      return (i & 0xfff0000000000000 ) != 0;
+   }
+   else
+   {
+      return (i & 0xffe0000000000000 ) != 0;
+   }
+}
+CLASS_DECL_ca inline bool is_double(uint64_t ui)
+{
+   return (ui & 0xfff0000000000000 ) == 0;
 }
 CLASS_DECL_ca bool copy(tagRECTD * prectDest, const tagRECTD * prectSrc);
 CLASS_DECL_ca bool copy(tagRECTD * prectDest, const RECT * prectSrc);

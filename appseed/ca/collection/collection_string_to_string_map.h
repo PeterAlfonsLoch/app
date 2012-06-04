@@ -26,6 +26,87 @@ public:
 	};
 
 
+   class CLASS_DECL_ca iterator
+   {
+   public:
+
+
+      pair *   m_ppair;
+      base_string_to_string_map *    m_pmap;
+
+
+      iterator()
+      {
+         m_ppair  = NULL;
+         m_pmap   = NULL;
+      }
+
+      iterator(const iterator & iterator)
+      {
+         m_ppair  = iterator.m_ppair;
+         m_pmap   = iterator.m_pmap;
+      }
+
+      iterator(pair * ppair, base_string_to_string_map * pmap)
+      {
+         m_ppair  = ppair;
+         m_pmap   = pmap;
+      }
+
+      pair * operator -> ()
+      {
+         return m_ppair;
+      }
+
+      const pair * operator -> () const
+      {
+         return m_ppair;
+      }
+
+
+      iterator & operator ++ ()
+      {
+         if(m_ppair != NULL && m_pmap != NULL)
+            m_ppair = m_pmap->PGetNextAssoc(m_ppair);
+         return *this;
+      }
+
+      iterator operator ++ (int)
+      {
+         if(m_ppair != NULL && m_pmap != NULL)
+            m_ppair = m_pmap->PGetNextAssoc(m_ppair);
+         return *this;
+      }
+
+      bool operator == (const iterator & it) const
+      {
+         if(this == &it)
+            return true;
+         if(m_ppair == NULL && it.m_ppair == NULL && it.m_pmap == NULL)
+            return true;
+         if(m_pmap != it.m_pmap)
+            return false;
+         return m_ppair == it.m_ppair;
+      }
+
+      bool operator != (const iterator & it) const
+      {
+         return !operator == (it);
+      }
+
+      iterator & operator = (const iterator & it)
+      {
+         if(this != &it)
+         {
+            m_pmap         = it.m_pmap;
+            m_ppair        = it.m_ppair;
+         }
+         return *this;
+      }
+
+   };
+
+
    base_string_to_string_map(int_ptr nBlockSize = 10);
 	virtual ~base_string_to_string_map();
 
@@ -71,6 +152,22 @@ public:
 
    void _001ReplaceVars(string & str);
 
+   iterator begin()
+   {
+      return iterator(PGetFirstAssoc(), this);
+   }
+
+
+   iterator end()
+   {
+      return iterator(NULL, this);
+   }
+
+   ::count count(const string & strKey) const;
+   bool has(const string & strKey) const;
+   bool contains(const string & strKey) const;
+
+
 
 // Implementation
 protected:
@@ -115,7 +212,12 @@ inline POSITION base_string_to_string_map::get_start_position() const
    { return (m_nCount == 0) ? NULL : BEFORE_START_POSITION; }
 inline UINT base_string_to_string_map::GetHashTableSize() const
    { return m_nHashTableSize; }
-
+inline ::count base_string_to_string_map::count(const string & strKey) const
+{ return PLookup(strKey) != NULL ? 1 : 0; }
+inline bool base_string_to_string_map::contains(const string & strKey) const
+{ return PLookup(strKey) != NULL; }
+inline bool base_string_to_string_map::has(const string & strKey) const
+{ return PLookup(strKey) != NULL; }
 
 
 

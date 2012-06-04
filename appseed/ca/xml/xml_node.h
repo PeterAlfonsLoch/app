@@ -141,13 +141,13 @@ namespace xml
       node *                  get_child( const char * name);
       node *                  get_child_with_attr(const char * lpcszName, const char * pszAttr, var value, index iStart = 0);
       string                  get_simple_path() const;
-      int_array               get_indexed_path() const;
-      void                    get_indexed_path(int_array & iaPath) const;
+      index_array             get_indexed_path() const;
+      void                    get_indexed_path(index_array & iaPath) const;
       node *                  get_node_from_simple_path(const char * path);
-      node *                  get_node_from_indexed_path(const int_array & ia);
+      node *                  get_node_from_indexed_path(const index_array & ia);
       node *                  get_node_from_attr_path(const char * path, const char * pszName, const char * pszAttr);
-      int_array               get_child_indexed_path(const node * pnode) const;
-      void                    get_child_indexed_path(int_array & iaPath, const node * pnode) const;
+      index_array             get_child_indexed_path(const node * pnode) const;
+      void                    get_child_indexed_path(index_array & iaPath, const node * pnode) const;
       string                  get_child_simple_path(const node * pnode) const;
       string                  get_child_simple_attr_path(node * pnode, const char * pszAttr);
       node *                  get_child(const char * name, index & iStartPosition);

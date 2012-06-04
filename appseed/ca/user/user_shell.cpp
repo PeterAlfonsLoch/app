@@ -677,7 +677,7 @@ namespace filemanager
 
             DWORD dwAttrib = 0;
 
-            unsigned long ulEaten;
+//            unsigned long ulEaten;
 
             HRESULT hr;
 
@@ -1002,8 +1002,8 @@ namespace filemanager
 
       HICON hicon16 = NULL;
       HICON hicon48 = NULL;
-      HRESULT hrIconLocation;
-      HRESULT hrExtract;
+//      HRESULT hrIconLocation;
+//      HRESULT hrExtract;
       ImageKey imagekey;
 
 
@@ -1431,7 +1431,7 @@ namespace filemanager
       }
       // try to find "uifs:// http:// ftp:// like addresses"
       // then should show icon by extension or if is folder
-      int iFind = gen::str::find_ci("://", strPath);
+      strsize iFind = gen::str::find_ci("://", strPath);
       if(iFind >= 0)
       {
          string strProtocol = strPath.Left(iFind);

@@ -826,9 +826,17 @@ var::operator int()
    case type_pstring:
       return atoi(*m_pstr);
    case type_id:
-      return m_id;
+   {
+      if(!is32integer((int64_t) m_id))
+         throw overflow_error("var contains id that does not fit 32 bit integer");
+      return (int) (int64_t) m_id;
+   }
    case type_pid:
-      return *m_pid;
+   {
+      if(!is32integer((int64_t) *m_pid))
+         throw overflow_error("var contains id that does not fit 32 bit integer");
+      return (int) (int64_t) *m_pid;
+   }
    default:
       return 0;
    }
@@ -1714,7 +1722,7 @@ int var::get_integer(int iDefault) const
    case var::type_integer:
       return m_i;
    case var::type_int64:
-      return m_i64;
+      return (int) m_i64;
    case var::type_ulong:
       return (int) m_ul;
    case var::type_double:

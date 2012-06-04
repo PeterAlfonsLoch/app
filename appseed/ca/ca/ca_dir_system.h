@@ -85,13 +85,13 @@ namespace ca
          virtual string path(const string & strFolder, const string & strRelative, bool bUrl);
          virtual string path(const string & strFolder, const string & strRelative, const string & str2, bool bUrl);
 
-         virtual string path(const char * pszFolder, int iLenFolder, const char * pszRelative, int iLenRelative, const char * psz2, int iLen2, bool bUrl);
+         virtual string path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2, bool bUrl);
 
          virtual string path(const string & strFolder, const string & strRelative);
          virtual string path(const string & strFolder, const string & strRelative, const char * psz2);
          virtual string path(const string & strFolder, const string & strRelative, const string & str2);
 
-         virtual string path(const char * pszFolder, int iLenFolder, const char * pszRelative, int iLenRelative, const char * psz2, int iLen2);
+         virtual string path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2);
 
          virtual string simple_path(const string & str1, const string & str2);
          virtual string simple_path(const string & str1, const string & str2, const string & str3);

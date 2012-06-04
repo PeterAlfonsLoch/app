@@ -16,9 +16,6 @@
 
 
 
-#include "ca/api/rotate.h"
-
-
 #include "zlib/zlib.h"
 #include "zlib/zutil.h"
 #include "sqlite/sqlite.h"

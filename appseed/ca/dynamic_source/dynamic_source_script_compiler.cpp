@@ -133,7 +133,7 @@ namespace dynamic_source
 #endif
       bool bResult;
 #ifdef WINDOWS
-      bResult = SetEnvironmentVariable("PATH", str);
+      bResult = SetEnvironmentVariable("PATH", str) != FALSE;
 #else
       bResult = setenv("PATH", str, TRUE);
 #endif
@@ -1334,7 +1334,7 @@ namespace dynamic_source
                if(bInDoubleQuote)
                {
                   strResult += "\") + glowstr(\"";
-                  bLow = trace;
+                  bLow = true;
                }
                else
                {

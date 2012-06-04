@@ -227,7 +227,7 @@ namespace sockets
       string key;
       string value;
       string lowvalue;
-      int iFind = line.find(':');
+      strsize iFind = line.find(':');
       if(iFind < 0)
       {
          key = line;
@@ -241,7 +241,7 @@ namespace sockets
          {
             iFind++;
          }
-         int iLen = line.get_length();
+         strsize iLen = line.get_length();
          while(iLen >= iFind && isspace((unsigned char ) line[iLen - 1]))
          {
             iLen--;
