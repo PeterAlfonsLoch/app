@@ -40,7 +40,9 @@ public:
    static vsstring get(unsigned int uiSkip = 2)
    {
       vsstring str;
+#ifndef AMD64
       ::exception::engine::stack_trace(str, uiSkip);
+#endif
       return str;
    }
 

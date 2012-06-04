@@ -18,7 +18,7 @@ db_server::db_server(::ca::application * papp) :
    m_pveievpost         = NULL;
    m_pfilesystemsizeset = NULL;
    m_pdatabaseImpl      = NULL;
-
+   m_bRemote            = true;
 }
 
 db_server::~db_server()
@@ -39,6 +39,13 @@ string db_server::calc_key(::database::id & idSection, ::database::id & id, ::da
 
 bool db_server::initialize()
 {
+
+   if(System.directrix().m_varTopicQuery["app"] == "core_netnodelite")
+   {
+      m_bRemote = false;
+   }
+
+
    m_pdb = new ::sqlite::base(get_app());
 
    string str;

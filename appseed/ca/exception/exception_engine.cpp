@@ -64,10 +64,40 @@ HANDLE SymGetProcessHandle()
       return (HANDLE)GetCurrentProcessId();
 }
 
-bool __stdcall My_ReadProcessMemory (HANDLE, LPCVOID lpBaseAddress, LPVOID lpBuffer, DWORD nSize, SIZE_T * lpNumberOfBytesRead)
+
+#ifdef AMD64
+
+/*typedef
+BOOL
+(__stdcall *PREAD_PROCESS_MEMORY_ROUTINE64)(
+    _In_ HANDLE hProcess,
+    _In_ DWORD64 qwBaseAddress,
+    _Out_writes_bytes_(nSize) PVOID lpBuffer,
+    _In_ DWORD nSize,
+    _Out_ LPDWORD lpNumberOfBytesRead
+    );*/
+
+
+WINBOOL __stdcall My_ReadProcessMemory (HANDLE, DWORD64 lpBaseAddress, PVOID lpBuffer, DWORD nSize, LPDWORD lpNumberOfBytesRead)
+{
+
+   SIZE_T size;
+
+   if(!ReadProcessMemory(GetCurrentProcess(), (LPCVOID) lpBaseAddress, (LPVOID) lpBuffer, nSize, &size))
+      return FALSE;
+
+   *lpNumberOfBytesRead = size;
+
+   return TRUE;
+
+}
+
+#else
+WINBOOL __stdcall My_ReadProcessMemory (HANDLE, LPCVOID lpBaseAddress, LPVOID lpBuffer, DWORD nSize, SIZE_T * lpNumberOfBytesRead)
 {
    return ReadProcessMemory(GetCurrentProcess(), lpBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead) != FALSE;
 }
+#endif
 
 namespace exception
 {
@@ -203,7 +233,13 @@ namespace exception
 
       SetLastError(0);
       HANDLE hprocess = SymGetProcessHandle();
-      bool r = StackWalk (IMAGE_FILE_MACHINE_I386,
+      bool r = StackWalk (
+#ifdef AMD64
+         IMAGE_FILE_MACHINE_AMD64,
+#else
+
+       IMAGE_FILE_MACHINE_I386,
+#endif
          hprocess,
          GetCurrentThread(),
          m_pstackframe,
@@ -227,10 +263,11 @@ namespace exception
       dword_ptr dwModBase = SymGetModuleBase (hprocess, m_pstackframe->AddrPC.Offset);
       if (!dwModBase)
       {
-         ::OutputDebugString("engine::stack_next :: StackWalk returned TRUE but the address doesn't belong to a module in the process.");
-         return false;
+         //::OutputDebugString("engine::stack_next :: StackWalk returned TRUE but the address doesn't belong to a module in the process.");
+         m_bSkip = true;
+         return true;
       }
-
+      m_bSkip = false;
       address(m_pstackframe->AddrPC.Offset);
       return true;
    }
@@ -464,11 +501,11 @@ namespace exception
    DWORD WINAPI engine::stack_trace_ThreadProc(void * lpvoidParam)
    {
 
-#ifdef AMD64
+//#ifdef AMD64
 
-      return -1;
+  //    return -1;
 
-#endif
+//#endif
 
       current_context * pcontext = reinterpret_cast<current_context*>(lpvoidParam);
 
@@ -574,7 +611,7 @@ namespace exception
    }
 
    bool engine::stack_trace(vsstring & str, engine& symengine,
-      CONTEXT * pcontext, dword_ptr uiSkip, const char * pszFormat)
+      CONTEXT * pcontext, dword_ptr uiSkip, bool bSkip, const char * pszFormat)
    {
       if (!symengine.stack_first(pcontext))
          return false;
@@ -589,7 +626,7 @@ namespace exception
 
       do
       {
-         if (!uiSkip)
+         if (!uiSkip && !bSkip)
          {
             dword_ptr uiLineNumber = 0;
             dword_ptr uiLineDisplacement = 0;

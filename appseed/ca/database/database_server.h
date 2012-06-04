@@ -12,6 +12,9 @@ namespace database
    public:
 
 
+      bool                    m_bRemote;
+
+
 
       virtual bool data_server_load       (class id idSection, class id id, class id idIndex, ex1::writable & obj, update_hint * phint = NULL);
 

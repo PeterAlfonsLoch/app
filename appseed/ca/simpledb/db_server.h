@@ -46,6 +46,7 @@ public:
    DBFileSystemSizeSet *   m_pfilesystemsizeset;
    class ::im_post *       m_pimpost;
    class ::veiev_post *    m_pveievpost;
+   
 
 
    db_server(::ca::application * papp);

@@ -37,77 +37,104 @@ namespace collection
       public:
 
 
-         pair *         m_ppair;
+         index          m_i;
          fifo_map *     m_pmap;
 
 
          iterator()
          {
-            m_ppair  = NULL;
+            m_i      = 0;
             m_pmap   = NULL;
          }
 
          iterator(const iterator & iterator)
          {
-            m_ppair  = iterator.m_ppair;
+            m_i      = iterator.m_i;
             m_pmap   = iterator.m_pmap;
          }
 
-         iterator(pair * ppair, fifo_map * pmap)
+         iterator(index i, fifo_map * pmap)
          {
-            m_ppair  = ppair;
+            if(i < 0)
+               m_i = 0;
+            else if(i >= pmap->m_ptra.get_size())
+               m_i = 0;
+            else
+               m_i = i + 1;
             m_pmap   = pmap;
          }
 
          pair * operator -> ()
          {
-            return m_ppair;
+            return m_pmap->m_ptra[m_i - 1];
          }
 
          const pair * operator -> () const
          {
-            return m_ppair;
+            return m_pmap->m_ptra[m_i - 1];
          }
 
 
          iterator & operator ++ ()
          {
-            if(m_ppair != NULL && m_pmap != NULL)
-               m_ppair = m_pmap->PGetNextAssoc(m_ppair);
+            if(m_i != 0 && m_pmap != NULL)
+            {
+               m_i++;
+               if(m_i > m_pmap->m_ptra.get_size())
+               {
+                  m_i = 0;
+               }
+            }
             return *this;
          }
 
          iterator operator ++ (int)
          {
-            if(m_ppair != NULL && m_pmap != NULL)
-               m_ppair = m_pmap->PGetNextAssoc(m_ppair);
+            if(m_i != 0 && m_pmap != NULL)
+            {
+               m_i++;
+               if(m_i > m_pmap->m_ptra.get_size())
+               {
+                  m_i = 0;
+               }
+            }
             return *this;
          }
 
          bool operator == (const iterator & it) const
          {
+            
             if(this == &it)
                return true;
-            if(m_ppair == NULL && it.m_ppair == NULL && it.m_pmap == NULL)
+
+            if(m_i == 0 && it.m_i == 0)
                return true;
-            if(m_pmap != it.m_pmap)
-               return false;
-            return m_ppair == it.m_ppair;
+
+            return m_pmap == it.m_pmap && m_i == it.m_i;
+
          }
 
          bool operator != (const iterator & it) const
          {
+
             return !operator == (it);
+
          }
 
          iterator & operator = (const iterator & it)
          {
+
             if(this != &it)
             {
+
                m_pmap         = it.m_pmap;
-               m_ppair        = it.m_ppair;
+
+               m_i            = it.m_i;
+
             }
+
             return *this;
+
          }
 
       };
@@ -134,13 +161,13 @@ namespace collection
 
       iterator begin()
       {
-         return iterator(PGetFirstAssoc(), this);
+         return iterator(0, this);
       }
 
 
       iterator end()
       {
-         return iterator(NULL, this);
+         return iterator(-1, this);
       }
 
       ::count get_count() const;
@@ -482,7 +509,7 @@ namespace collection
    bool fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::find_key(ARG_KEY key, index & i) const
    {
 
-      for(index i = 0; i < m_ptra.get_size(); i++)
+      for(i = 0; i < m_ptra.get_size(); i++)
       {
 
          if(m_ptra[i]->m_key == key)
@@ -561,7 +588,7 @@ namespace collection
       if(!find_key(key, i))
       {
 
-         m_ptra.insert_at(i, new pair(key));
+         m_ptra.set_at_grow(i, new pair(key));
 
       }
 
@@ -687,8 +714,6 @@ namespace collection
 
       index iRet = (index) find_pair(const_cast < pair * > (pPairRet));
 
-      ENSURE(iRet != NULL);
-
       // find next association
       iRet++;
 
@@ -713,8 +738,6 @@ namespace collection
       ENSURE(m_ptra.get_count() > 0);  // never call on is_empty fifo_map
 
       index iRet = (index) find_pair(const_cast < pair * > (pPairRet));
-
-      ENSURE(iRet != NULL);
 
       // find next association
       iRet++;

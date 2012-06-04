@@ -22,168 +22,189 @@ db_long_set::~db_long_set()
 bool db_long_set::load(const char * lpKey, int64_t * plValue)
 {
 
-   long_item longitem;
-
-   if(m_map.Lookup(lpKey, longitem) && longitem.m_dwTimeout > GetTickCount())
+   if(m_pdataserver->m_bRemote)
    {
-      *plValue = longitem.m_l;
+
+      long_item longitem;
+
+      if(m_map.Lookup(lpKey, longitem) && longitem.m_dwTimeout > GetTickCount())
+      {
+         *plValue = longitem.m_l;
+         return true;
+      }
+   
+
+
+
+      gen::property_set post(get_app());
+      gen::property_set headers(get_app());
+      gen::property_set set(get_app());
+
+      ca4::http::e_status estatus;
+
+      string strUrl;
+
+      set["interactive_user"] = true;
+
+      strUrl = "https://api.ca2.cc/account/long_set_load?key=";
+      strUrl += System.url().url_encode(lpKey);
+
+      m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
+
+      if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
+      {
+         return false;
+      }
+
+      *plValue = gen::str::atoi64(string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(),
+                        m_phttpsession->m_memoryfile.get_memory()->get_size()));
+
+      longitem.m_dwTimeout = GetTickCount() + 23 * (1984 + 1977);
+      longitem.m_l = *plValue;
+
+      m_map.set_at(lpKey, longitem);
       return true;
+
    }
-   
-
-
-/*   single_lock slDatabase(db()->GetImplCriticalSection());
-
-   string strKey;
-   strKey = lpKey;
-   strKey.replace("'", "''");
-   
-   string strSql;
-   strSql.Format(
-      "select value FROM integertable WHERE id = '%s';",
-      strKey);
-
-   
-   slDatabase.lock();
-   //try
+   else
    {
-      m_pdataset->query(strSql);
+
+
+      single_lock slDatabase(db()->GetImplCriticalSection());
+
+      string strKey;
+      strKey = lpKey;
+      strKey.replace("'", "''");
+   
+      string strSql;
+      strSql.Format(
+         "select value FROM integertable WHERE id = '%s';",
+         strKey);
+
+   
+      slDatabase.lock();
+      //try
+      {
+         m_pdataset->query(strSql);
+      }
+      //catch(...)
+      {
+        // return false;
+      }
+
+      if(m_pdataset->num_rows() <= 0)
+         return false;
+
+      *plValue = m_pdataset->fv("value");
+
+      return true;
+
    }
-   //catch(...)
-   {
-     // return false;
-   }
 
-   if(m_pdataset->num_rows() <= 0)
-      return false;
 
-   *plValue = m_pdataset->fv("value");
-
-   return true;*/
-
-   gen::property_set post(get_app());
-   gen::property_set headers(get_app());
-   gen::property_set set(get_app());
-
-   ca4::http::e_status estatus;
-
-   string strUrl;
-
-   set["interactive_user"] = true;
-
-   strUrl = "https://api.ca2.cc/account/long_set_load?key=";
-   strUrl += System.url().url_encode(lpKey);
-
-   m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
-
-   if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
-   {
-      return false;
-   }
-
-   *plValue = gen::str::atoi64(string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(),
-                     m_phttpsession->m_memoryfile.get_memory()->get_size()));
-
-   longitem.m_dwTimeout = GetTickCount() + 23 * (1984 + 1977);
-   longitem.m_l = *plValue;
-
-   m_map.set_at(lpKey, longitem);
-
-   return true;
 }
 
 bool db_long_set::save(const char * lpKey, int64_t lValue)
 {
 
-   gen::property_set post(get_app());
-   gen::property_set headers(get_app());
-   gen::property_set set(get_app());
-
-   ca4::http::e_status estatus;
-
-   string strUrl;
-
-   set["interactive_user"] = true;
-
-   strUrl = "https://api.ca2.cc/account/long_set_load?key=";
-   strUrl += System.url().url_encode(lpKey);
-   strUrl += "&value=";
-   strUrl += gen::str::itoa(lValue);
-
-   m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
-
-   if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
+   if(!m_pdataserver->m_bRemote)
    {
-      return false;
-   }
 
-   string strResult = string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(),
-                     m_phttpsession->m_memoryfile.get_memory()->get_size());
+      gen::property_set post(get_app());
+      gen::property_set headers(get_app());
+      gen::property_set set(get_app());
 
-   if(strResult != "ok")
-      return false;
+      ca4::http::e_status estatus;
 
-   long_item longitem;
+      string strUrl;
 
-   longitem.m_dwTimeout = GetTickCount() + 23 * (1984 + 1977);
-   longitem.m_l = lValue;
+      set["interactive_user"] = true;
 
-   m_map.set_at(lpKey, longitem);
+      strUrl = "https://api.ca2.cc/account/long_set_load?key=";
+      strUrl += System.url().url_encode(lpKey);
+      strUrl += "&value=";
+      strUrl += gen::str::itoa(lValue);
 
-   return true;
-  /* single_lock slDatabase(db()->GetImplCriticalSection());
-   string strKey;
-   strKey = lpKey;
-   strKey.replace("'", "''");
+      m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
-   
-   ::sqlite::base * pdb   = db()->GetImplDatabase();
-   string strSql;
-   long l;
-   slDatabase.lock();
-   if(load(lpKey, &l))
-   {
-      strSql.Format(
-         "UPDATE integertable SET value = '%d' WHERE id = '%s';",
-         lValue,
-         strKey);
-
-      try
+      if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
       {
-         pdb->start_transaction();
-         m_pdataset->exec(strSql);
-         pdb->commit_transaction();
-      }
-      catch(...)
-      {
-         pdb->rollback_transaction();
          return false;
       }
+
+      string strResult = string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(),
+                        m_phttpsession->m_memoryfile.get_memory()->get_size());
+
+      if(strResult != "ok")
+         return false;
+
+      long_item longitem;
+
+      longitem.m_dwTimeout = GetTickCount() + 23 * (1984 + 1977);
+      longitem.m_l = lValue;
+
+      m_map.set_at(lpKey, longitem);
+
+      return true;
+
    }
    else
    {
+      single_lock slDatabase(db()->GetImplCriticalSection());
+      string strKey;
+      strKey = lpKey;
+      strKey.replace("'", "''");
+
    
-      strSql.Format(
-         "INSERT INTO integertable (id, value) values ('%s', '%d');",
-         strKey,
-         lValue);
+      ::sqlite::base * pdb   = db()->GetImplDatabase();
+      string strSql;
+      int64_t l;
+      slDatabase.lock();
+      if(load(lpKey, &l))
+      {
+         strSql.Format(
+            "UPDATE integertable SET value = '%d' WHERE id = '%s';",
+            lValue,
+            strKey);
+
+         try
+         {
+            pdb->start_transaction();
+            m_pdataset->exec(strSql);
+            pdb->commit_transaction();
+         }
+         catch(...)
+         {
+            pdb->rollback_transaction();
+            return false;
+         }
+      }
+      else
+      {
+   
+         strSql.Format(
+            "INSERT INTO integertable (id, value) values ('%s', '%d');",
+            strKey,
+            lValue);
 
       
       
-      try
-      {
-         pdb->start_transaction();
-         m_pdataset->exec(strSql);
-         pdb->commit_transaction();
+         try
+         {
+            pdb->start_transaction();
+            m_pdataset->exec(strSql);
+            pdb->commit_transaction();
+         }
+         catch(...)
+         {
+            pdb->rollback_transaction();
+            return false;
+         }
       }
-      catch(...)
-      {
-         pdb->rollback_transaction();
-         return false;
-      }
+
+      return true;
    }
 
-   return true;*/
 }
 
 bool db_long_set::find(const char * lpKey)

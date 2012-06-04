@@ -601,18 +601,7 @@ public:
    {
 
       if((iChar < 0) || (iChar > get_length()))
-         throw '\0';
-
-      return m_pszData[iChar];
-
-   }
-
-   // non error at
-   XCHAR & s_at(strsize iChar )
-   {
-
-      if((iChar < 0) || (iChar > get_length()))
-         throw '\0';
+         return '\0';
 
       return m_pszData[iChar];
 

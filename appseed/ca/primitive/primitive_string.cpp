@@ -2146,7 +2146,11 @@ string& string::trim_left(PCXSTR pszTargets )
 string string::right_trimmed() const
 {
 
-   return string(*this).trim_right();
+   string str(*this);
+
+   str.trim_right();
+
+   return str;
 
 }
 
@@ -2155,7 +2159,11 @@ string string::right_trimmed() const
 string string::left_trimmed() const
 {
 
-   return string(*this).trim_left();
+   string str(*this);
+
+   str.trim_left();
+
+   return str;
 
 }
 
@@ -2164,7 +2172,11 @@ string string::left_trimmed() const
 string string::trimmed() const
 {
 
-   return string(*this).trim();
+   string str(*this);
+
+   str.trim();
+
+   return str;
 
 }
 
@@ -2173,7 +2185,11 @@ string string::trimmed() const
 string string::trimmed(XCHAR chTarget) const
 {
 
-   return string(*this).trim(chTarget);
+   string str(*this);
+
+   str.trim(chTarget);
+
+   return str;
 
 }
 
@@ -2182,7 +2198,11 @@ string string::trimmed(XCHAR chTarget) const
 string string::trimmed(PCXSTR pszTargets) const
 {
 
-   return string(*this).trim(pszTargets);
+   string str(*this);
+
+   str.trim(pszTargets);
+
+   return str;
 
 }
 
@@ -2193,7 +2213,11 @@ string string::trimmed(PCXSTR pszTargets) const
 string string::right_trimmed(XCHAR chTarget) const
 {
 
-   return string(*this).trim_right(chTarget);
+   string str(*this);
+
+   str.trim_right(chTarget);
+
+   return str;
 
 }
 
@@ -2202,7 +2226,11 @@ string string::right_trimmed(XCHAR chTarget) const
 string string::right_trimmed(PCXSTR pszTargets) const
 {
 
-   return string(*this).trim_right(pszTargets);
+   string str(*this);
+
+   str.trim_right(pszTargets);
+
+   return str;
 
 }
 
@@ -2211,7 +2239,11 @@ string string::right_trimmed(PCXSTR pszTargets) const
 string string::left_trimmed(XCHAR chTarget) const
 {
 
-   return string(*this).trim_left(chTarget);
+   string str(*this);
+
+   str.trim_left(chTarget);
+
+   return str;
 
 }
 
@@ -2220,7 +2252,11 @@ string string::left_trimmed(XCHAR chTarget) const
 string string::left_trimmed(PCXSTR pszTargets) const
 {
 
-   return string(*this).trim_left(pszTargets);
+   string str(*this);
+
+   str.trim_left(pszTargets);
+
+   return str;
 
 }
 

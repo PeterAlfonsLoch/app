@@ -39,6 +39,8 @@ namespace exception
    {
    public:
 
+      bool  m_bSkip;
+
 
       engine(unsigned int);
       ~engine();
@@ -71,7 +73,7 @@ namespace exception
       */
       static bool stack_trace(vsstring & str, CONTEXT *, dword_ptr uiSkip = 0, const char * pszFormat = default_format());
       static bool stack_trace(vsstring & str, dword_ptr uiSkip = 1, const char * pszFormat = default_format());
-      static bool stack_trace(vsstring & str, engine&, CONTEXT *, dword_ptr uiSkip = 1, const char * pszFormat = default_format());
+      static bool stack_trace(vsstring & str, engine&, CONTEXT *, dword_ptr uiSkip = 1, bool bSkip = false, const char * pszFormat = default_format());
       static DWORD WINAPI stack_trace_ThreadProc(void * lpvoidParam);
     private:
       static const char * default_format(){ return "%f(%l) : %m at %s\n"; }
