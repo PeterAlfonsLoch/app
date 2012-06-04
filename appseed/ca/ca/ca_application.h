@@ -127,6 +127,8 @@ namespace ca
       virtual bool is_installing();
       virtual bool is_uninstalling();
 
+      virtual bool is_serviceable();
+
       virtual bool app_map_lookup(const char * psz, void * &) = 0;
       virtual void app_map_set(const char * psz, void *) = 0;
 

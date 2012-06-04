@@ -82,6 +82,10 @@ namespace ca
       return false;
    }
 
+   bool application::is_serviceable()
+   {
+      return false;
+   }
 
    bool application::init_main_data(main_init_data * pdata)
    {

@@ -95,7 +95,8 @@ namespace fontopus
          System.userset().add(m_puser);
 
          if(m_puser != NULL && m_strAppName != "core_deepfish"
-            && !gen::str::begins(m_strAppName, "core_deepfish_"))
+            && !gen::str::begins(m_strAppName, "core_deepfish_")
+            && !is_serviceable())
          {
 
             on_user_login(m_puser);

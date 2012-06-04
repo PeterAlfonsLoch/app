@@ -511,9 +511,11 @@ namespace collection
             
                if(m_ptra[i]->m_key > m_ptra[j]->m_key)
                {
+
                   pair * ppair = m_ptra[i];
                   m_ptra[i] = m_ptra[j];
-                  m_ptra[j] = m_ptra[ppair];
+                  m_ptra[j] = ppair;
+
                }
 
             }
@@ -532,9 +534,11 @@ namespace collection
             
                if(m_ptra[i]->m_key < m_ptra[j]->m_key)
                {
+
                   pair * ppair = m_ptra[i];
                   m_ptra[i] = m_ptra[j];
-                  m_ptra[j] = m_ptra[ppair];
+                  m_ptra[j] = ppair;
+
                }
 
             }
@@ -708,7 +712,7 @@ namespace collection
 
       ENSURE(m_ptra.get_count() > 0);  // never call on is_empty fifo_map
 
-      index iRet = (index) find_pair(pPairRet);
+      index iRet = (index) find_pair(const_cast < pair * > (pPairRet));
 
       ENSURE(iRet != NULL);
 

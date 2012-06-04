@@ -856,7 +856,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName)64.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/$(ConfigurationName);$(SolutionDir)../../../app/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>
