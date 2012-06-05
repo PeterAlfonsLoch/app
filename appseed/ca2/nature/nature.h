@@ -5,16 +5,16 @@
 #include "cube8/cube8_application.h"
 
 
-#include "database.h"
+#include "nature_database.h"
 
-#include "document.h"
-#include "view.h"
-#include "frame.h"
+#include "nature_document.h"
+#include "nature_view.h"
+#include "nature_frame.h"
 
-#include "appearance_view.h"
+#include "nature_appearance_view.h"
 
-#include "pane_view.h"
-#include "pane_view_update_hint.h"
+#include "nature_pane_view.h"
+#include "nature_pane_view_update_hint.h"
 
 #include "nature_application.h"
 

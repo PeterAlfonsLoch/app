@@ -1724,6 +1724,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="sqlite\sqlite3.h" />
     <ClInclude Include="sqlite\sqlite3ext.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="uinteraction\uinteraction.h" />
+    <ClInclude Include=".\uinteraction\uinteraction_interaction.h" />
+    <ClInclude Include="uinteraction\uinteraction_frame.h" />
     <ClInclude Include="userpresence\userpresence.h" />
     <ClInclude Include="userpresence\userpresence_application.h" />
     <ClInclude Include="userpresence\userpresence_user_presence.h" />
@@ -2749,6 +2752,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include=".\uinteraction\uinteraction_interaction.cpp" />
+    <ClCompile Include="uinteraction_frame.cpp" />
     <ClCompile Include="userpresence\userpresence_application.cpp" />
     <ClCompile Include="userpresence\userpresence_user_presence.cpp" />
     <ClCompile Include="userpresence\userpresence_user_presence_central.cpp" />

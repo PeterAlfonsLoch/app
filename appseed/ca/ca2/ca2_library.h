@@ -23,6 +23,17 @@ namespace dynamic_source
 } // namespace dynamic_source
 
 
+namespace uinteraction
+{
+
+
+   class interaction;
+
+
+} // namespace uinteraction
+
+
+
 namespace ca2
 {
 
@@ -61,6 +72,9 @@ namespace ca2
       // impl
       virtual ::ca::application * get_new_app(const char * pszId);
       virtual void get_app_list(stringa & stra);
+
+      virtual ::uinteraction::interaction * get_new_uinteraction(const char * pszId);
+      virtual void get_uinteraction_list(stringa & stra);
 
 
       virtual ::dynamic_source::script_manager * create_script_manager(::ca::application * papp);

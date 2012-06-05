@@ -7,7 +7,7 @@
 #include "simple_static.h"
 #include "simple_push_button.h"
 
-#include "ca2/window_frame/ControlBoxButton.h"
+#include "ca2/uinteraction/window_frame/window_frame_control_box_button.h"
 #include "userbase_meta_button.h"
 
 

@@ -26,28 +26,31 @@ namespace bergedge
    public:
 
 
-      index                                                 m_iEdge;
+      index                                                          m_iEdge;
+                                                                     
+      bool                                                           m_bShowPlatform;
+                                                                     
+      ::ca::application *                                            m_pappCurrent;
+      ::collection::string_map < ::ca::application * >               m_mapApplication;
+                                                                     
+                                                                     
+      ::userbase::single_document_template *                         m_ptemplate_bergedge;
+      ::userbase::single_document_template *                         m_ptemplate_platform;
+      ::userbase::single_document_template *                         m_ptemplate_nature;
+      ::userbase::single_document_template *                         m_ptemplate_html;
+      document *                                                     m_pbergedgedocument;
+      platform::document *                                           m_pplatformdocument;
+      nature::document *                                             m_pnaturedocument;
+      nature::database *                                             m_pdatabase;
+                                                                     
+                                                                     
+      var                                                            m_varTopicFile;
+      var                                                            m_varCurrentViewFile;
+                                                                     
+      bool                                                           m_bDrawCursor;
 
-      bool                                                  m_bShowPlatform;
-
-      ::ca::application *                                   m_pappCurrent;
-      ::collection::string_map < ::ca::application * >      m_mapApplication;
-
-
-      ::userbase::single_document_template *                m_ptemplate_bergedge;
-      ::userbase::single_document_template *                m_ptemplate_platform;
-      ::userbase::single_document_template *                m_ptemplate_nature;
-      ::userbase::single_document_template *                m_ptemplate_html;
-      document *                                            m_pbergedgedocument;
-      platform::document *                                  m_pplatformdocument;
-      nature::document *                                    m_pnaturedocument;
-      nature::database *                                    m_pdatabase;
-      
-
-      var                                                   m_varTopicFile;
-      var                                                   m_varCurrentViewFile;
-      
-      bool                                                  m_bDrawCursor;
+      string_to_string_map                                           m_mapUInteractionToLibrary;
+      ::collection::string_map < ::uinteraction::interaction * >     m_mapUInteraction;
 
 
       bergedge();

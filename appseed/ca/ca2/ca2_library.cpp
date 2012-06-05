@@ -212,6 +212,25 @@ namespace ca2
 
    }
 
+
+   ::uinteraction::interaction * library::get_new_uinteraction(const char * pszId)
+   {
+
+      UNREFERENCED_PARAMETER(pszId);
+
+      return NULL;
+
+   }
+
+
+   void library::get_uinteraction_list(stringa & stra)
+   {
+      
+      UNREFERENCED_PARAMETER(stra);
+
+   }
+
+
    bool library::contains_app(const char * pszAppId)
    {
 

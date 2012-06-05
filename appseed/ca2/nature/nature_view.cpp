@@ -1,9 +1,9 @@
 ﻿#include "framework.h"
-#include "view.h"
-#include "document.h"
+
 
 namespace nature
 {
+
 
    view::view(::ca::application * papp) :
       ca(papp),
@@ -32,7 +32,7 @@ namespace nature
       IGUI_WIN_MSG_LINK(WM_SETCURSOR, pinterface, this, &view::_001OnSetCursor);
       IGUI_WIN_MSG_LINK(WM_ERASEBKGND, pinterface, this, &view::_001OnEraseBkgnd);
 
-   //   IGUI_WIN_MSG_LINK(WM_USER + 177     , this, this, &view::_001OnTabClick);
+      //   IGUI_WIN_MSG_LINK(WM_USER + 177     , this, this, &view::_001OnTabClick);
       IGUI_WIN_MSG_LINK(WM_APP + 119      , this, this, &view::_001OnWavePlayerEvent);
       //connect_command(ID_FILE_PRINT, ::userbase::view::OnFilePrint)
       //connect_command(ID_FILE_PRINT_DIRECT, ::userbase::view::OnFilePrint)
@@ -43,7 +43,7 @@ namespace nature
 
    }
 
-   #ifdef DEBUG
+#ifdef DEBUG
    void view::assert_valid() const
    {
       ::userbase::view::assert_valid();
@@ -53,7 +53,7 @@ namespace nature
    {
       ::userbase::view::dump(dumpcontext);
    }
-   #endif //DEBUG
+#endif //DEBUG
 
 
    bool view::pre_create_window(CREATESTRUCT& cs)
@@ -69,7 +69,7 @@ namespace nature
    {
       ::userbase::view::_001OnInitialUpdate(pobj);
 
-      
+
    }
 
 
@@ -104,10 +104,10 @@ namespace nature
    void view::_001OnSize(gen::signal_object * pobj) 
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::size, psize, pobj)
+      //      SCAST_PTR(::gen::message::size, psize, pobj)
 
 
-   /*   pobj->previous();
+      /*   pobj->previous();
 
       double d = psize->m_size.cy;
       d /= GetSystemMetrics(SM_CYSCREEN);
@@ -135,10 +135,10 @@ namespace nature
    void view::_001OnPaint(gen::signal_object * pobj) 
    {
       UNREFERENCED_PARAMETER(pobj);
-   //   CPaintDC spgraphics(this); // device context for natureing
-      
+      //   CPaintDC spgraphics(this); // device context for natureing
 
-     // spgraphics->TextOut(20, 20, "Carlos Gustavo Cecyn Lundgren ・minha Vida Eterna, meu Cora鈬o Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!");
+
+      // spgraphics->TextOut(20, 20, "Carlos Gustavo Cecyn Lundgren ・minha Vida Eterna, meu Cora鈬o Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!");
    }
 
 
@@ -149,7 +149,7 @@ namespace nature
 
       //FIBITMAP * pdib = imaging::LoadImageFile("C:\\screenshot.jpeg");
 
-   /*   ::ca::bitmap bmp2;
+      /*   ::ca::bitmap bmp2;
 
       bmp2.Attach(imaging::FItoHBITMAP(pdib, true));
       ::ca::graphics_sp dc2;
@@ -159,7 +159,7 @@ namespace nature
       //::SendMessage(::GetDesktopWindow(), WM_PRINT, (WPARAM)(HDC)*pdc, PRF_CHILDREN | PRF_NONCLIENT | PRF_CLIENT);
 
       //pdc->BitBlt(0, 0, 1280, 1024, &dc2, 0, 0, SRCCOPY);
-/*      pdc->TextOut(20, 20, "Curitiba, 24 de fevereiro de 2008.");
+      /*      pdc->TextOut(20, 20, "Curitiba, 24 de fevereiro de 2008.");
       pdc->TextOut(20, 80, "Carlos Gustavo Cecyn Lundgren ・minha Vida Eterna, meu Cora鈬o Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!");
       pdc->TextOut(20, 110, "Assinado Camilo Sasuke Tsumanuma.");*/
    }
@@ -168,14 +168,14 @@ namespace nature
    {
       if(pobj->previous())
          return;
-      
+
 
    }
    void view::_001OnContextMenu(gen::signal_object * pobj) 
    {
       SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
-      point point = pcontextmenu->GetPoint();
-      
+         point point = pcontextmenu->GetPoint();
+
    }
 
 
@@ -207,24 +207,24 @@ namespace nature
 
    /*xxxvoid view::data_on_after_change(int iConfigurationId, int iLine, int iColumn, CVmsDataUpdateHint * puh)
    {
-      if(iConfigurationId == _vmsp::CConfiguration::CfgKaraokeEncoding)
-      {
-         PrepareLyricLines();
-         RedrawWindow();
-      }
+   if(iConfigurationId == _vmsp::CConfiguration::CfgKaraokeEncoding)
+   {
+   PrepareLyricLines();
+   RedrawWindow();
+   }
    }*/
 
 
    void view::_001OnSetCursor(gen::signal_object * pobj) 
    {
       ::SetCursor(::LoadCursor(NULL, IDC_ARROW));
-      
+
       pobj->previous();
    }
    void view::_001OnEraseBkgnd(gen::signal_object * pobj) 
    {
       SCAST_PTR(::gen::message::erase_bkgnd, perasebkgnd, pobj)
-      perasebkgnd->m_bRet = true;
+         perasebkgnd->m_bRet = true;
       perasebkgnd->set_result(TRUE);
    }
 
@@ -237,3 +237,6 @@ namespace nature
 
 
 } // namespace nature
+
+
+

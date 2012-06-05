@@ -1,9 +1,9 @@
 #include "framework.h"
-#include "frame.h"
-#include "view.h"
+
 
 namespace nature
 {
+
 
    /////////////////////////////////////////////////////////////////////////////
    // frame
@@ -312,12 +312,12 @@ namespace nature
 
    }
 
-   
-
-
    void frame::OnHoverAction()
    {
       ShowWindow(SW_RESTORE);
    }
 
+
 } // namespace nature
+
+

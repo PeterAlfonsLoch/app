@@ -1,12 +1,9 @@
 #include "framework.h"
-#include "application.h"
-#include "html/html_frame.h"
-#include "html/html_document.h"
-#include "html/html_view.h"
-#include "pane_view.h"
+
 
 namespace platform
 {
+
 
    application::application()
    {
@@ -63,7 +60,7 @@ namespace platform
 
 
    bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
-         
+
    {
       return gen::application::_001OnCmdMsg(pcmdmsg);
    }
@@ -74,8 +71,8 @@ namespace platform
    }
 
    void application::OnFileManagerOpenFile(
-         ::filemanager::data * pdata, 
-         ::fs::item_array & itema)
+      ::filemanager::data * pdata, 
+      ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
       m_ptemplate_html->open_document_file(itema[0].m_strPath);
@@ -85,7 +82,3 @@ namespace platform
 } // namespace platform
 
 
-CLASS_DECL_ca2 ::ca::application * platform_get_new_app()
-{
-   return new ::platform::application;
-}

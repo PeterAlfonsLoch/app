@@ -1,15 +1,10 @@
 #include "framework.h"
-#include "resource.h"
-
-#include "frame.h"
-#include "view.h"
-
-#include "window_frame/FrameSchemaHardCoded005.h"
 
 
 namespace platform
 {
- 
+
+
    frame::frame(::ca::application * papp) :
       ca(papp),
       simple_frame_window(papp),
@@ -50,7 +45,7 @@ namespace platform
       return TRUE;
    }
 
-   #ifdef DEBUG
+#ifdef DEBUG
    void frame::assert_valid() const
    {
       simple_frame_window::assert_valid();
@@ -62,7 +57,7 @@ namespace platform
    }
 
 
-   #endif //DEBUG
+#endif //DEBUG
 
    void frame::install_message_handling(::gen::message::dispatch * pinterface)
    {
@@ -74,13 +69,13 @@ namespace platform
       IGUI_WIN_MSG_LINK(WM_MOUSELEAVE, pinterface, this, &frame::_001OnMouseLeave);
       IGUI_WIN_MSG_LINK(WM_CLOSE, pinterface, this, &frame::_001OnClose);
    }
-   
-   
+
+
    void frame::_001OnTimer(gen::signal_object * pobj) 
    {
       SCAST_PTR(::gen::message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
-      
+
       static float theta;
       if(nIDEvent == 4321875)
       {
@@ -122,7 +117,7 @@ namespace platform
          {
             m_dwLastHover = ::GetTickCount();
             m_bHoverMouse = true;
-               
+
          }
          else if(m_bHoverMouse && (pt.x > 10 || pt.y > 0))
          {
@@ -143,24 +138,24 @@ namespace platform
                SetTimer(1001, 500, NULL);
             }
          }
-   // OpenGL animation code goes here
-            
-            //glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
-            //glClear( GL_COLOR_BUFFER_BIT );
-            
-            /*glPushMatrix();
-            glRotatef( theta, 0.0f, 1.0f, 1.0f );
-            glBegin( GL_TRIANGLES );
-            glColor3f( 1.0f, 0.0f, 0.0f ); glVertex2f( 0.0f, 1.0f );
-            glColor3f( 0.0f, 1.0f, 0.0f ); glVertex2f( 0.87f, -0.5f );
-            glColor3f( 0.0f, 0.0f, 1.0f ); glVertex2f( -0.87f, -0.5f );
-            glEnd();
-            glPopMatrix();*/
-            
-            //SwapBuffers( m_hdcOpenGL );
-            
-            theta += 2.0f;
-         
+         // OpenGL animation code goes here
+
+         //glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
+         //glClear( GL_COLOR_BUFFER_BIT );
+
+         /*glPushMatrix();
+         glRotatef( theta, 0.0f, 1.0f, 1.0f );
+         glBegin( GL_TRIANGLES );
+         glColor3f( 1.0f, 0.0f, 0.0f ); glVertex2f( 0.0f, 1.0f );
+         glColor3f( 0.0f, 1.0f, 0.0f ); glVertex2f( 0.87f, -0.5f );
+         glColor3f( 0.0f, 0.0f, 1.0f ); glVertex2f( -0.87f, -0.5f );
+         glEnd();
+         glPopMatrix();*/
+
+         //SwapBuffers( m_hdcOpenGL );
+
+         theta += 2.0f;
+
       }
       //simple_frame_window::OnTimer(nIDEvent);
    }
@@ -179,9 +174,9 @@ namespace platform
          nShow = SW_HIDE;
       }
 
-   /*   m_toolbar.ShowWindow(nShow);
+      /*   m_toolbar.ShowWindow(nShow);
       m_toolbarView.ShowWindow(nShow);
-   //   m_statusbar.ShowWindow(nShow);
+      //   m_statusbar.ShowWindow(nShow);
       m_menubar.ShowWindow(nShow);
       m_dialogbar.ShowWindow(nShow);*/
 
@@ -224,7 +219,7 @@ namespace platform
 
    void frame::_001OnCreate(gen::signal_object * pobj)
    {
-//      SCAST_PTR(::gen::message::create, pcreate, pobj);
+      //      SCAST_PTR(::gen::message::create, pcreate, pobj);
       pobj->previous();
 
       m_bTimerOn = false;
@@ -257,7 +252,7 @@ namespace platform
       }
       m_dwLastSuperDock = ::GetTickCount();
       rect rectDesktop;
-      
+
       ::user::interaction * puiParent = GetTypedParent < bergedge::view >();
       if(puiParent == NULL)
          puiParent = GetTypedParent < ::user::place_holder > ();
@@ -290,10 +285,12 @@ namespace platform
 
    window_frame::FrameSchema * frame::create_frame_schema()
    {
-      window_frame::FrameSchemaHardCoded005 * pschema = new window_frame::FrameSchemaHardCoded005(get_app());
-      pschema->m_typeinfoControlBoxButton = System.template type_info < MetaButton > ();
-      pschema->SetStyle(window_frame::FrameSchemaHardCoded005::StyleTranslucidWarmGray);
-      return pschema;
+
+      ::uinteraction::frame * pframe = Application.get_frame_schema("core", "005");
+      pframe->m_typeinfoControlBoxButton = System.template type_info < MetaButton > ();
+      pframe->set_style("StyleTranslucidWarmGray");
+      return pframe;
+
    }
 
    void frame::_000OnDraw(::ca::graphics * pgraphics)

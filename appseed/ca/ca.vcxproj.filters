@@ -342,6 +342,12 @@
     <Filter Include="Header Files\compress\compress">
       <UniqueIdentifier>{5beb4c25-3470-40ae-a8cf-4ff862d939bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\uinteraction">
+      <UniqueIdentifier>{7b1723c2-983b-474c-a941-f29af5eabad8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\uinteraction">
+      <UniqueIdentifier>{3873b6a1-ea3a-41cc-983d-ac05ebe67447}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libcharguess\big5Prober.h">
@@ -3191,6 +3197,15 @@
     <ClInclude Include="collection\collection_fifo_map.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
+    <ClInclude Include="uinteraction\uinteraction.h">
+      <Filter>Header Files\uinteraction</Filter>
+    </ClInclude>
+    <ClInclude Include=".\uinteraction\uinteraction_interaction.h">
+      <Filter>Header Files\uinteraction</Filter>
+    </ClInclude>
+    <ClInclude Include="uinteraction\uinteraction_frame.h">
+      <Filter>Header Files\uinteraction</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sqlite\sqlite3.c">
@@ -5334,6 +5349,12 @@
     </ClCompile>
     <ClCompile Include=".\api\api_string.cpp">
       <Filter>Source Files\api</Filter>
+    </ClCompile>
+    <ClCompile Include=".\uinteraction\uinteraction_interaction.cpp">
+      <Filter>Source Files\uinteraction</Filter>
+    </ClCompile>
+    <ClCompile Include="uinteraction_frame.cpp">
+      <Filter>Source Files\uinteraction</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

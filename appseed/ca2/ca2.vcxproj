@@ -972,23 +972,23 @@
     <ClInclude Include="mail\mail_list_interface.h" />
     <ClInclude Include="mail\mail_tree_data.h" />
     <ClInclude Include="mail\mail_tree_item.h" />
-    <ClInclude Include="nature\appearance_view.h" />
+    <ClInclude Include=".\nature\nature_appearance_view.h" />
     <ClInclude Include="nature\nature_application.h" />
-    <ClInclude Include="nature\database.h" />
-    <ClInclude Include="nature\document.h" />
-    <ClInclude Include="nature\frame.h" />
+    <ClInclude Include=".\nature\nature_database.h" />
+    <ClInclude Include=".\nature\nature_document.h" />
+    <ClInclude Include=".\nature\nature_frame.h" />
     <ClInclude Include="nature\nature.h" />
-    <ClInclude Include="nature\pane_view.h" />
-    <ClInclude Include="nature\pane_view_update_hint.h" />
-    <ClInclude Include="nature\view.h" />
-    <ClInclude Include="platform\application.h" />
-    <ClInclude Include="platform\document.h" />
-    <ClInclude Include="platform\frame.h" />
-    <ClInclude Include="platform\pane_view.h" />
-    <ClInclude Include="platform\pane_view_update_hint.h" />
+    <ClInclude Include=".\nature\nature_pane_view.h" />
+    <ClInclude Include=".\nature\nature_pane_view_update_hint.h" />
+    <ClInclude Include=".\nature\nature_view.h" />
+    <ClInclude Include=".\platform\platform_application.h" />
+    <ClInclude Include=".\platform\platform_document.h" />
+    <ClInclude Include=".\platform\platform_frame.h" />
+    <ClInclude Include=".\platform\platform_pane_view.h" />
+    <ClInclude Include=".\platform\platform_pane_view_update_hint.h" />
     <ClInclude Include="platform\platform.h" />
-    <ClInclude Include="platform\Resource.h" />
-    <ClInclude Include="platform\view.h" />
+    <ClInclude Include=".\platform\platform_resource.h" />
+    <ClInclude Include=".\platform\platform_view.h" />
     <ClInclude Include="sockets\http_file.h" />
     <ClInclude Include="sockets\http_request_socket.h" />
     <ClInclude Include="sockets\sip_base.h" />
@@ -1014,6 +1014,8 @@
     <ClInclude Include=".\uinteraction\window_frame\window_frame_size_manager.h" />
     <ClInclude Include=".\uinteraction\window_frame\window_frame_sys_menu_manager.h" />
     <ClInclude Include=".\uinteraction\window_frame\window_frame_up_down_target.h" />
+    <ClInclude Include="uinteraction\uinteraction.h" />
+    <ClInclude Include="uinteraction\uinteraction_application.h" />
     <ClInclude Include="uinteraction\window_frame\window_frame.h" />
     <ClInclude Include=".\uinteraction\window_frame\window_frame_work_set.h" />
     <ClInclude Include=".\uinteraction\window_frame\window_frame_work_set_client_interface.h" />
@@ -1041,9 +1043,6 @@
     <ClInclude Include="user\user_combo_box.h" />
     <ClInclude Include="user\user_form.h" />
     <ClInclude Include="user\user_inline.h" />
-    <ClInclude Include="user\user_job.h" />
-    <ClInclude Include="user\user_keyboard.h" />
-    <ClInclude Include="user\user_keyboard_layout.h" />
     <ClInclude Include="user\user_plain_text_data.h" />
     <ClInclude Include="user\user_printer.h" />
     <ClInclude Include="user\user_print_job.h" />
@@ -1279,8 +1278,6 @@
     <ClInclude Include="user\user_front_end.h" />
     <ClInclude Include="user\user_front_end_schema.h" />
     <ClInclude Include="user\user_view_container.h" />
-    <ClInclude Include="user\user_interaction.h" />
-    <ClInclude Include="user\user_keyboard_focus.h" />
     <ClInclude Include="user\user_list.h" />
     <ClInclude Include="user\user_list_cache.h" />
     <ClInclude Include="user\user_list_cache_interface.h" />
@@ -1359,7 +1356,6 @@
     <ClCompile Include="ca8\ca8_network_configuration.cpp" />
     <ClCompile Include="ca8\ca8_wait_message_dialog.cpp" />
     <None Include="ca2.def" />
-    <None Include="user\user_interaction.inl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bergedge\bergedge_bergedge.cpp" />
@@ -1451,7 +1447,6 @@
     <ClCompile Include=".\uinteraction\window_frame\window_frame_constants.cpp" />
     <ClCompile Include=".\uinteraction\window_frame\window_frame_control_box_button.cpp" />
     <ClCompile Include=".\uinteraction\window_frame\window_frame_dock_manager.cpp" />
-    <ClCompile Include=".\uinteraction\window_frame\window_frame_frame_schema.cpp" />
     <ClCompile Include=".\uinteraction\window_frame\window_frame_move_manager.cpp" />
     <ClCompile Include=".\uinteraction\window_frame\window_frame_size_manager.cpp" />
     <ClCompile Include=".\uinteraction\window_frame\window_frame_sys_menu_manager.cpp" />
@@ -1461,6 +1456,7 @@
     <ClCompile Include=".\uinteraction\window_frame\window_frame_work_set_down_up_interface.cpp" />
     <ClCompile Include=".\uinteraction\window_frame\window_frame_work_set_listener.cpp" />
     <ClCompile Include=".\uinteraction\window_frame\window_frame_work_set_listener_array.cpp" />
+    <ClCompile Include="uinteraction\uinteraction_application.cpp" />
     <ClCompile Include="userbase\simple_document.cpp" />
     <ClCompile Include="userbase\simple_main_frame.cpp" />
     <ClCompile Include="userbase\simple_printer_list_view.cpp" />

@@ -1,15 +1,21 @@
 #pragma once
 
 
-#include "ca2/window_frame/window_frame.h"
+#include "ca2/uinteraction/uinteraction.h"
 
 
 struct __SIZEPARENTPARAMS;
 
+
 namespace userbase
 {
+
+
    class application;
+
+
 } // namespace userbase
+
 
 #include "userbase_impl.h"
 

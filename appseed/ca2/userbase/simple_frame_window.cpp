@@ -173,9 +173,17 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
 
 // trans      HICON hicon = GetIcon(false);
 
-      window_frame::FrameSchema * pschema = create_frame_schema();
+      ::uinteraction::frame * pinteractionframe = create_frame_schema();
 
+
+      //window_frame::FrameSchema * pschema = dynamic_cast < ::window_frame::FrameSchema * > (pinteractionframe);
+
+      if(pinteractionframe != NULL && (_ca_is_basis() || Application.command().m_varTopicQuery["version"] == "basis"))
       {
+         pinteractionframe->set_style("StyleBlueRedPurple");
+      }
+
+      /*{
          window_frame::FrameSchemaHardCoded001 * pschemaSpec = dynamic_cast < window_frame::FrameSchemaHardCoded001 * > (pschema);
          if(pschemaSpec != NULL && (_ca_is_basis() || Application.command().m_varTopicQuery["version"] == "basis"))
          {
@@ -202,7 +210,7 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
          {
             pschemaSpec->SetStyle(window_frame::FrameSchemaHardCoded008::StyleBlueRedPurple);
          }
-      }
+      }*/
 
       m_pframeschema = pschema;
       m_workset.AttachFrameSchema(m_pframeschema);

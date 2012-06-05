@@ -1,15 +1,18 @@
 #pragma once
 
-#include "Constants.h"
 
 namespace window_frame
 {
 
+
    class WorkSet;
+
 
    class CLASS_DECL_ca2 DockManager  
    {
    public:
+
+
       bool IsDocked();
       
       bool MoveWindow(int x, int y);
@@ -42,6 +45,10 @@ namespace window_frame
 
    };
 
+
    EDock operator |=(EDock & edocki, const EDock  edockj);
 
+
 } // namespace window_frame
+
+

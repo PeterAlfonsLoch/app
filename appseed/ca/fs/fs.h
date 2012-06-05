@@ -2,6 +2,7 @@
 
 
 #include "ca/user/user.h"
+#include "ca/uinteraction/uinteraction.h"
 
 
 namespace fs

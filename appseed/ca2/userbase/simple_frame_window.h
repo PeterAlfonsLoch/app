@@ -17,7 +17,7 @@ class CLASS_DECL_ca2 simple_frame_window :
 public:
 
 
-   window_frame::FrameSchema *   m_pframeschema;
+   ::uinteraction::frame *       m_pframeschema;
 
 
    HDC                           m_hdcOpenGL;
@@ -71,7 +71,7 @@ public:
 
    void OnUpdateControlBarMenu(cmd_ui * pcmdui);
 
-   virtual window_frame::FrameSchema * create_frame_schema();
+   virtual ::uinteraction::frame * create_frame_schema();
 
    virtual bool LoadFrame(const char * pszMatter, DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction* pParentWnd = NULL, ::ca::create_context* pContext = NULL);
 
