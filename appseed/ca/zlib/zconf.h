@@ -276,7 +276,11 @@ typedef unsigned char  Byte;  /* 8 bits */
 #endif
 typedef unsigned int   uInt;  /* 16 bits or more */
 #ifdef WINDOWS
+#ifdef AMD64
 typedef uint64_t  uLong; /* 32 bits or more */
+#else
+typedef uint32_t  uLong; /* 32 bits or more */
+#endif
 #else
 typedef unsigned long  uLong; /* 32 bits or more */
 #endif
