@@ -1,7 +1,11 @@
 #include "framework.h"
 
+namespace uinteraction
+{
 
-namespace window_frame
+
+
+namespace frame
 {
 
    SizeManager::SizeManager(WorkSet * pworkset) :
@@ -807,6 +811,15 @@ namespace window_frame
       return true;
    }
 
-} // namespace window_frame 
+} // namespace frame 
+
+
+
+
+} // namespace uinteraction
+
+
+
+
 
 

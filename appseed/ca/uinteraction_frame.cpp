@@ -5,27 +5,239 @@ namespace uinteraction
 {
 
 
-   frame::frame(::ca::application * papp)
-   {
-   }
-
-
-   frame::~frame()
-   {
-   }
-
-   void frame::set_style(const char * pszStyle)
+   namespace frame
    {
 
-      UNREFERENCED_PARAMETER(pszStyle);
 
-   }
+      frame::frame(::ca::application * papp)
+      {
+      }
 
-   void frame::OnInitializeAppearance()
-   {
-   }
 
-} // namespace window_frame
+      frame::~frame()
+      {
+      }
+
+      ::user::front_end_schema * frame::get_user_front_end_schema()
+      {
+
+         throw interface_only_exception();
+
+         return NULL;
+
+      }
+
+      void frame::set_style(const char * pszStyle)
+      {
+
+         UNREFERENCED_PARAMETER(pszStyle);
+
+      }
+
+      void frame::OnInitializeAppearance()
+      {
+      }
+
+      void frame::OnAppearanceModeChange()
+      {
+      }
+
+      int frame::UpdateControlBox()
+      {
+
+         return 0;
+
+      }
+
+
+      void frame::OnMove(::user::interaction * pwnd)
+      {
+
+         UNREFERENCED_PARAMETER(pwnd);
+
+      }
+
+
+      void frame::_001OnDraw(::ca::graphics * pca)
+      {
+
+         UNREFERENCED_PARAMETER(pca);
+
+      }
+
+
+      void frame::GetWndClientRect(LPRECT lprect)
+      {
+
+         UNREFERENCED_PARAMETER(lprect);
+
+      }
+
+      size frame::GetMinSize()
+      {
+
+         return size(100, 100);
+
+      }
+
+
+      void frame::SetControlBoxButtonId(e_button ebutton, id id)
+      {
+         m_mapButtonId[ebutton] = id;
+         m_mapIdButton[id] = ebutton;
+      }
+
+      id frame::GetControlId(e_button ebutton)
+      {
+         return m_mapButtonId[ebutton];
+      }
+
+      frame::e_button frame::GetButtonId(id id)
+      {
+         return m_mapIdButton[id];
+      }
+
+      void frame::OnNcCalcSize(LPRECT lprect)
+      {
+
+         UNREFERENCED_PARAMETER(lprect);
+
+      }
+
+      void frame::_000OnBeforeSize(LPCRECT lpcrectWindow)
+      {
+
+         UNREFERENCED_PARAMETER(lpcrectWindow);
+
+      }
+
+      void frame::OnActivate()
+      {
+      }
+
+      bool frame::_000OnCommand(WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+      {
+
+         UNREFERENCED_PARAMETER(wparam);
+         UNREFERENCED_PARAMETER(lparam);
+         UNREFERENCED_PARAMETER(lresult);
+
+         return false;
+
+      }
+
+      void frame::layout()
+      {
+      }
+
+
+      COLORREF frame::get_border_main_body_color()
+      {
+
+         return 0;
+
+      }
+
+
+      bool frame::_000OnLButtonDown(::gen::message::mouse * pmouse)
+      {
+
+         UNREFERENCED_PARAMETER(pmouse);
+
+         return false;
+
+      }
+
+      bool frame::_000OnLButtonUp(::gen::message::mouse * pmouse)
+      {
+
+         UNREFERENCED_PARAMETER(pmouse);
+
+         return false;
+
+      }
+
+      bool frame::_000OnMouseMove(::gen::message::mouse * pmouse)
+      {
+
+         UNREFERENCED_PARAMETER(pmouse);
+
+         return false;
+
+      }
+
+      bool frame::_000OnNcLButtonDown(::gen::message::mouse * pmouse)
+      {
+
+         UNREFERENCED_PARAMETER(pmouse);
+
+         return false;
+
+      }
+
+      bool frame::_000OnNcLButtonUp(::gen::message::mouse * pmouse)
+      {
+
+         UNREFERENCED_PARAMETER(pmouse);
+
+         return false;
+
+      }
+
+      bool frame::_000OnNcMouseMove(::gen::message::mouse * pmouse)
+      {
+
+         UNREFERENCED_PARAMETER(pmouse);
+
+         return false;
+
+      }
+
+      bool frame::_000OnNcHitTest(point pt, LRESULT & nHitTest)
+      {
+
+         UNREFERENCED_PARAMETER(pt);
+         UNREFERENCED_PARAMETER(nHitTest);
+
+         return false;
+
+      }
+
+      bool frame::_000OnTimer(UINT nIDEvent)
+      {
+
+         UNREFERENCED_PARAMETER(nIDEvent);
+
+         return false;
+
+      }
+
+      bool frame::_000OnSize(UINT nType, int cx, int cy)
+      {
+
+         UNREFERENCED_PARAMETER(nType);
+         UNREFERENCED_PARAMETER(cx);
+         UNREFERENCED_PARAMETER(cy);
+
+         return false;
+
+      }
+
+      bool frame::_000OnMove(int x, int y)
+      {
+
+         UNREFERENCED_PARAMETER(x);
+         UNREFERENCED_PARAMETER(y);
+
+         return false;
+
+      }
+
+
+   } // namespace frame
+
+
+} // namespace frame
 
 
 

@@ -1,6 +1,11 @@
 #pragma once
 
-namespace window_frame
+
+namespace uinteraction
+{
+
+
+namespace frame
 {
 
    class WorkSet;
@@ -56,4 +61,17 @@ namespace window_frame
       void message_handler(::user::interaction * pwnd, gen::signal_object * pobj);
    };
 
-} // namespace window_frame
+} // namespace frame
+
+
+
+
+
+
+} // namespace uinteraction
+
+
+
+
+
+

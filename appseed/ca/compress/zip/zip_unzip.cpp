@@ -589,7 +589,7 @@ local int unzlocal_GetCurrentFileInfoInternal (
     unz_file_info_internal file_info_internal;
     int err=UNZ_OK;
     uLong uMagic;
-    int64_t lSeek=0;
+    uLong lSeek=0;
 
     if (file==NULL)
         return UNZ_PARAMERROR;

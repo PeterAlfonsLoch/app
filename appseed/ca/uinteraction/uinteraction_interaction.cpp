@@ -27,7 +27,7 @@ namespace uinteraction
 
    }
 
-   frame * interaction::get_frame_schema(const char * pszSchema)
+   frame::frame * interaction::get_frame_schema(const char * pszSchema)
    {
       
       UNREFERENCED_PARAMETER(pszSchema);

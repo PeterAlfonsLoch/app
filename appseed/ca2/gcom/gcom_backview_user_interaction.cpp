@@ -1,12 +1,18 @@
 #include "framework.h"
-#include "window_frame/FrameSchema.h"
+
 
 namespace gcom
 {
+
+
    namespace backview
    {
+
+
       namespace user
       {
+
+
          interaction::interaction(::ca::application * papp) :
             ca(papp),
             Interface(papp)
@@ -118,10 +124,11 @@ namespace gcom
          }
 
 
-
       } // namespace user
 
+
    } //namespace backview
+
 
 }  //namespace gcom
 

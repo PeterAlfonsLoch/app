@@ -1,8 +1,11 @@
 #include "framework.h"
-#include "FrameSchema.h"
+
+namespace uinteraction
+{
 
 
-namespace window_frame
+
+namespace frame
 {
 
 
@@ -552,4 +555,17 @@ namespace window_frame
       return m_pworkset->GetDrawWindow();
    }
 
-} // namespace window_frame
+} // namespace frame
+
+
+
+
+
+
+} // namespace uinteraction
+
+
+
+
+
+

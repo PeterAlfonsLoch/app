@@ -1,7 +1,11 @@
 #pragma once
 
+namespace uinteraction
+{
 
-namespace window_frame 
+
+
+namespace frame 
 {
 
 
@@ -72,7 +76,18 @@ namespace window_frame
    };
 
 
-} // namespace window_frame
+} // namespace frame
+
+
+
+
+
+
+
+} // namespace uinteraction
+
+
+
 
 
 

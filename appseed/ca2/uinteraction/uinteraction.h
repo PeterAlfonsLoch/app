@@ -14,7 +14,7 @@ namespace uinteraction
 } // namespace uinteraction
 
 
-#include "ca2/uinteraction/window_frame/window_frame.h"
+#include "ca2/uinteraction/frame/frame.h"
 
 
 #include "uinteraction_application.h"

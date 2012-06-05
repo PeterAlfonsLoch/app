@@ -466,7 +466,7 @@ namespace gen
          if(iFind < iStart)
             throw "errror";
 
-         index i = Sys(papp).math().RandRange(0, (int) straReplacement.get_upper_bound());
+         index i = (index) Sys(papp).math().RandRange(0, (int) straReplacement.get_upper_bound());
 
          str = str.Left(iFind) + straReplacement[i] + str.Mid(iFind + straSearch[iFound].get_length());
 

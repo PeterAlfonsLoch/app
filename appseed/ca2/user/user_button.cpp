@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "window_frame/FrameSchema.h"
 
 
 namespace user
@@ -296,7 +295,7 @@ namespace user
          {
             pframewindow = pframewindow->GetTypedParent < ::simple_frame_window > ();
          }
-         m_pschema = &pframewindow->m_workset.m_pframeschema->m_schema.m_button;
+         m_pschema = &pframewindow->m_workset.m_pframeschema->get_user_front_end_schema()->m_button;
       }
 
    }

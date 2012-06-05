@@ -1,7 +1,12 @@
 #include "framework.h"
 
 
-namespace window_frame
+namespace uinteraction
+{
+
+
+
+namespace frame
 {
 
 
@@ -19,7 +24,7 @@ namespace window_frame
       m_bEnabled = true;
       m_pworkset = pworkset;
       m_bUseNc = false;
-      m_nTransparency = window_frame::Transparent;
+      m_nTransparency = frame::Transparent;
    }
 
    appearance::~appearance()
@@ -151,23 +156,23 @@ namespace window_frame
    }
 
 
-   void appearance::window_frame_Attach()
+   void appearance::frame_Attach()
    {
       CWorkSetDownUpInterface * pinterface = m_pwndframeworkdownupinterface;
       if(pinterface != NULL
          && pinterface != this)
       {
-         return pinterface->window_frame_Attach();
+         return pinterface->frame_Attach();
       }
    }
 
-   void appearance::window_frame_Detach()
+   void appearance::frame_Detach()
    {
       CWorkSetDownUpInterface * pinterface = m_pwndframeworkdownupinterface;
       if(pinterface != NULL
          && pinterface != this)
       {
-         return pinterface->window_frame_Detach();
+         return pinterface->frame_Detach();
       }
    }
 
@@ -369,7 +374,19 @@ namespace window_frame
    }
 
 
-} // namespace window_frame
+} // namespace frame
+
+
+
+
+
+
+
+
+} // namespace uinteraction
+
+
+
 
 
 

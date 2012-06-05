@@ -486,7 +486,7 @@ namespace exception
    {
       if(!pszFormat) return false;
       engine engine(0);
-      return stack_trace(str, engine, pcontext, uiSkip, pszFormat);
+      return stack_trace(str, engine, pcontext, uiSkip, false, pszFormat);
    }
 
    /////////////////////////////////////////////
@@ -606,7 +606,7 @@ namespace exception
       }
       // now it can print stack
       engine symengine(0);
-      stack_trace(str, symengine, &context, uiSkip, pszFormat);
+      stack_trace(str, symengine, &context, uiSkip, false, pszFormat);
       return true;
    }
 

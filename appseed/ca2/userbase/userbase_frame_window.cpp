@@ -1,9 +1,6 @@
 #include "framework.h"
 #include <dde.h>
 
-#include "window_frame/appearance.h"
-#include "window_frame/FrameSchemaHardCoded001.h"
-#include "window_frame/FrameSchemaHardCoded002.h"
 
 namespace userbase
 {

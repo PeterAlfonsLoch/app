@@ -22,7 +22,7 @@ namespace uinteraction
 
       virtual void get_frame_schema_list(stringa & stra);
 
-      virtual frame * get_frame_schema(const char * pszSchema);
+      virtual frame::frame * get_frame_schema(const char * pszSchema);
 
 
    };

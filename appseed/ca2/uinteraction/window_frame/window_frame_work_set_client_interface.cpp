@@ -1,8 +1,12 @@
 #include "framework.h"
-#include "FrameSchema.h"
 
 
-namespace window_frame
+namespace uinteraction
+{
+
+
+
+namespace frame
 {
 
 
@@ -344,7 +348,17 @@ namespace window_frame
       m_workset._001OnDraw(pgraphics);
    }
 
-} // namespace window_frame
+
+} // namespace frame
+
+
+
+
+
+
+} // namespace uinteraction
+
+
 
 
 

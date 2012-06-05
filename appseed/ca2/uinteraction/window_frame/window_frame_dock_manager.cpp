@@ -1,6 +1,10 @@
 #include "framework.h"
 
-namespace window_frame
+namespace uinteraction
+{
+
+
+namespace frame
 {
 
    DockManager::DockManager()
@@ -387,4 +391,12 @@ namespace window_frame
       return edocki;
    }
 
-} // namespace window_frame
+} // namespace frame
+
+} // namespace uinteraction
+
+
+
+
+
+

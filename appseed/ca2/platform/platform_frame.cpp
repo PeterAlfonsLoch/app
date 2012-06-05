@@ -283,7 +283,7 @@ namespace platform
    }
 
 
-   window_frame::FrameSchema * frame::create_frame_schema()
+   ::uinteraction::frame * frame::create_frame_schema()
    {
 
       ::uinteraction::frame * pframe = Application.get_frame_schema("core", "005");

@@ -1,16 +1,17 @@
 ﻿#include "framework.h"
-#include "view.h"
-#include "document.h"
+
 
 /*
-   ON_WM_PLATFORM()
-   ON_COMMAND(ID_FILE_PRINT, form_view::OnFilePrint)
-   ON_COMMAND(ID_FILE_PRINT_DIRECT, form_view::OnFilePrint)
-   ON_COMMAND(ID_FILE_PRINT_PREVIEW, form_view::OnFilePrintPreview)
+ON_WM_PLATFORM()
+ON_COMMAND(ID_FILE_PRINT, form_view::OnFilePrint)
+ON_COMMAND(ID_FILE_PRINT_DIRECT, form_view::OnFilePrint)
+ON_COMMAND(ID_FILE_PRINT_PREVIEW, form_view::OnFilePrintPreview)
 */
+
 
 namespace platform
 {
+
 
    view::run::run()
    {
@@ -128,7 +129,7 @@ namespace platform
 
    }
 
-   #ifdef DEBUG
+#ifdef DEBUG
    void view::assert_valid() const
    {
       form_view::assert_valid();
@@ -138,7 +139,7 @@ namespace platform
    {
       form_view::dump(dumpcontext);
    }
-   #endif //DEBUG
+#endif //DEBUG
 
    /////////////////////////////////////////////////////////////////////////////
    // ::view message handlers
@@ -167,11 +168,11 @@ namespace platform
 
       //str += "</body></html>";
 
-//      string strFile = System.file().time_square();
+      //      string strFile = System.file().time_square();
 
-  //    Application.file().put_contents(strFile, str);
+      //    Application.file().put_contents(strFile, str);
 
-    //  get_document()->open_document(strFile);
+      //  get_document()->open_document(strFile);
 
 
    }
@@ -207,33 +208,33 @@ namespace platform
    void view::_001OnPaint(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-   //CPaintDC spgraphics(this); // device context for platforming
+      //CPaintDC spgraphics(this); // device context for platforming
 
 
-     // spgraphics->TextOut(20, 20, "Carlos Gustavo Cecyn Lundgren é minha Vida Eterna, meu Coração Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!");
+      // spgraphics->TextOut(20, 20, "Carlos Gustavo Cecyn Lundgren é minha Vida Eterna, meu Coração Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!");
    }
 
 
    /*void view:: _001OnDraw(::ca::graphics * pdc)
    {
-      m_hwnd = GetSafeHwnd();
-      pdc->SetBkMode(TRANSPARENT);
+   m_hwnd = GetSafeHwnd();
+   pdc->SetBkMode(TRANSPARENT);
 
-      //FIBITMAP * pdib = imaging::LoadImageFile("C:\\screenshot.jpeg");
+   //FIBITMAP * pdib = imaging::LoadImageFile("C:\\screenshot.jpeg");
 
-      //::ca::bitmap bmp2;
+   //::ca::bitmap bmp2;
 
-      //bmp2.Attach(imaging::FItoHBITMAP(pdib, true));
-      //::ca::graphics_sp dc2;
-      //dc2.CreateCompatibleDC(pdc);
-      //dc2.SelectObject(bmp2);
+   //bmp2.Attach(imaging::FItoHBITMAP(pdib, true));
+   //::ca::graphics_sp dc2;
+   //dc2.CreateCompatibleDC(pdc);
+   //dc2.SelectObject(bmp2);
 
-      //::SendMessage(::GetDesktopWindow(), WM_PRINT, (WPARAM)(HDC)spgraphics, PRF_CHILDREN | PRF_NONCLIENT | PRF_CLIENT);
+   //::SendMessage(::GetDesktopWindow(), WM_PRINT, (WPARAM)(HDC)spgraphics, PRF_CHILDREN | PRF_NONCLIENT | PRF_CLIENT);
 
-      //pdc->BitBlt(0, 0, 1280, 1024, &dc2, 0, 0, SRCCOPY);
+   //pdc->BitBlt(0, 0, 1280, 1024, &dc2, 0, 0, SRCCOPY);
    //   pdc->TextOut(20, 20, "Curitiba, 24 de fevereiro de 2008.");
-     // pdc->TextOut(20, 80, "Carlos Gustavo Cecyn Lundgren é minha Vida Eterna, meu Coração Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!");
-      //pdc->TextOut(20, 110, "Assinado Camilo Sasuke Tsumanuma.");
+   // pdc->TextOut(20, 80, "Carlos Gustavo Cecyn Lundgren é minha Vida Eterna, meu Coração Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!");
+   //pdc->TextOut(20, 110, "Assinado Camilo Sasuke Tsumanuma.");
    }*/
 
    void view::_001OnCreate(gen::signal_object * pobj)
@@ -281,15 +282,15 @@ namespace platform
 
 
       //pfi = System.imaging().LoadImageFile(
-        // System.dir().standard_square_matter());
+      // System.dir().standard_square_matter());
       m_dibV.load_from_matter("votagus_mountains_and_valleys-123.png");
 
       //pfi = System.imaging().LoadImageFile(
-         //System.dir().standard_square_matter());
+      //System.dir().standard_square_matter());
       m_dib_veriwell.load_from_matter("veriwell_2008_green_h49.png");
 
       //pfi = System.imaging().LoadImageFile(
-        // System.dir().standard_square_matter());
+      // System.dir().standard_square_matter());
       m_dib_winactionarea.load_from_matter("winactionarea.png");
 
 
@@ -299,7 +300,7 @@ namespace platform
    void view::_001OnContextMenu(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
-      point point = pcontextmenu->GetPoint();
+         point point = pcontextmenu->GetPoint();
 
    }
 
@@ -314,13 +315,13 @@ namespace platform
    {
       m_iScreen = iScreen;
 
-   /*   if(iScreen == 0)
+      /*   if(iScreen == 0)
       {
-         m_buttonKaraoke._001SetVisible(true);
+      m_buttonKaraoke._001SetVisible(true);
       }
       else
       {
-         m_buttonKaraoke._001SetVisible(false);
+      m_buttonKaraoke._001SetVisible(false);
       }*/
       _001RedrawWindow();
    }
@@ -348,10 +349,10 @@ namespace platform
       }
       else if(pevent->m_eevent == ::user::event_mouse_enter)
       {
-   //     if(pevent->m_pcontrol->m_pwndi == &m_buttonKaraoke)
+         //     if(pevent->m_pcontrol->m_pwndi == &m_buttonKaraoke)
          {
          }
-     //    else
+         //    else
          {
          }
       }
@@ -367,7 +368,7 @@ namespace platform
    void view:: _001OnDraw(::ca::graphics * pdc)
    {
       form_view::_001OnDraw(pdc);
-//      document * pdoc = get_document();
+      //      document * pdoc = get_document();
       class imaging & imaging = System.imaging();
 
 
@@ -382,13 +383,13 @@ namespace platform
       /*rect rectDesktop = System.m_monitorinfoa[0].rcMonitor;
       if(rectDesktop.width() < 800)
       {
-         rectDesktop.left = 0;
-         rectDesktop.right = ::GetSystemMetrics(SM_CXSCREEN);
+      rectDesktop.left = 0;
+      rectDesktop.right = ::GetSystemMetrics(SM_CXSCREEN);
       }
       if(rectDesktop.height() < 600)
       {
-         rectDesktop.top = 0;
-         rectDesktop.bottom = ::GetSystemMetrics(SM_CYSCREEN);
+      rectDesktop.top = 0;
+      rectDesktop.bottom = ::GetSystemMetrics(SM_CYSCREEN);
       }*/
       if(System.savings().is_trying_to_save(gen::resource_processing))
       {
@@ -438,7 +439,7 @@ namespace platform
          }
       }
 
-/*      pdc->SetBkMode(TRANSPARENT);
+      /*      pdc->SetBkMode(TRANSPARENT);
       pdc->SelectObject(m_font1);
       pdc->SetTextColor(ARGB(255, 108, 0, 108));
       LPTSTR lpsz8 = "ccvotagus ca2";
@@ -521,10 +522,10 @@ namespace platform
 
    void view::check_apps()
    {
-   //   if(::IsDebuggerPresent())
-     //    return;
+      //   if(::IsDebuggerPresent())
+      //    return;
       //if(!m_bEnsureApps)
-        // return;
+      // return;
 
       if(::IsWindow(m_hwndWinactionarea) &&
          ::IsWindow(m_hwndCommand) &&
@@ -579,7 +580,7 @@ namespace platform
    void view::_001OnAppLanguage(::gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::base, pbase, pobj);
+      //      SCAST_PTR(::gen::message::base, pbase, pobj);
       load_links();
    }
 
@@ -620,10 +621,10 @@ namespace platform
 
       SCAST_PTR(::gen::message::timer, ptimer, pobj)
 
-      if(ptimer->m_nIDEvent == 21977)
-      {
-         check_apps();
-      }
+         if(ptimer->m_nIDEvent == 21977)
+         {
+            check_apps();
+         }
 
    }
 
@@ -657,94 +658,94 @@ namespace platform
    void view::_001OnLButtonUp(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
-      pmouse->set_lresult(1);
+         pmouse->set_lresult(1);
       KillTimer(5432180);
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       e_element eelement;
       int iHitArea = hit_test(pt, eelement);
-/*      if(m_bDragTask && !m_bShowCalendar && !m_bShutDown)
+      /*      if(m_bDragTask && !m_bShowCalendar && !m_bShutDown)
       {
-         m_bDragTask = false;
-         if(m_iDragTask >= m_iTaskOffset
-         && m_iDragTask < m_iTaskOffset + m_areaa[m_iArea].m_taska.get_size()
-         && iHitArea >= 0
-         && iHitArea < m_areaa.get_size())
-         {
-            HWND hwnd = m_areaa[m_iArea].m_taska[m_iDragTask - m_iTaskOffset].m_hwnd;
-            rect rectArea;
-            rect rectDesk0 = System.m_monitorinfoaDesk[0].rcMonitor;
-            rect rectDesk1 = System.m_monitorinfoaDesk[1].rcMonitor;
-            GetAreaThumbRect(rectArea, iHitArea);
-            if(::IsWindowVisible(hwnd))
-            {
-               ::ShowWindow(hwnd, SW_NORMAL);
-            }
-            if(pt.x < (rectArea.left + rectArea.width() / 3))
-            {
-               if(pt.y < (rectArea.top + rectArea.height() / 3))
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk0.width(), rectDesk0.height() / 2, 0);
-               }
-               else if(pt.y < (rectArea.top + rectArea.height() * 2 / 3))
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk0.width(), rectDesk0.height(), 0);
-               }
-               else
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top + rectDesk0.height() / 2, rectDesk0.width(), rectDesk0.height() / 2, 0);
-               }
-            }
-            else if(pt.x < (rectArea.left + rectArea.width() * 2 / 3))
-            {
-               if(pt.y < (rectArea.top + rectArea.height() / 3))
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk1.right - rectDesk0.left, rectDesk0.height() / 2, 0);
-               }
-               else if(pt.y < (rectArea.top + rectArea.height() * 2 / 3))
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk1.right - rectDesk0.left, rectDesk0.height(), 0);
-               }
-               else
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top + rectDesk0.height() / 2, rectDesk1.right - rectDesk0.left, rectDesk0.height() / 2, 0);
-               }
-            }
-            else
-            {
-               if(pt.y < (rectArea.top + rectArea.height() / 3))
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk1.left, rectDesk1.top, rectDesk1.width(), rectDesk1.height() / 2, 0);
-               }
-               else if(pt.y < (rectArea.top + rectArea.height() * 2 / 3))
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk1.left, rectDesk1.top, rectDesk1.width(), rectDesk1.height(), 0);
-               }
-               else
-               {
-                  ::SetWindowPos(hwnd, HWND_TOP, rectDesk1.left, rectDesk1.top + rectDesk1.height() / 2, rectDesk1.width(), rectDesk1.height() / 2, 0);
-               }
-            }
-            if(m_iArea != iHitArea)
-            {
-               m_areaa[m_iArea].m_taska.remove_at(m_iDragTask - m_iTaskOffset);
-               count count1 = m_areaa[m_iArea].m_hwnda.remove(hwnd);
-               count count2 = m_areaa[m_iArea].m_hwndaHidden.remove(hwnd);
-               m_areaa[iHitArea].m_taska.add(area::task(hwnd));
-               if(count1 > 0)
-               {
-                  m_areaa[iHitArea].m_hwnda.add(hwnd);
-               }
-               else
-               {
-                  m_areaa[iHitArea].m_hwndaHidden.add(hwnd);
-               }
-               application & app = ::winactionarea::app_cast(get_app());
-               app.m_hwndaHidden.add(hwnd);
-               mt_show_window(hwnd, SW_HIDE);
-            }
-            return;
-         }
+      m_bDragTask = false;
+      if(m_iDragTask >= m_iTaskOffset
+      && m_iDragTask < m_iTaskOffset + m_areaa[m_iArea].m_taska.get_size()
+      && iHitArea >= 0
+      && iHitArea < m_areaa.get_size())
+      {
+      HWND hwnd = m_areaa[m_iArea].m_taska[m_iDragTask - m_iTaskOffset].m_hwnd;
+      rect rectArea;
+      rect rectDesk0 = System.m_monitorinfoaDesk[0].rcMonitor;
+      rect rectDesk1 = System.m_monitorinfoaDesk[1].rcMonitor;
+      GetAreaThumbRect(rectArea, iHitArea);
+      if(::IsWindowVisible(hwnd))
+      {
+      ::ShowWindow(hwnd, SW_NORMAL);
+      }
+      if(pt.x < (rectArea.left + rectArea.width() / 3))
+      {
+      if(pt.y < (rectArea.top + rectArea.height() / 3))
+      {
+      ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk0.width(), rectDesk0.height() / 2, 0);
+      }
+      else if(pt.y < (rectArea.top + rectArea.height() * 2 / 3))
+      {
+      ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk0.width(), rectDesk0.height(), 0);
+      }
+      else
+      {
+      ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top + rectDesk0.height() / 2, rectDesk0.width(), rectDesk0.height() / 2, 0);
+      }
+      }
+      else if(pt.x < (rectArea.left + rectArea.width() * 2 / 3))
+      {
+      if(pt.y < (rectArea.top + rectArea.height() / 3))
+      {
+      ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk1.right - rectDesk0.left, rectDesk0.height() / 2, 0);
+      }
+      else if(pt.y < (rectArea.top + rectArea.height() * 2 / 3))
+      {
+      ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk1.right - rectDesk0.left, rectDesk0.height(), 0);
+      }
+      else
+      {
+      ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top + rectDesk0.height() / 2, rectDesk1.right - rectDesk0.left, rectDesk0.height() / 2, 0);
+      }
+      }
+      else
+      {
+      if(pt.y < (rectArea.top + rectArea.height() / 3))
+      {
+      ::SetWindowPos(hwnd, HWND_TOP, rectDesk1.left, rectDesk1.top, rectDesk1.width(), rectDesk1.height() / 2, 0);
+      }
+      else if(pt.y < (rectArea.top + rectArea.height() * 2 / 3))
+      {
+      ::SetWindowPos(hwnd, HWND_TOP, rectDesk1.left, rectDesk1.top, rectDesk1.width(), rectDesk1.height(), 0);
+      }
+      else
+      {
+      ::SetWindowPos(hwnd, HWND_TOP, rectDesk1.left, rectDesk1.top + rectDesk1.height() / 2, rectDesk1.width(), rectDesk1.height() / 2, 0);
+      }
+      }
+      if(m_iArea != iHitArea)
+      {
+      m_areaa[m_iArea].m_taska.remove_at(m_iDragTask - m_iTaskOffset);
+      count count1 = m_areaa[m_iArea].m_hwnda.remove(hwnd);
+      count count2 = m_areaa[m_iArea].m_hwndaHidden.remove(hwnd);
+      m_areaa[iHitArea].m_taska.add(area::task(hwnd));
+      if(count1 > 0)
+      {
+      m_areaa[iHitArea].m_hwnda.add(hwnd);
+      }
+      else
+      {
+      m_areaa[iHitArea].m_hwndaHidden.add(hwnd);
+      }
+      application & app = ::winactionarea::app_cast(get_app());
+      app.m_hwndaHidden.add(hwnd);
+      mt_show_window(hwnd, SW_HIDE);
+      }
+      return;
+      }
       }*/
       if(iHitArea == m_iV)
       {
@@ -757,9 +758,9 @@ namespace platform
       }
       else if(iHitArea == m_i_veriwell)
       {
-         
+
          simple_shell_launcher launcher(NULL, NULL, System.dir().votagus("cast\\ccvotagus\\spaadmin.exe"), NULL, NULL, SW_SHOW);
-         
+
          launcher.execute();
 
       }
@@ -772,142 +773,142 @@ namespace platform
             ::PostMessage(m_hwndWinactionarea, WM_APP + 2000, 0, 2);
          }
       }
-/*      else if(iHitArea == m_iShutDown)
+      /*      else if(iHitArea == m_iShutDown)
       {
-         m_bShutDown = !m_bShutDown;
-         _001RedrawWindow();
+      m_bShutDown = !m_bShutDown;
+      _001RedrawWindow();
       }
       else if(iHitArea == m_iClockOffset)
       {
-         ToggleShowCalendar();
+      ToggleShowCalendar();
       }
       else if(m_bShutDown)
       {
-         if(iHitArea == m_iTaskOffset)
-         {
-            System.osi().reboot();
-         }
-         else if(iHitArea == m_iTaskOffset + 1)
-         {
-            System.osi().shutdown(true);
-         }
-         else if(iHitArea == m_iTaskOffset + 3)
-         {
-            m_bEnsureApps = false;
-            GetTopLevelFrame()->ShowWindow(SW_HIDE);
-            if(m_hwndaDesk.get_size() > 0)
-               ::PostMessage(m_hwndaDesk[0], WM_APP + 2000, 3, 6);
-            ::PostMessage(m_hwndWinactionarea, WM_APP + 2000, 3, 6);
-            ::PostMessage(m_hwndCommand, WM_APP + 2000, 3, 6);
-            ::PostMessage(m_hwndWinutil, WM_APP + 2000, 3, 6);
-            ::PostMessage(m_hwndWinservice1, WM_APP + 2000, 3, 6);
+      if(iHitArea == m_iTaskOffset)
+      {
+      System.osi().reboot();
+      }
+      else if(iHitArea == m_iTaskOffset + 1)
+      {
+      System.osi().shutdown(true);
+      }
+      else if(iHitArea == m_iTaskOffset + 3)
+      {
+      m_bEnsureApps = false;
+      GetTopLevelFrame()->ShowWindow(SW_HIDE);
+      if(m_hwndaDesk.get_size() > 0)
+      ::PostMessage(m_hwndaDesk[0], WM_APP + 2000, 3, 6);
+      ::PostMessage(m_hwndWinactionarea, WM_APP + 2000, 3, 6);
+      ::PostMessage(m_hwndCommand, WM_APP + 2000, 3, 6);
+      ::PostMessage(m_hwndWinutil, WM_APP + 2000, 3, 6);
+      ::PostMessage(m_hwndWinservice1, WM_APP + 2000, 3, 6);
 
 
-         simple_shell_launcher launcher(
-               NULL,
-               NULL,
-               System.dir().ca2("ccvotagus/spaadmin.exe"),
-               " uninstall _set_windesk",
-               System.dir().ca2("ccvotagus"),
-               SW_HIDE);
-         launcher.execute();
+      simple_shell_launcher launcher(
+      NULL,
+      NULL,
+      System.dir().ca2("ccvotagus/spaadmin.exe"),
+      " uninstall _set_windesk",
+      System.dir().ca2("ccvotagus"),
+      SW_HIDE);
+      launcher.execute();
 
 
-            return;
-            // spa boot should cling (app-install.exe should catch
-            // exit could and restart main application)
-         }
+      return;
+      // spa boot should cling (app-install.exe should catch
+      // exit could and restart main application)
+      }
       }
       else if(m_bShowCalendar)
       {
-         switch(m_calendar.hit_test(pt))
-         {
-         case calendar::ElementPreviousMonth:
-            m_calendar.previous_month();
-            _001RedrawWindow();
-            break;
-         case calendar::ElementNextMonth:
-            m_calendar.next_month();
-            _001RedrawWindow();
-            break;
-         case calendar::ElementNextYear:
-            m_calendar.next_year();
-            _001RedrawWindow();
-            break;
-         case calendar::ElementPreviousYear:
-            m_calendar.previous_year();
-            _001RedrawWindow();
-            break;
-         default:
-            {
-               ::datetime::time time;
-               if(m_calendar.time_hit_test(time, pt))
-               {
-                  m_calendar.set_time(time);
-                  _001RedrawWindow();
-               }
-            }
-            break;
-         }
+      switch(m_calendar.hit_test(pt))
+      {
+      case calendar::ElementPreviousMonth:
+      m_calendar.previous_month();
+      _001RedrawWindow();
+      break;
+      case calendar::ElementNextMonth:
+      m_calendar.next_month();
+      _001RedrawWindow();
+      break;
+      case calendar::ElementNextYear:
+      m_calendar.next_year();
+      _001RedrawWindow();
+      break;
+      case calendar::ElementPreviousYear:
+      m_calendar.previous_year();
+      _001RedrawWindow();
+      break;
+      default:
+      {
+      ::datetime::time time;
+      if(m_calendar.time_hit_test(time, pt))
+      {
+      m_calendar.set_time(time);
+      _001RedrawWindow();
+      }
+      }
+      break;
+      }
       }
       else if(iHitArea >= 0)
       {
-         {
+      {
       /*      else if(iHitArea == m_iNotificationAreaButtonOffset)
-            {
-               m_notificationareainfo.Refresh();
-               m_bNotificationArea = true;
-            }*/
-  /*          if(iHitArea >= m_iNotificationAreaOffset && iHitArea < (m_iNotificationAreaOffset + m_notificationareainfo.m_infoa.get_size()))
-            {
-               m_notificationareainfo.LeftClick(iHitArea - m_iNotificationAreaOffset);
-               ::Sleep(100);
-               mt_show_window(GetParentFrame()->get_safe_handle(), SW_HIDE);
-            }
-            else if(iHitArea >= m_iClockOffset)
-            {
-               ToggleShowCalendar();
-            }
-            else if(iHitArea < m_areaa.get_size())
-            {
-               SwitchArea(iHitArea);
-               m_dw3003Time = ::GetTickCount();
-               SetTimer(3003, 300, NULL);
-
-            }
-            else if(iHitArea >= m_iTaskOffset && iHitArea < (m_iTaskOffset + m_areaa[m_iArea].m_taska.get_size()))
-            {
-               m_iCurrentTask = iHitArea;
-               m_dwCurrentTaskChangeTime = ::GetTickCount();
-               HWND hwnd = m_areaa[m_iArea].m_taska[iHitArea - m_iTaskOffset].m_hwnd;
-               if(::IsIconic(hwnd))
-               {
-                  mt_show_window(hwnd, SW_RESTORE);
-               }
-               else
-               {
-                  if(hwnd != m_areaa[m_iArea].m_taska[0].m_hwnd)
-                  {
-                     mt_show_window(hwnd, -1);
-
-                  }
-                  else
-                  {
-                     mt_show_window(hwnd, SW_MINIMIZE);
-                  }
-               }
-               Sleep(184 + 177);
-               UpdateCurrentArea();
-            }
-         }
+      {
+      m_notificationareainfo.Refresh();
+      m_bNotificationArea = true;
+      }*/
+      /*          if(iHitArea >= m_iNotificationAreaOffset && iHitArea < (m_iNotificationAreaOffset + m_notificationareainfo.m_infoa.get_size()))
+      {
+      m_notificationareainfo.LeftClick(iHitArea - m_iNotificationAreaOffset);
+      ::Sleep(100);
+      mt_show_window(GetParentFrame()->get_safe_handle(), SW_HIDE);
       }
-*/
+      else if(iHitArea >= m_iClockOffset)
+      {
+      ToggleShowCalendar();
+      }
+      else if(iHitArea < m_areaa.get_size())
+      {
+      SwitchArea(iHitArea);
+      m_dw3003Time = ::GetTickCount();
+      SetTimer(3003, 300, NULL);
+
+      }
+      else if(iHitArea >= m_iTaskOffset && iHitArea < (m_iTaskOffset + m_areaa[m_iArea].m_taska.get_size()))
+      {
+      m_iCurrentTask = iHitArea;
+      m_dwCurrentTaskChangeTime = ::GetTickCount();
+      HWND hwnd = m_areaa[m_iArea].m_taska[iHitArea - m_iTaskOffset].m_hwnd;
+      if(::IsIconic(hwnd))
+      {
+      mt_show_window(hwnd, SW_RESTORE);
+      }
+      else
+      {
+      if(hwnd != m_areaa[m_iArea].m_taska[0].m_hwnd)
+      {
+      mt_show_window(hwnd, -1);
+
+      }
+      else
+      {
+      mt_show_window(hwnd, SW_MINIMIZE);
+      }
+      }
+      Sleep(184 + 177);
+      UpdateCurrentArea();
+      }
+      }
+      }
+      */
    }
 
    void view::_001OnMouseMove(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
-      pmouse->set_lresult(1);
+         pmouse->set_lresult(1);
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       e_element eelement;
@@ -926,9 +927,9 @@ namespace platform
       }
       m_linka.remove_all();
 
-      
+
       string str = Application.file().as_string(Application.dir().matter("platform\\main_link.xml"));
-      
+
       xml::document doc(get_app());
 
       doc.load(str);
@@ -979,4 +980,8 @@ namespace platform
       }
    }
 
+
 } // namespace platform
+
+
+

@@ -1,6 +1,11 @@
 #pragma once
 
-namespace window_frame
+
+namespace uinteraction
+{
+
+
+namespace frame
 {
 
    class WorkSetListener;
@@ -38,4 +43,17 @@ namespace window_frame
          point point);
    };
 
-} //   namespace window_frame
+} //   namespace frame
+
+
+
+
+
+
+} // namespace uinteraction
+
+
+
+
+
+

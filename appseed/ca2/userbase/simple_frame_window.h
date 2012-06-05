@@ -1,6 +1,6 @@
 #pragma once
 
-namespace window_frame
+namespace frame
 {
    class FrameSchema;
 }
@@ -12,7 +12,7 @@ class BaseMiniDockFrameWnd;
 
 class CLASS_DECL_ca2 simple_frame_window :
    virtual public userbase::frame_window,
-   virtual public window_frame::CWorkSetDownUpInterface
+   virtual public ::uinteraction::frame::CWorkSetDownUpInterface
 {
 public:
 

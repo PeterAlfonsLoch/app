@@ -1490,9 +1490,6 @@
     <ClInclude Include=".\uinteraction\window_frame\window_frame_dock_manager.h">
       <Filter>Header Files\uinteraction\window_frame</Filter>
     </ClInclude>
-    <ClInclude Include=".\uinteraction\window_frame\window_frame_frame_schema.h">
-      <Filter>Header Files\uinteraction\window_frame</Filter>
-    </ClInclude>
     <ClInclude Include=".\uinteraction\window_frame\window_frame_move_manager.h">
       <Filter>Header Files\uinteraction\window_frame</Filter>
     </ClInclude>

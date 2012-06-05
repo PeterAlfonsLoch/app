@@ -1,9 +1,30 @@
 #include "framework.h"
 
 
-namespace window_frame
+
+ namespace uinteraction
+
+ {
+
+
+
+
+
+
+
+namespace frame
 {
 
 
 
-} // namespace window_frame
+} // namespace frame
+
+
+
+} // namespace uinteraction
+
+
+
+
+
+

@@ -1,7 +1,9 @@
 #pragma once
 
+namespace uinteraction
+{
 
-namespace window_frame
+namespace frame
 {
 
 
@@ -49,6 +51,18 @@ namespace window_frame
    EDock operator |=(EDock & edocki, const EDock  edockj);
 
 
-} // namespace window_frame
+} // namespace frame
+
+
+
+
+
+
+
+} // namespace uinteraction
+
+
+
+
 
 

@@ -1086,7 +1086,7 @@ index stringa::get_random_index() const
 {
    if(this->get_size() <= 0)
       return -1;
-   return System.math().RandRange(0, get_upper_bound());
+   return (index) System.math().RandRange(0, get_upper_bound());
 }
 
 string & stringa::random_element()

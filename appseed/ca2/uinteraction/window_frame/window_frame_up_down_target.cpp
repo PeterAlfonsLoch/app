@@ -1,6 +1,10 @@
 #include "framework.h"
 
-namespace window_frame
+namespace uinteraction
+{
+
+
+namespace frame
 {
 
    UpDownTarget::UpDownTarget()
@@ -76,4 +80,12 @@ namespace window_frame
 
 
 
-} // namespace window_frame
+} // namespace frame
+
+} // namespace uinteraction
+
+
+
+
+
+

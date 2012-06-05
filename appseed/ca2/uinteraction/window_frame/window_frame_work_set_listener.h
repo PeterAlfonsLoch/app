@@ -1,6 +1,11 @@
 #pragma once
 
-namespace window_frame
+
+namespace uinteraction
+{
+
+
+namespace frame
 {
 
    class WorkSet;
@@ -40,4 +45,16 @@ namespace window_frame
 
    };
 
-} // namespace window_frame
+} // namespace frame
+
+
+
+
+
+} // namespace uinteraction
+
+
+
+
+
+

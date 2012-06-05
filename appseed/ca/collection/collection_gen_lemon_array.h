@@ -18,7 +18,7 @@ namespace gen
             A b;
             while(a.get_count() > 0)
             {
-               index i = System.math().RandRange(0, a.get_upper_bound());
+               index i = (index) System.math().RandRange(0, a.get_upper_bound());
                b.add(a.element_at(i));
                a.remove_at(i);
             }

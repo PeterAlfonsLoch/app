@@ -200,14 +200,14 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
 
          if(pwnd != NULL)
          {
-            //pwnd->m_workset.SetAppearanceTransparency(window_frame::Transparent);
+            //pwnd->m_workset.SetAppearanceTransparency(frame::Transparent);
             pwnd->m_etranslucency = ::user::window_interface::TranslucencyTotal;
          }
          pwndTopLevel = dynamic_cast < simple_frame_window * > (pview->GetTopLevelFrame());
 
          if(pwndTopLevel != NULL)
          {
-            //pwndTopLevel->m_workset.SetAppearanceTransparency(window_frame::Transparent);
+            //pwndTopLevel->m_workset.SetAppearanceTransparency(frame::Transparent);
             pwndTopLevel->m_etranslucency = ::user::window_interface::TranslucencyPresent;
          }
 

@@ -1,6 +1,11 @@
 #include "framework.h"
 
-namespace window_frame
+
+namespace uinteraction
+{
+
+
+namespace frame
 {
 
    WorkSetListener::WorkSetListener()
@@ -61,5 +66,14 @@ namespace window_frame
       //m_listenerpapa.remove(p);
    }
 
-} // namespace window_frame
+} // namespace frame
+
+
+
+} // namespace uinteraction
+
+
+
+
+
 

@@ -231,7 +231,7 @@ namespace mysql
       a.vara(); //create var array
       //a2.vara(); // create var array;
 
-      count iNumRows = presult->num_rows();
+      count iNumRows = (::count) presult->num_rows();
       int iNumFields = presult->num_fields();
       a.m_pvara->set_size(iNumRows);
       //a2.m_pvara->set_size(iNumFields);

@@ -50,7 +50,7 @@ namespace uinteraction
          strLibraryId = straTitle[i];
          gen::str::ends_eat_ci(strLibraryId, ".dll");
          gen::str::ends_eat_ci(strLibraryId, ".so");
-         map_uinteraction_library(strLibraryId);
+         map_uinteraction_library(map, strLibraryId);
       }
 
       map_uinteraction_library(map, "app_core_uinteraction");
@@ -98,10 +98,10 @@ namespace uinteraction
 
    }
 
-   ::uinteraction::interaction * system::get_new_uinteraction(const char * pszUinteraction)
+   ::uinteraction::interaction * application::get_new_uinteraction(const char * pszUinteraction)
    {
 
-      string strId(pszAppId);
+      string strId(pszUinteraction);
 
       if(!System.directrix().m_varTopicQuery.has_property("install")
          && !System.directrix().m_varTopicQuery.has_property("uninstall")
@@ -123,7 +123,7 @@ namespace uinteraction
       string strLibrary = Bergedge.m_mapUInteractionToLibrary[pszUinteraction];
 
       ::uinteraction::interaction * pinteraction = NULL;
-      if(!library.open(pappNewApplicationParent, strLibrary, false))
+      if(!library.open(get_app(), strLibrary, false))
          return NULL;
 
       pinteraction = library.get_new_uinteraction(pszUinteraction);
@@ -137,12 +137,12 @@ namespace uinteraction
    ::uinteraction::interaction * application::get_uinteraction(const char * pszUinteraction)
    {
       
-      ::uinteraction::interaction * pinteraction = m_mapUInteraction[pszUinteraction];
+      ::uinteraction::interaction * pinteraction = Bergedge.m_mapUInteraction[pszUinteraction];
       
-      if(m_mapUInteraction[pszUinteraction] == NULL)
+      if(Bergedge.m_mapUInteraction[pszUinteraction] == NULL)
       {
          
-         m_mapUInteraction[pszUinteraction] = get_new_uinteraction(pszUinteraction);
+         m_mapUInteraction[pszUinteraction] = Bergedge.get_new_uinteraction(pszUinteraction);
 
          pinteraction = m_mapUInteraction[pszUinteraction];
 
@@ -154,7 +154,7 @@ namespace uinteraction
    }
 
 
-   ::window_frame::FrameSchema * application::get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName)
+   ::frame::FrameSchema * application::get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName)
    {
 
       ::uinteraction::interaction * pinteraction = get_uinteraction(pszLibrary);

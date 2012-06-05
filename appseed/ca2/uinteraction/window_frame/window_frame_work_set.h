@@ -1,14 +1,18 @@
 #pragma once
 
+
+namespace uinteraction
+{
+
+
 // User Message Frame Work Version 33
 #define UM_FRAMEWORKV033_COMMAND WM_USER + 101
 #define APPM_FORWARDSYNCMESSAGE WM_APP + 317
 
-namespace window_frame
+namespace frame
 {
 
    class appearance;
-   class FrameSchema;
    class MoveManager;
    class SysMenuManager;
    class WorkSetListener;
@@ -24,7 +28,7 @@ namespace window_frame
       bool                          m_bHoverActive;
       bool                          m_bSizingCapture;
       bool                          m_bEnableMouse;
-      FrameSchema *                 m_pframeschema;
+      ::uinteraction::frame *       m_pframeschema;
       rect                          m_rectPending;
       bool                          m_bEnable;
 
@@ -74,7 +78,7 @@ namespace window_frame
       SizeManager * GetSizingManager();
 
 
-      void AttachFrameSchema(FrameSchema * pframeschema);
+      void AttachFrameSchema(::uinteraction::frame * pframeschema);
       void _001InstallEventHandling(::gen::message::dispatch * pdispatch);
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)
@@ -176,6 +180,17 @@ namespace window_frame
    };
 
 
-} // namespace window_frame
+} // namespace frame
+
+
+
+
+
+
+} // namespace uinteraction
+
+
+
+
 
 

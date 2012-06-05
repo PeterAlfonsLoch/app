@@ -147,7 +147,7 @@ namespace userbase
       || m_etranslucency == TranslucencyTotal
       || m_etranslucency == TranslucencyPresent)
       {
-         window_frame::WorkSetClientInterface::_001OnDraw(pdc);
+         ::uinteraction::frame::WorkSetClientInterface::_001OnDraw(pdc);
       }
       else
       {

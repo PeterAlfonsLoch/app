@@ -1,10 +1,5 @@
 #include "framework.h"
 #include <dde.h>
-#include "window_frame/appearance.h"
-#include "window_frame/FrameSchemaHardCoded001.h"
-#include "window_frame/FrameSchemaHardCoded002.h"
-#include "window_frame/FrameSchemaHardCoded005.h"
-#include "window_frame/FrameSchemaHardCoded008.h"
 
 
 
@@ -122,10 +117,10 @@ void simple_frame_window::_001OnDestroy(gen::signal_object * pobj)
 }
 
 
-window_frame::FrameSchema * simple_frame_window::create_frame_schema()
+::uinteraction::frame * simple_frame_window::create_frame_schema()
 {
 
-   window_frame::FrameSchemaHardCoded005 * pschema = new window_frame::FrameSchemaHardCoded005(get_app());
+   ::uinteraction::frame * pschema = Bergedge.get_frame_schema("core", "005");
 
    pschema->m_typeinfoControlBoxButton = System.template type_info < MetaButton > ();
 
@@ -176,7 +171,7 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
       ::uinteraction::frame * pinteractionframe = create_frame_schema();
 
 
-      //window_frame::FrameSchema * pschema = dynamic_cast < ::window_frame::FrameSchema * > (pinteractionframe);
+      //frame::FrameSchema * pschema = dynamic_cast < ::frame::FrameSchema * > (pinteractionframe);
 
       if(pinteractionframe != NULL && (_ca_is_basis() || Application.command().m_varTopicQuery["version"] == "basis"))
       {
@@ -184,31 +179,31 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
       }
 
       /*{
-         window_frame::FrameSchemaHardCoded001 * pschemaSpec = dynamic_cast < window_frame::FrameSchemaHardCoded001 * > (pschema);
+         frame::FrameSchemaHardCoded001 * pschemaSpec = dynamic_cast < frame::FrameSchemaHardCoded001 * > (pschema);
          if(pschemaSpec != NULL && (_ca_is_basis() || Application.command().m_varTopicQuery["version"] == "basis"))
          {
-            pschemaSpec->SetStyle(window_frame::FrameSchemaHardCoded001::StyleBlueRedPurple);
+            pschemaSpec->SetStyle(frame::FrameSchemaHardCoded001::StyleBlueRedPurple);
          }
       }
       {
-         window_frame::FrameSchemaHardCoded002 * pschemaSpec = dynamic_cast < window_frame::FrameSchemaHardCoded002 * > (pschema);
+         frame::FrameSchemaHardCoded002 * pschemaSpec = dynamic_cast < frame::FrameSchemaHardCoded002 * > (pschema);
          if(pschemaSpec != NULL && (_ca_is_basis() || Application.command().m_varTopicQuery["version"] == "basis"))
          {
-            pschemaSpec->SetStyle(window_frame::FrameSchemaHardCoded002::StyleBlueRedPurple);
+            pschemaSpec->SetStyle(frame::FrameSchemaHardCoded002::StyleBlueRedPurple);
          }
       }
       {
-         window_frame::FrameSchemaHardCoded005 * pschemaSpec = dynamic_cast < window_frame::FrameSchemaHardCoded005 * > (pschema);
+         frame::FrameSchemaHardCoded005 * pschemaSpec = dynamic_cast < frame::FrameSchemaHardCoded005 * > (pschema);
          if(pschemaSpec != NULL && (_ca_is_basis() || Application.command().m_varTopicQuery["version"] == "basis"))
          {
-            pschemaSpec->SetStyle(window_frame::FrameSchemaHardCoded005::StyleBlueRedPurple);
+            pschemaSpec->SetStyle(frame::FrameSchemaHardCoded005::StyleBlueRedPurple);
          }
       }
       {
-         window_frame::FrameSchemaHardCoded008 * pschemaSpec = dynamic_cast < window_frame::FrameSchemaHardCoded008 * > (pschema);
+         frame::FrameSchemaHardCoded008 * pschemaSpec = dynamic_cast < frame::FrameSchemaHardCoded008 * > (pschema);
          if(pschemaSpec != NULL && (_ca_is_basis() || Application.command().m_varTopicQuery["version"] == "basis"))
          {
-            pschemaSpec->SetStyle(window_frame::FrameSchemaHardCoded008::StyleBlueRedPurple);
+            pschemaSpec->SetStyle(frame::FrameSchemaHardCoded008::StyleBlueRedPurple);
          }
       }*/
 
@@ -814,7 +809,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
       WindowDataEnableSaveWindowRect(true);
    }
    userbase::frame_window::InitialFramePosition(bForceRestore);
-   if(m_workset.GetAppearance() != NULL && m_workset.GetAppearanceMode() == ::window_frame::AppearanceModeIconic)
+   if(m_workset.GetAppearance() != NULL && m_workset.GetAppearanceMode() == ::frame::AppearanceModeIconic)
    {
       WfiRestore();
    }
@@ -1016,12 +1011,12 @@ bool simple_frame_window::WndFrameworkDownUpGetDownEnable()
 
 void simple_frame_window::WfiOnDown()
 {
-   window_frame_Attach();
+   frame_Attach();
 }
 
 void simple_frame_window::WfiOnUp()
 {
-   window_frame_Detach();
+   frame_Detach();
 }
 
 
@@ -1036,6 +1031,8 @@ bool simple_frame_window::create(const char * lpszClassName,
 {
    return ::userbase::frame_window::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, lpszMenuName, dwExStyle, pContext);
 }
+
+
 
 
 

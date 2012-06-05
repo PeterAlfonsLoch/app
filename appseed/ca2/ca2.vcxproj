@@ -1009,7 +1009,6 @@
     <ClInclude Include=".\uinteraction\window_frame\window_frame_constants.h" />
     <ClInclude Include=".\uinteraction\window_frame\window_frame_control_box_button.h" />
     <ClInclude Include=".\uinteraction\window_frame\window_frame_dock_manager.h" />
-    <ClInclude Include=".\uinteraction\window_frame\window_frame_frame_schema.h" />
     <ClInclude Include=".\uinteraction\window_frame\window_frame_move_manager.h" />
     <ClInclude Include=".\uinteraction\window_frame\window_frame_size_manager.h" />
     <ClInclude Include=".\uinteraction\window_frame\window_frame_sys_menu_manager.h" />

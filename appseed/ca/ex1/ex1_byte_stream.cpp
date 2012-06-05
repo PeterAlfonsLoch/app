@@ -217,17 +217,17 @@ namespace ex1
       ::file_position uiCount = uiLength;
 
       ::file_position uiPos = 0;
-      LPSTR lpstr = str.GetBufferSetLength(uiLength + 1);
+      LPSTR lpstr = str.GetBufferSetLength((strsize) (uiLength + 1));
       while(uiCount > 0)
       {
-         ::primitive::memory_size uiRead = read(&lpstr[uiPos], uiCount);
+         ::primitive::memory_size uiRead =  read(&lpstr[uiPos], (::primitive::memory_size) uiCount);
          uiCount -= uiRead;
          uiPos+=uiRead;
          if(uiCount > 0)
             Sleep(84);
       }
 
-      str.ReleaseBuffer(uiLength);
+      str.ReleaseBuffer((strsize) uiLength);
 
    }
 
