@@ -1351,6 +1351,8 @@ namespace plane
          && !install().is(strId))
       {
 
+         MessageBox(NULL, "Starting installation of " + strId, "Starting Installation - ca2", MB_OK);
+
          hotplugin::host::starter_start(": app=session session_start=" + strId + " install", NULL);
 
          return NULL;
