@@ -2114,9 +2114,6 @@
     <ClInclude Include="javascript\javascript.h">
       <Filter>Header Files\javascript</Filter>
     </ClInclude>
-    <ClInclude Include="javascript\javascript_functions.h">
-      <Filter>Header Files\javascript</Filter>
-    </ClInclude>
     <ClInclude Include="javascript\javascript_tinyjs.h">
       <Filter>Header Files\javascript</Filter>
     </ClInclude>
@@ -3205,6 +3202,12 @@
     </ClInclude>
     <ClInclude Include="uinteraction\uinteraction_frame.h">
       <Filter>Header Files\uinteraction</Filter>
+    </ClInclude>
+    <ClInclude Include=".\javascript\javascript_tinyjs_functions.h">
+      <Filter>Header Files\javascript</Filter>
+    </ClInclude>
+    <ClInclude Include="javascript_functions.h">
+      <Filter>Header Files\javascript</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5358,6 +5361,9 @@
     </ClCompile>
     <ClCompile Include="ex1\ex1_file_exception.cpp">
       <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="javascript\javascript_tinyjs_functions.cpp">
+      <Filter>Source Files\javascript</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

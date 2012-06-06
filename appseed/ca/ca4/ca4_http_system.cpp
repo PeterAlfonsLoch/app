@@ -175,6 +175,7 @@ namespace ca4
             }
 
             registerFunctions(&ppac->m_js);
+            registerJavascriptFunctions(&ppac->m_js);
             ppac->m_js.execute(ppac->m_strAutoConfigScript);
          
             ppair = m_mapPac.PLookup(pszUrl);

@@ -125,7 +125,8 @@ CLASS_DECL_c void trace_progress(double dRate)
    if(dRate > 1.0)
       dRate = 1.0;
    dRate = dRate * 1000.0 * 1000.0 * 1000.0;
-   int i = ftol(dRate);
+   //int i = ftol(dRate);
+   int i = (int) dRate;
    vsstring str;
    str = "|||";
    str += itoa_dup(i);

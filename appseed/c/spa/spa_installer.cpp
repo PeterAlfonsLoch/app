@@ -732,6 +732,11 @@ install_begin:;
 
    void installer::set_progress(double dProgress)
    {
+      if(dProgress < 0.0)
+         dProgress = 0.0;
+      else if(dProgress > 1.0)
+         dProgress = 1.0;
+
       dProgress = m_dProgressStart + (m_dProgressEnd - m_dProgressStart) * dProgress;
       trace_progress(dProgress);
    }

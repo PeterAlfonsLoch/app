@@ -1484,8 +1484,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="install\install.h" />
     <ClInclude Include="install\install_install.h" />
     <ClInclude Include="javascript\javascript.h" />
-    <ClInclude Include="javascript\javascript_functions.h" />
+    <ClInclude Include=".\javascript\javascript_tinyjs_functions.h" />
     <ClInclude Include="javascript\javascript_tinyjs.h" />
+    <ClInclude Include="javascript_functions.h" />
     <ClInclude Include="libcharguess\big5Prober.h" />
     <ClInclude Include="libcharguess\charDistribution.h" />
     <ClInclude Include="libcharguess\charguess.h" />
@@ -2282,6 +2283,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="install\install_install.cpp" />
     <ClCompile Include="javascript\javascript.cpp" />
     <ClCompile Include="javascript\javascript_functions.cpp" />
+    <ClCompile Include="javascript\javascript_tinyjs_functions.cpp" />
     <ClCompile Include="libcharguess\libcharguess_big5Prober.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
