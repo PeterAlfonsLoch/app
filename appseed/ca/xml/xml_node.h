@@ -159,6 +159,7 @@ namespace xml
       ::xml::attr *           GetChildAttr(const char * name, const char * attrname);
       string                  GetChildAttrValue(const char * name, const char * attrname);
       node *                  GetChildByAttr(const char * pszName, const char * pszAttrName, const char * pszAttrValue);
+      node *                  GetChildByAttr(const char * pszName, stringa & straName, stringa & straAttrValue);
 
       node *                  get_child_at(const char * pszName, index iIndex, index iDepth);
       count                   get_child_attr_value(stringa & stra, const char * pszName, const char * pszAttrName, index iDepth = 1);

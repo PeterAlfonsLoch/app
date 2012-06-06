@@ -33,7 +33,7 @@ namespace spa
 
 
       virtual bool hist(const char * pszUrl);
-      virtual void run_start_install(const char * pszRun);
+      virtual void run_start_install(const char * pszType, const char * pszRun);
 
 
       virtual void start_ca2();

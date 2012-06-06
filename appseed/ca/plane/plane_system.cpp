@@ -1353,12 +1353,12 @@ namespace plane
       if(!System.directrix().m_varTopicQuery.has_property("install")
          && !System.directrix().m_varTopicQuery.has_property("uninstall")
          && strId.has_char() 
-         && !install().is(strId))
+         && !install().is("application", strId))
       {
 
          MessageBox(NULL, "Starting installation of " + strId, "Starting Installation - ca2", MB_OK);
 
-         hotplugin::host::starter_start(": app=session session_start=" + strId + " install", NULL);
+         hotplugin::host::starter_start(": app=session session_start=" + strId + " app_type=application install", NULL);
 
          return NULL;
 

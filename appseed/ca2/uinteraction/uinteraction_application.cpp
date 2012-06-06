@@ -105,6 +105,29 @@ namespace uinteraction
    ::uinteraction::interaction * application::get_new_uinteraction(const char * pszUinteraction)
    {
 
+
+      if(pszUinteraction == NULL || pszUinteraction == '\0')
+         pszUinteraction = "core";
+
+
+      if(!System.directrix().m_varTopicQuery.has_property("install")
+      && !System.directrix().m_varTopicQuery.has_property("uninstall")
+      && !System.install().is("uinteraction", pszUinteraction))
+      {
+
+         if(::IsDebuggerPresent())
+         {
+
+            MessageBox(NULL, "Starting installation of uinteraction \"" + string(pszUinteraction) + "\"", "Starting Installation - ca2", MB_OK);
+
+         }
+
+         hotplugin::host::starter_start(": app=session session_start=" + string(pszUinteraction) + " app_type=uinteraction install", NULL);
+
+         return NULL;
+
+      }
+
       ca2::library library;
 
       string strLibrary = Bergedge.m_mapUInteractionToLibrary[pszUinteraction];
@@ -127,20 +150,6 @@ namespace uinteraction
 
       if(strAppId.is_empty()) // trivial validity check
          return NULL;
-
-      if(!System.directrix().m_varTopicQuery.has_property("install")
-         && !System.directrix().m_varTopicQuery.has_property("uninstall")
-         && !System.install().is(strAppId))
-      {
-
-         MessageBox(NULL, "Starting installation of " + strAppId, "Starting Installation - ca2", MB_OK);
-
-         hotplugin::host::starter_start(": app=session session_start=" + strAppId + " install", NULL);
-
-         return NULL;
-
-      }
-
 
 
 

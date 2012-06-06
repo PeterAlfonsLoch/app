@@ -466,9 +466,9 @@ namespace plugin
             if(str == "ca2login")
             {
                // graphical - 2 - user interface for login - fontopus - through the plugin
-               if(!m_psystem->install().is("fontopus2"))
+               if(!m_psystem->install().is("application", "fontopus2"))
                {
-                  Sys(m_psystem).install().start(": app=session session_start=fontopus2 install");
+                  Sys(m_psystem).install().start(": app=session session_start=fontopus2 app_type=application install");
 #ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
@@ -483,9 +483,9 @@ namespace plugin
             else if(str == "ca2logout")
             {
                // graphical - 2 - user interface for logout - fontopus - through the plugin
-               if(!m_psystem->install().is("fontopus2"))
+               if(!m_psystem->install().is("application", "fontopus2"))
                {
-                  Sys(m_psystem).install().start(": app=session session_start=fontopus2 install");
+                  Sys(m_psystem).install().start(": app=session session_start=fontopus2 app_type=application install");
 #ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
@@ -545,15 +545,21 @@ namespace plugin
                      {
                         strId = strId.Left(iFind);
                      }
-                     if(strId.has_char() && !m_psystem->install().is(strId))
+                     gen::property_set set(get_app());
+                     set.parse_url_query(str);
+
+                     string strType = set["app_type"];
+
+                     if(strType.is_empty())
+                        strType = "application";
+
+                     if(strId.has_char() && !m_psystem->install().is(strType, strId))
                      {
 
                         string strCommandLine;
 
 
                         strCommandLine = ": app=session session_start=" + strId;
-                        gen::property_set set(get_app());
-                        set.parse_url_query(str);
                         for(int i = 0; i < set.m_propertya.get_count(); i++)
                         {
                            strCommandLine += " ";
@@ -564,6 +570,9 @@ namespace plugin
                               strCommandLine += set.m_propertya[i].get_string();
                            }
                         }
+
+                        if(set["app_type"].is_empty())
+                           strCommandLine += "app_type=" + strType;
 
                         strCommandLine += " install";
 

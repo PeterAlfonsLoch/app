@@ -50,6 +50,7 @@ namespace spa
       vsstring       m_strBuild;
       vsstring       m_strBuildResource;
       vsstring       m_strApplicationId;
+      vsstring       m_strApplicationType;
       vsstring       m_strCommandLine;
 
       machine_event  m_machineevent;

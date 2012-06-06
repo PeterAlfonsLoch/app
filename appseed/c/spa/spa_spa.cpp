@@ -39,13 +39,13 @@ CLASS_DECL_c vsstring spa_get_platform()
 }
 
 
-bool is_installed(const char * psz)
+bool is_installed(const char * pszType, const char * psz)
 {
 
-   if(psz == NULL)
+   if(psz == NULL || pszType == NULL)
       return true;
 
-   if(*psz == '\0')
+   if(*psz == '\0' || *pszType == '\0')
       return true;
 
 
@@ -57,14 +57,28 @@ bool is_installed(const char * psz)
 
    if(lpnodeInstalled != NULL)
    {
-      for(int ui = 0; ui < lpnodeInstalled->childs.get_count(); ui++)
+
+      LPXNode lpnodeType = nodeInstall.GetChild(pszType);
+
+      for(int ui = 0; ui < lpnodeType->childs.get_count(); ui++)
       {
-         vsstring strId = lpnodeInstalled->childs[ui]->GetAttrValue("id");
+
+         vsstring strId = lpnodeType->childs[ui]->GetAttrValue("id");
+
          if(strId == psz)
          {
+
             return true;
+
          }
+
       }
+
    }
+
    return false;
+
 }
+
+
+

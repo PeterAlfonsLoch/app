@@ -69,6 +69,7 @@ namespace radix
 
 
       gen::signal                   m_signal;
+      string                        m_strInstallType;
       string                        m_strInstallToken;
       //::user::interaction *         m_puiInitialPlaceHolderContainer;
       ::ca::application_bias        m_biasCalling;

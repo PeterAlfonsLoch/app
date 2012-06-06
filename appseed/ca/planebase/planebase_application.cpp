@@ -526,23 +526,31 @@ InitFailure:
                //MessageBox(NULL, "on_install1", strId, 0);
                if(strId.is_empty())
                   strId = m_strAppName;
+
+               string strType = command().m_varTopicQuery["app_type"];
+
+               if(strType.is_empty())
+                  strType = "application";
+
                if(command().m_varTopicQuery.has_property("app") && strId == command().m_varTopicQuery["app"])
                {
-                  System.install().remove_spa_start(strId);
-                  System.install().add_app_install(strId);
+                  
+                  System.install().remove_spa_start(strType, strId);
+                  System.install().add_app_install(strType, strId);
                }
                else if(command().m_varTopicQuery.has_property("session_start") && strId == command().m_varTopicQuery["session_start"])
                {
                   //MessageBox(NULL, "on_install2", "on_install2", 0);
-                  System.install().remove_spa_start(strId);
-                  System.install().add_app_install(strId);
+                  System.install().remove_spa_start(strType, strId);
+                  System.install().add_app_install(strType, strId);
                   //MessageBox(NULL, "on_install3", "on_install3", 0);
                }
                else if(m_strInstallToken.has_char())
                {
-                  System.install().remove_spa_start(m_strInstallToken);
-                  System.install().add_app_install(m_strInstallToken);
+                  System.install().remove_spa_start(strType, m_strInstallToken);
+                  System.install().add_app_install(strType, m_strInstallToken);
                }
+
             }
             else
             {
@@ -557,7 +565,7 @@ InitFailure:
          {
             if(on_uninstall())
             {
-               System.install().remove_spa_start(m_strInstallToken);
+               System.install().remove_spa_start(m_strInstallType, m_strInstallToken);
             }
             else
             {

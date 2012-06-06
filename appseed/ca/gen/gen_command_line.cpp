@@ -136,6 +136,10 @@ namespace gen
          m_strApp = m_varQuery.propset()["session_start"];
       }
 
+      if(m_varQuery.propset().has_property("app_type"))
+      {
+         m_strAppType = m_varQuery.propset()["app_type"];
+      }
 
    }
 
@@ -174,6 +178,12 @@ namespace gen
       {
          m_strApp = m_varQuery.propset()["session_start"];
       }
+
+      if(m_varQuery.propset().has_property("app_type"))
+      {
+         m_strAppType = m_varQuery.propset()["app_type"];
+      }
+
 
 //      m_pthreadParent->consolidate(this);
 
@@ -214,6 +224,11 @@ namespace gen
       if(m_strApp == "session" && m_varQuery.propset().has_property("session_start"))
       {
          m_strApp = m_varQuery.propset()["session_start"];
+      }
+
+      if(m_varQuery.propset().has_property("app_type"))
+      {
+         m_strAppType = m_varQuery.propset()["app_type"];
       }
 
 //      m_pthreadParent->consolidate(this);
@@ -257,6 +272,11 @@ namespace gen
       if(m_strApp == "session" && m_varQuery.propset().has_property("session_start"))
       {
          m_strApp = m_varQuery.propset()["session_start"];
+      }
+
+      if(m_varQuery.propset().has_property("app_type"))
+      {
+         m_strAppType = m_varQuery.propset()["app_type"];
       }
 
 //      m_pthreadParent->consolidate(this);

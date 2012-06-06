@@ -214,6 +214,8 @@ namespace radix
 
       m_nCmdShow                    = -1;
 
+      m_strInstallType              = "application";
+
 
    }
 

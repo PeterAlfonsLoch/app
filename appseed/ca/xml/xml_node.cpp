@@ -2077,6 +2077,24 @@ namespace xml
       return NULL;
    }
 
+   node * node::GetChildByAttr(const char * pszName, stringa & straAttrName, stringa & straAttrValue)
+   {
+      string strValue;
+      for(int i = 0; i < m_nodea.get_size(); i++)
+      {
+         if(m_nodea[i].m_strName == pszName)
+         {
+            for(int j = 0; j < straAttrName.get_size(); j++)
+            {
+               if(m_nodea[i].get_attr(straAttrName[j], strValue) && _stricmp(strValue, straAttrValue[j]) == 0)
+               {
+                  return &m_nodea[i];
+               }
+            }
+         }
+      }
+      return NULL;
+   }
 
    void node::close()
    {

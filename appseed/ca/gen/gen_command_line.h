@@ -55,6 +55,7 @@ namespace gen
 
       ::ca::application *           m_pappFork;
       string                        m_strApp;
+      string                        m_strAppType;
       ::user::interaction *         m_puiParent;
       index                         m_iEdge;
       manual_reset_event            m_eventReady;

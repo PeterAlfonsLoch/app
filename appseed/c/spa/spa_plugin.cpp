@@ -51,7 +51,7 @@ namespace spa
       {
          // shouldn't do advanced operations using ca2
          // starter_start will only kick a default app-install.exe if one isn't already running, cleaning file lock if any
-         m_phost->starter_start(": app=session session_start=session install");
+         m_phost->starter_start(": app=session session_start=session app_type=application install");
          return;
       }
 
@@ -79,7 +79,7 @@ namespace spa
       }
       else
       {
-         m_phost->starter_start(": app=session session_start=session install");
+         m_phost->starter_start(": app=session session_start=session app_type=application install");
       }
 
    }
@@ -95,25 +95,40 @@ namespace spa
    }
 
 
-   void plugin::run_start_install(const char * pszInstall)
+   void plugin::run_start_install(const char * pszType, const char * pszInstall)
    {
 
       {
+
          XNode node;
+
          // remove install tag : should be turned into a function dependant of spalib at maximum
+
          if(!node.Load(file_get_contents_dup(dir::appdata("spa_install.xml"))))
             goto install;
+
          XNode * lpnodeInstalled = node.GetChild("installed");
+
          if(lpnodeInstalled == NULL)
             goto install;
-         XNode * pnode = lpnodeInstalled->GetChildByAttr("application", "id", pszInstall);
+
+         XNode * lpnodeType = lpnodeInstalled->GetChild(pszType);
+
+         if(lpnodeType == NULL)
+            goto install;
+
+         XNode * pnode = lpnodeType->GetChildByAttr(pszType, "id", pszInstall);
+
          if(pnode == NULL)
             goto install;
-         lpnodeInstalled->RemoveChild(pnode);
-         file_put_contents_dup(dir::appdata("spa_install.xml"), node.GetXML(NULL));
-      }
-install:
 
+         lpnodeType->RemoveChild(pnode);
+
+         file_put_contents_dup(dir::appdata("spa_install.xml"), node.GetXML(NULL));
+
+      }
+
+install:
 
       m_phost->starter_start(pszInstall);
 

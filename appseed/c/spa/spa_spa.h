@@ -6,4 +6,4 @@ CLASS_DECL_c void spa_set_admin(bool bSet);
 CLASS_DECL_c vsstring spa_get_id();
 CLASS_DECL_c void spa_set_id(const char * psz);
 CLASS_DECL_c vsstring spa_get_platform();
-CLASS_DECL_c bool is_installed(const char * psz);
+CLASS_DECL_c bool is_installed(const char * pszType, const char * psz);
