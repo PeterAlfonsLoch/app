@@ -5356,6 +5356,9 @@
     <ClCompile Include="uinteraction_frame.cpp">
       <Filter>Source Files\uinteraction</Filter>
     </ClCompile>
+    <ClCompile Include="ex1\ex1_file_exception.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca.def">

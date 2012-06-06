@@ -382,28 +382,28 @@ namespace frame
           if(pinterface == NULL)
              return false;
           ASSERT(pinterface != NULL);
-          ::uinteraction::frame::e_button ebutton = m_pframeschema->GetButtonId(dynamic_cast < ::user::interaction * > (pevent->m_puie)->GetDlgCtrlId());
+          frame::e_button ebutton = m_pframeschema->GetButtonId(dynamic_cast < ::user::interaction * > (pevent->m_puie)->GetDlgCtrlId());
           switch(ebutton)
           {
-          case ::uinteraction::frame::button_close:
+          case ::uinteraction::frame::frame::button_close:
              pinterface->WfiClose();
              return TRUE;
-          case ::uinteraction::frame::button_minimize:
+          case ::uinteraction::frame::frame::button_minimize:
              pinterface->WfiMinimize();
              return TRUE;
-          case ::uinteraction::frame::button_maximize:
+          case ::uinteraction::frame::frame::button_maximize:
              pinterface->WfiMaximize();
              return TRUE;
-          case ::uinteraction::frame::button_restore:
+          case ::uinteraction::frame::frame::button_restore:
              pinterface->WfiRestore();
              return TRUE;
-          case ::uinteraction::frame::button_up:
+          case ::uinteraction::frame::frame::button_up:
              pinterface->WfiUp();
              return TRUE;
-          case ::uinteraction::frame::button_down:
+          case ::uinteraction::frame::frame::button_down:
              pinterface->WfiDown();
              return TRUE;
-          case ::uinteraction::frame::button_notify_icon:
+          case ::uinteraction::frame::frame::button_notify_icon:
              pinterface->WfiNotifyIcon();
              return TRUE;
 
@@ -419,25 +419,25 @@ namespace frame
       {
           WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand);
           ASSERT(pinterface != NULL);
-          ::uinteraction::frame::e_button ebutton = m_pframeschema->GetButtonId(pcmdmsg->m_id);
+          ::uinteraction::frame::frame::e_button ebutton = m_pframeschema->GetButtonId(pcmdmsg->m_id);
           switch(ebutton)
           {
-          case ::uinteraction::frame::button_close:
+          case ::uinteraction::frame::frame::button_close:
              pinterface->WfiClose();
              return TRUE;
-          case ::uinteraction::frame::button_minimize:
+          case ::uinteraction::frame::frame::button_minimize:
              pinterface->WfiMinimize();
              return TRUE;
-          case ::uinteraction::frame::button_maximize:
+          case ::uinteraction::frame::frame::button_maximize:
              pinterface->WfiMaximize();
              return TRUE;
-          case ::uinteraction::frame::button_restore:
+          case ::uinteraction::frame::frame::button_restore:
              pinterface->WfiRestore();
              return TRUE;
-          case ::uinteraction::frame::button_up:
+          case ::uinteraction::frame::frame::button_up:
              pinterface->WfiUp();
              return TRUE;
-          case ::uinteraction::frame::button_down:
+          case ::uinteraction::frame::frame::button_down:
              pinterface->WfiDown();
              return TRUE;
 
@@ -1399,7 +1399,7 @@ namespace frame
        return ModeNone;
    }*/
 
-   void WorkSet::AttachFrameSchema(::uinteraction::frame * pframeschema)
+   void WorkSet::AttachFrameSchema(::uinteraction::frame::frame * pframeschema)
    {
 
       m_pframeschema = pframeschema;

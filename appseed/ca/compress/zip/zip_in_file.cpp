@@ -39,8 +39,9 @@ namespace zip
    }
 
 
-   bool InFile::zip_open(const char * lpszFileName, UINT, ex1::file_exception_sp *)
+   bool InFile::zip_open(const char * lpszFileName, UINT)
    {
+
       m_filea.remove_all();
       m_izfilea.remove_all();
       m_straPath.remove_all();
@@ -114,8 +115,9 @@ namespace zip
 
    }
 
-   bool InFile::unzip_open(const char * lpszFileName, UINT, ex1::file_exception_sp *)
+   bool InFile::unzip_open(const char * lpszFileName, UINT)
    {
+
       m_filea.remove_all();
       m_izfilea.remove_all();
       m_straPath.remove_all();

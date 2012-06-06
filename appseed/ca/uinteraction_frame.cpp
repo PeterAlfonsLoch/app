@@ -97,6 +97,24 @@ namespace uinteraction
          return m_mapIdButton[id];
       }
 
+      void frame::hide_button(e_button ebutton, bool bHide)
+      {
+         m_buttonmapPresent[ebutton] = !bHide;
+      }
+
+      bool frame::has_button(e_button ebutton)
+      {
+         bool bPresent;
+         if(m_buttonmapPresent.Lookup(ebutton, bPresent))
+            return bPresent;
+         else
+         {
+            m_buttonmapPresent[ebutton] = true;
+            return true;
+         }
+      }
+
+
       void frame::OnNcCalcSize(LPRECT lprect)
       {
 
@@ -112,6 +130,11 @@ namespace uinteraction
       }
 
       void frame::OnActivate()
+      {
+      }
+
+
+      void frame::OnAttach()
       {
       }
 

@@ -115,8 +115,35 @@ CLASS_DECL_ca bool __extract_sub_string(string & rString, const char * lpszFullS
 
 #include "ca/gen/gen_base_enum.h"
 
+
+
+
 #include "ex1_plain_text_stream.h"
 #include "ex1_output_stream_flush_interface.h"
+#include "ex1_stream2.h"
+
+
+namespace primitive
+{
+
+
+   class memory;
+
+
+} // namespace primitive
+
+
+namespace ex1
+{
+
+
+   class file_exception;
+   struct file_status;
+
+
+} // namespace ex1
+
+
 #include "ex1_file.h"
 #include "ex1_file_composite.h"
 #include "ex1_file_exception.h"

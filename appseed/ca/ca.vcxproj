@@ -2132,6 +2132,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="ex1\ex1_exception.cpp" />
     <ClCompile Include="ex1\ex1_file.cpp" />
     <ClCompile Include="ex1\ex1_file_composite.cpp" />
+    <ClCompile Include="ex1\ex1_file_exception.cpp" />
     <ClCompile Include="ex1\ex1_file_stream.cpp" />
     <ClCompile Include="ex1\ex1_file_system.cpp" />
     <ClCompile Include="ex1\ex1_fs_interface.cpp" />

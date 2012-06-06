@@ -217,11 +217,11 @@ namespace ca2
          plog->m_strLogPath = System.dir().path(
                            System.dir().time_log(m_id),
                            strRelative + "-" + strIndex + ".log");
-         ex1::file_exception_sp e;
+
          if(!plog->m_spfile->open(m_strLogPath, ::ex1::file::type_text
             | ::ex1::file::mode_write
             | ::ex1::file::shareDenyWrite | ::ex1::file::mode_create | ::ex1::file::modeNoTruncate
-            | ::ex1::file::defer_create_directory, &e))
+            | ::ex1::file::defer_create_directory))
          {
             if(plog->m_spfile->IsOpened())
             {

@@ -7,32 +7,32 @@ namespace user
 
    document_interface::document_interface()
    {
-   m_pdocumentemplate      = NULL;
-   m_bModified             = FALSE;
-   m_bAutoDelete           = TRUE;       // default to auto delete document_interface
-   m_bEmbedded             = FALSE;        // default to file-based document_interface
-   m_bNew                  = false;
+      m_pdocumentemplate      = NULL;
+      m_bModified             = FALSE;
+      m_bAutoDelete           = TRUE;       // default to auto delete document_interface
+      m_bEmbedded             = FALSE;        // default to file-based document_interface
+      m_bNew                  = false;
 
-   ASSERT(m_viewptra.is_empty());
+      ASSERT(m_viewptra.is_empty());
 
 
    }
 
    document_interface::~document_interface()
    {
-   // do not call delete_contents here !
+      // do not call delete_contents here !
 #ifdef DEBUG
-   if (is_modified())
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: destroying an unsaved document_interface.\n");
+      if (is_modified())
+         TRACE(::radix::trace::category_AppMsg, 0, "Warning: destroying an unsaved document_interface.\n");
 #endif
 
-   // there should be no views left!
-   disconnect_views();
-   ASSERT(m_viewptra.is_empty());
+      // there should be no views left!
+      disconnect_views();
+      ASSERT(m_viewptra.is_empty());
 
-   if (m_pdocumentemplate != NULL)
-      m_pdocumentemplate->remove_document(this);
-   ASSERT(m_pdocumentemplate == NULL);     // must be detached
+      if (m_pdocumentemplate != NULL)
+         m_pdocumentemplate->remove_document(this);
+      ASSERT(m_pdocumentemplate == NULL);     // must be detached
 
    }
 
@@ -100,7 +100,7 @@ namespace user
    }
 
    void document_interface::update_frame_counts()
-       // assumes 1 doc per frame
+      // assumes 1 doc per frame
    {
       // walk all frames of views (mark and sweep approach)
       count count = get_view_count();
@@ -109,7 +109,7 @@ namespace user
       {
          ::view * pview = get_view(index);
          ASSERT_VALID(pview);
-   // trans      ASSERT(::IsWindow(pview->get_handle()));
+         // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not count invisible windows.
          {
             frame_window* pFrame = pview->GetParentFrame();
@@ -125,7 +125,7 @@ namespace user
       {
          ::view * pview = get_view(index);
          ASSERT_VALID(pview);
-   // trans      ASSERT(::IsWindow(pview->get_handle()));
+         // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not count invisible windows.
          {
             frame_window* pFrame = pview->GetParentFrame();
@@ -146,7 +146,7 @@ namespace user
       {
          ::view * pview = get_view(index);
          ASSERT_VALID(pview);
-   // trans      ASSERT(::IsWindow(pview->get_handle()));
+         // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not count invisible windows.
          {
             frame_window* pFrame = pview->GetParentFrame();
@@ -219,18 +219,18 @@ namespace user
       //if ( lstrlen(lpszPathName) >= _MAX_PATH )
       //{
       //   ASSERT(FALSE);
-         // ca2 API requires paths with length < _MAX_PATH
-         // No other way to handle the error from a void function
+      // ca2 API requires paths with length < _MAX_PATH
+      // No other way to handle the error from a void function
       //   gen::ThrowFileException(::ex1::file_exception::badPath);
       //}
 
-   //   if( gen::FullPath(szFullPath, lpszPathName) == FALSE )
-   //   {
-   //      ASSERT(FALSE);
-         // ca2 API requires paths with length < _MAX_PATH
-         // No other way to handle the error from a void function
-   //      gen::ThrowFileException(::ex1::file_exception::badPath);
-   //   }
+      //   if( gen::FullPath(szFullPath, lpszPathName) == FALSE )
+      //   {
+      //      ASSERT(FALSE);
+      // ca2 API requires paths with length < _MAX_PATH
+      // No other way to handle the error from a void function
+      //      gen::ThrowFileException(::ex1::file_exception::badPath);
+      //   }
 
       // store the path fully qualified
       string strFullPath;
@@ -248,9 +248,9 @@ namespace user
       //gen::international::Utf8ToAcp(strPathName, m_wstrPathName);
       // add it to the file MRU list
       /* xxx if (bAddToMRU)
-         guserbase::get(get_app())->AddToRecentFileList(lpszPathName);*/
+      guserbase::get(get_app())->AddToRecentFileList(lpszPathName);*/
 
-   /*   ASSERT_VALID(this);
+      /*   ASSERT_VALID(this);
       m_bNew = false;
 
 
@@ -279,7 +279,7 @@ namespace user
 
       // shut it down
       on_close_document();
-         // this should destroy the document_interface
+      // this should destroy the document_interface
    }
 
    void document_interface::on_file_save()
@@ -342,7 +342,7 @@ namespace user
             // append the default suffix if there is one
             string strExt;
             if (ptemplate->GetDocString(strExt, document_template::filterExt) &&
-              !strExt.is_empty())
+               !strExt.is_empty())
             {
                ASSERT(strExt[0] == '.');
                strsize iStart = 0;
@@ -442,57 +442,60 @@ namespace user
    void document_interface::report_save_load_exception(const char * lpszPathName, base_exception* e, bool bSaving, const char * nIDPDefault)
    {
 
-      UNREFERENCED_PARAMETER(bSaving);
-      UNREFERENCED_PARAMETER(nIDPDefault);
-   //   UINT nIDP = nIDPDefault;
-   //   UINT nHelpContext = nIDPDefault;
-      string prompt;
-
-      if (e != NULL)
+      try
       {
-         if (base < user_exception >::bases(e))
-            return; // already reported
 
-         /*if (base < CArchiveException >::bases(e))
+         UNREFERENCED_PARAMETER(bSaving);
+         UNREFERENCED_PARAMETER(nIDPDefault);
+         //   UINT nIDP = nIDPDefault;
+         //   UINT nHelpContext = nIDPDefault;
+         string prompt;
+
+         if (e != NULL)
          {
+            if (base < user_exception >::bases(e))
+               return; // already reported
+
+            /*if (base < CArchiveException >::bases(e))
+            {
             switch (((CArchiveException*)e)->m_cause)
             {
             case CArchiveException::badSchema:
             case CArchiveException::badClass:
             case CArchiveException::badIndex:
             case CArchiveException::endOfFile:
-               nIDP = __IDP_FAILED_INVALID_FORMAT;
-               break;
+            nIDP = __IDP_FAILED_INVALID_FORMAT;
+            break;
             default:
-               break;
+            break;
             }
-         }
-         else*/ if (base < ex1::file_exception >::bases(e))
-         {
-            ::ex1::file_exception * pfe = dynamic_cast < ::ex1::file_exception * > (e);
-           // throw not_implemented_exception();
-            TRACE(::radix::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
-               pfe->m_lOsError);
-
-            
-            if (pfe->m_strFileName.is_empty())
-               pfe->m_strFileName = lpszPathName;
-
-            if (!pfe->GetErrorMessage(prompt))
+            }
+            else*/ if (base < ex1::file_exception >::bases(e))
             {
-/*               switch (((ex1::file_exception_sp*)e)->m_cause)
+               ::ex1::file_exception * pfe = dynamic_cast < ::ex1::file_exception * > (e);
+               // throw not_implemented_exception();
+               TRACE(::radix::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
+                  pfe->m_lOsError);
+
+
+               if (pfe->m_strFileName.is_empty())
+                  pfe->m_strFileName = lpszPathName;
+
+               if (!pfe->GetErrorMessage(prompt))
                {
+                  /*               switch (((ex1::file_exception_sp*)e)->m_cause)
+                  {
                   case ::ex1::file_exception::fileNotFound:
                   case ::ex1::file_exception::badPath:
-                     nIDP = __IDP_FAILED_INVALID_PATH;
-                     break;
+                  nIDP = __IDP_FAILED_INVALID_PATH;
+                  break;
                   case ::ex1::file_exception::diskFull:
-                     nIDP = __IDP_FAILED_DISK_FULL;
-                     break;
+                  nIDP = __IDP_FAILED_DISK_FULL;
+                  break;
                   case ::ex1::file_exception::accessDenied:
-                     nIDP = bSaving ? __IDP_FAILED_ACCESS_WRITE :
-                           __IDP_FAILED_ACCESS_READ;
-                     break;
+                  nIDP = bSaving ? __IDP_FAILED_ACCESS_WRITE :
+                  __IDP_FAILED_ACCESS_READ;
+                  break;
 
                   case ::ex1::file_exception::badSeek:
                   case ::ex1::file_exception::generic:
@@ -500,35 +503,42 @@ namespace user
                   case ::ex1::file_exception::invalidFile:
                   case ::ex1::file_exception::hardIO:
                   case ::ex1::file_exception::directoryFull:
-                     break;
+                  break;
 
                   default:
-                     break;*/
-          //     }
+                  break;*/
+                  //     }
+               }
+               prompt.ReleaseBuffer();
             }
-            prompt.ReleaseBuffer();
          }
-      }
 
-      if (prompt.is_empty())
+         if (prompt.is_empty())
+         {
+            string strTitle = System.file().title_(lpszPathName);
+            //throw not_implemented_exception();
+            /*
+            gen::FormatString1(prompt, nIDP, strTitle);*/
+         }
+
+         //System.simple_message_box(prompt, MB_ICONEXCLAMATION, nHelpContext);
+         System.simple_message_box(NULL, prompt, MB_ICONEXCLAMATION);
+
+      }
+      catch(...)
       {
-         string strTitle = System.file().title_(lpszPathName);
-         //throw not_implemented_exception();
-         /*
-         gen::FormatString1(prompt, nIDP, strTitle);*/
+
       }
 
-      //System.simple_message_box(prompt, MB_ICONEXCLAMATION, nHelpContext);
-      System.simple_message_box(NULL, prompt, MB_ICONEXCLAMATION);
    }
 
 
    bool document_interface::on_new_document()
    {
-   #ifdef DEBUG
+#ifdef DEBUG
       if(is_modified())
          TRACE(::radix::trace::category_AppMsg, 0, "Warning: on_new_document replaces an unsaved document_interface.\n");
-   #endif
+#endif
 
       delete_contents();
       m_strPathName.Empty();      // no path name yet
@@ -539,25 +549,30 @@ namespace user
 
    bool document_interface::on_open_document(var varFile)
    {
-   #ifdef DEBUG
+#ifdef DEBUG
       if (is_modified())
          TRACE(::radix::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document_interface.\n");
-   #endif
+#endif
 
       ::ex1::byte_stream spfile;
-      ex1::file_exception_sp fe(get_app());
-      spfile = Application.get_byte_stream(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary, &fe);
-      /*if(gen::str::begins_ci(varFile, "uifs://"))
+
+      try
       {
+
+         spfile = Application.get_byte_stream(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary);
+
+         /*if(gen::str::begins_ci(varFile, "uifs://"))
+         {
          spfile = ifs(get_app(), "").get_file(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary, &fe);
-      }
-      else
-      {
+         }
+         else
+         {
          spfile = System.fs()->get_file(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary, &fe);
-      }*/
-      if(spfile.is_reader_null())
+         }*/
+      }
+      catch(base_exception & e)
       {
-         report_save_load_exception(varFile, fe, FALSE, "__IDP_FAILED_TO_OPEN_DOC");
+         report_save_load_exception(varFile, &e, FALSE, "__IDP_FAILED_TO_OPEN_DOC");
          return FALSE;
       }
 
@@ -570,19 +585,18 @@ namespace user
          read(spfile);     // load me
          spfile.close();
       }
-      catch(base_exception * pe)
+      catch(base_exception & e)
       {
          spfile.close();
          delete_contents();   // remove failed contents
 
          try
          {
-            report_save_load_exception(varFile, pe, FALSE, "__IDP_FAILED_TO_OPEN_DOC");
+            report_save_load_exception(varFile, &e, FALSE, "__IDP_FAILED_TO_OPEN_DOC");
          }
          catch(...)
          {
          }
-         pe->Delete();
          return FALSE;
       }
 
@@ -595,40 +609,49 @@ namespace user
    {
 
       ::ex1::byte_stream spfile;
-      ex1::file_exception_sp fe(get_app());
-      spfile = Application.get_byte_stream(varFile, ::ex1::file::defer_create_directory | ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::shareExclusive, &fe);
-      if(spfile.is_writer_null())
+
+      try
       {
-         report_save_load_exception(varFile, fe, TRUE, "__IDP_INVALID_FILENAME");
+
+         spfile = Application.get_byte_stream(varFile, ::ex1::file::defer_create_directory | ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::shareExclusive);
+
+      }
+      catch(base_exception & e)
+      {
+
+         report_save_load_exception(varFile, &e, TRUE, "__IDP_INVALID_FILENAME");
+
          return false;
+
       }
 
 
       try
       {
+
          wait_cursor wait(get_app());
+
          if(varFile["xmledit"].ca2 < gen::memory_file > () != NULL)
          {
+
          }
          else
          {
+
             write(spfile);
+
          }
-         spfile.close();
-      }
-      catch(base_exception * pe)
-      {
+
          spfile.close();
 
-         try
-         {
-            report_save_load_exception(varFile, pe, TRUE, "__IDP_FAILED_TO_SAVE_DOC");
-         }
-         catch(...)
-         {
-         }
-         pe->Delete();
+      }
+      catch(base_exception & e)
+      {
+
+         report_save_load_exception(varFile, &e, TRUE, "__IDP_FAILED_TO_SAVE_DOC");
+
          return false;
+
       }
 
 
@@ -656,7 +679,7 @@ namespace user
             // and close it
             pre_close_frame(pFrame);
             pFrame->DestroyWindow();
-               // will destroy the ::view as well
+            // will destroy the ::view as well
          }
       }
       m_viewptra.remove_all();
@@ -716,7 +739,7 @@ namespace user
       // walk through all views
    {
       ASSERT(pSender == NULL || !m_viewptra.is_empty());
-         // must have views if sent by one of them
+      // must have views if sent by one of them
 
       count count = get_view_count();
       for(index index = 0; index < count; index++)
@@ -732,7 +755,7 @@ namespace user
       // walk through all views
    {
       ASSERT(pSender == NULL || !m_viewptra.is_empty());
-         // must have views if sent by one of them
+      // must have views if sent by one of them
 
       update * pupdate;
       count count = get_view_count();
@@ -770,7 +793,7 @@ namespace user
 
       // otherwise check template
       if (m_pdocumentemplate != NULL &&
-        m_pdocumentemplate->_001OnCmdMsg(pcmdmsg))
+         m_pdocumentemplate->_001OnCmdMsg(pcmdmsg))
          return TRUE;
 
       return FALSE;
@@ -862,17 +885,17 @@ namespace user
 
 
    // document_interface
-    const string & document_interface::get_title() const
-      { ASSERT(this != NULL); return m_strTitle; }
-    const string & document_interface::get_path_name() const
-      { ASSERT(this != NULL); return m_strPathName; }
-    document_template * document_interface::get_document_template() const
-      { ASSERT(this != NULL); return m_pdocumentemplate; }
-    bool document_interface::is_modified()
-      { ASSERT(this != NULL); return m_bModified; }
-    void document_interface::set_modified_flag(bool bModified)
-      { ASSERT(this != NULL); m_bModified = bModified; }
-    void document_interface::set_new(bool bNew)
+   const string & document_interface::get_title() const
+   { ASSERT(this != NULL); return m_strTitle; }
+   const string & document_interface::get_path_name() const
+   { ASSERT(this != NULL); return m_strPathName; }
+   document_template * document_interface::get_document_template() const
+   { ASSERT(this != NULL); return m_pdocumentemplate; }
+   bool document_interface::is_modified()
+   { ASSERT(this != NULL); return m_bModified; }
+   void document_interface::set_modified_flag(bool bModified)
+   { ASSERT(this != NULL); m_bModified = bModified; }
+   void document_interface::set_new(bool bNew)
    {
       ASSERT(this != NULL);
       m_bNew = bNew;

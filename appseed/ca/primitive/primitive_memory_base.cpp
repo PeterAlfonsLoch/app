@@ -77,13 +77,12 @@ namespace primitive
       {
          dwTemp = file.read(get_data(), cbStorage);
       }
-      catch(ex1::file_exception_sp * pe)
+      catch(ex1::file_exception & e)
       {
          throw "smfOpenFile: read error on image!";
    #ifdef DEBUG
-         (*pe)->dump(g_dumpcontext);
+         e.dump(g_dumpcontext);
    #endif
-         delete pe;
       }
       if (cbStorage != dwTemp)
       {

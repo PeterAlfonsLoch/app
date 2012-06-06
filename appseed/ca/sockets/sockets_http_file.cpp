@@ -28,13 +28,15 @@ namespace sockets
 
       }
       
-      bool file::open(const char * lpszFileName, UINT nOpenFlags, ex1::file_exception_sp * pError)
+      bool file::open(const char * lpszFileName, UINT nOpenFlags)
       {
-         UNREFERENCED_PARAMETER(pError);
+
+
          ca4::http::signal * psignal = new ca4::http::signal;
 
-         (*psignal)()["file"] = (::ca::ca *) m_pmemoryfileIn;
-         (*psignal)()["file_out"] = (::ca::ca *) m_ptimeoutfile;
+         (*psignal)()["file"]       = (::ca::ca *) m_pmemoryfileIn;
+         (*psignal)()["file_out"]   = (::ca::ca *) m_ptimeoutfile;
+
          psignal->m_strUrl = lpszFileName; 
          psignal->m_set["optional_ca2_login"] = true;
 

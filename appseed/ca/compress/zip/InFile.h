@@ -59,11 +59,11 @@ namespace zip
 
       virtual file_position get_position() const;
 
-      virtual bool zip_open(const char *,UINT,ex1::file_exception_sp *);
+      virtual bool zip_open(const char *,UINT);
       virtual bool zip_open(File * pzfile, const char * lpcszFileName);
 
       virtual bool unzip_open(::ex1::file * pfile);
-      virtual bool unzip_open(const char *,UINT,ex1::file_exception_sp *);
+      virtual bool unzip_open(const char *,UINT);
       virtual bool unzip_open(File * pzfile, const char * lpcszFileName);
 
       virtual bool locate(const char * pszFileName);

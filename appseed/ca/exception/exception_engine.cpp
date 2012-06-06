@@ -501,11 +501,11 @@ namespace exception
    DWORD WINAPI engine::stack_trace_ThreadProc(void * lpvoidParam)
    {
 
-//#ifdef AMD64
+#ifdef AMD64
 
-  //    return -1;
+      return -1;
 
-//#endif
+#endif
 
       current_context * pcontext = reinterpret_cast<current_context*>(lpvoidParam);
 
@@ -522,9 +522,9 @@ namespace exception
             iPatience--;
          }
 
-         char sz[200];
-         sprintf(sz, "engine::stack_trace patience near down %u%%\n", iPatience * 100 / iInverseAgility);
-         ::OutputDebugString(sz);
+//         char sz[200];
+//         sprintf(sz, "engine::stack_trace patience near down %u%%\n", iPatience * 100 / iInverseAgility);
+//         ::OutputDebugString(sz);
 
          if (-1 == SuspendThread(pcontext->thread))
          {
@@ -587,9 +587,9 @@ namespace exception
                   Sleep(10); // forces switch to another thread
                iPatience--; // wait in spin
             }
-            char sz[200];
-            sprintf(sz, "engine::stack_trace patience near down %u%%\n", iPatience * 100 / iInverseAgility);
-            ::OutputDebugString(sz);
+            //char sz[200];
+            //sprintf(sz, "engine::stack_trace patience near down %u%%\n", iPatience * 100 / iInverseAgility);
+            //::OutputDebugString(sz);
          }
          else
          {

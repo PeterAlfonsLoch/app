@@ -29,7 +29,7 @@ namespace ex1
       virtual void SetFilePath(const char * lpszNewName);
 
 
-      virtual bool open(const char * lpszFileName, UINT nOpenFlags, file_exception_sp * pError = NULL);
+      virtual bool open(const char * lpszFileName, UINT nOpenFlags);
 
       //virtual void PASCAL Rename(const char * lpszOldName, const char * lpszNewName);
       //virtual void PASCAL remove(const char * lpszFileName);

@@ -282,9 +282,7 @@ namespace plane
       if(directrix().m_varTopicQuery.has_property("install"))
          return true;
 
-      ex1::file_exception_sp fe(this);
-
-      ex1::filesp file = get_file(System.dir().appdata("applibcache.bin"), ex1::file::type_binary | ex1::file::mode_read, &fe);
+      ex1::filesp file = get_file(System.dir().appdata("applibcache.bin"), ex1::file::type_binary | ex1::file::mode_read);
 
       if(file.is_null())
          return false;
@@ -329,13 +327,20 @@ namespace plane
       map_application_library("ca");
       map_application_library("ca2");
 
-      ex1::file_exception_sp fe(this);
+      ex1::filesp file;
 
-      ex1::filesp file = get_file(System.dir().appdata("applibcache.bin"), ex1::file::defer_create_directory
-         | ::ex1::file::type_binary | ex1::file::mode_create  | ::ex1::file::mode_write, &fe);
+      try
+      {
 
-      if(file.is_null())
+         file = get_file(System.dir().appdata("applibcache.bin"), ex1::file::defer_create_directory | ::ex1::file::type_binary | ex1::file::mode_create  | ::ex1::file::mode_write);
+
+      }
+      catch(base_exception & e)
+      {
+
          return false;
+
+      }
 
       ex1::byte_output_stream os(file);
 

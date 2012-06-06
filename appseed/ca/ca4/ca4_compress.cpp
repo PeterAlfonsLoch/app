@@ -255,9 +255,7 @@ namespace ca4
    {
       zip::InFile infile(papp);
 
-      ::ex1::file_exception_sp fe(papp);
-
-      if(!infile.zip_open(pszZip, 0, &fe))
+      if(!infile.zip_open(pszZip, 0))
       {
          throw "Could not open zip file";
          return;

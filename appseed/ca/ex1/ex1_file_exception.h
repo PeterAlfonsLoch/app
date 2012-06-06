@@ -71,9 +71,6 @@ namespace ex1
    };
 
 
-   typedef ca::smart_pointer < file_exception > file_exception_sp;
-
-
 } // namespace ex1
 
 

@@ -28,7 +28,7 @@ namespace frame
       bool                          m_bHoverActive;
       bool                          m_bSizingCapture;
       bool                          m_bEnableMouse;
-      ::uinteraction::frame *       m_pframeschema;
+      ::uinteraction::frame::frame *   m_pframeschema;
       rect                          m_rectPending;
       bool                          m_bEnable;
 
@@ -78,7 +78,7 @@ namespace frame
       SizeManager * GetSizingManager();
 
 
-      void AttachFrameSchema(::uinteraction::frame * pframeschema);
+      void AttachFrameSchema(::uinteraction::frame::frame * pframeschema);
       void _001InstallEventHandling(::gen::message::dispatch * pdispatch);
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)

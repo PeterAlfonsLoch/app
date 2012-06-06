@@ -85,8 +85,8 @@ namespace planebase
       virtual ::ca::application * instantiate_application(const char * pszId, ::ca::application_bias * pbias);
       virtual ::ca::application * create_application(const char * pszId, bool bSynch, ::ca::application_bias * pbias);
 
-      virtual ::ex1::filesp get_file(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp * pe = NULL);
-      virtual ::ex1::byte_stream get_byte_stream(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp * pe = NULL);
+      virtual ::ex1::filesp get_file(var varFile, UINT nOpenFlags);
+      virtual ::ex1::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
 
       // get a file and if there are exceptions, should show end user friendly messages
       virtual ::ex1::filesp friendly_get_file(var varFile, UINT nOpenFlags);

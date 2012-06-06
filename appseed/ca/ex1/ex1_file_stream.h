@@ -10,8 +10,10 @@ namespace ex1
    {
    public:
 
-      output_file_stream(::ca::application * papp, const char * pszFileName, DWORD dwFlags, ::ex1::file_exception_sp * perror = NULL);
+
+      output_file_stream(::ca::application * papp, const char * pszFileName, DWORD dwFlags);
       virtual ~output_file_stream();
+
 
    };
 

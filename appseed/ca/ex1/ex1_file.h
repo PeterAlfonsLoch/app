@@ -1,24 +1,18 @@
 #pragma once
 
 
-#include "ex1_stream2.h"
 
 
-namespace primitive
-{
-   class memory;
-} // namespace primitive
+
+
+
 
 namespace ex1
 {
 
    class file_exception;
-   typedef ca::smart_pointer < file_exception > file_exception_sp;
    struct file_status;
 
-
-   /////////////////////////////////////////////////////////////////////////////
-   // ex1::filesp - raw unbuffered disk file I/O
 
    class CLASS_DECL_ca file :
       virtual public ::ex1::stream,
@@ -43,7 +37,7 @@ namespace ex1
 
       
    // Operations
-      virtual bool open(const char * lpszFileName, UINT nOpenFlags, file_exception_sp * pError = NULL);
+      virtual bool open(const char * lpszFileName, UINT nOpenFlags);
 
       //virtual void PASCAL Rename(const char * lpszOldName, const char * lpszNewName);
       //virtual void PASCAL remove(const char * lpszFileName);

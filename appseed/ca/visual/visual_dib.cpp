@@ -52,11 +52,12 @@ namespace visual
 
       try
       {
-         ex1::file_exception_sp spfe(get_app());
-         if(!read_from_file(Application.get_file(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary, &spfe)))
+
+         if(!read_from_file(Application.get_file(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary)))
             return false;
+
       }
-      catch(...)
+      catch(ex1::file_exception & e)
       {
          return false;
       }

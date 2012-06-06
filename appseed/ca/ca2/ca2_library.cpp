@@ -216,9 +216,30 @@ namespace ca2
    ::uinteraction::interaction * library::get_new_uinteraction(const char * pszId)
    {
 
-      UNREFERENCED_PARAMETER(pszId);
+      if(m_pca2library != NULL)
+      {
 
-      return NULL;
+         try
+         {
+
+            return m_pca2library->get_new_uinteraction(pszId);
+
+         }
+         catch(...)
+         {
+
+            return NULL;
+
+         }
+
+      }
+      else
+      {
+
+         return NULL;
+
+      }
+
 
    }
 
@@ -226,7 +247,21 @@ namespace ca2
    void library::get_uinteraction_list(stringa & stra)
    {
       
-      UNREFERENCED_PARAMETER(stra);
+      if(m_pca2library != NULL)
+      {
+
+         try
+         {
+
+            m_pca2library->get_uinteraction_list(stra);
+
+         }
+         catch(...)
+         {
+
+         }
+
+      }
 
    }
 

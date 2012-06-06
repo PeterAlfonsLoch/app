@@ -24,7 +24,7 @@ namespace frame
       m_bEnabled = true;
       m_pworkset = pworkset;
       m_bUseNc = false;
-      m_nTransparency = frame::Transparent;
+      m_nTransparency = Transparent;
    }
 
    appearance::~appearance()

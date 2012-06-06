@@ -327,7 +327,7 @@ namespace ca
             {
                gen::memory_file memfile(papp, &storage);
                zip::InFile infile(get_app());
-               if(!infile.unzip_open(strFilePath, 0, NULL))
+               if(!infile.unzip_open(strFilePath, 0))
                   return "";
                if(!infile.dump(&memfile))
                   return "";
@@ -396,62 +396,43 @@ namespace ca
 
       void system::as_memory(var varFile, primitive::memory_base & mem, ::ca::application * papp)
       {
+         
+         mem.allocate(0);
+
          if(varFile.get_type() == var::type_string)
          {
-            string strPath = varFile.get_string();
-            strPath.trim("\"'");
-            if((gen::str::begins(strPath, "http://")
-               || gen::str::begins(strPath, "https://")))
-            {
-               App(papp).http().get(strPath, mem, &AppUser(papp));
-               return;
-            }
-         }
-         ex1::file_exception_sp e(papp);
-         ex1::filesp spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone, &e);
-         if(spfile.is_set())
-         {
-/*
 
-         if(varFile.get_type() == var::type_string
-         && (gen::str::begins(varFile, "http://")
-            || gen::str::begins(varFile, "https://")))
-         {
-            App(papp).http().get(varFile, mem, &AppUser(papp));
-         }
-         else if(varFile.get_type() == var::type_propset
-         && varFile.propset()["file"].ca2 < ::ex1::file >() != NULL)
-         {
-            mem.read(*varFile.propset()["file"].ca2 < ::ex1::file >());
-         }
-         else if(varFile.get_type() == var::type_ca2
-         && varFile.ca2 < ::ex1::file >() != NULL)
-         {
-            mem.read(*varFile.ca2 < ::ex1::file >());
-         }
-         else if(varFile.get_type() == var::type_string)
-         {
-            string str(varFile);
-            if(gen::str::begins_eat_ci(str, "matter://"))
+            string strPath = varFile.get_string();
+
+            strPath.trim("\"'");
+
+            if((gen::str::begins(strPath, "http://") || gen::str::begins(strPath, "https://")))
             {
-               str = App(papp).dir().matter(str);
-            }*/
-            /*try
-            {
-               spfile->open(str, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone);
-            }
-            catch(ex1::exception * pe)
-            {
-               gen::del(pe);
+
+               App(papp).http().get(strPath, mem, &AppUser(papp));
+
                return;
+
             }
-            catch(...)
-            {
-               return;
-            }*/
+
+         }
+
+         ex1::filesp spfile;
+         
+         try
+         {
+            
+            spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone);
 
             mem.FullLoad(spfile);
+
          }
+         catch(...)
+         {
+         }
+
+         
+
       }
 
       void system::lines(stringa & stra, var varFile, ::ca::application * papp)
@@ -480,13 +461,18 @@ namespace ca
 
       bool system::put_contents(var varFile, const void * pvoidContents, count count, ::ca::application * papp)
       {
+         
          ex1::filesp spfile;
-         ex1::file_exception_sp spfe;
-         spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory, &spfe);
+         
+         spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory);
+
          if(spfile.is_null())
             return false;
+
          spfile->write(pvoidContents, count);
+
          return true;
+
       }
 
       bool system::put_contents(var varFile, const char * lpcszContents, ::ca::application * papp)
@@ -915,7 +901,14 @@ namespace ca
             zip::Util ziputil;
 
             if(iFind >= 0)
+            {
+
+               if(!exists(strPath.Mid(0, iFind + 4), papp))
+                  return false;
+
                return ziputil.exists(papp, strPath);
+
+            }
 
 
          }
@@ -1113,12 +1106,10 @@ namespace ca
 
          System.dir().mk(System.dir().name(name), papp);
 
-         ::ex1::file_exception_sp e(get_app());
-
-         ex1::filesp fileOut = App(papp).get_file(name, ::ex1::file::mode_create | ::ex1::file::type_binary | ::ex1::file::mode_write, &e);
+         ex1::filesp fileOut = App(papp).get_file(name, ::ex1::file::mode_create | ::ex1::file::type_binary | ::ex1::file::mode_write);
 
          if(fileOut.is_null())
-            throw e;
+            throw ex1::file_exception(papp, -1, ::ex1::file_exception::none, name);
 
          return fileOut;
 

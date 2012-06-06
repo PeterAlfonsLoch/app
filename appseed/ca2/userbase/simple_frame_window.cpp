@@ -117,10 +117,10 @@ void simple_frame_window::_001OnDestroy(gen::signal_object * pobj)
 }
 
 
-::uinteraction::frame * simple_frame_window::create_frame_schema()
+::uinteraction::frame::frame * simple_frame_window::create_frame_schema()
 {
 
-   ::uinteraction::frame * pschema = Bergedge.get_frame_schema("core", "005");
+   ::uinteraction::frame::frame * pschema = Bergedge.get_frame_schema("core", "005");
 
    pschema->m_typeinfoControlBoxButton = System.template type_info < MetaButton > ();
 
@@ -168,14 +168,16 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
 
 // trans      HICON hicon = GetIcon(false);
 
-      ::uinteraction::frame * pinteractionframe = create_frame_schema();
+      ::uinteraction::frame::frame * pinteractionframe = create_frame_schema();
 
 
       //frame::FrameSchema * pschema = dynamic_cast < ::frame::FrameSchema * > (pinteractionframe);
 
       if(pinteractionframe != NULL && (_ca_is_basis() || Application.command().m_varTopicQuery["version"] == "basis"))
       {
-         pinteractionframe->set_style("StyleBlueRedPurple");
+
+         pinteractionframe->set_style("BlueRedPurple");
+
       }
 
       /*{
@@ -207,7 +209,7 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
          }
       }*/
 
-      m_pframeschema = pschema;
+      m_pframeschema = pinteractionframe;
       m_workset.AttachFrameSchema(m_pframeschema);
       if(!m_workset.update(
          this,
@@ -809,7 +811,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
       WindowDataEnableSaveWindowRect(true);
    }
    userbase::frame_window::InitialFramePosition(bForceRestore);
-   if(m_workset.GetAppearance() != NULL && m_workset.GetAppearanceMode() == ::frame::AppearanceModeIconic)
+   if(m_workset.GetAppearance() != NULL && m_workset.GetAppearanceMode() == ::uinteraction::frame::AppearanceModeIconic)
    {
       WfiRestore();
    }

@@ -18,12 +18,20 @@ namespace uinteraction
       if(directrix().m_varTopicQuery.has_property("install"))
          return true;
 
-      ex1::file_exception_sp fe(this);
+      ex1::filesp file;
+      
+      try
+      {
 
-      ex1::filesp file = get_file(System.dir().appdata("uinteractionlib.bin"), ex1::file::type_binary | ex1::file::mode_read, &fe);
+         file = get_file(System.dir().appdata("uinteractionlib.bin"), ex1::file::type_binary | ex1::file::mode_read);
 
-      if(file.is_null())
+      }
+      catch(...)
+      {
+
          return false;
+
+      }
 
       ex1::byte_input_stream is(file);
 
@@ -55,13 +63,9 @@ namespace uinteraction
 
       map_uinteraction_library(map, "app_core_uinteraction");
 
-      ex1::file_exception_sp fe(this);
+      ex1::filesp file;
 
-      ex1::filesp file = get_file(System.dir().appdata("uinteractionlib.bin"), ex1::file::defer_create_directory
-         | ::ex1::file::type_binary | ex1::file::mode_create  | ::ex1::file::mode_write, &fe);
-
-      if(file.is_null())
-         return false;
+      file = get_file(System.dir().appdata("uinteractionlib.bin"), ex1::file::defer_create_directory | ::ex1::file::type_binary | ex1::file::mode_create  | ::ex1::file::mode_write);
 
       ex1::byte_output_stream os(file);
 
@@ -101,30 +105,44 @@ namespace uinteraction
    ::uinteraction::interaction * application::get_new_uinteraction(const char * pszUinteraction)
    {
 
-      string strId(pszUinteraction);
+      ca2::library library;
+
+      string strLibrary = Bergedge.m_mapUInteractionToLibrary[pszUinteraction];
+
+      if(strLibrary.is_empty())
+         return NULL;
+
+      ::uinteraction::interaction * pinteraction = NULL;
+      if(!library.open(get_app(), strLibrary, false))
+         return NULL;
+
+      stringa stra;
+
+      library.get_app_list(stra);
+
+      if(stra.get_size() != 1) // a uinteraction OSLibrary should have one application
+         return NULL;
+
+      string strAppId(stra[0]);
+
+      if(strAppId.is_empty()) // trivial validity check
+         return NULL;
 
       if(!System.directrix().m_varTopicQuery.has_property("install")
          && !System.directrix().m_varTopicQuery.has_property("uninstall")
-         && strId.has_char() 
-         && !install().is(strId))
+         && !System.install().is(strAppId))
       {
 
-         MessageBox(NULL, "Starting installation of " + strId, "Starting Installation - ca2", MB_OK);
+         MessageBox(NULL, "Starting installation of " + strAppId, "Starting Installation - ca2", MB_OK);
 
-         hotplugin::host::starter_start(": app=session session_start=" + strId + " install", NULL);
+         hotplugin::host::starter_start(": app=session session_start=" + strAppId + " install", NULL);
 
          return NULL;
 
       }
 
 
-      ca2::library library;
 
-      string strLibrary = Bergedge.m_mapUInteractionToLibrary[pszUinteraction];
-
-      ::uinteraction::interaction * pinteraction = NULL;
-      if(!library.open(get_app(), strLibrary, false))
-         return NULL;
 
       pinteraction = library.get_new_uinteraction(pszUinteraction);
       if(pinteraction == NULL)
@@ -142,9 +160,9 @@ namespace uinteraction
       if(Bergedge.m_mapUInteraction[pszUinteraction] == NULL)
       {
          
-         m_mapUInteraction[pszUinteraction] = Bergedge.get_new_uinteraction(pszUinteraction);
+         Bergedge.m_mapUInteraction[pszUinteraction] = Bergedge.get_new_uinteraction(pszUinteraction);
 
-         pinteraction = m_mapUInteraction[pszUinteraction];
+         pinteraction = Bergedge.m_mapUInteraction[pszUinteraction];
 
       }
 
@@ -154,7 +172,7 @@ namespace uinteraction
    }
 
 
-   ::frame::FrameSchema * application::get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName)
+   ::uinteraction::frame::frame * application::get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName)
    {
 
       ::uinteraction::interaction * pinteraction = get_uinteraction(pszLibrary);

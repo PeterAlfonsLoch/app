@@ -60,13 +60,16 @@ namespace uinteraction
 
 
 
-         ::ca::type_info      m_typeinfoControlBoxButton;
+         ::ca::type_info                                             m_typeinfoControlBoxButton;
 
-         ::collection::map < e_button, e_button, id, id >                                      m_mapButtonId;
-         ::collection::map < id, id, e_button, e_button >                                      m_mapIdButton;
+         ::collection::map < e_button, e_button, id, id >            m_mapButtonId;
+         ::collection::map < id, id, e_button, e_button >            m_mapIdButton;
+         ::collection::map < e_button, e_button, bool, bool >        m_buttonmapPresent;
 
 
-         WorkSet *                                                                           m_pworkset;
+         WorkSet *                                                   m_pworkset;
+
+
 
 
          frame(::ca::application * papp);
@@ -83,6 +86,10 @@ namespace uinteraction
          virtual void SetControlBoxButtonId(e_button ebutton, id id);
          virtual id GetControlId(e_button ebutton);
          virtual e_button GetButtonId(id id);
+
+         virtual void hide_button(e_button ebutton, bool bHide = true);
+         virtual bool has_button(e_button ebutton);
+
 
 
          virtual void OnMove(::user::interaction * pwnd);
@@ -113,6 +120,8 @@ namespace uinteraction
          virtual bool _000OnSize(UINT nType, int cx, int cy);
          virtual bool _000OnMove(int x, int y);
          virtual bool _000OnCommand(WPARAM wparam, LPARAM lparam, LRESULT & lresult);
+
+      virtual void OnAttach();
 
       };
 

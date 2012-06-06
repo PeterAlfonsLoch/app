@@ -253,14 +253,16 @@ bool ifs::file_move(const char * pszDst, const char * pszSrc)
 }
 
 
-ex1::filesp ifs::get_file(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp * pexception)
+ex1::filesp ifs::get_file(var varFile, UINT nOpenFlags)
 {
    
-   ex1::filesp spfile(new ifs_file(get_app(), varFile));
+   ex1::filesp spfile;
 
-   if(!spfile->open(varFile.get_string(), nOpenFlags, pexception))
+   spfile(new ifs_file(get_app(), varFile));
+
+   if(!spfile->open(varFile.get_string(), nOpenFlags))
    {
-      throw new ex1::file_exception_sp(get_app());
+      throw new ex1::file_exception(get_app(), ::ex1::file_exception::none, 01, varFile.get_string());
    }
 
    return spfile;

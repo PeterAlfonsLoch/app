@@ -63,10 +63,10 @@ namespace ex1
 
    }
 
-   bool file_composite::open(const char * lpszFileName, UINT nOpenFlags, file_exception_sp * pError)
+   bool file_composite::open(const char * lpszFileName, UINT nOpenFlags)
    {
 
-      return m_spfile->open(lpszFileName, nOpenFlags, pError);
+      return m_spfile->open(lpszFileName, nOpenFlags);
 
    }
 

@@ -545,14 +545,11 @@ l1:
 
       strTimeFile = System.file().time_square(get_app());
 
-      ex1::file_exception_sp fe;
-      
-      ex1::filesp spfile = Application.get_file(strTimeFile,
-         ::ex1::file::type_binary | ::ex1::file::mode_read_write | ::ex1::file::mode_create | ::ex1::file::defer_create_directory, &fe);
+      ex1::filesp spfile = Application.get_file(strTimeFile, ::ex1::file::type_binary | ::ex1::file::mode_read_write | ::ex1::file::mode_create | ::ex1::file::defer_create_directory);
 
       if(spfile.is_null())
       {
-         throw fe.m_p;
+         throw ::ex1::file_exception(get_app(), ::ex1::file_exception::none, -1, strTimeFile);
          return;
       }
 

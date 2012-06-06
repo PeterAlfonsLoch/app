@@ -36,7 +36,7 @@ namespace fs
 
       virtual bool file_move(const char * pszDst, const char * pszSrc);
 
-      virtual ::ex1::filesp get_file(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp * pexception = NULL);
+      virtual ::ex1::filesp get_file(var varFile, UINT nOpenFlags);
 
       virtual bool file_exists(const char * pszPath);
 

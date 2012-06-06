@@ -88,14 +88,14 @@ namespace fs
       return true;
    }
 
-   ::ex1::filesp native::get_file(var varFile, UINT nOpenFlags, ::ex1::file_exception_sp * pexception)
+   ::ex1::filesp native::get_file(var varFile, UINT nOpenFlags)
    {
       ::ex1::filesp spfile(get_app());
 
       // ::ex1::file::mode_read | ::ex1::file::shareDenyNone | ::ex1::file::type_binary
-      if(!spfile->open(varFile.get_string(), nOpenFlags, pexception))
+      if(!spfile->open(varFile.get_string(), nOpenFlags))
       {
-         throw new ex1::file_exception_sp(get_app());
+         throw new ex1::file_exception(get_app(), ::ex1::file_exception::none, 01, varFile.get_string());
       }
 
       return spfile;

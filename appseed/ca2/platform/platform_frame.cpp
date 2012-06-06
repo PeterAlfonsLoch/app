@@ -283,10 +283,10 @@ namespace platform
    }
 
 
-   ::uinteraction::frame * frame::create_frame_schema()
+   ::uinteraction::frame::frame * frame::create_frame_schema()
    {
 
-      ::uinteraction::frame * pframe = Application.get_frame_schema("core", "005");
+      ::uinteraction::frame::frame * pframe = Application.get_frame_schema("core", "005");
       pframe->m_typeinfoControlBoxButton = System.template type_info < MetaButton > ();
       pframe->set_style("StyleTranslucidWarmGray");
       return pframe;

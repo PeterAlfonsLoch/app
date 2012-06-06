@@ -1,10 +1,12 @@
 #pragma once
 
+
 namespace ex1
 {
 
+
    class CLASS_DECL_ca exception :
-      virtual public base_exception
+      public base_exception
    {
    public:
 
@@ -19,6 +21,11 @@ namespace ex1
 
    };
 
+
    typedef ::ca::smart_pointer < exception > exception_sp;
 
-}
+
+} // namespace ex1
+
+
+

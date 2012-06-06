@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca not_licensed : 
-   virtual public base_exception
+   public base_exception
 {
 public:
 

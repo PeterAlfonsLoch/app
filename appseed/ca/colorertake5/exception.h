@@ -11,7 +11,7 @@ namespace colorertake5
        @ingroup common
    */
    class CLASS_DECL_ca exception :
-      virtual public base_exception
+      public base_exception
    {
    public:
      /** Default constructor

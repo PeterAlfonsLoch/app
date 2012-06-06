@@ -37,7 +37,7 @@ namespace zip
 
       InFile infile(papp);
 
-      if(!infile.unzip_open(strZip, 0, NULL))
+      if(!infile.unzip_open(strZip, 0))
       {
          return;
       }
@@ -171,7 +171,7 @@ namespace zip
          strZip += "/";
       }
 
-      return infile.unzip_open(strZip, 0, NULL) != FALSE;
+      return infile.unzip_open(strZip, 0) != FALSE;
 
 
       //string wstrFileName(lpszFileName);
@@ -281,7 +281,7 @@ namespace zip
 
       InFile infile(papp);
 
-      if(!infile.unzip_open(lpszFileName, 0, NULL))
+      if(!infile.unzip_open(lpszFileName, 0))
       {
          return false;
       }

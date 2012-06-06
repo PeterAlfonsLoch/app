@@ -640,7 +640,7 @@ InitFailure:
       }
    }
 
-   ex1::filesp application::get_file(var varFile, UINT nOpenFlags, ex1::file_exception_sp * pe)
+   ex1::filesp application::get_file(var varFile, UINT nOpenFlags)
    {
 
       ex1::filesp spfile;
@@ -649,88 +649,172 @@ InitFailure:
 
       if(varFile.get_type() == var::type_string)
       {
+
          strPath = varFile;
+
          strPath.trim("\"'");
+
       }
       else if(varFile.get_type() == var::type_propset)
       {
+
          if(varFile.has_property("url"))
          {
+
             strPath = varFile["url"];
+
             strPath.trim("\"'");
+
          }
+
       }
 
-      if(varFile.get_type() == var::type_propset
-      && varFile.propset()["file"].ca2 < ::ex1::file >() != NULL)
+      if(varFile.get_type() == var::type_propset && varFile.propset()["file"].ca2 < ::ex1::file >() != NULL)
       {
+
          spfile(varFile.propset()["file"].ca2 < ::ex1::file >());
+
       }
       else if(gen::str::find_ci(".zip:", strPath) >= 0)
       {
+
          zip::InFile * pinfile = new zip::InFile(get_app());
-         if(pinfile == NULL)
-            return ::ca::null();
-         if(!pinfile->unzip_open(strPath, 0, NULL))
+
+         if(pinfile != NULL)
          {
-            delete pinfile;
-            return ::ca::null();
+
+            if(!pinfile->unzip_open(strPath, 0))
+            {
+
+               delete pinfile;
+
+               pinfile = NULL;
+
+            }
+
          }
+
          spfile(pinfile);
+
       }
-      else if(gen::str::begins(strPath, "http://")
-         ||   gen::str::begins(strPath, "https://"))
+      else if(gen::str::begins(strPath, "http://") || gen::str::begins(strPath, "https://"))
       {
+         
          spfile(new sockets::http::file(get_app()));
-         if(!spfile->open(strPath, nOpenFlags, pe))
+         
+         if(!spfile->open(strPath, nOpenFlags))
          {
+
             spfile.destroy();
+
          }
+
       }
-      else if(gen::str::begins(strPath, "ifs://")
-         ||   gen::str::begins(strPath, "uifs://"))
+      else if(gen::str::begins(strPath, "ifs://") || gen::str::begins(strPath, "uifs://"))
       {
+
          if(&AppUser(this) == NULL)
-            return ::ca::null();
-         spfile(AppUser(this).m_pifs->get_file(varFile, nOpenFlags, pe));
+         {
+
+            spfile = ::ca::null();
+
+         }
+         else
+         {
+
+            spfile = AppUser(this).m_pifs->get_file(varFile, nOpenFlags);
+
+         }
+
       }
       else if(gen::str::begins(strPath, "fs://"))
       {
+         
          if(&Session == NULL)
-            return ::ca::null();
-         spfile(Session.m_prfs->get_file(varFile, nOpenFlags, pe));
+         {
+
+            spfile = ::ca::null();
+
+         }
+         else
+         {
+
+            spfile = Session.m_prfs->get_file(varFile, nOpenFlags);
+
+         }
+
       }
       else if(gen::str::begins_eat_ci(strPath, "matter://"))
       {
+
          ::ca::application * papp;
-         if(System.url().get_server("matter://" + strPath) == App(m_papp).m_strAppName)
+
+         if(System.url().get_server("matter://" + strPath) ==m_strAppName)
          {
+            
             strPath = System.url().get_object("matter://" + strPath).Mid(1);
+
+            spfile.create(this);
+
+            if(!spfile->open(dir().matter(strPath), nOpenFlags))
+            {
+
+               spfile.destroy();
+
+            }
+
          }
          else if(&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), papp) && App(papp).m_strAppName.has_char())
          {
-            return App(papp).get_file("matter://" + strPath, nOpenFlags, pe);
+
+            spfile = App(papp).get_file("matter://" + strPath, nOpenFlags);
+
          }
-         spfile.create(this);
-         if(!spfile->open(dir().matter(strPath), nOpenFlags, pe))
+         else
          {
-            spfile.destroy();
+
+            spfile.create(this);
+
+            if(!spfile->open(dir().matter(strPath), nOpenFlags))
+            {
+
+               spfile.destroy();
+
+            }
+
          }
+
       }
       else
       {
+
          spfile.create(this);
-         if(!spfile->open(strPath, nOpenFlags, pe))
+
+         if(!spfile->open(strPath, nOpenFlags))
          {
+
             spfile.destroy();
+
          }
+
       }
+
+      if(spfile.is_null())
+      {
+
+         throw ex1::file_exception(this, ::ex1::file_exception::none, -1, strPath);
+
+      }
+
       return spfile;
+
    }
 
-   ::ex1::byte_stream application::get_byte_stream(var varFile, UINT nOpenFlags, ex1::file_exception_sp * pe)
+   ::ex1::byte_stream application::get_byte_stream(var varFile, UINT nOpenFlags)
    {
-      return ::ex1::byte_stream(get_file(varFile, nOpenFlags, pe));
+
+      return ::ex1::byte_stream(get_file(varFile, nOpenFlags));
+
    }
 
    int application::exit_instance()
