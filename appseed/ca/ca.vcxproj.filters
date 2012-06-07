@@ -348,6 +348,12 @@
     <Filter Include="Source Files\uinteraction">
       <UniqueIdentifier>{3873b6a1-ea3a-41cc-983d-ac05ebe67447}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\html">
+      <UniqueIdentifier>{c43858da-4044-43f2-a0fb-c26b3c36f9f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html">
+      <UniqueIdentifier>{dadb6cf8-e57e-4b5e-9704-f605e9dc8716}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libcharguess\big5Prober.h">
@@ -3209,6 +3215,27 @@
     <ClInclude Include="javascript_functions.h">
       <Filter>Header Files\javascript</Filter>
     </ClInclude>
+    <ClInclude Include="html\html.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite_html.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite_html_attributes.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite_html_common.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite_html_entity_resolver.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite_html_reader.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_lite_html_tag.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sqlite\sqlite3.c">
@@ -5364,6 +5391,18 @@
     </ClCompile>
     <ClCompile Include="javascript\javascript_tinyjs_functions.cpp">
       <Filter>Source Files\javascript</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_lite_html_reader.cpp">
+      <Filter>Source Files\html</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_LiteHTMLAttributes.cpp">
+      <Filter>Source Files\html</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_LiteHTMLEntityResolver.cpp">
+      <Filter>Source Files\html</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_LiteHTMLTag.cpp">
+      <Filter>Source Files\html</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

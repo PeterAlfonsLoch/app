@@ -1479,6 +1479,13 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="geoip\geoip_internal.h" />
     <ClInclude Include="geoip\geoip_update.h" />
     <ClInclude Include="geoip\global.h" />
+    <ClInclude Include="html\html.h" />
+    <ClInclude Include="html\html_lite_html.h" />
+    <ClInclude Include="html\html_lite_html_attributes.h" />
+    <ClInclude Include="html\html_lite_html_common.h" />
+    <ClInclude Include="html\html_lite_html_entity_resolver.h" />
+    <ClInclude Include="html\html_lite_html_reader.h" />
+    <ClInclude Include="html\html_lite_html_tag.h" />
     <ClInclude Include="install\install.h" />
     <ClInclude Include="install\install_install.h" />
     <ClInclude Include="javascript\javascript.h" />
@@ -2278,6 +2285,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="geoip\geoip_update.cpp" />
     <ClCompile Include="geoip\geoip_region_name.cpp" />
     <ClCompile Include="geoip\geoip_time_zone.cpp" />
+    <ClCompile Include="html\html_LiteHTMLAttributes.cpp" />
+    <ClCompile Include="html\html_LiteHTMLEntityResolver.cpp" />
+    <ClCompile Include="html\html_LiteHTMLTag.cpp" />
+    <ClCompile Include="html\html_lite_html_reader.cpp" />
     <ClCompile Include="install\install_install.cpp" />
     <ClCompile Include="javascript\javascript.cpp" />
     <ClCompile Include="javascript\javascript_functions.cpp" />
