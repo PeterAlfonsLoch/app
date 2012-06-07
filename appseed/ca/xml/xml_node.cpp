@@ -1494,7 +1494,7 @@ namespace xml
    {
       stringa stra;
       stra.explode("/", path);
-      xml::node  * pnode = this;
+      ::xml::node  * pnode = this;
       if(stra.get_size() <= 0 || (stra.get_size() == 1 && stra[0].get_length() == 0))
          return this;
       for(int i = 0; i < stra.get_size(); i++)
@@ -1527,7 +1527,7 @@ namespace xml
    {
       stringa stra;
       stra.explode("/", path);
-      xml::node  * pnode = this;
+      ::xml::node  * pnode = this;
       if(stra.get_size() <= 0 || (stra.get_size() == 1 && stra[0].get_length() == 0))
          return this;
       for(int i = 0; i < stra.get_size(); i++)
@@ -2119,7 +2119,7 @@ namespace xml
 
          for(index iCol = 0; iCol < iColCount; iCol++)
          {
-            xml::node * pcol = add_child("c");
+            ::xml::node * pcol = add_child("c");
             iRowCount = str2a[iCol].get_count();
             pcol->add_attr("row_count", iRowCount);
             for(int iRow = 0; iRow < iRowCount; iRow++)
@@ -2149,10 +2149,10 @@ namespace xml
       }
       str2a.set_size(iColCount);
       ::count iRowCount = 0;
-      xml::node * pheader = m_nodea.ptr_at(0);
+      ::xml::node * pheader = m_nodea.ptr_at(0);
       for(::index iCol = 0; iCol < iColCount; iCol++)
       {
-         xml::node * pcol = pheader->m_nodea.ptr_at(iCol);
+         ::xml::node * pcol = pheader->m_nodea.ptr_at(iCol);
          str2a[iCol].set_size(pcol->attr("row_count"));
       }
       for(::index iRow = 0; iRow < iRowCount; iRow++)

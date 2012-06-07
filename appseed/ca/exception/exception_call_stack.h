@@ -41,6 +41,7 @@ public:
    {
       vsstring str;
 #ifndef AMD64
+      UNREFERENCED_PARAMETER(uiSkip);
       ::exception::engine::stack_trace(str, uiSkip);
 #endif
       return str;

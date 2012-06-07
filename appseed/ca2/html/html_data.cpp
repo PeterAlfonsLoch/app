@@ -158,7 +158,7 @@ namespace html
       delete_contents();
 
       lite_html_reader htmlreader(get_app());
-      html::reader reader;
+      ::html::reader reader;
       htmlreader.setEventHandler(&reader);
       htmlreader.read(psz);
       if(m_ptag != NULL)

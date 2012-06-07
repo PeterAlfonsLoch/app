@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-lite_html_tag::lite_html_tag(lite_html_tag &rSource, bool bCopy) throw(memory_exception)
+lite_html_tag::lite_html_tag(lite_html_tag &rSource, bool bCopy)
    :m_pcollAttr(NULL)
 {
    m_strTagName = rSource.m_strTagName;

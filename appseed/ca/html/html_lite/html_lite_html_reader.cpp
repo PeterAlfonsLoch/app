@@ -146,7 +146,7 @@ dword_ptr lite_html_reader::parseDocument()
             lTemp = 0;
             string strChar;
             if (m_bResolveEntities)
-               lTemp = Cube.html_ex().resolve_entity(&m_lpszBuffer[m_dwBufPos], strChar);
+               lTemp = System.html().resolve_entity(&m_lpszBuffer[m_dwBufPos], strChar);
 
             if (lTemp)
             {

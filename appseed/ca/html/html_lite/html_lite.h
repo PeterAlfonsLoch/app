@@ -33,8 +33,10 @@
 
 */
 
+
 class lite_html_tag;
 class lite_html_reader;
+
 
 #include "html_lite_html_common.h"
 #include "html_lite_html_attributes.h"

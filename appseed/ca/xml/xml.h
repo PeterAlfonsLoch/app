@@ -4,6 +4,8 @@
 #include "ca/ex2/ex2.h"
 
 
+#include "xml_xml.h"
+
 #include "xml_enum.h"
 
 #include "XMLite.h"

@@ -4,9 +4,6 @@
 #include "ca/ex2/ex2.h"
 
 
-#include "ca2_xml.h"
-
-
 #include "xml/xml.h"
 #include "html/html.h"
 
@@ -70,10 +67,7 @@ namespace ca2
 #include "ca2_library.h"
 
 
-#include "ca2_xml_data.h"
-
-
-#include "ca2_html_file.h"
+#include "xml/xml_data.h"
 
 
 #include "ca/filehandler/filehandler.h"

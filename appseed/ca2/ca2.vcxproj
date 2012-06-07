@@ -1401,7 +1401,6 @@
     <ClCompile Include="fs\fs_tree_data.cpp" />
     <ClCompile Include="fs\fs_tree_interface.cpp" />
     <ClCompile Include="fs\fs_tree_item.cpp" />
-    <ClCompile Include="html\html_LiteHTMLTag.cpp" />
     <ClCompile Include="mail\mail_tree_data.cpp" />
     <ClCompile Include="mail\mail_tree_item.cpp" />
     <ClCompile Include="nature\nature_appearance_view.cpp" />
@@ -1513,9 +1512,6 @@
     <ClCompile Include="html\html_input_button.cpp" />
     <ClCompile Include="html\html_input_checkbox.cpp" />
     <ClCompile Include="html\html_input_text.cpp" />
-    <ClCompile Include="html\html_LiteHTMLAttributes.cpp" />
-    <ClCompile Include="html\html_LiteHTMLEntityResolver.cpp" />
-    <ClCompile Include="html\html_lite_html_reader.cpp" />
     <ClCompile Include="html\html_reader.cpp" />
     <ClCompile Include="html\html_signal.cpp" />
     <ClCompile Include="html\html_style.cpp" />

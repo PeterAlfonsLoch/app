@@ -26,7 +26,7 @@ class lite_html_reader;   // forward declaration
  @version 1.0 (Mar 06, 2004)
  @author Gurmeet S. Kochar
  */
-class ILiteHTMLReaderEvents
+class CLASS_DECL_ca ILiteHTMLReaderEvents
 {
    friend class lite_html_reader;
 
@@ -34,42 +34,42 @@ class ILiteHTMLReaderEvents
 protected:
    virtual void BeginParse(dword_ptr dwAppData, bool &bAbort)
    {
-      UNUSED_ALWAYS(dwAppData);
+      UNREFERENCED_PARAMETER(dwAppData);
       bAbort = false;
    }
 
    virtual void StartTag(lite_html_tag *pTag, dword_ptr dwAppData, bool &bAbort)
    {
-      UNUSED_ALWAYS(pTag);
-      UNUSED_ALWAYS(dwAppData);
+      UNREFERENCED_PARAMETER(pTag);
+      UNREFERENCED_PARAMETER(dwAppData);
       bAbort = false;
    }
 
    virtual void EndTag(lite_html_tag *pTag, dword_ptr dwAppData, bool &bAbort)
    {
-      UNUSED_ALWAYS(pTag);
-      UNUSED_ALWAYS(dwAppData);
+      UNREFERENCED_PARAMETER(pTag);
+      UNREFERENCED_PARAMETER(dwAppData);
       bAbort = false;
    }
 
    virtual void Characters(const string &rText, dword_ptr dwAppData, bool &bAbort)
    {
-      UNUSED_ALWAYS(rText);
-      UNUSED_ALWAYS(dwAppData);
+      UNREFERENCED_PARAMETER(rText);
+      UNREFERENCED_PARAMETER(dwAppData);
       bAbort = false;
    }
 
    virtual void Comment(const string &rComment, dword_ptr dwAppData, bool &bAbort)
    {
-      UNUSED_ALWAYS(rComment);
-      UNUSED_ALWAYS(dwAppData);
+      UNREFERENCED_PARAMETER(rComment);
+      UNREFERENCED_PARAMETER(dwAppData);
       bAbort = false;
    }
 
    virtual void EndParse(dword_ptr dwAppData, bool bIsAborted)
    {
-      UNUSED_ALWAYS(dwAppData);
-      UNUSED_ALWAYS(bIsAborted);
+      UNREFERENCED_PARAMETER(dwAppData);
+      UNREFERENCED_PARAMETER(bIsAborted);
    }
 
 public:
@@ -104,7 +104,7 @@ public:
   @todo add more reader options (ReaderOptionsEnum). Until now,
         there is only one.
  */
-class lite_html_reader :
+class CLASS_DECL_ca lite_html_reader :
    virtual public ::radix::object
 {
 public:

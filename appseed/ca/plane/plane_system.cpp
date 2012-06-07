@@ -72,8 +72,8 @@ namespace plane
       m_file.set_app(this);
       m_stra.set_app(this);
       m_url.set_app(this);
-      m_html.set_app(this);
-      m_xml.set_app(this);
+      m_phtml = new ::html::html(this);
+      m_pxml = new ::xml::xml(this);
       m_userset.set_app(this);
       m_service.set_app(this);
       m_install.set_app(this);
@@ -697,14 +697,14 @@ namespace plane
       return m_stra;
    }
 
-   ::ca2::html & system::html()
+   ::html::html & system::html()
    {
-      return m_html;
+      return *m_phtml;
    }
 
-   ::ca2::xml & system::xml()
+   ::xml::xml & system::xml()
    {
-      return m_xml;
+      return *m_pxml;
    }
 
    ::fontopus::user_set & system::userset()

@@ -18,7 +18,7 @@ namespace html
 
       table * table_row::get_table()
       {
-         html::elemental * pelemental = m_pelemental;
+         ::html::elemental * pelemental = m_pelemental;
          while(true)
          {
             pelemental = pelemental->m_pparent;
@@ -151,7 +151,7 @@ namespace html
 
          table_row * prow = NULL;
 
-         if(m_pelemental->m_pbase->get_type() == html::base::type_tag)
+         if(m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
             prow = dynamic_cast < table_row * > (m_pelemental->m_elementalptra[0]->m_pimpl);
          }

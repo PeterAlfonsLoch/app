@@ -226,7 +226,7 @@ bool isIDString(const char *s) {
 }
 
 void replace(string &str, char textFrom, const char *textTo) {
-    int sLen = strlen(textTo);
+    strsize sLen = strlen(textTo);
     size_t p = str.find(textFrom);
     while (p >= 0) {
         str = str.substr(0, p) + textTo + str.substr(p+1);
@@ -287,7 +287,7 @@ CScriptLex::CScriptLex(const string &input) {
     data = _strdup(input.c_str());
     dataOwned = true;
     dataStart = 0;
-    dataEnd = strlen(data);
+    dataEnd = (int) strlen(data);
     reset();
 }
 
@@ -1581,7 +1581,7 @@ CScriptVarLink *tinyjs::factor(bool &execute) {
                       int l = a->var->getArrayLength();
                       child = new CScriptVarLink(new CScriptVar(l));
                     } else if (a->var->isString() && name == "length") {
-                      int l = a->var->getString().size();
+                      int l = (int) a->var->getString().size();
                       child = new CScriptVarLink(new CScriptVar(l));
                     } else {
                       child = a->var->addChild(name);
@@ -2176,7 +2176,7 @@ bool tinyjs::setVariable(const string &path, const string &varData) {
 
 /// Finds a child, looking recursively up the scopes
 CScriptVarLink *tinyjs::findInScopes(const string &childName) {
-    for (int s=scopes.size()-1;s>=0;s--) {
+    for (int s=(int) scopes.size()-1;s>=0;s--) {
       CScriptVarLink *v = scopes[s]->findChild(childName);
       if (v) return v;
     }

@@ -1151,9 +1151,6 @@
     <ClInclude Include="ca2\ca2_user.h">
       <Filter>Header Files\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\ca2_xml.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="ca2\contact_list.h">
       <Filter>Header Files\ca2</Filter>
     </ClInclude>
@@ -2240,9 +2237,6 @@
     <ClInclude Include="xml\xml_var_exchange.h">
       <Filter>Header Files\xml</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\ca2_xml_data.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_edit.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
@@ -3245,6 +3239,15 @@
     <ClInclude Include="html\html_html.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
+    <ClInclude Include="xml\xml_data.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="xml\xml_xml.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_file.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sqlite\sqlite3.c">
@@ -3773,9 +3776,6 @@
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
     <ClCompile Include="ca2\ca2_process.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_xml.cpp">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
     <ClCompile Include="ca2\socket_address.cpp">
@@ -4939,9 +4939,6 @@
     <ClCompile Include="radix\radix_bstr.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_xml_data.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="dynamic_source\dynamic_source_httpd_socket.cpp">
       <Filter>Source Files\dynamic_source</Filter>
     </ClCompile>
@@ -5404,14 +5401,20 @@
     <ClCompile Include="html\html_lite\html_lite_html_entity_resolver.cpp">
       <Filter>Source Files\html\html_lite</Filter>
     </ClCompile>
-    <ClCompile Include="html\html_lite\html_lite_hhtml_attributes.cpp">
-      <Filter>Source Files\html\html_lite</Filter>
-    </ClCompile>
     <ClCompile Include="html\html_html.cpp">
       <Filter>Source Files\html</Filter>
     </ClCompile>
     <ClCompile Include="html\html_file.cpp">
       <Filter>Source Files\html</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_data.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\xml_xml.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include=".\html\html_lite\html_lite_html_attributes.cpp">
+      <Filter>Source Files\html\html_lite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

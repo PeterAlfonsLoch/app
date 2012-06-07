@@ -12,7 +12,7 @@ namespace html
          ca(papp),
          user::scroll_view(papp),
          user::edit_plain_text(papp),
-         html::impl::text(papp)
+         ::html::impl::text(papp)
       {
          m_iRowSpan = 1;
          m_iColSpan = 1;
@@ -24,7 +24,7 @@ namespace html
 
       table * cell::get_table()
       {
-         html::elemental * pelemental = m_pelemental;
+         ::html::elemental * pelemental = m_pelemental;
          while(true)
          {
             pelemental = pelemental->m_pparent;
@@ -38,7 +38,7 @@ namespace html
 
       table_row * cell::get_row()
       {
-         html::elemental * pelemental = m_pelemental;
+         ::html::elemental * pelemental = m_pelemental;
          while(true)
          {
             pelemental = pelemental->m_pparent;
@@ -53,7 +53,7 @@ namespace html
 
       void cell::layout_phase1(data * pdata)
       {
-         if(m_pelemental->m_pbase->get_type() != html::base::type_tag)
+         if(m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
          {
             text::layout_phase1(pdata);
             return;
@@ -137,7 +137,7 @@ namespace html
 
       void cell::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
-         if(pelemental->m_pbase->get_type() != html::base::type_tag)
+         if(pelemental->m_pbase->get_type() !=:: html::base::type_tag)
          {
             text::implement_phase1(pdata, pelemental);
             return;
@@ -263,7 +263,7 @@ namespace html
          {
             for(int i = 0; i < prow->m_pelemental->m_elementalptra.get_count(); i++)
             {
-               html::elemental * pelemental = prow->m_pelemental->m_elementalptra[i];
+               ::html::elemental * pelemental = prow->m_pelemental->m_elementalptra[i];
                if(pelemental == m_pelemental)
                   break;
                cell * pcell = dynamic_cast < cell * > (pelemental->m_pimpl);

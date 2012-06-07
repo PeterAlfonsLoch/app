@@ -1,24 +1,33 @@
 #include "framework.h"
 
+
 namespace html
 {
+
 
    namespace impl
    {
 
+
       void image::_001OnDraw(data * pdata)
       {
-         if(m_pelemental->m_pbase->get_type() == html::base::type_tag)
+
+         if(m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
+
             pdata->m_pdc->set_alpha_mode(::ca::alpha_mode_blend);
+
             pdata->m_pdc->BitBlt(get_x(), get_y(), get_cx(), get_cy(), pdata->m_imagea[m_iImage].m_spdib->get_graphics(), 0, 0, SRCCOPY);
+
          }
+
       }
+
 
       void image::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
          elemental::implement_phase1(pdata, pelemental);
-         if(pelemental->m_pbase->get_type() == html::base::type_tag)
+         if(pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
             m_iImage = pdata->get_image_index(pelemental->m_propertyset["src"]);
             synch_lock lockImage(Sys(pdata->m_papp).get_twf());
@@ -29,7 +38,7 @@ namespace html
 
       void image::layout_phase3(data * pdata)
       {
-         if(m_pelemental->m_pbase->get_type() == html::base::type_tag)
+         if(m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
             single_lock lockImage(&pdata->m_imagea[m_iImage]);
 
@@ -52,6 +61,10 @@ namespace html
          }
       }
 
+
    } // namespace impl
 
+
 } // namespace html_impl
+
+

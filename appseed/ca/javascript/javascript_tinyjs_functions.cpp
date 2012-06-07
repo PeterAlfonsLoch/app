@@ -69,7 +69,7 @@ void scStringIndexOf(CScriptVar *c, void *) {
     string str = c->getParameter("this")->getString();
     string search = c->getParameter("search")->getString();
     size_t p = str.find(search);
-    int val = (p < 0) ? -1 : p;
+    int val = (int) ((p < 0) ? -1 : p);
     c->getReturnVar()->setInt(val);
 }
 

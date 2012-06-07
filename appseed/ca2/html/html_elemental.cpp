@@ -113,7 +113,7 @@ namespace html
 
       void elemental::OnLButtonUp(gen::signal_object * pobj)
       {
-         SCAST_PTR(html::signal, phtml, pobj);
+         SCAST_PTR(::html::signal, phtml, pobj);
          if(has_link())
          {
             phtml->m_pdata->open_link(link());
@@ -439,7 +439,7 @@ namespace html
    {
       if(m_pbase->get_type() == base::type_tag)
       {
-         return dynamic_cast < html::tag * > (m_pbase);
+         return dynamic_cast < ::html::tag * > (m_pbase);
       }
       else
       {
@@ -451,7 +451,7 @@ namespace html
    {
       if(m_pbase->get_type() == base::type_tag)
       {
-         return dynamic_cast < const html::tag * > (m_pbase);
+         return dynamic_cast < const ::html::tag * > (m_pbase);
       }
       else
       {
@@ -509,15 +509,15 @@ namespace html
          {
             if(strTag == "head" || strTag == "html")
             {
-               m_pimpl = new html::impl::elemental();
+               m_pimpl = new ::html::impl::elemental();
             }
             else if(strTag == "body")
             {
-               m_pimpl = new html::impl::text(pdata->get_app());
+               m_pimpl = new ::html::impl::text(pdata->get_app());
             }
             else
             {
-               m_pimpl = new html::impl::elemental();
+               m_pimpl = new ::html::impl::elemental();
             }
          }
          else if(strTag == "title")
@@ -525,11 +525,11 @@ namespace html
             if(m_pbase->get_type() == base::type_value)
             {
                pdata->m_strTitle = m_pbase->value()->get_value();
-               m_pimpl = new html::impl::elemental();
+               m_pimpl = new ::html::impl::elemental();
             }
             else
             {
-               m_pimpl = new html::impl::elemental();
+               m_pimpl = new ::html::impl::elemental();
             }
          }
          else if(strTag == "input")
@@ -540,44 +540,44 @@ namespace html
             trim001(strType);
             if(strType == "text")
             {
-               m_pimpl = new html::impl::input_text(pdata);
+               m_pimpl = new ::html::impl::input_text(pdata);
             }
             else if(strType == "password")
             {
-               m_pimpl = new html::impl::input_text(pdata);
+               m_pimpl = new ::html::impl::input_text(pdata);
             }
             else if(strType == "button")
             {
-               m_pimpl = new html::impl::input_button(pdata);
+               m_pimpl = new ::html::impl::input_button(pdata);
             }
             else if(strType == "checkbox")
             {
-               m_pimpl = new html::impl::input_check_box(pdata);
+               m_pimpl = new ::html::impl::input_check_box(pdata);
             }
             else
             {
-               m_pimpl = new html::impl::text(pdata->get_app());
+               m_pimpl = new ::html::impl::text(pdata->get_app());
             }
          }
          else if(strTag == "img")
          {
-            m_pimpl = new html::impl::image();
+            m_pimpl = new ::html::impl::image();
          }
          else if(strTag == "table")
          {
-             m_pimpl = new html::impl::table();
+             m_pimpl = new ::html::impl::table();
          }
          else if(strTag == "tr")
          {
-             m_pimpl = new html::impl::table_row();
+             m_pimpl = new ::html::impl::table_row();
          }
          else if(strTag == "td")
          {
-            m_pimpl = new html::impl::cell(pdata->get_app());
+            m_pimpl = new ::html::impl::cell(pdata->get_app());
          }
          else
          {
-            m_pimpl = new html::impl::text(pdata->get_app());
+            m_pimpl = new ::html::impl::text(pdata->get_app());
          }
       }
       m_pimpl->implement_phase1(pdata, this);
@@ -970,7 +970,7 @@ namespace html
       var.set_type(var::type_string);
       if(m_pbase->get_type() == base::type_tag)
       {
-         html::tag * ptag = dynamic_cast < html::tag * > (m_pbase);
+         ::html::tag * ptag = dynamic_cast < ::html::tag * > (m_pbase);
          m_propertyset["PropertyTag"] = ptag->get_name();
          for(int i = 0; i < ptag->attra().get_size(); i++)
          {
@@ -985,7 +985,7 @@ namespace html
       }
       else if(m_pbase->get_type() == base::type_value)
       {
-         html::value * pvalue = dynamic_cast < html::value * > (m_pbase);
+         ::html::value * pvalue = dynamic_cast < ::html::value * > (m_pbase);
          m_propertyset["PropertyBody"] = pvalue->get_value();
          if(m_pparent->m_propertyset["PropertyTag"] == "style")
          {
@@ -1193,7 +1193,7 @@ namespace html
    {
       if(m_pbase->get_type() == base::type_value)
          return NULL;
-      html::tag * ptag = m_pbase->tag();
+      ::html::tag * ptag = m_pbase->tag();
       if(id == ptag->get_attr_value("name"))
          return this;
       elemental * pelemental = NULL;
@@ -1210,7 +1210,7 @@ namespace html
    {
       if(m_pbase->get_type() == base::type_value)
          return NULL;
-      html::tag * ptag = m_pbase->tag();
+      ::html::tag * ptag = m_pbase->tag();
       if(id == ptag->get_attr_value("id"))
          return this;
       elemental * pelemental = NULL;

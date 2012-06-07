@@ -107,22 +107,32 @@ namespace xml
 
    node * document::get_root()
    {
+
       index i = 0;
+
       for( ; i < m_nodea.get_size(); i++)
       {
-         xml::node & node = m_nodea[i];
+
+         ::xml::node & node = m_nodea[i];
+
          e_node e_type = node.m_etype;
+
          if(e_type == node_element || e_type == node_text)
             return &m_nodea[i];
+
       }
+
       // Not found: create one.
       class node * pnodeRoot = new class node(get_app());
       pnodeRoot->m_pnodeParent = (node *)this;
       pnodeRoot->m_etype = node_element;
       pnodeRoot->m_pdoc = this;
       m_nodea.add(pnodeRoot);
+
       return pnodeRoot;
+
    }
+
    string document::consume_entity_ref(const char * & pszXml, string & strName, bool useExtEnt, bool & bExt)
    {
       gen::str::consume(pszXml, "&");

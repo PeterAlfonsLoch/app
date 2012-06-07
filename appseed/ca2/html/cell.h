@@ -20,7 +20,7 @@ namespace html
             holder(point pt);
             holder(cell * pcell, point pt);
             holder(const class holder & holder);
-            html::impl::cell *   m_pcell;
+            ::html::impl::cell *   m_pcell;
             point                m_pt;
 
             bool is_null();

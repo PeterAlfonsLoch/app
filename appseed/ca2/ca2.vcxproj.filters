@@ -1677,12 +1677,6 @@
     <ClCompile Include="html\html_input_text.cpp">
       <Filter>Source Files\html</Filter>
     </ClCompile>
-    <ClCompile Include="html\html_LiteHTMLAttributes.cpp">
-      <Filter>Source Files\html</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_LiteHTMLEntityResolver.cpp">
-      <Filter>Source Files\html</Filter>
-    </ClCompile>
     <ClCompile Include="html\html_reader.cpp">
       <Filter>Source Files\html</Filter>
     </ClCompile>
@@ -2118,9 +2112,6 @@
     <ClCompile Include="databaseuser\database_list_data.cpp">
       <Filter>Source Files\databaseuser</Filter>
     </ClCompile>
-    <ClCompile Include="html\html_LiteHTMLTag.cpp">
-      <Filter>Source Files\html</Filter>
-    </ClCompile>
     <ClCompile Include="userex\userbase_mini_dock_frame_window.cpp">
       <Filter>Source Files\userex</Filter>
     </ClCompile>
@@ -2270,9 +2261,6 @@
     </ClCompile>
     <ClCompile Include="ca8\ca8_wait_message_dialog.cpp">
       <Filter>Source Files\ca8</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_lite_html_reader.cpp">
-      <Filter>Source Files\html</Filter>
     </ClCompile>
     <ClCompile Include="fontopus\fontopus_validate.cpp">
       <Filter>Source Files\fontopus</Filter>

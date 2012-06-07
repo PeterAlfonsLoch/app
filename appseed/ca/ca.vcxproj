@@ -914,8 +914,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="ca2\ca2_url.h" />
     <ClInclude Include="ca2\ca2_url_domain.h" />
     <ClInclude Include="ca2\ca2_user.h" />
-    <ClInclude Include="ca2\ca2_xml.h" />
-    <ClInclude Include="ca2\ca2_xml_data.h" />
     <ClInclude Include="ca2\contact_list.h" />
     <ClInclude Include="ca2\os_implementation.h" />
     <ClInclude Include="ca4\ca4.h" />
@@ -1481,6 +1479,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="geoip\global.h" />
     <ClInclude Include="html\html.h" />
     <ClInclude Include=".\html\html_lite\html_lite.h" />
+    <ClInclude Include="html\html_file.h" />
     <ClInclude Include="html\html_html.h" />
     <ClInclude Include="html\html_lite\html_lite_html_attributes.h" />
     <ClInclude Include="html\html_lite\html_lite_html_common.h" />
@@ -1815,6 +1814,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="xml\xml_application.h" />
     <ClInclude Include="xml\xml_attr.h" />
     <ClInclude Include="xml\xml_base_array.h" />
+    <ClInclude Include="xml\xml_data.h" />
     <ClInclude Include="xml\xml_disp_option.h" />
     <ClInclude Include="xml\xml_document.h" />
     <ClInclude Include="xml\xml_edit.h" />
@@ -1832,6 +1832,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="xml\xml_var_exchange.h" />
     <ClInclude Include="xml\xml.h" />
     <ClInclude Include="xml\XMLite.h" />
+    <ClInclude Include="xml\xml_xml.h" />
     <ClInclude Include="zlib\crc32.h" />
     <ClInclude Include="zlib\deflate.h" />
     <ClInclude Include="zlib\inffast.h" />
@@ -1858,8 +1859,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="ca2\ca2_process.cpp" />
     <ClCompile Include="ca2\ca2_url.cpp" />
     <ClCompile Include="ca2\ca2_url_domain.cpp" />
-    <ClCompile Include="ca2\ca2_xml.cpp" />
-    <ClCompile Include="ca2\ca2_xml_data.cpp" />
     <ClCompile Include="ca2\socket_address.cpp" />
     <ClCompile Include="ca4\ca4_application.cpp" />
     <ClCompile Include="ca4\ca4_compress.cpp" />
@@ -2286,7 +2285,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="geoip\geoip_time_zone.cpp" />
     <ClCompile Include="html\html_file.cpp" />
     <ClCompile Include="html\html_html.cpp" />
-    <ClCompile Include="html\html_lite\html_lite_hhtml_attributes.cpp" />
+    <ClCompile Include=".\html\html_lite\html_lite_html_attributes.cpp" />
     <ClCompile Include="html\html_lite\html_lite_html_entity_resolver.cpp" />
     <ClCompile Include="html\html_lite\html_lite_html_reader.cpp" />
     <ClCompile Include="html\html_lite\html_lite_html_tag.cpp" />
@@ -2841,6 +2840,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="xml\xml_application.cpp" />
     <ClCompile Include="xml\xml_attr.cpp" />
     <ClCompile Include="xml\xml_base_array.cpp" />
+    <ClCompile Include="xml\xml_data.cpp" />
     <ClCompile Include="xml\xml_disp_option.cpp" />
     <ClCompile Include="xml\xml_document.cpp" />
     <ClCompile Include="xml\xml_edit.cpp" />
@@ -2855,6 +2855,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="xml\xml_tree_base.cpp" />
     <ClCompile Include="xml\xml_tree_schema.cpp" />
     <ClCompile Include="xml\xml_var_exchange.cpp" />
+    <ClCompile Include="xml\xml_xml.cpp" />
     <ClCompile Include="xml\xml_XMLite.cpp" />
     <ClCompile Include="zlib\zlib_adler32.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>

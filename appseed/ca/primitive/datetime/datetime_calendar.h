@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace ca2
+namespace html
 {
 
 
-   class html_file;
+   class file;
 
 
 } // namespace html
@@ -40,7 +40,7 @@ public:
    virtual void GetRect(LPRECT lprect, enum EElement eelement);
 
    void _001OnDraw(::ca::graphics * pdc);
-   void _001GetHtml(::ca2::html_file * pfile);
+   void _001GetHtml(::html::file * pfile);
 
    void set_pos(point pt, size sz);
 

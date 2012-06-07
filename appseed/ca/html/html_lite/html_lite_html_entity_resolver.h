@@ -41,7 +41,7 @@
  * @version 1.0 (Mar 17, 2004)
  * @author Gurmeet S. Kochar
  */
-class LiteHTMLEntityResolver
+class CLASS_DECL_ca LiteHTMLEntityResolver
 {
 private:
    class CharEntityRefs : public ::collection::string_map < char, char >

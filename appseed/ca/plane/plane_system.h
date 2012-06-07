@@ -226,8 +226,8 @@ namespace plane
       ::ca::dir::system_sp             m_spdir;
       class ::ca2::stra                m_stra;
       class ::ca2::url                 m_url;
-      class ::html::html               m_html;
-      class ::xml::xml                 m_xml;
+      class ::html::html *             m_phtml;
+      class ::xml::xml *               m_pxml;
       class ::ca2::service             m_service;
       class ::ca2::install             m_install;
       ::ca::os_sp                      m_spos;
@@ -380,8 +380,8 @@ namespace plane
       inline ::ca::dir::system         & dir() { return m_spdir; }
       ::ca2::stra                      & stra();
       inline ::ca2::url                & url() { return m_url; }
-      ::ca2::html                      & html();
-      ::ca2::xml                       & xml();
+      ::html::html                     & html();
+      ::xml::xml                       & xml();
       ::ca2::install                   & install();
       ::ca2::service                   & service();
       class ::machine_event_central    & machine_event_central();

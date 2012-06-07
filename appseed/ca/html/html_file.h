@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace ca2
+namespace html
 {
 
 
-   class CLASS_DECL_ca html_file :
+   class CLASS_DECL_ca file :
       virtual public ::radix::object
 #if defined(LINUX) || defined(MACOS)
       , public string_format_printer
@@ -18,7 +18,7 @@ namespace ca2
       ::user::str_context *      m_puistrcontext;
 
 
-      html_file();
+      file();
 
 
       virtual ::user::str_context *  str_context();
@@ -65,7 +65,7 @@ namespace ca2
    };
 
 
-} // namespace ca4
+} // namespace html
 
 
 

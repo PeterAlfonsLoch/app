@@ -3,6 +3,8 @@
 
 namespace html
 {
+
+
    reader::reader()
    {
       m_ptag = NULL;
@@ -35,12 +37,12 @@ namespace html
       UNREFERENCED_PARAMETER(dwAppData);
       if(m_ptag == NULL)
       {
-         m_ptag = new html::tag(NULL);
+         m_ptag = new ::html::tag(NULL);
          m_ptagMain = m_ptag;
       }
       else
       {
-         html::tag * ptag = new html::tag(m_ptag);
+         ::html::tag * ptag = new ::html::tag(m_ptag);
          m_ptag->baseptra().add(ptag);
          m_ptag = ptag;
       }
@@ -78,7 +80,7 @@ namespace html
       UNREFERENCED_PARAMETER(dwAppData);
       if(m_ptag != NULL)
       {
-         html::value * pvalue = new html::value(m_ptag);
+         ::html::value * pvalue = new ::html::value(m_ptag);
          m_ptag->baseptra().add(pvalue);
          pvalue->set_value(rText);
       }
@@ -112,4 +114,8 @@ namespace html
 
    }
 
+
 } // namespace html
+
+
+

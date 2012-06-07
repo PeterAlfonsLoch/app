@@ -86,7 +86,7 @@ WINBOOL __stdcall My_ReadProcessMemory (HANDLE, DWORD64 lpBaseAddress, PVOID lpB
    if(!ReadProcessMemory(GetCurrentProcess(), (LPCVOID) lpBaseAddress, (LPVOID) lpBuffer, nSize, &size))
       return FALSE;
 
-   *lpNumberOfBytesRead = size;
+   *lpNumberOfBytesRead = (DWORD) size;
 
    return TRUE;
 

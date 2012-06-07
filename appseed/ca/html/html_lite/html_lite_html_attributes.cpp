@@ -1,29 +1,29 @@
 /**
- *   PROJECT - HTML Reader Class Library
- *
- *   LiteHTMLAttributes.cpp
- *
- *   Written By Gurmeet S. Kochar <gomzygotit@hotmail.com>
- *   Copyright (c) 2004.
- *
- *   This code may be used in compiled form in any way you desire
- *   (including commercial use). The code may be redistributed
- *   unmodified by any means PROVIDING it is not sold for profit
- *   without the authors written consent, and providing that this
- *   notice and the authors name and all copyright notices remains
- *   intact. However, this file and the accompanying source code may
- *   not be hosted on a website or bulletin board without the authors
- *   written permission.
- *
- *   This file is provided "AS IS" with no expressed or implied warranty.
- *   The author accepts no liability for any damage/loss of business that
- *   this product may cause.
- *
- *   Although it is not necessary, but if you use this code in any of
- *   your application (commercial or non-commercial), please INFORM me
- *   so that I may know how useful this library is. This will encourage
- *   me to keep updating it.
- */
+*   PROJECT - HTML Reader Class Library
+*
+*   LiteHTMLAttributes.cpp
+*
+*   Written By Gurmeet S. Kochar <gomzygotit@hotmail.com>
+*   Copyright (c) 2004.
+*
+*   This code may be used in compiled form in any way you desire
+*   (including commercial use). The code may be redistributed
+*   unmodified by any means PROVIDING it is not sold for profit
+*   without the authors written consent, and providing that this
+*   notice and the authors name and all copyright notices remains
+*   intact. However, this file and the accompanying source code may
+*   not be hosted on a website or bulletin board without the authors
+*   written permission.
+*
+*   This file is provided "AS IS" with no expressed or implied warranty.
+*   The author accepts no liability for any damage/loss of business that
+*   this product may cause.
+*
+*   Although it is not necessary, but if you use this code in any of
+*   your application (commercial or non-commercial), please INFORM me
+*   so that I may know how useful this library is. This will encourage
+*   me to keep updating it.
+*/
 #include "framework.h"
 
 /*#pragma warning(push, 4)
@@ -39,21 +39,21 @@ const unsigned short LiteHTMLElemAttr::_percentMax = USHRT_MAX;
 
 
 /**
- * LiteHTMLElemAttr::parseFromStr
- *
- * @param lpszString - string to parse
- *
- * @return number of TCHARs successfully parsed
- * @since 1.0
- * @author Gurmeet S. Kochar
- */
+* LiteHTMLElemAttr::parseFromStr
+*
+* @param lpszString - string to parse
+*
+* @return number of TCHARs successfully parsed
+* @since 1.0
+* @author Gurmeet S. Kochar
+*/
 dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const char * lpszString)
 {
    ASSERT(__is_valid_string(lpszString));
 
    const char *   lpszBegin = lpszString;
    const char *   lpszEnd;
-//   char   ch = 0;
+   //   char   ch = 0;
 
    // skip leading white-space characters
    while (::_istspace(*lpszBegin))
@@ -69,8 +69,8 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
       // attribute name may contain letters (a-z, A-Z), digits (0-9),
       // underscores '_', hyphen '-', colons ':', and periods '.'
       if ( (!::_istalnum(*lpszEnd)) &&
-          (*lpszEnd != '-') && (*lpszEnd != ':') &&
-          (*lpszEnd != '_') && (*lpszEnd != '.') )
+         (*lpszEnd != '-') && (*lpszEnd != ':') &&
+         (*lpszEnd != '_') && (*lpszEnd != '.') )
       {
          ASSERT(lpszEnd != lpszBegin);
 
@@ -147,7 +147,7 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
          // white-space character, or until we reach at the
          // end of the string buffer
          while (*lpszEnd != NULL && !::_istspace(*lpszEnd) &&
-               *lpszEnd != '/' && *lpszEnd != '>');
+            *lpszEnd != '/' && *lpszEnd != '>');
       }
 
       m_strName = strAttrName;
@@ -170,25 +170,25 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
 
 
 /**
- * LiteHTMLAttributes::parseFromStr
- *
- * @param lpszString - string to parse. It can contain pairs such as:
- *
- *          1. NAME
- *          2. NAME=VALUE
- *          3. NAME='VALUE'
- *          4. NAME="VALUE"
- *
- *        NAME consist of letters, digits, underscores,
- *        colons, hyphens, and periods
- *
- *        NOTE that white-spaces between NAME and equal-sign AND
- *        equal-sign and VALUE is allowed.
- *
- * @return number of TCHARs successfully parsed
- * @since 1.0
- * @author Gurmeet S. Kochar
- */
+* LiteHTMLAttributes::parseFromStr
+*
+* @param lpszString - string to parse. It can contain pairs such as:
+*
+*          1. NAME
+*          2. NAME=VALUE
+*          3. NAME='VALUE'
+*          4. NAME="VALUE"
+*
+*        NAME consist of letters, digits, underscores,
+*        colons, hyphens, and periods
+*
+*        NOTE that white-spaces between NAME and equal-sign AND
+*        equal-sign and VALUE is allowed.
+*
+* @return number of TCHARs successfully parsed
+* @since 1.0
+* @author Gurmeet S. Kochar
+*/
 dword_ptr LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const char * lpszString)
 {
    ASSERT(__is_valid_string(lpszString));
@@ -197,7 +197,7 @@ dword_ptr LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const c
    LiteHTMLElemAttr   oElemAttr;
    const dword_ptr         nStrLen = ::_tcslen(lpszString);
    dword_ptr            nRetVal = 0U,
-                  nTemp = 0U;
+      nTemp = 0U;
 
    do
    {
@@ -217,7 +217,7 @@ dword_ptr LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const c
          if ((pcoll = new CElemAttrArray) == NULL)
             // out of primitive::memory?
          {
-//            TRACE0("(Error) LiteHTMLAttributes::parseFromStr: Out of primitive::memory.\n");
+            //            TRACE0("(Error) LiteHTMLAttributes::parseFromStr: Out of primitive::memory.\n");
             goto LError;
          }
       }
@@ -255,32 +255,34 @@ LCleanExit:
    return (nRetVal);
 }
 
-   LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const char * lpszName, const char * lpszValue)
+LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const char * lpszName, const char * lpszValue)
+{
+
+   ASSERT(__is_valid_string(lpszName));
+   ASSERT(__is_valid_string(lpszValue));
+
+   LiteHTMLElemAttr   *pItem = new LiteHTMLElemAttr(lpszName, lpszValue);
+   if (pItem != NULL)
    {
-      ASSERT(__is_valid_string(lpszName));
-      ASSERT(__is_valid_string(lpszValue));
-
-      LiteHTMLElemAttr   *pItem = new LiteHTMLElemAttr(lpszName, lpszValue);
-      if (pItem != NULL)
+      if (m_parrAttrib == NULL)
       {
-         if (m_parrAttrib == NULL)
+         if ((m_parrAttrib = new CElemAttrArray) == NULL)
          {
-            if ((m_parrAttrib = new CElemAttrArray) == NULL)
-            {
-               SAFE_DELETE_POINTER(pItem);
-//               TRACE0("(Error) LiteHTMLAttributes::addAttribute: Out of primitive::memory.\n");
-               return (NULL);
-            }
+            SAFE_DELETE_POINTER(pItem);
+            //               TRACE0("(Error) LiteHTMLAttributes::addAttribute: Out of primitive::memory.\n");
+            return (NULL);
          }
-
-         VERIFY(m_parrAttrib->add(pItem) >= 0);
       }
-      return (pItem);
+
+      VERIFY(m_parrAttrib->add(pItem) >= 0);
    }
+   return (pItem);
+}
 
 
 void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const char * lpszValue)
 {
+
    ASSERT(__is_valid_string(lpszValue));
 
    m_strValue = lpszValue;
@@ -296,108 +298,166 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const char * lpszV
 
    // replace tab and carriage-return with a single space
    m_strValue.replace('\r', ' ');
+
    m_strValue.replace('\t', ' ');
 
    /** resolve entity reference(s) */
-   strsize    iCurPos = -1, iParseLen = 0;
+   strsize iCurPos = -1, iParseLen = 0;
+
    string strChar;
+
    do
    {
+
       if ((iCurPos = m_strValue.find('&', ++iCurPos)) == -1)
          break;
 
-      iParseLen = Cub(preader->m_papp).html_ex().resolve_entity(m_strValue.Mid(iCurPos), strChar);
+      iParseLen = Sys(preader->m_papp).html().resolve_entity(m_strValue.Mid(iCurPos), strChar);
+
       if (iParseLen)
       {
+
          m_strValue.replace(m_strValue.Mid(iCurPos, iParseLen), strChar);
+
       }
+
    }
    while (true);
+
 }
 
 
 bool LiteHTMLElemAttr::isNamedColorValue(::lite_html_reader * preader) const
 {
-   if ( (m_strValue.get_length()) && (::_istalpha(m_strValue[0])) )
+
+   if((m_strValue.get_length()) && (::_istalpha(m_strValue[0])))
    {
+
       COLORREF crTemp = 0xffffffff;
+
       string      strKey(m_strValue);
 
       strKey.make_lower();
-      if (Cub(preader->m_papp).html_ex().m_namedColors.Lookup(m_strValue, crTemp))
-         return (true);
+
+      if(Sys(preader->m_papp).html().m_namedColors.Lookup(m_strValue, crTemp))
+         return true;
+
    }
-   return (false);
+
+   return false;
+
 }
 
 bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
 {
-   if ( (m_strValue.get_length()) && (::_istalpha(m_strValue[0])) )
+
+   if((m_strValue.get_length()) && (::_istalpha(m_strValue[0])))
    {
+
       COLORREF   crTemp = 0xffffffff;
+
       string      strKey(m_strValue);
 
       strKey.make_lower();
-      if (Cub(preader->m_papp).html_ex().m_namedColors.Lookup(strKey, crTemp))
+
+      if(Sys(preader->m_papp).html().m_namedColors.Lookup(strKey, crTemp))
          return (crTemp >= 0x80000000 && crTemp <= 0x80000018);
+
    }
-   return (false);
+
+   return false;
+
 }
 
 bool LiteHTMLElemAttr::isHexColorValue() const
 {
+
    // zero-length attribute value?
    if (m_strValue.is_empty())
-      return (false);
+      return false;
 
    if (m_strValue[0] == '#')
    {
+
       if (m_strValue.get_length() > 1)
       {
+
          for (int i = 1; i < m_strValue.get_length(); i++)
          {
+
             if (!::isdigit((unsigned char) m_strValue[i]))
-               return (false);
+               return false;
+
          }
-         return (true);
+
+         return true;
+
       }
+
    }
 
-   return (false);
+   return false;
+
 }
 
 
 COLORREF LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
 {
+
    COLORREF crTemp = 0xffffffff;
-   if (isNamedColorValue(preader))
+
+   if(isNamedColorValue(preader))
    {
+
       string   strKey(m_strValue);
+
       strKey.make_lower();
-      if (Cub(preader->m_papp).html_ex().m_namedColors.Lookup(strKey, crTemp))
+
+      if(Sys(preader->m_papp).html().m_namedColors.Lookup(strKey, crTemp))
       {
+
          // is this a system named color value?
+
          if (crTemp >= 0x80000000 && crTemp <= 0x80000018)
             crTemp = ::GetSysColor(crTemp & 0x7FFFFFFF);
+
       }
+
    }
    else if (isHexColorValue())
+   {
+
       crTemp = ::_tcstoul(m_strValue.Mid(1), NULL, 16);
-   return (crTemp);
+
+   }
+
+   return crTemp;
+
 }
 
 string LiteHTMLElemAttr::getColorHexValue(::lite_html_reader * preader) const
 {
+
    string   strColorHex;
-   if (isHexColorValue())
+
+   if(isHexColorValue())
+   {
+
       strColorHex = m_strValue.Mid(1);
+
+   }
    else
    {
+
       COLORREF crTemp = getColorValue(preader);
+
       if (crTemp != 0xffffffff)
          strColorHex.Format("#%06x", crTemp);
+
    }
-   return (strColorHex);
+
+   return strColorHex;
+
 }
 
 void LiteHTMLElemAttr::Init()

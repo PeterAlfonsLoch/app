@@ -32,16 +32,13 @@
 #pragma once
 
 
-#pragma warning(push, 4)
-#pragma warning (disable : 4290)   // C++ Exception Specification ignored
-
 /**
  * lite_html_tag
  *
  * @version 1.0 (March 18, 2004)
  * @author Gurmeet S. Kochar
  */
-class lite_html_tag
+class CLASS_DECL_ca lite_html_tag
 {
 // Construction/Destruction
 public:
@@ -57,7 +54,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   lite_html_tag(lite_html_tag &rSource, bool bCopy = false) throw(memory_exception);
+   lite_html_tag(lite_html_tag &rSource, bool bCopy = false);
 
    virtual ~lite_html_tag();
 

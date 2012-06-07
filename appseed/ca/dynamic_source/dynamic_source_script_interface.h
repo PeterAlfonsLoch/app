@@ -13,7 +13,7 @@ namespace dynamic_source
 
    
    class CLASS_DECL_ca script_interface :
-      virtual public ::ca2::html_file
+      virtual public ::html::file
    {
       
       script_interface *                  m_pinstanceMain;

@@ -8,13 +8,16 @@ namespace html
 {
 
 
+   typedef string_to_colorref CNamedColors;
+
+
    class CLASS_DECL_ca html :
       public ::radix::object
    {
    public:
 
 
-      string_to_colorref         CNamedColors;
+      
 
 
       const COLORREF             m_clrInvalid;   // an invalid color
