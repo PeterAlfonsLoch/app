@@ -612,8 +612,14 @@ class var & var::operator = (const class var & var)
       case type_integer:
          m_i      = var.m_i;
          break;
+      case type_uint:
+         m_ui      = var.m_ui;
+         break;
       case type_int64:
          m_i64    = var.m_i64;
+         break;
+      case type_uint64:
+         m_ui64    = var.m_ui64;
          break;
       case type_ulong:
          m_ul     = var.m_ul;
@@ -1579,9 +1585,17 @@ string var::get_string(const char * pszOnNull) const
       {
          str.Format("%I32d", m_i);
       }
+      else if(m_etype == var::type_uint)
+      {
+         str.Format("%I32u", m_ui);
+      }
       else if(m_etype == var::type_int64)
       {
          str.Format("%I64d", m_i64);
+      }
+      else if(m_etype == var::type_uint64)
+      {
+         str.Format("%I64u", m_ui64);
       }
       else if(m_etype == var::type_ulong)
       {
