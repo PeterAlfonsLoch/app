@@ -1,9 +1,11 @@
-#include "framework.h"
+﻿#include "framework.h"
+
 
 namespace html
 {
 
-   html_ex::html_ex(::ca::application * papp) :
+
+   html::html(::ca::application * papp) :
       ca(papp),
       m_clrInvalid(0xffffffff),
       m_percentMax(USHRT_MAX)
@@ -35,7 +37,7 @@ namespace html
       m_namedColors["threedhighlight"]      = (COLORREF)0x80000014;
       m_namedColors["threedlightshadow"]   = (COLORREF)0x80000016;
       m_namedColors["threedshadow"]      = (COLORREF)0x80000010;
-      m_namedColors["::ca::window"]            = (COLORREF)0x80000005;
+      m_namedColors["window"]            = (COLORREF)0x80000005;
       m_namedColors["windowframe"]         = (COLORREF)0x80000006;
       m_namedColors["windowtext"]         = (COLORREF)0x80000008;
 
@@ -183,13 +185,74 @@ namespace html
 
    }
 
-   html_ex::~html_ex()
+   html::~html()
    {
    }
 
-   int html_ex::resolve_entity(const char * lpszEntity, string & strChar)
+
+   string html::special_chars(const char * psz)
+   {
+      string str(psz);
+      str.replace("&"      , "&amp;");
+      str.replace("\""     , "&quot;"); // quando ENT_NOQUOTES n縊 est・definida.
+      str.replace("'"      , "&#039;"); // apenas quando ENT_QUOTES est・definida.
+      str.replace("<"      , "&lt;");
+      str.replace(">"      , "&gt;");
+      return str;
+   }
+
+
+
+   string html::entities(const char * psz)
+   {
+      if(psz == NULL)
+         return "";
+      string str;
+      string strChar;
+      while(*psz != '\0')
+      {
+         int iChar = (int) gen::ch::uni_index(gen::str::utf8_char(psz));
+         if(iChar == '&')
+         {
+            str += "&amp;";
+         }
+         else if(iChar == '\"')
+         {
+            str += "&quot;";
+         }
+         else if(iChar == '\'')
+         {
+            str += "&#039;"; // apenas quando ENT_QUOTES est・definida.
+         }
+         else if(iChar == '<')
+         {
+            str += "&lt;";
+         }
+         else if(iChar == '>')
+         {
+            str += "&gt;";
+         }
+         else if(iChar < 128)
+         {
+            str += (char) iChar;
+         }
+         else
+         {
+            strChar.Format("&#%d;", iChar);
+            str += strChar;
+         }
+         psz = gen::str::utf8_inc(psz);
+      }
+      return str;
+   }
+
+
+   int html::resolve_entity(const char * lpszEntity, string & strChar)
    {
       return m_entityresolver.resolveEntity(lpszEntity, strChar);
    }
 
+
 } // namespace html
+
+

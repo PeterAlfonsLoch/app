@@ -354,6 +354,12 @@
     <Filter Include="Source Files\html">
       <UniqueIdentifier>{dadb6cf8-e57e-4b5e-9704-f605e9dc8716}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\html\html_lite">
+      <UniqueIdentifier>{fc6557f4-4b1c-468d-b812-86459f2615de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html\html_filter">
+      <UniqueIdentifier>{035aef71-7ddf-43c6-a344-94515dbfe70a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libcharguess\big5Prober.h">
@@ -3218,22 +3224,25 @@
     <ClInclude Include="html\html.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
-    <ClInclude Include="html\html_lite_html.h">
-      <Filter>Header Files\html</Filter>
+    <ClInclude Include="html\html_lite\html_lite_html_attributes.h">
+      <Filter>Header Files\html\html_filter</Filter>
     </ClInclude>
-    <ClInclude Include="html\html_lite_html_attributes.h">
-      <Filter>Header Files\html</Filter>
+    <ClInclude Include="html\html_lite\html_lite_html_common.h">
+      <Filter>Header Files\html\html_filter</Filter>
     </ClInclude>
-    <ClInclude Include="html\html_lite_html_common.h">
-      <Filter>Header Files\html</Filter>
+    <ClInclude Include="html\html_lite\html_lite_html_entity_resolver.h">
+      <Filter>Header Files\html\html_filter</Filter>
     </ClInclude>
-    <ClInclude Include="html\html_lite_html_entity_resolver.h">
-      <Filter>Header Files\html</Filter>
+    <ClInclude Include="html\html_lite\html_lite_html_reader.h">
+      <Filter>Header Files\html\html_filter</Filter>
     </ClInclude>
-    <ClInclude Include="html\html_lite_html_reader.h">
-      <Filter>Header Files\html</Filter>
+    <ClInclude Include="html\html_lite\html_lite_html_tag.h">
+      <Filter>Header Files\html\html_filter</Filter>
     </ClInclude>
-    <ClInclude Include="html\html_lite_html_tag.h">
+    <ClInclude Include=".\html\html_lite\html_lite.h">
+      <Filter>Header Files\html\html_filter</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_html.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
   </ItemGroup>
@@ -3752,9 +3761,6 @@
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
     <ClCompile Include="ca2\ca2_datetime.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_html.cpp">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
     <ClCompile Include="ca2\ca2_library.cpp">
@@ -4930,9 +4936,6 @@
     <ClCompile Include="sockets\sockets_http_memory_file.cpp">
       <Filter>Source Files\sockets</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_html_file.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="radix\radix_bstr.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
@@ -5392,16 +5395,22 @@
     <ClCompile Include="javascript\javascript_tinyjs_functions.cpp">
       <Filter>Source Files\javascript</Filter>
     </ClCompile>
-    <ClCompile Include="html\html_lite_html_reader.cpp">
+    <ClCompile Include="html\html_lite\html_lite_html_tag.cpp">
+      <Filter>Source Files\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_lite\html_lite_html_reader.cpp">
+      <Filter>Source Files\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_lite\html_lite_html_entity_resolver.cpp">
+      <Filter>Source Files\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_lite\html_lite_hhtml_attributes.cpp">
+      <Filter>Source Files\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html_html.cpp">
       <Filter>Source Files\html</Filter>
     </ClCompile>
-    <ClCompile Include="html\html_LiteHTMLAttributes.cpp">
-      <Filter>Source Files\html</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_LiteHTMLEntityResolver.cpp">
-      <Filter>Source Files\html</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_LiteHTMLTag.cpp">
+    <ClCompile Include="html\html_file.cpp">
       <Filter>Source Files\html</Filter>
     </ClCompile>
   </ItemGroup>

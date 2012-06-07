@@ -8,6 +8,7 @@
 
 
 #include "xml/xml.h"
+#include "html/html.h"
 
 
 #include "ca/gen/gen_definition.h"

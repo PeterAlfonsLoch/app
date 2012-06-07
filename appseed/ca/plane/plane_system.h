@@ -226,8 +226,8 @@ namespace plane
       ::ca::dir::system_sp             m_spdir;
       class ::ca2::stra                m_stra;
       class ::ca2::url                 m_url;
-      class ::ca2::html                m_html;
-      class ::ca2::xml                 m_xml;
+      class ::html::html               m_html;
+      class ::xml::xml                 m_xml;
       class ::ca2::service             m_service;
       class ::ca2::install             m_install;
       ::ca::os_sp                      m_spos;

@@ -1214,24 +1214,6 @@
     <ClInclude Include="nature\nature_application.h">
       <Filter>Header Files\nature</Filter>
     </ClInclude>
-    <ClInclude Include="html\html_lite_html.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite_html_attributes.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite_html_common.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite_html_entity_resolver.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite_html_reader.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite_html_tag.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
     <ClInclude Include="fontopus\fontopus_validate.h">
       <Filter>Header Files\fontopus</Filter>
     </ClInclude>
@@ -1672,9 +1654,6 @@
       <Filter>Source Files\html</Filter>
     </ClCompile>
     <ClCompile Include="html\html_elemental.cpp">
-      <Filter>Source Files\html</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_ex.cpp">
       <Filter>Source Files\html</Filter>
     </ClCompile>
     <ClCompile Include="html\html_font.cpp">

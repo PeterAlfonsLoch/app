@@ -1,23 +1,23 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace html
 {
 
 
-   html_file::html_file()
+   file::file()
    {
       m_puistrcontext = NULL;
    }
 
-   ::user::str_context * html_file::str_context()
+   ::user::str_context * file::str_context()
    {
       return m_puistrcontext;
    }
 
 
 
-   void html_file::print(const char * lpcsz)
+   void file::print(const char * lpcsz)
    {
       UNREFERENCED_PARAMETER(lpcsz);
       throw interface_only_exception();
@@ -25,13 +25,13 @@ namespace ca2
 
 #ifdef WINDOWS
 
-   void html_file::printf(const char * lpcsz, ...)
+   void file::printf(const char * lpcsz, ...)
    {
       UNREFERENCED_PARAMETER(lpcsz);
       throw interface_only_exception();
    }
 
-   void html_file::printstr(const char * lpcsz, ...)
+   void file::printstr(const char * lpcsz, ...)
    {
       UNREFERENCED_PARAMETER(lpcsz);
       throw interface_only_exception();
@@ -39,7 +39,7 @@ namespace ca2
 
 #else
 
-   void html_file::trace(void *, const char * psz)
+   void file::trace(void *, const char * psz)
    {
       print(psz);
    }
@@ -47,13 +47,13 @@ namespace ca2
 #endif
 
 
-   void html_file::dprint(const char * lpcsz)
+   void file::dprint(const char * lpcsz)
    {
       UNREFERENCED_PARAMETER(lpcsz);
       throw interface_only_exception();
    }
 
 
-}
+} // namespace html
 
 

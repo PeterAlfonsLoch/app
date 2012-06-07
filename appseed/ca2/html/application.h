@@ -12,15 +12,10 @@ namespace html
 
 
       
-      class html_ex * m_phtmlex;
-
       application();
       virtual ~application();
 
       virtual bool initialize();
-
-      html_ex & html_ex();
-
 
    };
 

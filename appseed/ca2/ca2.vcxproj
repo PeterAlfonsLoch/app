@@ -968,7 +968,6 @@
     <ClInclude Include="fs\ifs.h" />
     <ClInclude Include="fs\ifs_file.h" />
     <ClInclude Include="fs\native_fs.h" />
-    <ClInclude Include="html\html_lite_html.h" />
     <ClInclude Include="mail\mail_list_interface.h" />
     <ClInclude Include="mail\mail_tree_data.h" />
     <ClInclude Include="mail\mail_tree_item.h" />
@@ -1206,11 +1205,6 @@
     <ClInclude Include="html\input_button.h" />
     <ClInclude Include="html\input_check_box.h" />
     <ClInclude Include="html\input_text.h" />
-    <ClInclude Include="html\html_lite_html_attributes.h" />
-    <ClInclude Include="html\html_lite_html_common.h" />
-    <ClInclude Include="html\html_lite_html_entity_resolver.h" />
-    <ClInclude Include="html\html_lite_html_reader.h" />
-    <ClInclude Include="html\html_lite_html_tag.h" />
     <ClInclude Include="html\signal.h" />
     <ClInclude Include="html\style.h" />
     <ClInclude Include="html\style_sheet.h" />
@@ -1512,7 +1506,6 @@
     <ClCompile Include="html\html_cell.cpp" />
     <ClCompile Include="html\html_data.cpp" />
     <ClCompile Include="html\html_elemental.cpp" />
-    <ClCompile Include="html\html_ex.cpp" />
     <ClCompile Include="html\html_font.cpp" />
     <ClCompile Include="html\html_form.cpp" />
     <ClCompile Include="html\html_frame.cpp" />
