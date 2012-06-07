@@ -213,7 +213,7 @@ namespace ca2
    }
 
 
-   ::uinteraction::interaction * library::get_new_uinteraction(const char * pszId)
+   ::uinteraction::interaction * library::get_new_uinteraction()
    {
 
       if(m_pca2library != NULL)
@@ -222,7 +222,7 @@ namespace ca2
          try
          {
 
-            return m_pca2library->get_new_uinteraction(pszId);
+            return m_pca2library->get_new_uinteraction();
 
          }
          catch(...)
@@ -244,7 +244,7 @@ namespace ca2
    }
 
 
-   void library::get_uinteraction_list(stringa & stra)
+   bool library::is_uinteraction_library()
    {
       
       if(m_pca2library != NULL)
@@ -253,13 +253,21 @@ namespace ca2
          try
          {
 
-            m_pca2library->get_uinteraction_list(stra);
+            return m_pca2library->is_uinteraction_library();
 
          }
          catch(...)
          {
 
+            return false;
+
          }
+
+      }
+      else
+      {
+
+         return false;
 
       }
 

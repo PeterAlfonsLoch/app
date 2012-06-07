@@ -51,7 +51,7 @@ namespace plane
       bool                                                  m_bShowPlatform;
 
       ::ca::application *                                   m_pappCurrent;
-      ::collection::string_map < ::ca::application * >      m_mapApplication;
+      ::collection::string_map < ::ca::application *  >     m_mapApplication;
 
 
       var                                                   m_varTopicFile;
@@ -111,7 +111,7 @@ namespace plane
 
       void on_request(::ca::create_context * pcreatecontext);
 
-      ::ca::application * application_get(const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
+      ::ca::application * application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
 
       virtual bool open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate = NULL);
 
@@ -126,7 +126,7 @@ namespace plane
       virtual bool on_install();
 
 
-      virtual void set_app_title(const char * pszAppId, const char * pszTitle);
+      virtual void set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle);
 
       //////////////////////////////////////////////////////////////////////////////////////////////////
       // Session/Bergedge
@@ -139,7 +139,7 @@ namespace plane
       virtual bool is_remote_session();
 
       using ::plane::application::start_application;
-      ::planebase::application * start_application(const char * pszAppId, ::ca::create_context * pcreatecontext);
+      ::planebase::application * start_application(const char * pszType, const char * pszAppId, ::ca::create_context * pcreatecontext);
 
 
    };

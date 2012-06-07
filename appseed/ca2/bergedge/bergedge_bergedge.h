@@ -49,8 +49,7 @@ namespace bergedge
                                                                      
       bool                                                           m_bDrawCursor;
 
-      string_to_string_map                                           m_mapUInteractionToLibrary;
-      ::collection::string_map < ::uinteraction::interaction * >     m_mapUInteraction;
+      ::collection::string_map < ::uinteraction::interaction * >     m_mapUinteraction;
 
 
       bergedge();
@@ -128,7 +127,7 @@ namespace bergedge
 
       void on_request(::ca::create_context * pcreatecontext);
 
-      ::ca::application * application_get(const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
+      ::ca::application * application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
 
       virtual bool is_bergedge();
 
@@ -138,7 +137,7 @@ namespace bergedge
 
       virtual bool on_install();
 
-      virtual void set_app_title(const char * pszAppId, const char * pszTitle);
+      virtual void set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle);
 
       virtual ::bergedge::bergedge * get_bergedge();
 

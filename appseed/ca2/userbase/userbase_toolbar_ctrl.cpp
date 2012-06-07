@@ -209,37 +209,37 @@ namespace userbase
    tool_bar_control::tool_bar_control()
       { }
    bool tool_bar_control::EnableButton(int nID, bool bEnable)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_ENABLEBUTTON, nID, MAKELPARAM(bEnable, 0)); }
+      { ASSERT(IsWindow()); return send_message( TB_ENABLEBUTTON, nID, MAKELPARAM(bEnable, 0)) != FALSE; }
    bool tool_bar_control::CheckButton(int nID, bool bCheck)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_CHECKBUTTON, nID, MAKELPARAM(bCheck, 0)); }
+      { ASSERT(IsWindow()); return send_message( TB_CHECKBUTTON, nID, MAKELPARAM(bCheck, 0)) != FALSE; }
    bool tool_bar_control::PressButton(int nID, bool bPress)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_PRESSBUTTON, nID, MAKELPARAM(bPress, 0)); }
+      { ASSERT(IsWindow()); return send_message( TB_PRESSBUTTON, nID, MAKELPARAM(bPress, 0)) != FALSE; }
    bool tool_bar_control::HideButton(int nID, bool bHide)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_HIDEBUTTON, nID, MAKELPARAM(bHide, 0)); }
+      { ASSERT(IsWindow()); return send_message( TB_HIDEBUTTON, nID, MAKELPARAM(bHide, 0)) != FALSE; }
    bool tool_bar_control::Indeterminate(int nID, bool bIndeterminate)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_INDETERMINATE, nID, MAKELPARAM(bIndeterminate, 0)); }
+      { ASSERT(IsWindow()); return send_message( TB_INDETERMINATE, nID, MAKELPARAM(bIndeterminate, 0)) != FALSE; }
    bool tool_bar_control::IsButtonEnabled(int nID)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_ISBUTTONENABLED, nID, 0); }
+      { ASSERT(IsWindow()); return send_message( TB_ISBUTTONENABLED, nID, 0) != FALSE; }
    bool tool_bar_control::IsButtonChecked(int nID)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_ISBUTTONCHECKED, nID, 0); }
+      { ASSERT(IsWindow()); return send_message( TB_ISBUTTONCHECKED, nID, 0) != FALSE; }
    bool tool_bar_control::IsButtonPressed(int nID)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_ISBUTTONPRESSED, nID, 0); }
+      { ASSERT(IsWindow()); return send_message( TB_ISBUTTONPRESSED, nID, 0) != FALSE; }
    bool tool_bar_control::IsButtonHidden(int nID)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_ISBUTTONHIDDEN, nID, 0); }
+      { ASSERT(IsWindow()); return send_message( TB_ISBUTTONHIDDEN, nID, 0) != FALSE; }
    bool tool_bar_control::IsButtonIndeterminate(int nID)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_ISBUTTONINDETERMINATE, nID, 0); }
+      { ASSERT(IsWindow()); return send_message( TB_ISBUTTONINDETERMINATE, nID, 0) != FALSE; }
    bool tool_bar_control::SetState(int nID, UINT nState)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_SETSTATE, nID, MAKELPARAM(nState, 0)); }
+      { ASSERT(IsWindow()); return send_message( TB_SETSTATE, nID, MAKELPARAM(nState, 0)) != FALSE; }
    int tool_bar_control::GetState(int nID)
       { ASSERT(IsWindow()); return (int) send_message( TB_GETSTATE, nID, 0L); }
    bool tool_bar_control::AddButtons(int nNumButtons, LPTBBUTTON lpButtons)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_ADDBUTTONSW, nNumButtons, (LPARAM)lpButtons); }
+      { ASSERT(IsWindow()); return send_message( TB_ADDBUTTONSW, nNumButtons, (LPARAM)lpButtons) != FALSE; }
    bool tool_bar_control::InsertButton(int nIndex, LPTBBUTTON lpButton)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_INSERTBUTTON, nIndex, (LPARAM)lpButton); }
+      { ASSERT(IsWindow()); return send_message( TB_INSERTBUTTON, nIndex, (LPARAM)lpButton) != FALSE; }
    bool tool_bar_control::DeleteButton(int nIndex)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_DELETEBUTTON, nIndex, 0); }
+      { ASSERT(IsWindow()); return send_message( TB_DELETEBUTTON, nIndex, 0) != FALSE; }
    bool tool_bar_control::GetButton(int nIndex, LPTBBUTTON lpButton)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_GETBUTTON, nIndex, (LPARAM)lpButton); }
+      { ASSERT(IsWindow()); return send_message( TB_GETBUTTON, nIndex, (LPARAM)lpButton) != FALSE; }
    int tool_bar_control::GetButtonCount()
       { ASSERT(IsWindow()); return (int) send_message( TB_BUTTONCOUNT, 0, 0L); }
    UINT tool_bar_control::CommandToIndex(UINT nID)
@@ -250,13 +250,13 @@ namespace userbase
    int tool_bar_control::AddStrings(const char * lpszStrings)
       { ASSERT(IsWindow()); return (int) send_message( TB_ADDSTRING, 0, (LPARAM)lpszStrings); }
    bool tool_bar_control::GetItemRect(int nIndex, LPRECT lpRect)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_GETITEMRECT, nIndex, (LPARAM)lpRect); }
+      { ASSERT(IsWindow()); return send_message( TB_GETITEMRECT, nIndex, (LPARAM)lpRect) != FALSE; }
    void tool_bar_control::SetButtonStructSize(int nSize)
       { ASSERT(IsWindow()); send_message( TB_BUTTONSTRUCTSIZE, nSize, 0L); }
    bool tool_bar_control::SetButtonSize(size size)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_SETBUTTONSIZE, 0, MAKELPARAM(size.cx, size.cy)); }
+      { ASSERT(IsWindow()); return send_message( TB_SETBUTTONSIZE, 0, MAKELPARAM(size.cx, size.cy)) != FALSE; }
    bool tool_bar_control::SetBitmapSize(size size)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_SETBITMAPSIZE, 0, MAKELPARAM(size.cx, size.cy)); }
+      { ASSERT(IsWindow()); return send_message( TB_SETBITMAPSIZE, 0, MAKELPARAM(size.cx, size.cy)) != FALSE; }
    void tool_bar_control::AutoSize()
       { ASSERT(IsWindow()); send_message( TB_AUTOSIZE, 0, 0L); }
    void tool_bar_control::SetOwner(::user::interaction* pWnd)
@@ -266,7 +266,7 @@ namespace userbase
    int tool_bar_control::GetRows()
       { ASSERT(IsWindow()); return (int) send_message( TB_GETROWS, 0, 0L); }
    bool tool_bar_control::SetCmdID(int nIndex, UINT nID)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_SETCMDID, nIndex, nID); }
+      { ASSERT(IsWindow()); return send_message( TB_SETCMDID, nIndex, nID) != FALSE; }
    UINT tool_bar_control::GetBitmapFlags()
       { ASSERT(IsWindow()); return (UINT) send_message( TB_GETBITMAPFLAGS, 0, 0L); }
    int tool_bar_control::hit_test(LPPOINT ppt)
@@ -295,13 +295,13 @@ namespace userbase
    INT tool_bar_control::GetMaxTextRows()
       { ASSERT(IsWindow()); return (INT) send_message( TB_GETTEXTROWS, 0, 0L); }
    bool tool_bar_control::GetRect(int nID, LPRECT lpRect)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_GETRECT, nID, (LPARAM)lpRect); }
+      { ASSERT(IsWindow()); return send_message( TB_GETRECT, nID, (LPARAM)lpRect) != FALSE; }
    bool tool_bar_control::IsButtonHighlighted(int nID)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_ISBUTTONHIGHLIGHTED, nID, 0); }
+      { ASSERT(IsWindow()); return send_message( TB_ISBUTTONHIGHLIGHTED, nID, 0) != FALSE; }
    void tool_bar_control::LoadImages(int iBitmapID, HINSTANCE hinst)
       { ASSERT(IsWindow()); send_message( TB_LOADIMAGES, iBitmapID, (LPARAM)hinst); }
    bool tool_bar_control::SetButtonWidth(int cxMin, int cxMax)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_SETBUTTONWIDTH, 0, MAKELPARAM(cxMin, cxMax)); }
+      { ASSERT(IsWindow()); return send_message( TB_SETBUTTONWIDTH, 0, MAKELPARAM(cxMin, cxMax)) != FALSE; }
 
 image_list* tool_bar_control::SetDisabledImageList(image_list* pImageList)
 {
@@ -325,25 +325,25 @@ image_list* tool_bar_control::SetImageList(image_list* pImageList)
 }
 
    bool tool_bar_control::SetIndent(int iIndent)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_SETINDENT, iIndent, 0L); }
+      { ASSERT(IsWindow()); return send_message( TB_SETINDENT, iIndent, 0L) != FALSE; }
    bool tool_bar_control::SetMaxTextRows(int iMaxRows)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_SETMAXTEXTROWS, iMaxRows, 0L); }
+      { ASSERT(IsWindow()); return send_message( TB_SETMAXTEXTROWS, iMaxRows, 0L) != FALSE; }
    void tool_bar_control::SetStyle(DWORD dwStyle)
       { ASSERT(IsWindow()); send_message( TB_SETSTYLE, 0, dwStyle); }
    bool tool_bar_control::GetButtonInfo(int nID, TBBUTTONINFO* ptbbi)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_GETBUTTONINFO, nID, (LPARAM)ptbbi); }
+      { ASSERT(IsWindow()); return send_message( TB_GETBUTTONINFO, nID, (LPARAM)ptbbi) != FALSE; }
    bool tool_bar_control::GetButtonInfo(int nID, TBBUTTONINFOW* ptbbi)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_GETBUTTONINFOW, nID, (LPARAM)ptbbi); }
+      { ASSERT(IsWindow()); return send_message( TB_GETBUTTONINFOW, nID, (LPARAM)ptbbi) != FALSE; }
    bool tool_bar_control::SetButtonInfo(int nID, TBBUTTONINFO* ptbbi)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_SETBUTTONINFO, nID, (LPARAM)ptbbi); }
+      { ASSERT(IsWindow()); return send_message( TB_SETBUTTONINFO, nID, (LPARAM)ptbbi) != FALSE; }
    bool tool_bar_control::SetButtonInfo(int nID, TBBUTTONINFOW* ptbbi)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_SETBUTTONINFOW, nID, (LPARAM)ptbbi); }
+      { ASSERT(IsWindow()); return send_message( TB_SETBUTTONINFOW, nID, (LPARAM)ptbbi) != FALSE; }
    DWORD tool_bar_control::SetDrawTextFlags(DWORD dwMask, DWORD dwDTFlags)
       { ASSERT(IsWindow()); return (DWORD) send_message( TB_SETDRAWTEXTFLAGS, dwMask, dwDTFlags); }
    bool tool_bar_control::GetAnchorHighlight()
-      { ASSERT(IsWindow()); return (bool) send_message( TB_GETANCHORHIGHLIGHT, 0, 0); }
+      { ASSERT(IsWindow()); return send_message( TB_GETANCHORHIGHLIGHT, 0, 0) != FALSE; }
    bool tool_bar_control::SetAnchorHighlight(bool fAnchor)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_SETANCHORHIGHLIGHT, fAnchor, 0); }
+      { ASSERT(IsWindow()); return send_message( TB_SETANCHORHIGHLIGHT, fAnchor, 0) != FALSE; }
    int tool_bar_control::GetHotItem()
       { ASSERT(IsWindow()); return (int) send_message( TB_GETHOTITEM, 0, 0); }
    int tool_bar_control::SetHotItem(int nHot)
@@ -353,15 +353,15 @@ image_list* tool_bar_control::SetImageList(image_list* pImageList)
    void tool_bar_control::SetInsertMark(TBINSERTMARK* ptbim)
       { ASSERT(IsWindow()); send_message( TB_SETINSERTMARK, 0, (LPARAM)ptbim); }
    bool tool_bar_control::GetMaxSize(LPSIZE pSize)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_GETMAXSIZE, 0, (LPARAM)pSize); }
+      { ASSERT(IsWindow()); return send_message( TB_GETMAXSIZE, 0, (LPARAM)pSize) != FALSE; }
    bool tool_bar_control::InsertMarkHitTest(LPPOINT ppt, LPTBINSERTMARK ptbim)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_INSERTMARKHITTEST, (WPARAM)ppt, (LPARAM)ptbim); }
+      { ASSERT(IsWindow()); return send_message( TB_INSERTMARKHITTEST, (WPARAM)ppt, (LPARAM)ptbim) != FALSE; }
    bool tool_bar_control::MapAccelerator(char chAccel, UINT* pIDBtn)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_MAPACCELERATOR, (WPARAM)chAccel, (LPARAM)pIDBtn); }
+      { ASSERT(IsWindow()); return send_message( TB_MAPACCELERATOR, (WPARAM)chAccel, (LPARAM)pIDBtn) != FALSE; }
    bool tool_bar_control::MarkButton(int nID, bool bHighlight)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_MARKBUTTON, nID, MAKELPARAM(bHighlight, 0)); }
+      { ASSERT(IsWindow()); return send_message( TB_MARKBUTTON, nID, MAKELPARAM(bHighlight, 0)) != FALSE; }
    bool tool_bar_control::MoveButton(UINT nOldPos, UINT nNewPos)
-      { ASSERT(IsWindow()); return (bool) send_message( TB_MOVEBUTTON, nOldPos, nNewPos); }
+      { ASSERT(IsWindow()); return send_message( TB_MOVEBUTTON, nOldPos, nNewPos) != FALSE; }
 
 
 } // namespace userbase

@@ -112,7 +112,7 @@ namespace bergedge
          if(gen::str::begins_eat(strId, "app:"))
          {
             ::ca::application * pappTab;
-            if(Bergedge.m_mapApplication.Lookup(strId, pappTab))
+            if(Bergedge.m_mapApplication.Lookup("application:" + strId, pappTab))
             {
                Session.m_pappCurrent = pappTab;
                Bergedge.m_pappCurrent = pappTab;
@@ -199,7 +199,7 @@ namespace bergedge
          if(gen::str::begins_eat(strId, "app:"))
          {
             ::ca::application * pappTab;
-            if(!Session.m_mapApplication.Lookup(strId, pappTab))
+            if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
             {
                
                ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
@@ -255,7 +255,10 @@ namespace bergedge
                while(pos != NULL)
                {
                   System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
-                  Application.file().put_contents(System.dir().path(strDir, strApp + ".ca2"), "ca2prompt\n" + strApp);
+                  if(gen::str::begins_eat(strApp, "application:"))
+                  {
+                     Application.file().put_contents(System.dir().path(strDir, strApp + ".ca2"), "ca2prompt\n" + strApp);
+                  }
                }
                pdoc->FileManagerBrowse(strDir);
                if(pview != NULL)
@@ -486,7 +489,10 @@ namespace bergedge
       while(pos != NULL)
       {
          System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
-         Application.file().put_contents(System.dir().path(strDir, strApp + ".ca2"), "ca2prompt\r\n"+ strApp);
+         if(gen::str::begins_eat(strApp, "application:"))
+         {
+            Application.file().put_contents(System.dir().path(strDir, strApp + ".ca2"), "ca2prompt\r\n"+ strApp);
+         }
       }
 
       //Application.file().put_contents(System.dir().path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");

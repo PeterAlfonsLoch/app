@@ -335,7 +335,7 @@ namespace plane
          file = get_file(System.dir().appdata("applibcache.bin"), ex1::file::defer_create_directory | ::ex1::file::type_binary | ex1::file::mode_create  | ::ex1::file::mode_write);
 
       }
-      catch(base_exception & e)
+      catch(base_exception &)
       {
 
          return false;
@@ -633,7 +633,7 @@ namespace plane
          return NULL;
       if(!m_pbergedgemap->Lookup(iEdge, pbergedge))
       {
-         pbergedge = dynamic_cast < ::plane::session * > (create_application("session", true, pbiasCreation));
+         pbergedge = dynamic_cast < ::plane::session * > (create_application("application", "session", true, pbiasCreation));
          if(pbergedge == NULL)
             return NULL;
          pbergedge->m_iEdge = iEdge;
@@ -643,10 +643,10 @@ namespace plane
    }
 
 
-   ::ca::application * system::application_get(index iEdge, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   ::ca::application * system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
       ::plane::session * psession = get_session(iEdge, pbiasCreate);
-      return psession->application_get(pszId, bCreate, bSynch, pbiasCreate);
+      return psession->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
    }
 
 
@@ -1345,7 +1345,7 @@ namespace plane
    }
 
 
-   ::ca::application * system::get_new_app(::ca::application * pappNewApplicationParent, const char * pszAppId)
+   ::ca::application * system::get_new_app(::ca::application * pappNewApplicationParent, const char * pszType, const char * pszAppId)
    {
 
       string strId(pszAppId);
@@ -1356,9 +1356,16 @@ namespace plane
          && !install().is("application", strId))
       {
 
-         MessageBox(NULL, "Starting installation of " + strId, "Starting Installation - ca2", MB_OK);
+         if(::IsDebuggerPresent())
+         {
 
-         hotplugin::host::starter_start(": app=session session_start=" + strId + " app_type=application install", NULL);
+            MessageBox(NULL, "Debug Only Message\n\nPlease install application \"" + strId + "\" - type \"" + string(pszType) + "\"", "Debug Only Message - Please Install - ca2", MB_OK);
+
+            return NULL;
+
+         }
+
+         hotplugin::host::starter_start(": app=session session_start=" + strId + " app_type=" + string(pszType) +  " install", NULL);
 
          return NULL;
 

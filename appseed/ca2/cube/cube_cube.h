@@ -59,7 +59,7 @@ namespace cube
 
       virtual bergedge::bergedge *             query_bergedge(index iEdge);
       virtual void on_request(::ca::create_context * pcreatecontext);
-      virtual ::ca::application * application_get(index iEdge, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
+      virtual ::ca::application * application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
       virtual void open_by_file_extension(index iEdge, const char * pszPathName);
       virtual bool is_system();
       virtual bool set_main_init_data(::ca::main_init_data * pdata);

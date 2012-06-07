@@ -1813,7 +1813,7 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
    {
       if (!(m_dwStyle & CBRS_SIZE_FIXED))
       {
-         bool bDynamic = m_dwStyle & CBRS_SIZE_DYNAMIC;
+         bool bDynamic = (m_dwStyle & CBRS_SIZE_DYNAMIC) != 0;
 
          if (bDynamic && (dwMode & LM_MRUWIDTH))
             SizeToolBar(nCount, m_nMRUWidth);
@@ -1825,8 +1825,8 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
          {
             class rect rect;
             rect.null();
-            CalcInsideRect(rect, (dwMode & LM_HORZ));
-            bool bVert = (dwMode & LM_LENGTHY);
+            CalcInsideRect(rect, (dwMode & LM_HORZ) != 0);
+            bool bVert = (dwMode & LM_LENGTHY) != 0;
             int nLen = nLength + (bVert ? rect.height() : rect.width());
 
             SizeToolBar(nCount, nLen, bVert);
@@ -1947,11 +1947,11 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
    {
       class rect rect;
       rect.null();
-      CalcInsideRect(rect, (dwMode & LM_HORZ));
+      CalcInsideRect(rect, (dwMode & LM_HORZ) != 0);
       sizeResult.cy -= rect.height();
       sizeResult.cx -= rect.width();
 
-      size size = ::userbase::control_bar::CalcFixedLayout((dwMode & LM_STRETCH), (dwMode & LM_HORZ));
+      size size = ::userbase::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
       sizeResult.cx = max(sizeResult.cx, size.cx);
       sizeResult.cy = max(sizeResult.cy, size.cy);
    }
@@ -2055,7 +2055,7 @@ size simple_toolbar::CalcDynamicLayout(int nLength, DWORD dwMode)
    if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
       ((dwMode & LM_HORZDOCK) || (dwMode & LM_VERTDOCK)))
    {
-      return CalcFixedLayout(dwMode & LM_STRETCH, dwMode & LM_HORZDOCK);
+      return CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZDOCK) != 0);
    }
    return CalcLayout(dwMode, nLength);
 }

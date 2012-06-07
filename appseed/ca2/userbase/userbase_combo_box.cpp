@@ -78,9 +78,17 @@ namespace userbase
       return TRUE;
    }
    bool combo_box::LimitText(strsize nMaxChars)
-      { ASSERT(IsWindow()); return (bool)send_message( CB_LIMITTEXT, nMaxChars, 0); }
+   {
+      ASSERT(IsWindow()); 
+      return (bool)send_message( CB_LIMITTEXT, nMaxChars, 0) != 0;
+   }
+
    bool combo_box::SetEditSel(strsize nStartChar, strsize nEndChar)
-      { ASSERT(IsWindow()); return (bool)send_message( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)); }
+   {
+      ASSERT(IsWindow());
+      return (bool)send_message( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)) != 0;
+   }
+
    dword_ptr combo_box::GetItemData(index nIndex)
    { 
       
@@ -278,7 +286,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (bool)send_message( CB_GETEXTENDEDUI, 0, 0L);
+      return send_message( CB_GETEXTENDEDUI, 0, 0L) != 0;
    
    }
 
@@ -296,7 +304,7 @@ namespace userbase
       
       ASSERT(IsWindow()); 
       
-      return (bool)send_message( CB_GETDROPPEDSTATE, 0, 0L);
+      return send_message( CB_GETDROPPEDSTATE, 0, 0L) != 0;
    
    }
 

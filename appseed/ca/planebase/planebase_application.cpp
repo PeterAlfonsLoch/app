@@ -35,7 +35,7 @@ namespace planebase
    }
 
 
-   ::ca::application * application::instantiate_application(const char * pszId, ::ca::application_bias * pbias)
+   ::ca::application * application::instantiate_application(const char * pszType, const char * pszId, ::ca::application_bias * pbias)
    {
 
       ::ca::application * pcaapp = NULL;
@@ -57,7 +57,7 @@ namespace planebase
       {
 
 
-         pcaapp = System.get_new_app(this, pszId);
+         pcaapp = System.get_new_app(this, pszType, pszId);
 
          if(pcaapp == NULL)
             return NULL;
@@ -124,10 +124,10 @@ namespace planebase
    }
 
 
-   ::ca::application * application::create_application(const char * pszId, bool bSynch, ::ca::application_bias * pbias)
+   ::ca::application * application::create_application(const char * pszType, const char * pszId, bool bSynch, ::ca::application_bias * pbias)
    {
 
-      ::ca::application * pcaapp = instantiate_application(pszId, pbias);
+      ::ca::application * pcaapp = instantiate_application(pszType, pszId, pbias);
 
       if(pcaapp == NULL)
          return NULL;
@@ -527,28 +527,23 @@ InitFailure:
                if(strId.is_empty())
                   strId = m_strAppName;
 
-               string strType = command().m_varTopicQuery["app_type"];
-
-               if(strType.is_empty())
-                  strType = "application";
-
                if(command().m_varTopicQuery.has_property("app") && strId == command().m_varTopicQuery["app"])
                {
                   
-                  System.install().remove_spa_start(strType, strId);
-                  System.install().add_app_install(strType, strId);
+                  System.install().remove_spa_start(m_strInstallType, strId);
+                  System.install().add_app_install(m_strInstallType, strId);
                }
                else if(command().m_varTopicQuery.has_property("session_start") && strId == command().m_varTopicQuery["session_start"])
                {
                   //MessageBox(NULL, "on_install2", "on_install2", 0);
-                  System.install().remove_spa_start(strType, strId);
-                  System.install().add_app_install(strType, strId);
+                  System.install().remove_spa_start(m_strInstallType, strId);
+                  System.install().add_app_install(m_strInstallType, strId);
                   //MessageBox(NULL, "on_install3", "on_install3", 0);
                }
                else if(m_strInstallToken.has_char())
                {
-                  System.install().remove_spa_start(strType, m_strInstallToken);
-                  System.install().add_app_install(strType, m_strInstallToken);
+                  System.install().remove_spa_start(m_strInstallType, m_strInstallToken);
+                  System.install().add_app_install(m_strInstallType, m_strInstallToken);
                }
 
             }
@@ -1071,7 +1066,7 @@ InitFailure:
    void application::set_title(const char * pszTitle)
    {
 
-      Session.set_app_title(m_strAppName, pszTitle);
+      Session.set_app_title(m_strInstallType, m_strAppName, pszTitle);
 
    }
 

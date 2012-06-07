@@ -212,7 +212,7 @@ namespace userbase
          rect.offset(-rect.left, -rect.top);
          CalcInsideRect(rect, TRUE);
          int rgBorders[3];
-         VERIFY((bool)DefWindowProc(SB_GETBORDERS, 0, (LPARAM)&rgBorders));
+         VERIFY(DefWindowProc(SB_GETBORDERS, 0, (LPARAM)&rgBorders) != FALSE);
 
          // determine extra space for stretchy pane
          int cxExtra = rect.width() + rgBorders[2];

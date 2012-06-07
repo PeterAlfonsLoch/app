@@ -57,9 +57,11 @@ namespace visual
             return false;
 
       }
-      catch(ex1::file_exception & e)
+      catch(...)
       {
+
          return false;
+
       }
 
 

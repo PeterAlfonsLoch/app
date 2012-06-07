@@ -54,7 +54,7 @@ namespace userex
 
       pane.m_id = id;
 
-      return ::user::view_creator::create(id);
+      return ::user::view_creator::create(id) != FALSE;
 
    }
 

@@ -396,8 +396,7 @@ namespace userbase
          replaceBitmap.hInstNew = NULL;
          replaceBitmap.nIDNew = (UINT)hbmImageWell;
          replaceBitmap.nButtons = bitmap.bmWidth / m_sizeImage.cx;
-         bResult = (bool)DefWindowProc(TB_REPLACEBITMAP, 0,
-            (LPARAM)&replaceBitmap);
+         bResult = DefWindowProc(TB_REPLACEBITMAP, 0, (LPARAM)&replaceBitmap) != FALSE;
       }
       // remove old bitmap, if present
       if (bResult)
@@ -853,7 +852,7 @@ namespace userbase
       {
          if (!(m_dwStyle & CBRS_SIZE_FIXED))
          {
-            bool bDynamic = m_dwStyle & CBRS_SIZE_DYNAMIC;
+            bool bDynamic = (m_dwStyle & CBRS_SIZE_DYNAMIC) != 0;
 
             if (bDynamic && (dwMode & LM_MRUWIDTH))
                SizeToolBar(pData, nCount, m_nMRUWidth);
@@ -865,8 +864,8 @@ namespace userbase
             {
                class rect rect; 
                rect.null();
-               CalcInsideRect(rect, (dwMode & LM_HORZ));
-               bool bVert = (dwMode & LM_LENGTHY);
+               CalcInsideRect(rect, (dwMode & LM_HORZ) != 0);
+               bool bVert = (dwMode & LM_LENGTHY) != 0;
                int nLen = nLength + (bVert ? rect.height() : rect.width());
 
                SizeToolBar(pData, nCount, nLen, bVert);
@@ -987,11 +986,11 @@ namespace userbase
       {
          class rect rect; 
          rect.null();
-         CalcInsideRect(rect, (dwMode & LM_HORZ));
+         CalcInsideRect(rect, (dwMode & LM_HORZ) != 0);
          sizeResult.cy -= rect.height();
          sizeResult.cx -= rect.width();
 
-         size size = ::userbase::control_bar::CalcFixedLayout((dwMode & LM_STRETCH), (dwMode & LM_HORZ));
+         size size = ::userbase::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
          sizeResult.cx = max(sizeResult.cx, size.cx);
          sizeResult.cy = max(sizeResult.cy, size.cy);
       }
@@ -1011,7 +1010,7 @@ namespace userbase
       if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
          ((dwMode & LM_HORZDOCK) || (dwMode & LM_VERTDOCK)))
       {
-         return CalcFixedLayout(dwMode & LM_STRETCH, dwMode & LM_HORZDOCK);
+         return CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZDOCK) != 0);
       }
       return CalcLayout(dwMode, nLength);
    }

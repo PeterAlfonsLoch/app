@@ -73,8 +73,9 @@ namespace ca2
       virtual ::ca::application * get_new_app(const char * pszId);
       virtual void get_app_list(stringa & stra);
 
-      virtual ::uinteraction::interaction * get_new_uinteraction(const char * pszId);
-      virtual void get_uinteraction_list(stringa & stra);
+
+      virtual ::uinteraction::interaction * get_new_uinteraction();
+      virtual bool is_uinteraction_library();
 
 
       virtual ::dynamic_source::script_manager * create_script_manager(::ca::application * papp);

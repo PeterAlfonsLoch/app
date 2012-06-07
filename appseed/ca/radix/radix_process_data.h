@@ -60,16 +60,14 @@ public:
    //ReadData reads back data from primitive::memory in the foreign process
    bool ReadData(T* data)
    {
-      return (m_hProcess && m_lpData) ? ReadProcessMemory(m_hProcess, m_lpData,
-         (LPVOID)data, sizeof T, NULL) : FALSE;
+      return (m_hProcess && m_lpData) ? ReadProcessMemory(m_hProcess, m_lpData, (LPVOID)data, sizeof T, NULL) != FALSE : false;
    }
 
    //Templated ReadData that's used to read a specific data type from
    //a primitive::memory address located in the foreign process
    template<typename TSUBTYPE> bool ReadData(TSUBTYPE* data, LPCVOID lpData)
    {
-      return m_hProcess ? ReadProcessMemory(m_hProcess, lpData,
-         (LPVOID)data, sizeof TSUBTYPE, NULL) : FALSE;
+      return m_hProcess ? ReadProcessMemory(m_hProcess, lpData, (LPVOID)data, sizeof TSUBTYPE, NULL) != FALSE : false;
    }
 
    //Gets the address of the allocated primitive::memory in the foreign process

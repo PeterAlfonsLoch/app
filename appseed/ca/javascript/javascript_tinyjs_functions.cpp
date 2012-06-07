@@ -194,7 +194,7 @@ void scArrayRemove(CScriptVar *c, void *data) {
   while (v) {
       int n = v->getIntName();
       int newn = n;
-      for (size_t i=0;i<removedIndices.get_size();i++)
+      for (strsize i=0;i<removedIndices.get_size();i++)
         if (n>=removedIndices[i])
           newn--;
       if (newn!=n)

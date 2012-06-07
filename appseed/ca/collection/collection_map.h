@@ -78,11 +78,18 @@ namespace collection
          }
 
 
-         pair & operator ++ ()
+         iterator & operator ++ ()
          {
             if(m_ppair != NULL && m_pmap != NULL)
                m_ppair = m_pmap->PGetNextAssoc(m_ppair);
-            return *m_ppair;
+            return *this;
+         }
+
+         iterator operator ++ (int)
+         {
+            if(m_ppair != NULL && m_pmap != NULL)
+               m_ppair = m_pmap->PGetNextAssoc(m_ppair);
+            return *this;
          }
 
          bool operator == (const iterator & it) const

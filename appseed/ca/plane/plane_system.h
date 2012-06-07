@@ -430,7 +430,7 @@ namespace plane
 
       void on_request(::ca::create_context * pcreatecontext);
 
-      ::ca::application * application_get(index iEdge, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
+      ::ca::application * application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
 
       void open_by_file_extension(index iEdge, const char * pszPathName);
 
@@ -528,7 +528,7 @@ namespace plane
 
       virtual bool verb();
 
-      virtual ::ca::application * get_new_app(::ca::application * pappNewApplicationParent, const char * pszId);
+      virtual ::ca::application * get_new_app(::ca::application * pappNewApplicationParent, const char * pszType, const char * pszId);
 
       virtual bool find_applications_from_cache();
       virtual bool find_applications_to_cache();

@@ -195,7 +195,7 @@ namespace userbase
 
    size control_bar::CalcDynamicLayout(int, DWORD nMode)
    {
-      return CalcFixedLayout(nMode & LM_STRETCH, nMode & LM_HORZ);
+      return CalcFixedLayout((nMode & LM_STRETCH) != 0, (nMode & LM_HORZ) != 0);
    }
 
    bool control_bar::IsDockBar()
@@ -609,7 +609,7 @@ namespace userbase
    {
       SCAST_PTR(::gen::message::base, pbase, pobj)
       // handle delay hide/show
-      bool bVis = GetStyle() & WS_VISIBLE;
+      bool bVis = (GetStyle() & WS_VISIBLE) != 0;
       UINT swpFlags = 0;
       if ((m_nStateFlags & delayHide) && bVis)
          swpFlags = SWP_HIDEWINDOW;
@@ -630,7 +630,7 @@ namespace userbase
          if (pTarget == NULL || !pTarget->IsFrameWnd())
             pTarget = dynamic_cast < userbase::frame_window * > (GetParentFrame());
          if (pTarget != NULL)
-            OnUpdateCmdUI(pTarget, (bool)pbase->m_wparam);
+            OnUpdateCmdUI(pTarget, pbase->m_wparam != FALSE);
       }
       pbase->set_lresult(0L);
    }
@@ -919,6 +919,9 @@ namespace userbase
 
    void DrawGripperElement001(::ca::graphics * pdc, int ix, int iy)
    {
+      UNREFERENCED_PARAMETER(pdc);
+      UNREFERENCED_PARAMETER(ix);
+      UNREFERENCED_PARAMETER(iy);
 /*      pdc->SetPixel(ix    , iy + 1, afxData.clrBtnHilite);
       pdc->SetPixel(ix + 1, iy + 1, afxData.clrBtnHilite);
       pdc->SetPixel(ix + 1, iy    , afxData.clrBtnHilite);

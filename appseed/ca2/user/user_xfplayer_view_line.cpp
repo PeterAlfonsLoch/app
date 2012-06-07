@@ -1408,6 +1408,9 @@ void XfplayerViewLine::EmbossedTextOut(
       strsize iLen,
       double dBlend)
 {
+
+   UNREFERENCED_PARAMETER(pdibCache);
+
    bool bSaveProcessing =  !m_bEnhancedEmboss;
 
 

@@ -144,7 +144,7 @@ namespace cube8
    void application::set_title(const char * pszTitle)
    {
 
-      Bergedge.set_app_title(m_strAppName, pszTitle);
+      Bergedge.set_app_title(m_strInstallType, m_strAppName, pszTitle);
 
    }
 

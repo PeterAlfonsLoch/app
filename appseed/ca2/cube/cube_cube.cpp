@@ -146,7 +146,7 @@ namespace cube
          return NULL;
       if(!m_pbergedgemap->Lookup(iEdge, psession))
       {
-         psession = dynamic_cast < ::plane::session * > (create_application("session", true, pbiasCreation));
+         psession = dynamic_cast < ::plane::session * > (create_application("application", "session", true, pbiasCreation));
          if(psession == NULL)
             return NULL;
          psession->m_iEdge = iEdge;
@@ -168,10 +168,10 @@ namespace cube
       return pbergedge->get_nature();
    }
 
-   ::ca::application * cube::application_get(index iEdge, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   ::ca::application * cube::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
       bergedge::bergedge * pbergedge = get_bergedge(iEdge, pbiasCreate);
-      return pbergedge->application_get(pszId, bCreate, bSynch, pbiasCreate);
+      return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
    }
 
 

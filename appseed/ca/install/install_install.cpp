@@ -111,27 +111,44 @@ namespace ca2
 
       if(doc.get_root()->get_name().is_empty())
       {
+
          doc.get_root()->set_name("install");
+
       }
 
       ::xml::node * lpnodeInstalled = doc.get_root()->get_child("installed");
+
       if(lpnodeInstalled == NULL)
       {
+
          lpnodeInstalled = doc.get_root()->add_child("installed");
+
       }
-      ::xml::node * lpnodeType = doc.get_root()->get_child(pszType);
+
+      ::xml::node * lpnodeType = lpnodeInstalled->get_child(pszType);
+
       if(lpnodeType == NULL)
       {
-         lpnodeType = doc.get_root()->add_child(pszType);
+
+         lpnodeType = lpnodeInstalled->add_child(pszType);
+
       }
+
       ::xml::node * lpnode = lpnodeType->GetChildByAttr(pszType, "id", pszId);
+
       if(lpnode == NULL)
       {
-         lpnode = lpnodeInstalled->add_child(pszType);
+
+         lpnode = lpnodeType->add_child(pszType);
+
          lpnode->add_attr("id", pszId);
+
       }
+
       ::xml::disp_option opt = *System.m_poptionDefault;
+
       opt.newline = true;
+
       Application.file().put_contents(strPath, doc.get_xml(&opt));
 
    }
@@ -156,7 +173,7 @@ namespace ca2
       if(lpnodeInstalled == NULL)
          return false;
       
-      ::xml::node * lpnodeType = doc.get_root()->get_child(pszType);
+      ::xml::node * lpnodeType = lpnodeInstalled->get_child(pszType);
       
       if(lpnodeType == NULL)
          return false;

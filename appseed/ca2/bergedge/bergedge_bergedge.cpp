@@ -104,7 +104,7 @@ namespace bergedge
 
       }
 
-      if(System.directrix().m_varTopicQuery.has_property("install")
+/*      if(System.directrix().m_varTopicQuery.has_property("install")
          || System.directrix().m_varTopicQuery.has_property("uninstall"))
       {
          find_uinteractions_to_cache(m_mapUInteractionToLibrary);
@@ -112,10 +112,12 @@ namespace bergedge
       else
       {
          find_uinteractions_from_cache(m_mapUInteractionToLibrary);
-      }
+      }*/
 
 
       return true;
+
+
    }
 
    int bergedge::exit_instance()
@@ -272,6 +274,7 @@ namespace bergedge
 
 
       string strApp;
+      string strType;
 
       if((pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command().m_varTopicQuery["show_platform"] == 1)
          && (!(bool)pcreatecontext->m_spCommandLine->m_varQuery["client_only"] && !(bool)command().m_varTopicQuery["client_only"])
@@ -315,15 +318,18 @@ namespace bergedge
             if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("session_start"))
             {
                strApp = pcreatecontext->m_spCommandLine->m_varQuery["session_start"];
+               strApp = pcreatecontext->m_spCommandLine->m_varQuery["app_type"];
             }
             else
             {
                strApp = "bergedge";
+               strType = "application";
             }
          }
          else
          {
             strApp = pcreatecontext->m_spCommandLine->m_strApp;
+            strType = pcreatecontext->m_spCommandLine->m_strAppType;
          }
 
          //MessageBox(NULL, "create", strApp, MB_ICONEXCLAMATION);
@@ -333,7 +339,10 @@ namespace bergedge
             return;
          }
 
-         ::ca2::application * papp = dynamic_cast < ::ca2::application * > (application_get(strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
+         if(strType.is_empty())
+            strType = "application";
+
+         ::ca2::application * papp = dynamic_cast < ::ca2::application * > (application_get(strType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
          if(papp == NULL)
             return;
 
@@ -558,11 +567,11 @@ namespace bergedge
 
    }*/
 
-   ::ca::application * bergedge::application_get(const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   ::ca::application * bergedge::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
       ::ca::application * papp = NULL;
 
-      if(m_mapApplication.Lookup(pszId, papp))
+      if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
          return papp;
       else
       {
@@ -571,7 +580,7 @@ namespace bergedge
          papp = NULL;
          try
          {
-            papp = create_application(pszId, bSynch, pbiasCreate);
+            papp = create_application(pszType, pszId, bSynch, pbiasCreate);
          }
          catch(...)
          {
@@ -579,8 +588,8 @@ namespace bergedge
          }
          if(papp == NULL)
             return NULL;
-         m_mapApplication.set_at(pszId, papp);
-         Session.m_mapApplication.set_at(pszId, papp);
+         m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
+         Session.m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
          return papp;
       }
    }
@@ -766,12 +775,12 @@ namespace bergedge
    }
 
 
-   void bergedge::set_app_title(const char * pszAppId, const char * pszTitle)
+   void bergedge::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
       ::ca::application * papp = NULL;
 
-      if(m_mapApplication.Lookup(pszAppId, papp) && papp != NULL)
+      if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
       {
 
          ::bergedge::pane_view * ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();

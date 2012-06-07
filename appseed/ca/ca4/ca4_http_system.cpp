@@ -819,9 +819,9 @@ retry:
          
             if(papp != NULL)
             {
-               keeplive.add(papp);
-               keeplive.add(&Sess(papp));
-               keeplive.add(&Sys(papp));
+               keeplive.keep(papp);
+               keeplive.keep(&Sess(papp));
+               keeplive.keep(&Sys(papp));
             }
             oprop("dw").get_value().set_type(var::type_ulong);
             dw1 = oprop("dw").get_value().m_ul;
@@ -1249,9 +1249,9 @@ retry:
 
          if(papp != NULL)
          {
-            keeplive.add(papp);
-            keeplive.add(&Sess(papp));
-            keeplive.add(&Sys(papp));
+            keeplive.keep(papp);
+            keeplive.keep(&Sess(papp));
+            keeplive.keep(&Sys(papp));
          }
          while(handler.get_count() > 0)
          {

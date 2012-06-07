@@ -16,9 +16,9 @@ namespace uinteraction
 
 
       // map user interations to library
-      virtual bool find_uinteractions_from_cache(::string_to_string_map & map);
-      virtual bool find_uinteractions_to_cache(::string_to_string_map & map);
-      virtual bool map_uinteraction_library(::string_to_string_map & map, const char * pszLibrary);
+      //virtual bool find_uinteractions_from_cache(::string_to_string_map & map);
+      //virtual bool find_uinteractions_to_cache(::string_to_string_map & map);
+      //virtual bool map_uinteraction_library(::string_to_string_map & map, const char * pszLibrary);
 
 
       virtual ::uinteraction::interaction * get_new_uinteraction(const char * pszUinteraction);

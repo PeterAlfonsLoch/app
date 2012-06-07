@@ -461,9 +461,7 @@ namespace gcom
                {
                   if(m_tool001.m_pointa.get_size() <= 0)
                      break;
-                  index iIndex = System.math().RandRange(
-                           0,
-                           m_tool001.m_pointa.get_size() - 1);
+                  index iIndex = (index) System.math().RandRange(0, m_tool001.m_pointa.get_size() - 1);
 
 
 
@@ -521,9 +519,7 @@ namespace gcom
             {
                if(m_tool001.m_iStep > 0)
                {
-                  index iIndex = System.math().RandRange(
-                     0,
-                     m_tool001.m_pointa.get_size() - 1);
+                  index iIndex = (index) System.math().RandRange(0, m_tool001.m_pointa.get_size() - 1);
 
                   if(m_tool001.m_iStep <= 0)
                      break;
@@ -582,9 +578,7 @@ namespace gcom
                {
                   if(m_tool001.m_ia.get_size() > 0)
                   {
-                     index iIndex = System.math().RandRange(
-                        0,
-                        m_tool001.m_ia.get_size() - 1);
+                     index iIndex = (index) System.math().RandRange(0, m_tool001.m_ia.get_size() - 1);
 
                      //                  SendMessage(WM_USER, USERMESSAGE_WPARAM_RAND_LPINT, (LPARAM) &iRand);
 

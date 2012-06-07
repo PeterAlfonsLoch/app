@@ -31,8 +31,6 @@ namespace plane
    session::~session()
    {
 
-      POSITION pos = m_mapApplication.get_start_position();
-
 /*      if(m_pnaturedocument != NULL)
       {
          m_pnaturedocument->on_close_document();
@@ -50,6 +48,9 @@ namespace plane
       */
       string strId;
       ::ca::application * pcaapp;
+
+
+      POSITION pos = m_mapApplication.get_start_position();
 
       while(pos != NULL)
       {
@@ -221,7 +222,7 @@ namespace plane
 
       pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] = 1;
 
-      ::ca::application * pcaapp = application_get(strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      ::ca::application * pcaapp = application_get("appplication", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
 
       ::bergedge_interface * papp = dynamic_cast < ::bergedge_interface * > (pcaapp);
 
@@ -366,6 +367,7 @@ namespace plane
 
 
       string strApp;
+      string strType;
 
       if((pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command().m_varTopicQuery["show_platform"] == 1)
          && (!(bool)pcreatecontext->m_spCommandLine->m_varQuery["client_only"] && !(bool)command().m_varTopicQuery["client_only"])
@@ -391,6 +393,7 @@ namespace plane
          else if(m_bShowPlatform)
          {
             strApp = "bergedge";
+            strType = "application";
 //            create_bergedge(pcreatecontext);
   //          throw not_implemented_exception();
             /*if(get_document() != NULL && get_document()->get_typed_view < ::session::view >() != NULL)
@@ -416,15 +419,18 @@ namespace plane
                if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("session_start"))
                {
                   strApp = pcreatecontext->m_spCommandLine->m_varQuery["session_start"];
+                  strType = pcreatecontext->m_spCommandLine->m_varQuery["app_type"];
                }
                else
                {
                   strApp = "session";
+                  strType = "application";
                }
             }
             else
             {
                strApp = pcreatecontext->m_spCommandLine->m_strApp;
+               strType = pcreatecontext->m_spCommandLine->m_strAppType;
             }
          }
 
@@ -439,7 +445,12 @@ namespace plane
             return;
          }
 
-         start_application(strApp, pcreatecontext);
+         if(strType)
+         {
+            strType = "application";
+         }
+
+         start_application(strType, strApp, pcreatecontext);
 
 
       }
@@ -494,12 +505,12 @@ namespace plane
    }
 
 
-   ::planebase::application * session::start_application(const char * pszAppId, ::ca::create_context * pcreatecontext)
+   ::planebase::application * session::start_application(const char * pszType, const char * pszAppId, ::ca::create_context * pcreatecontext)
    {
       
       string strApp(pszAppId);
 
-      ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get(strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
+      ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get(pszType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
       if(papp == NULL)
          return NULL;
 
@@ -660,7 +671,7 @@ namespace plane
 
       }
 
-      ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get(strId, true, true, pcreatecontext->m_spApplicationBias));
+      ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get("application", strId, true, true, pcreatecontext->m_spApplicationBias));
 
       if(papp == NULL)
          return false;
@@ -800,11 +811,11 @@ namespace plane
 
    }*/
 
-   ::ca::application * session::application_get(const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
+   ::ca::application * session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, ::ca::application_bias * pbiasCreate)
    {
       ::ca::application * papp = NULL;
 
-      if(m_mapApplication.Lookup(pszId, papp))
+      if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
          return papp;
       else
       {
@@ -814,7 +825,7 @@ namespace plane
          try
          {
 
-            papp = create_application(pszId, bSynch, pbiasCreate);
+            papp = create_application(pszType, pszId, bSynch, pbiasCreate);
          }
          catch(...)
          {
@@ -822,7 +833,7 @@ namespace plane
          }
          if(papp == NULL)
             return NULL;
-         m_mapApplication.set_at(pszId, papp);
+         m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
          return papp;
       }
    }
@@ -1017,12 +1028,12 @@ namespace plane
    }
 
 
-   void session::set_app_title(const char * pszAppId, const char * pszTitle)
+   void session::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
       ::ca::application * papp = NULL;
 
-      if(m_mapApplication.Lookup(pszAppId, papp) && papp != NULL)
+      if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
       {
 
 /*         ::session::pane_view * ppaneview = get_document()->get_typed_view < ::session::pane_view >();

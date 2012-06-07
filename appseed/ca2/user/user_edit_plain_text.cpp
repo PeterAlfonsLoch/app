@@ -455,7 +455,7 @@ namespace user
             size2.cx -= size1.cx;
             if(iEnd > iStart)
             {
-               pdc->FillSolidRect(left + size1.cx, y, size2.cx, size2.cy, ARGB(255, 120, 240, 180));
+               pdc->FillSolidRect((int) (left + size1.cx), y, size2.cx, size2.cy, ARGB(255, 120, 240, 180));
                pdc->set_color(crSel);
                pdc->TextOut(left + size1.cx, y, strExtent2);
             }
@@ -1005,7 +1005,7 @@ namespace user
       pdc->GetTextExtent(size3, unitext("gqYALﾍWM"));
       sized size;
       m_scrollinfo.m_sizeTotal.cx = 0;
-      iLineHeight = size3.cy;
+      iLineHeight = (int) size3.cy;
       for(int i = 0; i < straLines.get_size(); i++)
       {
          strLine = straLines[i];
@@ -1013,7 +1013,7 @@ namespace user
          size = (DWORD) (strLine.get_length() * size3.cx / 8);
 //         maxcy = max(size.cy, size3.cy);
          if(size.cx > m_scrollinfo.m_sizeTotal.cx)
-            m_scrollinfo.m_sizeTotal.cx = size.cx;
+            m_scrollinfo.m_sizeTotal.cx = (int) size.cx;
 
       }
       m_scrollinfo.m_sizeTotal.cy = (long) (m_iaLineIndex.get_count() * iLineHeight);
