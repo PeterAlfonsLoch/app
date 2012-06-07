@@ -197,11 +197,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
-    <IncludePath>
-    </IncludePath>
+    <IncludePath>$(AndroidIncludeDir);$(AndroidStlIncludeDir);</IncludePath>
     <ReferencePath>$(VCInstallDir)lib</ReferencePath>
-    <LibraryPath>
-    </LibraryPath>
+    <LibraryPath>$(AndroidLibDir);$(AndroidStlLibPath);</LibraryPath>
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
     <LinkIncremental>false</LinkIncremental>
