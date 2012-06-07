@@ -2168,6 +2168,9 @@ restart_download:
       if(m_strApplicationId.is_empty())
          return -1;
 
+      if(m_strApplicationType.is_empty())
+         m_strApplicationType = "application";
+
       m_bOfflineInstall = false;
 
       m_strInstallGz = "http://ccvotagus.net/stage/";

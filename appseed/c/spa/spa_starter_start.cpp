@@ -218,6 +218,8 @@ UINT spa_starter_start::start()
    if(strId.is_empty())
       return -1;
 
+   if(strType.is_empty())
+      strType = "application";
 
    keep_true keepStarting(s_bStarting);
 
