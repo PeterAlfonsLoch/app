@@ -1,29 +1,29 @@
 /**
- *   PROJECT - HTML Reader Class Library
- *
- *   lite_html_reader.cpp - lite_html_reader implementation
- *
- *   Written By Gurmeet S. Kochar <gomzygotit@hotmail.com>
- *   Copyright (c) 2004.
- *
- *   This code may be used in compiled form in any way you desire
- *   (including commercial use). The code may be redistributed
- *   unmodified by any means PROVIDING it is not sold for profit
- *   without the authors written consent, and providing that this
- *   notice and the authors name and all copyright notices remains
- *   intact. However, this file and the accompanying source code may
- *   not be hosted on a website or bulletin board without the authors
- *   written permission.
- *
- *   This file is provided "AS IS" with no expressed or implied warranty.
- *   The author accepts no liability for any damage/loss of business that
- *   this product may cause.
- *
- *   Although it is not necessary, but if you use this code in any of
- *   your application (commercial or non-commercial), please INFORM me
- *   so that I may know how useful this library is. This will encourage
- *   me to keep updating it.
- */
+*   PROJECT - HTML Reader Class Library
+*
+*   lite_html_reader.cpp - lite_html_reader implementation
+*
+*   Written By Gurmeet S. Kochar <gomzygotit@hotmail.com>
+*   Copyright (c) 2004.
+*
+*   This code may be used in compiled form in any way you desire
+*   (including commercial use). The code may be redistributed
+*   unmodified by any means PROVIDING it is not sold for profit
+*   without the authors written consent, and providing that this
+*   notice and the authors name and all copyright notices remains
+*   intact. However, this file and the accompanying source code may
+*   not be hosted on a website or bulletin board without the authors
+*   written permission.
+*
+*   This file is provided "AS IS" with no expressed or implied warranty.
+*   The author accepts no liability for any damage/loss of business that
+*   this product may cause.
+*
+*   Although it is not necessary, but if you use this code in any of
+*   your application (commercial or non-commercial), please INFORM me
+*   so that I may know how useful this library is. This will encourage
+*   me to keep updating it.
+*/
 #include "framework.h"
 
 dword_ptr lite_html_reader::parseDocument()
@@ -66,7 +66,7 @@ dword_ptr lite_html_reader::parseDocument()
       switch (ch)
       {
 
-      // tag starting delimeter?
+         // tag starting delimeter?
       case '<':
          {
             UngetChar();
@@ -96,7 +96,7 @@ dword_ptr lite_html_reader::parseDocument()
                NormalizeCharacters(strCharacters);
 
                if ( (strCharacters.get_length()) &&
-                   (getEventNotify(notifyCharacters)) )
+                  (getEventNotify(notifyCharacters)) )
                {
                   bAbort = false;
                   m_pEventHandler->Characters(strCharacters, m_dwAppData, bAbort);
@@ -138,7 +138,7 @@ dword_ptr lite_html_reader::parseDocument()
             break;
          }
 
-      // entity reference beginning delimeter?
+         // entity reference beginning delimeter?
       case '&':
          {
             UngetChar();
@@ -164,7 +164,7 @@ dword_ptr lite_html_reader::parseDocument()
             break;
          }
 
-      // any other character
+         // any other character
       default:
          {
             ++dwCharDataLen;
@@ -181,7 +181,7 @@ dword_ptr lite_html_reader::parseDocument()
       strCharacters.trim_right();   // explicit trailing white-space removal
 
       if ( (strCharacters.get_length()) &&
-          (getEventNotify(notifyCharacters)) )
+         (getEventNotify(notifyCharacters)) )
       {
          bAbort = false;
          m_pEventHandler->Characters(strCharacters, m_dwAppData, bAbort);
@@ -200,39 +200,43 @@ LEndParse:
 }
 
 /**
- * lite_html_reader::read
- * The read method parses an HTML document from an
- * in-primitive::memory string buffer and raises events defined
- * in ILiteHTMLReaderEvents to notify about variours
- * elements.
- *
- * @param lpszString - string containing HTML text to parse
- *
- * @return number of TCHARs successfully parsed
- * @since 1.0
- * @author Gurmeet S. Kochar
- */
-dword_ptr lite_html_reader::read(const char * psz)
+* lite_html_reader::read
+* The read method parses an HTML document from an
+* in-primitive::memory string buffer and raises events defined
+* in ILiteHTMLReaderEvents to notify about variours
+* elements.
+*
+* @param lpszString - string containing HTML text to parse
+*
+* @return number of TCHARs successfully parsed
+* @since 1.0
+* @author Gurmeet S. Kochar
+*/
+dword_ptr lite_html_reader::read(const string & str)
 {
-   ASSERT(__is_valid_string(psz));
-   m_strBuffer    = psz;
+
+   m_strBuffer    = str;
+
    m_dwBufLen     = m_strBuffer.get_length();
+
    m_lpszBuffer   = m_strBuffer;
+
    return parseDocument();
+
 }
 
 /**
- * lite_html_reader::read
- * This method is similar to the read(const char *) method,
- * except that, it accepts a file HANDLE instead of
- * an in-primitive::memory string buffer containing HTML text.
- *
- * @param hFile - file handle
- *
- * @return number of TCHARs successfully parsed
- * @since 1.0
- * @author Gurmeet S. Kochar
- */
+* lite_html_reader::read
+* This method is similar to the read(const char *) method,
+* except that, it accepts a file HANDLE instead of
+* an in-primitive::memory string buffer containing HTML text.
+*
+* @param hFile - file handle
+*
+* @return number of TCHARs successfully parsed
+* @since 1.0
+* @author Gurmeet S. Kochar
+*/
 dword_ptr lite_html_reader::ReadFile(HANDLE hFile)
 {
    ASSERT(hFile != INVALID_HANDLE_VALUE);
@@ -247,8 +251,8 @@ dword_ptr lite_html_reader::ReadFile(HANDLE hFile)
    if (m_dwBufLen == INVALID_FILE_SIZE)
    {
       TRACE1("(Error) lite_html_reader::read:"
-            " GetFileSize() failed;"
-            " GetLastError() returns 0x%08x.\n", ::GetLastError());
+         " GetFileSize() failed;"
+         " GetLastError() returns 0x%08x.\n", ::GetLastError());
       goto LError;
    }
 
@@ -262,8 +266,8 @@ dword_ptr lite_html_reader::ReadFile(HANDLE hFile)
    if (hFileMap == NULL)
    {
       TRACE1("(Error) lite_html_reader::read:"
-            " CreateFileMapping() failed;"
-            " GetLastError() returns 0x%08x.\n", ::GetLastError());
+         " CreateFileMapping() failed;"
+         " GetLastError() returns 0x%08x.\n", ::GetLastError());
       goto LError;
    }
 
@@ -272,8 +276,8 @@ dword_ptr lite_html_reader::ReadFile(HANDLE hFile)
    if (lpsz == NULL)
    {
       TRACE1("(Error) lite_html_reader::read:"
-            " MapViewOfFile() failed;"
-            " GetLastError() returns 0x%08x.\n", ::GetLastError());
+         " MapViewOfFile() failed;"
+         " GetLastError() returns 0x%08x.\n", ::GetLastError());
       goto LError;
    }
 
@@ -304,10 +308,10 @@ char lite_html_reader::UngetChar()
 bool lite_html_reader::getEventNotify(DWORD dwEvent) const
 {
    ASSERT(dwEvent == notifyStartStop  ||
-         dwEvent == notifyTagStart   ||
-         dwEvent == notifyTagEnd     ||
-         dwEvent == notifyCharacters ||
-         dwEvent == notifyComment);
+      dwEvent == notifyTagStart   ||
+      dwEvent == notifyTagEnd     ||
+      dwEvent == notifyCharacters ||
+      dwEvent == notifyComment);
    if (m_pEventHandler == NULL)
       return (false);
    return ((m_eventMask & dwEvent) == dwEvent);
@@ -320,16 +324,16 @@ bool lite_html_reader::isWhiteSpace(char ch) const
 
 
 /**
- * Parses an HTML tag starting from the current buffer position.
- *
- * @param rTag - this will receive tag information (along with its attributes)
- * @param bIsOpeningTag - receives true if the tag parsed is a opening tag.
- * @param bIsClosingTag - receives true if the tag parsed is a closing tag.
- *
- * @return true if successful, false otherwise
- * @since 1.0
- * @author Gurmeet S. Kochar
- */
+* Parses an HTML tag starting from the current buffer position.
+*
+* @param rTag - this will receive tag information (along with its attributes)
+* @param bIsOpeningTag - receives true if the tag parsed is a opening tag.
+* @param bIsClosingTag - receives true if the tag parsed is a closing tag.
+*
+* @return true if successful, false otherwise
+* @since 1.0
+* @author Gurmeet S. Kochar
+*/
 bool lite_html_reader::parseTag(lite_html_tag &rTag, bool &bIsOpeningTag, bool &bIsClosingTag)
 {
    ASSERT(m_lpszBuffer != NULL);
@@ -346,15 +350,15 @@ bool lite_html_reader::parseTag(lite_html_tag &rTag, bool &bIsOpeningTag, bool &
 
 
 /**
- * Returns the current value for the specified option.
- *
- * @param option - option to inquire
- * @param bCurVal - this will receive the current value for the option.
- *
- * @return true if value was retrieved successfully; otherwise false.
- * @since 1.0
- * @author Gurmeet S. Kochar
- */
+* Returns the current value for the specified option.
+*
+* @param option - option to inquire
+* @param bCurVal - this will receive the current value for the option.
+*
+* @return true if value was retrieved successfully; otherwise false.
+* @since 1.0
+* @author Gurmeet S. Kochar
+*/
 bool lite_html_reader::getBoolOption(ReaderOptionsEnum option, bool& bCurVal) const
 {
    bool bSuccess = false;
@@ -377,18 +381,18 @@ bool lite_html_reader::getBoolOption(ReaderOptionsEnum option, bool& bCurVal) co
 }
 
 /**
- * Changes the value of an option and returns
- * true/false indicating if the specified option
- * was set successfully.
- *
- * @param option - option to change
- *                 (one of the ReaderOptionsEnum constants)
- * @param bNewVal - value to set
- *
- * @return true if option was set successfully; otherwise false.
- * @since 1.0
- * @author Gurmeet S. Kochar
- */
+* Changes the value of an option and returns
+* true/false indicating if the specified option
+* was set successfully.
+*
+* @param option - option to change
+*                 (one of the ReaderOptionsEnum constants)
+* @param bNewVal - value to set
+*
+* @return true if option was set successfully; otherwise false.
+* @since 1.0
+* @author Gurmeet S. Kochar
+*/
 bool lite_html_reader::setBoolOption(ReaderOptionsEnum option, bool bNewVal)
 {
    bool bSuccess = false;
@@ -411,14 +415,14 @@ bool lite_html_reader::setBoolOption(ReaderOptionsEnum option, bool bNewVal)
 }
 
 /**
- * Parses an HTML comment starting from the current buffer position.
- *
- * @param rComment - this will receive the comment (without delimeters)
- *
- * @return true if successful, false otherwise
- * @since 1.0
- * @author Gurmeet S. Kochar
- */
+* Parses an HTML comment starting from the current buffer position.
+*
+* @param rComment - this will receive the comment (without delimeters)
+*
+* @return true if successful, false otherwise
+* @since 1.0
+* @author Gurmeet S. Kochar
+*/
 bool lite_html_reader::parseComment(string &rComment)
 {
    ASSERT(m_lpszBuffer != NULL);

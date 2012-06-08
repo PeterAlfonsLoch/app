@@ -250,6 +250,40 @@ namespace gen
          return ch;
       }
 
+      int64_t uni_index_len(const char * pszUtf8, strsize & len)
+      {
+         unsigned char * source = (unsigned char *) pszUtf8;
+         int64_t ch = 0;
+         int extraBytesToRead = trailingBytesForUTF8[*source];
+/*         if(natural(extraBytesToRead) >= strlen(pszUtf8))
+         }*/
+//         if(natural(extraBytesToRead) >= strlen(pszUtf8))
+  //       {
+    //        return -1; // source exhausted
+      //   }
+         if(*source == '\0') return -1;
+         switch (extraBytesToRead)
+         {
+            case 5: ch += *source++; ch <<= 6;
+                if(*source == '\0') goto error;
+            case 4: ch += *source++; ch <<= 6;
+                if(*source == '\0') goto error;
+            case 3: ch += *source++; ch <<= 6;
+                if(*source == '\0') goto error;
+            case 2: ch += *source++; ch <<= 6;
+                if(*source == '\0') goto error;
+            case 1: ch += *source++; ch <<= 6;
+                if(*source == '\0') goto error;
+            case 0: ch += *source++;
+         }
+         ch -= offsetsFromUTF8[extraBytesToRead];
+         len = ((const char *) source) - pszUtf8;
+         return ch;
+error:
+         len = ((const char *) source) - pszUtf8;
+         return -1;
+      }
+
       int64_t uni_index(const char * pszUtf8, const char * pszEnd)
       {
          unsigned char * source = (unsigned char *) pszUtf8;

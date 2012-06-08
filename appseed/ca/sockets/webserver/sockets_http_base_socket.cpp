@@ -136,19 +136,9 @@ namespace sockets
       {
          m_response.m_propertysetHeader.add("Content-Encoding", "gzip");
       }
-      if(outheader("content-encoding").get_string().find("gzip") >= 0)
-      {
-         gen::memory_file file(get_app());
 
-         gzip gz(&file);
+      on_compress();
 
-         gz.write(response().file().get_data(), response().file().get_size());
-
-         gz.finish();
-
-         response().file().Truncate(0);
-         response().file().write(file.get_data(), file.get_size());
-      }
       m_response.m_propertysetHeader.set("Content-Length", (int64_t) m_response.file().get_size());
       for(int i = 0; i < m_response.cookies().get_size(); i++)
       {
@@ -231,5 +221,27 @@ namespace sockets
          domain,
          bSecure);
    }
+
+   void http_base_socket::on_compress()
+   {
+       
+      if(outheader("content-encoding").get_string().find("gzip") >= 0)
+      {
+       
+         gen::memory_file file(get_app());
+
+         gzip gz(&file);
+
+         gz.write(response().file().get_data(), response().file().get_size());
+
+         gz.finish();
+
+         response().file().Truncate(0);
+         response().file().write(file.get_data(), file.get_size());
+
+      }
+
+   }
+
 
 } // namespace sockets

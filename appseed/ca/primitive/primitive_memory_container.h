@@ -70,6 +70,7 @@ namespace primitive
       virtual LPBYTE            detach_virtual_storage();
 
       string str() const;
+      void str(const string & str);
 
    };
 
@@ -156,6 +157,7 @@ namespace primitive
       return string((const char *) get_data(), get_size());
 
    }
+
 
 } // namespace primitive
 

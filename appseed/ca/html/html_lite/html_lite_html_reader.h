@@ -271,7 +271,7 @@ public:
 // Operations
 public:
    // parses an HTML document from the specified string
-   dword_ptr read(const char * psz);
+   dword_ptr read(const string & str);
    // parses an HTML document from a file given its HANDLE
    dword_ptr ReadFile(HANDLE hFile);
 

@@ -43,6 +43,7 @@ namespace gen
    {
 
       CLASS_DECL_ca  int64_t uni_index(const char * pszUtf8);
+      CLASS_DECL_ca  int64_t uni_index_len(const char * pszUtf8, strsize & len);
       CLASS_DECL_ca  int64_t uni_index(const char * pszUtf8, const char * pszEnd);
 
 

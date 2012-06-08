@@ -266,6 +266,16 @@ namespace primitive
       return p;
    }
 
+   void memory_container::str(const string & str)
+   {
+      
+      allocate(str.get_length());
+
+      memcpy(get_data(), str, get_size());
+
+   }
+
+
 
 } // namespace primitive
 

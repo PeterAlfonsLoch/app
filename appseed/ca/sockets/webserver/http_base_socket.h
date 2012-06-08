@@ -57,6 +57,8 @@ namespace sockets
          const char * domain,
          bool bSecure);
 
+      virtual void on_compress();
+
 
 
       http_base_socket(const http_base_socket& s);
