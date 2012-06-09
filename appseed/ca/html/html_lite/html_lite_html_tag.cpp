@@ -103,7 +103,9 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const char * lpsz
           (*lpszEnd != '-') && (*lpszEnd != ':') && 
           (*lpszEnd != '_') && (*lpszEnd != '.') )
       {
-         ASSERT(lpszEnd != lpszBegin);
+         
+         if(lpszEnd == lpszBegin)
+            return 0;
          
          // only white-space characters, a null-character, a 
          // greater-than symbol, or a forward-slash can break 

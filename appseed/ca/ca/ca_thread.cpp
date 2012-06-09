@@ -1,5 +1,6 @@
 #include "framework.h"
 
+
 namespace ca
 {
 
@@ -7,12 +8,16 @@ namespace ca
    CLASS_DECL_ca PFN_get_thread g_pfn_get_thread = NULL;
    CLASS_DECL_ca PFN_get_thread_state g_pfn_get_thread_state = NULL;
 
+
    thread::thread()
    {
+      
       m_dwAlive                     = ::GetTickCount();
       m_bReady                      = false;
       m_bRun                        = true;
       m_pappDelete                  = NULL;
+      m_pbReady                     = NULL;
+
    }
 
 
