@@ -1,6 +1,8 @@
 #include "framework.h"
 
+
 bool g_bAdmin = false;
+
 vsstring * g_pstrId = NULL;
 
 
@@ -60,8 +62,7 @@ bool is_installed(const char * pszType, const char * psz)
    if(lpnodeInstalled != NULL)
    {
 
-      LPXNode lpnodeType = nodeInstall.GetChild(pszType);
-
+      LPXNode lpnodeType = lpnodeInstalled->GetChild(pszType);
 
       if(lpnodeType != NULL)
       {
