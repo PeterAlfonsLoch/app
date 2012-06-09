@@ -607,11 +607,12 @@ namespace plugin
       }
       catch(installing_exception &)
       {
-#ifdef WINDOWS
+         m_bReload = true;
+/*#ifdef WINDOWS
          ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
          kill(0, SIGSTOP);
-#endif
+#endif*/
       }
    }
 
@@ -631,20 +632,30 @@ namespace plugin
       {
       }
 
-      ::radix::thread * pthread = dynamic_cast < ::radix::thread * > (m_psystem->::ca::smart_pointer < ::ca::thread >::m_p);
-
-      if(pthread->m_bRun)
+      try
       {
-         *m_pbReady = false;
-         pthread->m_pbReady = m_pbReady;
-         pthread->m_bRun = false;
-         int iRepeat = 0;
-         while(!*m_pbReady && iRepeat < 49)
+
+         ::radix::thread * pthread = dynamic_cast < ::radix::thread * > (m_psystem->::ca::smart_pointer < ::ca::thread >::m_p);
+
+         if(pthread->m_bRun)
          {
-            Sleep(284);
-            iRepeat++;
+            *m_pbReady = false;
+            pthread->m_pbReady = m_pbReady;
+            pthread->m_bRun = false;
+            int iRepeat = 0;
+            while(!*m_pbReady && iRepeat < 49)
+            {
+               Sleep(284);
+               iRepeat++;
+            }
          }
+
+
       }
+      catch(...)
+      {
+      }
+
       try
       {
          ca2_free(m_pbReady);

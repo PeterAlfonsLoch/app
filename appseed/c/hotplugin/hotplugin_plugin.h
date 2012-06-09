@@ -38,6 +38,7 @@ namespace hotplugin
       vsstring                      m_strStatus;
 
       DWORD                         m_nCa2StarterStartThreadID;
+      bool                          m_bReload;
 
 
       plugin();

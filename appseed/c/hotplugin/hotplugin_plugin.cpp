@@ -40,6 +40,8 @@ namespace hotplugin
 
       m_strStatus = "Thank you";
 
+      m_bReload   = false;
+
    }
 
 
