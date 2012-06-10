@@ -578,11 +578,13 @@ namespace plugin
 
                         Sys(m_psystem).install().start(strCommandLine);
 
-#ifdef WINDOWS
-                        ::TerminateProcess(::GetCurrentProcess(), 0);
-#else
-                        kill(0, SIGSTOP);
-#endif
+                        m_bReload = true;
+
+//#ifdef WINDOWS
+//                        ::TerminateProcess(::GetCurrentProcess(), 0);
+//#else
+//                        kill(0, SIGSTOP);
+//#endif
 
                         m_bMainReady = false;
 

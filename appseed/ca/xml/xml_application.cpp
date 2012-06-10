@@ -8,8 +8,8 @@ namespace xml
    application::application()
    {
       
-      m_poptionDefault     = NULL;
-      m_pparseinfoDefault  = NULL;
+      m_poptionDefault     = new disp_option(this);
+      m_pparseinfoDefault  = new parse_info(this);
 
       m_entities.add_entity('&'    , "&amp;" );
       m_entities.add_entity('\"'   , "&quot;");
@@ -29,8 +29,6 @@ namespace xml
       if(!::ex2::application::initialize1())
          return false;
 
-      m_poptionDefault     = new disp_option(this);
-      m_pparseinfoDefault  = new parse_info(this);
 
       return true;
    }
