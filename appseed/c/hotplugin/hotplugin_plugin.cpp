@@ -894,10 +894,10 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
             graphics2.FillPolygon(pbr, pa, 4, Gdiplus::FillModeWinding);
 
             pa[0].X = lprect->left + x - mcy - 23;
-            pa[2].Y = lprect->top + mcy;
+            pa[0].Y = lprect->top + mcy;
 
             pa[1].X = lprect->left + x - mcy;
-            pa[2].Y = lprect->top + mcy;
+            pa[1].Y = lprect->top + mcy;
 
             pa[2].X = lprect->left + x - cy;
             pa[2].Y = lprect->top + cy;
