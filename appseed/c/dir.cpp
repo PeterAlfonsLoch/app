@@ -3,6 +3,7 @@
 #include <Shlobj.h>
 #else
 #include <sys/types.h>
+#include <dirent.h>
 #include <sys/stat.h>
 #endif
 
@@ -239,3 +240,54 @@ vsstring dir::name(const char * path1)
 
 }
 
+
+
+
+void dir::ls(stra_dup & stra, const char *psz)
+{
+
+#if defined(LINUX) || defined(MACOS)
+
+   DIR * dirp = opendir(psz);
+
+   if(dirp == NULL)
+      return;
+
+   dirent * dp;
+
+   while ((dp = readdir(dirp)) != NULL)
+   {
+
+      stra.add(dp->d_name);
+
+   }
+
+   closedir(dirp);
+
+#else
+
+   WIN32_FIND_DATA FindFileData;
+
+   HANDLE hFind;
+
+   hFind = FindFirstFile(psz, &FindFileData);
+
+   if (hFind == INVALID_HANDLE_VALUE) 
+      return;
+
+   while(true)
+   {
+
+      stra.add(FindFileData.cFileName);
+
+      if(!FindNextFile(hFind, &FindFileData))
+         break;
+
+   }
+
+   FindClose(hFind);
+
+#endif
+
+
+}
