@@ -705,7 +705,7 @@ RetryHost:
 
 
          new_progress_end(0.8);
-         CopyFileList(straFileList);
+         //CopyFileList(straFileList);
 
          new_progress_end(1.0);
          iRetry = 0;

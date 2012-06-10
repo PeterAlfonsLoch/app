@@ -165,8 +165,26 @@ namespace ca2
       strContents = Application.file().as_string(strPath);
       
       ::xml::document doc(get_app());
+
+      if(strContents.is_empty())
+         return false;
+
+      try
+      {
       
-      doc.load(strContents);
+         if(!doc.load(strContents))
+            return false;
+
+      }
+      catch(...)
+      {
+
+         return false;
+
+      }
+
+      if(doc.get_root() == NULL)
+         return false;
 
       ::xml::node * lpnodeInstalled = doc.get_root()->get_child("installed");
 

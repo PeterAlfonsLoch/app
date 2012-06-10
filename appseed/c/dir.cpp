@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 #endif
 
-void get_ca2_module_folder_dup(char * lpszModuleFolder)
+void dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 {
 
 #ifdef WINDOWS
