@@ -646,6 +646,8 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
 
          Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 184 + 23, 184 + 23, 184 + 19));
 
+         int mcy = cy / 2;
+
          for(int x = 0; x < (cx + cy); x += 46)
          {
 
@@ -655,10 +657,24 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
             pa[1].X = lprect->left + x + 23;
             pa[1].Y = lprect->top;
 
-            pa[2].X = lprect->left + x - cy + 23;
+            pa[2].X = lprect->left + x - mcy + 23;
             pa[2].Y = lprect->top + cy;
 
-            pa[3].X = lprect->left + x - cy;
+            pa[3].X = lprect->left + x - mcy;
+            pa[3].Y = lprect->top + cy;
+            
+            graphics2.FillPolygon(pbr, pa, 4, Gdiplus::FillModeWinding);
+
+            pa[0].X = lprect->left + x - mcy - 23;
+            pa[0].Y = lprect->top;
+
+            pa[1].X = lprect->left + x - mcy;
+            pa[1].Y = lprect->top;
+
+            pa[2].X = lprect->left + x - cy;
+            pa[2].Y = lprect->top + cy;
+
+            pa[3].X = lprect->left + x - cy - 23;
             pa[3].Y = lprect->top + cy;
             
             graphics2.FillPolygon(pbr, pa, 4, Gdiplus::FillModeWinding);
