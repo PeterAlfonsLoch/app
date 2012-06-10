@@ -274,6 +274,14 @@ namespace ca
 
    }
 
+   
+   void os::post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam)
+   {
+
+      throw interface_only_exception();
+
+   }
+
 
 } // namespace ca
 

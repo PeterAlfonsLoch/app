@@ -78,6 +78,7 @@ namespace ca
 
       virtual bool is_remote_session();
 
+      virtual void post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam);
 
    };
 
