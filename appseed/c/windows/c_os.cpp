@@ -1,6 +1,6 @@
 #include "framework.h"
 #include <gdiplus.h>
-
+#include <winternl.h>
 
 typedef bool
 (WINAPI * LPFN_ChangeWindowMessageFilter)(
@@ -133,3 +133,4 @@ bool main_finalize()
    return TRUE;
 
 }
+
