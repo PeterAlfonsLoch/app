@@ -584,9 +584,9 @@ namespace plugin
 
                         strCommandLine += " install";
 
-                        m_strReloadCommandLine = strCommandLine;
+                        m_phost->m_strReloadCommandLine = strCommandLine;
 
-                        m_bReload = true;
+                        m_phost->m_bReload = true;
 
 //#ifdef WINDOWS
 //                        ::TerminateProcess(::GetCurrentProcess(), 0);
