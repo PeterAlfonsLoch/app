@@ -793,7 +793,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="_.cpp" />
     <ClCompile Include="_argcargv.cpp" />
     <ClCompile Include="_atol.cpp" />
-    <ClCompile Include="_initterm.cpp" />
     <ClCompile Include="_mem.cpp" />
     <ClCompile Include="_printf.cpp" />
     <ClCompile Include="sprintf.cpp" />

@@ -177,106 +177,114 @@ namespace plugin
    void plugin::on_paint(HDC hdcWindow, LPCRECT lprect)
    {
 
-      if(m_puiHost == NULL)
-         return;
-
-
-      if(m_dib.is_null())
-         m_dib.create(get_app());
-
-      if(m_dib.is_null())
-         return;
-
-
-
-      RECT rect;
-      rect.left = m_rect.left;
-      rect.top = m_rect.top;
-      rect.right = m_rect.right;
-      rect.bottom = m_rect.bottom;
-      rect.bottom -= rect.top;
-      rect.top = 0;
-      rect.right -= rect.left;
-      rect.left = 0;
-      rect64 rectWindow64;
-      m_puiHost->GetWindowRect(rectWindow64);
-      class rect rectWindow;
-      rectWindow = rectWindow64;
-      RECT rectDesktop;
-      ::GetWindowRect(::GetDesktopWindow(), &rectDesktop);
-      int w = rectDesktop.right;
-      int h = rectDesktop.bottom;
-      //HBITMAP hbmp = ::CreateCompatibleBitmap(hdcWindow, w, h);
-      //HDC hdc = ::CreateCompatibleDC(hdcWindow);
-      //HBITMAP hbmpOld =  (HBITMAP) ::SelectObject(hdc, (HGDIOBJ) hbmp);
-      //HFONT hfontOld = NULL;
-      //HFONT hfont = NULL;
-
-
-
-      if(!m_dib->create(lprect->right - lprect->left, lprect->bottom - lprect->top))
-         return;
-
-      m_dib->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
-
-      m_dib->get_graphics()->FillSolidRect(0, 0, lprect->right - lprect->left, lprect->bottom - lprect->top, 0);
-      //::BitBlt(hdc, lprect->left + rectWindow.left - m_rect.left, lprect->top + rectWindow.top - m_rect.top, lprect->right - lprect->left, lprect->bottom - lprect->top, hdcWindow, lprect->left, lprect->top, SRCCOPY);
-      try
-      {
-        // ::ca::graphics_sp g(get_app());
-         //g->Attach(hdc);
-         //::ca::graphics * pgraphics = m_psystem->graphics_from_os_data(hdc);
-         //g->set_app(m_puiHost->m_papp);
-         m_puiHost->_000OnDraw(m_dib->get_graphics());
-      }
-      catch(...)
-      {
-      }
-
-      try
-      {
-         ::ca::graphics_sp g(get_app());
-
-         g->Attach(hdcWindow);
-
-         g->set_alpha_mode(::ca::alpha_mode_blend);
-
-         g->BitBlt(lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top, m_dib->get_graphics(), 0, 0, SRCCOPY);
-
-         g->Detach();
-      }
-      catch(...)
-      {
-      }
-
-      /*POINT pointViewport;
-      ::SetViewportOrgEx(hdc, 0, 0, &pointViewport);
-      ::BitBlt(hdcWindow, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top, hdc, lprect->left + rectWindow.left - m_rect.left, lprect->top + rectWindow.top - m_rect.top, SRCCOPY);
-      ::SelectObject(hdc, (HGDIOBJ) hbmpOld);
-      if(hfontOld != NULL)
-      {
-         ::SelectObject(hdc,(HGDIOBJ)  hfontOld);
-      }
-      if(hfont != NULL)
-      {
-         ::DeleteObject(hfont);
-      }
-      ::DeleteObject(hbmp);
-      ::DeleteDC(hdc);*/
-
       try
       {
 
-         if(m_bOpenUrl)
+         if(m_puiHost == NULL)
+            return;
+
+
+         if(m_dib.is_null())
+            m_dib.create(get_app());
+
+         if(m_dib.is_null())
+            return;
+
+
+
+         RECT rect;
+         rect.left = m_rect.left;
+         rect.top = m_rect.top;
+         rect.right = m_rect.right;
+         rect.bottom = m_rect.bottom;
+         rect.bottom -= rect.top;
+         rect.top = 0;
+         rect.right -= rect.left;
+         rect.left = 0;
+         rect64 rectWindow64;
+         m_puiHost->GetWindowRect(rectWindow64);
+         class rect rectWindow;
+         rectWindow = rectWindow64;
+         RECT rectDesktop;
+         ::GetWindowRect(::GetDesktopWindow(), &rectDesktop);
+         int w = rectDesktop.right;
+         int h = rectDesktop.bottom;
+         //HBITMAP hbmp = ::CreateCompatibleBitmap(hdcWindow, w, h);
+         //HDC hdc = ::CreateCompatibleDC(hdcWindow);
+         //HBITMAP hbmpOld =  (HBITMAP) ::SelectObject(hdc, (HGDIOBJ) hbmp);
+         //HFONT hfontOld = NULL;
+         //HFONT hfont = NULL;
+
+
+
+         if(!m_dib->create(lprect->right - lprect->left, lprect->bottom - lprect->top))
+            return;
+
+         m_dib->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
+
+         m_dib->get_graphics()->FillSolidRect(0, 0, lprect->right - lprect->left, lprect->bottom - lprect->top, 0);
+         //::BitBlt(hdc, lprect->left + rectWindow.left - m_rect.left, lprect->top + rectWindow.top - m_rect.top, lprect->right - lprect->left, lprect->bottom - lprect->top, hdcWindow, lprect->left, lprect->top, SRCCOPY);
+         try
          {
-            m_bOpenUrl = false;
-            string strOpenUrl = m_strOpenUrl;
-            m_strOpenUrl.Empty();
-            open_url(strOpenUrl);
+           // ::ca::graphics_sp g(get_app());
+            //g->Attach(hdc);
+            //::ca::graphics * pgraphics = m_psystem->graphics_from_os_data(hdc);
+            //g->set_app(m_puiHost->m_papp);
+            m_puiHost->_000OnDraw(m_dib->get_graphics());
          }
-         else if(is_installation_lock_file_locked())
+         catch(...)
          {
-            reload_plugin();
+         }
+
+         try
+         {
+            ::ca::graphics_sp g(get_app());
+
+            g->Attach(hdcWindow);
+
+            g->set_alpha_mode(::ca::alpha_mode_blend);
+
+            g->BitBlt(lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top, m_dib->get_graphics(), 0, 0, SRCCOPY);
+
+            g->Detach();
+         }
+         catch(...)
+         {
+         }
+
+         /*POINT pointViewport;
+         ::SetViewportOrgEx(hdc, 0, 0, &pointViewport);
+         ::BitBlt(hdcWindow, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top, hdc, lprect->left + rectWindow.left - m_rect.left, lprect->top + rectWindow.top - m_rect.top, SRCCOPY);
+         ::SelectObject(hdc, (HGDIOBJ) hbmpOld);
+         if(hfontOld != NULL)
+         {
+            ::SelectObject(hdc,(HGDIOBJ)  hfontOld);
+         }
+         if(hfont != NULL)
+         {
+            ::DeleteObject(hfont);
+         }
+         ::DeleteObject(hbmp);
+         ::DeleteDC(hdc);*/
+
+         try
+         {
+
+            if(m_bOpenUrl)
+            {
+               m_bOpenUrl = false;
+               string strOpenUrl = m_strOpenUrl;
+               m_strOpenUrl.Empty();
+               open_url(strOpenUrl);
+            }
+            else if(is_installation_lock_file_locked())
+            {
+               reload_plugin();
+            }
+
+         }
+         catch(...)
+         {
          }
 
       }
@@ -576,7 +584,7 @@ namespace plugin
 
                         strCommandLine += " install";
 
-                        Sys(m_psystem).install().start(strCommandLine);
+                        m_strReloadCommandLine = strCommandLine;
 
                         m_bReload = true;
 
@@ -618,13 +626,20 @@ namespace plugin
       }
    }
 
-
+   void my_se_translator_function(unsigned int, struct _EXCEPTION_POINTERS* )
+   {
+   }
 
    bool plugin::finalize()
    {
 
       if(!m_bAppStarted)
          return true;
+
+
+      g_bExiting = true;
+
+      _set_se_translator(&my_se_translator_function);
 
       try
       {

@@ -39,6 +39,7 @@ namespace hotplugin
 
       DWORD                         m_nCa2StarterStartThreadID;
       bool                          m_bReload;
+      vsstring                      m_strReloadCommandLine;
 
 
       plugin();

@@ -57,7 +57,7 @@ bool WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
 {
    if (dwReason == DLL_PROCESS_ATTACH)
    {
-
+      g_bExiting = false;
       use_base_ca2_allocator();
 
 
@@ -67,7 +67,7 @@ bool WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
    }
    else if (dwReason == DLL_THREAD_DETACH)
    {
-      initialize_primitive_heap();
+//      initialize_primitive_heap();
 //      __term_thread();
    }
 

@@ -37,8 +37,8 @@ simple_app::simple_app()
    initialize_primitive_heap();
 
 
-	_init_atexit();
-	_initterm(__xc_a, __xc_z);			// call C++ constructors
+//	_init_atexit();
+//	_initterm(__xc_a, __xc_z);			// call C++ constructors
 
    initialize_primitive_trace();
 
@@ -51,7 +51,7 @@ simple_app::~simple_app()
    
    finalize_primitive_heap();
 
-	_doexit();
+	//_doexit();
 	_term_args();
 	ExitProcess(m_iReturn);
 

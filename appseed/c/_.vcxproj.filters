@@ -433,9 +433,6 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="_initterm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="spa\spa_plugin.cpp">
       <Filter>Source Files\spa</Filter>
     </ClCompile>

@@ -25,6 +25,8 @@
 #include <signal.h>
 #endif
 
+extern CLASS_DECL_ca bool g_bExiting;
+
 
 namespace exception
 {

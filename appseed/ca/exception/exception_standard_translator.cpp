@@ -75,6 +75,8 @@ namespace exception
 #ifdef WINDOWS
    void __cdecl translator::filter2(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
    {
+      if(g_bExiting)
+         return;
       UNREFERENCED_PARAMETER(uiCode);
       ::ca::application * papp = NULL;
       switch (ppointers->ExceptionRecord->ExceptionCode)
@@ -358,3 +360,6 @@ namespace exception
 
 
 } // namespace exception
+
+
+CLASS_DECL_ca bool g_bExiting;
