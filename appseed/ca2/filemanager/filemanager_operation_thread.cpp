@@ -146,7 +146,7 @@ int file_manager_operation_thread::run()
 {
    int iStepSetCount = 77;
    int iStepSetSleep = 84;
-   while(true)
+   while(get_run())
    {
       int i = iStepSetCount;
       while(i > 0)

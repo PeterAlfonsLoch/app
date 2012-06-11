@@ -49,9 +49,16 @@ namespace spa
 
       if(is_installation_lock_file_locked())
       {
-         // shouldn't do advanced operations using ca2
-         // starter_start will only kick a default app-install.exe if one isn't already running, cleaning file lock if any
-         m_phost->starter_start(": app=session session_start=session app_type=application install");
+         
+         set_installing_ca2();
+
+         if(!m_phost->m_bInstalling)
+         {
+            m_phost->m_bInstalling = true;
+            // shouldn't do advanced operations using ca2
+            // starter_start will only kick a default app-install.exe if one isn't already running, cleaning file lock if any
+            m_phost->starter_start(": app=session session_start=session app_type=application install");
+         }
          return;
       }
 
@@ -73,6 +80,7 @@ namespace spa
          FN_NEW_HOTPLUGIN fn_new_hotplugin = ca2library.get < FN_NEW_HOTPLUGIN >("new_hotplugin");
          m_phost->m_pplugin = fn_new_hotplugin();
          m_phost->m_pplugin->m_phost = m_phost;
+         m_phost->m_bInstalling = false;
          m_phost->start_ca2_system();
          delete this;
          return;

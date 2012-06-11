@@ -427,9 +427,6 @@
     <ClCompile Include="_mem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="_initterm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -531,9 +528,6 @@
     </ClCompile>
     <ClCompile Include="cpu_architecture.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_crt0dll.cpp">
-      <Filter>Source Files\windows</Filter>
     </ClCompile>
     <ClCompile Include="conv.cpp">
       <Filter>Source Files</Filter>

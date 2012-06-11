@@ -8,6 +8,8 @@
 namespace ex1
 {
 
+   HMODULE g_hmoduleOs = NULL;
+
    application::application()
    {
    }
@@ -24,9 +26,17 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
 
       System.factory().creatable_large < ::ex1::file_exception > ();
 
-      HMODULE hmodule = ::LoadLibraryA("os.dll");
-      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::GetProcAddress(hmodule, "ca2_factory_exchange");
-      pfn_ca2_factory_exchange(this);
+      if(g_hmoduleOs == NULL)
+      {
+         g_hmoduleOs = ::LoadLibraryA("os.dll");
+      }
+
+      if(g_hmoduleOs != NULL)
+      {
+         PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::GetProcAddress(g_hmoduleOs, "ca2_factory_exchange");
+         pfn_ca2_factory_exchange(this);
+      }
+
 #elif defined(LINUX)
       System.factory().creatable_large < ::ex1::file_exception > ();
 

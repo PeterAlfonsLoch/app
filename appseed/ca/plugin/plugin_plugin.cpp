@@ -6,6 +6,12 @@ void CLASS_DECL_ca __cdecl _ca2_purecall_()
     throw simple_exception();
 }
 
+namespace ex1
+{
+
+   extern HMODULE g_hmoduleOs;
+
+}
 
 namespace plugin
 {
@@ -584,7 +590,10 @@ namespace plugin
 
                         strCommandLine += " install";
 
-                        m_phost->m_strReloadCommandLine = strCommandLine;
+                        m_phost->m_pszReloadCommandLine = (const char *) HeapAlloc(GetProcessHeap(), 0, strCommandLine.get_length() + 1);
+                        strncpy((char *) m_phost->m_pszReloadCommandLine, strCommandLine, strCommandLine.get_length() + 1);
+
+                        m_phost->m_bInstalling = true;
 
                         m_phost->m_bReload = true;
 
@@ -667,11 +676,14 @@ namespace plugin
 
          if(pthread->m_bRun)
          {
-            *m_pbReady = false;
+            if(m_pbReady != NULL)
+            {
+               *m_pbReady = false;
+            }
             pthread->m_pbReady = m_pbReady;
             pthread->m_bRun = false;
             int iRepeat = 0;
-            while(!*m_pbReady && iRepeat < 49)
+            while((m_pbReady != NULL || !*m_pbReady) && iRepeat < 49)
             {
                Sleep(284);
                iRepeat++;
@@ -699,7 +711,26 @@ namespace plugin
       catch(...)
       {
       }
+
+
+      while(true)
+      {
+         try
+         {
+
+            if(!::FreeLibrary(ex1::g_hmoduleOs))
+            {
+               break;
+            }
+
+         }
+         catch(...)
+         {
+         }
+      }
+
       return true;
+
    }
 
 

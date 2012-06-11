@@ -8,17 +8,44 @@ DWORD g_MsDownloadSize = 1024 * 16;
 char * g_MsDownloadBuffer = NULL;
 vsstring * g_pstrHost = NULL;
 
+
+void reset_http()
+{
+
+   g_hSession           = NULL;
+
+   g_hConnect           = NULL;
+   
+   g_hPreviousRequest   = NULL;
+
+   g_MsDownloadSize     = 1024 * 16;
+
+   g_MsDownloadBuffer   = NULL;
+
+   g_pstrHost           = NULL;
+
+   ::LoadLibrary("Wininet.dll");
+
+}
+
+
 void prepare_http()
 {
+   
    if(g_MsDownloadBuffer == NULL)
    {
+
       g_MsDownloadBuffer = new char[g_MsDownloadSize];
+
    }
 
    if(g_pstrHost == NULL)
    {
+
       g_pstrHost = new vsstring();
+
    }
+
 }
 
 

@@ -88,7 +88,7 @@ namespace ca2
       }
       int iRetry = 50;
       string strRead;
-      while(iRetry > 0)
+      while(iRetry > 0 && m_bRun)
       {
          strRead = m_process.m_pipe.m_pipeOut.read();
          if(strRead.is_empty())

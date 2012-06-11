@@ -326,9 +326,8 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAsManaged>false</CompileAsManaged>
       <StringPooling>false</StringPooling>
-      <ExceptionHandling>false</ExceptionHandling>
-      <RuntimeLibrary>
-      </RuntimeLibrary>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <FunctionLevelLinking>
       </FunctionLevelLinking>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -351,7 +350,7 @@
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../app/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
       </EntryPointSymbol>
     </Link>
@@ -1258,7 +1257,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="strx.cpp" />
     <ClCompile Include="version.cpp" />
     <ClCompile Include="windows\c_os.cpp" />
-    <ClCompile Include="windows\c_os_crt0dll.cpp" />
     <ClCompile Include="windows\c_os_c_dll.cpp" />
     <ClCompile Include="windows\c_os_http.cpp" />
     <ClCompile Include="windows\c_os_launcher.cpp" />
@@ -1270,7 +1268,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="windows\c_os_simple_shell_launcher.cpp" />
     <ClCompile Include="windows\c_os_small_ipc_channel.cpp" />
     <ClCompile Include="_.cpp" />
-    <ClCompile Include="_initterm.cpp" />
     <ClCompile Include="_math.cpp" />
     <ClCompile Include="_mem.cpp" />
     <ClCompile Include="stra.cpp" />

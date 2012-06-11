@@ -144,14 +144,28 @@ namespace hotplugin
 
    void host::on_paint(HDC hdcWindow, LPCRECT lprect)
    {
+
       if(m_pplugin != NULL)
       {
-         m_pplugin->on_paint(hdcWindow, lprect);
+
+         try
+         {
+
+            m_pplugin->on_paint(hdcWindow, lprect);
+
+         }
+         catch(...)
+         {
+         }
+
       }
       else
       {
+
          plugin::on_paint(hdcWindow, lprect);
+
       }
+
    }
 
 #ifdef WINDOWS
@@ -204,11 +218,22 @@ namespace hotplugin
 
    bool host::finalize()
    {
+      
       if(m_pplugin != NULL)
       {
-         return m_pplugin->finalize();
+
+         plugin * pplugin = m_pplugin;
+
+         m_pplugin = NULL;
+
+         pplugin->finalize();
+
+         return true;
+
       }
+
       return true;
+
    }
 
    void host::start_plugin()
