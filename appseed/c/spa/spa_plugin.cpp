@@ -87,6 +87,90 @@ namespace spa
       }
       else
       {
+
+         char szCa2ModuleFolder[MAX_PATH];
+         
+         if(dir::get_ca2_module_folder_dup(szCa2ModuleFolder))
+         {
+
+            stra_dup straPrevious;
+
+            ::process_modules(straPrevious, ::GetCurrentProcessId());
+
+         
+
+            vsstring strDir = dir::path(szCa2ModuleFolder, "*.*");
+
+            stra_dup stra;
+
+            dir::ls(stra, strDir);
+
+            try
+            {
+
+               bool bRetry = true;
+
+               while(bRetry)
+               {
+
+                  bRetry = false;
+
+                  for(int i = 0; i < stra.get_count(); i++)
+                  {
+
+                     HMODULE hmodule;
+
+                     if(stricmp_dup(stra[i], "npca2.dll") == 0)
+                        continue;
+
+                     if(::GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, stra[i], &hmodule) != FALSE)
+                     {
+
+                        bRetry = true;
+
+                        try
+                        {
+                  
+                           ::FreeLibrary(hmodule);
+
+                        }
+                        catch(...)
+                        {
+
+                        }
+
+                     }
+
+
+                  }
+
+               }
+
+            }
+            catch(...)
+            {
+            }
+
+
+      
+      
+            stra_dup straCurrent;
+
+            ::process_modules(straCurrent, ::GetCurrentProcessId());
+
+
+
+      
+      
+            ::load_modules_diff(straPrevious, straCurrent, szCa2ModuleFolder);
+
+      
+            ::initialize_primitive_heap();
+
+            ::reset_http();
+
+         }
+
          m_phost->starter_start(": app=session session_start=session app_type=application install");
       }
 

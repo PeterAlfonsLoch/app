@@ -576,14 +576,14 @@ RetryHost:
          dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x86\\c.dll"));
          dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x86\\ca.dll"));
          dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x86\\ca2.dll"));
-         dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x86\\npca2.dll"));
-         dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x86\\iexca2.dll"));
+         //dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x86\\npca2.dll"));
+         //dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x86\\iexca2.dll"));
 #else
          dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x64\\c.dll"));
          dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x64\\ca.dll"));
          dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x64\\ca2.dll"));
-         dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x64\\npca2.dll"));
-         dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x64\\iexca2.dll"));
+         //dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x64\\npca2.dll"));
+         //dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x64\\iexca2.dll"));
 #endif
          // TODO: simular virtualmente a cópia dos arquivos também, se tiver aquivo travado, também retornar
 
@@ -710,7 +710,7 @@ RetryHost:
 
 
          new_progress_end(0.8);
-         //CopyFileList(straFileList);
+         CopyFileList(straFileList);
 
          new_progress_end(1.0);
          iRetry = 0;

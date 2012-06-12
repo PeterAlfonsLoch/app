@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 #endif
 
-void dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
+bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 {
 
 #ifdef WINDOWS
@@ -16,6 +16,11 @@ void dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
    HMODULE hmodule = ::GetModuleHandleA("ca.dll");
    if(hmodule == NULL)
       hmodule = ::GetModuleHandleA("spalib.dll");
+   if(hmodule == NULL)
+   {
+      *lpszModuleFolder = '\0';
+      return false;
+   }
    GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
    LPTSTR lpszModuleFileName;
    GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName);
@@ -28,6 +33,8 @@ void dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
          lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] = '\0';
       }
    }
+
+   return true;
 
 #else
 

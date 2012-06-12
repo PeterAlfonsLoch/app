@@ -226,8 +226,7 @@
       <CompileAsManaged>false</CompileAsManaged>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>false</ExceptionHandling>
-      <RuntimeLibrary>
-      </RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <FunctionLevelLinking>
       </FunctionLevelLinking>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>

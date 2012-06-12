@@ -3,6 +3,7 @@
 #include "c/os/os.h"
 #include "c_os_http.h"
 #include "c_os_registry.h"
+#include "c_os_process.h"
 
 
 #define GetAValue(rgb)      (LOBYTE((rgb)>>24))
