@@ -163,10 +163,6 @@ bool process_modules(stra_dup & stra, DWORD processID)
 
    char * szImage = (char *) _ca_alloc(iImageSize);
 
-   GetModuleFileNameEx(hProcess, NULL, szImage, iImageSize);
-
-   bool bFound = false;
-
    if(EnumProcessModules(hProcess, hMods, sizeof(HMODULE) * iMaxModuleCount, &cbNeeded))
    {
 
@@ -190,7 +186,7 @@ bool process_modules(stra_dup & stra, DWORD processID)
 
    CloseHandle( hProcess );
 
-   return bFound;
+   return true;
 
 }
 
