@@ -29,6 +29,21 @@ namespace spa
 
       };
 
+
+      HANDLE         m_hmutexInstall;
+
+      stra_dup       m_straTerminateProcesses;
+      stra_dup       m_straRestartCommandLine;
+      stra_dup       m_straRestartProcess;
+      vsstring       m_strLastHost;
+      vsstring       m_strCurrentHost;
+      bool           m_bStarterStart;
+#ifdef WINDOWS
+      MSG            m_msg;
+#endif
+      vsstring       m_strPlatform;
+
+
       DWORD          m_dwDownloadCallbackLast100k;
       DWORD          m_iDownloadCallbackColumn;
       uint64_t       m_dwDownloadLen;
@@ -79,7 +94,6 @@ namespace spa
 
       bool           m_bInstallSet;
 
-      bool           m_bStarterStart;
       double         m_dProgressStart;
       double         m_dProgressEnd;
       stra_dup       m_strSpa;

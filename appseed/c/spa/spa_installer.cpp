@@ -125,18 +125,6 @@ typedef int (* CA2MAIN)(const char * lpCmdLine, int nCmdShow);
 
 int run_file(const char * pszFile, int nCmdShow);
 
-HANDLE g_hmutexInstall = NULL;
-
-stra_dup g_straTerminateProcesses;
-stra_dup g_straRestartCommandLine;
-stra_dup g_straRestartProcess;
-vsstring g_strLastHost;
-vsstring g_strCurrentHost;
-bool g_bStarterStart = false;
-#ifdef WINDOWS
-MSG g_msg;
-#endif
-vsstring g_strPlatform = "";
 
 
 namespace spa
@@ -146,6 +134,7 @@ namespace spa
 
    installer::installer()
    {
+
       m_bMsDownload              = false;
       m_dAnime                   = 0.0;
       g_bInstalling              = false;
@@ -162,6 +151,10 @@ namespace spa
       m_hwnd                     = NULL;
       m_bForceUpdatedBuild       = false;
       m_bSynch                   = true;
+      m_hmutexInstall            = NULL;
+      m_bStarterStart            = false;
+      m_strPlatform              = "";
+
    }
 
 
@@ -187,7 +180,7 @@ namespace spa
 
 
 
-      g_hmutexInstall = NULL;
+      m_hmutexInstall = NULL;
       //SECURITY_ATTRIBUTES MutexAttributes;
       //ZeroMemory( &MutexAttributes, sizeof(MutexAttributes) );
       //MutexAttributes.nLength = sizeof( MutexAttributes );
@@ -251,7 +244,7 @@ namespace spa
 install_begin:;
       installation_file_lock(true);
       {
-         g_strLastHost = "";
+         m_strLastHost = "";
          m_strSpa.remove_all();
          m_iTotalGzLen = 0;
          m_NeedRestartBecauseOfReservedFile = false;
@@ -277,7 +270,7 @@ RetryHost:
          iRet= calc_host(strSpaHost, iHostRetry);
          if(iRet < 0)
             return iRet;
-         g_strCurrentHost = strSpaHost;
+         m_strCurrentHost = strSpaHost;
          trace(("got server: " + strSpaHost));
          m_strInstall = "http://" + strSpaHost + "/stage/";
          m_strInstallGz = m_strInstall;
@@ -573,34 +566,34 @@ RetryHost:
          simple_uint_array dwa;
 
 #ifdef X86
-         dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x86\\c.dll"));
-         dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x86\\ca.dll"));
-         dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x86\\ca2.dll"));
-         //dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x86\\npca2.dll"));
-         //dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x86\\iexca2.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\c.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\ca.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\ca2.dll"));
+         //dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\npca2.dll"));
+         //dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\iexca2.dll"));
 #else
-         dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x64\\c.dll"));
-         dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x64\\ca.dll"));
-         dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x64\\ca2.dll"));
-         //dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x64\\npca2.dll"));
-         //dll_processes(dwa, g_straTerminateProcesses, dir::ca2("stage\\x64\\iexca2.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x64\\c.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x64\\ca.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x64\\ca2.dll"));
+         //dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x64\\npca2.dll"));
+         //dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x64\\iexca2.dll"));
 #endif
          // TODO: simular virtualmente a cópia dos arquivos também, se tiver aquivo travado, também retornar
 
 
 #ifdef WINDOWS
 
-         g_straRestartCommandLine.remove_all();
-         g_straRestartProcess.remove_all();
+         m_straRestartCommandLine.remove_all();
+         m_straRestartProcess.remove_all();
 
-         if(g_straTerminateProcesses.get_count() > 0)
+         if(m_straTerminateProcesses.get_count() > 0)
          {
             if(!m_bStarterStart)
                return 0;
             vsstring strCommand;
             bool bAsk;
             bool bRestart;
-            for(int i = 0; i < g_straTerminateProcesses.get_count(); i++)
+            for(int i = 0; i < m_straTerminateProcesses.get_count(); i++)
             {
                if(i >= 1)
                {
@@ -608,7 +601,7 @@ RetryHost:
                }
                bAsk = true;
                bRestart = true;
-               vsstring strPath = g_straTerminateProcesses.element_at(i);
+               vsstring strPath = m_straTerminateProcesses.element_at(i);
                if(str_ends_ci_dup(strPath, "\\app-install.exe") && stristr_dup(strPath, "\\ca2\\") != NULL)
                {
                   bAsk = false;
@@ -636,7 +629,7 @@ RetryHost:
                   {
                      ::CloseHandle(hProcess);
                      str = "Failed to open process for termination - ";
-                     str += g_straTerminateProcesses.element_at(i);
+                     str += m_straTerminateProcesses.element_at(i);
                      str += ".";
                      ::MessageBox(NULL, "Failed to open process for termination", str, MB_OK);
 
@@ -645,8 +638,8 @@ RetryHost:
 
                   if(bRestart)
                   {
-                     g_straRestartCommandLine.add(get_command_line(hProcess));
-                     g_straRestartProcess.add(g_straTerminateProcesses.element_at(i));
+                     m_straRestartCommandLine.add(get_command_line(hProcess));
+                     m_straRestartProcess.add(m_straTerminateProcesses.element_at(i));
                   }
 
 
@@ -667,7 +660,7 @@ RetryHost:
                   {
                      ::CloseHandle(hProcess);
                      str = "Timeout while waiting for process - ";
-                     str += g_straTerminateProcesses.element_at(i);
+                     str += m_straTerminateProcesses.element_at(i);
                      str += " - to exit.";
                      ::MessageBox(NULL, "Failed to open process for termination", str, MB_OK);
                      return -1;
@@ -683,14 +676,14 @@ RetryHost:
             //file_put_contents_dup("C:\\ca2\\machine\\on_after_spaadmin.txt", strCommand);
          }
 
-         if(g_straRestartCommandLine.get_count() > 0)
+         if(m_straRestartCommandLine.get_count() > 0)
          {
 
             HWND hwndSpaBoot = ::FindWindow(NULL, "ca2::fontopus::ccvotagus::spaboot:callback_window");
 
             if(hwndSpaBoot != NULL)
             {
-               vsstring str = g_straRestartCommandLine.encode_v16();
+               vsstring str = m_straRestartCommandLine.encode_v16();
                COPYDATASTRUCT cds;
                memset_dup(&cds, 0, sizeof(cds));
                cds.dwData = 15111984;
@@ -2013,34 +2006,34 @@ restart_download:
          //         Sleep((1984 + 1977) * 5);
          //::PostMessage(g_hwnd, WM_CLOSE, 0, 0);
 
-         if(g_straRestartProcess.get_count() > 0)
+         if(m_straRestartProcess.get_count() > 0)
          {
 
             vsstring str;
 
             str = "Now :\n\n";
 
-            for(int i = 0; i < g_straRestartProcess.get_count(); i++)
+            for(int i = 0; i < m_straRestartProcess.get_count(); i++)
             {
-               if(file_is_equal_path(file_get_mozilla_firefox_plugin_container_path(), g_straRestartProcess[i]))
+               if(file_is_equal_path(file_get_mozilla_firefox_plugin_container_path(), m_straRestartProcess[i]))
                {
-                  g_straRestartProcess.remove_at(i);
+                  m_straRestartProcess.remove_at(i);
                   str += "You may reload the Firefox plugin or plugins that has/have been shutdown.\n\n";
                }
             }
 
-            if(g_straRestartProcess.get_count() > 0)
+            if(m_straRestartProcess.get_count() > 0)
             {
                str += "You may restart the applications listed below if they are not restarted automatically:\n\n";
-               for(int i = 0; i < g_straRestartProcess.get_count(); i++)
+               for(int i = 0; i < m_straRestartProcess.get_count(); i++)
                {
                   str += "\t";
-                  str += g_straRestartProcess[i];
-                  if(i == g_straRestartProcess.get_count() - 1)
+                  str += m_straRestartProcess[i];
+                  if(i == m_straRestartProcess.get_count() - 1)
                   {
                      str += ".";
                   }
-                  else if(i == g_straRestartProcess.get_count() - 2)
+                  else if(i == m_straRestartProcess.get_count() - 2)
                   {
                      str += ", and;\n";
                   }
@@ -2270,13 +2263,13 @@ RetryHost:
          trace("Retrying to guess host...");
       }
       iHostRetry = 1;
-      if(g_strLastHost.is_empty())
+      if(m_strLastHost.is_empty())
       {
-         g_strLastHost = g_strCurrentHost;
+         m_strLastHost = m_strCurrentHost;
       }
       else
       {
-         g_strLastHost = g_strCurrentHost + ";" + g_strLastHost;
+         m_strLastHost = m_strCurrentHost + ";" + m_strLastHost;
       }
       vsstring strUrl;
 
@@ -2286,9 +2279,9 @@ RetryHost:
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=spa_host&version=stage";
 #endif
 
-      if(!g_strLastHost.is_empty())
+      if(!m_strLastHost.is_empty())
       {
-         strUrl += "&last_host=" + g_strLastHost;
+         strUrl += "&last_host=" + m_strLastHost;
       }
       trace("***Guessing fastest mirror");
       int iGuessRetry = 0;
@@ -2298,7 +2291,7 @@ RetryHost:
          strSpaHost = ms_get_dup(strUrl, false, &::ms_get_callback, (void *) this);
          if(strSpaHost.is_empty())
          {
-            if(g_strLastHost.is_empty())
+            if(m_strLastHost.is_empty())
             {
                trace_add(".");
                Sleep(484);
@@ -2318,10 +2311,10 @@ RetryHost:
             break;
          }
       }
-      if(g_strCurrentHost == strSpaHost)
+      if(m_strCurrentHost == strSpaHost)
       {
-         g_strLastHost.clear();
-         g_strCurrentHost.clear();
+         m_strLastHost.clear();
+         m_strCurrentHost.clear();
          goto RetryHost;
       }
       return 0;
