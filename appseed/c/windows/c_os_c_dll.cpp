@@ -6,13 +6,25 @@ int c_dll_main(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
 	UNREFERENCED_PARAMETER(lpReserved);
 	if(dwReason == DLL_PROCESS_ATTACH)
 	{
-      //initialize_primitive_heap();
+
+      initialize_primitive_heap();
+
+      if(!os_initialize())
+         return FALSE;
+
       ::OutputDebugString("::ca2:: c.dll :: initializing!\n");
+
 	}
 	else if (dwReason == DLL_PROCESS_DETACH)
 	{
+      
       ::OutputDebugString("::ca2:: c.dll :: terminating!\n");
-      //finalize_primitive_heap();
+
+      os_finalize();
+
+      finalize_primitive_heap();
+
+
 	}
 	return 1;   // ok
 }
