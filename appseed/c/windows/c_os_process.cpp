@@ -238,7 +238,7 @@ bool load_modules_diff(stra_dup & straOld, stra_dup & straNew, const char * pszE
       for(int j = 0; j < straNew.get_count(); j++)
       {
 
-         if(stricmp(straOld[i], straNew[i]) == 0)
+         if(stricmp(straOld[i], straNew[j]) == 0)
          {
          
             bFound = true;
