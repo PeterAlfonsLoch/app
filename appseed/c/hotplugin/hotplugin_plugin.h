@@ -8,7 +8,8 @@ namespace hotplugin
    class host;
 
 
-   class CLASS_DECL_c plugin
+   class CLASS_DECL_c plugin :
+      virtual public ::small_ipc_channel
    {
    public:
 
@@ -30,6 +31,7 @@ namespace hotplugin
       bool                          m_bApp;
       host *                        m_phost;
       bool                          m_bOk;
+      bool                          m_bStream;
 
       void *                        m_pbitmap;
       DWORD *                       m_pcolorref;
@@ -113,6 +115,8 @@ namespace hotplugin
       virtual void set_ca2_installation_ready(bool bReady = true);
 
       virtual void set_status(const char * pszStatus);
+
+      virtual void restart();
 
    };
 

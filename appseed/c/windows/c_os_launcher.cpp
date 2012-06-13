@@ -11,7 +11,9 @@ bool launcher::start()
    
    vsstring strDir(dir::name(strPath));
 
-   call_async(strPath, NULL, strDir, SW_HIDE);
+   vsstring strParams = get_params();
+
+   call_async(strPath, strParams, strDir, SW_HIDE);
 
    return true;
 

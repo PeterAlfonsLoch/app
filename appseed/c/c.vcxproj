@@ -1198,6 +1198,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     </ClCompile>
     <ClCompile Include="gdi.cpp" />
     <ClCompile Include="heap.cpp" />
+    <ClCompile Include="hotplugin\hotplugin_container_launcher.cpp" />
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
@@ -1228,6 +1229,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="simple_mutex.cpp" />
     <ClCompile Include="simple_obj.cpp" />
     <ClCompile Include="simple_shell_launcher.cpp" />
+    <ClCompile Include="small_ipc_channel.cpp" />
     <ClCompile Include="spa\spa.cpp" />
     <ClCompile Include="spa\spa_boot.cpp" />
     <ClCompile Include="spa\spa_bz.cpp" />

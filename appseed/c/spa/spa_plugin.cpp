@@ -30,6 +30,7 @@ namespace spa
       m_iEdge                 = -1;
       m_bAppStarted           = false;
       m_pbReady               = NULL;
+      m_dwTimeout             = 284;
 
    }
 
@@ -75,15 +76,35 @@ namespace spa
 #endif
 #endif
          //Sleep(15 * 1000);
-         ::ca::library ca2library;
-         ca2library.open("ca");
-         FN_NEW_HOTPLUGIN fn_new_hotplugin = ca2library.get < FN_NEW_HOTPLUGIN >("new_hotplugin");
-         m_phost->m_pplugin = fn_new_hotplugin();
-         m_phost->m_pplugin->m_phost = m_phost;
-         m_phost->m_bInstalling = false;
-         m_phost->start_ca2_system();
-         delete this;
+
+         vsstring str;
+
+         #ifdef _AMD64_
+         str += itohex_dup(((int*) m_phost)[1]);
+         str = itohex_dup((int) m_phost);
+         #else    
+         str = itohex_dup((int) m_phost);
+         #endif
+
+
+         ::hotplugin::container_launcher launcher(str);
+
+         vsstring strChannel = "/ca2/ca2plugin-container-";
+         strChannel += str;
+
+
+         open_ab(strChannel, "plugin-container.exe", &launcher);
+
+
+         if(m_phost->m_bStream)
+         {
+            //set_ready();
+            ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, m_phost->m_countMemory);
+         }
+
+
          return;
+
       }
       else
       {
@@ -227,9 +248,24 @@ install:
 
    }
 
-
    void plugin::on_paint(HDC hdcWindow, LPCRECT lprect)
    {
+
+      if(m_hwnd != NULL)
+      {
+         struct
+         {
+            HDC m_hdc;
+            RECT m_rect;
+         } paint;
+
+         paint.m_hdc = hdcWindow;
+         paint.m_rect = *lprect;
+
+         if(ensure_tx(::hotplugin::message_paint, &paint, sizeof(paint)))
+            return;
+
+      }
 
 
       RECT rectWindow;
@@ -414,30 +450,46 @@ install:
 #ifdef WINDOWS
    uint_ptr plugin::message_handler(uint_ptr uiMessage, WPARAM wparam, LPARAM lparam)
    {
-      switch(uiMessage)
+      if(m_hwnd != NULL)
       {
-      case WM_TIMER:
+         
+         MSG msg;
+
+         // only valid fields
+         msg.message = uiMessage;
+         msg.wParam = wparam;
+         msg.lParam = lparam;
+
+         ensure_tx(::hotplugin::message_message, &msg, sizeof(msg));
+
+      }
+      else
+      {
+         switch(uiMessage)
          {
-            switch(wparam)
+         case WM_TIMER:
             {
-            case 8477:
+               switch(wparam)
                {
-                  KillTimer(get_host_window(), 8477);
-                  start_ca2();
+               case 8477:
+                  {
+                     KillTimer(get_host_window(), 8477);
+                     start_ca2();
+                  }
+                  break;
                }
-               break;
             }
-         }
-         return 0;
-      default:
-         {
-            if((uiMessage == WM_LBUTTONUP
-            || uiMessage == WM_RBUTTONUP
-            || uiMessage == WM_MBUTTONUP) &&
-               is_installing_ca2())
+            return 0;
+         default:
             {
-               m_iHealingSurface++;
-               m_canvas.m_iMode++;
+               if((uiMessage == WM_LBUTTONUP
+               || uiMessage == WM_RBUTTONUP
+               || uiMessage == WM_MBUTTONUP) &&
+                  is_installing_ca2())
+               {
+                  m_iHealingSurface++;
+                  m_canvas.m_iMode++;
+               }
             }
          }
       }

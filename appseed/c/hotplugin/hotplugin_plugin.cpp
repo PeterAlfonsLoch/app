@@ -1081,6 +1081,17 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
    }
 
 
+   void plugin::restart()
+   {
+      
+      ::small_ipc_channel::close();
+      
+      m_phost->m_bReload = true;
+
+   }
+
+
+
 } // namespace hotplugin
 
 

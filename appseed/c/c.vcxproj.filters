@@ -553,6 +553,12 @@
     <ClCompile Include="simple_shell_launcher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="small_ipc_channel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hotplugin\hotplugin_container_launcher.cpp">
+      <Filter>Source Files\hotplugin</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="c.def">

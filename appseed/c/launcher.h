@@ -10,6 +10,8 @@ public:
 
    virtual vsstring get_executable_path() = 0;
 
+   virtual vsstring get_params() { return ""; }
+
    virtual bool start();
 
 };

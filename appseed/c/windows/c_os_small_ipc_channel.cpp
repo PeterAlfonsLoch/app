@@ -76,7 +76,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage)
 
    COPYDATASTRUCT cds;
 
-   cds.dwData = 15111984;
+   cds.dwData = 0xffffffffu;
    cds.cbData = (DWORD) strlen_dup(pszMessage);
    cds.lpData = (void *) pszMessage;
 
@@ -86,9 +86,28 @@ bool small_ipc_tx_channel::send(const char * pszMessage)
 }
 
 
+bool small_ipc_tx_channel::send(int message, void * pdata, int len)
+{
+
+   if(message == 0xffffffff)
+      return false;
+
+   COPYDATASTRUCT cds;
+
+   cds.dwData = (DWORD) message;
+   cds.cbData = (DWORD) max(0, len);
+   cds.lpData = (void *) pdata;
+
+   SendMessage(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds);
+
+   return true;
+}
+
+
 small_ipc_rx_channel::small_ipc_rx_channel()
 {
-   m_preceiver = NULL;
+   m_preceiver    = NULL;
+   m_bWait        = false;
 }
 
 
@@ -119,6 +138,8 @@ bool small_ipc_rx_channel::create(const char * pszKey, const char * pszWindowPro
       return false;
    }
 
+   SetTimer(m_hwnd, 198477, 84, NULL);
+
    SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (long_ptr) this);
 
    m_strWindowProcModule = pszWindowProcModule;
@@ -146,6 +167,10 @@ void small_ipc_rx_channel::receiver::on_receive(const char * pszMessage)
 {
 }
 
+void small_ipc_rx_channel::receiver::on_receive(int message, void * pdata, int len)
+{
+}
+
 void * small_ipc_rx_channel::on_receive(const char * pszMessage)
 {
 
@@ -159,6 +184,18 @@ void * small_ipc_rx_channel::on_receive(const char * pszMessage)
 
 }
 
+void * small_ipc_rx_channel::on_receive(int message, void * pdata, int len)
+{
+
+   if(m_preceiver != NULL)
+   {
+      m_preceiver->on_receive(message, pdata, len);
+   }
+
+   // ODOW - on date of writing : return ignored by this windows implementation
+   return NULL;
+
+}
 
 
 LRESULT CALLBACK small_ipc_rx_channel::s_message_window_proc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
@@ -204,19 +241,75 @@ LRESULT small_ipc_rx_channel::message_window_proc(UINT message, WPARAM wparam, L
    if(message == WM_COPYDATA)
    {
       COPYDATASTRUCT * pcds = (COPYDATASTRUCT *) lparam;
-      if(pcds->dwData == 15111984)
+      if(pcds->dwData == 0xffffffffu)
       {
          vsstring strMessage((const char *)pcds->lpData, pcds->cbData);
          on_receive(strMessage);
+         if(m_bWait && m_iWait == -1)
+         {
+            m_bWait = false;
+         }
       }
-      else
+      else 
       {
-         ::DefWindowProcA(m_hwnd, message, wparam, lparam);
+         on_receive((int)pcds->dwData, pcds->lpData, pcds->cbData);
+         if(m_bWait && m_iWait == (int)pcds->dwData)
+         {
+            m_bWait = false;
+         }
       }
    }
    else
    {
-      ::DefWindowProcA(m_hwnd, message, wparam, lparam);
+      return ::DefWindowProcA(m_hwnd, message, wparam, lparam);
    }
    return 0;
 }
+
+
+
+void small_ipc_rx_channel::prepare_wait()
+{
+   
+   prepare_wait(-1);
+
+}
+
+bool small_ipc_rx_channel::wait(DWORD dwTimeout)
+{
+   
+   return wait(-1, dwTimeout);
+
+}
+
+void small_ipc_rx_channel::prepare_wait(int message)
+{
+
+   m_bWait = true;
+   m_iWait = message;
+
+}
+
+bool small_ipc_rx_channel::wait(int message, DWORD dwTimeout)
+{
+	
+
+   MSG msg;
+
+   DWORD dwStart = ::GetTickCount();
+
+   while(m_bWait)
+	{
+      GetMessage(&msg, NULL, 0, 0xffffffffu);
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+      if(::GetTickCount() - dwStart > dwTimeout)
+      {
+         return false;
+      }
+	}
+
+   return true;
+
+}
+

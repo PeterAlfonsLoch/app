@@ -52,6 +52,7 @@ public:
 
 
    bool send(const char * pszMessage);
+   bool send(int message, void * pdata, int len);
 
 
 };
@@ -69,10 +70,13 @@ public:
    public:
 
       virtual void on_receive(const char * pszMessage);
+      virtual void on_receive(int message, void * pdata, int len);
 
    };
 
    receiver *        m_preceiver;
+   bool              m_bWait;
+   int               m_iWait;
 #ifdef WINDOWS
    vsstring          m_strWindowProcModule;
 #else
@@ -83,7 +87,7 @@ public:
 
 
    small_ipc_rx_channel();
-    virtual ~small_ipc_rx_channel();
+   virtual ~small_ipc_rx_channel();
 
 
 #ifdef WINDOWS
@@ -95,6 +99,13 @@ public:
 
 
    virtual void * on_receive(const char * pszMessage);
+   virtual void * on_receive(int message, void * pdata, int len);
+
+
+   void prepare_wait();
+   bool wait(DWORD dwTimeout);
+   void prepare_wait(int message);
+   bool wait(int message, DWORD dwTimeout);
 
 
 #ifdef WINDOWS
@@ -106,6 +117,38 @@ public:
    static void * receive_proc(void * param);
    void * receive();
 #endif
+
+};
+
+
+
+
+class CLASS_DECL_c small_ipc_channel :
+   virtual public small_ipc_tx_channel,
+   virtual public small_ipc_rx_channel::receiver
+{
+public:
+
+
+   small_ipc_rx_channel       m_rxchannel;
+   vsstring                   m_vssChannel;
+   DWORD                      m_dwTimeout;
+
+
+   small_ipc_channel();
+
+   bool open_ab(const char * pszKey, const char * pszModule, launcher * plauncher = NULL);
+   bool open_ba(const char * pszKey, const char * pszModule, launcher * plauncher = NULL);
+   bool close();
+
+   virtual void restart();
+
+   bool confirm_tx(const char * pszMessage, DWORD dwTimeout = INFINITE);
+   bool confirm_tx(int message, void * pdata, int len, DWORD dwTimeout = INFINITE);
+
+   // calls restart if confirm_tx failed
+   bool ensure_tx(const char * pszMessage, DWORD dwTimeout = INFINITE);
+   bool ensure_tx(int message, void * pdata, int len, DWORD dwTimeout = INFINITE);
 
 };
 

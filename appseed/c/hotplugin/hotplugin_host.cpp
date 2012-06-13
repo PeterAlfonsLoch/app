@@ -4,6 +4,7 @@
 namespace hotplugin
 {
 
+
    host::host()
    {
 
@@ -13,7 +14,7 @@ namespace hotplugin
       m_dProgressRate            = 0.0;
       m_bShowProgress            = false;
       m_bCa2InstallationReady    = false;
-
+      m_bStream                  = false;
       m_pvoidSystem              = NULL;
 
    }
@@ -374,6 +375,7 @@ namespace hotplugin
       }
 
    }
+
 
 
 } // namespace hotplugin

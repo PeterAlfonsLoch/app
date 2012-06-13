@@ -42,6 +42,12 @@
     <Filter Include="Header Files\bsdiff">
       <UniqueIdentifier>{66e24f5d-5dd2-44b6-8d76-9738b1df5f77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\os">
+      <UniqueIdentifier>{7fae2ecf-7b43-46ea-acc4-cb10f2e3d736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\os">
+      <UniqueIdentifier>{3434cd90-47a9-4a30-9a07-c01f55ff1cc9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="radix.h">
@@ -212,9 +218,6 @@
     <ClInclude Include="printf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="process.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="std_file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -302,6 +305,9 @@
     <ClInclude Include="simple_shell_launcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="os\os_process.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -383,9 +389,6 @@
       <Filter>Source Files\spa</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_boot.cpp">
-      <Filter>Source Files\spa</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\spa_bz.cpp">
       <Filter>Source Files\spa</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_cube_run.cpp">
@@ -543,6 +546,18 @@
     </ClCompile>
     <ClCompile Include="simple_shell_launcher.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="os\os_process.cpp">
+      <Filter>Source Files\os</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_bz.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="small_ipc_channel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include=".\hotplugin\hotplugin_container_launcher.cpp">
+      <Filter>Source Files\hotplugin</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
