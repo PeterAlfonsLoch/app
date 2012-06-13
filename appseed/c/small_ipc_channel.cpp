@@ -76,43 +76,16 @@ void small_ipc_channel::restart()
 {
 }
 
-bool small_ipc_channel::confirm_tx(const char * pszMessage, DWORD dwTimeout)
-{
-   
-   m_rxchannel.prepare_wait();
-   
-   send(pszMessage);
-
-   if(dwTimeout == INFINITE)
-      dwTimeout = m_dwTimeout;
-   
-   return m_rxchannel.wait(dwTimeout);
-
-}
-
-
-bool small_ipc_channel::confirm_tx(int message, void * pdata, int len, DWORD dwTimeout)
-{
-   
-   m_rxchannel.prepare_wait(message);
-   
-   send(message, pdata, len);
-
-   if(dwTimeout == INFINITE)
-      dwTimeout = m_dwTimeout;
-
-   return m_rxchannel.wait(message, dwTimeout);
-
-}
-
-
 
 
 // calls restart if confirm_tx failed
 bool small_ipc_channel::ensure_tx(const char * pszMessage, DWORD dwTimeout)
 {
 
-   if(!confirm_tx(pszMessage, dwTimeout))
+   if(dwTimeout == INFINITE)
+      dwTimeout = m_dwTimeout;
+
+   if(!send(pszMessage, dwTimeout))
    {
 
       restart();
@@ -129,7 +102,10 @@ bool small_ipc_channel::ensure_tx(const char * pszMessage, DWORD dwTimeout)
 bool small_ipc_channel::ensure_tx(int message, void * pdata, int len, DWORD dwTimeout)
 {
 
-   if(!confirm_tx(message, pdata, len, dwTimeout))
+   if(dwTimeout == INFINITE)
+      dwTimeout = m_dwTimeout;
+
+   if(!send(message, pdata, len, dwTimeout))
    {
 
       restart();

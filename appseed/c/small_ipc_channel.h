@@ -51,8 +51,8 @@ public:
    bool close();
 
 
-   bool send(const char * pszMessage);
-   bool send(int message, void * pdata, int len);
+   bool send(const char * pszMessage, DWORD dwTimeout);
+   bool send(int message, void * pdata, int len, DWORD dwTimeout);
 
 
 };
@@ -69,14 +69,14 @@ public:
    {
    public:
 
-      virtual void on_receive(const char * pszMessage);
-      virtual void on_receive(int message, void * pdata, int len);
+      virtual void on_receive(small_ipc_rx_channel * prxchannel, const char * pszMessage);
+      virtual void on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len);
+      virtual void on_post(small_ipc_rx_channel * prxchannel, int a, int b);
 
    };
 
    receiver *        m_preceiver;
-   bool              m_bWait;
-   int               m_iWait;
+
 #ifdef WINDOWS
    vsstring          m_strWindowProcModule;
 #else
@@ -98,14 +98,11 @@ public:
    bool destroy();
 
 
-   virtual void * on_receive(const char * pszMessage);
-   virtual void * on_receive(int message, void * pdata, int len);
+   virtual void * on_receive(small_ipc_rx_channel * prxchannel, const char * pszMessage);
+   virtual void * on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len);
+   virtual void * on_post(small_ipc_rx_channel * prxchannel, int a, int b);
 
 
-   void prepare_wait();
-   bool wait(DWORD dwTimeout);
-   void prepare_wait(int message);
-   bool wait(int message, DWORD dwTimeout);
 
 
 #ifdef WINDOWS
@@ -139,16 +136,14 @@ public:
 
    bool open_ab(const char * pszKey, const char * pszModule, launcher * plauncher = NULL);
    bool open_ba(const char * pszKey, const char * pszModule, launcher * plauncher = NULL);
+
    bool close();
 
    virtual void restart();
 
-   bool confirm_tx(const char * pszMessage, DWORD dwTimeout = INFINITE);
-   bool confirm_tx(int message, void * pdata, int len, DWORD dwTimeout = INFINITE);
-
-   // calls restart if confirm_tx failed
    bool ensure_tx(const char * pszMessage, DWORD dwTimeout = INFINITE);
    bool ensure_tx(int message, void * pdata, int len, DWORD dwTimeout = INFINITE);
+
 
 };
 

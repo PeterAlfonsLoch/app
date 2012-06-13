@@ -51,7 +51,7 @@ CLASS_DECL_c bool send_short_message_to_installer(const char * psz, bool bLaunch
    if(!txchannel.open("ca2/fontopus/ccvotagus/spaboot_install", bLaunch ? &launcher : NULL)) 
       return false;
 
-   txchannel.send(psz);
+   txchannel.send(psz, false);
 
    return true;
 
@@ -68,7 +68,7 @@ void send_spaboot_install_response(const char * param)
    if(!txchannel.open("ca2/fontopus/ccvotagus/spaboot_install_callback")) 
       return;
 
-   txchannel.send(param);
+   txchannel.send(param, false);
 
 }
 

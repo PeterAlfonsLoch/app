@@ -308,6 +308,9 @@
     <ClInclude Include="os\os_process.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
+    <ClInclude Include=".\hotplugin\hotplugin_container_launcher.h">
+      <Filter>Header Files\hotplugin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">

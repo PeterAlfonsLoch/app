@@ -764,6 +764,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClCompile Include="dir2.cpp" />
     <ClCompile Include="file.cpp" />
     <ClCompile Include=".\hotplugin\hotplugin_container_launcher.cpp" />
+    <ClInclude Include=".\hotplugin\hotplugin_container_launcher.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
     <ClCompile Include="os\os_process.cpp" />
     <ClCompile Include="simple_shell_launcher.cpp" />
     <ClCompile Include="small_ipc_channel.cpp" />

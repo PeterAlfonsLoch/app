@@ -15,7 +15,7 @@ namespace hotplugin
 
       vsstring                      m_strPluginUrl;
       vsstring                      m_strPluginHeaders;
-      small_ipc_rx_channel          m_rxchannel;
+      small_ipc_rx_channel          m_rxchannelInstall;
       BYTE *                        m_lpbMemory;
       int                           m_iMemory;
       bool                          m_bOnPaint;

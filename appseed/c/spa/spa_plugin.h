@@ -59,6 +59,8 @@ namespace spa
 
       virtual void deferred_prodevian_redraw();
 
+      virtual void on_post(small_ipc_rx_channel * prxchannel, int a, int b);
+
    };
 
 #ifdef WINDOWS

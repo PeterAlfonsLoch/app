@@ -590,18 +590,23 @@ namespace plugin
 
                         strCommandLine += " install";
 
-                        m_phost->m_pszReloadCommandLine = (const char *) HeapAlloc(GetProcessHeap(), 0, strCommandLine.get_length() + 1);
-                        strncpy((char *) m_phost->m_pszReloadCommandLine, strCommandLine, strCommandLine.get_length() + 1);
+                        //m_phost->m_pszReloadCommandLine = (const char *) HeapAlloc(GetProcessHeap(), 0, strCommandLine.get_length() + 1);
+                        //strncpy((char *) m_phost->m_pszReloadCommandLine, strCommandLine, strCommandLine.get_length() + 1);
 
-                        m_phost->m_bInstalling = true;
+
+                        int i = 1;
+
+                        PostMessage(m_phost->::small_ipc_tx_channel::m_hwnd, WM_USER + 100, 1, 1);
+
+                        Sys(m_psystem).install().start(strCommandLine);
 
                         m_phost->m_bReload = true;
 
-//#ifdef WINDOWS
-//                        ::TerminateProcess(::GetCurrentProcess(), 0);
-//#else
-//                        kill(0, SIGSTOP);
-//#endif
+#ifdef WINDOWS
+              //          ::TerminateProcess(::GetCurrentProcess(), 0);
+#else
+                //        kill(0, SIGSTOP);
+#endif
 
                         m_bMainReady = false;
 

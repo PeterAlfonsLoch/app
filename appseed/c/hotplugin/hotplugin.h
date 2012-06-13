@@ -10,6 +10,7 @@
 
 #include "hotplugin_plugin.h"
 #include "hotplugin_host.h"
+#include "hotplugin_container_launcher.h"
 
 typedef ::hotplugin::plugin * (* FN_NEW_HOTPLUGIN)();
 
@@ -25,26 +26,12 @@ namespace hotplugin
       message_paint,
       message_message,
       message_set_ready,
-
-   };
-
-
-   class CLASS_DECL_c container_launcher :
-      virtual public ::launcher
-   {
-   public:
-
-      vsstring m_strChannel;
-
-      container_launcher(const char * pszChannel);
-         
-      virtual bool ensure_executable() { return true; }
-
-      vsstring get_params();
-
-      virtual vsstring get_executable_path();
+      message_set_installing,
 
    };
 
 
 } // namespace ca2plugin_container
+
+
+

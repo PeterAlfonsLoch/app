@@ -30,7 +30,7 @@ namespace spa
       m_iEdge                 = -1;
       m_bAppStarted           = false;
       m_pbReady               = NULL;
-      m_dwTimeout             = 284;
+      m_dwTimeout             = (1984 + 1977) * 11;
 
    }
 
@@ -63,19 +63,11 @@ namespace spa
          return;
       }
 
-      update_ca2_installed(false);
+      update_ca2_installed(true);
 
       if(is_ca2_installed())
       {
          
-#ifdef WINDOWS
-#ifdef X86
-         ::SetDllDirectory(dir::ca2("stage\\x86"));
-#else
-         ::SetDllDirectory(dir::ca2("stage\\x64"));
-#endif
-#endif
-         //Sleep(15 * 1000);
 
          vsstring str;
 
@@ -251,7 +243,7 @@ install:
    void plugin::on_paint(HDC hdcWindow, LPCRECT lprect)
    {
 
-      if(m_hwnd != NULL)
+      if(!m_phost->m_bInstalling && is_ca2_installed())
       {
          struct
          {
@@ -450,7 +442,7 @@ install:
 #ifdef WINDOWS
    uint_ptr plugin::message_handler(uint_ptr uiMessage, WPARAM wparam, LPARAM lparam)
    {
-      if(m_hwnd != NULL)
+      if(is_ca2_installed())
       {
          
          MSG msg;
@@ -624,6 +616,23 @@ install:
       {
          m_phost->set_ca2_installation_ready(false);
          m_phost->start_ca2();
+      }
+
+   }
+
+   void plugin::on_post(small_ipc_rx_channel * prxchannel, int a, int b)
+   {
+
+      if(prxchannel == &m_rxchannel)
+      {
+
+         if(a == 1)
+         {
+
+            m_phost->m_bInstalling = b != FALSE;
+
+         }
+
       }
 
    }

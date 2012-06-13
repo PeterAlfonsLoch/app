@@ -730,7 +730,7 @@ namespace plane
 
          if(channel.open("ca2::fontopus::message_wnd::session::"))
          {
-            channel.send(command().m_varTopicFile);
+            channel.send(command().m_varTopicFile, false);
             channel.close();
          }
 
