@@ -3,6 +3,7 @@ stage\basis\app-install.exe
 stage\basis\app-sentinel.exe
 stage\basis\c.dll
 stage\basis\ca.dll
+stage\basis\ca2plugin-container.dll
 stage\basis\FreeImage.dll
 stage\basis\freetype2.3.5-1.dll
 stage\basis\libeay32.dll
