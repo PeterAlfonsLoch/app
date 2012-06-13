@@ -442,7 +442,8 @@ install:
 #ifdef WINDOWS
    uint_ptr plugin::message_handler(uint_ptr uiMessage, WPARAM wparam, LPARAM lparam)
    {
-      if(is_ca2_installed())
+
+      if(!m_phost->m_bInstalling && is_ca2_installed())
       {
          
          MSG msg;

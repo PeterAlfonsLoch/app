@@ -617,6 +617,10 @@ RetryHost:
                   bAsk = false;
                   bRestart = false;
                }
+
+               bAsk = false;
+               bRestart = false;
+
                vsstring str;
                str = "Should ca2 Terminate and try to restart process \"";
                str += strPath;
@@ -643,9 +647,9 @@ RetryHost:
                   }
 
 
-                  Sleep(15 * 1000);
-                  Sleep(15 * 1000);
-                  Sleep(15 * 1000);
+                  //Sleep(15 * 1000);
+                  //Sleep(15 * 1000);
+                  //Sleep(15 * 1000);
 
                   TerminateProcess(hProcess, -1);
 
