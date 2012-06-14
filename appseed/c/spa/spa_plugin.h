@@ -27,6 +27,9 @@ namespace spa
       DWORD       m_dwLastInstallingCheck;
       DWORD       m_dwLastRestart;
 
+      HANDLE      m_hfileBitmap;
+      HANDLE      m_hfilemapBitmap;
+
 
       plugin();
       virtual ~plugin();

@@ -49,6 +49,9 @@ namespace plugin
       bool                          m_bOpenUrl;
       ::visual::dib_sp              m_dib;
 
+      HANDLE      m_hfileBitmap;
+      HANDLE      m_hfilemapBitmap;
+
 
       plugin();
 

@@ -241,15 +241,6 @@ namespace hotplugin
       m_rect.right      = 0;
 
 
-      m_sizeBitmap.cx   = 994;
-      m_sizeBitmap.cy   = 394;
-
-
-      m_pcolorref       = (DWORD *) _ca_alloc(abs_dup(4 * m_sizeBitmap.cx * m_sizeBitmap.cy));
-
-#if !defined(MACOS) && !defined(LINUX)
-      m_pbitmap = new Gdiplus::Bitmap(abs_dup(m_sizeBitmap.cx), abs_dup(m_sizeBitmap.cy), abs_dup(m_sizeBitmap.cx) * 4, PixelFormat32bppARGB, (BYTE *) m_pcolorref);
-#endif
 
       m_strStatus       = "Thank you";
 

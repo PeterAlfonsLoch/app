@@ -1,4 +1,7 @@
 #include "framework.h"
+#undef new
+#include <gdiplus.h>
+
 
 
 void CLASS_DECL_ca __cdecl _ca2_purecall_()
@@ -29,6 +32,11 @@ namespace plugin
       m_psystem               = NULL;
       m_bMainReady            = false;
       m_bOpenUrl              = false;
+      
+      m_hfileBitmap           = INVALID_HANDLE_VALUE;
+      m_hfilemapBitmap        = NULL;
+      m_pcolorref             = NULL;
+
 
    }
 
@@ -44,6 +52,67 @@ namespace plugin
 
    int plugin::start_ca2_system()
    {
+
+      //Sleep(15 * 1000);
+
+      if(m_pcolorref != NULL)
+      {
+         UnmapViewOfFile(m_pcolorref);
+         m_pcolorref = NULL;
+      }
+
+      if(m_hfilemapBitmap != NULL)
+      {
+         ::CloseHandle(m_hfilemapBitmap);
+         m_hfilemapBitmap = NULL;
+      }
+
+      if(m_hfileBitmap != NULL)
+      {
+         ::CloseHandle(m_hfileBitmap);
+         m_hfileBitmap = INVALID_HANDLE_VALUE;
+      }
+
+      dir::mk(dir::path(dir::appdata("time"), "ca2"));
+
+      m_hfileBitmap = CreateFile(dir::path(dir::appdata("time"), m_phost->m_vssChannel), FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+
+      if(m_hfileBitmap == INVALID_HANDLE_VALUE)
+      {
+         return FALSE;
+      }
+
+      
+      DWORD dwHi;
+
+      if(::GetFileSize(m_hfileBitmap, &dwHi) != 1024 * 1024 * 1024)
+      {
+         LONG l = 0;
+         ::SetFilePointer(m_hfileBitmap, 1024 * 1024 * 1024, &l, SEEK_SET);
+         SetEndOfFile(m_hfileBitmap);
+      }
+
+      m_hfilemapBitmap = CreateFileMapping(
+         m_hfileBitmap,
+         NULL,
+         PAGE_READWRITE,
+         0,
+         0,
+         NULL);
+
+      if(m_hfilemapBitmap == NULL)
+      {
+         CloseHandle(m_hfileBitmap);
+         return FALSE;
+      }
+
+      m_pcolorref = (COLORREF *) MapViewOfFile(
+         m_hfilemapBitmap,
+         FILE_MAP_READ | FILE_MAP_WRITE,
+         0,
+         0,
+         0
+         );
 
       bool bNew = false;
 
@@ -183,6 +252,7 @@ namespace plugin
    void plugin::on_paint(HDC hdcWindow, LPCRECT lprect)
    {
 
+
       try
       {
 
@@ -242,22 +312,38 @@ namespace plugin
          {
          }
 
+         if(m_sizeBitmap.cx != (lprect->right - lprect->left)
+         || m_sizeBitmap.cy != (lprect->bottom - lprect->top))
+         {
+
+            m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
+            m_sizeBitmap.cy = abs_dup(lprect->bottom - lprect->top);
+
+            if(m_pbitmap != NULL)
+            {
+               delete m_pbitmap;
+            }
+            
+
+            m_pbitmap = new Gdiplus::Bitmap(abs_dup(m_sizeBitmap.cx), abs_dup(m_sizeBitmap.cy), abs_dup(m_sizeBitmap.cx) * 4, PixelFormat32bppARGB, ((BYTE *) m_pcolorref) + sizeof(SIZE));
+
+         }
+
          try
          {
-            ::ca::graphics_sp g(get_app());
+               
+            Gdiplus::Graphics * pg = Gdiplus::Graphics::FromHDC(hdcWindow);
 
-            g->Attach(hdcWindow);
+            pg->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
-            g->set_alpha_mode(::ca::alpha_mode_blend);
+            pg->DrawImage((Gdiplus::Bitmap *) m_pbitmap, 0, 0, 0, 0, lprect->right - lprect->left, lprect->bottom - lprect->top, Gdiplus::UnitPixel);
 
-            g->BitBlt(lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top, m_dib->get_graphics(), 0, 0, SRCCOPY);
+            delete pg;
 
-            g->Detach();
          }
          catch(...)
          {
          }
-
          /*POINT pointViewport;
          ::SetViewportOrgEx(hdc, 0, 0, &pointViewport);
          ::BitBlt(hdcWindow, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top, hdc, lprect->left + rectWindow.left - m_rect.left, lprect->top + rectWindow.top - m_rect.top, SRCCOPY);

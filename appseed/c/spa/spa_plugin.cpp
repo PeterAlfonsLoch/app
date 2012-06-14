@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <gdiplus.h>
 
 
 #ifdef LINUX
@@ -51,7 +52,7 @@ namespace spa
 
          if((GetTickCount() - m_dwLastRestart) > (1984 + 1977) * 5)
          {
-         
+
             m_dwLastRestart = GetTickCount();
 
             start_ca2();
@@ -63,13 +64,13 @@ namespace spa
 
    }
 
-   
+
    bool plugin::is_installing()
    {
 
       if(m_phost->m_bInstalling)
       {
-         
+
          if((::GetTickCount() - m_dwLastInstallingCheck) > 1984)
          {
 
@@ -90,12 +91,12 @@ namespace spa
       }
       else if((::GetTickCount() - m_dwLastInstallingCheck) > ((1984 + 1977) * 2))
       {
-         
+
          m_dwLastInstallingCheck = GetTickCount();
 
          try
          {
-         
+
             m_phost->m_bInstalling = is_installation_lock_file_locked();
 
          }
@@ -113,10 +114,69 @@ namespace spa
    void plugin::start_ca2()
    {
 
+      //Sleep(15 * 1000);
+
+      if(m_pcolorref != NULL)
+      {
+         UnmapViewOfFile(m_pcolorref);
+         m_pcolorref = NULL;
+      }
+
+      if(m_hfilemapBitmap != NULL)
+      {
+         ::CloseHandle(m_hfilemapBitmap);
+         m_hfilemapBitmap = NULL;
+      }
+
+      if(m_hfileBitmap != NULL)
+      {
+         ::CloseHandle(m_hfileBitmap);
+         m_hfileBitmap = INVALID_HANDLE_VALUE;
+      }
+
+      dir::mk(dir::path(dir::appdata("time"), "ca2"));
+
+      m_hfileBitmap = CreateFile(dir::path(dir::appdata("time"), vsstring("ca2/ca2plugin-container-") + itohex_dup((INT_PTR)m_phost)), FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+      
+      if(m_hfileBitmap == INVALID_HANDLE_VALUE)
+      {
+         return;
+      }
+
+      DWORD dwHi;
+
+      if(::GetFileSize(m_hfileBitmap, &dwHi) != 1024 * 1024 * 1024)
+      {
+         LONG l = 0;
+         ::SetFilePointer(m_hfileBitmap, 1024 * 1024 * 1024, &l, SEEK_SET);
+         SetEndOfFile(m_hfileBitmap);
+      }
+
+      m_hfilemapBitmap = CreateFileMapping(
+         m_hfileBitmap,
+         NULL,
+         PAGE_READWRITE,
+         0,
+         0,
+         NULL);
+
+      if(m_hfilemapBitmap == NULL)
+      {
+         CloseHandle(m_hfileBitmap);
+         return;
+      }
+
+      m_pcolorref = (COLORREF *) MapViewOfFile(
+         m_hfilemapBitmap,
+         FILE_MAP_READ | FILE_MAP_WRITE,
+         0,
+         0,
+         0
+         );
 
       if(is_installation_lock_file_locked())
       {
-         
+
          set_installing_ca2();
 
          if(!m_phost->m_bInstalling)
@@ -133,16 +193,16 @@ namespace spa
 
       if(is_ca2_installed())
       {
-         
+
 
          vsstring str;
 
-         #ifdef _AMD64_
+#ifdef _AMD64_
          str += itohex_dup(((int*) m_phost)[1]);
          str = itohex_dup((int) m_phost);
-         #else    
+#else    
          str = itohex_dup((int) m_phost);
-         #endif
+#endif
 
 
          ::hotplugin::container_launcher launcher(str);
@@ -168,7 +228,7 @@ namespace spa
       {
 
          char szCa2ModuleFolder[MAX_PATH];
-         
+
          if(dir::get_ca2_module_folder_dup(szCa2ModuleFolder))
          {
 
@@ -176,7 +236,7 @@ namespace spa
 
             ::process_modules(straPrevious, ::GetCurrentProcessId());
 
-         
+
 
             vsstring strDir = dir::path(szCa2ModuleFolder, "*.*");
 
@@ -209,7 +269,7 @@ namespace spa
 
                         try
                         {
-                  
+
                            ::FreeLibrary(hmodule);
 
                         }
@@ -231,19 +291,19 @@ namespace spa
             }
 
 
-      
-      
+
+
             stra_dup straCurrent;
 
             ::process_modules(straCurrent, ::GetCurrentProcessId());
 
 
 
-      
-      
+
+
             ::load_modules_diff(straPrevious, straCurrent, szCa2ModuleFolder);
 
-      
+
             ::initialize_primitive_heap();
 
             ::reset_http();
@@ -311,6 +371,7 @@ install:
 
       if(!is_installing() && is_ca2_installed())
       {
+
          struct
          {
             HDC m_hdc;
@@ -320,8 +381,47 @@ install:
          paint.m_hdc = hdcWindow;
          paint.m_rect = *lprect;
 
+
+
          if(ensure_tx(::hotplugin::message_paint, &paint, sizeof(paint)))
+         {
+
+            if(m_sizeBitmap.cx != (lprect->right - lprect->left)
+            || m_sizeBitmap.cy != (lprect->bottom - lprect->top))
+            {
+
+               m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
+               m_sizeBitmap.cy = abs_dup(lprect->bottom - lprect->top);
+
+               if(m_pbitmap != NULL)
+               {
+                  delete m_pbitmap;
+               }
+            
+
+               m_pbitmap = new Gdiplus::Bitmap(abs_dup(m_sizeBitmap.cx), abs_dup(m_sizeBitmap.cy), abs_dup(m_sizeBitmap.cx) * 4, PixelFormat32bppARGB, ((BYTE *) m_pcolorref) + sizeof(SIZE));
+
+            }
+
+            try
+            {
+               
+               Gdiplus::Graphics * pg = Gdiplus::Graphics::FromHDC(hdcWindow);
+
+               pg->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+
+               pg->DrawImage((Gdiplus::Bitmap *) m_pbitmap, lprect->left, lprect->top, 0, 0, lprect->right - lprect->left, lprect->bottom - lprect->top, Gdiplus::UnitPixel);
+
+               delete pg;
+
+            }
+            catch(...)
+            {
+            }
+
             return;
+
+         }
 
       }
 
@@ -337,7 +437,7 @@ install:
       rect.top          = 0;
       rect.right        = cx;
       rect.bottom       = cy;
-      
+
 #ifdef WINDOWS
 
       HBITMAP hbmp      = ::CreateCompatibleBitmap(hdcWindow, cx, cy);
@@ -345,11 +445,11 @@ install:
       HBITMAP hbmpOld   =  (HBITMAP) ::SelectObject(hdc, (HGDIOBJ) hbmp);
 
       ::BitBlt(hdc, 0, 0, cx, cy, hdcWindow, m_rect.left, m_rect.top, SRCCOPY);
-      
+
 #else
-      
+
       HDC hdc = hdcWindow;
-      
+
 #endif
 
       HFONT hfontOld = NULL;
@@ -360,17 +460,17 @@ install:
       }
       else if(!is_ca2_installed())
       {
-        /* HPEN hpen = (HPEN) ::CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
+         /* HPEN hpen = (HPEN) ::CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
          HPEN hpenOld = (HPEN) ::SelectObject(hdc, hpen);
          HBRUSH hbrush = (HBRUSH) ::CreateSolidBrush(RGB(255, 0, 255));
          HBRUSH hbrushOld = (HBRUSH) ::SelectObject(hdc, hbrush);
-         
+
          ::Ellipse(hdc, 23, 23, 49, 49);
 
          ::SelectObject(hdc, (HGDIOBJ) hpenOld);
          ::SelectObject(hdc, (HGDIOBJ) hbrushOld);*/
 
-/*         RECT rect;
+         /*         RECT rect;
          rect.left      = 0;
          rect.top       = 0;
          rect.bottom    = cx;
@@ -383,13 +483,13 @@ install:
       else
       {
       }
-      
+
 #ifdef WINDOWS
-      
+
       POINT pointViewport;
       ::SetViewportOrgEx(hdc, 0, 0, &pointViewport);
       ::BitBlt(hdcWindow, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top,
-               hdc,       lprect->left - m_rect.left, lprect->top - m_rect.top, SRCCOPY);
+         hdc,       lprect->left - m_rect.left, lprect->top - m_rect.top, SRCCOPY);
       ::SelectObject(hdc, (HGDIOBJ) hbmpOld);
       if(hfontOld != NULL)
       {
@@ -403,7 +503,7 @@ install:
       ::DeleteDC(hdc);
 
 #endif
-      
+
       on_bare_paint(hdcWindow, lprect);
 
 
@@ -412,48 +512,48 @@ install:
 
 
 
-/*   UINT plugin::start_bergedge_cube()
+   /*   UINT plugin::start_bergedge_cube()
    {
 
-      ::cube8::system * papp = m_psystem;
+   ::cube8::system * papp = m_psystem;
 
-      if(!papp->initialize_instance())
-         return 0;
+   if(!papp->initialize_instance())
+   return 0;
 
-//      if(!papp->bergedge_start())
-  //       return 0;
-
-
-    //  papp->m_puiInitialPlaceHolderContainer = papp->get_edge(0, true)->get_bergedge_view();
+   //      if(!papp->bergedge_start())
+   //       return 0;
 
 
-
-      papp->m_bShouldInitializeGTwf = false;
-/*      win::thread * pthread = dynamic_cast < win::thread *> (papp->smart_pointer < ::ca::thread > ::m_p);
-      win::thread * pthreadCur = dynamic_cast < win::thread *> (papp->GetThread()->m_p);
-      pthread->m_hThread = pthreadCur->m_hThread;
-      pthread->m_nThreadID = pthreadCur->m_nThreadID;
-
-      papp->install_message_handling(pthreadCur);*/
-
-  /*    ::SetEvent(m_hEventReady);
+   //  papp->m_puiInitialPlaceHolderContainer = papp->get_edge(0, true)->get_bergedge_view();
 
 
-      /*if(papp->does_launch_window_on_startup())
-      {
-         int iRetry = 100;
-         while(papp->m_pwndMain == NULL && (iRetry > 0))
-         {
-            Sleep(100);
-            iRetry--;
-         }
-         if(papp->m_pwndMain != NULL)
-         {
+
+   papp->m_bShouldInitializeGTwf = false;
+   /*      win::thread * pthread = dynamic_cast < win::thread *> (papp->smart_pointer < ::ca::thread > ::m_p);
+   win::thread * pthreadCur = dynamic_cast < win::thread *> (papp->GetThread()->m_p);
+   pthread->m_hThread = pthreadCur->m_hThread;
+   pthread->m_nThreadID = pthreadCur->m_nThreadID;
+
+   papp->install_message_handling(pthreadCur);*/
+
+   /*    ::SetEvent(m_hEventReady);
+
+
+   /*if(papp->does_launch_window_on_startup())
+   {
+   int iRetry = 100;
+   while(papp->m_pwndMain == NULL && (iRetry > 0))
+   {
+   Sleep(100);
+   iRetry--;
+   }
+   if(papp->m_pwndMain != NULL)
+   {
    //            papp->m_pwndMain->SetParent(pview);
-            papp->m_pwndMain->ModifyStyle(0, WS_CHILD);
-            papp->m_pwndMain->SetWindowPos(NULL, 0, 0, 400, 400, SWP_SHOWWINDOW);
-         }
-      }*/
+   papp->m_pwndMain->ModifyStyle(0, WS_CHILD);
+   papp->m_pwndMain->SetWindowPos(NULL, 0, 0, 400, 400, SWP_SHOWWINDOW);
+   }
+   }*/
 
 
    //   pplugin->m_pframe = dynamic_cast < bergedge::frame * > (pplugin->m_papp->get_edge(0, true)->get_bergedge_view()->GetParentFrame());
@@ -461,38 +561,38 @@ install:
 
    /*   papp->m_puiInitialPlaceHolderContainer = pplugin->m_pframe;
 
-      App(pplugin->m_papp).GetThread()->SetMainWnd(pplugin->m_pframe);
-      pplugin->m_pframe->m_bCustomFrame = false;
-      pplugin->m_pframe->GetParent()->layout();*/
+   App(pplugin->m_papp).GetThread()->SetMainWnd(pplugin->m_pframe);
+   pplugin->m_pframe->m_bCustomFrame = false;
+   pplugin->m_pframe->GetParent()->layout();*/
 
 
 
-      /*try
-      {
-         papp->run();
-      }
-      catch(...)
-      {
-      }
+   /*try
+   {
+   papp->run();
+   }
+   catch(...)
+   {
+   }
 
-      int iExitCode = -1;
+   int iExitCode = -1;
 
-      try
-      {
-         iExitCode = papp->exit_instance();
-         //TRACE("Exit Code from retract_app %d (exit_instance %s)", iExitCode, typeid(*papp).name());
-      }
-      catch(...)
-      {
-      }
-      pthread->m_hThread = NULL;
-      pthread->m_nThreadID = NULL;
+   try
+   {
+   iExitCode = papp->exit_instance();
+   //TRACE("Exit Code from retract_app %d (exit_instance %s)", iExitCode, typeid(*papp).name());
+   }
+   catch(...)
+   {
+   }
+   pthread->m_hThread = NULL;
+   pthread->m_nThreadID = NULL;
 
-      WIN_THREAD(papp->smart_pointer < ::ca::thread >::m_p)->m_bRun = false;
-      ::SetEvent(m_hEventReady);
-      //papp->m_bRun = false;
+   WIN_THREAD(papp->smart_pointer < ::ca::thread >::m_p)->m_bRun = false;
+   ::SetEvent(m_hEventReady);
+   //papp->m_bRun = false;
 
-      return iExitCode;
+   return iExitCode;
    }*/
 
 
@@ -512,7 +612,7 @@ install:
 
       if(!is_installing() && is_ca2_installed())
       {
-         
+
          MSG msg;
 
          // only valid fields
@@ -543,8 +643,8 @@ install:
          default:
             {
                if((uiMessage == WM_LBUTTONUP
-               || uiMessage == WM_RBUTTONUP
-               || uiMessage == WM_MBUTTONUP) &&
+                  || uiMessage == WM_RBUTTONUP
+                  || uiMessage == WM_MBUTTONUP) &&
                   is_installing_ca2())
                {
                   m_iHealingSurface++;
@@ -558,31 +658,31 @@ install:
 #else
    int plugin::message_handler(XEvent * pevent)
    {
-/*      switch(uiMessage)
+      /*      switch(uiMessage)
       {
       case WM_TIMER:
-         {
-            switch(wparam)
-            {
-            case 8477:
-               {
-                  KillTimer(get_host_window(), 8477);
-                  start_ca2();
-               }
-               break;
-            }
-         }
-         return 0;
+      {
+      switch(wparam)
+      {
+      case 8477:
+      {
+      KillTimer(get_host_window(), 8477);
+      start_ca2();
+      }
+      break;
+      }
+      }
+      return 0;
       default:
-         {
-            if((uiMessage == WM_LBUTTONUP
-            || uiMessage == WM_RBUTTONUP
-            || uiMessage == WM_MBUTTONUP) &&
-               is_installing_ca2())
-            {
-               m_iHealingSurface++;
-            }
-         }
+      {
+      if((uiMessage == WM_LBUTTONUP
+      || uiMessage == WM_RBUTTONUP
+      || uiMessage == WM_MBUTTONUP) &&
+      is_installing_ca2())
+      {
+      m_iHealingSurface++;
+      }
+      }
       }*/
       return 0;
    }

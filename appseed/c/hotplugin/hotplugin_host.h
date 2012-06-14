@@ -33,7 +33,6 @@ namespace hotplugin
 
 
 
-
       host();
       virtual ~host();
 
