@@ -32,6 +32,8 @@ namespace plugin
       m_psystem               = NULL;
       m_bMainReady            = false;
       m_bOpenUrl              = false;
+
+      m_pbitmap               = NULL;
       
       m_hfileBitmap           = INVALID_HANDLE_VALUE;
       m_hfilemapBitmap        = NULL;
@@ -312,7 +314,8 @@ namespace plugin
          {
          }
 
-         if(m_sizeBitmap.cx != (lprect->right - lprect->left)
+         if(m_pbitmap == NULL
+         || m_sizeBitmap.cx != (lprect->right - lprect->left)
          || m_sizeBitmap.cy != (lprect->bottom - lprect->top))
          {
 
@@ -321,22 +324,48 @@ namespace plugin
 
             if(m_pbitmap != NULL)
             {
-               delete m_pbitmap;
+               try
+               {
+               
+                  delete m_pbitmap;
+
+               }
+               catch(...)
+               {
+               }
+
+               try
+               {
+               
+                  m_pbitmap = NULL;
+
+               }
+               catch(...)
+               {
+               }
+
             }
             
+            try
+            {
+            
+               m_pbitmap = new Gdiplus::Bitmap(abs_dup(m_sizeBitmap.cx), abs_dup(m_sizeBitmap.cy), abs_dup(m_sizeBitmap.cx) * 4, PixelFormat32bppARGB, (BYTE *) m_pcolorref);
 
-            m_pbitmap = new Gdiplus::Bitmap(abs_dup(m_sizeBitmap.cx), abs_dup(m_sizeBitmap.cy), abs_dup(m_sizeBitmap.cx) * 4, PixelFormat32bppARGB, ((BYTE *) m_pcolorref) + sizeof(SIZE));
+            }
+            catch(...)
+            {
+            }
 
          }
 
          try
          {
                
-            Gdiplus::Graphics * pg = Gdiplus::Graphics::FromHDC(hdcWindow);
+            Gdiplus::Graphics * pg = Gdiplus::Graphics::FromImage((Gdiplus::Bitmap *) m_pbitmap);
 
-            pg->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+            pg->SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
 
-            pg->DrawImage((Gdiplus::Bitmap *) m_pbitmap, 0, 0, 0, 0, lprect->right - lprect->left, lprect->bottom - lprect->top, Gdiplus::UnitPixel);
+            pg->DrawImage((Gdiplus::Bitmap *) m_dib->get_bitmap()->get_os_data(), 0, 0, 0, 0, lprect->right - lprect->left, lprect->bottom - lprect->top, Gdiplus::UnitPixel);
 
             delete pg;
 

@@ -31,6 +31,8 @@ namespace hotplugin
       simple_mutex                  m_mutexSystem;
 
 
+      HANDLE                        m_hfileBitmap;
+      HANDLE                        m_hfilemapBitmap;
 
 
       host();
@@ -110,6 +112,7 @@ namespace hotplugin
 
       virtual void set_status(const char * pszStatus);
 
+      virtual void paint_bitmap(HDC hdcWindow, LPCRECT lprect);
 
    };
 
