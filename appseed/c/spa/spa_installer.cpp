@@ -2067,7 +2067,7 @@ restart_download:
 
          }
          
-         send_spaboot_install_post(2, 1);
+         send_spaboot_install_post(2, 0);
 
          return true;
       }

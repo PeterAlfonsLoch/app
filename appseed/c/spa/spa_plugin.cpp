@@ -46,12 +46,17 @@ namespace spa
    void plugin::restart()
    {
 
-      if((GetTickCount() - m_dwLastRestart) > (1984 + 1977) * 5)
+      if(!is_installing())
       {
-         
-         m_dwLastRestart = GetTickCount();
 
-         start_ca2();
+         if((GetTickCount() - m_dwLastRestart) > (1984 + 1977) * 5)
+         {
+         
+            m_dwLastRestart = GetTickCount();
+
+            start_ca2();
+
+         }
 
       }
 

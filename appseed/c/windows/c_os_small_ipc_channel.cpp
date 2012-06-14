@@ -85,7 +85,11 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
 
    ::SendMessageTimeout(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds, SMTO_BLOCK, dwTimeout, &dwptr);
 
-   if(::GetLastError() == ERROR_TIMEOUT)
+   DWORD dwError = ::GetLastError();
+
+   if(dwError == ERROR_TIMEOUT)
+      return false;
+   else if(dwError != ERROR_SUCCESS)
       return false;
 
    return true;
@@ -108,7 +112,11 @@ bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTime
 
    ::SendMessageTimeout(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds, SMTO_BLOCK, dwTimeout, &dwptr);
 
-   if(::GetLastError() == ERROR_TIMEOUT)
+   DWORD dwError = ::GetLastError();
+
+   if(dwError == ERROR_TIMEOUT)
+      return false;
+   else if(dwError != ERROR_SUCCESS)
       return false;
 
    return true;
