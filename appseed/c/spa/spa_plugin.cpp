@@ -49,23 +49,39 @@ namespace spa
 
       if(m_phost->m_bInstalling)
       {
-
-         if((::GetTickCount() - m_dwLastInstallingCheck) > ((1984 + 1977) * 2))
+         
+         if((::GetTickCount() - m_dwLastInstallingCheck) > 1984)
          {
 
-            m_phost->m_bInstalling = is_installation_lock_file_locked();
+            try
+            {
+
+               m_phost->m_bInstalling = is_installation_lock_file_locked();
+
+            }
+            catch(...)
+            {
+            }
 
          }
 
       }
-      else if((::GetTickCount() - m_dwLastInstallingCheck) > 1984)
+      else if((::GetTickCount() - m_dwLastInstallingCheck) > ((1984 + 1977) * 2))
       {
+
+         try
+         {
          
-         m_phost->m_bInstalling = is_installation_lock_file_locked();
+            m_phost->m_bInstalling = is_installation_lock_file_locked();
+
+         }
+         catch(...)
+         {
+         }
 
       }
 
-      return m_bInstalling;
+      return m_phost->m_bInstalling;
 
    }
 
@@ -269,7 +285,7 @@ install:
    void plugin::on_paint(HDC hdcWindow, LPCRECT lprect)
    {
 
-      if(!m_phost->m_bInstalling && is_ca2_installed())
+      if(!is_installing() && is_ca2_installed())
       {
          struct
          {
@@ -466,10 +482,11 @@ install:
 
 
 #ifdef WINDOWS
+
    uint_ptr plugin::message_handler(uint_ptr uiMessage, WPARAM wparam, LPARAM lparam)
    {
 
-      if(!m_phost->m_bInstalling && is_ca2_installed())
+      if(!is_installing() && is_ca2_installed())
       {
          
          MSG msg;
