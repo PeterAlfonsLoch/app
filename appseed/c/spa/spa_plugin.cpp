@@ -43,6 +43,21 @@ namespace spa
    {
    }
 
+   void plugin::restart()
+   {
+
+      if((GetTickCount() - m_dwLastRestart) > (1984 + 1977) * 5)
+      {
+         
+         m_dwLastRestart = GetTickCount();
+
+         start_ca2();
+
+      }
+
+
+   }
+
    
    bool plugin::is_installing()
    {
@@ -52,6 +67,8 @@ namespace spa
          
          if((::GetTickCount() - m_dwLastInstallingCheck) > 1984)
          {
+
+            m_dwLastInstallingCheck = GetTickCount();
 
             try
             {
@@ -68,6 +85,8 @@ namespace spa
       }
       else if((::GetTickCount() - m_dwLastInstallingCheck) > ((1984 + 1977) * 2))
       {
+         
+         m_dwLastInstallingCheck = GetTickCount();
 
          try
          {

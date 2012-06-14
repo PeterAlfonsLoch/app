@@ -25,7 +25,7 @@ namespace spa
 
       canvas      m_canvas;
       DWORD       m_dwLastInstallingCheck;
-
+      DWORD       m_dwLastRestart;
 
 
       plugin();
@@ -63,6 +63,8 @@ namespace spa
       virtual void on_post(small_ipc_rx_channel * prxchannel, int a, int b);
 
       virtual bool is_installing();
+
+      virtual void restart();
 
    };
 
