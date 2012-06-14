@@ -1961,6 +1961,20 @@ restart_download:
    }
 
 
+   CLASS_DECL_c void send_spaboot_install_post(int a, int b)
+   {
+      
+      small_ipc_tx_channel txchannel;
+   
+      if(!txchannel.open("ca2/fontopus/ccvotagus/spaboot_install_callback")) 
+         return;
+
+      ::PostMessage(txchannel.m_hwnd, WM_USER + 100, a, b);
+
+
+   }
+
+
    bool installer::ignit_phase2()
    {
 
@@ -2052,6 +2066,9 @@ restart_download:
             ::MessageBox(NULL, str, "You may restart the applications ...", MB_ICONINFORMATION | MB_OK);
 
          }
+         
+         send_spaboot_install_post(2, 1);
+
          return true;
       }
       else

@@ -43,6 +43,32 @@ namespace spa
    {
    }
 
+   
+   bool plugin::is_installing()
+   {
+
+      if(m_phost->m_bInstalling)
+      {
+
+         if((::GetTickCount() - m_dwLastInstallingCheck) > ((1984 + 1977) * 2))
+         {
+
+            m_phost->m_bInstalling = is_installation_lock_file_locked();
+
+         }
+
+      }
+      else if((::GetTickCount() - m_dwLastInstallingCheck) > 1984)
+      {
+         
+         m_phost->m_bInstalling = is_installation_lock_file_locked();
+
+      }
+
+      return m_bInstalling;
+
+   }
+
 
    void plugin::start_ca2()
    {
