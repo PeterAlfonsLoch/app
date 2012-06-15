@@ -1004,7 +1004,7 @@ restart_download:
    }
 
 
-   bool installer::download_file(const vsstring& url_in, bool bExist, int64_t iLength, const char * pszMd5, int64_t iGzLen, int & iFlag)
+   bool installer::download_file(const vsstring& url_in, bool bExist, int64_t iLength, const char * pszMd5, int64_t iGzLen, int_ptr & iFlag)
    {
       if(m_bOfflineInstall)
          return true;
