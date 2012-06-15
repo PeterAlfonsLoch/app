@@ -3,6 +3,7 @@
 
 extern bool g_bInstalling;
 
+#define SPA_FILE_FLAG_VOID_COPY 1
 
 namespace spa
 {
@@ -42,7 +43,6 @@ namespace spa
       MSG            m_msg;
 #endif
       vsstring       m_strPlatform;
-
 
       DWORD          m_dwDownloadCallbackLast100k;
       DWORD          m_iDownloadCallbackColumn;
@@ -136,7 +136,7 @@ namespace spa
 
 
       void set_progress(double dProgress);
-      count download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapGzLen);
+      count download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapGzLen, simple_string_to_intptr & mapFlag);
 
       static DWORD WINAPI thread_proc_run(LPVOID lpParam);
 
@@ -144,7 +144,7 @@ namespace spa
 
       bool get(const vsstring& url_in, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen);
 
-      bool download_file(const vsstring& url_in, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen);
+      bool download_file(const vsstring& url_in, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen, int & iFlag);
 
       vsstring ca2_get_dir(LPCTSTR lpcszUrl);
 
@@ -160,19 +160,19 @@ namespace spa
 
       bool ca2_fy_url(vsstring & str, LPCTSTR lpcszPath, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen, bool bIndex = false);
 
-      int GetFileList(stra_dup & stra_dup, LPCTSTR lpcszPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapCrc);
+      int GetFileList(stra_dup & stra_dup, LPCTSTR lpcszPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapFlag);
 
       int GetLocalFileList(stra_dup & stra_dup, LPCTSTR lpcszUrl);
 
       count UncompressFileList(stra_dup & stra_dup, simple_string_to_string & strmapCrc);
 
-      count CopyFileList(stra_dup & stra_dup);
+      count CopyFileList(stra_dup & stra_dup, simple_string_to_intptr & mapFlag);
 
       void ParseSpaIndex(XNode & node);
 
       vsstring load_string(const char * pszId, const char * pszDefault);
 
-      void ParseIndexFile(const char * psz, simple_string_to_intptr & mapLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapGzLen);
+      void ParseIndexFile(const char * psz, simple_string_to_intptr & mapLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapGzLen, simple_string_to_intptr & mapFlag);
 
       bool spa_exec(const char * psz);
 

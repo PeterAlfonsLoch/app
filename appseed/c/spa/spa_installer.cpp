@@ -360,6 +360,7 @@ RetryHost:
          simple_string_to_intptr mapLen;
          simple_string_to_string mapMd5;
          simple_string_to_intptr mapGzLen;
+         simple_string_to_intptr mapFlag;
 
 
 
@@ -396,12 +397,14 @@ RetryHost:
          {
             Sleep(584);
          }
+         
          set_progress(0.5);
-         ParseIndexFile(strIndexPath, mapLen, mapMd5, mapGzLen);
+
+         ParseIndexFile(strIndexPath, mapLen, mapMd5, mapGzLen, mapFlag);
 
          set_progress(0.6);
 
-         if(!GetFileList(straFileList, ("app/stage/metastage/" + m_strApplicationId + ".spa"), mapLen, mapGzLen, mapMd5))
+         if(!GetFileList(straFileList, ("app/stage/metastage/" + m_strApplicationId + ".spa"), mapLen, mapGzLen, mapMd5, mapFlag))
          {
             trace("Failed to download file list!");
             trace("Going to retry host...");
@@ -434,7 +437,7 @@ RetryHost:
                   if(strcmp_dup(strId, m_strApplicationId) != 0)
                   {
 
-                     GetFileList(straFileList, ("app/stage/metastage/" + strId + ".spa"), mapLen, mapGzLen, mapMd5);
+                     GetFileList(straFileList, ("app/stage/metastage/" + strId + ".spa"), mapLen, mapGzLen, mapMd5, mapFlag);
 
                   }
 
@@ -497,12 +500,9 @@ RetryHost:
                strGet = "app/stage/metastage/";
                strGet += strStart;
                strGet += ".spa";
-               GetFileList(straFileList, strGet, mapLen, mapGzLen, mapMd5);
+               GetFileList(straFileList, strGet, mapLen, mapGzLen, mapMd5, mapFlag);
             }
          }
-
-         set_progress(0.9);
-
 
          for(int i = 0; i < straFileList.get_count(); i++)
          {
@@ -510,58 +510,7 @@ RetryHost:
             ::OutputDebugStringA("\r\n");
          }
 
-         new_progress_end(0.7);
-         trace("***Downloading files.");
-         if(m_bInternetInstall)
-         {
-            download_file_list(straFileList, mapLen, mapMd5, mapGzLen);
-         }
-         else
-         {
-            UncompressFileList(straFileList, mapMd5);
-         }
-
-
-         /*iRetry = 0;
-         while(is_there_application_opened())
-         {
-         machine_signalize_close_application();
-         if(iRetry == 0)
-         {
-         trace("***Suggesting ca2 applications to close...");
-         trace("Installation will continue after ca2 applications have been closed.");
-         trace("You may force closing them by yourself if they do not accept suggestion.");
-         trace("Waiting for applications to close...");
-         trace(".");
-         }
-         trace(".");
-         iRetry++;
-         Sleep(1984);
-         }*/
-
-
-         /*if(stra_dup.size() > 0)
-         {
-         vsstring strUrl;
-         strUrl = stra_dup[0];
-         vsstring strStage;
-
-         strStage = dir::path(dir::stage(), "ca2\\stage\\ca2\\fontopus\\app\\main\\front\\Release\\bergedgeapp.exe");
-         vsstring strParam;
-         strParam = "start=" + file_name_dup(strUrl);
-         simple_shell_launcher launcher(g_hwnd, "open", strStage, strParam, dir::name(strStage), SW_SHOWNORMAL)
-         launcher.execute();
-
-
-         if(launcher.succeeded())
-         {
-         ::PostMessage(g_hwnd, WM_CLOSE, 0, 0);
-         }
-
-         }*/
-
-         set_ca2_updated(m_strBuild);
-
+         set_progress(0.7);
 
          simple_uint_array dwa;
 
@@ -705,9 +654,60 @@ RetryHost:
 
 #endif
 
-
          new_progress_end(0.8);
-         CopyFileList(straFileList);
+         trace("***Downloading files.");
+         if(m_bInternetInstall)
+         {
+            download_file_list(straFileList, mapLen, mapMd5, mapGzLen, mapFlag);
+         }
+         else
+         {
+            UncompressFileList(straFileList, mapMd5);
+         }
+
+
+         /*iRetry = 0;
+         while(is_there_application_opened())
+         {
+         machine_signalize_close_application();
+         if(iRetry == 0)
+         {
+         trace("***Suggesting ca2 applications to close...");
+         trace("Installation will continue after ca2 applications have been closed.");
+         trace("You may force closing them by yourself if they do not accept suggestion.");
+         trace("Waiting for applications to close...");
+         trace(".");
+         }
+         trace(".");
+         iRetry++;
+         Sleep(1984);
+         }*/
+
+
+         /*if(stra_dup.size() > 0)
+         {
+         vsstring strUrl;
+         strUrl = stra_dup[0];
+         vsstring strStage;
+
+         strStage = dir::path(dir::stage(), "ca2\\stage\\ca2\\fontopus\\app\\main\\front\\Release\\bergedgeapp.exe");
+         vsstring strParam;
+         strParam = "start=" + file_name_dup(strUrl);
+         simple_shell_launcher launcher(g_hwnd, "open", strStage, strParam, dir::name(strStage), SW_SHOWNORMAL)
+         launcher.execute();
+
+
+         if(launcher.succeeded())
+         {
+         ::PostMessage(g_hwnd, WM_CLOSE, 0, 0);
+         }
+
+         }*/
+
+         set_ca2_updated(m_strBuild);
+
+         //new_progress_end(0.8);
+         //CopyFileList(straFileList, mapFlag);
 
          new_progress_end(1.0);
          iRetry = 0;
@@ -782,9 +782,11 @@ RetryHost:
 
 
 
-   count installer::download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapGzLen)
+   count installer::download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapGzLen, simple_string_to_intptr & mapFlag)
    {
+
 restart_download:
+
       m_dwDownloadTick = ::GetTickCount();
       m_dwDownload = 0;
       m_iDownloadRate = 0;
@@ -843,19 +845,29 @@ restart_download:
                ::OutputDebugStringA(stra_dup[j]);
                ::OutputDebugStringA("\r\n");
             }
-            if(GetFileList(stra_dup, strExpand , mapLen, mapGzLen, mapMd5) > 0)
+
+            if(GetFileList(stra_dup, strExpand , mapLen, mapGzLen, mapMd5, mapFlag) > 0)
             {
+
                stra_dup.remove(strCurrent);
+
                m_iTotalGzLen -= mapGzLen[strCurrent];
+
                for(int j = 0;  j < stra_dup.get_count(); j++)
                {
+
                   ::OutputDebugStringA(stra_dup[j]);
+
                   ::OutputDebugStringA("\r\n");
+
                }
+
                goto restart_download;
+
             }
+
          }
-         if(bDownload && download_file(str3, true, mapLen[stra_dup[i]], mapMd5[stra_dup[i]], mapGzLen[stra_dup[i]]))
+         if(bDownload && download_file(str3, true, mapLen[stra_dup[i]], mapMd5[stra_dup[i]], mapGzLen[stra_dup[i]], mapFlag[stra_dup[i]]))
          {
             m_dProgress = m_dProgress2;
             if(strStageUnbz.ends_ci(".expand_fileset"))
@@ -875,17 +887,25 @@ restart_download:
                   ::OutputDebugStringA(stra_dup[j]);
                   ::OutputDebugStringA("\r\n");
                }
-               if(GetFileList(stra_dup, strExpand , mapLen, mapGzLen, mapMd5) > 0)
+
+               if(GetFileList(stra_dup, strExpand , mapLen, mapGzLen, mapMd5, mapFlag) > 0)
                {
+
                   stra_dup.remove(strCurrent);
+
                   m_iTotalGzLen -= mapGzLen[strCurrent];
+
                   for(int j = 0;  j < stra_dup.get_count(); j++)
                   {
+
                      ::OutputDebugStringA(stra_dup[j]);
+
                      ::OutputDebugStringA("\r\n");
+
                   }
 
                   goto restart_download;
+
                }
             }
          }
@@ -984,7 +1004,7 @@ restart_download:
    }
 
 
-   bool installer::download_file(const vsstring& url_in, bool bExist, int64_t iLength, const char * pszMd5, int64_t iGzLen)
+   bool installer::download_file(const vsstring& url_in, bool bExist, int64_t iLength, const char * pszMd5, int64_t iGzLen, int & iFlag)
    {
       if(m_bOfflineInstall)
          return true;
@@ -1000,7 +1020,7 @@ restart_download:
          dir += "\\";
       }
       dir3 = dir + "ca2\\time\\patchwork\\";
-      dir2 = dir + "ca2\\time\\unbz\\";
+      dir2 = dir + "ca2\\";
       dir += "ca2\\time\\bz\\";
       int oldpos = -1;
       {
@@ -1044,8 +1064,13 @@ restart_download:
             {
                if(pszMd5 != NULL && strlen_dup(pszMd5) > 0 && stricmp_dup(get_file_md5((dir2 + file2)), pszMd5) == 0)
                {
+
                   trace_add(_unitext(" up-to-date c"));
+
+                  iFlag |= SPA_FILE_FLAG_VOID_COPY;
+
                   return true;
+
                }
             }
          }
@@ -1568,7 +1593,7 @@ restart_download:
 
 
 
-   int installer::GetFileList(stra_dup & stra_dup, LPCTSTR lpcszPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapMd5)
+   int installer::GetFileList(stra_dup & stra_dup, LPCTSTR lpcszPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapFlag)
    {
       vsstring strPath(lpcszPath);
       strPath = str_replace_dup(strPath, "/", "\\");
@@ -1612,7 +1637,7 @@ restart_download:
          {
             strPathParam = "stage\\" + strPlatform + strPathParam.substr(11);
          }
-         iCurrent = GetFileList(stra_dup, strPathParam, mapLen, mapGzLen, mapMd5);
+         iCurrent = GetFileList(stra_dup, strPathParam, mapLen, mapGzLen, mapMd5, mapFlag);
          if(iCurrent == -2)
          {
             return -2;
@@ -1722,7 +1747,7 @@ restart_download:
       return stra_dup.get_count();
    }
 
-   count installer::CopyFileList(stra_dup & stra_dup)
+   count installer::CopyFileList(stra_dup & stra_dup, simple_string_to_intptr & mapFlag)
    {
       vsstring strStage;
       vsstring strStageUnbz;
@@ -1731,10 +1756,15 @@ restart_download:
       m_dProgress = 0.0;
       for(int i = 0; i < stra_dup.get_count(); i++)
       {
+
+         str = stra_dup[i];
+
+         int_ptr iFlag = mapFlag[str];
+         if((iFlag & SPA_FILE_FLAG_VOID_COPY) != 0)
+            continue;
          //m_dProgress1 = d / ((double) stra_dup.size());
          //d += 1.0;
          //m_dProgress2 = d / ((double) stra_dup.size());
-         str = stra_dup[i];
          str += ".bz";
          trace(str);
          strStageUnbz = ca2unbz_get_dir(str) + ca2unbz_get_file(str);
@@ -1858,7 +1888,7 @@ restart_download:
       return pszDefault;
    }
 
-   void installer::ParseIndexFile(const char * psz, simple_string_to_intptr & mapLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapGzLen)
+   void installer::ParseIndexFile(const char * psz, simple_string_to_intptr & mapLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapGzLen, simple_string_to_intptr & mapFlag)
    {
       _FILE * f = fopen_dup(psz, "rb");
       char * pszFind1;
@@ -1963,9 +1993,9 @@ restart_download:
 
    CLASS_DECL_c void send_spaboot_install_post(int a, int b)
    {
-      
+
       small_ipc_tx_channel txchannel;
-   
+
       if(!txchannel.open("ca2/fontopus/ccvotagus/spaboot_install_callback")) 
          return;
 
@@ -2066,7 +2096,7 @@ restart_download:
             ::MessageBox(NULL, str, "You may restart the applications ...", MB_ICONINFORMATION | MB_OK);
 
          }
-         
+
          send_spaboot_install_post(2, 0);
 
          return true;
@@ -2181,7 +2211,7 @@ restart_download:
       m_strCommandLine  = pszCommandLine;
 
       m_strApplicationId = get_command_line_param(pszCommandLine, "app", "session", "session_start");
-      
+
       m_strApplicationType = get_command_line_param(pszCommandLine, "app_type");
 
       if(m_strApplicationId.is_empty())

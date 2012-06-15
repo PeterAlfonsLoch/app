@@ -388,26 +388,132 @@ namespace md5
 } // namespace md5
 
 
+const char * get_file_md5_by_map(const char * path)
+{
+   
+   HANDLE hfile = ::CreateFileA(path, FILE_READ_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
+   
+   if(hfile == INVALID_HANDLE_VALUE)
+   {
+
+      return NULL;
+
+   }
+
+   DWORD dwHigh;
+
+   DWORD dwSize = ::GetFileSize(hfile, &dwHigh);
+
+   if(dwHigh > 0)
+   {
+      
+      CloseHandle(hfile);
+
+      return NULL;
+
+   }
+
+   HANDLE hfilemap = CreateFileMapping(
+      hfile,
+      NULL,
+      PAGE_READONLY,
+      0,
+      0,
+      NULL);
+   
+   if(hfilemap == NULL)
+   {
+
+      CloseHandle(hfile);
+
+      return NULL;
+
+   }
+
+   char * pview = (char *) MapViewOfFile(
+      hfilemap,
+      FILE_MAP_READ,
+      0,
+      0,
+      0
+      );
+   
+   if(pview == NULL)
+   {
+      
+      CloseHandle(hfile);
+      
+      CloseHandle(hfilemap);
+
+      return NULL;
+
+   }
+
+   ::md5::md5 md5;
+
+   md5.initialize();
+
+   md5.update(pview, dwSize);
+
+   md5.finalize();
+
+   UnmapViewOfFile(pview);
+   
+   CloseHandle(hfilemap);
+   
+   CloseHandle(hfile);
+
+   return md5.to_string();
+
+}
+
+const char * get_file_md5_by_read(const char * path)
+{
+   
+   HANDLE hfile = ::CreateFile(path, GENERIC_READ, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+   if(hfile == INVALID_HANDLE_VALUE)
+      return NULL;
+
+   ::md5::md5 md5;
+
+   md5.initialize();
+
+   DWORD dwHigh;
+
+   DWORD dwSize = ::GetFileSize(hfile, &dwHigh);
+
+   char * psz = (char *) _ca_alloc(dwSize);
+
+   DWORD dwRead;
+
+   ::ReadFile(hfile, psz, dwSize, &dwRead, NULL);
+
+   md5.update(psz, dwRead);
+
+   md5.finalize();
+
+   _ca_free(psz, 0);
+
+   ::CloseHandle(hfile);
+
+   return md5.to_string();
+
+}
+
+
 const char * get_file_md5(const char * path)
 {
 
 #ifdef WINDOWS
 
-   ::md5::md5 md5;
-   md5.initialize();
-   HANDLE hfile = ::CreateFile(path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-   if(hfile == INVALID_HANDLE_VALUE)
-      return NULL;
-   DWORD dwSizeHigh;
-   DWORD dwSize = ::GetFileSize(hfile, &dwSizeHigh);
-   char * psz = (char *) _ca_alloc(dwSize);
-   DWORD dwRead;
-   ::ReadFile(hfile, psz, dwSize, &dwRead, NULL);
-   md5.update(psz, dwRead);
-   md5.finalize();
-   _ca_free(psz, 0);
-   ::CloseHandle(hfile);
-   return md5.to_string();
+   const char * pszMd5 = get_file_md5_by_map(path);
+
+   if(pszMd5 != NULL)
+      return pszMd5;
+
+   return get_file_md5_by_read(path);
+
 
 #else
 
