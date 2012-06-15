@@ -795,9 +795,12 @@ restart_download:
 
       int i;
       vsstring str;
+      vsstring strMd5;
+      int_ptr iLen;
       double d = 0.0;
       m_dProgress = 0.0;
       bool bDownload;
+      bool bInplaceExists;
 
       for(i = 0; i < stra_dup.get_count(); i++)
       {
@@ -824,16 +827,25 @@ restart_download:
          trace(str_replace_dup(file_title_dup((str2 + str)), "\\", "/"));
          str += ".bz";
          vsstring str3 = str;
+         strMd5 = mapMd5[stra_dup[i]];
+         iLen = mapLen[stra_dup[i]];
          str += ".";
-         str += mapMd5[stra_dup[i]];
+         str += strMd5;
          vsstring strStageGz = ca2bz_get_dir(str1) + ca2bz_get_file(str1, mapMd5[stra_dup[i]]);
-         vsstring strStageUnbz = ca2unbz_get_dir(str1) + ca2unbz_get_file(str1);
-         dir::mk(dir::name(strStageUnbz));
+         //vsstring strStageUnbz = ca2unbz_get_dir(str1) + ca2unbz_get_file(str1);
+         //dir::mk(dir::name(strStageUnbz));
+         vsstring strStageInplace = ca2inplace_get_dir(str1) + ca2inplace_get_file(str1);
+         dir::mk(dir::name(strStageInplace));
          // uncompress, may have downloaded .bz correctly in previous install
          // and Get will later check if decompressed file is already the correct one
-         bzuncompress(strStageUnbz, strStageGz);
+         if(!strStageInplace.ends_ci(".expand_fileset") && file_exists_dup(strStageInplace) && file_length_dup(strStageInplace) == iLen && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
+            continue;
+         if(file_exists_dup(strStageGz))
+         {
+            bzuncompress(strStageInplace, strStageGz);
+         }
          bDownload = true;
-         if(strStageUnbz.ends_ci(".expand_fileset") && file_exists_dup(strStageGz) && file_length_dup(strStageGz)>0)
+         if(strStageInplace.ends_ci(".expand_fileset") && file_exists_dup(strStageGz) && file_length_dup(strStageGz)>0)
          {
             vsstring strExpand = stra_dup[i];
             vsstring strCurrent = stra_dup[i];
@@ -870,15 +882,18 @@ restart_download:
          if(bDownload && download_file(str3, true, mapLen[stra_dup[i]], mapMd5[stra_dup[i]], mapGzLen[stra_dup[i]], mapFlag[stra_dup[i]]))
          {
             m_dProgress = m_dProgress2;
-            if(strStageUnbz.ends_ci(".expand_fileset"))
+            if(strStageInplace.ends_ci(".expand_fileset"))
             {
                str = stra_dup[i];
                vsstring strExpand = stra_dup[i];
                vsstring strCurrent = stra_dup[i];
                vsstring strRelative = dir::path(dir::name(str), file_name_dup(str));
-               vsstring strStageUnbz1 = ca2unbz_get_dir(str) + ca2unbz_get_file(str);
-               vsstring strStageUnbz2 = ca2unbz_get_dir(strRelative) + ca2unbz_get_file(strRelative);
-               file_ftd_dup(strStageUnbz2, strStageUnbz);
+               //vsstring strStageUnbz1 = ca2unbz_get_dir(str) + ca2unbz_get_file(str);
+               //vsstring strStageUnbz2 = ca2unbz_get_dir(strRelative) + ca2unbz_get_file(strRelative);
+               vsstring strStageInplace1 = ca2inplace_get_dir(str) + ca2inplace_get_file(str);
+               vsstring strStageInplace2 = ca2inplace_get_dir(strRelative) + ca2inplace_get_file(strRelative);
+               //file_ftd_dup(strStageUnbz2, strStageUnbz);
+               file_ftd_dup(strStageInplace2, strStageInplace);
                strExpand += ".spa";
                //strExpand = str_replace_dup(str_replace_dup(strExpand, "\\", "_"), "/", "_");
                strExpand = "app\\stage\\metastage\\" + strExpand;
@@ -1412,6 +1427,50 @@ restart_download:
          dir +=  lastfile + "\\";
       return dir;
    }
+
+
+   vsstring installer::ca2inplace_get_dir(LPCTSTR lpcszUrl)
+   {
+      vsstring url_in(lpcszUrl);
+      vsstring dir;
+      vsstring url;
+      vsstring file;
+      if(m_bInternetInstall)
+      {
+         dir = dir::afterca2();
+      }
+      else
+      {
+         dir = m_strInstallGz;
+      }
+      index pos = url_in.find(m_strInstall);
+      if(pos == 0)
+      {
+         url = url_in.substr(m_strInstall.length());
+      }
+      else
+      {
+         url = url_in;
+      }
+      index oldpos = -1;
+      pos = url.find("/");
+      vsstring lastfile;
+      while (pos >=0)
+      {
+         file = url.substr(oldpos + 1, pos - oldpos -1);
+         if(lastfile.size() > 0)
+            dir +=  lastfile + "\\";
+         lastfile = file;
+         oldpos = pos;
+         pos = url.find("/", oldpos + 1);
+      }
+      file = url.substr(oldpos + 1);
+      if(lastfile.size() > 0)
+         dir +=  lastfile + "\\";
+      return dir;
+   }
+
+
    vsstring installer::ca2_get_file(LPCTSTR lpcszUrl)
    {
       vsstring url_in(lpcszUrl);
@@ -1509,6 +1568,44 @@ restart_download:
       vsstring url;
       vsstring file;
       dir = dir::path(dir::afterca2(), "time\\unbz\\");
+      vsstring strFind;
+      index pos = url_in.find(m_strInstall);
+      if(pos == 0)
+      {
+         url = url_in.substr(m_strInstall.length());
+      }
+      else
+      {
+         url = url_in;
+      }
+      index oldpos = -1;
+      pos = url.find("/");
+      vsstring lastfile;
+      while (pos >=0)
+      {
+         file = url.substr(oldpos + 1, pos - oldpos -1);
+         if(lastfile.size() > 0)
+            dir +=  lastfile + "\\";
+         lastfile = file;
+         oldpos = pos;
+         pos = url.find("/", oldpos + 1);
+      }
+      file = url.substr(oldpos + 1);
+      if(lastfile.size() > 0)
+         dir +=  lastfile + "\\";
+      if(file.substr(file.size() - 3, 3) == ".bz")
+         return file.substr(0, file.size() - 3);
+      else
+         return file;
+   }
+
+   vsstring installer::ca2inplace_get_file(LPCTSTR lpcszUrl)
+   {
+      vsstring url_in(lpcszUrl);
+      vsstring dir;
+      vsstring url;
+      vsstring file;
+      dir = dir::afterca2();
       vsstring strFind;
       index pos = url_in.find(m_strInstall);
       if(pos == 0)

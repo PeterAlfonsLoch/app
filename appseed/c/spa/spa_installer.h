@@ -152,11 +152,15 @@ namespace spa
 
       vsstring ca2unbz_get_dir(LPCTSTR lpcszUrl);
 
+      vsstring ca2inplace_get_dir(LPCTSTR lpcszUrl);
+
       vsstring ca2_get_file(LPCTSTR lpcszUrl);
 
       vsstring ca2bz_get_file(LPCTSTR lpcszUrl, const char * pszCrc);
 
       vsstring ca2unbz_get_file(LPCTSTR lpcszUrl);
+
+      vsstring ca2inplace_get_file(LPCTSTR lpcszUrl);
 
       bool ca2_fy_url(vsstring & str, LPCTSTR lpcszPath, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen, bool bIndex = false);
 
