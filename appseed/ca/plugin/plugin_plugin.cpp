@@ -38,7 +38,7 @@ namespace plugin
       m_hfileBitmap           = INVALID_HANDLE_VALUE;
       m_hfilemapBitmap        = NULL;
       m_pcolorref             = NULL;
-
+      m_pmutexBitmap          = NULL;
 
    }
 
@@ -115,6 +115,14 @@ namespace plugin
          0,
          0
          );
+
+
+      string strMutex = m_phost->m_vssChannel;
+
+      gen::str::begins_eat_ci(strMutex, "\\ca2\\");
+
+
+      m_pmutexBitmap = new mutex(false, "Global\\" + strMutex);
 
       bool bNew = false;
 
@@ -314,10 +322,14 @@ namespace plugin
          {
          }
 
+         single_lock sl(m_pmutexBitmap, true);
+
          if(m_pbitmap == NULL
          || m_sizeBitmap.cx != (lprect->right - lprect->left)
          || m_sizeBitmap.cy != (lprect->bottom - lprect->top))
          {
+
+
 
             m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
             m_sizeBitmap.cy = abs_dup(lprect->bottom - lprect->top);
@@ -360,12 +372,20 @@ namespace plugin
 
          try
          {
-               
+
+
+
+            ((Gdiplus::Graphics *) m_dib->get_graphics()->get_os_data())->Flush();
+            
+            memset(m_pcolorref, 0, abs_dup(m_sizeBitmap.cy) * abs_dup(m_sizeBitmap.cx) * 4);
+
             Gdiplus::Graphics * pg = Gdiplus::Graphics::FromImage((Gdiplus::Bitmap *) m_pbitmap);
 
             pg->SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
 
             pg->DrawImage((Gdiplus::Bitmap *) m_dib->get_bitmap()->get_os_data(), 0, 0, 0, 0, lprect->right - lprect->left, lprect->bottom - lprect->top, Gdiplus::UnitPixel);
+
+            pg->Flush();
 
             delete pg;
 

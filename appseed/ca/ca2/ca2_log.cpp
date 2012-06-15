@@ -218,19 +218,39 @@ namespace ca2
                            System.dir().time_log(m_id),
                            strRelative + "-" + strIndex + ".log");
 
-         if(!plog->m_spfile->open(m_strLogPath, ::ex1::file::type_text
-            | ::ex1::file::mode_write
-            | ::ex1::file::shareDenyWrite | ::ex1::file::mode_create | ::ex1::file::modeNoTruncate
-            | ::ex1::file::defer_create_directory))
+         try
          {
-            if(plog->m_spfile->IsOpened())
+            if(!plog->m_spfile->open(m_strLogPath, ::ex1::file::type_text
+               | ::ex1::file::mode_write
+               | ::ex1::file::shareDenyWrite | ::ex1::file::mode_create | ::ex1::file::modeNoTruncate
+               | ::ex1::file::defer_create_directory))
             {
-               plog->m_spfile->close();
+               if(plog->m_spfile->IsOpened())
+               {
+                  plog->m_spfile->close();
+               }
+               iRetry++;
+               if(iRetry >= 100000)
+                  return;
+               goto retry;
             }
-            iRetry++;
-            if(iRetry >= 100000)
-               return;
-            goto retry;
+         }
+         catch(...)
+         {
+            try
+            {
+               if(plog->m_spfile->IsOpened())
+               {
+                  plog->m_spfile->close();
+               }
+               iRetry++;
+               if(iRetry >= 100000)
+                  return;
+               goto retry;
+            }
+            catch(...)
+            {
+            }
          }
          plog->m_iYear     = time.GetYear();
          plog->m_iMonth    = time.GetMonth();

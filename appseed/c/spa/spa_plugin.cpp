@@ -148,7 +148,7 @@ namespace spa
 
          ::hotplugin::container_launcher launcher(str);
 
-         vsstring strChannel = "/ca2/ca2plugin-container-";
+         vsstring strChannel = "\\ca2\\ca2plugin-container-";
          strChannel += str;
 
 
@@ -706,6 +706,21 @@ install:
          {
 
             m_phost->m_bInstalling = b != FALSE;
+
+         }
+         else if(a == 3)
+         {
+            
+            if(b == 1)
+            {
+
+               if(m_phost->m_bStream)
+               {
+                  //set_ready();
+                  ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, m_phost->m_countMemory);
+               }
+
+            }
 
          }
 

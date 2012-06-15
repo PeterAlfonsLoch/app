@@ -26,6 +26,7 @@ namespace spa
       canvas      m_canvas;
       DWORD       m_dwLastInstallingCheck;
       DWORD       m_dwLastRestart;
+      
 
 
 

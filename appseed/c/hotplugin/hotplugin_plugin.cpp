@@ -401,6 +401,10 @@ namespace hotplugin
       {
          on_ready();
       }
+      else if(m_phost != NULL)
+      {
+         ::PostMessage(m_phost->::small_ipc_channel::m_hwnd, WM_USER + 100, 3, 1);
+      }
    }
 
    void plugin::on_ready()

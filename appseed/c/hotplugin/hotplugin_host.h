@@ -33,6 +33,7 @@ namespace hotplugin
 
       HANDLE                        m_hfileBitmap;
       HANDLE                        m_hfilemapBitmap;
+      simple_mutex *                m_pmutexBitmap;
 
 
       host();

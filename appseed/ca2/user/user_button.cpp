@@ -295,7 +295,14 @@ namespace user
          {
             pframewindow = pframewindow->GetTypedParent < ::simple_frame_window > ();
          }
-         m_pschema = &pframewindow->m_workset.m_pframeschema->get_user_front_end_schema()->m_button;
+         if(pframewindow->m_workset.m_pframeschema == NULL)
+         {
+            m_pschema = &Application.GetUfeSchema()->m_button;
+         }
+         else
+         {
+            m_pschema = &pframewindow->m_workset.m_pframeschema->get_user_front_end_schema()->m_button;
+         }
       }
 
    }

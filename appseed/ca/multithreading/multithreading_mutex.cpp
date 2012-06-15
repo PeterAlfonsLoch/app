@@ -16,7 +16,18 @@ mutex::mutex(bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lp
    m_object = ::CreateMutex(lpsaAttribute, bInitiallyOwn, pstrName);
 
    if (m_object == NULL)
-      throw resource_exception();
+   {
+      
+      m_object = ::OpenMutex(SYNCHRONIZE, TRUE, pstrName);
+      
+      if(m_object == NULL)
+      {
+      
+         throw resource_exception();
+
+      }
+
+   }
 
 #else
 

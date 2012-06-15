@@ -48,9 +48,11 @@ namespace plugin
       string                        m_strOpenUrl;
       bool                          m_bOpenUrl;
       ::visual::dib_sp              m_dib;
+      
 
-      HANDLE      m_hfileBitmap;
-      HANDLE      m_hfilemapBitmap;
+      HANDLE                        m_hfileBitmap;
+      HANDLE                        m_hfilemapBitmap;
+      mutex *                       m_pmutexBitmap;
 
 
       plugin();
