@@ -413,7 +413,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
 
          dir::mk(dir::path(dir::appdata("time"), "ca2"));
 
-         m_hfileBitmap = CreateFile(dir::path(dir::appdata("time"), vsstring("ca2/ca2plugin-container-") + itohex_dup((INT_PTR)m_phost)), FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+         m_hfileBitmap = CreateFile(dir::path(dir::appdata("time"), vsstring("ca2/ca2plugin-container-") + itohex_dup((INT_PTR)this)), FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
          if(m_hfileBitmap == INVALID_HANDLE_VALUE)
          {
