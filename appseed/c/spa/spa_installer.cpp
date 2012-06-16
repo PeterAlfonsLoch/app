@@ -788,67 +788,115 @@ RetryHost:
 restart_download:
 
       m_dwDownloadTick = ::GetTickCount();
+
       m_dwDownload = 0;
+
       m_iDownloadRate = 0;
+
       m_bShowPercentage = true;
+
       m_iGzLen = 0;
 
       int i;
+
       vsstring str;
+
       vsstring strMd5;
+
       int_ptr iLen;
+
       double d = 0.0;
+
       m_dProgress = 0.0;
+
       bool bDownload;
+
       bool bInplaceExists;
 
       for(i = 0; i < stra_dup.get_count(); i++)
       {
+
          if(m_iTotalGzLen > 0)
          {
+
             m_dProgress1 = (double) m_iGzLen / (double) m_iTotalGzLen;
+
             m_dProgress2 = (double) (m_iGzLen + mapGzLen[stra_dup[i]]) / (double) m_iTotalGzLen;
+
          }
          else
          {
+
             m_dProgress1 = d / ((double) stra_dup.get_count());
+
             d += 1.0;
+
             m_dProgress2 = d / ((double) stra_dup.get_count());
+
          }
+
          str = m_strInstall;
+
          str += stra_dup[i];
+
          vsstring str1 = stra_dup[i];
+
          vsstring str2 = dir::name(str);
+
          if(str2.substr(0, m_strInstall.length()) == m_strInstall)
          {
+
             str2 = str2.substr(21);
+
             str2 = str_replace_dup(str2, "\\", "/");
+
          }
+
          trace(str_replace_dup(file_title_dup((str2 + str)), "\\", "/"));
+         
          str += ".bz";
-         vsstring str3 = str;
-         strMd5 = mapMd5[stra_dup[i]];
-         iLen = mapLen[stra_dup[i]];
+         
+         vsstring str3  = str;
+         
+         strMd5         = mapMd5[str1];
+         
+         iLen           = mapLen[str1];
+
          str += ".";
+         
          str += strMd5;
+         
          vsstring strStageGz = ca2bz_get_dir(str1) + ca2bz_get_file(str1, mapMd5[stra_dup[i]]);
+         
          //vsstring strStageUnbz = ca2unbz_get_dir(str1) + ca2unbz_get_file(str1);
+
          //dir::mk(dir::name(strStageUnbz));
+         
          vsstring strStageInplace = ca2inplace_get_dir(str1) + ca2inplace_get_file(str1);
+
          dir::mk(dir::name(strStageInplace));
+
          // uncompress, may have downloaded .bz correctly in previous install
          // and Get will later check if decompressed file is already the correct one
-         if(!strStageInplace.ends_ci(".expand_fileset") && file_exists_dup(strStageInplace) && file_length_dup(strStageInplace) == iLen && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
+         if(!strStageInplace.ends_ci(".expand_fileset")
+         && file_exists_dup(strStageInplace)
+         && (iLen != -1) && file_length_dup(strStageInplace) == iLen 
+         && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
             continue;
-         if(file_exists_dup(strStageGz))
-         {
-            bzuncompress(strStageInplace, strStageGz);
-         }
+
+         //if(file_exists_dup(strStageGz))
+         //{
+
+         //   bzuncompress(strStageInplace, strStageGz);
+
+         //}
+
          bDownload = true;
+
          if(strStageInplace.ends_ci(".expand_fileset") && file_exists_dup(strStageGz) && file_length_dup(strStageGz)>0)
          {
-            vsstring strExpand = stra_dup[i];
-            vsstring strCurrent = stra_dup[i];
+            vsstring strExpand   = str1;
+            vsstring strCurrent  = str1;
             strExpand += ".spa";
             //strExpand = str_replace_dup(str_replace_dup(strExpand, "\\", "_"), "/", "_");
             strExpand = "app\\stage\\metastage\\" + strExpand;
@@ -879,11 +927,15 @@ restart_download:
             }
 
          }
-         if(bDownload && download_file(str3, true, mapLen[stra_dup[i]], mapMd5[stra_dup[i]], mapGzLen[stra_dup[i]], mapFlag[stra_dup[i]]))
+
+         if(bDownload && download_file(str3, false, false, mapLen[stra_dup[i]], mapMd5[stra_dup[i]], mapGzLen[stra_dup[i]], mapFlag[stra_dup[i]]))
          {
+            
             m_dProgress = m_dProgress2;
+
             if(strStageInplace.ends_ci(".expand_fileset"))
             {
+
                str = stra_dup[i];
                vsstring strExpand = stra_dup[i];
                vsstring strCurrent = stra_dup[i];
@@ -1019,59 +1071,98 @@ restart_download:
    }
 
 
-   bool installer::download_file(const vsstring& url_in, bool bExist, int64_t iLength, const char * pszMd5, int64_t iGzLen, int_ptr & iFlag)
+   bool installer::download_file(const vsstring& url_in, bool bExist, bool bCheck, int64_t iLength, const char * pszMd5, int64_t iGzLen, int_ptr & iFlag)
    {
+
       if(m_bOfflineInstall)
          return true;
+
       vsstring url = url_in;
+
       vsstring file;
+
       vsstring file2;
+
       vsstring dir;
+
       vsstring dir2;
+
       vsstring dir3;
+
       dir = dir::beforeca2();
+
       if(dir.substr(dir.size() - 2, 1) != "\\")
       {
+
          dir += "\\";
+
       }
+
       dir3 = dir + "ca2\\time\\patchwork\\";
+
       dir2 = dir + "ca2\\";
+
       dir += "ca2\\time\\bz\\";
+
       int oldpos = -1;
+
       {
+
          index pos = url_in.find(m_strInstall);
+
          if(pos == 0)
          {
+
             url = url_in.substr(m_strInstall.length());
+
          }
+
          index oldpos = -1;
+
          pos = url.find("/");
+
          vsstring lastfile;
+
          while (pos >=0)
          {
+
             file = url.substr(oldpos + 1, pos - oldpos -1);
+
             if(lastfile.size() > 0)
                dir +=  lastfile + "\\";
+
             lastfile = file;
+
             oldpos = pos;
+
             pos = url.find("/", oldpos + 1);
+
          }
+
          file = url.substr(oldpos + 1);
+
          if(lastfile.size() > 0)
             dir +=  lastfile + "\\";
+
       }
+
       if(stricmp_dup(file.substr(file.length() - 3, 3), ".bz") == 0)
       {
+
          file2 = file.substr(0, file.length() - 3);
+
       }
       else
       {
+
          file2 = file;
+
       }
+
       dir::mk(dir);
 
       // first check if the exiting (old file) is already up-to-date (the current one)
-      if(bExist)
+      if(bExist && bCheck)
       {
          if(file_exists_dup(dir2 + file2))
          {
@@ -1090,39 +1181,69 @@ restart_download:
             }
          }
       }
+
       bool bOk = false;
+
       int iRetry = 0;
+
       int iMaxRetry = 3;
+
       char sz[1024];
+
       int iStatus;
+
       if(file_exists_dup((dir2 + file2)))
       {
+
          // then first try to download and apply patch
+
          vsstring strOldMd5 = get_file_md5((dir2 + file2));
+
          vsstring strNewMd5 = pszMd5;
+
          dir::mk(dir::name((dir + file)));
+
          m_dwCurFileLen = iGzLen;
+
          m_dwDownloadLen = 0;
+
          keep_true keepDownloadTrue(m_bMsDownload);
+
          uint64_t iBsLen = 0;
+
          bool bPossible = false;
+
          while(true)
          {
+
             vsstring strUrl;
+
             strUrl = "http://spa.api.laborserver.net/bspatch?file=";
+
             strUrl += url_encode_dup(file2);
+
             strUrl += "&old_hash=";
+
             strUrl += strOldMd5;
+
             strUrl += "&new_hash=";
+
             strUrl += strNewMd5;
+
             vsstring strBsPatch = dir + file + "." + strOldMd5 + "." + strNewMd5 + ".bspatch";
+
             bOk = ms_download_dup(strUrl, strBsPatch, false, false, &iStatus, &::ms_download_callback, (void *) this);
+
             if(iStatus == 404)
                break;
+
             if(!bPossible)
             {
+
                bPossible = true;
+
                ///trace_add(" patching may be possible");
+
             }
             if(bOk)
             {
@@ -1260,17 +1381,17 @@ restart_download:
                break;
             if(bOk)
             {
-               if(iLength != -1)
+               //if(iLength != -1)
                {
                   int iResult = bzuncompress((dir2 + file2), (dir + file + "." + pszMd5));
-                  if(iResult == -1)
+                  /*if(iResult == -1)
                   {
                      m_NeedRestartBecauseOfReservedFile = true;
                   }
                   else if(iResult == -2)
                   {
                      m_NeedRestartFatalError = true;
-                  }
+                  }*/
                }
                bOk = iLength == -1 || iLength == file_length_dup((dir2 + file2));
                if(bOk)
@@ -1438,6 +1559,10 @@ restart_download:
       if(m_bInternetInstall)
       {
          dir = dir::afterca2();
+         if(!str_ends_ci_dup(dir, "\\") && !str_ends_ci_dup(dir, "/"))
+         {
+            dir += "\\";
+         }
       }
       else
       {
@@ -1602,10 +1727,8 @@ restart_download:
    vsstring installer::ca2inplace_get_file(LPCTSTR lpcszUrl)
    {
       vsstring url_in(lpcszUrl);
-      vsstring dir;
       vsstring url;
       vsstring file;
-      dir = dir::afterca2();
       vsstring strFind;
       index pos = url_in.find(m_strInstall);
       if(pos == 0)
@@ -1622,15 +1745,11 @@ restart_download:
       while (pos >=0)
       {
          file = url.substr(oldpos + 1, pos - oldpos -1);
-         if(lastfile.size() > 0)
-            dir +=  lastfile + "\\";
          lastfile = file;
          oldpos = pos;
          pos = url.find("/", oldpos + 1);
       }
       file = url.substr(oldpos + 1);
-      if(lastfile.size() > 0)
-         dir +=  lastfile + "\\";
       if(file.substr(file.size() - 3, 3) == ".bz")
          return file.substr(0, file.size() - 3);
       else
