@@ -33,11 +33,16 @@ namespace hotplugin
       free_memory();
    }
 
+
    bool host::open_url(const char * psz)
    {
+
       UNREFERENCED_PARAMETER(psz);
+
       return false;
+
    }
+
 
    bool host::reload_plugin()
    {
@@ -64,15 +69,39 @@ namespace hotplugin
 
    void host::get_window_rect(LPRECT lprect)
    {
-      *lprect = m_rect;
+
+      if(m_pplugin != NULL)
+      {
+         
+         m_pplugin->get_window_rect(lprect);
+
+      }
+      else
+      {
+
+         *lprect = m_rect;
+
+      }
+
    }
 
    void host::set_window_rect(LPCRECT lpcrect)
    {
+      
+      
       if(m_pplugin != NULL)
       {
+
          m_pplugin->set_window_rect(lpcrect);
+
       }
+      else
+      {
+
+         m_rect = *lpcrect;
+
+      }
+
    }
 
    //bool host::hist(const char * pszUrl);
@@ -385,113 +414,39 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
 
    }
 
-   void host::paint_bitmap(HDC hdcWindow, LPCRECT lprect)
+
+   void host::set_bitmap(HDC hdcWindow, LPCRECT lprect)
    {
 
       if(m_pcolorref == NULL)
       {
 
-         //Sleep(15 * 1000);
-
-         if(m_pcolorref != NULL)
-         {
-            UnmapViewOfFile(m_pcolorref);
-            m_pcolorref = NULL;
-         }
-
-         if(m_hfilemapBitmap != NULL)
-         {
-            ::CloseHandle(m_hfilemapBitmap);
-            m_hfilemapBitmap = NULL;
-         }
-
-         if(m_hfileBitmap != INVALID_HANDLE_VALUE)
-         {
-            ::CloseHandle(m_hfileBitmap);
-            m_hfileBitmap = INVALID_HANDLE_VALUE;
-         }
-
-         dir::mk(dir::path(dir::appdata("time"), "ca2"));
-
-         m_hfileBitmap = CreateFile(dir::path(dir::appdata("time"), vsstring("ca2\\ca2plugin-container-") + itohex_dup((INT_PTR)this)), FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-
-         if(m_hfileBitmap == INVALID_HANDLE_VALUE)
-         {
-            throw "resource exception";
-         }
-
-         DWORD dwHi;
-
-         if(::GetFileSize(m_hfileBitmap, &dwHi) != 1024 * 1024 * 1024)
-         {
-            LONG l = 0;
-            ::SetFilePointer(m_hfileBitmap, 1024 * 1024 * 1024, &l, SEEK_SET);
-            SetEndOfFile(m_hfileBitmap);
-         }
-
-         m_hfilemapBitmap = CreateFileMapping(
-            m_hfileBitmap,
-            NULL,
-            PAGE_READWRITE,
-            0,
-            0,
-            NULL);
-
-         if(m_hfilemapBitmap == NULL)
-         {
-            CloseHandle(m_hfileBitmap);
-            throw "resource exception";
-         }
-
-         m_pcolorref = (COLORREF *) MapViewOfFile(
-            m_hfilemapBitmap,
-            FILE_MAP_READ | FILE_MAP_WRITE,
-            0,
-            0,
-            0
-            );
-
-         if(m_pcolorref == NULL)
-         {
-            throw "resource exception";
-         }
-
-         m_pmutexBitmap = new simple_mutex(vsstring("Global\\ca2plugin-container-") + itohex_dup((INT_PTR)this));
+         ensure_bitmap_data(width(lprect), height(lprect));
 
       }
 
       mutex_lock ml(m_pmutexBitmap, true);
 
-      if(m_sizeBitmap.cx != (lprect->right - lprect->left)
-         || m_sizeBitmap.cy != (lprect->bottom - lprect->top))
-      {
+      m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
 
-         m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
-         m_sizeBitmap.cy = abs_dup(lprect->bottom - lprect->top);
-
-         if(m_pbitmap != NULL)
-         {
-            delete m_pbitmap;
-         }
-
-
-         m_pbitmap = new Gdiplus::Bitmap(abs_dup(m_sizeBitmap.cx), abs_dup(m_sizeBitmap.cy), abs_dup(m_sizeBitmap.cx) * 4, PixelFormat32bppARGB, (BYTE *) m_pcolorref);
-
-      }
+      m_sizeBitmap.cy = abs_dup(lprect->bottom - lprect->top);
 
       try
       {
 
+         HBITMAP hbitmap         = ::CreateBitmap(m_sizeBitmap.cx, m_sizeBitmap.cy, 1, 32, m_pcolorref);
 
-         Gdiplus::Graphics * pg = new Gdiplus::Graphics(hdcWindow);
+         HDC hdc                 = ::CreateCompatibleDC(NULL);
 
-         pg->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+         HBITMAP hbitmapOld      = (HBITMAP) ::SelectObject(hdc, hbitmap);
 
-         pg->DrawImage((Gdiplus::Bitmap *) m_pbitmap, lprect->left, lprect->top, 0, 0, lprect->right - lprect->left, lprect->bottom - lprect->top, Gdiplus::UnitPixel);
+         ::BitBlt(hdc, 0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, hdcWindow, lprect->left, lprect->top, SRCCOPY);
 
-         pg->Flush();
+         ::SelectObject(hdc, hbitmapOld);
 
-         delete pg;
+         ::DeleteDC(hdc);
+
+         ::DeleteObject(hbitmap);
 
       }
       catch(...)
@@ -502,6 +457,93 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
 
    }
 
+   void host::paint_bitmap(HDC hdcWindow, LPCRECT lprect)
+   {
+
+      if(m_pcolorref == NULL)
+      {
+
+         ensure_bitmap_data(width(lprect), height(lprect));
+
+      }
+
+      mutex_lock ml(m_pmutexBitmap, true);
+
+      m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
+
+      m_sizeBitmap.cy = abs_dup(lprect->bottom - lprect->top);
+
+      try
+      {
+
+         HBITMAP hbitmap         = ::CreateBitmap(m_sizeBitmap.cx, m_sizeBitmap.cy, 1, 32, m_pcolorref);
+
+         HDC hdc                 = ::CreateCompatibleDC(NULL);
+
+         HBITMAP hbitmapOld      = (HBITMAP) ::SelectObject(hdc, hbitmap);
+
+         ::BitBlt(hdcWindow, lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy,  hdc, 0, 0, SRCCOPY);
+
+         ::SelectObject(hdc, hbitmapOld);
+
+         ::DeleteDC(hdc);
+
+         ::DeleteObject(hbitmap);
+
+
+      }
+      catch(...)
+      {
+      }
+
+      return;
+
+   }
+
+
+   void host::blend_bitmap(HDC hdcWindow, LPCRECT lprect)
+   {
+
+      if(m_pcolorref == NULL)
+      {
+
+         ensure_bitmap_data(width(lprect), height(lprect));
+
+      }
+
+      mutex_lock ml(m_pmutexBitmap, true);
+
+      m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
+      
+      m_sizeBitmap.cy = abs_dup(lprect->bottom - lprect->top);
+
+      try
+      {
+
+         Gdiplus::Bitmap b(m_sizeBitmap.cx, m_sizeBitmap.cy, m_sizeBitmap.cx *4 , PixelFormat32bppARGB, (BYTE *) m_pcolorref);
+
+         Gdiplus::Graphics * pg = new Gdiplus::Graphics(hdcWindow);
+
+         pg->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+
+         pg->SetCompositingQuality(Gdiplus::CompositingQualityHighQuality);
+
+         pg->DrawImage(&b, lprect->left, lprect->top, 0, 0, lprect->right - lprect->left, lprect->bottom - lprect->top, Gdiplus::UnitPixel);
+
+         pg->Flush(Gdiplus::FlushIntentionSync);
+
+         delete pg;
+
+         ::GdiFlush();
+
+      }
+      catch(...)
+      {
+      }
+
+      return;
+
+   }
 
 } // namespace hotplugin
 

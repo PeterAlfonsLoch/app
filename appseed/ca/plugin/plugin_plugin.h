@@ -50,11 +50,6 @@ namespace plugin
       ::visual::dib_sp              m_dib;
       
 
-      HANDLE                        m_hfileBitmap;
-      HANDLE                        m_hfilemapBitmap;
-      mutex *                       m_pmutexBitmap;
-
-
       plugin();
 
 
@@ -99,6 +94,6 @@ namespace plugin
 
    };
 
-   ATOM MyRegisterClass(HINSTANCE hInstance);
+
 
 } // namespace npca2

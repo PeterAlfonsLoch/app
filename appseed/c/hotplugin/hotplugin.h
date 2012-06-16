@@ -1,5 +1,6 @@
 #pragma once
 
+
 // hotplugin
 // interface for a hot plugin
 // hot plugin - a plugin that can easily change underlying plugin implementation
@@ -12,11 +13,13 @@
 #include "hotplugin_host.h"
 #include "hotplugin_container_launcher.h"
 
+
 typedef ::hotplugin::plugin * (* FN_NEW_HOTPLUGIN)();
 
 
 namespace hotplugin
 {
+
 
    enum e_message
    {
@@ -27,6 +30,7 @@ namespace hotplugin
       message_message,
       message_set_ready,
       message_set_installing,
+      message_open_url,
 
    };
 

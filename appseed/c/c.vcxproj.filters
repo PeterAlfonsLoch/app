@@ -559,6 +559,9 @@
     <ClCompile Include="hotplugin\hotplugin_container_launcher.cpp">
       <Filter>Source Files\hotplugin</Filter>
     </ClCompile>
+    <ClCompile Include="geometric_types.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="c.def">

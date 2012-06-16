@@ -1197,6 +1197,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="gdi.cpp" />
+    <ClCompile Include="geometric_types.cpp" />
     <ClCompile Include="heap.cpp" />
     <ClCompile Include="hotplugin\hotplugin_container_launcher.cpp" />
     <ClCompile Include="hotplugin\hotplugin_host.cpp">

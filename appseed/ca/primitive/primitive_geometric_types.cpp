@@ -396,15 +396,6 @@ bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2)
 
 
 
-CLASS_DECL_ca long width(LPCRECT lpcrect)
-{
-   return lpcrect->right - lpcrect->left;
-}
-
-CLASS_DECL_ca long height(LPCRECT lpcrect)
-{
-   return lpcrect->bottom - lpcrect->top;
-}
 
 
 

@@ -311,6 +311,9 @@
     <ClInclude Include=".\hotplugin\hotplugin_container_launcher.h">
       <Filter>Header Files\hotplugin</Filter>
     </ClInclude>
+    <ClInclude Include="geometric_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -561,6 +564,9 @@
     </ClCompile>
     <ClCompile Include=".\hotplugin\hotplugin_container_launcher.cpp">
       <Filter>Source Files\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="geometric_types.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

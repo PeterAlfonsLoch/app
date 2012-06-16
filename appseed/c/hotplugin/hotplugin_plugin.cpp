@@ -265,12 +265,18 @@ namespace hotplugin
 
    bool plugin::open_url(const char * psz)
    {
+
       if(m_phost != NULL)
       {
+
          return m_phost->open_url(psz);
+
       }
+
       return false;
+
    }
+
 
    bool plugin::reload_plugin()
    {
@@ -318,15 +324,16 @@ namespace hotplugin
    // ca2.dll-absence-(ca2.dll-delay-load)-safe
    void plugin::get_window_rect(LPRECT lprect)
    {
-      if(m_phost != NULL)
-      {
-         m_phost->get_window_rect(lprect);
-      }
+      
+      *lprect = m_rect;
+
    }
 
    void plugin::set_window_rect(LPCRECT lpcrect)
    {
+
       m_rect = *lpcrect;
+
    }
 
    void plugin::set_memory(void * puchMemory, count c)
@@ -1085,6 +1092,89 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
 
    }
 
+
+   void plugin::ensure_bitmap_data(int cx, int cy)
+   {
+
+      if(m_pcolorref == NULL
+      || m_sizeBitmapData.cx != cx
+      || m_sizeBitmapData.cy != cy)
+      {
+
+         m_sizeBitmapData.cx = cx;
+         m_sizeBitmapData.cy = cy;
+
+         if(m_pcolorref != NULL)
+         {
+            UnmapViewOfFile(m_pcolorref);
+            m_pcolorref = NULL;
+         }
+
+         if(m_hfilemapBitmap != NULL)
+         {
+            ::CloseHandle(m_hfilemapBitmap);
+            m_hfilemapBitmap = NULL;
+         }
+
+         if(m_hfileBitmap != INVALID_HANDLE_VALUE)
+         {
+            ::CloseHandle(m_hfileBitmap);
+            m_hfileBitmap = INVALID_HANDLE_VALUE;
+         }
+
+         dir::mk(dir::path(dir::appdata("time"), "ca2"));
+
+         m_hfileBitmap = CreateFile(dir::path(dir::appdata("time"), vsstring("ca2\\ca2plugin-container-") + itohex_dup((INT_PTR)this)), FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+
+         if(m_hfileBitmap == INVALID_HANDLE_VALUE)
+         {
+            throw "resource exception";
+         }
+
+         DWORD dwHi;
+
+         DWORD_PTR size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
+
+         if(::GetFileSize(m_hfileBitmap, &dwHi) != size)
+         {
+            LONG l = 0;
+            ::SetFilePointer(m_hfileBitmap, size, &l, SEEK_SET);
+            SetEndOfFile(m_hfileBitmap);
+         }
+
+         m_hfilemapBitmap = CreateFileMapping(
+            m_hfileBitmap,
+            NULL,
+            PAGE_READWRITE,
+            0,
+            0,
+            NULL);
+
+         if(m_hfilemapBitmap == NULL)
+         {
+            CloseHandle(m_hfileBitmap);
+            throw "resource exception";
+         }
+
+         m_pcolorref = (COLORREF *) MapViewOfFile(
+            m_hfilemapBitmap,
+            FILE_MAP_READ | FILE_MAP_WRITE,
+            0,
+            0,
+            0
+            );
+
+         if(m_pcolorref == NULL)
+         {
+            throw "resource exception";
+         }
+
+         m_pmutexBitmap = new simple_mutex(vsstring("Global\\ca2plugin-container-") + itohex_dup((INT_PTR)this));
+
+      }
+
+
+   }
 
 
 } // namespace hotplugin

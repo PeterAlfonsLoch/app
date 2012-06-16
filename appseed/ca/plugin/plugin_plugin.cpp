@@ -34,6 +34,7 @@ namespace plugin
       m_bOpenUrl              = false;
 
       m_pbitmap               = NULL;
+      m_pgraphics             = NULL;
       
       m_hfileBitmap           = INVALID_HANDLE_VALUE;
       m_hfilemapBitmap        = NULL;
@@ -55,74 +56,11 @@ namespace plugin
    int plugin::start_ca2_system()
    {
 
-      //Sleep(15 * 1000);
-
-      if(m_pcolorref != NULL)
-      {
-         UnmapViewOfFile(m_pcolorref);
-         m_pcolorref = NULL;
-      }
-
-      if(m_hfilemapBitmap != NULL)
-      {
-         ::CloseHandle(m_hfilemapBitmap);
-         m_hfilemapBitmap = NULL;
-      }
-
-      if(m_hfileBitmap != NULL)
-      {
-         ::CloseHandle(m_hfileBitmap);
-         m_hfileBitmap = INVALID_HANDLE_VALUE;
-      }
-
-      dir::mk(dir::path(dir::appdata("time"), "ca2"));
-
-      m_hfileBitmap = CreateFile(dir::path(dir::appdata("time"), m_phost->m_vssChannel), FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-
-      if(m_hfileBitmap == INVALID_HANDLE_VALUE)
-      {
-         return FALSE;
-      }
-
-      
-      DWORD dwHi;
-
-      if(::GetFileSize(m_hfileBitmap, &dwHi) != 1024 * 1024 * 1024)
-      {
-         LONG l = 0;
-         ::SetFilePointer(m_hfileBitmap, 1024 * 1024 * 1024, &l, SEEK_SET);
-         SetEndOfFile(m_hfileBitmap);
-      }
-
-      m_hfilemapBitmap = CreateFileMapping(
-         m_hfileBitmap,
-         NULL,
-         PAGE_READWRITE,
-         0,
-         0,
-         NULL);
-
-      if(m_hfilemapBitmap == NULL)
-      {
-         CloseHandle(m_hfileBitmap);
-         return FALSE;
-      }
-
-      m_pcolorref = (COLORREF *) MapViewOfFile(
-         m_hfilemapBitmap,
-         FILE_MAP_READ | FILE_MAP_WRITE,
-         0,
-         0,
-         0
-         );
-
-
       string strMutex = m_phost->m_vssChannel;
 
       gen::str::begins_eat_ci(strMutex, "\\ca2\\");
 
-
-      m_pmutexBitmap = new mutex(false, "Global\\" + strMutex);
+      m_pmutexBitmap = new simple_mutex(false, "Global\\" + strMutex);
 
       bool bNew = false;
 
@@ -262,13 +200,13 @@ namespace plugin
    void plugin::on_paint(HDC hdcWindow, LPCRECT lprect)
    {
 
-
       try
       {
 
+         ensure_bitmap_data(lprect->right - lprect->left, lprect->bottom - lprect->top);
+
          if(m_puiHost == NULL)
             return;
-
 
          if(m_dib.is_null())
             m_dib.create(get_app());
@@ -276,163 +214,57 @@ namespace plugin
          if(m_dib.is_null())
             return;
 
-
-
-         RECT rect;
-         rect.left = m_rect.left;
-         rect.top = m_rect.top;
-         rect.right = m_rect.right;
-         rect.bottom = m_rect.bottom;
-         rect.bottom -= rect.top;
-         rect.top = 0;
-         rect.right -= rect.left;
-         rect.left = 0;
-         rect64 rectWindow64;
-         m_puiHost->GetWindowRect(rectWindow64);
-         class rect rectWindow;
-         rectWindow = rectWindow64;
-         RECT rectDesktop;
-         ::GetWindowRect(::GetDesktopWindow(), &rectDesktop);
-         int w = rectDesktop.right;
-         int h = rectDesktop.bottom;
-         //HBITMAP hbmp = ::CreateCompatibleBitmap(hdcWindow, w, h);
-         //HDC hdc = ::CreateCompatibleDC(hdcWindow);
-         //HBITMAP hbmpOld =  (HBITMAP) ::SelectObject(hdc, (HGDIOBJ) hbmp);
-         //HFONT hfontOld = NULL;
-         //HFONT hfont = NULL;
-
-
-
          if(!m_dib->create(lprect->right - lprect->left, lprect->bottom - lprect->top))
             return;
 
-         m_dib->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
+         m_dib->Fill(0, 0, 0, 0);
 
-         m_dib->get_graphics()->FillSolidRect(0, 0, lprect->right - lprect->left, lprect->bottom - lprect->top, 0);
-         //::BitBlt(hdc, lprect->left + rectWindow.left - m_rect.left, lprect->top + rectWindow.top - m_rect.top, lprect->right - lprect->left, lprect->bottom - lprect->top, hdcWindow, lprect->left, lprect->top, SRCCOPY);
          try
          {
-           // ::ca::graphics_sp g(get_app());
-            //g->Attach(hdc);
-            //::ca::graphics * pgraphics = m_psystem->graphics_from_os_data(hdc);
-            //g->set_app(m_puiHost->m_papp);
+
             m_puiHost->_000OnDraw(m_dib->get_graphics());
-         }
-         catch(...)
-         {
-         }
-
-         single_lock sl(m_pmutexBitmap, true);
-
-         if(m_pbitmap == NULL
-         || m_sizeBitmap.cx != (lprect->right - lprect->left)
-         || m_sizeBitmap.cy != (lprect->bottom - lprect->top))
-         {
-
-
-
-            m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
-            m_sizeBitmap.cy = abs_dup(lprect->bottom - lprect->top);
-
-            if(m_pbitmap != NULL)
-            {
-               try
-               {
-               
-                  delete m_pbitmap;
-
-               }
-               catch(...)
-               {
-               }
-
-               try
-               {
-               
-                  m_pbitmap = NULL;
-
-               }
-               catch(...)
-               {
-               }
-
-            }
-            
-            try
-            {
-            
-               m_pbitmap = new Gdiplus::Bitmap(abs_dup(m_sizeBitmap.cx), abs_dup(m_sizeBitmap.cy), abs_dup(m_sizeBitmap.cx) * 4, PixelFormat32bppARGB, (BYTE *) m_pcolorref);
-
-            }
-            catch(...)
-            {
-            }
-
-         }
-
-         try
-         {
-
-
-
-            ((Gdiplus::Graphics *) m_dib->get_graphics()->get_os_data())->Flush();
-            
-            memset(m_pcolorref, 0, abs_dup(m_sizeBitmap.cy) * abs_dup(m_sizeBitmap.cx) * 4);
-
-            Gdiplus::Graphics * pg = Gdiplus::Graphics::FromImage((Gdiplus::Bitmap *) m_pbitmap);
-
-            pg->SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
-
-            pg->DrawImage((Gdiplus::Bitmap *) m_dib->get_bitmap()->get_os_data(), 0, 0, 0, 0, lprect->right - lprect->left, lprect->bottom - lprect->top, Gdiplus::UnitPixel);
-
-            pg->Flush();
-
-            delete pg;
 
          }
          catch(...)
          {
          }
-         /*POINT pointViewport;
-         ::SetViewportOrgEx(hdc, 0, 0, &pointViewport);
-         ::BitBlt(hdcWindow, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top, hdc, lprect->left + rectWindow.left - m_rect.left, lprect->top + rectWindow.top - m_rect.top, SRCCOPY);
-         ::SelectObject(hdc, (HGDIOBJ) hbmpOld);
-         if(hfontOld != NULL)
-         {
-            ::SelectObject(hdc,(HGDIOBJ)  hfontOld);
-         }
-         if(hfont != NULL)
-         {
-            ::DeleteObject(hfont);
-         }
-         ::DeleteObject(hbmp);
-         ::DeleteDC(hdc);*/
 
-         try
+         ((Gdiplus::Graphics *) m_dib->get_graphics()->get_os_data())->Flush(Gdiplus::FlushIntentionSync);
+
+         ::GdiFlush();
+         
+         m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
+
+         m_sizeBitmap.cy = abs_dup(lprect->bottom - lprect->top);
+
          {
 
-            if(m_bOpenUrl)
-            {
-               m_bOpenUrl = false;
-               string strOpenUrl = m_strOpenUrl;
-               m_strOpenUrl.Empty();
-               open_url(strOpenUrl);
-            }
-            else if(is_installation_lock_file_locked())
-            {
-               reload_plugin();
-            }
+            mutex_lock sl(m_pmutexBitmap, true);
+
+            memcpy(m_pcolorref, m_dib->get_data(), abs_dup(m_sizeBitmap.cy) * abs_dup(m_sizeBitmap.cx) * 4);
 
          }
-         catch(...)
-         {
-         }
+
 
       }
       catch(...)
       {
       }
 
+      try
+      {
+
+         if(is_installation_lock_file_locked())
+         {
+
+            reload_plugin();
+
+         }
+
+      }
+      catch(...)
+      {
+      }
 
    }
 

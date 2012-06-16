@@ -15,7 +15,6 @@ namespace hotplugin
 
       vsstring                      m_strPluginUrl;
       vsstring                      m_strPluginHeaders;
-      small_ipc_rx_channel          m_rxchannelInstall;
       BYTE *                        m_lpbMemory;
       int                           m_iMemory;
       bool                          m_bOnPaint;
@@ -34,6 +33,7 @@ namespace hotplugin
       bool                          m_bStream;
 
       void *                        m_pbitmap;
+      void *                        m_pgraphics;
       DWORD *                       m_pcolorref;
       SIZE                          m_sizeBitmap;
 
@@ -43,6 +43,12 @@ namespace hotplugin
       bool                          m_bReload;
       bool                          m_bInstalling;
       const char *                  m_pszReloadCommandLine;
+
+      HANDLE                        m_hfileBitmap;
+      HANDLE                        m_hfilemapBitmap;
+      simple_mutex *                m_pmutexBitmap;
+      SIZE                          m_sizeBitmapData;
+
 
 
       plugin();
@@ -117,6 +123,8 @@ namespace hotplugin
       virtual void set_status(const char * pszStatus);
 
       virtual void restart();
+
+      virtual void ensure_bitmap_data(int cx, int cy);
 
    };
 

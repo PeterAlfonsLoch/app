@@ -79,7 +79,11 @@ extern "C"
 #include "heap.h"
 #include "gdi.h"
 #include "mem.h"
+
 #include "_c_math.h"
+
+#include "geometric_types.h"
+
 
 #include "verisimple_string.h"
 #include "verisimple_wstring.h"

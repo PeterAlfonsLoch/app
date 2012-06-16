@@ -2,19 +2,23 @@
 #include "plugin_instance.h"
 
 
-
-
 namespace plugin
 {
+
 
    instance::instance()
    {
 
       m_pfile           = NULL;
+
       m_lpbMemory       = NULL;
+
       m_iMemory         = -1;
+
       m_puiHost         = NULL;
+
       m_hwnd            = NULL;
+
       m_bStream         = false;
 
    }
@@ -27,17 +31,6 @@ namespace plugin
       }
 
    }
-
-
-#ifdef WINDOWS
-
-   static LRESULT CALLBACK PluginWinProc(HWND, UINT, WPARAM, LPARAM);
-   static WNDPROC lpOldProc = NULL;
-
-#endif
-
-
-
 
 
    bool instance::initialize()
@@ -59,34 +52,43 @@ namespace plugin
    }
 
 
-
-
-
    void instance::shut()
    {
+      
       //::KillTimer(NULL, (uint_ptr) this);
 
       plugin::finalize();
 
       m_hwnd = NULL;
-      m_bInitialized = false;
-   }
 
+      m_bInitialized = false;
+
+   }
 
 
    host_interaction * instance::create_host_interaction()
    {
+
       host_interaction * pinteraction = new host_interaction(m_psystem);
+
       pinteraction->create_message_window("npca2");
+
       ::ca::window * pwindow = dynamic_cast < ::ca::window * > (pinteraction->m_pimpl);
+
       pwindow->m_bTranslateMouseMessageCursor = false;
+
       return pinteraction;
+
    }
+
 
 } // namespace plugin
 
 
 ::hotplugin::plugin * new_hotplugin()
 {
+
    return new ::plugin::instance();
+
 }
+

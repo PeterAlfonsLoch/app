@@ -193,8 +193,6 @@ CLASS_DECL_ca bool y_intersect_rect(__rect64 * prect, const __rect64 * prect1, c
 CLASS_DECL_ca bool intersect(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
 CLASS_DECL_ca bool unite(__rect64 * prect, const __rect64 * prect1, const __rect64 * prect2);
 
-CLASS_DECL_ca long width(LPCRECT lpcrect);
-CLASS_DECL_ca long height(LPCRECT lpcrect);
 
 
 CLASS_DECL_ca bool deflate(LPRECT prect, LPCRECT lpcrect);

@@ -1,15 +1,12 @@
 #pragma once
 
 
-
 int spaboot_start(const char * pszVersion, const char * pszId);
 
 
-
-   class host;
-
 namespace spa
 {
+
 
    enum e_check
    {
@@ -51,9 +48,13 @@ namespace spa
       virtual void on_prepare_memory();
 
 #ifdef WINDOWS
+
       virtual uint_ptr message_handler(uint_ptr uiMessage, WPARAM wparam, LPARAM lparam);
+
 #else
+
       virtual int message_handler(XEvent * pevent);
+
 #endif
 
       virtual void on_paint_progress(HDC hdc, LPCRECT lprect);
@@ -64,14 +65,18 @@ namespace spa
 
       virtual void on_post(small_ipc_rx_channel * prxchannel, int a, int b);
 
+      virtual void on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len);
+
       virtual bool is_installing();
 
       virtual void restart();
 
+      virtual void set_window_rect(LPCRECT lpcrect);
+
    };
 
-#ifdef WINDOWS
-   ATOM MyRegisterClass(HINSTANCE hInstance);
-#endif
 
 } // namespace spa
+
+
+

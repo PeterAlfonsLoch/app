@@ -315,17 +315,22 @@ install:
 
          struct
          {
+
+
             HDC m_hdc;
             RECT m_rect;
+
+
          } paint;
 
-         paint.m_hdc = hdcWindow;
-         paint.m_rect = *lprect;
+         paint.m_hdc    = hdcWindow;
+
+         paint.m_rect   = *lprect;
 
          if(ensure_tx(::hotplugin::message_paint, &paint, sizeof(paint)))
          {
                
-            m_phost->paint_bitmap(hdcWindow, lprect);
+            m_phost->blend_bitmap(hdcWindow, lprect);
 
             return;
 
@@ -696,6 +701,26 @@ install:
 
    }
 
+   void plugin::on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len)
+   {
+
+      if(prxchannel == &m_rxchannel)
+      {
+
+         if(message == ::hotplugin::message_open_url)
+         {
+
+            vsstring strUrl((const char *) pdata, len);
+
+            open_url(strUrl);
+
+         }
+
+      }
+
+   }
+
+
    void plugin::on_post(small_ipc_rx_channel * prxchannel, int a, int b)
    {
 
@@ -723,6 +748,19 @@ install:
             }
 
          }
+
+      }
+
+   }
+
+   
+   void plugin::set_window_rect(LPCRECT lpcrect)
+   {
+    
+      if(!is_installing() && is_ca2_installed())
+      {
+      
+         ensure_tx(::hotplugin::message_set_window, (void *) lpcrect, sizeof(RECT));
 
       }
 

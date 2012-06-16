@@ -75,10 +75,6 @@ namespace plugin
             m_pplugin->ready_on_main_thread();
          }
       }
-      else if(pbase->m_wparam == 1)
-      {
-         m_pplugin->redraw();
-      }
       else if(pbase->m_wparam == 2)
       {
          vsstring * pstrLink = (vsstring *) pbase->m_lparam;
@@ -196,14 +192,13 @@ namespace plugin
 
    bool host_interaction::RedrawWindow(LPCRECT lpRectUpdate, ::ca::region* prgnUpdate, UINT flags)
    { 
+      
       UNREFERENCED_PARAMETER(lpRectUpdate);
       UNREFERENCED_PARAMETER(prgnUpdate);
       UNREFERENCED_PARAMETER(flags);
-      if(!m_pplugin->m_bOnPaint && (::GetTickCount() - m_pplugin->m_last_redraw) >= 84)
-      {
-         PostMessage(message_check, 1);
-      }
+      
       return TRUE;
+
    }
 
    ::user::interaction * host_interaction::get_os_focus_uie()

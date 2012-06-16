@@ -31,9 +31,6 @@ namespace hotplugin
       simple_mutex                  m_mutexSystem;
 
 
-      HANDLE                        m_hfileBitmap;
-      HANDLE                        m_hfilemapBitmap;
-      simple_mutex *                m_pmutexBitmap;
 
 
       host();
@@ -81,17 +78,13 @@ namespace hotplugin
 
       virtual void start_plugin();
 
-
       virtual int  start_ca2_system();
 
-
       virtual void on_paint(HDC hdcWindow, LPCRECT lprect);
-
 
       virtual int starter_start(const char * pszCommandLine);
 
       static int starter_start(const char * pszCommandLine, plugin * pplugin);
-
 
       virtual void deferred_prodevian_redraw();
 
@@ -113,7 +106,11 @@ namespace hotplugin
 
       virtual void set_status(const char * pszStatus);
 
+      virtual void set_bitmap(HDC hdcWindow, LPCRECT lprect);
+
       virtual void paint_bitmap(HDC hdcWindow, LPCRECT lprect);
+
+      virtual void blend_bitmap(HDC hdcWindow, LPCRECT lprect);
 
    };
 
