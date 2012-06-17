@@ -763,6 +763,12 @@ install:
          ensure_tx(::hotplugin::message_set_window, (void *) lpcrect, sizeof(RECT));
 
       }
+      else
+      {
+
+         ::hotplugin::plugin::set_window_rect(lpcrect);
+
+      }
 
    }
 
