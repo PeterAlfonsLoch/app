@@ -403,15 +403,22 @@ namespace hotplugin
 
    void plugin::set_ready()
    {
+      
       m_bOk = true;
+
       if(m_bOk && m_phost != NULL && m_phost->is_ok())
       {
+
          on_ready();
+
       }
       else if(m_phost != NULL)
       {
+
          ::PostMessage(m_phost->::small_ipc_channel::m_hwnd, WM_USER + 100, 3, 1);
+
       }
+
    }
 
    void plugin::on_ready()

@@ -73,6 +73,8 @@ namespace spa
 
       virtual void set_window_rect(LPCRECT lpcrect);
 
+      virtual void on_ready();
+
    };
 
 

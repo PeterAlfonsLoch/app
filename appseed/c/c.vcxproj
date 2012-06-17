@@ -1028,6 +1028,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClInclude Include="hotplugin\hotplugin.h" />
     <ClInclude Include="hotplugin\hotplugin_plugin.h" />
     <ClInclude Include="index.h" />
+    <ClInclude Include="international.h" />
     <ClInclude Include="keep_true.h" />
     <ClInclude Include="launcher.h" />
     <ClInclude Include="library.h" />
@@ -1073,6 +1074,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClInclude Include="c_types.h" />
     <ClInclude Include="std_file.h" />
     <ClInclude Include="str.h" />
+    <ClInclude Include="url.h" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
     <ClInclude Include="windows\c_os.h" />
@@ -1220,6 +1222,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="international.cpp" />
     <ClCompile Include="md5.cpp" />
     <ClCompile Include="mutex_lock.cpp" />
     <ClCompile Include="os\os_process.cpp" />
@@ -1257,6 +1260,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="str.cpp" />
     <ClCompile Include="strw.cpp" />
     <ClCompile Include="strx.cpp" />
+    <ClCompile Include="url.cpp" />
     <ClCompile Include="version.cpp" />
     <ClCompile Include="windows\c_os.cpp" />
     <ClCompile Include="windows\c_os_c_dll.cpp" />

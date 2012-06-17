@@ -660,6 +660,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="spa\windows\spa_windows_service.h" />
     <ClInclude Include="spa\windows\spa_windows_win.h" />
     <ClInclude Include="spa\windows\spa_windows.h" />
+    <ClInclude Include="url.h" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
     <ClInclude Include="windows\c_os.h" />
@@ -787,6 +788,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     </ClCompile>
     <ClCompile Include="strw.cpp" />
     <ClCompile Include="strx.cpp" />
+    <ClCompile Include="url.cpp" />
     <ClCompile Include="windows\c_os.cpp" />
     <ClCompile Include="windows\c_os_http.cpp" />
     <ClCompile Include="windows\c_os_launcher.cpp" />

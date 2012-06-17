@@ -128,6 +128,8 @@ extern "C"
 
 #include "message_loop.h"
 
+#include "url.h"
+
 #include "international.h"
 
 

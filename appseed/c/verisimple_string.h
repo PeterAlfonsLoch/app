@@ -141,8 +141,6 @@ CLASS_DECL_c vsstring read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPC
 CLASS_DECL_c vsstring gen_utf16_to_8(const wchar_t * psz);
 
 
-CLASS_DECL_c bool url_query_get_param_dup(vsstring & strParam, const char * pszKey, const char * pszUrl);
-
 
 
 

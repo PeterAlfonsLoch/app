@@ -122,10 +122,15 @@ namespace spa
 
          if(!m_phost->m_bInstalling)
          {
+            
             m_phost->m_bInstalling = true;
+            
             // shouldn't do advanced operations using ca2
             // starter_start will only kick a default app-install.exe if one isn't already running, cleaning file lock if any
-            m_phost->starter_start(": app=session session_start=session app_type=application install");
+
+            set_ready();
+
+            
          }
          return;
       }
@@ -168,91 +173,10 @@ namespace spa
       else
       {
 
-         char szCa2ModuleFolder[MAX_PATH];
+         set_ready();
 
-         if(dir::get_ca2_module_folder_dup(szCa2ModuleFolder))
-         {
-
-            stra_dup straPrevious;
-
-            ::process_modules(straPrevious, ::GetCurrentProcessId());
-
-
-
-            vsstring strDir = dir::path(szCa2ModuleFolder, "*.*");
-
-            stra_dup stra;
-
-            dir::ls(stra, strDir);
-
-            try
-            {
-
-               bool bRetry = true;
-
-               while(bRetry)
-               {
-
-                  bRetry = false;
-
-                  for(int i = 0; i < stra.get_count(); i++)
-                  {
-
-                     HMODULE hmodule;
-
-                     if(stricmp_dup(stra[i], "npca2.dll") == 0)
-                        continue;
-
-                     if(::GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, stra[i], &hmodule) != FALSE)
-                     {
-
-                        bRetry = true;
-
-                        try
-                        {
-
-                           ::FreeLibrary(hmodule);
-
-                        }
-                        catch(...)
-                        {
-
-                        }
-
-                     }
-
-
-                  }
-
-               }
-
-            }
-            catch(...)
-            {
-            }
-
-
-
-
-            stra_dup straCurrent;
-
-            ::process_modules(straCurrent, ::GetCurrentProcessId());
-
-
-
-
-
-            ::load_modules_diff(straPrevious, straCurrent, szCa2ModuleFolder);
-
-
-            ::initialize_primitive_heap();
-
-            ::reset_http();
-
-         }
-
-         m_phost->starter_start(": app=session session_start=session app_type=application install");
       }
+
 
    }
 
@@ -767,6 +691,43 @@ install:
       {
 
          ::hotplugin::plugin::set_window_rect(lpcrect);
+
+      }
+
+   }
+
+
+   void plugin::on_ready()
+   {
+
+      if(!m_bInstalling && is_ca2_installed())
+      {
+
+         ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, m_phost->m_countMemory);
+
+      }
+      else
+      {
+
+         vsstring strPrompt((const char *) m_phost->m_puchMemory, m_phost->m_countMemory);
+
+         vsstring strLocale;
+
+         if(!url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
+            strLocale = str_get_system_default_locale_dup();
+
+         if(strLocale.is_empty())
+            strLocale = "en";
+
+         vsstring strSchema;
+
+         if(!url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
+            strSchema = str_get_system_default_schema_dup();
+
+         if(strSchema.is_empty())
+            strSchema = "en";
+
+         m_phost->starter_start(": app=session session_start=session app_type=application install locale=" + strLocale + " schema=" + strSchema);
 
       }
 

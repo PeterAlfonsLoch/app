@@ -317,6 +317,9 @@
     <ClInclude Include="international.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="url.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -572,6 +575,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="international.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="url.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

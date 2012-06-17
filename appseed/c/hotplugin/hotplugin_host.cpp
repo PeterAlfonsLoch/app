@@ -230,29 +230,43 @@ namespace hotplugin
 
    void host::set_ready()
    {
+
       m_bOk = true;
+
       if(is_ok() && m_pplugin != NULL && m_pplugin->is_ok())
       {
+
          on_ready();
+
       }
+
    }
 
 
    void host::on_ready()
    {
+
       if(m_pplugin != NULL)
       {
+
          m_pplugin->on_ready();
+
       }
+
    }
 
    bool host::initialize()
    {
+
       if(m_pplugin != NULL)
       {
+
          return m_pplugin->initialize();
+
       }
+
       return true;
+
    }
 
    bool host::finalize()
