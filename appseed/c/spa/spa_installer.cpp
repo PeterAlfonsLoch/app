@@ -884,12 +884,18 @@ restart_download:
          && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
             continue;
 
-         //if(file_exists_dup(strStageGz))
-         //{
+         if(file_exists_dup(strStageGz))
+         {
 
-         //   bzuncompress(strStageInplace, strStageGz);
+            bzuncompress(strStageInplace, strStageGz);
 
-         //}
+            if(!strStageInplace.ends_ci(".expand_fileset")
+            && file_exists_dup(strStageInplace)
+            && (iLen != -1) && file_length_dup(strStageInplace) == iLen 
+            && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
+               continue;
+
+         }
 
          bDownload = true;
 

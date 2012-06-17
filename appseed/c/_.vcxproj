@@ -636,6 +636,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
     <ClInclude Include="c_natural.h" />
     <ClInclude Include="dir.h" />
     <ClInclude Include="geometric_types.h" />
+    <ClInclude Include="international.h" />
     <ClInclude Include="message_loop.h" />
     <ClInclude Include="file.h" />
     <ClInclude Include="gdi.h" />
@@ -769,6 +770,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
       <FileType>CppCode</FileType>
     </ClInclude>
     <ClCompile Include="geometric_types.cpp" />
+    <ClCompile Include="international.cpp" />
     <ClCompile Include="os\os_process.cpp" />
     <ClCompile Include="simple_shell_launcher.cpp" />
     <ClCompile Include="small_ipc_channel.cpp" />

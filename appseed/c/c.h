@@ -128,6 +128,8 @@ extern "C"
 
 #include "message_loop.h"
 
+#include "international.h"
+
 
 #define return_(y, x) {y = x; return;}
 
