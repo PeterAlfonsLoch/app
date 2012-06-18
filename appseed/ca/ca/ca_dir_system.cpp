@@ -1003,45 +1003,20 @@ namespace ca
             strLibraryName = strLibraryNameParam;
          }
 
-         stringa stra;
-         stra.add_tokens(strAppNameParam, "_", FALSE);
-         for(int i = 1; i < stra.get_upper_bound(); i++)
+         if(strLibraryRoot.has_char())
          {
-            stra[i] == "_" + stra[i];
-         }
-         if(stra.get_size() > 1)
-         {
-            if(strLibraryRoot.has_char())
-            {
-               strRoot = "app-" + strLibraryRoot;
-            }
-            else
-            {
-               strRoot = "app-" + stra[0];
-            }
-            stra.remove_at(0);
-            if(strLibraryName.has_char() && strLibraryName != "app_" + strAppNameParam)
-            {
-               stra.insert_at(stra.get_upper_bound(), strLibraryName);
-            }
-            strDomain += stra.implode("/");
+            strRoot = "app-" + strLibraryRoot;
          }
          else
          {
-            if(strLibraryRoot.has_char())
-            {
-               strRoot = "app-" + strLibraryRoot;
-            }
-            else
-            {
-               strRoot = "app";
-            }
-            if(strLibraryName.has_char() && strLibraryName != "app_" + strAppNameParam)
-            {
-               strDomain = strLibraryName + "/";
-            }
-            strDomain += strAppNameParam;
+            strRoot = "app";
          }
+         if(strLibraryName.has_char() && strLibraryName != "app_" + strAppNameParam)
+         {
+            strDomain = "_" + strLibraryName + "/";
+         }
+
+         strDomain += strAppNameParam;
 
       }
 
