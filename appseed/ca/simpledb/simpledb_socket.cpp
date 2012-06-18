@@ -225,6 +225,10 @@ namespace simpledb
       {
          outheader("Content-Type") = "application/x-zip-compressed";
       }
+      else if(str == "jar")
+      {
+         outheader("Content-Type") = "application/x-jar";
+      }
       ex1::filesp spfile(get_app());
       if(!spfile->open(lpcsz, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone))
       {

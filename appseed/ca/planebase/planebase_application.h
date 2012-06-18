@@ -128,6 +128,7 @@ namespace planebase
 
 
       virtual void fill_locale_schema(gen::international::locale_schema & localeschema);
+      virtual void fill_locale_schema(gen::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema);
 
       virtual bool update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession, const char * pszRoot, const char * pszRelative);
       virtual bool update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession, const char * pszRoot, const char * pszRelative, const char * pszLocale, const char * pszStyle);

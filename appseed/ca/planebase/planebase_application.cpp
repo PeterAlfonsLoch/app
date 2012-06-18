@@ -1470,6 +1470,31 @@ InitFailure:
 
    }
 
+   void application::fill_locale_schema(gen::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema)
+   {
+
+      localeschema.m_idaLocale.remove_all();
+      localeschema.m_idaSchema.remove_all();
+
+
+      localeschema.m_idLocale     = pszLocale;
+      localeschema.m_idSchema     = pszSchema;
+
+      localeschema.add_locale_variant(pszLocale, pszSchema);
+
+      localeschema.add_locale_variant(__id(en), get_schema());
+      localeschema.add_locale_variant(__id(std), get_schema());
+
+      localeschema.add_locale_variant(__id(en), get_locale());
+      localeschema.add_locale_variant(__id(std), get_locale());
+
+      localeschema.add_locale_variant(__id(en), __id(en));
+      localeschema.add_locale_variant(__id(std), __id(std));
+
+      localeschema.finalize();
+
+   }
+
    void application::fill_locale_schema(gen::international::locale_schema & localeschema)
    {
 
@@ -1551,7 +1576,6 @@ InitFailure:
       localeschema.finalize();
 
    }
-
 
    bool application::update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession,const char * pszRoot, const char * pszRelative)
    {
