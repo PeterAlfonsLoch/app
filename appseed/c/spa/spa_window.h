@@ -61,6 +61,9 @@ namespace spa
       ATOM register_class(HINSTANCE hInstance);
 
     #endif
+
+
+      
       
 
 

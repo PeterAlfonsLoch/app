@@ -44,6 +44,11 @@ namespace spa
 #endif
       vsstring       m_strPlatform;
 
+      vsstring       m_strInstallLocale;
+      vsstring       m_strInstallSchema;
+
+      vsstring       m_strAppMatterList;
+
       DWORD          m_dwDownloadCallbackLast100k;
       DWORD          m_iDownloadCallbackColumn;
       uint64_t       m_dwDownloadLen;
@@ -165,6 +170,7 @@ namespace spa
       bool ca2_fy_url(vsstring & str, LPCTSTR lpcszPath, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen, bool bIndex = false);
 
       int GetFileList(stra_dup & stra_dup, LPCTSTR lpcszPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapFlag);
+      int GetFileListEx(stra_dup & stra_dup, class stra_dup & straPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapFlag);
 
       int GetLocalFileList(stra_dup & stra_dup, LPCTSTR lpcszUrl);
 
@@ -187,6 +193,8 @@ namespace spa
       int starter_start(const char * pszCommandLine);
 
       int application_name();
+
+      int appmatter_list();
 
       int ca2_build_version();
 

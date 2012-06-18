@@ -404,6 +404,8 @@ RetryHost:
 
          set_progress(0.6);
 
+         appmatter_list();
+
          if(!GetFileList(straFileList, ("app/stage/metastage/" + m_strApplicationId + ".spa"), mapLen, mapGzLen, mapMd5, mapFlag))
          {
             trace("Failed to download file list!");
@@ -444,7 +446,20 @@ RetryHost:
                }
 
             }
+
          }
+
+         
+         {
+
+            stra_dup straPath;
+
+            straPath.add_tokens(m_strAppMatterList, "\n");
+
+            GetFileListEx(straFileList, straPath, mapLen, mapGzLen, mapMd5, mapFlag);
+
+         }
+
          vsstring strType;
          vsstring strStart;
          XNode nodeSpaStart;
@@ -1812,6 +1827,50 @@ restart_download:
 
 
 
+   int installer::GetFileListEx(stra_dup & stra_dup, class stra_dup  & straPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapFlag)
+   {
+
+      int iCurrent;
+
+      vsstring strPlatform = spa_get_platform();
+      
+      for(int i = 0; i < straPath.get_count(); i++)
+      {
+
+         vsstring strPathParam = straPath[i];
+
+         if(strPathParam.begins_ci("stage\\basis\\"))
+         {
+
+            strPathParam = "stage\\" + strPlatform + strPathParam.substr(11);
+
+         }
+
+         iCurrent = GetFileList(stra_dup, strPathParam, mapLen, mapGzLen, mapMd5, mapFlag);
+
+         if(iCurrent == -2)
+         {
+
+            return -2;
+
+         }
+         else if(iCurrent == -1)
+         {
+
+            if(stra_dup.spa_insert(strPathParam))
+            {
+
+               m_iTotalGzLen += mapGzLen[strPathParam];
+
+            }
+
+         }
+
+      }
+
+      return 1;
+
+   }
 
 
 
@@ -2430,27 +2489,37 @@ restart_download:
    int installer::starter_start(const char * pszCommandLine)
    {
 
-      m_strCommandLine  = pszCommandLine;
+      m_strCommandLine           = pszCommandLine;
 
-      m_strApplicationId = get_command_line_param(pszCommandLine, "app", "session", "session_start");
+      m_strApplicationId         = get_command_line_param(pszCommandLine, "app", "session", "session_start");
 
-      m_strApplicationType = get_command_line_param(pszCommandLine, "app_type");
+      m_strApplicationType       = get_command_line_param(pszCommandLine, "app_type");
 
       if(m_strApplicationId.is_empty())
          return -1;
 
       if(m_strApplicationType.is_empty())
-         m_strApplicationType = "application";
+         m_strApplicationType    = "application";
 
-      m_bOfflineInstall = false;
+      m_strInstallLocale         = get_command_line_param(pszCommandLine, "locale");
 
-      m_strInstallGz = "http://ccvotagus.net/stage/";
+      if(m_strInstallLocale.is_empty())
+         m_strInstallLocale      = "en";
 
-      m_strInstall = "http://ccvotagus.net/stage/";
+      m_strInstallSchema         = get_command_line_param(pszCommandLine, "schema");
 
-      m_bForceUpdatedBuild = true;
+      if(m_strInstallSchema.is_empty())
+         m_strInstallSchema      = "en";
 
-      m_bStarterStart = true;
+      m_bOfflineInstall          = false;
+
+      m_strInstallGz             = "http://ccvotagus.net/stage/";
+
+      m_strInstall               = "http://ccvotagus.net/stage/";
+
+      m_bForceUpdatedBuild       = true;
+
+      m_bStarterStart            = true;
 
       return run_starter_start(m_bShow ? SW_SHOWNORMAL : SW_HIDE);
 
@@ -2490,6 +2559,47 @@ restart_download:
 
       trace(("***" + strName));
       return 0;
+   }
+
+   int installer::appmatter_list()
+   {
+
+      vsstring strUrl;
+
+      trace(("get appmatter list for application with id : \"" + m_strApplicationId + "\" "));
+
+      strUrl = m_strSpaIgnitionBaseUrl + "/appmatter_spa_list?app=";
+      strUrl += m_strApplicationId;
+      strUrl += "&locale=";
+      strUrl += m_strInstallLocale;
+      strUrl += "&schema=";
+      strUrl += m_strInstallSchema;
+
+      vsstring str;
+      int iRetry = 0;
+      while(true)
+      {
+         str = ms_get_dup(strUrl);
+         if(str.length() > 0)
+            break;
+         else if(iRetry < 84)
+            iRetry++;
+         else
+         {
+            trace("main server seems to be unavailable. could not get appmatter list");
+            exit(-1);
+            return -1;
+         }
+         trace_add(".");
+         Sleep(484);
+      }
+
+      m_strAppMatterList = str;
+
+      trace("got appmatter list");
+
+      return 0;
+
    }
 
    int installer::ca2_build_version()
