@@ -13,35 +13,42 @@ namespace uinteraction
    }
 
 
-   ::uinteraction::interaction * application::get_new_uinteraction(const char * pszUinteraction)
+   ::uinteraction::interaction * application::get_new_uinteraction(const char * pszUinteractionLibrary)
    {
 
-      string strLibrary = string(pszUinteraction) + "_uinteraction";
+      string strId(pszUinteractionLibrary);
 
       if(!System.directrix().m_varTopicQuery.has_property("install")
       && !System.directrix().m_varTopicQuery.has_property("uninstall")
-      && !System.install().is("uinteraction", strLibrary))
+      && !System.install().is("uinteraction", strId))
       {
 
          if(::IsDebuggerPresent())
          {
 
-            MessageBox(NULL, "Debug Only Message\n\nPlease install \"" + strLibrary + "\"", "Debug Only - Please Install - ca2", MB_OK);
+            MessageBox(NULL, "Debug Only Message\n\nPlease install \"" + strId + "\"", "Debug Only - Please Install - ca2", MB_OK);
+
+            System.os().post_to_all_threads(WM_QUIT, 0, 0);
 
             return NULL;
 
          }
 
-         hotplugin::host::starter_start(": app=session session_start=" + strLibrary + " app_type=uinteraction install", NULL);
+         hotplugin::host::starter_start(": app=session session_start=" + strId + " app_type=uinteraction install", NULL);
 
          return NULL;
 
       }
 
-      ca2::library library;
+      ca2::library library(NULL);
 
+      string strLibrary(strId);
+
+      strLibrary.replace("-", "_");
+
+      strLibrary.replace("/", "_");
       
-      if(!library.open(get_app(), "app_" + strLibrary, false))
+      if(!library.open(get_app(), strLibrary, false))
          return NULL;
 
       stringa stra;
@@ -55,8 +62,6 @@ namespace uinteraction
 
       if(strAppId.is_empty()) // trivial validity check
          return NULL;
-
-
 
       ::uinteraction::interaction * pinteraction = library.get_new_uinteraction();
       if(pinteraction == NULL)

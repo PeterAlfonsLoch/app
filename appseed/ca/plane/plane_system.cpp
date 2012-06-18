@@ -299,7 +299,7 @@ namespace plane
       string strLibraryId;
       stringa straTitle;
 
-      Application.dir().ls_pattern(System.dir().ca2module(), "app_*", NULL,& straTitle);
+      Application.dir().ls_pattern(System.dir().ca2module(), "*.*", NULL,& straTitle);
 
       for(int i = 0; i < straTitle.get_count(); i++)
       {
@@ -316,9 +316,6 @@ namespace plane
          }
 
       }
-
-      map_application_library("ca");
-      map_application_library("ca2");
 
       ex1::filesp file;
 
@@ -348,29 +345,45 @@ namespace plane
    bool system::map_application_library(const char * pszLibrary)
    {
 
-      ::ca2::library library;
+      ::ca2::library library(NULL);
 
       if(!library.open(this, pszLibrary))
          return false;
 
-
-
-
       m_spfilehandler->defer_add_library(library.m_pca2library);
 
       stringa stra;
-      string strApp;
+
+      string strRoot = library.get_root();
 
       library.get_app_list(stra);
 
-      for(int i = 0; i < stra.get_count(); i++)
-      {
-         strApp = stra[i];
-         m_mapAppLibrary.set_at(strApp, pszLibrary);
-      }
-
       if(stra.get_count() <= 0)
          return false;
+
+      strRoot += "/";
+
+      if(stra.get_count() == 1)
+      {
+
+         m_mapAppLibrary.set_at(strRoot + stra[0], pszLibrary);
+
+      }
+      else
+      {
+
+         strRoot += pszLibrary;
+
+         strRoot += "/";
+
+         for(int i = 0; i < stra.get_count(); i++)
+         {
+
+            m_mapAppLibrary.set_at(strRoot + stra[i], pszLibrary);
+
+         }
+
+      }
 
       return true;
 
@@ -1346,13 +1359,15 @@ namespace plane
       if(!System.directrix().m_varTopicQuery.has_property("install")
          && !System.directrix().m_varTopicQuery.has_property("uninstall")
          && strId.has_char() 
-         && !install().is("application", strId))
+         && !install().is(pszType, strId))
       {
 
          if(::IsDebuggerPresent())
          {
 
             MessageBox(NULL, "Debug Only Message\n\nPlease install application \"" + strId + "\" - type \"" + string(pszType) + "\"", "Debug Only Message - Please Install - ca2", MB_OK);
+
+            System.os().post_to_all_threads(WM_QUIT, 0, 0);
 
             return NULL;
 
@@ -1364,16 +1379,17 @@ namespace plane
 
       }
 
-
-      ca2::library library;
+      ca2::library library(NULL);
 
       string strLibrary = m_mapAppLibrary[pszAppId];
 
       ::ca::application * papp = NULL;
+
       if(!library.open(pappNewApplicationParent, strLibrary, false))
          return NULL;
 
       papp = library.get_new_app(pszAppId);
+
       if(papp == NULL)
          return NULL;
 

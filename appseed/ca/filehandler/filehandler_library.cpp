@@ -7,7 +7,8 @@ namespace filehandler
 {
 
 
-   library::library()
+   library::library() :
+      ::ca2::library("app")
    {
    }
 

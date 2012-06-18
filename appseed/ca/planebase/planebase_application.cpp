@@ -525,8 +525,10 @@ InitFailure:
             if(on_install())
             {
                
-               string strId = m_strId;
+               string strId = m_strAppId;
+
                //MessageBox(NULL, "on_install1", strId, 0);
+
                if(strId.is_empty())
                   strId = m_strAppName;
 
@@ -1360,7 +1362,7 @@ InitFailure:
                if(strLibrary.has_char())
                {
 
-                  ::ca2::library library;
+                  ::ca2::library library(NULL);
 
                   if(library.open(this, strLibrary))
                   {

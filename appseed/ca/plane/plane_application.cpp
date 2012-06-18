@@ -255,7 +255,7 @@ namespace plane
 
          ::ca::create_context_sp spcreatecontext(get_app());
 
-         ::ca::application * papp = Session.start_application("application", "core_deepfish", spcreatecontext);
+         ::ca::application * papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
 
          if(papp == NULL)
          {

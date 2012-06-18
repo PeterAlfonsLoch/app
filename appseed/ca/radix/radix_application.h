@@ -115,6 +115,7 @@ namespace radix
       // Human-redable name of the application. Normally set in
       // constructor or retreived from __IDS_APP_TITLE.
       string                        m_strAppName;
+      string                        m_strAppId;
       string                        m_strLibraryName;
 
       // Name of registry key for this application. See

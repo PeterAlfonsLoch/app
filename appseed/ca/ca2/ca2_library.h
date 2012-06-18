@@ -51,9 +51,10 @@ namespace ca2
 
       library *         m_pca2library;
       string            m_strCa2Name;
+      string            m_strRoot;
 
 
-      library();
+      library(const char * pszRoot);
       virtual ~library();
 
       virtual bool open(::ca::application * papp, const char * pszPath, bool bAutoClose = true);
@@ -67,6 +68,8 @@ namespace ca2
 
 
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
+
+      virtual string get_root();
 
 
       // impl
@@ -84,7 +87,10 @@ namespace ca2
       virtual ::dynamic_source::script * create_script(::ca::application * papp, const char * pszScript);
       virtual void do_default_script_registration(::dynamic_source::script_manager * pmanager);
 
+      virtual string get_library_name();
 
+      virtual string get_app_id(const char * pszAppName);
+      virtual string get_app_name(const char * pszAppId);
 
    private:
 
@@ -99,6 +105,7 @@ namespace ca2
    {
    public:
 
+      single_application_library(const char * pszRoot) : ::ca2::library(pszRoot) {}
 
       // impl
       virtual ::ca::application * get_new_app(const char * pszAppId)

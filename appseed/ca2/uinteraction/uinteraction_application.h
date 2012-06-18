@@ -15,9 +15,9 @@ namespace uinteraction
       virtual ~application();
 
 
-      virtual ::uinteraction::interaction * get_new_uinteraction(const char * pszUinteraction);
-      virtual ::uinteraction::interaction * get_uinteraction(const char * pszUinteraction);
-      virtual ::uinteraction::frame::frame * get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName);
+      virtual ::uinteraction::interaction * get_new_uinteraction(const char * pszUinteractionLibrary);
+      virtual ::uinteraction::interaction * get_uinteraction(const char * pszUinteractionLibrary);
+      virtual ::uinteraction::frame::frame * get_frame_schema(const char * pszUinteractionLibrary, const char * pszFrameSchemaName);
 
    };
 

@@ -6,8 +6,9 @@ namespace plane
 
 
    library::library() :
-      ::ca2::single_application_library < application > ()//,
+      ::ca2::single_application_library < application > ("app")//,
 //      ::ca2::filehandler::menu_library()
+      ,::ca2::library("app")
    {
    }
 

@@ -6,10 +6,17 @@ namespace ca2
 
    const char * psz_empty_app_id = "";   
 
-   library::library()
+   library::library(const char * pszRoot)
    {
       
       m_pca2library     = NULL;
+      
+      if(pszRoot != NULL)
+      {
+
+         m_strRoot = pszRoot;
+
+      }
 
    }
       
@@ -94,6 +101,35 @@ namespace ca2
    }
 
 
+   string library::get_library_name()
+   {
+
+      if(m_pca2library != NULL)
+      {
+
+         return m_pca2library->get_library_name();
+
+      }
+      else
+      {
+
+         string strName(m_strCa2Name);
+
+         string strPrefix(get_root());
+
+         strPrefix.replace("-", "_");
+
+         strPrefix += "_";
+
+         gen::str::begins_eat_ci(strName, strPrefix);
+
+         return strName;
+
+      }
+
+   }
+
+
    bool library::close()
    {
       try
@@ -150,6 +186,68 @@ namespace ca2
 
    }
 
+   string library::get_app_id(const char * pszAppName)
+   {
+
+      if(!contains_app(pszAppName))
+         return "";
+
+      string strPrefix(get_root());
+
+      string strLibraryName(get_library_name());
+
+      stringa straAppList;
+
+      get_app_list(straAppList);
+
+      strPrefix += "/";
+
+      if(straAppList.get_count() > 1)
+      {
+               
+         strPrefix += strLibraryName;
+
+         strPrefix += "/";
+
+      }
+
+      return strPrefix + pszAppName;
+
+   }
+
+   string library::get_app_name(const char * pszAppId)
+   {
+      
+      string strAppName(pszAppId);
+
+      string strPrefix(get_root());
+
+      string strLibraryName(get_library_name());
+
+      stringa straAppList;
+
+      get_app_list(straAppList);
+
+      strPrefix += "/";
+
+      if(straAppList.get_count() > 1)
+      {
+               
+         strPrefix += strLibraryName;
+
+         strPrefix += "/";
+
+      }
+
+      gen::str::begins_eat(strAppName, strPrefix);
+
+      if(!contains_app(strAppName))
+         return "";
+
+      return strAppName;
+
+   }
+
 
    ::ca::application * library::get_new_app(const char * pszAppId)
    {
@@ -160,10 +258,12 @@ namespace ca2
          if(m_pca2library != NULL)
          {
 
-            if(!contains_app(pszAppId))
+            string strAppName = get_app_name(pszAppId);
+
+            if(strAppName.is_empty())
                return NULL;
 
-            ::ca::application * papp = m_pca2library->get_new_app(pszAppId);
+            ::ca::application * papp = m_pca2library->get_new_app(strAppName);
 
             if(papp == NULL)
                return NULL;
@@ -172,7 +272,8 @@ namespace ca2
 
             if(pradixapp != NULL)
             {
-               pradixapp->m_strLibraryName = m_strCa2Name;
+               pradixapp->m_strLibraryName   = m_strCa2Name;
+               pradixapp->m_strAppName       = pszAppId;
             }
 
             return papp;
@@ -203,11 +304,22 @@ namespace ca2
       }
       else
       {
+         
          string strAppId = m_strCa2Name;
-         if(gen::str::begins_eat_ci(strAppId, "app_"))
+         
+         string strPrefix = get_root();
+
+         strPrefix.replace("-", "_");
+
+         strPrefix += "_";
+
+         if(gen::str::begins_eat_ci(strAppId, strPrefix))
          {
+
             stra.add(strAppId);
+
          }
+
       }
 
    }
@@ -293,6 +405,19 @@ namespace ca2
 
    }
 
+   string library::get_root()
+   {
+
+      if(m_pca2library != NULL)
+      {
+
+         return m_pca2library->m_strRoot;
+
+      }
+
+      return m_strRoot;
+
+   }
 
    void library::get_create_view_id_list(::raw_array < id > & ida)
    {

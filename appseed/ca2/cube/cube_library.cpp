@@ -6,8 +6,9 @@ namespace cube
 
 
    library::library() :
-      ::ca2::single_application_library < application > (),
-      ::filehandler::menu_library()
+      ::ca2::single_application_library < application > ("app"),
+      ::filehandler::menu_library(),
+      ::ca2::library("app")
    {
    }
 
