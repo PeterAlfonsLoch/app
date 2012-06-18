@@ -9,21 +9,6 @@
 namespace plane
 {
 
-/*   CLASS_DECL_ca class heap_item_array * g_pheapitema = NULL;
-
-
-   CLASS_DECL_ca class heap_item_array * get_heap_itema()
-   {
-      return g_pheapitema;
-   }
-
-   CLASS_DECL_ca void set_heap_itema(class heap_item_array * pitema)
-   {
-      g_pheapitema = pitema;
-   }*/
-
-
-
    system::system()
    {
 
@@ -318,10 +303,18 @@ namespace plane
 
       for(int i = 0; i < straTitle.get_count(); i++)
       {
+
          strLibraryId = straTitle[i];
-         gen::str::ends_eat_ci(strLibraryId, ".dll");
-         gen::str::ends_eat_ci(strLibraryId, ".so");
-         map_application_library(strLibraryId);
+
+         if(gen::str::ends_eat_ci(strLibraryId, ".dll")
+         || gen::str::ends_eat_ci(strLibraryId, ".so")
+         || gen::str::ends_eat_ci(strLibraryId, ".dylib"))
+         {
+
+            map_application_library(strLibraryId);
+
+         }
+
       }
 
       map_application_library("ca");

@@ -1434,6 +1434,7 @@ InitFailure:
             g_iCountProgress -= iStdStdCount * (1 + 1); // ('main' + 'bergedge') * StdStd are not downloaded on session install but on spa boot
 
 
+/*
             double d1 = ::GetTickCount();
             update_appmatter(h, psession, "app", "main"); // update matter of system
             update_appmatter(h, psession, "app", "bergedge"); // update matter of bergedge
@@ -1441,15 +1442,20 @@ InitFailure:
             {
                update_appmatter(h, psession, strRoot, strDomain);
             }
-            double d2 = ::GetTickCount();
-            double d = (d2 - d1) / 1000.0;
-            TRACE("update_appmatter seconds %f", d);
+
+*/
+//            double d2 = ::GetTickCount();
+//            double d = (d2 - d1) / 1000.0;
+//            TRACE("update_appmatter seconds %f", d);
+
+            ::trace_progress(1.0);
 
          }
          catch(...)
          {
             bOk = false;
          }
+
       }
 
 
