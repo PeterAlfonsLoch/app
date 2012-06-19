@@ -273,7 +273,6 @@ namespace ca2
             if(pradixapp != NULL)
             {
                pradixapp->m_strLibraryName   = m_strCa2Name;
-               pradixapp->m_strAppName       = pszAppId;
             }
 
             return papp;

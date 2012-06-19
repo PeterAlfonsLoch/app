@@ -2513,13 +2513,37 @@ restart_download:
 
       m_strInstallLocale         = get_command_line_param(pszCommandLine, "locale");
 
-      if(m_strInstallLocale.is_empty())
-         m_strInstallLocale      = "en";
-
       m_strInstallSchema         = get_command_line_param(pszCommandLine, "schema");
 
       if(m_strInstallSchema.is_empty())
-         m_strInstallSchema      = "en";
+      {
+
+         if(m_strInstallLocale.is_empty())
+         {
+
+            m_strInstallLocale      = "en";
+            m_strInstallSchema      = "en";
+
+         }
+         else 
+         {
+
+            m_strInstallSchema      = m_strInstallLocale;
+
+         }
+
+      }
+      else
+      {
+         
+         if(m_strInstallLocale.is_empty())
+         {
+
+            m_strInstallLocale      = m_strInstallSchema;
+
+         }
+
+      }
 
       m_bOfflineInstall          = false;
 

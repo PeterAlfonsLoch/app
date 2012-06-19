@@ -1393,6 +1393,10 @@ namespace plane
       if(papp == NULL)
          return NULL;
 
+      ::radix::application * pradixapp = dynamic_cast < ::radix::application * > (papp);
+
+      pradixapp->m_strAppId = pszAppId;
+
       return papp;
 
    }

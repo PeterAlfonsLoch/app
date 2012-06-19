@@ -81,7 +81,9 @@ namespace user
          set_schema(strStyleUser, false);
 
 
-      if(m_bLicense)
+      if(!(System.directrix().m_varTopicQuery.has_property("install")
+      ||  System.directrix().m_varTopicQuery.has_property("uninstall"))
+      &&  m_bLicense)
       {
 
          string strLicense = get_license_id();
