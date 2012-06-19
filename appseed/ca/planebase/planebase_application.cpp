@@ -52,6 +52,7 @@ namespace planebase
          {
             m_psystem->m_psession = psession;
          }
+         psession->m_strAppId = "session";
       }
       else
       {
@@ -96,7 +97,7 @@ namespace planebase
 
 
 
-      if((papp == NULL || papp->m_strAppName != strId)
+      if((papp == NULL || papp->m_strAppId != strId)
          &&
          (!Application.command().m_varTopicQuery.has_property("install")
          && !Application.command().m_varTopicQuery.has_property("uninstall")))
