@@ -44,7 +44,8 @@ namespace ca2
       manual_reset_event *                                                                      m_peventReady;
 
       
-      string                                                                                    m_strLicense;
+      //string                                                                                    m_strLicense;
+      bool                                                                                      m_bLicense;
       string                                                                                    m_strBaseSupportId;
       collection::map < int, int, bool, bool > *                                                m_pmapKeyPressed;
 
@@ -129,10 +130,7 @@ namespace ca2
 
       virtual ::ca::application * get_app() const;
 
-      string get_license_id()
-      {
-         return m_strLicense;
-      }
+      virtual string get_license_id();
 
       virtual void get_time(timeval *p);
       virtual void set_env_var(const string & var,const string & value);

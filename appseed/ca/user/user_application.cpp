@@ -81,8 +81,10 @@ namespace user
          set_schema(strStyleUser, false);
 
 
-      if(m_strLicense.has_char())
+      if(m_bLicense)
       {
+
+         string strLicense = get_license_id();
 
          if(&AppUser(this) == NULL)
          {
@@ -94,21 +96,29 @@ namespace user
          // or either asking for authentication -
          // current application startup won't be
          // exited by timeout.
+
          int iRetry = 3;
+
 retry_license:
+
          iRetry--;
-         if(!App(this).is_licensed(m_strLicense))
+
+         if(!App(this).is_licensed(strLicense))
          {
-            App(this).license().m_mapInfo.remove_key(m_strLicense);
+            
+            App(this).license().m_mapInfo.remove_key(strLicense);
+            
             if(iRetry > 0)
                goto retry_license;
+
             return false;
+
          }
+
       }
 
-
-
       return true;
+
    }
 
    filemanager::_shell::ImageSet & application::shellimageset()

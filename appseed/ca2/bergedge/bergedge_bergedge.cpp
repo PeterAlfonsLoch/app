@@ -66,11 +66,13 @@ namespace bergedge
 
    void bergedge::construct()
    {
+
       m_strAppName         = "bergedge";
       m_strBaseSupportId   = "votagus_ca2_bergedge";
       m_strInstallToken    = "bergedge";
-      m_strLicense         = "";
+      m_bLicense           = false;
       m_eexclusiveinstance = ::radix::ExclusiveInstanceNone;
+
    }
 
    bool bergedge::initialize_instance()

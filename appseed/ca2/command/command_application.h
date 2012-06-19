@@ -17,6 +17,8 @@ namespace command
       application();
       virtual ~application();
 
+
+      using ::mail::application::construct;
       void construct();
 
 

@@ -207,7 +207,7 @@ namespace plane
 
       string strId;
       strId = m_strAppName;
-      strId += gen::str::has_char(m_strLicense, ".");
+      strId += gen::str::has_char(m_strAppId, ".");
       strId += gen::str::has_char(m_strBaseSupportId, ".");
 
 

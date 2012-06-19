@@ -7,11 +7,14 @@ namespace ca2
 
    application::application()
    {
+      
       m_eexclusiveinstance       = ::radix::ExclusiveInstanceNone;
       m_pmutexLocal              = NULL;
       m_pmutexGlobal             = NULL;
       m_peventReady              = NULL;
       m_pmapKeyPressed           = NULL;
+      m_bLicense                 = true;
+
    }
 
    application::~application()
@@ -154,11 +157,6 @@ namespace ca2
    {
 
       m_dwAlive = ::GetTickCount();
-
-      if(m_biasCalling.m_strLicense.has_char() && m_strLicense.is_empty())
-      {
-         m_strLicense = m_biasCalling.m_strLicense;
-      }
 
       if(!::xml::application::initialize1())
          return false;
@@ -402,8 +400,18 @@ namespace ca2
 
    ::ca::application * application::get_app() const
    {
+
       return ex2::application::get_app();
+
    }
+
+   string application::get_license_id()
+   {
+
+      return m_strAppId;
+
+   }
+
 
    void application::process(machine_event_data * pdata)
    {

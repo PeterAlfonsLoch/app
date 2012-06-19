@@ -9,56 +9,12 @@ namespace cube
    {
    }
 
+
    application::application(const char * pszId)
    {
       construct(pszId);
    }
 
-   void application::construct(const char *pszId)
-   {
-      if(m_strAppName.has_char())
-         return;
-      m_strAppName.Empty();
-      m_strId.Empty();
-      if(pszId == NULL)
-      {
-         wstring wstr = ::GetCommandLineW();
-         string str = gen::international::unicode_to_utf8(wstr);
-         strsize iFind = str.find(" : ");
-         if(iFind >= 0)
-         {
-            iFind = str.find("app=", iFind);
-            if(iFind >= 0)
-            {
-               strsize iEnd = str.find(" ", iFind);
-               if(iEnd < 0)
-               {
-                  m_strId = str.Mid(iFind + 4);
-               }
-               else
-               {
-                  m_strId = str.Mid(iFind + 4, iEnd - iFind - 4);
-               }
-               gen::str::begins_eat(m_strId, "\"");
-               gen::str::ends_eat(m_strId, "\"");
-            }
-         }
-      }
-      else
-      {
-         m_strId = pszId;
-      }
-      if(m_strId.is_empty())
-         m_strId = "mplite";
-      construct();
-      if(m_strAppName.is_empty())
-      {
-         if(m_strLicense.has_char())
-            m_strAppName = m_strLicense;
-         else if(m_strInstallToken.has_char())
-            m_strAppName = m_strInstallToken;
-      }
-   }
 
    application::~application()
    {

@@ -44,12 +44,15 @@ namespace ca
       
    application_bias & application_bias::operator = (const application_bias & bias)
    {
+
       if(this == &bias)
          return *this;
-      m_strLicense         = bias.m_strLicense;
+
       m_puiParent          = bias.m_puiParent;
       m_set                = bias.m_set;
+
       return *this;
+
    }
 
 

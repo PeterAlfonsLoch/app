@@ -44,56 +44,9 @@ namespace ca8
       if(!::ca2::fs::application::initialize())     
          return false;
 
-      xml::document docUser(this);
-      string strUser = App(this).file().as_string(App(this).dir().userappdata("langstyle_settings.xml"));
-      string strLangUser;
-      string strStyleUser;
-      if(docUser.get_root()->load(strUser))
-      {
-         if(docUser.get_root()->get_child("lang") != NULL)
-         {
-            strLangUser = docUser.get_root()->get_child("lang")->get_value();
-         }
-         if(docUser.get_root()->get_child("style") != NULL)
-         {
-            strStyleUser = docUser.get_root()->get_child("style")->get_value();
-         }
-      }
 
-      if(strLangUser.has_char())
-         set_locale(strLangUser, false);
-      if(strStyleUser.has_char())
-         set_schema(strStyleUser, false);
-
-
-      if(m_strLicense.has_char())    
-      {
-
-         if(&ApplicationUser == NULL)
-         {
-            return false;
-         }
-
-         // call application's is_licensed function
-         // because if delay is needed for authentication -
-         // or either asking for authentication -
-         // current application startup won't be
-         // exited by timeout.
-         int iRetry = 3;
-retry_license:
-         iRetry--;
-         if(!App(this).is_licensed(m_strLicense))
-         {      
-            App(this).license().m_mapInfo.remove_key(m_strLicense);
-            if(iRetry > 0)
-               goto retry_license;
-            return false;      
-         }   
-      }     
-
-      
-      
       return true;
+
    }
 
    filemanager::_shell::ImageSet & application::shellimageset()

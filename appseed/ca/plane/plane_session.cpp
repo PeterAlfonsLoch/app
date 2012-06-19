@@ -69,11 +69,13 @@ namespace plane
 
    void session::construct()
    {
+      
       m_strAppName         = "session";
       m_strBaseSupportId   = "votagus_ca2_bergedge";
       m_strInstallToken    = "session";
-      m_strLicense         = "";
+      m_bLicense           = false;
       m_eexclusiveinstance = ::radix::ExclusiveInstanceNone;
+
    }
 
    bool session::initialize_instance()

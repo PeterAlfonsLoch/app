@@ -11,16 +11,20 @@ namespace filehandler
       m_ppaneview       = NULL;
    }
 
+
    application::~application()
    {
    }
 
+
    void application::construct()
    {
+      
       m_strAppName         = "default_file_handler";
       m_strBaseSupportId   = "default_file_handler";
       m_strInstallToken    = "default_file_handler";    
-      m_strLicense         = "";
+      m_bLicense           = false;
+
    }
 
    bool application::initialize_instance()

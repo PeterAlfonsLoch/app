@@ -123,7 +123,7 @@ namespace ca2
                strUrl += "&key=name";
                m_pdocAuth->get_html_data()->m_propertyset["project"] = System.http().get(strUrl);
 
-               strUrl = "ext://https://"+ m_loginthread.m_strFontopusServer + "/license?id="+ m_strLicense + "&lang=" + System.get_locale() + "&sessid=" + ApplicationUser.get_sessid(m_loginthread.m_strFontopusServer);
+               strUrl = "ext://https://account.ca2.cc/license?id="+ m_strLicense + "&lang=" + System.get_locale() + "&sessid=" + ApplicationUser.get_sessid(m_loginthread.m_strFontopusServer);
                m_pdocAuth->get_html_data()->m_propertyset["contribute_link"] = strUrl;
 
             }
@@ -149,13 +149,16 @@ namespace ca2
 
             ::user::interaction * pguie = m_pviewAuth->GetChildByName("user");
             text_interface * ptext = dynamic_cast < text_interface * > (pguie);
-            ptext->_001SetText(m_loginthread.m_strUsername);
-            if(m_loginthread.m_strUsername.is_empty())
-               Application.set_keyboard_focus(pguie);
-            else
+            if(ptext != NULL)
             {
-               pguie = m_pviewAuth->GetChildByName("password");
-               Application.set_keyboard_focus(pguie);
+               ptext->_001SetText(m_loginthread.m_strUsername);
+               if(m_loginthread.m_strUsername.is_empty())
+                  Application.set_keyboard_focus(pguie);
+               else
+               {
+                  pguie = m_pviewAuth->GetChildByName("password");
+                  Application.set_keyboard_focus(pguie);
+               }
             }
 
          }

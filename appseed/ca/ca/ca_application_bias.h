@@ -11,6 +11,7 @@ namespace radix
 namespace ca
 {
 
+
    // application_bias contains information inherited mainly and by-designly from calling party/application/system
    // for example, the OS command line can call a cube8::system that takes a command line parameter that is
    // passed as application_bias to bergedge that can later pass or use this information as application_bias
@@ -19,6 +20,7 @@ namespace ca
       virtual public ::radix::object
    {
    public:
+
 
       class CLASS_DECL_ca callback :
          virtual public ::gen::signalizable
@@ -35,7 +37,6 @@ namespace ca
       };
 
       
-      string                     m_strLicense;
       ::user::interaction *      m_puiParent;
       callback *                 m_pcallback;
       gen::property_set          m_set;

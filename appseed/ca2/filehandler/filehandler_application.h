@@ -18,6 +18,7 @@ namespace filehandler
       application();
       virtual ~application();
 
+      using ::ca2::calculator::application::construct;
       virtual void construct();
 
       virtual bool initialize_instance();

@@ -17,8 +17,9 @@ namespace cube
       application(const char * pszId);
       virtual ~application();
 
+
+      using ::cubebase::application::construct;
       virtual void construct();
-      virtual void construct(const char * pszId);
       
       virtual bool initialize_instance();
       virtual int  exit_instance();

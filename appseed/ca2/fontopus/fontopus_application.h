@@ -19,8 +19,7 @@ namespace ca2
          virtual ~application();
 
 
-         using ::ca::thread::construct;
-         using ::ca::application::construct;
+         using ::cube2::application::construct;
          virtual void construct();
 
 

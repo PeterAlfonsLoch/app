@@ -63,8 +63,8 @@ namespace plane
       construct();
       if(m_strAppName.is_empty())
       {
-         if(m_strLicense.has_char())
-            m_strAppName = m_strLicense;
+         if(m_strAppId.has_char())
+            m_strAppName = m_strAppId;
          else if(m_strInstallToken.has_char())
             m_strAppName = m_strInstallToken;
       }

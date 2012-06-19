@@ -1003,20 +1003,54 @@ namespace ca
             strLibraryName = strLibraryNameParam;
          }
 
-         if(strLibraryRoot.has_char())
+         int iFind = strAppNameParam.find("/");
+
+         if(iFind > 0)
          {
+            
+            strRoot = strAppNameParam.Left(iFind);
+
+         }
+         else if(strLibraryRoot.has_char())
+         {
+
             strRoot = "app-" + strLibraryRoot;
+
          }
          else
          {
+
             strRoot = "app";
-         }
-         if(strLibraryName.has_char() && strLibraryName != "app_" + strAppNameParam)
-         {
-            strDomain = "_" + strLibraryName + "/";
+
          }
 
-         strDomain += strAppNameParam;
+         if(iFind > 0)
+         {
+
+            int iFind2 = strAppNameParam.find('/', iFind + 1);
+
+            if(iFind2 < 0)
+            {
+
+               strDomain = strAppNameParam.Mid(iFind + 1);
+
+            }
+            else
+            {
+
+               strDomain = "_" + strAppNameParam.Mid(iFind + 1);
+
+            }
+
+
+         }
+         else
+         {
+
+            strDomain += strAppNameParam;
+
+         }
+
 
       }
 
