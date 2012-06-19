@@ -957,7 +957,7 @@ restart_download:
 
          }
 
-         if(bDownload && download_file(str3, false, false, mapLen[stra_dup[i]], mapMd5[stra_dup[i]], mapGzLen[stra_dup[i]], mapFlag[stra_dup[i]]))
+         if(bDownload && download_file(str3, false, false, iLen, strMd5, mapGzLen[stra_dup[i]], mapFlag[stra_dup[i]]))
          {
             
             m_dProgress = m_dProgress2;
@@ -1864,6 +1864,8 @@ restart_download:
          }
          else if(iCurrent == -1)
          {
+
+            strPathParam = str_replace_dup(strPathParam, "/", "\\");
 
             if(stra_dup.spa_insert(strPathParam))
             {
