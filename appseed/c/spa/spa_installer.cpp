@@ -296,7 +296,7 @@ RetryHost:
          vsstring strInstallFilterList = ms_get_dup(strUrl);
          XNode nodeInstallFilter;
          nodeInstallFilter.Load(strInstallFilterList);
-         strUrl = m_strSpaIgnitionBaseUrl + "query?node=install_application&id=";
+         strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
          strUrl += m_strApplicationId;
          strUrl += "&key=install_filter";
          vsstring strInstallFilter = ms_get_dup(strUrl);
