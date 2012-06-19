@@ -456,6 +456,14 @@ RetryHost:
 
             straPath.add_tokens(m_strAppMatterList, "\n");
 
+            trace("***appmatter");
+
+            for(int i = 0; i < straPath.get_count(); i++)
+            {
+               const char * psz = straPath[i];
+               ::trace(psz);
+            }
+
             GetFileListEx(straFileList, straPath, mapLen, mapGzLen, mapMd5, mapFlag);
 
          }
