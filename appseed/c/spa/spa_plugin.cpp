@@ -146,7 +146,7 @@ namespace spa
 
 #ifdef _AMD64_
          str = itohex_dup(((int*) m_phost)[1]);
-         str += itohex_dup((uint) m_phost);
+         str += itohex_dup((unsigned int) m_phost);
 #else    
          str = itohex_dup((int) m_phost);
 #endif
