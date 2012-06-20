@@ -13,6 +13,7 @@ namespace cube
 
 
       m_prunstartinstaller       = NULL;
+      m_bLicense                 = false;
 
       
 

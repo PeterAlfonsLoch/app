@@ -7,6 +7,9 @@ namespace cube
 
    application::application()
    {
+
+      m_bLicense = false;
+
    }
 
 

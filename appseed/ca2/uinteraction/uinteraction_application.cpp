@@ -26,7 +26,7 @@ namespace uinteraction
          if(::IsDebuggerPresent())
          {
 
-            MessageBox(NULL, "Debug Only Message\n\nPlease install \"" + strId + "\"", "Debug Only - Please Install - ca2", MB_OK);
+            MessageBox(NULL, "Debug Only Message\n\nPlease install \"" + strId + "\" type=\"uinteraction\"", "Debug Only - Please Install - ca2", MB_OK);
 
             System.os().post_to_all_threads(WM_QUIT, 0, 0);
 

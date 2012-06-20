@@ -64,7 +64,7 @@ void simple_app::main()
    {
       if(!strncmp_dup(__argv[1], "-install:", strlen_dup("-install:")))
       {
-         //Sleep(15 * 1000);
+         Sleep(15 * 1000);
          vsstring strCommandLine;
          for(int i = 1; i < __argc; i++)
          {

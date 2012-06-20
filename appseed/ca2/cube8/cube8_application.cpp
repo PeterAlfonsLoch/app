@@ -126,7 +126,7 @@ namespace cube8
          create_user(m_puser);
       }
 
-      if(!::ca2::fontopus::application::initialize1())
+      if(!::cube5::application::initialize1())
          return false;
 
 

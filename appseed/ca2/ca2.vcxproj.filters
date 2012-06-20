@@ -2316,9 +2316,6 @@
     <ClCompile Include="cube\cube_library.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="cubebase\cubebase_application.cpp">
-      <Filter>Source Files\cubebase</Filter>
-    </ClCompile>
     <ClCompile Include="fs\fs_application.cpp">
       <Filter>Source Files\fs</Filter>
     </ClCompile>
@@ -2450,6 +2447,9 @@
     </ClCompile>
     <ClCompile Include="uinteraction\frame\frame_work_set_listener_array.cpp">
       <Filter>Source Files\uinteraction\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="cubebase\cubebase_application.cpp">
+      <Filter>Source Files\cubebase</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

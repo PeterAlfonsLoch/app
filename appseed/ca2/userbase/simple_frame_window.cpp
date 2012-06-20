@@ -120,7 +120,7 @@ void simple_frame_window::_001OnDestroy(gen::signal_object * pobj)
 ::uinteraction::frame::frame * simple_frame_window::create_frame_schema()
 {
 
-   ::uinteraction::frame::frame * pschema = Bergedge.get_frame_schema("app-core/uinteraction", "005");
+   ::uinteraction::frame::frame * pschema = Application.get_frame_schema("app-core/uinteraction", "005");
 
    pschema->m_typeinfoControlBoxButton = System.template type_info < MetaButton > ();
 
