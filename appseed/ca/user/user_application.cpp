@@ -411,7 +411,8 @@ retry_license:
          if(&keyboard().layout() != NULL)
          {
             
-            if(Application.m_puser != NULL)
+            if(Application.m_puser != NULL
+            && Application.m_puser->m_strFontopusServerSessId.has_char())
             {
             
                data_set("keyboard_layout", keyboard().layout().m_strPath);
@@ -427,7 +428,8 @@ retry_license:
          if(!set_keyboard_layout(keyboard().get_current_system_layout(), false))
             return false;
 
-         if(Application.m_puser != NULL)
+         if(Application.m_puser != NULL
+         && Application.m_puser->m_strFontopusServerSessId.has_char())
          {
 
             data_set("keyboard_layout", keyboard().layout().m_strPath);

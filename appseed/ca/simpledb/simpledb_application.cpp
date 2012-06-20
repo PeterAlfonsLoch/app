@@ -202,10 +202,19 @@ namespace simpledb
 
    void application::on_set_keyboard_layout(const char * pszPath, bool bUser)
    {
+      
       if(bUser)
       {
-         data_set("keyboard_layout", pszPath);
+      
+         if(Application.m_puser != NULL)
+         {
+            
+            data_set("keyboard_layout", pszPath);
+
+         }
+
       }
+
    }
 
 

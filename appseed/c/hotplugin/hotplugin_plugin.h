@@ -48,6 +48,7 @@ namespace hotplugin
       HANDLE                        m_hfilemapBitmap;
       simple_mutex *                m_pmutexBitmap;
       SIZE                          m_sizeBitmapData;
+      vsstring                      m_strBitmapChannel;
 
 
 

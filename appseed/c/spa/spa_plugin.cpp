@@ -128,11 +128,12 @@ namespace spa
             // shouldn't do advanced operations using ca2
             // starter_start will only kick a default app-install.exe if one isn't already running, cleaning file lock if any
 
-            set_ready();
-
-            
          }
+
+         set_ready();
+
          return;
+
       }
 
       update_ca2_installed(true);
@@ -144,17 +145,20 @@ namespace spa
          vsstring str;
 
 #ifdef _AMD64_
-         str += itohex_dup(((int*) m_phost)[1]);
-         str = itohex_dup((int) m_phost);
+         str = itohex_dup(((int*) m_phost)[1]);
+         str += itohex_dup((uint) m_phost);
 #else    
          str = itohex_dup((int) m_phost);
 #endif
 
+         m_phost->m_strBitmapChannel = str;
 
          ::hotplugin::container_launcher launcher(str);
 
          vsstring strChannel = "\\ca2\\ca2plugin-container-";
          strChannel += str;
+
+
 
 
          open_ab(strChannel, "plugin-container.exe", &launcher);
