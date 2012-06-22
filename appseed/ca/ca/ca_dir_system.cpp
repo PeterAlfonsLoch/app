@@ -973,7 +973,7 @@ namespace ca
          }
          else
          {
-            appmatter_locators(strRoot, strDomain, papp->m_pappThis->m_strLibraryName, papp->m_pappThis->m_strAppName);
+            appmatter_locators(strRoot, strDomain, papp->m_pappThis->m_strLibraryName, papp->m_pappThis->m_strAppId);
          }
 
       }
@@ -988,7 +988,27 @@ namespace ca
       void system::appmatter_locators(string & strRoot, string & strDomain, const string & strLibraryNameParam, const string & strAppNameParam)
       {
 
-         string strLibraryRoot;
+         int iFind = strAppNameParam.find('/');
+
+         if(iFind < 0)
+            return;
+
+         strRoot = strAppNameParam.Left(iFind);
+
+         int iFind2 = strAppNameParam.find('/', iFind + 1);
+
+         if(iFind2 > iFind + 1)
+         {
+            strDomain = "_" + strAppNameParam.Mid(iFind + 1);
+            return;
+         }
+         else
+         {
+            strDomain = strAppNameParam.Mid(iFind + 1);
+         }
+
+
+         /*string strLibraryRoot;
          string strLibraryName;
          if(strLibraryNameParam.has_char() && strLibraryNameParam != "app_" + strAppNameParam
             && gen::str::begins_ci(strLibraryNameParam, "app_") && strLibraryNameParam.find("_", strlen("app_")) > 4)
@@ -1051,7 +1071,7 @@ namespace ca
 
          }
 
-
+         */
       }
 
       string system::appmatter_locator(::ca::application * papp)

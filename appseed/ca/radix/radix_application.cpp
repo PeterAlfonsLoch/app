@@ -2606,6 +2606,7 @@ namespace radix
    bool application::initialize1()
    {
 
+      Sleep(15 * 1000);
 
       m_strMatterLocator = System.dir().appmatter_locator(this);
 
