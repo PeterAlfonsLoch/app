@@ -3760,27 +3760,6 @@
     <ClCompile Include="fs\fs_set.cpp">
       <Filter>Source Files\fs</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_application.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_datetime.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_library.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_log.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_net.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_process.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\socket_address.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="multithreading\multithreading_core.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
@@ -4639,12 +4618,6 @@
     <ClCompile Include="database\database_user_interaction.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_url.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_url_domain.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_check_interface.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -5418,6 +5391,33 @@
     </ClCompile>
     <ClCompile Include="exception\exception_call_stack.cpp">
       <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_application.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_datetime.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_library.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_log.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_net.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_process.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_url.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_url_domain.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\socket_address.cpp">
+      <Filter>Source Files\ca2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
