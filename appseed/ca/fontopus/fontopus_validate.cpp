@@ -47,7 +47,7 @@ namespace fontopus
       || command_thread().property("app") == "veievserver"
       || command_thread().property("app") == "simpledbcfg"
       //|| command_thread().property("app") == "veriwell_mplite"      // churrasco 2011 m_strLicense
-      || command_thread().property("app") == "netnodecfg")
+      || command_thread().property("app") == "app-core/tesseract/netnodecfg")
       {
          m_puser = Application.allocate_user();
          m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
@@ -208,7 +208,7 @@ namespace fontopus
          || strLicense == "mydns"
          || Application.command().m_varTopicQuery.has_property("install")
          || Application.command().m_varTopicQuery.has_property("uninstall")
-         || strLicense == "netnodecfg")
+         || strLicense == "app-core/tesseract/netnodecfg")
       {
          return true;
       }

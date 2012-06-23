@@ -782,7 +782,7 @@ namespace dynamic_source
          str1 = "library/source/" + strRel;
          string strCmd;
    //#ifdef DEBUG
-         strCmd.Format(System.dir().ca2("stage\\front\\dynamic_source_" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat"));
+         strCmd = System.dir().ca2("stage\\front\\dynamic_source_" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat");
    //#else
      //    strCmd.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
    //#endif

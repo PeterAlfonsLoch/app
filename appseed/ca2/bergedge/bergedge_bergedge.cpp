@@ -15,6 +15,7 @@ namespace bergedge
       m_pbergedgedocument        = NULL;
       m_bShowPlatform            = false;
       m_pappCurrent              = NULL;
+	  m_bLicense				= false;
 
       m_strAppName               = "bergedge";
 

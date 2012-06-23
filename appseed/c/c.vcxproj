@@ -941,9 +941,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <StringPooling>false</StringPooling>
-      <ExceptionHandling>false</ExceptionHandling>
+      <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>
@@ -965,7 +965,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)ssleay32
       <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/$(ConfigurationName);$(SolutionDir)../../../app/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <Profile>true</Profile>

@@ -40,7 +40,8 @@ string db_server::calc_key(::database::id & idSection, ::database::id & id, ::da
 bool db_server::initialize()
 {
 
-   if(System.directrix().m_varTopicQuery["app"] == "core_netnodelite")
+   if(System.directrix().m_varTopicQuery["app"] == "app-core/netnodelite"
+	||  System.directrix().m_varTopicQuery["app"] == "app-core/tesseract/netnodecfg")
    {
       m_bRemote = false;
    }

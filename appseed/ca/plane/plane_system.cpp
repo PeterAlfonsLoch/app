@@ -384,7 +384,17 @@ namespace plane
       else
       {
 
-         strRoot += pszLibrary;
+		 string strLibrary(pszLibrary);
+
+		 string strPrefix = strRoot;
+
+		 strPrefix.replace("-", "_");
+
+		 strPrefix.replace("/", "_");
+
+		 gen::str::begins_eat_ci(strLibrary, strPrefix);
+
+         strRoot += strLibrary;
 
          strRoot += "/";
 

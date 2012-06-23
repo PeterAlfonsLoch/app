@@ -26,10 +26,10 @@ namespace plane
 
    void application::construct(const char *pszId)
    {
-      if(m_strAppName.has_char())
-         return;
-      m_strAppName.Empty();
-      m_strId.Empty();
+      //if(m_strAppName.has_char())
+      //   return;
+      //m_strAppName.Empty();
+      //m_strId.Empty();
       if(pszId == NULL)
       {
          wstring wstr = ::GetCommandLineW();
