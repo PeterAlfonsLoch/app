@@ -1287,13 +1287,16 @@ namespace ca2
       return strProtocol + "://" + strRoot + strScript + gen::str::has_char(strQuery, "?");
    }
 
-
+   inline bool isalnum_dup(int i)
+   {
+      return (i >= '0' && i <= '9') || (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z');
+   }
 
 
    bool is_url(const char * pszCandidate, const char ** ppszRequest)
    {
       const char * psz = pszCandidate;
-      while(*psz != '\0' && (*psz == '.' || *psz == '_' || isalnum((unsigned char ) *psz)))
+      while(*psz != '\0' && (*psz == '.' || *psz == '_' || isalnum_dup(*psz)))
       {
          psz++;
       }
@@ -1308,7 +1311,7 @@ namespace ca2
       if(*psz != '/')
          return false;
       psz++;
-      while(*psz != '\0' && (*psz == '.' || *psz == '_' || isalnum((unsigned char ) *psz)))
+      while(*psz != '\0' && (*psz == '.' || *psz == '_' || isalnum_dup(*psz)))
       {
          psz++;
       }

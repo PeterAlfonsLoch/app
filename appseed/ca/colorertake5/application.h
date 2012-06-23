@@ -11,13 +11,8 @@ namespace colorertake5
    public:
 
 
-      ParserFactory * m_pparserfactory;
-
-
       application();
       virtual ~application();
-
-      ParserFactory & parser_factory();
 
       virtual bool initialize();
 

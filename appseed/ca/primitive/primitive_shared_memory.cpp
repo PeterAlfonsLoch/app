@@ -11,6 +11,8 @@ namespace primitive
       m_nAllocFlags     = 0;
       m_hGlobalMemory   = NULL;
       m_bAllowGrow      = TRUE;
+      m_pbStorage = NULL;
+      m_pbComputed = NULL;
 
       memory_base::operator             = (s);
 
@@ -23,6 +25,8 @@ namespace primitive
       m_bAllowGrow         = TRUE;
       m_pcontainer         = pcontainer;
       m_dwAllocationAddUp  = dwAllocationAddUp;
+      m_pbStorage = NULL;
+      m_pbComputed = NULL;
 
    }
 
@@ -32,6 +36,25 @@ namespace primitive
       m_nAllocFlags     = 0;
       m_pcontainer      = pcontainer;
       m_bAllowGrow      = TRUE;
+      m_pbStorage = NULL;
+      m_pbComputed = NULL;
+
+      allocate(dwSize);
+
+      ASSERT(__is_valid_address(pMemory, (uint_ptr) dwSize, FALSE));
+
+      memcpy(m_pbStorage, pMemory, (size_t) dwSize);
+
+   }
+
+   shared_memory::shared_memory(const void * pMemory, memory_size dwSize)
+   {
+
+      m_nAllocFlags     = 0;
+      m_pcontainer      = NULL;
+      m_bAllowGrow      = TRUE;
+      m_pbStorage = NULL;
+      m_pbComputed = NULL;
 
       allocate(dwSize);
 
@@ -49,11 +72,23 @@ namespace primitive
    LPBYTE shared_memory::detach_shared_memory(HGLOBAL & hglobal)
    {
 
+      if(m_iOffset > 0)
+      {
+         
+         shared_memory mem(m_pbComputed, m_cbStorage);
+
+         free_data();
+
+         return mem.detach_shared_memory(hglobal);
+
+      }
+
       LPBYTE pbStorage     = m_pbStorage;
       hglobal              = m_hGlobalMemory;
 
       m_hGlobalMemory      = NULL;
       m_pbStorage          = NULL;
+      m_pbComputed   = NULL;
       m_cbStorage          = 0;
       m_dwAllocation       = 0;
 
@@ -93,6 +128,7 @@ namespace primitive
             {
                m_pcontainer->offset_kept_pointers((int_ptr) m_pbStorage);
             }
+            m_pbComputed   = m_pbStorage;
             return true;
          }
          else
@@ -102,7 +138,32 @@ namespace primitive
       }
       else
       {
-         if(dwNewLength > m_dwAllocation)
+         if(m_iOffset > 0)
+         {
+            m_iOffset = 0;
+            memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
+            LPVOID lpVoid = Alloc((SIZE_T) dwAllocation);
+            if(lpVoid == NULL)
+            {
+               return false;
+            }
+            else
+            {
+               memcpy(lpVoid, m_pbComputed, m_cbStorage);
+               memory_offset iOffset = (LPBYTE) lpVoid - m_pbStorage;
+               if(m_pcontainer != NULL)
+               {
+                  m_pcontainer->offset_kept_pointers(iOffset);
+               }
+
+               m_dwAllocation = dwAllocation;
+               Free(m_pbStorage);
+               m_pbStorage = (LPBYTE) lpVoid;
+               m_pbComputed = m_pbStorage;
+               return true;
+            }
+         }
+         else if(dwNewLength > m_dwAllocation)
          {
             memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
             LPVOID lpVoid = Realloc(m_pbStorage, (SIZE_T) dwAllocation);
@@ -120,6 +181,7 @@ namespace primitive
 
                m_dwAllocation = dwAllocation;
                m_pbStorage = (LPBYTE) lpVoid;
+               m_pbComputed = m_pbStorage;
                return true;
             }
          }
@@ -143,6 +205,7 @@ namespace primitive
 
       m_hGlobalMemory = hGlobalMemory;
       m_pbStorage = (BYTE*)::GlobalLock(m_hGlobalMemory);
+      m_pbComputed = m_pbStorage;
       m_dwAllocation = m_cbStorage = (ULONG)::GlobalSize(m_hGlobalMemory);
       // xxx m_bAllowGrow = bAllowGrow;
    }
@@ -180,6 +243,18 @@ namespace primitive
 
    HGLOBAL shared_memory::detach()
    {
+
+      if(m_iOffset > 0)
+      {
+         
+         shared_memory mem(m_pbComputed, m_cbStorage);
+
+         free_data();
+
+         return mem.detach();
+
+      }
+
       HGLOBAL hMem;
       ASSERT(m_hGlobalMemory != NULL);
       hMem = m_hGlobalMemory;
@@ -189,6 +264,7 @@ namespace primitive
 
       // re-initialize the CMemFile parts too
       m_pbStorage = NULL;
+      m_pbComputed = NULL;
       m_dwAllocation = m_cbStorage = 0;
 
       return hMem;
@@ -208,6 +284,7 @@ namespace primitive
          {
          }
          m_pbStorage       = NULL;
+         m_pbComputed = NULL;
       }
    }
 

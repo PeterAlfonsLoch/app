@@ -5416,6 +5416,9 @@
     <ClCompile Include=".\html\html_lite\html_lite_html_attributes.cpp">
       <Filter>Source Files\html\html_lite</Filter>
     </ClCompile>
+    <ClCompile Include="exception\exception_call_stack.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca.def">

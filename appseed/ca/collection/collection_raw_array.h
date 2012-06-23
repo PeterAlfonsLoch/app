@@ -118,7 +118,7 @@ public:
 
 
 
-   raw_array();
+   raw_array(count nGrowBy = 32);
 
    inline count get_size() const;
    inline count get_size_in_bytes() const;
@@ -382,15 +382,18 @@ inline TYPE& raw_array<TYPE, ARG_TYPE>::operator[](index nIndex)
 template<class TYPE, class ARG_TYPE>
 inline TYPE raw_array<TYPE, ARG_TYPE>::pop(index index)
 {
+   
    index = get_upper_bound(index);
-   ASSERT(index >= 0 && index < m_nSize);
-   if(index >= 0 && index < m_nSize)
-   {
-      TYPE t = m_pData[index];
-      remove_at(index);
-      return t;
-   }
-   throw invalid_argument_exception();
+   
+   if(index < 0 || index >= m_nSize)
+      throw invalid_argument_exception();
+   
+   TYPE t = m_pData[index];
+
+   remove_at(index);
+
+   return t;
+
 }
 
 template<class TYPE, class ARG_TYPE>
@@ -414,10 +417,11 @@ inline raw_array<TYPE, ARG_TYPE> & raw_array<TYPE, ARG_TYPE>::operator = (const 
 // out-of-line functions
 
 template<class TYPE, class ARG_TYPE>
-raw_array<TYPE, ARG_TYPE>::raw_array()
+raw_array<TYPE, ARG_TYPE>::raw_array(count nGrowBy)
 {
+   m_nGrowBy = max(0, nGrowBy);
    m_pData = NULL;
-   m_nSize = m_nMaxSize = m_nGrowBy = 0;
+   m_nSize = m_nMaxSize = 0;
 }
 
 template<class TYPE, class ARG_TYPE>
@@ -449,8 +453,8 @@ count raw_array<TYPE, ARG_TYPE>::set_size_in_bytes(count nNewSize, count nGrowBy
 template<class TYPE, class ARG_TYPE>
 count raw_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
 {
-   ASSERT_VALID(this);
-   ASSERT(nNewSize >= 0);
+   //ASSERT_VALID(this);
+   //ASSERT(nNewSize >= 0);
 
    if(nNewSize < 0 )
       throw invalid_argument_exception();
@@ -470,11 +474,14 @@ count raw_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
    }
    else if (m_pData == NULL)
    {
+      
       // create buffer big enough to hold number of requested elements or
       // m_nGrowBy elements, whichever is larger.
 #ifdef SIZE_T_MAX
-      ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
+      if(nNewSize > SIZE_T_MAX/sizeof(TYPE)) // no overflow
+         throw invalid_argument_exception();
 #endif
+
       count nAllocSize = __max(nNewSize, m_nGrowBy);
       m_pData = (TYPE*) new BYTE[(size_t)nAllocSize * sizeof(TYPE)];
       memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
@@ -508,14 +515,16 @@ count raw_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
       else
          nNewMax = nNewSize;  // no slush
 
-      ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
+      //ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
 
-      if(nNewMax  < m_nMaxSize)
+      if(nNewMax  < m_nMaxSize) // no wrap around
          throw invalid_argument_exception();
 
 #ifdef SIZE_T_MAX
-      ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
+      if(nNewSize > SIZE_T_MAX/sizeof(TYPE)) // no overflow
+         throw invalid_argument_exception();
 #endif
+
       TYPE* pNewData = (TYPE*) new BYTE[(size_t)nNewMax * sizeof(TYPE)];
 
       // copy new data from old
@@ -523,7 +532,9 @@ count raw_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
          m_pData, (size_t)m_nSize * sizeof(TYPE));
 
       // construct remaining elements
-      ASSERT(nNewSize > m_nSize);
+      //ASSERT(nNewSize > m_nSize);
+      //if(nNewSize  >= m_nSize)
+        // throw invalid_argument_exception();
       memset((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
       delete[] (BYTE*)m_pData;
       m_pData = pNewData;
@@ -591,8 +602,8 @@ void raw_array<TYPE, ARG_TYPE>::free_extra()
 template<class TYPE, class ARG_TYPE>
 void raw_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
 {
-   ASSERT_VALID(this);
-   ASSERT(nIndex >= 0);
+   //ASSERT_VALID(this);
+   //ASSERT(nIndex >= 0);
 
    if(nIndex < 0)
       throw invalid_argument_exception();
@@ -605,9 +616,9 @@ void raw_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
 template<class TYPE, class ARG_TYPE>
 void raw_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, count nCount /*=1*/)
 {
-   ASSERT_VALID(this);
-   ASSERT(nIndex >= 0);    // will expand to meet need
-   ASSERT(nCount > 0);     // zero or negative size not allowed
+   //ASSERT_VALID(this);
+   //ASSERT(nIndex >= 0);    // will expand to meet need
+   //ASSERT(nCount > 0);     // zero or negative size not allowed
 
    if(nIndex < 0 || nCount <= 0)
       throw invalid_argument_exception();
@@ -642,13 +653,12 @@ void raw_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, cou
 }
 
 template<class TYPE, class ARG_TYPE>
-index raw_array<TYPE, ARG_TYPE>::remove_at(index nIndex, count nCount)
+inline index raw_array<TYPE, ARG_TYPE>::remove_at(index nIndex, count nCount)
 {
-   ASSERT_VALID(this);
-   ASSERT(nIndex >= 0);
-   ASSERT(nCount >= 0);
+
+   //ASSERT_VALID(this);
+
    index nUpperBound = nIndex + nCount;
-   //ASSERT(nUpperBound <= m_nSize && nUpperBound >= nIndex && nUpperBound >= nCount);
 
    if(nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
       throw invalid_argument_exception();

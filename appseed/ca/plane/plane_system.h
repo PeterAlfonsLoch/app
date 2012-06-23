@@ -244,6 +244,10 @@ namespace plane
       ::ca4::copydesk_sp               m_spcopydesk;
       ::ca4::port_forward_sp           m_spportforward;
       ::string_to_string_map           m_mapAppLibrary;
+      colorertake5::ParserFactory *    m_pparserfactory;
+
+
+
 
 
       class ::fontopus::user_set       m_userset;
@@ -406,6 +410,8 @@ namespace plane
 
       ::filehandler::handler           & filehandler();
 
+      colorertake5::ParserFactory      & parser_factory();
+
       virtual void on_delete(::ca::ca * pca);
 
 
@@ -558,6 +564,10 @@ namespace plane
       virtual string get_host_location_url();
 
       virtual bool add_library(::ca2::library * plibrary);
+
+      
+
+
 
    };
 

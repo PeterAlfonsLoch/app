@@ -4,12 +4,11 @@
 
 void strcpy_dup(char * dest, const char * cpy)
 {
-   if(cpy != NULL)
+   if(cpy != NULL && dest != NULL)
    {
-      while(*cpy != 0)
-         *dest++ = *cpy++;
+      strcpy(dest, cpy);
    }
-   *dest = '\0';
+   //*dest = '\0';
 }
 
 void strncpy_dup(char * dest, const char * cpy, count iLen)
@@ -22,10 +21,11 @@ count  strlen_dup(const char * str)
 {
    if(str == NULL)
       return 0;
-   const char * pszEnd = str;
+   return strlen(str);
+/*   const char * pszEnd = str;
    while(*pszEnd != 0)
       pszEnd++;
-   return pszEnd - str;
+   return pszEnd - str;*/
 }
 
 char * strdup_dup(const char * src)

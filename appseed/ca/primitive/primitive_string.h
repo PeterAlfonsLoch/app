@@ -1124,13 +1124,13 @@ inline int __cdecl crt_char_traits::StringCompareIgnore(const char * pszA,const 
 
 inline int string::Compare(PCXSTR psz ) const
 {
-   ENSURE( __is_valid_string( psz ) );
+   //ENSURE( __is_valid_string( psz ) );
    return( string_trait::StringCompare( GetString(), psz ) );
 }
 
 inline int string::CompareNoCase(PCXSTR psz ) const RELEASENOTHROW
 {
-   ASSERT( __is_valid_string( psz ) );
+   //ASSERT( __is_valid_string( psz ) );
    return( string_trait::StringCompareIgnore( GetString(), psz ) );
 }
 

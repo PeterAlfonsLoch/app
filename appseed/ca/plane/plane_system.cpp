@@ -95,6 +95,8 @@ namespace plane
       m_pcube                    = NULL;
       m_pwindowmap               = NULL;
 
+      m_pparserfactory           = NULL;
+
    }
 
    system::~system()
@@ -185,6 +187,11 @@ namespace plane
          return false;
       if(m_pmachineeventcentral->is_close_application())
          return false;
+
+
+      m_pparserfactory = new colorertake5::ParserFactory(this);
+
+
 
       if(!::plane::application::initialize())
          return false;
@@ -288,6 +295,11 @@ namespace plane
       return *m_spfilehandler;
    }
 
+
+   colorertake5::ParserFactory & system::parser_factory()
+   {
+      return *m_pparserfactory;
+   }
 
    bool system::find_applications_to_cache()
    {

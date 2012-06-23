@@ -16,6 +16,7 @@ namespace primitive
 
 
       LPBYTE                  m_pbStorage;
+      LPBYTE                  m_pbComputed;
 
       memory_offset           m_iOffset;
       memory_size             m_cbStorage;
@@ -134,7 +135,7 @@ namespace primitive
 
    inline LPBYTE memory_base::internal_get_data() const
    {
-      return m_pbStorage;
+      return m_pbComputed;
    }
 
    inline memory_size memory_base::get_size() const
@@ -146,27 +147,27 @@ namespace primitive
 
    inline const LPBYTE memory_base::get_data() const
    {
-
-      if(is_enabled())
+      return m_pbComputed;
+      /*if(is_enabled())
          return internal_get_data() + m_iOffset;
       else
       {
          ASSERT(FALSE);
          return NULL;
-      }
+      }*/
 
    }
 
    inline LPBYTE memory_base::get_data()
    {
-
-      if(is_enabled())
+      return m_pbComputed;
+/*      if(is_enabled())
          return internal_get_data() + m_iOffset;
       else
       {
          ASSERT(FALSE);
          return NULL;
-      }
+      }*/
 
    }
 
@@ -235,7 +236,6 @@ namespace primitive
       ASSERT(iSize <= this->get_size());
       if(iSize <= this->get_size())
       {
-         memcpy(pdata, get_data(), (size_t) iSize);
          delete_begin(iSize);
       }
    }
@@ -501,28 +501,28 @@ namespace primitive
 
    }
 
-   memory_base::operator const byte *() const
+   inline memory_base::operator const byte *() const
    {
 
       return this->get_data();
 
    }
 
-   memory_base::operator byte *()
+   inline memory_base::operator byte *()
    {
 
       return this->get_data();
 
    }
 
-   memory_base::operator const void *() const
+   inline memory_base::operator const void *() const
    {
 
       return this->get_data();
 
    }
 
-   memory_base::operator void *()
+   inline memory_base::operator void *()
    {
 
       return this->get_data();

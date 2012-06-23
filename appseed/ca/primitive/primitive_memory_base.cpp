@@ -9,6 +9,7 @@ namespace primitive
    {
 
       m_pbStorage          = NULL;
+      m_pbComputed   = NULL;
       m_cbStorage          = 0;
       m_dwAllocation       = 0;
       m_dwAllocationAddUp  = 0;
@@ -152,17 +153,20 @@ namespace primitive
 
    void memory_base::delete_begin(memory_size iSize)
    {
-      ASSERT(iSize >= 0);
-      ASSERT(iSize <= this->get_size());
-      if(iSize >= 0 &&
-         iSize <= this->get_size())
+      iSize = max(0, min(get_size(), iSize));
+      m_iOffset += iSize;
+      if(m_pcontainer != NULL)
       {
-         m_iOffset += iSize;
-         if(m_pcontainer != NULL)
-         {
-            m_pcontainer->offset_kept_pointers((::primitive::memory_offset) iSize);
-         }
-         m_cbStorage -= iSize;
+         m_pcontainer->offset_kept_pointers((::primitive::memory_offset) iSize);
+      }
+      m_cbStorage -= iSize;
+      if(m_cbStorage <= 0)
+      {
+         m_pbComputed = NULL;
+      }
+      else
+      {
+         m_pbComputed += iSize;
       }
    }
 

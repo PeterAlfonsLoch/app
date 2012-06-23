@@ -64,15 +64,16 @@ id id_space::operator()(const char * psz)
       id id;
       id.raw_set(new string(str));
       m_ida.add(id);
-      m_iaStr.add(m_ida.get_upper_bound());
-      sort();
+      m_iaStr.insert_at(iIndex, m_ida.get_upper_bound());
+      //sort();
       return id;
    }
    else
    {
       m_ida.add(idSearch);
-      m_iaStr.add(m_ida.get_upper_bound());
-      sort();
+      m_iaStr.insert_at(iIndex, m_ida.get_upper_bound());
+      //m_iaStr.add(m_ida.get_upper_bound());
+      //sort();
       return idSearch;
    }
    
@@ -112,6 +113,19 @@ void id_space::sort()
    stackLowerBound.set_size(0, 1024);
    stackUpperBound.set_size(0, 1024);
 
+   register char chCompare;
+   register id * pid1;
+   register id * pid2;
+   register bool bSwap;
+   register bool bText;
+   register char ch;
+
+   id * pida = m_ida.m_pData;
+   index * pia = m_iaStr.m_pData;
+
+   register index iU;
+   register index iM;
+   register index iL;
 
    index iLowerBound;
    index iUpperBound;
@@ -128,34 +142,89 @@ void id_space::sort()
       iUPos = iUpperBound;
       while(true)
       {
+         if(iMPos != iUPos)
+         {
+            iM = pia[iMPos];
+            pid1 = &pida[iM];
+            ch = pid1->m_chType;
+            bText = ch == IDTYPE_TYPE_TEXT;
+         }
          while(true)
          {
             if(iMPos == iUPos)
                break;
-            if(id_strcmp(&m_ida.m_pData[m_iaStr.m_pData[iMPos]], &m_ida.m_pData[m_iaStr.m_pData[iUPos]]) <= 0)
+            // REFERENCE
+            //if(id_strcmp(&m_ida.m_pData[m_iaStr.m_pData[iMPos]], &m_ida.m_pData[m_iaStr.m_pData[iUPos]]) <= 0)
+            // iUPos--;
+            iU = pia[iUPos];
+            pid2 = pida + iU;
+            chCompare = ch - pid2->m_chType;
+            bSwap = false;
+            if(chCompare > 0)
+               bSwap = true;
+            else if(chCompare == 0)
+            {
+               if(bText)
+               {
+                  if(strcmp(pid1->m_pstr->m_pszData, pid2->m_pstr->m_pszData) > 0)
+                     bSwap = true;
+               }
+               else
+               {
+                  if(pid1->m_i > pid2->m_i)
+                     bSwap = true;
+               }
+
+            }
+            if(!bSwap)
                iUPos--;
             else
             {
-                i = m_iaStr.m_pData[iMPos];
-                m_iaStr.m_pData[iMPos] = m_iaStr.m_pData[iUPos];
-                m_iaStr.m_pData[iUPos] = i;
+                pia[iMPos] = iU;
+                pia[iUPos] = iM;
                 break;
             }
          }
          if(iMPos == iUPos)
             break;
          iMPos = iUPos;
+         if(iMPos != iLPos)
+         {
+            iM = pia[iMPos];
+            pid2 = &pida[iM];
+            ch = pid2->m_chType;
+            bText = ch == IDTYPE_TYPE_TEXT;
+         }
          while(true)
          {
             if(iMPos == iLPos)
                break;
-            if(id_strcmp(&m_ida.m_pData[m_iaStr.m_pData[iLPos]], &m_ida.m_pData[m_iaStr.m_pData[iMPos]]) <= 0)
+            iL = pia[iLPos];
+            pid1 = pida + iL;
+            chCompare = pid1->m_chType - ch;
+            bSwap = false;
+            if(chCompare > 0)
+               bSwap = true;
+            else if(chCompare == 0)
+            {
+               if(bText)
+               {
+                  if(strcmp(pid1->m_pstr->m_pszData, pid2->m_pstr->m_pszData) > 0)
+                     bSwap = true;
+               }
+               else
+               {
+                  if(pid1->m_i > pid2->m_i)
+                     bSwap = true;
+               }
+
+            }
+            if(!bSwap)
                iLPos++;
             else
             {
-                i = m_iaStr.m_pData[iMPos];
-                m_iaStr.m_pData[iMPos] = m_iaStr.m_pData[iUPos];
-                m_iaStr.m_pData[iUPos] = i;
+                pia[iLPos] = iM;
+                pia[iMPos] = iL;
                break;
             }
          }
@@ -376,6 +445,7 @@ bool strid_array::find(const char * psz, index & iIndex) const
    single_lock sl(m_pmutex, TRUE);
    if(m_idptra.m_nSize == 0)
    {
+      iIndex = 0;
       return false;
    }
 
@@ -453,8 +523,9 @@ void strid_array::add(const id & id)
       return;
 
    m_idptra.add(id);
-   m_iaId.add(m_idptra.get_upper_bound());
-   sort();
+   m_iaId.insert_at(iIndex, m_idptra.get_upper_bound());
+   //m_iaId.add(m_idptra.get_upper_bound());
+   //sort();
 
 }
 

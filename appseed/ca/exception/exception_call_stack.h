@@ -30,24 +30,17 @@
 class CLASS_DECL_ca call_stack
 {
 public:
+
    vsstring m_str;
 
-   call_stack (unsigned int uiSkip = 3) :
-      m_str((uiSkip == 0xffffffff) ? "" : call_stack::get(uiSkip))
-   {
-   }
+   static bool s_bDoStackTrace;
 
-   static vsstring get(unsigned int uiSkip = 2)
-   {
-      vsstring str;
-#ifndef AMD64
-      UNREFERENCED_PARAMETER(uiSkip);
-      ::exception::engine::stack_trace(str, uiSkip);
-#endif
-      return str;
-   }
+   call_stack (unsigned int uiSkip = 3);
 
-   const char * stack_trace() const { return m_str; }
+   static vsstring get(unsigned int uiSkip = 2);
+
+   const char * stack_trace() const;
+
 };
 
 

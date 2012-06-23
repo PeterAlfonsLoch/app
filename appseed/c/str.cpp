@@ -11,11 +11,12 @@ void strcat_dup(char * dest, const char * cat)
       return;
    if(cat == NULL)
       return;
-   while(*dest != 0)
+   strcat(dest, cat);
+   /*while(*dest != 0)
       dest++;
    while(*cat != 0)
       *dest++ = *cat++;
-   *dest = '\0';
+   *dest = '\0';*/
 }
 
 
