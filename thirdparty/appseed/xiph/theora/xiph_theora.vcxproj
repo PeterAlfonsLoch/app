@@ -405,6 +405,7 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <Profile>true</Profile>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(Configuration)/$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
