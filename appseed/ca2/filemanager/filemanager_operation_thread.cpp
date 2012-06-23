@@ -144,8 +144,8 @@ void file_manager_operation_thread::queue_copy(stringa & stra, const char * pszD
 
 int file_manager_operation_thread::run()
 {
-   int iStepSetCount = 77;
-   int iStepSetSleep = 84;
+   int iStepSetCount = 84;
+   int iStepSetSleep = 23;
    while(get_run())
    {
       int i = iStepSetCount;

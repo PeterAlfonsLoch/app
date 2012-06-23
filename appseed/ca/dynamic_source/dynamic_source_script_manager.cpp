@@ -773,7 +773,7 @@ namespace dynamic_source
          if(has_link_out_link(pszServer, pinsocket, NULL))
             break;
 
-         Sleep(455);
+         Sleep(84);
 
       }
 

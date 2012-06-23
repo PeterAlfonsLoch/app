@@ -226,7 +226,7 @@ void installation_file_lock(bool bLock)
       while(!file_exists_dup(strPath) && iRetry > 0)
       {
          file_put_contents_dup(strPath, "installing...");
-         Sleep(584);
+         Sleep(184);
          iRetry--;
       }
    }
@@ -239,7 +239,7 @@ void installation_file_lock(bool bLock)
 #else
          unlink(strPath);
 #endif
-         Sleep(584);
+         Sleep(184);
          iRetry--;
       }
    }

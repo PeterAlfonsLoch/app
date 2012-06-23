@@ -392,8 +392,8 @@ namespace filemanager
 
    int SimpleFileListInterface::create_image_list_thread::run()
    {
-      int iStepSetCount = 77;
-      int iStepSetSleep = 84;
+      int iStepSetCount = 84;
+      int iStepSetSleep = 23;
       while(get_run())
       {
          int i = iStepSetCount;

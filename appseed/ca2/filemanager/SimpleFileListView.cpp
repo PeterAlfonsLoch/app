@@ -504,7 +504,7 @@ namespace filemanager
             i++;
             Sleep(23);
          }
-         Sleep(230);
+         Sleep(84);
       }
       m_bFileSize = false;
    }

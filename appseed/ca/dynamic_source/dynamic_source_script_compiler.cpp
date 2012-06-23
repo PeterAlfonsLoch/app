@@ -398,7 +398,7 @@ namespace dynamic_source
       {
          if(process.has_exited(&dwExitCode))
             break;
-         Sleep(284);
+         Sleep(84);
          if(::GetTickCount() - dwStart > 5 * 60 * 1000) // 5 minutes
          {
             bTimeout = true;
@@ -833,7 +833,7 @@ namespace dynamic_source
          {
             if(process.has_exited(&dwExitCode))
                break;
-            Sleep(200);
+            Sleep(84);
          }
          m_memfileLibError<< "<html><head></head><body><pre>";
          str.Format(System.dir().path(m_strTime, "dynamic_source\\library\\%s-compile-log.txt"), str1, false);
@@ -887,7 +887,7 @@ namespace dynamic_source
       {
          if(process.has_exited(&dwExitCode))
             break;
-         Sleep(200);
+         Sleep(84);
       }
 
       str.Format(System.dir().path(m_strTime, "dynamic_source\\library\\%s-link-log.txt"), strName, false);
