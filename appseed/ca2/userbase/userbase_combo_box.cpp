@@ -80,13 +80,13 @@ namespace userbase
    bool combo_box::LimitText(strsize nMaxChars)
    {
       ASSERT(IsWindow()); 
-      return (bool)send_message( CB_LIMITTEXT, nMaxChars, 0) != 0;
+      return send_message( CB_LIMITTEXT, nMaxChars, 0) != FALSE;
    }
 
    bool combo_box::SetEditSel(strsize nStartChar, strsize nEndChar)
    {
       ASSERT(IsWindow());
-      return (bool)send_message( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)) != 0;
+      return send_message( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)) != FALSE;
    }
 
    dword_ptr combo_box::GetItemData(index nIndex)

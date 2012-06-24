@@ -45,13 +45,19 @@ public:
 
 inline void simple_critical_section::lock()
 {
+   
+   
+
    EnterCriticalSection(&m_criticalsection);
+
 }
 
 
 inline void simple_critical_section::unlock()
 {
+   
    LeaveCriticalSection(&m_criticalsection);
+
 }
 
 
