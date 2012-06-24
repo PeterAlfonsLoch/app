@@ -4,67 +4,67 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="analysis.cpp">
+    <ClCompile Include=".\vorbis_analysis.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bitrate.cpp">
+    <ClCompile Include=".\vorbis_bitrate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="block.cpp">
+    <ClCompile Include=".\vorbis_block.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="codebook.cpp">
+    <ClCompile Include=".\vorbis_codebook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="envelope.cpp">
+    <ClCompile Include=".\vorbis_envelope.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="floor0.cpp">
+    <ClCompile Include=".\vorbis_floor0.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="floor1.cpp">
+    <ClCompile Include=".\vorbis_floor1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="info.cpp">
+    <ClCompile Include=".\vorbis_info.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lookup.cpp">
+    <ClCompile Include=".\vorbis_lookup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lpc.cpp">
+    <ClCompile Include=".\vorbis_lpc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lsp.cpp">
+    <ClCompile Include=".\vorbis_lsp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mapping0.cpp">
+    <ClCompile Include=".\vorbis_mapping0.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mdct.cpp">
+    <ClCompile Include=".\vorbis_window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="psy.cpp">
+    <ClCompile Include=".\vorbis_vorbisenc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="registry.cpp">
+    <ClCompile Include=".\vorbis_synthesis.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="res0.cpp">
+    <ClCompile Include=".\vorbis_smallft.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sharedbook.cpp">
+    <ClCompile Include=".\vorbis_sharedbook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="smallft.cpp">
+    <ClCompile Include=".\vorbis_res0.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="synthesis.cpp">
+    <ClCompile Include=".\vorbis_registry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="vorbisenc.cpp">
+    <ClCompile Include=".\vorbis_psy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="window.cpp">
+    <ClCompile Include=".\vorbis_mdct.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -3,6 +3,20 @@
 
 simple_app::simple_app()
 {
+   
+   m_iError = 0;
+
+}
+
+simple_app::~simple_app()
+{
+
+}
+
+
+int simple_app::main()
+{
+
    //Sleep(15 * 1000);
 
    
@@ -42,32 +56,46 @@ simple_app::simple_app()
 
    initialize_primitive_trace();
 
-}
+   if(!os_initialize())
+      return -1;
+       
+   if(!main_initialize()) 
+      return -1;
 
-simple_app::~simple_app()
-{
-
+   body();
+   
    finalize_primitive_trace();
    
-   finalize_primitive_heap();
+   main_finalize();
+    
+   os_finalize(); 
+    
+   finalize_primitive_heap(); 
 
 	//_doexit();
 	_term_args();
-	ExitProcess(m_iReturn);
+
+   return m_iError;
 
 }
 
 
-void simple_app::main()
+void simple_app::body()
 {
+
    if(__argc >= 2)
    {
+
       if(!strncmp_dup(__argv[1], "-install:", strlen_dup("-install:")))
       {
+
          //Sleep(15 * 1000);
+
          vsstring strCommandLine;
+
          for(int i = 1; i < __argc; i++)
          {
+
             if(i == 1)
             {
                strCommandLine = &__argv[1][strlen_dup("-install:")];
@@ -77,18 +105,68 @@ void simple_app::main()
                strCommandLine = strCommandLine + " ";
                strCommandLine = strCommandLine + __argv[i];
             }
+
          }
+         
          DWORD dwStartError;
+         
          spa::ca2_app_install_run(strCommandLine, dwStartError, true);
-         finalize();
+         
          return;
+
       }
    }
 
-   if(!initialize())
+   try
+   {
+
+      if(!initialize())
+      {
+         
+         if(m_iError > 0)
+            m_iError = -1;
+
+         return;
+
+      }
+
+   }
+   catch(...)
+   {
+         
+      if(m_iError > 0)
+         m_iError = -1;
+
       return;
-   m_iReturn = run();
-   finalize();
+
+   }
+
+   try
+   {
+
+      m_iError = run();
+
+   }
+   catch(...)
+   {
+         
+      if(m_iError > 0)
+         m_iError = -1;
+
+      return;
+
+   }
+
+   try
+   {
+
+      finalize();
+
+   }
+   catch(...)
+   {
+   }
+
 }
 
 bool simple_app::initialize()

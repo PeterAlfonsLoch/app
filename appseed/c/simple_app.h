@@ -1,7 +1,7 @@
 #pragma once
 
 
-class simple_app
+class CLASS_DECL_c simple_app
 {
 public:
 
@@ -11,43 +11,27 @@ public:
    TCHAR **                   __targv;
 
    MSG                        m_msg;
-   int                        m_iReturn;
+   int                        m_iError;
 
 
    simple_app();
    virtual ~simple_app();
 
-   virtual void main();
+   virtual int main();
+
+   virtual void body();
 
    virtual bool initialize();
    virtual int run();
    virtual bool finalize();
 
+   template < class APP >
+   static int s_main()
+   {
+      APP app;
+      return app.main();
+   }
+
 };
 
 
-#ifdef WINDOWS
-
-
-#define IMPLEMENT_SIMPLE_APP_BODY(appclass) \
-   \
-   initialize_primitive_heap(); \
-    \
-   if(!os_initialize()) \
-      return -1; \
-       \
-   if(!main_initialize()) \
-      return -1; \
-       \
-   class appclass app; \
-    \
-   app.main(); \
-    \
-   main_finalize(); \
-    \
-   os_finalize(); \
-    \
-   finalize_primitive_heap(); \
-
-
-#endif
