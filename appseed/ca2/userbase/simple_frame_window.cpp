@@ -842,9 +842,9 @@ void simple_frame_window::_000OnDraw(::ca::graphics * pdc)
       _001DrawThis(pdc);
       _001DrawChildren(pdc);
    }
-   else if(!System.savings().is_trying_to_save(gen::resource_processing)
-   && !System.savings().is_trying_to_save(gen::resource_display_bandwidth)
-   && !System.savings().is_trying_to_save(gen::resource_memory))
+   else if(!Session.savings().is_trying_to_save(gen::resource_processing)
+   && !Session.savings().is_trying_to_save(gen::resource_display_bandwidth)
+   && !Session.savings().is_trying_to_save(gen::resource_memory))
    {
       userbase::frame_window::_000OnDraw(pdc);
    }
