@@ -616,6 +616,10 @@ InitFailure:
       {
          ::OutputDebugString("application::main on_run termination failure");
       }
+      if(is_system())
+      {
+         System.os().post_to_all_threads(WM_QUIT, 0, 0);
+      }
       try
       {
          m_iReturnCode = exit();
@@ -1206,7 +1210,12 @@ InitFailure:
    int application::run()
    {
 
-      if(!is_system() && !is_session() && !is_bergedge() && !is_cube())
+      if((command().m_varTopicQuery.has_property("install")
+      || command().m_varTopicQuery.has_property("uninstall"))
+      && is_session() && command().m_varTopicQuery["session_start"] == "session")
+      {
+      }
+      else if(!is_system() && !is_session() && !is_bergedge() && !is_cube())
       {
          if(command().m_varTopicQuery.has_property("install")
          || command().m_varTopicQuery.has_property("uninstall"))
