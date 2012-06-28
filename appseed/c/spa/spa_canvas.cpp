@@ -92,11 +92,11 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
    lf.lfWeight = 800;
    HFONT hfontBold = ::CreateFontIndirect(&lf);
    HFONT hfontOld = (HFONT) ::SelectObject(hdc, (HGDIOBJ) hfont);
-   if(iMode == 2 || iMode == 1 || iMode == 0)
+   if(iMode == 0 || iMode == 1 || iMode == 2 || iMode == 3)
    {
       HPEN hpen = ::CreatePen(PS_SOLID, 1, RGB(84, 84, 77));
       HBRUSH hbrush;
-      if(iMode == 0)
+      if(iMode == 0 || iMode == 1)
       {
          hbrush = (HBRUSH) ::GetStockObject(NULL_BRUSH);
       }
@@ -107,7 +107,7 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
       ::SelectObject(hdc, hpen);
       ::SelectObject(hdc, hbrush);
       ::Rectangle(hdc, lpcrect->left, lpcrect->top, lpcrect->right, lpcrect->bottom);
-      if(iMode == 2 || iMode == 1)
+      if(iMode == 3 || iMode == 2)
       {
          ::DeleteObject(hbrush);
       }
