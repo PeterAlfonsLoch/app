@@ -507,17 +507,17 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
    if(iProfile == 0)
    {
-      dL = 0.45;
+      dL = 0.49;
       dS = 0.77;
    }
    else if(iProfile == 1)
    {
-      dL = 0.54;
+      dL = 0.63;
       dS = 0.84;
    }
    else
    {
-      dL = 0.49;
+      dL = 0.54;
       dS = 0.84;
    }
 
@@ -976,7 +976,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
             {
                get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 2);
                Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-               graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2 + 10, 1, 23);
+               graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2 + 10, 1, 13);
                delete pbr;
             }
          }
