@@ -377,12 +377,7 @@ namespace hotplugin
    void plugin::on_paint(HDC hdcWindow, LPCRECT lprect)
    {
 
-      if(m_iHealingSurface > 0)
-      {
-
-         on_bare_paint(hdcWindow, lprect);
-
-      }
+      on_bare_paint(hdcWindow, lprect);
 
    }
 
@@ -504,11 +499,28 @@ double sin_dup(double x)
 
 }
 
-void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
+void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int iProfile)
 {
    double dH = dRate; // blue ==> red => green
    double dL = 0.49;
    double dS = 0.84;
+
+   if(iProfile == 0)
+   {
+      dL = 0.23;
+      dS = 0.77;
+   }
+   else if(iProfile == 1)
+   {
+      dL = 0.77;
+      dS = 0.84;
+   }
+   else
+   {
+      dL = 0.49;
+      dS = 0.84;
+   }
+
    {
       if(dH >= 1.0)
          dH = 0.0;
@@ -894,36 +906,41 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
 
          int mcy = cy / 2;
 
-         for(int x = 0; x < (cx + cy); x += 46)
+         if(m_iHealingSurface == 1)
          {
 
-            pa[0].X = lprect->left + x;
-            pa[0].Y = lprect->top;
+            for(int x = 0; x < (cx + cy); x += 46)
+            {
 
-            pa[1].X = lprect->left + x + 23;
-            pa[1].Y = lprect->top;
+               pa[0].X = lprect->left + x;
+               pa[0].Y = lprect->top;
 
-            pa[2].X = lprect->left + x - mcy + 23;
-            pa[2].Y = lprect->top + mcy;
+               pa[1].X = lprect->left + x + 23;
+               pa[1].Y = lprect->top;
 
-            pa[3].X = lprect->left + x - mcy;
-            pa[3].Y = lprect->top + mcy;
+               pa[2].X = lprect->left + x - mcy + 23;
+               pa[2].Y = lprect->top + mcy;
+
+               pa[3].X = lprect->left + x - mcy;
+               pa[3].Y = lprect->top + mcy;
             
-            graphics2.FillPolygon(pbr, pa, 4, Gdiplus::FillModeWinding);
+               graphics2.FillPolygon(pbr, pa, 4, Gdiplus::FillModeWinding);
 
-            pa[0].X = lprect->left + x - mcy - 23;
-            pa[0].Y = lprect->top + mcy;
+               pa[0].X = lprect->left + x - mcy - 23;
+               pa[0].Y = lprect->top + mcy;
 
-            pa[1].X = lprect->left + x - mcy;
-            pa[1].Y = lprect->top + mcy;
+               pa[1].X = lprect->left + x - mcy;
+               pa[1].Y = lprect->top + mcy;
 
-            pa[2].X = lprect->left + x - cy;
-            pa[2].Y = lprect->top + cy;
+               pa[2].X = lprect->left + x - cy;
+               pa[2].Y = lprect->top + cy;
 
-            pa[3].X = lprect->left + x - cy - 23;
-            pa[3].Y = lprect->top + cy;
+               pa[3].X = lprect->left + x - cy - 23;
+               pa[3].Y = lprect->top + cy;
             
-            graphics2.FillPolygon(pbr, pa, 4, Gdiplus::FillModeWinding);
+               graphics2.FillPolygon(pbr, pa, 4, Gdiplus::FillModeWinding);
+
+            }
 
          }
 
@@ -944,10 +961,24 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate)
 
          for(iRow = 0; iRow < iProgressCount; iRow++)
          {
-            get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount);
-            Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-            graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2, 1, 23);
-            delete pbr;
+            {
+               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount);
+               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
+               graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2, 1, 5);
+               delete pbr;
+            }
+            {
+               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount);
+               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
+               graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 18) / 2, 1, 5);
+               delete pbr;
+            }
+            {
+               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount);
+               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
+               graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 13) / 2, 1, 23);
+               delete pbr;
+            }
          }
 
          int iOffset = 3;
