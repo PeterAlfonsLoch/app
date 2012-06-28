@@ -14,7 +14,19 @@ namespace spa
 
    canvas::canvas()
    {
+
       m_iMode = 0;
+
+#ifdef SUPORTA_TELA_AVANCADA
+
+      m_iModeCount = 6;
+
+#else
+
+      m_iModeCount = 4;
+
+#endif
+
    }
 
    canvas::~canvas()
@@ -49,6 +61,18 @@ public:
 
 #endif
 
+int canvas::increment_mode()
+{
+   
+   m_iMode++;
+
+   if(m_iMode >= m_iModeCount)
+      m_iMode = 0;
+
+   return m_iMode;
+
+}
+
 void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
 {
    int iMode = m_iMode;
@@ -60,11 +84,6 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
    RECT rect = *lpcrect;
    int cx = lpcrect->right - lpcrect->left;
    int cy = lpcrect->bottom - lpcrect->top;
-#ifdef SUPORTA_TELA_AVANCADA
-   iMode = iMode % 5;
-#else
-   iMode = iMode % 3;
-#endif
    int iThankYouHeight = 30;
    HFONT hfont = ::CreatePointFont_dup(100, "Lucida Sans Unicode", hdc);
    LOGFONT lf;
@@ -97,7 +116,7 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
    SIZE size;
    ::GetTextExtentPoint(hdc, "CCpp", 4, &size);
    int iLineCount = (rect.bottom - 30 - iThankYouHeight) / size.cy;
-   if(iMode == 4) // if(m_bHealingSurface)
+   if(iMode == 5) // if(m_bHealingSurface)
    {
 #ifdef SUPORTA_TELA_AVANCADA
       int iCount = max(1, cx / 25);
@@ -177,7 +196,7 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
       }
 #endif
    }
-   else if(iMode == 1) // else // !m_bHealingSurface => "Surgery Internals"
+   else if(iMode == 2) // else // !m_bHealingSurface => "Surgery Internals"
    {
 
       ::SetTextColor(hdc, RGB(0xCC, 0xCC, 0xCC));
@@ -260,7 +279,7 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
          }
       }
    }
-   else if(iMode == 2) // else // !m_bHealingSurface => "Surgery Internals"
+   else if(iMode == 3) // else // !m_bHealingSurface => "Surgery Internals"
    {
 
       ::SetTextColor(hdc, RGB(0xCC, 0xCC, 0xCC));
@@ -353,7 +372,7 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
          }
       }
    }
-   else if(iMode == 3) // if(m_bHealingSurface)
+   else if(iMode == 4) // if(m_bHealingSurface)
    {
 #ifdef SUPORT_TELA_AVANCADA
       czero.on_paint(hdc, lpcrect);

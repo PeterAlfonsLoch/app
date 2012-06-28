@@ -376,7 +376,14 @@ namespace hotplugin
 
    void plugin::on_paint(HDC hdcWindow, LPCRECT lprect)
    {
-      on_bare_paint(hdcWindow, lprect);
+
+      if(m_iHealingSurface > 0)
+      {
+
+         on_bare_paint(hdcWindow, lprect);
+
+      }
+
    }
 
 #ifdef WINDOWS

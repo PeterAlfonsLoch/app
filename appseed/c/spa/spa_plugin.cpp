@@ -399,8 +399,9 @@ install:
                   || uiMessage == WM_MBUTTONUP) &&
                   is_installing_ca2())
                {
-                  m_iHealingSurface++;
-                  m_canvas.m_iMode++;
+                  
+                  m_iHealingSurface = m_canvas.increment_mode();
+
                }
             }
          }
