@@ -962,19 +962,19 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
          for(iRow = 0; iRow < iProgressCount; iRow++)
          {
             {
-               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount);
+               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 0);
                Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
                graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2, 1, 5);
                delete pbr;
             }
             {
-               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount);
+               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 1);
                Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
                graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 18) / 2, 1, 5);
                delete pbr;
             }
             {
-               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount);
+               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 2);
                Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
                graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 13) / 2, 1, 23);
                delete pbr;
