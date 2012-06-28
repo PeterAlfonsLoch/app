@@ -39,7 +39,20 @@ namespace ca
 
    bool library::open(const char * pszPath)
    {
-      
+
+      if(stricmp_dup(pszPath, "app_c") == 0)
+      {
+         pszPath = "c";
+      }
+      else if(stricmp_dup(pszPath, "app_ca") == 0)
+      {
+         pszPath = "ca";
+      }
+      else if(stricmp_dup(pszPath, "app_ca2") == 0)
+      {
+         pszPath = "ca2";
+      }
+
       vsstring strPath(pszPath);
 
       if(str_ends_ci_dup(strPath, ".ilk"))
@@ -56,6 +69,7 @@ namespace ca
 
       if(strstr_dup(file_title_dup(strPath), ".") == NULL)
          strPath += ".dll";
+
 
 
       m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
