@@ -6,20 +6,65 @@ class CLASS_DECL_ca db_str_set :
 {
 public:
 
-   class CLASS_DECL_ca str_item
+   class CLASS_DECL_ca item
    {
    public:
 
-      DWORD       m_dwTimeout;
-      string        m_str;
+      DWORD          m_dwTimeout;
+      string         m_str;
+
+   };
+
+   class CLASS_DECL_ca queue_item
+   {
+   public:
+
+      string         m_strKey;
+      DWORD          m_dwTimeout;
+      string         m_str;
+
+
+      queue_item();
+      queue_item(const queue_item & item);
+      ~queue_item();
+
+
+      queue_item & operator = (const queue_item & item);
+
+
+   };
+
+   class CLASS_DECL_ca sync_queue :
+      public simple_thread
+   {
+   public:
+
+      mutex                                        m_mutex;
+      db_str_set *                                 m_pset;
+      sockets::socket_handler                      m_handler;
+      sockets::http_session *                      m_phttpsession;
+
+      array_ptr_alloc < queue_item >                     m_itema;
+
+      sync_queue(::ca::application * papp);
+      virtual ~sync_queue();
+
+
+      virtual int run();
+
+
+      void queue(const char * pszKey, const char * psz);
 
    };
 
 
-   ::collection::string_map < str_item > m_map;
+      mutex                                        m_mutex;
+   sockets::socket_handler                      m_handler;
+   sockets::http_session *                      m_phttpsession;
+   ::collection::string_map < item >       m_map;
+   bool                                         m_bIndexed;
 
-   sockets::socket_handler    m_handler;
-   sockets::http_session *    m_phttpsession;
+   sync_queue *                                   m_pqueue;
 
 
    db_str_set(db_server * pserver);

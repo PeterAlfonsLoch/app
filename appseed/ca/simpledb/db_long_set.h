@@ -10,7 +10,7 @@ class CLASS_DECL_ca db_long_set :
 public:
 
 
-   class CLASS_DECL_ca long_item
+   class CLASS_DECL_ca item
    {
    public:
 
@@ -19,13 +19,61 @@ public:
 
    };
 
+   class CLASS_DECL_ca queue_item
+   {
+   public:
 
-   ::collection::string_map < long_item >       m_map;
-   bool                                         m_bIndexed;
+      string         m_strKey;
+      DWORD          m_dwTimeout;
+      int64_t        m_l;
 
+      queue_item();
+      queue_item(const queue_item & item);
+      ~queue_item();
+
+
+      queue_item & operator = (const queue_item & item);
+
+
+   };
+
+   class CLASS_DECL_ca sync_queue :
+      public simple_thread
+   {
+   public:
+
+      mutex                                        m_mutex;
+      db_long_set *                                m_pset;
+      sockets::socket_handler                      m_handler;
+      sockets::http_session *                      m_phttpsession;
+
+      array_ptr_alloc < queue_item >                     m_itema;
+
+
+
+
+      
+      sync_queue(::ca::application * papp);
+      virtual ~sync_queue();
+
+
+      virtual int run();
+
+
+      void queue(const char * pszKey, int64_t l);
+
+   };
+
+
+      mutex                                        m_mutex;
    sockets::socket_handler                      m_handler;
    sockets::http_session *                      m_phttpsession;
 
+
+   ::collection::string_map < item >       m_map;
+   bool                                         m_bIndexed;
+
+   sync_queue *                                   m_pqueue;
    
 
    

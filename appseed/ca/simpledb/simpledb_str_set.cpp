@@ -6,6 +6,7 @@ db_str_set::db_str_set(db_server * pserver) :
    db_set(pserver, "stringtable"),
    m_handler(pserver->get_app())
 {
+   m_pqueue = NULL;
    //::simpledb::base * pdb = db()->m_pbase;
    //::simpledb::set *  pds = (::simpledb::set *) pdb->create_dataset();
    ::sqlite::base * pdb = db()->GetImplDatabase();
@@ -45,6 +46,127 @@ db_str_set::~db_str_set()
 }
 
 
+      db_str_set::queue_item::queue_item()
+      {
+      }
+
+      db_str_set::queue_item::queue_item(const queue_item & item)
+      {
+         operator =(item);
+      }
+      db_str_set::queue_item::~queue_item()
+      {
+      }
+
+
+      db_str_set::queue_item & db_str_set::queue_item::operator = (const queue_item & item)
+      {
+         if(this != &item)
+         {
+            m_strKey = item.m_strKey;
+            m_dwTimeout = item.m_dwTimeout;
+            m_str = item.m_str;
+         }
+         return *this;
+      }
+
+
+db_str_set::sync_queue::sync_queue(::ca::application * papp) :
+   ca(papp),
+   thread(papp),
+   simple_thread(papp),
+   m_handler(papp)
+{
+   m_phttpsession = NULL;
+
+
+}
+
+db_str_set::sync_queue::~sync_queue()
+{
+}
+
+
+
+int db_str_set::sync_queue::run()
+{
+
+   while(true)
+   {
+
+repeat:;
+
+      {
+
+         single_lock sl(&m_mutex, true);
+
+         if(m_itema.get_size() <= 0)
+         {
+            Sleep(1984);
+            goto repeat;
+         }
+
+         for(int i = 1; i < m_itema.get_size(); i++)
+         {
+            if(m_itema[i].m_strKey == m_itema[0].m_strKey)
+            {
+               m_itema.remove_at(0);
+               goto repeat;
+            }
+         }
+
+         gen::property_set post(get_app());
+         gen::property_set headers(get_app());
+         gen::property_set set(get_app());
+
+         ca4::http::e_status estatus;
+
+         string strUrl;
+
+         set["interactive_user"] = true;
+
+         strUrl = "https://api.ca2.cc/account/str_set_save?key=";
+         strUrl += System.url().url_encode(m_itema[0].m_strKey);
+         strUrl += "&value=";
+         strUrl += System.url().url_encode(m_itema[0].m_str);
+
+         m_itema.remove_at(0);
+
+         sl.unlock();
+
+
+         m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
+
+         if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
+         {
+            Sleep(1984);
+            goto repeat;
+         }
+
+
+      }
+
+
+   }
+
+}
+
+
+void db_str_set::sync_queue::queue(const char * pszKey, const char * psz)
+{
+
+   single_lock sl(&m_mutex, true);
+
+   queue_item item;
+
+   item.m_strKey = pszKey;
+   item.m_str = psz;
+
+   m_itema.add(item);
+
+}
+
+
 // true if deleted
 bool db_str_set::remove(const char * lpKey)
 {
@@ -61,7 +183,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
    if(m_pdataserver->m_bRemote)
    {
    
-      str_item stritem;
+      item stritem;
 
       if(m_map.Lookup(lpKey, stritem) && stritem.m_dwTimeout > GetTickCount())
       {
@@ -195,35 +317,19 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
    {
 
 
-      gen::property_set post(get_app());
-      gen::property_set headers(get_app());
-      gen::property_set set(get_app());
-
-      ca4::http::e_status estatus;
-
-      set["interactive_user"] = true;
-
-      string strUrl;
-
-      strUrl = "https://api.ca2.cc/account/str_set_save?key=";
-      strUrl += System.url().url_encode(lpKey);
-      strUrl += "&value=";
-      strUrl += System.url().url_encode(lpcsz);
-
-      m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
-
-      if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
+      if(m_pqueue == NULL)
       {
-         return false;
+         
+         m_pqueue = new sync_queue(get_app());
+         m_pqueue->m_pset = this;
+         m_pqueue->Begin();
+
       }
 
-      string strResult = string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(),
-                        m_phttpsession->m_memoryfile.get_memory()->get_size());
 
-      if(strResult != "ok")
-         return false;
+      m_pqueue->queue(lpKey, lpcsz);
 
-      str_item stritem;
+      item stritem;
 
       stritem.m_dwTimeout = GetTickCount() + 23 * (1984 + 1977);
       stritem.m_str = lpcsz;

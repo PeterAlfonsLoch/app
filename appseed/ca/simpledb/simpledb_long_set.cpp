@@ -10,6 +10,9 @@ db_long_set::db_long_set(db_server * pserver) :
 
    m_phttpsession = NULL;
 
+   m_pqueue = NULL;
+
+
 }
 
 db_long_set::~db_long_set()
@@ -17,6 +20,123 @@ db_long_set::~db_long_set()
 }
 
 
+      db_long_set::queue_item::queue_item()
+      {
+      }
+
+      db_long_set::queue_item::queue_item(const queue_item & item)
+      {
+         operator =(item);
+      }
+      db_long_set::queue_item::~queue_item()
+      {
+      }
+
+
+      db_long_set::queue_item & db_long_set::queue_item::operator = (const queue_item & item)
+      {
+         if(this != &item)
+         {
+            m_strKey = item.m_strKey;
+            m_dwTimeout = item.m_dwTimeout;
+            m_l = item.m_l;
+         }
+         return *this;
+      }
+
+db_long_set::sync_queue::sync_queue(::ca::application * papp) :
+   ca(papp),
+   thread(papp),
+   simple_thread(papp),
+   m_handler(papp)
+{
+   m_phttpsession = NULL;
+
+
+}
+
+db_long_set::sync_queue::~sync_queue()
+{
+}
+
+
+int db_long_set::sync_queue::run()
+{
+
+   while(true)
+   {
+
+repeat:;
+
+      {
+
+         single_lock sl(&m_mutex);
+
+         if(m_itema.get_size() <= 0)
+         {
+            Sleep(1984);
+            goto repeat;
+         }
+
+         for(int i = 1; i < m_itema.get_size(); i++)
+         {
+            if(m_itema[i].m_strKey == m_itema[0].m_strKey)
+            {
+               m_itema.remove_at(0);
+               goto repeat;
+            }
+         }
+
+
+         gen::property_set post(get_app());
+         gen::property_set headers(get_app());
+         gen::property_set set(get_app());
+
+         ca4::http::e_status estatus;
+
+         string strUrl;
+
+         set["interactive_user"] = true;
+
+         strUrl = "https://api.ca2.cc/account/long_set_save?key=";
+         strUrl += System.url().url_encode(m_itema[0].m_strKey);
+         strUrl += "&value=";
+         strUrl += gen::str::itoa(m_itema[0].m_l);
+
+         m_itema.remove_at(0);
+
+         sl.unlock();
+
+
+         m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
+
+         if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
+         {
+            Sleep(1984);
+            goto repeat;
+         }
+
+
+      }
+
+
+   }
+
+}
+
+void db_long_set::sync_queue::queue(const char * pszKey, int64_t l)
+{
+
+   single_lock sl(&m_mutex, true);
+
+   queue_item item;
+
+   item.m_strKey = pszKey;
+   item.m_l = l;
+
+   m_itema.add(item);
+
+}
 
 // Adiciona na matriz System nomes dos diretórios de imagens.
 bool db_long_set::load(const char * lpKey, int64_t * plValue)
@@ -25,7 +145,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
    if(m_pdataserver->m_bRemote)
    {
 
-      long_item longitem;
+      item longitem;
 
       if(m_map.Lookup(lpKey, longitem) && longitem.m_dwTimeout > GetTickCount())
       {
@@ -107,38 +227,21 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
 bool db_long_set::save(const char * lpKey, int64_t lValue)
 {
 
-   if(!m_pdataserver->m_bRemote)
+   if(m_pdataserver->m_bRemote)
    {
 
-      gen::property_set post(get_app());
-      gen::property_set headers(get_app());
-      gen::property_set set(get_app());
-
-      ca4::http::e_status estatus;
-
-      string strUrl;
-
-      set["interactive_user"] = true;
-
-      strUrl = "https://api.ca2.cc/account/long_set_load?key=";
-      strUrl += System.url().url_encode(lpKey);
-      strUrl += "&value=";
-      strUrl += gen::str::itoa(lValue);
-
-      m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
-
-      if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
+      if(m_pqueue == NULL)
       {
-         return false;
+         
+         m_pqueue = new sync_queue(get_app());
+         m_pqueue->m_pset = this;
+         m_pqueue->Begin();
+
       }
 
-      string strResult = string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(),
-                        m_phttpsession->m_memoryfile.get_memory()->get_size());
+      m_pqueue->queue(lpKey, lValue);
 
-      if(strResult != "ok")
-         return false;
-
-      long_item longitem;
+      item longitem;
 
       longitem.m_dwTimeout = GetTickCount() + 23 * (1984 + 1977);
       longitem.m_l = lValue;
