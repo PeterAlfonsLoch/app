@@ -42,7 +42,7 @@ int stricmp_dup(const char * sz1, const char * sz2)
       sz1++;
       sz2++;
    }
-   return iCmp;
+   return to_lower(*sz1) - to_lower(*sz2);
 }
 
 int strcmp_dup(const char * sz1, const char * sz2)
