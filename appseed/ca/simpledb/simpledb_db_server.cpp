@@ -221,7 +221,7 @@ void db_server::close()
 bool db_server::data_server_load(::database::id idSection, ::database::id id, ::database::id idIndex, ex1::writable & writable, ::database::update_hint * phint)
 {
    UNREFERENCED_PARAMETER(phint);
-   single_lock sl(&m_csImplDatabase, TRUE);
+//   single_lock sl(&m_csImplDatabase, TRUE);
    if(!load(calc_key(idSection, id, idIndex), writable))
       return false;
    return true;
@@ -270,7 +270,7 @@ end_write_change:;
 
 bool db_server::load(const char * lpcszKey, string & str)
 {
-   single_lock sl(&m_csImplDatabase, TRUE);
+   //single_lock sl(&m_csImplDatabase, TRUE);
    if(get_db_str_set() == NULL)
       return false;
    return get_db_str_set()->load(lpcszKey, str);
@@ -280,7 +280,7 @@ bool db_server::load(const char * lpcszKey, string & str)
 
 bool db_server::load(const char * lpKey, ::ex1::writable &  writable)
 {
-   single_lock sl(&m_csImplDatabase, TRUE);
+//   single_lock sl(&m_csImplDatabase, TRUE);
    string str;
    if(!load(lpKey, str))
    {
