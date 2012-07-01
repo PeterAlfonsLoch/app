@@ -18,7 +18,7 @@ namespace cube
    {
 
       
-      stra.add("fontopus2");
+      stra.add("fontopus");
       stra.add("default_file_handler");
       stra.add("bergedge");
 
