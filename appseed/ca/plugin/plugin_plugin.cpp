@@ -449,13 +449,34 @@ namespace plugin
                // graphical - 2 - user interface for login - fontopus - through the plugin
                if(!m_psystem->install().is("application", "app/ca2/fontopus"))
                {
-                  Sys(m_psystem).install().start(": app=session session_start=app/ca2/fontopus app_type=application install");
+/*                  Sys(m_psystem).install().start(": app=session session_start=app/ca2/fontopus app_type=application install");
 #ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
                   kill(0, SIGSTOP);
 #endif
+                  m_bMainReady = false;*/
+
+                  vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install");
+
+                  int i = 1;
+
+                  PostMessage(m_phost->::small_ipc_tx_channel::m_hwnd, WM_USER + 100, 1, 1);
+
+                  Sys(m_psystem).install().start(strCommandLine);
+
+                  m_phost->m_bReload = true;
+
+#ifdef WINDOWS
+         //          ::TerminateProcess(::GetCurrentProcess(), 0);
+#else
+            //        kill(0, SIGSTOP);
+#endif
+
                   m_bMainReady = false;
+
+
+
                   return;
                }
                m_strCa2LoginRuri = string(lpszEnd + 1, iCount - (lpszEnd - lpszStart) - 1);
@@ -466,13 +487,34 @@ namespace plugin
                // graphical - 2 - user interface for logout - fontopus - through the plugin
                if(!m_psystem->install().is("application", "app/ca2/fontopus"))
                {
+                  /*
                   Sys(m_psystem).install().start(": app=session session_start=app/ca2/fontopus app_type=application install");
 #ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
                   kill(0, SIGSTOP);
 #endif
+                  m_bMainReady = false;*/
+
+                  vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install");
+
+                  int i = 1;
+
+                  PostMessage(m_phost->::small_ipc_tx_channel::m_hwnd, WM_USER + 100, 1, 1);
+
+                  Sys(m_psystem).install().start(strCommandLine);
+
+                  m_phost->m_bReload = true;
+
+#ifdef WINDOWS
+         //          ::TerminateProcess(::GetCurrentProcess(), 0);
+#else
+            //        kill(0, SIGSTOP);
+#endif
+
                   m_bMainReady = false;
+
+
                   return;
                }
                m_strCa2LogoutRuri = string(lpszEnd + 1, iCount - (lpszEnd - lpszStart) - 1);
