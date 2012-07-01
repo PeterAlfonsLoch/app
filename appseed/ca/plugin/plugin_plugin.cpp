@@ -447,9 +447,9 @@ namespace plugin
             if(str == "ca2login")
             {
                // graphical - 2 - user interface for login - fontopus - through the plugin
-               if(!m_psystem->install().is("application", "fontopus2"))
+               if(!m_psystem->install().is("application", "app/fontopus2"))
                {
-                  Sys(m_psystem).install().start(": app=session session_start=fontopus2 app_type=application install");
+                  Sys(m_psystem).install().start(": app=session session_start=app/fontopus2 app_type=application install");
 #ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
@@ -464,9 +464,9 @@ namespace plugin
             else if(str == "ca2logout")
             {
                // graphical - 2 - user interface for logout - fontopus - through the plugin
-               if(!m_psystem->install().is("application", "fontopus2"))
+               if(!m_psystem->install().is("application", "app/fontopus2"))
                {
-                  Sys(m_psystem).install().start(": app=session session_start=fontopus2 app_type=application install");
+                  Sys(m_psystem).install().start(": app=session session_start=app/fontopus2 app_type=application install");
 #ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
