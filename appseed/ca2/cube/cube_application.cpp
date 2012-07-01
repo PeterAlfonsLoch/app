@@ -45,7 +45,7 @@ namespace cube
       }
       else if(chFirst == 'f')
       {
-         if(strId == "fontopus2")
+         if(strId == "fontopus")
          {
             return ::ca2::fontopus::application::construct();
          }
@@ -70,7 +70,7 @@ namespace cube
       }
       else if(chFirst == 'f')
       {
-         if(strId == "fontopus2")
+         if(strId == "fontopus")
          {
             return ::ca2::fontopus::application::initialize_instance();
          }
@@ -95,7 +95,7 @@ namespace cube
       }
       else if(chFirst == 'f')
       {
-         if(strId == "fontopus2")
+         if(strId == "fontopus")
          {
             return ::ca2::fontopus::application::exit_instance();
          }
@@ -132,7 +132,7 @@ namespace cube
       }
       else if(chFirst == 'f')
       {
-         if(strId == "fontopus2")
+         if(strId == "fontopus")
          {
             return ::ca2::fontopus::application::bergedge_start();
          }
@@ -157,7 +157,7 @@ namespace cube
       }
       else if(chFirst == 'f')
       {
-         if(strId == "fontopus2")
+         if(strId == "fontopus")
          {
             return ::ca2::fontopus::application::on_install();
          }
@@ -182,7 +182,7 @@ namespace cube
       }
       else if(chFirst == 'f')
       {
-         if(strId == "fontopus2")
+         if(strId == "fontopus")
          {
             return ::ca2::fontopus::application::on_uninstall();
          }
@@ -208,7 +208,7 @@ namespace cube
       }
       else if(chFirst == 'f')
       {
-         if(strId == "fontopus2")
+         if(strId == "fontopus")
          {
             return ::ca2::fontopus::application::on_request(pcreatecontext);
          }
