@@ -31,7 +31,6 @@ namespace plugin
       m_pbReady               = NULL;
       m_psystem               = NULL;
       m_bMainReady            = false;
-      m_bOpenUrl              = false;
 
       m_pbitmap               = NULL;
       m_pgraphics             = NULL;
@@ -299,55 +298,80 @@ namespace plugin
 
    void plugin::ca2_login()
    {
+      
       gen::property_set set(m_psystem);
+      
       set.parse_url_query(m_strCa2LoginRuri);
+      
       string strLocation = set["ruri"];
+      
       if(strLocation.is_empty())
          strLocation = m_strCa2LoginRuri;
+      
       gen::property_set setUri(m_psystem);
+      
       setUri.parse_url_query(strLocation);
+      
       if(Sys(m_psystem).url().get_server(strLocation).is_empty())
       {
          strLocation = Sys(m_psystem).url().override_if_empty(strLocation, get_host_location_url(), false);
       }
+      
       string strSessId = set["sessid"];
 
       gen::property_set setLogin(get_app());
 
       ::fontopus::user * puser = NULL;
+      
       //Sleep(15 * 1000);
+
       while(puser == NULL)
       {
          puser = Application.login(setLogin);
       }
 
-      if(strSessId == puser->m_strFontopusServerSessId ||
-         puser->m_strFontopusServerSessId.get_length() < 16)
+      if(strSessId == puser->m_strFontopusServerSessId || puser->m_strFontopusServerSessId.get_length() < 16)
       {
+
          m_psystem->url().remove(strLocation, "sessid");
+
       }
       else
       {
+
          m_psystem->url().set(strLocation, "sessid", puser->m_strFontopusServerSessId);
+
       }
+
       m_psystem->url().remove(strLocation, "action");
-      m_strOpenUrl = strLocation;
-      m_bOpenUrl = true;
+
+      open_url(strLocation);
+
    }
 
    void plugin::ca2_logout()
    {
+      
       m_psystem->logout();
+      
       gen::property_set set(m_psystem);
+      
       set.parse_url_query(m_strCa2LogoutRuri);
+      
       string strLocation = set["ruri"];
+      
       strLocation = m_psystem->url().remove(strLocation, "sessid");
+      
       strLocation = m_psystem->url().remove(strLocation, "action");
+      
       string strUrl;
+      
       strUrl = "https://account.ca2.cc/sec?action=logout";
+      
       m_psystem->url().set(strUrl, "ruri", strLocation);
-      m_strOpenUrl = strLocation;
-      m_bOpenUrl = true;
+      
+      open_url(strUrl);
+
    }
 
 
