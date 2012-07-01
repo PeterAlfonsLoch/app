@@ -4,6 +4,7 @@
 namespace hotplugin
 {
 
+
    class CLASS_DECL_c container_launcher :
       virtual public ::launcher
    {
@@ -23,3 +24,6 @@ namespace hotplugin
 
 
 } // namespace ca2plugin_container
+
+
+

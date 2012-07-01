@@ -674,7 +674,7 @@ RetryHost:
 
 #endif
 
-         new_progress_end(0.8);
+         new_progress_end(0.84);
          trace("***Downloading files.");
          if(m_bInternetInstall)
          {
@@ -2289,7 +2289,7 @@ continue2:
       strUrl += "&key=post_install_count";
       vsstring strCount = ms_get_dup(strUrl);
       int iCount = atoi_dup(strCount);
-      set_progress(0.2);
+      //set_progress(0.2);
       for(int i = 0; i < iCount; i++)
       {
          strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
@@ -2304,7 +2304,7 @@ continue2:
          }
          set_progress(((double) i * (0.5 - 0.2) / (double) iCount) + 0.2);
       }
-      set_progress(0.5);
+      //set_progress(0.5);
       //      DWORD dwStartError;
       trace("starting app-install.exe...");
       int i = run_ca2_application_installer(m_strCommandLine);
@@ -2316,7 +2316,7 @@ continue2:
       trace("started windeskPackage");
       }*/
       trace(".");
-      set_progress(0.9);
+      //set_progress(0.9);
       vsstring strPlatform = spa_get_platform();
       if(i == 0)
       {
