@@ -921,7 +921,15 @@ namespace fontopus
             gen::property_set headers;
             gen::property_set set;
 
-            if(m_puser->m_sessionidmap[m_strRequestingServer].get_length() > 16)
+            Sleep(15 * 1000);
+
+            string strSessid = System.url().get_param(System.directrix().m_varTopicQuery["ruri"], "sessid");
+
+            if(strSessid.has_char())
+            {
+               m_puser->set_sessid(strSessid, strLoginUrl);
+            }
+            else if(m_puser->m_sessionidmap[m_strRequestingServer].get_length() > 16)
             {
                m_puser->set_sessid(m_puser->m_sessionidmap[m_strRequestingServer], strLoginUrl);
             }
@@ -929,6 +937,7 @@ namespace fontopus
             {
                m_puser->set_sessid("not_auth", strLoginUrl);
             }
+
             set["app"] = papp;
 
             Application.http().get(strLoginUrl, strLogin, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);

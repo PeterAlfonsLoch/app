@@ -80,13 +80,13 @@ namespace user
       if(strStyleUser.has_char())
          set_schema(strStyleUser, false);
 
+      string strLicense = get_license_id();
 
       if(!(System.directrix().m_varTopicQuery.has_property("install")
       ||  System.directrix().m_varTopicQuery.has_property("uninstall"))
-      &&  m_bLicense)
+      && m_bLicense
+      && strLicense.has_char())
       {
-
-         string strLicense = get_license_id();
 
          if(&AppUser(this) == NULL)
          {
