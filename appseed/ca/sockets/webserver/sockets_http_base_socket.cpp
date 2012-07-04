@@ -130,28 +130,41 @@ namespace sockets
    // --------------------------------------------------------------------------------------
    void http_base_socket::Respond()
    {
+
       //TRACE0("http_base_socket::Respond");
-      if(inheader("accept-encoding").get_string().find("gzip") >= 0
-         && outheader("content-type").get_string().find("text") >= 0)
+
+      if(lowinheader(__str(accept_encoding)).get_string().find("gzip") >= 0 && outheader(__str(content_type)).get_string().find("text") >= 0)
       {
-         m_response.m_propertysetHeader.add("Content-Encoding", "gzip");
+
+         m_response.m_propertysetHeader.lowset(__str(content_encoding), "gzip");
+
       }
 
       on_compress();
 
-      m_response.m_propertysetHeader.set("Content-Length", (int64_t) m_response.file().get_size());
+      m_response.m_propertysetHeader.lowset(__str(content_length), (int64_t) m_response.file().get_size());
+
       for(int i = 0; i < m_response.cookies().get_size(); i++)
       {
-         m_response.m_propertysetHeader.add(
-            "Set-Cookie",
-            m_response.cookies().element_at(i).get_cookie_string());
+      
+         m_response.m_propertysetHeader.add(__str(set_cookie), m_response.cookies().element_at(i).get_cookie_string());
+
       }
-      if(m_response.m_propertysetHeader.has_property("Location"))
+
+/* 
+
+      if(m_response.m_propertysetHeader.low_has_property(__str(location)))
       {
-         string strLocation = m_response.m_propertysetHeader["Location"];
+
+         string strLocation = m_response.m_propertysetHeader.lowprop(__str(Location));
+
          m_response.m_propertysetHeader.remove_by_name("Location");
+
          m_response.m_propertysetHeader["Location"] = strLocation;
+
       }
+
+*/
 
       SendResponse();
 

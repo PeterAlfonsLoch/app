@@ -28,8 +28,6 @@
 
 dword_ptr lite_html_reader::parseDocument()
 {
-   ASSERT(m_lpszBuffer != NULL);
-
    bool   bAbort = false;         // continue parsing or abort?
    bool   bIsClosingTag = false;   // tag parsed is a closing tag?
    bool   bIsOpeningTag = false;   // tag parsed is an opening tag?
@@ -42,8 +40,8 @@ dword_ptr lite_html_reader::parseDocument()
    char   ch = 0;               // character at current buffer position
    lite_html_tag   oTag;         // tag information
 
-   if(m_lpszBuffer == NULL)
-      return (0U);
+   if(m_strBuffer.is_empty())
+      return 0U;
 
    // reset seek pointer to beginning
    ResetSeekPointer();
@@ -92,7 +90,7 @@ dword_ptr lite_html_reader::parseDocument()
             // clear pending notifications
             if ( (dwCharDataLen) || (strCharacters.get_length()) )
             {
-               strCharacters += string(&m_lpszBuffer[dwCharDataStart], dwCharDataLen);
+               strCharacters += string(&m_strBuffer[dwCharDataStart], dwCharDataLen);
                NormalizeCharacters(strCharacters);
 
                if ( (strCharacters.get_length()) &&
@@ -146,11 +144,11 @@ dword_ptr lite_html_reader::parseDocument()
             lTemp = 0;
             string strChar;
             if (m_bResolveEntities)
-               lTemp = System.html().resolve_entity(&m_lpszBuffer[m_dwBufPos], strChar);
+               lTemp = System.html().resolve_entity(&m_strBuffer[m_dwBufPos], strChar);
 
             if (lTemp)
             {
-               strCharacters += string(&m_lpszBuffer[dwCharDataStart], dwCharDataLen) + strChar;
+               strCharacters += string(&m_strBuffer[dwCharDataStart], dwCharDataLen) + strChar;
                m_dwBufPos += lTemp;
                dwCharDataStart = m_dwBufPos;
                dwCharDataLen = 0L;
@@ -176,7 +174,7 @@ dword_ptr lite_html_reader::parseDocument()
    // clear pending notifications
    if ( (dwCharDataLen) || (strCharacters.get_length()) )
    {
-      strCharacters += string(&m_lpszBuffer[dwCharDataStart], dwCharDataLen) + ch;
+      strCharacters += string(&m_strBuffer[dwCharDataStart], dwCharDataLen) + ch;
       NormalizeCharacters(strCharacters);
       strCharacters.trim_right();   // explicit trailing white-space removal
 
@@ -194,8 +192,7 @@ LEndParse:
    if (getEventNotify(notifyStartStop))
       m_pEventHandler->EndParse(m_dwAppData, bAbort);
 
-   m_lpszBuffer = NULL;
-   m_dwBufLen = 0L;
+   m_strBuffer.Empty();
    return (m_dwBufPos);
 }
 
@@ -216,10 +213,6 @@ dword_ptr lite_html_reader::read(const string & str)
 {
 
    m_strBuffer    = str;
-
-   m_dwBufLen     = m_strBuffer.get_length();
-
-   m_lpszBuffer   = m_strBuffer;
 
    return parseDocument();
 
@@ -247,19 +240,14 @@ dword_ptr lite_html_reader::ReadFile(HANDLE hFile)
    dword_ptr   nRetVal;
 
    // determine file size
-   m_dwBufLen = ::GetFileSize(hFile, NULL);
-   if (m_dwBufLen == INVALID_FILE_SIZE)
+   strsize dwBufLen = ::GetFileSize(hFile, NULL);
+   if (dwBufLen == INVALID_FILE_SIZE)
    {
       TRACE1("(Error) lite_html_reader::read:"
          " GetFileSize() failed;"
          " GetLastError() returns 0x%08x.\n", ::GetLastError());
       goto LError;
    }
-
-   // calculate length, in TCHARs, of the buffer
-   m_dwBufLen /= sizeof(char);
-   if (!m_dwBufLen)
-      return (0U);
 
    // create a file-mapping object for the file
    hFileMap = ::CreateFileMapping(hFile, NULL, PAGE_READONLY, 0L, 0L, NULL);
@@ -281,13 +269,12 @@ dword_ptr lite_html_reader::ReadFile(HANDLE hFile)
       goto LError;
    }
 
-   m_lpszBuffer = lpsz;
+   m_strBuffer = string(lpsz, dwBufLen);
    nRetVal = parseDocument();
    goto LCleanExit;
 
 LError:
    nRetVal = 0U;
-   m_dwBufLen = 0L;
 
 LCleanExit:
    if (lpsz != NULL)
@@ -299,9 +286,9 @@ LCleanExit:
 
 char lite_html_reader::UngetChar()
 {
-   if(m_lpszBuffer == NULL || m_dwBufPos == 0)
+   if(m_strBuffer.is_empty())
       return '\0';
-   return m_lpszBuffer[--m_dwBufPos];
+   return m_strBuffer[--m_dwBufPos];
 }
 
 
@@ -336,16 +323,16 @@ bool lite_html_reader::isWhiteSpace(char ch) const
 */
 bool lite_html_reader::parseTag(lite_html_tag &rTag, bool &bIsOpeningTag, bool &bIsClosingTag)
 {
-   ASSERT(m_lpszBuffer != NULL);
-   ASSERT(m_dwBufPos >= 0L);
-   ASSERT(m_dwBufPos + 4 < m_dwBufLen);
 
-   UINT nRetVal = rTag.parseFromStr(this, &m_lpszBuffer[m_dwBufPos], bIsOpeningTag, bIsClosingTag);
-   if (!nRetVal)
-      return (false);
+   UINT nRetVal = rTag.parseFromStr(this, m_strBuffer, m_dwBufPos, bIsOpeningTag, bIsClosingTag);
+
+   if(!nRetVal)
+      return false;
 
    m_dwBufPos += nRetVal;
-   return (true);
+
+   return true;
+
 }
 
 
@@ -425,16 +412,13 @@ bool lite_html_reader::setBoolOption(ReaderOptionsEnum option, bool bNewVal)
 */
 bool lite_html_reader::parseComment(string &rComment)
 {
-   ASSERT(m_lpszBuffer != NULL);
-   ASSERT(m_dwBufPos >= 0L);
-   ASSERT(m_dwBufPos + 4 < m_dwBufLen);
 
    // HTML comments begin with '<!' delimeter and
    // are immediately followed by two hyphens '--'
-   if (::_tcsncmp(&m_lpszBuffer[m_dwBufPos], "<!--", 4))
+   if (::_tcsncmp(&m_strBuffer[m_dwBufPos], "<!--", 4))
       return (false);
 
-   const char *   lpszBegin = &m_lpszBuffer[m_dwBufPos + 4];
+   const char *   lpszBegin = &m_strBuffer[m_dwBufPos + 4];
    // HTML comments end with two hyphen symbols '--'
    const char *   lpszEnd = ::_tcsstr(lpszBegin, "--");
 
@@ -450,7 +434,7 @@ bool lite_html_reader::parseComment(string &rComment)
    string   strComment(lpszBegin, int(lpszEnd - lpszBegin));
 
    // end of buffer?
-   if (lpszEnd + (sizeof(char) * 2) >= m_lpszBuffer + m_dwBufLen)
+   if (lpszEnd + (sizeof(char) * 2) >= &m_strBuffer[0] + m_strBuffer.size())
       return (false);
 
    // skip white-space characters after comment ending delimeter '--'
@@ -463,7 +447,7 @@ bool lite_html_reader::parseComment(string &rComment)
       return (false);
 
    lpszEnd = ::_tcsinc(lpszEnd);
-   m_dwBufPos += (lpszEnd - &m_lpszBuffer[m_dwBufPos]);
+   m_dwBufPos += (lpszEnd - &m_strBuffer[m_dwBufPos]);
    rComment = strComment;
    return (true);
 }

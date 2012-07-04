@@ -108,6 +108,9 @@ class CLASS_DECL_ca lite_html_reader :
    virtual public ::radix::object
 {
 public:
+
+
+
    enum EventMaskEnum {
       /** @since 1.0 */
       notifyStartStop      = 0x00000001L,   // raise BeginParse and EndParse?
@@ -134,15 +137,73 @@ public:
       // TODO:
    };
 
+   /**
+    * Determines if character entities are to be resolved
+    * Default is true.
+    *
+    * @since 1.0
+    * @author Gurmeet S. Kochar
+    */
+   bool   m_bResolveEntities;
+
+   /**
+    * 32-bit cast-specific data (to be passed to callbacks)
+    * Default is 0.
+    *
+    * @since 1.0
+    * @author Gurmeet S. Kochar
+    */
+   dword_ptr   m_dwAppData;
+
+   /**
+    * position of the seek pointer
+    * @since 1.0
+    * @author Gurmeet S. Kochar
+    */
+   dword_ptr   m_dwBufPos;
+
+   /**
+    * size, in TCHARs, of the buffer
+    * @since 1.0
+    * @author Gurmeet S. Kochar
+    */
+   //dword_ptr   m_dwBufLen;
+
+   /**
+    * Bit-mask flags to customize events notification(s)
+    * Default is the ORed result of all EventMaskEnum flags.
+    *
+    * @since 1.0
+    * @author Gurmeet S. Kochar
+    */
+   EventMaskEnum   m_eventMask;
+
+   /**
+    * Pointer to an ILiteHTMLReaderEvents based event handling object
+    * Default is NULL
+    *
+    * @since 1.0
+    * @author Gurmeet S. Kochar
+    */
+   ILiteHTMLReaderEvents*   m_pEventHandler;
+
+   /**
+    * Pointer to an base_array of characters being parsed
+    * @since 1.0
+    * @author Gurmeet S. Kochar
+    */
+   string m_strBuffer;
+
+
 // Construction/Destruction
-public:
+
    lite_html_reader(::ca::application * papp)  :
       ca(papp)
    {
       m_bResolveEntities = true;   // entities are resolved, by default
       m_dwAppData = 0L;   // reasonable default!
       m_dwBufPos = 0L;   // start from the very beginning
-      m_dwBufLen = 0L;   // buffer length is unknown yet
+      //m_dwBufLen = 0L;   // buffer length is unknown yet
 
       // default is to raise all of the events
       m_eventMask = (EventMaskEnum)(notifyStartStop  |
@@ -152,7 +213,6 @@ public:
                              notifyComment    );
 
       m_pEventHandler = NULL;   // no event handler is associated
-      m_lpszBuffer = NULL;
    }
 
 public:
@@ -324,10 +384,9 @@ protected:
     */
    char ReadChar()
    {
-      ASSERT(m_lpszBuffer != NULL);
-      if (m_dwBufPos >= m_dwBufLen)
+      if (m_dwBufPos >= m_strBuffer.size())
          return (NULL);
-      return (m_lpszBuffer[m_dwBufPos++]);
+      return (m_strBuffer[m_dwBufPos++]);
    }
 
    /**
@@ -363,63 +422,5 @@ protected:
     */
    bool isWhiteSpace(char ch) const;
 
-protected:
-   /**
-    * Determines if character entities are to be resolved
-    * Default is true.
-    *
-    * @since 1.0
-    * @author Gurmeet S. Kochar
-    */
-   bool   m_bResolveEntities;
-
-   /**
-    * 32-bit cast-specific data (to be passed to callbacks)
-    * Default is 0.
-    *
-    * @since 1.0
-    * @author Gurmeet S. Kochar
-    */
-   dword_ptr   m_dwAppData;
-
-   /**
-    * position of the seek pointer
-    * @since 1.0
-    * @author Gurmeet S. Kochar
-    */
-   dword_ptr   m_dwBufPos;
-
-   /**
-    * size, in TCHARs, of the buffer
-    * @since 1.0
-    * @author Gurmeet S. Kochar
-    */
-   dword_ptr   m_dwBufLen;
-
-   /**
-    * Bit-mask flags to customize events notification(s)
-    * Default is the ORed result of all EventMaskEnum flags.
-    *
-    * @since 1.0
-    * @author Gurmeet S. Kochar
-    */
-   EventMaskEnum   m_eventMask;
-
-   /**
-    * Pointer to an ILiteHTMLReaderEvents based event handling object
-    * Default is NULL
-    *
-    * @since 1.0
-    * @author Gurmeet S. Kochar
-    */
-   ILiteHTMLReaderEvents*   m_pEventHandler;
-
-   /**
-    * Pointer to an base_array of characters being parsed
-    * @since 1.0
-    * @author Gurmeet S. Kochar
-    */
-   const char *   m_lpszBuffer;
-   string m_strBuffer;
 };
 

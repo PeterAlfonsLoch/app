@@ -12,6 +12,9 @@ namespace dynamic_source
       tcp_socket(h),
       ::sockets::httpd_socket(h)
    {
+      
+      m_pinstanceCurrent = NULL;
+
    }
 
    httpd_socket::httpd_socket(const httpd_socket& s) :

@@ -94,7 +94,7 @@ namespace gen {
    {
    }
 
-   #define C ((pa_the_ptr<pa_the_str.get_length()) ? pa_the_str[pa_the_ptr] : 0)
+   #define C ((pa_the_ptr<pa_the_str.get_length()) ? ((const char *) pa_the_str)[pa_the_ptr] : 0)
 
    short parse::issplit(const char c)
    {

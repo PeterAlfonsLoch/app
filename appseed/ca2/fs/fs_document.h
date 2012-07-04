@@ -21,10 +21,10 @@ namespace fs
       document *                                get_document();
 
 
-   #ifdef DEBUG
+   //#ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-   #endif
+   //#endif
 
       bool file_manager_browse(const char * pszFolder);
 

@@ -43,13 +43,19 @@ namespace dynamic_source
 
 
       ::ca::library           m_library;
+#ifdef WINDOWS
+      FILETIME                m_ftCreation;
+      FILETIME                m_ftModified;
+#else
       __time_t                m_ftCreation;
       __time_t                m_ftAccess;
       __time_t                m_ftModified;
-
+#endif
       
-      
+      bool                    m_bLastVersionCheck;
+      DWORD                   m_dwLastVersionCheck;
       string                  m_strSourcePath;
+      wstring                 m_wstrSourcePath;
       string                  m_strSourceDir;
       string                  m_strCppPath;
       string                  m_strScriptPath;

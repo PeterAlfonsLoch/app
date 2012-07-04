@@ -171,13 +171,28 @@ namespace sockets
 
    inline gen::property & http_socket::lowoutheader(const string & strName)
    {
-      return m_response.header(strName);
+      return m_response.lowheader(strName);
    }
 
    inline gen::property_set & http_socket::outheaders()
    {
       return m_response.headers();
    }
+
+   inline bool http_socket::IsRequest()
+   {
+      return m_bRequest;
+   }
+
+
+   inline bool http_socket::IsResponse()
+   {
+      return m_bResponse;
+   }
+
+
+
+
 
 
 

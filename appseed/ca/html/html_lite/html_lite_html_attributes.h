@@ -303,7 +303,7 @@ public:
 // Initialization
 public:
    // parses attribute/value pairs from the given string
-   dword_ptr parseFromStr(::lite_html_reader * papp, const char * lpszString);
+   dword_ptr parseFromStr(::lite_html_reader * papp, const char * lpszString, strsize iLen);
 
 // Attributes
 public:

@@ -54,7 +54,7 @@ namespace dynamic_source
       m_pcompiler->m_pmanager    = this;
       m_dwBuildTimeWindow        = 84;
       m_dwBuildTimeRandomWindow  = 77 * 5;
-      m_iDatabaseWaitTimeOut     = 1000 * 1000 * 60;
+      m_iDatabaseWaitTimeOut     = 15 * 1000 * 1000 * 60;
 
 
       m_mapIncludeMatchesFileExists.InitHashTable(256 * 1024);
@@ -129,10 +129,10 @@ namespace dynamic_source
    }
 
 
-   script_instance * script_manager::get(const char * lpcszName)
+   script_instance * script_manager::get(const string & strName)
    {
 
-      return m_pcache->create_instance(lpcszName);
+      return m_pcache->create_instance(strName);
 
 
    }
@@ -218,9 +218,9 @@ namespace dynamic_source
 
    }
 
-   script_instance * script_manager::get_output_internal(::dynamic_source::script_instance * pinstanceParent, const char * lpcszName)
+   script_instance * script_manager::get_output_internal(::dynamic_source::script_instance * pinstanceParent, const string & strNameParam)
    {
-      string strName = gen::str::get_word(lpcszName, "?");
+      string strName = gen::str::get_word(strNameParam, "?");
       if(strName.is_empty())
       {
          if(pinstanceParent != NULL)
@@ -652,9 +652,9 @@ namespace dynamic_source
 
    }
 
-   string script_manager::real_path(const char * pszBase, const char * psz)
+   string script_manager::real_path(const string & strBase, const string & str)
    {
-      string strRealPath = System.dir().path(pszBase, psz, false);
+      string strRealPath = System.dir().path(strBase, str, false);
       if(include_matches_file_exists(strRealPath))
          return strRealPath;
       else if(include_matches_is_dir(strRealPath))
@@ -670,18 +670,18 @@ namespace dynamic_source
 #define is_absolute_path(psz) (psz[0] == '/')
 #endif
 
-   string script_manager::real_path(const char * psz)
+   string script_manager::real_path(const string & str)
    {
 #ifdef WINDOWS
-      if(is_absolute_path(psz))
+      if(is_absolute_path(str))
       {
-         if(include_matches_file_exists(psz))
-            return psz;
+         if(include_matches_file_exists(str))
+            return str;
          return "";
       }
       else
       {
-         return real_path(m_strNetseedDsCa2Path, psz);
+         return real_path(m_strNetseedDsCa2Path, str);
       }
 #else
       if(is_absolute_path(psz))

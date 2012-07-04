@@ -81,7 +81,8 @@ public:
    // parses tag information from the given string
    UINT parseFromStr(
       lite_html_reader * preader,
-      const char * lpszString, 
+      const string & strString, 
+      strsize iPos,
       bool &bIsOpeningTag, 
       bool &bIsClosingTag, 
       bool bParseAttrib = true);

@@ -109,7 +109,8 @@ namespace plane
       string str_remote_addr;
       string str_request_uri;
 
-
+      string str_accept_encoding;
+      string str_content_encoding;
       
 
 
@@ -189,6 +190,9 @@ namespace plane
          
          str_remote_addr = "remote_addr";
          str_request_uri = "request_uri";
+
+         str_accept_encoding = "accept-encoding";
+         str_content_encoding = "content-encoding";
 
       }
 

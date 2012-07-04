@@ -49,7 +49,32 @@ namespace dynamic_source
 
    bool ds_script::DoesMatchVersion()
    {
+      
+      if(GetTickCount() - m_dwLastVersionCheck < (1984 + 1977))
+      {
+         return m_bLastVersionCheck;
+      }
+
+      m_dwLastVersionCheck = GetTickCount();
+
       single_lock sl(&m_mutex, TRUE);
+
+      bool bMatches;
+
+#ifdef WINDOWS
+      FILETIME ftCreation;
+      FILETIME ftModified;
+      memset(&ftCreation, 0, sizeof(FILETIME));
+      //memset(&ftAccess, 0, sizeof(FILETIME));
+      memset(&ftModified, 0, sizeof(FILETIME));
+      HANDLE h = ::CreateFileW(m_wstrSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+      bMatches = GetFileTime(h, &ftCreation, NULL, &ftModified);
+      if(bMatches)
+      {
+         bMatches = memcmp(&m_ftCreation, &ftCreation, sizeof(FILETIME)) == 0
+                 && memcmp(&m_ftModified, &ftModified, sizeof(FILETIME)) == 0;
+      }
+#else
       struct stat64 st;
       memset(&st, 0, sizeof(st));
 //         memset(&ftAccess, 0, sizeof(__time_t));
@@ -57,8 +82,10 @@ namespace dynamic_source
 //         HANDLE h = ::CreateFile(m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
       stat64(m_strSourcePath, &st);
 //         ::CloseHandle(h);
-      bool bMatches = memcmp(&st.st_ctime, &m_ftCreation, sizeof(__time_t)) == 0
+      bMatches = memcmp(&st.st_ctime, &m_ftCreation, sizeof(__time_t)) == 0
           && memcmp(&m_ftModified, &st.st_mtime, sizeof(__time_t)) == 0;
+#endif
+      m_bLastVersionCheck = bMatches;
       return bMatches;
    }
 

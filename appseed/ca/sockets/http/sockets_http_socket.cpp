@@ -429,21 +429,6 @@ namespace sockets
 
 
 
-   bool http_socket::IsRequest()
-   {
-      return m_bRequest;
-   }
-
-
-   bool http_socket::IsResponse()
-   {
-      return m_bResponse;
-   }
-
-
-
-
-
    void http_socket::url_this(const string & url_in,string & protocol,string & host,port_t& port,string & url,string & file)
    {
       ::gen::parse pa(url_in,"/");
@@ -514,11 +499,11 @@ namespace sockets
 
       if(IsRequest())
       {
-         m_body_size_left = atol(m_request.header("content-length"));
+         m_body_size_left = atol(m_request.lowheader(__str(content_length)));
       }
       if(IsResponse())
       {
-         m_body_size_left = atol(m_response.header("content-length"));
+         m_body_size_left = atol(m_response.lowheader(__str(content_length)));
       }
 
    }

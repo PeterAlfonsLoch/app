@@ -158,10 +158,10 @@ namespace dynamic_source
       session * get_session(mutex * & pmutex, const char * pszId);
 
 
-      script_instance * get(const char * lpcszName);
+      script_instance * get(const string & strName);
       using ::radix::thread::handle;
-      void handle(::dynamic_source::httpd_socket * psocket);
-      script_instance * get_output_internal(::dynamic_source::script_instance * pinstanceParent, const char * lpcszName);
+      virtual void handle(::dynamic_source::httpd_socket * psocket);
+      script_instance * get_output_internal(::dynamic_source::script_instance * pinstanceParent, const string & strName);
       using thread::run;
       void run(const char * lpcszName);
 
@@ -176,8 +176,8 @@ namespace dynamic_source
       void clear_include_matches();
       static UINT c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
 
-      virtual string real_path(const char * psz);
-      virtual string real_path(const char * pszBase, const char * psz);
+      virtual string real_path(const string & str);
+      virtual string real_path(const string & strBase, const string & str);
 
 
       RSA * get_rsa_key();

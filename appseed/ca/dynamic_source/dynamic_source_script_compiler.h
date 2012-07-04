@@ -33,6 +33,9 @@ namespace dynamic_source
       stringa              m_straLibHppPath;
       string               m_strLibraryPath;
 
+      DWORD                m_dwLastLibraryVersionCheck;
+      bool                 m_bLastLibraryVersionCheck;
+
 
       string               m_strDynamicSourceConfiguration;
 
@@ -70,7 +73,7 @@ namespace dynamic_source
 
       bool defer_run_persistent(const char *psz);
 
-      bool is_id(const char * psz, const char * pszId, strsize & iIdLen);
+      bool is_id(const char * psz, strsize iLen, const char * pszId, strsize iLenId, strsize & iIdLen);
       const char * next_nonspace(const char * psz);
 
       void compile(ds_script * pscript);

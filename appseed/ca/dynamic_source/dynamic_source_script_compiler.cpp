@@ -180,6 +180,7 @@ namespace dynamic_source
       {
          pscript->m_strSourcePath.Format(System.dir().path(m_pmanager->m_strNetnodePath, "net\\netseed\\ds\\ca2\\%s", false), strName);
       }
+      pscript->m_wstrSourcePath = gen::international::utf8_to_unicode(strName);
       pscript->m_strSourceDir = System.dir().name(pscript->m_strSourcePath);
 
       if(!Application.file().exists(pscript->m_strSourcePath))
@@ -468,8 +469,18 @@ namespace dynamic_source
       //Sleep(pscript->m_pmanager->m_dwBuildTimeWindow +
       // System.math().RandRange(0, pscript->m_pmanager->m_dwBuildTimeRandomWindow));
       pscript->m_bShouldBuild =false;
+#ifdef WINDOWS
 
-      //HANDLE h = ::CreateFile(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+      HANDLE h = ::CreateFileW(pscript->m_wstrSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+      memset(&pscript->m_ftCreation, 0, sizeof(FILETIME));
+      memset(&pscript->m_ftModified, 0, sizeof(FILETIME));
+      struct stat64 st;
+      ::GetFileTime(h, &pscript->m_ftCreation, NULL, &pscript->m_ftModified);
+      ::CloseHandle(h);
+
+#else
+      HANDLE h = ::CreateFile(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
       memset(&pscript->m_ftCreation, 0, sizeof(__time_t));
       memset(&pscript->m_ftAccess, 0, sizeof(__time_t));
       memset(&pscript->m_ftModified, 0, sizeof(__time_t));
@@ -478,12 +489,7 @@ namespace dynamic_source
       pscript->m_ftCreation = st.st_ctime;
       pscript->m_ftAccess = st.st_atime;
       pscript->m_ftModified = st.st_mtime;
-/*      GetFileTime(
-         h ,
-         &pscript->m_ftCreation,
-         &pscript->m_ftAccess,
-         &pscript->m_ftModified);*/
-      //::CloseHandle(h);
+#endif
 
    }
 
@@ -598,7 +604,8 @@ namespace dynamic_source
 
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
 
-      Application.file().put_contents_utf8(pscript->m_strCppPath, strDest);
+      //Application.file().put_contents_utf8(pscript->m_strCppPath, strDest);
+      Application.file().put_contents(pscript->m_strCppPath, strDest);
 
    }
 
@@ -956,7 +963,8 @@ namespace dynamic_source
       strDest += "//End parsed user script\r\n";
       strDest += "}\r\n";*/
 
-      Application.file().put_contents_utf8(lpcszDest, strDest);
+      //Application.file().put_contents_utf8(lpcszDest, strDest);
+      Application.file().put_contents(lpcszDest, strDest);
 
 
    }
@@ -969,6 +977,7 @@ namespace dynamic_source
       str.trim();
       bool bInSimpleQuote = false;
       bool bInDoubleQuote = false;
+      int iSimpleQuote = 0;
       strsize iArroba = -1;
       bool bInVar = false;
       bool bInSlash = false;
@@ -1082,7 +1091,8 @@ namespace dynamic_source
                else if(ch == '\'')
                {
                   bInSimpleQuote = false;
-                  strResult += "\")";
+                  //strResult += "\")";
+                  strResult += "\"";
                }
                else
                {
@@ -1157,11 +1167,13 @@ namespace dynamic_source
                   }
                   else
                   {
-                     strResult += "\") + unitext(\"";
+                     //strResult += "\") + unitext(\"";
+                     strResult += "\") + \"";
                      if(ch == '\"')
                      {
                         bInDoubleQuote = false;
-                        strResult += "\")";
+                        //strResult += "\")";
+                        strResult += "\"";
                         i++;
                         continue;
                      }
@@ -1266,14 +1278,16 @@ namespace dynamic_source
                if(ch == '$' && (isalpha(chNext) || chNext == '_'))
                {
                   bInVar = true;
-                  strResult += "\") + glowstr(\"";
+                  //strResult += "\") + glowstr(\"";
+                  strResult += "\" + glowstr(\"";
                   bLow = true;
                }
                else if(ch == '{')
                {
                   bInBrace = true;
                   bInDoubleQuote = false;
-                  strResult += "\") + ";
+                  //strResult += "\") + ";
+                  strResult += "\" + ";
                }
                else if(ch == '\\')
                {
@@ -1288,7 +1302,8 @@ namespace dynamic_source
                else if(ch == '\"')
                {
                   bInDoubleQuote = false;
-                  strResult += "\")";
+                  //strResult += "\")";
+                  strResult += "\"";
                }
                else
                {
@@ -1300,18 +1315,21 @@ namespace dynamic_source
          else if(ch == '\"')
          {
             bInDoubleQuote = true;
-            strResult += "unitext(\"";
+            //strResult += "unitext(\"";
+            strResult += "\"";
          }
          else if(ch == '\'')
          {
             bInSimpleQuote = true;
-            strResult += "unitext(\""; // overloads should cope with the possibility of conversion between string to character
+            //strResult += "unitext(\""; // overloads should cope with the possibility of conversion between string to character
+            strResult += "\""; // overloads should cope with the possibility of conversion between string to character
+            iSimpleQuote = strResult.get_length();
          }
          else if(ch == '@')
          {
             iArroba = strResult.get_length();
          }
-         else if(ch == '_' && chNext == '_' && is_id(str.Mid(i), "__ch", iIdLen))
+         else if(ch == '_' && chNext == '_' && is_id(&str[i], str.get_length() - i,  "__ch", 4, iIdLen))
          {
             strResult += "'";
             bInVar = false;
@@ -1346,36 +1364,37 @@ namespace dynamic_source
                bInVar = true;
                if(bInDoubleQuote)
                {
-                  strResult += "\") + glowstr(\"";
+                  //strResult += "\") + glowstr(\"";
+                  strResult += "\" + glowstr(\"";
                   bLow = true;
                }
                else
                {
-                  if(is_id(str.Mid(i + 1), "_GET", iIdLen))
+                  if(is_id(&str[i + 1], str.get_length() - i - 1, "_GET", 4,  iIdLen))
                   {
                      strResult += "geta()";
                      bInVar = false;
                      i += iIdLen;
                   }
-                  else if(is_id(str.Mid(i + 1), "_POST", iIdLen))
+                  else if(is_id(&str[i + 1], str.get_length() - i - 1, "_POST", 5,  iIdLen))
                   {
                      strResult += "posta()";
                      bInVar = false;
                      i += iIdLen;
                   }
-                  else if(is_id(str.Mid(i + 1), "_REQUEST", iIdLen))
+                  else if(is_id(&str[i + 1], str.get_length() - i - 1, "_REQUEST", 8, iIdLen))
                   {
                      strResult += "requesta()";
                      bInVar = false;
                      i += iIdLen;
                   }
-                  else if(is_id(str.Mid(i + 1), "_SERVER", iIdLen))
+                  else if(is_id(&str[i + 1], str.get_length() - i - 1, "_SERVER", 7, iIdLen))
                   {
                      strResult += "inattra()";
                      bInVar = false;
                      i += iIdLen;
                   }
-                  else if(is_id(str.Mid(i + 1), "_COOKIE", iIdLen))
+                  else if(is_id(&str[i + 1], str.get_length() - i - 1, "_COOKIE", 7, iIdLen))
                   {
                      strResult += "cookies()";
                      bInVar = false;
@@ -1448,25 +1467,25 @@ namespace dynamic_source
          else
          {
    ch_else:
-            if(bScript && is_id(str.Mid(i), "return", iIdLen) && next_nonspace(str.Mid(i + iIdLen))[0] != ';')
+            if(bScript && is_id(&str[i], str.get_length() - i,  "return", 6,  iIdLen) && next_nonspace(str.Mid(i + iIdLen))[0] != ';')
             {
                bInRet = true;
                strResult += "\r\n{\r\nm_varRet = ";
                i += iIdLen - 1;
             }
-            else if(is_id(str.Mid(i), "include", iIdLen))
+            else if(is_id(&str[i], str.get_length() - i,  "include", 7, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "include";
                i += iIdLen - 1;
             }
-            else if(is_id(str.Mid(i), "print", iIdLen))
+            else if(is_id(&str[i], str.get_length() - i,   "print", 5,  iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "print";
                i += iIdLen - 1;
             }
-            else if(is_id(str.Mid(i), "echo", iIdLen))
+            else if(is_id(&str[i], str.get_length() - i,  "echo", 4, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "echo";
@@ -1481,7 +1500,8 @@ namespace dynamic_source
             {
                bInDoubleQuote = true;
                bInBrace = false;
-               strResult += " + unitext(\"";
+               //strResult += " + unitext(\"";
+               strResult += " + \"";
             }
             else
             {
@@ -1502,10 +1522,8 @@ namespace dynamic_source
    }
 
 
-   bool script_compiler::is_id(const char * psz, const char * pszId, strsize & iIdLenRet)
+   bool script_compiler::is_id(const char * psz, strsize iLen, const char * pszId, strsize iIdLen, strsize & iIdLenRet)
    {
-      strsize iLen = strlen(psz);
-      strsize iIdLen = strlen(pszId);
       if(iLen < iIdLen)
          return false;
       if(iIdLen == iLen)
@@ -1560,7 +1578,8 @@ namespace dynamic_source
             strBody += Application.file().as_string(str);
          }
       }
-      Application.file().put_contents_utf8(strCat, strBody);
+      //Application.file().put_contents_utf8(strCat, strBody);
+      Application.file().put_contents(strCat, strBody);
       string strInclude = strCat;
       //   defer_run_persistent(str);
       gen::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
@@ -1641,6 +1660,12 @@ namespace dynamic_source
 
    bool script_compiler::library_DoesMatchVersion()
    {
+
+      if(GetTickCount() - m_dwLastLibraryVersionCheck < (1984 + 1977))
+      {
+         return m_bLastLibraryVersionCheck;
+      }
+      
       single_lock slLibrary(&m_mutexLibrary, TRUE);
       for(int i = 0; i < m_straLibSourcePath.get_size(); i++)
       {
@@ -1658,10 +1683,17 @@ namespace dynamic_source
          if(memcmp(&st.st_ctime, &m_ftaLibCreation[i], sizeof(__time_t)) != 0
             || memcmp(&m_ftaLibModified[i], &st.st_mtime, sizeof(__time_t)) != 0)
          {
+            m_bLastLibraryVersionCheck = false;
+            m_dwLastLibraryVersionCheck = GetTickCount();
             return false;
          }
       }
+
+      m_bLastLibraryVersionCheck    = true;
+      m_dwLastLibraryVersionCheck   = GetTickCount();
+
       return true;
+
    }
    void script_compiler::load_library()
    {
@@ -1710,9 +1742,11 @@ namespace dynamic_source
                iLen++;
          }
          string str = strSource.Left(iLen);
-         strDest += "   ds_print(unitext(\"";
+         //strDest += "   ds_print(unitext(\"";
+         strDest += "   ds_print(\"";
          strDest += escape(str);
-         strDest += "\"));\r\n";
+         //strDest += "\"));\r\n";
+         strDest += "\");\r\n";
          strSource = strSource.Mid(iLen);
       }
       return strDest;

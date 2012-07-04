@@ -138,30 +138,38 @@ void cookies::add(const char * psz)
 {
    class cookie cookie;
    cookie.m_bSecure = false;
-   stringa stra;
-   stra.add_tokens(psz, ";", TRUE);
-   for(int i = 0; i < stra.get_size(); i++)
+   //stringa stra;
+   //stra.add_tokens(psz, ";", TRUE);
+   bool bRun = true;
+   int i = 0;
+   while(bRun)
    {
-      stringa stra2;
-      stra2.add_tokens(stra[i], "=", TRUE);
+      const char * pszEnd = strchr(psz, ';');
+      bRun = pszEnd != NULL;
+      if(!bRun)
+         pszEnd = psz + strlen(psz);
+      
+      const char * pszEqual = strchr(psz, '=');
+      if(pszEqual > pszEnd)
+         pszEqual = NULL;
       if(i == 0)
       {
-         if(stra2.get_size() >= 2)
+         if(pszEqual != NULL)
          {
-            cookie.m_strName = stra2[0].trim();
+            cookie.m_strName = string(psz, pszEqual - psz);
             cookie.m_strNameLow = cookie.m_strName;
             cookie.m_strNameLow.make_lower();
-            cookie.m_varValue = stra2[1];
+            cookie.m_varValue = string(psz + 1, pszEnd - pszEqual - 1);
          }
          else
          {
             return;
          }
       }
-      else if(stra2.get_size() >= 2)
+      else if(pszEqual != NULL)
       {
-         string strKey = stra2[0].trim();
-         string strValue = stra2[1].trim();
+         string strKey = string(psz, pszEqual - psz);
+         string strValue = string(psz + 1, pszEnd - pszEqual - 1);
          if(strKey == "expires")
          {
             cookie.m_strExpire = strValue;
@@ -177,11 +185,13 @@ void cookies::add(const char * psz)
       }
       else
       {
-         if(stra2[0] == "secure")
+         if(string(psz, pszEnd - psz) == "secure")
          {
             cookie.m_bSecure = true;
          }
       }
+      i++;
+      psz = pszEnd + 1;
    }
    index iFind = find_cookie(cookie.m_strName);
    if(iFind < 0)

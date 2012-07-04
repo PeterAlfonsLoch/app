@@ -97,6 +97,8 @@ namespace plane
 
       m_pparserfactory           = NULL;
 
+      m_bLicense                 = false;
+
    }
 
    system::~system()

@@ -46,12 +46,12 @@ lite_html_tag::~lite_html_tag()
  * @since 1.0
  * @author Gurmeet S. Kochar
  */
-UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const char * lpszString, 
+UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & strString, strsize iPos,
                               bool &bIsOpeningTag, 
                               bool &bIsClosingTag, 
                               bool bParseAttrib /* = true */)
 {
-   ASSERT(__is_valid_string(lpszString));
+   
 
    bool            bClosingTag = false;
    bool            bOpeningTag = false;
@@ -59,7 +59,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const char * lpsz
    string            strTagName;
    UINT            nRetVal = 0U, 
                   nTemp = 0U;
-   const char *            lpszBegin = lpszString;
+   const char *            lpszBegin = &strString[iPos];
    const char *            lpszEnd = NULL;
 
    // skip leading white-space characters
@@ -79,7 +79,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const char * lpsz
       ASSERT(strTagName.is_empty());
       ASSERT(pcollAttr == NULL);
       ASSERT(!bClosingTag);
-      nRetVal = (UINT) (lpszBegin - lpszString);
+      nRetVal = (UINT) (lpszBegin - &strString[iPos]);
       goto LUpdateAndExit;
    }
 
@@ -141,7 +141,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const char * lpsz
 
       ASSERT(strTagName.get_length());
       ASSERT(pcollAttr == NULL);
-      nRetVal = (UINT) (lpszEnd - lpszString);
+      nRetVal = (UINT) (lpszEnd - &strString[iPos]);
       goto LUpdateAndExit;
    }
 
@@ -168,7 +168,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const char * lpsz
          }
 
          // ... and delegate parsing process
-         nTemp = (UINT) pcollAttr->parseFromStr(preader, lpszBegin);
+         nTemp = (UINT) pcollAttr->parseFromStr(preader, lpszBegin, strString.get_length() - (lpszBegin - (const char *) strString));
       }
 
       if (nTemp == 0)   // attribute/value pair parsing is disabled? 
@@ -216,7 +216,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const char * lpsz
    else
       lpszEnd = ::_tcsinc(lpszEnd);
 
-   nRetVal = (UINT) (lpszEnd - lpszString);
+   nRetVal = (UINT) (lpszEnd - &strString[iPos]);
    goto LUpdateAndExit;   // just to show the flow-of-control
 
 LUpdateAndExit:

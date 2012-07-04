@@ -1582,6 +1582,18 @@ namespace gen
       return &m_propertya.last_element();
    }
 
+   property * property_set::lowadd(const string & strLowName, const var & var)
+   {
+      property p;
+      p.name() = strLowName;
+      p.lowname() = strLowName;
+      p.m_var = var;
+      m_propertya.add(p);
+      m_map.set_at(strLowName, m_propertya.get_upper_bound());
+      m_propertya.last_element().m_pset = this;
+      return &m_propertya.last_element();
+   }
+
    property * property_set::add(const char * pszName, var var)
    {
       string strName;
@@ -1626,20 +1638,6 @@ namespace gen
          m_map.set_at(strName, m_propertya.get_upper_bound());
          m_propertya.last_element().m_pset = this;
          return &m_propertya.last_element();
-      }
-   }
-
-   property * property_set::set(const char * pszName, var var)
-   {
-      property * p = find(pszName);
-      if(p != NULL)
-      {
-         p->get_value() = var;
-         return p;
-      }
-      else
-      {
-         return add(pszName, var);
       }
    }
 

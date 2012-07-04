@@ -189,13 +189,12 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-dword_ptr LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const char * lpszString)
+dword_ptr LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const char * lpszString, strsize iLen)
 {
-   ASSERT(__is_valid_string(lpszString));
 
    CElemAttrArray      *pcoll = NULL;
    LiteHTMLElemAttr   oElemAttr;
-   const dword_ptr         nStrLen = ::_tcslen(lpszString);
+   const dword_ptr         nStrLen = iLen;
    dword_ptr            nRetVal = 0U,
       nTemp = 0U;
 

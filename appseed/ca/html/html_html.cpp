@@ -211,7 +211,7 @@ namespace html
       string strChar;
       while(*psz != '\0')
       {
-         int iChar = (int) gen::ch::uni_index(gen::str::utf8_char(psz));
+         int iChar = (int) gen::ch::uni_index(psz);
          if(iChar == '&')
          {
             str += "&amp;";

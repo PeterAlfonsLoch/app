@@ -35,8 +35,10 @@ namespace gen
 
       property * add(const char * pszName);
       property * lowadd(const string & strLowName);
+      property * lowadd(const string & strLowName, const var & var);
       property * add(const char * pszName, var var);
       property * set(const char * pszName, var var);
+      property * lowset(const string & strName, const var & var);
       count remove_by_name(const char * pszName);
       count remove_by_name(stringa & straName);
       property & operator[](const char * pszName);
@@ -363,6 +365,36 @@ namespace gen
    {
       return lowfind(string(str));
    }
+
+   inline property * property_set::set(const char * pszName, var var)
+   {
+      property * p = find(pszName);
+      if(p != NULL)
+      {
+         p->get_value() = var;
+         return p;
+      }
+      else
+      {
+         return add(pszName, var);
+      }
+   }
+
+
+   inline property * property_set::lowset(const string & strName, const var & var)
+   {
+      property * p = lowfind(strName);
+      if(p != NULL)
+      {
+         p->get_value() = var;
+         return p;
+      }
+      else
+      {
+         return lowadd(strName, var);
+      }
+   }
+
 
 
 
