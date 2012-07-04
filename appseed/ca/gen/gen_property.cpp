@@ -2104,7 +2104,7 @@ namespace gen
             }
             bQuote = false;
          }
-         else if(bRun && *pszCmdLine == '\"' && (pszCmdLine == pszCmdLineParam || (*(pszCmdLine - 1)) != '\\'))
+         else if(bRun && !bQuote && *pszCmdLine == '\"' && (pszCmdLine == pszCmdLineParam || (*(pszCmdLine - 1)) != '\\'))
          {
             bQuote = true;
             pszStart = pszCmdLine + 1;

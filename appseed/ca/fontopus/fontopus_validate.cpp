@@ -921,7 +921,7 @@ namespace fontopus
             gen::property_set headers;
             gen::property_set set;
 
-            Sleep(15 * 1000);
+            //Sleep(15 * 1000);
 
             string strSessid = System.url().get_param(System.directrix().m_varTopicQuery["ruri"], "sessid");
 
