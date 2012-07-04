@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 11
+# Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app_mydns", "..\..\..\app-core\appseed\mydns\mydns.vcxproj", "{AEF1C751-5174-4AFE-A4BC-8F5C3CEE51B4}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "c", "..\..\appseed\c\c.vcxproj", "{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}"
@@ -10,7 +10,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "os", "..\..\..\nodeapp\os\o
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "optca", "..\..\appseed\optca\optca.vcxproj", "{899CC94B-9028-4E57-A7FE-358A564F05F0}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app", "..\..\..\nodeapp\appseed\app\app.vcxproj", "{51AD67EB-B00D-4465-8C4D-A6099B57B3B5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app", "..\..\..\nodeapp\appseed\app\app.vcxproj", "{19841115-1984-0411-1977-021977151984}"
 	ProjectSection(ProjectDependencies) = postProject
 		{899CC94B-9028-4E57-A7FE-358A564F05F0} = {899CC94B-9028-4E57-A7FE-358A564F05F0}
 		{AEF1C751-5174-4AFE-A4BC-8F5C3CEE51B4} = {AEF1C751-5174-4AFE-A4BC-8F5C3CEE51B4}
@@ -24,6 +24,14 @@ Global
 		profiler|x64 = profiler|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19841115-1984-0411-1977-021977151984}.basis|x64.ActiveCfg = basis|x64
+		{19841115-1984-0411-1977-021977151984}.basis|x64.Build.0 = basis|x64
+		{19841115-1984-0411-1977-021977151984}.codeanalysis|x64.ActiveCfg = codeanalysis|x64
+		{19841115-1984-0411-1977-021977151984}.codeanalysis|x64.Build.0 = codeanalysis|x64
+		{19841115-1984-0411-1977-021977151984}.memdleak|x64.ActiveCfg = memdleak|x64
+		{19841115-1984-0411-1977-021977151984}.memdleak|x64.Build.0 = memdleak|x64
+		{19841115-1984-0411-1977-021977151984}.profiler|x64.ActiveCfg = profiler|x64
+		{19841115-1984-0411-1977-021977151984}.profiler|x64.Build.0 = profiler|x64
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.basis|x64.ActiveCfg = basis|x64
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.basis|x64.Build.0 = basis|x64
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.codeanalysis|x64.ActiveCfg = codeanalysis|x64
@@ -32,14 +40,6 @@ Global
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.memdleak|x64.Build.0 = memdleak|x64
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.profiler|x64.ActiveCfg = profiler|x64
 		{4D7D3626-ADA6-4CA2-9566-ED7B131E3D51}.profiler|x64.Build.0 = profiler|x64
-		{51AD67EB-B00D-4465-8C4D-A6099B57B3B5}.basis|x64.ActiveCfg = basis|x64
-		{51AD67EB-B00D-4465-8C4D-A6099B57B3B5}.basis|x64.Build.0 = basis|x64
-		{51AD67EB-B00D-4465-8C4D-A6099B57B3B5}.codeanalysis|x64.ActiveCfg = codeanalysis|x64
-		{51AD67EB-B00D-4465-8C4D-A6099B57B3B5}.codeanalysis|x64.Build.0 = codeanalysis|x64
-		{51AD67EB-B00D-4465-8C4D-A6099B57B3B5}.memdleak|x64.ActiveCfg = memdleak|x64
-		{51AD67EB-B00D-4465-8C4D-A6099B57B3B5}.memdleak|x64.Build.0 = memdleak|x64
-		{51AD67EB-B00D-4465-8C4D-A6099B57B3B5}.profiler|x64.ActiveCfg = profiler|x64
-		{51AD67EB-B00D-4465-8C4D-A6099B57B3B5}.profiler|x64.Build.0 = profiler|x64
 		{899CC94B-9028-4E57-A7FE-358A564F05F0}.basis|x64.ActiveCfg = basis|x64
 		{899CC94B-9028-4E57-A7FE-358A564F05F0}.basis|x64.Build.0 = basis|x64
 		{899CC94B-9028-4E57-A7FE-358A564F05F0}.codeanalysis|x64.ActiveCfg = codeanalysis|x64
