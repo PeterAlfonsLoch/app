@@ -613,16 +613,12 @@ install:
    void plugin::set_window_rect(LPCRECT lpcrect)
    {
     
+      ::hotplugin::plugin::set_window_rect(lpcrect);
+
       if(!is_installing() && is_ca2_installed())
       {
       
          ensure_tx(::hotplugin::message_set_window, (void *) lpcrect, sizeof(RECT));
-
-      }
-      else
-      {
-
-         ::hotplugin::plugin::set_window_rect(lpcrect);
 
       }
 

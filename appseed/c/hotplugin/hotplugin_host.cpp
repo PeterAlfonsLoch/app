@@ -505,16 +505,18 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
    }
 
 
-   void host::blend_bitmap(HDC hdcWindow, LPCRECT lprect)
+   void host::blend_bitmap(HDC hdcWindow, LPCRECT lprectOut)
    {
 
-      ensure_bitmap_data(width(&m_pplugin->m_rect), height(&m_pplugin->m_rect));
+      LPCRECT lprect = &m_pplugin->m_rect;
+
+      m_sizeBitmap.cx = abs_dup(width(lprect));
+      
+      m_sizeBitmap.cy = abs_dup(height(lprect));
+
+      ensure_bitmap_data(m_sizeBitmap.cx, m_sizeBitmap.cy);
 
       mutex_lock ml(m_pmutexBitmap, true);
-
-      m_sizeBitmap.cx = abs_dup(m_pplugin->m_rect.right - m_pplugin->m_rect.left);
-      
-      m_sizeBitmap.cy = abs_dup(m_pplugin->m_rect.bottom - m_pplugin->m_rect.top);
 
       try
       {
@@ -527,8 +529,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
 
          pg->SetCompositingQuality(Gdiplus::CompositingQualityHighQuality);
 
-         pg->DrawImage(&b, lprect->left, lprect->top, lprect->left - m_pplugin->m_rect.left, lprect->top - m_pplugin->m_rect.top,
-                           lprect->right - lprect->left, lprect->bottom - lprect->top, Gdiplus::UnitPixel);
+         pg->DrawImage(&b, lprect->left, lprect->top, 0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, Gdiplus::UnitPixel);
 
          pg->Flush(Gdiplus::FlushIntentionSync);
 
