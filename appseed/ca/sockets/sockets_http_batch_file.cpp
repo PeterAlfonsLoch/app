@@ -12,6 +12,9 @@ namespace sockets
       batch_file::batch_file(::ca::application * papp) :
          ca(papp)
       {
+
+         m_nOpenFlags = 0;
+
       }
 
       bool batch_file::open(const char * lpszFileName, UINT nOpenFlags)
