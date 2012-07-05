@@ -251,9 +251,9 @@ install:
 
          } paint;
 
-         paint.m_hdc    = hdcWindow;
+         paint.m_hdc       = hdcWindow;
 
-         paint.m_rect   = *lprect;
+         paint.m_rect      = *lprect;
 
          if(ensure_tx(::hotplugin::message_paint, &paint, sizeof(paint)))
          {
@@ -267,17 +267,21 @@ install:
       }
 
 
+      RECT rect;
+
       RECT rectWindow;
       get_window_rect(&rectWindow);
 
       int cx = rectWindow.right - rectWindow.left;
       int cy = rectWindow.bottom - rectWindow.top;
 
-      RECT rect;
       rect.left         = 0;
       rect.top          = 0;
       rect.right        = cx;
       rect.bottom       = cy;
+
+      //int cx = rect.right - rect.left;
+      //int cy = rect.bottom - rect.top;
 
 #ifdef WINDOWS
 
@@ -329,8 +333,20 @@ install:
 
       POINT pointViewport;
       ::SetViewportOrgEx(hdc, 0, 0, &pointViewport);
-      ::BitBlt(hdcWindow, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top,
-         hdc,       lprect->left - m_rect.left, lprect->top - m_rect.top, SRCCOPY);
+      ::BitBlt(hdcWindow   , lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
+             hdc         , lprect->left - m_rect.left  , lprect->top - m_rect.top    , SRCCOPY);
+
+      /*vsstring strx = itoa_dup(lprect->left);
+      vsstring stry = itoa_dup(lprect->top);
+      TextOut(hdcWindow, lprect->left + 10, lprect->top + 10, strx, strx.get_length());
+      TextOut(hdcWindow, lprect->left + 110, lprect->top + 10, stry, stry.get_length());
+      vsstring strx2 = itoa_dup(m_rect.left);
+      vsstring stry2 = itoa_dup(m_rect.top);
+      TextOut(hdcWindow, lprect->left + 210, lprect->top + 10, strx2, strx2.get_length());
+      TextOut(hdcWindow, lprect->left + 310, lprect->top + 10, stry2, stry2.get_length());
+      */
+         //hdc,       lprect->left, lprect->top, SRCCOPY);
+      //::BitBlt(hdcWindow, m_rect.left, m_rect.top, cx, cy, hdc, 0, 0, SRCCOPY);
       ::SelectObject(hdc, (HGDIOBJ) hbmpOld);
       if(hfontOld != NULL)
       {

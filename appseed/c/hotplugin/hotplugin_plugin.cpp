@@ -675,7 +675,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
          HBRUSH hbrush = (HBRUSH) ::GetStockObject(NULL_BRUSH);
          ::SelectObject(hdc, hpen);
          ::SelectObject(hdc, hbrush);
-         ::Rectangle(hdc, lprect->left, lprect->top, lprect->right, lprect->bottom);
+         ::Rectangle(hdc, m_rect.left, m_rect.top, m_rect.right, m_rect.bottom);
          ::DeleteObject(hbrush);
          ::DeleteObject(hpen);
       }

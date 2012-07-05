@@ -196,8 +196,12 @@ namespace plugin
 
 
 
-   void plugin::on_paint(HDC hdcWindow, LPCRECT lprect)
+   void plugin::on_paint(HDC hdcWindow, LPCRECT lprectOut)
    {
+
+      UNREFERENCED_PARAMETER(lprectOut);
+
+      LPCRECT lprect = &m_rect;
 
       try
       {
