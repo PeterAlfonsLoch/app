@@ -631,6 +631,7 @@ install:
       if(!m_bInstalling && is_ca2_installed())
       {
 
+         //MessageBox(NULL, "on_ready", "on_ready", 0);
          ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, m_phost->m_countMemory);
 
       }
