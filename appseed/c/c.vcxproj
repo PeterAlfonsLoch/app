@@ -1050,6 +1050,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClInclude Include="count.h" />
     <ClInclude Include="cpu_architecture.h" />
     <ClInclude Include="c_natural.h" />
+    <ClInclude Include="debug.h" />
     <ClInclude Include="dir.h" />
     <ClInclude Include="event_wait.h" />
     <ClInclude Include="file.h" />
@@ -1219,6 +1220,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="debug.cpp" />
     <ClCompile Include="dir.cpp" />
     <ClCompile Include="dir2.cpp" />
     <ClCompile Include="file.cpp" />

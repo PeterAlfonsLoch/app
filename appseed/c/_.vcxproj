@@ -663,6 +663,7 @@
     <ClInclude Include="cpu_architecture.h" />
     <ClInclude Include="c_c.h" />
     <ClInclude Include="c_natural.h" />
+    <ClInclude Include="debug.h" />
     <ClInclude Include="dir.h" />
     <ClInclude Include="geometric_types.h" />
     <ClInclude Include="international.h" />
@@ -792,6 +793,7 @@
     <ClCompile Include="conv.cpp" />
     <ClCompile Include="cpu_architecture.cpp" />
     <ClCompile Include="c_c.cpp" />
+    <ClCompile Include="debug.cpp" />
     <ClCompile Include="dir.cpp" />
     <ClCompile Include="dir2.cpp" />
     <ClCompile Include="file.cpp" />

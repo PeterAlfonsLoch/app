@@ -67,6 +67,8 @@ extern "C"
 #include "keep_true.h"
 
 
+#include "debug.h"
+
 
 #include "printf.h"
 #include "sprintf.h"
