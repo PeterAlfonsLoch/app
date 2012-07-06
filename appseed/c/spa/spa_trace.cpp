@@ -110,6 +110,7 @@ void on_trace(vsstring & str, vsstring & str2)
    if(g_ftrace != NULL && str2.length() > 0)
    {
       DWORD dwWritten;
+      ::SetFilePointer(g_ftrace, 0, NULL, SEEK_END);
       WriteFile(g_ftrace, str2, (DWORD) str2.length(), &dwWritten, NULL);
       ::FlushFileBuffers(g_ftrace);
    }

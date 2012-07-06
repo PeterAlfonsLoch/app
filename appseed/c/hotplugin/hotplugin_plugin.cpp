@@ -1167,9 +1167,9 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
             m_hfileBitmap = INVALID_HANDLE_VALUE;
          }
 
-         dir::mk(dir::path(dir::appdata("time"), "ca2"));
+         dir::mk(dir::path(dir::userappdata("time"), "ca2"));
 
-         m_hfileBitmap = CreateFile(dir::path(dir::appdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel), FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+         m_hfileBitmap = CreateFile(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel), FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
          if(m_hfileBitmap == INVALID_HANDLE_VALUE)
          {
