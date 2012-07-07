@@ -159,7 +159,7 @@ void cookies::add(const char * psz)
             cookie.m_strName = string(psz, pszEqual - psz);
             cookie.m_strNameLow = cookie.m_strName;
             cookie.m_strNameLow.make_lower();
-            cookie.m_varValue = string(pszEnd + 1, pszEnd - pszEqual - 1);
+            cookie.m_varValue = string(pszEqual + 1, pszEnd - pszEqual - 1);
          }
          else
          {
@@ -169,7 +169,7 @@ void cookies::add(const char * psz)
       else if(pszEqual != NULL)
       {
          string strKey = string(psz, pszEqual - psz);
-         string strValue = string(pszEnd + 1, pszEnd - pszEqual - 1);
+         string strValue = string(pszEqual + 1, pszEnd - pszEqual - 1);
          if(strKey == "expires")
          {
             cookie.m_strExpire = strValue;
