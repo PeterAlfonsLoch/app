@@ -1019,7 +1019,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
          Gdiplus::Font f(L"Geneva", 18, 0, Gdiplus::UnitPixel);
 
-         graphics2.DrawString(wstrProgress, wstrProgress.get_length(), &f, Gdiplus::PointF(lprect->left + cx / iRate - 1 + 18 , lprect->top + (cy - 23) / 2 - 1 + 2), &b);
+         graphics2.DrawString(wstrProgress, wstrProgress.get_length(), &f, Gdiplus::PointF(lprect->left + cx / iRate - 1 + 18 , lprect->top + (cy - 23) / 2 - 1 + 1), &b);
          //graphics2.DrawImage((Gdiplus::Bitmap *) m_pbitmap, lprect->left, lprect->top);
 
       //   delete psf;
