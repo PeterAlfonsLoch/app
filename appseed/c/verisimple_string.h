@@ -140,7 +140,4 @@ CLASS_DECL_c vsstring read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPC
 
 CLASS_DECL_c vsstring gen_utf16_to_8(const wchar_t * psz);
 
-
-
-
-
+CLASS_DECL_c void zero_pad(vsstring & str, count iPad);

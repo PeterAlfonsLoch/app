@@ -870,3 +870,17 @@ CLASS_DECL_c char * strupr(char * pszParam)
 }
 
 #endif
+
+
+
+CLASS_DECL_c void zero_pad(vsstring & str, count iPad)
+{
+
+   while(str.length() < iPad)
+   {
+
+      str = "0" + str;
+
+   }
+
+}

@@ -896,7 +896,11 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
             vsstringtow strProgress(wstrProgress);
 
-            strProgress = itoa_dup(iRatePercent) + "." + itoa_dup(iRatePercentMillis) + "%";
+            vsstring strDecimal = itoa_dup(iRatePercentMillis);
+
+            zero_pad(strDecimal, 3);
+
+            strProgress = itoa_dup(iRatePercent) + "." + strDecimal + "%";
 
          }
 
