@@ -360,6 +360,8 @@ url_domain_base::url_domain_base()
 
       if(alen == 3 && a1 == 'c' && a2 == 'o' && a3 == 'm')
          return true;
+      if(alen == 2 && a1 == 'c' && a2 == 'o')
+         return true;
       if(blen == 2)
       {
          if(b1 == 'a')
