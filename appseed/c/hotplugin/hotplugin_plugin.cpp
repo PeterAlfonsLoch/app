@@ -887,6 +887,21 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
 
 
+         int iRatePercentMillis = ((int) (dRate * 100.0 * 1000.0)) % 1000;
+         int iRatePercent = ((int) (dRate * 100.0));
+
+         wstring wstrProgress;
+
+         {
+
+            vsstringtow strProgress(wstrProgress);
+
+            strProgress = itoa_dup(iRatePercent) + "." + itoa_dup(iRatePercentMillis) + "%";
+
+         }
+
+
+
          int iBorder = 16;
 
          Gdiplus::GraphicsPath pathClip;
@@ -1000,7 +1015,11 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
          graphics2.DrawLine(ppen, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
          delete ppen;
 
+         Gdiplus::SolidBrush b(Gdiplus::Color(127, 255, 255, 255));
 
+         Gdiplus::Font f(L"Geneva", 18, 0, Gdiplus::UnitPixel);
+
+         graphics2.DrawString(wstrProgress, wstrProgress.get_length(), &f, Gdiplus::PointF(lprect->left + cx / iRate - 1 + 18 , lprect->top + (cy - 23) / 2 - 1 + 2), &b);
          //graphics2.DrawImage((Gdiplus::Bitmap *) m_pbitmap, lprect->left, lprect->top);
 
       //   delete psf;
