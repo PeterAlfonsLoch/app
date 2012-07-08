@@ -23,14 +23,14 @@ namespace html
 
       virtual ::user::str_context *  str_context();
 
-      virtual void print(const char * lpcsz);
+      virtual void print(const string & str);
 
 
 #ifdef WINDOWS
 
-      virtual void printf(const char * lpcsz, ...);
+      virtual void printf(const string & str, ...);
 
-      virtual void printstr(const char * lpcsz, ...);
+      virtual void printstr(const string & str, ...);
 
 #else
 

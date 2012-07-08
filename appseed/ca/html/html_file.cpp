@@ -17,23 +17,23 @@ namespace html
 
 
 
-   void file::print(const char * lpcsz)
+   void file::print(const string & str)
    {
-      UNREFERENCED_PARAMETER(lpcsz);
+      UNREFERENCED_PARAMETER(str);
       throw interface_only_exception();
    }
 
 #ifdef WINDOWS
 
-   void file::printf(const char * lpcsz, ...)
+   void file::printf(const string & str, ...)
    {
-      UNREFERENCED_PARAMETER(lpcsz);
+      UNREFERENCED_PARAMETER(str);
       throw interface_only_exception();
    }
 
-   void file::printstr(const char * lpcsz, ...)
+   void file::printstr(const string & str, ...)
    {
-      UNREFERENCED_PARAMETER(lpcsz);
+      UNREFERENCED_PARAMETER(str);
       throw interface_only_exception();
    }
 
