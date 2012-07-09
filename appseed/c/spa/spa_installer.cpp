@@ -3278,7 +3278,7 @@ RetryHost:
          while(iRetry < 8)
          {
 
-            if(!get_temp_file_name_dup(m_strPath.m_psz, iSpabootInstallStrSize, "app-install.exe", "exe"))
+            if(!get_temp_file_name_dup(m_strPath.m_psz, iSpabootInstallStrSize, "app-install", "exe"))
                return false;
 
             if(is_file_ok(m_strPath, "app-install.exe"))
