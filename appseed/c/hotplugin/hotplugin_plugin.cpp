@@ -1174,19 +1174,37 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
          if(m_pcolorref != NULL)
          {
-            UnmapViewOfFile(m_pcolorref);
+            try
+            {
+               UnmapViewOfFile(m_pcolorref);
+            }
+            catch(...)
+            {
+            }
             m_pcolorref = NULL;
          }
 
          if(m_hfilemapBitmap != NULL)
          {
-            ::CloseHandle(m_hfilemapBitmap);
+            try
+            {
+               ::CloseHandle(m_hfilemapBitmap);
+            }
+            catch(...)
+            {
+            }
             m_hfilemapBitmap = NULL;
          }
 
          if(m_hfileBitmap != INVALID_HANDLE_VALUE)
          {
-            ::CloseHandle(m_hfileBitmap);
+            try
+            {
+               ::CloseHandle(m_hfileBitmap);
+            }
+            catch(...)
+            {
+            }
             m_hfileBitmap = INVALID_HANDLE_VALUE;
          }
 
