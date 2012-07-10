@@ -6,8 +6,7 @@
 #endif
 
 
-simple_password::simple_password(simple_ui * puiParent) :
-   simple_edit_box(puiParent)
+simple_password::simple_password()
 {
    
 }
