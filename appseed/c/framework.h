@@ -1,6 +1,7 @@
 #pragma once
 
-#include "c.h"
+
+#include "C/c.h"
 
 
 #if defined(MACOS)
@@ -10,3 +11,5 @@
 #elif defined(WINDOWS)
 #include "windows/c_os_internal.h"
 #endif
+
+

@@ -16,13 +16,16 @@ namespace spa
 
 
    class CLASS_DECL_c plugin :
-      virtual public ::hotplugin::plugin
+      virtual public ::hotplugin::plugin,
+      virtual public ::simple_ui
    {
    public:
 
-      canvas      m_canvas;
-      DWORD       m_dwLastInstallingCheck;
-      DWORD       m_dwLastRestart;
+
+      spa_login      m_login;
+      canvas         m_canvas;
+      DWORD          m_dwLastInstallingCheck;
+      DWORD          m_dwLastRestart;
       
 
 

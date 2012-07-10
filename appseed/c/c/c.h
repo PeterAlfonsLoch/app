@@ -120,6 +120,7 @@ extern "C"
 
 #include "library.h"
 #include "hotplugin/hotplugin.h"
+#include "simple_ui/simple_ui.h"
 #include "spa/spa.h"
 
 #include "bsdiff/bsdiff.h"
@@ -133,6 +134,8 @@ extern "C"
 #include "url.h"
 
 #include "international.h"
+
+
 
 
 #define return_(y, x) {y = x; return;}

@@ -34,6 +34,7 @@
 #include "spa_machine_event_data.h"
 #include "spa_machine_event.h"
 #include "spa_http.h"
+#include "spa_login.h"
 #include "spa_plugin.h"
 #include "spa_installer.h"
 

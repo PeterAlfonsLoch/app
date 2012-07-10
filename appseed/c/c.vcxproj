@@ -1038,54 +1038,74 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="atol.h" />
     <ClInclude Include="bsdiff\bsdiff.h" />
     <ClInclude Include="bsdiff\bsdiff_private.h" />
     <ClInclude Include="bsdiff\bzlib.h" />
     <ClInclude Include="bsdiff\bzlib_private.h" />
-    <ClInclude Include="c.h" />
-    <ClInclude Include="ca2_types.h" />
-    <ClInclude Include="ca_seed.h" />
-    <ClInclude Include="conv.h" />
-    <ClInclude Include="count.h" />
     <ClInclude Include="cpu_architecture.h" />
+    <ClInclude Include="c\atol.h" />
+    <ClInclude Include="c\c.h" />
+    <ClInclude Include="c\ca2_types.h" />
+    <ClInclude Include="c\conv.h" />
+    <ClInclude Include="c\count.h" />
+    <ClInclude Include="c\cpu_architecture.h" />
+    <ClInclude Include="c\c_c.h" />
+    <ClInclude Include="c\c_heap.h" />
+    <ClInclude Include="c\c_natural.h" />
+    <ClInclude Include="c\c_types.h" />
+    <ClInclude Include="c\debug.h" />
+    <ClInclude Include="c\dir.h" />
+    <ClInclude Include="c\file.h" />
+    <ClInclude Include="c\gdi.h" />
+    <ClInclude Include="c\geometric_types.h" />
+    <ClInclude Include="c\heap.h" />
+    <ClInclude Include="c\index.h" />
+    <ClInclude Include="c\international.h" />
+    <ClInclude Include="c\keep_true.h" />
+    <ClInclude Include="c\launcher.h" />
+    <ClInclude Include="c\library.h" />
+    <ClInclude Include="c\linux.h" />
+    <ClInclude Include="c\md5.h" />
+    <ClInclude Include="c\mem.h" />
+    <ClInclude Include="c\message_loop.h" />
+    <ClInclude Include="c\mktime.h" />
+    <ClInclude Include="c\mutex_lock.h" />
+    <ClInclude Include="c\natural.h" />
+    <ClInclude Include="c\printf.h" />
+    <ClInclude Include="c\simple_app.h" />
+    <ClInclude Include="c\simple_array.h" />
+    <ClInclude Include="c\simple_critical_section.h" />
+    <ClInclude Include="c\simple_event.h" />
+    <ClInclude Include="c\simple_list.h" />
+    <ClInclude Include="c\simple_map.h" />
+    <ClInclude Include="c\simple_mutex.h" />
+    <ClInclude Include="c\simple_obj.h" />
+    <ClInclude Include="c\simple_shell_launcher.h" />
+    <ClInclude Include="c\small_ipc_channel.h" />
+    <ClInclude Include="c\sprintf.h" />
+    <ClInclude Include="c\std_file.h" />
+    <ClInclude Include="c\str.h" />
+    <ClInclude Include="c\stra.h" />
+    <ClInclude Include="c\template.h" />
+    <ClInclude Include="c\types.h" />
+    <ClInclude Include="c\url.h" />
+    <ClInclude Include="c\verisimple_string.h" />
+    <ClInclude Include="c\verisimple_wstring.h" />
+    <ClInclude Include="c\vsstringtow.h" />
+    <ClInclude Include="c\wstringtovss.h" />
+    <ClInclude Include="c\xmlite.h" />
+    <ClInclude Include="c\_c_math.h" />
+    <ClInclude Include="c\_libct.h" />
     <ClInclude Include="c_natural.h" />
-    <ClInclude Include="debug.h" />
-    <ClInclude Include="dir.h" />
-    <ClInclude Include="event_wait.h" />
-    <ClInclude Include="file.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="gdi.h" />
-    <ClInclude Include="heap.h" />
     <ClInclude Include="hotplugin\hotplugin_host.h" />
     <ClInclude Include="hotplugin\hotplugin.h" />
     <ClInclude Include="hotplugin\hotplugin_plugin.h" />
-    <ClInclude Include="index.h" />
-    <ClInclude Include="international.h" />
-    <ClInclude Include="keep_true.h" />
-    <ClInclude Include="launcher.h" />
-    <ClInclude Include="library.h" />
-    <ClInclude Include="linux.h" />
-    <ClInclude Include="math.h" />
-    <ClInclude Include="md5.h" />
-    <ClInclude Include="mem.h" />
-    <ClInclude Include="message_loop.h" />
-    <ClInclude Include="mutex_lock.h" />
-    <ClInclude Include="natural.h" />
     <ClInclude Include="os\os.h" />
     <ClInclude Include="os\os_process.h" />
-    <ClInclude Include="printf.h" />
-    <ClInclude Include="radix.h" />
-    <ClInclude Include="registry.h" />
-    <ClInclude Include="simple_array.h" />
-    <ClInclude Include="simple_critical_section.h" />
-    <ClInclude Include="simple_event.h" />
-    <ClInclude Include="simple_list.h" />
-    <ClInclude Include="simple_map.h" />
-    <ClInclude Include="simple_mutex.h" />
-    <ClInclude Include="simple_obj.h" />
-    <ClInclude Include="simple_shell_launcher.h" />
-    <ClInclude Include="small_ipc_channel.h" />
+    <ClInclude Include="simple_ui\simple_button.h" />
+    <ClInclude Include="simple_ui\simple_edit.h" />
+    <ClInclude Include="simple_ui\simple_ui.h" />
     <ClInclude Include="spa\resource.h" />
     <ClInclude Include="spa\spa.h" />
     <ClInclude Include="spa\spa_boot.h" />
@@ -1103,28 +1123,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClInclude Include="spa\spa_spa.h" />
     <ClInclude Include="spa\spa_starter_start.h" />
     <ClInclude Include="spa\spa_trace.h" />
-    <ClInclude Include="sprintf.h" />
     <ClInclude Include="c_types.h" />
-    <ClInclude Include="std_file.h" />
-    <ClInclude Include="str.h" />
-    <ClInclude Include="url.h" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
     <ClInclude Include="windows\c_os.h" />
     <ClInclude Include="windows\c_os_http.h" />
     <ClInclude Include="windows\c_os_registry.h" />
-    <ClInclude Include="_heap.h" />
-    <ClInclude Include="_libct.h" />
-    <ClInclude Include="stra.h" />
-    <ClInclude Include="template.h" />
-    <ClInclude Include="types.h" />
-    <ClInclude Include="verisimple_string.h" />
-    <ClInclude Include="verisimple_wstring.h" />
-    <ClInclude Include="vsstringtow.h" />
-    <ClInclude Include="wstringtovss.h" />
-    <ClInclude Include="xmlite.h" />
-    <ClInclude Include="c_c.h" />
-    <ClInclude Include="_types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bsdiff\blocksort.cpp">
@@ -1208,23 +1212,51 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="conv.cpp" />
-    <ClCompile Include="cpu_architecture.cpp" />
-    <ClCompile Include="c_c.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="debug.cpp" />
-    <ClCompile Include="dir.cpp" />
-    <ClCompile Include="dir2.cpp" />
-    <ClCompile Include="file.cpp" />
-    <ClCompile Include="file_spa.cpp" />
+    <ClCompile Include="c\conv.cpp" />
+    <ClCompile Include="c\cpu_architecture.cpp" />
+    <ClCompile Include="c\c_c.cpp" />
+    <ClCompile Include="c\debug.cpp" />
+    <ClCompile Include="c\dir.cpp" />
+    <ClCompile Include="c\dir2.cpp" />
+    <ClCompile Include="c\file.cpp" />
+    <ClCompile Include="c\file_spa.cpp" />
+    <ClCompile Include="c\gdi.cpp" />
+    <ClCompile Include="c\geometric_types.cpp" />
+    <ClCompile Include="c\heap.cpp" />
+    <ClCompile Include="c\international.cpp" />
+    <ClCompile Include="c\md5.cpp" />
+    <ClCompile Include="c\mktime.cpp" />
+    <ClCompile Include="c\mutex_lock.cpp" />
+    <ClCompile Include="c\simple_array.cpp" />
+    <ClCompile Include="c\simple_critical_section.cpp" />
+    <ClCompile Include="c\simple_event.cpp" />
+    <ClCompile Include="c\simple_list.cpp" />
+    <ClCompile Include="c\simple_mutex.cpp" />
+    <ClCompile Include="c\simple_obj.cpp" />
+    <ClCompile Include="c\simple_shell_launcher.cpp" />
+    <ClCompile Include="c\small_ipc_channel.cpp" />
+    <ClCompile Include="c\sprintf.cpp" />
+    <ClCompile Include="c\str.cpp" />
+    <ClCompile Include="c\stra.cpp" />
+    <ClCompile Include="c\strdup.cpp" />
+    <ClCompile Include="c\strw.cpp" />
+    <ClCompile Include="c\strx.cpp" />
+    <ClCompile Include="c\template.cpp" />
+    <ClCompile Include="c\url.cpp" />
+    <ClCompile Include="c\verisimple_string.cpp" />
+    <ClCompile Include="c\verisimple_wstring.cpp" />
+    <ClCompile Include="c\version.cpp" />
+    <ClCompile Include="c\vsstringtow.cpp" />
+    <ClCompile Include="c\wstringtovss.cpp" />
+    <ClCompile Include="c\xmlite.cpp" />
+    <ClCompile Include="c\_.cpp" />
+    <ClCompile Include="c\_argcargv.cpp" />
+    <ClCompile Include="c\_atol.cpp" />
+    <ClCompile Include="c\_initterm.cpp" />
+    <ClCompile Include="c\_math.cpp" />
+    <ClCompile Include="c\_mem.cpp" />
+    <ClCompile Include="c\_printf.cpp" />
+    <ClCompile Include="c\_std_file.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
@@ -1236,9 +1268,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="gdi.cpp" />
-    <ClCompile Include="geometric_types.cpp" />
-    <ClCompile Include="heap.cpp" />
     <ClCompile Include="hotplugin\hotplugin_container_launcher.cpp" />
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -1260,18 +1289,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="international.cpp" />
-    <ClCompile Include="md5.cpp" />
-    <ClCompile Include="mutex_lock.cpp" />
     <ClCompile Include="os\os_process.cpp" />
-    <ClCompile Include="simple_array.cpp" />
-    <ClCompile Include="simple_critical_section.cpp" />
-    <ClCompile Include="simple_event.cpp" />
-    <ClCompile Include="simple_list.cpp" />
-    <ClCompile Include="simple_mutex.cpp" />
-    <ClCompile Include="simple_obj.cpp" />
-    <ClCompile Include="simple_shell_launcher.cpp" />
-    <ClCompile Include="small_ipc_channel.cpp" />
+    <ClCompile Include="simple_ui\simple_button.cpp" />
+    <ClCompile Include="simple_ui\simple_edit.cpp" />
+    <ClCompile Include="simple_ui\simple_ui.cpp" />
     <ClCompile Include="spa\spa.cpp" />
     <ClCompile Include="spa\spa_boot.cpp" />
     <ClCompile Include="spa\spa_bz.cpp" />
@@ -1294,12 +1315,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="spa\windows\spa_windows_boot.cpp" />
     <ClCompile Include="spa\windows\spa_windows_service.cpp" />
     <ClCompile Include="spa\windows\spa_windows_win.cpp" />
-    <ClCompile Include="sprintf.cpp" />
-    <ClCompile Include="str.cpp" />
-    <ClCompile Include="strw.cpp" />
-    <ClCompile Include="strx.cpp" />
-    <ClCompile Include="url.cpp" />
-    <ClCompile Include="version.cpp" />
     <ClCompile Include="windows\c_os.cpp" />
     <ClCompile Include="windows\c_os_c_dll.cpp" />
     <ClCompile Include="windows\c_os_http.cpp" />
@@ -1312,21 +1327,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="windows\c_os_simple_app.cpp" />
     <ClCompile Include="windows\c_os_simple_shell_launcher.cpp" />
     <ClCompile Include="windows\c_os_small_ipc_channel.cpp" />
-    <ClCompile Include="_.cpp" />
-    <ClCompile Include="_argcargv.cpp" />
-    <ClCompile Include="_math.cpp" />
-    <ClCompile Include="_mem.cpp" />
-    <ClCompile Include="stra.cpp" />
-    <ClCompile Include="strdup.cpp" />
-    <ClCompile Include="template.cpp" />
-    <ClCompile Include="verisimple_string.cpp" />
-    <ClCompile Include="verisimple_wstring.cpp" />
-    <ClCompile Include="vsstringtow.cpp" />
-    <ClCompile Include="wstringtovss.cpp" />
-    <ClCompile Include="xmlite.cpp" />
-    <ClCompile Include="_atol.cpp" />
-    <ClCompile Include="_printf.cpp" />
-    <ClCompile Include="_std_file.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="c.def" />

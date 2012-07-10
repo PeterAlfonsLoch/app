@@ -24,7 +24,8 @@ void simple_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
 namespace spa
 {
 
-   plugin::plugin()
+   plugin::plugin() :
+      m_login(this)
    {
 
       m_iHealingSurface       = 0;
@@ -299,7 +300,12 @@ install:
 
       HFONT hfontOld = NULL;
       HFONT hfont = NULL;
-      if(is_installing_ca2())
+
+      if(m_login.m_bVisible)
+      {
+         m_login.draw(hdc);
+      }
+      else if(is_installing_ca2())
       {
          m_canvas.on_paint(hdc, &rect);
       }
