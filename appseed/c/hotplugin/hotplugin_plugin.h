@@ -125,7 +125,7 @@ namespace hotplugin
 
       virtual void restart();
 
-      virtual void ensure_bitmap_data(int cx, int cy);
+      virtual void ensure_bitmap_data(int cx, int cy, bool bCreateFile);
 
    };
 

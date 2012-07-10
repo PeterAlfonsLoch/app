@@ -1161,7 +1161,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
    }
 
 
-   void plugin::ensure_bitmap_data(int cx, int cy)
+   void plugin::ensure_bitmap_data(int cx, int cy, bool bCreateFile)
    {
 
       if(m_pcolorref == NULL
@@ -1210,11 +1210,41 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
          dir::mk(dir::path(dir::userappdata("time"), "ca2"));
 
-         m_hfileBitmap = CreateFile(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel), FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+         int iOpen;
+
+         if(bCreateFile)
+         {
+
+            iOpen = OPEN_ALWAYS;
+
+         }
+         else
+         {
+
+            iOpen = OPEN_EXISTING;
+
+         }
+
+         m_hfileBitmap = CreateFile(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel), FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, iOpen, FILE_ATTRIBUTE_NORMAL, NULL);
+
+         DWORD dwError = GetLastError();
 
          if(m_hfileBitmap == INVALID_HANDLE_VALUE)
          {
-            throw "resource exception";
+
+            if(bCreateFile)
+            {
+
+               throw "resource exception";
+
+            }
+            else
+            {
+
+               return;
+
+            }
+
          }
 
          DWORD dwHi;

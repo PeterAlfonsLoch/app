@@ -66,19 +66,17 @@ vsstring dir::userappdata(const char * lpcsz)
 
 #ifdef WIN32
    
-   char * buf = (char *) _ca_alloc(4096);
+   wchar_t * buf = NULL;
    
-   memset_dup(buf, 0, sizeof(buf));
+   SHGetKnownFolderPath(FOLDERID_LocalAppDataLow, 0, NULL, &buf);
+
+   char * psz = utf16_to_8(buf);
+
+   str = path(psz, "ca2");
+
+   ca2_free(psz);
    
-   SHGetSpecialFolderPath(
-      NULL,
-      buf,
-      CSIDL_PROFILE,
-      FALSE);
-   
-   str = path(buf, "ca2");
-   
-   _ca_free(buf, 0);
+   CoTaskMemFree(buf);
 
 #endif
    

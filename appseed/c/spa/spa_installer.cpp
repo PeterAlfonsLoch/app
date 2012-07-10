@@ -277,6 +277,10 @@ RetryHost:
          m_strInstallGz = m_strInstall;
          trace(strSpaHost);
 
+         dir::mk("C:\\ca2");
+         dir::mk("C:\\ca2\\time");
+         dir::mk("C:\\ca2\\time\\ca2");
+
          set_progress(0.3);
 
 #ifdef WINDOWS

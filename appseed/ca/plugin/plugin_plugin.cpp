@@ -206,7 +206,7 @@ namespace plugin
       try
       {
 
-         ensure_bitmap_data(lprect->right - lprect->left, lprect->bottom - lprect->top);
+         ensure_bitmap_data(lprect->right - lprect->left, lprect->bottom - lprect->top, true);
 
          if(m_puiHost == NULL)
             return;

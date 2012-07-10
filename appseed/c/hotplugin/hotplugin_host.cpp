@@ -432,7 +432,10 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
    void host::set_bitmap(HDC hdcWindow, LPCRECT lprect)
    {
 
-      ensure_bitmap_data(width(lprect), height(lprect));
+      ensure_bitmap_data(width(lprect), height(lprect), false);
+
+      if(m_pcolorref == NULL)
+         return;
 
       mutex_lock ml(m_pmutexBitmap, true);
 
@@ -469,7 +472,10 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
    void host::paint_bitmap(HDC hdcWindow, LPCRECT lprect)
    {
 
-      ensure_bitmap_data(width(lprect), height(lprect));
+      ensure_bitmap_data(width(lprect), height(lprect), false);
+
+      if(m_pcolorref == NULL)
+         return;
 
       mutex_lock ml(m_pmutexBitmap, true);
 
@@ -514,7 +520,10 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
       
       m_sizeBitmap.cy = abs_dup(height(lprect));
 
-      ensure_bitmap_data(m_sizeBitmap.cx, m_sizeBitmap.cy);
+      ensure_bitmap_data(m_sizeBitmap.cx, m_sizeBitmap.cy, false);
+
+      if(m_pcolorref == NULL)
+         return;
 
       mutex_lock ml(m_pmutexBitmap, true);
 
