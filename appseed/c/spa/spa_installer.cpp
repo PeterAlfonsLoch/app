@@ -1077,7 +1077,7 @@ continue2:
       m_dwCurFileLen = iGzLen;
       m_dwDownloadLen = 0;
       keep_true keepDownloadTrue(m_bMsDownload);
-      return ms_download_dup(url_in, (dir + file), true, false, NULL, &::ms_download_callback, (void *) this);
+      return ms_download_dup(url_in, (dir + file), false, false, NULL, &::ms_download_callback, (void *) this);
    }
 
 
