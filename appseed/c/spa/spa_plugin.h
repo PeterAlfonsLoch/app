@@ -26,6 +26,8 @@ namespace spa
       canvas         m_canvas;
       DWORD          m_dwLastInstallingCheck;
       DWORD          m_dwLastRestart;
+      bool           m_bLogged;
+      bool           m_bLogin;
       
 
 
@@ -39,6 +41,9 @@ namespace spa
 
 
       virtual void start_ca2();
+
+
+      virtual bool calc_logged();
 
 
       //int starter_start(const char * pszId);

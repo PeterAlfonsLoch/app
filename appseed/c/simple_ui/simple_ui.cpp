@@ -6,11 +6,12 @@
 #endif
 
 
-simple_ui::simple_ui(simple_ui * puiParent)
+simple_ui::simple_ui()
 {
    
-   m_puiParent    = puiParent;
-   m_bVisible     = puiParent == NULL;
+   m_puiParent    = NULL;
+   m_bVisible     = true;
+   m_puiFocus     = NULL;
 
 }
 
@@ -19,12 +20,50 @@ simple_ui::~simple_ui()
 }
 
 
+void simple_ui::set_parent(simple_ui * puiParent)
+{
+   
+   if(m_puiParent != NULL && m_puiParent != puiParent)
+   {
+      
+      for(int i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
+      {
+         
+         if(m_puiParent->m_uiptra[i] == this)
+         {
+            
+            m_puiParent->m_uiptra.remove_at(i);
+            break;
+
+         }
+
+      }
+
+   }
+
+   m_puiParent = puiParent;
+
+   if(m_puiParent != NULL)
+   {
+      
+      m_puiParent->m_uiptra.add(this);
+
+   }
+
+}
+
+
 void simple_ui::draw(HDC hdc)
 {
 
-   draw_children(hdc);
+   if(m_bVisible)
+   {
 
-   draw_this(hdc);
+      draw_children(hdc);
+
+      draw_this(hdc);
+
+   }
 
 }
 
@@ -141,5 +180,13 @@ simple_ui * simple_ui::get_focus()
 
    }
 
+
+}
+
+
+bool simple_ui::is_visible()
+{
+   
+   return m_bVisible && (m_puiParent == NULL || m_puiParent->is_visible());
 
 }

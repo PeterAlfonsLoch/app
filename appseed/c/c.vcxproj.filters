@@ -616,10 +616,16 @@
     <ClCompile Include="c\xmlite.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="simple_ui\simple_button.cpp">
+    <ClCompile Include="simple_ui\simple_edit_box.cpp">
       <Filter>Source Files\simple_ui</Filter>
     </ClCompile>
-    <ClCompile Include="simple_ui\simple_edit.cpp">
+    <ClCompile Include="simple_ui\simple_label.cpp">
+      <Filter>Source Files\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_ui\simple_password.cpp">
+      <Filter>Source Files\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_ui\simple_tap.cpp">
       <Filter>Source Files\simple_ui</Filter>
     </ClCompile>
     <ClCompile Include="simple_ui\simple_ui.cpp">

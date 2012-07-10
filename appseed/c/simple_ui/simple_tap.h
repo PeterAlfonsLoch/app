@@ -10,7 +10,7 @@ public:
    bool m_bDown;
 
 
-   simple_tap(simple_ui * puiParent);
+   simple_tap();
    virtual ~simple_tap();
    
    

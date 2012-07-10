@@ -668,6 +668,11 @@ install:
 
    }
 
+   bool plugin::calc_logged()
+   {
+      return false;
+   }
+
 
 } // namespace spa
 

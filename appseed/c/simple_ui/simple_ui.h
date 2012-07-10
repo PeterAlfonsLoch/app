@@ -15,8 +15,11 @@ public:
    simple_ui *                      m_puiFocus;
 
 
-   simple_ui(simple_ui * puiParent = NULL);
+   simple_ui();
    virtual ~simple_ui();
+
+
+   virtual void set_parent(simple_ui * puiParent);
 
 
    virtual void draw(HDC hdc);
@@ -31,9 +34,13 @@ public:
 
    virtual void on_action(const char * pszId);
 
+   
    virtual bool is_focusable();
    virtual void focus_next();
    virtual void set_focus(simple_ui * pui);
+   virtual simple_ui * get_focus();
+
+   virtual bool is_visible();
 
 };
 

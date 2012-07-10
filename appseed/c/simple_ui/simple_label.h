@@ -7,7 +7,7 @@ class CLASS_DECL_c simple_label :
 public:
 
    
-   simple_label(simple_ui * puiParent);
+   simple_label();
    virtual ~simple_label();
 
    

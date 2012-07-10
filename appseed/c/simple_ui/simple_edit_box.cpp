@@ -6,10 +6,11 @@
 #endif
 
 
-simple_edit_box::simple_edit_box(simple_ui * puiParent) :
-   simple_ui(puiParent)
+simple_edit_box::simple_edit_box()
 {
    
+   m_iPos = 0;
+
 }
 
 simple_edit_box::~simple_edit_box()
@@ -87,7 +88,7 @@ void simple_edit_box::on_char(int ch)
    }
    else 
    {
-      m_strText += ch;
+      m_strText = m_strText.substr(0, m_iPos) + vsstring(ch) + m_strText.substr(m_iPos + 1);
    }
 }
 

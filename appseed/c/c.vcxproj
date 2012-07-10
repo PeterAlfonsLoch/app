@@ -1290,8 +1290,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="os\os_process.cpp" />
-    <ClCompile Include="simple_ui\simple_button.cpp" />
-    <ClCompile Include="simple_ui\simple_edit.cpp" />
+    <ClCompile Include="simple_ui\simple_edit_box.cpp" />
+    <ClCompile Include="simple_ui\simple_label.cpp" />
+    <ClCompile Include="simple_ui\simple_password.cpp" />
+    <ClCompile Include="simple_ui\simple_tap.cpp" />
     <ClCompile Include="simple_ui\simple_ui.cpp" />
     <ClCompile Include="spa\spa.cpp" />
     <ClCompile Include="spa\spa_boot.cpp" />

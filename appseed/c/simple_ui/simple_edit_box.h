@@ -9,7 +9,7 @@ public:
    int         m_iPos;
 
 
-   simple_edit_box(simple_ui * puiParent);
+   simple_edit_box();
    virtual ~simple_edit_box();
    
    
