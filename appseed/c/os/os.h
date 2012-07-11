@@ -16,6 +16,6 @@
 
 #else
 
-#include "windows/c_os.h"
+#include "c/windows/c_os.h"
 
 #endif

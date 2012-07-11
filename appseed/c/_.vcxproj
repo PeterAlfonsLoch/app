@@ -695,6 +695,7 @@
     <ClInclude Include="c\simple_event.h" />
     <ClInclude Include="c\simple_list.h" />
     <ClInclude Include="c\simple_map.h" />
+    <ClInclude Include="c\simple_memory.h" />
     <ClInclude Include="c\simple_mutex.h" />
     <ClInclude Include="c\simple_obj.h" />
     <ClInclude Include="c\simple_shell_launcher.h" />
@@ -721,7 +722,6 @@
     <ClInclude Include="os\os_process.h" />
     <ClInclude Include=".\simple_ui\simple_tap.h" />
     <ClInclude Include=".\simple_ui\simple_edit_box.h" />
-    <ClInclude Include="simple_memory.h" />
     <ClInclude Include="simple_ui\simple_label.h" />
     <ClInclude Include="simple_ui\simple_password.h" />
     <ClInclude Include="simple_ui\simple_ui.h" />
@@ -844,6 +844,7 @@
     <ClCompile Include="c\verisimple_wstring.cpp" />
     <ClCompile Include="c\version.cpp" />
     <ClCompile Include="c\vsstringtow.cpp" />
+    <ClCompile Include="c\whirpool.cpp" />
     <ClCompile Include="c\wstringtovss.cpp" />
     <ClCompile Include="c\xmlite.cpp" />
     <ClCompile Include="c\_.cpp" />
@@ -855,6 +856,7 @@
     <ClCompile Include="c\_std_file.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="os\os_process.cpp" />
     <ClCompile Include=".\simple_ui\simple_tap.cpp" />

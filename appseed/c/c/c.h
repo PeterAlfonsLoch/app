@@ -39,7 +39,7 @@ namespace ca
 #include "c/vms/vms.h"
 
 
-#include "version.h"
+#include "c/version.h"
 
 
 #include "types.h"
@@ -123,14 +123,14 @@ extern "C"
 #include "library.h"
 #include "simple_memory.h"
 #include "base64.h"
-#include "hotplugin/hotplugin.h"
-#include "simple_ui/simple_ui.h"
-#include "spa/spa.h"
+#include "c/hotplugin/hotplugin.h"
+#include "c/simple_ui/simple_ui.h"
+#include "c/spa/spa.h"
 
-#include "bsdiff/bsdiff.h"
+#include "c/bsdiff/bsdiff.h"
 
 
-#include "os/os.h"
+#include "c/os/os.h"
 
 
 #include "message_loop.h"

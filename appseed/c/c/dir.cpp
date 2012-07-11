@@ -1,11 +1,19 @@
 #include "framework.h"
 #ifdef WINDOWS
+#define SECURITY_WIN32
 #include <Shlobj.h>
+#include <Security.h>
 #else
 #include <sys/types.h>
 #include <dirent.h>
 #include <sys/stat.h>
 #endif
+
+bool CLASS_DECL_c SHGetSpecialFolderPath(HWND hwnd, vsstring &str, int csidl, bool fCreate)
+{
+   return ::SHGetSpecialFolderPathW(hwnd, wstringtovss(str, MAX_PATH * 8), csidl, fCreate) != FALSE;
+}
+
 
 bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 {
@@ -297,4 +305,100 @@ void dir::ls(stra_dup & stra, const char *psz)
 #endif
 
 
+}
+
+vsstring dir::default_os_user_path_prefix()
+{
+   wchar_t buf[MAX_PATH];
+   ULONG ulSize = sizeof(buf) / sizeof(wchar_t);
+   if(!::GetUserNameExW(NameCanonical, buf, &ulSize))
+   {
+      if(!::GetUserNameW(buf, &ulSize))
+      {
+         memset(buf, 0, sizeof(buf));
+      }
+   }
+   vsstring str;
+   str.attach(utf16_to_8(buf));
+   return str;
+}
+
+
+
+vsstring dir::usersystemappdata(const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
+{
+   return path(appdata(lpcszPrefix), lpcsz, lpcsz2);
+}
+
+
+
+vsstring dir::default_userappdata(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+{
+   return path(default_userfolder(lpcszPrefix, lpcszLogin, "appdata"), pszRelativePath);
+}
+
+vsstring dir::default_userdata(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+{
+   return path(default_userfolder(lpcszPrefix, lpcszLogin, "data"), pszRelativePath);
+}
+
+vsstring dir::default_userfolder(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+{
+
+   return userfolder(pszRelativePath);
+
+}
+
+
+
+vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
+{
+
+   vsstring str;
+   SHGetSpecialFolderPath(
+      NULL,
+      (vsstring &) str,
+      CSIDL_PROFILE,
+      false);
+
+
+   vsstring strRelative;
+   strRelative = ca2();
+   index iFind = strRelative.find(':');
+   if(iFind >= 0)
+   {
+      ::index iFind1 = strRelative.rfind('\\', iFind);
+      ::index iFind2 = strRelative.rfind('/', iFind);
+      ::index iStart = max(iFind1 + 1, iFind2 + 1);
+      strRelative = strRelative.substr(0, iFind - 1) + "_" + strRelative.substr(iStart, iFind - iStart) + strRelative.substr(iFind + 1);
+   }
+
+   vsstring strUserFolderShift;
+
+   /*if(App(papp).directrix().m_varTopicQuery.has_property("user_folder_relative_path"))
+   {
+      strUserFolderShift = path(strRelative, App(papp).directrix().m_varTopicQuery["user_folder_relative_path"].get_string());
+   }
+   else*/
+   {
+      strUserFolderShift = strRelative;
+   }
+
+   return path(path(str, "ca2", strUserFolderShift), lpcsz, lpcsz2);
+
+//      return path(path(str, "ca2"), lpcsz);
+/*      if(&AppUser(papp) == NULL)
+   {
+      string str;
+      SHGetSpecialFolderPath(
+         NULL,
+         str,
+         CSIDL_PROFILE,
+         FALSE);
+      return path(path(str, "ca2\\_____default"), lpcsz);
+   }
+   else
+   {
+      return path(AppUser(papp).m_strPath, lpcsz, lpcsz2);
+   }*/
 }

@@ -2,8 +2,14 @@
 #include <openssl/ssl.h>
 #include <openssl/md5.h>
 #include <openssl/err.h>
+#include <Wincrypt.h>
+
+bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, const char * pszSalt);
+bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, const char * pszSalt);
 
 vsstring crypt_nessie(const char * psz);
+
+/*
 
 int crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & key)
 {
@@ -28,25 +34,6 @@ int crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageD
    EVP_CIPHER_CTX_cleanup(&ctx);
    return cipherlen;
 }
-
-int crypt_encrypt(vsstring & strEncrypt, const char * pszDecrypt, const char * pszKey)
-{
-   simple_memory storageDecrypt;
-   simple_memory storageEncrypt;
-   simple_memory storageKey;
-   if(pszDecrypt == NULL || strlen(pszDecrypt) == 0)
-   {
-      strEncrypt = "";
-      return 0;
-   }
-   storageDecrypt.from_string(pszDecrypt);
-   base64 base64;
-   base64.decode(storageKey, pszKey);
-   int cipherlen = crypt_encrypt(storageEncrypt, storageDecrypt, storageKey);
-   strEncrypt = base64.encode(storageEncrypt);
-   return cipherlen;
-}
-
 
 int crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & key)
 {
@@ -74,20 +61,36 @@ int crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageE
    return plainlen;
 }
 
+*/
 
-int crypt_decrypt(vsstring & strDecrypt, const simple_memory & memEncrypt, const char * pszKey)
+
+/*int crypt_encrypt(vsstring & strEncrypt, const char * pszDecrypt, const char * pszKey)
 {
-   simple_memory storageEncrypt;
    simple_memory storageDecrypt;
+   simple_memory storageEncrypt;
    simple_memory storageKey;
+   if(pszDecrypt == NULL || strlen(pszDecrypt) == 0)
+   {
+      strEncrypt = "";
+      return 0;
+   }
+   storageDecrypt.from_string(pszDecrypt);
    base64 base64;
-   base64.decode(storageEncrypt, memEncrypt);
    base64.decode(storageKey, pszKey);
-   int plainlen = crypt_decrypt(storageDecrypt, storageEncrypt, storageKey);
-   storageDecrypt.to_string(strDecrypt);
-   return plainlen;
-}
+   int cipherlen = crypt_encrypt(storageEncrypt, storageDecrypt, storageKey);
+   strEncrypt = base64.encode(storageEncrypt);
+   return cipherlen;
+}*/
 
+
+bool crypt_decrypt(vsstring & strDecrypt, const simple_memory & storageEncrypt, const char * pszSalt)
+{
+   simple_memory memoryDecrypt;
+   if(!crypt_decrypt(memoryDecrypt, storageEncrypt, pszSalt))
+      return false;
+   memoryDecrypt.ToAsc(strDecrypt);
+   return true;
+}
 
 bool crypt_file_get(const char * pszFile, vsstring & str, const char * pszSalt)
 {
@@ -97,6 +100,21 @@ bool crypt_file_get(const char * pszFile, vsstring & str, const char * pszSalt)
    if(memoryEncrypt.get_size() <= 0)
       return false;
    crypt_decrypt(str, memoryEncrypt, pszSalt);
+   return true;
+}
+
+bool crypt_encrypt(simple_memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt)
+{
+   simple_memory memoryDecrypt;
+   memoryDecrypt.FromAsc(pszDecrypt);
+   return crypt_encrypt(storageEncrypt, memoryDecrypt, pszSalt);
+}
+
+bool crypt_file_set(const char * pszFile, const char * pszData, const char * pszSalt)
+{
+   simple_memory memoryEncrypt;
+   crypt_encrypt(memoryEncrypt, pszData, pszSalt);
+   file_put_contents_dup(pszFile, memoryEncrypt);
    return true;
 }
 
@@ -111,7 +129,9 @@ spa_login::spa_login()
    m_password.set_parent(this);
    m_tap.set_parent(this);
 
+
 }
+
 
 
 spa_login::~spa_login()
@@ -126,6 +146,38 @@ void spa_login::callback::login_result(e_result eresult)
 
 }
 
+
+void spa_login::initialize()
+{
+
+   crypt_file_get(dir::usersystemappdata(dir::default_os_user_path_prefix(), "license_auth", "00001.data"), m_editUser.m_strText, "");
+
+   crypt_file_get(dir::default_userappdata(dir::default_os_user_path_prefix(), m_editUser.m_strText, "license_auth/00002.data"), m_strPasshash, calc_key_hash());
+
+}
+
+
+vsstring spa_login::calc_key_hash()
+{
+   if(m_strKeyHash.has_char())
+      return m_strKeyHash;
+/*#if !core_level_1 && !core_level_2
+   ::SetDllDirectoryA(System.get_ca2_module_folder());
+#endif
+   HMODULE hmoduleSalt = ::LoadLibraryA("salt.dll");
+   SALT salt = (SALT) ::GetProcAddress(hmoduleSalt, "salt");
+   stringa straSource;
+   if(m_loginthread.m_strUsername.has_char())
+   {
+      m_loginthread.m_strKeyHash = salt(get_app(), m_loginthread.m_strUsername, straSource);
+      return m_loginthread.m_strKeyHash;
+   }
+   else */
+   {
+      m_strKeyHash = "ca2t12n";
+      return "ca2t12n";
+   }
+}
 
 
 void spa_login::on_action(const char * pszId)
@@ -411,9 +463,6 @@ void spa_login::login_result(e_result eresult)
 
 }
 
-void NESSIEinit(struct NESSIEstruct * const structpointer);
-void NESSIEadd(const unsigned char * const source, unsigned long sourceBits, struct NESSIEstruct * const structpointer);
-void NESSIEfinalize(struct NESSIEstruct * const structpointer, unsigned char * const result);
 
 vsstring crypt_nessie(const char * psz)
 {
@@ -476,3 +525,155 @@ vsstring crypt_nessie(const char * psz)
    }
 
 */
+
+
+
+void spa_login::authentication_succeeded()
+{
+
+   vsstring strUsername = m_editUser.m_strText;
+   vsstring strPasshash = m_strPasshash;
+   vsstring strPassword = m_password.m_strText;
+
+   vsstring strUsernamePrevious;
+   vsstring strPasshashPrevious;
+   crypt_file_get(dir::usersystemappdata(dir::default_os_user_path_prefix(), "license_auth", "00001.data"), strUsernamePrevious, "");
+   crypt_file_get(dir::default_userappdata(dir::default_os_user_path_prefix(), strUsernamePrevious, "license_auth/00002.data"), strPasshashPrevious, calc_key_hash());
+
+   if((strUsername.has_char() && strPasshash.has_char())
+   && (strUsernamePrevious != strUsername || strPasshashPrevious != strPasshash))
+   {
+      crypt_file_set(dir::usersystemappdata(dir::default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "");
+      crypt_file_set(dir::default_userappdata(dir::default_os_user_path_prefix(), strUsername, "license_auth/00002.data"), strPasshash, calc_key_hash());
+      /*if(strPassword.has_char())
+      {
+         string strSalt = System.crypt().v5_get_password_salt();
+         System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00005.data"), strSalt, calc_key_hash(), get_app());
+         string strPasshash2 = System.crypt().v5_get_password_hash(strSalt, strPassword);
+         System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00010.data"), strPasshash2, calc_key_hash(), get_app());
+      }*/
+   }
+   /*if(m_loginthread.m_strLicense.has_char())
+   {
+      stringa straLicense;
+      straLicense.add(m_loginthread.m_strValidUntil);
+      straLicense.add(System.datetime().international().get_gmt_date_time());
+      System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/" + m_loginthread.m_strLicense + ".data"), straLicense.implode(";"), calc_ca2_hash(), get_app());
+   }*/
+
+}
+
+void spa_login::authentication_failed()
+{
+
+}
+
+
+
+bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, const char * pszSalt)
+{
+   DATA_BLOB DataIn;
+   DATA_BLOB DataOut;
+
+   if(pszSalt == NULL)
+      pszSalt = "";
+
+   DATA_BLOB DataSalt;
+   simple_memory memorySalt;
+   memorySalt.from_string(pszSalt);
+   DataSalt.pbData = (BYTE *) memorySalt.get_data();
+   DataSalt.cbData = (DWORD) memorySalt.get_size();
+
+   //--------------------------------------------------------------------
+   // Initialize the DataIn structure.
+
+   DataIn.pbData = (BYTE *) storageEncrypt.get_data();
+   DataIn.cbData = (DWORD) storageEncrypt.get_size();
+
+   wchar_t * lpwsz = NULL;
+
+   //--------------------------------------------------------------------
+   //  Begin protect phase. Note that the encryption key is created
+   //  by the function and is not passed.
+
+   if(CryptUnprotectData(
+      &DataIn,
+      NULL, // A description string
+                                          // to be included with the
+                                          // encrypted data.
+      &DataSalt,                               // Optional entropy not used.
+      NULL,                               // Reserved.
+      NULL,                               // Pass NULL for the
+                                          // prompt structure.
+      0,
+      &DataOut))
+   {
+//      TRACE("crypt::decrypt The encryption phase worked. \n");
+      storageDecrypt.allocate(DataOut.cbData);
+      memcpy(storageDecrypt.get_data(), DataOut.pbData, DataOut.cbData);
+      LocalFree(lpwsz);
+      LocalFree(DataOut.pbData);
+      return true;
+   }
+   else
+   {
+      DWORD dwLastError = GetLastError();
+  //    TRACELASTERROR();
+    //  TRACE("crypt::decrypt Decryption error! (1)");
+      return false;
+   }
+}
+
+bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, const char * pszSalt)
+{
+   DATA_BLOB DataIn;
+   DATA_BLOB DataOut;
+
+   if(pszSalt == NULL)
+      pszSalt = "";
+
+   DATA_BLOB DataSalt;
+   simple_memory memorySalt;
+   memorySalt.from_string(pszSalt);
+   DataSalt.pbData = (BYTE *) memorySalt.get_data();
+   DataSalt.cbData = (DWORD) memorySalt.get_size();
+
+
+   //--------------------------------------------------------------------
+   // Initialize the DataIn structure.
+
+   DataIn.pbData = (BYTE *) storageDecrypt.get_data();
+   DataIn.cbData = (DWORD) storageDecrypt.get_size();
+
+//      wchar_t * lpwsz = NULL;
+
+   //--------------------------------------------------------------------
+   //  Begin protect phase. Note that the encryption key is created
+   //  by the function and is not passed.
+
+   if(CryptProtectData(
+         &DataIn,
+         NULL, // A description string
+                                             // to be included with the
+                                             // encrypted data.
+         &DataSalt,                               // Optional entropy not used.
+         NULL,                               // Reserved.
+         NULL,                               // Pass NULL for the
+                                             // prompt structure.
+         0,
+         &DataOut))
+   {
+      //TRACE("crypt::encrypt The encryption phase worked. \n");
+      storageEncrypt.allocate(DataOut.cbData);
+      memcpy(storageEncrypt.get_data(), DataOut.pbData, DataOut.cbData);
+      LocalFree(DataOut.pbData);
+      return true;
+   }
+   else
+   {
+      DWORD dwLastError = GetLastError();
+      //TRACE("crypt::encrypt Encryption error! (1)");
+         return false;
+   }
+
+}

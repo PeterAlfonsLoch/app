@@ -365,13 +365,13 @@
     <ClInclude Include=".\simple_ui\simple_edit_box.h">
       <Filter>Header Files\simple_ui</Filter>
     </ClInclude>
-    <ClInclude Include="simple_memory.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
     <ClInclude Include="c\base64.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="c\nessie.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\simple_memory.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
   </ItemGroup>
@@ -671,6 +671,9 @@
       <Filter>Source Files\c</Filter>
     </ClCompile>
     <ClCompile Include="c\base64.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="c\whirpool.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
   </ItemGroup>

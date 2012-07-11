@@ -86,6 +86,14 @@ bool file_exists_dup(const char * path1)
 
 }
 
+bool file_put_contents_dup(const char * path, const simple_memory & memory)
+{
+   
+   return file_put_contents_dup(path, memory.m_psz, memory.m_iSize);
+
+}
+
+
 bool file_put_contents_dup(const char * path, const char * contents, int len)
 {
 

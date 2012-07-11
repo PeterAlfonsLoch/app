@@ -1,4 +1,4 @@
-#include "_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
+#include "c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
 
 
 #pragma once
@@ -17,7 +17,7 @@
 #endif
 
 
-#include "version.h"
+#include "c/version.h"
 
 
 #include "nodeapp/operational_system/get_platform.h"
@@ -40,7 +40,7 @@
 
 #include "std_file.h"
 
-#include "bsdiff/bsdiff.h"
+#include "c/bsdiff/bsdiff.h"
 
 
 int _c_lock_is_active(const char * pszName);

@@ -33,6 +33,8 @@ public:
    vsstring             m_strPasshash;
 
    callback *           m_pcallback;
+   vsstring             m_strKeyHash;
+
    
    spa_login();
    virtual ~spa_login();
@@ -40,17 +42,22 @@ public:
 
    virtual void on_action(const char * pszId);
 
-
+   void initialize();
+      
    void start_login();
 
    static DWORD WINAPI thread_proc_login(LPVOID lpParam);
 
    e_result login();
 
+   vsstring calc_key_hash();
+
 
    virtual void login_result(e_result eresult);
 
+   virtual void authentication_succeeded();
 
+   virtual void authentication_failed();
 
 
 };

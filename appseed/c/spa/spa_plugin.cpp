@@ -116,6 +116,16 @@ namespace spa
    void plugin::start_ca2()
    {
 
+      if(!m_bLogged)
+      {
+         
+         m_bLogin = true;
+         m_login.m_bVisible = false;
+         m_bLogged = calc_logged();
+
+         return;
+
+      }
 
       if(is_installation_lock_file_locked())
       {
@@ -672,6 +682,13 @@ install:
    bool plugin::calc_logged()
    {
       return false;
+   }
+
+   void plugin::login_result(spa_login::e_result eresult)
+   {
+
+
+
    }
 
 

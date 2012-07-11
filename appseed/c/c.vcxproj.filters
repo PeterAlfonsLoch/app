@@ -335,6 +335,15 @@
     <ClInclude Include="simple_ui\simple_ui.h">
       <Filter>Header Files\simple_ui</Filter>
     </ClInclude>
+    <ClInclude Include="c\base64.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\nessie.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\simple_memory.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -627,6 +636,18 @@
     </ClCompile>
     <ClCompile Include="simple_ui\simple_ui.cpp">
       <Filter>Source Files\simple_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="c\base64.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="spa\spa_login.cpp">
+      <Filter>Source Files\spa</Filter>
+    </ClCompile>
+    <ClCompile Include="c\simple_memory.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="c\whirpool.cpp">
+      <Filter>Source Files\c</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

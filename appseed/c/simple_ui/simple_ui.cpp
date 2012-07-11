@@ -101,7 +101,53 @@ void simple_ui::draw_children(HDC hdc)
 
 }
 
+void simple_ui::on_char(int ch)
+{
+   
+   get_focus()->on_char(ch);
+   
+}
 
+
+void simple_ui::on_lbutton_down(int x, int y)
+{
+   
+   for(int i = 0; i < m_uiptra.get_count(); i++)
+   {
+
+      if(x >= m_uiptra[i]->m_rect.left
+      && x <= m_uiptra[i]->m_rect.right
+      && y >= m_uiptra[i]->m_rect.top
+      && y <= m_uiptra[i]->m_rect.bottom)
+      {
+         
+         m_uiptra[i]->on_lbutton_down(x, y);
+
+      }
+
+   }
+
+}
+   
+void simple_ui::on_lbutton_up(int x, int y)
+{
+
+   for(int i = 0; i < m_uiptra.get_count(); i++)
+   {
+
+      if(x >= m_uiptra[i]->m_rect.left
+      && x <= m_uiptra[i]->m_rect.right
+      && y >= m_uiptra[i]->m_rect.top
+      && y <= m_uiptra[i]->m_rect.bottom)
+      {
+         
+         m_uiptra[i]->on_lbutton_up(x, y);
+
+      }
+
+   }
+
+}
 
 
 void simple_ui::on_action(const char * pszId)

@@ -4009,9 +4009,6 @@
     <ClCompile Include="ca4\ca4_twit.cpp">
       <Filter>Source Files\ca4</Filter>
     </ClCompile>
-    <ClCompile Include="ca4\ca4_whirlpool.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
     <ClCompile Include="collection\_array_app_copy.cpp">
       <Filter>Source Files\collection</Filter>
     </ClCompile>

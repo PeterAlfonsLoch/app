@@ -17,7 +17,8 @@ namespace spa
 
    class CLASS_DECL_c plugin :
       virtual public ::hotplugin::plugin,
-      virtual public ::simple_ui
+      virtual public ::simple_ui,
+      virtual public ::spa_login::callback
    {
    public:
 
@@ -26,7 +27,9 @@ namespace spa
       canvas         m_canvas;
       DWORD          m_dwLastInstallingCheck;
       DWORD          m_dwLastRestart;
+      // logged in ? alatel comments
       bool           m_bLogged;
+      // in login process, login screen should be shown
       bool           m_bLogin;
       
 
@@ -54,6 +57,8 @@ namespace spa
       virtual void on_paint(HDC hdcWindow, LPCRECT lprect);
 
       virtual void on_prepare_memory();
+
+      virtual void login_result(spa_login::e_result eresult);
 
 #ifdef WINDOWS
 
