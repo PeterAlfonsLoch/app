@@ -31,7 +31,7 @@ void simple_edit_box::draw_this(HDC hdc)
 
    Gdiplus::SolidBrush b(Gdiplus::Color(223, 84, 84, 77));
 
-   Gdiplus::Font f(L"Geneva", height(&m_rect), 0, Gdiplus::UnitPixel);
+   Gdiplus::Font f(L"Geneva", height(&m_rect) - 4, 0, Gdiplus::UnitPixel);
 
    wchar_t * pwsz = utf8_to_16(m_strText);
 
@@ -42,15 +42,37 @@ void simple_edit_box::draw_this(HDC hdc)
 }
 
 
-
-
-
-
-
-
-
-void simple_edit_box::on_char(int ch)
+char to_upper(int ch)
 {
+   if(ch >= 'a' && ch <= 'z')
+   {
+      ch = ch - 'a' + 'A';
+   }
+   return ch;
+}
+
+
+char * to_upper(char * pchParam)
+{
+   char * pch = pchParam;
+   while(*pch == '\0')
+   {
+      *pch = to_upper(*pch);
+      pch++;
+   }
+   return pchParam;
+}
+
+
+
+
+
+
+
+
+void simple_edit_box::on_char(int ch, UINT uScan)
+{
+
    if(ch == VK_TAB)
    {
       focus_next();
@@ -88,12 +110,103 @@ void simple_edit_box::on_char(int ch)
    }
    else 
    {
-      m_strText = m_strText.substr(0, m_iPos) + vsstring(ch) + m_strText.substr(m_iPos + 1);
+
+      /*int chInsert;
+
+      if((GetKeyState(VK_CAPITAL) & 0x0001) != 0)
+      {
+         if((GetKeyState(VK_SHIFT) & 0x80000000) != 0)
+         {
+            if(ch == 2)
+               chInsert = '@';
+            else
+               chInsert = tolower(ch);
+         }
+         else
+         {
+            chInsert = toupper(ch);
+         }
+      }
+      else
+      {
+         if((GetKeyState(VK_SHIFT) & 0x80000000) != 0)
+         {
+            if(ch == 2)
+               chInsert = '@';
+            else
+               chInsert = toupper(ch);
+         }
+         else
+         {
+            chInsert = tolower(ch);
+         }
+      }
+      
+      vsstring str(chInsert);
+      
+      */
+
+      wchar_t wsz[32];
+
+      BYTE baState[256];
+
+      GetKeyboardState(baState);
+
+      if((GetKeyState(VK_SHIFT) & 0x80000000) != 0)
+      {
+         baState[VK_SHIFT] |= 0x80;
+      }
+
+
+      int iRet = ToUnicodeEx(ch, uScan, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
+
+      if(iRet > 0)
+      {
+
+         wsz[iRet] = L'\0';
+
+         vsstring str;
+
+         str.attach(utf16_to_8(wsz));
+
+         if((GetKeyState(VK_CAPITAL) & 0x0001) != 0)
+         {
+            if((GetKeyState(VK_SHIFT) & 0x80000000) != 0)
+            {
+               to_lower(str.m_psz);
+            }
+            else
+            {
+               to_upper(str.m_psz);
+            }
+         }
+         else
+         {
+            if((GetKeyState(VK_SHIFT) & 0x80000000) != 0)
+            {
+               to_upper(str.m_psz);
+            }
+            else
+            {
+               to_lower(str.m_psz);
+            }
+         }
+
+         m_strText = m_strText.substr(0, m_iPos) + str + m_strText.substr(m_iPos + 1);
+
+      }
+
+      m_iPos++;
+
    }
+
 }
 
 void simple_edit_box::on_lbutton_down(int x, int y)
 {
+   
+   set_focus(this);
+
 }
    
 void simple_edit_box::on_lbutton_up(int x, int y)

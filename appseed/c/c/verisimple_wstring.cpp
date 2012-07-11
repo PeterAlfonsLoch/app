@@ -84,7 +84,7 @@ verisimple_wstring::~verisimple_wstring()
 wchar_t * verisimple_wstring::alloc(count iCount)
 {
 
-   if(iCount < get_data()->m_iAllocation)
+   if(m_pwsz != NULL && iCount < get_data()->m_iAllocation)
       return m_pwsz;
 
    wstring_data::free(m_pwsz);
@@ -102,7 +102,7 @@ verisimple_wstring & verisimple_wstring::operator = (const verisimple_wstring & 
    if(this != &wstr)
    {
 
-      if(get_data()->m_iAllocation >= (wstr.length() + 1))
+      if(m_pwsz != NULL && get_data()->m_iAllocation >= (wstr.length() + 1))
       {
 
          memcpy_dup(m_pwsz, wstr.m_pwsz, (wstr.length() + 1) * sizeof(wchar_t));

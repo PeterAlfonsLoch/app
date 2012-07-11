@@ -130,6 +130,53 @@ spa_login::spa_login()
    m_tap.set_parent(this);
 
 
+   m_rect.left = 49;
+   m_rect.top = 49;
+   m_rect.right = m_rect.left + 840;
+   m_rect.bottom = m_rect.top + 840;
+
+
+   int x1 = m_rect.left + 49; 
+   int x2 = m_rect.right - 49;
+   int h1 = 23;
+   int pad = 5;
+
+   m_labelUser.m_rect.left = x1;
+   m_labelUser.m_rect.right = x2;
+   m_editUser.m_rect.left = x1;
+   m_editUser.m_rect.right = x2;
+   m_labelPassword.m_rect.left = x1;
+   m_labelPassword.m_rect.right = x2;
+   m_password.m_rect.left = x1;
+   m_password.m_rect.right = x2;
+   m_tap.m_rect.left = x1;
+   m_tap.m_rect.right = x2;
+
+   int y = m_rect.top + 49;
+   m_labelUser.m_rect.top = y;
+   y += h1;
+   m_labelUser.m_rect.bottom = y;
+   y += pad;
+   m_editUser.m_rect.top = y;
+   y += h1;
+   m_editUser.m_rect.bottom = y;
+   y += pad;
+   m_labelPassword.m_rect.top = y;
+   y += h1;
+   m_labelPassword.m_rect.bottom = y;
+   y += pad;
+   m_password.m_rect.top = y;
+   y += h1;
+   m_password.m_rect.bottom = y;
+   y += pad;
+   m_tap.m_rect.top = y;
+   y += h1;
+   m_tap.m_rect.bottom = y;
+
+   m_labelUser.m_strText = "User:";
+   m_labelPassword.m_strText = "Password:";
+   m_tap.m_strText = "Enter";
+
 }
 
 
@@ -295,6 +342,12 @@ DWORD WINAPI spa_login::thread_proc_login(LPVOID lpParam)
 spa_login::e_result spa_login::login()
 {
 
+   if(m_editUser.m_strText.is_empty())
+      return result_fail;
+
+   if(m_password.m_strText.is_empty() && m_strPasshash.is_empty())
+      return result_fail;
+
    vsstring strLoginUrl("https://api.ca2.cc/account/login");
 
    XDoc doc;
@@ -377,6 +430,8 @@ spa_login::e_result spa_login::login()
 
    //TRACE(psz);
 
+
+   memory.allocate(i);
 
    vsstring strHex;
    memory_to_hex(strHex, memory);
@@ -543,6 +598,8 @@ void spa_login::authentication_succeeded()
    if((strUsername.has_char() && strPasshash.has_char())
    && (strUsernamePrevious != strUsername || strPasshashPrevious != strPasshash))
    {
+      dir::mk(dir::usersystemappdata(dir::default_os_user_path_prefix(), "license_auth", NULL));
+      dir::mk(dir::default_userappdata(dir::default_os_user_path_prefix(), strUsername, "license_auth"));
       crypt_file_set(dir::usersystemappdata(dir::default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "");
       crypt_file_set(dir::default_userappdata(dir::default_os_user_path_prefix(), strUsername, "license_auth/00002.data"), strPasshash, calc_key_hash());
       /*if(strPassword.has_char())

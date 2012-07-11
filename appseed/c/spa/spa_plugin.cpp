@@ -2,6 +2,14 @@
 #include <gdiplus.h>
 
 
+#ifndef GET_X_LPARAM
+#define GET_X_LPARAM(lp)                        ((int)(short)LOWORD(lp))
+#endif
+#ifndef GET_Y_LPARAM
+#define GET_Y_LPARAM(lp)                        ((int)(short)HIWORD(lp))
+#endif
+
+
 #ifdef LINUX
 #include "c/linux/c_os_cross_win_gdi_internal.h"
 #endif
@@ -29,11 +37,16 @@ namespace spa
 
       m_login.set_parent(this);
 
+      m_login.m_pcallback = this;
+
       m_iHealingSurface       = 0;
       m_iEdge                 = -1;
       m_bAppStarted           = false;
       m_pbReady               = NULL;
       m_dwTimeout             = (1984 + 1977) * 11;
+
+      m_bLogged               = false;
+      m_bLogin                = false;
 
    }
 
@@ -116,8 +129,13 @@ namespace spa
    void plugin::start_ca2()
    {
 
+
+      
+
       if(!m_bLogged)
       {
+
+         //debug_box("plugin::start_ca2 not logged", "not logged", 0);
          
          m_bLogin = true;
          m_login.m_bVisible = false;
@@ -312,7 +330,7 @@ install:
       HFONT hfontOld = NULL;
       HFONT hfont = NULL;
 
-      if(m_login.m_bVisible)
+      if(m_bLogin)
       {
          m_login.draw(hdc);
       }
@@ -378,7 +396,12 @@ install:
 
 #endif
 
-      on_bare_paint(hdcWindow, lprect);
+      if(!m_bLogin || !m_login.m_bVisible)
+      {
+       
+         on_bare_paint(hdcWindow, lprect);
+
+      }
 
 
    }
@@ -427,7 +450,24 @@ install:
             return 0;
          default:
             {
-               if((uiMessage == WM_LBUTTONUP
+               if(m_bLogin)
+               {
+
+                  if(uiMessage == WM_LBUTTONDOWN)
+                  {
+                     m_login.on_lbutton_down((short)GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left, (short)GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top);
+                  }
+                  else if(uiMessage == WM_LBUTTONUP)
+                  {
+                     m_login.on_lbutton_up((short)GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left, (short)GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top);
+                  }
+                  else if(uiMessage == WM_KEYUP)
+                  {
+                     m_login.on_char(static_cast<UINT>(wparam), static_cast<UINT>(lparam));
+                  }
+
+               }
+               else if((uiMessage == WM_LBUTTONUP
                   || uiMessage == WM_RBUTTONUP
                   || uiMessage == WM_MBUTTONUP) &&
                   is_installing_ca2())
@@ -681,12 +721,37 @@ install:
 
    bool plugin::calc_logged()
    {
-      return false;
+      
+      m_login.initialize();
+
+      m_login.start_login();
+
+      return m_bLogged;
+
    }
 
    void plugin::login_result(spa_login::e_result eresult)
    {
+      
+      if(eresult == spa_login::result_ok)
+      {
 
+         m_bLogged   = true;
+         m_bLogin    = false;
+
+         start_ca2();
+
+      }
+      else
+      {
+
+         m_bLogin    = true;
+         set_focus(&m_login.m_editUser);
+         m_login.m_editUser.m_strText = "";
+         m_login.m_password.m_strText = "";
+         m_login.m_bVisible = true;
+
+      }
 
 
    }

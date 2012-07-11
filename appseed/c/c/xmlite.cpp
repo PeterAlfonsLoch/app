@@ -549,7 +549,7 @@ LPSTR _tagXMLNode::LoadProcessingInstrunction( LPCSTR pszXml, LPPARSEINFO pi /*=
 
 	// find the end of pi
 	LPSTR end = _tcsenistr( pszXml, szXMLPIClose, sizeof(szXMLPIClose)-1, pi ? pi->escape_value : 0 );
-	if( end == NULL )
+	if( end == NULL || *end == '\0')
 		return NULL;
 
 	// process pi

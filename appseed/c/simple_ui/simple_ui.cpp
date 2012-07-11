@@ -59,9 +59,9 @@ void simple_ui::draw(HDC hdc)
    if(m_bVisible)
    {
 
-      draw_children(hdc);
-
       draw_this(hdc);
+
+      draw_children(hdc);
 
    }
 
@@ -74,7 +74,7 @@ void simple_ui::draw_this(HDC hdc)
 
    graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
-   Gdiplus::SolidBrush br(Gdiplus::Color(84, 84, 84, 77));
+   Gdiplus::SolidBrush br(Gdiplus::Color(184 + 21, 255, 255, 240));
 
    graphics2.FillRectangle(&br, m_rect.left, m_rect.top, width(&m_rect), height(&m_rect));
 
@@ -83,7 +83,7 @@ void simple_ui::draw_this(HDC hdc)
 void simple_ui::draw_children(HDC hdc)
 {
    
-   for(int i = 0; i = m_uiptra.get_count(); i++)
+   for(int i = 0; i < m_uiptra.get_count(); i++)
    {
       
       try
@@ -101,10 +101,10 @@ void simple_ui::draw_children(HDC hdc)
 
 }
 
-void simple_ui::on_char(int ch)
+void simple_ui::on_char(int ch, UINT uScan)
 {
    
-   get_focus()->on_char(ch);
+   get_focus()->on_char(ch, uScan);
    
 }
 
@@ -174,7 +174,23 @@ bool simple_ui::is_focusable()
 void simple_ui::focus_next()
 {
 
+   int iFind = m_puiParent->m_uiptra.get_count() - 1;
+
    for(int i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
+   {
+      
+      if(m_puiParent->m_uiptra[i] == this)
+      {
+         
+         iFind = i;
+
+         break;
+
+      }
+
+   }
+
+   for(int i = iFind + 1; i < m_puiParent->m_uiptra.get_count(); i++)
    {
       
       if(m_puiParent->m_uiptra[i]->is_focusable())
@@ -182,7 +198,21 @@ void simple_ui::focus_next()
          
          m_puiParent->set_focus(m_puiParent->m_uiptra[i]);
 
-         break;
+         return;
+
+      }
+
+   }
+
+   for(int i = 0; i <= iFind; i++)
+   {
+      
+      if(m_puiParent->m_uiptra[i]->is_focusable())
+      {
+         
+         m_puiParent->set_focus(m_puiParent->m_uiptra[i]);
+
+         return;
 
       }
 

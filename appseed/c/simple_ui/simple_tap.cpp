@@ -42,7 +42,7 @@ void simple_tap::draw_this(HDC hdc)
    Gdiplus::SolidBrush b(Gdiplus::Color(223, 49, 84, 23));
 #endif
 
-   Gdiplus::Font f(L"Geneva", height(&m_rect), 0, Gdiplus::UnitPixel);
+   Gdiplus::Font f(L"Geneva", height(&m_rect) - 4, 0, Gdiplus::UnitPixel);
 
    wchar_t * pwsz = utf8_to_16(m_strText);
 
@@ -54,7 +54,7 @@ void simple_tap::draw_this(HDC hdc)
 
 
 
-void simple_tap::on_char(int ch)
+void simple_tap::on_char(int ch, UINT uScan)
 {
    
    if(ch == VK_RETURN || ch == VK_SPACE)
@@ -76,6 +76,8 @@ void simple_tap::on_char(int ch)
 void simple_tap::on_lbutton_down(int x, int y)
 {
    
+   set_focus(this);
+
    m_bDown = true;
 
 }

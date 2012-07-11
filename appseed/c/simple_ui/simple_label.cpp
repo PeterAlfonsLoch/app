@@ -29,7 +29,7 @@ void simple_label::draw_this(HDC hdc)
    Gdiplus::SolidBrush b(Gdiplus::Color(223, 49, 84, 23));
 #endif
 
-   Gdiplus::Font f(L"Geneva", height(&m_rect), 0, Gdiplus::UnitPixel);
+   Gdiplus::Font f(L"Geneva", height(&m_rect) - 4, 0, Gdiplus::UnitPixel);
 
    wchar_t * pwsz = utf8_to_16(m_strText);
 

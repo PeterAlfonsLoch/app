@@ -27,7 +27,7 @@ public:
    virtual void draw_children(HDC hdc);
 
 
-   virtual void on_char(int ch);
+   virtual void on_char(int ch, UINT uScan);
    virtual void on_lbutton_down(int x, int y);
    virtual void on_lbutton_up(int x, int y);
 
