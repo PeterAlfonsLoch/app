@@ -6,8 +6,7 @@
 #endif
 
 
-simple_tap::simple_tap(simple_ui * puiParent) :
-   simple_ui(puiParent)
+simple_tap::simple_tap()
 {
    
    m_strId = "submit";

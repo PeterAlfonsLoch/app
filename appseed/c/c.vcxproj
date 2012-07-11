@@ -1252,7 +1252,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="c\_.cpp" />
     <ClCompile Include="c\_argcargv.cpp" />
     <ClCompile Include="c\_atol.cpp" />
-    <ClCompile Include="c\_initterm.cpp" />
     <ClCompile Include="c\_math.cpp" />
     <ClCompile Include="c\_mem.cpp" />
     <ClCompile Include="c\_printf.cpp" />

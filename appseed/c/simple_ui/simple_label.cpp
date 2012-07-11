@@ -5,8 +5,7 @@
 #endif
 
 
-simple_label::simple_label(simple_ui * puiParent) :
-   simple_ui(puiParent)
+simple_label::simple_label()
 {
    
 }

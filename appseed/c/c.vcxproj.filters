@@ -490,9 +490,6 @@
     <ClCompile Include="c\_atol.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="c\_initterm.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="c\_math.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>

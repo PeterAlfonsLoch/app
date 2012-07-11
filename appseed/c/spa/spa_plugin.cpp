@@ -24,9 +24,10 @@ void simple_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
 namespace spa
 {
 
-   plugin::plugin() :
-      m_login(this)
+   plugin::plugin()
    {
+
+      m_login.set_parent(this);
 
       m_iHealingSurface       = 0;
       m_iEdge                 = -1;
@@ -290,7 +291,7 @@ install:
       HDC hdc           = ::CreateCompatibleDC(hdcWindow);
       HBITMAP hbmpOld   =  (HBITMAP) ::SelectObject(hdc, (HGDIOBJ) hbmp);
 
-      ::BitBlt(hdc, 0, 0, cx, cy, hdcWindow, m_rect.left, m_rect.top, SRCCOPY);
+      ::BitBlt(hdc, 0, 0, cx, cy, hdcWindow, ::hotplugin::plugin::m_rect.left, ::hotplugin::plugin::m_rect.top, SRCCOPY);
 
 #else
 
@@ -340,7 +341,7 @@ install:
       POINT pointViewport;
       ::SetViewportOrgEx(hdc, 0, 0, &pointViewport);
       ::BitBlt(hdcWindow   , lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
-             hdc         , lprect->left - m_rect.left  , lprect->top - m_rect.top    , SRCCOPY);
+             hdc         , lprect->left - ::hotplugin::plugin::m_rect.left  , lprect->top - ::hotplugin::plugin::m_rect.top    , SRCCOPY);
 
       /*vsstring strx = itoa_dup(lprect->left);
       vsstring stry = itoa_dup(lprect->top);

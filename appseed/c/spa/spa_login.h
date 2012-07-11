@@ -4,16 +4,25 @@
 class CLASS_DECL_c spa_login :
    public simple_ui
 {
-
 public:
+
 
 
    enum e_result
    {
       result_ok,
       result_wrong_password,
+      result_fail,
+      result_registration_deferred,
    };
 
+   class CLASS_DECL_c callback
+   {
+   public:
+
+       virtual void login_result(e_result eresult);
+
+   };
 
    simple_label         m_labelUser;
    simple_edit_box      m_editUser;
@@ -22,8 +31,10 @@ public:
    simple_tap           m_tap;
 
    vsstring             m_strPasshash;
+
+   callback *           m_pcallback;
    
-   spa_login(simple_ui * puiParent);
+   spa_login();
    virtual ~spa_login();
 
 

@@ -659,6 +659,7 @@
     <ClInclude Include="bsdiff\bzlib_private.h" />
     <ClInclude Include="cpu_architecture.h" />
     <ClInclude Include="c\atol.h" />
+    <ClInclude Include="c\base64.h" />
     <ClInclude Include="c\c.h" />
     <ClInclude Include="c\ca2_types.h" />
     <ClInclude Include="c\conv.h" />
@@ -686,6 +687,7 @@
     <ClInclude Include="c\mktime.h" />
     <ClInclude Include="c\mutex_lock.h" />
     <ClInclude Include="c\natural.h" />
+    <ClInclude Include="c\nessie.h" />
     <ClInclude Include="c\printf.h" />
     <ClInclude Include="c\simple_app.h" />
     <ClInclude Include="c\simple_array.h" />
@@ -719,6 +721,7 @@
     <ClInclude Include="os\os_process.h" />
     <ClInclude Include=".\simple_ui\simple_tap.h" />
     <ClInclude Include=".\simple_ui\simple_edit_box.h" />
+    <ClInclude Include="simple_memory.h" />
     <ClInclude Include="simple_ui\simple_label.h" />
     <ClInclude Include="simple_ui\simple_password.h" />
     <ClInclude Include="simple_ui\simple_ui.h" />
@@ -804,6 +807,7 @@
     <ClInclude Include=".\hotplugin\hotplugin_container_launcher.h">
       <FileType>CppCode</FileType>
     </ClInclude>
+    <ClCompile Include="c\base64.cpp" />
     <ClCompile Include="c\conv.cpp" />
     <ClCompile Include="c\cpu_architecture.cpp" />
     <ClCompile Include="c\c_c.cpp" />
@@ -823,6 +827,7 @@
     <ClCompile Include="c\simple_critical_section.cpp" />
     <ClCompile Include="c\simple_event.cpp" />
     <ClCompile Include="c\simple_list.cpp" />
+    <ClCompile Include="c\simple_memory.cpp" />
     <ClCompile Include="c\simple_mutex.cpp" />
     <ClCompile Include="c\simple_obj.cpp" />
     <ClCompile Include="c\simple_shell_launcher.cpp" />
@@ -844,7 +849,6 @@
     <ClCompile Include="c\_.cpp" />
     <ClCompile Include="c\_argcargv.cpp" />
     <ClCompile Include="c\_atol.cpp" />
-    <ClCompile Include="c\_initterm.cpp" />
     <ClCompile Include="c\_math.cpp" />
     <ClCompile Include="c\_mem.cpp" />
     <ClCompile Include="c\_printf.cpp" />

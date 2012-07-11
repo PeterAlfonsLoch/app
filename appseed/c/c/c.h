@@ -36,7 +36,7 @@ namespace ca
 #include "nodeapp/operational_system/_.h"
 
 
-#include "vms/vms.h"
+#include "c/vms/vms.h"
 
 
 #include "version.h"
@@ -46,6 +46,8 @@ namespace ca
 
 
 #include "natural.h"
+
+#include "nessie.h"
 
 
 #define if_then(p, q)  ((!(p))||(!(q)))
@@ -119,6 +121,8 @@ extern "C"
 #include "simple_critical_section.h"
 
 #include "library.h"
+#include "simple_memory.h"
+#include "base64.h"
 #include "hotplugin/hotplugin.h"
 #include "simple_ui/simple_ui.h"
 #include "spa/spa.h"

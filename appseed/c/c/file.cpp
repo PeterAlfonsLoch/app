@@ -158,6 +158,37 @@ const char * file_get_contents_dup(const char * path)
 
 }
 
+bool file_get_memory_dup(simple_memory & memory, const char * path)
+{
+
+#ifdef WINDOWS
+   memory.allocate(0);
+   HANDLE hfile = ::CreateFile(path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+   if(hfile == INVALID_HANDLE_VALUE)
+      return false;
+   DWORD dwSizeHigh;
+   ::count  count = ::GetFileSize(hfile, &dwSizeHigh);
+   memory.allocate(count);
+   DWORD dwRead;
+   ::ReadFile(hfile, memory.m_psz, memory.m_iSize, &dwRead, NULL);
+   ::CloseHandle(hfile);
+   return true;
+
+#else
+
+   FILE * f = fopen(path, "rb");
+   if(f == NULL)
+      return NULL;
+   int iSize = fsize_dup(f);
+   char * psz = (char *) _ca_alloc(iSize + 1);
+   int iRead = fread(psz, iSize, 1, f);
+   psz[iSize] = '\0';
+   fclose(f);
+   return psz;
+
+#endif
+
+}
 
 
 int to_hex_char(int i);
