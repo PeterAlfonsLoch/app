@@ -209,6 +209,7 @@ vsstring dir::path(const char * path1, const char * path2, const char * path3, c
       }
       str += strAdd;
    }
+   str.replace("/", "\\");
    return str;
 }
 

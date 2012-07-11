@@ -473,27 +473,39 @@ spa_login::e_result spa_login::login()
 
       XDoc doc;
 
-      doc.Load(strResponse);
-
-      if(doc.GetRoot()->name == "response")
+      if(doc.Load(strResponse))
       {
-         if(doc.GetRoot()->GetAttrValue("id") == "auth" && vsstring(doc.GetRoot()->GetAttrValue("passhash")).has_char() && vsstring(doc.GetRoot()->GetAttrValue("secureuserid")).has_char())
+
+         if(doc.GetRoot()->name == "response")
          {
-            m_strPasshash = doc.GetRoot()->GetAttrValue("passhash");
-            eresult = result_ok;
-         }
-         else if(doc.GetRoot()->GetAttrValue("id") == "registration_deferred")
-         {
-            eresult = result_registration_deferred;
+            // Heuristical check
+            if(stricmp(doc.GetRoot()->GetAttrValue("id"), "auth") == 0 && vsstring(doc.GetRoot()->GetAttrValue("passhash")).get_length() > 16 && atoi(doc.GetRoot()->GetAttrValue("secureuserid")) > 0)
+            {
+               m_strPasshash = doc.GetRoot()->GetAttrValue("passhash");
+               eresult = result_ok;
+            }
+            else if(doc.GetRoot()->GetAttrValue("id") == "registration_deferred")
+            {
+               eresult = result_registration_deferred;
+            }
+            else
+            {
+               eresult = result_fail;
+            }
          }
          else
          {
+         
             eresult = result_fail;
+
          }
+
       }
       else
       {
+         
          eresult = result_fail;
+
       }
 
    }
@@ -508,6 +520,20 @@ spa_login::e_result spa_login::login()
 
 void spa_login::login_result(e_result eresult)
 {
+
+   if(eresult == result_ok)
+   {
+      
+      authentication_succeeded();
+
+   }
+   else
+   {
+      
+      authentication_failed();
+
+   }
+
 
    if(m_pcallback != NULL)
    {
