@@ -658,6 +658,7 @@
     <ClInclude Include="bsdiff\bzlib.h" />
     <ClInclude Include="bsdiff\bzlib_private.h" />
     <ClInclude Include="cpu_architecture.h" />
+    <ClInclude Include="crypt.h\crypt.h" />
     <ClInclude Include="c\atol.h" />
     <ClInclude Include="c\base64.h" />
     <ClInclude Include="c\c.h" />

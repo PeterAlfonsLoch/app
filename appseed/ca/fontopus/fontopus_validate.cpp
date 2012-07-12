@@ -3,6 +3,19 @@
 #include <openssl/engine.h>
 #include <openssl/err.h>
 
+bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt)
+{
+   
+   vsstring vsstr;
+
+   if(!crypt_file_get(pszFile, vsstr, pszSalt))
+      return false;
+
+   str = vsstr;
+
+   return true;
+
+}
 
 typedef string ( *SALT)(::ca::application *, const char * , stringa &);
 
@@ -79,7 +92,8 @@ namespace fontopus
       string strDir;
       string strUsername;
       string strPasshash;
-      System.crypt().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "", get_app());
+      //System.crypt().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "", get_app());
+      crypt_file_get(::dir::userappdata("license_auth/00001.data"), strUsername, "");
       m_loginthread.m_strUsername = strUsername;
       string strHost(pszRequestingParty);
 

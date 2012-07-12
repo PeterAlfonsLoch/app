@@ -60,6 +60,9 @@
     <Filter Include="Source Files\c">
       <UniqueIdentifier>{67f5274d-6338-473b-949d-77079a0e2008}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\crypt">
+      <UniqueIdentifier>{6fdfcb68-467e-4eec-9a44-b0e265ec38cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hotplugin\hotplugin.h">
@@ -373,6 +376,9 @@
     </ClInclude>
     <ClInclude Include="c\simple_memory.h">
       <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="crypt.h\crypt.h">
+      <Filter>Header Files\crypt</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
