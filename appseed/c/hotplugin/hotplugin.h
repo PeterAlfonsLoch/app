@@ -23,7 +23,8 @@ namespace hotplugin
 
    enum e_message
    {
-
+      
+      message_alive = 1977,
       message_init = 1984,
       message_set_window,
       message_paint,
