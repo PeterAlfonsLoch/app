@@ -3,19 +3,6 @@
 #include <openssl/engine.h>
 #include <openssl/err.h>
 
-bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt)
-{
-   
-   vsstring vsstr;
-
-   if(!crypt_file_get(pszFile, vsstr, pszSalt))
-      return false;
-
-   str = vsstr;
-
-   return true;
-
-}
 
 typedef string ( *SALT)(::ca::application *, const char * , stringa &);
 
@@ -156,7 +143,7 @@ namespace fontopus
       }
 
       m_loginthread.m_strRequestingServer = strHost;
-      System.crypt().file_get(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00002.data"), strPasshash, calc_key_hash(), get_app());
+      crypt_file_get(::dir::userappdata("license_auth/00002.data"), strPasshash, calc_key_hash());
       if(strUsername.has_char() && strPasshash.has_char())
       {
 
@@ -325,9 +312,9 @@ namespace fontopus
       string strDir;
       string strUsername;
       string strPasshash;
-      System.crypt().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "", get_app());
+      crypt_file_get(::dir::userappdata("license_auth/00001.data"), strUsername, "");
       m_loginthread.m_strUsername = strUsername;
-      System.crypt().file_get(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00002.data"), strPasshash, calc_key_hash(), get_app());
+      crypt_file_get(::dir::userappdata("license_auth/00002.data"), strPasshash, calc_key_hash());
       if(strUsername.has_char() && strPasshash.has_char())
       {
 
@@ -1247,20 +1234,20 @@ namespace fontopus
 
       string strUsernamePrevious;
       string strPasshashPrevious;
-      System.crypt().file_get(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsernamePrevious, "", get_app());
-      System.crypt().file_get(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsernamePrevious, "license_auth/00002.data"), strPasshashPrevious, calc_key_hash(), get_app());
+      crypt_file_get(::dir::userappdata("license_auth/00001.data"), strUsernamePrevious, "");
+      crypt_file_get(::dir::userappdata("license_auth/00002.data"), strPasshashPrevious, calc_key_hash());
 
       if((strUsername.has_char() && strPasshash.has_char())
       && (strUsernamePrevious != strUsername || strPasshashPrevious != strPasshash))
       {
-         System.crypt().file_set(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "", get_app());
-         System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00002.data"), strPasshash, calc_key_hash(), get_app());
+         crypt_file_set(::dir::userappdata("license_auth/00001.data"), strUsername, "");
+         crypt_file_set(::dir::userappdata("license_auth/00002.data"), strPasshash, calc_key_hash());
          if(strPassword.has_char())
          {
             string strSalt = System.crypt().v5_get_password_salt();
-            System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00005.data"), strSalt, calc_key_hash(), get_app());
+            crypt_file_set(::dir::userappdata("license_auth/00005.data"), strSalt, calc_key_hash());
             string strPasshash2 = System.crypt().v5_get_password_hash(strSalt, strPassword);
-            System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00010.data"), strPasshash2, calc_key_hash(), get_app());
+            crypt_file_set(::dir::userappdata("license_auth/00010.data"), strPasshash2, calc_key_hash());
          }
       }
       if(m_loginthread.m_strLicense.has_char())
@@ -1268,7 +1255,7 @@ namespace fontopus
          stringa straLicense;
          straLicense.add(m_loginthread.m_strValidUntil);
          straLicense.add(System.datetime().international().get_gmt_date_time());
-         System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/" + m_loginthread.m_strLicense + ".data"), straLicense.implode(";"), calc_ca2_hash(), get_app());
+         crypt_file_set(::dir::userappdata("license_auth/" + m_loginthread.m_strLicense + ".data"), straLicense.implode(";"), calc_ca2_hash());
       }
       m_bLicense = true;
       m_puser = m_loginthread.m_puser;

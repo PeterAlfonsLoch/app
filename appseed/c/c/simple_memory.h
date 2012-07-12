@@ -52,7 +52,15 @@ public:
 
    simple_memory & operator = (const simple_memory & memory);
 
+
+   void to_hex(vsstring & strHex);
+
+   bool from_hex(const char * pszHex);
+
 };
+
+
+
 
 
 

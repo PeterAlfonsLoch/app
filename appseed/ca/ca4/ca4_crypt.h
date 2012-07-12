@@ -1,6 +1,9 @@
 #pragma once
 
 
+CLASS_DECL_ca bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt);
+
+
 namespace ca4
 {
 

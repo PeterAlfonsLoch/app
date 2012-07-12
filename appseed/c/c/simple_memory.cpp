@@ -289,3 +289,115 @@ void simple_memory::To(vsstring & str, size_t dwStart, size_t dwEnd)
    }
 }
 
+
+
+
+bool simple_memory::from_hex(const char * pszHex)
+{
+
+   ::count len = strlen(pszHex);
+
+   ::count count = (len + 1) / 2;
+
+   allocate(count);
+
+   index i = 0;
+
+   byte b;
+
+   while(*pszHex != '\0')
+   {
+
+      char ch = (char) tolower(*pszHex);
+
+      if(ch >= '0' && ch <= '9')
+      {
+
+         b = ch - '0';
+
+      }
+      else if(ch >= 'a' && ch <= 'f')
+      {
+
+         b = ch - 'a' + 10;
+
+      }
+      else
+      {
+
+         allocate(0);
+
+         return false;
+
+      }
+
+      pszHex++;
+
+      if(*pszHex == '\0')
+      {
+
+         m_psz[i] = b;
+
+         return true;
+
+      }
+
+      b = b << 4;
+
+      ch = (char) tolower(*pszHex);
+
+      if(ch >= '0' && ch <= '9')
+      {
+
+         b |= (ch - '0');
+
+      }
+      else if(ch >= 'a' && ch <= 'f')
+      {
+
+         b |= (ch - 'a' + 10);
+
+      }
+      else
+      {
+         
+         allocate(0);
+         
+         return false;
+
+      }
+
+      pszHex++;
+
+      m_psz[i] = b;
+
+      i++;
+
+   }
+
+   return true;
+
+}
+
+
+
+void simple_memory::to_hex(vsstring & strHex)   
+{
+
+   LPSTR lpsz = strHex.alloc(get_size() * 2);
+
+   for(index i = 0; i < get_size(); i++)
+   {
+
+      *lpsz++ = (char) nibble_to_low_hex((m_psz[i] >> 4) & 0xf);
+
+      *lpsz++ = (char) nibble_to_low_hex(m_psz[i] & 0xf);
+
+   }
+
+   *lpsz = '\0';
+
+}
+
+
+

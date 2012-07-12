@@ -1,12 +1,6 @@
 #include "framework.h"
 #include <openssl/ssl.h>
 #include <openssl/md5.h>
-#include "ca4_nessie.h"
-
-
-void NESSIEinit(struct NESSIEstruct * const structpointer);
-void NESSIEadd(const unsigned char * const source, unsigned long sourceBits, struct NESSIEstruct * const structpointer);
-void NESSIEfinalize(struct NESSIEstruct * const structpointer, unsigned char * const result);
 
 
 #define V5_FINAL_HASH_BYTES (DIGESTBYTES * 16)
@@ -347,5 +341,22 @@ namespace ca4
 
 } // namespace ca4
 
+
+
+
+
+bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt)
+{
+   
+   vsstring vsstr;
+
+   if(!crypt_file_get(pszFile, vsstr, pszSalt))
+      return false;
+
+   str = vsstr;
+
+   return true;
+
+}
 
 

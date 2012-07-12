@@ -1442,9 +1442,6 @@
     <ClInclude Include="ca4\ca4_ip_enum.h">
       <Filter>Header Files\ca4</Filter>
     </ClInclude>
-    <ClInclude Include="ca4\ca4_nessie.h">
-      <Filter>Header Files\ca4</Filter>
-    </ClInclude>
     <ClInclude Include="ca4\ca4_oauth.h">
       <Filter>Header Files\ca4</Filter>
     </ClInclude>

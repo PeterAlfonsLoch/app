@@ -63,6 +63,12 @@
     <Filter Include="Header Files\crypt">
       <UniqueIdentifier>{6fdfcb68-467e-4eec-9a44-b0e265ec38cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\crypt">
+      <UniqueIdentifier>{cb79d03b-9387-470d-97ef-631355dc62eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\windows\crypt">
+      <UniqueIdentifier>{9dfcd5b4-d97d-4165-aa12-de394188d2a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hotplugin\hotplugin.h">
@@ -377,7 +383,10 @@
     <ClInclude Include="c\simple_memory.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
-    <ClInclude Include="crypt.h\crypt.h">
+    <ClInclude Include="crypt\nessie.h">
+      <Filter>Header Files\crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="crypt\crypt.h">
       <Filter>Header Files\crypt</Filter>
     </ClInclude>
   </ItemGroup>
@@ -679,8 +688,17 @@
     <ClCompile Include="c\base64.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="c\whirpool.cpp">
-      <Filter>Source Files\c</Filter>
+    <ClCompile Include="crypt\crypt.cpp">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\nessie.cpp">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\whirpool.cpp">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\crypt\c_os_crypt.cpp">
+      <Filter>Source Files\windows\crypt</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

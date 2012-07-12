@@ -9,3 +9,6 @@ inline int from_hex_char(char ch)
    else
       return (to_lower(ch) - 'a') + 10;
 }
+
+
+CLASS_DECL_c int nibble_to_low_hex(byte nibble);

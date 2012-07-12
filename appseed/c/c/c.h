@@ -47,8 +47,6 @@ namespace ca
 
 #include "natural.h"
 
-#include "nessie.h"
-
 
 #define if_then(p, q)  ((!(p))||(!(q)))
 
@@ -77,6 +75,7 @@ extern "C"
 #include "str.h"
 #include "std_file.h"
 #include "atol.h"
+#include "conv.h"
 
 
 
@@ -125,6 +124,7 @@ extern "C"
 #include "base64.h"
 #include "c/hotplugin/hotplugin.h"
 #include "c/simple_ui/simple_ui.h"
+#include "c/crypt/crypt.h"
 #include "c/spa/spa.h"
 
 #include "c/bsdiff/bsdiff.h"

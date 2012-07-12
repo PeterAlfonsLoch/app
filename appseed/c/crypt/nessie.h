@@ -130,6 +130,7 @@ CLASS_DECL_c void NESSIEinit(struct NESSIEstruct * const structpointer);
 CLASS_DECL_c void NESSIEadd(const unsigned char * const source, unsigned long sourceBits, struct NESSIEstruct * const structpointer);
 CLASS_DECL_c void NESSIEfinalize(struct NESSIEstruct * const structpointer, unsigned char * const result);
 
+vsstring crypt_nessie(const char * psz);
 
 #endif   /* PORTABLE_C__ */
 

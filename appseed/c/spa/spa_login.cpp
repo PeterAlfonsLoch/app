@@ -1,122 +1,5 @@
 #include "framework.h"
-#include <openssl/ssl.h>
-#include <openssl/md5.h>
-#include <openssl/err.h>
-#include <Wincrypt.h>
 
-bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, const char * pszSalt);
-bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, const char * pszSalt);
-
-vsstring crypt_nessie(const char * psz);
-
-/*
-
-int crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & key)
-{
-   int plainlen = (int) storageDecrypt.get_size();
-   int cipherlen, tmplen;
-   unsigned char iv[8] = {1,2,3,4,5,6,7,8};
-   EVP_CIPHER_CTX ctx;
-   EVP_CIPHER_CTX_init(&ctx);
-   EVP_EncryptInit(&ctx,EVP_bf_cbc(),(unsigned char *) key.get_data(),iv);
-   cipherlen = (int) (storageDecrypt.get_size() + 16 - 1); //; 16 = key size
-   storageEncrypt.allocate(cipherlen);
-   if (!EVP_EncryptUpdate(&ctx,(unsigned char *) storageEncrypt.get_data(),&cipherlen, (const unsigned char *) storageDecrypt.get_data(),plainlen))
-   {
-      return -1;
-   }
-   if (!EVP_EncryptFinal(&ctx,((unsigned char *) storageEncrypt.get_data())+cipherlen,&tmplen))
-   {
-      return -1;
-   }
-   cipherlen += tmplen;
-   storageEncrypt.allocate(cipherlen);
-   EVP_CIPHER_CTX_cleanup(&ctx);
-   return cipherlen;
-}
-
-int crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & key)
-{
-   int cipherlen = (int) storageEncrypt.get_size();
-   int plainlen, tmplen;
-   unsigned char iv[8] = {1,2,3,4,5,6,7,8};
-   EVP_CIPHER_CTX ctx;
-   EVP_CIPHER_CTX_init(&ctx);
-   EVP_DecryptInit(&ctx,EVP_bf_cbc(), (const unsigned char *) key.get_data(),iv);
-   plainlen = (int) storageEncrypt.get_size();
-   storageDecrypt.allocate(plainlen);
-   if(!EVP_DecryptUpdate(&ctx, (unsigned char *) storageDecrypt.get_data(),&plainlen, (const unsigned char *) storageEncrypt.get_data(),cipherlen))
-   {
-      return -1;
-   }
-   if (!EVP_DecryptFinal(&ctx,((unsigned char *) storageDecrypt.get_data())+plainlen,&tmplen))
-   {
-      storageDecrypt.allocate(plainlen);
-      EVP_CIPHER_CTX_cleanup(&ctx);
-      return plainlen;
-   }
-   plainlen += tmplen;
-   storageDecrypt.allocate(plainlen);
-   EVP_CIPHER_CTX_cleanup(&ctx);
-   return plainlen;
-}
-
-*/
-
-
-/*int crypt_encrypt(vsstring & strEncrypt, const char * pszDecrypt, const char * pszKey)
-{
-   simple_memory storageDecrypt;
-   simple_memory storageEncrypt;
-   simple_memory storageKey;
-   if(pszDecrypt == NULL || strlen(pszDecrypt) == 0)
-   {
-      strEncrypt = "";
-      return 0;
-   }
-   storageDecrypt.from_string(pszDecrypt);
-   base64 base64;
-   base64.decode(storageKey, pszKey);
-   int cipherlen = crypt_encrypt(storageEncrypt, storageDecrypt, storageKey);
-   strEncrypt = base64.encode(storageEncrypt);
-   return cipherlen;
-}*/
-
-
-bool crypt_decrypt(vsstring & strDecrypt, const simple_memory & storageEncrypt, const char * pszSalt)
-{
-   simple_memory memoryDecrypt;
-   if(!crypt_decrypt(memoryDecrypt, storageEncrypt, pszSalt))
-      return false;
-   memoryDecrypt.ToAsc(strDecrypt);
-   return true;
-}
-
-bool crypt_file_get(const char * pszFile, vsstring & str, const char * pszSalt)
-{
-   simple_memory memoryEncrypt;
-   if(!file_get_memory_dup(memoryEncrypt, pszFile))
-      return false;
-   if(memoryEncrypt.get_size() <= 0)
-      return false;
-   crypt_decrypt(str, memoryEncrypt, pszSalt);
-   return true;
-}
-
-bool crypt_encrypt(simple_memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt)
-{
-   simple_memory memoryDecrypt;
-   memoryDecrypt.FromAsc(pszDecrypt);
-   return crypt_encrypt(storageEncrypt, memoryDecrypt, pszSalt);
-}
-
-bool crypt_file_set(const char * pszFile, const char * pszData, const char * pszSalt)
-{
-   simple_memory memoryEncrypt;
-   crypt_encrypt(memoryEncrypt, pszData, pszSalt);
-   file_put_contents_dup(pszFile, memoryEncrypt);
-   return true;
-}
 
 
 spa_login::spa_login()
@@ -261,85 +144,6 @@ DWORD WINAPI spa_login::thread_proc_login(LPVOID lpParam)
 
 }
 
-   simple_memory hex_to_memory(const char * pszHex)
-   {
-      ::count len = strlen(pszHex);
-      ::count count = (len + 1) / 2;
-      simple_memory memory;
-      memory.allocate(count);
-      index i = 0;
-      byte b;
-      while(*pszHex != '\0')
-      {
-         char ch = (char) tolower(*pszHex);
-         if(ch >= '0' && ch <= '9')
-         {
-            b = ch - '0';
-         }
-         else if(ch >= 'a' && ch <= 'f')
-         {
-            b = ch - 'a' + 10;
-         }
-         else
-         {
-            memory.allocate(0);
-            return memory;
-         }
-         pszHex++;
-         if(*pszHex == '\0')
-         {
-            memory.m_psz[i] = b;
-            return memory;
-         }
-         b = b << 4;
-         ch = (char) tolower(*pszHex);
-         if(ch >= '0' && ch <= '9')
-         {
-            b |= (ch - '0');
-         }
-         else if(ch >= 'a' && ch <= 'f')
-         {
-            b |= (ch - 'a' + 10);
-         }
-         else
-         {
-            memory.allocate(0);
-            return memory;
-         }
-         pszHex++;
-         memory.m_psz[i] = b;
-         i++;
-      }
-      return memory;
-   }
-
-
-   int nibble_to_low_hex(byte nibble)
-   {
-      if(nibble >= 0 && nibble <= 9)
-      {
-         return nibble + '0';
-      }
-      else if(nibble >= 10 && nibble <= 15)
-      {
-         return nibble + 'a' - 10;
-      }
-      else
-      {
-         return -1;
-      }
-   }
-
-   void memory_to_hex(vsstring & strHex, const simple_memory & memory)
-   {
-      LPSTR lpsz = strHex.alloc(memory.get_size() * 2);
-      for(index i = 0; i < memory.get_size(); i++)
-      {
-         *lpsz++ = (char) nibble_to_low_hex((memory.m_psz[i] >> 4) & 0xf);
-         *lpsz++ = (char) nibble_to_low_hex(memory.m_psz[i] & 0xf);
-      }
-      *lpsz = '\0';
-   }
 
 
 spa_login::e_result spa_login::login()
@@ -416,30 +220,8 @@ spa_login::e_result spa_login::login()
       strPass = m_strPasshash;
    }
 
-   RSA * rsa = RSA_new();
 
-   BN_hex2bn(&rsa->n, strRsaModulus);
-   BN_hex2bn(&rsa->e, "10001");
-
-
-   simple_memory memory;
-   simple_memory memIn = hex_to_memory(strPass);
-
-   memory.allocate(2048);
-
-   int i = RSA_public_encrypt((int) memIn.get_size(), (const unsigned char * ) (const char *) memIn.get_data(), (unsigned char *)  memory.get_data(), rsa, RSA_PKCS1_PADDING);
-
-   const char * psz = ERR_error_string(ERR_get_error(), NULL);
-
-   //TRACE(psz);
-
-
-   memory.allocate(i);
-
-   vsstring strHex;
-   memory_to_hex(strHex, memory);
-
-   RSA_free(rsa);
+   vsstring strHex = spa_login_crypt(strPass, strRsaModulus);
 
    vsstring strResponse;
 
@@ -548,70 +330,6 @@ void spa_login::login_result(e_result eresult)
 }
 
 
-vsstring crypt_nessie(const char * psz)
-{
-   vsstring strFormat;
-   vsstring str;
-//      int i;
-   NESSIEstruct ns;
-   u8 digest[DIGESTBYTES];
-   NESSIEinit(&ns);
-   NESSIEadd((const byte *) psz, (unsigned long) (8*strlen(psz)), &ns);
-   NESSIEfinalize(&ns, digest);
-   for(int i = 0; i < DIGESTBYTES; i++)
-   {
-      strFormat = itohex_dup(digest[i]);
-      zero_pad(strFormat, 2);
-      str += strFormat;
-   }
-   return str;
-}
-
-   /*
-   string file::nessie(const char * psz)
-   {
-      ex1::filesp spfile(get_app());
-      try
-      {
-         if(!spfile->open(psz, ::ex1::file::type_binary | ::ex1::file::mode_read))
-            return "";
-      }
-      catch(ex1::file_exception * pe)
-      {
-         gen::del(pe);
-         return "";
-      }
-      return nessie(spfile);
-   }
-
-   string file::nessie(ex1:: file * pfile)
-   {
-      int iBufSize = 1024 * 256;
-      unsigned char * buf = new unsigned char[iBufSize];
-      NESSIEstruct ns;
-      NESSIEinit(&ns);
-      uint64_t iRead;
-      while((iRead = pfile->read(buf, iBufSize)) > 0)
-      {
-         NESSIEadd(buf, 8*iBufSize, &ns);
-      }
-      u8 digest[DIGESTBYTES];
-      NESSIEfinalize(&ns, digest);
-      string str;
-      string strFormat;
-      for(int i = 0; i < DIGESTBYTES; i++)
-      {
-         strFormat.Format("%02x", digest[i]);
-         str += strFormat;
-      }
-      delete [] buf;
-      return str;
-   }
-
-*/
-
-
-
 void spa_login::authentication_succeeded()
 {
 
@@ -621,22 +339,21 @@ void spa_login::authentication_succeeded()
 
    vsstring strUsernamePrevious;
    vsstring strPasshashPrevious;
-   crypt_file_get(dir::usersystemappdata(dir::default_os_user_path_prefix(), "license_auth", "00001.data"), strUsernamePrevious, "");
-   crypt_file_get(dir::default_userappdata(dir::default_os_user_path_prefix(), strUsernamePrevious, "license_auth/00002.data"), strPasshashPrevious, calc_key_hash());
+   crypt_file_get(dir::userappdata("license_auth/00001.data"), strUsernamePrevious, "");
+   crypt_file_get(dir::userappdata("license_auth/00002.data"), strPasshashPrevious, calc_key_hash());
 
    if((strUsername.has_char() && strPasshash.has_char())
    && (strUsernamePrevious != strUsername || strPasshashPrevious != strPasshash))
    {
-      dir::mk(dir::usersystemappdata(dir::default_os_user_path_prefix(), "license_auth", NULL));
-      dir::mk(dir::default_userappdata(dir::default_os_user_path_prefix(), strUsername, "license_auth"));
-      crypt_file_set(dir::usersystemappdata(dir::default_os_user_path_prefix(), "license_auth", "00001.data"), strUsername, "");
-      crypt_file_set(dir::default_userappdata(dir::default_os_user_path_prefix(), strUsername, "license_auth/00002.data"), strPasshash, calc_key_hash());
+      dir::mk(::dir::userappdata("license_auth"));
+      crypt_file_set(::dir::userappdata("license_auth/00001.data"), strUsername, "");
+      crypt_file_set(::dir::userappdata("license_auth/00002.data"), strPasshash, calc_key_hash());
       /*if(strPassword.has_char())
       {
          string strSalt = System.crypt().v5_get_password_salt();
          System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00005.data"), strSalt, calc_key_hash(), get_app());
          string strPasshash2 = System.crypt().v5_get_password_hash(strSalt, strPassword);
-         System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00010.data"), strPasshash2, calc_key_hash(), get_app());
+         crypt_file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00010.data"), strPasshash2, calc_key_hash(), get_app());
       }*/
    }
    /*if(m_loginthread.m_strLicense.has_char())
@@ -644,7 +361,7 @@ void spa_login::authentication_succeeded()
       stringa straLicense;
       straLicense.add(m_loginthread.m_strValidUntil);
       straLicense.add(System.datetime().international().get_gmt_date_time());
-      System.crypt().file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/" + m_loginthread.m_strLicense + ".data"), straLicense.implode(";"), calc_ca2_hash(), get_app());
+      crypt_file_set(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/" + m_loginthread.m_strLicense + ".data"), straLicense.implode(";"), calc_ca2_hash(), get_app());
    }*/
 
 }
@@ -656,110 +373,3 @@ void spa_login::authentication_failed()
 
 
 
-bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, const char * pszSalt)
-{
-   DATA_BLOB DataIn;
-   DATA_BLOB DataOut;
-
-   if(pszSalt == NULL)
-      pszSalt = "";
-
-   DATA_BLOB DataSalt;
-   simple_memory memorySalt;
-   memorySalt.from_string(pszSalt);
-   DataSalt.pbData = (BYTE *) memorySalt.get_data();
-   DataSalt.cbData = (DWORD) memorySalt.get_size();
-
-   //--------------------------------------------------------------------
-   // Initialize the DataIn structure.
-
-   DataIn.pbData = (BYTE *) storageEncrypt.get_data();
-   DataIn.cbData = (DWORD) storageEncrypt.get_size();
-
-   wchar_t * lpwsz = NULL;
-
-   //--------------------------------------------------------------------
-   //  Begin protect phase. Note that the encryption key is created
-   //  by the function and is not passed.
-
-   if(CryptUnprotectData(
-      &DataIn,
-      NULL, // A description string
-                                          // to be included with the
-                                          // encrypted data.
-      &DataSalt,                               // Optional entropy not used.
-      NULL,                               // Reserved.
-      NULL,                               // Pass NULL for the
-                                          // prompt structure.
-      0,
-      &DataOut))
-   {
-//      TRACE("crypt::decrypt The encryption phase worked. \n");
-      storageDecrypt.allocate(DataOut.cbData);
-      memcpy(storageDecrypt.get_data(), DataOut.pbData, DataOut.cbData);
-      LocalFree(lpwsz);
-      LocalFree(DataOut.pbData);
-      return true;
-   }
-   else
-   {
-      DWORD dwLastError = GetLastError();
-  //    TRACELASTERROR();
-    //  TRACE("crypt::decrypt Decryption error! (1)");
-      return false;
-   }
-}
-
-bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, const char * pszSalt)
-{
-   DATA_BLOB DataIn;
-   DATA_BLOB DataOut;
-
-   if(pszSalt == NULL)
-      pszSalt = "";
-
-   DATA_BLOB DataSalt;
-   simple_memory memorySalt;
-   memorySalt.from_string(pszSalt);
-   DataSalt.pbData = (BYTE *) memorySalt.get_data();
-   DataSalt.cbData = (DWORD) memorySalt.get_size();
-
-
-   //--------------------------------------------------------------------
-   // Initialize the DataIn structure.
-
-   DataIn.pbData = (BYTE *) storageDecrypt.get_data();
-   DataIn.cbData = (DWORD) storageDecrypt.get_size();
-
-//      wchar_t * lpwsz = NULL;
-
-   //--------------------------------------------------------------------
-   //  Begin protect phase. Note that the encryption key is created
-   //  by the function and is not passed.
-
-   if(CryptProtectData(
-         &DataIn,
-         NULL, // A description string
-                                             // to be included with the
-                                             // encrypted data.
-         &DataSalt,                               // Optional entropy not used.
-         NULL,                               // Reserved.
-         NULL,                               // Pass NULL for the
-                                             // prompt structure.
-         0,
-         &DataOut))
-   {
-      //TRACE("crypt::encrypt The encryption phase worked. \n");
-      storageEncrypt.allocate(DataOut.cbData);
-      memcpy(storageEncrypt.get_data(), DataOut.pbData, DataOut.cbData);
-      LocalFree(DataOut.pbData);
-      return true;
-   }
-   else
-   {
-      DWORD dwLastError = GetLastError();
-      //TRACE("crypt::encrypt Encryption error! (1)");
-         return false;
-   }
-
-}

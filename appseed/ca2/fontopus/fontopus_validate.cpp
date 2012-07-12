@@ -521,8 +521,8 @@ namespace ca2
             string strUsername;
             string strPasshash;
 
-            string strPathUsername = Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data");
-            string strPathPasshash = Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00002.data");
+            string strPathUsername = ::dir::userappdata("license_auth/00001.data");
+            string strPathPasshash = ::dir::userappdata("license_auth/00002.data");
 
             if(!Application.file().exists(strPathUsername) || !Application.file().exists(strPathPasshash))
                return true;
@@ -588,14 +588,14 @@ namespace ca2
             pageMessage("err\\user\\authentication\\wrong_fontopus_login.xhtml", propertyset);
             try
             {
-               System.file().del(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"));
+               System.file().del(::dir::userappdata("license_auth/00001.data"));
             }
             catch(...)
             {
             }
             try
             {
-               System.file().del(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), strUsername, "license_auth/00002.data"));
+               System.file().del(::dir::userappdata("license_auth/00002.data"));
             }
             catch(...)
             {

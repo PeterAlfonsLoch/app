@@ -24,8 +24,7 @@ namespace mail
    string db_pop3::get_pass()
    {
       string strPass;
-      System.crypt().file_get(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), m_paccount->m_strEmail, "license_auth/00003"),
-         strPass, "user_vault", get_app());
+      crypt_file_get(::dir::userappdata("mail_license_auth/" + m_paccount->m_strEmail + "00001.data"), strPass, "user_vault");
       return strPass;
    }
 

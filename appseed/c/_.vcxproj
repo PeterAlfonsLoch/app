@@ -658,7 +658,8 @@
     <ClInclude Include="bsdiff\bzlib.h" />
     <ClInclude Include="bsdiff\bzlib_private.h" />
     <ClInclude Include="cpu_architecture.h" />
-    <ClInclude Include="crypt.h\crypt.h" />
+    <ClInclude Include="crypt\crypt.h" />
+    <ClInclude Include="crypt\nessie.h" />
     <ClInclude Include="c\atol.h" />
     <ClInclude Include="c\base64.h" />
     <ClInclude Include="c\c.h" />
@@ -808,6 +809,9 @@
     <ClInclude Include=".\hotplugin\hotplugin_container_launcher.h">
       <FileType>CppCode</FileType>
     </ClInclude>
+    <ClCompile Include="crypt\crypt.cpp" />
+    <ClCompile Include="crypt\nessie.cpp" />
+    <ClCompile Include="crypt\whirpool.cpp" />
     <ClCompile Include="c\base64.cpp" />
     <ClCompile Include="c\conv.cpp" />
     <ClCompile Include="c\cpu_architecture.cpp" />
@@ -845,7 +849,6 @@
     <ClCompile Include="c\verisimple_wstring.cpp" />
     <ClCompile Include="c\version.cpp" />
     <ClCompile Include="c\vsstringtow.cpp" />
-    <ClCompile Include="c\whirpool.cpp" />
     <ClCompile Include="c\wstringtovss.cpp" />
     <ClCompile Include="c\xmlite.cpp" />
     <ClCompile Include="c\_.cpp" />
@@ -871,6 +874,7 @@
     <ClCompile Include="spa\windows\spa_windows_boot.cpp" />
     <ClCompile Include="spa\windows\spa_windows_service.cpp" />
     <ClCompile Include="spa\windows\spa_windows_win.cpp" />
+    <ClCompile Include="windows\crypt\c_os_crypt.cpp" />
     <ClCompile Include="windows\c_os.cpp" />
     <ClCompile Include="windows\c_os_http.cpp" />
     <ClCompile Include="windows\c_os_launcher.cpp" />

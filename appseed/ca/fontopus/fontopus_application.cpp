@@ -183,14 +183,14 @@ namespace fontopus
       {
          try
          {
-            System.file().del(Application.dir().usersystemappdata(Application.dir().default_os_user_path_prefix(), "license_auth", "00001.data"));
+            System.file().del(::dir::userappdata("license_auth/00001.data"));
          }
          catch(...)
          {
          }
          try
          {
-            System.file().del(Application.dir().default_userappdata(Application.dir().default_os_user_path_prefix(), AppUser(this).m_strLogin, "license_auth/00002.data"));
+            System.file().del(::dir::userappdata("license_auth/00002.data"));
          }
          catch(...)
          {
