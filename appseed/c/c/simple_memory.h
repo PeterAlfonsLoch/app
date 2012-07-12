@@ -16,6 +16,7 @@ public:
 
 
    simple_memory();
+   simple_memory(const simple_memory & memory);
    simple_memory(const char * psz);
    ~simple_memory();
 
@@ -48,6 +49,8 @@ public:
    void ToAsc(vsstring & str);
 
    void To(vsstring & str, size_t dwStart = 0, size_t dwEnd = -1);
+
+   simple_memory & operator = (const simple_memory & memory);
 
 };
 

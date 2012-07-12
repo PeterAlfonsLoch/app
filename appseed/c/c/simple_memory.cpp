@@ -8,6 +8,19 @@ simple_memory::simple_memory()
    m_psz       = NULL;
    m_iAlloc    = 0;
    m_iSize     = 0;
+   m_iPos      = 0;
+
+}
+
+simple_memory::simple_memory(const simple_memory & memory)
+{
+
+   m_psz       = NULL;
+   m_iAlloc    = 0;
+   m_iSize     = 0;
+   m_iPos      = 0;
+
+   operator = (memory);
 
 }
 
@@ -15,6 +28,7 @@ simple_memory::simple_memory()
 simple_memory::simple_memory(const char * psz)
 {
 
+   m_iPos      = 0;
    m_iAlloc    = strlen(psz);
    m_iSize     = m_iAlloc;
    m_psz       = (char *) ca2_alloc(m_iSize);
@@ -32,6 +46,22 @@ simple_memory::~simple_memory()
 
 }
 
+simple_memory & simple_memory::operator = (const simple_memory & memory)
+{
+   
+   if(this != &memory)
+   {
+
+      m_iAlloc = memory.m_iAlloc;
+      m_iSize = memory.m_iSize;
+      m_psz = (char *) ca2_alloc(m_iAlloc);
+      memcpy(m_psz, memory.m_psz, m_iSize);
+
+   }
+   
+   return *this;
+
+}
 
 void simple_memory::allocate(int iSize)
 {

@@ -335,7 +335,7 @@ DWORD WINAPI spa_login::thread_proc_login(LPVOID lpParam)
          *lpsz++ = (char) nibble_to_low_hex((memory.m_psz[i] >> 4) & 0xf);
          *lpsz++ = (char) nibble_to_low_hex(memory.m_psz[i] & 0xf);
       }
-      lpsz[memory.get_size() * 2] = '\0';
+      *lpsz = '\0';
    }
 
 
