@@ -81,7 +81,7 @@ void spa_login::initialize()
 {
 
    crypt_file_get(::dir::userappdata("license_auth/00001.data"), m_editUser.m_strText, "");
-   crypt_file_get(::dir::userappdata("license_auth/00001.data"), m_strPasshash, calc_key_hash());
+   crypt_file_get(::dir::userappdata("license_auth/00002.data"), m_strPasshash, calc_key_hash());
 
    //crypt_file_get(dir::usersystemappdata(dir::default_os_user_path_prefix(), "license_auth", "00001.data"), m_editUser.m_strText, "");
 

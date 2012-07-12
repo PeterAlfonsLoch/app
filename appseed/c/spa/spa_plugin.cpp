@@ -135,7 +135,7 @@ namespace spa
       if(!m_bLogged)
       {
 
-         //debug_box("plugin::start_ca2 not logged", "not logged", 0);
+         debug_box("plugin::start_ca2 not logged", "not logged", 0);
          
          m_bLogin = true;
          m_login.m_bVisible = false;
