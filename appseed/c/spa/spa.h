@@ -72,7 +72,12 @@ class CLASS_DECL_c installation_lock_file_lock
 {
 public:
 
+
    installation_lock_file_lock();
    ~installation_lock_file_lock();
 
+
 };
+
+
+

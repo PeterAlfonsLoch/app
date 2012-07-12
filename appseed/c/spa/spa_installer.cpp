@@ -173,14 +173,10 @@ namespace spa
    DWORD installer::run()
    {
 
-      installation_lock_file_lock installationlockfilelock;
-
-
       new_progress_end(0.1);
 
-
-
       m_hmutexInstall = NULL;
+
       //SECURITY_ATTRIBUTES MutexAttributes;
       //ZeroMemory( &MutexAttributes, sizeof(MutexAttributes) );
       //MutexAttributes.nLength = sizeof( MutexAttributes );
@@ -227,23 +223,30 @@ namespace spa
       }*/
 
       //Sleep(584);
+
       if(g_bInstalling)
          return -1;
 
-
       // ::MessageBox(g_hwnd, "Start", "Start", MB_OK);
+
       keep_true keeptrueInstalling(g_bInstalling);
+
+      installation_lock_file_lock installationlockfilelock;
+
       m_dwInstallStartTime = ::GetTickCount();
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
+
       m_strSpaIgnitionBaseUrl = "http://basis.spaignition.api.laborserver.net";
+
 #else
+
       m_strSpaIgnitionBaseUrl = "http://stage.spaignition.api.laborserver.net";
+
 #endif
 
-
 install_begin:;
-      installation_file_lock(true);
+
       {
          m_strLastHost = "";
          m_strSpa.remove_all();
