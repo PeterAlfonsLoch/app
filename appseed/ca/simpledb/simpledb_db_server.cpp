@@ -233,7 +233,7 @@ bool db_server::data_server_save(::database::id idSection, ::database::id id, ::
    single_lock sl(&m_csImplDatabase, TRUE);
    if(!save(calc_key(idSection, id, idIndex), readable))
       return false;
-   if(idSection.m_id.str() != "ca2_fontopus_votagus" ||
+/*   if(idSection.m_id.str() != "ca2_fontopus_votagus" ||
       id.m_id.str() != "database_change")
    {
       try
@@ -264,7 +264,7 @@ bool db_server::data_server_save(::database::id idSection, ::database::id id, ::
          m_pdb->rollback_transaction();
       }
 end_write_change:;
-   }
+   }*/
    return true;
 }
 

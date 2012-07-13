@@ -99,6 +99,8 @@ bool file_put_contents_dup(const char * path, const char * contents, int len)
 
 #ifdef WINDOWS
 
+   dir::mk(dir::name(path));
+
    HANDLE hfile = ::CreateFile(path, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
    if(hfile == INVALID_HANDLE_VALUE)
       return false;
