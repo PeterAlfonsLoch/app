@@ -182,6 +182,10 @@ void verisimple_string::trim()
 
 verisimple_string verisimple_string::substr(index offset, count count) const
 {
+   if(count < 0)
+      count += length();
+   if(count < 0)
+      return "";
    return verisimple_string(&m_psz[max(0, min(offset, length()))], count);
 }
 
@@ -453,7 +457,7 @@ void verisimple_string::replace(const char * pszFind, const char * pszReplace)
    while(true)
    {
       sPosNew = find(pszFind, sPosOld);
-      if(sPosNew == 0xffffffff)
+      if(sPosNew == size_t(-1))
          break;
       *this = substr(0, sPosNew) + pszReplace + substr(sPosNew + lenFind);
       sPosOld = sPosNew + lenReplace;
