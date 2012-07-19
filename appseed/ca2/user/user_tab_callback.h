@@ -17,9 +17,9 @@ namespace user
       virtual ~tab_callback();
 
 
-      virtual void _001OnTabClick(::index iTab);
-      virtual void _001OnTabClose(::index iTab);
-      virtual bool _001IsAddTab(::index iTab);
+      virtual void _001OnTabClick(tab * ptab, ::index iTab);
+      virtual void _001OnTabClose(tab * ptab, ::index iTab);
+      virtual bool _001IsAddTab(tab * ptab, ::index iTab);
       virtual ::user::interaction * _001GetTabWnd(::index iTab);
 
       virtual void _001OnShowTab(tab * ptab);

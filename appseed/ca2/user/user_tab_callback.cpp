@@ -15,20 +15,28 @@ namespace user
 
    }
 
-   bool tab_callback::_001IsAddTab(::index iTab)
+   bool tab_callback::_001IsAddTab(tab * ptab, ::index iTab)
    {
+      
+      UNREFERENCED_PARAMETER(ptab);
       UNREFERENCED_PARAMETER(iTab);
+
       return false;
+
    }
 
-   void tab_callback::_001OnTabClick(::index iTab)
+   void tab_callback::_001OnTabClick(tab * ptab, ::index iTab)
    {
-      UNREFERENCED_PARAMETER(iTab);
+      
+      ptab->_001SelectTab(iTab);
+
    }
 
-   void tab_callback::_001OnTabClose(::index iTab)
+   void tab_callback::_001OnTabClose(tab * ptab, ::index iTab)
    {
-      UNREFERENCED_PARAMETER(iTab);
+      
+      ptab->_001CloseTab(iTab);
+
    }
 
    ::user::interaction * tab_callback::_001GetTabWnd(::index iTab)

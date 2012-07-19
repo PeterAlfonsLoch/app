@@ -1102,7 +1102,7 @@ namespace user
    {
       if(get_data()->m_pcallback != NULL)
       {
-         return get_data()->m_pcallback->_001IsAddTab(iPane);
+         return get_data()->m_pcallback->_001IsAddTab(this, iPane);
       }
       else
       {
@@ -1114,7 +1114,7 @@ namespace user
    {
       if(get_data()->m_pcallback != NULL)
       {
-         get_data()->m_pcallback->_001OnTabClick(iPane);
+         get_data()->m_pcallback->_001OnTabClick(this, iPane);
       }
       else
       {
@@ -1126,7 +1126,7 @@ namespace user
    {
       if(get_data()->m_pcallback != NULL)
       {
-         get_data()->m_pcallback->_001OnTabClose(iPane);
+         get_data()->m_pcallback->_001OnTabClose(this, iPane);
       }
       else
       {
