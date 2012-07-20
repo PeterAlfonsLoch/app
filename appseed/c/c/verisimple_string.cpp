@@ -28,7 +28,7 @@ verisimple_string::verisimple_string(const char * psz, count count)
    else
    {
       if(count < 0)
-         count = strlen_dup(psz);
+         count += strlen_dup(psz) + 1;
       if(count > strlen_dup(psz))
          count = strlen_dup(psz);
       m_psz = strndup_dup(psz, count);
@@ -183,7 +183,7 @@ void verisimple_string::trim()
 verisimple_string verisimple_string::substr(index offset, count count) const
 {
    if(count < 0)
-      count += length();
+      count += length() + 1;
    if(count < 0)
       return "";
    return verisimple_string(&m_psz[max(0, min(offset, length()))], count);
