@@ -6,8 +6,8 @@ stage\basis\audio_decode_wave.dll
 stage\basis\audio_decode_windows_media.dll
 stage\basis\libmpg123.dll
 stage\basis\libmp3lame.dll
-stage\basis\libogg.dll
-stage\basis\libvorbis.dll
 stage\basis\math.dll
 stage\basis\multimedia.dll
 stage\basis\veriwell_multimedia.dll
+stage\basis\xiph_ogg.dll
+stage\basis\xiph_vorbis.dll

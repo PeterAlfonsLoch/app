@@ -1,9 +1,9 @@
-stage\basis\avcodec-53.dll
-stage\basis\avformat-53.dll
+stage\basis\avcodec-54.dll
+stage\basis\avformat-54.dll
 stage\basis\avutil-51.dll
 stage\basis\swscale-2.dll
-stage\basis\libogg.dll
-stage\basis\libvorbis.dll
-stage\basis\libtheora.dll
 stage\basis\video_decode_ffmpeg.dll
 stage\basis\video_decode_ogg.dll
+stage\basis\xiph_ogg.dll
+stage\basis\xiph_vorbis.dll
+stage\basis\xiph_theora.dll
