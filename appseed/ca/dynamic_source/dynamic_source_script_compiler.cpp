@@ -472,10 +472,18 @@ namespace dynamic_source
 #ifdef WINDOWS
 
       HANDLE h = ::CreateFileW(pscript->m_wstrSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-      memset(&pscript->m_ftCreation, 0, sizeof(FILETIME));
-      memset(&pscript->m_ftModified, 0, sizeof(FILETIME));
-      struct stat64 st;
-      ::GetFileTime(h, &pscript->m_ftCreation, NULL, &pscript->m_ftModified);
+      
+      try
+      {
+         memset(&pscript->m_ftCreation, 0, sizeof(FILETIME));
+         memset(&pscript->m_ftModified, 0, sizeof(FILETIME));
+         struct stat64 st;
+         ::GetFileTime(h, &pscript->m_ftCreation, NULL, &pscript->m_ftModified);
+      }
+      catch(...)
+      {
+      }
+
       ::CloseHandle(h);
 
 #else

@@ -59,7 +59,7 @@ namespace dynamic_source
 
       single_lock sl(&m_mutex, TRUE);
 
-      bool bMatches;
+      bool bMatches = false;
 
 #ifdef WINDOWS
       FILETIME ftCreation;
@@ -68,12 +68,19 @@ namespace dynamic_source
       //memset(&ftAccess, 0, sizeof(FILETIME));
       memset(&ftModified, 0, sizeof(FILETIME));
       HANDLE h = ::CreateFileW(m_wstrSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-      bMatches = GetFileTime(h, &ftCreation, NULL, &ftModified);
-      if(bMatches)
+      try
       {
-         bMatches = memcmp(&m_ftCreation, &ftCreation, sizeof(FILETIME)) == 0
-                 && memcmp(&m_ftModified, &ftModified, sizeof(FILETIME)) == 0;
+         bMatches = GetFileTime(h, &ftCreation, NULL, &ftModified);
+         if(bMatches)
+         {
+            bMatches = memcmp(&m_ftCreation, &ftCreation, sizeof(FILETIME)) == 0
+                    && memcmp(&m_ftModified, &ftModified, sizeof(FILETIME)) == 0;
+         }
       }
+      catch(...)
+      {
+      }
+      ::CloseHandle(h);
 #else
       struct stat64 st;
       memset(&st, 0, sizeof(st));
