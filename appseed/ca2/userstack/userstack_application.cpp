@@ -31,6 +31,8 @@ namespace userstack
       string strId;
       ::ca::application * pcaapp;
 
+      POSITION pos = m_mapApplication.get_start_position();
+
       while(pos != NULL)
       {
 
@@ -70,33 +72,6 @@ namespace userstack
 
 
       SetRegistryKey("ca2core");
-
-
-      if(!InitializeLocalDataCentral())
-      {
-         simple_message_box(NULL, "Could not initialize Local data central");
-         return false;
-      }
-
-      if(Session.is_remote_session())
-      {
-         
-         Session.savings().save(gen::resource_display_bandwidth);
-         Session.savings().save(gen::resource_blur_background);
-         Session.savings().save(gen::resource_blurred_text_embossing);
-         Session.savings().save(gen::resource_translucent_background);
-
-      }
-
-/*      if(System.directrix().m_varTopicQuery.has_property("install")
-         || System.directrix().m_varTopicQuery.has_property("uninstall"))
-      {
-         find_uinteractions_to_cache(m_mapUInteractionToLibrary);
-      }
-      else
-      {
-         find_uinteractions_from_cache(m_mapUInteractionToLibrary);
-      }*/
 
 
       return true;
@@ -145,7 +120,6 @@ namespace userstack
          ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
-      m_ptemplate_html->open_document_file(itema[0].m_strPath);
    }
 
    void application::load_string_table()
@@ -280,12 +254,10 @@ namespace userstack
 
    void application::request_topic_file(var & varQuery)
    {
-      request(m_varTopicFile, varQuery);
    }
 
    void application::request_topic_file()
    {
-      request(m_varTopicFile);
    }
 
 
@@ -576,6 +548,8 @@ namespace userstack
 
    bool application::on_uninstall()
    {
+
+      bool bOk1 = false;
 
 
       try

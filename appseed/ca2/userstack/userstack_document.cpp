@@ -67,11 +67,6 @@ namespace userstack
       //pframe->SetWindowPos(NULL, 200, 200, 400, 400, SWP_SHOWWINDOW);
    }
 
-   ::userstack::userstack * document::get_bergedge()
-   {
-      return dynamic_cast < ::userstack::userstack * > (m_psession->m_pbergedge);
-   }
-
 
 } // namespace userstack
 

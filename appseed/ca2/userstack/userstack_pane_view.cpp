@@ -52,7 +52,7 @@ namespace userstack
       if(pobj->previous())
          return;
 
-      ::bergedge::frame * pframe = dynamic_cast < ::bergedge::frame * > (GetParentFrame());
+      frame * pframe = dynamic_cast < frame * > (GetParentFrame());
       pframe->m_ppaneview = this;
 
 
@@ -69,7 +69,7 @@ namespace userstack
 
       }
 
-      set_cur_tab_by_id("app:" + Application.directrix().m_varTopicQuery["app"].stra()[0].get_string());
+      set_cur_tab_by_id("app:" + Application.directrix().m_varTopicQuery["app"].stra()[0]);
 
    }
 

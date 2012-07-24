@@ -109,8 +109,6 @@ namespace userstack
 
       virtual void set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle);
 
-      virtual ::bergedge::bergedge * get_bergedge();
-
    };
 
 

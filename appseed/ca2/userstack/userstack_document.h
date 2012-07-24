@@ -26,10 +26,6 @@ namespace userstack
       void set_platform(platform::document * pdoc);
       void set_nature(nature::document * pdoc);
 
-      ::bergedge::bergedge * get_bergedge();
-
-      view * get_bergedge_view();
-      
       virtual bool on_new_document();
       
    #ifdef DEBUG

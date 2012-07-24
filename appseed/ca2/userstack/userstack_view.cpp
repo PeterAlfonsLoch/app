@@ -169,7 +169,7 @@ namespace userstack
 
       SetTimer(198477, 1977, NULL);
 
-      ::bergedge::frame * pframe = GetTypedParent < ::bergedge::frame > ();
+      frame * pframe = GetTypedParent < frame > ();
 
       pframe->m_pview = this;
       pframe->m_pdocument = get_document();
@@ -212,7 +212,7 @@ namespace userstack
          return;
       }
 
-      m_ppaneview = dynamic_cast < ::bergedge::pane_view * > (create_view(System.template type_info < ::bergedge::pane_view > (), get_document(), this, 102));
+      m_ppaneview = dynamic_cast < pane_view * > (create_view(System.template type_info < pane_view > (), get_document(), this, 102));
 
       hold(m_ppaneview);
 
