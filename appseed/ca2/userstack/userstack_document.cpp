@@ -43,11 +43,6 @@ namespace userstack
 
 
 
-   ::userstack::view * document::get_bergedge_view()
-   {
-      return get_typed_view < ::userstack::view > ();
-   }
-
    void document::set_platform(platform::document * pdoc)
    {
       m_pplatformdocument = pdoc;

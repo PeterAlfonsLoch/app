@@ -10,9 +10,7 @@ namespace userstack
 
 
    class CLASS_DECL_ca2 view :
-      virtual public ::userbase::scroll_view,
-      virtual public ::user::place_holder,
-      virtual public gcom::backview::user::interaction
+      virtual public ::userbase::scroll_view
    {
    public:
 
@@ -81,17 +79,6 @@ namespace userstack
       int hit_test(point pt, e_element & eelement);
 
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
-      
-      VMSRESULT UpdateScreen(rect_array & recta, UINT uiRedraw);
-      void BackViewUpdateScreen(LPCRECT lpcrect, UINT uiRedraw);
-      void BackViewUpdateScreen(rect_array & recta, UINT uiRedraw);
-      void BackViewUpdateScreen();
-      void BackViewGetData(gcom::backview::InterfaceData & data);
-      void BackViewSetData(gcom::backview::InterfaceData & data);
-      bool BackViewGetDestroy();
-
-      string GetNextBackgroundImagePath();
-      void SetCurrentBackgroundImagePath(string &str);
 
       //virtual void layout();
 

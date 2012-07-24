@@ -60,7 +60,7 @@ namespace userstack
 
       add_tab("menu", ::userstack::PaneViewContextMenu);
 
-      for(int i = 0; i < Application.directrix().m_varTopicQuery["app"].get_count(); i++)
+      for(int i = 1; i < Application.directrix().m_varTopicQuery["app"].get_count(); i++)
       {
 
          string strId = Application.directrix().m_varTopicQuery["app"].stra()[i];
@@ -69,7 +69,7 @@ namespace userstack
 
       }
 
-      set_cur_tab_by_id("app:" + Application.directrix().m_varTopicQuery["app"].stra()[0]);
+      set_cur_tab_by_id("app:" + Application.directrix().m_varTopicQuery["app"].stra()[1]);
 
    }
 

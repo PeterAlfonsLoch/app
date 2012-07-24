@@ -5,7 +5,6 @@ namespace userstack
 {
 
 
-   class system;
    class view;
 
 
@@ -15,16 +14,9 @@ namespace userstack
    public:
 
 
-      platform::document *                m_pplatformdocument;
-      nature::document *                  m_pnaturedocument;
-      
-
       document(::ca::application * papp); 
       virtual ~document();
 
-
-      void set_platform(platform::document * pdoc);
-      void set_nature(nature::document * pdoc);
 
       virtual bool on_new_document();
       

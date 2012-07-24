@@ -50,6 +50,16 @@ namespace cube
             return ::ca2::fontopus::application::construct();
          }
       }
+
+      else if(chFirst == 'u')
+      {
+         if(strId == "userstack")
+         {
+            return ::userstack::application::construct();
+         }
+      }
+
+
    }
 
 
@@ -75,6 +85,16 @@ namespace cube
             return ::ca2::fontopus::application::initialize_instance();
          }
       }
+      else if(chFirst == 'u')
+      {
+         if(strId == "userstack")
+         {
+            return ::userstack::application::initialize_instance();
+         }
+      }
+
+
+
       return cubebase::application::initialize_instance();
    }
 
@@ -99,7 +119,17 @@ namespace cube
          {
             return ::ca2::fontopus::application::exit_instance();
          }
+
       }
+      else if(chFirst == 'u')
+      {
+         if(strId == "userstack")
+         {
+            return ::userstack::application::exit_instance();
+         }
+      }
+
+
       return cubebase::application::exit_instance();
    }
 
@@ -137,6 +167,14 @@ namespace cube
             return ::ca2::fontopus::application::bergedge_start();
          }
       }
+      else if(chFirst == 'u')
+      {
+         if(strId == "userstack")
+         {
+            return ::userstack::application::bergedge_start();
+         }
+      }
+
       return cube2::application::bergedge_start();
    }
 
@@ -162,6 +200,14 @@ namespace cube
             return ::ca2::fontopus::application::on_install();
          }
       }
+      else if(chFirst == 'u')
+      {
+         if(strId == "userstack")
+         {
+            return ::userstack::application::on_install();
+         }
+      }
+
       return cubebase::application::on_install();
    }
 
@@ -187,6 +233,14 @@ namespace cube
             return ::ca2::fontopus::application::on_uninstall();
          }
       }
+      else if(chFirst == 'u')
+      {
+         if(strId == "userstack")
+         {
+            return ::userstack::application::on_uninstall();
+         }
+      }
+
       return cubebase::application::on_uninstall();
    }
 
@@ -211,6 +265,13 @@ namespace cube
          if(strId == "fontopus")
          {
             return ::ca2::fontopus::application::on_request(pcreatecontext);
+         }
+      }
+      else if(chFirst == 'u')
+      {
+         if(strId == "userstack")
+         {
+            return ::userstack::application::on_request(pcreatecontext);
          }
       }
       return cube2::application::on_request(pcreatecontext);

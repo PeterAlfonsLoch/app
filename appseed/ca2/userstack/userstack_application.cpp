@@ -12,9 +12,9 @@ namespace userstack
       m_bDrawCursor              = true;
       m_bShowPlatform            = false;
       m_pappCurrent              = NULL;
-      m_bLicense				= false;
+      m_bLicense				      = false;
 
-      m_strAppName               = "bergedge";
+      m_strAppName               = "userstack";
 
 
       ::fs::set * pset = new class ::fs::set(this);
@@ -51,9 +51,9 @@ namespace userstack
    void application::construct()
    {
 
-      m_strAppName         = "bergedge";
-      m_strBaseSupportId   = "votagus_ca2_bergedge";
-      m_strInstallToken    = "bergedge";
+      m_strAppName         = "userstack";
+      m_strBaseSupportId   = "votagus_ca2_userstack";
+      m_strInstallToken    = "userstack";
       m_bLicense           = false;
       m_eexclusiveinstance = ::radix::ExclusiveInstanceNone;
 
@@ -83,7 +83,7 @@ namespace userstack
    {
       try
       {
-         ::cube::application::exit_instance();
+         ::cubebase::application::exit_instance();
       }
       catch(...)
       {
@@ -112,7 +112,7 @@ namespace userstack
 
    ::ca::application * application::get_app() const
    {
-      return cube::application::get_app();
+      return ::cubebase::application::get_app();
    }
 
    void application::OnFileManagerOpenFile(
@@ -467,7 +467,7 @@ namespace userstack
 
       System.os().local_machine_set_run("ca2 app-sentinel", "\"" + strSentinelPath + "\"");
 
-      return cube::application::on_install();
+      return ::cubebase::application::on_install();
    }
 
 
@@ -508,7 +508,7 @@ namespace userstack
    {
 
       
-      if(!::cube::application::initialize1())
+      if(!::cubebase::application::initialize1())
          return false;
 
 
@@ -521,7 +521,7 @@ namespace userstack
    {
 
       
-      if(!::cube::application::initialize())
+      if(!::cubebase::application::initialize())
          return false;
 
 
@@ -533,7 +533,7 @@ namespace userstack
    bool application::os_native_bergedge_start()
    {
 
-      return ::cube::application::os_native_bergedge_start();
+      return ::cubebase::application::os_native_bergedge_start();
 
    }
 
@@ -541,7 +541,7 @@ namespace userstack
    {
       
       
-      return ::cube::application::main();
+      return ::cubebase::application::main();
 
 
    }
@@ -554,7 +554,7 @@ namespace userstack
 
       try
       {
-         bOk1 = ::cube::application::on_uninstall();
+         bOk1 = ::cubebase::application::on_uninstall();
       }
       catch(...)
       {

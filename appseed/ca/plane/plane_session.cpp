@@ -357,6 +357,14 @@ namespace plane
    void session::on_request(::ca::create_context * pcreatecontext)
    {
 
+      if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1
+      && pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[0] == "app/ca2/userstack")
+      {
+         start_application("application", "app/ca2/userstack", pcreatecontext);
+         return;
+      }
+
+
       if(m_pbergedgeInterface != NULL)
       {
 
@@ -370,6 +378,9 @@ namespace plane
 
       string strApp;
       string strType;
+
+
+
 
       if((pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command().m_varTopicQuery["show_platform"] == 1)
          && (!(bool)pcreatecontext->m_spCommandLine->m_varQuery["client_only"] && !(bool)command().m_varTopicQuery["client_only"])
