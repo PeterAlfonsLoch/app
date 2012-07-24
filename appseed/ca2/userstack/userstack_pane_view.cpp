@@ -169,13 +169,13 @@ namespace userstack
       {
 //         pframe->m_bAutoHideOnOutClick = true;
       }
-      if(m_pviewdataOld != NULL)
+      /*if(m_pviewdataOld != NULL)
       {
          if(m_pviewdataOld->m_pwnd != NULL)
          {
             m_pviewdataOld->m_pwnd->ShowWindow(SW_HIDE);
          }
-      }
+      }*/
    }
 
    bool pane_view::pre_create_window(CREATESTRUCT& cs)

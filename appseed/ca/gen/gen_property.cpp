@@ -2014,6 +2014,34 @@ namespace gen
       _008Parse(true, pszCmdLineParam, varFile, strApp);
    }
 
+            
+   void property_set::_008Add(const char * pszKey, const char * pszValue)
+   {
+      
+      stringa straKey;
+
+      straKey.explode(".", pszKey);
+
+      gen::property_set * pset = this;
+
+      int i = 0;
+
+      while(i  < straKey.get_upper_bound())
+      {
+         pset = &pset->operator[straKey[i]].propset();
+         i++;
+      }
+
+      if(pset->has_property(straKey[i]))
+      {
+         pset->operator[](straKey[i]).stra().add(pszValue);
+      }
+      else
+      {
+         pset->add(straKey[i], var(pszValue));
+      }
+   }
+
    void property_set::_008Parse(bool bApp, const char * pszCmdLineParam, var & varFile, string & strApp)
    {
 
@@ -2122,14 +2150,7 @@ namespace gen
                   {
                      strValue = str;
                      str.Empty();
-                     if(has_property(strKey))
-                     {
-                        operator[](strKey).stra().add(strValue);
-                     }
-                     else
-                     {
-                        add(strKey, var(strValue));
-                     }
+                     _008Add(strKey, strValue);
                      strKey.Empty();
                      strValue.Empty();
                   }

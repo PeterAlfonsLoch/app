@@ -141,6 +141,7 @@ namespace gen
       void _008ParseCommandLine(const char * pszCmdLine, var & varFile);
       void _008ParseCommandFork(const char * pszCmdLine, var & varFile, string & strApp);
       void _008Parse(bool bApp, const char * pszCmdLine, var & varFile, string & strApp);
+      void _008Add(const char * pszKey, const char * pszValue);
 
 
       void clear();
