@@ -224,6 +224,11 @@ namespace bergedge
 
    bool bergedge::create_bergedge(::ca::create_context * pcreatecontext)
    {
+
+      m_psession->m_pbergedge = this;
+      m_psession->m_pbergedgeInterface = this;
+
+
       if(m_pbergedgedocument == NULL)
       {
 
@@ -273,15 +278,17 @@ namespace bergedge
    void bergedge::on_request(::ca::create_context * pcreatecontext)
    {
 
+
       m_varCurrentViewFile = pcreatecontext->m_spCommandLine->m_varFile;
 
 
       string strApp;
       string strType;
 
-      if((pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command().m_varTopicQuery["show_platform"] == 1)
+      if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1
+         || ((pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command().m_varTopicQuery["show_platform"] == 1)
          && (!(bool)pcreatecontext->m_spCommandLine->m_varQuery["client_only"] && !(bool)command().m_varTopicQuery["client_only"])
-         && (!pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !command().m_varTopicQuery.has_property("client_only")))
+         && (!pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !command().m_varTopicQuery.has_property("client_only"))))
       {
          m_bShowPlatform = true;
       }
@@ -312,7 +319,10 @@ namespace bergedge
                }
             }
          }
-         bCreate = false;
+         if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() <= 0)
+         {
+            bCreate = false;
+         }
       }
       if(bCreate)
       {
@@ -335,49 +345,61 @@ namespace bergedge
             strType = pcreatecontext->m_spCommandLine->m_strAppType;
          }
 
-         //MessageBox(NULL, "create", strApp, MB_ICONEXCLAMATION);
-
-         if(strApp.is_empty() || strApp == "bergedge")
-         {
-            return;
-         }
-
-         if(strType.is_empty())
-            strType = "application";
-
-         ::ca2::application * papp = dynamic_cast < ::ca2::application * > (application_get(strType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
-         if(papp == NULL)
-            return;
-
-         //MessageBox(NULL, "appok", strApp, MB_ICONEXCLAMATION);
-
-         if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
-         || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
-         {
-            return;
-         }
-
-         pcreatecontext->m_spCommandLine->m_eventReady.ResetEvent();
-
-         if(strApp != "bergedge")
+         if(pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count() <= 0)
          {
 
-
-            DWORD dw = WM_APP + 2043;
-
-            papp->PostThreadMessage(dw, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
-
-            pcreatecontext->m_spCommandLine->m_eventReady.wait();
-
+            pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().add(strApp);
 
          }
 
-         m_pappCurrent = papp;
+         for(int i = 0; pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count(); i++)
+         {
+
+            strApp = pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[i];
+
+
+            //MessageBox(NULL, "create", strApp, MB_ICONEXCLAMATION);
+
+            if(strApp.is_empty() || strApp == "bergedge")
+            {
+               return;
+            }
+
+            if(strType.is_empty())
+               strType = "application";
+
+            ::ca2::application * papp = dynamic_cast < ::ca2::application * > (application_get(strType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
+            if(papp == NULL)
+               return;
+
+            //MessageBox(NULL, "appok", strApp, MB_ICONEXCLAMATION);
+
+            if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
+            || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
+            {
+               continue;
+            }
+
+            pcreatecontext->m_spCommandLine->m_eventReady.ResetEvent();
+
+            if(strApp != "bergedge")
+            {
+
+
+               DWORD dw = WM_APP + 2043;
+
+               papp->PostThreadMessage(dw, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
+
+               pcreatecontext->m_spCommandLine->m_eventReady.wait();
+
+
+            }
+
+            m_pappCurrent = papp;
+
+         }
 
       }
-
-
-
       
       if(m_bShowPlatform)
       {

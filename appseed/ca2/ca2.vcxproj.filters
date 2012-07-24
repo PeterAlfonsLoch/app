@@ -195,6 +195,15 @@
     <Filter Include="Source Files\uinteraction\frame">
       <UniqueIdentifier>{6a82ed51-147b-4157-a14d-6acf3c533b5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\stack">
+      <UniqueIdentifier>{952c717d-0a7d-4cc6-8797-ce316612f1c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\userstack">
+      <UniqueIdentifier>{e60dcc9d-ea78-4d59-82bc-68ee1c441b02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\userstack">
+      <UniqueIdentifier>{2ab8e31d-915d-4922-a959-faa505e41dd4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="calculator\application.h">
@@ -1547,6 +1556,30 @@
     <ClInclude Include=".\uinteraction\frame\frame_work_set_listener_array.h">
       <Filter>Header Files\uinteraction\frame</Filter>
     </ClInclude>
+    <ClInclude Include="userstack\userstack.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_document.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_form_callback.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_frame.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_pane_view.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_pane_view_update_hint.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_view.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include=".\userstack\userstack_application.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca2.def">
@@ -2450,6 +2483,27 @@
     </ClCompile>
     <ClCompile Include="cubebase\cubebase_application.cpp">
       <Filter>Source Files\cubebase</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_document.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_form_callback.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_frame.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_pane_view.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_pane_view_update_hint.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_view.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include=".\userstack\userstack_application.cpp">
+      <Filter>Source Files\userstack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

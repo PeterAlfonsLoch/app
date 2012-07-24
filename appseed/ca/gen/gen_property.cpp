@@ -2122,7 +2122,14 @@ namespace gen
                   {
                      strValue = str;
                      str.Empty();
-                     add(strKey, var(strValue));
+                     if(has_property(strKey))
+                     {
+                        operator[](strKey).stra().add(strValue);
+                     }
+                     else
+                     {
+                        add(strKey, var(strValue));
+                     }
                      strKey.Empty();
                      strValue.Empty();
                   }
@@ -2148,7 +2155,14 @@ namespace gen
                   if(bKey)
                   {
                      strKey = str;
-                     add(strKey, var(strValue));
+                     if(has_property(strKey))
+                     {
+                        operator[](strKey).stra().add(strValue);
+                     }
+                     else
+                     {
+                        add(strKey, var(strValue));
+                     }
                      strKey.Empty();
                      strValue.Empty();
                      str.Empty();
@@ -2156,7 +2170,14 @@ namespace gen
                   else if(!strKey.is_empty())
                   {
                      strValue = str;
-                     add(strKey, var(strValue));
+                     if(has_property(strKey))
+                     {
+                        operator[](strKey).stra().add(strValue);
+                     }
+                     else
+                     {
+                        add(strKey, var(strValue));
+                     }
                      strKey.Empty();
                      strValue.Empty();
                      str.Empty();

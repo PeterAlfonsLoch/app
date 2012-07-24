@@ -414,46 +414,62 @@ namespace plane
       if(bCreate)
       {
 
-         if(strApp.is_empty())
+         if(pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count() <= 0)
          {
-            if(pcreatecontext->m_spCommandLine->m_strApp == "session")
-            {
-               if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("session_start"))
-               {
-                  strApp = pcreatecontext->m_spCommandLine->m_varQuery["session_start"];
-                  strType = pcreatecontext->m_spCommandLine->m_varQuery["app_type"];
-               }
-               else
-               {
-                  strApp = "session";
-                  strType = "application";
-               }
-            }
-            else
-            {
-               strApp = pcreatecontext->m_spCommandLine->m_strApp;
-               strType = pcreatecontext->m_spCommandLine->m_strAppType;
-            }
+            pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().add(strApp);
          }
-
-         if(strApp.is_empty() || strApp == "session")
+         else if (pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count() > 1)
          {
-            if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
-            || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
-            {
-               System.appptra().remove(this);
-               return;
-            }
+            start_application("application", "app/ca2/bergedge", pcreatecontext);
             return;
          }
 
-         if(strType)
+         for(int i = 0; pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count(); i++)
          {
-            strType = "application";
+
+            string strApp = pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[i];
+
+            if(strApp.is_empty())
+            {
+               if(pcreatecontext->m_spCommandLine->m_strApp == "session")
+               {
+                  if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("session_start"))
+                  {
+                     strApp = pcreatecontext->m_spCommandLine->m_varQuery["session_start"];
+                     strType = pcreatecontext->m_spCommandLine->m_varQuery["app_type"];
+                  }
+                  else
+                  {
+                     strApp = "session";
+                     strType = "application";
+                  }
+               }
+               else
+               {
+                  strApp = pcreatecontext->m_spCommandLine->m_strApp;
+                  strType = pcreatecontext->m_spCommandLine->m_strAppType;
+               }
+            }
+
+            if(strApp.is_empty() || strApp == "session")
+            {
+               if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
+               || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
+               {
+                  System.appptra().remove(this);
+                  return;
+               }
+               return;
+            }
+
+            if(strType)
+            {
+               strType = "application";
+            }
+
+            start_application(strType, strApp, pcreatecontext);
+
          }
-
-         start_application(strType, strApp, pcreatecontext);
-
 
       }
 
@@ -1107,7 +1123,7 @@ namespace plane
    {
 
 
-      return System.os().is_remote_session() || m_pbergedgeInterface->is_remote_session();
+      return System.os().is_remote_session() || (m_pbergedgeInterface != NULL && m_pbergedgeInterface->is_remote_session());
 
 
    }
