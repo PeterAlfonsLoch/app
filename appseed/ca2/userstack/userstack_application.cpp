@@ -288,11 +288,6 @@ namespace userstack
       }
    }
 
-   bool application::is_bergedge()
-   {
-      return true;
-   }
-
    ::ca::application * application::get_current_application()
    {
       return m_pappCurrent;

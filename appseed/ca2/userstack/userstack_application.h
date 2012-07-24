@@ -99,8 +99,6 @@ namespace userstack
 
       ::ca::application * application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, ::ca::application_bias * pbiasCreate = NULL);
 
-      virtual bool is_bergedge();
-
       ::ca::application * get_current_application();
 
       virtual void get_screen_rect(LPRECT lprect);
