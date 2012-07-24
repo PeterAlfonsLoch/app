@@ -172,7 +172,7 @@ namespace userstack
       Session.m_ptCursor = pmouse->m_pt;
 //      ::cube8::application * pappParent = &App(Application.m_papp);
 //      ::cube8::application * papp = &Application;
-      if(pmouse->m_uiMessage == WM_MOUSEMOVE
+/*      if(pmouse->m_uiMessage == WM_MOUSEMOVE
       && m_pdocument != NULL
       && m_pdocument->m_pplatformdocument != NULL
       && m_pdocument->m_pplatformdocument->get_platform_frame() != NULL)
@@ -196,7 +196,7 @@ namespace userstack
             m_bMouseOver = false;
             m_pdocument->m_pplatformdocument->get_platform_frame()->super_dock_on_bergedge();
          }
-      }
+      }*/
       simple_frame_window::_000OnMouse(pmouse);
    }
 

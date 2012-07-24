@@ -9,7 +9,7 @@ namespace userstack
 
 
    class CLASS_DECL_ca2 application :
-      virtual public ::cube8::application
+      virtual public ::command::application
    {
    public:
 
@@ -57,7 +57,7 @@ namespace userstack
 
       void initialize_bergedge_application_interface();
 
-      virtual void request(::ca::create_context * pcreatecontext);
+      //virtual void request(::ca::create_context * pcreatecontext);
       // main loosely coupled semantics
       // varFile   : empty, one file path, many file paths, one file object, one or more file objects to be opened
       // varQuery  : more ellaborated requests for the application - syntax and semantic defined by requested application

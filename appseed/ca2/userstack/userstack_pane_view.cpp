@@ -67,9 +67,11 @@ namespace userstack
 
          add_tab(strId, "app:" + strId);
 
+         set_cur_tab_by_id("app:" + Application.directrix().m_varTopicQuery["app"].stra()[i]);
+
       }
 
-      set_cur_tab_by_id("app:" + Application.directrix().m_varTopicQuery["app"].stra()[1]);
+      
 
    }
 
@@ -120,16 +122,16 @@ namespace userstack
          if(gen::str::begins_eat(strId, "app:"))
          {
             ::ca::application * pappTab;
-            if(Bergedge.m_mapApplication.Lookup("application:" + strId, pappTab))
+            if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
             {
                Session.m_pappCurrent = pappTab;
-               Bergedge.m_pappCurrent = pappTab;
+               //Bergedge.m_pappCurrent = pappTab;
             }
-            ::simple_frame_window * pframeApp = dynamic_cast < ::simple_frame_window * > (m_pviewdata->m_pwnd);
+            /*::simple_frame_window * pframeApp = dynamic_cast < ::simple_frame_window * > (m_pviewdata->m_pwnd);
             if(pframeApp != NULL)
             {
                pframeApp->WfiFullScreen(true, false);
-            }
+            }*/
          }
       }
       else if(get_view_id() == ::bergedge::PaneViewContextMenu)
@@ -205,16 +207,23 @@ namespace userstack
                ::ca::create_context_sp createcontext(get_app());
                createcontext->m_spApplicationBias = pbiasCreate;
                createcontext->m_spCommandLine->_001ParseCommandFork(strId);
+              
 
                string str;
+   
                str = gen::str::itoa((int_ptr) createcontext->m_spApplicationBias->m_puiParent);
-               Bergedge.request(createcontext);
+
+               createcontext->m_spCommandLine->m_eventReady.ResetEvent();
+
+               Session.on_request(createcontext);
+
+               createcontext->m_spCommandLine->m_eventReady.wait();
 
             }
 
-     		   string strIcon = App(Bergedge.m_pappCurrent).dir().matter("mainframe/icon48.png");
+     		   string strIcon = App(Session.m_pappCurrent).dir().matter("mainframe/icon48.png");
             pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
-	   	   if(App(Bergedge.m_pappCurrent).file().exists(strIcon))
+	   	   if(App(Session.m_pappCurrent).file().exists(strIcon))
             {
                ppane->m_dib.create(papp);
                ppane->m_dib.load_from_file(strIcon);

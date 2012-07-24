@@ -154,9 +154,9 @@ namespace userstack
       m_ptemplate_pane    = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         System.template type_info < platform::document > (),
-         System.template type_info < platform::frame > (),
-         System.template type_info < platform::pane_view > ());
+         System.template type_info < document > (),
+         System.template type_info < frame > (),
+         System.template type_info < pane_view > ());
 
    }
 
@@ -197,7 +197,7 @@ namespace userstack
    }
 
 
-   void application::request(::ca::create_context * pcreatecontext)
+/*   void application::request(::ca::create_context * pcreatecontext)
    {
       
       if(m_pappCurrent != NULL && m_pappCurrent != this 
@@ -250,7 +250,7 @@ namespace userstack
             on_request(pcreatecontext);
          }
       }
-   }
+   }*/
 
    void application::request_topic_file(var & varQuery)
    {

@@ -435,7 +435,7 @@ namespace plane
             return;
          }
 
-         for(int i = 0; pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count(); i++)
+         for(int i = 0; i < pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count(); i++)
          {
 
             string strApp = pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[i];

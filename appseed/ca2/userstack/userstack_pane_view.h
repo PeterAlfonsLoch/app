@@ -8,7 +8,7 @@ namespace userstack
    class CLASS_DECL_ca2 pane_view : 
       public ::userex::pane_tab_view,
       public FileManagerCallbackInterface,
-      public ::bergedge::form_callback
+      public ::userstack::form_callback
    {
    public:
 
@@ -27,7 +27,7 @@ namespace userstack
       virtual ~pane_view();
 
       using ::userbase::tab_view::on_show_view;
-      using ::bergedge::form_callback::on_update;
+      using ::userstack::form_callback::on_update;
 
       void rotate();
       

@@ -9,8 +9,6 @@ namespace userstack
       ca(papp),
       ::userbase::document(papp)
    {
-      m_pplatformdocument = NULL;
-      m_pnaturedocument = NULL;
    }
 
    bool document::on_new_document()
@@ -41,26 +39,6 @@ namespace userstack
    }
    #endif //DEBUG
 
-
-
-   void document::set_platform(platform::document * pdoc)
-   {
-      m_pplatformdocument = pdoc;
-      //platform_frame * pframe = pdoc->get_platform_frame();
-      //pframe->SetParent(get_bergedge_view());
-      //pframe->ModifyStyle(0, WS_CHILD);
-      //pframe->ShowWindow(SW_RESTORE);
-      //pframe->SetWindowPos(NULL, 0, 0, 200, 200, SWP_SHOWWINDOW);
-   }
-
-   void document::set_nature(nature::document * pdoc)
-   {
-      m_pnaturedocument = pdoc;
-      //nature_frame * pframe = pdoc->get_nature_frame();
-      //pframe->SetParent(get_bergedge_view());
-      //pframe->ModifyStyle(0, WS_CHILD);
-      //pframe->SetWindowPos(NULL, 200, 200, 400, 400, SWP_SHOWWINDOW);
-   }
 
 
 } // namespace userstack

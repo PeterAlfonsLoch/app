@@ -9,11 +9,8 @@ namespace userstack
       ca(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
-      ::user::place_holder(papp),
       ::userbase::view(papp),
       ::userbase::scroll_view(papp),
-      gcom::backview::user::interaction(papp),
-      gcom::backview::Interface(papp),
       m_dibV(papp),
       m_dib_veriwell(papp),
       m_dib_winactionarea(papp),
@@ -41,8 +38,6 @@ namespace userstack
    void view::install_message_handling(::gen::message::dispatch * pinterface)
    {
       ::userbase::view::install_message_handling(pinterface);
-      ::user::place_holder::install_message_handling(pinterface);
-      gcom::backview::Interface::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_PAINT, pinterface, this, &view::_001OnPaint);
@@ -135,30 +130,6 @@ namespace userstack
    void view:: _001OnDraw(::ca::graphics * pdc)
    {
 
-      if(gcom::backview::Interface::IsEnabled())
-      {
-
-         rect rectClient;
-         GetClientRect(rectClient);
-
-
-         gcom::backview::Main & main = gcom::backview::Interface::GetMain();
-         gcom::backview::Graphics & graphics = main.GetGraphics();
-
-         if(main.IsInitialized())
-         {
-
-            ::ca::region_sp rgn(get_app());
-            rect rect(graphics.m_rectFinalPlacement);
-/*            ClientToScreen(rect);
-            rgn->CreateRectRgnIndirect(rect);
-            pdc->SelectClipRgn(rgn);*/
-            pdc->SelectClipRgn(NULL);
-            gcom::backview::Interface::BackViewRender(pdc, rectClient);
-            
-
-         }
-      }
 
    }
 
@@ -190,9 +161,6 @@ namespace userstack
          }
       }
 
-      gcom::backview::Interface::Enable(false);
-      gcom::backview::Interface::GetMain().GetImageChange().m_dwBackgroundUpdateMillis = 1000 * 30;
-      //gcom::backview::Interface::GetMain().GetTransitionEffect().DisableEffect(gcom::backview::TransitionEffectVisual);
 
 
       SetTimer(TimerBackView, 83, NULL);  // max. 12 fps
@@ -214,7 +182,6 @@ namespace userstack
 
       m_ppaneview = dynamic_cast < pane_view * > (create_view(System.template type_info < pane_view > (), get_document(), this, 102));
 
-      hold(m_ppaneview);
 
    }
 
@@ -273,90 +240,6 @@ namespace userstack
 
    }
 
-   VMSRESULT view::UpdateScreen(rect_array & recta, UINT uiRedraw)
-   {
-      UNREFERENCED_PARAMETER(uiRedraw);
-      m_rectaUpdate.add(recta);
-      DWORD dwNow = GetTickCount();
-      if(m_rectaUpdate.get_size() <= 0)
-      {
-         m_dwLastUpdate = dwNow;
-         return 0;
-      }
-      DWORD dwElapseOptimization = 83;
-      if(dwNow - m_dwLastUpdate < dwElapseOptimization)
-      {
-   //      TRACE("Great Optimization!\n");
-         return 0;
-      }
-      m_dwLastUpdate = dwNow;
-      _001RedrawWindow();
-      m_rectaUpdate.remove_all();
-      return 0;
-   }
-
-
-   void view::BackViewUpdateScreen(LPCRECT lpcrect, UINT uiRedraw)
-   {
-      rect rect(lpcrect);
-      rect_array recta;
-      recta.add(rect);
-      UpdateScreen(recta, uiRedraw);
-   }
-
-   void view::BackViewUpdateScreen(rect_array & recta, UINT uiRedraw)
-   {
-      UpdateScreen(recta, uiRedraw);
-   }
-
-
-   void view::BackViewUpdateScreen()
-   {
-      rect rect;
-      rect_array recta;
-      recta.add(rect);
-      UpdateScreen(recta, 0);
-   }
-
-   void view::BackViewGetData(gcom::backview::InterfaceData & data)
-   {
-
-      gcom::backview::user::interaction::BackViewGetData(data);
-
-   }
-
-   void view::BackViewSetData(gcom::backview::InterfaceData & data)
-   {
-
-      gcom::backview::user::interaction::BackViewSetData(data);
-
-   }
-
-   bool view::BackViewGetDestroy()
-   {
-      return m_bDestroy;
-   }
-
-
-   string view::GetNextBackgroundImagePath()
-   {
-      index i = m_straImagePath.find_first(m_strCurrentImagePath);
-      i++;
-      if(i >= m_straImagePath.get_size())
-      {
-         i = 0;
-      }
-      if(i < m_straImagePath.get_size())
-      {
-         return m_straImagePath[i];
-      }
-      return "";
-   }
-
-   void view::SetCurrentBackgroundImagePath(string &str)
-   {
-      m_strCurrentImagePath = str;
-   }
 
    void view::GetAreaThumbRect(LPRECT lprect, int iArea)
    {
