@@ -1027,13 +1027,13 @@ continue2:
       vsstring file2;
       vsstring dir;
       vsstring dir2;
-      dir = dir::beforeca2();
+      dir = dir::ca2();
       if(dir.substr(dir.size() - 2, 1) != "\\")
       {
          dir += "\\";
       }
-      dir2 = dir + "ca2\\";
-      dir += "ca2\\time\\bz\\";
+      dir2 = dir;
+      dir += "time\\bz\\";
       int oldpos = -1;
       {
          index pos = url_in.find(m_strInstall);
@@ -1106,7 +1106,7 @@ continue2:
 
       vsstring dir3;
 
-      dir = dir::beforeca2();
+      dir = dir::ca2();
 
       if(dir.substr(dir.size() - 2, 1) != "\\")
       {
@@ -1115,11 +1115,11 @@ continue2:
 
       }
 
-      dir3 = dir + "ca2\\time\\patchwork\\";
+      dir3 = dir + "time\\patchwork\\";
 
-      dir2 = dir + "ca2\\";
+      dir2 = dir;
 
-      dir += "ca2\\time\\bz\\";
+      dir += "time\\bz\\";
 
       int oldpos = -1;
 
@@ -1451,12 +1451,12 @@ continue2:
       vsstring dir;
       vsstring url;
       vsstring file;
-      dir = dir::beforeca2();
+      dir = dir::ca2();
       if(dir.substr(dir.size() - 2, 1) != "\\")
       {
          dir += "\\";
       }
-      dir += "ca2\\";
+      dir;
       vsstring strFind;
       index pos = url_in.find(m_strInstall);
       if(pos == 0)
@@ -1619,12 +1619,11 @@ continue2:
       vsstring dir;
       vsstring url;
       vsstring file;
-      dir = dir::beforeca2();
+      dir = dir::ca2();
       if(dir.substr(dir.size() - 2, 1) != "\\")
       {
          dir += "\\";
       }
-      dir += "ca2\\";
       vsstring strFind;
       index pos = url_in.find(m_strInstall);
       if(pos == 0)
@@ -2241,7 +2240,7 @@ continue2:
       if(strExec.substr(0, 15) == "install_service")
       {
          vsstring strStage;
-         strStage = dir::path(dir::beforeca2(),strExec.substr(16));
+         strStage = dir::path(dir::ca2(),strExec.substr(16));
 
          simple_shell_launcher launcher1(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
 
@@ -2258,7 +2257,7 @@ continue2:
          vsstring str2 = strExec.substr(11);
          index iPos = str2.find(" ");
          vsstring str3 = str2.substr(iPos + 1);
-         strStage = dir::path(dir::beforeca2(), "ca2");
+         strStage = dir::ca2();
          strStage = dir::path(strStage, str3);
 
          simple_shell_launcher launcher(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
@@ -3361,18 +3360,18 @@ RetryHost:
       vsstring strPlatform = spa_get_platform();
 
 #ifdef WINDOWS
-      ::SetDllDirectory(dir::path(dir::beforeca2(), "ca2\\stage\\" + strPlatform));
+      ::SetDllDirectory(dir::path(dir::ca2(), "stage\\" + strPlatform));
 #endif
 
       ::ca::library libraryOs;
 
-      libraryOs.open(dir::path(dir::beforeca2(), "ca2\\stage\\" + strPlatform + "\\os"));
+      libraryOs.open(dir::path(dir::ca2(), "stage\\" + strPlatform + "\\os"));
 
       CA2MAIN pfn_ca2_main = (CA2MAIN) libraryOs.raw_get("ca2_main");
 
       vsstring strFullCommandLine;
 
-      strFullCommandLine = dir::path(dir::beforeca2(), ("ca2\\stage\\" + strPlatform + "\\app.exe"));
+      strFullCommandLine = dir::path(dir::ca2(), ("stage\\" + strPlatform + "\\app.exe"));
 
       strFullCommandLine = "\"" + strFullCommandLine + "\" ";
 

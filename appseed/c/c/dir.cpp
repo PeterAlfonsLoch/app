@@ -21,25 +21,54 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 #ifdef WINDOWS
 
    char lpszModuleFilePath[MAX_PATH * 8];
+
    HMODULE hmodule = ::GetModuleHandleA("ca.dll");
+
    if(hmodule == NULL)
       hmodule = ::GetModuleHandleA("spalib.dll");
+
    if(hmodule == NULL)
    {
-      *lpszModuleFolder = '\0';
-      return false;
-   }
-   GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
-   LPTSTR lpszModuleFileName;
-   GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName);
-   lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
-   if(strlen_dup(lpszModuleFolder) > 0)
-   {
+
+      SHGetSpecialFolderPath(
+         NULL,
+         lpszModuleFilePath,
+         CSIDL_PROGRAM_FILES,
+         FALSE);
       if(lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '\\'
       || lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '/')
       {
          lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] = '\0';
       }
+      strcat_dup(lpszModuleFolder, "\\ca2\\");
+#ifdef X86
+      strcat_dup(lpszModuleFolder, "stage\\x86\\");
+#else
+      strcat_dup(lpszModuleFolder, "stage\\x64\\");
+#endif
+
+      return true;
+
+   }
+
+   GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
+
+   LPTSTR lpszModuleFileName;
+
+   GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName);
+
+   lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
+
+   if(strlen_dup(lpszModuleFolder) > 0)
+   {
+
+      if(lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '\\' || lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '/')
+      {
+
+         lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] = '\0';
+
+      }
+
    }
 
    return true;
@@ -53,27 +82,42 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 }
 
 
-vsstring dir::beforeca2()
-{
-   vsstring str;
-#ifdef WINDOWS
-   char * buf = (char *) _ca_alloc(4096);
-   memset_dup(buf, 0, sizeof(buf));
-   SHGetSpecialFolderPath(
-      NULL,
-      buf,
-      CSIDL_PROGRAM_FILES,
-      FALSE);
-   str = buf;
-   _ca_free(buf, 0);
-#endif
-   return str;
-}
-
 vsstring dir::ca2(const char * path1, const char * path2, const char * path3, const char * path4)
 {
    if(path1 == NULL && path2 == NULL && path3 == NULL && path4 == NULL)
-      return dir::path(beforeca2(), "ca2");
+   {
+      vsstring str;
+   #ifdef WINDOWS
+      char lpszModuleFilePath[MAX_PATH * 10];
+      get_ca2_module_folder_dup(lpszModuleFilePath);
+      str = lpszModuleFilePath;
+      stra_dup stra;
+   
+      str.replace("/", "\\");
+      stra.add_tokens(str, "\\");
+      if(stra.get_count() <= 0)
+         return "";
+      if(stra[stra.get_count() - 1].is_empty())
+      {
+         stra.remove_at(stra.get_count() - 1);
+      }
+      if(stra.get_count() <= 0)
+         return "";
+      stra.remove_at(stra.get_count() - 1);
+      if(stra.get_count() <= 0)
+         return "";
+      stra.remove_at(stra.get_count() - 1);
+      if(stra.get_count() <= 0)
+         return "";
+      str = "";
+      for(int i = 0; i < stra.get_count(); i++)
+      {
+         str += stra[i];
+         str += "\\";
+      }
+   #endif
+      return str;
+   }
    else
       return dir::path(ca2(), path1, path2, path3, path4);
 }
