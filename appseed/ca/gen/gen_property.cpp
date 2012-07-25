@@ -2028,7 +2028,7 @@ namespace gen
 
       while(i  < straKey.get_upper_bound())
       {
-         pset = &pset->operator[straKey[i]].propset();
+         pset = &pset->operator[](straKey[i]).propset();
          i++;
       }
 
@@ -2040,6 +2040,7 @@ namespace gen
       {
          pset->add(straKey[i], var(pszValue));
       }
+
    }
 
    void property_set::_008Parse(bool bApp, const char * pszCmdLineParam, var & varFile, string & strApp)
@@ -2154,6 +2155,7 @@ namespace gen
                      strKey.Empty();
                      strValue.Empty();
                   }
+                  bQuote = false;
                }
             }
             else
@@ -2176,14 +2178,7 @@ namespace gen
                   if(bKey)
                   {
                      strKey = str;
-                     if(has_property(strKey))
-                     {
-                        operator[](strKey).stra().add(strValue);
-                     }
-                     else
-                     {
-                        add(strKey, var(strValue));
-                     }
+                     _008Add(strKey, strValue);
                      strKey.Empty();
                      strValue.Empty();
                      str.Empty();
@@ -2191,14 +2186,7 @@ namespace gen
                   else if(!strKey.is_empty())
                   {
                      strValue = str;
-                     if(has_property(strKey))
-                     {
-                        operator[](strKey).stra().add(strValue);
-                     }
-                     else
-                     {
-                        add(strKey, var(strValue));
-                     }
+                     _008Add(strKey, strValue);
                      strKey.Empty();
                      strValue.Empty();
                      str.Empty();
