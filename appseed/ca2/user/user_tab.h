@@ -109,6 +109,7 @@ namespace user
       ::visual::graphics_extension     m_dcextension;
       bool                             m_bRestoringTabs;
       bool                             m_bShowTabs;
+      bool                             m_bNoTabs;
       e_element                        m_eelement;
       sp(::ca::create_context)         m_spcreatecontext;
 
@@ -158,6 +159,7 @@ namespace user
       virtual bool get_element_rect(::index iTab, LPRECT lprect, e_element eelement);
 
       virtual void layout();
+      virtual void layout_pane(int iPane);
 
       virtual void GetTabClientRect(LPRECT lprect);
       virtual void GetTabClientRect(__rect64 * lprect);

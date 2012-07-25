@@ -21,6 +21,7 @@ namespace user
       
       m_bEnableCloseAll = false;
 
+
    }
 
    tab::data::~data()
@@ -59,6 +60,9 @@ namespace user
       m_bRestoringTabs           = true;
 
       m_bShowTabs                = true;
+
+      m_bNoTabs = System.directrix().m_varTopicQuery.has_property("no_tabs");
+
 
       //m_rectBorder.set(7, 1, 7, 0);
 
@@ -236,7 +240,22 @@ namespace user
 
       pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
 
+      
+      if(m_bNoTabs)
+      {
+         
+         if(m_bShowTabs)
+         {
 
+            m_bShowTabs = false;
+
+            layout();
+
+         }
+
+         return;
+
+      }
 
       if(!m_bShowTabs)
       {
@@ -605,20 +624,44 @@ namespace user
          get_data()->m_rectTabClient.bottom     = rectClient.bottom;
       }
 
-      ::index iSel = _001GetSel();
-      if(iSel >= 0)
+      for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {
-         place_holder * pholder = get_tab_holder(iSel);
-         if(pholder != NULL)
+         
+         if(iPane != _001GetSel())
          {
-            rect rectChild;
-            GetTabClientRect(rectChild);
-            rect rectWindow;
-            pholder->GetWindowRect(rectWindow);
-            ScreenToClient(rectWindow);
-            pholder->SetWindowPos(ZORDER_TOP, rectChild.left, rectChild.top, rectChild.width(), rectChild.height(), SWP_SHOWWINDOW);
-            pholder->layout();
+         
+            layout_pane(iPane);
+
          }
+
+      }
+
+      layout_pane(_001GetSel());
+
+   }
+
+   void tab::layout_pane(int iPane)
+   {
+
+      place_holder * pholder = get_tab_holder(iPane);
+
+      if(pholder != NULL)
+      {
+
+         rect rectChild;
+
+         GetTabClientRect(rectChild);
+
+         rect rectWindow;
+
+         pholder->GetWindowRect(rectWindow);
+
+         ScreenToClient(rectWindow);
+
+         pholder->SetWindowPos(ZORDER_TOP, rectChild.left, rectChild.top, rectChild.width(), rectChild.height(), _001GetSel() == iPane ? SWP_SHOWWINDOW : 0);
+
+         pholder->layout();
+
       }
 
    }
