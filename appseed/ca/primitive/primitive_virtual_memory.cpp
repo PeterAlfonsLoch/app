@@ -122,6 +122,7 @@ namespace primitive
       {
          if(m_iOffset > 0)
          {
+            m_iOffset = 0;
             memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
             LPVOID lpVoid = ::MidAlloc(dwAllocation);
             if(lpVoid == NULL)

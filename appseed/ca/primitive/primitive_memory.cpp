@@ -7,6 +7,14 @@ namespace primitive
    memory::memory(::ca::application * papp) :
       ca(papp)
    {
+      
+      m_pbStorage          = NULL;
+      m_pbComputed         = NULL;
+      m_pcontainer         = NULL;
+      m_iOffset            = 0;
+      m_dwAllocation       = 0;
+      m_cbStorage          = 0;
+
    }
 
    memory::~memory()
@@ -124,9 +132,15 @@ namespace primitive
 
       }
 
-      m_pbStorage = NULL;
+      m_pbStorage       = NULL;
 
-      m_pbComputed = NULL;
+      m_pbComputed      = NULL;
+
+      m_cbStorage       = 0;
+
+      m_dwAllocation    = 0;
+
+      m_iOffset         = 0;
 
       return pbStorage;
 
@@ -148,6 +162,7 @@ namespace primitive
          }
          m_pbStorage       = NULL;
          m_pbComputed      = NULL;
+         m_iOffset         = 0;
       }
 
    }
@@ -156,6 +171,7 @@ namespace primitive
    {
       m_pbStorage    = NULL;
       m_pbComputed   = NULL;
+      m_iOffset      = 0;
       allocate(iCount);
       ASSERT(__is_valid_address(pdata, iCount, FALSE));
       memcpy(m_pbStorage, pdata, iCount);
@@ -165,6 +181,9 @@ namespace primitive
    {
       m_pbStorage    = NULL;
       m_pbComputed   = NULL;
+      m_iOffset      = 0;
+      m_dwAllocation = 0;
+      m_cbStorage    = 0;
       memory_base::operator = (s);
    }
 
@@ -172,6 +191,9 @@ namespace primitive
    {
       m_pbStorage    = NULL;
       m_pbComputed   = NULL;
+      m_iOffset      = 0;
+      m_dwAllocation = 0;
+      m_cbStorage    = 0;
       memory_base::operator = (s);
    }
 
@@ -179,6 +201,9 @@ namespace primitive
    {
       m_pbStorage    = NULL;
       m_pbComputed   = NULL;
+      m_iOffset      = 0;
+      m_dwAllocation = 0;
+      m_cbStorage    = 0;
       from_string(psz);
    }
 
@@ -186,16 +211,23 @@ namespace primitive
    {
       UNREFERENCED_PARAMETER(nAllocFlags);
       m_pbStorage          = NULL;
-      m_pbComputed   = NULL;
+      m_pbComputed         = NULL;
       m_pcontainer         = pcontainer;
       m_dwAllocationAddUp  = dwAllocationAddUp;
+      m_iOffset            = 0;
+      m_dwAllocation       = 0;
+      m_cbStorage          = 0;
    }
 
    memory::memory(primitive::memory_container * pcontainer, void * pMemory, memory_size dwSize)
    {
       m_pbStorage          = NULL;
-      m_pbComputed   = NULL;
+      m_pbComputed         = NULL;
       m_pcontainer         = pcontainer;
+      m_iOffset            = 0;
+      m_dwAllocation       = 0;
+      m_cbStorage          = 0;
+
       allocate(dwSize);
       ASSERT(__is_valid_address(pMemory, (uint_ptr) dwSize, FALSE));
       memcpy(m_pbStorage, pMemory, (size_t) dwSize);

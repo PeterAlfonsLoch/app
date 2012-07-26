@@ -242,11 +242,16 @@ namespace primitive
 
    inline void memory_base::remove_offset()
    {
-      if(get_data() != NULL && m_cbStorage > (uint64_t) m_iOffset)
-      {
-         memmove(get_data(), get_data() + m_iOffset, (size_t) (m_cbStorage - m_iOffset));
-      }
-      m_iOffset = 0;
+
+      if(m_pbStorage == NULL || m_pbComputed == NULL || m_iOffset <= 0)
+         return;
+
+      memmove(m_pbStorage, m_pbComputed, m_cbStorage);
+
+      m_iOffset      = 0;
+
+      m_pbComputed   = m_pbStorage;
+
    }
 
    inline memory_base & memory_base::operator = (const memory_base & s)

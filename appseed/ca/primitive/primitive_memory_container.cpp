@@ -49,24 +49,44 @@ namespace primitive
 
       if(dwNewLength <= 0)
       {
+         
          if(m_spmemory.is_set())
          {
-            m_spmemory->allocate(dwNewLength);
+            
+            if(!m_spmemory->allocate(dwNewLength))
+            {
+
+               throw memory_exception();
+
+            }
+
          }
+
          return;
       }
 
       if(m_spmemory == NULL)
       {
+         
          m_spmemory(new primitive::memory(this));
+
          if(m_spmemory.is_null())
          {
-            throw new memory_exception;
+         
+            throw memory_exception();
+
          }
+
          m_spmemory->m_dwAllocationAddUp = m_dwAllocationAddUp;
+
       }
 
-      m_spmemory->allocate(dwNewLength);
+      if(!m_spmemory->allocate(dwNewLength))
+      {
+
+         throw memory_exception();
+
+      }
 
    }
 

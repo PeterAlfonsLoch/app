@@ -9,7 +9,7 @@ namespace primitive
    {
 
       m_pbStorage          = NULL;
-      m_pbComputed   = NULL;
+      m_pbComputed         = NULL;
       m_cbStorage          = 0;
       m_dwAllocation       = 0;
       m_dwAllocationAddUp  = 0;
@@ -51,7 +51,10 @@ namespace primitive
       if((m_iOffset + dwNewLength) > m_dwAllocation)
          return false;
 
-      m_cbStorage = dwNewLength;
+      m_cbStorage    = dwNewLength;
+
+      m_pbComputed   = m_pbStorage + m_iOffset;
+
       return true;
    }
 
@@ -153,21 +156,40 @@ namespace primitive
 
    void memory_base::delete_begin(memory_size iSize)
    {
+      
       iSize = max(0, min(get_size(), iSize));
+      
       m_iOffset += iSize;
+      
       if(m_pcontainer != NULL)
       {
+         
          m_pcontainer->offset_kept_pointers((::primitive::memory_offset) iSize);
+
       }
+      
       m_cbStorage -= iSize;
+      
       if(m_cbStorage <= 0)
       {
+
          m_pbComputed = NULL;
+
       }
       else
       {
+
          m_pbComputed += iSize;
+
       }
+
+      if(m_iOffset > 2 * 1024 * 1024)
+      {
+
+         remove_offset();
+
+      }
+
    }
 
 

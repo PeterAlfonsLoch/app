@@ -66,12 +66,7 @@ namespace primitive
       if(m_dwPosition >= this->get_size())
          return 0;
 
-      if(nCount >= this->get_size())
-      {
-         nCount -= m_dwPosition;
-      }
-
-      if(nCount + m_dwPosition > this->get_size())
+      if(m_dwPosition + nCount > this->get_size())
          nCount = this->get_size() - m_dwPosition;
 
       memcpy(lpBuf, &((LPBYTE)get_data())[m_dwPosition], (size_t) nCount);
@@ -92,7 +87,7 @@ namespace primitive
       if(iEndPosition > (int) this->get_size())
       {
 
-         allocate(iEndPosition );
+         allocate(iEndPosition);
 
       }
 
@@ -224,32 +219,33 @@ namespace primitive
       ASSERT(IsValid());
 
       if(uiCount > get_memory()->m_cbStorage)
+      {
+
          uiCount = get_memory()->m_cbStorage;
+
+      }
 
       if(lpBuf != NULL)
       {
+
          memcpy(lpBuf, get_data(), (size_t) uiCount);
-      }
-
-      get_memory()->m_iOffset += uiCount;
-
-
-      if(get_memory()->m_iOffset > 2 * 1024 * 1024)
-      {
-
-         memmove(&((LPBYTE)get_data())[-get_memory()->m_iOffset], ((LPBYTE)get_data()), (size_t) this->get_size());
-
-         get_memory()->m_iOffset = 0;
 
       }
 
       if(m_dwPosition <= uiCount)
+      {
+
          m_dwPosition = 0;
+
+      }
       else
+      {
+
          m_dwPosition -= uiCount;
 
+      }
 
-      get_memory()->m_cbStorage -= uiCount;
+      get_memory()->delete_begin(uiCount);
 
       return uiCount;
 
