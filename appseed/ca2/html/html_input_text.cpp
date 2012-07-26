@@ -47,6 +47,7 @@ namespace html
             m_pedit->m_bPassword = pelemental->m_propertyset["type"].compare_value_ci("password") == 0;
             m_pedit->m_strName = pelemental->m_pbase->tag()->get_attr_value("name");
             m_pedit->m_id = pelemental->m_pbase->tag()->get_attr_value("id");
+            m_pedit->m_pimpl->m_id = m_pedit->m_id;
             m_pedit->_001SetText(pelemental->m_pbase->tag()->get_attr_value("value"));
             m_pedit->SetFont(pdata->get_font(pelemental)->m_font);
          }
