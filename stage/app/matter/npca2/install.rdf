@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RDF xmlns:r="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-	<Description about="urn:mozilla:install-manifest">
+<r:RDF xmlns:r="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+	<r:Description about="urn:mozilla:install-manifest">
 		<em:id>npca2@ca2.cc</em:id>
 		<em:name>ca2 plugin for Firefox</em:name>
 		<em:version>%BUILD%</em:version>
@@ -17,5 +17,5 @@
 				<em:maxVersion>14.*</em:maxVersion>
 			</r:Description>
 		</em:targetApplication>
-	</Description>
-</RDF>
+	</r:Description>
+</r:RDF>
