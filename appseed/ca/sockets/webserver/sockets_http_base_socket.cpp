@@ -133,14 +133,19 @@ namespace sockets
 
       //TRACE0("http_base_socket::Respond");
 
-      if(lowinheader(__str(accept_encoding)).get_string().find("gzip") >= 0 && outheader(__str(content_type)).get_string().find("text") >= 0)
+      if(outheader(__str(content_type)).get_string().find("text") >= 0)
       {
+      
+         if(lowinheader(__str(accept_encoding)).get_string().find("gzip") >= 0)
+         {
 
-         m_response.m_propertysetHeader.lowset(__str(content_encoding), "gzip");
+            m_response.m_propertysetHeader.lowset(__str(content_encoding), "gzip");
+
+         }
+
+         on_compress();
 
       }
-
-      on_compress();
 
       m_response.m_propertysetHeader.lowset(__str(content_length), (int64_t) m_response.file().get_size());
 
