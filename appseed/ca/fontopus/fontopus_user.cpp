@@ -80,7 +80,7 @@ restart:
       var rec = Application.db().veiev_post().last();
       rec.propset().set_app(get_app());
       rec.propset().remove_by_name("message");
-      strPath = "http://europe001.veiev.api.laborserver.net/get?" + rec.propset().get_http_post();
+      strPath = "http://europe001.veiev.api.server.ca2.cc/get?" + rec.propset().get_http_post();
       gen::property_set post(get_app());
       gen::property_set headers(get_app());
       gen::property_set set(get_app());

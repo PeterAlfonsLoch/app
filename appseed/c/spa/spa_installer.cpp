@@ -237,11 +237,11 @@ namespace spa
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      m_strSpaIgnitionBaseUrl = "http://basis.spaignition.api.laborserver.net";
+      m_strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
 
 #else
 
-      m_strSpaIgnitionBaseUrl = "http://stage.spaignition.api.laborserver.net";
+      m_strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
 
 #endif
 
@@ -1235,7 +1235,7 @@ continue2:
 
             vsstring strUrl;
 
-            strUrl = "http://spa.api.laborserver.net/bspatch?file=";
+            strUrl = "http://spa.api.server.ca2.cc/bspatch?file=";
 
             strUrl += url_encode_dup(file2);
 
@@ -2550,7 +2550,7 @@ continue2:
    int installer::application_name()
    {
       vsstring strUrl;
-      trace(("get application name from server http://spaignition.api.laborserver.net/ using application id \"" + m_strApplicationId + "\" "));
+      trace(("get application name from server http://spaignition.api.server.ca2.cc/ using application id \"" + m_strApplicationId + "\" "));
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
       strUrl += m_strApplicationId;
       strUrl += "&key=name";
