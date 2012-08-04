@@ -149,7 +149,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = this;
       //throw not_implemented_exception();
-      file_manager_operation_document * pdoc = dynamic_cast < file_manager_operation_document * > (Cube.m_ptemplateOperation->open_document_file(createcontext));
+      file_manager_operation_document * pdoc = dynamic_cast < file_manager_operation_document * > (Application.m_ptemplateOperation->open_document_file(createcontext));
       if(pdoc == NULL)
          return;
       ::view * pview = pdoc->get_view(0);
