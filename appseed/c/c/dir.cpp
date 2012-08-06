@@ -35,17 +35,19 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
          lpszModuleFilePath,
          CSIDL_PROGRAM_FILES,
          FALSE);
-      if(lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '\\'
-      || lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '/')
+      if(lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '\\'
+      || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
       {
-         lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] = '\0';
+         lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
       }
-      strcat_dup(lpszModuleFolder, "\\ca2\\");
+      strcat_dup(lpszModuleFilePath, "\\ca2\\");
 #ifdef X86
-      strcat_dup(lpszModuleFolder, "stage\\x86\\");
+      strcat_dup(lpszModuleFilePath, "stage\\x86\\");
 #else
-      strcat_dup(lpszModuleFolder, "stage\\x64\\");
+      strcat_dup(lpszModuleFilePath, "stage\\x64\\");
 #endif
+
+      strcpy_dup(lpszModuleFolder, lpszModuleFilePath);
 
       return true;
 
