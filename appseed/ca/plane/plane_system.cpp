@@ -1384,16 +1384,31 @@ namespace plane
 
       string strId(pszAppId);
 
+      string strApplicationId;
+
+      if(strId == "app/ca2/bergedge")
+      {
+
+         strApplicationId = "bergedge";
+
+      }
+      else
+      {
+
+         strApplicationId = strId;
+
+      }
+
       if(!System.directrix().m_varTopicQuery.has_property("install")
          && !System.directrix().m_varTopicQuery.has_property("uninstall")
          && strId.has_char() 
-         && !install().is(pszType, strId))
+         && !install().is(pszType, strApplicationId))
       {
 
          if(::IsDebuggerPresent())
          {
 
-            MessageBox(NULL, "Debug Only Message\n\nPlease install application \"" + strId + "\" - type \"" + string(pszType) + "\"", "Debug Only Message - Please Install - ca2", MB_OK);
+            MessageBox(NULL, "Debug Only Message\n\nPlease install application \"" + strApplicationId + "\" - type \"" + string(pszType) + "\"", "Debug Only Message - Please Install - ca2", MB_OK);
 
             System.os().post_to_all_threads(WM_QUIT, 0, 0);
 
@@ -1401,7 +1416,7 @@ namespace plane
 
          }
 
-         hotplugin::host::starter_start(": app=session session_start=" + strId + " app_type=" + string(pszType) +  " install", NULL);
+         hotplugin::host::starter_start(": app=session session_start=" + strApplicationId + " app_type=" + string(pszType) +  " install", NULL);
 
          return NULL;
 
@@ -1448,7 +1463,7 @@ namespace plane
       set._008ParseCommandFork(pdata->m_vssCommandLine, varFile, strApp);
 
       if((varFile.is_empty() && ((!set.has_property("app") && !set.has_property("show_platform"))
-         || set["app"] == "session")) &&
+         || set["app"] == "session" && !set.has_property("session_start"))) &&
          !(set.has_property("install") || set.has_property("uninstall")))
       {
          if(!set.has_property("show_platform") || set["show_platform"] == 1)

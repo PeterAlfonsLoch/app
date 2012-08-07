@@ -285,10 +285,10 @@ namespace bergedge
       string strApp;
       string strType;
 
-      if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1
-         || ((pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command().m_varTopicQuery["show_platform"] == 1)
+      if((pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1
+         || pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command().m_varTopicQuery["show_platform"] == 1)
          && (!(bool)pcreatecontext->m_spCommandLine->m_varQuery["client_only"] && !(bool)command().m_varTopicQuery["client_only"])
-         && (!pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !command().m_varTopicQuery.has_property("client_only"))))
+         && (!pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !command().m_varTopicQuery.has_property("client_only")))
       {
          m_bShowPlatform = true;
       }

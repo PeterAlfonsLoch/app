@@ -57,8 +57,22 @@ namespace planebase
       else
       {
 
+         string strNewId;
 
-         pcaapp = System.get_new_app(this, pszType, pszId);
+         if(strId == "bergedge")
+         {
+
+            strNewId = "app/ca2/bergedge";
+
+         }
+         else
+         {
+
+            strNewId = strId;
+
+         }
+
+         pcaapp = System.get_new_app(this, pszType, strNewId);
 
          if(pcaapp == NULL)
             return NULL;
@@ -73,6 +87,16 @@ namespace planebase
          {
             m_psystem->m_psession = m_psession;
          }
+
+         if(strId == "bergedge")
+         {
+
+            ::radix::application * pradixapp = dynamic_cast < ::radix::application * > (pcaapp);
+
+            pradixapp->m_strAppId = strId;
+
+         }
+
       }
 
       //pcaapp->m_papp                               = this;
@@ -1212,7 +1236,9 @@ InitFailure:
 
       if((command().m_varTopicQuery.has_property("install")
       || command().m_varTopicQuery.has_property("uninstall"))
-      && is_session() && command().m_varTopicQuery["session_start"] == "session")
+      && 
+      ((is_session() && command().m_varTopicQuery["session_start"] == "session")
+    || (is_bergedge() && command().m_varTopicQuery["session_start"] == "bergedge")))
       {
       }
       else if(!is_system() && !is_session() && !is_bergedge() && !is_cube())
@@ -1352,7 +1378,7 @@ InitFailure:
             {
                return true;
             }
-            else if(is_bergedge())
+            else if(is_bergedge() && System.directrix().m_varTopicQuery["session_start"] != "bergedge")
             {
                return true;
             }

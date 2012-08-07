@@ -440,7 +440,7 @@ namespace plane
 
             string strApp = pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[i];
 
-            if(strApp.is_empty())
+            if(strApp.is_empty() || strApp == "session")
             {
                if(pcreatecontext->m_spCommandLine->m_strApp == "session")
                {
