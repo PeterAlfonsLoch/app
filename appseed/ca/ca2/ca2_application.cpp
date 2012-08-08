@@ -578,8 +578,23 @@ namespace ca2
          string strValue   = doc.get_root()->child_at(i)->get_value();
          pmapNew->set_at(strId, strValue);
       }
+
       if(m_stringtablemap[strTableId] != NULL)
-         delete m_stringtablemap[strTableId];
+      {
+
+         try
+         {
+
+            delete m_stringtablemap[strTableId];
+
+         }
+         catch(...)
+         {
+
+         }
+
+      }
+
       m_stringtablemap[strTableId] = pmapNew;
       ASSERT(m_stringtablemap[strTableId] == pmapNew);
    }
