@@ -129,6 +129,9 @@ bool dir::mk(LPCTSTR lpcsz)
 
 #ifdef WINDOWS
 
+   if(exists(lpcsz))
+      return true;
+
    vsstring url(lpcsz);
    vsstring tmp;
    vsstring dir;
