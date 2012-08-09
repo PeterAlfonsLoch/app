@@ -868,7 +868,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
             else
                bA = 184 * 2 - iA;*/
 
-            bA = min(255, max(0, (BYTE) (((184.0 / 2.0) * sin(w * t)) + 23)));
+            bA = min(255, max(0, (BYTE) ((184.0 * ((sin(w * t) + 1.0) / 2.0)) + 23.0)));
 
 
 
