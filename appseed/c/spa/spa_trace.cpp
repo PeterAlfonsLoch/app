@@ -7,7 +7,9 @@ simple_mutex g_mutexTrace;
 stra_dup * g_pstraTrace = NULL;
 HANDLE g_ftrace = INVALID_HANDLE_VALUE;
 vsstring g_strLastStatus;
+vsstring g_strLastGlsStatus;
 int g_iLastStatus = 0;
+int g_iLastGlsStatus = 0;
 
 
 void on_trace(vsstring & str, vsstring & str2);
@@ -44,6 +46,14 @@ void trace(const char * psz)
          g_strLastStatus = psz;
       }
    }
+   else if(str_begins_ci_dup(psz, ":::::"))
+   {
+      g_iLastGlsStatus = 0;
+      if(g_strLastGlsStatus != psz)
+      {
+         g_strLastGlsStatus = psz;
+      }
+   }
    else
    {
 		if(g_strLastStatus.begins_ci("***"))
@@ -52,6 +62,14 @@ void trace(const char * psz)
          if(g_iLastStatus >= 23)
          {
             trace(g_strLastStatus);
+         }
+      }
+		if(g_strLastGlsStatus.begins_ci(":::::"))
+      {
+         g_iLastGlsStatus++;
+         if(g_iLastGlsStatus >= 23)
+         {
+            trace(g_strLastGlsStatus);
          }
       }
    }

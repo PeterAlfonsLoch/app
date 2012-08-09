@@ -575,10 +575,12 @@ install:
                }
                else if(!bRate && strLine.begins_eat("|||"))
                {
+                  bRate = true;
                   dRate = ((double) atoi_dup(strLine)) / (1000.0 * 1000.0 * 1000.0 );
                }
                else if(!bStatus && strLine.begins_eat(":::::"))
                {
+                  bStatus = true;
                   m_strStatus = strLine;
                }
 
