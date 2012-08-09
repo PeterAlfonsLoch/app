@@ -573,11 +573,11 @@ install:
                {
                   return 0.0;
                }
-               else if(strLine.begins_eat("|||"))
+               else if(!bRate && strLine.begins_eat("|||"))
                {
                   dRate = ((double) atoi_dup(strLine)) / (1000.0 * 1000.0 * 1000.0 );
                }
-               else if(strLine.begins_eat(":::::"))
+               else if(!bStatus && strLine.begins_eat(":::::"))
                {
                   m_strStatus = strLine;
                }
