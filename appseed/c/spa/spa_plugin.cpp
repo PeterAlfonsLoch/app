@@ -531,6 +531,10 @@ install:
    {
       DWORD dwRead;
       HANDLE hfile = ::CreateFileA(dir::ca2("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+      double dRate = 0.0;
+      bool bRate = false;
+      bool bStatus = false;
       if(hfile != INVALID_HANDLE_VALUE)
       {
          int iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);
@@ -571,8 +575,16 @@ install:
                }
                else if(strLine.begins_eat("|||"))
                {
-                  return ((double) atoi_dup(strLine)) / (1000.0 * 1000.0 * 1000.0 );
+                  dRate = ((double) atoi_dup(strLine)) / (1000.0 * 1000.0 * 1000.0 );
                }
+               else if(strLine.begins_eat(":::::"))
+               {
+                  m_strStatus = strLine;
+               }
+
+               if(bRate && bStatus)
+                  break;
+
                strLine = ch;
             }
             else
@@ -583,7 +595,7 @@ install:
          }
          ::CloseHandle(hfile);
       }
-      return 0.0;
+      return dRate;
    }
 
 

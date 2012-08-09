@@ -43,8 +43,11 @@ namespace spa
             }
          }
          m_dwDownloadCallbackLast100k += ((dwLen - m_dwDownloadCallbackLast100k) / (100 * 1024) )*(100 / 1024);*/
-         dlr(m_iGzLen + dwLen);
-         set_progress((double) (m_iGzLen + dwLen) / (double) m_iTotalGzLen);
+         if(m_iProgressTotalGzLen > 0)
+         {
+            dlr(m_iGzLen + dwLen);
+            set_progress((double) (m_iGzLen + dwLen) / (double) m_iProgressTotalGzLen);
+         }
       }
       else if(i == 2)
       {

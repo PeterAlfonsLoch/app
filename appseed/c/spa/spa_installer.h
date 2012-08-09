@@ -121,6 +121,7 @@ namespace spa
       int            m_iScreen;
       int            m_iProgressMode;
       int64_t        m_iTotalGzLen;
+      int64_t        m_iProgressTotalGzLen;
       int64_t        m_iGzLen;
       int            m_iStyle;
       vsstring       m_strLogin;
@@ -149,7 +150,7 @@ namespace spa
 
       bool get(const vsstring& url_in, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen);
 
-      bool download_file(const vsstring& url_in, bool bExist, bool bCheck, int64_t iLength, const char * pszCrc, int64_t iGzLen, int_ptr & iFlag);
+      bool download_file(const vsstring& inplace, const vsstring& url_in, bool bExist, bool bCheck, int64_t iLength, const char * pszCrc, int64_t iGzLen, int_ptr & iFlag);
 
       vsstring ca2_get_dir(LPCTSTR lpcszUrl);
 

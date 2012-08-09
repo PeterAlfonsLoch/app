@@ -251,6 +251,7 @@ install_begin:;
          m_strLastHost = "";
          m_strSpa.remove_all();
          m_iTotalGzLen = 0;
+         m_iProgressTotalGzLen = 0;
          m_NeedRestartBecauseOfReservedFile = false;
          m_NeedRestartFatalError = false;
          int iFileError = 0;
@@ -681,7 +682,7 @@ RetryHost:
 
 #endif
 
-         new_progress_end(0.84);
+         new_progress_end(0.49);
          trace("***Downloading files.");
          if(m_bInternetInstall)
          {
@@ -776,7 +777,7 @@ RetryHost:
    count installer::download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapGzLen, simple_string_to_intptr & mapFlag)
    {
 
-restart_download:
+      class stra_dup straExpandFileSet;
 
       m_dwDownloadTick = ::GetTickCount();
 
@@ -788,7 +789,7 @@ restart_download:
 
       m_iGzLen = 0;
 
-      int i;
+      
 
       vsstring str;
 
@@ -810,33 +811,47 @@ restart_download:
 
       bool bExpandFileSet;
 
-      for(i = 0; i < stra_dup.get_count(); i++)
+      m_iProgressTotalGzLen = 0;
+
+      int iPreviousTotalProgress;
+
+      int i = 0;
+
+      for(; i < stra_dup.get_count();)
       {
 
-         if(m_iTotalGzLen > 0)
+         vsstring strCurrent  = stra_dup[i];
+
+         bExpandFileSet = strCurrent.ends_ci(".expand_fileset");
+
+         if(!bExpandFileSet)
          {
-
-            m_dProgress1 = (double) m_iGzLen / (double) m_iTotalGzLen;
-
-            m_dProgress2 = (double) (m_iGzLen + mapGzLen[stra_dup[i]]) / (double) m_iTotalGzLen;
-
+            i++;
+            continue;
          }
-         else
-         {
 
-            m_dProgress1 = d / ((double) stra_dup.get_count());
+         stra_dup.remove_at(i);
 
-            d += 1.0;
+         straExpandFileSet.add(strCurrent);
 
-            m_dProgress2 = d / ((double) stra_dup.get_count());
+         iGzLen = mapGzLen[strCurrent];
 
-         }
+         m_iProgressTotalGzLen += iGzLen;
+         
+         m_iTotalGzLen -= iGzLen;
+
+      }
+
+      m_iGzLen = 0;
+
+      for(i = 0; i < straExpandFileSet.get_count(); i++)
+      {
 
          str = m_strInstall;
 
-         str += stra_dup[i];
+         str += straExpandFileSet[i];
 
-         vsstring strCurrent  = stra_dup[i];
+         vsstring strCurrent  = straExpandFileSet[i];
 
          vsstring str2 = dir::name(str);
 
@@ -849,8 +864,6 @@ restart_download:
 
          }
 
-         trace(str_replace_dup(file_title_dup((str2 + str)), "\\", "/"));
-         
          str += ".bz";
          
          vsstring str3  = str;
@@ -865,160 +878,173 @@ restart_download:
          
          str += strMd5;
          
-         vsstring strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent, mapMd5[stra_dup[i]]);
+         vsstring strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent, strMd5);
          
-         //vsstring strStageUnbz = ca2unbz_get_dir(str1) + ca2unbz_get_file(str1);
-
-         //dir::mk(dir::name(strStageUnbz));
-
          strStageInplaceFile = ca2inplace_get_file(strCurrent);
 
-         bExpandFileSet = strStageInplaceFile.ends_ci(".expand_fileset");
+         bDownload = true;
 
-         bDownload = false;
+         trace(str_replace_dup(file_title_dup((str2 + str)), "\\", "/"));
 
-         if(bExpandFileSet)
+         strStageInplace = ca2bz_get_dir(strCurrent) + strStageInplaceFile;
+
+         if(file_exists_dup(strStageInplace)
+         && (iLen != -1) && file_length_dup(strStageInplace) == iLen 
+         && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
          {
 
-            strStageInplace = ca2bz_get_dir(strCurrent) + ca2inplace_get_file(strCurrent);
+            bDownload = false;
 
-            // uncompress, may have downloaded .bz correctly in previous install
-            // and Get will later check if decompressed file is already the correct one
-            if(file_exists_dup(strStageGz))
+         }
+
+         if(bDownload && file_exists_dup(strStageGz))
+         {
+
+            dir::mk(dir::name(strStageInplace));
+
+            bzuncompress(strStageInplace, strStageGz);
+
+            if(file_exists_dup(strStageInplace)
+            && (iLen != -1) && file_length_dup(strStageInplace) == iLen 
+            && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
+               bDownload = false;
+
+         }
+
+         if(bDownload && download_file(strStageInplace, str3, false, false, iLen, strMd5, iGzLen, mapFlag[stra_dup[i]]))
+         {
+            
+            m_dProgress = m_dProgress2;
+
+            vsstring strRelative = dir::path(dir::name(strCurrent), file_name_dup(strCurrent));
+
+            vsstring strStageInplace2 = ca2inplace_get_dir(strRelative) + ca2inplace_get_file(strRelative);
+
+            file_ftd_dup(strStageInplace2, strStageInplace);
+
+         }
+
+         vsstring strExpand = strCurrent;
+
+         strExpand += ".spa";
+
+         strExpand = "app\\stage\\metastage\\" + strExpand;
+
+         iPreviousTotalProgress = m_iProgressTotalGzLen; // keep progress rate total calculator
+
+         m_iProgressTotalGzLen = 0; // avoid progress rate change
+
+         GetFileList(stra_dup, strExpand , mapLen, mapGzLen, mapMd5, mapFlag);
+
+         m_iProgressTotalGzLen = iPreviousTotalProgress; // restore progress rate total calculator
+
+         m_iGzLen += iGzLen;
+         
+         dlr(m_iGzLen);
+         
+         set_progress((double) m_iGzLen / (double) m_iProgressTotalGzLen);
+
+      }
+
+      new_progress_end(0.84);
+
+      m_iGzLen = 0;
+
+      m_iProgressTotalGzLen = m_iTotalGzLen;
+
+      d = 0.0;
+
+      for(i = 0; i < stra_dup.get_count(); i++)
+      {
+
+         vsstring strCurrent  = stra_dup[i];
+
+         iGzLen         = mapGzLen[strCurrent];
+
+         str = m_strInstall;
+
+         str += strCurrent;
+
+         vsstring str2 = dir::name(str);
+
+         if(str2.substr(0, m_strInstall.length()) == m_strInstall)
+         {
+
+            str2 = str2.substr(21);
+
+            str2 = str_replace_dup(str2, "\\", "/");
+
+         }
+
+         str += ".bz";
+         
+         vsstring str3  = str;
+         
+         strMd5         = mapMd5[strCurrent];
+         
+         iLen           = mapLen[strCurrent];
+
+         str += ".";
+         
+         str += strMd5;
+         
+         vsstring strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent, strMd5);
+         
+         strStageInplaceFile = ca2inplace_get_file(strCurrent);
+
+         bDownload = true;
+
+         strStageInplace = ca2inplace_get_dir(strCurrent) + ca2inplace_get_file(strCurrent);
+
+         trace(str_replace_dup(file_title_dup((str2 + str)), "\\", "/"));
+
+         if(file_exists_dup(strStageInplace)
+         && (iLen != -1) && file_length_dup(strStageInplace) == iLen 
+         && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
+         {
+
+            bDownload = false;
+
+         }
+
+
+         if(bDownload && file_exists_dup(strStageGz))
+         {
+
+            dir::mk(dir::name(strStageInplace));
+
+            bzuncompress(strStageInplace, strStageGz);
+
+            if(file_exists_dup(strStageInplace)
+            && (iLen != -1) && file_length_dup(strStageInplace) == iLen 
+            && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
+               bDownload = false;
+
+         }
+
+         if(bDownload)
+         {
+
+            if(download_file(strStageInplace, str3, false, false, iLen, strMd5, iGzLen, mapFlag[stra_dup[i]]))
             {
-
-               dir::mk(dir::name(strStageInplace));
-
-               bzuncompress(strStageInplace, strStageGz);
-
-               if(file_length_dup(strStageInplace) > 0)
-               {
-               
-                  vsstring strExpand   = strCurrent;
-                  strExpand += ".spa";
-                  //strExpand = str_replace_dup(str_replace_dup(strExpand, "\\", "_"), "/", "_");
-                  strExpand = "app\\stage\\metastage\\" + strExpand;
-                  for(int j = 0;  j < stra_dup.get_count(); j++)
-                  {
-                     ::OutputDebugStringA(stra_dup[j]);
-                     ::OutputDebugStringA("\r\n");
-                  }
-
-                  if(GetFileList(stra_dup, strExpand , mapLen, mapGzLen, mapMd5, mapFlag) > 0)
-                  {
-
-                     stra_dup.remove(strCurrent);
-
-                     m_iTotalGzLen -= iGzLen;
-
-                     for(int j = 0;  j < stra_dup.get_count(); j++)
-                     {
-
-                        ::OutputDebugStringA(stra_dup[j]);
-
-                        ::OutputDebugStringA("\r\n");
-
-                     }
-
-                     goto restart_download;
-
-                  }
-
-               }
+            
+               m_dProgress = m_dProgress2;
 
             }
-
-            bDownload = true;
 
          }
          else
          {
 
-            strStageInplace = ca2inplace_get_dir(strCurrent) + ca2inplace_get_file(strCurrent);
-         
-            if(file_exists_dup(strStageInplace)
-            && (iLen != -1) && file_length_dup(strStageInplace) == iLen 
-            && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
-               goto continue2;
-
-            if(file_exists_dup(strStageGz))
-            {
-
-               dir::mk(dir::name(strStageInplace));
-
-               bzuncompress(strStageInplace, strStageGz);
-
-               if(file_exists_dup(strStageInplace)
-               && (iLen != -1) && file_length_dup(strStageInplace) == iLen 
-               && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
-                  goto continue2;
-
-            }
-
-            bDownload = true;
+            trace_add(" ok");
 
          }
 
-
-         if(bDownload && download_file(str3, false, false, iLen, strMd5, mapGzLen[stra_dup[i]], mapFlag[stra_dup[i]]))
-         {
-            
-            m_dProgress = m_dProgress2;
-
-            if(bExpandFileSet)
-            {
-
-               str = stra_dup[i];
-               vsstring strExpand = stra_dup[i];
-               vsstring strCurrent = stra_dup[i];
-               vsstring strRelative = dir::path(dir::name(str), file_name_dup(str));
-               //vsstring strStageUnbz1 = ca2unbz_get_dir(str) + ca2unbz_get_file(str);
-               //vsstring strStageUnbz2 = ca2unbz_get_dir(strRelative) + ca2unbz_get_file(strRelative);
-               vsstring strStageInplace1 = ca2inplace_get_dir(str) + ca2inplace_get_file(str);
-               vsstring strStageInplace2 = ca2inplace_get_dir(strRelative) + ca2inplace_get_file(strRelative);
-               //file_ftd_dup(strStageUnbz2, strStageUnbz);
-               file_ftd_dup(strStageInplace2, strStageInplace);
-               strExpand += ".spa";
-               //strExpand = str_replace_dup(str_replace_dup(strExpand, "\\", "_"), "/", "_");
-               strExpand = "app\\stage\\metastage\\" + strExpand;
-               for(int j = 0;  j < stra_dup.get_count(); j++)
-               {
-                  ::OutputDebugStringA(stra_dup[j]);
-                  ::OutputDebugStringA("\r\n");
-               }
-
-               if(GetFileList(stra_dup, strExpand , mapLen, mapGzLen, mapMd5, mapFlag) > 0)
-               {
-
-                  stra_dup.remove(strCurrent);
-
-                  m_iTotalGzLen -= iGzLen;
-
-                  for(int j = 0;  j < stra_dup.get_count(); j++)
-                  {
-
-                     ::OutputDebugStringA(stra_dup[j]);
-
-                     ::OutputDebugStringA("\r\n");
-
-                  }
-
-                  goto restart_download;
-
-               }
-
-            }
-
-         }
-
-
-continue2:
-         
          m_iGzLen += iGzLen;
          
          dlr(m_iGzLen);
          
-         set_progress((double) m_iGzLen / (double) m_iTotalGzLen);
+         set_progress((double) m_iGzLen / (double) m_iProgressTotalGzLen);
 
       }
 
@@ -1106,7 +1132,7 @@ continue2:
    }
 
 
-   bool installer::download_file(const vsstring& url_in, bool bExist, bool bCheck, int64_t iLength, const char * pszMd5, int64_t iGzLen, int_ptr & iFlag)
+   bool installer::download_file(const vsstring& inplaceParam, const vsstring& url_in, bool bExist, bool bCheck, int64_t iLength, const char * pszMd5, int64_t iGzLen, int_ptr & iFlag)
    {
 
       if(m_bOfflineInstall)
@@ -1196,14 +1222,27 @@ continue2:
 
       dir::mk(dir);
 
+      vsstring inplace;
+
+      if(inplaceParam.is_empty())
+      {
+
+         inplace = dir2 + file2;
+
+      }
+      else
+      {
+         inplace = inplaceParam;
+      }
+
       // first check if the exiting (old file) is already up-to-date (the current one)
       if(bExist && bCheck)
       {
-         if(file_exists_dup(dir2 + file2))
+         if(file_exists_dup(inplace))
          {
-            if(iLength != -1 && iLength == file_length_dup((dir2 + file2)))
+            if(iLength != -1 && iLength == file_length_dup(inplace))
             {
-               if(pszMd5 != NULL && strlen_dup(pszMd5) > 0 && stricmp_dup(get_file_md5((dir2 + file2)), pszMd5) == 0)
+               if(pszMd5 != NULL && strlen_dup(pszMd5) > 0 && stricmp_dup(get_file_md5(inplace), pszMd5) == 0)
                {
 
                   trace_add(_unitext(" up-to-date c"));
@@ -1227,12 +1266,12 @@ continue2:
 
       int iStatus;
 
-      if(file_exists_dup((dir2 + file2)))
+      if(file_exists_dup(inplace))
       {
 
          // then first try to download and apply patch
 
-         vsstring strOldMd5 = get_file_md5((dir2 + file2));
+         vsstring strOldMd5 = get_file_md5(inplace);
 
          vsstring strNewMd5 = pszMd5;
 
@@ -1285,8 +1324,8 @@ continue2:
                int iResult = 0;
                if(iLength != -1)
                {
-                  dir::mk(dir::name((dir3 + file2)));
-                  iResult = bspatch((dir2 + file2), (dir3 + file2), strBsPatch);
+                  dir::mk(dir::name(inplace));
+                  iResult = bspatch(inplace, (dir3 + file2), strBsPatch);
                   if(iResult != 0)
                   {
                      //   trace("");
@@ -1341,7 +1380,7 @@ continue2:
                   //trace("Patch MD5 Hash Verification");
                   /*sprintf_dup(sz, "correct MD5 Hash : %s", pszMd5);
                   trace(sz);
-                  sprintf_dup(sz, "actual  MD5 Hash : %s", strMd5);
+                  sprintf_dup(sz, "actual  MD5 Hash : %str", strMd5);
                   trace(sz);*/
                   if(bOk)
                   {
@@ -1355,7 +1394,7 @@ continue2:
             }
             if(bOk)
             {
-               if(!file_copy_dup(dir2 + file2, dir3 + file2))
+               if(!file_copy_dup(inplace, dir3 + file2))
                {
                   trace("Failed to copy patched file: Need Restart Because Of Reserved File");
                   m_NeedRestartBecauseOfReservedFile = true;
@@ -1418,7 +1457,8 @@ continue2:
             {
                //if(iLength != -1)
                {
-                  int iResult = bzuncompress((dir2 + file2), (dir + file + "." + pszMd5));
+                  dir::mk(dir::name(inplace));
+                  int iResult = bzuncompress(inplace, (dir + file + "." + pszMd5));
                   /*if(iResult == -1)
                   {
                      m_NeedRestartBecauseOfReservedFile = true;
@@ -1428,10 +1468,10 @@ continue2:
                      m_NeedRestartFatalError = true;
                   }*/
                }
-               bOk = iLength == -1 || iLength == file_length_dup((dir2 + file2));
+               bOk = iLength == -1 || iLength == file_length_dup(inplace);
                if(bOk)
                {
-                  bOk = pszMd5 == NULL || strlen_dup(pszMd5) == 0 || stricmp_dup(get_file_md5((dir2 + file2)), pszMd5) == 0;
+                  bOk = pszMd5 == NULL || strlen_dup(pszMd5) == 0 || stricmp_dup(get_file_md5(inplace), pszMd5) == 0;
                   if(bOk)
                   {
                      break;
@@ -2593,6 +2633,7 @@ continue2:
       }
 
       strName = "Installing " + strName;
+      trace((":::::" + strName));
 
       m_strTitle = strName;
 
