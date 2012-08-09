@@ -1052,7 +1052,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
          Gdiplus::SolidBrush b(Gdiplus::Color(127, 255, 255, 255));
 
-         Gdiplus::Font f(L"Geneva", 18, 0, Gdiplus::UnitPixel);
+         Gdiplus::Font f(L"Calibri", 18, 0, Gdiplus::UnitPixel);
 
          wstring wstrStatus;
 
