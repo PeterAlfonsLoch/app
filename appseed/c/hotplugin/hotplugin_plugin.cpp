@@ -685,6 +685,16 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
       double dRate = get_progress_rate();
 
+      if(dRate <= 0.0)
+      {
+         
+         return;
+
+      }
+
+
+
+
       int iDelta = s_iDelta;
       int iRadius = 8;
       int iPhase = ((((GetTickCount()- s_dwSync)  % iDelta)  ) * iRadius * 2) / iDelta;
@@ -1049,6 +1059,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
          graphics2.DrawLine(ppen, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
          graphics2.DrawLine(ppen, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
          delete ppen;
+
 
          Gdiplus::SolidBrush b(Gdiplus::Color(127, 255, 255, 255));
 

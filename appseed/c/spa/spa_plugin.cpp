@@ -569,8 +569,9 @@ install:
             {
                iSkip = 0;
                strLine.trim();
-               if(strLine == "--")
+               if(strLine.begins_eat("get application name"))
                {
+                  m_strStatus = "";
                   return 0.0;
                }
                else if(!bRate && strLine.begins_eat("|||"))
