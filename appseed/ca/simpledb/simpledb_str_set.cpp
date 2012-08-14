@@ -91,64 +91,94 @@ db_str_set::sync_queue::~sync_queue()
 int db_str_set::sync_queue::run()
 {
 
-   while(true)
+   string strApiServer;
+
+   try
    {
 
-repeat:;
-
+      while(true)
       {
 
-         single_lock sl(&m_mutex, true);
+   repeat:;
 
-         if(m_itema.get_size() <= 0)
          {
-            Sleep(1984);
-            goto repeat;
-         }
 
-         for(int i = 1; i < m_itema.get_size(); i++)
-         {
-            if(m_itema[i].m_strKey == m_itema[0].m_strKey)
+            single_lock sl(&m_mutex, true);
+
+            if(m_itema.get_size() <= 0)
             {
-               m_itema.remove_at(0);
+               Sleep(1984);
                goto repeat;
             }
-         }
 
-         gen::property_set post(get_app());
-         gen::property_set headers(get_app());
-         gen::property_set set(get_app());
+            for(int i = 1; i < m_itema.get_size(); i++)
+            {
+               if(m_itema[i].m_strKey == m_itema[0].m_strKey)
+               {
+                  m_itema.remove_at(0);
+                  goto repeat;
+               }
+            }
 
-         ca4::http::e_status estatus;
+            try
+            {
 
-         string strUrl;
+               gen::property_set post(get_app());
+               gen::property_set headers(get_app());
+               gen::property_set set(get_app());
 
-         set["interactive_user"] = true;
+               ca4::http::e_status estatus;
 
-         strUrl = "https://api.ca2.cc/account/str_set_save?key=";
-         strUrl += System.url().url_encode(m_itema[0].m_strKey);
-         strUrl += "&value=";
-         strUrl += System.url().url_encode(m_itema[0].m_str);
+               string strUrl;
 
-         m_itema.remove_at(0);
+               set["interactive_user"] = true;
 
-         sl.unlock();
+               
+               if(strApiServer.is_empty())
+               {
+
+                  strApiServer = ApplicationUser.get_ca2_server("api");
 
 
-         m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
+               }
 
-         if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
-         {
-            Sleep(1984);
-            goto repeat;
+               
+
+               strUrl = "https://" + strApiServer +"/account/str_set_save?key=";
+               strUrl += System.url().url_encode(m_itema[0].m_strKey);
+               strUrl += "&value=";
+               strUrl += System.url().url_encode(m_itema[0].m_str);
+
+               m_itema.remove_at(0);
+
+               sl.unlock();
+
+
+               m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
+
+               if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
+               {
+                  Sleep(1984);
+                  strApiServer = "";
+                  goto repeat;
+               }
+
+            }
+            catch(...)
+            {
+            }
+
+
          }
 
 
       }
-
-
    }
-
+   catch(...)
+   {
+   }
+   m_pset->m_pqueue = NULL;
+   return 0;
 }
 
 

@@ -21,6 +21,7 @@ namespace ex1
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandLine(pszCommandLine);
       commandcentral.consolidate(createcontext);
+      System.command().consolidate(createcontext);
       create(createcontext);
    }
 
@@ -31,6 +32,7 @@ namespace ex1
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandLineUri(pszCommandLine);
       commandcentral.consolidate(createcontext);
+      System.command().consolidate(createcontext);
       create(createcontext);
    }
 
@@ -41,6 +43,7 @@ namespace ex1
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandFork(pszCommandFork);
       commandcentral.consolidate(createcontext);
+      System.command().consolidate(createcontext);
       create(createcontext);
    }
 
@@ -51,6 +54,7 @@ namespace ex1
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandForkUri(pszCommandFork);
       commandcentral.consolidate(createcontext);
+      System.command().consolidate(createcontext);
       create(createcontext);
    }
 

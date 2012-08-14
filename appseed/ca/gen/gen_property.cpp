@@ -2267,29 +2267,13 @@ namespace gen
             if(pszKeyEnd == NULL)
             {
                strKey = System.url().url_decode(pszParam, strlen(pszUrlQuery) - (pszParam - pszUrlQuery));
-               bool bAddArray = strKey.get_length() >= 2 && strKey[strKey.get_length() - 2] == '[' && strKey[strKey.get_length() - 1] == ']';
-               if(bAddArray)
-               {
-                  operator[](strKey).stra().add("");
-               }
-               else
-               {
-                  operator[](strKey).get_value() = "";
-               }
+               _008Add(strKey, "");
             }
             else
             {
                string strKey = System.url().url_decode(pszParam, pszKeyEnd - pszParam);
-               bool bAddArray = strKey.get_length() >= 2 && strKey[strKey.get_length() - 2] == '[' && strKey[strKey.get_length() - 1] == ']';
                string strValue = System.url().url_decode(pszKeyEnd + 1, strlen(pszUrlQuery) - (pszKeyEnd + 1 - pszUrlQuery));
-               if(bAddArray)
-               {
-                  operator[](strKey).stra().add(strValue);
-               }
-               else
-               {
-                  add(strKey, var(strValue));
-               }
+               _008Add(strKey, strValue);
             }
             return;
          }
@@ -2298,29 +2282,13 @@ namespace gen
             if(pszKeyEnd == NULL || pszKeyEnd > pszParamEnd)
             {
                strKey = System.url().url_decode(pszParam, pszParamEnd - pszParam);
-               bool bAddArray = strKey.get_length() >= 2 && strKey[strKey.get_length() - 2] == '[' && strKey[strKey.get_length() - 1] == ']';
-               if(bAddArray)
-               {
-                  operator[](strKey).stra().add("");
-               }
-               else
-               {
-                  operator[](strKey).get_value() = "";
-               }
+               _008Add(strKey, "");
             }
             else
             {
                string strKey = System.url().url_decode(pszParam, pszKeyEnd - pszParam);
-               bool bAddArray = strKey.get_length() >= 2 && strKey[strKey.get_length() - 2] == '[' && strKey[strKey.get_length() - 1] == ']';
                string strValue = System.url().url_decode(pszKeyEnd + 1, pszParamEnd - (pszKeyEnd + 1));
-               if(bAddArray)
-               {
-                  operator[](strKey).stra().add(strValue);
-               }
-               else
-               {
-                  add(strKey, var(strValue));
-               }
+               _008Add(strKey, strValue);
             }
          }
          pszParam = pszParamEnd + 1;

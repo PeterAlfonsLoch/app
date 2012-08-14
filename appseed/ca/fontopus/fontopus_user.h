@@ -51,6 +51,8 @@ namespace fontopus
       string get_sessid(const char * pszRequestingParty = NULL, bool bInteractive = true);
       void   set_sessid(const char * pszSessid, const char * pszRequestingParty);
 
+      string get_ca2_server(const char * pszPrefix);
+
 
       virtual bool initialize();
 

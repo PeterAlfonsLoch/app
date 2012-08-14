@@ -357,6 +357,8 @@ namespace plane
    void session::on_request(::ca::create_context * pcreatecontext)
    {
 
+
+
       if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1
       && pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[0] == "app/ca2/userstack")
       {
@@ -364,6 +366,13 @@ namespace plane
          return;
       }
 
+      string strApp = pcreatecontext->m_spCommandLine->m_strApp;
+
+      if(strApp == "app/ca2/userstack")
+      {
+         start_application("application", "app/ca2/userstack", pcreatecontext);
+         return;
+      }
 
       if(m_pbergedgeInterface != NULL)
       {
@@ -376,7 +385,6 @@ namespace plane
       m_varCurrentViewFile = pcreatecontext->m_spCommandLine->m_varFile;
 
 
-      string strApp;
       string strType;
 
 
@@ -789,6 +797,7 @@ namespace plane
             {
                strCommand.trim();
                command().add_fork_uri(strCommand);
+               System.m_bDoNotExitIfNoApplications = true;
             }
             return;
          }

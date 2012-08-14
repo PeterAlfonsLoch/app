@@ -180,6 +180,42 @@ restart:
    }
 
 
+   string user::get_ca2_server(const char * pszPrefix)
+   {
+
+      string strPrefix(pszPrefix);
+      string strDomain(".ca2.cc");
+
+      stringa straServer;
+
+      straServer.add(strPrefix + strDomain);
+      straServer.add("eu-" + strPrefix + strDomain);
+      straServer.add("asia-" + strPrefix + strDomain);
+
+      for(int i = 0; i < 3; i++)
+      {
+
+         for(int j = 0; j < straServer.get_size(); j++)
+         {
+                     
+            string strSessId = ApplicationUser.get_sessid(straServer[j]); 
+
+            if(strSessId != "not_auth")
+            {
+
+               return straServer[j];
+
+            }
+
+         }
+
+      }
+
+      return straServer[0];
+
+   }
+
+
 } // namespace fontopus
 
 

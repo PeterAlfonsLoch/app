@@ -60,10 +60,13 @@ namespace userstack
 
       add_tab("menu", ::userstack::PaneViewContextMenu);
 
-      for(int i = 1; i < Application.directrix().m_varTopicQuery["app"].get_count(); i++)
+      for(int i = 0; i < Application.directrix().m_varTopicQuery["app"].get_count(); i++)
       {
 
          string strId = Application.directrix().m_varTopicQuery["app"].stra()[i];
+
+         if(i == 0 && strId == "app/ca2/userstack")
+            continue;
 
          add_tab(strId, "app:" + strId);
 

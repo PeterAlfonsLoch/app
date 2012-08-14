@@ -264,7 +264,7 @@ namespace gen
          m_varQuery["show_platform"] = 1;
       }
 
-      if(m_varQuery.propset().has_property("app"))
+      if(m_varQuery.propset().has_property("app") && !m_varQuery["app"].is_array())
       {
          m_strApp = m_varQuery.propset()["app"];
       }
