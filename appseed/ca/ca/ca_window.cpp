@@ -301,7 +301,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   int window::GetDlgItemText(int nID, string & rString) const
+   int window::GetChildByIdText(int nID, string & rString) const
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(rString);
@@ -1369,14 +1369,14 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void window::GetDlgItem(id id, HWND* phWnd) const
+   void window::GetChildById(id id, HWND* phWnd) const
    {
       UNREFERENCED_PARAMETER(id);
       UNREFERENCED_PARAMETER(phWnd);
       throw interface_only_exception();
    }
 
-   UINT window::GetDlgItemInt(int nID, bool* lpTrans, bool bSigned) const
+   UINT window::GetChildByIdInt(int nID, bool* lpTrans, bool bSigned) const
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpTrans);
@@ -1384,7 +1384,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   int window::GetDlgItemText(int nID, LPTSTR lpStr, int nMaxCount) const
+   int window::GetChildByIdText(int nID, LPTSTR lpStr, int nMaxCount) const
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpStr);
@@ -2138,7 +2138,7 @@ namespace ca
    }
 
    // window dialog data support
-//   void window::DoDataExchange(CDataExchange*)
+//   void window::do_data_exchange(CDataExchange*)
   // {
     //  throw interface_only_exception();
    //}

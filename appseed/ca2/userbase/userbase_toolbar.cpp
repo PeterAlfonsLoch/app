@@ -964,7 +964,7 @@ namespace userbase
             {
                for (int i = 0; i < nControlCount; i++)
                {
-                  ::user::interaction* pWnd = GetDlgItem(pControl[i].nID);
+                  ::user::interaction* pWnd = GetChildById(pControl[i].nID);
                   if (pWnd != NULL)
                   {
                      rect rect;

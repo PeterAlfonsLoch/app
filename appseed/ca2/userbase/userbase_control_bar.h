@@ -27,7 +27,7 @@ class BaseDockState;
 #define __IDW_PREVIEW_BAR             0xE802  // PrintPreview Dialog Bar
 #define __IDW_RESIZE_BAR              0xE803  // OLE in-place resize bar
 #define __IDW_REBAR                   0xE804  // COMCTL32 "rebar" Bar
-#define __IDW_DIALOGBAR               0xE805  // CDialogBar
+#define __IDW_DIALOGBAR               0xE805  // dialogBar
 
 // Note: If your application supports docking toolbars, you should
 //  not use the following IDs for your own toolbars.  The IDs chosen

@@ -16,6 +16,258 @@ namespace collection
          TYPE data;
       };
 
+
+      class iterator
+      {
+      public:
+
+
+         POSITION         m_pos;
+         list *    m_plist;
+
+         iterator()
+         {
+            m_pos = 0;
+            m_plist = NULL;
+         }
+
+         iterator(POSITION i, list * plist)
+         {
+            m_pos = i;
+            m_plist = plist;
+         }
+
+         iterator(const iterator & it)
+         {
+            operator = (it);
+         }
+
+         TYPE & operator * ()
+         {
+            return m_plist->get_at(m_pos);
+         }
+
+         const TYPE & operator * () const
+         {
+            return m_plist->get_at(m_pos);
+         }
+
+         iterator & operator = (const iterator & it)
+         {
+            if(this != &it)
+            {
+               m_pos      = it.m_pos;
+               m_plist    = it.m_plist;
+            }
+            return *this;
+         }
+
+         bool operator == (const iterator & it)
+         {
+            if(this == &it)
+               return true;
+            if(m_plist != it.m_plist)
+               return false;
+            return m_pos == it.m_pos;
+         }
+
+         bool operator != (const iterator & it)
+         {
+            return !operator==(it);
+         }
+
+         iterator & operator ++()
+         {
+         
+            if(m_pos == NULL || m_pos == m_plist->get_tail_position())
+               return * this;
+
+            m_plist->get_next(m_pos);
+
+            return *this;
+
+         }
+
+         iterator & operator +(int i)
+         {
+
+            while(m_pos != NULL && m_pos != m_plist->get_tail_position() && i > 0)
+            {
+
+               i--;
+               m_plist->get_next(m_pos);
+
+            }
+
+            return *this;
+
+         }
+
+         iterator & operator --()
+         {
+
+            if(m_pos == NULL || m_pos == m_plist->get_head_position())
+               return * this;
+
+            m_plist->get_previous(m_pos);
+
+            return *this;
+
+         }
+
+         iterator & operator -(int i)
+         {
+
+            while(m_pos != NULL && m_pos != m_plist->get_head_position() && i > 0)
+            {
+               i--;
+               m_plist->get_previous(m_pos);
+            }
+
+            return *this;
+
+         }
+
+      };
+
+
+      class const_iterator
+      {
+      public:
+
+
+         POSITION                m_pos;
+         const list *     m_plist;
+
+         const_iterator()
+         {
+            m_pos = 0;
+            m_plist = NULL;
+         }
+
+         const_iterator(POSITION i, const list * plist)
+         {
+            m_pos = i;
+            m_plist = plist;
+         }
+
+         const_iterator(const const_iterator & it)
+         {
+            operator = (it);
+         }
+
+         const TYPE & operator * ()
+         {
+            return m_plist->get_at(m_pos);
+         }
+
+         const TYPE & operator * () const
+         {
+            return m_plist->get_at(m_pos);
+         }
+
+         const_iterator & operator = (const const_iterator & it)
+         {
+            if(this != &it)
+            {
+               m_pos      = it.m_pos;
+               m_plist    = it.m_plist;
+            }
+            return *this;
+         }
+
+         bool operator == (const const_iterator & it)
+         {
+            if(this == &it)
+               return true;
+            if(m_plist != it.m_plist)
+               return false;
+            return m_pos == it.m_pos;
+         }
+
+         bool operator != (const const_iterator & it)
+         {
+            return !operator==(it);
+         }
+
+         const_iterator & operator ++()
+         {
+         
+            if(m_pos == NULL || m_pos == m_plist->get_tail_position())
+               return * this;
+
+            m_plist->get_next(m_pos);
+
+            return *this;
+
+         }
+
+         const_iterator & operator +(int i)
+         {
+
+            while(m_pos != NULL && m_pos != m_plist->get_tail_position() && i > 0)
+            {
+
+               i--;
+               m_plist->get_next(m_pos);
+
+            }
+
+            return *this;
+
+         }
+
+         const_iterator & operator --()
+         {
+
+            if(m_pos == NULL || m_pos == m_plist->get_head_position())
+               return * this;
+
+            m_plist->get_previous(m_pos);
+
+            return *this;
+
+         }
+
+         const_iterator & operator -(int i)
+         {
+
+            while(m_pos != NULL && m_pos != m_plist->get_head_position() && i > 0)
+            {
+               i--;
+               m_plist->get_previous(m_pos);
+            }
+
+            return *this;
+
+         }
+
+      };
+
+
+      iterator begin()
+      {
+         return iterator(get_head_position(), this);
+      }
+
+
+      iterator end()
+      {
+         return iterator(NULL, this);
+      }
+
+      const_iterator begin() const
+      {
+         return const_iterator(get_head_position(), this);
+      }
+
+
+      const_iterator end() const
+      {
+         return const_iterator(NULL, this);
+      }
+
+
       list(count nBlockSize = 10);
       list(const class list & l);
 

@@ -197,10 +197,15 @@ public:
 
 #include "collection_spreadset.h"
 
+#include "collection_deque.h"
 
+#include "collection_queue.h"
+
+#include "collection_priority_queue.h"
 
 class CLASS_DECL_ca time_array :
    public base_array < ::datetime::time, ::datetime::time & >
 {
 };
+
 

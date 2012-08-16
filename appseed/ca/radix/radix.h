@@ -190,6 +190,7 @@ class dump_context;
 #include "ca/gen/gen_hash.h"
 #include "ca/gen/gen_equals.h"
 #include "ca/gen/gen_compare.h"
+#include "ca/gen/gen_less.h"
 #include "ca/gen/gen.h"
 
 

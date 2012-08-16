@@ -1925,7 +1925,7 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
          {
             for (int i = 0; i < nControlCount; i++)
             {
-               /* xxx ::user::interaction* pWnd = GetDlgItem(pControl[i].strId);
+               /* xxx ::user::interaction* pWnd = GetChildById(pControl[i].strId);
                if (pWnd != NULL)
                {
                rect rect;

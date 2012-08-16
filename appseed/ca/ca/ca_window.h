@@ -109,10 +109,10 @@ namespace ca
 
 
       // get immediate child with given ID
-      void GetDlgItem(id id, HWND* phWnd) const;
+      void GetChildById(id id, HWND* phWnd) const;
       // as above, but returns HWND
       virtual ::user::interaction * GetDescendantWindow(id id);
-      // like GetDlgItem but recursive
+      // like GetChildById but recursive
       void SendMessageToDescendants(UINT message, WPARAM wParam = 0, LPARAM lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
       virtual frame_window * GetParentFrame();
       virtual frame_window * EnsureParentFrame();
@@ -293,9 +293,9 @@ namespace ca
       virtual bool DlgDirSelect(LPTSTR lpString, int nSize, int nIDListBox);
       virtual bool DlgDirSelectComboBox(LPTSTR lpString, int nSize, int nIDComboBox);
 
-      virtual UINT GetDlgItemInt(int nID, bool* lpTrans = NULL, bool bSigned = TRUE) const;
-      virtual int GetDlgItemText(int nID, LPTSTR lpStr, int nMaxCount) const;
-      virtual int GetDlgItemText(int nID, string & rString) const;
+      virtual UINT GetChildByIdInt(int nID, bool* lpTrans = NULL, bool bSigned = TRUE) const;
+      virtual int GetChildByIdText(int nID, LPTSTR lpStr, int nMaxCount) const;
+      virtual int GetChildByIdText(int nID, string & rString) const;
       virtual ::ca::window* GetNextDlgGroupItem(::ca::window* pWndCtl, bool bPrevious = FALSE) const;
       virtual ::ca::window* GetNextDlgTabItem(::ca::window* pWndCtl, bool bPrevious = FALSE) const;
       virtual UINT IsDlgButtonChecked(int nIDButton) const;
@@ -613,7 +613,7 @@ namespace ca
 #endif
 
       // for dialog data exchange and validation
-      // virtual void DoDataExchange(CDataExchange* pDX);
+      // virtual void do_data_exchange(CDataExchange* pDX);
 
       // for modality
       virtual void BeginModalState();

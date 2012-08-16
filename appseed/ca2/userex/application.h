@@ -20,9 +20,9 @@ namespace userex
       virtual ~application();
 
       form_document *   create_form(::user::form_callback * pcallback, ::user::interaction * pwndParent, var var = ::var(::var::type_empty_argument));
-      form_document *   create_form(form_view * pview, ::user::form_callback * pcallback, ::user::interaction * pwndParent);
+      form_document *   create_form(form_view * pview, ::user::form_callback * pcallback, ::user::interaction * pwndParent, var var = ::var(::var::type_empty_argument));
       form_document *   create_child_form(::user::form_callback * pcallback, ::user::interaction * pwndParent, var var = ::var(::var::type_empty_argument));
-      form_document *   create_child_form(form_view * pview, ::user::form_callback * pcallback, ::user::interaction * pwndParent);
+      form_document *   create_child_form(form_view * pview, ::user::form_callback * pcallback, ::user::interaction * pwndParent, var var = ::var(::var::type_empty_argument));
       ::document * hold(::user::interaction * pui);
 
       virtual bool initialize1();

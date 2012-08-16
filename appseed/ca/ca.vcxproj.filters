@@ -3242,6 +3242,18 @@
     <ClInclude Include="html\html_file.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
+    <ClInclude Include="collection\collection_queue.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_deque.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\collection_priority_queue.h">
+      <Filter>Header Files\collection</Filter>
+    </ClInclude>
+    <ClInclude Include=".\gen\gen_less.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">

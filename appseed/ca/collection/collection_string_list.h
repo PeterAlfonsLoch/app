@@ -308,6 +308,11 @@ public:
    POSITION add_head(const string & newElement);
    POSITION add_tail(const string & newElement);
 
+   inline POSITION push_front(const char * newElement);
+   inline POSITION push_back(const char * newElement);
+
+   inline POSITION push_front(const string & newElement);
+   inline POSITION push_back(const string & newElement);
 
    // add another list of elements before head or after tail
    void add_head(string_list* pNewList);
@@ -439,3 +444,34 @@ inline void string_list::set_at(POSITION pos, const string & newElement)
       if( pNode == NULL )
          throw invalid_argument_exception();
       pNode->data = newElement; }
+
+
+
+inline POSITION string_list::push_front(const char * newElement)
+{
+
+   return add_head(newElement);
+
+}
+
+POSITION string_list::push_back(const char * newElement)
+{
+
+   return add_tail(newElement);
+
+}
+
+POSITION string_list::push_front(const string & newElement)
+{
+
+   return add_head(newElement);
+
+}
+
+POSITION string_list::push_back(const string & newElement)
+{
+
+   return add_tail(newElement);
+
+}
+

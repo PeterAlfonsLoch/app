@@ -172,6 +172,82 @@ namespace sort
       }
 
    };
+   template < class TYPE, class ARG_TYPE, class FIRST>
+   void QuickSort(
+      base_array < TYPE, ARG_TYPE > & a)
+   {
+      TYPE t;
+      index_array stackLowerBound;
+      index_array stackUpperBound;
+      index iLowerBound;
+      index iUpperBound;
+      index iLPos, iUPos, iMPos;
+      //   DWORD t;
+
+      if(a.get_size() >= 2)
+      {
+         stackLowerBound.push(0);
+         stackUpperBound.push(a.get_size() - 1);
+         while(true)
+         {
+            iLowerBound = stackLowerBound.pop();
+            iUpperBound = stackUpperBound.pop();
+            iLPos = iLowerBound;
+            iMPos = iLowerBound;
+            iUPos = iUpperBound;
+            while(true)
+            {
+               while(true)
+               {
+                  if(iMPos == iUPos)
+                     break;
+                  if(FIRST::Compare(&a.element_at(iMPos), &a.element_at(iUPos)))
+                     iUPos--;
+                  else
+                  {
+                     t = a.element_at(iMPos);
+                     a.element_at(iMPos) = a.element_at(iUPos);
+                     a.element_at(iUPos) = t;
+                     break;
+                  }
+               }
+               if(iMPos == iUPos)
+                  break;
+               iMPos = iUPos;
+               while(true)
+               {
+                  if(iMPos == iLPos)
+                     break;
+                  if(FIRST::Compare(&a.element_at(iLPos), &a.element_at(iMPos)))
+                     iLPos++;
+                  else
+                  {
+                     t = a.element_at(iMPos);
+                     a.element_at(iMPos) = a.element_at(iLPos);
+                     a.element_at(iLPos) = t;
+                     break;
+                  }
+               }
+               if(iMPos == iLPos)
+                  break;
+               iMPos = iLPos;
+            }
+            if(iLowerBound < iMPos - 1)
+            {
+               stackLowerBound.push(iLowerBound);
+               stackUpperBound.push(iMPos - 1);
+            }
+            if(iMPos + 1 < iUpperBound)
+            {
+               stackLowerBound.push(iMPos + 1);
+               stackUpperBound.push(iUpperBound);
+            }
+            if(stackLowerBound.get_size() == 0)
+               break;
+         }
+      }
+
+   };
    template <class TYPE, class ARG_TYPE>
    void QuickSort(
       base_array<TYPE, ARG_TYPE> & a,

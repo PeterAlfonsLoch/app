@@ -1683,12 +1683,12 @@ namespace user
          m_pimpl->SetOwner(pguie);
    }
 
-   interaction * interaction::GetDlgItem(id iId)
+   interaction * interaction::GetChildById(id iId)
    {
       if(m_pimpl == NULL)
          return NULL;
       else
-         return m_pimpl->GetDlgItem(iId);
+         return m_pimpl->GetChildById(iId);
    }
 
    interaction * interaction::GetDescendantWindow(id iId)

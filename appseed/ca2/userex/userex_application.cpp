@@ -79,7 +79,7 @@ namespace userex
 
 
 
-   form_document * application::create_form(form_view * pview, ::user::form_callback * pcallback, ::user::interaction * pwndParent)
+   form_document * application::create_form(form_view * pview, ::user::form_callback * pcallback, ::user::interaction * pwndParent, var var)
    {
       form_document * pdoc;
       if(m_ptemplateForm == NULL)
@@ -88,6 +88,12 @@ namespace userex
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       createcontext->m_pviewAlloc                     = pview;
+
+      if(var.get_type() == var::type_propset && var.has_property("hold") && !(bool) var["hold"])
+      {
+         createcontext->m_bHold                       = false;
+      }
+
       pdoc = dynamic_cast < form_document * > (m_ptemplateForm->open_document_file(createcontext));
       pview = pdoc->get_typed_view < form_view >();
       pdoc->get_html_data()->m_pform = pview;
@@ -120,7 +126,7 @@ namespace userex
    }
 
 
-   form_document * application::create_child_form(form_view * pview, ::user::form_callback * pcallback, ::user::interaction * pwndParent)
+   form_document * application::create_child_form(form_view * pview, ::user::form_callback * pcallback, ::user::interaction * pwndParent, var var)
    {
       form_document * pdoc;
       if(m_ptemplateChildForm == NULL)
@@ -129,6 +135,12 @@ namespace userex
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       createcontext->m_pviewAlloc                     = pview;
+
+      if(var.get_type() == var::type_propset && var.has_property("hold") && !(bool) var["hold"])
+      {
+         createcontext->m_bHold                       = false;
+      }
+
       pdoc = dynamic_cast < form_document * > (m_ptemplateChildForm->open_document_file(createcontext));
       pview = pdoc->get_typed_view < form_view >();
       pdoc->get_html_data()->m_pform = pview;

@@ -1,5 +1,17 @@
 #include "framework.h"
 
+
+
+dialog::dialog(const char * pszMatter, ::user::interaction * puiParent) :
+   ca(puiParent->get_app())
+{
+   m_strMatter = pszMatter;
+   m_pdocument    = NULL;
+   m_pframe       = NULL;
+   m_ulFlags      &= ~::ca::ca::flag_auto_delete;
+}
+
+
 dialog::dialog(::ca::application * papp) :
    ca(papp)
 {
@@ -26,11 +38,16 @@ dialog::~dialog()
 bool dialog::show(const char * pszMatter, gen::property_set & propertyset)
 {
 
+   if(pszMatter != NULL && *pszMatter != '\0')
+   {
+      m_strMatter = pszMatter;
+   }
+
    gen::property_set set(get_app());
 
    set["hold"] = false;
 
-   m_pdocument = Application.create_form(this, Bergedge.get_view(), set);
+   m_pdocument = Application.create_form(this, NULL, Bergedge.get_view(), set);
    if(m_pdocument == NULL)
    {
       string str;
@@ -40,7 +57,7 @@ bool dialog::show(const char * pszMatter, gen::property_set & propertyset)
    }
    m_pdocument->get_html_data()->m_propertyset = propertyset;
    
-   m_pdocument->on_open_document(Application.dir().matter(pszMatter));
+   m_pdocument->on_open_document(Application.dir().matter(m_strMatter));
    
    m_pframe = dynamic_cast < simple_frame_window * > (m_pdocument->get_view()->GetParentFrame());
    m_pframe->m_bWindowFrame         = true;
@@ -49,7 +66,7 @@ bool dialog::show(const char * pszMatter, gen::property_set & propertyset)
 
    on_position_parent_frame();
 
-   on_show(pszMatter, m_pdocument->get_html_data()->m_propertyset);
+   on_show(m_strMAtter, m_pdocument->get_html_data()->m_propertyset);
 
    m_pframe->RunModalLoop();
 
@@ -104,3 +121,34 @@ void dialog::form_from_user()
 void dialog::form_to_user()
 {
 }
+
+
+void dialog::do_data_exchange(::user::data_exchange * pdx)
+{
+}
+
+
+
+
+
+CLASS_DECL_ca2 void DDX_Control(::user::data_exchange * pdx, id idControl, ::user::interaction & control)
+{
+}
+
+CLASS_DECL_ca2 void DDX_Text(::user::data_exchange * pdx, id idControl, string & str)
+{
+}
+
+CLASS_DECL_ca2 void DDV_MaxChars(::user::data_exchange * pdx, string & str, int iMax)
+{
+}
+
+CLASS_DECL_ca2 void DDX_Check(::user::data_exchange * pdx, id idControl, int & iBool)
+{
+}
+
+CLASS_DECL_ca2 void DDX_Check(::user::data_exchange * pdx, id idControl, bool & b)
+{
+}
+
+

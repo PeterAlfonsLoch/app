@@ -1040,7 +1040,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include=".\collection\collection_bit_array.h" />
     <ClInclude Include=".\collection\collection_class_sort_array.h" />
     <ClInclude Include="collection\collection.h" />
+    <ClInclude Include="collection\collection_deque.h" />
     <ClInclude Include="collection\collection_fifo_map.h" />
+    <ClInclude Include="collection\collection_priority_queue.h" />
+    <ClInclude Include="collection\collection_queue.h" />
     <ClInclude Include="collection\collection_simple_template.h" />
     <ClInclude Include="collection\collection_sort_map.h" />
     <ClInclude Include="collection\collection_template.h" />
@@ -1424,6 +1427,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="gen\gen_composite.h" />
     <ClInclude Include="gen\gen_cregexp.h" />
     <ClInclude Include="gen\gen_cregexp_util.h" />
+    <ClInclude Include=".\gen\gen_less.h" />
     <ClInclude Include="gen\gen_flags.h" />
     <ClInclude Include="gen\gen.h" />
     <ClInclude Include="gen\gen_application.h" />
