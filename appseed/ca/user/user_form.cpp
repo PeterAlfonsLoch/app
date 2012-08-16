@@ -32,11 +32,11 @@ namespace user
          {
          case control::type_static:
             {
-   /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) ::ca::window::FromHandlePermanent(pform->GetChildById(pcontrol->m_id)->GetSafeHwnd());
+   /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) ::ca::window::FromHandlePermanent(pform->get_child_by_id(pcontrol->m_id)->GetSafeHwnd());
                if(pstatic == NULL || !base < CTransparentStatic >::bases(pstatic))
                {
                   pstatic = new CTransparentStatic;
-                  VERIFY(pstatic->SubclassWindow(pform->GetChildById(pcontrol->m_id)->GetSafeHwnd()));
+                  VERIFY(pstatic->SubclassWindow(pform->get_child_by_id(pcontrol->m_id)->GetSafeHwnd()));
                }
                pcontrol->m_unionwndptr.m_pstatic = pstatic;*/
             }
@@ -54,7 +54,7 @@ namespace user
          }
          if(dynamic_cast < ::user::interaction * > (pdescriptor->m_pcontrol) != NULL)
          {
-            //window_id wndidTemp = pform->GetChildById(descriptor.m_id)->GetSafeHwnd();
+            //window_id wndidTemp = pform->get_child_by_id(descriptor.m_id)->GetSafeHwnd();
             //if(wndidTemp != NULL)
             {
                /*xxx ::user::window_interface * pwnd = dynamic_cast < ::user::window_interface * > (pcontrol->m_typeinfo->CreateObject());
@@ -178,7 +178,7 @@ namespace user
       {
       case BN_CLICKED:
          {
-   /*      linux   simple_button * pbutton = (simple_button *) GetChildById(pcontrol->m_id);
+   /*      linux   simple_button * pbutton = (simple_button *) get_child_by_id(pcontrol->m_id);
             int i = pbutton->get_check() != 0;
             VmsDataSet(pcontrol->descriptor().m_dataid, 0, 0, i);*/
          }
@@ -202,7 +202,7 @@ namespace user
       {
       case CBN_SELCHANGE:
          {
-   /* linux         simple_combo_box * pcombo = (simple_combo_box *) GetChildById(pcontrol->m_id);
+   /* linux         simple_combo_box * pcombo = (simple_combo_box *) get_child_by_id(pcontrol->m_id);
             int iSel = pcombo->get_cur_sel();
             if(iSel != CB_ERR)
             {
@@ -259,7 +259,7 @@ namespace user
          || pcontrol->descriptor().get_type() == control::type_edit_plain_text);
 
 
-      text_interface * pedit = dynamic_cast < text_interface * >( GetChildById(pcontrol->m_id));
+      text_interface * pedit = dynamic_cast < text_interface * >( get_child_by_id(pcontrol->m_id));
       string str;
       if(pedit == NULL)
       {
@@ -408,7 +408,7 @@ namespace user
       int i;
       if(data_get(pcontrol->descriptor().m_dataid, ::radix::system::idEmpty, i))
       {
-   /* linux      simple_button * pbutton = (simple_button *) GetChildById(pcontrol->m_id);
+   /* linux      simple_button * pbutton = (simple_button *) get_child_by_id(pcontrol->m_id);
          pbutton->SetCheck((i != 0) ? 1 : 0); */
       }
    }
@@ -425,7 +425,7 @@ namespace user
          int_ptr iSel = pcontrol->GetComboBox()->m_dwaData.find_first((DWORD) i);
          if(iSel >= 0)
          {
-            simple_combo_box * pcombo = (simple_combo_box *) GetChildById(pcontrol->m_id);
+            simple_combo_box * pcombo = (simple_combo_box *) get_child_by_id(pcontrol->m_id);
             pcombo->set_cur_sel(iSel);
          }
       }*/
@@ -453,9 +453,9 @@ namespace user
          {
             ::database::selection_item & item = selection.get_item(0);
             text_interface * ptext = NULL;
-            if(GetChildById(pcontrol->m_id) != NULL)
+            if(get_child_by_id(pcontrol->m_id) != NULL)
             {
-               ptext = dynamic_cast < text_interface * > (GetChildById(pcontrol->m_id));
+               ptext = dynamic_cast < text_interface * > (get_child_by_id(pcontrol->m_id));
             }
             if(ptext == NULL && pcontrol != NULL)
             {
@@ -498,7 +498,7 @@ namespace user
 
       ASSERT(pcontrol->descriptor().get_type() == control::type_simple_list);
 
-/*      ::user::list * plist = dynamic_cast<::user::list *>(GetChildById(pcontrol->m_id));
+/*      ::user::list * plist = dynamic_cast<::user::list *>(get_child_by_id(pcontrol->m_id));
 
       if(typeid(plist->GetDataInterface()) == System.template type_info < ::user::simple_list_data > ())
       {
@@ -792,7 +792,7 @@ namespace user
    //            ASSERT(pcontrol->m_typeinfo->IsDerivedFrom(System.template type_info < ::ca::window > ()));
                if(dynamic_cast < ::ca::window * >(descriptor.m_pcontrol) != NULL)
                {
-                  //window_id wndidTemp = GetChildById(pcontrol->m_id)->GetSafeHwnd();
+                  //window_id wndidTemp = get_child_by_id(pcontrol->m_id)->GetSafeHwnd();
                   //if(wndidTemp != NULL)
                   {
              //xxx        VERIFY(pcontrol->m_pwnd->SubclassWindow(wndidTemp));

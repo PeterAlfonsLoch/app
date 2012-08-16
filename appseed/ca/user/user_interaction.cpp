@@ -811,7 +811,7 @@ namespace user
       UNREFERENCED_PARAMETER(pca);
    }
 
-   interaction * interaction::GetChildByName(const char * pszName, int iLevel)
+   interaction * interaction::get_child_by_name(const char * pszName, int iLevel)
    {
       interaction * pui = get_top_child();
       while(pui != NULL)
@@ -832,7 +832,7 @@ namespace user
          interaction * pui = get_top_child();
          while(pui != NULL)
          {
-            pchild = pui->GetChildByName(pszName, iLevel);
+            pchild = pui->get_child_by_name(pszName, iLevel);
             if(pchild != NULL)
                return pchild;
             pui = pui->under_sibling();
@@ -842,7 +842,7 @@ namespace user
    }
 
 
-   interaction * interaction::GetChildById(id id, int iLevel)
+   interaction * interaction::get_child_by_id(id id, int iLevel)
    {
       interaction * pui = get_top_child();
       while(pui != NULL)
@@ -863,7 +863,7 @@ namespace user
          interaction * pui = get_top_child();
          while(pui != NULL)
          {
-            pchild = pui->GetChildById(id, iLevel);
+            pchild = pui->get_child_by_id(id, iLevel);
             if(pchild != NULL)
                return pchild;
             pui = pui->under_sibling();
@@ -1683,12 +1683,12 @@ namespace user
          m_pimpl->SetOwner(pguie);
    }
 
-   interaction * interaction::GetChildById(id iId)
+   interaction * interaction::get_child_by_id(id iId)
    {
       if(m_pimpl == NULL)
          return NULL;
       else
-         return m_pimpl->GetChildById(iId);
+         return m_pimpl->get_child_by_id(iId);
    }
 
    interaction * interaction::GetDescendantWindow(id iId)

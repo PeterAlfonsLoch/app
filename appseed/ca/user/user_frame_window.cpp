@@ -902,7 +902,7 @@ bool frame_window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    if (pview != NULL && pview->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
-   pview = dynamic_cast < ::view * > (this->GetChildById("pane_first"));
+   pview = dynamic_cast < ::view * > (this->get_child_by_id("pane_first"));
    if (pview != NULL && pview->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
@@ -1490,10 +1490,10 @@ void frame_window::OnSetPreviewMode(bool bPreview, CPrintPreviewState* pState)
       m_lpfnCloseProc = NULL;
 
       // shift original "pane_first" back to its rightful ID
-/*      ::user::interaction * hWnd = GetChildById(__IDW_PANE_SAVE);
+/*      ::user::interaction * hWnd = get_child_by_id(__IDW_PANE_SAVE);
       if (hWnd != NULL)
       {
-         ::user::interaction * hWndTemp = GetChildById("pane_first");
+         ::user::interaction * hWndTemp = get_child_by_id("pane_first");
          if (hWndTemp != NULL)
             __set_dialog_control_id_(hWndTemp, __IDW_PANE_SAVE);
          __set_dialog_control_id_(hWnd, "pane_first");

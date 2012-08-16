@@ -513,7 +513,7 @@ namespace user
        ASSERT_KINDOF(::user::interaction, pwnd);
        //ASSERT(m_nIndex < m_nIndexMax);
 
-      ::user::interaction * pcontrol = pwnd->GetChildById(m_pcmdui->m_idControl);
+      ::user::interaction * pcontrol = pwnd->get_child_by_id(m_pcmdui->m_idControl);
       control * pcontrolex = dynamic_cast < control * > (pcontrol);
       if(pcontrolex != NULL)
       {

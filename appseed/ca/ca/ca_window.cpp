@@ -1369,7 +1369,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void window::GetChildById(id id, HWND* phWnd) const
+   void window::get_child_by_id(id id, HWND* phWnd) const
    {
       UNREFERENCED_PARAMETER(id);
       UNREFERENCED_PARAMETER(phWnd);

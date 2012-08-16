@@ -7,6 +7,14 @@ namespace ca8
 
    wait_message_dialog::wait_message_dialog(::ca::application * papp) :
       ca(papp),
+      userbase::view(papp),
+      user::scroll_view(papp),
+      userbase::scroll_view(papp),
+      user::form(papp),
+      userbase::form_view(papp),
+      html_form(papp),
+      html_form_view(papp),
+      form_view(papp),
       dialog(papp)
    {
       m_dwStartTime = 0;
@@ -36,13 +44,16 @@ namespace ca8
 
 
 
-   bool wait_message_dialog::BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent)
+   bool wait_message_dialog::BaseOnControlEvent(::user::control_event * pevent)
    {
-      UNREFERENCED_PARAMETER(pview);
+
       if(pevent->m_eevent == ::user::event_button_clicked)
       {
+
          m_strResponse = pevent->m_puie->m_id;
+
          EndModalLoop(IDOK);
+
       }
       else if(pevent->m_eevent == ::user::event_timer)
       {

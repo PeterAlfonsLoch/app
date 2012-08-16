@@ -374,14 +374,14 @@ namespace fontopus
          return;
       }*/
       display_main_frame();
-      //::user::interaction * pguie = m_pviewAuth->GetChildByName("user");
+      //::user::interaction * pguie = m_pviewAuth->get_child_by_name("user");
 //      text_interface * ptext = dynamic_cast < text_interface * > (pguie);
 //      ptext->_001SetText(m_loginthread.m_strUsername);
 //      if(m_loginthread.m_strUsername.is_empty())
   //       Application.set_keyboard_focus(pguie);
     //  else
       //{
-        // pguie = m_pviewAuth->GetChildByName("password");
+        // pguie = m_pviewAuth->get_child_by_name("password");
          //Application.set_keyboard_focus(pguie);
       //}
    }
@@ -1090,11 +1090,11 @@ namespace fontopus
             if(m_bVotagusAuth)
             {
                m_ptabview->GetParentFrame()->ShowWindow(SW_HIDE);
-               ::user::interaction * pguie = m_pviewAuth->GetChildByName("user");
+               ::user::interaction * pguie = m_pviewAuth->get_child_by_name("user");
                text_interface * ptext = dynamic_cast < text_interface * > (pguie);
                //m_loginthread.m_puser = dynamic_cast < ::fontopus::user * > (System.allocate_user());
                ptext->_001GetText(m_loginthread.m_strUsername);
-               pguie = m_pviewAuth->GetChildByName("password");
+               pguie = m_pviewAuth->get_child_by_name("password");
                ptext = dynamic_cast < text_interface * > (pguie);
                ptext->_001GetText(m_loginthread.m_strPassword);
                m_loginthread.m_pcallback = this;
@@ -1103,10 +1103,10 @@ namespace fontopus
             else
             {
                m_pauth = new auth;
-               ::user::interaction * pguie = m_pviewAuth->GetChildByName("user");
+               ::user::interaction * pguie = m_pviewAuth->get_child_by_name("user");
                text_interface * ptext = dynamic_cast < text_interface * > (pguie);
                ptext->_001GetText(m_pauth->m_strUsername);
-               pguie = m_pviewAuth->GetChildByName("password");
+               pguie = m_pviewAuth->get_child_by_name("password");
                ptext = dynamic_cast < text_interface * > (pguie);
                ptext->_001GetText(m_pauth->m_strPassword);
                m_ptabview->get_wnd()->EndModalLoop(IDOK);

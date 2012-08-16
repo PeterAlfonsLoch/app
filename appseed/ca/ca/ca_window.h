@@ -109,10 +109,10 @@ namespace ca
 
 
       // get immediate child with given ID
-      void GetChildById(id id, HWND* phWnd) const;
+      void get_child_by_id(id id, HWND* phWnd) const;
       // as above, but returns HWND
       virtual ::user::interaction * GetDescendantWindow(id id);
-      // like GetChildById but recursive
+      // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message, WPARAM wParam = 0, LPARAM lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
       virtual frame_window * GetParentFrame();
       virtual frame_window * EnsureParentFrame();

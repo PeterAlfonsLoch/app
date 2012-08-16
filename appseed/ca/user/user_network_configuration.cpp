@@ -51,10 +51,10 @@ namespace user
       {
          string strProxy = node.attr("server");
          int iProxyPort = node.attr("port");
-         ::user::interaction * pguie = m_pview->GetChildByName("server");
+         ::user::interaction * pguie = m_pview->get_child_by_name("server");
          text_interface * ptext = dynamic_cast < text_interface * > (pguie);
          ptext->_001SetText(strProxy);
-         pguie = m_pview->GetChildByName("port");
+         pguie = m_pview->get_child_by_name("port");
          ptext = dynamic_cast < text_interface * > (pguie);
          ptext->_001SetText(gen::str::itoa(iProxyPort));
       }*/
@@ -68,7 +68,7 @@ namespace user
       {
          if(pevent->m_puie->m_id == "submit")
          {
-            ::user::interaction * pguie = m_pview->GetChildByName("server");
+            ::user::interaction * pguie = m_pview->get_child_by_name("server");
             text_interface * ptext = dynamic_cast < text_interface * > (pguie);
             //m_loginthread.m_puser = dynamic_cast < ::fontopus::user * > (System.allocate_user());
             string strServer;
@@ -82,7 +82,7 @@ namespace user
                xml::node node(get_app());
                node.m_strName = "proxy";
                node.add_attr("server", strServer);
-               pguie = m_pview->GetChildByName("port");
+               pguie = m_pview->get_child_by_name("port");
                ptext = dynamic_cast < text_interface * > (pguie);
                string strPort;
                ptext->_001GetText(strPort);

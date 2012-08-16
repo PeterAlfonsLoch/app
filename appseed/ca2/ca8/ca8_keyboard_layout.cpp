@@ -112,10 +112,10 @@ namespace ca8
       {
          string strProxy = node.get_attr("server");
          int iProxyPort = node.get_attr("port");
-         ::user::interaction * pguie = m_pview->GetChildByName("server");
+         ::user::interaction * pguie = m_pview->get_child_by_name("server");
          text_interface * ptext = dynamic_cast < text_interface * > (pguie);
          ptext->_001SetText(strProxy);
-         pguie = m_pview->GetChildByName("port");
+         pguie = m_pview->get_child_by_name("port");
          ptext = dynamic_cast < text_interface * > (pguie);
          ptext->_001SetText(gen::str::itoa(iProxyPort));
       }*/
@@ -144,7 +144,7 @@ namespace ca8
       {
          if(pevent->m_puie->m_id == "submit")
          {
-            ::user::interaction * pguie = m_pview->GetChildByName("server");
+            ::user::interaction * pguie = m_pview->get_child_by_name("server");
             text_interface * ptext = dynamic_cast < text_interface * > (pguie);
             //m_loginthread.m_puser = dynamic_cast < ::fontopus::user * > (System.allocate_user());
             string strServer;
@@ -158,7 +158,7 @@ namespace ca8
                xml::document doc(get_app());
                doc.get_root()->set_name("proxy");
                doc.get_root()->add_attr("server", strServer);
-               pguie = m_pview->GetChildByName("port");
+               pguie = m_pview->get_child_by_name("port");
                ptext = dynamic_cast < text_interface * > (pguie);
                string strPort;
                ptext->_001GetText(strPort);

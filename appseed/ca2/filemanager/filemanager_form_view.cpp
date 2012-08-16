@@ -36,7 +36,7 @@ bool file_manager_form_view::BaseOnControlEvent(::user::control_event * pevent)
          uh.m_etype = form_update_hint::type_browse;
          uh.m_strForm = "filemanager_add_location_lfs.xhtml";
          get_document()->update_all_views(NULL, 0, &uh);
-         ::user::interaction* pguie = GetChildByName("lfs");
+         ::user::interaction* pguie = get_child_by_name("lfs");
          text_interface * ptext = dynamic_cast < text_interface * > (pguie);
          ptext->_001SetText(GetFileManagerItem().m_strPath);
       }
@@ -53,7 +53,7 @@ bool file_manager_form_view::BaseOnControlEvent(::user::control_event * pevent)
          {
             stringa stra;
             GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::radix::system::idEmpty, stra);
-            ::user::interaction* pguie = GetChildByName("lfs");
+            ::user::interaction* pguie = get_child_by_name("lfs");
             text_interface * ptext = dynamic_cast < text_interface * > (pguie);
             string str;
             ptext->_001GetText(str);
@@ -67,10 +67,10 @@ bool file_manager_form_view::BaseOnControlEvent(::user::control_event * pevent)
          else if(m_strPath == "filemanager\\replace_name_in_file_system.xhtml")
          {
             file_manager_form_update_hint uh;
-            ::user::interaction* pguie = GetChildByName("encontrar");
+            ::user::interaction* pguie = get_child_by_name("encontrar");
             text_interface * ptext = dynamic_cast < text_interface * > (pguie);
             ptext->_001GetText(uh.m_strFind);
-            pguie = GetChildByName("substituir");
+            pguie = get_child_by_name("substituir");
             ptext = dynamic_cast < text_interface * > (pguie);
             ptext->_001GetText(uh.m_strReplace);
             ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (GetFileManager());

@@ -3,7 +3,15 @@
 
 
 dialog::dialog(const char * pszMatter, ::user::interaction * puiParent) :
-   ca(puiParent->get_app())
+   ca(puiParent->get_app()),
+   userbase::view(puiParent->get_app()),
+   user::scroll_view(puiParent->get_app()),
+   userbase::scroll_view(puiParent->get_app()),
+   user::form(puiParent->get_app()),
+   userbase::form_view(puiParent->get_app()),
+   html_form(puiParent->get_app()),
+   html_form_view(puiParent->get_app()),
+   form_view(puiParent->get_app())
 {
    m_strMatter = pszMatter;
    m_pdocument    = NULL;
@@ -13,7 +21,15 @@ dialog::dialog(const char * pszMatter, ::user::interaction * puiParent) :
 
 
 dialog::dialog(::ca::application * papp) :
-   ca(papp)
+   ca(papp),
+   userbase::view(papp),
+   user::scroll_view(papp),
+   userbase::scroll_view(papp),
+   user::form(papp),
+   userbase::form_view(papp),
+   html_form(papp),
+   html_form_view(papp),
+   form_view(papp)
 {
    m_pdocument    = NULL;
    m_pframe       = NULL;
@@ -66,7 +82,7 @@ bool dialog::show(const char * pszMatter, gen::property_set & propertyset)
 
    on_position_parent_frame();
 
-   on_show(m_strMAtter, m_pdocument->get_html_data()->m_propertyset);
+   on_show(m_strMatter, m_pdocument->get_html_data()->m_propertyset);
 
    m_pframe->RunModalLoop();
 
