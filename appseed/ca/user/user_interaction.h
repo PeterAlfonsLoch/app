@@ -411,8 +411,6 @@ namespace user
       virtual interaction * GetWindow(UINT nCmd);
       virtual interaction * GetLastActivePopup();
 
-      virtual interaction * GetChildById(id nID);
-
       virtual void pre_subclass_window();
 
 #ifdef WINDOWS
