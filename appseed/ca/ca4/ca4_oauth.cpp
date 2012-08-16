@@ -311,7 +311,7 @@ void CSHA1::Transform(UINT_32 *state, UINT_8 *buffer)
    _R4(d,e,a,b,c,72); _R4(c,d,e,a,b,73); _R4(b,c,d,e,a,74); _R4(a,b,c,d,e,75);
    _R4(e,a,b,c,d,76); _R4(d,e,a,b,c,77); _R4(c,d,e,a,b,78); _R4(b,c,d,e,a,79);
 
-   // Add the working vars back into state
+   // add the working vars back into state
    state[0] += a;
    state[1] += b;
    state[2] += c;

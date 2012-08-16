@@ -14,12 +14,12 @@ public:
    }
    inline Ex17MemoryFile & operator << (const string & str)
    {
-      write((LPCTSTR) str, str.GetLength());
+      write((LPCTSTR) str, str.get_length());
       return *this;
    }
    inline Ex17MemoryFile & operator << (MemoryFile & memfile)
    {
-      write(memfile.GetAllocation(), memfile.GetLength());
+      write(memfile.GetAllocation(), memfile.get_length());
       return *this;
    }
    inline Ex17MemoryFile & operator << (ex1::filesp & file)

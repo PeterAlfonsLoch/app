@@ -73,7 +73,7 @@ public:
 		{
 			Corner.Width += 1; 
 			Corner.Height += 1; 
-			r.Width -=1; r.Height -= 1;
+			r.Height -=1; r.Height -= 1;
 		}
 
 		// top right

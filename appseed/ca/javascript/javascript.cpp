@@ -87,8 +87,8 @@
    Version 0.24 :  More useful error for maths ops
                    Don't dump everything on a match  < 0.
    Version 0.25 :  Better string escaping
-   Version 0.26 :  Add CScriptVar::equals
-                   Add built-in array functions
+   Version 0.26 :  add CScriptVar::equals
+                   add built-in array functions
    Version 0.27 :  Added OZLB's TinyJS.setVariable (with some tweaks)
                    Added OZLB's Maths Functions
    Version 0.28 :  Ternary operator
@@ -98,7 +98,7 @@
    Version 0.29 :  Added new object via functions
                    Fixed getString() for double on some platforms
    Version 0.30 :  Rlyeh Mario's patch for Math Functions on VC++
-   Version 0.31 :  Add exec() to TinyJS functions
+   Version 0.31 :  add exec() to TinyJS functions
                    Now print quoted JSON that can be read by PHP/Python parsers
                    Fixed postfix increment operator
 
@@ -1271,7 +1271,7 @@ tinyjs::tinyjs(::ca::application * papp) :
 {
     l = 0;
     root = (new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref();
-    // Add built-in classes
+    // add built-in classes
     stringClass = (new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref();
     arrayClass = (new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref();
     objectClass = (new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT))->ref();

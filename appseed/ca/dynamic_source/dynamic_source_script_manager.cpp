@@ -542,12 +542,12 @@ namespace dynamic_source
       struct kevent eventToAdd;			// Register an (ident, filter) pair with the kqueue
       eventToAdd.ident  = dirFD;			// The object to watch (the directory FD)
       eventToAdd.filter = EVFILT_VNODE;		// Watch for certain events on the VNODE spec'd by ident
-      eventToAdd.flags  = EV_ADD | EV_CLEAR;		// Add a resetting kevent
+      eventToAdd.flags  = EV_ADD | EV_CLEAR;		// add a resetting kevent
       eventToAdd.fflags = NOTE_WRITE;			// The events to watch for on the VNODE spec'd by ident (writes)
       eventToAdd.data   = 0;				// No filter-specific data
       eventToAdd.udata  = NULL;			// No user data
       
-      // Add a kevent to monitor
+      // add a kevent to monitor
       if (kevent(kq, &eventToAdd, 1, NULL, 0, NULL))
       {
          close(kq);

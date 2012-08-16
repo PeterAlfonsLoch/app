@@ -16,7 +16,7 @@ public:
 // Operations
 	// Clean up
 	void FreeExtra();
-	void RemoveAll();
+	void remove_all();
 
 	// Accessing elements
 	::radix::object* GetAt(int nIndex) const;
@@ -31,7 +31,7 @@ public:
 	// Potentially growing the array
 	void SetAtGrow(int nIndex, ::radix::object* newElement);
 
-	int Add(::radix::object* newElement);
+	int add(::radix::object* newElement);
 
 	int Append(const simple_object_array& src);
 	void Copy(const simple_object_array& src);

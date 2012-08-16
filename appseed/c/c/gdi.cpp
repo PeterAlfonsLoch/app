@@ -40,7 +40,7 @@ CTFontDescriptorRef CreateFontDescriptorFromFamilyAndTraits(CFStringRef iFamilyN
       
       CFNumberRef symTraits;
       
-      // Add a family name to our attributes.
+      // add a family name to our attributes.
       CFDictionaryAddValue(attributes, kCTFontFamilyNameAttribute, iFamilyName);
       
       // Create the traits dictionary.
@@ -58,10 +58,10 @@ CTFontDescriptorRef CreateFontDescriptorFromFamilyAndTraits(CFStringRef iFamilyN
          if (traits != NULL)
          {
             
-            // Add the symbolic traits value to the traits dictionary.
+            // add the symbolic traits value to the traits dictionary.
             CFDictionaryAddValue(traits, kCTFontSymbolicTrait, symTraits);
             
-            // Add the traits attribute to our attributes.
+            // add the traits attribute to our attributes.
             CFDictionaryAddValue(attributes, kCTFontTraitsAttribute, traits);
             
             CFRelease(traits);

@@ -95,9 +95,9 @@ vsstring Login()
 		{
 			s.EnableSSL();
 		}*/
-/*		h.Add(&s);
+/*		h.add(&s);
 		h.Select(1,0);
-		while (h.GetCount())
+		while (h.get_count())
 		{
 			h.Select(1,0);
 		}

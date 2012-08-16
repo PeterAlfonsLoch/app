@@ -93,7 +93,7 @@ namespace ex1
 			      SHFILEINFO stIcon = {0};
    /*			   if( SHGetFileInfo( csModule, 0, &stIcon, sizeof( stIcon), SHGFI_ICON ))
 			      {
-				      stInfo.dwImageListIndex = m_imgListCtrl.Add( stIcon.hIcon );
+				      stInfo.dwImageListIndex = m_imgListCtrl.add( stIcon.hIcon );
 				      DestroyIcon( stIcon.hIcon );
 			      }*/
 		      }

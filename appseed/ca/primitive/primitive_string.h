@@ -713,6 +713,13 @@ public:
    friend bool CLASS_DECL_ca operator!=(const string & str1,XCHAR ch2 ) throw();
 
    typedef strsize size_type;
+
+
+   inline static string empty_string()
+   {
+      return string();
+   }
+
 };
 
 

@@ -1,4 +1,16 @@
-#pragma
+#pragma once
+
+
+class simple_ui;
+
+
+class CLASS_DECL_c simple_ui_ptra : 
+   public simple_array < simple_ui * >
+{
+public:
+
+
+};
 
 
 class CLASS_DECL_c simple_ui
@@ -10,7 +22,7 @@ public:
    RECT                             m_rect;
    vsstring                         m_strId;
    vsstring                         m_strText;
-   simple_array < simple_ui * >     m_uiptra;
+   simple_ui_ptra                   m_uiptra;
    simple_ui *                      m_puiParent;
    simple_ui *                      m_puiFocus;
 

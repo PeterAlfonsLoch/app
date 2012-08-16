@@ -58,7 +58,7 @@ cur = *str++;
 long total = 0;
 while (isdigit_dup(cur))
 {
-total = 10*total + (cur-'0');			// Add this digit to the total.
+total = 10*total + (cur-'0');			// add this digit to the total.
 cur = *str++;							// Do the next character.
 }
 
@@ -87,7 +87,7 @@ long wtol_dup(const wchar_t *str)
    long total = 0;
    while (iswdigit_dup(cur))
    {
-      total = 10*total + (cur-L'0');			// Add this digit to the total.
+      total = 10*total + (cur-L'0');			// add this digit to the total.
       cur = *str++;							// Do the next character.
    }
 
@@ -226,7 +226,7 @@ cur = *str++;
 long total = 0;
 while (isdigit_dup(cur))
 {
-total = 10*total + (cur-'0');			// Add this digit to the total.
+total = 10*total + (cur-'0');			// add this digit to the total.
 cur = *str++;							// Do the next character.
 }
 
@@ -270,7 +270,7 @@ long nwtol_dup(const wchar_t *str, int iLen)
       iLen--;
       if(iLen <= 0)
          break;
-      total = 10*total + (cur-L'0');			// Add this digit to the total.
+      total = 10*total + (cur-L'0');			// add this digit to the total.
       cur = *str++;							// Do the next character.
    }
 

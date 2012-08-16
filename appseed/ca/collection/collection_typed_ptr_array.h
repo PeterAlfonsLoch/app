@@ -182,8 +182,8 @@ public:
 	// Potentially growing the array
 	void SetAtGrow(int_ptr nIndex, POINTER newElement)
 		{ BASE_CLASS::SetAtGrow(nIndex, newElement); }
-	int_ptr Add(POINTER newElement)
-		{ return BASE_CLASS::Add(newElement); }
+	int_ptr add(POINTER newElement)
+		{ return BASE_CLASS::add(newElement); }
 	int_ptr Append(const typed_ptr_array<POINTER, BASE_CLASS>& src)
 		{ return BASE_CLASS::Append(src); }
 	void Copy(const typed_ptr_array<POINTER, BASE_CLASS>& src)

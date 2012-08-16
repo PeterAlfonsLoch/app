@@ -11,6 +11,9 @@ namespace user
    public:
 
 
+      bool m_bSaveAndValidate;
+
+
       data_exchange();
       virtual ~data_exchange();
 

@@ -120,6 +120,90 @@ namespace collection
 
       };
 
+
+      class const_iterator
+      {
+      public:
+
+
+         pair *   m_ppair;
+         map *    m_pmap;
+
+
+         const_iterator()
+         {
+            m_ppair  = NULL;
+            m_pmap   = NULL;
+         }
+
+         const_iterator(const iterator & iterator)
+         {
+            m_ppair  = iterator.m_ppair;
+            m_pmap   = iterator.m_pmap;
+         }
+
+         const_iterator(const const_iterator & const_iterator)
+         {
+            m_ppair  = const_iterator.m_ppair;
+            m_pmap   = const_iterator.m_pmap;
+         }
+
+         const_iterator(pair * ppair, map * pmap)
+         {
+            m_ppair  = ppair;
+            m_pmap   = pmap;
+         }
+
+         const pair * operator -> () const
+         {
+            return m_ppair;
+         }
+
+
+         const_iterator & operator ++ ()
+         {
+            if(m_ppair != NULL && m_pmap != NULL)
+               m_ppair = m_pmap->PGetNextAssoc(m_ppair);
+            return *this;
+         }
+
+         const_iterator operator ++ (int)
+         {
+            if(m_ppair != NULL && m_pmap != NULL)
+               m_ppair = m_pmap->PGetNextAssoc(m_ppair);
+            return *this;
+         }
+
+         bool operator == (const const_iterator & it) const
+         {
+            if(this == &it)
+               return true;
+            if(m_ppair == NULL && it.m_ppair == NULL && it.m_pmap == NULL)
+               return true;
+            if(m_pmap != it.m_pmap)
+               return false;
+            return m_ppair == it.m_ppair;
+         }
+
+         bool operator != (const const_iterator & it) const
+         {
+            return !operator == (it);
+         }
+
+         const_iterator & operator = (const const_iterator & it)
+         {
+            if(this != &it)
+            {
+               m_pmap         = it.m_pmap;
+               m_ppair        = it.m_ppair;
+            }
+            return *this;
+         }
+
+      };
+
+
+
       iterator begin()
       {
          return iterator(PGetFirstAssoc(), this);

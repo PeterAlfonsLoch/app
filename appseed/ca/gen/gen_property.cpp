@@ -1653,7 +1653,7 @@ namespace gen
          if(pproperty != NULL)
             return *pproperty;
       }
-      throw simple_exception("property with specified name - and specified case sensitivity - does not exist and Auto Add Flag is not set");
+      throw simple_exception("property with specified name - and specified case sensitivity - does not exist and Auto add Flag is not set");
    }
 
    property & property_set::lowprop(const string & strName)
@@ -1667,7 +1667,7 @@ namespace gen
          if(pproperty != NULL)
             return *pproperty;
       }
-      throw simple_exception("property with specified name - and specified case sensitivity - does not exist and Auto Add Flag is not set");
+      throw simple_exception("property with specified name - and specified case sensitivity - does not exist and Auto add Flag is not set");
    }
 
 

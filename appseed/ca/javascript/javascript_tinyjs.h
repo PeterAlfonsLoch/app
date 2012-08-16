@@ -257,7 +257,7 @@ public:
     CScriptVarLink *lastChild;
 
     /// For memory management/garbage collection
-    CScriptVar *ref(); ///< Add reference to this variable
+    CScriptVar *ref(); ///< add reference to this variable
     void unref(); ///< Remove a reference, and delete this variable if required
     int getRefs(); ///< Get the number of references to this script variable
 protected:

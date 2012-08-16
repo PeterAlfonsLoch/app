@@ -220,6 +220,11 @@ public:
    }
 
 
+   inline static verisimple_wstring empty_string()
+   {
+      return L"";
+   }
+
 };
 
 

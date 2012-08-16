@@ -637,7 +637,7 @@ WINHTTP_DEFAULT_ACCEPT_TYPES,
 iPort == 443 ? WINHTTP_FLAG_SECURE : 0);
 //                                       WINHTTP_FLAG_SECURE);
 
-// Add a request header.
+// add a request header.
 WCHAR * hd1 = utf8_to_16(("Host: " + strHost));
 if( hRequest )
 bResults = WinHttpAddRequestHeaders( hRequest,

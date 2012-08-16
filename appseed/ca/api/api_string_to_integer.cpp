@@ -310,7 +310,7 @@ int64_t nwtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int iBase, int
       }
       if(iDigit >= iBase)
          break;
-      total = iBase * total + iDigit;			// Add this digit to the total.
+      total = iBase * total + iDigit;			// add this digit to the total.
       cur = *str++;							// Do the next character.
    }
 
@@ -372,7 +372,7 @@ int64_t wtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int iBase)
       }
       if(iDigit >= iBase)
          break;
-      total = iBase * total + iDigit;			// Add this digit to the total.
+      total = iBase * total + iDigit;			// add this digit to the total.
       cur = *str++;							// Do the next character.
    }
 

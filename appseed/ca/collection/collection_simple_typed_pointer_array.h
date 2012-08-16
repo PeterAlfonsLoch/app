@@ -16,7 +16,7 @@ public:
 	void set_at_grow(index nIndex, TYPE newElement)
 	   { BASE_CLASS::SetAtGrow(nIndex, newElement); }
 	int add(TYPE newElement)
-	   { return BASE_CLASS::Add(newElement); }
+	   { return BASE_CLASS::add(newElement); }
 	int add(const simple_typed_pointer_array<BASE_CLASS, TYPE>& src)
 	   { return BASE_CLASS::Append(src); }
 	void copy(const simple_typed_pointer_array<BASE_CLASS, TYPE>& src)
