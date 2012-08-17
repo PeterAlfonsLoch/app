@@ -143,9 +143,10 @@ namespace userbase
 
    void frame_window_interface::_001OnDraw(::ca::graphics *pdc)
    {
-      if(m_bWindowFrame 
+      if((m_bWindowFrame 
       || m_etranslucency == TranslucencyTotal
-      || m_etranslucency == TranslucencyPresent)
+      || m_etranslucency == TranslucencyPresent) &&
+      !Session.savings().is_trying_to_save(gen::resource_display_bandwidth))
       {
          ::uinteraction::frame::WorkSetClientInterface::_001OnDraw(pdc);
       }
@@ -154,7 +155,7 @@ namespace userbase
          rect rect;
          ::user::interaction* pwnd = get_guie();
          pwnd->GetClientRect(rect);
-         pdc->FillSolidRect(rect, RGB(127, 192, 215));
+         pdc->FillSolidRect(rect, ARGB(184 + 49 + 21 + 1, 184 + 49, 184 + 49, 177 + 49));
          //m_workset.OnDraw(pdc);
       }
    }
