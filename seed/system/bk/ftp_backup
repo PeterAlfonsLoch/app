@@ -1,9 +1,0 @@
-#!/bin/bash
-#
-
-TOPIC="votagus"
-FILE=$1
-
-./ftp_clean $TOPIC $FILE
-./ftp_put $TOPIC $FILE
-

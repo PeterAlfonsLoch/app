@@ -1,1 +1,0 @@
-*.suo *.ncb *.user this_version_info.h iexca2.tlb iexca2_h.h iexca2_i.c appmatter.expand_fileset _notes dwsync.xml *.sdf *.open.sdf netnode_persistent_ui_str.ds *.opt *.plg  *.ipch ResolveAssemblyReference.cache *.vsp *.psess *.aps

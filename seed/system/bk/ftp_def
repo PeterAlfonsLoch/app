@@ -1,8 +1,0 @@
-#!/bin/bash
-#
-
-# Dados do servidor FTP
-FTP_HOST="208.109.188.16"
-FTP_USER="gustavo"
-FTP_PASSWORD="h1pt5mLJpC3r"
-

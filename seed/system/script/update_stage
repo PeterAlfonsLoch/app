@@ -1,8 +1,0 @@
-#!/bin/bash
-#
-
-cd /votagus/stage
-svn update .
-chown -R votagus *
-chgrp -R votagus *
-chmod -R 775 *
