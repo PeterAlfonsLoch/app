@@ -78,12 +78,12 @@ namespace dynamic_source
 
       //System.file().lines(m_straSync, "C:\\ca2\\database\\text\\dynamic_source\\syncer.txt", get_app());
 
-      prepare1("dynamic_source_" + m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat",
-               "dynamic_source_" + m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat");
-      prepare1("dynamic_source_" + m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat",
-               "dynamic_source_" + m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat");
-      prepare1("dynamic_source_" + m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat",
-               "dynamic_source_" + m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat");
+      prepare1(m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat",
+               m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat");
+      prepare1(m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat",
+               m_strDynamicSourceConfiguration  + "_libc" + m_strPlat1 + ".bat");
+      prepare1(m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat",
+               m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat");
 
       System.dir().mk(System.dir().votagus("stage/front"), get_app());
 
@@ -91,8 +91,8 @@ namespace dynamic_source
       string vars2batSrc;
       string vars1batDst;
       string vars2batDst;
-      vars1batSrc = System.dir().ca2("app/stage/app/matter/vc10vars64.bat");
-      vars2batSrc = System.dir().ca2("app/stage/app/matter/vc10vars_query_registry.bat");
+      vars1batSrc = System.dir().ca2("nodeapp/stage/dynamic_source/vc10vars64.bat");
+      vars2batSrc = System.dir().ca2("nodeapp/stage/dynamic_source/vc10vars_query_registry.bat");
       vars1batDst = System.dir().votagus("stage/front", "vc10vars64.bat");
       vars2batDst = System.dir().votagus("stage/front", "vc10vars_query_registry.bat");
       try
@@ -329,8 +329,8 @@ namespace dynamic_source
       string vars2batSrc;
       string vars1batDst;
       string vars2batDst;
-      vars1batSrc = System.dir().ca2("app/stage/app/matter/vc10vars64.bat");
-      vars2batSrc = System.dir().ca2("app/stage/app/matter/vc10vars_query_registry.bat");
+      vars1batSrc = System.dir().ca2("nodeapp/stage/dynamic_source/vc10vars64.bat");
+      vars2batSrc = System.dir().ca2("nodeapp/stage/dynamic_source/vc10vars_query_registry.bat");
       vars1batDst = System.dir().path(System.dir().name(pscript->m_strBuildBat), "vc10vars64.bat", false);
       vars2batDst = System.dir().path(System.dir().name(pscript->m_strBuildBat), "vc10vars_query_registry.bat", false);
       try
@@ -363,7 +363,7 @@ namespace dynamic_source
 
       string strBuildCmd;
    //#ifdef DEBUG
-      strBuildCmd.Format(System.dir().votagus("app\\stage\\app\\matter\\dynamic_source_" + m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bat"));
+      strBuildCmd.Format(System.dir().votagus("nodeapp\\stage\\dynamic_source\\" + m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bat"));
    //#else
      // strBuildCmd.Format(System.dir().stage("front\\dynamic_source_cl.bat"));
    //#endif
@@ -624,7 +624,7 @@ namespace dynamic_source
       if(!gen::str::ends(strVotagusFolder, "/") && !gen::str::ends(strVotagusFolder, "\\"))
          strVotagusFolder += "/";
       string strTemplate;
-      string strSource = "app\\stage\\app\\matter\\";
+      string strSource = "nodeapp\\stage\\dynamic_source\\";
       strSource += lpcszSource;
 
       string strN = m_pmanager->m_strNetnodePath;
@@ -797,7 +797,7 @@ namespace dynamic_source
          str1 = "library/source/" + strRel;
          string strCmd;
    //#ifdef DEBUG
-         strCmd = System.dir().ca2("stage\\front\\dynamic_source_" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat");
+         strCmd = System.dir().ca2("stage\\front\\" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat");
    //#else
      //    strCmd.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
    //#endif
@@ -811,14 +811,14 @@ namespace dynamic_source
          str.replace("%SDK1%", m_strSdk1);
          Application.dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_library\\" + System.dir().name(str1)));
          Application.dir().mk(System.dir().path(m_strTime, "library\\" + m_strPlatform + "\\" + System.dir().name(str1), false));
-         strCmd = System.dir().ca2("stage\\front\\dynamic_source_libc1.bat");
+         strCmd = System.dir().ca2("stage\\front\\libc1.bat");
 
          string vars1batSrc;
          string vars2batSrc;
          string vars1batDst;
          string vars2batDst;
-         vars1batSrc = System.dir().ca2("app/stage/app/matter/vc10vars64.bat");
-         vars2batSrc = System.dir().ca2("app/stage/app/matter/vc10vars_query_registry.bat");
+         vars1batSrc = System.dir().ca2("nodeapp/stage/dynamic_source/vc10vars64.bat");
+         vars2batSrc = System.dir().ca2("nodeapp/stage/dynamic_source/vc10vars_query_registry.bat");
          vars1batDst = System.dir().stage("stage\\front", "vc10vars64.bat");
          vars2batDst = System.dir().stage("stage\\front", "vc10vars_query_registry.bat");
          try
@@ -871,7 +871,7 @@ namespace dynamic_source
       }
       string strCmd;
    //#ifdef DEBUG
-      strCmd.Format(System.dir().stage("front\\dynamic_source_" + m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bat"));
+      strCmd.Format(System.dir().stage("front\\" + m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bat"));
    //#else
      // strCmd.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
    //#endif
@@ -888,7 +888,7 @@ namespace dynamic_source
       gen::str::ends_eat_ci(strTargetName, ".dll");
       str.replace("%TARGET_NAME%", strTargetName);
       Application.dir().mk(System.dir().ca2("stage\\" + m_strPlatform + "\\library"));
-      strCmd = System.dir().ca2("stage\\front\\dynamic_source_libl1.bat");
+      strCmd = System.dir().ca2("stage\\front\\libl1.bat");
       Application.file().put_contents(strCmd, str);
 
 
