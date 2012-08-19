@@ -869,6 +869,8 @@ var::operator int64_t()
       return 0;
    case type_pvar:
       return m_pvar->operator int();
+   case type_pstring:
+      return atoi(*m_pstr);
    default:
       return 0;
    }
