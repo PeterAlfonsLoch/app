@@ -269,7 +269,7 @@ memory_state::memory_state()
    memset(this, 0, sizeof(*this));
 }
 
-void memory_state::UpdateData()
+void memory_state::update_data()
 {
    for(int i = 0; i < nBlockUseMax; i++)
    {
@@ -285,7 +285,7 @@ bool memory_state::Difference(const memory_state& oldState,
       const memory_state& newState)
 {
    int nResult = _CrtMemDifference(&m_memState, &oldState.m_memState, &newState.m_memState);
-   UpdateData();
+   update_data();
    return nResult != 0;
 }
 
@@ -298,7 +298,7 @@ void memory_state::dumpStatistics() const
 void memory_state::Checkpoint()
 {
    _CrtMemCheckpoint(&m_memState);
-   UpdateData();
+   update_data();
 }
 
 // dump objects created after this primitive::memory state was checkpointed

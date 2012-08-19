@@ -27,6 +27,13 @@ namespace collection
       public:
          const KEY m_key;
          VALUE m_value;
+
+         inline const KEY & first() { return m_key; }
+         inline VALUE & value() { return m_value; }
+
+         inline const KEY & first() const { return m_key; }
+         inline const VALUE & value() const { return m_value; }
+
          pair(const KEY & key) : m_key(key) {}
       };
 

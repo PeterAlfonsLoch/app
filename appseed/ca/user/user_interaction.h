@@ -155,6 +155,9 @@ namespace user
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
+      // Dialog data support
+      virtual bool update_data(bool bSaveAndValidate = true);
+
 
       virtual ::user::interaction * get_os_focus_uie();
 

@@ -102,7 +102,104 @@ public:
    };
 
 
-   typedef const iterator const_iterator;
+   class const_iterator
+   {
+   public:
+
+
+      index            m_i;
+      const base_array *     m_parray;
+
+      const_iterator()
+      {
+         m_i = 0;
+         m_parray = NULL;
+      }
+
+      const_iterator(index i, const base_array * parray)
+      {
+         m_i = i;
+         m_parray = parray;
+      }
+
+      const_iterator(const iterator & it)
+      {
+         operator = (it);
+      }
+
+      const_iterator(const const_iterator & it)
+      {
+         operator = (it);
+      }
+
+      const TYPE & operator * ()
+      {
+         return m_parray->element_at(m_i);
+      }
+
+      const_iterator & operator = (const iterator & it)
+      {
+
+         m_i         = it.m_i;
+         m_parray    = it.m_parray;
+
+         return *this;
+
+      }
+
+      const_iterator & operator = (const const_iterator & it)
+      {
+         if(this != &it)
+         {
+            m_i         = it.m_i;
+            m_parray    = it.m_parray;
+         }
+         return *this;
+      }
+
+      bool operator == (const const_iterator & it)
+      {
+         if(this == &it)
+            return true;
+         if(m_parray != it.m_parray)
+            return false;
+         if(m_i >= m_parray->get_size() && it.m_i >= m_parray->get_size())
+            return true;
+         if(m_i <= 0 && it.m_i <= 0)
+            return true;
+         return m_i == it.m_i;
+      }
+
+      bool operator != (const const_iterator & it)
+      {
+         return !operator==(it);
+      }
+
+      const_iterator & operator ++()
+      {
+         m_i++;
+         if(m_i >= m_parray->get_size())
+            m_i = m_parray->get_size();
+         return *this;
+      }
+
+      const_iterator & operator +(index i)
+      {
+         m_i += i;
+         if(m_i >= m_parray->get_size())
+            m_i = m_parray->get_size();
+         return *this;
+      }
+
+      const_iterator & operator --()
+      {
+         m_i--;
+         if(m_i < 0)
+            m_i = 0;
+         return *this;
+      }
+
+   };
 
 
    base_array();
@@ -182,6 +279,16 @@ public:
    iterator end()
    {
       return iterator(this->get_size(), this);
+   }
+
+   const_iterator begin() const
+   {
+      return const_iterator(0, this);
+   }
+
+   const_iterator end() const
+   {
+      return const_iterator(this->get_size(), this);
    }
 
    TYPE & first_element();

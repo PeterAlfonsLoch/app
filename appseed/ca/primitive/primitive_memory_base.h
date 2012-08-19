@@ -57,6 +57,10 @@ namespace primitive
       inline const LPBYTE     get_data() const;
       inline LPBYTE           get_data();
 
+      inline memory_size      size() const;
+      inline const LPBYTE     data() const;
+      inline LPBYTE           data();
+
 
       memory_base & operator = (const memory_base & s);
 
@@ -73,9 +77,12 @@ namespace primitive
       inline void copy_from(const memory_base * pstorage);
 
       inline void append(const void * pdata, memory_size iCount);
+      inline void assign(const void * pdata, memory_size iCount);
       inline void assign(const void * pdata, memory_position iStart, memory_size iCount);
       inline void append(memory_size iCount, unsigned char uch);
       inline void assign(memory_size iCount, unsigned char uch);
+
+      inline void assign(const char * psz);
 
       inline byte operator [] (memory_size i) const;
       inline byte & operator [] (memory_size i);
@@ -143,6 +150,10 @@ namespace primitive
       return m_cbStorage;
    }
 
+   inline memory_size memory_base::size() const
+   {
+      return get_size();
+   }
 
 
    inline const LPBYTE memory_base::get_data() const
@@ -173,6 +184,15 @@ namespace primitive
 
 
 
+   inline const LPBYTE memory_base::data() const
+   {
+      return get_data();
+   }
+
+   inline LPBYTE memory_base::data()
+   {
+      return get_data();
+   }
 
 
 
@@ -449,6 +469,15 @@ namespace primitive
 
    }
 
+   inline void memory_base::assign(const void * pdata, memory_size iCount)
+   {
+
+      allocate(iCount);
+
+      memcpy(get_data(), pdata, (size_t) iCount);
+
+   }
+
    inline void memory_base::assign(const void * pdata, memory_position iStart, memory_size iCount)
    {
 
@@ -531,6 +560,13 @@ namespace primitive
    {
 
       return this->get_data();
+
+   }
+
+   inline void memory_base::assign(const char * psz)
+   {
+
+      return from_string(psz);
 
    }
 

@@ -132,7 +132,7 @@ namespace sockets
          {
             Handler().LogError(this, "bind", Errno, StrError(Errno), ::gen::log::level::fatal);
             SetCloseAndDelete();
-            throw Exception("bind() failed for udp_socket, port:range: " + ::gen::str::itoa(ad.GetPort()) + ":" + ::gen::str::itoa(range));
+            throw simple_exception("bind() failed for udp_socket, port:range: " + ::gen::str::itoa(ad.GetPort()) + ":" + ::gen::str::itoa(range));
             return -1;
          }
          m_bind_ok = true;

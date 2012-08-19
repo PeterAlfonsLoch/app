@@ -222,7 +222,6 @@ namespace sockets
 #endif
 
 #include "ca/ca_log.h"
-#include "exception.h"
 #include "basic/ipv4_address.h"
 #include "basic/ipv6_address.h"
 #include "basic/sockets_ssl_client_context.h"

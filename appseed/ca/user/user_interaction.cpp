@@ -2972,6 +2972,14 @@ restart:
    }
 
 
+   bool interaction::update_data(bool bSaveAndValidate)
+   {
+      
+      return true;
+
+   }
+
+
 } // namespace user
 
 CLASS_DECL_ca ::user::interaction * WINAPI CreateGuieEx(

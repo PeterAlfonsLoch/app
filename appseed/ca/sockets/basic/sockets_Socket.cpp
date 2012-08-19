@@ -186,7 +186,7 @@ namespace sockets
          {
             Handler().LogError(this, "getprotobyname", Errno, StrError(Errno), ::gen::log::level::fatal);
             SetCloseAndDelete();
-            throw Exception(string("getprotobyname() failed: ") + StrError(Errno));
+            throw simple_exception(string("getprotobyname() failed: ") + StrError(Errno));
             return INVALID_SOCKET;
          }
       }
@@ -197,7 +197,7 @@ namespace sockets
       {
          Handler().LogError(this, "socket", Errno, StrError(Errno), ::gen::log::level::fatal);
          SetCloseAndDelete();
-         throw Exception(string("socket() failed: ") + StrError(Errno));
+         throw simple_exception(string("socket() failed: ") + StrError(Errno));
          return INVALID_SOCKET;
       }
       Attach(s);

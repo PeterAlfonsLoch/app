@@ -346,6 +346,7 @@ public:
 
    // Delete 'nCount' characters, starting at index 'iIndex'
    strsize Delete(strsize iIndex, strsize nCount = 1);
+   strsize remove(strsize iIndex, strsize nCount = 1);
 
    string & erase(strsize start = 0, strsize count = -1);
 
@@ -1492,6 +1493,9 @@ inline string::PCXSTR string::c_str() const throw()
    return simple_string::operator PCXSTR();
 }
 
-
+strsize string::remove(strsize iIndex,strsize nCount)
+{
+   return Delete(iIndex, nCount);
+}
 
 

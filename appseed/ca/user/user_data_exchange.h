@@ -18,6 +18,10 @@ namespace user
       virtual ~data_exchange();
 
 
+      virtual void Fail();
+
+      ::user::interaction * prepare_control(id id);
+
    };
 
 

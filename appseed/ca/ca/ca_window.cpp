@@ -770,7 +770,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // 'dialog data' support
 
-   bool window::UpdateData(bool bSaveAndValidate)
+   bool window::update_data(bool bSaveAndValidate)
    {
       UNREFERENCED_PARAMETER(bSaveAndValidate);
       throw interface_only_exception();

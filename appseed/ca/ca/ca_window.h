@@ -60,6 +60,8 @@ namespace ca
 
       virtual window * from_os_data(void * pdata);
 
+
+
       virtual int_ptr get_os_data() const;
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
@@ -392,9 +394,6 @@ namespace ca
       virtual bool SetWindowContextHelpId(DWORD dwContextHelpId);
       virtual DWORD GetWindowContextHelpId() const;
 
-      // Dialog Data support
-      virtual bool UpdateData(bool bSaveAndValidate = TRUE);
-            // data wnd must be same type as this
 
       // Help Command Handlers
       void OnHelp();          // F1 (uses current context)
@@ -416,11 +415,16 @@ namespace ca
          UINT nFlags = reposDefault, LPRECT lpRectParam = NULL,
          LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
+      // Dialog Data support
+      virtual bool update_data(bool bSaveAndValidate = true);
+      // data wnd must be same type as this
 
 
       // dialog support
       virtual void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
       virtual void CenterWindow(::user::interaction * pAlternateOwner = NULL);
+
+
       //virtual int RunModalLoop(DWORD dwFlags = 0, ::ca::live_object * pliveobject = NULL);
       //virtual bool ContinueModal(id iLevel);
       //virtual void EndModalLoop(id nResult);

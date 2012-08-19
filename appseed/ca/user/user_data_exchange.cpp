@@ -15,6 +15,11 @@ namespace user
 
    }
 
+   void data_exchange::Fail()
+   {
+
+   }
+
 
 } // namespace user
 

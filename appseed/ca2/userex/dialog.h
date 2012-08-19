@@ -36,13 +36,19 @@ public:
 
    virtual void do_data_exchange(::user::data_exchange * pdx);
 
+
+   virtual BOOL on_init_dialog();
+
+
+
+
    // MFC dialog compatibility : TODO, ca2fy, at least the member function names
    virtual void OnCancel();
    virtual void OnOK();
-   //virtual bool UpdateData(bool bSave);
-   // UpdateData true
+   //virtual bool update_data(bool bSave);
+   // update_data true
    virtual void form_from_user();
-   // UpdateData false
+   // update_data false
    virtual void form_to_user();
    //virtual bool OnInitDialog();
    // substituir, replace _001Initialize

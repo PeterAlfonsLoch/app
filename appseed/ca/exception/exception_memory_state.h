@@ -27,7 +27,7 @@ struct CLASS_DECL_ca memory_state
    void Checkpoint();  // fill with current state
    bool Difference(const memory_state& oldState,
                const memory_state& newState);  // fill with difference
-   void UpdateData();
+   void update_data();
 
    // Output to g_dumpcontext
    void dumpStatistics() const;

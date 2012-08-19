@@ -1709,9 +1709,6 @@
     <ClInclude Include="sockets\config.h">
       <Filter>Header Files\sockets</Filter>
     </ClInclude>
-    <ClInclude Include="sockets\exception.h">
-      <Filter>Header Files\sockets</Filter>
-    </ClInclude>
     <ClInclude Include="sockets\http_file.h">
       <Filter>Header Files\sockets</Filter>
     </ClInclude>
@@ -3254,6 +3251,18 @@
     <ClInclude Include=".\gen\gen_less.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
+    <ClInclude Include="exception\exception_invalid_handle.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_os.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\exception_operation_canceled.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include=".\exception\exception_invalid_index.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
@@ -4414,9 +4423,6 @@
     <ClCompile Include="sockets\sockets_http_batch_file.cpp">
       <Filter>Source Files\sockets</Filter>
     </ClCompile>
-    <ClCompile Include="sockets\sockets_exception.cpp">
-      <Filter>Source Files\sockets</Filter>
-    </ClCompile>
     <ClCompile Include="sockets\sockets_application_interface.cpp">
       <Filter>Source Files\sockets</Filter>
     </ClCompile>
@@ -4424,12 +4430,6 @@
       <Filter>Source Files\sockets</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_archive_exception.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_base_exception.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_debug.cpp">
@@ -4447,40 +4447,19 @@
     <ClCompile Include="exception\exception_dump_output.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\exception_error_exception.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_hresult_exception.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\exception_installing.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_interface_only.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\exception_invalid_arg_exception.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_memory_exception.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\exception_not_implemented.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_not_licensed_exception.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_not_supported_exception.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_range_error.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_runtime_error.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_simple_exception.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_temporary.cpp">
@@ -5421,6 +5400,45 @@
     </ClCompile>
     <ClCompile Include=".\sqlite\sqlite3.cpp">
       <Filter>Source Files\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include=".\exception\exception_invalid_argument.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include=".\exception\exception_errorn.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include=".\exception\exception_hresult.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include=".\exception\exception_archive.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include=".\exception\exception_base.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include=".\exception\exception_memory.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include=".\exception\exception_not_licensed.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include=".\exception\exception_not_supported.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include=".\exception\exception_simple.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_invalid_handle.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_os.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_invalid_index.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_operation_canceled.cpp">
+      <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
