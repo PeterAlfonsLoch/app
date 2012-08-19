@@ -13,7 +13,9 @@ namespace dynamic_source
       ::sockets::httpd_socket(h)
    {
       
-      m_pinstanceCurrent = NULL;
+      m_iCa2FetchMode      = 0;
+
+      m_pinstanceCurrent   = NULL;
 
    }
 
