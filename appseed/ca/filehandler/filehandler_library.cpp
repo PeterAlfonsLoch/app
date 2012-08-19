@@ -58,7 +58,7 @@ namespace filehandler
 
       if(stra.get_count() == 1)
       {
-         straAppId.add(stra[0]);
+         straAppId.add(m_strRoot + "/" + stra[0]);
       }
 
    }
@@ -75,7 +75,7 @@ namespace filehandler
 
       if(stra.get_count() == 1)
       {
-         straAppId.add(stra[0]);
+         straAppId.add(m_strRoot + "/" + stra[0]);
       }
 
    }

@@ -387,6 +387,8 @@ namespace plugin
 
       m_bMainReady = true;
 
+      // debug_box("ca plugin plugin", "ready_on_main_thread", 0);
+
       count iCount = get_memory_length();
 
       if(iCount > 0)
@@ -404,9 +406,15 @@ namespace plugin
 
          string strPluginUrl     = Sys(m_psystem).url().override_if_empty(m_phost->m_strPluginUrl, get_host_location_url());
 
-         string strPluginData    = ms_get_dup(strPluginUrl);
+         //string strPluginData    = ms_get_dup(strPluginUrl);
 
-         open_ca2_string(strPluginData);
+         //open_ca2_string(strPluginData);
+
+         ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
+         pbiasCreate->m_puiParent = m_puiHost;
+         pbiasCreate->m_set["NativeWindowFocus"] = false;
+         m_psystem->get_session(0)->open_by_file_extension("\"" + strPluginUrl + "\"", pbiasCreate);
+
 
       }
 

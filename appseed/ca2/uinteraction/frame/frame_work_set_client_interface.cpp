@@ -99,55 +99,93 @@ namespace frame
 
    bool WorkSetClientInterface::WfiFullScreen(bool bFullScreen, bool bRestore)
    {
-      if(bFullScreen)
-      {
-         if(!m_workset.IsFullScreenEnabled())
-            return false;
-         m_workset.m_pappearance->SetAutomaticModeSwitching(false);
-         if(!WfiOnBeforeFullScreen(bFullScreen))
-            return false;
-         m_eappearancemodeFullScreen = m_workset.GetAppearanceMode();
-         m_workset.SetAppearanceMode(AppearanceModeFullScreen);
-         WfiOnFullScreen(bFullScreen);
-         WfiOnAfterFullScreen(bFullScreen);
-         if(m_workset.GetAppearance()->m_pworkset != NULL
-         && m_workset.GetAppearance()->m_pworkset->m_pframeschema != NULL)
-         {
-            ASSERT(m_workset.GetAppearance()->m_pworkset != NULL);
-            ASSERT(m_workset.GetAppearance()->m_pworkset->m_pframeschema != NULL);
-            m_workset.GetAppearance()->m_pworkset->m_pframeschema->OnAppearanceModeChange();
-         }
-         m_workset.m_pappearance->SetAutomaticModeSwitching(true);
-         return true;
-      }
-      else
-      {
-         if(m_eappearancemodeFullScreen == AppearanceModeFullScreen)
-         {
-            m_eappearancemodeFullScreen = AppearanceModeNormal;
-         }
-         if(!WfiIsFullScreen())
-            return true;
-         WfiOnFullScreen(false);
-         if(bRestore)
-         {
-            EAppearanceMode   eappearancemode = m_eappearancemodeFullScreen;
 
-            switch(eappearancemode)
+      try
+      {
+
+         if(bFullScreen)
+         {
+
+            if(!m_workset.IsFullScreenEnabled())
+               return false;
+
+            if(m_workset.m_pappearance != NULL)
             {
-            case AppearanceModeNormal:
-               return WfiRestore();
-            case AppearanceModeZoomed:
-               return WfiMaximize();
-            case AppearanceModeIconic:
-               return WfiMinimize();
-            default:
-               break;
+            
+               m_workset.m_pappearance->SetAutomaticModeSwitching(false);
+            
+               if(!WfiOnBeforeFullScreen(bFullScreen))
+                  return false;
+   
+               m_eappearancemodeFullScreen = m_workset.GetAppearanceMode();
+
+               m_workset.SetAppearanceMode(AppearanceModeFullScreen);
+
             }
+         
+            WfiOnFullScreen(bFullScreen);
+
+            WfiOnAfterFullScreen(bFullScreen);
+         
+            if(m_workset.m_pappearance != NULL)
+            {
+
+               if(m_workset.GetAppearance()->m_pworkset != NULL && m_workset.GetAppearance()->m_pworkset->m_pframeschema != NULL)
+               {
+               
+                  ASSERT(m_workset.GetAppearance()->m_pworkset != NULL);
+
+                  ASSERT(m_workset.GetAppearance()->m_pworkset->m_pframeschema != NULL);
+
+                  m_workset.GetAppearance()->m_pworkset->m_pframeschema->OnAppearanceModeChange();
+
+               }
+
+               m_workset.m_pappearance->SetAutomaticModeSwitching(true);
+
+            }
+
+            return true;
          }
-         m_eappearancemodeFullScreen = AppearanceModeFullScreen;
-         return true;
+         else
+         {
+            if(m_eappearancemodeFullScreen == AppearanceModeFullScreen)
+            {
+               m_eappearancemodeFullScreen = AppearanceModeNormal;
+            }
+            if(!WfiIsFullScreen())
+               return true;
+            WfiOnFullScreen(false);
+            if(bRestore)
+            {
+               EAppearanceMode   eappearancemode = m_eappearancemodeFullScreen;
+
+               switch(eappearancemode)
+               {
+               case AppearanceModeNormal:
+                  return WfiRestore();
+               case AppearanceModeZoomed:
+                  return WfiMaximize();
+               case AppearanceModeIconic:
+                  return WfiMinimize();
+               default:
+                  break;
+               }
+            }
+
+            m_eappearancemodeFullScreen = AppearanceModeFullScreen;
+
+            return true;
+
+         }
+
       }
+      catch(...)
+      {
+      }
+
+      return false;
+
    }
 
    bool WorkSetClientInterface::WfiNotifyIcon()

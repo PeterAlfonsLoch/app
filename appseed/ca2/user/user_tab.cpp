@@ -877,7 +877,8 @@ namespace user
 
             size size;
 
-            ixAdd = 0;
+            ixAdd = 5;
+
             if(pane.m_dib.is_set())
             {
                //IMAGEINFO ii;

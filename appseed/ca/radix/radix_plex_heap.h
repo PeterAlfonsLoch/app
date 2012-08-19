@@ -95,7 +95,16 @@ inline void plex_heap_alloc_sync::Free(void * p)
       // simply return the node to the free list
       node* pNode = (node*)p;
       if(pNode == m_pnodeFree) // dbgsnp - debug snippet
-         __debug_break();
+      {
+
+         if(is_debugger_attached())
+         {
+
+            __debug_break();
+
+         }
+
+      }
 
 #if STORE_LAST_BLOCK
       if(m_pnodeLastBlock != NULL)

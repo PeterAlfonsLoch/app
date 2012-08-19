@@ -65,7 +65,13 @@ namespace user
             item.m_iItem = iIndex;
             item.m_iSubItem = plist->m_columna._001GetByKey(i)->m_iSubItem;
             item.m_iListItem = -1;
-            plist->_001GetItemText(&item);
+            try
+            {
+               plist->_001GetItemText(&item);
+            }
+            catch(...)
+            {
+            }
             pwstra->set_at(i, item.m_strText);
          }
    //      pCs->unlock();
