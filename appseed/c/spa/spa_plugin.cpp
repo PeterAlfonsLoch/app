@@ -706,18 +706,51 @@ install:
       {
 
          //MessageBox(NULL, "on_ready", "on_ready", 0);
-         ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, m_phost->m_countMemory);
+         ensure_tx(::hotplugin::message_set_plugin_url, m_phost->m_strPluginUrl, m_phost->m_strPluginUrl.length());
          ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, m_phost->m_countMemory);
 
       }
       else
       {
 
-         vsstring strPrompt((const char *) m_phost->m_puchMemory, m_phost->m_countMemory);
+         vsstring strPrompt;
+         
+         if(m_phost->m_puchMemory != NULL)
+         {
+            
+            strPrompt = vsstring((const char *) m_phost->m_puchMemory, m_phost->m_countMemory);
+
+         }
+         else
+         {
+
+            int iTry = 0;
+
+            retry_get_prompt:
+
+            strPrompt = ms_get_dup(m_phost->m_strPluginUrl);
+
+            if(strPrompt.is_empty())
+            {
+
+               if(iTry < 9)
+               {
+                
+                  Sleep(iTry * 84);
+
+                  iTry++;
+
+                  goto retry_get_prompt;
+
+               }
+
+            }
+
+         }
 
          vsstring strLocale;
 
-         if(!url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
+         if(strPrompt.is_empty() || !url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
             strLocale = str_get_system_default_locale_dup();
 
          if(strLocale.is_empty())
@@ -725,7 +758,7 @@ install:
 
          vsstring strSchema;
 
-         if(!url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
+         if(strPrompt.is_empty() || !url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
             strSchema = str_get_system_default_schema_dup();
 
          if(strSchema.is_empty())
