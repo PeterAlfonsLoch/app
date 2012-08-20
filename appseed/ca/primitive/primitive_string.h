@@ -1493,7 +1493,7 @@ inline string::PCXSTR string::c_str() const throw()
    return simple_string::operator PCXSTR();
 }
 
-strsize string::remove(strsize iIndex,strsize nCount)
+inline strsize string::remove(strsize iIndex,strsize nCount)
 {
    return Delete(iIndex, nCount);
 }
