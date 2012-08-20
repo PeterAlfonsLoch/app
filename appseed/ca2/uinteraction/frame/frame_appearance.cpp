@@ -42,7 +42,17 @@ namespace frame
       if(m_pworkset == NULL)
          return false;
 
-      m_pworkset->m_pframeschema->OnInitializeAppearance();
+
+      try
+      {
+
+         m_pworkset->m_pframeschema->OnInitializeAppearance();
+
+      }
+      catch(...)
+      {
+
+      }
 
 //      ::user::interaction * pwnd = GetWnd();
 
