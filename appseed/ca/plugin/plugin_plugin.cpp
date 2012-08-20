@@ -406,15 +406,25 @@ namespace plugin
 
          string strPluginUrl     = Sys(m_psystem).url().override_if_empty(m_phost->m_strPluginUrl, get_host_location_url());
 
-         //string strPluginData    = ms_get_dup(strPluginUrl);
+         string strExtension     = System.file().extension(System.url().get_script(strPluginUrl));
 
-         //open_ca2_string(strPluginData);
+         if(strExtension.is_empty() || strExtension.compare_no_case("ca2") == 0)
+         {
 
-         ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
-         pbiasCreate->m_puiParent = m_puiHost;
-         pbiasCreate->m_set["NativeWindowFocus"] = false;
-         m_psystem->get_session(0)->open_by_file_extension("\"" + strPluginUrl + "\"", pbiasCreate);
+            string strPluginData    = ms_get_dup(strPluginUrl);
+            
+            open_ca2_string(strPluginData);
 
+         }
+         else
+         {
+
+            ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
+            pbiasCreate->m_puiParent = m_puiHost;
+            pbiasCreate->m_set["NativeWindowFocus"] = false;
+            m_psystem->get_session(0)->open_by_file_extension("\"" + strPluginUrl + "\"", pbiasCreate);
+
+         }
 
       }
 
