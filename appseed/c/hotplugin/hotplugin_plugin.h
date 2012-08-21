@@ -123,7 +123,7 @@ namespace hotplugin
 
       virtual void set_status(const char * pszStatus);
 
-      virtual void restart();
+      virtual void restart_small_ipc_channel();
 
       virtual void ensure_bitmap_data(int cx, int cy, bool bCreateFile);
 

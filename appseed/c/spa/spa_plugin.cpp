@@ -48,6 +48,11 @@ namespace spa
       m_bLogged               = false;
       m_bLogin                = false;
 
+      m_bRestartCa2           = false;
+      m_bPendingStream        = false;
+
+     ::CreateThread(NULL, 0, plugin::thread_proc_start_ca2, (LPVOID) this, 0, 0);
+
    }
 
 
@@ -59,7 +64,7 @@ namespace spa
    {
    }
 
-   void plugin::restart()
+   void plugin::restart_small_ipc_channel()
    {
 
       if(!is_installing())
@@ -126,6 +131,115 @@ namespace spa
    }
 
 
+   DWORD WINAPI plugin::thread_proc_start_ca2(LPVOID lpParam)
+   {
+
+      plugin * pplugin = (plugin *) lpParam;
+
+      pplugin->thread_start_ca2();
+
+      return 0;
+
+   }
+
+   void plugin::thread_start_ca2()
+   {
+
+      MSG msg;
+      
+      while(true)
+	   {
+
+         if(!PeekMessage(&msg, NULL, 0, 0xffffffffu, TRUE))
+         {
+
+            if(m_bRestartCa2 && m_phost != NULL)
+            {
+
+               try
+               {
+
+                  vsstring str;
+
+         #ifdef _AMD64_
+
+                  str = itohex_dup(((int*) m_phost)[1]);
+
+                  str += itohex_dup((unsigned int) m_phost);
+
+         #else    
+
+                  str = itohex_dup((int) m_phost);
+
+         #endif
+
+                  m_phost->m_strBitmapChannel = str;
+
+                  ::hotplugin::container_launcher launcher(str);
+
+                  vsstring strChannel = "\\ca2\\ca2plugin-container-";
+
+                  strChannel += str;
+
+                  open_ab(strChannel, "plugin-container.exe", &launcher);
+
+               }
+               catch(...)
+               {
+
+               }
+
+               m_bRestartCa2     = false;
+
+               m_bPendingStream  = true;
+
+            }
+
+            if(m_bPendingStream && m_phost != NULL)
+            {
+
+               if(m_phost->m_bStream)
+               {
+
+                  try
+                  {
+
+                     //set_ready();
+
+                     ensure_tx(::hotplugin::message_set_plugin_url, m_phost->m_strPluginUrl, m_phost->m_strPluginUrl.length());
+
+                     ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, m_phost->m_countMemory);
+
+                  }
+                  catch(...)
+                  {
+
+                  }
+
+                  m_bPendingStream = false;
+
+               }
+
+            }
+
+            Sleep(84);
+
+            continue;
+
+         }
+
+         if(msg.message == WM_QUIT)
+            break;
+
+		   TranslateMessage(&msg);
+		   DispatchMessage(&msg);
+
+	   }
+
+   }
+
+
+
    void plugin::start_ca2()
    {
 
@@ -171,38 +285,8 @@ namespace spa
       if(is_ca2_installed())
       {
 
+         m_bRestartCa2 = true;
 
-         vsstring str;
-
-#ifdef _AMD64_
-         str = itohex_dup(((int*) m_phost)[1]);
-         str += itohex_dup((unsigned int) m_phost);
-#else    
-         str = itohex_dup((int) m_phost);
-#endif
-
-         m_phost->m_strBitmapChannel = str;
-
-         ::hotplugin::container_launcher launcher(str);
-
-         vsstring strChannel = "\\ca2\\ca2plugin-container-";
-         strChannel += str;
-
-
-
-
-         open_ab(strChannel, "plugin-container.exe", &launcher);
-
-
-         if(m_phost->m_bStream)
-         {
-            //set_ready();
-            ensure_tx(::hotplugin::message_set_plugin_url, m_phost->m_strPluginUrl, m_phost->m_strPluginUrl.length());
-            ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, m_phost->m_countMemory);
-         }
-
-
-         return;
 
       }
       else

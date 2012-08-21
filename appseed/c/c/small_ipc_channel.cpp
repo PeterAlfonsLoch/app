@@ -72,7 +72,7 @@ bool small_ipc_channel::close()
 
 }
 
-void small_ipc_channel::restart()
+void small_ipc_channel::restart_small_ipc_channel()
 {
 }
 
@@ -88,7 +88,7 @@ bool small_ipc_channel::ensure_tx(const char * pszMessage, DWORD dwTimeout)
    if(!send(pszMessage, dwTimeout))
    {
 
-      restart();
+      restart_small_ipc_channel();
 
       return false;
 
@@ -108,7 +108,7 @@ bool small_ipc_channel::ensure_tx(int message, void * pdata, int len, DWORD dwTi
    if(!send(message, pdata, len, dwTimeout))
    {
 
-      restart();
+      restart_small_ipc_channel();
 
       return false;
 

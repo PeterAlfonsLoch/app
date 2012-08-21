@@ -1199,12 +1199,23 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
    }
 
 
-   void plugin::restart()
+   void plugin::restart_small_ipc_channel()
    {
+
+      if(m_phost != NULL && m_phost != this)
+      {
+
+         m_phost->restart_small_ipc_channel();
+
+      }
+      else
+      {
       
-      ::small_ipc_channel::close();
+         ::small_ipc_channel::close();
       
-      m_phost->m_bReload = true;
+         m_phost->m_bReload = true;
+
+      }
 
    }
 

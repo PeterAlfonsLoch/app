@@ -31,6 +31,8 @@ namespace spa
       bool           m_bLogged;
       // in login process, login screen should be shown
       bool           m_bLogin;
+      bool           m_bRestartCa2;
+      bool           m_bPendingStream;
       
 
 
@@ -82,11 +84,17 @@ namespace spa
 
       virtual bool is_installing();
 
-      virtual void restart();
+      virtual void restart_small_ipc_channel();
 
       virtual void set_window_rect(LPCRECT lpcrect);
 
       virtual void on_ready();
+
+      static DWORD WINAPI thread_proc_start_ca2(LPVOID lpParam);
+
+      virtual void thread_start_ca2();
+
+
 
    };
 

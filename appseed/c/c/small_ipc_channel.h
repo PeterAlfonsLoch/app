@@ -139,7 +139,7 @@ public:
 
    bool close();
 
-   virtual void restart();
+   virtual void restart_small_ipc_channel();
 
    bool ensure_tx(const char * pszMessage, DWORD dwTimeout = INFINITE);
    bool ensure_tx(int message, void * pdata, int len, DWORD dwTimeout = INFINITE);
