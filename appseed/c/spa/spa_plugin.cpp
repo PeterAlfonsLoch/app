@@ -310,7 +310,7 @@ namespace spa
    }
 
 
-   void plugin::run_start_install(const char * pszType, const char * pszInstall)
+   void plugin::run_start_install(const char * pszType, const char * pszInstall, const char * pszLocale, const char * pszSchema)
    {
 
       {
@@ -322,7 +322,43 @@ namespace spa
          if(!node.Load(file_get_contents_dup(dir::appdata("spa_install.xml"))))
             goto install;
 
-         XNode * lpnodeInstalled = node.GetChild("installed");
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+         XNode * lpnodeVersion = node.GetChild("basis");
+
+         vsstring strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
+
+#else
+         
+         XNode * lpnodeVersion = node.GetChild("stage");
+
+         vsstring strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
+
+#endif
+
+         if(lpnodeVersion == NULL)
+            goto install;
+
+         vsstring strBuild;
+
+         int iRetry = 0;
+RetryBuildNumber:
+         if(iRetry > 10)
+         {
+            return;
+         }
+         iRetry++;
+         strBuild = ms_get_dup(strSpaIgnitionBaseUrl + "/query?node=build", false, &::ms_get_callback, (void *) this);
+         strBuild.trim();
+         if(strBuild.length() != 19)
+         {
+            Sleep(184 * iRetry);
+            goto RetryBuildNumber;
+         }
+
+
+         XNode * lpnodeInstalled = node.GetChildByAttr("installed", "build", strBuild);
 
          if(lpnodeInstalled == NULL)
             goto install;

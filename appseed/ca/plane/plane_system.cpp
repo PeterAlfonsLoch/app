@@ -1402,7 +1402,7 @@ namespace plane
       if(!System.directrix().m_varTopicQuery.has_property("install")
          && !System.directrix().m_varTopicQuery.has_property("uninstall")
          && strId.has_char() 
-         && !install().is(pszType, strApplicationId))
+         && !install().is(pszType, strApplicationId, m_strLocale, m_strSchema))
       {
 
          if(::IsDebuggerPresent())

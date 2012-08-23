@@ -160,9 +160,23 @@ UINT spa_starter_start::start()
    if(s_bStarting)
       return -1;
 
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+   vsstring strVersion = "basis";
+
+#else
+         
+   vsstring strVersion = "stage";
+
+#endif
+
    vsstring strId = get_command_line_param(m_strCommandLine, "app", "session", "session_start");
 
    vsstring strType = get_command_line_param(m_strCommandLine, "app_type");
+
+   vsstring strLocale = get_command_line_param(m_strCommandLine, "locale");
+
+   vsstring strSchema = get_command_line_param(m_strCommandLine, "schema");
 
    if(strId.is_empty())
       return -1;
@@ -176,7 +190,7 @@ UINT spa_starter_start::start()
    while(true)
    {
       update_ca2_installed(true);
-      if(is_ca2_installed() && is_installed(strType, strId))
+      if(is_ca2_installed() && is_installed(strVersion, get_latest_build_number(NULL), strType, strId, strLocale, strSchema))
       {
          break;
          //update_ca2_updated();
@@ -191,7 +205,7 @@ UINT spa_starter_start::start()
    //set_installing_ca2(false);
 
    //if(is_ca2_installed() && is_installed("application", m_strId) && is_ca2_updated())
-   if(is_ca2_installed() && is_installed(strType, strId) && m_pplugin != NULL)
+   if(is_ca2_installed() && is_installed(strVersion, get_latest_build_number(NULL), strType, strId, strLocale, strSchema) && m_pplugin != NULL)
    {
       defer_play_small_bell();
       m_pplugin->set_ca2_installation_ready();

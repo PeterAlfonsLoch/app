@@ -459,7 +459,7 @@ namespace plugin
 
          string strContentType = headers["Content-Type"];
 
-         string str;
+         string str1;
 
          // TODO |) : Should parse Content-type:
          // ALSO: this case only happens if all file has been downloaded before the plugin has initialized
@@ -484,16 +484,50 @@ namespace plugin
                lpszEnd = &lpszStart[i];
                if(*lpszEnd == '\n')
                {
-                  str = string(lpszStart, lpszEnd - lpszStart);
+                  str1 = string(lpszStart, lpszEnd - lpszStart);
                   break;
                }
             }
-            str.trim();
+            str1.trim();
 
-            if(str == "ca2login")
+            string str2;
+
+            lpszStart = lpszEnd;
+            for(; (lpszEnd - lpszAlloc) <= iCount; i++)
+            {
+               if(*lpszEnd == '\0' || !gen::ch::is_whitespace(lpszEnd))
+                  break;
+               lpszEnd = (char *) gen::str::utf8_inc(lpszEnd);
+            }
+            lpszStart = lpszEnd;
+            for(; (lpszEnd - lpszAlloc) <= iCount; i++)
+            {
+               if(*lpszEnd == '\0' || gen::ch::is_space_char(lpszEnd) || (lpszEnd - lpszAlloc) == iCount)
+               {
+                  str2 = string(lpszStart, lpszEnd - lpszStart);
+                  break;
+               }
+               lpszEnd = (char *) gen::str::utf8_inc(lpszEnd);
+            }
+
+            string strId = str2;
+            strsize iFind = strId.find("?");
+            if(iFind >= 0)
+            {
+               strId = strId.Left(iFind);
+            }
+            gen::property_set set(get_app());
+            set.parse_url_query(str2);
+
+            string strLocale = set["locale"];
+
+            string strSchema = set["schema"];
+
+                  //Sleep(15 * 1000);
+            if(str1 == "ca2login")
             {
                // graphical - 2 - user interface for login - fontopus - through the plugin
-               if(!m_psystem->install().is("application", "app/ca2/fontopus"))
+               if(!m_psystem->install().is("application", "app/ca2/fontopus", strLocale, strSchema))
                {
 /*                  Sys(m_psystem).install().start(": app=session session_start=app/ca2/fontopus app_type=application install");
 #ifdef WINDOWS
@@ -503,7 +537,7 @@ namespace plugin
 #endif
                   m_bMainReady = false;*/
 
-                  vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install");
+                  vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install locale=" + strLocale + " schema=" + strSchema);
 
                   int i = 1;
 
@@ -528,10 +562,10 @@ namespace plugin
                m_strCa2LoginRuri = string(lpszEnd + 1, iCount - (lpszEnd - lpszStart) - 1);
                start_ca2_login();
             }
-            else if(str == "ca2logout")
+            else if(str1 == "ca2logout")
             {
                // graphical - 2 - user interface for logout - fontopus - through the plugin
-               if(!m_psystem->install().is("application", "app/ca2/fontopus"))
+               if(!m_psystem->install().is("application", "app/ca2/fontopus", strLocale, strSchema))
                {
                   /*
                   Sys(m_psystem).install().start(": app=session session_start=app/ca2/fontopus app_type=application install");
@@ -542,7 +576,7 @@ namespace plugin
 #endif
                   m_bMainReady = false;*/
 
-                  vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install");
+                  vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install locale=" + strLocale + " schema=" + strSchema);
 
                   int i = 1;
 
@@ -566,7 +600,7 @@ namespace plugin
                m_strCa2LogoutRuri = string(lpszEnd + 1, iCount - (lpszEnd - lpszStart) - 1);
                start_ca2_logout();
             }
-            else if(str == "ca2prompt")
+            else if(str1 == "ca2prompt")
             {
                if(System.url().get_script(get_host_location_url()) == "/non_auth")
                {
@@ -576,23 +610,6 @@ namespace plugin
                else
                {
                   m_puiHost->layout();
-                  lpszStart = lpszEnd;
-                  for(; (lpszEnd - lpszAlloc) <= iCount; i++)
-                  {
-                     if(*lpszEnd == '\0' || !gen::ch::is_whitespace(lpszEnd))
-                        break;
-                     lpszEnd = (char *) gen::str::utf8_inc(lpszEnd);
-                  }
-                  lpszStart = lpszEnd;
-                  for(; (lpszEnd - lpszAlloc) <= iCount; i++)
-                  {
-                     if(*lpszEnd == '\0' || gen::ch::is_space_char(lpszEnd) || (lpszEnd - lpszAlloc) == iCount)
-                     {
-                        str = string(lpszStart, lpszEnd - lpszStart);
-                        break;
-                     }
-                     lpszEnd = (char *) gen::str::utf8_inc(lpszEnd);
-                  }
                   if(!m_bApp)
                   {
                      while(!*m_pbReady)
@@ -605,24 +622,15 @@ namespace plugin
                         return;
                      }
                   }
-                  //Sleep(15 * 1000);
-                  if(str.has_char())
+                  if(str2.has_char())
                   {
-                     string strId = str;
-                     strsize iFind = strId.find("?");
-                     if(iFind >= 0)
-                     {
-                        strId = strId.Left(iFind);
-                     }
-                     gen::property_set set(get_app());
-                     set.parse_url_query(str);
 
                      string strType = set["app_type"];
 
                      if(strType.is_empty())
                         strType = "application";
 
-                     if(strId.has_char() && !m_psystem->install().is(strType, strId))
+                     if(strId.has_char() && !m_psystem->install().is(strType, strId, strLocale, strSchema))
                      {
 
                         string strCommandLine;
@@ -677,7 +685,7 @@ namespace plugin
                         ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
                         pbiasCreate->m_set["NativeWindowFocus"] = false;
                         pbiasCreate->m_puiParent = m_puiHost;
-                        m_psystem->command().add_fork_uri(str, pbiasCreate);
+                        m_psystem->command().add_fork_uri(str2, pbiasCreate);
                      }
                   }
                }

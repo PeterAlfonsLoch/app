@@ -377,7 +377,11 @@ RetryHost:
 
          nodeInstall.Load(file_get_contents_dup(dir::appdata("spa_install.xml")));
 
-         LPXNode lpnodeInstalled = nodeInstall.GetChild("installed");
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+         LPXNode lpnodeVersion = nodeInstall.GetChild("basis");
+#else
+         LPXNode lpnodeVersion = nodeInstall.GetChild("stage");
+#endif
 
          trace("***Downloading file list.");
 
@@ -428,23 +432,35 @@ RetryHost:
             ::OutputDebugStringA("\r\n");
          }
 
-         if(lpnodeInstalled != NULL)
+         if(lpnodeVersion != NULL)
          {
 
-            for(int ui = 0; ui < lpnodeInstalled->childs.get_count(); ui++)
+            for(int ui = 0; ui < lpnodeVersion->childs.get_count(); ui++)
             {
 
-               LPXNode lpnodeType = lpnodeInstalled->childs[ui];
+               LPXNode lpnodeInstalled = lpnodeVersion->childs[ui];
 
-               for(int ui = 0; ui < lpnodeType->childs.get_count(); ui++)
+               if(!strcmp(lpnodeVersion->name, "installed"))
                {
 
-                  vsstring strId = lpnodeType->childs[ui]->GetAttrValue("id");
-
-                  if(strcmp_dup(strId, m_strApplicationId) != 0)
+                  for(int ui = 0; ui < lpnodeInstalled->childs.get_count(); ui++)
                   {
 
-                     GetFileList(straFileList, ("app/stage/metastage/" + strId + ".spa"), mapLen, mapGzLen, mapMd5, mapFlag);
+                     LPXNode lpnodeType = lpnodeInstalled->childs[ui];
+
+                     for(int ui = 0; ui < lpnodeType->childs.get_count(); ui++)
+                     {
+
+                        vsstring strId = lpnodeType->childs[ui]->GetAttrValue("id");
+
+                        if(strcmp_dup(strId, m_strApplicationId) != 0)
+                        {
+
+                           GetFileList(straFileList, ("app/stage/metastage/" + strId + ".spa"), mapLen, mapGzLen, mapMd5, mapFlag);
+
+                        }
+
+                     }
 
                   }
 
@@ -473,7 +489,7 @@ RetryHost:
 
          }
 
-         vsstring strType;
+         /*vsstring strType;
          vsstring strStart;
          XNode nodeSpaStart;
          nodeSpaStart.Load(file_get_contents_dup(dir::appdata("spa_start.xml")));
@@ -530,7 +546,7 @@ RetryHost:
                strGet += ".spa";
                GetFileList(straFileList, strGet, mapLen, mapGzLen, mapMd5, mapFlag);
             }
-         }
+         }*/
 
          for(int i = 0; i < straFileList.get_count(); i++)
          {
@@ -2179,7 +2195,7 @@ RetryHost:
                         if(str.length() > 19)
                         {
                            m_strApplicationId = str.substr(0, str.length() - 19);
-                           m_strCommandLine = ": app=session session_start=" + m_strApplicationId + " app_type=" + m_strApplicationType + " install";
+                           m_strCommandLine = ": app=session session_start=" + m_strApplicationId + " app_type=" + m_strApplicationType + " install build_number=\"" + m_strBuild + "\"";
                            m_strBuildResource = str.substr(str.length() - 19);
                         }
                      }
@@ -2494,7 +2510,7 @@ RetryHost:
          else
          {
             m_strApplicationId = "session";
-            m_strCommandLine = ": app=session session_start=session app_type=application install";
+            m_strCommandLine = ": app=session session_start=session app_type=application install build_number=\"" + m_strBuild + "\"";
          }
       }
 
@@ -2994,7 +3010,7 @@ RetryHost:
          {
             m_strApplicationId = str.substr(iStart);
          }
-         m_strCommandLine = ": app=session session_start="  + m_strApplicationId + " app_type=" + m_strApplicationType + " install";
+         m_strCommandLine = ": app=session session_start="  + m_strApplicationId + " app_type=" + m_strApplicationType + " install build_number=\"" + m_strBuild + "\"";
          m_iStart = 4;
          return run_install(pszCommandLine, m_nCmdShow);
 
