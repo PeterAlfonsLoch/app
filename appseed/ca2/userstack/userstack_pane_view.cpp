@@ -216,12 +216,15 @@ namespace userstack
                if(papp->directrix().m_varTopicQuery.has_property(strId))
                {
 
+                  createcontext->m_spCommandLine->m_varQuery.propset().merge(papp->directrix().m_varTopicQuery[(const char *) strId].propset());
+
                   if(papp->directrix().m_varTopicQuery[(const char *) strId].has_property("file"))
                   {
                      
                      createcontext->m_spCommandLine->m_varFile = papp->directrix().m_varTopicQuery[(const char *) strId]["file"];
 
                   }
+
                }
    
                str = gen::str::itoa((int_ptr) createcontext->m_spApplicationBias->m_puiParent);
