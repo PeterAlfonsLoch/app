@@ -81,10 +81,10 @@ vsstring get_command_line_param(const char * pszCommandLine, const char * pszPar
    pszValue += strParam.length();
 
 
-   if(*pszValue == '\"')
+   if(*pszValue == '"')
    {
 
-      const char * pszValueEnd = strstr_dup(pszValue + 1, "\"");
+      const char * pszValueEnd = strchr_dup(pszValue + 1, '"');
 
       if(pszValueEnd == NULL)
       {
