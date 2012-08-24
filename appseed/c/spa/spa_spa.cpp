@@ -105,7 +105,7 @@ found_id:
    for(int ui = 0; ui < lpnodeId->childs.get_count(); ui++)
    {
 
-      lpnodeId = lpnodeId->childs[ui];
+      lpnodeLocalization = lpnodeId->childs[ui];
 
       vsstring strLocale = lpnodeLocalization->GetAttrValue("locale");
       vsstring strSchema = lpnodeLocalization->GetAttrValue("schema");
