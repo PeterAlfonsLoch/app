@@ -80,15 +80,36 @@ vsstring get_command_line_param(const char * pszCommandLine, const char * pszPar
 
    pszValue += strParam.length();
 
-   const char * pszValueEnd = strstr_dup(pszValue, " ");
 
-   if(pszValueEnd == NULL)
+   if(*pszValue == '\"')
    {
-      strValue = vsstring(pszValue);
+
+      const char * pszValueEnd = strstr_dup(pszValue + 1, "\"");
+
+      if(pszValueEnd == NULL)
+      {
+         strValue = vsstring(pszValue);
+      }
+      else
+      {
+         strValue = vsstring(pszValue, pszValueEnd - pszValue + 1);
+      }
+
    }
    else
    {
-      strValue = vsstring(pszValue, pszValueEnd - pszValue);
+
+      const char * pszValueEnd = strstr_dup(pszValue, " ");
+
+      if(pszValueEnd == NULL)
+      {
+         strValue = vsstring(pszValue);
+      }
+      else
+      {
+         strValue = vsstring(pszValue, pszValueEnd - pszValue);
+      }
+
    }
 
    return strValue;

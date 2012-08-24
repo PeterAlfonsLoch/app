@@ -2387,7 +2387,19 @@ RetryHost:
       //set_progress(0.5);
       //      DWORD dwStartError;
       trace("starting app-install.exe...");
-      int i = run_ca2_application_installer(m_strCommandLine);
+
+
+      vsstring strCommandLine = m_strCommandLine;
+
+      if(get_command_line_param(strCommandLine, "build_number").is_empty())
+      {
+
+         strCommandLine += " build_number=\"" + m_strBuild + "\"";
+
+      }
+
+      int i = run_ca2_application_installer(strCommandLine);
+
       /*if(m_strStart != "_set_windesk" && is_installed("application", "_set_windesk"))
       {
       //DWORD dwStartError2;
