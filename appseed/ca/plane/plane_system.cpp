@@ -1408,7 +1408,7 @@ namespace plane
          if(::IsDebuggerPresent())
          {
 
-            MessageBox(NULL, "Debug Only Message\n\nPlease install application \"" + strApplicationId + "\" - type \"" + string(pszType) + "\"", "Debug Only Message - Please Install - ca2", MB_OK);
+            MessageBox(NULL, "Debug Only Message\n\nPlease install application \"" + strApplicationId + "\" - type \"" + string(pszType) + "\" locale=" + m_strLocale + " schema=" + m_strSchema, "Debug Only Message - Please Install - ca2", MB_OK);
 
             System.os().post_to_all_threads(WM_QUIT, 0, 0);
 
@@ -1416,7 +1416,7 @@ namespace plane
 
          }
 
-         hotplugin::host::starter_start(": app=session session_start=" + strApplicationId + " app_type=" + string(pszType) +  " install", NULL);
+         hotplugin::host::starter_start(": app=session session_start=" + strApplicationId + " app_type=" + string(pszType) +  " install locale=" + m_strLocale + " schema=" + m_strSchema, NULL);
 
          return NULL;
 

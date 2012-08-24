@@ -116,6 +116,21 @@ namespace ca2
 
       }
 
+      string strBuild;
+
+      if(is_debugger_attached() && (pszBuild == NULL || *pszBuild == '\0'))
+      {
+
+         strBuild = get_latest_build_number(NULL);
+
+         pszBuild = strBuild;
+
+      }
+
+      if(pszBuild == NULL || *pszBuild == '\0')
+         throw "build number cannot be NULL";
+
+
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
       ::xml::node * lpnodeVersion = doc.get_root()->get_child("basis");
@@ -253,23 +268,7 @@ namespace ca2
       if(lpnodeVersion == NULL)
          return false;
 
-      string strBuild;
-
-      int iRetry = 0;
-RetryBuildNumber:
-      if(iRetry > 10)
-      {
-         return false;
-      }
-      iRetry++;
-      strBuild = ms_get_dup(strSpaIgnitionBaseUrl + "/query?node=build", false, &::ms_get_callback, (void *) this);
-      strBuild.trim();
-      if(strBuild.length() != 19)
-      {
-         Sleep(184 * iRetry);
-         goto RetryBuildNumber;
-      }
-
+      string strBuild = get_latest_build_number(NULL);
 
       ::xml::node * lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuild);
 
@@ -284,6 +283,21 @@ RetryBuildNumber:
       ::xml::node * lpnode = lpnodeType->GetChildByAttr(pszType, "id", pszId);
 
       if(lpnode == NULL)
+         return false;
+
+      stringa straName;
+      stringa straValue;
+
+      straName.add("locale");
+      straValue.add(pszLocale);
+
+
+      straName.add("schema");
+      straValue.add(pszSchema);
+
+      ::xml::node * lpnodeLocalization = lpnode->GetChildByAttr("localization", straName, straValue);
+
+      if(lpnodeLocalization == NULL)
          return false;
 
       return true;
