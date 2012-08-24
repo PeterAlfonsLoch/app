@@ -651,7 +651,7 @@ namespace plugin
                         }
 
                         if(set["app_type"].is_empty())
-                           strCommandLine += "app_type=" + strType;
+                           strCommandLine += " app_type=" + strType;
 
                         strCommandLine += " install";
 
