@@ -218,7 +218,7 @@ namespace ca2
 
    }
 
-   bool install::is(const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema)
+   bool install::is(const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema)
    {
 
       string strPath;
@@ -251,24 +251,36 @@ namespace ca2
       if(doc.get_root() == NULL)
          return false;
 
+
+      if(string(pszVersion).is_empty())
+      {
+
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      ::xml::node * lpnodeVersion = doc.get_root()->get_child("basis");
+         pszVersion = "basis";
 
-      string strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
 
 #else
          
-      ::xml::node * lpnodeVersion = doc.get_root()->get_child("stage");
-
-      string strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
+         pszVersion = "basis";
 
 #endif
+
+      }
+
+      ::xml::node * lpnodeVersion = doc.get_root()->get_child(pszVersion);
 
       if(lpnodeVersion == NULL)
          return false;
 
-      string strBuild = get_latest_build_number(NULL);
+      string strBuild(pszBuild);
+
+      if(strBuild.is_empty())
+      {
+
+         strBuild = get_latest_build_number(NULL);
+
+      }
 
       ::xml::node * lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuild);
 

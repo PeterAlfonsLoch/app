@@ -519,6 +519,8 @@ namespace plugin
             gen::property_set set(get_app());
             set.parse_url_query(str2);
 
+            string strBuildNumber =  set["build_number"];
+
             string strLocale = set["locale"];
 
             string strSchema = set["schema"];
@@ -527,7 +529,7 @@ namespace plugin
             if(str1 == "ca2login")
             {
                // graphical - 2 - user interface for login - fontopus - through the plugin
-               if(!m_psystem->install().is("application", "app/ca2/fontopus", strLocale, strSchema))
+               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/ca2/fontopus", strLocale, strSchema))
                {
 /*                  Sys(m_psystem).install().start(": app=session session_start=app/ca2/fontopus app_type=application install");
 #ifdef WINDOWS
@@ -565,7 +567,7 @@ namespace plugin
             else if(str1 == "ca2logout")
             {
                // graphical - 2 - user interface for logout - fontopus - through the plugin
-               if(!m_psystem->install().is("application", "app/ca2/fontopus", strLocale, strSchema))
+               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/ca2/fontopus", strLocale, strSchema))
                {
                   /*
                   Sys(m_psystem).install().start(": app=session session_start=app/ca2/fontopus app_type=application install");
@@ -630,7 +632,7 @@ namespace plugin
                      if(strType.is_empty())
                         strType = "application";
 
-                     if(strId.has_char() && !m_psystem->install().is(strType, strId, strLocale, strSchema))
+                     if(strId.has_char() && !m_psystem->install().is(NULL, strBuildNumber, strType, strId, strLocale, strSchema))
                      {
 
                         string strCommandLine;

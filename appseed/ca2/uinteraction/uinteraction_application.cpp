@@ -20,13 +20,13 @@ namespace uinteraction
 
       if(!System.directrix().m_varTopicQuery.has_property("install")
       && !System.directrix().m_varTopicQuery.has_property("uninstall")
-      && !System.install().is("uinteraction", strId, m_strLocale, m_strSchema))
+      && !System.install().is(NULL, System.command().m_varTopicQuery["build_number"], "uinteraction", strId, m_strLocale, m_strSchema))
       {
 
          if(::IsDebuggerPresent())
          {
 
-            MessageBox(NULL, "Debug Only Message\n\nPlease install \"" + strId + "\" type=\"uinteraction\" locale=\"" + m_strLocale + "\" schema=\"" + m_strSchema + "\"", "Debug Only - Please Install - ca2", MB_OK);
+            MessageBox(NULL, "Debug Only Message\n\nPlease install \"" + strId + "\" type=\"uinteraction\" locale=\"" + m_strLocale + "\" schema=\"" + m_strSchema + "\" build number " + System.command().m_varTopicQuery["build_number"], "Debug Only - Please Install - ca2", MB_OK);
 
             System.os().post_to_all_threads(WM_QUIT, 0, 0);
 
