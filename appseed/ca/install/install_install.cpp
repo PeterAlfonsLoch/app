@@ -40,7 +40,7 @@ namespace ca2
       straName.add("id");
       straValue.add(pszId);
 
-      ::xml::node * lpnode = doc.get_root()->GetChildByAttr("start", straName, straValue);
+      ::xml::node * lpnode = doc.get_root()->GetChildByAllAttr("start", straName, straValue);
 
       if(lpnode == NULL)
       {
@@ -83,7 +83,7 @@ namespace ca2
       straName.add("id");
       straValue.add(pszId);
 
-      ::xml::node * lpnode = doc.get_root()->GetChildByAttr("start", straName, straValue);
+      ::xml::node * lpnode = doc.get_root()->GetChildByAllAttr("start", straName, straValue);
 
       if(lpnode != NULL)
       {
@@ -197,7 +197,7 @@ namespace ca2
       straName.add("schema");
       straValue.add(pszSchema);
 
-      ::xml::node * lpnodeLocalization = lpnode->GetChildByAttr("localization", straName, straValue);
+      ::xml::node * lpnodeLocalization = lpnode->GetChildByAllAttr("localization", straName, straValue);
 
       if(lpnodeLocalization == NULL)
       {
@@ -295,7 +295,7 @@ namespace ca2
       straName.add("schema");
       straValue.add(pszSchema);
 
-      ::xml::node * lpnodeLocalization = lpnode->GetChildByAttr("localization", straName, straValue);
+      ::xml::node * lpnodeLocalization = lpnode->GetChildByAllAttr("localization", straName, straValue);
 
       if(lpnodeLocalization == NULL)
          return false;

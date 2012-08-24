@@ -2077,7 +2077,7 @@ namespace xml
       return NULL;
    }
 
-   node * node::GetChildByAttr(const char * pszName, stringa & straAttrName, stringa & straAttrValue)
+   node * node::GetChildByAnyAttr(const char * pszName, stringa & straAttrName, stringa & straAttrValue)
    {
       string strValue;
       for(int i = 0; i < m_nodea.get_size(); i++)
@@ -2090,6 +2090,32 @@ namespace xml
                {
                   return &m_nodea[i];
                }
+            }
+         }
+      }
+      return NULL;
+   }
+
+   node * node::GetChildByAllAttr(const char * pszName, stringa & straAttrName, stringa & straAttrValue)
+   {
+      string strValue;
+      bool bAll;
+      for(int i = 0; i < m_nodea.get_size(); i++)
+      {
+         if(m_nodea[i].m_strName == pszName)
+         {
+            bAll = true;
+            for(int j = 0; j < straAttrName.get_size(); j++)
+            {
+               if(!m_nodea[i].get_attr(straAttrName[j], strValue) || _stricmp(strValue, straAttrValue[j]) != 0)
+               {
+                  bAll = false;
+                  break;
+               }
+            }
+            if(bAll)
+            {
+               return &m_nodea[i];
             }
          }
       }
