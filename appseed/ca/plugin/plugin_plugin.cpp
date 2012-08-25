@@ -637,17 +637,35 @@ namespace plugin
 
                         string strCommandLine;
 
-
                         strCommandLine = ": app=session session_start=" + strId;
+
                         for(int i = 0; i < set.m_propertya.get_count(); i++)
                         {
+
+                           if(!set.m_propertya[i].get_string().has_char()
+                           &&
+                             (set.m_propertya[i].name() == "build_number"
+                           || set.m_propertya[i].name() == "app_type"
+                           || set.m_propertya[i].name() == "locale"
+                           || set.m_propertya[i].name() == "schema"
+                           || set.m_propertya[i].name() == "app"
+                           || set.m_propertya[i].name() == "session_start"
+                             )
+                           )
+                              continue;
+
+
                            strCommandLine += " ";
+
                            strCommandLine += set.m_propertya[i].name();
-                           if(set.m_propertya[i].get_string().has_char())
-                           {
-                              strCommandLine += "=";
-                              strCommandLine += set.m_propertya[i].get_string();
-                           }
+
+                           if(!set.m_propertya[i].get_string().has_char())
+                              continue;
+
+                           strCommandLine += "=";
+
+                           strCommandLine += set.m_propertya[i].get_string();
+
                         }
 
                         if(set["app_type"].is_empty())
