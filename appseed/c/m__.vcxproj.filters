@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{f7bd8036-0bca-4c3b-8cd8-ebe9393bac6b}</UniqueIdentifier>
     </Filter>
@@ -70,6 +66,12 @@
     </Filter>
     <Filter Include="Source Files\crypt">
       <UniqueIdentifier>{5f26092b-8017-47e4-a098-4ebcab2a6143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windows_merde">
+      <UniqueIdentifier>{ccf0b110-2340-49dd-9691-86072bfd4d45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\merdes_windows">
+      <UniqueIdentifier>{9a79756b-f052-428e-a0ad-aac6d6570f51}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -381,6 +383,9 @@
     </ClCompile>
     <ClCompile Include="crypt\whirpool.cpp">
       <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="merde_window\window_merdes.cpp">
+      <Filter>Source Files\merdes_windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -701,6 +706,9 @@
     </ClInclude>
     <ClInclude Include="crypt\nessie.h">
       <Filter>Header Files\crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="merde_window\windows_merde.h">
+      <Filter>Header Files\windows_merde</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

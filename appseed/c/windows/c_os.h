@@ -17,6 +17,9 @@ CLASS_DECL_c bool os_finalize();
 CLASS_DECL_c bool main_initialize();
 CLASS_DECL_c bool main_finalize();
 
+
+#ifndef M_WINDOWS
+
 CLASS_DECL_c
 LSTATUS
 APIENTRY
@@ -29,3 +32,6 @@ WinRegGetValueW(
 	 PVOID pvData,
     LPDWORD pcbData
     );
+
+
+#endif

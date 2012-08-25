@@ -28,6 +28,8 @@
 #pragma once
 
 
+#if defined(WINDOWS) && !defined(M_WINDOWS)
+
 #include <imagehlp.h>
 
 
@@ -114,6 +116,7 @@ namespace exception
 
 } // namespace exception
 
+#endif
 
 // Change Log:
 //      25.12.2001  Konstantin, Initial version.

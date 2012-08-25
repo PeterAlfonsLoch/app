@@ -13,7 +13,8 @@
 
 #endif
 
-#ifdef WINDOWS
+#if defined(WINDOWS) && !defined(M_WINDOWS)
+
 bool read_resource_as_file_dup(const char * pszFile, HINSTANCE hinstance, UINT nID, LPCTSTR lpcszType)
 {
 

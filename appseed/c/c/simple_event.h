@@ -25,6 +25,7 @@ public:
 
 
    void wait();
+   void wait(DWORD dwTimeout);
 
 
 };

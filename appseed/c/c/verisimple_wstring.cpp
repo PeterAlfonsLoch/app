@@ -18,6 +18,16 @@ verisimple_wstring::verisimple_wstring()
 
 }
 
+verisimple_wstring::verisimple_wstring(const char * psz)
+{
+
+   m_pwsz         = wstring_data::get_nil();
+
+   operator = (psz);
+   
+}
+
+
 verisimple_wstring::verisimple_wstring(const wchar_t * pwsz, int iCount)
 {
    if(pwsz == NULL)

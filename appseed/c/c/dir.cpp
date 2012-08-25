@@ -9,11 +9,14 @@
 #include <sys/stat.h>
 #endif
 
+#if defined(WINDOWS) && !defined(M_WINDOWS)
+
 bool CLASS_DECL_c SHGetSpecialFolderPath(HWND hwnd, vsstring &str, int csidl, bool fCreate)
 {
    return ::SHGetSpecialFolderPathW(hwnd, wstringtovss(str, MAX_PATH * 8), csidl, fCreate) != FALSE;
 }
 
+#endif
 
 bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 {

@@ -13,6 +13,7 @@ public:
    };
 
    verisimple_string();
+   verisimple_string(const wchar_t * psz);
    verisimple_string(const char * psz);
    verisimple_string(char ch);
    verisimple_string(const char * psz, count count);

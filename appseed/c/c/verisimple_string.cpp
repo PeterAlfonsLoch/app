@@ -5,6 +5,15 @@ verisimple_string::verisimple_string()
    m_psz = NULL;
 }
 
+verisimple_string::verisimple_string(const wchar_t * pwsz)
+{
+   
+   m_psz = NULL;
+
+   operator = (psz);
+
+}
+
 verisimple_string::verisimple_string(const char * psz)
 {
    if(psz == NULL)

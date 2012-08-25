@@ -19,9 +19,9 @@
 template<class T1, class T2>
 int err(int i, const char* str, T1 arg1, T2 arg2)
 {
-   char lastErrorTxt[1024];
+   wchar_t lastErrorTxt[1024];
    FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM|FORMAT_MESSAGE_IGNORE_INSERTS,NULL,GetLastError(),0,lastErrorTxt,1024,NULL);
-   printf_dup("%s",lastErrorTxt);
+   printf_dup("%s", vsstring(lastErrorTxt));
    printf_dup(str, arg1, arg2);
    return (i);
 }
@@ -29,9 +29,9 @@ int err(int i, const char* str, T1 arg1, T2 arg2)
 template<class T>
 int err(int i, const char* str, T arg)
 {
-   char lastErrorTxt[1024];
+   wchar_t lastErrorTxt[1024];
    FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM|FORMAT_MESSAGE_IGNORE_INSERTS,NULL,GetLastError(),0,lastErrorTxt,1024,NULL);
-   printf_dup("%s",lastErrorTxt);
+   printf_dup("%s", vsstring(lastErrorTxt));
    printf_dup(str, arg);
    return (i);
 }
