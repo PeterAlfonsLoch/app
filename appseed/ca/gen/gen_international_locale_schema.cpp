@@ -100,6 +100,10 @@ namespace gen
             {
                _add_locale_variant(id, idSchema2);
             }
+            if(defer_add_locale(id, id))
+            {
+               _add_locale_variant(id, id);
+            }
          }
 
          return true;

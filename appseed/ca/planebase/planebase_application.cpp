@@ -1555,21 +1555,9 @@ InitFailure:
       if(Application.directrix().m_varTopicQuery["locale"].has_char() && Application.directrix().m_varTopicQuery["locale"].get_string().CompareNoCase("_std") != 0)
       {
          strLocale = Application.directrix().m_varTopicQuery["locale"];
-         if(Application.directrix().m_varTopicQuery["style"].has_char() && Application.directrix().m_varTopicQuery["style"].get_string().CompareNoCase("_std") != 0)
+         if(Application.directrix().m_varTopicQuery["schema"].has_char() && Application.directrix().m_varTopicQuery["schema"].get_string().CompareNoCase("_std") != 0)
          {
-            strSchema = Application.directrix().m_varTopicQuery["style"];
-         }
-         else
-         {
-            strSchema = strLocale;
-         }
-      }
-      else if(Application.directrix().m_varTopicQuery["lang"].has_char() && Application.directrix().m_varTopicQuery["lang"].get_string().CompareNoCase("_std") != 0)
-      {
-         strLocale = Application.directrix().m_varTopicQuery["lang"];
-         if(Application.directrix().m_varTopicQuery["style"].has_char() && Application.directrix().m_varTopicQuery["style"].get_string().CompareNoCase("_std") != 0)
-         {
-            strSchema = Application.directrix().m_varTopicQuery["style"];
+            strSchema = Application.directrix().m_varTopicQuery["schema"];
          }
          else
          {
@@ -1588,9 +1576,14 @@ InitFailure:
 
 
       localeschema.add_locale_variant(strLocale, strSchema);
+      localeschema.add_locale_variant(strLocale, strLocale);
+      localeschema.add_locale_variant(strLocale, __id(std));
+      localeschema.add_locale_variant(__id(std), strSchema);
+      localeschema.add_locale_variant(strSchema, strSchema);
 
 
-      if(Application.directrix().m_varTopicQuery["style"].has_char() && Application.directrix().m_varTopicQuery["style"].get_string().CompareNoCase("_std") != 0)
+
+      if(Application.directrix().m_varTopicQuery["schema"].has_char() && Application.directrix().m_varTopicQuery["schema"].get_string().CompareNoCase("_std") != 0)
       {
          localeschema.add_locale_variant(get_locale(), Application.directrix().m_varTopicQuery["style"]);
       }

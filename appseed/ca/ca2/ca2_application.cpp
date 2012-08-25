@@ -476,9 +476,12 @@ namespace ca2
             return load_cached_string_by_id(str, id, NULL, bLoadStringTable);
          }
       }
-      if(doc.get_root()->get_name() == "string")
+      ::xml::node * pnodeRoot = doc.get_root();
+      if(pnodeRoot->get_name() == "string")
       {
-         return load_cached_string_by_id(str, doc.get_root()->attr("id"), doc.get_root()->get_value(), bLoadStringTable);
+         string strId = pnodeRoot->attr("id");
+         string strValue = pnodeRoot->get_value();
+         return load_cached_string_by_id(str, strId, strValue, bLoadStringTable);
       }
       str = doc.get_name();
       return true;
