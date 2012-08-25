@@ -136,13 +136,6 @@ namespace sockets
       if(outheader(__str(content_type)).get_string().find("text") >= 0)
       {
       
-         if(lowinheader(__str(accept_encoding)).get_string().find("gzip") >= 0)
-         {
-
-            m_response.m_propertysetHeader.lowset(__str(content_encoding), "gzip");
-
-         }
-
          on_compress();
 
       }
@@ -243,19 +236,27 @@ namespace sockets
    void http_base_socket::on_compress()
    {
        
-      if(outheader("content-encoding").get_string().find("gzip") >= 0)
+      if(lowinheader("accept-encoding").get_string().find("gzip") >= 0)
       {
+
+         if(lowoutheader(__str(content_type)).get_string().find_ci("text") >= 0)
+         {
        
-         gen::memory_file file(get_app());
+            m_response.m_propertysetHeader.lowset(__str(content_encoding), "gzip");
 
-         gzip gz(&file);
 
-         gz.write(response().file().get_data(), response().file().get_size());
+            gen::memory_file file(get_app());
 
-         gz.finish();
+            gzip gz(&file);
 
-         response().file().Truncate(0);
-         response().file().write(file.get_data(), file.get_size());
+            gz.write(response().file().get_data(), response().file().get_size());
+
+            gz.finish();
+
+            response().file().Truncate(0);
+            response().file().write(file.get_data(), file.get_size());
+
+         }
 
       }
 

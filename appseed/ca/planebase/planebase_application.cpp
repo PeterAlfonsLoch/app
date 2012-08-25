@@ -1519,6 +1519,10 @@ InitFailure:
       localeschema.m_idSchema     = pszSchema;
 
       localeschema.add_locale_variant(pszLocale, pszSchema);
+      localeschema.add_locale_variant(pszLocale, pszLocale);
+      localeschema.add_locale_variant(pszLocale, __id(std));
+      localeschema.add_locale_variant(__id(std), pszSchema);
+      localeschema.add_locale_variant(pszSchema, pszSchema);
 
       localeschema.add_locale_variant(__id(en), get_schema());
       localeschema.add_locale_variant(__id(std), get_schema());
