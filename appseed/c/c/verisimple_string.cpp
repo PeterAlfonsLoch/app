@@ -10,7 +10,7 @@ verisimple_string::verisimple_string(const wchar_t * pwsz)
    
    m_psz = NULL;
 
-   operator = (psz);
+   operator = (pwsz);
 
 }
 

@@ -35,9 +35,9 @@ typedef signed int ssize_t;
 #endif
 
 int err(int i, const char* str) {
-   char lastErrorTxt[1024];
-   FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM|FORMAT_MESSAGE_IGNORE_INSERTS,NULL,GetLastError(),0,wstring(lastErrorTxt),1024,NULL);
-   printf_dup("%s",lastErrorTxt);
+   wchar_t lastErrorTxt[1024];
+   FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM|FORMAT_MESSAGE_IGNORE_INSERTS,NULL,GetLastError(),0, lastErrorTxt,1024,NULL);
+   printf_dup("%s", vsstring(lastErrorTxt));
    if (str!=NULL) {
       printf_dup("%s",str);
    }

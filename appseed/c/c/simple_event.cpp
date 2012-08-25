@@ -57,7 +57,7 @@ void simple_event::wait()
 
 }
 
-void simple_event::wait(dword dwTimeout)
+void simple_event::wait(DWORD dwTimeout)
 {
 
 #ifdef M_WINDOWS
