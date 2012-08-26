@@ -116,20 +116,7 @@ namespace ca2
 
       }
 
-      string strBuild;
-
-      if(is_debugger_attached() && (pszBuild == NULL || *pszBuild == '\0'))
-      {
-
-         strBuild = get_latest_build_number(NULL);
-
-         pszBuild = strBuild;
-
-      }
-
-      if(pszBuild == NULL || *pszBuild == '\0')
-         throw "build number cannot be NULL";
-
+      string strBuild(pszBuild);
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
@@ -156,7 +143,7 @@ namespace ca2
          
       }
 
-      ::xml::node * lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", pszBuild);
+      ::xml::node * lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuild);
 
       if(lpnodeInstalled == NULL)
       {
@@ -274,13 +261,6 @@ namespace ca2
          return false;
 
       string strBuild(pszBuild);
-
-      if(strBuild.is_empty())
-      {
-
-         strBuild = get_latest_build_number(NULL);
-
-      }
 
       ::xml::node * lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuild);
 
