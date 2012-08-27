@@ -1,5 +1,20 @@
 ﻿#include "framework.h"
 
+   string str_block(char ch, int iSize)
+   {
+      string str;
+      for(int i = 0; i < iSize; i++)
+      {
+         str += ch;
+      }
+      return str;
+   }
+
+
+   void str_fill(string & str, char ch)
+   {
+      str = str_block(ch, (int) str.get_length());
+   }
 
 namespace user
 {
@@ -161,21 +176,6 @@ namespace user
       //spgraphics->TextOut(20, 20, "Carlos Gustavo Cecyn Lundgren ・minha Vida Eterna, meu Cora鈬o Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!");
    }
 
-   string str_block(char ch, int iSize)
-   {
-      string str;
-      for(int i = 0; i < iSize; i++)
-      {
-         str += ch;
-      }
-      return str;
-   }
-
-
-   void str_fill(string & str, char ch)
-   {
-      str = str_block(ch, (int) str.get_length());
-   }
 
 
    void edit_plain_text::_001OnDraw(::ca::graphics * pdc)
