@@ -256,14 +256,14 @@ install_begin:;
          m_NeedRestartFatalError = false;
          int iFileError = 0;
 
-         int iRet = application_name();
+         int iRet = ca2_build_version();
          if(iRet < 0)
             return iRet;
 
          set_progress(0.1);
 
          int iRetry = 0;
-         iRet = ca2_build_version();
+         iRet = application_name();
          if(iRet < 0)
             return iRet;
 
@@ -2661,6 +2661,9 @@ RetryHost:
       }
 
       strName = "Installing " + strName;
+      strName = strName + " " + m_strBuild;
+      strName = strName + " \"" + get_command_line_param(m_strCommandLine, "locale");
+      strName = strName + "\" \"" + get_command_line_param(m_strCommandLine, "schema") + "\"";
       trace((":::::" + strName));
 
       m_strTitle = strName;
