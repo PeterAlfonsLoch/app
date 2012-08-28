@@ -260,9 +260,16 @@ namespace ca2
       if(lpnodeVersion == NULL)
          return false;
 
-      string strBuild(pszBuild);
+      string strBuildNumber(pszBuild);
 
-      ::xml::node * lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuild);
+      if(strBuildNumber == "latest")
+      {
+
+         strBuildNumber = get_latest_build_number(pszVersion);
+
+      }
+
+      ::xml::node * lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuildNumber);
 
       if(lpnodeInstalled == NULL)
          return false;

@@ -267,9 +267,6 @@
     <Filter Include="Header Files\plugin">
       <UniqueIdentifier>{b65d9252-c042-4ab6-9a49-858eeea5c93f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\plugin">
-      <UniqueIdentifier>{215c0a8b-930f-43b6-80cc-529d0dd9ff61}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\datetime">
       <UniqueIdentifier>{b85d49b2-f206-44f2-8a90-bf42aaa48170}</UniqueIdentifier>
     </Filter>
@@ -359,6 +356,9 @@
     </Filter>
     <Filter Include="Header Files\html\html_filter">
       <UniqueIdentifier>{035aef71-7ddf-43c6-a344-94515dbfe70a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\plugin">
+      <UniqueIdentifier>{215c0a8b-930f-43b6-80cc-529d0dd9ff61}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

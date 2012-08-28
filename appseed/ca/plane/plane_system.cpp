@@ -1399,10 +1399,20 @@ namespace plane
 
       }
 
+
+      string strBuildNumber = System.command().m_varTopicQuery["build_number"];
+
+      if(strBuildNumber.is_empty())
+      {
+         
+         strBuildNumber = "latest";
+
+      }
+
       if(!System.directrix().m_varTopicQuery.has_property("install")
          && !System.directrix().m_varTopicQuery.has_property("uninstall")
          && strId.has_char() 
-         && !install().is(NULL, System.command().m_varTopicQuery["build_number"], pszType, strApplicationId, m_strLocale, m_strSchema))
+         && !install().is(NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema))
       {
 
          if(::IsDebuggerPresent())

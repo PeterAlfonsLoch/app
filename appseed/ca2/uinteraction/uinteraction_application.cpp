@@ -18,6 +18,15 @@ namespace uinteraction
 
       string strId(pszUinteractionLibrary);
 
+      string strBuildNumber = System.command().m_varTopicQuery["build_number"];
+
+      if(strBuildNumber.is_empty())
+      {
+         
+         strBuildNumber = "latest";
+
+      }
+
       if(!System.directrix().m_varTopicQuery.has_property("install")
       && !System.directrix().m_varTopicQuery.has_property("uninstall")
       && !System.install().is(NULL, System.command().m_varTopicQuery["build_number"], "uinteraction", strId, m_strLocale, m_strSchema))

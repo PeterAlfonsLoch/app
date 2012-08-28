@@ -525,6 +525,15 @@ namespace plugin
 
             string strSchema = set["schema"];
 
+            string strBuildNumber = System.command().m_varTopicQuery["build_number"];
+
+            if(strBuildNumber.is_empty())
+            {
+         
+               strBuildNumber = "latest";
+
+            }
+
                   //Sleep(15 * 1000);
             if(str1 == "ca2login")
             {
