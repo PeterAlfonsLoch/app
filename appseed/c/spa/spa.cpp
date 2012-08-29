@@ -249,12 +249,10 @@ void installation_file_lock(bool bLock)
 bool is_installation_lock_file_locked()
 {
 
-   HANDLE hmutex = NULL;
-
    try
    {
 
-      simple_hold_handle hold_handle(::OpenMutex(NULL, FALSE, "Global\\ca2::fontopus::ccvotagus_ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784"));
+      simple_hold_handle hold_handle(::OpenMutex(SYNCHRONIZE, FALSE, "Global\\ca2::fontopus::ccvotagus_ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784"));
 
       if(hold_handle.m_handle == NULL)
       {
@@ -267,14 +265,10 @@ bool is_installation_lock_file_locked()
    catch(...)
    {
       
-      ::CloseHandle(hmutex);
-
       return false;
 
    }
 
-   ::CloseHandle(hmutex);
- 
    vsstring strPath;
 
    strPath = get_installation_lock_file_path();
