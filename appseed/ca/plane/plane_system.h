@@ -216,7 +216,7 @@ namespace plane
       Gdiplus::GdiplusStartupOutput *  m_pgdiplusStartupOutput;
       ulong_ptr                        m_gdiplusToken;
       ulong_ptr                        m_gdiplusHookToken;*/
-      mutex                            m_mutexGdiplus;
+      static mutex                     s_mutexGdiplus;
 #endif
 
       const str_pool                   m_cstrpool;

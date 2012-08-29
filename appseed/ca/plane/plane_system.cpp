@@ -9,6 +9,10 @@
 namespace plane
 {
 
+   
+   mutex system::s_mutexGdiplus;
+
+
    system::system()
    {
 

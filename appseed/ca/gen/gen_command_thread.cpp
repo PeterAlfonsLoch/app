@@ -18,16 +18,30 @@ namespace gen
 
    var command_thread::run()
    {
-      single_lock sl(&m_mutex, TRUE);
+      single_lock sl(&m_mutex);
       ::ca::create_context * pcreatecontext;
+      sp(command) spcommand;
       while(m_ptra.get_size() > 0)
       {
-         command * pcommand = m_ptra.element_at(0);
+         spcommand = NULL;
+         sl.lock();
+         try
+         {
+            spcommand = m_ptra.element_at(0);
+            m_ptra.remove_at(0);
+         }
+         catch(...)
+         {
+         }
+         sl.unlock();
+
+         if(spcommand == NULL)
+            continue;
 
          pcreatecontext = NULL;
          try
          {
-            pcreatecontext = dynamic_cast < ::ca::create_context * > (pcommand);
+            pcreatecontext = dynamic_cast < ::ca::create_context * > (spcommand.m_p);
          }
          catch(...)
          {
@@ -45,11 +59,18 @@ namespace gen
             }
          }
 
-         m_ptraHistory.add(pcommand);
-         m_straHistory.add(pcommand->get_description());
-         m_ptra.remove_at(0);
+
+         sl.lock();
+         try
+         {
+            m_ptraHistory.add(spcommand);
+            m_straHistory.add(spcommand->get_description());
+         }
+         catch(...)
+         {
+         }
          sl.unlock();
-         sl.lock(); // going to query while(m_straCommandLine.get_size() <= 0) so need to lock again
+         
       }
       return true;
    }

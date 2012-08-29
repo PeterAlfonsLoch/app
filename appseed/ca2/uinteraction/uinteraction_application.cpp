@@ -29,7 +29,7 @@ namespace uinteraction
 
       if(!System.directrix().m_varTopicQuery.has_property("install")
       && !System.directrix().m_varTopicQuery.has_property("uninstall")
-      && !System.install().is(NULL, System.command().m_varTopicQuery["build_number"], "uinteraction", strId, m_strLocale, m_strSchema))
+      && !System.install().is(NULL, strBuildNumber, "uinteraction", strId, m_strLocale, m_strSchema))
       {
 
          if(::IsDebuggerPresent())
@@ -82,6 +82,13 @@ namespace uinteraction
 
    ::uinteraction::interaction * application::get_uinteraction(const char * pszUinteraction)
    {
+
+      if(System.get_twf() == NULL)
+      {
+
+         System.create_twf();
+
+      }
       
       ::uinteraction::interaction * pinteraction = Bergedge.m_mapUinteraction[pszUinteraction];
 

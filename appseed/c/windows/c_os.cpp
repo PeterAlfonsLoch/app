@@ -103,12 +103,17 @@ bool main_initialize()
    //Sleep(15 * 1000);
 
    g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
-   g_pgdiplusStartupOutput    = NULL;
+   g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
    g_gdiplusToken             = NULL;
    g_gdiplusHookToken         = NULL;
 
+   MessageBox(NULL, "Gdiplus Failed to Startup. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
+
+   g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
+
    // Initialize GDI+.
    Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken, g_pgdiplusStartupInput, g_pgdiplusStartupOutput);
+
    if(statusStartup != Gdiplus::Ok)
    {
       
@@ -118,6 +123,19 @@ bool main_initialize()
 
    }
 
+   statusStartup = g_pgdiplusStartupOutput->NotificationHook(&g_gdiplusHookToken);
+   
+
+   if(statusStartup != Gdiplus::Ok)
+   {
+      
+      MessageBox(NULL, "Gdiplus Failed to Hook. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
+      
+      return FALSE;
+
+   }
+
+
    return TRUE;
 
 } 
@@ -126,6 +144,7 @@ bool main_initialize()
 bool main_finalize()
 {
 
+   g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
 
    Gdiplus::GdiplusShutdown(g_gdiplusToken);
 
