@@ -389,6 +389,9 @@
     <ClInclude Include="crypt\crypt.h">
       <Filter>Header Files\crypt</Filter>
     </ClInclude>
+    <ClInclude Include="windows\c_os_simple_hold_handle.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">

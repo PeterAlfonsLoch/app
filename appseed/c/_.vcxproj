@@ -758,6 +758,7 @@
     <ClInclude Include="spa\spa_trace.h" />
     <ClInclude Include="c_types.h" />
     <ClInclude Include="c_heap.h" />
+    <ClInclude Include="windows\c_os_simple_hold_handle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bsdiff\blocksort.cpp">

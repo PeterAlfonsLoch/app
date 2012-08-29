@@ -10,6 +10,8 @@ typedef __key_t key_t;
 #include <pthread.h>
 #endif
 
+
+
 class CLASS_DECL_c simple_mutex
 {
 public:

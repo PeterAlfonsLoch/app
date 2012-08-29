@@ -4,6 +4,7 @@
 #include "c_os_http.h"
 #include "c_os_registry.h"
 #include "c_os_process.h"
+#include "c_os_simple_hold_handle.h"
 
 
 #define GetAValue(rgb)      (LOBYTE((rgb)>>24))
