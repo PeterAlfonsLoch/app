@@ -1,2 +1,5 @@
 app\stage\metastage\bergedge.spa
-stage\basis\app_core_alatel.dll
+app\stage\metastage\app-core\multimedia.spa
+app\stage\metastage\app-core\rtprx.spa
+app\stage\metastage\app-core\rtptx.spa
+stage\basis\app_core_i2com.dll
