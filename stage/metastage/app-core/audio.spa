@@ -1,0 +1,13 @@
+stage\basis\akrip.dll
+stage\basis\audio_decode_cd.dll
+stage\basis\audio_decode_libmpg123.dll
+stage\basis\audio_decode_vorbis.dll
+stage\basis\audio_decode_wave.dll
+stage\basis\audio_decode_windows_media.dll
+stage\basis\libmpg123.dll
+stage\basis\libmp3lame.dll
+stage\basis\math.dll
+stage\basis\multimedia.dll
+stage\basis\veriwell_multimedia.dll
+stage\basis\xiph_ogg.dll
+stage\basis\xiph_vorbis.dll
