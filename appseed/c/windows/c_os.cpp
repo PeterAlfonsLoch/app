@@ -107,7 +107,7 @@ bool main_initialize()
    g_gdiplusToken             = NULL;
    g_gdiplusHookToken         = NULL;
 
-   MessageBox(NULL, "Gdiplus Failed to Startup. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
+   //MessageBox(NULL, "Gdiplus Failed to Startup. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
 
    g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
 
