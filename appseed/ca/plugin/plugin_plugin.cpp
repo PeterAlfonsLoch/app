@@ -379,6 +379,19 @@ namespace plugin
    }
 
 
+   void ms_get_dup_status_callback(void * p, int i, dword_ptr dw)
+   {
+
+      if(i == -3)
+      {
+         int * pi = (int *) p;
+         simple_http_status * ps = (simple_http_status *) dw;
+         *pi = ps->m_dwStatusCode;
+      }
+
+   }
+
+
    void plugin::ready_on_main_thread()
    {
 
@@ -410,10 +423,39 @@ namespace plugin
 
          if(strExtension.is_empty() || strExtension.compare_no_case("ca2") == 0)
          {
+            // remark alatel
+            // STRESS : ms_get_dup
+            // in ca library normally System or Application.http() is used
+            string strPluginData;
 
-            string strPluginData    = ms_get_dup(strPluginUrl);
+            ::ca4::http::e_status estatus = ::ca4::http::status_failed;
+
+            string strUrl = strPluginUrl;
+
+            strUrl = System.url().set(strUrl, "authnone", 1);
+
+            for(int iAttempt = 0; iAttempt < 3; iAttempt++)
+            {
             
-            open_ca2_string(strPluginData);
+               //strPluginData = ms_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
+
+               gen::property_set post(get_app());
+               gen::property_set headers(get_app());
+               gen::property_set set(get_app());
+
+               Application.http().get(strUrl, strPluginData, post, headers, set, NULL, NULL, NULL, &estatus);
+
+               if(estatus == ::ca4::http::status_ok)
+                  break;
+
+            }
+
+            if(estatus == ::ca4::http::status_ok)
+            {
+
+               open_ca2_string(strPluginData);
+
+            }
 
          }
          else
