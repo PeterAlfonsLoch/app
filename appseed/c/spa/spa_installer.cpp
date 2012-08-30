@@ -3219,7 +3219,7 @@ RetryHost:
 
       pinstaller->m_bStarterStart = false;
 
-      ::CreateThread(NULL, 0, spa::installer::thread_proc_run, (LPVOID) pinstaller, 0, 0);
+      ::create_thread(NULL, 0, spa::installer::thread_proc_run, (LPVOID) pinstaller, 0, 0);
 
    }
 
@@ -3239,7 +3239,7 @@ RetryHost:
 
       m_bStarterStart = true;
 
-      ::CreateThread(NULL, 0, spa::installer::thread_proc_run, (LPVOID) this, 0, 0);
+      ::create_thread(NULL, 0, spa::installer::thread_proc_run, (LPVOID) this, 0, 0);
 
    }
 

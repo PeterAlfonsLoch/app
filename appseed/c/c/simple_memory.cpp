@@ -120,9 +120,13 @@ int simple_memory::read(void * p, int iCount) const
 
    int iPosEnd = min(m_iSize, m_iPos + iCount);
 
-   memcpy(p, &m_psz[m_iPos], iPosEnd - m_iPos);
+   int iRead = iPosEnd - m_iPos;
+
+   memcpy(p, &m_psz[m_iPos], iRead);
 
    (const_cast < simple_memory * > (this))->m_iPos = iPosEnd;
+
+   return iRead;
 
 }
 

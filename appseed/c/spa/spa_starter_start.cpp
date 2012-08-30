@@ -186,26 +186,47 @@ UINT spa_starter_start::start()
 
    keep_true keepStarting(s_bStarting);
 
+   int i = 0;
+
+   vsstring strBuildNumber;
+
    spa_set_admin(false);
+
    while(true)
    {
-      update_ca2_installed(true);
-      if(is_ca2_installed() && is_installed(strVersion, get_latest_build_number(NULL), strType, strId, strLocale, strSchema))
+
+      if((i % 5) == 0 || strBuildNumber.is_empty())
       {
+
+         strBuildNumber = get_latest_build_number(NULL);
+
+      }
+
+      update_ca2_installed(true);
+
+      if(is_ca2_installed() && is_installed(strVersion, strBuildNumber, strType, strId, strLocale, strSchema))
+      {
+         
          break;
+      
          //update_ca2_updated();
          //if(is_ca2_updated())
            // break;
+
       }
+
       ca2_cube_install(m_strCommandLine);
+
       prepare_small_bell(true);
+
       Sleep((1984 + 1977) * 2);
+
    }
 
    //set_installing_ca2(false);
 
    //if(is_ca2_installed() && is_installed("application", m_strId) && is_ca2_updated())
-   if(is_ca2_installed() && is_installed(strVersion, get_latest_build_number(NULL), strType, strId, strLocale, strSchema) && m_pplugin != NULL)
+   if(is_ca2_installed() && is_installed(strVersion, strBuildNumber, strType, strId, strLocale, strSchema) && m_pplugin != NULL)
    {
       defer_play_small_bell();
       m_pplugin->set_ca2_installation_ready();

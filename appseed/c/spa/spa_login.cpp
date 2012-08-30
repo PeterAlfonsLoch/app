@@ -128,7 +128,7 @@ void spa_login::on_action(const char * pszId)
 void spa_login::start_login()
 {
    
-   ::CreateThread(NULL, 0, &spa_login::thread_proc_login, (LPVOID) this, 0, 0);
+   ::create_thread(NULL, 0, &spa_login::thread_proc_login, (LPVOID) this, 0, 0);
 
 }
 

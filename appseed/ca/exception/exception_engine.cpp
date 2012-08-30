@@ -569,7 +569,7 @@ namespace exception
       context.signal = -1;
 
       DWORD dwDummy;
-      HANDLE hthreadWorker = CreateThread(0, 0, &engine::stack_trace_ThreadProc, &context, CREATE_SUSPENDED, &dwDummy);
+      HANDLE hthreadWorker = create_thread(0, 0, &engine::stack_trace_ThreadProc, &context, CREATE_SUSPENDED, &dwDummy);
       _ASSERTE(hthreadWorker);
 
       if (hthreadWorker)

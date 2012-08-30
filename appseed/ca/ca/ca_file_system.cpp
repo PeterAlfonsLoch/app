@@ -1365,7 +1365,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pU
 		{
 			if( !ThreadHandle )
 			{
-				ThreadHandle = CreateThread( 0, 0, ThreadProc, &ThreadParams, 0, 0 );
+				ThreadHandle = create_thread( 0, 0, ThreadProc, &ThreadParams, 0, 0 );
 			}
 			ResetEvent( ThreadParams.hFinishedEvent );
 			SetEvent( ThreadParams.hStartEvent );

@@ -365,7 +365,7 @@ namespace hotplugin
       pstart->m_strCommandLine      = pszCommandLine;
 #ifdef WINDOWS
 
-      ::CreateThread(
+      ::create_thread(
          NULL, 
          0, 
          &::_ca2_starter_start, 

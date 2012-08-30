@@ -11,7 +11,9 @@ namespace ca2
    public:
 
       
-      HANDLE m_hmutexBoot;
+      HANDLE                  m_hmutexBoot;
+
+      ::string_to_string_map  m_strmapLatestBuildNumber;
 
 
       install();
@@ -25,6 +27,9 @@ namespace ca2
       virtual int  start(const char * pszCommandLine);
       virtual int  synch(const char * pszCommandLine);
 
+      virtual string get_latest_build_number(const char * pszVersion);
+
+      virtual string fetch_latest_build_number(const char * pszVersion);
 
    };
 

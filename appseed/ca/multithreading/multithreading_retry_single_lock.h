@@ -17,7 +17,7 @@ protected:
 public:
 
 
-   retry_single_lock(waitable * pObject, duration durationLock, duration durationSleep, int iRetry = -1);
+   retry_single_lock(waitable * pObject, duration durationLock, duration durationSleep, int iRetry = -1, bool bInitialLock = true);
    ~retry_single_lock();
 
    bool lock();

@@ -392,6 +392,12 @@
     <ClInclude Include="windows\c_os_simple_hold_handle.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
+    <ClInclude Include="os\os_thread.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="os\os.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -702,6 +708,9 @@
     </ClCompile>
     <ClCompile Include="windows\crypt\c_os_crypt.cpp">
       <Filter>Source Files\windows\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_thread.cpp">
+      <Filter>Source Files\windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

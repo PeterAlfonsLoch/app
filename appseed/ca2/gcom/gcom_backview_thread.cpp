@@ -407,7 +407,7 @@ namespace gcom
       {
          UNREFERENCED_PARAMETER(bBitmapLocked);
          DWORD dwThreadID = 0;
-          ::CreateThread(NULL, 0, ThreadProcStretchImage, lpSi, 0, &dwThreadID);
+          ::create_thread(NULL, 0, ThreadProcStretchImage, lpSi, 0, &dwThreadID);
       }
 
       UINT c_cdecl thread::ThreadProcLoadImage(LPVOID lpParameter)

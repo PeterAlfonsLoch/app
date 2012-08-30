@@ -327,11 +327,89 @@ namespace ca2
 
 
 
+   string install::get_latest_build_number(const char * pszVersion)
+   {
 
+      string strBuildNumber = m_strmapLatestBuildNumber[pszVersion];
 
+      if(strBuildNumber.has_char())
+         return strBuildNumber;
 
+      strBuildNumber = fetch_latest_build_number(pszVersion);
 
+      m_strmapLatestBuildNumber.set_at(pszVersion, strBuildNumber);
 
+      return strBuildNumber;
+
+   }
+
+   string install::fetch_latest_build_number(const char * pszVersion)
+   {
+
+      string strBuildNumber;
+
+      string strSpaIgnitionBaseUrl;
+
+      if(pszVersion != NULL && !strcmp(pszVersion, "basis"))
+      {
+
+          strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
+
+      }
+      else if(pszVersion != NULL && !strcmp(pszVersion, "stage"))
+      {
+
+          strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
+
+      }
+      else 
+      {
+
+   #if CA2_PLATFORM_VERSION == CA2_BASIS
+
+         strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
+
+   #else
+         
+         strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
+
+   #endif
+
+      }
+
+      string strFetchUrl = strSpaIgnitionBaseUrl + "/query?node=build&authnone";
+
+      int iAttempt = 0;
+
+RetryBuildNumber:
+
+      if(iAttempt > 10)
+      {
+
+         TRACE("Failed to fetch latest build number from \"" + strFetchUrl + "\" after %d attempts.", iAttempt);
+
+         return "";
+
+      }
+
+      iAttempt++;
+
+      strBuildNumber = System.http().get(strFetchUrl);
+
+      strBuildNumber.trim();
+
+      if(strBuildNumber.length() != 19)
+      {
+
+         Sleep(184 * iAttempt);
+
+         goto RetryBuildNumber;
+
+      }
+
+      return strBuildNumber;
+
+   }
 
 
 } // namespace ca2

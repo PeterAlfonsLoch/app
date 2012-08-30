@@ -123,12 +123,26 @@ found_id:
 
 }
 
+static simple_string_to_string g_strmapLatestBuildNumber;
 
+DWORD g_dwLatestBuildNumberLastFetch = 0;
 
 CLASS_DECL_c vsstring get_latest_build_number(const char * pszVersion)
 {
 
-   vsstring strBuild;
+   vsstring strLatestBuildNumber = g_strmapLatestBuildNumber[pszVersion];
+
+   if(!strLatestBuildNumber.is_empty() && (GetTickCount() - g_dwLatestBuildNumberLastFetch) < ((1984 + 1977) * 3))
+      return strLatestBuildNumber;
+
+   return fetch_latest_build_number(pszVersion);
+
+}
+
+CLASS_DECL_c vsstring fetch_latest_build_number(const char * pszVersion)
+{
+
+   vsstring strBuildNumber;
 
    vsstring strSpaIgnitionBaseUrl;
 
@@ -160,20 +174,39 @@ CLASS_DECL_c vsstring get_latest_build_number(const char * pszVersion)
    }
 
    int iRetry = 0;
+
 RetryBuildNumber:
+
    if(iRetry > 10)
    {
+      
+      g_dwLatestBuildNumberLastFetch = GetTickCount();
+
+      g_strmapLatestBuildNumber.set_at(pszVersion, "");
+
       return "";
-   }
-   iRetry++;
-   strBuild = ms_get_dup(strSpaIgnitionBaseUrl + "/query?node=build", false, NULL, NULL);
-   strBuild.trim();
-   if(strBuild.length() != 19)
-   {
-      Sleep(184 * iRetry);
-      goto RetryBuildNumber;
+
    }
 
-   return strBuild;
+   iRetry++;
+
+   strBuildNumber = ms_get_dup(strSpaIgnitionBaseUrl + "/query?node=build", false, NULL, NULL);
+
+   strBuildNumber.trim();
+
+   if(strBuildNumber.length() != 19)
+   {
+
+      Sleep(184 * iRetry);
+
+      goto RetryBuildNumber;
+
+   }
+
+   g_dwLatestBuildNumberLastFetch = GetTickCount();
+
+   g_strmapLatestBuildNumber.set_at(pszVersion, strBuildNumber);
+
+   return strBuildNumber;
 
 }

@@ -29,11 +29,11 @@ void simple_label::draw_this(HDC hdc)
    Gdiplus::SolidBrush b(Gdiplus::Color(223, 49, 84, 23));
 #endif
 
-   Gdiplus::Font f(L"Geneva", height(&m_rect) - 4, 0, Gdiplus::UnitPixel);
+   Gdiplus::Font f(L"Geneva", (float) (height(&m_rect) - 4), 0.0f, Gdiplus::UnitPixel);
 
    wchar_t * pwsz = utf8_to_16(m_strText);
 
-   graphics2.DrawString(pwsz, wcslen_dup(pwsz), &f, Gdiplus::PointF(m_rect.left + 2, m_rect.top), &b);
+   graphics2.DrawString(pwsz, wcslen_dup(pwsz), &f, Gdiplus::PointF((float) (m_rect.left + 2), (float) m_rect.top), &b);
 
    ca2_free(pwsz);
 

@@ -51,7 +51,7 @@ namespace spa
       m_bRestartCa2           = false;
       m_bPendingStream        = false;
 
-     ::CreateThread(NULL, 0, plugin::thread_proc_start_ca2, (LPVOID) this, 0, 0);
+     ::create_thread(NULL, 0, plugin::thread_proc_start_ca2, (LPVOID) this, 0, 0);
 
    }
 
