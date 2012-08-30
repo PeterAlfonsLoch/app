@@ -330,6 +330,13 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
       strReq = strUrl.substr(iPos);
       iPort = 443;
    }
+   int iFind = strReq.find("?");
+   if(iFind >= 0)
+   {
+      vsstring strQ = strReq.substr(iFind);
+      strQ.replace("/", "%2F");
+      strReq = strReq.substr(0, iFind) + strQ;
+   }
    DWORD dwSize = 0;
    DWORD dwDownloaded = 0;
    LPSTR pszOutBuffer;

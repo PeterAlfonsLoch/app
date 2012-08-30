@@ -385,7 +385,7 @@ namespace plugin
       if(m_bMainReady)
          return;
 
-      m_bMainReady = true;
+      keeper < bool > keepMainReady(&m_bMainReady, true, false, true);
 
       // debug_box("ca plugin plugin", "ready_on_main_thread", 0);
 
