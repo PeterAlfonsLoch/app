@@ -111,7 +111,7 @@ namespace ca
 
 
       // get immediate child with given ID
-      void get_child_by_id(id id, HWND* phWnd) const;
+      //void get_child_by_id(id id, int iLevelHWND* phWnd) const;
       // as above, but returns HWND
       virtual ::user::interaction * GetDescendantWindow(id id);
       // like get_child_by_id but recursive

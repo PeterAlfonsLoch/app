@@ -368,8 +368,7 @@ namespace user
       virtual void OnLinkClick(const char * psz, const char * pszTarget = NULL);
 
       interaction * get_child_by_name(const char * pszName, int iLevel = -1);
-      interaction * get_child_by_id(id id, int iLevel);
-      interaction * get_child_by_id(id id);
+      interaction * get_child_by_id(id id, int iLevel = -1);
 
       virtual ::frame_window * EnsureParentFrame();
       virtual interaction* GetTopLevelParent();
