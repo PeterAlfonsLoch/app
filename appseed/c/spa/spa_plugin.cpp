@@ -49,6 +49,7 @@ namespace spa
       m_bLogin                = false;
 
       m_bRestartCa2           = false;
+      m_bRestartCa2Ticket     = false;
       m_bPendingStream        = false;
 
      ::create_thread(NULL, 0, plugin::thread_proc_start_ca2, (LPVOID) this, 0, 0);
@@ -189,13 +190,13 @@ namespace spa
 
                }
 
-               m_bRestartCa2     = false;
+               m_bRestartCa2        = false;
 
-               m_bPendingStream  = true;
+               m_bRestartCa2Ticket  = true;
 
             }
 
-            if(m_bPendingStream && m_phost != NULL)
+            if(m_bRestartCa2Ticket && m_bPendingStream && m_phost != NULL)
             {
 
                if(m_phost->m_bStream)
@@ -216,6 +217,8 @@ namespace spa
 
                   }
 
+                  m_bRestartCa2Ticket = false;
+   
                   m_bPendingStream = false;
 
                }
@@ -285,8 +288,9 @@ namespace spa
       if(is_ca2_installed())
       {
 
-         m_bRestartCa2 = true;
+         m_bRestartCa2        = true;
 
+         m_bRestartCa2Ticket  = false;
 
       }
       else

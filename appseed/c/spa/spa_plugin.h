@@ -32,6 +32,7 @@ namespace spa
       // in login process, login screen should be shown
       bool           m_bLogin;
       bool           m_bRestartCa2;
+      bool           m_bRestartCa2Ticket;
       bool           m_bPendingStream;
       
 
