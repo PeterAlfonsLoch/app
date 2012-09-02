@@ -8,8 +8,6 @@ public:
 
    invalid_index_exception();
    invalid_index_exception(const char * pszMessage);
-   invalid_index_exception(bool bAutoDelete);
-   invalid_index_exception(bool bAutoDelete, UINT nResourceID);
    virtual ~invalid_index_exception();
 
 

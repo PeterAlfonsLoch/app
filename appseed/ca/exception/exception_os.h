@@ -8,8 +8,6 @@ public:
 
    os_exception();
    os_exception(const char * pszMessage);
-   os_exception(bool bAutoDelete);
-   os_exception(bool bAutoDelete, UINT nResourceID);
    virtual ~os_exception();
 
 

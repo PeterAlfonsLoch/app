@@ -4,13 +4,12 @@
 class CLASS_DECL_ca memory_exception : 
    public simple_exception
 {
-   
 public:
-   memory_exception();
 
-// Implementation
-public:
-   explicit memory_exception(bool bAutoDelete);
-   memory_exception(bool bAutoDelete, UINT nResourceID);
+
+   memory_exception();
+   memory_exception(const char * pszMessage);
    virtual ~memory_exception();
+
+
 };

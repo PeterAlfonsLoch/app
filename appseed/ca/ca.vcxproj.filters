@@ -3263,6 +3263,9 @@
     <ClInclude Include=".\exception\exception_invalid_index.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
+    <ClInclude Include=".\exception\exception_invalid_character.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
@@ -4429,9 +4432,6 @@
     <ClCompile Include="sockets\http_file.cpp">
       <Filter>Source Files\sockets</Filter>
     </ClCompile>
-    <ClCompile Include="exception\exception.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\exception_debug.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -5438,6 +5438,15 @@
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_operation_canceled.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_user.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include=".\exception\exception_resource.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_invalid_character.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>

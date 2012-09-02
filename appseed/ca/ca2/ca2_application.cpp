@@ -582,13 +582,17 @@ namespace ca2
          pmapNew->set_at(strId, strValue);
       }
 
-      if(m_stringtablemap[strTableId] != NULL)
+      string_to_string_map * pmapOld = m_stringtablemap[strTableId];
+
+      m_stringtablemap[strTableId] = NULL;
+
+      if(pmapOld != NULL)
       {
 
          try
          {
 
-            delete m_stringtablemap[strTableId];
+            delete pmapOld;
 
          }
          catch(...)

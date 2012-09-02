@@ -1393,19 +1393,19 @@ namespace gen
    {
       char len =  1 + gen::str::trailingBytesForUTF8[(unsigned char) *psz];
       if(len == 0)      return psz;
-      if(*psz++ == 0)   throw "invalid utf8 character";
+      if(*psz++ == 0)   throw invalid_character("invalid utf8 character");
       if(len == 1)      return psz;
-      if(*psz++ == 0)   throw "invalid utf8 character";
+      if(*psz++ == 0)   throw invalid_character("invalid utf8 character");
       if(len == 2)      return psz;
-      if(*psz++ == 0)   throw "invalid utf8 character";
+      if(*psz++ == 0)   throw invalid_character("invalid utf8 character");
       if(len == 3)      return psz;
-      if(*psz++ == 0)   throw "invalid utf8 character";
+      if(*psz++ == 0)   throw invalid_character("invalid utf8 character");
       if(len == 4)      return psz;
-      if(*psz++ == 0)   throw "invalid utf8 character";
+      if(*psz++ == 0)   throw invalid_character("invalid utf8 character");
       if(len == 5)      return psz;
-      if(*psz++ == 0)   throw "invalid utf8 character";
+      if(*psz++ == 0)   throw invalid_character("invalid utf8 character");
       if(len == 6)      return psz;
-      throw "invalid utf8 character";
+      throw invalid_character("invalid utf8 character");
    }
 
 

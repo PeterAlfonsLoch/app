@@ -418,3 +418,6 @@ inline void __cdecl __clearerr_s(FILE *stream)
 #include "exception_operation_canceled.h"
 
 
+#include "exception_invalid_character.h"
+
+

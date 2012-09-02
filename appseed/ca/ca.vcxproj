@@ -1396,6 +1396,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="exception\exception_unhandled_report.h" />
     <ClInclude Include="exception\exception_user.h" />
     <ClInclude Include="exception\exception_vms.h" />
+    <ClInclude Include=".\exception\exception_invalid_character.h" />
     <ClInclude Include="filehandler\filehandler.h" />
     <ClInclude Include="filehandler\filehandler_handler.h" />
     <ClInclude Include="filehandler\filehandler_library.h" />
@@ -2587,7 +2588,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="ex2\ex2_file_set.cpp" />
     <ClCompile Include="ex2\ex2_folder_watch.cpp" />
     <ClCompile Include="ex2\ex2_transfer_file.cpp" />
-    <ClCompile Include="exception\exception.cpp" />
+    <ClCompile Include=".\exception\exception_resource.cpp" />
     <ClCompile Include=".\exception\exception_archive.cpp" />
     <ClCompile Include=".\exception\exception_base.cpp" />
     <ClCompile Include="exception\exception_call_stack.cpp" />
@@ -2601,6 +2602,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="exception\exception_installing.cpp" />
     <ClCompile Include="exception\exception_interface_only.cpp" />
     <ClCompile Include=".\exception\exception_invalid_argument.cpp" />
+    <ClCompile Include="exception\exception_invalid_character.cpp" />
     <ClCompile Include="exception\exception_invalid_handle.cpp" />
     <ClCompile Include="exception\exception_invalid_index.cpp" />
     <ClCompile Include="exception\exception_last_error.cpp" />
@@ -2617,6 +2619,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include=".\exception\exception_simple.cpp" />
     <ClCompile Include="exception\exception_engine.cpp" />
     <ClCompile Include="exception\exception_temporary.cpp" />
+    <ClCompile Include="exception\exception_user.cpp" />
     <ClCompile Include="exception\exception_VMSException.cpp" />
     <ClCompile Include="exception\exception_void_implementation.cpp" />
     <ClCompile Include="filehandler\filehandler_handler.cpp" />

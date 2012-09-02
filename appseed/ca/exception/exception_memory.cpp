@@ -2,18 +2,21 @@
 
 
 memory_exception::memory_exception()
-   : simple_exception() 
 {
 
 }
 
-memory_exception::memory_exception(bool bAutoDelete, UINT nResourceID)
-   : simple_exception(bAutoDelete) 
+
+memory_exception::memory_exception(const char * pszMessage)
+   : simple_exception(pszMessage) 
 {
-   m_nResourceID = nResourceID; 
+
 }
+
 
 memory_exception::~memory_exception()
 {
 
 }
+
+
