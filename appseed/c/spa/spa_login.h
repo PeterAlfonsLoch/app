@@ -1,6 +1,14 @@
 #pragma once
 
 
+namespace spa
+{
+
+   class plugin;
+
+} // namespace spa
+
+
 class CLASS_DECL_c spa_login :
    public simple_ui
 {
@@ -43,7 +51,9 @@ public:
    virtual void on_action(const char * pszId);
 
    void initialize();
-      
+
+   void defer_translate(::spa::plugin * pplugin);
+
    void start_login();
 
    static DWORD WINAPI thread_proc_login(LPVOID lpParam);

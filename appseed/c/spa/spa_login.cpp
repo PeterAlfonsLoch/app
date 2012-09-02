@@ -56,12 +56,45 @@ spa_login::spa_login()
    y += h1;
    m_tap.m_rect.bottom = y;
 
-   m_labelUser.m_strText = "User:";
-   m_labelPassword.m_strText = "Password:";
-   m_tap.m_strText = "Enter";
+   m_labelUser.m_strText = "e-mail:";
+   m_labelPassword.m_strText = "password:";
+   m_tap.m_strText = "open";
+
 
 }
 
+
+void spa_login::defer_translate(::spa::plugin * pplugin)
+{
+
+   vsstring strForm = pplugin->defer_get("http://account.ca2.cc/login_form");
+
+   if(strForm.is_empty())
+      return;
+
+   XNode node;
+
+   if(!node.Load(strForm))
+      return;
+
+   vsstring str;
+   
+   str = node.GetAttrValue("email");
+
+   if(str.has_char())
+      m_labelUser.m_strText = str;
+
+   str = node.GetAttrValue("senha");
+
+   if(str.has_char())
+      m_labelPassword.m_strText = str;
+
+   str = node.GetAttrValue("abrir");
+
+   if(str.has_char())
+      m_labelPassword.m_strText = str;
+
+}
 
 
 spa_login::~spa_login()

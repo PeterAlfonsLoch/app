@@ -94,6 +94,12 @@ namespace spa
       static DWORD WINAPI thread_proc_start_ca2(LPVOID lpParam);
 
       virtual void thread_start_ca2();
+      
+      virtual vsstring defer_get_plugin();
+
+      virtual vsstring defer_get(const char * pszUrl);
+
+
 
 
 

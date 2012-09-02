@@ -900,6 +900,8 @@ install:
       else
       {
 
+         m_login.defer_translate(this);
+
          m_bLogin    = true;
          set_focus(&m_login.m_editUser);
          m_login.m_editUser.m_strText = "";
@@ -910,6 +912,113 @@ install:
 
 
    }
+
+   vsstring plugin::defer_get_plugin()
+   {
+
+      vsstring str;
+
+      int iAttemptStream = 0;
+      int iAttemptUrl = 0;
+      int iAttempt = 0;
+
+restart:
+
+      while(!m_phost->m_bStream)
+      {
+         iAttemptStream++;
+         if(iAttemptStream > 49)
+            return "";
+         Sleep(iAttemptStream * 84);
+      }
+
+      while(m_phost->m_strPluginUrl.is_empty())
+      {
+         if(!m_phost->m_bStream)
+         {
+            iAttemptStream = 0;
+            goto restart;
+         }
+         iAttemptUrl++;
+         if(iAttemptUrl > 49)
+            return "";
+         Sleep(iAttemptUrl * 84);
+      }
+
+      while((str = ms_get_dup(m_phost->m_strPluginUrl)).is_empty())
+      {
+         if(!m_phost->m_bStream)
+         {
+            iAttemptStream = 0;
+            goto restart;
+         }
+         iAttempt++;
+         if(iAttempt > 7)
+            return "";
+         Sleep(iAttempt * 840);
+      }
+
+      return str;
+
+   }
+
+   vsstring plugin::defer_get(const char * pszUrl)
+   {
+
+      vsstring str;
+
+      int iAttempt = 0;
+
+restart:
+      
+      while((str = defer_get_plugin()).is_empty())
+      {
+         iAttempt++;
+         if(iAttempt > 11)
+            return "";
+         Sleep(iAttempt * 840);
+      }
+
+      vsstring strLocale;
+      
+      vsstring strSchema;
+
+      url_query_get_param_dup(strLocale, "locale", strLocale);
+
+      url_query_get_param_dup(strLocale, "schema", strSchema);
+
+      if(strLocale.is_empty() && strSchema.is_empty())
+         goto restart;
+
+      vsstring strUrl(pszUrl);
+
+      if(strUrl.find("?") >= 0)
+      {
+
+         strUrl += "&";
+
+      }
+      else
+      {
+
+         strUrl += "?";
+
+      }
+
+      strUrl += "lang=" + strLocale + "&styl=" + strSchema;
+      
+      while((str = ms_get_dup(strUrl)).is_empty())
+      {
+         iAttempt++;
+         if(iAttempt > 11)
+            return "";
+         Sleep(iAttempt * 840);
+      }
+
+      return str;
+
+   }
+
 
 
 } // namespace spa
