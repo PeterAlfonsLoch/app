@@ -74,7 +74,7 @@ void simple_ui::draw_this(HDC hdc)
 
    graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
-   Gdiplus::SolidBrush br(Gdiplus::Color(184 + 21, 255, 255, 240));
+   Gdiplus::SolidBrush br(Gdiplus::Color(84 + 49, 255, 255, 233));
 
    graphics2.FillRectangle(&br, m_rect.left, m_rect.top, width(&m_rect), height(&m_rect));
 
