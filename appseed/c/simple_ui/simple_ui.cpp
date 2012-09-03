@@ -74,9 +74,23 @@ void simple_ui::draw_this(HDC hdc)
 
    graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
-   Gdiplus::SolidBrush br(Gdiplus::Color(84 + 49, 255, 255, 233));
+   Gdiplus::Color crOut(0, 255, 255, 233);
 
-   graphics2.FillRectangle(&br, m_rect.left, m_rect.top, width(&m_rect), height(&m_rect));
+   Gdiplus::Color crIn(84 + 49, 255, 255, 233);
+
+   int iBorderH = min(height(&m_rect) / 2, 49);
+
+   Gdiplus::LinearGradientBrush br1(Gdiplus::Point(0, 0), Gdiplus::Point(0, iBorderH), crOut, crIn);
+
+   graphics2.FillRectangle(&br1, m_rect.left, m_rect.top, width(&m_rect), iBorderH);
+
+   Gdiplus::SolidBrush br(crIn);
+
+   graphics2.FillRectangle(&br, m_rect.left, m_rect.top + iBorderH, width(&m_rect), height(&m_rect));
+
+   Gdiplus::LinearGradientBrush br2(Gdiplus::Point(0, m_rect.bottom - iBorderH), Gdiplus::Point(0, m_rect.bottom), crIn, crOut);
+
+   graphics2.FillRectangle(&br2, m_rect.left, m_rect.bottom - iBorderH, width(&m_rect), iBorderH);
 
 }
 
