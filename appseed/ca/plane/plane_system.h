@@ -43,6 +43,8 @@ namespace plane
 
       id id_cc;
       id id_se;
+      id id_sv_se;
+      id id_sv;
 
 
       id id_at;
@@ -63,6 +65,7 @@ namespace plane
 
       id id_ja;
       id id_jp;
+      id id_ja_jp;
 
       id id_en;
       id id_std;
@@ -132,6 +135,10 @@ namespace plane
 
       void _reset()
       {
+         id_cc = "cc";
+         id_se = "se";
+         id_sv_se = "sv-se";
+         id_sv = "sv";
 
          id_at = "at";
          id_de_at = "de-at";
@@ -149,6 +156,7 @@ namespace plane
          id_zh_tw = "zh-tw";
          id_hk = "hk";
          
+         id_ja_jp = "ja-jp";
          id_ja = "ja";
          id_jp = "jp";
          

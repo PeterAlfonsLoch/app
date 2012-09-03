@@ -93,6 +93,8 @@ namespace user
             
             ::id & idLocale = m_plocaleschema->m_idaLocale[i];
 
+            if(!idLocale.is_text())
+               continue;
 
             if(stridaFailedLocale.contains(idLocale))
                continue;
@@ -105,23 +107,21 @@ namespace user
                continue;
             }
 
+            ::id & idSchema = m_plocaleschema->m_idaSchema[i];
+
+            if(!idSchema.is_text())
+               continue;
+
+            str_schema * pschema = plocale->get_schema(idSchema);
+
+            if(pschema != NULL)
             {
 
-               ::id & idSchema = m_plocaleschema->m_idaSchema[i];
-
-               str_schema * pschema = plocale->get_schema(idSchema);
-
-               if(pschema != NULL)
-               {
-
-                  m_schemaptra.add(pschema);
-
-               }
+               m_schemaptra.add(pschema);
 
             }
 
-
-            if(idLocale != m_plocaleschema->m_idaSchema[i])
+            if(idLocale != idSchema)
             {
 
                str_schema * pschema = plocale->get_schema(idLocale);
@@ -135,7 +135,7 @@ namespace user
 
             }
 
-            if(__id(std) != m_plocaleschema->m_idaSchema[i])
+            if(__id(std) != idSchema)
             {
 
                str_schema * pschema = plocale->get_schema(__id(std));

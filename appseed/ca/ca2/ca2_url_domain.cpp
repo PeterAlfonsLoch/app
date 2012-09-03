@@ -403,7 +403,11 @@ url_domain_base::url_domain_base()
                   }
                   else if(a1 == 'e')
                   {
-                     if(a2 == 'm' && a3 == 'p')
+                     if(a2 == 'c' && a3 == 'o')
+                     {
+                        return true;
+                     }
+                     else if(a2 == 'm' && a3 == 'p')
                      {
                         return true;
                      }
@@ -416,9 +420,19 @@ url_domain_base::url_domain_base()
                         return true;
                      }
                   }
-                  else if(a1 == 'i' && a2 == 'n' && a3 == 'd')
+                  else if(a1 == 'i')
                   {
-                     return true;
+                     if(a2 == 'n')
+                     {
+                        if(a3 == 'd')
+                        {
+                           return true;
+                        }
+                        else if(a3 == 'f')
+                        {
+                           return true;
+                        }
+                     }
                   }
                   else if(a1 == 'm' && a2 == 'u' && a3 == 's')
                   {
@@ -438,6 +452,13 @@ url_domain_base::url_domain_base()
                   else if(a1 == 'p' && a2 == 'r' && a3 == 'o')
                   {
                      return true;
+                  }
+                  else if(a1 == 's')
+                  {
+                     if(a2 == 'r' && a3 == 'v')
+                     {
+                        return true;
+                     }
                   }
                }
                else if(alen == 4)

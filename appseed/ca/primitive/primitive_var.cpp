@@ -823,6 +823,8 @@ var::operator int()
       return m_i;
    case type_int64:
       return (int) m_i64;
+   case type_uint64:
+      return (int) m_ui64;
    case type_ulong:
       return m_ul;
    case type_ca2:

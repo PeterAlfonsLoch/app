@@ -319,7 +319,17 @@ namespace gen
             char ch1 = psz[0];
             char ch2 = psz[1];
 
-            if(ch1 <= 'm')
+            if(ch1 == 's' && ch2 == 'e')
+            {
+               defer_add_locale(__id(sv_se), idSchema);
+               defer_add_locale(__id(sv), idSchema);
+            }
+            else if(ch1 == 's' && ch2 == 'v')
+            {
+               defer_add_locale(__id(sv_se), idSchema);
+               defer_add_locale(__id(se), idSchema);
+            }
+            else if(ch1 <= 'm')
             {
                if(ch1 == 'a')
                {
@@ -387,11 +397,13 @@ namespace gen
                   if(ch2 == 'a')
                   {
                      // ja
+                     defer_add_locale(__id(ja_jp), idSchema);
                      defer_add_locale(__id(jp), idSchema);
                   }
                   else if(ch2 == 'p')
                   {
                      // jp
+                     defer_add_locale(__id(ja_jp), idSchema);
                      defer_add_locale(__id(ja), idSchema);
                   }
                }
@@ -431,8 +443,8 @@ namespace gen
                {
                   if(ch2 == 'w')
                   {
-                     defer_add_locale(__id(zh_cn), idSchema);
                      defer_add_locale(__id(zh_tw), idSchema);
+                     defer_add_locale(__id(zh_cn), idSchema);
                      defer_add_locale(__id(cn), idSchema);
                   }
                }
