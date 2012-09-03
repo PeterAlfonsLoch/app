@@ -983,11 +983,27 @@ restart:
       
       vsstring strSchema;
 
-      url_query_get_param_dup(strLocale, "locale", strLocale);
+      try
+      {
 
-      url_query_get_param_dup(strLocale, "schema", strSchema);
+         url_query_get_param_dup(strLocale, "locale", str);
 
-      if(strLocale.is_empty() && strSchema.is_empty())
+      }
+      catch(...)
+      {
+      }
+
+      try
+      {
+
+         url_query_get_param_dup(strSchema, "schema", str);
+
+      }
+      catch(...)
+      {
+      }
+
+      if(strLocale.is_empty())
          goto restart;
 
       vsstring strUrl(pszUrl);

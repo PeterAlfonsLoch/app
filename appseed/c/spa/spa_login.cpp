@@ -92,7 +92,7 @@ void spa_login::defer_translate(::spa::plugin * pplugin)
    str = node.GetAttrValue("abrir");
 
    if(str.has_char())
-      m_labelPassword.m_strText = str;
+      m_tap.m_strText = str;
 
 }
 
