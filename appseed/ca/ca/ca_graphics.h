@@ -8,6 +8,7 @@
 #include "ca_font.h"
 #include "ca_region.h"
 #include "ca_palette.h"
+#include "ca_graphics_path.h"
 
 
 /*#ifdef UNICODE
@@ -553,6 +554,10 @@ namespace ca
       virtual bool SetMiterLimit(float fMiterLimit);
       virtual int GetPath(LPPOINT lpPoints, LPBYTE lpTypes, int nCount) const;
       virtual bool SelectClipPath(int nMode);
+
+
+      virtual bool draw_path(::ca::graphics_path * ppath);
+      virtual bool fill_path(::ca::graphics_path * ppath);
 
    // Misc Helper Functions
       static ::ca::brush* PASCAL GetHalftoneBrush();

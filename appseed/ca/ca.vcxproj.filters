@@ -3266,6 +3266,9 @@
     <ClInclude Include=".\exception\exception_invalid_character.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
+    <ClInclude Include="ca\ca_graphics_path.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
@@ -5448,6 +5451,9 @@
     </ClCompile>
     <ClCompile Include="exception\exception_invalid_character.cpp">
       <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_graphics_path.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

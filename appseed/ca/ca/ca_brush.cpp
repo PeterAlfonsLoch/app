@@ -3,11 +3,23 @@
 namespace ca
 {
 
+
+   brush::brush()
+   {
+
+      m_crColor   = 0;
+      m_etype     = type_solid;
+      m_bUpdated  = false;
+
+
+   }
+
    void brush::construct(COLORREF crColor)
    {
 
-      m_crColor = crColor;
-      m_bUpdated = false;
+      m_crColor   = crColor;
+      m_etype     = type_solid;
+      m_bUpdated  = false;
 
    }
 
@@ -45,11 +57,13 @@ namespace ca
       if(nIndex == NULL_BRUSH)
       {
          m_crColor   = ARGB(0, 0, 0, 0);
+         m_etype     = type_solid;
          m_bUpdated  = false;
       }
       else
       {
          m_crColor   = ARGB(0, 0, 0, 0);
+         m_etype     = type_solid;
          m_bUpdated  = false;
       }
 
@@ -60,8 +74,9 @@ namespace ca
    bool brush::CreateSolidBrush(COLORREF crColor)
    {
 
-      m_crColor = crColor;
-      m_bUpdated = false;
+      m_crColor   = crColor;
+      m_etype     = type_solid;
+      m_bUpdated  = false;
 
       return TRUE;
 
@@ -99,11 +114,30 @@ namespace ca
       throw interface_only_exception();
    }
 
+   bool brush::CreateLinearGradientBrush(point p1, point p2, COLORREF cr1, COLORREF cr2)
+   {
+
+      m_etype           = type_linear_gradient_point_color;
+      m_pt1             = p1;
+      m_pt2             = p2;
+      m_cr1             = cr1;
+      m_cr2             = cr2;
+      m_bUpdated        = false;
+
+      return true;
+
+   }
+
 
    brush & brush::operator = (const brush & brushSrc)
    {
 
+      m_etype           = brushSrc.m_etype;
       m_crColor         = brushSrc.m_crColor;
+      m_pt1             = brushSrc.m_pt1;
+      m_pt2             = brushSrc.m_pt2;
+      m_cr1             = brushSrc.m_cr1;
+      m_cr2             = brushSrc.m_cr2;
       m_bUpdated        = false;
 
       return *this;

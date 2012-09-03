@@ -1414,6 +1414,23 @@ namespace ca
       throw interface_only_exception();
    }
 
+
+   bool graphics::draw_path(::ca::graphics_path * ppath)
+   {
+
+      throw interface_only_exception();
+
+   }
+
+
+   bool graphics::fill_path(::ca::graphics_path * ppath)
+   {
+      
+      throw interface_only_exception();
+
+   }
+
+
    bool graphics::AddMetaFileComment(UINT nDataSize, const BYTE* pCommentData)
    {
       UNREFERENCED_PARAMETER(nDataSize);
@@ -2239,11 +2256,12 @@ namespace ca
 
       m_crColor = crColor;
 
-      m_penxyz.m_crPenColor = crColor;
-      m_penxyz.m_bUpdated = false;
+      m_penxyz.m_crPenColor   = crColor;
+      m_penxyz.m_bUpdated     = false;
 
-      m_brushxyz.m_crColor = crColor;
-      m_brushxyz.m_bUpdated = false;
+      m_brushxyz.m_crColor    = crColor;
+      m_brushxyz.m_etype      = ::ca::brush::type_solid;
+      m_brushxyz.m_bUpdated   = false;
 
 
       return TRUE;

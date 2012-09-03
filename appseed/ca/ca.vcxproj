@@ -972,6 +972,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="calculator\numeric_value.h" />
     <ClInclude Include="ca\ca.h" />
     <ClInclude Include="ca\ca2_keep_alive.h" />
+    <ClInclude Include="ca\ca_graphics_path.h" />
     <ClInclude Include="ca\ca_graphic_classes.h" />
     <ClInclude Include="ca\ca_application.h" />
     <ClInclude Include="ca\ca_application_bias.h" />
@@ -2000,6 +2001,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="ca\ca_file_system.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ca\ca_graphics_path.cpp" />
     <ClCompile Include="ca\ca_session.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>

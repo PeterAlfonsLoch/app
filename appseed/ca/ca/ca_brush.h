@@ -9,7 +9,24 @@ namespace ca
    public:
 
 
+      enum e_type
+      {
+         
+         type_solid,
+         type_linear_gradient_point_color,
+
+      };
+
+
       COLORREF    m_crColor;
+      e_type      m_etype;
+      point       m_pt1;
+      point       m_pt2;
+      COLORREF    m_cr1;
+      COLORREF    m_cr2;
+
+
+      brush();
 
 
       virtual void construct(COLORREF crColor);                // CreateSolidBrush
@@ -26,6 +43,8 @@ namespace ca
 #endif
       virtual bool CreateDIBPatternBrush(const void * lpPackedDIB, UINT nUsage);
       virtual bool CreateSysColorBrush(int nIndex);
+
+      virtual bool CreateLinearGradientBrush(point p1, point p2, COLORREF cr1, COLORREF cr2);
 
       virtual int GetLogBrush(LOGBRUSH* pLogBrush);
 

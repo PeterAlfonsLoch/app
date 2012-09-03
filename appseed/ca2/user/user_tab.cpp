@@ -234,8 +234,15 @@ namespace user
       }
    }
 
-
    void tab::_001OnDraw(::ca::graphics * pdc)
+   {
+
+      _001OnDrawSchema01(pdc);
+
+   }
+
+
+   void tab::_001OnDrawStandard(::ca::graphics * pdc)
    {
 
       pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
@@ -451,6 +458,272 @@ namespace user
 
    }
 
+   void tab::_001OnDrawSchema01(::ca::graphics * pdc)
+   {
+
+      pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
+
+      
+      if(m_bNoTabs)
+      {
+         
+         if(m_bShowTabs)
+         {
+
+            m_bShowTabs = false;
+
+            layout();
+
+         }
+
+         return;
+
+      }
+
+      if(!m_bShowTabs)
+      {
+         if(!GetParentFrame()->IsFullScreen())
+         {
+            m_bShowTabs = true;
+            layout();
+         }
+         else
+         {
+            return;
+         }
+      }
+
+      if(GetParentFrame()->IsFullScreen())
+      {
+         rect rectTab(get_data()->m_rectTab);
+         ClientToScreen(rectTab);
+         point ptCursor = Bergedge.m_ptCursor;
+         m_bShowTabs = rectTab.contains(ptCursor);
+         layout();
+         if(!m_bShowTabs)
+            return;
+      }
+
+      if(get_data()->is_in_use())
+         return;
+
+      //pdc->SetBkColor(RGB(255, 255, 255));
+
+      class rect rect;
+      class rect rectBorder;
+      class rect rectText;
+      class rect rectClient;
+      class rect rectIcon;
+      class rect rectClose;
+
+      //HGDIOBJ hOldPen = pdc->SelectObject(get_data()->m_pen);
+
+//      class imaging & imaging = System.imaging();
+
+      pdc->set_alpha_mode(::ca::alpha_mode_blend);
+
+      //pdc->FillSolidRect(get_data()->m_rectTab, ARGB(0xc0, 250, 255, 255));
+
+            //pdc->SetBkMode(OPAQUE);
+
+      //pdc->set_alpha_mode(::ca::alpha_mode_set);
+
+      int iVisiblePane = 0;
+
+      for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+      {
+
+         pane & pane = get_data()->m_panea[iPane];
+
+         if(!pane.m_bVisible)
+            continue;
+
+
+
+         if(!get_element_rect(iVisiblePane, rect, element_tab))
+            continue;
+
+         if(!get_element_rect(iVisiblePane, rectBorder, element_border))
+            continue;
+
+         if(!get_element_rect(iVisiblePane, rectClient, element_client))
+            continue;
+
+
+         if(get_data()->m_bVertical)
+         {
+            if(get_element_rect(iVisiblePane, rectIcon, element_icon))
+            {
+               pdc->set_alpha_mode(::ca::alpha_mode_blend);
+               pane.m_dib->bitmap_blend(pdc, rectIcon);
+            }
+
+            if(get_data()->m_iaSel.contains(iPane))
+            {
+               pdc->set_color(ARGB(255, 0, 0, 0));
+               pdc->set_solid_pen(1.0);
+
+
+               pdc->MoveTo(rectBorder.right, rectBorder.bottom);
+               pdc->LineTo(rectBorder.left + 1, rectBorder.bottom);
+               pdc->LineTo(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
+               pdc->LineTo(rectClient.left, rectBorder.top);
+               pdc->LineTo(rectBorder.right, rectBorder.top);
+
+               pdc->set_font(get_data()->m_fontBold);
+
+            }
+            else
+            {
+               pdc->set_color(ARGB(255, 0, 0, 0));
+               pdc->set_solid_pen(1.0);
+               pdc->MoveTo(rectBorder.right, rectBorder.bottom);
+               pdc->LineTo(rectBorder.left + 1, rectBorder.bottom);
+               pdc->LineTo(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
+               pdc->LineTo(rectText.left, rectBorder.top);
+               pdc->LineTo(rectBorder.right, rectBorder.top);
+               pdc->LineTo(rectBorder.right, rectBorder.bottom);
+               if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
+               {
+                  pdc->set_font(get_data()->m_fontUnderline);
+                  pdc->SetTextColor(ARGB(255, 0, 127, 255));
+               }
+               else
+               {
+                  pdc->set_font(get_data()->m_font);
+                  pdc->SetTextColor(ARGB(255, 0, 0, 0));
+               }
+            }
+
+
+         }
+         else
+         {
+
+            if(get_element_rect(iVisiblePane, rectIcon, element_icon))
+            {
+               pdc->set_alpha_mode(::ca::alpha_mode_blend);
+               pane.m_dib->bitmap_blend(pdc, rectIcon);
+            }
+
+            ::ca::graphics_path_sp path(get_app());
+
+            if(get_data()->m_iaSel.contains(iPane))
+            {
+
+
+
+               //path->start_figure();
+               
+               path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
+               path->add_line(rectClient.right, rectBorder.top);
+               path->add_line(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
+               path->add_line(rectBorder.right - 1, rectClient.bottom);
+               
+               //path->close_figure();
+
+               ::ca::brush_sp br(get_app());
+
+               br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
+
+               pdc->SelectObject(br);
+
+               pdc->fill_path(path);
+
+               pdc->set_color(ARGB(255, 0, 0, 0));
+               pdc->set_solid_pen(1.0);
+
+               pdc->draw_path(path);
+
+               pdc->set_font(get_data()->m_font);
+               pdc->set_color(ARGB(255, 0, 0, 0));
+            }
+            else
+            {
+
+               //path->start_figure();
+               
+
+               path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
+               path->add_line(rectClient.right, rectBorder.top);
+               path->add_line(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
+               path->add_line(rectBorder.right - 1, rectClient.bottom);
+               path->add_line(rectBorder.left, rectClient.bottom);
+
+
+               //path->close_figure();
+
+               if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
+               {
+
+                  ::ca::brush_sp br(get_app());
+
+                  br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
+
+                  pdc->SelectObject(br);
+
+                  pdc->fill_path(path);
+
+                  pdc->set_color(ARGB(200, 100, 100, 100));
+                  pdc->set_solid_pen(1.0);
+
+                  pdc->draw_path(path);
+
+
+                  pdc->set_font(get_data()->m_fontUnderline);
+                  pdc->set_color(ARGB(255, 0, 0, 0));
+
+               }
+               else
+               {
+
+                  ::ca::brush_sp br(get_app());
+
+                  br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
+
+                  pdc->SelectObject(br);
+
+                  pdc->fill_path(path);
+
+                  pdc->set_color(ARGB(200, 100, 100, 100));
+                  pdc->set_solid_pen(1.0);
+
+                  pdc->draw_path(path);
+
+
+                  pdc->set_font(get_data()->m_font);
+                  pdc->set_color(ARGB(255, 0, 0, 0));
+
+               }
+
+            }
+
+         }
+         if(get_element_rect(iVisiblePane, rectText, element_text))
+         {
+            get_data()->m_dcextension._DrawText(pdc, pane.get_title(), rectText, DT_LEFT | DT_BOTTOM);
+         }
+         if(get_element_rect(iVisiblePane, rectClose, element_close_tab_button))
+         {
+            pdc->set_font(get_data()->m_fontBold);
+            if(iVisiblePane == m_iHover && m_eelementHover == element_close_tab_button)
+            {
+               pdc->set_color(ARGB(0xff, 255, 127, 0));
+            }
+            else
+            {
+               pdc->set_color(ARGB(0xff, 0, 0, 0));
+            }
+            pdc->draw_text("x", rectClose, DT_CENTER | DT_VCENTER);
+         }
+
+
+         iVisiblePane++;
+
+      }
+      //pdc->SelectObject(hOldPen);
+
+   }
 
    void tab::GetTabClientRect(LPRECT lprect)
    {

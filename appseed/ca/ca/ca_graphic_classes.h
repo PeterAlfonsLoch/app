@@ -25,6 +25,7 @@ namespace ca
 #include "ca_dib.h"
 #include "ca_draw_dib.h"
 #include "ca_graphics.h"
+#include "ca_graphics_path.h"
 
 
 

@@ -206,6 +206,13 @@ namespace user
 
 
       void _001OnDraw(::ca::graphics * pdc);
+
+
+      void _001OnDrawStandard(::ca::graphics * pdc);
+      void _001OnDrawSchema01(::ca::graphics * pdc);
+
+
+
       DECL_GEN_SIGNAL(_001OnLButtonDown)
       DECL_GEN_SIGNAL(_001OnLButtonUp)
       DECL_GEN_SIGNAL(_001OnMouseMove)
