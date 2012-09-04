@@ -19,10 +19,13 @@ namespace dynamic_source
 
       httpd_socket(::sockets::socket_handler_base& );
       ~httpd_socket();
-
-
    protected:
       httpd_socket(const httpd_socket& s);
+
+
+   public:
+
+      virtual void Reset();
 
    };
 

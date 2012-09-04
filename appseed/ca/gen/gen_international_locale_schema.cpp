@@ -84,6 +84,8 @@ namespace gen
          while(!bEnd)
          {
             iEnd = iStart - 1;
+            if((iEnd - 1) < 0)
+               break;
             iStart = idLocale2.m_pstr->reverse_find('-', iEnd - 1);
             bEnd = iStart < 0;
             if(bEnd)
