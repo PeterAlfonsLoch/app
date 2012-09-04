@@ -14,6 +14,8 @@ namespace ca2
       m_peventReady              = NULL;
       m_pmapKeyPressed           = NULL;
       m_bLicense                 = true;
+      m_strLocale                = "_std";
+      m_strSchema                = "_std";
 
    }
 
