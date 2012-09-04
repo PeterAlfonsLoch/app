@@ -16,7 +16,7 @@ spa_login::spa_login()
    m_rect.left = 49;
    m_rect.top = 49;
    m_rect.right = m_rect.left + 840;
-   m_rect.bottom = m_rect.top + 840;
+   m_rect.bottom = m_rect.top + 584;
 
 
    int x1 = m_rect.left + 49; 
