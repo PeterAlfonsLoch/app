@@ -16,6 +16,11 @@ public:
    
    virtual void draw_this(HDC hdc);
 
+   virtual void draw_simple(HDC hdc);
+   virtual void draw_volume(HDC hdc);
+
+   virtual void draw_text(HDC hdc);
+
 
    virtual void on_char(int ch, UINT uScan);
    virtual void on_lbutton_down(int x, int y);
