@@ -367,6 +367,7 @@ namespace gen
                   if(ch2 == 'n')
                   {
                      // en
+                     defer_add_locale(__id(en_us), idSchema);
                      defer_add_locale(__id(std), idSchema);
                   }
                   else if(ch2 == 's')

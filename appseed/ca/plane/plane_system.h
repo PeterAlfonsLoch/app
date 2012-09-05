@@ -68,6 +68,7 @@ namespace plane
       id id_ja_jp;
 
       id id_en;
+      id id_en_us;
       id id_std;
 
       id id_pe;
@@ -161,6 +162,7 @@ namespace plane
          id_jp = "jp";
          
          id_en = "en";
+         id_en_us = "en-us";
          id_std = "_std";
          
          id_pe = "pe";
