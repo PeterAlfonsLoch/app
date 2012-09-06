@@ -217,26 +217,37 @@ namespace ca2
          strSchema = "pl";
       }
 #endif
+      
       if(strLocale.is_empty())
          strLocale = "se";
+
       if(strSchema.is_empty())
          strSchema = "se";
 
       if(strLocaleSystem.has_char())
          strLocale = strLocaleSystem;
+
       if(strSchemaSystem.has_char())
          strSchema = strSchemaSystem;
 
+      if(App(this).directrix().m_varTopicQuery["locale"].get_string().has_char())
+         strLocale = App(this).directrix().m_varTopicQuery["locale"];
+      
+      if(App(this).directrix().m_varTopicQuery["schema"].get_string().has_char())
+         strSchema = App(this).directrix().m_varTopicQuery["schema"];
+
+      
       set_locale(strLocale, false);
       set_schema(strSchema, false);
 
+
       str_context()->localeschema().m_idaLocale.add(strLocale);
       str_context()->localeschema().m_idaSchema.add(strSchema);
-
-
-
+      
 
       return ex2::application::initialize1();
+
+
    }
 
    bool application::finalize()
