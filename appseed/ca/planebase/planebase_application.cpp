@@ -1511,29 +1511,27 @@ InitFailure:
    void application::fill_locale_schema(gen::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema)
    {
 
+
       localeschema.m_idaLocale.remove_all();
       localeschema.m_idaSchema.remove_all();
+
+
+      string strLocale(pszLocale);
+      string strSchema(pszSchema);
 
 
       localeschema.m_idLocale     = pszLocale;
       localeschema.m_idSchema     = pszSchema;
 
-      localeschema.add_locale_variant(pszLocale, pszSchema);
-      localeschema.add_locale_variant(pszLocale, pszLocale);
-      localeschema.add_locale_variant(pszLocale, __id(std));
-      localeschema.add_locale_variant(__id(std), pszSchema);
-      localeschema.add_locale_variant(pszSchema, pszSchema);
 
-      localeschema.add_locale_variant(__id(en), get_schema());
-      localeschema.add_locale_variant(__id(std), get_schema());
+      localeschema.add_locale_variant(strLocale    , strSchema);
+      localeschema.add_locale_variant(get_locale() , strSchema);
+      localeschema.add_locale_variant(__id(std)    , strSchema);
+      localeschema.add_locale_variant(__id(en)     , strSchema);
 
-      localeschema.add_locale_variant(__id(en), get_locale());
-      localeschema.add_locale_variant(__id(std), get_locale());
-
-      localeschema.add_locale_variant(__id(en), __id(en));
-      localeschema.add_locale_variant(__id(std), __id(std));
 
       localeschema.finalize();
+
 
    }
 
@@ -1551,23 +1549,17 @@ InitFailure:
       string strLocale;
       string strSchema;
 
+      strLocale  = get_locale();
+      strSchema  = get_schema();
 
       if(Application.directrix().m_varTopicQuery["locale"].has_char() && Application.directrix().m_varTopicQuery["locale"].get_string().CompareNoCase("_std") != 0)
       {
          strLocale = Application.directrix().m_varTopicQuery["locale"];
-         if(Application.directrix().m_varTopicQuery["schema"].has_char() && Application.directrix().m_varTopicQuery["schema"].get_string().CompareNoCase("_std") != 0)
-         {
-            strSchema = Application.directrix().m_varTopicQuery["schema"];
-         }
-         else
-         {
-            strSchema = strLocale;
-         }
       }
-      else
+
+      if(Application.directrix().m_varTopicQuery["schema"].has_char() && Application.directrix().m_varTopicQuery["schema"].get_string().CompareNoCase("_std") != 0)
       {
-         strLocale  = get_locale();
-         strSchema  = get_schema();
+         strSchema = Application.directrix().m_varTopicQuery["schema"];
       }
 
 
@@ -1575,40 +1567,14 @@ InitFailure:
       localeschema.m_idSchema     = strSchema;
 
 
-      localeschema.add_locale_variant(strLocale, strSchema);
-      localeschema.add_locale_variant(strLocale, strLocale);
-      localeschema.add_locale_variant(strLocale, __id(std));
-      localeschema.add_locale_variant(__id(std), strSchema);
-      localeschema.add_locale_variant(strSchema, strSchema);
-
-
-
-      if(Application.directrix().m_varTopicQuery["schema"].has_char() && Application.directrix().m_varTopicQuery["schema"].get_string().CompareNoCase("_std") != 0)
-      {
-         localeschema.add_locale_variant(get_locale(), Application.directrix().m_varTopicQuery["style"]);
-      }
-
-      if(get_schema().has_char() && get_schema().CompareNoCase("_std") != 0 && get_schema().CompareNoCase(get_locale()) != 0)
-      {
-         localeschema.add_locale_variant(get_locale(), Application.directrix().m_varTopicQuery["style"]);
-      }
-
-      localeschema.add_locale_variant(get_locale(), get_locale());
-
-      localeschema.add_locale_variant(get_locale(), __id(en));
-      localeschema.add_locale_variant(get_locale(), __id(std));
-
-      localeschema.add_locale_variant(__id(en), get_schema());
-      localeschema.add_locale_variant(__id(std), get_schema());
-
-      localeschema.add_locale_variant(__id(en), get_locale());
-      localeschema.add_locale_variant(__id(std), get_locale());
-
-      localeschema.add_locale_variant(__id(en), __id(en));
-      localeschema.add_locale_variant(__id(std), __id(std));
+      localeschema.add_locale_variant(strLocale    , strSchema);
+      localeschema.add_locale_variant(get_locale() , strSchema);
+      localeschema.add_locale_variant(__id(std)    , strSchema);
+      localeschema.add_locale_variant(__id(en)     , strSchema);
 
 
       localeschema.finalize();
+
 
    }
 
