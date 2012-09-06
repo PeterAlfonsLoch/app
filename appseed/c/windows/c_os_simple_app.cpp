@@ -91,7 +91,7 @@ void simple_app::body()
 
          //Sleep(15 * 1000);
 
-         debug_box(__argv[1], "simple_app::body", 0);
+         //debug_box(__argv[1], "simple_app::body", 0);
 
          vsstring strCommandLine;
 

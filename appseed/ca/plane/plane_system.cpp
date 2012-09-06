@@ -223,12 +223,12 @@ namespace plane
       strId += gen::str::has_char(m_strAppId, ".");
       strId += gen::str::has_char(m_strBaseSupportId, ".");
 
-      // debug_box(NULL, "Going to start Log", "Just before initialize log", 0);
+      //debug_box(NULL, "Going to start Log", "Just before initialize log", 0);
 
       // log starts here
       if(!initialize_log(strId))
       {
-         // debug_box(NULL, "Could not initialize log", "Failed to initialize log", 0);
+         //debug_box(NULL, "Could not initialize log", "Failed to initialize log", 0);
          return FALSE;
       }
 
