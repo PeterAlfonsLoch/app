@@ -29,6 +29,9 @@ namespace gen
          comparable_array < id >    m_idaLocale;
          comparable_array < id >    m_idaSchema;
 
+         comparable_array < id >    m_idaLocaleFinal;
+         comparable_array < id >    m_idaSchemaFinal;
+
 
          locale_schema(::ca::application * papp);
          locale_schema(const locale_schema & ls);
@@ -39,6 +42,7 @@ namespace gen
 
 
          virtual bool add_locale_variant(id idLocale, id Style);
+         virtual bool add_final_locale_variant(id idLocale, id Style);
          virtual bool finalize(bool bRtlLayout);
          virtual bool finalize();
 

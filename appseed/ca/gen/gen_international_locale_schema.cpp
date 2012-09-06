@@ -35,6 +35,16 @@ namespace gen
       {
       }
 
+      bool locale_schema::add_final_locale_variant(id idLocale, id idSchema)
+      {
+
+         m_idaLocaleFinal.add(idLocale);
+         m_idaSchemaFinal.add(idLocale);
+      
+         return true;
+
+      }
+
 
       bool locale_schema::add_locale_variant(id idLocale, id idSchema)
       {
@@ -663,8 +673,11 @@ restart:
          m_idaLocale.add(idaLocaleAdd1);
          m_idaSchema.add(idaSchemaAdd1);
 
+         m_idaLocale.add(m_idaLocaleFinal);
+         m_idaSchema.add(m_idaSchemaFinal);
 
          return true;
+
       }
 
       bool locale_schema::process_final_locale_schema()
