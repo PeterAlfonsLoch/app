@@ -13,6 +13,14 @@ namespace hotplugin
    {
    public:
 
+      enum e_schema
+      {
+
+         schema_normal,
+         schema_darker,
+
+      };
+
       vsstring                      m_strPluginUrl;
       vsstring                      m_strPluginHeaders;
       BYTE *                        m_lpbMemory;
@@ -50,6 +58,8 @@ namespace hotplugin
       SIZE                          m_sizeBitmapData;
       vsstring                      m_strBitmapChannel;
       POINT                         m_ptCursorPhase;
+
+      e_schema                      m_eschema;
 
 
 

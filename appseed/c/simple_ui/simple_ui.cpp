@@ -75,9 +75,30 @@ void simple_ui::draw_this(HDC hdc)
 
    graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
-   Gdiplus::Color crOut(0, 255, 255, 233);
+   //Gdiplus::Color crOut(0, 255, 255, 233);
 
-   Gdiplus::Color crIn(84 + 49, 255, 255, 233);
+   //Gdiplus::Color crIn(84 + 49, 255, 255, 233);
+
+   Gdiplus::Color crOut;
+
+   Gdiplus::Color crIn;
+
+   if(get_plugin()->m_eschema == ::hotplugin::plugin::schema_darker)
+   {
+
+      crOut.SetValue(Gdiplus::Color::MakeARGB(0, 84, 84, 77));
+
+      crIn.SetValue(Gdiplus::Color::MakeARGB(84 + 49, 84, 84, 77));
+
+   }
+   else
+   {
+      
+      crOut.SetValue(Gdiplus::Color::MakeARGB(0, 255, 255, 233));
+
+      crIn.SetValue(Gdiplus::Color::MakeARGB(84 + 49, 255, 255, 233));
+
+   }
 
    int iBorderH = min(height(&m_rect) / 2, 49);
 

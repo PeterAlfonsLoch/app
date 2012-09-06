@@ -251,6 +251,8 @@ namespace hotplugin
       m_ptCursorPhase.x = 0;
       m_ptCursorPhase.y = 0;
 
+      m_eschema         = schema_normal;
+
 
    }
 
@@ -1000,7 +1002,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
          graphics2.SetClip(rectClip, Gdiplus::CombineModeReplace);
 
-         pbr = new Gdiplus::SolidBrush(Gdiplus::Color(84, 84, 84, 84));
+         pbr = new Gdiplus::SolidBrush(Gdiplus::Color(84, 84, 84, 77));
          graphics2.FillRectangle(pbr, lprect->left + cx / iRate - 1 , lprect->top + (cy - 23) / 2 - 1, iRowCount + 2, 23 + 2);
          delete pbr;
 

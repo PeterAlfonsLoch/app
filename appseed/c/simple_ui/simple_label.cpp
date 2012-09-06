@@ -22,12 +22,30 @@ void simple_label::draw_this(HDC hdc)
 
    Gdiplus::Graphics graphics2(hdc);
 
+   Gdiplus::Color c;
+
+   if(get_plugin()->m_eschema == ::hotplugin::plugin::schema_darker)
+   {
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
-   Gdiplus::SolidBrush b(Gdiplus::Color(223, 84, 49, 77));
+      c.SetValue(Gdiplus::Color::MakeARGB(255, 184 + 49, 149 + 49, 177 + 49));
 #else
-   Gdiplus::SolidBrush b(Gdiplus::Color(223, 49, 84, 23));
+      c.SetValue(Gdiplus::Color::MakeARGB(255, 149 + 49, 184 + 49, 123 + 49));
 #endif
+
+   }
+   else
+   {
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+      c.SetValue(Gdiplus::Color::MakeARGB(255, 84, 49, 77));
+#else
+      c.SetValue(Gdiplus::Color::MakeARGB(255, 49, 84, 23));
+#endif
+
+   }
+
+   Gdiplus::SolidBrush b(c);
 
    Gdiplus::Font f(L"Geneva", (float) (height(&m_rect) * 0.7f), 0.0f, Gdiplus::UnitPixel);
 
