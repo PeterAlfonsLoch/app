@@ -9,7 +9,9 @@
 simple_tap::simple_tap()
 {
    
-   m_strId = "submit";
+   m_strId        = "submit";
+   m_bDown        = false;
+   m_bMouseMove   = false;
 
 }
 
@@ -66,27 +68,68 @@ void simple_tap::draw_volume(HDC hdc)
 
       graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
+
+      Gdiplus::Color crOut;
+
+      Gdiplus::Color crIn;
+
+      Gdiplus::Color crBorderOut;
+
+      Gdiplus::Color crBorderIn;
+
+
+      if(is_hover() || m_bDown || m_bMouseMove)
+      {
+
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      Gdiplus::Color crOut(184, 255, 240, 255);
+         crOut.SetValue(Gdiplus::Color::MakeARGB(184 + 49, 255, 230, 255));
 
-      Gdiplus::Color crIn(255, 255, 184, 255);
+         crIn.SetValue(Gdiplus::Color::MakeARGB(255, 255, 84 + 49, 255));
 
-      Gdiplus::Color crBorderOut(184, 90, 20, 90);
+         crBorderOut.SetValue(Gdiplus::Color::MakeARGB(184, 150, 100, 150));
 
-      Gdiplus::Color crBorderIn(184, 255, 240, 255);
+         crBorderIn.SetValue(Gdiplus::Color::MakeARGB(184, 255, 240, 255));
 
 #else
    
-      Gdiplus::Color crOut(184, 240, 255, 235);
+         crOut.SetValue(Gdiplus::Color::MakeARGB(184 + 49, 230, 255, 225));
 
-      Gdiplus::Color crIn(255, 184, 255, 177);
+         crIn.SetValue(Gdiplus::Color::MakeARGB(255, 84 + 49, 255, 77 + 49));
 
-      Gdiplus::Color crBorderOut(184, 20, 90, 20);
+         crBorderOut.SetValue(Gdiplus::Color::MakeARGB(184, 100, 150, 100));
 
-      Gdiplus::Color crBorderIn(184, 240, 255, 235);
+         crBorderIn.SetValue(Gdiplus::Color::MakeARGB(184, 240, 255, 235));
 
 #endif
+
+      }
+      else
+      {
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+         crOut.SetValue(Gdiplus::Color::MakeARGB(184, 255, 210, 255));
+
+         crIn.SetValue(Gdiplus::Color::MakeARGB(255, 255, 84 + 49, 255));
+
+         crBorderOut.SetValue(Gdiplus::Color::MakeARGB(184, 90, 20, 90));
+
+         crBorderIn.SetValue(Gdiplus::Color::MakeARGB(184, 255, 240, 255));
+
+#else
+   
+         crOut.SetValue(Gdiplus::Color::MakeARGB(184, 210, 255, 205));
+
+         crIn.SetValue(Gdiplus::Color::MakeARGB(255, 84 + 49, 255, 77 + 49));
+
+         crBorderOut.SetValue(Gdiplus::Color::MakeARGB(184, 20, 90, 20));
+
+         crBorderIn.SetValue(Gdiplus::Color::MakeARGB(184, 240, 255, 235));
+
+#endif
+
+      }
 
       int iBorderH = height(&m_rect) / 2;
 
@@ -179,11 +222,47 @@ void simple_tap::on_lbutton_up(int x, int y)
 
 }
 
+void simple_tap::on_mouse_move(int x, int y)
+{
 
+   m_bMouseMove = true;
 
+   //m_pplugin->redraw();
+
+}
 
 bool simple_tap::is_focusable()
 {
    return true;
 }
 
+bool simple_tap::is_hover()
+{
+
+   RECT rectWindow = m_rect;
+
+   ::hotplugin::plugin * pplugin = get_plugin();
+
+   int dx = pplugin->m_phost->m_rect.left;
+
+   int dy = pplugin->m_phost->m_rect.top;
+
+   ::OffsetRect(&rectWindow, dx, dy);
+
+   POINT ptCursor;
+
+   ::GetCursorPos(&ptCursor);
+
+   ptCursor.x += pplugin->m_ptCursorPhase.x;
+
+   ptCursor.y += pplugin->m_ptCursorPhase.y;
+
+   bool bHover = ::PtInRect(&rectWindow, ptCursor) != FALSE;
+
+   if(!bHover)
+      m_bMouseMove = false;
+
+   return bHover;
+
+
+}

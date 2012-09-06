@@ -49,6 +49,7 @@ namespace hotplugin
       simple_mutex *                m_pmutexBitmap;
       SIZE                          m_sizeBitmapData;
       vsstring                      m_strBitmapChannel;
+      POINT                         m_ptCursorPhase;
 
 
 

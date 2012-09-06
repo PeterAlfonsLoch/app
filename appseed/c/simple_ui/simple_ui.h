@@ -25,6 +25,7 @@ public:
    simple_ui_ptra                   m_uiptra;
    simple_ui *                      m_puiParent;
    simple_ui *                      m_puiFocus;
+   ::hotplugin::plugin *            m_pplugin;
 
 
    simple_ui();
@@ -42,6 +43,7 @@ public:
    virtual void on_char(int ch, UINT uScan);
    virtual void on_lbutton_down(int x, int y);
    virtual void on_lbutton_up(int x, int y);
+   virtual void on_mouse_move(int x, int y);
 
 
    virtual void on_action(const char * pszId);
@@ -53,6 +55,8 @@ public:
    virtual simple_ui * get_focus();
 
    virtual bool is_visible();
+
+   virtual ::hotplugin::plugin * get_plugin();
 
 };
 

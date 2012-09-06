@@ -8,6 +8,7 @@ public:
 
 
    bool m_bDown;
+   bool m_bMouseMove;
 
 
    simple_tap();
@@ -25,7 +26,9 @@ public:
    virtual void on_char(int ch, UINT uScan);
    virtual void on_lbutton_down(int x, int y);
    virtual void on_lbutton_up(int x, int y);
+   virtual void on_mouse_move(int x, int y);
 
    virtual bool is_focusable();
+   virtual bool is_hover();
 
 };

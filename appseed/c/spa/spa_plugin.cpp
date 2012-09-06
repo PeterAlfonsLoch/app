@@ -37,6 +37,8 @@ namespace spa
 
       m_login.set_parent(this);
 
+      m_pplugin = this;
+
       m_login.m_pcallback = this;
 
       m_iHealingSurface       = 0;
@@ -565,6 +567,24 @@ install:
                   else if(uiMessage == WM_LBUTTONUP)
                   {
                      m_login.on_lbutton_up((short)GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left, (short)GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top);
+                  }
+                  else if(uiMessage == WM_MOUSEMOVE)
+                  {
+                     
+                     int x = (short) GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left;
+                     
+                     int y = (short) GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top;
+
+                     POINT ptCursor;
+
+                     ::GetCursorPos(&ptCursor);
+
+                     m_ptCursorPhase.x = (short) GET_X_LPARAM(lparam) - ptCursor.x;
+
+                     m_ptCursorPhase.y = (short) GET_Y_LPARAM(lparam) - ptCursor.y;
+
+                     m_login.on_mouse_move(x, y);
+
                   }
                   else if(uiMessage == WM_KEYUP)
                   {

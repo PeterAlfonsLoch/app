@@ -12,6 +12,7 @@ simple_ui::simple_ui()
    m_puiParent    = NULL;
    m_bVisible     = true;
    m_puiFocus     = NULL;
+   m_pplugin      = NULL;
 
 }
 
@@ -164,6 +165,28 @@ void simple_ui::on_lbutton_up(int x, int y)
 }
 
 
+void simple_ui::on_mouse_move(int x, int y)
+{
+
+   for(int i = 0; i < m_uiptra.get_count(); i++)
+   {
+
+      if(x >= m_uiptra[i]->m_rect.left
+      && x <= m_uiptra[i]->m_rect.right
+      && y >= m_uiptra[i]->m_rect.top
+      && y <= m_uiptra[i]->m_rect.bottom)
+      {
+         
+         m_uiptra[i]->on_mouse_move(x, y);
+
+      }
+
+   }
+
+}
+
+
+
 void simple_ui::on_action(const char * pszId)
 {
    
@@ -278,5 +301,19 @@ bool simple_ui::is_visible()
 {
    
    return m_bVisible && (m_puiParent == NULL || m_puiParent->is_visible());
+
+}
+
+
+::hotplugin::plugin * simple_ui::get_plugin()
+{
+
+   if(m_pplugin != NULL)
+      return m_pplugin;
+   
+   if(m_puiParent == NULL)
+      return NULL;
+
+   return m_puiParent->get_plugin();
 
 }

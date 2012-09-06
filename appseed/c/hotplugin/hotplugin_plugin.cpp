@@ -248,6 +248,9 @@ namespace hotplugin
       m_bReload         = false;
       m_bInstalling     = false;
 
+      m_ptCursorPhase.x = 0;
+      m_ptCursorPhase.y = 0;
+
 
    }
 
