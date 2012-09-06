@@ -321,6 +321,25 @@ namespace gen
             char ch1 = psz[0];
             char ch2 = psz[1];
 
+            if(ch1 != '-' && ch2 != '-')
+            {
+
+               string str;
+
+               str += ch1;
+
+               str += ch2;
+
+               str += '-';
+
+               str += ch1;
+
+               str += ch2;
+
+               defer_add_locale(str, idSchema);
+
+            }
+
             if(ch1 == 's' && ch2 == 'e')
             {
                defer_add_locale(__id(sv_se), idSchema);
@@ -548,6 +567,19 @@ step2:
       {
          static id _std("_std");
          static id _stdRl("_std_rl");
+
+restart0:
+
+         for(index i = 0; i < m_idaLocale.get_count(); i++)
+         {
+
+            id idLocale = m_idaLocale[i];
+
+            if(defer_add_locale(idLocale, idLocale))
+               goto restart0;
+
+         }
+
 restart:
          for(index i = 0; i < m_idaLocale.get_count(); i++)
          {
