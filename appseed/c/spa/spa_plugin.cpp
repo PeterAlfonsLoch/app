@@ -1041,6 +1041,24 @@ restart:
 
       }
 
+      //debug_box("plugin::defer_get not logged", "defer get", 0);
+
+      
+
+      if(str_begins_ci_dup(strSchema, "darker;") || str_ends_ci_dup(strSchema, ";darker") || stristr_dup(strSchema, ";darker;")
+      || str_begins_ci_dup(strSchema, "darker%3B") || str_ends_ci_dup(strSchema, "%3Bdarker") || stristr_dup(strSchema, "%3Bdarker%3B"))
+      {
+         
+         m_eschema = schema_darker;
+
+      }
+      else
+      {
+
+         m_eschema = schema_normal;
+
+      }
+
       strUrl += "lang=" + strLocale + "&styl=" + strSchema;
       
       while((str = ms_get_dup(strUrl)).is_empty())
