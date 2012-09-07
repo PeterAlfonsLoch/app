@@ -7,6 +7,7 @@
 #include <sys/types.h>
 #include <dirent.h>
 #include <sys/stat.h>
+#include <unistd.h>
 #endif
 
 #if defined(WINDOWS) && !defined(M_WINDOWS)
@@ -362,6 +363,7 @@ void dir::ls(stra_dup & stra, const char *psz)
 
 vsstring dir::default_os_user_path_prefix()
 {
+#if defined(WINDOWS)
    wchar_t buf[MAX_PATH];
    ULONG ulSize = sizeof(buf) / sizeof(wchar_t);
    if(!::GetUserNameExW(NameCanonical, buf, &ulSize))
@@ -374,6 +376,40 @@ vsstring dir::default_os_user_path_prefix()
    vsstring str;
    str.attach(utf16_to_8(buf));
    return str;
+   
+#else
+   
+   simple_memory mem;
+   
+   mem.allocate(512);
+   
+retry:
+   
+   if(getlogin_r(mem.m_psz, mem.m_iSize))
+   {
+      
+      if(errno == ERANGE)
+      {
+         
+         if(mem.m_iSize < 65536)
+         {
+            
+            mem.allocate(mem.m_iSize + 512);
+            
+            goto retry;
+            
+         }
+         
+      }
+      
+      return "";
+      
+   }
+         
+   return mem.m_psz;
+
+#endif
+
 }
 
 

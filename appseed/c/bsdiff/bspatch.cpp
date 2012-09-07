@@ -34,16 +34,36 @@ typedef unsigned char u_char;
 typedef signed int ssize_t;
 #endif
 
-int err(int i, const char* str) {
+int err(int i, const char* str)
+{
+    
    wchar_t lastErrorTxt[1024];
-   FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM|FORMAT_MESSAGE_IGNORE_INSERTS,NULL,GetLastError(),0, lastErrorTxt,1024,NULL);
-   printf_dup("%s", vsstring(lastErrorTxt));
-   if (str!=NULL) {
+    
+#if defined(WINDOWS)
+    
+   FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM|FORMAT_MESSAGE_IGNORE_INSERTS,NULL,GetLastError(), 0, lastErrorTxt, 1024, NULL);
+    
+#else
+    
+    throw "not implemented";
+    
+#endif
+    
+   printf_dup("%s", vsstring(lastErrorTxt).m_psz);
+    
+   if (str!=NULL)
+   {
+       
       printf_dup("%s",str);
+       
    }
+    
    return (i);
+    
 }
-int errx(int i, const char* str) {
+
+int errx(int i, const char* str)
+{
    printf_dup("%s",str);
    return (i);
 }

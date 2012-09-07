@@ -1,5 +1,7 @@
 #include "framework.h"
+#if defined(WINDOWS)
 #include <gdiplus.h>
+#endif
 
 
 #ifndef GET_X_LPARAM

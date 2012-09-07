@@ -134,9 +134,13 @@ public:
 
    small_ipc_channel();
 
+#ifdef WINDOWS
    bool open_ab(const char * pszKey, const char * pszModule, launcher * plauncher = NULL);
    bool open_ba(const char * pszKey, const char * pszModule, launcher * plauncher = NULL);
-
+#else
+   bool open_ab(const char * pszKey, launcher * plauncher = NULL);
+   bool open_ba(const char * pszKey, launcher * plauncher = NULL);
+#endif
    bool close();
 
    virtual void restart_small_ipc_channel();

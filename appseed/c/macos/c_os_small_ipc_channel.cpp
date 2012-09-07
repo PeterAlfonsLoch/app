@@ -2,7 +2,6 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 
-
 small_ipc_channel_base::small_ipc_channel_base()
 {
       m_key = 0;
@@ -52,25 +51,34 @@ bool small_ipc_tx_channel::close()
 }
 
 
-bool small_ipc_tx_channel::send(const char * pszMessage)
+bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
 {
 
    data_struct data;
    data.mtype        = 15111984;
-   data.request      = 1;
-   data.size         = strlen_dup(pszMessage);
-   if(data.size > 512)
-      return false;
+   data.request      = 0;
+    int iPos = 0;
+    int iSize = strlen_dup(pszMessage);
+    
+    do
+    {
+  
+        data.size         = min(iSize, 512);
+ 
+        /* The length is essentially the size of the structure minus sizeof(mtype) */
+        int length = sizeof(data_struct) - sizeof(long);
 
-   /* The length is essentially the size of the structure minus sizeof(mtype) */
-   int length = sizeof(data_struct) - sizeof(long);
+        int result;
 
-   int result;
-
-   if((result = msgsnd(m_iQueue, &data, length, 0)) == -1)
-   {
-      return false;
-   }
+        if((result = msgsnd(m_iQueue, &data, length, 0)) == -1)
+        {
+            return false;
+        }
+        iSize -= data.size;
+        if(iSize <= 0)
+            break;
+}
+while(true);
 
    return true;
 }
@@ -167,19 +175,49 @@ void * small_ipc_rx_channel::receive()
 
       m_bRunning = true;
 
-      int     result, length;
+      ssize_t  result;
+      
+      int length;
 
       data_struct data;
 
       /* The length is essentially the size of the structure minus sizeof(mtype) */
       length = sizeof(data_struct) - sizeof(long);
 
-      if((result = msgrcv(m_iQueue, &data, length, 15111984,  0)) == -1)
+      simple_memory mem;
+       
+      do
       {
-         return (void *) -1;
+       
+         if((result = msgrcv(m_iQueue, &data, length, 15111984, 0)) == -1)
+         {
+         
+            return (void *) -1;
+            
+         }
+       
+         mem.write(data.data, data.size);
+      
+       
+         if(data.size < 512)
+            break;
+         
       }
-
-      on_receive(vsstring(data.data, data.size));
+      while(true);
+       
+       
+      if(data.request == 0)
+      {
+         
+         on_receive(this, mem.str());
+         
+      }
+      else
+      {
+         
+         on_receive(this, data.request, mem.m_psz, mem.m_iSize);
+         
+      }
 
    }
 
@@ -190,11 +228,99 @@ void * small_ipc_rx_channel::receive()
 }
 
 
-void * small_ipc_rx_channel::on_receive(const char * psz)
+void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, const char * psz)
 {
+   
    if(m_preceiver != NULL)
    {
-       m_preceiver->on_receive(psz);
+      
+      m_preceiver->on_receive(prxchannel, psz);
+      
    }
-    return NULL;
+   
+   return NULL;
+   
+}
+
+void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int message, void * p, int iSize)
+{
+   
+   if(m_preceiver != NULL)
+   {
+      
+      m_preceiver->on_receive(prxchannel, message, p, iSize);
+      
+   }
+   
+   return NULL;
+   
+}
+
+void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, int a, int b)
+{
+   
+   if(m_preceiver != NULL)
+   {
+      
+      m_preceiver->on_post(prxchannel, a, b);
+      
+   }
+   
+   return NULL;
+   
+}
+
+
+
+bool small_ipc_channel::open_ab(const char * pszKey, const char * pszModule, launcher * plauncher)
+{
+   
+   m_vssChannel = pszKey;
+   
+   m_rxchannel.m_preceiver = this;
+   
+   vsstring strChannelRx = m_vssChannel + "-a";
+   vsstring strChannelTx = m_vssChannel + "-b";
+   
+#ifdef WINDOWS
+   if(!m_rxchannel.create(strChannelRx, pszModule))
+#else
+      if(!m_rxchannel.create(strChannelRx, pszModule))
+#endif
+      {
+         return false;
+      }
+   
+   if(!small_ipc_tx_channel::open(strChannelTx, plauncher))
+   {
+      return false;
+   }
+   
+   return true;
+   
+}
+
+bool small_ipc_channel::open_ba(const char * pszKey, const char * pszModule, launcher * plauncher)
+{
+   
+   m_vssChannel = pszKey;
+   
+   m_rxchannel.m_preceiver = this;
+   
+   vsstring strChannelRx = m_vssChannel + "-b";
+   vsstring strChannelTx = m_vssChannel + "-a";
+   
+   
+   if(!m_rxchannel.create(strChannelRx, pszModule))
+   {
+      return false;
+   }
+   
+   if(!small_ipc_tx_channel::open(strChannelTx, plauncher))
+   {
+      return false;
+   }
+   
+   return true;
+   
 }

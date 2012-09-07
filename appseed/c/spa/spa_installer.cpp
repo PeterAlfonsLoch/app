@@ -2351,8 +2351,15 @@ RetryHost:
       if(!txchannel.open("ca2/fontopus/ccvotagus/spaboot_install_callback")) 
          return;
 
+#if defined(WINDOWS)
+       
       ::PostMessage(txchannel.m_hwnd, WM_USER + 100, a, b);
-
+       
+#else
+       
+       throw "not implemented";
+       
+#endif
 
    }
 

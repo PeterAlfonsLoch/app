@@ -1,6 +1,7 @@
 #include "framework.h"
+#ifdef WINDOWS
 #include <gdiplus.h>
-
+#endif
 
 namespace hotplugin
 {
@@ -445,6 +446,8 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
 
       try
       {
+          
+#if defined(WINDOWS)
 
          HBITMAP hbitmap         = ::CreateBitmap(m_sizeBitmap.cx, m_sizeBitmap.cy, 1, 32, m_pcolorref);
 
@@ -459,6 +462,12 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
          ::DeleteDC(hdc);
 
          ::DeleteObject(hbitmap);
+          
+#else
+          
+          throw "not implemented";
+          
+#endif
 
       }
       catch(...)
@@ -486,6 +495,8 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
       try
       {
 
+#if defined(WINDOWS)
+          
          HBITMAP hbitmap         = ::CreateBitmap(m_sizeBitmap.cx, m_sizeBitmap.cy, 1, 32, m_pcolorref);
 
          HDC hdc                 = ::CreateCompatibleDC(NULL);
@@ -499,6 +510,13 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
          ::DeleteDC(hdc);
 
          ::DeleteObject(hbitmap);
+          
+#else
+          
+          throw "not implemented";
+          
+#endif
+          
 
 
       }
@@ -529,6 +547,8 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
 
       try
       {
+         
+#if defined(WINDOWS)
 
          Gdiplus::Bitmap b(m_sizeBitmap.cx, m_sizeBitmap.cy, m_sizeBitmap.cx *4 , PixelFormat32bppARGB, (BYTE *) m_pcolorref);
 
@@ -545,6 +565,12 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
          delete pg;
 
          ::GdiFlush();
+         
+#else
+         
+         throw "not implemented";
+
+#endif
 
       }
       catch(...)
