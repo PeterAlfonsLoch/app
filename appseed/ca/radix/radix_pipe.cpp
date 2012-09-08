@@ -182,20 +182,34 @@ namespace gen
       string str;
       const int BUFSIZE = 1024 * 8;
       DWORD dwRead;
-      bool bSuccess;
+      bool bSuccess = FALSE;
       char chBuf[BUFSIZE];
       memset(chBuf, 0, BUFSIZE);
 
       try
       {
+
+#ifdef WINDOWS
+
          bSuccess = ReadFile( m_hRead, chBuf, BUFSIZE, &dwRead, NULL) != FALSE;
+
+#else
+
+         dwRead = ::read(m_fd[0], chBuf, BUFSIZE);
+
+         bSuccess = true;
+
+#endif
+
       }
       catch(...)
       {
          bSuccess = FALSE;
       }
+
       if(!bSuccess || dwRead == 0 )
          return str;
+
       str += chBuf;
       return str;
    }

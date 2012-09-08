@@ -8,6 +8,8 @@ namespace gen
    {
    public:
 
+#ifdef WINDOWS
+
       class overlapped
       {
       public:
@@ -19,13 +21,15 @@ namespace gen
          }
       };
 
+#endif
 
-      overlapped           m_overlapped;
 
       char *               m_pchBuf;
       string               m_strRead;
 
 #ifdef WINDOWS
+
+      overlapped           m_overlapped;
 
       SECURITY_ATTRIBUTES  m_sa;
       HANDLE               m_hRead;
@@ -51,6 +55,9 @@ namespace gen
       string read();
       string one_pass_read();
 
+
+#ifdef WINDOWS
+
       void readex();
 
 
@@ -60,7 +67,7 @@ namespace gen
          LPOVERLAPPED lpOverlapped
          );
 
-
+#endif
 
    };
 

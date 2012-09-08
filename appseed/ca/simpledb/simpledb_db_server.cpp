@@ -141,21 +141,33 @@ bool db_server::finalize()
 
 bool db_server::create_message_window()
 {
+
+#ifdef WINDOWS
+
    if(!m_p->IsWindow())
    {
       string strName = "ca2::fontopus::message_wnd::simpledb::db_server";
       ::user::interaction * puiMessage = NULL;
-#if !core_level_1 && !core_level_2
       puiMessage = System.window_from_os_data(HWND_MESSAGE);
-#endif
       if(!m_p->create(NULL, strName, 0, rect(0, 0, 0, 0), puiMessage, NULL))
       {
          return false;
       }
+
       m_p->SetTimer(1258477, 484, NULL);
+
       IGUI_WIN_MSG_LINK(WM_TIMER, m_p, this, &db_server::_001OnTimer);
+
    }
+
    return true;
+
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
 }
 
 bool db_server::destroy_message_window()

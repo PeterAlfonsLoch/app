@@ -1416,7 +1416,7 @@ namespace radix
          }
          else
          {
-            if (islead(*pchSrc))
+            if (_istlead(*pchSrc))
                *pchDest++ = *pchSrc++, nTotalLen--; // copy first of 2 bytes
             *pchDest++ = *pchSrc++;
             nTotalLen--;
@@ -1465,20 +1465,42 @@ namespace radix
          (dynamic_cast < frame_window * > (pWnd))->OnHelp();*/
    }
 
+
    void application::OnHelpIndex()
    {
+
+#ifdef WINDOWS
+
       WinHelpInternal(0L, HELP_INDEX);
+
+#endif
+
    }
+
 
    void application::OnHelpFinder()
    {
+
+#ifdef WINDOWS
+
       WinHelpInternal(0L, HELP_FINDER);
+
+#endif
+
    }
+
 
    void application::OnHelpUsing()
    {
+
+#ifdef WINDOWS
+
       WinHelpInternal(0L, HELP_HELPONHELP);
+
+#endif
+
    }
+
 
    /////////////////////////////////////////////////////////////////////////////
    // Context Help Mode support (backward compatibility to ca2 API 2.0)
@@ -1643,7 +1665,17 @@ namespace radix
       {
          // turn everything off
          m_nWaitCursorCount = 0;     // prevent underflow
+
+#ifdef WINDOWS
+
          ::SetCursor(m_hcurWaitCursorRestore);
+
+#else
+
+         throw not_implemented_exception();
+
+#endif
+
       }
   //    gen::UnlockGlobals(CRIT_WAITCURSOR);
    }
