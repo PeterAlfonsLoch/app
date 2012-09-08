@@ -183,7 +183,7 @@ namespace sockets
 
             timeval t;
             gettimeofday(&t, NULL);
-            m_iFirstTime t.tv_sec * 1000 * 1000 + t.tv_usec;
+            m_iFirstTime = t.tv_sec * 1000 * 1000 + t.tv_usec;
 
 #endif
 

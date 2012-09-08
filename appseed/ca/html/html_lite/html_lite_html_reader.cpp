@@ -317,7 +317,7 @@ dword_ptr lite_html_reader::ReadFile(int fd)
    {
 
       // determine file size
-      dwBufLen = ::fd_get_file_size(fd);
+      dwBufLen = ::get_file_size(fd);
       if (dwBufLen == INVALID_FILE_SIZE)
       {
          TRACE1("(Error) lite_html_reader::read: GetFileSize() failed; GetLastError() returns 0x%08x.\n", ::GetLastError());

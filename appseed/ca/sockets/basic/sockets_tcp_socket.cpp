@@ -254,7 +254,7 @@ namespace sockets
          if (iError == WSAEWOULDBLOCK || iError == 0)
    #else
          int iError = Errno;
-         if iError == EINPROGRESS)
+         if(iError == EINPROGRESS)
    #endif
          {
             Attach(s);
@@ -1565,7 +1565,7 @@ namespace sockets
          if ((subject = X509_get_subject_name(cert)) != NULL && X509_NAME_get_text_by_NID(subject, NID_commonName, data, 256) > 0)
          {
             data[255] = 0;
-            if (_strnicmp(data, common_name, 255) == 0)
+            if (strnicmp_dup(data, common_name, 255) == 0)
             {
                ok = true;
             }

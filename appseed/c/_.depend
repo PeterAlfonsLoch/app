@@ -1242,11 +1242,13 @@
 
 1342864689 /ca2/app/appseed/c/bsdiff/bzlib.h
 
-1346980262 /ca2/app/appseed/c/os/os.h
+1347141866 /ca2/app/appseed/c/os/os.h
 	"os_thread.h"
 	"os_process.h"
+	"c/ansios/ansios.h"
 	"os_binreloc.h"
 	"c/macos/c_os.h"
+	"c/ansios/ansios.h"
 	"os_binreloc.h"
 	"c/linux/c_os.h"
 	"c/merdes_windows/windows_merde.h"
@@ -1840,5 +1842,12 @@
 
 1347136330 /ca2/app/appseed/c/windows/c_os_file.h
 
-1347136453 /ca2/app/appseed/c/linux/c_os_file.h
+1347141615 /ca2/app/appseed/c/linux/c_os_file.h
+
+1347141832 /ca2/app/appseed/c/ansios/ansios.h
+	"ansios_file.h"
+
+1347141832 /ca2/app/appseed/c/ansios/ansios_file.h
+
+1347141806 source:/ca2/app/appseed/c/ansios/ansios_file.cpp
 

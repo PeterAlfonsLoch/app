@@ -7149,11 +7149,13 @@
 1347033539 /ca2/app/appseed/c/spa/spa_plugin.h
 	"c/os/os.h"
 
-1346980262 /ca2/app/appseed/c/os/os.h
+1347141866 /ca2/app/appseed/c/os/os.h
 	"os_thread.h"
 	"os_process.h"
+	"c/ansios/ansios.h"
 	"os_binreloc.h"
 	"c/macos/c_os.h"
+	"c/ansios/ansios.h"
 	"os_binreloc.h"
 	"c/linux/c_os.h"
 	"c/merdes_windows/windows_merde.h"
@@ -11669,7 +11671,7 @@
 1342864784 source:/ca2/app/appseed/ca/multithreading/multithreading_multi_lock.cpp
 	"framework.h"
 
-1347052871 source:/ca2/app/appseed/ca/html/html_lite/html_lite_html_reader.cpp
+1347137897 source:/ca2/app/appseed/ca/html/html_lite/html_lite_html_reader.cpp
 	"framework.h"
 	<sys/mman.h>
 
@@ -11812,7 +11814,7 @@
 1342864855 source:/ca2/app/appseed/ca/primitive/primitive_natural.cpp
 	"framework.h"
 
-1347052871 source:/ca2/app/appseed/ca/os/os_cross_windows_shared_memory.cpp
+1347138030 source:/ca2/app/appseed/ca/os/os_cross_windows_shared_memory.cpp
 	"framework.h"
 	<stdio.h>
 	<stdlib.h>
@@ -12145,7 +12147,7 @@
 1342864867 source:/ca2/app/appseed/ca/sockets/http/sockets_http_tunnel.cpp
 	"framework.h"
 
-1342864875 source:/ca2/app/appseed/ca/sockets/http_file.cpp
+1347132499 source:/ca2/app/appseed/ca/sockets/http_file.cpp
 	"framework.h"
 
 1342864874 source:/ca2/app/appseed/ca/sockets/sip/sockets_sip_base.cpp
@@ -12232,7 +12234,7 @@
 1342864875 source:/ca2/app/appseed/ca/sockets/webserver/sockets_AjpBaseSocket.cpp
 	"framework.h"
 
-1347136453 /ca2/app/appseed/c/linux/c_os_file.h
+1347141615 /ca2/app/appseed/c/linux/c_os_file.h
 
 1347136330 /ca2/app/appseed/c/windows/c_os_file.h
 
@@ -12249,5 +12251,35 @@
 	"framework.h"
 
 1342864875 source:/ca2/app/appseed/ca/sockets/webserver/sockets_http_response.cpp
+	"framework.h"
+
+1347136331 source:/ca2/app/appseed/ca/sockets/http_memory_file.cpp
+	"framework.h"
+
+1347138359 source:/ca2/app/appseed/ca/sockets/basic/sockets_tcp_socket.cpp
+	"framework.h"
+	<openssl/ssl.h>
+	<fcntl.h>
+	<assert.h>
+	<stdarg.h>
+	<openssl/rand.h>
+	<openssl/err.h>
+
+1347138433 source:/ca2/app/appseed/ca/sockets/sip/sockets_sip_base_client_socket.cpp
+	"framework.h"
+
+1347141832 /ca2/app/appseed/c/ansios/ansios.h
+	"ansios_file.h"
+
+1347141832 /ca2/app/appseed/c/ansios/ansios_file.h
+
+1342864875 source:/ca2/app/appseed/ca/sockets/webserver/sockets_http_transaction.cpp
+	"framework.h"
+
+1342864875 source:/ca2/app/appseed/ca/sockets/webserver/sockets_httpd_socket.cpp
+	"framework.h"
+	<openssl/ssl.h>
+
+1342864709 source:/ca2/app/appseed/ca/uinteraction/uinteraction_interaction.cpp
 	"framework.h"
 

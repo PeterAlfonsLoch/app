@@ -7,11 +7,13 @@
 
 #if defined(MACOS)
 
+#include "c/ansios/ansios.h"
 #include "os_binreloc.h"
 #include "c/macos/c_os.h"
 
 #elif defined(LINUX)
 
+#include "c/ansios/ansios.h"
 #include "os_binreloc.h"
 #include "c/linux/c_os.h"
 

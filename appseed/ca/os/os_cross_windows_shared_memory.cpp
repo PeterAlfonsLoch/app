@@ -114,7 +114,7 @@ LPVOID WINAPI GlobalLock(HGLOBAL hglobal)
 
    /* Now the file is ready to be mmapped.
      */
-   hglobal->m_map = mmap(0, ::fd_get_file_size(hglobal->m_fd), PROT_READ | PROT_WRITE, MAP_SHARED, hglobal->m_fd, 0);
+   hglobal->m_map = mmap(0, ::get_file_size(hglobal->m_fd), PROT_READ | PROT_WRITE, MAP_SHARED, hglobal->m_fd, 0);
 
    if(hglobal->m_map == MAP_FAILED)
    {
@@ -146,7 +146,7 @@ bool WINAPI GlobalUnlock(HGLOBAL hglobal)
    if(hglobal->m_map == NULL)
       return FALSE;
 
-   if (munmap(hglobal->m_map, ::fd_get_file_size(hglobal->m_fd)) == -1)
+   if (munmap(hglobal->m_map, ::get_file_size(hglobal->m_fd)) == -1)
    {
       //perror("Error un-mmapping the file");
 	/* Decide here whether to close(fd) and exit() or not. Depends... */

@@ -69,8 +69,8 @@ namespace sockets
       t += ft.dwLowDateTime;
       t /= 10; // us
    #else
-      struct timeval tv;
-      struct timezone tz;
+      struct ::timeval tv;
+      struct ::timezone tz;
       gettimeofday(&tv, &tz);
       t = tv.tv_sec;
       t *= 1000000;
