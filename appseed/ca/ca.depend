@@ -7522,7 +7522,7 @@
 
 1342864855 /ca2/app/appseed/ca/primitive/primitive_fixed_string.h
 
-1347104314 /ca2/app/appseed/ca/primitive/primitive_string.h
+1347111402 /ca2/app/appseed/ca/primitive/primitive_string.h
 	<strings.h>
 	"x/x_charcategory.h"
 	"gen/gen_bit.h"
@@ -7566,7 +7566,7 @@
 
 1342864717 /ca2/app/appseed/ca/radix/radix.inl
 
-1342864717 /ca2/app/appseed/ca/radix/radix_allocate.h
+1347113865 /ca2/app/appseed/ca/radix/radix_allocate.h
 	"radix_heap.h"
 
 1342864717 /ca2/app/appseed/ca/radix/radix_plex.h
@@ -7723,7 +7723,7 @@
 
 1342864726 /ca2/app/appseed/ca/gen/gen_variable_strict_compare.h
 
-1347091044 /ca2/app/appseed/ca/primitive/primitive_var.h
+1347107029 /ca2/app/appseed/ca/primitive/primitive_var.h
 
 1342864726 /ca2/app/appseed/ca/gen/gen_var.h
 
@@ -8131,11 +8131,11 @@
 
 1342864855 /ca2/app/appseed/ca/primitive/primitive_memory.h
 
-1342864855 /ca2/app/appseed/ca/primitive/primitive_virtual_memory.h
+1347112422 /ca2/app/appseed/ca/primitive/primitive_virtual_memory.h
 
 1342864855 /ca2/app/appseed/ca/primitive/primitive_shared_memory.h
 
-1342864855 /ca2/app/appseed/ca/primitive/primitive_memory_container.h
+1347112421 /ca2/app/appseed/ca/primitive/primitive_memory_container.h
 
 1342864855 /ca2/app/appseed/ca/primitive/primitive_memory_file.h
 
@@ -11902,4 +11902,13 @@
 	"framework.h"
 
 1347104577 /ca2/app/appseed/ca/xml/xml_xmlite.h
+
+1347110960 source:/ca2/app/appseed/ca/primitive/primitive_var.cpp
+	"framework.h"
+
+1347111984 source:/ca2/app/appseed/ca/primitive/primitive_string.cpp
+	"framework.h"
+
+1342864717 source:/ca2/app/appseed/ca/radix/radix_flags.cpp
+	"framework.h"
 

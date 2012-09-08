@@ -137,13 +137,7 @@ public:
    static char *        __cdecl  StringUppercase(char * psz,size_t size ) throw();
    static char *        __cdecl  StringLowercase(char * psz,size_t size ) throw();
    static char *        __cdecl  StringReverse( char * psz ) throw();
-
-#ifdef WINDOWS
-
    static strsize       __cdecl  GetFormattedLength(const char * pszFormat, va_list args ) throw();
-
-#endif
-
    static strsize       __cdecl  Format(char * pszBuffer,const char * pszFormat, va_list args ) throw();
    static strsize       __cdecl  Format(char * pszBuffer,size_t nlength,const char * pszFormat, va_list args ) throw();
    static strsize       __cdecl  GetcharLength(const char * pszSrc ) throw();
@@ -392,51 +386,51 @@ public:
    // find the first occurrence of any of the characters in string 'pszCharSet'
    strsize FindOneOf(PCXSTR pszCharSet, strsize iStart = 0, strsize n = -1 ) const RELEASENOTHROW;
 
-   strsize find_first_in(const string & str, strsize pos = 0) const;
-   strsize find_first_in(const char * s, strsize pos, strsize n) const;
-   strsize find_first_in(const char * s, strsize pos = 0) const;
-   strsize find_first_in(char c, strsize pos = 0) const;
+   strsize find_first_in(const string & str, strsize pos = 0) const RELEASENOTHROW;
+   strsize find_first_in(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
+   strsize find_first_in(const char * s, strsize pos = 0) const RELEASENOTHROW;
+   strsize find_first_in(char c, strsize pos = 0) const RELEASENOTHROW;
 
-   strsize find_first_not_in(const string & str, strsize pos = 0) const;
-   strsize find_first_not_in(const char * s, strsize pos, strsize n) const;
-   strsize find_first_not_in(const char * s, strsize pos = 0) const;
-   strsize find_first_not_in(char c, strsize pos = 0) const;
+   strsize find_first_not_in(const string & str, strsize pos = 0) const RELEASENOTHROW;
+   strsize find_first_not_in(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
+   strsize find_first_not_in(const char * s, strsize pos = 0) const RELEASENOTHROW;
+   strsize find_first_not_in(char c, strsize pos = 0) const RELEASENOTHROW;
 
-   strsize find_last_not_in(const string & str, strsize pos = -1) const;
-   strsize find_last_not_in(const char * s, strsize pos, strsize n) const;
-   strsize find_last_not_in(const char * s, strsize pos = -1) const;
-   strsize find_last_not_in(char c, strsize pos = -1) const;
+   strsize find_last_not_in(const string & str, strsize pos = -1) const RELEASENOTHROW;
+   strsize find_last_not_in(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
+   strsize find_last_not_in(const char * s, strsize pos = -1) const RELEASENOTHROW;
+   strsize find_last_not_in(char c, strsize pos = -1) const RELEASENOTHROW;
 
-   strsize find_last_in(const string & str, strsize pos = -1) const;
-   strsize find_last_in(const char * s, strsize pos, strsize n) const;
-   strsize find_last_in(const char * s, strsize pos = -1) const;
-   strsize find_last_in(char c, strsize pos = -1) const;
+   strsize find_last_in(const string & str, strsize pos = -1) const RELEASENOTHROW;
+   strsize find_last_in(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
+   strsize find_last_in(const char * s, strsize pos = -1) const RELEASENOTHROW;
+   strsize find_last_in(char c, strsize pos = -1) const RELEASENOTHROW;
 
-   strsize find_first_of(const string & str, strsize pos = 0) const;
-   strsize find_first_of(const char * s, strsize pos, strsize n) const;
-   strsize find_first_of(const char * s, strsize pos = 0) const;
-   strsize find_first_of(char c, strsize pos = 0) const;
+   strsize find_first_of(const string & str, strsize pos = 0) const RELEASENOTHROW;
+   strsize find_first_of(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
+   strsize find_first_of(const char * s, strsize pos = 0) const RELEASENOTHROW;
+   strsize find_first_of(char c, strsize pos = 0) const RELEASENOTHROW;
 
-   strsize find_first_not_of(const string & str, strsize pos = 0) const;
-   strsize find_first_not_of(const char * s, strsize pos, strsize n) const;
-   strsize find_first_not_of(const char * s, strsize pos = 0) const;
-   strsize find_first_not_of(char c, strsize pos = 0) const;
+   strsize find_first_not_of(const string & str, strsize pos = 0) const RELEASENOTHROW;
+   strsize find_first_not_of(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
+   strsize find_first_not_of(const char * s, strsize pos = 0) const RELEASENOTHROW;
+   strsize find_first_not_of(char c, strsize pos = 0) const RELEASENOTHROW;
 
-   strsize find_last_not_of(const string & str, strsize pos = -1) const;
-   strsize find_last_not_of(const char * s, strsize pos, strsize n) const;
-   strsize find_last_not_of(const char * s, strsize pos = -1) const;
-   strsize find_last_not_of(char c, strsize pos = -1) const;
+   strsize find_last_not_of(const string & str, strsize pos = -1) const RELEASENOTHROW;
+   strsize find_last_not_of(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
+   strsize find_last_not_of(const char * s, strsize pos = -1) const RELEASENOTHROW;
+   strsize find_last_not_of(char c, strsize pos = -1) const RELEASENOTHROW;
 
-   strsize find_last_of(const string & str, strsize pos = -1) const;
-   strsize find_last_of(const char * s, strsize pos, strsize n) const;
-   strsize find_last_of(const char * s, strsize pos = -1) const;
-   strsize find_last_of(char c, strsize pos = -1) const;
-
-   // find the last occurrence of character 'ch'
-   strsize reverse_find(XCHAR ch, strsize iStart = -1 ) const throw();
+   strsize find_last_of(const string & str, strsize pos = -1) const RELEASENOTHROW;
+   strsize find_last_of(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
+   strsize find_last_of(const char * s, strsize pos = -1) const RELEASENOTHROW;
+   strsize find_last_of(char c, strsize pos = -1) const RELEASENOTHROW;
 
    // find the last occurrence of character 'ch'
-   strsize reverse_find( PCXSTR ch, strsize iStart = -1 ) const throw();
+   strsize reverse_find(XCHAR ch, strsize iStart = -1 ) const RELEASENOTHROW;
+
+   // find the last occurrence of character 'ch'
+   strsize reverse_find( PCXSTR ch, strsize iStart = -1 ) const RELEASENOTHROW;
 
 
    char last_char() const;
@@ -611,6 +605,8 @@ public:
    // Format a message using format string 'pszFormat' and va_list
    void FormatMessageV(PCXSTR pszFormat, va_list* pArgList );
 
+#ifdef WINDOWS
+
    // OLE BSTR support
 
    // allocate a BSTR containing a copy of the string
@@ -618,8 +614,13 @@ public:
 
    BSTR SetSysString(BSTR* pbstr ) const;
 
+#endif
+
    // Set the string to the value of environment var 'pszVar'
-   bool GetEnvironmentVariable(PCXSTR pszVar );
+   bool GetEnvironmentVariable(PCXSTR pszVar);
+
+   // Set the string to the value of environment var 'pszVar'
+   bool getenv(PCXSTR pszVar);
 
    // Load the string from resource 'nID'
    bool load_string(::ca::application * papp, id id);

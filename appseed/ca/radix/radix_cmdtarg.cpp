@@ -29,7 +29,7 @@ bool command_target::handle(BaseCmdMsg * pcmdmsg)
 
 /*
 __STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
-   __PMSG pfn, void * pExtra, uint_ptr nSig, 
+   __PMSG pfn, void * pExtra, uint_ptr nSig,
       // return TRUE to stop routing
 {
    ENSURE_VALID(pTarget);
@@ -353,7 +353,7 @@ const __MSGMAP* command_target::GetThisMessageMap()
       NULL,
       &_messageEntries[0]
    };
-   return &messageMap;   
+   return &messageMap;
 }
 */
 
@@ -426,11 +426,17 @@ void cmd_ui::_001SetCheck(check::e_check nCheck)
    }
    else
    {
+
+#ifdef WINDOWS
+
       // we can only check buttons or controls acting like buttons
       ENSURE(m_pOther != NULL);
       if (m_pOther->send_message(WM_GETDLGCODE) & DLGC_BUTTON)
          m_pOther->send_message(BM_SETCHECK, nCheck);
       // otherwise ignore it
+
+#endif
+
    }
 }
 

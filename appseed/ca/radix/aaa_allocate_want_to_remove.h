@@ -11,6 +11,7 @@
 #endif
 
 CLASS_DECL_ca void * MyAlloc(size_t size);
+CLASS_DECL_ca void * MyRealloc(void * address, size_t sizeOld, size_t sizeNew);
 CLASS_DECL_ca void MyFree(void *address);
 
 #ifdef _WIN32
@@ -27,6 +28,7 @@ CLASS_DECL_ca void BigFree(void *address);
 #else
 
 #define MidAlloc(size) MyAlloc(size)
+#define MidRealloc(addr, sizeOld, sizeNew) MyRealloc(addr, sizeOld, sizeNew)
 #define MidFree(address) MyFree(address)
 #define BigAlloc(size) MyAlloc(size)
 #define BigFree(address) MyFree(address)

@@ -372,25 +372,25 @@ public:
    const var & operator[] (var varKey) const;
    const var & operator[] (const char * pszKey) const;
    const var & operator[] (index iKey) const;
-#ifdef AMD64
+#if defined(AMD64) && defined(WINDOWS)
    inline const var & operator[] (int iKey) const { return operator[]((index) iKey); }
 #endif
    var & operator[] (var varKey);
    var & operator[] (const char * pszKey);
    var & operator[] (index iKey);
-#ifdef AMD64
+#if defined(AMD64) && defined(WINDOWS)
    inline var & operator[] (int iKey) { return operator[]((index) iKey); }
 #endif
    var at(index i) const;
-#ifdef AMD64
+#if defined(AMD64) && defined(WINDOWS)
    inline var at(int i) const { return at((index) i); }
 #endif
    var at(index i);
-#ifdef AMD64
+#if defined(AMD64) && defined(WINDOWS)
    inline var at(int i) { return at((index) i); }
 #endif
    var key(index i) const;
-#ifdef AMD64
+#if defined(AMD64) && defined(WINDOWS)
    inline var key(int i) const { return key((index) i); }
 #endif
    inline count array_get_count() const;

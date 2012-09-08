@@ -1,6 +1,5 @@
 #pragma once
 
-
 namespace primitive
 {
 
@@ -33,5 +32,4 @@ namespace primitive
 
 
 } // namespace primitive
-
 

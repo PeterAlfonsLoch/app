@@ -405,28 +405,42 @@ char * __cdecl crt_char_traits::StringReverse( char * psz ) throw()
    //return reinterpret_cast< char * >( _mbsrev( reinterpret_cast< unsigned char* >( psz ) ) );
 }
 
-#ifdef WINDOWS
-
 strsize __cdecl crt_char_traits::GetFormattedLength(const char * pszFormat, va_list args ) throw()
 {
-   return _vscprintf( pszFormat, args );
-}
+
+#ifdef WINDOWS
+
+   return _vscprintf(pszFormat, args);
+
+#else
+
+   return vsnprintf(NULL, 0, pszFormat, args);
 
 #endif
 
+}
 
 strsize __cdecl crt_char_traits::Format(char * pszBuffer,const char * pszFormat, va_list args ) throw()
 {
-   return vsprintf( pszBuffer, pszFormat, args );
+
+   return vsprintf(pszBuffer, pszFormat, args);
 
 }
 
-#if _SECURE_TEMPLATE
 strsize __cdecl crt_char_traits::Format(char * pszBuffer,size_t nlength,const char * pszFormat, va_list args ) throw()
 {
-   return vsprintf_s( pszBuffer, nlength, pszFormat, args );
-}
+
+#ifdef WINDOWS
+
+   return vsprintf_s(pszBuffer, nlength, pszFormat, args);
+
+#else
+
+   return vsnprintf(pszBuffer, nlength, pszFormat, args);
+
 #endif
+
+}
 
 strsize __cdecl crt_char_traits::GetcharLength(const char * pszSrc ) throw()
 {
@@ -527,19 +541,36 @@ bool __cdecl crt_char_traits::ReAllocSysString( const char* pchData,BSTR* pbstr,
 
 #endif
 
-DWORD __cdecl crt_char_traits::FormatMessage(DWORD dwFlags, LPCVOID pSource,
-                                             DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer,
-                                             DWORD nSize, va_list* pArguments ) throw()
+DWORD __cdecl crt_char_traits::FormatMessage(DWORD dwFlags, LPCVOID pSource, DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer, DWORD nSize, va_list* pArguments ) throw()
 {
-   return ::FormatMessageA( dwFlags, pSource, dwMessageID, dwLanguageID,
-      pszBuffer, nSize, pArguments );
+
+#ifdef WINDOWS
+
+   return ::FormatMessageA( dwFlags, pSource, dwMessageID, dwLanguageID,pszBuffer, nSize, pArguments );
+
+#else
+
+   return 0;
+
+#endif
+
+
+
 }
 
-DWORD __cdecl crt_char_traits::format_message(DWORD dwFlags, LPCVOID pSource,
-                                              DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer,
-                                              DWORD nSize, va_list* pArguments ) throw()
+DWORD __cdecl crt_char_traits::format_message(DWORD dwFlags, LPCVOID pSource, DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer, DWORD nSize, va_list* pArguments ) throw()
 {
+
+#ifdef WINDOWS
+
    return FormatMessage(dwFlags, pSource, dwMessageID, dwLanguageID, pszBuffer, nSize, pArguments);
+
+#else
+
+   return 0;
+
+#endif
+
 }
 
 strsize __cdecl crt_char_traits::SafeStringLen( const char * psz ) throw()
@@ -567,14 +598,27 @@ strsize __cdecl crt_char_traits::GetCharLen(const char* pch ) throw()
    return  gen::str::utf8_char(pch).get_length();
 }
 
-DWORD __cdecl crt_char_traits::GetEnvironmentVariable(const char * pszVar,
-                                                      char * pszBuffer,DWORD dwSize ) throw()
+DWORD __cdecl crt_char_traits::GetEnvironmentVariable(const char * pszVar, char * pszBuffer,DWORD dwSize ) throw()
 {
-   return ::GetEnvironmentVariableA( pszVar, pszBuffer, dwSize );
+
+#ifdef WINDOWS
+
+   return ::GetEnvironmentVariableA(pszVar, pszBuffer, dwSize);
+
+#else
+
+   return strlen(strncpy(pszBuffer, getenv(pszVar), dwSize));
+
+#endif
+
 }
+
 
 void crt_char_traits::ConvertToAnsi(char* pstrString,size_t size)
 {
+
+#ifdef WINDOWS
+
    if(size>UINT_MAX)
    {
       // API only allows DWORD size
@@ -586,9 +630,17 @@ void crt_char_traits::ConvertToAnsi(char* pstrString,size_t size)
    {
       throw last_error_exception();
    }
+
+#endif
+
 }
+
+
 void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 {
+
+#ifdef WINDOWS
+
    if(size>UINT_MAX)
    {
       // API only allows DWORD size
@@ -600,6 +652,9 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
    {
       throw last_error_exception();
    }
+
+#endif
+
 }
 
 
@@ -1499,7 +1554,7 @@ strsize string::find_ci(XCHAR ch,strsize iStart, strsize nCount) const RELEASENO
    return -1;
 }
 
-strsize string::find_first_of(XCHAR ch,strsize iStart) const throw()
+strsize string::find_first_of(XCHAR ch,strsize iStart) const RELEASENOTHROW
 {
    return find(ch, iStart);
 }
@@ -1719,17 +1774,17 @@ strsize string::FindOneOf(PCXSTR pszCharSet, strsize iStart, strsize n) const RE
    return( (psz == NULL) ? -1 : strsize( psz-GetString() ) );
 }
 
-strsize string::find_first_of(PCXSTR pszCharSet, strsize iStart) const throw()
+strsize string::find_first_of(PCXSTR pszCharSet, strsize iStart) const RELEASENOTHROW
 {
    return FindOneOf(pszCharSet, iStart, -1);
 }
 
-strsize string::find_first_of(PCXSTR pszCharSet, strsize iStart, strsize n) const throw()
+strsize string::find_first_of(PCXSTR pszCharSet, strsize iStart, strsize n) const RELEASENOTHROW
 {
    return FindOneOf(pszCharSet, iStart, n);
 }
 
-strsize string::find_first_of(const string & strCharSet, strsize pos) const throw()
+strsize string::find_first_of(const string & strCharSet, strsize pos) const RELEASENOTHROW
 {
    return FindOneOf(strCharSet, pos, strCharSet.get_length());
 }
@@ -1782,7 +1837,7 @@ strsize string::find_first_not_of(const char* s, strsize pos, strsize n ) const
 
 
 // find the first occurrence of any of the characters in string 'pszCharSet'
-strsize string::find_last_of(char c, strsize pos) const throw()
+strsize string::find_last_of(char c, strsize pos) const RELEASENOTHROW
 {
    strsize nLength = get_length();
    // nLength is in XCHARs
@@ -1800,12 +1855,12 @@ strsize string::find_last_of(char c, strsize pos) const throw()
    return pos;
 }
 
-strsize string::find_last_of(PCXSTR pszCharSet, strsize iStart) const throw()
+strsize string::find_last_of(PCXSTR pszCharSet, strsize iStart) const RELEASENOTHROW
 {
    return find_last_of(pszCharSet, iStart, -1);
 }
 
-strsize string::find_last_of(PCXSTR pszCharSet, strsize pos, strsize n) const throw()
+strsize string::find_last_of(PCXSTR pszCharSet, strsize pos, strsize n) const RELEASENOTHROW
 {
    strsize nLength = get_length();
    // nLength is in XCHARs
@@ -1824,14 +1879,14 @@ strsize string::find_last_of(PCXSTR pszCharSet, strsize pos, strsize n) const th
    return pos;
 }
 
-strsize string::find_last_of(const string & strCharSet, strsize pos) const throw()
+strsize string::find_last_of(const string & strCharSet, strsize pos) const RELEASENOTHROW
 {
    return find_last_of(strCharSet, pos, strCharSet.get_length());
 }
 
 
 // find the first occurrence of any of the characters in string 'pszCharSet'
-strsize string::find_last_not_of(char c, strsize pos) const throw()
+strsize string::find_last_not_of(char c, strsize pos) const RELEASENOTHROW
 {
    strsize nLength = get_length();
    // nLength is in XCHARs
@@ -1849,12 +1904,12 @@ strsize string::find_last_not_of(char c, strsize pos) const throw()
    return pos;
 }
 
-strsize string::find_last_not_of(PCXSTR pszCharSet, strsize iStart) const throw()
+strsize string::find_last_not_of(PCXSTR pszCharSet, strsize iStart) const RELEASENOTHROW
 {
    return find_last_not_of(pszCharSet, iStart, -1);
 }
 
-strsize string::find_last_not_of(PCXSTR pszCharSet, strsize pos, strsize n) const throw()
+strsize string::find_last_not_of(PCXSTR pszCharSet, strsize pos, strsize n) const RELEASENOTHROW
 {
    strsize nLength = get_length();
    // nLength is in XCHARs
@@ -1873,14 +1928,14 @@ strsize string::find_last_not_of(PCXSTR pszCharSet, strsize pos, strsize n) cons
    return pos;
 }
 
-strsize string::find_last_not_of(const string & strCharSet, strsize pos) const throw()
+strsize string::find_last_not_of(const string & strCharSet, strsize pos) const RELEASENOTHROW
 {
    return find_last_not_of(strCharSet, pos, strCharSet.get_length());
 }
 
 
 // find the last occurrence of character 'ch'
-strsize string::reverse_find(XCHAR ch, strsize iStart) const throw()
+strsize string::reverse_find(XCHAR ch, strsize iStart) const RELEASENOTHROW
 {
    // find last single character
    PCXSTR psz = string_trait::StringFindCharRev( GetString(), ch, iStart );
@@ -1890,7 +1945,7 @@ strsize string::reverse_find(XCHAR ch, strsize iStart) const throw()
 }
 
 // find the last occurrence of character 'ch'
-strsize string::reverse_find( PCXSTR ch, strsize iStart) const throw()
+strsize string::reverse_find( PCXSTR ch, strsize iStart) const RELEASENOTHROW
 {
    // find last single character
    PCXSTR psz = string_trait::StringFindStrRev( GetString(), ch, iStart );
@@ -2409,10 +2464,13 @@ string string::SpanExcluding(PCXSTR pszCharSet ) const
 
 void string::AppendFormatV(PCXSTR pszFormat, va_list args )
 {
+
    ASSERT( __is_valid_string( pszFormat ) );
 
    strsize nCurrentLength = get_length();
+
    strsize nAppendLength = string_trait::GetFormattedLength( pszFormat, args );
+
    PXSTR pszBuffer = GetBuffer( nCurrentLength+nAppendLength );
 #if _SECURE_TEMPLATE
    string_trait::Format( pszBuffer+nCurrentLength,
@@ -2421,15 +2479,19 @@ void string::AppendFormatV(PCXSTR pszFormat, va_list args )
    string_trait::Format( pszBuffer+nCurrentLength, pszFormat, args );
 #endif
    ReleaseBufferSetLength( nCurrentLength+nAppendLength );
+
+
 }
 
 void string::FormatV(PCXSTR pszFormat, va_list args )
 {
+
    ASSERT( __is_valid_string( pszFormat ) );
+
    if(pszFormat == NULL)
       throw invalid_argument_exception();
 
-   strsize nLength = string_trait::GetFormattedLength( pszFormat, args );
+  strsize nLength = string_trait::GetFormattedLength( pszFormat, args );
    PXSTR pszBuffer = GetBuffer( nLength );
 #if _SECURE_TEMPLATE
    string_trait::Format( pszBuffer, nLength+1, pszFormat, args );
@@ -2437,24 +2499,42 @@ void string::FormatV(PCXSTR pszFormat, va_list args )
    string_trait::Format( pszBuffer, pszFormat, args );
 #endif
    ReleaseBufferSetLength( nLength );
+
 }
 
 // Format a message using format string 'pszFormat' and va_list
 void string::FormatMessageV(PCXSTR pszFormat, va_list* pArgList )
 {
+
+#ifdef WINDOWS
+
    // format message into temporary buffer pszTemp
+
    XCHAR * pszTemp;
-   DWORD dwResult = string_trait::FormatMessage( FORMAT_MESSAGE_FROM_STRING|
-      FORMAT_MESSAGE_ALLOCATE_BUFFER, pszFormat, 0, 0, reinterpret_cast< PXSTR >( &pszTemp ),
-      0, pArgList );
-   if( dwResult == 0 )
+
+   DWORD dwResult = string_trait::FormatMessage( FORMAT_MESSAGE_FROM_STRING | FORMAT_MESSAGE_ALLOCATE_BUFFER, pszFormat, 0, 0, reinterpret_cast< PXSTR >( &pszTemp ), 0, pArgList );
+
+   if(dwResult == 0)
    {
+
       ThrowMemoryException();
+
    }
 
    *this = pszTemp;
+
    LocalFree(pszTemp);
+
+#else
+
+
+   FormatV(pszFormat, *pArgList);
+
+#endif
+
 }
+
+#ifdef WINDOWS
 
 // OLE BSTR support
 
@@ -2482,9 +2562,12 @@ BSTR string::SetSysString(BSTR* pbstr ) const
    return( *pbstr );
 }
 
+#endif
+
 // Set the string to the value of environment var 'pszVar'
 bool string::GetEnvironmentVariable(PCXSTR pszVar )
 {
+
    ULONG nLength = string_trait::GetEnvironmentVariable( pszVar, NULL, 0 );
    bool bRetVal = FALSE;
 
@@ -2501,8 +2584,15 @@ bool string::GetEnvironmentVariable(PCXSTR pszVar )
    }
 
    return( bRetVal );
+
 }
 
+bool string::getenv(PCXSTR pszVar)
+{
+
+   return GetEnvironmentVariable(pszVar);
+
+}
 
 
 // Load the string from resource 'nID'
@@ -2547,6 +2637,8 @@ return( TRUE );
 #define _CSTRING_BUFFER_SIZE(_CStringObj) ((_CStringObj).GetAllocLength() + 1)
 #endif
 
+#ifdef WINDOWS
+
 void __cdecl string::Format(PCXSTR pszFormat, ... )
 {
    ASSERT( __is_valid_string( pszFormat ) );
@@ -2585,7 +2677,7 @@ void __cdecl string::format_message(PCXSTR pszFormat, ... )
    va_end( argList );
 }
 
-
+#endif
 
 bool string::load_string(::ca::application * papp, id id)
 {

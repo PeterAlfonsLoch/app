@@ -153,7 +153,7 @@ namespace primitive
 
    inline string memory_container::str() const
    {
-      
+
       return string((const char *) get_data(), get_size());
 
    }

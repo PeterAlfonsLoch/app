@@ -1868,9 +1868,9 @@ int64_array & var::int64a()
    if(m_etype != type_int64a)
    {
       int64_array * pia =  new int64_array();
-      for(int i = 0; i < array_get_count(); i++)
+      for(index i = 0; i < array_get_count(); i++)
       {
-         pia->add((int64_t) at(i));
+         pia->add(at(i).operator int64_t());
       }
       set_type(type_int64a, false);
       ASSERT(m_pca2 == NULL);

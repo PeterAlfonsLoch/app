@@ -24,6 +24,8 @@ CLASS_DECL_ca fixed_alloc_array * new_wstring_manager();
    //}}__MSG_MAP
 // // END_MESSAGE_MAP()
 
+/*#ifdef WINDOWS
+
 
 typedef LANGID (WINAPI*PFNGETUSERDEFAULTUILANGUAGE)();
 typedef LANGID (WINAPI*PFNGETSYSTEMDEFAULTUILANGUAGE)();
@@ -179,6 +181,8 @@ bool CActivationContext::s_bPFNInitialized = false;
 
 // HINSTANCE of the module
 extern "C" IMAGE_DOS_HEADER __ImageBase;
+
+*/
 
 namespace radix
 {

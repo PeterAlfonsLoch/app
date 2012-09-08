@@ -71,11 +71,11 @@ namespace primitive
          return mem.detach();
       }
 
-      LPBYTE p = m_pbStorage;
+      LPBYTE p          = m_pbStorage;
 
-      m_pbStorage = NULL;
-      m_cbStorage = NULL;
-      m_dwAllocation = 0;
+      m_pbStorage       = NULL;
+      m_cbStorage       = 0;
+      m_dwAllocation    = 0;
 
       return p;
 
@@ -89,14 +89,14 @@ namespace primitive
          ASSERT(FALSE);
          return false;
       }
-   
+
       if(dwNewLength <= 0)
       {
          return true;
       }
-   
+
       remove_offset();
-   
+
       if(m_pbStorage == NULL)
       {
          m_iOffset = 0;
@@ -107,12 +107,12 @@ namespace primitive
             m_pbComputed = NULL;
             return false;
          }
-         else 
+         else
          {
             m_dwAllocation = dwAllocation;
             if(m_pcontainer != NULL)
             {
-               m_pcontainer->offset_kept_pointers((int) m_pbStorage);
+               m_pcontainer->offset_kept_pointers((int_ptr) m_pbStorage);
             }
             m_pbComputed = m_pbStorage;
             return true;
@@ -137,7 +137,7 @@ namespace primitive
                {
                   m_pcontainer->offset_kept_pointers(iOffset);
                }
-            
+
                m_dwAllocation = dwAllocation;
                MidFree(m_pbStorage);
                m_pbStorage = (LPBYTE) lpVoid;
@@ -160,7 +160,7 @@ namespace primitive
                {
                   m_pcontainer->offset_kept_pointers(iOffset);
                }
-            
+
                m_dwAllocation = dwAllocation;
                m_pbStorage = (LPBYTE) lpVoid;
                m_pbComputed = m_pbStorage;
@@ -171,7 +171,7 @@ namespace primitive
          {
             return true;
          }
-      
+
       }
    }
 
@@ -207,11 +207,11 @@ namespace primitive
 
 
 
-   
-   
-   
-   
-   
+
+
+
+
+
 
 
 } // namespace primitive
