@@ -152,7 +152,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
          *plValue = longitem.m_l;
          return true;
       }
-   
+
 
 
 
@@ -195,13 +195,13 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       string strKey;
       strKey = lpKey;
       strKey.replace("'", "''");
-   
+
       string strSql;
       strSql.Format(
          "select value FROM integertable WHERE id = '%s';",
          strKey);
 
-   
+
       slDatabase.lock();
       //try
       {
@@ -215,7 +215,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       if(m_pdataset->num_rows() <= 0)
          return false;
 
-      *plValue = m_pdataset->fv("value");
+      *plValue = m_pdataset->fv("value").operator int64_t();
 
       return true;
 
@@ -232,7 +232,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
 
       if(m_pqueue == NULL)
       {
-         
+
          m_pqueue = new sync_queue(get_app());
          m_pqueue->m_pset = this;
          m_pqueue->Begin();
@@ -258,7 +258,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
       strKey = lpKey;
       strKey.replace("'", "''");
 
-   
+
       ::sqlite::base * pdb   = db()->GetImplDatabase();
       string strSql;
       int64_t l;
@@ -284,14 +284,14 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
       }
       else
       {
-   
+
          strSql.Format(
             "INSERT INTO integertable (id, value) values ('%s', '%d');",
             strKey,
             lValue);
 
-      
-      
+
+
          try
          {
             pdb->start_transaction();
@@ -428,7 +428,7 @@ bool db_long_set::load(const char * lpKey, LPRECT lpRect)
 
 bool db_long_set::save(const char * lpKey, LPCRECT lpRect)
 {
-   
+
    string strKey = lpKey;
 
    if(!save(strKey + ".left", lpRect->left))
@@ -506,7 +506,7 @@ bool db_long_set::SaveWindowRect_(const char * lpKey, ::ca::window *pWnd)
          m_spRowsetIndex.Release();
    try
    {
-        
+
       hr = session.open(*pdb);
       if (FAILED(hr))
         {
@@ -528,7 +528,7 @@ bool db_long_set::SaveWindowRect_(const char * lpKey, ::ca::window *pWnd)
 
       dbIdIndex.eKind = DBKIND_NAME;
       dbIdIndex.uName.pwszName = OLESTR("PrimaryKey");
-      
+
       CDBPropSet   propset(DBPROPSET_ROWSET);
       propset.add_property(DBPROP_BOOKMARKS, true);
       propset.add_property(DBPROP_CANFETCHBACKWARDS, true);
@@ -546,7 +546,7 @@ bool db_long_set::SaveWindowRect_(const char * lpKey, ::ca::window *pWnd)
       //CComPtr<IRowsetIndex> spIndex ;
    try
    {
-      
+
       hr = session.m_spOpenRowset->OpenRowset(
          NULL,
          &dbIdTable,
@@ -581,7 +581,7 @@ bool db_long_set::SaveWindowRect_(const char * lpKey, ::ca::window *pWnd)
       hr = m_spRowset->QueryInterface(&m_spRowsetIndex);
       if(FAILED(hr))
          return hr;
-        
+
         m_bIndexed = true;
 
    } catch(COLEDBException *e)
@@ -722,7 +722,7 @@ bool db_long_set::load(const char * lpKey, LPPOINT lpPoint)
 
 bool db_long_set::save(const char * lpKey, LPPOINT lpPoint)
 {
-   
+
    string strKey = lpKey;
 
    if(!save(strKey + ".x", lpPoint->x))

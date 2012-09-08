@@ -28,3 +28,11 @@ CLASS_DECL_c DWORD SetLastError(DWORD dw)
    return dwLastError;
 
 }
+
+
+CLASS_DECL_c bool _istlead(int ch)
+{
+
+   return false;
+
+}

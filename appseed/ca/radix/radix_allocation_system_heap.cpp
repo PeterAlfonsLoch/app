@@ -83,20 +83,44 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
 
 CLASS_DECL_ca void system_heap_free(void * pvoid)
 {
+
    mutex_lock lock(&g_mutexSystemHeap, true);
+
    byte * p = (byte *) pvoid;
-   int iMod = p[-1 - sizeof(size_t)];
+
+   int_ptr iMod = p[-1 - sizeof(size_t)];
+
    if(iMod < 1 || iMod > 4)
       return;
+
 #ifdef WINDOWS
+
    if(!::HeapFree(g_hSystemHeap, 0, p - iMod))
-#else
-   if(!::free(p - iMod))
-#endif
    {
+
       DWORD dw = ::GetLastError();
+
       ::OutputDebugString("system_heap_free : Failed to free memory");
+
    }
+
+#else
+
+   try
+   {
+
+      ::free(p - iMod);
+
+   }
+   catch(...)
+   {
+
+      ::OutputDebugString("system_heap_free : Failed to free memory");
+
+   }
+
+#endif
+
 }
 
 

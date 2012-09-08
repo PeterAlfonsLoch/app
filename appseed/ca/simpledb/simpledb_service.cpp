@@ -1,6 +1,8 @@
 #include "framework.h"
-#include <ShlObj.h>
 
+#ifdef WINDOWS
+#include <ShlObj.h>
+#endif
 
 namespace simpledb
 {

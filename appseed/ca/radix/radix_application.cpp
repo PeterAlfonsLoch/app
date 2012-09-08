@@ -1045,6 +1045,17 @@ namespace radix
 
    bool application::check_exclusive()
    {
+
+      bool bSetOk;
+
+      LPSECURITY_ATTRIBUTES lpsa = NULL;
+
+      bool bResourceException = false;
+
+#ifdef WINDOWS
+
+      bSetOk = false;
+
       SECURITY_ATTRIBUTES MutexAttributes;
       ZeroMemory( &MutexAttributes, sizeof(MutexAttributes) );
       MutexAttributes.nLength = sizeof( MutexAttributes );
@@ -1056,131 +1067,143 @@ namespace radix
       {
          // give the security descriptor a Null Dacl
          // done using the  "TRUE, (PACL)NULL" here
-         bool bSetOk = SetSecurityDescriptorDacl( &SD,
+         bSetOk = SetSecurityDescriptorDacl( &SD,
                                                TRUE,
                                                (PACL)NULL,
                                                FALSE ) != FALSE;
-         bool bResourceException;
-         if ( bSetOk )
-         {
-            // Make the security attributes point
-            // to the security descriptor
-            MutexAttributes.lpSecurityDescriptor = &SD;
-            bResourceException = false;
-            try
-            {
-               m_pmutexGlobal = new mutex(FALSE, get_global_mutex_name(), &MutexAttributes);
-            }
-            catch(resource_exception &)
-            {
-               try
-               {
-                  m_pmutexGlobal = new mutex(FALSE, get_global_mutex_name());
-               }
-               catch(resource_exception &)
-               {
-                  bResourceException = true;
-               }
-            }
+      }
 
-            if(m_eexclusiveinstance == ExclusiveInstanceGlobal
-               && (::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException))
+      if(bSetOk)
+      {
+
+         MutexAttributes.lpSecurityDescriptor = &SD;
+
+         lpsa = &MutexAttributes;
+
+      }
+
+#else
+
+      bSetOk = true;
+
+#endif
+
+      if ( bSetOk )
+      {
+         // Make the security attributes point
+         // to the security descriptor
+         bResourceException = false;
+         try
+         {
+            m_pmutexGlobal = new mutex(FALSE, get_global_mutex_name(), lpsa);
+         }
+         catch(resource_exception &)
+         {
+            try
             {
-               // Should in some way activate the other instance, but this is global, what to do? do not know yet.
-               //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
-               TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
-               on_exclusive_instance_conflict(ExclusiveInstanceGlobal);
-               return false;
+               m_pmutexGlobal = new mutex(FALSE, get_global_mutex_name());
             }
-            if(m_eexclusiveinstance == ExclusiveInstanceGlobalId)
+            catch(resource_exception &)
             {
-               bResourceException = false;
-               try
-               {
-                  m_pmutexGlobalId = new mutex(FALSE, get_global_id_mutex_name(), &MutexAttributes);
-               }
-               catch(resource_exception &)
-               {
-                  try
-                  {
-                     m_pmutexGlobalId = new mutex(FALSE, get_global_id_mutex_name());
-                  }
-                  catch(resource_exception &)
-                  {
-                     bResourceException = true;
-                  }
-               }
-               if(::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException)
-               {
-                  // Should in some way activate the other instance
-                  //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-                  TRACE("A instance of the application:<br><br>           - " + string(m_strAppName)+ "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
-                  on_exclusive_instance_conflict(ExclusiveInstanceGlobalId);
-                  return false;
-               }
+               bResourceException = true;
             }
+         }
+
+         if(m_eexclusiveinstance == ExclusiveInstanceGlobal
+            && (::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException))
+         {
+            // Should in some way activate the other instance, but this is global, what to do? do not know yet.
+            //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
+            TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
+            on_exclusive_instance_conflict(ExclusiveInstanceGlobal);
+            return false;
+         }
+         if(m_eexclusiveinstance == ExclusiveInstanceGlobalId)
+         {
             bResourceException = false;
             try
             {
-               m_pmutexLocal = new mutex(FALSE, get_local_mutex_name(), &MutexAttributes);
+               m_pmutexGlobalId = new mutex(FALSE, get_global_id_mutex_name(), lpsa);
             }
             catch(resource_exception &)
             {
                try
                {
-                  m_pmutexLocal = new mutex(FALSE, get_local_mutex_name());
+                  m_pmutexGlobalId = new mutex(FALSE, get_global_id_mutex_name());
                }
-               catch(resource_exception & )
+               catch(resource_exception &)
                {
                   bResourceException = true;
                }
             }
-            if(m_eexclusiveinstance == ExclusiveInstanceLocal && (::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException))
+            if(::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException)
             {
                // Should in some way activate the other instance
                //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-               TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-               on_exclusive_instance_conflict(ExclusiveInstanceLocal);
+               TRACE("A instance of the application:<br><br>           - " + string(m_strAppName)+ "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
+               on_exclusive_instance_conflict(ExclusiveInstanceGlobalId);
                return false;
             }
-            if(m_eexclusiveinstance == ExclusiveInstanceLocalId)
+         }
+         bResourceException = false;
+         try
+         {
+            m_pmutexLocal = new mutex(FALSE, get_local_mutex_name(), lpsa);
+         }
+         catch(resource_exception &)
+         {
+            try
             {
-               bResourceException = false;
+               m_pmutexLocal = new mutex(FALSE, get_local_mutex_name());
+            }
+            catch(resource_exception & )
+            {
+               bResourceException = true;
+            }
+         }
+         if(m_eexclusiveinstance == ExclusiveInstanceLocal && (::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException))
+         {
+            // Should in some way activate the other instance
+            //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
+            TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
+            on_exclusive_instance_conflict(ExclusiveInstanceLocal);
+            return false;
+         }
+         if(m_eexclusiveinstance == ExclusiveInstanceLocalId)
+         {
+            bResourceException = false;
+            try
+            {
+               m_pmutexLocalId = new mutex(FALSE, get_local_id_mutex_name(), lpsa);
+            }
+            catch(resource_exception &)
+            {
                try
                {
-                  m_pmutexLocalId = new mutex(FALSE, get_local_id_mutex_name(), &MutexAttributes);
+                  m_pmutexLocalId = new mutex(FALSE, get_local_id_mutex_name());
                }
                catch(resource_exception &)
                {
-                  try
-                  {
-                     m_pmutexLocalId = new mutex(FALSE, get_local_id_mutex_name());
-                  }
-                  catch(resource_exception &)
-                  {
-                     bResourceException = true;
-                  }
-               }
-               if(::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException)
-               {
-                  // Should in some way activate the other instance
-                  //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-                  TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account with the same id.<br><br>Exiting this new instance.");
-                  on_exclusive_instance_conflict(ExclusiveInstanceLocalId);
-                  return false;
+                  bResourceException = true;
                }
             }
-         }
-         else
-         {
-            return false;
+            if(::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException)
+            {
+               // Should in some way activate the other instance
+               //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
+               TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account with the same id.<br><br>Exiting this new instance.");
+               on_exclusive_instance_conflict(ExclusiveInstanceLocalId);
+               return false;
+            }
          }
       }
       else
       {
          return false;
       }
+
       return true;
+
    }
 
    bool application::release_exclusive()
@@ -1351,7 +1374,7 @@ namespace radix
             if (i >= nString)
                ++nTotalLen;
             else if (rglpsz[i] != NULL)
-               nTotalLen += lstrlen(rglpsz[i]);
+               nTotalLen += strlen(rglpsz[i]);
          }
          else
          {
@@ -1385,7 +1408,7 @@ namespace radix
             }
             else if (rglpsz[i] != NULL)
             {
-               int nLen = lstrlen(rglpsz[i]);
+               int nLen = strlen(rglpsz[i]);
                ::gen::strcpy_s(pchDest, nTotalLen + 1, rglpsz[i]);
                nTotalLen -= nLen;
                pchDest += nLen;
@@ -1393,7 +1416,7 @@ namespace radix
          }
          else
          {
-            if (_istlead(*pchSrc))
+            if (islead(*pchSrc))
                *pchDest++ = *pchSrc++, nTotalLen--; // copy first of 2 bytes
             *pchDest++ = *pchSrc++;
             nTotalLen--;

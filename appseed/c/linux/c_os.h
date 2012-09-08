@@ -68,3 +68,6 @@ int64_t fd_get_file_size(int fd);
 
 CLASS_DECL_c DWORD GetLastError();
 CLASS_DECL_c DWORD SetLastError(DWORD dw);
+
+
+CLASS_DECL_c bool _istlead(int ch);

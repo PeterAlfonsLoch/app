@@ -65,23 +65,29 @@ plex_heap_alloc_sync::~plex_heap_alloc_sync()
    FreeAll();
 }
 
+
 void plex_heap_alloc_sync::FreeAll()
 {
-   
+
    m_protect.lock();
 
-   __try
+
+
+   try
    {
       m_pBlocks->FreeDataChain();
       m_pBlocks = NULL;
       m_pnodeFree = NULL;
    }
-   __finally
+   catch(...)
    {
-      m_protect.unlock();
    }
 
+
+   m_protect.unlock();
+
 }
+
 
 void plex_heap_alloc_sync::NewBlock()
 {
@@ -109,7 +115,7 @@ void plex_heap_alloc_sync::NewBlock()
 
 plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
 {
-   
+
    int iShareCount = ::get_current_process_maximum_affinity() + 1;
 
    if(iShareCount <= 0)
@@ -128,7 +134,7 @@ plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
 
 plex_heap_alloc::~plex_heap_alloc()
 {
-   
+
    for(int i = 0; i < get_count(); i++)
    {
       delete element_at(i);
@@ -138,16 +144,18 @@ plex_heap_alloc::~plex_heap_alloc()
 
 void plex_heap_alloc::FreeAll()
 {
-   
+
    for(int i = 0; i < get_count(); i++)
    {
-      __try
+
+      try
       {
          element_at(i)->FreeAll();
       }
-      __finally
+      catch(...)
       {
       }
+
    }
 
 }
@@ -213,13 +221,13 @@ void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int nBlockUse, const 
    {
       pblock = (memdleak_block *) ::system_heap_alloc(nAllocSize + sizeof(memdleak_block));
    }
-   
+
    pblock->m_iBlockUse     = nBlockUse;
    pblock->m_pszFileName   = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
    pblock->m_iLine         = iLine;
-   
-   
-   
+
+
+
 
    mutex_lock lock(&g_mutex2, true);
    pblock->m_pprevious                 = NULL;
@@ -239,7 +247,7 @@ void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int nBlockUse, const 
 
 void plex_heap_alloc_array::free_dbg(void * p, size_t nAllocSize)
 {
-   
+
    plex_heap_alloc * palloc = find(nAllocSize + sizeof(memdleak_block));
 
    memdleak_block * pblock = &((memdleak_block *)p)[-1];
@@ -312,7 +320,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
    {
 
       void * pNew;
-      
+
       if(pallocNew != NULL)
       {
          pNew = pallocNew->Alloc();
@@ -341,7 +349,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
    pblock->m_pszFileName   = strdup(pszFileName);
    pblock->m_iLine         = iLine;
 
-   
+
    pblock->m_pprevious                 = NULL;
    pblock->m_pnext                     = s_pmemdleakList;
    if(s_pmemdleakList != NULL)
@@ -365,7 +373,7 @@ count plex_heap_alloc_array::get_mem_info(int ** ppiUse, const char *** ppszFile
    throw simple_exception("plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
 
 #endif
-   
+
    mutex_lock lock(&g_mutex2, true);
 
    memdleak_block * pblock = s_pmemdleakList;
@@ -401,7 +409,7 @@ count plex_heap_alloc_array::get_mem_info(int ** ppiUse, const char *** ppszFile
       pblock = pblock->m_pnext;
 
 
-      
+
    }
 
    *ppiUse = piUse;

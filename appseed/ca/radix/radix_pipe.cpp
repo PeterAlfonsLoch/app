@@ -1,8 +1,13 @@
 #include "framework.h"
 
+//#if defined(LINUX)
+//#include <unistd.h>
+//#endif
+
 #if defined(LINUX)
-#include <unistd.h>
+#include <fcntl.h>
 #endif
+
 
 namespace gen
 {
@@ -18,22 +23,46 @@ namespace gen
       m_sa.nLength = sizeof(SECURITY_ATTRIBUTES);
       m_sa.bInheritHandle = bInherit ? TRUE : FALSE;
       m_sa.lpSecurityDescriptor = NULL;
+      m_hRead = NULL;
+      m_hWrite = NULL;
+
+#else
+
+      m_fd[0] = -1;
+      m_fd[1] = -1;
 
 #endif
 
-      m_hRead = NULL;
-      m_hWrite = NULL;
 
    }
 
    pipe::~pipe()
    {
+
       if(m_pchBuf != NULL)
       {
          free(m_pchBuf);
       }
+
+#ifdef WINDOWS
+
       ::CloseHandle(m_hRead);
       ::CloseHandle(m_hWrite);
+
+#else
+
+      if(m_fd[0] != -1)
+      {
+         ::close(m_fd[0]);
+      }
+
+      if(m_fd[1] != -1)
+      {
+         ::close(m_fd[1]);
+      }
+
+#endif
+
    }
 
 
@@ -72,25 +101,44 @@ namespace gen
 
    bool pipe::not_inherit_read()
    {
+
+#ifdef WINDOWS
+
       if(!SetHandleInformation(m_hRead, HANDLE_FLAG_INHERIT, 0))
          return false;
+
+#endif
+
       return true;
+
    }
 
    bool pipe::not_inherit_write()
    {
+
+#ifdef WINDOWS
+
       if(!SetHandleInformation(m_hWrite, HANDLE_FLAG_INHERIT, 0))
          return false;
+
+#endif
+
       return true;
+
    }
 
 
    bool pipe::write(const char * psz)
    {
       DWORD dwWritten;
+      DWORD dwLen = strlen(psz);
       bool bSuccess = FALSE;
-      bSuccess = WriteFile(m_hWrite, (const char *) psz, (DWORD) strlen(psz), &dwWritten, NULL) != FALSE;
-      return bSuccess != FALSE;
+#ifdef WINDOWS
+      bSuccess = WriteFile(m_hWrite, (const char *) psz, (DWORD) dwLen, &dwWritten, NULL) != FALSE;
+#else
+      dwWritten = ::write(m_fd[1], (const char *) psz, dwLen);
+#endif
+      return bSuccess != FALSE && dwWritten == dwLen;
    }
 
    string pipe::read()
@@ -106,7 +154,12 @@ namespace gen
 
          try
          {
+#ifdef WINDOWS
             bSuccess = ReadFile( m_hRead, chBuf, BUFSIZE, &dwRead, NULL) != FALSE;
+#else
+            dwRead =::read(m_fd[0], chBuf, BUFSIZE);
+            bSuccess = TRUE;
+#endif
          }
          catch(...)
          {
@@ -117,8 +170,11 @@ namespace gen
          str += chBuf;
          if(dwRead < BUFSIZE)
             break;
+
       }
+
       return str;
+
    }
 
    string pipe::one_pass_read()

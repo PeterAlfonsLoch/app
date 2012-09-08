@@ -4,9 +4,9 @@ namespace simpledb
 {
 
 
-      socket_thread::socket_thread(::ca::application * papp) : 
+      socket_thread::socket_thread(::ca::application * papp) :
          ca(papp),
-         thread(papp), 
+         thread(papp),
          ::sockets::socket_handler(papp)
       {
          m_psocket = NULL;
@@ -33,11 +33,11 @@ namespace simpledb
 
       /*   STARTUPINFO startupinfo;
          memset(&startupinfo, 0, sizeof(startupinfo));
-         if(!::CreateProcess(NULL, "netnoderewrite.exe", 
+         if(!::CreateProcess(NULL, "netnoderewrite.exe",
             NULL,
             NULL,
             TRUE,
-            0, 
+            0,
             NULL,
             ".",
             &startupinfo,
@@ -46,7 +46,7 @@ namespace simpledb
             return FALSE;
          }
 
-   
+
          WaitForInputIdle(m_pi.hProcess, INFINITE);
 
 
@@ -56,7 +56,7 @@ namespace simpledb
 
          PostThreadMessage(WM_APP, 0, 0);*/
 
-   
+
 
 
       /*   m_plistensocket = new netnodeListenSocket(this);
@@ -90,7 +90,7 @@ namespace simpledb
             {
                try
                {
-                  
+
                   EnablePool();
                   ::sockets::listen_socket < socket > ll(*this);
                   ll.m_bDetach = true;
