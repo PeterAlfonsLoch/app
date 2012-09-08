@@ -1,9 +1,4 @@
 #include "framework.h"
-
-
-// gone to ansios_file.cpp/.h
-/*
-
 #include <sys/stat.h>
 
 
@@ -34,4 +29,3 @@ int64_t fd_get_file_size(int fd)
 
 }
 
-*/
