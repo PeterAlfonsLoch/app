@@ -452,6 +452,7 @@
     <ClCompile Include="hotplugin\hotplugin_container_launcher.cpp" />
     <ClCompile Include="hotplugin\hotplugin_host.cpp" />
     <ClCompile Include="hotplugin\hotplugin_plugin.cpp" />
+    <ClCompile Include="merdes_windows\c_os_thread.cpp" />
     <ClCompile Include="merde_window\window_merdes.cpp" />
     <ClCompile Include="os\os_process.cpp" />
     <ClCompile Include="simple_ui\simple_edit_box.cpp" />
@@ -482,18 +483,6 @@
     <ClCompile Include="spa\windows\spa_windows_boot.cpp" />
     <ClCompile Include="spa\windows\spa_windows_service.cpp" />
     <ClCompile Include="spa\windows\spa_windows_win.cpp" />
-    <ClCompile Include="windows\crypt\c_os_crypt.cpp" />
-    <ClCompile Include="windows\c_os.cpp" />
-    <ClCompile Include="windows\c_os_http.cpp" />
-    <ClCompile Include="windows\c_os_launcher.cpp" />
-    <ClCompile Include="windows\c_os_library.cpp" />
-    <ClCompile Include="windows\c_os_lock.cpp" />
-    <ClCompile Include="windows\c_os_message_loop.cpp" />
-    <ClCompile Include="windows\c_os_process.cpp" />
-    <ClCompile Include="windows\c_os_registry.cpp" />
-    <ClCompile Include="windows\c_os_simple_app.cpp" />
-    <ClCompile Include="windows\c_os_simple_shell_launcher.cpp" />
-    <ClCompile Include="windows\c_os_small_ipc_channel.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

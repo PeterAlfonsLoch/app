@@ -20,10 +20,7 @@ CLASS_DECL_c bool main_initialize();
 CLASS_DECL_c bool main_finalize();
 
 
-
-
-
-#ifndef M_WINDOWS
+#ifndef MERDE_WINDOWS
 
 CLASS_DECL_c
 LSTATUS

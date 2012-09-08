@@ -113,7 +113,9 @@
 #define HAVE_WINDOWS_H 1
 
 /* Define to 1 if you have the <winsock2.h> header spfile-> */
+#if defined(WINDOWS)  && !defined(MERDE_WINDOWS)
 #define HAVE_WINSOCK2_H 1
+#endif
 
 /* Define to use X86 inlined assembly code */
 /* #undef HAVE_X86 */

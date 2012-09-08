@@ -37,7 +37,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //    http://msdn.microsoft.com/downloads/sdks/platform/tpipv6.asp
 // see the FAQ on how to install
 /*#define WIN32_LEAN_AND_MEAN
-#include <winsock2.h>
 #include <ws2tcpip.h>
 #if _MSC_VER < 1200
 #ifndef __CYGWIN__

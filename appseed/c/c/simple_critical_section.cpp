@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#ifdef WINDOWS
+#if defined(WINDOWS) && !defined(MERDE_WINDOWS)
 
 
 simple_critical_section::simple_critical_section()

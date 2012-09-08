@@ -40,12 +40,6 @@
     <Filter Include="Source Files\hotplugin">
       <UniqueIdentifier>{e84587bc-5069-4dab-9dcb-e182ca7bd9a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\windows">
-      <UniqueIdentifier>{02b45c45-c1ad-4f8e-adea-ba0a424e644b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\windows\crypt">
-      <UniqueIdentifier>{e8679dcd-fb55-477f-9515-ac50f35367c2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\spa">
       <UniqueIdentifier>{169a80c9-a4e3-4820-a69f-43cda270ad86}</UniqueIdentifier>
     </Filter>
@@ -86,42 +80,6 @@
     </ClCompile>
     <ClCompile Include="hotplugin\hotplugin_plugin.cpp">
       <Filter>Source Files\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_http.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_launcher.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_library.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_lock.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_message_loop.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_process.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_registry.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_simple_app.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_simple_shell_launcher.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_small_ipc_channel.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\crypt\c_os_crypt.cpp">
-      <Filter>Source Files\windows\crypt</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa_login.cpp">
       <Filter>Source Files\spa</Filter>
@@ -385,6 +343,9 @@
       <Filter>Source Files\crypt</Filter>
     </ClCompile>
     <ClCompile Include="merde_window\window_merdes.cpp">
+      <Filter>Source Files\merdes_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_thread.cpp">
       <Filter>Source Files\merdes_windows</Filter>
     </ClCompile>
   </ItemGroup>

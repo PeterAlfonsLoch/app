@@ -9,7 +9,7 @@
 #pragma once
 
 
-#if defined(WINDOWS) && !defined(M_WINDOWS)
+#if defined(WINDOWS) && !defined(MERDE_WINDOWS)
 
 
 class CLASS_DECL_ca service_status : public SERVICE_STATUS

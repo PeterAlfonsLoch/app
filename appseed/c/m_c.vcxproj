@@ -345,6 +345,8 @@
     <ClInclude Include="hotplugin\hotplugin.h" />
     <ClInclude Include="hotplugin\hotplugin_host.h" />
     <ClInclude Include="hotplugin\hotplugin_plugin.h" />
+    <ClInclude Include="merdes_windows\c_os_thread.h" />
+    <ClInclude Include="merdes_windows\windows_merde.h" />
     <ClInclude Include="os\os.h" />
     <ClInclude Include="os\os_process.h" />
     <ClInclude Include="simple_ui\simple_button.h" />
@@ -439,6 +441,8 @@
     <ClCompile Include="hotplugin\hotplugin_container_launcher.cpp" />
     <ClCompile Include="hotplugin\hotplugin_host.cpp" />
     <ClCompile Include="hotplugin\hotplugin_plugin.cpp" />
+    <ClCompile Include="merdes_windows\c_os_thread.cpp" />
+    <ClCompile Include="merdes_windows\window_merdes.cpp" />
     <ClCompile Include="os\os_process.cpp" />
     <ClCompile Include="simple_ui\simple_edit_box.cpp" />
     <ClCompile Include="simple_ui\simple_label.cpp" />

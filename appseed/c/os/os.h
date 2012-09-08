@@ -17,7 +17,7 @@
 #include "os_binreloc.h"
 #include "c/linux/c_os.h"
 
-#elif defined(M_WINDOWS)
+#elif defined(MERDE_WINDOWS)
 
 #include "c/merdes_windows/windows_merde.h"
 

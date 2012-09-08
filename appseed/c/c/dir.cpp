@@ -10,7 +10,7 @@
 #include <unistd.h>
 #endif
 
-#if defined(WINDOWS) && !defined(M_WINDOWS)
+#if defined(WINDOWS) && !defined(MERDE_WINDOWS)
 
 bool CLASS_DECL_c SHGetSpecialFolderPath(HWND hwnd, vsstring &str, int csidl, bool fCreate)
 {

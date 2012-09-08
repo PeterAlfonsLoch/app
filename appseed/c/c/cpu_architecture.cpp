@@ -163,7 +163,7 @@ int CPU_Is_InOrder()
   return 1;
 }
 
-#if !defined(MY_CPU_AMD64) && defined(_WIN32)
+#if !defined(MY_CPU_AMD64) && defined(_WIN32) && !defined(MERDE_WINDOWS)
 static int CPU_Sys_Is_SSE_Supported()
 {
   OSVERSIONINFO vi;
