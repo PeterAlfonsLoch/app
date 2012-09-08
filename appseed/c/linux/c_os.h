@@ -11,6 +11,7 @@
 #include "c_os_process.h"
 #include "c_os_cross_win_gdi.h"
 #include "c_os_cross_win_file.h"
+#include "c_os_file.h"
 
 
 
@@ -59,10 +60,6 @@ union semun
    USHORT * array;
 
 };
-
-
-void fd_ensure_file_size(int fd, int iSize);
-int64_t fd_get_file_size(int fd);
 
 
 

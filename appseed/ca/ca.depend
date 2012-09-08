@@ -7159,7 +7159,7 @@
 	"c/merdes_windows/windows_merde.h"
 	"c/windows/c_os.h"
 
-1347083005 /ca2/app/appseed/c/os/os_thread.h
+1347136330 /ca2/app/appseed/c/os/os_thread.h
 
 1342864656 /ca2/app/appseed/c/os/os_process.h
 
@@ -7184,7 +7184,7 @@
 
 1342864676 /ca2/app/appseed/c/macos/c_os_cross_win_file.h
 
-1347121998 /ca2/app/appseed/c/linux/c_os.h
+1347136453 /ca2/app/appseed/c/linux/c_os.h
 	<stdarg.h>
 	<wchar.h>
 	"c_os_http_lib.h"
@@ -7192,6 +7192,7 @@
 	"c_os_process.h"
 	"c_os_cross_win_gdi.h"
 	"c_os_cross_win_file.h"
+	"c_os_file.h"
 
 1342864691 /ca2/app/appseed/c/linux/c_os_http_lib.h
 
@@ -7205,12 +7206,13 @@
 
 1346215872 /ca2/app/appseed/c/merdes_windows/windows_merde.h
 
-1347027050 /ca2/app/appseed/c/windows/c_os.h
+1347136330 /ca2/app/appseed/c/windows/c_os.h
 	"c/os/os.h"
 	"c_os_http.h"
 	"c_os_registry.h"
 	"c_os_process.h"
 	"c_os_simple_hold_handle.h"
+	"c_os_file.h"
 
 1342864659 /ca2/app/appseed/c/windows/c_os_http.h
 
@@ -9197,7 +9199,7 @@
 	<stdlib.h>
 	<errno.h>
 
-1342864875 /ca2/app/appseed/ca/sockets/webserver/http_form.h
+1347136331 /ca2/app/appseed/ca/sockets/webserver/http_form.h
 
 1342864875 /ca2/app/appseed/ca/sockets/webserver/http_cookie.h
 
@@ -9817,7 +9819,7 @@
 1342864833 source:/ca2/app/appseed/ca/ca2/ca2_log.cpp
 	"framework.h"
 
-1342864833 source:/ca2/app/appseed/ca/ca2/ca2_net.cpp
+1347133745 source:/ca2/app/appseed/ca/ca2/ca2_net.cpp
 	"framework.h"
 	<ctype.h>
 	<sys/socket.h>
@@ -12114,7 +12116,7 @@
 1342864873 source:/ca2/app/appseed/ca/sockets/asynch_dns/sockets_resolv_server.cpp
 	"framework.h"
 
-1347131718 source:/ca2/app/appseed/ca/sockets/basic/sockets_Socket.cpp
+1347133620 source:/ca2/app/appseed/ca/sockets/basic/sockets_Socket.cpp
 	"framework.h"
 	<errno.h>
 	<netdb.h>
@@ -12218,4 +12220,34 @@
 1347132212 /ca2/app/appseed/ca/sockets/sockets_http_memory_file.h
 
 1347132355 /ca2/app/appseed/ca/sockets/sockets_application_interface.h
+
+1347135633 source:/ca2/app/appseed/ca/sockets/internal/sockets_SSLInitializer.cpp
+	"framework.h"
+	<openssl/ssl.h>
+	<openssl/rand.h>
+
+1342864875 source:/ca2/app/appseed/ca/sockets/webserver/sockets_Ajp13Socket.cpp
+	"framework.h"
+
+1342864875 source:/ca2/app/appseed/ca/sockets/webserver/sockets_AjpBaseSocket.cpp
+	"framework.h"
+
+1347136453 /ca2/app/appseed/c/linux/c_os_file.h
+
+1347136330 /ca2/app/appseed/c/windows/c_os_file.h
+
+1346215873 source:/ca2/app/appseed/ca/sockets/webserver/sockets_http_base_socket.cpp
+	"framework.h"
+
+1342864875 source:/ca2/app/appseed/ca/sockets/webserver/sockets_http_cookie.cpp
+	"framework.h"
+
+1342864875 source:/ca2/app/appseed/ca/sockets/webserver/sockets_http_form.cpp
+	"framework.h"
+
+1342864875 source:/ca2/app/appseed/ca/sockets/webserver/sockets_http_request.cpp
+	"framework.h"
+
+1342864875 source:/ca2/app/appseed/ca/sockets/webserver/sockets_http_response.cpp
+	"framework.h"
 

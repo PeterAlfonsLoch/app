@@ -248,12 +248,13 @@ namespace sockets
       }
       if (n == -1)
       {
+   #ifdef _WIN32
          // check error code that means a connect is in progress
          int iError = ::WSAGetLastError();
-   #ifdef _WIN32
          if (iError == WSAEWOULDBLOCK || iError == 0)
    #else
-         if (Errno == EINPROGRESS)
+         int iError = Errno;
+         if iError == EINPROGRESS)
    #endif
          {
             Attach(s);
@@ -262,7 +263,7 @@ namespace sockets
          else
          if (Socks4() && Handler().Socks4TryDirect() ) // retry
          {
-            closesocket(s);
+            ::closesocket(s);
             return open(ad, true);
          }
          else
@@ -278,7 +279,7 @@ namespace sockets
             string strError = StrError(iError);
             Handler().LogError(this, "connect: failed", iError, StrError(iError), ::gen::log::level::fatal);
             SetCloseAndDelete();
-            closesocket(s);
+            ::closesocket(s);
             return false;
          }
       }

@@ -1265,7 +1265,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 #ifdef WINDOWS
                UnmapViewOfFile(m_pcolorref);
 #else
-               ::munmap(m_pcolorref, ::fd_get_file_size(m_hfileBitmap));
+               ::munmap(m_pcolorref, ::get_file_size(m_hfileBitmap));
 #endif
             }
             catch(...)

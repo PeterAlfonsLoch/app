@@ -469,7 +469,7 @@ vsstring get_file_md5_by_map(const char * path)
 
    }
 
-   int64_t dwSize = ::fd_get_file_size(fd);
+   int64_t dwSize = ::get_file_size(fd);
 
    char * pview = (char *) mmap(NULL, dwSize, PROT_READ, MAP_PRIVATE, fd, 0);
 
@@ -544,7 +544,7 @@ vsstring get_file_md5_by_read(const char * path)
 
    }
 
-   int64_t dwSize = ::fd_get_file_size(fd);
+   int64_t dwSize = ::get_file_size(fd);
 
 #endif
 

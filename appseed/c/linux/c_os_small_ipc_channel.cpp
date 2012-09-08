@@ -243,7 +243,7 @@ bool small_ipc_channel::open_ab(const char * pszKey, launcher * plauncher)
    vsstring strChannelTx = m_vssChannel + "-b";
 
 
-   if(!m_rxchannel.create(strChannelRx, pszModule))
+   if(!m_rxchannel.create(strChannelRx))
    {
       return false;
    }
@@ -268,7 +268,7 @@ bool small_ipc_channel::open_ba(const char * pszKey, launcher * plauncher)
    vsstring strChannelTx = m_vssChannel + "-a";
 
 
-   if(!m_rxchannel.create(strChannelRx, pszModule))
+   if(!m_rxchannel.create(strChannelRx))
    {
       return false;
    }
