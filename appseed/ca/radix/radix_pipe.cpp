@@ -10,12 +10,20 @@ namespace gen
 
    pipe::pipe(bool bInherit)
    {
+
       m_pchBuf = NULL;
+
+#ifdef WINDOWS
+
       m_sa.nLength = sizeof(SECURITY_ATTRIBUTES);
       m_sa.bInheritHandle = bInherit ? TRUE : FALSE;
       m_sa.lpSecurityDescriptor = NULL;
+
+#endif
+
       m_hRead = NULL;
       m_hWrite = NULL;
+
    }
 
    pipe::~pipe()

@@ -63,7 +63,7 @@ void * _ca_alloc(size_t size)
 #ifdef WINDOWS
 #if ZEROED_ALLOC
    byte * p = (byte *) HeapAlloc(::GetProcessHeap(), HEAP_ZERO_MEMORY, size + 4 + 32);
-#else   
+#else
    byte * p = (byte *) HeapAlloc(::GetProcessHeap(), 0, size + 4 + 32);
 #endif
 #else
@@ -94,7 +94,7 @@ void * _ca_realloc(void * pvoid, size_t nSize, int nBlockUse, const char * szFil
 #ifdef WINDOWS
 #if ZEROED_ALLOC
       p = (byte *) HeapReAlloc(::GetProcessHeap(), HEAP_ZERO_MEMORY, p, nSize + 4 + 32);
-#else   
+#else
       p = (byte *) HeapAlloc(::GetProcessHeap(), 0, p, nSize + 4 + 32);
 #endif
       //p = (byte *) HeapReAlloc(::GetProcessHeap(), 0, p, nSize + 4 + 32);
@@ -137,14 +137,14 @@ size_t _ca_msize(void * pvoid, int iBlockType)
    p -= (4 + 16);
    if(p[0] == 22)
    {
-#ifdef WINDOWS
-      return HeapSize(::GetProcessHeap(), 0, p)  - (4 + 16);
-#elif defined(MACOS)
-      return malloc_size(p);
-#else
+//#ifdef WINDOWS
+//      return HeapSize(::GetProcessHeap(), 0, p)  - (4 + 16);
+//#elif defined(MACOS)
+//      return malloc_size(p);
+//#else
       return *((size_t *) &p[1]);
       //return malloc_usable_size(p);
-#endif
+//#endif
    }
    return 0;
 }

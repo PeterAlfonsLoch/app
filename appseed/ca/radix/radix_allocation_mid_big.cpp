@@ -33,8 +33,8 @@ void * MyAlloc(size_t size)
 
 void * MyRealloc(void * addr, size_t sizeOld, size_t sizeNew)
 {
-  if (size == 0)
-    return 0;
+  if (sizeNew == 0)
+    return addr;
   #ifdef _SZ_ALLOC_DEBUG
   {
     void *p = realloc(addr, sizeNew);

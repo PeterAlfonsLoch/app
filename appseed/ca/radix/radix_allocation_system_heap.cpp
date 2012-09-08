@@ -1,5 +1,11 @@
 #include "framework.h"
 
+#if defined(MACOS)
+#include <malloc/malloc.h>
+#else
+#include <malloc.h>
+#endif
+
 
 // DWORD aligned allocation
 
@@ -17,17 +23,18 @@ CLASS_DECL_ca void * system_heap_alloc(size_t size)
   // byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, HEAP_ZERO_MEMORY, ((size + 4 + 3) & ~3));
 //#else  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
 #ifdef WINDOWS
-   byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, 0, ((size + 4 + 3) & ~3));
+   byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, 0, ((size + 4 + sizeof(size_t) + 3) & ~3));
 #else
-   byte * p = (byte *) ::malloc((size + 4 + 3) & ~3);
+   byte * p = (byte *) ::malloc((size + 4 +  sizeof(size_t)  + 3) & ~3);
 #endif
 //#endif
    if(p == NULL)
       return NULL;
    ((DWORD *)p)[0] = 0;
+   *((size_t *)&((DWORD *)p)[1]) = size;
    int iMod = ((dword_ptr)p) % 4;
    p[3 - iMod] = (uint8_t) (4 - iMod);
-   return &p[4 - iMod];
+   return &p[4 + sizeof(size_t) - iMod];
 }
 
 
@@ -35,14 +42,13 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
 {
    mutex_lock lock(&g_mutexSystemHeap, true);
    byte * pOld = (byte *) pvoidOld;
-   int iMod = pOld[-1];
+   int iMod = pOld[-1 - sizeof(size_t)];
    if(iMod < 1 || iMod > 4)
       return NULL;
+   size_t sizeOld = *((size_t *)&((DWORD *) pOld - iMod)[1]);
 #ifdef WINDOWS
-   size_t sizeOld = ::HeapSize(g_hSystemHeap, 0, pOld - iMod);
    byte * p = (byte *) ::HeapReAlloc(g_hSystemHeap, 0, pOld - iMod, ((size + 4 + 3) & ~3));
 #else
-   size_t sizeOld = ::malloc_size(pOld - iMod);
    byte * p = (byte *) ::realloc(pOld - iMod, ((size + 4 + 3) & ~3));
 #endif
    if(p == NULL)
@@ -69,8 +75,9 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
    }
    ((DWORD *)p)[0] = 0;
    iMod = ((dword_ptr)p) % 4;
+   *((size_t *)&((DWORD *)p)[1]) = size;
    p[3 - iMod] = (uint8_t) (4 - iMod);
-   return &p[4 - iMod];
+   return &p[4 + sizeof(size_t) - iMod];
 }
 
 
@@ -78,7 +85,7 @@ CLASS_DECL_ca void system_heap_free(void * pvoid)
 {
    mutex_lock lock(&g_mutexSystemHeap, true);
    byte * p = (byte *) pvoid;
-   int iMod = p[-1];
+   int iMod = p[-1 - sizeof(size_t)];
    if(iMod < 1 || iMod > 4)
       return;
 #ifdef WINDOWS

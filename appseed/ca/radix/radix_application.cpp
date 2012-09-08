@@ -235,6 +235,9 @@ namespace radix
    // no dependency on non-throwing.
    bool application::_LoadSysPolicies() throw()
    {
+
+#ifdef WINDOWS
+
       HKEY hkPolicy = NULL;
       DWORD dwValue = 0;
       DWORD dwDataLen = sizeof(dwValue);
@@ -322,7 +325,12 @@ namespace radix
          }
          pPolicies++;
       };
+
+#endif
+
       return TRUE;
+
+
    }
 
    bool application::GetSysPolicyValue(DWORD dwPolicyID, bool *pbValue)
@@ -649,10 +657,15 @@ namespace radix
          __global_free(m_hDevNames);*/
 
       // free atoms if used
+
+#ifdef WINDOWS
+
       if (m_atomApp != NULL)
          ::GlobalDeleteAtom(m_atomApp);
       if (m_atomSystemTopic != NULL)
          ::GlobalDeleteAtom(m_atomSystemTopic);
+
+#endif
 
       // free cached commandline
    //   if (m_pCmdInfo != NULL)
@@ -693,6 +706,9 @@ namespace radix
    }
 
 
+#ifdef WINDOWS
+
+
    /////////////////////////////////////////////////////////////////////////////
    // WinHelp Helper
 
@@ -728,6 +744,7 @@ namespace radix
       // trans pMainWnd->HtmlHelp(dwData, nCmd);
    }
 
+
    void application::WinHelpInternal(dword_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
@@ -740,6 +757,11 @@ namespace radix
       // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle update
       // trans pMainWnd->WinHelpInternal(dwData, nCmd);
    }
+
+
+#endif
+
+
 
    /////////////////////////////////////////////////////////////////////////////
    // Special exception handling
@@ -812,11 +834,15 @@ namespace radix
    /////////////////////////////////////////////////////////////////////////////
    // application idle processing
 
-   void application::DevModeChange(__in LPTSTR lpDeviceName)
+   void application::DevModeChange(LPTSTR lpDeviceName)
    {
       UNREFERENCED_PARAMETER(lpDeviceName);
+
+      #ifdef WINDOWS
       if (m_hDevNames == NULL)
          return;
+
+         #endif
 
    }
 
@@ -840,17 +866,25 @@ namespace radix
 
    void application::dump(dump_context & dumpcontext) const
    {
+
       thread::dump(dumpcontext);
 
+#ifdef WINDOWS
       dumpcontext << "m_hInstance = " << (void *)m_hInstance;
+#endif
+
       dumpcontext << "\nm_lpCmdLine = " << m_strCmdLine;
       dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
       dumpcontext << "\nm_pszAppName = " << m_strAppName;
       dumpcontext << "\nm_bHelpMode = " << m_bHelpMode;
       dumpcontext << "\nm_pszHelpFilePath = " << m_pszHelpFilePath;
       dumpcontext << "\nm_pszProfileName = " << m_pszProfileName;
+
+#ifdef WINDOWS
       dumpcontext << "\nm_hDevMode = " << (void *)m_hDevMode;
       dumpcontext << "\nm_hDevNames = " << (void *)m_hDevNames;
+#endif
+
       dumpcontext << "\nm_dwPromptContext = " << m_dwPromptContext;
 //      dumpcontext << "\nm_eHelpType = " << m_eHelpType;
 
@@ -906,7 +940,17 @@ namespace radix
 
    HCURSOR application::LoadStandardCursor(const char * lpszCursorName) const
    {
+
+#ifdef WINDOWS
+
       return ::LoadCursor(NULL, lpszCursorName);
+
+#else
+
+      return NULL;
+
+#endif
+
    }
 
 

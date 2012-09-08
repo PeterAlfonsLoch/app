@@ -61,7 +61,7 @@ void fixed_alloc_no_sync::NewBlock()
 
 fixed_alloc_sync::fixed_alloc_sync(UINT nAllocSize, UINT nBlockSize, int iShareCount)
 {
-   
+
    m_i = 0;
    m_iShareCount = iShareCount;
    m_allocptra.set_size(iShareCount);
@@ -101,10 +101,14 @@ fixed_alloc_sync::~fixed_alloc_sync()
 
 void fixed_alloc_sync::FreeAll()
 {
-   
+
    for(int i = 0; i < m_allocptra.get_count(); i++)
    {
+
       m_protectptra[i]->lock();
+
+#ifdef WINDOWS
+
       __try
       {
          m_allocptra[i]->FreeAll();
@@ -113,6 +117,20 @@ void fixed_alloc_sync::FreeAll()
       {
          m_protectptra[i]->unlock();
       }
+
+#else
+
+      try
+      {
+         m_allocptra[i]->FreeAll();
+      }
+      catch(...)
+      {
+      }
+
+      m_protectptra[i]->unlock();
+#endif
+
    }
 
 }
@@ -134,7 +152,7 @@ void fixed_alloc_sync::FreeAll()
 
 fixed_alloc::fixed_alloc(UINT nAllocSize, UINT nBlockSize)
 {
-   
+
    int iShareCount = ::get_current_process_maximum_affinity() + 1;
 
    if(iShareCount <= 0)
@@ -153,7 +171,7 @@ fixed_alloc::fixed_alloc(UINT nAllocSize, UINT nBlockSize)
 
 fixed_alloc::~fixed_alloc()
 {
-   
+
    for(int i = 0; i < m_allocptra.get_count(); i++)
    {
       delete m_allocptra[i];
@@ -163,9 +181,10 @@ fixed_alloc::~fixed_alloc()
 
 void fixed_alloc::FreeAll()
 {
-   
+
    for(int i = 0; i < m_allocptra.get_count(); i++)
    {
+#ifdef WINDOWS
       __try
       {
          m_allocptra[i]->FreeAll();
@@ -173,6 +192,15 @@ void fixed_alloc::FreeAll()
       __finally
       {
       }
+#else
+      try
+      {
+         m_allocptra[i]->FreeAll();
+      }
+      catch(...)
+      {
+      }
+#endif
    }
 
 }
@@ -279,7 +307,7 @@ fixed_alloc * fixed_alloc_array::find(size_t nAllocSize)
    int iFound = -1;
    for(int i = 0; i < this->get_count(); i++)
    {
-      if(this->element_at(i)->m_allocptra[0]->m_allocptra[0]->m_nAllocSize >= nAllocSize 
+      if(this->element_at(i)->m_allocptra[0]->m_allocptra[0]->m_nAllocSize >= nAllocSize
       && (nFoundSize == MAX_DWORD_PTR || this->element_at(i)->m_allocptra[0]->m_allocptra[0]->m_nAllocSize < nFoundSize))
       {
          iFound = i;

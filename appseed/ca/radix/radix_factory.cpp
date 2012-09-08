@@ -34,7 +34,7 @@ factory::~factory()
 
 void factory::set_at(const char * pszId, factory_item_base * pitem)
 {
-   
+
    single_lock sl(m_pmutex, TRUE);
 
    class id id = (class id) pszId;
@@ -56,13 +56,13 @@ void factory::set_at(const char * pszId, factory_item_base * pitem)
 
 void factory::set_at(const char * pszType, factory_allocator * pallocator)
 {
-   
+
    single_lock sl(m_pmutex, TRUE);
-   
+
    class id id = (class id) pszType;
 
    index iFind;
-   
+
    if(m_pstridaAllocator->find(id, iFind))
       return;
 
@@ -79,7 +79,7 @@ void factory::discard(::ca::ca * pobject)
    sl.unlock();
    if(pallocator == NULL)
    {
-      if(::IsDebuggerPresent())
+      if(::is_debugger_attached())
          __debug_break();
       return;
    }
@@ -117,7 +117,7 @@ void factory::enable_simple_factory_request(bool bEnable)
 
 bool factory::is_set(const char * pszType)
 {
-   
+
    index iFind;
 
    return m_pstrida->find((id) pszType, iFind);
@@ -130,7 +130,7 @@ bool factory::is_set(const char * pszType)
 
 factory_allocator * factory::get_allocator(const char * pszType)
 {
-   
+
    single_lock sl(m_pmutex, TRUE);
 
    class id id;
@@ -145,7 +145,7 @@ factory_allocator * factory::get_allocator(const char * pszType)
    }
 
    index iFind;
-   
+
    if(!m_pstridaAllocator->find(id, iFind))
       return NULL;
 
@@ -173,7 +173,7 @@ factory_allocator * factory::get_allocator(const char * pszType)
    }
 
    single_lock sl(m_pmutex, TRUE);
-   
+
    index iFind;
 
    if(!m_pstrida->find(info.m_id, iFind))
@@ -195,19 +195,19 @@ factory_allocator * factory::get_allocator(const char * pszType)
 
 ::ca::ca * factory::base_clone(::ca::ca * pobject)
 {
-   
+
    single_lock sl(m_pmutex, TRUE);
-   
+
    if(pobject == NULL)
       return NULL;
-   
+
    index iFind;
 
    if(!m_pstrida->find((id) typeid(*pobject).name(), iFind))
       return NULL;
 
    factory_item_base * pitem = m_itemptra.element_at(iFind);
-   
+
    return pitem->clone(pobject);
 
 }

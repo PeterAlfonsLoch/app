@@ -1,35 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="api/api_atol.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="26" topLine="0" />
+	<File name="api/api_linux.h" open="0" top="0" tabpos="0">
+		<Cursor position="898" topLine="0" />
 	</File>
 	<File name="api/api_muldiv64.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="14973" topLine="458" />
 	</File>
-	<File name="api/api_str.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="2336" topLine="136" />
-	</File>
 	<File name="api/debug.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1775" topLine="32" />
-	</File>
-	<File name="api/debug.h" open="0" top="0" tabpos="0">
-		<Cursor position="5644" topLine="155" />
 	</File>
 	<File name="api/linux.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="19" topLine="0" />
 	</File>
-	<File name="api/muldiv64.h" open="0" top="0" tabpos="0">
-		<Cursor position="1022" topLine="0" />
-	</File>
-	<File name="api/rotate.h" open="0" top="0" tabpos="0">
-		<Cursor position="162" topLine="0" />
-	</File>
-	<File name="api/str.h" open="0" top="0" tabpos="0">
-		<Cursor position="41" topLine="0" />
-	</File>
 	<File name="ca.h" open="0" top="0" tabpos="0">
-		<Cursor position="35" topLine="0" />
+		<Cursor position="38" topLine="0" />
 	</File>
 	<File name="ca/ca.h" open="0" top="0" tabpos="10">
 		<Cursor position="42" topLine="0" />
@@ -94,8 +79,11 @@
 	<File name="ca/ca_profiler.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="105" topLine="0" />
 	</File>
+	<File name="ca/ca_profiler.h" open="0" top="0" tabpos="0">
+		<Cursor position="204" topLine="0" />
+	</File>
 	<File name="ca/ca_smart_pointer.h" open="0" top="0" tabpos="5">
-		<Cursor position="2190" topLine="83" />
+		<Cursor position="82" topLine="0" />
 	</File>
 	<File name="ca/ca_thread.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="10052" topLine="399" />
@@ -116,13 +104,10 @@
 		<Cursor position="4227" topLine="89" />
 	</File>
 	<File name="ca4/ca4.h" open="0" top="0" tabpos="0">
-		<Cursor position="45" topLine="0" />
+		<Cursor position="39" topLine="0" />
 	</File>
 	<File name="ca4/ca4_compress.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1668" topLine="28" />
-	</File>
-	<File name="ca4/ca4_nessie.h" open="0" top="0" tabpos="0">
-		<Cursor position="1108" topLine="4" />
 	</File>
 	<File name="ca4/ca4_oauth.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1384" topLine="23" />
@@ -131,49 +116,37 @@
 		<Cursor position="36099" topLine="1311" />
 	</File>
 	<File name="calculator/calculator.h" open="0" top="0" tabpos="0">
-		<Cursor position="39" topLine="0" />
-	</File>
-	<File name="collection/base_array.h" open="0" top="0" tabpos="11">
-		<Cursor position="24412" topLine="922" />
-	</File>
-	<File name="collection/bitset.h" open="0" top="0" tabpos="0">
-		<Cursor position="2678" topLine="78" />
+		<Cursor position="37" topLine="0" />
 	</File>
 	<File name="collection/collection.h" open="0" top="0" tabpos="0">
 		<Cursor position="73" topLine="0" />
 	</File>
-	<File name="collection/comparable_array.h" open="0" top="0" tabpos="0">
-		<Cursor position="16" topLine="0" />
+	<File name="collection/collection_fifo_map.h" open="0" top="0" tabpos="0">
+		<Cursor position="24060" topLine="943" />
 	</File>
-	<File name="collection/comparable_primitive_array.h" open="0" top="0" tabpos="0">
-		<Cursor position="16" topLine="0" />
+	<File name="collection/collection_queue.h" open="0" top="0" tabpos="0">
+		<Cursor position="975" topLine="11" />
 	</File>
-	<File name="collection/comparable_raw_array.h" open="0" top="0" tabpos="0">
-		<Cursor position="282" topLine="0" />
+	<File name="collection/collection_sort_map.h" open="0" top="0" tabpos="0">
+		<Cursor position="23214" topLine="868" />
 	</File>
-	<File name="collection/logic_array.h" open="0" top="0" tabpos="0">
-		<Cursor position="145" topLine="0" />
-	</File>
-	<File name="collection/numeric_array.h" open="0" top="0" tabpos="0">
-		<Cursor position="8652" topLine="297" />
+	<File name="collection/collection_string_to_string_map.h" open="0" top="0" tabpos="0">
+		<Cursor position="2292" topLine="97" />
 	</File>
 	<File name="collection/point_array.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2221" topLine="61" />
-	</File>
-	<File name="collection/point_array.h" open="0" top="0" tabpos="0">
-		<Cursor position="966" topLine="0" />
-	</File>
-	<File name="collection/raw_array.h" open="0" top="0" tabpos="4">
-		<Cursor position="524" topLine="0" />
 	</File>
 	<File name="collection/simple_list.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="425" topLine="0" />
 	</File>
 	<File name="colorertake5/colorertake5.h" open="0" top="0" tabpos="0">
-		<Cursor position="43" topLine="0" />
+		<Cursor position="38" topLine="0" />
 	</File>
 	<File name="colorertake5/logging.h" open="0" top="0" tabpos="0">
 		<Cursor position="14" topLine="0" />
+	</File>
+	<File name="colorertake5/xmldom.h" open="0" top="0" tabpos="0">
+		<Cursor position="5626" topLine="196" />
 	</File>
 	<File name="compress/compress_create_coder.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="1843" topLine="55" />
@@ -208,9 +181,6 @@
 	<File name="compress/zip/zip_zip.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="186" topLine="0" />
 	</File>
-	<File name="crypto/config.h" open="0" top="0" tabpos="0">
-		<Cursor position="1879" topLine="40" />
-	</File>
 	<File name="crypto/crypto_cipher_aes_cbc.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="2042" topLine="41" />
 	</File>
@@ -231,18 +201,6 @@
 	</File>
 	<File name="crypto/crypto_rng_rand_source.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1944" topLine="32" />
-	</File>
-	<File name="crypto/datatypes.h" open="0" top="0" tabpos="0">
-		<Cursor position="1909" topLine="35" />
-	</File>
-	<File name="crypto/err.h" open="0" top="0" tabpos="2">
-		<Cursor position="4617" topLine="98" />
-	</File>
-	<File name="crypto/integers.h" open="0" top="0" tabpos="0">
-		<Cursor position="2013" topLine="36" />
-	</File>
-	<File name="crypto/sha1.h" open="0" top="0" tabpos="0">
-		<Cursor position="1418" topLine="28" />
 	</File>
 	<File name="database/database.h" open="0" top="0" tabpos="0">
 		<Cursor position="36" topLine="0" />
@@ -266,34 +224,34 @@
 		<Cursor position="1863" topLine="49" />
 	</File>
 	<File name="dynamic_source/dynamic_source.h" open="0" top="0" tabpos="0">
-		<Cursor position="41" topLine="0" />
+		<Cursor position="45" topLine="0" />
 	</File>
 	<File name="dynamic_source/dynamic_source_library_class.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1196" topLine="9" />
+		<Cursor position="1792" topLine="28" />
 	</File>
 	<File name="dynamic_source/dynamic_source_library_class.h" open="0" top="0" tabpos="0">
 		<Cursor position="364" topLine="4" />
 	</File>
 	<File name="dynamic_source/dynamic_source_script.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="9408" topLine="294" />
+		<Cursor position="2354" topLine="64" />
 	</File>
 	<File name="dynamic_source/dynamic_source_script.h" open="0" top="0" tabpos="1">
 		<Cursor position="543" topLine="15" />
 	</File>
 	<File name="dynamic_source/dynamic_source_script_compiler.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="117" topLine="0" />
+		<Cursor position="59570" topLine="1744" />
 	</File>
 	<File name="dynamic_source/dynamic_source_script_compiler.h" open="0" top="0" tabpos="0">
 		<Cursor position="1017" topLine="21" />
 	</File>
 	<File name="dynamic_source/dynamic_source_script_manager.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="17739" topLine="542" />
+		<Cursor position="152" topLine="0" />
 	</File>
 	<File name="dynamic_source/dynamic_source_script_manager.h" open="0" top="0" tabpos="0">
 		<Cursor position="2932" topLine="72" />
 	</File>
 	<File name="ex1/ex1.h" open="0" top="0" tabpos="0">
-		<Cursor position="34" topLine="0" />
+		<Cursor position="37" topLine="0" />
 	</File>
 	<File name="ex1/ex1_application.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="800" topLine="9" />
@@ -310,11 +268,14 @@
 	<File name="ex1/ex1_file.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="5160" topLine="193" />
 	</File>
-	<File name="ex1/ex1_io_temp_buffer.cpp" open="1" top="1" tabpos="9">
-		<Cursor position="353" topLine="0" />
+	<File name="ex1/ex1_io_temp_buffer.cpp" open="0" top="0" tabpos="9">
+		<Cursor position="399" topLine="0" />
 	</File>
 	<File name="ex1/ex1_out_buffer.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="646" topLine="0" />
+	</File>
+	<File name="ex1/ex1_out_buffer.h" open="1" top="0" tabpos="13">
+		<Cursor position="556" topLine="7" />
 	</File>
 	<File name="ex1/ex1_plain_text_stream.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="10031" topLine="412" />
@@ -329,19 +290,10 @@
 		<Cursor position="310" topLine="0" />
 	</File>
 	<File name="ex2/ex2.h" open="0" top="0" tabpos="0">
-		<Cursor position="36" topLine="0" />
+		<Cursor position="37" topLine="0" />
 	</File>
 	<File name="ex2/ex2_application.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="8961" topLine="308" />
-	</File>
-	<File name="exception/base_exception.h" open="1" top="0" tabpos="37">
-		<Cursor position="37" topLine="0" />
-	</File>
-	<File name="exception/class.h" open="1" top="0" tabpos="38">
-		<Cursor position="0" topLine="26" />
-	</File>
-	<File name="exception/dump_context.h" open="1" top="0" tabpos="41">
-		<Cursor position="18" topLine="0" />
 	</File>
 	<File name="exception/exception.h" open="0" top="0" tabpos="2">
 		<Cursor position="7153" topLine="252" />
@@ -356,7 +308,7 @@
 		<Cursor position="33" topLine="0" />
 	</File>
 	<File name="exception/exception_dump_context.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="6667" topLine="342" />
+		<Cursor position="4593" topLine="280" />
 	</File>
 	<File name="exception/exception_dump_context.h" open="0" top="0" tabpos="0">
 		<Cursor position="917" topLine="5" />
@@ -367,32 +319,35 @@
 	<File name="exception/exception_engine.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="20968" topLine="653" />
 	</File>
+	<File name="exception/exception_invalid_arg_exception.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="247" topLine="0" />
+	</File>
+	<File name="exception/exception_memory.h" open="0" top="0" tabpos="0">
+		<Cursor position="18" topLine="0" />
+	</File>
+	<File name="exception/exception_memory_exception.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="194" topLine="0" />
+	</File>
+	<File name="exception/exception_simple.h" open="0" top="0" tabpos="0">
+		<Cursor position="22" topLine="0" />
+	</File>
+	<File name="exception/exception_simple_exception.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="300" topLine="0" />
+	</File>
 	<File name="exception/exception_standard.h" open="0" top="0" tabpos="0">
 		<Cursor position="2949" topLine="64" />
 	</File>
-	<File name="exception/not_implemented.h" open="1" top="0" tabpos="36">
-		<Cursor position="38" topLine="0" />
-	</File>
-	<File name="exception/se_exception.h" open="0" top="0" tabpos="0">
-		<Cursor position="3152" topLine="78" />
-	</File>
-	<File name="exception/se_translator.h" open="0" top="0" tabpos="0">
-		<Cursor position="1479" topLine="22" />
-	</File>
 	<File name="fontopus/fontopus.h" open="0" top="0" tabpos="0">
-		<Cursor position="33" topLine="0" />
+		<Cursor position="36" topLine="0" />
 	</File>
 	<File name="fontopus/fontopus_validate.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="928" topLine="3" />
 	</File>
 	<File name="framework.h" open="0" top="0" tabpos="0">
-		<Cursor position="40" topLine="0" />
+		<Cursor position="43" topLine="0" />
 	</File>
 	<File name="fs/fs.h" open="0" top="0" tabpos="0">
-		<Cursor position="38" topLine="0" />
-	</File>
-	<File name="gen/aaa_PointerManager_want_to_remove_xxx.h" open="0" top="0" tabpos="0">
-		<Cursor position="615" topLine="0" />
+		<Cursor position="36" topLine="0" />
 	</File>
 	<File name="gen/base.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="1174" topLine="0" />
@@ -404,7 +359,7 @@
 		<Cursor position="7184" topLine="127" />
 	</File>
 	<File name="gen/gen_application.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="3617" topLine="126" />
+		<Cursor position="81" topLine="0" />
 	</File>
 	<File name="gen/gen_ch.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="9631" topLine="209" />
@@ -415,8 +370,14 @@
 	<File name="gen/gen_ch_class.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="10689" topLine="340" />
 	</File>
+	<File name="gen/gen_command_thread.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="770" topLine="20" />
+	</File>
 	<File name="gen/gen_common.h" open="0" top="0" tabpos="0">
-		<Cursor position="59" topLine="0" />
+		<Cursor position="5394" topLine="190" />
+	</File>
+	<File name="gen/gen_compare.h" open="0" top="0" tabpos="0">
+		<Cursor position="824" topLine="17" />
 	</File>
 	<File name="gen/gen_definition.h" open="0" top="0" tabpos="3">
 		<Cursor position="3801" topLine="100" />
@@ -426,6 +387,9 @@
 	</File>
 	<File name="gen/gen_microtimer.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="502" topLine="0" />
+	</File>
+	<File name="gen/gen_microtimer.h" open="0" top="0" tabpos="0">
+		<Cursor position="491" topLine="0" />
 	</File>
 	<File name="gen/gen_muldiv32.h" open="0" top="0" tabpos="0">
 		<Cursor position="3983" topLine="59" />
@@ -452,10 +416,28 @@
 		<Cursor position="4253" topLine="109" />
 	</File>
 	<File name="geoip/geoip.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="190" topLine="0" />
+		<Cursor position="29840" topLine="768" />
 	</File>
 	<File name="geoip/geoip_update.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="7559" topLine="225" />
+	</File>
+	<File name="html/html_file.h" open="0" top="0" tabpos="0">
+		<Cursor position="1027" topLine="31" />
+	</File>
+	<File name="html/html_lite/html_lite_html_attributes.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="11112" topLine="417" />
+	</File>
+	<File name="html/html_lite/html_lite_html_entity_resolver.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="6421" topLine="173" />
+	</File>
+	<File name="html/html_lite/html_lite_html_reader.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="10126" topLine="333" />
+	</File>
+	<File name="html/html_lite/html_lite_html_reader.h" open="0" top="0" tabpos="0">
+		<Cursor position="9621" topLine="315" />
+	</File>
+	<File name="html/html_lite/html_lite_html_tag.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="5050" topLine="158" />
 	</File>
 	<File name="javascript/javascript.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="42547" topLine="1364" />
@@ -472,8 +454,8 @@
 	<File name="linux/os.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="19" topLine="0" />
 	</File>
-	<File name="linux/os.h" open="1" top="0" tabpos="6">
-		<Cursor position="869" topLine="0" />
+	<File name="linux/os.h" open="0" top="0" tabpos="6">
+		<Cursor position="14" topLine="0" />
 	</File>
 	<File name="linux/os_allocate_debug.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="19" topLine="0" />
@@ -556,6 +538,9 @@
 	<File name="multithreading/multithreading_single_lock.h" open="0" top="0" tabpos="24">
 		<Cursor position="225" topLine="0" />
 	</File>
+	<File name="multithreading/multithreading_sync_objec.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1228" topLine="39" />
+	</File>
 	<File name="multithreading/multithreading_synch_lock.cpp" open="0" top="0" tabpos="25">
 		<Cursor position="56" topLine="0" />
 	</File>
@@ -577,7 +562,7 @@
 	<File name="os/os_cross_windows.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1928" topLine="72" />
 	</File>
-	<File name="os/os_cross_windows.h" open="1" top="0" tabpos="5">
+	<File name="os/os_cross_windows.h" open="0" top="0" tabpos="5">
 		<Cursor position="891" topLine="23" />
 	</File>
 	<File name="os/os_cross_windows_crt.cpp" open="0" top="0" tabpos="0">
@@ -586,41 +571,56 @@
 	<File name="os/os_cross_windows_crt.h" open="0" top="0" tabpos="0">
 		<Cursor position="94" topLine="0" />
 	</File>
-	<File name="os/os_cross_windows_guid_def.h" open="1" top="0" tabpos="7">
+	<File name="os/os_cross_windows_guid_def.h" open="0" top="0" tabpos="7">
 		<Cursor position="238" topLine="0" />
 	</File>
-	<File name="os/os_cross_windows_internals.h" open="1" top="0" tabpos="4">
-		<Cursor position="100558" topLine="2331" />
+	<File name="os/os_cross_windows_internals.h" open="0" top="0" tabpos="4">
+		<Cursor position="3000" topLine="90" />
 	</File>
-	<File name="os/os_cross_windows_shared_memory.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="364" topLine="0" />
+	<File name="os/os_cross_windows_shared_memory.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="3164" topLine="121" />
 	</File>
-	<File name="os/os_cross_windows_time.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="3665" topLine="79" />
+	<File name="os/os_cross_windows_shared_memory.h" open="0" top="0" tabpos="0">
+		<Cursor position="383" topLine="0" />
 	</File>
-	<File name="os/os_cross_windows_time.h" open="1" top="0" tabpos="8">
+	<File name="os/os_cross_windows_time.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="30052" topLine="935" />
+	</File>
+	<File name="os/os_cross_windows_time.h" open="0" top="0" tabpos="8">
 		<Cursor position="23" topLine="0" />
 	</File>
-	<File name="os/os_cross_windows_winnt.h" open="1" top="0" tabpos="3">
+	<File name="os/os_cross_windows_winnt.h" open="0" top="0" tabpos="3">
 		<Cursor position="439" topLine="0" />
 	</File>
 	<File name="plane/plane.h" open="0" top="0" tabpos="0">
-		<Cursor position="43" topLine="0" />
+		<Cursor position="47" topLine="0" />
 	</File>
 	<File name="plane/plane_session.cpp" open="0" top="0" tabpos="21">
 		<Cursor position="19602" topLine="653" />
 	</File>
 	<File name="plane/plane_system.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="20433" topLine="846" />
+		<Cursor position="34003" topLine="1401" />
+	</File>
+	<File name="plane/plane_system.h" open="0" top="0" tabpos="0">
+		<Cursor position="70" topLine="0" />
 	</File>
 	<File name="plane/plane_system_primitive_string_format_spec.h" open="0" top="0" tabpos="4">
 		<Cursor position="34" topLine="0" />
 	</File>
+	<File name="plane/plane_system_primitive_var.h" open="1" top="0" tabpos="5">
+		<Cursor position="27" topLine="0" />
+	</File>
 	<File name="planebase/planebase.h" open="0" top="0" tabpos="0">
-		<Cursor position="41" topLine="0" />
+		<Cursor position="45" topLine="0" />
 	</File>
 	<File name="planebase/planebase_application.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="17001" topLine="469" />
+	</File>
+	<File name="plugin/plugin_plugin.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="23751" topLine="862" />
+	</File>
+	<File name="plugin/plugin_plugin.h" open="0" top="0" tabpos="0">
+		<Cursor position="354" topLine="13" />
 	</File>
 	<File name="primitive/count.h" open="0" top="0" tabpos="0">
 		<Cursor position="31" topLine="0" />
@@ -652,29 +652,38 @@
 	<File name="primitive/datetime/datetime_windows_file_time.h" open="0" top="0" tabpos="13">
 		<Cursor position="187" topLine="0" />
 	</File>
-	<File name="primitive/geometric_types.h" open="0" top="0" tabpos="0">
-		<Cursor position="4546" topLine="101" />
+	<File name="primitive/primitive_id.h" open="0" top="0" tabpos="0">
+		<Cursor position="7107" topLine="272" />
 	</File>
-	<File name="primitive/numeric_info.h" open="0" top="0" tabpos="35">
-		<Cursor position="47" topLine="0" />
+	<File name="primitive/primitive_memory_container.h" open="1" top="0" tabpos="12">
+		<Cursor position="2121" topLine="41" />
 	</File>
-	<File name="primitive/point.h" open="0" top="0" tabpos="0">
-		<Cursor position="2809" topLine="47" />
+	<File name="primitive/primitive_string.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="65802" topLine="2658" />
 	</File>
-	<File name="primitive/primitive_string.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="5173" topLine="164" />
-	</File>
-	<File name="primitive/primitive_string.h" open="0" top="0" tabpos="3">
-		<Cursor position="2303" topLine="67" />
+	<File name="primitive/primitive_string.h" open="1" top="0" tabpos="8">
+		<Cursor position="23875" topLine="590" />
 	</File>
 	<File name="primitive/primitive_string_core.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="194" topLine="0" />
 	</File>
-	<File name="primitive/primitive_var.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="6211" topLine="379" />
+	<File name="primitive/primitive_string_format.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1815" topLine="67" />
 	</File>
-	<File name="primitive/primitive_var.h" open="0" top="0" tabpos="7">
-		<Cursor position="6168" topLine="198" />
+	<File name="primitive/primitive_string_format.h" open="0" top="0" tabpos="0">
+		<Cursor position="8740" topLine="270" />
+	</File>
+	<File name="primitive/primitive_var.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="35245" topLine="1852" />
+	</File>
+	<File name="primitive/primitive_var.h" open="1" top="0" tabpos="6">
+		<Cursor position="5753" topLine="210" />
+	</File>
+	<File name="primitive/primitive_virtual_memory.cpp" open="1" top="0" tabpos="10">
+		<Cursor position="3789" topLine="130" />
+	</File>
+	<File name="primitive/primitive_virtual_memory.h" open="1" top="0" tabpos="11">
+		<Cursor position="900" topLine="0" />
 	</File>
 	<File name="primitive/rectangle.h" open="0" top="0" tabpos="0">
 		<Cursor position="12203" topLine="264" />
@@ -685,53 +694,53 @@
 	<File name="primitive/var.h" open="0" top="0" tabpos="0">
 		<Cursor position="16233" topLine="456" />
 	</File>
-	<File name="radix/allocate.h" open="0" top="0" tabpos="0">
-		<Cursor position="7040" topLine="174" />
-	</File>
-	<File name="radix/command_target.h" open="0" top="0" tabpos="0">
-		<Cursor position="8588" topLine="265" />
-	</File>
-	<File name="radix/dispimpl.h" open="0" top="0" tabpos="0">
-		<Cursor position="1309" topLine="7" />
-	</File>
-	<File name="radix/hh.h" open="0" top="0" tabpos="0">
-		<Cursor position="14726" topLine="234" />
-	</File>
-	<File name="radix/implementation.h" open="0" top="0" tabpos="0">
-		<Cursor position="10694" topLine="305" />
-	</File>
-	<File name="radix/kbase.h" open="0" top="0" tabpos="0">
-		<Cursor position="8193" topLine="247" />
-	</File>
 	<File name="radix/radix.h" open="0" top="0" tabpos="0">
-		<Cursor position="42" topLine="0" />
+		<Cursor position="39" topLine="0" />
 	</File>
 	<File name="radix/radix_afxcrit.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2489" topLine="58" />
 	</File>
-	<File name="radix/radix_allocate.h" open="0" top="0" tabpos="0">
-		<Cursor position="7056" topLine="193" />
+	<File name="radix/radix_allocate.h" open="1" top="0" tabpos="15">
+		<Cursor position="683" topLine="7" />
 	</File>
 	<File name="radix/radix_allocation_base_ca2.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="9300" topLine="275" />
 	</File>
-	<File name="radix/radix_application.cpp" open="0" top="0" tabpos="28">
-		<Cursor position="5489" topLine="172" />
+	<File name="radix/radix_allocation_mid_big.cpp" open="1" top="0" tabpos="14">
+		<Cursor position="765" topLine="15" />
+	</File>
+	<File name="radix/radix_allocation_system_heap.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="2352" topLine="42" />
+	</File>
+	<File name="radix/radix_application.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="25674" topLine="861" />
 	</File>
 	<File name="radix/radix_application.h" open="0" top="0" tabpos="29">
 		<Cursor position="15741" topLine="425" />
 	</File>
-	<File name="radix/radix_auxdata.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="232" topLine="0" />
-	</File>
 	<File name="radix/radix_base.h" open="0" top="0" tabpos="44">
 		<Cursor position="377" topLine="0" />
+	</File>
+	<File name="radix/radix_cmdtarg.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="radix/radix_command_target.cpp" open="1" top="0" tabpos="16">
+		<Cursor position="4085" topLine="153" />
+	</File>
+	<File name="radix/radix_factory.cpp" open="1" top="1" tabpos="18">
+		<Cursor position="1736" topLine="61" />
 	</File>
 	<File name="radix/radix_factory.h" open="0" top="0" tabpos="0">
 		<Cursor position="401" topLine="0" />
 	</File>
+	<File name="radix/radix_fixed_alloc.cpp" open="1" top="0" tabpos="17">
+		<Cursor position="3695" topLine="170" />
+	</File>
 	<File name="radix/radix_object.h" open="0" top="0" tabpos="30">
 		<Cursor position="418" topLine="0" />
+	</File>
+	<File name="radix/radix_pipe.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="43" topLine="0" />
 	</File>
 	<File name="radix/radix_plex_heap.h" open="0" top="0" tabpos="0">
 		<Cursor position="6209" topLine="260" />
@@ -743,7 +752,7 @@
 		<Cursor position="3574" topLine="60" />
 	</File>
 	<File name="radix/radix_timecore.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1419" topLine="26" />
+		<Cursor position="63" topLine="0" />
 	</File>
 	<File name="radix/rawdllmainproxy.c" open="0" top="0" tabpos="0">
 		<Cursor position="6768" topLine="183" />
@@ -758,7 +767,7 @@
 		<Cursor position="283" topLine="0" />
 	</File>
 	<File name="simpledb/simpledb.h" open="0" top="0" tabpos="0">
-		<Cursor position="41" topLine="0" />
+		<Cursor position="45" topLine="0" />
 	</File>
 	<File name="simpledb/simpledb_file_system_size.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="10547" topLine="316" />
@@ -803,7 +812,13 @@
 		<Cursor position="5531" topLine="122" />
 	</File>
 	<File name="sockets/sockets.h" open="0" top="0" tabpos="0">
-		<Cursor position="480" topLine="1" />
+		<Cursor position="710" topLine="18" />
+	</File>
+	<File name="sockets/timer/sockets_Event.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1234" topLine="12" />
+	</File>
+	<File name="sockets/timer/sockets_EventTime.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1352" topLine="18" />
 	</File>
 	<File name="sockets/webserver/sockets_http_base_socket.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="4071" topLine="105" />
@@ -811,11 +826,14 @@
 	<File name="sockets/webserver/sockets_httpd_socket.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2408" topLine="40" />
 	</File>
+	<File name="sqlite/sqlite3.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="754515" topLine="18064" />
+	</File>
 	<File name="sqlite/sqlite3.h" open="0" top="0" tabpos="0">
 		<Cursor position="7184" topLine="148" />
 	</File>
 	<File name="user/user.h" open="0" top="0" tabpos="0">
-		<Cursor position="38" topLine="0" />
+		<Cursor position="36" topLine="0" />
 	</File>
 	<File name="user/user_application.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="6988" topLine="239" />
@@ -830,16 +848,19 @@
 		<Cursor position="5269" topLine="117" />
 	</File>
 	<File name="userpresence/userpresence.h" open="0" top="0" tabpos="0">
-		<Cursor position="40" topLine="0" />
+		<Cursor position="42" topLine="0" />
 	</File>
 	<File name="userpresence/userpresence_user_presence.h" open="0" top="0" tabpos="0">
 		<Cursor position="363" topLine="0" />
 	</File>
 	<File name="visual/visual.h" open="0" top="0" tabpos="0">
-		<Cursor position="40" topLine="0" />
+		<Cursor position="47" topLine="0" />
 	</File>
 	<File name="visual/visual_imaging.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="163428" topLine="6479" />
+	</File>
+	<File name="xml/xml.h" open="1" top="0" tabpos="1">
+		<Cursor position="112" topLine="0" />
 	</File>
 	<File name="zlib/zutil.h" open="0" top="0" tabpos="0">
 		<Cursor position="653" topLine="7" />

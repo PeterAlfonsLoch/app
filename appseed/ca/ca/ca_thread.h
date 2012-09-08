@@ -211,10 +211,8 @@ namespace ca
       virtual public command_target,
       virtual public ::exception::translator,
       virtual public pha(::user::interaction),
-      virtual public ::ca::live_object
-#ifdef WINDOWS
-      ,virtual public event_base
-#endif
+      virtual public ::ca::live_object,
+      virtual public event_base
    {
    public:
 		/// thread ID, used to ensure that the thread that calls one of the
