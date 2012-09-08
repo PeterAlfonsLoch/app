@@ -1367,9 +1367,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
          }
 
-         DWORD dwHi;
-
-         DWORD_PTR size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
+         dword_ptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
 
          ensure_file_size(m_hfileBitmap, size);
 
@@ -1421,7 +1419,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
             throw "resource exception";
          }
 
-         m_pmutexBitmap = new simple_mutex(vsstring("Global\\ca2plugin-container-") + itohex_dup((INT_PTR)this));
+         m_pmutexBitmap = new simple_mutex(vsstring("Global\\ca2plugin-container-") + itohex_dup((int_ptr)this));
 
       }
 

@@ -1,4 +1,3 @@
-
 #include <sys/types.h>
 #include <sys/param.h>
 #include <sys/user.h>
@@ -6,7 +5,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#if defined(__LP64__)
 
+typedef long int_ptr, *pint_ptr;
+typedef unsigned long int uint_ptr, *puint_ptr;
+
+typedef long long long_ptr, *plong_ptr;
+typedef unsigned long long ulong_ptr, *pulong_ptr;
+
+#else
+typedef int int_ptr, *pint_ptr;
+typedef unsigned int uint_ptr, *puint_ptr;
+
+typedef long long_ptr, *plong_ptr;
+typedef unsigned int ulong_ptr, *pulong_ptr;
+#endif
+
+extern int strncmp_dup(const char * sz1, const char * sz2, int_ptr iLen);
 
 /************************************************************************
  *
@@ -42,7 +57,7 @@ int get_process_pid(const char * csProcessName)
 
         do {
                 iSize += iSize / 10;
-                sNewProcesses = realloc(sProcesses, iSize);
+                sNewProcesses = (struct kinfo_proc *) realloc(sProcesses, iSize);
 
                 if (sNewProcesses == 0) {
                         if (sProcesses)
@@ -60,7 +75,7 @@ int get_process_pid(const char * csProcessName)
 
         for (i = 0; i < iNumProcs; i++) {
                 iCurrentPid = sProcesses[i].kp_proc.p_pid;
-                if( strncmp(csProcessName, sProcesses[i].kp_proc.p_comm, MAXCOMLEN) == 0 ) {
+                if( strncmp_dup(csProcessName, sProcesses[i].kp_proc.p_comm, MAXCOMLEN) == 0 ) {
                         free(sProcesses);
                         return iCurrentPid;
                 }

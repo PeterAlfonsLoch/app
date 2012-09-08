@@ -124,6 +124,10 @@
 		07237F4E15F99D660018B75F /* simple_tap.h in Headers */ = {isa = PBXBuildFile; fileRef = 07237F4415F99D660018B75F /* simple_tap.h */; };
 		07237F4F15F99D660018B75F /* simple_ui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07237F4515F99D660018B75F /* simple_ui.cpp */; };
 		07237F5015F99D660018B75F /* simple_ui.h in Headers */ = {isa = PBXBuildFile; fileRef = 07237F4615F99D660018B75F /* simple_ui.h */; };
+		07AE38E915FBF6CD002E9436 /* c_os_process_pid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE38E815FBF6CD002E9436 /* c_os_process_pid.cpp */; };
+		07AE38EF15FC035A002E9436 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AE38EE15FC035A002E9436 /* libcrypto.a */; };
+		07AE38F215FC03E0002E9436 /* spa_login.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE38F015FC03E0002E9436 /* spa_login.cpp */; };
+		07AE38F315FC03E0002E9436 /* spa_login.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AE38F115FC03E0002E9436 /* spa_login.h */; };
 		9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A8897AA14C24901006B4023 /* c_os_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8897A914C24901006B4023 /* c_os_file.cpp */; };
 		9A90D07D14A348E200226F1A /* c_os_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A90D07C14A348E200226F1A /* c_os_cross_gdi.mm */; };
@@ -334,6 +338,10 @@
 		07237F4415F99D660018B75F /* simple_tap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_tap.h; sourceTree = "<group>"; };
 		07237F4515F99D660018B75F /* simple_ui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_ui.cpp; sourceTree = "<group>"; };
 		07237F4615F99D660018B75F /* simple_ui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_ui.h; sourceTree = "<group>"; };
+		07AE38E815FBF6CD002E9436 /* c_os_process_pid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_process_pid.cpp; sourceTree = "<group>"; };
+		07AE38EE15FC035A002E9436 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libcrypto.a; path = ../../../nodeapp/appseed/openssl/build/Release/libcrypto.a; sourceTree = "<group>"; };
+		07AE38F015FC03E0002E9436 /* spa_login.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spa_login.cpp; sourceTree = "<group>"; };
+		07AE38F115FC03E0002E9436 /* spa_login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spa_login.h; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A8897A914C24901006B4023 /* c_os_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_file.cpp; sourceTree = "<group>"; };
 		9A88B4F514C2CBF8006B4023 /* c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -432,6 +440,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07AE38EF15FC035A002E9436 /* libcrypto.a in Frameworks */,
 				9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */,
 				CE931715155F1599005F90F6 /* Carbon.framework in Frameworks */,
 			);
@@ -593,6 +602,7 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
+				07AE38EE15FC035A002E9436 /* libcrypto.a */,
 				07237F3C15F99D660018B75F /* simple_ui */,
 				07237F3115F99D570018B75F /* crypt */,
 				07237E6315F99D310018B75F /* c */,
@@ -646,6 +656,8 @@
 				CEA7AA7F14412789007E04DE /* spa_installer.h */,
 				CEA7AA8014412789007E04DE /* spa_installer_square.cpp */,
 				CEA7AA8114412789007E04DE /* spa_installer_square.h */,
+				07AE38F015FC03E0002E9436 /* spa_login.cpp */,
+				07AE38F115FC03E0002E9436 /* spa_login.h */,
 				CEA7AA8214412789007E04DE /* spa_machine_event.cpp */,
 				CEA7AA8314412789007E04DE /* spa_machine_event.h */,
 				CEA7AA8414412789007E04DE /* spa_machine_event_data.cpp */,
@@ -707,6 +719,7 @@
 				CEACF73E145FD3C2004A3E5B /* c_os_message_loop.cpp */,
 				CEACF73F145FD3C2004A3E5B /* c_os_process.cpp */,
 				CEACF740145FD3C2004A3E5B /* c_os_process.h */,
+				07AE38E815FBF6CD002E9436 /* c_os_process_pid.cpp */,
 				CEACF741145FD3C2004A3E5B /* c_os_small_ipc_channel.cpp */,
 				CEACF742145FD3C2004A3E5B /* c_os.cpp */,
 				CEACF743145FD3C2004A3E5B /* c_os.h */,
@@ -825,6 +838,7 @@
 				07237F4C15F99D660018B75F /* simple_password.h in Headers */,
 				07237F4E15F99D660018B75F /* simple_tap.h in Headers */,
 				07237F5015F99D660018B75F /* simple_ui.h in Headers */,
+				07AE38F315FC03E0002E9436 /* spa_login.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -984,6 +998,8 @@
 				07237F4B15F99D660018B75F /* simple_password.cpp in Sources */,
 				07237F4D15F99D660018B75F /* simple_tap.cpp in Sources */,
 				07237F4F15F99D660018B75F /* simple_ui.cpp in Sources */,
+				07AE38E915FBF6CD002E9436 /* c_os_process_pid.cpp in Sources */,
+				07AE38F215FC03E0002E9436 /* spa_login.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1083,6 +1099,7 @@
 				);
 				New_Setting = "";
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../..";
 				VALID_ARCHS = x86_64;
@@ -1123,6 +1140,7 @@
 				);
 				New_Setting = "";
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
+				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../..";
 				VALID_ARCHS = x86_64;

@@ -272,7 +272,7 @@ void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, int a, i
 
 
 
-bool small_ipc_channel::open_ab(const char * pszKey, const char * pszModule, launcher * plauncher)
+bool small_ipc_channel::open_ab(const char * pszKey, launcher * plauncher)
 {
    
    m_vssChannel = pszKey;
@@ -282,11 +282,7 @@ bool small_ipc_channel::open_ab(const char * pszKey, const char * pszModule, lau
    vsstring strChannelRx = m_vssChannel + "-a";
    vsstring strChannelTx = m_vssChannel + "-b";
    
-#ifdef WINDOWS
-   if(!m_rxchannel.create(strChannelRx, pszModule))
-#else
-      if(!m_rxchannel.create(strChannelRx, pszModule))
-#endif
+      if(!m_rxchannel.create(strChannelRx))
       {
          return false;
       }
@@ -300,7 +296,7 @@ bool small_ipc_channel::open_ab(const char * pszKey, const char * pszModule, lau
    
 }
 
-bool small_ipc_channel::open_ba(const char * pszKey, const char * pszModule, launcher * plauncher)
+bool small_ipc_channel::open_ba(const char * pszKey, launcher * plauncher)
 {
    
    m_vssChannel = pszKey;
@@ -311,7 +307,7 @@ bool small_ipc_channel::open_ba(const char * pszKey, const char * pszModule, lau
    vsstring strChannelTx = m_vssChannel + "-a";
    
    
-   if(!m_rxchannel.create(strChannelRx, pszModule))
+   if(!m_rxchannel.create(strChannelRx))
    {
       return false;
    }
