@@ -12283,3 +12283,12 @@
 1342864709 source:/ca2/app/appseed/ca/uinteraction/uinteraction_interaction.cpp
 	"framework.h"
 
+1342864881 source:/ca2/app/appseed/ca/uinteraction_frame.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_buffer.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_check_interface.cpp
+	"framework.h"
+

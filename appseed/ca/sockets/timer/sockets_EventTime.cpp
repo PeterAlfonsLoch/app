@@ -60,23 +60,31 @@ namespace sockets
 
    mytime_t EventTime::Tick()
    {
+
       mytime_t t;
-   #ifdef _WIN32
+
+#ifdef _WIN32
+
       FILETIME ft;
       GetSystemTimeAsFileTime(&ft);
       t = ft.dwHighDateTime;
       t = t << 32;
       t += ft.dwLowDateTime;
       t /= 10; // us
-   #else
-      struct ::timeval tv;
-      struct ::timezone tz;
-      gettimeofday(&tv, &tz);
+
+#else
+
+      ::timeval tv;
+
+      gettimeofday(&tv, NULL);
       t = tv.tv_sec;
       t *= 1000000;
       t += tv.tv_usec;
-   #endif
+
+#endif
+
       return t;
+
    }
 
 
