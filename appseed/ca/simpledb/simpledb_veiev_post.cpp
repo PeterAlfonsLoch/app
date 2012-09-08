@@ -172,6 +172,6 @@ int64_t veiev_post::get_count()
 
    m_pdataset->first();
 
-   return m_pdataset->fv("count");
+   return m_pdataset->fv("count").operator int64_t();
 
 }

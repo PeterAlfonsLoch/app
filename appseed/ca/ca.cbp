@@ -1412,13 +1412,8 @@
 		<Unit filename="radix/radix_template.h" />
 		<Unit filename="radix/radix_thread.cpp" />
 		<Unit filename="radix/radix_thread.h" />
-		<Unit filename="radix/radix_timecore.cpp" />
-		<Unit filename="radix/radix_util.cpp" />
 		<Unit filename="radix/radix_wait_cursor.cpp" />
 		<Unit filename="radix/radix_wait_cursor.h" />
-		<Unit filename="radix/rawdllmainproxy.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="radix/this_build_number.h" />
 		<Unit filename="simpledb/DBFileSystemSize.h" />
 		<Unit filename="simpledb/application.h" />
@@ -1469,9 +1464,6 @@
 		<Unit filename="simpledb/sqlite_base.h" />
 		<Unit filename="simpledb/sqlite_set.h" />
 		<Unit filename="simpledb/veiev_post.h" />
-		<Unit filename="simpleuser/simpleuser_application.cpp" />
-		<Unit filename="simpleuser/simpleuser_keyboard_layout.cpp" />
-		<Unit filename="simpleuser/simpleuser_network_configuration.cpp" />
 		<Unit filename="sockets/IBase.h" />
 		<Unit filename="sockets/Semaphore.h" />
 		<Unit filename="sockets/application_interface.h" />
@@ -1603,9 +1595,6 @@
 		<Unit filename="sockets/webserver/sockets_http_transaction.cpp" />
 		<Unit filename="sockets/webserver/sockets_httpd_socket.cpp" />
 		<Unit filename="sqlite/sqlite.h" />
-		<Unit filename="sqlite/sqlite3.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="sqlite/sqlite3.cpp" />
 		<Unit filename="sqlite/sqlite3.h" />
 		<Unit filename="sqlite/sqlite3ext.h" />

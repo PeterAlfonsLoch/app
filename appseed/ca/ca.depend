@@ -7807,7 +7807,7 @@
 
 1342864784 /ca2/app/appseed/ca/multithreading/multithreading_semaphore.h
 
-1342864784 /ca2/app/appseed/ca/multithreading/multithreading_mutex.h
+1347128311 /ca2/app/appseed/ca/multithreading/multithreading_mutex.h
 
 1342864784 /ca2/app/appseed/ca/multithreading/multithreading_event.h
 
@@ -9081,8 +9081,7 @@
 
 1342864805 /ca2/app/appseed/ca/compress/compress_register_codec.h
 
-1347080803 /ca2/app/appseed/ca/sockets/sockets.h
-	"config.h"
+1347133655 /ca2/app/appseed/ca/sockets/sockets.h
 	"internal/SSLInitializer.h"
 	<sys/param.h>
 	<stdlib.h>
@@ -9157,7 +9156,7 @@
 	"ca/mail/mail.h"
 	"sockets_link_out_socket.h"
 	"sockets_link_in_socket.h"
-	"application_interface.h"
+	"sockets_application_interface.h"
 
 1342864875 /ca2/app/appseed/ca/sockets/config.h
 
@@ -9184,9 +9183,9 @@
 
 1342864871 /ca2/app/appseed/ca/sockets/basic/tls_socket.h
 
-1342864875 /ca2/app/appseed/ca/sockets/http_file.h
+1347132513 /ca2/app/appseed/ca/sockets/http_file.h
 
-1342864875 /ca2/app/appseed/ca/sockets/http_memory_file.h
+1347132698 /ca2/app/appseed/ca/sockets/http_memory_file.h
 
 1342864872 /ca2/app/appseed/ca/sockets/log/StdLog.h
 
@@ -9194,7 +9193,7 @@
 
 1342864871 /ca2/app/appseed/ca/sockets/basic/socket_handler.h
 
-1345878358 /ca2/app/appseed/ca/sockets/basic/listen_socket.h
+1347129837 /ca2/app/appseed/ca/sockets/basic/listen_socket.h
 	<stdlib.h>
 	<errno.h>
 
@@ -12019,4 +12018,204 @@
 
 1342864703 source:/ca2/app/appseed/ca/simpledb/simpledb_set.cpp
 	"framework.h"
+
+1347125811 source:/ca2/app/appseed/ca/radix/radix_pipe.cpp
+	"framework.h"
+	<fcntl.h>
+
+1347122977 source:/ca2/app/appseed/ca/simpledb/simpledb_db_server.cpp
+	"framework.h"
+	"db_str_set.h"
+
+1347120780 source:/ca2/app/appseed/ca/simpledb/simpledb_service.cpp
+	"framework.h"
+	<ShlObj.h>
+
+1342864703 source:/ca2/app/appseed/ca/simpledb/simpledb_socket.cpp
+	"framework.h"
+
+1342864703 source:/ca2/app/appseed/ca/simpledb/simpledb_sqlite_dataset.cpp
+	"framework.h"
+
+1347126132 source:/ca2/app/appseed/ca/radix/radix_system.cpp
+	"framework.h"
+
+1345878350 source:/ca2/app/appseed/ca/simpledb/simpledb_str_set.cpp
+	"framework.h"
+	"db_str_set.h"
+
+1342864703 source:/ca2/app/appseed/ca/simpledb/simpledb_stra_set.cpp
+	"framework.h"
+
+1342864703 source:/ca2/app/appseed/ca/simpledb/simpledb_table.cpp
+	"framework.h"
+
+1347126185 source:/ca2/app/appseed/ca/simpledb/simpledb_sqlite_database.cpp
+	"framework.h"
+
+1342864873 source:/ca2/app/appseed/ca/sockets/asynch_dns/sockets_resolv_socket.cpp
+	"framework.h"
+	<netdb.h>
+
+1342864871 source:/ca2/app/appseed/ca/sockets/basic/sockets_Ipv6Address.cpp
+	"framework.h"
+	<netdb.h>
+
+1342864871 source:/ca2/app/appseed/ca/sockets/basic/sockets_SctpSocket.cpp
+	"framework.h"
+
+1347126368 source:/ca2/app/appseed/ca/simpledb/simpledb_veiev_post.cpp
+	"framework.h"
+
+1342864871 source:/ca2/app/appseed/ca/sockets/basic/sockets_SocketHandler.cpp
+	"framework.h"
+
+1342864871 source:/ca2/app/appseed/ca/sockets/basic/sockets_StreamSocket.cpp
+	"framework.h"
+	"stream_socket.h"
+	"socket_handler_base.h"
+
+1342864871 source:/ca2/app/appseed/ca/sockets/basic/sockets_ssl_client_context.cpp
+	"framework.h"
+	<openssl/ssl.h>
+	<openssl/rand.h>
+	<openssl/err.h>
+
+1342864871 source:/ca2/app/appseed/ca/sockets/basic/sockets_ssl_client_context_map.cpp
+	"framework.h"
+
+1342864871 source:/ca2/app/appseed/ca/sockets/basic/sockets_sync_socket_handler.cpp
+	"framework.h"
+
+1342864871 source:/ca2/app/appseed/ca/sockets/basic/sockets_tls_socket.cpp
+	"framework.h"
+	<openssl/ssl.h>
+
+1347128127 source:/ca2/app/appseed/ca/sockets/basic/sockets_Ipv4Address.cpp
+	"framework.h"
+	<netdb.h>
+
+1342864867 source:/ca2/app/appseed/ca/sockets/http/sockets_HttpClientSocket.cpp
+	"framework.h"
+
+1347128978 source:/ca2/app/appseed/ca/radix/radix_application.cpp
+	"framework.h"
+	<malloc.h>
+	<cderr.h>
+	<winspool.h>
+	"framework.h"
+
+1347129095 source:/ca2/app/appseed/ca/simpledb/simpledb_file_system_size.cpp
+	"framework.h"
+
+1347126474 source:/ca2/app/appseed/ca/simpledb/simpledb_socket_thread.cpp
+	"framework.h"
+
+1342864873 source:/ca2/app/appseed/ca/sockets/asynch_dns/sockets_resolv_server.cpp
+	"framework.h"
+
+1347131718 source:/ca2/app/appseed/ca/sockets/basic/sockets_Socket.cpp
+	"framework.h"
+	<errno.h>
+	<netdb.h>
+	<fcntl.h>
+
+1342864867 source:/ca2/app/appseed/ca/sockets/http/sockets_HttpDebugSocket.cpp
+	"framework.h"
+
+1342864867 source:/ca2/app/appseed/ca/sockets/http/sockets_HttpGetSocket.cpp
+	"framework.h"
+
+1342864867 source:/ca2/app/appseed/ca/sockets/http/sockets_HttpPutSocket.cpp
+	"framework.h"
+
+1347131774 source:/ca2/app/appseed/ca/sockets/basic/sockets_udp_socket.cpp
+	"framework.h"
+	<stdlib.h>
+	<errno.h>
+
+1342864867 source:/ca2/app/appseed/ca/sockets/http/sockets_http_request_socket.cpp
+	"framework.h"
+
+1342864867 source:/ca2/app/appseed/ca/sockets/http/sockets_http_session.cpp
+	"framework.h"
+
+1342864867 source:/ca2/app/appseed/ca/sockets/http/sockets_http_tunnel.cpp
+	"framework.h"
+
+1342864875 source:/ca2/app/appseed/ca/sockets/http_file.cpp
+	"framework.h"
+
+1342864874 source:/ca2/app/appseed/ca/sockets/sip/sockets_sip_base.cpp
+	"framework.h"
+
+1342864874 source:/ca2/app/appseed/ca/sockets/sip/sockets_sip_callback.cpp
+	"framework.h"
+
+1342864874 source:/ca2/app/appseed/ca/sockets/sip/sockets_sip_client.cpp
+	"framework.h"
+
+1347131960 source:/ca2/app/appseed/ca/sockets/log/sockets_trace_log.cpp
+	"framework.h"
+
+1342864874 source:/ca2/app/appseed/ca/sockets/sip/sockets_sip_request.cpp
+	"framework.h"
+
+1342864874 source:/ca2/app/appseed/ca/sockets/sip/sockets_sip_response.cpp
+	"framework.h"
+
+1342864874 source:/ca2/app/appseed/ca/sockets/sip/sockets_sip_server.cpp
+	"framework.h"
+
+1342864874 source:/ca2/app/appseed/ca/sockets/sip/sockets_sip_tcp_client_socket.cpp
+	"framework.h"
+
+1342864874 source:/ca2/app/appseed/ca/sockets/sip/sockets_sip_transaction.cpp
+	"framework.h"
+
+1347132051 source:/ca2/app/appseed/ca/sockets/http/sockets_http_socket.cpp
+	"framework.h"
+
+1342864874 source:/ca2/app/appseed/ca/sockets/sip/sockets_sip_udp_client_socket.cpp
+	"framework.h"
+
+1342864873 source:/ca2/app/appseed/ca/sockets/smtp/sockets_smtp_socket.cpp
+	"framework.h"
+
+1342864873 source:/ca2/app/appseed/ca/sockets/smtp/sockets_smtpd_socket.cpp
+	"framework.h"
+
+1342864875 source:/ca2/app/appseed/ca/sockets/sockets_application_interface.cpp
+	"framework.h"
+
+1342864875 source:/ca2/app/appseed/ca/sockets/sockets_http_batch_file.cpp
+	"framework.h"
+
+1342864875 source:/ca2/app/appseed/ca/sockets/sockets_http_file.cpp
+	"framework.h"
+
+1342864875 source:/ca2/app/appseed/ca/sockets/sockets_http_memory_file.cpp
+	"framework.h"
+
+1342864875 source:/ca2/app/appseed/ca/sockets/sockets_link_in_socket.cpp
+	"framework.h"
+
+1342864875 source:/ca2/app/appseed/ca/sockets/sockets_link_out_socket.cpp
+	"framework.h"
+
+1347080805 source:/ca2/app/appseed/ca/sockets/timer/sockets_Event.cpp
+	"framework.h"
+
+1347132156 source:/ca2/app/appseed/ca/sockets/http/sockets_HttpPostSocket.cpp
+	"framework.h"
+
+1342864872 source:/ca2/app/appseed/ca/sockets/timer/sockets_EventHandler.cpp
+	"framework.h"
+
+1342864872 source:/ca2/app/appseed/ca/sockets/timer/sockets_IEventOwner.cpp
+	"framework.h"
+
+1347132212 /ca2/app/appseed/ca/sockets/sockets_http_memory_file.h
+
+1347132355 /ca2/app/appseed/ca/sockets/sockets_application_interface.h
 

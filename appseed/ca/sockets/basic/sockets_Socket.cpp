@@ -32,9 +32,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #else
 #include <errno.h>
 #include <netdb.h>
+#include <fcntl.h>
 #endif
 //#include <ctype.h>
-//#include <fcntl.h>
+
 
 namespace sockets
 {
@@ -156,7 +157,7 @@ namespace sockets
          return 0;
       }
       int n;
-      if ((n = closesocket(m_socket)) == -1)
+      if ((n = ::closesocket(m_socket)) == -1)
       {
          // failed...
          Handler().LogError(this, "close", Errno, StrError(Errno), ::gen::log::level::error);
@@ -1343,7 +1344,7 @@ namespace sockets
    #ifdef SO_BINDTODEVICE
    bool socket::SetSoBindtodevice(const string & intf)
    {
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_BINDTODEVICE, (char *)intf, intf.get_length()) == -1)
+      if (setsockopt(GetSocket(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const char *)intf, intf.get_length()) == -1)
       {
          Handler().LogError(this, "setsockopt(SOL_SOCKET, SO_BINDTODEVICE)", Errno, StrError(Errno), ::gen::log::level::fatal);
          return false;

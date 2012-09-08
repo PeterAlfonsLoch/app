@@ -46,7 +46,7 @@
 	<File name="c/file_spa.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="402" topLine="0" />
 	</File>
-	<File name="c/heap.cpp" open="1" top="0" tabpos="8">
+	<File name="c/heap.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="3404" topLine="120" />
 	</File>
 	<File name="c/index.h" open="0" top="0" tabpos="0">
@@ -94,11 +94,11 @@
 	<File name="hotplugin/hotplugin_plugin.h" open="0" top="0" tabpos="0">
 		<Cursor position="134" topLine="4" />
 	</File>
-	<File name="linux/c_os.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="188" topLine="0" />
+	<File name="linux/c_os.cpp" open="1" top="0" tabpos="36">
+		<Cursor position="446" topLine="0" />
 	</File>
-	<File name="linux/c_os.h" open="0" top="0" tabpos="1">
-		<Cursor position="1285" topLine="29" />
+	<File name="linux/c_os.h" open="1" top="0" tabpos="35">
+		<Cursor position="1566" topLine="33" />
 	</File>
 	<File name="linux/c_os_cross_win_file.cpp" open="0" top="0" tabpos="16">
 		<Cursor position="0" topLine="0" />

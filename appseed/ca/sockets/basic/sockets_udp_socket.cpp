@@ -355,7 +355,11 @@ namespace sockets
       memset(ioBuf, 0, inBufSize);
       memset(&cmsg_un, 0, sizeof(cmsg_un));
 
+#ifdef WINDOWS
       msg.msg_name = (caddr_t)from;
+#else
+      msg.msg_name = from;
+#endif
       msg.msg_namelen = fromlen;
       msg.msg_iov = vec;
       msg.msg_iovlen = 1;

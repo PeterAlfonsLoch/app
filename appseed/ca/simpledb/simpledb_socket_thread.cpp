@@ -132,8 +132,19 @@ namespace simpledb
          }
          else if(pbase->m_wparam == 1)
          {
+
+#ifdef WINDOWS
+
             ::PostThreadMessage(m_pi.dwThreadId, WM_APP, 1, 0);
+
+#else
+
+            throw not_implemented_exception();
+
+#endif
+
          }
+
    }
 
 } // namespace simpledb

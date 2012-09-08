@@ -342,26 +342,47 @@ void FileSystemSizeWnd::install_message_handling(::gen::message::dispatch * pint
 
 bool FileSystemSizeWnd::CreateClient()
 {
+
+#ifdef WINDOWS
+
    m_bServer = false;
-      ::user::interaction * puiMessage = NULL;
-#if !core_level_1 && !core_level_2
-      puiMessage = System.window_from_os_data(HWND_MESSAGE);
-#endif
+  ::user::interaction * puiMessage = NULL;
+   puiMessage = System.window_from_os_data(HWND_MESSAGE);
    return m_p->create(NULL, "ca2::fontopus::FileSystemSizeWnd::Client", 0, rect(0, 0, 0, 0), puiMessage, id()) != FALSE;
+
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
 }
 
 bool FileSystemSizeWnd::CreateServer()
 {
+
+#ifdef WINDOWS
+
    m_bServer = true;
    if(!m_p->create(NULL, "Local\\ca2::fontopus::FileSystemSizeWnd::Server", 0,
       rect(0, 0, 0, 0), System.window_from_os_data(HWND_MESSAGE), id()))
       return false;
    m_p->SetTimer(100, 100, NULL);
    return true;
+
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
 }
 
 bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
 {
+
+#ifdef WINDOWS
+
    db_server * pcentral = dynamic_cast < db_server * > (&System.db());
    HWND hwnd = pcentral->m_pfilesystemsizeset->m_table.m_hwndServer;
    if(hwnd == NULL || ! ::IsWindow(hwnd))
@@ -397,11 +418,21 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
    {
       return false;
    }
+
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
 }
 
 
 void FileSystemSizeWnd::_001OnCopyData(gen::signal_object * pobj)
 {
+
+#ifdef WINDOWS
+
    SCAST_PTR(::gen::message::base, pbase, pobj);
 
    COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam;
@@ -432,11 +463,21 @@ void FileSystemSizeWnd::_001OnCopyData(gen::signal_object * pobj)
       pbase->set_lresult(1);
    }
 
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
+
 }
 
 void FileSystemSizeWnd::_001OnTimer(gen::signal_object * pobj)
 {
-   SCAST_PTR(::gen::message::timer, ptimer, pobj);
+
+#ifdef WINDOWS
+
+    SCAST_PTR(::gen::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 100)
    {
       //::PostMessage((HWND) pbase->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);
@@ -461,6 +502,14 @@ void FileSystemSizeWnd::_001OnTimer(gen::signal_object * pobj)
          }
       }
    }
+
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
+
 }
 
 FileSystemSizeServerThread::FileSystemSizeServerThread(::ca::application * papp) :
@@ -478,7 +527,11 @@ bool FileSystemSizeServerThread::initialize_instance()
 
 void FileSystemSizeWnd::ClientStartServer()
 {
+
+#ifdef WINDOWS
+
    db_server * pcentral = &System.db();
+
    if(GetTickCount() - m_dwLastStartTime > 2000)
    {
       m_dwLastStartTime = GetTickCount();
@@ -489,7 +542,15 @@ void FileSystemSizeWnd::ClientStartServer()
 
 
    }
+
    pcentral->m_pfilesystemsizeset->m_table.m_hwndServer = ::FindWindowEx(HWND_MESSAGE, NULL, NULL, "Local\\ca2::fontopus::FileSystemSizeWnd::Server");
+
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
 }
 
 
@@ -499,7 +560,18 @@ void file_size_table::get_fs_size::write(ex1::byte_output_stream & ostream)
    ostream << m_bPending;
    ostream << m_iSize;
    ostream << m_bRet;
+
+#ifdef WINDOWS
+
    ostream << (int) m_hwnd;
+
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
+
 }
 
 void file_size_table::get_fs_size::read(ex1::byte_input_stream & istream)
@@ -508,7 +580,18 @@ void file_size_table::get_fs_size::read(ex1::byte_input_stream & istream)
    istream >> m_bPending;
    istream >> m_iSize;
    istream >> m_bRet;
+
+#ifdef WINDOWS
+
    istream >> (int &) m_hwnd;
+
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
+
 }
 
 

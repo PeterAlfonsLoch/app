@@ -219,7 +219,7 @@ namespace sockets
       if (!SetNonblocking(true, s))
       {
          SetCloseAndDelete();
-         closesocket(s);
+         ::closesocket(s);
          return false;
       }
       SetIsClient(); // client because we connect

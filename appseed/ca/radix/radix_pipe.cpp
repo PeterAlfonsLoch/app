@@ -214,6 +214,8 @@ namespace gen
       return str;
    }
 
+#ifdef WINDOWS
+
    void pipe::readex()
    {
       if(m_pchBuf == NULL)
@@ -242,7 +244,7 @@ namespace gen
    }
 
 
-
+#endif
 
 
    cross_pipe::cross_pipe(bool bInherit) :

@@ -1700,7 +1700,7 @@ namespace radix
    }
 
 
-   bool application::OnDDECommand(__in LPTSTR lpszCommand)
+   bool application::OnDDECommand(LPTSTR lpszCommand)
    {
 /*      if (m_pdocmanager != NULL)
          return m_pdocmanager->OnDDECommand(lpszCommand);
@@ -1752,7 +1752,15 @@ namespace radix
    int application::simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle)
    {
 
+      #ifdef WINDOWS
+
       return MessageBox(puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->_get_handle()), pszMessage, m_strAppName, fuStyle);
+
+      #else
+
+      return MessageBox(0, pszMessage, m_strAppName, fuStyle);
+
+      #endif
 
    }
 
@@ -1783,16 +1791,24 @@ namespace radix
       // set help context if possible
       DWORD* pdwContext = NULL;
 
-      DWORD dwWndPid=0;
-      GetWindowThreadProcessId(hWnd,&dwWndPid);
+#ifdef WINDOWS
 
-      if (hWnd != NULL && dwWndPid==GetCurrentProcessId() )
       {
-         // use cast-level context or frame level context
-         LRESULT lResult = ::SendMessage(hWnd, WM_HELPPROMPTADDR, 0, 0);
-         if (lResult != 0)
-            pdwContext = (DWORD*)lResult;
+
+         DWORD dwWndPid=0;
+         GetWindowThreadProcessId(hWnd,&dwWndPid);
+
+         if (hWnd != NULL && dwWndPid==GetCurrentProcessId() )
+         {
+            // use cast-level context or frame level context
+            LRESULT lResult = ::SendMessage(hWnd, WM_HELPPROMPTADDR, 0, 0);
+            if (lResult != 0)
+               pdwContext = (DWORD*)lResult;
+         }
+
       }
+
+#endif
       // for backward compatibility use cast context if possible
       if (pdwContext == NULL && pApp != NULL)
          pdwContext = &pApp->m_dwPromptContext;
@@ -1841,10 +1857,17 @@ namespace radix
          pszAppName = pApp->m_strAppName;
       else
       {
+
+#ifdef WINDOWS
          pszAppName = szAppName;
          DWORD dwLen = GetModuleFileName(NULL, szAppName, _MAX_PATH);
          if (dwLen == _MAX_PATH)
             szAppName[_MAX_PATH - 1] = '\0';
+#else
+
+         throw not_implemented_exception();
+
+#endif
       }
 
       int nResult;
@@ -1904,12 +1927,25 @@ namespace radix
 
    ::user::interaction * application::get_active_guie()
    {
+
+#ifdef WINDOWS
+
       return window_from_os_data(::GetActiveWindow());
+
+#else
+
+      throw not_implemented_exception();
+
+#endif
+
    }
 
 
    ::user::interaction * application::get_focus_guie()
    {
+
+#ifdef WINDOWS
+
       ::ca::window * pwnd = System.window_from_os_data_permanent(::GetFocus());
       if(pwnd != NULL)
       {
@@ -1937,6 +1973,13 @@ namespace radix
          }
       }
       return NULL;
+
+#else
+
+      throw not_implemented_exception();
+
+#endif
+
    }
 
 
@@ -2216,9 +2259,9 @@ namespace radix
 
       //bool bEnable = __enable_memory_tracking(FALSE);
       free((void *)m_pszRegistryKey);
-      m_pszRegistryKey = _tcsdup(lpszRegistryKey);
+      m_pszRegistryKey = strdup(lpszRegistryKey);
       free((void *)m_pszProfileName);
-      m_pszProfileName = _tcsdup(m_strAppName);
+      m_pszProfileName = strdup(m_strAppName);
       //__enable_memory_tracking(bEnable);
    }
 
@@ -2231,6 +2274,9 @@ namespace radix
       VERIFY(gen::LoadString(nIDRegistryKey, szRegistryKey));
       SetRegistryKey(szRegistryKey);*/
    }
+
+
+#ifdef WINDOWS
 
    // returns key for HKEY_CURRENT_USER\"Software"\RegistryKey\ProfileName
    // creating it if it doesn't exist
@@ -2284,6 +2330,8 @@ namespace radix
       RegCloseKey(hAppKey);
       return hSectionKey;
    }
+
+#endif
 
 /*   UINT application::GetProfileInt(const char * lpszSection, const char * lpszEntry,
       int nDefault)
@@ -2689,18 +2737,38 @@ namespace radix
 
    ::user::interaction * application::release_capture_uie()
    {
+
+#ifdef WINDOWS
+
       HWND hwndCapture = ::GetCapture();
       if(hwndCapture == NULL)
          return NULL;
       return System.window_from_os_data(hwndCapture)->release_capture();
+
+#else
+
+      throw not_implemented_exception();
+
+#endif
+
    }
 
    ::user::interaction * application::get_capture_uie()
    {
+
+#ifdef WINDOWS
+
       HWND hwndCapture = ::GetCapture();
       if(hwndCapture == NULL)
          return NULL;
       return System.window_from_os_data(hwndCapture)->get_capture();
+
+#else
+
+      throw not_implemented_exception();
+
+#endif
+
    }
 
    ::user::str_context * application::str_context()
@@ -3249,7 +3317,16 @@ bool file_manager_interface::initialize(::ca::application * papp)
 void __post_quit_message(int nExitCode)
 {
 
+#ifdef WINDOWS
+
    ::PostQuitMessage(nExitCode);
+
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
 }
 
 

@@ -212,7 +212,8 @@ namespace sockets
 #ifdef WIN32
       return ::GetCurrentThreadId();
 #else
-      return System.get_thread_id();
+      return ::GetCurrentThreadId();
+      //return System.get_thread_id();
 #endif
    }
 

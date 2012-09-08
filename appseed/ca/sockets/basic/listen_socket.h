@@ -59,7 +59,7 @@ namespace sockets
       int close() {
          if (GetSocket() != INVALID_SOCKET)
          {
-            closesocket(GetSocket());
+            ::closesocket(GetSocket());
          }
          return 0;
       }
@@ -225,13 +225,13 @@ namespace sockets
          if (bind(s, ad, ad) == -1)
          {
             Handler().LogError(this, "bind() failed for port " + gen::str::itoa(ad.GetPort()), Errno, StrError(Errno), ::gen::log::level::fatal);
-            closesocket(s);
+            ::closesocket(s);
             return -1;
          }
          if (listen(s, depth) == -1)
          {
             Handler().LogError(this, "listen", Errno, StrError(Errno), ::gen::log::level::fatal);
-            closesocket(s);
+            ::closesocket(s);
             throw simple_exception("listen() failed for port " + gen::str::itoa(ad.GetPort()) + ": " + StrError(Errno));
             return -1;
          }
@@ -267,13 +267,13 @@ namespace sockets
          if (!Handler().OkToAccept(this))
          {
             Handler().LogError(this, "accept", -1, "Not OK to accept", ::gen::log::level::warning);
-            closesocket(a_s);
+            ::closesocket(a_s);
             return;
          }
          if (Handler().get_count() >= FD_SETSIZE)
          {
             Handler().LogError(this, "accept", (int)Handler().get_count(), "socket_handler_base fd_set limit reached", ::gen::log::level::fatal);
-            closesocket(a_s);
+            ::closesocket(a_s);
             return;
          }
          socket *tmp = m_bHasCreate ? m_creator -> create() : new X(Handler());
@@ -354,8 +354,8 @@ namespace sockets
       int m_depth;
       X *m_creator;
       bool m_bHasCreate;
-       
-       
+
+
    };
 
 

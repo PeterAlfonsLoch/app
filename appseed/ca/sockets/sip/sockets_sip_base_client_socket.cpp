@@ -165,6 +165,9 @@ namespace sockets
       {
          m_request.attr("remote_addr") = GetRemoteSocketAddress()->Convert(false);
          {
+
+#ifdef WINDOWS
+
             int64_t count;
             int64_t freq;
             if(QueryPerformanceCounter((LARGE_INTEGER *) &count)
@@ -176,6 +179,15 @@ namespace sockets
             {
                m_iFirstTime = ::GetTickCount();
             }
+#else
+
+            timeval t;
+            gettimeofday(&t, NULL);
+            m_iFirstTime t.tv_sec * 1000 * 1000 + t.tv_usec;
+
+#endif
+
+
          }
          ::gen::parse pa(line);
          string str = pa.getword();

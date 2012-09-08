@@ -134,19 +134,19 @@ namespace sqlite
       int id;
       database::result_set res;
       char sqlcmd[512];
-      sprintf(sqlcmd,"select nextid from %s where seq_name = '%s'",sequence_table, sname);
+      sprintf(sqlcmd,"select nextid from %s where seq_name = '%s'",sequence_table.c_str(), sname);
       if (last_err = sqlite3_exec((sqlite3 *) getHandle(),sqlcmd,&callback,&res,NULL) != SQLITE_OK) {
          return DB_UNEXPECTED_RESULT;
       }
       if (res.records.get_size() == 0) {
          id = 1;
-         sprintf(sqlcmd,"insert into %s (nextid,seq_name) values (%d,'%s')",sequence_table,id,sname);
+         sprintf(sqlcmd,"insert into %s (nextid,seq_name) values (%d,'%s')",sequence_table.c_str(),id,sname);
          if (last_err = sqlite3_exec((sqlite3 *) conn,sqlcmd,NULL,NULL,NULL) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
          return id;
       }
       else {
          id = res.records[0][0].get_integer()+1;
-         sprintf(sqlcmd,"update %s set nextid=%d where seq_name = '%s'",sequence_table,id,sname);
+         sprintf(sqlcmd,"update %s set nextid=%d where seq_name = '%s'",sequence_table.c_str(),id,sname);
          if (last_err = sqlite3_exec((sqlite3 *) conn,sqlcmd,NULL,NULL,NULL) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
          return id;
       }

@@ -8,7 +8,7 @@ Copyright (C) 2004-2007  Anders Hedstrom
 This library is made available under the terms of the GNU GPL.
 
 If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about 
+a separate license agreement is available. For information about
 the closed-source license agreement for the C++ sockets library,
 please visit http://www.alhem.net/Sockets/license.html and/or
 email license@alhem.net.
@@ -35,20 +35,20 @@ namespace sockets
    void trace_log::error(
       socket_handler_base * phandler,
       socket * sock,
-      const string & strCall, 
+      const string & strCall,
       int iError,
       const string & strSystemError,
       ::gen::log::level::e_level elevel)
    {
       string strLevel = ::ca2::log::level_name(elevel);
-   
+
       if (sock)
       {
-         Sys(phandler->m_papp).log().trace("fd %d :: %s: %d %s (%s)\n", sock->GetSocket(), strCall, iError, strSystemError, strLevel);
+         Sys(phandler->m_papp).log().trace("fd %d :: %s: %d %s (%s)\n", sock->GetSocket(), strCall.c_str(), iError, strSystemError.c_str(), strLevel.c_str());
       }
       else
       {
-         Sys(phandler->m_papp).log().trace("%s: %d %s (%s)\n", strCall, iError, strSystemError, strLevel);
+         Sys(phandler->m_papp).log().trace("%s: %d %s (%s)\n", strCall.c_str(), iError, strSystemError.c_str(), strLevel.c_str());
       }
    }
 

@@ -205,8 +205,11 @@ namespace sockets
 
    bool ipv4_address::is_in_net(ipv4_address & addr, ipv4_address & mask)
    {
-      return (addr.m_addr.sin_addr.S_un.S_addr & mask.m_addr.sin_addr.S_un.S_addr)
-         == (m_addr.sin_addr.S_un.S_addr & mask.m_addr.sin_addr.S_un.S_addr);
+#ifdef WINDOWS
+      return (addr.m_addr.sin_addr.S_un.S_addr & mask.m_addr.sin_addr.S_un.S_addr) == (m_addr.sin_addr.S_un.S_addr & mask.m_addr.sin_addr.S_un.S_addr);
+#else
+      return (addr.m_addr.sin_addr.s_addr & mask.m_addr.sin_addr.s_addr) == (m_addr.sin_addr.s_addr & mask.m_addr.sin_addr.s_addr);
+#endif
    }
 
    ipv4_address & ipv4_address::operator = (const ipv4_address & addr)

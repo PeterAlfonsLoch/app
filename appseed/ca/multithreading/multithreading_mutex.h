@@ -48,6 +48,8 @@ public:
 
    virtual bool lock(const duration & durationTimeout = ::duration::infinite());
 
+   using sync_object::wait;
+
    virtual wait_result wait(const duration & durationTimeout);
 
 #endif
