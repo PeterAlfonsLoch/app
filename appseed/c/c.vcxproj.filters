@@ -69,6 +69,9 @@
     <Filter Include="Source Files\windows\crypt">
       <UniqueIdentifier>{85093e31-9485-4dbf-95c5-47f6d8d86729}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\simple_ui\windows">
+      <UniqueIdentifier>{3ff498ed-9f8a-4b66-8df4-099a3c2a87fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hotplugin\hotplugin.h">
@@ -361,6 +364,21 @@
     </ClInclude>
     <ClInclude Include="os\os_thread.h">
       <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os_internal.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os_process.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os_simple_hold_handle.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os_thread.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os_file.h">
+      <Filter>Header Files\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -677,6 +695,24 @@
       <Filter>Source Files\windows\crypt</Filter>
     </ClCompile>
     <ClCompile Include="windows\c_os_thread.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_ui\windows\c_os_simple_edit_box.cpp">
+      <Filter>Source Files\simple_ui\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_ui\windows\c_os_simple_label.cpp">
+      <Filter>Source Files\simple_ui\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_ui\windows\c_os_simple_password.cpp">
+      <Filter>Source Files\simple_ui\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_ui\windows\c_os_simple_tap.cpp">
+      <Filter>Source Files\simple_ui\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\os_thread.cpp">
+      <Filter>Source Files\os</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_file.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
   </ItemGroup>

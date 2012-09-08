@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include <Gdiplus.h>
 
 
 void simple_label::draw_this(HDC hdc)

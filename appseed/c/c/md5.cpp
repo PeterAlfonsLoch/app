@@ -405,7 +405,7 @@ vsstring get_file_md5_by_map(const char * path)
    if(hfile == INVALID_HANDLE_VALUE)
    {
 
-      return NULL;
+      return "";
 
    }
 
@@ -418,7 +418,7 @@ vsstring get_file_md5_by_map(const char * path)
 
       CloseHandle(hfile);
 
-      return NULL;
+      return "";
 
    }
 
@@ -435,7 +435,7 @@ vsstring get_file_md5_by_map(const char * path)
 
       CloseHandle(hfile);
 
-      return NULL;
+      return "";
 
    }
 
@@ -454,7 +454,7 @@ vsstring get_file_md5_by_map(const char * path)
 
       CloseHandle(hfilemap);
 
-      return NULL;
+      return "";
 
    }
 
@@ -527,10 +527,6 @@ vsstring get_file_md5_by_read(const char * path)
 
    if(hfile == INVALID_HANDLE_VALUE)
       return "";
-
-   ::md5::md5 md5;
-
-   md5.initialize();
 
    DWORD dwHigh;
 

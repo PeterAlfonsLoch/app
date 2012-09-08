@@ -19,31 +19,6 @@ simple_edit_box::~simple_edit_box()
 
 
 
-char to_upper(int ch)
-{
-   if(ch >= 'a' && ch <= 'z')
-   {
-      ch = ch - 'a' + 'A';
-   }
-   return ch;
-}
-
-
-char * to_upper(char * pchParam)
-{
-   char * pch = pchParam;
-   while(*pch == '\0')
-   {
-      *pch = to_upper(*pch);
-      pch++;
-   }
-   return pchParam;
-}
-
-
-
-
-
 
 
 

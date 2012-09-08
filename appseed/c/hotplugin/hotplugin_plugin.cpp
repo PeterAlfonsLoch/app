@@ -1371,7 +1371,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
          DWORD_PTR size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
 
-         fd_ensure_file_size(m_hfileBitmap, size);
+         ensure_file_size(m_hfileBitmap, size);
 
 #ifdef WINDOWS
          m_hfilemapBitmap = CreateFileMapping(
@@ -1385,7 +1385,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
          if(m_hfilemapBitmap == NULL)
          {
             CloseHandle(m_hfileBitmap);
-            m_hfileBitmap = INVALID_HANDLE_VALUE
+            m_hfileBitmap = INVALID_HANDLE_VALUE;
             throw "resource exception";
          }
 

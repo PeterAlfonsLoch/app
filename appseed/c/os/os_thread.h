@@ -30,7 +30,15 @@ namespace ca
 	inline bool set_thread_priority(int priority)
 	{
 
+#ifdef WINDOWS
+
+      return ( ::SetThreadPriority(::GetCurrentThread(), priority) != 0 );
+
+#else
+
 		return setpriority(PRIO_PROCESS, getpid(), priority) == 0;
+
+#endif
 
 	}
 
@@ -39,11 +47,21 @@ namespace ca
 	inline int thread_priority()
 	{
 
+#ifdef WINDOWS
+
+      return ::GetThreadPriority(::GetCurrentThread());
+
+#else
+
 	   return getpriority(PRIO_PROCESS, getpid());
+
+#endif
 
    }
 
+
 } // namespace ca
+
 
 inline enum ::ca::thread_priority get_thread_priority_normal()
 {

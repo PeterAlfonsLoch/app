@@ -1,9 +1,5 @@
 #include "framework.h"
-
-
-
-
-
+#include <Gdiplus.h>
 
 
 void simple_tap::draw_simple(HDC hdc)

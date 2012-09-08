@@ -1703,22 +1703,7 @@
     <ClInclude Include="sockets\smtp\smtpd_socket.h">
       <Filter>Header Files\sockets\smtp</Filter>
     </ClInclude>
-    <ClInclude Include="sockets\application_interface.h">
-      <Filter>Header Files\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\config.h">
-      <Filter>Header Files\sockets</Filter>
-    </ClInclude>
     <ClInclude Include="sockets\http_file.h">
-      <Filter>Header Files\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\http_memory_file.h">
-      <Filter>Header Files\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\IBase.h">
-      <Filter>Header Files\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\Semaphore.h">
       <Filter>Header Files\sockets</Filter>
     </ClInclude>
     <ClInclude Include="sockets\sockets.h">
@@ -3268,6 +3253,12 @@
     </ClInclude>
     <ClInclude Include="ca\ca_graphics_path.h">
       <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sockets_application_interface.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_memory_file.h">
+      <Filter>Header Files\sockets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4888,9 +4879,6 @@
     <ClCompile Include="sockets\sockets_include.cpp">
       <Filter>Source Files\sockets</Filter>
     </ClCompile>
-    <ClCompile Include="sockets\sockets_http_memory_file.cpp">
-      <Filter>Source Files\sockets</Filter>
-    </ClCompile>
     <ClCompile Include="radix\radix_bstr.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
@@ -5454,6 +5442,9 @@
     </ClCompile>
     <ClCompile Include="ca\ca_graphics_path.cpp">
       <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\http_memory_file.cpp">
+      <Filter>Source Files\sockets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

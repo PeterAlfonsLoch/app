@@ -1,13 +1,17 @@
 #include "framework.h"
 
 
-void ensure_file_size(HANDLE h, int iSize)
+CLASS_DECL_c void ensure_file_size(HANDLE h, int64_t iSize)
 {
 
-   if(::GetFileSize(h, &dwHi) != size)
+   DWORD dwHi;
+
+   DWORD dwLo = ::GetFileSize(h, &dwHi);
+
+   if(((uint64_t) dwLo | ((int64_t)dwHi << 32)) != iSize)
    {
-      LONG l = 0;
-      ::SetFilePointer(h, size, &l, SEEK_SET);
+      LONG l = (iSize >> 32) & 0xffffffff;
+      ::SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET);
       SetEndOfFile(h);
    }
 

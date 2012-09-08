@@ -17,7 +17,7 @@ namespace http
        * Input is read from stdin. Number of characters to read
        * can be found in the environment var CONTENT_LENGTH.
       */
-      void parse_body(http::memory_file *, const char * pszContentType, size_t content_length);
+      void parse_body(::http::memory_file *, const char * pszContentType, size_t content_length);
       /**
        * Another constructor (used in GET operations).
        * Input is read from the environment var QUERY_STRING.

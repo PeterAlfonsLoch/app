@@ -1133,8 +1133,13 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
     <ClInclude Include="windows\c_os.h" />
+    <ClInclude Include="windows\c_os_file.h" />
     <ClInclude Include="windows\c_os_http.h" />
+    <ClInclude Include="windows\c_os_internal.h" />
+    <ClInclude Include="windows\c_os_process.h" />
     <ClInclude Include="windows\c_os_registry.h" />
+    <ClInclude Include="windows\c_os_simple_hold_handle.h" />
+    <ClInclude Include="windows\c_os_thread.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bsdiff\blocksort.cpp">
@@ -1300,11 +1305,16 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="os\os_process.cpp" />
+    <ClCompile Include="os\os_thread.cpp" />
     <ClCompile Include="simple_ui\simple_edit_box.cpp" />
     <ClCompile Include="simple_ui\simple_label.cpp" />
     <ClCompile Include="simple_ui\simple_password.cpp" />
     <ClCompile Include="simple_ui\simple_tap.cpp" />
     <ClCompile Include="simple_ui\simple_ui.cpp" />
+    <ClCompile Include="simple_ui\windows\c_os_simple_edit_box.cpp" />
+    <ClCompile Include="simple_ui\windows\c_os_simple_label.cpp" />
+    <ClCompile Include="simple_ui\windows\c_os_simple_password.cpp" />
+    <ClCompile Include="simple_ui\windows\c_os_simple_tap.cpp" />
     <ClCompile Include="spa\spa.cpp" />
     <ClCompile Include="spa\spa_boot.cpp" />
     <ClCompile Include="spa\spa_bz.cpp" />
@@ -1331,6 +1341,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="windows\crypt\c_os_crypt.cpp" />
     <ClCompile Include="windows\c_os.cpp" />
     <ClCompile Include="windows\c_os_c_dll.cpp" />
+    <ClCompile Include="windows\c_os_file.cpp" />
     <ClCompile Include="windows\c_os_http.cpp" />
     <ClCompile Include="windows\c_os_launcher.cpp" />
     <ClCompile Include="windows\c_os_library.cpp" />

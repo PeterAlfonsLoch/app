@@ -809,6 +809,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include=".\hotplugin\hotplugin_container_launcher.cpp" />
+    <ClCompile Include="windows\c_os_file.cpp" />
     <ClCompile Include="windows\c_os_thread.cpp" />
     <ClInclude Include=".\hotplugin\hotplugin_container_launcher.h">
       <FileType>CppCode</FileType>

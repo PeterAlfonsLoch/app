@@ -5,6 +5,7 @@
 #include "c_os_registry.h"
 #include "c_os_process.h"
 #include "c_os_simple_hold_handle.h"
+#include "c_os_file.h"
 
 
 #define GetAValue(rgb)      (LOBYTE((rgb)>>24))
@@ -19,7 +20,7 @@ CLASS_DECL_c bool main_initialize();
 CLASS_DECL_c bool main_finalize();
 
 
-void ensure_file_size(HANDLE h, int iSize);
+
 
 
 #ifndef M_WINDOWS

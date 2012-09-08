@@ -109,7 +109,7 @@ int thread_layer::run()
          if(!on_idle())
          {
 
-            sleep(m_iSleepiness);
+            Sleep(m_iSleepiness);
 
          }
 
@@ -132,6 +132,8 @@ int thread_layer::run()
 
 bool thread_layer::on_idle()
 {
+   
+   return false;
 
 }
 
