@@ -3,7 +3,7 @@
  * All rights reserved
  *
  * Redistribution and use in source and binary forms, with or without
- * modification, are permitted providing that the following conditions 
+ * modification, are permitted providing that the following conditions
  * are met:
  * 1. Redistributions of source code must retain the above copyright
  *    notice, this list of conditions and the following disclaimer.
@@ -24,23 +24,29 @@
  * POSSIBILITY OF SUCH DAMAGE.
 */
 
-
+#include "framework.h"
 #include <stdlib.h>
 #include "bzlib.h"
 #include <stdio.h>
 #include <string.h>
 //#include <err.h>
 //#include <unistd.h>
+#if defined(LINUX)
+#include <sys/io.h>
+#else
 #include <io.h>
+#endif
 #include <fcntl.h>
 //#include <sys/wait.h>
 
 
-#include <windows.h>
-#include <process.h>
+//#include <windows.h>
+//#include <process.h>
 #include <sys/types.h>
 typedef unsigned char u_char;
+#ifdef WINDOWS
 typedef long pid_t;
+#endif
 
 template<class T>
 void err(int i, const char* str, T arg) {
@@ -342,7 +348,7 @@ int main(int argc,char *argv[])
 				(old[scsc+lastoffset] == _new[scsc]))
 				oldscore++;
 
-			if(((len==oldscore) && (len!=0)) || 
+			if(((len==oldscore) && (len!=0)) ||
 				(len>oldscore+8)) break;
 
 			if((scan+lastoffset<oldsize) &&

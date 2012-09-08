@@ -25,6 +25,9 @@
 *   me to keep updating it.
 */
 #include "framework.h"
+#ifdef LINUX
+#include <sys/mman.h>
+#endif
 
 dword_ptr lite_html_reader::parseDocument()
 {
@@ -59,7 +62,7 @@ dword_ptr lite_html_reader::parseDocument()
       ;
 
    ch = UngetChar();
-   while ((ch = ReadChar()) != NULL)
+   while ((ch = ReadChar()) != '\0')
    {
       switch (ch)
       {
@@ -218,6 +221,7 @@ dword_ptr lite_html_reader::read(const string & str)
 
 }
 
+#ifdef WINDOWS
 /**
 * lite_html_reader::read
 * This method is similar to the read(const char *) method,
@@ -284,6 +288,107 @@ LCleanExit:
    return (nRetVal);
 }
 
+
+#else
+
+/**
+* lite_html_reader::read
+* This method is similar to the read(const char *) method,
+* except that, it accepts a file HANDLE instead of
+* an in-primitive::memory string buffer containing HTML text.
+*
+* @param fd - file descriptor
+*
+* @return number of TCHARs successfully parsed
+* @since 1.0
+* @author Gurmeet S. Kochar
+*/
+dword_ptr lite_html_reader::ReadFile(int fd)
+{
+//   ASSERT(hFile != INVALID_HANDLE_VALUE);
+//   ASSERT(::GetFileType(hFile) == FILE_TYPE_DISK);
+
+   char *   lpsz;
+   dword_ptr   nRetVal;
+
+   strsize dwBufLen;
+
+   try
+   {
+
+      // determine file size
+      dwBufLen = ::fd_get_file_size(fd);
+      if (dwBufLen == INVALID_FILE_SIZE)
+      {
+         TRACE1("(Error) lite_html_reader::read: GetFileSize() failed; GetLastError() returns 0x%08x.\n", ::GetLastError());
+         return 0;
+      }
+
+   }
+   catch(...)
+   {
+      return 0;
+   }
+
+   lpsz = (char *) mmap(NULL, dwBufLen, PROT_READ, MAP_PRIVATE, fd, 0);
+
+   if(lpsz == MAP_FAILED)
+   {
+      TRACE1("(Error) lite_html_reader::read:"
+         " CreateFileMapping() failed;"
+         " GetLastError() returns 0x%08x.\n", ::GetLastError());
+      goto map_error;
+   }
+
+   m_strBuffer = string(lpsz, dwBufLen);
+
+   try
+   {
+      nRetVal = parseDocument();
+   }
+   catch(...)
+   {
+      nRetVal = 0;
+   }
+
+   munmap((void *) lpsz, dwBufLen);
+
+   return nRetVal;
+
+map_error:
+
+   lpsz = m_strBuffer.GetBufferSetLength(dwBufLen);
+
+   int64_t iRead;
+
+   int64_t iPos = 0;
+
+   while(iPos < dwBufLen && (iRead = ::read(fd, &lpsz[iPos], dwBufLen - iPos)) > 0)
+   {
+
+      iPos += iRead;
+
+   }
+
+   if(iPos < dwBufLen)
+      return 0;
+
+
+   try
+   {
+      nRetVal = parseDocument();
+   }
+   catch(...)
+   {
+      nRetVal = 0;
+   }
+
+   return nRetVal;
+
+}
+
+#endif
+
 char lite_html_reader::UngetChar()
 {
    if(m_strBuffer.is_empty())
@@ -306,7 +411,7 @@ bool lite_html_reader::getEventNotify(DWORD dwEvent) const
 
 bool lite_html_reader::isWhiteSpace(char ch) const
 {
-   return ::_istspace(ch) ? true : false;
+   return ::isspace(ch) ? true : false;
 }
 
 
@@ -415,12 +520,12 @@ bool lite_html_reader::parseComment(string &rComment)
 
    // HTML comments begin with '<!' delimeter and
    // are immediately followed by two hyphens '--'
-   if (::_tcsncmp(&m_strBuffer[m_dwBufPos], "<!--", 4))
+   if (::strncmp(&m_strBuffer[m_dwBufPos], "<!--", 4))
       return (false);
 
    const char *   lpszBegin = &m_strBuffer[m_dwBufPos + 4];
    // HTML comments end with two hyphen symbols '--'
-   const char *   lpszEnd = ::_tcsstr(lpszBegin, "--");
+   const char *   lpszEnd = ::strstr(lpszBegin, "--");
 
    // comment ending delimeter could not be found?
    if (lpszEnd == NULL)
@@ -439,14 +544,14 @@ bool lite_html_reader::parseComment(string &rComment)
 
    // skip white-space characters after comment ending delimeter '--'
    lpszEnd += (sizeof(char) * 2);
-   while (::_istspace(*lpszEnd))
-      lpszEnd = ::_tcsinc(lpszEnd);
+   while (::isspace(*lpszEnd))
+      lpszEnd++;
 
    // comment has not been terminated properly
    if (*lpszEnd != '>')
       return (false);
 
-   lpszEnd = ::_tcsinc(lpszEnd);
+   lpszEnd++;
    m_dwBufPos += (lpszEnd - &m_strBuffer[m_dwBufPos]);
    rComment = strComment;
    return (true);

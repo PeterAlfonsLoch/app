@@ -472,7 +472,7 @@ namespace dynamic_source
 #ifdef WINDOWS
 
       HANDLE h = ::CreateFileW(pscript->m_wstrSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-      
+
       try
       {
          memset(&pscript->m_ftCreation, 0, sizeof(FILETIME));
@@ -492,11 +492,15 @@ namespace dynamic_source
       memset(&pscript->m_ftCreation, 0, sizeof(__time_t));
       memset(&pscript->m_ftAccess, 0, sizeof(__time_t));
       memset(&pscript->m_ftModified, 0, sizeof(__time_t));
-      struct stat64 st;
-      stat64(pscript->m_strSourcePath, &st);
+
+      struct stat st;
+
+      stat(pscript->m_strSourcePath, &st);
+
       pscript->m_ftCreation = st.st_ctime;
       pscript->m_ftAccess = st.st_atime;
       pscript->m_ftModified = st.st_mtime;
+
 #endif
 
    }
@@ -1673,28 +1677,35 @@ namespace dynamic_source
       {
          return m_bLastLibraryVersionCheck;
       }
-      
+
       single_lock slLibrary(&m_mutexLibrary, TRUE);
+
       for(int i = 0; i < m_straLibSourcePath.get_size(); i++)
       {
+
          //FILETIME ftCreation;
          //FILETIME ftAccess;
          //FILETIME ftModified;
          //memset(&ftCreation, 0, sizeof(FILETIME));
          //memset(&ftAccess, 0, sizeof(FILETIME));
          //memset(&ftModified, 0, sizeof(FILETIME));
-      //   HANDLE h = ::CreateFile(m_straLibSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+         //HANDLE h = ::CreateFile(m_straLibSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
          //GetFileTime(h, &ftCreation, &ftAccess, &ftModified);
-        // ::CloseHandle(h);
-        struct stat64 st;
-        stat64(m_straLibSourcePath[i], &st);
+         //::CloseHandle(h);
+
+         struct stat st;
+
+         stat(m_straLibSourcePath[i], &st);
+
          if(memcmp(&st.st_ctime, &m_ftaLibCreation[i], sizeof(__time_t)) != 0
-            || memcmp(&m_ftaLibModified[i], &st.st_mtime, sizeof(__time_t)) != 0)
+         || memcmp(&m_ftaLibModified[i], &st.st_mtime, sizeof(__time_t)) != 0)
          {
             m_bLastLibraryVersionCheck = false;
             m_dwLastLibraryVersionCheck = GetTickCount();
             return false;
+
          }
+
       }
 
       m_bLastLibraryVersionCheck    = true;
@@ -1714,20 +1725,27 @@ namespace dynamic_source
       m_ftaLibCreation.set_size(m_straLibSourcePath.get_size());
       m_ftaLibAccess.set_size(m_straLibSourcePath.get_size());
       m_ftaLibModified.set_size(m_straLibSourcePath.get_size());
+
       for(int i = 0; i < m_straLibSourcePath.get_size(); i++)
       {
-         struct stat64 st;
-         stat64(m_straLibSourcePath[i], &st);
+
+         struct stat st;
+
+         stat(m_straLibSourcePath[i], &st);
+
          m_ftaLibCreation[i]  = st.st_ctime;
          m_ftaLibAccess[i]    = st.st_atime;
          m_ftaLibModified[i]  = st.st_mtime;
+
          //HANDLE h = ::CreateFile(m_straLibSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-    //     memset(&m_ftaLibCreation[i], 0, sizeof(FILETIME));
-      //   memset(&m_ftaLibAccess[i], 0, sizeof(FILETIME));
-        // memset(&m_ftaLibModified[i], 0, sizeof(FILETIME));
-//         GetFileTime(h , &m_ftaLibCreation[i], &m_ftaLibAccess[i], &m_ftaLibModified[i]);
-  //       ::CloseHandle(h);
+         //memset(&m_ftaLibCreation[i], 0, sizeof(FILETIME));
+         //memset(&m_ftaLibAccess[i], 0, sizeof(FILETIME));
+         //memset(&m_ftaLibModified[i], 0, sizeof(FILETIME));
+         //GetFileTime(h , &m_ftaLibCreation[i], &m_ftaLibAccess[i], &m_ftaLibModified[i]);
+         //::CloseHandle(h);
+
       }
+
    }
 
 

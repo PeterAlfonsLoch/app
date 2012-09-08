@@ -8,7 +8,7 @@
 
 #include "xml_enum.h"
 
-#include "XMLite.h"
+#include "xml_xmlite.h"
 
 #include "xml_entity.h"
 #include "xml_disp_option.h"

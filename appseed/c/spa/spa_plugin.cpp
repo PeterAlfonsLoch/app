@@ -56,7 +56,9 @@ namespace spa
       m_bRestartCa2Ticket     = false;
       m_bPendingStream        = false;
 
-     ::create_thread(NULL, 0, plugin::thread_proc_start_ca2, (LPVOID) this, 0, 0);
+      m_startca2.m_pplugin = this;
+
+      m_startca2.begin();
 
    }
 
@@ -136,112 +138,99 @@ namespace spa
    }
 
 
-   DWORD WINAPI plugin::thread_proc_start_ca2(LPVOID lpParam)
+
+   bool plugin::thread_start_ca2_on_idle()
    {
 
-      plugin * pplugin = (plugin *) lpParam;
+      bool bJob = false;
 
-      pplugin->thread_start_ca2();
+      if(m_bRestartCa2 && m_phost != NULL)
+      {
 
-      return 0;
-
-   }
-
-   void plugin::thread_start_ca2()
-   {
-
-      MSG msg;
-      
-      while(true)
-	   {
-
-         if(!PeekMessage(&msg, NULL, 0, 0xffffffffu, TRUE))
+         try
          {
 
-            if(m_bRestartCa2 && m_phost != NULL)
-            {
+            vsstring str;
 
-               try
-               {
+   #if defined(_AMD64_) || defined(_LP64)
 
-                  vsstring str;
+            str = itohex_dup(((int*) m_phost)[1]);
 
-         #ifdef _AMD64_
+            str += itohex_dup(((int*) m_phost)[0]);
 
-                  str = itohex_dup(((int*) m_phost)[1]);
+   #else
 
-                  str += itohex_dup((unsigned int) m_phost);
+            str = itohex_dup((int) m_phost);
 
-         #else    
+   #endif
 
-                  str = itohex_dup((int) m_phost);
+            m_phost->m_strBitmapChannel = str;
 
-         #endif
+            ::hotplugin::container_launcher launcher(str);
 
-                  m_phost->m_strBitmapChannel = str;
+            vsstring strChannel = "\\ca2\\ca2plugin-container-";
 
-                  ::hotplugin::container_launcher launcher(str);
+            strChannel += str;
 
-                  vsstring strChannel = "\\ca2\\ca2plugin-container-";
+#ifdef WINDOWS
+            open_ab(strChannel, "plugin-container.exe", &launcher);
+#else
+            open_ab(strChannel, &launcher);
+#endif
 
-                  strChannel += str;
-
-                  open_ab(strChannel, "plugin-container.exe", &launcher);
-
-               }
-               catch(...)
-               {
-
-               }
-
-               m_bRestartCa2        = false;
-
-               m_bRestartCa2Ticket  = true;
-
-            }
-
-            if(m_bRestartCa2Ticket && m_bPendingStream && m_phost != NULL)
-            {
-
-               if(m_phost->m_bStream)
-               {
-
-                  try
-                  {
-
-                     //set_ready();
-
-                     ensure_tx(::hotplugin::message_set_plugin_url, m_phost->m_strPluginUrl, m_phost->m_strPluginUrl.length());
-
-                     ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, m_phost->m_countMemory);
-
-                  }
-                  catch(...)
-                  {
-
-                  }
-
-                  m_bRestartCa2Ticket = false;
-   
-                  m_bPendingStream = false;
-
-               }
-
-            }
-
-            Sleep(84);
-
-            continue;
+         }
+         catch(...)
+         {
 
          }
 
-         if(msg.message == WM_QUIT)
-            break;
+         m_bRestartCa2        = false;
 
-		   TranslateMessage(&msg);
-		   DispatchMessage(&msg);
+         m_bRestartCa2Ticket  = true;
 
-	   }
+         bJob                 = true;
+
+      }
+
+      if(m_bRestartCa2Ticket && m_bPendingStream && m_phost != NULL)
+      {
+
+         if(m_phost->m_bStream)
+         {
+
+            try
+            {
+
+               //set_ready();
+
+               ensure_tx(::hotplugin::message_set_plugin_url, m_phost->m_strPluginUrl, m_phost->m_strPluginUrl.length());
+
+               ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, m_phost->m_countMemory);
+
+            }
+            catch(...)
+            {
+
+            }
+
+            m_bRestartCa2Ticket = false;
+
+            m_bPendingStream = false;
+
+            bJob = true;
+
+         }
+
+      }
+
+      return bJob;
+
+   }
+
+   bool plugin::thread_start_ca2::on_idle()
+   {
+
+      return m_pplugin->thread_start_ca2_on_idle();
 
    }
 
@@ -251,13 +240,13 @@ namespace spa
    {
 
 
-      
+
 
       if(!m_bLogged)
       {
 
          //debug_box("plugin::start_ca2 not logged", "not logged", 0);
-         
+
          m_bLogin = true;
          m_login.m_bVisible = false;
          m_bLogged = calc_logged();
@@ -273,9 +262,9 @@ namespace spa
 
          if(!m_phost->m_bInstalling)
          {
-            
+
             m_phost->m_bInstalling = true;
-            
+
             // shouldn't do advanced operations using ca2
             // starter_start will only kick a default app-install.exe if one isn't already running, cleaning file lock if any
 
@@ -336,7 +325,7 @@ namespace spa
          XNode * lpnodeVersion = node.GetChild("basis");
 
 #else
-         
+
          XNode * lpnodeVersion = node.GetChild("stage");
 
 #endif
@@ -396,7 +385,7 @@ install:
 
          if(ensure_tx(::hotplugin::message_paint, &paint, sizeof(paint)))
          {
-               
+
             m_phost->blend_bitmap(hdcWindow, lprect);
 
             return;
@@ -507,7 +496,7 @@ install:
 
       if(!m_bLogin || !m_login.m_bVisible)
       {
-       
+
          on_bare_paint(hdcWindow, lprect);
 
       }
@@ -518,7 +507,7 @@ install:
 
 
 
-   
+
 
 
 
@@ -572,9 +561,9 @@ install:
                   }
                   else if(uiMessage == WM_MOUSEMOVE)
                   {
-                     
+
                      int x = (short) GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left;
-                     
+
                      int y = (short) GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top;
 
                      POINT ptCursor;
@@ -599,7 +588,7 @@ install:
                   || uiMessage == WM_MBUTTONUP) &&
                   is_installing_ca2())
                {
-                  
+
                   m_iHealingSurface = m_canvas.increment_mode();
 
                }
@@ -790,7 +779,7 @@ install:
          }
          else if(a == 3)
          {
-            
+
             if(b == 1)
             {
 
@@ -809,15 +798,15 @@ install:
 
    }
 
-   
+
    void plugin::set_window_rect(LPCRECT lpcrect)
    {
-    
+
       ::hotplugin::plugin::set_window_rect(lpcrect);
 
       if(!is_installing() && is_ca2_installed())
       {
-      
+
          ensure_tx(::hotplugin::message_set_window, (void *) lpcrect, sizeof(RECT));
 
       }
@@ -840,10 +829,10 @@ install:
       {
 
          vsstring strPrompt;
-         
+
          if(m_phost->m_puchMemory != NULL)
          {
-            
+
             strPrompt = vsstring((const char *) m_phost->m_puchMemory, m_phost->m_countMemory);
 
          }
@@ -861,7 +850,7 @@ install:
 
                if(iTry < 9)
                {
-                
+
                   Sleep(iTry * 84);
 
                   iTry++;
@@ -898,7 +887,7 @@ install:
 
    bool plugin::calc_logged()
    {
-      
+
       m_login.initialize();
 
       m_login.start_login();
@@ -909,7 +898,7 @@ install:
 
    void plugin::login_result(spa_login::e_result eresult)
    {
-      
+
       if(eresult == spa_login::result_ok)
       {
 
@@ -992,7 +981,7 @@ restart:
       int iAttempt = 0;
 
 restart:
-      
+
       while((str = defer_get_plugin()).is_empty())
       {
          iAttempt++;
@@ -1002,7 +991,7 @@ restart:
       }
 
       vsstring strLocale;
-      
+
       vsstring strSchema;
 
       try
@@ -1045,12 +1034,12 @@ restart:
 
       //debug_box("plugin::defer_get not logged", "defer get", 0);
 
-      
+
 
       if(str_begins_ci_dup(strSchema, "darker;") || str_ends_ci_dup(strSchema, ";darker") || stristr_dup(strSchema, ";darker;")
       || str_begins_ci_dup(strSchema, "darker%3B") || str_ends_ci_dup(strSchema, "%3Bdarker") || stristr_dup(strSchema, "%3Bdarker%3B"))
       {
-         
+
          m_eschema = schema_darker;
 
       }
@@ -1062,7 +1051,7 @@ restart:
       }
 
       strUrl += "lang=" + strLocale + "&styl=" + strSchema;
-      
+
       while((str = ms_get_dup(strUrl)).is_empty())
       {
          iAttempt++;

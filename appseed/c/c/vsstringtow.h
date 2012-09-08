@@ -1,5 +1,6 @@
 #pragma once
 
+
 class CLASS_DECL_c vsstringtow :
    public vsstring
 {
@@ -17,7 +18,3 @@ public:
    inline operator char * () { return m_psz; }
 
 };
-
-
-
-

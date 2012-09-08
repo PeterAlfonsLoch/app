@@ -3,7 +3,7 @@
 #ifdef MACOS
 #include <pthread.h>
 typedef int key_t;
-#elif defined(LINUX) 
+#elif defined(LINUX)
 typedef __key_t key_t;
 #include <pthread.h>
 #else
@@ -103,7 +103,7 @@ public:
    virtual void * on_post(small_ipc_rx_channel * prxchannel, int a, int b);
 
 
-
+   virtual bool on_idle();
 
 #ifdef WINDOWS
    ATOM register_class(HINSTANCE hInstance);

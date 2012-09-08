@@ -23,7 +23,7 @@ namespace gen
       sp(command) spcommand;
       while(m_ptra.get_size() > 0)
       {
-         spcommand = NULL;
+         spcommand = ::ca::null();
          sl.lock();
          try
          {
@@ -35,7 +35,7 @@ namespace gen
          }
          sl.unlock();
 
-         if(spcommand == NULL)
+         if(spcommand.is_null())
             continue;
 
          pcreatecontext = NULL;
@@ -70,7 +70,7 @@ namespace gen
          {
          }
          sl.unlock();
-         
+
       }
       return true;
    }

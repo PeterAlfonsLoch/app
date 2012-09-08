@@ -3,9 +3,9 @@
 
 sync_object::sync_object(const char * pstrName)
 {
-
+#ifdef WINDOWS
    m_object = NULL;
-
+#endif
 #ifdef DEBUG
    m_strName = pstrName;
 #endif
@@ -13,7 +13,7 @@ sync_object::sync_object(const char * pstrName)
 
 sync_object::~sync_object()
 {
-   #ifdef _WIN32
+#ifdef _WIN32
    if (m_object != NULL)
    {
       ::CloseHandle(m_object);
@@ -65,7 +65,11 @@ inline sync_object::operator HANDLE() const
 
 inline int_ptr sync_object::get_os_data() const
 {
+#ifdef WINDOWS
    return (int_ptr) m_object;
+#else
+   return 0;
+#endif
 }
 
 inline bool sync_object::unlock(LONG /* lCount */, LPLONG /* lpPrevCount=NULL */)

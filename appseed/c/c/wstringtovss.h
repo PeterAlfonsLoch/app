@@ -1,6 +1,5 @@
 #pragma once
 
-
 class CLASS_DECL_c wstringtovss :
    public wstring
 {
@@ -15,3 +14,5 @@ public:
    inline operator wchar_t * () { return m_pwsz; }
 
 };
+
+

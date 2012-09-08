@@ -8,7 +8,7 @@
 #elif defined(MACOS)
 
 #include <sys/event.h>
-#include <sys/time.h>
+//#include <sys/time.h>
 #include <sys/types.h>
 
 #endif
@@ -24,7 +24,7 @@ namespace dynamic_source
 
       script_manager::plugin_map_item::plugin_map_item(const plugin_map_item & item)
       {
-         
+
          operator = (item);
 
       }
@@ -463,13 +463,13 @@ namespace dynamic_source
 
    UINT c_cdecl script_manager::clear_include_matches_FolderWatchThread(LPVOID lpParam) // thread procedure
    {
-      
+
       clear_include_matches_folder_watch * pwatch = (clear_include_matches_folder_watch *) lpParam;
-      
+
       string strDir = pwatch->m_strPath;
 
 #ifdef WINDOWS
-      
+
       HANDLE hDirectory =
          ::CreateFile(strDir,    // folder path
                       FILE_LIST_DIRECTORY,
@@ -522,14 +522,14 @@ namespace dynamic_source
          }while(pfni->NextEntryOffset != 0);
       }
       ::CloseHandle(hDirectory);
-      
+
 #elif defined(MACOS)
-      
+
       // Open an event-only file descriptor associated with the directory
       int dirFD = ::open(strDir, O_EVTONLY);
-      if (dirFD < 0) 
+      if (dirFD < 0)
          return -1;
-      
+
       // Create a new kernel event queue
       int kq = kqueue();
       if (kq < 0)
@@ -537,7 +537,7 @@ namespace dynamic_source
          close(dirFD);
          return -1;
       }
-      
+
       // Set up a kevent to monitor
       struct kevent eventToAdd;			// Register an (ident, filter) pair with the kqueue
       eventToAdd.ident  = dirFD;			// The object to watch (the directory FD)
@@ -546,7 +546,7 @@ namespace dynamic_source
       eventToAdd.fflags = NOTE_WRITE;			// The events to watch for on the VNODE spec'd by ident (writes)
       eventToAdd.data   = 0;				// No filter-specific data
       eventToAdd.udata  = NULL;			// No user data
-      
+
       // add a kevent to monitor
       if (kevent(kq, &eventToAdd, 1, NULL, 0, NULL))
       {
@@ -554,14 +554,14 @@ namespace dynamic_source
          close(dirFD);
          return;
       }
-      
+
 #else
 
 
 
       int iNotify = inotify_init();
 
-      
+
       int_array ia;
 
       stringa stra;
@@ -648,7 +648,7 @@ namespace dynamic_source
 
       delete pwatch;
       return 0;
-      
+
 
    }
 
@@ -684,15 +684,15 @@ namespace dynamic_source
          return real_path(m_strNetseedDsCa2Path, str);
       }
 #else
-      if(is_absolute_path(psz))
+      if(is_absolute_path(str))
       {
-         if(include_matches_file_exists(psz))
-            return psz;
-         return real_path(m_strNetseedDsCa2Path, psz);
+         if(include_matches_file_exists(str))
+            return str;
+         return real_path(m_strNetseedDsCa2Path, str);
       }
       else
       {
-         return real_path(m_strNetseedDsCa2Path, psz);
+         return real_path(m_strNetseedDsCa2Path, str);
       }
 #endif
    }
@@ -746,7 +746,7 @@ namespace dynamic_source
    {
 
       plugin_map_item item;
-      
+
       item.m_strHost       = pszHost;
       item.m_strScript     = pszScript;
       item.m_strPlugin     = pszName;
@@ -766,10 +766,10 @@ namespace dynamic_source
 
    void script_manager::wait_link_out(const char * pszServer, ::sockets::link_in_socket * pinsocket)
    {
-      
+
       while(true)
       {
-         
+
          if(has_link_out_link(pszServer, pinsocket, NULL))
             break;
 
@@ -778,7 +778,7 @@ namespace dynamic_source
       }
 
    }
-   
+
    bool script_manager::has_link_out_link(const char * pszServer, ::sockets::link_in_socket * pinsocket, ::sockets::httpd_socket * phttpdsocket)
    {
 
@@ -804,7 +804,7 @@ namespace dynamic_source
             {
 
 	            pinsocket->m_in = phttpdsocket;
-	
+
 	            pinsocket->m_memfileInput.FullLoad(phttpdsocket->m_memfileInput);
 
                pinsocket->server_to_link_in(phttpdsocket);
@@ -820,7 +820,7 @@ namespace dynamic_source
          m_mapOutLink.remove_key(pszServer);
 
       }
-      
+
       if(psocket == NULL)
          return false;
 
@@ -830,14 +830,14 @@ namespace dynamic_source
 
    ::sockets::link_in_socket * script_manager::get_link_in(const char * pszServer, ::sockets::link_out_socket * poutsocket)
    {
-       
+
       single_lock sl2(&m_mutexInLink, TRUE);
 
        ::collection::map < ::sockets::link_out_socket *, ::sockets::link_out_socket *, ::sockets::link_in_socket *, ::sockets::link_in_socket * >::pair * ppair =
           m_mapInLink.PLookup(poutsocket);
 
        {
-   
+
           single_lock sl3(&m_mutexTunnel, TRUE);
 
           tunnel_map_item item;
@@ -865,7 +865,7 @@ namespace dynamic_source
    {
 
       single_lock sl(&m_mutexTunnel, TRUE);
-      
+
       ::collection::string_map < tunnel_map_item >::pair * ppair = m_mapTunnel.PLookup(pszServer);
 
       if(ppair == NULL)
@@ -885,7 +885,7 @@ namespace dynamic_source
       ::sockets::link_out_socket * psocket = new sockets::link_out_socket(phttpdsocket->Handler());
 
       {
-	
+
 		   single_lock sl(&m_mutexTunnel, TRUE);
 
          tunnel_map_item item;
@@ -894,14 +894,14 @@ namespace dynamic_source
          item.m_dwLast       = GetTickCount();
 
          m_mapTunnel.set_at(pszServer, item);
-		
+
 	   }
 
 	   {
-	
+
 		   single_lock sl(&m_mutexOutLink, TRUE);
 		   m_mapOutLink.set_at(pszServer, psocket);
-		
+
 	   }
 
       return psocket;

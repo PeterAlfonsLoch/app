@@ -55,10 +55,6 @@ CLASS_DECL_c _FILE *__iob_func_dup();
 #endif
 
 
-
-
-
-
 CLASS_DECL_c void _init_file_dup();
 
 CLASS_DECL_c _FILE * fopen_dup(const char *path, const char *attrs);

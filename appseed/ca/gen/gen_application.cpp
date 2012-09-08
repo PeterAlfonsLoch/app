@@ -2,10 +2,8 @@
 
 
 #ifdef LINUX
-#define __USE_GNU
 #include <dlfcn.h>
 #include <link.h>
-#undef __USE_GNU
 #include <ctype.h>
 #elif defined(MACOS)
 #include <dlfcn.h>
@@ -102,8 +100,8 @@ namespace gen
             free(lpszModuleFolder);
 
          }
-         
-         
+
+
 #ifdef RTLD_DI_LINKMAP
 
          {
@@ -123,36 +121,36 @@ namespace gen
 
 
          }
-         
+
 #else
-         
+
          {
-            
+
             char * pszCurDir = getcwd(NULL, 0);
-            
+
             string strCurDir = pszCurDir;
-            
+
             free(pszCurDir);
-            
+
             if(App(this).file().exists(System.dir().path(strCurDir, "ca2.dylib")))
             {
                m_strCa2ModuleFolder = strCurDir;
                goto finishedCa2ModuleFolder;
             }
-            
-            
+
+
             if(App(this).file().exists(System.dir().path(m_strModuleFolder, "ca2.dylib")))
             {
                m_strCa2ModuleFolder = m_strModuleFolder;
                goto finishedCa2ModuleFolder;
             }
-            
+
             m_strCa2ModuleFolder = System.dir().name(App(this).dir().pathfind(getenv("LD_LIBRARY_PATH"), "ca2.dylib", "rfs")); // readable - normal file - non zero sized
-            
+
          }
-         
+
 finishedCa2ModuleFolder:;
-         
+
 #endif
 
 #endif
@@ -356,7 +354,7 @@ finishedCa2ModuleFolder:;
 
    string application::get_ca2_module_file_path()
    {
-      
+
       string strModuleFileName;
 
 #ifdef WINDOWS
@@ -367,68 +365,68 @@ finishedCa2ModuleFolder:;
       {
 
          strModuleFileName = lpszModuleFilePath;
-         
+
       }
 
 #else
 
-      
+
 #ifdef RTLD_DI_LINKMAP
-      
+
       {
-         
+
          void * handle = dlopen("ca.so", 0);
-         
+
          if(handle == NULL)
             return false;
-         
+
          link_map * plm;
-         
+
          dlinfo(handle, RTLD_DI_LINKMAP, &plm);
-         
+
          strModuleFileName = plm->l_name;
-         
+
          dlclose(handle);
-         
-         
+
+
       }
-      
+
 #else
-      
+
       {
-         
+
          char * pszCurDir = getcwd(NULL, 0);
-         
+
          string strCurDir = pszCurDir;
-         
+
          free(pszCurDir);
-         
+
          if(App(this).file().exists(System.dir().path(strCurDir, "ca2.dylib")))
          {
             m_strCa2ModuleFolder = strCurDir;
             goto finishedCa2Module;
          }
-         
-         
+
+
          if(App(this).file().exists(System.dir().path(m_strModuleFolder, "ca2.dylib")))
          {
             m_strCa2ModuleFolder = m_strModuleFolder;
             goto finishedCa2Module;
          }
-         
+
          strModuleFileName = App(this).dir().pathfind(getenv("LD_LIBRARY_PATH"), "ca2.dylib", "rfs"); // readable - normal file - non zero sized
-         
+
       }
-      
+
    finishedCa2Module:;
-      
+
 #endif
-      
+
 #endif
-      
+
    return strModuleFileName;
-      
-      
+
+
    }
 
    string application::get_module_folder()

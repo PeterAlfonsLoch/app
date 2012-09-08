@@ -21,7 +21,7 @@ lite_html_tag::lite_html_tag(lite_html_tag &rSource, bool bCopy)
       {
          ::ca::rethrow(pe);
       }
-         
+
       /** DEEP COPY END */
    }
 }
@@ -33,13 +33,13 @@ lite_html_tag::~lite_html_tag()
 
 /**
  * lite_html_tag::parseFromStr
- * 
+ *
  * @param rStr - string to parse
- * @param bIsOpeningTag - receives true if the tag parsed 
+ * @param bIsOpeningTag - receives true if the tag parsed
  *        is a opening tag, false otherwise.
- * @param bIsClosingTag - receives true if the tag parsed 
+ * @param bIsClosingTag - receives true if the tag parsed
  *        is a closing tag, false otherwise.
- * @param bParseAttrib - determines whether attribute/value 
+ * @param bParseAttrib - determines whether attribute/value
  *        pairs should be parsed. Default is true.
  *
  * @return number of characters successfully parsed
@@ -47,31 +47,31 @@ lite_html_tag::~lite_html_tag()
  * @author Gurmeet S. Kochar
  */
 UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & strString, strsize iPos,
-                              bool &bIsOpeningTag, 
-                              bool &bIsClosingTag, 
+                              bool &bIsOpeningTag,
+                              bool &bIsClosingTag,
                               bool bParseAttrib /* = true */)
 {
-   
+
 
    bool            bClosingTag = false;
    bool            bOpeningTag = false;
    LiteHTMLAttributes   *pcollAttr = NULL;
    string            strTagName;
-   UINT            nRetVal = 0U, 
+   UINT            nRetVal = 0U,
                   nTemp = 0U;
    const char *            lpszBegin = &strString[iPos];
    const char *            lpszEnd = NULL;
 
    // skip leading white-space characters
-   while (::_istspace(*lpszBegin))
-      lpszBegin = ::_tcsinc(lpszBegin);
+   while (::isspace(*lpszBegin))
+      lpszBegin++;
 
    // HTML tags always begin with a less-than symbol
    if (*lpszBegin != '<')
       return (0U);
-   
+
    // skip tag's opening delimeter '<'
-   lpszBegin = ::_tcsinc(lpszBegin);
+   lpszBegin++;
 
    // optimization for is_empty opening tags
    if (*lpszBegin == '>')
@@ -84,11 +84,11 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
    }
 
    // tag names always begin with an alphabet
-   if (!::_istalpha(*lpszBegin))
+   if (!::isalpha(*lpszBegin))
    {
       bClosingTag = (*lpszBegin == '/');
       if (bClosingTag)
-         lpszBegin = ::_tcsinc(lpszBegin);
+         lpszBegin++;
       else
          return (0U);
    }
@@ -97,21 +97,21 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
    lpszEnd = lpszBegin;
    do
    {
-      // tag name may contain letters (a-z, A-Z), digits (0-9), 
+      // tag name may contain letters (a-z, A-Z), digits (0-9),
       // underscores '_', hyphen '-', colons ':', and periods '.'
-      if ( (!::_istalnum(*lpszEnd)) && 
-          (*lpszEnd != '-') && (*lpszEnd != ':') && 
+      if ( (!::isalnum(*lpszEnd)) &&
+          (*lpszEnd != '-') && (*lpszEnd != ':') &&
           (*lpszEnd != '_') && (*lpszEnd != '.') )
       {
-         
+
          if(lpszEnd == lpszBegin)
             return 0;
-         
-         // only white-space characters, a null-character, a 
-         // greater-than symbol, or a forward-slash can break 
+
+         // only white-space characters, a null-character, a
+         // greater-than symbol, or a forward-slash can break
          // a tag name
-         if (*lpszEnd == NULL || ::_istspace(*lpszEnd) || 
-            *lpszEnd == '>' || 
+         if (*lpszEnd == '\0' || ::isspace(*lpszEnd) ||
+            *lpszEnd == '>' ||
             (*lpszEnd == '/' && (!bClosingTag)) )
          {
             break;
@@ -120,7 +120,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
          return (0U);   // any other character will fail parsing process
       }
 
-      lpszEnd = ::_tcsinc(lpszEnd);
+      lpszEnd++;
    }
    while(true);
 
@@ -130,14 +130,14 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
    // is this a closing tag?
    if (bClosingTag)
    {
-      // in a closing tag, there can be only one symbol after 
-      // tag name, i.e., the tag end delimeter '>'. Anything 
+      // in a closing tag, there can be only one symbol after
+      // tag name, i.e., the tag end delimeter '>'. Anything
       // else will result in parsing failure
       if (*lpszEnd != '>')
          return (0U);
 
       // skip tag's ending delimeter
-      lpszEnd = ::_tcsinc(lpszEnd);
+      lpszEnd++;
 
       ASSERT(strTagName.get_length());
       ASSERT(pcollAttr == NULL);
@@ -152,8 +152,8 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
       lpszEnd = NULL;
 
       // skip white-space characters after tag name
-      while (::_istspace(*lpszBegin))
-         lpszBegin = ::_tcsinc(lpszBegin);
+      while (::isspace(*lpszBegin))
+         lpszBegin++;
 
       nTemp = 0U;
       if (bParseAttrib)   // parse attribute/value pairs?
@@ -171,14 +171,14 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
          nTemp = (UINT) pcollAttr->parseFromStr(preader, lpszBegin, strString.get_length() - (lpszBegin - (const char *) strString));
       }
 
-      if (nTemp == 0)   // attribute/value pair parsing is disabled? 
-                  //   - OR - 
+      if (nTemp == 0)   // attribute/value pair parsing is disabled?
+                  //   - OR -
                   // attribute/value pairs could not be parsed?
       {
          SAFE_DELETE_POINTER(pcollAttr);
-         if ((lpszEnd = ::_tcsstr(lpszBegin, "/>")) == NULL)
+         if ((lpszEnd = ::strstr(lpszBegin, "/>")) == NULL)
          {
-            if ((lpszEnd = ::_tcschr(lpszBegin, '>')) == NULL)
+            if ((lpszEnd = ::strchr(lpszBegin, '>')) == NULL)
                return (0U);
          }
       }
@@ -187,11 +187,11 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
          lpszEnd = lpszBegin + nTemp;
 
          // skip white-space after attribute/value pairs
-         while (::_istspace(*lpszEnd))
-            lpszEnd = ::_tcsinc(lpszEnd);
-         
+         while (::isspace(*lpszEnd))
+            lpszEnd++;
+
          // tag's ending delimeter could not be found?
-         if (*lpszEnd == NULL)
+         if (*lpszEnd == '\0')
          {
             SAFE_DELETE_POINTER(pcollAttr);
             return (0U);
@@ -203,7 +203,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
       {
          ASSERT(bOpeningTag);
          bClosingTag = true;
-         lpszEnd = ::_tcsinc(lpszEnd);
+         lpszEnd++;
       }
    }
 
@@ -214,7 +214,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
       return (0U);
    }
    else
-      lpszEnd = ::_tcsinc(lpszEnd);
+      lpszEnd++;
 
    nRetVal = (UINT) (lpszEnd - &strString[iPos]);
    goto LUpdateAndExit;   // just to show the flow-of-control

@@ -34,7 +34,14 @@
 /////////////////////////////////////////////////////////////////////////
 #include "framework.h"
 
-
+#ifdef LINUX
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#endif
 
 int to_hex_char(int i);
 
@@ -388,11 +395,13 @@ namespace md5
 } // namespace md5
 
 
-const char * get_file_md5_by_map(const char * path)
+vsstring get_file_md5_by_map(const char * path)
 {
-   
+
+#if defined(WINDOWS)
+
    HANDLE hfile = ::CreateFileA(path, FILE_READ_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
-   
+
    if(hfile == INVALID_HANDLE_VALUE)
    {
 
@@ -406,7 +415,7 @@ const char * get_file_md5_by_map(const char * path)
 
    if(dwHigh > 0)
    {
-      
+
       CloseHandle(hfile);
 
       return NULL;
@@ -420,7 +429,7 @@ const char * get_file_md5_by_map(const char * path)
       0,
       0,
       NULL);
-   
+
    if(hfilemap == NULL)
    {
 
@@ -437,17 +446,44 @@ const char * get_file_md5_by_map(const char * path)
       0,
       0
       );
-   
+
    if(pview == NULL)
    {
-      
+
       CloseHandle(hfile);
-      
+
       CloseHandle(hfilemap);
 
       return NULL;
 
    }
+
+#else
+
+   int fd = ::open(path, O_RDONLY);
+
+   if(fd == -1)
+   {
+
+      return "";
+
+   }
+
+   int64_t dwSize = ::fd_get_file_size(fd);
+
+   char * pview = (char *) mmap(NULL, dwSize, PROT_READ, MAP_PRIVATE, fd, 0);
+
+   if(pview == MAP_FAILED)
+   {
+
+      ::close(fd);
+
+      return "";
+
+   }
+
+
+#endif
 
    ::md5::md5 md5;
 
@@ -457,23 +493,40 @@ const char * get_file_md5_by_map(const char * path)
 
    md5.finalize();
 
+#ifdef WINDOWS
+
    UnmapViewOfFile(pview);
-   
+
    CloseHandle(hfilemap);
-   
+
    CloseHandle(hfile);
+
+#else
+
+   munmap(pview, dwSize);
+
+   close(fd);
+
+#endif
 
    return md5.to_string();
 
 }
 
-const char * get_file_md5_by_read(const char * path)
+vsstring get_file_md5_by_read(const char * path)
 {
-   
+
+   DWORD dwRead;
+
+   DWORD dwReadTotal;
+
+#ifdef WINDOWS
+
+
    HANDLE hfile = ::CreateFile(path, GENERIC_READ, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
    if(hfile == INVALID_HANDLE_VALUE)
-      return NULL;
+      return "";
 
    ::md5::md5 md5;
 
@@ -481,61 +534,99 @@ const char * get_file_md5_by_read(const char * path)
 
    DWORD dwHigh;
 
-   DWORD dwSize = ::GetFileSize(hfile, &dwHigh);
+   int64_t dwSize = ::GetFileSize(hfile, &dwHigh);
+
+
+#else
+
+   int fd = ::open(path, O_RDONLY);
+
+   if(fd == -1)
+   {
+
+      return "";
+
+   }
+
+   int64_t dwSize = ::fd_get_file_size(fd);
+
+#endif
+
+   dwReadTotal = dwSize;
 
    char * psz = (char *) _ca_alloc(dwSize);
 
-   DWORD dwRead;
+   while(true)
+   {
 
-   ::ReadFile(hfile, psz, dwSize, &dwRead, NULL);
+#ifdef WINDOWS
 
-   md5.update(psz, dwRead);
+      if(!::ReadFile(hfile, psz, dwReadTotal, &dwRead, NULL))
+      {
+         break;
+      }
+
+      if(dwRead == 0)
+      {
+         break;
+      }
+
+
+#else
+
+      dwRead = ::read(fd, psz, dwReadTotal);
+
+      if(dwRead == -1)
+      {
+         break;
+      }
+
+#endif
+
+      dwReadTotal -= dwRead;
+
+      if(dwReadTotal <= 0)
+         break;
+
+   }
+
+   if(dwReadTotal != 0)
+      return "";
+
+   ::md5::md5 md5;
+
+   md5.initialize();
+
+   md5.update(psz, dwSize);
 
    md5.finalize();
 
    _ca_free(psz, 0);
 
+#ifdef WINDOWS
+
    ::CloseHandle(hfile);
+
+#else
+
+   close(fd);
+
+#endif
 
    return md5.to_string();
 
 }
 
 
-const char * get_file_md5(const char * path)
+vsstring get_file_md5(const char * path)
 {
 
-#ifdef WINDOWS
+   vsstring strMd5 = get_file_md5_by_map(path);
 
-   const char * pszMd5 = get_file_md5_by_map(path);
-
-   if(pszMd5 != NULL)
-      return pszMd5;
+   if(strMd5.has_char())
+      return strMd5;
 
    return get_file_md5_by_read(path);
-
-
-#else
-
-   class ::md5::md5 md5;
-   md5.initialize();
-   FILE * hfile = fopen(path, "rb");
-   if(hfile == NULL)
-      return NULL;
-   DWORD dwSize = 1024 * 512;
-   char * buf = (char *) _ca_alloc(dwSize);
-   DWORD dwRead;
-   while((dwRead = fread(buf, dwSize, 1, hfile)) > 0)
-   {
-      md5.update(buf, dwRead);
-   }
-
-   md5.finalize();
-   _ca_free(buf, 0);
-   fclose(hfile);
-   return md5.to_string();
-
-#endif
 
 }
 

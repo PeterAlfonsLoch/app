@@ -36,7 +36,7 @@
 // ----------------------------------------
 // common unix includes / defines
 #include <unistd.h>
-#include <sys/time.h>
+//#include <sys/time.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>

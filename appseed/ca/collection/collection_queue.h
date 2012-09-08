@@ -7,12 +7,12 @@
 // the container and extracted from the other.
 //
 // queues are implemented as containers adaptors, which are classes that use an
-// encapsulated object of a specific container class as its underlying container, 
+// encapsulated object of a specific container class as its underlying container,
 /// providing a specific set of member functions to access its elements. Elements
 // are pushed into the "back" of the specific container and popped from its "front".
 
 // The underlying container may be one of the standard container class template or
-// some other specifically designed container class. The only requirement is that 
+// some other specifically designed container class. The only requirement is that
 // it supports the following operations:
 
 //    front()
@@ -26,7 +26,7 @@ namespace collection
 {
 
 
-   template < class TYPE, class CONTAINER = deque < T > > 
+   template < class TYPE, class CONTAINER = deque < TYPE > >
    class queue :
       virtual public CONTAINER
    {
@@ -48,7 +48,7 @@ namespace collection
    };
 
 
-   template < class TYPE, class CONTAINER > 
+   template < class TYPE, class CONTAINER >
    inline bool queue < TYPE, CONTAINER > ::is_empty() const
    {
 
@@ -56,7 +56,7 @@ namespace collection
 
    }
 
-   template < class TYPE, class CONTAINER > 
+   template < class TYPE, class CONTAINER >
    inline count queue < TYPE, CONTAINER > ::size() const
    {
 
@@ -65,7 +65,7 @@ namespace collection
    }
 
 
-   template < class TYPE, class CONTAINER > 
+   template < class TYPE, class CONTAINER >
    inline TYPE & queue < TYPE, CONTAINER > ::front()
    {
 
@@ -73,7 +73,7 @@ namespace collection
 
    }
 
-   template < class TYPE, class CONTAINER > 
+   template < class TYPE, class CONTAINER >
    inline const TYPE & queue < TYPE, CONTAINER > ::front() const
    {
 
@@ -81,7 +81,7 @@ namespace collection
 
    }
 
-   template < class TYPE, class CONTAINER > 
+   template < class TYPE, class CONTAINER >
    inline TYPE & queue < TYPE, CONTAINER > ::back()
    {
 
@@ -89,7 +89,7 @@ namespace collection
 
    }
 
-   template < class TYPE, class CONTAINER > 
+   template < class TYPE, class CONTAINER >
    inline const TYPE & queue < TYPE, CONTAINER > ::back() const
    {
 
@@ -97,7 +97,7 @@ namespace collection
 
    }
 
-   template < class TYPE, class CONTAINER > 
+   template < class TYPE, class CONTAINER >
    inline void queue < TYPE, CONTAINER > ::push(const TYPE & t)
    {
 
@@ -105,7 +105,7 @@ namespace collection
 
    }
 
-   template < class TYPE, class CONTAINER > 
+   template < class TYPE, class CONTAINER >
    inline void queue < TYPE, CONTAINER > ::pop()
    {
 

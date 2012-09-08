@@ -22,9 +22,19 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
-#include "framework.h"
+#define server_start_time 0
 
-/*#include <stdarg.h>
+
+#define NONAMELESSUNION
+#define NONAMELESSSTRUCT
+#define HAVE_SYS_TIME_H
+#define HAVE_UNISTD_H
+#define HAVE_SETTIMEOFDAY
+//#define WIN32_NO_STATUS
+#define __WINESRC__
+#include "nodeapp/operational_system/bare_operational_system.h"
+#include "os_cross_windows_internals.h"
+#include <stdarg.h>
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
@@ -36,16 +46,12 @@
 #ifdef HAVE_UNISTD_H
 # include <unistd.h>
 #endif
-
-#define NONAMELESSUNION
-#define NONAMELESSSTRUCT
-#include "ntstatus.h"
-#define WIN32_NO_STATUS
-#include "windef.h"
-#include "winternl.h"
-#include "wine/unicode.h"
-#include "wine/debug.h"
-#include "ntdll_misc.h"*/
+//#include "nodeapp/operational_system/cross/win/win.h"
+//#include "nodeapp/operational_system/cross/win/win_def.h"
+//#include "winternl.h"
+//#include "wine/unicode.h"
+//#include "wine/debug.h"
+//#include "ntdll_misc.h"
 
 //WINE_DEFAULT_DEBUG_CHANNEL(ntdll);
 
@@ -176,7 +182,7 @@ VOID WINAPI RtlTimeToTimeFields(
  *   Success: TRUE.
  *   Failure: FALSE.
  */
-WINBOOLEAN WINAPI RtlTimeFieldsToTime(
+WINBOOL WINAPI RtlTimeFieldsToTime(
 	PTIME_FIELDS tfTimeFields,
 	PLARGE_INTEGER Time)
 {
@@ -282,7 +288,7 @@ NTSTATUS WINAPI RtlLocalTimeToSystemTime( const LARGE_INTEGER *LocalTime,
 {
     LONG bias;
 
-    TRACE("(%p, %p)\n", LocalTime, SystemTime);
+//xxx    TRACE("(%p, %p)\n", LocalTime, SystemTime);
 
     bias = TIME_GetBias();
     SystemTime->QuadPart = LocalTime->QuadPart + bias * (LONGLONG)TICKSPERSEC;
@@ -307,7 +313,7 @@ NTSTATUS WINAPI RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
 {
     LONG bias;
 
-    TRACE("(%p, %p)\n", SystemTime, LocalTime);
+//xxx    TRACE("(%p, %p)\n", SystemTime, LocalTime);
 
     bias = TIME_GetBias();
     LocalTime->QuadPart = SystemTime->QuadPart - bias * (LONGLONG)TICKSPERSEC;
@@ -327,7 +333,7 @@ NTSTATUS WINAPI RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
  *   Success: TRUE.
  *   Failure: FALSE, if the resulting value will not fit in a DWORD.
  */
-WINBOOLEAN WINAPI RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Seconds )
+WINBOOL WINAPI RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Seconds )
 {
     ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
     tmp = tmp / TICKSPERSEC - SECS_1601_TO_1970;
@@ -349,7 +355,7 @@ WINBOOLEAN WINAPI RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD 
  *   Success: TRUE.
  *   Failure: FALSE, if the resulting value will not fit in a DWORD.
  */
-WINBOOLEAN WINAPI RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Seconds )
+WINBOOL WINAPI RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Seconds )
 {
     ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
     tmp = tmp / TICKSPERSEC - SECS_1601_TO_1980;
@@ -562,6 +568,8 @@ static WINBOOL match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIM
     return FALSE;
 }
 
+/*
+
 static WINBOOL reg_query_value(HKEY hkey, LPCWSTR name, DWORD type, void *data, DWORD count)
 {
     UNICODE_STRING nameW;
@@ -583,6 +591,9 @@ static WINBOOL reg_query_value(HKEY hkey, LPCWSTR name, DWORD type, void *data, 
     return TRUE;
 }
 
+*/
+
+/*
 static void find_reg_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
 {
     static const WCHAR Time_ZonesW[] = { 'M','a','c','h','i','n','e','\\',
@@ -606,7 +617,7 @@ static void find_reg_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
     RtlInitUnicodeString(&nameW, Time_ZonesW);
     if (NtOpenKey(&hkey, KEY_READ, &attr))
     {
-        WARN("Unable to open the time zones key\n");
+//xxx        WARN("Unable to open the time zones key\n");
         return;
     }
 
@@ -639,7 +650,7 @@ static void find_reg_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
         attr.SecurityQualityOfService = NULL;
         if (NtOpenKey(&hSubkey, KEY_READ, &attr))
         {
-            WARN("Unable to open subkey %s\n", debugstr_wn(nameW.Buffer, nameW.Length/sizeof(WCHAR)));
+//xxx            WARN("Unable to open subkey %s\n", debugstr_wn(nameW.Buffer, nameW.Length/sizeof(WCHAR)));
             continue;
         }
 
@@ -651,9 +662,9 @@ static void find_reg_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
         continue; \
     }
 
-        get_value(hSubkey, stdW, REG_SZ, reg_tzi.StandardName, sizeof(reg_tzi.StandardName));
-        get_value(hSubkey, dltW, REG_SZ, reg_tzi.DaylightName, sizeof(reg_tzi.DaylightName));
-        get_value(hSubkey, tziW, REG_BINARY, &tz_data, sizeof(tz_data));
+//xxx        get_value(hSubkey, stdW, REG_SZ, reg_tzi.StandardName, sizeof(reg_tzi.StandardName));
+//xxx        get_value(hSubkey, dltW, REG_SZ, reg_tzi.DaylightName, sizeof(reg_tzi.DaylightName));
+//xxx        get_value(hSubkey, tziW, REG_BINARY, &tz_data, sizeof(tz_data));
 
 #undef get_value
 
@@ -687,7 +698,7 @@ static void find_reg_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
         }
 
         /* reset len */
-        nameW.Length = sizeof(buf);
+    /*    nameW.Length = sizeof(buf);
         nameW.MaximumLength = sizeof(buf);
     }
 
@@ -698,7 +709,7 @@ static void find_reg_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
           tzi->Bias,
           tzi->StandardDate.wDay, tzi->StandardDate.wMonth, tzi->StandardDate.wYear,
           tzi->DaylightDate.wDay, tzi->DaylightDate.wMonth, tzi->DaylightDate.wYear);
-}
+}*/
 
 static time_t find_dst_change(unsigned long min, unsigned long max, int *is_dst)
 {
@@ -708,7 +719,7 @@ static time_t find_dst_change(unsigned long min, unsigned long max, int *is_dst)
     start = min;
     tm = localtime(&start);
     *is_dst = !tm->tm_isdst;
-    TRACE("starting date isdst %d, %s", !*is_dst, ctime(&start));
+// xxx    TRACE("starting date isdst %d, %s", !*is_dst, ctime(&start));
 
     while (min <= max)
     {
@@ -746,25 +757,25 @@ static int init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
 
     memset(tzi, 0, sizeof(*tzi));
 
-    TRACE("tz data will be valid through year %d\n", tm->tm_year + 1900);
+//xxx    TRACE("tz data will be valid through year %d\n", tm->tm_year + 1900);
     current_year = tm->tm_year;
 
     tm->tm_isdst = 0;
     tm->tm_mday = 1;
     tm->tm_mon = tm->tm_hour = tm->tm_min = tm->tm_sec = tm->tm_wday = tm->tm_yday = 0;
     year_start = mktime(tm);
-    TRACE("year_start: %s", ctime(&year_start));
+//xxx    TRACE("year_start: %s", ctime(&year_start));
 
     tm->tm_mday = tm->tm_wday = tm->tm_yday = 0;
     tm->tm_mon = 12;
     tm->tm_hour = 23;
     tm->tm_min = tm->tm_sec = 59;
     year_end = mktime(tm);
-    TRACE("year_end: %s", ctime(&year_end));
+//xxx    TRACE("year_end: %s", ctime(&year_end));
 
     tm = gmtime(&year_start);
     tzi->Bias = (LONG)(mktime(tm) - year_start) / 60;
-    TRACE("bias: %d\n", tzi->Bias);
+//xxx    TRACE("bias: %d\n", tzi->Bias);
 
     tmp = find_dst_change(year_start, year_end, &is_dst);
     if (is_dst)
@@ -778,16 +789,18 @@ static int init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
     else
         std = tmp;
 
-    TRACE("std: %s", ctime(&std));
-    TRACE("dlt: %s", ctime(&dlt));
+//xxx    TRACE("std: %s", ctime(&std));
+//xxx    TRACE("dlt: %s", ctime(&dlt));
 
     if (dlt == std || !dlt || !std)
-        TRACE("there is no daylight saving rules in this time zone\n");
+    {
+//xxx   TRACE("there is no daylight saving rules in this time zone\n");
+    }
     else
     {
         tmp = dlt - tzi->Bias * 60;
         tm = gmtime(&tmp);
-        TRACE("dlt gmtime: %s", asctime(tm));
+//xxx   TRACE("dlt gmtime: %s", asctime(tm));
 
         tzi->DaylightBias = -60;
         tzi->DaylightDate.wYear = tm->tm_year + 1900;
@@ -799,16 +812,16 @@ static int init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
         tzi->DaylightDate.wSecond = tm->tm_sec;
         tzi->DaylightDate.wMilliseconds = 0;
 
-        TRACE("daylight (d/m/y): %u/%02u/%04u day of week %u %u:%02u:%02u.%03u bias %d\n",
-            tzi->DaylightDate.wDay, tzi->DaylightDate.wMonth,
-            tzi->DaylightDate.wYear, tzi->DaylightDate.wDayOfWeek,
-            tzi->DaylightDate.wHour, tzi->DaylightDate.wMinute,
-            tzi->DaylightDate.wSecond, tzi->DaylightDate.wMilliseconds,
-            tzi->DaylightBias);
+//xxx        TRACE("daylight (d/m/y): %u/%02u/%04u day of week %u %u:%02u:%02u.%03u bias %d\n",
+//xxx            tzi->DaylightDate.wDay, tzi->DaylightDate.wMonth,
+//xxx            tzi->DaylightDate.wYear, tzi->DaylightDate.wDayOfWeek,
+//xxx            tzi->DaylightDate.wHour, tzi->DaylightDate.wMinute,
+//xxx            tzi->DaylightDate.wSecond, tzi->DaylightDate.wMilliseconds,
+//xxx            tzi->DaylightBias);
 
         tmp = std - tzi->Bias * 60 - tzi->DaylightBias * 60;
         tm = gmtime(&tmp);
-        TRACE("std gmtime: %s", asctime(tm));
+//xxx        TRACE("std gmtime: %s", asctime(tm));
 
         tzi->StandardBias = 0;
         tzi->StandardDate.wYear = tm->tm_year + 1900;
@@ -820,16 +833,16 @@ static int init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
         tzi->StandardDate.wSecond = tm->tm_sec;
         tzi->StandardDate.wMilliseconds = 0;
 
-        TRACE("standard (d/m/y): %u/%02u/%04u day of week %u %u:%02u:%02u.%03u bias %d\n",
-            tzi->StandardDate.wDay, tzi->StandardDate.wMonth,
-            tzi->StandardDate.wYear, tzi->StandardDate.wDayOfWeek,
-            tzi->StandardDate.wHour, tzi->StandardDate.wMinute,
-            tzi->StandardDate.wSecond, tzi->StandardDate.wMilliseconds,
-            tzi->StandardBias);
+//xxx        TRACE("standard (d/m/y): %u/%02u/%04u day of week %u %u:%02u:%02u.%03u bias %d\n",
+//xxx            tzi->StandardDate.wDay, tzi->StandardDate.wMonth,
+//xxx            tzi->StandardDate.wYear, tzi->StandardDate.wDayOfWeek,
+//xxx            tzi->StandardDate.wHour, tzi->StandardDate.wMinute,
+//xxx            tzi->StandardDate.wSecond, tzi->StandardDate.wMilliseconds,
+//xxx            tzi->StandardBias);
     }
 
-    find_reg_tz_info(tzi);
-    cached_tzi = *tzi;
+//xxx    find_reg_tz_info(tzi);
+//xxx    cached_tzi = *tzi;
 
     RtlLeaveCriticalSection( &TIME_tz_section );
 
@@ -910,8 +923,8 @@ NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *Old
     if (!settimeofday(&tv, NULL)) /* 0 is OK, -1 is error */
         return STATUS_SUCCESS;
     tm_t = sec;
-    ERR("Cannot set time to %s, time adjustment %ld: %s\n",
-        ctime(&tm_t), (long)(sec-oldsec), strerror(errno));
+    // xxx ERR("Cannot set time to %s, time adjustment %ld: %s\n",
+        // xxx ctime(&tm_t), (long)(sec-oldsec), strerror(errno));
     if (errno == EPERM)
         return STATUS_PRIVILEGE_NOT_HELD;
     else

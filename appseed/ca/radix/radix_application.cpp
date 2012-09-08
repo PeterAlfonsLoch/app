@@ -1,7 +1,9 @@
 #include "framework.h"
 #include <malloc.h>
+#ifdef WINDOWS
 #include <cderr.h>      // Commdlg Error definitions
 #include <winspool.h>
+#endif
 
 
 CLASS_DECL_ca extern fixed_alloc_array * g_pfixedallocaWstring;
@@ -1522,11 +1524,11 @@ namespace radix
 
    void application::OnAppExit()
    {
-      
+
       // same as double-clicking on main ::ca::window close box
-      
+
       ASSERT(GetMainWnd() != NULL);
-      
+
       GetMainWnd()->send_message(WM_CLOSE);
 
    }
@@ -2661,9 +2663,9 @@ namespace radix
 
    void application::wait(waitable * pobject)
    {
-      
+
       mutex * pmutex = get_mutex(pobject);
-      
+
       if(pmutex == NULL)
          throw resource_exception();
 
@@ -2673,7 +2675,7 @@ namespace radix
 
    wait_result application::wait(waitable * pobject, duration duration)
    {
-      
+
       mutex * pmutex = get_mutex(pobject);
 
       if(pmutex == NULL)

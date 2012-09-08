@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "C/c.h"
+#include "c/c.h"
 
 
 #if defined(MACOS)

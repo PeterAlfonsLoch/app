@@ -15,7 +15,7 @@
 
 
 #define ENABLE_BINRELOC
-#include "c_os_binreloc.h"
+//#include "c_os_binreloc.h"
 
 
 
@@ -59,3 +59,12 @@ union semun
    USHORT * array;
 
 };
+
+
+void fd_ensure_file_size(int fd, int iSize);
+int64_t fd_get_file_size(int fd);
+
+
+
+CLASS_DECL_c DWORD GetLastError();
+CLASS_DECL_c DWORD SetLastError(DWORD dw);

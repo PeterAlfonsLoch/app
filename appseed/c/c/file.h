@@ -8,7 +8,7 @@ CLASS_DECL_c bool file_exists_dup(const char * path1);
 #ifdef WINDOWS
 CLASS_DECL_c bool read_resource_as_file_dup(const char * pszFile, HINSTANCE hinst, UINT nID, LPCTSTR lpcszType);
 #endif
-CLASS_DECL_c const char * get_file_md5(const char * file);
+CLASS_DECL_c vsstring get_file_md5(const char * file);
 CLASS_DECL_c bool is_file_ok(const char * path1, const char * pszTemplate);
 CLASS_DECL_c bool file_put_contents_dup(const char * path, const char * contents, int len = -1);
 CLASS_DECL_c bool file_put_contents_dup(const char * path, const simple_memory & memory);

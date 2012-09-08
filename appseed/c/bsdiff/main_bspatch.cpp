@@ -3,7 +3,7 @@
  * All rights reserved
  *
  * Redistribution and use in source and binary forms, with or without
- * modification, are permitted providing that the following conditions 
+ * modification, are permitted providing that the following conditions
  * are met:
  * 1. Redistributions of source code must retain the above copyright
  *    notice, this list of conditions and the following disclaimer.
@@ -24,16 +24,20 @@
  * POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <stdlib.h>
+#include "framework.h"
 #include <stdio.h>
 //#include <err.h>
 #include "bzlib.h"
+#if defined(LINUX)
+#include <sys/io.h>
+#else
 #include <io.h>
+#endif
 #include <fcntl.h>
 
 #include <sys/types.h>
 typedef unsigned char u_char;
-typedef signed int ssize_t;
+//typedef signed int ssize_t;
 
 template<class T1, class T2>
 void err(int i, const char* str, T1 arg1, T2 arg2) {

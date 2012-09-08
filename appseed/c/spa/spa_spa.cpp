@@ -56,7 +56,7 @@ bool is_installed(const char * pszVersion, const char * pszBuild, const char * p
    if(pszVersion == NULL || *pszVersion == '\0')
       return false;
 
-   if(stricmp(pszVersion, "basis") && stricmp(pszVersion, "stage"))
+   if(stricmp_dup(pszVersion, "basis") && stricmp_dup(pszVersion, "stage"))
       return false;
 
    XNode nodeInstall;
@@ -79,7 +79,7 @@ bool is_installed(const char * pszVersion, const char * pszBuild, const char * p
       return false;
 
    LPXNode lpnodeId = NULL;
-   
+
    for(int ui = 0; ui < lpnodeType->childs.get_count(); ui++)
    {
 
@@ -158,7 +158,7 @@ CLASS_DECL_c vsstring fetch_latest_build_number(const char * pszVersion)
        strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
 
    }
-   else 
+   else
    {
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
@@ -166,7 +166,7 @@ CLASS_DECL_c vsstring fetch_latest_build_number(const char * pszVersion)
       strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
 
 #else
-         
+
       strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
 
 #endif
@@ -179,7 +179,7 @@ RetryBuildNumber:
 
    if(iRetry > 10)
    {
-      
+
       g_dwLatestBuildNumberLastFetch = GetTickCount();
 
       g_strmapLatestBuildNumber.set_at(pszVersion, "");

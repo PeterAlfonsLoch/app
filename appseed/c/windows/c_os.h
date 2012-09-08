@@ -19,6 +19,9 @@ CLASS_DECL_c bool main_initialize();
 CLASS_DECL_c bool main_finalize();
 
 
+void ensure_file_size(HANDLE h, int iSize);
+
+
 #ifndef M_WINDOWS
 
 CLASS_DECL_c

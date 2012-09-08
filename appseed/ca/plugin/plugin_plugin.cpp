@@ -1,7 +1,19 @@
 #include "framework.h"
+
+
+#ifdef WINDOWS
 #undef new
 #include <gdiplus.h>
+#endif
 
+#ifdef LINUX
+#include <sys/mman.h>
+//#include <sys/stat.h>
+//#include <fcntl.h>
+//#include <stdlib.h>
+//#include <stdio.h>
+//#include <unistd.h>
+#endif
 
 
 void CLASS_DECL_ca __cdecl _ca2_purecall_()
@@ -34,10 +46,15 @@ namespace plugin
 
       m_pbitmap               = NULL;
       m_pgraphics             = NULL;
-      
+
+#ifdef WINDOWS
       m_hfileBitmap           = INVALID_HANDLE_VALUE;
       m_hfilemapBitmap        = NULL;
       m_pcolorref             = NULL;
+#else
+      m_hfileBitmap           = -1;
+      m_pcolorref             = (uint32_t *) MAP_FAILED;
+#endif
       m_pmutexBitmap          = NULL;
 
    }
@@ -59,7 +76,7 @@ namespace plugin
 
       gen::str::begins_eat_ci(strMutex, "\\ca2\\");
 
-      m_pmutexBitmap = new simple_mutex(false, "Global\\" + strMutex);
+      m_pmutexBitmap = new simple_mutex("Global\\" + strMutex, false);
 
       bool bNew = false;
 
@@ -232,10 +249,14 @@ namespace plugin
          {
          }
 
+#ifdef WINDOWS
+
          ((Gdiplus::Graphics *) m_dib->get_graphics()->get_os_data())->Flush(Gdiplus::FlushIntentionSync);
 
          ::GdiFlush();
-         
+
+#endif
+
          m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
 
          m_sizeBitmap.cy = abs_dup(lprect->bottom - lprect->top);
@@ -302,31 +323,31 @@ namespace plugin
 
    void plugin::ca2_login()
    {
-      
+
       gen::property_set set(m_psystem);
-      
+
       set.parse_url_query(m_strCa2LoginRuri);
-      
+
       string strLocation = set["ruri"];
-      
+
       if(strLocation.is_empty())
          strLocation = m_strCa2LoginRuri;
-      
+
       gen::property_set setUri(m_psystem);
-      
+
       setUri.parse_url_query(strLocation);
-      
+
       if(Sys(m_psystem).url().get_server(strLocation).is_empty())
       {
          strLocation = Sys(m_psystem).url().override_if_empty(strLocation, get_host_location_url(), false);
       }
-      
+
       string strSessId = set["sessid"];
 
       gen::property_set setLogin(get_app());
 
       ::fontopus::user * puser = NULL;
-      
+
       //Sleep(15 * 1000);
 
       while(puser == NULL)
@@ -355,25 +376,25 @@ namespace plugin
 
    void plugin::ca2_logout()
    {
-      
+
       m_psystem->logout();
-      
+
       gen::property_set set(m_psystem);
-      
+
       set.parse_url_query(m_strCa2LogoutRuri);
-      
+
       string strLocation = set["ruri"];
-      
+
       strLocation = m_psystem->url().remove(strLocation, "sessid");
-      
+
       strLocation = m_psystem->url().remove(strLocation, "action");
-      
+
       string strUrl;
-      
+
       strUrl = "https://account.ca2.cc/sec?action=logout";
-      
+
       m_psystem->url().set(strUrl, "ruri", strLocation);
-      
+
       open_url(strUrl);
 
    }
@@ -436,7 +457,7 @@ namespace plugin
 
             for(int iAttempt = 0; iAttempt < 3; iAttempt++)
             {
-            
+
                //strPluginData = ms_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
 
                gen::property_set post(get_app());
@@ -569,7 +590,7 @@ namespace plugin
 
             if(strBuildNumber.is_empty())
             {
-         
+
                strBuildNumber = "latest";
 
             }
@@ -592,8 +613,11 @@ namespace plugin
 
                   int i = 1;
 
+#ifdef WINDOWS
                   PostMessage(m_phost->::small_ipc_tx_channel::m_hwnd, WM_USER + 100, 1, 1);
-
+#else
+                  throw not_implemented_exception();
+#endif
                   Sys(m_psystem).install().start(strCommandLine);
 
                   m_phost->m_bReload = true;
@@ -631,7 +655,11 @@ namespace plugin
 
                   int i = 1;
 
+#ifdef WINDOWS
                   PostMessage(m_phost->::small_ipc_tx_channel::m_hwnd, WM_USER + 100, 1, 1);
+#else
+                  throw not_implemented_exception();
+#endif
 
                   Sys(m_psystem).install().start(strCommandLine);
 
@@ -727,8 +755,11 @@ namespace plugin
 
 
                         int i = 1;
-
+#ifdef WINDOWS
                         PostMessage(m_phost->::small_ipc_tx_channel::m_hwnd, WM_USER + 100, 1, 1);
+#else
+                        throw not_implemented_exception();
+#endif
 
                         Sys(m_psystem).install().start(strCommandLine);
 
@@ -785,7 +816,9 @@ namespace plugin
 
       g_bExiting = true;
 
+#ifdef WINDOWS
       _set_se_translator(&my_se_translator_function);
+#endif
 
       try
       {
@@ -849,12 +882,11 @@ namespace plugin
       {
       }
 
-
+#ifdef WINDOWS
       while(true)
       {
          try
          {
-
             if(!::FreeLibrary(ex1::g_hmoduleOs))
             {
                break;
@@ -864,7 +896,10 @@ namespace plugin
          catch(...)
          {
          }
+
       }
+#endif
+
 
       return true;
 

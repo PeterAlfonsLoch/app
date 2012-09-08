@@ -2,7 +2,7 @@
 
 
 
-string_format::construct(string_format_printer * pprinter, string_format_printer::PRINTER pfnPrinter, void * pvoidPrinter)
+void string_format::construct(string_format_printer * pprinter, string_format_printer::PRINTER pfnPrinter, void * pvoidPrinter)
 {
 
    m_pszBuffer                   = NULL;
@@ -74,30 +74,30 @@ void string_format::allocate_add_up(int iLenAddUp)
 }
 
 
-void string_format::format(int i)
+void string_format::format(int const & i)
 {
    // TODO: use specs
    append(gen::str::itoa(i));
 
 }
 
-void string_format::format(int64_t i)
+void string_format::format(int64_t const & i)
 {
    // TODO: use specs
    append(gen::str::itoa(i));
-   
+
 }
 
-void string_format::format(const void * p)
+void string_format::format(const void * const & p)
 {
    // TODO: use specs
    append(gen::str::itoa((uint_ptr)p));
-   
+
 }
 
 
 
-void string_format::format(const char * psz)
+void string_format::format(const char * const & psz)
 {
 
    append(psz);

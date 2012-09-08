@@ -394,27 +394,6 @@ class var & var::operator = (int i)
 
 
 
-#ifdef LINUX
-
-class var & var::operator = (long int i)
-{
-   if(get_type() == type_pint64)
-   {
-      *m_pi64 = i;
-   }
-   else if(get_type() == type_pvar)
-   {
-      *m_pvar = i;
-   }
-   else
-   {
-      set_type(type_int64, false);
-      m_i64 = i;
-   }
-   return *this;
-}
-
-#endif
 
 class var & var::operator = (int * pi)
 {
@@ -850,6 +829,7 @@ var::operator int()
    }
 }
 
+#ifdef WINDOWS
 // returns 0 for unknown conversions
 var::operator int64_t()
 {
@@ -877,6 +857,7 @@ var::operator int64_t()
       return 0;
    }
 }
+#endif
 
 bool var::is_true() const
 {

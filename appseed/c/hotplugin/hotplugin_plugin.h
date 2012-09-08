@@ -52,8 +52,12 @@ namespace hotplugin
       bool                          m_bInstalling;
       const char *                  m_pszReloadCommandLine;
 
+#ifdef WINDOWS
       HANDLE                        m_hfileBitmap;
       HANDLE                        m_hfilemapBitmap;
+#else
+      int                           m_hfileBitmap;
+#endif
       simple_mutex *                m_pmutexBitmap;
       SIZE                          m_sizeBitmapData;
       vsstring                      m_strBitmapChannel;

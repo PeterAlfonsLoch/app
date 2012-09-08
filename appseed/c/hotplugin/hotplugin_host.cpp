@@ -2,6 +2,14 @@
 #ifdef WINDOWS
 #include <gdiplus.h>
 #endif
+#ifdef LINUX
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#endif
 
 namespace hotplugin
 {
@@ -20,9 +28,14 @@ namespace hotplugin
       m_pvoidSystem              = NULL;
 
 
+#ifdef WINDOWS
       m_pcolorref                = NULL;
       m_hfilemapBitmap           = NULL;
       m_hfileBitmap              = INVALID_HANDLE_VALUE;
+#else
+      m_pcolorref                = (uint32_t *) MAP_FAILED;
+      m_hfileBitmap              = -1;
+#endif
 
       m_pbitmap                  = NULL;
       m_pmutexBitmap             = NULL;
@@ -73,7 +86,7 @@ namespace hotplugin
 
       if(m_pplugin != NULL)
       {
-         
+
          m_pplugin->get_window_rect(lprect);
 
       }
@@ -88,8 +101,8 @@ namespace hotplugin
 
    void host::set_window_rect(LPCRECT lpcrect)
    {
-      
-      
+
+
       if(m_pplugin != NULL)
       {
 
@@ -367,11 +380,11 @@ namespace hotplugin
 #ifdef WINDOWS
 
       ::create_thread(
-         NULL, 
-         0, 
-         &::_ca2_starter_start, 
-         pstart, 
-         0, 
+         NULL,
+         0,
+         &::_ca2_starter_start,
+         pstart,
+         0,
          pplugin == NULL ?
 NULL : &pplugin->m_nCa2StarterStartThreadID);
 
@@ -446,7 +459,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
 
       try
       {
-          
+
 #if defined(WINDOWS)
 
          HBITMAP hbitmap         = ::CreateBitmap(m_sizeBitmap.cx, m_sizeBitmap.cy, 1, 32, m_pcolorref);
@@ -462,11 +475,11 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
          ::DeleteDC(hdc);
 
          ::DeleteObject(hbitmap);
-          
+
 #else
-          
+
           throw "not implemented";
-          
+
 #endif
 
       }
@@ -496,7 +509,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
       {
 
 #if defined(WINDOWS)
-          
+
          HBITMAP hbitmap         = ::CreateBitmap(m_sizeBitmap.cx, m_sizeBitmap.cy, 1, 32, m_pcolorref);
 
          HDC hdc                 = ::CreateCompatibleDC(NULL);
@@ -510,13 +523,13 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
          ::DeleteDC(hdc);
 
          ::DeleteObject(hbitmap);
-          
+
 #else
-          
+
           throw "not implemented";
-          
+
 #endif
-          
+
 
 
       }
@@ -535,7 +548,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
       LPCRECT lprect = &m_pplugin->m_rect;
 
       m_sizeBitmap.cx = abs_dup(width(lprect));
-      
+
       m_sizeBitmap.cy = abs_dup(height(lprect));
 
       ensure_bitmap_data(m_sizeBitmap.cx, m_sizeBitmap.cy, false);
@@ -547,7 +560,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
 
       try
       {
-         
+
 #if defined(WINDOWS)
 
          Gdiplus::Bitmap b(m_sizeBitmap.cx, m_sizeBitmap.cy, m_sizeBitmap.cx *4 , PixelFormat32bppARGB, (BYTE *) m_pcolorref);
@@ -565,9 +578,9 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
          delete pg;
 
          ::GdiFlush();
-         
+
 #else
-         
+
          throw "not implemented";
 
 #endif

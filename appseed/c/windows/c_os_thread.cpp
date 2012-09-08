@@ -34,7 +34,7 @@ DWORD WINAPI thread_proc_create_thread(LPVOID lpparameter)
    }
 
    /*statusStartup = pgdiplusStartupOutput->NotificationHook(&gdiplusHookToken);
-   
+
 
    if(statusStartup != Gdiplus::Ok)
    {
@@ -42,7 +42,7 @@ DWORD WINAPI thread_proc_create_thread(LPVOID lpparameter)
       Gdiplus::GdiplusShutdown(gdiplusToken);
 
       delete posthread;
-      
+
       return -1;
 
    }*/
@@ -82,8 +82,56 @@ HANDLE start_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, int iPriority)
 HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, DWORD cbStack, DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, DWORD f, LPDWORD lpdwId)
 {
 
-   return ::CreateThread(lpsa, cbStack, &thread_proc_create_thread, (LPVOID) new os_thread(pfn, pv), f, lpdwId); 
+   return ::CreateThread(lpsa, cbStack, &thread_proc_create_thread, (LPVOID) new os_thread(pfn, pv), f, lpdwId);
 
 }
 
+
+
+thread_layer::~thread_layer()
+{
+
+
+}
+
+
+int thread_layer::run()
+{
+
+   MSG msg;
+
+   while(true)
+   {
+
+      if(!PeekMessage(&msg, NULL, 0, 0xffffffffu, TRUE))
+      {
+
+         if(!on_idle())
+         {
+
+            sleep(m_iSleepiness);
+
+         }
+
+
+         continue;
+
+      }
+
+      if(msg.message == WM_QUIT)
+         break;
+
+      TranslateMessage(&msg);
+      DispatchMessage(&msg);
+
+   }
+
+   return m_iResult;
+
+}
+
+bool thread_layer::on_idle()
+{
+
+}
 

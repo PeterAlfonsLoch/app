@@ -247,9 +247,12 @@ public:
    var & operator = (const ::datetime::time & time);
    var & operator = (const FILETIME & time);
    var & operator = (const SYSTEMTIME & time);
-   var & operator = (unsigned long ul);
 #ifndef LINUX
    var & operator = (long int l);
+   var & operator = (unsigned long ul);
+#else
+   var & operator = (long long l);
+   var & operator = (unsigned long long l);
 #endif
    var & operator = (unsigned int ui);
    var & operator = (double d);

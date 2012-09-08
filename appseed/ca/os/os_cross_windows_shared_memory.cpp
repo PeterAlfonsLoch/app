@@ -1,13 +1,13 @@
 #include "framework.h"
 
 
-//#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-//#include <unistd.h>
+#include <unistd.h>
 #include <fcntl.h>
-//#include <sys/mman.h>
+#include <sys/mman.h>
 
 
 HGLOBAL WINAPI GlobalAlloc(UINT uFlags, SIZE_T dwBytes)
@@ -97,7 +97,7 @@ HGLOBAL WINAPI GlobalReAlloc(HGLOBAL hglobal, SIZE_T dwBytes, UINT uFlags)
 HGLOBAL WINAPI GlobalFree(HGLOBAL hglobal)
 {
 
-   fclose(hglobal->m_fd);
+   close(hglobal->m_fd);
    unlink(hglobal->m_szFile);
    delete hglobal;
 
@@ -114,10 +114,10 @@ LPVOID WINAPI GlobalLock(HGLOBAL hglobal)
 
    /* Now the file is ready to be mmapped.
      */
-   hglobal->m_map = mmap(0, FILESIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+   hglobal->m_map = mmap(0, ::fd_get_file_size(hglobal->m_fd), PROT_READ | PROT_WRITE, MAP_SHARED, hglobal->m_fd, 0);
+
    if(hglobal->m_map == MAP_FAILED)
    {
-
       //perror("Error mmapping the file");
       //exit(EXIT_FAILURE);
       return NULL;
@@ -140,13 +140,13 @@ SIZE_T WINAPI GlobalSize(HGLOBAL hglobal)
 }
 
 
-WINBOOL WINAPI GlobalUnlock(HGLOBAL hglobal)
+bool WINAPI GlobalUnlock(HGLOBAL hglobal)
 {
 
-   if(hblobal->m_map == NULL)
+   if(hglobal->m_map == NULL)
       return FALSE;
 
-   if (munmap(hglobal->m_map, FILESIZE) == -1)
+   if (munmap(hglobal->m_map, ::fd_get_file_size(hglobal->m_fd)) == -1)
    {
       //perror("Error un-mmapping the file");
 	/* Decide here whether to close(fd) and exit() or not. Depends... */

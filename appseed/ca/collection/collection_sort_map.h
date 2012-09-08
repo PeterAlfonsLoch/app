@@ -295,7 +295,7 @@ namespace collection
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
    void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::construct(::count nBlockSize)
    {
-      
+
       UNREFERENCED_PARAMETER(nBlockSize);
 
    }
@@ -366,7 +366,7 @@ namespace collection
       pair * pAssoc = PLookup(key);
 
       if (pAssoc == NULL)
-         return false; 
+         return false;
 
       rValue = pAssoc->m_value;
 
@@ -623,8 +623,6 @@ namespace collection
 
       index iRet = (index) rNextPosition;
 
-      ENSURE(pAssocRet != NULL);
-
       if (iRet == (index) BEFORE_START_POSITION)
       {
          iRet = 1;
@@ -633,7 +631,7 @@ namespace collection
       // find next association
       index iNext = iRet + 1;
       if(iNext > m_ptra.get_count())
-      { 
+      {
 
       }
 
@@ -656,13 +654,11 @@ namespace collection
 
       index iRet = (index) find_pair(const_cast < pair * > (pPairRet));
 
-      ENSURE(iRet != NULL);
-
       // find next association
       iRet++;
 
       if(iRet >= m_ptra.get_count())
-      { 
+      {
 
          return NULL;
 
@@ -683,13 +679,11 @@ namespace collection
 
       index iRet = (index) find_pair(pPairRet);
 
-      ENSURE(iRet != NULL);
-
       // find next association
       iRet++;
 
       if(iRet >= m_ptra.get_count())
-      { 
+      {
 
          return NULL;
 
@@ -781,15 +775,15 @@ namespace collection
 
       if(this != &attribmap)
       {
-         
+
          this->remove_all();
 
-         pair * ppair;
+         typename type_map::pair * ppair;
 
          for(index i = 0; i < attribmap.m_ptra.get_count(); i++)
          {
 
-            ppair      = new pair(attribmap.m_ptra[i]->m_key);
+            ppair      = new typename type_map::pair(attribmap.m_ptra[i]->m_key);
 
             ppair->m_value    = attribmap.m_ptra[i]->m_value;
 
@@ -810,14 +804,14 @@ namespace collection
       if(this == &attribmap)
          return true;
 
-      if(m_ptra.get_size() != attribmap.get_size())
+      if(this->m_ptra.get_size() != attribmap.get_size())
          return false;
 
       for(index i = 0; i < attribmap.m_ptra.get_count(); i++)
       {
 
-         if(attribmap.m_ptra[i]->m_key       != m_ptra[i]->m_key
-         || attribmap.m_ptra[i]->m_value     != m_ptra[i]->m_value)
+         if(attribmap.m_ptra[i]->m_key       != this->m_ptra[i]->m_key
+         || attribmap.m_ptra[i]->m_value     != this->m_ptra[i]->m_value)
          {
 
             return false;
@@ -892,14 +886,14 @@ namespace collection
 
    template < class VALUE, class ARG_VALUE, class COMPARE >
    sort_strid_map < VALUE, ARG_VALUE, COMPARE >::sort_strid_map(::count nBlockSize) :
-      sort_map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > (nBlockSize)
+      sort_attrib_map < sort_map < id, const id &, VALUE, ARG_VALUE, COMPARE > > (nBlockSize)
    {
    }
 
 
    template < class VALUE, class ARG_VALUE, class COMPARE >
    sort_strid_map < VALUE, ARG_VALUE, COMPARE >::sort_strid_map(const sort_strid_map & sort_map) :
-      sort_attrib_map < ::collection::sort_map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > > (sort_map)
+      sort_attrib_map < ::collection::sort_map < id, const id &, VALUE, ARG_VALUE > > (sort_map)
    {
    }
 
@@ -909,7 +903,7 @@ namespace collection
 
       if(this != &sort_map)
       {
-         sort_attrib_map < ::collection::sort_map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > >::operator = (sort_map);
+         sort_attrib_map < ::collection::sort_map < id, const id &, VALUE, ARG_VALUE > >::operator = (sort_map);
       }
 
       return *this;

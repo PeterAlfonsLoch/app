@@ -98,7 +98,7 @@ vsstring dir::ca2(const char * path1, const char * path2, const char * path3, co
       get_ca2_module_folder_dup(lpszModuleFilePath);
       str = lpszModuleFilePath;
       stra_dup stra;
-   
+
       str.replace("/", "\\");
       stra.add_tokens(str, "\\");
       if(stra.get_count() <= 0)
@@ -298,13 +298,13 @@ bool dir::exists(const char * path1)
 
 vsstring dir::name(const char * path1)
 {
-   
+
    vsstring str;
 
    str = path1;
-   
+
    index iPos = str.rfind('\\');
-   
+
    return str.substr(0, iPos + 1);
 
 }
@@ -341,7 +341,7 @@ void dir::ls(stra_dup & stra, const char *psz)
 
    hFind = FindFirstFile(psz, &FindFileData);
 
-   if (hFind == INVALID_HANDLE_VALUE) 
+   if (hFind == INVALID_HANDLE_VALUE)
       return;
 
    while(true)
@@ -376,36 +376,36 @@ vsstring dir::default_os_user_path_prefix()
    vsstring str;
    str.attach(utf16_to_8(buf));
    return str;
-   
+
 #else
-   
+
    simple_memory mem;
-   
+
    mem.allocate(512);
-   
+
 retry:
-   
+
    if(getlogin_r(mem.m_psz, mem.m_iSize))
    {
-      
+
       if(errno == ERANGE)
       {
-         
+
          if(mem.m_iSize < 65536)
          {
-            
+
             mem.allocate(mem.m_iSize + 512);
-            
+
             goto retry;
-            
+
          }
-         
+
       }
-      
+
       return "";
-      
+
    }
-         
+
    return mem.m_psz;
 
 #endif
@@ -444,12 +444,16 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
 {
 
    vsstring str;
-   SHGetSpecialFolderPath(
-      NULL,
-      (vsstring &) str,
-      CSIDL_PROFILE,
-      false);
 
+#ifdef WINDOWS
+
+   SHGetSpecialFolderPath(NULL, (vsstring &) str, CSIDL_PROFILE, false);
+
+#else
+
+   str = getenv("HOME");
+
+#endif
 
    vsstring strRelative;
    strRelative = ca2();

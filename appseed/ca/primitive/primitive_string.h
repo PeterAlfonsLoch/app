@@ -157,8 +157,14 @@ public:
    static void                   ConvertToOem(char* pstrString,size_t size);
    static void                   ConvertToAnsi(char* pstrString,size_t size);
    static void          __cdecl  FloodCharacters(char ch,strsize nLength, char* pch ) throw();
+
+#ifdef WINDOWS
+
    static BSTR          __cdecl  AllocSysString( const char* pchData, strsize nDataLength ) throw();
    static bool          __cdecl  ReAllocSysString( const char* pchData,BSTR* pbstr,strsize nDataLength ) throw();
+
+#endif
+
    static DWORD         __cdecl  FormatMessage(DWORD dwFlags, LPCVOID pSource, DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer, DWORD nSize, va_list* pArguments ) throw();
    static DWORD         __cdecl  format_message(DWORD dwFlags, LPCVOID pSource, DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer, DWORD nSize, va_list* pArguments ) throw();
    static strsize       __cdecl  SafeStringLen( const char * psz ) throw();

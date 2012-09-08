@@ -18,7 +18,7 @@ namespace dynamic_source
       m_memfileError(papp)
    {
    }
-   
+
    script::~script()
    {
    }
@@ -49,7 +49,7 @@ namespace dynamic_source
 
    bool ds_script::DoesMatchVersion()
    {
-      
+
       if(GetTickCount() - m_dwLastVersionCheck < (1984 + 1977))
       {
          return m_bLastVersionCheck;
@@ -82,15 +82,18 @@ namespace dynamic_source
       }
       ::CloseHandle(h);
 #else
-      struct stat64 st;
+
+      struct stat st;
+
       memset(&st, 0, sizeof(st));
+
 //         memset(&ftAccess, 0, sizeof(__time_t));
 //         memset(&ftModified, 0, sizeof(__time_t));
 //         HANDLE h = ::CreateFile(m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-      stat64(m_strSourcePath, &st);
+
+      stat(m_strSourcePath, &st);
 //         ::CloseHandle(h);
-      bMatches = memcmp(&st.st_ctime, &m_ftCreation, sizeof(__time_t)) == 0
-          && memcmp(&m_ftModified, &st.st_mtime, sizeof(__time_t)) == 0;
+      bMatches = memcmp(&st.st_ctime, &m_ftCreation, sizeof(__time_t)) == 0 && memcmp(&m_ftModified, &st.st_mtime, sizeof(__time_t)) == 0;
 #endif
       m_bLastVersionCheck = bMatches;
       return bMatches;

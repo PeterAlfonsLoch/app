@@ -123,7 +123,7 @@ CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 
    simple_memory memory;
    simple_memory memIn;
-   
+
    memIn.from_hex(psz);
 
    memory.allocate(2048);

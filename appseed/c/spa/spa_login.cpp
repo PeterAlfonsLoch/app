@@ -19,7 +19,7 @@ spa_login::spa_login()
    m_rect.bottom = m_rect.top + 284;
 
 
-   int x1 = m_rect.left + 49; 
+   int x1 = m_rect.left + 49;
    int x2 = m_rect.right - 49;
    int h1 = 23;
    int pad = 5;
@@ -78,7 +78,7 @@ void spa_login::defer_translate(::spa::plugin * pplugin)
       return;
 
    vsstring str;
-   
+
    str = node.GetAttrValue("email");
 
    if(str.has_char())
@@ -151,7 +151,7 @@ void spa_login::on_action(const char * pszId)
 
    if(strcmp(pszId, "submit") == 0)
    {
-      
+
       start_login();
 
    }
@@ -160,7 +160,7 @@ void spa_login::on_action(const char * pszId)
 
 void spa_login::start_login()
 {
-   
+
    ::create_thread(NULL, 0, &spa_login::thread_proc_login, (LPVOID) this, 0, 0);
 
 }
@@ -285,7 +285,7 @@ spa_login::e_result spa_login::login()
    }
 
    e_result eresult;
-   
+
    {
 
 
@@ -297,7 +297,7 @@ spa_login::e_result spa_login::login()
          if(doc.GetRoot()->name == "response")
          {
             // Heuristical check
-            if(stricmp(doc.GetRoot()->GetAttrValue("id"), "auth") == 0 && vsstring(doc.GetRoot()->GetAttrValue("passhash")).get_length() > 16 && atoi(doc.GetRoot()->GetAttrValue("secureuserid")) > 0)
+            if(stricmp_dup(doc.GetRoot()->GetAttrValue("id"), "auth") == 0 && vsstring(doc.GetRoot()->GetAttrValue("passhash")).get_length() > 16 && atoi(doc.GetRoot()->GetAttrValue("secureuserid")) > 0)
             {
                m_strPasshash = doc.GetRoot()->GetAttrValue("passhash");
                eresult = result_ok;
@@ -313,7 +313,7 @@ spa_login::e_result spa_login::login()
          }
          else
          {
-         
+
             eresult = result_fail;
 
          }
@@ -321,7 +321,7 @@ spa_login::e_result spa_login::login()
       }
       else
       {
-         
+
          eresult = result_fail;
 
       }
@@ -341,13 +341,13 @@ void spa_login::login_result(e_result eresult)
 
    if(eresult == result_ok)
    {
-      
+
       authentication_succeeded();
 
    }
    else
    {
-      
+
       authentication_failed();
 
    }
@@ -355,7 +355,7 @@ void spa_login::login_result(e_result eresult)
 
    if(m_pcallback != NULL)
    {
-    
+
       m_pcallback->login_result(eresult);
 
    }

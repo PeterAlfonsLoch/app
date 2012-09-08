@@ -113,8 +113,8 @@ public:
 
 // Attributes
 	// number of elements
-	count get_count() const;
-	count get_size() const;
+	::count get_count() const;
+	::count get_size() const;
 	bool is_empty(count countMinimum = 1) const;
    bool has_elements(count countMinimum = 1) const;
 

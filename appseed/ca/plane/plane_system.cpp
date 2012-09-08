@@ -9,9 +9,9 @@
 namespace plane
 {
 
-   
+#if defined(WINDOWS)
    mutex system::s_mutexGdiplus;
-
+#endif
 
    system::system()
    {
@@ -1408,18 +1408,18 @@ namespace plane
 
       if(strBuildNumber.is_empty())
       {
-         
+
          strBuildNumber = "latest";
 
       }
 
       if(!System.directrix().m_varTopicQuery.has_property("install")
          && !System.directrix().m_varTopicQuery.has_property("uninstall")
-         && strId.has_char() 
+         && strId.has_char()
          && !install().is(NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema))
       {
 
-         if(::IsDebuggerPresent())
+         if(::is_debugger_attached())
          {
 
             MessageBox(NULL, "Debug Only Message\n\nPlease install application \"" + strApplicationId + "\" - type \"" + string(pszType) + "\" locale " + m_strLocale + " schema " + m_strSchema + " build number " + System.command().m_varTopicQuery["build_number"], "Debug Only Message - Please Install - ca2", MB_OK);

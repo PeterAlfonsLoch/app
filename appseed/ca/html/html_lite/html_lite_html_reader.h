@@ -332,8 +332,13 @@ public:
 public:
    // parses an HTML document from the specified string
    dword_ptr read(const string & str);
+#ifdef WINDOWS
    // parses an HTML document from a file given its HANDLE
    dword_ptr ReadFile(HANDLE hFile);
+#else
+   // parses an HTML document from a file given its file descriptor
+   dword_ptr ReadFile(int fd);
+#endif
 
 // Helpers
 protected:
@@ -361,7 +366,7 @@ protected:
       //rCharacters.remove('\n');
       //rCharacters.replace('\r', ' ');
       //rCharacters.replace('\t', ' ');
-      UNUSED_ALWAYS(rCharacters);
+//      UNUSED_ALWAYS(rCharacters);
    }
 
    /** buffer Manipulation Helpers */
@@ -384,9 +389,12 @@ protected:
     */
    char ReadChar()
    {
-      if (m_dwBufPos >= m_strBuffer.size())
-         return (NULL);
-      return (m_strBuffer[m_dwBufPos++]);
+
+      if(m_dwBufPos >= m_strBuffer.size())
+         return 0;
+
+      return m_strBuffer[m_dwBufPos++];
+
    }
 
    /**

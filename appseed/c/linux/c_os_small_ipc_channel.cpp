@@ -52,12 +52,12 @@ bool small_ipc_tx_channel::close()
 }
 
 
-bool small_ipc_tx_channel::send(const char * pszMessage)
+bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
 {
 
    data_struct data;
    data.mtype        = 15111984;
-   data.request      = 1;
+   data.request      = 0;
    data.size         = strlen_dup(pszMessage);
    if(data.size > 512)
       return false;
@@ -152,6 +152,14 @@ void * small_ipc_rx_channel::receive_proc(void * param)
 }
 
 
+bool small_ipc_rx_channel::on_idle()
+{
+
+   return false;
+
+}
+
+
 void * small_ipc_rx_channel::receive()
 {
 
@@ -160,19 +168,59 @@ void * small_ipc_rx_channel::receive()
 
       m_bRunning = true;
 
-      int     result, length;
+      ssize_t  result;
+
+      int length;
 
       data_struct data;
 
       /* The length is essentially the size of the structure minus sizeof(mtype) */
       length = sizeof(data_struct) - sizeof(long);
 
-      if((result = msgrcv(m_iQueue, &data, length, 15111984,  0)) == -1)
-      {
-         return (void *) -1;
-      }
+      simple_memory mem;
 
-      on_receive(vsstring(data.data, data.size));
+      do
+      {
+
+         if((result = msgrcv(m_iQueue, &data, length, 15111984, IPC_NOWAIT)) == -1)
+         {
+
+            if(errno == ENOMSG)
+            {
+               if(!on_idle())
+               {
+                  sleep(84);
+               }
+            }
+            else
+            {
+               return (void *) -1;
+            }
+
+         }
+
+         mem.write(data.data, data.size);
+
+
+         if(data.size < 512)
+            break;
+
+      }
+      while(true);
+
+
+      if(data.request == 0)
+      {
+
+         on_receive(this, mem.str());
+
+      }
+      else
+      {
+
+         on_receive(this, data.request, mem.m_psz, mem.m_iSize);
+
+      }
 
    }
 

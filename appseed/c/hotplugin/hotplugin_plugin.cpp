@@ -1,6 +1,16 @@
 #include "framework.h"
 #include <math.h>
 
+#ifdef LINUX
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#endif
+
+
 #ifdef WINDOWS
 #include <GdiPlus.h>
 
@@ -9,7 +19,7 @@
 // CRoundRect.h : Version 1.0 - see article at CodeProject.com
 //
 // Author:  Darren Sessions
-//          
+//
 //
 // Description:
 //     CRoundRect Draws or Fills rounded rectangles for GDI+.  It was implemented
@@ -22,11 +32,11 @@
 // License:
 //     This software is released under the Code Project Open License (CPOL),
 //     which may be found here:  http://www.codeproject.com/info/eula.aspx
-//     You are free to use this software in any way you like, except that you 
+//     You are free to use this software in any way you like, except that you
 //     may not sell this source code.
 //
 //     This software is provided "as is" with no expressed or implied warranty.
-//     I accept no liability for any damage or loss of business that this 
+//     I accept no liability for any damage or loss of business that this
 //     software may cause.
 //
 ///////////////////////////////////////////////////////////////////////////////
@@ -46,7 +56,7 @@ public:
 	//
 	// Purpose:     Defines a Rounded Rectangle and places it in the GraphicsPath
 	//
-	// Parameters:  pPath		- [out] pointer to GraphicsPath that will recieve the 
+	// Parameters:  pPath		- [out] pointer to GraphicsPath that will recieve the
 	//									path data
 	//				r			- [in]	Rect that defines the round rectangle boundaries
 	//				dia			- [in]	diameter of the rounded corners (2*radius)
@@ -59,31 +69,31 @@ public:
 		if(dia > r.Width)	dia = r.Width;
 		if(dia > r.Height)	dia = r.Height;
 
-		// define a corner 
+		// define a corner
 		Rect Corner(r.X, r.Y, dia, dia);
 
 		// begin path
 		pPath->Reset();
 
 		// top left
-		pPath->AddArc(Corner, 180, 90);	
+		pPath->AddArc(Corner, 180, 90);
 
 		// tweak needed for radius of 10 (dia of 20)
 		if(dia % 2 == 0)
 		{
-			Corner.Width += 1; 
-			Corner.Height += 1; 
+			Corner.Width += 1;
+			Corner.Height += 1;
 			r.Height -=1; r.Height -= 1;
 		}
 
 		// top right
 		Corner.X += (r.Width - dia - 1);
-		pPath->AddArc(Corner, 270, 90);	
-		
+		pPath->AddArc(Corner, 270, 90);
+
 		// bottom right
 		Corner.Y += (r.Height - dia - 1);
-		pPath->AddArc(Corner,   0, 90);	
-		
+		pPath->AddArc(Corner,   0, 90);
+
 		// bottom left
 		Corner.X -= (r.Width - dia - 1);
 		pPath->AddArc(Corner,  90, 90);
@@ -103,7 +113,7 @@ public:
 	//				color		- [in]	Color value for the brush
 	//				radius		- [in]  radius of the rounded corner
 	//				width		- [in]  width of the border
-	//		
+	//
 	// Returns:     None
 	//
 	void DrawRoundRect(Graphics* pGraphics, Rect r,  Color color, int radius, int width)
@@ -114,7 +124,7 @@ public:
 		int oldPageUnit = pGraphics->SetPageUnit(UnitPixel);
 
 		// define the pen
-		Pen pen(color, 1);	
+		Pen pen(color, 1);
 		pen.SetAlignment(PenAlignmentCenter);
 
 		// get the corner path
@@ -134,7 +144,7 @@ public:
 
 			// get the path
 			GetRoundRectPath(&path, r, dia);
-			
+
 			// draw the round rect
 			pGraphics->DrawPath(&pen, &path);
 
@@ -143,7 +153,7 @@ public:
 
 			// get the path
 			GetRoundRectPath(&path, r, dia);
-			
+
 			// draw the round rect
 			pGraphics->DrawPath(&pen, &path);
 		}
@@ -163,7 +173,7 @@ public:
 	//				r			- [in]	Rect that defines the round rectangle boundaries
 	//				color		- [in]	Color value for the brush
 	//				radius		- [in]  radius of the rounded corner
-	//		
+	//
 	// Returns:     None
 	//
 	void FillRoundRect(Graphics* pGraphics, Rect r,  Color color, int radius)
@@ -182,10 +192,10 @@ public:
 	// Parameters:  pGraphics	- [in]	pointer to the Graphics device
 	//				pBrush		- [in]  pointer to a Brush
 	//				r			- [in]	Rect that defines the round rectangle boundaries
-	//				color		- [in]	Color value for the border (needed in case the 
+	//				color		- [in]	Color value for the border (needed in case the
 	//									brush is a type other than solid)
 	//				radius		- [in]  radius of the rounded corner
-	//		
+	//
 	// Returns:     None
 	//
 	void FillRoundRect(Graphics* pGraphics, Brush* pBrush, Rect r, Color border, int radius)
@@ -196,7 +206,7 @@ public:
 		int oldPageUnit = pGraphics->SetPageUnit(UnitPixel);
 
 		// define the pen
-		Pen pen(border, 1);	
+		Pen pen(border, 1);
 		pen.SetAlignment(PenAlignmentCenter);
 
 		// get the corner path
@@ -330,7 +340,7 @@ namespace hotplugin
    // ca2.dll-absence-(ca2.dll-delay-load)-safe
    void plugin::get_window_rect(LPRECT lprect)
    {
-      
+
       *lprect = m_rect;
 
    }
@@ -411,7 +421,7 @@ namespace hotplugin
 
    void plugin::set_ready()
    {
-      
+
       m_bOk = true;
 
       if(m_bOk && m_phost != NULL && m_phost->is_ok())
@@ -423,7 +433,15 @@ namespace hotplugin
       else if(m_phost != NULL)
       {
 
+#ifdef WINDOWS
+
          ::PostMessage(m_phost->::small_ipc_channel::m_hwnd, WM_USER + 100, 3, 1);
+
+#else
+
+         throw "not implemented";
+
+#endif
 
       }
 
@@ -481,7 +499,7 @@ double sin_dup(double x)
    }
    else if(x < 3.1415 / 16.0)
    {
-     
+
       double sin = 0.0;
       double pow = x;
       double fact = 1.0;
@@ -692,7 +710,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
       if(dRate <= 0.0)
       {
-         
+
          return;
 
       }
@@ -810,8 +828,8 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
          const int iLineCount = 23;
          const int iRowCount = 49;
 
-         int iProgressLine = iLineCount * dRate; 
-         
+         int iProgressLine = iLineCount * dRate;
+
          if(iProgressLine >= iLineCount)
             iProgressLine = iLineCount - 1;
 
@@ -902,7 +920,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
          const int iRowCount = cx - cx / (iRate / 2);
          int iProgressCount = max(min((int) (iRowCount * dRate), iRowCount), 0);
 
-         
+
 
 
          int iBorder1 = max(cx / iRate1, cy / iRate1);
@@ -970,7 +988,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
                pa[3].X = lprect->left + x - mcy;
                pa[3].Y = lprect->top + mcy;
-            
+
                graphics2.FillPolygon(pbr, pa, 4, Gdiplus::FillModeWinding);
 
                pa[0].X = lprect->left + x - mcy - 23;
@@ -984,7 +1002,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
                pa[3].X = lprect->left + x - cy - 23;
                pa[3].Y = lprect->top + cy;
-            
+
                graphics2.FillPolygon(pbr, pa, 4, Gdiplus::FillModeWinding);
 
             }
@@ -994,10 +1012,10 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
          delete pbr;
 
 
-         
+
 
          int iRow;
-         
+
          rectClip.Inflate(3, 3);
 
          graphics2.SetClip(rectClip, Gdiplus::CombineModeReplace);
@@ -1080,7 +1098,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
          //graphics2.DrawImage((Gdiplus::Bitmap *) m_pbitmap, lprect->left, lprect->top);
 
       //   delete psf;
-      
+
       }
 #endif
 
@@ -1215,9 +1233,9 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
       }
       else
       {
-      
+
          ::small_ipc_channel::close();
-      
+
          m_phost->m_bReload = true;
 
       }
@@ -1236,18 +1254,31 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
          m_sizeBitmapData.cx = cx;
          m_sizeBitmapData.cy = cy;
 
+#ifdef WINDOWS
          if(m_pcolorref != NULL)
+#else
+         if(m_pcolorref != MAP_FAILED)
+#endif
          {
             try
             {
+#ifdef WINDOWS
                UnmapViewOfFile(m_pcolorref);
+#else
+               ::munmap(m_pcolorref, ::fd_get_file_size(m_hfileBitmap));
+#endif
             }
             catch(...)
             {
             }
+#ifdef WINDOWS
             m_pcolorref = NULL;
+#else
+            m_pcolorref = (uint32_t *)  MAP_FAILED;
+#endif
          }
 
+#ifdef WINDOWS
          if(m_hfilemapBitmap != NULL)
          {
             try
@@ -1259,17 +1290,30 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
             }
             m_hfilemapBitmap = NULL;
          }
+#endif
 
+#ifdef WINDOWS
          if(m_hfileBitmap != INVALID_HANDLE_VALUE)
+#else
+         if(m_hfileBitmap != -1)
+#endif
          {
             try
             {
+#ifdef WINDOWS
                ::CloseHandle(m_hfileBitmap);
+#else
+               ::close(m_hfileBitmap);
+#endif
             }
             catch(...)
             {
             }
+#ifdef WINDOWS
             m_hfileBitmap = INVALID_HANDLE_VALUE;
+#else
+            m_hfileBitmap = -1;
+#endif
          }
 
          dir::mk(dir::path(dir::userappdata("time"), "ca2"));
@@ -1278,22 +1322,34 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
          if(bCreateFile)
          {
-
+#ifdef WINDOWS
             iOpen = OPEN_ALWAYS;
-
+#else
+            iOpen = O_RDWR | O_CREAT;
+#endif
          }
          else
          {
-
+#ifdef WINDOWS
             iOpen = OPEN_EXISTING;
-
+#else
+            iOpen = O_RDWR;
+#endif
          }
 
+#ifdef WINDOWS
          m_hfileBitmap = CreateFile(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel), FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, iOpen, FILE_ATTRIBUTE_NORMAL, NULL);
+#else
+         m_hfileBitmap = ::open(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel).m_psz, iOpen, S_IRUSR | S_IWUSR);
+#endif
 
          DWORD dwError = GetLastError();
 
+#ifdef WINDOWS
          if(m_hfileBitmap == INVALID_HANDLE_VALUE)
+#else
+         if(m_hfileBitmap == -1)
+#endif
          {
 
             if(bCreateFile)
@@ -1315,13 +1371,9 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
          DWORD_PTR size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
 
-         if(::GetFileSize(m_hfileBitmap, &dwHi) != size)
-         {
-            LONG l = 0;
-            ::SetFilePointer(m_hfileBitmap, size, &l, SEEK_SET);
-            SetEndOfFile(m_hfileBitmap);
-         }
+         fd_ensure_file_size(m_hfileBitmap, size);
 
+#ifdef WINDOWS
          m_hfilemapBitmap = CreateFileMapping(
             m_hfileBitmap,
             NULL,
@@ -1333,9 +1385,13 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
          if(m_hfilemapBitmap == NULL)
          {
             CloseHandle(m_hfileBitmap);
+            m_hfileBitmap = INVALID_HANDLE_VALUE
             throw "resource exception";
          }
 
+#endif
+
+#ifdef WINDOWS
          m_pcolorref = (COLORREF *) MapViewOfFile(
             m_hfilemapBitmap,
             FILE_MAP_READ | FILE_MAP_WRITE,
@@ -1343,9 +1399,25 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
             0,
             0
             );
+#else
+         m_pcolorref = (COLORREF *) mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, m_hfileBitmap, 0);
+#endif
 
+#ifdef WINDOWS
          if(m_pcolorref == NULL)
+#else
+         if(m_pcolorref == MAP_FAILED)
+#endif
          {
+#ifdef WINDOWS
+            CloseHandle(m_hfilemapBitmap);
+            m_hfilemapBitmap = NULL;
+            CloseHandle(m_hfileBitmap);
+            m_hfileBitmap = INVALID_HANDLE_VALUE;
+#else
+            ::close(m_hfileBitmap);
+            m_hfileBitmap = -1;
+#endif
             throw "resource exception";
          }
 

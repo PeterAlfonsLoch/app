@@ -21,12 +21,12 @@ namespace dynamic_source
    {
       for(int i = 0; i < m_straSourcePath.get_size(); i++)
       {
-         struct stat64 st;
+         struct stat st;
          memset(&st, 0, sizeof(st));
 //         memset(&ftAccess, 0, sizeof(__time_t));
 //         memset(&ftModified, 0, sizeof(__time_t));
 //         HANDLE h = ::CreateFile(m_straSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-         stat64(m_straSourcePath[i], &st);
+         stat(m_straSourcePath[i], &st);
 //         ::CloseHandle(h);
          if(memcmp(&st.st_ctime, &m_ftaCreation[i], sizeof(__time_t)) != 0
             || memcmp(&m_ftaModified[i], &st.st_mtime, sizeof(__time_t)) != 0)
@@ -46,8 +46,8 @@ namespace dynamic_source
       for(int i = 0; i < m_straSourcePath.get_size(); i++)
       {
          //HANDLE h = ::CreateFile(m_straSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-         struct stat64 st;
-         stat64(m_straSourcePath[i], &st);
+         struct stat st;
+         stat(m_straSourcePath[i], &st);
 /*         memset(&m_ftaCreation[i], 0, sizeof(FILETIME));
          memset(&m_ftaAccess[i], 0, sizeof(FILETIME));
          memset(&m_ftaModified[i], 0, sizeof(FILETIME));

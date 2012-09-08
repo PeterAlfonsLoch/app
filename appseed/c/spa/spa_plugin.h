@@ -1,5 +1,7 @@
 #pragma once
 
+#include "c/os/os.h"
+
 
 int spaboot_start(const char * pszVersion, const char * pszId);
 
@@ -23,6 +25,20 @@ namespace spa
    public:
 
 
+      class CLASS_DECL_c thread_start_ca2 :
+         public thread_layer
+      {
+      public:
+
+
+        plugin * m_pplugin;
+
+         virtual bool on_idle();
+
+
+      } ;
+
+      thread_start_ca2  m_startca2;
       spa_login      m_login;
       canvas         m_canvas;
       DWORD          m_dwLastInstallingCheck;
@@ -34,7 +50,7 @@ namespace spa
       bool           m_bRestartCa2;
       bool           m_bRestartCa2Ticket;
       bool           m_bPendingStream;
-      
+
 
 
 
@@ -48,9 +64,9 @@ namespace spa
 
       virtual void start_ca2();
 
+      virtual bool thread_start_ca2_on_idle();
 
       virtual bool calc_logged();
-
 
       //int starter_start(const char * pszId);
 
@@ -91,10 +107,6 @@ namespace spa
 
       virtual void on_ready();
 
-      static DWORD WINAPI thread_proc_start_ca2(LPVOID lpParam);
-
-      virtual void thread_start_ca2();
-      
       virtual vsstring defer_get_plugin();
 
       virtual vsstring defer_get(const char * pszUrl);

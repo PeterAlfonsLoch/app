@@ -141,7 +141,7 @@ int LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & strC
    ASSERT(__is_valid_string(lpszEntity));
 
    const char * lpszBegin = lpszEntity;
-   const char * lpszEnd = ::_tcschr(lpszEntity, ';');
+   const char * lpszEnd = ::strchr(lpszEntity, ';');
    char   chTemp = 0;
 
    // entity references always end with a semi-colon ';'
@@ -149,8 +149,8 @@ int LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & strC
       return (0);
 
    // skip leading white-space characters
-   while (::_istspace(*lpszBegin))
-      lpszBegin = ::_tcsinc(lpszBegin);
+   while (::isspace(*lpszBegin))
+      lpszBegin++;
 
    // remaining string (including semi-colon)
    // must be at least 4 characters in length
@@ -160,22 +160,22 @@ int LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & strC
    // entity references always begin with an ampersand '&' symbol
    if (*lpszBegin != '&')
       return (0U);
-   lpszBegin = ::_tcsinc(lpszBegin);
+   lpszBegin++;
 
    // numeric (decimal or hexadecimal) entity reference?
    if (*lpszBegin == '#')
    {
-      lpszBegin = ::_tcsinc(lpszBegin);
+      lpszBegin++;
       chTemp = *lpszBegin;
-      int   radix = (::_istdigit(chTemp) ? 10 :
+      int   radix = (::isdigit(chTemp) ? 10 :
                (chTemp == 'x' ||
                   chTemp == 'X' ? 16 : 0));
       if (radix)
       {
          if (radix == 16)
-            lpszBegin = ::_tcsinc(lpszBegin);
+            lpszBegin++;
 
-         unsigned long  ulNum = ::_tcstoul(lpszBegin, NULL, radix);
+         unsigned long  ulNum = ::strtoul(lpszBegin, NULL, radix);
          strChar = gen::str::uni_to_utf8(ulNum);
          return (int) (lpszEnd - lpszEntity + 1);
       }
@@ -191,7 +191,7 @@ int LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & strC
       if (!strKey.CompareNoCase("eth") ||
          !strKey.CompareNoCase("thorn"))
       {
-         if (::_istupper(strKey[0]))
+         if (::isupper(strKey[0]))
             strKey.make_upper();
          else
             strKey.make_lower();

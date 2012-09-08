@@ -300,7 +300,7 @@ strsize __cdecl crt_char_traits::StringSpanIncluding(const char * pszBlock,const
       return 0;
    const char * psz = pszBlock;
    const char * pszLast = NULL;
-   while((psz == StringScanSet(psz, pszSet)) != NULL)
+   while((psz = StringScanSet(psz, pszSet)) != NULL)
    {
       pszLast = psz;
       psz++;
@@ -325,7 +325,9 @@ strsize __cdecl crt_char_traits::StringSpanExcluding(const char * pszBlock,const
 
 }
 
+#ifdef WINDOWS
 _INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringUppercase")
+#endif
    char * __cdecl crt_char_traits::StringUppercase( char * psz ) throw()
 {
 #pragma warning (push)
@@ -347,7 +349,9 @@ _INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringUppe
 #pragma warning (pop)
 }
 
+#if defined(WINDOWS)
 _INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringLowercase")
+#endif
    char * __cdecl crt_char_traits::StringLowercase( char * psz ) throw()
 {
 #pragma warning (push)
@@ -370,11 +374,11 @@ _INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringLowe
 
 char * __cdecl crt_char_traits::StringUppercase(char * psz,size_t size ) throw()
 {
-   
+
    ::gen::strupr_s(psz, size);
 
    return psz;
-   
+
 }
 
 char * __cdecl crt_char_traits::StringLowercase(char * psz,size_t size ) throw()
@@ -383,7 +387,7 @@ char * __cdecl crt_char_traits::StringLowercase(char * psz,size_t size ) throw()
    ::gen::strlwr_s(psz, size);
 
    return psz;
-   
+
 }
 
 char * __cdecl crt_char_traits::StringReverse( char * psz ) throw()
@@ -465,16 +469,20 @@ void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, 
 
 void crt_char_traits::ConvertToOem(char* pstrString) RELEASENOTHROW
 {
+#ifdef WINDOWS
    bool fSuccess=::CharToOemA(pstrString, pstrString) != 0;
    // old version can't report error
    ASSERT(fSuccess);
+#endif
 }
 
 void crt_char_traits::ConvertToAnsi(char* pstrString) RELEASENOTHROW
 {
+#ifdef WINDOWS
    bool fSuccess=::OemToCharA(pstrString, pstrString) != 0;
    // old version can't report error
    ASSERT(fSuccess);
+#endif
 }
 
 void __cdecl crt_char_traits::FloodCharacters(char ch,strsize nLength, char* pch ) throw()
@@ -482,6 +490,8 @@ void __cdecl crt_char_traits::FloodCharacters(char ch,strsize nLength, char* pch
    // nLength is in XCHARs
    memset( pch, ch, nLength );
 }
+
+#ifdef WINDOWS
 
 BSTR __cdecl crt_char_traits::AllocSysString( const char* pchData, strsize nDataLength ) throw()
 {
@@ -514,6 +524,8 @@ bool __cdecl crt_char_traits::ReAllocSysString( const char* pchData,BSTR* pbstr,
    return bSuccess;
 
 }
+
+#endif
 
 DWORD __cdecl crt_char_traits::FormatMessage(DWORD dwFlags, LPCVOID pSource,
                                              DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer,

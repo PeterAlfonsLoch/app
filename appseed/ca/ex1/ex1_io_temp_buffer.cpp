@@ -16,10 +16,10 @@ namespace ex1
 
    static const uint32 kTempBufSize = (1 << 20);
 
-   static LPCTSTR kTempFilePrefixString = TEXT("7zt");
+   static LPCSTR kTempFilePrefixString = "7zt";
 
    temp_io_buffer::temp_io_buffer()
-   { 
+   {
    }
 
    void temp_io_buffer::create()

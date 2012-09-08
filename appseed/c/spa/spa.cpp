@@ -202,7 +202,7 @@ int start_spaadmin(const char * pszCommandLine)
 
 vsstring get_installation_lock_file_path()
 {
-   
+
    vsstring strPath;
 
    strPath = dir::path(dir::afterca2(), "install.lock");
@@ -214,7 +214,7 @@ vsstring get_installation_lock_file_path()
 
 void installation_file_lock(bool bLock)
 {
-   
+
    vsstring strPath;
 
    strPath = get_installation_lock_file_path();
@@ -249,6 +249,11 @@ void installation_file_lock(bool bLock)
 bool is_installation_lock_file_locked()
 {
 
+
+#ifdef WINDOWS
+
+   // more deterministic, with process lifetime determined by process hold mutex
+
    try
    {
 
@@ -264,15 +269,40 @@ bool is_installation_lock_file_locked()
    }
    catch(...)
    {
-      
+
       return false;
 
    }
 
+#else
+
+   // more heuristical, and if there is a process with the same name
+
+   try
+   {
+
+      if(get_process_pid("app-install") < 0)
+      {
+
+         return false;
+
+      }
+
+   }
+   catch(...)
+   {
+
+      return false;
+
+   }
+
+
+#endif
+
    vsstring strPath;
 
    strPath = get_installation_lock_file_path();
-   
+
    if(file_exists_dup(strPath))
       return true;
 

@@ -103,7 +103,7 @@ namespace collection
 
          bool operator == (const iterator & it) const
          {
-            
+
             if(this == &it)
                return true;
 
@@ -325,7 +325,7 @@ namespace collection
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
    void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::construct(::count nBlockSize)
    {
-      
+
       UNREFERENCED_PARAMETER(nBlockSize);
 
    }
@@ -396,7 +396,7 @@ namespace collection
       pair * pAssoc = PLookup(key);
 
       if (pAssoc == NULL)
-         return false; 
+         return false;
 
       rValue = pAssoc->m_value;
 
@@ -526,7 +526,7 @@ namespace collection
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
    void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::sort(bool bAsc)
    {
-      
+
       if(bAsc)
       {
 
@@ -535,7 +535,7 @@ namespace collection
 
             for(index j = i + 1; j < m_ptra.get_size(); j++)
             {
-            
+
                if(m_ptra[i]->m_key > m_ptra[j]->m_key)
                {
 
@@ -552,13 +552,13 @@ namespace collection
       }
       else
       {
-         
+
          for(index i = 0; i < m_ptra.get_size(); i++)
          {
 
             for(index j = i + 1; j < m_ptra.get_size(); j++)
             {
-            
+
                if(m_ptra[i]->m_key < m_ptra[j]->m_key)
                {
 
@@ -576,7 +576,7 @@ namespace collection
 
    }
 
-      
+
 
 
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
@@ -681,8 +681,6 @@ namespace collection
 
       index iRet = (index) rNextPosition;
 
-      ENSURE(pAssocRet != NULL);
-
       if (iRet == (index) BEFORE_START_POSITION)
       {
          iRet = 1;
@@ -691,7 +689,7 @@ namespace collection
       // find next association
       index iNext = iRet + 1;
       if(iNext > m_ptra.get_count())
-      { 
+      {
 
       }
 
@@ -718,7 +716,7 @@ namespace collection
       iRet++;
 
       if(iRet >= m_ptra.get_count())
-      { 
+      {
 
          return NULL;
 
@@ -743,7 +741,7 @@ namespace collection
       iRet++;
 
       if(iRet >= m_ptra.get_count())
-      { 
+      {
 
          return NULL;
 
@@ -835,15 +833,15 @@ namespace collection
 
       if(this != &attribmap)
       {
-         
+
          this->remove_all();
 
-         pair * ppair;
+         typename type_map::pair * ppair;
 
          for(index i = 0; i < attribmap.m_ptra.get_count(); i++)
          {
 
-            ppair      = new pair(attribmap.m_ptra[i]->m_key);
+            ppair      = new typename type_map::pair(attribmap.m_ptra[i]->m_key);
 
             ppair->m_value    = attribmap.m_ptra[i]->m_value;
 
@@ -864,14 +862,14 @@ namespace collection
       if(this == &attribmap)
          return true;
 
-      if(m_ptra.get_size() != attribmap.get_size())
+      if(this->m_ptra.get_size() != attribmap.get_size())
          return false;
 
       for(index i = 0; i < attribmap.m_ptra.get_count(); i++)
       {
 
-         if(attribmap.m_ptra[i]->m_key       != m_ptra[i]->m_key
-         || attribmap.m_ptra[i]->m_value     != m_ptra[i]->m_value)
+         if(attribmap.m_ptra[i]->m_key       != this->m_ptra[i]->m_key
+         || attribmap.m_ptra[i]->m_value     != this->m_ptra[i]->m_value)
          {
 
             return false;
@@ -928,7 +926,7 @@ namespace collection
 
    }
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = gen::strid_compare  >
+   template < class VALUE, class ARG_VALUE = const VALUE & , class COMPARE = gen::strid_compare  >
    class fifo_strid_map :
       virtual public fifo_attrib_map < fifo_map < id, const id &, VALUE, ARG_VALUE, COMPARE > >
    {
@@ -946,14 +944,14 @@ namespace collection
 
    template < class VALUE, class ARG_VALUE, class COMPARE >
    fifo_strid_map < VALUE, ARG_VALUE, COMPARE >::fifo_strid_map(::count nBlockSize) :
-      fifo_map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > (nBlockSize)
+      fifo_attrib_map < fifo_map < id, const id &, VALUE, ARG_VALUE, COMPARE > > (nBlockSize)
    {
    }
 
 
    template < class VALUE, class ARG_VALUE, class COMPARE >
    fifo_strid_map < VALUE, ARG_VALUE, COMPARE >::fifo_strid_map(const fifo_strid_map & fifo_map) :
-      fifo_attrib_map < ::collection::fifo_map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > > (fifo_map)
+      fifo_attrib_map < ::collection::fifo_map < id, const id &, VALUE, ARG_VALUE > > (fifo_map)
    {
    }
 
@@ -963,7 +961,7 @@ namespace collection
 
       if(this != &fifo_map)
       {
-         fifo_attrib_map < ::collection::fifo_map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > >::operator = (fifo_map);
+         fifo_attrib_map < ::collection::fifo_map < id, const id &, VALUE, ARG_VALUE > >::operator = (fifo_map);
       }
 
       return *this;

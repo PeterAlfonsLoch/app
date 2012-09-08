@@ -56,11 +56,11 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
    //   char   ch = 0;
 
    // skip leading white-space characters
-   while (::_istspace(*lpszBegin))
-      lpszBegin = ::_tcsinc(lpszBegin);
+   while(::isspace(*lpszBegin))
+      lpszBegin++;
 
    // name doesn't begin with an alphabet?
-   if (!::_istalpha(*lpszBegin))
+   if (!::isalpha(*lpszBegin))
       return (0U);
 
    lpszEnd = lpszBegin;
@@ -68,7 +68,7 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
    {
       // attribute name may contain letters (a-z, A-Z), digits (0-9),
       // underscores '_', hyphen '-', colons ':', and periods '.'
-      if ( (!::_istalnum(*lpszEnd)) &&
+      if ( (!::isalnum(*lpszEnd)) &&
          (*lpszEnd != '-') && (*lpszEnd != ':') &&
          (*lpszEnd != '_') && (*lpszEnd != '.') )
       {
@@ -78,7 +78,7 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
          // equal-sign, a greater-than symbol, or a forward-slash
          // can act as the separator between an attribute and its
          // value
-         if (*lpszEnd == NULL || ::_istspace(*lpszEnd) ||
+         if (*lpszEnd =='\0' || ::isspace(*lpszEnd) ||
             *lpszEnd == '=' ||
             *lpszEnd == '>' || *lpszEnd == '/')
          {
@@ -88,7 +88,7 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
          return (0U);   // any other character will fail parsing process
       }
 
-      lpszEnd = ::_tcsinc(lpszEnd);
+      lpszEnd++;
    }
    while (true);
 
@@ -106,8 +106,8 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
       // skip white-space characters after equal-sign
       // and the equal-sign itself
       do {
-         lpszEnd = ::_tcsinc(lpszEnd);
-      } while (::_istspace(*lpszEnd));
+         lpszEnd++;
+      } while (::isspace(*lpszEnd));
 
       lpszBegin = lpszEnd;
       string strChar = string(*lpszEnd);
@@ -126,13 +126,13 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
          lpszBegin += strChar.get_length();   // skip quote symbol
          do
          {
-            lpszEnd = ::_tcsinc(lpszEnd);
+            lpszEnd++;
          }
          // Loop until we find the same quote character that
          // was used at the starting of the attribute value.
          // Anything within these quotes is considered valid!
          // NOTE that the entity references are resolved later.
-         while (*lpszEnd != NULL && !gen::str::begins_ci(lpszEnd, strChar));
+         while (*lpszEnd != '\0' && !gen::str::begins_ci(lpszEnd, strChar));
       }
 
       // open attribute value i.e. not wrapped in quotes?
@@ -141,12 +141,12 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
          strChar.Empty();
          do
          {
-            lpszEnd = ::_tcsinc(lpszEnd);
+            lpszEnd++;
          }
          // loop until we find a tag ending delimeter or any
          // white-space character, or until we reach at the
          // end of the string buffer
-         while (*lpszEnd != NULL && !::_istspace(*lpszEnd) &&
+         while (*lpszEnd != '\0' && !::isspace(*lpszEnd) &&
             *lpszEnd != '/' && *lpszEnd != '>');
       }
 
@@ -329,7 +329,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const char * lpszV
 bool LiteHTMLElemAttr::isNamedColorValue(::lite_html_reader * preader) const
 {
 
-   if((m_strValue.get_length()) && (::_istalpha(m_strValue[0])))
+   if((m_strValue.get_length()) && (::isalpha(m_strValue[0])))
    {
 
       COLORREF crTemp = 0xffffffff;
@@ -350,7 +350,7 @@ bool LiteHTMLElemAttr::isNamedColorValue(::lite_html_reader * preader) const
 bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
 {
 
-   if((m_strValue.get_length()) && (::_istalpha(m_strValue[0])))
+   if((m_strValue.get_length()) && (::isalpha(m_strValue[0])))
    {
 
       COLORREF   crTemp = 0xffffffff;
@@ -400,6 +400,15 @@ bool LiteHTMLElemAttr::isHexColorValue() const
 }
 
 
+#ifndef WINDOWS
+COLORREF GetSysColor(COLORREF cr)
+{
+
+   return 0;
+
+}
+#endif
+
 COLORREF LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
 {
 
@@ -426,7 +435,7 @@ COLORREF LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
    else if (isHexColorValue())
    {
 
-      crTemp = ::_tcstoul(m_strValue.Mid(1), NULL, 16);
+      crTemp = ::strtoul(m_strValue.Mid(1), NULL, 16);
 
    }
 

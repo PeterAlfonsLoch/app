@@ -1104,7 +1104,7 @@ namespace sqlite
          int (*xDeviceCharacteristics)(sqlite3_file*);
          /* Additional methods may be added in future releases */
       //};
-      
+
       /*
       ** CAPI3REF: Standard File Control Opcodes {F11310}
       **
@@ -18082,7 +18082,7 @@ translate_out:
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <sys/time.h>
+//#include <sys/time.h>
 #include <errno.h>
 #ifdef SQLITE_ENABLE_LOCKING_STYLE
 #include <sys/ioctl.h>
@@ -50830,7 +50830,7 @@ attach_end:
          }
 
          nBytes = sizeof(TableLock) * (pParse->nTableLock+1);
-         pParse->aTableLock = (TableLock *) 
+         pParse->aTableLock = (TableLock *)
             sqlite3DbReallocOrFree(pParse->db, pParse->aTableLock, nBytes);
          if( pParse->aTableLock ){
             p = &pParse->aTableLock[pParse->nTableLock++];

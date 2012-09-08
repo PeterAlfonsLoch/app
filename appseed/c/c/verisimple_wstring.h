@@ -237,4 +237,3 @@ CLASS_DECL_c verisimple_wstring operator + (const verisimple_wstring & str, cons
 CLASS_DECL_c verisimple_wstring operator + (const wchar_t * psz, const verisimple_wstring & str);
 
 CLASS_DECL_c wstring gen_utf8_to_16(const char * psz);
-

@@ -1,9 +1,9 @@
 #pragma once
 
 
-#ifndef WINDOWS
-#define INFINITE 0xffffffff
-#endif
+//#ifndef WINDOWS
+//#define INFINITE 0xffffffff
+//#endif
 
 
 class id;
@@ -115,14 +115,14 @@ namespace plane
 
       string str_accept_encoding;
       string str_content_encoding;
-      
+
 
 
       str_pool()
-      { 
-      
+      {
+
          reset();
-      
+
       }
 
 
@@ -145,32 +145,32 @@ namespace plane
          id_de_at = "de-at";
          id_de = "de";
          id_de_de = "de-de";
-         
+
          id_br = "br";
          id_pt_br = "pt-br";
          id_pt = "pt";
-         
+
          id_es = "es";
-         
+
          id_cn = "cn";
          id_zh_cn = "zh-cn";
          id_zh_tw = "zh-tw";
          id_hk = "hk";
-         
+
          id_ja_jp = "ja-jp";
          id_ja = "ja";
          id_jp = "jp";
-         
+
          id_en = "en";
          id_en_us = "en-us";
          id_std = "_std";
-         
+
          id_pe = "pe";
          id_mx = "mx";
          id_ec = "ec";
-         
+
          id_tw = "tw";
-         
+
          str_http_host = "http_host";
          str_http_version = "http_version";
          str_http_status_code = "http_status_code";
@@ -179,9 +179,9 @@ namespace plane
          str_http_protocol = "http_protocol";
          str_http_referer = "http_referer";
          str_https = "https";
-         
+
          str_query_string = "query_string";
-         
+
          str_content_length = "content-length";
          str_content_type = "content-type";
          str_connection = "connection";
@@ -193,11 +193,11 @@ namespace plane
          str_expires = "expires";
          str_host = "host";
          str_referer = "referer";
-         
+
          str_close = "close";
-         
+
          str_put = "put";
-         
+
          str_remote_addr = "remote_addr";
          str_request_uri = "request_uri";
 
@@ -579,7 +579,7 @@ namespace plane
 
       virtual bool add_library(::ca2::library * plibrary);
 
-      
+
 
 
 
@@ -938,9 +938,9 @@ void array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::set_at_grow(index iIndex, AR
 template <class TYPE, class ARG_TYPE>
 inline void array_app_alloc < TYPE, ARG_TYPE >::insert_at(index iIndex, ARG_TYPE t)
 {
-   
+
    TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info < TYPE > ()));
-   
+
    *pt = t;
 
    this->ptra().insert_at(iIndex, pt);
@@ -951,7 +951,7 @@ inline void array_app_alloc < TYPE, ARG_TYPE >::insert_at(index iIndex, ARG_TYPE
 template <class TYPE, class ARG_TYPE>
 inline array_app_alloc <TYPE, ARG_TYPE> & array_app_alloc < TYPE, ARG_TYPE >::operator = (const array_app_alloc <TYPE, ARG_TYPE> & a)
 {
-   
+
    remove_all();
 
    for(index i = 0; i < a.ptra().get_size(); i++)
@@ -1035,7 +1035,7 @@ inline VIEW * view::create_view(::user::interaction * pwndParent, id id, ::user:
 template < class VIEW >
 inline VIEW * view::create_view(::user::view_creator_data * pcreatordata, ::user::interaction * pviewLast)
 {
-   
+
    VIEW * pview = create_view < VIEW > (pcreatordata->m_pholder, pcreatordata->m_id, pviewLast);
 
    if(pview != NULL)
@@ -1051,8 +1051,8 @@ inline VIEW * view::create_view(::user::view_creator_data * pcreatordata, ::user
 
    template < class DOCUMENT >
    ::ca::data * view::get_data()
-    { 
-       ASSERT(this != NULL); 
+    {
+       ASSERT(this != NULL);
        DOCUMENT * pdocument = get_typed_document < DOCUMENT > ();
        if(pdocument == NULL)
           return NULL;
