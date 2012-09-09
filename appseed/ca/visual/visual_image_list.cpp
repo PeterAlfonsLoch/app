@@ -92,35 +92,33 @@ bool image_list::create(image_list * pimagelist)
 
 int image_list::get_image_count() const
 {
+
    return m_iSize;
+
 }
 
 bool image_list::draw(::ca::graphics *pdc, int iImage, point pt, int iFlag)
 {
+
    UNREFERENCED_PARAMETER(iFlag);
-   if(m_spdib->get_graphics()->get_os_data() == NULL)
-      return false;
+
    return System.imaging().true_blend(pdc, pt, m_size, m_spdib->get_graphics(), point(iImage * m_size.cx, 0), m_spdibWork, m_spdibWork2, m_spdibWork3);
+
 }
 
-bool image_list::draw(
-                  ::ca::graphics *pdc,
-                  int iImage,
-                  point pt,
-                  size sz,
-                  point ptOffset,
-                  int iFlag)
+
+bool image_list::draw(::ca::graphics * pdc, int iImage, point pt, size sz, point ptOffset, int iFlag)
 {
+
    UNREFERENCED_PARAMETER(iFlag);
-   if(m_spdib->get_graphics() == NULL)
-      return false;
-   if(m_spdib->get_graphics()->get_os_data() == NULL)
-      return false;
+
    sz.cx = min(m_size.cx, sz.cx);
    sz.cy = min(m_size.cy, sz.cy);
    ptOffset.x = min(m_size.cx, ptOffset.x);
    ptOffset.y = min(m_size.cy, ptOffset.y);
+
    return System.imaging().true_blend(pdc, pt, sz, m_spdib->get_graphics(),  point(iImage * m_size.cx + ptOffset.x, ptOffset.y), m_spdibWork, m_spdibWork2, m_spdibWork3);
+
 }
 
 int image_list::add_icon_os_data(void * pvoid)

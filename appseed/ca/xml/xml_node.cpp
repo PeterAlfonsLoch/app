@@ -43,7 +43,7 @@ namespace xml
       m_nodea(pnodeParent->get_app()),
       m_attra(pnodeParent->get_app())
    {
-      
+
       m_attra.m_pnodeParent   = this;
       m_pnodeParent           = pnodeParent;
       m_pdoc                  = pnodeParent->m_pdoc;
@@ -118,7 +118,7 @@ namespace xml
 
    attr * node::add_attr(const char * pszName, int iValue)
    {
-      
+
       ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, iValue);
 
       if(m_pdoc != NULL)
@@ -139,7 +139,7 @@ namespace xml
 
    attr * node::add_attr(const char * pszName, int64_t iValue)
    {
-      
+
       ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, iValue);
 
       if(m_pdoc != NULL)
@@ -160,7 +160,7 @@ namespace xml
 
    attr * node::add_attr(const char * pszName, unsigned long ulValue)
    {
-      
+
       ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, ulValue);
 
       if(m_pdoc != NULL)
@@ -182,7 +182,7 @@ namespace xml
 
    attr * node::set_attr(const char * lpcszName, const char * pszValue)
    {
-      
+
       ::xml::attr * pattr = &(m_attra[lpcszName] = pszValue);
 
       if(m_pdoc != NULL)
@@ -789,7 +789,7 @@ namespace xml
          xml = _tcsskip( xml );
          char * prev = xml;
          // is PI( Processing Instruction ) Node?
-         if( _strnicmp( xml, szXMLPIOpen, sizeof(szXMLPIOpen)-1 ) == 0 )
+         if(strnicmp_dup( xml, szXMLPIOpen, sizeof(szXMLPIOpen)-1 ) == 0 )
          {
             // processing instrunction parse
             // return pointer is next node of pparseinfo
@@ -1340,7 +1340,7 @@ namespace xml
    //========================================================
    /*attr_array node::attrs( const char * pszName )
    {
-      
+
       attr_array attra(get_app());
 
       for( int i = 0 ; i < m_attra.m_propertya.get_count(); i++ )
@@ -1549,7 +1549,7 @@ namespace xml
 
       for(index iLevel = 0; iLevel < iaPath.get_count(); iLevel++)
       {
-         
+
          index iIndex = iaPath[iLevel];
 
          if(iIndex < 0)
@@ -1585,7 +1585,7 @@ namespace xml
 
    void node::get_child_indexed_path(index_array & iaPath, const node * pnode) const
    {
-      
+
       iaPath.remove_all();
       while(pnode != NULL && pnode != this)
       {
@@ -1597,7 +1597,7 @@ namespace xml
 
    index_array node::get_child_indexed_path(const node * pnode) const
    {
-      
+
       index_array iaPath;
       get_child_indexed_path(iaPath, pnode);
       return iaPath;
@@ -1800,7 +1800,7 @@ namespace xml
    //========================================================
    attr * node::add_attr( const char * pszName /*= NULL*/, const char * pszValue /*= NULL*/ )
    {
-      
+
       ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, pszValue);
 
       if(m_pdoc != NULL)
@@ -2220,9 +2220,9 @@ namespace xml
 
    void node::set_name(const string & strName)
    {
-      
+
       m_strName = strName;
-      
+
       if(m_pdoc != NULL)
       {
 
@@ -2279,7 +2279,7 @@ namespace xml
 
    index node::get_index() const
    {
-      
+
       if(m_pnodeParent == NULL)
          return -1;
 

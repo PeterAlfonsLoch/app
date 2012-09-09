@@ -318,9 +318,6 @@ namespace visual
    }
 
 
-#endif
-
-
    /****************************************************************************
    *  FUNCTION   : DrawT2Outline
    *
@@ -470,21 +467,45 @@ namespace visual
    }
 
 
+#endif
+
+
    void glyph::clear()
    {
+
       //   m_lpBodyData = NULL;
       //   m_lpOutlineData  = NULL;
+
+#ifdef WINDOWS
+
       memset(&m_gm, 0, sizeof(m_gm));
+
+#else
+
+      throw todo();
+
+#endif
+
+
    }
 
 
    void glyph::GetGlyphRect(int x, int y, LPRECT lpRect)
    {
 
-      lpRect->left   = x - m_gm.gmptGlyphOrigin.x;
-      lpRect->top      = y - m_gm.gmptGlyphOrigin.y;
-      lpRect->right   = x + m_gm.gmBlackBoxX;
-      lpRect->bottom   = y + m_gm.gmBlackBoxY;
+#ifdef WINDOWS
+
+      lpRect->left      = x - m_gm.gmptGlyphOrigin.x;
+      lpRect->top       = y - m_gm.gmptGlyphOrigin.y;
+      lpRect->right     = x + m_gm.gmBlackBoxX;
+      lpRect->bottom    = y + m_gm.gmBlackBoxY;
+
+#else
+
+      throw todo();
+
+#endif
+
 
    }
 

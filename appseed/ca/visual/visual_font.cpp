@@ -160,30 +160,43 @@ namespace visual
       pgraphics->TextOut(x, y, str);
 
       pgraphics->SetMapMode(iOldMapMode);
+
       UnselectFont();
+
       ClearDC();
+
    }
+
 
    bool font::AddGlyph(WCHAR wchar)
    {
+
       return AddGlyph((UINT) wchar);
+
    }
 
 
    bool font::AddGlyph(CHAR tch)
    {
+
       return AddGlyph((UINT) tch);
+
    }
+
 
    bool font::AddGlyph(UINT user)
    {
+
    //   single_lock sl(&m_mutex);
    //   sl.lock(INFINITE);
 
       return TRUE;
 
+#ifdef WINDOWS
+
       if(m_glyphset.find_first(user) >= 0)
          return TRUE;
+
       glyph glyph;
       glyph.m_ui = user;
       //m_glyphArray.add(pGlyph);
@@ -198,35 +211,37 @@ namespace visual
       mat2.eM22.fract = 0;
       GLYPHMETRICS gm;
 
-      DWORD cbBuffer = m_pDC->GetGlyphOutline(
-         user,
-         GGO_NATIVE,
-         &glyph.m_gm,
-         0,
-         NULL,
-         &mat2);
+      DWORD cbBuffer = m_pDC->GetGlyphOutline(user, GGO_NATIVE, &glyph.m_gm, 0, NULL, &mat2);
+
       if(cbBuffer == GDI_ERROR)
          return FALSE;
+
       if(cbBuffer == 0)
       {
+
          m_glyphset.add(glyph);
+
          return TRUE;
+
       }
+
       LPTTPOLYGONHEADER lpPH = (LPTTPOLYGONHEADER) malloc(cbBuffer);
+
       if(lpPH == NULL)
          return FALSE;
 
-      m_pDC->GetGlyphOutline(
-         user,
-         GGO_NATIVE,
-         &gm,
-         cbBuffer,
-         lpPH,
-         &mat2);
+      m_pDC->GetGlyphOutline(user, GGO_NATIVE, &gm, cbBuffer, lpPH, &mat2);
+
       glyph.Initialize(lpPH, cbBuffer, m_iFontHiHeight);
+
       free(lpPH);
+
       m_glyphset.add(glyph);
+
       return TRUE;
+
+#endif
+
    }
 
    void font::SetDC(::ca::graphics * pgraphics)
@@ -368,15 +383,25 @@ namespace visual
            ASSERT(FALSE);
 
        }
+
    }
+
 
    int font::GetMegaHeight()
    {
 
-      return
-         m_tm.tmHeight +
-         m_tm.tmInternalLeading +
-         m_tm.tmExternalLeading;
+#ifdef WINDOWS
+
+      return m_tm.tmHeight +
+             m_tm.tmInternalLeading +
+             m_tm.tmExternalLeading;
+
+#else
+
+      return 23;
+
+#endif
+
    }
 
 
@@ -388,18 +413,32 @@ namespace visual
 
    void font::OnUpdateFont()
    {
+
       ::ca::graphics_sp spgraphics(&System);
+
       spgraphics->CreateCompatibleDC(NULL);
+
       ::ca::font * pFontOld = spgraphics->SelectObject(m_spfont);
+
+#ifdef WINDOWS
+
       spgraphics->get_text_metrics(&m_tm);
+
       m_iFontHiHeight = m_tm.tmAscent + m_tm.tmDescent;
+
+#else
+
+      throw todo();
+
+#endif
+
       spgraphics->SelectObject(pFontOld);
       spgraphics->DeleteDC();
 
    }
 
-} // namespace visual
 
+} // namespace visual
 
 
 bool CLASS_DECL_ca TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
@@ -412,6 +451,7 @@ bool CLASS_DECL_ca TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
    bool bRet = ::TextOutW(hdc, x, y, wstr, (int) wstr.get_length()) != FALSE;
    return bRet;
 }
+
 
 CLASS_DECL_ca bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, LPSIZE psizl)
 {
@@ -435,3 +475,5 @@ CLASS_DECL_ca int  DrawTextU(HDC hdc, const char * lpchText, int cchText, LPRECT
    bool bRet = ::DrawTextW(hdc, wstr, (int) wcslen(wstr), lprc, format) != FALSE;
    return bRet;
 }
+
+

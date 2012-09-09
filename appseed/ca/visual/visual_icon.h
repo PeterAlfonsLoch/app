@@ -9,14 +9,25 @@ namespace visual
       virtual public ::radix::object
    {
    public:
-      icon();
-      virtual ~icon();
-#ifdef WIN32
-      icon(HICON hicon) { m_hicon = hicon; }
-      HICON m_hicon;
+
+
+      void *   m_picon;
       bool  m_bAutoDelete;
+
+
+      icon();
+      icon(void * picon);
+#ifdef WINDOWS
+      icon(HICON hicon)
+#endif
+      virtual ~icon();
+
+
+      operator void *();
+#ifdef WINDOWS
       operator HICON();
 #endif
+
 
    };
 
@@ -27,7 +38,7 @@ namespace visual
    public:
 
    };
-   
+
 
 } // namespace visual
 

@@ -9440,7 +9440,7 @@
 
 1342864829 /ca2/app/appseed/ca/visual/visual_imaging.h
 
-1342864829 /ca2/app/appseed/ca/visual/visual_image_list.h
+1347202028 /ca2/app/appseed/ca/visual/visual_image_list.h
 
 1342864829 /ca2/app/appseed/ca/visual/visual_water_routine.h
 
@@ -9460,7 +9460,7 @@
 
 1342864829 /ca2/app/appseed/ca/visual/visual_dib_pal.h
 
-1342864829 /ca2/app/appseed/ca/visual/visual_icon.h
+1347202193 /ca2/app/appseed/ca/visual/visual_icon.h
 
 1342864829 /ca2/app/appseed/ca/visual/visual_buffered_graphics.h
 
@@ -12480,7 +12480,7 @@
 1342864829 source:/ca2/app/appseed/ca/visual/visual_fastblur.cpp
 	"framework.h"
 
-1347194086 source:/ca2/app/appseed/ca/user/user_shell.cpp
+1347200148 source:/ca2/app/appseed/ca/user/user_shell.cpp
 	"framework.h"
 	<Shellapi.h>
 	<CommonControls.h>
@@ -12517,4 +12517,69 @@
 
 1342864829 source:/ca2/app/appseed/ca/visual/visual_rgb_quad_array.cpp
 	"framework.h"
+
+1342864829 source:/ca2/app/appseed/ca/visual/visual_visual.cpp
+	"framework.h"
+
+1342864829 source:/ca2/app/appseed/ca/visual/visual_water_routine.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_application.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_attr.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_base_array.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_data.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_disp_option.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_document.cpp
+	"framework.h"
+
+1347201590 source:/ca2/app/appseed/ca/visual/visual_glyph.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_edit.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_entity.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_exportable.cpp
+	"framework.h"
+
+1347201675 source:/ca2/app/appseed/ca/user/user_virtual_user_interface.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_importable.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_input_tree.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_output_tree.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_parse_info.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_property_exchange.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_tree_base.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_tree_schema.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_var_exchange.cpp
+	"framework.h"
+
+1342864847 source:/ca2/app/appseed/ca/xml/xml_xml.cpp
 

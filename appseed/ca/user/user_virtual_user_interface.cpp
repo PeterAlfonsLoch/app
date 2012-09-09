@@ -1,8 +1,12 @@
 #include "framework.h"
 
 
+CLASS_DECL_ca ::user::interaction * __get_parent_owner(::user::interaction * hWnd);
+
+
 virtual_user_interface::virtual_user_interface()
 {
+
    m_pguieMessage    = NULL;
    m_bCreate         = false;
    m_pthread         = NULL;
@@ -1004,9 +1008,19 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
    // try to use DeferWindowPos for speed, otherwise use SetWindowPos
    if (lpLayout != NULL)
    {
+
+#ifdef WINDOWS
+
       lpLayout->hDWP = ::DeferWindowPos(lpLayout->hDWP, hWnd, NULL,
          lpRect->left, lpRect->top,  lpRect->right - lpRect->left,
          lpRect->bottom - lpRect->top, SWP_NOACTIVATE|SWP_NOZORDER);
+
+#else
+
+   throw todo();
+
+#endif
+
    }
    else
    {
@@ -1055,10 +1069,14 @@ void virtual_user_interface::SetWindowText(const char * psz)
 
 bool virtual_user_interface::DestroyWindow()
 {
+
    if(!m_bCreate)
       return FALSE;
+
    if(m_pguie == NULL)
       return FALSE;
+
+#ifdef WINDOWS
 
    try
    {
@@ -1067,6 +1085,15 @@ bool virtual_user_interface::DestroyWindow()
    catch(...)
    {
    }
+
+
+#else
+
+   throw todo();
+
+#endif
+
+
    m_bCreate = false;
 
 
@@ -1108,10 +1135,7 @@ bool virtual_user_interface::DestroyWindow()
    {
    }
 
-
-
-
-
+#ifdef WINDOWS
 
    try
    {
@@ -1121,8 +1145,16 @@ bool virtual_user_interface::DestroyWindow()
    {
    }
 
+#else
+
+   throw todo();
+
+#endif
+
    return TRUE;
+
 }
+
 
 ::user::interaction* virtual_user_interface::EnsureTopLevelParent()
 {
@@ -1134,10 +1166,12 @@ bool virtual_user_interface::DestroyWindow()
 
 ::user::interaction * virtual_user_interface::GetTopLevelParent()
 {
+
    ASSERT_VALID(this);
 
    ::user::interaction * hWndParent = this;
    ::user::interaction * hWndT;
+
    while ((hWndT = __get_parent_owner(hWndParent)) != NULL)
       hWndParent = hWndT;
 
