@@ -258,10 +258,20 @@ void font_central::CreateLyricViewFonts()
    lf.lfHeight = -54;
    lf.lfWeight         = FW_BOLD;
    lf.lfCharSet        = DEFAULT_CHARSET;
+
+#ifdef WINDOWS
+
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
    lf.lfQuality        = PROOF_QUALITY;
    lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-   lstrcpy(lf.lfFaceName, "Lucida Sans Unicode");
+
+#else
+
+   throw todo();
+
+#endif
+
+   strcpy(lf.lfFaceName, "Lucida Sans Unicode");
 
    ::ca::font_sp font(get_app());
    font->CreateFontIndirect(&lf);
@@ -312,10 +322,20 @@ void font_central::CreateLyricViewFonts()
    lf.lfHeight          = -12;
    lf.lfWeight         = FW_BOLD;
    lf.lfCharSet        = ANSI_CHARSET;
+
+#ifdef WINDOWS
+
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
    lf.lfQuality        = PROOF_QUALITY;
    lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-   lstrcpy(lf.lfFaceName, "Tahoma");
+
+#else
+
+   throw todo();
+
+#endif
+
+   strcpy(lf.lfFaceName, "Tahoma");
 
    font->CreateFontIndirect(&lf);
    spgraphics->SelectObject(font);
@@ -363,10 +383,20 @@ void font_central::CreateLyricViewFonts()
    lf.lfWidth         = 0;
    lf.lfWeight         = FW_BOLD;
    lf.lfCharSet        = DEFAULT_CHARSET;
+
+#ifdef WINDOWS
+
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
    lf.lfQuality        = PROOF_QUALITY;
    lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-   lstrcpy(lf.lfFaceName, "Lucida Sans Unicode");
+
+#else
+
+   throw todo();
+
+#endif
+
+   strcpy(lf.lfFaceName, "Lucida Sans Unicode");
 
    font->CreateFontIndirect(&lf);
    spgraphics->SelectObject(font);
@@ -411,11 +441,21 @@ void font_central::CreateLyricViewFonts()
    lf.lfHeight = -24;
    lf.lfWidth         = 0;
    lf.lfWeight         = FW_NORMAL;
-    lf.lfCharSet        = DEFAULT_CHARSET;
-    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-    lf.lfQuality        = PROOF_QUALITY;
-    lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-    lstrcpy(lf.lfFaceName, "Lucida Sans Unicode");
+   lf.lfCharSet        = DEFAULT_CHARSET;
+
+#ifdef WINDOWS
+
+   lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
+   lf.lfQuality        = PROOF_QUALITY;
+   lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
+
+#else
+
+   throw todo();
+
+#endif
+
+   strcpy(lf.lfFaceName, "Lucida Sans Unicode");
 
    font->CreateFontIndirect(&lf);
    spgraphics->SelectObject(font);
@@ -453,10 +493,20 @@ void font_central::CreateLyricViewFonts()
    lf.lfHeight = -12;
    lf.lfWeight         = FW_BOLD;
    lf.lfCharSet        = DEFAULT_CHARSET;
+
+#ifdef WINDOWS
+
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
    lf.lfQuality        = PROOF_QUALITY;
    lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-   lstrcpy(lf.lfFaceName, "Lucida Sans Unicode");
+
+#else
+
+   throw todo();
+
+#endif
+
+   strcpy(lf.lfFaceName, "Lucida Sans Unicode");
 
    font->CreateFontIndirect(&lf);
    spgraphics->SelectObject(font);
@@ -476,10 +526,20 @@ void font_central::CreateLyricViewFonts()
    lf.lfHeight = -10;
    lf.lfWeight         = FW_NORMAL;
    lf.lfCharSet        = DEFAULT_CHARSET;
+
+#ifdef WINDOWS
+
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
    lf.lfQuality        = PROOF_QUALITY;
    lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-   lstrcpy(lf.lfFaceName, "Lucida Sans Unicode");
+
+#else
+
+   throw todo();
+
+#endif
+
+   strcpy(lf.lfFaceName, "Lucida Sans Unicode");
 
    font->CreateFontIndirect(&lf);
 

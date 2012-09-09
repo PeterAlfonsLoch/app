@@ -12509,3 +12509,12 @@
 	"framework.h"
 	"include/freeimage.h"
 
+1347199174 source:/ca2/app/appseed/ca/visual/visual_font_central.cpp
+	"framework.h"
+
+1347199358 source:/ca2/app/appseed/ca/user/user_window_util.cpp
+	"framework.h"
+
+1342864829 source:/ca2/app/appseed/ca/visual/visual_rgb_quad_array.cpp
+	"framework.h"
+

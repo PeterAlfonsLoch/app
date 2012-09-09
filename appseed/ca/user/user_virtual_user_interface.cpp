@@ -84,16 +84,41 @@ bool virtual_user_interface::SetWindowPos(int z, int x, int y, int cx, int cy, U
    }
    if(rectOld.size() != m_rectParentClient.size())
    {
+
+#ifdef WINDOWS
+
       send_message(WM_SIZE, 0, MAKELONG(max(0, m_rectParentClient.width()), max(0, m_rectParentClient.height())));
+
+#else
+
+      throw todo();
+
+#endif
+
    }
+
    if(rectOld.top_left() != m_rectParentClient.top_left())
    {
+
+#ifdef WINDOWS
+
       send_message(WM_MOVE);
+
+#else
+
+      throw todo();
+
+#endif
+
    }
+
    if(nFlags & SWP_SHOWWINDOW)
    {
+
       ShowWindow(SW_SHOW);
+
    }
+
    if(!(nFlags & SWP_NOZORDER))
    {
       if(GetParent() != NULL)
@@ -223,6 +248,10 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
 
    cs.hwndParent = (HWND) pparent->_get_handle();
 
+#else
+
+   throw todo();
+
 #endif
 
    //cs.hMenu = pparent->_get_handle() == NULL ? NULL : (HMENU) iId;
@@ -232,6 +261,10 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
 
    cs.hInstance = System.m_hInstance;
 
+#else
+
+   throw todo();
+
 #endif
 
    cs.lpCreateParams = lpParam;
@@ -240,11 +273,27 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
 
    //m_pguie->install_message_handling(dynamic_cast < ::gen::message::dispatch * > (this));
 
+#ifdef WINDOWS
+
    send_message(WM_CREATE, 0, (LPARAM) &cs);
+
+#else
+
+   throw todo();
+
+#endif
 
    m_pguie->SetWindowPos(0, rect.left, rect.top, cs.cx, cs.cy, 0);
 
+#ifdef WINDOWS
+
    send_message(WM_SIZE, 0, 0);
+
+#else
+
+   throw todo();
+
+#endif
 
    on_set_parent(pparent);
 
@@ -340,11 +389,32 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
    cs.lpCreateParams = (LPVOID) pContext;
    m_pguie->pre_create_window(cs);
+
+
+#ifdef WINDOWS
+
    send_message(WM_CREATE, 0, (LPARAM) &cs);
+
+#else
+
+   throw todo();
+
+#endif
+
    if(rect.bottom != 0 && rect.left != 0 && rect.right != 0 && rect.top != 0)
    {
       m_pguie->SetWindowPos(0, rect.left, rect.top, cs.cx, cs.cy, SWP_SHOWWINDOW);
+
+#ifdef WINDOWS
+
       send_message(WM_SIZE, 0, 0);
+
+#else
+
+   throw todo();
+
+#endif
+
    }
    on_set_parent(pparent);
    return true;
@@ -439,11 +509,29 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
 
    m_pguie->pre_create_window(cs);
 
+#ifdef WINDOWS
+
+
    send_message(WM_CREATE, 0, (LPARAM) &cs);
+
+#else
+
+   throw todo();
+
+#endif
 
    m_pguie->SetWindowPos(0, 0, 0, cs.cx, cs.cy, 0);
 
+
+#ifdef WINDOWS
+
    send_message(WM_SIZE, 0, 0);
+
+#else
+
+   throw todo();
+
+#endif
 
    on_set_parent(pparent);
 
@@ -699,10 +787,14 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
          GetClientRect(&layout.rect);    // starting rect comes from client rect
    }
 
+#ifdef WINDOWS
    if ((nFlags & ~reposNoPosLeftOver) != reposQuery)
       layout.hDWP = ::BeginDeferWindowPos(8); // reasonable guess
    else
       layout.hDWP = NULL; // not actually doing layout
+#endif
+
+
 
    if(m_pguie != this && m_pguie != NULL)
    {
@@ -787,9 +879,12 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
       }
    }
 
+#ifdef WINDOWS
    // move and resize all the windows at once!
    if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");
+
+#endif
 
 /*   ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery ||
          (nFlags & ~reposNoPosLeftOver) == reposExtra);
@@ -890,9 +985,19 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
 
    // first check if the new rectangle is the same as the current
    rect rectOld;
+
+#ifdef WINDOWS
+
    ::GetWindowRect(hWnd, rectOld);
    ::ScreenToClient(hWndParent, &rectOld.top_left());
    ::ScreenToClient(hWndParent, &rectOld.bottom_right());
+
+#else
+
+   throw todo();
+
+#endif
+
    if (::EqualRect(rectOld, lpRect))
       return;     // nothing to do
 

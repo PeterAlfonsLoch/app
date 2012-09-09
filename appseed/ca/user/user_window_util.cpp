@@ -780,6 +780,9 @@ namespace user
 
    HRGN WndUtil::GetAClipRgn(HWND hwnd, POINT ptOffset, bool bExludeChildren)
    {
+
+#ifdef WINDOWS
+
       rect rectWnd;
       ::GetClientRect(hwnd, rectWnd);
       rectWnd.offset(ptOffset);
@@ -791,6 +794,13 @@ namespace user
       }
 
       return hrgn;
+
+#else
+
+      throw todo();
+
+#endif
+
    }
 
    bool WndUtil::IsAscendant(HWND hwndAscendant, HWND hwndDescendant)
@@ -819,6 +829,9 @@ namespace user
 
    ::user::interaction * LPWndArray::find_first(HWND hwnd)
    {
+
+#ifdef WINDOWS
+
       for(int i = 0; i < this->get_size(); i++)
       {
          if(this->element_at(i)->get_safe_handle() == hwnd)
@@ -826,7 +839,15 @@ namespace user
             return this->element_at(i);
          }
       }
+
+#else
+
+      throw todo();
+
+#endif
+
       return NULL;
+
    }
 
    void LPWndArray::get_wnda(HWNDArray & hwnda)

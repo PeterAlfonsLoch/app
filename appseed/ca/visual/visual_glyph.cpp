@@ -1,30 +1,45 @@
 #include "framework.h"
 
+
 namespace visual
 {
 
-glyph::glyph()
-{
-}
 
-glyph::~glyph()
-{
+   glyph::glyph()
+   {
 
-}
+   }
 
-glyph & glyph::operator = (const glyph & glyph)
-{
-   m_ui = glyph.m_ui;
-   m_gm = glyph.m_gm;
-   m_pointsets.copy(glyph.m_pointsets);
+   glyph::~glyph()
+   {
 
-   return *this;
-}
+   }
 
-bool glyph::operator <= (const glyph & glyph) const
-{
-   return m_ui < glyph.m_ui;
-}
+   glyph & glyph::operator = (const glyph & glyph)
+   {
+
+      m_ui = glyph.m_ui;
+
+#ifdef WINDOWS
+
+      m_gm = glyph.m_gm;
+
+#endif
+
+      m_pointsets.copy(glyph.m_pointsets);
+
+      return *this;
+
+   }
+
+   bool glyph::operator <= (const glyph & glyph) const
+   {
+
+      return m_ui < glyph.m_ui;
+
+   }
+
+   #ifdef WINDOWS
 
 /****************************************************************************
  *  FUNCTION   : IntFromFixed
@@ -300,6 +315,10 @@ UINT CloseContour(
    return cTotal;
 }
 
+
+#endif
+
+
 /****************************************************************************
  *  FUNCTION   : DrawT2Outline
  *
@@ -315,11 +334,9 @@ UINT CloseContour(
  *
  *  RETURNS    : none.
  ****************************************************************************/
-void glyph::Initialize(
-   LPTTPOLYGONHEADER lpHeader,
-   DWORD size,
-   int iFontHiHeight)
+void glyph::Initialize(LPTTPOLYGONHEADER lpHeader, DWORD size, int iFontHiHeight)
 {
+
     WORD                i;
     UINT                cTotal = 0; // Total points in a contour.
     LPTTPOLYGONHEADER   lpStart;    // the start of the buffer

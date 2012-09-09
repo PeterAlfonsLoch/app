@@ -1,9 +1,13 @@
 #include "framework.h"
-#include "include/FreeImage.h"
+#include "include/freeimage.h"
 #include "visual_FreeImageFileProc.h"
+
+#ifdef WINDOWS
 #undef new
 #include <gdiplus.h>
 #define new DEBUG_NEW
+
+#endif
 
 #define AC_SRC_ALPHA                0x01
 
@@ -2288,7 +2292,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
 
 ::ca::bitmap_sp imaging::FItoHBITMAP(FIBITMAP * pfibitmap, bool bUnloadFI)
 {
-   
+
    if(pfibitmap == NULL)
       return ::ca::null();
 
