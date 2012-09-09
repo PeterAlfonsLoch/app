@@ -1777,15 +1777,15 @@ void frame_window::BringToTop(int nCmdShow)
          nCmdShow != SW_SHOWNA && nCmdShow != SW_SHOWNOACTIVATE)
       {
          // if no last active popup, it will return get_handle()
-         HWND hwnd = _get_handle();
-         HWND hWndLastPop = ::GetLastActivePopup(hwnd);
+         void * hwnd = _get_handle();
+         void * hWndLastPop = ::GetLastActivePopup((HWND) hwnd);
 
          //DWORD dwStyle = ::GetWindowLong(hWndLastPop, GWL_STYLE);
          if(hWndLastPop != (HWND) 1)
          {
-            if(::IsWindow(hWndLastPop))
+            if(::IsWindow((HWND) hWndLastPop))
             {
-               ::BringWindowToTop(hWndLastPop);
+               ::BringWindowToTop((HWND) hWndLastPop);
             }
          }
       }

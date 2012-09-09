@@ -179,30 +179,37 @@ int image_list::add(::visual::icon * picon)
       &dcIcon,
       0, 0,
       SRCCOPY);*/
-
-
+   
    m_iSize++;
+
    return iItem;
+
 }
+
 
 int image_list::add_icon(const char * psz)
 {
+
    ::visual::icon icon;
+
    int iSize = min(m_size.cx, m_size.cy);
+
 #ifdef WIN32
-   icon.m_hicon = (HICON) ::LoadImage(
-            NULL,
-            psz,
-            IMAGE_ICON,
-            iSize, iSize,
-            LR_LOADFROMFILE);
+
+   icon.m_picon = (void *) (HICON) ::LoadImage(NULL, psz, IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE);
+
 #endif
+
    return add(&icon);
+
 }
+
 
 int image_list::add_matter_icon(const char * pszMatter)
 {
+
    return add_icon(Application.dir().matter(pszMatter));
+
 }
 
 

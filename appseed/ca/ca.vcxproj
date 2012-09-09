@@ -2597,8 +2597,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="exception\exception_dump_context.cpp" />
     <ClCompile Include="exception\exception_dump_floating_point.cpp" />
     <ClCompile Include="exception\exception_dump_output.cpp" />
-    <ClCompile Include=".\exception\exception_errorn.cpp" />
     <ClCompile Include=".\exception\exception_hresult.cpp" />
+    <ClCompile Include="exception\exception_error.cpp" />
     <ClCompile Include="exception\exception_installing.cpp" />
     <ClCompile Include="exception\exception_interface_only.cpp" />
     <ClCompile Include=".\exception\exception_invalid_argument.cpp" />

@@ -18,7 +18,7 @@ namespace visual
       icon();
       icon(void * picon);
 #ifdef WINDOWS
-      icon(HICON hicon)
+      icon(HICON hicon);
 #endif
       virtual ~icon();
 

@@ -1754,7 +1754,7 @@ namespace radix
 
       #ifdef WINDOWS
 
-      return MessageBox(puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->_get_handle()), pszMessage, m_strAppName, fuStyle);
+      return MessageBox((HWND) (puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->_get_handle())), pszMessage, m_strAppName, fuStyle);
 
       #else
 
@@ -1796,12 +1796,12 @@ namespace radix
       {
 
          DWORD dwWndPid=0;
-         GetWindowThreadProcessId(hWnd,&dwWndPid);
+         GetWindowThreadProcessId((HWND) hWnd, &dwWndPid);
 
          if (hWnd != NULL && dwWndPid==GetCurrentProcessId() )
          {
             // use cast-level context or frame level context
-            LRESULT lResult = ::SendMessage(hWnd, WM_HELPPROMPTADDR, 0, 0);
+            LRESULT lResult = ::SendMessage((HWND) hWnd, WM_HELPPROMPTADDR, 0, 0);
             if (lResult != 0)
                pdwContext = (DWORD*)lResult;
          }

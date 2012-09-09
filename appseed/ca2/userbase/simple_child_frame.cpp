@@ -30,7 +30,7 @@ bool simple_child_frame::pre_create_window(CREATESTRUCT& cs)
    {
       if(System.m_pwndMain != NULL)
       {
-         cs.hwndParent = System.m_pwndMain->_get_handle();
+         cs.hwndParent = (HWND) System.m_pwndMain->_get_handle();
       }
    }
 

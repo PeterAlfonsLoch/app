@@ -79,14 +79,14 @@ namespace gen
 
       base * dispatch::peek_message(LPMSG lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
       {
-         if(!::PeekMessageA(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
+         if(!::PeekMessageA(lpmsg, (HWND) pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
             return NULL;
          return get_base(lpmsg, pwnd);
       }
 
       base * dispatch::get_message(LPMSG lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
       {
-         if(!::GetMessageA(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax))
+         if(!::GetMessageA(lpmsg, (HWND) pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax))
             return NULL;
          return get_base(lpmsg, pwnd);
       }

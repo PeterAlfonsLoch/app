@@ -2396,14 +2396,14 @@ namespace ca
       m_pwindow = pwindow;
       create(pwindow->get_app());
 #ifdef WINDOWS
-      m_p->attach(::BeginPaint(pwindow->get_safe_handle(), &m_ps));
+      m_p->attach(::BeginPaint((HWND) pwindow->get_safe_handle(), &m_ps));
 #endif
    }
 
    paint_graphics::~paint_graphics()
    {
 #ifdef WINDOWS
-      ::EndPaint(m_pwindow->get_safe_handle(), &m_ps);
+      ::EndPaint((HWND) m_pwindow->get_safe_handle(), &m_ps);
 #endif
    }
 

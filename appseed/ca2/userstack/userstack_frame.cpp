@@ -416,7 +416,7 @@ namespace userstack
 
       MSG * pmsg = (MSG *) pbase->m_lparam;
 
-      pmsg->hwnd = get_safe_handle();
+      pmsg->hwnd = (HWND) get_safe_handle();
 
       try
       {

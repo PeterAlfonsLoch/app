@@ -5398,9 +5398,6 @@
     <ClCompile Include=".\exception\exception_invalid_argument.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include=".\exception\exception_errorn.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include=".\exception\exception_hresult.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -5450,6 +5447,9 @@
       <Filter>Source Files\sockets</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_todo.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_error.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>

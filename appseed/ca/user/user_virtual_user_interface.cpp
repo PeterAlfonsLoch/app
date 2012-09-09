@@ -369,7 +369,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
 #ifdef WINDOWS
 
-   cs.hwndParent = pparent->_get_handle();
+   cs.hwndParent = (HWND) pparent->_get_handle();
 
 #else
 
@@ -488,7 +488,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
 
 #ifdef WINDOWS
 
-   cs.hwndParent = pparent->_get_handle();
+   cs.hwndParent = (HWND) pparent->_get_handle();
 
 #else
 

@@ -752,7 +752,7 @@ namespace platform
          check_apps();
          if(::IsWindow(m_hwndWinutil))
          {
-            mt_show_window(GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
+            mt_show_window((HWND) GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
             ::PostMessage(m_hwndWinutil, WM_APP + 2000, 0, 2);
          }
       }
@@ -769,7 +769,7 @@ namespace platform
          check_apps();
          if(::IsWindow(m_hwndWinactionarea))
          {
-            mt_show_window(GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
+            mt_show_window((HWND) GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
             ::PostMessage(m_hwndWinactionarea, WM_APP + 2000, 0, 2);
          }
       }

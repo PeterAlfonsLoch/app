@@ -37,7 +37,7 @@ namespace userbase
          return false;
 
       m_uiId                     = uiId;
-      m_nid.hWnd                 = get_safe_handle();
+      m_nid.hWnd                 = (HWND) get_safe_handle();
       m_nid.uID                  = uiId;
       m_nid.hIcon                = hicon;
       m_nid.uFlags               = NIF_ICON | NIF_MESSAGE;
