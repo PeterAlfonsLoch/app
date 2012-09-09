@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "include/FreeImage.h"
+#include "include/freeimage.h"
+
 
 image_list::image_list(::ca::application * papp) :
    ca(papp),
@@ -8,26 +9,35 @@ image_list::image_list(::ca::application * papp) :
    m_spdibWork2(get_app()),
    m_spdibWork3(get_app())
 {
+
    m_iSize = 0;
    m_iGrow = 1;
    m_size.cx = 0;
    m_size.cy = 0;
+
 }
+
 
 image_list::~image_list()
 {
 
 }
 
+
 bool image_list::create(int cx, int cy, UINT nFlags, int nInitial, int nGrow)
 {
+
    UNREFERENCED_PARAMETER(nFlags);
+
    if(cx <= 0)
       return false;
+
    if(cy <= 0)
       return false;
+
    if(nInitial < 0)
       return false;
+
    if(nGrow < 1)
       nGrow = 1;
 
@@ -94,11 +104,11 @@ bool image_list::draw(::ca::graphics *pdc, int iImage, point pt, int iFlag)
 }
 
 bool image_list::draw(
-                  ::ca::graphics *pdc, 
-                  int iImage, 
+                  ::ca::graphics *pdc,
+                  int iImage,
                   point pt,
-                  size sz, 
-                  point ptOffset, 
+                  size sz,
+                  point ptOffset,
                   int iFlag)
 {
    UNREFERENCED_PARAMETER(iFlag);
@@ -145,7 +155,7 @@ int image_list::add(::visual::icon * picon)
 //   dcAlpha.SelectObject(dibAlpha->m_hbitmap);
 
 /*  m_dcAlpha.BitBlt(
-      iItem * m_size.cx, 0, 
+      iItem * m_size.cx, 0,
       m_size.cx, m_size.cy,
       &dcAlpha,
       0, 0,
@@ -166,7 +176,7 @@ int image_list::add(::visual::icon * picon)
    dibIcon.Invert();
 
    m_dcAlpha.BitBlt(
-      iItem * m_size.cx, 0, 
+      iItem * m_size.cx, 0,
       m_size.cx, m_size.cy,
       &dcIcon,
       0, 0,
@@ -183,8 +193,8 @@ int image_list::add_icon(const char * psz)
    int iSize = min(m_size.cx, m_size.cy);
 #ifdef WIN32
    icon.m_hicon = (HICON) ::LoadImage(
-            NULL, 
-            psz, 
+            NULL,
+            psz,
             IMAGE_ICON,
             iSize, iSize,
             LR_LOADFROMFILE);
@@ -200,7 +210,7 @@ int image_list::add_matter_icon(const char * pszMatter)
 
 int image_list::add_file(const char * lpcsz)
 {
-   
+
    ::visual::dib_sp dib(get_app());
 
    if(!dib.load_from_file(lpcsz))
@@ -277,10 +287,10 @@ bool image_list::_grow()
 
 bool image_list::get_image_info(int nImage, IMAGEINFO* pImageInfo) const
 {
-   
+
    try
    {
-   
+
       ASSERT(pImageInfo != NULL);
 
       if(nImage < 0 || nImage >= get_image_count())

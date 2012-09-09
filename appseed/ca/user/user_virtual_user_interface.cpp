@@ -538,8 +538,11 @@ void virtual_user_interface::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustTyp
 
 LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
 {
+
    ::ca::smart_pointer < ::gen::message::base > spbase;
+
    spbase(get_base(m_pguie, uiMessage, wparam, lparam));
+
    try
    {
       ::user::interaction * pui = m_pguie;

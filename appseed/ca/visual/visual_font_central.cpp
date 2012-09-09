@@ -60,7 +60,7 @@ bool font_central::Initialize()
 
 #endif
 
-   lstrcpy(lf.lfFaceName, FONTFACENAME_MENU);
+   strcpy(lf.lfFaceName, FONTFACENAME_MENU);
 
    VERIFY(m_fontMenu->CreateFontIndirect(&lf));
 
@@ -68,10 +68,20 @@ bool font_central::Initialize()
    lf.lfHeight         = -(int)11;
    lf.lfWeight         = FW_BOLD;
    lf.lfCharSet        = DEFAULT_CHARSET;
+
+#ifdef WINDOWS
+
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
    lf.lfQuality        = PROOF_QUALITY;
    lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-   lstrcpy(lf.lfFaceName, "Lucida Sans Unicode");
+
+#else
+
+   throw todo();
+
+#endif
+
+   strcpy(lf.lfFaceName, "Lucida Sans Unicode");
 
    m_font->CreatePointFontIndirect(&lf);
 
@@ -82,26 +92,43 @@ bool font_central::Initialize()
 
    CreateLyricViewFonts();
 
+
+#ifdef WINDOWS
+
    NONCLIENTMETRICS ncm;
    memset(&ncm, 0,
    sizeof(ncm));
    ncm.cbSize = sizeof(ncm);
-   SystemParametersInfo(
-   SPI_GETNONCLIENTMETRICS,
-   0, &ncm, 0);
+   SystemParametersInfo(SPI_GETNONCLIENTMETRICS, 0, &ncm, 0);
    //get caption bar
    //font handle.
    m_fontCaption->CreateFontIndirect(&ncm.lfCaptionFont);
+
+#else
+
+   throw todo();
+
+#endif
 
    memset(&lf, 0, sizeof(lf));
    //lf.lfHeight         = (int)-MulDiv(9, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
    lf.lfHeight = 90;
    lf.lfWeight         = FW_NORMAL;
    lf.lfCharSet        = DEFAULT_CHARSET;
+
+#ifdef WINDOWS
+
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
    lf.lfQuality        = PROOF_QUALITY;
    lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-   lstrcpy(lf.lfFaceName, "Lucida Sans Unicode");
+
+#else
+
+   throw todo();
+
+#endif
+
+   strcpy(lf.lfFaceName, "Lucida Sans Unicode");
 
    VERIFY(m_fontListCtrl->CreateFontIndirect(&lf));
 
@@ -135,11 +162,15 @@ void font_central::Finalize()
    for(i = 0; i < iSize; i++)
    {
       delete m_pSubTitleFonts->operator[](i);
+
    }
+
    delete m_pSubTitleFonts;
 
    m_bInitialized = false;
+
 }
+
 
 ::ca::font * font_central::GetStandartFont()
 {

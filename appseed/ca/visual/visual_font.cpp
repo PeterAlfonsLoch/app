@@ -29,9 +29,9 @@ namespace visual
 
    void font::EmbossedTextOut(::ca::graphics * pdc, LPCRECT lpcrect, double dRateX, double dHeight, string & str)
    {
-      
+
       ::visual::api::EmbossedTextOut(pdc, lpcrect, dRateX, dHeight, str);
-      
+
       return;
 
 
@@ -136,13 +136,7 @@ namespace visual
       ClearDC();*/
    }
 
-   void font::SimpleTextOut(
-       ::ca::graphics                     * pgraphics,
-       int                     x,
-       int                     y,
-       string                 &str,
-       LPINT                   lpiCharsPositions,
-       int                     iCharsPositions)
+   void font::SimpleTextOut(::ca::graphics * pgraphics, int x, int y, string & str, LPINT lpiCharsPositions, int iCharsPositions)
    {
       UNREFERENCED_PARAMETER(lpiCharsPositions);
       UNREFERENCED_PARAMETER(iCharsPositions);
@@ -151,7 +145,18 @@ namespace visual
 
       rect clipRect;
       int iOldMapMode = pgraphics->GetMapMode();
+
+#ifdef WINDOWS
+
       pgraphics->SetMapMode(MM_TEXT);
+
+
+#else
+
+      throw todo();
+
+#endif
+
       pgraphics->TextOut(x, y, str);
 
       pgraphics->SetMapMode(iOldMapMode);

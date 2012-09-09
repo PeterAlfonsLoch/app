@@ -160,6 +160,8 @@ namespace user
 
       straHkl.explode(";", doc.get_root()->attr("hkla"));
 
+#ifdef WINDOWS
+
       for(int i = 0; i < straHkl.get_count(); i++)
       {
          string strHkl = straHkl[i];
@@ -175,6 +177,12 @@ namespace user
          }
          playoutid->m_hkla.add(hkl);
       }
+
+#else
+
+      throw todo();
+
+#endif
 
       if(playoutid->m_strName.is_empty())
          return false;

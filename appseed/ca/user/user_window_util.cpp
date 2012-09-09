@@ -748,6 +748,8 @@ namespace user
    {
 
 
+#ifdef WINDOWS
+
       HWNDArray hwnda;
 
       EnumChildren(hwnd, hwnda);
@@ -767,7 +769,11 @@ namespace user
          ::DeleteObject(hrgnChild);
       }
 
+#else
 
+      throw todo();
+
+#endif
 
 
    }

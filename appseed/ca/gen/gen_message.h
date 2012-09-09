@@ -175,6 +175,11 @@ namespace gen
 
          virtual base * get_base(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam);
          virtual base * get_base(LPMSG lpmsg, ::user::interaction * pwnd = NULL);
+
+#else
+
+         virtual base * get_base(XEvent * pevent, ::user::interaction * pwnd = NULL);
+
 #endif
 
          void RemoveMessageHandler(gen::signalizable * psignalizable);

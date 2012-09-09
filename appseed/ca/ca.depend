@@ -7925,7 +7925,7 @@
 	"ca/user/user_create_context.h"
 	"ca/user/user_check_interface.h"
 
-1342864726 /ca2/app/appseed/ca/gen/gen_message.h
+1347196786 /ca2/app/appseed/ca/gen/gen_message.h
 
 1342864881 /ca2/app/appseed/ca/user/user_create_context.h
 	"ca/ca_type_info.h"
@@ -12409,7 +12409,7 @@
 1342864881 source:/ca2/app/appseed/ca/user/user_window_map.cpp
 	"framework.h"
 
-1347165379 source:/ca2/app/appseed/ca/user/user_keyboard.cpp
+1347196226 source:/ca2/app/appseed/ca/user/user_keyboard.cpp
 	"framework.h"
 
 1347166164 /ca2/app/appseed/c/merdes_windows/c_os_thread.h
@@ -12493,4 +12493,19 @@
 
 1342864829 source:/ca2/app/appseed/ca/visual/visual_glyph_set.cpp
 	"framework.h"
+
+1347171203 source:/ca2/app/appseed/ca/visual/visual_FreeImageFileProc.cpp
+	"framework.h"
+	"include/freeimage.h"
+
+1347196399 /ca2/app/appseed/include/freeimage.h
+	"thirdparty/include/FreeImage/FreeImage.h"
+
+1342865898 /ca2/app/thirdparty/include/FreeImage/FreeImage.h
+	<wchar.h>
+	<inttypes.h>
+
+1347196381 source:/ca2/app/appseed/ca/visual/visual_dib.cpp
+	"framework.h"
+	"include/freeimage.h"
 

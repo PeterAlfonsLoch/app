@@ -237,6 +237,16 @@ namespace gen
          return get_base(pwnd, lpmsg->message, lpmsg->wParam, lpmsg->lParam);
       }
 
+#else
+
+      base * dispatch::get_base(XEvent * pevent, ::user::interaction * pwnd)
+      {
+
+         throw todo();
+
+      }
+
+
 #endif
 
       dispatch::dispatch()

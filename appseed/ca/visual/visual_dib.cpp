@@ -1,7 +1,4 @@
 #include "framework.h"
-
-#define _WINDOWS_ // for free
-
 #include "include/freeimage.h"
 
 
