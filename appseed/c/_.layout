@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+	<File name="ansios/ansios.h" open="0" top="0" tabpos="0">
+		<Cursor position="39" topLine="0" />
+	</File>
+	<File name="ansios/ansios_file.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="237" topLine="0" />
+	</File>
+	<File name="ansios/ansios_file.h" open="0" top="0" tabpos="0">
+		<Cursor position="12" topLine="0" />
+	</File>
 	<File name="bsdiff/blocksort.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="5097" topLine="158" />
 	</File>
@@ -46,14 +55,14 @@
 	<File name="c/file_spa.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="402" topLine="0" />
 	</File>
-	<File name="c/heap.cpp" open="1" top="0" tabpos="1">
+	<File name="c/heap.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="3404" topLine="120" />
 	</File>
 	<File name="c/index.h" open="0" top="0" tabpos="0">
 		<Cursor position="20" topLine="0" />
 	</File>
 	<File name="c/md5.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1899" topLine="18" />
+		<Cursor position="14202" topLine="526" />
 	</File>
 	<File name="c/simple_mutex.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="288" topLine="0" />
@@ -62,7 +71,7 @@
 		<Cursor position="412" topLine="4" />
 	</File>
 	<File name="c/small_ipc_channel.h" open="0" top="0" tabpos="0">
-		<Cursor position="1015" topLine="83" />
+		<Cursor position="2729" topLine="113" />
 	</File>
 	<File name="c/std_file.h" open="0" top="0" tabpos="0">
 		<Cursor position="1151" topLine="41" />
@@ -89,16 +98,16 @@
 		<Cursor position="2145" topLine="105" />
 	</File>
 	<File name="hotplugin/hotplugin_plugin.cpp" open="0" top="0" tabpos="54">
-		<Cursor position="32230" topLine="1250" />
+		<Cursor position="32198" topLine="1247" />
 	</File>
 	<File name="hotplugin/hotplugin_plugin.h" open="0" top="0" tabpos="0">
 		<Cursor position="134" topLine="4" />
 	</File>
-	<File name="linux/c_os.cpp" open="1" top="0" tabpos="36">
+	<File name="linux/c_os.cpp" open="0" top="0" tabpos="36">
 		<Cursor position="446" topLine="0" />
 	</File>
-	<File name="linux/c_os.h" open="1" top="0" tabpos="35">
-		<Cursor position="1566" topLine="33" />
+	<File name="linux/c_os.h" open="0" top="0" tabpos="35">
+		<Cursor position="217" topLine="0" />
 	</File>
 	<File name="linux/c_os_cross_win_file.cpp" open="0" top="0" tabpos="16">
 		<Cursor position="0" topLine="0" />
@@ -116,7 +125,10 @@
 		<Cursor position="942" topLine="30" />
 	</File>
 	<File name="linux/c_os_file.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="307" topLine="0" />
+		<Cursor position="54" topLine="0" />
+	</File>
+	<File name="linux/c_os_file.h" open="0" top="0" tabpos="0">
+		<Cursor position="121" topLine="0" />
 	</File>
 	<File name="linux/c_os_http.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="1401" topLine="28" />
@@ -152,10 +164,13 @@
 		<Cursor position="316" topLine="0" />
 	</File>
 	<File name="linux/c_os_small_ipc_channel.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="2237" topLine="164" />
+		<Cursor position="4007" topLine="245" />
 	</File>
 	<File name="linux/c_os_win_base.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="19" topLine="0" />
+	</File>
+	<File name="os/os.h" open="0" top="0" tabpos="0">
+		<Cursor position="358" topLine="0" />
 	</File>
 	<File name="os/os_binreloc.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="7103" topLine="289" />

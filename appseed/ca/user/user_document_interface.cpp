@@ -875,7 +875,7 @@ namespace user
    }
 
 
-   ::view * document_interface::get_view(const ::ca::type_info info, index indexFind)
+   ::view * document_interface::get_view(const ::ca::type_info & info, index indexFind)
    {
       count countView = get_view_count();
       count countFind = 0;

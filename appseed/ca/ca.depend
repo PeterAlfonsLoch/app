@@ -7993,7 +7993,7 @@
 
 1342864830 /ca2/app/appseed/ca/database/database_update_hint.h
 
-1346980282 /ca2/app/appseed/ca/ca/ca_window.h
+1347165467 /ca2/app/appseed/ca/ca/ca_window.h
 	"ca/user/user_interaction.h"
 
 1342864737 /ca2/app/appseed/ca/ca/ca_message_window.h
@@ -9467,7 +9467,7 @@
 
 1342864829 /ca2/app/appseed/ca/visual/visual_application.h
 
-1347148145 /ca2/app/appseed/ca/user/user_document_interface.h
+1347163784 /ca2/app/appseed/ca/user/user_document_interface.h
 
 1342864881 /ca2/app/appseed/ca/user/user_document.h
 
@@ -9603,7 +9603,7 @@
 
 1342864700 /ca2/app/appseed/ca/plane/plane_session.h
 
-1347034764 /ca2/app/appseed/ca/plane/plane_system.h
+1347165543 /ca2/app/appseed/ca/plane/plane_system.h
 	"ca/collection/collection_gen_lemon_array.h"
 
 1342864809 /ca2/app/appseed/ca/collection/collection_gen_lemon_array.h
@@ -12354,7 +12354,7 @@
 1347161792 source:/ca2/app/appseed/ca/user/user_frame_window_interface.cpp
 	"framework.h"
 
-1347162499 source:/ca2/app/appseed/ca/user/user_document_interface.cpp
+1347164557 source:/ca2/app/appseed/ca/user/user_document_interface.cpp
 	"framework.h"
 
 1342864881 source:/ca2/app/appseed/ca/user/user_keyboard_layout.cpp
@@ -12394,5 +12394,20 @@
 	"framework.h"
 
 1342864881 source:/ca2/app/appseed/ca/user/user_view_creator.cpp
+	"framework.h"
+
+1347162667 source:/ca2/app/appseed/ca/user/user_form.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_wait_message_dialog.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_window_interface.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_window_map.cpp
+	"framework.h"
+
+1347165379 source:/ca2/app/appseed/ca/user/user_keyboard.cpp
 	"framework.h"
 

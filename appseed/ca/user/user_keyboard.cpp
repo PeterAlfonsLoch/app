@@ -98,9 +98,15 @@ namespace user
          }
       }
       layoutida.QuickSort(true);
+
+#ifdef WINDOWS
+
       char szLayoutName[KL_NAMELENGTH];
+
       ::GetKeyboardLayoutName(szLayoutName);
+
       HKL hkl = ::GetKeyboardLayout(0);
+
       for(int i = 0; i < layoutida.get_count(); i++)
       {
          if(layoutida[i].m_hkla.contains(hkl))
@@ -116,26 +122,44 @@ namespace user
             return layoutida[i].m_strPath;
          }
       }
+
+#endif
+
       string strPath;
+
       if(Application.file().exists(System.dir().ca2("app/appmatter/main/_std/_std/keyboard layout/en_us_international.xml")))
       {
+
          return System.dir().ca2("app/appmatter/main/_std/_std/keyboard layout/en_us_international.xml");
+
       }
+
       return "";
+
    }
+
 
    bool keyboard::initialize(keyboard_layout_id * playoutid, const char * pszPath)
    {
+
       string str = Application.file().as_string(pszPath);
+
       if(str.is_empty())
          return false;
+
       ::xml::document doc(get_app());
+
       if(!doc.load(str))
          return false;
+
       playoutid->m_strPath = pszPath;
+
       playoutid->m_strName = doc.get_root()->attrs()["name"];
+
       stringa straHkl;
+
       straHkl.explode(";", doc.get_root()->attr("hkla"));
+
       for(int i = 0; i < straHkl.get_count(); i++)
       {
          string strHkl = straHkl[i];
@@ -151,9 +175,12 @@ namespace user
          }
          playoutid->m_hkla.add(hkl);
       }
+
       if(playoutid->m_strName.is_empty())
          return false;
+
       return true;
+
    }
 
 } // namespace user

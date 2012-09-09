@@ -32,6 +32,9 @@ namespace user
    }
    void HWNDArray::top_windows_by_z_order()
    {
+
+#ifdef WINDOWS
+
       int iOrder = 0;
       HWND hwndOrder = ::GetDesktopWindow();
       hwndOrder = ::GetWindow(hwndOrder, GW_CHILD);
@@ -42,6 +45,13 @@ namespace user
          hwndOrder = ::GetWindow(hwndOrder, GW_HWNDNEXT);
          iOrder++;
       }
+
+#else
+
+      throw not_implemented_exception();
+
+#endif
+
    }
 
 

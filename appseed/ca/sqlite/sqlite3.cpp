@@ -10195,7 +10195,7 @@ zulu_time:
    SQLITE_PRIVATE void sqlite3RegisterDateTimeFunctions(sqlite3 *db){
 #ifndef SQLITE_OMIT_DATETIME_FUNCS
       static const struct {
-         char *zName;
+         const char *zName;
          int nArg;
          void (*xFunc)(sqlite3_context*,int,sqlite3_value**);
       } aFuncs[] = {
@@ -14119,7 +14119,7 @@ zulu_time:
                /* Normalize realvalue to within 10.0 > realvalue >= 1.0 */
                exp = 0;
                if( sqlite3_isnan(realvalue) ){
-                  bufpt = "NaN";
+                  bufpt = (char *) "NaN";
                   length = 3;
                   break;
                }
@@ -14131,11 +14131,11 @@ zulu_time:
                   while( realvalue<1.0 && exp>=-350 ){ realvalue *= 10.0; exp--; }
                   if( exp>350 || exp<-350 ){
                      if( prefix=='-' ){
-                        bufpt = "-Inf";
+                        bufpt = (char *) "-Inf";
                      }else if( prefix=='+' ){
-                        bufpt = "+Inf";
+                        bufpt = (char *) "+Inf";
                      }else{
-                        bufpt = "Inf";
+                        bufpt = (char *) "Inf";
                      }
                      length = (int) strlen(bufpt);
                      break;
@@ -35262,7 +35262,7 @@ cleardatabasepage_out:
    */
    static void checkAppendMsg(
       IntegrityCk *pCheck,
-      char *zMsg1,
+      const char *zMsg1,
       const char *zFormat,
       ...
       ){
@@ -35349,7 +35349,7 @@ cleardatabasepage_out:
       int isFreeList,       /* True for a freelist.  False for overflow page list */
       int iPage,            /* Page number for first page in the list */
       int N,                /* Expected number of pages in the list */
-      char *zContext        /* Context for error messages */
+      const char *zContext        /* Context for error messages */
       ){
          int i;
          int expected = N;

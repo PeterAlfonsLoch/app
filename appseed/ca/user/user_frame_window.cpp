@@ -316,13 +316,13 @@ void frame_window::BeginModalState()
    //  modeless windows anyway...
    ::user::interaction * pParent = EnsureTopLevelParent();
 
-   base_array<::user::interaction *,::user::interaction *> arrDisabledWnds;
+   base_array < ::user::interaction *, ::user::interaction * > arrDisabledWnds;
+
    // disable all windows connected to this frame (and add them to the list)
    ::user::interaction * hWnd = System.get_desktop_window()->GetWindow(GW_CHILD);
    while (hWnd != NULL)
    {
-      if (hWnd->IsWindowEnabled() &&
-         __is_descendant(pParent, hWnd) &&
+      if (hWnd->IsWindowEnabled() &&    __is_descendant(pParent, hWnd) &&
          hWnd->send_message(WM_DISABLEMODAL, 0, 0) == 0)
       {
          hWnd->EnableWindow(FALSE);
@@ -395,13 +395,23 @@ void frame_window::ShowOwnedWindows(bool bShow)
 
 void frame_window::OnEnable(bool bEnable)
 {
+
    if (bEnable && (m_nFlags & WF_STAYDISABLED))
    {
+
       // Work around for MAPI support. This makes sure the main ::ca::window
       // remains disabled even when the mail system is booting.
+
       EnableWindow(FALSE);
+
+#ifdef WINDOWS
+
       ::SetFocus(NULL);
+
+#endif
+
       return;
+
    }
 
 
@@ -433,58 +443,51 @@ void frame_window::OnEnable(bool bEnable)
 
 bool frame_window::pre_create_window(CREATESTRUCT& cs)
 {
+
    if (cs.lpszClass == NULL)
    {
+
       // COLOR_WINDOW background
+
+#ifdef WINDOWS
+
       VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, &cs.lpszClass));
+
+#endif
+
    }
 
    if (cs.style & FWS_ADDTOTITLE)
       cs.style |= FWS_PREFIXTITLE;
 
+#ifdef WINDOWS
+
    cs.dwExStyle |= WS_EX_CLIENTEDGE;
 
-   return TRUE;
+#endif
+
+   return true;
+
 }
 
-bool frame_window::create(const char * lpszClassName,
-   const char * lpszWindowName,
-   DWORD dwStyle,
-   const RECT& rect,
-   ::user::interaction * pParentWnd,
-   const char * lpszMenuName,
-   DWORD dwExStyle,
-   ::ca::create_context* pContext)
+bool frame_window::create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction * pParentWnd, const char * lpszMenuName, DWORD dwExStyle, ::ca::create_context* pContext)
 {
 
    UNREFERENCED_PARAMETER(lpszMenuName);
 
-   HMENU hMenu = NULL;
-   /* trans if (lpszMenuName != NULL)
-   {
-      // load in a menu that will get destroyed when ::ca::window gets destroyed
-      HINSTANCE hInst = gen::FindResourceHandle(lpszMenuName, RT_MENU);
-      if ((hMenu = ::LoadMenu(hInst, lpszMenuName)) == NULL)
-      {
-         TRACE(::radix::trace::category_AppMsg, 0, "Warning: failed to load menu for frame_window.\n");
-         PostNcDestroy();            // perhaps delete the C++ object
-         return FALSE;
-      }
-   }*/
-
    m_strTitle = lpszWindowName;    // save title for later
 
-   if (!::user::interaction::CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle,
-      rect,
-      pParentWnd, (UINT) hMenu), (LPVOID)pContext)
+   if(!::user::interaction::CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, NULL, (LPVOID)pContext))
    {
+
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: failed to create frame_window.\n");
-      if (hMenu != NULL)
-         DestroyMenu(hMenu);
+
       return FALSE;
+
    }
 
    return TRUE;
+
 }
 
 /*

@@ -69,7 +69,7 @@ namespace plane
 
    void session::construct()
    {
-      
+
       m_strAppName         = "session";
       m_strBaseSupportId   = "votagus_ca2_bergedge";
       m_strInstallToken    = "session";
@@ -178,21 +178,21 @@ namespace plane
       m_ptemplate_bergedge    = new ::userbase::single_document_template(
          this,
          "session/frame",
-         System.template type_info < document > (),
-         System.template type_info < frame > (),
-         System.template type_info < view > ());
+         System.type_info < document > (),
+         System.type_info < frame > (),
+         System.type_info < view > ());
       m_ptemplate_platform    = new ::userbase::single_document_template(
          this,
          "session/frame",
-         System.template type_info < plane::document > (),
-         System.template type_info < plane::frame > (),
-         System.template type_info < plane::pane_view > ());
+         System.type_info < plane::document > (),
+         System.type_info < plane::frame > (),
+         System.type_info < plane::pane_view > ());
       m_ptemplate_nature      = new ::userbase::single_document_template(
          this,
          "session/frame",
-         System.template type_info < nature::document > (),
-         System.template type_info < nature::frame > (),
-         System.template type_info < nature::view > ());
+         System.type_info < nature::document > (),
+         System.type_info < nature::frame > (),
+         System.type_info < nature::view > ());
       m_pnaturedocument = NULL;*/
    }
 
@@ -544,7 +544,7 @@ namespace plane
 
    ::planebase::application * session::start_application(const char * pszType, const char * pszAppId, ::ca::create_context * pcreatecontext)
    {
-      
+
       string strApp(pszAppId);
 
       ::plane::application * papp = dynamic_cast < ::plane::application * > (application_get(pszType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
@@ -1138,7 +1138,7 @@ namespace plane
 
    }
 
-   
+
    bool session::is_remote_session()
    {
 

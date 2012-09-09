@@ -384,10 +384,12 @@ namespace filemanager
 
    EFolder GetFolderType(::ca::application * papp, const wchar_t * lpcszPath)
    {
+
       string strPath;
+
       gen::international::unicode_to_utf8(strPath, lpcszPath);
-      DWORD dwAttr = ::GetFileAttributesW(lpcszPath);
-      if(dwAttr & FILE_ATTRIBUTE_DIRECTORY)
+
+      if(dir::exists(strPath))
       {
          return FolderFileSystem;
       }
@@ -399,6 +401,7 @@ namespace filemanager
       {
          return FolderNone;
       }
+
    }
 
    void GetChildren(stringa & stra, const char * lpcszPath)

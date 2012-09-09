@@ -484,13 +484,13 @@ namespace plane
       template < class E , E edefault>
       void from_name(base_enum < E, edefault > & b, const char * psz, E iDefault = edefault)
       {
-         b = enum_from_name(System.template type_info < E > (), psz, iDefault);
+         b = enum_from_name(System.type_info < E > (), psz, iDefault);
       }
 
       template < class E , E edefault>
       string get_name(const base_enum < E, edefault > & b)
       {
-         return get_enum_name(System.template type_info < E > (), (int) (E) b);
+         return get_enum_name(System.type_info < E > (), (int) (E) b);
       }
 
 
@@ -532,12 +532,12 @@ namespace plane
       template < class TYPE >
       void set_enum_name(TYPE e, const char * psz)
       {
-         set_enum_name(System.template type_info < TYPE > (), (int) e, psz);
+         set_enum_name(System.type_info < TYPE > (), (int) e, psz);
       }
       template < class TYPE >
       string get_enum_name(TYPE e)
       {
-         return get_enum_name(System.template type_info < TYPE > (), (int) e);
+         return get_enum_name(System.type_info < TYPE > (), (int) e);
       }
 
       virtual bool create_twf();
@@ -1022,7 +1022,7 @@ set_size(::count iSize)
 template < class VIEW >
 inline VIEW * view::create_view(::user::document_interface * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
 {
-   return dynamic_cast < VIEW * > (create_view(System.template type_info < VIEW > (), pdoc, pwndParent, id, pviewLast));
+   return dynamic_cast < VIEW * > (create_view(System.type_info < VIEW > (), pdoc, pwndParent, id, pviewLast));
 }
 
 

@@ -35,6 +35,9 @@
 			<Add option="-fPIC" />
 		</Compiler>
 		<Unit filename="_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h" />
+		<Unit filename="ansios/ansios.h" />
+		<Unit filename="ansios/ansios_file.cpp" />
+		<Unit filename="ansios/ansios_file.h" />
 		<Unit filename="bsdiff/blocksort.cpp" />
 		<Unit filename="bsdiff/bsdiff.cpp" />
 		<Unit filename="bsdiff/bsdiff.h" />
@@ -170,6 +173,7 @@
 		<Unit filename="linux/c_os_cross_win_gdi.h" />
 		<Unit filename="linux/c_os_cross_win_gdi_internal.h" />
 		<Unit filename="linux/c_os_file.cpp" />
+		<Unit filename="linux/c_os_file.h" />
 		<Unit filename="linux/c_os_http.cpp" />
 		<Unit filename="linux/c_os_http.h" />
 		<Unit filename="linux/c_os_http_lib.cpp" />

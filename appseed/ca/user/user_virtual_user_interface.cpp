@@ -218,7 +218,7 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
    cs.y = rect.top;
    cs.cx = rect.right - rect.left;
    cs.cy = rect.bottom - rect.top;
-   cs.hwndParent = pparent->_get_handle();
+   cs.hwndParent = (HWND) pparent->_get_handle();
    //cs.hMenu = pparent->_get_handle() == NULL ? NULL : (HMENU) iId;
    cs.hMenu = NULL;
    cs.hInstance = System.m_hInstance;
@@ -550,7 +550,7 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
 
 void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch)
 {
-   
+
    UNREFERENCED_PARAMETER(nIDFirst);
    UNREFERENCED_PARAMETER(nIDLast);
 
@@ -794,11 +794,11 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
 
 strsize virtual_user_interface::GetWindowText(LPTSTR lpszStringBuf,  int nMaxCount)
 {
-   
+
    string str;
-   
+
    GetWindowText(str);
-   
+
    strsize iLen = str.get_length();
 
    if(iLen >= (nMaxCount - 1))
@@ -1203,7 +1203,7 @@ void virtual_user_interface::_001OnClose(gen::signal_object * pobj)
    pobj->m_bRet = true;
    ShowWindow(SW_HIDE);
    DestroyWindow();
-   
+
 }
 
 bool virtual_user_interface::IsWindowVisible()

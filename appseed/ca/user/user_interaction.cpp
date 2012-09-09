@@ -1087,13 +1087,13 @@ namespace user
       {
 
          if(get_wnd() == NULL)
-            return NULL;
+            return 0;
 
       }
       catch(...)
       {
 
-         return NULL;
+         return 0;
 
       }
 
@@ -1106,49 +1106,82 @@ namespace user
 
    bool interaction::subclass_window(void * posdata)
    {
+
       if(IsWindow())
       {
+
          DestroyWindow();
+
       }
+
       m_signalptra.remove_all();
+
       interaction * pimplOld = m_pimpl;
+
       ::ca::window * pimplNew = NULL;
-      pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.template type_info < ::ca::window > ()));
+
+      pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+
       pimplNew->m_pguie = this;
+
       if(!pimplNew->SubclassWindow((HWND) posdata))
       {
+
          delete pimplNew;
+
          pimplNew = NULL;
+
       }
+
       if(pimplNew != NULL)
       {
+
          if(pimplOld != NULL)
          {
+
             pimplOld->m_pguie = NULL;
+
             pimplOld->_001ClearMessageHandling();
+
             ::ca::window * pwindowOld = dynamic_cast < ::ca::window * > (pimplOld);
+
             if(pwindowOld != NULL)
             {
+
                pwindowOld->install_message_handling(pimplOld);
+
             }
+
             delete pimplOld;
+
          }
+
          pimplNew->m_pthread = System.GetThread();
+
          m_pthread = System.GetThread();
+
          m_pimpl = pimplNew;
+
          return true;
+
       }
       else
       {
+
          return false;
+
       }
+
    }
 
    void * interaction::unsubclass_window()
    {
+
       ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_pimpl);
+
       if(pwindow != NULL)
       {
+
          return pwindow->UnsubclassWindow();
       }
       return NULL;
@@ -1175,46 +1208,66 @@ namespace user
       return true;
    }
 
-   bool interaction::create_window(
-      const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
-      const RECT& rect,
-      interaction* pParentWnd, id id,
-      ::ca::create_context* pContext)
+   bool interaction::create_window(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, interaction* pParentWnd, id id, ::ca::create_context* pContext)
    {
+
       if(IsWindow())
       {
          DestroyWindow();
       }
+
       m_signalptra.remove_all();
+
       interaction * pimplOld = m_pimpl;
+
       interaction * pimplNew = NULL;
-      pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.template type_info < ::ca::window > ()));
+
+      pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+
       pimplNew->m_pguie = this;
+
       if(!pimplNew->create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, pContext))
       {
+
          delete pimplNew;
+
          pimplNew = NULL;
+
       }
+
       if(pimplNew != NULL)
       {
+
          if(pimplOld != NULL)
          {
+
             pimplOld->m_pguie = NULL;
+
             pimplOld->_001ClearMessageHandling();
+
             ::ca::window * pwindowOld = dynamic_cast < ::ca::window * > (pimplOld);
+
             if(pwindowOld != NULL)
             {
+
                pwindowOld->install_message_handling(pimplOld);
+
             }
+
             delete pimplOld;
+
          }
+
          return true;
+
       }
       else
       {
+
          return false;
+
       }
+
    }
 
 
@@ -1232,9 +1285,14 @@ namespace user
       m_signalptra.remove_all();
       interaction * pimplOld = m_pimpl;
       interaction * pimplNew = NULL;
+
+#ifdef WINDOWS
       if(pParentWnd == NULL || pParentWnd->get_safe_handle() == HWND_MESSAGE)
+#else
+      if(pParentWnd == NULL)
+#endif
       {
-         pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.template type_info < ::ca::window > ()));
+         pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
          pimplNew->m_pguie = this;
          m_pimpl = pimplNew;
          if(!pimplNew->create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, pContext))
@@ -1295,7 +1353,7 @@ namespace user
          DestroyWindow();
       }
       m_signalptra.remove_all();
-      m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.template type_info < ::ca::window > ()));
+      m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
       m_pimpl->m_pguie = this;
       if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
       {
@@ -1321,7 +1379,7 @@ namespace user
       m_signalptra.remove_all();
       if(pParentWnd == NULL)
       {
-         m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.template type_info < ::ca::window > ()));
+         m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
          m_pimpl->m_pguie = this;
          dwStyle &= ~WS_CHILD;
          if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))

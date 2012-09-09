@@ -1464,9 +1464,6 @@
 		<Unit filename="simpledb/sqlite_base.h" />
 		<Unit filename="simpledb/sqlite_set.h" />
 		<Unit filename="simpledb/veiev_post.h" />
-		<Unit filename="sockets/IBase.h" />
-		<Unit filename="sockets/Semaphore.h" />
-		<Unit filename="sockets/application_interface.h" />
 		<Unit filename="sockets/asynch_dns/resolv_server.h" />
 		<Unit filename="sockets/asynch_dns/resolv_socket.h" />
 		<Unit filename="sockets/asynch_dns/sockets_resolv_server.cpp" />
@@ -1497,8 +1494,6 @@
 		<Unit filename="sockets/basic/tcp_socket.h" />
 		<Unit filename="sockets/basic/tls_socket.h" />
 		<Unit filename="sockets/basic/udp_socket.h" />
-		<Unit filename="sockets/config.h" />
-		<Unit filename="sockets/exception.h" />
 		<Unit filename="sockets/http/http_client_socket.h" />
 		<Unit filename="sockets/http/http_debug_socket.h" />
 		<Unit filename="sockets/http/http_get_socket.h" />
@@ -1552,16 +1547,13 @@
 		<Unit filename="sockets/smtp/smtpd_socket.h" />
 		<Unit filename="sockets/smtp/sockets_smtp_socket.cpp" />
 		<Unit filename="sockets/smtp/sockets_smtpd_socket.cpp" />
-		<Unit filename="sockets/socket_include.cpp" />
 		<Unit filename="sockets/sockets.h" />
 		<Unit filename="sockets/sockets_application_interface.cpp" />
-		<Unit filename="sockets/sockets_exception.cpp" />
+		<Unit filename="sockets/sockets_application_interface.h" />
 		<Unit filename="sockets/sockets_http_batch_file.cpp" />
 		<Unit filename="sockets/sockets_http_batch_file.h" />
 		<Unit filename="sockets/sockets_http_file.cpp" />
 		<Unit filename="sockets/sockets_http_file.h" />
-		<Unit filename="sockets/sockets_http_memory_file.cpp" />
-		<Unit filename="sockets/sockets_include.cpp" />
 		<Unit filename="sockets/sockets_link_in_socket.cpp" />
 		<Unit filename="sockets/sockets_link_in_socket.h" />
 		<Unit filename="sockets/sockets_link_out_socket.cpp" />

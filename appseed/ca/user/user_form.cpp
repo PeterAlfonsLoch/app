@@ -110,7 +110,7 @@ namespace user
       if(pdescriptor->m_pcontrol != NULL)
       {
          ::ca::type_info ti = typeid(pdescriptor->m_pcontrol);
-/*         if(ti == System.template type_info < ::user::list > ())
+/*         if(ti == System.type_info < ::user::list > ())
          {
             if(pdescriptor->m_etype == control::type_simple_list)
             {
@@ -119,7 +119,7 @@ namespace user
                plist->_001SetSingleColumnMode(false);
             }
          }*/
-         /*else if(ti == System.template type_info < simple_static > ())
+         /*else if(ti == System.type_info < simple_static > ())
          {
             simple_static * pstatic = (simple_static *) pcontrol->m_pwnd;
             pstatic->m_bTransparent = pcontrol->m_bTransparent;
@@ -576,7 +576,7 @@ namespace user
 
 /*      ::user::list * plist = dynamic_cast<::user::list *>(get_child_by_id(pcontrol->m_id));
 
-      if(typeid(plist->GetDataInterface()) == System.template type_info < ::user::simple_list_data > ())
+      if(typeid(plist->GetDataInterface()) == System.type_info < ::user::simple_list_data > ())
       {
          ::user::simple_list_data * pdata = dynamic_cast < ::user::simple_list_data * > (plist->GetDataInterface());
          stringa stra;
@@ -932,7 +932,7 @@ namespace user
                {
                   //xxx pcontrol->m_pwnd->UnsubclassWindow();
                }
-   //            ASSERT(pcontrol->m_typeinfo->IsDerivedFrom(System.template type_info < ::ca::window > ()));
+   //            ASSERT(pcontrol->m_typeinfo->IsDerivedFrom(System.type_info < ::ca::window > ()));
                if(dynamic_cast < ::ca::window * >(descriptor.m_pcontrol) != NULL)
                {
                   //window_id wndidTemp = get_child_by_id(pcontrol->m_id)->GetSafeHwnd();
@@ -945,7 +945,7 @@ namespace user
             if(descriptor.m_pcontrol != NULL)
             {
                ::ca::type_info ti = typeid(descriptor.m_pcontrol);
-/*               if(ti == System.template type_info < ::user::list > ())
+/*               if(ti == System.type_info < ::user::list > ())
                {
                   if(descriptor.m_etype == control::type_simple_list)
                   {
@@ -954,7 +954,7 @@ namespace user
                      plist->_001SetSingleColumnMode(false);
                   }
                }*/
-   /*            else if(pcontrol->m_typeinfo->IsDerivedFrom(System.template type_info < simple_static > ()))
+   /*            else if(pcontrol->m_typeinfo->IsDerivedFrom(System.type_info < simple_static > ()))
                {
                   simple_static * pstatic = (simple_static *) pcontrol->m_pwnd;
                   pstatic->m_bTransparent = pcontrol->m_bTransparent;

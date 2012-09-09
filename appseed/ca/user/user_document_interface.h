@@ -87,7 +87,7 @@ namespace user
          return NULL;
       }
 
-      virtual ::view * get_view(const ::ca::type_info info, index indexFind = 0);
+      virtual ::view * get_view(const ::ca::type_info & info, index indexFind = 0);
 
       virtual void show_all_frames(UINT nCmdShow);
 
