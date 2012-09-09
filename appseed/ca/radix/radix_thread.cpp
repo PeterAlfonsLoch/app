@@ -38,7 +38,7 @@ namespace radix
    {
    }
 
-   int_ptr thread::get_os_data() const
+   void * thread::get_os_data() const
    {
       return m_p->get_os_data();
    }

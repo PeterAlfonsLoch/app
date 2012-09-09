@@ -38,7 +38,7 @@ public:
 	///  \brief		resets ownership of the waitable item
 	void release_ownership();
 
-   virtual int_ptr get_os_data() const;
+   virtual void * get_os_data() const;
 
 
 #ifdef WINDOWS

@@ -1780,13 +1780,13 @@ namespace radix
    {
       // disable windows for modal dialog
       DoEnableModeless(FALSE);
-      HWND hWndTop;
-      HWND hWnd = ::ca::window::GetSafeOwner_(NULL, &hWndTop);
+      void * hWndTop;
+      void * hWnd = ::ca::window::GetSafeOwner_(NULL, (void **) &hWndTop);
 
       // re-enable the parent ::ca::window, so that focus is restored
       // correctly when the dialog is dismissed.
       if (hWnd != hWndTop)
-         EnableWindow(hWnd, TRUE);
+         EnableWindow((HWND) hWnd, TRUE);
 
       // set help context if possible
       DWORD* pdwContext = NULL;
@@ -1873,7 +1873,7 @@ namespace radix
       int nResult;
       if(pApp == NULL)
       {
-         nResult = ::MessageBox(hWnd, lpszPrompt, pszAppName, nType);
+         nResult = ::MessageBox((HWND) hWnd, lpszPrompt, pszAppName, nType);
       }
       else
       {
@@ -1886,11 +1886,14 @@ namespace radix
 
       // re-enable windows
       if (hWndTop != NULL)
-         ::EnableWindow(hWndTop, TRUE);
+         ::EnableWindow((HWND) hWndTop, TRUE);
+
       DoEnableModeless(TRUE);
 
       return nResult;
+
    }
+
 
    /* int gen::MessageBox(const char * lpszText, UINT nType, UINT nIDHelp)
    {

@@ -245,7 +245,7 @@ namespace ca
 		///  \brief		starts thread on first call
 		virtual void start ();
 
-      virtual int_ptr get_os_data() const;
+      virtual void * get_os_data() const;
       virtual int_ptr get_os_int() const;
 
       virtual void set_p(::radix::thread * p);

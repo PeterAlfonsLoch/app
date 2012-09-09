@@ -1055,9 +1055,7 @@ namespace user
          return m_pimpl->pre_translate_message(pobj);
    }
 
-#ifdef WINDOWS
-
-   HWND interaction::_get_handle()
+   void * interaction::_get_handle()
    {
 
       try
@@ -1074,35 +1072,9 @@ namespace user
 
       }
 
-      return (HWND) get_wnd()->get_os_data();
+      return get_wnd()->get_os_data();
 
    }
-
-#else
-
-   int interaction::_get_handle()
-   {
-
-      try
-      {
-
-         if(get_wnd() == NULL)
-            return 0;
-
-      }
-      catch(...)
-      {
-
-         return 0;
-
-      }
-
-      return (int) get_wnd()->get_os_data();
-
-   }
-
-#endif
-
 
    bool interaction::subclass_window(void * posdata)
    {
@@ -2088,9 +2060,7 @@ namespace user
          m_pimpl->ShowOwnedPopups(bShow);
    }
 
-#ifdef WINDOWS
-
-   bool interaction::Attach(HWND hWndNew)
+   bool interaction::Attach(void * hWndNew)
    {
       if(m_pimpl == NULL || m_pimpl == this)
          return FALSE;
@@ -2098,33 +2068,13 @@ namespace user
          return m_pimpl->Attach(hWndNew);
    }
 
-   HWND interaction::Detach()
+   void * interaction::Detach()
    {
       if(m_pimpl == NULL || m_pimpl == this)
          return NULL;
       else
          return m_pimpl->Detach();
    }
-
-#else
-
-   bool interaction::Attach(int hWndNew)
-   {
-      if(m_pimpl == NULL || m_pimpl == this)
-         return FALSE;
-      else
-         return m_pimpl->Attach(hWndNew);
-   }
-
-   int interaction::Detach()
-   {
-      if(m_pimpl == NULL || m_pimpl == this)
-         return 0;
-      else
-         return m_pimpl->Detach();
-   }
-
-#endif
 
    void interaction::pre_subclass_window()
    {

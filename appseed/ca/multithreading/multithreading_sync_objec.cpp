@@ -63,7 +63,7 @@ inline sync_object::operator HANDLE() const
 
 #endif
 
-inline int_ptr sync_object::get_os_data() const
+inline void * sync_object::get_os_data() const
 {
 #ifdef WINDOWS
    return (int_ptr) m_object;

@@ -112,7 +112,7 @@ namespace ca
 
 #endif
 
-   bool PASCAL window::ModifyStyle(HWND hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool PASCAL window::ModifyStyle(void * hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
       UNREFERENCED_PARAMETER(hWnd);
       UNREFERENCED_PARAMETER(dwRemove);
@@ -121,7 +121,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   bool PASCAL window::ModifyStyleEx(HWND hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool PASCAL window::ModifyStyleEx(void * hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
       UNREFERENCED_PARAMETER(hWnd);
       UNREFERENCED_PARAMETER(dwRemove);
@@ -153,7 +153,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   int_ptr window::get_os_data() const
+   void * window::get_os_data() const
    {
       throw interface_only_exception();
    }
@@ -161,10 +161,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // window creation
 
-   bool window::CreateEx(DWORD dwExStyle, const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
-      const RECT & rect, ::user::interaction* pParentWnd, id id,
-      LPVOID lpParam /* = NULL */)
+   bool window::CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT & rect, ::user::interaction* pParentWnd, id id, LPVOID lpParam /* = NULL */)
    {
       UNREFERENCED_PARAMETER(dwExStyle);
       UNREFERENCED_PARAMETER(lpszClassName);
@@ -177,10 +174,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   bool window::CreateEx(DWORD dwExStyle, const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
-      int x, int y, int nWidth, int nHeight,
-      HWND hWndParent, id id, LPVOID lpParam)
+   bool window::CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, void * hWndParent, id id, LPVOID lpParam)
    {
       UNREFERENCED_PARAMETER(dwExStyle);
       UNREFERENCED_PARAMETER(lpszClassName);
@@ -460,7 +454,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   window* PASCAL window::GetSafeOwner(window * pParent, HWND * pWndTop)
+   window* PASCAL window::GetSafeOwner(window * pParent, void * * pWndTop)
    {
       UNREFERENCED_PARAMETER(pParent);
       UNREFERENCED_PARAMETER(pWndTop);
@@ -482,8 +476,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void PASCAL window::SendMessageToDescendants(HWND hWnd, UINT message,
-      WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
+   void PASCAL window::SendMessageToDescendants(void * hWnd, UINT message, WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
    {
       UNREFERENCED_PARAMETER(hWnd);
       UNREFERENCED_PARAMETER(message);
@@ -623,7 +616,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   bool PASCAL window::ReflectLastMsg(HWND hWndChild, LRESULT* pResult)
+   bool PASCAL window::ReflectLastMsg(void * hWndChild, LRESULT* pResult)
    {
       UNREFERENCED_PARAMETER(hWndChild);
       UNREFERENCED_PARAMETER(pResult);
@@ -756,7 +749,7 @@ namespace ca
    //  return value of FALSE means caller must call DefWindowProc's default
    //  TRUE means that 'hbrGray' will be used and the appropriate text
    //    ('clrText') and background colors are set.
-   bool PASCAL window::GrayCtlColor(HDC hDC, HWND hWnd, UINT nCtlColor,
+   bool PASCAL window::GrayCtlColor(HDC hDC, void * hWnd, UINT nCtlColor,
       HBRUSH hbrGray, COLORREF clrText)
    {
       UNREFERENCED_PARAMETER(hDC);
@@ -841,7 +834,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // Extra window support for dynamic subclassing of controls
 
-   bool window::SubclassWindow(HWND hWnd)
+   bool window::SubclassWindow(void * hWnd)
    {
       UNREFERENCED_PARAMETER(hWnd);
       throw interface_only_exception();
@@ -854,7 +847,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   HWND window::UnsubclassWindow()
+   void * window::UnsubclassWindow()
    {
       throw interface_only_exception();
    }
@@ -967,7 +960,7 @@ namespace ca
    }
 
    // window
-   /* window::operator HWND() const
+   /* window::operator void *() const
    { return this == NULL ? NULL : get_handle(); }*/
    bool window::operator==(const window& wnd) const
    {
@@ -1503,13 +1496,13 @@ namespace ca
       throw interface_only_exception();
    }
 
-   bool window::ChangeClipboardChain(HWND hWndNext)
+   bool window::ChangeClipboardChain(void * hWndNext)
    {
       UNREFERENCED_PARAMETER(hWndNext);
       throw interface_only_exception();
    }
 
-   HWND window::SetClipboardViewer()
+   void * window::SetClipboardViewer()
    {
       throw interface_only_exception();
    }
@@ -2010,7 +2003,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   void window::OnChangeCbChain(HWND, HWND)
+   void window::OnChangeCbChain(void *, void *)
    {
       throw interface_only_exception();
    }
@@ -2169,7 +2162,7 @@ namespace ca
       UNREFERENCED_PARAMETER(wParam);
       UNREFERENCED_PARAMETER(lParam);
       /*   UINT nID = LOWORD(wParam);
-      HWND hWndCtrl = (HWND)lParam;
+      void * hWndCtrl = (void *)lParam;
       int nCode = HIWORD(wParam);
 
       // default routing for command messages (through closure table)
@@ -2244,10 +2237,10 @@ namespace ca
    ////////////////////////////////////////////////////////////////////////////
    // UI related ::ca::window functions
 
-   HWND PASCAL window::GetSafeOwner_(HWND hParent, HWND* pWndTop)
+   void * PASCAL window::GetSafeOwner_(void * hParent, void ** pWndTop)
    {
       // get ::ca::window to start with
-      HWND hWnd = hParent;
+      void * hWnd = hParent;
       if (hWnd == NULL)
       {
    /* trans      frame_window* pFrame = command_target::GetRoutingFrame_();
@@ -2258,37 +2251,38 @@ namespace ca
       }
 
       // a popup ::ca::window cannot be owned by a child ::ca::window
-      while (hWnd != NULL && (::GetWindowLong(hWnd, GWL_STYLE) & WS_CHILD))
-         hWnd = ::GetParent(hWnd);
+      while (hWnd != NULL && (::GetWindowLong((HWND) hWnd, GWL_STYLE) & WS_CHILD))
+         hWnd = ::GetParent((HWND) hWnd);
 
       // determine toplevel ::ca::window to disable as well
-      HWND hWndTop = hWnd, hWndTemp = hWnd;
+      void * hWndTop = hWnd;
+      void * hWndTemp = hWnd;
       for (;;)
       {
          if (hWndTemp == NULL)
             break;
          else
             hWndTop = hWndTemp;
-         hWndTemp = ::GetParent(hWndTop);
+         hWndTemp = ::GetParent((HWND) hWndTop);
       }
 
       // get last active popup of first non-child that was found
       if (hParent == NULL && hWnd != NULL)
-         hWnd = ::GetLastActivePopup(hWnd);
+         hWnd = ::GetLastActivePopup((HWND) hWnd);
 
       // disable and store top level parent ::ca::window if specified
       if (pWndTop != NULL)
       {
-         if (hWndTop != NULL && ::IsWindowEnabled(hWndTop) && hWndTop != hWnd)
+         if (hWndTop != NULL && ::IsWindowEnabled((HWND) hWndTop) && hWndTop != hWnd)
          {
             *pWndTop = hWndTop;
-            ::EnableWindow(hWndTop, FALSE);
+            ::EnableWindow((HWND) hWndTop, FALSE);
          }
          else
             *pWndTop = NULL;
       }
 
-      return hWnd;    // return the owner as HWND
+      return hWnd;    // return the owner as void *
    }
 
    void window::_001BaseWndInterfaceMap()

@@ -4,11 +4,12 @@
 #include "ca/user/user_interaction.h"
 
 
-
 namespace ca
 {
 
+
    class window_callback;
+
 
    class CLASS_DECL_ca window :
       virtual public ::user::interaction
@@ -62,7 +63,7 @@ namespace ca
 
 
 
-      virtual int_ptr get_os_data() const;
+      virtual void * get_os_data() const;
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
@@ -80,9 +81,9 @@ namespace ca
 
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window();
-      virtual bool SubclassWindow(HWND hWnd);
+      virtual bool SubclassWindow(void * hWnd);
       virtual bool SubclassDlgItem(UINT nID, ::ca::window* pParent);
-      virtual HWND UnsubclassWindow();
+      virtual void * UnsubclassWindow();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
       virtual bool ExecuteDlgInit(const char * lpszResourceName);
@@ -96,7 +97,7 @@ namespace ca
       virtual bool create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction * pParentWnd, id id, create_context* pContext = NULL);
 
       // advanced creation (allows access to extended styles)
-      virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, id id, LPVOID lpParam = NULL);
+      virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, void * hWndParent, id id, LPVOID lpParam = NULL);
 
       virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd, id id, LPVOID lpParam = NULL);
 
@@ -112,7 +113,7 @@ namespace ca
 
       // get immediate child with given ID
       //void get_child_by_id(id id, int iLevelHWND* phWnd) const;
-      // as above, but returns HWND
+      // as above, but returns void *
       virtual ::user::interaction * GetDescendantWindow(id id);
       // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message, WPARAM wParam = 0, LPARAM lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
@@ -123,7 +124,7 @@ namespace ca
       virtual ::user::interaction * GetTopLevelOwner();
       virtual ::user::interaction * GetParentOwner();
       virtual frame_window * GetTopLevelFrame();
-      static ::ca::window * PASCAL GetSafeOwner(::ca::window* pParent = NULL, HWND* pWndTop = NULL);
+      static ::ca::window * PASCAL GetSafeOwner(::ca::window* pParent = NULL, void ** pWndTop = NULL);
 
       virtual bool IsWindow();
 
@@ -238,8 +239,7 @@ namespace ca
    #if(_WIN32_WINNT >= 0x0500)
 
       virtual bool SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, DWORD dwFlags);
-      virtual bool UpdateLayeredWindow(::ca::graphics * pDCDst, POINT *pptDst, SIZE *psize,
-         ::ca::graphics * pDCSrc, POINT *pptSrc, COLORREF crKey, BLENDFUNCTION *pblend, DWORD dwFlags);
+      virtual bool UpdateLayeredWindow(::ca::graphics * pDCDst, POINT *pptDst, SIZE *psize, ::ca::graphics * pDCSrc, POINT *pptSrc, COLORREF crKey, BLENDFUNCTION *pblend, DWORD dwFlags);
 
    #endif   // _WIN32_WINNT >= 0x0500
 
@@ -251,8 +251,7 @@ namespace ca
 
 
    // Timer Functions
-      virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse,
-         void (CALLBACK* lpfnTimer)(HWND, UINT, uint_ptr, DWORD));
+      virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(HWND, UINT, uint_ptr, DWORD));
       virtual bool KillTimer(uint_ptr nIDEvent);
 
    // Window State Functions
@@ -367,8 +366,8 @@ namespace ca
    #endif   // WINVER >= 0x0500
 
    // Clipboard Functions
-      virtual bool ChangeClipboardChain(HWND hWndNext);
-      virtual HWND SetClipboardViewer();
+      virtual bool ChangeClipboardChain(void * hWndNext);
+      virtual void * SetClipboardViewer();
       virtual bool OpenClipboard();
       static ::ca::window* PASCAL GetClipboardOwner();
       static ::ca::window* PASCAL GetClipboardViewer();
@@ -563,7 +562,7 @@ namespace ca
 
       // Clipboard message handler member functions
       void OnAskCbFormatName(UINT nMaxCount, LPTSTR lpszString);
-      void OnChangeCbChain(HWND hWndRemove, HWND hWndAfter);
+      void OnChangeCbChain(void * hWndRemove, void * hWndAfter);
       void OnDestroyClipboard();
       void OnDrawClipboard();
       void OnHScrollClipboard(::ca::window* pClipAppWnd, UINT nSBCode, UINT nPos);
@@ -642,15 +641,14 @@ namespace ca
       virtual bool OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
          // return TRUE if parent should not process this message
       virtual bool ReflectChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
-      static bool PASCAL ReflectLastMsg(HWND hWndChild, LRESULT* pResult = NULL);
+      static bool PASCAL ReflectLastMsg(void * hWndChild, LRESULT* pResult = NULL);
 
    // Implementation
       virtual ~window();
       virtual bool CheckAutoCenter();
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-      static bool PASCAL GrayCtlColor(HDC hDC, HWND hWnd, UINT nCtlColor,
-         HBRUSH hbrGray, COLORREF clrText);
+      static bool PASCAL GrayCtlColor(HDC hDC, void * hWnd, UINT nCtlColor, HBRUSH hbrGray, COLORREF clrText);
 
 
       // helper routines for implementation
@@ -659,18 +657,18 @@ namespace ca
       virtual void ActivateTopParent();
       virtual void WalkPreTranslateTree(::user::interaction * puiStop, gen::signal_object * pobj);
       static ::user::interaction * PASCAL GetDescendantWindow(::user::interaction * hWnd, id id);
-      static void PASCAL SendMessageToDescendants(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm);
+      static void PASCAL SendMessageToDescendants(void * hWnd, UINT message, WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm);
       virtual bool IsFrameWnd(); // is_kind_of(System.type_info < frame_window > ()))
       virtual void on_final_release();
-      static bool PASCAL ModifyStyle(HWND hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
-      static bool PASCAL ModifyStyleEx(HWND hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
+      static bool PASCAL ModifyStyle(void * hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
+      static bool PASCAL ModifyStyleEx(void * hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags);
 
 #ifdef WINDOWS
       static void PASCAL _FilterToolTipMessage(MSG * pMsg, ::ca::window* pWnd);
 #endif
 
       virtual bool _EnableToolTips(bool bEnable, UINT nFlag);
-      static HWND PASCAL GetSafeOwner_(HWND hWnd, HWND* pWndTop);
+      static void * PASCAL GetSafeOwner_(void * hWnd, void ** pWndTop);
       virtual void PrepareForHelp();
 
       virtual void WalkPreTranslateTree(gen::signal_object * pobj);

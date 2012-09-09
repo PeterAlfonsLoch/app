@@ -67,9 +67,9 @@ int_ptr event_base::item() const
 }
 #endif
 
-int_ptr event_base::get_os_data() const
+void * event_base::get_os_data() const
 {
-   return (int_ptr) m_object;
+   return (void *) m_object;
 }
 
 

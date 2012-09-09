@@ -28,7 +28,7 @@ namespace ca
       return get_os_data() != 0;
    }
 
-   int_ptr graphics::get_os_data() const
+   void *  graphics::get_os_data() const
    {
       throw interface_only_exception();
       return 0;
@@ -1425,7 +1425,7 @@ namespace ca
 
    bool graphics::fill_path(::ca::graphics_path * ppath)
    {
-      
+
       throw interface_only_exception();
 
    }

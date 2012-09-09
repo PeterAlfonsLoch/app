@@ -88,7 +88,7 @@ namespace ca
 
       virtual bool is_set();
 
-      virtual int_ptr get_os_data() const;
+      virtual void * get_os_data() const;
       virtual void attach(void * pdata);
 
 

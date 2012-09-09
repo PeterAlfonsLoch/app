@@ -11,7 +11,7 @@ namespace ca
 
    thread::thread()
    {
-      
+
       m_dwAlive                     = ::GetTickCount();
       m_bReady                      = false;
       m_bRun                        = true;
@@ -87,7 +87,7 @@ namespace ca
    }
 
 
-   int_ptr thread::get_os_data() const
+   void * thread::get_os_data() const
    {
       throw interface_only_exception();
    }

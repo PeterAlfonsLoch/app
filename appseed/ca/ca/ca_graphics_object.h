@@ -21,7 +21,7 @@ namespace ca
       virtual bool is_updated();
 
 
-      virtual int_ptr get_os_data() const;
+      virtual void * get_os_data() const;
 
 /*   #pragma push_macro("GetObject")
    #undef GetObject
@@ -36,6 +36,9 @@ namespace ca
 
       virtual void dump(dump_context & dumpcontext) const;
       virtual void assert_valid() const;
+
    };
 
 } // namespace ca
+
+

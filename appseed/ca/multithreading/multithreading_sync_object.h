@@ -23,7 +23,7 @@ public:
    sync_object(LPCTSTR pstrName);
    virtual ~sync_object();
 
-   virtual int_ptr get_os_data() const;
+   virtual void * get_os_data() const;
 
    operator HANDLE() const;
 

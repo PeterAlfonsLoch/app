@@ -432,18 +432,11 @@ namespace user
       virtual void _001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc);
 
 
+      void * get_safe_handle();
+      virtual void * _get_handle();
+      virtual bool Attach(void * hWndNew);
+      virtual void * Detach();
 
-   #ifdef WIN32
-      HWND get_safe_handle();
-      virtual HWND _get_handle();
-      virtual bool Attach(HWND hWndNew);
-      virtual HWND Detach();
-   #else
-      int get_safe_handle();
-      virtual int _get_handle();
-      virtual bool Attach(int hWndNew);
-      virtual int Detach();
-   #endif
 
       template < class T >
       T * GetTypedParent()
@@ -474,17 +467,7 @@ namespace user
 
    };
 
-#ifdef WINDOWS
-   inline HWND interaction::get_safe_handle()
-   {
-      if(((int_ptr)this) < 16 * 1024) // consider invalid
-      {
-         return NULL;
-      }
-      return _get_handle();
-   }
-#else
-   inline int interaction::get_safe_handle()
+   inline void * interaction::get_safe_handle()
    {
       if(((byte *)this) < (byte *) (((byte *) NULL) + (16 * 1024))) // consider invalid
       {
@@ -492,7 +475,6 @@ namespace user
       }
       return _get_handle();
    }
-#endif
 
 
 

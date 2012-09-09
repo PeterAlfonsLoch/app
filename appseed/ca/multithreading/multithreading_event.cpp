@@ -350,7 +350,7 @@ bool event::unlock()
    return true;
 }
 
-int_ptr event::get_os_data() const
+void * event::get_os_data() const
 {
-   return (int_ptr) m_object;
+   return (void *) m_object;
 }

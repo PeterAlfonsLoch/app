@@ -21,7 +21,7 @@ namespace radix
       virtual ~thread();
 
 
-      virtual int_ptr get_os_data() const;
+      virtual void * get_os_data() const;
       virtual int_ptr get_os_int() const;
 
       virtual bool Begin(int nPriority = ::get_thread_priority_normal(), UINT nStackSize = 0, DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);

@@ -37,6 +37,7 @@
 #define CLASS_DECL_c
 #include "c/c/verisimple_string.h"
 #include "c/c/simple_mutex.h"
+#include "c/c/mutex_lock.h"
 #include <stdarg.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -259,7 +260,8 @@ static LONG TIME_GetBias(void)
 
     utc = time( NULL );
 
-    RtlEnterCriticalSection( &TIME_tz_section );
+   mutex_lock ml(&g_mutexTz, true);
+//    RtlEnterCriticalSection( &TIME_tz_section );
     if (utc != last_utc)
     {
         RTL_TIME_ZONE_INFORMATION tzi;
@@ -273,7 +275,7 @@ static LONG TIME_GetBias(void)
 
     ret = last_bias;
 
-    RtlLeaveCriticalSection( &TIME_tz_section );
+    //RtlLeaveCriticalSection( &TIME_tz_section );
     return ret;
 }
 
@@ -749,7 +751,8 @@ static int init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
     time_t year_start, year_end, tmp, dlt = 0, std = 0;
     int is_dst, current_is_dst;
 
-    RtlEnterCriticalSection( &TIME_tz_section );
+   mutex_lock ml(&g_mutexTz, true);
+//    RtlEnterCriticalSection( &TIME_tz_section );
 
     year_start = time(NULL);
     tm = localtime(&year_start);
@@ -758,7 +761,7 @@ static int init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
     if (current_year == tm->tm_year)
     {
         *tzi = cached_tzi;
-        RtlLeaveCriticalSection( &TIME_tz_section );
+//        RtlLeaveCriticalSection( &TIME_tz_section );
         return current_is_dst;
     }
 
@@ -851,7 +854,7 @@ static int init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
 //xxx    find_reg_tz_info(tzi);
 //xxx    cached_tzi = *tzi;
 
-    RtlLeaveCriticalSection( &TIME_tz_section );
+    //RtlLeaveCriticalSection( &TIME_tz_section );
 
     return current_is_dst;
 }

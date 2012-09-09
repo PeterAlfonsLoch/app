@@ -65,7 +65,7 @@ namespace ca
       throw interface_only_exception();
    }
 
-   int_ptr graphics_object::get_os_data() const
+   void * graphics_object::get_os_data() const
    {
       return 0;
    }
