@@ -63,7 +63,15 @@ public:
    virtual void SetFont(::ca::font* pFont, bool bRedraw = TRUE);
    virtual ::ca::font* GetFont();
 
+#ifdef WINDOWS
+
    LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
+
+#else
+
+   LRESULT send_message(XEvent * pevent);
+
+#endif
 
    // as hosting ::ca::window
    virtual void install_message_handling(::gen::message::dispatch * pinterface);

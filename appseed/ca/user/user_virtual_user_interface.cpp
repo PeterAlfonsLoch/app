@@ -536,6 +536,8 @@ void virtual_user_interface::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustTyp
 }
 
 
+#ifdef WINDOWS
+
 LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
 {
 
@@ -573,7 +575,57 @@ LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPAR
    }
    message_handler(spbase);
    return spbase->get_lresult();
+
+
+
 }
+
+#else
+
+LRESULT virtual_user_interface::send_message(XEvent * pevent)
+{
+
+   ::ca::smart_pointer < ::gen::message::base > spbase;
+
+   spbase(get_base(pevent, m_pguie));
+
+   try
+   {
+      ::user::interaction * pui = m_pguie;
+      while(pui != NULL && pui->GetParent() != NULL)
+      {
+         try
+         {
+            pui->pre_translate_message(spbase);
+         }
+         catch(...)
+         {
+            break;
+         }
+         if(spbase->m_bRet)
+            return spbase->get_lresult();
+         try
+         {
+            pui = pui->GetParent();
+         }
+         catch(...)
+         {
+            break;
+         }
+      }
+   }
+   catch(...)
+   {
+   }
+
+   message_handler(spbase);
+
+   return spbase->get_lresult();
+
+}
+
+#endif
+
 
 ::user::interaction * virtual_user_interface::SetFocus()
 {
