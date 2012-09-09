@@ -1599,7 +1599,7 @@ namespace user
          m_pimpl->SetWindowText(lpszString);
    }
 
-   strsize interaction::GetWindowText(__out_ecount_part_z(nMaxCount, return + 1) LPTSTR lpszStringBuf, __in int nMaxCount)
+   strsize interaction::GetWindowText(LPTSTR lpszStringBuf, int nMaxCount)
    {
       if(m_pimpl == NULL)
       {
@@ -1610,6 +1610,7 @@ namespace user
       else
          return m_pimpl->GetWindowText(lpszStringBuf, nMaxCount);
    }
+
    void interaction::GetWindowText(string & rString)
    {
       if(m_pimpl == NULL)
@@ -1686,7 +1687,7 @@ namespace user
    LRESULT interaction::Default()
    {
       if(m_pimpl == NULL)
-         return NULL;
+         return 0;
       else
          return m_pimpl->Default();
    }
@@ -2087,6 +2088,8 @@ namespace user
          m_pimpl->ShowOwnedPopups(bShow);
    }
 
+#ifdef WINDOWS
+
    bool interaction::Attach(HWND hWndNew)
    {
       if(m_pimpl == NULL || m_pimpl == this)
@@ -2094,6 +2097,7 @@ namespace user
       else
          return m_pimpl->Attach(hWndNew);
    }
+
    HWND interaction::Detach()
    {
       if(m_pimpl == NULL || m_pimpl == this)
@@ -2102,6 +2106,25 @@ namespace user
          return m_pimpl->Detach();
    }
 
+#else
+
+   bool interaction::Attach(int hWndNew)
+   {
+      if(m_pimpl == NULL || m_pimpl == this)
+         return FALSE;
+      else
+         return m_pimpl->Attach(hWndNew);
+   }
+
+   int interaction::Detach()
+   {
+      if(m_pimpl == NULL || m_pimpl == this)
+         return 0;
+      else
+         return m_pimpl->Detach();
+   }
+
+#endif
 
    void interaction::pre_subclass_window()
    {
@@ -2111,6 +2134,7 @@ namespace user
          m_pimpl->pre_subclass_window();
    }
 
+#ifdef WINDOWS
    WNDPROC* interaction::GetSuperWndProcAddr()
    {
       if(m_pimpl == NULL || m_pimpl == this)
@@ -2118,6 +2142,7 @@ namespace user
       else
          return m_pimpl->GetSuperWndProcAddr();
    }
+#endif
 
    id interaction::RunModalLoop(DWORD dwFlags, ::ca::live_object * pliveobject)
    {
@@ -2139,6 +2164,9 @@ namespace user
       ::radix::application * pappThis2 = dynamic_cast < ::radix::application * > (m_pthread);
       // acquire and dispatch messages until the modal state is done
       MSG msg;
+
+#ifdef WINDOWS
+
       for (;;)
       {
          ASSERT(ContinueModal(iLevel));
@@ -2254,10 +2282,29 @@ namespace user
 
       }
 
+#else
+
+         throw not_implemented_exception();
+
+#endif
+
+
 ExitModal:
+
+#ifdef WINDOWS
+
       m_iaModalThread.remove_first(::GetCurrentThreadId());
+
+#else
+
+      m_iaModalThread.remove_first(::pthread_self());
+
+#endif
+
       m_iModal = m_iModalCount;
+
       return m_idModalResult;
+
    }
 
    bool interaction::ContinueModal(int iLevel)
@@ -2278,7 +2325,17 @@ ExitModal:
          m_iModalCount--;
          for(index i = 0; i < m_iaModalThread.get_count(); i++)
          {
+
+#ifdef WINDOWS
+
             ::PostThreadMessage((DWORD) m_iaModalThread[i], WM_NULL, 0, 0);
+
+#else
+
+            throw not_implemented_exception();
+
+#endif
+
          }
          PostMessage(WM_NULL, 0, 0);
          System.GetThread()->PostThreadMessage(WM_NULL, 0, 0);
@@ -2427,45 +2484,71 @@ ExitModal:
 
    void interaction::_001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc)
    {
+
       _001DeferPaintLayeredWindowBackground(pdc);
+
    }
+
 
    bool interaction::set_placement(LPRECT lprect)
    {
+
       rect rectWindow(*lprect);
-      return SetWindowPos(
-         NULL,
-         rectWindow.left,
-         rectWindow.top,
-         rectWindow.width(),
-         rectWindow.height(),
-         SWP_NOZORDER);
+
+      return SetWindowPos(0, rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height(), SWP_NOZORDER);
+
    }
+
 
    void interaction::OnLinkClick(const char * psz, const char * pszTarget)
    {
+
       System.open_link(psz, pszTarget);
+
    }
+
 
    void interaction::on_set_parent(interaction * pguieParent)
    {
+
       if(pguieParent != NULL)
       {
+
          single_lock sl(pguieParent->m_pthread == NULL ? NULL : &pguieParent->m_pthread->m_mutex, TRUE);
+
          single_lock sl2(m_pguie->m_pthread == NULL ? NULL : &m_pguie->m_pthread->m_mutex, TRUE);
+
          pguieParent->m_uiptraChild.add(m_pguie);
+
       }
+
    }
+
 
    bool interaction::create_message_window(const char * pszName, ::ca::window_callback * pcallback)
    {
+
+#ifdef WINDOWS
+
       UNREFERENCED_PARAMETER(pcallback);
+
       if(IsWindow())
       {
+
          DestroyWindow();
+
       }
+
       m_signalptra.remove_all();
+
       return create(NULL, pszName, 0, rect(0, 0, 0, 0), System.window_from_os_data(HWND_MESSAGE), NULL) != FALSE;
+
+#else
+
+      throw todo();
+
+#endif
+
    }
 
    void interaction::WalkPreTranslateTree(gen::signal_object * pobj)
@@ -3072,20 +3155,9 @@ restart:
 
 } // namespace user
 
-CLASS_DECL_ca ::user::interaction * WINAPI CreateGuieEx(
-   ::ca::application * papp,
-    __in DWORD dwExStyle,
-    __in_opt const char * lpClassName,
-    __in_opt const char * lpWindowName,
-    __in DWORD dwStyle,
-    __in int X,
-    __in int Y,
-    __in int nWidth,
-    __in int nHeight,
-    ::user::interaction * pguieParent,
-    id id,
-    __in_opt HINSTANCE hInstance,
-    __in_opt LPVOID lpParam)
+
+CLASS_DECL_ca ::user::interaction * WINAPI CreateGuieEx(::ca::application * papp, DWORD dwExStyle, const char * lpClassName, const char * lpWindowName, DWORD dwStyle,
+                                                      int X, int Y, int nWidth, int nHeight, ::user::interaction * pguieParent, id id, HINSTANCE hInstance, LPVOID lpParam)
 {
    UNREFERENCED_PARAMETER(dwExStyle);
    UNREFERENCED_PARAMETER(lpClassName);

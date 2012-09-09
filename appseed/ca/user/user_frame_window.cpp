@@ -83,7 +83,6 @@ frame_window::frame_window()
    m_pViewActive = NULL;
 
    m_cModalStack = 0;              // initialize modality support
-   m_phWndDisable = NULL;
    m_hMenuAlt = NULL;
    m_nIdleFlags = 0;               // no idle work at start
    m_rectBorder.null();
@@ -99,23 +98,29 @@ frame_window::frame_window()
    m_bFrameMoveEnable = true;
 
    AddFrameWnd();
+
 }
+
 
 frame_window::~frame_window()
 {
+
    RemoveFrameWnd();
 
-   if (m_phWndDisable != NULL)
-      delete[] (void *)m_phWndDisable;
 }
+
 
 void frame_window::AddFrameWnd()
 {
+
 }
+
 
 void frame_window::RemoveFrameWnd()
 {
+
 }
+
 
 /////////////////////////////////////////////////////////////////////////////
 // Special processing etc
@@ -316,52 +321,48 @@ void frame_window::BeginModalState()
    //  modeless windows anyway...
    ::user::interaction * pParent = EnsureTopLevelParent();
 
-   base_array < ::user::interaction *, ::user::interaction * > arrDisabledWnds;
+   m_uiptraDisable.remove_all();
 
    // disable all windows connected to this frame (and add them to the list)
    ::user::interaction * hWnd = System.get_desktop_window()->GetWindow(GW_CHILD);
+
    while (hWnd != NULL)
    {
-      if (hWnd->IsWindowEnabled() &&    __is_descendant(pParent, hWnd) &&
-         hWnd->send_message(WM_DISABLEMODAL, 0, 0) == 0)
+
+      if (hWnd->IsWindowEnabled() &&    __is_descendant(pParent, hWnd) && hWnd->send_message(WM_DISABLEMODAL, 0, 0) == 0)
       {
+
          hWnd->EnableWindow(FALSE);
-         arrDisabledWnds.add(hWnd);
+
+         m_uiptraDisable.add(hWnd);
+
       }
+
       hWnd = hWnd->GetWindow( GW_HWNDNEXT);
+
    }
-   int_ptr nCount = arrDisabledWnds.get_count();
-   if (nCount == 0)
-   {
-      return;
-   }
-   ENSURE(nCount > 0);
-   m_phWndDisable = new ::user::interaction *[nCount+1];
-   // Terminate the list with a NULL
-   m_phWndDisable[nCount] = NULL;
-   ENSURE(arrDisabledWnds.get_data()!=NULL);
-   // copy the HWNDs from local base_array to m_phWndDisable, to be enabled later.
-   ::gen::memcpy_s(m_phWndDisable,sizeof(HWND)*nCount,arrDisabledWnds.get_data(),sizeof(HWND)*nCount);
+
 }
 
 void frame_window::EndModalState()
 {
    // pop one off the stack (don't undo modalness unless stack is down to zero)
-   if (m_cModalStack == 0 || --m_cModalStack > 0 || m_phWndDisable == NULL)
+   if (m_cModalStack == 0 || --m_cModalStack > 0)
       return;
 
-   // enable all the windows disabled by BeginModalState
-   ASSERT(m_phWndDisable != NULL);
-   UINT nIndex = 0;
-   while (m_phWndDisable[nIndex] != NULL)
+   for(index nIndex = 0; nIndex < m_uiptraDisable.get_count(); nIndex++)
    {
-      ASSERT(m_phWndDisable[nIndex] != NULL);
-      if (m_phWndDisable[nIndex]->IsWindow())
-         m_phWndDisable[nIndex]->EnableWindow(TRUE);
-      ++nIndex;
+
+      ASSERT(m_uiptraDisable[nIndex] != NULL);
+
+      if (m_uiptraDisable[nIndex]->IsWindow())
+         m_uiptraDisable[nIndex]->EnableWindow(TRUE);
+
    }
-   delete[] (void *)m_phWndDisable;
-   m_phWndDisable = NULL;
+
+   m_uiptraDisable.remove_all();
+
+
 }
 
 void frame_window::ShowOwnedWindows(bool bShow)
@@ -477,7 +478,7 @@ bool frame_window::create(const char * lpszClassName, const char * lpszWindowNam
 
    m_strTitle = lpszWindowName;    // save title for later
 
-   if(!::user::interaction::CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, NULL, (LPVOID)pContext))
+   if(!::user::interaction::CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id(), pContext))
    {
 
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: failed to create frame_window.\n");
@@ -588,6 +589,9 @@ const char * frame_window::GetIconWndClass(DWORD dwDefaultStyle, const char * ps
 //   HINSTANCE hInst = gen::FindResourceHandle(
 //      MAKEINTRESOURCE(nIDResource), RT_GROUP_ICON);
    //HICON hIcon = ::LoadIcon(hInst, MAKEINTRESOURCE(nIDResource));
+
+#ifdef WINDOWS
+
    HICON hIcon = (HICON) ::LoadImage(
       NULL,
       Application.dir().matter(pszMatter, "icon.ico"), IMAGE_ICON,
@@ -613,6 +617,11 @@ const char * frame_window::GetIconWndClass(DWORD dwDefaultStyle, const char * ps
             wndcls.hCursor, wndcls.hbrBackground, hIcon);
       }
    }
+#else
+
+   throw not_implemented_exception();
+
+#endif
    return NULL;        // just use the default
 }
 
@@ -1073,6 +1082,9 @@ void frame_window::OnSysCommand(UINT nID, LPARAM lParam)
 // default drop processing will attempt to open the file
 void frame_window::OnDropFiles(HDROP hDropInfo)
 {
+
+#ifdef WINDOWS
+
    SetActiveWindow();      // activate us first !
    UINT nFiles = ::DragQueryFile(hDropInfo, (UINT)-1, NULL, 0);
 
@@ -1089,6 +1101,13 @@ void frame_window::OnDropFiles(HDROP hDropInfo)
       pApp->open_document_file(createcontext);
    }
    ::DragFinish(hDropInfo);
+
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
 }
 
 // query end session for main frame will attempt to close it all down
@@ -1122,6 +1141,10 @@ void frame_window::OnEndSession(bool bEnding)
 
 LRESULT frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
 {
+
+
+#ifdef WINDOWS
+
    ::radix::application* pApp = &System;
    if (pApp != NULL &&
       LOWORD(lParam) != 0 && HIWORD(lParam) != 0 &&
@@ -1141,12 +1164,24 @@ LRESULT frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
       ::SendMessage((HWND)wParam, WM_DDE_ACK, (WPARAM)_get_handle(),
          MAKELPARAM(pApp->m_atomApp, pApp->m_atomSystemTopic));
    }
+
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
    return 0L;
 }
+
 
 // always ACK the execute command - even if we do nothing
 LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
 {
+
+
+#ifdef WINDOWS
+
    // unpack the DDE message
    uint_ptr unused;
    HGLOBAL hData;
@@ -1187,14 +1222,34 @@ LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
    if (!System.OnDDECommand(lpszCommand))
       TRACE(::radix::trace::category_AppMsg, 0, "Error: failed to execute DDE command '%s'.\n", lpszCommand);
    strCommand.ReleaseBuffer();
+
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
    return 0L;
+
 }
 
 LRESULT frame_window::OnDDETerminate(WPARAM wParam, LPARAM lParam)
 {
+
+#ifdef WINDOWS
+
    ::PostMessage((HWND)wParam, WM_DDE_TERMINATE, (WPARAM)_get_handle(), lParam);
+
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
    return 0L;
+
 }
+
 
 /////////////////////////////////////////////////////////////////////////////
 // frame_window attributes
@@ -1361,9 +1416,13 @@ void frame_window::OnEnterIdle(UINT nWhy, ::user::interaction* pWho)
 {
    UNREFERENCED_PARAMETER(pWho);
    // trans user::frame_window_interface::OnEnterIdle(nWhy, pWho);
-
-   if (nWhy != MSGF_MENU || m_nIDTracking == m_nIDLastMessage)
+#ifdef WINDOWS
+   if(nWhy != MSGF_MENU || m_nIDTracking == m_nIDLastMessage)
       return;
+#else
+   if(m_nIDTracking == m_nIDLastMessage)
+      return;
+#endif
 
    SetMessageText(m_nIDTracking);
    ASSERT(m_nIDTracking == m_nIDLastMessage);
@@ -1555,19 +1614,29 @@ void frame_window::layout()
    // reposition all the child windows (regardless of ID)
    if (GetStyle() & FWS_SNAPTOBARS)
    {
+
       rect rect(0, 0, 32767, 32767);
-      RepositionBars(0, 0xffff, "pane_first", reposQuery,
-         &rect, &rect, FALSE);
-      RepositionBars(0, 0xffff, "pane_first", reposExtra,
-         &m_rectBorder, &rect, TRUE);
+
+      RepositionBars(0, 0xffff, "pane_first", reposQuery, &rect, &rect, FALSE);
+
+      RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectBorder, &rect, TRUE);
+
       CalcWindowRect(&rect);
-      SetWindowPos(NULL, 0, 0, rect.width(), rect.height(),
-         SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER);
+
+      SetWindowPos(0, 0, 0, rect.width(), rect.height(), SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER);
+
    }
    else
+   {
+
       RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectBorder);
+
+   }
+
    m_bInRecalcLayout = FALSE;
+
 }
+
 
 // frame_window implementation of OLE border space negotiation
 bool frame_window::NegotiateBorderSpace(UINT nBorderCmd, LPRECT lpRectBorder)
@@ -1633,13 +1702,17 @@ bool frame_window::OnEraseBkgnd(::ca::graphics * pgraphics)
 
 LRESULT frame_window::OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam)
 {
+
+   LRESULT lResult = 0;
+
    // convert from MSH_MOUSEWHEEL to WM_MOUSEWHEEL
+
+#ifdef WINDOWS
 
    WORD keyState = 0;
    keyState |= (::GetKeyState(VK_CONTROL) < 0) ? MK_CONTROL : 0;
    keyState |= (::GetKeyState(VK_SHIFT) < 0) ? MK_SHIFT : 0;
 
-   LRESULT lResult;
    HWND hwFocus = ::GetFocus();
    const HWND hwDesktop = ::GetDesktopWindow();
 
@@ -1654,7 +1727,15 @@ LRESULT frame_window::OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam)
       }
       while (lResult == 0 && hwFocus != NULL && hwFocus != hwDesktop);
    }
+
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
    return lResult;
+
 }
 
 
@@ -1685,6 +1766,9 @@ void frame_window::ActivateFrame(int nCmdShow)
 
 void frame_window::BringToTop(int nCmdShow)
 {
+
+#ifdef WINDOWS
+
    if(GetParent() == NULL)
    {
       // place the ::ca::window on top except for certain nCmdShow
@@ -1706,7 +1790,15 @@ void frame_window::BringToTop(int nCmdShow)
          }
       }
    }
+
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
 }
+
 
 /////////////////////////////////////////////////////////////////////////////
 // frame_window Diagnostics
@@ -1768,6 +1860,9 @@ bool frame_window::ShowWindow(int nCmdShow)
 
 void frame_window::_001OnSysCommand(gen::signal_object * pobj)
 {
+
+#ifdef WINDOWS
+
    SCAST_PTR(gen::message::base, pbase, pobj);
    if(GetParent() == NULL)
    {
@@ -1779,6 +1874,13 @@ void frame_window::_001OnSysCommand(gen::signal_object * pobj)
          pbase->set_lresult(0);
       }
    }
+
+#else
+
+   throw not_implemented_exception();
+
+#endif
+
 }
 
 

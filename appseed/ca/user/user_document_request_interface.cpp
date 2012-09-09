@@ -7,7 +7,7 @@ namespace user
    ::user::document_interface * document_request_interface::open_document_file(::ca::create_context * pcreatecontext)
    {
 
-      ::ca::create_context_sp cc(&Application.creation(), NULL, true, NULL);
+      ::ca::create_context_sp cc(&Application.creation(), var(var::type_empty), true, NULL);
 
       if(pcreatecontext == NULL)
       {
@@ -22,7 +22,7 @@ namespace user
 
    ::user::document_interface * document_request_interface::open_document_file(var varFile, bool bMakeVisible, ::user::interaction * puiParent)
    {
-      
+
       ::ca::create_context_sp cc(&Application.creation(), varFile, bMakeVisible, puiParent);
 
 

@@ -206,7 +206,20 @@ namespace ca
    template < class T >
    inline smart_pointer < T > & smart_pointer < T > ::operator = (int i)
    {
-      return operator = ((T *) i);
+
+      if(i == 0)
+      {
+
+         return operator = ((T *) NULL);
+
+      }
+      else
+      {
+
+         throw simple_exception("cannot assign directly from non-null integer");
+
+      }
+
    }
 
    template < class T >

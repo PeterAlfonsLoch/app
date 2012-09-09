@@ -28,7 +28,7 @@
 #pragma once
 
 
-#if defined(WINDOWS) && !defined(MERDE_WINDOWS)
+#ifdef WINDOWSEX
 
 #include <imagehlp.h>
 

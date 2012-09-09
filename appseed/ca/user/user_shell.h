@@ -133,7 +133,7 @@ namespace filemanager
       };
 
 
-      string CLASS_DECL_ca _017FilePathGetParent(const char * lpcsz);
+//      string CLASS_DECL_ca _017FilePathGetParent(const char * lpcsz);
 
 #ifdef WINDOWS
       HICON CLASS_DECL_ca CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, int cx, int cy);
@@ -141,7 +141,7 @@ namespace filemanager
 #endif
       EFolder CLASS_DECL_ca GetFolderType(::ca::application * papp, const wchar_t * lpcszPath);
       EFolder CLASS_DECL_ca GetFolderType(::ca::application * papp, const char * lpcszPath);
-      void CLASS_DECL_ca GetChildren(stringa & stra, const char * lpcszPath);
+//      void CLASS_DECL_ca GetChildren(stringa & stra, const char * lpcszPath);
 #ifdef WINDOWS
       LPITEMIDLIST CLASS_DECL_ca _017ItemIDListGetLast(LPITEMIDLIST lpiidl);
       int CLASS_DECL_ca _017ItemIDListGetLen(LPITEMIDLIST lpiidl);

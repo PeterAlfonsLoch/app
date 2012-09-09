@@ -1,5 +1,8 @@
 #include "framework.h"
-#include "include/FreeImage.h"
+
+#define _WINDOWS_ // for free
+
+#include "include/freeimage.h"
 
 
 namespace visual
@@ -135,7 +138,7 @@ namespace visual
          return false;
       }
 
-      
+
 
 
       FIMEMORY * pfm1 = FreeImage_OpenMemory();
@@ -157,7 +160,7 @@ namespace visual
          pfi8 = pfi7;
          bConv = false;
       }
-      
+
       bool bOk = FreeImage_SaveToMemory(eformat, pfi8, pfm1 , PNG_DEFAULT) != FALSE;
 
       BYTE * pbData;

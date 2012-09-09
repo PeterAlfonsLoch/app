@@ -80,7 +80,7 @@ public:
    ph(::view) m_pViewActive;       // current active ::view
    bool (CALLBACK* m_lpfnCloseProc)(frame_window* pFrameWnd);
    UINT m_cModalStack;         // BeginModalState depth
-   ::user::interaction ** m_phWndDisable;       // windows disabled because of BeginModalState
+   comparable_array < ::user::interaction *, ::user::interaction * > m_uiptraDisable;       // windows disabled because of BeginModalState
    HMENU m_hMenuAlt;           // menu to update to (NULL means default)
    string m_strTitle;         // default title (original)
    bool m_bInRecalcLayout;     // avoid recursion in layout

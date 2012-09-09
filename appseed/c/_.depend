@@ -1242,7 +1242,7 @@
 
 1342864689 /ca2/app/appseed/c/bsdiff/bzlib.h
 
-1347141866 /ca2/app/appseed/c/os/os.h
+1347166164 /ca2/app/appseed/c/os/os.h
 	"os_thread.h"
 	"os_process.h"
 	"c/ansios/ansios.h"
@@ -1273,7 +1273,7 @@
 
 1342864676 /ca2/app/appseed/c/macos/c_os_http.h
 
-1342864676 /ca2/app/appseed/c/macos/c_os_process.h
+1347166164 /ca2/app/appseed/c/macos/c_os_process.h
 
 1342864676 /ca2/app/appseed/c/macos/c_os_cross_win_gdi.h
 
@@ -1301,9 +1301,10 @@
 
 1342864691 /ca2/app/appseed/c/linux/c_os_binreloc.h
 
-1346215872 /ca2/app/appseed/c/merdes_windows/windows_merde.h
+1347166164 /ca2/app/appseed/c/merdes_windows/windows_merde.h
+	"c_os_thread.h"
 
-1347136330 /ca2/app/appseed/c/windows/c_os.h
+1347166164 /ca2/app/appseed/c/windows/c_os.h
 	"c/os/os.h"
 	"c_os_http.h"
 	"c_os_registry.h"
@@ -1429,7 +1430,7 @@
 1342864685 source:/ca2/app/appseed/c/c/conv.cpp
 	"framework.h"
 
-1342864685 source:/ca2/app/appseed/c/c/cpu_architecture.cpp
+1347166163 source:/ca2/app/appseed/c/c/cpu_architecture.cpp
 	"framework.h"
 	<intrin.h>
 
@@ -1440,7 +1441,7 @@
 	"framework.h"
 	<Shlobj.h>
 
-1346215872 source:/ca2/app/appseed/c/c/file.cpp
+1347166163 source:/ca2/app/appseed/c/c/file.cpp
 	"framework.h"
 	<sys/types.h>
 	<sys/stat.h>
@@ -1479,10 +1480,10 @@
 1342864685 source:/ca2/app/appseed/c/c/simple_array.cpp
 	"framework.h"
 
-1342864685 source:/ca2/app/appseed/c/c/simple_critical_section.cpp
+1347166163 source:/ca2/app/appseed/c/c/simple_critical_section.cpp
 	"framework.h"
 
-1346215872 source:/ca2/app/appseed/c/c/simple_event.cpp
+1347166163 source:/ca2/app/appseed/c/c/simple_event.cpp
 	"framework.h"
 
 1342864685 source:/ca2/app/appseed/c/c/simple_list.cpp
@@ -1537,7 +1538,7 @@
 	"ca/x/x_charcategory_names.h"
 	"ca/x/x_charcategory.h"
 
-1347012172 source:/ca2/app/appseed/c/c/dir.cpp
+1347166163 source:/ca2/app/appseed/c/c/dir.cpp
 	"framework.h"
 	<Shlobj.h>
 	<Security.h>
@@ -1813,7 +1814,7 @@
 	"framework.h"
 	<math.h>
 
-1347136474 source:/ca2/app/appseed/c/hotplugin/hotplugin_plugin.cpp
+1347166164 source:/ca2/app/appseed/c/hotplugin/hotplugin_plugin.cpp
 	"framework.h"
 	<math.h>
 	<sys/mman.h>
@@ -1852,4 +1853,6 @@
 1347142064 source:/ca2/app/appseed/c/ansios/ansios_file.cpp
 	"framework.h"
 	<sys/stat.h>
+
+1347166164 /ca2/app/appseed/c/merdes_windows/c_os_thread.h
 

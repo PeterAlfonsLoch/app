@@ -47,9 +47,19 @@ bool font_central::Initialize()
    lf.lfHeight = -9;
    lf.lfWeight         = FW_NORMAL;
    lf.lfCharSet        = DEFAULT_CHARSET;
+
+#ifdef WINDOWS
+
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
    lf.lfQuality        = PROOF_QUALITY;
    lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
+
+#else
+
+   throw todo();
+
+#endif
+
    lstrcpy(lf.lfFaceName, FONTFACENAME_MENU);
 
    VERIFY(m_fontMenu->CreateFontIndirect(&lf));
@@ -102,7 +112,7 @@ bool font_central::Initialize()
 
 void font_central::Finalize()
 {
-   
+
    if(!IsInitialized())
       return;
 

@@ -14267,7 +14267,7 @@ zulu_time:
             case etDYNSTRING:
                bufpt = va_arg(ap,char*);
                if( bufpt==0 ){
-                  bufpt = "";
+                  bufpt = (char *) "";
                }else if( xtype==etDYNSTRING ){
                   zExtra = bufpt;
                }
@@ -35349,7 +35349,7 @@ cleardatabasepage_out:
       int isFreeList,       /* True for a freelist.  False for overflow page list */
       int iPage,            /* Page number for first page in the list */
       int N,                /* Expected number of pages in the list */
-      const char *zContext        /* Context for error messages */
+      char *zContext        /* Context for error messages */
       ){
          int i;
          int expected = N;
@@ -35640,7 +35640,7 @@ cleardatabasepage_out:
          /* Check the integrity of the freelist
          */
          checkList(&sCheck, 1, get4byte(&pBt->pPage1->aData[32]),
-            get4byte(&pBt->pPage1->aData[36]), "Main freelist: ");
+            get4byte(&pBt->pPage1->aData[36]), (char *) "Main freelist: ");
 
          /* Check all the tables.
          */
@@ -35651,7 +35651,7 @@ cleardatabasepage_out:
                checkPtrmap(&sCheck, aRoot[i], PTRMAP_ROOTPAGE, 0, 0);
             }
 #endif
-            checkTreePage(&sCheck, aRoot[i], 0, "List of tree roots: ");
+            checkTreePage(&sCheck, aRoot[i], 0, (char *) "List of tree roots: ");
          }
 
          /* Make sure every page in the file is referenced
@@ -40055,7 +40055,7 @@ failed:
          vals = sqlite3_data_count(pStmt);
          pOut = &pVm->pResultSet[i];
       }else{
-         static const Mem nullMem = {{0}, 0.0, 0, "", 0, MEM_Null, SQLITE_NULL };
+         static const Mem nullMem = {{0}, 0.0, 0, (char *) "", 0, MEM_Null, SQLITE_NULL };
          if( pVm->db ){
             sqlite3_mutex_enter(pVm->db->mutex);
             sqlite3Error(pVm->db, SQLITE_RANGE, 0);
@@ -49101,9 +49101,9 @@ lookupname_end_2:
          signed char nArg;
          void (*xFunc)(sqlite3_context*,int,sqlite3_value **);
       } aFuncs[] = {
-         { "sqlite_rename_table",    2, renameTableFunc},
+         { (char *) "sqlite_rename_table",    2, renameTableFunc},
 #ifndef SQLITE_OMIT_TRIGGER
-         { "sqlite_rename_trigger",  2, renameTriggerFunc},
+         { (char *) "sqlite_rename_trigger",  2, renameTriggerFunc},
 #endif
       };
       int i;
@@ -52107,13 +52107,13 @@ primary_key_exit:
       }
       n += identLength(p->zName);
       if( n<50 ){
-         zSep = "";
-         zSep2 = ",";
-         zEnd = ")";
+         zSep = (char *) "";
+         zSep2 = (char *) ",";
+         zEnd = (char *) ")";
       }else{
-         zSep = "\n  ";
-         zSep2 = ",\n  ";
-         zEnd = "\n)";
+         zSep = (char *) "\n  ";
+         zSep2 = (char *) ",\n  ";
+         zEnd = (char *) "\n)";
       }
       n += 35 + 6*p->nCol;
       zStmt = (char *) sqlite3_malloc( n );
@@ -52239,13 +52239,13 @@ primary_key_exit:
             */
             if( p->pSelect==0 ){
                /* A regular table */
-               zType = "table";
-               zType2 = "TABLE";
+               zType = (char *) "table";
+               zType2 =(char *)  "TABLE";
 #ifndef SQLITE_OMIT_VIEW
             }else{
                /* A view */
-               zType = "view";
-               zType2 = "VIEW";
+               zType = (char *) "view";
+               zType2 = (char *) "VIEW";
 #endif
             }
 
@@ -56525,53 +56525,53 @@ delete_from_cleanup:
          u8 needCollSeq;
          void (*xFunc)(sqlite3_context*,int,sqlite3_value **);
       } aFuncs[] = {
-         { "min",               -1, 0, SQLITE_UTF8,    1, minmaxFunc },
-         { "min",                0, 0, SQLITE_UTF8,    1, 0          },
-         { "max",               -1, 1, SQLITE_UTF8,    1, minmaxFunc },
-         { "max",                0, 1, SQLITE_UTF8,    1, 0          },
-         { "typeof",             1, 0, SQLITE_UTF8,    0, typeofFunc },
-         { "length",             1, 0, SQLITE_UTF8,    0, lengthFunc },
-         { "substr",             2, 0, SQLITE_UTF8,    0, substrFunc },
-         { "substr",             3, 0, SQLITE_UTF8,    0, substrFunc },
-         { "abs",                1, 0, SQLITE_UTF8,    0, absFunc    },
-         { "round",              1, 0, SQLITE_UTF8,    0, roundFunc  },
-         { "round",              2, 0, SQLITE_UTF8,    0, roundFunc  },
-         { "upper",              1, 0, SQLITE_UTF8,    0, upperFunc  },
-         { "lower",              1, 0, SQLITE_UTF8,    0, lowerFunc  },
-         { "coalesce",          -1, 0, SQLITE_UTF8,    0, ifnullFunc },
-         { "coalesce",           0, 0, SQLITE_UTF8,    0, 0          },
-         { "coalesce",           1, 0, SQLITE_UTF8,    0, 0          },
-         { "hex",                1, 0, SQLITE_UTF8,    0, hexFunc    },
-         { "ifnull",             2, 0, SQLITE_UTF8,    1, ifnullFunc },
-         { "random",            -1, 0, SQLITE_UTF8,    0, randomFunc },
-         { "randomblob",         1, 0, SQLITE_UTF8,    0, randomBlob },
-         { "nullif",             2, 0, SQLITE_UTF8,    1, nullifFunc },
-         { "sqlite_version",     0, 0, SQLITE_UTF8,    0, versionFunc},
-         { "quote",              1, 0, SQLITE_UTF8,    0, quoteFunc  },
-         { "last_insert_rowid",  0, 0xff, SQLITE_UTF8, 0, last_insert_rowid },
-         { "changes",            0, 0xff, SQLITE_UTF8, 0, changes           },
-         { "total_changes",      0, 0xff, SQLITE_UTF8, 0, total_changes     },
-         { "replace",            3, 0, SQLITE_UTF8,    0, replaceFunc       },
-         { "ltrim",              1, 1, SQLITE_UTF8,    0, trimFunc          },
-         { "ltrim",              2, 1, SQLITE_UTF8,    0, trimFunc          },
-         { "rtrim",              1, 2, SQLITE_UTF8,    0, trimFunc          },
-         { "rtrim",              2, 2, SQLITE_UTF8,    0, trimFunc          },
-         { "trim",               1, 3, SQLITE_UTF8,    0, trimFunc          },
-         { "trim",               2, 3, SQLITE_UTF8,    0, trimFunc          },
-         { "zeroblob",           1, 0, SQLITE_UTF8,    0, zeroblobFunc      },
+         { (char *)  "min",               -1, 0, SQLITE_UTF8,    1, minmaxFunc },
+         { (char *)  "min",                0, 0, SQLITE_UTF8,    1, 0          },
+         { (char *)  "max",               -1, 1, SQLITE_UTF8,    1, minmaxFunc },
+         { (char *)  "max",                0, 1, SQLITE_UTF8,    1, 0          },
+         { (char *)  "typeof",             1, 0, SQLITE_UTF8,    0, typeofFunc },
+         { (char *)  "length",             1, 0, SQLITE_UTF8,    0, lengthFunc },
+         { (char *)  "substr",             2, 0, SQLITE_UTF8,    0, substrFunc },
+         { (char *)  "substr",             3, 0, SQLITE_UTF8,    0, substrFunc },
+         { (char *)  "abs",                1, 0, SQLITE_UTF8,    0, absFunc    },
+         { (char *)  "round",              1, 0, SQLITE_UTF8,    0, roundFunc  },
+         { (char *)  "round",              2, 0, SQLITE_UTF8,    0, roundFunc  },
+         { (char *)  "upper",              1, 0, SQLITE_UTF8,    0, upperFunc  },
+         { (char *)  "lower",              1, 0, SQLITE_UTF8,    0, lowerFunc  },
+         { (char *)  "coalesce",          -1, 0, SQLITE_UTF8,    0, ifnullFunc },
+         { (char *)  "coalesce",           0, 0, SQLITE_UTF8,    0, 0          },
+         { (char *)  "coalesce",           1, 0, SQLITE_UTF8,    0, 0          },
+         { (char *)  "hex",                1, 0, SQLITE_UTF8,    0, hexFunc    },
+         { (char *)  "ifnull",             2, 0, SQLITE_UTF8,    1, ifnullFunc },
+         { (char *)  "random",            -1, 0, SQLITE_UTF8,    0, randomFunc },
+         { (char *)  "randomblob",         1, 0, SQLITE_UTF8,    0, randomBlob },
+         { (char *)  "nullif",             2, 0, SQLITE_UTF8,    1, nullifFunc },
+         { (char *)  "sqlite_version",     0, 0, SQLITE_UTF8,    0, versionFunc},
+         { (char *)  "quote",              1, 0, SQLITE_UTF8,    0, quoteFunc  },
+         { (char *)  "last_insert_rowid",  0, 0xff, SQLITE_UTF8, 0, last_insert_rowid },
+         { (char *)  "changes",            0, 0xff, SQLITE_UTF8, 0, changes           },
+         { (char *)  "total_changes",      0, 0xff, SQLITE_UTF8, 0, total_changes     },
+         { (char *)  "replace",            3, 0, SQLITE_UTF8,    0, replaceFunc       },
+         { (char *)  "ltrim",              1, 1, SQLITE_UTF8,    0, trimFunc          },
+         { (char *)  "ltrim",              2, 1, SQLITE_UTF8,    0, trimFunc          },
+         { (char *)  "rtrim",              1, 2, SQLITE_UTF8,    0, trimFunc          },
+         { (char *)  "rtrim",              2, 2, SQLITE_UTF8,    0, trimFunc          },
+         { (char *)  "trim",               1, 3, SQLITE_UTF8,    0, trimFunc          },
+         { (char *)  "trim",               2, 3, SQLITE_UTF8,    0, trimFunc          },
+         { (char *)  "zeroblob",           1, 0, SQLITE_UTF8,    0, zeroblobFunc      },
 #ifdef SQLITE_SOUNDEX
-         { "soundex",            1, 0, SQLITE_UTF8,    0, soundexFunc},
+         { (char *)  "soundex",            1, 0, SQLITE_UTF8,    0, soundexFunc},
 #endif
 #ifndef SQLITE_OMIT_LOAD_EXTENSION
-         { "load_extension",     1, 0xff, SQLITE_UTF8, 0, loadExt },
-         { "load_extension",     2, 0xff, SQLITE_UTF8, 0, loadExt },
+         { (char *)  "load_extension",     1, 0xff, SQLITE_UTF8, 0, loadExt },
+         { (char *)  "load_extension",     2, 0xff, SQLITE_UTF8, 0, loadExt },
 #endif
 #ifdef SQLITE_TEST
-         { "randstr",               2, 0,    SQLITE_UTF8, 0, randStr    },
-         { "test_destructor",       1, 0xff, SQLITE_UTF8, 0, test_destructor},
-         { "test_destructor_count", 0, 0,    SQLITE_UTF8, 0, test_destructor_count},
-         { "test_auxdata",         -1, 0,    SQLITE_UTF8, 0, test_auxdata},
-         { "test_error",            1, 0,    SQLITE_UTF8, 0, test_error},
+         { (char *)  "randstr",               2, 0,    SQLITE_UTF8, 0, randStr    },
+         { (char *)  "test_destructor",       1, 0xff, SQLITE_UTF8, 0, test_destructor},
+         { (char *)  "test_destructor_count", 0, 0,    SQLITE_UTF8, 0, test_destructor_count},
+         { (char *)  "test_auxdata",         -1, 0,    SQLITE_UTF8, 0, test_auxdata},
+         { (char *)  "test_error",            1, 0,    SQLITE_UTF8, 0, test_error},
 #endif
       };
       static const struct {
@@ -56582,15 +56582,15 @@ delete_from_cleanup:
          void (*xStep)(sqlite3_context*,int,sqlite3_value**);
          void (*xFinalize)(sqlite3_context*);
       } aAggs[] = {
-         { "min",    1, 0, 1, minmaxStep,   minMaxFinalize },
-         { "max",    1, 1, 1, minmaxStep,   minMaxFinalize },
-         { "sum",    1, 0, 0, sumStep,      sumFinalize    },
-         { "total",  1, 0, 0, sumStep,      totalFinalize    },
-         { "avg",    1, 0, 0, sumStep,      avgFinalize    },
-         { "count",  0, 0, 0, countStep,    countFinalize  },
-         { "count",  1, 0, 0, countStep,    countFinalize  },
-         { "group_concat", 1, 0, 0, groupConcatStep, groupConcatFinalize },
-         { "group_concat", 2, 0, 0, groupConcatStep, groupConcatFinalize },
+         { (char *)  "min",    1, 0, 1, minmaxStep,   minMaxFinalize },
+         { (char *)  "max",    1, 1, 1, minmaxStep,   minMaxFinalize },
+         { (char *)  "sum",    1, 0, 0, sumStep,      sumFinalize    },
+         { (char *)  "total",  1, 0, 0, sumStep,      totalFinalize    },
+         { (char *)  "avg",    1, 0, 0, sumStep,      avgFinalize    },
+         { (char *)  "count",  0, 0, 0, countStep,    countFinalize  },
+         { (char *)  "count",  1, 0, 0, countStep,    countFinalize  },
+         { (char *)  "group_concat", 1, 0, 0, groupConcatStep, groupConcatFinalize },
+         { (char *)  "group_concat", 2, 0, 0, groupConcatStep, groupConcatFinalize },
       };
       int i;
 
@@ -60408,15 +60408,15 @@ exec_out:
                                                                            char *zName;
                                                                            u8 enc;
                                                                         } encnames[] = {
-                                                                           { "UTF-8",    SQLITE_UTF8        },
-                                                                           { "UTF8",     SQLITE_UTF8        },
-                                                                           { "UTF-16le", SQLITE_UTF16LE     },
-                                                                           { "UTF16le",  SQLITE_UTF16LE     },
-                                                                           { "UTF-16be", SQLITE_UTF16BE     },
-                                                                           { "UTF16be",  SQLITE_UTF16BE     },
-                                                                           { "UTF-16",   0                  }, /* SQLITE_UTF16NATIVE */
-                                                                           { "UTF16",    0                  }, /* SQLITE_UTF16NATIVE */
-                                                                           { 0, 0 }
+                                                                           { (char *)  "UTF-8",    SQLITE_UTF8        },
+                                                                           { (char *)  "UTF8",     SQLITE_UTF8        },
+                                                                           { (char *)  "UTF-16le", SQLITE_UTF16LE     },
+                                                                           { (char *)  "UTF16le",  SQLITE_UTF16LE     },
+                                                                           { (char *)  "UTF-16be", SQLITE_UTF16BE     },
+                                                                           { (char *)  "UTF16be",  SQLITE_UTF16BE     },
+                                                                           { (char *)  "UTF-16",   0                  }, /* SQLITE_UTF16NATIVE */
+                                                                           { (char *)  "UTF16",    0                  }, /* SQLITE_UTF16NATIVE */
+                                                                           { (char *) 0, 0 }
                                                                         };
                                                                         const struct EncName *pEnc;
                                                                         if( !zRight ){    /* "PRAGMA encoding" */
@@ -62482,7 +62482,7 @@ error_out:
                if( iCol<0 ) iCol = pTab->iPKey;
                assert( iCol==-1 || (iCol>=0 && iCol<pTab->nCol) );
                if( iCol<0 ){
-                  zCol = "rowid";
+                  zCol = (char *) "rowid";
                }else{
                   zCol = pTab->aCol[iCol].zName;
                }
@@ -62519,10 +62519,10 @@ error_out:
    static const char *selectOpName(int id){
       char *z;
       switch( id ){
-      case TK_ALL:       z = "UNION ALL";   break;
-      case TK_INTERSECT: z = "INTERSECT";   break;
-      case TK_EXCEPT:    z = "EXCEPT";      break;
-      default:           z = "UNION";       break;
+      case TK_ALL:       z = (char *) "UNION ALL";   break;
+      case TK_INTERSECT: z = (char *) "INTERSECT";   break;
+      case TK_EXCEPT:    z = (char *) "EXCEPT";      break;
+      default:           z = (char *) "UNION";       break;
       }
       return z;
    }
@@ -66925,7 +66925,7 @@ update_cleanup:
       **
       ** An optimisation would be to use a non-journaled pager.
       */
-      zSql = "ATTACH '' AS vacuum_db;";
+      zSql = (char *) "ATTACH '' AS vacuum_db;";
       rc = execSql(db, zSql);
       if( rc!=SQLITE_OK ) goto end_of_vacuum;
       pDb = &db->aDb[db->nDb-1];
@@ -75802,10 +75802,10 @@ abort_parse:
          /* The default safety_level for the main database is 'full'; for the temp
          ** database it is 'NONE'. This matches the pager layer defaults.
          */
-         db->aDb[0].zName = "main";
+         db->aDb[0].zName = (char *) "main";
          db->aDb[0].safety_level = 3;
 #ifndef SQLITE_OMIT_TEMPDB
-         db->aDb[1].zName = "temp";
+         db->aDb[1].zName = (char *) "temp";
          db->aDb[1].safety_level = 1;
 #endif
 

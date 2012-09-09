@@ -362,8 +362,10 @@ namespace filemanager
       }
       else
       {
+
          stringa stra;
-         GetChildren(stra, gen::international::unicode_to_utf8(szPath));
+
+         System.dir().ls(gen::international::unicode_to_utf8(szPath), &stra);
 
          for(int i = 0; i < stra.get_size(); i++)
          {
@@ -403,7 +405,7 @@ namespace filemanager
       }
 
    }
-
+/*
    void GetChildren(stringa & stra, const char * lpcszPath)
    {
       string wstrBase(lpcszPath);
@@ -454,6 +456,7 @@ namespace filemanager
       FindClose(h);
 
    }
+*/
 
    ImageKey::ImageKey()
    {
@@ -507,14 +510,14 @@ namespace filemanager
       m_pil48Hover->add_matter("filemanager\\check_on_16.png");
    }
 
-   int ImageSet::GetImage(
-      const char * lpcsz,
-      EFileAttribute eattribute,
-      EIcon eicon)
+   int ImageSet::GetImage(const char * lpcsz, EFileAttribute eattribute, EIcon eicon)
    {
+
       ImageKey imagekey;
+
       string str(lpcsz);
 
+#ifdef WINDOWS
 
       SHFILEINFO shfi16;
 
@@ -556,8 +559,18 @@ namespace filemanager
 
       }
       return iImage;
+
+#else
+
+      throw todo();
+
+#endif
+
+
    }
 
+
+#ifdef WINDOWS
 
    int ImageSet::GetImage(
       HWND hwnd,
@@ -987,9 +1000,12 @@ namespace filemanager
       return iImage;
    }
 
+#endif
 
    int ImageSet::GetImageByExtension(HWND hwnd, const char * pszPath, EIcon eicon, bool bFolder)
    {
+
+#ifdef WINDOWS
 
       if(pszPath == NULL)
          return 0x80000000;
@@ -1104,11 +1120,18 @@ namespace filemanager
 
       }
 
-
-
       return iImage;
 
+#else
+
+      throw todo();
+
+#endif
+
+
    }
+
+#ifdef WINDOWS
 
    bool ImageSet::GetIcon(
       HWND hwnd,
@@ -1390,6 +1413,8 @@ namespace filemanager
 
    }
 
+
+
    int ImageSet::GetImage(
       HWND hwnd,
       LPITEMIDLIST lpiidlAbsolute,
@@ -1479,6 +1504,8 @@ namespace filemanager
 
    }
 
+#endif
+
    bool ImageSet::GetIcon(
       HWND hwnd,
       const char * psz,
@@ -1487,12 +1514,24 @@ namespace filemanager
       HICON * phicon16,
       HICON * phicon48)
    {
+
+#ifdef WINDOWS
+
       LPITEMIDLIST lpiidlAbsolute;
       _017ItemIDListParsePath(&lpiidlAbsolute, psz);
       bool bGet = GetIcon(hwnd, lpiidlAbsolute, lpcszExtra, eicon, phicon16, phicon48);
       _017ItemIDListFree(lpiidlAbsolute);
       return bGet;
+#else
+
+         throw todo();
+
+#endif
+
    }
+
+
+#ifdef WINDOWS
 
    bool ImageSet::GetIcon(
       HWND hwnd,
@@ -1524,8 +1563,12 @@ namespace filemanager
       return bGet;
    }
 
+#endif
+
 } // namespace _shell
 
+
+#ifdef WINDOWS
 
 index Shell::GetCSIDL(LPITEMIDLIST lpiidl)
 {
@@ -1567,7 +1610,6 @@ index Shell::GetCSIDL(LPITEMIDLIST lpiidl)
 
 
 }
-
 
 index Shell::GetCSIDLSort(index iCsidl)
 {
@@ -1616,6 +1658,10 @@ void Shell::Free(base_array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla)
 
    lpmalloc->Release();
 }
+
+
+#endif
+
 
 
 } // namespace filemanager

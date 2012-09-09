@@ -362,6 +362,9 @@ namespace visual
 
    bool api::GetProcsAddress()
    {
+
+#ifdef WINDOWS
+
       if((lpDrawAndFillBeziers1 =
          (void (*)(
             ::ca::graphics                     *pdc,
@@ -426,8 +429,10 @@ namespace visual
          "Shutdown")) == NULL)
          return false;
 
+#endif
 
       return true;
+
    }
 
    bool api::open()
@@ -454,9 +459,10 @@ namespace visual
       return true;
    }
 
+
+#ifdef WINDOWS
+
    // Enable OpenGL
-
-
 
    void api::EnableOpenGL(HWND hWnd, HDC & hDC, HGLRC & hRC)
    {
@@ -497,6 +503,9 @@ namespace visual
       wglDeleteContext( hRC );*/
       ReleaseDC( hWnd, hDC );
    }
+
+
+#endif
 
 
 } // namespace visual

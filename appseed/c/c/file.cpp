@@ -13,7 +13,7 @@
 
 #endif
 
-#if defined(WINDOWS) && !defined(MERDE_WINDOWS)
+#ifdef WINDOWSEX
 
 bool read_resource_as_file_dup(const char * pszFile, HINSTANCE hinstance, UINT nID, LPCTSTR lpcszType)
 {
@@ -89,7 +89,7 @@ bool file_exists_dup(const char * path1)
 
 bool file_put_contents_dup(const char * path, const simple_memory & memory)
 {
-   
+
    return file_put_contents_dup(path, memory.m_psz, memory.m_iSize);
 
 }

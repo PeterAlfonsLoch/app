@@ -218,27 +218,43 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
    cs.y = rect.top;
    cs.cx = rect.right - rect.left;
    cs.cy = rect.bottom - rect.top;
+
+#ifdef WINDOWS
+
    cs.hwndParent = (HWND) pparent->_get_handle();
+
+#endif
+
    //cs.hMenu = pparent->_get_handle() == NULL ? NULL : (HMENU) iId;
    cs.hMenu = NULL;
+
+#ifdef WINDOWS
+
    cs.hInstance = System.m_hInstance;
+
+#endif
+
    cs.lpCreateParams = lpParam;
+
    m_pguie->pre_create_window(cs);
+
    //m_pguie->install_message_handling(dynamic_cast < ::gen::message::dispatch * > (this));
+
    send_message(WM_CREATE, 0, (LPARAM) &cs);
-   m_pguie->SetWindowPos(NULL, rect.left, rect.top, cs.cx, cs.cy, 0);
+
+   m_pguie->SetWindowPos(0, rect.left, rect.top, cs.cx, cs.cy, 0);
+
    send_message(WM_SIZE, 0, 0);
+
    on_set_parent(pparent);
+
    return true;
+
 }
 
 
 
-bool virtual_user_interface::create(const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
-      const RECT& rect,
-      ::user::interaction* pparent, id id,
-      ::ca::create_context* pContext)
+bool virtual_user_interface::create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle,  const RECT& rect, ::user::interaction*  pparent, id id, ::ca::create_context * pContext)
 {
    if(m_bCreate)
    {
@@ -297,16 +313,37 @@ bool virtual_user_interface::create(const char * lpszClassName,
    cs.y = rect.top;
    cs.cx = rect.right - rect.left;
    cs.cy = rect.bottom - rect.top;
+
+#ifdef WINDOWS
+
    cs.hwndParent = pparent->_get_handle();
+
+#else
+
+   throw todo();
+
+#endif
+
 //   cs.hMenu = pparent->_get_handle() == NULL ? NULL : (HMENU) iId;
    cs.hMenu = NULL;
+
+
+#ifdef WINDOWS
+
    cs.hInstance = System.m_hInstance;
+
+#else
+
+   throw todo();
+
+#endif
+
    cs.lpCreateParams = (LPVOID) pContext;
    m_pguie->pre_create_window(cs);
    send_message(WM_CREATE, 0, (LPARAM) &cs);
    if(rect.bottom != 0 && rect.left != 0 && rect.right != 0 && rect.top != 0)
    {
-      m_pguie->SetWindowPos(NULL, rect.left, rect.top, cs.cx, cs.cy, SWP_SHOWWINDOW);
+      m_pguie->SetWindowPos(0, rect.left, rect.top, cs.cx, cs.cy, SWP_SHOWWINDOW);
       send_message(WM_SIZE, 0, 0);
    }
    on_set_parent(pparent);
@@ -374,18 +411,46 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    cs.y = 0;
    cs.cx = 0;
    cs.cy = 0;
+
+#ifdef WINDOWS
+
    cs.hwndParent = pparent->_get_handle();
+
+#else
+
+   throw todo();
+
+#endif
+
 //   cs.hMenu = pparent->_get_handle() == NULL ? NULL : (HMENU) iId;
    cs.hMenu = NULL;
+
+#ifdef WINDOWS
+
    cs.hInstance = System.m_hInstance;
+
+#else
+
+   throw todo();
+
+#endif
+
    cs.lpCreateParams = (LPVOID) NULL;
+
    m_pguie->pre_create_window(cs);
+
    send_message(WM_CREATE, 0, (LPARAM) &cs);
-   m_pguie->SetWindowPos(NULL, 0, 0, cs.cx, cs.cy, 0);
+
+   m_pguie->SetWindowPos(0, 0, 0, cs.cx, cs.cy, 0);
+
    send_message(WM_SIZE, 0, 0);
+
    on_set_parent(pparent);
+
    return true;
+
 }
+
 
 /*   bool virtual_user_interface::create(const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,

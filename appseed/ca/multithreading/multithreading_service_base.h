@@ -22,7 +22,7 @@ public:
    service_status          m_status;
    string                  m_serviceName;
 
-#if defined(WINDOWS) && !defined(MERDE_WINDOWS)
+#ifdef WINDOWSEX
 
    SERVICE_STATUS_HANDLE   m_handle;
 
@@ -34,7 +34,7 @@ public:
 
 
 
-#if defined(WINDOWS) && !defined(MERDE_WINDOWS)
+#ifdef WINDOWSEX
 
    service_base(::ca::application * papp, DWORD controlsAccepted = SERVICE_ACCEPT_PAUSE_CONTINUE | SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_SHUTDOWN);
 

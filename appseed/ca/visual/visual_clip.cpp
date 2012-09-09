@@ -72,7 +72,7 @@ namespace visual
       m_rgnOld.CreateRectRgn(0, 0, 0, 0);
       Do(pdc, lpcrect);
    }
-         
+
    //////////////////////////////////////////////////
    // Function : ~clip
    //
@@ -112,7 +112,7 @@ namespace visual
       ::ca::region * prgn)
    {
       ASSERT(pdc != NULL);
-      
+
       m_bAcquired = true;
       m_pwnd = NULL;
       m_pdc = pdc;
@@ -122,15 +122,22 @@ namespace visual
       ::ca::region & rgn = m_rgn;
       int & iOldType = m_iOldType;
       ::ca::region & rgnOld = m_rgnOld;
-      
+
       rgn.CopyRgn(prgn);
       rgn.OffsetRgn(ptViewportOrg);
 
-      if((iOldType = ::GetClipRgn((HDC)pdc->get_os_data(), (HRGN) rgnOld.get_os_data()))
-         == 1)
+#ifdef WINDOWS
+
+      if((iOldType = ::GetClipRgn((HDC)pdc->get_os_data(), (HRGN) rgnOld.get_os_data())) == 1)
       {
          rgn.CombineRgn(&rgn, &rgnOld, RGN_AND);
       }
+
+#else
+
+      throw todo();
+
+#endif
 
       pdc->SelectClipRgn(&rgn);
 
@@ -154,7 +161,7 @@ namespace visual
       LPCRECT lpcrect)
    {
       ASSERT(pdc != NULL);
-      
+
       m_bAcquired = true;
       m_pwnd = NULL;
       m_pdc = pdc;
@@ -164,16 +171,24 @@ namespace visual
       ::ca::region & rgn = m_rgn;
       int & iOldType = m_iOldType;
       ::ca::region & rgnOld = m_rgnOld;
-      
+
       rect rectUpdate(lpcrect);
       rectUpdate.offset(ptViewportOrg);
       rgn.SetRectRgn(rectUpdate);
+
+#ifdef WINDOWS
 
       if((iOldType = ::GetClipRgn((HDC)pdc->get_os_data(), (HRGN) rgnOld.get_os_data()))
          == 1)
       {
          rgn.CombineRgn(&rgn, &rgnOld, RGN_AND);
       }
+
+#else
+
+      throw todo();
+
+#endif
 
       pdc->SelectClipRgn(&rgn);
 
@@ -199,7 +214,7 @@ namespace visual
    {
       ASSERT(pwnd != NULL);
       ASSERT(pdc != NULL);
-      
+
       m_bAcquired = true;
       m_pwnd = pwnd;
       m_pdc = pdc;
@@ -207,11 +222,11 @@ namespace visual
       rect rectUpdate;
 
       point ptViewportOrg = pdc->GetViewportOrg();
-      
+
       pwnd->GetClientRect(rectUpdate);
 
       ::user::interaction * pwndParent = pwnd->GetParent();
-      
+
       if(pwndParent != NULL)
       {
          rect rectParent;
@@ -226,8 +241,10 @@ namespace visual
       ::ca::region & rgn = m_rgn;
       int & iOldType = m_iOldType;
       ::ca::region & rgnOld = m_rgnOld;
-      
+
       rgn.SetRectRgn(rectUpdate);
+
+#ifdef WINDOWS
 
       if((iOldType = ::GetClipRgn((HDC)pdc->get_os_data(), (HRGN) rgnOld.get_os_data()))
          == 1)
@@ -238,6 +255,12 @@ namespace visual
          rect rectTest2;
          rgn.GetRgnBox(rectTest2);
       }
+
+#else
+
+      throw todo();
+
+#endif
 
       pdc->SelectClipRgn(&rgn);
 
@@ -260,7 +283,7 @@ namespace visual
       ASSERT(m_bAcquired);
       if(m_bAcquired)
       {
-         
+
          int  & iOldType = m_iOldType;
          ::ca::region & rgnOld   = m_rgnOld;
          ::ca::graphics * pdc = m_pdc;

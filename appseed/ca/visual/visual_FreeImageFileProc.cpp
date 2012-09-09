@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "include/FreeImage.h"
+#define _WINDOWS_
+#include "include/freeimage.h"
 
 unsigned ___ReadProc    (void *buffer, unsigned size, unsigned count, fi_handle handle)
 {

@@ -1,12 +1,12 @@
 // This is ca2 API library.
-// 
-// 
 //
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
+//
+//
 
 #include "framework.h"
 
@@ -62,12 +62,16 @@ bool view::pre_create_window(CREATESTRUCT & cs)
    if (cs.lpszClass == NULL)
    {
       // COLOR_WINDOW background
+#ifdef WINDOWS
       VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, &cs.lpszClass));
+#endif
    }
 
    if (cs.style & WS_BORDER)
    {
+#ifdef WINDOWS
       cs.dwExStyle |= WS_EX_CLIENTEDGE;
+#endif
       cs.style &= ~WS_BORDER;
    }
 
@@ -156,7 +160,7 @@ void view::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType)
 // Command routing
 
 bool view::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
-   
+
 {
    // first pump through pane
    if (::user::interaction::_001OnCmdMsg(pcmdmsg))
@@ -354,7 +358,8 @@ bool view::OnScrollBy(size /*sizeScroll*/, bool /*bDoScroll*/)
 
 CScrollBar* view::GetScrollBarCtrl(int nBar) const
 {
-   ASSERT(nBar == SB_HORZ || nBar == SB_VERT);
+
+   ///ASSERT(nBar == SB_HORZ || nBar == SB_VERT);
 // trans   if (GetStyle() & ((nBar == SB_HORZ) ? WS_HSCROLL : WS_VSCROLL))
 //   {
       // it has a regular windows style scrollbar (no control)
@@ -457,10 +462,15 @@ void view::_001OnView(gen::signal_object * pobj)
 
 ::user::interaction* view::create_view(::ca::type_info info, ::user::document_interface * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
 {
+
    ::ca::create_context_sp cacc(get_app());
+
    stacker < ::user::create_context > cc(cacc->m_user);
-   cc->m_typeinfoNewView    = &info;
+
+   cc->m_typeinfoNewView    = info;
+
    cc->m_pLastView          = pviewLast;
+
    if(pdoc == NULL)
    {
       cc->m_pCurrentDoc        = get_document();
@@ -469,44 +479,65 @@ void view::_001OnView(gen::signal_object * pobj)
    {
       cc->m_pCurrentDoc = pdoc;
    }
+
    if(pwndParent == NULL)
    {
       pwndParent = this;
    }
-   if(id == NULL)
+
+   if(id.is_empty())
    {
-      id = cc->m_typeinfoNewView.name();
+
+      id = (const ::id &) cc->m_typeinfoNewView.name();
+
    }
+
    return s_create_view(cacc, pwndParent, id);
+
 }
 
 
 ::user::interaction* view::s_create_view(::ca::type_info info, ::user::document_interface * pdoc, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
 {
+
    ::ca::create_context_sp cacc(pdoc->get_app());
+
    stacker < ::user::create_context > cc(cacc->m_user);
-   cc->m_typeinfoNewView    = &info;
+
+   cc->m_typeinfoNewView    = info;
+
    cc->m_pLastView          = pviewLast;
+
    cc->m_pCurrentDoc        = pdoc;
+
    return s_create_view(cacc, pwndParent, id);
+
 }
 
 ::user::interaction* view::s_create_view(::ca::create_context* pContext, ::user::interaction * pwndParent, id id)
 {
+
 // trans   ASSERT(pwndParent->get_handle() != NULL);
 // trans   ASSERT(::IsWindow(pwndParent->get_handle()));
+
    ASSERT(pContext != NULL);
+
    ASSERT(pContext->m_user->m_typeinfoNewView || pContext->m_user->m_puiNew != NULL);
+
 
    ::ca::application * papp = pwndParent->get_app();
 
    ::user::interaction * pguie;
+
    if(pContext->m_user->m_puiNew != NULL)
    {
+
       pguie = dynamic_cast < ::user::interaction * > (pContext->m_user->m_puiNew);
+
    }
    else
    {
+
       // Note: can be a ::user::interaction with PostNcDestroy self cleanup
       pguie = dynamic_cast < ::user::interaction * > (App(papp).alloc(pContext->m_user->m_typeinfoNewView));
       if (pguie == NULL)
@@ -514,15 +545,20 @@ void view::_001OnView(gen::signal_object * pobj)
 //         TRACE1("Warning: Dynamic create of ::view type %hs failed.\n", pContext->m_typeinfoNewView.name());
          return NULL;
       }
+
    }
+
    ASSERT_KINDOF(::user::interaction, pguie);
 
    // views are always created with a border!
    if (!pguie->create(NULL, NULL, WS_VISIBLE | WS_CHILD, rect(0,0,0,0), pwndParent, id, pContext))
    {
+
       //TRACE0("Warning: could not create ::view for frame.\n");
       return NULL;        // can't continue without a ::view
+
    }
+
 
    ::view * pview = dynamic_cast < ::view * > (pguie);
    if(pview != NULL)
@@ -537,19 +573,28 @@ void view::_001OnView(gen::signal_object * pobj)
       ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED);
    }*/
 
+
    if(pguie != NULL)
    {
+
       if(pguie->GetParent() != NULL)
       {
+
          ::user::place_holder * pholder = dynamic_cast < ::user::place_holder * > (pguie->GetParent());
+
          if(pholder != NULL)
          {
+
             pholder->hold(pguie);
+
          }
+
       }
+
    }
 
    return pguie;
+
 }
 
 
@@ -574,12 +619,12 @@ void view::_001OnMouseMove(gen::signal_object * pobj)
 
 
 ::user::document_interface * view::get_document() const
- { 
-    ASSERT(this != NULL); 
-    return m_spdocument; 
+ {
+    ASSERT(this != NULL);
+    return m_spdocument;
  }
 
- 
+
 void view::collaborate(::ca::job * pjob)
 {
    {

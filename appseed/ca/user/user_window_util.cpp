@@ -245,6 +245,9 @@ namespace user
 
    void HwndTree::EnumDescendants()
    {
+
+#ifdef WINDOWS
+
       HWND hwnd = m_hwnd;
       if(!::IsWindow(hwnd))
          return;
@@ -261,6 +264,13 @@ namespace user
          hwndtreeChild.EnumDescendants();
          hwndChild = ::GetWindow(hwndChild, GW_HWNDNEXT);
       }
+
+#else
+
+      throw not_implemented_exception();
+
+#endif
+
    }
 
    void HwndTree::Array::EnumDescendants()
@@ -290,7 +300,7 @@ namespace user
 
    int HwndTree::CompareHwnd(HwndTree &tree1, HwndTree &tree2)
    {
-      return (int) (tree1.m_hwnd - tree2.m_hwnd);
+      return (int) ((byte *) (void *) tree1.m_hwnd - (byte *) (void *) tree2.m_hwnd);
    }
 
    int_ptr HwndTree::Array::find(HWND hwnd)
@@ -370,6 +380,9 @@ namespace user
 
    void WndUtil::EnumChildren(HWND hwnd, HWNDArray & hwnda)
    {
+
+#ifdef WINDOWS
+
       if(!::IsWindow(hwnd))
          return;
       HWND hwndChild = ::GetTopWindow(hwnd);
@@ -378,6 +391,13 @@ namespace user
          hwnda.add(hwndChild);
          hwndChild = ::GetWindow(hwndChild, GW_HWNDNEXT);
       }
+
+#else
+
+      throw todo();
+
+#endif
+
    }
 
 
@@ -460,10 +480,20 @@ namespace user
       HWND hwndParent = ::GetParent(hwnd);
       if(hwndParent == NULL)
       {
+
+#ifdef WINDOWS
+
          rectMajor.left = 0;
          rectMajor.top = 0;
          rectMajor.right = GetSystemMetrics(SM_CXSCREEN);
          rectMajor.bottom = GetSystemMetrics(SM_CYSCREEN);
+
+#else
+
+         throw todo();
+
+#endif
+
       }
       else
       {
@@ -472,6 +502,9 @@ namespace user
 
       rect rect;
       ::GetClientRect(hwnd, rect);
+
+#ifdef WINDOWS
+
       ::ClientToScreen(hwnd, &rect.top_left());
       ::ClientToScreen(hwnd, &rect.bottom_right());
       if(hwndParent != NULL)
@@ -479,6 +512,12 @@ namespace user
          ::ScreenToClient(hwndParent, &rect.top_left());
          ::ScreenToClient(hwndParent, &rect.bottom_right());
       }
+
+#else
+
+      throw todo();
+
+#endif
 
       bool bModified = false;
 
@@ -497,23 +536,31 @@ namespace user
          rect.offset(0, - rect.height() - (rect.top - rectMajor.bottom));
          bModified = true;
       }
+
       if(rect.bottom < rectMajor.top)
       {
+
          rect.offset(0, rect.height() + (rectMajor.top - rect.bottom));
+
          bModified = true;
+
       }
+
+
+#ifdef WINDOWS
 
       if(bModified)
       {
-         ::SetWindowPos(
-            hwnd,
-            HWND_TOP,
-            rect.left,
-            rect.top,
-            rect.width(),
-            rect.height(),
-            0);
+
+         ::SetWindowPos(hwnd, HWND_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
+
       }
+
+#else
+
+      throw todo();
+
+#endif
 
    }
 
@@ -550,13 +597,14 @@ namespace user
    }*/
 
 
-   void WndUtil::SendMessageToDescendants(HWND hWnd, UINT message,
-      WPARAM wParam, LPARAM lParam, bool bDeep)
+   void WndUtil::SendMessageToDescendants(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, bool bDeep)
    {
+
+#if defined(WINDOWS)
+
       // walk through HWNDs to avoid creating temporary ::ca::window objects
       // unless we need to call this function recursively
-      for (HWND hWndChild = ::GetTopWindow(hWnd); hWndChild != NULL;
-         hWndChild = ::GetNextWindow(hWndChild, GW_HWNDNEXT))
+      for (HWND hWndChild = ::GetTopWindow(hWnd); hWndChild != NULL; hWndChild = ::GetNextWindow(hWndChild, GW_HWNDNEXT))
       {
          // send message with Windows SendMessage API
          try
@@ -579,6 +627,13 @@ namespace user
             }
          }
       }
+
+#else
+
+      throw todo();
+
+#endif
+
    }
 
    // This function sort the ::ca::window base_array
@@ -630,6 +685,9 @@ namespace user
       {
          return 0x7fffffff;
       }
+
+#ifdef WINDOWS
+
       while(hwndOrder != NULL && ::IsWindow(hwndOrder))
       {
          if(hwnd == hwndOrder)
@@ -637,12 +695,22 @@ namespace user
          hwndOrder = ::GetWindow(hwndOrder, GW_HWNDNEXT);
          iOrder++;
       }
+
+#else
+
+      throw todo();
+
+#endif
+
       return 0x7fffffff;
    }
 
 
    void WndUtil::GetZOrder(HWND hwnd, int_array & ia)
    {
+
+#ifdef WINDOWS
+
       int iOrder;
       ia.remove_all();
       while(true)
@@ -655,6 +723,13 @@ namespace user
          ia.insert_at(0, iOrder);
          hwnd = ::GetParent(hwnd);
       }
+
+#else
+
+      throw todo();
+
+#endif
+
    }
 
    /*void WndUtil::EnumChildren(HWND hwnd, HWNDArray & hwnda)
