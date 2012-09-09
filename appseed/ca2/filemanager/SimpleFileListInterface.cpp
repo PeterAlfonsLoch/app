@@ -535,7 +535,7 @@ namespace filemanager
       control.set_data_type(user::control::DataTypeString);
       control.add_function(user::control::function_vms_data_edit);
       //control.m_typeinfo = System.template type_info < simple_edit_plain_text > ();
-      control.m_typeinfo.name(NULL);
+      control.m_typeinfo.name("");
       control.m_iSubItem = i;
       control.m_id = 1000 + i;
       index iControl =  _001AddControl(control);

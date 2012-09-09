@@ -26,7 +26,6 @@ namespace userbase
       m_pViewActive = NULL;
 
       m_cModalStack = 0;              // initialize modality support
-      m_phWndDisable = NULL;
       m_hMenuAlt = NULL;
       m_nIdleFlags = 0;               // no idle work at start
       m_rectBorder.null();
@@ -44,9 +43,9 @@ namespace userbase
 
    frame_window::~frame_window()
    {
+
       RemoveFrameWnd();
-      if (m_phWndDisable != NULL)
-         delete[] (void *)m_phWndDisable;
+
    }
 
 

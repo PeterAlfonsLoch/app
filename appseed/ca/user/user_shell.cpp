@@ -340,41 +340,57 @@ namespace filemanager
 
    bool _017HasSubFolder(::ca::application * papp, LPITEMIDLIST lpiidl, const char * lpcszExtra)
    {
+
       WCHAR szPath[_MAX_PATH * 10];
-      SHGetPathFromIDListW(
-         lpiidl,
-         szPath);
+
+      SHGetPathFromIDListW(lpiidl, szPath);
+
       EFolder efolder = GetFolderType(papp, szPath);
+
       if(efolder == FolderNone)
       {
+
          return false;
+
       }
       else if(efolder == FolderZip)
       {
+
          string wstrPath;
+
          gen::international::unicode_to_utf8(wstrPath, szPath);
+
          string wstrExtra(lpcszExtra);
+
          if(wstrExtra.get_length() > 0)
          {
             wstrPath += ":" + wstrExtra;
          }
+
          return zip::Util().HasSubFolder(papp, wstrPath);
+
       }
       else
       {
 
          stringa stra;
 
-         System.dir().ls(gen::international::unicode_to_utf8(szPath), &stra);
+         App(papp).dir().ls(gen::international::unicode_to_utf8(szPath), &stra);
 
          for(int i = 0; i < stra.get_size(); i++)
          {
+
             efolder = GetFolderType(papp, stra[i]);
+
             if(efolder != FolderNone)
                return true;
+
          }
+
          return false;
+
       }
+
    }
 
 #endif

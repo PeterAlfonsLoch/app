@@ -3260,6 +3260,9 @@
     <ClInclude Include="sockets\http_memory_file.h">
       <Filter>Header Files\sockets</Filter>
     </ClInclude>
+    <ClInclude Include="exception\exception_todo.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
@@ -5445,6 +5448,9 @@
     </ClCompile>
     <ClCompile Include="sockets\http_memory_file.cpp">
       <Filter>Source Files\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_todo.cpp">
+      <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
