@@ -6935,7 +6935,7 @@
 
 1347011146 /ca2/nodeapp/operational_system/cross/win/win_base.h
 
-1345878529 /ca2/nodeapp/operational_system/cross/win/win_gdi.h
+1347208666 /ca2/nodeapp/operational_system/cross/win/win_gdi.h
 
 1345878529 /ca2/nodeapp/operational_system/cross/win/win_user.h
 
@@ -7006,7 +7006,7 @@
 
 1342864685 /ca2/app/appseed/c/c/geometric_types.h
 
-1347082799 /ca2/app/appseed/c/c/verisimple_string.h
+1347211999 /ca2/app/appseed/c/c/verisimple_string.h
 
 1347082799 /ca2/app/appseed/c/c/verisimple_wstring.h
 
@@ -8171,7 +8171,7 @@
 1342864709 /ca2/app/appseed/ca/zlib/zlib.h
 	"zconf.h"
 
-1342864709 /ca2/app/appseed/ca/zlib/zutil.h
+1347206044 /ca2/app/appseed/ca/zlib/zutil.h
 	"zlib.h"
 	<stddef.h>
 	<errno.h>
@@ -11588,7 +11588,7 @@
 	"EscCharsetProber.h"
 	"Latin1Prober.h"
 
-1342864738 source:/ca2/app/appseed/ca/linux/os.cpp
+1347211181 source:/ca2/app/appseed/ca/linux/os.cpp
 	"framework.h"
 	<sys/times.h>
 
@@ -12554,7 +12554,7 @@
 1342864847 source:/ca2/app/appseed/ca/xml/xml_exportable.cpp
 	"framework.h"
 
-1347201675 source:/ca2/app/appseed/ca/user/user_virtual_user_interface.cpp
+1347203146 source:/ca2/app/appseed/ca/user/user_virtual_user_interface.cpp
 	"framework.h"
 
 1342864847 source:/ca2/app/appseed/ca/xml/xml_importable.cpp
@@ -12582,4 +12582,113 @@
 	"framework.h"
 
 1342864847 source:/ca2/app/appseed/ca/xml/xml_xml.cpp
+
+1347202175 source:/ca2/app/appseed/ca/visual/visual_icon.cpp
+	"framework.h"
+
+1347203260 source:/ca2/app/appseed/ca/visual/visual_image_list.cpp
+	"framework.h"
+	"include/freeimage.h"
+
+1347203369 source:/ca2/app/appseed/ca/visual/visual_font.cpp
+	"framework.h"
+
+1342864709 source:/ca2/app/appseed/ca/zlib/zlib_adler32.cpp
+	"framework.h"
+	"zlib.h"
+
+1342864709 source:/ca2/app/appseed/ca/zlib/zlib_compress.cpp
+	"framework.h"
+	"zlib.h"
+
+1342864709 source:/ca2/app/appseed/ca/zlib/zlib_crc32.cpp
+	"framework.h"
+	"zutil.h"
+	<limits.h>
+	"crc32.h"
+
+1342864709 /ca2/app/appseed/ca/zlib/crc32.h
+
+1342864709 source:/ca2/app/appseed/ca/zlib/zlib_deflate.cpp
+	"framework.h"
+	"zutil.h"
+	"deflate.h"
+
+1342864709 /ca2/app/appseed/ca/zlib/deflate.h
+	"zutil.h"
+
+1342864709 source:/ca2/app/appseed/ca/zlib/zlib_infback.cpp
+	"framework.h"
+	"zutil.h"
+	"inftrees.h"
+	"inflate.h"
+	"inffast.h"
+	"inffixed.h"
+
+1342864709 /ca2/app/appseed/ca/zlib/inftrees.h
+
+1342864709 /ca2/app/appseed/ca/zlib/inflate.h
+
+1342864709 /ca2/app/appseed/ca/zlib/inffast.h
+
+1342864709 /ca2/app/appseed/ca/zlib/inffixed.h
+
+1342864709 source:/ca2/app/appseed/ca/zlib/zlib_inffast.cpp
+	"framework.h"
+	"zutil.h"
+	"inftrees.h"
+	"inflate.h"
+	"inffast.h"
+
+1342864709 source:/ca2/app/appseed/ca/zlib/zlib_inflate.cpp
+	"framework.h"
+	"zutil.h"
+	"inftrees.h"
+	"inflate.h"
+	"inffast.h"
+	"inffixed.h"
+
+1342864709 source:/ca2/app/appseed/ca/zlib/zlib_inftrees.cpp
+	"framework.h"
+	"zutil.h"
+	"inftrees.h"
+
+1342864709 source:/ca2/app/appseed/ca/zlib/zlib_trees.cpp
+	"framework.h"
+	"deflate.h"
+	<ctype.h>
+	"trees.h"
+
+1342864709 /ca2/app/appseed/ca/zlib/trees.h
+
+1342864709 source:/ca2/app/appseed/ca/zlib/zlib_uncompr.cpp
+	"framework.h"
+	"zlib.h"
+
+1342864709 source:/ca2/app/appseed/ca/zlib/zlib_zutil.cpp
+	"framework.h"
+	"zutil.h"
+
+1347203781 source:/ca2/app/appseed/ca/xml/xml_xmlite.cpp
+
+1347203806 source:/ca2/app/appseed/ca/visual/visual_graphics_extension.cpp
+	"framework.h"
+
+1347207340 source:/ca2/app/appseed/ca/xml/xml_node.cpp
+
+1342864709 source:/ca2/app/appseed/ca/zlib/zlib_gzio.cpp
+	"framework.h"
+	"zutil.h"
+	<stdarg.h>
+
+1347210723 source:/ca2/app/appseed/ca/visual/visual_imaging.cpp
+	"framework.h"
+	"include/freeimage.h"
+	"visual_FreeImageFileProc.h"
+	<gdiplus.h>
+
+1342864829 /ca2/app/appseed/ca/visual/visual_FreeImageFileProc.h
+
+1347210869 source:/ca2/app/appseed/ca/exception/exception_error.cpp
+	"framework.h"
 

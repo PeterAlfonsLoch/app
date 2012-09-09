@@ -1,5 +1,5 @@
 #include "framework.h"
-   
+
 verisimple_string::verisimple_string()
 {
    m_psz = NULL;
@@ -7,7 +7,7 @@ verisimple_string::verisimple_string()
 
 verisimple_string::verisimple_string(const wchar_t * pwsz)
 {
-   
+
    m_psz = NULL;
 
    operator = (pwsz);
@@ -30,7 +30,7 @@ verisimple_string::verisimple_string(char ch)
    operator = (ch);
 }
 
-verisimple_string::verisimple_string(const char * psz, count count)
+verisimple_string::verisimple_string(const char * psz, int_ptr count)
 {
    if(psz == NULL)
       m_psz = NULL;
@@ -94,7 +94,7 @@ verisimple_string & verisimple_string::operator = (const verisimple_string & str
    }
    return *this;
 }
-   
+
 verisimple_string & verisimple_string::operator = (const char * psz)
 {
    if(m_psz != psz)
@@ -153,11 +153,11 @@ void verisimple_string::attach(const char * psz)
 
 verisimple_string & verisimple_string::operator = (const wchar_t * pwsz)
 {
-   
+
    attach(utf16_to_8(pwsz));
-   
+
    return *this;
-   
+
 }
 
 
@@ -215,7 +215,7 @@ verisimple_string & verisimple_string::operator += (const verisimple_string & st
 
 verisimple_string operator + (const verisimple_string & str1, const verisimple_string & str2)
 {
-   
+
    count iLen1 = str1.length();
 
    count iLen2 = str2.length();

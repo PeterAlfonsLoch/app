@@ -11,6 +11,8 @@
 
 #define AC_SRC_ALPHA                0x01
 
+#ifdef WINDOWS
+
 const imaging::CSysColorMap imaging::s_psyscolormap[] =
 {
    // mapping from color in DIB to system color
@@ -20,6 +22,22 @@ const imaging::CSysColorMap imaging::s_psyscolormap[] =
    { RGB_TO_RGBQUAD(0xFF, 0xFF, 0xFF),  COLOR_BTNHIGHLIGHT },   // white
    { RGB_TO_RGBQUAD(0xFF, 0xFF, 0xFF),  0x80000000}
 };
+
+#else
+
+// throw todo();
+
+const imaging::CSysColorMap imaging::s_psyscolormap[] =
+{
+   // mapping from color in DIB to system color
+   { RGB_TO_RGBQUAD(0x00, 0x00, 0x00),  0x80000000 },       // black
+   { RGB_TO_RGBQUAD(0x80, 0x80, 0x80),  0x80000000 },     // dark gray
+   { RGB_TO_RGBQUAD(0xC0, 0xC0, 0xC0),  0x80000000 },       // bright gray
+   { RGB_TO_RGBQUAD(0xFF, 0xFF, 0xFF),  0x80000000 },   // white
+   { RGB_TO_RGBQUAD(0xFF, 0xFF, 0xFF),  0x80000000}
+};
+
+#endif
 
 imaging::imaging(::ca::application * papp) :
    ca(papp)
@@ -35,19 +53,31 @@ imaging::~imaging()
 
 ::ca::bitmap_sp imaging::CreateDIBitmap(::ca::graphics * pdc, FIBITMAP * pFreeImage)
 {
+
+
+#ifdef WINDOWS
+
    ::ca::bitmap_sp bitmap(get_app());
-   if(!bitmap->CreateDIBitmap(pdc,
-      FreeImage_GetInfoHeader(pFreeImage),
-      CBM_INIT,
-      FreeImage_GetBits(pFreeImage),
-      FreeImage_GetInfo(pFreeImage),
-      DIB_RGB_COLORS))
+
+   if(!bitmap->CreateDIBitmap(pdc, FreeImage_GetInfoHeader(pFreeImage), CBM_INIT, FreeImage_GetBits(pFreeImage), FreeImage_GetInfo(pFreeImage), DIB_RGB_COLORS))
    {
+
       TRACELASTERROR();
+
       return ::ca::null();
+
    }
+
    return bitmap;
+
+#else
+
+   throw todo();
+
+#endif
+
 }
+
 
 ::ca::bitmap_sp imaging::CreateBitmap(::ca::graphics * pdc, FIBITMAP * pFreeImage)
 {
@@ -288,15 +318,32 @@ VOID EmbossedTextOut(
    ** of the text.
    */
    if (cb == -1)
-      cb = lstrlen(lpsz);
+      cb = strlen(lpsz);
 
    /* If the shadow or text color is -1, use the
    ** system color for that one.
    */
+
+#ifdef WINDOWS
+
    if (crShadow == (COLORREF)-1)
       crShadow = GetSysColor (COLOR_BTNSHADOW);
+
    if (crText == (COLORREF)-1)
       crText = GetSysColor (COLOR_BTNTEXT);
+
+#else
+
+   if (crShadow == (COLORREF)-1)
+      crShadow = ARGB(255, 192, 192, 187);
+
+   if (crText == (COLORREF)-1)
+      crShadow = ARGB(255, 0, 0, 0);
+
+#endif
+
+
+#ifdef WINDOWS
 
    /* setup the DC, saving off the old values
    */
@@ -330,6 +377,13 @@ VOID EmbossedTextOut(
    */
    SetTextColor(hDC, crOld);
    SetBkMode(hDC, uMode);
+
+#else
+
+   throw todo();
+
+#endif
+
 }
 
 /*****************************************************************************
@@ -377,13 +431,25 @@ HFONT CreateScaledFont(
    lf.lfHeight         = -(int)ScaledClientHeight;
    lf.lfWeight         = FW_BOLD;
    lf.lfCharSet        = ANSI_CHARSET;
+
+#ifdef WINDOWS
+
    lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
    lf.lfQuality        = PROOF_QUALITY;
    lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-   lstrcpy(lf.lfFaceName, "Arial");
+
+#else
+
+   throw todo();
+
+#endif
+
+   strcpy(lf.lfFaceName, "Arial");
+
+#ifdef WINDOWS
 
    hFont = CreateFontIndirect(&lf);
-   h = (struct HFONT__ *) SelectObject(hDC, hFont);
+   h = (HFONT) SelectObject(hDC, (HGDIOBJ) hFont);
 
    cb = lstrlen(lpszFormat);
    GetTextExtentPoint(hDC, lpszFormat, cb, &size);
@@ -424,12 +490,21 @@ HFONT CreateScaledFont(
 
    SelectObject(hDC, h);
 
+#else
+
+   throw todo();
+
+#endif
+
    return hFont;
+
 }
 
 
 void GetMultiLineTextExtent(HDC hDC, stringa * pArray, LPSIZE lpSize)
 {
+
+#ifdef WINDOWS
 
    TEXTMETRIC tm;
 
@@ -454,10 +529,20 @@ void GetMultiLineTextExtent(HDC hDC, stringa * pArray, LPSIZE lpSize)
    //      tm.tmInternalLeading) *
    nSize;
    lpSize->cy = (LONG) ((tm.tmHeight +  tm.tmExternalLeading) * nSize);
+
+#else
+
+   throw todo();
+
+#endif
+
 }
+
 
 void DrawMultiLineText(HDC hDC, stringa * pArray)
 {
+
+#ifdef WINDOWS
 
    TEXTMETRIC tm;
 
@@ -483,6 +568,13 @@ void DrawMultiLineText(HDC hDC, stringa * pArray)
          tm.tmInternalLeading;
 
    }
+
+#else
+
+   throw todo();
+
+#endif
+
 }
 
 bool imaging::GrayVRCP(
@@ -745,13 +837,24 @@ bool imaging::Createcolor_blend_ImageList(
       if(pil->m_spdib->get_graphics() == NULL)
          return false;
 
+/*
       if(pil->m_spdib->get_graphics()->get_os_data() == NULL)
          return false;
+*/
 
       ::ca::graphics_sp spgraphics(get_app());
 
+#ifdef WINDOWS
+
       spgraphics->CreateCompatibleDC(NULL);
       spgraphics->SetMapMode(MM_TEXT);
+
+#else
+
+      throw todo();
+
+#endif
+
       //::ca::bitmap * pbitmapOld = spgraphics->GetCurrentBitmap();
 
       color_blend(pil->m_spdib->get_graphics(), null_point(), pil->m_spdib->size(), cr, bAlpha);
@@ -812,7 +915,17 @@ bool imaging::GrayVRCP(
 {
    UNREFERENCED_PARAMETER(crAlpha);
    //COLORREF cr3dface = GetSysColor(COLOR_3DFACE);
+
+#ifdef WINDOWS
+
    COLORREF cr3dshadow = GetSysColor(COLOR_3DSHADOW);
+
+#else
+
+   COLORREF cr3dshadow = ARGB(255, 127, 127, 127);
+
+#endif
+
    //BYTE uch3dfaceR = rgba_get_r(cr3dface);
    //BYTE uch3dfaceG = rgba_get_g(cr3dface);
    //BYTE uch3dfaceB = rgba_get_b(cr3dface);
@@ -820,7 +933,18 @@ bool imaging::GrayVRCP(
    BYTE uch3dshadowG = rgba_get_g(cr3dshadow);
    BYTE uch3dshadowB = rgba_get_b(cr3dshadow);
 
+
+#ifdef WINDOWS
+
    COLORREF cr3dhighlight = GetSysColor(COLOR_3DHILIGHT);
+
+#else
+
+   COLORREF cr3dhighlight = ARGB(255, 192, 192, 192);
+
+#endif
+
+
    BYTE uch3dhighlightR = rgba_get_r(cr3dhighlight);
    BYTE uch3dhighlightG = rgba_get_g(cr3dhighlight);
    BYTE uch3dhighlightB = rgba_get_b(cr3dhighlight);
@@ -853,6 +977,8 @@ bool imaging::GrayVRCP(
    LPBYTE lpbMask = (LPBYTE) malloc(cbMask);
    //LPBYTE lpbShadow = lpbData;
 
+#ifdef WINDOWS
+
    if(!GetDIBits(
       (HDC)pdc->get_os_data(),
       (HBITMAP) pbitmap->get_os_data(),
@@ -864,6 +990,12 @@ bool imaging::GrayVRCP(
    {
       return false;
    }
+
+#else
+
+   throw todo();
+
+#endif
 
    class size sizeMask = pbitmapMask->get_size();
 
@@ -881,8 +1013,9 @@ bool imaging::GrayVRCP(
    pbmiMask->bmiHeader.biClrUsed = 0;
    pbmiMask->bmiHeader.biClrImportant = 0;
 
-   if(!GetDIBits(
-      (HDC)pdc->get_os_data(),
+#ifdef WINDOWS
+
+   if(!GetDIBits(    (HDC)pdc->get_os_data(),
       (HBITMAP) pbitmapMask->get_os_data(),
       0, uiScanLines,
       lpbMask, pbmiMask, DIB_RGB_COLORS))
@@ -890,6 +1023,11 @@ bool imaging::GrayVRCP(
       return false;
    }
 
+#else
+
+   throw todo();
+
+#endif
 
    //   memcpy(lpbShadow, lpbData, cbImage);
 
@@ -1044,6 +1182,8 @@ bool imaging::GrayVRCP(
       }
    }
 
+#ifdef WINDOWS
+
    if(!SetDIBits(
       (HDC)pdc->get_os_data(),
       (HBITMAP) pbitmap->get_os_data(),
@@ -1067,6 +1207,12 @@ bool imaging::GrayVRCP(
    {
       return false;
    }
+
+#else
+
+   throw todo();
+
+#endif
 
    ::free(lpbShadow);
    ::free(lpbData);
@@ -1149,6 +1295,8 @@ bool imaging::GetDeviceContext24BitsCC(
          uiStartScanLineParam = uiStartScanLine;
          uiScanLineCountParam = uiScanLines;
 
+#ifdef WINDOWS
+
          if(!(iLimitYParam = GetDIBits
             (
             (HDC)pdc->get_os_data(),
@@ -1164,6 +1312,13 @@ bool imaging::GetDeviceContext24BitsCC(
             pdc->SelectObject(pbmpOld);
             return false;
          }
+
+#else
+
+         throw todo();
+
+#endif
+
       }
       catch(int)
       {
@@ -2251,10 +2406,13 @@ void imaging::SavePng(const char * lpcszFile, FIBITMAP *dib, bool bUnload)
 
 FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
 {
+
    if(pbitmap == NULL)
       return NULL;
 
    HBITMAP hbitmap = NULL;
+
+#ifdef WINDOWS
 
    Gdiplus::Color colorBk(0, 0, 0, 0);
 
@@ -2284,8 +2442,14 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
    // restore BITMAPINFO members
    FreeImage_GetInfoHeader(fi)->biClrUsed = nColors;
    FreeImage_GetInfoHeader(fi)->biClrImportant = nColors;
-
    return fi;
+
+#else
+
+   throw todo();
+
+#endif
+
 }
 
 
@@ -2561,7 +2725,16 @@ bool imaging::prepare_blend(::ca::dib * pdib, point pt, size size, COLORREF cr, 
    if(!pdibWork->create(size))
       return false;
 
+#ifdef WINDOWS
+
    pdibWork->get_graphics()->SetMapMode(MM_TEXT);
+
+#else
+
+   throw todo();
+
+#endif
+
    pdibWork->get_graphics()->FillSolidRect(0, 0, size.cx, size.cy, cr);
 
    pdibWork->mult_alpha(NULL);
@@ -2630,9 +2803,21 @@ bool imaging::ClipSave(
    {
       return false;
    }
+
    ::ca::region rgnUpdate;
+
    rgnUpdate.CreateRectRgnIndirect(lpcrect);
+
+#ifdef WINDOWS
+
    rgnUpdate.CombineRgn(&rgnUpdate, prgnClip, RGN_DIFF);
+
+#else
+
+   throw todo();
+
+#endif
+
    rgnUpdate.GetRgnBox(rectUpdate);
    spgraphics->SelectObject(pbitmap);
    spgraphics->SelectClipRgn(&rgnUpdate);
@@ -2732,10 +2917,25 @@ bool imaging::ClipRestore(
       spgraphics->SelectObject(pbitmap);
       ::ca::region_sp rgnClip(get_app());
       rgnClip->CreateRectRgn(0, 0, 0, 0);
-      int iClip = ::GetClipRgn((HDC)pdc->get_os_data(), (HRGN) rgnClip->get_os_data());
+
+      int iClip = 0;
+
       ::ca::region_sp rgnUpdate(get_app());
+
+#ifdef WINDOWS
+
+      ::GetClipRgn((HDC)pdc->get_os_data(), (HRGN) rgnClip->get_os_data());
+
       rgnUpdate->CreateRectRgnIndirect(lpcrect);
+
       rgnUpdate->CombineRgn(rgnUpdate, prgnClip, RGN_DIFF);
+
+#else
+
+      throw todo();
+
+#endif
+
       pdc->SelectClipRgn(rgnUpdate);
       rgnUpdate->GetRgnBox(rectUpdate);
       bool bOk;
@@ -2831,6 +3031,8 @@ bool imaging::ClipSave(
 
    rgnClip->CreateRectRgn(0, 0, 0, 0);
 
+#ifdef WINDOWS
+
    if(::GetClipRgn((HDC)pdc->get_os_data(), (HRGN) rgnClip->get_os_data()) == 1)
    {
       return ClipSave(
@@ -2841,7 +3043,15 @@ bool imaging::ClipSave(
          lpcrect,
          rgnClip);
    }
+
+#else
+
+   throw todo();
+
+#endif
+
    return true;
+
 }
 
 bool imaging::ClipRestore(
@@ -2861,6 +3071,8 @@ bool imaging::ClipRestore(
 
    rgnClip->CreateRectRgn(0, 0, 0, 0);
 
+#ifdef WINDOWS
+
    if(::GetClipRgn((HDC)pdc->get_os_data(), (HRGN) rgnClip->get_os_data()) == 1)
    {
       return ClipRestore(
@@ -2871,7 +3083,15 @@ bool imaging::ClipRestore(
          lpcrect,
          rgnClip);
    }
+
    return true;
+
+#else
+
+   throw todo();
+
+#endif
+
 }
 
 bool imaging::CreateBitmap(
@@ -4595,6 +4815,8 @@ bool imaging::alpha_spread_R2(::ca::graphics *pdcDst, point ptDst, size size, ::
       bMin);
 
 
+#ifdef WINDOWS
+
    ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
    if(pbmpOld == NULL)
    {
@@ -4633,12 +4855,20 @@ bool imaging::alpha_spread_R2(::ca::graphics *pdcDst, point ptDst, size size, ::
       pdcDst->SelectObject(bitmapDst);
    }
 
+#else
+
+   throw todo();
+
+#endif
+
    return true;
 
 }
 
+
 bool imaging::alpha_spread(::ca::graphics *pdcDst, point ptDst, size size, ::ca::graphics * pdcSrc, point ptSrc, BYTE bMin, int iRadius)
 {
+
    if(size.cx <= 0 || size.cy <= 0)
       return true;
 
@@ -4746,6 +4976,8 @@ bool imaging::alpha_spread(::ca::graphics *pdcDst, point ptDst, size size, ::ca:
       bMin, iRadius);
 
 
+#ifdef WINDOWS
+
    ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
    if(pbmpOld == NULL)
    {
@@ -4786,11 +5018,18 @@ bool imaging::alpha_spread(::ca::graphics *pdcDst, point ptDst, size size, ::ca:
 
    return true;
 
+#else
+
+   throw todo();
+
+#endif
+
 }
 
 
 void imaging::alpha_spread_R2_24CC(LPBYTE lpbDst, int xDest, int yDest, int wDest, int cx, int cy, LPBYTE lpbSrc, int xSrc, int ySrc, int wSrc, BYTE bMin)
 {
+
    UNREFERENCED_PARAMETER(xDest);
    UNREFERENCED_PARAMETER(yDest);
    UNREFERENCED_PARAMETER(xSrc);
@@ -5712,6 +5951,8 @@ bool imaging::pixelate(::ca::graphics *pdcDst, int xDest, int yDest, int cx, int
       iSize);
 
 
+#ifdef WINDOWS
+
    ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
    if(pbmpOld == NULL)
    {
@@ -5754,6 +5995,12 @@ bool imaging::pixelate(::ca::graphics *pdcDst, int xDest, int yDest, int cx, int
    }
 
    return true;
+
+#else
+
+   throw todo();
+
+#endif
 
 }
 
@@ -6167,6 +6414,7 @@ bool imaging::alpha_pixelate(
       iSize,
       iAlpha);
 
+#ifdef WINDOWS
 
    ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
    if(pbmpOld == NULL)
@@ -6210,6 +6458,12 @@ bool imaging::alpha_pixelate(
    }
 
    return true;
+
+#else
+
+   throw todo();
+
+#endif
 
 }
 

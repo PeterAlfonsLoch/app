@@ -282,6 +282,7 @@ bool image_list::_grow()
    return true;
 }
 
+#ifdef WINDOWS
 
 bool image_list::get_image_info(int nImage, IMAGEINFO* pImageInfo) const
 {
@@ -320,6 +321,8 @@ bool image_list::get_image_info(int nImage, IMAGEINFO* pImageInfo) const
    }
 
 }
+
+#endif
 
 void image_list::remove_all()
 {

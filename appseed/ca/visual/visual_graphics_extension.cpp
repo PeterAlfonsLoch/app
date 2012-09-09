@@ -24,35 +24,69 @@ namespace visual
 
    void word_break(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, string &str1, string & str2)
    {
+
       string str;
+
       rect rectClip(*lpcrect);
+
       wstring wstr = gen::international::utf8_to_unicode(lpcsz);
+
       const wchar_t * lpwsz = wstr;
+
       index iFind = str.find(L' ');
+
       if(iFind < 0)
       {
+
          size_t i = 1;
+
          size sz;
+
          while(i < wcslen(wstr))
          {
+
+#ifdef WINDOWS
+
             ::GetTextExtentPoint32W((HDC)pdc->get_os_data(), lpwsz, (int) i, &sz);
+
+#else
+
+            throw todo();
+
+            // ::GetTextExtentPoint32((HDC)pdc->get_os_data(), gen::international::unicode_to_utf8(lpwsz), (int) gen::international::unicode_to_utf8(lpwsz).get_lengt(), &sz);
+
+#endif
+
             if(sz.cx > rectClip.width())
             {
+
                if(i == 1)
                   break;
+
                i--;
+
                break;
+
             }
+
             i++;
+
          }
+
          gen::international::unicode_to_utf8(str1, lpwsz, i);
+
          gen::international::unicode_to_utf8(str2, &lpwsz[i]);
+
       }
       else
       {
+
          gen::international::unicode_to_utf8(str1, lpwsz, iFind);
+
          gen::international::unicode_to_utf8(str2, &lpwsz[iFind + 1]);
+
       }
+
    }
 
 
@@ -171,26 +205,66 @@ namespace visual
 
    void graphics_extension::FillSolidRect(HDC hdc, const __rect64 * lpRect, COLORREF clr)
    {
+
+#ifdef WINDOWS
+
       ::SetBkColor(hdc, clr);
+
       rect rect;
+
       if(::copy(rect, lpRect))
       {
+
          ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rect, NULL, 0, NULL);
+
       }
+
+#else
+
+      throw todo();
+
+#endif
+
    }
+
 
    void graphics_extension::FillSolidRect(HDC hdc, LPCRECT lpRect, COLORREF clr)
    {
+
+#ifdef WINDOWS
+
       ::SetBkColor(hdc, clr);
+
       ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
+
+#else
+
+      throw todo();
+
+#endif
+
    }
+
 
    void graphics_extension::FillSolidRect(HDC hdc, int x, int y, int cx, int cy, COLORREF clr)
    {
+
+#ifdef WINDOWS
+
       ::SetBkColor(hdc, clr);
+
       rect rect(x, y, x + cx, y + cy);
+
       ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rect, NULL, 0, NULL);
+
+#else
+
+      throw todo();
+
+#endif
+
    }
+
 
 } // namespace visual
 
@@ -244,7 +318,7 @@ namespace visual
                i = iLen;
             if(i < 4)
                i = 4;
-            
+
             while(true)
             {
                lpsz[i - 4] = '.';
@@ -336,7 +410,7 @@ namespace visual
             fontUnderline->set_bold();
          }
       }
-      
+
       rect rect;
       rect.left = 0;
       rect.top = 0;
@@ -364,17 +438,19 @@ namespace visual
       {
          align |= gen::AlignHorizontalCenter;
       }
-      else 
+      else
       {
          align |= gen::AlignLeft;
       }
+
       rect.Align(align, lpcrect);
 
-      if(iUnderline >= 0
-         && iUnderline < str.get_length())
+      if(iUnderline >= 0 && iUnderline < str.get_length())
       {
+
          ::ca::font * pfontOld;
-         pdc->TextOutA(rect.left, rect.top, str, (int) min(iUnderline, str.get_length()));
+
+         pdc->TextOut(rect.left, rect.top, str, (int) min(iUnderline, str.get_length()));
          /*::TextOutU(
             (HDC)pdc->get_os_data(),
             rect.left,

@@ -99,15 +99,3 @@ struct  tagFONTA :
 
 
 
-struct tagBITMAPINFO :
-   public gdi_object
-{
-public:
-
-    BITMAPINFOHEADER    bmiHeader;
-    RGBQUAD             bmiColors[1];
-
-
-};
-
-

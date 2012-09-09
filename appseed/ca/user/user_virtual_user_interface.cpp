@@ -1250,37 +1250,67 @@ bool virtual_user_interface::IsWindow()
 
 bool virtual_user_interface::ShowWindow(int nCmdShow)
 {
+
    if(nCmdShow != SW_HIDE)
    {
+
       m_bVisible = true;
+
       if(m_pguie != NULL)
       {
+
          m_pguie->m_bVisible = true;
+
       }
+
    }
    else
    {
+
       m_bVisible = false;
+
       if(m_pguie != NULL)
       {
+
          m_pguie->m_bVisible = false;
+
       }
+
    }
+
    return m_bVisible ? TRUE : FALSE;
+
 }
 
 
 void virtual_user_interface::SetFont(::ca::font* pFont, bool bRedraw)
 {
+
    if(pFont == NULL)
       return;
+
+#ifdef WINDOWS
+
    if(pFont->get_os_data() == NULL)
       return;
+
+#else
+
+   if(pFont->get_os_data() == 0)
+      return;
+
+#endif
+
    m_spfont.create(get_app());
+
    m_spfont->operator=(*pFont);
+
    if(bRedraw)
       _001RedrawWindow();
+
 }
+
+
 ::ca::font* virtual_user_interface::GetFont()
 {
    if(m_spfont.is_null())

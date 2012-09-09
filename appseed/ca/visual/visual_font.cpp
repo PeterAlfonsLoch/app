@@ -443,37 +443,91 @@ namespace visual
 
 bool CLASS_DECL_ca TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
 {
+
+#ifdef WINDOWS
+
    if(lpString == NULL)
    {
       return ::TextOutW(hdc, x, y, NULL, c) != FALSE;
+
    }
+
    wstring wstr = gen::international::utf8_to_unicode(lpString, c);
+
    bool bRet = ::TextOutW(hdc, x, y, wstr, (int) wstr.get_length()) != FALSE;
+
    return bRet;
+
+#else
+
+   throw todo();
+
+/*
+
+   if(lpString == NULL)
+   {
+      return ::TextOut(hdc, x, y, NULL, 0) != FALSE;
+   }
+
+   return ::TextOut(hdc, x, y, wstr, (int) wstr.get_length()) != FALSE;
+*/
+
+#endif
+
 }
 
 
 CLASS_DECL_ca bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, LPSIZE psizl)
 {
+
+#ifdef WINDOWS
+
    if(lpString == NULL)
    {
+
       return ::GetTextExtentPoint32W(hdc, NULL, c, psizl) != FALSE;
+
    }
+
    wstring wstr = gen::international::utf8_to_unicode(lpString, c);
+
    bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (int) wstr.get_length(), psizl) != FALSE;
+
    return bRet;
+
+#else
+
+   throw todo();
+
+#endif
+
 }
 
 
 CLASS_DECL_ca int  DrawTextU(HDC hdc, const char * lpchText, int cchText, LPRECT lprc, UINT format)
 {
+
+#ifdef WINDOWS
+
    if(lpchText == NULL)
    {
+
       return ::DrawTextW(hdc, NULL, cchText, lprc, format);
+
    }
+
    wstring wstr = gen::international::utf8_to_unicode(lpchText, cchText);
+
    bool bRet = ::DrawTextW(hdc, wstr, (int) wcslen(wstr), lprc, format) != FALSE;
+
    return bRet;
+
+#else
+
+   throw todo();
+
+#endif
+
 }
 
 

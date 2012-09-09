@@ -824,7 +824,7 @@ namespace xml
          }
 
          // is comment Node?
-         if( _strnicmp( xml, szXMLCommentOpen, sizeof(szXMLCommentOpen)-1 ) == 0 )
+         if(strnicmp_dup( xml, szXMLCommentOpen, sizeof(szXMLCommentOpen)-1 ) == 0 )
          {
             // processing comment parse
             // return pointer is next node of comment
@@ -846,7 +846,7 @@ namespace xml
          xml = _tcsskip( xml );
          prev = xml;
          // is CDATA Node?
-         if( _strnicmp( xml, szXMLCDATAOpen, sizeof(szXMLCDATAOpen)-1 ) == 0 )
+         if(strnicmp_dup( xml, szXMLCDATAOpen, sizeof(szXMLCDATAOpen)-1 ) == 0 )
          {
             // processing CDATA parse
             // return pointer is next node of CDATA
@@ -1645,7 +1645,7 @@ namespace xml
    string node::GetChildAttrValue( const char * pszName, const char * attrname )
    {
       ::xml::attr * attr = GetChildAttr( pszName, attrname );
-      return attr ? attr->get_string() : (const char *) (NULL);
+      return attr ? attr->get_string() : string("");
    }
 
    //========================================================
@@ -2167,7 +2167,7 @@ namespace xml
       // "this is not a row column v2 xml node";
       if(m_strName != "row_column_v2")
          return false;
-      ::count iColCount = attr("column_count");
+      ::count iColCount = attr("column_count").operator long int();
       if(m_nodea.get_count() == 0 ||  iColCount <= 0)
       {
          str2a.remove_all();
@@ -2179,7 +2179,7 @@ namespace xml
       for(::index iCol = 0; iCol < iColCount; iCol++)
       {
          ::xml::node * pcol = pheader->m_nodea.ptr_at(iCol);
-         str2a[iCol].set_size(pcol->attr("row_count"));
+         str2a[iCol].set_size(pcol->attr("row_count").operator long int());
       }
       for(::index iRow = 0; iRow < iRowCount; iRow++)
       {

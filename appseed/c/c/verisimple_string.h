@@ -17,7 +17,7 @@ public:
    verisimple_string(const wchar_t * psz);
    verisimple_string(const char * psz);
    verisimple_string(char ch);
-   verisimple_string(const char * psz, count count);
+   verisimple_string(const char * psz, int_ptr count);
    verisimple_string(const verisimple_string & str);
    ~verisimple_string();
 
@@ -26,8 +26,8 @@ public:
    void trim();
 
 
-    char & operator [] (index iIndex);
-    char operator [] (index iIndex) const;
+    char & operator [] (int_ptr iIndex);
+    char operator [] (int_ptr iIndex) const;
 
 
 
@@ -69,9 +69,9 @@ public:
    bool has_char() const;
 
    char * alloc(int iCount);
-   count get_length() const;
-   count length() const;
-   count size() const;
+   int_ptr get_length() const;
+   int_ptr length() const;
+   int_ptr size() const;
 
    bool begins_eat_ci(const char * pszPrefix);
    bool begins_eat_ci(const verisimple_string & strPrefix);
@@ -87,18 +87,18 @@ public:
    bool ends(const char * pszSuffix) const;
    bool ends(const verisimple_string & strSuffix) const;
 
-   verisimple_string substr(index offset, count count = -1) const;
+   verisimple_string substr(int_ptr offset, int_ptr count = -1) const;
 
-   index find(const char * pszFind, index iStart = 0) const;
-   index find(const verisimple_string & strFind, index iStart = 0) const;
+   int_ptr find(const char * pszFind, int_ptr iStart = 0) const;
+   int_ptr find(const verisimple_string & strFind, int_ptr iStart = 0) const;
    void replace(const char * pszFind, const char * pszReplace);
 
-   index find_ci(const char * pszFind, index iStart = 0) const;
-   index find_ci(const verisimple_string & strFind, index iStart = 0) const;
+   int_ptr find_ci(const char * pszFind, int_ptr iStart = 0) const;
+   int_ptr find_ci(const verisimple_string & strFind, int_ptr iStart = 0) const;
    void replace_ci(const char * pszFind, const char * pszReplace);
 
-   index rfind(char ch) const;
-   index rfind(char ch, index iStart) const;
+   int_ptr rfind(char ch) const;
+   int_ptr rfind(char ch, int_ptr iStart) const;
 
 
 
@@ -142,5 +142,5 @@ CLASS_DECL_c vsstring read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPC
 
 CLASS_DECL_c vsstring gen_utf16_to_8(const wchar_t * psz);
 
-CLASS_DECL_c void zero_pad(vsstring & str, count iPad);
+CLASS_DECL_c void zero_pad(vsstring & str, int_ptr iPad);
 

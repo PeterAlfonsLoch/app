@@ -34,6 +34,9 @@
 #define __WINESRC__
 #include "nodeapp/operational_system/bare_operational_system.h"
 #include "os_cross_windows_internals.h"
+#define CLASS_DECL_c
+#include "c/c/verisimple_string.h"
+#include "c/c/simple_mutex.h"
 #include <stdarg.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -57,14 +60,18 @@
 
 static int init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi);
 
-extern RTL_CRITICAL_SECTION TIME_tz_section;
+/*extern RTL_CRITICAL_SECTION TIME_tz_section;
 static RTL_CRITICAL_SECTION_DEBUG critsect_debug =
 {
     0, 0, &TIME_tz_section,
     { &critsect_debug.ProcessLocksList, &critsect_debug.ProcessLocksList },
       0, 0, { (dword_ptr)(__FILE__ ": TIME_tz_section") }
 };
-RTL_CRITICAL_SECTION TIME_tz_section = { &critsect_debug, -1, 0, 0, 0, 0 };
+RTL_CRITICAL_SECTION TIME_tz_section = { &critsect_debug, -1, 0, 0, 0, 0 };*/
+
+
+simple_mutex g_mutexTz;
+
 
 #define TICKSPERSEC        10000000
 #define TICKSPERMSEC       10000

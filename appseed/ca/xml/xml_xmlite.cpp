@@ -5,7 +5,7 @@ namespace xml
 
    //========================================================
    // Name   : _tcschrs
-   // Desc   : same with strpbrk 
+   // Desc   : same with strpbrk
    // Param  :
    // Return :
    //--------------------------------------------------------
@@ -26,7 +26,7 @@ namespace xml
    //========================================================
    // Name   : _tcsskip
    // Desc   : skip space
-   // Param  : 
+   // Param  :
    // Return : skiped string
    //--------------------------------------------------------
    // Coder    Date                      Desc
@@ -36,7 +36,7 @@ namespace xml
    {
       //while( psz && *psz == ' ' && *psz == 13 && *psz == 10 ) psz++;
       while( psz && isspace((unsigned char ) *psz) ) psz++;
-         
+
       return (char *)psz;
    }
 
@@ -44,7 +44,7 @@ namespace xml
    // Name   : _tcsechr
    // Desc   : similar with strchr with escape process
    // Param  : escape - will be escape character
-   // Return : 
+   // Return :
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
@@ -58,7 +58,7 @@ namespace xml
          if( escape != 0 && *pch == escape )
             pch++;
          else
-         if( *pch == ch ) 
+         if( *pch == ch )
             return (char *)pch;
          pch++;
       }
@@ -69,12 +69,12 @@ namespace xml
    // Name   : _tcselen
    // Desc   : similar with strlen with escape process
    // Param  : escape - will be escape character
-   // Return : 
+   // Return :
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca int _tcselen(int escape, char * srt, char * end) 
+   CLASS_DECL_ca int _tcselen(int escape, char * srt, char * end)
    {
       int len = 0;
       char * pch = srt;
@@ -98,7 +98,7 @@ namespace xml
    // Name   : _tcsecpy
    // Desc   : similar with _tcscpy with escape process
    // Param  : escape - will be escape character
-   // Return : 
+   // Return :
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
@@ -128,7 +128,7 @@ namespace xml
    // Name   : _tcsepbrk
    // Desc   : similar with strpbrk with escape process
    // Param  : escape - will be escape character
-   // Return : 
+   // Return :
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
@@ -145,7 +145,7 @@ namespace xml
          {
             prev_escape = NULL;
             if( strchr( chset, *pch ) )
-               return (char *)pch;      
+               return (char *)pch;
          }
          pch++;
       }
@@ -156,7 +156,7 @@ namespace xml
    // Name   : _tcsenicmp
    // Desc   : similar with strnicmp with escape process
    // Param  : escape - will be escape character
-   // Return : 
+   // Return :
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
@@ -167,7 +167,7 @@ namespace xml
       char * prev_escape = NULL;
       char * des = (char *)str;
       int i = 0;
-      
+
       while( pch && *pch && i < len )
       {
          if( escape != 0 && *pch == escape && prev_escape == NULL )
@@ -181,7 +181,7 @@ namespace xml
          }
          pch ++;
       }
-      
+
       // find
       if( i == len )
          return 0;
@@ -194,7 +194,7 @@ namespace xml
    // Name   : _tcsenistr
    // Desc   : similar with _tcsistr with escape process
    // Param  : escape - will be escape character
-   // Return : 
+   // Return :
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
@@ -205,7 +205,7 @@ namespace xml
       char * prev_escape = NULL;
       //char * des = (char *)str;
       //int i = 0;
-      
+
       while( pch && *pch )
       {
          if( escape != 0 && *pch == escape && prev_escape == NULL )
@@ -225,7 +225,7 @@ namespace xml
    // Name   : _tcseistr
    // Desc   : similar with _tcsistr with escape process
    // Param  : escape - will be escape character
-   // Return : 
+   // Return :
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
@@ -240,7 +240,7 @@ namespace xml
    // Name   : _SetString
    // Desc   : put string of (psz~end) on ps string
    // Param  : trim - will be trim?
-   // Return : 
+   // Return :
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
@@ -250,8 +250,8 @@ namespace xml
       //trim
       if( trim )
       {
-         while( psz && psz < end && _istspace(*psz) ) psz++;
-         while( (end-1) && psz < (end-1) && _istspace(*(end-1)) ) end--;
+         while( psz && psz < end && isspace(*psz) ) psz++;
+         while( (end-1) && psz < (end-1) && isspace(*(end-1)) ) end--;
       }
       strsize len = end - psz;
       if( len <= 0 ) return;
@@ -271,7 +271,7 @@ namespace xml
    }
 
 
-      
+
 
 
 
