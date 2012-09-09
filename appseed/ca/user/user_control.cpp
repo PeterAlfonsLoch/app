@@ -88,19 +88,30 @@ namespace user
 
 
    void control::descriptor::set_data_type(edatatype edatatype)
-      {
-         m_edatatype = edatatype;
-      }
+   {
+
+      m_edatatype = edatatype;
+
+   }
 
    control::edatatype control::descriptor::get_data_type()
    {
+
       return m_edatatype;
+
    }
+
 
    void control::descriptor::set_ddx_dbflags(::database::id idSection, ::database::id idKey, ::database::id idIndex, int_ptr value)
    {
-      m_eddx = control::ddx_dbflags;
-      m_ddx.m_pdbflags = new class ddx_dbflags(class ::database::key(idSection, idKey, idIndex), value);
+
+      m_eddx = ::user::control::control::ddx_dbflags;
+
+      class ::database::key key(idSection, idKey, idIndex);
+
+      m_ddx.m_pdbflags = new class ::user::control::ddx_dbflags(key, value);
+
+
    }
 
    control::descriptor_set::descriptor_set()
@@ -168,7 +179,16 @@ namespace user
 
       ::view::install_message_handling(pdispatch);
       IGUI_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &::user::control::_001OnMouseMove);
+
+#ifdef WINDOWS
+
       IGUI_MSG_LINK(WM_MOUSELEAVE, pdispatch, this, &::user::control::_001OnMouseLeave);
+
+#else
+
+      throw not_implemented_exception();
+
+#endif
 
 
    }
@@ -671,17 +691,28 @@ namespace user
 
    bool control_view_impl::BaseControlExOnCommand(WPARAM wParam, LPARAM lParam)
    {
+
       UNREFERENCED_PARAMETER(lParam);
+
       if(GetWnd() != NULL)
       {
+
          UINT uiMessage = ((wParam >> 16) & 0xffff);
+
+#ifdef WINDOWS
+
          if(uiMessage == BN_CLICKED)
          {
             //xxx id idCommand = m_cmdui.GetControlCommand(wParam & 0xffff);
             //xxx GetWnd()->GetParentFrame()->_001SendCommand(idCommand);
          }
+
+#endif
+
       }
+
       return FALSE;
+
    }
 
 
@@ -727,9 +758,9 @@ namespace user
 
       if(m_iHover != iHover)
       {
-         
+
          m_iHover = iHover;
-         
+
          if(m_iHover >= 0)
          {
             track_mouse_leave();
@@ -740,9 +771,9 @@ namespace user
    }
 
 
-   void control::_001OnMouseLeave(gen::signal_object * pobj) 
+   void control::_001OnMouseLeave(gen::signal_object * pobj)
    {
-   
+
       UNREFERENCED_PARAMETER(pobj);
 
       m_iHover = -1;

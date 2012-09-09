@@ -478,11 +478,14 @@ namespace radix
       }
 
    class command_target;            // a target for ::fontopus::user commands
+
    namespace user
    {
       class interaction;
       class edit_plain_text;            // Edit control
    } // namespace user
+
+
       class virtual_user_interface;
          class dialog;          // a dialog
 

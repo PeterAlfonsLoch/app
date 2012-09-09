@@ -1,20 +1,10 @@
 #include "framework.h"
+
+#ifdef WINDOWS
 #include <dde.h>        // for DDE execute shell requests
+#endif
 
-
-
-/////////////////////////////////////////////////////////////////////////////
-// rect for creating windows with the default position/size
-
-const __DATADEF rect frame_window::rectDefault(
-   CW_USEDEFAULT, CW_USEDEFAULT,
-   0 /* 2*CW_USEDEFAULT */, 0 /* 2*CW_USEDEFAULT */);
-
-// register for Windows 95 or Windows NT 3.51
-UINT gen_MsgMouseWheel =
-   (((::GetVersion() & 0x80000000) && LOBYTE(LOWORD(::GetVersion()) == 4)) ||
-    (!(::GetVersion() & 0x80000000) && LOBYTE(LOWORD(::GetVersion()) == 3)))
-    ? ::RegisterWindowMessage(MSH_MOUSEWHEEL) : 0;
+CLASS_DECL_ca ::user::interaction * __get_parent_owner(::user::interaction * hWnd);
 
 /////////////////////////////////////////////////////////////////////////////
 // frame_window
@@ -81,7 +71,6 @@ UINT gen_MsgMouseWheel =
 
 frame_window::frame_window()
 {
-   ASSERT(_get_handle() == NULL);
 
    m_nWindow = -1;                 // unknown ::ca::window ID
    m_bAutoMenuEnable = TRUE;       // auto enable on by default
@@ -991,7 +980,7 @@ void frame_window::_001OnActivate(gen::signal_object * pobj)
    // get top level frame unless this is a child ::ca::window
    // determine if ::ca::window should be active or not
    frame_window* pTopLevel = (GetStyle() & WS_CHILD) ? this : dynamic_cast < frame_window * > (GetTopLevelFrame());
-   
+
    if(pTopLevel == NULL)
       pTopLevel = this;
 
@@ -1419,18 +1408,18 @@ void frame_window::UpdateFrameTitleForDocument(const char * lpszDocName)
          // add current ::ca::window # if needed
          if (m_nWindow > 0)
          {
-            
+
             string strText;
 
             // :%d will produce a maximum of 11 TCHARs
             strText.Format(":%d", m_nWindow);
-            
+
             WindowText += strText;
-            
+
          }
-         
+
          WindowText += " - ";
-         
+
       }
       WindowText += m_strTitle;
    }
@@ -1446,14 +1435,14 @@ void frame_window::UpdateFrameTitleForDocument(const char * lpszDocName)
          // add current ::ca::window # if needed
          if (m_nWindow > 0)
          {
-            
+
             string strText;
 
             // :%d will produce a maximum of 11 TCHARs
             strText.Format(":%d", m_nWindow);
-            
+
             WindowText += strText;
-            
+
          }
       }
    }
@@ -1806,7 +1795,7 @@ void frame_window::_001OnSysCommand(gen::signal_object * pobj)
 
 void frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, DWORD dwCtrlStyle, DWORD dwStyle)
 {
-   
+
    throw interface_only_exception();
 
 }

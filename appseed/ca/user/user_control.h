@@ -83,12 +83,18 @@ namespace user
       };
 
    // sort_array < INT_PR, int_ptr >
-      class ddx_dbflags
+      class CLASS_DECL_ca ddx_dbflags
       {
       public:
+
+
          ddx_dbflags(::database::key key, int_ptr value);
-         ::database::key                               m_key;
-         int_ptr                                m_value;
+
+
+         ::database::key                  m_key;
+         int_ptr                          m_value;
+
+
       };
 
       class CLASS_DECL_ca descriptor
@@ -111,6 +117,7 @@ namespace user
          form *                  m_pform;
          control *               m_pcontrol;
          id                      m_id;
+         id                      m_uiText;
          ::ca::type_info         m_typeinfo;
          index                   m_iSubItem;
          id                      m_idPrivateDataSection;
@@ -148,7 +155,7 @@ namespace user
          public array_ptr_alloc < descriptor >
       {
       public:
-         
+
 
          descriptor_set();
          virtual ~descriptor_set();
@@ -158,7 +165,7 @@ namespace user
          descriptor * get(::user::interaction * puie);
          descriptor * get_by_sub_item(int iSubItem);
 
-         
+
       };
 
 
@@ -185,7 +192,7 @@ namespace user
 
       bool _003IsCustomMessage();
       ::user::window_interface * _003GetCustomMessageWnd();
-      
+
 
 
       virtual int get_hover();
@@ -211,7 +218,7 @@ namespace user
       index GetEditItem();
 
       virtual ::user::interaction * ControlExGetWnd();
-      
+
       using ::user::interaction::GetClientRect;
       using ::user::interaction::GetWindowRect;
       virtual void GetClientRect(LPRECT lprect);

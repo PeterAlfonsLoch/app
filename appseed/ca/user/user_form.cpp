@@ -9,25 +9,34 @@ namespace user
       ca(papp),
       ::user::interaction(papp)
    {
-      m_bOnEditUpdate      = false;
-      m_bOnLanguageChange  = false;
-      m_pcallback          = NULL;
-      m_bInitialized       = false;
+
+      m_bOnEditUpdate         = false;
+      m_bOnLanguageChange     = false;
+      m_pcallback             = NULL;
+      m_bInitialized          = false;
    }
+
 
    form::~form()
    {
 
    }
 
+
    index form::_001AddControl(class control::descriptor & descriptorParam)
    {
+
       index indexNew = m_controldescriptorset.add(descriptorParam);
+
       descriptorParam.clear();
+
       class control::descriptor * pdescriptor = m_controldescriptorset.ptr_at(indexNew);
+
       pdescriptor->m_pform = this;
+
       if(pdescriptor->m_bTransparent)
       {
+
          switch(pdescriptor->m_etype)
          {
          case control::type_static:
@@ -44,14 +53,21 @@ namespace user
 
          }
       }
+
       if(pdescriptor->m_typeinfo)
       {
+
          if(pdescriptor->m_bCreated && pdescriptor->m_pcontrol != NULL)
          {
+
             pdescriptor->m_bCreated = false;
+
             delete pdescriptor->m_pcontrol;
+
             pdescriptor->m_pcontrol = NULL;
+
          }
+
          if(dynamic_cast < ::user::interaction * > (pdescriptor->m_pcontrol) != NULL)
          {
             //window_id wndidTemp = pform->get_child_by_id(descriptor.m_id)->GetSafeHwnd();
@@ -76,6 +92,7 @@ namespace user
          }
          else
          {
+
             if(create_control(pdescriptor))
             {
             }
@@ -85,6 +102,7 @@ namespace user
                ASSERT(FALSE);
             }
          }
+
       }
       else if(create_control(pdescriptor))
       {
@@ -106,19 +124,28 @@ namespace user
             simple_static * pstatic = (simple_static *) pcontrol->m_pwnd;
             pstatic->m_bTransparent = pcontrol->m_bTransparent;
          }*/
+
          _001OnInitializeForm(pdescriptor->m_pcontrol);
+
       }
+
       return indexNew;
+
    }
+
 
    bool form::OnCommand(WPARAM wparam, LPARAM lparam)
    {
+
       UINT uiNotificationCode = HIWORD(wparam);
+
       UINT uiId = LOWORD(wparam);
 
       control * pcontrol = m_controldescriptorset.get_control_by_id(uiId);
+
       if(pcontrol == NULL)
          return false;
+
       switch(pcontrol->descriptor().get_type())
       {
       case control::type_button:
@@ -138,15 +165,23 @@ namespace user
       }
 
       return false;
+
    }
+
 
    bool form::OnCommandButton(control * pcontrol, UINT uiNotificationCode, LPARAM lparam)
    {
+
       UNREFERENCED_PARAMETER(lparam);
+
       ASSERT(pcontrol != NULL);
+
       if(pcontrol == NULL)
          return false;
+
       ASSERT(pcontrol->descriptor().get_type() == control::type_button);
+
+#ifdef WINDOWS
 
       switch(uiNotificationCode)
       {
@@ -163,16 +198,25 @@ namespace user
          break;
       }
 
+#endif
+
       return false;
    }
 
+
    bool form::OnCommandCheckBox(control * pcontrol, UINT uiNotificationCode, LPARAM lparam)
    {
+
       UNREFERENCED_PARAMETER(lparam);
+
       ASSERT(pcontrol != NULL);
+
       if(pcontrol == NULL)
          return false;
+
       ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
+
+#ifdef WINDOWS
 
       switch(uiNotificationCode)
       {
@@ -187,16 +231,26 @@ namespace user
          break;
       }
 
+#endif
+
       return false;
+
    }
+
 
    bool form::OnCommandComboBox(control * pcontrol, UINT uiNotificationCode, LPARAM lparam)
    {
+
       UNREFERENCED_PARAMETER(lparam);
+
       ASSERT(pcontrol != NULL);
+
       if(pcontrol == NULL)
          return false;
+
       ASSERT(pcontrol->descriptor().get_type() == control::type_combo_box);
+
+#ifdef WINDOWS
 
       switch(uiNotificationCode)
       {
@@ -219,16 +273,26 @@ namespace user
          break;
       }
 
+#endif
+
       return false;
+
    }
+
 
    bool form::OnCommandEdit(control * pcontrol, UINT uiNotificationCode, LPARAM lparam)
    {
+
       UNREFERENCED_PARAMETER(lparam);
+
       ASSERT(pcontrol != NULL);
+
       if(pcontrol == NULL)
          return false;
+
       ASSERT(pcontrol->descriptor().get_type() == control::type_edit);
+
+#ifdef WINDOWS
 
       switch(uiNotificationCode)
       {
@@ -248,29 +312,41 @@ namespace user
          break;
       }
 
+#endif
+
       return false;
+
    }
+
 
    bool form::_001SaveEdit(control * pcontrol)
    {
+
       if(pcontrol == NULL)
          return false;
-      ASSERT(pcontrol->descriptor().get_type() == control::type_edit
-         || pcontrol->descriptor().get_type() == control::type_edit_plain_text);
 
+      ASSERT(pcontrol->descriptor().get_type() == control::type_edit || pcontrol->descriptor().get_type() == control::type_edit_plain_text);
 
       text_interface * pedit = dynamic_cast < text_interface * >( get_child_by_id(pcontrol->m_id));
+
       string str;
+
       if(pedit == NULL)
       {
+
          text_interface * ptext = dynamic_cast < text_interface * > (pcontrol);
+
          if(ptext == NULL)
             return false;
+
          ptext->_001GetText(str);
+
       }
       else
       {
+
          pedit->_001GetText(str);
+
       }
 
       if(!pcontrol->Validate(str))
@@ -620,120 +696,183 @@ namespace user
 
    void form::_001OnNotify(gen::signal_object * pobj)
    {
+
+#ifdef WINDOWS
+
       SCAST_PTR(::gen::message::notify, pnotify, pobj)
+
       pnotify->m_bRet = false;
+
+#endif
+
    }
+
 
    void form::_001OnMessageNotify(gen::signal_object * pobj)
    {
+
       SCAST_PTR(::gen::message::base, pbase, pobj)
+
       // revamp pbase->set_lresult(user::NotifyRetContinue);
+
       pbase->m_bRet = false;
+
    }
 
-   bool form::_001Validate(
-      control * pcontrol,
-      var & var)
+
+   bool form::_001Validate(control * pcontrol, var & var)
    {
+
       UNREFERENCED_PARAMETER(pcontrol);
       UNREFERENCED_PARAMETER(var);
+
       return true;
+
    }
+
 
    void form::_001RemoveControls()
    {
+
       m_controldescriptorset.remove_all();
+
    }
+
 
    bool form::_001OnBeforeSave(control * pcontrol)
    {
+
       UNREFERENCED_PARAMETER(pcontrol);
+
       return true;
+
    }
 
    void form::data_on_after_change(gen::signal_object * pobj)
    {
+
       SCAST_PTR(::database::change_event, pchange, pobj);
+
       if(pchange->m_puh != NULL)
       {
+
          if(pchange->m_puh->has_self(this))
          {
+
             return;
+
          }
+
       }
+
       for(int iControl = 0; iControl < m_controldescriptorset.get_size(); iControl++)
       {
+
          control * pcontrol = m_controldescriptorset[iControl].m_pcontrol;
+
          if(pcontrol == NULL)
             continue;
+
          if(m_controldescriptorset[iControl].m_eddx == control::ddx_dbflags)
          {
+
             _001UpdateDbFlags(pcontrol);
+
          }
          else if(m_controldescriptorset[iControl].m_dataid == pchange->m_key.m_idKey)
          {
+
             _001Update(pcontrol);
+
          }
+
       }
+
    }
+
 
    void form::_001UpdateFunctionStatic()
    {
+
       for(int i = 0; i < m_controldescriptorset.get_size(); i++)
       {
+
          class control::descriptor & descriptor = m_controldescriptorset[i];
+
          if(descriptor.has_function(control::function_static))
          {
-            throw not_implemented_exception();
-            /*
+
             string str;
-            str.load_string(descriptor.m_id);*/
-            //ASSERT(pcontrol != NULL);
-         //xxx   pcontrol->m_pwnd->SetWindowText(str);
+
+            str.load_string(get_app(), descriptor.m_id);
+
+            descriptor.m_pcontrol->SetWindowText(str);
+
          }
-         /*else if(descriptor.has_function(control::function_static2))
+         else if(descriptor.has_function(control::function_static2))
          {
+
             string str;
-            str.load_string(descriptor.m_uiText);
-            ASSERT(pcontrol != NULL);
-         //xxx pcontrol->m_pwnd->SetWindowText(str);
-         }*/
+
+            str.load_string(get_app(), descriptor.m_uiText);
+
+            descriptor.m_pcontrol->SetWindowText(str);
+
+         }
+
       }
+
    }
+
 
    void form::WfiOnClose()
    {
+
       PostMessage(WM_CLOSE);
+
    }
+
 
    void form::_001OnInitializeForm(control * pcontrol)
    {
+
       ::user::control_event ev;
-      ev.m_puie      = pcontrol;
-      ev.m_bUser     = false;
-      ev.m_eevent     = ::user::event_initialize_control;
-      ev.m_uiEvent   = 0;
+
+      ev.m_puie         = pcontrol;
+      ev.m_bUser        = false;
+      ev.m_eevent       = ::user::event_initialize_control;
+      ev.m_uiEvent      = 0;
+
       BaseOnControlEvent(&ev);
+
    }
+
 
    void form::_001OnButtonAction(control * pcontrol)
    {
+
       UNREFERENCED_PARAMETER(pcontrol);
+
    }
 
 
    void form::_001OnAppLanguage(gen::signal_object * pobj)
    {
+
       SCAST_PTR(::gen::message::base, pbase, pobj)
+
       keeper < bool > keepOnLanguageChange(&m_bOnLanguageChange, true, false, true);
 
       _017OnAppLanguage();
 
       pbase->m_bRet = false;
+
    }
+
 
    void form::_001OnCreate(gen::signal_object * pobj)
    {
+
 //      SCAST_PTR(::gen::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
@@ -742,8 +881,10 @@ namespace user
 
    }
 
+
    void form::_001FillCombo(control * pcontrol)
    {
+
       ASSERT(pcontrol != NULL);
       if(pcontrol == NULL)
          return;
@@ -773,8 +914,10 @@ namespace user
       } */
    }
 
+
    void form::_017OnAppLanguage()
    {
+
       for(int i = 0; i < m_controldescriptorset.get_size() ; i++)
       {
          class control::descriptor & descriptor = m_controldescriptorset[i];
@@ -823,8 +966,10 @@ namespace user
 
    }
 
+
    bool form::create_control(class control::descriptor * pdescriptor)
    {
+
       if(!normalize_control_descriptor_typeinfo(pdescriptor))
       {
          TRACE("form::create_control: failed to create control, could not find proper type_info for allocation");
@@ -850,20 +995,29 @@ namespace user
       }
       return true;
    }
+
+
    void form::_001SetControlFactory()
    {
+
    }
+
 
    string form::get_path()
    {
       return "";
    }
 
+
    bool form::open_document(var varFile)
    {
+
       UNREFERENCED_PARAMETER(varFile);
+
       return true;
+
    }
+
 
    bool form::BaseOnControlEvent(::user::control_event * pevent)
    {
@@ -934,6 +1088,7 @@ namespace user
       return false;
    }
 
+
    bool form::_001Initialize()
    {
       if(m_bInitialized)
@@ -957,49 +1112,75 @@ namespace user
             continue;
          _001Update(pcontrol);
       }
+
       m_bInitialized = true;
+
       return true;
+
    }
+
 
    bool form::_001IsPointInside(control * pcontrol, point64 point)
    {
+
       if(pcontrol == NULL)
          return false;
+
       return pcontrol->_001IsPointInside(point);
+
    }
+
+
 
    bool form::normalize_control_descriptor_typeinfo(class user::control::descriptor * pdescriptor)
    {
+
       if(pdescriptor->m_typeinfo)
       {
+
          return true;
+
       }
+
       pdescriptor->m_typeinfo = System.controltype_to_typeinfo(pdescriptor->get_type());
+
       if(pdescriptor->m_typeinfo)
       {
+
          return true;
+
       }
+
       return false;
+
    }
+
 
    void form::OnBeforeNavigate2(var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel)
    {
+
       UNREFERENCED_PARAMETER(varFile);
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(lpszTargetFrameName);
       UNREFERENCED_PARAMETER(baPostedData);
       UNREFERENCED_PARAMETER(lpszHeaders);
       UNREFERENCED_PARAMETER(pbCancel);
+
    }
+
 
    void form::control_get_window_rect(control * pcontrol, LPRECT lprect)
    {
+
       pcontrol->GetWindowRect(lprect);
+
    }
 
    void form::control_get_client_rect(control * pcontrol, LPRECT lprect)
    {
+
       pcontrol->GetClientRect(lprect);
+
    }
 
 

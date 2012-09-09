@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "sal.h"
 
 
 
@@ -476,6 +475,8 @@ count document_manager::get_document_count()
    return nCount;
 }
 
+#ifdef WINDOWS
+
 bool document_manager::OnDDECommand(__in LPTSTR lpszCommand)
 {
    UNREFERENCED_PARAMETER(lpszCommand);
@@ -654,6 +655,8 @@ void document_manager::_001OnFileNew()
       // if returns NULL, the ::fontopus::user has already been alerted*/
    return TRUE;
 }
+
+#endif
 
 void document_manager::on_file_open()
 {

@@ -6615,7 +6615,7 @@
 	"ex1_simple_tree_item_data.h"
 	"ex1_simple_tree_data.h"
 
-1345878354 /ca2/app/appseed/ca/radix/radix.h
+1347149726 /ca2/app/appseed/ca/radix/radix.h
 	"app/appseed/ca/ca/ca.h"
 	<new.h>
 	<malloc/malloc.h>
@@ -7849,7 +7849,7 @@
 
 1342864737 /ca2/app/appseed/ca/ca/ca_edit.h
 
-1342864737 /ca2/app/appseed/ca/ca/ca_type_info.h
+1347160360 /ca2/app/appseed/ca/ca/ca_type_info.h
 
 1342864717 /ca2/app/appseed/ca/radix/radix_factory.h
 	"radix_fixed_alloc.h"
@@ -9467,21 +9467,21 @@
 
 1342864829 /ca2/app/appseed/ca/visual/visual_application.h
 
-1342864881 /ca2/app/appseed/ca/user/user_document_interface.h
+1347148145 /ca2/app/appseed/ca/user/user_document_interface.h
 
 1342864881 /ca2/app/appseed/ca/user/user_document.h
 
 1342864881 /ca2/app/appseed/ca/user/user_view.h
 
-1342864881 /ca2/app/appseed/ca/user/user_control.h
+1347162999 /ca2/app/appseed/ca/user/user_control.h
 
 1342864881 /ca2/app/appseed/ca/user/user_place_holder.h
 
 1342864881 /ca2/app/appseed/ca/user/user_place_holder_container.h
 
-1342864881 /ca2/app/appseed/ca/user/user_frame_window_interface.h
+1347161792 /ca2/app/appseed/ca/user/user_frame_window_interface.h
 
-1342864881 /ca2/app/appseed/ca/user/user_frame_window.h
+1347151055 /ca2/app/appseed/ca/user/user_frame_window.h
 
 1342864881 /ca2/app/appseed/ca/user/user_wait_message_dialog.h
 
@@ -9800,7 +9800,7 @@
 1346980282 source:/ca2/app/appseed/ca/ca/ca_thread.cpp
 	"framework.h"
 
-1342864737 source:/ca2/app/appseed/ca/ca/ca_type_info.cpp
+1347161395 source:/ca2/app/appseed/ca/ca/ca_type_info.cpp
 	"framework.h"
 
 1346980282 source:/ca2/app/appseed/ca/ca/ca_window.cpp
@@ -12290,5 +12290,109 @@
 	"framework.h"
 
 1342864881 source:/ca2/app/appseed/ca/user/user_check_interface.cpp
+	"framework.h"
+
+1347145073 source:/ca2/app/appseed/ca/sockets/timer/sockets_EventTime.cpp
+	"framework.h"
+	<stdint.h>
+	<sys/types.h>
+	<signal.h>
+	<sys/select.h>
+	<sys/time.h>
+
+1342864881 source:/ca2/app/appseed/ca/user/user_control_event.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_control_property.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_create_context.cpp
+	"framework.h"
+
+1345878359 source:/ca2/app/appseed/ca/user/user_data_exchange.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_document.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_document_request_interface.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_document_template_tnterface.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_draw_context.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_draw_interface.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_document_template.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_elemental.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_form_callback.cpp
+	"framework.h"
+
+1347149519 source:/ca2/app/appseed/ca/user/user_control.cpp
+	"framework.h"
+
+1347149585 source:/ca2/app/appseed/ca/user/user_document_manager.cpp
+	"framework.h"
+
+1347150612 source:/ca2/app/appseed/ca/user/user_application.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_job.cpp
+	"framework.h"
+
+1347161746 source:/ca2/app/appseed/ca/user/user_keyboard_focus.cpp
+	"framework.h"
+
+1347161792 source:/ca2/app/appseed/ca/user/user_frame_window_interface.cpp
+	"framework.h"
+
+1347162499 source:/ca2/app/appseed/ca/user/user_document_interface.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_keyboard_layout.cpp
+	"framework.h"
+
+1345878359 source:/ca2/app/appseed/ca/user/user_keyboard_layout_cfg.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_message_box.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_mouse_focus.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_multiple_document_template.cpp
+	"framework.h"
+
+1345878359 source:/ca2/app/appseed/ca/user/user_network_configuration.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_place_holder.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_place_holder_container.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_single_document_template.cpp
+	"framework.h"
+
+1346980288 source:/ca2/app/appseed/ca/user/user_str.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_text_interface.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_view_container.cpp
+	"framework.h"
+
+1342864881 source:/ca2/app/appseed/ca/user/user_view_creator.cpp
 	"framework.h"
 

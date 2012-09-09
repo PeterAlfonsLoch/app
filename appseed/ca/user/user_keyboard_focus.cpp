@@ -31,7 +31,10 @@ namespace user
 
    void keyboard_focus::keyboard_focus_OnKeyDown(gen::signal_object * pobj)
    {
+
       SCAST_PTR(::gen::message::key, pkey, pobj)
+
+#ifdef WINDOWS
 
       if(pkey->m_nChar == VK_TAB)
       {
@@ -42,6 +45,9 @@ namespace user
          GetParent()->BaseOnControlEvent(&ev);
          BaseOnControlEvent(&ev);
       }
+
+#endif
+
    }
 
    void keyboard_focus::keyboard_focus_OnKeyUp(gen::signal_object * pobj)

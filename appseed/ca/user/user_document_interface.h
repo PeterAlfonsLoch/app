@@ -16,6 +16,14 @@ namespace user
 
 
       comparable_array < document * >  m_documentptra;
+      string                           m_strTitle;
+      string                           m_strPathName;
+      document_template *              m_pdocumentemplate;
+      comparable_array < ::view * >    m_viewptra;
+      bool                             m_bModified;
+      bool                             m_bNew;
+      bool                             m_bAutoDelete;     // TRUE => delete document when no more views
+      bool                             m_bEmbedded;       // TRUE => document is being created by OLE
 
 
       document_interface();
@@ -116,17 +124,6 @@ namespace user
       virtual bool save_modified(); // return TRUE if ok to continue
       virtual void pre_close_frame(frame_window* pFrame);
 
-   protected:
-      string               m_strTitle;
-      string               m_strPathName;
-      document_template *    m_pdocumentemplate;
-      comparable_array < ::view * > m_viewptra;
-      bool                 m_bModified;
-      bool                 m_bNew;
-
-   public:
-      bool m_bAutoDelete;     // TRUE => delete document when no more views
-      bool m_bEmbedded;       // TRUE => document is being created by OLE
 
       virtual void dump(dump_context&) const;
       virtual void assert_valid() const;

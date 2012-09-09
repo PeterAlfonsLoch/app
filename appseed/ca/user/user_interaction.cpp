@@ -1,6 +1,8 @@
 #include "framework.h"
 
 
+CLASS_DECL_ca ::user::interaction * __get_parent_owner(::user::interaction * hWnd);
+
 
 namespace user
 {
@@ -181,9 +183,13 @@ namespace user
       {
          if(pguieParent == NULL)
          {
+
             m_pimpl->SetParent(NULL);
-            ::ca::window * pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.template type_info < ::ca::window > ()));
+
+            ::ca::window * pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+
             pimplNew->m_pguie = this;
+
             m_pimpl = pimplNew;
             string strName;
             GetWindowText(strName);
@@ -531,7 +537,7 @@ namespace user
 
 
       pgraphics->SelectClipRgn(NULL);
-      
+
       pgraphics->SetViewportOrg(ptViewport);
 
 
@@ -1049,19 +1055,53 @@ namespace user
          return m_pimpl->pre_translate_message(pobj);
    }
 
+#ifdef WINDOWS
+
    HWND interaction::_get_handle()
    {
+
       try
       {
+
          if(get_wnd() == NULL)
             return NULL;
+
       }
       catch(...)
       {
+
          return NULL;
+
       }
+
       return (HWND) get_wnd()->get_os_data();
+
    }
+
+#else
+
+   int interaction::_get_handle()
+   {
+
+      try
+      {
+
+         if(get_wnd() == NULL)
+            return NULL;
+
+      }
+      catch(...)
+      {
+
+         return NULL;
+
+      }
+
+      return (int) get_wnd()->get_os_data();
+
+   }
+
+#endif
 
 
    bool interaction::subclass_window(void * posdata)
@@ -1407,7 +1447,7 @@ namespace user
          // todo, reached desktop or similar very top system window
          return NULL;
       }
-      
+
       index iFind = GetParent()->m_uiptraChild.find(this);
 
       if(iFind < 0)
@@ -2114,9 +2154,9 @@ namespace user
 
             // reset "no idle" state after pumping "normal" message
             /*
-            
+
             todo: enable again to update menu enabled/and other states
-            
+
             if (__is_idle_message(&msg))
             {
                bIdle = TRUE;
@@ -2142,10 +2182,10 @@ namespace user
                pliveobject->keep();
             }*/
 
-         } 
+         }
          while (::PeekMessage(&msg, NULL, NULL, NULL, PM_NOREMOVE) != FALSE);
 
-      
+
          if(m_pguie->m_pthread != NULL)
          {
             m_pguie->m_pthread->step_timer();
@@ -2427,7 +2467,7 @@ ExitModal:
 
       if(::GetTickCount() >= (m_uiLastSent + m_uiElapse))
       {
-         
+
          bool bWindow;
 
          try
@@ -2442,12 +2482,12 @@ ExitModal:
          {
             return false;
          }
-         
+
          if(!bWindow)
             return false;
 
          sl.unlock();
-         
+
          try
          {
             m_pguie->send_message(WM_TIMER, m_uiId);
@@ -2456,7 +2496,7 @@ ExitModal:
          {
             return false;
          }
-         
+
          sl.lock();
 
          m_uiLastSent = ::GetTickCount();
@@ -2938,14 +2978,14 @@ restart:
 
    COLORREF interaction::get_background_color()
    {
-      
+
       return m_crDefaultBackgroundColor;
-      
+
    }
 
    void interaction::set_default_background_color(COLORREF crDefaultBackgroundColor)
    {
-      
+
       m_crDefaultBackgroundColor = crDefaultBackgroundColor;
 
    }
@@ -2966,7 +3006,7 @@ restart:
 
    bool interaction::update_data(bool bSaveAndValidate)
    {
-      
+
       return true;
 
    }

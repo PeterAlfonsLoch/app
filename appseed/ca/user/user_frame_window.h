@@ -56,7 +56,6 @@ public:
    ::id           m_idHelp;         // xxx mrs
 
 
-   static const rect rectDefault;
    int m_nWindow;  // general purpose ::ca::window number - display as ":n"
                // -1 => unknown, 0 => only ::ca::window viewing ::user::document_interface
                // 1 => first of many windows viewing ::user::document_interface, 2=> second
@@ -98,7 +97,7 @@ public:
    virtual bool create(const char * lpszClassName,
             const char * lpszWindowName,
             DWORD dwStyle = WS_OVERLAPPEDWINDOW,
-            const RECT& rect = rectDefault,
+            const RECT& rect = rect(0, 0, 0, 0),
             ::user::interaction* pParentWnd = NULL,        // != NULL for popups
             const char * lpszMenuName = NULL,
             DWORD dwExStyle = 0,

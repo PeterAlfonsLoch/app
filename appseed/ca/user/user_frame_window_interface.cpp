@@ -23,16 +23,11 @@ namespace user
    {
       UNREFERENCED_PARAMETER(lprect);
    }
-   
+
 
    void frame_window_interface::SetBorderRect(LPCRECT lpcrect)
    {
       UNREFERENCED_PARAMETER(lpcrect);
-   }
-
-   HWND frame_window_interface::_GetSafeHwnd()
-   {
-      return _get_handle();
    }
 
    OleFrameHook * frame_window_interface::GetNotifyHook()

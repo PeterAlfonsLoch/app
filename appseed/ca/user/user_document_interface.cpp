@@ -289,31 +289,51 @@ namespace user
 
    void document_interface::on_file_save_as()
    {
-      if(!do_save(NULL))
+
+      if(!do_save(var(var::type_empty)))
+      {
+
          TRACE(::radix::trace::category_AppMsg, 0, "Warning: File save-as failed.\n");
+
+      }
+
+
    }
 
    bool document_interface::do_file_save()
    {
-      if(is_new_document() ||
-         System.file_is_read_only(m_strPathName))
+
+      if(is_new_document() || System.file_is_read_only(m_strPathName))
       {
+
          // we do not have read-write access or the file does not (now) exist
-         if (!do_save(NULL))
+
+         if(!do_save(var(var::type_empty)))
          {
+
             TRACE(::radix::trace::category_AppMsg, 0, "Warning: File save with new name failed.\n");
+
             return FALSE;
+
          }
+
       }
       else
       {
-         if (!do_save(m_strPathName))
+
+         if(!do_save(m_strPathName))
          {
+
             TRACE(::radix::trace::category_AppMsg, 0, "Warning: File save failed.\n");
+
             return FALSE;
+
          }
+
       }
+
       return TRUE;
+
    }
 
    bool document_interface::do_save(var varFile, bool bReplace)
@@ -324,8 +344,10 @@ namespace user
       // if 'bReplace' is TRUE will change file name if successful (SaveAs)
       // if 'bReplace' is FALSE will not change path name (SaveCopyAs)
    {
+
       var newName = varFile;
-      if (newName.is_empty() || is_new_document())
+
+      if(newName.is_empty() || is_new_document())
       {
          document_template * ptemplate = get_document_template();
          ASSERT(ptemplate != NULL);
@@ -716,7 +738,7 @@ namespace user
       ASSERT(pview->::view::get_document() == this); // must be attached to us
       if(m_viewptra.remove(pview) > 0)
       {
-         pview->m_spdocument = NULL;
+         pview->m_spdocument = ::ca::null();
          on_changed_view_list();    // must be the last thing done to the document_interface
       }
    }

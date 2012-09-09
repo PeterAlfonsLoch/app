@@ -107,9 +107,9 @@ retry_license:
 
          if(!App(this).is_licensed(strLicense))
          {
-            
+
             App(this).license().m_mapInfo.remove_key(strLicense);
-            
+
             if(iRetry > 0)
                goto retry_license;
 
@@ -410,11 +410,11 @@ retry_license:
 
          if(&keyboard().layout() != NULL)
          {
-            
+
             if(Application.m_puser != NULL
             && Application.m_puser->m_strFontopusServerSessId.has_char())
             {
-            
+
                data_set("keyboard_layout", keyboard().layout().m_strPath);
 
             }
@@ -467,13 +467,9 @@ retry_license:
 
    ca::type_info application::controltype_to_typeinfo(user::control::e_type e_type)
    {
-      switch(e_type)
-      {
-      case user::control::e_type::type_edit_plain_text:
-         return typeid(edit_plain_text);
-      default:
-         return ::ca::type_info();
-      }
+
+      return ::ca::type_info();
+
    }
 
 

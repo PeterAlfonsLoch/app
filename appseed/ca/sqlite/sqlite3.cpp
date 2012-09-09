@@ -101,6 +101,10 @@ namespace sqlite
    ** practically it's == sizeof(void *)).  We fall back to an int if this type
    ** isn't defined.
    */
+#ifdef LINUX
+#define HAVE_INTPTR_T
+#endif
+
 #ifdef HAVE_INTPTR_T
    typedef intptr_t sqlite3_intptr_t;
 #else
@@ -12972,7 +12976,7 @@ zulu_time:
       sqlite3_mutex *p;
       switch( iType ){
       case SQLITE_MUTEX_RECURSIVE: {
-         p = sqlite3MallocZero( sizeof(*p) );
+         p = (sqlite3_mutex *) sqlite3MallocZero( sizeof(*p) );
          if( p ){
 #ifdef SQLITE_HOMEGROWN_RECURSIVE_MUTEX
             /* If recursive mutexes are not available, we will have to
@@ -12991,7 +12995,7 @@ zulu_time:
          break;
                                    }
       case SQLITE_MUTEX_FAST: {
-         p = sqlite3MallocZero( sizeof(*p) );
+         p = (sqlite3_mutex *) sqlite3MallocZero( sizeof(*p) );
          if( p ){
             p->id = iType;
             pthread_mutex_init(&p->mutex, 0);
@@ -14278,7 +14282,7 @@ zulu_time:
                char q = ((xtype==etSQLESCAPE3)?'"':'\'');   /* Quote character */
                char *escarg = va_arg(ap,char*);
                isnull = escarg==0;
-               if( isnull ) escarg = (xtype==etSQLESCAPE2 ? "NULL" : "(NULL)");
+               if( isnull ) escarg = (char *) (xtype==etSQLESCAPE2 ? "NULL" : "(NULL)");
                for(i=n=0; (ch=escarg[i])!=0; i++){
                   if( ch==q )  n++;
                }
@@ -15132,8 +15136,11 @@ zulu_time:
    ** The following constant value is used by the SQLITE_BIGENDIAN and
    ** SQLITE_LITTLEENDIAN macros.
    */
+#ifdef SQLITE_AMALGAMATION
+   const int sqlite3one = 1;
+#else
    SQLITE_PRIVATE const int sqlite3one = 1;
-
+#endif
    /*
    ** This lookup table is used to help decode the first byte of
    ** a multi-byte UTF8 character.
@@ -18818,7 +18825,7 @@ translate_out:
          pLock = (struct lockInfo*)sqlite3HashFind(&lockHash, &key1, sizeof(key1));
          if( pLock==0 ){
             struct lockInfo *pOld;
-            pLock = sqlite3_malloc( sizeof(*pLock) );
+            pLock = (struct lockInfo *) sqlite3_malloc( sizeof(*pLock) );
             if( pLock==0 ){
                rc = 1;
                goto exit_findlockinfo;
@@ -18827,7 +18834,7 @@ translate_out:
             pLock->nRef = 1;
             pLock->cnt = 0;
             pLock->locktype = 0;
-            pOld = sqlite3HashInsert(&lockHash, &pLock->key, sizeof(key1), pLock);
+            pOld = (struct lockInfo *)sqlite3HashInsert(&lockHash, &pLock->key, sizeof(key1), pLock);
             if( pOld!=0 ){
                assert( pOld==pLock );
                sqlite3_free(pLock);
@@ -18842,7 +18849,7 @@ translate_out:
             pOpen = (struct openCnt*)sqlite3HashFind(&openHash, &key2, sizeof(key2));
             if( pOpen==0 ){
                struct openCnt *pOld;
-               pOpen = sqlite3_malloc( sizeof(*pOpen) );
+               pOpen = (struct openCnt *) sqlite3_malloc( sizeof(*pOpen) );
                if( pOpen==0 ){
                   releaseLockInfo(pLock);
                   rc = 1;
@@ -18853,7 +18860,7 @@ translate_out:
                pOpen->nLock = 0;
                pOpen->nPending = 0;
                pOpen->aPending = 0;
-               pOld = sqlite3HashInsert(&openHash, &pOpen->key, sizeof(key2), pOpen);
+               pOld = (struct openCnt *) sqlite3HashInsert(&openHash, &pOpen->key, sizeof(key2), pOpen);
                if( pOld!=0 ){
                   assert( pOld==pOpen );
                   sqlite3_free(pOpen);
@@ -19603,7 +19610,7 @@ end_lock:
          */
          int *aNew;
          struct openCnt *pOpen = pFile->pOpen;
-         aNew = ca2_realloc( pOpen->aPending, (pOpen->nPending+1)*sizeof(int) );
+         aNew = (int *) ca2_realloc( pOpen->aPending, (pOpen->nPending+1)*sizeof(int) );
          if( aNew==0 ){
             /* If a ca2_alloc fails, just leak the file descriptor */
          }else{
@@ -70769,7 +70776,7 @@ whereBeginNoMem:
    */
    struct LikeOp {
       Token eOperator;  /* "like" or "glob" or "regexp" */
-      int not;         /* True if the NOT keyword is present */
+      int _not;         /* True if the NOT keyword is present */
    };
 
    /*
@@ -73213,11 +73220,11 @@ whereBeginNoMem:
             break;
          case 198: /* likeop ::= LIKE_KW */
          case 200: /* likeop ::= MATCH */
-            {yygotominor.yy72.eOperator = yymsp[0].minor.yy0; yygotominor.yy72.not = 0;}
+            {yygotominor.yy72.eOperator = yymsp[0].minor.yy0; yygotominor.yy72._not = 0;}
             break;
          case 199: /* likeop ::= NOT LIKE_KW */
          case 201: /* likeop ::= NOT MATCH */
-            {yygotominor.yy72.eOperator = yymsp[0].minor.yy0; yygotominor.yy72.not = 1;}
+            {yygotominor.yy72.eOperator = yymsp[0].minor.yy0; yygotominor.yy72._not = 1;}
             break;
          case 204: /* expr ::= expr likeop expr escape */
             {

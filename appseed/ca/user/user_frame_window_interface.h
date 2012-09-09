@@ -18,7 +18,6 @@ namespace user
       virtual ~frame_window_interface();
 
 
-      virtual HWND _GetSafeHwnd();
       virtual void SetBorderRect(LPCRECT lpcrect);
       virtual void GetBorderRect(LPRECT lprect);
       virtual bool _001IsFrameWnd();

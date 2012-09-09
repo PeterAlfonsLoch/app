@@ -1,13 +1,20 @@
 #include "framework.h"
-#include "user_Shell.h"
 
+#ifdef WINDOWS
 #include <Shellapi.h>
 #include <CommonControls.h>
+#endif
+
 
 namespace filemanager
 {
+
    namespace _shell
    {
+
+
+#ifdef WINDOWS
+
       int _017ItemIDListGetLen(LPITEMIDLIST lpiidl)
       {
          if(lpiidl == NULL)
@@ -190,6 +197,8 @@ namespace filemanager
          return lpiidlRet;
       }
 
+#endif
+
       string _017FilePathGetParent(const char * lpcsz)
       {
          stringa stra;
@@ -205,6 +214,8 @@ namespace filemanager
          }
          return str;
       }
+
+#ifdef WINDOWS
 
       LPITEMIDLIST _017ItemIDListGetFolderParent(LPITEMIDLIST lpiidl)
       {
@@ -363,6 +374,8 @@ namespace filemanager
          return false;
       }
    }
+
+#endif
 
    EFolder GetFolderType(::ca::application * papp, const char * lpcsz)
    {
@@ -693,9 +706,9 @@ namespace filemanager
             catch(...)
             {
             }
-            
+
             LPITEMIDLIST lpiidlChild2     = _017ItemIDListGetLast(lpiidl2);
-            
+
             LPITEMIDLIST lpiidlParent2    = _017ItemIDListGetFolderParent(lpiidl2);
 
             int iImage = GetImage(
@@ -1404,7 +1417,7 @@ namespace filemanager
       HWND hwnd,
       const char * psz,
       const wchar_t * lpcszExtra,
-      EIcon eicon, 
+      EIcon eicon,
       bool bFolder)
    {
       string strPath(psz);
@@ -1452,11 +1465,11 @@ namespace filemanager
       }
 
       LPITEMIDLIST lpiidlAbsolute;
-      
+
       _017ItemIDListParsePath(&lpiidlAbsolute, psz);
-      
+
       iImage = GetImage(hwnd, lpiidlAbsolute, lpcszExtra, eicon);
-      
+
       _017ItemIDListFree(lpiidlAbsolute);
 
       return iImage;
