@@ -40,14 +40,17 @@
 	<File name="c/c.h" open="0" top="0" tabpos="0">
 		<Cursor position="529" topLine="39" />
 	</File>
+	<File name="c/cpu_architecture.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3602" topLine="145" />
+	</File>
 	<File name="c/dir.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="6372" topLine="269" />
+		<Cursor position="230" topLine="0" />
 	</File>
 	<File name="c/dir.h" open="0" top="0" tabpos="0">
-		<Cursor position="1645" topLine="0" />
+		<Cursor position="68" topLine="0" />
 	</File>
 	<File name="c/file.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="22696" topLine="1009" />
+		<Cursor position="238" topLine="15" />
 	</File>
 	<File name="c/file.h" open="0" top="0" tabpos="0">
 		<Cursor position="238" topLine="0" />
@@ -64,11 +67,20 @@
 	<File name="c/md5.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="14202" topLine="526" />
 	</File>
+	<File name="c/mutex_lock.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="517" topLine="0" />
+	</File>
+	<File name="c/mutex_lock.h" open="0" top="0" tabpos="0">
+		<Cursor position="95" topLine="0" />
+	</File>
+	<File name="c/simple_critical_section.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="44" topLine="0" />
+	</File>
 	<File name="c/simple_mutex.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="288" topLine="0" />
 	</File>
 	<File name="c/simple_mutex.h" open="0" top="0" tabpos="0">
-		<Cursor position="412" topLine="4" />
+		<Cursor position="217" topLine="0" />
 	</File>
 	<File name="c/small_ipc_channel.h" open="0" top="0" tabpos="0">
 		<Cursor position="2729" topLine="113" />
@@ -79,8 +91,11 @@
 	<File name="c/template.h" open="0" top="0" tabpos="0">
 		<Cursor position="465" topLine="0" />
 	</File>
+	<File name="c/verisimple_string.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="530" topLine="12" />
+	</File>
 	<File name="c/verisimple_string.h" open="0" top="0" tabpos="0">
-		<Cursor position="4476" topLine="106" />
+		<Cursor position="325" topLine="0" />
 	</File>
 	<File name="c/verisimple_wstring.h" open="0" top="0" tabpos="0">
 		<Cursor position="14" topLine="0" />
@@ -122,7 +137,7 @@
 		<Cursor position="928" topLine="0" />
 	</File>
 	<File name="linux/c_os_cross_win_gdi_internal.h" open="0" top="0" tabpos="1">
-		<Cursor position="942" topLine="30" />
+		<Cursor position="0" topLine="61" />
 	</File>
 	<File name="linux/c_os_file.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="54" topLine="0" />
@@ -240,6 +255,9 @@
 	</File>
 	<File name="spa/spa_window.cpp" open="0" top="0" tabpos="55">
 		<Cursor position="2780" topLine="107" />
+	</File>
+	<File name="spa/spa_window.h" open="0" top="0" tabpos="0">
+		<Cursor position="182" topLine="0" />
 	</File>
 	<File name="windows/c_os.h" open="0" top="0" tabpos="0">
 		<Cursor position="493" topLine="0" />

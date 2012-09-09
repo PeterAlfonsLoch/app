@@ -248,11 +248,11 @@ namespace user
 
 #ifdef WINDOWS
 
-      void * hwnd = m_hwnd;
-      if(!::IsWindow((HWND) hwnd))
+      HWND hwnd = m_hwnd;
+      if(!::IsWindow(hwnd))
          return;
 
-      HWND hwndChild = ::GetTopWindow((HWND) hwnd);
+      HWND hwndChild = ::GetTopWindow(hwnd);
 
       while(hwndChild != NULL)
       {
@@ -383,7 +383,7 @@ namespace user
 
 #ifdef WINDOWS
 
-      if(!::IsWindow((HWND) hwnd))
+      if(!::IsWindow(hwnd))
          return;
       void * hwndChild = ::GetTopWindow((HWND) hwnd);
       while(hwndChild != NULL)
@@ -505,12 +505,12 @@ namespace user
 
 #ifdef WINDOWS
 
-      ::ClientToScreen((HWND) hwnd, &rect.top_left());
-      ::ClientToScreen((HWND) hwnd, &rect.bottom_right());
+      ::ClientToScreen(hwnd, &rect.top_left());
+      ::ClientToScreen(hwnd, &rect.bottom_right());
       if(hwndParent != NULL)
       {
-         ::ScreenToClient((HWND) hwndParent, &rect.top_left());
-         ::ScreenToClient((HWND) hwndParent, &rect.bottom_right());
+         ::ScreenToClient(hwndParent, &rect.top_left());
+         ::ScreenToClient(hwndParent, &rect.bottom_right());
       }
 
 #else
@@ -552,7 +552,7 @@ namespace user
       if(bModified)
       {
 
-         ::SetWindowPos((HWND) hwnd, HWND_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
+         ::SetWindowPos(hwnd, HWND_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
 
       }
 
@@ -604,17 +604,17 @@ namespace user
 
       // walk through HWNDs to avoid creating temporary ::ca::window objects
       // unless we need to call this function recursively
-      for (void * hWndChild = ::GetTopWindow((HWND) hWnd); hWndChild != NULL; hWndChild = ::GetNextWindow((HWND) hWndChild, GW_HWNDNEXT))
+      for (HWND hWndChild = ::GetTopWindow(hWnd); hWndChild != NULL; hWndChild = ::GetNextWindow(hWndChild, GW_HWNDNEXT))
       {
          // send message with Windows SendMessage API
          try
          {
-            ::SendMessage((HWND) hWndChild, message, wParam, lParam);
+            ::SendMessage(hWndChild, message, wParam, lParam);
          }
          catch(...)
          {
          }
-         if (bDeep && ::GetTopWindow((HWND) hWndChild) != NULL)
+         if (bDeep && ::GetTopWindow(hWndChild) != NULL)
          {
             // send to child windows after parent
             try
@@ -688,11 +688,11 @@ namespace user
 
 #ifdef WINDOWS
 
-      while(hwndOrder != NULL && ::IsWindow((HWND) hwndOrder))
+      while(hwndOrder != NULL && ::IsWindow(hwndOrder))
       {
          if(hwnd == hwndOrder)
             return iOrder;
-         hwndOrder = ::GetWindow((HWND) hwndOrder, GW_HWNDNEXT);
+         hwndOrder = ::GetWindow(h(HWND) wndOrder, GW_HWNDNEXT);
          iOrder++;
       }
 
@@ -715,13 +715,13 @@ namespace user
       ia.remove_all();
       while(true)
       {
-         if(hwnd == NULL || !::IsWindow((HWND) hwnd))
+         if(hwnd == NULL || !::IsWindow(hwnd))
             break;
          iOrder = GetZOrder(hwnd);
          if(iOrder == 0x7fffffff)
             break;
          ia.insert_at(0, iOrder);
-         hwnd = ::GetParent((HWND) hwnd);
+         hwnd = ::GetParent(hwnd);
       }
 
 #else
@@ -744,7 +744,7 @@ namespace user
    }
    }*/
 
-   void WndUtil::ExcludeChildren(void * hwnd, HRGN hrgn, POINT ptOffset)
+   void WndUtil::ExcludeChildren(void *hwnd, HRGN hrgn, POINT ptOffset)
    {
 
 
@@ -756,13 +756,13 @@ namespace user
 
       for(int i = 0; i < hwnda.get_size(); i++)
       {
-         void * hwndChild = hwnda[i];
+         HWND hwndChild = hwnda[i];
          rect rectChild;
-         ::GetClientRect((HWND) hwndChild, rectChild);
-         ::ClientToScreen((HWND) hwndChild, &rectChild.top_left());
-         ::ClientToScreen((HWND) hwndChild, &rectChild.bottom_right());
-         ::ScreenToClient((HWND) hwnd, &rectChild.top_left());
-         ::ScreenToClient((HWND) hwnd, &rectChild.bottom_right());
+         ::GetClientRect(hwndChild, rectChild);
+         ::ClientToScreen(hwndChild, &rectChild.top_left());
+         ::ClientToScreen(hwndChild, &rectChild.bottom_right());
+         ::ScreenToClient(hwnd, &rectChild.top_left());
+         ::ScreenToClient(hwnd, &rectChild.bottom_right());
          rectChild.offset(ptOffset);
          HRGN hrgnChild = ::CreateRectRgnIndirect(rectChild);
          ::CombineRgn(hrgn, hrgn, hrgnChild, RGN_DIFF);
@@ -784,7 +784,7 @@ namespace user
 #ifdef WINDOWS
 
       rect rectWnd;
-      ::GetClientRect((HWND) hwnd, rectWnd);
+      ::GetClientRect(hwnd, rectWnd);
       rectWnd.offset(ptOffset);
       HRGN hrgn = ::CreateRectRgnIndirect(rectWnd);
 
@@ -830,21 +830,15 @@ namespace user
    ::user::interaction * LPWndArray::find_first(void * hwnd)
    {
 
-#ifdef WINDOWS
-
       for(int i = 0; i < this->get_size(); i++)
       {
+
          if(this->element_at(i)->get_safe_handle() == hwnd)
          {
+
             return this->element_at(i);
          }
       }
-
-#else
-
-      throw todo();
-
-#endif
 
       return NULL;
 

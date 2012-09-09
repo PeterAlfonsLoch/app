@@ -826,7 +826,7 @@ int ZEXPORT deflate (
             }
         }
     }
-    Assert(strm->avail_out > 0, "bug2");
+    Assert(strm->avail_out > 0, (char *) "bug2");
 
     if (flush != Z_FINISH) return Z_OK;
     if (s->wrap <= 0) return Z_STREAM_END;
@@ -1060,7 +1060,7 @@ zlib_local uInt longest_match(
     /* The code is optimized for HASH_BITS >= 8 and MAX_MATCH-2 multiple of 16.
      * It is easy to get rid of this optimization if necessary.
      */
-    Assert(s->hash_bits >= 8 && MAX_MATCH == 258, "Code too clever");
+    Assert(s->hash_bits >= 8 && MAX_MATCH == 258, (char *) "Code too clever");
 
     /* Do not waste too much time if we already have a good match: */
     if (s->prev_length >= s->good_match) {
@@ -1071,10 +1071,10 @@ zlib_local uInt longest_match(
      */
     if ((uInt)nice_match > s->lookahead) nice_match = s->lookahead;
 
-    Assert((ulg)s->strstart <= s->window_size-MIN_LOOKAHEAD, "need lookahead");
+    Assert((ulg)s->strstart <= s->window_size-MIN_LOOKAHEAD, (char *) "need lookahead");
 
     do {
-        Assert(cur_match < s->strstart, "no future");
+        Assert(cur_match < s->strstart, (char *) "no future");
         match = s->window + cur_match;
 
         /* Skip to next match if the match length cannot increase
@@ -1132,7 +1132,7 @@ zlib_local uInt longest_match(
          * the hash keys are equal and that HASH_BITS >= 8.
          */
         scan += 2, match++;
-        Assert(*scan == *match, "match[2]?");
+        Assert(*scan == *match, (char *) "match[2]?");
 
         /* We check for insufficient lookahead only every 8th comparison;
          * the 256th check will be made at strstart+258.
@@ -1144,7 +1144,7 @@ zlib_local uInt longest_match(
                  *++scan == *++match && *++scan == *++match &&
                  scan < strend);
 
-        Assert(scan <= s->window+(unsigned)(s->window_size-1), "wild scan");
+        Assert(scan <= s->window+(unsigned)(s->window_size-1), (char *) "wild scan");
 
         len = MAX_MATCH - (int)(strend - scan);
         scan = strend - MAX_MATCH;
@@ -1186,7 +1186,7 @@ zlib_local uInt longest_match_fast(
     /* The code is optimized for HASH_BITS >= 8 and MAX_MATCH-2 multiple of 16.
      * It is easy to get rid of this optimization if necessary.
      */
-    Assert(s->hash_bits >= 8 && MAX_MATCH == 258, "Code too clever");
+    Assert(s->hash_bits >= 8 && MAX_MATCH == 258, (char *) "Code too clever");
 
     Assert((ulg)s->strstart <= s->window_size-MIN_LOOKAHEAD, "need lookahead");
 
@@ -1233,7 +1233,7 @@ zlib_local uInt longest_match_fast(
  */
 zlib_local void check_match(
     deflate_state *s,
-    IPos start, 
+    IPos start,
     IPos match,
     int length)
 {

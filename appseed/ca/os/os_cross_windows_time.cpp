@@ -963,7 +963,12 @@ WINBOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcf
         utcft->dwLowDateTime = utc.u.LowPart;
         utcft->dwHighDateTime = utc.u.HighPart;
     }
-    else SetLastError( RtlNtStatusToDosError(status) );
+   else
+   {
+      //SetLastError( RtlNtStatusToDosError(status) );
+      SetLastError(1);
+
+   }
 
     return !status;
 }
@@ -983,7 +988,12 @@ WINBOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localf
         localft->dwLowDateTime = local.u.LowPart;
         localft->dwHighDateTime = local.u.HighPart;
     }
-    else SetLastError( RtlNtStatusToDosError(status) );
+    else
+    {
+      //SetLastError( RtlNtStatusToDosError(status) );
+      SetLastError( 1);
+    }
+
 
     return !status;
 }

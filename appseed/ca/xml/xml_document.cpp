@@ -39,7 +39,7 @@ namespace xml
 
    bool document::load_location(const char * psz)
    {
-      
+
       m_strLocation = psz;
       string str;
       str = Application.file().as_string(psz);
@@ -168,7 +168,7 @@ namespace xml
 
    // the additional parameter must end with , NULL
    // the parameters are pointers based on m_strData that should be offset because m_strData will be edited by entity ref patch
-   char * document::patch_entity_ref(const char * & pszXml, bool useExtEnt, ...) 
+   char * document::patch_entity_ref(const char * & pszXml, bool useExtEnt, ...)
    {
       // pszXml must be a valid portion of and point to an entity ref in:
       // m_strData of this document
@@ -183,7 +183,7 @@ namespace xml
       va_list ptr;
       va_start(ptr, useExtEnt);
       int_ptr p;
-      while((p = va_arg(ptr, int_ptr)) != NULL)
+      while((p = va_arg(ptr, int_ptr)) != 0)
       {
          const char ** ppch = (const char **) p;
          if(*ppch <= (pszOldData + iPos))
@@ -258,17 +258,17 @@ namespace xml
                break;
 
             }
-            
+
          }
          catch(...)
          {
             break;
          }
 
-         pedit->m_iEdit = iEdit; 
+         pedit->m_iEdit = iEdit;
       }
 
-      
+
 
    }
 
