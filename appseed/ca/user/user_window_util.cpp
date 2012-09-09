@@ -248,11 +248,12 @@ namespace user
 
 #ifdef WINDOWS
 
-      HWND hwnd = m_hwnd;
-      if(!::IsWindow(hwnd))
+      void * hwnd = m_hwnd;
+
+      if(!::IsWindow((HWND) hwnd))
          return;
 
-      HWND hwndChild = ::GetTopWindow(hwnd);
+      void * hwndChild = ::GetTopWindow((HWND) hwnd);
 
       while(hwndChild != NULL)
       {
@@ -262,7 +263,7 @@ namespace user
          hwndtreeChild.m_dwUser = 0;
          hwndtreeChild.m_pvoidUser = NULL;
          hwndtreeChild.EnumDescendants();
-         hwndChild = ::GetWindow(hwndChild, GW_HWNDNEXT);
+         hwndChild = ::GetWindow((HWND) hwndChild, GW_HWNDNEXT);
       }
 
 #else
@@ -383,13 +384,18 @@ namespace user
 
 #ifdef WINDOWS
 
-      if(!::IsWindow(hwnd))
+      if(!::IsWindow((HWND) hwnd))
          return;
+
       void * hwndChild = ::GetTopWindow((HWND) hwnd);
+
       while(hwndChild != NULL)
       {
+
          hwnda.add(hwndChild);
+
          hwndChild = ::GetWindow((HWND) hwndChild, GW_HWNDNEXT);
+
       }
 
 #else
@@ -505,12 +511,17 @@ namespace user
 
 #ifdef WINDOWS
 
-      ::ClientToScreen(hwnd, &rect.top_left());
-      ::ClientToScreen(hwnd, &rect.bottom_right());
+      ::ClientToScreen((HWND) hwnd, &rect.top_left());
+
+      ::ClientToScreen((HWND) hwnd, &rect.bottom_right());
+
       if(hwndParent != NULL)
       {
-         ::ScreenToClient(hwndParent, &rect.top_left());
-         ::ScreenToClient(hwndParent, &rect.bottom_right());
+
+         ::ScreenToClient((HWND) hwndParent, &rect.top_left());
+
+         ::ScreenToClient((HWND) hwndParent, &rect.bottom_right());
+
       }
 
 #else
@@ -552,7 +563,7 @@ namespace user
       if(bModified)
       {
 
-         ::SetWindowPos(hwnd, HWND_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
+         ::SetWindowPos((HWND) hwnd, HWND_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
 
       }
 
@@ -604,28 +615,34 @@ namespace user
 
       // walk through HWNDs to avoid creating temporary ::ca::window objects
       // unless we need to call this function recursively
-      for (HWND hWndChild = ::GetTopWindow(hWnd); hWndChild != NULL; hWndChild = ::GetNextWindow(hWndChild, GW_HWNDNEXT))
+      for(void * hWndChild = ::GetTopWindow((HWND) hWnd); hWndChild != NULL; hWndChild = ::GetNextWindow((HWND) hWndChild, GW_HWNDNEXT))
       {
          // send message with Windows SendMessage API
          try
          {
-            ::SendMessage(hWndChild, message, wParam, lParam);
+            ::SendMessage((HWND) hWndChild, message, wParam, lParam);
          }
          catch(...)
          {
          }
-         if (bDeep && ::GetTopWindow(hWndChild) != NULL)
+
+         if (bDeep && ::GetTopWindow((HWND) hWndChild) != NULL)
          {
+
             // send to child windows after parent
             try
             {
-               SendMessageToDescendants(hWndChild, message, wParam, lParam,
-                  bDeep);
+
+               SendMessageToDescendants(hWndChild, message, wParam, lParam, bDeep);
+
             }
             catch(...)
             {
+
             }
+
          }
+
       }
 
 #else
@@ -688,12 +705,16 @@ namespace user
 
 #ifdef WINDOWS
 
-      while(hwndOrder != NULL && ::IsWindow(hwndOrder))
+      while(hwndOrder != NULL && ::IsWindow((HWND) hwndOrder))
       {
+
          if(hwnd == hwndOrder)
             return iOrder;
-         hwndOrder = ::GetWindow(h(HWND) wndOrder, GW_HWNDNEXT);
+
+         hwndOrder = ::GetWindow((HWND) hwndOrder, GW_HWNDNEXT);
+
          iOrder++;
+
       }
 
 #else
@@ -715,13 +736,13 @@ namespace user
       ia.remove_all();
       while(true)
       {
-         if(hwnd == NULL || !::IsWindow(hwnd))
+         if(hwnd == NULL || !::IsWindow((HWND) hwnd))
             break;
-         iOrder = GetZOrder(hwnd);
+         iOrder = GetZOrder((HWND) hwnd);
          if(iOrder == 0x7fffffff)
             break;
          ia.insert_at(0, iOrder);
-         hwnd = ::GetParent(hwnd);
+         hwnd = ::GetParent((HWND) hwnd);
       }
 
 #else
@@ -756,17 +777,29 @@ namespace user
 
       for(int i = 0; i < hwnda.get_size(); i++)
       {
-         HWND hwndChild = hwnda[i];
+         
+         void * hwndChild = hwnda[i];
+         
          rect rectChild;
-         ::GetClientRect(hwndChild, rectChild);
-         ::ClientToScreen(hwndChild, &rectChild.top_left());
-         ::ClientToScreen(hwndChild, &rectChild.bottom_right());
-         ::ScreenToClient(hwnd, &rectChild.top_left());
-         ::ScreenToClient(hwnd, &rectChild.bottom_right());
+
+         ::GetClientRect((HWND) hwndChild, rectChild);
+         
+         ::ClientToScreen((HWND) hwndChild, &rectChild.top_left());
+         
+         ::ClientToScreen((HWND) hwndChild, &rectChild.bottom_right());
+         
+         ::ScreenToClient((HWND) hwnd, &rectChild.top_left());
+         
+         ::ScreenToClient((HWND) hwnd, &rectChild.bottom_right());
+         
          rectChild.offset(ptOffset);
+         
          HRGN hrgnChild = ::CreateRectRgnIndirect(rectChild);
+         
          ::CombineRgn(hrgn, hrgn, hrgnChild, RGN_DIFF);
+
          ::DeleteObject(hrgnChild);
+
       }
 
 #else
@@ -784,13 +817,18 @@ namespace user
 #ifdef WINDOWS
 
       rect rectWnd;
-      ::GetClientRect(hwnd, rectWnd);
+
+      ::GetClientRect((HWND) hwnd, rectWnd);
+      
       rectWnd.offset(ptOffset);
+
       HRGN hrgn = ::CreateRectRgnIndirect(rectWnd);
 
       if(bExludeChildren)
       {
+
          ExcludeChildren(hwnd, hrgn, ptOffset);
+
       }
 
       return hrgn;
