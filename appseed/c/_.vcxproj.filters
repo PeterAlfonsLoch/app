@@ -69,6 +69,9 @@
     <Filter Include="Source Files\windows\crypt">
       <UniqueIdentifier>{9dfcd5b4-d97d-4165-aa12-de394188d2a1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\simple_ui\windows">
+      <UniqueIdentifier>{7e623740-7176-44ce-97fc-2f165241417e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hotplugin\hotplugin.h">
@@ -714,6 +717,21 @@
     </ClCompile>
     <ClCompile Include="windows\c_os_file.cpp">
       <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\os_thread.cpp">
+      <Filter>Source Files\os</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_ui\windows\c_os_simple_edit_box.cpp">
+      <Filter>Source Files\simple_ui\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_ui\windows\c_os_simple_label.cpp">
+      <Filter>Source Files\simple_ui\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_ui\windows\c_os_simple_password.cpp">
+      <Filter>Source Files\simple_ui\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_ui\windows\c_os_simple_tap.cpp">
+      <Filter>Source Files\simple_ui\windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

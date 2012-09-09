@@ -73235,7 +73235,7 @@ whereBeginNoMem:
                   pList = sqlite3ExprListAppend(pParse,pList, yymsp[0].minor.yy172, 0);
                }
                yygotominor.yy172 = sqlite3ExprFunction(pParse, pList, &yymsp[-2].minor.yy72.eOperator);
-               if( yymsp[-2].minor.yy72.not ) yygotominor.yy172 = sqlite3PExpr(pParse, TK_NOT, yygotominor.yy172, 0, 0);
+               if( yymsp[-2].minor.yy72._not ) yygotominor.yy172 = sqlite3PExpr(pParse, TK_NOT, yygotominor.yy172, 0, 0);
                sqlite3ExprSpan(yygotominor.yy172, &yymsp[-3].minor.yy172->span, &yymsp[-1].minor.yy172->span);
                if( yygotominor.yy172 ) yygotominor.yy172->flags |= EP_InfixFunc;
             }
