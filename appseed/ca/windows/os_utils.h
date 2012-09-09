@@ -1,9 +1,5 @@
-#if !defined(__UTILS_H__DEF02A65_CB32_46B8_9C74_5E7432392A9F__INCLUDED_)
-#define __UTILS_H__DEF02A65_CB32_46B8_9C74_5E7432392A9F__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 #include <Winsvc.h>
 #include "WinIoCtl.h"
 
@@ -104,4 +100,3 @@ HANDLE ExtractAndInstallDrv();
 bool GetDrive( LPCTSTR lpDeviceFileName, string & fsFileName, bool bDriveLetterOnly );
 
 bool EnableTokenPrivilege(LPCTSTR pszPrivilege);
-#endif
