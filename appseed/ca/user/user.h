@@ -127,7 +127,7 @@ namespace win
       LPARAM            m_lparam;
       LRESULT send();
       static UINT ThreadProcSendMessage(LPVOID lp);
-      static void post(::user::interaction * puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, int nPriority = 0);
+      static void post(::user::interaction * puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal);
    };
 
 } // namespace win

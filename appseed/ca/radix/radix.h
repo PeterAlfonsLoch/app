@@ -583,19 +583,16 @@ typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
 
 
 
-CLASS_DECL_ca ::radix::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam,
-   int nPriority = ::ca::thread_priority_normal, UINT nStackSize = 0,
-   DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+CLASS_DECL_ca ::radix::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 /* xxx CLASS_DECL_ca thread* __begin_thread(::ca::type_info pThreadClass,
    int nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
    DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
 
 template < class THREAD_TYPE >
-THREAD_TYPE * __begin_thread (::ca::application * papp, int nPriority = ::ca::thread_priority_normal, UINT nStackSize = 0,
-   DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
+THREAD_TYPE * __begin_thread (::ca::application * papp, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
 {
    THREAD_TYPE * pthread = new THREAD_TYPE(papp);
-   pthread->Begin(nPriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
+   pthread->Begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
    return pthread;
 }
 
