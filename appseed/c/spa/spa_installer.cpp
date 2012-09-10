@@ -2685,6 +2685,8 @@ RetryHost:
       vsstring strUrl;
 
       trace(("get appmatter list for application with id : \"" + m_strApplicationId + "\" "));
+      trace(("locale : \"" + m_strInstallLocale + "\" "));
+      trace(("schema : \"" + m_strInstallSchema + "\" "));
 
       strUrl = m_strSpaIgnitionBaseUrl + "/appmatter_spa_list?app=";
       strUrl += m_strApplicationId;
