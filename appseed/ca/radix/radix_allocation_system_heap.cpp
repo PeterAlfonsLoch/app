@@ -45,9 +45,9 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
    int iMod = pOld[-1 - sizeof(size_t)];
    if(iMod < 1 || iMod > 4)
       return NULL;
-   size_t sizeOld = *((size_t *)&((DWORD *) pOld - iMod)[1]);
+   size_t sizeOld = *((size_t *)&((DWORD *) (pOld - iMod - sizeof(size_t)))[1]);
 #ifdef WINDOWS
-   byte * p = (byte *) ::HeapReAlloc(g_hSystemHeap, 0, pOld - iMod, ((size + 4 + 3) & ~3));
+   byte * p = (byte *) ::HeapReAlloc(g_hSystemHeap, 0, pOld - iMod- sizeof(size_t), ((size + 4+  sizeof(size_t)  + 3) & ~3));
 #else
    byte * p = (byte *) ::realloc(pOld - iMod, ((size + 4 + 3) & ~3));
 #endif
@@ -95,7 +95,7 @@ CLASS_DECL_ca void system_heap_free(void * pvoid)
 
 #ifdef WINDOWS
 
-   if(!::HeapFree(g_hSystemHeap, 0, p - iMod))
+   if(!::HeapFree(g_hSystemHeap, 0, p - iMod - sizeof(size_t)))
    {
 
       DWORD dw = ::GetLastError();

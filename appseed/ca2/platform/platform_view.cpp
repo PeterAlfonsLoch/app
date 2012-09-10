@@ -601,14 +601,14 @@ namespace platform
       }
    }
 
+
    void view::mt_show_window(HWND hwnd, int iShow)
    {
-      __begin_thread(
-         get_app(),
-         &view::ThreadProcShowWindow,
-         new show_window(hwnd, iShow),
-         THREAD_PRIORITY_HIGHEST);
+
+      __begin_thread(get_app(), &view::ThreadProcShowWindow, new show_window(hwnd, iShow), ::ca::thread_priority_highest);
+
    }
+
 
    view::show_window::show_window(HWND hwnd, int iShow)
    {

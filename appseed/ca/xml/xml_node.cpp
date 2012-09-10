@@ -547,7 +547,13 @@ namespace xml
 
       // find the end of pparseinfo
       char * end = _tcsenistr( pszXml, szXMLPIClose, sizeof(szXMLPIClose)-1, pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
-      if( end == NULL )
+      if(end == NULL)
+         return NULL;
+
+      while(*end != '\0' && isspace(*end))
+         end++;
+
+      if(*end == '\0')
          return NULL;
 
       // process pparseinfo

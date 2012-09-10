@@ -60,7 +60,7 @@ namespace ca
 
       m_id              = info.m_id;
       m_pfactoryitem    = info.m_pfactoryitem;
-      m_spmutex         = info,m_spmutex;
+      m_spmutex         = info.m_spmutex;
 
       return *this;
 

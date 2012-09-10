@@ -102,14 +102,19 @@ namespace ca
       throw interface_only_exception();
    }
 
-   bool thread::Begin(int nPriority, UINT nStackSize, DWORD dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+
+   bool thread::Begin(::ca::e_thread_priority epriority, UINT nStackSize, DWORD dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
-      UNREFERENCED_PARAMETER(nPriority);
+
+      UNREFERENCED_PARAMETER(epriority);
       UNREFERENCED_PARAMETER(nStackSize);
       UNREFERENCED_PARAMETER(dwCreateFlags);
       UNREFERENCED_PARAMETER(lpSecurityAttrs);
+
       throw interface_only_exception();
+
    }
+
 
    bool thread::create_thread(DWORD dwCreateFlags, UINT nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
@@ -483,14 +488,14 @@ namespace win
       return 0;
    }
 
-   void message::post(::user::interaction * puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, int nPriority)
+   void message::post(::user::interaction * puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, ::ca::e_thread_priority epriority)
    {
       message * pmessage = new message;
       pmessage->m_pguie = puie;
       pmessage->m_uiMessage = uiMessage;
       pmessage->m_wparam = wparam;
       pmessage->m_lparam = lparam;
-      __begin_thread(puie->get_app(), &ThreadProcSendMessage, pmessage, nPriority);
+      __begin_thread(puie->get_app(), &ThreadProcSendMessage, pmessage, epriority);
    }
 
 

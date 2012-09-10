@@ -28,7 +28,7 @@ namespace gcom
          m_pthreadIdlePriority = 
             __begin_thread < thread > (
                get_app(),
-               THREAD_PRIORITY_NORMAL,
+               ::ca::thread_priority_normal,
                0,
                CREATE_SUSPENDED);
          m_pthreadIdlePriority->SetMain(this);
@@ -37,7 +37,7 @@ namespace gcom
          m_pthreadHighestPriority =
             __begin_thread < thread > (
                get_app(),
-               THREAD_PRIORITY_HIGHEST,
+               ::ca::thread_priority_highest,
                0,
                CREATE_SUSPENDED);
          m_pthreadHighestPriority->SetMain(this);
