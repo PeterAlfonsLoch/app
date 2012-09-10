@@ -263,14 +263,14 @@ namespace ca
       throw interface_only_exception();
    }
 
-   int thread::GetThreadPriority()
+   ::ca::e_thread_priority thread::get_thread_priority()
    {
       throw interface_only_exception();
    }
 
-   bool thread::SetThreadPriority(int nPriority)
+   bool thread::set_thread_priority(::ca::e_thread_priority epriority)
    {
-      UNREFERENCED_PARAMETER(nPriority);
+      UNREFERENCED_PARAMETER(epriority);
       throw interface_only_exception();
    }
 

@@ -58,9 +58,9 @@ namespace radix
       return m_p->create_thread(dwCreateFlags, nStackSize, lpSecurityAttrs);
    }
 
-   int thread::GetThreadPriority()
+   int thread::get_thread_priority()
    {
-      return m_p->GetThreadPriority();
+      return m_p->get_thread_priority();
    }
 
    bool thread::SetThreadPriority(int nPriority)

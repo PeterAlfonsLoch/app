@@ -15,7 +15,7 @@ namespace ca
 
 
 	/// An enum representing thread priorities.
-	enum thread_priority {
+	enum e_thread_priority {
 		thread_priority_idle 	= 1,
 		thread_priority_lowest 	= 48,
 		thread_priority_below_normal,
@@ -63,7 +63,7 @@ namespace ca
 } // namespace ca
 
 
-inline enum ::ca::thread_priority get_thread_priority_normal()
+inline ::ca::e_thread_priority get_thread_priority_normal()
 {
 
       return ::ca::thread_priority_normal;

@@ -268,8 +268,8 @@ namespace ca
 
       virtual bool create_thread(DWORD dwCreateFlags = 0, UINT nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
-      virtual int GetThreadPriority();
-      virtual bool SetThreadPriority(int nPriority);
+      virtual ::ca::e_thread_priority get_thread_priority();
+      virtual bool set_thread_priority(::ca::e_thread_priority epriority);
 
       virtual DWORD SuspendThread();
       virtual DWORD ResumeThread();
