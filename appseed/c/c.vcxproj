@@ -1315,6 +1315,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="simple_ui\windows\c_os_simple_label.cpp" />
     <ClCompile Include="simple_ui\windows\c_os_simple_password.cpp" />
     <ClCompile Include="simple_ui\windows\c_os_simple_tap.cpp" />
+    <ClCompile Include="simple_ui\windows\c_os_simple_ui.cpp" />
     <ClCompile Include="spa\spa.cpp" />
     <ClCompile Include="spa\spa_boot.cpp" />
     <ClCompile Include="spa\spa_bz.cpp" />

@@ -23,6 +23,24 @@ void simple_tap::draw_simple(HDC hdc)
 
       graphics2.FillRectangle(&br, m_rect.left, m_rect.top, width(&m_rect), height(&m_rect));
 
+      if(get_focus() == this)
+      {
+
+         Gdiplus::Pen pen(Gdiplus::Color(255, 84, 77, 255), 3.0f);
+
+         graphics2.DrawRectangle(&pen, m_rect.left, m_rect.top, width(&m_rect), height(&m_rect));
+
+      }
+      else
+      {
+
+         Gdiplus::Pen pen(Gdiplus::Color(255, 149, 149, 123), 1.0f);
+
+         graphics2.DrawRectangle(&pen, m_rect.left, m_rect.top, width(&m_rect), height(&m_rect));
+
+      }
+
+
    }
 
    draw_text(hdc);
@@ -112,9 +130,27 @@ void simple_tap::draw_volume(HDC hdc)
 
       graphics2.FillRectangle(&br2, m_rect.left, m_rect.top + iBorderH, width(&m_rect), iBorderH);
 
-      Gdiplus::Pen pen1(crBorderOut);
+      /*Gdiplus::Pen pen1(crBorderOut);
 
-      graphics2.DrawRectangle(&pen1, m_rect.left, m_rect.top, width(&m_rect), iBorderH * 2);
+      graphics2.DrawRectangle(&pen1, m_rect.left, m_rect.top, width(&m_rect), iBorderH * 2);*/
+
+      if(get_focus() == this)
+      {
+
+         Gdiplus::Pen pen(Gdiplus::Color(255, 84, 77, 255), 3.0f);
+
+         graphics2.DrawRectangle(&pen, m_rect.left, m_rect.top, width(&m_rect), iBorderH * 2);;
+
+      }
+      else
+      {
+
+         Gdiplus::Pen pen(Gdiplus::Color(255, 149, 149, 123), 1.0f);
+
+         graphics2.DrawRectangle(&pen, m_rect.left, m_rect.top, width(&m_rect), iBorderH * 2);;
+
+      }
+
 
       Gdiplus::Pen pen2(crBorderIn);
 

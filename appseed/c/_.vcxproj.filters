@@ -733,5 +733,8 @@
     <ClCompile Include="simple_ui\windows\c_os_simple_tap.cpp">
       <Filter>Source Files\simple_ui\windows</Filter>
     </ClCompile>
+    <ClCompile Include="simple_ui\windows\c_os_simple_ui.cpp">
+      <Filter>Source Files\simple_ui\windows</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

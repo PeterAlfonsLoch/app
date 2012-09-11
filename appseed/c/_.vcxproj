@@ -814,6 +814,7 @@
     <ClCompile Include="simple_ui\windows\c_os_simple_label.cpp" />
     <ClCompile Include="simple_ui\windows\c_os_simple_password.cpp" />
     <ClCompile Include="simple_ui\windows\c_os_simple_tap.cpp" />
+    <ClCompile Include="simple_ui\windows\c_os_simple_ui.cpp" />
     <ClCompile Include="windows\c_os_file.cpp" />
     <ClCompile Include="windows\c_os_thread.cpp" />
     <ClInclude Include=".\hotplugin\hotplugin_container_launcher.h">

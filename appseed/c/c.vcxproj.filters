@@ -715,6 +715,9 @@
     <ClCompile Include="windows\c_os_file.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
+    <ClCompile Include="simple_ui\windows\c_os_simple_ui.cpp">
+      <Filter>Source Files\simple_ui\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="c.def">
