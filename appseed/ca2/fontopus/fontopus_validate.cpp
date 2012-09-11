@@ -118,7 +118,7 @@ namespace ca2
                
                m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Licensing";
                string strUrl;
-               strUrl = "http://spaignition.api.laborserver.net/query?node=install_application&id=";
+               strUrl = "http://api.ca2.cc/spaignition/query?node=install_application&id=";
                strUrl += m_strLicense;
                strUrl += "&key=name";
                m_pdocAuth->get_html_data()->m_propertyset["project"] = System.http().get(strUrl);
@@ -570,7 +570,7 @@ namespace ca2
             if(m_bInteractive)
             {
                string strUrl;
-               strUrl = "http://spaignition.api.laborserver.net/query?node=install_application&id=";
+               strUrl = "http://api.ca2.cc/spaignition/query?node=install_application&id=";
                strUrl += m_strLicense;
                strUrl += "&key=launch_name";
                string strName = Application.http().get(strUrl);
