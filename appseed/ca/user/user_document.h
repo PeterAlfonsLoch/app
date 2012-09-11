@@ -13,6 +13,11 @@ public:
    virtual ~document();
 
 
+   virtual bool set_data(::ca::data * pdata);
+
+   using ::ca::data_container::get_data;
+   using ::ca::data_container_base::get_data;
+
 };
 
 

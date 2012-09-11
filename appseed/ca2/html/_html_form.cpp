@@ -32,9 +32,22 @@ void html_form::_001OnDraw(::ca::graphics * pdc)
 
    pdc->FillSolidRect(rectClient, get_background_color());
 
-   if(get_html_data() != NULL)
+
+   sp(::html::data) sphtmldata;
+   
+   try
    {
-      get_html_data()->_001OnDraw(pdc);
+
+      sphtmldata = get_html_data();
+
+   }
+   catch(...)
+   {
+   }
+
+   if(sphtmldata.is_set())
+   {
+      sphtmldata->_001OnDraw(pdc);
    }
 
    // tranas m_hwnd = GetSafeHwnd();
@@ -144,6 +157,34 @@ bool html_form::open_document(const char * lpszPathName)
 
 }
 */
+
+void html_form::layout(::html::data * phtmldata)
+{
+
+   if(phtmldata == NULL)
+      return;
+
+   GetClientRect(phtmldata->m_rect);
+   
+   ::ca::graphics * pdc = GetDC();
+
+   try
+   {
+
+      phtmldata->m_pguie = this;
+      phtmldata->m_pguie = this;
+      phtmldata->implement(pdc);
+      phtmldata->m_pform = this;
+      phtmldata->layout(pdc);
+
+   }
+   catch(...)
+   {
+   }
+
+   ReleaseDC(pdc);
+
+}
 
 void html_form::layout()
 {
@@ -320,9 +361,21 @@ void html_form::_001GetText(string & str) const
 
 void html_form::_001SetText(const char * psz)
 {
+   
    bool bFocus = Application.get_keyboard_focus() == this || is_descendant(dynamic_cast < ::user::interaction * > (Application.get_keyboard_focus()));
-   get_html_data()->load(psz);
-   layout();
+
+   sp(::html::data) sphtmldata;
+
+   sphtmldata(new ::html::data(get_app()));
+
+   sphtmldata->m_pform = this;
+
+   sphtmldata->load(psz);
+
+   layout(sphtmldata);
+
+   m_sphtmldata = sphtmldata;
+
    if(bFocus)
    {
 	   ::user::keyboard_focus * pfocus = get_focusable_descendant();

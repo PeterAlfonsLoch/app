@@ -650,3 +650,81 @@ view_update_hint::view_update_hint(::ca::application * papp) :
 ca(papp)
 {
 }
+
+
+
+void view::on_draw_view_nc(::ca::graphics * pdc)
+{
+      
+   UNREFERENCED_PARAMETER(pdc);
+
+}
+
+void view::on_draw_view(::ca::graphics * pdc, spa(::ca::data) spadata)
+{
+
+   UNREFERENCED_PARAMETER(pdc);
+   UNREFERENCED_PARAMETER(spadata);
+
+}
+
+void view::defer_draw_view(::ca::graphics * pdc)
+{
+
+   if(get_document() == NULL)
+      return;
+
+   spa(::ca::data) spadata;
+   
+   spadata.add(get_document()->m_spadata);
+
+   sync_object_ptra sync;
+
+   for(index i = 0; i < spadata.get_count(); i++)
+   {
+
+      sync.add(&spadata[i]->m_mutex);
+
+   }
+
+   retry_multi_lock sl(sync, millis(1), millis(1));
+
+   try
+   {
+      on_draw_view(pdc, spadata);
+   }
+   catch(...)
+   {
+   }
+
+}
+
+void view::_001OnDraw(::ca::graphics * pdc)
+{
+      
+   on_draw_view_nc(pdc);
+
+   int iTry = 0;
+
+   bool bOk;
+
+retry:
+
+   bOk = true;
+
+   try
+   {
+      defer_draw_view(pdc);
+   }
+   catch(...)
+   {
+      bOk = false;
+   }
+
+   iTry++;
+   if(!bOk && iTry < 9)
+      goto retry;
+
+}
+
+

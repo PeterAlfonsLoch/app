@@ -5,7 +5,8 @@ namespace user
 {
 
 
-   document_interface::document_interface()
+   document_interface::document_interface() :
+      ::ca::data_container_base(NULL)
    {
       m_pdocumentemplate      = NULL;
       m_bModified             = FALSE;

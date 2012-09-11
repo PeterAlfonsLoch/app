@@ -35,6 +35,86 @@ namespace ca
    }
 
 
+   data_container_base::data_container_base(::ca::application * papp)
+   {
+   }
+
+   data_container_base::~data_container_base()
+   {
+   }
+
+
+   bool data_container_base::add_data(::ca::data * pdata)
+   {
+      
+      for(index i = 0; i < m_spadata.get_count(); i++)
+      {
+
+         if(m_spadata[i].m_p == pdata)
+            return true;
+
+      }
+
+      m_spadata.add(pdata);
+
+      return true;
+
+   }
+
+   bool data_container_base::remove_data(::ca::data * pdata)
+   {
+
+      count cRemove = 0;
+
+      for(index i = 0; i < m_spadata.get_count();)
+      {
+
+         if(m_spadata[i].m_p == pdata)
+         {
+            m_spadata.remove_at(i);
+            cRemove++;
+         }
+         else
+         {
+            i++;
+         }
+
+      }
+
+      return cRemove > 0;
+
+   }
+
+   data * data_container_base::get_data(index i) const
+   {
+      
+      return m_spadata[i];
+
+   }
+
+   count data_container_base::get_count() const
+   {
+
+      return m_spadata.get_count();
+
+   }
+
+   sync_object_ptra data_container_base::get_sync()
+   {
+
+      sync_object_ptra ptra;
+
+      for(index i = 0; i < m_spadata.get_count(); i++)
+      {
+
+         ptra.add(&m_spadata[i]->m_mutex);
+
+      }
+
+      return ptra;
+
+   }
+
 } // namespace ca
 
 

@@ -12,7 +12,7 @@ namespace gcom
 
          class CLASS_DECL_ca2 interaction :
             virtual public Interface,
-            virtual public ::database::user::interaction
+            virtual public ::userbase::view
          {
          public:
 

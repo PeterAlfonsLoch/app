@@ -1571,6 +1571,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="multithreading\multithreading_multi_lock.h" />
     <ClInclude Include="multithreading\multithreading_mutex.h" />
     <ClInclude Include="multithreading\multithreading_plain_service.h" />
+    <ClInclude Include="multithreading\multithreading_retry_multi_lock.h" />
     <ClInclude Include="multithreading\multithreading_retry_single_lock.h" />
     <ClInclude Include="multithreading\multithreading_semaphore.h" />
     <ClInclude Include="multithreading\multithreading_service_base.h" />
@@ -3024,6 +3025,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="multithreading\multithreading_multi_lock.cpp" />
     <ClCompile Include="multithreading\multithreading_mutex.cpp" />
     <ClCompile Include="multithreading\multithreading_plain_service.cpp" />
+    <ClCompile Include="multithreading\multithreading_retry_multi_lock.cpp" />
     <ClCompile Include="multithreading\multithreading_retry_single_lock.cpp" />
     <ClCompile Include="multithreading\multithreading_semaphore.cpp" />
     <ClCompile Include="multithreading\multithreading_service_base.cpp" />

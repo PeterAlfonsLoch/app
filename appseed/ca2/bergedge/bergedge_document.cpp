@@ -7,6 +7,7 @@ namespace bergedge
 
    document::document(::ca::application * papp) :
       ca(papp),
+      ::ca::data_container_base(papp),
       ::userbase::document(papp)
    {
       m_pplatformdocument = NULL;

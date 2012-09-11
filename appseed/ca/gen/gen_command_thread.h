@@ -22,8 +22,8 @@ namespace gen
 
      
       mutex                            m_mutex; // all this command_thread data is a kind of global
-      ::ca::smart_ptra < command >     m_ptraHistory; // accumulatted as command_thread history passes
-      ::ca::smart_ptra < command >     m_ptra; // pending commands to be run - command_thread does not "run" forks, let it's own thread/process run it
+      spa(command)                     m_ptraHistory; // accumulatted as command_thread history passes
+      spa(command)                     m_ptra; // pending commands to be run - command_thread does not "run" forks, let it's own thread/process run it
       stringa                          m_straHistory;
 
 

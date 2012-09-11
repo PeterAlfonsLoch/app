@@ -255,15 +255,39 @@ namespace ca
    }
 
    template < class T >
-   class smart_ptra :
+   class smart_pointer_array :
       virtual public base_array < ::ca::smart_pointer < T > >
    {
    public:
+
+      template < class DERIVED >
+      DERIVED * get(index iStart = 0)
+      {
+         DERIVED * pderived;
+         for(index i = iStart; i < get_count(); i++)
+         {
+            try
+            {
+               pderived = dynamic_cast < DERIVED * > (element_at(i).m_p);
+            }
+            catch(...)
+            {
+            }
+            if(pderived != NULL)
+               return pderived;
+         }
+         return NULL;
+      }
+
+
    };
 
 
 } // namespace ca
 
 
+
+
+
 #define sp(TYPE) ::ca::smart_pointer < TYPE >
-#define spa(TYPE) ::base_array < ::ca::smart_pointer < TYPE > >
+#define spa(TYPE) ::ca::smart_pointer_array < TYPE >

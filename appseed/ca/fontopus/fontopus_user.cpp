@@ -47,9 +47,7 @@ namespace fontopus
    {
 
       if(get_app()->is_system()
-      || get_app()->is_session()
-      || get_app()->is_cube()
-      || get_app()->is_bergedge())
+      || get_app()->is_cube())
          return false;
 
 

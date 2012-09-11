@@ -3263,6 +3263,9 @@
     <ClInclude Include="exception\exception_todo.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
+    <ClInclude Include="multithreading\multithreading_retry_multi_lock.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
@@ -5451,6 +5454,9 @@
     </ClCompile>
     <ClCompile Include="exception\exception_error.cpp">
       <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_retry_multi_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 
 form_document::form_document(::ca::application * papp) :
    ca(papp),
+   ::ca::data_container_base(papp),
    html_document(papp)
 {
 }

@@ -7,6 +7,7 @@ namespace filehandler
 
    document::document(::ca::application * papp) :
       ca(papp),
+      ::ca::data_container_base(papp),
       html_document(papp)
    {
    }

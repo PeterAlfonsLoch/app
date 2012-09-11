@@ -99,6 +99,13 @@ public:
    virtual CScrollBar* GetScrollBarCtrl(int nBar) const;
 
 
+   virtual void on_draw_view_nc(::ca::graphics * pdc);
+   virtual void on_draw_view(::ca::graphics * pdc, spa(::ca::data) spadata);
+   virtual void defer_draw_view(::ca::graphics * pdc);
+
+   virtual void _001OnDraw(::ca::graphics * pdc);
+
+
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
    virtual bool pre_create_window(CREATESTRUCT& cs);

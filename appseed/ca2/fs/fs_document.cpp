@@ -7,6 +7,7 @@ namespace fs
 
    document::document(::ca::application * papp) :
       ::ca::ca(papp),
+      ::ca::data_container_base(papp),
       userbase::document(papp),
       m_fsset(papp)
    {

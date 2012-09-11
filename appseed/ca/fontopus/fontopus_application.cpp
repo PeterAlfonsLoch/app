@@ -226,20 +226,34 @@ namespace fontopus
 
    user * application::get_user()
    {
-      if(m_puser == NULL)
+      if(is_session())
       {
-         if(m_bIsCreatingUser)
-            return NULL;
-         keeper < bool > keepCreatingUser(&m_bIsCreatingUser, true, false, true);
-         m_puser = create_current_user();
-         if(!m_puser->initialize())
+         if(m_puser == NULL)
          {
-            delete m_puser;
-            m_puser = NULL;
-            return NULL;
+            if(m_bIsCreatingUser)
+               return NULL;
+            keeper < bool > keepCreatingUser(&m_bIsCreatingUser, true, false, true);
+            m_puser = create_current_user();
+            if(!m_puser->initialize())
+            {
+               delete m_puser;
+               m_puser = NULL;
+               return NULL;
+            }
          }
+         if(m_puser != NULL)
+         {
+            if(m_puser->m_pifs == NULL)
+            {
+               m_puser->create_ifs();
+            }
+         }
+         return m_puser;
       }
-      return m_puser;
+      else
+      {
+         return Session.get_user();
+      }
    }
 
    void application::set_user(const char * psz)

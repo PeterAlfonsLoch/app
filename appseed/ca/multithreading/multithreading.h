@@ -23,6 +23,7 @@ class multi_lock;
 #include "multithreading_retry_single_lock.h"
 #include "multithreading_synch_lock.h"
 #include "multithreading_multi_lock.h"
+#include "multithreading_retry_multi_lock.h"
 
 
 #ifdef ___ENABLE_INLINES

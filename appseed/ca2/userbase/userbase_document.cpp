@@ -7,6 +7,7 @@ namespace userbase
 
    document::document(::ca::application * papp) :
       ca(papp),
+      ::ca::data_container_base(papp),
       ::document(papp)
    {
       m_pdocumentemplate = NULL;

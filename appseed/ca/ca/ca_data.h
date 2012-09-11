@@ -53,6 +53,9 @@ namespace ca
       // reading data - for saving for example;
       interlocked_long  m_lockedlongSaving;
 
+
+      mutex             m_mutex;
+
       data(::ca::application * papp);
       virtual ~data();
 
