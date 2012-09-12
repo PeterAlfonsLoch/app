@@ -96,6 +96,7 @@ namespace spa
       vsstring       m_strIndexGz;
       vsstring       m_strInstall;
       vsstring       m_strInstallGz;
+      vsstring       m_strInstallStatusTemplate;
 
       bool           m_bInstallSet;
 

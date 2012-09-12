@@ -1017,20 +1017,6 @@ restart:
       if(strLocale.is_empty())
          goto restart;
 
-      vsstring strUrl(pszUrl);
-
-      if(strUrl.find("?") >= 0)
-      {
-
-         strUrl += "&";
-
-      }
-      else
-      {
-
-         strUrl += "?";
-
-      }
 
       //debug_box("plugin::defer_get not logged", "defer get", 0);
 
@@ -1050,15 +1036,7 @@ restart:
 
       }
 
-      strUrl += "lang=" + strLocale + "&styl=" + strSchema;
-
-      while((str = ms_get_dup(strUrl)).is_empty())
-      {
-         iAttempt++;
-         if(iAttempt > 11)
-            return "";
-         Sleep(iAttempt * 840);
-      }
+      str = defer_ls_get(strUrl, strLocale,_strSchema);
 
       return str;
 

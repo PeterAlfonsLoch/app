@@ -2631,6 +2631,8 @@ RetryHost:
 
       m_strInstall               = "http://ccvotagus.net/stage/";
 
+      m_strInstallStatusTemplate = defer_ls_get("http://account.ca2.cc/defer_ls_get?id=spa::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
+
       m_bForceUpdatedBuild       = true;
 
       m_bStarterStart            = true;
@@ -2652,7 +2654,7 @@ RetryHost:
       int iRetry = 0;
       while(true)
       {
-         strName = ms_get_dup(strUrl);
+         strName = defer_ls_get(strUrl, m_strInstallLocale, m_strInstallSchema);
          if(strName.length() > 0)
             break;
          else if(iRetry < 84)
@@ -2666,6 +2668,19 @@ RetryHost:
          trace_add(".");
          Sleep(184);
       }
+
+      vsstring strStatusTemplate;
+      
+      if(m_strInstallStatusTemplate.get_length() >= strlen_dup("%APPNAME%"))
+      {
+         strStatusTemplate = m_strInstallStatusTemplate;
+      }
+      else
+      {
+         strStatusTemplate = "Installing %APPNAME%";
+      }d
+
+      strName = strStatusTemplate.replace("%APPNAME%", strName);
 
       strName = "Installing " + strName;
       strName = strName + " " + m_strBuild;
