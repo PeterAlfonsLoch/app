@@ -2678,11 +2678,11 @@ RetryHost:
       else
       {
          strStatusTemplate = "Installing %APPNAME%";
-      }d
+      }
 
-      strName = strStatusTemplate.replace("%APPNAME%", strName);
+      strStatusTemplate.replace("%APPNAME%", strName);
 
-      strName = "Installing " + strName;
+      strName = strStatusTemplate;
       strName = strName + " " + m_strBuild;
       strName = strName + " \"" + get_command_line_param(m_strCommandLine, "locale");
       strName = strName + "\" \"" + get_command_line_param(m_strCommandLine, "schema") + "\"";
