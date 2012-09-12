@@ -4,4 +4,3 @@ LIBRARY  "optca"
 ; For Win32 DLLs, only EXPORTs really required.
 
 EXPORTS
-optca_fastblur
