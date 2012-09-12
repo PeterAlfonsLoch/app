@@ -56,11 +56,11 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
    //   char   ch = 0;
 
    // skip leading white-space characters
-   while(::isspace(*lpszBegin))
+   while(::isspace((unsigned char) *lpszBegin))
       lpszBegin++;
 
    // name doesn't begin with an alphabet?
-   if (!::isalpha(*lpszBegin))
+   if (!::isalpha((unsigned char) *lpszBegin))
       return (0U);
 
    lpszEnd = lpszBegin;
@@ -68,7 +68,7 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
    {
       // attribute name may contain letters (a-z, A-Z), digits (0-9),
       // underscores '_', hyphen '-', colons ':', and periods '.'
-      if ( (!::isalnum(*lpszEnd)) &&
+      if ( (!::isalnum((unsigned char) *lpszEnd)) &&
          (*lpszEnd != '-') && (*lpszEnd != ':') &&
          (*lpszEnd != '_') && (*lpszEnd != '.') )
       {
@@ -78,7 +78,7 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
          // equal-sign, a greater-than symbol, or a forward-slash
          // can act as the separator between an attribute and its
          // value
-         if (*lpszEnd =='\0' || ::isspace(*lpszEnd) ||
+         if (*lpszEnd =='\0' || ::isspace((unsigned char) *lpszEnd) ||
             *lpszEnd == '=' ||
             *lpszEnd == '>' || *lpszEnd == '/')
          {
@@ -107,7 +107,7 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
       // and the equal-sign itself
       do {
          lpszEnd++;
-      } while (::isspace(*lpszEnd));
+      } while (::isspace((unsigned char) *lpszEnd));
 
       lpszBegin = lpszEnd;
       string strChar = string(*lpszEnd);
@@ -146,7 +146,7 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
          // loop until we find a tag ending delimeter or any
          // white-space character, or until we reach at the
          // end of the string buffer
-         while (*lpszEnd != '\0' && !::isspace(*lpszEnd) &&
+         while (*lpszEnd != '\0' && !::isspace((unsigned char) *lpszEnd) &&
             *lpszEnd != '/' && *lpszEnd != '>');
       }
 
