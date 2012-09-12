@@ -1499,6 +1499,7 @@ InitFailure:
 
       if(is_serviceable())
       {
+         remove_service();
          create_service();
          start_service();
       }
