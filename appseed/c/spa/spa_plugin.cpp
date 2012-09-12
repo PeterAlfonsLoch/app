@@ -1036,7 +1036,7 @@ restart:
 
       }
 
-      str = defer_ls_get(strUrl, strLocale,_strSchema);
+      str = defer_ls_get(pszUrl, strLocale, strSchema);
 
       return str;
 
