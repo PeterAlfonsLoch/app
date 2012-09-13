@@ -250,6 +250,10 @@ namespace fontopus
          }
          return m_puser;
       }
+      else if(m_papp == NULL || m_papp->m_psession == NULL)
+      {
+         return NULL;
+      }
       else
       {
          return Session.get_user();
