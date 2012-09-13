@@ -1743,7 +1743,7 @@ retry:
 
       if(command().m_varTopicQuery["schema"].has_char())
       {
-         set_locale(command().m_varTopicQuery["schema"], true);
+         set_schema(command().m_varTopicQuery["schema"], true);
       }
 
    }
