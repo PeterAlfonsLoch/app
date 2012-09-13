@@ -782,10 +782,11 @@ namespace plugin
                         m_puiHost->KillTimer(19841115);
                         //Sleep(15 * 1000);
    //                     m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
+                        xxdebug_box("plugin", "open_ca2_string", 0);
                         ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
                         pbiasCreate->m_set["NativeWindowFocus"] = false;
                         pbiasCreate->m_puiParent = m_puiHost;
-                        m_psystem->command().add_fork_uri(str2, pbiasCreate);
+                        m_psystem->add_fork_uri(str2, pbiasCreate);
                      }
                   }
                }

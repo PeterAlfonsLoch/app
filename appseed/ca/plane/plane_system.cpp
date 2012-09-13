@@ -1729,6 +1729,26 @@ retry:
       return m_ftlibrary;
    }
 
+
+   void system::add_for_uri(const char * pszUri, ::ca::application_bias * pbiasCreate)
+   {
+    
+      command().add_fork_uri(pszUri, pbiasCreate);
+
+      if(command().m_varTopicQuery["locale"].has_char()
+      && command().m_varTopicQuery["locale"] != "_std")
+      {
+         set_locale(command().m_varTopicQuery["locale"], true);
+      }
+
+      if(command().m_varTopicQuery["schema"].has_char())
+      {
+         set_locale(command().m_varTopicQuery["schema"], true);
+      }
+
+   }
+
+
 } // namespace plane
 
 
