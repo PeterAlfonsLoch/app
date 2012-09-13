@@ -242,7 +242,7 @@ namespace spa
       if(!m_bLogged)
       {
 
-         //debug_box("plugin::start_ca2 not logged", "not logged", 0);
+         xxdebug_box("plugin::start_ca2 not logged", "not logged", 0);
 
          m_bLogin = true;
          m_login.m_bVisible = false;
@@ -1017,7 +1017,7 @@ restart:
          goto restart;
 
 
-      //debug_box("plugin::defer_get not logged", "defer get", 0);
+      xxdebug_box("plugin::defer_get not logged", "defer get", 0);
 
 
 

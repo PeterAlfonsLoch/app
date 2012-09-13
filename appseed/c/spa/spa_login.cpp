@@ -67,7 +67,7 @@ spa_login::spa_login()
 void spa_login::defer_translate(::spa::plugin * pplugin)
 {
 
-   //debug_box("defer_translate", "spa_login", 0);
+   xxdebug_box("defer_translate", "spa_login", 0);
 
    vsstring strForm = pplugin->defer_get("http://account.ca2.cc/login_form");
 

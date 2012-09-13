@@ -421,7 +421,7 @@ namespace plugin
 
       keeper < bool > keepMainReady(&m_bMainReady, true, false, true);
 
-      //debug_box("ca plugin plugin", "ready_on_main_thread", 0);
+      xxdebug_box("ca plugin plugin", "ready_on_main_thread", 0);
 
       count iCount = get_memory_length();
 
