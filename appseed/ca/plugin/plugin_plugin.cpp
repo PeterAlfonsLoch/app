@@ -786,7 +786,7 @@ namespace plugin
                         ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
                         pbiasCreate->m_set["NativeWindowFocus"] = false;
                         pbiasCreate->m_puiParent = m_puiHost;
-                        m_psystem->add_fork_uri(str2, pbiasCreate);
+                        m_psystem->post_fork_uri(str2, pbiasCreate);
                      }
                   }
                }

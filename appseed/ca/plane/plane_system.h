@@ -443,7 +443,7 @@ namespace plane
       unsigned long guess_code_page(const char * pszText);
 
 
-      virtual void add_for_uri(const char * pszUri, ::ca::application_bias * pbiasCreate);
+      virtual void post_fork_uri(const char * pszUri, ::ca::application_bias * pbiasCreate);
 
 
       plane::session * get_session(index iEdge, ::ca::application_bias * pbiasCreation = NULL);

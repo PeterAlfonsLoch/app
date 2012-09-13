@@ -1730,7 +1730,7 @@ retry:
    }
 
 
-   void system::add_for_uri(const char * pszUri, ::ca::application_bias * pbiasCreate)
+   void system::post_fork_uri(const char * pszUri, ::ca::application_bias * pbiasCreate)
    {
     
       command().add_fork_uri(pszUri, pbiasCreate);
