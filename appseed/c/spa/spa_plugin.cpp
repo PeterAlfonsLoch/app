@@ -53,7 +53,6 @@ namespace spa
       m_bLogin                = false;
 
       m_bRestartCa2           = false;
-      m_bRestartCa2Ticket     = false;
       m_bPendingStream        = false;
 
       m_startca2.m_pplugin = this;
@@ -186,13 +185,13 @@ namespace spa
 
          m_bRestartCa2        = false;
 
-         m_bRestartCa2Ticket  = true;
+         m_bPendingStream     = true;
 
          bJob                 = true;
 
       }
 
-      if(m_bRestartCa2Ticket && m_bPendingStream && m_phost != NULL)
+      if(m_bPendingStream && m_phost != NULL)
       {
 
          if(m_phost->m_bStream)
@@ -212,8 +211,6 @@ namespace spa
             {
 
             }
-
-            m_bRestartCa2Ticket = false;
 
             m_bPendingStream = false;
 
@@ -283,7 +280,7 @@ namespace spa
 
          m_bRestartCa2        = true;
 
-         m_bRestartCa2Ticket  = false;
+         m_bPendingStream     = false;
 
       }
       else
@@ -520,6 +517,8 @@ install:
       {
 
          MSG msg;
+
+         memset(&msg, 0, sizeof(msg));
 
          // only valid fields
          msg.message = uiMessage;
