@@ -80,7 +80,6 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
    cds.cbData = (DWORD) strlen_dup(pszMessage);
    cds.lpData = (void *) pszMessage;
 
-
    DWORD_PTR dwptr;
 
    if(!::SendMessageTimeout(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds, SMTO_BLOCK, dwTimeout, &dwptr))
