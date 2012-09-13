@@ -230,11 +230,11 @@ namespace ca2
       if(strSchemaSystem.has_char())
          strSchema = strSchemaSystem;
 
-/*      if(Sys(this).directrix().m_varTopicQuery["locale"].get_string().has_char())
+      if(Sys(this).directrix().m_varTopicQuery["locale"].get_string().has_char())
          strLocale = Sys(this).directrix().m_varTopicQuery["locale"];
       
       if(Sys(this).directrix().m_varTopicQuery["schema"].get_string().has_char())
-         strSchema = Sys(this).directrix().m_varTopicQuery["schema"];*/
+         strSchema = Sys(this).directrix().m_varTopicQuery["schema"];
 
       if(App(this).directrix().m_varTopicQuery["locale"].get_string().has_char())
          strLocale = App(this).directrix().m_varTopicQuery["locale"];
