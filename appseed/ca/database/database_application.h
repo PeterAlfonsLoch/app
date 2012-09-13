@@ -1,11 +1,6 @@
 #pragma once
 
 
-class DBCentralInterface;
-class CResourceCentral;
-class VmsDataServerInterface;
-
-
 namespace database
 {
 
@@ -15,19 +10,25 @@ namespace database
       virtual public ::database::client
    {
    public:
+
+
       application();
       virtual ~application();
 
+      
       virtual bool initialize();
 
+      
       virtual ::database::server * get_data_server();
 
 
       virtual int exit_instance();
 
+
    };
 
 
 } // namespace database
+
 
 

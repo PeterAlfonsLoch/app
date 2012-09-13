@@ -14,7 +14,8 @@ namespace cube
 
       m_prunstartinstaller       = NULL;
       m_bLicense                 = false;
-
+      m_strAppName               = "cube";
+      m_strInstallToken          = "cube";
       
 
    }

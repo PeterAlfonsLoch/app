@@ -82,8 +82,6 @@ namespace filemanager
          void list_view::_001InsertColumns()
          {
 
-            // dbbreak  DBCentralInterface * pDataCentral = db();
-
             ::user::list_column column;
             /*
 

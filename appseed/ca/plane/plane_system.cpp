@@ -1396,6 +1396,12 @@ namespace plane
          strApplicationId = "bergedge";
 
       }
+      else if(strId == "app/ca2/cube")
+      {
+
+         strApplicationId = "cube";
+
+      }
       else
       {
 

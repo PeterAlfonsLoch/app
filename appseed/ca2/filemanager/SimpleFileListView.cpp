@@ -289,7 +289,7 @@ namespace filemanager
          RenameFile(iLine, str);
          return true;
       }
-      return VmsDataServerInterface::OnSetData(key, iLine, iColumn, var, puh);
+      return data_server_interface::OnSetData(key, iLine, iColumn, var, puh);
    }
 
    bool SimpleFileListView::get_data(
@@ -306,7 +306,7 @@ namespace filemanager
          var.m_str = str;
          return true;
       }
-      return VmsDataServerInterface::OnSetData(key, iLine, iColumn, var);
+      return data_server_interface::OnSetData(key, iLine, iColumn, var);
    }*/
 
    void SimpleFileListView::RenameFile(int iLine, string &wstrNameNew)

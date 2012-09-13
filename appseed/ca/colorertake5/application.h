@@ -14,11 +14,14 @@ namespace colorertake5
       application();
       virtual ~application();
 
+
       virtual bool initialize();
+
 
    };
 
 
 } // namespace colorertake5
+
 
 

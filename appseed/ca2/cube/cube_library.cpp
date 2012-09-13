@@ -17,7 +17,7 @@ namespace cube
    void library::get_app_list(stringa & stra)
    {
 
-      
+      stra.add("cube");
       stra.add("fontopus");
       stra.add("default_file_handler");
       stra.add("bergedge");
@@ -56,7 +56,11 @@ namespace cube
 
       if(gen::str::equals_ci(pszAppId, "bergedge"))
       {
-         return new bergedge::bergedge();
+         return new ::bergedge::bergedge();
+      }
+      else if(gen::str::equals_ci(pszAppId, "cube"))
+      {
+         return new ::cube::cube();
       }
 
       return ::ca2::single_application_library < application >::get_new_app(pszAppId);

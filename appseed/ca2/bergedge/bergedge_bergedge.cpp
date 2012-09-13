@@ -88,7 +88,7 @@ namespace bergedge
       GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
 
 
-      SetRegistryKey("ca2core");
+      //SetRegistryKey("ca2core");
 
 
       if(!InitializeLocalDataCentral())

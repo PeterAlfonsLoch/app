@@ -66,31 +66,51 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
 
       if(m_psystem->m_pcube == NULL && !is_cube())
       {
-         
-         ::cube::cube * pcube                = new ::cube::cube();
+
+         ::ca::application * papp            = System.create_application("application", "cube", true, NULL);
+         if(papp == NULL)
+            return false;
+
+         ::cube::cube * pcube                = dynamic_cast < ::cube::cube * > (papp);
+         if(pcube == NULL)
+         {
+            delete papp;
+            return NULL;
+         }
+
          pcube->m_psystem                    = m_psystem;
          pcube->m_psession                   = m_psession;
          m_psystem->m_pcube                  = pcube;
          m_psystem->m_pcubeInterface         = pcube;
 
-         pcube->directrix().consolidate(&m_psystem->directrix());
+         //pcube->directrix().consolidate(&m_psystem->directrix());
 
-         if(!pcube->start_application(true, NULL))
-            return false;
+         //if(!pcube->start_application(true, NULL))
+         //   return false;
 
       }
 
       if(m_psession->m_pbergedge == NULL && !is_cube() && !is_bergedge())
       {
-         
-         ::bergedge::bergedge * pbergedge    = new ::bergedge::bergedge();
+
+         ::ca::application * papp            = System.create_application("application", "bergedge", true, NULL);
+         if(papp == NULL)
+            return false;
+
+         ::bergedge::bergedge * pbergedge    = dynamic_cast < ::bergedge::bergedge * > (papp);
+         if(pbergedge == NULL)
+         {
+            delete papp;
+            return NULL;
+         }
+
          pbergedge->m_psystem                = m_psystem;
          pbergedge->m_psession               = m_psession;
          m_psession->m_pbergedge             = pbergedge;
          m_psession->m_pbergedgeInterface    = pbergedge;
 
-         if(!pbergedge->start_application(true, NULL))
-            return false;
+         //if(!pbergedge->start_application(true, NULL))
+         //   return false;
 
       }
 

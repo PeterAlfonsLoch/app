@@ -65,6 +65,12 @@ namespace planebase
             strNewId = "app/ca2/bergedge";
 
          }
+         else if(strId == "cube")
+         {
+
+            strNewId = "app/ca2/cube";
+
+         }
          else
          {
 
@@ -88,14 +94,29 @@ namespace planebase
             m_psystem->m_psession = m_psession;
          }
 
-         if(strId == "bergedge")
+         ::radix::application * pradixapp = dynamic_cast < ::radix::application * > (pcaapp);
+
+         if(pradixapp != NULL)
          {
+          
+            if(strId == "bergedge" 
+            || strId == "cube")
+            {
 
-            ::radix::application * pradixapp = dynamic_cast < ::radix::application * > (pcaapp);
+               pradixapp->m_strAppId = strId;
 
-            pradixapp->m_strAppId = strId;
+            }
+
+            if(pradixapp->m_strInstallToken.is_empty())
+            {
+
+               pradixapp->m_strInstallToken = pradixapp->m_strAppId;
+
+            }
 
          }
+
+
 
       }
 
@@ -557,13 +578,13 @@ InitFailure:
                if(strId.is_empty())
                   strId = m_strAppName;
 
-               if(command().m_varTopicQuery.has_property("app") && strId == command().m_varTopicQuery["app"])
+               if(strId.has_char() && command().m_varTopicQuery.has_property("app") && strId == command().m_varTopicQuery["app"])
                {
                   
                   System.install().remove_spa_start(m_strInstallType, strId);
                   System.install().add_app_install(System.command().m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, m_strSchema);
                }
-               else if(command().m_varTopicQuery.has_property("session_start") && strId == command().m_varTopicQuery["session_start"])
+               else if(strId.has_char() && command().m_varTopicQuery.has_property("session_start") && strId == command().m_varTopicQuery["session_start"])
                {
                   //MessageBox(NULL, "on_install2", "on_install2", 0);
                   System.install().remove_spa_start(m_strInstallType, strId);
