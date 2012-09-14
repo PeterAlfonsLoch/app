@@ -105,7 +105,7 @@ inline void * fixed_alloc_sync::Alloc()
    }
 
 
-   register void * p;
+   register void * p = NULL;
    m_protectptra.get_data()[i]->lock();
    try
    {
@@ -115,6 +115,8 @@ inline void * fixed_alloc_sync::Alloc()
    {
    }
    m_protectptra.get_data()[i]->unlock();
+   if(p == NULL)
+      return NULL;
    ((int *) p)[0] = i;
    return &((int *)p)[1];
 }

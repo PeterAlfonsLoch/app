@@ -65,8 +65,6 @@ namespace dynamic_source
 
       calc_rsa_key();
 
-      Begin();
-
       m_strNamespace             = "netnodelite"; // default namespace is linked to outer project app_core_netnodelite
       m_strNetnodePath           = "C:\\netnodenet\\";
       m_strNetseedPath           = "C:\\netnodenet\\net\\netseed\\";
