@@ -29,6 +29,14 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    if(file_exists_dup(pszFile) && !::unlink(pszFile))
    {
       //trace("download failed: could not delete file prior to download.");
+      vsstring str;
+      str = "ms_download_dup: error url=\"";
+      str += pszUrl;
+      str += "\"";
+      str = "file path=\"";
+      str += pszFile;
+      str += "\"";
+      trace(str);
       return false;
    }
 
@@ -81,7 +89,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
 
 
 
-vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int, dword_ptr), void * callback_param)
+vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int, dword_ptr), void * callback_param, bool bProgress)
 {
 
    prepare_http();
