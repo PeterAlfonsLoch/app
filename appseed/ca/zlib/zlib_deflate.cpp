@@ -1188,9 +1188,9 @@ zlib_local uInt longest_match_fast(
      */
     Assert(s->hash_bits >= 8 && MAX_MATCH == 258, (char *) "Code too clever");
 
-    Assert((ulg)s->strstart <= s->window_size-MIN_LOOKAHEAD, "need lookahead");
+    Assert((ulg)s->strstart <= s->window_size-MIN_LOOKAHEAD, (char *) "need lookahead");
 
-    Assert(cur_match < s->strstart, "no future");
+    Assert(cur_match < s->strstart, (char *) "no future");
 
     match = s->window + cur_match;
 
@@ -1205,7 +1205,7 @@ zlib_local uInt longest_match_fast(
      * the hash keys are equal and that HASH_BITS >= 8.
      */
     scan += 2, match += 2;
-    Assert(*scan == *match, "match[2]?");
+    Assert(*scan == *match, (char *) "match[2]?");
 
     /* We check for insufficient lookahead only every 8th comparison;
      * the 256th check will be made at strstart+258.
@@ -1217,7 +1217,7 @@ zlib_local uInt longest_match_fast(
              *++scan == *++match && *++scan == *++match &&
              scan < strend);
 
-    Assert(scan <= s->window+(unsigned)(s->window_size-1), "wild scan");
+    Assert(scan <= s->window+(unsigned)(s->window_size-1), (char *) "wild scan");
 
     len = MAX_MATCH - (int)(strend - scan);
 
@@ -1245,7 +1245,7 @@ zlib_local void check_match(
         do {
             fprintf(stderr, "%c%c", s->window[match++], s->window[start++]);
         } while (--length != 0);
-        z_error("invalid match");
+        z_error((char *) "invalid match");
     }
     if (z_verbose > 1) {
         fprintf(stderr,"\\[%d,%d]", start-match, length);
@@ -1340,7 +1340,7 @@ zlib_local void fill_window(
          * Otherwise, window_size == 2*WSIZE so more >= 2.
          * If there was sliding, more >= WSIZE. So in all cases, more >= 2.
          */
-        Assert(more >= 2, "more < 2");
+        Assert(more >= 2, (char *) "more < 2");
 
         n = read_buf(s->strm, s->window + s->strstart + s->lookahead, more);
         s->lookahead += n;
@@ -1410,14 +1410,14 @@ zlib_local block_state deflate_stored(
         if (s->lookahead <= 1) {
 
             Assert(s->strstart < s->w_size+MAX_DIST(s) ||
-                   s->block_start >= (long)s->w_size, "slide too late");
+                   s->block_start >= (long)s->w_size, (char *) "slide too late");
 
             fill_window(s);
             if (s->lookahead == 0 && flush == Z_NO_FLUSH) return need_more;
 
             if (s->lookahead == 0) break; /* flush the current block */
         }
-        Assert(s->block_start >= 0L, "block gone");
+        Assert(s->block_start >= 0L, (char *) "block gone");
 
         s->strstart += s->lookahead;
         s->lookahead = 0;

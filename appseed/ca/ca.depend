@@ -6181,7 +6181,7 @@
 1342864856 source:/ca2/app/appseed/ca/api/api_integer_to_string.cpp
 	"framework.h"
 
-1342864881 /ca2/app/appseed/ca/framework.h
+1347600723 /ca2/app/appseed/ca/framework.h
 	"app/appseed/ca/ca.h"
 	"app/appseed/optca/optca.h"
 
@@ -8074,8 +8074,7 @@
 
 1342864786 /ca2/app/appseed/ca/os/os_cross_windows_shared_memory.h
 
-1342864786 /ca2/app/appseed/ca/os/os_cross_windows_time.h
-	"framework.h"
+1347620498 /ca2/app/appseed/ca/os/os_cross_windows_time.h
 
 1342864786 /ca2/app/appseed/ca/os/os_cross_windows_crt.h
 
@@ -8171,7 +8170,7 @@
 1342864709 /ca2/app/appseed/ca/zlib/zlib.h
 	"zconf.h"
 
-1347206044 /ca2/app/appseed/ca/zlib/zutil.h
+1347600895 /ca2/app/appseed/ca/zlib/zutil.h
 	"zlib.h"
 	<stddef.h>
 	<errno.h>
@@ -8336,8 +8335,7 @@
 
 1342864726 /ca2/app/appseed/ca/gen/gen_command_line.h
 
-1342864726 /ca2/app/appseed/ca/gen/gen_command_thread.h
-	"framework.h"
+1347620976 /ca2/app/appseed/ca/gen/gen_command_thread.h
 
 1342864726 /ca2/app/appseed/ca/gen/gen_base64.h
 
@@ -11873,7 +11871,7 @@
 1347114476 source:/ca2/app/appseed/ca/radix/radix_allocation_mid_big.cpp
 	"framework.h"
 
-1347228062 source:/ca2/app/appseed/ca/os/os_cross_windows_time.cpp
+1347228520 source:/ca2/app/appseed/ca/os/os_cross_windows_time.cpp
 	"nodeapp/operational_system/bare_operational_system.h"
 	"os_cross_windows_internals.h"
 	"c/c/verisimple_string.h"
@@ -12612,7 +12610,7 @@
 
 1342864709 /ca2/app/appseed/ca/zlib/crc32.h
 
-1347227849 source:/ca2/app/appseed/ca/zlib/zlib_deflate.cpp
+1347600710 source:/ca2/app/appseed/ca/zlib/zlib_deflate.cpp
 	"framework.h"
 	"zutil.h"
 	"deflate.h"
@@ -12668,7 +12666,7 @@
 	"framework.h"
 	"zlib.h"
 
-1342864709 source:/ca2/app/appseed/ca/zlib/zlib_zutil.cpp
+1347600710 source:/ca2/app/appseed/ca/zlib/zlib_zutil.cpp
 	"framework.h"
 	"zutil.h"
 
@@ -12694,4 +12692,8 @@
 
 1347210869 source:/ca2/app/appseed/ca/exception/exception_error.cpp
 	"framework.h"
+
+1347600723 source:/ca2/app/appseed/ca/framework.h
+	"app/appseed/ca/ca.h"
+	"app/appseed/optca/optca.h"
 

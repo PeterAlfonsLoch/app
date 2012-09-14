@@ -818,7 +818,7 @@
 	"framework.h"
 	"bzlib_private.h"
 
-1347011030 /ca2/app/appseed/c/framework.h
+1347600428 /ca2/app/appseed/c/framework.h
 	"c/c.h"
 	"macos/c_os_internal.h"
 	"linux/c_os_internal.h"
@@ -1855,4 +1855,10 @@
 	<sys/stat.h>
 
 1347166164 /ca2/app/appseed/c/merdes_windows/c_os_thread.h
+
+1347600428 source:/ca2/app/appseed/c/framework.h
+	"c/c.h"
+	"macos/c_os_internal.h"
+	"linux/c_os_internal.h"
+	"windows/c_os_internal.h"
 

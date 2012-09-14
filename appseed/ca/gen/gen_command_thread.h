@@ -1,4 +1,3 @@
-#include "framework.h"
 
 
 namespace ca
@@ -20,7 +19,7 @@ namespace gen
    {
    public:
 
-     
+
       mutex                            m_mutex; // all this command_thread data is a kind of global
       spa(command)                     m_ptraHistory; // accumulatted as command_thread history passes
       spa(command)                     m_ptra; // pending commands to be run - command_thread does not "run" forks, let it's own thread/process run it

@@ -7,8 +7,8 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../stage/x86/libca" prefix_auto="1" extension_auto="1" />
-				<Option object_output="../../time/intermediate/app/ca" />
+				<Option output="../../../stage/x86/libca" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../../../time/intermediate/app/ca" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -18,11 +18,11 @@
 					<Add option="-g" />
 					<Add option="-fPIC" />
 					<Add option="-Wno-attributes" />
+					<Add option="-Winvalid-pch" />
 					<Add directory="." />
 					<Add directory=".." />
 					<Add directory="../../.." />
 					<Add directory="../ca" />
-					<Add directory="../../appseedcore" />
 					<Add directory="../../../app" />
 					<Add directory="../../nodeapp/linux" />
 					<Add directory="../ca2" />
@@ -907,8 +907,10 @@
 		<Unit filename="fontopus/fontopus_usera.h" />
 		<Unit filename="fontopus/fontopus_validate.cpp" />
 		<Unit filename="fontopus/fontopus_validate.h" />
-		<Unit filename="framework.cpp" />
-		<Unit filename="framework.h" />
+		<Unit filename="framework.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
 		<Unit filename="fs/fs.h" />
 		<Unit filename="fs/fs_application.cpp" />
 		<Unit filename="fs/fs_application.h" />

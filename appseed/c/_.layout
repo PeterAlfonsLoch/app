@@ -37,8 +37,8 @@
 	<File name="bsdiff/huffman.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="7099" topLine="167" />
 	</File>
-	<File name="c/c.h" open="0" top="0" tabpos="0">
-		<Cursor position="529" topLine="39" />
+	<File name="c/c.h" open="1" top="0" tabpos="27">
+		<Cursor position="529" topLine="15" />
 	</File>
 	<File name="c/cpu_architecture.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="3602" topLine="145" />
@@ -108,6 +108,9 @@
 	</File>
 	<File name="crypt/crypt.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1444" topLine="0" />
+	</File>
+	<File name="framework.h" open="1" top="0" tabpos="1">
+		<Cursor position="7" topLine="0" />
 	</File>
 	<File name="hotplugin/hotplugin_host.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2145" topLine="105" />
