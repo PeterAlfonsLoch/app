@@ -4,6 +4,12 @@
 class db_server;
 
 
+namespace mysql
+{
+   class database;
+}
+
+
 class CLASS_DECL_ca db_long_set :
    public db_set
 {
@@ -65,18 +71,19 @@ public:
    };
 
 
-      mutex                                        m_mutex;
+   mutex                                        m_mutex;
    sockets::socket_handler                      m_handler;
    sockets::http_session *                      m_phttpsession;
 
 
-   ::collection::string_map < item >       m_map;
+   ::collection::string_map < item >            m_map;
    bool                                         m_bIndexed;
 
-   sync_queue *                                   m_pqueue;
+   sync_queue *                                 m_pqueue;
    
 
-   
+   ::mysql::database *                          m_pmysqldbUser;
+   string                                       m_strUser;
 
 
    db_long_set(db_server * pdatacentral);

@@ -19,6 +19,7 @@ db_server::db_server(::ca::application * papp) :
    m_pfilesystemsizeset = NULL;
    m_pdatabaseImpl      = NULL;
    m_bRemote            = true;
+   m_pmysqldbUser       = NULL;
 }
 
 db_server::~db_server()
@@ -36,6 +37,45 @@ string db_server::calc_key(::database::id & idSection, ::database::id & id, ::da
    str += idIndex.get_id().str();
    return str;
 }
+
+bool db_server::initialize_user(mysql::database * pmysqldbUser, const char * pszUser)
+{
+
+   if(pmysqldbUser == NULL)
+      return false;
+
+   m_bRemote         = false;
+
+   m_pmysqldbUser    = pmysqldbUser;
+   m_strUser         = pszUser;
+
+//   m_pdb = new ::sqlite::base(get_app());
+
+/*   string str;
+   str = Application.dir().userappdata("prop.db");
+   Application.dir().mk(System.dir().name(str));
+   m_pdb->setDatabase(str);
+   m_pdb->connect();
+
+   m_pdatabaseImpl = new ::sqlite::base(get_app());
+
+   str = Application.dir().userappdata("_prop002.db");
+   Application.dir().mk(System.dir().name(str));
+   m_pdatabaseImpl->setDatabase(str);
+   m_pdatabaseImpl->connect();*/
+
+   m_pLongsSet    = new db_long_set(this);
+   m_pStringSet   = new db_str_set(this);
+
+   if(!create_message_window())
+      return false;
+
+   m_bWorking = true;
+
+   return true;
+
+}
+
 
 bool db_server::initialize()
 {

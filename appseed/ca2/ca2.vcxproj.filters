@@ -2505,5 +2505,8 @@
     <ClCompile Include=".\userstack\userstack_application.cpp">
       <Filter>Source Files\userstack</Filter>
     </ClCompile>
+    <ClCompile Include="cubebase\cubebase_cubebase.cpp">
+      <Filter>Source Files\cubebase</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

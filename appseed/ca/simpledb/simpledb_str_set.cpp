@@ -6,25 +6,25 @@ db_str_set::db_str_set(db_server * pserver) :
    db_set(pserver, "stringtable"),
    m_handler(pserver->get_app())
 {
-   m_pqueue = NULL;
-   //::simpledb::base * pdb = db()->m_pbase;
-   //::simpledb::set *  pds = (::simpledb::set *) pdb->create_dataset();
-   ::sqlite::base * pdb = db()->GetImplDatabase();
-   ::sqlite::set *  pds = (::sqlite::set *) pdb->CreateDataset();
+
+   m_pqueue       = NULL;
    
    m_phttpsession = NULL;
 
-   if(!m_pdataserver->m_bRemote)
-   {
+   m_pmysqldbUser = pserver->m_pmysqldbUser;
+   m_strUser      = pserver->m_strUser;
 
+   if(!m_pdataserver->m_bRemote && m_pmysqldbUser == NULL)
+   {
+      ::sqlite::base * pdb = db()->GetImplDatabase();
       //create string Table if necessary
       try
       {
          pdb->start_transaction();
-         pds->query("select * from sqlite_master where type like 'table' and name like 'stringtable'");
-         if (pds->num_rows()==0)
+         m_pdataset->query("select * from sqlite_master where type like 'table' and name like 'stringtable'");
+         if (m_pdataset->num_rows()==0)
          {
-            pds->exec("create table stringtable (id text primary key, value text)");
+            m_pdataset->exec("create table stringtable (id text primary key, value text)");
          }
          pdb->commit_transaction();
       }
@@ -36,7 +36,6 @@ db_str_set::db_str_set(db_server * pserver) :
 
    }
 
-   m_pdataset = pds;
 
 }
 
@@ -259,6 +258,24 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
 
    }
+   else if(m_pmysqldbUser != NULL)
+   {
+      
+      try
+      {
+
+         strValue = m_pmysqldbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + m_strUser + "' AND `key` = '" + m_pmysqldbUser->real_escape_string(lpKey) + "'");
+         
+         return true;
+
+      }
+      catch(...)
+      {
+      }
+
+      return false;
+
+   }
    else
    {
       single_lock slDatabase(db()->GetImplCriticalSection());
@@ -348,6 +365,16 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
          pdb->commit_transaction();
       }
       return true;
+   }
+   else if(m_pmysqldbUser != NULL)
+   {
+	   
+      string strSql = "REPLACE INTO fun_user_str_set VALUE('" + m_strUser + "', '" + m_pmysqldbUser->real_escape_string(lpKey) + "', '" + m_pmysqldbUser->real_escape_string(lpcsz) + "')";
+
+	   TRACE(strSql);
+
+	   return m_pmysqldbUser->query(strSql) != NULL;
+
    }
    else
    {

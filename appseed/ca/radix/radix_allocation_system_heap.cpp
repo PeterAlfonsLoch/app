@@ -10,7 +10,16 @@
 // DWORD aligned allocation
 
 #ifdef WINDOWS
-static HANDLE g_hSystemHeap = ::HeapCreate(0, 0, 0);
+
+CLASS_DECL_ca HANDLE g_system_heap()
+{
+   
+   static HANDLE s_hSystemHeap = HeapCreate(0, 0, 0);
+
+   return s_hSystemHeap;
+
+}
+
 #endif
 
 static simple_mutex g_mutexSystemHeap;
@@ -23,7 +32,7 @@ CLASS_DECL_ca void * system_heap_alloc(size_t size)
   // byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, HEAP_ZERO_MEMORY, ((size + 4 + 3) & ~3));
 //#else  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
 #ifdef WINDOWS
-   byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, 0, ((size + 4 + sizeof(size_t) + 3) & ~3));
+   byte * p = (byte *) ::HeapAlloc(g_system_heap(), 0, ((size + 4 + sizeof(size_t) + 3) & ~3));
 #else
    byte * p = (byte *) ::malloc((size + 4 +  sizeof(size_t)  + 3) & ~3);
 #endif
@@ -47,7 +56,7 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
       return NULL;
    size_t sizeOld = *((size_t *)&((DWORD *) (pOld - iMod - sizeof(size_t)))[1]);
 #ifdef WINDOWS
-   byte * p = (byte *) ::HeapReAlloc(g_hSystemHeap, 0, pOld - iMod- sizeof(size_t), ((size + 4+  sizeof(size_t)  + 3) & ~3));
+   byte * p = (byte *) ::HeapReAlloc(g_system_heap(), 0, pOld - iMod- sizeof(size_t), ((size + 4+  sizeof(size_t)  + 3) & ~3));
 #else
    byte * p = (byte *) ::realloc(pOld - iMod, ((size + 4 + 3) & ~3));
 #endif
@@ -95,7 +104,7 @@ CLASS_DECL_ca void system_heap_free(void * pvoid)
 
 #ifdef WINDOWS
 
-   if(!::HeapFree(g_hSystemHeap, 0, p - iMod - sizeof(size_t)))
+   if(!::HeapFree(g_system_heap(), 0, p - iMod - sizeof(size_t)))
    {
 
       DWORD dw = ::GetLastError();

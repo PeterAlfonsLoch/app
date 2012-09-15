@@ -1417,6 +1417,7 @@
     <ClCompile Include="cube5\cube5_application.cpp" />
     <ClCompile Include="cube8\cube8_application.cpp" />
     <ClCompile Include="cubebase\cubebase_application.cpp" />
+    <ClCompile Include="cubebase\cubebase_cubebase.cpp" />
     <ClCompile Include="cube\cube_application.cpp" />
     <ClCompile Include="cube\cube_cube.cpp" />
     <ClCompile Include="cube\cube_library.cpp" />

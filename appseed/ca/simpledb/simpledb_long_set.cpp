@@ -8,9 +8,12 @@ db_long_set::db_long_set(db_server * pserver) :
    m_handler(pserver->get_app())
 {
 
-   m_phttpsession = NULL;
+   m_phttpsession    = NULL;
 
-   m_pqueue = NULL;
+   m_pqueue          = NULL;
+
+   m_pmysqldbUser    = pserver->m_pmysqldbUser;
+   m_strUser         = pserver->m_strUser;
 
 
 }
@@ -186,6 +189,24 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       return true;
 
    }
+   else if(m_pmysqldbUser != NULL)
+   {
+      
+      try
+      {
+
+         *plValue = m_pmysqldbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + m_strUser + "' AND `key` = '" + m_pmysqldbUser->real_escape_string(lpKey) + "'");
+         
+         return true;
+
+      }
+      catch(...)
+      {
+      }
+
+      return false;
+
+   } 
    else
    {
 
@@ -249,6 +270,16 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
       m_map.set_at(lpKey, longitem);
 
       return true;
+
+   }
+   else if(m_pmysqldbUser != NULL)
+   {
+	   
+      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_strUser + "', '" + m_pmysqldbUser->real_escape_string(lpKey) + "', " + gen::str::itoa(lValue) + ")";
+
+	   TRACE(strSql);
+
+	   return m_pmysqldbUser->query(strSql) != NULL;
 
    }
    else

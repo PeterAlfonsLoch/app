@@ -153,6 +153,8 @@ void fixed_alloc_sync::FreeAll()
 fixed_alloc::fixed_alloc(UINT nAllocSize, UINT nBlockSize)
 {
 
+   m_i = 0;
+
    int iShareCount = ::get_current_process_maximum_affinity() + 1;
 
    if(iShareCount <= 0)

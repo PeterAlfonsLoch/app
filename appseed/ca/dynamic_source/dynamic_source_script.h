@@ -90,7 +90,7 @@ namespace dynamic_source
       void Load(bool bLock);
       void Unload(bool bLock);
 
-
+      string get_stage_path();
 
 
       ::ca::application * get_app() const;

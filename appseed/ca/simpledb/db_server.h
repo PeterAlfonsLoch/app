@@ -47,7 +47,8 @@ public:
    class ::im_post *       m_pimpost;
    class ::veiev_post *    m_pveievpost;
    
-
+   mysql::database *       m_pmysqldbUser;
+   string                  m_strUser;
 
    db_server(::ca::application * papp);
    virtual ~db_server();
@@ -78,6 +79,7 @@ public:
 
    static string calc_key(::database::id & idSection, ::database::id & id, ::database::id & idIndex);
 
+   virtual bool initialize_user(mysql::database * pmysqldbUser, const char * pszUser);
    virtual bool initialize();
    virtual bool finalize();
 

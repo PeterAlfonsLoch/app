@@ -47,6 +47,19 @@ namespace dynamic_source
       m_evCreationEnabled.SetEvent();
    }
 
+   string ds_script::get_stage_path()
+   {
+      string strPath = m_strScriptPath;
+
+      strPath.replace(":/", ".");
+      strPath.replace(":\\", ".");
+      strPath.replace("/", ".");
+      strPath.replace("\\", ".");
+      
+      return System.dir().path("C:\\netnode\\stage\\x64\\", strPath);
+      
+   }
+
    bool ds_script::DoesMatchVersion()
    {
 
@@ -236,7 +249,18 @@ namespace dynamic_source
          //{
            // __debug_break();
          //}
-         m_library.open(m_strScriptPath);
+         //::SetDllDirectory("C:\\netnode\\stage\\x64");
+         string strStagePath = get_stage_path();
+         ::CopyFile(m_strScriptPath, strStagePath, FALSE);
+         string str1 = m_strScriptPath;
+         string str2 = strStagePath;
+         gen::str::ends_eat_ci(str1, ".dll");
+         gen::str::ends_eat_ci(str2, ".dll");
+         str1 += ".pdb";
+         str2 += ".pdb";
+         ::CopyFile(m_strScriptPath, strStagePath, FALSE);
+         ::CopyFile(str1, str2, FALSE);
+         m_library.open(strStagePath);
          if(m_library.is_closed())
          {
             DWORD dwMessageId = GetLastError();
@@ -257,7 +281,7 @@ namespace dynamic_source
                NULL);
             string str;
             str.Format("%d : ", ::GetLastError());
-            m_memfileError << m_strScriptPath << " : LoadLibrary, GetLastError "  << str;
+            m_memfileError << strStagePath << " : LoadLibrary, GetLastError "  << str;
 
             if(lpBuffer != NULL)
             {
@@ -310,13 +334,15 @@ namespace dynamic_source
       {
          m_library.close();
 
+         string strStagePath = get_stage_path();
+         
 #ifdef WINDOWS
-         HMODULE hmodule = ::GetModuleHandleW(gen::international::utf8_to_unicode("\\\\?\\" + m_strScriptPath));
-         bool b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + m_strScriptPath), &hmodule) != FALSE;
+         HMODULE hmodule = ::GetModuleHandleW(gen::international::utf8_to_unicode("\\\\?\\" + strStagePath));
+         bool b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + strStagePath), &hmodule) != FALSE;
          if(hmodule != NULL && !::FreeLibrary(hmodule))
          {
             DWORD dwError = ::GetLastError();
-            TRACE("ds_script::GetModuleHandle return bool(%d) Unload Error close Handle %s %d\r\n", b, m_strScriptPath, dwError);
+            TRACE("ds_script::GetModuleHandle return bool(%d) Unload Error close Handle %s %d\r\n", b, strStagePath, dwError);
          }
          string strPdb;
          strPdb = m_strScriptPath;

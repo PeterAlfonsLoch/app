@@ -44,7 +44,7 @@ public:
       sockets::socket_handler                      m_handler;
       sockets::http_session *                      m_phttpsession;
 
-      array_ptr_alloc < queue_item >                     m_itema;
+      array_ptr_alloc < queue_item >               m_itema;
 
       sync_queue(::ca::application * papp);
       virtual ~sync_queue();
@@ -58,13 +58,16 @@ public:
    };
 
 
-      mutex                                        m_mutex;
+   mutex                                        m_mutex;
    sockets::socket_handler                      m_handler;
    sockets::http_session *                      m_phttpsession;
-   ::collection::string_map < item >       m_map;
+   ::collection::string_map < item >            m_map;
    bool                                         m_bIndexed;
 
-   sync_queue *                                   m_pqueue;
+   sync_queue *                                 m_pqueue;
+
+   ::mysql::database *                          m_pmysqldbUser;
+   string                                       m_strUser;
 
 
    db_str_set(db_server * pserver);
