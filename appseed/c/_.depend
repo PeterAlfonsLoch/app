@@ -1069,7 +1069,7 @@
 
 1342864685 /ca2/app/appseed/c/c/keep_true.h
 
-1346980273 /ca2/app/appseed/c/c/debug.h
+1347621934 /ca2/app/appseed/c/c/debug.h
 
 1342864685 /ca2/app/appseed/c/c/printf.h
 
@@ -1224,7 +1224,7 @@
 
 1342864658 /ca2/app/appseed/c/spa/spa_machine_event.h
 
-1345878349 /ca2/app/appseed/c/spa/spa_installer.h
+1347621934 /ca2/app/appseed/c/spa/spa_installer.h
 
 1342864658 /ca2/app/appseed/c/spa/resource.h
 
@@ -1234,7 +1234,7 @@
 
 1346980272 /ca2/app/appseed/c/spa/spa_login.h
 
-1347033539 /ca2/app/appseed/c/spa/spa_plugin.h
+1347621934 /ca2/app/appseed/c/spa/spa_plugin.h
 	"c/os/os.h"
 
 1342864689 /ca2/app/appseed/c/bsdiff/bsdiff.h
@@ -1254,7 +1254,7 @@
 	"c/merdes_windows/windows_merde.h"
 	"c/windows/c_os.h"
 
-1347136330 /ca2/app/appseed/c/os/os_thread.h
+1347621934 /ca2/app/appseed/c/os/os_thread.h
 
 1342864656 /ca2/app/appseed/c/os/os_process.h
 
@@ -1271,7 +1271,7 @@
 
 1342864676 /ca2/app/appseed/c/macos/c_os_http_lib.h
 
-1342864676 /ca2/app/appseed/c/macos/c_os_http.h
+1347621934 /ca2/app/appseed/c/macos/c_os_http.h
 
 1347166164 /ca2/app/appseed/c/macos/c_os_process.h
 
@@ -1291,7 +1291,7 @@
 
 1342864691 /ca2/app/appseed/c/linux/c_os_http_lib.h
 
-1342864691 /ca2/app/appseed/c/linux/c_os_http.h
+1347621934 /ca2/app/appseed/c/linux/c_os_http.h
 
 1347029212 /ca2/app/appseed/c/linux/c_os_process.h
 
@@ -1312,7 +1312,7 @@
 	"c_os_simple_hold_handle.h"
 	"c_os_file.h"
 
-1342864659 /ca2/app/appseed/c/windows/c_os_http.h
+1347621934 /ca2/app/appseed/c/windows/c_os_http.h
 
 1342864659 /ca2/app/appseed/c/windows/c_os_registry.h
 
@@ -1451,7 +1451,7 @@
 1345878349 source:/ca2/app/appseed/c/c/file_spa.cpp
 	"framework.h"
 
-1345878349 source:/ca2/app/appseed/c/c/gdi.cpp
+1347621934 source:/ca2/app/appseed/c/c/gdi.cpp
 	"framework.h"
 	"linux/c_os_cross_win_gdi_internal.h"
 	"macos/c_os_internal.h"
@@ -1504,7 +1504,7 @@
 1342864685 source:/ca2/app/appseed/c/c/simple_shell_launcher.cpp
 	"framework.h"
 
-1347010031 source:/ca2/app/appseed/c/c/small_ipc_channel.cpp
+1347621934 source:/ca2/app/appseed/c/c/small_ipc_channel.cpp
 	"framework.h"
 
 1342864685 source:/ca2/app/appseed/c/c/sprintf.cpp
@@ -1623,7 +1623,7 @@
 	"framework.h"
 	"c_os_cross_win_gdi_internal.h"
 
-1342864691 source:/ca2/app/appseed/c/linux/c_os_http.cpp
+1347621934 source:/ca2/app/appseed/c/linux/c_os_http.cpp
 	"framework.h"
 
 1342864691 source:/ca2/app/appseed/c/linux/c_os_http_lib.cpp
@@ -1767,7 +1767,7 @@
 1347028815 source:/ca2/app/appseed/c/simple_ui/linux/c_os_simple_label.cpp
 	"framework.h"
 
-1347010030 source:/ca2/app/appseed/c/spa/spa_installer.cpp
+1347621934 source:/ca2/app/appseed/c/spa/spa_installer.cpp
 	"framework.h"
 	<WinInet.h>
 	<Winternl.h>
@@ -1777,9 +1777,8 @@
 1342864658 source:/ca2/app/appseed/c/spa/spa_installer_square.cpp
 	"framework.h"
 
-1347028835 source:/ca2/app/appseed/c/simple_ui/simple_ui.cpp
+1347621934 source:/ca2/app/appseed/c/simple_ui/simple_ui.cpp
 	"framework.h"
-	<GdiPlus.h>
 
 1342864658 source:/ca2/app/appseed/c/spa/spa_machine_event.cpp
 	"framework.h"
@@ -1807,7 +1806,7 @@
 	"framework.h"
 	"c/linux/c_os_cross_win_gdi_internal.h"
 
-1347028964 source:/ca2/app/appseed/c/spa/spa_login.cpp
+1347621934 source:/ca2/app/appseed/c/spa/spa_login.cpp
 	"framework.h"
 
 1347029176 source:/ca2/app/appseed/c/spa/spa.cpp
@@ -1833,7 +1832,7 @@
 1347033481 source:/ca2/app/appseed/c/spa/spa_spa.cpp
 	"framework.h"
 
-1347033892 source:/ca2/app/appseed/c/spa/spa_plugin.cpp
+1347621934 source:/ca2/app/appseed/c/spa/spa_plugin.cpp
 	"framework.h"
 	<gdiplus.h>
 	"c/linux/c_os_cross_win_gdi_internal.h"
@@ -1861,4 +1860,7 @@
 	"macos/c_os_internal.h"
 	"linux/c_os_internal.h"
 	"windows/c_os_internal.h"
+
+1347807019 source:/ca2/app/appseed/c/linux/c_os_thread.cpp
+	"framework.h"
 
