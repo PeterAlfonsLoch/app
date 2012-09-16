@@ -260,23 +260,34 @@ namespace ca
    {
    public:
 
+
       template < class DERIVED >
       DERIVED * get(index iStart = 0)
       {
-         DERIVED * pderived;
+
+         DERIVED * pderived = NULL;
+
          for(index i = iStart; i < get_count(); i++)
          {
+
             try
             {
+
                pderived = dynamic_cast < DERIVED * > (element_at(i).m_p);
+
             }
             catch(...)
             {
+
             }
+
             if(pderived != NULL)
                return pderived;
+
          }
+
          return NULL;
+
       }
 
 

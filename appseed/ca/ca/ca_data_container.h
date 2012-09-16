@@ -50,7 +50,7 @@ namespace ca
       bool replace_data(TYPE * pdata)
       {
          
-         TYPE * pderived;
+         TYPE * pderived = NULL;
 
          for(index i = 0; i < m_spadata.get_count(); i++)
          {
