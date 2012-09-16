@@ -124,6 +124,15 @@
 		07237F4E15F99D660018B75F /* simple_tap.h in Headers */ = {isa = PBXBuildFile; fileRef = 07237F4415F99D660018B75F /* simple_tap.h */; };
 		07237F4F15F99D660018B75F /* simple_ui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07237F4515F99D660018B75F /* simple_ui.cpp */; };
 		07237F5015F99D660018B75F /* simple_ui.h in Headers */ = {isa = PBXBuildFile; fileRef = 07237F4615F99D660018B75F /* simple_ui.h */; };
+		077AE6CC1606201C0052CAC4 /* c_os_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077AE6CB1606201C0052CAC4 /* c_os_thread.cpp */; };
+		07AB204D16061A6000CD4EE2 /* os_http.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AB204A16061A6000CD4EE2 /* os_http.cpp */; };
+		07AB204E16061A6000CD4EE2 /* os_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AB204B16061A6000CD4EE2 /* os_thread.cpp */; };
+		07AB204F16061A6000CD4EE2 /* os_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AB204C16061A6000CD4EE2 /* os_thread.h */; };
+		07AB205816061B3600CD4EE2 /* c_os_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AB205316061B3600CD4EE2 /* c_os_file.h */; };
+		07AB205916061B3600CD4EE2 /* c_os_win_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AB205416061B3600CD4EE2 /* c_os_win_base.cpp */; };
+		07AB205E16061BB200CD4EE2 /* ansios_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AB205B16061BB200CD4EE2 /* ansios_file.cpp */; };
+		07AB205F16061BB200CD4EE2 /* ansios_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AB205C16061BB200CD4EE2 /* ansios_file.h */; };
+		07AB206016061BB200CD4EE2 /* ansios.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AB205D16061BB200CD4EE2 /* ansios.h */; };
 		07AE38E915FBF6CD002E9436 /* c_os_process_pid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE38E815FBF6CD002E9436 /* c_os_process_pid.cpp */; };
 		07AE38EF15FC035A002E9436 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AE38EE15FC035A002E9436 /* libcrypto.a */; };
 		07AE38F215FC03E0002E9436 /* spa_login.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE38F015FC03E0002E9436 /* spa_login.cpp */; };
@@ -338,8 +347,17 @@
 		07237F4415F99D660018B75F /* simple_tap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_tap.h; sourceTree = "<group>"; };
 		07237F4515F99D660018B75F /* simple_ui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_ui.cpp; sourceTree = "<group>"; };
 		07237F4615F99D660018B75F /* simple_ui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_ui.h; sourceTree = "<group>"; };
+		077AE6CB1606201C0052CAC4 /* c_os_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_thread.cpp; sourceTree = "<group>"; };
+		07AB204A16061A6000CD4EE2 /* os_http.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = os_http.cpp; path = os/os_http.cpp; sourceTree = "<group>"; };
+		07AB204B16061A6000CD4EE2 /* os_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = os_thread.cpp; path = os/os_thread.cpp; sourceTree = "<group>"; };
+		07AB204C16061A6000CD4EE2 /* os_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = os_thread.h; path = os/os_thread.h; sourceTree = "<group>"; };
+		07AB205316061B3600CD4EE2 /* c_os_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_os_file.h; sourceTree = "<group>"; };
+		07AB205416061B3600CD4EE2 /* c_os_win_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_win_base.cpp; sourceTree = "<group>"; };
+		07AB205B16061BB200CD4EE2 /* ansios_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ansios_file.cpp; path = ansios/ansios_file.cpp; sourceTree = "<group>"; };
+		07AB205C16061BB200CD4EE2 /* ansios_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ansios_file.h; path = ansios/ansios_file.h; sourceTree = "<group>"; };
+		07AB205D16061BB200CD4EE2 /* ansios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ansios.h; path = ansios/ansios.h; sourceTree = "<group>"; };
 		07AE38E815FBF6CD002E9436 /* c_os_process_pid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_process_pid.cpp; sourceTree = "<group>"; };
-		07AE38EE15FC035A002E9436 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libcrypto.a; path = ../../../nodeapp/appseed/openssl/build/Release/libcrypto.a; sourceTree = "<group>"; };
+		07AE38EE15FC035A002E9436 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../../nodeapp/appseed/openssl/build/Release/libcrypto.a; sourceTree = "<group>"; };
 		07AE38F015FC03E0002E9436 /* spa_login.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spa_login.cpp; sourceTree = "<group>"; };
 		07AE38F115FC03E0002E9436 /* spa_login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spa_login.h; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
@@ -587,14 +605,27 @@
 			path = simple_ui;
 			sourceTree = "<group>";
 		};
+		07AB206116061BD600CD4EE2 /* ansios */ = {
+			isa = PBXGroup;
+			children = (
+				07AB205D16061BB200CD4EE2 /* ansios.h */,
+				07AB205C16061BB200CD4EE2 /* ansios_file.h */,
+				07AB205B16061BB200CD4EE2 /* ansios_file.cpp */,
+			);
+			name = ansios;
+			sourceTree = "<group>";
+		};
 		A10D34E215131BCC004FD312 /* os */ = {
 			isa = PBXGroup;
 			children = (
+				A10D34E615131C06004FD312 /* os.h */,
 				CE8ED98E1572DDDA0082203F /* os_binreloc.cpp */,
 				CE8ED98F1572DDDA0082203F /* os_binreloc.h */,
+				07AB204A16061A6000CD4EE2 /* os_http.cpp */,
 				A10D34E415131C06004FD312 /* os_process.cpp */,
 				A10D34E515131C06004FD312 /* os_process.h */,
-				A10D34E615131C06004FD312 /* os.h */,
+				07AB204B16061A6000CD4EE2 /* os_thread.cpp */,
+				07AB204C16061A6000CD4EE2 /* os_thread.h */,
 			);
 			name = os;
 			sourceTree = "<group>";
@@ -602,6 +633,7 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
+				07AB206116061BD600CD4EE2 /* ansios */,
 				07AE38EE15FC035A002E9436 /* libcrypto.a */,
 				07237F3C15F99D660018B75F /* simple_ui */,
 				07237F3115F99D570018B75F /* crypt */,
@@ -702,6 +734,9 @@
 		CEC9A23D144B818900FEA8E6 /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				077AE6CB1606201C0052CAC4 /* c_os_thread.cpp */,
+				07AB205316061B3600CD4EE2 /* c_os_file.h */,
+				07AB205416061B3600CD4EE2 /* c_os_win_base.cpp */,
 				CE4BB211156B8B4300DD13ED /* c_os_simple_shell_launcher.cpp */,
 				9A90D07C14A348E200226F1A /* c_os_cross_gdi.mm */,
 				CEC2DFBD147711D30028313B /* c_os_cross_user.mm */,
@@ -839,6 +874,10 @@
 				07237F4E15F99D660018B75F /* simple_tap.h in Headers */,
 				07237F5015F99D660018B75F /* simple_ui.h in Headers */,
 				07AE38F315FC03E0002E9436 /* spa_login.h in Headers */,
+				07AB204F16061A6000CD4EE2 /* os_thread.h in Headers */,
+				07AB205816061B3600CD4EE2 /* c_os_file.h in Headers */,
+				07AB205F16061BB200CD4EE2 /* ansios_file.h in Headers */,
+				07AB206016061BB200CD4EE2 /* ansios.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,6 +1039,11 @@
 				07237F4F15F99D660018B75F /* simple_ui.cpp in Sources */,
 				07AE38E915FBF6CD002E9436 /* c_os_process_pid.cpp in Sources */,
 				07AE38F215FC03E0002E9436 /* spa_login.cpp in Sources */,
+				07AB204D16061A6000CD4EE2 /* os_http.cpp in Sources */,
+				07AB204E16061A6000CD4EE2 /* os_thread.cpp in Sources */,
+				07AB205916061B3600CD4EE2 /* c_os_win_base.cpp in Sources */,
+				07AB205E16061BB200CD4EE2 /* ansios_file.cpp in Sources */,
+				077AE6CC1606201C0052CAC4 /* c_os_thread.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
