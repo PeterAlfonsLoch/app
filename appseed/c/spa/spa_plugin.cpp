@@ -531,55 +531,49 @@ install:
       }
       else
       {
-         switch(uiMessage)
+         if(m_bLogin)
          {
-         default:
+
+            if(uiMessage == WM_LBUTTONDOWN)
             {
-               if(m_bLogin)
-               {
-
-                  if(uiMessage == WM_LBUTTONDOWN)
-                  {
-                     m_login.on_lbutton_down((short)GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left, (short)GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top);
-                  }
-                  else if(uiMessage == WM_LBUTTONUP)
-                  {
-                     m_login.on_lbutton_up((short)GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left, (short)GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top);
-                  }
-                  else if(uiMessage == WM_MOUSEMOVE)
-                  {
-
-                     int x = (short) GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left;
-
-                     int y = (short) GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top;
-
-                     POINT ptCursor;
-
-                     ::GetCursorPos(&ptCursor);
-
-                     m_ptCursorPhase.x = (short) GET_X_LPARAM(lparam) - ptCursor.x;
-
-                     m_ptCursorPhase.y = (short) GET_Y_LPARAM(lparam) - ptCursor.y;
-
-                     m_login.on_mouse_move(x, y);
-
-                  }
-                  else if(uiMessage == WM_KEYUP)
-                  {
-                     m_login.on_char(static_cast<UINT>(wparam), static_cast<UINT>(lparam));
-                  }
-
-               }
-               else if((uiMessage == WM_LBUTTONUP
-                  || uiMessage == WM_RBUTTONUP
-                  || uiMessage == WM_MBUTTONUP) &&
-                  is_installing_ca2())
-               {
-
-                  m_iHealingSurface = m_canvas.increment_mode();
-
-               }
+               m_login.on_lbutton_down((short)GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left, (short)GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top);
             }
+            else if(uiMessage == WM_LBUTTONUP)
+            {
+               m_login.on_lbutton_up((short)GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left, (short)GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top);
+            }
+            else if(uiMessage == WM_MOUSEMOVE)
+            {
+
+               int x = (short) GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left;
+
+               int y = (short) GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top;
+
+               POINT ptCursor;
+
+               ::GetCursorPos(&ptCursor);
+
+               m_ptCursorPhase.x = (short) GET_X_LPARAM(lparam) - ptCursor.x;
+
+               m_ptCursorPhase.y = (short) GET_Y_LPARAM(lparam) - ptCursor.y;
+
+               m_login.on_mouse_move(x, y);
+
+            }
+            else if(uiMessage == WM_KEYUP)
+            {
+               m_login.on_char(static_cast<UINT>(wparam), static_cast<UINT>(lparam));
+            }
+
+         }
+         else if((uiMessage == WM_LBUTTONUP
+            || uiMessage == WM_RBUTTONUP
+            || uiMessage == WM_MBUTTONUP) &&
+            is_installing_ca2())
+         {
+
+            m_iHealingSurface = m_canvas.increment_mode();
+
          }
       }
       return 0;
