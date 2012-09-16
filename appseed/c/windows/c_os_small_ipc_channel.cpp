@@ -80,17 +80,37 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
    cds.cbData = (DWORD) strlen_dup(pszMessage);
    cds.lpData = (void *) pszMessage;
 
-   DWORD_PTR dwptr;
+   if(dwTimeout == INFINITE)
+   {
 
-   if(!::SendMessageTimeout(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds, SMTO_BLOCK, dwTimeout, &dwptr))
-      return false;
+      if(!SendMessage(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds))
+         return false;
 
-   DWORD dwError = ::GetLastError();
+   }
+   else
+   {
 
-   if(dwError == ERROR_TIMEOUT)
-      return false;
+      DWORD_PTR dwptr;
+
+      if(!::SendMessageTimeout(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds, SMTO_BLOCK, dwTimeout, &dwptr))
+         return false;
+
+      DWORD dwError = ::GetLastError();
+
+      if(dwError == ERROR_TIMEOUT)
+         return false;
+
+   }
 
    return true;
+}
+
+
+bool small_ipc_tx_channel::is_tx_ok()
+{
+   
+   return ::IsWindow(m_hwnd);
+
 }
 
 
@@ -106,15 +126,27 @@ bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTime
    cds.cbData = (DWORD) max(0, len);
    cds.lpData = (void *) pdata;
 
-   DWORD_PTR dwptr;
+   if(dwTimeout == INFINITE)
+   {
 
-   if(!::SendMessageTimeout(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds, SMTO_BLOCK, dwTimeout, &dwptr))
-      return false;
+      if(!SendMessage(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds))
+         return false;
 
-   DWORD dwError = ::GetLastError();
+   }
+   else
+   {
 
-   if(dwError == ERROR_TIMEOUT)
-      return false;
+      DWORD_PTR dwptr;
+
+      if(!::SendMessageTimeout(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds, SMTO_BLOCK, dwTimeout, &dwptr))
+         return false;
+
+      DWORD dwError = ::GetLastError();
+
+      if(dwError == ERROR_TIMEOUT)
+         return false;
+
+   }
 
    return true;
 
@@ -333,6 +365,12 @@ bool small_ipc_rx_channel::on_idle()
 
 }
 
+bool small_ipc_rx_channel::is_rx_ok()
+{
+
+   return ::IsWindow(m_hwnd);
+
+}
 
 
 bool small_ipc_channel::open_ab(const char * pszKey, const char * pszModule, launcher * plauncher)
@@ -386,3 +424,9 @@ bool small_ipc_channel::open_ba(const char * pszKey, const char * pszModule, lau
 }
 
 
+bool small_ipc_channel::is_rx_tx_ok()
+{
+
+   return m_rxchannel.is_rx_ok() && is_tx_ok();
+
+}

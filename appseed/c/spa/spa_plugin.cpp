@@ -147,48 +147,62 @@ namespace spa
       if(m_bRestartCa2 && m_phost != NULL)
       {
 
-         try
+         if(is_rx_tx_ok())
          {
 
-            vsstring str;
+            m_bRestartCa2        = false;
 
-   #if defined(_AMD64_) || defined(_LP64)
+            m_bPendingStream     = false;
 
-            str = itohex_dup(((int*) m_phost)[1]);
+            bJob                 = false;
 
-            str += itohex_dup(((int*) m_phost)[0]);
+         }
+         else
+         {
+            try
+            {
 
+               vsstring str;
+
+      #if defined(_AMD64_) || defined(_LP64)
+
+               str = itohex_dup(((int*) m_phost)[1]);
+
+               str += itohex_dup(((int*) m_phost)[0]);
+
+      #else
+
+               str = itohex_dup((int) m_phost);
+
+      #endif
+
+               m_phost->m_strBitmapChannel = str;
+
+               ::hotplugin::container_launcher launcher(str);
+
+               vsstring strChannel = "\\ca2\\ca2plugin-container-";
+
+               strChannel += str;
+
+   #ifdef WINDOWS
+               open_ab(strChannel, "plugin-container.exe", &launcher);
    #else
-
-            str = itohex_dup((int) m_phost);
-
+               open_ab(strChannel, &launcher);
    #endif
 
-            m_phost->m_strBitmapChannel = str;
+            }
+            catch(...)
+            {
 
-            ::hotplugin::container_launcher launcher(str);
+            }
 
-            vsstring strChannel = "\\ca2\\ca2plugin-container-";
+            m_bRestartCa2        = false;
 
-            strChannel += str;
+            m_bPendingStream     = true;
 
-#ifdef WINDOWS
-            open_ab(strChannel, "plugin-container.exe", &launcher);
-#else
-            open_ab(strChannel, &launcher);
-#endif
+            bJob                 = true;
 
          }
-         catch(...)
-         {
-
-         }
-
-         m_bRestartCa2        = false;
-
-         m_bPendingStream     = true;
-
-         bJob                 = true;
 
       }
 

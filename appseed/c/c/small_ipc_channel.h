@@ -55,6 +55,8 @@ public:
    bool send(int message, void * pdata, int len, DWORD dwTimeout);
 
 
+   bool is_tx_ok();
+
 };
 
 
@@ -115,6 +117,8 @@ public:
    void * receive();
 #endif
 
+   bool is_rx_ok();
+
 };
 
 
@@ -147,6 +151,9 @@ public:
 
    bool ensure_tx(const char * pszMessage, DWORD dwTimeout = INFINITE);
    bool ensure_tx(int message, void * pdata, int len, DWORD dwTimeout = INFINITE);
+
+
+   bool is_rx_tx_ok();
 
 
 };
