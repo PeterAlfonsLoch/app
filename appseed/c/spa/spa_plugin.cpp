@@ -54,6 +54,7 @@ namespace spa
 
       m_bRestartCa2           = false;
       m_bPendingStream        = false;
+      m_dwLastRestart         = 0;
 
       m_startca2.m_pplugin = this;
 
@@ -532,19 +533,6 @@ install:
       {
          switch(uiMessage)
          {
-         case WM_TIMER:
-            {
-               switch(wparam)
-               {
-               case 8477:
-                  {
-                     KillTimer(get_host_window(), 8477);
-                     start_ca2();
-                  }
-                  break;
-               }
-            }
-            return 0;
          default:
             {
                if(m_bLogin)
@@ -601,19 +589,6 @@ install:
    {
       /*      switch(uiMessage)
       {
-      case WM_TIMER:
-      {
-      switch(wparam)
-      {
-      case 8477:
-      {
-      KillTimer(get_host_window(), 8477);
-      start_ca2();
-      }
-      break;
-      }
-      }
-      return 0;
       default:
       {
       if((uiMessage == WM_LBUTTONUP
