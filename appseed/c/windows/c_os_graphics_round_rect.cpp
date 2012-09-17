@@ -72,7 +72,7 @@ void graphics_round_rect::GetRoundRectPath(GraphicsPath *pPath, Rect r, int dia)
    {
       Corner.Width += 1;
       Corner.Height += 1;
-      r.Height -=1; r.Height -= 1;
+      //r.Height -=1; //r.Height -= 1;
    }
 
    // top right
