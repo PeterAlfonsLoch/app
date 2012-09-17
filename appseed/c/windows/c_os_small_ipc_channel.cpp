@@ -83,8 +83,18 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
    if(dwTimeout == INFINITE)
    {
 
-      if(!SendMessage(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds))
+      try
+      {
+
+         SendMessage(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds);
+
+      }
+      catch(...)
+      {
+
          return false;
+
+      }
 
    }
    else
@@ -109,7 +119,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
 bool small_ipc_tx_channel::is_tx_ok()
 {
    
-   return ::IsWindow(m_hwnd);
+   return ::IsWindow(m_hwnd) != FALSE;
 
 }
 
@@ -129,8 +139,18 @@ bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTime
    if(dwTimeout == INFINITE)
    {
 
-      if(!SendMessage(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds))
+      try
+      {
+
+         SendMessage(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds);
+
+      }
+      catch(...)
+      {
+
          return false;
+
+      }
 
    }
    else
@@ -368,7 +388,7 @@ bool small_ipc_rx_channel::on_idle()
 bool small_ipc_rx_channel::is_rx_ok()
 {
 
-   return ::IsWindow(m_hwnd);
+   return ::IsWindow(m_hwnd) != FALSE;
 
 }
 
