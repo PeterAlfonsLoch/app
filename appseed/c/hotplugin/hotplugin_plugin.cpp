@@ -712,7 +712,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
          Gdiplus::GraphicsPath pathClip1;
 
          Gdiplus::Rect rectClip1(lprect->left + iBorder1, lprect->top + iBorder1, cx - iBorder1 * 2, cy - iBorder1 * 2);
-         CRoundRect::GetRoundRectPath(&pathClip1, rectClip1, iBorder1 * 2);
+         graphics_round_rect::GetRoundRectPath(&pathClip1, rectClip1, iBorder1 * 2);
          graphics2.SetClip(&pathClip1, Gdiplus::CombineModeReplace);
 
 
@@ -741,7 +741,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
          Gdiplus::GraphicsPath pathClip;
 
          Gdiplus::Rect rectClip(lprect->left + cx / iRate - iBorder , lprect->top + (cy - 23) / 2 - iBorder, iRowCount + iBorder * 2, 23 + iBorder * 2);
-         CRoundRect::GetRoundRectPath(&pathClip, rectClip, iBorder);
+         graphics_round_rect::GetRoundRectPath(&pathClip, rectClip, iBorder);
          graphics2.SetClip(&pathClip, Gdiplus::CombineModeExclude);
 
 
