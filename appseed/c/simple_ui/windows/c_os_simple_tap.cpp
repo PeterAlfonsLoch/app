@@ -23,22 +23,7 @@ void simple_tap::draw_simple(HDC hdc)
 
       graphics2.FillRectangle(&br, m_rect.left, m_rect.top, width(&m_rect), height(&m_rect));
 
-      if(get_focus() == this)
-      {
-
-         Gdiplus::Pen pen(Gdiplus::Color(255, 84, 77, 255), 3.0f);
-
-         graphics2.DrawRectangle(&pen, m_rect.left, m_rect.top, width(&m_rect), height(&m_rect));
-
-      }
-      else
-      {
-
-         Gdiplus::Pen pen(Gdiplus::Color(255, 149, 149, 123), 1.0f);
-
-         graphics2.DrawRectangle(&pen, m_rect.left, m_rect.top, width(&m_rect), height(&m_rect));
-
-      }
+      draw_focus_rect(hdc);
 
 
    }

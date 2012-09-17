@@ -39,6 +39,8 @@ public:
    virtual void draw_this(HDC hdc);
    virtual void draw_children(HDC hdc);
 
+   virtual void draw_focus_rect(HDC hdc);
+
 
    virtual void on_char(int ch, UINT uScan);
    virtual void on_lbutton_down(int x, int y);
@@ -57,6 +59,9 @@ public:
    virtual bool is_visible();
 
    virtual ::hotplugin::plugin * get_plugin();
+
+
+   
 
 };
 
