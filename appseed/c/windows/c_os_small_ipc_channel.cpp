@@ -74,6 +74,9 @@ bool small_ipc_tx_channel::close()
 bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
 {
 
+   if(!is_tx_ok())
+      return false;
+
    COPYDATASTRUCT cds;
 
    cds.dwData = 0x80000000;
@@ -128,6 +131,9 @@ bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTime
 {
 
    if(message == 0x80000000)
+      return false;
+
+   if(!is_tx_ok())
       return false;
 
    COPYDATASTRUCT cds;
