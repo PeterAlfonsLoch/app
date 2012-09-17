@@ -119,23 +119,7 @@ void simple_tap::draw_volume(HDC hdc)
 
       graphics2.DrawRectangle(&pen1, m_rect.left, m_rect.top, width(&m_rect), iBorderH * 2);*/
 
-      if(get_focus() == this)
-      {
-
-         Gdiplus::Pen pen(Gdiplus::Color(255, 84, 77, 255), 3.0f);
-
-         graphics2.DrawRectangle(&pen, m_rect.left, m_rect.top, width(&m_rect), iBorderH * 2);;
-
-      }
-      else
-      {
-
-         Gdiplus::Pen pen(Gdiplus::Color(255, 149, 149, 123), 1.0f);
-
-         graphics2.DrawRectangle(&pen, m_rect.left, m_rect.top, width(&m_rect), iBorderH * 2);;
-
-      }
-
+      draw_focus_rect(hdc);
 
       Gdiplus::Pen pen2(crBorderIn);
 

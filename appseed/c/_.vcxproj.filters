@@ -401,6 +401,9 @@
     <ClInclude Include="os\os.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
+    <ClInclude Include="windows\c_os_graphics_round_rect.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -738,6 +741,9 @@
     </ClCompile>
     <ClCompile Include="simple_ui\windows\c_os_simple_ui.cpp">
       <Filter>Source Files\simple_ui\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_graphics_round_rect.cpp">
+      <Filter>Source Files\windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

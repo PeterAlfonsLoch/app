@@ -739,6 +739,7 @@
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
     <ClInclude Include="windows\c_os.h" />
+    <ClInclude Include="windows\c_os_graphics_round_rect.h" />
     <ClInclude Include="windows\c_os_http.h" />
     <ClInclude Include="windows\c_os_internal.h" />
     <ClInclude Include="windows\c_os_process.h" />
@@ -817,6 +818,7 @@
     <ClCompile Include="simple_ui\windows\c_os_simple_tap.cpp" />
     <ClCompile Include="simple_ui\windows\c_os_simple_ui.cpp" />
     <ClCompile Include="windows\c_os_file.cpp" />
+    <ClCompile Include="windows\c_os_graphics_round_rect.cpp" />
     <ClCompile Include="windows\c_os_thread.cpp" />
     <ClInclude Include=".\hotplugin\hotplugin_container_launcher.h">
       <FileType>CppCode</FileType>

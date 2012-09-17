@@ -1133,6 +1133,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClInclude Include="version.h" />
     <ClInclude Include="windows\c_os.h" />
     <ClInclude Include="windows\c_os_file.h" />
+    <ClInclude Include="windows\c_os_graphics_round_rect.h" />
     <ClInclude Include="windows\c_os_http.h" />
     <ClInclude Include="windows\c_os_internal.h" />
     <ClInclude Include="windows\c_os_process.h" />
@@ -1343,6 +1344,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="windows\c_os.cpp" />
     <ClCompile Include="windows\c_os_c_dll.cpp" />
     <ClCompile Include="windows\c_os_file.cpp" />
+    <ClCompile Include="windows\c_os_graphics_round_rect.cpp" />
     <ClCompile Include="windows\c_os_http.cpp" />
     <ClCompile Include="windows\c_os_launcher.cpp" />
     <ClCompile Include="windows\c_os_library.cpp" />
