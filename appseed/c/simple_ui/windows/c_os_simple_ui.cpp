@@ -71,7 +71,7 @@ void simple_ui::draw_focus_rect(HDC hdc)
 
          {
          
-            Gdiplus::Pen pen(Gdiplus::Color(184, 184, 177, 255), 1.0f);
+            Gdiplus::Pen pen(Gdiplus::Color(255, 108, 149, 255), 1.0f);
 
             graphics2.DrawRectangle(&pen, rect.left, rect.top, width(&rect), height(&rect));
 
@@ -84,7 +84,7 @@ void simple_ui::draw_focus_rect(HDC hdc)
 
          {
          
-            Gdiplus::Pen pen(Gdiplus::Color(123, 184, 177, 255), 1.0f);
+            Gdiplus::Pen pen(Gdiplus::Color(123, 108, 149, 255), 1.0f);
 
             graphics2.DrawRectangle(&pen, rect.left, rect.top, width(&rect), height(&rect));
 
@@ -97,7 +97,7 @@ void simple_ui::draw_focus_rect(HDC hdc)
 
          {
          
-            Gdiplus::Pen pen(Gdiplus::Color(84, 184, 177, 255), 1.0f);
+            Gdiplus::Pen pen(Gdiplus::Color(84, 108, 149, 255), 1.0f);
 
             graphics2.DrawRectangle(&pen, rect.left, rect.top, width(&rect), height(&rect));
 
@@ -110,11 +110,41 @@ void simple_ui::draw_focus_rect(HDC hdc)
 
          {
          
-            Gdiplus::Pen pen(Gdiplus::Color(23, 184, 177, 255), 1.0f);
+            Gdiplus::Pen pen(Gdiplus::Color(49, 108, 149, 255), 1.0f);
 
             graphics2.DrawRectangle(&pen, rect.left, rect.top, width(&rect), height(&rect));
 
          }
+
+
+         rect.left--;
+         rect.right++;
+         rect.top--;
+         rect.bottom++;
+
+         {
+         
+            Gdiplus::Pen pen(Gdiplus::Color(49, 108, 149, 255), 1.0f);
+
+            graphics2.DrawRectangle(&pen, rect.left, rect.top, width(&rect), height(&rect));
+
+         }
+
+
+
+         rect.left--;
+         rect.right++;
+         rect.top--;
+         rect.bottom++;
+
+         {
+         
+            Gdiplus::Pen pen(Gdiplus::Color(23, 108, 149, 255), 1.0f);
+
+            graphics2.DrawRectangle(&pen, rect.left, rect.top, width(&rect), height(&rect));
+
+         }
+
 
 
       }
