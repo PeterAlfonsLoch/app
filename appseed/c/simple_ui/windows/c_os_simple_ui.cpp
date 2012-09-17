@@ -88,7 +88,7 @@ void simple_ui::draw_focus_rect(HDC hdc)
 
             Gdiplus::Rect rectRound(rect.left, rect.top, width(&rect), height(&rect));
             
-            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 1);
+            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 1 * 2);
 
             Gdiplus::Pen pen(Gdiplus::Color(84, 108, 149, 255), 1.0f);
 
@@ -107,7 +107,7 @@ void simple_ui::draw_focus_rect(HDC hdc)
 
             Gdiplus::Rect rectRound(rect.left, rect.top, width(&rect), height(&rect));
             
-            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 2);
+            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 2 * 2);
 
             Gdiplus::Pen pen(Gdiplus::Color(72, 108, 149, 255), 1.0f);
 
@@ -126,7 +126,7 @@ void simple_ui::draw_focus_rect(HDC hdc)
 
             Gdiplus::Rect rectRound(rect.left, rect.top, width(&rect), height(&rect));
             
-            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 3);
+            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 3 * 2);
 
             Gdiplus::Pen pen(Gdiplus::Color(60, 108, 149, 255), 1.0f);
 
@@ -146,7 +146,7 @@ void simple_ui::draw_focus_rect(HDC hdc)
 
             Gdiplus::Rect rectRound(rect.left, rect.top, width(&rect), height(&rect));
             
-            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 4);
+            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 4 * 2);
 
             Gdiplus::Pen pen(Gdiplus::Color(48, 108, 149, 255), 1.0f);
 
@@ -167,7 +167,7 @@ void simple_ui::draw_focus_rect(HDC hdc)
 
             Gdiplus::Rect rectRound(rect.left, rect.top, width(&rect), height(&rect));
             
-            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 5);
+            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 5 * 2);
 
             Gdiplus::Pen pen(Gdiplus::Color(36, 108, 149, 255), 1.0f);
 
@@ -190,7 +190,7 @@ void simple_ui::draw_focus_rect(HDC hdc)
 
             Gdiplus::Rect rectRound(rect.left, rect.top, width(&rect), height(&rect));
             
-            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 6);
+            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 6 * 2);
 
             Gdiplus::Pen pen(Gdiplus::Color(24, 108, 149, 255), 1.0f);
 
