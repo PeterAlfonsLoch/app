@@ -771,9 +771,11 @@ install:
 
                if(m_phost->m_bStream)
                {
-                  //set_ready();
-                  ensure_tx(::hotplugin::message_set_plugin_url, m_phost->m_strPluginUrl, m_phost->m_strPluginUrl.length());
-                  ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, m_phost->m_countMemory);
+
+                  m_bRestartCa2        = true;
+
+                  m_bPendingStream     = false;
+
                }
 
             }
@@ -806,9 +808,11 @@ install:
       if(!m_bInstalling && is_ca2_installed())
       {
 
-         //MessageBox(NULL, "on_ready", "on_ready", 0);
-         ensure_tx(::hotplugin::message_set_plugin_url, m_phost->m_strPluginUrl, m_phost->m_strPluginUrl.length());
-         ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, m_phost->m_countMemory);
+         xxdebug_box("on_ready", "on_ready", 0);
+
+         m_bRestartCa2     = true;
+
+         m_bPendingStream  = false;
 
       }
       else
