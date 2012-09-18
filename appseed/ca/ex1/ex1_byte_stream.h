@@ -47,8 +47,8 @@ namespace ex1
       byte_input_stream & operator >> (bool & b);
       byte_input_stream & operator >> (int & i);
       byte_input_stream & operator >> (unsigned int & ui);
-      void read_arbritrary(int32_t & i);
-      void read_arbritrary(uint32_t & ui);
+      void read_arbitrary(int32_t & i);
+      void read_arbitrary(uint32_t & ui);
 #if defined(WINDOWS) || defined(__LP64__)
       byte_input_stream & operator >> (long & l);
       byte_input_stream & operator >> (unsigned long & ul);
@@ -56,8 +56,8 @@ namespace ex1
 #if !defined(LINUX)
       byte_input_stream & operator >> (int64_t & i);
       byte_input_stream & operator >> (uint64_t & ui);
-      void read_arbritrary(int64_t & i);
-      void read_arbritrary(uint64_t & ui);
+      void read_arbitrary(int64_t & i);
+      void read_arbitrary(uint64_t & ui);
 #endif
       byte_input_stream & operator >> (float & f);
       byte_input_stream & operator >> (double & d);
@@ -69,7 +69,7 @@ namespace ex1
       byte_input_stream & operator >> (var & var);
 
       // read until MSB is not set ignoring this MSB when writing to target
-      void read_arbritary(void * p, count nMax);
+      void read_arbitrary(void * p, count nMax);
 
       virtual string get_location() const;
 

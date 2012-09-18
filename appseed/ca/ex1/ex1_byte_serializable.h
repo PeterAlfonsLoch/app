@@ -51,7 +51,7 @@ namespace ex1
    {
       ::count count;
       istream >> count;
-      istream.read_arbritrary(count);
+      istream.read_arbitrary(count);
       this->set_size(count);
       for(index index = 0; index < count; index++)
       {
@@ -116,7 +116,7 @@ namespace ex1
    void byte_serializable_map < type_map >::read(byte_input_stream & istream)
    {
       ::count count;
-      istream.read_arbritrary(count);
+      istream.read_arbitrary(count);
       typename type_map::BASE_KEY key;
       typename type_map::BASE_VALUE value;
       for(index index = 0; index < count; index++)

@@ -90,6 +90,20 @@ namespace ex1
       return *this;
    }
 
+   void byte_input_stream::read_arbitrary(int32_t & i)
+   {
+
+      read_arbitrary(&i, sizeof(i));
+
+   }
+
+   void byte_input_stream::read_arbitrary(uint32_t & ui)
+   {
+
+      read_arbitrary(&ui, sizeof(ui));
+
+   }
+
 #if defined(WINDOWS)
 
    byte_input_stream & byte_input_stream::operator >> (long & l)
@@ -120,8 +134,21 @@ namespace ex1
       return *this;
    }
 
+   void byte_input_stream::read_arbitrary(int64_t & i)
+   {
 
-   void byte_input_stream::read_arbritary(void * p, count nMax)
+      read_arbitrary(&i, sizeof(i));
+
+   }
+
+   void byte_input_stream::read_arbitrary(uint64_t & ui)
+   {
+
+      read_arbitrary(&ui, sizeof(ui));
+
+   }
+
+   void byte_input_stream::read_arbitrary(void * p, count nMax)
    {
 
       byte b;
