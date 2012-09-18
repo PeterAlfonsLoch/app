@@ -49,7 +49,7 @@ namespace database
       {
          return false;
       }
-      return true;
+      return memfile.get_position() == memfile.get_length();
    }
 
    bool server::data_server_load(class id idSection, class id id, class id idIndex, ex1::plain_text_serializable & obj, update_hint * puh)

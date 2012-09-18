@@ -11,9 +11,11 @@ namespace simpledb
       file_set(::ca::application * papp);
       virtual ~file_set();
 
-      virtual void refresh();
+      virtual bool refresh();
 
       bool add_search(const char * pszSearchDirectory);
+
+      virtual bool clear_search();
 
       DECL_GEN_VSIGNAL(data_on_after_change)
    };
