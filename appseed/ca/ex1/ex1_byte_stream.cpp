@@ -201,6 +201,7 @@ namespace ex1
          iRotate++;
          if((b & 0x80) == 0)
             break;
+         nMax--;
       }
       if((b & 0x80) != 0)
          throw "byte count overflow";
