@@ -150,7 +150,7 @@ namespace ex1
 
    void byte_input_stream::read_arbitrary(void * p, count nMax)
    {
-
+      memset(p, 0, nMax);
       byte b;
       int iRotate = 0;
       byte * pTarget =(byte *) p;
