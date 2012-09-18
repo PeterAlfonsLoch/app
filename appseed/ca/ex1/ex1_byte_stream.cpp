@@ -120,6 +120,67 @@ namespace ex1
       return *this;
    }
 
+
+   void byte_input_stream::read_arbritary(void * p, count nMax)
+   {
+
+      byte b;
+      int iRotate = 0;
+      byte * pTarget =(byte *) p;
+      while(nMax > 0)
+      {
+         read(&b, sizeof(b));
+         switch(iRotate % 8)
+         {
+         case 0:
+            *pTarget |= b & 0x7f;
+            break;
+         case 1:
+            *pTarget |= (b & 0x01) << 7;
+            pTarget++;
+            *pTarget |= (b & 0x7f) >> 1;
+            break;
+         case 2:
+            *pTarget |= (b & 0x03) << 6;
+            pTarget++;
+            *pTarget |= (b & 0x7f) >> 2;
+            break;
+         case 3:
+            *pTarget |= (b & 0x07) << 5;
+            pTarget++;
+            *pTarget |= (b & 0x7f) >> 3;
+            break;
+         case 4:
+            *pTarget |= (b & 0x0f) << 4;
+            pTarget++;
+            *pTarget |= (b & 0x7f) >> 4;
+            break;
+         case 5:
+            *pTarget |= (b & 0x1f) << 3;
+            pTarget++;
+            *pTarget |= (b & 0x7f) >> 5;
+            break;
+         case 6:
+            *pTarget |= (b & 0x3f) << 2;
+            pTarget++;
+            *pTarget |= (b & 0x7f) >> 6;
+            break;
+         case 7:
+            *pTarget |= (b & 0x7f) << 1;
+            pTarget++;
+            *pTarget |= (b & 0x7f) >> 7;
+            break;
+         }
+         iRotate++;
+         if((b & 0x80) == 0)
+            break;
+      }
+      if((b & 0x80) != 0)
+         throw "byte count overflow";
+
+
+   }
+
    byte_input_stream & byte_input_stream::operator >> (float & f)
    {
       read(&f, sizeof(f));
@@ -307,6 +368,20 @@ namespace ex1
       return *this;
    }
 
+   void byte_output_stream::write_arbitrary(int32_t i)
+   {
+
+      write_arbitrary((int64_t) i);
+
+   }
+
+   void byte_output_stream::write_arbitrary(uint32_t ui)
+   {
+
+      write_arbitrary((uint64_t) ui);
+
+   }
+
 #if defined(WINDOWS)
 
    byte_output_stream & byte_output_stream::operator << (long l)
@@ -323,6 +398,50 @@ namespace ex1
       return *this;
    }
 
+   void byte_output_stream::write_arbitrary(int64_t i)
+   {
+
+      if(i < 0)
+      {
+         byte b = (byte)i;
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(i >> 7);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(i >> 14);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(i >> 21);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b |= 0x80;
+         b = (byte)(i >> 28);
+         write(&b, sizeof(byte));
+         b = (byte)(i >> 35);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(i >> 42);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(i >> 49);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(i >> 56);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(i >> 63);
+         write(&b, sizeof(byte));
+      }
+      else
+      {
+         
+         write_arbitrary((uint64_t) i);
+
+      }
+
+   }
+
 #if defined(WINDOWS)
 
    byte_output_stream & byte_output_stream::operator << (unsigned long ul)
@@ -337,6 +456,196 @@ namespace ex1
    {
       write(&ui, sizeof(ui));
       return *this;
+   }
+
+   void byte_output_stream::write_arbitrary(uint64_t ui)
+   {
+      if(ui < (1u << 8))
+      {
+         byte b = (byte)ui;
+         write(&b, sizeof(byte));
+      }
+      else if(ui < (1u << 15))
+      {
+         byte b = (byte)ui;
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 7);
+         write(&b, sizeof(byte));
+      }
+      else if(ui < (1u << 22))
+      {
+         byte b = (byte)ui;
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 7);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 14);
+         write(&b, sizeof(byte));
+      }
+      else if(ui < (1u << 29))
+      {
+         byte b = (byte)ui;
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 7);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 14);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 21);
+         write(&b, sizeof(byte));
+      }
+      else if(ui < (1u << 36))
+      {
+         byte b = (byte)ui;
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 7);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 14);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 21);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 28);
+         write(&b, sizeof(byte));
+      }
+      else if(ui < (1u << 43))
+      {
+         byte b = (byte)ui;
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 7);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 14);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 21);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b |= 0x80;
+         b = (byte)(ui >> 28);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 35);
+         write(&b, sizeof(byte));
+      }
+      else if(ui < (1u << 50))
+      {
+         byte b = (byte)ui;
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 7);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 14);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 21);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b |= 0x80;
+         b = (byte)(ui >> 28);
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 35);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 42);
+         write(&b, sizeof(byte));
+      }
+      else if(ui < (1u << 57))
+      {
+         byte b = (byte)ui;
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 7);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 14);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 21);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b |= 0x80;
+         b = (byte)(ui >> 28);
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 35);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 42);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 49);
+         write(&b, sizeof(byte));
+      }
+      else if(ui < (1u << 57))
+      {
+         byte b = (byte)ui;
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 7);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 14);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 21);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b |= 0x80;
+         b = (byte)(ui >> 28);
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 35);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 42);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 49);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 56);
+         write(&b, sizeof(byte));
+      }
+      else
+      {
+         byte b = (byte)ui;
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 7);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 14);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 21);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b |= 0x80;
+         b = (byte)(ui >> 28);
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 35);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 42);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 49);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 56);
+         b |= 0x80;
+         write(&b, sizeof(byte));
+         b = (byte)(ui >> 63);
+         write(&b, sizeof(byte));
+      }
    }
 
    byte_output_stream & byte_output_stream::operator << (float f)

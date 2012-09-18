@@ -563,7 +563,7 @@ return -1;
 
 void stringa::write(ex1::byte_output_stream & ostream)
 {
-   ostream << m_nSize;
+   ostream.write_arbitrary(m_nSize);
    for(int i = 0; i < this->get_size(); i++)
    {
       ostream << this->element_at(i);
@@ -573,7 +573,7 @@ void stringa::write(ex1::byte_output_stream & ostream)
 void stringa::read(ex1::byte_input_stream & istream)
 {
    count iSize;
-   istream >> iSize;
+   istream.read_arbitrary(iSize);
 
    set_size(iSize);
    for(int i = 0; i < this->get_size(); i++)
