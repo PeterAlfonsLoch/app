@@ -49,6 +49,7 @@ namespace spa
       bool           m_bLogin;
       bool           m_bRestartCa2;
       bool           m_bPendingStream;
+      DWORD          m_dwLastOk;
 
 
 

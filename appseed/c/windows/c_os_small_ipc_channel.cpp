@@ -86,18 +86,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
    if(dwTimeout == INFINITE)
    {
 
-      try
-      {
-
-         SendMessage(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds);
-
-      }
-      catch(...)
-      {
-
-         return false;
-
-      }
+      SendMessage(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds);
 
    }
    else
@@ -145,18 +134,7 @@ bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTime
    if(dwTimeout == INFINITE)
    {
 
-      try
-      {
-
-         SendMessage(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds);
-
-      }
-      catch(...)
-      {
-
-         return false;
-
-      }
+      SendMessage(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds);
 
    }
    else

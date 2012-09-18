@@ -150,14 +150,16 @@ namespace spa
          if(is_rx_tx_ok())
          {
 
+            m_dwLastOk = GetTickCount();
+
             m_bRestartCa2        = false;
 
             m_bPendingStream     = false;
 
-            bJob                 = false;
+            bJob                 = true;
 
          }
-         else
+         else if(GetTickCount() - m_dwLastOk > ((1984 + 1977) * 2))
          {
             try
             {
@@ -202,6 +204,8 @@ namespace spa
 
             bJob                 = true;
 
+            m_dwLastOk           = GetTickCount();
+
          }
 
       }
@@ -227,9 +231,9 @@ namespace spa
 
             }
 
-            m_bPendingStream = false;
+            m_bPendingStream     = false;
 
-            bJob = true;
+            bJob                 = true;
 
          }
 
