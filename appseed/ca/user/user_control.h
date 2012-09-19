@@ -38,6 +38,7 @@ namespace user
          element_border,
          element_client,
          element_area,
+         element_drop_down,
       };
 
 

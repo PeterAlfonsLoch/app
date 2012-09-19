@@ -25,6 +25,7 @@ namespace userbase
 #include "userbase_meta_button.h"
 #include "userbase_bitmap_button.h"
 #include "userbase_combo_box.h"
+#include "userbase_combo_list.h"
 #include "userbase_static.h"
 
 #include "userbase_button_control.h"

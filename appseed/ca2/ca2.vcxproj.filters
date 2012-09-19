@@ -1004,9 +1004,6 @@
     <ClInclude Include="user\user_combo_box.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_control.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_control_event.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -1579,6 +1576,15 @@
     </ClInclude>
     <ClInclude Include=".\userstack\userstack_application.h">
       <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_combo_list.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="userbase\simple_combo_list.h">
+      <Filter>Header Files\userbase</Filter>
+    </ClInclude>
+    <ClInclude Include="userbase\userbase_combo_list.h">
+      <Filter>Header Files\userbase</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2507,6 +2513,15 @@
     </ClCompile>
     <ClCompile Include="cubebase\cubebase_cubebase.cpp">
       <Filter>Source Files\cubebase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\simple_combo_list.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="userbase\userbase_combo_list.cpp">
+      <Filter>Source Files\userbase</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_combo_list.cpp">
+      <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

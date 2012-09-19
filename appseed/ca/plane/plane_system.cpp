@@ -1573,6 +1573,40 @@ namespace plane
 
    }
 
+   index system::get_best_intersection_monitor(LPRECT lprect)
+   {
+
+      count c = get_monitor_count();
+
+      rect rectIntersect;
+      rect rectMonitor;
+      int64_t  iBestArea = 0;
+      index    iBestAreaIndex = -1;
+      int64_t iArea;
+
+      for(index i = 0; i < c; i++)
+      {
+         get_monitor_rect(i, rectMonitor);
+         if(rectIntersect.intersect(rectMonitor, lprect))
+         {
+            iArea = rectIntersect.area();
+            if(iArea > iBestArea)
+            {
+               iBestAreaIndex = i;
+               iBestArea = iArea;
+            }
+         }
+      }
+
+      if(iBestAreaIndex >= 0)
+         return iBestAreaIndex;
+      else if(get_monitor_count() <= 0)
+         return -1;
+      else
+         return 0;
+
+   }
+
 
    count system::get_desk_monitor_count()
    {

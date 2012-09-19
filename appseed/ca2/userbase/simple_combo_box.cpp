@@ -3,53 +3,62 @@
 
 simple_combo_box::simple_combo_box()
 {
+
+   
+
 }
+
 
 simple_combo_box::~simple_combo_box()
 {
 }
 
 
- // BEGIN_MESSAGE_MAP(simple_combo_box, ::userbase::combo_box)
-   //{{__MSG_MAP(simple_combo_box)
-// xxx   ON_WM_ERASEBKGND()
-   //}}__MSG_MAP
- // END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// simple_combo_box message handlers
-
 void simple_combo_box::_001OnDraw(::ca::graphics *pdc)
 {
+
    ::userbase::combo_box::_001OnDraw(pdc);
-/*   bool bWin4 = afxData.bWin4;
-   _gen::FillPSOnStack();
-   ::CallWindowProc(
-      *GetSuperWndProcAddr(),
-      get_handle(), (bWin4 ? WM_PRINT : WM_PAINT),
-      (WPARAM)(pdc->get_handle1()),
-      (LPARAM)(bWin4 ? PRF_CHILDREN | PRF_CLIENT : 0));*/
-//   bool bWin4 = afxData.bWin4;
-//   _gen::FillPSOnStack();
-/* trans   ::CallWindowProc(
-      *GetSuperWndProcAddr(),
-      //xxxm_hWnd, (bWin4 ? WM_PRINT : WM_PAINT),
-      get_handle(), WM_PRINT,
-      (WPARAM)(pdc->get_handle1()),
-      //xxx(LPARAM)(bWin4 ? PRF_CHILDREN | PRF_CLIENT : 0));
-      PRF_CHILDREN | PRF_CLIENT); */
+
 }
 
-bool simple_combo_box::OnEraseBkgnd(::ca::graphics * pgraphics) 
+
+
+void simple_combo_box::_001GetListText(index iSel, string & str) const
 {
-   UNREFERENCED_PARAMETER(pgraphics);
-   return TRUE;
+
+   if(iSel < 0)
+      throw invalid_argument_exception();
+
+   if(iSel >= m_straList.get_count())
+      throw invalid_argument_exception();
+
+   str = m_straList[iSel];
+
 }
 
 
-void simple_combo_box::pre_subclass_window() 
+index simple_combo_box::_001FindListText(const string & str) const
 {
-   PreSubClassWindow();   
-   
-// trans   ::userbase::combo_box::pre_subclass_window();
+
+   if(m_bCaseSensitiveMatch)
+   {
+      return m_straList.find_first(str);
+   }
+   else
+   {
+      return m_straList.find_first_ci(str);
+   }
+
 }
+
+
+count simple_combo_box::_001GetListCount() const
+{
+
+   return m_straList.get_count();
+
+}
+
+
+
+

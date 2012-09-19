@@ -51,6 +51,7 @@ namespace user
 
 
 #include "user_combo_box.h"
+#include "user_combo_list.h"
 
 
 #include "user_list.h"

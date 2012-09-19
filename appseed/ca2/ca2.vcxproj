@@ -1058,10 +1058,12 @@
     <ClInclude Include=".\uinteraction\frame\frame_work_set_listener_array.h" />
     <ClInclude Include="uinteraction\uinteraction.h" />
     <ClInclude Include="uinteraction\uinteraction_application.h" />
+    <ClInclude Include="userbase\simple_combo_list.h" />
     <ClInclude Include="userbase\simple_document.h" />
     <ClInclude Include="userbase\simple_main_frame.h" />
     <ClInclude Include="userbase\simple_printer_list_view.h" />
     <ClInclude Include="userbase\simple_tree_view.h" />
+    <ClInclude Include="userbase\userbase_combo_list.h" />
     <ClInclude Include="userbase\userbase_main_frame.h" />
     <ClInclude Include="userbase_tree_set.h" />
     <ClInclude Include="userbase_tree_set_interface.h" />
@@ -1085,6 +1087,7 @@
     <ClInclude Include="userstack\userstack_view.h" />
     <ClInclude Include="user\user_00.h" />
     <ClInclude Include="user\user_combo_box.h" />
+    <ClInclude Include="user\user_combo_list.h" />
     <ClInclude Include="user\user_form.h" />
     <ClInclude Include="user\user_inline.h" />
     <ClInclude Include="user\user_plain_text_data.h" />
@@ -1304,7 +1307,6 @@
     <ClInclude Include="user\user_button.h" />
     <ClInclude Include="user\user_check_box.h" />
     <ClInclude Include="user\user_check_interface.h" />
-    <ClInclude Include="user\user_control.h" />
     <ClInclude Include="user\user_control_event.h" />
     <ClInclude Include="user\user_control_property.h" />
     <ClInclude Include="user\user_create_context.h" />
@@ -1496,10 +1498,12 @@
     <ClCompile Include="uinteraction\frame\frame_work_set_listener.cpp" />
     <ClCompile Include="uinteraction\frame\frame_work_set_listener_array.cpp" />
     <ClCompile Include="uinteraction\uinteraction_application.cpp" />
+    <ClCompile Include="userbase\simple_combo_list.cpp" />
     <ClCompile Include="userbase\simple_document.cpp" />
     <ClCompile Include="userbase\simple_main_frame.cpp" />
     <ClCompile Include="userbase\simple_printer_list_view.cpp" />
     <ClCompile Include="userbase\simple_tree_view.cpp" />
+    <ClCompile Include="userbase\userbase_combo_list.cpp" />
     <ClCompile Include="userbase\userbase_main_frame.cpp" />
     <ClCompile Include="userbase\userbase_tool_cmd_ui.cpp" />
     <ClCompile Include="userex\userbase_mini_dock_frame_window.cpp" />
@@ -1516,6 +1520,7 @@
     <ClCompile Include=".\userstack\userstack_application.cpp" />
     <ClCompile Include="userstack\userstack_view.cpp" />
     <ClCompile Include="user\user_combo_box.cpp" />
+    <ClCompile Include="user\user_combo_list.cpp" />
     <ClCompile Include="user\user_form.cpp" />
     <ClCompile Include="user\user_plain_text_data.cpp" />
     <ClCompile Include="user\user_printer.cpp" />

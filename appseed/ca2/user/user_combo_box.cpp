@@ -1,7 +1,426 @@
 #include "framework.h"
 
+
 namespace user
 {
 
 
+   combo_box::combo_box()
+   {
+
+      m_iSel                  = -1;
+      m_bCaseSensitiveMatch   = false;
+      m_plist                 = NULL;
+      m_typeComboList         = typeid(simple_combo_list);
+
+   }
+
+   combo_box::~combo_box()
+   {
+   }
+
+
+   void combo_box::install_message_handling(::gen::message::dispatch * pdispatch)
+   {
+
+      ::user::control::install_message_handling(pdispatch);
+
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &combo_box::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pdispatch, this, &combo_box::_001OnLButtonUp);
+
+   }
+
+
+   void combo_box::_001OnDraw(::ca::graphics * pdc)
+   {
+
+      pdc->set_alpha_mode(::ca::alpha_mode_blend);
+
+      string strText;
+
+      _001GetText(strText);
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      ::ca::brush_sp br(get_app());
+
+      br->CreateSolidBrush(ARGB(84, 255, 255, 255));
+
+      pdc->SelectObject(br);
+
+      pdc->FillRectangle(rectClient);
+
+      br->CreateSolidBrush(ARGB(255, 84, 84, 77));
+
+      pdc->SelectObject(br);
+
+      rect rectText;
+
+      get_element_rect(rectText, element_text);;
+
+      int iMargin = rectClient.height() / 8;
+
+      rectText.deflate(iMargin, iMargin);
+
+      pdc->m_fontxyz.m_dFontSize = rectClient.height() * 5 / 8;
+      pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;
+      pdc->m_fontxyz.m_bUpdated = false;
+
+      pdc->draw_text(strText, rectText, 0);
+
+      rect rectDropDown;
+
+      get_element_rect(rectDropDown, element_drop_down);
+
+      br->CreateSolidBrush(ARGB(184, 255, 255, 255));
+
+      pdc->SelectObject(br);
+
+      pdc->FillRectangle(rectDropDown);
+
+      ::ca::graphics_path_sp path(get_app());
+
+      point_array pointa;
+
+      get_simple_drop_down_open_arrow_path(pointa);
+
+      if(pointa.get_count() >= 3)
+      {
+
+         path->add_line(pointa[0], pointa[1]);
+
+         for(index i = 2; i < pointa.get_count(); i++)
+         {
+
+            path->add_line(pointa[i]);
+
+         }
+
+         path->add_line(pointa[0]);
+
+      }
+
+      br->CreateSolidBrush(ARGB(210, 77, 184, 49));
+
+      pdc->SelectObject(br);
+
+      pdc->fill_path(path);
+
+
+
+   }
+
+   void combo_box::_001GetText(string & str) const
+   {
+
+      if(m_iSel < 0)
+      {
+         str = m_strText;
+      }
+      else
+      {
+         _001GetListText(m_iSel, str);
+      }
+
+   }
+
+   void combo_box::_001SetText(const char * psz)
+   {
+
+      m_strText = psz;
+   
+      m_iSel = _001FindListText(psz);
+
+   }
+
+
+   void combo_box::_001GetListText(index iSel, string & str) const
+   {
+
+   }
+
+
+   index combo_box::_001FindListText(const string & str) const
+   {
+
+      count c = _001GetListCount();
+
+      string strItem;
+
+      for(index i = 0; i < c; i++)
+      {
+         
+         _001GetListText(i, strItem);
+
+         if(m_bCaseSensitiveMatch)
+         {
+
+            if(str.Compare(strItem) == 0)
+               return i;
+
+         }
+         else
+         {
+
+            if(str.CompareNoCase(strItem) == 0)
+               return i;
+
+         }
+
+      }
+
+      return -1;
+
+   }
+
+
+   index combo_box::_001GetListCount() const
+   {
+
+      return 0;
+
+   }
+
+
+   bool combo_box::get_element_rect(LPRECT lprect, e_element eelement) const
+   {
+      
+      if(eelement == element_drop_down)
+      {
+
+         rect rectClient;
+
+         ((combo_box *) this)->GetClientRect(rectClient);
+
+         int iMargin = rectClient.height() / 8;
+
+         rect rectDropDown;
+
+         rectDropDown = rectClient;
+
+         int iW = rectClient.height() * 5 / 8;
+
+         rectDropDown.right      -= iMargin;
+         rectDropDown.bottom     -= iMargin;
+         rectDropDown.top        += iMargin;
+         rectDropDown.left       =  rectDropDown.right - iW;
+
+         *lprect = rectDropDown;
+
+         return true;
+
+      }
+      else if(eelement == element_text)
+      {
+
+         rect rectClient;
+
+         ((combo_box *) this)->GetClientRect(rectClient);
+
+         int iMargin = rectClient.height() / 8;
+
+         int iW = rectClient.height() * 5 / 8;
+
+         rect rectText = rectClient;
+
+         rectText.deflate(iMargin, iMargin);
+
+         rectText.right -= (iW + iMargin);
+
+         *lprect = rectText;
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+   void combo_box::get_simple_drop_down_open_arrow_path(point_array & pointa) const
+   {
+
+      rect rectClient;
+
+      ((combo_box *) this)->GetClientRect(rectClient);
+
+      int iMargin = rectClient.height() / 8;
+
+      rect rectDropDown;
+
+      get_element_rect(rectDropDown, element_drop_down);
+
+      pointa.add(rectDropDown.left + iMargin, rectDropDown.top + iMargin * 2);
+      pointa.add(rectDropDown.right - iMargin, rectDropDown.top + iMargin * 2);
+      pointa.add((rectDropDown.right + rectDropDown.left) / 2, rectDropDown.bottom - iMargin * 2);
+
+   }
+
+
+
+   ::user::control::e_element combo_box::hit_test(point pt) const
+   {
+
+      rect rectElement;
+      
+      if(get_element_rect(rectElement, element_drop_down))
+      {
+         if(rectElement.contains(pt))
+            return element_drop_down;
+      }
+
+      if(get_element_rect(rectElement, element_text))
+      {
+         if(rectElement.contains(pt))
+            return element_text;
+      }
+
+      return element_none;
+
+   }
+   
+   void combo_box::_001OnLButtonDown(gen::signal_object * pobj)
+   {
+
+      SCAST_PTR(gen::message::mouse, pmouse, pobj);
+
+      point pt = pmouse->m_pt;
+
+      ScreenToClient(&pt);
+
+      if(hit_test(pt) == element_drop_down)
+      {
+         
+         _001ShowDropDown();
+
+      }
+
+   }
+
+
+   void combo_box::_001OnLButtonUp(gen::signal_object * pobj)
+   {
+
+      SCAST_PTR(gen::message::mouse, pmouse, pobj);
+
+   }
+
+
+   void combo_box::_001ShowDropDown(bool bShow)
+   {
+
+
+      if(bShow)
+      {
+
+         if(m_plist == NULL)
+         {
+            
+            m_plist = create_combo_list();
+
+            if(m_plist == NULL)
+               throw resource_exception();
+
+            m_plist->m_pcombo = this;
+
+         }
+
+         size sizeFull;
+
+         m_plist->query_full_size(sizeFull);
+
+         rect rectWindow;
+
+         GetWindowRect(rectWindow);
+
+         index iMonitor = System.get_best_intersection_monitor(rectWindow);
+
+         rect rectMonitor;
+
+         System.get_monitor_rect(iMonitor, rectMonitor);
+
+         bool bDown = true;
+
+         if(sizeFull.cy > (rectMonitor.bottom - rectWindow.bottom))
+         {
+            bDown = false;
+         }
+
+         size sizeList;
+
+         rect rectList;
+
+         rectList = rectMonitor;
+
+         if(bDown)
+         {
+
+            rectList.top = rectWindow.bottom + 1;
+            
+            sizeList.cy = min(sizeFull.cy, (rectMonitor.bottom - rectWindow.bottom));
+            sizeList.cy -= sizeList.cy % m_plist->_001GetItemHeight();
+
+            rectList.bottom = rectList.top + sizeList.cy;
+
+            
+
+         }
+         else
+         {
+            rectList.bottom = rectWindow.top - 1;
+
+            sizeList.cy = min(sizeFull.cy, (rectMonitor.top - rectWindow.top));
+            sizeList.cy -= sizeList.cy % m_plist->_001GetItemHeight();
+
+            rectList.top = rectList.bottom - sizeList.cy;
+
+         }
+
+         m_plist->SetWindowPos(ZORDER_TOPMOST, rectList.left, rectList.top, rectList.width(), rectList.height(), SWP_SHOWWINDOW);
+
+      }
+      else
+      {
+         if(m_plist != NULL)
+         {
+            m_plist->ShowWindow(SW_HIDE);
+         }
+      }
+
+
+   }
+
+
+   combo_list * combo_box::create_combo_list()
+   {
+
+      ::ca::ca * pca = System.alloc(m_typeComboList);
+
+      combo_list * plist = dynamic_cast < combo_list * > (pca);
+
+      if(plist == NULL)
+      {
+         delete pca;
+         return NULL;
+      }
+
+      //::ca::window * pwindow = dynamic_cast < ::ca::window * > (plist->m_pimpl);
+
+      //if(pwindow != NULL)
+      if(!plist->CreateEx(0L, plist->GetIconWndClass(0, 0), "combo_list", 0, rect(0, 0, 0, 0), NULL, NULL, NULL))
+      {
+         gen::del(plist);
+         return NULL;
+      }
+
+      return plist;
+
+   }
+
+
 } // namespace user
+
+
+
