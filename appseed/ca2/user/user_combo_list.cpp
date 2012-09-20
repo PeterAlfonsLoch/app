@@ -10,6 +10,8 @@ namespace user
       
       oprop("combo_list") = true;
 
+      m_pcombo = NULL;
+
    }
 
    combo_list::~combo_list()
@@ -35,6 +37,110 @@ namespace user
 
 
    void combo_list::_001OnDraw(::ca::graphics * pdc)
+   {
+      
+      if(m_pcombo == NULL)
+         return;
+
+      if(m_pcombo->m_estyle == ::user::combo_box::style_simply)
+      {
+
+         _001OnDrawSimply(pdc);
+
+      }
+      else
+      {
+
+         _001OnDrawVerisimple(pdc);
+
+      }
+
+   }
+
+   void combo_list::_001OnDrawVerisimple(::ca::graphics * pdc)
+   {
+
+      count c = m_pcombo->_001GetListCount();
+      
+      string strItem;
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      ::ca::brush_sp br(get_app());
+
+      br->CreateSolidBrush(ARGB(230, 255, 255, 255));
+
+      pdc->SelectObject(br);
+
+      pdc->FillRectangle(rectClient);
+
+      rect rectItem;
+
+      rectItem = rectClient;
+
+      rectItem.bottom = rectClient.top + _001GetItemHeight();
+
+      point ptCursor;
+
+      Session.get_cursor_pos(&ptCursor);
+
+      ScreenToClient(&ptCursor);
+
+      br->CreateSolidBrush(ARGB(255, 84, 84, 77));
+
+      int dSize = _001GetItemHeight() * 0.7;
+
+      pdc->m_fontxyz.m_dFontSize = dSize;
+      pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;
+      pdc->m_fontxyz.m_bUpdated = false;
+
+      pdc->SelectObject(br);
+
+      for(index i = 0; i < c; i++)
+      {
+         rectItem.top = rectItem.bottom;
+         rectItem.bottom = rectItem.top + _001GetItemHeight();
+         if(i != m_pcombo->m_iSel)
+         {
+            if(rectItem.contains(ptCursor))
+            {
+               ::ca::pen_sp pen(get_app());
+               pen->CreatePen(PS_SOLID, m_iItemHeight / 8, ARGB(230, 77, 184, 63));
+               pdc->SelectObject(pen);
+               pdc->DrawRectangle(rectItem);
+            }
+            m_pcombo->_001GetListText(i, strItem);
+            pdc->draw_text(strItem, rectItem, 0);
+         }
+      }
+
+      if(m_pcombo->m_iSel >= 0)
+      {
+         rectItem.top = rectClient.top + (_001GetItemHeight() * (1 + m_pcombo->m_iSel));
+         rectItem.bottom = rectItem.top + _001GetItemHeight();
+         if(rectItem.contains(ptCursor))
+         {
+            br->CreateSolidBrush(ARGB(123, 123, 149, 108));
+         }
+         else
+         {
+            br->CreateSolidBrush(ARGB(184, 77, 184, 63));
+         }
+         pdc->SelectObject(br);
+         pdc->FillRectangle(rectItem);
+         br->CreateSolidBrush(ARGB(255, 255, 255, 240));
+         m_pcombo->_001GetListText(m_pcombo->m_iSel, strItem);
+         pdc->SelectObject(br);
+         pdc->draw_text(strItem, rectItem, 0);
+      }
+
+
+   }
+
+
+   void combo_list::_001OnDrawSimply(::ca::graphics * pdc)
    {
 
       count c = m_pcombo->_001GetListCount();

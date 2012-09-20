@@ -13,6 +13,14 @@ namespace user
    {
    public:
 
+      enum e_style
+      {
+         
+         style_verisimple,
+         style_simply,
+
+      };
+
 
       index                      m_iSel;
       string                     m_strText;
@@ -21,6 +29,8 @@ namespace user
       combo_list *               m_plist;
 
       ::ca::type_info            m_typeComboList;
+
+      e_style                    m_estyle;
 
 
       combo_box();
@@ -31,6 +41,9 @@ namespace user
 
 
       virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDrawVerisimple(::ca::graphics * pdc);
+      virtual void _001OnDrawSimply(::ca::graphics * pdc);
+
 
       virtual void _001SetCurSel(index iSel);
       virtual index _001GetCurSel();

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <gdiplus.h>
 
 
 namespace user
@@ -12,6 +13,7 @@ namespace user
       m_bCaseSensitiveMatch   = false;
       m_plist                 = NULL;
       m_typeComboList         = typeid(simple_combo_list);
+      m_estyle                = style_simply;
 
    }
 
@@ -31,8 +33,7 @@ namespace user
 
    }
 
-
-   void combo_box::_001OnDraw(::ca::graphics * pdc)
+   void combo_box::_001OnDrawVerisimple(::ca::graphics * pdc)
    {
 
       pdc->set_alpha_mode(::ca::alpha_mode_blend);
@@ -110,6 +111,176 @@ namespace user
       pdc->fill_path(path);
 
 
+
+   }
+
+   void combo_box::_001OnDrawSimply(::ca::graphics * pdc)
+   {
+
+      pdc->set_alpha_mode(::ca::alpha_mode_blend);
+
+      string strText;
+
+      _001GetText(strText);
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      ::ca::brush_sp br(get_app());
+
+      br->CreateSolidBrush(ARGB(84, 255, 255, 255));
+
+      pdc->SelectObject(br);
+
+      pdc->FillRectangle(rectClient);
+
+      br->CreateSolidBrush(ARGB(255, 84, 84, 77));
+
+      pdc->SelectObject(br);
+
+      rect rectText;
+
+      get_element_rect(rectText, element_text);;
+
+      int iMargin = rectClient.height() / 8;
+
+      rectText.deflate(iMargin, iMargin);
+
+      pdc->m_fontxyz.m_dFontSize = rectClient.height() * 5 / 8;
+      pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;
+      pdc->m_fontxyz.m_bUpdated = false;
+
+      pdc->draw_text(strText, rectText, 0);
+
+      rect rectDropDown;
+
+      get_element_rect(rectDropDown, element_drop_down);
+
+
+      graphics_round_rect round;
+
+      Gdiplus::Rect r;
+
+      r.X = rectDropDown.left;
+      r.Y = rectDropDown.top;
+      r.Width = rectDropDown.width();
+      r.Height = rectDropDown.height();
+
+      int iColorRate;
+
+      int i = 0;
+
+      for(int radius = iMargin * 2 / 3; radius >= 1; radius--)
+      {
+      
+         iColorRate = ((iMargin * 2 / 3) - radius) * 26 / (iMargin * 2 / 3);
+         {
+            if(i == 0)
+            {
+               Gdiplus::Color c(230, 130, 130, 120);
+               round.DrawTopLeft((Gdiplus::Graphics *) pdc->get_os_data(), r, c, radius, 1);
+            }
+            else if(i == 1)
+            {
+               Gdiplus::Color c(230, 210, 210, 200);
+               round.DrawTopLeft((Gdiplus::Graphics *) pdc->get_os_data(), r, c, radius, 1);
+            }
+            else
+            {
+               Gdiplus::Color c(230, 230 - iColorRate, 230 - iColorRate, 220 - iColorRate);
+               round.DrawTopLeft((Gdiplus::Graphics *) pdc->get_os_data(), r, c, radius, 1);
+            }
+         }
+         {
+            if(i == 0)
+            {
+               Gdiplus::Color c(230, 130, 130, 120);
+               round.DrawBottomRight((Gdiplus::Graphics *) pdc->get_os_data(), r, c, radius, 1);
+            }
+            else if(i == 1)
+            {
+               Gdiplus::Color c(230, 210, 210, 200);
+               round.DrawBottomRight((Gdiplus::Graphics *) pdc->get_os_data(), r, c, radius, 1);
+            }
+            else
+            {
+               Gdiplus::Color c(230, 190 + iColorRate, 190 + iColorRate, 180 + iColorRate);
+               round.DrawBottomRight((Gdiplus::Graphics *) pdc->get_os_data(), r, c, radius, 1);
+            }
+         }
+
+         r.Inflate(-1, -1);
+
+         i++;
+
+      }
+
+      rect rectDropIn(rectDropDown);
+
+      rectDropIn.deflate(iMargin * 2 / 3, iMargin * 2 / 3);
+
+      br->CreateSolidBrush(ARGB(210, 230 - iColorRate, 230 - iColorRate, 220 - iColorRate));
+
+      pdc->SelectObject(br);
+
+      rectDropIn.right++;
+      rectDropIn.bottom++;
+      pdc->FillRectangle(rectDropIn);
+
+
+      br->CreateSolidBrush(ARGB(210, 77, 184, 49));
+
+
+      ::ca::graphics_path_sp path(get_app());
+
+      point_array pointa;
+
+      get_simple_drop_down_open_arrow_path(pointa);
+
+      if(pointa.get_count() >= 3)
+      {
+
+         path->add_line(pointa[0], pointa[1]);
+
+         for(index i = 2; i < pointa.get_count(); i++)
+         {
+
+            path->add_line(pointa[i]);
+
+         }
+
+         path->add_line(pointa[0]);
+
+      }
+
+      br->CreateSolidBrush(ARGB(210, 77, 184, 49));
+
+      pdc->SelectObject(br);
+
+      pdc->fill_path(path);
+
+
+
+   }
+
+
+   void combo_box::_001OnDraw(::ca::graphics * pdc)
+   {
+      
+      //if(m_estyle == style_simply)
+      if(m_plist == NULL)
+      {
+
+         _001OnDrawSimply(pdc);
+
+      }
+      else
+      {
+
+         _001OnDrawVerisimple(pdc);
+
+      }
 
    }
 

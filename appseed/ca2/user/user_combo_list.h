@@ -26,6 +26,8 @@ namespace user
 
 
       virtual void _001OnDraw(::ca::graphics * pdc);
+      virtual void _001OnDrawVerisimple(::ca::graphics * pdc);
+      virtual void _001OnDrawSimply(::ca::graphics * pdc);
 
 
       virtual void query_full_size(LPSIZE lpsize) const;

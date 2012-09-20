@@ -91,6 +91,116 @@ void graphics_round_rect::GetRoundRectPath(GraphicsPath *pPath, Rect r, int dia)
    pPath->CloseFigure();
 }
 
+void graphics_round_rect::GetRoundTopLeft(GraphicsPath *pPath, Rect r, int dia)
+{
+   // diameter can't exceed width or height
+   if(dia > r.Width)	dia = r.Width;
+   if(dia > r.Height)	dia = r.Height;
+
+   // define a corner
+   Rect Corner(r.X, r.Y, dia, dia);
+
+   // begin path
+   pPath->Reset();
+
+
+   // top left
+//   pPath->AddArc(Corner, 180, 90);
+
+   // tweak needed for radius of 10 (dia of 20)
+   if(dia % 2 == 0)
+   {
+      Corner.Width += 1;
+      Corner.Height += 1;
+      //r.Height -=1; //r.Height -= 1;
+   }
+
+   // top right
+   Corner.X += (r.Width - dia - 1);
+   //pPath->AddArc(Corner, 270, 90);
+
+   // bottom right
+   Corner.Y += (r.Height - dia - 1);
+   //pPath->AddArc(Corner,   0, 90);
+
+   // bottom left
+   Corner.X -= (r.Width - dia - 1);
+   pPath->AddArc(Corner,  135, 45);
+
+   pPath->AddLine(r.X, r.Y + r.Height - dia / 2, r.X, r.Y + dia / 2);
+
+
+   Corner.Y -= (r.Height - dia - 1);
+   pPath->AddArc(Corner, 180, 90);
+
+   pPath->AddLine(r.X + dia / 2, r.Y , r.X + r.Width - dia / 2, r.Y);
+
+   Corner.X += (r.Width - dia - 1);
+   pPath->AddArc(Corner, 270, 45);
+
+
+   // end path
+   //pPath->CloseFigure();
+}
+
+
+
+void graphics_round_rect::GetRoundBottomRight(GraphicsPath *pPath, Rect r, int dia)
+{
+   // diameter can't exceed width or height
+   if(dia > r.Width)	dia = r.Width;
+   if(dia > r.Height)	dia = r.Height;
+
+   // define a corner
+   Rect Corner(r.X, r.Y, dia, dia);
+
+   // begin path
+   pPath->Reset();
+
+
+   // top left
+//   pPath->AddArc(Corner, 180, 90);
+
+   // tweak needed for radius of 10 (dia of 20)
+   if(dia % 2 == 0)
+   {
+      Corner.Width += 1;
+      Corner.Height += 1;
+      //r.Height -=1; //r.Height -= 1;
+   }
+
+   // top right
+   Corner.X += (r.Width - dia - 1);
+   pPath->AddArc(Corner, 315, 45);
+
+   pPath->AddLine(r.X + r.Width, r.Y + dia / 2, r.X + r.Width, r.Y + r.Height - dia / 2);
+
+   // bottom right
+   Corner.Y += (r.Height - dia - 1);
+   pPath->AddArc(Corner,   0, 90);
+
+   pPath->AddLine(r.X + dia / 2,r.Y + r.Height , r.X + r.Width - dia / 2, r.Y + r.Height);
+
+   // bottom left
+   Corner.X -= (r.Width - dia - 1);
+   pPath->AddArc(Corner,  90, 45);
+
+   
+
+
+   //Corner.Y -= (r.Height - dia - 1);
+   //pPath->AddArc(Corner, 180, 90);
+
+   
+
+   //Corner.X += (r.Width - dia - 1);
+   //pPath->AddArc(Corner, 275, 45);
+
+
+   // end path
+   //pPath->CloseFigure();
+}
+
 //=============================================================================
 //
 // DrawRoundRect()
@@ -128,6 +238,7 @@ void graphics_round_rect::DrawRoundRect(Graphics* pGraphics, Rect r,  Color colo
    // if width > 1
    for(int i=1; i<width; i++)
    {
+      dia++;
       // left stroke
       r.Inflate(-1, 0);
 
@@ -142,6 +253,100 @@ void graphics_round_rect::DrawRoundRect(Graphics* pGraphics, Rect r,  Color colo
 
       // get the path
       GetRoundRectPath(&path, r, dia);
+
+      // draw the round rect
+      pGraphics->DrawPath(&pen, &path);
+   }
+
+   // restore page unit
+   pGraphics->SetPageUnit((Unit)oldPageUnit);
+}
+
+void graphics_round_rect::DrawTopLeft(Graphics* pGraphics, Rect r,  Color color, int radius, int width)
+{
+   int dia	= 2*radius;
+
+   // set to pixel mode
+   int oldPageUnit = pGraphics->SetPageUnit(UnitPixel);
+
+   // define the pen
+   Pen pen(color, 1);
+   pen.SetAlignment(PenAlignmentCenter);
+
+   // get the corner path
+   GraphicsPath path;
+
+   // get path
+   GetRoundTopLeft(&path, r, dia);
+
+   // draw the round rect
+   pGraphics->DrawPath(&pen, &path);
+
+   // if width > 1
+   for(int i=1; i<width; i++)
+   {
+      dia++;
+      // left stroke
+      r.Inflate(-1, 0);
+
+      // get the path
+      GetRoundTopLeft(&path, r, dia);
+
+      // draw the round rect
+      pGraphics->DrawPath(&pen, &path);
+
+      // up stroke
+      r.Inflate(0, -1);
+
+      // get the path
+      GetRoundTopLeft(&path, r, dia);
+
+      // draw the round rect
+      pGraphics->DrawPath(&pen, &path);
+   }
+
+   // restore page unit
+   pGraphics->SetPageUnit((Unit)oldPageUnit);
+}
+
+void graphics_round_rect::DrawBottomRight(Graphics* pGraphics, Rect r,  Color color, int radius, int width)
+{
+   int dia	= 2*radius;
+
+   // set to pixel mode
+   int oldPageUnit = pGraphics->SetPageUnit(UnitPixel);
+
+   // define the pen
+   Pen pen(color, 1);
+   pen.SetAlignment(PenAlignmentCenter);
+
+   // get the corner path
+   GraphicsPath path;
+
+   // get path
+   GetRoundBottomRight(&path, r, dia);
+
+   // draw the round rect
+   pGraphics->DrawPath(&pen, &path);
+
+   // if width > 1
+   for(int i=1; i<width; i++)
+   {
+      dia++;
+      // left stroke
+      r.Inflate(-1, 0);
+
+      // get the path
+      GetRoundBottomRight(&path, r, dia);
+
+      // draw the round rect
+      pGraphics->DrawPath(&pen, &path);
+
+      // up stroke
+      r.Inflate(0, -1);
+
+      // get the path
+      GetRoundBottomRight(&path, r, dia);
 
       // draw the round rect
       pGraphics->DrawPath(&pen, &path);

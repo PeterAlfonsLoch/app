@@ -30,7 +30,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-class graphics_round_rect
+class CLASS_DECL_c graphics_round_rect
 {
 public:
 
@@ -52,6 +52,8 @@ public:
 	// Returns:     None
 	//
 	static void GetRoundRectPath(Gdiplus::GraphicsPath *pPath, Gdiplus::Rect r, int dia);
+   static void GetRoundTopLeft(Gdiplus::GraphicsPath *pPath, Gdiplus::Rect r, int dia);
+   static void GetRoundBottomRight(Gdiplus::GraphicsPath *pPath, Gdiplus::Rect r, int dia);
 
 	//=============================================================================
 	//
@@ -68,6 +70,8 @@ public:
 	// Returns:     None
 	//
 	void DrawRoundRect(Gdiplus::Graphics* pGraphics, Gdiplus::Rect r,  Gdiplus::Color color, int radius, int width);
+   void DrawTopLeft(Gdiplus::Graphics* pGraphics, Gdiplus::Rect r,  Gdiplus::Color color, int radius, int width);
+   void DrawBottomRight(Gdiplus::Graphics* pGraphics, Gdiplus::Rect r,  Gdiplus::Color color, int radius, int width);
 
 	//=============================================================================
 	//
