@@ -41,7 +41,7 @@ namespace ca2
          virtual bool check_ca2_hash();
 
 
-         virtual void on_login_thread_response(int iAuth, const char * pszResponse);
+         virtual void on_login_thread_response(::fontopus::e_result iAuth, const char * pszResponse);
 
          virtual void close_all();
          virtual void show_and_request_auth();
@@ -54,7 +54,7 @@ namespace ca2
          virtual auth * get_auth();
          //virtual bool get_license(const char * pszId);
 
-         virtual void authentication_failed(int iAuth, const char * pszResponse);
+         virtual void authentication_failed(::fontopus::e_result iAuth, const char * pszResponse);
          virtual void authentication_succeeded();
 
          virtual void on_create_view(::user::view_creator_data * pcreatordata);

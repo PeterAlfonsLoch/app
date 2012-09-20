@@ -22,8 +22,6 @@ namespace user
 
       ::ca::type_info            m_typeComboList;
 
-      ::ca::e_thread_priority    m_epriorityPrevious;
-
 
       combo_box();
       virtual ~combo_box();

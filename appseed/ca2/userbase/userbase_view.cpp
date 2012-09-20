@@ -368,8 +368,6 @@ namespace userbase
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   document* view::get_document() const
-      { ASSERT(this != NULL); return dynamic_cast < document * > (::view::get_document()); }
 
 
    /*

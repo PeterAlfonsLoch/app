@@ -70,7 +70,7 @@ namespace user
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
       virtual void on_show_view();
 
-      virtual void on_update(::document * pdocument, ::view * pSender, LPARAM lHint, ::radix::object* pHint);
+      virtual void on_update(::user::document_interface * pdocument, ::view * pSender, LPARAM lHint, ::radix::object* pHint);
 
       virtual ::user::interaction * get_view();
 

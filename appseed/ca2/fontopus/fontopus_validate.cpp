@@ -138,7 +138,7 @@ namespace ca2
 
          if(!m_pdocAuth->on_open_document(strPath))
          {
-            authentication_failed(0, "Cannot open form for authentication!!");
+            authentication_failed(::fontopus::result_fail, "Cannot open form for authentication!!");
             return;
          }
 
@@ -441,9 +441,9 @@ namespace ca2
             return false;
       }
 
-      void validate::on_login_thread_response(int iAuth, const char * pszResponse)
+      void validate::on_login_thread_response(::fontopus::e_result iAuth, const char * pszResponse)
       {
-         if(iAuth == 1)
+         if(iAuth == ::fontopus::result_auth)
          {
             authentication_succeeded();
          }
@@ -546,7 +546,7 @@ namespace ca2
          return false;
       }
 
-      void validate::authentication_failed(int iAuth, const char * pszResponse)
+      void validate::authentication_failed(::fontopus::e_result iAuth, const char * pszResponse)
       {
 
          UNREFERENCED_PARAMETER(pszResponse);
@@ -582,7 +582,7 @@ namespace ca2
                pageMessage("err\\user\\authentication\\not_licensed.xhtml", propertyset);
             }
          }
-         else if(iAuth == -1)
+         else if(iAuth == ::fontopus::result_wrong_password_or_login)
          {
             propertyset["register_link"] = "ext://http://"+ m_loginthread.m_strFontopusServer + "/register?email="+ System.url().url_encode(m_loginthread.m_strUsername);
             pageMessage("err\\user\\authentication\\wrong_fontopus_login.xhtml", propertyset);
@@ -604,7 +604,7 @@ namespace ca2
             m_loginthread.m_strKeyHash.Empty();
             m_loginthread.m_strCa2Hash.Empty();
          }
-         else if(iAuth == -2)
+         else if(iAuth == ::fontopus::result_time_out)
          {
             if(m_bInteractive)
             {
@@ -612,7 +612,7 @@ namespace ca2
                pageMessage("err\\user\\network\\connection_timed_out.xhtml", propertyset);
             }
          }
-         else if(iAuth == 5)
+         else if(iAuth == ::fontopus::result_registration_deferred)
          {
             if(m_bInteractive)
             {
@@ -621,11 +621,25 @@ namespace ca2
                pageMessage("err\\user\\authentication\\registration_deferred.xhtml", propertyset);
             }
          }
+         else if(iAuth == ::fontopus::result_no_login)
+         {
+            if(m_bInteractive)
+            {
+               pageMessage("err\\user\\authentication\\no_login.html", propertyset);
+            }
+         }
+         else if(iAuth == ::fontopus::result_no_password)
+         {
+            if(m_bInteractive)
+            {
+               pageMessage("err\\user\\authentication\\no_password.html", propertyset);
+            }
+         }
          else
          {
             if(m_bInteractive)
             {
-               pageMessage("err\\user\\authentication\\failed.xhtml", propertyset);
+               pageMessage("err\\user\\authentication\\failed.html", propertyset);
             }
          }
 

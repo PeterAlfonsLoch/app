@@ -29,6 +29,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &combo_list::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_MBUTTONDOWN, pdispatch, this, &combo_list::_001OnMButtonDown);
       IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN, pdispatch, this, &combo_list::_001OnRButtonDown);
+      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &combo_list::_001OnMouseMove);
 
    }
 
@@ -129,30 +130,39 @@ namespace user
 
       pdc->SelectObject(tameshi);
       
-
       int dSize = _001GetItemHeight() * 0.7;
 
       pdc->m_fontxyz.m_dFontSize = dSize;
+
       pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;
+
       pdc->m_fontxyz.m_bUpdated = false;
 
       string strItem;
 
       size sz;
+
       lpsize->cx = 0;
 
       ::count c = m_pcombo->_001GetListCount();
 
       for(index i = 0; i < c; i++)
       {
+         
          m_pcombo->_001GetListText(i, strItem);
+         
          sz = pdc->GetTextExtent(strItem);
+
          if(sz.cx > lpsize->cx)
          {
+
             lpsize->cx = sz.cx;
+
          }
+
       }
-      lpsize->cy = _001GetItemHeight() * (m_pcombo->_001GetListCount() + 2);
+
+      lpsize->cy = _001GetItemHeight() * (m_pcombo->_001GetListCount() + 1);
 
    }
 
@@ -242,7 +252,7 @@ namespace user
 
       SCAST_PTR(gen::message::activate, pactivate, pobj);
 
-      ::user::interaction* pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : GetDrawWindow());
+      ::user::interaction* pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
 
       if(pactivate->m_nState == WA_INACTIVE)
       {
@@ -261,12 +271,12 @@ namespace user
          }
 
 
-         ::ca::user_interaction * pframe = oprop("deactivate_together");
+         ::user::interaction * pframe = oprop("deactivate_together").ca2 < ::user::interaction >();
 
          if(pActive != pframe)
          {
 
-            ::uinteraction::frame::WorkSet * pset = oprop("deactivate_together_set");
+            ::uinteraction::frame::WorkSet * pset = oprop("deactivate_together_set").ca2 < ::uinteraction::frame::WorkSet > ();
 
             pset->SetActiveFlag(FALSE);
 
@@ -321,6 +331,8 @@ namespace user
 
       m_pcombo->_001ShowDropDown(false);
 
+      pobj->m_bRet = true;
+
    }
 
    void combo_list::_001OnMButtonDown(gen::signal_object * pobj)
@@ -345,7 +357,7 @@ namespace user
          m_pcombo->_001ShowDropDown(false);
       }
 
-      
+      pobj->m_bRet = true;
 
    }
 
@@ -371,9 +383,21 @@ namespace user
          m_pcombo->_001ShowDropDown(false);
       }
 
-      
+      pobj->m_bRet = true;
 
    }
+
+
+   void combo_list::_001OnMouseMove(gen::signal_object * pobj)
+   {
+
+      SCAST_PTR(gen::message::mouse, pmouse, pobj);
+
+      pobj->m_bRet = true;
+
+
+   }
+
 
    void combo_list::_001OnClose(gen::signal_object * pobj)
    {

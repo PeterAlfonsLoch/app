@@ -430,6 +430,10 @@ namespace user
 
             m_plist->ShowWindow(SW_HIDE);
 
+            m_plist->PostMessage(WM_CLOSE, 0, 0);
+
+            m_plist = NULL;
+
          }
 
       }

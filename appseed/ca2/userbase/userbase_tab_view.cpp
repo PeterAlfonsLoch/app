@@ -46,7 +46,9 @@ namespace userbase
       
       if(m_pviewcreator != NULL)
       {
+
          m_pviewcreator->on_update(get_document(), pSender, lHint, pHint);
+
       }
 
       view::on_update(pSender, lHint, pHint);

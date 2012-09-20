@@ -984,22 +984,32 @@ namespace frame
 
    void WorkSet::_001OnActivate(gen::signal_object * pobj)
    {
+      
       SCAST_PTR(::gen::message::activate, pactivate, pobj);
       
-
       ::user::interaction* pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : GetDrawWindow());
 
-      if((bool) pActive->oprop("combo_list"))
+      if(pActive == NULL)
       {
+
+      }
+      else if((bool) pActive->oprop("combo_list"))
+      {
+
          pactivate->m_bRet = true;
+
          return;
 
       }
       else if(pActive->m_pguie != NULL && (bool) pActive->m_pguie->oprop("combo_list"))
       {
+
          pactivate->m_bRet = true;
+
          pActive->m_pguie->oprop("deactivate_together") = GetDrawWindow();
+
          pActive->m_pguie->oprop("deactivate_together_set") = this;
+
          return;
 
       }
@@ -1007,10 +1017,14 @@ namespace frame
       pactivate->m_bRet = false;
 
       SetActiveFlag(pactivate->m_nState == WA_ACTIVE || pactivate->m_nState == WA_CLICKACTIVE);
+
       if(IsFullScreen())
       {
+
          GetDrawWindow()->SetWindowPos(ZORDER_TOP, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+
       }
+
    }
 
    void WorkSet::_001OnNcActivate(gen::signal_object * pobj)

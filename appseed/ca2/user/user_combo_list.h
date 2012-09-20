@@ -45,6 +45,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnMButtonDown);
       DECL_GEN_SIGNAL(_001OnRButtonDown);
+      DECL_GEN_SIGNAL(_001OnMouseMove);
 
 
       virtual index hit_test(point pt, e_element & eelement);

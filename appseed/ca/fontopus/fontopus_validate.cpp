@@ -370,7 +370,7 @@ namespace fontopus
       //}
 /*      if(!m_pdocAuth->on_open_document(Application.dir().matter(m_strForm)))
       {
-         authentication_failed(0, "Cannot open form for authentication!!");
+         authentication_failed(result_fail, "Cannot open form for authentication!!");
          return;
       }*/
       display_main_frame();
@@ -669,9 +669,9 @@ namespace fontopus
          return false;
    }
 
-   void validate::on_login_thread_response(int iAuth, const char * pszResponse)
+   void validate::on_login_thread_response(e_result iAuth, const char * pszResponse)
    {
-      if(iAuth == 1)
+      if(iAuth == result_auth)
       {
          authentication_succeeded();
       }
@@ -681,7 +681,7 @@ namespace fontopus
       }
    }
 
-   void login_thread_callback::on_login_thread_response(int iAuth, const char * pszResponse)
+   void login_thread_callback::on_login_thread_response(e_result iAuth, const char * pszResponse)
    {
       UNREFERENCED_PARAMETER(iAuth);
       UNREFERENCED_PARAMETER(pszResponse);
@@ -706,7 +706,7 @@ namespace fontopus
    {
       ca4::http::e_status estatus;
       string strResponse = Login(&estatus);
-      int iAuth;
+      e_result iAuth = result_fail;
       xml::document doc(get_app());
       doc.load(strResponse);
       if(doc.get_root()->get_name() == "response")
@@ -720,7 +720,7 @@ namespace fontopus
             m_puser->m_strRequestingServer = m_strRequestingServer;
             m_puser->m_strFunUserId = doc.get_root()->attr("secureuserid");
             m_strPasshash = doc.get_root()->attr("passhash");
-            iAuth = 1;
+            iAuth = result_auth;
             if(m_bFontopusServer)
             {
                Application.file().put_contents(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"), m_strRequestingServer);
@@ -734,25 +734,64 @@ namespace fontopus
          else if(doc.get_root()->attr("id") == "registration_deferred")
          {
             delete m_puser;
-            iAuth = 5;
+            iAuth = result_registration_deferred;
+         }
+         else if(doc.get_root()->attr("id") == "not_auth")
+         {
+            
+            if(doc.get_root()->attr("detail") == "wrong_password_or_login")
+            {
+               
+               iAuth = result_wrong_password_or_login;
+
+            }
+            else if(doc.get_root()->attr("detail") == "no_login")
+            {
+               
+               iAuth = result_no_login;
+
+            }
+            else if(doc.get_root()->attr("detail") == "no_password")
+            {
+
+               iAuth = result_no_password;
+
+            }
+            else
+            {
+
+               iAuth = result_fail;
+
+            }
+
+            delete m_puser;
+            
          }
          else
          {
             delete m_puser;
-            iAuth = -1;
+            iAuth = result_fail;
          }
+
       }
       else
       {
+
          delete m_puser;
+
          if(estatus == ca4::http::status_connection_timed_out)
          {
-            iAuth = -2;
+
+            iAuth = result_time_out;
+
          }
          else
          {
-            iAuth = 0;
+
+            iAuth = result_fail;
+
          }
+
       }
       //      char * psz = NULL;
       //    *psz = '2';
@@ -1148,7 +1187,7 @@ namespace fontopus
       return false;
    }*/
 
-   void validate::authentication_failed(int iAuth, const char * pszResponse)
+   void validate::authentication_failed(e_result iAuth, const char * pszResponse)
    {
       UNREFERENCED_PARAMETER(pszResponse);
       gen::property_set propertyset;

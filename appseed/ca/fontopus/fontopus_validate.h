@@ -4,12 +4,22 @@
 namespace fontopus
 {
 
+   enum e_result
+   {
+      result_auth,
+      result_registration_deferred,
+      result_no_login,
+      result_no_password,
+      result_wrong_password_or_login,
+      result_time_out,
+      result_fail,
+   };
 
    class CLASS_DECL_ca login_thread_callback :
       virtual public ::radix::object
    {
    public:
-      virtual void on_login_thread_response(int iAuth, const char * pszResponse);
+      virtual void on_login_thread_response(e_result iAuth, const char * pszResponse);
       virtual string calc_mod_hash();
       virtual string calc_key_hash();
       virtual string calc_ca2_hash();
@@ -123,7 +133,7 @@ namespace fontopus
       virtual bool check_ca2_hash();
 
 
-      virtual void on_login_thread_response(int iAuth, const char * pszResponse);
+      virtual void on_login_thread_response(e_result iAuth, const char * pszResponse);
 
       virtual void close_all();
       virtual void show_and_request_auth();
@@ -136,7 +146,7 @@ namespace fontopus
       virtual auth * get_auth();
       virtual bool get_license(const char * pszId);
 
-      virtual void authentication_failed(int iAuth, const char * pszResponse);
+      virtual void authentication_failed(e_result iAuth, const char * pszResponse);
       virtual void authentication_succeeded();
 
 //      void on_create_view(::user::view_creator_data * pcreatordata);

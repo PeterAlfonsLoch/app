@@ -245,7 +245,7 @@ namespace bergedge
 
    document * view::get_document()
    {
-      return (document *) ::userbase::scroll_view::get_document();
+      return dynamic_cast < document * > (::userbase::scroll_view::get_document());
    }
 
    void view::_001OnTimer(gen::signal_object * pobj)

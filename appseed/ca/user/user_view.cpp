@@ -602,7 +602,14 @@ void view::_001OnLButtonDown(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 //   SCAST_PTR(::gen::message::mouse, pmouse, pobj);
-   GetParentFrame()->SetActiveView(this);
+
+   if(GetParentFrame() != NULL)
+   {
+   
+      GetParentFrame()->SetActiveView(this);
+
+   }
+
 }
 
 void view::_001OnLButtonUp(gen::signal_object * pobj)

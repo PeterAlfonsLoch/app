@@ -150,33 +150,53 @@ namespace user
             }
             catch(...)
             {
+
             }
+
          }
+
          ppair = m_viewmap.PGetNextAssoc(ppair);
+
       }
 
    }
+
 
    void view_creator::on_new_view_creator_data(::user::view_creator_data * pcreatordata)
    {
+
       UNREFERENCED_PARAMETER(pcreatordata);
+
    }
 
-   void view_creator::on_update(::document * pdocument, ::view * pSender, LPARAM lHint, ::radix::object* pHint)
+
+   void view_creator::on_update(::user::document_interface * pdocument, ::view * pSender, LPARAM lHint, ::radix::object* pHint)
    {
+      
       POSITION pos = m_viewmap.get_start_position();
+
       ::user::view_creator_data * pcreatordata;
+
       id id;
+
       while(pos != NULL)
       {
+      
          m_viewmap.get_next_assoc(pos, id, pcreatordata);
+
          if(pcreatordata->m_pdoc != NULL && pcreatordata->m_pdoc != pdocument && (pSender == NULL || pSender->get_document() != pcreatordata->m_pdoc))
          {
+
             pcreatordata->m_pdoc->update_all_views(pSender, lHint, pHint);
+
          }
+
       }
+
    }
 
 
 } // namespace user
+
+
 

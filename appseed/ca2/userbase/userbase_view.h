@@ -31,7 +31,8 @@ namespace userbase
 
       virtual void on_select();
 
-      ::userbase::document* get_document() const;
+      // each view can display one or more documents but has only one document interface
+      //::userbase::document* get_document() const;
 
       virtual bool IsSelected(const ::radix::object* pDocItem) const; // support for OLE
 
