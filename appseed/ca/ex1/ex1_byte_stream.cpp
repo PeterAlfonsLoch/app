@@ -124,13 +124,15 @@ namespace ex1
 
    byte_input_stream & byte_input_stream::operator >> (int64_t & i)
    {
-      read(&i, sizeof(i));
+      if(sizeof(i) != read(&i, sizeof(i)))
+         throw "could not read int";
       return *this;
    }
 
    byte_input_stream & byte_input_stream::operator >> (uint64_t & ui)
    {
-      read(&ui, sizeof(ui));
+      if(sizeof(ui) != read(&ui, sizeof(ui)))
+         throw "could not read int";
       return *this;
    }
 
