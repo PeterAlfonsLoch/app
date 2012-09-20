@@ -75,7 +75,7 @@ namespace bergedge
 
       void GetAreaThumbRect(LPRECT lprect, int iArea);
 
-      int hit_test(point pt, e_element & eelement);
+      index hit_test(point pt, e_element & eelement);
 
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
       

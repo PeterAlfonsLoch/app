@@ -542,7 +542,7 @@ namespace platform
    }
 
 
-   int view::hit_test(point pt, e_element & eelement)
+   index view::hit_test(point pt, e_element & eelement)
    {
       rect rectArea;
       GetAreaThumbRect(rectArea, m_iV);
@@ -663,7 +663,7 @@ namespace platform
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       e_element eelement;
-      int iHitArea = hit_test(pt, eelement);
+      index iHitArea = hit_test(pt, eelement);
       /*      if(m_bDragTask && !m_bShowCalendar && !m_bShutDown)
       {
       m_bDragTask = false;
@@ -912,7 +912,7 @@ namespace platform
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       e_element eelement;
-      int iHitArea = hit_test(pt, eelement);
+      index iHitArea = hit_test(pt, eelement);
       if(m_iHitArea < 0 && iHitArea >=0)
          track_mouse_hover();
       m_iHitArea =  iHitArea;

@@ -1191,7 +1191,7 @@ namespace user
       return get_data()->m_panea.get_size();
    }
 
-   int tab::hit_test(point pt, e_element & eelement)
+   index tab::hit_test(point pt, e_element & eelement)
    {
       rect rect;
       for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)

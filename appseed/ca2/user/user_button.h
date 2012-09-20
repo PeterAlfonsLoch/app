@@ -58,7 +58,7 @@ namespace user
 
       void _001OnDraw(::ca::graphics * pdc);
 
-      virtual int get_hover();
+      virtual index get_hover();
 
       
       virtual void ResizeToFit();
@@ -66,7 +66,7 @@ namespace user
 
 
 
-      virtual int hit_test(point pt, e_element & eelement);
+      virtual index hit_test(point pt, e_element & eelement);
 
       virtual ::ca::font * _001GetFont();
       void _001SetButtonText(const char * lpcszText);

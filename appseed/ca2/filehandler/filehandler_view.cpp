@@ -203,7 +203,7 @@ namespace filehandler
 
    }
 
-   int view::hit_test(point pt, e_element & eelement)
+   index view::hit_test(point pt, e_element & eelement)
    {
       ScreenToClient(&pt);
       for(int i = 0; i < m_drawlist.get_count(); i++)

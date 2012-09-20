@@ -135,7 +135,7 @@ namespace platform
       void check_apps();
 
       void GetAreaThumbRect(LPRECT lprect, int iArea);
-      int hit_test(point pt, e_element & eelement);
+      index hit_test(point pt, e_element & eelement);
 
 
       void mt_show_window(HWND hwnd, int iShow);

@@ -258,7 +258,7 @@ void MetaButton::install_message_handling(::gen::message::dispatch *pinterface)
 
 
 
-int MetaButton::hit_test(point point, e_element & eelement)
+index MetaButton::hit_test(point point, e_element & eelement)
 {
 
    if(m_spregion.is_null())

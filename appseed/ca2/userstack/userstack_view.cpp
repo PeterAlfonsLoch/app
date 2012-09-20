@@ -300,7 +300,7 @@ namespace userstack
    }
 
 
-   int view::hit_test(point pt, e_element & eelement)
+   index view::hit_test(point pt, e_element & eelement)
    {
       rect rectArea;
       GetAreaThumbRect(rectArea, m_iV);

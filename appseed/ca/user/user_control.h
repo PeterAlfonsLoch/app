@@ -199,7 +199,7 @@ namespace user
 
 
 
-      virtual int get_hover();
+      virtual index get_hover();
 
       class descriptor & descriptor();
 
@@ -242,7 +242,7 @@ namespace user
 
       virtual void BaseControlExOnMouseMove(UINT nFlags, point point);
 
-      virtual int hit_test(point point, e_element & eelement);
+      virtual index hit_test(point point, e_element & eelement);
 
       DECL_GEN_SIGNAL(_001OnMouseMove)
       DECL_GEN_SIGNAL(_001OnMouseLeave)

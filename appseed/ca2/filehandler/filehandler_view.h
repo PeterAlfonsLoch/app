@@ -84,7 +84,7 @@ namespace filehandler
       virtual void layout();
 
 
-      int hit_test(point pt, e_element & eelement);
+      index hit_test(point pt, e_element & eelement);
 
 
    };

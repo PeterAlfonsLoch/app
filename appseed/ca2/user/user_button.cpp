@@ -203,7 +203,7 @@ namespace user
          }
    }
 
-   int button::hit_test(point pt, e_element & eelement)
+   index button::hit_test(point pt, e_element & eelement)
    {
       rect rectWindow;
       GetWindowRect(rectWindow);
@@ -350,7 +350,7 @@ namespace user
 
    }
 
-   int button::get_hover()
+   index button::get_hover()
    {
       
       

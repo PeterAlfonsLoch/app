@@ -436,7 +436,7 @@ namespace user
       }
    }
 
-   int control::get_hover()
+   index control::get_hover()
    {
       POINT pt;
       // netshare
@@ -728,7 +728,7 @@ namespace user
 
       e_element eelement;
 
-      int iHover = hit_test(ptCursor, eelement);
+      index iHover = hit_test(ptCursor, eelement);
       if(iHover != -1)
       {
          if(m_iHover == -1 || System.get_capture_uie() != pwnd)
@@ -754,7 +754,7 @@ namespace user
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj);
 
-      int iHover = hit_test(pmouse->m_pt, m_eelementHover);
+      index iHover = hit_test(pmouse->m_pt, m_eelementHover);
 
       if(m_iHover != iHover)
       {
@@ -783,21 +783,32 @@ namespace user
 
    // the value -1 indicates outside the control,
    // other values may be control specific and are client hits
-   int control::hit_test(point ptScreen, e_element & eelement)
+   index control::hit_test(point ptScreen, e_element & eelement)
    {
+
       ::user::interaction * pwnd = ControlExGetWnd();
+
       rect rectWindow;
+
       pwnd->GetWindowRect(rectWindow);
+
       if(rectWindow.contains(ptScreen))
       {
+
          eelement = element_client;
+
          return 0;
+
       }
       else
       {
+
          eelement = element_none;
+
          return -1;
+
       }
+
    }
 
 

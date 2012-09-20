@@ -37,7 +37,7 @@ public:
    virtual ~MetaButton();
 
 
-   virtual int hit_test(point point, e_element & eelement);
+   virtual index hit_test(point point, e_element & eelement);
 
 
    virtual void _001OnDraw(::ca::graphics * pdc);

@@ -152,7 +152,7 @@ namespace user
       virtual void _001OnTabClick(::index iTab);
       virtual void _001OnTabClose(::index iTab);
       virtual ::ca::window * GetNotifyWnd();
-      virtual int hit_test(point pt, e_element & eelement);
+      virtual index hit_test(point pt, e_element & eelement);
       virtual e_position DragHitTest(point pt);
       virtual void GetDragRect(LPRECT lprect, e_position eposition);
       virtual int_ptr GetTabCount();
