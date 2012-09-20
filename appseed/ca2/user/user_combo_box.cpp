@@ -27,6 +27,7 @@ namespace user
 
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &combo_box::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pdispatch, this, &combo_box::_001OnLButtonUp);
+      IGUI_WIN_MSG_LINK(WM_SETFOCUS, pdispatch, this, &combo_box::_001OnSetFocus);
 
    }
 
@@ -292,8 +293,8 @@ namespace user
 
       if(hit_test(pt) == element_drop_down)
       {
-         
-         _001ShowDropDown();
+
+         _001ToggleDropDown();
 
       }
 
@@ -307,6 +308,24 @@ namespace user
 
    }
 
+   void combo_box::_001OnSetFocus(gen::signal_object * pobj)
+   {
+
+      SCAST_PTR(gen::message::set_focus, pfocus, pobj);
+
+   }
+
+   void combo_box::_001ToggleDropDown()
+   {
+
+      
+      defer_create_combo_list();
+
+      _001ShowDropDown(!m_plist->IsWindowVisible());
+
+
+   }
+
 
    void combo_box::_001ShowDropDown(bool bShow)
    {
@@ -315,17 +334,7 @@ namespace user
       if(bShow)
       {
 
-         if(m_plist == NULL)
-         {
-            
-            m_plist = create_combo_list();
-
-            if(m_plist == NULL)
-               throw resource_exception();
-
-            m_plist->m_pcombo = this;
-
-         }
+         defer_create_combo_list();
 
          size sizeFull;
 
@@ -354,6 +363,29 @@ namespace user
 
          rectList = rectMonitor;
 
+         sizeList.cx = min(sizeFull.cx, rectMonitor.width());
+
+         {
+            
+            sizeList.cx = max(sizeList.cx, rectWindow.width());
+
+         }
+
+         if(sizeList.cx < rectWindow.width())
+         {
+            
+            rectList.left = rectWindow.left;
+            
+         }
+         else if(sizeList.cx < rectMonitor.width())
+         {
+
+            rectList.left = min(rectMonitor.right - sizeList.cx, ((rectWindow.left + rectWindow.right) / 2) - sizeList.cx / 2);
+
+         }
+
+         rectList.right = rectList.left + sizeList.cx;
+
          if(bDown)
          {
 
@@ -361,8 +393,10 @@ namespace user
             
             sizeList.cy = min(sizeFull.cy, (rectMonitor.bottom - rectWindow.bottom));
             sizeList.cy -= sizeList.cy % m_plist->_001GetItemHeight();
+            
 
             rectList.bottom = rectList.top + sizeList.cy;
+
 
             
 
@@ -371,7 +405,7 @@ namespace user
          {
             rectList.bottom = rectWindow.top - 1;
 
-            sizeList.cy = min(sizeFull.cy, (rectMonitor.top - rectWindow.top));
+            sizeList.cy = min(sizeFull.cy, (rectWindow.top - rectMonitor.top));
             sizeList.cy -= sizeList.cy % m_plist->_001GetItemHeight();
 
             rectList.top = rectList.bottom - sizeList.cy;
@@ -380,42 +414,88 @@ namespace user
 
          m_plist->SetWindowPos(ZORDER_TOPMOST, rectList.left, rectList.top, rectList.width(), rectList.height(), SWP_SHOWWINDOW);
 
+         m_plist->SetActiveWindow();
+
+         m_plist->SetFocus();
+
+
       }
       else
       {
+
+         
+
          if(m_plist != NULL)
          {
+
             m_plist->ShowWindow(SW_HIDE);
+
          }
+
       }
 
 
    }
 
 
-   combo_list * combo_box::create_combo_list()
+   void combo_box::defer_create_combo_list()
    {
 
-      ::ca::ca * pca = System.alloc(m_typeComboList);
-
-      combo_list * plist = dynamic_cast < combo_list * > (pca);
-
-      if(plist == NULL)
+      if(m_plist == NULL)
       {
-         delete pca;
-         return NULL;
+      
+         ::ca::ca * pca = Application.alloc(m_typeComboList);
+
+         m_plist = dynamic_cast < combo_list * > (pca);
+
+         if(m_plist == NULL)
+         {
+            delete pca;
+            throw resource_exception();
+         }
+
+         m_plist->m_pcombo = this;
+
       }
 
-      //::ca::window * pwindow = dynamic_cast < ::ca::window * > (plist->m_pimpl);
-
-      //if(pwindow != NULL)
-      if(!plist->CreateEx(0L, plist->GetIconWndClass(0, 0), "combo_list", 0, rect(0, 0, 0, 0), NULL, NULL, NULL))
+      if(!m_plist->IsWindow())
       {
-         gen::del(plist);
-         return NULL;
+
+         if(!m_plist->CreateEx(0, m_plist->GetIconWndClass(0, 0), "combo_list", 0, rect(0, 0, 0, 0), NULL, NULL, NULL))
+         {
+            gen::del(m_plist);
+            throw resource_exception();
+         }
+
       }
 
-      return plist;
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      m_plist->m_iItemHeight = min(24, rectClient.height());
+
+
+
+   }
+
+   void combo_box::_001SetCurSel(index iSel)
+   {
+
+      string strItem;
+
+      _001GetListText(iSel, strItem);
+
+      _001SetText(strItem);
+
+      m_iSel = iSel;
+
+   }
+
+   index combo_box::_001GetCurSel()
+   {
+      
+      return m_iSel;
 
    }
 

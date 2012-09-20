@@ -7,6 +7,8 @@ namespace user
 
    combo_list::combo_list()
    {
+      
+      oprop("combo_list") = true;
 
    }
 
@@ -19,6 +21,14 @@ namespace user
    {
 
       ::user::control::install_message_handling(pdispatch);
+
+      IGUI_WIN_MSG_LINK(WM_KILLFOCUS, pdispatch, this, &combo_list::_001OnKillFocus);
+      IGUI_WIN_MSG_LINK(WM_CLOSE, pdispatch, this, &combo_list::_001OnClose);
+      IGUI_WIN_MSG_LINK(WM_ACTIVATE, pdispatch, this, &combo_list::_001OnActivate);
+      IGUI_WIN_MSG_LINK(WM_MOUSEACTIVATE, pdispatch, this, &combo_list::_001OnMouseActivate);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &combo_list::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_MBUTTONDOWN, pdispatch, this, &combo_list::_001OnMButtonDown);
+      IGUI_WIN_MSG_LINK(WM_RBUTTONDOWN, pdispatch, this, &combo_list::_001OnRButtonDown);
 
    }
 
@@ -36,7 +46,7 @@ namespace user
 
       ::ca::brush_sp br(get_app());
 
-      br->CreateSolidBrush(ARGB(84, 255, 255, 255));
+      br->CreateSolidBrush(ARGB(230, 255, 255, 255));
 
       pdc->SelectObject(br);
 
@@ -48,20 +58,100 @@ namespace user
 
       rectItem.bottom = rectClient.top + _001GetItemHeight();
 
+      point ptCursor;
+
+      Session.get_cursor_pos(&ptCursor);
+
+      ScreenToClient(&ptCursor);
+
+      br->CreateSolidBrush(ARGB(255, 84, 84, 77));
+
+      int dSize = _001GetItemHeight() * 0.7;
+
+      pdc->m_fontxyz.m_dFontSize = dSize;
+      pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;
+      pdc->m_fontxyz.m_bUpdated = false;
+
+      pdc->SelectObject(br);
+
       for(index i = 0; i < c; i++)
       {
          rectItem.top = rectItem.bottom;
          rectItem.bottom = rectItem.top + _001GetItemHeight();
-         m_pcombo->_001GetListText(i, strItem);
+         if(i != m_pcombo->m_iSel)
+         {
+            if(rectItem.contains(ptCursor))
+            {
+               ::ca::pen_sp pen(get_app());
+               pen->CreatePen(PS_SOLID, m_iItemHeight / 8, ARGB(230, 77, 184, 63));
+               pdc->SelectObject(pen);
+               pdc->DrawRectangle(rectItem);
+            }
+            m_pcombo->_001GetListText(i, strItem);
+            pdc->draw_text(strItem, rectItem, 0);
+         }
+      }
+
+      if(m_pcombo->m_iSel >= 0)
+      {
+         rectItem.top = rectClient.top + (_001GetItemHeight() * (1 + m_pcombo->m_iSel));
+         rectItem.bottom = rectItem.top + _001GetItemHeight();
+         if(rectItem.contains(ptCursor))
+         {
+            br->CreateSolidBrush(ARGB(123, 123, 149, 108));
+         }
+         else
+         {
+            br->CreateSolidBrush(ARGB(184, 77, 184, 63));
+         }
+         pdc->SelectObject(br);
+         pdc->FillRectangle(rectItem);
+         br->CreateSolidBrush(ARGB(255, 255, 255, 240));
+         m_pcombo->_001GetListText(m_pcombo->m_iSel, strItem);
+         pdc->SelectObject(br);
          pdc->draw_text(strItem, rectItem, 0);
       }
+
 
    }
 
    void combo_list::query_full_size(LPSIZE lpsize) const
    {
+
+      ::ca::graphics_sp pdc(get_app());
+
+
+      pdc->CreateCompatibleDC(NULL);
+
+      ::ca::dib_sp tameshi(get_app());
+
+      tameshi->create(100, 100);
+
+      pdc->SelectObject(tameshi);
       
+
+      int dSize = _001GetItemHeight() * 0.7;
+
+      pdc->m_fontxyz.m_dFontSize = dSize;
+      pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;
+      pdc->m_fontxyz.m_bUpdated = false;
+
+      string strItem;
+
+      size sz;
       lpsize->cx = 0;
+
+      ::count c = m_pcombo->_001GetListCount();
+
+      for(index i = 0; i < c; i++)
+      {
+         m_pcombo->_001GetListText(i, strItem);
+         sz = pdc->GetTextExtent(strItem);
+         if(sz.cx > lpsize->cx)
+         {
+            lpsize->cx = sz.cx;
+         }
+      }
       lpsize->cy = _001GetItemHeight() * (m_pcombo->_001GetListCount() + 2);
 
    }
@@ -69,7 +159,7 @@ namespace user
    int combo_list::_001GetItemHeight() const
    {
       
-      return 18;
+      return m_iItemHeight;
 
    }
 
@@ -85,7 +175,7 @@ namespace user
          16, 16,
          LR_LOADFROMFILE);
 
-      if(hIcon != NULL)
+      //if(hIcon != NULL)
       {
          CREATESTRUCT cs;
          memset(&cs, 0, sizeof(CREATESTRUCT));
@@ -113,7 +203,237 @@ namespace user
    }
 
 
+   bool combo_list::pre_create_window(CREATESTRUCT & cs)
+   {
+
+      if (cs.lpszClass == NULL)
+      {
+         // COLOR_WINDOW background
+   #ifdef WINDOWS
+         VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, &cs.lpszClass));
+   #endif
+      }
+
+      if (cs.style & WS_BORDER)
+      {
+   #ifdef WINDOWS
+         cs.dwExStyle |= WS_EX_CLIENTEDGE;
+   #endif
+         cs.style &= ~WS_BORDER;
+      }
+
+      cs.dwExStyle |= WS_EX_LAYERED;
+      cs.dwExStyle |= WS_EX_TOOLWINDOW;
+      cs.dwExStyle |= WS_EX_TOPMOST;
+      //cs.dwExStyle |= WS_EX_NOACTIVATE;
+
+      return TRUE;
+   }
+
+   void combo_list::_001OnKillFocus(gen::signal_object * pobj)
+   {
+
+
+
+   }
+
+   void combo_list::_001OnActivate(gen::signal_object * pobj)
+   {
+
+      SCAST_PTR(gen::message::activate, pactivate, pobj);
+
+      ::user::interaction* pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : GetDrawWindow());
+
+      if(pactivate->m_nState == WA_INACTIVE)
+      {
+      
+         point ptCursor;
+      
+         Session.get_cursor_pos(&ptCursor);
+
+         m_pcombo->ScreenToClient(&ptCursor);
+
+         if(m_pcombo->hit_test(ptCursor) != element_drop_down)
+         {
+
+            m_pcombo->_001ShowDropDown(false);
+
+         }
+
+
+         ::ca::user_interaction * pframe = oprop("deactivate_together");
+
+         if(pActive != pframe)
+         {
+
+            ::uinteraction::frame::WorkSet * pset = oprop("deactivate_together_set");
+
+            pset->SetActiveFlag(FALSE);
+
+         }
+
+
+
+      }
+
+         //m_pcombo->_001ShowDropDown(false);
+
+      //}
+
+   }
+
+   void combo_list::_001OnMouseActivate(gen::signal_object * pobj)
+   {
+
+      SCAST_PTR(gen::message::mouse_activate, pactivate, pobj);
+
+
+   }
+
+   void combo_list::_001OnLButtonDown(gen::signal_object * pobj)
+   {
+
+      SCAST_PTR(gen::message::mouse, pmouse, pobj);
+
+      point pt = pmouse->m_pt;
+
+      ScreenToClient(&pt);
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      if(rectClient.contains(pt))
+      {
+
+         e_element eelement;
+
+         index iItem = hit_test(pt, eelement);
+
+         if(eelement == element_item)
+         {
+            
+            m_pcombo->_001SetCurSel(iItem);
+
+         }
+
+      }
+
+      m_pcombo->_001ShowDropDown(false);
+
+   }
+
+   void combo_list::_001OnMButtonDown(gen::signal_object * pobj)
+   {
+
+      SCAST_PTR(gen::message::mouse, pmouse, pobj);
+
+      point pt = pmouse->m_pt;
+
+      ScreenToClient(&pt);
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      if(rectClient.contains(pt))
+      {
+
+      }
+      else
+      {
+         m_pcombo->_001ShowDropDown(false);
+      }
+
+      
+
+   }
+
+   void combo_list::_001OnRButtonDown(gen::signal_object * pobj)
+   {
+
+      SCAST_PTR(gen::message::mouse, pmouse, pobj);
+
+      point pt = pmouse->m_pt;
+
+      ScreenToClient(&pt);
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      if(rectClient.contains(pt))
+      {
+
+      }
+      else
+      {
+         m_pcombo->_001ShowDropDown(false);
+      }
+
+      
+
+   }
+
+   void combo_list::_001OnClose(gen::signal_object * pobj)
+   {
+      
+      PostMessage(WM_DESTROY, 0, 0);
+
+   }
+
+   index combo_list::hit_test(point pt, e_element & eelement)
+   {
+
+      count c = m_pcombo->_001GetListCount();
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      rect rectItem;
+
+      rectItem = rectClient;
+
+      for(int i = 0; i < c; i++)
+      {
+
+         rectItem.top = rectClient.top + (_001GetItemHeight() * (1 + i));
+         rectItem.bottom = rectItem.top + _001GetItemHeight();
+
+         if(rectItem.contains(pt))
+         {
+            
+            eelement = element_item;
+
+            return i;
+
+         }
+
+
+      }
+
+      rectItem.top = rectClient.top;
+      rectItem.bottom = rectItem.top + _001GetItemHeight();
+
+      if(rectItem.contains(pt))
+      {
+            
+         eelement = element_search_edit;
+
+         return 0;
+
+      }
+
+      eelement = element_none;
+
+      return -1;
+
+   }
+
+
 } // namespace user
+
 
 
 

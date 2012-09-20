@@ -21,6 +21,17 @@ CLASS_DECL_c bool main_initialize();
 CLASS_DECL_c bool main_finalize();
 
 
+CLASS_DECL_c void set_main_thread(HANDLE hThread);
+CLASS_DECL_c void set_main_thread_id(UINT uiThread);
+
+
+CLASS_DECL_c HANDLE get_main_thread();
+CLASS_DECL_c UINT   get_main_thread_id();
+
+
+CLASS_DECL_c void attach_thread_input_to_main_thread(bool bAttach = true);
+
+
 #ifndef MERDE_WINDOWS
 
 CLASS_DECL_c

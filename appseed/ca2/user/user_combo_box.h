@@ -14,13 +14,15 @@ namespace user
    public:
 
 
-      index                m_iSel;
-      string               m_strText;
-      bool                 m_bCaseSensitiveMatch;
+      index                      m_iSel;
+      string                     m_strText;
+      bool                       m_bCaseSensitiveMatch;
 
-      combo_list *         m_plist;
+      combo_list *               m_plist;
 
-      ::ca::type_info      m_typeComboList;
+      ::ca::type_info            m_typeComboList;
+
+      ::ca::e_thread_priority    m_epriorityPrevious;
 
 
       combo_box();
@@ -31,6 +33,9 @@ namespace user
 
 
       virtual void _001OnDraw(::ca::graphics * pdc);
+
+      virtual void _001SetCurSel(index iSel);
+      virtual index _001GetCurSel();
 
 
       virtual void _001GetText(string & str) const;
@@ -50,11 +55,13 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)
       DECL_GEN_SIGNAL(_001OnLButtonUp)
+      DECL_GEN_SIGNAL(_001OnSetFocus)
 
       virtual void _001ShowDropDown(bool bShow = true);
+      virtual void _001ToggleDropDown();
 
 
-      combo_list * create_combo_list();
+      void defer_create_combo_list();
 
 
    };

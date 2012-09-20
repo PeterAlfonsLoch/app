@@ -987,6 +987,9 @@ LRESULT frame_window::OnActivateTopLevel(WPARAM wParam, LPARAM lParam)
 void frame_window::_001OnActivate(gen::signal_object * pobj)
 {
    SCAST_PTR(::gen::message::activate, pactivate, pobj);
+   
+   ::user::interaction* pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
+
    pobj->previous();
 
    // get top level frame unless this is a child ::ca::window
@@ -996,7 +999,8 @@ void frame_window::_001OnActivate(gen::signal_object * pobj)
    if(pTopLevel == NULL)
       pTopLevel = this;
 
-   ::user::interaction* pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
+
+
    bool bStayActive =
       (pTopLevel == pActive ||
       (pActive && pTopLevel == dynamic_cast < frame_window * > (pActive->GetTopLevelFrame()) &&

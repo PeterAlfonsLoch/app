@@ -15,6 +15,7 @@ namespace user
 
 
       combo_box *    m_pcombo;
+      int            m_iItemHeight;
 
 
       combo_list();
@@ -33,6 +34,20 @@ namespace user
 
       const char * GetIconWndClass(DWORD dwDefaultStyle, const char * pszMatter);
 
+
+      bool pre_create_window(CREATESTRUCT & cs);
+
+
+      DECL_GEN_SIGNAL(_001OnKillFocus);
+      DECL_GEN_SIGNAL(_001OnClose);
+      DECL_GEN_SIGNAL(_001OnActivate);
+      DECL_GEN_SIGNAL(_001OnMouseActivate);
+      DECL_GEN_SIGNAL(_001OnLButtonDown);
+      DECL_GEN_SIGNAL(_001OnMButtonDown);
+      DECL_GEN_SIGNAL(_001OnRButtonDown);
+
+
+      virtual index hit_test(point pt, e_element & eelement);
 
 
    };

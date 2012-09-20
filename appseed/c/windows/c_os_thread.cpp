@@ -33,6 +33,8 @@ DWORD WINAPI thread_proc_create_thread(LPVOID lpparameter)
 
    }
 
+   attach_thread_input_to_main_thread();
+
    /*statusStartup = pgdiplusStartupOutput->NotificationHook(&gdiplusHookToken);
 
 
@@ -137,3 +139,51 @@ bool thread_layer::on_idle()
 
 }
 
+
+static HANDLE g_hMainThread = NULL;
+static UINT g_uiMainThread = -1;
+
+CLASS_DECL_c void set_main_thread(HANDLE hThread)
+{
+   
+   MSG msg;
+
+   PeekMessage(&msg, NULL, 0, 0xffffffff, FALSE);
+
+   g_hMainThread = hThread;
+
+}
+
+CLASS_DECL_c void set_main_thread_id(UINT uiThread)
+{
+   
+   MSG msg;
+
+   PeekMessage(&msg, NULL, 0, 0xffffffff, FALSE);
+
+   g_uiMainThread = uiThread;
+
+}
+
+
+CLASS_DECL_c HANDLE get_main_thread()
+{
+   return g_hMainThread;
+
+}
+CLASS_DECL_c UINT   get_main_thread_id()
+{
+   return g_uiMainThread;
+}
+
+
+CLASS_DECL_c void attach_thread_input_to_main_thread(bool bAttach)
+{
+
+   MSG msg;
+
+   PeekMessage(&msg, NULL, 0, 0xffffffff, FALSE);
+   
+   AttachThreadInput(::GetCurrentThreadId(), get_main_thread_id(), bAttach ? TRUE : FALSE);
+
+}
