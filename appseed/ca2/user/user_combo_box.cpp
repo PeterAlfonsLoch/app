@@ -66,7 +66,7 @@ namespace user
 
       rectText.deflate(iMargin, iMargin);
 
-      pdc->m_fontxyz.m_dFontSize = rectClient.height() * 5 / 8;
+      pdc->m_fontxyz.m_dFontSize = rectClient.height() * 0.4;
       pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;
       pdc->m_fontxyz.m_bUpdated = false;
 
@@ -147,7 +147,7 @@ namespace user
 
       rectText.deflate(iMargin, iMargin);
 
-      pdc->m_fontxyz.m_dFontSize = rectClient.height() * 5 / 8;
+      pdc->m_fontxyz.m_dFontSize = rectClient.height() * 0.4;
       pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;
       pdc->m_fontxyz.m_bUpdated = false;
 
