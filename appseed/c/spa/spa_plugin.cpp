@@ -41,7 +41,8 @@ namespace spa
 
       m_pplugin = this;
 
-      m_login.m_pcallback = this;
+      m_login.m_pcallback     = this;
+      m_login.m_pplugin       = this;
 
       m_iHealingSurface       = 0;
       m_iEdge                 = -1;
