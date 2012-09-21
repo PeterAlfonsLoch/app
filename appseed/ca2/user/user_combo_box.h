@@ -9,9 +9,10 @@ namespace user
 
 
    class CLASS_DECL_ca2 combo_box : 
-      virtual public ::user::control
+      virtual public ::user::edit_plain_text
    {
    public:
+
 
       enum e_style
       {
@@ -32,8 +33,10 @@ namespace user
 
       e_style                    m_estyle;
 
+      bool                       m_bEdit;
 
-      combo_box();
+
+      combo_box(::ca::application * papp);
       virtual ~combo_box();
 
 
@@ -43,6 +46,7 @@ namespace user
       virtual void _001OnDraw(::ca::graphics * pdc);
       virtual void _001OnDrawVerisimple(::ca::graphics * pdc);
       virtual void _001OnDrawSimply(::ca::graphics * pdc);
+      virtual void _001OnDrawStaticText(::ca::graphics * pdc);
 
 
       virtual void _001SetCurSel(index iSel);
@@ -74,6 +78,12 @@ namespace user
 
       void defer_create_combo_list();
 
+
+      virtual void layout();
+
+      virtual void _001OnAfterChangeText();
+
+      virtual void _001OnInitialUpdate(gen::signal_object * pobj);
 
    };
 

@@ -50,8 +50,6 @@ namespace user
 #include "user_scroll_view.h"
 
 
-#include "user_combo_box.h"
-#include "user_combo_list.h"
 
 
 #include "user_list.h"
@@ -71,6 +69,11 @@ namespace user
 
 #include "user_plain_text_data.h"
 #include "user_edit_plain_text.h"
+
+
+#include "user_combo_box.h"
+#include "user_combo_list.h"
+
 
 #include "user_button.h"
 #include "user_check_box.h"

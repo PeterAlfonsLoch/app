@@ -1,10 +1,13 @@
 #include "framework.h"
 
 
-simple_combo_box::simple_combo_box()
+simple_combo_box::simple_combo_box(::ca::application * papp) :
+      ca(papp),
+      ::user::scroll_view(papp),
+      ::user::edit_plain_text(papp),
+      ::user::combo_box(papp),
+      ::userbase::combo_box(papp)
 {
-
-   
 
 }
 

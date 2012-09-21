@@ -11,15 +11,15 @@ namespace userbase
    public:
 
 
-      combo_box();
+      combo_box(::ca::application * papp);
       virtual ~combo_box();
 
 
       virtual bool create(::user::interaction* puiParent, id id);
 
-      count get_count();
-      index get_cur_sel();
-      index set_cur_sel(index nSelect);
+      //count get_count();
+      //index get_cur_sel();
+      //index set_cur_sel(index nSelect);
       LCID GetLocale();
       LCID SetLocale(LCID nNewLocale);
       index GetTopIndex();

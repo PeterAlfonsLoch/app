@@ -1845,7 +1845,30 @@ namespace user
       dc->CreateCompatibleDC(NULL);
       _001OnCalcLayout(dc);
       lineCountEvent(m_lines.lines.get_count());
-      _001OnSetText();
+
+      try
+      {
+
+         _001OnSetText();
+
+      }
+      catch(...)
+      {
+
+      }
+
+
+      try
+      {
+      
+         _001OnAfterChangeText();
+
+      }
+      catch(...)
+      {
+
+      }
+
    }
 
 
@@ -2092,6 +2115,8 @@ namespace user
       m_y = m_scrollinfo.m_ptScroll.y;
 
       visibleTextEvent(m_iLineOffset, m_iLineCount);
+      
+      
 
    }
 

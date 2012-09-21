@@ -1,7 +1,26 @@
 #include "framework.h"
 
+
 namespace userbase
 {
+
+
+   combo_box::combo_box(::ca::application * papp) :
+      ca(papp),
+      ::user::scroll_view(papp),
+      ::user::edit_plain_text(papp),
+      ::user::combo_box(papp)
+   { 
+   
+   }
+
+   combo_box::~combo_box()
+   {
+
+      DestroyWindow();
+
+   }
+
 
    bool combo_box::create(::user::interaction* pParentWnd, id id)
    {
@@ -9,10 +28,6 @@ namespace userbase
       return pWnd->create(pParentWnd, id);
    }
 
-   combo_box::~combo_box()
-   {
-      DestroyWindow();
-   }
 
    // Derived class is responsible for implementing these handlers
    //   for owner/self draw controls (except for the optional DeleteItem)
@@ -61,14 +76,12 @@ namespace userbase
       rString.ReleaseBuffer();
    }
 
-   combo_box::combo_box()
-      { }
-   count combo_box::get_count()
-      { ASSERT(IsWindow()); return (count)send_message( CB_GETCOUNT, 0, 0); }
-   index combo_box::get_cur_sel()
-      { ASSERT(IsWindow()); return (index)send_message( CB_GETCURSEL, 0, 0); }
-   index combo_box::set_cur_sel(index nSelect)
-      { ASSERT(IsWindow()); return (index)send_message( CB_SETCURSEL, nSelect, 0); }
+   //count combo_box::get_count()
+     // { ASSERT(IsWindow()); return (count)send_message( CB_GETCOUNT, 0, 0); }
+   //index combo_box::get_cur_sel()
+     // { ASSERT(IsWindow()); return (index)send_message( CB_GETCURSEL, 0, 0); }
+   //index combo_box::set_cur_sel(index nSelect)
+     // { ASSERT(IsWindow()); return (index)send_message( CB_SETCURSEL, nSelect, 0); }
    //IA64: Assuming retval of CB_GETEDITSEL won't be expanded
    bool combo_box::GetEditSel(strsize & nStartChar, strsize & nEndChar)
    { 

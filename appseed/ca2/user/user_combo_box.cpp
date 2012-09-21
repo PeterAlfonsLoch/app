@@ -6,7 +6,10 @@ namespace user
 {
 
 
-   combo_box::combo_box()
+   combo_box::combo_box(::ca::application * papp) :
+      ca(papp),
+      ::user::scroll_view(papp),
+      ::user::edit_plain_text(papp)
    {
 
       m_iSel                  = -1;
@@ -14,6 +17,7 @@ namespace user
       m_plist                 = NULL;
       m_typeComboList         = typeid(simple_combo_list);
       m_estyle                = style_simply;
+      m_bEdit                 = true;
 
    }
 
@@ -25,18 +29,28 @@ namespace user
    void combo_box::install_message_handling(::gen::message::dispatch * pdispatch)
    {
 
-      ::user::control::install_message_handling(pdispatch);
+      if(m_bEdit)
+      {
+      
+         ::user::edit_plain_text::install_message_handling(pdispatch);
+
+      }
+      else
+      {
+
+         ::user::control::install_message_handling(pdispatch);
+
+      }
 
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &combo_box::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pdispatch, this, &combo_box::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_SETFOCUS, pdispatch, this, &combo_box::_001OnSetFocus);
 
    }
-
-   void combo_box::_001OnDrawVerisimple(::ca::graphics * pdc)
+   
+   
+   void combo_box::_001OnDrawStaticText(::ca::graphics * pdc)
    {
-
-      pdc->set_alpha_mode(::ca::alpha_mode_blend);
 
       string strText;
 
@@ -66,11 +80,39 @@ namespace user
 
       rectText.deflate(iMargin, iMargin);
 
-      pdc->m_fontxyz.m_dFontSize = rectClient.height() * 0.4;
-      pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;
-      pdc->m_fontxyz.m_bUpdated = false;
+      pdc->SelectObject(GetFont());
 
       pdc->draw_text(strText, rectText, 0);
+
+   }
+
+
+
+   void combo_box::_001OnDrawVerisimple(::ca::graphics * pdc)
+   {
+
+      pdc->set_alpha_mode(::ca::alpha_mode_blend);
+
+      if(m_bEdit)
+      {
+
+         ::user::edit_plain_text::_001OnDraw(pdc);
+
+      }
+      else
+      {
+
+         _001OnDrawStaticText(pdc);
+
+      }
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      ::ca::brush_sp br(get_app());
+
+      int iMargin = rectClient.height() / 8;
 
       rect rectDropDown;
 
@@ -119,9 +161,18 @@ namespace user
 
       pdc->set_alpha_mode(::ca::alpha_mode_blend);
 
-      string strText;
+      if(m_bEdit)
+      {
 
-      _001GetText(strText);
+         ::user::edit_plain_text::_001OnDraw(pdc);
+
+      }
+      else
+      {
+
+         _001OnDrawStaticText(pdc);
+
+      }
 
       rect rectClient;
 
@@ -129,34 +180,11 @@ namespace user
 
       ::ca::brush_sp br(get_app());
 
-      br->CreateSolidBrush(ARGB(84, 255, 255, 255));
-
-      pdc->SelectObject(br);
-
-      pdc->FillRectangle(rectClient);
-
-      br->CreateSolidBrush(ARGB(255, 84, 84, 77));
-
-      pdc->SelectObject(br);
-
-      rect rectText;
-
-      get_element_rect(rectText, element_text);;
-
       int iMargin = rectClient.height() / 8;
-
-      rectText.deflate(iMargin, iMargin);
-
-      pdc->m_fontxyz.m_dFontSize = rectClient.height() * 0.4;
-      pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;
-      pdc->m_fontxyz.m_bUpdated = false;
-
-      pdc->draw_text(strText, rectText, 0);
 
       rect rectDropDown;
 
       get_element_rect(rectDropDown, element_drop_down);
-
 
       graphics_round_rect round;
 
@@ -286,14 +314,40 @@ namespace user
 
    void combo_box::_001GetText(string & str) const
    {
-
-      if(m_iSel < 0)
+      
+      if(m_bEdit)
       {
-         str = m_strText;
+
+         if(m_iSel < 0)
+         {
+
+            ::user::edit_plain_text::_001GetText(str);
+
+         }
+         else
+         {
+
+            _001GetListText(m_iSel, str);
+
+         }
+
       }
       else
       {
-         _001GetListText(m_iSel, str);
+
+         if(m_iSel < 0)
+         {
+
+            str = m_strText;
+
+         }
+         else
+         {
+
+            _001GetListText(m_iSel, str);
+
+         }
+
       }
 
    }
@@ -301,9 +355,22 @@ namespace user
    void combo_box::_001SetText(const char * psz)
    {
 
-      m_strText = psz;
-   
-      m_iSel = _001FindListText(psz);
+      if(m_bEdit)
+      {
+
+         ::user::edit_plain_text::_001SetText(psz);
+
+      }
+      else
+      {
+         
+         m_strText = psz;
+
+         _001OnAfterChangeText();
+
+      }
+
+      
 
    }
 
@@ -674,6 +741,74 @@ namespace user
 
    }
 
+   void combo_box::layout()
+   {
+
+      if(m_bEdit)
+      {
+
+         ::user::edit_plain_text::layout();
+
+      }
+
+    
+      ::ca::font_sp fontxyz(get_app());
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      fontxyz->m_dFontSize = rectClient.height() * 0.4;
+      fontxyz->m_eunitFontSize = ::ca::unit_pixel;
+      fontxyz->m_bUpdated = false;
+
+      SetFont(fontxyz);
+
+
+
+   }
+
+   void combo_box::_001OnAfterChangeText()
+   {
+
+      string str;
+
+      if(m_bEdit)
+      {
+
+         ::user::edit_plain_text::_001GetText(str);
+
+      }
+      else
+      {
+
+         str = m_strText;
+
+      }
+
+      m_iSel = _001FindListText(str);
+
+   }
+
+
+   void combo_box::_001OnInitialUpdate(gen::signal_object * pobj)
+   {
+      
+      if(m_bEdit)
+      {
+         
+         ::user::edit_plain_text::_001OnInitialUpdate(pobj);
+
+      }
+      else
+      {
+         
+         ::user::control::_001OnInitialUpdate(pobj);
+
+      }
+
+
+   }
 
 } // namespace user
 
