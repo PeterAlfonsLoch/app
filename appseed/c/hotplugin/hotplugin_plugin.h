@@ -64,7 +64,9 @@ namespace hotplugin
       POINT                         m_ptCursorPhase;
 
       e_schema                      m_eschema;
-
+      vsstring                      m_strLocale;
+      vsstring                      m_strSchema;
+      vsstring                      m_strRuri;
 
 
       plugin();

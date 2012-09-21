@@ -980,14 +980,10 @@ restart:
          Sleep(iAttempt * 840);
       }
 
-      vsstring strLocale;
-
-      vsstring strSchema;
-
       try
       {
 
-         url_query_get_param_dup(strLocale, "locale", str);
+         url_query_get_param_dup(m_strLocale, "locale", str);
 
       }
       catch(...)
@@ -997,14 +993,24 @@ restart:
       try
       {
 
-         url_query_get_param_dup(strSchema, "schema", str);
+         url_query_get_param_dup(m_strSchema, "schema", str);
 
       }
       catch(...)
       {
       }
 
-      if(strLocale.is_empty())
+      try
+      {
+
+         url_query_get_param_dup(m_strRuri, "ruri", str);
+
+      }
+      catch(...)
+      {
+      }
+
+      if(m_strLocale.is_empty())
          goto restart;
 
 
@@ -1012,8 +1018,8 @@ restart:
 
 
 
-      if(str_begins_ci_dup(strSchema, "darker;") || str_ends_ci_dup(strSchema, ";darker") || stristr_dup(strSchema, ";darker;")
-      || str_begins_ci_dup(strSchema, "darker%3B") || str_ends_ci_dup(strSchema, "%3Bdarker") || stristr_dup(strSchema, "%3Bdarker%3B"))
+      if(str_begins_ci_dup(m_strSchema, "darker;") || str_ends_ci_dup(m_strSchema, ";darker") || stristr_dup(m_strSchema, ";darker;")
+      || str_begins_ci_dup(m_strSchema, "darker%3B") || str_ends_ci_dup(m_strSchema, "%3Bdarker") || stristr_dup(m_strSchema, "%3Bdarker%3B"))
       {
 
          m_eschema = schema_darker;
@@ -1026,7 +1032,7 @@ restart:
 
       }
 
-      str = defer_ls_get(pszUrl, strLocale, strSchema);
+      str = defer_ls_get(pszUrl, m_strLocale, m_strSchema);
 
       return str;
 

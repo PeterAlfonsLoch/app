@@ -262,7 +262,7 @@ spa_login::e_result spa_login::login()
 
    {
 
-      vsstring strAuthUrl("https://api.ca2.cc/account/auth?defer_registration");
+      vsstring strAuthUrl("https://api.ca2.cc/account/auth?defer_registration&ruri=" + m_pplugin->m_strRuri);
 
       if(m_strPasshash.is_empty())
       {
