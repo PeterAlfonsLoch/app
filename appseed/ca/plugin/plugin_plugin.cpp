@@ -588,6 +588,8 @@ namespace plugin
 
             string strSchema = set["schema"];
 
+            string strRuri = set["ruri"];
+
             if(strBuildNumber.is_empty())
             {
 
@@ -609,7 +611,7 @@ namespace plugin
 #endif
                   m_bMainReady = false;*/
 
-                  vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install locale=" + strLocale + " schema=" + strSchema);
+                  vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
                   int i = 1;
 
@@ -651,7 +653,7 @@ namespace plugin
 #endif
                   m_bMainReady = false;*/
 
-                  vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install locale=" + strLocale + " schema=" + strSchema);
+                  vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
                   int i = 1;
 
