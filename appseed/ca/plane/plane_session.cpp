@@ -703,7 +703,7 @@ namespace plane
          }
          else
          {
-            strId = "default_file_handler";
+            strId = "app/ca2/default_file_handler";
          }
 
       }

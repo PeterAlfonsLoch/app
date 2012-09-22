@@ -1004,7 +1004,7 @@ restart:
       try
       {
 
-         url_query_get_param_dup(m_strRuri, "uri", str);
+         url_query_get_param_dup(m_strRuri, "ruri", str);
 
       }
       catch(...)
