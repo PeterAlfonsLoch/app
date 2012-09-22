@@ -674,7 +674,7 @@
     <ClInclude Include="c\debug.h" />
     <ClInclude Include="c\dir.h" />
     <ClInclude Include="c\file.h" />
-    <ClInclude Include="c\gdi.h" />
+    <ClInclude Include="c\c_gdi.h" />
     <ClInclude Include="c\geometric_types.h" />
     <ClInclude Include="c\heap.h" />
     <ClInclude Include="c\index.h" />
@@ -733,12 +733,10 @@
     <ClInclude Include="spa\spa_login.h" />
     <ClInclude Include="spa\spa_plugin.h" />
     <ClInclude Include="spa\spa_window.h" />
-    <ClInclude Include="spa\windows\spa_windows_service.h" />
-    <ClInclude Include="spa\windows\spa_windows_win.h" />
-    <ClInclude Include="spa\windows\spa_windows.h" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
     <ClInclude Include="windows\c_os.h" />
+    <ClInclude Include="windows\c_os_gdi.h" />
     <ClInclude Include="windows\c_os_graphics_round_rect.h" />
     <ClInclude Include="windows\c_os_http.h" />
     <ClInclude Include="windows\c_os_internal.h" />
@@ -810,6 +808,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include=".\hotplugin\hotplugin_container_launcher.cpp" />
+    <ClCompile Include="c\c_gdi.cpp" />
     <ClCompile Include="os\os_http.cpp" />
     <ClCompile Include="os\os_thread.cpp" />
     <ClCompile Include="simple_ui\windows\c_os_simple_edit_box.cpp" />
@@ -818,6 +817,7 @@
     <ClCompile Include="simple_ui\windows\c_os_simple_tap.cpp" />
     <ClCompile Include="simple_ui\windows\c_os_simple_ui.cpp" />
     <ClCompile Include="windows\c_os_file.cpp" />
+    <ClCompile Include="windows\c_os_gdi.cpp" />
     <ClCompile Include="windows\c_os_graphics_round_rect.cpp" />
     <ClCompile Include="windows\c_os_thread.cpp" />
     <ClInclude Include=".\hotplugin\hotplugin_container_launcher.h">
@@ -835,7 +835,6 @@
     <ClCompile Include="c\dir2.cpp" />
     <ClCompile Include="c\file.cpp" />
     <ClCompile Include="c\file_spa.cpp" />
-    <ClCompile Include="c\gdi.cpp" />
     <ClCompile Include="c\geometric_types.cpp" />
     <ClCompile Include="c\heap.cpp" />
     <ClCompile Include="c\international.cpp" />

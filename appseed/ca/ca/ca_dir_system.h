@@ -146,8 +146,13 @@ namespace ca
          virtual string locale_schema(::ca::application * papp, const string & strLocale, const string & strStyle);
          virtual string locale_schema_matter(::ca::application * papp, const string & strLocale, const string & strStyle);
          virtual string locale_schema_matter(const string & strLocator, const string & strLocale, const string & strStyle);
+         virtual string matter(::ca::application * papp, const stringa & stra);
          virtual string matter(::ca::application * papp, const string & str, const string & str2);
+         virtual string matter(::ca::application * papp, const string & str, const char * psz);
+         virtual string matter(::ca::application * papp, const char * psz, const string & str);
+         virtual string matter(::ca::application * papp, const char * psz, const char * psz2);
          virtual string matter(::ca::application * papp, const string & str);
+         virtual string matter(::ca::application * papp, const char * psz);
          virtual string matter(::ca::application * papp);
          virtual string matter_from_locator(::user::str_context * pcontext, const string & strLocator);
          virtual string matter_from_locator(::user::str_context * pcontext, const string & strLocator, const string & str);

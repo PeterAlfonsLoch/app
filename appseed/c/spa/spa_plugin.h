@@ -73,7 +73,7 @@ namespace spa
       virtual bool initialize();
 
       //virtual void on_bare_paint(HDC hdc, LPCRECT lprect);
-      virtual void on_paint(HDC hdcWindow, LPCRECT lprect);
+      virtual void on_paint(simple_graphics & gWindow, LPCRECT lprect);
 
       virtual void on_prepare_memory();
 
@@ -89,7 +89,7 @@ namespace spa
 
 #endif
 
-      virtual void on_paint_progress(HDC hdc, LPCRECT lprect);
+      virtual void on_paint_progress(simple_graphics & g, LPCRECT lprect);
 
       virtual double extract_spa_progress_rate();
 

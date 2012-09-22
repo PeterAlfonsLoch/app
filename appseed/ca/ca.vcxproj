@@ -2123,76 +2123,71 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="ca\ca_window_draw.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\2DArray.cpp">
+    <ClCompile Include="collection\collection_2d_array.cpp" />
+    <ClCompile Include="collection\collection_array.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\array.cpp">
+    <ClCompile Include="collection\collection_array_app_copy.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\array_app_copy.cpp">
+    <ClCompile Include="collection\collection_array_ptr.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\array_ptr.cpp">
+    <ClCompile Include="collection\collection_array_ptr_alloc.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\array_ptr_alloc.cpp">
+    <ClCompile Include="collection\collection_array_ptr_copy.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\array_ptr_copy.cpp">
+    <ClCompile Include="collection\collection_bit_array.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\bit_array.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\class_sort_array.cpp">
+    <ClCompile Include="collection\collection_class_sort_array.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="collection\collection_numeric_array.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\collection_string_list.cpp">
+    <ClCompile Include="collection\collection_collection_string_list.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\comparable_array.cpp">
+    <ClCompile Include="collection\collection_comparable_array.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\key_sort_array.cpp">
+    <ClCompile Include="collection\collection_key_sort_array.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\map_misc.cpp">
+    <ClCompile Include="collection\collection_map_misc.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\object_list.cpp">
+    <ClCompile Include="collection\collection_object_list.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\pointer_list.cpp">
+    <ClCompile Include="collection\collection_pointer_list.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\point_array.cpp">
+    <ClCompile Include="collection\collection_point_array.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\rect_array.cpp">
+    <ClCompile Include="collection\collection_rect_array.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\sort.cpp">
+    <ClCompile Include="collection\collection_sort.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\stringa.cpp">
+    <ClCompile Include="collection\collection_stringa.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\stringl.cpp">
+    <ClCompile Include="collection\collection_stringl.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\string_array.cpp">
+    <ClCompile Include="collection\collection_string_array.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\string_sort_array.cpp">
+    <ClCompile Include="collection\collection_string_sort_array.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\string_to_string_map.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="collection\_array_app_copy.cpp">
+    <ClCompile Include="collection\collection_string_to_string_map.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="colorertake5\colorertake5_application.cpp">

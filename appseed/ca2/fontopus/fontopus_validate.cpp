@@ -97,14 +97,14 @@ namespace ca2
 
       }
 
-      void validate::page1(const char * pszMatter)
+      void validate::page1(const stringa & straMatter)
       {
          
          m_pdocAuth->get_html_data()->m_puser = m_loginthread.m_puser;
          
          string strPath;
          
-         if(pszMatter == NULL)
+         if(straMatter.get_count() <= 0)
          {
             
             if(m_strLicense.is_empty())
@@ -133,7 +133,7 @@ namespace ca2
          }
          else
          {
-            strPath = Application.dir().matter(pszMatter);
+            strPath = Application.dir().matter(straMatter);
          }
 
          if(!m_pdocAuth->on_open_document(strPath))
@@ -144,7 +144,7 @@ namespace ca2
 
          display_main_frame();
 
-         if(pszMatter == NULL)
+         if(straMatter.get_count() <= 0)
          {
 
             ::user::interaction * pguie = m_pviewAuth->get_child_by_name("user");
@@ -243,11 +243,11 @@ namespace ca2
          //m_pviewAuth->GetTopLevelParent()->BringWindowToTop();
       }
 
-      void validate::pageMessage(const char * pszMatter, gen::property_set & set)
+      void validate::pageMessage(const stringa & straMatter, gen::property_set & set)
       {
          ensure_main_document();
          m_pdocAuth->get_html_data()->m_propertyset = set;
-         page1(pszMatter);
+         page1(straMatter);
          if(m_ptabview->get_wnd()->m_iModalCount <= 0)
          {
             ::ca::live_signal livesignal;
@@ -582,34 +582,47 @@ namespace ca2
                pageMessage("err\\user\\authentication\\not_licensed.xhtml", propertyset);
             }
          }
+         else if(iAuth == ::fontopus::result_please_finish_registration)
+         {
+            if(m_bInteractive)
+            {
+               stringa stra;
+               stra.add("err\\user\\authentication\\please_finish_registration.html");
+               stra.add("err\\user\\authentication\\registration_deferred.html");
+               pageMessage(stra, propertyset);
+            }
+         }
          else if(iAuth == ::fontopus::result_wrong_password_or_login)
          {
-            propertyset["register_link"] = "ext://http://"+ m_loginthread.m_strFontopusServer + "/register?email="+ System.url().url_encode(m_loginthread.m_strUsername);
-            pageMessage("err\\user\\authentication\\wrong_fontopus_login.xhtml", propertyset);
-            try
+            if(m_bInteractive)
             {
-               System.file().del(::dir::userappdata("license_auth/00001.data"));
+               propertyset["register_link"] = "ext://http://"+ m_loginthread.m_strFontopusServer + "/register?email="+ System.url().url_encode(m_loginthread.m_strUsername);
+               pageMessage("err\\user\\authentication\\wrong_fontopus_login.html", propertyset);
+               try
+               {
+                  System.file().del(::dir::userappdata("license_auth/00001.data"));
+               }
+               catch(...)
+               {
+               }
+               try
+               {
+                  System.file().del(::dir::userappdata("license_auth/00002.data"));
+               }
+               catch(...)
+               {
+               }
+               m_loginthread.m_strModHash.Empty();
+               m_loginthread.m_strKeyHash.Empty();
+               m_loginthread.m_strCa2Hash.Empty();
             }
-            catch(...)
-            {
-            }
-            try
-            {
-               System.file().del(::dir::userappdata("license_auth/00002.data"));
-            }
-            catch(...)
-            {
-            }
-            m_loginthread.m_strModHash.Empty();
-            m_loginthread.m_strKeyHash.Empty();
-            m_loginthread.m_strCa2Hash.Empty();
          }
          else if(iAuth == ::fontopus::result_time_out)
          {
             if(m_bInteractive)
             {
                propertyset["server"] = "account.ca2.cc";
-               pageMessage("err\\user\\network\\connection_timed_out.xhtml", propertyset);
+               pageMessage("err\\user\\network\\connection_timed_out.html", propertyset);
             }
          }
          else if(iAuth == ::fontopus::result_registration_deferred)
@@ -618,7 +631,7 @@ namespace ca2
             {
                propertyset["server"] = "account.ca2.cc";
                propertyset["email"] = strUsername;
-               pageMessage("err\\user\\authentication\\registration_deferred.xhtml", propertyset);
+               pageMessage("err\\user\\authentication\\registration_deferred.html", propertyset);
             }
          }
          else if(iAuth == ::fontopus::result_no_login)

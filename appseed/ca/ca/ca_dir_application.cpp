@@ -29,9 +29,34 @@ namespace ca
          return System.dir().locale_schema_matter(get_app(), pszLocale, pszStyle);
       }
 
+      string application::matter(const string & str)
+      {
+         return System.dir().matter(get_app(), str);
+      }
+
+      string application::matter(const string & str, const string & str2)
+      {
+         return System.dir().matter(get_app(), str, str2);
+      }
+
+      string application::matter(const string & str, const char * psz)
+      {
+         return System.dir().matter(get_app(), str, psz);
+      }
+
+      string application::matter(const char * psz, const string & str)
+      {
+         return System.dir().matter(get_app(), psz, str);
+      }
+
       string application::matter(const char * lpcsz, const char * lpcsz2)
       {
          return System.dir().matter(get_app(), lpcsz, lpcsz2);
+      }
+
+      string application::matter(const stringa & stra)
+      {
+         return System.dir().matter(get_app(), stra);
       }
 
       string application::usersystemappdata(const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)

@@ -2,10 +2,10 @@
 #include <GdiPlus.h>
 
 
-void simple_password::draw_this(HDC hdc)
+void simple_password::draw_this(simple_graphics & g)
 {
 
-   Gdiplus::Graphics graphics2(hdc);
+   Gdiplus::Graphics graphics2(g.m_hdc);
 
    graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
@@ -13,7 +13,7 @@ void simple_password::draw_this(HDC hdc)
 
    graphics2.FillRectangle(&br, m_rect.left, m_rect.top, width(&m_rect), height(&m_rect));
 
-   draw_focus_rect(hdc);
+   draw_focus_rect(g);
 
    Gdiplus::SolidBrush b(Gdiplus::Color(223, 49, 49, 23));
 

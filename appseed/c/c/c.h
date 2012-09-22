@@ -82,7 +82,7 @@ extern "C"
 
 
 #include "heap.h"
-#include "gdi.h"
+#include "c_gdi.h"
 #include "mem.h"
 
 #include "_c_math.h"
@@ -122,6 +122,10 @@ extern "C"
 #include "simple_critical_section.h"
 
 #include "library.h"
+
+#include "c/os/os.h"
+
+
 #include "simple_memory.h"
 #include "base64.h"
 #include "c/hotplugin/hotplugin.h"
@@ -132,7 +136,6 @@ extern "C"
 #include "c/bsdiff/bsdiff.h"
 
 
-#include "c/os/os.h"
 
 
 #include "message_loop.h"

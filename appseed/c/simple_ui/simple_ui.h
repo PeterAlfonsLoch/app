@@ -35,11 +35,11 @@ public:
    virtual void set_parent(simple_ui * puiParent);
 
 
-   virtual void draw(HDC hdc);
-   virtual void draw_this(HDC hdc);
-   virtual void draw_children(HDC hdc);
+   virtual void draw(simple_graphics & hdc);
+   virtual void draw_this(simple_graphics & hdc);
+   virtual void draw_children(simple_graphics & hdc);
 
-   virtual void draw_focus_rect(HDC hdc);
+   virtual void draw_focus_rect(simple_graphics & hdc);
 
 
    virtual void on_char(int ch, UINT uScan);

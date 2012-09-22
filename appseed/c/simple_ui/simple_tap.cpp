@@ -21,12 +21,12 @@ simple_tap::~simple_tap()
 }
 
 
-void simple_tap::draw_this(HDC hdc)
+void simple_tap::draw_this(simple_graphics & g)
 {
 
    //draw_simple(hdc);
 
-   draw_volume(hdc);
+   draw_volume(g);
 
 }
 

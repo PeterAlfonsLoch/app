@@ -27,12 +27,6 @@
     <Filter Include="Header Files\spa">
       <UniqueIdentifier>{50051563-f9fc-42ae-8ed5-686f5775ffd6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\spa\windows">
-      <UniqueIdentifier>{e120fc57-bfcd-4599-b6ab-0aed95ad0253}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\spa\windows">
-      <UniqueIdentifier>{265ce0d3-b4a9-48b5-b486-03e4aece3a30}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\windows">
       <UniqueIdentifier>{ad978b40-9de8-4303-900d-8ddbb7990312}</UniqueIdentifier>
     </Filter>
@@ -224,9 +218,6 @@
     <ClInclude Include="c\file.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
-    <ClInclude Include="c\gdi.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
     <ClInclude Include="c\geometric_types.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
@@ -383,6 +374,12 @@
     <ClInclude Include="windows\c_os_graphics_round_rect.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
+    <ClInclude Include="c\c_gdi.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os_gdi.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -447,15 +444,6 @@
     </ClCompile>
     <ClCompile Include="spa\spa_window.cpp">
       <Filter>Source Files\spa</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\windows\spa_windows_boot.cpp">
-      <Filter>Source Files\spa\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\windows\spa_windows_service.cpp">
-      <Filter>Source Files\spa\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="spa\windows\spa_windows_win.cpp">
-      <Filter>Source Files\spa\windows</Filter>
     </ClCompile>
     <ClCompile Include="windows\c_os_http.cpp">
       <Filter>Source Files\windows</Filter>
@@ -572,9 +560,6 @@
       <Filter>Source Files\c</Filter>
     </ClCompile>
     <ClCompile Include="c\file_spa.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
-    <ClCompile Include="c\gdi.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
     <ClCompile Include="c\geometric_types.cpp">
@@ -725,6 +710,12 @@
       <Filter>Source Files\os</Filter>
     </ClCompile>
     <ClCompile Include="windows\c_os_graphics_round_rect.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_gdi.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_gdi.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
   </ItemGroup>

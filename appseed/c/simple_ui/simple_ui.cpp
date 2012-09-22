@@ -49,22 +49,22 @@ void simple_ui::set_parent(simple_ui * puiParent)
 }
 
 
-void simple_ui::draw(HDC hdc)
+void simple_ui::draw(simple_graphics & g)
 {
 
    if(m_bVisible)
    {
 
-      draw_this(hdc);
+      draw_this(g);
 
-      draw_children(hdc);
+      draw_children(g);
 
    }
 
 }
 
 
-void simple_ui::draw_children(HDC hdc)
+void simple_ui::draw_children(simple_graphics & g)
 {
 
    for(int i = 0; i < m_uiptra.get_count(); i++)
@@ -73,7 +73,7 @@ void simple_ui::draw_children(HDC hdc)
       try
       {
 
-         m_uiptra[i]->draw(hdc);
+         m_uiptra[i]->draw(g);
 
       }
       catch(...)

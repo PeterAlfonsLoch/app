@@ -80,7 +80,7 @@ namespace hotplugin
 
       virtual int  start_ca2_system();
 
-      virtual void on_paint(HDC hdcWindow, LPCRECT lprect);
+      virtual void on_paint(simple_graphics & gWindow, LPCRECT lprect);
 
       virtual int starter_start(const char * pszCommandLine);
 
@@ -106,11 +106,11 @@ namespace hotplugin
 
       virtual void set_status(const char * pszStatus);
 
-      virtual void set_bitmap(HDC hdcWindow, LPCRECT lprect);
+      virtual void set_bitmap(simple_graphics & gWindow, LPCRECT lprect);
 
-      virtual void paint_bitmap(HDC hdcWindow, LPCRECT lprect);
+      virtual void paint_bitmap(simple_graphics & gWindow, LPCRECT lprect);
 
-      virtual void blend_bitmap(HDC hdcWindow, LPCRECT lprect);
+      virtual void blend_bitmap(simple_graphics & gWindow, LPCRECT lprect);
 
    };
 

@@ -55,7 +55,7 @@ public:
    COLORREF * m_pdataZero;
    canvas_zero();
    void prepare(HDC hdc, LPCRECT lpcrect);
-   void on_paint(HDC hdc, LPCRECT lpcrect);
+   void on_paint(simple_graphics & g, LPCRECT lpcrect);
    virtual void zero(HDC hdc, POINT pt, int iSize, int iStep);
 };
 
@@ -73,7 +73,7 @@ int canvas::increment_mode()
 
 }
 
-void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
+void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
 {
    int iMode = m_iMode;
 #ifdef SUPORTA_TELA_AVANCADA
@@ -85,36 +85,43 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
    int cx = lpcrect->right - lpcrect->left;
    int cy = lpcrect->bottom - lpcrect->top;
    int iThankYouHeight = 30;
-   HFONT hfont = ::CreatePointFont_dup(100, "Lucida Sans Unicode", hdc);
-   LOGFONT lf;
-   memset_dup(&lf, 0, sizeof(LOGFONT));
-   ::GetObject(hfont, sizeof(LOGFONT), &lf);
-   lf.lfWeight = 800;
-   HFONT hfontBold = ::CreateFontIndirect(&lf);
-   HFONT hfontOld = (HFONT) ::SelectObject(hdc, (HGDIOBJ) hfont);
+   
+   simple_font font;
+   
+   font.create_point(100, "Lucida Sans Unicode");
+
+   simple_font fontBold;
+   
+   font.create_point_bold(100, "Lucida Sans Unicode", 1, &g);
+
+   g.select(font);
+   
    if(iMode == 0 || iMode == 1 || iMode == 2 || iMode == 3)
    {
-      HPEN hpen = ::CreatePen(PS_SOLID, 1, RGB(84, 84, 77));
-      HBRUSH hbrush;
+      
+      simple_pen pen;
+      
+      pen.create_solid(1, RGB(84, 84, 77));
+
+      simple_brush brush;
+      
       if(iMode == 0 || iMode == 1)
       {
-         hbrush = (HBRUSH) ::GetStockObject(NULL_BRUSH);
+         brush.from_stock(NULL_BRUSH);
       }
       else
       {
-         hbrush = ::CreateSolidBrush(RGB(84, 84, 84));
+         brush.create_solid(RGB(84, 84, 84));
       }
-      ::SelectObject(hdc, hpen);
-      ::SelectObject(hdc, hbrush);
-      ::Rectangle(hdc, lpcrect->left, lpcrect->top, lpcrect->right, lpcrect->bottom);
-      if(iMode == 3 || iMode == 2)
-      {
-         ::DeleteObject(hbrush);
-      }
-      ::DeleteObject(hpen);
+      
+      g.select(pen);
+
+      g.select(brush);
+
+      g.rectangle(lpcrect);
+
    }
-   SIZE size;
-   ::GetTextExtentPoint(hdc, "CCpp", 4, &size);
+   SIZE size = g.get_text_extent("CCpp");
    int iLineCount = (rect.bottom - 30 - iThankYouHeight) / size.cy;
    if(iMode == 5) // if(m_bHealingSurface)
    {
@@ -199,13 +206,12 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
    else if(iMode == 2) // else // !m_bHealingSurface => "Surgery Internals"
    {
 
-      ::SetTextColor(hdc, RGB(0xCC, 0xCC, 0xCC));
+      g.set_text_color(RGB(0xCC, 0xCC, 0xCC));
 
       size_t iRefresh = 884;
       size_t iEat = 8;
       const char * psz = "development message so international english file \"C:\\ca2\\install.log\" excerpt  ::::::::";
-      ::SetBkMode(hdc, TRANSPARENT);
-      ::TextOutU_dup(hdc, 10, 10 + size.cy * 2, psz, (int) (strlen_dup(psz) - iEat + 1 + ((::GetTickCount() / (iRefresh - 277) % iEat))));
+      g.text_out(10, 10 + size.cy * 2, psz, (int) (strlen_dup(psz) - iEat + 1 + ((::GetTickCount() / (iRefresh - 277) % iEat))));
       DWORD dwRead;
       int iLineMin = 5;
       int iLine = ((rect.bottom - 10) / size.cy) - 1;
@@ -218,7 +224,7 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
             iTell--;
             vsstring strLine;
             int iSkip = 0;
-            ::SetBkMode(hdc, TRANSPARENT);
+//            ::SetBkMode(hdc, TRANSPARENT);
             bool bNormal = false;
             bool bBold = false;
             bool bPreNormal = false;
@@ -252,14 +258,14 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
                   {
                      bBold = true;
                      strLine = strLine.substr(3);
-                     ::SelectObject(hdc, hfontBold);
-                     ::TextOutU_dup(hdc, 10, 10 + size.cy * 3, strLine, (int) (strLine.length()));
+                     g.select(fontBold);
+                     g.text_out(10, 10 + size.cy * 3, strLine);
                   }
                   else if(!strLine.begins_ci("***") && strLine.length() > 0 && !bNormal && !bBold && bPreNormal)
                   {
                      bNormal = true;
-                     ::SelectObject(hdc, hfont);
-                     ::TextOutU_dup(hdc, 10, 10 + size.cy * 4, strLine, (int) (strLine.length()));
+                     g.select(font);
+                     g.text_out(10, 10 + size.cy * 4, strLine);
                   }
                   else if(strLine.length() > 0 && !bPreNormal && !bBold && !bNormal)
                   {
@@ -282,15 +288,14 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
    else if(iMode == 3) // else // !m_bHealingSurface => "Surgery Internals"
    {
 
-      ::SetTextColor(hdc, RGB(0xCC, 0xCC, 0xCC));
+      g.set_text_color(RGB(0xCC, 0xCC, 0xCC));
 
       size_t iRefresh = 884;
       size_t iEat = 8;
       const char * psz = "development message so international english last lines of file \"C:\\ca2\\install.log\" ::::::::";
-      ::SetBkMode(hdc, TRANSPARENT);
-      ::TextOutU_dup(hdc, 10, 10 + size.cy * 2, psz, (int) (strlen_dup(psz) - iEat + 1 + ((::GetTickCount() / (iRefresh - 277) % iEat))));
-      ::SelectObject(hdc, hfontBold);
-      ::TextOutU_dup(hdc, 10, 10 + size.cy * 3, s_strLastStatus, (int) (s_strLastStatus.length()));
+      g.text_out(10, 10 + size.cy * 2, psz, (int) (strlen_dup(psz) - iEat + 1 + ((::GetTickCount() / (iRefresh - 277) % iEat))));
+      g.select(fontBold);
+      g.text_out( 10, 10 + size.cy * 3, s_strLastStatus);
       DWORD dwRead;
       int iLineMin = 5;
       int iLine = ((rect.bottom - 10) / size.cy) - 1;
@@ -303,7 +308,6 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
             iTell--;
             vsstring strLine;
             int iSkip = 0;
-            ::SetBkMode(hdc, TRANSPARENT);
             while(iTell > 0 && iLine >= iLineMin)
             {
                ::SetFilePointer(hfile, iTell, NULL, SEEK_SET);
@@ -341,7 +345,7 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
                         goto skip_text_out1;
                      }
                      s_strLastStatus = strLine;
-                     ::SelectObject(hdc, hfontBold);
+                     g.select(fontBold);
                   }
                   else
                   {
@@ -350,10 +354,10 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
                      {
                         strLine = strLine.substr(iFind + 1);
                      }
-                     ::SelectObject(hdc, hfont);
+                     g.select(font);
                   }
                   iLine--;
-                  ::TextOutU_dup(hdc, 10, 10 + iLine * size.cy, strLine, (int) strLine.length());
+                  g.text_out(10, 10 + iLine * size.cy, strLine);
                   skip_text_out1:
                   strLine = ch;
                }
@@ -367,7 +371,7 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
             if(iLine >= iLineMin && strLine.length() > 0)
             {
                iLine--;
-               ::TextOutU_dup(hdc, 10, 10 + iLine * size.cy, strLine, (int) strLine.length());
+               g.text_out(10, 10 + iLine * size.cy, strLine);
             }
          }
       }
@@ -375,11 +379,10 @@ void canvas::on_paint(HDC hdc, LPCRECT lpcrect)
    else if(iMode == 4) // if(m_bHealingSurface)
    {
 #ifdef SUPORT_TELA_AVANCADA
-      czero.on_paint(hdc, lpcrect);
+      czero.on_paint(g, lpcrect);
 #endif
    }
-   ::DeleteObject(hfontBold);
-   ::DeleteObject(hfont);
+
 }
 
 
@@ -447,7 +450,7 @@ void canvas_zero::prepare(HDC hdc, LPCRECT lpcrect)
 
 }
 
-void canvas_zero::on_paint(HDC hdcPaint, LPCRECT lpcrect)
+void canvas_zero::on_paint(simple_graphics & gPaint, LPCRECT lpcrect)
 {
    HDC hdc = m_hdc;
 

@@ -195,7 +195,7 @@ namespace hotplugin
       return -1;
    }
 
-   void host::on_paint(HDC hdcWindow, LPCRECT lprect)
+   void host::on_paint(simple_graphics & gWindow, LPCRECT lprect)
    {
 
       if(m_pplugin != NULL)
@@ -204,7 +204,7 @@ namespace hotplugin
          try
          {
 
-            m_pplugin->on_paint(hdcWindow, lprect);
+            m_pplugin->on_paint(gWindow, lprect);
 
          }
          catch(...)
@@ -215,7 +215,7 @@ namespace hotplugin
       else
       {
 
-         plugin::on_paint(hdcWindow, lprect);
+         plugin::on_paint(gWindow, lprect);
 
       }
 
@@ -443,7 +443,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
    }
 
 
-   void host::set_bitmap(HDC hdcWindow, LPCRECT lprect)
+   void host::set_bitmap(simple_graphics & gWindow, LPCRECT lprect)
    {
 
       ensure_bitmap_data(width(lprect), height(lprect), false);
@@ -460,27 +460,15 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
       try
       {
 
-#if defined(WINDOWS)
+         simple_bitmap b;
 
-         HBITMAP hbitmap         = ::CreateBitmap(m_sizeBitmap.cx, m_sizeBitmap.cy, 1, 32, m_pcolorref);
+         b.create_from_data(m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref);
 
-         HDC hdc                 = ::CreateCompatibleDC(NULL);
+         simple_graphics g;
 
-         HBITMAP hbitmapOld      = (HBITMAP) ::SelectObject(hdc, hbitmap);
+         g.create_from_bitmap(b);
 
-         ::BitBlt(hdc, 0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, hdcWindow, lprect->left, lprect->top, SRCCOPY);
-
-         ::SelectObject(hdc, hbitmapOld);
-
-         ::DeleteDC(hdc);
-
-         ::DeleteObject(hbitmap);
-
-#else
-
-          throw "not implemented";
-
-#endif
+         g.bit_blt(0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, gWindow, lprect->left, lprect->top, SRCCOPY);
 
       }
       catch(...)
@@ -491,7 +479,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
 
    }
 
-   void host::paint_bitmap(HDC hdcWindow, LPCRECT lprect)
+   void host::paint_bitmap(simple_graphics & gWindow, LPCRECT lprect)
    {
 
       ensure_bitmap_data(width(lprect), height(lprect), false);
@@ -508,29 +496,15 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
       try
       {
 
-#if defined(WINDOWS)
+         simple_bitmap b;
+         
+         b.create_from_data(m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref);
 
-         HBITMAP hbitmap         = ::CreateBitmap(m_sizeBitmap.cx, m_sizeBitmap.cy, 1, 32, m_pcolorref);
+         simple_graphics g;
 
-         HDC hdc                 = ::CreateCompatibleDC(NULL);
+         g.create_from_bitmap(b);
 
-         HBITMAP hbitmapOld      = (HBITMAP) ::SelectObject(hdc, hbitmap);
-
-         ::BitBlt(hdcWindow, lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy,  hdc, 0, 0, SRCCOPY);
-
-         ::SelectObject(hdc, hbitmapOld);
-
-         ::DeleteDC(hdc);
-
-         ::DeleteObject(hbitmap);
-
-#else
-
-          throw "not implemented";
-
-#endif
-
-
+         gWindow.bit_blt(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, g, 0, 0, SRCCOPY);
 
       }
       catch(...)
@@ -542,7 +516,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
    }
 
 
-   void host::blend_bitmap(HDC hdcWindow, LPCRECT lprectOut)
+   void host::blend_bitmap(simple_graphics & gWindow, LPCRECT lprectOut)
    {
 
       LPCRECT lprect = &m_pplugin->m_rect;
@@ -558,39 +532,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
 
       mutex_lock ml(m_pmutexBitmap, true);
 
-      try
-      {
-
-#if defined(WINDOWS)
-
-         Gdiplus::Bitmap b(m_sizeBitmap.cx, m_sizeBitmap.cy, m_sizeBitmap.cx *4 , PixelFormat32bppARGB, (BYTE *) m_pcolorref);
-
-         Gdiplus::Graphics * pg = new Gdiplus::Graphics(hdcWindow);
-
-         pg->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-
-         pg->SetCompositingQuality(Gdiplus::CompositingQualityHighQuality);
-
-         pg->DrawImage(&b, lprect->left, lprect->top, 0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, Gdiplus::UnitPixel);
-
-         pg->Flush(Gdiplus::FlushIntentionSync);
-
-         delete pg;
-
-         ::GdiFlush();
-
-#else
-
-         throw "not implemented";
-
-#endif
-
-      }
-      catch(...)
-      {
-      }
-
-      return;
+      gWindow.blend_bitmap_data(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref);
 
    }
 

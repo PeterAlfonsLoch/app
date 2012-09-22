@@ -30,9 +30,6 @@
     <Filter Include="Header Files\windows">
       <UniqueIdentifier>{205eb37e-ff6d-4d07-9280-c5956243f1a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\spa\windows">
-      <UniqueIdentifier>{5dad55fa-ba31-4df6-929f-76372572e594}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\spa\windows">
       <UniqueIdentifier>{1c4ab9ce-fe0b-4010-8850-6dc613cd862f}</UniqueIdentifier>
     </Filter>
@@ -146,15 +143,6 @@
     <ClInclude Include="spa\spa_window.h">
       <Filter>Header Files\spa</Filter>
     </ClInclude>
-    <ClInclude Include="spa\windows\spa_windows.h">
-      <Filter>Header Files\spa\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\windows\spa_windows_service.h">
-      <Filter>Header Files\spa\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="spa\windows\spa_windows_win.h">
-      <Filter>Header Files\spa\windows</Filter>
-    </ClInclude>
     <ClInclude Include="windows\c_os.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
@@ -240,9 +228,6 @@
       <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="c\file.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="c\gdi.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="c\geometric_types.h">
@@ -402,6 +387,12 @@
       <Filter>Header Files\os</Filter>
     </ClInclude>
     <ClInclude Include="windows\c_os_graphics_round_rect.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_gdi.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="windows\c_os_gdi.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
   </ItemGroup>
@@ -598,9 +589,6 @@
     <ClCompile Include="c\file_spa.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="c\gdi.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="c\geometric_types.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
@@ -744,6 +732,12 @@
     </ClCompile>
     <ClCompile Include="windows\c_os_graphics_round_rect.cpp">
       <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windows\c_os_gdi.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_gdi.cpp">
+      <Filter>Source Files\c</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

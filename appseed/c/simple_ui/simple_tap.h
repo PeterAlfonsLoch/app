@@ -15,12 +15,12 @@ public:
    virtual ~simple_tap();
    
    
-   virtual void draw_this(HDC hdc);
+   virtual void draw_this(simple_graphics & g);
 
-   virtual void draw_simple(HDC hdc);
-   virtual void draw_volume(HDC hdc);
+   virtual void draw_simple(simple_graphics & g);
+   virtual void draw_volume(simple_graphics & g);
 
-   virtual void draw_text(HDC hdc);
+   virtual void draw_text(simple_graphics & g);
 
 
    virtual void on_char(int ch, UINT uScan);

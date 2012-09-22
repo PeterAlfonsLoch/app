@@ -25,7 +25,6 @@ namespace spa
 
    window::window()
    {
-      m_hbrushBk = NULL;
       m_bDrag = false;
       m_hwnd = NULL;
    }
@@ -34,13 +33,13 @@ namespace spa
    {
    }
 
-   void window::PaintOpaqueBk(HDC hdc)
+   void window::PaintOpaqueBk(simple_graphics & g)
    {
       RECT rectClient;
 
       ::GetClientRect(m_hwnd, &rectClient);
 
-   /*   ::FillRect(hdc, &rectClient, g_hbrushBkBorder1);
+      /*   ::FillRect(hdc, &rectClient, g_hbrushBkBorder1);
 
       rectClient.left += 1;
       rectClient.top += 1;
@@ -51,142 +50,119 @@ namespace spa
       rectClient.top += 22;
       rectClient.bottom -= 22;
       rectClient.right -= 22;*/
-      ::FillRect(hdc, &rectClient, m_hbrushBk);
+      g.fill_rect(&rectClient, m_sbrushBk);
    }
 
 
-void window::PaintTransparentBk(HDC hdc)
-{
-   
-#ifdef WINDOWS
-   
-   RECT rectWindow;
-
-   ::GetWindowRect(m_hwnd, &rectWindow);
-
-   HDC hdcScreen = ::GetDC(NULL);
-
-   ::BitBlt(hdc, 0, 0, 800, 584, hdcScreen, rectWindow.left, rectWindow.top, SRCCOPY);
-
-   BLENDFUNCTION bf;
-
-	bf.BlendOp             = AC_SRC_OVER;						// Only works with a 32bpp bitmap
-	bf.BlendFlags          = 0;											// Always 0
-	bf.SourceConstantAlpha = 255;										// Set to 255 for per-pixel alpha values
-	bf.AlphaFormat         = AC_SRC_ALPHA;						// Only works when the bitmap contains an alpha channel
-   ::AlphaBlend(hdc, 0, 0, 800, 584, g_hdcAlpha, 0, 0, 800, 584, bf);
-
-   ::ReleaseDC(NULL, hdcScreen);
-   
-#endif
-   
-}
-
-
-
-void window::PaintBk(HDC hdc)
-{
-   if(m_iStyle == 0)
+   void window::PaintTransparentBk(simple_graphics & g)
    {
-      PaintOpaqueBk(hdc);
+
+      RECT rectWindow;
+
+      ::GetWindowRect(m_hwnd, &rectWindow);
+
+      simple_graphics gScreen;
+
+      if(!gScreen.create_from_screen())
+         return;
+
+      g.bit_blt(0, 0, 800, 584, gScreen, rectWindow.left, rectWindow.top, SRCCOPY);
+
+      BLENDFUNCTION bf;
+
+      bf.BlendOp             = AC_SRC_OVER;						// Only works with a 32bpp bitmap
+      bf.BlendFlags          = 0;									// Always 0
+      bf.SourceConstantAlpha = 255;									// Set to 255 for per-pixel alpha values
+      bf.AlphaFormat         = AC_SRC_ALPHA;						// Only works when the bitmap contains an alpha channel
+
+      gScreen.alpha_blend(0, 0, 800, 584, m_sgraphicsAlpha, 0, 0, 800, 584, bf);
+
    }
-   else
+
+
+
+   void window::PaintBk(simple_graphics & g)
    {
-      PaintTransparentBk(hdc);
+      if(m_iStyle == 0)
+      {
+         PaintOpaqueBk(g);
+      }
+      else
+      {
+         PaintTransparentBk(g);
+      }
    }
-}
 
 
-void window::OnPaint(HDC hdcWindow, LPRECT lprect)
-{
-   RECT rectWindow;
-   ::GetWindowRect(m_hwnd, &rectWindow);
-
-
-   int cx = rectWindow.right - rectWindow.left;
-   int cy = rectWindow.bottom - rectWindow.top;
-
-   RECT rect;
-   rect.left         = 0;
-   rect.top          = 0;
-   rect.right        = cx;
-   rect.bottom       = cy;
-
-   if(lprect == NULL)
+   void window::OnPaint(simple_graphics & gWindow, LPRECT lprect)
    {
-      lprect = &rect;
-   }
-   
+      RECT rectWindow;
+      ::GetWindowRect(m_hwnd, &rectWindow);
+
+
+      int cx = rectWindow.right - rectWindow.left;
+      int cy = rectWindow.bottom - rectWindow.top;
+
+      RECT rect;
+      rect.left         = 0;
+      rect.top          = 0;
+      rect.right        = cx;
+      rect.bottom       = cy;
+
+      if(lprect == NULL)
+      {
+         lprect = &rect;
+      }
+
 #ifdef WINDOWS
 
-   BITMAPINFO m_Info;
+      simple_bitmap b;
 
-	m_Info.bmiHeader.biSize=sizeof (BITMAPINFOHEADER);
-	m_Info.bmiHeader.biWidth=cx;
-	m_Info.bmiHeader.biHeight=cy;
-	m_Info.bmiHeader.biPlanes=1;
-	m_Info.bmiHeader.biBitCount=32;
-	m_Info.bmiHeader.biCompression=BI_RGB;
-	m_Info.bmiHeader.biSizeImage=cx*cy*4;
+      if(!b.create(cx, cy))
+         return;
 
-   LPDWORD lpdata;
+      simple_graphics g;
 
-	HBITMAP hbmp = CreateDIBSection ( NULL, &m_Info, DIB_RGB_COLORS, (void **)&lpdata, NULL, 0);
+      if(!g.create_from_bitmap(b))
+         return;
 
-   //HBITMAP hbmp      = ::CreateCompatibleBitmap(hdcWindow, cx, cy);
-   HDC hdc           = ::CreateCompatibleDC(NULL);
-   HBITMAP hbmpOld   =  (HBITMAP) ::SelectObject(hdc, (HGDIOBJ) hbmp);
+      PaintBk(g);
 
-   //::BitBlt(hdc, 0, 0, cx, cy, hdcWindow, 0, 0, SRCCOPY);
+      HFONT hfontOld = NULL;
+      HFONT hfont = NULL;
 
-   PaintBk(hdc);
-
-   HFONT hfontOld = NULL;
-   HFONT hfont = NULL;
-   
 #else
-   
-   HDC hdc = hdcWindow;
-   
-#endif
-   
 
-   m_canvas.on_paint(hdc, &rect);
+#endif
+
+
+      m_canvas.on_paint(g, &rect);
 
 
 #ifdef WINDOWS
-   
-   POINT pointViewport;
-   ::SetViewportOrgEx(hdc, 0, 0, &pointViewport);
-   ::BitBlt(hdcWindow, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top,
-            hdc,       lprect->left, lprect->top, SRCCOPY);
-   ::SelectObject(hdc, (HGDIOBJ) hbmpOld);
-   if(hfontOld != NULL)
-   {
-      ::SelectObject(hdc,(HGDIOBJ)  hfontOld);
-   }
-   if(hfont != NULL)
-   {
-      ::DeleteObject(hfont);
-   }
-   ::DeleteObject(hbmp);
-   ::DeleteDC(hdc);
-   
+
+      g.set_offset(0, 0);
+
+      gWindow.bit_blt(lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top, g, lprect->left, lprect->top, SRCCOPY);
+
 #endif
-   
-}
+
+   }
 
 
-void window::OnPaint()
-{
+   void window::OnPaint()
+   {
 
-	PAINTSTRUCT ps;
-	HDC hdcWindow;
-	hdcWindow = BeginPaint(m_hwnd, &ps);
-   OnPaint(hdcWindow, &ps.rcPaint);
-	EndPaint(m_hwnd, &ps);
+      simple_graphics gWindow;
 
-}
+      RECT rcPaint;
+
+      if(!gWindow.from_window_paint(m_hwnd, &rcPaint))
+         return;
+
+      OnPaint(gWindow, &rcPaint);
+
+   }
 
 #ifdef WINDOWS
 
@@ -195,30 +171,34 @@ void window::OnPaint()
 
       if(nIDEvent == 184)
       {
-         HDC hdc = ::GetWindowDC(m_hwnd);
-         OnPaint(hdc, NULL);
-         ::ReleaseDC(m_hwnd, hdc);
+
+         simple_graphics gWindow;
+
+         gWindow.from_entire_window(m_hwnd);
+
+         OnPaint(gWindow, NULL);
+
       }
 
    }
 
    LRESULT window::window_proc(UINT message, WPARAM wparam, LPARAM lparam)
    {
-	   switch (message)
-	   {
+      switch (message)
+      {
       case WM_CREATE:
          {
             ::SetTimer(m_hwnd, TIMER_CARET, 100, NULL);
             ::SetTimer(m_hwnd, TIMER_ANIMATION, 33, NULL);
          }
          break;
-	   case WM_PAINT:
+      case WM_PAINT:
          OnPaint();
-		   break;
-	   case WM_ERASEBKGND:
+         break;
+      case WM_ERASEBKGND:
          return TRUE;
-	   case WM_MBUTTONDOWN:
-	   case WM_RBUTTONDOWN:
+      case WM_MBUTTONDOWN:
+      case WM_RBUTTONDOWN:
          m_canvas.m_iMode++;
          return TRUE;
       case WM_LBUTTONDOWN:
@@ -247,16 +227,16 @@ void window::OnPaint()
          };
          break;
 
-	   case WM_DESTROY:
-		   PostQuitMessage(0);
-		   break;
+      case WM_DESTROY:
+         PostQuitMessage(0);
+         break;
       case WM_TIMER:
          OnTimer(wparam);
          break;
-	   default:
-		   return DefWindowProc(m_hwnd, message, wparam, lparam);
-	   }
-	   return 0;
+      default:
+         return DefWindowProc(m_hwnd, message, wparam, lparam);
+      }
+      return 0;
    }
 
    LRESULT CALLBACK window::s_window_proc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -279,7 +259,7 @@ void window::OnPaint()
       wcex.cbClsExtra	   = 0;
       wcex.cbWndExtra	   = 0;
       wcex.hInstance		   = hInstance;
-   //	wcex.hIcon			   = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CCVOTAGUS_CA2_SPA));
+      //	wcex.hIcon			   = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CCVOTAGUS_CA2_SPA));
       //wcex.hCursor		   = LoadCursor(NULL, IDC_ARROW);
       wcex.hIcon			   = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CCVOTAGUS_CA2_SPA));
       wcex.hCursor		   = LoadCursor(NULL, IDC_ARROW);
@@ -309,7 +289,7 @@ void window::OnPaint()
       else
       {
 #ifdef WINDOWS
-          ::SetLayeredWindowAttributes(m_hwnd, 0, (255 * 100) / 100, LWA_ALPHA);
+         ::SetLayeredWindowAttributes(m_hwnd, 0, (255 * 100) / 100, LWA_ALPHA);
 #endif
       }
       ::RedrawWindow(m_hwnd, NULL, NULL, RDW_UPDATENOW | RDW_INVALIDATE);

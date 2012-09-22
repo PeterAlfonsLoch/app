@@ -13,7 +13,7 @@ public:
    virtual ~simple_edit_box();
    
    
-   virtual void draw_this(HDC hdc);
+   virtual void draw_this(simple_graphics & g);
 
 
    virtual void on_char(int ch, UINT uScan);

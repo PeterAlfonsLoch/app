@@ -14,7 +14,7 @@ namespace spa
       canvas();
       ~canvas();
 
-      void on_paint(HDC hdc, LPCRECT lpcrect);
+      void on_paint(simple_graphics & g, LPCRECT lpcrect);
 
 
       int increment_mode();

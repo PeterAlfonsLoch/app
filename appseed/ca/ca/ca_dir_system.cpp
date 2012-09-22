@@ -750,6 +750,103 @@ namespace ca
 
       }
 
+      string system::matter(::ca::application * papp, const stringa & stra)
+      {
+
+         ::index j;
+         
+         ::count c = stra.get_count();
+
+         if(c <= 0)
+            return "";
+
+         ::user::str_context * pcontext = App(papp).str_context();
+
+         string strPath;
+
+         string strLocale  = pcontext->m_plocaleschema->m_idLocale;
+         string strSchema   = pcontext->m_plocaleschema->m_idSchema;
+         string strLs      = locale_schema_matter(papp, strLocale, strSchema);
+
+         for(j = 0; j < c; j++)
+         {
+         
+            strPath = path(strLs, stra[j]);
+            
+            if(System.file().exists(strPath, get_app()))
+               return strPath;
+
+         }
+
+
+         for(int i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
+         {
+
+            strLocale         = pcontext->localeschema().m_idaLocale[i];
+            strSchema         = pcontext->localeschema().m_idaSchema[i];
+            strLs             = locale_schema_matter(papp, strLocale, strSchema);
+
+            for(j = 0; j < c; j++)
+            {
+         
+               strPath = path(strLs, stra[j]);
+            
+               if(System.file().exists(strPath, get_app()))
+                  return strPath;
+
+            }
+
+         }
+
+
+         strLs             = locale_schema_matter(papp, "en", "en");
+
+         for(j = 0; j < c; j++)
+         {
+         
+            strPath = path(strLs, stra[j]);
+            
+            if(System.file().exists(strPath, get_app()))
+               return strPath;
+
+         }
+
+
+         if(papp->m_psession != NULL && papp->m_psession != papp &&
+            (::ca::application *) papp->m_psystem != (::ca::application *) papp)
+         {
+            strPath = matter(papp->m_psession, stra);
+            if(System.file().exists(strPath, papp))
+               return strPath;
+         }
+
+         if(papp->m_psystem != NULL && papp->m_psystem != papp &&
+            (::ca::application *) papp->m_psystem != (::ca::application *) papp->m_psession)
+         {
+            strPath = matter(papp->m_psystem, stra);
+            if(System.file().exists(strPath, papp))
+               return strPath;
+         }
+
+         return path(strLs, stra[0]);
+
+      }
+
+      string system::matter(::ca::application * papp, const char * psz, const char * psz2)
+      {
+         return matter(papp, string(psz), string(psz2));
+      }
+
+      string system::matter(::ca::application * papp, const string & str, const char * psz)
+      {
+         return matter(papp, str, string(psz));
+      }
+
+      string system::matter(::ca::application * papp, const char * psz, const string & str)
+      {
+         return matter(papp, string(psz), str);
+      }
+
       string system::matter(::ca::application * papp, const string & str, const string & str2)
       {
 
@@ -769,7 +866,7 @@ namespace ca
          {
 
             strLocale         = pcontext->localeschema().m_idaLocale[i];
-            strSchema          = pcontext->localeschema().m_idaSchema[i];
+            strSchema         = pcontext->localeschema().m_idaSchema[i];
             strLs             = locale_schema_matter(papp, strLocale, strSchema);
             strPath           = path(strLs, str, str2);
             if(System.file().exists(strPath, get_app()))
@@ -779,7 +876,7 @@ namespace ca
 
 
          strLs             = locale_schema_matter(papp, "en", "en");
-         strPath           = path(locale_schema_matter(papp, "se", "se"), str, str2);
+         strPath           = path(strLs, str, str2);
          if(System.file().exists(strPath, get_app()))
             return strPath;
 
@@ -853,6 +950,12 @@ namespace ca
          return path(locale_schema_matter(papp, strEmpty, strEmpty), str, str2);*/
       }
 
+      string system::matter(::ca::application * papp, const char * psz)
+      {
+         string str(psz);
+         string str2;
+         return matter(papp, str, str2);
+      }
 
       string system::matter(::ca::application * papp, const string & str)
       {

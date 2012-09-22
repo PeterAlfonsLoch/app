@@ -2,12 +2,12 @@
 #include <Gdiplus.h>
 
 
-void simple_tap::draw_simple(HDC hdc)
+void simple_tap::draw_simple(simple_graphics & g)
 {
 
    {
 
-      Gdiplus::Graphics graphics2(hdc);
+      Gdiplus::Graphics graphics2(g.m_hdc);
 
       graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
@@ -23,22 +23,22 @@ void simple_tap::draw_simple(HDC hdc)
 
       graphics2.FillRectangle(&br, m_rect.left, m_rect.top, width(&m_rect), height(&m_rect));
 
-      draw_focus_rect(hdc);
+      draw_focus_rect(g);
 
 
    }
 
-   draw_text(hdc);
+   draw_text(g);
 
 }
 
 
-void simple_tap::draw_volume(HDC hdc)
+void simple_tap::draw_volume(simple_graphics & g)
 {
 
    {
 
-      Gdiplus::Graphics graphics2(hdc);
+      Gdiplus::Graphics graphics2(g.m_hdc);
 
       graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
@@ -119,7 +119,7 @@ void simple_tap::draw_volume(HDC hdc)
 
       graphics2.DrawRectangle(&pen1, m_rect.left, m_rect.top, width(&m_rect), iBorderH * 2);*/
 
-      draw_focus_rect(hdc);
+      draw_focus_rect(g);
 
       Gdiplus::Pen pen2(crBorderIn);
 
@@ -127,15 +127,15 @@ void simple_tap::draw_volume(HDC hdc)
 
    }
 
-   draw_text(hdc);
+   draw_text(g);
 
 }
 
 
-void simple_tap::draw_text(HDC hdc)
+void simple_tap::draw_text(simple_graphics & g)
 {
 
-   Gdiplus::Graphics graphics2(hdc);
+   Gdiplus::Graphics graphics2(g);
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
    Gdiplus::SolidBrush b(Gdiplus::Color(223, 84, 49, 77));

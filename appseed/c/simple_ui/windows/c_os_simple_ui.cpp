@@ -2,10 +2,10 @@
 #include <GdiPlus.h>
 
 
-void simple_ui::draw_this(HDC hdc)
+void simple_ui::draw_this(simple_graphics & g)
 {
 
-   Gdiplus::Graphics graphics2(hdc);
+   Gdiplus::Graphics graphics2(g.m_hdc);
 
    graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
@@ -52,10 +52,10 @@ void simple_ui::draw_this(HDC hdc)
 }
 
 
-void simple_ui::draw_focus_rect(HDC hdc)
+void simple_ui::draw_focus_rect(simple_graphics & g)
 {
 
-   Gdiplus::Graphics graphics2(hdc);
+   Gdiplus::Graphics graphics2(g);
 
    int iStyle = 1;
 

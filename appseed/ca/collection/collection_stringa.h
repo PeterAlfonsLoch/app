@@ -11,8 +11,13 @@ public:
 
 
    stringa(::ca::application * papp = NULL);
+   stringa(const char * psz);
+   stringa(const string & str);
+   stringa(const var & var);
    stringa(const stringa & base_array);
    virtual ~stringa();
+
+
    LPTSTR GetFormatV004();
    count remove_empty();
    index add_normal(const char * lpcsz);

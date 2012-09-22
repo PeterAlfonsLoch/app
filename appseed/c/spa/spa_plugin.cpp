@@ -380,30 +380,16 @@ install:
 
    }
 
-   void plugin::on_paint(HDC hdcWindow, LPCRECT lprect)
+   void plugin::on_paint(simple_graphics & gWindow, LPCRECT lprect)
    {
 
       if(!is_installing() && is_ca2_installed())
       {
 
-         struct
+         if(ensure_tx(::hotplugin::message_paint, (void *) lprect, sizeof(*lprect)))
          {
 
-
-            HDC m_hdc;
-            RECT m_rect;
-
-
-         } paint;
-
-         paint.m_hdc       = hdcWindow;
-
-         paint.m_rect      = *lprect;
-
-         if(ensure_tx(::hotplugin::message_paint, &paint, sizeof(paint)))
-         {
-
-            m_phost->blend_bitmap(hdcWindow, lprect);
+            m_phost->blend_bitmap(gWindow, lprect);
 
             return;
 
@@ -425,33 +411,26 @@ install:
       rect.right        = cx;
       rect.bottom       = cy;
 
-      //int cx = rect.right - rect.left;
-      //int cy = rect.bottom - rect.top;
+      simple_bitmap b;
 
-#ifdef WINDOWS
+      b.create(cx, cy);
 
-      HBITMAP hbmp      = ::CreateCompatibleBitmap(hdcWindow, cx, cy);
-      HDC hdc           = ::CreateCompatibleDC(hdcWindow);
-      HBITMAP hbmpOld   =  (HBITMAP) ::SelectObject(hdc, (HGDIOBJ) hbmp);
+      simple_graphics g;
 
-      ::BitBlt(hdc, 0, 0, cx, cy, hdcWindow, ::hotplugin::plugin::m_rect.left, ::hotplugin::plugin::m_rect.top, SRCCOPY);
+      g.create_from_bitmap(b);
 
-#else
-
-      HDC hdc = hdcWindow;
-
-#endif
+      g.bit_blt(0, 0, cx, cy, gWindow, ::hotplugin::plugin::m_rect.left, ::hotplugin::plugin::m_rect.top, SRCCOPY);
 
       HFONT hfontOld = NULL;
       HFONT hfont = NULL;
 
       if(m_bLogin)
       {
-         m_login.draw(hdc);
+         m_login.draw(g);
       }
       else if(is_installing_ca2())
       {
-         m_canvas.on_paint(hdc, &rect);
+         m_canvas.on_paint(g, &rect);
       }
       else if(!is_ca2_installed())
       {
@@ -481,10 +460,9 @@ install:
 
 #ifdef WINDOWS
 
-      POINT pointViewport;
-      ::SetViewportOrgEx(hdc, 0, 0, &pointViewport);
-      ::BitBlt(hdcWindow   , lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
-             hdc         , lprect->left - ::hotplugin::plugin::m_rect.left  , lprect->top - ::hotplugin::plugin::m_rect.top    , SRCCOPY);
+      g.set_offset(0, 0);
+      gWindow.bit_blt(lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
+             g         , lprect->left - ::hotplugin::plugin::m_rect.left  , lprect->top - ::hotplugin::plugin::m_rect.top    , SRCCOPY);
 
       /*vsstring strx = itoa_dup(lprect->left);
       vsstring stry = itoa_dup(lprect->top);
@@ -497,24 +475,13 @@ install:
       */
          //hdc,       lprect->left, lprect->top, SRCCOPY);
       //::BitBlt(hdcWindow, m_rect.left, m_rect.top, cx, cy, hdc, 0, 0, SRCCOPY);
-      ::SelectObject(hdc, (HGDIOBJ) hbmpOld);
-      if(hfontOld != NULL)
-      {
-         ::SelectObject(hdc,(HGDIOBJ)  hfontOld);
-      }
-      if(hfont != NULL)
-      {
-         ::DeleteObject(hfont);
-      }
-      ::DeleteObject(hbmp);
-      ::DeleteDC(hdc);
 
 #endif
 
       if(!m_bLogin || !m_login.m_bVisible)
       {
 
-         on_bare_paint(hdcWindow, lprect);
+         on_bare_paint(gWindow, lprect);
 
       }
 
@@ -624,10 +591,10 @@ install:
    }
 
 
-   void plugin::on_paint_progress(HDC hdc, LPCRECT lprect)
+   void plugin::on_paint_progress(simple_graphics & g, LPCRECT lprect)
    {
       set_progress_rate(extract_spa_progress_rate());
-      ::hotplugin::plugin::on_paint_progress(hdc, lprect);
+      ::hotplugin::plugin::on_paint_progress(g, lprect);
    }
 
    double plugin::extract_spa_progress_rate()

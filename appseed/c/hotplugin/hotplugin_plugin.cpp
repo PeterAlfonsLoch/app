@@ -174,10 +174,10 @@ namespace hotplugin
    {
    }
 
-   void plugin::on_paint(HDC hdcWindow, LPCRECT lprect)
+   void plugin::on_paint(simple_graphics & gWindow, LPCRECT lprect)
    {
 
-      on_bare_paint(hdcWindow, lprect);
+      on_bare_paint(gWindow, lprect);
 
    }
 
@@ -465,7 +465,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 }
 
 
-   void plugin::on_bare_paint(HDC hdc, LPCRECT lprect)
+   void plugin::on_bare_paint(simple_graphics & g, LPCRECT lprect)
    {
       static DWORD s_dwSync = 0;
       static int s_iDelta = 1984 + 1977;
@@ -478,17 +478,22 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
       rect.top       = 0;
       rect.bottom    = cy;
       rect.right     = cx;
-      {
-         HPEN hpen = ::CreatePen(PS_SOLID, 1, RGB(84, 84, 77));
-         HBRUSH hbrush = (HBRUSH) ::GetStockObject(NULL_BRUSH);
-         ::SelectObject(hdc, hpen);
-         ::SelectObject(hdc, hbrush);
-         ::Rectangle(hdc, m_rect.left, m_rect.top, m_rect.right, m_rect.bottom);
-         ::DeleteObject(hbrush);
-         ::DeleteObject(hpen);
-      }
 
-      on_paint_progress(hdc, lprect);
+      simple_pen pen;
+         
+      pen.create_solid(1, RGB(84, 84, 77));
+         
+      simple_brush brush;
+
+      brush.from_stock(NULL_BRUSH);
+
+      g.select(pen);
+
+      g.select(brush);
+
+      g.rectangle(&m_rect);
+
+      on_paint_progress(g, lprect);
 
       double dRate = get_progress_rate();
 
@@ -695,7 +700,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
          BYTE uchG;
          BYTE uchB;
 
-         Gdiplus::Graphics graphics2(hdc);
+         Gdiplus::Graphics graphics2(g.m_hdc);
 
          graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
@@ -916,7 +921,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
       return 0.0;
    }
 
-   void plugin::on_paint_progress(HDC hdc, LPCRECT lprect)
+   void plugin::on_paint_progress(simple_graphics & g, LPCRECT lprect)
    {
 
       if(m_phost != NULL && !m_phost->m_bShowProgress)
@@ -951,7 +956,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
             rectP.bottom   = y + pcy;
             rectP.left     = x;
             rectP.right    = pcx;
-            ::FillSolidRect_dup(hdc, &rectP, RGB(84, 84, 77));
+            g.fill_solid_rect(&rectP, RGB(84, 84, 77));
          }
          y = y + pcy;
       }

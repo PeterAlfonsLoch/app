@@ -114,7 +114,7 @@ namespace hotplugin
 
       virtual int  start_ca2_system();
 
-      virtual void on_paint(HDC hdcWindow, LPCRECT lprect);
+      virtual void on_paint(simple_graphics & gWindow, LPCRECT lprect);
 
       virtual void deferred_prodevian_redraw();
 
@@ -126,7 +126,7 @@ namespace hotplugin
       virtual int message_handler(XEvent * pevent);
 #endif
 
-      virtual void on_bare_paint(HDC hdc, LPCRECT lprect);
+      virtual void on_bare_paint(simple_graphics & g, LPCRECT lprect);
 
       virtual void start_ca2();
 
@@ -134,7 +134,7 @@ namespace hotplugin
 
       virtual double get_progress_rate();
 
-      virtual void on_paint_progress(HDC hdc, LPCRECT lprect);
+      virtual void on_paint_progress(simple_graphics & g, LPCRECT lprect);
 
       virtual void set_ca2_installation_ready(bool bReady = true);
 

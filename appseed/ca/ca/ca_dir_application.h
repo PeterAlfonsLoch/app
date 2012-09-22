@@ -23,7 +23,12 @@ namespace ca
 
          virtual string locale_schema(const char * pszLocale = NULL, const char * pszStyle = NULL);
          virtual string locale_schema_matter(const char * pszLocale = NULL, const char * pszStyle = NULL);
+         virtual string matter(const string & str);
+         virtual string matter(const string & str, const string & str2);
+         virtual string matter(const string & str, const char * psz);
+         virtual string matter(const char * psz, const string & str);
          virtual string matter(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
+         virtual string matter(const stringa & stra);
 
 
          virtual string usersystemappdata(const char * lpcszPrefix, const char * lpcsz = NULL, const char * lpcsz2 = NULL);

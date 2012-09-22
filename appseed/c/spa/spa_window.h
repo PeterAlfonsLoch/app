@@ -25,9 +25,9 @@ namespace spa
       canvas               m_canvas;
 
       HWND                 m_hwnd;
-      HBRUSH               m_hbrushBk;
-      HBITMAP              g_hbmAlpha;
-      HDC                  g_hdcAlpha;
+      simple_brush         m_sbrushBk;
+      simple_bitmap        m_sbitmapAlpha;
+      simple_graphics      m_sgraphicsAlpha;
       static window_map    s_windowmap;
       int                  m_iStyle;
       installer *          m_pinstaller;
@@ -40,11 +40,12 @@ namespace spa
       window();
       ~window();
 
-      void PaintOpaqueBk(HDC hdc);
-      void PaintTransparentBk(HDC hdc);
-      void OnPaint(HDC hdcWindow, LPRECT lprect = NULL);
+
+      void PaintOpaqueBk(simple_graphics & g);
+      void PaintTransparentBk(simple_graphics & g);
+      void OnPaint(simple_graphics & g, LPRECT lprect = NULL);
       void OnPaint();
-      void PaintBk(HDC hdc);
+      void PaintBk(simple_graphics & g);
 
       void drag();
 

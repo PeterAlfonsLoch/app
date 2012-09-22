@@ -8,6 +8,7 @@ namespace fontopus
    {
       result_auth,
       result_registration_deferred,
+      result_please_finish_registration,
       result_no_login,
       result_no_password,
       result_wrong_password_or_login,
@@ -71,6 +72,9 @@ namespace fontopus
       http_execute_array         m_httpexecutea;
       bool                       m_bOk;
       login_thread_callback *    m_pcallback;
+      
+      
+
 
 
       login_thread(::ca::application * papp);
@@ -139,8 +143,8 @@ namespace fontopus
       virtual void show_and_request_auth();
       virtual void ensure_main_document();
       virtual void display_main_frame();
-      virtual void page1(const char * pszMatter);
-      virtual void pageMessage(const char * pszMatter, gen::property_set & set);
+      virtual void page1(const stringa & straMatter = stringa());
+      virtual void pageMessage(const stringa & straMatter, gen::property_set & set);
 
       virtual ::fontopus::user * get_user(const char * pszHost = NULL, const char * pszSessid = NULL);
       virtual auth * get_auth();

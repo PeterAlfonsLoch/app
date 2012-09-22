@@ -2096,7 +2096,6 @@ namespace gen
                      if(bQuote)
                      {
                         pszCmdLine++;
-                        pszStart = pszCmdLine;
                         bRun = bRun && *pszCmdLine != '\0';
                      }
                      bStarted = false;
@@ -2123,6 +2122,8 @@ namespace gen
                      bStarted = false;
                   }
                }
+               pszStart = pszCmdLine;
+
             }
             if(bTwoDots)
             {
