@@ -187,7 +187,7 @@ namespace ca
 
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       virtual bool GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const;
       virtual bool SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust);
 #endif
@@ -334,7 +334,7 @@ namespace ca
          bool bPrefixText = TRUE, int nTextLen = 0, HBRUSH hBrush = NULL);
       virtual bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
          bool bPrefixText = TRUE, int nTextLen = 0, ::ca::brush* pBrush = NULL);
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       virtual bool DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
          LPARAM lData, UINT nFlags, HBRUSH hBrush = NULL);
       virtual bool DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
@@ -427,10 +427,10 @@ namespace ca
       virtual int draw_text(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat);
       virtual int draw_text(const string & str, LPRECT lpRect, UINT nFormat);
 
-
+#ifndef MERDE_WINDOWS
       virtual int draw_text_ex(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
       virtual int draw_text_ex(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
-
+#endif
 
       virtual size GetTextExtent(const char * lpszString, strsize nCount, int iIndex) const;
       virtual size GetTextExtent(const char * lpszString, strsize nCount) const;
@@ -459,7 +459,7 @@ namespace ca
       virtual int GetTextCharacterExtra() const;
       virtual int SetTextCharacterExtra(int nCharExtra);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       virtual DWORD GetCharacterPlacement(const char * lpString, int nCount, int nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const;
       virtual DWORD GetCharacterPlacement(string & str, int nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const;
@@ -488,51 +488,57 @@ namespace ca
       virtual bool GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const;
       virtual DWORD SetMapperFlags(DWORD dwFlag);
       virtual size GetAspectRatioFilter() const;
-#ifdef WINDOWS
+
+#ifdef WINDOWSEX
+
       virtual bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC lpabc) const;
+
 #endif
+
       virtual DWORD GetFontData(DWORD dwTable, DWORD dwOffset, LPVOID lpData, DWORD cbData) const;
-#ifdef WINDOWS
+
+#ifdef WINDOWSEX
 
       virtual int GetKerningPairs(int nPairs, LPKERNINGPAIR lpkrnpair) const;
       virtual UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRIC lpotm) const;
-      virtual DWORD GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,
-         DWORD cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
+      virtual DWORD GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm, DWORD cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
+      
+      virtual bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT lpABCF) const;
 
-      virtual bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar,
-         LPABCFLOAT lpABCF) const;
 #endif
-      virtual bool GetCharWidth(UINT nFirstChar, UINT nLastChar,
-         float* lpFloatBuffer) const;
+
+      virtual bool GetCharWidth(UINT nFirstChar, UINT nLastChar, float * lpFloatBuffer) const;
 
       virtual DWORD GetFontLanguageInfo() const;
 
-   #if (_WIN32_WINNT >= 0x0500)
+#if defined(WINDOWSEX) && (_WIN32_WINNT >= 0x0500)
 
       virtual bool GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) const;
       virtual bool GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, LPINT lpBuffer) const;
 
-   #endif
+#endif
 
    // Printer/Device Escape Functions
-      virtual int Escape(int nEscape, int nCount,
-         const char * lpszInData, LPVOID lpOutData);
-      virtual int Escape(int nEscape, int nInputSize, const char * lpszInputData,
-         int nOutputSize, char * lpszOutputData);
+      virtual int Escape(int nEscape, int nCount, const char * lpszInData, LPVOID lpOutData);
+      virtual int Escape(int nEscape, int nInputSize, const char * lpszInputData, int nOutputSize, char * lpszOutputData);
       virtual int DrawEscape(int nEscape, int nInputSize, const char * lpszInputData);
 
       // Escape helpers
       virtual int StartDoc(const char * lpszDocName);  // old Win3.0 version
-   #ifdef WINDOWS
+
+#ifdef WINDOWSEX
+      
       virtual int StartDoc(LPDOCINFO lpDocInfo);
-   #endif
+
+#endif
+
       virtual int StartPage();
       virtual int EndPage();
       virtual int SetAbortProc(bool (CALLBACK* lpfn)(HDC, int));
       virtual int AbortDoc();
       virtual int EndDoc();
 
-   // MetaFile Functions
+      // MetaFile Functions
 #ifdef WINDOWS
       virtual bool PlayMetaFile(HMETAFILE hMF);
       virtual bool PlayMetaFile(HENHMETAFILE hEnhMetaFile, LPCRECT lpBounds);
@@ -622,7 +628,7 @@ namespace ca
    public:
 
       ::ca::window *    m_pwindow;
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       PAINTSTRUCT       m_ps;
 #endif
 

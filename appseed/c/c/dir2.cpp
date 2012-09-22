@@ -3,6 +3,7 @@
 #include <Shlobj.h>
 #endif
 
+
 vsstring dir::afterca2()
 {
    return ca2();
@@ -13,7 +14,18 @@ vsstring dir::appdata(const char * lpcsz)
 
    vsstring str;
 
-#ifdef WIN32
+
+#ifdef MERDE_WINDOWS
+
+   vsstring buf;
+
+   buf = "C:\ProgramData";
+   
+   str = path(buf, "ca2");
+   
+   _ca_free(buf, 0);
+
+#elif defined(WIN32)
    
    char * buf = (char *) _ca_alloc(4096);
    

@@ -20,7 +20,7 @@ public:
    static CLASS_DECL_c vsstring appdata(const char * lpcsz);
    static CLASS_DECL_c vsstring userappdata(const char * lpcsz);
    static CLASS_DECL_c bool exists(const char * path1);
-   static CLASS_DECL_c bool mk(LPCTSTR lpcsz);
+   static CLASS_DECL_c bool mk(const char * lpcsz);
    static CLASS_DECL_c void ls(stra_dup & stra, const char *psz);
    static CLASS_DECL_c bool get_ca2_module_folder_dup(char * lpszModuleFolder);
    static CLASS_DECL_c vsstring default_os_user_path_prefix();

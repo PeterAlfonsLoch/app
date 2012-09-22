@@ -22,7 +22,74 @@ bool CLASS_DECL_c SHGetSpecialFolderPath(HWND hwnd, vsstring &str, int csidl, bo
 bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 {
 
-#ifdef WINDOWS
+#if defined(MERDE_WINDOWS)
+
+   char lpszModuleFilePath[MAX_PATH * 8];
+
+   HMODULE hmodule = ::LoadPackagedLibrary(L"ca.dll", 0);
+
+   if(hmodule == NULL)
+      hmodule = ::LoadPackagedLibrary(L"spalib.dll", 0);
+
+   if(hmodule == NULL)
+   {
+
+      vsstring buf;
+
+      throw winmerde();
+      //HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramFiles, KF_FLAG_NO_ALIAS, NULL, wstringtovss(buf, 4096));
+      //if(FAILED(hr))
+        // throw "dir::get_ca2_module_folder_dup : SHGetKnownFolderPath failed";
+
+      strcpy(lpszModuleFilePath, buf.m_psz);
+
+      if(lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '\\'
+      || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
+      {
+         lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
+      }
+      strcat_dup(lpszModuleFilePath, "\\ca2\\");
+#ifdef X86
+      strcat_dup(lpszModuleFilePath, "stage\\x86\\");
+#else
+      strcat_dup(lpszModuleFilePath, "stage\\x64\\");
+#endif
+
+      strcpy_dup(lpszModuleFolder, lpszModuleFilePath);
+
+      return true;
+
+   }
+
+   throw winmerde();
+   //GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
+
+   LPTSTR lpszModuleFileName;
+
+   throw winmerde();
+   //GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName);
+
+   throw winmerde();
+   //lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
+
+   throw winmerde();
+/*
+   if(strlen_dup(lpszModuleFolder) > 0)
+   {
+
+      if(lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '\\' || lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '/')
+      {
+
+         lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] = '\0';
+
+      }
+
+   }
+*/
+
+   return true;
+
+#elif defined(WINDOWS)
 
    char lpszModuleFilePath[MAX_PATH * 8];
 
@@ -128,7 +195,7 @@ vsstring dir::ca2(const char * path1, const char * path2, const char * path3, co
       return dir::path(ca2(), path1, path2, path3, path4);
 }
 
-bool dir::mk(LPCTSTR lpcsz)
+bool dir::mk(const char * lpcsz)
 {
 
 #ifdef WINDOWS
@@ -148,7 +215,12 @@ bool dir::mk(LPCTSTR lpcsz)
       DWORD dw = GetFileAttributes(dir);
       if(dw == INVALID_FILE_ATTRIBUTES)
       {
-         ::CreateDirectory(dir, NULL);
+         wstring wstr(dir);
+#ifdef WINDOWSEX
+         ::CreateDirectoryW(wstr, NULL);
+#else
+         ::CreateDirectory(wstr, NULL);
+#endif
       }
       oldpos = pos;
       pos = url.find("\\", oldpos + 1);
@@ -158,7 +230,12 @@ bool dir::mk(LPCTSTR lpcsz)
 	dir += tmp + "\\";
    if(GetFileAttributes(dir) == INVALID_FILE_ATTRIBUTES)
    {
-      ::CreateDirectory(dir, NULL);
+      wstring wstr(dir);
+#ifdef WINDOWSEX
+      ::CreateDirectoryW(wstr, NULL);
+#else
+      ::CreateDirectory(wstr, NULL);
+#endif
    }
    return true;
 
@@ -199,17 +276,22 @@ bool dir::mk(LPCTSTR lpcsz)
 vsstring dir::module_folder(const char * path1)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    char path[MAX_PATH * 4];
-   if(!GetModuleFileName(NULL,
-      path,
-      sizeof(path)))
+   if(!GetModuleFileName(NULL, path, sizeof(path)))
+   {
       return path1;
+   }
    else
    {
       return dir::path(name(path), path1);
    }
+
+#elif defined(MERDE_WINDOWS)
+
+   throw winmerde();
+   return path1;
 
 #else
 
@@ -363,12 +445,26 @@ void dir::ls(stra_dup & stra, const char *psz)
 
 vsstring dir::default_os_user_path_prefix()
 {
-#if defined(WINDOWS)
+#if defined(WINDOWSEX)
    wchar_t buf[MAX_PATH];
    ULONG ulSize = sizeof(buf) / sizeof(wchar_t);
    if(!::GetUserNameExW(NameCanonical, buf, &ulSize))
    {
       if(!::GetUserNameW(buf, &ulSize))
+      {
+         memset(buf, 0, sizeof(buf));
+      }
+   }
+   vsstring str;
+   str.attach(utf16_to_8(buf));
+   return str;
+
+#elif defined(MERDE_WINDOWS)
+   wchar_t buf[MAX_PATH];
+   ULONG ulSize = sizeof(buf) / sizeof(wchar_t);
+   if(!::GetUserNameEx(NameCanonical, buf, &ulSize))
+   {
+      if(!::GetUserName(buf, &ulSize))
       {
          memset(buf, 0, sizeof(buf));
       }

@@ -285,11 +285,16 @@ namespace gen
          public:
 
             create(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+
+#ifdef WINDOWSEX
             LPCREATESTRUCT m_lpcreatestruct;
+#endif
+
             virtual void set_lresult(LRESULT lresult);
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
             virtual void error(const char * lpcszErrorMessage);
          };
+
          class CLASS_DECL_ca timer : public base
          {
          public:
@@ -489,7 +494,7 @@ namespace gen
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
          class CLASS_DECL_ca notify : public base
          {

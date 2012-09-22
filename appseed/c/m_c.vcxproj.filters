@@ -16,9 +16,6 @@
     <Filter Include="Header Files\spa\windows">
       <UniqueIdentifier>{69622c5f-0dae-4d9a-8495-70af648df458}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\windows">
-      <UniqueIdentifier>{0f8a4daa-eb89-423f-a2e2-04a1b00790a0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\bsdiff">
       <UniqueIdentifier>{bb21cf68-a709-498f-88c6-f602e1f6df57}</UniqueIdentifier>
     </Filter>
@@ -39,12 +36,6 @@
     </Filter>
     <Filter Include="Source Files\hotplugin">
       <UniqueIdentifier>{45362006-73a6-4d05-93d1-f652e8257bb8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\windows">
-      <UniqueIdentifier>{7f5e5ffc-94c2-4be0-adba-28928ca7393c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\windows\crypt">
-      <UniqueIdentifier>{80ec604a-a59e-4d7d-b253-d98e59d9de57}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\spa">
       <UniqueIdentifier>{53d7b8f7-602a-4db6-aece-1efbbe2d7a72}</UniqueIdentifier>
@@ -86,45 +77,6 @@
     </ClCompile>
     <ClCompile Include="hotplugin\hotplugin_plugin.cpp">
       <Filter>Source Files\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_c_dll.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_http.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_launcher.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_library.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_lock.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_message_loop.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_process.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_registry.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_simple_app.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_simple_shell_launcher.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\c_os_small_ipc_channel.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\crypt\c_os_crypt.cpp">
-      <Filter>Source Files\windows\crypt</Filter>
     </ClCompile>
     <ClCompile Include="spa\spa.cpp">
       <Filter>Source Files\spa</Filter>
@@ -393,6 +345,45 @@
     <ClCompile Include="merdes_windows\window_merdes.cpp">
       <Filter>Source Files\merdas_windows</Filter>
     </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_c_dll.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_file.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_graphics_round_rect.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_http.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_launcher.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_library.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_lock.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_message_loop.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_process.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_registry.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_simple_app.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_simple_shell_launcher.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_small_ipc_channel.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -472,15 +463,6 @@
     </ClInclude>
     <ClInclude Include="spa\spa_trace.h">
       <Filter>Header Files\spa</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\c_os.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\c_os_http.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\c_os_registry.h">
-      <Filter>Header Files\windows</Filter>
     </ClInclude>
     <ClInclude Include="bsdiff\bsdiff.h">
       <Filter>Header Files\bsdiff</Filter>
@@ -687,6 +669,30 @@
       <Filter>Header Files\windows_merdes</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\c_os_thread.h">
+      <Filter>Header Files\windows_merdes</Filter>
+    </ClInclude>
+    <ClInclude Include="merdes_windows\c_os_http.h">
+      <Filter>Header Files\windows_merdes</Filter>
+    </ClInclude>
+    <ClInclude Include="merdes_windows\c_os_registry.h">
+      <Filter>Header Files\windows_merdes</Filter>
+    </ClInclude>
+    <ClInclude Include="merdes_windows\c_os_file.h">
+      <Filter>Header Files\windows_merdes</Filter>
+    </ClInclude>
+    <ClInclude Include="merdes_windows\c_os_graphics_round_rect.h">
+      <Filter>Header Files\windows_merdes</Filter>
+    </ClInclude>
+    <ClInclude Include="merdes_windows\c_os_internal.h">
+      <Filter>Header Files\windows_merdes</Filter>
+    </ClInclude>
+    <ClInclude Include="merdes_windows\c_os_process.h">
+      <Filter>Header Files\windows_merdes</Filter>
+    </ClInclude>
+    <ClInclude Include="merdes_windows\c_os_simple_hold_handle.h">
+      <Filter>Header Files\windows_merdes</Filter>
+    </ClInclude>
+    <ClInclude Include="merdes_windows\c_os.h">
       <Filter>Header Files\windows_merdes</Filter>
     </ClInclude>
   </ItemGroup>

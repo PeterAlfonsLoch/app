@@ -345,6 +345,14 @@
     <ClInclude Include="hotplugin\hotplugin.h" />
     <ClInclude Include="hotplugin\hotplugin_host.h" />
     <ClInclude Include="hotplugin\hotplugin_plugin.h" />
+    <ClInclude Include="merdes_windows\c_os.h" />
+    <ClInclude Include="merdes_windows\c_os_file.h" />
+    <ClInclude Include="merdes_windows\c_os_graphics_round_rect.h" />
+    <ClInclude Include="merdes_windows\c_os_http.h" />
+    <ClInclude Include="merdes_windows\c_os_internal.h" />
+    <ClInclude Include="merdes_windows\c_os_process.h" />
+    <ClInclude Include="merdes_windows\c_os_registry.h" />
+    <ClInclude Include="merdes_windows\c_os_simple_hold_handle.h" />
     <ClInclude Include="merdes_windows\c_os_thread.h" />
     <ClInclude Include="merdes_windows\windows_merde.h" />
     <ClInclude Include="os\os.h" />
@@ -371,9 +379,6 @@
     <ClInclude Include="spa\spa_trace.h" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
-    <ClInclude Include="windows\c_os.h" />
-    <ClInclude Include="windows\c_os_http.h" />
-    <ClInclude Include="windows\c_os_registry.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bsdiff\blocksort.cpp" />
@@ -441,6 +446,19 @@
     <ClCompile Include="hotplugin\hotplugin_container_launcher.cpp" />
     <ClCompile Include="hotplugin\hotplugin_host.cpp" />
     <ClCompile Include="hotplugin\hotplugin_plugin.cpp" />
+    <ClCompile Include="merdes_windows\c_os_c_dll.cpp" />
+    <ClCompile Include="merdes_windows\c_os_file.cpp" />
+    <ClCompile Include="merdes_windows\c_os_graphics_round_rect.cpp" />
+    <ClCompile Include="merdes_windows\c_os_http.cpp" />
+    <ClCompile Include="merdes_windows\c_os_launcher.cpp" />
+    <ClCompile Include="merdes_windows\c_os_library.cpp" />
+    <ClCompile Include="merdes_windows\c_os_lock.cpp" />
+    <ClCompile Include="merdes_windows\c_os_message_loop.cpp" />
+    <ClCompile Include="merdes_windows\c_os_process.cpp" />
+    <ClCompile Include="merdes_windows\c_os_registry.cpp" />
+    <ClCompile Include="merdes_windows\c_os_simple_app.cpp" />
+    <ClCompile Include="merdes_windows\c_os_simple_shell_launcher.cpp" />
+    <ClCompile Include="merdes_windows\c_os_small_ipc_channel.cpp" />
     <ClCompile Include="merdes_windows\c_os_thread.cpp" />
     <ClCompile Include="merdes_windows\window_merdes.cpp" />
     <ClCompile Include="os\os_process.cpp" />
@@ -472,19 +490,6 @@
     <ClCompile Include="spa\windows\spa_windows_boot.cpp" />
     <ClCompile Include="spa\windows\spa_windows_service.cpp" />
     <ClCompile Include="spa\windows\spa_windows_win.cpp" />
-    <ClCompile Include="windows\crypt\c_os_crypt.cpp" />
-    <ClCompile Include="windows\c_os.cpp" />
-    <ClCompile Include="windows\c_os_c_dll.cpp" />
-    <ClCompile Include="windows\c_os_http.cpp" />
-    <ClCompile Include="windows\c_os_launcher.cpp" />
-    <ClCompile Include="windows\c_os_library.cpp" />
-    <ClCompile Include="windows\c_os_lock.cpp" />
-    <ClCompile Include="windows\c_os_message_loop.cpp" />
-    <ClCompile Include="windows\c_os_process.cpp" />
-    <ClCompile Include="windows\c_os_registry.cpp" />
-    <ClCompile Include="windows\c_os_simple_app.cpp" />
-    <ClCompile Include="windows\c_os_simple_shell_launcher.cpp" />
-    <ClCompile Include="windows\c_os_small_ipc_channel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="c.def" />

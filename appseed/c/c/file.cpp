@@ -58,6 +58,7 @@ bool read_resource_as_file_dup(const char * pszFile, HINSTANCE hinstance, UINT n
 }
 #endif
 
+
 bool file_exists_dup(const char * path1)
 {
 

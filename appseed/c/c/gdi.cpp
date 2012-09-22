@@ -331,29 +331,36 @@ HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam)
 
 #elif defined(MERDE_WINDOWS)
 
-bool TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
+bool TextOutU_dup(simple_graphics & hdc, int x, int y, const char * pszUtf8, int iSize)
 {
    WCHAR * pwsz = utf8_to_16(pszUtf8);
-   bool b = TextOut(hdc, x, y, pwsz, (int) wcslen_dup(pwsz)) != FALSE;
+   D2D_RECT_F r;
+   r.left = x;
+   r.top = y;
+   r.right = r.left + 16384;
+   r.bottom = r.top + 16384;
+   hdc.m_pfont->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+   hdc.m_pfont->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+   bool b = hdc.m_pdc->DrawText(pwsz, wcslen_dup(pwsz), hdc.m_pfont, r, hdc.m_pbrush) != FALSE;
    delete  [] pwsz;
    return b;
 }
 
-void FillSolidRect_dup(HDC hdc, LPCRECT lpRect, COLORREF clr)
+void FillSolidRect_dup(simple_graphics & hdc, LPCRECT lpRect, COLORREF clr)
 {
    ::SetBkColor(hdc, clr);
    ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
 }
 
-HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam);
-HFONT CreatePointBoldFont_dup(int nPointSize, const char * lpszFaceName, int BOLD, HDC hdc);
+HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, simple_graphics & hdcParam);
+HFONT CreatePointBoldFont_dup(int nPointSize, const char * lpszFaceName, int BOLD, simple_graphics & hdc);
 
-HFONT CreatePointFont_dup(int nPointSize, const char * lpszFaceName, HDC hdc)
+HFONT CreatePointFont_dup(int nPointSize, const char * lpszFaceName, simple_graphics & hdc)
 {
    return CreatePointBoldFont_dup(nPointSize, lpszFaceName, FALSE, hdc);
 }
 
-HFONT CreatePointBoldFont_dup(int nPointSize, const char * lpszFaceName, int BOLD, HDC hdc)
+HFONT CreatePointBoldFont_dup(int nPointSize, const char * lpszFaceName, int BOLD, simple_graphics & hdc)
 {
    LOGFONT logFont;
    memset_dup(&logFont, 0, sizeof(LOGFONT));
@@ -366,7 +373,7 @@ HFONT CreatePointBoldFont_dup(int nPointSize, const char * lpszFaceName, int BOL
 }
 
 // pLogFont->nHeight is interpreted as PointSize * 10
-HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam)
+HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, simple_graphics & hdcParam)
 {
    HDC hDC;
    if (hdcParam != NULL)

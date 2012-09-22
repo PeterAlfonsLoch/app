@@ -38,7 +38,7 @@ namespace ca
 
       virtual bool ProfileDisplay(LPBITMAPINFOHEADER lpbi);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       // palette
       virtual ::ca::palette * get_palette();
       virtual bool set_palette(::ca::palette *);

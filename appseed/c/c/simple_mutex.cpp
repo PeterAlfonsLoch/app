@@ -34,7 +34,7 @@ simple_mutex::simple_mutex(const char * pszName, bool bInitialLock)
    {
       m_strName = pszName;
    }
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    if(m_strName.is_empty())
    {
       m_hMutex = ::CreateMutexW(NULL, bInitialLock ? TRUE : FALSE, NULL);
@@ -43,6 +43,17 @@ simple_mutex::simple_mutex(const char * pszName, bool bInitialLock)
    {
       wchar_t * pwszName = utf8_to_16(m_strName);
       m_hMutex = ::CreateMutexW(NULL, bInitialLock ? TRUE : FALSE, pwszName);
+      _ca_free(pwszName, 0);
+   }
+#elif defined(MERDE_WINDOWS)
+   if(m_strName.is_empty())
+   {
+      m_hMutex = ::CreateMutexEx(NULL, NULL, bInitialLock ?  CREATE_MUTEX_INITIAL_OWNER : 0, SYNCHRONIZE);
+   }
+   else
+   {
+      wchar_t * pwszName = utf8_to_16(m_strName);
+      m_hMutex = ::CreateMutexEx(NULL, pwszName, bInitialLock ?  CREATE_MUTEX_INITIAL_OWNER : 0, SYNCHRONIZE);
       _ca_free(pwszName, 0);
    }
 #else
