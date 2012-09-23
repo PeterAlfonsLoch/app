@@ -11,7 +11,7 @@ public:
    virtual ~simple_label();
 
    
-   virtual void draw_this(HDC hdc);
+   virtual void draw_this(simple_graphics & g);
 
 
 

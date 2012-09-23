@@ -2,12 +2,12 @@
 #include <Gdiplus.h>
 
 
-void simple_label::draw_this(HDC hdc)
+void simple_label::draw_this(simple_graphics & g)
 {
 
 
 
-   Gdiplus::Graphics graphics2(hdc);
+   Gdiplus::Graphics graphics2(g);
 
    Gdiplus::Color c;
 
