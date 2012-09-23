@@ -478,7 +478,7 @@ namespace collection
 
       index lo = 0;
       index hi = m_ptra.get_upper_bound();
-      int iCompare;
+      int_ptr iCompare;
 
       while(true)
       {

@@ -11,7 +11,7 @@ namespace gen
    public:
       
       
-      inline static int CompareElements(const TYPE * pIsFirst, const TYPE * pCompare)
+      inline static bool CompareElements(const TYPE * pIsFirst, const TYPE * pCompare)
       {
          
          return *pIsFirst < *pCompare;
