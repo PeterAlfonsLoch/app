@@ -6,9 +6,6 @@
 #endif
 
 
-class var;
-
-
 namespace gen
 {
 
@@ -202,69 +199,66 @@ namespace gen
       { return compare_ignore_case(left,right,len) == 0; }
 
 
-      inline CLASS_DECL_ca  string  itoa(int i)
+      inline CLASS_DECL_ca  string  from(int i)
       {
          string str;
-         itoa(str, i);
+         from(str, i);
          return str;
       }
 
-      inline CLASS_DECL_ca  string  itoa(long l)
+      inline CLASS_DECL_ca  string  from(long l)
       {
          string str;
-         itoa(str, (long long) l);
+         from(str, (long long) l);
          return str;
       }
 
-      inline CLASS_DECL_ca  string  itoa(long long ll)
+      inline CLASS_DECL_ca  string  from(long long ll)
       {
          string str;
-         itoa(str, ll);
+         from(str, ll);
          return str;
       }
       
-      inline CLASS_DECL_ca  string  itoa(unsigned int ui)
+      inline CLASS_DECL_ca  string  from_int(unsigned int ui)
       {
          string str;
-         itoa(str, ui);
+         from(str, ui);
          return str;
       }
 
 #if !defined(LINUX) && !defined(MACOS)
 
-      inline CLASS_DECL_ca  string  itoa(unsigned long ui)
+      inline CLASS_DECL_ca  string  from(unsigned long ui)
       {
          string str;
-         itoa(str, ui);
+         from(str, ui);
          return str;
       }
 
 #endif
 
-      inline CLASS_DECL_ca  string  itoa(uint64_t ui)
+      inline CLASS_DECL_ca string from(uint64_t ui)
       {
          string str;
-         itoa(str, ui);
+         from(str, ui);
          return str;
       }
 
-      inline CLASS_DECL_ca string  i64toa(int64_t i)
+      inline CLASS_DECL_ca string from(double d)
       {
          string str;
-         i64toa(str, i);
+         from(str, d);
          return str;
       }
 
-      inline CLASS_DECL_ca  string & itoa(string & str, long l)
+      inline CLASS_DECL_ca string from(float f)
       {
-         return i64toa(str, l);
+         string str;
+         from(str, f);
+         return str;
       }
 
-      inline CLASS_DECL_ca  string & itoa(string & str, long long ll)
-      {
-         return i64toa(str, ll);
-      }
-      
       inline CLASS_DECL_ca bool     trimmed_is_empty(const char * psz)
       {
 
@@ -275,8 +269,6 @@ namespace gen
          return str.is_empty();
 
       }
-
-
 
 
    } // namespace str

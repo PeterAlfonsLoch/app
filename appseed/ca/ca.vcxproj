@@ -1430,9 +1430,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="fs\fs_ifs.h" />
     <ClInclude Include="fs\fs_ifs_file.h" />
     <ClInclude Include="fs\fs_native_fs.h" />
-    <ClInclude Include="gen\aaa_base_want_to_remove_xxx.h" />
-    <ClInclude Include="gen\aaa_base_rect_want_to_remove_xxx.h" />
-    <ClInclude Include="gen\aaa_base_rect_array_want_to_remove_xxx.h" />
     <ClInclude Include="gen\gen_composite.h" />
     <ClInclude Include="gen\gen_cregexp.h" />
     <ClInclude Include="gen\gen_cregexp_util.h" />
@@ -1453,6 +1450,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="gen\gen_file_association.h" />
     <ClInclude Include="gen\gen_full_pointer.h" />
     <ClInclude Include="gen\gen_geometry.h" />
+    <ClInclude Include="gen\gen_hex.h" />
     <ClInclude Include="gen\gen_holder.h" />
     <ClInclude Include="gen\gen_international.h" />
     <ClInclude Include="gen\gen_international2.h" />
@@ -1479,6 +1477,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="gen\gen_str.h" />
     <ClInclude Include="gen\gen_istring.h" />
     <ClInclude Include="gen\gen_string_tokenizer.h" />
+    <ClInclude Include="gen\gen_strn.h" />
     <ClInclude Include="gen\gen_system.h" />
     <ClInclude Include="gen\gen_timer.h" />
     <ClInclude Include="gen\gen_timer_callback.h" />
@@ -2660,6 +2659,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="gen\gen_Debug.cpp" />
     <ClCompile Include="gen\gen_file_sssociation.cpp" />
     <ClCompile Include="gen\gen_geometry.cpp" />
+    <ClCompile Include="gen\gen_hex.cpp" />
     <ClCompile Include="gen\gen_international.cpp" />
     <ClCompile Include="gen\gen_international_locale_schema.cpp" />
     <ClCompile Include="gen\gen_keeper.cpp" />
@@ -2683,6 +2683,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="gen\gen_str.cpp" />
     <ClCompile Include="gen\gen_istring.cpp" />
     <ClCompile Include="gen\gen_string_tokenizer.cpp" />
+    <ClCompile Include="gen\gen_strn.cpp" />
     <ClCompile Include="gen\gen_system.cpp" />
     <ClCompile Include="gen\gen_Timer.cpp" />
     <ClCompile Include="gen\gen_TimerCallback.cpp" />

@@ -4,7 +4,7 @@
 
 CLASS_DECL_ca int64_t strtoi(const char * psz)
 {
-   return gen::str::atoi64(psz);
+   return gen::str::to_int64(psz);
 }
 
 CLASS_DECL_ca int64_t strtoi(const wchar_t * psz)

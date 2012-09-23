@@ -128,46 +128,49 @@ namespace gen
       CLASS_DECL_ca  const char *   utf8_dec(::gen::utf8_char * pchar, const char * pszBeg, const char * psz);
       CLASS_DECL_ca  int            utf8_char(::gen::utf8_char * pchar, const char *psz);
 
-      CLASS_DECL_ca  bool           atoi(const char * psz, int & i);
-      CLASS_DECL_ca  bool           atoi(const char * psz, int64_t & i);
-      CLASS_DECL_ca  bool           atoi(const char * psz, int & i, int iBase);
-      CLASS_DECL_ca  bool           atoi(const char * psz, int64_t & i, int iBase);
 
-      CLASS_DECL_ca  bool           natoi(const char * psz, int & i, int iLen);
-      CLASS_DECL_ca  bool           natoi(const char * psz, int64_t & i, int iLen);
-      CLASS_DECL_ca  bool           natoi(const char * psz, int & i, int iBase, int iLen);
-      CLASS_DECL_ca  bool           natoi(const char * psz, int64_t & i, int iBase, int iLen);
+      CLASS_DECL_ca  bool           to(const char * psz, int & i);
+      CLASS_DECL_ca  bool           to(const char * psz, int64_t & i);
+      CLASS_DECL_ca  bool           to(const char * psz, int & i, int iBase);
+      CLASS_DECL_ca  bool           to(const char * psz, int64_t & i, int iBase);
 
 
-      inline CLASS_DECL_ca int      xatoi(const char * psz, int iDefault){ atoi(psz, iDefault); return iDefault; }
-      inline CLASS_DECL_ca int64_t  xatoi64(const char * psz, int64_t & iDefault) { atoi(psz, iDefault); return iDefault; }
-      inline CLASS_DECL_ca int      xatoi(const char * psz, int iDefault, int iBase){ atoi(psz, iDefault, iBase); return iDefault; }
-      inline CLASS_DECL_ca int64_t  xatoi64(const char * psz, int64_t & iDefault, int iBase) { atoi(psz, iDefault, iBase); return iDefault; }
-
-      inline CLASS_DECL_ca  string  itoa(int i);
-      inline CLASS_DECL_ca  string  itoa(int64_t i);
-      inline CLASS_DECL_ca  string  itoa(unsigned int ui);
-      inline CLASS_DECL_ca  string  itoa(unsigned long ui);
-      inline CLASS_DECL_ca  string  itoa(uint64_t ui);
-      inline CLASS_DECL_ca  string  itoa(const var & var);
-      inline CLASS_DECL_ca  string  itoa(const id & id);
+      CLASS_DECL_ca  int_ptr        to_int_ptr(const char * psz);
 
 
-      CLASS_DECL_ca  string &       itoa(string & str, int i);
-      CLASS_DECL_ca  string &       itoa(string & str, long l);
-      CLASS_DECL_ca  string &       itoa(string & str, long long ll);
-      CLASS_DECL_ca  string &       itoa(string & str, unsigned int ui);
-      CLASS_DECL_ca  string &       itoa(string & str, unsigned long ui);
-      CLASS_DECL_ca  string &       itoa(string & str, unsigned long long ui);
-      inline CLASS_DECL_ca string & itoa(string & str, const var & var);
-      inline CLASS_DECL_ca string & itoa(string & str, const id & id);
+      inline CLASS_DECL_ca int      to_with_fallback(const char * psz, int iDefault){ to(psz, iDefault); return iDefault; }
+      inline CLASS_DECL_ca int64_t  to_with_fallback(const char * psz, int64_t & iDefault) { to(psz, iDefault); return iDefault; }
+      inline CLASS_DECL_ca int      to_with_fallback(const char * psz, int iDefault, int iBase){ to(psz, iDefault, iBase); return iDefault; }
+      inline CLASS_DECL_ca int64_t  to_with_fallback(const char * psz, int64_t & iDefault, int iBase) { to(psz, iDefault, iBase); return iDefault; }
 
 
-      inline CLASS_DECL_ca string   i64toa(int64_t i);
-      CLASS_DECL_ca string &        i64toa(string & str, int64_t i);
 
-      CLASS_DECL_ca  int64_t        get_hex(const char * pszUtf8);
-      CLASS_DECL_ca  int64_t        get_hex_number(const char * pstr);
+      inline CLASS_DECL_ca string  from(int i);
+      inline CLASS_DECL_ca string  from(int64_t i);
+      inline CLASS_DECL_ca string  from(unsigned int ui);
+      inline CLASS_DECL_ca string  from(unsigned long ui);
+      inline CLASS_DECL_ca string  from(uint64_t ui);
+      inline CLASS_DECL_ca string  from(const var & var);
+      inline CLASS_DECL_ca string  from(const id & id);
+      inline CLASS_DECL_ca string  from(double d);
+      inline CLASS_DECL_ca string  from(float f);
+
+
+      CLASS_DECL_ca  string &       from(string & str, int i);
+      CLASS_DECL_ca  string &       from(string & str, long l);
+      CLASS_DECL_ca  string &       from(string & str, long long ll);
+      CLASS_DECL_ca  string &       from(string & str, unsigned int ui);
+      CLASS_DECL_ca  string &       from(string & str, unsigned long ui);
+      CLASS_DECL_ca  string &       from(string & str, unsigned long long ui);
+      inline CLASS_DECL_ca string & from(string & str, const var & var);
+      inline CLASS_DECL_ca string & from(string & str, const id & id);
+      CLASS_DECL_ca string &        from(string & str, int64_t i);
+      CLASS_DECL_ca string &        from(string & str, double d);
+      CLASS_DECL_ca string &        from(string & str, float f);
+
+      //inline CLASS_DECL_ca string   i64toa(int64_t i);
+      
+
       CLASS_DECL_ca  int            get_escaped_char(const char * str, strsize pos, strsize &retPos);
       CLASS_DECL_ca  bool           get_curly_content(const char * psz, string & str);
       CLASS_DECL_ca  bool           is_simple_natural(const char * psz);
@@ -213,12 +216,11 @@ namespace gen
 
       //CLASS_DECL_ca string l2string(long l); // please use itoa
       //CLASS_DECL_ca string bigint2string(uint64_t l); // please use itoa
-      CLASS_DECL_ca int64_t atoi64(const string & str) ;
-      CLASS_DECL_ca int64_t atoi64(const char * psz) ;
-      CLASS_DECL_ca uint64_t atoui64(const string & str) ;
-      CLASS_DECL_ca uint64_t atoui64(const char * psz) ;
-      CLASS_DECL_ca unsigned int hex2unsigned(const string & str);
-      CLASS_DECL_ca string to_string(double d);
+      CLASS_DECL_ca int64_t to_int64(const string & str) ;
+      CLASS_DECL_ca int64_t to_int64(const char * psz) ;
+      CLASS_DECL_ca uint64_t to_uint64(const string & str) ;
+      CLASS_DECL_ca uint64_t to_uint64(const char * psz) ;
+      
 /** \file Utility.cpp
  **   \date  2004-02-13
  **   \author grymse@alhem.net
@@ -239,3 +241,5 @@ namespace gen
 
 
 
+#include "gen_strn.h"
+#include "gen_hex.h"

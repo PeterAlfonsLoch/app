@@ -528,7 +528,7 @@ namespace ex1
          b = (byte)(ui >> 21);
          write(&b, sizeof(byte));
       }
-      else if(ui < (1u << 36))
+      else if(ui < (1ULL << 36))
       {
          byte b = (byte)ui;
          b |= 0x80;
@@ -545,7 +545,7 @@ namespace ex1
          b = (byte)(ui >> 28);
          write(&b, sizeof(byte));
       }
-      else if(ui < (1u << 43))
+      else if(ui < (1ULL << 43))
       {
          byte b = (byte)ui;
          b |= 0x80;
@@ -566,7 +566,7 @@ namespace ex1
          b = (byte)(ui >> 35);
          write(&b, sizeof(byte));
       }
-      else if(ui < (1u << 50))
+      else if(ui < (1ULL << 50))
       {
          byte b = (byte)ui;
          b |= 0x80;
@@ -589,7 +589,7 @@ namespace ex1
          b = (byte)(ui >> 42);
          write(&b, sizeof(byte));
       }
-      else if(ui < (1u << 57))
+      else if(ui < (1ULL << 57))
       {
          byte b = (byte)ui;
          b |= 0x80;
@@ -615,7 +615,7 @@ namespace ex1
          b = (byte)(ui >> 49);
          write(&b, sizeof(byte));
       }
-      else if(ui < (1u << 57))
+      else if(ui < (1ULL << 57))
       {
          byte b = (byte)ui;
          b |= 0x80;

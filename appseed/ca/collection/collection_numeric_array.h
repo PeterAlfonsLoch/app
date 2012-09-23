@@ -11,22 +11,10 @@ namespace gen
    {
 
 
-      inline CLASS_DECL_ca string from_number(int i) { return itoa(i); }
-#if !defined(LINUX) && !defined(__LP64__)
-      inline CLASS_DECL_ca string from_number(long l) { return itoa(l); }
-#endif
-      inline CLASS_DECL_ca string from_number(int64_t i) { return i64toa(i); }
-      inline CLASS_DECL_ca string from_number(double d) { return to_string(d); }
-      inline CLASS_DECL_ca string from_number(unsigned int ui) { return i64toa(ui); }
-#if !defined(LINUX) && !defined(__LP64__)
-      inline CLASS_DECL_ca string from_number(unsigned long ul) { return i64toa(ul); }
-#endif
-      inline CLASS_DECL_ca string from_number(uint64_t ui) { return itoa(ui); }
-
       template < >
       inline int64_t from_string(const char * psz)
       {
-         return atoi64(string(psz));
+         return to_int64(string(psz));
       }
 
    } // namespace gen::str
@@ -280,11 +268,11 @@ void numeric_array < TYPE >::implode(string & str, const char * lpcszSeparator, 
    {
       string strSeparator(lpcszSeparator);
       index i = start;
-      str = gen::str::from_number(this->element_at(i));
+      str = gen::str::from(this->element_at(i));
       i++;
       for(; i <= last; i++)
       {
-         str += strSeparator + gen::str::from_number(this->element_at(i));
+         str += strSeparator + gen::str::from(this->element_at(i));
       }
    }
    else
@@ -319,11 +307,11 @@ string numeric_array < TYPE >::surround_and_implode(const char * pszSeparator, c
    if(iStart <= iEnd)
    {
       index i = iStart;
-      str = strPrefix + gen::str::from_number(this->element_at(i)) + strSuffix;
+      str = strPrefix + gen::str::from(this->element_at(i)) + strSuffix;
       i++;
       for(; i <= iEnd; i++)
       {
-         str += strSeparator + strPrefix + gen::str::from_number(this->element_at(i)) + strSuffix;
+         str += strSeparator + strPrefix + gen::str::from(this->element_at(i)) + strSuffix;
       }
    }
    return str;

@@ -477,7 +477,6 @@ namespace dynamic_source
       {
          memset(&pscript->m_ftCreation, 0, sizeof(FILETIME));
          memset(&pscript->m_ftModified, 0, sizeof(FILETIME));
-         struct stat64 st;
          ::GetFileTime(h, &pscript->m_ftCreation, NULL, &pscript->m_ftModified);
       }
       catch(...)

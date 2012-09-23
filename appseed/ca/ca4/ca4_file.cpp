@@ -3,9 +3,9 @@
 #include <openssl/md5.h>
 
 
-void NESSIEinit(struct NESSIEstruct * const structpointer);
-void NESSIEadd(const unsigned char * const source, unsigned long sourceBits, struct NESSIEstruct * const structpointer);
-void NESSIEfinalize(struct NESSIEstruct * const structpointer, unsigned char * const result);
+CLASS_DECL_c void NESSIEinit(struct NESSIEstruct * const structpointer);
+CLASS_DECL_c void NESSIEadd(const unsigned char * const source, unsigned long sourceBits, struct NESSIEstruct * const structpointer);
+CLASS_DECL_c void NESSIEfinalize(struct NESSIEstruct * const structpointer, unsigned char * const result);
 
 
 namespace ca4
@@ -242,7 +242,7 @@ namespace ca4
          MD5_Update(pctx, &ch, 1);
       }
 
-      iNumber = gen::str::atoi64(str);
+      iNumber = gen::str::to_int64(str);
 
    }
 

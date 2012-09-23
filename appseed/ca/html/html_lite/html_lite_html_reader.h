@@ -160,7 +160,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   dword_ptr   m_dwBufPos;
+   strsize     m_dwBufPos;
 
    /**
     * size, in TCHARs, of the buffer

@@ -5,7 +5,9 @@ class stringa;
 
 namespace primitive
 {
+
    class memory;
+
 } // namespace primitive
 
 namespace gen
@@ -516,11 +518,8 @@ namespace gen
    {
 
 
-      inline CLASS_DECL_ca string         itoa(const var & var)
+      inline CLASS_DECL_ca string from(const var & var)
       {
-
-         if(!var.is_numeric())
-            throw simple_exception("invalid_conversion");
 
          return var.get_string();
 

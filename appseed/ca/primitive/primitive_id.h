@@ -11,6 +11,7 @@ class string_interface;
 
 
 class id_space;
+
 namespace ca
 {
    class type_info;
@@ -19,84 +20,56 @@ namespace ca
 class CLASS_DECL_ca id
 {
 public:
+
+
+   union
+   {
+      const string *       m_pstr;
+      int_ptr              m_i;
+   };
+
+   char m_chType;
+
+
+   inline id();
+   inline id(const id & id);
    id(const char * psz);
+   id(int_ptr i);
+   id(uint_ptr ui);
+#if defined(_LP64) || defined(_AMD64_)
    id(int i);
    id(unsigned int ui);
-   id(int64_t i);
-   id(uint64_t ui);
+#endif
    id(const string & str);
    id(const string_interface & str);
    id(const var & var);
 
-   inline id()
-   {
-      m_i = 0;
-      m_chType = IDTYPE_TYPE_NULL;
-   }
 
-   inline id(const id & id)
-   {
-      m_i = id.m_i;
-      m_chType = id.m_chType;
-   }
+   void raw_set(const string * pstr);
+   void raw_set(int_ptr user);
+
 
    string str() const;
 
-   inline bool operator == (const id & id) const
-   {
-      return m_i == id.m_i && m_chType == id.m_chType;
-   }
-   inline bool operator != (const id & id) const
-   {
-      return ! operator == (id);
-   }
-   inline bool operator < (const id & id) const
-   {
-      return id_cmp(this, &id) < 0;
-   }
-   inline bool operator <= (const id & id) const
-   {
-      return id_cmp(this, &id) <= 0;
-   }
-   inline bool operator > (const id & id) const
-   {
-      return id_cmp(this, &id) > 0;
-   }
-   inline bool operator >= (const id & id) const
-   {
-      return id_cmp(this, &id) >= 0;
-   }
-   inline id & operator = (const id & id)
-   {
-      m_i       = id.m_i;
-      m_chType    = id.m_chType;
-      return *this;
-   }
-   inline bool operator == (const char * psz) const
-   {
-      return !id_cmp(this, psz);
-   }
-   inline bool operator != (const char * psz) const
-   {
-      return id_cmp(this, psz) != 0;
-   }
-   inline bool operator < (const char * psz) const
-   {
-      return id_cmp(this, psz) < 0;
-   }
-   inline bool operator <= (const char * psz) const
-   {
-      return id_cmp(this, psz) <= 0;
-   }
-   inline bool operator > (const char * psz) const
-   {
-      return id_cmp(this, psz) > 0;
-   }
-   inline bool operator >= (const char * psz) const
-   {
-      return id_cmp(this, psz) >= 0;
-   }
+
+   inline bool operator == (const id & id) const;
+   inline bool operator != (const id & id) const;
+   inline bool operator < (const id & id) const;
+   inline bool operator <= (const id & id) const;
+   inline bool operator > (const id & id) const;
+   inline bool operator >= (const id & id) const;
+   inline id & operator = (const id & id);
+
+
+   inline bool operator == (const char * psz) const;
+   inline bool operator != (const char * psz) const;
+   inline bool operator < (const char * psz) const;
+   inline bool operator <= (const char * psz) const;
+   inline bool operator > (const char * psz) const;
+   inline bool operator >= (const char * psz) const;
    id & operator = (const char * psz);
+
+
    inline bool operator == (const string & str) const;
    inline bool operator != (const string & str) const;
    inline bool operator < (const string & str) const;
@@ -104,154 +77,278 @@ public:
    inline bool operator > (const string & str) const;
    inline bool operator >= (const string & str) const;
    id & operator = (const string & str);
-   inline bool operator == (int i) const
-   {
-      return !id_cmp(this, i);
-   }
-   inline bool operator != (int i) const
-   {
-      return id_cmp(this, i) != 0;
-   }
-   inline bool operator < (int i) const
-   {
-      return id_cmp(this, i) < 0;
-   }
-   inline bool operator <= (int i) const
-   {
-      return id_cmp(this, i) <= 0;
-   }
-   inline bool operator > (int i) const
-   {
-      return id_cmp(this, i) > 0;
-   }
-   inline bool operator >= (int i) const
-   {
-      return id_cmp(this, i) >= 0;
-   }
-   inline id & operator = (int i)
-   {
-      m_i        = i;
-      m_chType    = IDTYPE_TYPE_NUMBER;
-      return *this;
-   }
-    inline bool operator <= (long l) const
-    {
-        return id_cmp(this, l) <= 0;
-    }
-    inline bool operator >= (long l) const
-    {
-        return id_cmp(this, l) >= 0;
-    }
-    #if !defined(LINUX)
-   inline bool operator == (int64_t i) const
-   {
-      return !id_cmp(this, i);
-   }
-   inline bool operator != (int64_t i) const
-   {
-      return id_cmp(this, i) != 0;
-   }
-   inline bool operator < (int64_t i) const
-   {
-      return id_cmp(this, i) < 0;
-   }
-   inline bool operator <= (int64_t i) const
-   {
-      return id_cmp(this, i) <= 0;
-   }
-   inline bool operator > (int64_t i) const
-   {
-      return id_cmp(this, i) > 0;
-   }
-   inline bool operator >= (int64_t i) const
-   {
-      return id_cmp(this, i) >= 0;
-   }
-   inline id & operator = (int64_t i)
-   {
-      m_i        = i;
-      m_chType    = IDTYPE_TYPE_NUMBER;
-      return *this;
-   }
-   #endif
+
+
+   inline bool operator == (int_ptr i) const;
+   inline bool operator != (int_ptr i) const;
+   inline bool operator < (int_ptr i) const;
+   inline bool operator <= (int_ptr i) const;
+   inline bool operator > (int_ptr i) const;
+   inline bool operator >= (int_ptr i) const;
+   inline id & operator = (int_ptr i);
+
+
+#if defined(_LP64) || defined(_AMD64_)
+
+
+   inline bool operator == (int i) const;
+   inline bool operator != (int i) const;
+   inline bool operator < (int i) const;
+   inline bool operator <= (int i) const;
+   inline bool operator > (int i) const;
+   inline bool operator >= (int i) const;
+   inline id & operator = (int i);
+
+
+#endif
+
+
+   inline bool operator <= (long l) const;
+   inline bool operator >= (long l) const;
+
+
+
+
    inline bool operator == (const string_interface & str) const;
    inline bool operator != (const string_interface & str) const;
    inline bool operator < (const string_interface & str) const;
    inline bool operator <= (const string_interface & str) const;
    inline bool operator > (const string_interface & str) const;
    inline bool operator >= (const string_interface & str) const;
-
    id & operator = (const string_interface & str);
+
 
    id & operator = (const var & var);
 
-   inline operator int64_t() const
-   {
-      if(is_number())
-         return m_i;
-      else
-         return 0;
-   }
 
-   inline operator int64_t()
-   {
-      if(is_number())
-         return m_i;
-      else
-         return 0;
-   }
+   inline operator int_ptr() const;
+   inline operator int_ptr();
+
 
    inline operator const char *() const;
 
-   inline bool is_null() const
-   {
-      return this == NULL || m_chType == IDTYPE_TYPE_NULL || (m_chType == IDTYPE_TYPE_TEXT && m_pstr == NULL);
-   }
 
+   inline bool is_null() const;
    inline bool is_empty() const;
+   inline bool has_char() const;
+   inline void Empty();
+   inline void clear();
+   inline bool is_number() const;
+   inline bool is_text() const;
 
-   inline bool has_char() const
-   {
-      return !is_empty();
-   }
 
-   inline void Empty()
-   {
-      m_i = 0;
-   }
-
-   inline void clear()
-   {
-      m_i = 0;
-   }
-
-   inline bool is_number() const
-   {
-      return m_chType == IDTYPE_TYPE_NUMBER;
-   }
-
-   inline bool is_text() const
-   {
-      return m_chType == IDTYPE_TYPE_TEXT;
-   }
-
-   friend CLASS_DECL_ca int64_t id_cmp(const id * pid, int64_t user);
-   friend CLASS_DECL_ca int64_t id_cmp(const id * pid, const char * psz);
-   friend CLASS_DECL_ca int64_t id_cmp(const id * pid, const string & str);
-   friend CLASS_DECL_ca int64_t id_cmp(const id * pid1, const id * pid2);
-   friend CLASS_DECL_ca int64_t id_strcmp(const id * pid1, const id * pid2);
+   friend CLASS_DECL_ca int_ptr id_cmp(const id * pid, int_ptr user);
+   friend CLASS_DECL_ca int_ptr id_cmp(const id * pid, const char * psz);
+   friend CLASS_DECL_ca int_ptr id_cmp(const id * pid, const string & str);
+   friend CLASS_DECL_ca int_ptr id_cmp(const id * pid1, const id * pid2);
+   friend CLASS_DECL_ca int_ptr id_strcmp(const id * pid1, const id * pid2);
    friend class id_space;
    friend class ::ca::type_info;
 
-   void raw_set(const string * pstr);
-   void raw_set(int64_t user);
-   union
-   {
-      const string *       m_pstr;
-      int64_t              m_i;
-   };
-   char m_chType;
 };
+
+
+inline void id::raw_set(int_ptr i)
+{
+   m_chType    = IDTYPE_TYPE_NUMBER;
+   m_i         = i;
+}
+
+
+
+inline id::id()
+{
+   m_i = 0;
+   m_chType = IDTYPE_TYPE_NULL;
+}
+
+inline id::id(const id & id)
+{
+   m_i = id.m_i;
+   m_chType = id.m_chType;
+}
+
+
+
+
+inline bool id::operator == (const id & id) const
+{
+   return m_i == id.m_i && m_chType == id.m_chType;
+}
+inline bool id::operator != (const id & id) const
+{
+   return ! operator == (id);
+}
+inline bool id::operator < (const id & id) const
+{
+   return id_cmp(this, &id) < 0;
+}
+inline bool id::operator <= (const id & id) const
+{
+   return id_cmp(this, &id) <= 0;
+}
+inline bool id::operator > (const id & id) const
+{
+   return id_cmp(this, &id) > 0;
+}
+inline bool id::operator >= (const id & id) const
+{
+   return id_cmp(this, &id) >= 0;
+}
+
+inline id & id::operator = (const id & id)
+{
+   m_i       = id.m_i;
+   m_chType    = id.m_chType;
+   return *this;
+}
+
+
+inline bool id::operator == (const char * psz) const
+{
+   return !id_cmp(this, psz);
+}
+inline bool id::operator != (const char * psz) const
+{
+   return id_cmp(this, psz) != 0;
+}
+inline bool id::operator < (const char * psz) const
+{
+   return id_cmp(this, psz) < 0;
+}
+inline bool id::operator <= (const char * psz) const
+{
+   return id_cmp(this, psz) <= 0;
+}
+inline bool id::operator > (const char * psz) const
+{
+   return id_cmp(this, psz) > 0;
+}
+inline bool id::operator >= (const char * psz) const
+{
+   return id_cmp(this, psz) >= 0;
+}
+
+#if defined(_LP64) || defined(_AMD64_)
+
+inline bool id::operator == (int i) const
+{
+   return !id_cmp(this, i);
+}
+inline bool id::operator != (int i) const
+{
+   return id_cmp(this, i) != 0;
+}
+inline bool id::operator < (int i) const
+{
+   return id_cmp(this, i) < 0;
+}
+inline bool id::operator <= (int i) const
+{
+   return id_cmp(this, i) <= 0;
+}
+inline bool id::operator > (int i) const
+{
+   return id_cmp(this, i) > 0;
+}
+inline bool id::operator >= (int i) const
+{
+   return id_cmp(this, i) >= 0;
+}
+inline id & id::operator = (int i)
+{
+   m_i        = i;
+   m_chType    = IDTYPE_TYPE_NUMBER;
+   return *this;
+}
+#endif
+
+
+inline bool id::operator <= (long l) const
+{
+   return id_cmp(this, l) <= 0;
+}
+inline bool id::operator >= (long l) const
+{
+   return id_cmp(this, l) >= 0;
+}
+
+inline bool id::operator == (int_ptr i) const
+{
+   return !id_cmp(this, i);
+}
+inline bool id::operator != (int_ptr i) const
+{
+   return id_cmp(this, i) != 0;
+}
+inline bool id::operator < (int_ptr i) const
+{
+   return id_cmp(this, i) < 0;
+}
+inline bool id::operator <= (int_ptr i) const
+{
+   return id_cmp(this, i) <= 0;
+}
+inline bool id::operator > (int_ptr i) const
+{
+   return id_cmp(this, i) > 0;
+}
+inline bool id::operator >= (int_ptr i) const
+{
+   return id_cmp(this, i) >= 0;
+}
+inline id & id::operator = (int_ptr i)
+{
+   m_i        = i;
+   m_chType    = IDTYPE_TYPE_NUMBER;
+   return *this;
+}
+
+inline id::operator int_ptr() const
+{
+   if(is_number())
+      return m_i;
+   else
+      return 0;
+}
+
+inline id::operator int_ptr()
+{
+   if(is_number())
+      return m_i;
+   else
+      return 0;
+}
+
+inline bool id::is_null() const
+{
+   return this == NULL || m_chType == IDTYPE_TYPE_NULL || (m_chType == IDTYPE_TYPE_TEXT && m_pstr == NULL);
+}
+
+inline bool id::has_char() const
+{
+   return !is_empty();
+}
+
+inline void id::Empty()
+{
+   m_i = 0;
+}
+
+inline void id::clear()
+{
+   m_i = 0;
+}
+
+inline bool id::is_number() const
+{
+   return m_chType == IDTYPE_TYPE_NUMBER;
+}
+
+inline bool id::is_text() const
+{
+   return m_chType == IDTYPE_TYPE_TEXT;
+}
 
 
 inline CLASS_DECL_ca bool id_is_number(const char * psz)
@@ -277,7 +374,7 @@ inline CLASS_DECL_ca bool id_is_null(const char * psz)
    return psz == NULL;
 }
 
-inline CLASS_DECL_ca int64_t id_cmp(const id * pid, int64_t i)
+inline CLASS_DECL_ca int_ptr id_cmp(const id * pid, int_ptr i)
 {
    if(pid->is_null())
    {
@@ -295,7 +392,7 @@ inline CLASS_DECL_ca int64_t id_cmp(const id * pid, int64_t i)
 
 
 
-inline CLASS_DECL_ca int64_t id_cmp(const id * pid1, const id * pid2)
+inline CLASS_DECL_ca int_ptr id_cmp(const id * pid1, const id * pid2)
 {
    char register chCompare = pid1->m_chType - pid2->m_chType;
    if(chCompare != 0) return chCompare;
@@ -303,10 +400,3 @@ inline CLASS_DECL_ca int64_t id_cmp(const id * pid1, const id * pid2)
 }
 
 
-
-
-inline void id::raw_set(int64_t i)
-{
-   m_chType    = IDTYPE_TYPE_NUMBER;
-   m_i         = i;
-}

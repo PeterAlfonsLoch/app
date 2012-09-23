@@ -267,7 +267,7 @@ SRegInfo *next, *temp;
           break;
         default:
           next->op = ReBkBrack;
-          next->param0 = (int) gen::str::get_hex(&expr[i+1]);
+          next->param0 = (int) gen::hex::from_char(&expr[i+1]);
           if (next->param0 < 0 || next->param0 > 9){
             index retEnd;
             next->op = ReSymb;

@@ -978,7 +978,7 @@ inline bool id::is_empty() const
    return is_null() || (is_text() && (m_pstr == NULL || m_pstr->is_empty()));
 }
 
-inline CLASS_DECL_ca int64_t id_cmp(const id * pid, const string & str)
+inline CLASS_DECL_ca int_ptr id_cmp(const id * pid, const string & str)
 {
    if(pid->is_null())
    {
@@ -1018,12 +1018,12 @@ inline CLASS_DECL_ca int64_t id_cmp(const id * pid, const string & str)
       }
       else
       {
-         return pid->m_i - gen::str::atoi64(str);
+         return pid->m_i - gen::str::to_int_ptr(str);
       }
    }
 }
 
-inline CLASS_DECL_ca int64_t id_cmp(const id * pid, const char * psz)
+inline CLASS_DECL_ca int_ptr id_cmp(const id * pid, const char * psz)
 {
    if(pid->is_null())
    {
@@ -1063,12 +1063,12 @@ inline CLASS_DECL_ca int64_t id_cmp(const id * pid, const char * psz)
       }
       else
       {
-         return pid->m_i - gen::str::atoi64(psz);
+         return pid->m_i - gen::str::to_int_ptr(psz);
       }
    }
 }
 
-inline CLASS_DECL_ca int64_t id_strcmp(const id * pid1, const id * pid2)
+inline CLASS_DECL_ca int_ptr id_strcmp(const id * pid1, const id * pid2)
 {
    char register chCompare = pid1->m_chType - pid2->m_chType;
    if(chCompare != 0) return chCompare;
@@ -1088,7 +1088,7 @@ inline void id::raw_set(const string * pstr)
    else if(id_is_number(pstr->c_str()))
    {
       m_chType = IDTYPE_TYPE_NUMBER;
-      m_i = atoi64_dup(*pstr);
+      m_i = gen::str::to_int_ptr(*pstr);
    }
    else
    {

@@ -9,23 +9,36 @@ namespace gen
    {
 
 
-      inline CLASS_DECL_ca string         itoa(const id & id)
+      inline CLASS_DECL_ca string         from(const id & id)
       {
 
-         if(!id.is_number())
-            throw simple_exception("invalid_conversion");
+         if(id.is_null() || id.is_empty())
+            return "";
 
-         return i64toa(id.m_i);
+         if(id.is_text())
+            return *id.m_pstr;
+
+         return from(id.m_i);
 
       }
 
-      inline CLASS_DECL_ca string &       itoa(string & str, const id & id)
+      inline CLASS_DECL_ca string &       from(string & str, const id & id)
       {
 
-         if(!id.is_number())
-            throw simple_exception("invalid_conversion");
+         if(id.is_null() || id.is_empty())
+         {
+            str.Empty();
+         }
+         else if(id.is_text())
+         {
+            str = *id.m_pstr;
+         }
+         else
+         {
+            from(str, id.m_i);
+         }
 
-         return i64toa(str, id.m_i);
+         return str;
 
       }
 

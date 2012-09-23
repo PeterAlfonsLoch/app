@@ -7,6 +7,12 @@ id::id(const char * psz)
    operator = (::radix::system::id(psz));
 }
 
+id::id(int_ptr i)
+{
+   operator = (::radix::system::id(i));
+}
+
+#if defined(_LP64) || defined(_AMD64_)
 id::id(int i)
 {
    operator = (::radix::system::id(i));
@@ -16,16 +22,7 @@ id::id(unsigned int ui)
 {
    operator = (::radix::system::id(ui));
 }
-
-id::id(int64_t i)
-{
-   operator = (::radix::system::id(i));
-}
-
-id::id(uint64_t ui)
-{
-   operator = (::radix::system::id(ui));
-}
+#endif
 
 id::id(const string & str)
 {

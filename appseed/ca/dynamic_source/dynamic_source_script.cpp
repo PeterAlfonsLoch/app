@@ -83,7 +83,7 @@ namespace dynamic_source
       HANDLE h = ::CreateFileW(m_wstrSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
       try
       {
-         bMatches = GetFileTime(h, &ftCreation, NULL, &ftModified);
+         bMatches = GetFileTime(h, &ftCreation, NULL, &ftModified) != FALSE;
          if(bMatches)
          {
             bMatches = memcmp(&m_ftCreation, &ftCreation, sizeof(FILETIME)) == 0

@@ -320,12 +320,12 @@ namespace ex1
 
    plain_text_output_stream & plain_text_output_stream::operator << (int64_t i)
    {
-      return raw_print(gen::str::i64toa(i));
+      return raw_print(gen::str::from(i));
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (uint64_t ui)
    {
-      return raw_print(gen::str::i64toa(ui));
+      return raw_print(gen::str::from(ui));
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (float f)

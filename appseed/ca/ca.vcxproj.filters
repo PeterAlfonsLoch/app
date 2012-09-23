@@ -2624,15 +2624,6 @@
     <ClInclude Include="gen\gen_template.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
-    <ClInclude Include="gen\aaa_base_want_to_remove_xxx.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\aaa_base_rect_want_to_remove_xxx.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\aaa_base_rect_array_want_to_remove_xxx.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
     <ClInclude Include="compress\compress_get_input_stream_processed_size_interface.h">
       <Filter>Header Files\compress</Filter>
     </ClInclude>
@@ -3265,6 +3256,12 @@
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_retry_multi_lock.h">
       <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_strn.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_hex.h">
+      <Filter>Header Files\gen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5454,6 +5451,12 @@
     </ClCompile>
     <ClCompile Include="collection\collection_2d_array.cpp">
       <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_hex.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_strn.cpp">
+      <Filter>Source Files\gen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

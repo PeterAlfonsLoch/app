@@ -1143,7 +1143,7 @@ namespace gen
       }
    }
 
-   bool str::atoi(const char * psz, int64_t & i)
+   bool str::to_int(const char * psz, int64_t & i)
    {
 
       char * pszEnd;
@@ -1159,7 +1159,7 @@ namespace gen
 
    }
 
-   bool str::atoi(const char * psz, int & i)
+   bool str::to_int(const char * psz, int & i)
    {
 
       const char * pszEnd;
@@ -1179,7 +1179,7 @@ namespace gen
    }
 
 
-   bool str::atoi(const char * psz, int64_t & i, int iBase)
+   bool str::to_int(const char * psz, int64_t & i, int iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -1206,7 +1206,7 @@ namespace gen
 
    }
 
-   bool str::atoi(const char * psz, int & i, int iBase)
+   bool str::to_int(const char * psz, int & i, int iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -1233,6 +1233,21 @@ namespace gen
       i = (int) iConversion;
 
       return true;
+
+   }
+
+
+   CLASS_DECL_ca  int_ptr  to_int_ptr(const char * psz)
+   {
+
+#if defined(_LP64) || defined(_AMD64_)
+
+      return to_int64(psz);
+
+#else
+      return to_int(psz);
+
+#endif
 
    }
 
@@ -1348,24 +1363,6 @@ namespace gen
 
 #endif
 
-   int64_t str::get_hex(const char * pszUtf8Char)
-   {
-      string low = gen::ch::to_lower_case(pszUtf8Char);
-      int64_t ch = gen::ch::uni_index(low);
-      ch -= '0';
-      if(ch >= 'a'-'0' && ch <= 'f'-'0')
-      {
-         return ch - 0x27;
-      }
-      else if (ch <= 9)
-      {
-         return ch;
-      }
-      else
-      {
-         return -1;
-      }
-   }
 
    string str::uni_to_utf8(int64_t w)
    {
@@ -1685,7 +1682,7 @@ namespace gen
                {
                   return BAD_WCHAR;
                }
-               int64_t hex = get_hex_number(val);
+               int64_t hex = gen::hex::to_uint(val);
                strsize val_len = val.get_length();
                if(hex < 0 || hex > 0xFFFF)
                {
@@ -1696,7 +1693,7 @@ namespace gen
             }
             else
             {
-               int64_t hex = get_hex_number(string(&lpcsz[pos+2], 2));
+               int64_t hex = gen::hex::to_uint(string(&lpcsz[pos+2], 2));
                if(int64_t(strlen(lpcsz)) <= pos + 2 || hex== -1)
                {
                   return BAD_WCHAR;
@@ -2238,11 +2235,18 @@ namespace gen
       return r;
    }
 
-   string str::to_string(double d)
+   string & str::from(string & str, double d)
    {
-      char tmp[100];
-      sprintf(tmp, "%f", d);
-      return tmp;
+
+      str.Format("%f", d);
+
+   }
+
+   string & str::from(string & str, float f)
+   {
+
+      str.Format("%f", f);
+
    }
 
 
