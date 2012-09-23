@@ -169,7 +169,7 @@ namespace user
          strHkl.trim();
          if(gen::str::begins_eat_ci(strHkl, "0x"))
          {
-            hkl = (HKL) gen::str::hex2unsigned(strHkl);
+            hkl = (HKL) gen::hex::to_uint(strHkl);
          }
          else
          {

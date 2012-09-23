@@ -227,7 +227,7 @@ namespace userstack
 
                }
    
-               str = gen::str::itoa((int_ptr) createcontext->m_spApplicationBias->m_puiParent);
+               str = gen::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent);
 
                createcontext->m_spCommandLine->m_eventReady.ResetEvent();
 

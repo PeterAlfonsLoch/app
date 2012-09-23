@@ -167,7 +167,7 @@ void string_array::copy(const int64_array & src)
 
    for(int i = 0; i < m_nSize; i++)
    {
-      m_pData[i] = gen::str::itoa(src[i]);
+      m_pData[i] = gen::str::from(src[i]);
    }
 
 }
@@ -677,7 +677,7 @@ void string_array::add(const var & var)
    {
       for(int i = 0; i < var.inta().get_count(); i++)
       {
-         add(gen::str::itoa(var.inta()[i]));
+         add(gen::str::from(var.inta()[i]));
       }
    }
    else if(var.get_type() == var::type_propset)

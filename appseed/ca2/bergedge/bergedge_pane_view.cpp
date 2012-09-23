@@ -210,7 +210,7 @@ namespace bergedge
                createcontext->m_spCommandLine->_001ParseCommandFork(strId);
 
                string str;
-               str = gen::str::itoa((int_ptr) createcontext->m_spApplicationBias->m_puiParent);
+               str = gen::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent);
                //MessageBox(NULL, str, str, MB_ICONEXCLAMATION);
                Bergedge.request(createcontext);
 

@@ -2060,6 +2060,16 @@ namespace gen
       return str;
    }*/
 
+   int str::to_int(const char * psz)
+   {
+      return atoi_dup(psz);
+   }
+
+   unsigned int str::to_uint(const char * psz)
+   {
+      return (unsigned int) atoi64_dup(psz);
+   }
+
    int64_t str::to_int64(const string & str)
    {
 
@@ -2153,12 +2163,16 @@ namespace gen
 
       str.Format("%f", d);
 
+      return str;
+
    }
 
    string & str::from(string & str, float f)
    {
 
       str.Format("%f", f);
+
+      return str;
 
    }
 

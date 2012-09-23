@@ -136,6 +136,27 @@ namespace gen
 
 
       CLASS_DECL_ca  int_ptr        to_int_ptr(const char * psz);
+      CLASS_DECL_ca  int            to_int(const char * psz);
+      CLASS_DECL_ca  unsigned int   to_uint(const char * psz);
+
+
+/** C++ Sockets Library \file Utility.cpp
+ **   \date  2004-02-13
+ **   \author grymse@alhem.net
+**/
+
+      //CLASS_DECL_ca string l2string(long l); // please use itoa
+      //CLASS_DECL_ca string bigint2string(uint64_t l); // please use itoa
+      CLASS_DECL_ca int64_t         to_int64(const string & str) ;
+      CLASS_DECL_ca int64_t         to_int64(const char * psz) ;
+      CLASS_DECL_ca uint64_t        to_uint64(const string & str) ;
+      CLASS_DECL_ca uint64_t        to_uint64(const char * psz) ;
+
+/** \file Utility.cpp
+ **   \date  2004-02-13
+ **   \author grymse@alhem.net
+**/
+
 
 
       inline CLASS_DECL_ca int      to_with_fallback(const char * psz, int iDefault){ to(psz, iDefault); return iDefault; }
@@ -209,22 +230,6 @@ namespace gen
       __inline count ilen(const char * psz) { return (count) strlen(psz); }
       __inline int64_t len(const char * psz) { return (int64_t) strlen(psz); }
 
-/** C++ Sockets Library \file Utility.cpp
- **   \date  2004-02-13
- **   \author grymse@alhem.net
-**/
-
-      //CLASS_DECL_ca string l2string(long l); // please use itoa
-      //CLASS_DECL_ca string bigint2string(uint64_t l); // please use itoa
-      CLASS_DECL_ca int64_t to_int64(const string & str) ;
-      CLASS_DECL_ca int64_t to_int64(const char * psz) ;
-      CLASS_DECL_ca uint64_t to_uint64(const string & str) ;
-      CLASS_DECL_ca uint64_t to_uint64(const char * psz) ;
-
-/** \file Utility.cpp
- **   \date  2004-02-13
- **   \author grymse@alhem.net
-**/
 
       template < class TYPE >
       inline TYPE from_string(const char * psz);

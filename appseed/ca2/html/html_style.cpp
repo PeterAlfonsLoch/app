@@ -198,16 +198,16 @@ namespace html
                string strParent;
                if(pelemental->m_pparent->m_style.get_text(pszName, pszSubClass, pdata, pelemental->m_pparent, strParent))
                {
-                  str = gen::str::itoa((int)((double) atof(str) * atoi(strParent)));
+                  str = gen::str::from((int)((double) atof(str) * atoi(strParent)));
                }
                else
                {
-                  str = gen::str::itoa((int)((double) atof(str) * 12));
+                  str = gen::str::from((int)((double) atof(str) * 12));
                }
             }
             else
             {
-               str = gen::str::itoa((int)((double) atof(str) * 12));
+               str = gen::str::from((int)((double) atof(str) * 12));
             }
          }
       }

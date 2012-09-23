@@ -58,7 +58,7 @@ namespace ca8
          ptext->_001SetText(strProxy);
          pguie = m_pview->get_child_by_name("port");
          ptext = dynamic_cast < text_interface * > (pguie);
-         ptext->_001SetText(gen::str::itoa(iProxyPort));
+         ptext->_001SetText(gen::str::from(iProxyPort));
       }
 
    }

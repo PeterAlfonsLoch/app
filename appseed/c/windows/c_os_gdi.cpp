@@ -11,14 +11,14 @@ bool simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
    return b;
 }
 
-bool simple_font::create_point(int nPointSize, const char * lpszFaceName, simple_graphics * pg)
+bool simple_font::create_point(int nPointSize, const char * lpszFaceName, simple_graphics & g)
 {
 
-   return create_point_bold(nPointSize, lpszFaceName, FALSE, pg);
+   return create_point_bold(nPointSize, lpszFaceName, FALSE, g);
 
 }
 
-bool simple_font::create_point_bold(int nPointSize, const char * lpszFaceName, int iBold, simple_graphics * pg)
+bool simple_font::create_point_bold(int nPointSize, const char * lpszFaceName, int iBold, simple_graphics & g)
 {
 
    LOGFONT logFont;
@@ -27,14 +27,10 @@ bool simple_font::create_point_bold(int nPointSize, const char * lpszFaceName, i
 
    logFont.lfCharSet = DEFAULT_CHARSET;
 
-   simple_graphics g;
-
-   if (pg == NULL)
+   if(g.m_hdc == NULL)
    {
 
-      g.create_from_screen();
-
-      pg = &g;
+      g.create();
 
    }
 
@@ -613,8 +609,10 @@ simple_bitmap::~simple_bitmap()
 
 }
 
-bool simple_bitmap::create(int cx, int cy, COLORREF ** ppdata)
+bool simple_bitmap::create(int cx, int cy, simple_graphics & g, COLORREF ** ppdata)
 {
+
+   UNREFERENCED_PARAMETER(g);
 
    BITMAPINFO m_Info;
 
@@ -636,8 +634,10 @@ bool simple_bitmap::create(int cx, int cy, COLORREF ** ppdata)
 }
 
 
-bool simple_bitmap::create_from_data(int cx, int cy, COLORREF * pdata)
+bool simple_bitmap::create_from_data(int cx, int cy, COLORREF * pdata, simple_graphics & g)
 {
+
+   UNREFERENCED_PARAMETER(g);
 
    m_hbitmap = ::CreateBitmap(cx, cy, 1, 32, pdata);
 

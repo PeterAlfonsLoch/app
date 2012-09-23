@@ -21,7 +21,7 @@ namespace gen
       return num;
    }
 
-   unsigned int str::to_uint(const string & str)
+   unsigned int hex::to_uint(const string & str)
    {
       unsigned int r = 0;
       for (int i = 0; i < str.get_length(); i++)

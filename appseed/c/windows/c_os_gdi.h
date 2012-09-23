@@ -99,8 +99,8 @@ public:
    ~simple_bitmap();
 
 
-   bool create(int cx, int cy, COLORREF ** ppdata = NULL);
-   bool create_from_data(int cx, int cy, COLORREF * pdata);
+   bool create(int cx, int cy, simple_graphics & g, COLORREF ** ppdata = NULL);
+   bool create_from_data(int cx, int cy, COLORREF * pdata, simple_graphics & g);
    bool destroy();
 
 
@@ -117,8 +117,8 @@ public:
    simple_font();
    ~simple_font();
 
-   bool create_point(int nPointSize, const char * lpszFaceName, simple_graphics * pg = NULL);
-   bool create_point_bold(int nPointSize, const char * lpszFaceName, int BOLD, simple_graphics * pg = NULL);
+   bool create_point(int nPointSize, const char * lpszFaceName, simple_graphics & g);
+   bool create_point_bold(int nPointSize, const char * lpszFaceName, int BOLD, simple_graphics & g);
    
    // aim to be all-platoform
    bool destroy();

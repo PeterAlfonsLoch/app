@@ -12,6 +12,11 @@ id::id(int_ptr i)
    operator = (::radix::system::id(i));
 }
 
+id::id(uint_ptr ui)
+{
+   operator = (::radix::system::id(ui));
+}
+
 #if defined(_LP64) || defined(_AMD64_)
 id::id(int i)
 {
