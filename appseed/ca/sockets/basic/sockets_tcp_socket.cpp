@@ -235,7 +235,7 @@ namespace sockets
          {
             string sockshost;
             System.net().l2ip(GetSocks4Host(), sockshost);
-            Handler().LogError(this, "open", 0, "Connecting to socks4 server @ " + sockshost + ":" + gen::str::itoa(GetSocks4Port()), ::gen::log::level::info);
+            Handler().LogError(this, "open", 0, "Connecting to socks4 server @ " + sockshost + ":" + gen::str::from(GetSocks4Port()), ::gen::log::level::info);
          }
          SetSocks4();
          n = connect(s, sa, sa);

@@ -269,7 +269,7 @@ namespace simpledb
                   continue;
                }
                response().file() << "--THIS_STRING_SEPARATES\r\n\r\n";
-               response().file() << "Content-range: bytes " + gen::str::itoa(iStart) + "-" + gen::str::itoa(iEnd) + "/" + gen::str::itoa(iLen) + "\r\n";
+               response().file() << "Content-range: bytes " + gen::str::from(iStart) + "-" + gen::str::from(iEnd) + "/" + gen::str::from(iLen) + "\r\n";
                response().file() << "Content-Transfer-Encoding: base64";
                response().file() << "\r\n";
                while(true)
@@ -341,11 +341,11 @@ namespace simpledb
             outattr("http_status") = "Partial Content";
             if(iEnd == -1)
             {
-               outheader("Content-Range") = "bytes " + gen::str::itoa(iStart) + "-" + gen::str::itoa(iEnd) + "/*";
+               outheader("Content-Range") = "bytes " + gen::str::from(iStart) + "-" + gen::str::from(iEnd) + "/*";
             }
             else
             {
-               outheader("Content-Range") = "bytes " + gen::str::itoa(iStart) + "-" + gen::str::itoa(iEnd) + "/" + gen::str::itoa(iLen);
+               outheader("Content-Range") = "bytes " + gen::str::from(iStart) + "-" + gen::str::from(iEnd) + "/" + gen::str::from(iLen);
             }
 
          }

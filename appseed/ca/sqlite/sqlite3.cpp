@@ -21,6 +21,8 @@
 */
 #include "framework.h" // manual
 
+#undef Bool
+
 namespace sqlite
 {
 

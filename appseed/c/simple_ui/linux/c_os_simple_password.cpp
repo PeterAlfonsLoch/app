@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-void simple_password::draw_this(HDC hdc)
+void simple_password::draw_this(simple_graphics & g)
 {
 /*
    Gdiplus::Graphics graphics2(hdc);

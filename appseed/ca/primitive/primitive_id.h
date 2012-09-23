@@ -103,12 +103,6 @@ public:
 #endif
 
 
-   inline bool operator <= (long l) const;
-   inline bool operator >= (long l) const;
-
-
-
-
    inline bool operator == (const string_interface & str) const;
    inline bool operator != (const string_interface & str) const;
    inline bool operator < (const string_interface & str) const;
@@ -263,15 +257,6 @@ inline id & id::operator = (int i)
 }
 #endif
 
-
-inline bool id::operator <= (long l) const
-{
-   return id_cmp(this, l) <= 0;
-}
-inline bool id::operator >= (long l) const
-{
-   return id_cmp(this, l) >= 0;
-}
 
 inline bool id::operator == (int_ptr i) const
 {

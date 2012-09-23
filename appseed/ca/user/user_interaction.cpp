@@ -2104,7 +2104,7 @@ namespace user
       m_iModal = m_iModalCount;
       int iLevel = m_iModal;
       ::user::interaction * puieParent = GetParent();
-      oprop(string("RunModalLoop.thread(") + gen::str::itoa(iLevel) + ")") = System.GetThread();
+      oprop(string("RunModalLoop.thread(") + gen::str::from(iLevel) + ")") = System.GetThread();
       m_iModalCount++;
 
       //bool bAttach = AttachThreadInput(get_wnd()->m_pthread->get_os_int(), ::GetCurrentThreadId(), TRUE);
@@ -2308,7 +2308,7 @@ ExitModal:
          System.GetThread()->PostThreadMessage(WM_NULL, 0, 0);
          for(int i = iLevel; i >= 0; i--)
          {
-            ::ca::thread * pthread = oprop(string("RunModalLoop.thread(") + gen::str::itoa(i) + ")").ca2 < ::ca::thread > ();
+            ::ca::thread * pthread = oprop(string("RunModalLoop.thread(") + gen::str::from(i) + ")").ca2 < ::ca::thread > ();
             try
             {
                pthread->PostThreadMessage(WM_NULL, 0, 0);

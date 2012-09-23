@@ -610,7 +610,7 @@ namespace dynamic_source
       string strId;
       for(int i = 0; i < straId.get_size(); i++)
       {
-         strId += "static class id lscript_id" + gen::str::itoa(i) + "(\"" + straId[i] + "\");\r\n";
+         strId += "static class id lscript_id" + gen::str::from(i) + "(\"" + straId[i] + "\");\r\n";
       }
 
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
@@ -1139,7 +1139,7 @@ namespace dynamic_source
                      straId.add(strResult.Mid(iArroba));
                      iFind = straId.get_upper_bound();
                   }
-                  strResult = strResult.Left(iArroba) + " lscript_id" + gen::str::itoa(iFind);
+                  strResult = strResult.Left(iArroba) + " lscript_id" + gen::str::from(iFind);
                   iArroba = -1;
                }
                else

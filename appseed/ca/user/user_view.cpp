@@ -605,7 +605,7 @@ void view::_001OnLButtonDown(gen::signal_object * pobj)
 
    if(GetParentFrame() != NULL)
    {
-   
+
       GetParentFrame()->SetActiveView(this);
 
    }
@@ -662,7 +662,7 @@ ca(papp)
 
 void view::on_draw_view_nc(::ca::graphics * pdc)
 {
-      
+
    UNREFERENCED_PARAMETER(pdc);
 
 }
@@ -682,7 +682,7 @@ void view::defer_draw_view(::ca::graphics * pdc)
       return;
 
    spa(::ca::data) spadata;
-   
+
    spadata.add(get_document()->m_spadata);
 
    sync_object_ptra sync;
@@ -708,7 +708,7 @@ void view::defer_draw_view(::ca::graphics * pdc)
 
 void view::_001OnDraw(::ca::graphics * pdc)
 {
-      
+
    on_draw_view_nc(pdc);
 
    int iTry = 0;

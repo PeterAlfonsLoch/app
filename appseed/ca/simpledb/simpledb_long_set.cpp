@@ -104,7 +104,7 @@ repeat:;
          strUrl = "https://api.ca2.cc/account/long_set_save?key=";
          strUrl += System.url().url_encode(m_itema[0].m_strKey);
          strUrl += "&value=";
-         strUrl += gen::str::itoa(m_itema[0].m_l);
+         strUrl += gen::str::from(m_itema[0].m_l);
 
          m_itema.remove_at(0);
 
@@ -179,8 +179,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
          return false;
       }
 
-      *plValue = gen::str::atoi64(string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(),
-                        m_phttpsession->m_memoryfile.get_memory()->get_size()));
+      *plValue = gen::str::to_int64(string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(), m_phttpsession->m_memoryfile.get_memory()->get_size()));
 
       longitem.m_dwTimeout = GetTickCount() + 23 * (1984 + 1977);
       longitem.m_l = *plValue;
@@ -191,12 +190,12 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
    }
    else if(m_pmysqldbUser != NULL)
    {
-      
+
       try
       {
 
-         *plValue = m_pmysqldbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + m_strUser + "' AND `key` = '" + m_pmysqldbUser->real_escape_string(lpKey) + "'");
-         
+         *plValue = m_pmysqldbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + m_strUser + "' AND `key` = '" + m_pmysqldbUser->real_escape_string(lpKey) + "'").get_integer();
+
          return true;
 
       }
@@ -206,7 +205,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
 
       return false;
 
-   } 
+   }
    else
    {
 
@@ -274,8 +273,8 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
    }
    else if(m_pmysqldbUser != NULL)
    {
-	   
-      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_strUser + "', '" + m_pmysqldbUser->real_escape_string(lpKey) + "', " + gen::str::itoa(lValue) + ")";
+
+      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_strUser + "', '" + m_pmysqldbUser->real_escape_string(lpKey) + "', " + gen::str::from(lValue) + ")";
 
 	   TRACE(strSql);
 

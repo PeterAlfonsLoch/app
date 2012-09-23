@@ -6,7 +6,7 @@
 
 
 
-void simple_tap::draw_simple(HDC hdc)
+void simple_tap::draw_simple(simple_graphics & g)
 {
 
 /*
@@ -35,7 +35,7 @@ void simple_tap::draw_simple(HDC hdc)
 }
 
 
-void simple_tap::draw_volume(HDC hdc)
+void simple_tap::draw_volume(simple_graphics & g)
 {
 /*
    {
@@ -132,7 +132,7 @@ void simple_tap::draw_volume(HDC hdc)
 }
 
 
-void simple_tap::draw_text(HDC hdc)
+void simple_tap::draw_text(simple_graphics & g)
 {
 /*
    Gdiplus::Graphics graphics2(hdc);

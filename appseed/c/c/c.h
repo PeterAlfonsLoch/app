@@ -123,10 +123,12 @@ extern "C"
 
 #include "library.h"
 
+#include "simple_memory.h"
+
+
 #include "c/os/os.h"
 
 
-#include "simple_memory.h"
 #include "base64.h"
 #include "c/hotplugin/hotplugin.h"
 #include "c/simple_ui/simple_ui.h"

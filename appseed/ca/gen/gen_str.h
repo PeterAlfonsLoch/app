@@ -169,7 +169,7 @@ namespace gen
       CLASS_DECL_ca string &        from(string & str, float f);
 
       //inline CLASS_DECL_ca string   i64toa(int64_t i);
-      
+
 
       CLASS_DECL_ca  int            get_escaped_char(const char * str, strsize pos, strsize &retPos);
       CLASS_DECL_ca  bool           get_curly_content(const char * psz, string & str);
@@ -220,7 +220,7 @@ namespace gen
       CLASS_DECL_ca int64_t to_int64(const char * psz) ;
       CLASS_DECL_ca uint64_t to_uint64(const string & str) ;
       CLASS_DECL_ca uint64_t to_uint64(const char * psz) ;
-      
+
 /** \file Utility.cpp
  **   \date  2004-02-13
  **   \author grymse@alhem.net
@@ -230,7 +230,7 @@ namespace gen
       inline TYPE from_string(const char * psz);
 
 
-      inline CLASS_DECL_ca  string         itoa(int64_t i);
+
 
       bool CLASS_DECL_ca simple_escaped(const string & str, strsize pos);
 

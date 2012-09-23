@@ -59,7 +59,7 @@ namespace database
 
    inline id::id(int i1, int i2, int i3)
    {
-      m_id = gen::str::itoa(i1) + "." + gen::str::itoa(i2) + "." + gen::str::itoa(i3);
+      m_id = gen::str::from(i1) + "." + gen::str::from(i2) + "." + gen::str::from(i3);
    }
 
    inline id::id()

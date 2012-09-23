@@ -267,13 +267,13 @@ namespace ca
 
          DERIVED * pderived = NULL;
 
-         for(index i = iStart; i < get_count(); i++)
+         for(index i = iStart; i < this->get_count(); i++)
          {
 
             try
             {
 
-               pderived = dynamic_cast < DERIVED * > (element_at(i).m_p);
+               pderived = dynamic_cast < DERIVED * > (this->element_at(i).m_p);
 
             }
             catch(...)

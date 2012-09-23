@@ -1314,7 +1314,7 @@ void tinyjs::execute(const string &code) {
         msg += "Error " + e->text;
 #ifdef TINYJS_CALL_STACK
         for (int i=(int)call_stack.size()-1;i>=0;i--)
-          msg += string("\n") + gen::str::itoa(i) + ": " + call_stack[i];
+          msg += string("\n") + gen::str::from(i) + ": " + call_stack[i];
 #endif
         msg += " at " + l->getPosition();
         delete l;
@@ -1350,7 +1350,7 @@ CScriptVarLink tinyjs::evaluateComplex(const string &code) {
       msg += "Error " + e->text;
 #ifdef TINYJS_CALL_STACK
       for (int i=(int)call_stack.size()-1;i>=0;i--)
-        msg += "\n" + gen::str::itoa(i) + ": " + call_stack[i];
+        msg += "\n" + gen::str::from(i) + ": " + call_stack[i];
 #endif
       msg += " at " + l->getPosition();
       delete l;
@@ -1997,7 +1997,7 @@ void tinyjs::statement(bool &execute) {
           }
           if (l->tk != ';')
             l->match(',');
-        }       
+        }
         l->match(';');
     } else if (l->tk==LEX_R_IF) {
         l->match(LEX_R_IF);
@@ -2169,7 +2169,7 @@ bool tinyjs::setVariable(const string &path, const string &varData) {
         else
             var->setString(varData.c_str());
         return true;
-    }    
+    }
     else
         return false;
 }

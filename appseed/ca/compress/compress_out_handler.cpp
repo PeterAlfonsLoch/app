@@ -339,7 +339,7 @@ namespace compress
       if (index < 0)
          return E_INVALIDARG;
       const CNameToPropID &nameToPropID = g_NameToPropID[index];
-      prop.set_name(gen::str::itoa(nameToPropID.PropID));
+      prop.set_name(gen::str::from(nameToPropID.PropID));
 
       if (atoi(prop.name()) == NCoderPropID::kBlockSize ||
          atoi(prop.name()) == NCoderPropID::kDictionarySize ||
@@ -607,7 +607,7 @@ namespace compress
             return E_INVALIDARG;
          const CNameToPropID &nameToPropID = g_NameToPropID[index];
          gen::property prop;
-         prop.set_name(gen::str::itoa(nameToPropID.PropID));
+         prop.set_name(gen::str::from(nameToPropID.PropID));
 
          if (atoi(prop.name()) == NCoderPropID::kBlockSize ||
             atoi(prop.name()) == NCoderPropID::kDictionarySize ||
@@ -626,7 +626,7 @@ namespace compress
             if (index < 0)
                return E_INVALIDARG;
             const CNameToPropID &nameToPropID = g_NameToPropID[index];
-            prop.set_name(gen::str::itoa(nameToPropID.PropID));
+            prop.set_name(gen::str::from(nameToPropID.PropID));
             throw not_implemented_exception();
             //if (!ConvertProperty(value, nameToPropID.VarType, prop.get_value()))
               // return E_INVALIDARG;

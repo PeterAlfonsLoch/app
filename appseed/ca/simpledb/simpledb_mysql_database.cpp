@@ -194,9 +194,9 @@ namespace mysql
       while((row = (MYSQL_ROW) presult->fetch_row()) != NULL)
       {
          if(row[0] == NULL)
-            a.propset().add(gen::str::itoa(i), ::var(::var::e_type::type_null));
+            a.propset().add(gen::str::from(i), ::var(::var::e_type::type_null));
          else
-            a.propset().add(gen::str::itoa(i), var(row[0]));
+            a.propset().add(gen::str::from(i), var(row[0]));
          i++;
       }
       return a;
@@ -214,9 +214,9 @@ namespace mysql
       for(int j = 0; j < iNumFields; j++)
       {
          if(row[j] == NULL)
-            a.propset().add(gen::str::itoa(j), ::var(::var::e_type::type_null));
+            a.propset().add(gen::str::from(j), ::var(::var::e_type::type_null));
          else
-            a.propset().add(gen::str::itoa(j), var(row[j]));
+            a.propset().add(gen::str::from(j), var(row[j]));
       }
       return a;
    }

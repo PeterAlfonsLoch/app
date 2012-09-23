@@ -2014,10 +2014,10 @@ namespace gen
       _008Parse(true, pszCmdLineParam, varFile, strApp);
    }
 
-            
+
    void property_set::_008Add(const char * pszKey, const char * pszValue)
    {
-      
+
       stringa straKey;
 
       straKey.explode(".", pszKey);
@@ -2729,12 +2729,12 @@ namespace gen
 
    property & property_set::operator[](index iIndex)
    {
-      return operator[](gen::str::itoa(iIndex));
+      return operator[](gen::str::from(iIndex));
    }
 
    property property_set::operator[](index iIndex) const
    {
-      return operator[](gen::str::itoa(iIndex));
+      return operator[](gen::str::from(iIndex));
    }
 
    property & property_set::operator[](const var & var)

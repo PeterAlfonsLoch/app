@@ -140,7 +140,7 @@ namespace ca4
 
       system::pac * system::get_pac(const char * pszUrl)
       {
-         
+
          single_lock sl(&m_mutexPac, true);
 
          ::collection::string_map < pac * >::pair * ppair = m_mapPac.PLookup(pszUrl);
@@ -158,7 +158,7 @@ namespace ca4
             ppac->m_dwLastChecked = GetTickCount();
 
             ppac->m_strUrl = pszUrl;
-            
+
             var varQuery;
 
             varQuery["disable_ca2_sessid"] = true;
@@ -177,7 +177,7 @@ namespace ca4
             registerFunctions(&ppac->m_js);
             registerJavascriptFunctions(&ppac->m_js);
             ppac->m_js.execute(ppac->m_strAutoConfigScript);
-         
+
             ppair = m_mapPac.PLookup(pszUrl);
 
             if(ppair == NULL)
@@ -186,7 +186,7 @@ namespace ca4
 
          if(ppair->m_value->m_strAutoConfigScript.is_empty())
             return NULL;
-         
+
          return ppair->m_value;
 
       }
@@ -201,7 +201,7 @@ namespace ca4
 
       ::ca4::http::system::proxy * system::get_proxy(const char * pszUrl)
       {
-         
+
          single_lock sl(&m_mutexProxy, true);
 
          ::collection::string_map < ::ca4::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
@@ -219,7 +219,7 @@ namespace ca4
             pproxy->m_dwLastChecked = GetTickCount();
 
             pproxy->m_strUrl = pszUrl;
-            
+
             config_proxy(pszUrl, pproxy);
 
             m_mapProxy.set_at(pszUrl, pproxy);
@@ -300,7 +300,7 @@ namespace ca4
 
       void system::config_proxy(const char * pszUrl, ::sockets::http_tunnel * psocket)
       {
-         
+
          ::ca4::http::system::proxy * pproxy = get_proxy(pszUrl);
 
          if(pproxy == NULL)
@@ -501,13 +501,13 @@ namespace ca4
          {
             if((bool)set["optional_ca2_sessid"])
             {
-               
-               
+
+
                if(papp != NULL)
                {
-                  
+
                   string strFontopusServer = Sys(papp).get_fontopus_server(strUrl, papp);
-                  
+
                   url_domain domainFontopus;
 
                   domainFontopus.create(strFontopusServer);
@@ -570,7 +570,7 @@ namespace ca4
             }*/
             delete psession;
             DWORD dwTimeTelmo2 = GetTickCount();
-            TRACE0("Not Opened/Connected Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + gen::str::itoa(dwTimeTelmo2 - dwTimeTelmo1));
+            TRACE0("Not Opened/Connected Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
             return NULL;
          }
          DWORD dw2 = ::GetTickCount();
@@ -708,7 +708,7 @@ retry:
             strUrl = System.url().set_script(strUrl, strScript);
          }
 
-         
+
 
          gen::property_set setQuery(get_app());
 
@@ -721,13 +721,13 @@ retry:
          {
             if((bool)set["optional_ca2_sessid"])
             {
-               
-               
+
+
                if(papp != NULL)
                {
-                  
+
                   string strFontopusServer = Sys(papp).get_fontopus_server(strUrl, papp);
-                  
+
                   url_domain domainFontopus;
 
                   domainFontopus.create(strFontopusServer);
@@ -816,7 +816,7 @@ retry:
 
             int iIteration = 0;
             ::ca::live_signal keeplive;
-         
+
             if(papp != NULL)
             {
                keeplive.keep(papp);
@@ -826,9 +826,9 @@ retry:
             oprop("dw").get_value().set_type(var::type_ulong);
             dw1 = oprop("dw").get_value().m_ul;
             dw2 = ::GetTickCount();
-         
+
             TRACE("intertime system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
-         
+
             while(handler.get_count() > 0 && !psession->m_bRequestComplete)
             {
                dw1 = ::GetTickCount();
@@ -904,7 +904,7 @@ retry:
                   if(gen::str::begins_ci(strCa2Realm, "not licensed: "))
                   {
                      DWORD dwTimeTelmo2 = GetTickCount();
-                     TRACE0("Not Licensed Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::itoa(dwTimeTelmo2 - dwTimeTelmo1));
+                     TRACE0("Not Licensed Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
                      string strLocation = psession->outheader("Location");
                      delete psession;
                      throw not_licensed(strCa2Realm, strLocation);
@@ -918,7 +918,7 @@ retry:
             }
 
             DWORD dwTimeTelmo2 = GetTickCount();
-            TRACE0("Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::itoa(dwTimeTelmo2 - dwTimeTelmo1));
+            TRACE0("Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
 
          }
          catch(...)
@@ -945,12 +945,12 @@ retry:
          gen::property_set headers(get_app());
 
          gen::property_set set(get_app());
-         
+
          psession = request(handler, psession, pszRequest, post, headers, set, NULL, puser, NULL, NULL);
-         
+
          if(psession == NULL)
             return NULL;
-         
+
          memory.allocate(psession->GetDataLength());
 
          memcpy(memory.get_data(), psession->GetDataPtr(), memory.get_size());
@@ -1117,13 +1117,13 @@ retry:
          {
             if((bool)set["optional_ca2_sessid"])
             {
-               
-               
+
+
                if(papp != NULL)
                {
-                  
+
                   string strFontopusServer = Sys(papp).get_fontopus_server(strUrl, papp, 8);
-                  
+
                   url_domain domainFontopus;
 
                   domainFontopus.create(strFontopusServer);
@@ -1234,7 +1234,7 @@ retry:
             }
             delete psocket;
             DWORD dwTimeTelmo2 = GetTickCount();
-            TRACE0("Not Opened/Connected Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + gen::str::itoa(dwTimeTelmo2 - dwTimeTelmo1));
+            TRACE0("Not Opened/Connected Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
             return NULL;
          }
          DWORD dw2 = ::GetTickCount();
@@ -1243,7 +1243,7 @@ retry:
 
          int iIteration = 0;
          ::ca::live_signal keeplive;
-         
+
          if((bool)set["noloop"])
             return psocket;
 
@@ -1313,7 +1313,7 @@ retry:
                if(gen::str::begins_ci(strCa2Realm, "not licensed: "))
                {
                   DWORD dwTimeTelmo2 = GetTickCount();
-                  TRACE0("Not Licensed Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::itoa(dwTimeTelmo2 - dwTimeTelmo1));
+                  TRACE0("Not Licensed Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
                   string strLocation = psocket->outheader("Location");
                   delete psocket;
                   throw not_licensed(strCa2Realm, strLocation);
@@ -1327,7 +1327,7 @@ retry:
          }
 
          DWORD dwTimeTelmo2 = GetTickCount();
-         TRACE0("Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::itoa(dwTimeTelmo2 - dwTimeTelmo1));
+         TRACE0("Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
 
          return psocket;
 

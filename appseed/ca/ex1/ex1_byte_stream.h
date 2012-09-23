@@ -8,7 +8,7 @@
 
 namespace ex1
 {
-   
+
 
    class file_exception;         // file exception
    class file;
@@ -52,6 +52,8 @@ namespace ex1
 #if defined(WINDOWS) || defined(__LP64__)
       byte_input_stream & operator >> (long & l);
       byte_input_stream & operator >> (unsigned long & ul);
+      void read_arbitrary(long & l);
+      void read_arbitrary(unsigned long & ul);
 #endif
 #if !defined(LINUX)
       byte_input_stream & operator >> (int64_t & i);
@@ -114,6 +116,8 @@ namespace ex1
 #if defined(WINDOWS) || defined(__LP64__)
       byte_output_stream & operator << (long i);
       byte_output_stream & operator << (unsigned long i);
+      void write_arbitrary(long i);
+      void write_arbitrary(unsigned long ul);
 #endif
 #if !defined(LINUX)
       byte_output_stream & operator << (int64_t i);

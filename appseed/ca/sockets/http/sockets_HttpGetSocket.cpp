@@ -8,7 +8,7 @@ Copyright (C) 2004-2007  Anders Hedstrom
 This library is made available under the terms of the GNU GPL.
 
 If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about 
+a separate license agreement is available. For information about
 the closed-source license agreement for the C++ sockets library,
 please visit http://www.alhem.net/Sockets/license.html and/or
 email license@alhem.net.
@@ -32,7 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
-   http_get_socket::http_get_socket(socket_handler_base& h) : 
+   http_get_socket::http_get_socket(socket_handler_base& h) :
       ::ca::ca(h.get_app()),
       socket(h),
       stream_socket(h),
@@ -44,7 +44,7 @@ namespace sockets
    }
 
 
-   http_get_socket::http_get_socket(socket_handler_base& h,const string & url_in) : 
+   http_get_socket::http_get_socket(socket_handler_base& h,const string & url_in) :
       ::ca::ca(h.get_app()),
       socket(h),
       stream_socket(h),
@@ -56,7 +56,7 @@ namespace sockets
    }
 
 
-   http_get_socket::http_get_socket(socket_handler_base& h,const string & host,port_t port,const string & url_in) : 
+   http_get_socket::http_get_socket(socket_handler_base& h,const string & host,port_t port,const string & url_in) :
       ::ca::ca(h.get_app()),
       socket(h),
       stream_socket(h),
@@ -78,9 +78,9 @@ namespace sockets
    void http_get_socket::step()
    {
       m_request.attr("http_method") = "GET";
-      
-      
-      
+
+
+
       //inheader("Accept") = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
       //inheader("Accept-Language") = "en-us,en;q=0.5";
       if(m_pfile == NULL) // by the time, inline gzip decompression not yet implemented
@@ -95,7 +95,7 @@ namespace sockets
       //outheader("Content-Length") = "0";
 
       if (GetUrlPort() != 80 && GetUrlPort() != 443)
-         inheader("Host") = GetUrlHost() + ":" + gen::str::itoa(GetUrlPort());
+         inheader("Host") = GetUrlHost() + ":" + gen::str::from(GetUrlPort());
       else
          inheader("Host") = GetUrlHost();
       SendRequest();

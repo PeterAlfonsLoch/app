@@ -462,7 +462,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
 
          simple_bitmap b;
 
-         b.create_from_data(m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref);
+         b.create_from_data(m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref, gWindow);
 
          simple_graphics g;
 
@@ -497,8 +497,8 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
       {
 
          simple_bitmap b;
-         
-         b.create_from_data(m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref);
+
+         b.create_from_data(m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref, gWindow);
 
          simple_graphics g;
 

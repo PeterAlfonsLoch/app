@@ -119,7 +119,7 @@ namespace fontopus
          xml::document documentBasicInfo(get_app());
 
          string strApiServer;
-         
+
          strApiServer = Application.command_thread().m_varTopicQuery["fontopus"];
 
          strApiServer.replace("account", "api");
@@ -271,7 +271,7 @@ namespace fontopus
       string strApiHost = strHost;
 
       strApiHost.replace("account", "api");
-      
+
       strAuthUrl = "https://" + strApiHost + "/account/auth";
 
       gen::property_set post;
@@ -738,22 +738,22 @@ namespace fontopus
          }
          else if(doc.get_root()->attr("id") == "not_auth")
          {
-            
+
             if(doc.get_root()->attr("detail") == "please_finish_registration")
             {
-               
+
                iAuth = result_please_finish_registration;
 
             }
             else if(doc.get_root()->attr("detail") == "wrong_password_or_login")
             {
-               
+
                iAuth = result_wrong_password_or_login;
 
             }
             else if(doc.get_root()->attr("detail") == "no_login")
             {
-               
+
                iAuth = result_no_login;
 
             }
@@ -771,7 +771,7 @@ namespace fontopus
             }
 
             delete m_puser;
-            
+
          }
          else
          {
@@ -1090,7 +1090,7 @@ namespace fontopus
          Application.http().get(strAuthUrl, strAuth, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
          DWORD dwTimeTelmo2 = GetTickCount();
 
-         TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + gen::str::itoa(dwTimeTelmo2 - dwTimeTelmo1));
+         TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
 
       }
 

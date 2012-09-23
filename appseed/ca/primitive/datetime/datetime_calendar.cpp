@@ -76,7 +76,7 @@ void calendar::_001OnDraw(::ca::graphics * pdc)
       pdc->draw_text(strDay, rectDay, DT_BOTTOM | DT_RIGHT);
    }
    ::datetime::time timeEmp = m_time;
-   for(int iDay = timeEmp.GetDay(); time.GetYear() == iYear 
+   for(int iDay = timeEmp.GetDay(); time.GetYear() == iYear
       && time.GetMonth() == iMonth &&
       (m_time.GetDay() == iDay || (
       m_bRange && time <= m_timeEnd)); time += timespan)
@@ -92,7 +92,7 @@ void calendar::_001OnDraw(::ca::graphics * pdc)
       strDay.Format("%d", timeEmp.GetDay());
       pdc->draw_text(strDay, rectDay, DT_BOTTOM | DT_RIGHT);
    }
-   
+
    pdc->SelectObject(m_fontYear);
    class rect rect;
    GetRect(rect, ElementYearTitle);
@@ -130,7 +130,7 @@ void calendar::_001GetHtml(::html::file * pfile)
       int iYear = m_iYear;
 
       int iWeekDay;
-      
+
       ::datetime::time time(iYear, iMonth, 1, 0, 0, 0);
       ::datetime::time_span timespan(1, 0, 0, 0);
       ::datetime::time timeLastDayOfMonth((iMonth == 12) ? (iYear + 1) : iYear, (iMonth == 12) ? 1 : (iMonth + 1), 1, 0, 0, 0);
@@ -195,7 +195,7 @@ void calendar::_001GetHtml(::html::file * pfile)
       }
 
             pfile->print("<td>");
-            pfile->print(gen::str::itoa(w));
+            pfile->print(gen::str::from(w));
             pfile->print("</td>");
          }
          for(int iWeekDay = 1; iWeekDay <=7; iWeekDay++)

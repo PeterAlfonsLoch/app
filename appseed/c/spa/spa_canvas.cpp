@@ -63,7 +63,7 @@ public:
 
 int canvas::increment_mode()
 {
-   
+
    m_iMode++;
 
    if(m_iMode >= m_iModeCount)
@@ -85,26 +85,26 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
    int cx = lpcrect->right - lpcrect->left;
    int cy = lpcrect->bottom - lpcrect->top;
    int iThankYouHeight = 30;
-   
+
    simple_font font;
-   
-   font.create_point(100, "Lucida Sans Unicode");
+
+   font.create_point(100, "Lucida Sans Unicode", g);
 
    simple_font fontBold;
-   
-   font.create_point_bold(100, "Lucida Sans Unicode", 1, &g);
+
+   font.create_point_bold(100, "Lucida Sans Unicode", 1, g);
 
    g.select(font);
-   
+
    if(iMode == 0 || iMode == 1 || iMode == 2 || iMode == 3)
    {
-      
+
       simple_pen pen;
-      
+
       pen.create_solid(1, RGB(84, 84, 77));
 
       simple_brush brush;
-      
+
       if(iMode == 0 || iMode == 1)
       {
          brush.from_stock(NULL_BRUSH);
@@ -113,7 +113,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
       {
          brush.create_solid(RGB(84, 84, 84));
       }
-      
+
       g.select(pen);
 
       g.select(brush);

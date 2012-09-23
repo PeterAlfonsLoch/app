@@ -4,7 +4,7 @@
 namespace gen
 {
 
-   
+
    int64_t hex::to_int64(const char * lpcsz)
    {
       int64_t r = 0, num = 0;
@@ -20,6 +20,17 @@ namespace gen
       }
       return num;
    }
+
+   unsigned int str::to_uint(const string & str)
+   {
+      unsigned int r = 0;
+      for (int i = 0; i < str.get_length(); i++)
+      {
+         r = r * 16 + str[i] - 48 - ((str[i] >= 'A') ? 7 : 0) - ((str[i] >= 'a') ? 32 : 0);
+      }
+      return r;
+   }
+
 
    CLASS_DECL_ca int64_t hex::from_char(const char * pszUtf8Char)
    {

@@ -79,7 +79,7 @@ namespace sockets
                      m_chunk_line = m_chunk_line.Left(m_chunk_line.get_length() - 2);
                      ::gen::parse pa(m_chunk_line, ";");
                      string size_str = pa.getword();
-                     m_chunk_size = gen::str::hex2unsigned(size_str);
+                     m_chunk_size = gen::hex::to_uint(size_str);
                      if (!m_chunk_size)
                      {
                         m_chunk_state = 4;

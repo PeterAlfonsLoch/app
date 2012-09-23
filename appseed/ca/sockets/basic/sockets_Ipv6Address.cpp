@@ -30,7 +30,7 @@ namespace sockets
 
 
    ipv6_address::ipv6_address(::ca::application * papp, port_t port) :
-      ca(papp), 
+      ca(papp),
       m_valid(true)
    {
       memset(&m_addr, 0, sizeof(m_addr));
@@ -39,7 +39,7 @@ namespace sockets
    }
 
 
-   ipv6_address::ipv6_address(::ca::application * papp, in6_addr& a,port_t port) : 
+   ipv6_address::ipv6_address(::ca::application * papp, in6_addr& a,port_t port) :
       ca(papp),
       m_valid(true)
    {
@@ -49,7 +49,7 @@ namespace sockets
       m_addr.sin6_addr = a;
    }
 
-   ipv6_address::ipv6_address(const ipv6_address & addr) : 
+   ipv6_address::ipv6_address(const ipv6_address & addr) :
       ::ca::ca(addr.get_app())
    {
       memset(&m_addr, 0, sizeof(m_addr));
@@ -59,7 +59,7 @@ namespace sockets
    }
 
 
-   ipv6_address::ipv6_address(::ca::application * papp, const string & host, port_t port) : 
+   ipv6_address::ipv6_address(::ca::application * papp, const string & host, port_t port) :
       ca(papp),
       m_valid(false)
    {
@@ -145,7 +145,7 @@ namespace sockets
    string ipv6_address::Convert(bool include_port)
    {
       if (include_port)
-         return Convert(get_app(), m_addr.sin6_addr) + ":" + gen::str::itoa(GetPort());
+         return Convert(get_app(), m_addr.sin6_addr) + ":" + gen::str::from(GetPort());
       return Convert(get_app(), m_addr.sin6_addr);
    }
 
@@ -270,7 +270,7 @@ namespace sockets
       {
          m_addr = addr.m_addr;
          m_valid = addr.m_valid;
-         
+
       }
       return *this;
    }

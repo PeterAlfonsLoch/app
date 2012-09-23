@@ -346,7 +346,7 @@ namespace ca2
          struct sockaddr_in6 *sa6 = (struct sockaddr_in6 *)sa;
          string tmp;
          net::l2ip(sa6 -> sin6_addr, tmp);
-         return tmp + ":" + gen::str::itoa(ntohs(sa6 -> sin6_port));
+         return tmp + ":" + gen::str::from(ntohs(sa6 -> sin6_port));
       }
    #endif
    #endif
@@ -357,7 +357,7 @@ namespace ca2
          memcpy(&a, &sa4 -> sin_addr, 4);
          string tmp;
          net::l2ip(a, tmp);
-         return tmp + ":" + gen::str::itoa(ntohs(sa4 -> sin_port));
+         return tmp + ":" + gen::str::from(ntohs(sa4 -> sin_port));
       }
       return "";
    }

@@ -296,24 +296,24 @@ namespace ex1
 
    plain_text_output_stream & plain_text_output_stream::operator << (int i)
    {
-      return raw_print(gen::str::itoa(i));
+      return raw_print(gen::str::from(i));
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (unsigned int ui)
    {
-      return raw_print(gen::str::itoa(ui));
+      return raw_print(gen::str::from(ui));
    }
 
 #if !defined(_LP64)
 
    plain_text_output_stream & plain_text_output_stream::operator << (long l)
    {
-      return raw_print(gen::str::itoa(l));
+      return raw_print(gen::str::from(l));
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (unsigned long ul)
    {
-      return raw_print(gen::str::itoa(ul));
+      return raw_print(gen::str::from(ul));
    }
 
 #endif

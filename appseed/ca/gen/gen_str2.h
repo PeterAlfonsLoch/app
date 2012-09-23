@@ -219,8 +219,8 @@ namespace gen
          from(str, ll);
          return str;
       }
-      
-      inline CLASS_DECL_ca  string  from_int(unsigned int ui)
+
+      inline CLASS_DECL_ca  string  from(unsigned int ui)
       {
          string str;
          from(str, ui);

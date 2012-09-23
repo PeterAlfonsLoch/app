@@ -9,7 +9,7 @@ namespace gen
 {
 
 
-   bool strn::to_int(const char * psz, int iLen, int64_t & i)
+   bool strn::to(const char * psz, int iLen, int64_t & i)
    {
 
       char * pszEnd;
@@ -25,7 +25,7 @@ namespace gen
 
    }
 
-   bool strn::to_int(const char * psz, int iLen, int & i)
+   bool strn::to(const char * psz, int iLen, int & i)
    {
 
       char * pszEnd;
@@ -45,7 +45,7 @@ namespace gen
    }
 
 
-   bool strn::to_int(const char * psz, int iLen, int64_t & i, int iBase)
+   bool strn::to(const char * psz, int iLen, int64_t & i, int iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -64,7 +64,7 @@ namespace gen
 
    }
 
-   bool strn::to_int(const char * psz, int iLen, int & i, int iBase)
+   bool strn::to(const char * psz, int iLen, int & i, int iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -85,7 +85,6 @@ namespace gen
       return true;
 
    }
-
 
 } // namespace gen
 

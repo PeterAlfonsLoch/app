@@ -11,7 +11,7 @@
 		<Cursor position="12" topLine="0" />
 	</File>
 	<File name="bsdiff/blocksort.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="5097" topLine="158" />
+		<Cursor position="836" topLine="61" />
 	</File>
 	<File name="bsdiff/bsdiff.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="8363" topLine="315" />
@@ -32,12 +32,12 @@
 		<Cursor position="1975" topLine="58" />
 	</File>
 	<File name="bsdiff/bzlib_private.h" open="0" top="0" tabpos="11">
-		<Cursor position="954" topLine="10" />
+		<Cursor position="1082" topLine="6" />
 	</File>
 	<File name="bsdiff/huffman.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="7099" topLine="167" />
 	</File>
-	<File name="c/c.h" open="1" top="0" tabpos="2">
+	<File name="c/c.h" open="0" top="0" tabpos="2">
 		<Cursor position="529" topLine="15" />
 	</File>
 	<File name="c/cpu_architecture.cpp" open="0" top="0" tabpos="0">
@@ -109,7 +109,7 @@
 	<File name="crypt/crypt.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1444" topLine="0" />
 	</File>
-	<File name="framework.h" open="1" top="0" tabpos="1">
+	<File name="framework.h" open="0" top="0" tabpos="1">
 		<Cursor position="7" topLine="0" />
 	</File>
 	<File name="hotplugin/hotplugin_host.cpp" open="0" top="0" tabpos="0">
@@ -125,7 +125,7 @@
 		<Cursor position="446" topLine="0" />
 	</File>
 	<File name="linux/c_os.h" open="0" top="0" tabpos="35">
-		<Cursor position="217" topLine="0" />
+		<Cursor position="74" topLine="0" />
 	</File>
 	<File name="linux/c_os_cross_win_file.cpp" open="0" top="0" tabpos="16">
 		<Cursor position="0" topLine="0" />
@@ -140,13 +140,19 @@
 		<Cursor position="928" topLine="0" />
 	</File>
 	<File name="linux/c_os_cross_win_gdi_internal.h" open="0" top="0" tabpos="1">
-		<Cursor position="0" topLine="61" />
+		<Cursor position="97" topLine="0" />
 	</File>
 	<File name="linux/c_os_file.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="54" topLine="0" />
 	</File>
 	<File name="linux/c_os_file.h" open="0" top="0" tabpos="0">
 		<Cursor position="121" topLine="0" />
+	</File>
+	<File name="linux/c_os_gdi.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="8489" topLine="549" />
+	</File>
+	<File name="linux/c_os_gdi.h" open="0" top="0" tabpos="21">
+		<Cursor position="1804" topLine="51" />
 	</File>
 	<File name="linux/c_os_http.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="1401" topLine="28" />
@@ -184,7 +190,7 @@
 	<File name="linux/c_os_small_ipc_channel.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="4007" topLine="245" />
 	</File>
-	<File name="linux/c_os_thread.cpp" open="1" top="0" tabpos="34">
+	<File name="linux/c_os_thread.cpp" open="0" top="0" tabpos="34">
 		<Cursor position="2810" topLine="123" />
 	</File>
 	<File name="linux/c_os_win_base.cpp" open="0" top="0" tabpos="0">
@@ -196,23 +202,23 @@
 	<File name="os/os_binreloc.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="7103" topLine="289" />
 	</File>
-	<File name="os/os_thread.cpp" open="1" top="0" tabpos="31">
+	<File name="os/os_thread.cpp" open="0" top="0" tabpos="31">
 		<Cursor position="24" topLine="0" />
 	</File>
-	<File name="os/os_thread.h" open="1" top="0" tabpos="32">
+	<File name="os/os_thread.h" open="0" top="0" tabpos="32">
 		<Cursor position="959" topLine="81" />
 	</File>
 	<File name="simple_ui/linux/c_os_simple_edit_box.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="3364" topLine="122" />
+		<Cursor position="77" topLine="0" />
 	</File>
 	<File name="simple_ui/linux/c_os_simple_label.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1039" topLine="8" />
+		<Cursor position="75" topLine="0" />
 	</File>
 	<File name="simple_ui/linux/c_os_simple_password.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="819" topLine="5" />
+		<Cursor position="79" topLine="0" />
 	</File>
 	<File name="simple_ui/linux/c_os_simple_tap.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="4023" topLine="136" />
+		<Cursor position="3250" topLine="114" />
 	</File>
 	<File name="simple_ui/simple_edit_box.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="484" topLine="21" />
@@ -260,10 +266,10 @@
 		<Cursor position="1230" topLine="39" />
 	</File>
 	<File name="spa/spa_window.cpp" open="0" top="0" tabpos="55">
-		<Cursor position="2780" topLine="107" />
+		<Cursor position="3012" topLine="106" />
 	</File>
 	<File name="spa/spa_window.h" open="0" top="0" tabpos="0">
-		<Cursor position="182" topLine="0" />
+		<Cursor position="1444" topLine="10" />
 	</File>
 	<File name="windows/c_os.h" open="0" top="0" tabpos="0">
 		<Cursor position="493" topLine="0" />

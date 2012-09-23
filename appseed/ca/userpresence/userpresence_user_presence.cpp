@@ -10,7 +10,7 @@ namespace userpresence
    {
       m_iShortStatusCynceTag = status_online;
    }
-      
+
    presence::~presence()
    {
    }
@@ -30,7 +30,7 @@ namespace userpresence
       {
          m_iShortStatusCynceTag = status_away;
       }*/
-      else 
+      else
       {
          m_iShortStatusCynceTag = status_offline;
       }
@@ -42,7 +42,7 @@ namespace userpresence
 
    void presence::pulse_user_presence()
    {
-         
+
       if(System.m_strAppName == "netnode" || System.m_strAppName == "simpledbcfg")
          return;
 
@@ -57,7 +57,7 @@ namespace userpresence
       }
 
       string strUrl = "https://" + strHost + "/i2com/pulse_user_presence";
-      System.url().set(strUrl, "short_status", gen::str::i64toa(m_iShortStatusCynceTag));
+      System.url().set(strUrl, "short_status", gen::str::from(m_iShortStatusCynceTag));
       System.url().set(strUrl, "long_status", m_strLongStatus);
       Application.http().get(strUrl);
    }

@@ -55,9 +55,9 @@ namespace dynamic_source
       strPath.replace(":\\", ".");
       strPath.replace("/", ".");
       strPath.replace("\\", ".");
-      
+
       return System.dir().path("C:\\netnode\\stage\\x64\\", strPath);
-      
+
    }
 
    bool ds_script::DoesMatchVersion()
@@ -251,15 +251,15 @@ namespace dynamic_source
          //}
          //::SetDllDirectory("C:\\netnode\\stage\\x64");
          string strStagePath = get_stage_path();
-         ::CopyFile(m_strScriptPath, strStagePath, FALSE);
+         ::file_copy_dup(strStagePath, m_strScriptPath, false);
          string str1 = m_strScriptPath;
          string str2 = strStagePath;
          gen::str::ends_eat_ci(str1, ".dll");
          gen::str::ends_eat_ci(str2, ".dll");
          str1 += ".pdb";
          str2 += ".pdb";
-         ::CopyFile(m_strScriptPath, strStagePath, FALSE);
-         ::CopyFile(str1, str2, FALSE);
+         ::file_copy_dup(strStagePath, m_strScriptPath, false);
+         ::file_copy_dup(str2, str1, false);
          m_library.open(strStagePath);
          if(m_library.is_closed())
          {
@@ -335,7 +335,7 @@ namespace dynamic_source
          m_library.close();
 
          string strStagePath = get_stage_path();
-         
+
 #ifdef WINDOWS
          HMODULE hmodule = ::GetModuleHandleW(gen::international::utf8_to_unicode("\\\\?\\" + strStagePath));
          bool b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + strStagePath), &hmodule) != FALSE;

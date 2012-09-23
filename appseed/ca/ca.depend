@@ -6246,7 +6246,7 @@
 	"fs_remote_native_fs.h"
 	"fs_application.h"
 
-1342864881 /ca2/app/appseed/ca/user/user.h
+1347621935 /ca2/app/appseed/ca/user/user.h
 	"ca/visual/visual.h"
 	"user_document_interface.h"
 	"user_document.h"
@@ -6615,7 +6615,7 @@
 	"ex1_simple_tree_item_data.h"
 	"ex1_simple_tree_data.h"
 
-1347149726 /ca2/app/appseed/ca/radix/radix.h
+1347621935 /ca2/app/appseed/ca/radix/radix.h
 	"app/appseed/ca/ca/ca.h"
 	<new.h>
 	<malloc/malloc.h>
@@ -6736,7 +6736,7 @@
 	"ca/primitive/count.h"
 	"ca/api/api.h"
 
-1346215872 /ca2/app/appseed/c/c/c.h
+1348405667 /ca2/app/appseed/c/c/c.h
 	"c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
 	"nodeapp/operational_system/_.h"
 	"c/vms/vms.h"
@@ -6756,7 +6756,7 @@
 	"atol.h"
 	"conv.h"
 	"heap.h"
-	"gdi.h"
+	"c_gdi.h"
 	"mem.h"
 	"_c_math.h"
 	"geometric_types.h"
@@ -6783,13 +6783,13 @@
 	"simple_critical_section.h"
 	"library.h"
 	"simple_memory.h"
+	"c/os/os.h"
 	"base64.h"
 	"c/hotplugin/hotplugin.h"
 	"c/simple_ui/simple_ui.h"
 	"c/crypt/crypt.h"
 	"c/spa/spa.h"
 	"c/bsdiff/bsdiff.h"
-	"c/os/os.h"
 	"message_loop.h"
 	"url.h"
 	"international.h"
@@ -6933,7 +6933,7 @@
 
 1345878529 /ca2/nodeapp/operational_system/cross/win/win_error.h
 
-1347011146 /ca2/nodeapp/operational_system/cross/win/win_base.h
+1348414525 /ca2/nodeapp/operational_system/cross/win/win_base.h
 
 1347208666 /ca2/nodeapp/operational_system/cross/win/win_gdi.h
 
@@ -6981,7 +6981,7 @@
 
 1342864685 /ca2/app/appseed/c/c/keep_true.h
 
-1346980273 /ca2/app/appseed/c/c/debug.h
+1347621934 /ca2/app/appseed/c/c/debug.h
 
 1342864685 /ca2/app/appseed/c/c/printf.h
 
@@ -7014,7 +7014,7 @@
 
 1347082799 /ca2/app/appseed/c/c/wstringtovss.h
 
-1347082799 /ca2/app/appseed/c/c/dir.h
+1348390790 /ca2/app/appseed/c/c/dir.h
 
 1342864685 /ca2/app/appseed/c/c/md5.h
 
@@ -7038,7 +7038,7 @@
 
 1342864685 /ca2/app/appseed/c/c/simple_shell_launcher.h
 
-1347032267 /ca2/app/appseed/c/c/small_ipc_channel.h
+1348390790 /ca2/app/appseed/c/c/small_ipc_channel.h
 	<pthread.h>
 	<pthread.h>
 	"simple_mutex.h"
@@ -7065,25 +7065,25 @@
 	"hotplugin_host.h"
 	"hotplugin_container_launcher.h"
 
-1347026281 /ca2/app/appseed/c/hotplugin/hotplugin_plugin.h
+1348390791 /ca2/app/appseed/c/hotplugin/hotplugin_plugin.h
 
-1342864694 /ca2/app/appseed/c/hotplugin/hotplugin_host.h
+1348390791 /ca2/app/appseed/c/hotplugin/hotplugin_host.h
 
 1342864694 /ca2/app/appseed/c/hotplugin/hotplugin_container_launcher.h
 
-1346980274 /ca2/app/appseed/c/simple_ui/simple_ui.h
+1348390790 /ca2/app/appseed/c/simple_ui/simple_ui.h
 	"simple_edit_box.h"
 	"simple_label.h"
 	"simple_password.h"
 	"simple_tap.h"
 
-1342864685 /ca2/app/appseed/c/simple_ui/simple_edit_box.h
+1348390790 /ca2/app/appseed/c/simple_ui/simple_edit_box.h
 
-1342864685 /ca2/app/appseed/c/simple_ui/simple_label.h
+1348390790 /ca2/app/appseed/c/simple_ui/simple_label.h
 
-1342864685 /ca2/app/appseed/c/simple_ui/simple_password.h
+1348390790 /ca2/app/appseed/c/simple_ui/simple_password.h
 
-1346980274 /ca2/app/appseed/c/simple_ui/simple_tap.h
+1348390790 /ca2/app/appseed/c/simple_ui/simple_tap.h
 
 1342864693 /ca2/app/appseed/c/crypt/crypt.h
 	"nessie.h"
@@ -7126,9 +7126,9 @@
 
 1342864658 /ca2/app/appseed/c/spa/spa_install_ca2.h
 
-1342864658 /ca2/app/appseed/c/spa/spa_canvas.h
+1348390788 /ca2/app/appseed/c/spa/spa_canvas.h
 
-1342864658 /ca2/app/appseed/c/spa/spa_window.h
+1348390788 /ca2/app/appseed/c/spa/spa_window.h
 
 1342864658 /ca2/app/appseed/c/spa/spa_trace.h
 
@@ -7136,7 +7136,7 @@
 
 1342864658 /ca2/app/appseed/c/spa/spa_machine_event.h
 
-1345878349 /ca2/app/appseed/c/spa/spa_installer.h
+1347621934 /ca2/app/appseed/c/spa/spa_installer.h
 
 1342864658 /ca2/app/appseed/c/spa/resource.h
 
@@ -7146,7 +7146,7 @@
 
 1346980272 /ca2/app/appseed/c/spa/spa_login.h
 
-1347033539 /ca2/app/appseed/c/spa/spa_plugin.h
+1348390788 /ca2/app/appseed/c/spa/spa_plugin.h
 	"c/os/os.h"
 
 1347166164 /ca2/app/appseed/c/os/os.h
@@ -7161,7 +7161,7 @@
 	"c/merdes_windows/windows_merde.h"
 	"c/windows/c_os.h"
 
-1347136330 /ca2/app/appseed/c/os/os_thread.h
+1347621934 /ca2/app/appseed/c/os/os_thread.h
 
 1342864656 /ca2/app/appseed/c/os/os_process.h
 
@@ -7178,7 +7178,7 @@
 
 1342864676 /ca2/app/appseed/c/macos/c_os_http_lib.h
 
-1342864676 /ca2/app/appseed/c/macos/c_os_http.h
+1347621934 /ca2/app/appseed/c/macos/c_os_http.h
 
 1347166164 /ca2/app/appseed/c/macos/c_os_process.h
 
@@ -7186,9 +7186,10 @@
 
 1342864676 /ca2/app/appseed/c/macos/c_os_cross_win_file.h
 
-1347136453 /ca2/app/appseed/c/linux/c_os.h
+1348391537 /ca2/app/appseed/c/linux/c_os.h
 	<stdarg.h>
 	<wchar.h>
+	"c_os_gdi.h"
 	"c_os_http_lib.h"
 	"c_os_http.h"
 	"c_os_process.h"
@@ -7198,7 +7199,7 @@
 
 1342864691 /ca2/app/appseed/c/linux/c_os_http_lib.h
 
-1342864691 /ca2/app/appseed/c/linux/c_os_http.h
+1347621934 /ca2/app/appseed/c/linux/c_os_http.h
 
 1347029212 /ca2/app/appseed/c/linux/c_os_process.h
 
@@ -7206,18 +7207,27 @@
 
 1342864691 /ca2/app/appseed/c/linux/c_os_cross_win_file.h
 
-1347166164 /ca2/app/appseed/c/merdes_windows/windows_merde.h
-	"c_os_thread.h"
-
-1347166164 /ca2/app/appseed/c/windows/c_os.h
+1348390788 /ca2/app/appseed/c/merdes_windows/windows_merde.h
 	"c/os/os.h"
+	"c_os_thread.h"
 	"c_os_http.h"
 	"c_os_registry.h"
 	"c_os_process.h"
 	"c_os_simple_hold_handle.h"
 	"c_os_file.h"
+	"c_os_graphics_round_rect.h"
 
-1342864659 /ca2/app/appseed/c/windows/c_os_http.h
+1348390788 /ca2/app/appseed/c/windows/c_os.h
+	"c/os/os.h"
+	"c_os_gdi.h"
+	"c_os_http.h"
+	"c_os_registry.h"
+	"c_os_process.h"
+	"c_os_simple_hold_handle.h"
+	"c_os_file.h"
+	"c_os_graphics_round_rect.h"
+
+1347621934 /ca2/app/appseed/c/windows/c_os_http.h
 
 1342864659 /ca2/app/appseed/c/windows/c_os_registry.h
 
@@ -7502,7 +7512,7 @@
 
 1345878354 /ca2/app/appseed/ca/radix/radix_plex_heap.h
 
-1342864717 /ca2/app/appseed/ca/radix/radix_fixed_alloc.h
+1347754848 /ca2/app/appseed/ca/radix/radix_fixed_alloc.h
 
 1342864855 /ca2/app/appseed/ca/primitive/primitive_simple_string.h
 	"wstringtou.h"
@@ -7520,15 +7530,17 @@
 
 1342864850 /ca2/app/appseed/ca/x/x_tables.h
 
-1342864726 /ca2/app/appseed/ca/gen/gen_str.h
+1348427771 /ca2/app/appseed/ca/gen/gen_str.h
+	"gen_strn.h"
+	"gen_hex.h"
 
-1342864855 /ca2/app/appseed/ca/primitive/primitive_id.h
+1348427704 /ca2/app/appseed/ca/primitive/primitive_id.h
 
 1342864855 /ca2/app/appseed/ca/primitive/primitive_string_format.h
 
 1342864855 /ca2/app/appseed/ca/primitive/primitive_fixed_string.h
 
-1347111402 /ca2/app/appseed/ca/primitive/primitive_string.h
+1348427807 /ca2/app/appseed/ca/primitive/primitive_string.h
 	<strings.h>
 	"x/x_charcategory.h"
 	"gen/gen_bit.h"
@@ -7551,7 +7563,7 @@
 
 1342864726 /ca2/app/appseed/ca/gen/gen_international.h
 
-1342864726 /ca2/app/appseed/ca/gen/gen_str2.h
+1348428020 /ca2/app/appseed/ca/gen/gen_str2.h
 	<string.h>
 
 1342864853 /ca2/app/appseed/ca/primitive/datetime/datetime_time.h
@@ -7560,15 +7572,15 @@
 
 1342864726 /ca2/app/appseed/ca/gen/gen_equals.h
 
-1347035301 /ca2/app/appseed/ca/gen/gen_compare.h
+1348390791 /ca2/app/appseed/ca/gen/gen_compare.h
 
-1345878355 /ca2/app/appseed/ca/gen/gen_less.h
+1348390791 /ca2/app/appseed/ca/gen/gen_less.h
 
 1342864726 /ca2/app/appseed/ca/gen/gen_template.h
 
 1345878356 /ca2/app/appseed/ca/collection/collection_base_array.h
 
-1347168568 /ca2/app/appseed/ca/ca/ca_smart_pointer.h
+1348412509 /ca2/app/appseed/ca/ca/ca_smart_pointer.h
 
 1342864717 /ca2/app/appseed/ca/radix/radix.inl
 
@@ -7647,10 +7659,10 @@
 
 1342864809 /ca2/app/appseed/ca/collection/collection_comparable_primitive_array.h
 
-1342864814 /ca2/app/appseed/ca/ex1/ex1_byte_serializable.h
+1348390792 /ca2/app/appseed/ca/ex1/ex1_byte_serializable.h
 	"ex1_byte_stream.h"
 
-1342864814 /ca2/app/appseed/ca/ex1/ex1_byte_stream.h
+1348412728 /ca2/app/appseed/ca/ex1/ex1_byte_stream.h
 	"ex1_reader.h"
 	"ex1_writer.h"
 	"ex1_stream.h"
@@ -7669,7 +7681,7 @@
 
 1342864809 /ca2/app/appseed/ca/collection/collection_primitive_array.h
 
-1342864809 /ca2/app/appseed/ca/collection/collection_numeric_array.h
+1348427618 /ca2/app/appseed/ca/collection/collection_numeric_array.h
 
 1342864809 /ca2/app/appseed/ca/collection/collection_logic_array.h
 
@@ -7711,7 +7723,7 @@
 
 1347035410 /ca2/app/appseed/ca/collection/collection_fifo_map.h
 
-1347035535 /ca2/app/appseed/ca/collection/collection_sort_map.h
+1348390792 /ca2/app/appseed/ca/collection/collection_sort_map.h
 
 1342864809 /ca2/app/appseed/ca/collection/collection_pointer_list.h
 
@@ -7729,11 +7741,11 @@
 
 1342864726 /ca2/app/appseed/ca/gen/gen_variable_strict_compare.h
 
-1347107029 /ca2/app/appseed/ca/primitive/primitive_var.h
+1348427618 /ca2/app/appseed/ca/primitive/primitive_var.h
 
 1342864726 /ca2/app/appseed/ca/gen/gen_var.h
 
-1342864809 /ca2/app/appseed/ca/collection/collection_stringa.h
+1348390792 /ca2/app/appseed/ca/collection/collection_stringa.h
 
 1342864726 /ca2/app/appseed/ca/gen/gen_var_array.h
 
@@ -7783,7 +7795,7 @@
 
 1342864737 /ca2/app/appseed/ca/ca/ca_interlocked_long_pulse.h
 
-1342864784 /ca2/app/appseed/ca/multithreading/multithreading.h
+1347621936 /ca2/app/appseed/ca/multithreading/multithreading.h
 	"multithreading_sync_object.h"
 	"multithreading_event_base.h"
 	"multithreading_event_collection.h"
@@ -7797,6 +7809,7 @@
 	"multithreading_retry_single_lock.h"
 	"multithreading_synch_lock.h"
 	"multithreading_multi_lock.h"
+	"multithreading_retry_multi_lock.h"
 	"multithreading.inl"
 	"multithreading_manual_reset_event.h"
 	<Winsvc.h>
@@ -7843,9 +7856,9 @@
 
 1342864784 /ca2/app/appseed/ca/multithreading/multithreading_plain_service.h
 
-1342864737 /ca2/app/appseed/ca/ca/ca_data.h
+1347621935 /ca2/app/appseed/ca/ca/ca_data.h
 
-1342864737 /ca2/app/appseed/ca/ca/ca_data_container.h
+1348390791 /ca2/app/appseed/ca/ca/ca_data_container.h
 
 1342864737 /ca2/app/appseed/ca/ca/ca_data_listener.h
 
@@ -7897,10 +7910,10 @@
 
 1342864737 /ca2/app/appseed/ca/ca/ca_dib.h
 
-1342864737 /ca2/app/appseed/ca/ca/ca_draw_dib.h
+1348390791 /ca2/app/appseed/ca/ca/ca_draw_dib.h
 	<vfw.h>
 
-1347219444 /ca2/app/appseed/ca/ca/ca_graphics.h
+1348390791 /ca2/app/appseed/ca/ca/ca_graphics.h
 	"user/user_draw_context.h"
 	"ca_bitmap.h"
 	"ca_pen.h"
@@ -7925,7 +7938,7 @@
 	"ca/user/user_create_context.h"
 	"ca/user/user_check_interface.h"
 
-1347196786 /ca2/app/appseed/ca/gen/gen_message.h
+1348417844 /ca2/app/appseed/ca/gen/gen_message.h
 
 1342864881 /ca2/app/appseed/ca/user/user_create_context.h
 	"ca/ca_type_info.h"
@@ -7984,7 +7997,7 @@
 
 1347197933 /ca2/app/appseed/ca/user/user_virtual_user_interface.h
 
-1342864830 /ca2/app/appseed/ca/database/database_id.h
+1348427828 /ca2/app/appseed/ca/database/database_id.h
 
 1342864830 /ca2/app/appseed/ca/database/database_key.h
 
@@ -8016,9 +8029,9 @@
 
 1342864737 /ca2/app/appseed/ca/ca/ca_live_signal.h
 
-1347219478 /ca2/app/appseed/ca/ca/ca_thread.h
+1347621935 /ca2/app/appseed/ca/ca/ca_thread.h
 
-1347219492 /ca2/app/appseed/ca/radix/radix_thread.h
+1347621935 /ca2/app/appseed/ca/radix/radix_thread.h
 
 1342864737 /ca2/app/appseed/ca/ca/ca_history.h
 
@@ -8068,7 +8081,7 @@
 
 1342864786 /ca2/app/appseed/ca/os/os_cross_windows_guid_def.h
 
-1342864786 /ca2/app/appseed/ca/os/os_cross_windows_internals.h
+1348413662 /ca2/app/appseed/ca/os/os_cross_windows_internals.h
 
 1342864786 /ca2/app/appseed/ca/os/os_cross_windows_winnt.h
 
@@ -8335,7 +8348,7 @@
 
 1342864726 /ca2/app/appseed/ca/gen/gen_command_line.h
 
-1347620976 /ca2/app/appseed/ca/gen/gen_command_thread.h
+1347621935 /ca2/app/appseed/ca/gen/gen_command_thread.h
 
 1342864726 /ca2/app/appseed/ca/gen/gen_base64.h
 
@@ -8448,7 +8461,7 @@
 
 1342864831 /ca2/app/appseed/ca/html/html_lite/html_lite_html_entity_resolver.h
 
-1347044996 /ca2/app/appseed/ca/html/html_lite/html_lite_html_reader.h
+1348427618 /ca2/app/appseed/ca/html/html_lite/html_lite_html_reader.h
 
 1342864831 /ca2/app/appseed/ca/html/html_lite/html_lite_html_tag.h
 
@@ -8462,9 +8475,9 @@
 
 1342864737 /ca2/app/appseed/ca/ca/ca_file_system.h
 
-1342864737 /ca2/app/appseed/ca/ca/ca_dir_application.h
+1348390791 /ca2/app/appseed/ca/ca/ca_dir_application.h
 
-1342864737 /ca2/app/appseed/ca/ca/ca_dir_system.h
+1348390791 /ca2/app/appseed/ca/ca/ca_dir_system.h
 
 1342864833 /ca2/app/appseed/ca/ca2/ca2_stra.h
 
@@ -8662,7 +8675,7 @@
 
 1342864744 /ca2/app/appseed/ca/colorertake5/outliner.h
 
-1342864745 /ca2/app/appseed/ca/colorertake5/application.h
+1347621935 /ca2/app/appseed/ca/colorertake5/application.h
 
 1342864841 /ca2/app/appseed/ca/crypto/crypto.h
 	"crypto_err.h"
@@ -9196,7 +9209,7 @@
 
 1342864871 /ca2/app/appseed/ca/sockets/basic/socket_handler.h
 
-1347129837 /ca2/app/appseed/ca/sockets/basic/listen_socket.h
+1348427845 /ca2/app/appseed/ca/sockets/basic/listen_socket.h
 	<stdlib.h>
 	<errno.h>
 
@@ -9364,7 +9377,7 @@
 
 1342864830 /ca2/app/appseed/ca/database/database_server.h
 
-1342864830 /ca2/app/appseed/ca/database/database_application.h
+1347621936 /ca2/app/appseed/ca/database/database_application.h
 
 1342864703 /ca2/app/appseed/ca/simpledb/simpledb_set.h
 
@@ -9396,16 +9409,16 @@
 
 1342864703 /ca2/app/appseed/ca/simpledb/veiev_post.h
 
-1342864703 /ca2/app/appseed/ca/simpledb/db_long_set.h
+1347754848 /ca2/app/appseed/ca/simpledb/db_long_set.h
 
 1342864703 /ca2/app/appseed/ca/simpledb/db_stra_set.h
 	"ca/database/database_id.h"
 
-1342864703 /ca2/app/appseed/ca/simpledb/db_str_set.h
+1347754848 /ca2/app/appseed/ca/simpledb/db_str_set.h
 
-1342864703 /ca2/app/appseed/ca/simpledb/file_set.h
+1348390791 /ca2/app/appseed/ca/simpledb/file_set.h
 
-1342864703 /ca2/app/appseed/ca/simpledb/db_server.h
+1347754848 /ca2/app/appseed/ca/simpledb/db_server.h
 
 1342864703 /ca2/app/appseed/ca/simpledb/DBFileSystemSize.h
 
@@ -9466,13 +9479,13 @@
 
 1342864829 /ca2/app/appseed/ca/visual/visual_application.h
 
-1347163784 /ca2/app/appseed/ca/user/user_document_interface.h
+1347621935 /ca2/app/appseed/ca/user/user_document_interface.h
 
-1342864881 /ca2/app/appseed/ca/user/user_document.h
+1347621935 /ca2/app/appseed/ca/user/user_document.h
 
-1342864881 /ca2/app/appseed/ca/user/user_view.h
+1347621935 /ca2/app/appseed/ca/user/user_view.h
 
-1347162999 /ca2/app/appseed/ca/user/user_control.h
+1348390795 /ca2/app/appseed/ca/user/user_control.h
 
 1342864881 /ca2/app/appseed/ca/user/user_place_holder.h
 
@@ -9518,7 +9531,7 @@
 
 1342864881 /ca2/app/appseed/ca/user/user_view_container.h
 
-1342864881 /ca2/app/appseed/ca/user/user_view_creator.h
+1348390795 /ca2/app/appseed/ca/user/user_view_creator.h
 
 1342864881 /ca2/app/appseed/ca/user/user_job.h
 
@@ -9566,7 +9579,7 @@
 
 1342864875 /ca2/app/appseed/ca/fontopus/fontopus_license.h
 
-1342864875 /ca2/app/appseed/ca/fontopus/fontopus_validate.h
+1348390793 /ca2/app/appseed/ca/fontopus/fontopus_validate.h
 
 1342864875 /ca2/app/appseed/ca/fontopus/fontopus_application.h
 
@@ -9578,7 +9591,7 @@
 
 1342864849 /ca2/app/appseed/ca/dynamic_source/dynamic_source_script_instance.h
 
-1342864849 /ca2/app/appseed/ca/dynamic_source/dynamic_source_script.h
+1347754848 /ca2/app/appseed/ca/dynamic_source/dynamic_source_script.h
 
 1342864849 /ca2/app/appseed/ca/dynamic_source/dynamic_source_script_cache.h
 
@@ -9602,12 +9615,12 @@
 
 1342864700 /ca2/app/appseed/ca/plane/plane_session.h
 
-1347165543 /ca2/app/appseed/ca/plane/plane_system.h
+1348390791 /ca2/app/appseed/ca/plane/plane_system.h
 	"ca/collection/collection_gen_lemon_array.h"
 
 1342864809 /ca2/app/appseed/ca/collection/collection_gen_lemon_array.h
 
-1342864700 /ca2/app/appseed/ca/plane/plane_system_gen_str.h
+1348427618 /ca2/app/appseed/ca/plane/plane_system_gen_str.h
 
 1342864700 /ca2/app/appseed/ca/plane/plane_system_primitive_var.h
 
@@ -9644,7 +9657,7 @@
 
 1342864820 /ca2/app/appseed/ca/plugin/plugin_instance.h
 
-1342864943 /ca2/app/appseed/optca/optca.h
+1348412831 /ca2/app/appseed/optca/optca.h
 	"c/c/c.h"
 
 1342864856 source:/ca2/app/appseed/ca/api/api_muldiv64.cpp
@@ -9694,7 +9707,7 @@
 1342864737 source:/ca2/app/appseed/ca/ca/ca_data.cpp
 	"framework.h"
 
-1342864737 source:/ca2/app/appseed/ca/ca/ca_data_container.cpp
+1347621935 source:/ca2/app/appseed/ca/ca/ca_data_container.cpp
 	"framework.h"
 
 1342864737 source:/ca2/app/appseed/ca/ca/ca_data_listener.cpp
@@ -9704,10 +9717,10 @@
 	"framework.h"
 	<math.h>
 
-1342864737 source:/ca2/app/appseed/ca/ca/ca_dir_application.cpp
+1348390791 source:/ca2/app/appseed/ca/ca/ca_dir_application.cpp
 	"framework.h"
 
-1342864737 source:/ca2/app/appseed/ca/ca/ca_dir_system.cpp
+1348390791 source:/ca2/app/appseed/ca/ca/ca_dir_system.cpp
 	"framework.h"
 
 1342864737 source:/ca2/app/appseed/ca/ca/ca_draw_dib.cpp
@@ -9719,7 +9732,7 @@
 1342864737 source:/ca2/app/appseed/ca/ca/ca_exception.cpp
 	"framework.h"
 
-1342864737 source:/ca2/app/appseed/ca/ca/ca_file_application.cpp
+1347621935 source:/ca2/app/appseed/ca/ca/ca_file_application.cpp
 	"framework.h"
 
 1346980282 source:/ca2/app/appseed/ca/ca/ca_file_system.cpp
@@ -9796,10 +9809,10 @@
 1342864737 source:/ca2/app/appseed/ca/ca/ca_system.cpp
 	"framework.h"
 
-1347219655 source:/ca2/app/appseed/ca/ca/ca_thread.cpp
+1347621935 source:/ca2/app/appseed/ca/ca/ca_thread.cpp
 	"framework.h"
 
-1347167790 source:/ca2/app/appseed/ca/ca/ca_type_info.cpp
+1347621935 source:/ca2/app/appseed/ca/ca/ca_type_info.cpp
 	"framework.h"
 
 1347221754 source:/ca2/app/appseed/ca/ca/ca_window.cpp
@@ -9808,10 +9821,10 @@
 1342864737 source:/ca2/app/appseed/ca/ca/ca_window_draw.cpp
 	"framework.h"
 
-1346980286 source:/ca2/app/appseed/ca/ca2/ca2_application.cpp
+1347621936 source:/ca2/app/appseed/ca/ca2/ca2_application.cpp
 	"framework.h"
 
-1342864833 source:/ca2/app/appseed/ca/ca2/ca2_datetime.cpp
+1348427901 source:/ca2/app/appseed/ca/ca2/ca2_datetime.cpp
 	"framework.h"
 
 1342864833 source:/ca2/app/appseed/ca/ca2/ca2_library.cpp
@@ -9820,7 +9833,7 @@
 1342864833 source:/ca2/app/appseed/ca/ca2/ca2_log.cpp
 	"framework.h"
 
-1347133745 source:/ca2/app/appseed/ca/ca2/ca2_net.cpp
+1348427912 source:/ca2/app/appseed/ca/ca2/ca2_net.cpp
 	"framework.h"
 	<ctype.h>
 	<sys/socket.h>
@@ -10109,7 +10122,7 @@
 1342864835 source:/ca2/app/appseed/ca/ca4/ca4_email.cpp
 	"framework.h"
 
-1342864835 source:/ca2/app/appseed/ca/ca4/ca4_file.cpp
+1348427618 source:/ca2/app/appseed/ca/ca4/ca4_file.cpp
 	"framework.h"
 	<openssl/ssl.h>
 	<openssl/md5.h>
@@ -10117,13 +10130,13 @@
 1342864835 source:/ca2/app/appseed/ca/ca4/ca4_http.cpp
 	"framework.h"
 
-1342864835 source:/ca2/app/appseed/ca/ca4/ca4_http_application.cpp
+1347621936 source:/ca2/app/appseed/ca/ca4/ca4_http_application.cpp
 	"framework.h"
 
 1342864835 source:/ca2/app/appseed/ca/ca4/ca4_http_get_socket.cpp
 	"framework.h"
 
-1342864835 source:/ca2/app/appseed/ca/ca4/ca4_http_system.cpp
+1348428020 source:/ca2/app/appseed/ca/ca4/ca4_http_system.cpp
 	"framework.h"
 
 1342864835 source:/ca2/app/appseed/ca/ca4/ca4_ip_enum.cpp
@@ -10235,7 +10248,7 @@
 1342864809 source:/ca2/app/appseed/ca/collection/sort.cpp
 	"framework.h"
 
-1342864809 source:/ca2/app/appseed/ca/collection/string_array.cpp
+1348428098 source:/ca2/app/appseed/ca/collection/string_array.cpp
 	"framework.h"
 
 1342864809 source:/ca2/app/appseed/ca/collection/string_sort_array.cpp
@@ -10244,7 +10257,7 @@
 1342864809 source:/ca2/app/appseed/ca/collection/string_to_string_map.cpp
 	"framework.h"
 
-1342864809 source:/ca2/app/appseed/ca/collection/stringa.cpp
+1348390792 source:/ca2/app/appseed/ca/collection/stringa.cpp
 	"framework.h"
 
 1342864809 source:/ca2/app/appseed/ca/collection/stringl.cpp
@@ -10469,7 +10482,7 @@
 1342864805 source:/ca2/app/appseed/ca/compress/compress_method_properties.cpp
 	"framework.h"
 
-1342864805 source:/ca2/app/appseed/ca/compress/compress_out_handler.cpp
+1348428121 source:/ca2/app/appseed/ca/compress/compress_out_handler.cpp
 	"framework.h"
 	"../../../Windows/PropVariant.h"
 	"../../../Windows/System.h"
@@ -10726,7 +10739,7 @@
 1342864830 source:/ca2/app/appseed/ca/database/database_selection_item.cpp
 	"framework.h"
 
-1342864830 source:/ca2/app/appseed/ca/database/database_server.cpp
+1348390793 source:/ca2/app/appseed/ca/database/database_server.cpp
 	"framework.h"
 
 1342864830 source:/ca2/app/appseed/ca/database/database_set.cpp
@@ -10750,14 +10763,14 @@
 1347051177 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_library_class.cpp
 	"framework.h"
 
-1347051220 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script.cpp
+1348427618 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script.cpp
 	"framework.h"
 	<dlfcn.h>
 
 1342864849 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_cache.cpp
 	"framework.h"
 
-1347051361 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_compiler.cpp
+1348428147 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_compiler.cpp
 	"framework.h"
 	<ctype.h>
 
@@ -10777,7 +10790,7 @@
 1342864814 source:/ca2/app/appseed/ca/ex1/ex1_byte_serializable.cpp
 	"framework.h"
 
-1342864814 source:/ca2/app/appseed/ca/ex1/ex1_byte_stream.cpp
+1348427618 source:/ca2/app/appseed/ca/ex1/ex1_byte_stream.cpp
 	"framework.h"
 	"FindSignature.h"
 	"../../Common/StreamUtils.h"
@@ -10791,7 +10804,7 @@
 1342864814 source:/ca2/app/appseed/ca/ex1/ex1_dynamic_buffered_writer.cpp
 	"framework.h"
 
-1347080799 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_manager.cpp
+1347754848 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_manager.cpp
 	"framework.h"
 	<openssl/ssl.h>
 	<sys/inotify.h>
@@ -10857,7 +10870,7 @@
 1342864814 source:/ca2/app/appseed/ca/ex1/ex1_plain_text_serializable.cpp
 	"framework.h"
 
-1342864814 source:/ca2/app/appseed/ca/ex1/ex1_plain_text_stream.cpp
+1348428168 source:/ca2/app/appseed/ca/ex1/ex1_plain_text_stream.cpp
 	"framework.h"
 
 1342864814 source:/ca2/app/appseed/ca/ex1/ex1_reader.cpp
@@ -11071,7 +11084,7 @@
 1342864782 source:/ca2/app/appseed/ca/filehandler/filehandler_tree_item.cpp
 	"framework.h"
 
-1342864875 source:/ca2/app/appseed/ca/fontopus/fontopus_application.cpp
+1347621936 source:/ca2/app/appseed/ca/fontopus/fontopus_application.cpp
 	"framework.h"
 
 1342864875 source:/ca2/app/appseed/ca/fontopus/fontopus_contact_list.cpp
@@ -11083,7 +11096,7 @@
 1342864875 source:/ca2/app/appseed/ca/fontopus/fontopus_license.cpp
 	"framework.h"
 
-1345878359 source:/ca2/app/appseed/ca/fontopus/fontopus_user.cpp
+1347621936 source:/ca2/app/appseed/ca/fontopus/fontopus_user.cpp
 	"framework.h"
 
 1342864875 source:/ca2/app/appseed/ca/fontopus/fontopus_user_set.cpp
@@ -11092,7 +11105,7 @@
 1342864875 source:/ca2/app/appseed/ca/fontopus/fontopus_usera.cpp
 	"framework.h"
 
-1345878359 source:/ca2/app/appseed/ca/fontopus/fontopus_validate.cpp
+1348428185 source:/ca2/app/appseed/ca/fontopus/fontopus_validate.cpp
 	"framework.h"
 	<openssl/rsa.h>
 	<openssl/engine.h>
@@ -11224,7 +11237,7 @@
 1345878355 source:/ca2/app/appseed/ca/gen/gen_command_line.cpp
 	"framework.h"
 
-1342864726 source:/ca2/app/appseed/ca/gen/gen_cregexp.cpp
+1348428211 source:/ca2/app/appseed/ca/gen/gen_cregexp.cpp
 	"framework.h"
 
 1342864726 source:/ca2/app/appseed/ca/gen/gen_cregexp_util.cpp
@@ -11246,7 +11259,7 @@
 	"framework.h"
 	<winnls.h>
 
-1346980276 source:/ca2/app/appseed/ca/gen/gen_international_locale_schema.cpp
+1348390791 source:/ca2/app/appseed/ca/gen/gen_international_locale_schema.cpp
 	"framework.h"
 
 1342864726 source:/ca2/app/appseed/ca/gen/gen_istring.cpp
@@ -11268,7 +11281,7 @@
 1342864726 source:/ca2/app/appseed/ca/gen/gen_memory.cpp
 	"framework.h"
 
-1347226535 source:/ca2/app/appseed/ca/gen/gen_message.cpp
+1348417642 source:/ca2/app/appseed/ca/gen/gen_message.cpp
 	"framework.h"
 	<X11/Xlib.h>
 	<X11/Xutil.h>
@@ -11298,7 +11311,7 @@
 	"framework.h"
 	<sys/wait.h>
 
-1345878355 source:/ca2/app/appseed/ca/gen/gen_property.cpp
+1348428281 source:/ca2/app/appseed/ca/gen/gen_property.cpp
 	"framework.h"
 	<ctype.h>
 
@@ -11318,7 +11331,7 @@
 1342864726 source:/ca2/app/appseed/ca/gen/gen_simple_thread.cpp
 	"framework.h"
 
-1346980276 source:/ca2/app/appseed/ca/gen/gen_str.cpp
+1348428827 source:/ca2/app/appseed/ca/gen/gen_str.cpp
 	"framework.h"
 	<ctype.h>
 
@@ -11375,7 +11388,7 @@
 1346980284 source:/ca2/app/appseed/ca/install/install_install.cpp
 	"framework.h"
 
-1345878357 source:/ca2/app/appseed/ca/javascript/javascript.cpp
+1348429707 source:/ca2/app/appseed/ca/javascript/javascript.cpp
 	"framework.h"
 
 1342864834 source:/ca2/app/appseed/ca/javascript/javascript_functions.cpp
@@ -11605,13 +11618,13 @@
 1342864842 source:/ca2/app/appseed/ca/mail/mail_pop3.cpp
 	"framework.h"
 
-1347046763 source:/ca2/app/appseed/ca/html/html_lite/html_lite_html_attributes.cpp
+1347621936 source:/ca2/app/appseed/ca/html/html_lite/html_lite_html_attributes.cpp
 	"framework.h"
 
 1347046763 source:/ca2/app/appseed/ca/html/html_lite/html_lite_html_entity_resolver.cpp
 	"framework.h"
 
-1347046763 source:/ca2/app/appseed/ca/html/html_lite/html_lite_html_tag.cpp
+1347621936 source:/ca2/app/appseed/ca/html/html_lite/html_lite_html_tag.cpp
 	"framework.h"
 
 1342864842 source:/ca2/app/appseed/ca/mail/mail_pop3_socket.cpp
@@ -11667,7 +11680,7 @@
 1342864784 source:/ca2/app/appseed/ca/multithreading/multithreading_manual_reset_event.cpp
 	"framework.h"
 
-1342864784 source:/ca2/app/appseed/ca/multithreading/multithreading_multi_lock.cpp
+1347621936 source:/ca2/app/appseed/ca/multithreading/multithreading_multi_lock.cpp
 	"framework.h"
 
 1347137897 source:/ca2/app/appseed/ca/html/html_lite/html_lite_html_reader.cpp
@@ -11720,10 +11733,10 @@
 1342864700 source:/ca2/app/appseed/ca/plane/plane_library.cpp
 	"framework.h"
 
-1347165467 source:/ca2/app/appseed/ca/plane/plane_session.cpp
+1348390791 source:/ca2/app/appseed/ca/plane/plane_session.cpp
 	"framework.h"
 
-1346980275 source:/ca2/app/appseed/ca/planebase/planebase_application.cpp
+1347621935 source:/ca2/app/appseed/ca/planebase/planebase_application.cpp
 	"framework.h"
 
 1342864820 source:/ca2/app/appseed/ca/plugin/plugin_history.cpp
@@ -11742,7 +11755,7 @@
 1342864820 source:/ca2/app/appseed/ca/plugin/plugin_system.cpp
 	"framework.h"
 
-1342864853 source:/ca2/app/appseed/ca/primitive/datetime/datetime_calendar.cpp
+1348429726 source:/ca2/app/appseed/ca/primitive/datetime/datetime_calendar.cpp
 	"framework.h"
 
 1342864853 source:/ca2/app/appseed/ca/primitive/datetime/datetime_calendar_interface.cpp
@@ -11780,7 +11793,7 @@
 1342864855 source:/ca2/app/appseed/ca/primitive/primitive_geometric_types.cpp
 	"framework.h"
 
-1342864855 source:/ca2/app/appseed/ca/primitive/primitive_id.cpp
+1348427618 source:/ca2/app/appseed/ca/primitive/primitive_id.cpp
 	"framework.h"
 
 1347226534 source:/ca2/app/appseed/ca/multithreading/multithreading_sync_objec.cpp
@@ -11823,7 +11836,7 @@
 	<fcntl.h>
 	<sys/mman.h>
 
-1347052990 source:/ca2/app/appseed/ca/plane/plane_system.cpp
+1348390791 source:/ca2/app/appseed/ca/plane/plane_system.cpp
 	"framework.h"
 	<GdiPlus.h>
 
@@ -11848,7 +11861,7 @@
 1342864855 source:/ca2/app/appseed/ca/primitive/primitive_size.cpp
 	"framework.h"
 
-1342864855 source:/ca2/app/appseed/ca/primitive/primitive_string_core.cpp
+1348427618 source:/ca2/app/appseed/ca/primitive/primitive_string_core.cpp
 	"framework.h"
 
 1342864855 source:/ca2/app/appseed/ca/primitive/primitive_string_manager.cpp
@@ -11889,12 +11902,12 @@
 1342864717 source:/ca2/app/appseed/ca/radix/radix_assert.cpp
 	"framework.h"
 
-1347226535 source:/ca2/app/appseed/ca/plugin/plugin_plugin.cpp
+1348390793 source:/ca2/app/appseed/ca/plugin/plugin_plugin.cpp
 	"framework.h"
 	<gdiplus.h>
 	<sys/mman.h>
 
-1347103935 source:/ca2/app/appseed/ca/primitive/primitive_string_format.cpp
+1348429766 source:/ca2/app/appseed/ca/primitive/primitive_string_format.cpp
 	"framework.h"
 
 1342864717 source:/ca2/app/appseed/ca/radix/radix_command_target.cpp
@@ -11908,7 +11921,7 @@
 
 1347104577 /ca2/app/appseed/ca/xml/xml_xmlite.h
 
-1347110960 source:/ca2/app/appseed/ca/primitive/primitive_var.cpp
+1348429786 source:/ca2/app/appseed/ca/primitive/primitive_var.cpp
 	"framework.h"
 
 1347111984 source:/ca2/app/appseed/ca/primitive/primitive_string.cpp
@@ -11935,7 +11948,7 @@
 1347114694 source:/ca2/app/appseed/ca/radix/radix_cmdtarg.cpp
 	"framework.h"
 
-1347115753 source:/ca2/app/appseed/ca/radix/radix_fixed_alloc.cpp
+1347754848 source:/ca2/app/appseed/ca/radix/radix_fixed_alloc.cpp
 	"framework.h"
 
 1347116565 source:/ca2/app/appseed/ca/radix/radix_factory.cpp
@@ -11979,13 +11992,13 @@
 1342864703 source:/ca2/app/appseed/ca/simpledb/simpledb_dataset.cpp
 	"framework.h"
 
-1347220578 source:/ca2/app/appseed/ca/radix/radix_thread.cpp
+1348414521 source:/ca2/app/appseed/ca/radix/radix_thread.cpp
 	"framework.h"
 
-1342864703 source:/ca2/app/appseed/ca/simpledb/simpledb_file_set.cpp
+1348390791 source:/ca2/app/appseed/ca/simpledb/simpledb_file_set.cpp
 	"framework.h"
 
-1347119044 source:/ca2/app/appseed/ca/radix/radix_allocation_system_heap.cpp
+1347754848 source:/ca2/app/appseed/ca/radix/radix_allocation_system_heap.cpp
 	"framework.h"
 	<malloc/malloc.h>
 	<malloc.h>
@@ -11996,7 +12009,7 @@
 1347120603 source:/ca2/app/appseed/ca/radix/radix_plex_heap.cpp
 	"framework.h"
 
-1347120626 source:/ca2/app/appseed/ca/simpledb/simpledb_long_set.cpp
+1348429842 source:/ca2/app/appseed/ca/simpledb/simpledb_long_set.cpp
 	"framework.h"
 
 1342864703 source:/ca2/app/appseed/ca/simpledb/simpledb_manager.cpp
@@ -12005,7 +12018,7 @@
 1347120737 source:/ca2/app/appseed/ca/radix/radix_service.cpp
 	"framework.h"
 
-1342864703 source:/ca2/app/appseed/ca/simpledb/simpledb_mysql_database.cpp
+1348429858 source:/ca2/app/appseed/ca/simpledb/simpledb_mysql_database.cpp
 	"framework.h"
 	"mysql/mysql.h"
 
@@ -12022,14 +12035,14 @@
 1342864703 source:/ca2/app/appseed/ca/simpledb/simpledb_session.cpp
 	"framework.h"
 
-1342864703 source:/ca2/app/appseed/ca/simpledb/simpledb_set.cpp
+1347754848 source:/ca2/app/appseed/ca/simpledb/simpledb_set.cpp
 	"framework.h"
 
 1347125811 source:/ca2/app/appseed/ca/radix/radix_pipe.cpp
 	"framework.h"
 	<fcntl.h>
 
-1347122977 source:/ca2/app/appseed/ca/simpledb/simpledb_db_server.cpp
+1347754848 source:/ca2/app/appseed/ca/simpledb/simpledb_db_server.cpp
 	"framework.h"
 	"db_str_set.h"
 
@@ -12037,7 +12050,7 @@
 	"framework.h"
 	<ShlObj.h>
 
-1342864703 source:/ca2/app/appseed/ca/simpledb/simpledb_socket.cpp
+1348429919 source:/ca2/app/appseed/ca/simpledb/simpledb_socket.cpp
 	"framework.h"
 
 1342864703 source:/ca2/app/appseed/ca/simpledb/simpledb_sqlite_dataset.cpp
@@ -12046,7 +12059,7 @@
 1347126132 source:/ca2/app/appseed/ca/radix/radix_system.cpp
 	"framework.h"
 
-1345878350 source:/ca2/app/appseed/ca/simpledb/simpledb_str_set.cpp
+1347754848 source:/ca2/app/appseed/ca/simpledb/simpledb_str_set.cpp
 	"framework.h"
 	"db_str_set.h"
 
@@ -12063,7 +12076,7 @@
 	"framework.h"
 	<netdb.h>
 
-1342864871 source:/ca2/app/appseed/ca/sockets/basic/sockets_Ipv6Address.cpp
+1348429945 source:/ca2/app/appseed/ca/sockets/basic/sockets_Ipv6Address.cpp
 	"framework.h"
 	<netdb.h>
 
@@ -12097,7 +12110,7 @@
 	"framework.h"
 	<openssl/ssl.h>
 
-1347128127 source:/ca2/app/appseed/ca/sockets/basic/sockets_Ipv4Address.cpp
+1348429951 source:/ca2/app/appseed/ca/sockets/basic/sockets_Ipv4Address.cpp
 	"framework.h"
 	<netdb.h>
 
@@ -12129,18 +12142,18 @@
 1342864867 source:/ca2/app/appseed/ca/sockets/http/sockets_HttpDebugSocket.cpp
 	"framework.h"
 
-1342864867 source:/ca2/app/appseed/ca/sockets/http/sockets_HttpGetSocket.cpp
+1348429990 source:/ca2/app/appseed/ca/sockets/http/sockets_HttpGetSocket.cpp
 	"framework.h"
 
 1342864867 source:/ca2/app/appseed/ca/sockets/http/sockets_HttpPutSocket.cpp
 	"framework.h"
 
-1347131774 source:/ca2/app/appseed/ca/sockets/basic/sockets_udp_socket.cpp
+1348429990 source:/ca2/app/appseed/ca/sockets/basic/sockets_udp_socket.cpp
 	"framework.h"
 	<stdlib.h>
 	<errno.h>
 
-1342864867 source:/ca2/app/appseed/ca/sockets/http/sockets_http_request_socket.cpp
+1348429990 source:/ca2/app/appseed/ca/sockets/http/sockets_http_request_socket.cpp
 	"framework.h"
 
 1342864867 source:/ca2/app/appseed/ca/sockets/http/sockets_http_session.cpp
@@ -12179,7 +12192,7 @@
 1342864874 source:/ca2/app/appseed/ca/sockets/sip/sockets_sip_transaction.cpp
 	"framework.h"
 
-1347132051 source:/ca2/app/appseed/ca/sockets/http/sockets_http_socket.cpp
+1348429990 source:/ca2/app/appseed/ca/sockets/http/sockets_http_socket.cpp
 	"framework.h"
 
 1342864874 source:/ca2/app/appseed/ca/sockets/sip/sockets_sip_udp_client_socket.cpp
@@ -12212,7 +12225,7 @@
 1347080805 source:/ca2/app/appseed/ca/sockets/timer/sockets_Event.cpp
 	"framework.h"
 
-1347132156 source:/ca2/app/appseed/ca/sockets/http/sockets_HttpPostSocket.cpp
+1348429990 source:/ca2/app/appseed/ca/sockets/http/sockets_HttpPostSocket.cpp
 	"framework.h"
 
 1342864872 source:/ca2/app/appseed/ca/sockets/timer/sockets_EventHandler.cpp
@@ -12230,7 +12243,7 @@
 	<openssl/ssl.h>
 	<openssl/rand.h>
 
-1342864875 source:/ca2/app/appseed/ca/sockets/webserver/sockets_Ajp13Socket.cpp
+1348430015 source:/ca2/app/appseed/ca/sockets/webserver/sockets_Ajp13Socket.cpp
 	"framework.h"
 
 1342864875 source:/ca2/app/appseed/ca/sockets/webserver/sockets_AjpBaseSocket.cpp
@@ -12258,7 +12271,7 @@
 1347136331 source:/ca2/app/appseed/ca/sockets/http_memory_file.cpp
 	"framework.h"
 
-1347138359 source:/ca2/app/appseed/ca/sockets/basic/sockets_tcp_socket.cpp
+1348429945 source:/ca2/app/appseed/ca/sockets/basic/sockets_tcp_socket.cpp
 	"framework.h"
 	<openssl/ssl.h>
 	<fcntl.h>
@@ -12267,13 +12280,13 @@
 	<openssl/rand.h>
 	<openssl/err.h>
 
-1347138433 source:/ca2/app/appseed/ca/sockets/sip/sockets_sip_base_client_socket.cpp
+1348430005 source:/ca2/app/appseed/ca/sockets/sip/sockets_sip_base_client_socket.cpp
 	"framework.h"
 
 1347141832 /ca2/app/appseed/c/ansios/ansios.h
 	"ansios_file.h"
 
-1347141832 /ca2/app/appseed/c/ansios/ansios_file.h
+1348390790 /ca2/app/appseed/c/ansios/ansios_file.h
 
 1342864875 source:/ca2/app/appseed/ca/sockets/webserver/sockets_http_transaction.cpp
 	"framework.h"
@@ -12314,7 +12327,7 @@
 1345878359 source:/ca2/app/appseed/ca/user/user_data_exchange.cpp
 	"framework.h"
 
-1342864881 source:/ca2/app/appseed/ca/user/user_document.cpp
+1347621935 source:/ca2/app/appseed/ca/user/user_document.cpp
 	"framework.h"
 
 1347191073 source:/ca2/app/appseed/ca/user/user_document_request_interface.cpp
@@ -12338,7 +12351,7 @@
 1342864881 source:/ca2/app/appseed/ca/user/user_form_callback.cpp
 	"framework.h"
 
-1347166165 source:/ca2/app/appseed/ca/user/user_control.cpp
+1348390795 source:/ca2/app/appseed/ca/user/user_control.cpp
 	"framework.h"
 
 1347149585 source:/ca2/app/appseed/ca/user/user_document_manager.cpp
@@ -12356,7 +12369,7 @@
 1347161792 source:/ca2/app/appseed/ca/user/user_frame_window_interface.cpp
 	"framework.h"
 
-1347164557 source:/ca2/app/appseed/ca/user/user_document_interface.cpp
+1347621935 source:/ca2/app/appseed/ca/user/user_document_interface.cpp
 	"framework.h"
 
 1342864881 source:/ca2/app/appseed/ca/user/user_keyboard_layout.cpp
@@ -12395,7 +12408,7 @@
 1342864881 source:/ca2/app/appseed/ca/user/user_view_container.cpp
 	"framework.h"
 
-1342864881 source:/ca2/app/appseed/ca/user/user_view_creator.cpp
+1348390795 source:/ca2/app/appseed/ca/user/user_view_creator.cpp
 	"framework.h"
 
 1347165467 source:/ca2/app/appseed/ca/user/user_form.cpp
@@ -12413,9 +12426,9 @@
 1347196226 source:/ca2/app/appseed/ca/user/user_keyboard.cpp
 	"framework.h"
 
-1347166164 /ca2/app/appseed/c/merdes_windows/c_os_thread.h
+1348390788 /ca2/app/appseed/c/merdes_windows/c_os_thread.h
 
-1347191073 source:/ca2/app/appseed/ca/sqlite/sqlite3.cpp
+1348416205 source:/ca2/app/appseed/ca/sqlite/sqlite3.cpp
 	"framework.h"
 	<stdint.h>
 	<tcl.h>
@@ -12445,7 +12458,7 @@
 1342864781 source:/ca2/app/appseed/ca/userpresence/userpresence_application.cpp
 	"framework.h"
 
-1342864781 source:/ca2/app/appseed/ca/userpresence/userpresence_user_presence.cpp
+1348430055 source:/ca2/app/appseed/ca/userpresence/userpresence_user_presence.cpp
 	"framework.h"
 
 1342864781 source:/ca2/app/appseed/ca/userpresence/userpresence_user_presence_central.cpp
@@ -12454,7 +12467,7 @@
 1342864781 source:/ca2/app/appseed/ca/userpresence/userpresence_user_presence_central_container.cpp
 	"framework.h"
 
-1347226534 source:/ca2/app/appseed/ca/user/user_frame_window.cpp
+1348417844 source:/ca2/app/appseed/ca/user/user_frame_window.cpp
 	"framework.h"
 	<dde.h>
 
@@ -12469,13 +12482,13 @@
 1347193476 source:/ca2/app/appseed/ca/exception/exception_todo.cpp
 	"framework.h"
 
-1347193548 source:/ca2/app/appseed/ca/user/user_view.cpp
+1348417651 source:/ca2/app/appseed/ca/user/user_view.cpp
 	"framework.h"
 
 1342864829 source:/ca2/app/appseed/ca/visual/visual_cursor.cpp
 	"framework.h"
 
-1347223188 source:/ca2/app/appseed/ca/user/user_interaction.cpp
+1348430039 source:/ca2/app/appseed/ca/user/user_interaction.cpp
 	"framework.h"
 
 1342864829 source:/ca2/app/appseed/ca/visual/visual_fastblur.cpp
@@ -12513,7 +12526,7 @@
 1347199174 source:/ca2/app/appseed/ca/visual/visual_font_central.cpp
 	"framework.h"
 
-1347228383 source:/ca2/app/appseed/ca/user/user_window_util.cpp
+1347621935 source:/ca2/app/appseed/ca/user/user_window_util.cpp
 	"framework.h"
 
 1342864829 source:/ca2/app/appseed/ca/visual/visual_rgb_quad_array.cpp
@@ -12675,7 +12688,7 @@
 1347203806 source:/ca2/app/appseed/ca/visual/visual_graphics_extension.cpp
 	"framework.h"
 
-1347207340 source:/ca2/app/appseed/ca/xml/xml_node.cpp
+1347621935 source:/ca2/app/appseed/ca/xml/xml_node.cpp
 
 1342864709 source:/ca2/app/appseed/ca/zlib/zlib_gzio.cpp
 	"framework.h"
@@ -12696,4 +12709,42 @@
 1347600723 source:/ca2/app/appseed/ca/framework.h
 	"app/appseed/ca/ca.h"
 	"app/appseed/optca/optca.h"
+
+1348390790 /ca2/app/appseed/c/c/c_gdi.h
+
+1348411718 /ca2/app/appseed/c/linux/c_os_gdi.h
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+	<X11/Xlib.h>
+
+1348390788 /ca2/app/appseed/c/merdes_windows/c_os_http.h
+
+1348390788 /ca2/app/appseed/c/merdes_windows/c_os_registry.h
+
+1348390788 /ca2/app/appseed/c/merdes_windows/c_os_process.h
+
+1348390788 /ca2/app/appseed/c/merdes_windows/c_os_simple_hold_handle.h
+
+1348390788 /ca2/app/appseed/c/merdes_windows/c_os_file.h
+
+1348390788 /ca2/app/appseed/c/merdes_windows/c_os_graphics_round_rect.h
+	<D2d1.h>
+
+1348390788 /ca2/app/appseed/c/windows/c_os_gdi.h
+
+1348390788 /ca2/app/appseed/c/windows/c_os_graphics_round_rect.h
+	<gdiplus.h>
+
+1347621936 /ca2/app/appseed/ca/multithreading/multithreading_retry_multi_lock.h
+
+1348428423 /ca2/app/appseed/ca/gen/gen_strn.h
+
+1348428842 /ca2/app/appseed/ca/gen/gen_hex.h
+
+1348427618 source:/ca2/app/appseed/ca/gen/gen_hex.cpp
+	"framework.h"
+
+1348428583 source:/ca2/app/appseed/ca/gen/gen_strn.cpp
+	"framework.h"
+	<ctype.h>
 

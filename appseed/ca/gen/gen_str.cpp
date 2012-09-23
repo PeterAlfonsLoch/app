@@ -1143,7 +1143,7 @@ namespace gen
       }
    }
 
-   bool str::to_int(const char * psz, int64_t & i)
+   bool str::to(const char * psz, int64_t & i)
    {
 
       char * pszEnd;
@@ -1159,7 +1159,7 @@ namespace gen
 
    }
 
-   bool str::to_int(const char * psz, int & i)
+   bool str::to(const char * psz, int & i)
    {
 
       const char * pszEnd;
@@ -1179,24 +1179,24 @@ namespace gen
    }
 
 
-   bool str::to_int(const char * psz, int64_t & i, int iBase)
+   bool str::to(const char * psz, int64_t & i, int iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
          return false;
 
       char * pszEnd;
-      
+
 #ifdef WINDOWS
 
       int64_t iConversion = ::_strtoi64(psz, &pszEnd, iBase);
-      
+
 #else
 
       int64_t iConversion = ::atoi64_dup(psz, &pszEnd, iBase);
-      
+
 #endif
-      
+
       if(pszEnd == psz)
          return false;
 
@@ -1206,7 +1206,7 @@ namespace gen
 
    }
 
-   bool str::to_int(const char * psz, int & i, int iBase)
+   bool str::to(const char * psz, int & i, int iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -1215,13 +1215,13 @@ namespace gen
       char * pszEnd;
 
 #ifdef WINDOWS
-      
+
       int64_t iConversion = ::_strtoi64(psz, &pszEnd, iBase);
-      
+
 #else
-      
+
       int64_t iConversion = ::atoi64_dup(psz, &pszEnd, iBase);
-      
+
 #endif
 
       if(pszEnd == psz)
@@ -1237,7 +1237,7 @@ namespace gen
    }
 
 
-   CLASS_DECL_ca  int_ptr  to_int_ptr(const char * psz)
+   CLASS_DECL_ca  int_ptr str::to_int_ptr(const char * psz)
    {
 
 #if defined(_LP64) || defined(_AMD64_)
@@ -1252,113 +1252,52 @@ namespace gen
    }
 
 
-   bool str::natoi(const char * psz, int64_t & i, int iLen)
+
+   string & str::from(string & str, int i)
    {
 
-      char * pszEnd;
-
-      int64_t iConversion = ::natoi64_dup(psz, &pszEnd, iLen);
-
-      if(pszEnd == psz)
-         return false;
-
-      i = iConversion;
-
-      return true;
-
-   }
-
-   bool str::natoi(const char * psz, int & i, int iLen)
-   {
-
-      char * pszEnd;
-
-      int64_t iConversion = ::natoi_dup(psz, (const char **) &pszEnd, iLen);
-
-      if(pszEnd == psz)
-         return false;
-
-      if(iConversion > numeric_info::get_maximum_value < int > ())
-         return false;
-
-      i = (int) iConversion;
-
-      return true;
-
-   }
-
-
-   bool str::natoi(const char * psz, int64_t & i, int iBase, int iLen)
-   {
-
-      if(iBase < 0 || iBase == 1 || iBase > 36)
-         return false;
-
-      char * pszEnd;
-
-      int64_t iConversion = ::natoi64_dup(psz, &pszEnd, iBase, iLen);
-
-      if(pszEnd == psz)
-         return false;
-
-      i = iConversion;
-
-      return true;
-
-   }
-
-   bool str::natoi(const char * psz, int & i, int iBase, int iLen)
-   {
-
-      if(iBase < 0 || iBase == 1 || iBase > 36)
-         return false;
-
-      char * pszEnd;
-
-      int64_t iConversion = ::natoi64_dup(psz, &pszEnd, iBase, iLen);
-
-      if(pszEnd == psz)
-         return false;
-
-      if(iConversion > numeric_info::get_maximum_value < int > ())
-         return false;
-
-      i = (int) iConversion;
-
-      return true;
-
-   }
-
-   string & str::itoa(string & str, int i)
-   {
       str.Format("%d", i);
+
       return str;
+
    }
 
-   string & str::i64toa(string & str, int64_t i)
+   string & str::from(string & str, int64_t i)
    {
+
       str.Format("%I64d", i);
+
       return str;
+
    }
 
-   string & str::itoa(string & str, uint64_t ui)
+   string & str::from(string & str, uint64_t ui)
    {
+
       str.Format("%I64u", ui);
+
       return str;
+
    }
 
-   string & str::itoa(string & str, unsigned int ui)
+   string & str::from(string & str, unsigned int ui)
    {
+
       str.Format("%u", ui);
+
       return str;
+
    }
 
 #if !defined(_LP64)
 
-   string & str::itoa(string & str, unsigned long ul)
+   string & str::from(string & str, unsigned long ul)
    {
+
       str.Format("%u", ul);
+
       return str;
+
    }
 
 #endif
@@ -1682,7 +1621,7 @@ namespace gen
                {
                   return BAD_WCHAR;
                }
-               int64_t hex = gen::hex::to_uint(val);
+               int64_t hex = gen::hex::to_int64(val);
                strsize val_len = val.get_length();
                if(hex < 0 || hex > 0xFFFF)
                {
@@ -1693,7 +1632,7 @@ namespace gen
             }
             else
             {
-               int64_t hex = gen::hex::to_uint(string(&lpcsz[pos+2], 2));
+               int64_t hex = gen::hex::to_int64(string(&lpcsz[pos+2], 2));
                if(int64_t(strlen(lpcsz)) <= pos + 2 || hex== -1)
                {
                   return BAD_WCHAR;
@@ -1706,23 +1645,6 @@ namespace gen
       }
       return lpcsz[pos];
    }
-
-   int64_t str::get_hex_number(const char * lpcsz)
-   {
-      int64_t r = 0, num = 0;
-      if(lpcsz == NULL)
-         return -1;
-      for(int64_t i = strlen(lpcsz)-1; i >= 0; i--)
-      {
-         int64_t d = get_hex(&(lpcsz)[i]);
-         if(d == -1)
-            return -1;
-         num += d << r;
-         r += 4;
-      }
-      return num;
-   }
-
 
    bool str::get_curly_content(const char * psz, string & str)
    {
@@ -2138,7 +2060,7 @@ namespace gen
       return str;
    }*/
 
-   int64_t str::atoi64(const string & str)
+   int64_t str::to_int64(const string & str)
    {
 
       int i = 0;
@@ -2163,7 +2085,7 @@ namespace gen
          return (int64_t) ui;
    }
 
-   int64_t str::atoi64(const char * psz)
+   int64_t str::to_int64(const char * psz)
    {
 
       int i = 0;
@@ -2189,7 +2111,7 @@ namespace gen
 
    }
 
-   uint64_t str::atoui64(const string & str)
+   uint64_t str::to_uint64(const string & str)
    {
 
       int i = 0;
@@ -2207,7 +2129,7 @@ namespace gen
 
    }
 
-   uint64_t str::atoui64(const char * psz)
+   uint64_t str::to_uint64(const char * psz)
    {
 
       int i = 0;
@@ -2225,15 +2147,6 @@ namespace gen
 
    }
 
-   unsigned int str::hex2unsigned(const string & str)
-   {
-      unsigned int r = 0;
-      for (int i = 0; i < str.get_length(); i++)
-      {
-         r = r * 16 + str[i] - 48 - ((str[i] >= 'A') ? 7 : 0) - ((str[i] >= 'a') ? 32 : 0);
-      }
-      return r;
-   }
 
    string & str::from(string & str, double d)
    {
@@ -2485,9 +2398,9 @@ namespace gen
 
    CLASS_DECL_ca string          str::to_lower(const char * psz)
    {
-         
+
       return string(psz).make_lower();
-         
+
    }
 
 
@@ -2505,9 +2418,9 @@ namespace gen
    **/
 
 
-   bool str::simple_escaped(const string & str, strsize pos) 
+   bool str::simple_escaped(const string & str, strsize pos)
    {
-      
+
       if(pos == 0)
          return false;
 

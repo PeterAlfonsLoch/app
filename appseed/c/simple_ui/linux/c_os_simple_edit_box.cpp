@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-void simple_edit_box::draw_this(HDC hdc)
+void simple_edit_box::draw_this(simple_graphics & g)
 {
 /*
    Gdiplus::Graphics graphics2(hdc);

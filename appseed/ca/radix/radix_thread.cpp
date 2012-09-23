@@ -372,18 +372,12 @@ namespace radix
 
 } // namespace radix
 
+
+
+
 ::radix::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority, UINT nStackSize, DWORD dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
-#ifndef _MT
-   pfnThreadProc;
-   pParam;
-   nPriority;
-   nStackSize;
-   dwCreateFlags;
-   lpSecurityAttrs;
 
-   return NULL;
-#else
    ASSERT(pfnThreadProc != NULL);
 
    ::radix::thread* pThread = new ::radix::thread(papp, pfnThreadProc, pParam);
@@ -401,7 +395,7 @@ namespace radix
       VERIFY(pThread->ResumeThread() != (DWORD)-1);
 
    return pThread;
-#endif //!_MT)
+
 }
 
 

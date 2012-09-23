@@ -8,7 +8,7 @@ Copyright (C) 2004-2007  Anders Hedstrom
 This library is made available under the terms of the GNU GPL.
 
 If you would like to use this library in a closed-source application,
-a separate license agreement is available. For information about 
+a separate license agreement is available. For information about
 the closed-source license agreement for the C++ sockets library,
 please visit http://www.alhem.net/Sockets/license.html and/or
 email license@alhem.net.
@@ -34,7 +34,7 @@ namespace sockets
 {
 
 
-   http_request_socket::http_request_socket(socket_handler_base& h) : 
+   http_request_socket::http_request_socket(socket_handler_base& h) :
       ::ca::ca(h.get_app()),
       socket(h),
       stream_socket(h),
@@ -46,7 +46,7 @@ namespace sockets
    }
 
 
-   http_request_socket::http_request_socket(socket_handler_base & h, const char * pszRequest, const string & url_in) : 
+   http_request_socket::http_request_socket(socket_handler_base & h, const char * pszRequest, const string & url_in) :
       ::ca::ca(h.get_app()),
       socket(h),
       stream_socket(h),
@@ -55,13 +55,13 @@ namespace sockets
       http_tunnel(h),
       http_client_socket(h, url_in)
    {
-      
+
       m_strRequest = pszRequest;
 
    }
 
 
-   http_request_socket::http_request_socket(socket_handler_base & h, const char * pszRequest, const string & host, port_t port, const string & url_in) : 
+   http_request_socket::http_request_socket(socket_handler_base & h, const char * pszRequest, const string & host, port_t port, const string & url_in) :
       ::ca::ca(h.get_app()),
       socket(h),
       stream_socket(h),
@@ -70,7 +70,7 @@ namespace sockets
       http_tunnel(h),
       http_client_socket(h, url_in)
    {
-      
+
       m_strRequest = pszRequest;
 
       UNREFERENCED_PARAMETER(host);
@@ -94,7 +94,7 @@ namespace sockets
       outheader("User-agent") = MyUseragent();
 
       if (GetUrlPort() != 80 && GetUrlPort() != 443)
-         outheader("Host") = GetUrlHost() + ":" + gen::str::itoa(GetUrlPort());
+         outheader("Host") = GetUrlHost() + ":" + gen::str::from(GetUrlPort());
       else
          outheader("Host") = GetUrlHost();
       SendRequest();

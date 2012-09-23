@@ -38,6 +38,10 @@
 
 #define BZ_VERSION  "1.0.4, 20-Dec-2006"
 
+#undef Bool
+#undef True
+#undef False
+
 typedef unsigned char   Bool;
 typedef char            Char;
 typedef unsigned char   UChar;
@@ -45,7 +49,6 @@ typedef int             int32;
 typedef unsigned int    uint32;
 typedef short           Int16;
 typedef unsigned short  UInt16;
-
 
 
 

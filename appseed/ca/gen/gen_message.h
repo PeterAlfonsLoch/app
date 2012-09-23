@@ -1,8 +1,44 @@
 #pragma once
 
+#ifdef MERDE_WINDOWS
 
+typedef struct tagCREATESTRUCTA {
+    LPVOID      lpCreateParams;
+    HINSTANCE   hInstance;
+    HMENU       hMenu;
+    HWND        hwndParent;
+    int         cy;
+    int         cx;
+    int         y;
+    int         x;
+    LONG        style;
+    LPCSTR      lpszName;
+    LPCSTR      lpszClass;
+    DWORD       dwExStyle;
+} CREATESTRUCTA, *LPCREATESTRUCTA;
+typedef struct tagCREATESTRUCTW {
+    LPVOID      lpCreateParams;
+    HINSTANCE   hInstance;
+    HMENU       hMenu;
+    HWND        hwndParent;
+    int         cy;
+    int         cx;
+    int         y;
+    int         x;
+    LONG        style;
+    LPCWSTR     lpszName;
+    LPCWSTR     lpszClass;
+    DWORD       dwExStyle;
+} CREATESTRUCTW, *LPCREATESTRUCTW;
+#ifdef UNICODE
+typedef CREATESTRUCTW CREATESTRUCT;
+typedef LPCREATESTRUCTW LPCREATESTRUCT;
+#else
+typedef CREATESTRUCTA CREATESTRUCT;
+typedef LPCREATESTRUCTA LPCREATESTRUCT;
+#endif // UNICODE
 
-
+#endif
 
 class cmd_ui;
 
@@ -285,10 +321,7 @@ namespace gen
          public:
 
             create(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
-
-#ifdef WINDOWSEX
             LPCREATESTRUCT m_lpcreatestruct;
-#endif
 
             virtual void set_lresult(LRESULT lresult);
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);

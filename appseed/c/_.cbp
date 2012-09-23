@@ -85,7 +85,6 @@
 		<Unit filename="c/file.cpp" />
 		<Unit filename="c/file.h" />
 		<Unit filename="c/file_spa.cpp" />
-		<Unit filename="c/gdi.cpp" />
 		<Unit filename="c/gdi.h" />
 		<Unit filename="c/geometric_types.cpp" />
 		<Unit filename="c/geometric_types.h" />
@@ -179,6 +178,8 @@
 		<Unit filename="linux/c_os_cross_win_gdi_internal.h" />
 		<Unit filename="linux/c_os_file.cpp" />
 		<Unit filename="linux/c_os_file.h" />
+		<Unit filename="linux/c_os_gdi.cpp" />
+		<Unit filename="linux/c_os_gdi.h" />
 		<Unit filename="linux/c_os_http.cpp" />
 		<Unit filename="linux/c_os_http.h" />
 		<Unit filename="linux/c_os_http_lib.cpp" />
@@ -261,6 +262,7 @@
 		<Unit filename="vms/vms.h" />
 		<Unit filename="vms/vms_2.h" />
 		<Unit filename="windows/c_os.h" />
+		<Unit filename="windows/c_os_gdi.h" />
 		<Unit filename="windows/c_os_thread.h" />
 		<Extensions>
 			<code_completion />

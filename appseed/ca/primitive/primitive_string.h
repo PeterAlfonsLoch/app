@@ -1104,7 +1104,7 @@ inline string id::str() const
       return *m_pstr;
    else if(m_chType == IDTYPE_TYPE_NUMBER)
    {
-      return gen::str::itoa(m_i);
+      return gen::str::from(m_i);
    }
    else
       return "";
@@ -1230,7 +1230,7 @@ inline   string CLASS_DECL_ca operator+ (const string & str1, int i2)
 
    string strResult( str1.GetManager() );
 
-   strResult = str1 + gen::str::itoa(i2);
+   strResult = str1 + gen::str::from(i2);
 
    return strResult;
 }
@@ -1240,7 +1240,7 @@ inline   string CLASS_DECL_ca operator+ (int i1, const string & str2)
 
    string strResult( str2.GetManager() );
 
-   strResult = gen::str::itoa(i1) + str2;
+   strResult = gen::str::from(i1) + str2;
 
    return strResult;
 }
@@ -1250,7 +1250,7 @@ inline   string CLASS_DECL_ca operator+ (const string & str1, int64_t i2)
 
    string strResult( str1.GetManager() );
 
-   strResult = str1 + gen::str::itoa(i2);
+   strResult = str1 + gen::str::from(i2);
 
    return strResult;
 }
@@ -1260,7 +1260,7 @@ inline   string CLASS_DECL_ca operator+ (int64_t i1, const string & str2)
 
    string strResult( str2.GetManager() );
 
-   strResult = gen::str::itoa(i1) + str2;
+   strResult = gen::str::from(i1) + str2;
 
    return strResult;
 }

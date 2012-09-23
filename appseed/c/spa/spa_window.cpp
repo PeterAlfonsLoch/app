@@ -114,11 +114,9 @@ namespace spa
          lprect = &rect;
       }
 
-#ifdef WINDOWS
-
       simple_bitmap b;
 
-      if(!b.create(cx, cy))
+      if(!b.create(cx, cy, gWindow))
          return;
 
       simple_graphics g;
@@ -131,21 +129,12 @@ namespace spa
       HFONT hfontOld = NULL;
       HFONT hfont = NULL;
 
-#else
-
-#endif
-
-
       m_canvas.on_paint(g, &rect);
 
-
-#ifdef WINDOWS
 
       g.set_offset(0, 0);
 
       gWindow.bit_blt(lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top, g, lprect->left, lprect->top, SRCCOPY);
-
-#endif
 
    }
 

@@ -923,7 +923,7 @@ typedef struct _SYSTEM_THREAD_INFORMATION
 
 typedef struct _IO_STATUS_BLOCK {
   union {
-    NTSTATUS Status;
+    NTSTATUS _Status;
     PVOID Pointer;
   } DUMMYUNIONNAME;
 

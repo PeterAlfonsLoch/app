@@ -70,7 +70,7 @@ namespace sockets
             c = System.m_countHttpPostBoundary++ % 128;
          m_boundary += c;
       }
-      m_boundary += "__" + gen::str::itoa(System.m_countHttpPostBoundary++);
+      m_boundary += "__" + gen::str::from(System.m_countHttpPostBoundary++);
    }
 
 

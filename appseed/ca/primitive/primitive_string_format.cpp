@@ -77,21 +77,21 @@ void string_format::allocate_add_up(int iLenAddUp)
 void string_format::format(int const & i)
 {
    // TODO: use specs
-   append(gen::str::itoa(i));
+   append(gen::str::from(i));
 
 }
 
 void string_format::format(int64_t const & i)
 {
    // TODO: use specs
-   append(gen::str::itoa(i));
+   append(gen::str::from(i));
 
 }
 
 void string_format::format(const void * const & p)
 {
    // TODO: use specs
-   append(gen::str::itoa((uint_ptr)p));
+   append(gen::str::from((uint_ptr)p));
 
 }
 

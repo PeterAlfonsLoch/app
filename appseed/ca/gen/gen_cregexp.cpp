@@ -3,10 +3,10 @@
 
 SMatch *SMatchHash::setItem(string name, SMatch &smatch)
 {
-   m_map.set_at(name, smatch); 
+   m_map.set_at(name, smatch);
    return &m_map[name];
 }
-  
+
 SMatch *SMatchHash::getItem(string name)
 {
    return &m_map[name];
@@ -76,7 +76,7 @@ cregexp::~cregexp()
 
 EError cregexp::setRELow(const char * expr)
 {
-  
+
    strsize len = gen::str::ilen(expr);
 
   if (!len) return EERROR;
@@ -271,7 +271,7 @@ SRegInfo *next, *temp;
           if (next->param0 < 0 || next->param0 > 9){
             index retEnd;
             next->op = ReSymb;
-            next->un.symbol = 
+            next->un.symbol =
                new string(
                   gen::str::uni_to_utf8(
                      gen::str::get_escaped_char(expr, i+1, retEnd)));
@@ -314,14 +314,14 @@ SRegInfo *next, *temp;
       if (expr[i] == '?' && expr[i+1] == '#' &&
           expr[i+2] >= '0' && expr[i+2] <= '9'){
         next->op = ReBehind;
-        next->param0 = (int) gen::str::get_hex(&expr[i+2]);
+        next->param0 = (int) gen::hex::from_char(&expr[i+2]);
         i += 2;
         continue;
       };
       if (expr[i] == '?' && expr[i+1] == '~' &&
           expr[i+2]>='0' && expr[i+2]<='9'){
         next->op = ReNBehind;
-        next->param0 = (int) gen::str::get_hex(&expr[i+2]);
+        next->param0 = (int) gen::hex::from_char(&expr[i+2]);
         i += 2;
         continue;
       };
@@ -427,7 +427,7 @@ SRegInfo *next, *temp;
         namedBracket = true;
         string br_name;
         if(!gen::str::get_curly_content(&((const char *)expr)[i+2], br_name)) return EBRACKETS;
-        
+
         strsize blen = br_name.get_length();
         if (blen == 0){
           next->param0 = -1;
@@ -510,7 +510,7 @@ SRegInfo *next, *temp;
       reword->op = ReWord;
       wcword.implode(*reword->un.word);
       reword->next = reafterword;
-      if (reafterword) 
+      if (reafterword)
          reafterword->prev = reword;
       next = reword;
       continue;
@@ -762,7 +762,7 @@ const string pattern = global_pattern;
         if (ignoreCase)
         {
            string strAnalyze = pattern.Mid(toParse, wlen);
-            if(strAnalyze.CompareNoCase(*re->un.word)) 
+            if(strAnalyze.CompareNoCase(*re->un.word))
                return false;
           toParse += wlen;
         }else{
@@ -867,7 +867,7 @@ const string pattern = global_pattern;
               return true;
           if (lowParse(re->un.param, 0, toParse))
             return true;
-          return lowParse(re->next, re, toParse); 
+          return lowParse(re->next, re, toParse);
         };
         // go into
         if (re->param0) re->param0--;
@@ -1092,7 +1092,7 @@ bool cregexp::getBackTrace(string *str, SMatches **trace)
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

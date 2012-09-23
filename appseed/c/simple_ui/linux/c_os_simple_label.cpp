@@ -2,7 +2,7 @@
 
 
 
-void simple_label::draw_this(HDC hdc)
+void simple_label::draw_this(simple_graphics & g)
 {
 
 

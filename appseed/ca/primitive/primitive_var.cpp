@@ -1728,7 +1728,7 @@ int var::get_integer(int iDefault) const
       return (int) m_d;
    case var::type_string:
       {
-         gen::str::atoi(m_str, iDefault);
+         gen::str::to(m_str, iDefault);
          return iDefault;
       }
    default:

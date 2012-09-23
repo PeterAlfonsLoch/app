@@ -413,7 +413,7 @@ install:
 
       simple_bitmap b;
 
-      b.create(cx, cy);
+      b.create(cx, cy, gWindow);
 
       simple_graphics g;
 

@@ -226,23 +226,17 @@ namespace ca2
 
    string datetime::get_week_day_str(user::str_context * pcontext, int iWeekDay) // 1 - domingo
    {
-      return System.str().get(
-         pcontext,
-         "datetimestr_weekday_long[" + gen::str::itoa(iWeekDay - 1) + "]");
+      return System.str().get(pcontext, "datetimestr_weekday_long[" + gen::str::from(iWeekDay - 1) + "]");
    }
 
    string datetime::get_tiny_week_day_str(user::str_context * pcontext, int iWeekDay) // 1 - domingo
    {
-      return System.str().get(
-         pcontext,
-         "datetimestr_weekday_tiny[" + gen::str::itoa(iWeekDay - 1) + "]");
+      return System.str().get(pcontext, "datetimestr_weekday_tiny[" + gen::str::from(iWeekDay - 1) + "]");
    }
 
    string datetime::get_month_str(user::str_context * pcontext, int iMonth)
    {
-      return System.str().get(
-         pcontext,
-         "datetimestr_month[" + gen::str::itoa(iMonth - 1) + "]");
+      return System.str().get(pcontext, "datetimestr_month[" + gen::str::from(iMonth - 1) + "]");
    }
 
    ::datetime::time datetime::from_gmt_date_time(int iYear, int iMonth, int iDay, int iHour, int iMinute, int iSecond)
