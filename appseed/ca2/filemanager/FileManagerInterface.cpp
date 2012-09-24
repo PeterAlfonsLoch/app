@@ -38,10 +38,18 @@ bool FileManagerInterface::FileManagerBrowse(const ::fs::item & item)
 
 bool FileManagerInterface::FileManagerBrowse(const char * lpcsz)
 {
+
    ::fs::item item;
+
    item.m_strPath          = lpcsz;
+
+   if(m_item.m_strPath == item.m_strPath)
+      return true;
+
    FileManagerBrowse(item);
+
    return false;
+
 }
 
 void FileManagerInterface::FileManagerOneLevelUp()

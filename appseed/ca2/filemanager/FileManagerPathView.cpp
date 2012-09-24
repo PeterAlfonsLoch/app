@@ -96,9 +96,15 @@ void FileManagerPathView::on_update(::view * pSender, LPARAM lHint, ::radix::obj
 
 void FileManagerPathView::_017Synchronize()
 {
+   
    if(m_bVoidSync)
       return;
+
+   if(GetFileManager() == NULL)
+      return;
+
    _001SetText(GetFileManager()->get_item().m_strPath);
+
 }
 
 void FileManagerPathView::_001OnAfterChangeText()
@@ -107,7 +113,15 @@ void FileManagerPathView::_001OnAfterChangeText()
 
    string str;
    _001GetText(str);
-   if(GetFileManager()->get_fs_data()->is_dir(str))
+
+   FileManagerInterface * pmanager = GetFileManager();
+
+   if(pmanager == NULL)
+      return;
+
+   ::fs::data * pfsdata = pmanager->get_fs_data();
+
+   if(pfsdata->is_dir(str))
    {
       GetFileManager()->FileManagerBrowse(str);
    }
