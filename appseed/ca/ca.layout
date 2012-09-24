@@ -22,8 +22,11 @@
 	<File name="ca/ca_application_interface.h" open="0" top="0" tabpos="0">
 		<Cursor position="473" topLine="5" />
 	</File>
-	<File name="ca/ca_bitmap.h" open="0" top="0" tabpos="0">
-		<Cursor position="145" topLine="0" />
+	<File name="ca/ca_bitmap.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="46" topLine="0" />
+	</File>
+	<File name="ca/ca_bitmap.h" open="1" top="0" tabpos="11">
+		<Cursor position="75" topLine="0" />
 	</File>
 	<File name="ca/ca_ca.h" open="0" top="0" tabpos="0">
 		<Cursor position="1370" topLine="67" />
@@ -1056,6 +1059,12 @@
 	</File>
 	<File name="visual/visual_api.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="13862" topLine="468" />
+	</File>
+	<File name="visual/visual_buffered_graphics.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="425" topLine="0" />
+	</File>
+	<File name="visual/visual_buffered_graphics.h" open="1" top="0" tabpos="4">
+		<Cursor position="39" topLine="0" />
 	</File>
 	<File name="visual/visual_clip.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="5554" topLine="221" />

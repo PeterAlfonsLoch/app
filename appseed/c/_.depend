@@ -1887,14 +1887,19 @@
 1348390788 /ca2/app/appseed/c/merdes_windows/c_os_graphics_round_rect.h
 	<D2d1.h>
 
-1348390788 /ca2/app/appseed/c/windows/c_os_gdi.h
+1348442183 /ca2/app/appseed/c/windows/c_os_gdi.h
 
 1348390788 /ca2/app/appseed/c/windows/c_os_graphics_round_rect.h
 	<gdiplus.h>
 
-1348411718 /ca2/app/appseed/c/linux/c_os_gdi.h
+1348449183 /ca2/app/appseed/c/linux/c_os_gdi.h
 	<X11/Xlib.h>
 	<X11/Xutil.h>
+	"c_os_simple_brush.h"
+	"c_os_simple_bitmap.h"
+	"c_os_simple_font.h"
+	"c_os_simple_pen.h"
+	"c_os_simple_graphics.h"
 	<X11/Xlib.h>
 
 1348412439 source:/ca2/app/appseed/c/linux/c_os_gdi.cpp
@@ -1902,6 +1907,32 @@
 	"linux/c_os_cross_win_gdi_internal.h"
 
 1348390790 source:/ca2/app/appseed/c/c/c_gdi.cpp
+	"framework.h"
+	"linux/c_os_cross_win_gdi_internal.h"
+
+1348448784 /ca2/app/appseed/c/linux/c_os_simple_brush.h
+
+1348448784 /ca2/app/appseed/c/linux/c_os_simple_bitmap.h
+
+1348448784 /ca2/app/appseed/c/linux/c_os_simple_font.h
+
+1348448900 /ca2/app/appseed/c/linux/c_os_simple_pen.h
+
+1348448973 /ca2/app/appseed/c/linux/c_os_simple_graphics.h
+
+1348448840 source:/ca2/app/appseed/c/linux/c_os_simple_bitmap.cpp
+	"framework.h"
+
+1348449394 source:/ca2/app/appseed/c/linux/c_os_simple_brush.cpp
+	"framework.h"
+
+1348449255 source:/ca2/app/appseed/c/linux/c_os_simple_pen.cpp
+	"framework.h"
+
+1348449305 source:/ca2/app/appseed/c/linux/c_os_simple_font.cpp
+	"framework.h"
+
+1348449279 source:/ca2/app/appseed/c/linux/c_os_simple_graphics.cpp
 	"framework.h"
 	"linux/c_os_cross_win_gdi_internal.h"
 

@@ -19,6 +19,7 @@ namespace visual
       m_p->SetViewportOrg(rect.top_left());
       m_spbitmap->CreateCompatibleBitmap(m_p, rect.width(), rect.height());
       m_spbitmapBlend->CreateBitmap(
+         m_p,
          rect.width(),
          rect.height(),
          1,

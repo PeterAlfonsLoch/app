@@ -9,7 +9,7 @@ namespace filemanager
 {
 
 
-   SimpleFolderTreeView::SimpleFolderTreeView(::ca::application * papp) : 
+   SimpleFolderTreeView::SimpleFolderTreeView(::ca::application * papp) :
       ca(papp),
       ::user::scroll_view(papp),
       SimpleFolderTreeInterface(papp),
@@ -39,7 +39,7 @@ namespace filemanager
    #endif //DEBUG
 
 
-   void SimpleFolderTreeView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+   void SimpleFolderTreeView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);
       if(phint != NULL)
@@ -56,7 +56,7 @@ namespace filemanager
                   System.LoadIcon(
                      GetFileManager()->get_filemanager_data()->m_ptemplate->m_uiCollapseBox));*/
 
-                  
+
    //            VmsDataInitialize(this);
      //          SetDataInterface(&m_datainterface);
        //        AddClient(&m_datainterface);
@@ -95,11 +95,11 @@ namespace filemanager
    }
 
 
-   void SimpleFolderTreeView::_001OnLButtonDblClk(gen::signal_object * pobj) 
+   void SimpleFolderTreeView::_001OnLButtonDblClk(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //   int iItem;
-      
+
    /*   if(_001HitTest_(point, iItem))
       {
          if(m_itema.get_item(iItem).IsFolder())
@@ -162,14 +162,14 @@ namespace filemanager
 
       string wstrNew = str.Left(iFind + 1) + wstrNameNew;
 
-      if(!WindowsShell::MoveFile(str, wstrNew))
+      if(!::win::shell::MoveFile(str, wstrNew))
       {
          System.simple_message_box("Could not rename the file");
       }
 
    }*/
 
-   void SimpleFolderTreeView::_001OnContextMenu(gen::signal_object * pobj) 
+   void SimpleFolderTreeView::_001OnContextMenu(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
    //   int iItem;
@@ -197,7 +197,7 @@ namespace filemanager
                NULL,
                (void **) &m_contextmenu.m_pcontextmenu);
 
-            
+
             if(SUCCEEDED(hr))
             {
                hr = m_contextmenu.m_pcontextmenu->QueryContextMenu(
@@ -230,16 +230,16 @@ namespace filemanager
       }*/
    }
 
-   bool SimpleFolderTreeView::pre_create_window(CREATESTRUCT& cs) 
+   bool SimpleFolderTreeView::pre_create_window(CREATESTRUCT& cs)
    {
-      
+
       cs.style |= WS_CLIPCHILDREN;
-      
+
       return SimpleFolderTreeInterface::pre_create_window(cs);
    }
 
 
-   void SimpleFolderTreeView::_001OnTimer(gen::signal_object * pobj) 
+   void SimpleFolderTreeView::_001OnTimer(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == 1234567)
@@ -249,7 +249,7 @@ namespace filemanager
          {
             m_iAnimate = 0;
             KillTimer(ptimer->m_nIDEvent);
-            
+
          }
          RedrawWindow();
       }
@@ -266,14 +266,14 @@ namespace filemanager
       SetTimer(1234567, 50, NULL);
    }
 
-   bool SimpleFolderTreeView::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)  
+   bool SimpleFolderTreeView::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    {
       // TODO: add your specialized code here and/or call the base class
-      
+
       return SimpleFolderTreeInterface::_001OnCmdMsg(pcmdmsg);
    }
 
-   void SimpleFolderTreeView::_001OnShellCommand(gen::signal_object * pobj) 
+   void SimpleFolderTreeView::_001OnShellCommand(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::command, pcommand, pobj)
       m_contextmenu.OnCommand(pcommand->GetId());
@@ -285,7 +285,7 @@ namespace filemanager
 
    }
 
-   void SimpleFolderTreeView::_001OnCreate(gen::signal_object * pobj) 
+   void SimpleFolderTreeView::_001OnCreate(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 

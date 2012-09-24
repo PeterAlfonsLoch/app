@@ -153,6 +153,7 @@
 		<Unit filename="c/wstringtovss.h" />
 		<Unit filename="c/xmlite.cpp" />
 		<Unit filename="c/xmlite.h" />
+		<Unit filename="c_os_simple_brush.h" />
 		<Unit filename="crypt/crypt.cpp" />
 		<Unit filename="crypt/crypt.h" />
 		<Unit filename="crypt/nessie.cpp" />
@@ -178,7 +179,6 @@
 		<Unit filename="linux/c_os_cross_win_gdi_internal.h" />
 		<Unit filename="linux/c_os_file.cpp" />
 		<Unit filename="linux/c_os_file.h" />
-		<Unit filename="linux/c_os_gdi.cpp" />
 		<Unit filename="linux/c_os_gdi.h" />
 		<Unit filename="linux/c_os_http.cpp" />
 		<Unit filename="linux/c_os_http.h" />
@@ -191,6 +191,16 @@
 		<Unit filename="linux/c_os_process.cpp" />
 		<Unit filename="linux/c_os_process.h" />
 		<Unit filename="linux/c_os_process_pid.cpp" />
+		<Unit filename="linux/c_os_simple_bitmap.cpp" />
+		<Unit filename="linux/c_os_simple_bitmap.h" />
+		<Unit filename="linux/c_os_simple_brush.cpp" />
+		<Unit filename="linux/c_os_simple_brush.h" />
+		<Unit filename="linux/c_os_simple_font.cpp" />
+		<Unit filename="linux/c_os_simple_font.h" />
+		<Unit filename="linux/c_os_simple_graphics.cpp" />
+		<Unit filename="linux/c_os_simple_graphics.h" />
+		<Unit filename="linux/c_os_simple_pen.cpp" />
+		<Unit filename="linux/c_os_simple_pen.h" />
 		<Unit filename="linux/c_os_simple_shell_launcher.cpp" />
 		<Unit filename="linux/c_os_small_ipc_channel.cpp" />
 		<Unit filename="linux/c_os_thread.cpp" />
@@ -261,9 +271,6 @@
 		<Unit filename="vms/veriwell_musical_studio.h" />
 		<Unit filename="vms/vms.h" />
 		<Unit filename="vms/vms_2.h" />
-		<Unit filename="windows/c_os.h" />
-		<Unit filename="windows/c_os_gdi.h" />
-		<Unit filename="windows/c_os_thread.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

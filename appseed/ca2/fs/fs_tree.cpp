@@ -10,7 +10,7 @@ namespace fs
       ::user::scroll_view(papp),
       ::fs::tree_interface(papp)
    {
-         
+
       m_etranslucency = TranslucencyPresent;
 
    }
@@ -40,11 +40,11 @@ namespace fs
       IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &tree::_001OnContextMenu);
    }
 
-   void tree::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+   void tree::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
-      
+
       //FileManagerViewInterface::on_update(pSender, lHint, phint);
       if(phint != NULL)
       {
@@ -60,7 +60,7 @@ namespace fs
                   System.LoadIcon(
                      GetFileManager()->get_filemanager_data()->m_ptemplate->m_uiCollapseBox));*/
 
-                  
+
    //            VmsDataInitialize(this);
       //          SetDataInterface(&m_datainterface);
          //        AddClient(&m_datainterface);
@@ -99,11 +99,11 @@ namespace fs
    }
 
 
-   void tree::_001OnLButtonDblClk(gen::signal_object * pobj) 
+   void tree::_001OnLButtonDblClk(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //   int iItem;
-      
+
    /*   if(_001HitTest_(point, iItem))
       {
          if(m_itema.get_item(iItem).IsFolder())
@@ -166,14 +166,14 @@ namespace fs
 
       string wstrNew = str.Left(iFind + 1) + wstrNameNew;
 
-      if(!WindowsShell::MoveFile(str, wstrNew))
+      if(!::win::shell::MoveFile(str, wstrNew))
       {
          System.simple_message_box("Could not rename the file");
       }
 
    }*/
 
-   void tree::_001OnContextMenu(gen::signal_object * pobj) 
+   void tree::_001OnContextMenu(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
    //   int iItem;
@@ -201,7 +201,7 @@ namespace fs
                NULL,
                (void **) &m_contextmenu.m_pcontextmenu);
 
-            
+
             if(SUCCEEDED(hr))
             {
                hr = m_contextmenu.m_pcontextmenu->QueryContextMenu(
@@ -234,16 +234,16 @@ namespace fs
       }*/
    }
 
-   bool tree::pre_create_window(CREATESTRUCT& cs) 
+   bool tree::pre_create_window(CREATESTRUCT& cs)
    {
-      
+
       cs.style |= WS_CLIPCHILDREN;
-      
+
       return ::fs::tree_interface::pre_create_window(cs);
    }
 
 
-   void tree::_001OnTimer(gen::signal_object * pobj) 
+   void tree::_001OnTimer(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == 1234567)
@@ -253,7 +253,7 @@ namespace fs
          {
             m_iAnimate = 0;
             KillTimer(ptimer->m_nIDEvent);
-            
+
          }
          RedrawWindow();
       }
@@ -270,12 +270,12 @@ namespace fs
       SetTimer(1234567, 50, NULL);
    }
 
-   bool tree::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)  
+   bool tree::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    {
       return ::fs::tree_interface::_001OnCmdMsg(pcmdmsg);
    }
 
-   void tree::_001OnShellCommand(gen::signal_object * pobj) 
+   void tree::_001OnShellCommand(gen::signal_object * pobj)
    {
       //SCAST_PTR(::gen::message::command, pcommand, pobj)
       UNREFERENCED_PARAMETER(pobj);
@@ -286,7 +286,7 @@ namespace fs
       get_document()->file_manager_browse(item.m_strPath);
    }
 
-   void tree::_001OnCreate(gen::signal_object * pobj) 
+   void tree::_001OnCreate(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 

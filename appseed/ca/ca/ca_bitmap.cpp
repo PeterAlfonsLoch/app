@@ -1,10 +1,10 @@
 #include "framework.h"
 
+
 namespace ca
 {
 
-   bool bitmap::CreateBitmap(int nWidth, int nHeight, UINT nPlanes,
-      UINT nBitcount, const void * lpBits)
+   bool bitmap::CreateBitmap(::ca::graphics * pdc, int nWidth, int nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits)
    {
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
@@ -13,11 +13,13 @@ namespace ca
       UNREFERENCED_PARAMETER(lpBits);
       throw not_implemented_exception();
    }
-   bool bitmap::CreateBitmapIndirect(LPBITMAP lpBitmap)
+
+   bool bitmap::CreateBitmapIndirect(::ca::graphics * pdc, LPBITMAP lpBitmap)
    {
       UNREFERENCED_PARAMETER(lpBitmap);
       throw not_implemented_exception();
    }
+
    bool bitmap::CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset)
    {
       UNREFERENCED_PARAMETER(pdc);

@@ -7248,7 +7248,7 @@
 
 1342864685 /ca2/app/appseed/c/c/simple_app.h
 
-1345878529 /ca2/nodeapp/operational_system/operational_system.h
+1348445634 /ca2/nodeapp/operational_system/operational_system.h
 	<typeinfo>
 	<math.h>
 	<netinet/in.h>
@@ -7530,7 +7530,7 @@
 
 1342864850 /ca2/app/appseed/ca/x/x_tables.h
 
-1348427771 /ca2/app/appseed/ca/gen/gen_str.h
+1348442181 /ca2/app/appseed/ca/gen/gen_str.h
 	"gen_strn.h"
 	"gen_hex.h"
 
@@ -7895,7 +7895,7 @@
 
 1342864737 /ca2/app/appseed/ca/ca/ca_pen.h
 
-1342864737 /ca2/app/appseed/ca/ca/ca_bitmap.h
+1348449947 /ca2/app/appseed/ca/ca/ca_bitmap.h
 	"ca_graphics_object.h"
 
 1346980282 /ca2/app/appseed/ca/ca/ca_brush.h
@@ -9688,7 +9688,7 @@
 1342864737 source:/ca2/app/appseed/ca/ca/ca_application_interface.cpp
 	"framework.h"
 
-1342864737 source:/ca2/app/appseed/ca/ca/ca_bitmap.cpp
+1348449887 source:/ca2/app/appseed/ca/ca/ca_bitmap.cpp
 	"framework.h"
 
 1346980282 source:/ca2/app/appseed/ca/ca/ca_brush.cpp
@@ -11331,7 +11331,7 @@
 1342864726 source:/ca2/app/appseed/ca/gen/gen_simple_thread.cpp
 	"framework.h"
 
-1348428827 source:/ca2/app/appseed/ca/gen/gen_str.cpp
+1348442181 source:/ca2/app/appseed/ca/gen/gen_str.cpp
 	"framework.h"
 	<ctype.h>
 
@@ -11793,7 +11793,7 @@
 1342864855 source:/ca2/app/appseed/ca/primitive/primitive_geometric_types.cpp
 	"framework.h"
 
-1348427618 source:/ca2/app/appseed/ca/primitive/primitive_id.cpp
+1348442181 source:/ca2/app/appseed/ca/primitive/primitive_id.cpp
 	"framework.h"
 
 1347226534 source:/ca2/app/appseed/ca/multithreading/multithreading_sync_objec.cpp
@@ -12423,7 +12423,7 @@
 1342864881 source:/ca2/app/appseed/ca/user/user_window_map.cpp
 	"framework.h"
 
-1347196226 source:/ca2/app/appseed/ca/user/user_keyboard.cpp
+1348442181 source:/ca2/app/appseed/ca/user/user_keyboard.cpp
 	"framework.h"
 
 1348390788 /ca2/app/appseed/c/merdes_windows/c_os_thread.h
@@ -12474,7 +12474,7 @@
 1342864829 source:/ca2/app/appseed/ca/visual/visual_application.cpp
 	"framework.h"
 
-1342864829 source:/ca2/app/appseed/ca/visual/visual_buffered_graphics.cpp
+1348450162 source:/ca2/app/appseed/ca/visual/visual_buffered_graphics.cpp
 	"framework.h"
 
 1347192712 /ca2/app/appseed/ca/exception/exception_todo.h
@@ -12712,9 +12712,14 @@
 
 1348390790 /ca2/app/appseed/c/c/c_gdi.h
 
-1348411718 /ca2/app/appseed/c/linux/c_os_gdi.h
+1348449183 /ca2/app/appseed/c/linux/c_os_gdi.h
 	<X11/Xlib.h>
 	<X11/Xutil.h>
+	"c_os_simple_brush.h"
+	"c_os_simple_bitmap.h"
+	"c_os_simple_font.h"
+	"c_os_simple_pen.h"
+	"c_os_simple_graphics.h"
 	<X11/Xlib.h>
 
 1348390788 /ca2/app/appseed/c/merdes_windows/c_os_http.h
@@ -12730,7 +12735,7 @@
 1348390788 /ca2/app/appseed/c/merdes_windows/c_os_graphics_round_rect.h
 	<D2d1.h>
 
-1348390788 /ca2/app/appseed/c/windows/c_os_gdi.h
+1348442183 /ca2/app/appseed/c/windows/c_os_gdi.h
 
 1348390788 /ca2/app/appseed/c/windows/c_os_graphics_round_rect.h
 	<gdiplus.h>
@@ -12747,4 +12752,14 @@
 1348428583 source:/ca2/app/appseed/ca/gen/gen_strn.cpp
 	"framework.h"
 	<ctype.h>
+
+1348448784 /ca2/app/appseed/c/linux/c_os_simple_brush.h
+
+1348448784 /ca2/app/appseed/c/linux/c_os_simple_bitmap.h
+
+1348448784 /ca2/app/appseed/c/linux/c_os_simple_font.h
+
+1348448900 /ca2/app/appseed/c/linux/c_os_simple_pen.h
+
+1348448973 /ca2/app/appseed/c/linux/c_os_simple_graphics.h
 
