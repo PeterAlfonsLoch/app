@@ -13,7 +13,7 @@ namespace ca4
    {
       ::sockets::socket_handler handler(get_app());
       ::sockets::smtp_socket socket(handler);
-      if(!socket.open("ca2.cc", 25))
+      if(!socket.open("ca2.com.de", 25))
          return false;
 
       socket.m_estate = ::sockets::smtp_socket::state_initial;

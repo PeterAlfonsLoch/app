@@ -20,6 +20,7 @@ namespace sockets
       SetNonblocking(false);
       ::gen::parse pa(line);
       string code = pa.getword();
+
       code.make_upper();
       if(m_estate == state_initial)
       {
