@@ -345,7 +345,7 @@ namespace dynamic_source
             TRACE("ds_script::GetModuleHandle return bool(%d) Unload Error close Handle %s %d\r\n", b, strStagePath, dwError);
          }
          string strPdb;
-         strPdb = m_strScriptPath;
+         strPdb = strStagePath;
          gen::str::ends_eat_ci(strPdb, ".dll");
          strPdb += ".pdb";
          b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + strPdb), &hmodule) != FALSE;
