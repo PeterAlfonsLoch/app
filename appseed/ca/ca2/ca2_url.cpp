@@ -114,9 +114,9 @@ namespace ca2
       strsize iFind = str.find('?');
 
       if(iFind < 0)
-         return str;
+         return url_decode(str);
       else
-         return str.Left(iFind);
+         return url_decode(str.Left(iFind));
 
    }
 
