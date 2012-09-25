@@ -1291,13 +1291,13 @@ void virtual_user_interface::SetFont(::ca::font* pFont, bool bRedraw)
 
 #ifdef WINDOWS
 
-   if(pFont->get_os_data() == NULL)
-      return;
+   //if(pFont->get_os_data() == NULL)
+     // return;
 
 #else
 
-   if(pFont->get_os_data() == 0)
-      return;
+   //if(pFont->get_os_data() == 0)
+     // return;
 
 #endif
 

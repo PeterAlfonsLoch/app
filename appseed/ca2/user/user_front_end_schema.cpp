@@ -30,6 +30,25 @@ namespace user
 
       m_button.m_font->CreateFontIndirect(&lf);
 
+
+      color color;
+      color.set_rgb(::GetSysColor(COLOR_HIGHLIGHT));
+
+      class color colorHover(color);
+      colorHover.hls_rate(0.0, 0.3, 0.0);
+
+      class color colorPress(color);
+      colorHover.hls_rate(0.0, 0.7, 0.0);
+
+
+      m_button.m_crTextNormal          = ARGB(255, 0, 0, 0);
+      m_button.m_crTextHover           = color | (0xff << 24);
+      m_button.m_crTextNormal          = ARGB(255, 0, 0, 0);
+      m_button.m_crBkNormal            = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
+      m_button.m_crBkPress             = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
+      m_button.m_crBkDisabled          = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
+      m_button.m_crBkHover             = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
+
       memset(&lf, 0, sizeof(LOGFONT));
 
       //lf.lfHeight         = (int)-MulDiv(11, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
@@ -43,16 +62,10 @@ namespace user
 
       m_buttonBaseWndMenuSysMenu.m_font->CreateFontIndirect(&lf);
 
-      color color;
-      color.set_rgb(::GetSysColor(COLOR_HIGHLIGHT));
-      class color colorHover(color);
-      colorHover.hls_rate(0.0, 0.3, 0.0);
-      class color colorPress(color);
-      colorHover.hls_rate(0.0, 0.7, 0.0);
 
-      m_buttonBaseWndMenuSysMenu.m_crTextNormal = ARGB(255, 0, 0, 0);
-      m_buttonBaseWndMenuSysMenu.m_crTextHover  = color | (0xff << 24);
-      m_buttonBaseWndMenuSysMenu.m_crTextNormal = ARGB(255, 0, 0, 0);
+      m_buttonBaseWndMenuSysMenu.m_crTextNormal          = ARGB(255, 0, 0, 0);
+      m_buttonBaseWndMenuSysMenu.m_crTextHover           = color | (0xff << 24);
+      m_buttonBaseWndMenuSysMenu.m_crTextNormal          = ARGB(255, 0, 0, 0);
       m_buttonBaseWndMenuSysMenu.m_crBkNormal            = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
       m_buttonBaseWndMenuSysMenu.m_crBkPress             = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
       m_buttonBaseWndMenuSysMenu.m_crBkDisabled          = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);

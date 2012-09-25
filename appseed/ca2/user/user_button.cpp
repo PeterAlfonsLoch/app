@@ -309,12 +309,27 @@ namespace user
 
    void button::_001Layout()
    {
-      rect rect;
-      GetClientRect(rect);
-      rect.left   += 5;
-      rect.top    += 5;
+      
+      rect rectClient;
+      GetClientRect(rectClient);
+
+
+      ::rect rect(rectClient);
+
+      rect.left   += rect.height() * 0.15;
+      rect.top    += rect.height() * 0.15;
 
       m_rectText = rect;
+
+
+      ::ca::font font;
+
+      font.m_strFontFamilyName = "Calibri";
+      font.m_dFontSize = rect.height() * 0.7;
+      font.m_eunitFontSize = ::ca::unit_pixel;
+
+      SetFont(&font);
+
    }
 
    string button::_001GetButtonText()
