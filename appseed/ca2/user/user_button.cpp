@@ -42,12 +42,13 @@ namespace user
       
       string strText(m_istrButtonText);
 
-      pdc->SelectObject(_001GetFont());
-
       rect rectClient;
       GetClientRect(rectClient);
       if(m_pschema == NULL)
       {
+   
+         pdc->SelectObject(_001GetFont());
+
          if(m_iHover == 0)
          {
             pdc->FillSolidRect(rectClient, ARGB(255, 127, 127, 127));
@@ -91,6 +92,13 @@ namespace user
             pdc->FillSolidRect(rectClient, m_pschema->m_crBkNormal);
             pdc->SetTextColor(m_pschema->m_crTextNormal);
          }
+
+         pdc->selectFont(m_pschema->m_font);
+
+         pdc->m_fontxyz.m_dFontSize = rectClient.height() * 0.5;
+
+         pdc->m_fontxyz.m_bUpdated = false;
+
       }
 
       pdc->draw_text(strText, m_rectText, DT_LEFT | DT_TOP);
@@ -322,13 +330,13 @@ namespace user
       m_rectText = rect;
 
 
-      ::ca::font font;
+      /*::ca::font font;
 
       font.m_strFontFamilyName = "Calibri";
       font.m_dFontSize = rect.height() * 0.7;
       font.m_eunitFontSize = ::ca::unit_pixel;
 
-      SetFont(&font);
+      SetFont(&font);*/
 
    }
 
