@@ -82,8 +82,14 @@ namespace user
 
       string strLicense = get_license_id();
 
-      if(!(System.directrix().m_varTopicQuery.has_property("install")
-      ||  System.directrix().m_varTopicQuery.has_property("uninstall"))
+
+      var & varTopicQuey = System.directrix().m_varTopicQuery;
+
+      bool bHasInstall = varTopicQuey.has_property("install");
+
+      bool bHasUninstall = varTopicQuey.has_property("uninstall");
+
+      if(!(bHasInstall || bHasUninstall)
       && m_bLicense
       && strLicense.has_char())
       {

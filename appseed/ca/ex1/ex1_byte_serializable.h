@@ -50,7 +50,7 @@ namespace ex1
    void byte_serializable_array < type_array >::read(byte_input_stream & istream)
    {
       ::count count;
-      istream >> count;
+      //istream >> count;
       istream.read_arbitrary(count);
       this->set_size(count);
       for(index index = 0; index < count; index++)

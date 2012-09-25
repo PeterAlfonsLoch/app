@@ -65,7 +65,10 @@ namespace ca2
       void validate::show_and_request_auth()
       {
          
-         m_pviewAuth->SetTimer(1984, 484, NULL);
+         if(m_loginthread.m_strLicense.is_empty())
+         {
+            m_pviewAuth->SetTimer(1984, 484, NULL);
+         }
          ::ca::live_signal livesignal;
          livesignal.keep(get_app());
          m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE, &livesignal);
