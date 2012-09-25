@@ -43,9 +43,6 @@ bool FileManagerInterface::FileManagerBrowse(const char * lpcsz)
 
    item.m_strPath          = lpcsz;
 
-   if(m_item.m_strPath == item.m_strPath)
-      return true;
-
    FileManagerBrowse(item);
 
    return false;

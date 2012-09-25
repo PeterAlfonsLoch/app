@@ -103,6 +103,13 @@ void FileManagerPathView::_017Synchronize()
    if(GetFileManager() == NULL)
       return;
 
+   string strOld;
+
+   _001GetText(strOld);
+
+   if(strOld == GetFileManager()->get_item().m_strPath)
+      return;
+
    _001SetText(GetFileManager()->get_item().m_strPath);
 
 }

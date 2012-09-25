@@ -558,24 +558,42 @@ namespace user
                pane.m_dib->bitmap_blend(pdc, rectIcon);
             }
 
+            ::ca::graphics_path_sp path(get_app());
+
             if(get_data()->m_iaSel.contains(iPane))
             {
+
+               //path->start_figure();
+               
+               path->add_line(rectBorder.right, rectBorder.bottom, rectBorder.left + 1, rectBorder.bottom);
+               //path->add_line(rectClient.right, rectBorder.top);
+               path->add_line(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
+               path->add_line(rectClient.left, rectBorder.top);
+               path->add_line(rectBorder.right, rectBorder.top);
+               
+               //path->close_figure();
+
+               ::ca::brush_sp br(get_app());
+
+               br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
+
+               pdc->SelectObject(br);
+
+               pdc->fill_path(path);
+
                pdc->set_color(ARGB(255, 0, 0, 0));
                pdc->set_solid_pen(1.0);
 
+               pdc->draw_path(path);
 
-               pdc->MoveTo(rectBorder.right, rectBorder.bottom);
-               pdc->LineTo(rectBorder.left + 1, rectBorder.bottom);
-               pdc->LineTo(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
-               pdc->LineTo(rectClient.left, rectBorder.top);
-               pdc->LineTo(rectBorder.right, rectBorder.top);
+               pdc->set_font(get_data()->m_font);
+               pdc->set_color(ARGB(255, 0, 0, 0));
 
-               pdc->set_font(get_data()->m_fontBold);
 
             }
             else
             {
-               pdc->set_color(ARGB(255, 0, 0, 0));
+/*               pdc->set_color(ARGB(255, 0, 0, 0));
                pdc->set_solid_pen(1.0);
                pdc->MoveTo(rectBorder.right, rectBorder.bottom);
                pdc->LineTo(rectBorder.left + 1, rectBorder.bottom);
@@ -593,6 +611,65 @@ namespace user
                   pdc->set_font(get_data()->m_font);
                   pdc->SetTextColor(ARGB(255, 0, 0, 0));
                }
+               */
+
+
+               //path->start_figure();
+               
+
+               path->add_line(rectBorder.right, rectBorder.bottom, rectBorder.left + 1, rectBorder.bottom);
+               path->add_line(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
+               path->add_line(rectText.left, rectBorder.top);
+               path->add_line(rectBorder.right, rectBorder.top);
+               path->add_line(rectBorder.right, rectBorder.bottom);
+
+
+               //path->close_figure();
+
+               if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
+               {
+
+                  ::ca::brush_sp br(get_app());
+
+                  br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
+
+                  pdc->SelectObject(br);
+
+                  pdc->fill_path(path);
+
+                  pdc->set_color(ARGB(200, 100, 100, 100));
+                  pdc->set_solid_pen(1.0);
+
+                  pdc->draw_path(path);
+
+
+                  pdc->set_font(get_data()->m_fontUnderline);
+                  pdc->set_color(ARGB(255, 0, 0, 0));
+
+               }
+               else
+               {
+
+                  ::ca::brush_sp br(get_app());
+
+                  br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
+
+                  pdc->SelectObject(br);
+
+                  pdc->fill_path(path);
+
+                  pdc->set_color(ARGB(200, 100, 100, 100));
+                  pdc->set_solid_pen(1.0);
+
+                  pdc->draw_path(path);
+
+
+                  pdc->set_font(get_data()->m_font);
+                  pdc->set_color(ARGB(255, 0, 0, 0));
+
+               }
+
+
             }
 
 
