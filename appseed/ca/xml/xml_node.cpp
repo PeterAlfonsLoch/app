@@ -1614,7 +1614,7 @@ namespace xml
    {
       for(index i = iStartPosition; i < m_nodea.get_size(); i++ )
       {
-         if(m_nodea[i].m_strName == pszName)
+         if(m_nodea[i].m_strName.compare(pszName) == 0)
             return &m_nodea[i];
       }
       return NULL;

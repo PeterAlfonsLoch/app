@@ -224,7 +224,7 @@ namespace plane
 
       pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] = 1;
 
-      ::ca::application * pcaapp = application_get("appplication", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      ::ca::application * pcaapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
 
       ::bergedge_interface * papp = dynamic_cast < ::bergedge_interface * > (pcaapp);
 
