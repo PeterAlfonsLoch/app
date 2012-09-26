@@ -86,7 +86,7 @@ bool virtual_user_interface::SetWindowPos(int z, int x, int y, int cx, int cy, U
    {
       m_pguie->m_bRectOk = false;
    }
-   if(rectOld.size() != m_rectParentClient.size())
+   //if(rectOld.size() != m_rectParentClient.size())
    {
 
 #ifdef WINDOWS
@@ -101,7 +101,7 @@ bool virtual_user_interface::SetWindowPos(int z, int x, int y, int cx, int cy, U
 
    }
 
-   if(rectOld.top_left() != m_rectParentClient.top_left())
+   //if(rectOld.top_left() != m_rectParentClient.top_left())
    {
 
 #ifdef WINDOWS
