@@ -130,7 +130,14 @@ void FileManagerPathView::_001OnAfterChangeText()
 
    if(pfsdata->is_dir(str))
    {
-      GetFileManager()->FileManagerBrowse(str);
+
+      if(GetFileManager()->m_item.m_strPath != str)
+      {
+
+         GetFileManager()->FileManagerBrowse(str);
+
+      }
+
    }
    else
    {
