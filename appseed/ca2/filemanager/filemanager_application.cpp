@@ -204,27 +204,51 @@ namespace filemanager
 
    string application::get_file_manager_initial_browse_path(const char * pszDefault)
    {
+      
       string strId;
+      
       strId.Format("::filemanager::document(%s)", GetStdFileManagerTemplate()->m_strDISection);
+      
       database::id dataid = strId;
+
       string strPath;
+
       if(data_get(dataid, "InitialBrowsePath", ::radix::system::idEmpty, strPath))
       {
-         return strPath;
+         
+         App(this).dir().mk(strPath);
+
+         if(App(this).dir().is(strPath))
+         {
+
+            return strPath;
+
+         }
+
       }
+
       if(pszDefault != NULL && strlen(pszDefault) > 0)
       {
+
          strPath = pszDefault;
+
       }      
       else
       {
+
          strPath = Application.dir().userdata();
+
       }
+
       if(data_set(dataid, "InitialBrowsePath", ::radix::system::idEmpty, strPath))
       {
+
          return strPath;
+
       }
+
       return "";
+
    }
 } // namespace filemanager
 
