@@ -63,7 +63,7 @@ namespace plugin
 
       virtual bool os_native_bergedge_start();
 
-      virtual void on_paint(HDC hdcWindow, LPCRECT lprect);
+      virtual void on_paint(simple_graphics & gWindow, LPCRECT lprect);
 
       virtual int  start_ca2_system();
 

@@ -213,7 +213,7 @@ namespace plugin
 
 
 
-   void plugin::on_paint(HDC hdcWindow, LPCRECT lprectOut)
+   void plugin::on_paint(simple_graphics & gWindow, LPCRECT lprectOut)
    {
 
       UNREFERENCED_PARAMETER(lprectOut);
