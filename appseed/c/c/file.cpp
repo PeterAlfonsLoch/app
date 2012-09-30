@@ -173,7 +173,7 @@ const char * file_get_contents_dup(const char * path)
 
    wstring wstr(path);
 
-   HANDLE hfile = ::CreateFile(wstr, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+   HANDLE hfile = ::CreateFileW(wstr, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
    if(hfile == INVALID_HANDLE_VALUE)
       return strdup_dup("");
    DWORD dwSizeHigh;
@@ -233,7 +233,7 @@ bool file_get_memory_dup(simple_memory & memory, const char * path)
    wstring wstr(path);
 
    memory.allocate(0);
-   HANDLE hfile = ::CreateFile(wstr, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+   HANDLE hfile = ::CreateFileW(wstr, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
    if(hfile == INVALID_HANDLE_VALUE)
       return false;
    DWORD dwSizeHigh;
