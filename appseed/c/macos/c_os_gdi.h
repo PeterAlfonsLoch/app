@@ -1,34 +1,20 @@
 #pragma once
 
 
-class CLASS_DECL_c simple_graphics
-{
-public:
-
-   //X11 or Cocoa
+#ifndef __cplusplus
+#import <Foundantion/Foundantion.h>
+#endif
 
 
-   simple_graphics();
-   ~simple_graphics();
+#include "c_os_simple_bitmap.h"
+#include "c_os_simple_brush.h"
+#include "c_os_simple_pen.h"
+#include "c_os_simple_font.h"
 
 
-};
+#include "c_os_simple_graphics.h"
 
 
-class CLASS_DECL_c simple_brush
-{
-public:
-
-   //X11 or Cocoa
-
-   
-
-   simple_brush();
-   ~simple_brush();
-
-
-
-};
 
 
 

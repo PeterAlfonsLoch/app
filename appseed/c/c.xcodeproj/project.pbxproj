@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0713C3FB1618A54B00719F96 /* c_os_gdi.h in Headers */ = {isa = PBXBuildFile; fileRef = 0713C3FA1618A54B00719F96 /* c_os_gdi.h */; };
 		07237ECA15F99D310018B75F /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07237E6415F99D310018B75F /* _.cpp */; };
 		07237ECB15F99D310018B75F /* _argcargv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07237E6515F99D310018B75F /* _argcargv.cpp */; };
 		07237ECC15F99D310018B75F /* _atol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07237E6615F99D310018B75F /* _atol.cpp */; };
@@ -230,6 +231,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0713C3FA1618A54B00719F96 /* c_os_gdi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_os_gdi.h; sourceTree = "<group>"; };
+		0713C3FD1618AF3200719F96 /* c_os_simple_brush.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_os_simple_brush.h; sourceTree = "<group>"; };
+		0713C3FE1618B03800719F96 /* c_os_simple_graphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_os_simple_graphics.h; sourceTree = "<group>"; };
+		0713C3FF1618B76500719F96 /* c_os_simple_bitmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_os_simple_bitmap.h; sourceTree = "<group>"; };
+		0713C40D1618B9E600719F96 /* c_os_simple_font.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_os_simple_font.h; sourceTree = "<group>"; };
+		0713C40F1618BA3300719F96 /* c_os_simple_pen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_os_simple_pen.h; sourceTree = "<group>"; };
 		07237E6415F99D310018B75F /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		07237E6515F99D310018B75F /* _argcargv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _argcargv.cpp; sourceTree = "<group>"; };
 		07237E6615F99D310018B75F /* _atol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _atol.cpp; sourceTree = "<group>"; };
@@ -353,7 +360,7 @@
 		07AB204C16061A6000CD4EE2 /* os_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = os_thread.h; path = os/os_thread.h; sourceTree = "<group>"; };
 		07AB205316061B3600CD4EE2 /* c_os_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_os_file.h; sourceTree = "<group>"; };
 		07AB205416061B3600CD4EE2 /* c_os_win_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_win_base.cpp; sourceTree = "<group>"; };
-		07AB205B16061BB200CD4EE2 /* ansios_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ansios_file.cpp; path = ansios/ansios_file.cpp; sourceTree = "<group>"; };
+		07AB205B16061BB200CD4EE2 /* ansios_file.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ansios_file.cpp; path = ansios/ansios_file.cpp; sourceTree = "<group>"; };
 		07AB205C16061BB200CD4EE2 /* ansios_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ansios_file.h; path = ansios/ansios_file.h; sourceTree = "<group>"; };
 		07AB205D16061BB200CD4EE2 /* ansios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ansios.h; path = ansios/ansios.h; sourceTree = "<group>"; };
 		07AE38E815FBF6CD002E9436 /* c_os_process_pid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_process_pid.cpp; sourceTree = "<group>"; };
@@ -736,6 +743,8 @@
 			children = (
 				077AE6CB1606201C0052CAC4 /* c_os_thread.cpp */,
 				07AB205316061B3600CD4EE2 /* c_os_file.h */,
+				CEACF735145FD3C2004A3E5B /* c_os_gdi.cpp */,
+				0713C3FA1618A54B00719F96 /* c_os_gdi.h */,
 				07AB205416061B3600CD4EE2 /* c_os_win_base.cpp */,
 				CE4BB211156B8B4300DD13ED /* c_os_simple_shell_launcher.cpp */,
 				9A90D07C14A348E200226F1A /* c_os_cross_gdi.mm */,
@@ -755,11 +764,15 @@
 				CEACF73F145FD3C2004A3E5B /* c_os_process.cpp */,
 				CEACF740145FD3C2004A3E5B /* c_os_process.h */,
 				07AE38E815FBF6CD002E9436 /* c_os_process_pid.cpp */,
+				0713C3FF1618B76500719F96 /* c_os_simple_bitmap.h */,
+				0713C3FD1618AF3200719F96 /* c_os_simple_brush.h */,
+				0713C40D1618B9E600719F96 /* c_os_simple_font.h */,
+				0713C3FE1618B03800719F96 /* c_os_simple_graphics.h */,
+				0713C40F1618BA3300719F96 /* c_os_simple_pen.h */,
 				CEACF741145FD3C2004A3E5B /* c_os_small_ipc_channel.cpp */,
 				CEACF742145FD3C2004A3E5B /* c_os.cpp */,
 				CEACF743145FD3C2004A3E5B /* c_os.h */,
 				CEBB9C6E1466609600912AFA /* c_os_internal.h */,
-				CEACF735145FD3C2004A3E5B /* c_os_gdi.cpp */,
 				CEBB9C6A146656B800912AFA /* c_os_user.cpp */,
 				9A8897A914C24901006B4023 /* c_os_file.cpp */,
 			);
@@ -878,6 +891,7 @@
 				07AB205816061B3600CD4EE2 /* c_os_file.h in Headers */,
 				07AB205F16061BB200CD4EE2 /* ansios_file.h in Headers */,
 				07AB206016061BB200CD4EE2 /* ansios.h in Headers */,
+				0713C3FB1618A54B00719F96 /* c_os_gdi.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
