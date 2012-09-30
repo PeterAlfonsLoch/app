@@ -1,41 +1,12 @@
 #pragma once
 
 
-#include <d2d1.h>
+#include <D2D1.h>
+#include <DWRITE.h>
 
 
-class CLASS_DECL_c simple_graphics
-{
-public:
-
-
-   ID2D1RenderTarget *     m_pdc;
-   IDWriteTextFormat *     m_pfont;
-   ID2D1Brush *            m_pbrush;
-
-
-   simple_graphics();
-   ~simple_graphics();
-
-
-};
-
-
-class CLASS_DECL_c simple_brush
-{
-public:
-
-
-   ID2D1Brush *            m_pbrush;
-
-
-
-   simple_brush();
-   ~simple_brush();
-
-
-};
-
-
+#include "c_os_simple_graphics.h"
+#include "c_os_simple_brush.h"
+#include "c_os_simple_bitmap.h"
 
 

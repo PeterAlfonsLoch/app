@@ -583,6 +583,9 @@ namespace gen
          };
 
 
+#ifdef WINDOWSEX
+
+
          class CLASS_DECL_ca window_pos : public base
          {
          public:
@@ -592,7 +595,12 @@ namespace gen
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
 
+
+#endif
+
+
 #ifdef WINDOWS
+
 
          class CLASS_DECL_ca measure_item : public base
          {

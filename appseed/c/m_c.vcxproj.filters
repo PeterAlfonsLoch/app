@@ -64,6 +64,9 @@
     <Filter Include="Source Files\merdas_windows">
       <UniqueIdentifier>{8db4b1b9-ec75-4fe9-8f05-8f084c5da0ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\macos">
+      <UniqueIdentifier>{7ca1d636-5f3b-4d66-8059-7b59c7daae5e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -202,9 +205,6 @@
       <Filter>Source Files\c</Filter>
     </ClCompile>
     <ClCompile Include="c\file_spa.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
-    <ClCompile Include="c\gdi.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
     <ClCompile Include="c\geometric_types.cpp">
@@ -384,6 +384,12 @@
     <ClCompile Include="merdes_windows\c_os_small_ipc_channel.cpp">
       <Filter>Source Files\merdas_windows</Filter>
     </ClCompile>
+    <ClCompile Include="c\c_gdi.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="macos\c_os_gdi.cpp">
+      <Filter>Source Files\macos</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -522,9 +528,6 @@
       <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="c\file.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="c\gdi.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="c\geometric_types.h">
@@ -692,8 +695,20 @@
     <ClInclude Include="merdes_windows\c_os_simple_hold_handle.h">
       <Filter>Header Files\windows_merdes</Filter>
     </ClInclude>
-    <ClInclude Include="merdes_windows\c_os.h">
+    <ClInclude Include="merdes_windows\c_os_gdi.h">
       <Filter>Header Files\windows_merdes</Filter>
+    </ClInclude>
+    <ClInclude Include="merdes_windows\c_os_simple_brush.h">
+      <Filter>Header Files\windows_merdes</Filter>
+    </ClInclude>
+    <ClInclude Include="merdes_windows\c_os_simple_bitmap.h">
+      <Filter>Header Files\windows_merdes</Filter>
+    </ClInclude>
+    <ClInclude Include="merdes_windows\c_os_simple_graphics.h">
+      <Filter>Header Files\windows_merdes</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_gdi.h">
+      <Filter>Header Files\c</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

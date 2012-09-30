@@ -122,8 +122,10 @@ simple_mutex::~simple_mutex()
 
 void simple_mutex::lock()
 {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    WaitForSingleObject(m_hMutex, INFINITE);
+#elif defined(MERDE_WINDOWS)
+   WaitForSingleObjectEx(m_hMutex, INFINITE, FALSE);
 #else
    if(m_strName.is_empty())
    {

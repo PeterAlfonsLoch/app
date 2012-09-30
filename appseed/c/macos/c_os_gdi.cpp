@@ -591,3 +591,483 @@ HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam)
    
 }
 
+
+
+
+
+
+
+
+#ifdef LINUX
+#include "linux/c_os_cross_win_gdi_internal.h"
+#elif defined(MACOS)
+#endif
+
+
+
+
+#if defined(MACOS)
+
+
+CTFontDescriptorRef CreateFontDescriptorFromName(CFStringRef iPostScriptName, CGFloat iSize)
+{
+   assert(iPostScriptName != NULL);
+   return CTFontDescriptorCreateWithNameAndSize(iPostScriptName, iSize);
+}
+
+
+CTFontDescriptorRef CreateFontDescriptorFromFamilyAndTraits(CFStringRef iFamilyName, CTFontSymbolicTraits iTraits, CGFloat iSize)
+{
+   
+   CTFontDescriptorRef descriptor = NULL;
+   CFMutableDictionaryRef attributes;
+   assert(iFamilyName != NULL);
+   
+   // Create a mutable dictionary to hold our attributes.
+   attributes = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+   
+   __Check(attributes != NULL);
+   
+   if (attributes != NULL)
+   {
+      
+      CFMutableDictionaryRef traits;
+      
+      CFNumberRef symTraits;
+      
+      // add a family name to our attributes.
+      CFDictionaryAddValue(attributes, kCTFontFamilyNameAttribute, iFamilyName);
+      
+      // Create the traits dictionary.
+      symTraits = CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &iTraits);
+      
+      (symTraits != NULL);
+      
+      if (symTraits != NULL)
+      {
+         // Create a dictionary to hold our traits values.
+         traits = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+         
+         __Check(traits != NULL);
+         
+         if (traits != NULL)
+         {
+            
+            // add the symbolic traits value to the traits dictionary.
+            CFDictionaryAddValue(traits, kCTFontSymbolicTrait, symTraits);
+            
+            // add the traits attribute to our attributes.
+            CFDictionaryAddValue(attributes, kCTFontTraitsAttribute, traits);
+            
+            CFRelease(traits);
+            
+         }
+         
+         CFRelease(symTraits);
+         
+      }
+      
+      // Create the font descriptor with our attributes and input size.
+      descriptor = CTFontDescriptorCreateWithAttributes(attributes);
+      
+      __Check(descriptor != NULL);
+      
+      CFRelease(attributes);
+      
+   }
+   
+   // Return our font descriptor.
+   return descriptor;
+   
+}
+
+
+CTFontRef CreateFont(CTFontDescriptorRef iFontDescriptor, CGFloat iSize)
+{
+   
+   __Check(iFontDescriptor != NULL);
+   
+   // Create the font from the font descriptor and input size. Pass
+   // NULL for the matrix parameter to use the default matrix (identity).
+   return CTFontCreateWithFontDescriptor(iFontDescriptor, iSize, NULL);
+   
+}
+
+
+CTFontRef CreateBoldFont(CTFontRef iFont, Boolean iMakeBold)
+{
+   
+   CTFontSymbolicTraits desiredTrait = 0;
+   
+   CTFontSymbolicTraits traitMask;
+   
+   // If we are trying to make the font bold, set the desired trait
+   // to be bold.
+   if (iMakeBold)
+      desiredTrait = kCTFontBoldTrait;
+   
+   // Mask off the bold trait to indicate that it is the only trait
+   // desired to be modified. As CTFontSymbolicTraits is a bit field,
+   // we could choose to change multiple traits if we desired.
+   traitMask = kCTFontBoldTrait;
+   
+   // Create a copy of the original font with the masked trait set to the
+   // desired value. If the font family does not have the appropriate style,
+   // this will return NULL.
+   
+   return CTFontCreateCopyWithSymbolicTraits(iFont, 0.0, NULL, desiredTrait, traitMask);
+   
+}
+
+
+CTFontRef CreateFontConvertedToFamily(CTFontRef iFont, CFStringRef iFamily)
+{
+   
+   // Create a copy of the original font with the new family. This call
+   // attempts to preserve traits, and may return NULL if that is not possible.
+   // Pass in 0.0 and NULL for size and matrix to preserve the values from
+   // the original font.
+   return CTFontCreateCopyWithFamily(iFont, 0.0, NULL, iFamily);
+   
+}
+
+bool TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
+{    
+   
+   CGContextRef context = hdc->m_cgcontext;
+   
+
+   CGContextSetTextMatrix(context, CGAffineTransformIdentity);
+   
+   
+   // Initialize an attributed string.
+   CFStringRef    string            = CFStringCreateWithCString(kCFAllocatorDefault, pszUtf8, kCFStringEncodingUTF8);
+   CTFontRef      ctfontrefText     = hdc->m_ctfontref; 
+   CGColorRef     cgcolorrefText    = hdc->m_cgcolorrefText;
+   
+   
+   
+   // Initialize string, font, and context
+   CFStringRef keys[] = { kCTFontAttributeName, kCTForegroundColorAttributeName };
+   CFTypeRef values[] = { ctfontrefText, cgcolorrefText };
+   CFDictionaryRef attributes = CFDictionaryCreate(
+                      kCFAllocatorDefault, (const void**)&keys,
+                      (const void**)&values, sizeof(keys) / sizeof(keys[0]),
+                      &kCFTypeDictionaryKeyCallBacks,
+                      &kCFTypeDictionaryValueCallBacks);
+   
+   
+//   CFIndex iLen = CFStringGetLength(string);
+   
+   
+   CFAttributedStringRef attrString = CFAttributedStringCreate(kCFAllocatorDefault, string, attributes);
+   
+   CFRelease(attributes);
+   
+   
+   
+//   CFAttributedStringSetAttribute(attrString, CFRangeMake(0, iLen), (CFStringRef) , (CFTypeRef) textcolor);
+   
+   
+  // CFStringGetLength
+   
+   CTLineRef line = CTLineCreateWithAttributedString(attrString);
+   
+   
+   
+   // Set text position and draw the line into the graphics context
+   
+   CGContextSetTextPosition(context, x, y);
+   
+   CTLineDraw(line, context);
+   
+   CFRelease(line);
+   
+   
+   CFRelease(attrString);
+   CFRelease(string);
+   
+   
+   return TRUE;
+   
+   
+}
+
+
+
+void FillSolidRect_dup(HDC hdc, LPCRECT lpRect, COLORREF clr)
+{
+   CGColorRef color = mac_create_color(clr);
+   CGRect rect;
+   rect.origin.x = lpRect->left;
+   rect.origin.y = lpRect->top;
+   rect.size.width = lpRect->right - lpRect->left;
+   rect.size.height = lpRect->bottom - lpRect->top;
+   CGContextFillRect(hdc->m_cgcontext, rect);
+   mac_release_color(color);
+}
+
+HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam);
+HFONT CreatePointBoldFont_dup(int nPointSize, const char * lpszFaceName, int BOLD, HDC hdc);
+
+HFONT CreatePointFont_dup(int nPointSize, const char * lpszFaceName, HDC hdc)
+{
+   return CreatePointBoldFont_dup(nPointSize, lpszFaceName, FALSE, hdc);
+}
+
+HFONT CreatePointBoldFont_dup(int nPointSize, const char * lpszFaceName, int BOLD, HDC hdc)
+{
+   CFStringRef    string            = CFStringCreateWithCString(kCFAllocatorDefault, lpszFaceName, kCFStringEncodingUTF8);
+   CreateFontDescriptorFromFamilyAndTraits(string, BOLD, nPointSize);
+   CFRelease(string);
+}
+
+// pLogFont->nHeight is interpreted as PointSize * 10
+HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam)
+{
+   
+#ifdef WINDOWS
+   
+   HDC hDC;
+   if (hdcParam != NULL)
+   {
+      hDC = hdcParam;
+   }
+   else
+      hDC = ::GetDC(NULL);
+   
+   // convert nPointSize to logical units based on pgraphics
+   LOGFONT logFont = *lpLogFont;
+   POINT pt;
+   // 72 points/inch, 10 decipoints/point
+   pt.y = ::MulDiv(::GetDeviceCaps(hDC, LOGPIXELSY), logFont.lfHeight, 720);
+   pt.x = 0;
+   ::DPtoLP(hDC, &pt, 1);
+   POINT ptOrg = { 0, 0 };
+   ::DPtoLP(hDC, &ptOrg, 1);
+   logFont.lfHeight = -abs_dup(pt.y - ptOrg.y);
+   
+   if(hdcParam == NULL)
+      ReleaseDC(NULL, hDC);
+   
+   return ::CreateFontIndirect(&logFont);
+   
+#else
+   
+   /*HDC hDC;
+    if (hdcParam != NULL)
+    {
+    hDC = hdcParam;
+    }
+    else
+    hDC = ::GetDC(NULL);*/
+   
+   return ::CreateFontIndirect(lpLogFont);
+   
+   /*if(hdcParam == NULL)
+    ReleaseDC(NULL, hDC);*/
+   
+#endif
+   
+}
+
+
+
+
+#elif defined(LINUX)
+
+void FillSolidRect_dup(HDC hdc, LPCRECT lpRect, COLORREF clr)
+{
+   XSetBackground(hdc->m_display, hdc->m_gc, clr);
+   XFillRectangle(hdc->m_display, hdc->m_d, hdc->m_gc, lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top);
+}
+
+HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam);
+HFONT CreatePointBoldFont_dup(int nPointSize, const char * lpszFaceName, int BOLD, HDC hdc);
+
+HFONT CreatePointFont_dup(int nPointSize, const char * lpszFaceName, HDC hdc)
+{
+   return CreatePointBoldFont_dup(nPointSize, lpszFaceName, FALSE, hdc);
+}
+
+HFONT CreatePointBoldFont_dup(int nPointSize, const char * lpszFaceName, int BOLD, HDC hdc)
+{
+   
+   LOGFONT logFont;
+   memset_dup(&logFont, 0, sizeof(LOGFONT));
+   logFont.lfCharSet = DEFAULT_CHARSET;
+   logFont.lfHeight = nPointSize;
+   logFont.lfWeight = BOLD ? FW_BOLD : FW_NORMAL;
+   strncpy_dup(logFont.lfFaceName, lpszFaceName, sizeof(logFont.lfFaceName));
+
+   return CreatePointFontIndirect_dup(&logFont, hdc);
+}
+
+// pLogFont->nHeight is interpreted as PointSize * 10
+HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam)
+{
+
+   /*HDC hDC;
+   if (hdcParam != NULL)
+   {
+      hDC = hdcParam;
+   }
+   else
+      hDC = ::GetDC(NULL);*/
+
+   return ::CreateFontIndirect(lpLogFont);
+
+   /*if(hdcParam == NULL)
+      ReleaseDC(NULL, hDC);*/
+
+
+}
+
+
+#elif defined(MERDE_WINDOWS)
+
+bool TextOutU_dup(simple_graphics & hdc, int x, int y, const char * pszUtf8, int iSize)
+{
+   WCHAR * pwsz = utf8_to_16(pszUtf8);
+   D2D_RECT_F r;
+   r.left = x;
+   r.top = y;
+   r.right = r.left + 16384;
+   r.bottom = r.top + 16384;
+   hdc.m_pfont->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+   hdc.m_pfont->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+   bool b = hdc.m_pdc->DrawText(pwsz, wcslen_dup(pwsz), hdc.m_pfont, r, hdc.m_pbrush) != FALSE;
+   delete  [] pwsz;
+   return b;
+}
+
+void FillSolidRect_dup(simple_graphics & hdc, LPCRECT lpRect, COLORREF clr)
+{
+   ::SetBkColor(hdc, clr);
+   ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
+}
+
+HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, simple_graphics & hdcParam);
+HFONT CreatePointBoldFont_dup(int nPointSize, const char * lpszFaceName, int BOLD, simple_graphics & hdc);
+
+HFONT CreatePointFont_dup(int nPointSize, const char * lpszFaceName, simple_graphics & hdc)
+{
+   return CreatePointBoldFont_dup(nPointSize, lpszFaceName, FALSE, hdc);
+}
+
+HFONT CreatePointBoldFont_dup(int nPointSize, const char * lpszFaceName, int BOLD, simple_graphics & hdc)
+{
+   LOGFONT logFont;
+   memset_dup(&logFont, 0, sizeof(LOGFONT));
+   logFont.lfCharSet = DEFAULT_CHARSET;
+   logFont.lfHeight = nPointSize;
+   logFont.lfWeight = BOLD ? FW_BOLD : FW_NORMAL;
+   strncpy_dup(logFont.lfFaceName, lpszFaceName, sizeof(logFont.lfFaceName));
+
+   return CreatePointFontIndirect_dup(&logFont, hdc);
+}
+
+// pLogFont->nHeight is interpreted as PointSize * 10
+HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, simple_graphics & hdcParam)
+{
+   HDC hDC;
+   if (hdcParam != NULL)
+   {
+      hDC = hdcParam;
+   }
+   else
+      hDC = ::GetDC(NULL);
+
+   // convert nPointSize to logical units based on pgraphics
+   LOGFONT logFont = *lpLogFont;
+   POINT pt;
+   // 72 points/inch, 10 decipoints/point
+   pt.y = ::MulDiv(::GetDeviceCaps(hDC, LOGPIXELSY), logFont.lfHeight, 720);
+   pt.x = 0;
+   ::DPtoLP(hDC, &pt, 1);
+   POINT ptOrg = { 0, 0 };
+   ::DPtoLP(hDC, &ptOrg, 1);
+   logFont.lfHeight = -abs_dup(pt.y - ptOrg.y);
+
+   if(hdcParam == NULL)
+      ReleaseDC(NULL, hDC);
+
+   return ::CreateFontIndirect(&logFont);
+}
+
+
+                                        
+                                        
+
+
+
+#elif defined(WINDOWS)
+
+bool TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
+{
+   WCHAR * pwsz = utf8_to_16(pszUtf8);
+   bool b = TextOutW(hdc, x, y, pwsz, (int) wcslen_dup(pwsz)) != FALSE;
+   delete  [] pwsz;
+   return b;
+}
+
+void FillSolidRect_dup(HDC hdc, LPCRECT lpRect, COLORREF clr)
+{
+   ::SetBkColor(hdc, clr);
+   ::ExtTextOut(hdc, 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
+}
+
+HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam);
+HFONT CreatePointBoldFont_dup(int nPointSize, const char * lpszFaceName, int BOLD, HDC hdc);
+
+HFONT CreatePointFont_dup(int nPointSize, const char * lpszFaceName, HDC hdc)
+{
+   return CreatePointBoldFont_dup(nPointSize, lpszFaceName, FALSE, hdc);
+}
+
+HFONT CreatePointBoldFont_dup(int nPointSize, const char * lpszFaceName, int BOLD, HDC hdc)
+{
+   LOGFONT logFont;
+   memset_dup(&logFont, 0, sizeof(LOGFONT));
+   logFont.lfCharSet = DEFAULT_CHARSET;
+   logFont.lfHeight = nPointSize;
+   logFont.lfWeight = BOLD ? FW_BOLD : FW_NORMAL;
+   strncpy_dup(logFont.lfFaceName, lpszFaceName, sizeof(logFont.lfFaceName));
+
+   return CreatePointFontIndirect_dup(&logFont, hdc);
+}
+
+// pLogFont->nHeight is interpreted as PointSize * 10
+HFONT CreatePointFontIndirect_dup(const LOGFONT* lpLogFont, HDC hdcParam)
+{
+   HDC hDC;
+   if (hdcParam != NULL)
+   {
+      hDC = hdcParam;
+   }
+   else
+      hDC = ::GetDC(NULL);
+
+   // convert nPointSize to logical units based on pgraphics
+   LOGFONT logFont = *lpLogFont;
+   POINT pt;
+   // 72 points/inch, 10 decipoints/point
+   pt.y = ::MulDiv(::GetDeviceCaps(hDC, LOGPIXELSY), logFont.lfHeight, 720);
+   pt.x = 0;
+   ::DPtoLP(hDC, &pt, 1);
+   POINT ptOrg = { 0, 0 };
+   ::DPtoLP(hDC, &ptOrg, 1);
+   logFont.lfHeight = -abs_dup(pt.y - ptOrg.y);
+
+   if(hdcParam == NULL)
+      ReleaseDC(NULL, hDC);
+
+   return ::CreateFontIndirect(&logFont);
+}
+
+
+                                        
+                                        
+#endif
+
+

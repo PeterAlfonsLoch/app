@@ -99,11 +99,13 @@ bool file_put_contents_dup(const char * path, const simple_memory & memory)
 bool file_put_contents_dup(const char * path, const char * contents, int len)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    dir::mk(dir::name(path));
 
-   HANDLE hfile = ::CreateFile(path, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+   wstring wstr(path);
+
+   HANDLE hfile = ::CreateFileW(wstr, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
    if(hfile == INVALID_HANDLE_VALUE)
       return false;
    count dwWrite;
@@ -115,6 +117,32 @@ bool file_put_contents_dup(const char * path, const char * contents, int len)
    bool bOk = ::WriteFile(hfile, contents, (DWORD) dwWrite, &dwWritten, NULL) != FALSE;
    ::CloseHandle(hfile);
    return dwWrite == dwWritten && bOk != FALSE;
+
+#elif defined(MERDE_WINDOWS)
+
+   dir::mk(dir::name(path));
+
+   CREATEFILE2_EXTENDED_PARAMETERS ps;
+
+   memset(&ps, 0, sizeof(ps));
+   ps.dwSize = sizeof(ps);
+   ps.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
+
+   wstring wstr(path);
+
+   HANDLE hfile = ::CreateFile2(wstr, GENERIC_WRITE, 0, CREATE_ALWAYS, &ps);
+   if(hfile == INVALID_HANDLE_VALUE)
+      return false;
+   count dwWrite;
+   if(len < 0)
+      dwWrite = strlen_dup(contents);
+   else
+      dwWrite = len;
+   DWORD dwWritten = 0;
+   bool bOk = ::WriteFile(hfile, contents, (DWORD) dwWrite, &dwWritten, NULL) != FALSE;
+   ::CloseHandle(hfile);
+   return dwWrite == dwWritten && bOk != FALSE;
+
 
 #else
 
@@ -140,9 +168,35 @@ bool file_put_contents_dup(const char * path, const char * contents, int len)
 const char * file_get_contents_dup(const char * path)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
-   HANDLE hfile = ::CreateFile(path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+   wstring wstr(path);
+
+   HANDLE hfile = ::CreateFile(wstr, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+   if(hfile == INVALID_HANDLE_VALUE)
+      return strdup_dup("");
+   DWORD dwSizeHigh;
+   DWORD dwSize = ::GetFileSize(hfile, &dwSizeHigh);
+   char * psz = (char *) _ca_alloc(dwSize + 1);
+   DWORD dwRead;
+   ::ReadFile(hfile, psz, dwSize, &dwRead, NULL);
+   psz[dwSize] = '\0';
+   ::CloseHandle(hfile);
+   return psz;
+
+#elif defined(MERDE_WINDOWS)
+
+
+   CREATEFILE2_EXTENDED_PARAMETERS ps;
+
+   memset(&ps, 0, sizeof(ps));
+   ps.dwSize = sizeof(ps);
+   ps.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
+
+   wstring wstr(path);
+
+   HANDLE hfile = ::CreateFile2(wstr, GENERIC_READ, 0, OPEN_EXISTING, &ps);
    if(hfile == INVALID_HANDLE_VALUE)
       return strdup_dup("");
    DWORD dwSizeHigh;
@@ -173,9 +227,13 @@ const char * file_get_contents_dup(const char * path)
 bool file_get_memory_dup(simple_memory & memory, const char * path)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
+
+
+   wstring wstr(path);
+
    memory.allocate(0);
-   HANDLE hfile = ::CreateFile(path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+   HANDLE hfile = ::CreateFile(wstr, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
    if(hfile == INVALID_HANDLE_VALUE)
       return false;
    DWORD dwSizeHigh;
@@ -185,6 +243,31 @@ bool file_get_memory_dup(simple_memory & memory, const char * path)
    ::ReadFile(hfile, memory.m_psz, memory.m_iSize, &dwRead, NULL);
    ::CloseHandle(hfile);
    return true;
+
+
+#elif defined(MERDE_WINDOWS)
+
+
+   CREATEFILE2_EXTENDED_PARAMETERS ps;
+
+   memset(&ps, 0, sizeof(ps));
+   ps.dwSize = sizeof(ps);
+   ps.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
+
+   wstring wstr(path);
+
+   memory.allocate(0);
+   HANDLE hfile = ::CreateFile2(wstr, GENERIC_READ, 0, OPEN_EXISTING, &ps);
+   if(hfile == INVALID_HANDLE_VALUE)
+      return false;
+   DWORD dwSizeHigh;
+   ::count  count = ::GetFileSize(hfile, &dwSizeHigh);
+   memory.allocate(count);
+   DWORD dwRead;
+   ::ReadFile(hfile, memory.m_psz, memory.m_iSize, &dwRead, NULL);
+   ::CloseHandle(hfile);
+   return true;
+
 
 #else
 

@@ -2,6 +2,7 @@
 
 
 #include "c/os/os.h"
+#include "c_os_gdi.h"
 #include "c_os_thread.h"
 #include "c_os_http.h"
 #include "c_os_registry.h"
