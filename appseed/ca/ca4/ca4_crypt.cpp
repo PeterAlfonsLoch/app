@@ -10,7 +10,7 @@
 namespace ca4
 {
 
-   
+
    crypt::crypt(::ca::application * papp) :
       ca(papp)
    {
@@ -21,32 +21,46 @@ namespace ca4
    }
 
 
-   bool crypt::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
-   {
-
-      UNREFERENCED_PARAMETER(storageEncrypt);
-      UNREFERENCED_PARAMETER(storageDecrypt);
-      UNREFERENCED_PARAMETER(pszSalt);
-
-      throw interface_only_exception();
-
-      return false;
-
-   }
-
-
    bool crypt::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
    {
 
-      UNREFERENCED_PARAMETER(storageDecrypt);
-      UNREFERENCED_PARAMETER(storageEncrypt);
-      UNREFERENCED_PARAMETER(pszSalt);
-      
-      throw interface_only_exception();
+      // default implementation - OS may implement its own HOME/UserDir encryption
 
-      return false;
+      string str = defer_get_cryptkey();
+
+      if(str.is_empty())
+         return false;
+
+      str += pszSalt;
+
+      primitive::memory key(get_app());
+
+      key.from_string(str);
+
+      return decrypt(storageDecrypt, storageEncrypt, key);
 
    }
+
+   bool crypt::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
+   {
+
+      // default implementation - OS may implement its own HOME/UserDir encryption
+
+      string str = defer_get_cryptkey();
+
+      if(str.is_empty())
+         return false;
+
+      str += pszSalt;
+
+      primitive::memory key(get_app());
+
+      key.from_string(str);
+
+      return encrypt(storageEncrypt, storageDecrypt, key);
+
+   }
+
 
 
    int crypt::key(primitive::memory & storage)
@@ -338,6 +352,47 @@ namespace ca4
 
    }
 
+   string crypt::get_crypt_key_file_path()
+   {
+
+      throw interface_only_exception();
+
+   }
+
+
+   string crypt::defer_get_cryptkey()
+   {
+
+      string strPath = get_crypt_key_file_path();
+
+      string str = Application.file().as_string(strPath);
+
+      if(str.has_char())
+         return str;
+
+      for(int i = 0; i < 256; i++)
+      {
+
+         char ch = Application.math().rnd() % (10 + 26 + 26);
+
+         if(ch < 10)
+            ch += '0';
+         else if(ch < (10 + 26))
+            ch += 'a';
+         else
+            ch += 'A';
+
+         str += ch;
+
+      }
+
+      Application.file().put_contents(strPath, str);
+
+      return str;
+
+
+   }
+
 
 } // namespace ca4
 
@@ -347,7 +402,7 @@ namespace ca4
 
 bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt)
 {
-   
+
    vsstring vsstr;
 
    if(!crypt_file_get(pszFile, vsstr, pszSalt))
