@@ -1616,6 +1616,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="primitive\datetime\datetime_clock.h" />
     <ClInclude Include="primitive\datetime\datetime_clock_interface.h" />
     <ClInclude Include="primitive\datetime\datetime_duration.h" />
+    <ClInclude Include="primitive\datetime\datetime_float_time.h" />
     <ClInclude Include="primitive\datetime\datetime_time.h" />
     <ClInclude Include="primitive\datetime\datetime_value.h" />
     <ClInclude Include="primitive\datetime\datetime_windows_file_time.h" />
@@ -3045,6 +3046,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="plugin\plugin_plugin.cpp" />
     <ClCompile Include="plugin\plugin_run_start_installer.cpp" />
     <ClCompile Include="plugin\plugin_system.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_float_time.cpp" />
     <ClCompile Include="primitive\primitive_color.cpp" />
     <ClCompile Include="primitive\primitive_count.cpp" />
     <ClCompile Include="primitive\datetime\datetime_calendar.cpp" />

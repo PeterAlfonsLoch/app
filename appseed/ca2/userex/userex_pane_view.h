@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace userex
 {
+
 
    class CLASS_DECL_ca2 pane_view :
       virtual public ::userbase::view,
@@ -38,4 +40,7 @@ namespace userex
 
    };
 
+
 } // namespace userex
+
+

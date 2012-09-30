@@ -1,30 +1,45 @@
 #include "framework.h"
 
+
 namespace userex
 {
+
 
    pane_view::pane_view(::ca::application * papp) :
       ca(papp),
       ::userbase::view(papp)
    {
+
    }
+
 
    pane_view::~pane_view()
    {
+
    }
+
 
    bool pane_view::_001OnUpdateCmdUi(cmd_ui * pcmdui)
    {
+
       for(int i = 0; i < m_menua.get_size(); i++)
       {
+
          if(pcmdui->m_id == m_menua[i].m_id)
          {
+
             pcmdui->Enable(TRUE);
+
             return true;
+
          }
+
       }
+
       return _001OnUpdateCmdUi(pcmdui);
+
    }
+
 
    bool pane_view::_001OnCommand(id id)
    {
@@ -93,4 +108,8 @@ namespace userex
    }
 
 
-} // m_id userex
+} // namespace userex
+
+
+
+

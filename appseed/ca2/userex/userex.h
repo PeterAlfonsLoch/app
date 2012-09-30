@@ -12,28 +12,35 @@ namespace userex
 
 
 
-#include "form_frame.h"
-#include "form_child_frame.h"
-#include "form_document.h"
-#include "form_update_hint.h"
-#include "form_view.h"
+#include "userex_form_frame.h"
+#include "userex_form_child_frame.h"
+#include "userex_form_document.h"
+#include "userex_form_update_hint.h"
+#include "userex_form_view.h"
 
-#include "menu_frame.h"
-#include "menu_document.h"
-#include "menu_view.h"
+#include "userex_menu_frame.h"
+#include "userex_menu_document.h"
+#include "userex_menu_view.h"
 
-#include "dialog.h"
+#include "userex_dialog.h"
 
-#include "pane_tab_view.h"
-#include "pane_split_view.h"
-#include "pane_view.h"
+#include "userex_pane_tab_view.h"
+#include "userex_pane_split_view.h"
+#include "userex_pane_view.h"
 
-#include "split_view.h"
+#include "userex_split_view.h"
 
 #include "userex_hour_list_view.h"
 #include "userex_minute_list_view.h"
 #include "userex_second_list_view.h"
 
-#include "mini_dock_frame_window.h"
+#include "userex_mini_dock_frame_window.h"
 
-#include "application.h"
+#include "userex_property_page.h"
+#include "userex_property_sheet.h"
+
+
+#include "userex_application.h"
+
+
+

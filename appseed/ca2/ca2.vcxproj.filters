@@ -560,45 +560,6 @@
     <ClInclude Include="userbase\userbase_window_map.h">
       <Filter>Header Files\userbase</Filter>
     </ClInclude>
-    <ClInclude Include="userex\dialog.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\form_child_frame.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\form_document.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\form_frame.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\form_update_hint.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\form_view.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\menu_document.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\menu_frame.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\menu_view.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\pane_split_view.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\pane_tab_view.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\pane_view.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\split_view.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
     <ClInclude Include="userex\userex.h">
       <Filter>Header Files\userex</Filter>
     </ClInclude>
@@ -935,9 +896,6 @@
     <ClInclude Include="sockets\socket_handler.h">
       <Filter>Header Files\sockets\Basic Sockets</Filter>
     </ClInclude>
-    <ClInclude Include="userex\mini_dock_frame_window.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
     <ClInclude Include="sockets\resolv_socket.h">
       <Filter>Header Files\sockets\Asyncronous DNS</Filter>
     </ClInclude>
@@ -1120,9 +1078,6 @@
     </ClInclude>
     <ClInclude Include="mail\mail_list_interface.h">
       <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\application.h">
-      <Filter>Header Files\userex</Filter>
     </ClInclude>
     <ClInclude Include="filemanager\filemanager_const.h">
       <Filter>Header Files\filemanager</Filter>
@@ -1585,6 +1540,57 @@
     </ClInclude>
     <ClInclude Include="userbase\userbase_combo_list.h">
       <Filter>Header Files\userbase</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_property_page.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_property_sheet.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_pane_tab_view.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_pane_view.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_split_view.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_pane_split_view.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_mini_dock_frame_window.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_menu_view.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_menu_frame.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_menu_document.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_form_view.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_form_update_hint.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_form_frame.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_form_document.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_form_child_frame.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_dialog.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_application.h">
+      <Filter>Header Files\userex</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2522,6 +2528,12 @@
     </ClCompile>
     <ClCompile Include="user\user_combo_list.cpp">
       <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="userex\userex_property_page.cpp">
+      <Filter>Source Files\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="userex\userex_property_sheet.cpp">
+      <Filter>Source Files\userex</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
