@@ -566,7 +566,7 @@ namespace ca
       virtual bool fill_path(::ca::graphics_path * ppath);
 
    // Misc Helper Functions
-      static ::ca::brush* PASCAL GetHalftoneBrush();
+      virtual ::ca::brush * GetHalftoneBrush();
       virtual void DrawDragRect(LPCRECT lpRect, SIZE size,
          LPCRECT lpRectLast, SIZE sizeLast,
          ::ca::brush* pBrush = NULL, ::ca::brush* pBrushLast = NULL);
@@ -591,9 +591,6 @@ namespace ca
       virtual bool setFont(::ca::font * pfont);
       virtual bool set_font(::ca::font * pfont);
 
-   protected:
-      // used for implementation of non-virtual SelectObject calls
-      static ::ca::graphics_object* PASCAL SelectGdiObject(HDC hDC, HGDIOBJ h);
    };
 
    typedef smart_pointer < graphics > graphics_sp;

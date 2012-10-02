@@ -42,17 +42,17 @@ namespace datetime
       }
       else if(m_ptoken->value == token::multiplication)
       {
-         throw not_supported_exception();
+         throw not_supported_exception(pcaapp);
          //return m_pelement1->get_value() * m_pelement2->get_value().m_dR;
       }
       else if(m_ptoken->value == token::division)
       {
-         throw not_supported_exception();
+         throw not_supported_exception(pcaapp);
          //return m_pelement1->get_value() / m_pelement2->get_value();
       }
       else if(m_ptoken->value == token::function)
       {
-         throw not_supported_exception();
+         throw not_supported_exception(pcaapp);
          /*if(m_ptoken->m_str == "sqr")
          {
             return m_pelement1->get_value() * m_pelement1->get_value();
@@ -111,17 +111,17 @@ namespace datetime
       }
       else if(m_ptoken->value == token::multiplication)
       {
-         throw not_supported_exception();
+         throw not_supported_exception(pcaapp);
          //return "(" + m_pelement1->get_expression() + " * " + m_pelement2->get_expression() + ")";
       }
       else if(m_ptoken->value == token::division)
       {
-         throw not_supported_exception();
+         throw not_supported_exception(pcaapp);
          //return "(" + m_pelement1->get_expression() + " / " + m_pelement2->get_expression() + ")";
       }
       else if(m_ptoken->value == token::function)
       {
-         throw not_supported_exception();
+         throw not_supported_exception(pcaapp);
          /*if(m_ptoken->m_str == "sqr")
          {
             return "sqr(" + m_pelement1->get_expression() + ")";

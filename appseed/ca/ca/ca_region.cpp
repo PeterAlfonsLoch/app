@@ -143,7 +143,7 @@ namespace ca
    bool region::CreateFromPath(::ca::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
 #ifdef WINDOWS
@@ -153,14 +153,14 @@ namespace ca
       UNREFERENCED_PARAMETER(lpXForm);
       UNREFERENCED_PARAMETER(nCount);
       UNREFERENCED_PARAMETER(pRgnData);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    int region::GetRegionData(LPRGNDATA lpRgnData, int nDataSize) const
    {
       UNREFERENCED_PARAMETER(lpRgnData);
       UNREFERENCED_PARAMETER(nDataSize);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
 #endif
@@ -171,13 +171,13 @@ namespace ca
       UNREFERENCED_PARAMETER(y1);
       UNREFERENCED_PARAMETER(x2);
       UNREFERENCED_PARAMETER(y2);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void region::SetRectRgn(LPCRECT lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    int region::CombineRgn(const region* pRgn1, const region* pRgn2, int nCombineMode)
@@ -185,38 +185,38 @@ namespace ca
       UNREFERENCED_PARAMETER(pRgn1);
       UNREFERENCED_PARAMETER(pRgn2);
       UNREFERENCED_PARAMETER(nCombineMode);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    int region::CopyRgn(const region* pRgnSrc)
    {
       UNREFERENCED_PARAMETER(pRgnSrc);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool region::EqualRgn(const region* pRgn) const
    {
       UNREFERENCED_PARAMETER(pRgn);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    int region::OffsetRgn(int x, int y)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    int region::OffsetRgn(POINT point)
    {
       UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    int region::GetRgnBox(LPRECT lpRect) const
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    int region::GetRgnBox(rect64 * lpRect) const
@@ -231,19 +231,19 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool region::PtInRegion(POINT point) const
    {
       UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool region::RectInRegion(LPCRECT lpRect) const
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    region & region::operator = (const ::ca::region & regionSrc)

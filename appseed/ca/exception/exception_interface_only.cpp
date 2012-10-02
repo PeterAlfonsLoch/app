@@ -11,6 +11,6 @@ interface_only_exception::interface_only_exception(const interface_only_exceptio
 {
 }
 
-interface_only_exception::~interface_only_exception()
+interface_only_exception::~interface_only_exception(get_app())
 {
 }

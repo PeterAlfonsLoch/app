@@ -17,7 +17,7 @@ namespace ca4
    int copydesk::get_file_count()
    {
 
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
    }
 
@@ -26,7 +26,7 @@ namespace ca4
    {
 
       UNREFERENCED_PARAMETER(stra);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
    }
 
@@ -35,7 +35,7 @@ namespace ca4
    {
 
       UNREFERENCED_PARAMETER(stra);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
    }
 
@@ -59,7 +59,7 @@ namespace ca4
    {
 
       UNREFERENCED_PARAMETER(psz);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
    }
 
@@ -67,7 +67,7 @@ namespace ca4
    string copydesk::get_plain_text()
    {
 
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
    }
 
@@ -75,7 +75,7 @@ namespace ca4
    {
 
       UNREFERENCED_PARAMETER(pdib);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
    }
 

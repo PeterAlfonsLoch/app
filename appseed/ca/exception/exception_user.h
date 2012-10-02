@@ -2,12 +2,14 @@
 
 
 class CLASS_DECL_ca user_exception : 
-   public simple_exception   // general ::fontopus::user visible alert
+   virtual public simple_exception   // general ::fontopus::user visible alert
 {
 public:
 
-   user_exception();
+
+   user_exception(::ca::application * papp);
    virtual ~user_exception();
+
 
 };
 

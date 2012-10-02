@@ -41,7 +41,8 @@ namespace ex1
 
    // Constructor
       file_exception(const file_exception & e) :
-         exception(e)
+         exception(e),
+         ::call_stack(e.get_app())
       {
       }
 

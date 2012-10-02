@@ -9,12 +9,12 @@ namespace ca
    void graphics_object::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void graphics_object::assert_valid() const
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    graphics_object::~graphics_object()
@@ -25,7 +25,7 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(nCount);
       UNREFERENCED_PARAMETER(lpObject);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }*/
 
 /*#pragma push_macro("GetObject")
@@ -40,29 +40,29 @@ namespace ca
 
    bool graphics_object::CreateStockObject(int nIndex)
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool graphics_object::UnrealizeObject()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    UINT graphics_object::GetObjectType() const
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool graphics_object::operator==(const graphics_object & obj) const
    {
       UNREFERENCED_PARAMETER(obj);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool graphics_object::operator!=(const graphics_object & obj) const
    {
       UNREFERENCED_PARAMETER(obj);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void * graphics_object::get_os_data() const

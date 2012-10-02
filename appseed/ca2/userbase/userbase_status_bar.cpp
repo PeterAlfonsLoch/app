@@ -446,7 +446,7 @@ namespace userbase
       TEXTMETRIC tm;
       {
          // os independence
-         throw not_implemented_exception();
+         throw not_implemented_exception(get_app());
    /*      CClientDC spgraphics(NULL);
          HFONT hFont = (HFONT)SendMessage(WM_GETFONT);
          HGDIOBJ hOldFont = NULL;

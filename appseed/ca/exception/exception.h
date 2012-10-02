@@ -22,6 +22,16 @@ namespace win
    CLASS_DECL_ca string error_message(DWORD dwError);
 }
 
+
+namespace ca
+{
+
+   class application;
+
+   CLASS_DECL_ca application * get_thread_app();
+
+} // namespace ca
+
 #include "exception_error.h"
 #include "exception_overflow_error.h"
 #include "exception_runtime_error.h"
@@ -270,7 +280,7 @@ inline void c_cdecl __trace(...) { }
 #ifdef DEBUG
 
 //#define ASSERT(f)          DEBUG_ONLY(() ((f) || !::__assert_failed_line(THIS_FILE, __LINE__) || (__debug_break(), 0)))
-#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && (!::__assert_failed_line(__FILE__, __LINE__) || (__debug_break(), 0))) || (!is_debugger_attached() && (throw assert_exception(__FILE__, __LINE__), 0))))
+#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && (!::__assert_failed_line(__FILE__, __LINE__) || (__debug_break(), 0))) || (!is_debugger_attached() && (throw assert_exception(::ca::get_thread_app(), __FILE__, __LINE__), 0))))
 /* see gen headers for commentary on this */
 /* We use the name _ASSUME to avoid name clashes */
 #define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
@@ -285,13 +295,13 @@ inline void c_cdecl __trace(...) { }
 // Debug ASSERTs then throws. Retail throws if condition not met
 #define ENSURE_THROW(cond, exception)   \
    do { int _gen__condVal=!!(cond); ASSERT(_gen__condVal); if (!(_gen__condVal)){exception;} } while (false)
-#define ENSURE(cond)      ENSURE_THROW(cond, throw invalid_argument_exception() )
-#define ENSURE_ARG(cond)   ENSURE_THROW(cond, throw invalid_argument_exception() )
+#define ENSURE(cond)      ENSURE_THROW(cond, throw invalid_argument_exception(::ca::get_thread_app()) )
+#define ENSURE_ARG(cond)   ENSURE_THROW(cond, throw invalid_argument_exception(::ca::get_thread_app()) )
 
 // Debug ASSERT_VALIDs then throws. Retail throws if pOb is NULL
 #define ENSURE_VALID_THROW(pOb, exception)   \
    do { ASSERT_VALID(pOb); if (!(pOb)){exception;} } while (false)
-#define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, throw invalid_argument_exception() )
+#define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, throw invalid_argument_exception(::ca::get_thread_app()) )
 
 #define ASSERT_POINTER(p, type) \
    ASSERT(((p) != NULL) && __is_valid_address((p), sizeof(type), FALSE))
@@ -376,11 +386,11 @@ inline errno_t c_runtime_error_check(errno_t error)
     switch(error)
     {
         case ENOMEM:
-            throw memory_exception();
+            throw memory_exception(::ca::get_thread_app());
             break;
         case EINVAL:
         case ERANGE:
-            throw invalid_argument_exception();
+            throw invalid_argument_exception(::ca::get_thread_app());
             break;
 #if defined(WINDOWS)
         case STRUNCATE:
@@ -388,7 +398,7 @@ inline errno_t c_runtime_error_check(errno_t error)
         case 0:
             break;
         default:
-            throw invalid_argument_exception();
+            throw invalid_argument_exception(::ca::get_thread_app());
             break;
     }
     return error;

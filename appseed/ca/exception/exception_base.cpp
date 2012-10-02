@@ -11,9 +11,11 @@ void PASCAL base_exception::operator delete(void * pbData,   const char * /* lps
    operator delete(pbData);
 }
 
-base_exception::base_exception(unsigned int uiSkip)
+base_exception::base_exception(::ca::application * papp, unsigned int uiSkip)
 #ifdef WINDOWS
-: call_stack(uiSkip)
+   : 
+   ca(papp),
+   ::call_stack(papp, uiSkip)
 #endif
 {
    // most exceptions are deleted when not needed
@@ -21,9 +23,11 @@ base_exception::base_exception(unsigned int uiSkip)
    m_ulFlags &= ~flag_ready_for_delete;
 }
 
-base_exception::base_exception(bool bAutoDelete, unsigned int uiSkip)
+base_exception::base_exception(::ca::application * papp, bool bAutoDelete, unsigned int uiSkip)
 #ifdef WINDOWS
-: call_stack(uiSkip)
+   : 
+   ca(papp),
+   ::call_stack(papp, uiSkip)
 #endif
 {
    // for exceptions which are not auto-delete (usually)

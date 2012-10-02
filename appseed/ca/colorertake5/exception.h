@@ -11,19 +11,19 @@ namespace colorertake5
        @ingroup common
    */
    class CLASS_DECL_ca exception :
-      public base_exception
+      virtual public base_exception
    {
    public:
      /** Default constructor
          Creates exception with is_empty message
      */
-     exception();
+     exception(::ca::application * papp);
      /** Creates exception with string message
      */
-     exception(const string &msg);
+     exception(::ca::application * papp, const string &msg);
      /** Creates exception with included exception information
      */
-     exception(const exception &e);
+     exception(::ca::application * papp, const exception &e);
      /** Default destructor
      */
      virtual ~exception();

@@ -649,7 +649,7 @@ namespace ca2
          ::ShellExecuteA(NULL, "open", pszLink, NULL, NULL, SW_SHOW);
          return true;
 #else
-         throw not_implemented_exception();
+         throw not_implemented_exception(get_app());
 #endif
       }
       else

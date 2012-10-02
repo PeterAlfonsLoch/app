@@ -15,6 +15,9 @@ namespace ex1
    public:
       in_buffer_exception(::ca::application * papp, HRESULT errorCode) :
          ca(papp),
+         ::call_stack(papp),
+         ::base_exception(papp),
+         ::simple_exception(papp),
          system_exception(papp, errorCode)
       {
       }

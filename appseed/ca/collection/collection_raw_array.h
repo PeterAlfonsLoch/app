@@ -386,7 +386,7 @@ inline TYPE raw_array<TYPE, ARG_TYPE>::pop(index index)
    index = get_upper_bound(index);
    
    if(index < 0 || index >= m_nSize)
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
    
    TYPE t = m_pData[index];
 
@@ -457,7 +457,7 @@ count raw_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
    //ASSERT(nNewSize >= 0);
 
    if(nNewSize < 0 )
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
 
    if (nGrowBy >= 0)
       m_nGrowBy = nGrowBy;  // set new size
@@ -479,7 +479,7 @@ count raw_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
       // m_nGrowBy elements, whichever is larger.
 #ifdef SIZE_T_MAX
       if(nNewSize > SIZE_T_MAX/sizeof(TYPE)) // no overflow
-         throw invalid_argument_exception();
+         throw invalid_argument_exception(get_app());
 #endif
 
       count nAllocSize = __max(nNewSize, m_nGrowBy);
@@ -518,11 +518,11 @@ count raw_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
       //ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
 
       if(nNewMax  < m_nMaxSize) // no wrap around
-         throw invalid_argument_exception();
+         throw invalid_argument_exception(get_app());
 
 #ifdef SIZE_T_MAX
       if(nNewSize > SIZE_T_MAX/sizeof(TYPE)) // no overflow
-         throw invalid_argument_exception();
+         throw invalid_argument_exception(get_app());
 #endif
 
       TYPE* pNewData = (TYPE*) new BYTE[(size_t)nNewMax * sizeof(TYPE)];
@@ -551,7 +551,7 @@ index raw_array<TYPE, ARG_TYPE>::append(const raw_array& src)
    ASSERT(this != &src);   // cannot append to itself
 
    if(this == &src)
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
 
    count nOldSize = m_nSize;
    set_size(m_nSize + src.m_nSize);
@@ -606,7 +606,7 @@ void raw_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
    //ASSERT(nIndex >= 0);
 
    if(nIndex < 0)
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
 
    if (nIndex >= m_nSize)
       set_size(nIndex+1, -1);
@@ -621,7 +621,7 @@ void raw_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, cou
    //ASSERT(nCount > 0);     // zero or negative size not allowed
 
    if(nIndex < 0 || nCount <= 0)
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
 
    if (nIndex >= m_nSize)
    {
@@ -661,7 +661,7 @@ inline index raw_array<TYPE, ARG_TYPE>::remove_at(index nIndex, count nCount)
    index nUpperBound = nIndex + nCount;
 
    if(nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
 
    // just remove a range
    count nMoveCount = m_nSize - (nUpperBound);
@@ -683,7 +683,7 @@ void raw_array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, raw_array* pNewArra
    ASSERT(nStartIndex >= 0);
 
    if(pNewArray == NULL || nStartIndex < 0)
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
 
    if (pNewArray->get_size() > 0)
    {

@@ -1067,7 +1067,7 @@ namespace userbase
          str = lpszText;
          // add new string to toolbar list
          string strTemp(str, str.get_length());
-         throw not_implemented_exception();
+         throw not_implemented_exception(get_app());
          // xxx nString = (int)DefWindowProc(TB_ADDSTRINGW, 0, (LPARAM)(const char *)(const wchar_t *)strTemp);
          if (nString == -1)
             return FALSE;

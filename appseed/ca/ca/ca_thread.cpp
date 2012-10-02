@@ -21,10 +21,22 @@ namespace ca
    }
 
 
+
    thread * get_thread()
    {
+
       return g_pfn_get_thread();
+
    }
+
+
+   application * get_thread_app()
+   {
+
+      return get_thread()->get_app();
+
+   }
+
 
    thread_state * get_thread_state()
    {
@@ -36,7 +48,7 @@ namespace ca
    void thread::set_p(::radix::thread * p)
    {
       UNREFERENCED_PARAMETER(p);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void thread::construct()
@@ -48,7 +60,7 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(pfnThreadProc);
       UNREFERENCED_PARAMETER(pParam);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
 
@@ -89,17 +101,17 @@ namespace ca
 
    void * thread::get_os_data() const
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    int_ptr thread::get_os_int() const
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void thread::start()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
 
@@ -111,7 +123,7 @@ namespace ca
       UNREFERENCED_PARAMETER(dwCreateFlags);
       UNREFERENCED_PARAMETER(lpSecurityAttrs);
 
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
    }
 
@@ -121,7 +133,7 @@ namespace ca
       UNREFERENCED_PARAMETER(dwCreateFlags);
       UNREFERENCED_PARAMETER(nStackSize);
       UNREFERENCED_PARAMETER(lpSecurityAttrs);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void thread::Delete()
@@ -171,37 +183,37 @@ namespace ca
    // main running routine until thread exits
    int thread::run()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool thread::is_idle_message(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    int thread::exit_instance()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool thread::on_idle(LONG lCount)
    {
       UNREFERENCED_PARAMETER(lCount);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    ::gen::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
    {
       UNREFERENCED_PARAMETER(uiMessage);
       UNREFERENCED_PARAMETER(uiCode);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void thread::DispatchThreadMessageEx(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void thread::pre_translate_message(gen::signal_object * pobj)
@@ -213,14 +225,14 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(e);
       UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void thread::ProcessMessageFilter(int code, gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(code);
       UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -228,7 +240,7 @@ namespace ca
 
    ::user::interaction* thread::GetMainWnd()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -236,7 +248,7 @@ namespace ca
 
    bool thread::pump_message()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -244,13 +256,13 @@ namespace ca
 
    void thread::assert_valid() const
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void thread::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool thread::post_message(::user::interaction * pguie, UINT uiMessage, WPARAM wparam, LPARAM lparam)
@@ -259,34 +271,34 @@ namespace ca
       UNREFERENCED_PARAMETER(uiMessage);
       UNREFERENCED_PARAMETER(wparam);
       UNREFERENCED_PARAMETER(lparam);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool thread::on_run_exception(::ca::exception & e)
    {
       UNREFERENCED_PARAMETER(e);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    ::ca::e_thread_priority thread::get_thread_priority()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool thread::set_thread_priority(::ca::e_thread_priority epriority)
    {
       UNREFERENCED_PARAMETER(epriority);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    DWORD thread::ResumeThread()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    DWORD thread::SuspendThread()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool thread::PostThreadMessage(UINT message, WPARAM wParam, LPARAM lParam)
@@ -294,36 +306,36 @@ namespace ca
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);
       UNREFERENCED_PARAMETER(lParam);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    ::user::interaction * thread::SetMainWnd(::user::interaction * pui)
    {
       UNREFERENCED_PARAMETER(pui);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void thread::add(::user::interaction * pui)
    {
       UNREFERENCED_PARAMETER(pui);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void thread::remove(::user::interaction * pui)
    {
       UNREFERENCED_PARAMETER(pui);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    ::count thread::get_ui_count()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    ::user::interaction * thread::get_ui(index iIndex)
    {
       UNREFERENCED_PARAMETER(iIndex);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void thread::set_timer(::user::interaction * pui, uint_ptr nIDEvent, UINT nEllapse)
@@ -331,57 +343,57 @@ namespace ca
       UNREFERENCED_PARAMETER(pui);
       UNREFERENCED_PARAMETER(nIDEvent);
       UNREFERENCED_PARAMETER(nEllapse);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void thread::unset_timer(::user::interaction * pui, uint_ptr nIDEvent)
    {
       UNREFERENCED_PARAMETER(pui);
       UNREFERENCED_PARAMETER(nIDEvent);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void thread::set_auto_delete(bool bAutoDelete)
    {
       UNREFERENCED_PARAMETER(bAutoDelete);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void thread::set_run(bool bRun)
    {
       UNREFERENCED_PARAMETER(bRun);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    event & thread::get_finish_event()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool thread::get_run()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    ::ca::thread * thread::get_app_thread()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    ::user::interaction * thread::get_active_ui()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    ::user::interaction * thread::set_active_ui(::user::interaction * pui)
    {
       UNREFERENCED_PARAMETER(pui);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void thread::step_timer()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void thread::on_delete(::ca::ca * pui)
@@ -392,13 +404,13 @@ namespace ca
    void thread::set_os_data(void * pvoidOsData)
    {
       UNREFERENCED_PARAMETER(pvoidOsData);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void thread::set_os_int(int_ptr iData)
    {
       UNREFERENCED_PARAMETER(iData);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
 
@@ -431,12 +443,12 @@ namespace ca
 
    bool thread::is_auto_delete()
    {
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
    }
 
 	void thread::wait()
 	{
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
       // on Windows ==>       ::WaitForSingleObject(m_loginthread.get_os_data(), INFINITE);
 
    }
@@ -447,7 +459,7 @@ namespace ca
    wait_result thread::wait(const duration & duration)
 	{
       UNREFERENCED_PARAMETER(duration);
-		throw not_implemented_exception();
+		throw not_implemented_exception(get_app());
 		return wait_result();
 	}
 
@@ -456,14 +468,14 @@ namespace ca
 	void thread::set_priority(int priority)
 	{
       UNREFERENCED_PARAMETER(priority);
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
    }
 
 	///  \brief		gets thread priority
 	///  \param		priority
 	int thread::priority()
 	{
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
       return 0x80000000;
    }
 

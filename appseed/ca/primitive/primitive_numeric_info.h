@@ -10,13 +10,13 @@ namespace numeric_info
    template < typename T >
    inline T get_maximum_value()
    {
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
    }
 
    template < typename T >
    inline T get_minimum_value()
    {
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
    }
    template < typename T >
    inline T get_null_value()

@@ -27,13 +27,13 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(crColor);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void brush::construct(::ca::bitmap* pBitmap)
    {
       UNREFERENCED_PARAMETER(pBitmap);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
 #ifdef WINDOWS
@@ -41,14 +41,14 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(hPackedDIB);
       UNREFERENCED_PARAMETER(nUsage);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 #endif
 
    void brush::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool brush::CreateStockObject(int nIndex)
@@ -85,33 +85,33 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(crColor);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
    bool brush::CreateBrushIndirect(const LOGBRUSH* lpLogBrush)
    {
       UNREFERENCED_PARAMETER(lpLogBrush);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
    bool brush::CreatePatternBrush(::ca::bitmap* pBitmap)
    {
       UNREFERENCED_PARAMETER(pBitmap);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
    bool brush::CreateDIBPatternBrush(const void * lpPackedDIB, UINT nUsage)
    {
       UNREFERENCED_PARAMETER(lpPackedDIB);
       UNREFERENCED_PARAMETER(nUsage);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
    bool brush::CreateSysColorBrush(int nIndex)
    {
       UNREFERENCED_PARAMETER(nIndex);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
    int brush::GetLogBrush(LOGBRUSH* pLogBrush)
    {
       UNREFERENCED_PARAMETER(pLogBrush);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool brush::CreateLinearGradientBrush(point p1, point p2, COLORREF cr1, COLORREF cr2)

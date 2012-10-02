@@ -391,7 +391,7 @@ namespace datetime
    ::datetime::time & time::operator+=( date_span span )
    {
       UNREFERENCED_PARAMETER(span);
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
 
       return( *this );
    }
@@ -399,7 +399,7 @@ namespace datetime
    ::datetime::time& time::operator-=( date_span span )
    {
       UNREFERENCED_PARAMETER(span);
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
 
       return( *this );
    }
@@ -422,13 +422,13 @@ namespace datetime
    ::datetime::time time::operator-( date_span span ) const
    {
       UNREFERENCED_PARAMETER(span);
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
    }
 
    ::datetime::time time::operator+( date_span span ) const
    {
       UNREFERENCED_PARAMETER(span);
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
    }
 
    bool time::operator==( time time ) const throw()

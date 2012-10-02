@@ -52,6 +52,8 @@ namespace ca2
          return false;
       }
 
+      System.eguard().load_modules();
+
       PFN_GET_NEW_LIBRARY pfn_get_new_library = NULL;
 
       try

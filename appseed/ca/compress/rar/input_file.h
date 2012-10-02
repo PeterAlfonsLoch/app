@@ -25,15 +25,25 @@ namespace rar
       virtual public simple_exception
    {
    public:
+      
       enum CCauseType
       {
          kUnexpectedEndOfArchive = 0,
          kArchiveHeaderCRCError,
          kFileHeaderCRCError,
          kIncorrectArchive
+      } Cause;
+      
+      input_file_exception(::ca::application * papp, CCauseType cause) :
+         ca(papp),
+         ::call_stack(papp),
+         ::base_exception(papp),
+         simple_exception(papp),
+         Cause(cause)
+      {
+      
       }
-      Cause;
-      input_file_exception(CCauseType cause) :   Cause(cause) {}
+
    };
 
 

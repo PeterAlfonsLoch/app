@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-bool call_stack::s_bDoStackTrace = false;
+bool call_stack::s_bDoStackTrace = true;
 
 
 call_stack::call_stack (unsigned int uiSkip)
@@ -21,13 +21,9 @@ vsstring call_stack::get(unsigned int uiSkip)
 
    vsstring str;
 
-#ifndef AMD64
-
    UNREFERENCED_PARAMETER(uiSkip);
 
    ::exception::engine::stack_trace(str, uiSkip);
-
-#endif
 
    return str;
 

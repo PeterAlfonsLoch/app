@@ -11,7 +11,7 @@ not_implemented_exception::not_implemented_exception(const char * pszTip) :
 {
 }
 
-not_implemented_exception::~not_implemented_exception()
+not_implemented_exception::~not_implemented_exception(get_app())
 {
 }
 

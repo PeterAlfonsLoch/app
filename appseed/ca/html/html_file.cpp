@@ -20,7 +20,7 @@ namespace html
    void file::print(const string & str)
    {
       UNREFERENCED_PARAMETER(str);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
 #ifdef WINDOWS
@@ -28,13 +28,13 @@ namespace html
    void file::printf(const string & str, ...)
    {
       UNREFERENCED_PARAMETER(str);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void file::printstr(const string & str, ...)
    {
       UNREFERENCED_PARAMETER(str);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
 #else
@@ -50,7 +50,7 @@ namespace html
    void file::dprint(const char * lpcsz)
    {
       UNREFERENCED_PARAMETER(lpcsz);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
 

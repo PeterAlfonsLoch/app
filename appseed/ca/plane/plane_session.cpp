@@ -416,7 +416,7 @@ namespace plane
             strApp = "bergedge";
             strType = "application";
 //            create_bergedge(pcreatecontext);
-  //          throw not_implemented_exception();
+  //          throw not_implemented_exception(get_app());
             /*if(get_document() != NULL && get_document()->get_typed_view < ::session::view >() != NULL)
             {
                ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::session::view >()->GetParentFrame());

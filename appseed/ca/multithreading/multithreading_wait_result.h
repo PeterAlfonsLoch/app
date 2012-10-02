@@ -38,11 +38,11 @@ public:
 	///  \brief		constructor with result value and object count passed (Windows only)
 	///  \param		value waiting result value as passed by Windows API function
 	///  \param		objectCount number of items in event_collection
-	explicit wait_result( unsigned long value, count objectCount=1 );
+	explicit wait_result(unsigned long value, count objectCount=1 );
 //#endif
 	///  \brief		constructor with result value passed
 	///  \param		value waiting result value as passed by Windows API function
-	explicit wait_result( int value )
+	explicit wait_result(int value )
 		: m_iWaitResult(value)
 	{}
 
@@ -61,7 +61,7 @@ public:
 	size_t abandoned_index() const
 	{
 		if ( !abandoned() )
-			throw range_error("abandoned index out of range");
+			throw range_error(::ca::get_thread_app(), "abandoned index out of range");
 		return -(m_iWaitResult + Abandon0);
 	}
 
@@ -90,7 +90,7 @@ public:
 	size_t signaled_index() const
 	{
 		if ( !signaled() )
-			throw range_error("signaled index out of range");
+			throw range_error(::ca::get_thread_app(), "signaled index out of range");
 		return m_iWaitResult - Event0;
 	}
 

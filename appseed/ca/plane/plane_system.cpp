@@ -25,6 +25,9 @@ namespace plane
       m_bDoNotExitIfNoApplications              = false;
 
 
+      m_peguard                                 = new ::exception::engine::guard();
+
+
       if(::get_heap_mutex() == NULL)
       {
          ::set_heap_mutex(new mutex());
@@ -302,13 +305,25 @@ namespace plane
 
    ::filehandler::handler & system::filehandler()
    {
+
       return *m_spfilehandler;
+
    }
 
 
    colorertake5::ParserFactory & system::parser_factory()
    {
+
       return *m_pparserfactory;
+
+   }
+
+
+   ::exception::engine::guard & system::eguard()
+   {
+      
+      return *m_peguard;
+
    }
 
    bool system::find_applications_to_cache()

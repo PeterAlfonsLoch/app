@@ -216,7 +216,7 @@ namespace ca
       else
       {
 
-         throw simple_exception("cannot assign directly from non-null integer");
+         throw simple_exception(get_app(), "cannot assign directly from non-null integer");
 
       }
 

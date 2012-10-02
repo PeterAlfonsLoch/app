@@ -51,7 +51,7 @@ namespace sockets
    {
       UNREFERENCED_PARAMETER(pszUrl);
       UNREFERENCED_PARAMETER(psocket);
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
    }
 
 

@@ -14,7 +14,7 @@ namespace ca
    bool graphics_path::start_figure()
    {
 
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
    }
 
@@ -22,7 +22,7 @@ namespace ca
    bool graphics_path::close_figure()
    {
 
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
    }
 
@@ -31,7 +31,7 @@ namespace ca
    point graphics_path::last_point()
    {
 
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
    }
 
@@ -40,7 +40,7 @@ namespace ca
    bool graphics_path::add_line(int x1, int y1, int x2, int y2)
    {
 
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
    }
 
@@ -48,7 +48,7 @@ namespace ca
    bool graphics_path::add_line(point p1, point p2)
    {
 
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
    }
 

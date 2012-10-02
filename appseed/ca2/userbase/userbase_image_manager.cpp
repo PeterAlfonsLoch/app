@@ -20,7 +20,7 @@ namespace userbase
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(uiaMenuV003Map);
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
       /*
       m_pimagelist         = new image_list(papp);
       m_pimagelistDisable  = new image_list(papp);

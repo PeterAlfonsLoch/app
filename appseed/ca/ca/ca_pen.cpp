@@ -27,7 +27,7 @@ namespace ca
    void pen::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool pen::CreatePen(int nPenStyle, double dWidth, COLORREF crColor)

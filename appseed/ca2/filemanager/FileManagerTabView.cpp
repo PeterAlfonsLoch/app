@@ -148,7 +148,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
       ::ca::create_context_sp createcontext(get_app());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = this;
-      //throw not_implemented_exception();
+      //throw not_implemented_exception(get_app());
       file_manager_operation_document * pdoc = dynamic_cast < file_manager_operation_document * > (Application.m_ptemplateOperation->open_document_file(createcontext));
       if(pdoc == NULL)
          return;

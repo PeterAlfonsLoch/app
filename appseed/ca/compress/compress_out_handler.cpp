@@ -374,7 +374,7 @@ namespace compress
                propValue = value;
          }
 
-         throw not_implemented_exception();
+         throw not_implemented_exception(get_app());
          //if (!ConvertProperty(propValue, nameToPropID.VarType, prop.get_value()))
            // return E_INVALIDARG;
       }
@@ -627,7 +627,7 @@ namespace compress
                return E_INVALIDARG;
             const CNameToPropID &nameToPropID = g_NameToPropID[index];
             prop.set_name(gen::str::from(nameToPropID.PropID));
-            throw not_implemented_exception();
+            throw not_implemented_exception(get_app());
             //if (!ConvertProperty(value, nameToPropID.VarType, prop.get_value()))
               // return E_INVALIDARG;
          }

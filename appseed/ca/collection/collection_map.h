@@ -753,7 +753,7 @@ namespace collection
             }
          }
          if(pAssocRet == NULL)
-            throw error_exception("map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::get_next_assoc : must find something");
+            throw error_exception(get_app(), "map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::get_next_assoc : must find something");
       }
 
       // find next association

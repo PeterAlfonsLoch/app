@@ -24,11 +24,16 @@
 #include <eh.h>
 
 
-#define DECLARE_SE_EXCEPTION_CLASS(name) class CLASS_DECL_ca name : public standard_exception \
+#define DECLARE_SE_EXCEPTION_CLASS(name) class CLASS_DECL_ca name : virtual public standard_exception \
    { \
     friend class translator; \
    protected: \
-   name (::ca::application * papp, EXCEPTION_POINTERS * ppointers) : ca(papp), ::standard_exception(papp, ppointers) {} \
+   name (::ca::application * papp, EXCEPTION_POINTERS * ppointers) : \
+      ca(papp), \
+      ::call_stack(papp), \
+      ::base_exception(papp), \
+      ::standard_exception(papp, ppointers) \
+      {} \
    };
 
 #else
@@ -42,10 +47,13 @@
 #endif
 
 class CLASS_DECL_ca standard_exception :
-   public base_exception
+   virtual public base_exception
 {
 public:
+
+
    friend class ::exception::translator;
+
 
 #ifdef WINDOWS
    EXCEPTION_POINTERS * m_ppointers;
@@ -71,17 +79,33 @@ public:
 #endif
 
 
-   ~standard_exception() {}
-
-protected:
-
 #ifdef WINDOWS
-   standard_exception(::ca::application * papp, EXCEPTION_POINTERS * ppointers) : ca(papp), m_ppointers(ppointers) { _ASSERTE(ppointers != 0); }
-   standard_exception(const standard_exception& se) : ca(((standard_exception &) se).get_app()), m_ppointers(se.m_ppointers) {}
+   standard_exception(::ca::application * papp, EXCEPTION_POINTERS * ppointers) : 
+      ca(papp), 
+      ::call_stack(papp),
+      ::base_exception(papp),
+      m_ppointers(ppointers)
+   { 
+      
+      _ASSERTE(ppointers != 0);
+   
+   }
+
+   standard_exception(const standard_exception & se) :
+      ca(((standard_exception &) se).get_app()),
+      ::call_stack(((standard_exception &) se).get_app()),
+      ::base_exception(((standard_exception &) se).get_app()),
+      m_ppointers(se.m_ppointers)
+   {
+   
+   }
+
 #else
    standard_exception(::ca::application * papp, siginfo_t * psiginfo, void * pc) : ca(papp), m_siginfo(*psiginfo), m_ucontext(*(ucontext_t *)pc) { _ASSERTE(psiginfo != 0); }
    standard_exception(const standard_exception& se) : ca(((standard_exception &) se).get_app()), m_siginfo(se.m_siginfo), m_ucontext(se.m_ucontext) {}
 #endif
+   virtual ~standard_exception();
+
 
 };
 
@@ -93,9 +117,19 @@ namespace exception
       friend class translator;
    protected:
    #if defined(LINUX) || defined(MACOS)
-      standard_access_violation (::ca::application * papp, siginfo_t * psiginfo, void * pc) : ca(papp), standard_exception(papp, psiginfo, pc) {}
+      standard_access_violation (::ca::application * papp, siginfo_t * psiginfo, void * pc) :
+         ca(papp), 
+         ::call_stack(papp),
+         ::base_exception(papp),
+         ::standard_exception(papp, psiginfo, pc)
+         {}
    #else
-      standard_access_violation (::ca::application * papp, EXCEPTION_POINTERS * ppointers) : ca(papp), standard_exception(papp, ppointers) {}
+      standard_access_violation (::ca::application * papp, EXCEPTION_POINTERS * ppointers) : 
+         ca(papp), 
+         ::call_stack(papp),
+         ::base_exception(papp),
+         ::standard_exception(papp, ppointers)
+         {}
    public:
       bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
       ulong_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
@@ -123,7 +157,12 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_no_memory (::ca::application * papp, EXCEPTION_POINTERS * ppointers) : ca(papp), standard_exception(papp, ppointers) {}
+      standard_no_memory (::ca::application * papp, EXCEPTION_POINTERS * ppointers) :
+         ca(papp),
+         ::call_stack(papp),
+         ::base_exception(papp),
+         ::standard_exception(papp, ppointers)
+         {}
    public:
       size_t mem_size() const { return info()->ExceptionRecord->ExceptionInformation [0]; }
    };

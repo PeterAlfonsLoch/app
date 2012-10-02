@@ -22,7 +22,7 @@ namespace ca
    void font::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
-      throw interface_only_exception();   
+      throw interface_only_exception(get_app());   
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -34,7 +34,7 @@ namespace ca
       UNREFERENCED_PARAMETER(nPointSize);
       UNREFERENCED_PARAMETER(lpszFaceName);
       UNREFERENCED_PARAMETER(pgraphics);
-      throw interface_only_exception();   
+      throw interface_only_exception(get_app());   
    }
 
    // pLogFont->nHeight is interpreted as PointSize * 10
@@ -74,7 +74,7 @@ namespace ca
       UNREFERENCED_PARAMETER(nQuality);
       UNREFERENCED_PARAMETER(nPitchAndFamily);
       UNREFERENCED_PARAMETER(lpszFacename);
-      throw interface_only_exception();   
+      throw interface_only_exception(get_app());   
    }
 
    font & font::operator = (const font & fontSrc)

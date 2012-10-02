@@ -15,17 +15,17 @@ namespace ca
 
    bool window_draw::start()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool window_draw::UpdateBuffer()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool window_draw::ScreenOutput()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool window_draw::stop()
@@ -50,12 +50,12 @@ namespace ca
 
    void window_draw::asynch_redraw()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void window_draw::synch_redraw()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
 

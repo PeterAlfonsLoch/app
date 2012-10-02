@@ -4,7 +4,7 @@
 
 
 class CLASS_DECL_ca simple_exception : 
-   public base_exception
+   virtual public base_exception
 {
 public:
    
@@ -12,8 +12,8 @@ public:
    vsstring       m_strMessage;
 
 
-   simple_exception();
-   simple_exception(const char * pszMessage);
+   simple_exception(::ca::application * papp);
+   simple_exception(::ca::application * papp, const char * pszMessage);
    virtual ~simple_exception();
 
 

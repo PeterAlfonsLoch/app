@@ -21,7 +21,8 @@ namespace datetime
 
 
 
-   class CLASS_DECL_ca scanner
+   class CLASS_DECL_ca scanner :
+      virtual public ::radix::object
    {
    public:
       
@@ -33,8 +34,8 @@ namespace datetime
       ::user::str_context *   m_pstrcontext;
 
 
-      scanner(::user::str_context * pstrcontext);
-      ~scanner();
+      scanner(::ca::application * papp, ::user::str_context * pstrcontext);
+      virtual ~scanner();
 
       void initialize(const char * psz);
       void peek();

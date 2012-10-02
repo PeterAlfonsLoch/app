@@ -19,7 +19,7 @@ namespace ex1
    {
       UNREFERENCED_PARAMETER(offset);
       UNREFERENCED_PARAMETER(seekOrigin);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    file_position seekable::get_position() const

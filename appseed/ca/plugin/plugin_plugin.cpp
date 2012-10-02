@@ -618,7 +618,7 @@ namespace plugin
 #ifdef WINDOWS
                   PostMessage(m_phost->::small_ipc_tx_channel::m_hwnd, WM_USER + 100, 1, 1);
 #else
-                  throw not_implemented_exception();
+                  throw not_implemented_exception(get_app());
 #endif
                   Sys(m_psystem).install().start(strCommandLine);
 
@@ -660,7 +660,7 @@ namespace plugin
 #ifdef WINDOWS
                   PostMessage(m_phost->::small_ipc_tx_channel::m_hwnd, WM_USER + 100, 1, 1);
 #else
-                  throw not_implemented_exception();
+                  throw not_implemented_exception(get_app());
 #endif
 
                   Sys(m_psystem).install().start(strCommandLine);
@@ -760,7 +760,7 @@ namespace plugin
 #ifdef WINDOWS
                         PostMessage(m_phost->::small_ipc_tx_channel::m_hwnd, WM_USER + 100, 1, 1);
 #else
-                        throw not_implemented_exception();
+                        throw not_implemented_exception(get_app());
 #endif
 
                         Sys(m_psystem).install().start(strCommandLine);

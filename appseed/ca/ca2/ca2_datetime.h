@@ -73,6 +73,17 @@ namespace ca2
       string strftime(const char * psz);
 
 
+      int SWN(int y, int m, int d );
+      int DP(int y, int m);
+      int ML(int y, int m);
+      int LEAP(int y);
+      int dayofweek(int y, int m, int d);	/* 0 = Sunday */
+      int SDOW(int y,int m, int d );
+      int DOW(int y, int m, int d);
+      int getDayOfWeek(int month, int day, int year, int CalendarSystem);
+      int ISO_WN(int  y, int m, int d );
+
+
    };
 
 

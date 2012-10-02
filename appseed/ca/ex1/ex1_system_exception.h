@@ -12,6 +12,9 @@ namespace ex1
       HRESULT ErrorCode;
       system_exception(::ca::application * papp, HRESULT errorCode) :
          ca(papp),
+         ::call_stack(papp),
+         ::base_exception(papp),
+         ::simple_exception(papp),
          ErrorCode(errorCode) 
       {
       }

@@ -9,7 +9,7 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(lpcsz1);
       UNREFERENCED_PARAMETER(lpcsz2);
-      throw interface_only_exception("this is an interface");
+      throw interface_only_exception(get_app(), "this is an interface");
    }
 
 
@@ -43,7 +43,7 @@ namespace ca
          UNREFERENCED_PARAMETER(psz2);
          UNREFERENCED_PARAMETER(iLen2);
          UNREFERENCED_PARAMETER(bUrl);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2)
@@ -334,13 +334,13 @@ namespace ca
          UNREFERENCED_PARAMETER(lpcszSource);
          UNREFERENCED_PARAMETER(lpcszRelative);
          UNREFERENCED_PARAMETER(psz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       void system::root_ones(stringa & stra, ::ca::application * papp)
       {
          UNREFERENCED_PARAMETER(stra);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       void system::rls_pattern(::ca::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, base_array < bool, bool > * pbaIsDir, base_array < int64_t, int64_t > * piaSize, e_extract eextract)
@@ -353,7 +353,7 @@ namespace ca
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
             return;
          }
-         throw not_implemented_exception("is really a directory or compressed directory/file??");
+         throw not_implemented_exception(get_app(), "is really a directory or compressed directory/file??");
 
       }
 
@@ -366,7 +366,7 @@ namespace ca
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
             return;
          }
-         throw not_implemented_exception("is really a directory or compressed directory/file??");
+         throw not_implemented_exception(get_app(), "is really a directory or compressed directory/file??");
 
       }
 
@@ -377,7 +377,7 @@ namespace ca
          UNREFERENCED_PARAMETER(pstraTitle);
          UNREFERENCED_PARAMETER(pbaIsDir);
          UNREFERENCED_PARAMETER(piaSize);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       void system::rls(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
@@ -399,7 +399,7 @@ namespace ca
          UNREFERENCED_PARAMETER(pstraPath);
          UNREFERENCED_PARAMETER(pstraTitle);
          UNREFERENCED_PARAMETER(pstraRelative);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       void system::ls_dir(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
@@ -418,7 +418,7 @@ namespace ca
       bool system::has_subdir(::ca::application * papp, const char * lpcsz)
       {
          UNREFERENCED_PARAMETER(lpcsz);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       void system::ls_file(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
@@ -426,7 +426,7 @@ namespace ca
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(pstraPath);
          UNREFERENCED_PARAMETER(pstraTitle);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       bool system::is(const char * lpcszPath, ::ca::application * papp)
@@ -612,119 +612,119 @@ namespace ca
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::time(const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::stage(const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::stageapp(const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::netseed(const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::ca2(const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::ca2(const string & str, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(str);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::ca2(const char * lpcsz, const string & str2)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(str2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::ca2(const string & str, const string & str2)
       {
          UNREFERENCED_PARAMETER(str);
          UNREFERENCED_PARAMETER(str2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::ca2(const string & str)
       {
          UNREFERENCED_PARAMETER(str);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::ca2()
       {
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::module(const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::ca2module(const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       void system::time_square(string &str)
       {
          UNREFERENCED_PARAMETER(str);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::time_log(const char * pszId)
       {
          UNREFERENCED_PARAMETER(pszId);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       bool system::mk(const char * lpcsz, ::ca::application * papp)
       {
          UNREFERENCED_PARAMETER(lpcsz);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       bool system::rm(::ca::application * papp, const char * psz, bool bRecursive)
       {
          UNREFERENCED_PARAMETER(psz);
          UNREFERENCED_PARAMETER(bRecursive);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::name(const char * path1)
       {
          UNREFERENCED_PARAMETER(path1);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::locale_schema(::ca::application * papp, const string & strLocale, const string & strSchema)
@@ -1240,25 +1240,25 @@ namespace ca
 
       class ::ca::path & system::path()
       {
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       bool system::initialize()
       {
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::trash_that_is_not_trash(const char * lpcsz)
       {
          UNREFERENCED_PARAMETER(lpcsz);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::appdata(const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::usersystemappdata(::ca::application * papp, const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
@@ -1267,7 +1267,7 @@ namespace ca
          UNREFERENCED_PARAMETER(lpcszPrefix);
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::userappdata(::ca::application * papp, const char * lpcsz, const char * lpcsz2)
@@ -1275,7 +1275,7 @@ namespace ca
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::userdata(::ca::application * papp, const char * lpcsz, const char * lpcsz2)
@@ -1283,7 +1283,7 @@ namespace ca
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::userfolder(::ca::application * papp, const char * lpcsz, const char * lpcsz2)
@@ -1291,13 +1291,13 @@ namespace ca
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::default_os_user_path_prefix(::ca::application * papp)
       {
          UNREFERENCED_PARAMETER(papp);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::default_userappdata(::ca::application * papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
@@ -1306,7 +1306,7 @@ namespace ca
          UNREFERENCED_PARAMETER(lpcszPrefix);
          UNREFERENCED_PARAMETER(lpcszLogin);
          UNREFERENCED_PARAMETER(pszRelativePath);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::default_userdata(::ca::application * papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
@@ -1315,7 +1315,7 @@ namespace ca
          UNREFERENCED_PARAMETER(lpcszPrefix);
          UNREFERENCED_PARAMETER(lpcszLogin);
          UNREFERENCED_PARAMETER(pszRelativePath);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::default_userfolder(::ca::application * papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
@@ -1324,7 +1324,7 @@ namespace ca
          UNREFERENCED_PARAMETER(lpcszPrefix);
          UNREFERENCED_PARAMETER(lpcszLogin);
          UNREFERENCED_PARAMETER(pszRelativePath);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::userquicklaunch(::ca::application * papp, const char * lpcszRelativePath, const char * lpcsz2)
@@ -1332,7 +1332,7 @@ namespace ca
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcszRelativePath);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::userprograms(::ca::application * papp, const char * lpcsz, const char * lpcsz2)
@@ -1340,27 +1340,27 @@ namespace ca
          UNREFERENCED_PARAMETER(papp);
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::commonprograms(const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       bool system::is_inside_time(const char * pszPath, ::ca::application * papp)
       {
          UNREFERENCED_PARAMETER(pszPath);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       bool system::is_inside(const char * pszDir, const char * pszPath, ::ca::application * papp)
       {
          UNREFERENCED_PARAMETER(pszDir);
          UNREFERENCED_PARAMETER(pszPath);
-         throw interface_only_exception("this is an interface");
+         throw interface_only_exception(get_app(), "this is an interface");
       }
 
       string system::sensitive_ccvotagus(const char * lpcsz, const char * lpcsz2)

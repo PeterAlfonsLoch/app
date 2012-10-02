@@ -3497,7 +3497,7 @@ bool var::is_numeric() const
          return false;
 
       default:
-         throw not_implemented_exception();
+         throw not_implemented_exception(get_app());
 
    };
 

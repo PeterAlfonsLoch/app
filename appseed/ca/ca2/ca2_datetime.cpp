@@ -250,10 +250,6 @@ namespace ca2
    }
 
 
-   int DP(int y, int m);
-   int ML(int y, int m);
-   int LEAP(int y);
-
    /*
    and ML ("Month Length") is defined as:
 
@@ -278,7 +274,7 @@ namespace ca2
    //The simple week number we define such that
    //    week 1 starts on January 1st of a given year,
    //    week n+1 starts 7 days after week n
-   int SWN(int y, int m, int d )
+   int datetime::SWN(int y, int m, int d )
    {
       return 1 + (DP( y, m ) + d-1 ) / 7;
    }
@@ -286,7 +282,7 @@ namespace ca2
    //where DP ("Days Passed") is given by:
    //   DP( y, 1 ) = 0
    //  DP( y, m+1 ) = DP( y, m ) + ML( y, m )
-   int DP(int y, int m)
+   int datetime::DP(int y, int m)
    {
       if(m == 1)
          return 0;
@@ -294,7 +290,7 @@ namespace ca2
          return DP(y, m - 1) + ML(y, m - 1);
    }
 
-   int ML(int y, int m)
+   int datetime::ML(int y, int m)
    {
       switch(m)
       {
@@ -323,10 +319,10 @@ namespace ca2
       case 12:
          return 30;
       }
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
    }
 
-   int LEAP(int y )
+   int datetime::LEAP(int y )
    {
       if((y % 4 == 0) && ((y % 100 != 0) || (y % 400 == 0)))
          return 1;
@@ -337,29 +333,27 @@ namespace ca2
 
    // Use this elegant code by Tomohiko Sakamoto:
 
-   int dayofweek(int y, int m, int d)	/* 0 = Sunday */
+   int datetime::dayofweek(int y, int m, int d)	/* 0 = Sunday */
    {
 	   static int t[] = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
 	   y -= m < 3;
 	   return (y + y/4 - y/100 + y/400 + t[m-1] + d) % 7;
    }
 
-   int SDOW(int y,int m, int d ) // ( 0 = Monday, ..., 6 = Sunday )
+   int datetime::SDOW(int y,int m, int d ) // ( 0 = Monday, ..., 6 = Sunday )
    {
       return (DP( y, m ) + d-1 ) % 7;
    }
 
-int getDayOfWeek(int month, int day, int year, int CalendarSystem);
-   // day of week
 
-   int DOW(int y, int m, int d)
+   int datetime::DOW(int y, int m, int d)
    {
       //return SDOW(y, m, d);
       return getDayOfWeek(m, d, y, 0);
    }
 
 
-int getDayOfWeek(int month, int day, int year, int CalendarSystem)
+int datetime::getDayOfWeek(int month, int day, int year, int CalendarSystem)
 {
      // CalendarSystem = 1 for Gregorian Calendar
      if (month < 3)
@@ -416,7 +410,7 @@ int getDayOfWeek(int month, int day, int year, int CalendarSystem)
    }*/
 
 
-int ISO_WN(int  y, int m, int d )
+int datetime::ISO_WN(int  y, int m, int d )
 {
     int dow     = DOW( y, m, d );
     int dow0101 = DOW( y, 1, 1 );

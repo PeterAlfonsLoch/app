@@ -643,7 +643,7 @@ namespace datetime
       token * token;
       token = new class token;
       if(token == NULL)
-         throw memory_exception();
+         throw memory_exception(get_app());
       while(isspace_dup(*input))
          input++;
       if(*input == '\0')

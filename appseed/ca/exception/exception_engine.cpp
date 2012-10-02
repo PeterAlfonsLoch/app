@@ -17,8 +17,20 @@ It is provided "as is" without express or implied warranty.
 
 #include "framework.h"
 
+
+// The following is defined for x86 (XP and higher), x64 and IA64:
+#define GET_CURRENT_CONTEXT(pc, contextFlags) \
+  do { \
+    memset(pc, 0, sizeof(CONTEXT)); \
+    pc->ContextFlags = contextFlags; \
+    RtlCaptureContext(pc); \
+} while(0);
+
+
+
 #include <malloc.h>
 
+#define USED_CONTEXT_FLAGS CONTEXT_FULL
 #ifdef WINDOWS
 
 #include <tlhelp32.h>
@@ -65,7 +77,7 @@ HANDLE SymGetProcessHandle()
 }
 
 
-#ifdef AMD64
+//#ifdef AMD64
 
 /*typedef
 BOOL
@@ -78,12 +90,18 @@ BOOL
     );*/
 
 
-WINBOOL __stdcall My_ReadProcessMemory (HANDLE, DWORD64 lpBaseAddress, PVOID lpBuffer, DWORD nSize, LPDWORD lpNumberOfBytesRead)
+WINBOOL __stdcall My_ReadProcessMemory ( 
+   HANDLE      hProcess,
+    DWORD64     qwBaseAddress,
+    PVOID       lpBuffer,
+    DWORD       nSize,
+    LPDWORD     lpNumberOfBytesRead
+    )
 {
 
    SIZE_T size;
 
-   if(!ReadProcessMemory(GetCurrentProcess(), (LPCVOID) lpBaseAddress, (LPVOID) lpBuffer, nSize, &size))
+   if(!ReadProcessMemory(hProcess, (LPCVOID) qwBaseAddress, (LPVOID) lpBuffer, nSize, &size))
       return FALSE;
 
    *lpNumberOfBytesRead = (DWORD) size;
@@ -91,22 +109,51 @@ WINBOOL __stdcall My_ReadProcessMemory (HANDLE, DWORD64 lpBaseAddress, PVOID lpB
    return TRUE;
 
 }
-
+/*
 #else
 WINBOOL __stdcall My_ReadProcessMemory (HANDLE, LPCVOID lpBaseAddress, LPVOID lpBuffer, DWORD nSize, SIZE_T * lpNumberOfBytesRead)
 {
    return ReadProcessMemory(GetCurrentProcess(), lpBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead) != FALSE;
 }
 #endif
-
+*/
 namespace exception
 {
+
+
+   mutex * get_engine_mutex()
+   {
+      
+      static mutex s_mutex;
+
+      return &s_mutex;
+
+   }
+
+     typedef BOOL (__stdcall *PReadProcessMemoryRoutine)(
+    HANDLE      hProcess,
+    DWORD64     qwBaseAddress,
+    PVOID       lpBuffer,
+    DWORD       nSize,
+    LPDWORD     lpNumberOfBytesRead,
+    LPVOID      pUserData  // optional data, which was passed in "ShowCallstack"
+    );
+
+// The following is used to pass the "userData"-Pointer to the user-provided readMemoryFunction
+// This has to be done due to a problem with the "hProcess"-parameter in x64...
+// Because this class is in no case multi-threading-enabled (because of the limitations 
+// of dbghelp.dll) it is "safe" to use a static-variable
+static PReadProcessMemoryRoutine s_readMemoryFunction = NULL;
+static LPVOID s_readMemoryFunction_UserData = NULL;
 
    engine::engine (unsigned int uiAddress) :
       m_uiAddress(uiAddress),
       m_bOk(false),
       m_pstackframe(NULL)
    {
+
+
+
    }
 
    engine::~engine()
@@ -121,7 +168,7 @@ namespace exception
          return 0;
 
       HANDLE hprocess = SymGetProcessHandle();
-      HMODULE hmodule = (HMODULE)SymGetModuleBase (hprocess, m_uiAddress);
+      HMODULE hmodule = (HMODULE)SymGetModuleBase64 (hprocess, m_uiAddress);
       if (!hmodule) return 0;
       return get_module_basename(hmodule, str);
    }
@@ -139,7 +186,7 @@ namespace exception
 
       HANDLE hprocess = SymGetProcessHandle();
       dword_ptr displacement = 0;
-      int r = SymGetSymFromAddr(hprocess, m_uiAddress, &displacement, pSym);
+      int r = SymGetSymFromAddr64(hprocess, m_uiAddress, &displacement, pSym);
       if (!r) return 0;
       if (pdisplacement)
          *pdisplacement = displacement;
@@ -174,6 +221,7 @@ namespace exception
 
    bool engine::stack_first (CONTEXT* pcontext)
    {
+
       if(!pcontext || IsBadReadPtr(pcontext, sizeof(CONTEXT)))
          return false;
 
@@ -182,18 +230,22 @@ namespace exception
 
       if(!m_pstackframe)
       {
-         m_pstackframe = new STACKFRAME;
+         m_pstackframe = new STACKFRAME64;
          if (!m_pstackframe) return false;
       }
 
-      memset(m_pstackframe, 0, sizeof(STACKFRAME));
+      memset(m_pstackframe, 0, sizeof(STACKFRAME64));
+
+//  s_readMemoryFunction = readMemoryFunction;
+  //s_readMemoryFunction_UserData = pUserData;
+
 
 #ifdef AMD64
       m_pstackframe->AddrPC.Offset       = pcontext->Rip;
       m_pstackframe->AddrPC.Mode         = AddrModeFlat;
       m_pstackframe->AddrStack.Offset    = pcontext->Rsp;
       m_pstackframe->AddrStack.Mode      = AddrModeFlat;
-      m_pstackframe->AddrFrame.Offset    = pcontext->Rbp;
+      m_pstackframe->AddrFrame.Offset    = pcontext->Rsp;
       m_pstackframe->AddrFrame.Mode      = AddrModeFlat;
 #elif defined(X86)
       m_pstackframe->AddrPC.Offset       = pcontext->Eip;
@@ -233,26 +285,52 @@ namespace exception
 
       SetLastError(0);
       HANDLE hprocess = SymGetProcessHandle();
-      bool r = StackWalk (
-#ifdef AMD64
-         IMAGE_FILE_MACHINE_AMD64,
-#else
 
-       IMAGE_FILE_MACHINE_I386,
+      DWORD dwType;
+
+      bool bRetry;
+
+#ifdef AMD64
+      dwType = IMAGE_FILE_MACHINE_AMD64;
+#else
+      dwType = IMAGE_FILE_MACHINE_I386;
 #endif
+
+      bool r = StackWalk64(
+         dwType,   // __in      DWORD MachineType,
+         hprocess,        // __in      HANDLE hProcess,
+         GetCurrentThread(),         // __in      HANDLE hThread,
+         m_pstackframe,                       // __inout   LP STACKFRAME64 StackFrame,
+         m_pcontext,                  // __inout   PVOID ContextRecord,
+         My_ReadProcessMemory,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
+         //NULL,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
+         SymFunctionTableAccess64,                      // __in_opt  PFUNCTION_TABLE_ACCESS_ROUTINE64 FunctionTableAccessRoutine,
+         SymGetModuleBase64,                     // __in_opt  PGET_MODULE_BASE_ROUTINE64 GetModuleBaseRoutine,
+         NULL                       // __in_opt  PTRANSLATE_ADDRESS_ROUTINE64 TranslateAddress
+         ) != FALSE;
+/*#else
+      bool r = StackWalk64 (
+         ,
          hprocess,
          GetCurrentThread(),
          m_pstackframe,
          m_pcontext,
-         (PREAD_PROCESS_MEMORY_ROUTINE)My_ReadProcessMemory,
-         SymFunctionTableAccess,
-         SymGetModuleBase,
+         My_ReadProcessMemory,
+         SymFunctionTableAccess64,
+         SymGetModuleBase64,
          0) != FALSE;
+#endif*/
 
       if (!r || !m_pstackframe->AddrFrame.Offset)
       {
-         return false;
+
+          return false;
+
       }
+
+      bRetry = false;
+
+retry_get_base:
 
       // "Debugging Applications" John Robbins
       // Before I get too carried away and start calculating
@@ -260,12 +338,28 @@ namespace exception
       // by StackWalk really exists. I've seen cases in which
       // StackWalk returns TRUE but the address doesn't belong to
       // a module in the process.
-      dword_ptr dwModBase = SymGetModuleBase (hprocess, m_pstackframe->AddrPC.Offset);
+
+      dword_ptr dwModBase = SymGetModuleBase64 (hprocess, m_pstackframe->AddrPC.Offset);
+
       if (!dwModBase)
       {
          //::OutputDebugString("engine::stack_next :: StackWalk returned TRUE but the address doesn't belong to a module in the process.");
-         m_bSkip = true;
-         return true;
+
+         if(bRetry)
+         {
+
+            m_bSkip = true;
+
+            return false;
+
+         }
+
+         System.eguard().load_modules();
+
+         bRetry = true;
+
+         goto retry_get_base;
+
       }
       m_bSkip = false;
       address(m_pstackframe->AddrPC.Offset);
@@ -281,7 +375,7 @@ namespace exception
       // a zero displacement. I'll walk backward 100 bytes to
       // find the line and return the proper displacement.
       DWORD dwDisplacement = 0 ;
-      while (!SymGetLineFromAddr (hprocess, uiAddress - dwDisplacement, (DWORD*)puiDisplacement, pline))
+      while (!SymGetLineFromAddr64 (hprocess, uiAddress - dwDisplacement, (DWORD*)puiDisplacement, pline))
       {
          if (100 == ++dwDisplacement)
             return false;
@@ -294,7 +388,7 @@ namespace exception
          *puiDisplacement = dwDisplacement;
       return true;
 #else
-      return 0 != SymGetLineFromAddr (hprocess, uiAddress, (DWORD *) puiDisplacement, pline);
+      return 0 != SymGetLineFromAddr64 (hprocess, uiAddress, (DWORD *) puiDisplacement, pline);
 #endif
    }
 
@@ -340,6 +434,101 @@ namespace exception
       clear();
    }
 
+
+   bool engine::guard::load_modules()
+   {
+
+      HANDLE hprocess = SymGetProcessHandle();
+      DWORD  dwPid = GetCurrentProcessId();
+
+// enumerate modules
+      if (IsNT())
+      {
+         typedef bool (WINAPI *ENUMPROCESSMODULES)(HANDLE, HMODULE*, DWORD, LPDWORD);
+
+         HINSTANCE hInst = LoadLibrary("psapi.dll");
+         if (hInst)
+         {
+            ENUMPROCESSMODULES fnEnumProcessModules =
+               (ENUMPROCESSMODULES)GetProcAddress(hInst, "EnumProcessModules");
+            DWORD cbNeeded = 0;
+            if (fnEnumProcessModules &&
+               fnEnumProcessModules(GetCurrentProcess(), 0, 0, &cbNeeded) &&
+               cbNeeded)
+            {
+               HMODULE * pmod = (HMODULE *)alloca(cbNeeded);
+               DWORD cb = cbNeeded;
+               if (fnEnumProcessModules(GetCurrentProcess(), pmod, cb, &cbNeeded))
+               {
+                  m_iRef = 0;
+                  for (unsigned i = 0; i < cb / sizeof (HMODULE); ++i)
+                  {
+                     if (!load_module(hprocess, pmod[i]))
+                     {
+                        //   m_iRef = -1;
+                        //   break;
+                        _ASSERTE(0);
+                     }
+                  }
+               }
+            }
+            else
+            {
+               _ASSERTE(0);
+            }
+            VERIFY(FreeLibrary(hInst));
+         }
+         else
+         {
+            _ASSERTE(0);
+         }
+      }
+      else
+      {
+         typedef HANDLE (WINAPI *CREATESNAPSHOT)(DWORD, DWORD);
+         typedef bool (WINAPI *MODULEWALK)(HANDLE, LPMODULEENTRY32);
+
+         HMODULE hMod = GetModuleHandle("kernel32");
+         CREATESNAPSHOT fnCreateToolhelp32Snapshot = (CREATESNAPSHOT)GetProcAddress(hMod, "CreateToolhelp32Snapshot");
+         MODULEWALK fnModule32First = (MODULEWALK)GetProcAddress(hMod, "Module32First");
+         MODULEWALK fnModule32Next  = (MODULEWALK)GetProcAddress(hMod, "Module32Next");
+
+         if (fnCreateToolhelp32Snapshot &&
+            fnModule32First &&
+            fnModule32Next)
+         {
+            HANDLE hModSnap = fnCreateToolhelp32Snapshot(TH32CS_SNAPMODULE, dwPid);
+            if (hModSnap)
+            {
+               MODULEENTRY32 me32 = {0};
+               me32.dwSize = sizeof(MODULEENTRY32);
+               if (fnModule32First(hModSnap, &me32))
+               {
+                  m_iRef = 0;
+                  do
+                  {
+                     if (!load_module(hprocess, me32.hModule))
+                     {
+                        //   m_iRef = -1;
+                        //   break;
+                     }
+                  }
+                  while(fnModule32Next(hModSnap, &me32));
+               }
+               VERIFY(CloseHandle(hModSnap));
+            }
+         }
+      }
+
+      if (m_iRef == -1)
+      {
+         VERIFY(SymCleanup(SymGetProcessHandle()));
+      }
+
+      return true;
+
+   }
+
    bool engine::guard::init()
    {
       if (!m_iRef)
@@ -350,93 +539,11 @@ namespace exception
          DWORD  dwPid = GetCurrentProcessId();
 
          // initializes
-         SymSetOptions (SymGetOptions()|SYMOPT_DEFERRED_LOADS|SYMOPT_LOAD_LINES);
+         SymSetOptions(SymGetOptions()|SYMOPT_DEFERRED_LOADS|SYMOPT_LOAD_LINES);
          //   SymSetOptions (SYMOPT_UNDNAME|SYMOPT_LOAD_LINES);
          if (::SymInitialize(hprocess, 0, TRUE))
          {
-            // enumerate modules
-            if (IsNT())
-            {
-               typedef bool (WINAPI *ENUMPROCESSMODULES)(HANDLE, HMODULE*, DWORD, LPDWORD);
-
-               HINSTANCE hInst = LoadLibrary("psapi.dll");
-               if (hInst)
-               {
-                  ENUMPROCESSMODULES fnEnumProcessModules =
-                     (ENUMPROCESSMODULES)GetProcAddress(hInst, "EnumProcessModules");
-                  DWORD cbNeeded = 0;
-                  if (fnEnumProcessModules &&
-                     fnEnumProcessModules(GetCurrentProcess(), 0, 0, &cbNeeded) &&
-                     cbNeeded)
-                  {
-                     HMODULE * pmod = (HMODULE *)alloca(cbNeeded);
-                     DWORD cb = cbNeeded;
-                     if (fnEnumProcessModules(GetCurrentProcess(), pmod, cb, &cbNeeded))
-                     {
-                        m_iRef = 0;
-                        for (unsigned i = 0; i < cb / sizeof (HMODULE); ++i)
-                        {
-                           if (!load_module(hprocess, pmod[i]))
-                           {
-                              //   m_iRef = -1;
-                              //   break;
-                              _ASSERTE(0);
-                           }
-                        }
-                     }
-                  }
-                  else
-                  {
-                     _ASSERTE(0);
-                  }
-                  VERIFY(FreeLibrary(hInst));
-               }
-               else
-               {
-                  _ASSERTE(0);
-               }
-            }
-            else
-            {
-               typedef HANDLE (WINAPI *CREATESNAPSHOT)(DWORD, DWORD);
-               typedef bool (WINAPI *MODULEWALK)(HANDLE, LPMODULEENTRY32);
-
-               HMODULE hMod = GetModuleHandle("kernel32");
-               CREATESNAPSHOT fnCreateToolhelp32Snapshot = (CREATESNAPSHOT)GetProcAddress(hMod, "CreateToolhelp32Snapshot");
-               MODULEWALK fnModule32First = (MODULEWALK)GetProcAddress(hMod, "Module32First");
-               MODULEWALK fnModule32Next  = (MODULEWALK)GetProcAddress(hMod, "Module32Next");
-
-               if (fnCreateToolhelp32Snapshot &&
-                  fnModule32First &&
-                  fnModule32Next)
-               {
-                  HANDLE hModSnap = fnCreateToolhelp32Snapshot(TH32CS_SNAPMODULE, dwPid);
-                  if (hModSnap)
-                  {
-                     MODULEENTRY32 me32 = {0};
-                     me32.dwSize = sizeof(MODULEENTRY32);
-                     if (fnModule32First(hModSnap, &me32))
-                     {
-                        m_iRef = 0;
-                        do
-                        {
-                           if (!load_module(hprocess, me32.hModule))
-                           {
-                              //   m_iRef = -1;
-                              //   break;
-                           }
-                        }
-                        while(fnModule32Next(hModSnap, &me32));
-                     }
-                     VERIFY(CloseHandle(hModSnap));
-                  }
-               }
-            }
-
-            if (m_iRef == -1)
-            {
-               VERIFY(SymCleanup(SymGetProcessHandle()));
-            }
+            load_modules();
          }
          else
          {
@@ -451,6 +558,13 @@ namespace exception
       return true;
    }
 
+   bool engine::guard::fail()
+   {
+      
+      return m_iRef == -1;
+   
+   }
+
    void engine::guard::clear()
    {
       if (m_iRef ==  0) return;
@@ -463,18 +577,31 @@ namespace exception
 
    bool engine::guard::load_module(HANDLE hProcess, HMODULE hMod)
    {
+
+      for(int i = 0; i < m_ha.get_count(); i++)
+      {
+         if(m_ha[i] == hMod)
+            return true;
+      }
+
+      m_ha.add(hMod);
+
       char filename[MAX_PATH];
       if (!GetModuleFileNameA(hMod, filename, MAX_PATH))
+      {
          return false;
+      }
 
       HANDLE hFile = CreateFileA(filename, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, 0);
-      if (hFile == INVALID_HANDLE_VALUE) return false;
+      if (hFile == INVALID_HANDLE_VALUE) 
+      {
+         return false;
+      }
 
       // "Debugging Applications" John Robbins
       // For whatever reason, SymLoadModule can return zero, but it still loads the modules. Sheez.
       SetLastError(ERROR_SUCCESS);
-      if (!SymLoadModule(hProcess, hFile, filename, 0, (DWORD)hMod, 0) &&
-         ERROR_SUCCESS != GetLastError())
+      if (!SymLoadModule(hProcess, hFile, filename, 0, (DWORD)hMod, 0) && ERROR_SUCCESS != GetLastError())
       {
          return false;
       }
@@ -501,11 +628,6 @@ namespace exception
    DWORD WINAPI engine::stack_trace_ThreadProc(void * lpvoidParam)
    {
 
-#ifdef AMD64
-
-      return -1;
-
-#endif
 
       current_context * pcontext = reinterpret_cast<current_context*>(lpvoidParam);
 
@@ -534,7 +656,11 @@ namespace exception
 
          __try
          {
-            pcontext->signal = GetThreadContext(pcontext->thread, pcontext) ? 1 : -1;
+#ifdef AMD64
+             GET_CURRENT_CONTEXT(pcontext, USED_CONTEXT_FLAGS);
+#else
+             pcontext->signal = GetThreadContext(pcontext->thread, pcontext) ? 1 : -1;
+#endif
          }
          __finally
          {
@@ -550,6 +676,9 @@ namespace exception
 
    bool engine::stack_trace(vsstring & str, dword_ptr uiSkip, const char * pszFormat)
    {
+
+      single_lock sl(get_engine_mutex(), true);
+
       if(!pszFormat) return false;
 
       // attempts to get current thread's context
@@ -568,7 +697,10 @@ namespace exception
       context.ContextFlags = CONTEXT_CONTROL; // CONTEXT_FULL;
       context.signal = -1;
 
-      DWORD dwDummy;
+
+      GET_CURRENT_CONTEXT((&context), USED_CONTEXT_FLAGS);
+
+      /*DWORD dwDummy;
       HANDLE hthreadWorker = create_thread(0, 0, &engine::stack_trace_ThreadProc, &context, CREATE_SUSPENDED, &dwDummy);
       _ASSERTE(hthreadWorker);
 
@@ -603,7 +735,7 @@ namespace exception
       {
          _ASSERTE(0);
          return false;
-      }
+      }*/
       // now it can print stack
       engine symengine(0);
       stack_trace(str, symengine, &context, uiSkip, false, pszFormat);

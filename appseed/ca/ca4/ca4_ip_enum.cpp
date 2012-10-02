@@ -37,7 +37,7 @@ namespace ca4
       
       UNREFERENCED_PARAMETER(ipa);
 
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
       return 0;
 
@@ -48,7 +48,7 @@ namespace ca4
       
       UNREFERENCED_PARAMETER(stra);
 
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
       return 0;
 

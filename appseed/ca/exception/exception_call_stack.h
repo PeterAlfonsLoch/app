@@ -31,11 +31,11 @@ class CLASS_DECL_ca call_stack
 {
 public:
 
-   vsstring m_str;
+   vsstring m_strCallStack;
 
    static bool s_bDoStackTrace;
 
-   call_stack (unsigned int uiSkip = 3);
+   call_stack(::ca::application * papp, unsigned int uiSkip = 3);
 
    static vsstring get(unsigned int uiSkip = 2);
 

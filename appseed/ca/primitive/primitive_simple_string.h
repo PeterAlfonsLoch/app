@@ -482,7 +482,7 @@ public:
       ENSURE( pstringmanager != NULL );
 
       if(pchSrc == NULL && nLength != 0)
-         throw invalid_argument_exception();
+         throw invalid_argument_exception(::ca::get_thread_app());
 
       if(nLength < 0)
          nLength = (strsize) strlen(pchSrc);
@@ -581,7 +581,7 @@ public:
       //ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
 
       if( (iChar < 0) || (iChar > get_length()) )
-         throw invalid_argument_exception();
+         throw invalid_argument_exception(::ca::get_thread_app());
 
       return ( m_pszData[iChar] );
    }
@@ -591,7 +591,7 @@ public:
       //ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
 
       if( (iChar < 0) || (iChar > get_length()) )
-         throw invalid_argument_exception();
+         throw invalid_argument_exception(::ca::get_thread_app());
 
       return m_pszData[iChar];
    }
@@ -730,7 +730,7 @@ public:
    {
       ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
       if( (iChar < 0) || (iChar > get_length()) )
-         throw invalid_argument_exception();
+         throw invalid_argument_exception(::ca::get_thread_app());
 
       return( m_pszData[iChar] );
    }
@@ -837,7 +837,7 @@ public:
       ASSERT( (iChar >= 0) && (iChar < get_length()) );
 
       if( (iChar < 0) || (iChar >= get_length()) )
-         throw invalid_argument_exception();
+         throw invalid_argument_exception(::ca::get_thread_app());
 
       strsize nLength = get_length();
       PXSTR pszBuffer = GetBuffer();
@@ -873,7 +873,7 @@ public:
          // into the newly allocated buffer instead.
 
          if(pszSrc == NULL)
-            throw invalid_argument_exception();
+            throw invalid_argument_exception(::ca::get_thread_app());
 
          uint_ptr nOldLength = (uint_ptr) get_length();
          uint_ptr nOffset = (uint_ptr) (pszSrc - GetString());
@@ -1001,7 +1001,7 @@ protected:
 
    NOINLINE DECLSPEC_NO_RETURN static void __cdecl ThrowMemoryException()
    {
-      throw hresult_exception( E_OUTOFMEMORY );
+      throw hresult_exception(::ca::get_thread_app(), E_OUTOFMEMORY);
    }
 
    // Implementation
@@ -1209,7 +1209,7 @@ public:
       ASSERT( nLength <= m_nBufferLength );
 
       if( nLength < 0 )
-         throw invalid_argument_exception();
+         throw invalid_argument_exception(::ca::get_thread_app());
 
       m_nLength = nLength;
    }

@@ -10,24 +10,24 @@ namespace ca
 {
    ::ca::graphics * dib::get_graphics()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    ::ca::bitmap_sp dib::get_bitmap()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    ::ca::bitmap_sp dib::detach_bitmap()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    void dib::construct (int cx,  int cy)
    {
       UNREFERENCED_PARAMETER(cx);
       UNREFERENCED_PARAMETER(cy);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    COLORREF * dib::get_data()
@@ -44,13 +44,13 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(width);
       UNREFERENCED_PARAMETER(height);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool dib::dc_select(bool bSelect)
    {
       UNREFERENCED_PARAMETER(bSelect);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool dib::create(::ca::graphics * pdc)
@@ -59,7 +59,7 @@ namespace ca
       if(&bitmap == NULL)
          return FALSE;
 
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
       /*
       BITMAP bm;
       bitmap.GetObject(sizeof(bm), &bm);
@@ -73,7 +73,7 @@ namespace ca
 
    bool dib::Destroy ()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool dib::to(::ca::graphics * pgraphics)
@@ -108,7 +108,7 @@ namespace ca
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(size);
       UNREFERENCED_PARAMETER(ptSrc);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool dib::from(::ca::dib * pdib)
@@ -129,7 +129,7 @@ namespace ca
    bool dib::from(::ca::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    bool dib::from(point ptDst, ::ca::graphics * pdc, point ptSrc, class size size)
@@ -2393,45 +2393,45 @@ fill_last:
    void dib::stretch_dib(dib * pdib)
    {
       UNREFERENCED_PARAMETER(pdib);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    int dib::cos(int i, int iAngle)
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    int dib::sin(int i, int iAngle)
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    int dib::cos10(int i, int iAngle)
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    int dib::sin10(int i, int iAngle)
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    int dib::width()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    int dib::height()
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
    int64_t dib::area()
@@ -2454,7 +2454,7 @@ fill_last:
    {
       UNREFERENCED_PARAMETER(C);
       UNREFERENCED_PARAMETER(echannel);
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
    }
 
 
@@ -2507,7 +2507,7 @@ fill_last:
       UNREFERENCED_PARAMETER(R);
       UNREFERENCED_PARAMETER(G);
       UNREFERENCED_PARAMETER(B);
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
    }
 
    bool dib::rgb_from(::ca::dib * pdib)
@@ -2538,7 +2538,7 @@ fill_last:
 
    bool dib::from(::ca::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI)
    {
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
       return false;
    }
 

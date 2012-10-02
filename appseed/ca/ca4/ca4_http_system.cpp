@@ -907,7 +907,7 @@ retry:
                      TRACE0("Not Licensed Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
                      string strLocation = psession->outheader("Location");
                      delete psession;
-                     throw not_licensed(strCa2Realm, strLocation);
+                     throw not_licensed(get_app(), strCa2Realm, strLocation);
                      return NULL;
                   }
                }
@@ -1316,7 +1316,7 @@ retry:
                   TRACE0("Not Licensed Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
                   string strLocation = psocket->outheader("Location");
                   delete psocket;
-                  throw not_licensed(strCa2Realm, strLocation);
+                  throw not_licensed(get_app(), strCa2Realm, strLocation);
                   return NULL;
                }
             }

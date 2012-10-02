@@ -2,13 +2,13 @@
 
 
 class CLASS_DECL_ca memory_exception : 
-   public simple_exception
+   virtual public simple_exception
 {
 public:
 
 
-   memory_exception();
-   memory_exception(const char * pszMessage);
+   memory_exception(::ca::application * papp);
+   memory_exception(::ca::application * papp, const char * pszMessage);
    virtual ~memory_exception();
 
 

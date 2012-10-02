@@ -37,14 +37,15 @@ namespace exception
 {
 
 
-   class engine
+   class CLASS_DECL_ca engine :
+      virtual public ::ca::ca
    {
    public:
 
       bool  m_bSkip;
 
 
-      engine(unsigned int);
+      engine(::ca::application * papp, unsigned int);
       ~engine();
 
 
@@ -77,7 +78,7 @@ namespace exception
       static bool stack_trace(vsstring & str, dword_ptr uiSkip = 1, const char * pszFormat = default_format());
       static bool stack_trace(vsstring & str, engine&, CONTEXT *, dword_ptr uiSkip = 1, bool bSkip = false, const char * pszFormat = default_format());
       static DWORD WINAPI stack_trace_ThreadProc(void * lpvoidParam);
-    private:
+
       static const char * default_format(){ return "%f(%l) : %m at %s\n"; }
       static bool get_line_from_address(HANDLE hProc, dword_ptr uiAddress, dword_ptr * puiDisplacement, IMAGEHLP_LINE * pline);
       static size_t get_module_basename(HMODULE hmodule, vsstring & strName);
@@ -86,31 +87,36 @@ namespace exception
 
       bool check();
 
-    private:
       dword_ptr      m_uiAddress;
       bool           m_bOk;
-      STACKFRAME *   m_pstackframe;
+
+      STACKFRAME64 *   m_pstackframe;
       CONTEXT *      m_pcontext;
 
-    private:
-      class guard
+
+      class CLASS_DECL_ca guard :
+         virtual public ::ca::ca
       {
-      private:
-         guard();
       public:
+         
+
+         int                        m_iRef;
+         simple_array < HMODULE >   m_ha;
+
+
+         guard(::ca::application * papp);
          ~guard();
+
+
          bool init();
-         bool fail() const { return m_iRef == -1; }
-         static guard & instance()
-         {
-            static guard g;
-            return g;
-         }
-      private:
+         bool fail() const;
+         bool load_modules();
          void clear();
          bool load_module(HANDLE, HMODULE);
-         int  m_iRef;
+         
       };
+
+
    };
 
 

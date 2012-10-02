@@ -29,7 +29,7 @@ namespace ca4
       {
          string strOld = System.file().name_(psz);
       }
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
       //if(!System.file_as_string().move(psz, pszNew))
       {
          gen::property_set propertyset;

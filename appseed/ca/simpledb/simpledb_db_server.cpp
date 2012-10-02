@@ -204,7 +204,7 @@ bool db_server::create_message_window()
 
 #else
 
-   throw not_implemented_exception();
+   throw not_implemented_exception(get_app());
 
 #endif
 

@@ -48,7 +48,7 @@ namespace user
 
 #else
 
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
 
 #endif
 
@@ -268,7 +268,7 @@ namespace user
 
 #else
 
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
 
 #endif
 

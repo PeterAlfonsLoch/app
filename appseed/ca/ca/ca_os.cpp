@@ -18,44 +18,44 @@ namespace ca
    bool os::shutdown(bool bIfPowerOff)
    {
       UNREFERENCED_PARAMETER(bIfPowerOff);
-      throw interface_only_exception("this is an interface");
+      throw interface_only_exception(get_app(), "this is an interface");
    }
 
    bool os::reboot()
    {
-      throw interface_only_exception("this is an interface");
+      throw interface_only_exception(get_app(), "this is an interface");
    }
 
    void os::terminate_processes_by_title(const char * pszName)
    {
       UNREFERENCED_PARAMETER(pszName);
-      throw interface_only_exception("this is an interface");
+      throw interface_only_exception(get_app(), "this is an interface");
    }
 
    bool os::get_pid_by_path(const char * pszName, DWORD & dwPid)
    {
       UNREFERENCED_PARAMETER(pszName);
       UNREFERENCED_PARAMETER(dwPid);
-      throw interface_only_exception("this is an interface");
+      throw interface_only_exception(get_app(), "this is an interface");
    }
 
    bool os::get_pid_by_title(const char * pszName, DWORD & dwPid)
    {
       UNREFERENCED_PARAMETER(pszName);
       UNREFERENCED_PARAMETER(dwPid);
-      throw interface_only_exception("this is an interface");
+      throw interface_only_exception(get_app(), "this is an interface");
    }
 
    string os::get_process_path(DWORD dwPid)
    {
       UNREFERENCED_PARAMETER(dwPid);
-      throw interface_only_exception("this is an interface");
+      throw interface_only_exception(get_app(), "this is an interface");
    }
 
    void os::get_all_processes(dword_array & dwa )
    {
       UNREFERENCED_PARAMETER(dwa);
-      throw interface_only_exception("this is an interface");
+      throw interface_only_exception(get_app(), "this is an interface");
    }
 
 #ifdef WINDOWS
@@ -63,7 +63,7 @@ namespace ca
    string os::get_module_path(HMODULE hmodule)
    {
       UNREFERENCED_PARAMETER(hmodule);
-      throw interface_only_exception("this is an interface");
+      throw interface_only_exception(get_app(), "this is an interface");
    }
 
 #endif
@@ -194,7 +194,7 @@ namespace ca
    bool os::open_in_ie(const char * lpcsz)
    {
       
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
       return false;
 
@@ -207,7 +207,7 @@ namespace ca
    {
       
 
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
 
       
       return false;
@@ -220,7 +220,7 @@ namespace ca
    {
 
 
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
 
       
       return false;
@@ -233,7 +233,7 @@ namespace ca
    {
 
 
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
 
       
       return false;
@@ -246,7 +246,7 @@ namespace ca
    {
 
 
-      throw not_implemented_exception();
+      throw not_implemented_exception(get_app());
 
       
       return false;
@@ -259,7 +259,7 @@ namespace ca
    {
 
 
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
 
       return false;
@@ -278,7 +278,7 @@ namespace ca
    void os::post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam)
    {
 
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
    }
 
