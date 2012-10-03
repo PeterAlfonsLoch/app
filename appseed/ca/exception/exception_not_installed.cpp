@@ -2,7 +2,9 @@
 
 
 not_installed::not_installed(::ca::application * papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema) :
-   ca(papp)
+   ca(papp),
+   ::call_stack(papp),
+   ::base_exception(papp)
 {
 
    m_strVersion         = pszVersion;
@@ -15,7 +17,9 @@ not_installed::not_installed(::ca::application * papp, const char * pszVersion, 
 }
 
 not_installed::not_installed(const not_installed & e) :
-   ca(e)
+   ca(e),
+   ::call_stack(e),
+   ::base_exception(e)
 {
 
    m_strVersion         = e.m_strVersion;

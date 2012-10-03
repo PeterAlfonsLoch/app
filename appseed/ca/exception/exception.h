@@ -43,6 +43,7 @@ namespace ca
 #include "exception_interface_only.h"
 #include "exception_not_installed.h"
 #include "exception_not_supported.h"
+#include "exception_exit.h"
 #include "exception_not_licensed.h"
 #include "exception_temporary.h"
 #include "exception_installing.h"

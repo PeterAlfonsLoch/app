@@ -859,7 +859,7 @@ namespace ca2
          try
          {
 //            MSG msg;
-            while(true)
+            while(m_bRun)
             {
                // phase1: check to see if we can do idle work
                while (!has_message())

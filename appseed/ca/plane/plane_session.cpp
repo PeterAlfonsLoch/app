@@ -857,20 +857,41 @@ namespace plane
          return papp;
       else
       {
+         
          if(!bCreate)
             return NULL;
+
          papp = NULL;
+
          try
          {
 
             papp = create_application(pszType, pszId, bSynch, pbiasCreate);
+
+         }
+         catch(::exit_exception & e)
+         {
+            
+            throw e;
+
+         }
+         catch(::ca::exception & e)
+         {
+            
+            if(!Application.on_run_exception(e))
+               throw exit_exception(get_app());
+
          }
          catch(...)
          {
+
             papp = NULL;
+
          }
+
          if(papp == NULL)
             return NULL;
+
          m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
          return papp;
       }

@@ -1471,20 +1471,7 @@ namespace plane
          && !install().is(NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema))
       {
 
-         if(::is_debugger_attached())
-         {
-
-            MessageBox(NULL, "Debug Only Message\n\nPlease install application \"" + strApplicationId + "\" - type \"" + string(pszType) + "\" locale " + m_strLocale + " schema " + m_strSchema + " build number " + System.command().m_varTopicQuery["build_number"], "Debug Only Message - Please Install - ca2", MB_OK);
-
-            System.os().post_to_all_threads(WM_QUIT, 0, 0);
-
-            return NULL;
-
-         }
-
-         hotplugin::host::starter_start(": app=session session_start=" + strApplicationId + " app_type=" + string(pszType) +  " install locale=" + m_strLocale + " schema=" + m_strSchema, NULL);
-
-         return NULL;
+         throw not_installed(get_app(), NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema);
 
       }
 

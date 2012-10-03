@@ -927,10 +927,35 @@ namespace radix
 
    bool application::on_run_exception(::ca::exception & e)
    {
-      UNREFERENCED_PARAMETER(e);
+
       TRACE("An unexpected error has occurred and no special exception handling is available.");
+
+      ::not_installed & notinstalled = dynamic_cast < ::not_installed & > (e);
+
+      if(&notinstalled != NULL)
+      {
+
+         if(::is_debugger_attached())
+         {
+
+            MessageBox(NULL, "Debug Only Message\n\nPlease install \"" + notinstalled.m_strId + "\" type=\"" + notinstalled.m_strType + "\" locale=\"" + notinstalled.m_strLocale + "\" schema=\"" + notinstalled.m_strSchema + "\" build number " + notinstalled.m_strBuild, "Debug Only - Please Install - ca2", MB_OK);
+
+         }
+         else
+         {
+
+            hotplugin::host::starter_start(": app=session session_start=" + notinstalled.m_strId + " app_type=" + notinstalled.m_strType + " install locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema, NULL);
+
+         }
+
+         return false;
+
+      }
+
       //simple_message_box_timeout("An unexpected error has occurred and no special exception handling is available.<br>Timeout: $simple_message_box_timeout", 5000);
-      return false; // re-run? by default: doesn't
+
+      return true; // continue or exit application? by default: continue by returning true
+
    }
 
    void application::pre_translate_message(::gen::signal_object * pobj)

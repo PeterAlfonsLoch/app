@@ -32,7 +32,7 @@ namespace uinteraction
       && !System.install().is(NULL, strBuildNumber, "uinteraction", strId, m_strLocale, m_strSchema))
       {
 
-         throw not_installed(NULL, strBuildNumber, "uinteraction", strId, m_strLocale, m_strSchema);
+         throw not_installed(get_app(), NULL, strBuildNumber, "uinteraction", strId, m_strLocale, m_strSchema);
 
       }
 

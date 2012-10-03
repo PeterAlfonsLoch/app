@@ -1370,6 +1370,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="exception\exception_dump_context.h" />
     <ClInclude Include="exception\exception_error.h" />
     <ClInclude Include="exception\exception.h" />
+    <ClInclude Include="exception\exception_exit.h" />
     <ClInclude Include="exception\exception_installing.h" />
     <ClInclude Include="exception\exception_invalid_handle.h" />
     <ClInclude Include=".\exception\exception_invalid_index.h" />
@@ -2598,6 +2599,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="exception\exception_dump_output.cpp" />
     <ClCompile Include=".\exception\exception_hresult.cpp" />
     <ClCompile Include="exception\exception_error.cpp" />
+    <ClCompile Include="exception\exception_exit.cpp" />
     <ClCompile Include="exception\exception_installing.cpp" />
     <ClCompile Include="exception\exception_interface_only.cpp" />
     <ClCompile Include=".\exception\exception_invalid_argument.cpp" />

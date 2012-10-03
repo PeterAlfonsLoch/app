@@ -247,6 +247,12 @@ namespace planebase
                goto InitFailure;
             }
          }
+         catch(::exit_exception & e)
+         {
+            
+            throw e;
+
+         }
          catch(const ::ca::exception &)
          {
             if (GetMainWnd() != NULL)
@@ -278,6 +284,12 @@ namespace planebase
                goto InitFailure;
             }
          }
+         catch(::exit_exception & e)
+         {
+            
+            throw e;
+
+         }
          catch(const ::ca::exception & e)
          {
             if(on_run_exception((::ca::exception &) e))
@@ -288,6 +300,12 @@ namespace planebase
                try
                {
                   GetMainWnd()->DestroyWindow();
+               }
+               catch(::exit_exception & e)
+               {
+            
+                  throw e;
+
                }
                catch(::ca::exception &)
                {
@@ -302,6 +320,12 @@ namespace planebase
                try
                {
                   GetMainWnd()->DestroyWindow();
+               }
+               catch(::exit_exception & e)
+               {
+            
+                  throw e;
+
                }
                catch(::ca::exception &)
                {
@@ -320,6 +344,12 @@ namespace planebase
                m_iReturnCode = -1;
             goto InitFailure;
          }
+      }
+      catch(::exit_exception & e)
+      {
+            
+         throw e;
+
       }
       catch(...)
       {
@@ -420,6 +450,12 @@ InitFailure:
          {
             m_iReturnCode = run();
          }
+         catch(::exit_exception & e)
+         {
+            
+            throw e;
+
+         }
          catch(const ::ca::exception & e)
          {
             if(on_run_exception((::ca::exception &) e))
@@ -445,6 +481,12 @@ InitFailure:
                {
                   GetMainWnd()->DestroyWindow();
                }
+               catch(::exit_exception & e)
+               {
+            
+                  throw e;
+
+               }
                catch(::ca::exception &)
                {
                }
@@ -454,12 +496,24 @@ InitFailure:
             {
                m_iReturnCode = exit();
             }
+            catch(::exit_exception & e)
+            {
+            
+               throw e;
+
+            }
             catch(...)
             {
                m_iReturnCode = -1;
             }
             goto InitFailure;
          }
+      }
+      catch(::exit_exception & e)
+      {
+            
+         throw e;
+
       }
       catch(...)
       {
@@ -677,34 +731,13 @@ InitFailure:
          {
             m_iReturnCode = -1;
          }
+
          return 0;
-
       }
-      catch(const not_installed & e)
+      catch(::exit_exception & e)
       {
-
-         if(::IsDebuggerPresent())
-         {
-
-            MessageBox(NULL, "Debug Only Message\n\nPlease install \"" + e.m_strId + "\" type=\"uinteraction\" locale=\"" + e.m_strLocale + "\" schema=\"" + e.m_strSchema + "\" build number " + e.m_strBuildNumber, "Debug Only - Please Install - ca2", MB_OK);
-
-         }
-         else
-         {
-
-            hotplugin::host::starter_start(": app=session session_start=" + e.m_strId + " app_type=uinteraction install locale=" + e.m_strLocale + " schema=" + e.m_strSchema, NULL);
-
-         }
 
          System.os().post_to_all_threads(WM_QUIT, 0, 0);
-
-         m_iReturnCode = -1;
-
-      }
-      catch(...)
-      {
-
-         m_iReturnCode = -1;
 
       }
 
@@ -1748,6 +1781,9 @@ InitFailure:
       return true;
 
    }
+
+   
+   
 
 
 } //namespace planebase

@@ -3269,6 +3269,9 @@
     <ClInclude Include="exception\exception_not_installed.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
+    <ClInclude Include="exception\exception_exit.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
@@ -5468,6 +5471,9 @@
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_not_installed.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_exit.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>

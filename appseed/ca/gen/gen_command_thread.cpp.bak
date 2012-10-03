@@ -55,19 +55,6 @@ namespace gen
             {
                on_request(pcreatecontext);
             }
-            catch(::exit_exception & e)
-            {
-            
-               throw e;
-
-            }
-            catch(::ca::exception & e)
-            {
-            
-               if(!Application.on_run_exception(e))
-                  throw exit_exception(get_app());
-
-            }
             catch(...)
             {
             }
@@ -97,30 +84,13 @@ namespace gen
 
    void command_thread::on_request(::ca::create_context * pline)
    {
-      try
-      {
-         ::ex2::application * papp = dynamic_cast < ::ex2::application * > (get_app());
-         if(papp != NULL)
-         {
-            papp->request(pline);
-         }
-      }
-      catch(::exit_exception & e)
-      {
 
-         throw e;
-
-      }
-      catch(::ca::exception & e)
+      ::ex2::application * papp = dynamic_cast < ::ex2::application * > (get_app());
+      if(papp != NULL)
       {
-         
-         if(!Application.on_run_exception(e))
-            throw exit_exception(get_app());
+         papp->request(pline);
+      }
 
-      }
-      catch(...)
-      {
-      }
    }
 
    void command_thread::consolidate(const ::ca::create_context * pcreatecontext)
