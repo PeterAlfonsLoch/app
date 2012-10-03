@@ -17,24 +17,26 @@ namespace plane
    {
 
 
+      m_psystem                                 = this;
+      set_app(this);
+
+
       if(papp == NULL)
       {
 
-         oprop("root_system") = papp->m_psystem;
+         oprop("parent_system") = NULL;
 
       }
       else
       {
 
-         oprop("root_system") = NULL;
+         oprop("parent_system") = papp->m_psystem;
 
       }
 
 
-      ::plane::system * psystemRoot             = oprop("root_system").ca2 < ::plane::system > ();
+      ::plane::system * psystemParent             = oprop("parent_system").ca2 < ::plane::system > ();
 
-
-      m_psystem                                 = this;
 
       m_file.m_psystem                          = this;
       ::plane::application::m_file.m_psystem    = this;
@@ -44,7 +46,7 @@ namespace plane
       m_bDoNotExitIfNoApplications              = false;
 
 
-      if(psystemRoot == NULL)
+      if(psystemParent == NULL)
       {
 
          m_peguard                                 = new ::exception::engine::guard(this);
@@ -54,8 +56,8 @@ namespace plane
       else
       {
 
-         m_peguard                                 = psystemRoot->m_peguard;
-         m_peengine                                = psystemRoot->m_peengine;
+         m_peguard                                 = psystemParent->m_peguard;
+         m_peengine                                = psystemParent->m_peengine;
 
       }
 

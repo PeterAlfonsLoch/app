@@ -161,6 +161,8 @@ namespace plugin
 
          m_psystem->command().m_varTopicQuery["local_mutex_id"] = strId;
 
+         set_app(m_psystem);
+
       }
 
       m_puiHost = create_host_interaction();
