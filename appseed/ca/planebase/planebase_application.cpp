@@ -625,55 +625,91 @@ InitFailure:
 
    int application::main()
    {
-      m_dwAlive = ::GetTickCount();
-      int m_iReturnCode = pre_run();
-      if(m_iReturnCode != 0)
-      {
-         m_bReady = true;
-         TRACE("application::main pre_run failure");
-         return m_iReturnCode;
-      }
 
-
-      if(!initial_check_directrix())
-      {
-         exit();
-         m_iReturnCode = -1;
-         m_bReady = true;
-         ::OutputDebugString("exiting on check directrix");
-         return m_iReturnCode;
-      }
-
-
-      m_dwAlive = ::GetTickCount();
-      if(!os_native_bergedge_start())
-      {
-         exit();
-         m_iReturnCode = -1;
-         m_bReady = true;
-         ::OutputDebugString("application::main os_native_bergedge_start failure");
-         return m_iReturnCode;
-      }
-      m_iReturnCode = 0;
-      m_bReady = true;
-      m_iReturnCode = on_run();
-      if(m_iReturnCode != 0)
-      {
-         ::OutputDebugString("application::main on_run termination failure");
-      }
-      if(is_system())
-      {
-         System.os().post_to_all_threads(WM_QUIT, 0, 0);
-      }
       try
       {
-         m_iReturnCode = exit();
+
+         m_dwAlive = ::GetTickCount();
+         int m_iReturnCode = pre_run();
+         if(m_iReturnCode != 0)
+         {
+            m_bReady = true;
+            TRACE("application::main pre_run failure");
+            return m_iReturnCode;
+         }
+
+
+         if(!initial_check_directrix())
+         {
+            exit();
+            m_iReturnCode = -1;
+            m_bReady = true;
+            ::OutputDebugString("exiting on check directrix");
+            return m_iReturnCode;
+         }
+
+
+         m_dwAlive = ::GetTickCount();
+         if(!os_native_bergedge_start())
+         {
+            exit();
+            m_iReturnCode = -1;
+            m_bReady = true;
+            ::OutputDebugString("application::main os_native_bergedge_start failure");
+            return m_iReturnCode;
+         }
+         m_iReturnCode = 0;
+         m_bReady = true;
+         m_iReturnCode = on_run();
+         if(m_iReturnCode != 0)
+         {
+            ::OutputDebugString("application::main on_run termination failure");
+         }
+         if(is_system())
+         {
+            System.os().post_to_all_threads(WM_QUIT, 0, 0);
+         }
+         try
+         {
+            m_iReturnCode = exit();
+         }
+         catch(...)
+         {
+            m_iReturnCode = -1;
+         }
+         return 0;
+
+      }
+      catch(const not_installed & e)
+      {
+
+         if(::IsDebuggerPresent())
+         {
+
+            MessageBox(NULL, "Debug Only Message\n\nPlease install \"" + e.m_strId + "\" type=\"uinteraction\" locale=\"" + e.m_strLocale + "\" schema=\"" + e.m_strSchema + "\" build number " + e.m_strBuildNumber, "Debug Only - Please Install - ca2", MB_OK);
+
+         }
+         else
+         {
+
+            hotplugin::host::starter_start(": app=session session_start=" + e.m_strId + " app_type=uinteraction install locale=" + e.m_strLocale + " schema=" + e.m_strSchema, NULL);
+
+         }
+
+         System.os().post_to_all_threads(WM_QUIT, 0, 0);
+
+         m_iReturnCode = -1;
+
       }
       catch(...)
       {
+
          m_iReturnCode = -1;
+
       }
+
       return 0;
+
    }
 
    bool application::bergedge_start()

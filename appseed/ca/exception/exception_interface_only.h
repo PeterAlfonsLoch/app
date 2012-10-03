@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca interface_only_exception : 
-   virtual public not_implemented_exception
+   virtual public not_implemented
 {
 public:
 

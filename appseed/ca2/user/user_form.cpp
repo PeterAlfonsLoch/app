@@ -689,7 +689,7 @@ namespace ca2
             class control::descriptor & descriptor = m_controldescriptorset[i];
             if(descriptor.has_function(control::function_static))
             {
-               throw not_implemented_exception(get_app());
+               throw not_implemented(get_app());
                /*
                string str;
                str.load_string(descriptor.m_id);*/

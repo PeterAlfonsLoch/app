@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca void_implementation_exception :
-   virtual public not_implemented_exception
+   virtual public not_implemented
 {
 public:
 

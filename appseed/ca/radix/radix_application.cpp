@@ -1569,7 +1569,7 @@ namespace radix
       UNREFERENCED_PARAMETER(hDevNames);
       UNREFERENCED_PARAMETER(hDevMode);
       UNREFERENCED_PARAMETER(bFreeOld);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
       /*if (m_hDevNames != hDevNames)
       {
          if (m_hDevNames != NULL && bFreeOld)
@@ -1587,7 +1587,7 @@ namespace radix
    ::ca::graphics * application::CreatePrinterDC()
    {
 //      UNREFERENCED_PARAMETER(spgraphics);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
       /*
       HDC hDC = gen::CreateDC(m_hDevNames, m_hDevMode);
       if (hDC != NULL)
@@ -1675,7 +1675,7 @@ namespace radix
 
 #else
 
-         throw not_implemented_exception(get_app());
+         throw not_implemented(get_app());
 
 #endif
 
@@ -1868,7 +1868,7 @@ namespace radix
             szAppName[_MAX_PATH - 1] = '\0';
 #else
 
-         throw not_implemented_exception(get_app());
+         throw not_implemented(get_app());
 
 #endif
       }
@@ -1940,7 +1940,7 @@ namespace radix
 
 #else
 
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
 
 #endif
 
@@ -1982,7 +1982,7 @@ namespace radix
 
 #else
 
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
 
 #endif
 
@@ -2275,7 +2275,7 @@ namespace radix
    {
       UNREFERENCED_PARAMETER(nIDRegistryKey);
       ASSERT(m_pszRegistryKey == NULL);
-    throw not_implemented_exception(get_app());
+    throw not_implemented(get_app());
       /*char szRegistryKey[256];
       VERIFY(gen::LoadString(nIDRegistryKey, szRegistryKey));
       SetRegistryKey(szRegistryKey);*/
@@ -2665,32 +2665,32 @@ namespace radix
    {
       UNREFERENCED_PARAMETER(pszMatter);
       UNREFERENCED_PARAMETER(pszMatter2);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    string application::dir_matter(const char * pszMatter, const char * pszMatter2)
    {
       UNREFERENCED_PARAMETER(pszMatter);
       UNREFERENCED_PARAMETER(pszMatter2);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    bool application::is_inside_time_dir(const char * pszPath)
    {
       UNREFERENCED_PARAMETER(pszPath);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    bool application::file_is_read_only(const char * pszPath)
    {
       UNREFERENCED_PARAMETER(pszPath);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    string application::file_as_string(const char * pszPath)
    {
       UNREFERENCED_PARAMETER(pszPath);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    string application::dir_path(const char * psz1, const char * psz2, const char * psz3)
@@ -2698,19 +2698,19 @@ namespace radix
       UNREFERENCED_PARAMETER(psz1);
       UNREFERENCED_PARAMETER(psz2);
       UNREFERENCED_PARAMETER(psz3);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    string application::dir_name(const char * psz)
    {
       UNREFERENCED_PARAMETER(psz);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    bool application::dir_mk(const char * psz)
    {
       UNREFERENCED_PARAMETER(psz);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    string application::file_title(const char * psz)
@@ -2753,7 +2753,7 @@ namespace radix
 
 #else
 
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
 
 #endif
 
@@ -2771,7 +2771,7 @@ namespace radix
 
 #else
 
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
 
 #endif
 
@@ -3082,7 +3082,7 @@ namespace radix
    {
       UNREFERENCED_PARAMETER(lpszClassName);
       UNREFERENCED_PARAMETER(lpszWindowName);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    ::ca::window * application::FindWindowEx(HWND hwndParent, HWND hwndChildAfter, const char * lpszClass, const char * lpszWindow)
@@ -3091,7 +3091,7 @@ namespace radix
       UNREFERENCED_PARAMETER(hwndChildAfter);
       UNREFERENCED_PARAMETER(lpszClass);
       UNREFERENCED_PARAMETER(lpszWindow);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    string application::get_local_mutex_name(const char * pszAppName)
@@ -3329,7 +3329,7 @@ void __post_quit_message(int nExitCode)
 
 #else
 
-   throw not_implemented_exception(get_app());
+   throw not_implemented(get_app());
 
 #endif
 

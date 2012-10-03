@@ -32,20 +32,7 @@ namespace uinteraction
       && !System.install().is(NULL, strBuildNumber, "uinteraction", strId, m_strLocale, m_strSchema))
       {
 
-         if(::IsDebuggerPresent())
-         {
-
-            MessageBox(NULL, "Debug Only Message\n\nPlease install \"" + strId + "\" type=\"uinteraction\" locale=\"" + m_strLocale + "\" schema=\"" + m_strSchema + "\" build number " + System.command().m_varTopicQuery["build_number"], "Debug Only - Please Install - ca2", MB_OK);
-
-            System.os().post_to_all_threads(WM_QUIT, 0, 0);
-
-            return NULL;
-
-         }
-
-         hotplugin::host::starter_start(": app=session session_start=" + strId + " app_type=uinteraction install locale=" + m_strLocale + " schema=" + m_strSchema, NULL);
-
-         return NULL;
+         throw not_installed(NULL, strBuildNumber, "uinteraction", strId, m_strLocale, m_strSchema);
 
       }
 

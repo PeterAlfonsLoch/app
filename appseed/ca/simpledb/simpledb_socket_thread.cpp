@@ -142,7 +142,7 @@ namespace simpledb
 
 #else
 
-         throw not_implemented_exception(get_app());
+         throw not_implemented(get_app());
 
 #endif
 

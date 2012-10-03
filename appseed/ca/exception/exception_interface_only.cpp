@@ -5,7 +5,7 @@ interface_only_exception::interface_only_exception(::ca::application * papp, con
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp),
-   not_implemented_exception(papp, pszTip)
+   not_implemented(papp, pszTip)
 {
 }
 
@@ -13,7 +13,7 @@ interface_only_exception::interface_only_exception(const interface_only_exceptio
    ca(e),
    ::call_stack(e),
    ::base_exception(e),
-   not_implemented_exception(e)
+   not_implemented(e)
 {
 }
 

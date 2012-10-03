@@ -10,7 +10,7 @@ namespace ex1
    UINT edit_file::Item::read_ch(edit_file * pfile)
    {
       UNREFERENCED_PARAMETER(pfile);
-      throw not_implemented_exception(pfile->get_app());
+      throw not_implemented(pfile->get_app());
       return 0;
    }
 

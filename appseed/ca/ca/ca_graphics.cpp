@@ -2235,7 +2235,7 @@ namespace ca
 
    void graphics::set_text_rendering(e_text_rendering etextrendering)
    {
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    bool graphics::blur(bool bExpand, double dRadius, LPCRECT lpcrect)

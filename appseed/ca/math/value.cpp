@@ -44,7 +44,7 @@ namespace math
 //      binary_operation * pbinopNew;
       base_array < number *, number * > stackptra;
 
-      throw not_implemented_exception(::ca::get_thread_app());
+      throw not_implemented(::ca::get_thread_app());
 
       /*
 

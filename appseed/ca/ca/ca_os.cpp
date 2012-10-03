@@ -207,7 +207,7 @@ namespace ca
    {
       
 
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
 
       
       return false;
@@ -220,7 +220,7 @@ namespace ca
    {
 
 
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
 
       
       return false;
@@ -233,7 +233,7 @@ namespace ca
    {
 
 
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
 
       
       return false;
@@ -246,7 +246,7 @@ namespace ca
    {
 
 
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
 
       
       return false;

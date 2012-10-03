@@ -167,7 +167,7 @@ namespace rar
       FILETIME localFileTime, utcFileTime;
       if (RarTimeToFileTime(rarTime, localFileTime))
       {
-         throw not_implemented_exception(papp);
+         throw not_implemented(papp);
 /*         if (!LocalFileTimeToFileTime(&localFileTime, &utcFileTime))
             utcFileTime.dwHighDateTime = utcFileTime.dwLowDateTime = 0;*/
       }

@@ -355,7 +355,7 @@ namespace ca
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
             return;
          }
-         throw not_implemented_exception(get_app(), "is really a directory or compressed directory/file??");
+         throw not_implemented(get_app(), "is really a directory or compressed directory/file??");
 
       }
 
@@ -368,7 +368,7 @@ namespace ca
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
             return;
          }
-         throw not_implemented_exception(get_app(), "is really a directory or compressed directory/file??");
+         throw not_implemented(get_app(), "is really a directory or compressed directory/file??");
 
       }
 

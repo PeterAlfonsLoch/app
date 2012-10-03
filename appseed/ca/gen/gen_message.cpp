@@ -673,7 +673,7 @@ namespace gen
 
       ::user::interaction * mouse_activate::GetDesktopWindow()
       {
-         throw not_implemented_exception(get_app());
+         throw not_implemented(get_app());
          return NULL;
 //            return ::ca::window::from_handle(reinterpret_cast<HWND>(m_wparam));
       }
@@ -690,7 +690,7 @@ namespace gen
 
       ::ca::window * context_menu::GetWindow()
       {
-         throw not_implemented_exception(get_app());
+         throw not_implemented(get_app());
          return NULL;
 //            return ::ca::window::from_handle(reinterpret_cast<HWND>(m_wparam));
       }

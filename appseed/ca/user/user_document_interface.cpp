@@ -496,7 +496,7 @@ namespace user
             else*/ if (base < ex1::file_exception >::bases(e))
             {
                ::ex1::file_exception * pfe = dynamic_cast < ::ex1::file_exception * > (e);
-               // throw not_implemented_exception(get_app());
+               // throw not_implemented(get_app());
                TRACE(::radix::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
                   pfe->m_lOsError);
 
@@ -539,7 +539,7 @@ namespace user
          if (prompt.is_empty())
          {
             string strTitle = System.file().title_(lpszPathName);
-            //throw not_implemented_exception(get_app());
+            //throw not_implemented(get_app());
             /*
             gen::FormatString1(prompt, nIDP, strTitle);*/
          }

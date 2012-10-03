@@ -11,13 +11,13 @@ namespace ca
       UNREFERENCED_PARAMETER(nPlanes);
       UNREFERENCED_PARAMETER(nBitcount);
       UNREFERENCED_PARAMETER(lpBits);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    bool bitmap::CreateBitmapIndirect(::ca::graphics * pdc, LPBITMAP lpBitmap)
    {
       UNREFERENCED_PARAMETER(lpBitmap);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    bool bitmap::CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset)
@@ -28,7 +28,7 @@ namespace ca
       UNREFERENCED_PARAMETER(ppvBits);
       UNREFERENCED_PARAMETER(hSection);
       UNREFERENCED_PARAMETER(offset);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
    bool bitmap::CreateDIBitmap(::ca::graphics * pdc, const BITMAPINFOHEADER *pbmih, DWORD flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage)
    {
@@ -38,20 +38,20 @@ namespace ca
       UNREFERENCED_PARAMETER(pjBits);
       UNREFERENCED_PARAMETER(pbmi);
       UNREFERENCED_PARAMETER(iUsage);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    DWORD bitmap::SetBitmapBits(DWORD dwCount, const void * lpBits)
    {
       UNREFERENCED_PARAMETER(dwCount);
       UNREFERENCED_PARAMETER(lpBits);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
    DWORD bitmap::GetBitmapBits(DWORD dwCount, LPVOID lpBits) const
    {
       UNREFERENCED_PARAMETER(dwCount);
       UNREFERENCED_PARAMETER(lpBits);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    bool bitmap::CreateCompatibleBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight)
@@ -59,14 +59,14 @@ namespace ca
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
    bool bitmap::CreateDiscardableBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    void ::ca::bitmap::dump(dump_context & dumpcontext) const
@@ -80,7 +80,7 @@ namespace ca
    {
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
 
@@ -103,7 +103,7 @@ namespace ca
    {
 
 
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
       class size sizeRet(0, 0);
       return sizeRet;
 

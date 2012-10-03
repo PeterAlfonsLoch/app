@@ -135,7 +135,7 @@ retry_license:
    }
 
    string application::message_box(const char * pszMatter, gen::property_set & propertyset)
-   {      throw not_implemented_exception(get_app());
+   {      throw not_implemented(get_app());
 /*      class message_box box(this);
       box.show(pszMatter, propertyset);
       return box.m_strResponse;*/
@@ -226,7 +226,7 @@ retry_license:
       {
          strMatter = "system\\user\\simple_message_box\\ok.xhtml";
       }
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
 //      box.show(strMatter, propertyset);
       if(box.m_strResponse == "ok")
       {

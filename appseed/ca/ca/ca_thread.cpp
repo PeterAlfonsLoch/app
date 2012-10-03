@@ -451,12 +451,12 @@ namespace ca
 
    bool thread::is_auto_delete()
    {
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
 	void thread::wait()
 	{
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
       // on Windows ==>       ::WaitForSingleObject(m_loginthread.get_os_data(), INFINITE);
 
    }
@@ -467,7 +467,7 @@ namespace ca
    wait_result thread::wait(const duration & duration)
 	{
       UNREFERENCED_PARAMETER(duration);
-		throw not_implemented_exception(get_app());
+		throw not_implemented(get_app());
 		return wait_result();
 	}
 
@@ -476,14 +476,14 @@ namespace ca
 	void thread::set_priority(int priority)
 	{
       UNREFERENCED_PARAMETER(priority);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
 	///  \brief		gets thread priority
 	///  \param		priority
 	int thread::priority()
 	{
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
       return 0x80000000;
    }
 

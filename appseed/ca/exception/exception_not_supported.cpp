@@ -5,7 +5,7 @@ not_supported_exception::not_supported_exception(const not_supported_exception &
    ca(e.get_app()),
    ::call_stack(e.get_app()),
    ::base_exception(e.get_app()),
-   not_implemented_exception(e),
+   not_implemented(e),
    interface_only_exception(e)
 {
 
@@ -15,7 +15,7 @@ not_supported_exception::not_supported_exception(::ca::application * papp, const
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp),
-   not_implemented_exception(papp, pszTip),
+   not_implemented(papp, pszTip),
    interface_only_exception(papp, pszTip)
 {
 

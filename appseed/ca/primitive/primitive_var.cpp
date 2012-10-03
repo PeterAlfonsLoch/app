@@ -3497,7 +3497,7 @@ bool var::is_numeric() const
          return false;
 
       default:
-         throw not_implemented_exception(::ca::get_thread_app());
+         throw not_implemented(::ca::get_thread_app());
 
    };
 

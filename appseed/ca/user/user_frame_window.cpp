@@ -369,7 +369,7 @@ void frame_window::ShowOwnedWindows(bool bShow)
 {
    UNREFERENCED_PARAMETER(bShow);
    // walk through all top-level windows
-   throw not_implemented_exception(get_app());
+   throw not_implemented(get_app());
 /*   HWND hWnd = ::GetWindow(::GetDesktopWindow(), GW_CHILD);
    while (hWnd != NULL)
    {
@@ -619,7 +619,7 @@ const char * frame_window::GetIconWndClass(DWORD dwDefaultStyle, const char * ps
    }
 #else
 
-   throw not_implemented_exception(get_app());
+   throw not_implemented(get_app());
 
 #endif
    return NULL;        // just use the default
@@ -799,7 +799,7 @@ void frame_window::InitialFramePosition(bool bForceRestore)
 
 void frame_window::OnClose()
 {
-   throw not_implemented_exception(get_app());
+   throw not_implemented(get_app());
    /*if (m_lpfnCloseProc != NULL)
       (*m_lpfnCloseProc)(this);
 
@@ -1108,7 +1108,7 @@ void frame_window::OnDropFiles(HDROP hDropInfo)
 
 #else
 
-   throw not_implemented_exception(get_app());
+   throw not_implemented(get_app());
 
 #endif
 
@@ -1171,7 +1171,7 @@ LRESULT frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
 
 #else
 
-   throw not_implemented_exception(get_app());
+   throw not_implemented(get_app());
 
 #endif
 
@@ -1229,7 +1229,7 @@ LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
 
 #else
 
-   throw not_implemented_exception(get_app());
+   throw not_implemented(get_app());
 
 #endif
 
@@ -1246,7 +1246,7 @@ LRESULT frame_window::OnDDETerminate(WPARAM wParam, LPARAM lParam)
 
 #else
 
-   throw not_implemented_exception(get_app());
+   throw not_implemented(get_app());
 
 #endif
 
@@ -1337,7 +1337,7 @@ void frame_window::GetMessageString(UINT nID, string & rMessage) const
    UNREFERENCED_PARAMETER(nID);
    UNREFERENCED_PARAMETER(rMessage);
    // load appropriate string
-   throw not_implemented_exception(get_app());
+   throw not_implemented(get_app());
 /*   LPTSTR lpsz = rMessage.GetBuffer(255);
    if (gen::LoadString(nID, lpsz) != 0)
    {
@@ -1734,7 +1734,7 @@ LRESULT frame_window::OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam)
 
 #else
 
-   throw not_implemented_exception(get_app());
+   throw not_implemented(get_app());
 
 #endif
 
@@ -1797,7 +1797,7 @@ void frame_window::BringToTop(int nCmdShow)
 
 #else
 
-   throw not_implemented_exception(get_app());
+   throw not_implemented(get_app());
 
 #endif
 
@@ -1881,7 +1881,7 @@ void frame_window::_001OnSysCommand(gen::signal_object * pobj)
 
 #else
 
-   throw not_implemented_exception(get_app());
+   throw not_implemented(get_app());
 
 #endif
 

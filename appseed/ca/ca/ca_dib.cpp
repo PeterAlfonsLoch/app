@@ -59,7 +59,7 @@ namespace ca
       if(&bitmap == NULL)
          return FALSE;
 
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
       /*
       BITMAP bm;
       bitmap.GetObject(sizeof(bm), &bm);
@@ -2507,7 +2507,7 @@ fill_last:
       UNREFERENCED_PARAMETER(R);
       UNREFERENCED_PARAMETER(G);
       UNREFERENCED_PARAMETER(B);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
    bool dib::rgb_from(::ca::dib * pdib)

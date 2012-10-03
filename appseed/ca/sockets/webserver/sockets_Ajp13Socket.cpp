@@ -279,7 +279,7 @@ namespace sockets
             }
             put_string(msg, ptr, m_response.headers().m_propertya[i].name());
          }
-         throw not_implemented_exception(get_app());
+         throw not_implemented(get_app());
    /*      list<string> vec = m_response.CookieNames();
          {
             for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)

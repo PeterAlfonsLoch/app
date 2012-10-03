@@ -5,7 +5,7 @@ void_implementation_exception::void_implementation_exception(::ca::application *
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp),
-   not_implemented_exception(papp, pszTip)
+   not_implemented(papp, pszTip)
 {
 }
 
@@ -13,7 +13,7 @@ void_implementation_exception::void_implementation_exception(const void_implemen
    ca(e),
    ::call_stack(e),
    ::base_exception(e),
-   not_implemented_exception(e)
+   not_implemented(e)
 {
 }
 

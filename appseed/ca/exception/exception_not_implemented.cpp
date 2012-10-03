@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-not_implemented_exception::not_implemented_exception(const not_implemented_exception & e) : 
+not_implemented::not_implemented(const not_implemented & e) : 
    ca(e),
    ::call_stack(e),
    ::base_exception(e),
@@ -9,7 +9,7 @@ not_implemented_exception::not_implemented_exception(const not_implemented_excep
 {
 }
 
-not_implemented_exception::not_implemented_exception(::ca::application * papp, const char * pszTip) : 
+not_implemented::not_implemented(::ca::application * papp, const char * pszTip) : 
    ca(papp),
    ::call_stack(papp),
    ::base_exception(papp),
@@ -17,7 +17,7 @@ not_implemented_exception::not_implemented_exception(::ca::application * papp, c
 {
 }
 
-not_implemented_exception::~not_implemented_exception()
+not_implemented::~not_implemented()
 {
 }
 

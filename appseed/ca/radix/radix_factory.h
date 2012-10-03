@@ -132,7 +132,7 @@ public:
    virtual ::ca::ca * clone(::ca::ca * pobject)
    {
       UNREFERENCED_PARAMETER(pobject);
-      throw not_implemented_exception(get_app());
+      throw not_implemented(get_app());
    }
 
 };
