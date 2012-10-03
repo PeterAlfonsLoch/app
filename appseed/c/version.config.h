@@ -1,10 +1,7 @@
 #pragma once
 
 
-#include "include/production.version.config.h"
-
-
-
+#define CA2_PLATFORM_VERSION CA2_BASIS
 
 
 
