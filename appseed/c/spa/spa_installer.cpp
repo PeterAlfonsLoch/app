@@ -702,7 +702,7 @@ RetryHost:
          trace("***Downloading files.");
          if(m_bInternetInstall)
          {
-            //download_file_list(straFileList, mapLen, mapMd5, mapGzLen, mapFlag);
+            download_file_list(straFileList, mapLen, mapMd5, mapGzLen, mapFlag);
          }
          else
          {
