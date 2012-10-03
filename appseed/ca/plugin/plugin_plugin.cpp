@@ -136,9 +136,7 @@ namespace plugin
 
          m_bAppStarted = false;
 
-         m_psystem = new ::plugin::system();
-
-         set_app(m_psystem);
+         m_psystem = new ::plugin::system((::plane::system *) m_phost->get_system());
 
          m_psystem->m_pplugin = this;
 

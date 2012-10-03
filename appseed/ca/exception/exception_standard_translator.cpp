@@ -78,7 +78,7 @@ namespace exception
       if(g_bExiting)
          return;
       UNREFERENCED_PARAMETER(uiCode);
-      ::ca::application * papp = NULL;
+      ::ca::application * papp = ::ca::get_thread_app();
       switch (ppointers->ExceptionRecord->ExceptionCode)
       {
       case EXCEPTION_NO_MEMORY:                 throw standard_no_memory(papp, ppointers);                  break;

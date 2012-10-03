@@ -22,9 +22,7 @@ namespace ca
       bool                          m_bTranslateMouseMessageCursor;
       //UINT m_nFlags;      // see WF_ flags above
 
-#ifdef WINDOWS
-      WNDPROC m_pfnSuper; // for subclassing of controls
-#endif
+
 
       ::ca::font * m_pfont;
 

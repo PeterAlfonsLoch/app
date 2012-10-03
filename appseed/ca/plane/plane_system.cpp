@@ -9,17 +9,33 @@
 namespace plane
 {
 
-#if defined(WINDOWS)
-   //mutex system::s_mutexGdiplus;
-#endif
 
-   system::system() :
+   system::system(::ca::application * papp) :
       m_mutexDelete(this),
       m_http(this),
       m_net(this)
-  {
+   {
+
+
+      if(papp == NULL)
+      {
+
+         oprop("root_system") = papp->m_psystem;
+
+      }
+      else
+      {
+
+         oprop("root_system") = NULL;
+
+      }
+
+
+      ::plane::system * psystemRoot             = oprop("root_system").ca2 < ::plane::system > ();
+
 
       m_psystem                                 = this;
+
       m_file.m_psystem                          = this;
       ::plane::application::m_file.m_psystem    = this;
       m_dir.m_psystem                           = this;
@@ -28,33 +44,32 @@ namespace plane
       m_bDoNotExitIfNoApplications              = false;
 
 
-      m_peguard                                 = new ::exception::engine::guard(this);
-      m_peengine                                = new ::exception::engine(this);
+      if(psystemRoot == NULL)
+      {
+
+         m_peguard                                 = new ::exception::engine::guard(this);
+         m_peengine                                = new ::exception::engine(this);
+
+      }
+      else
+      {
+
+         m_peguard                                 = psystemRoot->m_peguard;
+         m_peengine                                = psystemRoot->m_peengine;
+
+      }
+
 
 
       if(::get_heap_mutex() == NULL)
       {
+
          ::set_heap_mutex(new mutex(this));
+
       }
-
-#ifdef WINDOWS
-
-      //m_gdiplusStartupInput.SuppressBackgroundThread = TRUE;
-
-      //GdiplusStartup(&m_gdiplusToken, &m_gdiplusStartupInput, &m_gdiplusStartupOutput);
-
-      //m_gdiplusStartupOutput.NotificationHook(&m_gdiplusHookToken);
-
-#endif
-
-/*      if(::plane::get_heap_itema() == NULL)
-      {
-         ::plane::set_heap_itema(new class ::plane::heap_item_array());
-      }*/
 
       use_base_ca2_allocator();
 
-      set_app(this);
 
       m_pfactory = new class factory(this);
       m_pfactory->set_app(this);
@@ -62,6 +77,9 @@ namespace plane
       m_pfactory->cloneable_large < ::ca::create_context > ();
       m_pfactory->cloneable_large < ::ca::application_bias > ();
       m_pfactory->cloneable_large < ::gen::command_line > ();
+      m_pfactory->cloneable_large < ::manual_reset_event > ();
+      m_pfactory->cloneable_large < ::mutex > ();
+      m_pfactory->cloneable_large < ::event > ();
 
 
       m_net.set_app(this);
@@ -257,7 +275,7 @@ namespace plane
       System.factory().cloneable_large < ::ca::bitmap_sp >();
       System.factory().cloneable_large < ::ca::palette_sp >();
       System.factory().cloneable_large < ::ca::region_sp >();
-//      System.factory().cloneable_large < var >();
+      //      System.factory().cloneable_large < var >();
       System.factory().creatable < ::ca2::log >(System.type_info < ::ca::log > (), 1);
 
       m_puserstr = new ::user::str(this);
@@ -325,14 +343,14 @@ namespace plane
 
    ::exception::engine::guard & system::eguard()
    {
-      
+
       return *m_peguard;
 
    }
 
    ::exception::engine & system::eengine()
    {
-      
+
       return *m_peengine;
 
    }
@@ -340,7 +358,7 @@ namespace plane
    bool system::find_applications_to_cache()
    {
 
-/*      m_spfilehandler(new ::ca2::filehandler::handler(this));*/
+      /*      m_spfilehandler(new ::ca2::filehandler::handler(this));*/
 
       m_mapAppLibrary.remove_all();
 
@@ -355,8 +373,8 @@ namespace plane
          strLibraryId = straTitle[i];
 
          if(gen::str::ends_eat_ci(strLibraryId, ".dll")
-         || gen::str::ends_eat_ci(strLibraryId, ".so")
-         || gen::str::ends_eat_ci(strLibraryId, ".dylib"))
+            || gen::str::ends_eat_ci(strLibraryId, ".so")
+            || gen::str::ends_eat_ci(strLibraryId, ".dylib"))
          {
 
             map_application_library(strLibraryId);
@@ -420,15 +438,15 @@ namespace plane
       else
       {
 
-		 string strLibrary(pszLibrary);
+         string strLibrary(pszLibrary);
 
-		 string strPrefix = strRoot;
+         string strPrefix = strRoot;
 
-		 strPrefix.replace("-", "_");
+         strPrefix.replace("-", "_");
 
-		 strPrefix.replace("/", "_");
+         strPrefix.replace("/", "_");
 
-		 gen::str::begins_eat_ci(strLibrary, strPrefix);
+         gen::str::begins_eat_ci(strLibrary, strPrefix);
 
          strRoot += strLibrary;
 
@@ -478,7 +496,7 @@ namespace plane
       set_enum_name(var::type_double    , "double");*/
 
       if(!planebase::application::initialize_instance())
-        return false;
+         return false;
 
       m_pbergedgemap = new ::plane::session::map;
 
@@ -806,9 +824,9 @@ namespace plane
       return *m_puserstr;
    }
 
-/*   ::ca2::filehandler::handler & system::filehandler()
+   /*   ::ca2::filehandler::handler & system::filehandler()
    {
-      return *m_spfilehandler;
+   return *m_spfilehandler;
    }*/
 
    void system::register_bergedge_application(::ca::application * papp)
@@ -859,7 +877,7 @@ namespace plane
    {
       if(string(pszId).has_char())
       {
-//         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_id_mutex_name(pszAppName, pszId));
+         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_id_mutex_name(pszAppName, pszId));
          ::mutex * pmutex = mutex::open_mutex(this, get_global_id_mutex_name(pszAppName, pszId));
          if(pmutex == NULL)
          {
@@ -934,7 +952,7 @@ namespace plane
       }
       else
       {
-//         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_mutex_name(pszAppName));
+         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_mutex_name(pszAppName));
          ::mutex * pmutex = mutex::open_mutex(this, get_local_mutex_name(pszAppName));
          if(pmutex == NULL)
          {
@@ -970,7 +988,7 @@ namespace plane
          gen::del(m_plog);
          return false;
       }
-//      gen::trace_v = &gen::system_log_trace_v;
+      //      gen::trace_v = &gen::system_log_trace_v;
       return true;
    }
 
@@ -1142,31 +1160,31 @@ namespace plane
          return false;
 
       // may be in another thread than application thread
-   #ifdef DEBUG
-   #ifndef ___NO_DEBUG_CRT
+#ifdef DEBUG
+#ifndef ___NO_DEBUG_CRT
       // we remove WM_QUIT because if it is in the queue then the message box
       // won't display
-      #ifdef WINDOWS
+#ifdef WINDOWS
       MSG msg;
       bool bQuit = PeekMessage(&msg, NULL, WM_QUIT, WM_QUIT, PM_REMOVE) != FALSE;
       va_list list = NULL;
-      #else
+#else
       va_list list = {};
-      #endif
+#endif
       bool bResult = ________ca2_votagus_logging_Report(_CRT_ASSERT, lpszFileName, iLine, NULL, NULL, list) != 0;
-      #ifdef WINDOWS
+#ifdef WINDOWS
       if (bQuit)
          PostQuitMessage((int)msg.wParam);
-      #endif
+#endif
       return bResult;
-   #else
+#else
       // Not supported.
-   #error ___NO_DEBUG_CRT is not supported.
-   #endif // ___NO_DEBUG_CRT
-   #else
+#error ___NO_DEBUG_CRT is not supported.
+#endif // ___NO_DEBUG_CRT
+#else
       TRACE("__assert_failed_line %s %d", lpszFileName, iLine);
       return true;
-   #endif
+#endif
    }
 
    void system::on_allocation_error(::ca::application * papp, ::ca::type_info & info)
@@ -1187,8 +1205,8 @@ namespace plane
       }
       /*else if(m_puiInitialPlaceHolderContainer != NULL)
       {
-#define InitialPlaceHolderContainer_TWF_FREE_EVENT 2010
-         return App(this).event_lock(m_puiInitialPlaceHolderContainer, InitialPlaceHolderContainer_TWF_FREE_EVENT, dwTimeOut);
+      #define InitialPlaceHolderContainer_TWF_FREE_EVENT 2010
+      return App(this).event_lock(m_puiInitialPlaceHolderContainer, InitialPlaceHolderContainer_TWF_FREE_EVENT, dwTimeOut);
       }*/
       else
       {
@@ -1198,7 +1216,7 @@ namespace plane
 
    int system::_001OnDebugReport(int i1, const char * psz1, int i2, const char * psz2, const char * psz3, va_list args)
    {
-     return ________ca2_votagus_logging_Report(i1, psz1, i2, psz2, psz3, args);
+      return ________ca2_votagus_logging_Report(i1, psz1, i2, psz2, psz3, args);
    }
 
    void system::on_request(::ca::create_context * pcreatecontext)
@@ -1241,14 +1259,14 @@ namespace plane
       str = Application.file().as_string(filename);
       return true;
 
-   /*   Parse pa(lpszUrl,":/");
+      /*   Parse pa(lpszUrl,":/");
       string protocol = pa.getword();
       string host = pa.getword();
       int port;
       {
-         Parse pa((const char *) host,":");
-         pa.getword();
-         port = pa.getvalue();
+      Parse pa((const char *) host,":");
+      pa.getword();
+      port = pa.getvalue();
       }
       string url = "/";
       url += pa.getrest();
@@ -1258,63 +1276,63 @@ namespace plane
       bool bRead = false;
       if (protocol == "http" || protocol == "https")
       {
-         socket_handler h;
-         string strFilename;
-         SpaHttpGet s(h, lpszUrl, "");
-         if(pcookies != NULL)
-         {
-            string strCookie;
-            for(int i = 0; i < pcookies->get_size(); i++)
-            {
-               strCookie += (const char *) (pcookies->element_at(i).m_strName + "=" + pcookies->element_at(i).m_strValue);
-               strCookie += ";";
-            }
-            s.AddResponseHeader("Cookie", strCookie);
-         }
-         s.m_pcookies = pcookies;
-         //s.SetLineProtocol(false);
-         s.SetFilename((const char *) filename);
-         h.add(&s);
-         h.Select(1,0);
-         while (h.get_count())
-         {
-            h.Select(1,0);
-         }
-         bool bOk = s.Complete();
-         if(!s.m_strHeaderLocation.is_empty())
-         {
-            ::DeleteFile(filename);
-            sync_load_url(str, s.m_strHeaderLocation, pcookies);
-         }
-         else
-         {
-            bRead = true;
-         }
+      socket_handler h;
+      string strFilename;
+      SpaHttpGet s(h, lpszUrl, "");
+      if(pcookies != NULL)
+      {
+      string strCookie;
+      for(int i = 0; i < pcookies->get_size(); i++)
+      {
+      strCookie += (const char *) (pcookies->element_at(i).m_strName + "=" + pcookies->element_at(i).m_strValue);
+      strCookie += ";";
+      }
+      s.AddResponseHeader("Cookie", strCookie);
+      }
+      s.m_pcookies = pcookies;
+      //s.SetLineProtocol(false);
+      s.SetFilename((const char *) filename);
+      h.add(&s);
+      h.Select(1,0);
+      while (h.get_count())
+      {
+      h.Select(1,0);
+      }
+      bool bOk = s.Complete();
+      if(!s.m_strHeaderLocation.is_empty())
+      {
+      ::DeleteFile(filename);
+      sync_load_url(str, s.m_strHeaderLocation, pcookies);
       }
       else
       {
-         printf("Unknown protocol: '%s'\n", protocol);
+      bRead = true;
+      }
+      }
+      else
+      {
+      printf("Unknown protocol: '%s'\n", protocol);
       }
       if(bRead)
       {
-         int iMaxpath = MAX_PATH;
-         int iLen = strlen(filename);
-         gzFile gzf = gzopen(filename, "rb");
-         int iRead;
-         gen::memory_file memfile;
-         int iBufSize = (1024 * 256);
-         char * buf = (char *) malloc(iBufSize);
-         while((iRead = gzread(gzf, buf, iBufSize)) > 0)
-         {
-            memfile.write(buf, iRead);
-         }
-         free(buf);
-         int iErr;
-         const char * pszErr = gzerror(gzf, &iErr);
-         char ch = '\0';
-         memfile.write(&ch, 1);
-         str = (char *) memfile.get_data();
-         ::DeleteFile(filename);
+      int iMaxpath = MAX_PATH;
+      int iLen = strlen(filename);
+      gzFile gzf = gzopen(filename, "rb");
+      int iRead;
+      gen::memory_file memfile;
+      int iBufSize = (1024 * 256);
+      char * buf = (char *) malloc(iBufSize);
+      while((iRead = gzread(gzf, buf, iBufSize)) > 0)
+      {
+      memfile.write(buf, iRead);
+      }
+      free(buf);
+      int iErr;
+      const char * pszErr = gzerror(gzf, &iErr);
+      char ch = '\0';
+      memfile.write(&ch, 1);
+      str = (char *) memfile.get_data();
+      ::DeleteFile(filename);
       }
       return bOk;*/
    }
@@ -1673,7 +1691,7 @@ namespace plane
 
    ::gen::command_thread & system::command_thread()
    {
-	   return *m_pcommandthread;
+      return *m_pcommandthread;
    }
 
 
@@ -1792,11 +1810,11 @@ retry:
 
    void system::post_fork_uri(const char * pszUri, ::ca::application_bias * pbiasCreate)
    {
-    
+
       command().add_fork_uri(pszUri, pbiasCreate);
 
       if(command().m_varTopicQuery["locale"].has_char()
-      && command().m_varTopicQuery["locale"] != "_std")
+         && command().m_varTopicQuery["locale"] != "_std")
       {
          set_locale(command().m_varTopicQuery["locale"], true);
       }

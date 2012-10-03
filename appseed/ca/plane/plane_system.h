@@ -312,7 +312,7 @@ namespace plane
      ::exception::engine::guard *                  m_peguard;
      ::exception::engine *                         m_peengine;
 
-      system();
+      system(::ca::application * papp = NULL);
       virtual ~system();
 
 
