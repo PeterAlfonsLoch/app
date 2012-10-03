@@ -1,12 +1,18 @@
 #include "framework.h"
 
 installing_exception::installing_exception(const installing_exception & e) : 
-   temporary_exception(e.m_strTip)
+   ca(e.get_app()),
+   ::call_stack(e.get_app()),
+   ::base_exception(e.get_app()),
+   temporary_exception(e.get_app(), e.m_strTip)
 {
 }
 
-installing_exception::installing_exception(const char * pszTip) : 
-   temporary_exception(pszTip)
+installing_exception::installing_exception(::ca::application * papp, const char * pszTip) : 
+   ca(papp),
+   ::call_stack(papp),
+   ::base_exception(papp),
+   temporary_exception(papp, pszTip)
 {
 }
 

@@ -91,7 +91,7 @@ namespace compress
          _streamBinders.remove_all();
          for (int i = 0; i < _bindInfo.BindPairs.get_count(); i++)
          {
-            _streamBinders.add(::ex1::stream_binder());
+            _streamBinders.add_new();
             RINOK(_streamBinders.last_element().CreateEvents());
          }
          return S_OK;
@@ -123,6 +123,11 @@ namespace compress
             _streamBinders[i].ReInit();
       }
 
+      CCoderMixer2MT::CCoderMixer2MT(::ca::application * papp) :
+         ca(papp),
+         _streamBinders(papp)
+      {
+      }
 
       HRESULT CCoderMixer2MT::Init(::ex1::reader **inStreams, ex1::writer **outStreams)
       {

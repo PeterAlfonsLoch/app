@@ -114,6 +114,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       mutex                                           m_mutexCache;
       ::collection::string_map < dns_cache_item * >   m_mapCache;
 
+      net(::ca::application * papp);
+      virtual ~net();
+
       /*
       * Encode string per RFC1738 URL encoding rules
       * tnx rstaveley

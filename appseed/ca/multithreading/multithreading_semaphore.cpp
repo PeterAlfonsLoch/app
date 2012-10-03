@@ -7,7 +7,8 @@
 #endif
 
 
-semaphore::semaphore(LONG lInitialCount, LONG lMaxCount, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttributes) :
+semaphore::semaphore(::ca::application * papp, LONG lInitialCount, LONG lMaxCount, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttributes) :
+   ca(papp),
    sync_object(pstrName)
 {
 
@@ -18,7 +19,7 @@ semaphore::semaphore(LONG lInitialCount, LONG lMaxCount, const char * pstrName, 
 
    m_object = ::CreateSemaphore(lpsaAttributes, lInitialCount, lMaxCount, pstrName);
    if (m_object == NULL)
-      throw resource_exception();
+      throw resource_exception(papp);
 #else
 
 

@@ -18,7 +18,9 @@ namespace ca
 
 
       system::system(::ca::application * papp) :
-         ca(papp)
+         ca(papp),
+         m_mutex(papp),
+         m_isdirmap(papp)
       {
          m_pziputil = new zip::Util;
          m_isdirmap.m_dwTimeOut = 15000;
@@ -499,8 +501,10 @@ namespace ca
          return name_is((const string &) var, papp);
       }
 
-      system::is_dir_map::is_dir_map() :
-         ::collection::string_map < is_dir >(256) // block size
+
+      system::is_dir_map::is_dir_map(::ca::application * papp) :
+         ::collection::string_map < is_dir >(256), // block size
+         m_mutex(papp)
       {
          InitHashTable(16384, TRUE);
       }

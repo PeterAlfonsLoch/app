@@ -1,45 +1,45 @@
 #include "framework.h"
 
+
 namespace gcom
 {
+
 
    namespace backview
    {
 
-      //////////////////////////////////////////////////////////////////////
-      // Construction/Destruction
-      //////////////////////////////////////////////////////////////////////
 
       Main::Main(::ca::application * papp, Interface * pinterface) :
          ca(papp),
-         m_pinterface(pinterface)
+         m_pinterface(pinterface),
+         m_mutexStateMachine(papp)
       {
-          m_iRefCount = 0;
+
+
+         m_iRefCount = 0;
 
          m_bEnabled = false;
          m_estate = StateTiming;
          m_bInitialized = false;
 
-         m_pimagechange = new ImageChange(*this);
-         m_pgraphics = new Graphics(*this);
-         m_ptransitioneffect = new TransitionEffect(*this);
-         m_pvisualeffect = new VisualEffect(*this);
-         
-         m_pthreadIdlePriority = 
-            __begin_thread < thread > (
-               get_app(),
-               ::ca::thread_priority_normal,
-               0,
-               CREATE_SUSPENDED);
+         m_pimagechange          = new ImageChange(*this);
+         m_pgraphics             = new Graphics(*this);
+         m_ptransitioneffect     = new TransitionEffect(*this);
+         m_pvisualeffect         = new VisualEffect(*this);
+
+         m_pthreadIdlePriority = __begin_thread < thread > (
+            get_app(),
+            ::ca::thread_priority_normal,
+            0,
+            CREATE_SUSPENDED);
          m_pthreadIdlePriority->SetMain(this);
          m_pthreadIdlePriority->ResumeThread();
 
-         m_pthreadHighestPriority =
-            __begin_thread < thread > (
-               get_app(),
-               ::ca::thread_priority_highest,
-               0,
-               CREATE_SUSPENDED);
+         m_pthreadHighestPriority = __begin_thread < thread > (
+            get_app(),
+            ::ca::thread_priority_highest,
+            0,
+            CREATE_SUSPENDED);
          m_pthreadHighestPriority->SetMain(this);
          m_pthreadHighestPriority->ResumeThread();
          m_bPendingLayout = true;
@@ -104,18 +104,18 @@ namespace gcom
 
       }
 
-/*      void Main::RunTransitionEffectStep()
+      /*      void Main::RunTransitionEffectStep()
       {
-         GetTransitionEffect().RunStep_();
+      GetTransitionEffect().RunStep_();
       }*/
 
       bool Main::UpdateBuffer(LPCRECT lpcrect)
       {
          UNREFERENCED_PARAMETER(lpcrect);
-//         GetTransitionEffect().RenderBuffer((rect &) *lpcrect);
+         //         GetTransitionEffect().RenderBuffer((rect &) *lpcrect);
          return true;
       }
-      
+
       bool Main::LoadNextImage(bool bSynch)
       {
          return GetImageChange().LoadNextImage(bSynch);
@@ -146,12 +146,12 @@ namespace gcom
       void Main::OnAfterImageLoaded()
       {
 
-//         thread * pbackviewthreadIdle = GetIdleThread();
+         //         thread * pbackviewthreadIdle = GetIdleThread();
          ImageChange & imagechange = GetImageChange();
          Graphics & graphics = GetGraphics();
          EImagePlacement eplacement;
          //gen::savings & savings = System.savings();
-    
+
          TRACE("\nCXfplayerView::OnAfterImageLoaded\n");
 
          if(GetInterface().BackViewGetImagePlacement(imagechange.m_wstrCurrentImagePath, eplacement))
@@ -167,23 +167,23 @@ namespace gcom
 
       bool Main::RenderBuffer()
       {
-          if(!m_bInitialized)
-              return false;
+         if(!m_bInitialized)
+            return false;
 
-          ::ca::application * papp = &System;
-          if(papp == NULL)
-          {
-              // if main application is null, there's no reason
-              // for painting anything...
-              return false;
-          }
+         ::ca::application * papp = &System;
+         if(papp == NULL)
+         {
+            // if main application is null, there's no reason
+            // for painting anything...
+            return false;
+         }
 
-          ASSERT(papp != NULL);
-    
-//         gen::savings & savings = System.savings();
+         ASSERT(papp != NULL);
+
+         //         gen::savings & savings = System.savings();
 
          Graphics & graphics = GetGraphics();
-         
+
          graphics.RenderBufferLevel2();
 
          return true;
@@ -212,7 +212,7 @@ namespace gcom
          }
          return 1;
       }
-       
+
 
 
 
@@ -220,224 +220,224 @@ namespace gcom
 
 #define ONRESIZEDELAY 5000
 
-int Main::PulseEvent(e_event eevent)
-{
-
-   if(!IsEnabled())
-      return 1;
-
-   if(!m_bInitialized)
-      return 1;
-
-
-   thread * pbackviewthreadIdle = GetIdleThread();
-
-   DWORD dwTime = GetTickCount();
-
-   if(eevent == event_timer)
-   {
-      if(dwTime - GetImageChange().m_noprecisiontimer.m_dwHundredCounter > 100)
+      int Main::PulseEvent(e_event eevent)
       {
-         GetImageChange().m_noprecisiontimer.m_dwHundredCounter = dwTime;
-         if(dwTime - GetImageChange().m_noprecisiontimer.m_dwThousandCounter > 1000)
-         {
-            GetImageChange().m_noprecisiontimer.m_dwThousandCounter = dwTime;
-            GetTransitionEffect().OnNoPrecisionThousandMillisTimer();
-         }
-      }
-   }
 
-   single_lock sl(&m_mutexStateMachine, true);
-   switch(m_estate)
-   {
-   case StateTiming:
-      switch(eevent)
-      {
-      case EventResize:
+         if(!IsEnabled())
+            return 1;
+
+         if(!m_bInitialized)
+            return 1;
+
+
+         thread * pbackviewthreadIdle = GetIdleThread();
+
+         DWORD dwTime = GetTickCount();
+
+         if(eevent == event_timer)
          {
-            OnResize();
-         }
-         break;
-      case EventFlagChanged:
-         {
-            GetInterface().BackViewPostMessage(Interface::MessageBackViewDequeue, 18, 3);
-         }
-         break;
-      case event_timer:
-         {
-            if(dwTime - GetImageChange().m_dwBackgroundLastUpdateTime
-               >= GetImageChange().GetBackgroundUpdateMillis())
+            if(dwTime - GetImageChange().m_noprecisiontimer.m_dwHundredCounter > 100)
             {
-               if(LoadNextImage(false))
+               GetImageChange().m_noprecisiontimer.m_dwHundredCounter = dwTime;
+               if(dwTime - GetImageChange().m_noprecisiontimer.m_dwThousandCounter > 1000)
                {
-                  SetState(StateLoading);
+                  GetImageChange().m_noprecisiontimer.m_dwThousandCounter = dwTime;
+                  GetTransitionEffect().OnNoPrecisionThousandMillisTimer();
                }
             }
          }
-         break;
-      case EventLoadNow:
-         GetImageChange().OnEventLoadNow();
-               break;
-      default:;
-      }
-      break;
-   case StateLoading:
-      switch(eevent)
-      {
-      case EventResize:
+
+         single_lock sl(&m_mutexStateMachine, true);
+         switch(m_estate)
          {
-            OnResize();
-         }
-         break;
-      case EventFlagChanged:
-         {
-            GetInterface().BackViewPostMessage(Interface::MessageBackViewDequeue, 18, 3);
-         }
-         break;
-      case EventLoaded:
-         {
-            if(GetInterface().BackViewGetDestroy())
+         case StateTiming:
+            switch(eevent)
             {
-               SetState(StateFinish);
+            case EventResize:
+               {
+                  OnResize();
+               }
                break;
-            }
-            OnAfterImageLoaded();
-            SetState(StatePreTransition);
-            GetImageChange().m_dwBackgroundPreTransitionStartTime = GetTickCount();
-            pbackviewthreadIdle->PreTransitionImageAsync(this);
-         }
-         break;
-     case EventLoadNow:
-     case EventLoadFailed:
-        {
-            TRACE("ImageChange::ChangeStateMachine case 120");
-            SetState(StateTiming);
-            GetImageChange().m_dwBackgroundLastUpdateTime = dwTime;
-            //               GetImageChange().LoadNextImage(GetImageChange().m_bLastLoadImageSynch);
-        }
-        break;
-     case event_timer:
-        {
-            GetImageChange().m_dwLoadCounter++;
-            //  TRACE("ImageChange::ChangeStateMachine case 130");
-            if(GetImageChange().m_dwLoadCounter > 1000) // Espera 10 segundos para carregar imagem
-            {
-               GetImageChange().m_dwLoadCounter = 0;
-               GetImageChange().LoadImageAsync();
+            case EventFlagChanged:
+               {
+                  GetInterface().BackViewPostMessage(Interface::MessageBackViewDequeue, 18, 3);
+               }
+               break;
+            case event_timer:
+               {
+                  if(dwTime - GetImageChange().m_dwBackgroundLastUpdateTime
+                     >= GetImageChange().GetBackgroundUpdateMillis())
+                  {
+                     if(LoadNextImage(false))
+                     {
+                        SetState(StateLoading);
+                     }
+                  }
+               }
+               break;
+            case EventLoadNow:
+               GetImageChange().OnEventLoadNow();
+               break;
+            default:;
             }
             break;
-         }
-      }
-      break;
-   case StatePreTransition:
-      switch(eevent)
-      {
-       case EventLoadNow:
-          GetImageChange().OnEventLoadNow();
-          break;
-       case EventResize:
-          {
-             SetState(StatePreTransitionResize);
-          }
-          break;
-       case event_timer:
-          break;
-       case EventPreTransitionFinished:
-          GetTransitionEffect().Initialize();
-          TRACE("ImageChange::ChangeStateMachine case 110");
-          SetState(StateInTransitionEffect);
-          break;
-       default:;
-       }
-       break;
-   case StatePreTransitionResize:
-      switch(eevent)
-      {
-      case EventLoadNow:
-         {
-            GetImageChange().OnEventLoadNow();
-         }
-         break;
-      case EventResize:
-         {
-         }
-         break;
-      case event_timer:
-          break;
-      case EventPreTransitionFinished:
-         {
-            SetState(StatePreTransition);
-            GetImageChange().m_dwBackgroundPreTransitionStartTime = GetTickCount();
-            pbackviewthreadIdle->PreTransitionImageAsync(this);
-         }
-         break;
-      default:;
-      }
-      break;
-   case StateInTransitionEffect:
-      {
-         switch(eevent)
-         {
-         case EventResize:
+         case StateLoading:
+            switch(eevent)
             {
-               SetState(StatePreTransition);
-               GetImageChange().m_dwBackgroundPreTransitionStartTime = GetTickCount();
-               pbackviewthreadIdle->PreTransitionImageAsync(this);
+            case EventResize:
+               {
+                  OnResize();
+               }
+               break;
+            case EventFlagChanged:
+               {
+                  GetInterface().BackViewPostMessage(Interface::MessageBackViewDequeue, 18, 3);
+               }
+               break;
+            case EventLoaded:
+               {
+                  if(GetInterface().BackViewGetDestroy())
+                  {
+                     SetState(StateFinish);
+                     break;
+                  }
+                  OnAfterImageLoaded();
+                  SetState(StatePreTransition);
+                  GetImageChange().m_dwBackgroundPreTransitionStartTime = GetTickCount();
+                  pbackviewthreadIdle->PreTransitionImageAsync(this);
+               }
+               break;
+            case EventLoadNow:
+            case EventLoadFailed:
+               {
+                  TRACE("ImageChange::ChangeStateMachine case 120");
+                  SetState(StateTiming);
+                  GetImageChange().m_dwBackgroundLastUpdateTime = dwTime;
+                  //               GetImageChange().LoadNextImage(GetImageChange().m_bLastLoadImageSynch);
+               }
+               break;
+            case event_timer:
+               {
+                  GetImageChange().m_dwLoadCounter++;
+                  //  TRACE("ImageChange::ChangeStateMachine case 130");
+                  if(GetImageChange().m_dwLoadCounter > 1000) // Espera 10 segundos para carregar imagem
+                  {
+                     GetImageChange().m_dwLoadCounter = 0;
+                     GetImageChange().LoadImageAsync();
+                  }
+                  break;
+               }
             }
-             break;
-          case EventFlagChanged:
-             {
-                GetTransitionEffect().Restart();
-             }
-             break;
-          case event_timer:
-             {
-                GetTransitionEffect().OnTimer();
-             }
-             break;
-          case EventTransitionEffectFinished:
-             GetImageChange().m_dwBackgroundLastUpdateTime = GetTickCount();
-             SetState(StateTiming);
-             break;
-          case EventLoadNow:;
-             GetImageChange().OnEventLoadNow();
-             break;
-          default:;
-          }
-          break;
-          default:;
+            break;
+         case StatePreTransition:
+            switch(eevent)
+            {
+            case EventLoadNow:
+               GetImageChange().OnEventLoadNow();
+               break;
+            case EventResize:
+               {
+                  SetState(StatePreTransitionResize);
+               }
+               break;
+            case event_timer:
+               break;
+            case EventPreTransitionFinished:
+               GetTransitionEffect().Initialize();
+               TRACE("ImageChange::ChangeStateMachine case 110");
+               SetState(StateInTransitionEffect);
+               break;
+            default:;
+            }
+            break;
+         case StatePreTransitionResize:
+            switch(eevent)
+            {
+            case EventLoadNow:
+               {
+                  GetImageChange().OnEventLoadNow();
+               }
+               break;
+            case EventResize:
+               {
+               }
+               break;
+            case event_timer:
+               break;
+            case EventPreTransitionFinished:
+               {
+                  SetState(StatePreTransition);
+                  GetImageChange().m_dwBackgroundPreTransitionStartTime = GetTickCount();
+                  pbackviewthreadIdle->PreTransitionImageAsync(this);
+               }
+               break;
+            default:;
+            }
+            break;
+         case StateInTransitionEffect:
+            {
+               switch(eevent)
+               {
+               case EventResize:
+                  {
+                     SetState(StatePreTransition);
+                     GetImageChange().m_dwBackgroundPreTransitionStartTime = GetTickCount();
+                     pbackviewthreadIdle->PreTransitionImageAsync(this);
+                  }
+                  break;
+               case EventFlagChanged:
+                  {
+                     GetTransitionEffect().Restart();
+                  }
+                  break;
+               case event_timer:
+                  {
+                     GetTransitionEffect().OnTimer();
+                  }
+                  break;
+               case EventTransitionEffectFinished:
+                  GetImageChange().m_dwBackgroundLastUpdateTime = GetTickCount();
+                  SetState(StateTiming);
+                  break;
+               case EventLoadNow:;
+                  GetImageChange().OnEventLoadNow();
+                  break;
+               default:;
+               }
+               break;
+         default:;
+            }
+         }
+         return 1;
       }
-   }
-   return 1;
-}
-      
+
       void Main::OnResize()
       {
          //GetWnd().SetTimer(10001234, 100, NULL);
          GetInterface().BackViewPostMessage(Interface::MessageBackViewDequeue, 18, 4);
-      
+
       }
       void Main::OnDequeueMessage(WPARAM wparam, LPARAM lparam)
       {
-//         MSG msg;
+         //         MSG msg;
 
          bool bRunStep =
             wparam == 18
             && lparam == 0;
 
          /*while(PeekMessage(
-            &msg,
-            (HWND) INVALID_HANDLE_VALUE,
-            Interface::MessageBackViewDequeue,
-            Interface::MessageBackViewDequeue,
-            PM_REMOVE))
+         &msg,
+         (HWND) INVALID_HANDLE_VALUE,
+         Interface::MessageBackViewDequeue,
+         Interface::MessageBackViewDequeue,
+         PM_REMOVE))
          {
-            if(
-               msg.wParam == 18
-               && msg.lParam == 0)
-            {
-               bRunStep = true;
-            }
+         if(
+         msg.wParam == 18
+         && msg.lParam == 0)
+         {
+         bRunStep = true;
+         }
          }*/
 
          if(bRunStep)
@@ -458,9 +458,9 @@ int Main::PulseEvent(e_event eevent)
                // Resize
                //BITMAP bm;
                //GetGraphics().LayoutBackBitmap(&bm);
-               
+
                rect rect;
-               
+
                UpdateBuffer(rect);
                GetInterface().BackViewUpdateScreen(rect, RDW_INVALIDATE);
             }
@@ -573,6 +573,11 @@ int Main::PulseEvent(e_event eevent)
          return * m_pinterface;
       }
 
+
    } // namespace backview
 
+
 } // namespace gcom
+
+
+

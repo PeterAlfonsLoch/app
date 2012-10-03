@@ -1,8 +1,6 @@
 #pragma once
 
 
-
-
 typedef struct rsa_st RSA;
 
 namespace webserver
@@ -45,6 +43,9 @@ namespace dynamic_source
       public:
 
 
+         session();
+
+
          mutex                   m_mutex;
          gen::property_set       m_set;
 
@@ -80,43 +81,46 @@ namespace dynamic_source
       };
 
 
-      ::array_ptr_alloc < plugin_map_item >           m_pluginmapitema;
+      ::array_ptr_alloc < plugin_map_item >     m_pluginmapitema;
 
-      mutex m_mutexIncludeMatches;
-      ::collection::string_map < bool > m_mapIncludeMatchesFileExists;
-      ::collection::string_map < bool > m_mapIncludeMatchesIsDir;
-      mutex m_mutexIncludeHasScript;
-      ::collection::string_map < bool > m_mapIncludeHasScript;
-      mutex m_mutexIncludeExpandMd5;
-      string_to_string_map             m_mapIncludeExpandMd5;
-
-
-      int                                    m_iTunnelPluginCount;
-      mutex                                  m_mutexOutLink;
-      ::collection::string_map < ::sockets::link_out_socket * > m_mapOutLink;
-      mutex                                  m_mutexInLink;
-      ::collection::map < ::sockets::link_out_socket *, ::sockets::link_out_socket *, ::sockets::link_in_socket *, ::sockets::link_in_socket * > m_mapInLink;
-      mutex                                  m_mutexTunnel;
-      ::collection::string_map < tunnel_map_item > m_mapTunnel;
+      mutex                                     m_mutexIncludeMatches;
+      ::collection::string_map < bool >         m_mapIncludeMatchesFileExists;
+      ::collection::string_map < bool >         m_mapIncludeMatchesIsDir;
+      mutex                                     m_mutexIncludeHasScript;
+      ::collection::string_map < bool >         m_mapIncludeHasScript;
+      mutex                                     m_mutexIncludeExpandMd5;
+      string_to_string_map                      m_mapIncludeExpandMd5;
 
 
-
-
-      string                  m_strNamespace;
-      string                  m_strNetnodePath;
-      string                  m_strNetseedPath;
-      string                  m_strNetseedDsCa2Path;
-
-      mutex                   m_mutexSimage;
-      mutex                   m_mutexSpider;
-
-      mutex                   m_mutexRsa;
-      raw_array < RSA * >     m_rsaptra;
-      DWORD                   m_dwLastRsa;
+      int                                       m_iTunnelPluginCount;
+      mutex                                     m_mutexOutLink;
+      ::collection::string_map < ::sockets::link_out_socket * > 
+                                                m_mapOutLink;
+      mutex                                     m_mutexInLink;
+      ::collection::map < ::sockets::link_out_socket *, ::sockets::link_out_socket *, ::sockets::link_in_socket *, ::sockets::link_in_socket * > 
+                                                m_mapInLink;
+      mutex                                     m_mutexTunnel;
+      ::collection::string_map < tunnel_map_item > 
+                                                m_mapTunnel;
 
 
 
-      int64_t  m_iDatabaseWaitTimeOut;
+
+      string                                    m_strNamespace;
+      string                                    m_strNetnodePath;
+      string                                    m_strNetseedPath;
+      string                                    m_strNetseedDsCa2Path;
+                                               
+      mutex                                     m_mutexSimage;
+      mutex                                     m_mutexSpider;
+                                               
+      mutex                                     m_mutexRsa;
+      raw_array < RSA * >                       m_rsaptra;
+      DWORD                                     m_dwLastRsa;
+
+
+
+      int64_t                                   m_iDatabaseWaitTimeOut;
 
       mutex                                     m_mutexSession;
       ::collection::string_map < session >      m_mapSession;

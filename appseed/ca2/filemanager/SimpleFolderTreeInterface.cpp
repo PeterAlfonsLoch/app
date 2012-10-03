@@ -8,7 +8,8 @@ namespace filemanager
    SimpleFolderTreeInterface::SimpleFolderTreeInterface(::ca::application * papp) :
       ca(papp),
       ::user::scroll_view(papp),
-      ::fs::tree(papp)
+      ::fs::tree(papp),
+      m_mutexMissinUpdate(papp)
    {
       m_pdataitemCreateImageListStep = NULL;
 

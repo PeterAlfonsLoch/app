@@ -1,8 +1,11 @@
 #include "framework.h"
 
 
-last_error_exception::last_error_exception() :
-   hresult_exception(HRESULT_FROM_WIN32(::GetLastError()))
+last_error_exception::last_error_exception(::ca::application * papp) :
+   ca(papp),
+   ::call_stack(papp),
+   ::base_exception(papp),
+   hresult_exception(papp, HRESULT_FROM_WIN32(::GetLastError()))
 {
 }
 

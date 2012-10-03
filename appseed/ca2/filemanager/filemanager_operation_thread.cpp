@@ -7,7 +7,9 @@
 file_manager_operation_thread::file_manager_operation_thread(::ca::application * papp) :
    ca(papp),
    thread(papp),
-   simple_thread(papp)
+   simple_thread(papp),
+   m_mutexFileOperationA(papp),
+   m_mutexStep(papp)
 {
    set_auto_delete(false);
    m_bStep = false;

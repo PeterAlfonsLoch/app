@@ -232,7 +232,7 @@ namespace sockets
          {
             Handler().LogError(this, "listen", Errno, StrError(Errno), ::gen::log::level::fatal);
             ::closesocket(s);
-            throw simple_exception("listen() failed for port " + gen::str::from(ad.GetPort()) + ": " + StrError(Errno));
+            throw simple_exception(get_app(), "listen() failed for port " + gen::str::from(ad.GetPort()) + ": " + StrError(Errno));
             return -1;
          }
          m_depth = depth;

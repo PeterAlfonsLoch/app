@@ -22,7 +22,7 @@ critical_section::critical_section()
 
    bSuccess = Init();
    if (!bSuccess)
-      throw memory_exception();
+      throw memory_exception(get_app());
 }
 
 critical_section::operator CRITICAL_SECTION*()
@@ -43,7 +43,7 @@ bool critical_section::lock()
    }
    __except(STATUS_NO_MEMORY == GetExceptionCode())
    {
-      throw memory_exception();
+      throw memory_exception(get_app());
    }
    return TRUE;
 }

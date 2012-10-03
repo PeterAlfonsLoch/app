@@ -17,7 +17,7 @@ class CLASS_DECL_ca service_base :
 public:
 
 
-   static service_base *   m_service;
+   static service_base *   s_pservice;
 
    service_status          m_status;
    string                  m_serviceName;

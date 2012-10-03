@@ -269,14 +269,14 @@ inline TYPE& raw_array<TYPE, ARG_TYPE>::get_at(index nIndex)
 {
 //   if(nIndex >= 0 && nIndex < m_nSize)
       return m_pData[nIndex];
-//   throw invalid_argument_exception();
+//   throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::get_at(index nIndex) const
 {
 //   if(nIndex >= 0 && nIndex < m_nSize)
       return m_pData[nIndex];
-  // throw invalid_argument_exception();
+  // throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
 inline void raw_array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
@@ -284,21 +284,21 @@ inline void raw_array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
 //   if(nIndex >= 0 && nIndex < m_nSize)
       m_pData[nIndex] = newElement;
   // else
-    //  throw invalid_argument_exception();
+    //  throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::element_at(index nIndex) const
 {
 //   if(nIndex >= 0 && nIndex < m_nSize)
       return m_pData[nIndex];
-  // throw invalid_argument_exception();
+  // throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
 inline TYPE& raw_array<TYPE, ARG_TYPE>::element_at(index nIndex)
 {
 //   if(nIndex >= 0 && nIndex < m_nSize)
       return m_pData[nIndex];
-  // throw invalid_argument_exception();
+  // throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::first_element(index nIndex) const
@@ -317,7 +317,7 @@ inline const TYPE& raw_array<TYPE, ARG_TYPE>::last_element(index index) const
 //   ASSERT(index >= 0 && index < m_nSize);
   // if(index >= 0 && index < m_nSize)
       return m_pData[index];
-//   throw invalid_argument_exception();
+//   throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
 inline TYPE& raw_array<TYPE, ARG_TYPE>::last_element(index index)
@@ -326,7 +326,7 @@ inline TYPE& raw_array<TYPE, ARG_TYPE>::last_element(index index)
 //   ASSERT(index >= 0 && index < m_nSize);
   // if(index >= 0 && index < m_nSize)
       return m_pData[index];
-//   throw invalid_argument_exception();
+//   throw invalid_argument_exception(get_app());
 }
 
 template<class TYPE, class ARG_TYPE>
@@ -534,7 +534,7 @@ count raw_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
       // construct remaining elements
       //ASSERT(nNewSize > m_nSize);
       //if(nNewSize  >= m_nSize)
-        // throw invalid_argument_exception();
+        // throw invalid_argument_exception(get_app());
       memset((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
       delete[] (BYTE*)m_pData;
       m_pData = pNewData;

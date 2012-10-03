@@ -7,7 +7,8 @@ namespace calculator
 {
 
    parser::parser(::ca::application * papp) :
-         ca(papp)
+      ca(papp),
+      m_scanner(papp)
    {
    }
 

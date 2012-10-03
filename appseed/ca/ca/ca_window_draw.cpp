@@ -5,8 +5,9 @@ namespace ca
 
    bool window_draw::s_bRunning = false;
 
-   window_draw::window_draw() :
-      m_eventFree(TRUE, TRUE)
+   window_draw::window_draw(::ca::application * papp) :
+      ca(papp),
+      m_eventFree(papp, TRUE, TRUE)
    {
       m_bProDevianMode           = true;
       m_iFramesPerSecond         = 40;

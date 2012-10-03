@@ -66,8 +66,11 @@ namespace ex1
       
       virtual bool GetErrorMessage(string & str, PUINT pnHelpContext = NULL) const;
 
+      virtual string get_message(PUINT pnHelpContext = NULL) const;
+
       virtual bool get_friendly_error_message(string & str, PUINT pnHelpContext = NULL) const;
 
+      virtual string get_friendly_message(PUINT pnHelpContext = NULL) const;
 
    };
 

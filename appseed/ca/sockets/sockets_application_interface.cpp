@@ -5,7 +5,9 @@ namespace sockets
 {
 
 
-   application_interface::application_interface()
+   application_interface::application_interface() :
+      m_mutexHttpPostBoundary(get_app()),
+      m_mutexResolvCache(get_app())
    {
 
       m_pajpbasesocketinit = NULL;

@@ -355,7 +355,7 @@ namespace ca4
    string crypt::get_crypt_key_file_path()
    {
 
-      throw interface_only_exception();
+      throw interface_only_exception(get_app());
 
    }
 

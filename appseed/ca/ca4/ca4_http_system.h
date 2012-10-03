@@ -69,7 +69,7 @@ namespace ca4
          ::collection::string_map < proxy *  >  m_mapProxy;
 
 
-         system();
+         system(::ca::application * papp);
          virtual ~system();
 
 

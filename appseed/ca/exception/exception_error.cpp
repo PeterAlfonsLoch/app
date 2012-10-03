@@ -1,13 +1,10 @@
 #include "framework.h"
 
 
-CLASS_DECL_ca void throw_error_exception(const char * psz)
-{
-   throw error_exception(psz);
-}
-
-
-error_exception::error_exception(const char * pszError)
+error_exception::error_exception(::ca::application * papp, const char * pszError) :
+   ca(papp),
+   ::call_stack(papp),
+   ::base_exception(papp)
 {
    m_strError = pszError;
 }

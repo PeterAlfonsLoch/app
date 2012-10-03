@@ -159,7 +159,7 @@ namespace planebase
 
          System.install().start(strCommandLine);
 
-         throw installing_exception();
+         throw installing_exception(get_app());
 
          return NULL;
 

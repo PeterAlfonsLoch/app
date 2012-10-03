@@ -101,7 +101,7 @@ void object_list::FreeNode(object_list::node* pNode)
 {
    if (pNode == NULL)
    {
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
    }
    pNode->m_pnext = m_pnodeFree;
    m_pnodeFree = pNode;
@@ -157,7 +157,7 @@ void object_list::add_head(object_list* pNewList)
    ASSERT_VALID(pNewList);
    if (pNewList == NULL)
    {
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
    }
    ASSERT_KINDOF(object_list, pNewList);
 
@@ -173,7 +173,7 @@ void object_list::add_tail(object_list* pNewList)
    ASSERT_VALID(pNewList);
    if (pNewList == NULL)
    {
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
    }
    ASSERT_KINDOF(object_list, pNewList);
 
@@ -290,7 +290,7 @@ void object_list::remove_at(POSITION position)
 
    if (pOldNode == NULL)
    {
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
    }
    
    // remove pOldNode from list

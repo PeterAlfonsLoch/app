@@ -61,7 +61,7 @@ public:
       if(!::QueueUserWorkItem(thread_proc < T >, psignal, flags))
       {
          delete psignal;
-         throw last_error_exception();
+         throw last_error_exception(pobject->get_app());
       }
 #else
       if(!__begin_thread(pobject->get_app(), thread_proc < T >, psignal))

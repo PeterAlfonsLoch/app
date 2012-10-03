@@ -9,8 +9,11 @@
 #include "framework.h"
 
 
-overflow_error::overflow_error(const char * pszError) :
-error_exception(pszError)
+overflow_error::overflow_error(::ca::application * papp,  char * pszError) :
+   ca(papp),
+   ::call_stack(papp),
+   ::base_exception(papp),
+   error_exception(papp, pszError)
 {
 }
 

@@ -354,6 +354,14 @@ HRESULT CInArchive::FindAndReadSignature(::ex1::byte_input_stream *stream, const
   return S_FALSE;
 }
 
+      CInArchive::CInArchive(::ca::application * papp) :
+         ca(papp)
+      {
+      }
+      CInArchive::~CInArchive()
+      {
+      }
+
 // S_FALSE means that file is not archive
 HRESULT CInArchive::Open(::ex1::byte_input_stream *stream, const file_position *searchHeaderSizeLimit)
 {
@@ -814,7 +822,7 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
   // db.ArchiveInfo.DataStartPosition2 += db.ArchiveInfo.StartPositionAfterHeader;
 
   CNum packIndex = 0;
-  CDecoder decoder(
+  CDecoder decoder(get_app(),
     #ifdef _ST_MODE
     false
     #else

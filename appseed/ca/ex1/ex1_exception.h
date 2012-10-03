@@ -11,7 +11,7 @@ namespace ex1
    public:
 
 
-      exception();
+      exception(::ca::application * papp);
       exception(const exception & e);
 
 

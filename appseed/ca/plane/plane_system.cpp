@@ -10,11 +10,14 @@ namespace plane
 {
 
 #if defined(WINDOWS)
-   mutex system::s_mutexGdiplus;
+   //mutex system::s_mutexGdiplus;
 #endif
 
-   system::system()
-   {
+   system::system() :
+      m_mutexDelete(this),
+      m_http(this),
+      m_net(this)
+  {
 
       m_psystem                                 = this;
       m_file.m_psystem                          = this;
@@ -25,12 +28,13 @@ namespace plane
       m_bDoNotExitIfNoApplications              = false;
 
 
-      m_peguard                                 = new ::exception::engine::guard();
+      m_peguard                                 = new ::exception::engine::guard(this);
+      m_peengine                                = new ::exception::engine(this);
 
 
       if(::get_heap_mutex() == NULL)
       {
-         ::set_heap_mutex(new mutex());
+         ::set_heap_mutex(new mutex(this));
       }
 
 #ifdef WINDOWS
@@ -323,6 +327,13 @@ namespace plane
    {
       
       return *m_peguard;
+
+   }
+
+   ::exception::engine & system::eengine()
+   {
+      
+      return *m_peengine;
 
    }
 
@@ -849,7 +860,7 @@ namespace plane
       if(string(pszId).has_char())
       {
 //         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_id_mutex_name(pszAppName, pszId));
-         ::mutex * pmutex = mutex::open_mutex(get_global_id_mutex_name(pszAppName, pszId));
+         ::mutex * pmutex = mutex::open_mutex(this, get_global_id_mutex_name(pszAppName, pszId));
          if(pmutex == NULL)
          {
             string strApp = pszAppName;
@@ -872,7 +883,7 @@ namespace plane
       else
       {
          //HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_mutex_name(pszAppName));
-         ::mutex * pmutex = mutex::open_mutex(get_global_mutex_name(pszAppName));
+         ::mutex * pmutex = mutex::open_mutex(this, get_global_mutex_name(pszAppName));
          if(pmutex == NULL)
          {
             string strApp = pszAppName;
@@ -900,7 +911,7 @@ namespace plane
       if(strId.has_char())
       {
          //HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_id_mutex_name(pszAppName, strId));
-         ::mutex * pmutex = mutex::open_mutex(get_local_id_mutex_name(pszAppName, strId));
+         ::mutex * pmutex = mutex::open_mutex(this, get_local_id_mutex_name(pszAppName, strId));
          if(pmutex == NULL)
          {
             string strApp;
@@ -924,7 +935,7 @@ namespace plane
       else
       {
 //         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_mutex_name(pszAppName));
-         ::mutex * pmutex = mutex::open_mutex(get_local_mutex_name(pszAppName));
+         ::mutex * pmutex = mutex::open_mutex(this, get_local_mutex_name(pszAppName));
          if(pmutex == NULL)
          {
             string strApp;

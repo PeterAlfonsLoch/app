@@ -112,30 +112,6 @@ namespace ca
 
 #endif
 
-   bool PASCAL window::ModifyStyle(void * hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
-   {
-      UNREFERENCED_PARAMETER(hWnd);
-      UNREFERENCED_PARAMETER(dwRemove);
-      UNREFERENCED_PARAMETER(dwAdd);
-      UNREFERENCED_PARAMETER(nFlags);
-      throw interface_only_exception(get_app());
-   }
-
-   bool PASCAL window::ModifyStyleEx(void * hWnd, DWORD dwRemove, DWORD dwAdd, UINT nFlags)
-   {
-      UNREFERENCED_PARAMETER(hWnd);
-      UNREFERENCED_PARAMETER(dwRemove);
-      UNREFERENCED_PARAMETER(dwAdd);
-      UNREFERENCED_PARAMETER(nFlags);
-      throw interface_only_exception(get_app());
-   }
-
-#ifdef WINDOWS
-   const MSG* PASCAL window::GetCurrentMessage()
-   {
-      throw interface_only_exception(get_app());
-   }
-#endif
 
    LRESULT window::Default()
    {
@@ -454,36 +430,11 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   window* PASCAL window::GetSafeOwner(window * pParent, void * * pWndTop)
-   {
-      UNREFERENCED_PARAMETER(pParent);
-      UNREFERENCED_PARAMETER(pWndTop);
-      throw interface_only_exception(get_app());
-   }
-
    int window::message_box(const char * lpszText, const char * lpszCaption, UINT nType)
    {
       UNREFERENCED_PARAMETER(lpszText);
       UNREFERENCED_PARAMETER(lpszCaption);
       UNREFERENCED_PARAMETER(nType);
-      throw interface_only_exception(get_app());
-   }
-
-   ::user::interaction * PASCAL window::GetDescendantWindow(::user::interaction * hWnd, id id)
-   {
-      UNREFERENCED_PARAMETER(hWnd);
-      UNREFERENCED_PARAMETER(id);
-      throw interface_only_exception(get_app());
-   }
-
-   void PASCAL window::SendMessageToDescendants(void * hWnd, UINT message, WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
-   {
-      UNREFERENCED_PARAMETER(hWnd);
-      UNREFERENCED_PARAMETER(message);
-      UNREFERENCED_PARAMETER(wParam);
-      UNREFERENCED_PARAMETER(lParam);
-      UNREFERENCED_PARAMETER(bDeep);
-      UNREFERENCED_PARAMETER(bOnlyPerm);
       throw interface_only_exception(get_app());
    }
 
@@ -616,12 +567,6 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool PASCAL window::ReflectLastMsg(void * hWndChild, LRESULT* pResult)
-   {
-      UNREFERENCED_PARAMETER(hWndChild);
-      UNREFERENCED_PARAMETER(pResult);
-      throw interface_only_exception(get_app());
-   }
 
    bool window::OnChildNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
    {
@@ -744,21 +689,6 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   // implementation of OnCtlColor for default gray backgrounds
-   //   (works for any window containing controls)
-   //  return value of FALSE means caller must call DefWindowProc's default
-   //  TRUE means that 'hbrGray' will be used and the appropriate text
-   //    ('clrText') and background colors are set.
-   bool PASCAL window::GrayCtlColor(HDC hDC, void * hWnd, UINT nCtlColor,
-      HBRUSH hbrGray, COLORREF clrText)
-   {
-      UNREFERENCED_PARAMETER(hDC);
-      UNREFERENCED_PARAMETER(hWnd);
-      UNREFERENCED_PARAMETER(nCtlColor);
-      UNREFERENCED_PARAMETER(hbrGray);
-      UNREFERENCED_PARAMETER(clrText);
-      throw interface_only_exception(get_app());
-   }
 
    /////////////////////////////////////////////////////////////////////////////
    // 'dialog data' support
@@ -1484,11 +1414,6 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   window* PASCAL window::WindowFromPoint(POINT point)
-   {
-      UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception(get_app());
-   }
 
    bool window::FlashWindow(bool bInvert)
    {
@@ -1512,20 +1437,6 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   window* PASCAL window::GetOpenClipboardWindow()
-   {
-      throw interface_only_exception(get_app());
-   }
-
-   window* PASCAL window::GetClipboardOwner()
-   {
-      throw interface_only_exception(get_app());
-   }
-
-   window* PASCAL window::GetClipboardViewer()
-   {
-      throw interface_only_exception(get_app());
-   }
 
    void window::CreateCaret(::ca::bitmap* pBitmap)
    {
@@ -1547,16 +1458,6 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   point PASCAL window::GetCaretPos()
-   {
-      throw interface_only_exception(get_app());
-   }
-
-   void PASCAL window::SetCaretPos(POINT point)
-   {
-      UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception(get_app());
-   }
 
    void window::HideCaret()
    {
@@ -1573,10 +1474,6 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   window* PASCAL window::GetForegroundWindow()
-   {
-      throw interface_only_exception(get_app());
-   }
 
    bool window::SendNotifyMessage(UINT message, WPARAM wParam, LPARAM lParam)
    {
@@ -2237,7 +2134,7 @@ namespace ca
    ////////////////////////////////////////////////////////////////////////////
    // UI related ::ca::window functions
 
-   void * PASCAL window::GetSafeOwner_(void * hParent, void ** pWndTop)
+   void * window::GetSafeOwner_(void * hParent, void ** pWndTop)
    {
       // get ::ca::window to start with
       void * hWnd = hParent;

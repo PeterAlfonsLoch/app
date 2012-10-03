@@ -49,7 +49,7 @@ namespace colorertake5
    {
       ParserFactory *parserFactory = &System.parser_factory();
       if (parserFactory == NULL || lineSource == NULL){
-         throw exception(string("Bad base_editor constructor parameters"));
+         throw exception(get_app(), string("Bad base_editor constructor parameters"));
       }
       this->parserFactory = parserFactory;
       this->lineSource = lineSource;

@@ -4,15 +4,24 @@
 bool call_stack::s_bDoStackTrace = true;
 
 
-call_stack::call_stack (unsigned int uiSkip)
+call_stack::call_stack(::ca::application * papp, unsigned int uiSkip) :
+   ca(papp)
 {
 
    if(s_bDoStackTrace && uiSkip != 0xffffffffu)
    {
 
-      m_str = call_stack::get(uiSkip);
+      m_strCallStack = call_stack::get(uiSkip);
 
    }
+
+}
+
+call_stack::call_stack(const ::call_stack & cs) :
+   ca(cs)
+{
+   
+   m_strCallStack = cs.m_strCallStack;
 
 }
 
@@ -23,7 +32,7 @@ vsstring call_stack::get(unsigned int uiSkip)
 
    UNREFERENCED_PARAMETER(uiSkip);
 
-   ::exception::engine::stack_trace(str, uiSkip);
+   System.eengine().stack_trace(str, uiSkip);
 
    return str;
 
@@ -32,6 +41,6 @@ vsstring call_stack::get(unsigned int uiSkip)
 const char * call_stack::stack_trace() const
 {
 
-   return m_str;
+   return m_strCallStack;
 
 }

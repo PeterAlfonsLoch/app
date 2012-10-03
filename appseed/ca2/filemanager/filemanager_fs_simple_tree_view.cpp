@@ -25,7 +25,7 @@ namespace filemanager
 
             ::ca::data_container::m_spdata = new ex1::simple_tree_data(get_app());
             if(!::ca::data_container::m_spdata->initialize_data())
-               throw simple_exception();
+               throw simple_exception(papp);
          }
 
          tree_view::~tree_view()

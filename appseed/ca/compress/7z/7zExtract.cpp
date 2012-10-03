@@ -139,7 +139,7 @@ namespace n7z
 
      RINOK(extractCallback->SetTotal(importantTotalUnpacked));
 
-     CDecoder decoder(
+     CDecoder decoder(get_app(),
        #ifdef _ST_MODE
        false
        #else

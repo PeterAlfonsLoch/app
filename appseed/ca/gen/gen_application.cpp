@@ -17,7 +17,8 @@ namespace gen
    WPARAM application::WPARAM_LANGUAGE_UPDATE = 1;
 
 
-   application::application()
+   application::application() :
+      m_mutex(this)
    {
          m_plemonarray              = new lemon::array(this);
          m_base64.set_app(this);

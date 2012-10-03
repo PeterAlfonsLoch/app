@@ -38,7 +38,7 @@ namespace ex1
       byte_buffer byteBuffer2;
       byteBuffer2.SetCapacity(signatureSize);
       if(FAILED(ReadStream_FALSE(this, byteBuffer2, signatureSize)))
-         throw simple_exception();
+         throw simple_exception(get_app());
 
       if (memcmp(byteBuffer2, signature, signatureSize) == 0)
          return resPos;
@@ -54,7 +54,7 @@ namespace ex1
       {
          if (limit != NULL)
             if (resPos > *limit)
-               throw simple_exception();
+               throw simple_exception(get_app());
          do
          {
             ::primitive::memory_size numReadBytes = kBufferSize - numPrevBytes;
@@ -62,7 +62,7 @@ namespace ex1
             processedSize = read(buffer + numPrevBytes, numReadBytes);
             numPrevBytes += processedSize;
             if (processedSize == 0)
-               throw simple_exception();
+               throw simple_exception(get_app());
          }
          while (numPrevBytes < signatureSize);
          uint32_t numTests = (uint32_t) (numPrevBytes - signatureSize + 1);

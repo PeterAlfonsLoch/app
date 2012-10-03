@@ -23,7 +23,7 @@ namespace colorertake5
      exception(::ca::application * papp, const string &msg);
      /** Creates exception with included exception information
      */
-     exception(::ca::application * papp, const exception &e);
+     exception(const exception &e);
      /** Default destructor
      */
      virtual ~exception();
@@ -41,22 +41,22 @@ namespace colorertake5
        Thrown, when array index overflow occurs.
        @ingroup common
    */
-   class OutOfBoundException : public exception{
+/*   class OutOfBoundException : public exception{
    public:
      OutOfBoundException();
      OutOfBoundException(const string &msg);
    };
-
+   */
    /**
        InputSourceException is thrown, if some IO error occurs.
        @ingroup common
    */
-   class InputSourceException : public exception{
+/*   class InputSourceException : public exception{
    public:
      InputSourceException();
      InputSourceException(const string & msg);
    };
-
+   */
 } // namespace colorertake5
 
    /* ***** BEGIN LICENSE BLOCK *****

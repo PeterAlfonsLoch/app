@@ -306,7 +306,7 @@ namespace mysql
       string str;
       char * psz = str.GetBufferSetLength(iLen * 2 + 1);
       if(psz == NULL)
-         throw memory_exception();
+         throw memory_exception(get_app());
       mysql_real_escape_string((MYSQL *) m_pmysql, psz, (const char *) p, (unsigned long) iLen);
       str.ReleaseBuffer();
       return str;

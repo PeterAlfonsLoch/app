@@ -7,7 +7,7 @@
 #endif
 
 
-mutex::mutex(bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
+mutex::mutex(::ca::application * papp, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
    sync_object(pstrName)
 {
 
@@ -23,7 +23,7 @@ mutex::mutex(bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lp
       if(m_object == NULL)
       {
       
-         throw resource_exception();
+         throw resource_exception(papp);
 
       }
 
@@ -80,7 +80,8 @@ mutex::mutex(bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lp
 
 #ifdef WINDOWS
 
-mutex::mutex(const char * pstrName, HANDLE h) :
+mutex::mutex(::ca::application * papp, const char * pstrName, HANDLE h) :
+   ca(papp),
    sync_object(pstrName)
 {
 
@@ -286,7 +287,7 @@ bool mutex::unlock()
 
 
 
-mutex * mutex::open_mutex(const char * pstrName)
+mutex * mutex::open_mutex(::ca::application * papp,  const char * pstrName)
 {
 
 #ifdef WINDOWS
@@ -296,7 +297,7 @@ mutex * mutex::open_mutex(const char * pstrName)
    if(h == NULL || h == INVALID_HANDLE_VALUE)
       return NULL;
 
-   mutex * pmutex = new mutex(pstrName, h);
+   mutex * pmutex = new mutex(papp, pstrName, h);
 
    return pmutex;
 

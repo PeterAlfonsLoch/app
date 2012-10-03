@@ -37,7 +37,7 @@ BaseMenuCentral::BaseMenuCentral(::ca::application * papp) :
    
    if(!MenuV033GetImageList()->create(16, 16, ILC_COLOR24 | ILC_MASK, 0, 10))
    {
-      throw simple_exception("resource exception BaseMenuCentral constructor");
+      throw simple_exception(papp, "resource exception BaseMenuCentral constructor");
    }
 
 }
@@ -333,7 +333,7 @@ bool BaseMenuCentralContainer::initialize_central_container(::ca::application * 
 {
    m_pmenucentral = new BaseMenuCentral(papp);
    if(!m_pmenucentral)
-      throw memory_exception();
+      throw memory_exception(papp);
    return true;
 }
 

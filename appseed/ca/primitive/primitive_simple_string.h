@@ -245,8 +245,6 @@ namespace gen
 
 
 
-CLASS_DECL_ca void throw_error_exception(const char * psz);
-
 /*namespace gen
 {
 
@@ -1098,9 +1096,9 @@ private:
    {
 
       if(nLength < 0 )
-         throw_error_exception("simple_string::set_length nLength < 0");
+         throw error_exception(::ca::get_thread_app(), "simple_string::set_length nLength < 0");
       if(nLength > get_data()->nAllocLength)
-         throw_error_exception("simple_string::set_length nLength > get_data()->nAllocLength");
+         throw error_exception(::ca::get_thread_app(), "simple_string::set_length nLength > get_data()->nAllocLength");
 
       get_data()->nDataLength = nLength;
       m_pszData[nLength] = 0;

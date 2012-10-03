@@ -79,11 +79,16 @@ namespace n7z
       return true;
    }
 
-   CDecoder::CDecoder(bool multiThread)
+   CDecoder::CDecoder(::ca::application * papp, bool multiThread) :
+      ca(papp)
    {
       multiThread = true;
       _multiThread = multiThread;
       _bindInfoExPrevIsDefined = false;
+   }
+
+   CDecoder::~CDecoder()
+   {
    }
 
    HRESULT CDecoder::Decode(
@@ -142,14 +147,14 @@ namespace n7z
 
          if (_multiThread)
          {
-            _mixerCoderMTSpec = new ::compress::coder_mixer::CCoderMixer2MT;
+            _mixerCoderMTSpec = new ::compress::coder_mixer::CCoderMixer2MT(get_app());
             _mixerCoder = _mixerCoderMTSpec;
             _mixerCoderCommon = _mixerCoderMTSpec;
          }
          else
          {
 #ifdef _ST_MODE
-            _mixerCoderSTSpec = new ::compress::coder_mixer::CCoderMixer2ST;
+            _mixerCoderSTSpec = new ::compress::coder_mixer::CCoderMixer2ST(get_app());
             _mixerCoder = _mixerCoderSTSpec;
             _mixerCoderCommon = _mixerCoderSTSpec;
 #endif

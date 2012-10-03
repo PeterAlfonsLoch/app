@@ -1007,6 +1007,9 @@
     <ClInclude Include="fs\ifs.h" />
     <ClInclude Include="fs\ifs_file.h" />
     <ClInclude Include="fs\native_fs.h" />
+    <ClInclude Include="hi5\hi5.h" />
+    <ClInclude Include="hi5\net\hi5_net.h" />
+    <ClInclude Include="hi5\net\hi5_net_twitter_authorization.h" />
     <ClInclude Include="mail\mail_list_interface.h" />
     <ClInclude Include="mail\mail_tree_data.h" />
     <ClInclude Include="mail\mail_tree_item.h" />
@@ -1453,6 +1456,7 @@
     <ClCompile Include="fs\fs_tree_data.cpp" />
     <ClCompile Include="fs\fs_tree_interface.cpp" />
     <ClCompile Include="fs\fs_tree_item.cpp" />
+    <ClCompile Include="hi5\net\hi5_net_twitter_authorization.cpp" />
     <ClCompile Include="mail\mail_tree_data.cpp" />
     <ClCompile Include="mail\mail_tree_item.cpp" />
     <ClCompile Include="nature\nature_appearance_view.cpp" />

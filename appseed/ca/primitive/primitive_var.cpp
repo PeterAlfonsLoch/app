@@ -815,13 +815,13 @@ var::operator int()
    case type_id:
    {
       if(!is32integer((int64_t) m_id))
-         throw overflow_error("var contains id that does not fit 32 bit integer");
+         throw overflow_error(::ca::get_thread_app(), "var contains id that does not fit 32 bit integer");
       return (int) (int64_t) m_id;
    }
    case type_pid:
    {
       if(!is32integer((int64_t) *m_pid))
-         throw overflow_error("var contains id that does not fit 32 bit integer");
+         throw overflow_error(::ca::get_thread_app(), "var contains id that does not fit 32 bit integer");
       return (int) (int64_t) *m_pid;
    }
    default:
@@ -3497,7 +3497,7 @@ bool var::is_numeric() const
          return false;
 
       default:
-         throw not_implemented_exception(get_app());
+         throw not_implemented_exception(::ca::get_thread_app());
 
    };
 

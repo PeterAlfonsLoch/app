@@ -291,7 +291,7 @@ namespace fs
       UNREFERENCED_PARAMETER(pobj);
 
       if(!initialize())
-         throw simple_exception();
+         throw simple_exception(get_app());
 
       /*m_pimagelist = System.shellimageset().GetImageList16();
       m_iDefaultImage = System.shellimageset().GetImage(

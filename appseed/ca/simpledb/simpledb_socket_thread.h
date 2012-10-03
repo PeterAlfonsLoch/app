@@ -22,8 +22,8 @@ namespace simpledb
       string                  m_strIp;
       int                     m_iPort;
 
-      ::event                m_evCanInit;
-      ::event                m_evInitialized;
+      ::event                 m_evCanInit;
+      ::event                 m_evInitialized;
       bool                    m_bInitialized;
 
       SOCKET                  m_hsocket;

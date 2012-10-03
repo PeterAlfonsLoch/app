@@ -12,7 +12,8 @@ namespace gcom
       thread::thread(::ca::application * papp) :
          ca(papp),
          ::radix::thread(papp),
-         m_evInitialized(FALSE, TRUE)
+         m_evInitialized(papp, FALSE, TRUE),
+         m_mutexBitmap(papp)
       {
          m_pbackviewinterface = NULL;
       }

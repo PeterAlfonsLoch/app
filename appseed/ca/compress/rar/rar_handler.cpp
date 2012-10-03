@@ -162,12 +162,12 @@ namespace rar
       return true;
    }
 
-   static void RarTimeToProp(const CRarTime &rarTime, var &prop)
+   static void RarTimeToProp(::ca::application * papp, const CRarTime &rarTime, var &prop)
    {
       FILETIME localFileTime, utcFileTime;
       if (RarTimeToFileTime(rarTime, localFileTime))
       {
-         throw not_implemented_exception(get_app());
+         throw not_implemented_exception(papp);
 /*         if (!LocalFileTimeToFileTime(&localFileTime, &utcFileTime))
             utcFileTime.dwHighDateTime = utcFileTime.dwLowDateTime = 0;*/
       }
@@ -191,9 +191,9 @@ namespace rar
       case ::compress::kpidIsDir: prop = item.IsDir(); break;
       case ::compress::kpidSize: prop = item.Size; break;
       case ::compress::kpidPackSize: prop = GetPackSize(index); break;
-      case ::compress::kpidMTime: RarTimeToProp(item.MTime, prop); break;
-      case ::compress::kpidCTime: if (item.CTimeDefined) RarTimeToProp(item.CTime, prop); break;
-      case ::compress::kpidATime: if (item.ATimeDefined) RarTimeToProp(item.ATime, prop); break;
+      case ::compress::kpidMTime: RarTimeToProp(get_app(), item.MTime, prop); break;
+      case ::compress::kpidCTime: if (item.CTimeDefined) RarTimeToProp(get_app(), item.CTime, prop); break;
+      case ::compress::kpidATime: if (item.ATimeDefined) RarTimeToProp(get_app(), item.ATime, prop); break;
       case ::compress::kpidAttrib: prop = (int32) item.GetWinAttributes(); break;
       case ::compress::kpidEncrypted: prop = item.IsEncrypted(); break;
       case ::compress::kpidSolid: prop = IsSolid(index); break;

@@ -693,7 +693,7 @@ namespace user
          if(m_plist == NULL)
          {
             delete pca;
-            throw resource_exception();
+            throw resource_exception(get_app());
          }
 
          m_plist->m_pcombo = this;
@@ -706,7 +706,7 @@ namespace user
          if(!m_plist->CreateEx(0, m_plist->GetIconWndClass(0, 0), "combo_list", 0, rect(0, 0, 0, 0), NULL, NULL, NULL))
          {
             gen::del(m_plist);
-            throw resource_exception();
+            throw resource_exception(get_app());
          }
 
       }

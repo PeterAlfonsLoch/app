@@ -7,7 +7,8 @@
 namespace n7z
 {
 
-   class CEncoder
+   class CEncoder :
+      virtual public ::radix::object
    {
       ::compress::coder_mixer::CCoderMixer2MT *                 _mixerCoderSpec;
       ::ca::smart_pointer < ::compress::coder2_interface >      _mixerCoder;
@@ -24,8 +25,8 @@ namespace n7z
 
       bool _constructed;
    public:
-      CEncoder(const CCompressionMethodMode &options);
-      ~CEncoder();
+      CEncoder(::ca::application * papp, const CCompressionMethodMode &options);
+      virtual ~CEncoder();
       HRESULT EncoderConstr();
       HRESULT Encode(
          ::compress::codecs_info_interface *codecsInfo, const base_array < ::compress::codec_info_ex > *externalCodecs,

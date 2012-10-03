@@ -24,6 +24,9 @@ namespace ca
 
    thread * get_thread()
    {
+      
+      if(g_pfn_get_thread == NULL)
+         return NULL;
 
       return g_pfn_get_thread();
 
@@ -33,7 +36,12 @@ namespace ca
    application * get_thread_app()
    {
 
-      return get_thread()->get_app();
+      thread * pthread = get_thread();
+
+      if(pthread == NULL)
+         return NULL;
+
+      return pthread->get_app();
 
    }
 

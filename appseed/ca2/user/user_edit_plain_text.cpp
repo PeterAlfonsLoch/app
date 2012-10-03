@@ -487,7 +487,7 @@ namespace user
       SCAST_PTR(::gen::message::create, pcreate, pobj);
 
       if(!ex1::tree::initialize())
-         throw simple_exception();
+         throw simple_exception(get_app());
 
 
 
@@ -509,7 +509,7 @@ namespace user
       }
 
       if(!m_pdata->initialize_data())
-         throw simple_exception();
+         throw simple_exception(get_app());
 
       m_pdata->m_ptreeitem          = get_base_item();
 

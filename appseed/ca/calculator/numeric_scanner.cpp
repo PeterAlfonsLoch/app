@@ -22,7 +22,8 @@ namespace calculator
    }
 
 
-   scanner::scanner()
+   scanner::scanner(::ca::application * papp) :
+      ca(papp)
    {
       m_ptoken    = NULL;
       input       = NULL;

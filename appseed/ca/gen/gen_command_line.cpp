@@ -6,7 +6,8 @@ namespace gen
 
 
    command_line::command_line(::ca::application * papp) :
-      ca(papp)
+      ca(papp),
+      m_eventReady(papp)
    {
       common_construct();
    }

@@ -10,7 +10,7 @@ namespace ex2
    {
       
       if(pmutex == NULL)
-         m_spmutex(new mutex());
+         m_spmutex(new mutex(papp));
       else
          m_spmutex = pmutex;
 
@@ -40,7 +40,7 @@ namespace ex2
    {
 
       if(pmemoryfileIn->get_memory()->m_spmutex.is_null())
-         pmemoryfileIn->get_memory()->m_spmutex(new mutex());
+         pmemoryfileIn->get_memory()->m_spmutex(new mutex(papp));
 
       m_spmutex = pmemoryfileIn->get_memory()->m_spmutex;
 

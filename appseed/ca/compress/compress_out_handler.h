@@ -14,9 +14,13 @@ namespace compress
       bool IsLzma() const;
    };
 
-   class out_handler
+   class CLASS_DECL_ca out_handler :
+      virtual public ::radix::object
    {
    public:
+
+      out_handler(::ca::application * papp);
+
       ex1::HRes SetProperty(const char *name, var value);
 
       ex1::HRes SetSolidSettings(const string &s);

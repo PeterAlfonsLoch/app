@@ -25,7 +25,7 @@ void * base_ca2_alloc(size_t size)
    byte * p = (byte *) ca2_heap_alloc(size + 4 + 32);
    if(p == NULL)
    {
-      throw memory_exception();
+      throw memory_exception(::ca::get_thread_app());
    }
    p[0] = 0;
    *((size_t *) &p[1]) = size;
@@ -43,7 +43,7 @@ void * base_ca2_alloc_dbg(size_t nSize, int nBlockUse, const char * szFileName, 
    byte * p = (byte *) ca2_heap_alloc_dbg(nSize + 4 + 32, nBlockUse, szFileName, nLine);
    if(p == NULL)
    {
-      throw memory_exception();
+      throw memory_exception(::ca::get_thread_app());
    }
    p[0] = 1;
    *((size_t *) &p[1]) = nSize;
@@ -82,12 +82,12 @@ void * base_ca2_realloc(void * pvoid, size_t nSize, int nBlockUse, const char * 
    {
       // todo: rethrow free exception
       {
-         throw memory_exception();
+         throw memory_exception(::ca::get_thread_app());
       }
    }
    if(p == NULL)
    {
-      throw memory_exception();
+      throw memory_exception(::ca::get_thread_app());
    }
    *((size_t *) &p[1]) = nSize;
    return p + 4 + 16;
@@ -324,7 +324,7 @@ __do_for_all_objects(void (c_cdecl *pfn)(::radix::object*, void *), void * pCont
 {
    if (pfn == NULL)
    {
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
    }
    ___ENUM_CONTEXT context;
    context.m_pfn = pfn;

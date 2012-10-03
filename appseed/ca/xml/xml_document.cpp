@@ -211,7 +211,7 @@ namespace xml
 
 
       if(pedit == NULL)
-         throw simple_exception("edit exception");
+         throw simple_exception(get_app(), "edit exception");
 
 
       ::xml::node * pnode;

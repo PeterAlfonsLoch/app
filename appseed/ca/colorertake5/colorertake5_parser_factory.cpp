@@ -19,19 +19,19 @@ void ParserFactory::init()
    }
    catch(exception &e)
    {
-      throw ParserFactoryException(*e.getMessage());
+      throw ParserFactoryException(get_app(), e.getMessage());
    }
    catch(ex1::exception * pe)
    {
       string str;
       pe->GetErrorMessage(str);
-      throw ParserFactoryException(str);
+      throw ParserFactoryException(get_app(), str);
    }
 
    xml::node * catalog = document.get_root();
    if(catalog == NULL || catalog->get_name() != "catalog")
    {
-      throw ParserFactoryException(string("bad catalog structure"));
+      throw ParserFactoryException(get_app(), string("bad catalog structure"));
    }
 
    xml::node * elem = catalog->first_child();
@@ -243,7 +243,7 @@ StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID
     hrdClass = hrdLocations.pget(classID);
 
   if (hrdClass == NULL)
-    throw ParserFactoryException(string("can't find hrdClass '")+classID+"'");
+    throw ParserFactoryException(get_app(), string("can't find hrdClass '")+classID+"'");
 
   stringa *hrdLocV = NULL;
   if (nameID.is_empty())
@@ -258,7 +258,7 @@ StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID
   else
     hrdLocV = hrdClass->pget(nameID);
   if (hrdLocV == NULL)
-    throw ParserFactoryException(string("can't find hrdName '")+nameID+"'");
+    throw ParserFactoryException(get_app(), string("can't find hrdName '")+nameID+"'");
 
   StyledHRDMapper *mapper = new StyledHRDMapper(get_app());
 
@@ -301,7 +301,7 @@ StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID
 TextHRDMapper *ParserFactory::createTextMapper(string nameID){
   // fixed class 'text'
   ::collection::string_map<stringa> *hrdClass = hrdLocations.pget(("text"));
-  if (hrdClass == NULL) throw ParserFactoryException(string("can't find hrdClass 'text'"));
+  if (hrdClass == NULL) throw ParserFactoryException(get_app(), string("can't find hrdClass 'text'"));
 
   stringa *hrdLocV = NULL;
   if (nameID.is_empty())
@@ -309,7 +309,7 @@ TextHRDMapper *ParserFactory::createTextMapper(string nameID){
   else
     hrdLocV = hrdClass->pget(nameID);
   if (hrdLocV == NULL)
-    throw ParserFactoryException(string("can't find hrdName '")+nameID+"'");
+    throw ParserFactoryException(get_app(), string("can't find hrdName '")+nameID+"'");
 
   TextHRDMapper *mapper = new TextHRDMapper(get_app());
   for(int idx = 0; idx < hrdLocV->get_size(); idx++)

@@ -63,7 +63,7 @@ namespace datetime
                }
                else
                {
-                  throw not_implemented_exception(get_app());
+                  throw not_implemented_exception(pcaapp);
                }
                strNumber.Empty();
                strText1.Empty();

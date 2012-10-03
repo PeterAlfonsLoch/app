@@ -4,6 +4,7 @@
 plain_service::plain_service(::ca::application * papp) :
    ca(papp),
    m_stopping(false),
+   m_stopped(papp),
    service_base(papp)
 {
 }

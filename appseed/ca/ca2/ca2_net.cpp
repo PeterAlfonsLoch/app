@@ -14,6 +14,19 @@
 namespace ca2
 {
 
+   net::net(::ca::application * papp) :
+      ca(papp),
+      m_mutexCache(papp)
+   {
+   
+   }
+
+   net::~net()
+   {
+
+   }
+
+
    /*
    * Encode string per RFC1738 URL encoding rules
    * tnx rstaveley

@@ -16,7 +16,8 @@ namespace filemanager
       ::user::list(papp),
       ::fs::list_interface(papp),
       ::fs::list(papp),
-      m_gdibuffer(papp)
+      m_gdibuffer(papp),
+      m_mutex(papp)
    {
       m_iAnimate = 0;
       m_bRestartCreateImageList = false;

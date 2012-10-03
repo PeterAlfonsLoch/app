@@ -10,7 +10,7 @@ void itemswap(void * pswaparg, index i1, index i2)
 factory::factory(::ca::application * papp) :
    ca(papp)
 {
-   m_pmutex = new mutex();
+   m_pmutex = new mutex(papp);
    m_pstrida = new strid_array();
    m_pstridaAllocator = new strid_array();
    m_bSimpleFactoryRequest = false;
@@ -159,7 +159,7 @@ factory_allocator * factory::get_allocator(const char * pszType)
 {
    if(info.m_spmutex.is_null())
    {
-      info.m_spmutex(new mutex());
+      info.m_spmutex(new mutex(papp));
    }
    single_lock slInfo(info.m_spmutex, TRUE);
 

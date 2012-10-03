@@ -200,7 +200,7 @@ namespace primitive
 
       if (hGlobalMemory == NULL)
       {
-         throw invalid_argument_exception();
+         throw invalid_argument_exception(get_app());
       }
 
       m_hGlobalMemory = hGlobalMemory;

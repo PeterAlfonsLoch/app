@@ -1,14 +1,18 @@
 #include "framework.h"
 
+
 namespace gcom
 {
+
+
    namespace backview
    {
 
 
       ImageChange::ImageChange(Main & view) :
          Helper(view),
-         m_spdib(view.get_app())
+         m_spdib(view.get_app()),
+         m_evImageChangeFinish(view.get_app())
       {
 
          m_bLastLoadImageSynch = false;
@@ -21,14 +25,14 @@ namespace gcom
 
       void ImageChange::OnEventLoadNow()
       {
-         
+
          Main & main = HelperGetMain();
 
-          main.GetTransitionEffect().Reset();
+         main.GetTransitionEffect().Reset();
          if(LoadNextImage(false))
-          {
-              main.SetState(StateLoading);
-          }
+         {
+            main.SetState(StateLoading);
+         }
       }
 
 
@@ -62,7 +66,7 @@ namespace gcom
       bool ImageChange::LoadNextImage(bool bSynch)
       {
          DWORD dwTime = GetTickCount();
-         
+
          if(m_dwLoadStartTime - dwTime < 1000)
             return false;
 
@@ -88,18 +92,18 @@ namespace gcom
 
       bool ImageChange::LoadImageSync(const char * lpcwszImagePath)
       {
-         
+
          m_wstrCurrentImagePath = lpcwszImagePath;
-         
+
          Main & main = HelperGetMain();
-         
+
          string str;
-         
+
          if(!System.imaging().LoadImageSync(m_spdib, lpcwszImagePath, get_app()))
             return false;
-         
+
          TRACE("ImageChange::OnLoadImageSynch lpcwszImagePath.lock\n");
-         
+
          main.GetGraphics().GetDib(_graphics::DibSource)->from(m_spdib);
 
          TRACE("ImageChange::OnLoadImageSynch slGdi.UnLock\n");
@@ -120,5 +124,11 @@ namespace gcom
          m_dwBackgroundUpdateMillis = max(dwMillis, 1000);
       }
 
+
    } // namespace backview
+
+
 } // namespace gcom
+
+
+

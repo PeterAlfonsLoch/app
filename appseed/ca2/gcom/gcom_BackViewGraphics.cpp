@@ -1,13 +1,21 @@
 #include "framework.h"
 
+
 namespace gcom
 {
+
+
    namespace backview
    {
 
+
       Graphics::Graphics(Main & main) :
          ::ca::ca(main.get_app()),
-         Helper(main)
+         Helper(main),
+         m_mutex1Back(main.get_app()),
+         m_mutex2Buffer(main.get_app()),
+         m_mutex3Source(main.get_app()),
+         m_mutex4Transfer(main.get_app())
       {
          m_spdrawdib.create(get_app());
          m_spdrawdib->open();
@@ -106,7 +114,7 @@ namespace gcom
 
          Main & main = HelperGetMain();
 
-//         gen::savings & savings = System.savings();
+         //         gen::savings & savings = System.savings();
 
          bool bOk = false;
          // 2004-08-24
@@ -147,25 +155,25 @@ namespace gcom
          int cx = rectClient.width();
          int cy = rectClient.height();
 
-//         const int ciBufferBitmapNotCreated = 1;
-//         const int ciBackBitmapNotCreated = 2;
-//         const int ciBufferBitmapNotSelected = 3;
-//         const int ciBackBitmapNotSelected = 4;
-//         const int ciBufferBitmapInfoNotAvailable = 5;
-//         const int ciScaledBitmapInfoNotAvailable = 6;
+         //         const int ciBufferBitmapNotCreated = 1;
+         //         const int ciBackBitmapNotCreated = 2;
+         //         const int ciBufferBitmapNotSelected = 3;
+         //         const int ciBackBitmapNotSelected = 4;
+         //         const int ciBufferBitmapInfoNotAvailable = 5;
+         //         const int ciScaledBitmapInfoNotAvailable = 6;
 
          single_lock sl2Buffer(&m_mutex2Buffer, TRUE);
          single_lock sl3Source(&m_mutex3Source, TRUE);
 
          //HelperGetMain().DeferCheckLayout();
 
-//         ::ca::graphics & dcScreen = GetScreenDC();
+         //         ::ca::graphics & dcScreen = GetScreenDC();
          ::ca::graphics & dcBuffer = GetBufferDC();
          ::ca::graphics & dcSource = GetSourceDC();
-//         ::ca::bitmap & bmpBuffer = GetBufferBitmap();
+         //         ::ca::bitmap & bmpBuffer = GetBufferBitmap();
 
 
-//         ::ca::dib * pdibSource = GetDib(_graphics::DibSource);
+         //         ::ca::dib * pdibSource = GetDib(_graphics::DibSource);
 
          if(dcSource.get_os_data() == NULL)
             return false;
@@ -390,7 +398,7 @@ namespace gcom
          single_lock sl1Back(&m_mutex1Back, TRUE);
          single_lock sl2Buffer(&m_mutex2Buffer, TRUE);
          single_lock sl3Source(&m_mutex3Source, TRUE);
-         
+
 
          ::ca::graphics & spgraphicsScreen    = GetScreenDC();
 
@@ -463,9 +471,9 @@ namespace gcom
 
       void Graphics::BackToTransfer()
       {
-         
+
          single_lock sl1Back(&m_mutex1Back, FALSE);
-         
+
          if(!sl1Back.lock(millis(25)))
             return;
 
@@ -503,7 +511,9 @@ namespace gcom
 
       }
 
+
    } // namespace backview
+
 
 } // namespace gcom
 

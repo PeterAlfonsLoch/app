@@ -83,7 +83,7 @@ namespace xml
    {
 
       if(pnode->get_document() != m_spdata.m_p)
-         throw simple_exception("unmatched xml document");
+         throw simple_exception(get_app(), "unmatched xml document");
 
       edit_item * pitem = add_new();
 
@@ -95,7 +95,7 @@ namespace xml
    {
 
       if(pnode->get_document() != m_spdata.m_p)
-         throw simple_exception("unmatched xml document");
+         throw simple_exception(get_app(), "unmatched xml document");
 
       edit_item * pitem = add_new();
 
@@ -107,7 +107,7 @@ namespace xml
    {
 
       if(pnode->get_document() != m_spdata.m_p)
-         throw simple_exception("unmatched xml document");
+         throw simple_exception(get_app(), "unmatched xml document");
 
       edit_item * pitem = add_new();
 
@@ -120,7 +120,7 @@ namespace xml
    {
 
       if(pnode->get_document() != m_spdata.m_p)
-         throw simple_exception("unmatched xml document");
+         throw simple_exception(get_app(), "unmatched xml document");
 
       edit_item * pitem = add_new();
 

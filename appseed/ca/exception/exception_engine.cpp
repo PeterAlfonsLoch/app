@@ -20,11 +20,11 @@ It is provided "as is" without express or implied warranty.
 
 // The following is defined for x86 (XP and higher), x64 and IA64:
 #define GET_CURRENT_CONTEXT(pc, contextFlags) \
-  do { \
-    memset(pc, 0, sizeof(CONTEXT)); \
-    pc->ContextFlags = contextFlags; \
-    RtlCaptureContext(pc); \
-} while(0);
+   do { \
+   memset(pc, 0, sizeof(CONTEXT)); \
+   pc->ContextFlags = contextFlags; \
+   RtlCaptureContext(pc); \
+   } while(0);
 
 
 
@@ -82,21 +82,21 @@ HANDLE SymGetProcessHandle()
 /*typedef
 BOOL
 (__stdcall *PREAD_PROCESS_MEMORY_ROUTINE64)(
-    _In_ HANDLE hProcess,
-    _In_ DWORD64 qwBaseAddress,
-    _Out_writes_bytes_(nSize) PVOID lpBuffer,
-    _In_ DWORD nSize,
-    _Out_ LPDWORD lpNumberOfBytesRead
-    );*/
+_In_ HANDLE hProcess,
+_In_ DWORD64 qwBaseAddress,
+_Out_writes_bytes_(nSize) PVOID lpBuffer,
+_In_ DWORD nSize,
+_Out_ LPDWORD lpNumberOfBytesRead
+);*/
 
 
 WINBOOL __stdcall My_ReadProcessMemory ( 
    HANDLE      hProcess,
-    DWORD64     qwBaseAddress,
-    PVOID       lpBuffer,
-    DWORD       nSize,
-    LPDWORD     lpNumberOfBytesRead
-    )
+   DWORD64     qwBaseAddress,
+   PVOID       lpBuffer,
+   DWORD       nSize,
+   LPDWORD     lpNumberOfBytesRead
+   )
 {
 
    SIZE_T size;
@@ -113,7 +113,7 @@ WINBOOL __stdcall My_ReadProcessMemory (
 #else
 WINBOOL __stdcall My_ReadProcessMemory (HANDLE, LPCVOID lpBaseAddress, LPVOID lpBuffer, DWORD nSize, SIZE_T * lpNumberOfBytesRead)
 {
-   return ReadProcessMemory(GetCurrentProcess(), lpBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead) != FALSE;
+return ReadProcessMemory(GetCurrentProcess(), lpBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead) != FALSE;
 }
 #endif
 */
@@ -121,44 +121,36 @@ namespace exception
 {
 
 
-   mutex * get_engine_mutex()
-   {
-      
-      static mutex s_mutex;
+   typedef BOOL (__stdcall *PReadProcessMemoryRoutine)(
+      HANDLE      hProcess,
+      DWORD64     qwBaseAddress,
+      PVOID       lpBuffer,
+      DWORD       nSize,
+      LPDWORD     lpNumberOfBytesRead,
+      LPVOID      pUserData  // optional data, which was passed in "ShowCallstack"
+      );
 
-      return &s_mutex;
+   // The following is used to pass the "userData"-Pointer to the user-provided readMemoryFunction
+   // This has to be done due to a problem with the "hProcess"-parameter in x64...
+   // Because this class is in no case multi-threading-enabled (because of the limitations 
+   // of dbghelp.dll) it is "safe" to use a static-variable
+   static PReadProcessMemoryRoutine s_readMemoryFunction = NULL;
+   static LPVOID s_readMemoryFunction_UserData = NULL;
 
-   }
-
-     typedef BOOL (__stdcall *PReadProcessMemoryRoutine)(
-    HANDLE      hProcess,
-    DWORD64     qwBaseAddress,
-    PVOID       lpBuffer,
-    DWORD       nSize,
-    LPDWORD     lpNumberOfBytesRead,
-    LPVOID      pUserData  // optional data, which was passed in "ShowCallstack"
-    );
-
-// The following is used to pass the "userData"-Pointer to the user-provided readMemoryFunction
-// This has to be done due to a problem with the "hProcess"-parameter in x64...
-// Because this class is in no case multi-threading-enabled (because of the limitations 
-// of dbghelp.dll) it is "safe" to use a static-variable
-static PReadProcessMemoryRoutine s_readMemoryFunction = NULL;
-static LPVOID s_readMemoryFunction_UserData = NULL;
-
-   engine::engine (unsigned int uiAddress) :
-      m_uiAddress(uiAddress),
+   engine::engine(::ca::application * papp) :
+      ca(papp),
       m_bOk(false),
       m_pstackframe(NULL)
    {
 
-
+      m_pmutex = new mutex(papp);
 
    }
 
    engine::~engine()
    {
       //   if (m_bOk) guard::instance().clear();
+      delete m_pmutex;
       delete m_pstackframe;
    }
 
@@ -173,19 +165,19 @@ static LPVOID s_readMemoryFunction_UserData = NULL;
       return get_module_basename(hmodule, str);
    }
 
-   size_t engine::symbol(vsstring & str, dword_ptr * pdisplacement)
+   size_t engine::symbol(vsstring & str, DWORD64 * pdisplacement)
    {
       if (!check())
          return 0;
 
       BYTE symbol [ 512 ] ;
-      PIMAGEHLP_SYMBOL pSym = (PIMAGEHLP_SYMBOL)&symbol;
+      PIMAGEHLP_SYMBOL64 pSym = (PIMAGEHLP_SYMBOL64)&symbol;
       memset(pSym, 0, sizeof(symbol)) ;
-      pSym->SizeOfStruct = sizeof(IMAGEHLP_SYMBOL) ;
-      pSym->MaxNameLength = sizeof(symbol) - sizeof(IMAGEHLP_SYMBOL);
+      pSym->SizeOfStruct = sizeof(IMAGEHLP_SYMBOL64) ;
+      pSym->MaxNameLength = sizeof(symbol) - sizeof(IMAGEHLP_SYMBOL64);
 
       HANDLE hprocess = SymGetProcessHandle();
-      dword_ptr displacement = 0;
+      DWORD64 displacement = 0;
       int r = SymGetSymFromAddr64(hprocess, m_uiAddress, &displacement, pSym);
       if (!r) return 0;
       if (pdisplacement)
@@ -197,18 +189,18 @@ static LPVOID s_readMemoryFunction_UserData = NULL;
       return str.get_length();
    }
 
-   index engine::fileline (vsstring & str, dword_ptr * pline, dword_ptr * pdisplacement)
+   index engine::fileline (vsstring & str, DWORD * pline, DWORD * pdisplacement)
    {
 
       if (!check())
          return 0;
 
-      IMAGEHLP_LINE img_line;
-      memset(&img_line, 0, sizeof(IMAGEHLP_LINE));
-      img_line.SizeOfStruct = sizeof(IMAGEHLP_LINE);
+      IMAGEHLP_LINE64 img_line;
+      memset(&img_line, 0, sizeof(IMAGEHLP_LINE64));
+      img_line.SizeOfStruct = sizeof(IMAGEHLP_LINE64);
 
       HANDLE hprocess = SymGetProcessHandle();
-      dword_ptr displacement = 0;
+      DWORD displacement = 0;
       if (!get_line_from_address(hprocess, m_uiAddress, &displacement, &img_line))
          return 0;
       if (pdisplacement)
@@ -236,8 +228,8 @@ static LPVOID s_readMemoryFunction_UserData = NULL;
 
       memset(m_pstackframe, 0, sizeof(STACKFRAME64));
 
-//  s_readMemoryFunction = readMemoryFunction;
-  //s_readMemoryFunction_UserData = pUserData;
+      //  s_readMemoryFunction = readMemoryFunction;
+      //s_readMemoryFunction_UserData = pUserData;
 
 
 #ifdef AMD64
@@ -308,23 +300,23 @@ static LPVOID s_readMemoryFunction_UserData = NULL;
          SymGetModuleBase64,                     // __in_opt  PGET_MODULE_BASE_ROUTINE64 GetModuleBaseRoutine,
          NULL                       // __in_opt  PTRANSLATE_ADDRESS_ROUTINE64 TranslateAddress
          ) != FALSE;
-/*#else
+      /*#else
       bool r = StackWalk64 (
-         ,
-         hprocess,
-         GetCurrentThread(),
-         m_pstackframe,
-         m_pcontext,
-         My_ReadProcessMemory,
-         SymFunctionTableAccess64,
-         SymGetModuleBase64,
-         0) != FALSE;
-#endif*/
+      ,
+      hprocess,
+      GetCurrentThread(),
+      m_pstackframe,
+      m_pcontext,
+      My_ReadProcessMemory,
+      SymFunctionTableAccess64,
+      SymGetModuleBase64,
+      0) != FALSE;
+      #endif*/
 
       if (!r || !m_pstackframe->AddrFrame.Offset)
       {
 
-          return false;
+         return false;
 
       }
 
@@ -339,7 +331,7 @@ retry_get_base:
       // StackWalk returns TRUE but the address doesn't belong to
       // a module in the process.
 
-      dword_ptr dwModBase = SymGetModuleBase64 (hprocess, m_pstackframe->AddrPC.Offset);
+      DWORD64 dwModBase = SymGetModuleBase64 (hprocess, m_pstackframe->AddrPC.Offset);
 
       if (!dwModBase)
       {
@@ -354,7 +346,8 @@ retry_get_base:
 
          }
 
-         System.eguard().load_modules();
+         System.eguard().clear();
+         System.eguard().init();
 
          bRetry = true;
 
@@ -366,7 +359,7 @@ retry_get_base:
       return true;
    }
 
-   bool engine::get_line_from_address (HANDLE hprocess, dword_ptr uiAddress, dword_ptr * puiDisplacement, IMAGEHLP_LINE * pline)
+   bool engine::get_line_from_address (HANDLE hprocess, DWORD64 uiAddress, DWORD * puiDisplacement, IMAGEHLP_LINE64 * pline)
    {
 #ifdef WORK_AROUND_SRCLINE_BUG
       // "Debugging Applications" John Robbins
@@ -375,7 +368,7 @@ retry_get_base:
       // a zero displacement. I'll walk backward 100 bytes to
       // find the line and return the proper displacement.
       DWORD dwDisplacement = 0 ;
-      while (!SymGetLineFromAddr64 (hprocess, uiAddress - dwDisplacement, (DWORD*)puiDisplacement, pline))
+      while (!SymGetLineFromAddr64 (hprocess, uiAddress - dwDisplacement, puiDisplacement, pline))
       {
          if (100 == ++dwDisplacement)
             return false;
@@ -421,12 +414,13 @@ retry_get_base:
    bool engine::check()
    {
       if (!m_bOk)
-         m_bOk = guard::instance().init();
+         m_bOk = System.eguard().init();
       return m_bOk;
    }
 
-   engine::guard::guard()
-      : m_iRef(0)
+   engine::guard::guard(::ca::application * papp) :
+      ca(papp),
+      m_iRef(0)
    {}
 
    engine::guard::~guard()
@@ -441,7 +435,7 @@ retry_get_base:
       HANDLE hprocess = SymGetProcessHandle();
       DWORD  dwPid = GetCurrentProcessId();
 
-// enumerate modules
+      // enumerate modules
       if (IsNT())
       {
          typedef bool (WINAPI *ENUMPROCESSMODULES)(HANDLE, HMODULE*, DWORD, LPDWORD);
@@ -558,11 +552,11 @@ retry_get_base:
       return true;
    }
 
-   bool engine::guard::fail()
+   bool engine::guard::fail() const
    {
-      
+
       return m_iRef == -1;
-   
+
    }
 
    void engine::guard::clear()
@@ -611,9 +605,14 @@ retry_get_base:
 
    bool engine::stack_trace(vsstring & str, CONTEXT * pcontext, dword_ptr uiSkip, const char * pszFormat)
    {
-      if(!pszFormat) return false;
-      engine engine(0);
-      return stack_trace(str, engine, pcontext, uiSkip, false, pszFormat);
+
+      if(!pszFormat)
+         return false;
+
+      m_uiAddress = 0;
+
+      return stack_trace(str, pcontext, uiSkip, false, pszFormat);
+
    }
 
    /////////////////////////////////////////////
@@ -644,9 +643,9 @@ retry_get_base:
             iPatience--;
          }
 
-//         char sz[200];
-//         sprintf(sz, "engine::stack_trace patience near down %u%%\n", iPatience * 100 / iInverseAgility);
-//         ::OutputDebugString(sz);
+         //         char sz[200];
+         //         sprintf(sz, "engine::stack_trace patience near down %u%%\n", iPatience * 100 / iInverseAgility);
+         //         ::OutputDebugString(sz);
 
          if (-1 == SuspendThread(pcontext->thread))
          {
@@ -657,9 +656,9 @@ retry_get_base:
          __try
          {
 #ifdef AMD64
-             GET_CURRENT_CONTEXT(pcontext, USED_CONTEXT_FLAGS);
+            GET_CURRENT_CONTEXT(pcontext, USED_CONTEXT_FLAGS);
 #else
-             pcontext->signal = GetThreadContext(pcontext->thread, pcontext) ? 1 : -1;
+            pcontext->signal = GetThreadContext(pcontext->thread, pcontext) ? 1 : -1;
 #endif
          }
          __finally
@@ -677,7 +676,7 @@ retry_get_base:
    bool engine::stack_trace(vsstring & str, dword_ptr uiSkip, const char * pszFormat)
    {
 
-      single_lock sl(get_engine_mutex(), true);
+      single_lock sl(m_pmutex, true);
 
       if(!pszFormat) return false;
 
@@ -706,156 +705,173 @@ retry_get_base:
 
       if (hthreadWorker)
       {
-         //VERIFY(SetThreadPriority(hthreadWorker, THREAD_PRIORITY_TIME_CRITICAL)); //  THREAD_PRIORITY_HIGHEST
-         if (-1 != ResumeThread(hthreadWorker))
-         {
-            int iInverseAgility = 26 + 33; // former iPatienceQuota
-            int iPatience = iInverseAgility;
-            // Konstantin, 14.01.2002 17:21:32
-            context.signal = 0;            // only now the worker thread can get this thread context
-            while (!context.signal && iPatience > 0)
-            {
-               if(!SwitchToThread())
-                  Sleep(10); // forces switch to another thread
-               iPatience--; // wait in spin
-            }
-            //char sz[200];
-            //sprintf(sz, "engine::stack_trace patience near down %u%%\n", iPatience * 100 / iInverseAgility);
-            //::OutputDebugString(sz);
-         }
-         else
-         {
-            VERIFY(TerminateThread(hthreadWorker, 0));
-         }
-         VERIFY(CloseHandle(hthreadWorker));
+      //VERIFY(SetThreadPriority(hthreadWorker, THREAD_PRIORITY_TIME_CRITICAL)); //  THREAD_PRIORITY_HIGHEST
+      if (-1 != ResumeThread(hthreadWorker))
+      {
+      int iInverseAgility = 26 + 33; // former iPatienceQuota
+      int iPatience = iInverseAgility;
+      // Konstantin, 14.01.2002 17:21:32
+      context.signal = 0;            // only now the worker thread can get this thread context
+      while (!context.signal && iPatience > 0)
+      {
+      if(!SwitchToThread())
+      Sleep(10); // forces switch to another thread
+      iPatience--; // wait in spin
+      }
+      //char sz[200];
+      //sprintf(sz, "engine::stack_trace patience near down %u%%\n", iPatience * 100 / iInverseAgility);
+      //::OutputDebugString(sz);
+      }
+      else
+      {
+      VERIFY(TerminateThread(hthreadWorker, 0));
+      }
+      VERIFY(CloseHandle(hthreadWorker));
       }
       VERIFY(CloseHandle(context.thread));
 
       if (context.signal == -1)
       {
-         _ASSERTE(0);
-         return false;
+      _ASSERTE(0);
+      return false;
       }*/
       // now it can print stack
-      engine symengine(0);
-      stack_trace(str, symengine, &context, uiSkip, false, pszFormat);
+
+      m_uiAddress = 0;
+
+      stack_trace(str, &context, uiSkip, false, pszFormat);
+
       return true;
+
    }
 
-   bool engine::stack_trace(vsstring & str, engine& symengine,
-      CONTEXT * pcontext, dword_ptr uiSkip, bool bSkip, const char * pszFormat)
+   bool engine::stack_trace(vsstring & str, CONTEXT * pcontext, dword_ptr uiSkip, bool bSkip, const char * pszFormat)
    {
-      if (!symengine.stack_first(pcontext))
+
+      if (!stack_first(pcontext))
          return false;
-
-      //   char buf [512] = {0};
-      //   char fbuf[512] = {0};
-      //   char sbuf[512] = {0};
-
-      vsstring strBuf;
-      vsstring strFile;
-      vsstring strSymbol;
 
       do
       {
          if (!uiSkip && !bSkip)
          {
-            dword_ptr uiLineNumber = 0;
-            dword_ptr uiLineDisplacement = 0;
-            dword_ptr uiSymbolDisplacement = 0;
-            strFile.clear();
-            strSymbol.clear();
 
-            for (char * p = (char *)pszFormat; *p; ++p)
-            {
-               if (*p == '%')
-               {
-                  ++p; // skips '%'
-                  char c = *p;
-                  switch (c)
-                  {
-                  case 'm':
-                     if(symengine.module(strBuf))
-                     {
-                        str += strBuf;
-                     }
-                     else
-                     {
-                        str += "?.?";
-                     }
-                     break;
-                  case 'f':
-                     if(strFile.is_empty())
-                     {
-                        if(!symengine.fileline(strFile, &uiLineNumber, &uiLineDisplacement))
-                        {
-                           strFile = " ";
-                        }
-                     }
-                     str += strFile;
-                     break;
-                  case 'l':
-                     if(strFile.is_empty())
-                     {
-                        if(!symengine.fileline(strFile, &uiLineNumber, &uiLineDisplacement))
-                        {
-                           strFile = " ";
-                        }
-                     }
-                     if (*(p + 1) == 'd')
-                     {
-                        strBuf = i64toa_dup(uiLineDisplacement);
-                        str += strBuf;
-                        ++p;
-                     }
-                     else
-                     {
-                        strBuf = i64toa_dup(uiLineNumber);
-                        str += strBuf;
-                     }
-                     break;
-                  case 's':
-                     if(strSymbol.is_empty())
-                     {
-                        if(!symengine.symbol(strSymbol, &uiSymbolDisplacement))
-                        {
-                           strSymbol = "?()";
-                        }
-                     }
-                     if (*(p + 1) == 'd')
-                     {
-                        strBuf = i64toa_dup(uiSymbolDisplacement);
-                        str += strBuf;
-                        ++p;
-                     }
-                     else
-                     {
-                        str += strSymbol;
-                     }
-                     break;
-                  case '%':
-                     str += '%';
-                     break;
-                  default:
-                     str += '%';
-                     str += c;
-                     break;
-                  }
-               }
-               else
-               {
-                  str += *p;
-               }
-            }
+            str += get_frame(pszFormat);
+
          }
          else
          {
             --uiSkip;
          }
       }
-      while (symengine.stack_next());
+      while(stack_next());
+
       return true;
+
    }
+
+   vsstring engine::get_frame(const char * pszFormat)
+   {
+
+      vsstring str;
+
+      vsstring strBuf;
+      vsstring strFile;
+      vsstring strSymbol;
+
+      
+      DWORD uiLineDisplacement = 0;
+      DWORD uiLineNumber = 0;
+      DWORD64 uiSymbolDisplacement = 0;
+
+      
+      for (char * p = (char *)pszFormat; *p; ++p)
+      {
+         if (*p == '%')
+         {
+            ++p; // skips '%'
+            char c = *p;
+            switch (c)
+            {
+            case 'm':
+               if(module(strBuf))
+               {
+                  str += strBuf;
+               }
+               else
+               {
+                  str += "?.?";
+               }
+               break;
+            case 'f':
+               if(strFile.is_empty())
+               {
+                  if(!fileline(strFile, &uiLineNumber, &uiLineDisplacement))
+                  {
+                     strFile = " ";
+                  }
+               }
+               str += strFile;
+               break;
+            case 'l':
+               if(strFile.is_empty())
+               {
+                  if(!fileline(strFile, &uiLineNumber, &uiLineDisplacement))
+                  {
+                     strFile = " ";
+                  }
+               }
+               if (*(p + 1) == 'd')
+               {
+                  strBuf = i64toa_dup(uiLineDisplacement);
+                  str += strBuf;
+                  ++p;
+               }
+               else
+               {
+                  strBuf = i64toa_dup(uiLineNumber);
+                  str += strBuf;
+               }
+               break;
+            case 's':
+               if(strSymbol.is_empty())
+               {
+                  if(!symbol(strSymbol, &uiSymbolDisplacement))
+                  {
+                     strSymbol = "?()";
+                  }
+               }
+               if (*(p + 1) == 'd')
+               {
+                  strBuf = i64toa_dup(uiSymbolDisplacement);
+                  str += strBuf;
+                  ++p;
+               }
+               else
+               {
+                  str += strSymbol;
+               }
+               break;
+            case '%':
+               str += '%';
+               break;
+            default:
+               str += '%';
+               str += c;
+               break;
+            }
+         }
+         else
+         {
+            str += *p;
+         }
+
+      }
+
+      return str;
+
+   }
+
 
 
 } // namespace exception

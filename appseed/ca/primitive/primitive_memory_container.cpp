@@ -56,7 +56,7 @@ namespace primitive
             if(!m_spmemory->allocate(dwNewLength))
             {
 
-               throw memory_exception();
+               throw memory_exception(get_app());
 
             }
 
@@ -73,7 +73,7 @@ namespace primitive
          if(m_spmemory.is_null())
          {
          
-            throw memory_exception();
+            throw memory_exception(get_app());
 
          }
 
@@ -84,7 +84,7 @@ namespace primitive
       if(!m_spmemory->allocate(dwNewLength))
       {
 
-         throw memory_exception();
+         throw memory_exception(get_app());
 
       }
 
@@ -98,7 +98,7 @@ namespace primitive
          m_spmemory(new primitive::memory(this));
          if(m_spmemory.is_null())
          {
-            throw new memory_exception;
+            throw new memory_exception(get_app());
          }
          m_spmemory->m_dwAllocationAddUp = m_dwAllocationAddUp;
       }

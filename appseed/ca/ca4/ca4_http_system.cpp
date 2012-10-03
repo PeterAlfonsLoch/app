@@ -9,7 +9,10 @@ namespace ca4
    {
 
 
-      system::system()
+      system::system(::ca::application * papp) :
+         ca(papp),
+         m_mutexPac(papp),
+         m_mutexProxy(papp)
       {
       }
 

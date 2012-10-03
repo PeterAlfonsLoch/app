@@ -1,8 +1,11 @@
 #include "framework.h"
 
 
-range_error::range_error(const char * pszError) :
-   error_exception(pszError)
+range_error::range_error(::ca::application * papp, const char * pszError) :
+   ca(papp),
+   ::call_stack(papp),
+   ::base_exception(papp),
+   error_exception(papp, pszError)
 {
 }
 

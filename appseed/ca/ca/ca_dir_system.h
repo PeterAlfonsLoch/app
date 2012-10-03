@@ -39,7 +39,7 @@ namespace ca
          {
          public:
 
-
+            
             bool        m_bIsDir;
             DWORD       m_dwLastCheck;
 
@@ -57,7 +57,7 @@ namespace ca
             DWORD             m_dwTimeOut;
 
 
-            is_dir_map();
+            is_dir_map(::ca::application * papp);
 
 
             bool lookup(const string & strPath, bool &bIsDir);

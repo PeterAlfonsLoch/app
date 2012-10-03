@@ -33,6 +33,9 @@
 #include <imagehlp.h>
 
 
+class mutex;
+
+
 namespace exception
 {
 
@@ -42,20 +45,28 @@ namespace exception
    {
    public:
 
-      bool  m_bSkip;
+
+      bool                 m_bSkip;
+      mutex *              m_pmutex;
+
+      DWORD64              m_uiAddress;
+      bool                 m_bOk;
+
+      STACKFRAME64 *       m_pstackframe;
+      CONTEXT *            m_pcontext;
 
 
-      engine(::ca::application * papp, unsigned int);
+      engine(::ca::application * papp);
       ~engine();
 
 
-      void address(dword_ptr a)      { m_uiAddress = a; }
-      dword_ptr address() const   { return m_uiAddress; }
+      void address(DWORD64 a)      { m_uiAddress = a; }
+      DWORD64 address() const   { return m_uiAddress; }
 
       // symbol handler queries
       size_t      module  (vsstring & str);
-      size_t      symbol  (vsstring & str, dword_ptr * = 0);
-      index       fileline(vsstring & str, dword_ptr *, dword_ptr * = 0);
+      size_t      symbol  (vsstring & str, DWORD64 * pdisplacement = 0);
+      index       fileline(vsstring & str, DWORD * pline, DWORD * pdisplacement= 0);
 
       // stack walk
       bool stack_first (CONTEXT* pctx);
@@ -74,24 +85,19 @@ namespace exception
          "%f(%l) : %m at %s\n"
          "%m.%s + %sd bytes, in %f:line %l\n"
       */
-      static bool stack_trace(vsstring & str, CONTEXT *, dword_ptr uiSkip = 0, const char * pszFormat = default_format());
-      static bool stack_trace(vsstring & str, dword_ptr uiSkip = 1, const char * pszFormat = default_format());
-      static bool stack_trace(vsstring & str, engine&, CONTEXT *, dword_ptr uiSkip = 1, bool bSkip = false, const char * pszFormat = default_format());
-      static DWORD WINAPI stack_trace_ThreadProc(void * lpvoidParam);
+      bool stack_trace(vsstring & str, CONTEXT *, dword_ptr uiSkip = 0, const char * pszFormat = default_format());
+      bool stack_trace(vsstring & str, dword_ptr uiSkip = 1, const char * pszFormat = default_format());
+      bool stack_trace(vsstring & str, CONTEXT *, dword_ptr uiSkip = 1, bool bSkip = false, const char * pszFormat = default_format());
+      DWORD WINAPI stack_trace_ThreadProc(void * lpvoidParam);
 
       static const char * default_format(){ return "%f(%l) : %m at %s\n"; }
-      static bool get_line_from_address(HANDLE hProc, dword_ptr uiAddress, dword_ptr * puiDisplacement, IMAGEHLP_LINE * pline);
-      static size_t get_module_basename(HMODULE hmodule, vsstring & strName);
+      bool get_line_from_address(HANDLE hProc, DWORD64 uiAddress, DWORD * puiDisplacement, IMAGEHLP_LINE64 * pline);
+      size_t get_module_basename(HMODULE hmodule, vsstring & strName);
 
-
+      vsstring get_frame(const char * pszFormat);
 
       bool check();
 
-      dword_ptr      m_uiAddress;
-      bool           m_bOk;
-
-      STACKFRAME64 *   m_pstackframe;
-      CONTEXT *      m_pcontext;
 
 
       class CLASS_DECL_ca guard :

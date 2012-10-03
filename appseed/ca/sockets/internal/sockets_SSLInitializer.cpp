@@ -194,7 +194,7 @@ namespace sockets
       mutex * pmutex;
       if(!mmap.Lookup(n, pmutex))
       {
-         mmap[n] = new mutex;
+         mmap[n] = new mutex(::ca::get_thread_app());
       }
       if (mode & CRYPTO_LOCK)
       {

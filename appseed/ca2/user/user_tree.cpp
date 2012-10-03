@@ -37,7 +37,7 @@ namespace user
          return;
 
       if(!ex1::tree::initialize())
-         throw simple_exception();
+         throw simple_exception(get_app());
 
       m_pimagelist = new image_list(get_app());
       m_pimagelist->create(16, 16, 0, 10, 10);

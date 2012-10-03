@@ -38,7 +38,8 @@ namespace sockets
       m_content_ptr(0),
       m_b_complete(false),
       m_b_close_when_complete(false),
-      m_memoryfile(h.get_app())
+      m_memoryfile(h.get_app()),
+      m_mutexData(h.get_app())
    {
 
 
@@ -59,7 +60,8 @@ namespace sockets
       m_content_ptr(0),
       m_b_complete(false),
       m_b_close_when_complete(false),
-      m_memoryfile(h.get_app())
+      m_memoryfile(h.get_app()),
+      m_mutexData(h.get_app())
    {
       
       string strRequestUri;

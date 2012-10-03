@@ -15,7 +15,8 @@ namespace userstack
       m_dib_veriwell(papp),
       m_dib_winactionarea(papp),
       m_font(papp),
-      m_dibBk(papp)
+      m_dibBk(papp),
+      m_mutexDraw(papp)
    {
       m_font->CreatePointFont(84, "Geneva");
       m_bDestroy = false;

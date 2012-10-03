@@ -94,7 +94,7 @@ public:
    standard_exception(const standard_exception & se) :
       ca(((standard_exception &) se).get_app()),
       ::call_stack(((standard_exception &) se).get_app()),
-      ::base_exception(((standard_exception &) se).get_app()),
+      ::base_exception(se),
       m_ppointers(se.m_ppointers)
    {
    
@@ -104,7 +104,10 @@ public:
    standard_exception(::ca::application * papp, siginfo_t * psiginfo, void * pc) : ca(papp), m_siginfo(*psiginfo), m_ucontext(*(ucontext_t *)pc) { _ASSERTE(psiginfo != 0); }
    standard_exception(const standard_exception& se) : ca(((standard_exception &) se).get_app()), m_siginfo(se.m_siginfo), m_ucontext(se.m_ucontext) {}
 #endif
-   virtual ~standard_exception();
+   virtual ~standard_exception()
+   {
+
+   }
 
 
 };

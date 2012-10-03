@@ -59,10 +59,10 @@ void HRCParserImpl::loadFileType(file_type *filetype)
    {
       loadSource(thisType->m_strSourceLocation, thisType->m_strSource);
    }
-   catch(InputSourceException &e)
+   catch(ex1::file_exception &e)
    {
       if (errorHandler != NULL){
-         errorHandler->fatalError("Can't open source stream: " +e.getMessage());
+         errorHandler->fatalError("Can't open source stream: " +e.get_message());
       }
       thisType->loadBroken = true;
    }catch(HRCParserException &e){
@@ -159,13 +159,13 @@ void HRCParserImpl::parseHRC(const char * psz)
    doc.load(psz);
    if(doc.get_root() == NULL)
    {
-      throw HRCParserException(string("main '<hrc>' block not found"));
+      throw HRCParserException(get_app(), string("main '<hrc>' block not found"));
    }
    xml::node & types = *doc.get_root();
 
    if(types.get_name() != "hrc")
    {
-      throw HRCParserException(string("main '<hrc>' block not found"));
+      throw HRCParserException(get_app(), string("main '<hrc>' block not found"));
    }
 
    if(versionName.is_empty())

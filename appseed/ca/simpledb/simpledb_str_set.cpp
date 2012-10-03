@@ -4,11 +4,12 @@
 db_str_set::db_str_set(db_server * pserver) : 
    ca(pserver->get_app()),
    db_set(pserver, "stringtable"),
-   m_handler(pserver->get_app())
+   m_handler(pserver->get_app()),
+   m_mutex(pserver->get_app())
 {
 
    m_pqueue       = NULL;
-   
+
    m_phttpsession = NULL;
 
    m_pmysqldbUser = pserver->m_pmysqldbUser;
@@ -45,36 +46,37 @@ db_str_set::~db_str_set()
 }
 
 
-      db_str_set::queue_item::queue_item()
-      {
-      }
+db_str_set::queue_item::queue_item()
+{
+}
 
-      db_str_set::queue_item::queue_item(const queue_item & item)
-      {
-         operator =(item);
-      }
-      db_str_set::queue_item::~queue_item()
-      {
-      }
+db_str_set::queue_item::queue_item(const queue_item & item)
+{
+   operator =(item);
+}
+db_str_set::queue_item::~queue_item()
+{
+}
 
 
-      db_str_set::queue_item & db_str_set::queue_item::operator = (const queue_item & item)
-      {
-         if(this != &item)
-         {
-            m_strKey = item.m_strKey;
-            m_dwTimeout = item.m_dwTimeout;
-            m_str = item.m_str;
-         }
-         return *this;
-      }
+db_str_set::queue_item & db_str_set::queue_item::operator = (const queue_item & item)
+{
+   if(this != &item)
+   {
+      m_strKey = item.m_strKey;
+      m_dwTimeout = item.m_dwTimeout;
+      m_str = item.m_str;
+   }
+   return *this;
+}
 
 
 db_str_set::sync_queue::sync_queue(::ca::application * papp) :
    ca(papp),
    thread(papp),
    simple_thread(papp),
-   m_handler(papp)
+   m_handler(papp),
+   m_mutex(papp)
 {
    m_phttpsession = NULL;
 
@@ -98,83 +100,83 @@ int db_str_set::sync_queue::run()
       while(true)
       {
 
-   repeat:;
+repeat:;
 
-         {
+       {
 
-            single_lock sl(&m_mutex, true);
+          single_lock sl(&m_mutex, true);
 
-            if(m_itema.get_size() <= 0)
-            {
-               Sleep(1984);
-               goto repeat;
-            }
+          if(m_itema.get_size() <= 0)
+          {
+             Sleep(1984);
+             goto repeat;
+          }
 
-            if(&ApplicationUser == NULL)
-            {
-               Sleep(1984 + 1977);
-               goto repeat;
-            }
+          if(&ApplicationUser == NULL)
+          {
+             Sleep(1984 + 1977);
+             goto repeat;
+          }
 
-            for(int i = 1; i < m_itema.get_size(); i++)
-            {
-               if(m_itema[i].m_strKey == m_itema[0].m_strKey)
-               {
-                  m_itema.remove_at(0);
-                  goto repeat;
-               }
-            }
+          for(int i = 1; i < m_itema.get_size(); i++)
+          {
+             if(m_itema[i].m_strKey == m_itema[0].m_strKey)
+             {
+                m_itema.remove_at(0);
+                goto repeat;
+             }
+          }
 
-            try
-            {
+          try
+          {
 
-               gen::property_set post(get_app());
-               gen::property_set headers(get_app());
-               gen::property_set set(get_app());
+             gen::property_set post(get_app());
+             gen::property_set headers(get_app());
+             gen::property_set set(get_app());
 
-               ca4::http::e_status estatus;
+             ca4::http::e_status estatus;
 
-               string strUrl;
+             string strUrl;
 
-               set["interactive_user"] = true;
-
-               
-               if(strApiServer.is_empty())
-               {
-
-                  strApiServer = ApplicationUser.get_ca2_server("api");
+             set["interactive_user"] = true;
 
 
-               }
+             if(strApiServer.is_empty())
+             {
 
-               
-
-               strUrl = "https://" + strApiServer +"/account/str_set_save?key=";
-               strUrl += System.url().url_encode(m_itema[0].m_strKey);
-               strUrl += "&value=";
-               strUrl += System.url().url_encode(m_itema[0].m_str);
-
-               m_itema.remove_at(0);
-
-               sl.unlock();
+                strApiServer = ApplicationUser.get_ca2_server("api");
 
 
-               m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
-
-               if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
-               {
-                  Sleep(1984);
-                  strApiServer = "";
-                  goto repeat;
-               }
-
-            }
-            catch(...)
-            {
-            }
+             }
 
 
-         }
+
+             strUrl = "https://" + strApiServer +"/account/str_set_save?key=";
+             strUrl += System.url().url_encode(m_itema[0].m_strKey);
+             strUrl += "&value=";
+             strUrl += System.url().url_encode(m_itema[0].m_str);
+
+             m_itema.remove_at(0);
+
+             sl.unlock();
+
+
+             m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
+
+             if(m_phttpsession == NULL || estatus != ca4::http::status_ok)
+             {
+                Sleep(1984);
+                strApiServer = "";
+                goto repeat;
+             }
+
+          }
+          catch(...)
+          {
+          }
+
+
+       }
 
 
       }
@@ -211,13 +213,13 @@ bool db_str_set::remove(const char * lpKey)
 
 bool db_str_set::load(const char * lpKey, string & strValue)
 {
-   
+
    if(m_pdataserver == NULL)
       return false;
 
    if(m_pdataserver->m_bRemote)
    {
-   
+
       item stritem;
 
       if(m_map.Lookup(lpKey, stritem) && stritem.m_dwTimeout > GetTickCount())
@@ -225,7 +227,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
          strValue = stritem.m_str;
          return true;
       }
-   
+
 
       gen::property_set post(get_app());
       gen::property_set headers(get_app());
@@ -248,7 +250,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       }
 
       strValue = string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(),
-                        m_phttpsession->m_memoryfile.get_memory()->get_size());
+         m_phttpsession->m_memoryfile.get_memory()->get_size());
 
 
       stritem.m_dwTimeout = GetTickCount() + 23 * (1984 + 1977);
@@ -260,12 +262,12 @@ bool db_str_set::load(const char * lpKey, string & strValue)
    }
    else if(m_pmysqldbUser != NULL)
    {
-      
+
       try
       {
 
          strValue = m_pmysqldbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + m_strUser + "' AND `key` = '" + m_pmysqldbUser->real_escape_string(lpKey) + "'");
-         
+
          return true;
 
       }
@@ -283,13 +285,13 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       string strKey;
       strKey = lpKey;
       strKey.replace("'", "''");
-   
+
       string strSql;
       strSql.Format(
          "select value FROM stringtable WHERE id = '%s';",
          strKey);
 
-   
+
       slDatabase.lock();
       try
       {
@@ -328,7 +330,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
 
       string strValue(lpcsz);
       strValue.replace("'", "''");
-   
+
       ::sqlite::base * pdb   = db()->GetImplDatabase();
       string strSql;
       string str;
@@ -350,12 +352,12 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
       }
       else
       {
-   
+
          strSql.Format(
             "INSERT INTO stringtable (id, value) values ('%s', '%s');",
             strKey,
             strValue);
-      
+
          pdb->start_transaction();
          if(!m_pdataset->exec(strSql))
          {
@@ -368,12 +370,12 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
    }
    else if(m_pmysqldbUser != NULL)
    {
-	   
+
       string strSql = "REPLACE INTO fun_user_str_set VALUE('" + m_strUser + "', '" + m_pmysqldbUser->real_escape_string(lpKey) + "', '" + m_pmysqldbUser->real_escape_string(lpcsz) + "')";
 
-	   TRACE(strSql);
+      TRACE(strSql);
 
-	   return m_pmysqldbUser->query(strSql) != NULL;
+      return m_pmysqldbUser->query(strSql) != NULL;
 
    }
    else
@@ -382,7 +384,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
 
       if(m_pqueue == NULL)
       {
-         
+
          m_pqueue = new sync_queue(get_app());
          m_pqueue->m_pset = this;
          m_pqueue->Begin();

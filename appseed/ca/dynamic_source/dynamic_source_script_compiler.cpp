@@ -16,7 +16,8 @@ namespace dynamic_source
       ca(papp),
       m_memfileLibError(papp),
       m_folderwatch(papp),
-      m_folderwatchFribox(papp)
+      m_folderwatchFribox(papp),
+      m_mutexLibrary(papp)
    {
 
 #if defined(MEMDLEAK)

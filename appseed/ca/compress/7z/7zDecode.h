@@ -16,7 +16,8 @@ namespace n7z
       }
    };
 
-   class CDecoder
+   class CDecoder :
+      virtual public ::radix::object
    {
       bool _bindInfoExPrevIsDefined;
       CBindInfoEx _bindInfoExPrev;
@@ -29,7 +30,8 @@ namespace n7z
       base_array < ::ca::smart_pointer < ::ca::ca > > _decoders;
       // array_ptr_alloc<::ca::smart_pointer<::compress::coder2_interface> > _decoders2;
    public:
-      CDecoder(bool multiThread);
+      CDecoder(::ca::application * papp,  bool multiThread);
+      virtual ~CDecoder();
       HRESULT Decode(
          ::compress::codecs_info_interface * codecsInfo, const base_array < ::compress::codec_info_ex > *externalCodecs,
          ex1::byte_input_stream *inStream,

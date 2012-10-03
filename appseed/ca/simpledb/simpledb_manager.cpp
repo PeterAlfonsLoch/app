@@ -8,7 +8,10 @@ namespace simpledb
    manager::manager(::ca::application * papp) :
       ca(papp),
       thread(papp),
-      ::ca::message_window_simple_callback(papp)
+      ::ca::message_window_simple_callback(papp),
+      m_mutexSession(papp),
+      m_mutexTagId(papp),
+      m_mutexTagName(papp)
    {
       m_dwBuildTimeWindow = 84;
       m_dwBuildTimeRandomWindow = 77 * 5;

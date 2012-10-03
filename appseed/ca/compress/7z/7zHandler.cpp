@@ -408,7 +408,7 @@ ex1::HRes handler::Open(::ex1::byte_input_stream *stream,
       getTextPassword = dynamic_cast < ::crypto::get_text_password_interface * > (openArchiveCallbackTemp.m_p);
     }
     #endif
-    CInArchive archive;
+    CInArchive archive(get_app());
     RINOK(archive.Open(stream, maxCheckStartPosition));
     #ifndef _NO_CRYPTO
     _passwordIsDefined = false;

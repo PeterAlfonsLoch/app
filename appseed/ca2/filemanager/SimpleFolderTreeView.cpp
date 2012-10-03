@@ -290,7 +290,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(pobj);
 
       if(!ex1::tree::initialize())
-         throw simple_exception();
+         throw simple_exception(get_app());
 
       m_pimagelist = System.shellimageset().GetImageList16();
       m_iDefaultImage = System.shellimageset().GetImage(

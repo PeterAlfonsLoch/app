@@ -6,7 +6,9 @@ namespace ex1
 
 
    file_exception::file_exception(::ca::application * papp, int cause , LONG lOsError, const char * lpszArchiveName) :
-      ca(papp)
+      ca(papp),
+      ::call_stack(papp),
+      ::ex1::exception(papp)
    {
       Construct(cause, lOsError, lpszArchiveName);
    }
@@ -112,6 +114,18 @@ namespace ex1
 
    }
 
+   string file_exception::get_friendly_message(PUINT pnHelpContext) const
+   {
+
+      string str;
+
+      if(!get_friendly_error_message(str, pnHelpContext))
+         return "";
+
+      return str;
+
+   }
+
 
    bool file_exception::get_friendly_error_message(string & str, PUINT pnHelpContext) const
    {
@@ -157,6 +171,19 @@ namespace ex1
       str = strMessage;
 
       return TRUE;
+   }
+
+
+   string file_exception::get_message(PUINT pnHelpContext) const
+   {
+
+      string str;
+
+      if(!GetErrorMessage(str, pnHelpContext))
+         return "";
+
+      return str;
+
    }
 
 

@@ -10,11 +10,14 @@ namespace radix
       ::radix::thread::s_bAllocReady = bReady;
    }
 
-   thread::thread()
+   thread::thread() :
+      m_mutex(NULL)
    {
    }
 
-   thread::thread(::ca::application * papp)
+   thread::thread(::ca::application * papp) :
+      ca(papp),
+      m_mutex(papp)
    {
       if(papp == NULL)
          return;
@@ -27,7 +30,8 @@ namespace radix
    }
 
    thread::thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
-      ca(papp)
+      ca(papp),
+      m_mutex(papp)
    {
       ::ca::thread_sp::create(papp);
       m_p->set_p(this);

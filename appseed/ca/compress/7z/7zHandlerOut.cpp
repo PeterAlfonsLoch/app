@@ -405,7 +405,7 @@ namespace n7z
       options.RemoveSfxBlock = _removeSfxBlock;
       options.VolumeMode = _volumeMode;
 
-      COutArchive archive;
+      COutArchive archive(get_app());
       CArchiveDatabase newDatabase;
 
       ::ca::smart_pointer < ::crypto::get_text_password_interface > getPassword;

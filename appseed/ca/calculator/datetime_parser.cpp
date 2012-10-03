@@ -8,7 +8,7 @@ namespace datetime
 
    parser::parser(::ca::application * papp, ::user::str_context * pcontext) :
       ca(papp),
-      m_scanner(pcontext)
+      m_scanner(papp, pcontext)
    {
    }
 

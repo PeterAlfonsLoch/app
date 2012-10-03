@@ -29,6 +29,11 @@ static HRESULT WriteBytes(::ex1::writer *stream, const void *data, ::primitive::
 
 namespace n7z
 {
+   COutArchive::COutArchive(::ca::application * papp) :
+      ca(papp)
+   {
+     _outByte.create(1 << 16); 
+   }
 
 
    HRESULT COutArchive::WriteDirect(const void *data, uint32 size)
@@ -805,7 +810,7 @@ namespace n7z
             CCompressionMethodMode encryptOptions;
             encryptOptions.PasswordIsDefined = options->PasswordIsDefined;
             encryptOptions.Password = options->Password;
-            CEncoder encoder(headerOptions.CompressMainHeader ? *options : encryptOptions);
+            CEncoder encoder(get_app(), headerOptions.CompressMainHeader ? *options : encryptOptions);
             base_array<file_size> packSizes;
             array_ptr_alloc<CFolder> folders;
             RINOK(EncodeStream(

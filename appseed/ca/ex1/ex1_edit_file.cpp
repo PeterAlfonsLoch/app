@@ -10,7 +10,7 @@ namespace ex1
    UINT edit_file::Item::read_ch(edit_file * pfile)
    {
       UNREFERENCED_PARAMETER(pfile);
-      throw not_implemented_exception(get_app());
+      throw not_implemented_exception(pfile->get_app());
       return 0;
    }
 
@@ -333,10 +333,10 @@ namespace ex1
       m_pgroupitem = NULL;
 
       if(!ex1::tree_data::initialize_data())
-         throw simple_exception();
+         throw simple_exception(get_app());
 
       if(!ex1::tree::initialize())
-         throw simple_exception();
+         throw simple_exception(get_app());
 
       m_ptreeitem = get_base_item();
       m_ptreeitemFlush = get_base_item();

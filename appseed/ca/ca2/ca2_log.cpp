@@ -11,7 +11,8 @@ namespace ca2
    log::log(::ca::application * papp) :
       ca(papp),
       m_spfile(papp),
-      m_trace(papp)
+      m_trace(papp),
+      m_mutex(papp)
    {
 
 #if defined(WINDOWS)

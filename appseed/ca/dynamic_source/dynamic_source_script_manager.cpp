@@ -17,6 +17,10 @@
 namespace dynamic_source
 {
 
+   script_manager::session::session() :
+      m_mutex(::ca::get_thread_app())
+   {
+   }
 
       script_manager::plugin_map_item::plugin_map_item()
       {
@@ -45,7 +49,23 @@ namespace dynamic_source
    script_manager::script_manager(::ca::application * papp) :
       ca(papp),
       thread(papp),
-      ::ca::message_window_simple_callback(papp)
+      ::ca::message_window_simple_callback(papp),
+      m_mutexIncludeMatches(papp),
+      m_mutexIncludeHasScript(papp),
+      m_mutexIncludeExpandMd5(papp),
+      m_mutexOutLink(papp),
+      m_mutexInLink(papp),
+      m_mutexTunnel(papp),
+      m_mutexSimage(papp),
+      m_mutexSpider(papp),
+      m_mutexRsa(papp),
+      m_mutexSession(papp),
+      m_mutexMusicDbPool(papp),
+      m_mutexCynceDbPool(papp),
+      m_mutexPersistentStr(papp),
+      m_mutexUiRedir(papp),
+      m_mutexTagId(papp),
+      m_mutexTagName(papp)
    {
 
       m_pcache                   = new script_cache(papp);
@@ -406,6 +426,9 @@ namespace dynamic_source
          return bFileExists;
       }
    }
+
+
+
 
    void script_manager::set_include_matches_file_exists(const string & strPath, bool bFileExists)
    {

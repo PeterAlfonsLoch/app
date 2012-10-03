@@ -24,10 +24,11 @@
  }
 
 */
-
 #pragma once
 
-class CLASS_DECL_ca call_stack
+
+class CLASS_DECL_ca call_stack :
+   virtual public ::ca::ca
 {
 public:
 
@@ -37,7 +38,9 @@ public:
 
    call_stack(::ca::application * papp, unsigned int uiSkip = 3);
 
-   static vsstring get(unsigned int uiSkip = 2);
+   call_stack(const ::call_stack & cs);
+
+   vsstring get(unsigned int uiSkip = 2);
 
    const char * stack_trace() const;
 

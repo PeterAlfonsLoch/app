@@ -57,7 +57,7 @@ namespace n7z
       const file_size *inSizeForReduce)
    {
       ex1::HRes hr;
-      _mixerCoderSpec = new ::compress::coder_mixer::CCoderMixer2MT;
+      _mixerCoderSpec = new ::compress::coder_mixer::CCoderMixer2MT(get_app());
       _mixerCoder = _mixerCoderSpec;
       RINOK(_mixerCoderSpec->SetBindInfo(_bindInfo));
       for (int i = 0; i < _options.Methods.get_count(); i++)
@@ -284,8 +284,9 @@ namespace n7z
    }
 
 
-   CEncoder::CEncoder(const CCompressionMethodMode &options):
-   _bindReverseConverter(0),
+   CEncoder::CEncoder(::ca::application * papp, const CCompressionMethodMode &options):
+      ca(papp),
+      _bindReverseConverter(0),
       _constructed(false)
    {
       if (options.is_empty())

@@ -72,7 +72,11 @@ namespace ex1
 
 
 
-   stream_binder::stream_binder()
+   stream_binder::stream_binder(::ca::application * papp) :
+      ca(papp),
+      _allBytesAreWritenEvent(papp),
+      _thereAreBytesToReadEvent(papp),
+      _readStreamIsClosedEvent(papp)
    {
    }
 
@@ -132,7 +136,7 @@ namespace ex1
          _allBytesAreWritenEvent.ResetEvent();
          _thereAreBytesToReadEvent.SetEvent();
 
-         event_collection eva;
+         event_collection eva(get_app());
          eva.add(_allBytesAreWritenEvent);
          eva.add(_readStreamIsClosedEvent);
          if(!eva.wait(false, duration::infinite()).signaled())

@@ -30,10 +30,10 @@ void simple_combo_box::_001GetListText(index iSel, string & str) const
 {
 
    if(iSel < 0)
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
 
    if(iSel >= m_straList.get_count())
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
 
    str = m_straList[iSel];
 

@@ -20,7 +20,7 @@ namespace ex1
       dword_ptr            ProcessedSize;
 
 
-      stream_binder();
+      stream_binder(::ca::application * papp);
       HRes CreateEvents();
 
       virtual void CreateStreams(ex1::reader **inStream, ex1::writer **outStream);

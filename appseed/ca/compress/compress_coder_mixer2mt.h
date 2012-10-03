@@ -38,11 +38,11 @@ namespace compress
       */
 
       class CCoderMixer2MT:
-         public ::compress::coder2_interface,
-         public CCoderMixer2
+         virtual public ::compress::coder2_interface,
+         virtual public CCoderMixer2
       {
          CBindInfo _bindInfo;
-         base_array < ::ex1::stream_binder > _streamBinders;
+         array_app_alloc < ::ex1::stream_binder > _streamBinders;
          int _progressCoderIndex;
 
          void AddCoderCommon();
@@ -50,6 +50,9 @@ namespace compress
          HRESULT ReturnIfError(HRESULT code);
       public:
          array_app_alloc<CCoder2> _coders;
+
+
+         CCoderMixer2MT(::ca::application * papp);
 
          ex1::HRes Code(::ex1::reader **inStreams,
             const file_size **inSizes,

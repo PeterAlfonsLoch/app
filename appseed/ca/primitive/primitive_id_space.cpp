@@ -4,7 +4,7 @@
 
 id_space::id_space()
 {
-   m_pmutex = new mutex();
+   m_pmutex = new mutex(::ca::get_thread_app());
 }
 
 // id_space is static, it goes aways only and with the application
@@ -322,7 +322,7 @@ bool id_space::find(const id & t, index & iIndex)
 
 strid_array::strid_array()
 {
-   m_pmutex = new mutex();
+   m_pmutex = new mutex(::ca::get_thread_app());
 }
 
 // id_space is static, it goes aways only and with the application

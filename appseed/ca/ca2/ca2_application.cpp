@@ -833,7 +833,7 @@ namespace ca2
 
       if(bSynch)
       {
-         peventReady = new manual_reset_event();
+         peventReady = new manual_reset_event(get_app());
          m_peventReady = peventReady;
          peventReady->ResetEvent();
       }

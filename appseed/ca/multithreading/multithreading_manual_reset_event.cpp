@@ -17,8 +17,9 @@
 //                      manual_reset_event class with an initial state.
 //
 //*****************************************************************************
-manual_reset_event::manual_reset_event(bool bInitiallyOwn) :
-    ::event(bInitiallyOwn, true)
+manual_reset_event::manual_reset_event(::ca::application * papp, bool bInitiallyOwn) :
+   ca(papp),
+    ::event(papp, bInitiallyOwn, true)
 {
 }
 

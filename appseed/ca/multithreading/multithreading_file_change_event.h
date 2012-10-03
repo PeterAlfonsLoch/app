@@ -29,7 +29,7 @@ public:
 	///				it monitors only the specified directory
 	///  \param		filter filter conditions that satisfy a change notification wait
 	///				can take values described by enum filter
-	file_change_event (const char * path, bool watchsubtree, DWORD filter);
+	file_change_event (::ca::application * papp, const char * path, bool watchsubtree, DWORD filter);
 
 	///  \brief		destructor
 	~file_change_event();

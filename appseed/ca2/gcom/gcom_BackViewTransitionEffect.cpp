@@ -13,7 +13,9 @@ namespace gcom
       TransitionEffect::TransitionEffect(Main & view) :
          ::ca::ca(view.get_app()),
          Helper(view),
-         m_tool001(view)
+         m_tool001(view),
+         m_eventStartTransition(view.get_app()),
+         m_eventThreadExit(view.get_app())
       {
          m_bRun = true;
          m_eventThreadExit.ResetEvent();
@@ -1858,7 +1860,7 @@ namespace gcom
       {
          TransitionEffect * peffect = (TransitionEffect *) lpParameter;
          srand((unsigned int) time(NULL));
-         event event;
+         event event(peffect->get_app());
          MMRESULT mmr;
          int iResolution = 25;
          UINT uiRet = 0;

@@ -7,14 +7,15 @@
 #endif
 
 
-event::event(bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute)
+event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute) :
+   ca(papp)
 {
 #ifdef WINDOWS
 
    m_object = ::CreateEvent(lpsaAttribute, bManualReset, bInitiallyOwn, pstrName);
 
    if(m_object == NULL)
-      throw resource_exception();
+      throw resource_exception(papp);
 
 #else
 
@@ -160,7 +161,7 @@ void event::wait ()
 #ifdef WINDOWS
 
 	if ( ::WaitForSingleObject(item(), INFINITE) != WAIT_OBJECT_0 )
-		throw runtime_error("gen::pal::Event::wait: failure");
+		throw runtime_error(get_app(), "gen::pal::Event::wait: failure");
 
 #else
 

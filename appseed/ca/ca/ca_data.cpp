@@ -38,7 +38,8 @@ namespace ca
    }
 
    data::data(::ca::application * papp) :
-      ca(papp)
+      ca(papp),
+      m_mutex(papp)
    {
    }
 

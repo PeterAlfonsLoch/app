@@ -6,7 +6,8 @@ namespace gen
 
 
    command_thread::command_thread(::ca::application * papp) :
-      ca(papp)
+      ca(papp),
+      m_mutex(papp)
    {
       m_varTopicQuery.propset().set_app(papp);
    }

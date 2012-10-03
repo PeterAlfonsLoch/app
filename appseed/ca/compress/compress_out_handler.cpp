@@ -193,6 +193,11 @@ namespace compress
       m.Props[propID] = value;
    }
 
+   out_handler::out_handler(::ca::application * papp) :
+      ca(papp)
+   {
+   }
+
    void out_handler::SetCompressionMethod2(COneMethodInfo &oneMethodInfo
 #ifndef _7ZIP_ST
       , uint32 numThreads

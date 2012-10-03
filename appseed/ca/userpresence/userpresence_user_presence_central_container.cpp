@@ -32,7 +32,7 @@ namespace userpresence
       m_pcentral = new presence_central(get_app());
 
       if(m_pcentral == NULL)
-         throw memory_exception();
+         throw memory_exception(get_app());
 
 
       if(!m_pcentral->initialize())

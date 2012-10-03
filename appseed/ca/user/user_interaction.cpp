@@ -2719,6 +2719,14 @@ ExitModal:
 
    }
 
+
+   interaction::timer_array::timer_array(::ca::application * papp) :
+      ca(papp),
+      m_mutex(papp)
+   {
+   }
+
+
    void interaction::timer_array::on_delete(interaction * pui)
    {
       unset(pui);

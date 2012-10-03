@@ -9,7 +9,7 @@ class CLASS_DECL_ca range_error :
 public:
    
    
-   range_error(::ca::application * papp, char * pszError);
+   range_error(::ca::application * papp, const char * pszError);
    virtual ~range_error();
 
 

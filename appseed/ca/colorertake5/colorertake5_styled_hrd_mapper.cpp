@@ -36,14 +36,14 @@ void StyledHRDMapper::loadRegionMappings(ex1::byte_input_stream & istream)
 
    if(!hbasedoc.load(str))
    {
-      throw exception(string("Error loading HRD file"));
+      throw exception(get_app(), "Error loading HRD file");
    }
 
    xml::node & hbase = *hbasedoc.get_root();
 
    if(hbase.get_name() != "hrd")
    {
-      throw exception(string("Error loading HRD file"));
+      throw exception(get_app(), "Error loading HRD file");
    }
 
    for(xml::node *curel = hbase.first_child(); curel; curel = curel->get_next_sibling())

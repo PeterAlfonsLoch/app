@@ -710,7 +710,7 @@ void document_manager::request(::ca::create_context * pcreatecontext)
 
    if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())
    {
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
    }
 
    // find the highest confidence

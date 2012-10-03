@@ -51,7 +51,8 @@ namespace n7z
       {}
    };
 
-   class COutArchive
+   class COutArchive :
+      virtual public ::radix::object
    {
    public:
       uint64 _prefixHeaderPos;
@@ -117,7 +118,7 @@ namespace n7z
       HRESULT WriteFinishHeader(const CFinishHeader &h);
       ::ca::smart_pointer < ::ex1::byte_output_stream > Stream;
 
-      COutArchive() { _outByte.create(1 << 16); }
+      COutArchive(::ca::application * papp);
       ::ca::smart_pointer < ::ex1::writer > SeqStream;
       HRESULT Create(::ex1::writer *stream, bool endMarker);
       void Close();

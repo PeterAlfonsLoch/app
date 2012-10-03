@@ -112,7 +112,8 @@ namespace n7z
 
    const uint32 kHeaderSize = 32;
 
-   class CInArchive
+   class CInArchive :
+      virtual ::radix::object
    {
       friend class CStreamSwitch;
 
@@ -210,6 +211,10 @@ namespace n7z
          ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
          );
    public:
+
+      CInArchive(::ca::application * papp);
+      virtual ~CInArchive();
+
       HRESULT Open(::ex1::byte_input_stream *stream, const file_position *searchHeaderSizeLimit); // S_FALSE means is not archive
       void Close();
 

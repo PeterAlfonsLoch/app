@@ -18,7 +18,7 @@
 
 void CLASS_DECL_ca __cdecl _ca2_purecall_()
 {
-    throw simple_exception();
+    throw simple_exception(::ca::get_thread_app());
 }
 
 namespace ex1

@@ -193,7 +193,10 @@ namespace radix
    const char application::gen_PreviewEntry[] = "PreviewPages";
 
    application::application() :
-      ::radix::thread(NULL)
+      ::radix::thread(NULL),
+      m_mutexMatterLocator(this),
+      m_mutexObjectLock(this),
+      m_mutexObjectEvent(this)
    {
 
       ::ca::profiler::initialize();
@@ -1095,13 +1098,13 @@ namespace radix
          bResourceException = false;
          try
          {
-            m_pmutexGlobal = new mutex(FALSE, get_global_mutex_name(), lpsa);
+            m_pmutexGlobal = new mutex(this, FALSE, get_global_mutex_name(), lpsa);
          }
          catch(resource_exception &)
          {
             try
             {
-               m_pmutexGlobal = new mutex(FALSE, get_global_mutex_name());
+               m_pmutexGlobal = new mutex(this, FALSE, get_global_mutex_name());
             }
             catch(resource_exception &)
             {
@@ -1123,13 +1126,13 @@ namespace radix
             bResourceException = false;
             try
             {
-               m_pmutexGlobalId = new mutex(FALSE, get_global_id_mutex_name(), lpsa);
+               m_pmutexGlobalId = new mutex(this, FALSE, get_global_id_mutex_name(), lpsa);
             }
             catch(resource_exception &)
             {
                try
                {
-                  m_pmutexGlobalId = new mutex(FALSE, get_global_id_mutex_name());
+                  m_pmutexGlobalId = new mutex(this, FALSE, get_global_id_mutex_name());
                }
                catch(resource_exception &)
                {
@@ -1148,13 +1151,13 @@ namespace radix
          bResourceException = false;
          try
          {
-            m_pmutexLocal = new mutex(FALSE, get_local_mutex_name(), lpsa);
+            m_pmutexLocal = new mutex(this, FALSE, get_local_mutex_name(), lpsa);
          }
          catch(resource_exception &)
          {
             try
             {
-               m_pmutexLocal = new mutex(FALSE, get_local_mutex_name());
+               m_pmutexLocal = new mutex(this, FALSE, get_local_mutex_name());
             }
             catch(resource_exception & )
             {
@@ -1174,13 +1177,13 @@ namespace radix
             bResourceException = false;
             try
             {
-               m_pmutexLocalId = new mutex(FALSE, get_local_id_mutex_name(), lpsa);
+               m_pmutexLocalId = new mutex(this, FALSE, get_local_id_mutex_name(), lpsa);
             }
             catch(resource_exception &)
             {
                try
                {
-                  m_pmutexLocalId = new mutex(FALSE, get_local_id_mutex_name());
+                  m_pmutexLocalId = new mutex(this, FALSE, get_local_id_mutex_name());
                }
                catch(resource_exception &)
                {
@@ -2829,7 +2832,7 @@ namespace radix
       mutex * pmutex;
       if(!m_mapObjectMutex.Lookup(pobject, pmutex))
       {
-         pmutex = new mutex();
+         pmutex = new mutex(this);
          m_mapObjectMutex.set_at(pobject, pmutex);
       }
       return pmutex;
@@ -2841,7 +2844,7 @@ namespace radix
       mutex * pmutex = get_mutex(pobject);
 
       if(pmutex == NULL)
-         throw resource_exception();
+         throw resource_exception(this);
 
       pmutex->wait();
 
@@ -2897,7 +2900,7 @@ namespace radix
       event * pevent;
       if(!peventmap->Lookup(iEvent, pevent))
       {
-         pevent = new event();
+         pevent = new event(this);
          peventmap->set_at(iEvent, pevent);
       }
       return pevent;

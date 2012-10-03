@@ -55,6 +55,8 @@ namespace user
          index                               m_iItem;
 
 
+         timer_array(::ca::application * papp);
+
 
          virtual void on_delete(interaction * poc);
          uint_ptr set(interaction * pguie, uint_ptr uiId, UINT uiElapse);

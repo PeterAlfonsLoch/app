@@ -30,7 +30,8 @@ namespace sockets
       stream_socket(h),
       tcp_socket(h, 32000, 32000),
       m_in(NULL),
-      m_out(NULL)
+      m_out(NULL),
+      m_eventFinished(h.get_app())
    {
    }
 

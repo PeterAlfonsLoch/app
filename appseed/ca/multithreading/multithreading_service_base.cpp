@@ -15,7 +15,7 @@
 //
 // The single, static service instance pointer.
 //
-service_base* service_base::m_service = 0;
+service_base* service_base::s_pservice = 0;
 
 //*****************************************************************************
 //
@@ -66,9 +66,9 @@ service_base::~service_base()
 void service_base::run(service_base& service)
 {
 
-   ASSERT(0 == m_service);
+   ASSERT(0 == s_pservice);
 
-   m_service = &service;
+   s_pservice = &service;
 
 #ifdef WINDOWS
 
@@ -87,7 +87,7 @@ void service_base::run(service_base& service)
    if (!::StartServiceCtrlDispatcherW(serviceTable))
    {
 
-      throw last_error_exception();
+      throw last_error_exception(s_pservice->get_app());
 
    }
 
@@ -157,18 +157,18 @@ void service_base::SetServiceStatus()
 
 #ifdef DEBUG
 
-    if (0 != m_service)
+    if(s_pservice != NULL)
     {
 
 #endif
 
-        ASSERT(0 != m_service);
+        ASSERT(s_pservice != NULL);
 
 #ifdef WINDOWS
 
         if (!::SetServiceStatus(m_handle, &m_status))
         {
-           throw last_error_exception();
+           throw last_error_exception(s_pservice->get_app());
         }
 
 #endif
@@ -215,29 +215,28 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount,
     // process terminate. The SCM will diligently log this event.
     //
 
-    ASSERT(0 != m_service);
+    ASSERT(s_pservice != NULL);
 
     if (1 != argumentCount || 0 == arguments || 0 == arguments[0])
     {
-        throw invalid_argument_exception();
+        throw invalid_argument_exception(s_pservice->get_app());
     }
 
-    m_service->m_serviceName = arguments[0];
+    s_pservice->m_serviceName = arguments[0];
 
-    m_service->m_handle = ::RegisterServiceCtrlHandler("",
-                                                       ServiceHandler);
+    s_pservice->m_handle = ::RegisterServiceCtrlHandler("", ServiceHandler);
 
-    if (0 == m_service->m_handle)
+    if(s_pservice->m_handle = NULL)
     {
-       throw last_error_exception();
+       throw last_error_exception(s_pservice->get_app());
     }
 
-    m_service->SetServiceStatus();
+    s_pservice->SetServiceStatus();
 
     try
     {
-        m_service->Start(0);
-        m_service->UpdateState(SERVICE_RUNNING);
+        s_pservice->Start(0);
+        s_pservice->UpdateState(SERVICE_RUNNING);
     }
     catch (const hresult_exception& e)
     {
@@ -247,7 +246,7 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount,
         // SCM so that it can log the error code.
         //
 
-        m_service->UpdateState(SERVICE_STOPPED, e);
+        s_pservice->UpdateState(SERVICE_STOPPED, e);
     }
 
 
@@ -276,31 +275,31 @@ void WINAPI service_base::ServiceHandler(DWORD control)
         {
             case SERVICE_CONTROL_CONTINUE :
             {
-                m_service->UpdateState(SERVICE_CONTINUE_PENDING);
-                m_service->Start(control);
-                m_service->UpdateState(SERVICE_RUNNING);
+                s_pservice->UpdateState(SERVICE_CONTINUE_PENDING);
+                s_pservice->Start(control);
+                s_pservice->UpdateState(SERVICE_RUNNING);
                 break;
             }
             case SERVICE_CONTROL_PAUSE :
             {
-                m_service->UpdateState(SERVICE_PAUSE_PENDING);
-                m_service->Stop(control);
-                m_service->UpdateState(SERVICE_PAUSED);
+                s_pservice->UpdateState(SERVICE_PAUSE_PENDING);
+                s_pservice->Stop(control);
+                s_pservice->UpdateState(SERVICE_PAUSED);
                 break;
             }
             case SERVICE_CONTROL_SHUTDOWN :
             case SERVICE_CONTROL_STOP :
             {
-                m_service->UpdateState(SERVICE_STOP_PENDING);
-                m_service->Stop(control);
-                m_service->UpdateState(SERVICE_STOPPED);
+                s_pservice->UpdateState(SERVICE_STOP_PENDING);
+                s_pservice->Stop(control);
+                s_pservice->UpdateState(SERVICE_STOPPED);
                 break;
             }
         }
     }
     catch (const hresult_exception& e)
     {
-        m_service->UpdateState(SERVICE_STOPPED, e);
+        s_pservice->UpdateState(SERVICE_STOPPED, e);
     }
 
 

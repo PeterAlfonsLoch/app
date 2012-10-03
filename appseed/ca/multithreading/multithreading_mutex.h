@@ -22,14 +22,14 @@ public:
 #endif
 
 
-   mutex(bool bInitiallyOwn = FALSE, LPCTSTR lpszName = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
+   mutex(::ca::application * papp, bool bInitiallyOwn = FALSE, LPCTSTR lpszName = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
 
 
 protected:
 
 #ifdef WINDOWS
 
-   mutex(const char * pstrName, HANDLE h);
+   mutex(::ca::application * pappp, const char * pstrName, HANDLE h);
 
 #else
 
@@ -57,7 +57,7 @@ public:
    virtual bool unlock();
 
 
-   static mutex * open_mutex(const char * pstrName);
+   static mutex * open_mutex(::ca::application * papp, const char * pstrName);
 
 
 };

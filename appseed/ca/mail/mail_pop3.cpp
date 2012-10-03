@@ -5,7 +5,8 @@ namespace mail
 
    pop3::pop3(::ca::application * papp) :
       ca(papp),
-      m_handler(papp)
+      m_handler(papp),
+      m_evFinish(papp)
    {
       m_bRun = false;
       m_bSynch = false;

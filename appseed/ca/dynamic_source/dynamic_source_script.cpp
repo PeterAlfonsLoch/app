@@ -15,7 +15,8 @@ namespace dynamic_source
 
    script::script(::ca::application * papp) :
       ca(papp),
-      m_memfileError(papp)
+      m_memfileError(papp),
+      m_mutex(papp)
    {
    }
 
@@ -39,7 +40,8 @@ namespace dynamic_source
 
    ds_script::ds_script(::ca::application * papp) :
       ca(papp),
-      script(papp)
+      script(papp),
+      m_evCreationEnabled(papp)
    {
       m_lpfnCreateInstance    = NULL;
       m_bShouldBuild          = true;

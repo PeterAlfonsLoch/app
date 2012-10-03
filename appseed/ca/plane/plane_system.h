@@ -216,9 +216,9 @@ namespace plane
    public:
 
 
-      sp(::filehandler::handler)       m_spfilehandler;
-      ::cube::cube *                   m_pcube;
-      ::plane::application *           m_pcubeInterface;
+      sp(::filehandler::handler)                   m_spfilehandler;
+      ::cube::cube *                               m_pcube;
+      ::plane::application *                       m_pcubeInterface;
 
 
 #ifdef WINDOWS
@@ -226,90 +226,91 @@ namespace plane
       Gdiplus::GdiplusStartupOutput *  m_pgdiplusStartupOutput;
       ulong_ptr                        m_gdiplusToken;
       ulong_ptr                        m_gdiplusHookToken;*/
-      static mutex                     s_mutexGdiplus;
+      //static mutex                     s_mutexGdiplus;
 #endif
 
-      const str_pool                   m_cstrpool;
+      const str_pool                               m_cstrpool;
 
-      ::collection::strid_map < ::ca::type_info > m_typemap;
+      ::collection::strid_map < ::ca::type_info >  m_typemap;
 
-      FT_Library                       m_ftlibrary;
-      mutex                            m_mutexDelete;
-      ::ca::application_ptra           m_appptra;
-      class ::ca::file::system         m_file;
-      ::ca::dir::system_sp             m_spdir;
-      class ::ca2::stra                m_stra;
-      class ::ca2::url                 m_url;
-      class ::html::html *             m_phtml;
-      class ::xml::xml *               m_pxml;
-      class ::ca2::service             m_service;
-      class ::ca2::install             m_install;
-      ::ca::os_sp                      m_spos;
-      class ::ca2::process             m_process;
-      class ::ca2::datetime *          m_pdatetime;
-      class ::ca2::net                 m_net;
+      FT_Library                                   m_ftlibrary;
+      mutex                                        m_mutexDelete;
+      ::ca::application_ptra                       m_appptra;
+      class ::ca::file::system                     m_file;
+      ::ca::dir::system_sp                         m_spdir;
+      class ::ca2::stra                            m_stra;
+      class ::ca2::url                             m_url;
+      class ::html::html *                         m_phtml;
+      class ::xml::xml *                           m_pxml;
+      class ::ca2::service                         m_service;
+      class ::ca2::install                         m_install;
+      ::ca::os_sp                                  m_spos;
+      class ::ca2::process                         m_process;
+      class ::ca2::datetime *                      m_pdatetime;
+      class ::ca2::net                             m_net;
 
-      class ::ca4::compress            m_compress;
-      class ::ca4::patch               m_patch;
-      ::ca4::crypt_sp                  m_spcrypt;
-      class ::ca4::http::system        m_http;
-      class ::ca4::email               m_email;
-      class ::ca4::file                m_file4;
-      ::ca4::copydesk_sp               m_spcopydesk;
-      ::ca4::port_forward_sp           m_spportforward;
-      ::string_to_string_map           m_mapAppLibrary;
-      colorertake5::ParserFactory *    m_pparserfactory;
-
-
+      class ::ca4::compress                        m_compress;
+      class ::ca4::patch                           m_patch;
+      ::ca4::crypt_sp                              m_spcrypt;
+      class ::ca4::http::system                    m_http;
+      class ::ca4::email                           m_email;
+      class ::ca4::file                            m_file4;
+      ::ca4::copydesk_sp                           m_spcopydesk;
+      ::ca4::port_forward_sp                       m_spportforward;
+      ::string_to_string_map                       m_mapAppLibrary;
+      colorertake5::ParserFactory *                m_pparserfactory;
 
 
-
-      class ::fontopus::user_set       m_userset;
-      string_to_string_map             m_mapFontopusServer;
-
-
-      plane::session::run_start_installer *  m_prunstartinstaller;
-      plane::session::map *          m_pbergedgemap;
+      class ::fontopus::user_set                   m_userset;
+      string_to_string_map                         m_mapFontopusServer;
 
 
-      class ::ca2::log *               m_plog;
-      class factory *                  m_pfactory;
-      class ::ca::history *            m_phistory;
-      class ::ca::window_draw *        m_ptwf;
+      plane::session::run_start_installer *        m_prunstartinstaller;
+      plane::session::map *                        m_pbergedgemap;
+
+
+      class ::ca2::log *                           m_plog;
+      class factory *                              m_pfactory;
+      class ::ca::history *                        m_phistory;
+      class ::ca::window_draw *                    m_ptwf;
 //      sp(::ca2::filehandler::handler)  m_spfilehandler;
 
 
-      fontopus::authentication_map     m_authmap;
-
-
-      index                            m_iNewEdge;
-
-      class machine_event_central *    m_pmachineeventcentral;
+      fontopus::authentication_map                 m_authmap;
+                                                  
+                                                  
+      index                                        m_iNewEdge;
+                                                  
+      class machine_event_central *                m_pmachineeventcentral;
 
       // certain instantiators like npca2plugin and iexca2plugin rely
       // on the functionality of these variables cached information,
       // to avoid multiple initialization.
-      bool                             m_bInitApplication;
-      bool                             m_bInitApplicationResult;
-      bool                             m_bProcessInitialize;
-      bool                             m_bProcessInitializeResult;
+      bool                                         m_bInitApplication;
+      bool                                         m_bInitApplicationResult;
+      bool                                         m_bProcessInitialize;
+      bool                                         m_bProcessInitializeResult;
+                                                   
+                                                   
+      bool                                         m_bLibCharGuess;
+
+      ::user::str *                                m_puserstr;
+
+     ::collection::string_map < ::collection::int_map < string, string >, const ::collection::int_map < string, string > & >
+                                                   m_mapEnumToName;
+
+     ::collection::string_map < ::collection::string_map < int, int >, const ::collection::string_map < int, int > & > 
+                                                   m_mapNameToEnum;
 
 
-      bool                             m_bLibCharGuess;
+     bool                                          m_bDoNotExitIfNoApplications;
 
-      ::user::str *                    m_puserstr;
+     ::collection::strid_map < ::ca2::library * >  m_idmapCreateViewLibrary;
 
-     ::collection::string_map < ::collection::int_map < string, string >, const ::collection::int_map < string, string > & > m_mapEnumToName;
-     ::collection::string_map < ::collection::string_map < int, int >, const ::collection::string_map < int, int > & > m_mapNameToEnum;
+     comparable_array < ::ca2::library * >         m_libraryptra;
 
-
-     bool                              m_bDoNotExitIfNoApplications;
-
-     ::collection::strid_map < ::ca2::library * > m_idmapCreateViewLibrary;
-
-     comparable_array < ::ca2::library * >   m_libraryptra;
-
-     ::exception::engine::guard *      m_peguard;
+     ::exception::engine::guard *                  m_peguard;
+     ::exception::engine *                         m_peengine;
 
       system();
       virtual ~system();
@@ -429,6 +430,8 @@ namespace plane
       ::colorertake5::ParserFactory    & parser_factory();
 
       ::exception::engine::guard       & eguard();
+
+      ::exception::engine              & eengine();
 
       virtual void on_delete(::ca::ca * pca);
 

@@ -17,7 +17,7 @@ namespace mail
       ::ca::data_container::m_spdata = this;
 
       if(!ex1::tree_data::initialize_data())
-         throw simple_exception();
+         throw simple_exception(papp);
    
    }
 

@@ -629,7 +629,7 @@ namespace n7z
       CThreadDecoder(::ca::application * papp):
       ca(papp),
       thread(papp),
-      Decoder(true)
+      Decoder(papp, true)
       {
 #ifndef _7ZIP_ST
          MtMode = false;
@@ -949,7 +949,7 @@ namespace n7z
             method.Password.Empty();
          }
 
-         CEncoder encoder(method);
+         CEncoder encoder(codecsInfo->get_app(), method);
 
          for (; folderRefIndex < folderRefs.get_count(); folderRefIndex++)
          {
@@ -977,7 +977,7 @@ namespace n7z
             }
             else
             {
-               ::ex1::stream_binder sb;
+               ::ex1::stream_binder sb(codecsInfo->get_app());
                RINOK(sb.CreateEvents());
                ::ca::smart_pointer < ::ex1::writer > sbOutStream;
                ::ca::smart_pointer < ::ex1::reader > sbInStream;

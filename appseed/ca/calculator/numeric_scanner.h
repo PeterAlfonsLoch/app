@@ -23,15 +23,21 @@ numbers:
 */
 
 
-   class CLASS_DECL_ca scanner
+   class CLASS_DECL_ca scanner :
+      virtual public ::radix::object
    {
    public:
-      scanner();
-      ~scanner();
+      
+      
       const char * input;
       const char * next_input;
-
       class token * m_ptoken;
+
+
+      scanner(::ca::application * papp);
+      virtual ~scanner();
+
+      
 
       void initialize(const char * psz);
       void peek();
