@@ -25,6 +25,7 @@ public:
 
 protected:
    ::collection::map < int, int, LPBYTE, LPBYTE > m_alpha_spread__24CC_filterMap;
+   ::collection::map < int, int, LPBYTE, LPBYTE > m_alpha_spread__32CC_filterMap;
 
 
 public:

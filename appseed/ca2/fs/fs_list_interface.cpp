@@ -11,6 +11,7 @@ namespace fs
       ::user::list(papp),
       user::form(papp),
       ::ca2::user::form(papp),
+      ::userbase::view(papp),
       user::form_list(papp),
       userbase::form_list(papp)
    {

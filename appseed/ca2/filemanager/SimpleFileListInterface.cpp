@@ -16,6 +16,7 @@ namespace filemanager
       ::user::list(papp),
       ::fs::list_interface(papp),
       ::fs::list(papp),
+      ::userbase::view(papp),
       m_gdibuffer(papp),
       m_mutex(papp)
    {

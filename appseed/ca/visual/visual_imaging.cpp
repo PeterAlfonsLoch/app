@@ -3825,6 +3825,8 @@ bool imaging::channel_gray_blur(::ca::graphics *pdcDst, point ptDst, size size, 
    if(!dibSrc->create(size))
       return false;
 
+   dibSrc->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
+
    if(!dibSrc->from(null_point(), pdcSrc, ptSrc, size))
       return false;
 
@@ -5480,6 +5482,9 @@ bool imaging::channel_spread(
    if(!dibSrc->create(size))
       return false;
 
+
+   dibSrc->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
+
    if(!dibSrc->from(null_point(), pdcSrc, ptSrc, size))
       return false;
 
@@ -5525,10 +5530,10 @@ bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int
    int iRadius2 = iRadius * iRadius;
    int r2;
 
-   if(!m_alpha_spread__24CC_filterMap.Lookup(iRadius, pFilter))
+   if(!m_alpha_spread__32CC_filterMap.Lookup(iRadius, pFilter))
    {
       pFilter = new BYTE[iFilterArea];
-      m_alpha_spread__24CC_filterMap.set_at(iRadius, pFilter);
+      m_alpha_spread__32CC_filterMap.set_at(iRadius, pFilter);
       for(y = 0; y <= iFilterHalfH; y++)
       {
          for(x = 0; x <= iFilterHalfW; x++)
@@ -5565,6 +5570,8 @@ bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int
 //   int max3x2 = (maxx1 - iFilterH) * 4;
 //   int max3x3 = (maxx1 - iFilterH / 2) * 4;
    //int w = cx * 4;
+
+   memcpy(lpbDst, lpbSrc, cx * cy * 4);
 
 
    int iFilterXLBound;
@@ -5682,7 +5689,7 @@ bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int
                   {
                      if(lpbSource_2[0] > 0)
                      {
-                        *((DWORD *) lpwDestination) |= 0xffffffff;
+                        *((DWORD *) lpwDestination) = 0xffffffff;
                         goto breakFilter;
                      }
                   }
@@ -5742,7 +5749,7 @@ breakFilter:
                {
                   if(lpbSource_2[0] > 0)
                   {
-                     *((DWORD *) lpwDestination) |= 0xffffffff;
+                     *((DWORD *) lpwDestination) = 0xffffffff;
                      goto breakFilter2;
                   }
                }
