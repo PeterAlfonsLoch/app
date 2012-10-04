@@ -1262,9 +1262,6 @@
     <ClInclude Include="ca\ca_brush.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_c.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_ca.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
@@ -5085,9 +5082,6 @@
     </ClCompile>
     <ClCompile Include="math\value.cpp">
       <Filter>Source Files\math</Filter>
-    </ClCompile>
-    <ClCompile Include="ca\ca_c.cpp">
-      <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="bergedge\bergedge_interface.cpp">
       <Filter>Source Files\bergedge</Filter>

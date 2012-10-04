@@ -710,6 +710,8 @@ namespace ca
 
             ::ca4::compress::null(ofile, ifile);
 
+            
+
             bool bOutputFail = false;
             bool bInputFail = false;
             try
@@ -720,6 +722,13 @@ namespace ca
             {
                bOutputFail = true;
             }
+
+            ::ex1::file_status st;
+
+            ifile->GetStatus(st);
+
+            System.os().set_file_status(strNew, st);
+
             try
             {
                ifile->close();

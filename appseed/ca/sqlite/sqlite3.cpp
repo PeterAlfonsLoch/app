@@ -23760,7 +23760,7 @@ afp_end_lock:
       rc = read32bits(pJrnl, szJ-16, &len);
       if( rc!=SQLITE_OK ) return rc;
 
-      if(len >= INT_TO_NATURAL(nMaster) ){
+      if(len >= natural(nMaster) ){
          return SQLITE_OK;
       }
 
@@ -25015,7 +25015,7 @@ end_stmt_playback:
          /* open the pager spfile->
          */
          if( zFilename && zFilename[0] && !memDb ){
-            if( INT_TO_NATURAL(nPathname)>(pVfs->mxPathname - sizeof("-journal")) ){
+            if( natural(nPathname)>(pVfs->mxPathname - sizeof("-journal")) ){
                rc = SQLITE_CANTOPEN;
             }else{
                int fout = 0;
@@ -25406,7 +25406,7 @@ end_stmt_playback:
 
       ppPg = &pPager->pAll;
       while( (pPg = *ppPg)!=0 ){
-         if( pPg->pgno<=INT_TO_NATURAL(dbSize) ){
+         if( pPg->pgno<=natural(dbSize) ){
             ppPg = &pPg->pNextAll;
          }else if( pPg->nRef>0 ){
             memset(PGHDR_TO_DATA(pPg), 0, pPager->pageSize);
@@ -25845,7 +25845,7 @@ end_stmt_playback:
          ** make the file smaller (presumably by auto-vacuum code). Do not write
          ** any such pages to the spfile->
          */
-         if( pList->pgno<=INT_TO_NATURAL(pPager->dbSize) ){
+         if( pList->pgno<=natural(pPager->dbSize) ){
             i64 offset = (pList->pgno-1)*(i64)pPager->pageSize;
             char *pData = CODEC2(pPager, PGHDR_TO_DATA(pList), pList->pgno, 6);
             PAGERTRACE4("STORE %d page %d hash(%08x)\n",
@@ -27431,7 +27431,7 @@ failed_to_open_journal:
                   */
                   Pgno i;
                   int iSkip = PAGER_MJ_PGNO(pPager);
-                  for( i=nTrunc+1; i<=INT_TO_NATURAL(pPager->origDbSize); i++ ){
+                  for( i=nTrunc+1; i<=natural(pPager->origDbSize); i++ ){
                      if( !sqlite3BitvecTest(pPager->pInJournal, i) && i!=iSkip ){
                         rc = sqlite3PagerGet(pPager, i, &pPg);
                         if( rc!=SQLITE_OK ) goto sync_exit;
@@ -31288,10 +31288,10 @@ set_child_ptrmaps_out:
             nFree = get4byte(&pBt->pPage1->aData[36]);
             nPtrmap = (nFree-nOrig+PTRMAP_PAGENO(pBt, nOrig)+pgsz/5)/(pgsz/5);
             nFin = nOrig - nFree - nPtrmap;
-            if( nOrig>INT_TO_NATURAL(PENDING_BYTE_PAGE(pBt)) && nFin<=INT_TO_NATURAL(PENDING_BYTE_PAGE(pBt)) ){
+            if( nOrig>natural(PENDING_BYTE_PAGE(pBt)) && nFin<=natural(PENDING_BYTE_PAGE(pBt)) ){
                nFin--;
             }
-            while( PTRMAP_ISPAGE(pBt, nFin) || nFin==INT_TO_NATURAL(PENDING_BYTE_PAGE(pBt)) ){
+            while( PTRMAP_ISPAGE(pBt, nFin) || nFin==natural(PENDING_BYTE_PAGE(pBt)) ){
                nFin--;
             }
          }
@@ -31981,7 +31981,7 @@ create_cursor_exception:
                iGuess++;
             }
 
-            if( iGuess<=INT_TO_NATURAL(sqlite3PagerPagecount(pBt->pPager)) ){
+            if( iGuess<=natural(sqlite3PagerPagecount(pBt->pPager)) ){
                rc = ptrmapGet(pBt, iGuess, &eType, &pgno);
                if( rc!=SQLITE_OK ){
                   return rc;
@@ -32103,7 +32103,7 @@ create_cursor_exception:
          if( skipKey ){
             offset += nKey;
          }
-         if( INT_TO_NATURAL(offset+amt) >  nKey+pCur->info.nData ){
+         if( natural(offset+amt) >  nKey+pCur->info.nData ){
             /* Trying to read or write past the end of the data is an error */
             return SQLITE_ERROR;
          }
@@ -32306,7 +32306,7 @@ create_cursor_exception:
             nLocal = pCur->info.nLocal - nKey;
          }else{
             nLocal = pCur->info.nLocal;
-            if( INT_TO_NATURAL(nLocal)>nKey ){
+            if( natural(nLocal)>nKey ){
                nLocal = nKey;
             }
          }
@@ -32920,7 +32920,7 @@ create_cursor_exception:
             ** the entire-list will be searched for that page.
             */
 #ifndef SQLITE_OMIT_AUTOVACUUM
-            if( exact && nearby<=INT_TO_NATURAL(sqlite3PagerPagecount(pBt->pPager)) ){
+            if( exact && nearby<=natural(sqlite3PagerPagecount(pBt->pPager)) ){
                u8 eType;
                assert( nearby>0 );
                assert( pBt->autoVacuum );
@@ -33056,7 +33056,7 @@ create_cursor_exception:
                   iPage = get4byte(&aData[8+closest*4]);
                   if( !searchList || iPage==nearby ){
                      *pPgno = iPage;
-                     if( *pPgno > INT_TO_NATURAL(sqlite3PagerPagecount(pBt->pPager)) ){
+                     if( *pPgno > natural(sqlite3PagerPagecount(pBt->pPager)) ){
                         /* Free page off the end of the file */
                         return SQLITE_CORRUPT_BKPT;
                      }
@@ -33238,7 +33238,7 @@ end_allocate_page:
       assert( ovflPgno==0 || nOvfl>0 );
       while( nOvfl-- ){
          MemPage *pOvfl;
-         if( ovflPgno==0 || ovflPgno>INT_TO_NATURAL(sqlite3PagerPagecount(pBt->pPager)) ){
+         if( ovflPgno==0 || ovflPgno>natural(sqlite3PagerPagecount(pBt->pPager)) ){
             return SQLITE_CORRUPT_BKPT;
          }
 
@@ -34953,7 +34953,7 @@ end_insert:
          int i;
 
          assert( sqlite3_mutex_held(pBt->mutex) );
-         if(pgno > INT_TO_NATURAL(sqlite3PagerPagecount(pBt->pPager)))
+         if(pgno > natural(sqlite3PagerPagecount(pBt->pPager)))
          {
             return SQLITE_CORRUPT_BKPT;
          }
@@ -39318,9 +39318,9 @@ no_mem:
 
             /* Read the serial types for the next element in each key. */
             idx1 += GetVarint( aKey1+idx1, serial_type1 );
-            if( d1>=INT_TO_NATURAL(nKey1) && sqlite3VdbeSerialTypeLen(serial_type1)>0 ) break;
+            if( d1>=natural(nKey1) && sqlite3VdbeSerialTypeLen(serial_type1)>0 ) break;
             idx2 += GetVarint( aKey2+idx2, serial_type2 );
-            if( d2>=INT_TO_NATURAL(nKey2) && sqlite3VdbeSerialTypeLen(serial_type2)>0 ) break;
+            if( d2>=natural(nKey2) && sqlite3VdbeSerialTypeLen(serial_type2)>0 ) break;
 
             /* Extract the values to be compared.
             */
@@ -39346,9 +39346,9 @@ no_mem:
             if( pKeyInfo->incrKey ){
                rc = -1;
             }else if( !pKeyInfo->prefixIsEqual ){
-               if( d1<INT_TO_NATURAL(nKey1) ){
+               if( d1<natural(nKey1) ){
                   rc = 1;
-               }else if( d2<INT_TO_NATURAL(nKey2) ){
+               }else if( d2<natural(nKey2) ){
                   rc = -1;  /* Only occurs on a corrupt database file */
                }
             }
@@ -42485,7 +42485,7 @@ arithmetic_result_is_null:
                         ** having to make additional calls to fetch the content portion of
                         ** the record.
                         */
-                        if( INT_TO_NATURAL(avail)>=payloadSize ){
+                        if( natural(avail)>=payloadSize ){
                            zRec = zData;
                            pC->aRow = (u8*)zData;
                         }else{
@@ -42503,7 +42503,7 @@ arithmetic_result_is_null:
                      ** in the B-Tree.  When that happens, use sqlite3VdbeMemFromBtree() to
                      ** acquire the complete header text.
                      */
-                     if( !zRec && INT_TO_NATURAL(avail)<offset ){
+                     if( !zRec && natural(avail)<offset ){
                         sMem.flags = 0;
                         sMem.db = 0;
                         rc = sqlite3VdbeMemFromBtree(pCrsr, 0, offset, pC->isIndex, &sMem);

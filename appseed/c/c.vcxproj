@@ -1052,7 +1052,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClInclude Include="c\conv.h" />
     <ClInclude Include="c\count.h" />
     <ClInclude Include="c\cpu_architecture.h" />
-    <ClInclude Include="c\c_c.h" />
     <ClInclude Include="c\c_gdi.h" />
     <ClInclude Include="c\c_heap.h" />
     <ClInclude Include="c\c_natural.h" />
@@ -1130,8 +1129,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClInclude Include="spa\spa_starter_start.h" />
     <ClInclude Include="spa\spa_trace.h" />
     <ClInclude Include="c_types.h" />
-    <ClInclude Include="version.config.h" />
-    <ClInclude Include="version.h" />
+    <ClInclude Include="version\version.config.h" />
+    <ClInclude Include="version\version.h" />
     <ClInclude Include="windows\c_os.h" />
     <ClInclude Include="windows\c_os_file.h" />
     <ClInclude Include="windows\c_os_gdi.h" />
@@ -1231,7 +1230,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="c\base64.cpp" />
     <ClCompile Include="c\conv.cpp" />
     <ClCompile Include="c\cpu_architecture.cpp" />
-    <ClCompile Include="c\c_c.cpp" />
     <ClCompile Include="c\c_gdi.cpp" />
     <ClCompile Include="c\debug.cpp" />
     <ClCompile Include="c\dir.cpp" />

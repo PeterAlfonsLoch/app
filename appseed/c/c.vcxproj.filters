@@ -66,6 +66,9 @@
     <Filter Include="Source Files\simple_ui\windows">
       <UniqueIdentifier>{3ff498ed-9f8a-4b66-8df4-099a3c2a87fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\version">
+      <UniqueIdentifier>{57916618-2bfd-4c8a-96c9-934717a6dd58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hotplugin\hotplugin.h">
@@ -146,12 +149,6 @@
     <ClInclude Include="windows\c_os_registry.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
-    <ClInclude Include="version.config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="version.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="bsdiff\bsdiff.h">
       <Filter>Header Files\bsdiff</Filter>
     </ClInclude>
@@ -183,9 +180,6 @@
       <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="c\c.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_c.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="c\c_heap.h">
@@ -380,6 +374,12 @@
     <ClInclude Include="windows\c_os_gdi.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
+    <ClInclude Include="version\version.config.h">
+      <Filter>Header Files\version</Filter>
+    </ClInclude>
+    <ClInclude Include="version\version.h">
+      <Filter>Header Files\version</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -536,9 +536,6 @@
       <Filter>Source Files\c</Filter>
     </ClCompile>
     <ClCompile Include="c\_std_file.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
-    <ClCompile Include="c\c_c.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
     <ClCompile Include="c\conv.cpp">

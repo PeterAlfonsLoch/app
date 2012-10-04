@@ -178,8 +178,14 @@ bool file_operation::step()
          }
          else
          {
-            m_fileSrc->close();
-            m_fileDst->close();
+            {
+               string strDestPath = m_fileDst->GetFilePath();
+               m_fileDst->close();
+               ::ex1::file_status st;
+               m_fileSrc->GetStatus(st);
+               System.os().set_file_status(strDestPath, st);
+               m_fileSrc->close();
+            }
             m_iFile++;
             while(m_iFile < m_stra.get_size() && Application.dir().is(m_stra[m_iFile]) && !gen::str::ends_ci(m_stra[m_iFile], ".zip"))
             {

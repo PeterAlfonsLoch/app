@@ -282,6 +282,12 @@ namespace ca
 
    }
 
+   void os::set_file_status(const char * lpszFileName, const ::ex1::file_status& status)
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
 
 } // namespace ca
 
