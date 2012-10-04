@@ -189,9 +189,17 @@ namespace radix
 
    void thread::remove(::user::interaction * pui)
    {
+
       try
       {
-         m_p->m_ptimera->on_delete(pui);
+         
+         if(m_p->m_ptimera != NULL)
+         {
+
+            m_p->m_ptimera->on_delete(pui);
+
+         }
+
       }
       catch(...)
       {

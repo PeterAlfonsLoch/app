@@ -492,6 +492,7 @@ namespace user
          {
             if(!bHoverFont)
             {
+               bHoverFont = true;
                m_pdrawlistitem->m_pfont = _001GetFontHover();
                pdrawitem->m_pgraphics->SelectObject(m_pdrawlistitem->m_pfont);
             }
@@ -500,6 +501,7 @@ namespace user
          {
             if(bHoverFont)
             {
+               bHoverFont = false;
                m_pdrawlistitem->m_pfont = pfont;
                pdrawitem->m_pgraphics->SelectObject(pfont);
             }
@@ -5278,7 +5280,10 @@ namespace user
             ::ca::dib_sp dib(m_plist->get_app());
             dib->create(size.cx, size.cy);
             dib->Fill(0, 0, 0, 0);
-            dib->get_graphics()->SetTextColor(ARGB(255, 0, 0, 0));
+            dib->get_graphics()->SetTextColor(ARGB(255, 255, 255, 255));
+            ::ca::dib_sp dib2(m_plist->get_app());
+            dib2->create(size.cx, size.cy);
+            dib2->Fill(0, 0, 0, 0);
 
             class rect rectCache;
             rectCache.left = 2;
@@ -5288,17 +5293,20 @@ namespace user
             dib->get_graphics()->SelectObject(m_pfont);
             m_plist->m_dcextension._DrawText(dib->get_graphics(), m_strText, rectCache, m_iDrawTextFlags);
 
-            Sys(m_plist->get_app()).imaging().channel_spread(dib->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 1);
-            Sys(m_plist->get_app()).imaging().channel_gray_blur(dib->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 1);
-//            Sys(m_plist->get_app()).imaging().pre_color_blend(dcCache, dcCache, ARGB(255, 0, 0, 0));
+            Sys(m_plist->get_app()).imaging().channel_spread(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 2);
+            dib->Fill(0, 0, 0, 0);
+            Sys(m_plist->get_app()).imaging().channel_alpha_gray_blur(dib->get_graphics(), null_point(), size, dib2->get_graphics(), null_point(), 0, 1);
+            dib2->Fill(0, 0, 0, 0);
+            Sys(m_plist->get_app()).imaging().channel_alpha_gray_blur(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 1);
+            dib2->set(0, 0, 0);
 
 
-            Sys(m_plist->get_app()).imaging().color_blend(m_pgraphics, m_rectText, dib->get_graphics(), point(1, 1), 0.50);
+            Sys(m_plist->get_app()).imaging().color_blend(m_pgraphics, m_rectText, dib2->get_graphics(), point(1, 1), 0.50);
 
 
             m_pgraphics->SetTextColor(ARGB(255, 255, 255, 255));
             m_pgraphics->SelectObject(m_pfont);
-            //m_plist->m_dcextension._DrawText(m_pgraphics, m_strText, m_rectText, m_iDrawTextFlags);
+            m_plist->m_dcextension._DrawText(m_pgraphics, m_strText, m_rectText, m_iDrawTextFlags);
          }
          else
          {

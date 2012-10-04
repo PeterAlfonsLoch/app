@@ -113,6 +113,7 @@ namespace ca
       virtual void FillByte(unsigned char uch);
       virtual void Fill (int A, int R, int G, int B );
       virtual void Fill ( int R, int G, int B );
+      virtual void set ( int R, int G, int B );
       virtual void FillGlass ( int R, int G, int B, int A );
       virtual void FillStippledGlass ( int R, int G, int B );
       virtual void Invert();

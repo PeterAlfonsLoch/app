@@ -137,6 +137,22 @@ namespace ca
       return get_graphics()->from(ptDst, size, pdc, ptSrc, SRCCOPY) != FALSE;
    }
 
+   void dib::set( int R, int G, int B )
+   {
+      int size=width()*height();
+
+      COLORREF * pcr = get_data();
+
+      for(int i=0; i < size; i++)
+      {
+         ((byte *) pcr)[0] = R;
+         ((byte *) pcr)[1] = G;
+         ((byte *) pcr)[2] = B;
+         pcr++;
+      }
+
+   }
+
    void dib::Fill ( int R, int G, int B )
    {
       COLORREF color=RGB ( B, G, R );

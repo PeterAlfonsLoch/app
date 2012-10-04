@@ -92,17 +92,17 @@ imaging::~imaging()
 
    return dib->detach_bitmap();
 
-/*   ::ca::bitmap_sp bitmap(get_app());
+   /*   ::ca::bitmap_sp bitmap(get_app());
    void * pBits = FreeImage_GetBits(pFreeImage);
    if(!bitmap->CreateDIBitmap(pdc,
-      FreeImage_GetInfoHeader(pFreeImage),
-      CBM_INIT,
-      pBits,
-      FreeImage_GetInfo(pFreeImage),
-      DIB_RGB_COLORS))
+   FreeImage_GetInfoHeader(pFreeImage),
+   CBM_INIT,
+   pBits,
+   FreeImage_GetInfo(pFreeImage),
+   DIB_RGB_COLORS))
    {
-      TRACELASTERROR();
-      return (::ca::bitmap *) NULL;
+   TRACELASTERROR();
+   return (::ca::bitmap *) NULL;
    }
 
    //   LPVOID lpBits;
@@ -119,17 +119,17 @@ imaging::~imaging()
    int iSizeBitsZ = ((pbi->bmiHeader.biWidth * pbi->bmiHeader.biBitCount / 8 + 3) & ~3) * pbi->bmiHeader.biHeight;
    void * pDataZ = malloc(iSizeBitsZ);
    if(pbi->bmiHeader.biHeight != GetDIBits(
-      (HDC)pdc->get_os_data(),           // handle to device context
-      (HBITMAP)bitmap->get_os_data(),      // handle to bitmap
-      0,   // first scan line to set in destination bitmap
-      FreeImage_GetInfo(pFreeImage)->bmiHeader.biHeight,   // number of scan lines to copy
-      pDataZ,    // address of base_array for bitmap bits
-      FreeImage_GetInfo(pFreeImage), // address of structure with bitmap data
-      DIB_RGB_COLORS        // RGB or palette index
-      ))
+   (HDC)pdc->get_os_data(),           // handle to device context
+   (HBITMAP)bitmap->get_os_data(),      // handle to bitmap
+   0,   // first scan line to set in destination bitmap
+   FreeImage_GetInfo(pFreeImage)->bmiHeader.biHeight,   // number of scan lines to copy
+   pDataZ,    // address of base_array for bitmap bits
+   FreeImage_GetInfo(pFreeImage), // address of structure with bitmap data
+   DIB_RGB_COLORS        // RGB or palette index
+   ))
    {
-//      int i = 1 +1;
-      TRACELASTERROR();
+   //      int i = 1 +1;
+   TRACELASTERROR();
    }
    return bitmap;*/
 }
@@ -203,74 +203,74 @@ FIBITMAP * imaging::LoadImageFile(ex1::file * pfile)
 }
 
 /*HBITMAP imaging::LoadBitmap(
-                            const char * lpszType,
-                            const char * lpszId)
+const char * lpszType,
+const char * lpszId)
 {
-   throw not_implemented(get_app());
-   /*
-   gen::memory_file file(get_app());
+throw not_implemented(get_app());
+/*
+gen::memory_file file(get_app());
 
-   gen::Resource resource;
+gen::Resource resource;
 
-   if(!resource.ReadResource(*file.get_memory(), (UINT) MAKEINTRESOURCE(lpszId), lpszType))
-   return false;
+if(!resource.ReadResource(*file.get_memory(), (UINT) MAKEINTRESOURCE(lpszId), lpszType))
+return false;
 
-   file.seek_to_begin();
+file.seek_to_begin();
 
-   ex1::file * pfile = &file;
+ex1::file * pfile = &file;
 
-   FreeImageIO io;
-   io.read_proc   = ___Ex1File__ReadProc;
-   io.seek_proc   = ___Ex1File__SeekProc;
-   io.tell_proc   = ___Ex1File__TellProc;
-   io.write_proc  = ___Ex1File__WriteProc;
+FreeImageIO io;
+io.read_proc   = ___Ex1File__ReadProc;
+io.seek_proc   = ___Ex1File__SeekProc;
+io.tell_proc   = ___Ex1File__TellProc;
+io.write_proc  = ___Ex1File__WriteProc;
 
-   FREE_IMAGE_FORMAT format;
-   format = FreeImage_GetFileTypeFromHandle(&io, pfile ,16);
-   FIBITMAP *pfi = NULL;
-   if(true)
-   {
-   pfi = FreeImage_LoadFromHandle(format, &io, pfile);
-   }
+FREE_IMAGE_FORMAT format;
+format = FreeImage_GetFileTypeFromHandle(&io, pfile ,16);
+FIBITMAP *pfi = NULL;
+if(true)
+{
+pfi = FreeImage_LoadFromHandle(format, &io, pfile);
+}
 
-   if(pfi == NULL)
-   return NULL;
+if(pfi == NULL)
+return NULL;
 
-   BITMAPINFO * pbi = FreeImage_GetInfo(pfi);
-   void * pData = FreeImage_GetBits(pfi);
+BITMAPINFO * pbi = FreeImage_GetInfo(pfi);
+void * pData = FreeImage_GetBits(pfi);
 
 
-   HDC hdcSource = CreateDC(
-   "DISPLAY",
-   NULL,
-   NULL,
-   NULL);
+HDC hdcSource = CreateDC(
+"DISPLAY",
+NULL,
+NULL,
+NULL);
 
-   HBITMAP hBitmapSource = ::CreateCompatibleBitmap(
-   hdcSource,
-   pbi->bmiHeader.biWidth,
-   pbi->bmiHeader.biHeight);
+HBITMAP hBitmapSource = ::CreateCompatibleBitmap(
+hdcSource,
+pbi->bmiHeader.biWidth,
+pbi->bmiHeader.biHeight);
 
-   if(pbi->bmiHeader.biHeight != SetDIBits(
-   hdcSource,
-   hBitmapSource,
-   0,
-   pbi->bmiHeader.biHeight,
-   pData,
-   pbi,
-   DIB_RGB_COLORS))
-   {
-   FreeImage_Unload(pfi);
-   DeleteDC(hdcSource);
-   delete_object(hBitmapSource);
-   return NULL;
-   }
+if(pbi->bmiHeader.biHeight != SetDIBits(
+hdcSource,
+hBitmapSource,
+0,
+pbi->bmiHeader.biHeight,
+pData,
+pbi,
+DIB_RGB_COLORS))
+{
+FreeImage_Unload(pfi);
+DeleteDC(hdcSource);
+delete_object(hBitmapSource);
+return NULL;
+}
 
-   FreeImage_Unload(pfi);
-   DeleteDC(hdcSource);
+FreeImage_Unload(pfi);
+DeleteDC(hdcSource);
 
-   return hBitmapSource;
-   */
+return hBitmapSource;
+*/
 //}
 //*/
 
@@ -298,16 +298,16 @@ FIBITMAP * imaging::LoadImageFile(ex1::file * pfile)
 *
 *****************************************************************************/
 VOID EmbossedTextOut(
-                     HDC                     hDC,
-                     int                     x,
-                     int                     y,
-                     //    char *                   lpsz,
-                     LPTSTR                   lpsz,
-                     UINT                    cb,
-                     COLORREF                crText,
-                     COLORREF                crShadow,
-                     int                     cx,
-                     int                     cy)
+   HDC                     hDC,
+   int                     x,
+   int                     y,
+   //    char *                   lpsz,
+   LPTSTR                   lpsz,
+   UINT                    cb,
+   COLORREF                crText,
+   COLORREF                crShadow,
+   int                     cx,
+   int                     cy)
 {
    COLORREF                crOld;
    UINT                    uMode;
@@ -370,7 +370,7 @@ VOID EmbossedTextOut(
    SetTextColor(hDC, crText);
    if(!ExtTextOut(hDC, x, y, 0, NULL, lpsz, cb, NULL))
    {
-//      TRACE("Failed to ExtTextOut, GetLastError() -->%d\n", GetLastError());
+      //      TRACE("Failed to ExtTextOut, GetLastError() -->%d\n", GetLastError());
    }
 
    /* restore the DC
@@ -403,12 +403,12 @@ VOID EmbossedTextOut(
 *
 *****************************************************************************/
 HFONT CreateScaledFont(
-                       HDC                     hDC,
-                       LPRECT                  lpRect,
-                       LPRECT               lpWndRect,
-                       LPTSTR                   lpszFormat,
-                       int                     anPosX[],
-                       int*                    nPosY)
+   HDC                     hDC,
+   LPRECT                  lpRect,
+   LPRECT               lpWndRect,
+   LPTSTR                   lpszFormat,
+   int                     anPosX[],
+   int*                    nPosY)
 {
    LOGFONT                 lf;
    HFONT                   hFont;
@@ -578,12 +578,12 @@ void DrawMultiLineText(HDC hDC, stringa * pArray)
 }
 
 bool imaging::GrayVRCP(
-                       ::ca::graphics * pdc,
-                       int x,
-                       int y,
-                       int cx,
-                       int cy,
-                       COLORREF crAlpha)
+   ::ca::graphics * pdc,
+   int x,
+   int y,
+   int cx,
+   int cy,
+   COLORREF crAlpha)
 {
    UNREFERENCED_PARAMETER(pdc);
    UNREFERENCED_PARAMETER(x);
@@ -718,11 +718,11 @@ bool imaging::GrayVRCP(
 }
 
 bool imaging::GrayVRCP(
-                       ::ca::graphics * pdc,
-                       ::ca::bitmap * pbitmap,
-                       ::ca::bitmap * pbitmapMask,
-                       LPCRECT lpcrect,
-                       COLORREF crTransparent)
+   ::ca::graphics * pdc,
+   ::ca::bitmap * pbitmap,
+   ::ca::bitmap * pbitmapMask,
+   LPCRECT lpcrect,
+   COLORREF crTransparent)
 {
 
    return GrayVRCP(
@@ -820,10 +820,10 @@ bool imaging::CreateHueImageList(::ca::graphics * pdc, image_list * pilGray, ima
 }
 
 bool imaging::Createcolor_blend_ImageList(
-                                        image_list * pilGray,
-                                        image_list * pilParam,
-                                        COLORREF cr,
-                                        BYTE bAlpha)
+   image_list * pilGray,
+   image_list * pilParam,
+   COLORREF cr,
+   BYTE bAlpha)
 {
 
    try
@@ -837,10 +837,10 @@ bool imaging::Createcolor_blend_ImageList(
       if(pil->m_spdib->get_graphics() == NULL)
          return false;
 
-/*
+      /*
       if(pil->m_spdib->get_graphics()->get_os_data() == NULL)
-         return false;
-*/
+      return false;
+      */
 
       ::ca::graphics_sp spgraphics(get_app());
 
@@ -859,7 +859,7 @@ bool imaging::Createcolor_blend_ImageList(
 
       color_blend(pil->m_spdib->get_graphics(), null_point(), pil->m_spdib->size(), cr, bAlpha);
 
-   //   pil->m_spdib->channel_from(visual::rgba::channel_alpha, pilParam->m_spdib);
+      //   pil->m_spdib->channel_from(visual::rgba::channel_alpha, pilParam->m_spdib);
 
       //spgraphics->SelectObject(pbitmapOld);
 
@@ -904,14 +904,14 @@ return pil;
 
 
 bool imaging::GrayVRCP(
-                       ::ca::graphics * pdc,
-                       ::ca::bitmap * pbitmap,
-                       ::ca::bitmap * pbitmapMask,
-                       int x,
-                       int y,
-                       int cx,
-                       int cy,
-                       COLORREF crAlpha)
+   ::ca::graphics * pdc,
+   ::ca::bitmap * pbitmap,
+   ::ca::bitmap * pbitmapMask,
+   int x,
+   int y,
+   int cx,
+   int cy,
+   COLORREF crAlpha)
 {
    UNREFERENCED_PARAMETER(crAlpha);
    //COLORREF cr3dface = GetSysColor(COLOR_3DFACE);
@@ -1040,21 +1040,21 @@ bool imaging::GrayVRCP(
 
    BYTE br, bg, bb;
 
-//   COLORREF crBtnFace = GetSysColor(COLOR_BTNFACE);
-//   COLORREF crBtnShad = GetSysColor(COLOR_BTNSHADOW);
-//   COLORREF crWndBack = GetSysColor(COLOR_WINDOW);
+   //   COLORREF crBtnFace = GetSysColor(COLOR_BTNFACE);
+   //   COLORREF crBtnShad = GetSysColor(COLOR_BTNSHADOW);
+   //   COLORREF crWndBack = GetSysColor(COLOR_WINDOW);
 
-//   BYTE bRBtnFace = rgba_get_r(crBtnFace);
-//   BYTE bGBtnFace = rgba_get_g(crBtnFace);
-//   BYTE bBBtnFace = rgba_get_b(crBtnFace);
+   //   BYTE bRBtnFace = rgba_get_r(crBtnFace);
+   //   BYTE bGBtnFace = rgba_get_g(crBtnFace);
+   //   BYTE bBBtnFace = rgba_get_b(crBtnFace);
 
-//   BYTE bRBtnShad = rgba_get_r(crBtnShad);
-//   BYTE bGBtnShad = rgba_get_g(crBtnShad);
-//   BYTE bBBtnShad = rgba_get_b(crBtnShad);
+   //   BYTE bRBtnShad = rgba_get_r(crBtnShad);
+   //   BYTE bGBtnShad = rgba_get_g(crBtnShad);
+   //   BYTE bBBtnShad = rgba_get_b(crBtnShad);
 
-//   BYTE bRWndBack = rgba_get_r(crWndBack);
-//   BYTE bGWndBack = rgba_get_g(crWndBack);
-//   BYTE bBWndBack = rgba_get_b(crWndBack);
+   //   BYTE bRWndBack = rgba_get_r(crWndBack);
+   //   BYTE bGWndBack = rgba_get_g(crWndBack);
+   //   BYTE bBWndBack = rgba_get_b(crWndBack);
 
    int i;
    for(i = 0; i < cy; i ++)
@@ -1224,23 +1224,23 @@ bool imaging::GrayVRCP(
 }
 
 bool imaging::GetDeviceContext24BitsCC(
-                                       ::ca::graphics *pdc,
-                                       BITMAP & bm,
-                                       BITMAPINFO & bmi,
-                                       primitive::memory & memorystorage,
-                                       ::ca::bitmap * pbitmap,
-                                       LPCRECT lpcrect,
-                                       int &iWidthParam,
-                                       UINT & uiStartScanLineParam,
-                                       UINT & uiScanLineCountParam,
-                                       int & iLimitYParam)
+   ::ca::graphics *pdc,
+   BITMAP & bm,
+   BITMAPINFO & bmi,
+   primitive::memory & memorystorage,
+   ::ca::bitmap * pbitmap,
+   LPCRECT lpcrect,
+   int &iWidthParam,
+   UINT & uiStartScanLineParam,
+   UINT & uiScanLineCountParam,
+   int & iLimitYParam)
 {
    UNREFERENCED_PARAMETER(pbitmap);
    rect rect(lpcrect);
 
-//   int x = rect.left;
+   //   int x = rect.left;
    int y = rect.top;
-//   int cx = rect.width();
+   //   int cx = rect.width();
    int cy = rect.height();
 
    ::ca::bitmap_sp spbmpTemp(get_app());
@@ -1258,10 +1258,10 @@ bool imaging::GetDeviceContext24BitsCC(
          ::ca::bitmap * pbmp = pbmpOld;
 
          throw not_implemented(get_app());
-/*         if(!pbmp->GetObject(sizeof(bm), &bm))
+         /*         if(!pbmp->GetObject(sizeof(bm), &bm))
          {
-            pdc->SelectObject(pbmpOld);
-            return false;
+         pdc->SelectObject(pbmpOld);
+         return false;
          }*/
 
          bmi.bmiHeader.biSize = sizeof(bmi.bmiHeader);
@@ -1322,7 +1322,7 @@ bool imaging::GetDeviceContext24BitsCC(
       }
       catch(int)
       {
-//         UINT user = GetLastError();
+         //         UINT user = GetLastError();
          pdc->SelectObject(pbmpOld);
          return false;
       }
@@ -1542,20 +1542,20 @@ return true;
 }*/
 
 void imaging::BitmapBlend24CC(
-                              LPBYTE lpbAParam,
-                              int x1,
-                              int y1,
-                              int w1,
-                              int cx,
-                              int cy,
-                              LPBYTE lpbBParam,
-                              int x2,
-                              int y2,
-                              int w2,
-                              LPBYTE lpbCParam,
-                              int x3,
-                              int y3,
-                              int w3)
+   LPBYTE lpbAParam,
+   int x1,
+   int y1,
+   int w1,
+   int cx,
+   int cy,
+   LPBYTE lpbBParam,
+   int x2,
+   int y2,
+   int w2,
+   LPBYTE lpbCParam,
+   int x3,
+   int y3,
+   int w3)
 {
    int i, j;
    x1 *= 3;
@@ -1587,17 +1587,17 @@ void imaging::BitmapBlend24CC(
 
 
 void imaging::BitmapBlend24CC(
-                              LPBYTE lpbDestParam,
-                              int xDest,
-                              int yDest,
-                              int wDest,
-                              int cx,
-                              int cy,
-                              LPBYTE lpbSrcParam,
-                              int xSrc,
-                              int ySrc,
-                              int wSrc,
-                              BYTE bAlpha)
+   LPBYTE lpbDestParam,
+   int xDest,
+   int yDest,
+   int wDest,
+   int cx,
+   int cy,
+   LPBYTE lpbSrcParam,
+   int xSrc,
+   int ySrc,
+   int wSrc,
+   BYTE bAlpha)
 {
    int i, j;
    xDest *= 3;
@@ -1605,8 +1605,8 @@ void imaging::BitmapBlend24CC(
    yDest *= wDest;
    ySrc *= wSrc;
 
-//   int maxw = cx * 3;
-//   int cw = (maxw) & ~3;
+   //   int maxw = cx * 3;
+   //   int cw = (maxw) & ~3;
 
 
 
@@ -1617,7 +1617,7 @@ void imaging::BitmapBlend24CC(
    lpbDestParam = (LPBYTE) lpbDestParam + yDest + xDest;
    lpbSrcParam = (LPBYTE) lpbSrcParam + ySrc + xSrc;
 
-//   BYTE bAlphaComplement = 255 - bAlpha;
+   //   BYTE bAlphaComplement = 255 - bAlpha;
    //   BYTE dwA;
    if(bAlpha == 0)
    {
@@ -1680,387 +1680,387 @@ void imaging::BitmapBlend24CC(
 
 
 /*bool imaging::bitmap_blend(
-                          ::ca::graphics * pdcDst, // destination device
-                          point pt,
-                          size size,
-                          ::ca::graphics * pdcSrc, // source device
-                          point ptSrc,
-                          ::ca::graphics * pdcAlpha, // alpha information device (in alpha channel)
-                          point ptAlpha,
-                          ::ca::graphics * pdcAlphaComplement, // alpha information device (in alpha channel)
-                          point ptAlphaComplement)
+::ca::graphics * pdcDst, // destination device
+point pt,
+size size,
+::ca::graphics * pdcSrc, // source device
+point ptSrc,
+::ca::graphics * pdcAlpha, // alpha information device (in alpha channel)
+point ptAlpha,
+::ca::graphics * pdcAlphaComplement, // alpha information device (in alpha channel)
+point ptAlphaComplement)
 {
 
-      UNREFERENCED_PARAMETER(ptAlphaComplement);
-      ::ca::dib_sp dibA(get_app());
+UNREFERENCED_PARAMETER(ptAlphaComplement);
+::ca::dib_sp dibA(get_app());
 
-      if(!dibA->create(size))
-         return false;
+if(!dibA->create(size))
+return false;
 
-      ::ca::dib_sp dibB(get_app());
+::ca::dib_sp dibB(get_app());
 
-      if(!dibB->create(size))
-         return false;
+if(!dibB->create(size))
+return false;
 
-      //::ca::bitmap * pbmpOldA = (::ca::bitmap *) dibA->get_graphics()->SelectObject(dibA->get_graphics());
-      //::ca::bitmap * pbmpOldB = (::ca::bitmap *) dibB->get_graphics()->SelectObject(dibB->get_graphics());
+//::ca::bitmap * pbmpOldA = (::ca::bitmap *) dibA->get_graphics()->SelectObject(dibA->get_graphics());
+//::ca::bitmap * pbmpOldB = (::ca::bitmap *) dibB->get_graphics()->SelectObject(dibB->get_graphics());
 
-      dibB->get_graphics()->from(null_point(), size, pdcSrc, ptSrc, SRCCOPY);
+dibB->get_graphics()->from(null_point(), size, pdcSrc, ptSrc, SRCCOPY);
 
 
-      dibA->get_graphics()->from(null_point(), size, pdcAlphaComplement, ptAlpha, SRCCOPY);
+dibA->get_graphics()->from(null_point(), size, pdcAlphaComplement, ptAlpha, SRCCOPY);
 
-      GdiFlush();
+GdiFlush();
 
 
 //      int64_t a = size.area();
 
-      BLENDFUNCTION bf;
-      bf.BlendOp     = AC_SRC_OVER;
-      bf.BlendFlags  = 0;
-      bf.SourceConstantAlpha = 0xFF;
-      bf.AlphaFormat = AC_SRC_ALPHA;
+BLENDFUNCTION bf;
+bf.BlendOp     = AC_SRC_OVER;
+bf.BlendFlags  = 0;
+bf.SourceConstantAlpha = 0xFF;
+bf.AlphaFormat = AC_SRC_ALPHA;
 
-      bool bOk;
+bool bOk;
 
-      try
-      {
-         dibB->get_graphics()->BitBlt(0, 0, size.cx, size.cy, dibA->get_graphics(), 0, 0, SRCCOPY);
-      }
-      catch(...)
-      {
-         bOk = false;
-      }
-
-
-      GdiFlush();
-
-      dibA->get_graphics()->FillSolidRect(0, 0, size.cx, size.cy, RGB(255, 255, 255));
-      dibB->get_graphics()->from(null_point(), size, dibA->get_graphics(), null_point(), SRCAND);
-
-      //dibA->get_graphics()->BitBlt(0, 0, cx, cy, pdcAlpha, x3, y3, SRCCOPY);
-      dibB->get_graphics()->from(null_point(), size, pdcAlpha, ptAlpha, SRCPAINT);
-
-      try
-      {
-         pdcDst->alpha_blend(pt, size, dibB->get_graphics(), bf);
-      }
-      catch(...)
-      {
-         bOk = false;
-      }
-
-      GdiFlush();
+try
+{
+dibB->get_graphics()->BitBlt(0, 0, size.cx, size.cy, dibA->get_graphics(), 0, 0, SRCCOPY);
+}
+catch(...)
+{
+bOk = false;
+}
 
 
-      return true;
+GdiFlush();
+
+dibA->get_graphics()->FillSolidRect(0, 0, size.cx, size.cy, RGB(255, 255, 255));
+dibB->get_graphics()->from(null_point(), size, dibA->get_graphics(), null_point(), SRCAND);
+
+//dibA->get_graphics()->BitBlt(0, 0, cx, cy, pdcAlpha, x3, y3, SRCCOPY);
+dibB->get_graphics()->from(null_point(), size, pdcAlpha, ptAlpha, SRCPAINT);
+
+try
+{
+pdcDst->alpha_blend(pt, size, dibB->get_graphics(), bf);
+}
+catch(...)
+{
+bOk = false;
+}
+
+GdiFlush();
+
+
+return true;
 }*/
 
 /*bool imaging::bitmap_blend(
-                          ::ca::graphics * pdcA, // destination device
-                          point pt,
-                          size size,
-                          ::ca::graphics * pdcB, // source device
-                          point ptSrc,
-                          ::ca::graphics * pdcC, // alpha information device
-                          point ptAlpha,
-                          byte uchAlphaConstant,
-                          ::ca::dib * pdibA,
-                          ::ca::dib * pdibB)
+::ca::graphics * pdcA, // destination device
+point pt,
+size size,
+::ca::graphics * pdcB, // source device
+point ptSrc,
+::ca::graphics * pdcC, // alpha information device
+point ptAlpha,
+byte uchAlphaConstant,
+::ca::dib * pdibA,
+::ca::dib * pdibB)
 {
-   ::ca::dib_sp dibA;
-   ::ca::dib_sp dibB;
+::ca::dib_sp dibA;
+::ca::dib_sp dibB;
 
-   if(pdibA == NULL)
-   {
-      dibA.create(get_app());
-      pdibA = dibA;
-   }
-   if(pdibB == NULL)
-   {
-      dibB.create(get_app());
-      pdibB = dibB;
-   }
-
-
-   if(!pdibA->create(size))
-      return false;
-   if(!pdibB->create(size))
-      return false;
+if(pdibA == NULL)
+{
+dibA.create(get_app());
+pdibA = dibA;
+}
+if(pdibB == NULL)
+{
+dibB.create(get_app());
+pdibB = dibB;
+}
 
 
-   pdibB->get_graphics()->from(null_point(), size, pdcB, ptSrc, SRCCOPY);
+if(!pdibA->create(size))
+return false;
+if(!pdibB->create(size))
+return false;
 
 
-   pdibA->get_graphics()->from(null_point(), size, pdcC, ptAlpha, SRCCOPY);
-
-   GdiFlush();
+pdibB->get_graphics()->from(null_point(), size, pdcB, ptSrc, SRCCOPY);
 
 
-   UINT32 * lpuiA = (UINT32 *) pdibA->get_data();
+pdibA->get_graphics()->from(null_point(), size, pdcC, ptAlpha, SRCCOPY);
 
-   int64_t a = size.area();
-   int64_t i;
-
-   int64_t b = a - a % 4;
-   for(i = 0; i < b; i +=4)
-   {
-      lpuiA[0] = 0xff000000 - ((lpuiA[0]) & 0xff000000);
-      lpuiA[1] = 0xff000000 - ((lpuiA[1]) & 0xff000000);
-      lpuiA[2] = 0xff000000 - ((lpuiA[2]) & 0xff000000);
-      lpuiA[3] = 0xff000000 - ((lpuiA[3]) & 0xff000000);
-      lpuiA += 4;
-   }
-   for (; i < a; i++)
-   {
-      *lpuiA++ = 0xff000000 - ((*lpuiA) & 0xff000000);
-   }
-
-   BLENDFUNCTION bf;
-   bf.BlendOp     = AC_SRC_OVER;
-   bf.BlendFlags  = 0;
-   bf.SourceConstantAlpha = uchAlphaConstant;
-   bf.AlphaFormat = AC_SRC_ALPHA;
-
-   bool bOk;
-   try
-   {
-      pdibB->get_graphics()->alpha_blend(size, pdibA->get_graphics(), bf);
-   }
-   catch(...)
-   {
-      bOk = false;
-   }
+GdiFlush();
 
 
-   GdiFlush();
+UINT32 * lpuiA = (UINT32 *) pdibA->get_data();
 
-   lpuiA = (UINT32 *) pdibA->get_data();
-   UINT32 * lpuiB = (UINT32 *) pdibB->get_data();
+int64_t a = size.area();
+int64_t i;
 
-   for (i = 0; i < b; i +=4)
-   {
-      lpuiA[0] = (0xff000000 - (lpuiA[0] & 0xff000000)) | (lpuiB[0]  & 0x00ffffff);
-      lpuiA[1] = (0xff000000 - (lpuiA[1] & 0xff000000)) | (lpuiB[1]  & 0x00ffffff);
-      lpuiA[2] = (0xff000000 - (lpuiA[2] & 0xff000000)) | (lpuiB[2]  & 0x00ffffff);
-      lpuiA[3] = (0xff000000 - (lpuiA[3] & 0xff000000)) | (lpuiB[3]  & 0x00ffffff);
-      lpuiA += 4;
-      lpuiB += 4;
-   }
-   for (; i < a; i++)
-   {
-      *lpuiA++ = (0xff000000 - (*lpuiA & 0xff000000)) | (*lpuiB++  & 0x00ffffff);
-   }
+int64_t b = a - a % 4;
+for(i = 0; i < b; i +=4)
+{
+lpuiA[0] = 0xff000000 - ((lpuiA[0]) & 0xff000000);
+lpuiA[1] = 0xff000000 - ((lpuiA[1]) & 0xff000000);
+lpuiA[2] = 0xff000000 - ((lpuiA[2]) & 0xff000000);
+lpuiA[3] = 0xff000000 - ((lpuiA[3]) & 0xff000000);
+lpuiA += 4;
+}
+for (; i < a; i++)
+{
+*lpuiA++ = 0xff000000 - ((*lpuiA) & 0xff000000);
+}
 
-   try
-   {
-      pdcA->alpha_blend(pt, size, pdibA->get_graphics(), bf);
-   }
-   catch(...)
-   {
-      bOk = false;
-   }
+BLENDFUNCTION bf;
+bf.BlendOp     = AC_SRC_OVER;
+bf.BlendFlags  = 0;
+bf.SourceConstantAlpha = uchAlphaConstant;
+bf.AlphaFormat = AC_SRC_ALPHA;
+
+bool bOk;
+try
+{
+pdibB->get_graphics()->alpha_blend(size, pdibA->get_graphics(), bf);
+}
+catch(...)
+{
+bOk = false;
+}
 
 
-   GdiFlush();
+GdiFlush();
+
+lpuiA = (UINT32 *) pdibA->get_data();
+UINT32 * lpuiB = (UINT32 *) pdibB->get_data();
+
+for (i = 0; i < b; i +=4)
+{
+lpuiA[0] = (0xff000000 - (lpuiA[0] & 0xff000000)) | (lpuiB[0]  & 0x00ffffff);
+lpuiA[1] = (0xff000000 - (lpuiA[1] & 0xff000000)) | (lpuiB[1]  & 0x00ffffff);
+lpuiA[2] = (0xff000000 - (lpuiA[2] & 0xff000000)) | (lpuiB[2]  & 0x00ffffff);
+lpuiA[3] = (0xff000000 - (lpuiA[3] & 0xff000000)) | (lpuiB[3]  & 0x00ffffff);
+lpuiA += 4;
+lpuiB += 4;
+}
+for (; i < a; i++)
+{
+*lpuiA++ = (0xff000000 - (*lpuiA & 0xff000000)) | (*lpuiB++  & 0x00ffffff);
+}
+
+try
+{
+pdcA->alpha_blend(pt, size, pdibA->get_graphics(), bf);
+}
+catch(...)
+{
+bOk = false;
+}
 
 
-   return true;
+GdiFlush();
+
+
+return true;
 
 
 }
 */
 
 /*bool imaging::bitmap_blend(
-                          ::ca::graphics * pdcA, // destination device
-                          point pt,
-                          size size,
-                          ::ca::dib * pdibB, // source device
-                          point ptSrc,
-                          ::ca::dib * pdibC, // alpha information device
-                          point ptAlpha,
-                          byte uchAlphaConstant)
+::ca::graphics * pdcA, // destination device
+point pt,
+size size,
+::ca::dib * pdibB, // source device
+point ptSrc,
+::ca::dib * pdibC, // alpha information device
+point ptAlpha,
+byte uchAlphaConstant)
 {
 
-   UNREFERENCED_PARAMETER(ptSrc);
-   UNREFERENCED_PARAMETER(ptAlpha);
+UNREFERENCED_PARAMETER(ptSrc);
+UNREFERENCED_PARAMETER(ptAlpha);
 
-   GdiFlush();
-
-
-   UINT32 * lpuiA = (UINT32 *) pdibC->get_data();
-
-   int64_t a = size.area();
-   int64_t i;
-
-   int64_t b = a - a % 4;
-   for(i = 0; i < b; i +=4)
-   {
-      lpuiA[0] = 0xff000000 - ((lpuiA[0]) & 0xff000000);
-      lpuiA[1] = 0xff000000 - ((lpuiA[1]) & 0xff000000);
-      lpuiA[2] = 0xff000000 - ((lpuiA[2]) & 0xff000000);
-      lpuiA[3] = 0xff000000 - ((lpuiA[3]) & 0xff000000);
-      lpuiA += 4;
-   }
-   for (; i < a; i++)
-   {
-      *lpuiA++ = 0xff000000 - ((*lpuiA) & 0xff000000);
-   }
-
-   BLENDFUNCTION bf;
-   bf.BlendOp     = AC_SRC_OVER;
-   bf.BlendFlags  = 0;
-   bf.SourceConstantAlpha = uchAlphaConstant;
-   bf.AlphaFormat = AC_SRC_ALPHA;
-
-   bool bOk;
-   try
-   {
-      pdibB->get_graphics()->alpha_blend(size, pdibC->get_graphics(), bf);
-   }
-   catch(...)
-   {
-      bOk = false;
-   }
+GdiFlush();
 
 
-   GdiFlush();
+UINT32 * lpuiA = (UINT32 *) pdibC->get_data();
 
-   lpuiA = (UINT32 *) pdibC->get_data();
-   UINT32 * lpuiB = (UINT32 *) pdibB->get_data();
+int64_t a = size.area();
+int64_t i;
 
-   for (i = 0; i < b; i +=4)
-   {
-      lpuiA[0] = (0xff000000 - (lpuiA[0] & 0xff000000)) | (lpuiB[0]  & 0x00ffffff);
-      lpuiA[1] = (0xff000000 - (lpuiA[1] & 0xff000000)) | (lpuiB[1]  & 0x00ffffff);
-      lpuiA[2] = (0xff000000 - (lpuiA[2] & 0xff000000)) | (lpuiB[2]  & 0x00ffffff);
-      lpuiA[3] = (0xff000000 - (lpuiA[3] & 0xff000000)) | (lpuiB[3]  & 0x00ffffff);
-      lpuiA += 4;
-      lpuiB += 4;
-   }
-   for (; i < a; i++)
-   {
-      *lpuiA++ = (0xff000000 - (*lpuiA & 0xff000000)) | (*lpuiB++  & 0x00ffffff);
-   }
+int64_t b = a - a % 4;
+for(i = 0; i < b; i +=4)
+{
+lpuiA[0] = 0xff000000 - ((lpuiA[0]) & 0xff000000);
+lpuiA[1] = 0xff000000 - ((lpuiA[1]) & 0xff000000);
+lpuiA[2] = 0xff000000 - ((lpuiA[2]) & 0xff000000);
+lpuiA[3] = 0xff000000 - ((lpuiA[3]) & 0xff000000);
+lpuiA += 4;
+}
+for (; i < a; i++)
+{
+*lpuiA++ = 0xff000000 - ((*lpuiA) & 0xff000000);
+}
 
-   try
-   {
-      pdcA->alpha_blend(pt, size, pdibC->get_graphics(), bf);
-   }
-   catch(...)
-   {
-      bOk = false;
-   }
-   GdiFlush();
+BLENDFUNCTION bf;
+bf.BlendOp     = AC_SRC_OVER;
+bf.BlendFlags  = 0;
+bf.SourceConstantAlpha = uchAlphaConstant;
+bf.AlphaFormat = AC_SRC_ALPHA;
+
+bool bOk;
+try
+{
+pdibB->get_graphics()->alpha_blend(size, pdibC->get_graphics(), bf);
+}
+catch(...)
+{
+bOk = false;
+}
 
 
-   return true;
+GdiFlush();
+
+lpuiA = (UINT32 *) pdibC->get_data();
+UINT32 * lpuiB = (UINT32 *) pdibB->get_data();
+
+for (i = 0; i < b; i +=4)
+{
+lpuiA[0] = (0xff000000 - (lpuiA[0] & 0xff000000)) | (lpuiB[0]  & 0x00ffffff);
+lpuiA[1] = (0xff000000 - (lpuiA[1] & 0xff000000)) | (lpuiB[1]  & 0x00ffffff);
+lpuiA[2] = (0xff000000 - (lpuiA[2] & 0xff000000)) | (lpuiB[2]  & 0x00ffffff);
+lpuiA[3] = (0xff000000 - (lpuiA[3] & 0xff000000)) | (lpuiB[3]  & 0x00ffffff);
+lpuiA += 4;
+lpuiB += 4;
+}
+for (; i < a; i++)
+{
+*lpuiA++ = (0xff000000 - (*lpuiA & 0xff000000)) | (*lpuiB++  & 0x00ffffff);
+}
+
+try
+{
+pdcA->alpha_blend(pt, size, pdibC->get_graphics(), bf);
+}
+catch(...)
+{
+bOk = false;
+}
+GdiFlush();
+
+
+return true;
 
 
 }
 
 bool imaging::BitmapBlend2(
-                           ::ca::graphics * pdcA, // destination device
-                           point pt,
-                           size size,
-                           ::ca::graphics * pdcB, // source device
-                           point ptSrc,
-                           ::ca::graphics * pdcC, // alpha information device
-                           point ptAlpha)
+::ca::graphics * pdcA, // destination device
+point pt,
+size size,
+::ca::graphics * pdcB, // source device
+point ptSrc,
+::ca::graphics * pdcC, // alpha information device
+point ptAlpha)
 {
-   BITMAPINFO bmi;
+BITMAPINFO bmi;
 
-   // zero the primitive::memory for the bitmap info
-   ZeroMemory(&bmi, sizeof(BITMAPINFO));
+// zero the primitive::memory for the bitmap info
+ZeroMemory(&bmi, sizeof(BITMAPINFO));
 
-   ::ca::dib_sp dibA(get_app());
+::ca::dib_sp dibA(get_app());
 
-   if(!dibA->create(size))
-      return false;
+if(!dibA->create(size))
+return false;
 
-   ::ca::dib_sp dibB(get_app());
+::ca::dib_sp dibB(get_app());
 
-   if(!dibB->create(size))
-      return false;
+if(!dibB->create(size))
+return false;
 
-   dibB->get_graphics()->from(size, pdcB, ptSrc, SRCCOPY);
+dibB->get_graphics()->from(size, pdcB, ptSrc, SRCCOPY);
 
-   dibA->get_graphics()->from(size, pdcC, ptAlpha, SRCCOPY);
+dibA->get_graphics()->from(size, pdcC, ptAlpha, SRCCOPY);
 
-   GdiFlush();
+GdiFlush();
 
 
-   UINT32 * lpuiA = (UINT32 *) dibA->get_data();
+UINT32 * lpuiA = (UINT32 *) dibA->get_data();
 
 //   int64_t a = size.area();
-   //      int i;
+//      int i;
 
 //   int64_t b = a - 4;
-   /*      for (i = 0; i < b; i +=4)
-   {
-   lpuiA[0] = ((lpuiA[0] << 8) & 0xff000000);
-   lpuiA[1] = ((lpuiA[1] << 8) & 0xff000000);
-   lpuiA[2] = ((lpuiA[2] << 8) & 0xff000000);
-   lpuiA[3] = ((lpuiA[3] << 8) & 0xff000000);
-   lpuiA += 4;
-   }
-   for (; i < a; i++)
-   {
-   *lpuiA++ = ((*lpuiA << 8) & 0xff000000);
-   }
+/*      for (i = 0; i < b; i +=4)
+{
+lpuiA[0] = ((lpuiA[0] << 8) & 0xff000000);
+lpuiA[1] = ((lpuiA[1] << 8) & 0xff000000);
+lpuiA[2] = ((lpuiA[2] << 8) & 0xff000000);
+lpuiA[3] = ((lpuiA[3] << 8) & 0xff000000);
+lpuiA += 4;
+}
+for (; i < a; i++)
+{
+*lpuiA++ = ((*lpuiA << 8) & 0xff000000);
+}
 
-   rect rect(0, 0, cx, cy);
-   dibA->get_graphics()->InvertRect(rect);*/
+rect rect(0, 0, cx, cy);
+dibA->get_graphics()->InvertRect(rect);*/
 
-  /* BLENDFUNCTION bf;
-   bf.BlendOp     = AC_SRC_OVER;
-   bf.BlendFlags  = 0;
-   bf.SourceConstantAlpha = 0xFF;
-   bf.AlphaFormat = AC_SRC_ALPHA;
+/* BLENDFUNCTION bf;
+bf.BlendOp     = AC_SRC_OVER;
+bf.BlendFlags  = 0;
+bf.SourceConstantAlpha = 0xFF;
+bf.AlphaFormat = AC_SRC_ALPHA;
 
-   bool bOk;
-   try
-   {
-      dibB->get_graphics()->alpha_blend(size, dibA->get_graphics(), bf);
-   }
-   catch(...)
-   {
-      bOk = false;
-   }
+bool bOk;
+try
+{
+dibB->get_graphics()->alpha_blend(size, dibA->get_graphics(), bf);
+}
+catch(...)
+{
+bOk = false;
+}
 
 
-   GdiFlush();
+GdiFlush();
 
-   lpuiA = (UINT32 *) dibA->get_data();
+lpuiA = (UINT32 *) dibA->get_data();
 //   UINT32 * lpuiB = (UINT32 *) dibB->get_data();
 
-   rect rect(null_point(), size);
-   //      dibA->get_graphics()->InvertRect(rect);
+rect rect(null_point(), size);
+//      dibA->get_graphics()->InvertRect(rect);
 
-   ::ca::dib_sp dibPat(get_app());
-   dibPat->create(64, 64);
-   dibPat->Fill(255, 0, 0, 0);
+::ca::dib_sp dibPat(get_app());
+dibPat->create(64, 64);
+dibPat->Fill(255, 0, 0, 0);
 
-   ::ca::brush_sp brush(get_app());
-   brush->CreatePatternBrush(dibPat->get_bitmap());
+::ca::brush_sp brush(get_app());
+brush->CreatePatternBrush(dibPat->get_bitmap());
 
-   ::ca::dib_sp spdib(get_app());
-   spdib->create(size);
+::ca::dib_sp spdib(get_app());
+spdib->create(size);
 
-   spdib->get_graphics()->FillRect(rect, brush);
+spdib->get_graphics()->FillRect(rect, brush);
 
-   try
-   {
-      pdcA->alpha_blend(pt, size, dibA->get_graphics(), bf);
-   }
-   catch(...)
-   {
-      bOk = false;
-   }
+try
+{
+pdcA->alpha_blend(pt, size, dibA->get_graphics(), bf);
+}
+catch(...)
+{
+bOk = false;
+}
 
-   GdiFlush();
+GdiFlush();
 
-   return true;
+return true;
 
 
 
@@ -2068,22 +2068,22 @@ bool imaging::BitmapBlend2(
 
 */
 bool imaging::bitmap_blend(
-                          ::ca::graphics * pdcDst, // destination device
-                          point pt,
-                          size size,
-                          ::ca::graphics * pdcSrcWithAlpha, // source device
-                          point ptSrc)
+   ::ca::graphics * pdcDst, // destination device
+   point pt,
+   size size,
+   ::ca::graphics * pdcSrcWithAlpha, // source device
+   point ptSrc)
 {
    return color_blend(pdcDst, pt, size, pdcSrcWithAlpha, ptSrc);
 }
 
 bool imaging::BitmapDivBlend(
-                          ::ca::graphics * pdcDst, // destination device
-                          point ptDst,
-                          size size,
-                          ::ca::graphics * pdcSrc, // source device
-                          point ptSrc,
-                          BYTE bAlpha)
+   ::ca::graphics * pdcDst, // destination device
+   point ptDst,
+   size size,
+   ::ca::graphics * pdcSrc, // source device
+   point ptSrc,
+   BYTE bAlpha)
 {
 
    visual::dib_sp spdib(get_app());
@@ -2100,12 +2100,12 @@ bool imaging::BitmapDivBlend(
 
 
 bool imaging::bitmap_blend(
-                          ::ca::graphics * pdcDst, // destination device
-                          point ptDst,
-                          size size,
-                          ::ca::graphics * pdcSrc, // source device
-                          point ptSrc,
-                          BYTE bAlpha)
+   ::ca::graphics * pdcDst, // destination device
+   point ptDst,
+   size size,
+   ::ca::graphics * pdcSrc, // source device
+   point ptSrc,
+   BYTE bAlpha)
 {
 
    return pdcDst->alpha_blend(ptDst, size, pdcSrc, ptSrc, bAlpha / 255.0);
@@ -2135,220 +2135,220 @@ bool imaging::ColorInvert(::ca::graphics * pdc, int x, int y, int cx, int cy)
    pdc->SetMapMode(MM_TEXT);
    if(!spbmpTemp->CreateCompatibleBitmap(pdc, 1, 1))
    {
-      pdc->SetMapMode(iOriginalMapMode);
-      return false;
+   pdc->SetMapMode(iOriginalMapMode);
+   return false;
    }
 
    if(!pdc->SelectObject(spbmpTemp))
    {
-      try
-      {
-         // this is a display spgraphics
+   try
+   {
+   // this is a display spgraphics
 
-         if(bitmapA->get_os_data() == NULL)
-         {
-            bitmapA->CreateBitmap(cx + 100, cy + 100, 1, 24, NULL);
-         }
-         else
-         {
-            BITMAP bm;
-            if(!bitmapA->GetObject(sizeof(bm), &bm))
-               throw 3500;
-            if(bm.bmWidth < cx ||
-               bm.bmHeight  < cy)
-            {
-               bitmapA->CreateBitmap(cx + 100, cy + 100, 1, 24, NULL);
-            }
-         }
-
-         ::ca::graphics_sp graphicsMem(get_app());
-         graphicsMem->CreateCompatibleDC(pdc);
-         ::ca::bitmap * pbmpMemOld = graphicsMem->SelectObject(bitmapA);
-         graphicsMem->BitBlt(
-            0, 0,
-            cx, cy,
-            pdc,
-            x, y,
-            SRCCOPY);
-         BITMAP bm;
-         if(!bitmapA->GetObject(sizeof(bm), &bm))
-            throw 3500;
-
-         primitive::memory memstorageA;
-
-
-         BITMAPINFO bmi;
-         bmi.bmiHeader.biSize = sizeof(bmi.bmiHeader);
-         bmi.bmiHeader.biWidth = bm.bmWidth ;
-         bmi.bmiHeader.biHeight = -bm.bmHeight;
-         bmi.bmiHeader.biPlanes = 1;
-         bmi.bmiHeader.biBitCount = 24;
-         bmi.bmiHeader.biCompression = BI_RGB;
-         bmi.bmiHeader.biSizeImage = 0;
-         bmi.bmiHeader.biXPelsPerMeter = 0;
-         bmi.bmiHeader.biYPelsPerMeter = 0;
-         bmi.bmiHeader.biClrUsed = 0;
-         bmi.bmiHeader.biClrImportant = 0;
-         int iLineBytes =  (bm.bmWidthBytes + 3) & ~3;
-         try
-         {
-            memstorageA.allocate(iLineBytes * cy);
-         }
-         catch(memory_exception * pe)
-         {
-            delete pe;
-            throw 4000;
-         }
-
-         LPVOID lpv = memstorageA.get_data();
-
-         point pointViewport;
-         pointViewport = pdc->GetViewportOrg();
-         UINT uiStartScanLine = bm.bmHeight - y - cy - pointViewport.y;
-         //UINT uiStartScanLine = bm.bmHeight - y - cy;
-         UINT uiScanLines = cy;
-         int xOffset = (x + pointViewport.x) * 3;
-         //if(!GetDIBits(dcAux.get_os_data(), bitmapA, bm.bmHeight - cy, cy, lpv, &bmi, DIB_RGB_COLORS))
-         //  throw 5000;
-         int iLimitY = cy;
-         if(!(iLimitY =
-            GetDIBits(
-            (HDC)graphicsMem->get_os_data(),
-            (HBITMAP)bitmapA->get_os_data(),
-            uiStartScanLine,
-            uiScanLines,
-            lpv,
-            &bmi,
-            DIB_RGB_COLORS)))
-            return false;
-         int iLimitX = cx;
-
-         if(bm.bmWidth - x - pointViewport.x < iLimitX)
-         {
-            iLimitX = bm.bmWidth - x - pointViewport.x;
-         }
-
-         LPBYTE lpb;
-         int i, j;
-         for(i = 0; i < iLimitY; i++)
-         {
-            lpb = (LPBYTE) lpv + (iLineBytes * i) + xOffset;
-            for(j = 0; j < iLimitX; j++)
-            {
-               *lpb++ = (BYTE) 255 - *lpb;
-               *lpb++ = (BYTE) 255 - *lpb;
-               *lpb++ = (BYTE) 255 - *lpb;
-            }
-         }
-         if(!SetDIBits(
-            (HDC)graphicsMem->get_os_data(),
-            (HBITMAP)bitmapA->get_os_data(),
-            uiStartScanLine,
-            uiScanLines,
-            lpv,
-            &bmi,
-            DIB_RGB_COLORS))
-            throw 6000;
-         pdc->BitBlt(x, y, cx, cy, graphicsMem, 0, 0, SRCCOPY);
-         graphicsMem->SelectObject(pbmpMemOld);
-         graphicsMem->DeleteDC();
-         pdc->SetMapMode(iOriginalMapMode);
-         return true;
-      }
-      catch(int)
-      {
-         pdc->SetMapMode(iOriginalMapMode);
-         return false;
-      }
+   if(bitmapA->get_os_data() == NULL)
+   {
+   bitmapA->CreateBitmap(cx + 100, cy + 100, 1, 24, NULL);
    }
    else
    {
-      try
-      {
+   BITMAP bm;
+   if(!bitmapA->GetObject(sizeof(bm), &bm))
+   throw 3500;
+   if(bm.bmWidth < cx ||
+   bm.bmHeight  < cy)
+   {
+   bitmapA->CreateBitmap(cx + 100, cy + 100, 1, 24, NULL);
+   }
+   }
 
-         // This is a primitive::memory device context
-         BITMAP bm;
-         if(!pbmp->GetObject(sizeof(bm), &bm))
-            throw 3500;
+   ::ca::graphics_sp graphicsMem(get_app());
+   graphicsMem->CreateCompatibleDC(pdc);
+   ::ca::bitmap * pbmpMemOld = graphicsMem->SelectObject(bitmapA);
+   graphicsMem->BitBlt(
+   0, 0,
+   cx, cy,
+   pdc,
+   x, y,
+   SRCCOPY);
+   BITMAP bm;
+   if(!bitmapA->GetObject(sizeof(bm), &bm))
+   throw 3500;
 
-         BITMAPINFO bmi;
-         bmi.bmiHeader.biSize = sizeof(bmi.bmiHeader);
-         bmi.bmiHeader.biWidth = bm.bmWidth ;
-         bmi.bmiHeader.biHeight = -bm.bmHeight;
-         bmi.bmiHeader.biPlanes = 1;
-         bmi.bmiHeader.biBitCount = 24;
-         bmi.bmiHeader.biCompression = BI_RGB;
-         bmi.bmiHeader.biSizeImage = 0;
-         bmi.bmiHeader.biXPelsPerMeter = 0;
-         bmi.bmiHeader.biYPelsPerMeter = 0;
-         bmi.bmiHeader.biClrUsed = 0;
-         bmi.bmiHeader.biClrImportant = 0;
-         int iLineBytes =  ((bm.bmWidth * 3) + 3) & ~3;
-
-         primitive::memory memstorageA;
-         try
-         {
-            memstorageA.allocate(iLineBytes * cy);
-         }
-         catch(memory_exception * pe)
-         {
-            delete pe;
-            throw 4000;
-         }
-         LPVOID lpv = memstorageA.get_data();
-         point pointViewport = pdc->GetViewportOrg();
-         UINT uiStartScanLine = bm.bmHeight - y - cy - pointViewport.y;
-         //UINT uiStartScanLine = bm.bmHeight - y - cy;
-         UINT uiScanLines = cy;
-         int xOffset = (x + pointViewport.x) * 3;
+   primitive::memory memstorageA;
 
 
-         //int xOffset = (x) * 3;
-         int iLimitY = cy;
-         if(!(iLimitY =
-            GetDIBits(
-            (HDC)pdc->get_os_data(),
-            (HBITMAP) pbmp->get_os_data(),
-            uiStartScanLine,
-            uiScanLines,
-            lpv,
-            &bmi,
-            DIB_RGB_COLORS)))
-            throw 5000;
-         int iLimitX = cx;
+   BITMAPINFO bmi;
+   bmi.bmiHeader.biSize = sizeof(bmi.bmiHeader);
+   bmi.bmiHeader.biWidth = bm.bmWidth ;
+   bmi.bmiHeader.biHeight = -bm.bmHeight;
+   bmi.bmiHeader.biPlanes = 1;
+   bmi.bmiHeader.biBitCount = 24;
+   bmi.bmiHeader.biCompression = BI_RGB;
+   bmi.bmiHeader.biSizeImage = 0;
+   bmi.bmiHeader.biXPelsPerMeter = 0;
+   bmi.bmiHeader.biYPelsPerMeter = 0;
+   bmi.bmiHeader.biClrUsed = 0;
+   bmi.bmiHeader.biClrImportant = 0;
+   int iLineBytes =  (bm.bmWidthBytes + 3) & ~3;
+   try
+   {
+   memstorageA.allocate(iLineBytes * cy);
+   }
+   catch(memory_exception * pe)
+   {
+   delete pe;
+   throw 4000;
+   }
+
+   LPVOID lpv = memstorageA.get_data();
+
+   point pointViewport;
+   pointViewport = pdc->GetViewportOrg();
+   UINT uiStartScanLine = bm.bmHeight - y - cy - pointViewport.y;
+   //UINT uiStartScanLine = bm.bmHeight - y - cy;
+   UINT uiScanLines = cy;
+   int xOffset = (x + pointViewport.x) * 3;
+   //if(!GetDIBits(dcAux.get_os_data(), bitmapA, bm.bmHeight - cy, cy, lpv, &bmi, DIB_RGB_COLORS))
+   //  throw 5000;
+   int iLimitY = cy;
+   if(!(iLimitY =
+   GetDIBits(
+   (HDC)graphicsMem->get_os_data(),
+   (HBITMAP)bitmapA->get_os_data(),
+   uiStartScanLine,
+   uiScanLines,
+   lpv,
+   &bmi,
+   DIB_RGB_COLORS)))
+   return false;
+   int iLimitX = cx;
+
+   if(bm.bmWidth - x - pointViewport.x < iLimitX)
+   {
+   iLimitX = bm.bmWidth - x - pointViewport.x;
+   }
+
+   LPBYTE lpb;
+   int i, j;
+   for(i = 0; i < iLimitY; i++)
+   {
+   lpb = (LPBYTE) lpv + (iLineBytes * i) + xOffset;
+   for(j = 0; j < iLimitX; j++)
+   {
+   *lpb++ = (BYTE) 255 - *lpb;
+   *lpb++ = (BYTE) 255 - *lpb;
+   *lpb++ = (BYTE) 255 - *lpb;
+   }
+   }
+   if(!SetDIBits(
+   (HDC)graphicsMem->get_os_data(),
+   (HBITMAP)bitmapA->get_os_data(),
+   uiStartScanLine,
+   uiScanLines,
+   lpv,
+   &bmi,
+   DIB_RGB_COLORS))
+   throw 6000;
+   pdc->BitBlt(x, y, cx, cy, graphicsMem, 0, 0, SRCCOPY);
+   graphicsMem->SelectObject(pbmpMemOld);
+   graphicsMem->DeleteDC();
+   pdc->SetMapMode(iOriginalMapMode);
+   return true;
+   }
+   catch(int)
+   {
+   pdc->SetMapMode(iOriginalMapMode);
+   return false;
+   }
+   }
+   else
+   {
+   try
+   {
+
+   // This is a primitive::memory device context
+   BITMAP bm;
+   if(!pbmp->GetObject(sizeof(bm), &bm))
+   throw 3500;
+
+   BITMAPINFO bmi;
+   bmi.bmiHeader.biSize = sizeof(bmi.bmiHeader);
+   bmi.bmiHeader.biWidth = bm.bmWidth ;
+   bmi.bmiHeader.biHeight = -bm.bmHeight;
+   bmi.bmiHeader.biPlanes = 1;
+   bmi.bmiHeader.biBitCount = 24;
+   bmi.bmiHeader.biCompression = BI_RGB;
+   bmi.bmiHeader.biSizeImage = 0;
+   bmi.bmiHeader.biXPelsPerMeter = 0;
+   bmi.bmiHeader.biYPelsPerMeter = 0;
+   bmi.bmiHeader.biClrUsed = 0;
+   bmi.bmiHeader.biClrImportant = 0;
+   int iLineBytes =  ((bm.bmWidth * 3) + 3) & ~3;
+
+   primitive::memory memstorageA;
+   try
+   {
+   memstorageA.allocate(iLineBytes * cy);
+   }
+   catch(memory_exception * pe)
+   {
+   delete pe;
+   throw 4000;
+   }
+   LPVOID lpv = memstorageA.get_data();
+   point pointViewport = pdc->GetViewportOrg();
+   UINT uiStartScanLine = bm.bmHeight - y - cy - pointViewport.y;
+   //UINT uiStartScanLine = bm.bmHeight - y - cy;
+   UINT uiScanLines = cy;
+   int xOffset = (x + pointViewport.x) * 3;
 
 
-         if(bm.bmWidth - x - pointViewport.x < iLimitX)
-         {
-            iLimitX = bm.bmWidth - x - pointViewport.x;
-         }
+   //int xOffset = (x) * 3;
+   int iLimitY = cy;
+   if(!(iLimitY =
+   GetDIBits(
+   (HDC)pdc->get_os_data(),
+   (HBITMAP) pbmp->get_os_data(),
+   uiStartScanLine,
+   uiScanLines,
+   lpv,
+   &bmi,
+   DIB_RGB_COLORS)))
+   throw 5000;
+   int iLimitX = cx;
 
-         LPBYTE lpb;
-         int i, j;
-         for(i = 0; i < iLimitY; i++)
-         {
-            lpb = (LPBYTE) lpv + (iLineBytes * i) + xOffset;
-            if(lpb < lpv)
-               continue;
-            for(j = 0; j < iLimitX; j++)
-            {
-               *lpb++ = (BYTE) 255 - *lpb ;
-               *lpb++ = (BYTE) 255 - *lpb;
-               *lpb++ = (BYTE) 255 - *lpb;
-            }
-         }
 
-         if(!SetDIBits((HDC)pdc->get_os_data(),
-            (HBITMAP) pbmp->get_os_data(),
-            uiStartScanLine, uiScanLines,
-            lpv, &bmi, DIB_RGB_COLORS))
-            throw 6000;
-      }
-      catch(int)
-      {
-         pdc->SetMapMode(iOriginalMapMode);
-         return false;
-      }
+   if(bm.bmWidth - x - pointViewport.x < iLimitX)
+   {
+   iLimitX = bm.bmWidth - x - pointViewport.x;
+   }
+
+   LPBYTE lpb;
+   int i, j;
+   for(i = 0; i < iLimitY; i++)
+   {
+   lpb = (LPBYTE) lpv + (iLineBytes * i) + xOffset;
+   if(lpb < lpv)
+   continue;
+   for(j = 0; j < iLimitX; j++)
+   {
+   *lpb++ = (BYTE) 255 - *lpb ;
+   *lpb++ = (BYTE) 255 - *lpb;
+   *lpb++ = (BYTE) 255 - *lpb;
+   }
+   }
+
+   if(!SetDIBits((HDC)pdc->get_os_data(),
+   (HBITMAP) pbmp->get_os_data(),
+   uiStartScanLine, uiScanLines,
+   lpv, &bmi, DIB_RGB_COLORS))
+   throw 6000;
+   }
+   catch(int)
+   {
+   pdc->SetMapMode(iOriginalMapMode);
+   return false;
+   }
    }
    pdc->SetMapMode(iOriginalMapMode);
    return true;*/
@@ -2460,8 +2460,8 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
    if(pfibitmap == NULL)
       return ::ca::null();
 
-//   BITMAPINFO * pbi = FreeImage_GetInfo(pfibitmap);
-  // void * pData = FreeImage_GetBits(pfibitmap);
+   //   BITMAPINFO * pbi = FreeImage_GetInfo(pfibitmap);
+   // void * pData = FreeImage_GetBits(pfibitmap);
 
 
    ::ca::dib_sp dib(get_app());
@@ -2485,24 +2485,24 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
    dibSource->dc_select(false);
 
    if(pbi->bmiHeader.biHeight != SetDIBits(
-      (HDC)spgraphics->get_os_data(),
-      (HBITMAP) dibSource->get_bitmap()->get_os_data(),
-      0,
-      pbi->bmiHeader.biHeight,
-      pData,
-      pbi,
-      DIB_RGB_COLORS))
+   (HDC)spgraphics->get_os_data(),
+   (HBITMAP) dibSource->get_bitmap()->get_os_data(),
+   0,
+   pbi->bmiHeader.biHeight,
+   pData,
+   pbi,
+   DIB_RGB_COLORS))
    {
-      if(bUnloadFI)
-      {
-         FreeImage_Unload(pfibitmap);
-      }
-      return NULL;
+   if(bUnloadFI)
+   {
+   FreeImage_Unload(pfibitmap);
+   }
+   return NULL;
    }
 
    if(bUnloadFI)
    {
-      FreeImage_Unload(pfibitmap);
+   FreeImage_Unload(pfibitmap);
    }
    */
 
@@ -2556,10 +2556,10 @@ bool imaging::color_blend_3dRect(::ca::graphics *pdc, LPCRECT lpcrect, COLORREF 
 }
 
 bool imaging::clip_color_blend(
-                             ::ca::graphics * pdc,
-                             LPCRECT lpcrect,
-                             COLORREF cr,
-                             BYTE alpha)
+   ::ca::graphics * pdc,
+   LPCRECT lpcrect,
+   COLORREF cr,
+   BYTE alpha)
 {
    class rect rect(lpcrect);
    return clip_color_blend(
@@ -2626,10 +2626,10 @@ bool imaging::clip_color_blend(::ca::graphics * pdc, point pt, size size, COLORR
 }
 
 bool imaging::color_blend(
-                         ::ca::graphics * pdc,
-                         const __rect64 * lpcrect,
-                         COLORREF cr,
-                         BYTE alpha)
+   ::ca::graphics * pdc,
+   const __rect64 * lpcrect,
+   COLORREF cr,
+   BYTE alpha)
 {
    rect rect32;
    ::copy(rect32, lpcrect);
@@ -2638,10 +2638,10 @@ bool imaging::color_blend(
 
 
 bool imaging::color_blend(
-                         ::ca::graphics * pdc,
-                         LPCRECT lpcrect,
-                         COLORREF cr,
-                         BYTE alpha)
+   ::ca::graphics * pdc,
+   LPCRECT lpcrect,
+   COLORREF cr,
+   BYTE alpha)
 {
    class rect rect(lpcrect);
    return color_blend(
@@ -2653,11 +2653,11 @@ bool imaging::color_blend(
 }
 
 bool imaging::color_blend(
-                         ::ca::graphics * pdc,
-                         LPCRECT lpcrect,
-                         COLORREF cr,
-                         BYTE alpha,
-                         ::ca::dib * pdibWork)
+   ::ca::graphics * pdc,
+   LPCRECT lpcrect,
+   COLORREF cr,
+   BYTE alpha,
+   ::ca::dib * pdibWork)
 {
    class rect rect(lpcrect);
    return color_blend(
@@ -2670,11 +2670,11 @@ bool imaging::color_blend(
 }
 
 bool imaging::color_blend(
-                         ::ca::graphics * pdc,
-                         point pt,
-                         size size,
-                         COLORREF cr,
-                         BYTE bA)
+   ::ca::graphics * pdc,
+   point pt,
+   size size,
+   COLORREF cr,
+   BYTE bA)
 {
    //::ca::dib_sp spdib(get_app());
    //return color_blend(pdc, pt, size, cr, bA, spdib);
@@ -2682,11 +2682,11 @@ bool imaging::color_blend(
 }
 
 bool imaging::color_blend(
-                         ::ca::graphics * pdc,
-                         int x, int y,
-                         int cx, int cy,
-                         COLORREF cr,
-                         BYTE bA)
+   ::ca::graphics * pdc,
+   int x, int y,
+   int cx, int cy,
+   COLORREF cr,
+   BYTE bA)
 {
 
    return color_blend(pdc, point(x, y), size(cx, cy), cr, bA);
@@ -2761,12 +2761,12 @@ bool imaging::prepare_blend(::ca::dib * pdib, point pt, size size, COLORREF cr, 
 }
 
 bool imaging::ClipSave(
-                       ::ca::graphics * pdc,
-                       ::ca::bitmap * pbitmap,
-                       ::ca::bitmap * pbitmapOld,
-                       BITMAP * pbmp,
-                       LPCRECT lpcrect,
-                       ::ca::region * prgnClip)
+   ::ca::graphics * pdc,
+   ::ca::bitmap * pbitmap,
+   ::ca::bitmap * pbitmapOld,
+   BITMAP * pbmp,
+   LPCRECT lpcrect,
+   ::ca::region * prgnClip)
 {
 
    if(pdc == NULL)
@@ -2886,12 +2886,12 @@ bool imaging::ClipSave(
 }
 
 bool imaging::ClipRestore(
-                          ::ca::graphics * pdc,
-                          ::ca::bitmap * pbitmap,
-                          ::ca::bitmap * pbitmapOld,
-                          BITMAP * pbmp,
-                          LPCRECT lpcrect,
-                          ::ca::region * prgnClip)
+   ::ca::graphics * pdc,
+   ::ca::bitmap * pbitmap,
+   ::ca::bitmap * pbitmapOld,
+   BITMAP * pbmp,
+   LPCRECT lpcrect,
+   ::ca::region * prgnClip)
 {
    UNREFERENCED_PARAMETER(pbitmapOld);
    UNREFERENCED_PARAMETER(pbmp);
@@ -3014,11 +3014,11 @@ bool imaging::ClipRestore(
 
 
 bool imaging::ClipSave(
-                       ::ca::graphics * pdc,
-                       ::ca::bitmap * pbitmap,
-                       ::ca::bitmap * pbitmapOld,
-                       BITMAP * pbmp,
-                       LPCRECT lpcrect)
+   ::ca::graphics * pdc,
+   ::ca::bitmap * pbitmap,
+   ::ca::bitmap * pbitmapOld,
+   BITMAP * pbmp,
+   LPCRECT lpcrect)
 {
 
    if(pdc == NULL)
@@ -3055,11 +3055,11 @@ bool imaging::ClipSave(
 }
 
 bool imaging::ClipRestore(
-                          ::ca::graphics * pdc,
-                          ::ca::bitmap * pbitmap,
-                          ::ca::bitmap * pbitmapOld,
-                          BITMAP * pbmp,
-                          LPCRECT lpcrect)
+   ::ca::graphics * pdc,
+   ::ca::bitmap * pbitmap,
+   ::ca::bitmap * pbitmapOld,
+   BITMAP * pbmp,
+   LPCRECT lpcrect)
 {
    if(pdc == NULL)
       return false;
@@ -3095,13 +3095,13 @@ bool imaging::ClipRestore(
 }
 
 bool imaging::CreateBitmap(
-                           ::ca::graphics * pdc,
-                           ::ca::graphics * pdcScreen,
-                           ::ca::bitmap * pbitmap,
-                           ::ca::bitmap * pbitmapOld,
-                           BITMAP * pbmp,
-                           int cx,
-                           int cy)
+   ::ca::graphics * pdc,
+   ::ca::graphics * pdcScreen,
+   ::ca::bitmap * pbitmap,
+   ::ca::bitmap * pbitmapOld,
+   BITMAP * pbmp,
+   int cx,
+   int cy)
 {
    int cxout = cx;
    int cyout = cy;
@@ -3188,73 +3188,73 @@ bool imaging::CreateBitmap(::ca::graphics *pdc, ::ca::bitmap * pbitmapOld, ::ca:
 HBITMAP
 imaging::LoadSysColorBitmap(::ca::graphics * pdcCompatible, HINSTANCE hInst, HRSRC hRsrc, bool bMono)
 {
-   HGLOBAL hglb;
-   if ((hglb = LoadResource(hInst, hRsrc)) == NULL)
-      return NULL;
+HGLOBAL hglb;
+if ((hglb = LoadResource(hInst, hRsrc)) == NULL)
+return NULL;
 
-   LPBITMAPINFOHEADER lpBitmap = (LPBITMAPINFOHEADER)LockResource(hglb);
-   if (lpBitmap == NULL)
-      return NULL;
+LPBITMAPINFOHEADER lpBitmap = (LPBITMAPINFOHEADER)LockResource(hglb);
+if (lpBitmap == NULL)
+return NULL;
 
-   // make copy of BITMAPINFOHEADER so we can modify the color table
-   const int nColorTableSize = 1 << lpBitmap->biBitCount;
-   UINT nSize = lpBitmap->biSize + nColorTableSize * sizeof(RGBQUAD);
-   LPBITMAPINFOHEADER lpBitmapInfo = (LPBITMAPINFOHEADER)::malloc(nSize);
-   if (lpBitmapInfo == NULL)
-      return NULL;
-   memcpy(lpBitmapInfo, lpBitmap, nSize);
+// make copy of BITMAPINFOHEADER so we can modify the color table
+const int nColorTableSize = 1 << lpBitmap->biBitCount;
+UINT nSize = lpBitmap->biSize + nColorTableSize * sizeof(RGBQUAD);
+LPBITMAPINFOHEADER lpBitmapInfo = (LPBITMAPINFOHEADER)::malloc(nSize);
+if (lpBitmapInfo == NULL)
+return NULL;
+memcpy(lpBitmapInfo, lpBitmap, nSize);
 
-   // color table is in RGBQUAD DIB format
-   DWORD* pColorTable =
-      (DWORD*)(((LPBYTE)lpBitmapInfo) + (UINT)lpBitmapInfo->biSize);
+// color table is in RGBQUAD DIB format
+DWORD* pColorTable =
+(DWORD*)(((LPBYTE)lpBitmapInfo) + (UINT)lpBitmapInfo->biSize);
 
-   for (int iColor = 0; iColor < nColorTableSize; iColor++)
-   {
-      // look for matching RGBQUAD color in original
-      for (int i = 0; s_psyscolormap[i].iSysColorTo != 0x80000000; i++)
-      {
-         if (pColorTable[iColor] == s_psyscolormap[i].rgbqFrom)
-         {
-            if (bMono)
-            {
-               // all colors except text become white
-               if (s_psyscolormap[i].iSysColorTo != COLOR_BTNTEXT)
-                  pColorTable[iColor] = RGB_TO_RGBQUAD(255, 255, 255);
-            }
-            else
-               pColorTable[iColor] =
-               CLR_TO_RGBQUAD(::GetSysColor(s_psyscolormap[i].iSysColorTo));
-            break;
-         }
-      }
-   }
+for (int iColor = 0; iColor < nColorTableSize; iColor++)
+{
+// look for matching RGBQUAD color in original
+for (int i = 0; s_psyscolormap[i].iSysColorTo != 0x80000000; i++)
+{
+if (pColorTable[iColor] == s_psyscolormap[i].rgbqFrom)
+{
+if (bMono)
+{
+// all colors except text become white
+if (s_psyscolormap[i].iSysColorTo != COLOR_BTNTEXT)
+pColorTable[iColor] = RGB_TO_RGBQUAD(255, 255, 255);
+}
+else
+pColorTable[iColor] =
+CLR_TO_RGBQUAD(::GetSysColor(s_psyscolormap[i].iSysColorTo));
+break;
+}
+}
+}
 
-   int nWidth = (int)lpBitmapInfo->biWidth;
-   int nHeight = (int)lpBitmapInfo->biHeight;
-   HDC hDCScreen = pdcCompatible->get_os_data();
-   HBITMAP hbm = ::CreateCompatibleBitmap(hDCScreen, nWidth, nHeight);
+int nWidth = (int)lpBitmapInfo->biWidth;
+int nHeight = (int)lpBitmapInfo->biHeight;
+HDC hDCScreen = pdcCompatible->get_os_data();
+HBITMAP hbm = ::CreateCompatibleBitmap(hDCScreen, nWidth, nHeight);
 
-   if (hbm != NULL)
-   {
-      HDC hDCGlyphs = ::CreateCompatibleDC(hDCScreen);
-      HBITMAP hbmOld = (HBITMAP)::SelectObject(hDCGlyphs, hbm);
+if (hbm != NULL)
+{
+HDC hDCGlyphs = ::CreateCompatibleDC(hDCScreen);
+HBITMAP hbmOld = (HBITMAP)::SelectObject(hDCGlyphs, hbm);
 
-      LPBYTE lpBits;
-      lpBits = (LPBYTE)(lpBitmap + 1);
-      lpBits += (1 << (lpBitmapInfo->biBitCount)) * sizeof(RGBQUAD);
+LPBYTE lpBits;
+lpBits = (LPBYTE)(lpBitmap + 1);
+lpBits += (1 << (lpBitmapInfo->biBitCount)) * sizeof(RGBQUAD);
 
-      StretchDIBits(hDCGlyphs, 0, 0, nWidth, nHeight, 0, 0, nWidth, nHeight,
-         lpBits, (LPBITMAPINFO)lpBitmapInfo, DIB_RGB_COLORS, SRCCOPY);
-      SelectObject(hDCGlyphs, hbmOld);
-      ::DeleteDC(hDCGlyphs);
-   }
-   //   ::ReleaseDC(NULL, hDCScreen);
+StretchDIBits(hDCGlyphs, 0, 0, nWidth, nHeight, 0, 0, nWidth, nHeight,
+lpBits, (LPBITMAPINFO)lpBitmapInfo, DIB_RGB_COLORS, SRCCOPY);
+SelectObject(hDCGlyphs, hbmOld);
+::DeleteDC(hDCGlyphs);
+}
+//   ::ReleaseDC(NULL, hDCScreen);
 
-   // free copy of bitmap info struct and resource itself
-   ::free(lpBitmapInfo);
-   ::FreeResource(hglb);
+// free copy of bitmap info struct and resource itself
+::free(lpBitmapInfo);
+::FreeResource(hglb);
 
-   return hbm;
+return hbm;
 }
 */
 /*bool imaging::CreateBitmap(::ca::graphics *pdc, ::ca::bitmap *pbitmapOld, ::ca::bitmap *pbitmap, BITMAP * pbmp, int cx, int cy)
@@ -3316,44 +3316,44 @@ void fastblur(::ca::dib * pimg, int radius)
    {
       return;
    }
-  int w=pimg->width();
-  int h=pimg->height();
-  int wm=w-1;
-  int hm=h-1;
-  int wh=w*h;
-  int div=radius+radius+1;
-  int_array iaA;
-  iaA.set_size(wh);
-  int * a = iaA.get_data();
-  int_array iaR;
-  iaR.set_size(wh);
-  int * r = iaR.get_data();
-  int_array iaG;
-  iaG.set_size(wh);
-  int * g = iaG.get_data();
-  int_array iaB;
-  iaB.set_size(wh);
-  int * b = iaB.get_data();
-  int asum, rsum,gsum,bsum,x,y,i,yp,yi,yw;
-  int p;
-  int p1;
-  int p2;
-  int_array iaVmin;
-  iaVmin.set_size(max(w,h));
-  int * vmin = iaVmin.get_data();
-  int_array iaVmax;
-  iaVmax.set_size(max(w,h));
-  int * vmax = iaVmax.get_data();
-  int * pix=(int *) pimg->get_data();
-  int_array iaDv;
-  iaDv.set_size(256*div);
-  int * dv = iaDv.get_data();
-  for (i=0;i<iaDv.get_count();i++)
-  {
+   int w=pimg->width();
+   int h=pimg->height();
+   int wm=w-1;
+   int hm=h-1;
+   int wh=w*h;
+   int div=radius+radius+1;
+   int_array iaA;
+   iaA.set_size(wh);
+   int * a = iaA.get_data();
+   int_array iaR;
+   iaR.set_size(wh);
+   int * r = iaR.get_data();
+   int_array iaG;
+   iaG.set_size(wh);
+   int * g = iaG.get_data();
+   int_array iaB;
+   iaB.set_size(wh);
+   int * b = iaB.get_data();
+   int asum, rsum,gsum,bsum,x,y,i,yp,yi,yw;
+   int p;
+   int p1;
+   int p2;
+   int_array iaVmin;
+   iaVmin.set_size(max(w,h));
+   int * vmin = iaVmin.get_data();
+   int_array iaVmax;
+   iaVmax.set_size(max(w,h));
+   int * vmax = iaVmax.get_data();
+   int * pix=(int *) pimg->get_data();
+   int_array iaDv;
+   iaDv.set_size(256*div);
+   int * dv = iaDv.get_data();
+   for (i=0;i<iaDv.get_count();i++)
+   {
       dv[i]= min(255, i/div);
-  }
+   }
 
-  yw=yi=0;
+   yw=yi=0;
 
    for(x=0;x<w;x++)
    {
@@ -3389,7 +3389,7 @@ void fastblur(::ca::dib * pimg, int radius)
          yi++;
       }
       yw+=w;
-  }
+   }
    for (y=0;y<h;y++)
    {
       vmin[y] = min(y+radius+1,hm) * w;
@@ -3422,7 +3422,7 @@ void fastblur(::ca::dib * pimg, int radius)
          bsum+=b[p1]-b[p2];
          asum+=a[p1]-a[p2];
 
-      yi+=w;
+         yi+=w;
       }
    }
 
@@ -3443,10 +3443,10 @@ bool imaging::blur(::ca::graphics *pdcDst, point ptDst, size size, ::ca::graphic
    dibDst->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
    dibDst->get_graphics()->FillSolidRect(0, 0, size.cx, size.cy, ARGB(0, 0, 0, 0));
    dibDst->get_graphics()->set_alpha_mode(::ca::alpha_mode_blend);
-/*   ::ca::dib_sp dibSrc(get_app());
+   /*   ::ca::dib_sp dibSrc(get_app());
 
    if(!dibSrc->create(size))
-      return false;*/
+   return false;*/
 
    if(iRadius < 0)
    {
@@ -3489,13 +3489,13 @@ void imaging::blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int iRadius)
    int wDest = cx * 4;
    int maxx1 = cx;
    int maxy1 = cy;
-//   int maxy2 = cy - iFilterWidth;
-//   int maxy3 = cy - iFilterWidth / 2;
+   //   int maxy2 = cy - iFilterWidth;
+   //   int maxy3 = cy - iFilterWidth / 2;
    int max3x1 = maxx1 * 4;
-//   int max3x2 = (maxx1 - iFilterHeight) * 4;
-//   int max3x3 = (maxx1 - iFilterHeight / 2) * 4;
+   //   int max3x2 = (maxx1 - iFilterHeight) * 4;
+   //   int max3x3 = (maxx1 - iFilterHeight / 2) * 4;
    //int bm3Width = (cy * 3 + 3) & ~0x3L;
-//   int w = cx * 3;
+   //   int w = cx * 3;
    //   memcpy(m_lpwDestination, m_lpbSource, bmWidth * bmHeight * 3);
    //   memcpy(m_lpwDestination, m_lpbSource, bm3Width * bmHeight);
    /*for(int y = 0; y < cy; y++)
@@ -3716,12 +3716,12 @@ void imaging::blur_32CC_r2(::ca::dib * pdibDst, ::ca::dib * pdibSrc)
 
    int maxx1 = cx;
    int maxy1 = cy;
-//   int maxy2 = cy - 5;
-//   int maxy3 = cy - 2;
+   //   int maxy2 = cy - 5;
+   //   int maxy3 = cy - 2;
    int max3x1 = maxx1 * 4;
-//   int max3x2 = (maxx1 - 5) * 4;
-///   int max3x3 = (maxx1 - 2) * 4;
-//   int w = cx * 3;
+   //   int max3x2 = (maxx1 - 5) * 4;
+   ///   int max3x3 = (maxx1 - 2) * 4;
+   //   int w = cx * 3;
    DWORD dwR;
    DWORD dwG;
    DWORD dwB;
@@ -3760,7 +3760,7 @@ void imaging::blur_32CC_r2(::ca::dib * pdibDst, ::ca::dib * pdibSrc)
 
          // red
          lpwDestination[0] =
-         (  lpbSource_2[0][0] + lpbSource_2[0][4] + lpbSource_2[0][8] + lpbSource_2[0][12] + lpbSource_2[0][16]
+            (  lpbSource_2[0][0] + lpbSource_2[0][4] + lpbSource_2[0][8] + lpbSource_2[0][12] + lpbSource_2[0][16]
          +  lpbSource_2[1][0] + lpbSource_2[1][4] + lpbSource_2[1][8] + lpbSource_2[1][12] + lpbSource_2[1][16]
          +  lpbSource_2[2][0] + lpbSource_2[2][4] + lpbSource_2[2][8] + lpbSource_2[2][12] + lpbSource_2[2][16]
          +  lpbSource_2[3][0] + lpbSource_2[3][4] + lpbSource_2[3][8] + lpbSource_2[3][12] + lpbSource_2[3][16]
@@ -3769,7 +3769,7 @@ void imaging::blur_32CC_r2(::ca::dib * pdibDst, ::ca::dib * pdibSrc)
 
          // green
          lpwDestination[1] =
-         (  lpbSource_2[0][1] + lpbSource_2[0][5] + lpbSource_2[0][9] + lpbSource_2[0][13] + lpbSource_2[0][17]
+            (  lpbSource_2[0][1] + lpbSource_2[0][5] + lpbSource_2[0][9] + lpbSource_2[0][13] + lpbSource_2[0][17]
          +  lpbSource_2[1][1] + lpbSource_2[1][5] + lpbSource_2[1][9] + lpbSource_2[1][13] + lpbSource_2[1][17]
          +  lpbSource_2[2][1] + lpbSource_2[2][5] + lpbSource_2[2][9] + lpbSource_2[2][13] + lpbSource_2[2][17]
          +  lpbSource_2[3][1] + lpbSource_2[3][5] + lpbSource_2[3][9] + lpbSource_2[3][13] + lpbSource_2[3][17]
@@ -3778,7 +3778,7 @@ void imaging::blur_32CC_r2(::ca::dib * pdibDst, ::ca::dib * pdibSrc)
 
          // blue
          lpwDestination[2] =
-         (  lpbSource_2[0][2] + lpbSource_2[0][6] + lpbSource_2[0][10] + lpbSource_2[0][14] + lpbSource_2[0][18]
+            (  lpbSource_2[0][2] + lpbSource_2[0][6] + lpbSource_2[0][10] + lpbSource_2[0][14] + lpbSource_2[0][18]
          +  lpbSource_2[1][2] + lpbSource_2[1][6] + lpbSource_2[1][10] + lpbSource_2[1][14] + lpbSource_2[1][18]
          +  lpbSource_2[2][2] + lpbSource_2[2][6] + lpbSource_2[2][10] + lpbSource_2[2][14] + lpbSource_2[2][18]
          +  lpbSource_2[3][2] + lpbSource_2[3][6] + lpbSource_2[3][10] + lpbSource_2[3][14] + lpbSource_2[3][18]
@@ -3787,7 +3787,7 @@ void imaging::blur_32CC_r2(::ca::dib * pdibDst, ::ca::dib * pdibSrc)
 
          // alpha
          lpwDestination[3] =
-         (  lpbSource_2[0][3] + lpbSource_2[0][7] + lpbSource_2[0][11] + lpbSource_2[0][15] + lpbSource_2[0][19]
+            (  lpbSource_2[0][3] + lpbSource_2[0][7] + lpbSource_2[0][11] + lpbSource_2[0][15] + lpbSource_2[0][19]
          +  lpbSource_2[1][3] + lpbSource_2[1][7] + lpbSource_2[1][11] + lpbSource_2[1][15] + lpbSource_2[1][19]
          +  lpbSource_2[2][3] + lpbSource_2[2][7] + lpbSource_2[2][11] + lpbSource_2[2][15] + lpbSource_2[2][19]
          +  lpbSource_2[3][3] + lpbSource_2[3][7] + lpbSource_2[3][11] + lpbSource_2[3][15] + lpbSource_2[3][19]
@@ -3865,6 +3865,8 @@ bool imaging::channel_alpha_gray_blur(::ca::graphics *pdcDst, point ptDst, size 
    if(!dibSrc->create(size))
       return false;
 
+   dibSrc->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
+
    if(!dibSrc->from(null_point(), pdcSrc, ptSrc, size))
       return false;
 
@@ -3882,7 +3884,7 @@ bool imaging::channel_alpha_gray_blur(::ca::graphics *pdcDst, point ptDst, size 
 }
 
 bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
-                                  int iChannel, int iRadius)
+                                     int iChannel, int iRadius)
 {
 
    if(iRadius <= 0)
@@ -3891,7 +3893,7 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
    int cx = pdibDst->width();
    int cy = pdibDst->height();
    if(cx != pdibSrc->width()
-   || cy != pdibSrc->height())
+      || cy != pdibSrc->height())
       return false;
    LPBYTE lpbDst = (LPBYTE) pdibDst->get_data();
    LPBYTE lpbSrc = (LPBYTE) pdibSrc->get_data();
@@ -3902,7 +3904,7 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
    int iFilterH = iRadius * 2 + 1;
    int iFilterHalfW = iRadius;
    int iFilterHalfH = iRadius;
-//   int iFilterArea = iFilterW * iFilterH;
+   //   int iFilterArea = iFilterW * iFilterH;
    int iDivisor;
 
    BYTE *lpwDestination;
@@ -4081,7 +4083,7 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
 }
 
 bool imaging::channel_alpha_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
-                                  int iChannel, int iRadius)
+                                           int iChannel, int iRadius)
 {
 
    if(iRadius <= 0)
@@ -4090,7 +4092,7 @@ bool imaging::channel_alpha_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdib
    int cx = pdibDst->width();
    int cy = pdibDst->height();
    if(cx != pdibSrc->width()
-   || cy != pdibSrc->height())
+      || cy != pdibSrc->height())
       return false;
    LPBYTE lpbDst = (LPBYTE) pdibDst->get_data();
    LPBYTE lpbSrc = (LPBYTE) pdibSrc->get_data();
@@ -4101,7 +4103,7 @@ bool imaging::channel_alpha_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdib
    int iFilterH = iRadius * 2 + 1;
    int iFilterHalfW = iRadius;
    int iFilterHalfH = iRadius;
-//   int iFilterArea = iFilterW * iFilterH;
+   //   int iFilterArea = iFilterW * iFilterH;
    int iDivisor;
 
    BYTE *lpwDestination;
@@ -4282,14 +4284,14 @@ bool imaging::channel_alpha_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdib
 }
 
 bool imaging::channel_gray_blur(
-                              ::ca::graphics * pdcDst,
-                              point ptDst,
-                              size size,
-                              ::ca::graphics * pdcSrc,
-                              point ptSrc,
-                              int iChannel,
-                              class size sizeFilter,
-                              LPBYTE lpbFilter)
+   ::ca::graphics * pdcDst,
+   point ptDst,
+   size size,
+   ::ca::graphics * pdcSrc,
+   point ptSrc,
+   int iChannel,
+class size sizeFilter,
+   LPBYTE lpbFilter)
 {
    if(size.cx <= 0 || size.cy <= 0)
       return true;
@@ -4331,16 +4333,16 @@ bool imaging::channel_gray_blur(
 
 
 bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
-                                  int iChannel,
-                                  int iFilterWidth,
-                                  int iFilterHeight,
-                                  LPBYTE lpbFilter)
+                                     int iChannel,
+                                     int iFilterWidth,
+                                     int iFilterHeight,
+                                     LPBYTE lpbFilter)
 {
 
    int cx = pdibDst->width();
    int cy = pdibDst->height();
    if(cx != pdibSrc->width()
-   || cy != pdibSrc->height())
+      || cy != pdibSrc->height())
       return false;
    LPBYTE lpbDst = (LPBYTE) pdibDst->get_data();
    LPBYTE lpbSrc = (LPBYTE) pdibSrc->get_data();
@@ -4364,13 +4366,13 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
 
    int maxx1 = cx;
    int maxy1 = cy;
-//   int maxy2 = cy - iFilterWidth;
-//   int maxy3 = cy - iFilterWidth / 2;
+   //   int maxy2 = cy - iFilterWidth;
+   //   int maxy3 = cy - iFilterWidth / 2;
    int max3x1 = maxx1 * 4;
-//   int max3x2 = (maxx1 - iFilterHeight) * 4;
-//   int max3x3 = (maxx1 - iFilterHeight / 2) * 4;
+   //   int max3x2 = (maxx1 - iFilterHeight) * 4;
+   //   int max3x3 = (maxx1 - iFilterHeight / 2) * 4;
    //int bm3Width = (cy * 3 + 3) & ~0x3L;
-//   int w = cx * 4;
+   //   int w = cx * 4;
    //   memcpy(m_lpwDestination, m_lpbSource, bmWidth * bmHeight * 3);
    //   memcpy(m_lpwDestination, m_lpbSource, bm3Width * bmHeight);
    /*for(int y = 0; y < cy; y++)
@@ -4513,7 +4515,7 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
    }
 
    int iFilterHalfWidth = iFilterWidth / 2;
-//   int iFilterHalfWidthBytes = iFilterHalfWidth * 3;
+   //   int iFilterHalfWidthBytes = iFilterHalfWidth * 3;
 
    int yL = iFilterHalfWidth;
    int yU = cy - iFilterHalfWidth;
@@ -4668,17 +4670,17 @@ bool imaging::color_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics 
 
 
 void imaging::color_blend_24CC(
-                             LPBYTE lpbAParam,
-                             int x1,
-                             int y1,
-                             int w1,
-                             int cx,
-                             int cy,
-                             COLORREF cr,
-                             LPBYTE lpbCParam,
-                             int x3,
-                             int y3,
-                             int w3)
+   LPBYTE lpbAParam,
+   int x1,
+   int y1,
+   int w1,
+   int cx,
+   int cy,
+   COLORREF cr,
+   LPBYTE lpbCParam,
+   int x3,
+   int y3,
+   int w3)
 {
    int i, j;
    x1 *= 3;
@@ -4823,7 +4825,7 @@ bool imaging::alpha_spread_R2(::ca::graphics *pdcDst, point ptDst, size size, ::
    if(pbmpOld == NULL)
    {
       ::ca::graphics_sp graphicsMem(get_app());
-         graphicsMem->CreateCompatibleDC(pdcDst);
+      graphicsMem->CreateCompatibleDC(pdcDst);
       if(!SetDIBits(
          (HDC)graphicsMem->get_os_data(),
          (HBITMAP) bitmapDst->get_os_data(),
@@ -4844,7 +4846,7 @@ bool imaging::alpha_spread_R2(::ca::graphics *pdcDst, point ptDst, size size, ::
    {
       ::ca::bitmap_sp bitmap(get_app());
       bitmap->CreateCompatibleBitmap(pdcDst, 1, 1);
-//      ::ca::bitmap * pbitmap = pdcDst->SelectObject(bitmap);
+      //      ::ca::bitmap * pbitmap = pdcDst->SelectObject(bitmap);
       if(!SetDIBits(
          (HDC) pdcDst->get_os_data(),
          (HBITMAP) bitmapDst->get_os_data(),
@@ -4984,7 +4986,7 @@ bool imaging::alpha_spread(::ca::graphics *pdcDst, point ptDst, size size, ::ca:
    if(pbmpOld == NULL)
    {
       ::ca::graphics_sp graphicsMem(get_app());
-         graphicsMem->CreateCompatibleDC(pdcDst);
+      graphicsMem->CreateCompatibleDC(pdcDst);
       if(!SetDIBits(
          (HDC)graphicsMem->get_os_data(),
          (HBITMAP) bitmapDest->get_os_data(),
@@ -5005,7 +5007,7 @@ bool imaging::alpha_spread(::ca::graphics *pdcDst, point ptDst, size size, ::ca:
    {
       ::ca::bitmap_sp bitmap(get_app());
       bitmap->CreateCompatibleBitmap(pdcDst, 1, 1);
-//      ::ca::bitmap * pbitmap = pdcDst->SelectObject(bitmap);
+      //      ::ca::bitmap * pbitmap = pdcDst->SelectObject(bitmap);
       if(!SetDIBits(
          (HDC) pdcDst->get_os_data(),
          (HBITMAP) bitmapDest->get_os_data(),
@@ -5049,12 +5051,12 @@ void imaging::alpha_spread_R2_24CC(LPBYTE lpbDst, int xDest, int yDest, int wDes
 
    int maxx1 = cx;
    int maxy1 = cy;
-//   int maxy2 = cy - iFilterWidth;
-//   int maxy3 = cy - iFilterWidth / 2;
+   //   int maxy2 = cy - iFilterWidth;
+   //   int maxy3 = cy - iFilterWidth / 2;
    int max3x1 = maxx1 * 3;
-//   int max3x2 = (maxx1 - iFilterHeight) * 3;
-//   int max3x3 = (maxx1 - iFilterHeight / 2) * 3;
-//   int w = cx * 3;
+   //   int max3x2 = (maxx1 - iFilterHeight) * 3;
+   //   int max3x3 = (maxx1 - iFilterHeight / 2) * 3;
+   //   int w = cx * 3;
    DWORD dwR;
    DWORD dwG;
    DWORD dwB;
@@ -5173,9 +5175,9 @@ void imaging::alpha_spread_R2_24CC(LPBYTE lpbDst, int xDest, int yDest, int wDes
 
 
 void imaging::alpha_spread__24CC(
-                               LPBYTE lpbDst, int xDest, int yDest, int wDest, int cx, int cy,
-                               LPBYTE lpbSrc, int xSrc, int ySrc, int wSrc,
-                               BYTE bMin, int iRadius)
+   LPBYTE lpbDst, int xDest, int yDest, int wDest, int cx, int cy,
+   LPBYTE lpbSrc, int xSrc, int ySrc, int wSrc,
+   BYTE bMin, int iRadius)
 {
    UNREFERENCED_PARAMETER(xDest);
    UNREFERENCED_PARAMETER(yDest);
@@ -5230,12 +5232,12 @@ void imaging::alpha_spread__24CC(
 
    int maxx1 = cx;
    int maxy1 = cy;
-//   int maxy2 = cy - iFilterW;
-//   int maxy3 = cy - iFilterW / 2;
+   //   int maxy2 = cy - iFilterW;
+   //   int maxy3 = cy - iFilterW / 2;
    int max3x1 = maxx1 * 3;
-//   int max3x2 = (maxx1 - iFilterH) * 3;
-//   int max3x3 = (maxx1 - iFilterH / 2) * 3;
-//   int w = cx * 3;
+   //   int max3x2 = (maxx1 - iFilterH) * 3;
+   //   int max3x3 = (maxx1 - iFilterH / 2) * 3;
+   //   int w = cx * 3;
    DWORD dwR;
    DWORD dwG;
    DWORD dwB;
@@ -5456,12 +5458,12 @@ breakFilter:
 
 
 bool imaging::channel_spread(
-                            ::ca::graphics *pdcDst,
-                            point ptDst,
-                            size size,
-                            ::ca::graphics * pdcSrc,
-                            point ptSrc,
-                            int iChannel, int iRadius)
+   ::ca::graphics *pdcDst,
+   point ptDst,
+   size size,
+   ::ca::graphics * pdcSrc,
+   point ptSrc,
+   int iChannel, int iRadius)
 {
    if(size.is_empty())
       return true;
@@ -5556,7 +5558,7 @@ bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int
    int cx = pdibDst->width();
    int cy = pdibDst->height();
    if(cx != pdibSrc->width()
-   || cy != pdibSrc->height())
+      || cy != pdibSrc->height())
       return false;
    LPBYTE lpbDst = (LPBYTE) pdibDst->get_data();
    LPBYTE lpbSrc = (LPBYTE) pdibSrc->get_data();
@@ -5564,11 +5566,11 @@ bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int
    int wDest = cx * 4;
    int maxx1 = cx;
    int maxy1 = cy;
-//   int maxy2 = cy - iFilterW;
-//   int maxy3 = cy - iFilterW / 2;
+   //   int maxy2 = cy - iFilterW;
+   //   int maxy3 = cy - iFilterW / 2;
    int max3x1 = maxx1 * 4;
-//   int max3x2 = (maxx1 - iFilterH) * 4;
-//   int max3x3 = (maxx1 - iFilterH / 2) * 4;
+   //   int max3x2 = (maxx1 - iFilterH) * 4;
+   //   int max3x3 = (maxx1 - iFilterH / 2) * 4;
    //int w = cx * 4;
 
    memcpy(lpbDst, lpbSrc, cx * cy * 4);
@@ -5657,49 +5659,52 @@ bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int
          x1 = xL;
          x2 = (x1 - iFilterHalfW) * 4;
          lpwDestination = lpbDst + (wDest  * y1) + x1 * 4;
-         for(; x1 <= xU; x1++)
+         if(*((DWORD *) lpwDestination) != 0xffffffff)
          {
-            if(x1 < iFilterHalfH)
+            for(; x1 <= xU; x1++)
             {
-               iFilterXLBound = iFilterHalfH - x1;
-            }
-            else
-            {
-               iFilterXLBound = 0;
-            }
-            if(x1 > xMaxFilterBound)
-            {
-               iFilterXUBound = xFilterMax - (x1 - xMaxFilterBound);
-            }
-            else
-            {
-               iFilterXUBound = xFilterMax;
-            }
-
-            lpbSource_1 = lpbSource + max(x2, 0) + iChannel;
-
-
-            for(int yFilter = iFilterYLBound; yFilter < iFilterYUBound; yFilter++)
-            {
-               lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
-               lpFilter = pFilter + yFilter * iFilterW + iFilterXLBound;
-               for(int xFilter = iFilterXLBound; xFilter < iFilterXUBound; xFilter++)
+               if(x1 < iFilterHalfH)
                {
-                  if(*lpFilter >= 1)
-                  {
-                     if(lpbSource_2[0] > 0)
-                     {
-                        *((DWORD *) lpwDestination) = 0xffffffff;
-                        goto breakFilter;
-                     }
-                  }
-                  lpFilter++;
-                  lpbSource_2 += 4;
+                  iFilterXLBound = iFilterHalfH - x1;
                }
-            }
+               else
+               {
+                  iFilterXLBound = 0;
+               }
+               if(x1 > xMaxFilterBound)
+               {
+                  iFilterXUBound = xFilterMax - (x1 - xMaxFilterBound);
+               }
+               else
+               {
+                  iFilterXUBound = xFilterMax;
+               }
+
+               lpbSource_1 = lpbSource + max(x2, 0) + iChannel;
+
+
+               for(int yFilter = iFilterYLBound; yFilter < iFilterYUBound; yFilter++)
+               {
+                  lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
+                  lpFilter = pFilter + yFilter * iFilterW + iFilterXLBound;
+                  for(int xFilter = iFilterXLBound; xFilter < iFilterXUBound; xFilter++)
+                  {
+                     if(*lpFilter >= 1)
+                     {
+                        if(lpbSource_2[0] > 0)
+                        {
+                           *((DWORD *) lpwDestination) = 0xffffffff;
+                           goto breakFilter;
+                        }
+                     }
+                     lpFilter++;
+                     lpbSource_2 += 4;
+                  }
+               }
 breakFilter:
-            lpwDestination += 4;
-            x2 += 4;
+               lpwDestination += 4;
+               x2 += 4;
+            }
          }
          y1++;
          y2++;
@@ -5739,22 +5744,25 @@ breakFilter:
          lpbSource_1 = lpbSource + x2;
          lpFilter = pFilter;
 
-         for(int yFilter = iFilterYLBound; yFilter <= iFilterYUBound; yFilter++)
+         if(*((DWORD *) lpwDestination) != 0xffffffff)
          {
-            lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
-            lpFilter = pFilter + yFilter * iFilterW + iFilterXLBound;
-            for(int xFilter = iFilterXLBound; xFilter <= iFilterXUBound; xFilter++)
+            for(int yFilter = iFilterYLBound; yFilter <= iFilterYUBound; yFilter++)
             {
-               if(*lpFilter >= 1)
+               lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
+               lpFilter = pFilter + yFilter * iFilterW + iFilterXLBound;
+               for(int xFilter = iFilterXLBound; xFilter <= iFilterXUBound; xFilter++)
                {
-                  if(lpbSource_2[0] > 0)
+                  if(*lpFilter >= 1)
                   {
-                     *((DWORD *) lpwDestination) = 0xffffffff;
-                     goto breakFilter2;
+                     if(lpbSource_2[0] > 0)
+                     {
+                        *((DWORD *) lpwDestination) = 0xffffffff;
+                        goto breakFilter2;
+                     }
                   }
+                  lpFilter++;
+                  lpbSource_2 += 4;
                }
-               lpFilter++;
-               lpbSource_2 += 4;
             }
          }
 breakFilter2:
@@ -5916,7 +5924,7 @@ bool imaging::pixelate(::ca::graphics *pdcDst, int xDest, int yDest, int cx, int
    LPBYTE lpbSrc = memstorageB.get_data();
 
    memstorageC.allocate((cx + iSize) / iSize * (cy + iSize) / iSize);
-//   LPBYTE lpc = memstorageC.get_data();
+   //   LPBYTE lpc = memstorageC.get_data();
 
 
    point ptViewportDest = pdcDst->GetViewportOrg();
@@ -5964,7 +5972,7 @@ bool imaging::pixelate(::ca::graphics *pdcDst, int xDest, int yDest, int cx, int
    if(pbmpOld == NULL)
    {
       ::ca::graphics_sp graphicsMem(get_app());
-         graphicsMem->CreateCompatibleDC(pdcDst);
+      graphicsMem->CreateCompatibleDC(pdcDst);
       if(!SetDIBits(
          (HDC)graphicsMem->get_os_data(),
          (HBITMAP) bitmapDest->get_os_data(),
@@ -5985,7 +5993,7 @@ bool imaging::pixelate(::ca::graphics *pdcDst, int xDest, int yDest, int cx, int
    {
       ::ca::bitmap_sp bitmap(get_app());
       bitmap->CreateCompatibleBitmap(pdcDst, 1, 1);
-//      ::ca::bitmap * pbitmap = pdcDst->SelectObject(bitmap);
+      //      ::ca::bitmap * pbitmap = pdcDst->SelectObject(bitmap);
       if(!SetDIBits(
          (HDC) pdcDst->get_os_data(),
          (HBITMAP) bitmapDest->get_os_data(),
@@ -6012,17 +6020,17 @@ bool imaging::pixelate(::ca::graphics *pdcDst, int xDest, int yDest, int cx, int
 }
 
 void imaging::pixelate_24CC(
-                           LPBYTE   lpbDst,
-                           int      xDest,
-                           int      yDest,
-                           int      wDest,
-                           int      cx,
-                           int      cy,
-                           LPBYTE   lpbSrc,
-                           int      xSrc,
-                           int      ySrc,
-                           int      wSrc,
-                           int      iSize)
+   LPBYTE   lpbDst,
+   int      xDest,
+   int      yDest,
+   int      wDest,
+   int      cx,
+   int      cy,
+   LPBYTE   lpbSrc,
+   int      xSrc,
+   int      ySrc,
+   int      wSrc,
+   int      iSize)
 {
    UNREFERENCED_PARAMETER(xDest);
    UNREFERENCED_PARAMETER(yDest);
@@ -6040,11 +6048,11 @@ void imaging::pixelate_24CC(
    int iFilterHeight = iSize;
    int maxx1 = cx;
    int maxy1 = cy;
-//   int maxy2 = cy - iFilterWidth;
-//   int maxy3 = cy - iFilterWidth / 2;
+   //   int maxy2 = cy - iFilterWidth;
+   //   int maxy3 = cy - iFilterWidth / 2;
    int max3x1 = maxx1 * 3;
-//   int max3x2 = (maxx1 - iFilterHeight) * 3;
-//   int max3x3 = (maxx1 - iFilterHeight / 2) * 3;
+   //   int max3x2 = (maxx1 - iFilterHeight) * 3;
+   //   int max3x3 = (maxx1 - iFilterHeight / 2) * 3;
    //int w = cx * 3;
 
    DWORD dwR;
@@ -6254,19 +6262,19 @@ void imaging::pixelate_24CC(
 }
 
 bool imaging::alpha_pixelate(
-                            ::ca::graphics *pdcDst,
-                            int xDest,
-                            int yDest,
-                            int cx,
-                            int cy,
-                            ::ca::graphics * pdcSrc1,
-                            int xSrc1,
-                            int ySrc1,
-                            ::ca::graphics * pdcSrc2,
-                            int xSrc2,
-                            int ySrc2,
-                            int iSize,
-                            int iAlpha)
+   ::ca::graphics *pdcDst,
+   int xDest,
+   int yDest,
+   int cx,
+   int cy,
+   ::ca::graphics * pdcSrc1,
+   int xSrc1,
+   int ySrc1,
+   ::ca::graphics * pdcSrc2,
+   int xSrc2,
+   int ySrc2,
+   int iSize,
+   int iAlpha)
 {
    if(cx <= 0 || cy <= 0)
       return true;
@@ -6427,7 +6435,7 @@ bool imaging::alpha_pixelate(
    if(pbmpOld == NULL)
    {
       ::ca::graphics_sp graphicsMem(get_app());
-         graphicsMem->CreateCompatibleDC(pdcDst);
+      graphicsMem->CreateCompatibleDC(pdcDst);
       if(!SetDIBits(
          (HDC)graphicsMem->get_os_data(),
          (HBITMAP) bitmapDest->get_os_data(),
@@ -6448,7 +6456,7 @@ bool imaging::alpha_pixelate(
    {
       ::ca::bitmap_sp bitmap(get_app());
       bitmap->CreateCompatibleBitmap(pdcDst, 1, 1);
-//      ::ca::bitmap * pbitmap = pdcDst->SelectObject(bitmap);
+      //      ::ca::bitmap * pbitmap = pdcDst->SelectObject(bitmap);
       if(!SetDIBits(
          (HDC) pdcDst->get_os_data(),
          (HBITMAP) bitmapDest->get_os_data(),
@@ -6475,22 +6483,22 @@ bool imaging::alpha_pixelate(
 }
 
 void imaging::alpha_pixelate_24CC(
-                                LPBYTE lpbDst,
-                                int xDest,
-                                int yDest,
-                                int wDest,
-                                int cx,
-                                int cy,
-                                LPBYTE lpbSrc1,
-                                int xSrc1,
-                                int ySrc1,
-                                int wSrc1,
-                                LPBYTE lpbSrc2,
-                                int xSrc2,
-                                int ySrc2,
-                                int wSrc2,
-                                int iSize,
-                                int iAlpha)
+   LPBYTE lpbDst,
+   int xDest,
+   int yDest,
+   int wDest,
+   int cx,
+   int cy,
+   LPBYTE lpbSrc1,
+   int xSrc1,
+   int ySrc1,
+   int wSrc1,
+   LPBYTE lpbSrc2,
+   int xSrc2,
+   int ySrc2,
+   int wSrc2,
+   int iSize,
+   int iAlpha)
 {
    UNREFERENCED_PARAMETER(xDest);
    UNREFERENCED_PARAMETER(yDest);
@@ -6498,7 +6506,7 @@ void imaging::alpha_pixelate_24CC(
    UNREFERENCED_PARAMETER(ySrc1);
    UNREFERENCED_PARAMETER(xSrc2);
    UNREFERENCED_PARAMETER(ySrc2);
-//   const int constFilterWidth = 3;
+   //   const int constFilterWidth = 3;
    //   const int constFilterHeight = 3;
    int divisor = iSize * iSize;
    BYTE *lpbSource1;
@@ -6521,13 +6529,13 @@ void imaging::alpha_pixelate_24CC(
    int iFilterHeight = iSize;
    int maxx1 = cx;
    int maxy1 = cy;
-//   int maxy2 = cy - iFilterWidth;
-//   int maxy3 = cy - iFilterWidth / 2;
+   //   int maxy2 = cy - iFilterWidth;
+   //   int maxy3 = cy - iFilterWidth / 2;
    int max3x1 = maxx1 * 3;
-//   int max3x2 = (maxx1 - iFilterHeight) * 3;
-//   int max3x3 = (maxx1 - iFilterHeight / 2) * 3;
+   //   int max3x2 = (maxx1 - iFilterHeight) * 3;
+   //   int max3x3 = (maxx1 - iFilterHeight / 2) * 3;
    //int bm3Width = (cy * 3 + 3) & ~0x3L;
-//   int w = cx * 3;
+   //   int w = cx * 3;
    //   memcpy(m_lpwDestination, m_lpbSource, bmWidth * bmHeight * 3);
    //   memcpy(m_lpwDestination, m_lpbSource, bm3Width * bmHeight);
    /*for(int y = 0; y < cy; y++)
