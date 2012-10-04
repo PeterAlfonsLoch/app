@@ -227,7 +227,9 @@ int image_list::add_file(const char * lpcsz)
       _grow();
    }
 
-   m_spdib->get_graphics()->FillSolidRect(iItem * m_size.cx, 0, m_size.cx, m_size.cy, RGB(192, 192, 192));
+   //m_spdib->get_graphics()->FillSolidRect(iItem * m_size.cx, 0, m_size.cx, m_size.cy, RGB(192, 192, 192));
+
+   m_spdib->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
 
    m_spdib->get_graphics()->BitBlt(iItem * m_size.cx, 0, m_size.cx, m_size.cy, dib->get_graphics(), 0, 0, SRCCOPY);
 
