@@ -309,7 +309,6 @@ namespace plane
 
      comparable_array < ::ca2::library * >         m_libraryptra;
 
-     ::exception::engine::guard *                  m_peguard;
      ::exception::engine *                         m_peengine;
 
       system(::ca::application * papp = NULL);
@@ -428,8 +427,6 @@ namespace plane
       ::filehandler::handler           & filehandler();
 
       ::colorertake5::ParserFactory    & parser_factory();
-
-      ::exception::engine::guard       & eguard();
 
       ::exception::engine              & eengine();
 

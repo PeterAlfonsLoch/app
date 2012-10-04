@@ -55,6 +55,8 @@ namespace exception
       STACKFRAME64 *       m_pstackframe;
       CONTEXT *            m_pcontext;
 
+      int                        m_iRef;
+      simple_array < HMODULE >   m_ha;
 
       engine(::ca::application * papp);
       ~engine();
@@ -100,29 +102,13 @@ namespace exception
 
 
 
-      class CLASS_DECL_ca guard :
-         virtual public ::ca::ca
-      {
-      public:
+      bool init();
+      bool fail() const;
+      bool load_modules();
+      void clear();
+      void reset();
+      bool load_module(HANDLE, HMODULE);
          
-
-         int                        m_iRef;
-         simple_array < HMODULE >   m_ha;
-
-
-         guard(::ca::application * papp);
-         ~guard();
-
-
-         bool init();
-         bool fail() const;
-         bool load_modules();
-         void clear();
-         bool load_module(HANDLE, HMODULE);
-         
-      };
-
-
    };
 
 

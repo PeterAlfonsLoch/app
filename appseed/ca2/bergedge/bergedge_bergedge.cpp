@@ -99,12 +99,12 @@ namespace bergedge
 
       if(Session.is_remote_session())
       {
-         
+         /*
          Session.savings().save(gen::resource_display_bandwidth);
          Session.savings().save(gen::resource_blur_background);
          Session.savings().save(gen::resource_blurred_text_embossing);
          Session.savings().save(gen::resource_translucent_background);
-
+         */
       }
 
 /*      if(System.directrix().m_varTopicQuery.has_property("install")
@@ -352,7 +352,7 @@ namespace bergedge
 
          }
 
-         for(int i = 0; pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count(); i++)
+         for(int i = 0; i < pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count(); i++)
          {
 
             strApp = pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[i];

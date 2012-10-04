@@ -12,9 +12,16 @@ namespace user
 
    control::descriptor::~descriptor()
    {
-      if(m_bCreated || m_bSubclassed)
+      if(m_pcontrol != NULL)
       {
-         m_pcontrol->DestroyWindow();
+         if(m_bCreated)
+         {
+            m_pcontrol->DestroyWindow();
+         }
+         else if(m_bSubclassed)
+         {
+            m_pcontrol->unsubclass_window();
+         }
          gen::del(m_pcontrol);
       }
    }

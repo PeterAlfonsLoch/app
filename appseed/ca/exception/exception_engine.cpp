@@ -140,7 +140,8 @@ namespace exception
    engine::engine(::ca::application * papp) :
       ca(papp),
       m_bOk(false),
-      m_pstackframe(NULL)
+      m_pstackframe(NULL),
+      m_iRef(0)
    {
 
       m_pmutex = new mutex(papp);
@@ -149,6 +150,7 @@ namespace exception
 
    engine::~engine()
    {
+      clear();
       //   if (m_bOk) guard::instance().clear();
       delete m_pmutex;
       delete m_pstackframe;
@@ -346,8 +348,7 @@ retry_get_base:
 
          }
 
-         System.eguard().clear();
-         System.eguard().init();
+         System.eengine().reset();
 
          bRetry = true;
 
@@ -414,22 +415,12 @@ retry_get_base:
    bool engine::check()
    {
       if (!m_bOk)
-         m_bOk = System.eguard().init();
+         m_bOk = init();
       return m_bOk;
    }
 
-   engine::guard::guard(::ca::application * papp) :
-      ca(papp),
-      m_iRef(0)
-   {}
 
-   engine::guard::~guard()
-   {
-      clear();
-   }
-
-
-   bool engine::guard::load_modules()
+   bool engine::load_modules()
    {
 
       HANDLE hprocess = SymGetProcessHandle();
@@ -523,8 +514,11 @@ retry_get_base:
 
    }
 
-   bool engine::guard::init()
+   bool engine::init()
    {
+
+      single_lock sl(m_pmutex, true);
+
       if (!m_iRef)
       {
          m_iRef = -1;
@@ -552,15 +546,18 @@ retry_get_base:
       return true;
    }
 
-   bool engine::guard::fail() const
+   bool engine::fail() const
    {
 
       return m_iRef == -1;
 
    }
 
-   void engine::guard::clear()
+   void engine::clear()
    {
+
+      single_lock sl(m_pmutex, true);
+
       if (m_iRef ==  0) return;
       if (m_iRef == -1) return;
       if (--m_iRef == 0)
@@ -569,7 +566,17 @@ retry_get_base:
       }
    }
 
-   bool engine::guard::load_module(HANDLE hProcess, HMODULE hMod)
+   void engine::reset()
+   {
+      
+      single_lock sl(m_pmutex, true);
+
+      clear();
+      init();
+
+   }
+
+   bool engine::load_module(HANDLE hProcess, HMODULE hMod)
    {
 
       for(int i = 0; i < m_ha.get_count(); i++)

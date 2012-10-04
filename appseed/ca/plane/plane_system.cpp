@@ -49,14 +49,12 @@ namespace plane
       if(psystemParent == NULL)
       {
 
-         m_peguard                                 = new ::exception::engine::guard(this);
          m_peengine                                = new ::exception::engine(this);
 
       }
       else
       {
 
-         m_peguard                                 = psystemParent->m_peguard;
          m_peengine                                = psystemParent->m_peengine;
 
       }
@@ -342,13 +340,6 @@ namespace plane
 
    }
 
-
-   ::exception::engine::guard & system::eguard()
-   {
-
-      return *m_peguard;
-
-   }
 
    ::exception::engine & system::eengine()
    {
