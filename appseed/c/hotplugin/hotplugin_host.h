@@ -86,6 +86,8 @@ namespace hotplugin
 
       static int starter_start(const char * pszCommandLine, plugin * pplugin);
 
+      static int starter_start_sync(const char * pszCommandLine, plugin * pplugin);
+
       virtual void deferred_prodevian_redraw();
 
 

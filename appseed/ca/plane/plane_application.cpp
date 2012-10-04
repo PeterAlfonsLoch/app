@@ -352,6 +352,19 @@ namespace plane
          }
 
       }
+      catch(::exit_exception & e)
+      {
+            
+         throw e;
+
+      }
+      catch(::ca::exception & e)
+      {
+            
+         if(!Application.on_run_exception(e))
+            throw exit_exception(get_app());
+
+      }
       catch(...)
       {
 
