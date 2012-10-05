@@ -938,7 +938,23 @@ namespace radix
          if(::is_debugger_attached())
          {
 
-            MessageBox(NULL, "Debug Only Message\n\nPlease install \"" + notinstalled.m_strId + "\" type=\"" + notinstalled.m_strType + "\" locale=\"" + notinstalled.m_strLocale + "\" schema=\"" + notinstalled.m_strSchema + "\" build number " + notinstalled.m_strBuild, "Debug Only - Please Install - ca2", MB_OK);
+            try
+            {
+
+               if(!(bool)System.oprop("not_installed_message_already_shown"))
+               {
+
+                  MessageBox(NULL, "Debug only message, please install:\n\n\n\t" + notinstalled.m_strId + "\n\ttype = " + notinstalled.m_strType + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\tbuild number = " + notinstalled.m_strBuild + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/", "Debug only message, please install.", MB_ICONINFORMATION | MB_OK);
+
+                  System.oprop("not_installed_message_already_shown") = true;
+
+               }
+
+            }
+            catch(...)
+            {
+
+            }
 
          }
          else

@@ -143,7 +143,7 @@ void simple_tap::draw_text(simple_graphics & g)
    Gdiplus::SolidBrush b(Gdiplus::Color(223, 49, 84, 23));
 #endif
 
-   Gdiplus::Font f(L"Geneva", (float) (height(&m_rect) * 0.7), 0.0f, Gdiplus::UnitPixel);
+   Gdiplus::Font f(L"Geneva", (Gdiplus::REAL) (height(&m_rect) * 0.7), Gdiplus::FontStyleRegular, Gdiplus::UnitPixel);
 
    wchar_t * pwsz = utf8_to_16(m_strText);
 

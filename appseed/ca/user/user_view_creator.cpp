@@ -79,6 +79,19 @@ namespace user
          {
             m_pviewcontainer->on_new_view_creator_data(pcreatordata);
          }
+         catch(::exit_exception & e)
+         {
+            
+            throw e;
+
+         }
+         catch(::ca::exception & e)
+         {
+            
+            if(!Application.on_run_exception(e))
+               throw exit_exception(get_app());
+
+         }
          catch(...)
          {
          }
@@ -89,6 +102,19 @@ namespace user
          {
             on_new_view_creator_data(pcreatordata);
          }
+         catch(::exit_exception & e)
+         {
+            
+            throw e;
+
+         }
+         catch(::ca::exception & e)
+         {
+            
+            if(!Application.on_run_exception(e))
+               throw exit_exception(get_app());
+
+         }
          catch(...)
          {
          }
@@ -96,6 +122,19 @@ namespace user
       try
       {
          on_create_view(pcreatordata);
+      }
+      catch(::exit_exception & e)
+      {
+            
+         throw e;
+
+      }
+      catch(::ca::exception & e)
+      {
+            
+         if(!Application.on_run_exception(e))
+            throw exit_exception(get_app());
+
       }
       catch(...)
       {

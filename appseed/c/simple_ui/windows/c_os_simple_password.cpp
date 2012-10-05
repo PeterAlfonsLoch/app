@@ -17,7 +17,7 @@ void simple_password::draw_this(simple_graphics & g)
 
    Gdiplus::SolidBrush b(Gdiplus::Color(223, 49, 49, 23));
 
-   Gdiplus::Font f(L"Geneva", height(&m_rect), 0, Gdiplus::UnitPixel);
+   Gdiplus::Font f(L"Geneva", (Gdiplus::REAL) height(&m_rect), Gdiplus::FontStyleRegular, Gdiplus::UnitPixel);
 
    int iLen = m_strText.get_length();
 
@@ -30,7 +30,7 @@ void simple_password::draw_this(simple_graphics & g)
       pwsz[iLen] = L'*';
    }
 
-   graphics2.DrawString(pwsz, wcslen_dup(pwsz), &f, Gdiplus::PointF(m_rect.left + 2, m_rect.top), &b);
+   graphics2.DrawString(pwsz, wcslen_dup(pwsz), &f, Gdiplus::PointF((Gdiplus::REAL) (m_rect.left + 2), (Gdiplus::REAL) m_rect.top), &b);
 
    ca2_free(pwsz);
 

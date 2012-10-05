@@ -734,7 +734,7 @@ InitFailure:
 
          return 0;
       }
-      catch(::exit_exception & e)
+      catch(::exit_exception &)
       {
 
          System.os().post_to_all_threads(WM_QUIT, 0, 0);

@@ -499,7 +499,7 @@ namespace user
          ClientToScreen(rectTab);
          point ptCursor = Bergedge.m_ptCursor;
          m_bShowTabs = rectTab.contains(ptCursor);
-         layout();
+         PostMessage(WM_SIZE);
          if(!m_bShowTabs)
             return;
       }
@@ -1716,6 +1716,19 @@ namespace user
                return;
          }
          _001SetSel(iPane);
+      }
+      catch(::exit_exception & e)
+      {
+            
+         throw e;
+
+      }
+      catch(::ca::exception & e)
+      {
+            
+         if(!Application.on_run_exception(e))
+            throw exit_exception(get_app());
+
       }
       catch(...)
       {

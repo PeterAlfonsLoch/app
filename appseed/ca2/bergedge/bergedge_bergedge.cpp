@@ -607,6 +607,19 @@ namespace bergedge
          {
             papp = create_application(pszType, pszId, bSynch, pbiasCreate);
          }
+         catch(::exit_exception & e)
+         {
+            
+            throw e;
+
+         }
+         catch(::ca::exception & e)
+         {
+            
+            if(!App(this).on_run_exception(e))
+               throw exit_exception(get_app());
+
+         }
          catch(...)
          {
             papp = NULL;

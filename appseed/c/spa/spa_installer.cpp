@@ -829,7 +829,7 @@ RetryHost:
 
       m_iProgressTotalGzLen = 0;
 
-      int iPreviousTotalProgress;
+      int64_t iPreviousTotalProgress;
 
       int i = 0;
 

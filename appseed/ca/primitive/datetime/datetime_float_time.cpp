@@ -253,7 +253,7 @@ CLASS_DECL_ca HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ULONG dwF
     return E_INVALIDARG;
 
   /* Date */
-  dateVal = FLOATTIME_DateFromJulian(FLOATTIME_JulianFromDMY(ud.st.wYear, ud.st.wMonth, ud.st.wDay));
+  dateVal = FLOATTIME_DateFromJulian((int) FLOATTIME_JulianFromDMY(ud.st.wYear, ud.st.wMonth, ud.st.wDay));
 
   /* Sign */
   dateSign = (dateVal < 0.0) ? -1.0 : 1.0;

@@ -518,7 +518,7 @@ vsstring get_file_md5_by_read(const char * path)
 
    DWORD dwRead;
 
-   DWORD dwReadTotal;
+   int64_t iSize;
 
 #ifdef WINDOWS
 
@@ -530,8 +530,9 @@ vsstring get_file_md5_by_read(const char * path)
 
    DWORD dwHigh;
 
-   int64_t dwSize = ::GetFileSize(hfile, &dwHigh);
+   iSize = ::GetFileSize(hfile, &dwHigh);
 
+   iSize |= (0x7fffffff & (uint64_t) dwHigh) << 32;
 
 #else
 
@@ -544,20 +545,24 @@ vsstring get_file_md5_by_read(const char * path)
 
    }
 
-   int64_t dwSize = ::get_file_size(fd);
+   iSize = ::get_file_size(fd);
 
 #endif
 
-   dwReadTotal = dwSize;
+   int iAlloc = min((int) iSize, 1024 * 1024 * 8);
 
-   char * psz = (char *) _ca_alloc(dwSize);
+   char * psz = (char *) _ca_alloc(iAlloc);
+
+   ::md5::md5 md5;
+
+   md5.initialize();
 
    while(true)
    {
 
 #ifdef WINDOWS
 
-      if(!::ReadFile(hfile, psz, dwReadTotal, &dwRead, NULL))
+      if(!::ReadFile(hfile, psz, min((int) iSize, iAlloc), &dwRead, NULL))
       {
          break;
       }
@@ -570,7 +575,7 @@ vsstring get_file_md5_by_read(const char * path)
 
 #else
 
-      dwRead = ::read(fd, psz, dwReadTotal);
+      dwRead = ::read(fd, psz, min((int) iSize, iAlloc));
 
       if(dwRead == -1)
       {
@@ -579,25 +584,27 @@ vsstring get_file_md5_by_read(const char * path)
 
 #endif
 
-      dwReadTotal -= dwRead;
+      md5.update(psz, dwRead);
 
-      if(dwReadTotal <= 0)
+      if(iSize <= 0)
          break;
 
    }
 
-   if(dwReadTotal != 0)
+   if(iSize != 0)
+   {
+
+      _ca_free(psz, 0);
+
       return "";
 
-   ::md5::md5 md5;
+   }
 
-   md5.initialize();
-
-   md5.update(psz, dwSize);
 
    md5.finalize();
 
    _ca_free(psz, 0);
+
 
 #ifdef WINDOWS
 

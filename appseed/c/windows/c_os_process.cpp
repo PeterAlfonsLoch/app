@@ -198,7 +198,7 @@ bool load_modules_diff(stra_dup & straOld, stra_dup & straNew, const char * pszE
 
    HMODULE hmodule;
 
-   size_t iLenExcept;
+   ::count iLenExcept;
 
    if(pszExceptDir != NULL)
    {

@@ -74,7 +74,7 @@ namespace ca4
    }
 
 
-   int crypt::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, primitive::memory & key)
+   bool crypt::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, primitive::memory & key)
    {
       int plainlen = (int) storageDecrypt.get_size();
       int cipherlen, tmplen;
@@ -84,22 +84,30 @@ namespace ca4
       EVP_EncryptInit(&ctx,EVP_bf_cbc(),key.get_data(),iv);
       cipherlen = (int) (storageDecrypt.get_size() + 16 - 1); //; 16 = key size
       storageEncrypt.allocate(cipherlen);
+
       if (!EVP_EncryptUpdate(&ctx,storageEncrypt.get_data(),&cipherlen, storageDecrypt.get_data(),plainlen))
       {
-         return -1;
+         storageEncrypt.allocate(0);
+         EVP_CIPHER_CTX_cleanup(&ctx);
+         return false;
       }
+
       if (!EVP_EncryptFinal(&ctx,storageEncrypt.get_data()+cipherlen,&tmplen))
       {
-         return -1;
+         storageEncrypt.allocate(0);
+         EVP_CIPHER_CTX_cleanup(&ctx);
+         return false;
       }
+
       cipherlen += tmplen;
       storageEncrypt.allocate(cipherlen);
       EVP_CIPHER_CTX_cleanup(&ctx);
-      return cipherlen;
+      return true;
+
    }
 
 
-   int crypt::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, primitive::memory & key)
+   bool crypt::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, primitive::memory & key)
    {
       int cipherlen = (int) storageEncrypt.get_size();
       int plainlen, tmplen;
@@ -111,18 +119,20 @@ namespace ca4
       storageDecrypt.allocate(plainlen);
       if(!EVP_DecryptUpdate(&ctx,storageDecrypt.get_data(),&plainlen,storageEncrypt.get_data(),cipherlen))
       {
-         return -1;
+         storageDecrypt.allocate(0);
+         EVP_CIPHER_CTX_cleanup(&ctx);
+         return false;
       }
       if (!EVP_DecryptFinal(&ctx,storageDecrypt.get_data()+plainlen,&tmplen))
       {
-         storageDecrypt.allocate(plainlen);
+         storageDecrypt.allocate(0);
          EVP_CIPHER_CTX_cleanup(&ctx);
-         return plainlen;
+         return false;
       }
       plainlen += tmplen;
       storageDecrypt.allocate(plainlen);
       EVP_CIPHER_CTX_cleanup(&ctx);
-      return plainlen;
+      return true;
    }
 
    string crypt::strkey()

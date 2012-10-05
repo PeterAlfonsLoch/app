@@ -34,7 +34,7 @@ void simple_label::draw_this(simple_graphics & g)
 
    Gdiplus::SolidBrush b(c);
 
-   Gdiplus::Font f(L"Geneva", (float) (height(&m_rect) * 0.7f), 0.0f, Gdiplus::UnitPixel);
+   Gdiplus::Font f(L"Geneva", (float) (height(&m_rect) * 0.7f), Gdiplus::FontStyleRegular, Gdiplus::UnitPixel);
 
    wchar_t * pwsz = utf8_to_16(m_strText);
 

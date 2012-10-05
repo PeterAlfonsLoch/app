@@ -28,8 +28,8 @@ namespace ca4
 
 
       int key(primitive::memory & storage);
-      int encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, primitive::memory & storageKey);
-      int decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, primitive::memory & storageKey);
+      virtual bool encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, primitive::memory & storageKey);
+      virtual bool decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, primitive::memory & storageKey);
 
       string strkey();
       int encrypt(string & str, const char * psz, const char * pszKey);
