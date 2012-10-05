@@ -572,6 +572,38 @@ namespace user
       }
    }
 
+
+   void interaction::_001OnDraw(::ca::graphics *pdc)
+   {
+
+      draw_control_background(pdc);
+
+   }
+
+
+   void interaction::draw_control_background(::ca::graphics *pdc)
+   {
+
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      if(_001IsBackgroundBypass())
+      {
+      }
+      else if(_001IsTranslucent())
+      {
+         class imaging & imaging = System.imaging();
+         imaging.color_blend(pdc, rectClient, get_background_color() & 0xffffff, (get_background_color() >> 24) & 0xff);
+      }
+      else
+      {
+         pdc->FillSolidRect(rectClient, (255 << 24) | (get_background_color() & 0xffffff));
+      }
+
+   }
+
+
    void interaction::_001OnCreate(::gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);

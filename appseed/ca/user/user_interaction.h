@@ -292,6 +292,9 @@ namespace user
       virtual void _000OnDraw(::ca::graphics *pdc);
       virtual void _001DrawThis(::ca::graphics *pdc);
       virtual void _001DrawChildren(::ca::graphics *pdc);
+      virtual void _001OnDraw(::ca::graphics *pdc);
+      virtual void draw_control_background(::ca::graphics *pdc);
+
       virtual ::ca::graphics * GetDC();
       virtual bool ReleaseDC(::ca::graphics *);
 

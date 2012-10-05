@@ -26,11 +26,6 @@ void html_form::_001OnDraw(::ca::graphics * pdc)
 
    ::user::interaction::_001OnDraw(pdc);
 
-   rect rectClient;
-
-   GetClientRect(rectClient);
-
-   pdc->FillSolidRect(rectClient, get_background_color());
 
 
    sp(::html::data) sphtmldata;

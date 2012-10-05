@@ -58,6 +58,29 @@ namespace html
             return ARGB(255, r, g, b);
          }
       }
+      else if(gen::str::begins_eat_ci(str, "rgb") || gen::str::begins_eat_ci(str, "argb"))
+      {
+         str.trim();
+         if(gen::str::begins_eat_ci(str, "("))
+         {
+            str.trim();
+            if(gen::str::ends_eat_ci(str, ")"))
+            {
+               str.trim();
+               var a;
+               a.stra().explode(",", str);
+               int_array & ia = a.inta();
+               if(ia.get_count() == 3)
+               {
+                  return ARGB(255, ia[0], ia[1], ia[2]);
+               }
+               else if(ia.get_count() == 4)
+               {
+                  return ARGB(ia[0], ia[1], ia[2], ia[3]);
+               }
+            }
+         }
+      }
       return 0;
    }
 

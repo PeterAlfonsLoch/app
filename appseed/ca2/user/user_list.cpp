@@ -163,31 +163,13 @@ namespace user
       if(m_bLockViewUpdate)
          return;
 
+      ::user::interaction::_001OnDraw(pdc);
+
       rect rectClient;
 
       GetClientRect(rectClient);
 
-
-      if(_001IsBackgroundBypass())
-      {
-      }
-      else if(_001IsTranslucent())
-      {
-         class imaging & imaging = System.imaging();
-         imaging.color_blend(pdc, rectClient, get_background_color() & 0xffffff, (get_background_color() >> 24) & 0xff);
-      }
-      else
-      {
-         pdc->FillSolidRect(rectClient, (255 << 24) | (get_background_color() & 0xffffff));
-      }
-
-
-
       pdc->SetBkMode(TRANSPARENT);
-
-
-
-
 
       if(m_bTopText)
       {
@@ -195,8 +177,6 @@ namespace user
          pdc->set_color(m_crText);
          base_array < size > sizea;
          m_dcextension.GetTextExtent(pdc, m_strTopText, sizea);
-         rect rectClient;
-         GetClientRect(rectClient);
          index x = 0;
          index right = (index) rectClient.right;
          index y = m_iItemHeight;
