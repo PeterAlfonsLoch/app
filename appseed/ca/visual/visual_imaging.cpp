@@ -5455,8 +5455,6 @@ breakFilter:
 
 }
 
-
-
 bool imaging::channel_spread(
    ::ca::graphics *pdcDst,
    point ptDst,
@@ -5464,6 +5462,29 @@ bool imaging::channel_spread(
    ::ca::graphics * pdcSrc,
    point ptSrc,
    int iChannel, int iRadius)
+{
+
+   return channel_spread_set_color(
+            pdcDst,
+            ptDst,
+            size,
+            pdcSrc,
+            ptSrc,
+            iChannel,
+            iRadius,
+            0xffffffff);
+
+}
+
+
+bool imaging::channel_spread_set_color(
+   ::ca::graphics *pdcDst,
+   point ptDst,
+   size size,
+   ::ca::graphics * pdcSrc,
+   point ptSrc,
+   int iChannel, int iRadius,
+   COLORREF cr)
 {
    if(size.is_empty())
       return true;
@@ -5494,7 +5515,7 @@ bool imaging::channel_spread(
       dibDst,
       dibSrc,
       iChannel,
-      iRadius))
+      iRadius, cr))
       return false;
 
 
@@ -5506,7 +5527,7 @@ bool imaging::channel_spread(
 }
 
 
-bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int iChannel, int iRadius)
+bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int iChannel, int iRadius, COLORREF crSpreadSetColor)
 {
    int iFilterW      = iRadius * 2 + 1;
    int iFilterH      = iRadius * 2 + 1;
@@ -5693,7 +5714,7 @@ bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int
                      {
                         if(lpbSource_2[0] > 0)
                         {
-                           *((DWORD *) lpwDestination) = 0xffffffff;
+                           *((DWORD *) lpwDestination) = crSpreadSetColor;
                            goto breakFilter;
                         }
                      }
@@ -5756,7 +5777,7 @@ breakFilter:
                   {
                      if(lpbSource_2[0] > 0)
                      {
-                        *((DWORD *) lpwDestination) = 0xffffffff;
+                        *((DWORD *) lpwDestination) = crSpreadSetColor;
                         goto breakFilter2;
                      }
                   }

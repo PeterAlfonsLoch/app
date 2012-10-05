@@ -1511,23 +1511,23 @@ void XfplayerViewLine::CacheEmboss(::ca::application * papp, ::ca::graphics * pd
    pdcCache->set_alpha_mode(::ca::alpha_mode_set);
    pdcCache->FillSolidRect(0, 0, size.cx,size.cy, ARGB(0, 0, 0, 0));
    pdcCache->set_alpha_mode(::ca::alpha_mode_blend);
-   pdcCache->SetTextColor(ARGB(92, 92, 92, 92));
+   pdcCache->SetTextColor(ARGB(84, 84, 84, 84));
 
    m_dcextension.TextOut(pdcCache, (int) (long) (max(2.0, m_floatRateX * 8.0)) / 2, (int) 1 * long (max(2.0, m_floatRateX * 8.0)) / 2, lpcsz, iLen);
 
-   //System.imaging().channel_spread(pdcCache, null_point(), size, pdcCache, null_point(), 0, long (max(2.0, m_floatRateX * 8.0)));
+   System.imaging().channel_spread_set_color(pdcCache, null_point(), size, pdcCache, null_point(), 0, long (max(1.0, m_floatRateX * 2.0)), ARGB(23, 23, 23, 23));
 
    pdcCache->set_alpha_mode(::ca::alpha_mode_blend);
-   for(int i = 0; i < long (max(2.0, m_floatRateX * 2.0)); i++)
-   {
-      System.imaging().blur(pdcCache, null_point(), size, pdcCache, null_point(), long (max(2.0, m_floatRateX * 4.0)));
-   }
+   System.imaging().channel_alpha_gray_blur(pdcCache, null_point(), size, pdcCache, null_point(), 0, long (max(1.0, m_floatRateX * 3.0)));
+   System.imaging().channel_alpha_gray_blur(pdcCache, null_point(), size, pdcCache, null_point(), 0, long (max(1.0, m_floatRateX * 3.0)));
 
    /*pdibCache->fill_channel(92, ::visual::rgba::channel_blue);
    pdibCache->fill_channel(92, ::visual::rgba::channel_green);
    pdibCache->fill_channel(92, ::visual::rgba::channel_red);*/
 
    //System.imaging().pre_color_blend(pdcCache, pdcCache, ARGB(92, 92, 92, 92));
+
+   pdibCache->set(0, 0, 0);
 
 }
 

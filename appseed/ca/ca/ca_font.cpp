@@ -86,6 +86,7 @@ namespace ca
       m_eunitFontSize         = fontSrc.m_eunitFontSize;
       m_bBold                 = fontSrc.m_bBold;
       m_bItalic               = fontSrc.m_bItalic;
+      m_bUnderline            = fontSrc.m_bUnderline;
       m_bStrikeout            = fontSrc.m_bStrikeout;
       m_bUpdated              = false;
 

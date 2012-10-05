@@ -3421,7 +3421,7 @@ namespace user
       m_fontHover->operator=(*System.font_central().GetListCtrlFont());
 
       m_fontHover->set_underline();
-      m_fontHover->set_bold();
+      //m_fontHover->set_bold();
 
          if(pcreate->get_lresult() == -1)
          {
@@ -5273,7 +5273,7 @@ namespace user
             dib->get_graphics()->SelectObject(m_pfont);
             m_plist->m_dcextension._DrawText(dib->get_graphics(), m_strText, rectCache, m_iDrawTextFlags);
 
-            Sys(m_plist->get_app()).imaging().channel_spread(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 2);
+            Sys(m_plist->get_app()).imaging().channel_spread_set_color(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 2, ARGB(184, 184, 184, 184));
             dib->Fill(0, 0, 0, 0);
             Sys(m_plist->get_app()).imaging().channel_alpha_gray_blur(dib->get_graphics(), null_point(), size, dib2->get_graphics(), null_point(), 0, 1);
             dib2->Fill(0, 0, 0, 0);

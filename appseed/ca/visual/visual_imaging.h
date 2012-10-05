@@ -56,7 +56,7 @@ public:
    void alpha_spread_R2_24CC(LPBYTE lpbDest, int xDest, int yDest, int wDest, int cx, int cy, LPBYTE lpbSrc, int ySrc, int xSrc, int wSrc, BYTE bMin);
    void alpha_spread__24CC(LPBYTE lpbDest, int xDest, int yDest, int wDest, int cx, int cy, LPBYTE lpbSrc, int ySrc, int xSrc, int wSrc, BYTE bMin, int iRadius);
 
-   bool channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int iChannel, int iRadius);
+   bool channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int iChannel, int iRadius, COLORREF cr);
 
    bool alpha_spread_R2(
       ::ca::graphics * pdcDest, 
@@ -83,6 +83,17 @@ public:
       point ptSrc,
       int iChannel,
       int iRadius);
+
+   bool channel_spread_set_color(
+      ::ca::graphics * pdcDest, 
+      point ptDst,
+      size size,
+      ::ca::graphics * pdcSrc, 
+      point ptSrc,
+      int iChannel,
+      int iRadius,
+      COLORREF cr);
+
 
    bool true_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork = NULL, ::ca::dib * pdibWork2 = NULL, ::ca::dib * pdibWork3 = NULL);
 
