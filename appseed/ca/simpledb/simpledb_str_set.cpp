@@ -97,7 +97,7 @@ int db_str_set::sync_queue::run()
    try
    {
 
-      while(true)
+      while(m_bRun)
       {
 
 repeat:;

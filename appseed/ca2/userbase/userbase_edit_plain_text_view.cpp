@@ -56,7 +56,7 @@ namespace userbase
       // GetClientRect(rectClient);
       // SetWindowPos(NULL, rectClient.left, rectClient.top, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
       // _001OnUpdate();
-      __begin_thread(get_app(), ThreadProcScrollSize, (LPVOID) dynamic_cast < ::user::edit_plain_text * > (this));
+      ThreadProcScrollSize((LPVOID) dynamic_cast < ::user::edit_plain_text * > (this));
 
 
    }

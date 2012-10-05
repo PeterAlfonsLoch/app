@@ -121,7 +121,7 @@ namespace user
       ReleaseDC(pdc);
 
 
-      __begin_thread(get_app(), ThreadProcScrollSize, (LPVOID) this);
+      ThreadProcScrollSize((LPVOID) this);
 
 
    }
