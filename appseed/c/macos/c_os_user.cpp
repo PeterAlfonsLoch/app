@@ -107,8 +107,8 @@ WINBOOL SetWindowPos(HWND hwnd, HWND hwndInsertAfter, int x, int y, int cx, int 
 int MessageBoxA(HWND hwnd, const char* header, const char* message, unsigned int message_type )
 {
    //convert the strings from char* to CFStringRef
-   CFStringRef header_ref      = CFStringCreateWithCString( NULL, header,     strlen(header)    );
-   CFStringRef message_ref  = CFStringCreateWithCString( NULL, message,  strlen(message) );
+   CFStringRef header_ref      = CFStringCreateWithCString( NULL, header, (int)    strlen(header)    );
+   CFStringRef message_ref  = CFStringCreateWithCString( NULL, message, (int) strlen(message) );
    
    CFOptionFlags result;  //result code from the message box
    

@@ -49,7 +49,7 @@ int get_process_pid(const char * csProcessName)
         aiNames[3] = 0;
         iNamesLength = 3;
 
-        iRetCode = sysctl(aiNames, iNamesLength, NULL, &iSize, NULL, 0);
+        iRetCode = sysctl(aiNames, (u_int) iNamesLength, NULL, &iSize, NULL, 0);
 
         /*
          * Allocate memory and populate info in the  processes structure
@@ -65,7 +65,7 @@ int get_process_pid(const char * csProcessName)
                                 throw "could not reallocate memory";
                 }
                 sProcesses = sNewProcesses;
-                iRetCode = sysctl(aiNames, iNamesLength, sProcesses, &iSize, NULL, 0);
+                iRetCode = sysctl(aiNames, (u_int) iNamesLength, sProcesses, &iSize, NULL, 0);
         } while (iRetCode == -1 && errno == ENOMEM);
 
         iNumProcs = iSize / sizeof(struct kinfo_proc);

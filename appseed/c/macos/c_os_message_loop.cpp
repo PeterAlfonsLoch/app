@@ -48,7 +48,7 @@ public:
 
 };
 
-static sys_thread_pool * g_psysthreadpool;
+//static sys_thread_pool * g_psysthreadpool;
 
 WINBOOL GetMessage(MSG * pmsg)
 {

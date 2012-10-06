@@ -570,9 +570,9 @@ int ferror_dup(_FILE *fp)
 #if defined(LINUX) || defined(MACOS)
 unsigned int fsize_dup(FILE * fp)
 {
-   unsigned int pos = ftell(fp);
+   size_t pos = ftell(fp);
    fseek(fp, 0, SEEK_END);
-   unsigned int len = ftell(fp);
+   size_t len = ftell(fp);
    fseek(fp, pos, SEEK_SET);
    return len;
 }

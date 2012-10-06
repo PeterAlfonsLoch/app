@@ -1132,9 +1132,9 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
          m_hfileBitmap = ::open(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel).m_psz, iOpen, S_IRUSR | S_IWUSR);
 #endif
 
-         DWORD dwError = GetLastError();
 
 #ifdef WINDOWS
+         DWORD dwError = GetLastError();
          if(m_hfileBitmap == INVALID_HANDLE_VALUE)
 #else
          if(m_hfileBitmap == -1)
@@ -1208,7 +1208,7 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
             throw "resource exception";
          }
 
-         m_pmutexBitmap = new simple_mutex(vsstring("Global\\ca2plugin-container-") + itohex_dup((int_ptr)this));
+         m_pmutexBitmap = new simple_mutex(vsstring("Global\\ca2plugin-container-") + itohex_dup(this));
 
       }
 

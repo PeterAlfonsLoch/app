@@ -233,7 +233,7 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
       return err(1,"%s",oldfile);
    }
    
-   int r = oldsize;
+   size_t r = oldsize;
    
    while(r > 0 && (i = (off_t) fread_dup(old+oldsize-r,r, 1, fd)) > 0)
       r-=i;
@@ -289,7 +289,7 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
       }
 
       /* _read diff string */
-      lenread = BZ2_bzRead(&dbz2err, dpfbz2, _new + newpos, ctrl[0]);
+      lenread = BZ2_bzRead(&dbz2err, dpfbz2, _new + newpos, (int)ctrl[0]);
       if ((lenread < ctrl[0]) ||
           ((dbz2err != BZ_OK) && (dbz2err != BZ_STREAM_END)))
       {

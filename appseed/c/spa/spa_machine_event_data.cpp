@@ -48,7 +48,7 @@ void blob::write(HANDLE f)
 {
    DWORD dwWritten;
    ::WriteFile(f, &m_sizet, sizeof(m_sizet), &dwWritten, NULL);
-   if(m_sizet >= 0)
+   if(m_sizet > 0)
    {
       
       size_t sWritten = 0;

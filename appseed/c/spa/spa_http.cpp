@@ -62,10 +62,10 @@ namespace spa
 
    void installer::ms_get_callback( int i, dword_ptr dwLen)
    {
-      bool bProgress = true;
+//      bool bProgress = true;
       if(i == -3)
       {
-         DWORD dwBufferLen = 1024 + 256;
+  //       DWORD dwBufferLen = 1024 + 256;
          simple_http_status * pstatus = (simple_http_status *) reinterpret_cast < void * > (dwLen);
          trace("ms_get_dup failed : status : " + itoa_dup(pstatus->m_dwStatusCode) + " - " + pstatus->m_pszStatus);
       }

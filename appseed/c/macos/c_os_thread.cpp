@@ -87,7 +87,7 @@ HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, DWORD cbStack, DWORD (WINAPI * 
 
    pthread_attr_t threadAttr;
 
-   struct sched_param param;  // scheduling priority
+//   struct sched_param param;  // scheduling priority
 
    // initialize the thread attribute
    pthread_attr_init(&threadAttr);

@@ -393,13 +393,13 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
       pthread_attr_t  attr;
       int rc = 0;
 
-      if(rc = pthread_attr_init(&attr))
+      if((rc = pthread_attr_init(&attr)))
          return -1;
 
-      if(rc = pthread_attr_setstacksize(&attr, 1024 * 1024))
+      if((rc = pthread_attr_setstacksize(&attr, 1024 * 1024)))
          return -1;
 
-      if(rc = pthread_create(threadId, &attr, (void*(*)(void*))&::_ca2_starter_start,  pstart))
+      if((rc = pthread_create(threadId, &attr, (void*(*)(void*))&::_ca2_starter_start,  pstart)))
          return -1;
 #endif
       return 0;
@@ -463,7 +463,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
    void host::set_bitmap(simple_graphics & gWindow, LPCRECT lprect)
    {
 
-      ensure_bitmap_data(width(lprect), height(lprect), false);
+      ensure_bitmap_data((int)width(lprect), (int)height(lprect), false);
 
       if(m_pcolorref == NULL)
          return;
@@ -499,7 +499,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
    void host::paint_bitmap(simple_graphics & gWindow, LPCRECT lprect)
    {
 
-      ensure_bitmap_data(width(lprect), height(lprect), false);
+      ensure_bitmap_data((int)width(lprect), (int)height(lprect), false);
 
       if(m_pcolorref == NULL)
          return;
@@ -538,9 +538,9 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
 
       LPCRECT lprect = &m_pplugin->m_rect;
 
-      m_sizeBitmap.cx = abs_dup(width(lprect));
+      m_sizeBitmap.cx = abs_dup((int)width(lprect));
 
-      m_sizeBitmap.cy = abs_dup(height(lprect));
+      m_sizeBitmap.cy = abs_dup((int)height(lprect));
 
       ensure_bitmap_data(m_sizeBitmap.cx, m_sizeBitmap.cy, false);
 

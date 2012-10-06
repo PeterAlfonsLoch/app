@@ -213,7 +213,7 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
       return err(1,"%s",oldfile);
    }
 
-   int r = oldsize;
+   off_t r = oldsize;
 
    while(r > 0 && (i = (off_t) fread_dup(old + oldsize - r, 1, r, fd)) > 0)
       r-=i;
@@ -491,7 +491,7 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
       fclose_dup(pf);
       return errx(1, "BZ2_bzWriteOpen, bz2err = %d", bz2err);
    }
-   BZ2_bzWrite(&bz2err, pfbz2, db, dblen);
+   BZ2_bzWrite(&bz2err, pfbz2, db, (int)dblen);
    if (bz2err != BZ_OK)
    {
       _ca_free(old, 0);
@@ -538,7 +538,7 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
       fclose_dup(pf);
       return errx(1, "BZ2_bzWriteOpen, bz2err = %d", bz2err);
    }
-   BZ2_bzWrite(&bz2err, pfbz2, eb, eblen);
+   BZ2_bzWrite(&bz2err, pfbz2, eb, (int) eblen);
    if (bz2err != BZ_OK)
    {
       _ca_free(old, 0);

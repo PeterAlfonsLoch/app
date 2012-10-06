@@ -96,7 +96,7 @@ void stra_dup::add_tokens(const char * psz, const char * pszSeparator)
 
 	vsstring str;
 
-	while(pszPosEnd = strstr_dup(pszPosBeg, pszSeparator))
+	while((pszPosEnd = strstr_dup(pszPosBeg, pszSeparator)))
 	{
 
 		str = vsstring(pszPosBeg, pszPosEnd - pszPosBeg);

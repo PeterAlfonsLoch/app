@@ -22,7 +22,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
 
    vsstring strUrl;
 
-   char * szBuf = (char *) ca2_alloc(4096);
+//   char * szBuf = (char *) ca2_alloc(4096);
 
    prepare_http();
 
@@ -45,7 +45,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
       callback(callback_param, -1, 0);
    }
 
-   int iCol = 3;
+//   int iCol = 3;
 
 
    strUrl = pszUrl;
@@ -65,11 +65,11 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
       strHost = strUrl.substr(7, iPos - 7);
       strReq = strUrl.substr(iPos);
    }
-   DWORD dwSize = 0;
-   LPSTR pszOutBuffer;
-   WINBOOL  bResults = FALSE;
+//   DWORD dwSize = 0;
+//   LPSTR pszOutBuffer;
+//   WINBOOL  bResults = FALSE;
 
-   WCHAR * pwzHost = utf8_to_16(strHost);
+  // WCHAR * pwzHost = utf8_to_16(strHost);
 
    g_tinyhttp.m_strUserAgent = "ccvotagus_ca2_fontopus/linux";
 

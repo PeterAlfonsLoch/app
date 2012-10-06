@@ -33,7 +33,7 @@
 
 #include "framework.h"
 
-static char *rcsid="$Id: http_lib.c,v 3.5 1998/09/23 06:19:15 dl Exp $";
+static const char *rcsid="$Id: http_lib.c,v 3.5 1998/09/23 06:19:15 dl Exp $";
 
 #define VERBOSE
 
@@ -114,7 +114,7 @@ int tiny_http::t_read_line (int fd, char * buffer, int max)
  */
 int tiny_http::t_read_buffer (int fd, char * buffer, int length, void (*callback)(void *, int, dword_ptr), void * callback_param)
 {
-  int n,r;
+  ssize_t n,r;
   for (n=0; n<length; n+=r) {
     r=read(fd,buffer,length-n);
     if(callback)

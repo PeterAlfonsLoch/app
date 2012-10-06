@@ -232,8 +232,8 @@ LPSTR _tcsenistr( LPCSTR psz, LPCSTR str, count len, int escape )
 {
 	LPSTR pch = (LPSTR)psz;
 	LPSTR prev_escape = NULL;
-	LPSTR des = (LPSTR)str;
-	int i = 0;
+//	LPSTR des = (LPSTR)str;
+//	int i = 0;
 
 	while( pch && *pch )
 	{
@@ -356,7 +356,7 @@ LPSTR _tagXMLNode::LoadAttributes( LPCSTR pszAttrs , LPPARSEINFO pi /*= &piDefau
 
 	while( xml && *xml )
 	{
-		if( xml = _tcsskip( xml ) )
+		if( (xml = _tcsskip( xml )) )
 		{
 			// close tag
 			if( *xml == chXMLTagClose || *xml == chXMLTagPre )
@@ -391,12 +391,12 @@ LPSTR _tagXMLNode::LoadAttributes( LPCSTR pszAttrs , LPPARSEINFO pi /*= &piDefau
 			xml = pEnd;
 
 			// XML Attr Value
-			if( xml = _tcsskip( xml ) )
+			if( (xml = _tcsskip( xml )) )
 			{
 				//if( xml = strchr( xml, '=' ) )
 				if( *xml == '=' )
 				{
-					if( xml = _tcsskip( ++xml ) )
+					if( (xml = _tcsskip( ++xml )) )
 					{
 						// if " or '
 						// or none quote
@@ -455,7 +455,7 @@ LPSTR _tagXMLNode::LoadAttributes( LPCSTR pszAttrs, LPCSTR pszEnd, LPPARSEINFO p
 
 	while( xml && *xml )
 	{
-		if( xml = _tcsskip( xml ) )
+		if( (xml = _tcsskip( xml )) )
 		{
 			// close tag
 			if( xml >= pszEnd )
@@ -488,12 +488,12 @@ LPSTR _tagXMLNode::LoadAttributes( LPCSTR pszAttrs, LPCSTR pszEnd, LPPARSEINFO p
 			xml = pEnd;
 
 			// XML Attr Value
-			if( xml = _tcsskip( xml ) )
+			if( (xml = _tcsskip( xml )) )
 			{
 				//if( xml = strchr( xml, '=' ) )
 				if( *xml == '=' )
 				{
-					if( xml = _tcsskip( ++xml ) )
+					if( (xml = _tcsskip( ++xml )) )
 					{
 						// if " or '
 						// or none quote
@@ -800,7 +800,7 @@ LPSTR _tagXMLNode::Load( LPCSTR pszXml, LPPARSEINFO pi /*= &piDefault*/ )
 	_SetString( xml, pTagEnd, &name );
 	xml = pTagEnd;
 	// Generate XML Attributte List
-	if( xml = LoadAttributes( xml, pi ) )
+	if( (xml = LoadAttributes( xml, pi )) )
 	{
 		// alone tag <TAG ... />
 		if( *xml == chXMLTagPre )
@@ -884,7 +884,7 @@ LPSTR _tagXMLNode::Load( LPCSTR pszXml, LPPARSEINFO pi /*= &piDefault*/ )
 					// </Close>
 					xml+=2; // C
 
-					if( xml = _tcsskip( xml ) )
+					if( (xml = _tcsskip( xml )) )
 					{
 						vsstring closename;
 						CHAR* pEnd = strpbrk_dup( xml, " >" );

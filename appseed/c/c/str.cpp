@@ -204,7 +204,7 @@ char * stristr_dup(const char * src, const char * find)
 }
 
 
-void uitoa_dup(char * sz, unsigned int ui, int iBase)
+void uitoa_dup(char * sz, uint64_t ui, int iBase)
 {
    if(ui == 0)
    {
@@ -235,7 +235,7 @@ void uitoa_dup(char * sz, unsigned int ui, int iBase)
 
 
 
-void itoa_dup(char * sz, int i, int iBase)
+void itoa_dup(char * sz, int64_t i, int iBase)
 {
    if(i == 0)
    {
@@ -733,14 +733,14 @@ vsstring str_replace_dup(const char * psz, const char * pszFind, const char * ps
 }
 
 
-CLASS_DECL_c vsstring itoa_dup(int i)
+CLASS_DECL_c vsstring itoa_dup(int64_t i)
 {
    char sz[256];
    itoa_dup(sz, i, 10);
    return vsstring(sz);
 }
 
-CLASS_DECL_c vsstring itohex_dup(int i)
+CLASS_DECL_c vsstring itohex_dup(int64_t i)
 {
    char sz[256];
    itoa_dup(sz, i, 16);

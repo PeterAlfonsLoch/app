@@ -126,8 +126,8 @@ namespace spa
 
       PaintBk(g);
 
-      HFONT hfontOld = NULL;
-      HFONT hfont = NULL;
+//      HFONT hfontOld = NULL;
+//      HFONT hfont = NULL;
 
       m_canvas.on_paint(g, &rect);
 

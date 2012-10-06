@@ -27,6 +27,7 @@ namespace ca
       if(strstr_dup(strPath, ".") == NULL)
          strPath += ".so";
       m_plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_LAZY);
+      return true;
    }
 
    bool library::close()
@@ -35,6 +36,7 @@ namespace ca
       {
          dlclose(m_plibrary);
       }
+      return true;
    }
 
 

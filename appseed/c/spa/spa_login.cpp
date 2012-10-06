@@ -304,7 +304,7 @@ spa_login::e_result spa_login::login()
                m_strPasshash = doc.GetRoot()->GetAttrValue("passhash");
                eresult = result_ok;
             }
-            else if(doc.GetRoot()->GetAttrValue("id") == "registration_deferred")
+            else if(stricmp_dup(doc.GetRoot()->GetAttrValue("id"), "registration_deferred") == 0)
             {
                eresult = result_registration_deferred;
             }

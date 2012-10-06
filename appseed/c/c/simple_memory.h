@@ -9,10 +9,10 @@ public:
 
    
    char *      m_psz;
-   int         m_iAlloc;
-   int         m_iSize;
+   ::count         m_iAlloc;
+   ::count         m_iSize;
 
-   int         m_iPos;
+   ::count         m_iPos;
 
 
    simple_memory();

@@ -57,8 +57,8 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
    data_struct data;
    data.mtype        = 15111984;
    data.request      = 0;
-    int iPos = 0;
-    int iSize = strlen_dup(pszMessage);
+//    int iPos = 0;
+    size_t iSize = strlen_dup(pszMessage);
     
     do
     {

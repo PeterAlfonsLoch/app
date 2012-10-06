@@ -82,9 +82,9 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
 
    static vsstring s_strLastStatus;
    RECT rect = *lpcrect;
-   int cx = lpcrect->right - lpcrect->left;
-   int cy = lpcrect->bottom - lpcrect->top;
-   int iThankYouHeight = 30;
+//   int cx = lpcrect->right - lpcrect->left;
+//   int cy = lpcrect->bottom - lpcrect->top;
+//   int iThankYouHeight = 30;
 
    simple_font font;
 
@@ -122,7 +122,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
 
    }
    SIZE size = g.get_text_extent("CCpp");
-   int iLineCount = (rect.bottom - 30 - iThankYouHeight) / size.cy;
+//   int iLineCount = (rect.bottom - 30 - iThankYouHeight) / size.cy;
    if(iMode == 5) // if(m_bHealingSurface)
    {
 #ifdef SUPORTA_TELA_AVANCADA
@@ -213,8 +213,8 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
       const char * psz = "development message so international english file \"C:\\ca2\\install.log\" excerpt  ::::::::";
       g.text_out(10, 10 + size.cy * 2, psz, (int) (strlen_dup(psz) - iEat + 1 + ((::GetTickCount() / (iRefresh - 277) % iEat))));
       DWORD dwRead;
-      int iLineMin = 5;
-      int iLine = ((rect.bottom - 10) / size.cy) - 1;
+//      int iLineMin = 5;
+  //    int iLine = ((rect.bottom - 10) / size.cy) - 1;
       if(rect.bottom - rect.top >= size.cy)
       {
          HANDLE hfile = ::CreateFile(dir::ca2("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);

@@ -180,7 +180,7 @@ bool simple_ui::is_focusable()
 void simple_ui::focus_next()
 {
 
-   int iFind = m_puiParent->m_uiptra.get_count() - 1;
+   ::count iFind = m_puiParent->m_uiptra.get_count() - 1;
 
    for(int i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
    {

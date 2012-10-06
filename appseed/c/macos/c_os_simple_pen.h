@@ -6,13 +6,37 @@
 //
 //
 
+#pragma once
+
+
 class CLASS_DECL_c simple_pen
 {
 public:
    
    
+   enum e_style
+   {
+      style_stock,
+      style_solid,
+   };
+   
+   
+   int                  m_iStock;
+   e_style              m_estyle;
+   int                  m_iWidth;
+   COLORREF             m_cr;
+   
+   
    simple_pen();
    ~simple_pen();
    
+   bool create_solid(int iWidth, COLORREF cr);
+   bool from_stock(int iId);
+   
+   bool destroy();
+   
+   simple_pen & operator = (const simple_pen & pen);
    
 };
+
+

@@ -18,8 +18,8 @@ CLASS_DECL_c int str_begins_ci_dup(const char * sz1, const char * prefix);
 CLASS_DECL_c char * strrchr_dup(char * sz, char ch);
 
 
-CLASS_DECL_c void uitoa_dup(char * sz, unsigned int i, int iBase);
-CLASS_DECL_c void itoa_dup(char * sz, int i, int iBase);
+CLASS_DECL_c void uitoa_dup(char * sz, uint64_t i, int iBase);
+CLASS_DECL_c void itoa_dup(char * sz, int64_t i, int iBase);
 
 
 //CLASS_DECL_c void l64toa_dup(char * sz, int64_t i, int64_t iBase);
@@ -53,8 +53,8 @@ CLASS_DECL_c int wcscmp_dup(const wchar_t * sz1, const wchar_t * sz2);
 CLASS_DECL_c int wcsicmp_dup(const wchar_t * sz1, const wchar_t * sz2);
 
 
-CLASS_DECL_c void uitow_dup(wchar_t * sz, unsigned int i, int iBase);
-CLASS_DECL_c void itow_dup(wchar_t * sz, int i, int iBase);
+CLASS_DECL_c void uitow_dup(wchar_t * sz, uint64_t i, int iBase);
+CLASS_DECL_c void itow_dup(wchar_t * sz, int64_t i, int iBase);
 
 
 //CLASS_DECL_c void l64toa_dup(char * sz, int64_t i, int64_t iBase);

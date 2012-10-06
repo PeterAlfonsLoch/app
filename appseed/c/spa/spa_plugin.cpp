@@ -222,9 +222,9 @@ namespace spa
 
                //set_ready();
 
-               ensure_tx(::hotplugin::message_set_plugin_url, m_phost->m_strPluginUrl, m_phost->m_strPluginUrl.length());
+               ensure_tx(::hotplugin::message_set_plugin_url, m_phost->m_strPluginUrl, (int) m_phost->m_strPluginUrl.length());
 
-               ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, m_phost->m_countMemory);
+               ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, (int) m_phost->m_countMemory);
 
             }
             catch(...)

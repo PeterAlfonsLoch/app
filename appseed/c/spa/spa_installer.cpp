@@ -254,7 +254,7 @@ install_begin:;
          m_iProgressTotalGzLen = 0;
          m_NeedRestartBecauseOfReservedFile = false;
          m_NeedRestartFatalError = false;
-         int iFileError = 0;
+//         int iFileError = 0;
 
          int iRet = ca2_build_version();
          if(iRet < 0)
@@ -292,7 +292,7 @@ RetryHost:
          path.alloc(1024 * 4);
          ::GetModuleFileNameA(NULL, (char *) (const char *) path, 1024 * 4);
 #endif
-         int iRetryDeleteSpa = 0;
+//         int iRetryDeleteSpa = 0;
          vsstring strFile;
 
          vsstring strUrl;
@@ -1094,7 +1094,7 @@ RetryHost:
       }
       dir2 = dir;
       dir += "time\\bz\\";
-      int oldpos = -1;
+//      int oldpos = -1;
       {
          index pos = url_in.find(m_strInstall);
          if(pos == 0)
@@ -1474,7 +1474,8 @@ RetryHost:
                //if(iLength != -1)
                {
                   dir::mk(dir::name(inplace));
-                  int iResult = bzuncompress(inplace, (dir + file + "." + pszMd5));
+                  bzuncompress(inplace, (dir + file + "." + pszMd5));
+//                  int iResult = bzuncompress(inplace, (dir + file + "." + pszMd5));
                   /*if(iResult == -1)
                   {
                      m_NeedRestartBecauseOfReservedFile = true;

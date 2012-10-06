@@ -63,7 +63,7 @@ WriteFile(
         return FALSE;
     size_t sizeWritten = fwrite(lpBuffer, nNumberOfBytesToWrite, 1, hFile->m_data.m_pfile);
     if(lpNumberOfBytesWritten != NULL)
-        *lpNumberOfBytesWritten = sizeWritten;
+        *lpNumberOfBytesWritten = (uint32_t) sizeWritten;
     return TRUE;
 }
 
@@ -83,7 +83,7 @@ ReadFile(
         return FALSE;
     size_t sizeRead = fwrite(lpBuffer, nNumberOfBytesToRead, 1, hFile->m_data.m_pfile);
     if(lpNumberOfBytesRead != NULL)
-        *lpNumberOfBytesRead = sizeRead;
+        *lpNumberOfBytesRead = (uint32_t)sizeRead;
     return TRUE;
 }
 
