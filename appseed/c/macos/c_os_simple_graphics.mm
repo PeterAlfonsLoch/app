@@ -5,14 +5,10 @@
 //  Created by Carlos Gustavo Cecyn Lundgren on 10/6/12.
 //
 //
-#include "framework.h"
+#import "macos/c_os_gdi_mm.h"
 
 
-
-#include "macos/c_os_gdi_internal.h"
-
-
-
+/*
 void set(XColor & color, COLORREF cr)
 {
    color.pixel    = cr;
@@ -20,7 +16,7 @@ void set(XColor & color, COLORREF cr)
    color.green    = GetGValue(cr);
    color.blue     = GetBValue(cr);
 }
-
+*/
 
 
 

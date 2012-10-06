@@ -46,7 +46,7 @@
 int to_hex_char(int i);
 
 
-static unsigned char PADDING[64] =
+unsigned char PADDING[64] =
 {
   0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -312,7 +312,7 @@ namespace md5
 	   }
 
 	   if (size >= 64) {
-		   data = body(data, size & ~(unsigned long)0x3f);
+		   data = body(data, size & ~(uint32_t)0x3f);
 		   size &= 0x3f;
 	   }
 
@@ -516,7 +516,7 @@ vsstring get_file_md5_by_map(const char * path)
 vsstring get_file_md5_by_read(const char * path)
 {
 
-   DWORD dwRead;
+   int64_t dwRead;
 
    int64_t iSize;
 

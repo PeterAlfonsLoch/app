@@ -96,7 +96,7 @@ bool file_put_contents_dup(const char * path, const simple_memory & memory)
 }
 
 
-bool file_put_contents_dup(const char * path, const char * contents, int len)
+bool file_put_contents_dup(const char * path, const char * contents, ::count len)
 {
 
 #ifdef WINDOWSEX
@@ -149,7 +149,7 @@ bool file_put_contents_dup(const char * path, const char * contents, int len)
    FILE * f = fopen(path, "wb");
    if(f == NULL)
       return false;
-   DWORD dwWrite;
+   ::count dwWrite;
    if(len < 0)
       dwWrite = strlen_dup(contents);
    else
@@ -213,10 +213,10 @@ const char * file_get_contents_dup(const char * path)
    FILE * f = fopen(path, "rb");
    if(f == NULL)
       return NULL;
-   int iSize = fsize_dup(f);
+   ::count iSize = fsize_dup(f);
    char * psz = (char *) _ca_alloc(iSize + 1);
-   int iRead = fread(psz, iSize, 1, f);
-   psz[iSize] = '\0';
+   ::count iRead = fread(psz, iSize, 1, f);
+   psz[iRead] = '\0';
    fclose(f);
    return psz;
 
@@ -274,10 +274,10 @@ bool file_get_memory_dup(simple_memory & memory, const char * path)
    FILE * f = fopen(path, "rb");
    if(f == NULL)
       return NULL;
-   int iSize = fsize_dup(f);
+   ::count iSize = fsize_dup(f);
    char * psz = (char *) _ca_alloc(iSize + 1);
-   int iRead = fread(psz, iSize, 1, f);
-   psz[iSize] = '\0';
+   ::count iRead = fread(psz, iSize, 1, f);
+   psz[iRead] = '\0';
    fclose(f);
    return psz;
 
@@ -608,8 +608,8 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
    unsigned char * buf = (unsigned char *)  _ca_alloc(iBufSize);
    int iLen;
    ::md5::md5 ctx;
-   DWORD dwRead;
-   DWORD dwWritten;
+   ::count dwRead;
+//   DWORD dwWritten;
    if(strVersion == "fileset v1")
    {
       while(true)
@@ -697,13 +697,14 @@ void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int & iNumber)
 void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int & iNumber)
 #endif
 {
-   DWORD dwRead;
    vsstring str;
    char ch;
 #ifdef WINDOWS
+   DWORD dwRead;
    while(ReadFile(hfile, &ch, 1, &dwRead, NULL) && dwRead == 1)
 #else
-   while((dwRead = fread(&ch, 1, 1, (FILE *) hfile)) && dwRead == 1)
+      ::count dwRead;
+   while(((dwRead = fread(&ch, 1, 1, (FILE *) hfile))) && dwRead == 1)
 #endif
    {
       if(ch >= '0' && ch <= '9')
@@ -744,10 +745,11 @@ void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, vsstring & str)
    int iLen;
    file_read_n_number_dup(hfile, pctx, iLen);
    LPSTR lpsz = (LPSTR) _ca_alloc(iLen + 1);
-   DWORD dwRead;
 #ifdef WINDOWS
+   DWORD dwRead;
    ReadFile(hfile, lpsz, iLen, &dwRead, NULL);
 #else
+   ::count dwRead;
    dwRead = fread(lpsz, iLen, 1, (FILE *) hfile);
 #endif
    if(pctx != NULL)
@@ -1155,7 +1157,15 @@ CLASS_DECL_c bool file_is_equal_path(const char * psz1, const char * psz2)
    return iCmp == 0;
 
 #else
-   // TODO: it should follow links
+   
+   
+   if(stricmp_dup(psz1, psz2) == 0)
+      return true;
+   
+   throw " // TODO: it should follow links ";
+   
+   return false;
+   
 #endif
 }
 
@@ -1213,6 +1223,13 @@ CLASS_DECL_c vsstring file_get_mozilla_firefox_plugin_container_path()
 ret1:
    ::RegCloseKey(hkeyMozillaFirefox);
    return strPath;
+   
+#else
+   
+   throw " todo ";
+   
+   return "";
 
 #endif
+   
 }

@@ -130,7 +130,8 @@ CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 
    int i = RSA_public_encrypt((int) memIn.get_size(), (const unsigned char * ) (const char *) memIn.get_data(), (unsigned char *)  memory.get_data(), rsa, RSA_PKCS1_PADDING);
 
-   const char * pszError = ERR_error_string(ERR_get_error(), NULL);
+   ERR_error_string(ERR_get_error(), NULL);
+//   const char * pszError = ERR_error_string(ERR_get_error(), NULL);
 
    //TRACE(psz);
 

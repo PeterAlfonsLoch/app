@@ -59,10 +59,10 @@ verisimple_string::~verisimple_string()
    }
 }
 
-char * verisimple_string::alloc(int iCount)
+char * verisimple_string::alloc(::count iCount)
 {
    clear();
-   int iAlloc = (iCount + 1) * sizeof(char);
+   ::count iAlloc = (iCount + 1) * sizeof(char);
    //m_psz = (char *) g_pfixedallocaWstring->alloc(iAlloc);
    m_psz = (char *) _ca_alloc(iAlloc);
    m_psz[iCount] = L'\0';

@@ -68,7 +68,7 @@ public:
    bool is_empty() const;
    bool has_char() const;
 
-   char * alloc(int iCount);
+   char * alloc(::count iCount);
    int_ptr get_length() const;
    int_ptr length() const;
    int_ptr size() const;
@@ -125,9 +125,9 @@ CLASS_DECL_c vsstring url_encode_dup(const char * psz);
 
 CLASS_DECL_c vsstring str_replace_dup(const char * psz, const char * pszFind, const char * pszReplace);
 
-CLASS_DECL_c vsstring itoa_dup(int i);
-CLASS_DECL_c vsstring itohex_dup(int i);
-CLASS_DECL_c vsstring itohexpad_dup(int i, int iPad);
+CLASS_DECL_c vsstring itoa_dup(int64_t i);
+CLASS_DECL_c vsstring itohex_dup(int64_t i);
+CLASS_DECL_c vsstring itohexpad_dup(int64_t i, int iPad);
 
 
 #ifdef WINDOWS

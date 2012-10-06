@@ -196,7 +196,7 @@ void simple_ui::focus_next()
 
    }
 
-   for(int i = iFind + 1; i < m_puiParent->m_uiptra.get_count(); i++)
+   for(::index i = iFind + 1; i < m_puiParent->m_uiptra.get_count(); i++)
    {
 
       if(m_puiParent->m_uiptra[i]->is_focusable())

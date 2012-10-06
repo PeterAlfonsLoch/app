@@ -33,7 +33,7 @@
 
 #include "framework.h"
 
-static const char *rcsid="$Id: http_lib.c,v 3.5 1998/09/23 06:19:15 dl Exp $";
+//static const char *rcsid="$Id: http_lib.c,v 3.5 1998/09/23 06:19:15 dl Exp $";
 
 #define VERBOSE
 
@@ -119,10 +119,10 @@ int tiny_http::t_read_buffer (int fd, char * buffer, int length, void (*callback
     r=read(fd,buffer,length-n);
     if(callback)
     callback(callback_param, 1, n);
-    if (r<=0) return -n;
+    if (r<=0) return (int) -n;
     buffer+=r;
   }
-  return n;
+  return (int)n;
 }
 
 
@@ -163,7 +163,7 @@ tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * u
    if (pfd) * pfd = -1;
 
    /* get host info by name :*/
-   if(hp = gethostbyname(proxy ? m_strProxyServer : (m_strHttpServer != NULL ? m_strHttpServer : SERVER_DEFAULT )))
+   if((hp = gethostbyname(proxy ? m_strProxyServer : (m_strHttpServer != NULL ? m_strHttpServer : SERVER_DEFAULT ))))
    {
       memset((char *) &server,0, sizeof(server));
       memmove((char *) &server.sin_addr, hp->h_addr_list, hp->h_length);
@@ -205,7 +205,7 @@ tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * u
 	      );
     }
 
-    hlg=strlen(header);
+    hlg=(int)strlen(header);
 
     /* send header */
     if (write(s,header,hlg)!=hlg)
@@ -430,8 +430,8 @@ tiny_http::http_retcode tiny_http::t_parse_url(const char * url)
 #endif
     return ERRURLH;
   }
-  int iFind1 = strUrl.find(":");
-  int iFind2 = strUrl.find("/");
+  int_ptr iFind1 = strUrl.find(":");
+  int_ptr iFind2 = strUrl.find("/");
   if(iFind1 > 0)
   {
      if((iFind2 > 0 && iFind1 < iFind2) || iFind2 < 0)

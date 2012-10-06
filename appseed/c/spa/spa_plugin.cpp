@@ -421,8 +421,8 @@ install:
 
       g.bit_blt(0, 0, cx, cy, gWindow, ::hotplugin::plugin::m_rect.left, ::hotplugin::plugin::m_rect.top, SRCCOPY);
 
-      HFONT hfontOld = NULL;
-      HFONT hfont = NULL;
+//      HFONT hfontOld = NULL;
+//      HFONT hfont = NULL;
 
       if(m_bLogin)
       {
@@ -613,7 +613,7 @@ install:
          int iSkip = 0;
          bool bNormal = false;
          bool bBold = false;
-         bool bPreNormal = false;
+//         bool bPreNormal = false;
          bool bStart = false;
          char ch;
          while(iTell >= 0 && !bStart && !(bNormal && bBold))

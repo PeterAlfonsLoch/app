@@ -12,10 +12,11 @@ class CLASS_DECL_c simple_graphics
 {
 public:
    
-#ifdef __cplusplus
-   void *                  m_pnsgc;
-#else
+#ifdef __MM
    NSGraphicsContext *     m_nsgc;
+#else
+   void *                  m_pnsgc;
+   
 #endif
    
    //Display *               m_pdisplay;

@@ -10,12 +10,12 @@ CLASS_DECL_c bool read_resource_as_file_dup(const char * pszFile, HINSTANCE hins
 #endif
 CLASS_DECL_c vsstring get_file_md5(const char * file);
 CLASS_DECL_c bool is_file_ok(const char * path1, const char * pszTemplate);
-CLASS_DECL_c bool file_put_contents_dup(const char * path, const char * contents, int len = -1);
+CLASS_DECL_c bool file_put_contents_dup(const char * path, const char * contents, ::count len = -1);
 CLASS_DECL_c bool file_put_contents_dup(const char * path, const simple_memory & memory);
 CLASS_DECL_c const char * file_get_contents_dup(const char * path);
 CLASS_DECL_c bool file_get_memory_dup(simple_memory & memory, const char * path);
-CLASS_DECL_c bool get_temp_file_name_dup(char * szRet, int iBufferSize, const char * pszName, const char * pszExtension);
-CLASS_DECL_c bool get_temp_file_name_template(char * szRet, int iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate);
+CLASS_DECL_c bool get_temp_file_name_dup(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension);
+CLASS_DECL_c bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate);
 CLASS_DECL_c uint64_t file_length_dup(const char * path);
 
 CLASS_DECL_c vsstring file_title_dup(const char * path);

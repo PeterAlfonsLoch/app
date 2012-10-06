@@ -568,7 +568,7 @@ int ferror_dup(_FILE *fp)
 }
 
 #if defined(LINUX) || defined(MACOS)
-unsigned int fsize_dup(FILE * fp)
+uint64_t fsize_dup(FILE * fp)
 {
    size_t pos = ftell(fp);
    fseek(fp, 0, SEEK_END);
@@ -577,12 +577,12 @@ unsigned int fsize_dup(FILE * fp)
    return len;
 }
 #else
-unsigned int fsize_dup(HANDLE h)
+uint64_t fsize_dup(HANDLE h)
 {
    DWORD dwHi;
    DWORD dwLo = ::GetFileSize(h, &dwHi);
    if(dwHi)
       return 0;
-   return dwLo;
+   return dwLo |( dwHi << 32);
 }
 #endif

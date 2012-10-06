@@ -7,6 +7,11 @@
 //
 #pragma once
 
+class simple_graphics;
+
+
+
+
 
 class CLASS_DECL_c simple_bitmap
 {
@@ -17,10 +22,10 @@ public:
    //Pixmap                  m_pixmap;
    //simple_memory              m_mem;
    //SIZE                       m_size
-   #ifdef __cplusplus
-   void * m_pnsimage;
-#else
+   #ifdef __MM
    NSBitmapImageRep * m_nsimage;
+#else
+   void * m_pnsimage;
    
 #endif
    

@@ -102,10 +102,10 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
       strHost = strUrl.substr(7, iPos - 7);
       strReq = strUrl.substr(iPos);
    }
-   DWORD dwSize = 0;
-   DWORD dwDownloaded = 0;
-   LPSTR pszOutBuffer;
-   WINBOOL  bResults = FALSE;
+//   DWORD dwSize = 0;
+//   DWORD dwDownloaded = 0;
+//   LPSTR pszOutBuffer;
+//   WINBOOL  bResults = FALSE;
 
    g_tinyhttp.m_strUserAgent = "ccvotagus_ca2_fontopus/linux";
 
@@ -114,7 +114,8 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    char * buffer;
    int len;
 
-   tiny_http::http_retcode ret = g_tinyhttp.t_get(&buffer, &len, callback, callback_param);
+//   tiny_http::http_retcode ret = g_tinyhttp.t_get(&buffer, &len, callback, callback_param);
+   g_tinyhttp.t_get(&buffer, &len, callback, callback_param);
 
    vsstring strRet(buffer, len);
 

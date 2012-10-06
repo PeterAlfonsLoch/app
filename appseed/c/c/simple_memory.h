@@ -21,13 +21,13 @@ public:
    ~simple_memory();
 
 
-   void allocate(int iSize);
+   void allocate(::count iSize);
 
 
-   void write(void * p, int iCount);
+   void write(void * p, ::count iCount);
 
 
-   int read(void * p, int iCount) const;
+   ::count read(void * p, ::count iCount) const;
 
 
    void from_string(const vsstring & str);

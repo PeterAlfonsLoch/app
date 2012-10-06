@@ -324,7 +324,7 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
       }
 
       /* _read extra string */
-      lenread = BZ2_bzRead(&ebz2err, epfbz2, _new + newpos, ctrl[1]);
+      lenread = BZ2_bzRead(&ebz2err, epfbz2, _new + newpos, (int)ctrl[1]);
       if ((lenread < ctrl[1]) ||
           ((ebz2err != BZ_OK) && (ebz2err != BZ_STREAM_END)))
       {

@@ -63,10 +63,10 @@ simple_memory & simple_memory::operator = (const simple_memory & memory)
 
 }
 
-void simple_memory::allocate(int iSize)
+void simple_memory::allocate(::count iSize)
 {
    
-   int iNewAlloc;
+   ::count iNewAlloc;
 
    if(m_psz == NULL)
    {
@@ -100,7 +100,7 @@ void simple_memory::allocate(int iSize)
 }
 
 
-void simple_memory::write(void * p, int iCount)
+void simple_memory::write(void * p, ::count iCount)
 {
    
    allocate(m_iSize + iCount);
@@ -110,7 +110,7 @@ void simple_memory::write(void * p, int iCount)
 }
 
 
-int simple_memory::read(void * p, int iCount) const
+::count simple_memory::read(void * p, ::count iCount) const
 {
    
    if(m_iPos >= m_iSize)
@@ -118,9 +118,9 @@ int simple_memory::read(void * p, int iCount) const
       return 0;
    }
 
-   int iPosEnd = min(m_iSize, m_iPos + iCount);
+   ::count iPosEnd = min(m_iSize, m_iPos + iCount);
 
-   int iRead = iPosEnd - m_iPos;
+   ::count iRead = iPosEnd - m_iPos;
 
    memcpy(p, &m_psz[m_iPos], iRead);
 

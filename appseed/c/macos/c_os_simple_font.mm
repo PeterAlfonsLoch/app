@@ -6,7 +6,7 @@
 //
 //
 
-#include "framework.h"
+#import "c_os_gdi_mm.h"
 
 
 
@@ -17,8 +17,8 @@ simple_font::simple_font()
    m_iWeight      = 400;
    m_iSize        = 10;
    m_bUpdated     = false;
-   m_fontset      = 0;
-   
+//   m_fontset      = 0;
+   m_nsfont = NULL;
 }
 
 simple_font::~simple_font()
@@ -141,7 +141,9 @@ vsstring simple_font::get_name(int i)
    
 }
 
-bool simple_font::update(Display * pdisplay)
+
+
+bool simple_font::update()
 {
    
    if(m_bUpdated)
@@ -154,6 +156,8 @@ bool simple_font::update(Display * pdisplay)
 	int nmissing;
 	char **missing;
 	char *def_string;
+   
+
    
    
    vsstring strName;
@@ -168,7 +172,7 @@ bool simple_font::update(Display * pdisplay)
       if(j >= 32 || strName.is_empty())
          return false;
       
-      m_fontset = XCreateFontSet(pdisplay, m_strFamily, &missing, &nmissing, &def_string);
+      m_fontset = [NSFont fontWithName:@"Helvetica Bold"  size:10.0];
       
       if(m_fontset != 0)
          break;

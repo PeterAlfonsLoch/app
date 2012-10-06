@@ -63,7 +63,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
     do
     {
   
-        data.size         = min(iSize, 512);
+        data.size         = min((int) iSize, 512);
  
         /* The length is essentially the size of the structure minus sizeof(mtype) */
         int length = sizeof(data_struct) - sizeof(long);
@@ -215,7 +215,7 @@ void * small_ipc_rx_channel::receive()
       else
       {
          
-         on_receive(this, data.request, mem.m_psz, mem.m_iSize);
+         on_receive(this, data.request, mem.m_psz, (int) mem.m_iSize);
          
       }
 

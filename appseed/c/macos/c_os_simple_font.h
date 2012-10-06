@@ -21,10 +21,11 @@ public:
    //Display *               m_pdisplay;
    int                     m_iAscent;
    int                     m_iDescent;
-#ifdef __cplusplus
-   void *                  m_pnsfont;
-#else
+#ifdef __MM
    NSFont *     m_nsfont;
+#else
+   void *                  m_pnsfont;
+  
 #endif
    
    
@@ -42,6 +43,6 @@ public:
    //   bool create_indirect(LPLOGFONT lplf);
    vsstring get_name(int i);
    vsstring get_weight(int iWeight);
-  // bool update(Display * pdisplay);
+   bool update();
    
 };

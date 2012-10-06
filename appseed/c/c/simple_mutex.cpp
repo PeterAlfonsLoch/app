@@ -63,7 +63,7 @@ simple_mutex::simple_mutex(const char * pszName, bool bInitialLock)
       pthread_mutexattr_init(&attr);
       pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
       int rc;
-      if(rc = pthread_mutex_init(&m_mutex, &attr))
+      if((rc = pthread_mutex_init(&m_mutex, &attr)))
       {
          throw "RC_OBJECT_NOT_CREATED";
       }
@@ -113,7 +113,8 @@ simple_mutex::~simple_mutex()
    else
    {
       semun ignored_argument;
-      int iRc = semctl(m_semid, 1, IPC_RMID , ignored_argument);
+//      int iRc = semctl(m_semid, 1, IPC_RMID , ignored_argument);
+      semctl(m_semid, 1, IPC_RMID , ignored_argument);
    }
 
 #endif

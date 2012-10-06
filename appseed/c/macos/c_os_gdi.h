@@ -1,9 +1,6 @@
 #pragma once
 
 
-#ifndef __cplusplus
-#import <Foundantion/Foundantion.h>
-#endif
 
 
 #include "c_os_simple_bitmap.h"

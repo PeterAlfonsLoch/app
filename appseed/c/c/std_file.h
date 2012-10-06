@@ -82,9 +82,9 @@ CLASS_DECL_c wint_t ungetwc_dup(wint_t w, _FILE *s);
 
 
 #ifdef WINDOWS
-unsigned int fsize_dup(HANDLE h);
+uint64_t fsize_dup(HANDLE h);
 #else
-unsigned int fsize_dup(FILE * fp);
+uint64_t fsize_dup(FILE * fp);
 #endif
 
 END_EXTERN_C

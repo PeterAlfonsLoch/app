@@ -144,13 +144,16 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 
    }
 
-   return true;
 
 #else
 
    strcpy_dup(lpszModuleFolder, "/ca2/");
+   
+   
 
 #endif
+
+   return true;
 
 }
 
@@ -247,8 +250,8 @@ bool dir::mk(const char * lpcsz)
    vsstring url(lpcsz);
    vsstring tmp;
    vsstring dir;
-   int oldpos = -1;
-   int pos = url.find("\\");
+   ::index oldpos = -1;
+   ::index pos = url.find("\\");
 	while (pos >= 0)
 	{
       tmp = url.substr(oldpos + 1, pos - oldpos -1 );

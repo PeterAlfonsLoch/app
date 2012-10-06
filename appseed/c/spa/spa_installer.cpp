@@ -1181,7 +1181,7 @@ RetryHost:
 
       dir += "time\\bz\\";
 
-      int oldpos = -1;
+//      int oldpos = -1;
 
       {
 
@@ -3004,7 +3004,7 @@ RetryHost:
 
       vsstring strExe = file_name_dup(file_module_path_dup());
 
-      bool bSpa = false;
+//      bool bSpa = false;
 
       if(str.find(" background ") != vsstring::npos
          || str.ends(" background") || strExe.find(" in background ") != vsstring::npos
