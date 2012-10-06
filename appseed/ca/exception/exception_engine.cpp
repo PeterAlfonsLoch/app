@@ -90,7 +90,7 @@ _Out_ LPDWORD lpNumberOfBytesRead
 );*/
 
 
-WINBOOL __stdcall My_ReadProcessMemory ( 
+WINBOOL __stdcall My_ReadProcessMemory (
    HANDLE      hProcess,
    DWORD64     qwBaseAddress,
    PVOID       lpBuffer,
@@ -132,7 +132,7 @@ namespace exception
 
    // The following is used to pass the "userData"-Pointer to the user-provided readMemoryFunction
    // This has to be done due to a problem with the "hProcess"-parameter in x64...
-   // Because this class is in no case multi-threading-enabled (because of the limitations 
+   // Because this class is in no case multi-threading-enabled (because of the limitations
    // of dbghelp.dll) it is "safe" to use a static-variable
    static PReadProcessMemoryRoutine s_readMemoryFunction = NULL;
    static LPVOID s_readMemoryFunction_UserData = NULL;
@@ -568,7 +568,7 @@ retry_get_base:
 
    void engine::reset()
    {
-      
+
       single_lock sl(m_pmutex, true);
 
       clear();
@@ -594,7 +594,7 @@ retry_get_base:
       }
 
       HANDLE hFile = CreateFileA(filename, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, 0);
-      if (hFile == INVALID_HANDLE_VALUE) 
+      if (hFile == INVALID_HANDLE_VALUE)
       {
          return false;
       }
@@ -683,6 +683,8 @@ retry_get_base:
    bool engine::stack_trace(vsstring & str, dword_ptr uiSkip, const char * pszFormat)
    {
 
+#ifdef WINDOWSEX
+
       single_lock sl(m_pmutex, true);
 
       if(!pszFormat) return false;
@@ -749,6 +751,89 @@ retry_get_base:
       stack_trace(str, &context, uiSkip, false, pszFormat);
 
       return true;
+#elif defined(MERDE_WINDOWS)
+
+      return true;
+
+#else
+
+      sig_ucontext_t * uc = (sig_ucontext_t *)ucontext;
+
+       void * caller_address = (void *) uc->uc_mcontext.eip; // x86 specific
+
+       str += "signal " + itoa_dup(sig_num) +
+                 +" (" + itoa_dup(sig_num) + "), address is "  +
+                 itohex_dup(info->si_addr) + " from " + itohex_dup(caller_address) + "\n\n";
+
+       void * array[1024];
+       int size = backtrace(array, 1024);
+
+       array[1] = caller_address;
+
+       char ** messages = backtrace_symbols(array, size);
+
+       // skip first stack frame (points here)
+       for (int i = 1; i < size && messages != NULL; ++i)
+       {
+           char *mangled_name = 0, *offset_begin = 0, *offset_end = 0;
+
+           // find parantheses and +address offset surrounding mangled name
+           for (char *p = messages[i]; *p; ++p)
+           {
+               if (*p == '(')
+               {
+                   mangled_name = p;
+               }
+               else if (*p == '+')
+               {
+                   offset_begin = p;
+               }
+               else if (*p == ')')
+               {
+                   offset_end = p;
+                   break;
+               }
+           }
+
+           // if the line could be processed, attempt to demangle the symbol
+           if (mangled_name && offset_begin && offset_end &&
+               mangled_name < offset_begin)
+           {
+               *mangled_name++ = '\0';
+               *offset_begin++ = '\0';
+               *offset_end++ = '\0';
+
+               int status;
+               char * real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
+
+               // if demangling is successful, output the demangled function name
+               if (status == 0)
+               {
+                   std::cerr << "[bt]: (" << i << ") " << messages[i] << " : "
+                             << real_name << "+" << offset_begin << offset_end
+                             << std::endl;
+
+               }
+               // otherwise, output the mangled function name
+               else
+               {
+                   std::cerr << "[bt]: (" << i << ") " << messages[i] << " : "
+                             << mangled_name << "+" << offset_begin << offset_end
+                             + "\n";
+               }
+               free(real_name);
+           }
+           // otherwise, print the whole line
+           else
+           {
+               str+= "[bt]: (" + itoa_dup(i) << ") " +  messages[i]+  "\n";
+           }
+       }
+       str += "\n";
+
+
+   #endif
+
 
    }
 
@@ -786,12 +871,12 @@ retry_get_base:
       vsstring strFile;
       vsstring strSymbol;
 
-      
+
       DWORD uiLineDisplacement = 0;
       DWORD uiLineNumber = 0;
       DWORD64 uiSymbolDisplacement = 0;
 
-      
+
       for (char * p = (char *)pszFormat; *p; ++p)
       {
          if (*p == '%')

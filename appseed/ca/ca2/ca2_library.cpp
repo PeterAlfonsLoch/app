@@ -4,13 +4,13 @@
 namespace ca2
 {
 
-   const char * psz_empty_app_id = "";   
+   const char * psz_empty_app_id = "";
 
    library::library(const char * pszRoot)
    {
-      
+
       m_pca2library     = NULL;
-      
+
       if(pszRoot != NULL)
       {
 
@@ -19,10 +19,10 @@ namespace ca2
       }
 
    }
-      
+
    library::~library()
    {
-      
+
       if(m_bAutoClose)
       {
          close();
@@ -38,7 +38,7 @@ namespace ca2
       m_bAutoClose      = bAutoClose;
 
       string strCa2Name = pszPath;
-      
+
 
       try
       {
@@ -52,7 +52,11 @@ namespace ca2
          return false;
       }
 
+#ifdef WINDOWS
+
       System.eengine().reset();
+
+#endif
 
       PFN_GET_NEW_LIBRARY pfn_get_new_library = NULL;
 
@@ -73,7 +77,7 @@ namespace ca2
 
       if(pfn_get_new_library == NULL)
       {
-         
+
          close();
 
          return false;
@@ -136,7 +140,7 @@ namespace ca2
    {
       try
       {
-      
+
          bool bOk = true;
 
          try
@@ -160,7 +164,7 @@ namespace ca2
             bOk = false;
 
          }
-      
+
          try
          {
 
@@ -206,7 +210,7 @@ namespace ca2
 
       if(straAppList.get_count() > 1)
       {
-               
+
          strPrefix += strLibraryName;
 
          strPrefix += "/";
@@ -219,7 +223,7 @@ namespace ca2
 
    string library::get_app_name(const char * pszAppId)
    {
-      
+
       string strAppName(pszAppId);
 
       string strPrefix(get_root());
@@ -234,7 +238,7 @@ namespace ca2
 
       if(straAppList.get_count() > 1)
       {
-               
+
          strPrefix += strLibraryName;
 
          strPrefix += "/";
@@ -305,9 +309,9 @@ namespace ca2
       }
       else
       {
-         
+
          string strAppId = m_strCa2Name;
-         
+
          string strPrefix = get_root();
 
          strPrefix.replace("-", "_");
@@ -359,7 +363,7 @@ namespace ca2
 
    bool library::is_uinteraction_library()
    {
-      
+
       if(m_pca2library != NULL)
       {
 
@@ -398,7 +402,7 @@ namespace ca2
 
    }
 
-   
+
    void library::on_create_view(::user::view_creator_data * pcreatordata)
    {
 
@@ -422,7 +426,7 @@ namespace ca2
 
    void library::get_create_view_id_list(::raw_array < id > & ida)
    {
-      
+
       UNREFERENCED_PARAMETER(ida);
 
    }
@@ -443,7 +447,7 @@ namespace ca2
 
    void library::get_script_list(stringa & stra)
    {
-      
+
       if(m_pca2library != NULL)
       {
          return m_pca2library->get_script_list(stra);

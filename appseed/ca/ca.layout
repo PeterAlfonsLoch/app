@@ -55,7 +55,7 @@
 	<File name="ca/ca_exception.h" open="0" top="0" tabpos="39">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="ca/ca_file_system.cpp" open="1" top="0" tabpos="39">
+	<File name="ca/ca_file_system.cpp" open="0" top="0" tabpos="39">
 		<Cursor position="33385" topLine="1196" />
 	</File>
 	<File name="ca/ca_file_system.h" open="0" top="0" tabpos="0">
@@ -139,13 +139,13 @@
 	<File name="ca4/ca4_compress.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1668" topLine="28" />
 	</File>
-	<File name="ca4/ca4_crypt.cpp" open="1" top="0" tabpos="19">
+	<File name="ca4/ca4_crypt.cpp" open="0" top="0" tabpos="19">
 		<Cursor position="1176" topLine="37" />
 	</File>
-	<File name="ca4/ca4_crypt.h" open="1" top="0" tabpos="21">
+	<File name="ca4/ca4_crypt.h" open="0" top="0" tabpos="21">
 		<Cursor position="3044" topLine="36" />
 	</File>
-	<File name="ca4/ca4_file.h" open="1" top="0" tabpos="36">
+	<File name="ca4/ca4_file.h" open="0" top="0" tabpos="36">
 		<Cursor position="80" topLine="0" />
 	</File>
 	<File name="ca4/ca4_ip_enum.h" open="0" top="0" tabpos="46">
@@ -316,7 +316,7 @@
 	<File name="ex1/ex1_file.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="5160" topLine="193" />
 	</File>
-	<File name="ex1/ex1_file_system.h" open="1" top="0" tabpos="33">
+	<File name="ex1/ex1_file_system.h" open="0" top="0" tabpos="33">
 		<Cursor position="40" topLine="0" />
 	</File>
 	<File name="ex1/ex1_io_temp_buffer.cpp" open="0" top="0" tabpos="9">
@@ -367,7 +367,7 @@
 	<File name="exception/exception_dump_output.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="723" topLine="12" />
 	</File>
-	<File name="exception/exception_engine.cpp" open="1" top="0" tabpos="38">
+	<File name="exception/exception_engine.cpp" open="0" top="0" tabpos="38">
 		<Cursor position="13602" topLine="446" />
 	</File>
 	<File name="exception/exception_engine.h" open="0" top="0" tabpos="0">
@@ -388,7 +388,7 @@
 	<File name="fontopus/fontopus.h" open="0" top="0" tabpos="10">
 		<Cursor position="36" topLine="0" />
 	</File>
-	<File name="fontopus/fontopus_validate.cpp" open="1" top="0" tabpos="40">
+	<File name="fontopus/fontopus_validate.cpp" open="0" top="0" tabpos="40">
 		<Cursor position="20028" topLine="559" />
 	</File>
 	<File name="framework.h" open="0" top="0" tabpos="5">
@@ -409,7 +409,7 @@
 	<File name="gen/gen_1.h" open="0" top="0" tabpos="0">
 		<Cursor position="7184" topLine="127" />
 	</File>
-	<File name="gen/gen_application.cpp" open="1" top="0" tabpos="41">
+	<File name="gen/gen_application.cpp" open="0" top="0" tabpos="41">
 		<Cursor position="151" topLine="0" />
 	</File>
 	<File name="gen/gen_ch.cpp" open="0" top="0" tabpos="0">
@@ -436,7 +436,7 @@
 	<File name="gen/gen_definition.h" open="0" top="0" tabpos="3">
 		<Cursor position="3801" topLine="100" />
 	</File>
-	<File name="gen/gen_math.cpp" open="1" top="0" tabpos="20">
+	<File name="gen/gen_math.cpp" open="0" top="0" tabpos="20">
 		<Cursor position="4139" topLine="153" />
 	</File>
 	<File name="gen/gen_message.cpp" open="0" top="0" tabpos="0">
@@ -721,10 +721,10 @@
 	<File name="primitive/primitive_id.h" open="0" top="0" tabpos="0">
 		<Cursor position="7107" topLine="272" />
 	</File>
-	<File name="primitive/primitive_memory.h" open="1" top="0" tabpos="22">
+	<File name="primitive/primitive_memory.h" open="0" top="0" tabpos="22">
 		<Cursor position="105" topLine="0" />
 	</File>
-	<File name="primitive/primitive_memory_base.h" open="1" top="0" tabpos="23">
+	<File name="primitive/primitive_memory_base.h" open="0" top="0" tabpos="23">
 		<Cursor position="78" topLine="42" />
 	</File>
 	<File name="primitive/primitive_memory_container.h" open="0" top="0" tabpos="12">

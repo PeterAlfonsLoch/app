@@ -5,10 +5,10 @@
 */
 
 // ansi class names
-char char_category_names[][3] = { "Cn", "Cc", "Cf", "Cs", "Ll", "Lm", "Lo", "Lt", "Lu", "Mc", "Me", "Mn", "Nd", "Nl", "No", "Pc", "Pd", "Pe", "Pf", "Pi", "Po", "Ps", "Sc", "Sk", "Sm", "So", "Zl", "Zp", "Zs",  };
+static char char_category_names[][3] = { "Cn", "Cc", "Cf", "Cs", "Ll", "Lm", "Lo", "Lt", "Lu", "Mc", "Me", "Mn", "Nd", "Nl", "No", "Pc", "Pd", "Pe", "Pf", "Pi", "Po", "Ps", "Sc", "Sk", "Sm", "So", "Zl", "Zp", "Zs",  };
 
 // ansi class names
-char char_bidi_names[][4] = { "AL", "AN", "B", "BN", "CS", "EN", "ES", "ET", "L", "LRE", "LRO", "NSM", "ON", "PDF", "R", "RLE", "RLO", "S", "WS",  };
+static char char_bidi_names[][4] = { "AL", "AN", "B", "BN", "CS", "EN", "ES", "ET", "L", "LRE", "LRO", "NSM", "ON", "PDF", "R", "RLE", "RLO", "S", "WS",  };
 
 /*
 // unc class names
@@ -37,7 +37,7 @@ static wchar wchar_bidi_names[][4] = { L"AL", L"AN", L"B", L"BN", L"CS", L"EN", 
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

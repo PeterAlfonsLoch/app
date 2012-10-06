@@ -13,8 +13,6 @@ namespace datetime
 #define DATE_MAX 2958465
 
 
-CLASS_DECL_ca HRESULT FloatTimeFromUdate(UDATE *pUdateIn, ULONG dwFlags, DATE *pDateOut);
-CLASS_DECL_ca HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ULONG dwFlags, DATE *pDateOut);
 
 #define TIMEFLAG(i) ((dp.dwFlags[i] & DP_TIMESEP) << i)
 
@@ -80,6 +78,33 @@ CLASS_DECL_ca INT SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut)
 
   ud.st = *lpSt;
   return FloatTimeFromUdate(&ud, 0, pDateOut) == S_OK;
+}
+
+
+/***********************************************************************
+*              VariantTimeToSystemTime [OLEAUT32.185]
+*
+* Convert a variant VT_DATE into a System format date and time.
+*
+* PARAMS
+*  datein [I] Variant VT_DATE format date
+*  lpSt   [O] Destination for System format date and time
+*
+* RETURNS
+*  Success: TRUE. *lpSt contains the converted value.
+*  Failure: FALSE, if dateIn is too large or small.
+*/
+INT WINAPI FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt)
+{
+  UDATE ud;
+
+  //TRACE("(%g,%p)\n", dateIn, lpSt);
+
+  if (FAILED(VarUdateFromDate(dateIn, 0, &ud)))
+    return FALSE;
+
+  *lpSt = ud.st;
+  return TRUE;
 }
 
 
@@ -210,7 +235,7 @@ static inline double FLOATTIME_JulianFromDMY(USHORT year, USHORT month, USHORT d
 CLASS_DECL_ca HRESULT FloatTimeFromUdate(UDATE *pUdateIn, ULONG dwFlags, DATE *pDateOut)
 {
   LCID lcid = MAKELCID(MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US), SORT_DEFAULT);
-  
+
   return FloatTimeFromUdateEx(pUdateIn, lcid, dwFlags, pDateOut);
 }
 
@@ -823,4 +848,150 @@ VARIANT_MakeDate_OK:
   st->wYear = v3 < 30 ? 2000 + v3 : v3 < 100 ? 1900 + v3 : v3;
 //xxx  TRACE("Returning date %d/%d/%d\n", v1, v2, st->wYear);
   return S_OK;
+}
+
+
+
+/***********************************************************************
+*              VarUdateFromDate [OLEAUT32.331]
+*
+* Convert a variant VT_DATE into an unpacked format date and time.
+*
+* PARAMS
+*  datein    [I] Variant VT_DATE format date
+*  dwFlags   [I] Flags controlling the conversion (VAR_ flags from "oleauto.h")
+*  lpUdate   [O] Destination for unpacked format date and time
+*
+* RETURNS
+*  Success: S_OK. *lpUdate contains the converted value.
+*  Failure: E_INVALIDARG, if dateIn is too large or small.
+*/
+HRESULT WINAPI VarUdateFromDate(DATE dateIn, ULONG dwFlags, UDATE *lpUdate)
+{
+  /* Cumulative totals of days per month */
+  static const USHORT cumulativeDays[] =
+  {
+    0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334
+  };
+  double datePart, timePart;
+  int julianDays;
+
+  TRACE("(%g,0x%08x,%p)\n", dateIn, dwFlags, lpUdate);
+
+  if (dateIn <= (DATE_MIN - 1.0) || dateIn >= (DATE_MAX + 1.0))
+    return E_INVALIDARG;
+
+  datePart = dateIn < 0.0 ? ceil(dateIn) : floor(dateIn);
+  /* Compensate for int truncation (always downwards) */
+  timePart = fabs(dateIn - datePart) + 0.00000000001;
+  if (timePart >= 1.0)
+    timePart -= 0.00000000001;
+
+  /* Date */
+  julianDays = VARIANT_JulianFromDate(dateIn);
+  VARIANT_DMYFromJulian(julianDays, &lpUdate->st.wYear, &lpUdate->st.wMonth,
+                        &lpUdate->st.wDay);
+
+  datePart = (datePart + 1.5) / 7.0;
+  lpUdate->st.wDayOfWeek = (datePart - floor(datePart)) * 7;
+  if (lpUdate->st.wDayOfWeek == 0)
+    lpUdate->st.wDayOfWeek = 5;
+  else if (lpUdate->st.wDayOfWeek == 1)
+    lpUdate->st.wDayOfWeek = 6;
+  else
+    lpUdate->st.wDayOfWeek -= 2;
+
+  if (lpUdate->st.wMonth > 2 && IsLeapYear(lpUdate->st.wYear))
+    lpUdate->wDayOfYear = 1; /* After February, in a leap year */
+  else
+    lpUdate->wDayOfYear = 0;
+
+  lpUdate->wDayOfYear += cumulativeDays[lpUdate->st.wMonth];
+  lpUdate->wDayOfYear += lpUdate->st.wDay;
+
+  /* Time */
+  timePart *= 24.0;
+  lpUdate->st.wHour = timePart;
+  timePart -= lpUdate->st.wHour;
+  timePart *= 60.0;
+  lpUdate->st.wMinute = timePart;
+  timePart -= lpUdate->st.wMinute;
+  timePart *= 60.0;
+  lpUdate->st.wSecond = timePart;
+  timePart -= lpUdate->st.wSecond;
+  lpUdate->st.wMilliseconds = 0;
+  if (timePart > 0.5)
+  {
+    /* Round the milliseconds, adjusting the time/date forward if needed */
+    if (lpUdate->st.wSecond < 59)
+      lpUdate->st.wSecond++;
+    else
+    {
+      lpUdate->st.wSecond = 0;
+      if (lpUdate->st.wMinute < 59)
+        lpUdate->st.wMinute++;
+      else
+      {
+        lpUdate->st.wMinute = 0;
+        if (lpUdate->st.wHour < 23)
+          lpUdate->st.wHour++;
+        else
+        {
+          lpUdate->st.wHour = 0;
+          /* Roll over a whole day */
+          if (++lpUdate->st.wDay > 28)
+            VARIANT_RollUdate(lpUdate);
+        }
+      }
+    }
+  }
+  return S_OK;
+}
+
+
+
+/*********************************************************************
+*      FileTimeToLocalFileTime                         (KERNEL32.@)
+*/
+WINBOOL FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
+{
+    NTSTATUS status;
+    LARGE_INTEGER local, utc;
+
+    utc.u.LowPart = utcft->dwLowDateTime;
+    utc.u.HighPart = utcft->dwHighDateTime;
+    if (!(status = RtlSystemTimeToLocalTime( &utc, &local )))
+    {
+        localft->dwLowDateTime = local.u.LowPart;
+        localft->dwHighDateTime = local.u.HighPart;
+    }
+    else SetLastError( RtlNtStatusToDosError(status) );
+
+    return !status;
+}
+
+
+/******************************************************************************
+*       RtlSystemTimeToLocalTime [NTDLL.@]
+*
+* Convert a system time into a local time.
+*
+* PARAMS
+*   SystemTime [I] System time to convert.
+*   LocalTime  [O] Destination for the converted time.
+*
+* RETURNS
+*   Success: STATUS_SUCCESS.
+*   Failure: An NTSTATUS error code indicating the problem.
+*/
+NTSTATUS WINAPI RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
+                                          PLARGE_INTEGER LocalTime )
+{
+    LONG bias;
+
+    TRACE("(%p, %p)\n", SystemTime, LocalTime);
+
+    bias = TIME_GetBias();
+    LocalTime->QuadPart = SystemTime->QuadPart - bias * (LONGLONG)TICKSPERSEC;
+    return STATUS_SUCCESS;
 }

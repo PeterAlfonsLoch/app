@@ -80,15 +80,15 @@ public:
 
 
 #ifdef WINDOWS
-   standard_exception(::ca::application * papp, EXCEPTION_POINTERS * ppointers) : 
-      ca(papp), 
+   standard_exception(::ca::application * papp, EXCEPTION_POINTERS * ppointers) :
+      ca(papp),
       ::call_stack(papp),
       ::base_exception(papp),
       m_ppointers(ppointers)
-   { 
-      
+   {
+
       _ASSERTE(ppointers != 0);
-   
+
    }
 
    standard_exception(const standard_exception & se) :
@@ -97,12 +97,22 @@ public:
       ::base_exception(se),
       m_ppointers(se.m_ppointers)
    {
-   
+
    }
 
 #else
-   standard_exception(::ca::application * papp, siginfo_t * psiginfo, void * pc) : ca(papp), m_siginfo(*psiginfo), m_ucontext(*(ucontext_t *)pc) { _ASSERTE(psiginfo != 0); }
-   standard_exception(const standard_exception& se) : ca(((standard_exception &) se).get_app()), m_siginfo(se.m_siginfo), m_ucontext(se.m_ucontext) {}
+   standard_exception(::ca::application * papp, siginfo_t * psiginfo, void * pc) :
+      ca(papp),
+      ::call_stack(papp),
+      ::base_exception(papp),
+      m_siginfo(*psiginfo),
+      m_ucontext(*(ucontext_t *)pc) { _ASSERTE(psiginfo != 0); }
+   standard_exception(const standard_exception& se) :
+      ca(se),
+      ::call_stack(se),
+      ::base_exception(se),
+      m_siginfo(se.m_siginfo),
+      m_ucontext(se.m_ucontext) {}
 #endif
    virtual ~standard_exception()
    {
@@ -121,14 +131,14 @@ namespace exception
    protected:
    #if defined(LINUX) || defined(MACOS)
       standard_access_violation (::ca::application * papp, siginfo_t * psiginfo, void * pc) :
-         ca(papp), 
+         ca(papp),
          ::call_stack(papp),
          ::base_exception(papp),
          ::standard_exception(papp, psiginfo, pc)
          {}
    #else
-      standard_access_violation (::ca::application * papp, EXCEPTION_POINTERS * ppointers) : 
-         ca(papp), 
+      standard_access_violation (::ca::application * papp, EXCEPTION_POINTERS * ppointers) :
+         ca(papp),
          ::call_stack(papp),
          ::base_exception(papp),
          ::standard_exception(papp, ppointers)
@@ -145,7 +155,11 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_sigfpe (::ca::application * papp, siginfo_t * psiginfo, void * pc) : ca(papp), standard_exception(papp, psiginfo, pc) {}
+      standard_sigfpe (::ca::application * papp, siginfo_t * psiginfo, void * pc) :
+         ca(papp),
+         ::call_stack(papp),
+         ::base_exception(papp),
+          standard_exception(papp, psiginfo, pc) {}
    public:
    //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
      // ulong_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }

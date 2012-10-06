@@ -32,6 +32,7 @@
 
 #include <imagehlp.h>
 
+#endif
 
 class mutex;
 
@@ -46,9 +47,13 @@ namespace exception
    public:
 
 
-      bool                 m_bSkip;
+
       mutex *              m_pmutex;
 
+
+#ifdef WINDOWSEX
+
+      bool                 m_bSkip;
       DWORD64              m_uiAddress;
       bool                 m_bOk;
 
@@ -58,21 +63,16 @@ namespace exception
       int                        m_iRef;
       simple_array < HMODULE >   m_ha;
 
+
+#endif
+
+
+
+
       engine(::ca::application * papp);
       ~engine();
 
 
-      void address(DWORD64 a)      { m_uiAddress = a; }
-      DWORD64 address() const   { return m_uiAddress; }
-
-      // symbol handler queries
-      size_t      module  (vsstring & str);
-      size_t      symbol  (vsstring & str, DWORD64 * pdisplacement = 0);
-      index       fileline(vsstring & str, DWORD * pline, DWORD * pdisplacement= 0);
-
-      // stack walk
-      bool stack_first (CONTEXT* pctx);
-      bool stack_next  ();
 
       /*
          format argument
@@ -87,12 +87,30 @@ namespace exception
          "%f(%l) : %m at %s\n"
          "%m.%s + %sd bytes, in %f:line %l\n"
       */
+
+
+      static const char * default_format(){ return "%f(%l) : %m at %s\n"; }
+
+
+
+#ifdef WINDOWSEX
+
       bool stack_trace(vsstring & str, CONTEXT *, dword_ptr uiSkip = 0, const char * pszFormat = default_format());
       bool stack_trace(vsstring & str, dword_ptr uiSkip = 1, const char * pszFormat = default_format());
       bool stack_trace(vsstring & str, CONTEXT *, dword_ptr uiSkip = 1, bool bSkip = false, const char * pszFormat = default_format());
+
+#else
+
+      bool stack_trace(vsstring & str, dword_ptr uiSkip = 0, const char * pszFormat = default_format());
+
+#endif
+
+
+#ifdef WINDOWSEX
+
       DWORD WINAPI stack_trace_ThreadProc(void * lpvoidParam);
 
-      static const char * default_format(){ return "%f(%l) : %m at %s\n"; }
+
       bool get_line_from_address(HANDLE hProc, DWORD64 uiAddress, DWORD * puiDisplacement, IMAGEHLP_LINE64 * pline);
       size_t get_module_basename(HMODULE hmodule, vsstring & strName);
 
@@ -101,6 +119,17 @@ namespace exception
       bool check();
 
 
+      void address(DWORD64 a)      { m_uiAddress = a; }
+      DWORD64 address() const   { return m_uiAddress; }
+
+      // symbol handler queries
+      size_t      module  (vsstring & str);
+      size_t      symbol  (vsstring & str, DWORD64 * pdisplacement = 0);
+      index       fileline(vsstring & str, DWORD * pline, DWORD * pdisplacement= 0);
+
+      // stack walk
+      bool stack_first (CONTEXT* pctx);
+      bool stack_next  ();
 
       bool init();
       bool fail() const;
@@ -108,13 +137,14 @@ namespace exception
       void clear();
       void reset();
       bool load_module(HANDLE, HMODULE);
-         
+
+#endif
+
    };
 
 
 } // namespace exception
 
-#endif
 
 // Change Log:
 //      25.12.2001  Konstantin, Initial version.
