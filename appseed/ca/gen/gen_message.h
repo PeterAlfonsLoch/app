@@ -599,7 +599,7 @@ namespace gen
 #endif
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 
          class CLASS_DECL_ca measure_item : public base

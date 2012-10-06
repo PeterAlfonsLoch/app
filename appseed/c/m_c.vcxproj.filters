@@ -189,9 +189,6 @@
     <ClCompile Include="c\cpu_architecture.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="c\c_c.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="c\debug.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>

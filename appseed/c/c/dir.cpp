@@ -460,17 +460,7 @@ vsstring dir::default_os_user_path_prefix()
    return str;
 
 #elif defined(MERDE_WINDOWS)
-   wchar_t buf[MAX_PATH];
-   ULONG ulSize = sizeof(buf) / sizeof(wchar_t);
-   if(!::GetUserNameEx(NameCanonical, buf, &ulSize))
-   {
-      if(!::GetUserName(buf, &ulSize))
-      {
-         memset(buf, 0, sizeof(buf));
-      }
-   }
-   vsstring str;
-   str.attach(utf16_to_8(buf));
+   vsstring str(Windows::System::UserProfile::UserInformation::GetDomainNameAsync()->GetResults()->Data());
    return str;
 
 #else

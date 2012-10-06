@@ -8,11 +8,12 @@
 
 #include "framework.h"
 
+#ifdef WINDOWSEX
+
 #define _MAX_CMD_LINE_ARGS  32
 char *_argv[_MAX_CMD_LINE_ARGS+1];
 static char *_rawCmd = 0;
 
-#ifdef WINDOWS
 int _init_args()
 {
 	_argv[0] = 0;

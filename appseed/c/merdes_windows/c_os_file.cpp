@@ -98,3 +98,30 @@ CLASS_DECL_c HANDLE FindFirstFile(const wchar_t * pwsz, WIN32_FIND_DATA * pdata)
    return FindFirstFileEx(pwsz, FindExInfoStandard, pdata, FindExSearchNameMatch, NULL, 0);
 
 }
+
+
+CLASS_DECL_c BOOL FileTimeToLocalFileTime(const FILETIME * lpFileTime, LPFILETIME lpLocalFileTime)
+{
+
+   SYSTEMTIME st;
+
+   memset(&st, 0, sizeof(st));
+
+   if(FileTimeToSystemTime(lpFileTime, &st))
+      return FALSE;
+
+   SYSTEMTIME stLocal;
+
+   memset(&stLocal, 0, sizeof(stLocal));
+
+   if(!SystemTimeToTzSpecificLocalTime(NULL, &st, &stLocal))
+      return FALSE;
+
+   if(!SystemTimeToFileTime(&stLocal, lpLocalFileTime))
+      return FALSE;
+
+
+   return TRUE;
+
+
+}

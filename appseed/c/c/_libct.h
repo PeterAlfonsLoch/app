@@ -11,13 +11,17 @@
 #include <tchar.h>
 
 
-
-
 BEGIN_EXTERN_C
+
+
+#ifdef WINDOWSEX
+
 
 extern TCHAR *_argv[];
 int _init_args();
 void _term_args();
+
+#endif
 
 typedef void (__cdecl *_PVFV)();
 extern _PVFV __xc_a[], __xc_z[];    /* C++ initializers */

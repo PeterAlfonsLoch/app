@@ -912,7 +912,7 @@ valid : invalid;
    inline bool float_time::ParseDateTime(const char * lpszDate, DWORD dwFlags, LCID lcid) RELEASENOTHROW
    {
 
-      const char * pszDate = ( lpszDate == NULL ) ? _T("") : lpszDate;
+      const char * pszDate = ( lpszDate == NULL ) ? "" : lpszDate;
 
       HRESULT hr;
 
