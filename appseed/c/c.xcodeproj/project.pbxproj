@@ -352,6 +352,7 @@
 		07237F4515F99D660018B75F /* simple_ui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_ui.cpp; sourceTree = "<group>"; };
 		07237F4615F99D660018B75F /* simple_ui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_ui.h; sourceTree = "<group>"; };
 		077AE6CB1606201C0052CAC4 /* c_os_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_thread.cpp; sourceTree = "<group>"; };
+		07983D461620C118006F8309 /* c_mm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_mm.h; sourceTree = "<group>"; };
 		07AB204A16061A6000CD4EE2 /* os_http.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = os_http.cpp; path = os/os_http.cpp; sourceTree = "<group>"; };
 		07AB204B16061A6000CD4EE2 /* os_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = os_thread.cpp; path = os/os_thread.cpp; sourceTree = "<group>"; };
 		07AB204C16061A6000CD4EE2 /* os_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = os_thread.h; path = os/os_thread.h; sourceTree = "<group>"; };
@@ -748,6 +749,7 @@
 		CEC9A23D144B818900FEA8E6 /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				07983D461620C118006F8309 /* c_mm.h */,
 				CEACF742145FD3C2004A3E5B /* c_os.cpp */,
 				CEACF743145FD3C2004A3E5B /* c_os.h */,
 				077AE6CB1606201C0052CAC4 /* c_os_thread.cpp */,

@@ -47,7 +47,7 @@ namespace ca
 #include "natural.h"
 
 
-//#define if_then(p, q)  ((!(p))||(!(q)))
+#define if_then(p, q)  ((!(p))||(!(q)))
 
 
 extern "C"
