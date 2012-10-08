@@ -51,7 +51,7 @@ namespace visual
 
 #else
 
-            throw todo();
+            throw todo(::ca::get_thread_app());
 
             // ::GetTextExtentPoint32((HDC)pdc->get_os_data(), gen::international::unicode_to_utf8(lpwsz), (int) gen::international::unicode_to_utf8(lpwsz).get_lengt(), &sz);
 
@@ -221,7 +221,7 @@ namespace visual
 
 #else
 
-      throw todo();
+      throw todo(get_app());
 
 #endif
 
@@ -239,7 +239,7 @@ namespace visual
 
 #else
 
-      throw todo();
+      throw todo(get_app());
 
 #endif
 
@@ -259,7 +259,7 @@ namespace visual
 
 #else
 
-      throw todo();
+      throw todo(get_app());
 
 #endif
 

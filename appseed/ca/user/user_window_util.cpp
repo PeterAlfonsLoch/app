@@ -268,7 +268,7 @@ namespace user
 
 #else
 
-      throw not_implemented(get_app());
+      throw not_implemented(::ca::get_thread_app());
 
 #endif
 
@@ -400,7 +400,7 @@ namespace user
 
 #else
 
-      throw todo();
+      throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -496,7 +496,7 @@ namespace user
 
 #else
 
-         throw todo();
+         throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -526,7 +526,7 @@ namespace user
 
 #else
 
-      throw todo();
+      throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -569,7 +569,7 @@ namespace user
 
 #else
 
-      throw todo();
+      throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -647,7 +647,7 @@ namespace user
 
 #else
 
-      throw todo();
+      throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -719,7 +719,7 @@ namespace user
 
 #else
 
-      throw todo();
+      throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -747,7 +747,7 @@ namespace user
 
 #else
 
-      throw todo();
+      throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -777,25 +777,25 @@ namespace user
 
       for(int i = 0; i < hwnda.get_size(); i++)
       {
-         
+
          void * hwndChild = hwnda[i];
-         
+
          rect rectChild;
 
          ::GetClientRect((HWND) hwndChild, rectChild);
-         
+
          ::ClientToScreen((HWND) hwndChild, &rectChild.top_left());
-         
+
          ::ClientToScreen((HWND) hwndChild, &rectChild.bottom_right());
-         
+
          ::ScreenToClient((HWND) hwnd, &rectChild.top_left());
-         
+
          ::ScreenToClient((HWND) hwnd, &rectChild.bottom_right());
-         
+
          rectChild.offset(ptOffset);
-         
+
          HRGN hrgnChild = ::CreateRectRgnIndirect(rectChild);
-         
+
          ::CombineRgn(hrgn, hrgn, hrgnChild, RGN_DIFF);
 
          ::DeleteObject(hrgnChild);
@@ -804,7 +804,7 @@ namespace user
 
 #else
 
-      throw todo();
+      throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -819,7 +819,7 @@ namespace user
       rect rectWnd;
 
       ::GetClientRect((HWND) hwnd, rectWnd);
-      
+
       rectWnd.offset(ptOffset);
 
       HRGN hrgn = ::CreateRectRgnIndirect(rectWnd);
@@ -835,7 +835,7 @@ namespace user
 
 #else
 
-      throw todo();
+      throw todo(::ca::get_thread_app());
 
 #endif
 

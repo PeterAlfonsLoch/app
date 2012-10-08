@@ -66,8 +66,6 @@
 		<Unit filename="c/base64.cpp" />
 		<Unit filename="c/base64.h" />
 		<Unit filename="c/c.h" />
-		<Unit filename="c/c_c.cpp" />
-		<Unit filename="c/c_c.h" />
 		<Unit filename="c/c_heap.h" />
 		<Unit filename="c/c_natural.h" />
 		<Unit filename="c/c_types.h" />

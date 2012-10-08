@@ -242,7 +242,7 @@ namespace gen
       base * dispatch::get_base(XEvent * pevent, ::user::interaction * pwnd)
       {
 
-         throw todo();
+         throw todo(get_app());
 
       }
 
@@ -723,11 +723,15 @@ namespace gen
          m_pwnd = NULL;
       }
 
+#ifdef WINDOWSEX
+
       void window_pos::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_pwindowpos = reinterpret_cast<WINDOWPOS*>(lparam);
       }
+
+#endif
 
       void nc_calc_size::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {

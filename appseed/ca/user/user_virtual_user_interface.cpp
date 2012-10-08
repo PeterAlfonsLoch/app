@@ -95,7 +95,7 @@ bool virtual_user_interface::SetWindowPos(int z, int x, int y, int cx, int cy, U
 
 #else
 
-      throw todo();
+      throw todo(get_app());
 
 #endif
 
@@ -110,7 +110,7 @@ bool virtual_user_interface::SetWindowPos(int z, int x, int y, int cx, int cy, U
 
 #else
 
-      throw todo();
+      throw todo(get_app());
 
 #endif
 
@@ -254,7 +254,7 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -267,7 +267,7 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -283,7 +283,7 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -295,7 +295,7 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -373,7 +373,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -387,7 +387,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -401,7 +401,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -415,7 +415,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
 #else
 
-   throw todo();
+      throw todo(get_app());
 
 #endif
 
@@ -492,7 +492,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -505,7 +505,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -520,7 +520,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -533,7 +533,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -998,7 +998,7 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
 
 #else
 
-   throw todo();
+   throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -1017,7 +1017,7 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
 
 #else
 
-   throw todo();
+   throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -1089,7 +1089,7 @@ bool virtual_user_interface::DestroyWindow()
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -1147,7 +1147,7 @@ bool virtual_user_interface::DestroyWindow()
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 

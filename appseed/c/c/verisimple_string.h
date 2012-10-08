@@ -68,7 +68,7 @@ public:
    bool is_empty() const;
    bool has_char() const;
 
-   char * alloc(::count iCount);
+   char * alloc(int_ptr iCount);
    int_ptr get_length() const;
    int_ptr length() const;
    int_ptr size() const;

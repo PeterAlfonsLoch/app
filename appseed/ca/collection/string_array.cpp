@@ -61,7 +61,7 @@ void string_array::set_size(count nNewSize, count nGrowBy)
       // create one with exact size
 #ifdef SIZE_T_MAX
       if(nNewSize > SIZE_T_MAX/sizeof(string))
-         throw new memory_exception;
+         throw new memory_exception(get_app());
       ASSERT(nNewSize <= SIZE_T_MAX/sizeof(string));    // no overflow
 #endif
 

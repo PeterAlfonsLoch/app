@@ -135,7 +135,7 @@ namespace visual
 
 #else
 
-      throw todo();
+      throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -186,7 +186,7 @@ namespace visual
 
 #else
 
-      throw todo();
+      throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -258,7 +258,7 @@ namespace visual
 
 #else
 
-      throw todo();
+      throw todo(::ca::get_thread_app());
 
 #endif
 

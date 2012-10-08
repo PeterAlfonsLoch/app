@@ -10,30 +10,30 @@ namespace colorertake5
    parsers objects.
    @ingroup colorer
    */
-   class ParserFactoryException : 
+   class ParserFactoryException :
       virtual public exception
    {
    public:
 
-      
+
       ParserFactoryException(::ca::application * papp) :
          ca(papp),
          ::call_stack(papp),
          ::base_exception(papp),
          ::colorertake5::exception(papp)
       {
-      
+
       }
 
 
-      ParserFactoryException(::ca::application * papp, string & msg) :
+      ParserFactoryException(::ca::application * papp, const char * pszMessage) :
          ca(papp),
          ::call_stack(papp),
          ::base_exception(papp),
          ::colorertake5::exception(papp)
       {
 
-         message += "ParserFactoryException: " + msg;
+         message += "ParserFactoryException: " + string(pszMessage);
 
       }
 
@@ -60,7 +60,7 @@ namespace colorertake5
 * The Initial Developer of the Original Code is
 * Cail Lomecb <cail@nm.ru>.
 * Portions created by the Initial Developer are Copyright (C) 1999-2005
-* the Initial Developer. 
+* the Initial Developer.
 *
 * Contributor(s):
 *

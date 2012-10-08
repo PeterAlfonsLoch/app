@@ -73,18 +73,18 @@ bool critical_section::Init()
       pthread_mutexattr_t mutexattr;   // Mutex attribute variable
 
       // Set the mutex as a recursive mutex
-      
-#ifdef MACOS      
-      
+
+#ifdef MACOS
+
       pthread_mutexattr_settype(&mutexattr, PTHREAD_MUTEX_RECURSIVE);
-      
-      
+
+
 #else
-      
+
       pthread_mutexattr_settype(&mutexattr, PTHREAD_MUTEX_RECURSIVE_NP);
-      
+
 #endif
-      
+
       // create the mutex with the attributes set
       pthread_mutex_init(&m_mutex, &mutexattr);
 
@@ -106,7 +106,7 @@ critical_section::critical_section()
 
    bSuccess = Init();
    if (!bSuccess)
-      throw memory_exception();
+      throw memory_exception(get_app());
 }
 
 critical_section::operator pthread_mutex_t*()
@@ -129,7 +129,7 @@ bool critical_section::lock()
    }
    catch(...)
    {
-      throw memory_exception();
+      throw memory_exception(get_app());
    }
    return TRUE;
 }

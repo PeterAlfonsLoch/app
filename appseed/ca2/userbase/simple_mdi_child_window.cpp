@@ -1,12 +1,12 @@
 // This is ca2 API library.
-// 
-// 
 //
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
+//
+//
 
 #include "StdAfx.h"
 
@@ -130,7 +130,7 @@ BOOL SimpleMDIChildWindow::create(const char * lpszClassName,
    UNREFERENCED_PARAMETER(rect);
    UNREFERENCED_PARAMETER(pParentWnd);
    UNREFERENCED_PARAMETER(pContext);
-   throw not_implemented_exception();
+   throw not_implemented(get_app());
 /*   if (pParentWnd == NULL)
    {
       thread *pThread = System.GetThread();
@@ -484,10 +484,10 @@ void SimpleMDIChildWindow::on_update_frame_title(BOOL bAddToTitle)
       {
          char szWinNumber[16+1];
          _stprintf_s(szWinNumber, _countof(szWinNumber), ":%d", m_nWindow);
-         
+
          if( lstrlen(szText) + lstrlen(szWinNumber) < _countof(szText) )
          {
-            _template::checked::strcat_s( szText, _countof(szText), szWinNumber ); 
+            _template::checked::strcat_s( szText, _countof(szText), szWinNumber );
          }
       }
 

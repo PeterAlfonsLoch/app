@@ -84,7 +84,7 @@ void pointer_list::FreeNode(pointer_list::node* pNode)
 {
    if (pNode == NULL)
    {
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
    }
 
    pNode->pNext = m_pnodeFree;
@@ -141,7 +141,7 @@ void pointer_list::add_head(pointer_list* pNewList)
    ASSERT_VALID(pNewList);
    if (pNewList == NULL)
    {
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
    }
    ASSERT_KINDOF(pointer_list, pNewList);
 
@@ -157,10 +157,10 @@ void pointer_list::add_tail(pointer_list* pNewList)
    ASSERT_VALID(pNewList);
    if (pNewList == NULL)
    {
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
    }
    ASSERT_KINDOF(pointer_list, pNewList);
-   
+
    // add a list of same elements
    POSITION pos = pNewList->get_head_position();
    while (pos != NULL)
@@ -273,9 +273,9 @@ void pointer_list::remove_at(POSITION position)
 
    if (pOldNode == NULL)
    {
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
    }
-   
+
    // remove pOldNode from list
    if (pOldNode == m_pnodeHead)
    {

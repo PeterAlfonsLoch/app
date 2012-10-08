@@ -19,16 +19,16 @@ _AFX_INLINE memory_exception::memory_exception(WINBOOL bAutoDelete, UINT nResour
    : simple_exception(bAutoDelete) { m_nResourceID = nResourceID; }
 _AFX_INLINE memory_exception::~memory_exception()
    { }
-_AFX_INLINE invalid_argument_exception::invalid_argument_exception()
+_AFX_INLINE invalid_argument_exception::invalid_argument_exception(get_app())
    : simple_exception() { }
 _AFX_INLINE invalid_argument_exception::invalid_argument_exception(WINBOOL bAutoDelete, UINT nResourceID)
    : simple_exception(bAutoDelete) { m_nResourceID = nResourceID; }
-_AFX_INLINE invalid_argument_exception::~invalid_argument_exception()
+_AFX_INLINE invalid_argument_exception::~invalid_argument_exception(get_app())
    { }
 /*_AFX_INLINE CArchiveException::CArchiveException(int cause,
    LPCTSTR lpszFileName /* = NULL *//*)
    { m_cause = cause; m_strFileName = lpszFileName; }
-   
+
 _AFX_INLINE CArchiveException::~CArchiveException()
    { }*/
 /*_AFX_INLINE ex1::file_exception_sp::ex1::file_exception_sp(int cause, LONG lOsError,
@@ -51,7 +51,7 @@ _AFX_INLINE void ::ex1::filesp::SetFilePath(LPCTSTR lpszNewName)
    if(lpszNewName != NULL)
       m_strFileName = lpszNewName;
    else
-      throw invalid_argument_exception();  
+      throw invalid_argument_exception(get_app());
 
 }
 /*
@@ -115,50 +115,50 @@ _AFX_INLINE CArchive& CArchive::operator<<(wchar_t ch)
 _AFX_INLINE CArchive& CArchive::operator<<(bool b)
    { return CArchive::operator <<((BYTE)(b ? 1 : 0)); }
 _AFX_INLINE CArchive& CArchive::operator<<(BYTE by)
-{ 
+{
    if(!IsStoring())
       AfxThrowArchiveException(CArchiveException::readOnly,m_strFileName);
    if (m_lpBufCur + sizeof(BYTE) > m_lpBufMax) Flush();
-      *(UNALIGNED BYTE*)m_lpBufCur = by; m_lpBufCur += sizeof(BYTE); return *this; 
+      *(UNALIGNED BYTE*)m_lpBufCur = by; m_lpBufCur += sizeof(BYTE); return *this;
 }
 
 _AFX_INLINE CArchive& CArchive::operator<<(LONGLONG dwdw)
-{ 
+{
    if(!IsStoring())
       AfxThrowArchiveException(CArchiveException::readOnly,m_strFileName);
    if (m_lpBufCur + sizeof(LONGLONG) > m_lpBufMax) Flush();
-      *(UNALIGNED LONGLONG*)m_lpBufCur = dwdw; m_lpBufCur += sizeof(LONGLONG); return *this; 
+      *(UNALIGNED LONGLONG*)m_lpBufCur = dwdw; m_lpBufCur += sizeof(LONGLONG); return *this;
 }
 _AFX_INLINE CArchive& CArchive::operator<<(ULONGLONG dwdw)
-{ 
+{
    if(!IsStoring())
       AfxThrowArchiveException(CArchiveException::readOnly,m_strFileName);
    if (m_lpBufCur + sizeof(ULONGLONG) > m_lpBufMax) Flush();
-      *(UNALIGNED ULONGLONG*)m_lpBufCur = dwdw; m_lpBufCur += sizeof(ULONGLONG); return *this; 
+      *(UNALIGNED ULONGLONG*)m_lpBufCur = dwdw; m_lpBufCur += sizeof(ULONGLONG); return *this;
 }
 _AFX_INLINE CArchive& CArchive::operator<<(WORD w)
-{ 
+{
    if(!IsStoring())
       AfxThrowArchiveException(CArchiveException::readOnly,m_strFileName);
    if (m_lpBufCur + sizeof(WORD) > m_lpBufMax) Flush();
-         *(UNALIGNED WORD*)m_lpBufCur = w; m_lpBufCur += sizeof(WORD); return *this; 
+         *(UNALIGNED WORD*)m_lpBufCur = w; m_lpBufCur += sizeof(WORD); return *this;
 }
 _AFX_INLINE CArchive& CArchive::operator<<(LONG l)
-{ 
+{
    if(!IsStoring())
       AfxThrowArchiveException(CArchiveException::readOnly,m_strFileName);
    if (m_lpBufCur + sizeof(LONG) > m_lpBufMax) Flush();
-      *(UNALIGNED LONG*)m_lpBufCur = l; m_lpBufCur += sizeof(LONG); return *this; 
+      *(UNALIGNED LONG*)m_lpBufCur = l; m_lpBufCur += sizeof(LONG); return *this;
 }
 _AFX_INLINE CArchive& CArchive::operator<<(DWORD dw)
-{ 
+{
    if(!IsStoring())
       AfxThrowArchiveException(CArchiveException::readOnly,m_strFileName);
    if (m_lpBufCur + sizeof(DWORD) > m_lpBufMax) Flush();
-      *(UNALIGNED DWORD*)m_lpBufCur = dw; m_lpBufCur += sizeof(DWORD); return *this; 
+      *(UNALIGNED DWORD*)m_lpBufCur = dw; m_lpBufCur += sizeof(DWORD); return *this;
 }
 _AFX_INLINE CArchive& CArchive::operator<<(float f)
-{ 
+{
    if(!IsStoring())
       AfxThrowArchiveException(CArchiveException::readOnly,m_strFileName);
    if (m_lpBufCur + sizeof(float) > m_lpBufMax) Flush();
@@ -169,7 +169,7 @@ _AFX_INLINE CArchive& CArchive::operator<<(double d)
    if(!IsStoring())
       AfxThrowArchiveException(CArchiveException::readOnly,m_strFileName);
    if (m_lpBufCur + sizeof(double) > m_lpBufMax) Flush();
-      *(UNALIGNED double*)m_lpBufCur = d; m_lpBufCur += sizeof(double); return *this; 
+      *(UNALIGNED double*)m_lpBufCur = d; m_lpBufCur += sizeof(double); return *this;
 }
 
 _AFX_INLINE CArchive& CArchive::operator>>(int& i)
@@ -187,69 +187,69 @@ _AFX_INLINE CArchive& CArchive::operator>>(wchar_t& ch)
 _AFX_INLINE CArchive& CArchive::operator>>(bool& b)
    { BYTE by; CArchive& ar = CArchive::operator>>(by); b = (by ? true : false); return ar; }
 _AFX_INLINE CArchive& CArchive::operator>>(BYTE& by)
-{ 
+{
    if(!IsLoading())
       AfxThrowArchiveException(CArchiveException::writeOnly,m_strFileName);
    if (m_lpBufCur + sizeof(BYTE) > m_lpBufMax)
       FillBuffer(UINT(sizeof(BYTE) - (m_lpBufMax - m_lpBufCur)));
-   by = *(UNALIGNED BYTE*)m_lpBufCur; m_lpBufCur += sizeof(BYTE); return *this; 
+   by = *(UNALIGNED BYTE*)m_lpBufCur; m_lpBufCur += sizeof(BYTE); return *this;
 }
 
 _AFX_INLINE CArchive& CArchive::operator>>(LONGLONG& dwdw)
-{ 
+{
    if(!IsLoading())
       AfxThrowArchiveException(CArchiveException::writeOnly,m_strFileName);
    if (m_lpBufCur + sizeof(LONGLONG) > m_lpBufMax)
       FillBuffer(sizeof(LONGLONG) - (UINT)(m_lpBufMax - m_lpBufCur));
-   dwdw = *(UNALIGNED LONGLONG*)m_lpBufCur; m_lpBufCur += sizeof(LONGLONG); return *this; 
+   dwdw = *(UNALIGNED LONGLONG*)m_lpBufCur; m_lpBufCur += sizeof(LONGLONG); return *this;
 }
 _AFX_INLINE CArchive& CArchive::operator>>(ULONGLONG& dwdw)
-{ 
+{
    if(!IsLoading())
       AfxThrowArchiveException(CArchiveException::writeOnly,m_strFileName);
    if (m_lpBufCur + sizeof(ULONGLONG) > m_lpBufMax)
       FillBuffer(sizeof(ULONGLONG) - (UINT)(m_lpBufMax - m_lpBufCur));
-   dwdw = *(UNALIGNED ULONGLONG*)m_lpBufCur; m_lpBufCur += sizeof(ULONGLONG); return *this; 
+   dwdw = *(UNALIGNED ULONGLONG*)m_lpBufCur; m_lpBufCur += sizeof(ULONGLONG); return *this;
 }
 _AFX_INLINE CArchive& CArchive::operator>>(WORD& w)
-{ 
+{
    if(!IsLoading())
       AfxThrowArchiveException(CArchiveException::writeOnly,m_strFileName);
    if (m_lpBufCur + sizeof(WORD) > m_lpBufMax)
       FillBuffer(UINT(sizeof(WORD) - (m_lpBufMax - m_lpBufCur)));
-   w = *(UNALIGNED WORD*)m_lpBufCur; m_lpBufCur += sizeof(WORD); return *this; 
+   w = *(UNALIGNED WORD*)m_lpBufCur; m_lpBufCur += sizeof(WORD); return *this;
 }
 _AFX_INLINE CArchive& CArchive::operator>>(DWORD& dw)
-{ 
+{
    if(!IsLoading())
       AfxThrowArchiveException(CArchiveException::writeOnly,m_strFileName);
    if (m_lpBufCur + sizeof(DWORD) > m_lpBufMax)
       FillBuffer(UINT(sizeof(DWORD) - (m_lpBufMax - m_lpBufCur)));
-   dw = *(UNALIGNED DWORD*)m_lpBufCur; m_lpBufCur += sizeof(DWORD); return *this; 
+   dw = *(UNALIGNED DWORD*)m_lpBufCur; m_lpBufCur += sizeof(DWORD); return *this;
 }
 _AFX_INLINE CArchive& CArchive::operator>>(float& f)
-{ 
+{
    if(!IsLoading())
       AfxThrowArchiveException(CArchiveException::writeOnly,m_strFileName);
    if (m_lpBufCur + sizeof(float) > m_lpBufMax)
       FillBuffer(UINT(sizeof(float) - (m_lpBufMax - m_lpBufCur)));
-   f = *(UNALIGNED float*)m_lpBufCur; m_lpBufCur += sizeof(float); return *this; 
+   f = *(UNALIGNED float*)m_lpBufCur; m_lpBufCur += sizeof(float); return *this;
 }
 _AFX_INLINE CArchive& CArchive::operator>>(double& d)
-{ 
+{
    if(!IsLoading())
       AfxThrowArchiveException(CArchiveException::writeOnly,m_strFileName);
    if (m_lpBufCur + sizeof(double) > m_lpBufMax)
       FillBuffer(UINT(sizeof(double) - (m_lpBufMax - m_lpBufCur)));
-   d = *(UNALIGNED double*)m_lpBufCur; m_lpBufCur += sizeof(double); return *this; 
+   d = *(UNALIGNED double*)m_lpBufCur; m_lpBufCur += sizeof(double); return *this;
 }
 _AFX_INLINE CArchive& CArchive::operator>>(LONG& l)
-{ 
+{
    if(!IsLoading())
       AfxThrowArchiveException(CArchiveException::writeOnly,m_strFileName);
    if (m_lpBufCur + sizeof(LONG) > m_lpBufMax)
       FillBuffer(UINT(sizeof(LONG) - (m_lpBufMax - m_lpBufCur)));
-   l = *(UNALIGNED LONG*)m_lpBufCur; m_lpBufCur += sizeof(LONG); return *this; 
+   l = *(UNALIGNED LONG*)m_lpBufCur; m_lpBufCur += sizeof(LONG); return *this;
 }
 */
 //_AFX_INLINE CArchive::CArchive(const CArchive& /* arSrc */)

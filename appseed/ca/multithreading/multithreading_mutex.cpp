@@ -17,12 +17,12 @@ mutex::mutex(::ca::application * papp, bool bInitiallyOwn, const char * pstrName
 
    if (m_object == NULL)
    {
-      
+
       m_object = ::OpenMutex(SYNCHRONIZE, TRUE, pstrName);
-      
+
       if(m_object == NULL)
       {
-      
+
          throw resource_exception(papp);
 
       }
@@ -50,7 +50,7 @@ mutex::mutex(::ca::application * papp, bool bInitiallyOwn, const char * pstrName
                   );
 
       if(m_semid < 0)
-         throw resource_exception();
+         throw resource_exception(get_app());
 
       semun semctl_arg;
 

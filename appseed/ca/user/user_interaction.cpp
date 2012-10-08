@@ -2527,7 +2527,7 @@ ExitModal:
 
 #else
 
-      throw todo();
+      throw todo(get_app());
 
 #endif
 

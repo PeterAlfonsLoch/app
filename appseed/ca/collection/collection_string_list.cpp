@@ -89,9 +89,9 @@ void string_list::FreeNode(string_list::node* pNode)
 {
    if (pNode == NULL)
    {
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
    }
-   
+
    DestructElement(&pNode->data);
 
    pNode->m_pnodeNext = m_pnodeFree;
@@ -158,7 +158,7 @@ void string_list::add_head(string_list* pNewList)
    ASSERT_VALID(pNewList);
    if (pNewList == NULL)
    {
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
    }
    ASSERT_KINDOF(string_list, pNewList);
 
@@ -174,7 +174,7 @@ void string_list::add_tail(string_list* pNewList)
    ASSERT_VALID(pNewList);
    if (pNewList == NULL)
    {
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
    }
    ASSERT_KINDOF(string_list, pNewList);
 
@@ -300,9 +300,9 @@ void string_list::remove_at(POSITION position)
 
    if (pOldNode == NULL)
    {
-      throw invalid_argument_exception();
+      throw invalid_argument_exception(get_app());
    }
-   
+
    // remove pOldNode from list
    if (pOldNode == m_pnodeHead)
    {

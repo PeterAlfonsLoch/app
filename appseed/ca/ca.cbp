@@ -67,7 +67,6 @@
 		<Unit filename="ca/ca_bitmap.h" />
 		<Unit filename="ca/ca_brush.cpp" />
 		<Unit filename="ca/ca_brush.h" />
-		<Unit filename="ca/ca_c.cpp" />
 		<Unit filename="ca/ca_c.h" />
 		<Unit filename="ca/ca_ca.cpp" />
 		<Unit filename="ca/ca_ca.h" />

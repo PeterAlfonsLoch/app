@@ -1909,7 +1909,7 @@ namespace radix
             szAppName[_MAX_PATH - 1] = '\0';
 #else
 
-         throw not_implemented(get_app());
+         throw not_implemented(::ca::get_thread_app());
 
 #endif
       }
@@ -3370,7 +3370,7 @@ void __post_quit_message(int nExitCode)
 
 #else
 
-   throw not_implemented(get_app());
+   throw not_implemented(::ca::get_thread_app());
 
 #endif
 

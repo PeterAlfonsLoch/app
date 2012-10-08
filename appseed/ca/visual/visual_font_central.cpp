@@ -56,7 +56,7 @@ bool font_central::Initialize()
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -77,7 +77,7 @@ bool font_central::Initialize()
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -106,7 +106,7 @@ bool font_central::Initialize()
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -124,7 +124,7 @@ bool font_central::Initialize()
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -267,7 +267,7 @@ void font_central::CreateLyricViewFonts()
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -331,7 +331,7 @@ void font_central::CreateLyricViewFonts()
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -392,7 +392,7 @@ void font_central::CreateLyricViewFonts()
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -451,7 +451,7 @@ void font_central::CreateLyricViewFonts()
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -502,7 +502,7 @@ void font_central::CreateLyricViewFonts()
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -535,7 +535,7 @@ void font_central::CreateLyricViewFonts()
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 

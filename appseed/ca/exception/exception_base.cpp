@@ -11,24 +11,18 @@ void PASCAL base_exception::operator delete(void * pbData,   const char * /* lps
    operator delete(pbData);
 }
 
-base_exception::base_exception(::ca::application * papp, unsigned int uiSkip)
-#ifdef WINDOWS
-   : 
+base_exception::base_exception(::ca::application * papp, unsigned int uiSkip) :
    ca(papp),
    ::call_stack(papp, uiSkip)
-#endif
 {
    // most exceptions are deleted when not needed
    m_ulFlags |= flag_auto_clean;
    m_ulFlags &= ~flag_ready_for_delete;
 }
 
-base_exception::base_exception(::ca::application * papp, bool bAutoDelete, unsigned int uiSkip)
-#ifdef WINDOWS
-   : 
+base_exception::base_exception(::ca::application * papp, bool bAutoDelete, unsigned int uiSkip) :
    ca(papp),
    ::call_stack(papp, uiSkip)
-#endif
 {
    // for exceptions which are not auto-delete (usually)
    if(bAutoDelete)
@@ -100,7 +94,7 @@ bool IsWow64()
    {
       return FALSE;
    }
-   
+
    return bIsWow64 != FALSE;
 
 }

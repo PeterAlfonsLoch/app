@@ -578,7 +578,7 @@ namespace filemanager
 
 #else
 
-      throw todo();
+      throw todo(get_app());
 
 #endif
 
@@ -1140,7 +1140,7 @@ namespace filemanager
 
 #else
 
-      throw todo();
+      throw todo(get_app());
 
 #endif
 
@@ -1538,9 +1538,10 @@ namespace filemanager
       bool bGet = GetIcon(hwnd, lpiidlAbsolute, lpcszExtra, eicon, phicon16, phicon48);
       _017ItemIDListFree(lpiidlAbsolute);
       return bGet;
+
 #else
 
-         throw todo();
+      throw todo(get_app());
 
 #endif
 

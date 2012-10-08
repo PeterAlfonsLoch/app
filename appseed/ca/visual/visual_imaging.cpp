@@ -25,7 +25,7 @@ const imaging::CSysColorMap imaging::s_psyscolormap[] =
 
 #else
 
-// throw todo();
+// throw todo(get_app());
 
 const imaging::CSysColorMap imaging::s_psyscolormap[] =
 {
@@ -72,7 +72,7 @@ imaging::~imaging()
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -380,7 +380,7 @@ VOID EmbossedTextOut(
 
 #else
 
-   throw todo();
+   throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -440,7 +440,7 @@ HFONT CreateScaledFont(
 
 #else
 
-   throw todo();
+   throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -492,7 +492,7 @@ HFONT CreateScaledFont(
 
 #else
 
-   throw todo();
+   throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -532,7 +532,7 @@ void GetMultiLineTextExtent(HDC hDC, stringa * pArray, LPSIZE lpSize)
 
 #else
 
-   throw todo();
+   throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -571,7 +571,7 @@ void DrawMultiLineText(HDC hDC, stringa * pArray)
 
 #else
 
-   throw todo();
+   throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -851,7 +851,7 @@ bool imaging::Createcolor_blend_ImageList(
 
 #else
 
-      throw todo();
+      throw todo(get_app());
 
 #endif
 
@@ -993,7 +993,7 @@ bool imaging::GrayVRCP(
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -1025,7 +1025,7 @@ bool imaging::GrayVRCP(
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -1210,7 +1210,7 @@ bool imaging::GrayVRCP(
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -1315,7 +1315,7 @@ bool imaging::GetDeviceContext24BitsCC(
 
 #else
 
-         throw todo();
+         throw todo(get_app());
 
 #endif
 
@@ -2446,7 +2446,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -2731,7 +2731,7 @@ bool imaging::prepare_blend(::ca::dib * pdib, point pt, size size, COLORREF cr, 
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -2814,7 +2814,7 @@ bool imaging::ClipSave(
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -2932,7 +2932,7 @@ bool imaging::ClipRestore(
 
 #else
 
-      throw todo();
+      throw todo(get_app());
 
 #endif
 
@@ -3046,7 +3046,7 @@ bool imaging::ClipSave(
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -3088,7 +3088,7 @@ bool imaging::ClipRestore(
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -4861,7 +4861,7 @@ bool imaging::alpha_spread_R2(::ca::graphics *pdcDst, point ptDst, size size, ::
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -5024,7 +5024,7 @@ bool imaging::alpha_spread(::ca::graphics *pdcDst, point ptDst, size size, ::ca:
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -6034,7 +6034,7 @@ bool imaging::pixelate(::ca::graphics *pdcDst, int xDest, int yDest, int cx, int
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 
@@ -6497,7 +6497,7 @@ bool imaging::alpha_pixelate(
 
 #else
 
-   throw todo();
+   throw todo(get_app());
 
 #endif
 

@@ -153,7 +153,7 @@ namespace visual
 
 #else
 
-      throw todo();
+      throw todo(get_app());
 
 #endif
 
@@ -428,7 +428,7 @@ namespace visual
 
 #else
 
-      throw todo();
+      throw todo(get_app());
 
 #endif
 
@@ -460,7 +460,7 @@ bool CLASS_DECL_ca TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
 
 #else
 
-   throw todo();
+   throw todo(::ca::get_thread_app());
 
 /*
 
@@ -497,7 +497,7 @@ CLASS_DECL_ca bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, 
 
 #else
 
-   throw todo();
+   throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -524,7 +524,7 @@ CLASS_DECL_ca int  DrawTextU(HDC hdc, const char * lpchText, int cchText, LPRECT
 
 #else
 
-   throw todo();
+   throw todo(::ca::get_thread_app());
 
 #endif
 
