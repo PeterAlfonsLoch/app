@@ -52,9 +52,7 @@ namespace ca2
          return false;
       }
 
-#ifdef WINDOWS
-
-      System.eengine().reset();
+      ::plane::system::eengine().reset();
 
 #endif
 

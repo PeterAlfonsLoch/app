@@ -32,7 +32,7 @@ vsstring call_stack::get(unsigned int uiSkip)
 
    UNREFERENCED_PARAMETER(uiSkip);
 
-   System.eengine().stack_trace(str, uiSkip);
+   ::plane::system::eengine().stack_trace(str, uiSkip);
 
    return str;
 

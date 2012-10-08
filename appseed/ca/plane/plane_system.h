@@ -309,9 +309,8 @@ namespace plane
 
      comparable_array < ::ca2::library * >         m_libraryptra;
 
-     ::exception::engine *                         m_peengine;
 
-      system(::ca::application * papp = NULL);
+     system(::ca::application * papp = NULL);
       virtual ~system();
 
 
@@ -428,7 +427,7 @@ namespace plane
 
       ::colorertake5::ParserFactory    & parser_factory();
 
-      ::exception::engine              & eengine();
+      static ::exception::engine       & eengine();
 
       virtual void on_delete(::ca::ca * pca);
 

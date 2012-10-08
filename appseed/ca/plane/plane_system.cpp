@@ -46,6 +46,7 @@ namespace plane
       m_bDoNotExitIfNoApplications              = false;
 
 
+/*    
       if(psystemParent == NULL)
       {
 
@@ -58,7 +59,7 @@ namespace plane
          m_peengine                                = psystemParent->m_peengine;
 
       }
-
+*/
 
 
       if(::get_heap_mutex() == NULL)
@@ -344,7 +345,9 @@ namespace plane
    ::exception::engine & system::eengine()
    {
 
-      return *m_peengine;
+      static ::exception::engine s_eengine(NULL);
+
+      return s_eengine;
 
    }
 

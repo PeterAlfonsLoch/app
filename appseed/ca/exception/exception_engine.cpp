@@ -348,7 +348,7 @@ retry_get_base:
 
          }
 
-         System.eengine().reset();
+         ::plane::system::eengine().reset();
 
          bRetry = true;
 

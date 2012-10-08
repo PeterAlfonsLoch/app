@@ -253,15 +253,15 @@ namespace dynamic_source
          //}
          //::SetDllDirectory("C:\\netnode\\stage\\x64");
          string strStagePath = get_stage_path();
-         ::file_copy_dup(strStagePath, m_strScriptPath, false);
+         //::file_copy_dup(strStagePath, m_strScriptPath, false);
          string str1 = m_strScriptPath;
          string str2 = strStagePath;
          gen::str::ends_eat_ci(str1, ".dll");
          gen::str::ends_eat_ci(str2, ".dll");
          str1 += ".pdb";
          str2 += ".pdb";
-         ::file_copy_dup(strStagePath, m_strScriptPath, false);
-         ::file_copy_dup(str2, str1, false);
+         ::file_copy_dup(strStagePath, m_strScriptPath, true);
+         ::file_copy_dup(str2, str1, true);
          m_library.open(strStagePath);
          if(m_library.is_closed())
          {
