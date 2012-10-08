@@ -38,8 +38,13 @@ public:
    int                     m_iType;
    bool                    m_bForeColor;
    bool                    m_bBackColor;
-   long unsigned int       m_uiForeColor;
-   long unsigned int       m_uiBackColor;
+#ifdef __MM
+   NSColor *               m_nscolorFore;
+   NSColor *               m_nscolorBack;
+#else
+   void *                  m_pnscolorFore;
+   void *                  m_pnscolorBack;
+#endif
    COLORREF                m_crTextColor;
    
    
@@ -84,8 +89,13 @@ public:
    void select_brush(simple_brush & brush);
    void select_pen();
    void select_pen(simple_pen & pen);
-   long unsigned int alloc_color(COLORREF cr);
-   bool free_color(long unsigned int pixel);
+#ifdef __MM
+   NSColor * alloc_color(COLORREF cr);
+   bool free_color(NSColor * nscolor);
+#else
+   void * alloc_color(COLORREF cr);
+   bool free_color(void * pnscolor);
+#endif
    void set_foreground(COLORREF cr);
    void set_background(COLORREF cr);
 

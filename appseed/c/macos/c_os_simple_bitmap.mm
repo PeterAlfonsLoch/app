@@ -66,19 +66,41 @@ bool simple_bitmap::create(int cx, int cy, simple_graphics & g,  COLORREF ** ppd
 
 bool simple_bitmap::create_from_data(int cx, int cy, COLORREF * pdata, simple_graphics & g)
 {
+   m_size.cx = cx;
+   m_size.cy = cy;
    
-   m_pdisplay = g.m_pdisplay;
+   m_nsbitmap = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil
+               
+                                                      pixelsWide:m_size.cx
+               
+                                                      pixelsHigh:m_size.cy
+               
+                                                   bitsPerSample:8
+               
+                                                 samplesPerPixel:4
+               
+                                                        hasAlpha:YES
+               
+                                                        isPlanar:NO
+               
+                                                  colorSpaceName:NSCalibratedRGBColorSpace
+               
+                                                    bitmapFormat:0
+               
+                                                     bytesPerRow:(4 * m_size.cx)
+               
+                                                    bitsPerPixel:32];
    
-   m_pixmap = XCreatePixmapFromBitmapData(g.m_pdisplay, g.m_d, (char *) pdata, cx, cy, BlackPixel(g.m_pdisplay, g.m_iScreen), WhitePixel(g.m_pdisplay, g.m_iScreen), 32);
    
-   if(m_pixmap == 0)
+   
+   if(m_nsbitmap == 0)
    {
-      
-      m_pdisplay = NULL;
       
       return false;
       
    }
+   
+   m_nsimage = [[NSImage alloc] initWithCGImage:[m_nsbitmap CGImage] size: NSZeroSize];
    
    
    return true;
@@ -90,16 +112,23 @@ bool simple_bitmap::create_from_data(int cx, int cy, COLORREF * pdata, simple_gr
 bool simple_bitmap::destroy()
 {
    
-   if(m_pixmap == NULL)
-      return true;
+   if(m_nsimage != NULL)
+   {
+      
+      [m_nsimage release];
+      
+      m_nsimage = NULL;
+      
+   }
    
-   
-   bool bOk = ::XFreePixmap(m_pdisplay, m_pixmap) != FALSE;
-   
-   m_pixmap = 0;
-   
-   if(!bOk)
-      return false;
+   if(m_nsbitmap != NULL)
+   {
+      
+      [m_nsbitmap release];
+      
+      m_nsbitmap = NULL;
+      
+   }
    
    return true;
    

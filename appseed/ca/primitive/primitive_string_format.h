@@ -154,7 +154,7 @@ public:
    inline void append(const char * psz)
    {
 
-      int iLen = strlen(psz);
+      strsize iLen = strlen(psz);
 
       if((m_iLength + iLen + 1) > m_iSize)
       {

@@ -26,7 +26,8 @@ template<size_t _Bits>
 		: public _Bitset_base<_Bits <= 8 ? 1
 			: _Bits <= 16 ? 2
 			: _Bits <= 32 ? 4
-			: 8>
+			: 8>,
+virtual public ::radix::object
 {	// store fixed-length sequence of Boolean elements
 public:
 
@@ -453,17 +454,17 @@ private:
 
 	void _Xinv() const
    {	// report invalid string element in bitset conversion
-		throw invalid_argument_exception("invalid bitset<N> char");
+		throw invalid_argument_exception(get_app(), "invalid bitset<N> char");
 	}
 
 	void _Xoflo() const
 	{	// report converted value too big to represent
-		throw overflow_error("bitset<N> overflow");
+		throw overflow_error(get_app(), "bitset<N> overflow");
 	}
 
 	void _Xran() const
 	{	// report bit index out of range
-		throw range_error("invalid bitset<N> position");
+		throw range_error(get_app(), "invalid bitset<N> position");
 	}
 
 };

@@ -48,7 +48,7 @@
 // both DOS and NT.
 //
 
-#define FILE_READ_DATA            ( 0x0001 )    // file & pipe
+/*#define FILE_READ_DATA            ( 0x0001 )    // file & pipe
 #define FILE_LIST_DIRECTORY       ( 0x0001 )    // directory
 
 #define FILE_WRITE_DATA           ( 0x0002 )    // file & pipe
@@ -97,6 +97,7 @@
 #define FILE_SHARE_READ                 0x00000001
 #define FILE_SHARE_WRITE                0x00000002
 #define FILE_SHARE_DELETE               0x00000004
+ */
 #define FILE_ATTRIBUTE_READONLY             0x00000001
 #define FILE_ATTRIBUTE_HIDDEN               0x00000002
 #define FILE_ATTRIBUTE_SYSTEM               0x00000004
@@ -202,7 +203,7 @@ typedef ACCESS_MASK *PACCESS_MASK;
 //
 //  The following are masks for the predefined standard access types
 //
-
+/*
 #define DELETE                           (0x00010000L)
 #define READ_CONTROL                     (0x00020000L)
 #define WRITE_DAC                        (0x00040000L)
@@ -255,5 +256,5 @@ typedef struct _GENERIC_MAPPING {
 typedef GENERIC_MAPPING *PGENERIC_MAPPING;
 
 
-
+*/
 

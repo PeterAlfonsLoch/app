@@ -103,6 +103,8 @@ extern "C"
 #include "dir.h"
 #include "md5.h"
 
+#include "simple_memory.h"
+
 
 
 

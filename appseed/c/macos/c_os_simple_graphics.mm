@@ -30,7 +30,7 @@ void set(XColor & color, COLORREF cr)
 simple_graphics::simple_graphics()
 {
    
-   m_pdisplay     = NULL;
+   m_nsgc     = NULL;
    
    m_iScreen      = 0;
    
@@ -195,34 +195,6 @@ bool simple_graphics::reference_os_data(HDC hdc)
    
 }
 
-XFontStruct * simple_graphics::get_font(simple_font & font)
-{
-   
-   vsstring strName;
-   
-   int i = 0;
-   
-   XFontStruct * pfont = NULL;
-   
-   while(true)
-   {
-      
-      strName = font.get_name(i);
-      
-      if(i >= 32 || strName.is_empty())
-         break;
-      
-      pfont = XLoadQueryFont(m_pdisplay, strName);
-      
-      if(pfont != NULL)
-         break;
-      
-   }
-   
-   return pfont;
-   
-}
-
 
 bool simple_graphics::create()
 {
@@ -356,14 +328,14 @@ bool simple_graphics::destroy()
    if(m_bForeColor)
    {
       
-      free_color(m_uiForeColor);
+      free_color(m_nscolorFore);
       
    }
    
    if(m_bBackColor)
    {
       
-      free_color(m_uiBackColor);
+      free_color(m_nscolorBack);
       
    }
    
@@ -380,7 +352,17 @@ bool simple_graphics::destroy()
 bool simple_graphics::set_offset(int x, int y)
 {
    
-   POINT ptViewport;
+   [NSGraphicsContext setCurrentContext:m_nsgc];
+   
+   NSAffineTransform * xform = [NSAffineTransform transform];
+   
+   [xform translateXBy:x yBy:y];
+   
+   [xform set];
+   
+    [xform release];
+   
+   //POINT ptViewport;
    
    //   if(!SetViewportOrgEx(m_hdc, x, y, &ptViewport))
    //    return false;
@@ -392,10 +374,15 @@ bool simple_graphics::set_offset(int x, int y)
 bool simple_graphics::offset(int x, int y)
 {
    
-   POINT ptViewport;
+   [NSGraphicsContext setCurrentContext:m_nsgc];
    
-   //   if(!OffsetViewportOrgEx(m_hdc, x, y, &ptViewport))
-   //    return false;
+   NSAffineTransform * xform = [NSAffineTransform transform];
+   
+   [xform translateXBy:x yBy:y];
+   
+   [xform concat];
+   
+   [xform release];
    
    return true;
    
@@ -450,9 +437,13 @@ SIZE simple_graphics::get_text_extent(const char * psz, int iLen)
    
    SIZE size;
    
-   size.cx = Xutf8TextEscapement(m_font.m_fontset, psz, iLen);
+   NSString * labelString = [[NSString alloc] initWithCString:psz encoding: NSUTF8StringEncoding];
    
-	size.cy = m_font.m_iAscent + m_font.m_iDescent;
+   NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys: m_font.m_nsfont, NSFontAttributeName, nil];
+   NSSize labelSize = [labelString sizeWithAttributes:attributes];
+   
+   size.cx = labelSize.width;
+   size.cy = labelSize.height;
    
    return size;
    
@@ -488,54 +479,54 @@ void simple_graphics::select_pen()
    
 }
 
-long unsigned int simple_graphics::alloc_color(COLORREF cr)
+NSColor  * simple_graphics::alloc_color(COLORREF cr)
 {
    
-   XColor color;
+   NSColor * color = [NSColor colorWithSRGBRed:GetRValue(cr) / 255.0f green:GetGValue(cr) / 255.0f blue:GetBValue(cr) / 255.0f alpha:GetAValue(cr)  / 255.0f ];
    
-   set(color, cr);
-   
-   XAllocColor(m_pdisplay, m_colormap, &color);
-   
-   return color.pixel;
+   return color;
    
 }
 
 bool simple_graphics::rectangle(LPCRECT lpcrect)
 {
    
-   bool bOk1 = true;
+   NSRect rect;
+   
+   rect.origin.x = lpcrect->left;
+   rect.origin.y = lpcrect->top;
+   rect.size.width = lpcrect->right - lpcrect->left;
+   rect.size.height = lpcrect->bottom - lpcrect->top;
+   
+   
    
    if(m_brush.m_iStock != NULL_BRUSH)
    {
       
       select_brush();
       
-      bOk1 = XFillRectangle(m_pdisplay, m_d, m_gc, lpcrect->left, lpcrect->top, lpcrect->right - lpcrect->left, lpcrect->bottom - lpcrect->top) != 0;
+      NSRectFill(rect);
       
    }
-   
-   bool bOk2 = true;
    
    if(m_pen.m_iStock != NULL_PEN)
    {
       
       select_pen();
       
-      bOk2 = XDrawRectangle(m_pdisplay, m_d, m_gc, lpcrect->left, lpcrect->top, lpcrect->right - lpcrect->left, lpcrect->bottom - lpcrect->top) != 0;
+      NSFrameRect(rect);
       
    }
    
-   return bOk1 && bOk2;
+   return true;
    
 }
 
 
-bool simple_graphics::free_color(long unsigned int pixel)
+bool simple_graphics::free_color(NSColor * nscolor)
 {
-   
-   if(!XFreeColors(m_pdisplay, m_colormap, &pixel, 1, 0))
-      return false;
+
+   [nscolor release];
    
    return true;
    
@@ -548,17 +539,19 @@ void simple_graphics::set_foreground(COLORREF cr)
    if(m_bForeColor)
    {
       
-      free_color(m_uiForeColor);
+      free_color(m_nscolorFore);
       
       m_bForeColor = false;
       
    }
    
-   m_uiForeColor = alloc_color(cr);
+   m_nscolorFore = alloc_color(cr);
    
    m_bForeColor = true;
    
-   XSetForeground(m_pdisplay, m_gc, m_uiForeColor);
+   [NSGraphicsContext setCurrentContext:m_nsgc];
+   
+   [m_nscolorFore set];
    
 }
 
@@ -568,17 +561,19 @@ void simple_graphics::set_background(COLORREF cr)
    if(m_bBackColor)
    {
       
-      free_color(m_uiBackColor);
+      free_color(m_nscolorBack);
       
       m_bBackColor = false;
       
    }
    
-   m_uiBackColor = alloc_color(cr);
+   m_nscolorBack = alloc_color(cr);
    
    m_bBackColor = true;
    
-   XSetBackground(m_pdisplay, m_gc, m_uiBackColor);
+   [NSGraphicsContext setCurrentContext:m_nsgc];
+   
+   [m_nscolorBack setFill];
    
 }
 
@@ -587,7 +582,24 @@ bool simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
    
    select_brush(brush);
    
-   return XFillRectangle(m_pdisplay, m_d, m_gc, lpcrect->left, lpcrect->top, lpcrect->right - lpcrect->left, lpcrect->bottom - lpcrect->top) != 0;
+   NSRect rect;
+   
+   rect.origin.x = lpcrect->left;
+   rect.origin.y = lpcrect->top;
+   rect.size.width = lpcrect->right - lpcrect->left;
+   rect.size.height = lpcrect->bottom - lpcrect->top;
+   
+   NSBezierPath * path = [NSBezierPath bezierPath];
+   
+   [path appendBezierPathWithRect:rect];
+   
+   [NSGraphicsContext setCurrentContext:m_nsgc];
+   
+   [path fill];
+   
+   [path release];
+   
+   return true;
    
 }
 
@@ -646,6 +658,26 @@ bool simple_graphics::set_text_color(COLORREF cr)
 bool simple_graphics::alpha_blend(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf)
 {
    
+   NSRect rect;
+   
+   rect.origin.x = x;
+   rect.origin.y = y;
+   rect.size.width = cx;
+   rect.size.height = cy;
+   
+   NSRect rect1;
+                  
+   rect.origin.x = x1;
+   rect.origin.y = y1;
+   rect.size.width = cx1;
+   rect.size.height = cy1;
+   
+   [NSGraphicsContext setCurrentContext: m_nsgc];
+   
+   
+   
+   [gSrc.m_bitmap.m_nsimage drawInRect:rect fromRect: rect1 operation:NSCompositeSourceOver fraction:1.0];
+   
    //return ::AlphaBlend(m_hdc, x, y, cx, cy, gSrc.m_hdc, x1, y1, cx1, cy1, bf) != FALSE;
    
    return false;
@@ -670,12 +702,29 @@ bool simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
    if(!m_font.m_bUpdated)
    {
       
-      if(m_font.update(m_pdisplay))
+      if(m_font.update())
          return false;
       
    }
    
-   Xutf8DrawString(m_pdisplay, m_d, m_font.m_fontset, m_gc, x, y, pszUtf8, iSize);
+   NSColor * colorFore = alloc_color(m_crTextColor);
+   
+   NSColor * colorBack = alloc_color(0);
+   
+   NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   m_font.m_nsfont, NSFontAttributeName,
+                                   colorFore, NSForegroundColorAttributeName,
+                                   colorBack, NSBackgroundColorAttributeName, nil];
+
+   NSString * labelString = [[NSString alloc] initWithCString:pszUtf8 encoding: NSUTF8StringEncoding];
+
+   [labelString drawAtPoint:NSMakePoint(x, y) withAttributes:textAttributes];
+   
+   [labelString release];
+      
+   free_color(colorBack);
+      
+   free_color(colorFore);
    
    return true;
    

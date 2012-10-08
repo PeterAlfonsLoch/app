@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "ca/x/x_defines.h"
-#include "ca/x/x_tables.h"
-#include "ca/x/x_charcategory_names.h"
-#include "ca/x/x_charcategory.h"
+//#include "ca/x/x_defines.h"
+//#include "ca/x/x_tables.h"
+//#include "ca/x/x_charcategory_names.h"
+//#include "ca/x/x_charcategory.h"
 
 
 
@@ -91,13 +91,6 @@ int wcscmp_dup(const wchar_t * sz1, const wchar_t * sz2)
 }
 
 
-CLASS_DECL_c wchar_t w_to_lower(int c)
-{
-   unsigned long c1 = CHAR_PROP(c);
-   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return wchar_t(c);
-   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(c+1);
-   return wchar_t(c - (c1>>16));
-}
 
 
 CLASS_DECL_c errno_t wcslwr_s_dup(wchar_t * sz, size_t size)
@@ -115,15 +108,6 @@ CLASS_DECL_c errno_t wcslwr_s_dup(wchar_t * sz, size_t size)
 
 }
 
-CLASS_DECL_c wchar_t w_to_upper(int c)
-{
-
-    unsigned long c1 = CHAR_PROP(c);
-    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return wchar_t(c);
-    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(c-1);
-    return wchar_t(c - (c1>>16));
-
-}
 
 CLASS_DECL_c errno_t wcsupr_s_dup(wchar_t * sz, size_t size)
 {

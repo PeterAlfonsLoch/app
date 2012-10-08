@@ -5,6 +5,16 @@
 
 
 typedef double FLOAT_DATE;
+<<<<<<< .mine
+
+
+typedef struct
+{
+
+   SYSTEMTIME st;
+   USHORT wDayOfYear;
+
+=======
 
 
 #ifndef WINDOWS
@@ -15,6 +25,7 @@ typedef struct
    SYSTEMTIME st;
    USHORT wDayOfYear;
 
+>>>>>>> .r5504
 } UDATE;
 
 
@@ -27,10 +38,13 @@ CLASS_DECL_ca WINBOOL   FileTimeToSystemTime(const FILETIME * ft, LPSYSTEMTIME s
 CLASS_DECL_ca HRESULT   FloatTimeFromUdate(UDATE *pUdateIn, ULONG dwFlags, FLOAT_DATE *pDateOut);
 CLASS_DECL_ca HRESULT   FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ULONG dwFlags, FLOAT_DATE *pDateOut);
 
+<<<<<<< .mine
 #define VTDATEGRE_MIN -657434 /* Minimum possible Gregorian date: 1/1/100 */
 #define VTDATEGRE_MAX 2958465 /* Maximum possible Gregorian date: 31/12/9999 */
-
+=======
 #endif
+>>>>>>> .r5504
+
 
 namespace datetime
 {
@@ -143,8 +157,9 @@ namespace datetime
       float_time() RELEASENOTHROW;
 
       float_time(FLOAT_DATE dtSrc) RELEASENOTHROW;
-
+#ifndef MACOS
       float_time(__time32_t timeSrc) RELEASENOTHROW;
+#endif
       float_time(__time64_t timeSrc) RELEASENOTHROW;
 
       float_time(const SYSTEMTIME& systimeSrc) RELEASENOTHROW;
@@ -191,8 +206,9 @@ namespace datetime
 
       // Operations
       float_time& operator=(FLOAT_DATE dtSrc) RELEASENOTHROW;
-
+#ifndef MACOS
       float_time& operator=(const __time32_t& timeSrc) RELEASENOTHROW;
+#endif
       float_time& operator=(const __time64_t& timeSrc) RELEASENOTHROW;
 
       float_time& operator=(const SYSTEMTIME& systimeSrc) RELEASENOTHROW;
@@ -226,8 +242,9 @@ namespace datetime
          int nSec) RELEASENOTHROW;
       int SetDate(int nYear, int nMonth, int nDay) RELEASENOTHROW;
       int SetTime(int nHour, int nMin, int nSec) RELEASENOTHROW;
+#ifndef MACOS
       bool ParseDateTime(const char * lpszDate, DWORD dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) RELEASENOTHROW;
-
+#endif
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
       // formatting
       string Format(DWORD dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) const;
@@ -530,12 +547,13 @@ namespace datetime
    m_dt( dtSrc ), m_status(valid)
    {
    }
-
+#ifndef MACOS
    inline float_time::float_time(__time32_t timeSrc) RELEASENOTHROW :
    m_dt( 0 ), m_status(valid)
    {
       *this = timeSrc;
    }
+#endif
 
    inline float_time::float_time(__time64_t timeSrc) RELEASENOTHROW :
    m_dt( 0 ), m_status(valid)
@@ -651,11 +669,12 @@ valid : invalid;
       return *this;
    }
 
-
+#ifndef MACOS
    inline float_time& float_time::operator=(const __time32_t& timeSrc) RELEASENOTHROW
    {
       return operator=(static_cast<__time64_t>(timeSrc));
    }
+#endif
 
 #ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
    inline bool GetAsSystemTimeHelper(const __time64_t& timeSrc, SYSTEMTIME& timeDest)
@@ -944,7 +963,7 @@ valid : invalid;
       }
    }
 
-
+#ifndef MACOS
    inline bool float_time::ParseDateTime(const char * lpszDate, DWORD dwFlags, LCID lcid) RELEASENOTHROW
    {
 
@@ -981,6 +1000,9 @@ valid : invalid;
       m_status = valid;
       return true;
    }
+   
+#endif
+   
 
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
 

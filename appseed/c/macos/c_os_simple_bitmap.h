@@ -20,12 +20,17 @@ public:
    
    //Display *               m_pdisplay;
    //Pixmap                  m_pixmap;
-   //simple_memory              m_mem;
-   //SIZE                       m_size
-   #ifdef __MM
-   NSBitmapImageRep * m_nsimage;
+   simple_memory              m_mem;
+   SIZE                       m_size;
+#ifdef __MM
+   
+   NSBitmapImageRep *         m_nsbitmap;
+   NSImage *                  m_nsimage;
+   
 #else
-   void * m_pnsimage;
+   
+   void *                     m_pnsbitmap;
+   void *                     m_pnsimage;
    
 #endif
    

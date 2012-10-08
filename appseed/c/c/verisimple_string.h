@@ -144,3 +144,10 @@ CLASS_DECL_c vsstring gen_utf16_to_8(const wchar_t * psz);
 
 CLASS_DECL_c void zero_pad(vsstring & str, int_ptr iPad);
 
+
+
+CLASS_DECL_c vsstring get_md5(const void * data, ::count c = -1);
+
+
+
+

@@ -4,6 +4,30 @@
 #include <openssl/err.h>
 
 
+int crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & key);
+
+int crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & key);
+
+
+bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, const char * pszSalt)
+{
+   
+   simple_memory key(get_md5(pszSalt));
+   
+   return crypt_encrypt(storageEncrypt, storageDecrypt, key);
+   
+}
+
+
+bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, const char * pszSalt)
+{
+   
+   simple_memory key(get_md5(pszSalt));
+   
+   return crypt_decrypt(storageDecrypt, storageEncrypt, key);
+   
+}
+
 int crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & key)
 {
    int plainlen = (int) storageDecrypt.get_size();

@@ -167,6 +167,9 @@ namespace gen
 
 
       inline CLASS_DECL_ca string  from(int i);
+#ifdef MACOS
+      inline CLASS_DECL_ca string  from(long l);
+#endif
       inline CLASS_DECL_ca string  from(int64_t i);
       inline CLASS_DECL_ca string  from(unsigned int ui);
       inline CLASS_DECL_ca string  from(unsigned long ui);

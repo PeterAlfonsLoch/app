@@ -131,7 +131,6 @@
 		07AB205F16061BB200CD4EE2 /* ansios_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AB205C16061BB200CD4EE2 /* ansios_file.h */; };
 		07AB206016061BB200CD4EE2 /* ansios.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AB205D16061BB200CD4EE2 /* ansios.h */; };
 		07AE38E915FBF6CD002E9436 /* c_os_process_pid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE38E815FBF6CD002E9436 /* c_os_process_pid.cpp */; };
-		07AE38EF15FC035A002E9436 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AE38EE15FC035A002E9436 /* libcrypto.a */; };
 		07AE38F215FC03E0002E9436 /* spa_login.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE38F015FC03E0002E9436 /* spa_login.cpp */; };
 		07AE38F315FC03E0002E9436 /* spa_login.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AE38F115FC03E0002E9436 /* spa_login.h */; };
 		07B0B0411620562100A60983 /* c_os_simple_bitmap.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07B0B0401620562100A60983 /* c_os_simple_bitmap.mm */; };
@@ -141,6 +140,17 @@
 		07B0B04A162056A200A60983 /* c_os_simple_pen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0B049162056A200A60983 /* c_os_simple_pen.cpp */; };
 		07B0B04F162079DC00A60983 /* version.config.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0B04D162079DB00A60983 /* version.config.h */; };
 		07B0B050162079DC00A60983 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0B04E162079DB00A60983 /* version.h */; };
+		07BD556D16210BD4008E31F0 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
+		07BD5570162111B8008E31F0 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556F162111B8008E31F0 /* libcrypto.dylib */; };
+		07BD5572162154F5008E31F0 /* c_gdi.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD5571162154F5008E31F0 /* c_gdi.h */; };
+		07BD557416215519008E31F0 /* c_gdi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD557316215519008E31F0 /* c_gdi.cpp */; };
+		07BD557D16215D54008E31F0 /* c_os_simple_edit_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD557916215D54008E31F0 /* c_os_simple_edit_box.cpp */; };
+		07BD557E16215D54008E31F0 /* c_os_simple_label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD557A16215D54008E31F0 /* c_os_simple_label.cpp */; };
+		07BD557F16215D54008E31F0 /* c_os_simple_password.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD557B16215D54008E31F0 /* c_os_simple_password.cpp */; };
+		07BD558016215D54008E31F0 /* c_os_simple_tap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD557C16215D54008E31F0 /* c_os_simple_tap.cpp */; };
+		07BD558216215D9D008E31F0 /* c_os_simple_ui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD558116215D9D008E31F0 /* c_os_simple_ui.cpp */; };
+		07BD558516215F2D008E31F0 /* hotplugin_container_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD558316215F2D008E31F0 /* hotplugin_container_launcher.cpp */; };
+		07BD558616215F2D008E31F0 /* hotplugin_container_launcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD558416215F2D008E31F0 /* hotplugin_container_launcher.h */; };
 		9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A8897AA14C24901006B4023 /* c_os_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8897A914C24901006B4023 /* c_os_file.cpp */; };
 		9A90D07D14A348E200226F1A /* c_os_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A90D07C14A348E200226F1A /* c_os_cross_gdi.mm */; };
@@ -362,7 +372,6 @@
 		07AB205C16061BB200CD4EE2 /* ansios_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ansios_file.h; path = ansios/ansios_file.h; sourceTree = "<group>"; };
 		07AB205D16061BB200CD4EE2 /* ansios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ansios.h; path = ansios/ansios.h; sourceTree = "<group>"; };
 		07AE38E815FBF6CD002E9436 /* c_os_process_pid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_process_pid.cpp; sourceTree = "<group>"; };
-		07AE38EE15FC035A002E9436 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../../nodeapp/appseed/openssl/build/Release/libcrypto.a; sourceTree = "<group>"; };
 		07AE38F015FC03E0002E9436 /* spa_login.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spa_login.cpp; sourceTree = "<group>"; };
 		07AE38F115FC03E0002E9436 /* spa_login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spa_login.h; sourceTree = "<group>"; };
 		07B0B0401620562100A60983 /* c_os_simple_bitmap.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = c_os_simple_bitmap.mm; sourceTree = "<group>"; };
@@ -373,6 +382,17 @@
 		07B0B04B16206DFA00A60983 /* c_os_gdi_mm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_os_gdi_mm.h; sourceTree = "<group>"; };
 		07B0B04D162079DB00A60983 /* version.config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.config.h; path = version/version.config.h; sourceTree = "<group>"; };
 		07B0B04E162079DB00A60983 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = version/version.h; sourceTree = "<group>"; };
+		07BD556C16210BD4008E31F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		07BD556F162111B8008E31F0 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
+		07BD5571162154F5008E31F0 /* c_gdi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_gdi.h; sourceTree = "<group>"; };
+		07BD557316215519008E31F0 /* c_gdi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_gdi.cpp; sourceTree = "<group>"; };
+		07BD557916215D54008E31F0 /* c_os_simple_edit_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = c_os_simple_edit_box.cpp; path = macos/c_os_simple_edit_box.cpp; sourceTree = "<group>"; };
+		07BD557A16215D54008E31F0 /* c_os_simple_label.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = c_os_simple_label.cpp; path = macos/c_os_simple_label.cpp; sourceTree = "<group>"; };
+		07BD557B16215D54008E31F0 /* c_os_simple_password.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = c_os_simple_password.cpp; path = macos/c_os_simple_password.cpp; sourceTree = "<group>"; };
+		07BD557C16215D54008E31F0 /* c_os_simple_tap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = c_os_simple_tap.cpp; path = macos/c_os_simple_tap.cpp; sourceTree = "<group>"; };
+		07BD558116215D9D008E31F0 /* c_os_simple_ui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = c_os_simple_ui.cpp; path = macos/c_os_simple_ui.cpp; sourceTree = "<group>"; };
+		07BD558316215F2D008E31F0 /* hotplugin_container_launcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hotplugin_container_launcher.cpp; sourceTree = "<group>"; };
+		07BD558416215F2D008E31F0 /* hotplugin_container_launcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hotplugin_container_launcher.h; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A8897A914C24901006B4023 /* c_os_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_file.cpp; sourceTree = "<group>"; };
 		9A88B4F514C2CBF8006B4023 /* c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -469,7 +489,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07AE38EF15FC035A002E9436 /* libcrypto.a in Frameworks */,
+				07BD5570162111B8008E31F0 /* libcrypto.dylib in Frameworks */,
+				07BD556D16210BD4008E31F0 /* AppKit.framework in Frameworks */,
 				9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */,
 				CE931715155F1599005F90F6 /* Carbon.framework in Frameworks */,
 			);
@@ -495,6 +516,8 @@
 				07237E6F15F99D310018B75F /* base64.cpp */,
 				07237E7015F99D310018B75F /* base64.h */,
 				07237E7115F99D310018B75F /* c.h */,
+				07BD557316215519008E31F0 /* c_gdi.cpp */,
+				07BD5571162154F5008E31F0 /* c_gdi.h */,
 				07237E7415F99D310018B75F /* c_heap.h */,
 				07237E7515F99D310018B75F /* c_natural.h */,
 				07237E7615F99D310018B75F /* c_types.h */,
@@ -598,6 +621,7 @@
 		07237F3C15F99D660018B75F /* simple_ui */ = {
 			isa = PBXGroup;
 			children = (
+				07BD557716215D49008E31F0 /* macos */,
 				07237F3D15F99D660018B75F /* simple_edit_box.cpp */,
 				07237F3E15F99D660018B75F /* simple_edit_box.h */,
 				07237F3F15F99D660018B75F /* simple_label.cpp */,
@@ -631,6 +655,18 @@
 			name = version;
 			sourceTree = "<group>";
 		};
+		07BD557716215D49008E31F0 /* macos */ = {
+			isa = PBXGroup;
+			children = (
+				07BD558116215D9D008E31F0 /* c_os_simple_ui.cpp */,
+				07BD557916215D54008E31F0 /* c_os_simple_edit_box.cpp */,
+				07BD557A16215D54008E31F0 /* c_os_simple_label.cpp */,
+				07BD557B16215D54008E31F0 /* c_os_simple_password.cpp */,
+				07BD557C16215D54008E31F0 /* c_os_simple_tap.cpp */,
+			);
+			name = macos;
+			sourceTree = "<group>";
+		};
 		A10D34E215131BCC004FD312 /* os */ = {
 			isa = PBXGroup;
 			children = (
@@ -649,13 +685,14 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
-				07AE38EE15FC035A002E9436 /* libcrypto.a */,
+				07BD556F162111B8008E31F0 /* libcrypto.dylib */,
+				07BD556C16210BD4008E31F0 /* AppKit.framework */,
+				CE931714155F1599005F90F6 /* Carbon.framework */,
+				9A8897A514C24736006B4023 /* Foundation.framework */,
 				07AB206116061BD600CD4EE2 /* ansios */,
 				CEAAA41F1461A72700DDE33F /* bsdiff */,
 				07237F3115F99D570018B75F /* crypt */,
 				07237E6315F99D310018B75F /* c */,
-				CE931714155F1599005F90F6 /* Carbon.framework */,
-				9A8897A514C24736006B4023 /* Foundation.framework */,
 				CEA7AA3D14412789007E04DE /* hotplugin */,
 				CEC9A23D144B818900FEA8E6 /* macos */,
 				A10D34E215131BCC004FD312 /* os */,
@@ -672,6 +709,8 @@
 			isa = PBXGroup;
 			children = (
 				CEA7AA3E14412789007E04DE /* hotplugin.h */,
+				07BD558316215F2D008E31F0 /* hotplugin_container_launcher.cpp */,
+				07BD558416215F2D008E31F0 /* hotplugin_container_launcher.h */,
 				CEA7AA3F14412789007E04DE /* hotplugin_host.cpp */,
 				CEA7AA4014412789007E04DE /* hotplugin_host.h */,
 				CEA7AA4114412789007E04DE /* hotplugin_plugin.cpp */,
@@ -905,6 +944,8 @@
 				0713C3FB1618A54B00719F96 /* c_os_gdi.h in Headers */,
 				07B0B04F162079DC00A60983 /* version.config.h in Headers */,
 				07B0B050162079DC00A60983 /* version.h in Headers */,
+				07BD5572162154F5008E31F0 /* c_gdi.h in Headers */,
+				07BD558616215F2D008E31F0 /* hotplugin_container_launcher.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1074,6 +1115,13 @@
 				07B0B0461620566800A60983 /* c_os_simple_font.mm in Sources */,
 				07B0B0481620568600A60983 /* c_os_simple_graphics.mm in Sources */,
 				07B0B04A162056A200A60983 /* c_os_simple_pen.cpp in Sources */,
+				07BD557416215519008E31F0 /* c_gdi.cpp in Sources */,
+				07BD557D16215D54008E31F0 /* c_os_simple_edit_box.cpp in Sources */,
+				07BD557E16215D54008E31F0 /* c_os_simple_label.cpp in Sources */,
+				07BD557F16215D54008E31F0 /* c_os_simple_password.cpp in Sources */,
+				07BD558016215D54008E31F0 /* c_os_simple_tap.cpp in Sources */,
+				07BD558216215D9D008E31F0 /* c_os_simple_ui.cpp in Sources */,
+				07BD558516215F2D008E31F0 /* hotplugin_container_launcher.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1158,19 +1206,7 @@
 					_DEBIG,
 				);
 				"HEADER_SEARCH_PATHS[arch=*]" = "";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../thirdparty/library\"",
-					"\"$(SRCROOT)/../../thirdparty/library/x64\"",
-					"\"$(DEVELOPER_DIR)/usr/lib/clang/2.0/lib/darwin\"",
-					"\"$(DEVELOPER_DIR)/usr/lib/gcc/i686-apple-darwin10/4.2.1\"",
-					"\"$(DEVELOPER_DIR)/usr/lib/gcc/i686-apple-darwin10/4.2.1/x86_64\"",
-					"\"$(DEVELOPER_DIR)/usr/lib/gcc/powerpc-apple-darwin10/4.2.1\"",
-					"\"$(DEVELOPER_DIR)/usr/lib/gcc/powerpc-apple-darwin10/4.2.1/ppc64\"",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-					"\"$(SDKROOT)/usr/X11/lib\"",
-					"\"$(SRCROOT)/../../../ccvotagus/ca2core/fontopus/app/source/main/_000ca2api00000\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				New_Setting = "";
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRELINK_LIBS = "";
@@ -1199,19 +1235,7 @@
 					TARGET_CPU_X64,
 					MACOS_CLASSIC,
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../thirdparty/library\"",
-					"\"$(SRCROOT)/../../thirdparty/library/x64\"",
-					"\"$(DEVELOPER_DIR)/usr/lib/clang/2.0/lib/darwin\"",
-					"\"$(DEVELOPER_DIR)/usr/lib/gcc/i686-apple-darwin10/4.2.1\"",
-					"\"$(DEVELOPER_DIR)/usr/lib/gcc/i686-apple-darwin10/4.2.1/x86_64\"",
-					"\"$(DEVELOPER_DIR)/usr/lib/gcc/powerpc-apple-darwin10/4.2.1\"",
-					"\"$(DEVELOPER_DIR)/usr/lib/gcc/powerpc-apple-darwin10/4.2.1/ppc64\"",
-					"\"$(DEVELOPER_DIR)/usr/lib\"",
-					"\"$(SDKROOT)/usr/X11/lib\"",
-					"\"$(SRCROOT)/../../../ccvotagus/ca2core/fontopus/app/source/main/_000ca2api00000\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				New_Setting = "";
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRELINK_LIBS = "";

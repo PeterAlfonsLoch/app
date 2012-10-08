@@ -153,12 +153,6 @@ bool simple_font::update()
       
    }
    
-	int nmissing;
-	char **missing;
-	char *def_string;
-   
-
-   
    
    vsstring strName;
    
@@ -172,9 +166,9 @@ bool simple_font::update()
       if(j >= 32 || strName.is_empty())
          return false;
       
-      m_fontset = [NSFont fontWithName:@"Helvetica Bold"  size:10.0];
+      m_nsfont = [NSFont fontWithName:[[NSString alloc] initWithCString:strName encoding: NSUTF8StringEncoding]  size:10.0];
       
-      if(m_fontset != 0)
+      if(m_nsfont != 0)
          break;
       
       
@@ -182,30 +176,11 @@ bool simple_font::update()
    
    m_bUpdated = true;
    
-   m_pdisplay = pdisplay;
-   
-	XFreeStringList(missing);
-   
-	XFontStruct ** fonts;
-   
-	char ** font_names;
-   
-	int nfonts = XFontsOfFontSet(m_fontset, &fonts, &font_names);
    
 	m_iAscent = 0;
    
 	m_iDescent = 0;
    
-	for(int j = 0; j < nfonts; j++)
-	{
-      
-		if(fonts[j]->ascent > m_iAscent)
-         m_iAscent = fonts[j]->ascent;
-      
-		if(fonts[j]->descent > m_iDescent)
-         m_iDescent = fonts[j]->descent;
-      
-	}
    
    return true;
 }
@@ -216,11 +191,8 @@ bool simple_font::destroy()
    if(m_bUpdated)
    {
       
-      XFreeFontSet(m_pdisplay, m_fontset);
+      [m_nsfont release];
       
-      m_fontset = 0;
-      
-      m_pdisplay = NULL;
       
    }
    
@@ -251,12 +223,6 @@ bool simple_font::create_point_bold(int nPointSize, const char * lpszFaceName, i
    
    logFont.lfCharSet = DEFAULT_CHARSET;
    
-   if(g.m_pdisplay == NULL)
-   {
-      
-      g.create();
-      
-   }
    
    
    m_strFamily = lpszFaceName;
@@ -265,7 +231,7 @@ bool simple_font::create_point_bold(int nPointSize, const char * lpszFaceName, i
    
    m_iWeight = iBold != FALSE ? 800 : 400;
    
-   return update(g.m_pdisplay);
+   return update();
    
 }
 

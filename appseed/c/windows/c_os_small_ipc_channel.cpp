@@ -107,15 +107,6 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
    return true;
 }
 
-
-bool small_ipc_tx_channel::is_tx_ok()
-{
-   
-   return ::IsWindow(m_hwnd) != FALSE;
-
-}
-
-
 bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTimeout)
 {
 
@@ -155,6 +146,17 @@ bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTime
    return true;
 
 }
+
+
+
+bool small_ipc_tx_channel::is_tx_ok()
+{
+   
+   return ::IsWindow(m_hwnd) != FALSE;
+
+}
+
+
 
 
 small_ipc_rx_channel::small_ipc_rx_channel()

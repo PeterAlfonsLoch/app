@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "ca/x/x_defines.h"
 #include "ca/x/x_tables.h"
-#include "ca/x/x_charcategory_names.h"
+//#include "ca/x/x_charcategory_names.h"
 #include "ca/x/x_charcategory.h"
 
       /* --------------------------------------------------------------------- */
@@ -190,6 +190,13 @@ char * utf16_to_8(const wchar_t * pwsz)
 
 
 
+CLASS_DECL_c wchar_t w_to_lower(int c)
+{
+   unsigned long c1 = CHAR_PROP(c);
+   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return wchar_t(c);
+   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(c+1);
+   return wchar_t(c - (c1>>16));
+}
 
 
 
@@ -199,13 +206,22 @@ char * utf16_to_8(const wchar_t * pwsz)
 
 
 
+CLASS_DECL_c wchar_t w_to_upper(int c)
+{
+   
+   unsigned long c1 = CHAR_PROP(c);
+   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return wchar_t(c);
+   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(c-1);
+   return wchar_t(c - (c1>>16));
+   
+}
 
 
 
 
-
-
-
+int x_size_of_tables(){
+   return sizeof(arr_idxCharInfo)+sizeof(arr_CharInfo)+sizeof(arr_idxCharInfo2)+sizeof(arr_CharInfo2);
+}
 
 
 
