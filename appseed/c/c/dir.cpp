@@ -64,7 +64,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
    throw winmerde();
    //GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
 
-   LPTSTR lpszModuleFileName;
+// xxx   LPTSTR lpszModuleFileName;
 
    throw winmerde();
    //GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName);
@@ -534,9 +534,13 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
 
    vsstring str;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    SHGetSpecialFolderPath(NULL, (vsstring &) str, CSIDL_PROFILE, false);
+
+#elif defined(MERDE_WINDOWS)
+
+   str = vsstring(::Windows::Storage::KnownFolders::DocumentsLibrary->Path());
 
 #else
 

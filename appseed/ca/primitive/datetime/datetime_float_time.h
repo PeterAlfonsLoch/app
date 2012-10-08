@@ -7,6 +7,8 @@
 typedef double FLOAT_DATE;
 
 
+#ifndef WINDOWS
+
 typedef struct
 {
 
@@ -28,6 +30,7 @@ CLASS_DECL_ca HRESULT   FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ULONG d
 #define VTDATEGRE_MIN -657434 /* Minimum possible Gregorian date: 1/1/100 */
 #define VTDATEGRE_MAX 2958465 /* Maximum possible Gregorian date: 31/12/9999 */
 
+#endif
 
 namespace datetime
 {

@@ -303,17 +303,35 @@ void sprint_hex(char * sz, int iValue)
 bool get_temp_file_name_template(char * szRet, int iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate)
 {
 
-#ifdef WINDOWS
+#if defined(WINDOWS)
 
    char lpPathBuffer[MAX_PATH * 4];
+
+#ifdef WINDOWSEX
+
    DWORD dwRetVal = GetTempPath(sizeof(lpPathBuffer), lpPathBuffer);
+
    if (dwRetVal > sizeof(lpPathBuffer) || (dwRetVal == 0))
    {
+
       return false;
+
    }
+
+#else
+
+   vsstring str(::Windows::Storage::ApplicationData::Current::TemporaryFolder);
+
+   strcpy(lpPathBuffer, str);
+
+#endif
+
    char bufTime[30];
+
    char bufItem[30];
+
    char buf[30];
+
    size_t iLen= strlen_dup(lpPathBuffer);
    if(!(lpPathBuffer[iLen - 1] == '/'
       || lpPathBuffer[iLen - 1] == '\\'))

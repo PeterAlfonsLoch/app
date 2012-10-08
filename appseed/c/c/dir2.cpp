@@ -19,7 +19,7 @@ vsstring dir::appdata(const char * lpcsz)
 
    vsstring buf;
 
-   buf = "C:\ProgramData";
+   buf = "C:\\ProgramData";
    
    str = path(buf, "ca2");
    
@@ -76,7 +76,7 @@ vsstring dir::userappdata(const char * lpcsz)
 
    vsstring str;
 
-#ifdef WIN32
+#ifdef WINDOWSEX
    
    wchar_t * buf = NULL;
    
@@ -89,6 +89,10 @@ vsstring dir::userappdata(const char * lpcsz)
    ca2_free(psz);
    
    CoTaskMemFree(buf);
+
+#elif defined(MERDE_WINDOWS)
+
+   str = ::Windows::Storage::ApplicationData::Current->LocalFolder->Path();
 
 #endif
    

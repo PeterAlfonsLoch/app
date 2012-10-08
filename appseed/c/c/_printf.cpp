@@ -43,6 +43,10 @@ int vprintf_dup(const char *format, va_list args)
 
     return vprintf(format, args);
 
+#elif defined(MERDE_WINDOWS)
+
+    return vprintf(format, args);
+
 #else
 
 	char szBuff[1024];
