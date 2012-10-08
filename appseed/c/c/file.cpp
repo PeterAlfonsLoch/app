@@ -300,7 +300,7 @@ void sprint_hex(char * sz, int iValue)
 }
 
 
-bool get_temp_file_name_template(char * szRet, int iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate)
+bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate)
 {
 
 #if defined(WINDOWS)
@@ -491,7 +491,7 @@ bool get_temp_file_name_template(char * szRet, int iBufferSize, const char * psz
 }
 
 
-bool get_temp_file_name_dup(char * szRet, int iBufferSize, const char * pszName, const char * pszExtension)
+bool get_temp_file_name_dup(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension)
 {
    return get_temp_file_name_template(szRet, iBufferSize, pszName, pszExtension, NULL);
 }
@@ -626,8 +626,13 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
    unsigned char * buf = (unsigned char *)  _ca_alloc(iBufSize);
    int iLen;
    ::md5::md5 ctx;
+#ifdef WINDOWS
+   DWORD dwRead;
+   DWORD dwWritten;
+#else
    ::count dwRead;
-//   DWORD dwWritten;
+   ::count dwWritten;
+#endif
    if(strVersion == "fileset v1")
    {
       while(true)
@@ -669,7 +674,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
             break;
             if(dwRead == 0)
                break;
-            ::fwrite(buf, dwRead,  1, hfile2);
+            dwWritten = ::fwrite(buf, dwRead,  1, hfile2);
             ctx.update(buf, dwRead);
             iLen -= dwRead;
          }

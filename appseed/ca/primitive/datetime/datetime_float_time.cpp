@@ -80,6 +80,7 @@ CLASS_DECL_ca INT SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut)
   return FloatTimeFromUdate(&ud, 0, pDateOut) == S_OK;
 }
 
+#ifndef WINDOWS
 
 /***********************************************************************
 *              VariantTimeToSystemTime [OLEAUT32.185]
@@ -107,6 +108,8 @@ INT WINAPI FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt)
   return TRUE;
 }
 
+
+#endif
 
 /* Roll a date forwards or backwards to correct it */
 static HRESULT FLOATTIME_RollUdate(UDATE *lpUd)
@@ -851,6 +854,7 @@ VARIANT_MakeDate_OK:
 }
 
 
+#ifndef WINDOWS
 
 /***********************************************************************
 *              VarUdateFromDate [OLEAUT32.331]
@@ -876,7 +880,7 @@ HRESULT WINAPI VarUdateFromDate(DATE dateIn, ULONG dwFlags, UDATE *lpUdate)
   double datePart, timePart;
   int julianDays;
 
-  TRACE("(%g,0x%08x,%p)\n", dateIn, dwFlags, lpUdate);
+//xxx  TRACE("(%g,0x%08x,%p)\n", dateIn, dwFlags, lpUdate);
 
   if (dateIn <= (DATE_MIN - 1.0) || dateIn >= (DATE_MAX + 1.0))
     return E_INVALIDARG;
@@ -949,7 +953,6 @@ HRESULT WINAPI VarUdateFromDate(DATE dateIn, ULONG dwFlags, UDATE *lpUdate)
 }
 
 
-
 /*********************************************************************
 *      FileTimeToLocalFileTime                         (KERNEL32.@)
 */
@@ -969,6 +972,9 @@ WINBOOL FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
 
     return !status;
 }
+
+
+
 
 
 /******************************************************************************
@@ -995,3 +1001,19 @@ NTSTATUS WINAPI RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
     LocalTime->QuadPart = SystemTime->QuadPart - bias * (LONGLONG)TICKSPERSEC;
     return STATUS_SUCCESS;
 }
+
+
+#else
+
+
+int __cdecl FloatTimeToSystemTime(double vtime, struct _SYSTEMTIME * pst)
+{
+
+
+   return VariantTimeToSystemTime(vtime, pst);
+
+
+}
+
+
+#endif

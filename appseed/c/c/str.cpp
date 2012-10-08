@@ -747,7 +747,7 @@ CLASS_DECL_c vsstring itohex_dup(int64_t i)
    return vsstring(sz);
 }
 
-CLASS_DECL_c vsstring itohexpad_dup(int i, int iPad)
+CLASS_DECL_c vsstring itohexpad_dup(int64_t i, int iPad)
 {
    vsstring str = itohex_dup(i);
    while(iPad > str.length())

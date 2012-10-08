@@ -516,12 +516,12 @@ vsstring get_file_md5_by_map(const char * path)
 vsstring get_file_md5_by_read(const char * path)
 {
 
-   int64_t dwRead;
 
    int64_t iSize;
 
 #ifdef WINDOWS
 
+   DWORD dwRead;
 
    HANDLE hfile = ::CreateFile(path, GENERIC_READ, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
@@ -535,6 +535,8 @@ vsstring get_file_md5_by_read(const char * path)
    iSize |= (0x7fffffff & (uint64_t) dwHigh) << 32;
 
 #else
+
+   int64_t dwRead;
 
    int fd = ::open(path, O_RDONLY);
 
@@ -577,7 +579,7 @@ vsstring get_file_md5_by_read(const char * path)
 
       dwRead = ::read(fd, psz, min((int) iSize, iAlloc));
 
-      if(dwRead == -1)
+      if(dwRead <= 0)
       {
          break;
       }
@@ -588,6 +590,8 @@ vsstring get_file_md5_by_read(const char * path)
 
       if(iSize <= 0)
          break;
+
+      iSize -= dwRead;
 
    }
 

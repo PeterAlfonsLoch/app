@@ -829,7 +829,6 @@
     <ClCompile Include="c\base64.cpp" />
     <ClCompile Include="c\conv.cpp" />
     <ClCompile Include="c\cpu_architecture.cpp" />
-    <ClCompile Include="c\c_c.cpp" />
     <ClCompile Include="c\debug.cpp" />
     <ClCompile Include="c\dir.cpp" />
     <ClCompile Include="c\dir2.cpp" />

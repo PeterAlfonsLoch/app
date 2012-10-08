@@ -28,7 +28,7 @@
 
 #include <ctype.h>
 #include <errno.h>
-#include "c/c/c_c.h"
+#include "c/c/c.h"
 #include <limits.h>
 #include <math.h>
 #include <stdio.h>

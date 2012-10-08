@@ -3,17 +3,13 @@
 
 
 
-bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, const char * pszSalt)
+bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & memorySalt)
 {
+
    DATA_BLOB DataIn;
    DATA_BLOB DataOut;
 
-   if(pszSalt == NULL)
-      pszSalt = "";
-
    DATA_BLOB DataSalt;
-   simple_memory memorySalt;
-   memorySalt.from_string(pszSalt);
    DataSalt.pbData = (BYTE *) memorySalt.get_data();
    DataSalt.cbData = (DWORD) memorySalt.get_size();
 
@@ -57,17 +53,12 @@ bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storage
    }
 }
 
-bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, const char * pszSalt)
+bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & memorySalt)
 {
    DATA_BLOB DataIn;
    DATA_BLOB DataOut;
 
-   if(pszSalt == NULL)
-      pszSalt = "";
-
    DATA_BLOB DataSalt;
-   simple_memory memorySalt;
-   memorySalt.from_string(pszSalt);
    DataSalt.pbData = (BYTE *) memorySalt.get_data();
    DataSalt.cbData = (DWORD) memorySalt.get_size();
 

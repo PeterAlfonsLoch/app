@@ -5,17 +5,6 @@
 
 
 typedef double FLOAT_DATE;
-<<<<<<< .mine
-
-
-typedef struct
-{
-
-   SYSTEMTIME st;
-   USHORT wDayOfYear;
-
-=======
-
 
 #ifndef WINDOWS
 
@@ -25,25 +14,26 @@ typedef struct
    SYSTEMTIME st;
    USHORT wDayOfYear;
 
->>>>>>> .r5504
 } UDATE;
+
+
+#define VTDATEGRE_MIN -657434 /* Minimum possible Gregorian date: 1/1/100 */
+#define VTDATEGRE_MAX 2958465 /* Maximum possible Gregorian date: 31/12/9999 */
+
+
+CLASS_DECL_ca HRESULT   VarUdateFromDate(FLOAT_DATE dateIn, ULONG dwFlags, UDATE *lpUdate);
+CLASS_DECL_ca WINBOOL   FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft );
+CLASS_DECL_ca WINBOOL   FileTimeToSystemTime(const FILETIME * ft, LPSYSTEMTIME syst);
+
+
+#endif
 
 
 CLASS_DECL_ca int       SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut);
 CLASS_DECL_ca int       FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt);
 CLASS_DECL_ca HRESULT   FloatTimeFromStr(const char * pstr, LCID lcid, ULONG dwFlags, FLOAT_DATE * pdateOut);
-CLASS_DECL_ca HRESULT   VarUdateFromDate(FLOAT_DATE dateIn, ULONG dwFlags, UDATE *lpUdate);
-CLASS_DECL_ca WINBOOL   FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft );
-CLASS_DECL_ca WINBOOL   FileTimeToSystemTime(const FILETIME * ft, LPSYSTEMTIME syst);
 CLASS_DECL_ca HRESULT   FloatTimeFromUdate(UDATE *pUdateIn, ULONG dwFlags, FLOAT_DATE *pDateOut);
 CLASS_DECL_ca HRESULT   FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ULONG dwFlags, FLOAT_DATE *pDateOut);
-
-<<<<<<< .mine
-#define VTDATEGRE_MIN -657434 /* Minimum possible Gregorian date: 1/1/100 */
-#define VTDATEGRE_MAX 2958465 /* Maximum possible Gregorian date: 31/12/9999 */
-=======
-#endif
->>>>>>> .r5504
 
 
 namespace datetime

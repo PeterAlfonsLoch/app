@@ -54,8 +54,6 @@ namespace ca2
 
       ::plane::system::eengine().reset();
 
-#endif
-
       PFN_GET_NEW_LIBRARY pfn_get_new_library = NULL;
 
       try

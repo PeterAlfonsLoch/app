@@ -565,9 +565,6 @@
     <ClCompile Include="c\_std_file.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="c\c_c.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="c\conv.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
