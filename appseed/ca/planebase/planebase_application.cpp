@@ -578,7 +578,6 @@ InitFailure:
 
       }
 InitFailure:
-      m_bRun = false;
       try
       {
          if(m_peventReady != NULL)
