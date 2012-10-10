@@ -628,6 +628,8 @@ InitFailure:
       System.install().add_app_install(System.command().m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, m_strSchema);
       System.install().add_app_install(System.command().m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, strSchema);
 
+      return true;
+
    }
 
    bool application::initial_check_directrix()
