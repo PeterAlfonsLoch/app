@@ -43,7 +43,7 @@ namespace userstack
 
          ::ca2::application * papp = dynamic_cast < ::ca2::application * > (pcaapp);
 
-         papp->PostThreadMessageA(WM_QUIT, 0, 0);
+         papp->post_thread_message(WM_QUIT, 0, 0);
       }
 
    }

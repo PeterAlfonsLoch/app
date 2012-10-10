@@ -2310,7 +2310,7 @@ ExitModal:
 
 #ifdef WINDOWS
 
-            ::PostThreadMessage((DWORD) m_iaModalThread[i], WM_NULL, 0, 0);
+            ::PostThreadMessageA((DWORD) m_iaModalThread[i], WM_NULL, 0, 0);
 
 #else
 
@@ -2320,7 +2320,7 @@ ExitModal:
 
          }
          PostMessage(WM_NULL, 0, 0);
-         System.GetThread()->PostThreadMessage(WM_NULL, 0, 0);
+         System.GetThread()->post_thread_message(WM_NULL, 0, 0);
       }
    }
 
@@ -2337,13 +2337,13 @@ ExitModal:
          int iLevel = m_iModalCount - 1;
          m_iModalCount = 0;
          PostMessage(WM_NULL, 0, 0);
-         System.GetThread()->PostThreadMessage(WM_NULL, 0, 0);
+         System.GetThread()->post_thread_message(WM_NULL, 0, 0);
          for(int i = iLevel; i >= 0; i--)
          {
             ::ca::thread * pthread = oprop(string("RunModalLoop.thread(") + gen::str::from(i) + ")").ca2 < ::ca::thread > ();
             try
             {
-               pthread->PostThreadMessage(WM_NULL, 0, 0);
+               pthread->post_thread_message(WM_NULL, 0, 0);
             }
             catch(...)
             {

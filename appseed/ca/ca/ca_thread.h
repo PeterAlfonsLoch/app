@@ -273,7 +273,7 @@ namespace ca
 
       virtual DWORD SuspendThread();
       virtual DWORD ResumeThread();
-      virtual bool PostThreadMessage(UINT message, WPARAM wParam, LPARAM lParam);
+      virtual bool post_thread_message(UINT message, WPARAM wParam, LPARAM lParam);
       virtual bool post_message(::user::interaction * pguie, UINT message, WPARAM wParam, LPARAM lParam);
 
       virtual bool PreInitInstance();

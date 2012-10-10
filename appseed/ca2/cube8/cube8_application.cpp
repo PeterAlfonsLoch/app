@@ -48,20 +48,8 @@ namespace cube8
       {
       }
 
-      try
-      {
-         if(System.appptra().get_count() <= 1)
-         {
-            System.PostThreadMessageA(WM_QUIT, 0, 0);
-         }
-      }
-      catch(...)
-      {
-      }
-
-
-
       return m_iReturnCode;
+
    }
 
    /*bool application::is_licensed(const char * pszId, bool bInteractive)
@@ -193,7 +181,7 @@ namespace cube8
       if(GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
       {
 
-         PostThreadMessageA(WM_QUIT, 0, 0);
+         post_thread_message(WM_QUIT, 0, 0);
 
       }
 

@@ -44,7 +44,7 @@ namespace gcom
 
       void thread::PreTransitionImageAsync(backview::Main * pview)
       {
-         PostThreadMessage(
+         post_thread_message(
             MessageCommand,
             CommandPreTransitionImage,
             (LPARAM) pview);
@@ -379,8 +379,8 @@ namespace gcom
          lpSi->m_iUserData = iType;
          //m_spIdle->StretchImageAsync(lpSi, true);
       //   delete lpSi;
-      //   pApp->GetThreadV3()->PostThreadMessage(WM_USER, 6, (LPARAM) lpSi);
-          PostThreadMessage(WM_USER, 6, (LPARAM) lpSi);
+      //   pApp->GetThreadV3()->post_thread_message(WM_USER, 6, (LPARAM) lpSi);
+          post_thread_message(WM_USER, 6, (LPARAM) lpSi);
       }*/
 
       void thread::LoadImageAsync(const load_image & loadimage)
@@ -388,7 +388,7 @@ namespace gcom
          load_image * lploadimage = new load_image(loadimage);
          gen::connect(lploadimage->m_signalImageLoaded,  m_pbackviewinterface, &backview::Main::_001OnImageLoaded);
 
-         PostThreadMessage(
+         post_thread_message(
             MessageCommand,
             CommandLoadImage,
             (LPARAM) lploadimage);
@@ -459,7 +459,7 @@ namespace gcom
 
       void thread_dispatch::PostBackViewThreadMessage(WPARAM wparam, LPARAM lparam)
       {
-         GetThread()->PostThreadMessage(::gcom::backview::thread::MESSAGE_BACKVIEW, wparam, lparam);
+         GetThread()->post_thread_message(::gcom::backview::thread::MESSAGE_BACKVIEW, wparam, lparam);
       }
 
 

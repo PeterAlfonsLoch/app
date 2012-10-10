@@ -322,7 +322,7 @@ namespace plane
                
                try
                {
-                  papp->PostThreadMessage(WM_QUIT, 0, 0);
+                  papp->post_thread_message(WM_QUIT, 0, 0);
                }
                catch(...)
                {

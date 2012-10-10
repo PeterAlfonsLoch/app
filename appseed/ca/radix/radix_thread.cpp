@@ -82,9 +82,9 @@ namespace radix
       return m_p->ResumeThread();
    }
 
-   bool thread::PostThreadMessage(UINT message, WPARAM wParam, LPARAM lParam)
+   bool thread::post_thread_message(UINT message, WPARAM wParam, LPARAM lParam)
    {
-      return m_p->PostThreadMessage(message, wParam, lParam);
+      return m_p->post_thread_message(message, wParam, lParam);
    }
 
    void thread::ProcessMessageFilter(int code, gen::signal_object * pobj)

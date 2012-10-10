@@ -414,7 +414,7 @@ namespace ca2
    void application::_001CloseApplication()
    {
       set_run(false);
-      PostThreadMessage(WM_QUIT, 0, 0);
+      post_thread_message(WM_QUIT, 0, 0);
    }
 
 
@@ -715,12 +715,12 @@ namespace ca2
       {
          if(!directrix().m_varTopicQuery.has_property("session_start"))
          {
-            System.PostThreadMessage(WM_QUIT, 0, 0);
+            System.post_thread_message(WM_QUIT, 0, 0);
          }
       }
       else
       {
-         System.PostThreadMessage(WM_QUIT, 0, 0);
+         System.post_thread_message(WM_QUIT, 0, 0);
       }
 
 
@@ -739,12 +739,12 @@ namespace ca2
       {
          if(!directrix().m_varTopicQuery.has_property("session_start"))
          {
-            System.PostThreadMessage(WM_QUIT, 0, 0);
+            System.post_thread_message(WM_QUIT, 0, 0);
          }
       }
       else
       {
-         System.PostThreadMessage(WM_QUIT, 0, 0);
+         System.post_thread_message(WM_QUIT, 0, 0);
       }
 
       return true;

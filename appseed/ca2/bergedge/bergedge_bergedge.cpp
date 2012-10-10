@@ -60,7 +60,7 @@ namespace bergedge
 
          ::ca2::application * papp = dynamic_cast < ::ca2::application * > (pcaapp);
 
-         papp->PostThreadMessageA(WM_QUIT, 0, 0);
+         papp->post_thread_message(WM_QUIT, 0, 0);
       }
 
    }
@@ -386,7 +386,7 @@ namespace bergedge
 
                DWORD dw = WM_APP + 2043;
 
-               papp->PostThreadMessage(dw, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
+               papp->post_thread_message(dw, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
 
                pcreatecontext->m_spCommandLine->m_eventReady.wait();
 

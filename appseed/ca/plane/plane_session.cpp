@@ -62,7 +62,7 @@ namespace plane
 
          ::ca2::application * papp = dynamic_cast < ::ca2::application * > (pcaapp);
 
-         papp->PostThreadMessage(WM_QUIT, 0, 0);
+         papp->post_thread_message(WM_QUIT, 0, 0);
       }
 
    }
@@ -249,7 +249,7 @@ namespace plane
 
       UINT uiMessage = WM_APP + 2043;
 
-      papp->PostThreadMessage(uiMessage, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
+      papp->post_thread_message(uiMessage, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
 
       pcreatecontext->m_spCommandLine->m_eventReady.wait();
 
@@ -592,7 +592,7 @@ namespace plane
 
          UINT uiMessage = WM_APP + 2043;
 
-         papp->PostThreadMessage(uiMessage, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
+         papp->post_thread_message(uiMessage, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
 
          pcreatecontext->m_spCommandLine->m_eventReady.wait();
 

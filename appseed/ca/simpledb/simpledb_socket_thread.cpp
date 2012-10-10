@@ -55,9 +55,9 @@ namespace simpledb
 
       //   m_hChildThreadId = ::OpenThread(THREAD_ALL_ACCESS, TRUE, m_pi.dwThreadId);
 
-      ::PostThreadMessage(m_pi.dwThreadId, WM_APP, 0, m_nThreadID);
+      ::post_thread_message(m_pi.dwThreadId, WM_APP, 0, m_nThreadID);
 
-      PostThreadMessage(WM_APP, 0, 0);*/
+      post_thread_message(WM_APP, 0, 0);*/
 
 
 
@@ -138,7 +138,7 @@ namespace simpledb
 
 #ifdef WINDOWS
 
-         ::PostThreadMessage(m_pi.dwThreadId, WM_APP, 1, 0);
+         ::PostThreadMessageA(m_pi.dwThreadId, WM_APP, 1, 0);
 
 #else
 

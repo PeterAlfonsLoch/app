@@ -309,7 +309,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool thread::PostThreadMessage(UINT message, WPARAM wParam, LPARAM lParam)
+   bool thread::post_thread_message(UINT message, WPARAM wParam, LPARAM lParam)
    {
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);

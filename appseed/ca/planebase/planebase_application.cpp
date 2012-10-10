@@ -970,7 +970,7 @@ InitFailure:
       {
          if(System.appptra().get_count() <= 1)
          {
-            System.PostThreadMessage(WM_QUIT, 0, 0);
+            System.post_thread_message(WM_QUIT, 0, 0);
          }
       }
       catch(...)
