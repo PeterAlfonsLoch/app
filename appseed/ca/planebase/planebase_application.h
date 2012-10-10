@@ -136,6 +136,8 @@ namespace planebase
 
       virtual bool add_library(::ca2::library * plibrary);
 
+      virtual bool system_add_app_install(const char * pszId);
+
    };
 
    CLASS_DECL_ca UINT c_cdecl application_thread_procedure(LPVOID pvoid);

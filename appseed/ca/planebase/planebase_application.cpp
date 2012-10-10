@@ -615,6 +615,21 @@ InitFailure:
       return m_iReturnCode;
    }
 
+   bool application::system_add_app_install(const char * pszId)
+   {
+
+      string strId(pszId);
+      string strLocale = command().m_varTopicQuery["locale"];
+      string strSchema = command().m_varTopicQuery["schema"];
+
+      System.install().remove_spa_start(m_strInstallType, strId);
+      System.install().add_app_install(System.command().m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, m_strSchema);
+      System.install().add_app_install(System.command().m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, strSchema);
+      System.install().add_app_install(System.command().m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, m_strSchema);
+      System.install().add_app_install(System.command().m_varTopicQuery["build_number"], m_strInstallType, strId, strLocale, strSchema);
+
+   }
+
    bool application::initial_check_directrix()
    {
       if(directrix().m_varTopicQuery.has_property("install"))
@@ -626,7 +641,7 @@ InitFailure:
                
                string strId = m_strAppId;
 
-               //MessageBox(NULL, "on_install1", strId, 0);
+               xxdebug_box("on_install1", strId, 0);
 
                if(strId.is_empty())
                   strId = m_strAppName;
@@ -634,20 +649,20 @@ InitFailure:
                if(strId.has_char() && command().m_varTopicQuery.has_property("app") && strId == command().m_varTopicQuery["app"])
                {
                   
-                  System.install().remove_spa_start(m_strInstallType, strId);
-                  System.install().add_app_install(System.command().m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, m_strSchema);
+                  system_add_app_install(strId);
+                  
                }
                else if(strId.has_char() && command().m_varTopicQuery.has_property("session_start") && strId == command().m_varTopicQuery["session_start"])
                {
-                  //MessageBox(NULL, "on_install2", "on_install2", 0);
-                  System.install().remove_spa_start(m_strInstallType, strId);
-                  System.install().add_app_install(System.command().m_varTopicQuery["build_number"], m_strInstallType, strId, m_strLocale, m_strSchema);
-                  //MessageBox(NULL, "on_install3", "on_install3", 0);
+
+                  system_add_app_install(strId);
+
                }
                else if(m_strInstallToken.has_char())
                {
-                  System.install().remove_spa_start(m_strInstallType, m_strInstallToken);
-                  System.install().add_app_install(System.command().m_varTopicQuery["build_number"], m_strInstallType, m_strInstallToken, m_strLocale, m_strSchema);
+
+                  system_add_app_install(m_strInstallToken);
+
                }
 
             }
