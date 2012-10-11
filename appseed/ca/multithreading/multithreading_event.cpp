@@ -10,7 +10,13 @@
 event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute) :
    ca(papp)
 {
+   
+   if(papp == NULL)
+      throw invalid_argument_exception(::ca::get_thread_app());
+
 #ifdef WINDOWS
+
+
 
    m_object = ::CreateEvent(lpsaAttribute, bManualReset, bInitiallyOwn, pstrName);
 

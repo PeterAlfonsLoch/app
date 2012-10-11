@@ -14,11 +14,17 @@ namespace ca2
       class process_thread : virtual public simple_thread
       {
       public:
+
+
+         ::gen::process       m_process;
+         string               m_strRead;
+         manual_reset_event   m_evReady;
+
+
          process_thread(::ca::application * papp);
-         ::gen::process m_process;
-         string m_strRead;
-         event m_evReady;
          int run();
+
+
       };
 
 

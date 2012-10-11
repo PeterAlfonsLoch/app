@@ -76,9 +76,10 @@ namespace ca2
       ca(papp),
       thread(papp),
       simple_thread(papp),
-      m_evReady(FALSE, TRUE)
+      m_evReady(papp)
    {
    }
+
    int process::process_thread::run()
    {
       while(!m_process.has_exited())
