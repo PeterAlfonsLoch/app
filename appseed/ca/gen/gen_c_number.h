@@ -308,8 +308,14 @@ typedef int64_t   file_offset;
 namespace primitive
 {
 
+#if defined(__LP64__)  // X64
 
-#if defined(_M_X64) || defined(__LP64__)  // X64
+   
+   typedef unsigned long  memory_size;
+   typedef unsigned long  memory_position;
+   typedef long   memory_offset;
+
+#elif defined(_M_X64) // X64
 
 
 //DEFINE_C_NUMBER(CLASS_DECL_ca, memory_size         , uint64_t)

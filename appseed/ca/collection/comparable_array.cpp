@@ -2,6 +2,8 @@
 
 #ifdef DEBUG
 
+void _base_comparable_array_debug();
+
 void _base_comparable_array_debug()
 {
    comparable_array<int,int> ia;

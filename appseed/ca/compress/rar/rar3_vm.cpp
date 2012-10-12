@@ -33,7 +33,7 @@ namespace compress
             if (numBits <= avail)
             {
                _bitPos += numBits;
-               return res | (b >> (avail - numBits)) & ((1 << numBits) - 1);
+               return (res | (b >> (avail - numBits))) & ((1 << numBits) - 1);
             }
             numBits -= avail;
             res |= (uint32)(b & ((1 << avail) - 1)) << numBits;
@@ -193,8 +193,9 @@ namespace compress
          {
             switch(op->Type)
             {
-            case OP_TYPE_REG: R[op->Data] = val; return;
+            case OP_ TYPE_REG: R[op->Data] = val; return;
             case OP_TYPE_REGMEM: SetValue32(&Mem[(op->Base + R[op->Data]) & kSpaceMask], val); return;
+               default:             return;
             }
          }
 
@@ -214,6 +215,8 @@ namespace compress
             {
             case OP_TYPE_REG: R[op->Data] = (R[op->Data] & 0xFFFFFF00) | val; return;
             case OP_TYPE_REGMEM: Mem[(op->Base + R[op->Data]) & kSpaceMask] = val; return;
+               default:
+                  return;
             }
          }
 

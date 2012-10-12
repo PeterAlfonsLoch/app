@@ -3,6 +3,7 @@
 
 namespace ex1
 {
+   
 
    namespace match
    {
@@ -11,6 +12,8 @@ namespace ex1
       class CLASS_DECL_ca item
       {
       public:
+         item() {}
+         virtual ~item() {}
          virtual bool matches(const var & var) const = 0;
       };
 

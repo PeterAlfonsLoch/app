@@ -1,5 +1,6 @@
 #include "framework.h"
 
+bool StringToBool(const string &s, bool &res);
 
 bool StringToBool(const string &s, bool &res)
 {

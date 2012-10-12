@@ -4,6 +4,10 @@
 namespace calculator
 {
    
+   
+   value pow(const value & val1, double c);
+
+   
    value::value()
    {
       m_dR = 0.0;

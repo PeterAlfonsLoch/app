@@ -393,6 +393,10 @@ fill_loop:
 fill_last:
             emms
          }
+#else
+         
+         memcpy(lpbitsDest, lpbitsSrc, isize * 4);
+         
          #endif
 #endif
       }

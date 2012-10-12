@@ -50,6 +50,7 @@ namespace file_watcher
          m_strMessage(message)
 		{
 		}
+      
 	};
 
 	/// Exception thrown when a file is not found.
@@ -69,32 +70,32 @@ namespace file_watcher
 	/// Actions to listen for. Rename will send two events, one for
 	/// the deletion of the old file, and one for the creation of the
 	/// new file.
-	namespace Actions
+	enum e_action
 	{
-		enum Action
-		{
-			/// Sent when a file is created or renamed
-			Add = 1,
-			/// Sent when a file is deleted or renamed
-			Delete = 2,
-			/// Sent when a file is modified
-			Modified = 4
-		};
-	};
-	typedef Actions::Action Action;
+		/// Sent when a file is created or renamed
+		action_add = 1,
+		/// Sent when a file is deleted or renamed
+		action_delete = 2,
+		/// Sent when a file is modified
+		action_modify = 4
 
+	};
+   
+   
 	/// Listens to files and directories and dispatches events
 	/// to notify the parent program of the changes.
 	/// @class file_watcher
 	class file_watcher
 	{
+	private:
+		
+      /// The implementation
+		file_watcher_impl       * m_pimpl;
+      
+      
 	public:
-		///
-		///
-		file_watcher();
 
-		///
-		///
+		file_watcher();
 		virtual ~file_watcher();
 
 		/// Add a directory watch
@@ -114,9 +115,6 @@ namespace file_watcher
 		/// Updates the watcher. Must be called often.
 		void update();
 
-	private:
-		/// The implementation
-		file_watcher_impl* mImpl;
 
 	};//end file_watcher
 
@@ -126,6 +124,8 @@ namespace file_watcher
 	class file_watch_listener
 	{
 	public:
+      
+      
 		file_watch_listener() {}
 		virtual ~file_watch_listener() {}
 
@@ -134,8 +134,9 @@ namespace file_watcher
 		/// @param dir The directory
 		/// @param filename The filename that was accessed (not full path)
 		/// @param action Action that was performed
-		virtual void handleFileAction(id watchid, const char * dir, const char * filename, Action action) = 0;
+		virtual void handle_file_action(id watchid, const char * dir, const char * filename, e_action action) = 0;
 
+      
 	}; // class file_watch_listener
 
 

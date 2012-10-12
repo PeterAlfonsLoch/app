@@ -2,6 +2,8 @@
 
 #ifdef DEBUG
 
+void _debug_arrayPtrAlloc();
+
 void _debug_arrayPtrAlloc()
 {
    array_ptr_alloc < int, int > ia;

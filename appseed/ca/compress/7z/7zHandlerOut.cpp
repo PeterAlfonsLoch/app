@@ -17,6 +17,11 @@
 #include "7zUpdate.h"*/
 
 //using namespace NWindows;
+
+uint64 ConvertStringToUInt64(const char *s, const char **end);
+int ParseStringToUInt32(const string &srcString, uint32 &number);
+
+
 uint64 ConvertStringToUInt64(const char *s, const char **end)
 {
   uint64 result = 0;

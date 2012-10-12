@@ -35,42 +35,57 @@
 namespace file_watcher
 {
 
-	//--------
 	file_watcher::file_watcher()
 	{
-		mImpl = new FILEWATCHER_IMPL();
+		m_pimpl = new FILEWATCHER_IMPL();
 	}
 
-	//--------
 	file_watcher::~file_watcher()
 	{
-		delete mImpl;
-		mImpl = 0;
+      
+      if(m_pimpl != NULL)
+      {
+         delete m_pimpl;
+         m_pimpl = NULL;
+      }
+      
 	}
 
-	//--------
 	id file_watcher::add_watch(const char * directory, file_watch_listener* pwatcher)
 	{
-		return mImpl->add_watch(directory, pwatcher);
+		return m_pimpl->add_watch(directory, pwatcher);
+	}
+
+	id_array file_watcher::radd_watch(const char * directory, file_watch_listener* pwatcher)
+	{
+      id_array ida;
+      stra_dup stra;
+      stra.add(directory);
+      dir::rls_dir(stra, directory);
+		for(index i = 0; i < ida.get_count(); i++)
+      {
+         ida.add(m_pimpl->add_watch(directory, pwatcher));
+      }
+      return ida;
 	}
 
 
-	//--------
 	void file_watcher::remove_watch(const char * directory)
 	{
-		mImpl->remove_watch(directory);
+		m_pimpl->remove_watch(directory);
 	}
 
-	//--------
 	void file_watcher::remove_watch(id watchid)
 	{
-		mImpl->remove_watch(watchid);
+		m_pimpl->remove_watch(watchid);
 	}
 
-	//--------
 	void file_watcher::update()
 	{
-		mImpl->update();
+		m_pimpl->update();
 	}
 
+   
 } //namespace file_watcher
+
+

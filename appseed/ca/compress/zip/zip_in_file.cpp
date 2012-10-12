@@ -489,7 +489,7 @@ namespace zip
    // FileException helpers
 
    #ifdef DEBUG
-   static const char * rgszFileExceptionCause[] =
+/*   static const char * rgszFileExceptionCause[] =
    {
       "none",
       "generic",
@@ -506,7 +506,7 @@ namespace zip
       "lockViolation",
       "diskFull",
       "endOfFile",
-   };
+   };*/
    static const char szUnknown[] = "unknown";
    #endif
 
@@ -538,7 +538,9 @@ namespace zip
    #define ENOEXEC         8
    #define EBADF           9
    #define ECHILD          10
+#ifndef MACOS
    #define EAGAIN          11
+#endif
    #define ENOMEM          12
    #define EACCES          13
    #define EFAULT          14

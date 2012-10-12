@@ -639,8 +639,8 @@ namespace ca4
                      e_status * pestatus)
       {
 
-         DWORD dw1;
-         DWORD dw2;
+         unsigned long dw1;
+         unsigned long dw2;
          bool bSeemsOk;
 
          int iTry = 0;

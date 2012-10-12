@@ -73,7 +73,7 @@ namespace compress
          }
       }
 
-      static const char *kNumberErrorMessage = "Number error";
+//      static const char *kNumberErrorMessage = "Number error";
 
       static const uint32 kHistorySize = 1 << 20;
 
@@ -175,7 +175,7 @@ namespace compress
          // uint64 ttt = m_InBitStream.GetProcessedSize() + 2;
          // + 2 works for: return 0xFF; in CInBuffer::ReadByte.
          if (m_InBitStream.GetProcessedSize() + 7 <= m_PackSize) // test it: probably incorrect;
-            // if (m_InBitStream.GetProcessedSize() + 2 <= m_PackSize) // test it: probably incorrect;
+         {  // if (m_InBitStream.GetProcessedSize() + 2 <= m_PackSize) // test it: probably incorrect;
             if (m_AudioMode)
             {
                uint32 symbol = m_MMDecoders[m_MmFilter.CurrentChannel].DecodeSymbol(&m_InBitStream);
@@ -193,6 +193,8 @@ namespace compress
                   return false;
             }
             return true;
+         }
+         return false;
       }
 
       class CCoderReleaser

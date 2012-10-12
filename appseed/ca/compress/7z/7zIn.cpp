@@ -1187,7 +1187,7 @@ HRESULT CInArchive::ReadDatabase2(
 
     int i;
     for (i = (int)checkSize - 2; i >= 0; i--)
-      if (buf[i] == 0x17 && buf[i + 1] == 0x6 || buf[i] == 0x01 && buf[i + 1] == 0x04)
+      if ((buf[i] == 0x17 && buf[i + 1] == 0x6) || (buf[i] == 0x01 && buf[i + 1] == 0x04))
         break;
     if (i < 0)
       return S_FALSE;

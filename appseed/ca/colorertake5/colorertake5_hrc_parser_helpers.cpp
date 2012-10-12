@@ -3,7 +3,8 @@
 namespace colorertake5
 {
 
-
+   int kwCompare(const void *e1, const void *e2);
+   int kwCompareI(const void *e1, const void *e2);
 /*
 KeywordInfo::KeywordInfo(){
   keyword = NULL;
@@ -60,10 +61,12 @@ KeywordList::~KeywordList(){
   delete   firstChar;
 };
 
-int kwCompare(const void *e1, const void *e2){
+int kwCompare(const void *e1, const void *e2)
+{
   return ((KeywordInfo*)e1)->keyword.Compare(((KeywordInfo*)e2)->keyword);
 };
-int kwCompareI(const void *e1, const void *e2){
+int kwCompareI(const void *e1, const void *e2)
+   {
   return ((KeywordInfo*)e1)->keyword.CompareNoCase(((KeywordInfo*)e2)->keyword);
 };
 void KeywordList::sortList(){

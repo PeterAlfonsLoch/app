@@ -2924,7 +2924,7 @@ RetryHost:
       m_strIndexGz = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strApplicationId + ".spa.bz"));
       m_strIndex = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strApplicationId + ".spa"));
 
-      bool bOfflineInstall1 = dir::exists(dir::module_folder("ca2\\bz"));
+      bool bOfflineInstall1 = dir::is(dir::module_folder("ca2\\bz"));
       //bool bOfflineInstall2 = file_exists_dup(g_strIndexGz);
       //m_bOfflineInstall = bOfflineInstall1 && bOfflineInstall2;
       m_bOfflineInstall = bOfflineInstall1;

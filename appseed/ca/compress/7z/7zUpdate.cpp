@@ -22,47 +22,56 @@
 #include "7zOut.h"
 #include "7zUpdate.h"*/
 
-template <class T> inline int MyCompare(T a, T b)
-  {  return a < b ? -1 : (a == b ? 0 : 1); }
-
-wchar_t MyCharUpper(wchar_t c)
-{
-   return gen::ch::to_upper_case(c);
-}
-
-wchar_t MyCharLower(wchar_t c)
-{
-   return gen::ch::to_lower_case(c);
-}
-
-
-int MyStringCompareNoCase(const wchar_t *s1, const wchar_t *s2)
-{
-  for (;;)
-  {
-    wchar_t c1 = *s1++;
-    wchar_t c2 = *s2++;
-    if (c1 != c2)
-    {
-      wchar_t u1 = MyCharUpper(c1);
-      wchar_t u2 = MyCharUpper(c2);
-      if (u1 < u2) return -1;
-      if (u1 > u2) return 1;
-    }
-    if (c1 == 0) return 0;
-  }
-}
-
-int MyStringCompareNoCase(const char *s1, const char *s2)
-{
-   string str1(s1);
-   string str2(s2);
-   return str1.CompareNoCase(str2);
-}
 
 
 namespace n7z
 {
+   
+   wchar_t MyCharUpper(wchar_t c);
+   wchar_t MyCharLower(wchar_t c);
+   int MyStringCompareNoCase(const wchar_t *s1, const wchar_t *s2);
+   int MyStringCompareNoCase(const char *s1, const char *s2);
+   int GetExtIndex(const char *ext);
+   
+   
+   template <class T> inline int MyCompare(T a, T b)
+   {  return a < b ? -1 : (a == b ? 0 : 1); }
+   
+   wchar_t MyCharUpper(wchar_t c)
+   {
+      return gen::ch::to_upper_case(c);
+   }
+   
+   wchar_t MyCharLower(wchar_t c)
+   {
+      return gen::ch::to_lower_case(c);
+   }
+   
+   
+   int MyStringCompareNoCase(const wchar_t *s1, const wchar_t *s2)
+   {
+      for (;;)
+      {
+         wchar_t c1 = *s1++;
+         wchar_t c2 = *s2++;
+         if (c1 != c2)
+         {
+            wchar_t u1 = MyCharUpper(c1);
+            wchar_t u2 = MyCharUpper(c2);
+            if (u1 < u2) return -1;
+            if (u1 > u2) return 1;
+         }
+         if (c1 == 0) return 0;
+      }
+   }
+   
+   int MyStringCompareNoCase(const char *s1, const char *s2)
+   {
+      string str1(s1);
+      string str2(s2);
+      return str1.CompareNoCase(str2);
+   }
+
 
    static const uint64 k_LZMA = 0x030101;
    static const uint64 k_BCJ  = 0x03030103;

@@ -225,23 +225,31 @@ namespace compress {
 
          oldAvr3 = AvrLn3;
          if (len != 1 && len != 4)
+         {
             if (len == 0 && dist <= MaxDist3)
             {
                AvrLn3++;
                AvrLn3 -= AvrLn3 >> 8;
             }
             else
+            {
                if (AvrLn3 > 0)
                   AvrLn3--;
+            }
+         }
          len += 3;
          if (dist >= MaxDist3)
             len++;
          if (dist <= 256)
             len += 8;
-         if (oldAvr3 > 0xb0 || AvrPlc >= 0x2a00 && oldAvr2 < 0x40)
+         if ((oldAvr3 > 0xb0 || AvrPlc >= 0x2a00) && oldAvr2 < 0x40)
+         {
             MaxDist3 = 0x7f00;
+         }
          else
+         {
             MaxDist3 = 0x2001;
+         }
          m_RepDists[m_RepDistPtr++] = --dist;
          m_RepDistPtr &= 3;
          LastLength = len;

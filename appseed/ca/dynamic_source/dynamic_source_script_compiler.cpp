@@ -487,7 +487,7 @@ namespace dynamic_source
       ::CloseHandle(h);
 
 #else
-      HANDLE h = ::CreateFile(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+//      HANDLE h = ::CreateFile(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
       memset(&pscript->m_ftCreation, 0, sizeof(__time_t));
       memset(&pscript->m_ftAccess, 0, sizeof(__time_t));

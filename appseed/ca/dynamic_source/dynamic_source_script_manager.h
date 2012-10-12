@@ -30,11 +30,18 @@ namespace dynamic_source
    {
    public:
 
-      class CLASS_DECL_ca clear_include_matches_folder_watch
+      class CLASS_DECL_ca clear_include_matches_folder_watch :
+         public ::file_watcher::file_watch_listener
+      
       {
       public:
-         string                  m_strPath;
-         script_manager *  m_pmanager;
+
+         ::file_watcher::file_watcher  m_watcher;
+         string                        m_strPath;
+         script_manager *              m_pmanager;
+         
+         virtual void handle_file_action(id watchid, const char * dir, const char * filename, ::file_watcher::e_action eaction);
+        
       };
 
       class CLASS_DECL_ca session :

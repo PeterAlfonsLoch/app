@@ -156,7 +156,7 @@ namespace ca2
       if(m_mapCache.Lookup(str, pitem) && ((::GetTickCount() - pitem->m_dwLastChecked) < (((84 + 77) * 1000))))
       {
          l = pitem->m_ipaddr;
-         DWORD dwTimeTelmo2 = GetTickCount();
+//         DWORD dwTimeTelmo2 = GetTickCount();
          /*TRACE("Got from cache net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
             (DWORD)((byte*)&pitem->m_ipaddr)[0],
             (DWORD)((byte*)&pitem->m_ipaddr)[1],

@@ -95,7 +95,7 @@ url_domain_base::url_domain_base()
       const char * pszPreTopLevel2 = NULL;
       int iLenPreTopLevel2 = 0;
       const char * pszPreTopLevel3 = NULL;
-      int iLenPreTopLevel3 = 0;
+//      int iLenPreTopLevel3 = 0;
       if(m_iCount >= 4)
       {
          pszPreTopLevel2 = pszPreTopLevel - 2;

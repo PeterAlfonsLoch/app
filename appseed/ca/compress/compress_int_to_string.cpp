@@ -4,6 +4,11 @@
 
 //#include "IntToString.h"
 
+string uint64_to_string(uint64 value);
+string uint32_base_to_string(uint32 value, uint32 base);
+string int64_to_string(int64 value);
+string uint32_to_zero_padded_hex(uint32 value);
+
 string convert_to_string(uint64 value, uint32 base)
 {
   if (base < 2 || base > 36)

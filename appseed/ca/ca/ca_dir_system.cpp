@@ -1095,14 +1095,14 @@ namespace ca
       void system::appmatter_locators(string & strRoot, string & strDomain, const string & strLibraryNameParam, const string & strAppNameParam)
       {
 
-         int iFind = strAppNameParam.find('/');
+         strsize iFind = strAppNameParam.find('/');
 
          if(iFind < 0)
             return;
 
          strRoot = strAppNameParam.Left(iFind);
 
-         int iFind2 = strAppNameParam.find('/', iFind + 1);
+         strsize iFind2 = strAppNameParam.find('/', iFind + 1);
 
          if(iFind2 > iFind + 1)
          {

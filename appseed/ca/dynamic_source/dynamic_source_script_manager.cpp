@@ -337,7 +337,7 @@ namespace dynamic_source
       TRACE(lpsz);
       delete lpsz;
 #else
-      LPCTSTR lpcsz = getenv("PATH");
+//      LPCTSTR lpcsz = getenv("PATH");
 #endif
 
       on_load_env();
@@ -481,6 +481,15 @@ namespace dynamic_source
       single_lock sl(&m_mutexIncludeExpandMd5, TRUE);
       m_mapIncludeExpandMd5[strPath] = strMd5;
    }
+   
+   
+   void clear_include_matches_folder_watch::handle_file_action(id watchid, const char * dir, const char * filename, Action action)
+   {
+      
+      pwatch->m_pmanager->clear_include_matches();
+      
+   }
+
 
    UINT c_cdecl script_manager::clear_include_matches_FolderWatchThread(LPVOID lpParam) // thread procedure
    {
@@ -488,188 +497,37 @@ namespace dynamic_source
       clear_include_matches_folder_watch * pwatch = (clear_include_matches_folder_watch *) lpParam;
 
       string strDir = pwatch->m_strPath;
+      
+      pwatch->m_watcher.radd_watch(strDir);
 
-#ifdef WINDOWS
-
-      HANDLE hDirectory =
-         ::CreateFile(strDir,    // folder path
-                      FILE_LIST_DIRECTORY,
-                      FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE,
-                      NULL, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
-
-      if(INVALID_HANDLE_VALUE == hDirectory)
+      try
       {
-         DWORD dwError = ::GetLastError();
-         // handle error (see this FAQ)
-         return dwError;
-      }
-
-      DWORD dwBytesReturned = 0;
-      const DWORD dwBuffLength = 4096;
-      BYTE buffer[dwBuffLength];
-
-      while(::ReadDirectoryChangesW(hDirectory, buffer, dwBuffLength, TRUE,
-         FILE_NOTIFY_CHANGE_FILE_NAME |
-         FILE_NOTIFY_CHANGE_LAST_WRITE |
-         FILE_NOTIFY_CHANGE_CREATION, &dwBytesReturned,
-         NULL, NULL))
-      {
-         DWORD dwNextEntryOffset = 0;
-         PFILE_NOTIFY_INFORMATION pfni = NULL;
-         do
+         
+         while(true)
          {
-            pfni = (PFILE_NOTIFY_INFORMATION)(buffer + dwNextEntryOffset);
-
-            pwatch->m_pmanager->clear_include_matches();
-            /*switch(pfni->Action)
+            
+            try
             {
-            case FILE_ACTION_ADDED:
-
-            // The file was added to the directory.
-            break;
-            case FILE_ACTION_REMOVED:
-            // The file was removed from the directory.
-            break;
-            case FILE_ACTION_RENAMED_OLD_NAME:
-            // The file was renamed and this is the old name.
-            break;
-            case FILE_ACTION_RENAMED_NEW_NAME:
-            // The file was renamed and this is the new name.
-            break;
-            // ...
-            }*/
-            // Enjoy of added, removed, or modified file name...
-            dwNextEntryOffset += pfni->NextEntryOffset; // next please!
-         }while(pfni->NextEntryOffset != 0);
-      }
-      ::CloseHandle(hDirectory);
-
-#elif defined(MACOS)
-
-      // Open an event-only file descriptor associated with the directory
-      int dirFD = ::open(strDir, O_EVTONLY);
-      if (dirFD < 0)
-         return -1;
-
-      // Create a new kernel event queue
-      int kq = kqueue();
-      if (kq < 0)
-      {
-         close(dirFD);
-         return -1;
-      }
-
-      // Set up a kevent to monitor
-      struct kevent eventToAdd;			// Register an (ident, filter) pair with the kqueue
-      eventToAdd.ident  = dirFD;			// The object to watch (the directory FD)
-      eventToAdd.filter = EVFILT_VNODE;		// Watch for certain events on the VNODE spec'd by ident
-      eventToAdd.flags  = EV_ADD | EV_CLEAR;		// add a resetting kevent
-      eventToAdd.fflags = NOTE_WRITE;			// The events to watch for on the VNODE spec'd by ident (writes)
-      eventToAdd.data   = 0;				// No filter-specific data
-      eventToAdd.udata  = NULL;			// No user data
-
-      // add a kevent to monitor
-      if (kevent(kq, &eventToAdd, 1, NULL, 0, NULL))
-      {
-         close(kq);
-         close(dirFD);
-         return;
-      }
-
-#else
-
-
-
-      int iNotify = inotify_init();
-
-
-      int_array ia;
-
-      stringa stra;
-
-      stringa straDir;
-
-      App(pwatch->m_pmanager->get_app()).dir().rls(strDir, &straDir);
-
-      inotify_add_watch(iNotify, strDir, IN_CLOSE_WRITE | IN_DELETE | IN_DELETE_SELF | IN_MODIFY | IN_MOVED_TO | IN_CREATE);
-
-      for(int i = 0; i < straDir.get_count(); i++)
-         if(stra.add_unique(straDir[i]))
-         {
-            ia.add(inotify_add_watch(iNotify, straDir[i], IN_CLOSE_WRITE | IN_DELETE | IN_DELETE_SELF | IN_MODIFY | IN_MOVED_TO | IN_CREATE));
-            stra.add(straDir[i]);
-         }
-
-      straDir.remove_all();
-      App(pwatch->m_pmanager->get_app()).dir().rls(strDir, &straDir);
-      for(int i = 0; i < straDir.get_count(); i++)
-         if(stra.add_unique(straDir[i]))
-         {
-            ia.add(inotify_add_watch(iNotify, straDir[i], IN_CLOSE_WRITE | IN_DELETE | IN_DELETE_SELF | IN_MODIFY | IN_MOVED_TO | IN_CREATE));
-            stra.add(straDir[i]);
-         }
-
-
-      int iLen = 1024;
-
-      inotify_event * pevent = (inotify_event *) malloc(iLen);
-
-      int iRead;
-      int iCount;
-      while(iRead = read(iNotify, pevent, iLen))
-      {
-         if(iRead == -1)
-         {
-            iLen += 1024;
-            free(pevent);
-            pevent = (inotify_event *) malloc(iLen);
-            continue;
-         }
-         while(iRead > sizeof(inotify_event))
-         {
-
-            if(pevent->mask & IN_ISDIR)
-            {
-               if(pevent->mask & IN_CREATE)
-               {
-                  straDir.remove_all();
-                  App(pwatch->m_pmanager->get_app()).dir().rls(strDir, &straDir);
-                  for(int i = 0; i < straDir.get_count(); i++)
-                     if(stra.add_unique(straDir[i]))
-                     {
-                        ia.add(inotify_add_watch(iNotify, straDir[i], IN_CLOSE_WRITE | IN_DELETE | IN_DELETE_SELF | IN_MODIFY | IN_MOVED_TO | IN_CREATE));
-                        stra.add(straDir[i]);
-                     }
-
-               }
-               else if(pevent->mask & IN_DELETE || pevent->mask & IN_DELETE_SELF)
-               {
-                  straDir.remove_all();
-                  App(pwatch->m_pmanager->get_app()).dir().rls(strDir, &straDir);
-                  for(int i = 0; i < stra.get_count(); i++)
-                     if(!straDir.contains(stra[i]))
-                     {
-                        inotify_rm_watch(iNotify, ia[i]);
-                        stra.remove_at(i);
-                        ia.remove_at(i);
-                     }
-               }
+         
+               pwatch->m_watcher.update();
+               
             }
-            else
+            catch(::file_watcher::exception &)
             {
-               pwatch->m_pmanager->clear_include_matches();
+         
             }
-            iRead -= sizeof(inotify_event) + pevent->len;
+            
          }
+         
       }
-
-      close(iNotify);
-
-#endif
-
+      catch(...)
+      {
+         
+      }
+   
       delete pwatch;
+      
       return 0;
-
 
    }
 

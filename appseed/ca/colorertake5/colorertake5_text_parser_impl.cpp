@@ -484,6 +484,10 @@ namespace colorertake5
 
             return MATCH_SCHEME;
                          };
+               break;
+            default:
+               break;
+               
          };
       };
       return MATCH_NOTHING;

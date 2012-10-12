@@ -9,7 +9,7 @@ namespace ca
    public:
       
       
-      PLONG       m_plong;
+      long *       m_plong;
 
       
       interlocked_long();
@@ -19,8 +19,8 @@ namespace ca
       void add(long l);
       void subtract(long l);
 
-      bool operator > (int i) const;
-      bool operator == (int i) const;
+      bool operator > (long i) const;
+      bool operator == (long i) const;
 
    };
 

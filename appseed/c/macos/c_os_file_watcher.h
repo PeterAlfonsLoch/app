@@ -24,66 +24,61 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
 */
-#ifndef _FW_FILEWATCHEROSX_H_
-#define _FW_FILEWATCHEROSX_H_
 #pragma once
 
-#include "FileWatcherImpl.h"
 
-#if FILEWATCHER_PLATFORM == FILEWATCHER_PLATFORM_KQUEUE
-
-#include <map>
-#include <sys/types.h>
-
-namespace FW
+namespace file_watcher
 {
 	/// Implementation for OSX based on kqueue.
-	/// @class FileWatcherOSX
-	class FileWatcherOSX : public FileWatcherImpl
+	/// @class os_file_watcher
+	class os_file_watcher : public file_watcher_impl
 	{
 	public:
-		/// type for a map from WatchID to WatchStruct pointer
-		typedef std::map<WatchID, WatchStruct*> WatchMap;
+		/// type for a map from id to watch_struct pointer
+		typedef simple_map < id , watch_struct*> watch_map;
 
 	public:
 		///
 		///
-		FileWatcherOSX();
+		os_file_watcher();
 
 		///
 		///
-		virtual ~FileWatcherOSX();
+		virtual ~os_file_watcher();
 
 		/// Add a directory watch
 		/// @exception FileNotFoundException Thrown when the requested directory does not exist
-		WatchID addWatch(const String& directory, FileWatchListener* watcher);
+		id add_watch(const char * directory, file_watch_listener* watcher);
 
 		/// Remove a directory watch. This is a brute force lazy search O(nlogn).
-		void removeWatch(const String& directory);
+		void remove_watch(const char *  directory);
 
 		/// Remove a directory watch. This is a map lookup O(logn).
-		void removeWatch(WatchID watchid);
+		void remove_watch(id watchid);
+      
+      vsstring watch_path(id watchid);
 
 		/// Updates the watcher. Must be called often.
 		void update();
 
 		/// Handles the action
-		void handleAction(WatchStruct* watch, const String& filename, unsigned long action);
+		void handle_action(watch_struct* watch, const char * filename, unsigned long action);
 
 	private:
-		/// Map of WatchID to WatchStruct pointers
-		WatchMap mWatches;
+		/// Map of id to watch_struct pointers
+		watch_map m_watchmap;
 		/// The descriptor for the kqueue
 		int mDescriptor;
 		/// time out data
 		struct timespec mTimeOut;
-		/// WatchID allocator
+		/// id allocator
 		int mLastWatchID;
 
-	};//end FileWatcherOSX
+	};
+   
 
-};//namespace FW
+} // namespace file_watcher
 
-#endif//__APPLE_CC__
 
-#endif//_FW_FILEWATCHEROSX_H_
+
+

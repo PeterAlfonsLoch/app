@@ -1,6 +1,8 @@
 #include "framework.h"
 
 
+void _123abc_debug_gen_array_randomize(::ca::application * papp);
+void ___arrayStdSortTest();
 
 
 void _123abc_debug_gen_array_randomize(::ca::application * papp)

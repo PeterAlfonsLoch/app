@@ -48,3 +48,7 @@ namespace ca4
 
 
 
+
+CLASS_DECL_ca void _get_errno(int * perrno);
+CLASS_DECL_ca int my_open(const char * psz, int i);
+CLASS_DECL_ca FILE * my_fopen(const char * psz, const char * pszMode);

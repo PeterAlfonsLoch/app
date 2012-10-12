@@ -29,7 +29,7 @@ namespace compress
       if (prop.is_empty())
          res = 1;
       else if (prop.get_type() == var::type_ulong || prop.get_type() == var::type_integer)
-         res = prop.get_ulong();
+         res = (uint32_t) prop.get_ulong();
       else
          return E_INVALIDARG;
       return S_OK;

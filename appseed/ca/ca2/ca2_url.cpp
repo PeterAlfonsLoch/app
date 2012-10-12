@@ -425,10 +425,10 @@ namespace ca2
             i++;
          else if(ch == '.')
             i++;
-         else if(ch == ':' && ((i + 1) == iLen) ||
+         else if(ch == ':' && (((i + 1) == iLen) ||
             (iLen > (i + 3)
             && strCandidate[i + 1] == '/'
-            && strCandidate[i + 2] == '/'))
+            && strCandidate[i + 2] == '/')))
             return true;
          else
             return false;
@@ -519,7 +519,7 @@ namespace ca2
       else
       {
          strsize iFinalLen = pszQuery - pszUrl;
-         int iPos = 0;
+//         int iPos = 0;
          strncpy(psz, pszUrl, iFinalLen);
          psz[iFinalLen] = '?';
          iFinalLen++;

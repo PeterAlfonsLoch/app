@@ -351,7 +351,7 @@ vsstring dir::path(const char * path1, const char * path2, const char * path3, c
    return str;
 }
 
-bool dir::exists(const char * path1)
+bool dir::is(const char * path1)
 {
 
 #ifdef WINDOWS
@@ -394,7 +394,32 @@ vsstring dir::name(const char * path1)
 
 }
 
+void dir::rls(stra_dup & stra, const char *psz)
+{
+   ::count start = stra.get_count();
+   ls(stra, psz);
+   ::count end = stra.get_count();
+   for(::index i = start; i < end; i++)
+   {
+      if(is(stra[i]))
+      {
+         rls(stra, stra[i]);
+      }
+   }
+   
+}
 
+void dir::rls_dir(stra_dup & stra, const char *psz)
+{
+   ::count start = stra.get_count();
+   ls_dir(stra, psz);
+   ::count end = stra.get_count();
+   for(::index i = start; i < end; i++)
+   {
+      rls_dir(stra, stra[i]);
+   }
+   
+}
 
 
 void dir::ls(stra_dup & stra, const char *psz)
@@ -432,7 +457,8 @@ void dir::ls(stra_dup & stra, const char *psz)
    while(true)
    {
 
-      stra.add(FindFileData.cFileName);
+      if(!FindFileData.isDots)
+         stra.add(FindFileData.cFileName);
 
       if(!FindNextFile(hFind, &FindFileData))
          break;
@@ -444,6 +470,61 @@ void dir::ls(stra_dup & stra, const char *psz)
 #endif
 
 
+}
+
+void dir::ls_dir(stra_dup & stra, const char *psz)
+{
+   
+#if defined(LINUX) || defined(MACOS)
+   
+   DIR * dirp = opendir(psz);
+   
+   if(dirp == NULL)
+      return;
+   
+   dirent * dp;
+   
+   while ((dp = readdir(dirp)) != NULL)
+   {
+      if(is(dp->d_name))
+      {
+         stra.add(dp->d_name);
+      }
+      
+   }
+   
+   closedir(dirp);
+   
+#else
+   
+   WIN32_FIND_DATA FindFileData;
+   
+   HANDLE hFind;
+   
+   hFind = FindFirstFile(psz, &FindFileData);
+   
+   if (hFind == INVALID_HANDLE_VALUE)
+      return;
+   
+   while(true)
+   {
+      
+      if(!FindFileData.isDots && (FileFileData.dwAttributes & FILE_DIRECTORY) != 0)
+         stra.add(FindFileData.cFileName);
+  
+      
+      stra.add(FindFileData.cFileName);
+      
+      if(!FindNextFile(hFind, &FindFileData))
+         break;
+      
+   }
+   
+   FindClose(hFind);
+   
+#endif
+   
+   
 }
 
 vsstring dir::default_os_user_path_prefix()

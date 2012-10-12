@@ -122,6 +122,11 @@
 		07237F4F15F99D660018B75F /* simple_ui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07237F4515F99D660018B75F /* simple_ui.cpp */; };
 		07237F5015F99D660018B75F /* simple_ui.h in Headers */ = {isa = PBXBuildFile; fileRef = 07237F4615F99D660018B75F /* simple_ui.h */; };
 		075898A01628695700C0D8FF /* ansios_crypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0758989F1628695700C0D8FF /* ansios_crypt.cpp */; };
+		075898A416288C2D00C0D8FF /* c_os_file_watcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 075898A216288C2D00C0D8FF /* c_os_file_watcher.cpp */; };
+		075898A516288C2D00C0D8FF /* c_os_file_watcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 075898A316288C2D00C0D8FF /* c_os_file_watcher.h */; };
+		075898A916288CAF00C0D8FF /* file_watcher_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 075898A616288CAE00C0D8FF /* file_watcher_impl.h */; };
+		075898AA16288CAF00C0D8FF /* file_watcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 075898A716288CAE00C0D8FF /* file_watcher.cpp */; };
+		075898AB16288CAF00C0D8FF /* file_watcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 075898A816288CAE00C0D8FF /* file_watcher.h */; };
 		077AE6CC1606201C0052CAC4 /* c_os_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077AE6CB1606201C0052CAC4 /* c_os_thread.cpp */; };
 		07AB204D16061A6000CD4EE2 /* os_http.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AB204A16061A6000CD4EE2 /* os_http.cpp */; };
 		07AB204E16061A6000CD4EE2 /* os_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AB204B16061A6000CD4EE2 /* os_thread.cpp */; };
@@ -363,6 +368,11 @@
 		07237F4515F99D660018B75F /* simple_ui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_ui.cpp; sourceTree = "<group>"; };
 		07237F4615F99D660018B75F /* simple_ui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_ui.h; sourceTree = "<group>"; };
 		0758989F1628695700C0D8FF /* ansios_crypt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ansios_crypt.cpp; path = ansios/crypto/ansios_crypt.cpp; sourceTree = "<group>"; };
+		075898A216288C2D00C0D8FF /* c_os_file_watcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_file_watcher.cpp; sourceTree = "<group>"; };
+		075898A316288C2D00C0D8FF /* c_os_file_watcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_os_file_watcher.h; sourceTree = "<group>"; };
+		075898A616288CAE00C0D8FF /* file_watcher_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_watcher_impl.h; sourceTree = "<group>"; };
+		075898A716288CAE00C0D8FF /* file_watcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_watcher.cpp; sourceTree = "<group>"; };
+		075898A816288CAE00C0D8FF /* file_watcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_watcher.h; sourceTree = "<group>"; };
 		077AE6CB1606201C0052CAC4 /* c_os_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_thread.cpp; sourceTree = "<group>"; };
 		07983D461620C118006F8309 /* c_mm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_mm.h; sourceTree = "<group>"; };
 		07AB204A16061A6000CD4EE2 /* os_http.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = os_http.cpp; path = os/os_http.cpp; sourceTree = "<group>"; };
@@ -537,6 +547,9 @@
 				07237E8215F99D310018B75F /* file.cpp */,
 				07237E8315F99D310018B75F /* file.h */,
 				07237E8415F99D310018B75F /* file_spa.cpp */,
+				075898A716288CAE00C0D8FF /* file_watcher.cpp */,
+				075898A816288CAE00C0D8FF /* file_watcher.h */,
+				075898A616288CAE00C0D8FF /* file_watcher_impl.h */,
 				07237E8715F99D310018B75F /* geometric_types.cpp */,
 				07237E8815F99D310018B75F /* geometric_types.h */,
 				07237E8915F99D310018B75F /* heap.cpp */,
@@ -802,23 +815,24 @@
 				07983D461620C118006F8309 /* c_mm.h */,
 				CEACF742145FD3C2004A3E5B /* c_os.cpp */,
 				CEACF743145FD3C2004A3E5B /* c_os.h */,
-				077AE6CB1606201C0052CAC4 /* c_os_thread.cpp */,
-				07AB205316061B3600CD4EE2 /* c_os_file.h */,
-				CEACF735145FD3C2004A3E5B /* c_os_gdi.cpp */,
-				0713C3FA1618A54B00719F96 /* c_os_gdi.h */,
-				07B0B04B16206DFA00A60983 /* c_os_gdi_mm.h */,
-				07AB205416061B3600CD4EE2 /* c_os_win_base.cpp */,
-				CE4BB211156B8B4300DD13ED /* c_os_simple_shell_launcher.cpp */,
 				9A90D07C14A348E200226F1A /* c_os_cross_gdi.mm */,
 				CEC2DFBD147711D30028313B /* c_os_cross_user.mm */,
 				CEBCDBEA1460B2B90099DA36 /* c_os_cross_win.cpp */,
 				CEACF733145FD3C2004A3E5B /* c_os_cross_win_file.cpp */,
 				CEACF734145FD3C2004A3E5B /* c_os_cross_win_file.h */,
 				CEACF737145FD3C2004A3E5B /* c_os_cross_win_gdi.h */,
+				075898A216288C2D00C0D8FF /* c_os_file_watcher.cpp */,
+				075898A316288C2D00C0D8FF /* c_os_file_watcher.h */,
+				9A8897A914C24901006B4023 /* c_os_file.cpp */,
+				07AB205316061B3600CD4EE2 /* c_os_file.h */,
+				CEACF735145FD3C2004A3E5B /* c_os_gdi.cpp */,
+				0713C3FA1618A54B00719F96 /* c_os_gdi.h */,
+				07B0B04B16206DFA00A60983 /* c_os_gdi_mm.h */,
 				CEACF738145FD3C2004A3E5B /* c_os_http_lib.cpp */,
 				CEACF739145FD3C2004A3E5B /* c_os_http_lib.h */,
 				CEACF73A145FD3C2004A3E5B /* c_os_http.cpp */,
 				CEACF73B145FD3C2004A3E5B /* c_os_http.h */,
+				CEBB9C6E1466609600912AFA /* c_os_internal.h */,
 				CEBB9C681466502000912AFA /* c_os_launcher.cpp */,
 				CEACF73C145FD3C2004A3E5B /* c_os_library.cpp */,
 				CEACF73D145FD3C2004A3E5B /* c_os_lock.cpp */,
@@ -836,10 +850,11 @@
 				0713C3FE1618B03800719F96 /* c_os_simple_graphics.h */,
 				07B0B049162056A200A60983 /* c_os_simple_pen.cpp */,
 				0713C40F1618BA3300719F96 /* c_os_simple_pen.h */,
+				CE4BB211156B8B4300DD13ED /* c_os_simple_shell_launcher.cpp */,
 				CEACF741145FD3C2004A3E5B /* c_os_small_ipc_channel.cpp */,
-				CEBB9C6E1466609600912AFA /* c_os_internal.h */,
+				077AE6CB1606201C0052CAC4 /* c_os_thread.cpp */,
 				CEBB9C6A146656B800912AFA /* c_os_user.cpp */,
-				9A8897A914C24901006B4023 /* c_os_file.cpp */,
+				07AB205416061B3600CD4EE2 /* c_os_win_base.cpp */,
 			);
 			path = macos;
 			sourceTree = "<group>";
@@ -957,6 +972,9 @@
 				07B0B050162079DC00A60983 /* version.h in Headers */,
 				07BD5572162154F5008E31F0 /* c_gdi.h in Headers */,
 				07BD558616215F2D008E31F0 /* hotplugin_container_launcher.h in Headers */,
+				075898A516288C2D00C0D8FF /* c_os_file_watcher.h in Headers */,
+				075898A916288CAF00C0D8FF /* file_watcher_impl.h in Headers */,
+				075898AB16288CAF00C0D8FF /* file_watcher.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1134,6 +1152,8 @@
 				07BD558216215D9D008E31F0 /* c_os_simple_ui.cpp in Sources */,
 				07BD558516215F2D008E31F0 /* hotplugin_container_launcher.cpp in Sources */,
 				075898A01628695700C0D8FF /* ansios_crypt.cpp in Sources */,
+				075898A416288C2D00C0D8FF /* c_os_file_watcher.cpp in Sources */,
+				075898AA16288CAF00C0D8FF /* file_watcher.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

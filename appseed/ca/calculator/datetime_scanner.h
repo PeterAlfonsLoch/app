@@ -20,6 +20,19 @@ namespace datetime
    */
 
 
+   
+   CLASS_DECL_ca bool check_end_expression(const char * input, const char * & scanner);
+   CLASS_DECL_ca bool check_expression_separator(const char * input, const char * & scanner);
+   CLASS_DECL_ca string check_unit(::user::str_context * pcontext, const char * input, const char * & scanner);
+   CLASS_DECL_ca string check_month(const char * input, const char * & scanner);
+   CLASS_DECL_ca string check_lang_date(const char * input, const char * & scanner);
+   CLASS_DECL_ca string check_natural(const char * input, const char * & scanner);
+   CLASS_DECL_ca string check_lang_offset(const char * input, const char * & scanner);
+   CLASS_DECL_ca string check_natural_separator(const char * input, const char * & scanner);
+   CLASS_DECL_ca string check_date(const char * input, const char * & scanner);
+   CLASS_DECL_ca string check_offset(::user::str_context * pcontext, const char * input, const char * & scanner);
+   CLASS_DECL_ca string consume_date_expression(::user::str_context * pcontext, const char * & input);
+
 
    class CLASS_DECL_ca scanner :
       virtual public ::radix::object

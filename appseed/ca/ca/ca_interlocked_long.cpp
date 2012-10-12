@@ -7,9 +7,9 @@ namespace ca
    interlocked_long::interlocked_long()
    {
 #ifdef WINDOWS
-      m_plong = (LONG *) _aligned_malloc(sizeof(LONG), 4);
+      m_plong = (long *) _aligned_malloc(sizeof(long), 4);
 #else
-      m_plong = (LONG *) malloc(sizeof(LONG));
+      m_plong = (long *) malloc(sizeof(long));
 #endif
       *m_plong = 0;
    }
@@ -44,12 +44,12 @@ namespace ca
 #endif
    }
 
-   bool interlocked_long::operator > (int i) const
+   bool interlocked_long::operator > (long i) const
    {
       return *m_plong > i;
    }
 
-   bool interlocked_long::operator == (int i) const
+   bool interlocked_long::operator == (long i) const
    {
       return *m_plong == i;
    }

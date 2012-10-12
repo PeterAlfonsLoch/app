@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(MACOS)
 #include <dlfcn.h>
 #endif
 
@@ -44,7 +44,11 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
       PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::dlsym(pdl, "ca2_factory_exchange");
       pfn_ca2_factory_exchange(this);
 #else
-      return NULL; // not implemented... yet!! you may start!!
+      System.factory().creatable_large < ::ex1::file_exception > ();
+      
+      void * pdl = ::dlopen("os.dylib", RTLD_LOCAL);
+      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::dlsym(pdl, "ca2_factory_exchange");
+      pfn_ca2_factory_exchange(this);
 #endif
    }
 

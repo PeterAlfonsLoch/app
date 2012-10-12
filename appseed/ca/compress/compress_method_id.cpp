@@ -7,7 +7,7 @@
 #include "../../Common/MyString.h"*/
 
 
-
+string ConvertMethodIdToString(uint64 id);
 
 static inline wchar_t GetHex(byte value)
 {

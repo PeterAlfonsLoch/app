@@ -11,6 +11,13 @@ namespace gen
    namespace ch
    {
 
+      
+      int ref_tables();
+      
+      int ref_tables()
+      {
+         return sizeof(char_bidi_names);
+      }
 
       string to_lower_case(const char * pszUtf8Char){
          int64_t c = uni_index(pszUtf8Char);

@@ -4,7 +4,8 @@
 namespace ca4
 {
 
-
+   CLASS_DECL_ca string char2hex( char dec );
+   CLASS_DECL_ca string urlencode( const string &c );
   
 
    typedef enum _eOAuthHttpRequestType
