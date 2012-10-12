@@ -1139,7 +1139,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClInclude Include="windows\c_os_internal.h" />
     <ClInclude Include="windows\c_os_process.h" />
     <ClInclude Include="windows\c_os_registry.h" />
+    <ClInclude Include="windows\c_os_simple_bitmap.h" />
+    <ClInclude Include="windows\c_os_simple_brush.h" />
+    <ClInclude Include="windows\c_os_simple_font.h" />
+    <ClInclude Include="windows\c_os_simple_graphics.h" />
     <ClInclude Include="windows\c_os_simple_hold_handle.h" />
+    <ClInclude Include="windows\c_os_simple_pen.h" />
     <ClInclude Include="windows\c_os_thread.h" />
   </ItemGroup>
   <ItemGroup>
@@ -1351,6 +1356,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="windows\c_os_process.cpp" />
     <ClCompile Include="windows\c_os_registry.cpp" />
     <ClCompile Include="windows\c_os_simple_app.cpp" />
+    <ClCompile Include="windows\c_os_simple_bitmap.cpp" />
+    <ClCompile Include="windows\c_os_simple_brush.cpp" />
+    <ClCompile Include="windows\c_os_simple_font.cpp" />
+    <ClCompile Include="windows\c_os_simple_graphics.cpp" />
+    <ClCompile Include="windows\c_os_simple_pen.cpp" />
     <ClCompile Include="windows\c_os_simple_shell_launcher.cpp" />
     <ClCompile Include="windows\c_os_small_ipc_channel.cpp" />
     <ClCompile Include="windows\c_os_thread.cpp" />
