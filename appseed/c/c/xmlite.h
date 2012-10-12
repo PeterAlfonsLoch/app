@@ -139,36 +139,36 @@ typedef  struct CLASS_DECL_c _tagXMLNode
 	LPXDoc	doc;		// document
 
 	// Load/Save XML
-	LPSTR	Load( LPCTSTR pszXml, LPPARSEINFO pi = xmllite_get_default_parse_info() );
+	LPSTR	Load( LPCSTR pszXml, LPPARSEINFO pi = xmllite_get_default_parse_info() );
 	vsstring GetXML( LPDISP_OPT opt = poptDefault );
 	vsstring GetText( LPDISP_OPT opt = poptDefault );
 
 	// internal load functions
    index attr_index(LPXAttr pattr);
-	LPSTR	LoadAttributes( LPCTSTR pszAttrs, LPPARSEINFO pi = xmllite_get_default_parse_info() );
-	LPSTR	LoadAttributes( LPCTSTR pszAttrs, LPCTSTR pszEnd, LPPARSEINFO pi = xmllite_get_default_parse_info() );
-	LPSTR	LoadProcessingInstrunction( LPCTSTR pszXml, LPPARSEINFO pi = xmllite_get_default_parse_info() );
+	LPSTR	LoadAttributes( LPCSTR pszAttrs, LPPARSEINFO pi = xmllite_get_default_parse_info() );
+	LPSTR	LoadAttributes( LPCSTR pszAttrs, LPCSTR pszEnd, LPPARSEINFO pi = xmllite_get_default_parse_info() );
+	LPSTR	LoadProcessingInstrunction( LPCSTR pszXml, LPPARSEINFO pi = xmllite_get_default_parse_info() );
 	LPSTR	LoadComment( LPCSTR pszXml, LPPARSEINFO pi = xmllite_get_default_parse_info() );
 	LPSTR	LoadCDATA( LPCSTR pszXml, LPPARSEINFO pi = xmllite_get_default_parse_info() );
 
 	// in own attribute list
-	LPXAttr	GetAttr( LPCTSTR attrname );
-	LPCSTR	GetAttrValue( LPCTSTR attrname );
-	XAttrs	GetAttrs( LPCTSTR name );
+	LPXAttr	GetAttr( LPCSTR attrname );
+	LPCSTR	GetAttrValue( LPCSTR attrname );
+	XAttrs	GetAttrs( LPCSTR name );
 
 	// in one level child nodes
    index child_index(LPXNode pnode);
-	LPXNode	GetChild( LPCTSTR name );
-	LPCSTR	GetChildValue( LPCTSTR name );
-	vsstring	GetChildText( LPCTSTR name, LPDISP_OPT opt = poptDefault );
-	XNodes	GetChilds( LPCTSTR name );
+	LPXNode	GetChild( LPCSTR name );
+	LPCSTR	GetChildValue( LPCSTR name );
+	vsstring	GetChildText( LPCSTR name, LPDISP_OPT opt = poptDefault );
+	XNodes	GetChilds( LPCSTR name );
 	XNodes	GetChilds();
 
    LPXNode GetChildByAttr(const char * pszName, const char * pszAttrName, const char * pszAttrValue);
    index FindChildByAttr(const char * pszName, const char * pszAttrName, const char * pszAttrValue);
 
-	LPXAttr GetChildAttr( LPCTSTR name, LPCTSTR attrname );
-	LPCSTR GetChildAttrValue( LPCTSTR name, LPCTSTR attrname );
+	LPXAttr GetChildAttr( LPCSTR name, LPCSTR attrname );
+	LPCSTR GetChildAttrValue( LPCSTR name, LPCSTR attrname );
 
 
 
@@ -178,8 +178,8 @@ typedef  struct CLASS_DECL_c _tagXMLNode
 	// modify DOM
    size_t		GetChildCount();
 	LPXNode GetChild(index ui);
-	LPXNode CreateNode( LPCTSTR name = NULL, LPCTSTR value = NULL );
-	LPXNode	AppendChild( LPCTSTR name = NULL, LPCTSTR value = NULL );
+	LPXNode CreateNode( LPCSTR name = NULL, LPCSTR value = NULL );
+	LPXNode	AppendChild( LPCSTR name = NULL, LPCSTR value = NULL );
 	LPXNode	AppendChild( LPXNode node );
 	bool	RemoveChild( LPXNode node );
 	LPXNode DetachChild( LPXNode node );
@@ -192,8 +192,8 @@ typedef  struct CLASS_DECL_c _tagXMLNode
 
 	// modify attribute
 	LPXAttr GetAttr(index i );
-	LPXAttr CreateAttr( LPCTSTR anem = NULL, LPCTSTR value = NULL );
-	LPXAttr AppendAttr( LPCTSTR name = NULL, LPCTSTR value = NULL );
+	LPXAttr CreateAttr( LPCSTR anem = NULL, LPCSTR value = NULL );
+	LPXAttr AppendAttr( LPCSTR name = NULL, LPCSTR value = NULL );
 	LPXAttr	AppendAttr( LPXAttr attr );
 	bool	RemoveAttr( LPXAttr attr );
 	LPXAttr DetachAttr( LPXAttr attr );

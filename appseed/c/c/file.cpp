@@ -320,7 +320,7 @@ bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char *
 
 #else
 
-   vsstring str(::Windows::Storage::ApplicationData::Current::TemporaryFolder);
+   vsstring str(::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path->Begin());
 
    strcpy(lpPathBuffer, str);
 
@@ -501,9 +501,11 @@ bool get_temp_file_name_dup(char * szRet, ::count iBufferSize, const char * pszN
 uint64_t file_length_dup(const char * path)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
-   HANDLE hfile = ::CreateFile(path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+   wstring wstr(path);
+
+   HANDLE hfile = ::CreateFileW(wstr, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
    if(hfile == INVALID_HANDLE_VALUE)
       return 0;
    DWORD dwHigh;
@@ -513,6 +515,28 @@ uint64_t file_length_dup(const char * path)
       return 0; // currently invalid for the purposes of this API
    ::CloseHandle(hfile);
    return ui;
+
+#elif defined(MERDE_WINDOWS)
+   
+   CREATEFILE2_EXTENDED_PARAMETERS ep;
+
+   memset(&ep, 0, sizeof(ep));
+   ep.dwSize = sizeof(ep);
+   ep.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
+
+   wstring wstr(path);
+
+   HANDLE hfile = ::CreateFile2(wstr, GENERIC_READ, 0, OPEN_EXISTING, &ep);
+   if(hfile == INVALID_HANDLE_VALUE)
+      return 0;
+   DWORD dwHigh;
+   uint64_t ui = ::GetFileSize(hfile, &dwHigh);
+   //ui |= ((uint64_t) dwHigh) << 32;
+   if(dwHigh != 0)
+      return 0; // currently invalid for the purposes of this API
+   ::CloseHandle(hfile);
+   return ui;
+
 
 #else
 
@@ -575,7 +599,7 @@ vsstring file_name_dup(const char * path)
 vsstring file_module_path_dup()
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    char path[MAX_PATH * 4];
    if(!GetModuleFileName(NULL,
@@ -599,23 +623,41 @@ vsstring file_module_path_dup()
 
 
 
+
+
 bool file_ftd_dup(const char * pszDir, const char * pszFile)
 {
-#ifdef WINDOWS
+
+#ifdef WINDOWSEX
    HANDLE hfile1 = NULL;
    HANDLE hfile2 = NULL;
-   vsstring strVersion;
-   hfile1 = ::CreateFile(pszFile, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+   hfile1 = ::CreateFile(wstr, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+   if(hfile1 == INVALID_HANDLE_VALUE)
+      return false;
+#elif defined(MERDE_WINDOWS)
+   HANDLE hfile1 = NULL;
+   HANDLE hfile2 = NULL;
+   CREATEFILE2_EXTENDED_PARAMETERS ep;
+
+   memset(&ep, 0, sizeof(ep));
+   ep.dwSize = sizeof(ep);
+   ep.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
+
+   wstring wstr(pszFile);
+
+   hfile1 = ::CreateFile2(wstr, GENERIC_READ, NULL, OPEN_EXISTING, &ep);
    if(hfile1 == INVALID_HANDLE_VALUE)
       return false;
 #else
    FILE * hfile1 = NULL;
    FILE * hfile2 = NULL;
-   vsstring strVersion;
    hfile1 = fopen(pszFile, "rb");
    if(hfile1 == NULL)
       return false;
 #endif
+
+   vsstring strVersion;
+
 
    file_read_ex1_string_dup(hfile1, NULL, strVersion);
    int n;
@@ -645,8 +687,21 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
          file_read_ex1_string_dup(hfile1, &ctx, strRelative);
          vsstring strPath = dir::path(pszDir, strRelative);
          dir::mk(dir::name(strPath));
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          hfile2 = ::CreateFile(strPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+         if(hfile2 == INVALID_HANDLE_VALUE)
+            return false;
+#elif defined(MERDE_WINDOWS)
+
+   CREATEFILE2_EXTENDED_PARAMETERS ep2;
+
+   memset(&ep2, 0, sizeof(ep2));
+   ep2.dwSize = sizeof(ep2);
+   ep2.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
+
+   wstring wstrPath(strPath);
+
+         hfile2 = ::CreateFile2(wstrPath, GENERIC_WRITE, 0, CREATE_ALWAYS, &ep2);
          if(hfile2 == INVALID_HANDLE_VALUE)
             return false;
 #else
@@ -993,7 +1048,7 @@ free(lpsz);
 */
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 bool PrintModules(vsstring & strImage, DWORD processID, const char * pszDll )
 {
@@ -1088,8 +1143,36 @@ void dll_processes(simple_uint_array & dwa, stra_dup & straProcesses, const char
 bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
+   wstring wstrNew(pszNew);
+   wstring wstrSrc(pszSrc);
+   return ::CopyFileW(wstrSrc, wstrNew, bOverwrite ? FALSE : TRUE) ? true : false;
+
+#elif defined(MERDE_WINDOWS)
+
+    wstring wstrNewDir(dir::name(pszNew));
+    wstring wstrNewNam(file_title_dup(pszNew));
+    wstring wstrSrc(pszSrc);
+
+    Windows::Storage::IStorageFolder ^ pfolder = Windows::Storage::StorageFolder::CreateFolderAsync(Platform::String(wstrNewDir), Windows::Storage::CreationCollisionOption::OpenIfExists)->Wait();
+    var _Option = Windows.Storage.CreationCollisionOption.ReplaceExisting;
+ 
+    // create file 
+    Windows::Storage::IStorageFile * pfile = _Folder.CreateFileAsync(_Name, _Option);
+    Assert.IsNotNull(_File, "Create file");
+ 
+    // write content
+    var _WriteThis = "Hello world!";
+    file.CopyAsync (_File, _WriteThis);
+ 
+    // acquire file
+    _File = await _Folder.GetFileAsync(_Name);
+    Assert.IsNotNull(_File, "Acquire file");
+ 
+    // read content
+    var _ReadThis = await Windows.Storage.FileIO.ReadTextAsync(_File);
+    Assert.AreEqual(_WriteThis, _ReadThis, "Contents match");
    return ::CopyFile(pszSrc, pszNew, bOverwrite ? FALSE : TRUE) ? true : false;
 
 #else

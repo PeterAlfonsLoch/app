@@ -30,13 +30,16 @@
 #define FILEWATCHER_PLATFORM_WIN32 1
 #define FILEWATCHER_PLATFORM_INOTIFY 2
 #define FILEWATCHER_PLATFORM_KQUEUE 3
+#define FILEWATCHER_PLATFORM_MERDWIN 6
 
-#if defined(WINDOWS)
+#if defined(WINDOWSEX)
 #define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_WIN32
 #elif defined(MACOS)
 #define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_KQUEUE
 #elif defined(LINUX)
 #define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_INOTIFY
+#elif defined(MERDE_WINDOWS)
+#define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_MERDWIN
 #endif
 
 namespace file_watcher
@@ -70,7 +73,7 @@ namespace file_watcher
 		virtual void update() = 0;
 
 		/// Handles the action
-		virtual void handle_action(watch_struct* watch, const char * filename, unsigned long action) = 0;
+		virtual void handle_action(watch_struct* watch, const char * filename, e_action action) = 0;
 
 	};
 

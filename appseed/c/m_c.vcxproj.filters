@@ -64,9 +64,6 @@
     <Filter Include="Source Files\merdas_windows">
       <UniqueIdentifier>{8db4b1b9-ec75-4fe9-8f05-8f084c5da0ce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\macos">
-      <UniqueIdentifier>{7ca1d636-5f3b-4d66-8059-7b59c7daae5e}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -384,9 +381,6 @@
     <ClCompile Include="c\c_gdi.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="macos\c_os_gdi.cpp">
-      <Filter>Source Files\macos</Filter>
-    </ClCompile>
     <ClCompile Include="merdes_windows\c_os_simple_bitmap.cpp">
       <Filter>Source Files\merdas_windows</Filter>
     </ClCompile>
@@ -401,6 +395,12 @@
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_simple_pen.cpp">
       <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_file_watcher.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="c\file_watcher.cpp">
+      <Filter>Source Files\c</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -720,6 +720,15 @@
       <Filter>Header Files\windows_merdes</Filter>
     </ClInclude>
     <ClInclude Include="c\c_gdi.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="merdes_windows\c_os_file_watcher.h">
+      <Filter>Header Files\windows_merdes</Filter>
+    </ClInclude>
+    <ClInclude Include="c\file_watcher.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\file_watcher_impl.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
   </ItemGroup>

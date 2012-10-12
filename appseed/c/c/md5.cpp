@@ -398,9 +398,12 @@ namespace md5
 vsstring get_file_md5_by_map(const char * path)
 {
 
-#if defined(WINDOWS)
+#if defined(WINDOWSEX)
 
-   HANDLE hfile = ::CreateFileA(path, FILE_READ_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
+
+   wstring wstr(path);
+
+   HANDLE hfile = ::CreateFileW(wstr, FILE_READ_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
 
    if(hfile == INVALID_HANDLE_VALUE)
    {
@@ -411,16 +414,9 @@ vsstring get_file_md5_by_map(const char * path)
 
    DWORD dwHigh;
 
-   DWORD dwSize = ::GetFileSize(hfile, &dwHigh);
+   DWORD64 dwSize = ::GetFileSize(hfile, &dwHigh);
 
-   if(dwHigh > 0)
-   {
-
-      CloseHandle(hfile);
-
-      return "";
-
-   }
+   dwSize |= ((DWORD64) dwHigh) << 32;
 
    HANDLE hfilemap = CreateFileMapping(
       hfile,
@@ -446,6 +442,60 @@ vsstring get_file_md5_by_map(const char * path)
       0,
       0
       );
+
+   if(pview == NULL)
+   {
+
+      CloseHandle(hfile);
+
+      CloseHandle(hfilemap);
+
+      return "";
+
+   }
+#elif defined(MERDE_WINDOWS)
+
+
+   wstring wstr(path);
+
+   HANDLE hfile = ::CreateFile2(wstr, FILE_READ_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, OPEN_EXISTING, NULL);
+
+   if(hfile == INVALID_HANDLE_VALUE)
+   {
+
+      return "";
+
+   }
+
+   DWORD dwHigh;
+
+   DWORD64 dwSize = ::GetFileSize(hfile, &dwHigh);
+
+   dwSize |= ((DWORD64) dwHigh) << 32;
+
+   HANDLE hfilemap = CreateFileMappingFromApp(
+      hfile,
+      NULL,
+      PAGE_READONLY,
+      dwSize,
+      NULL);
+
+   if(hfilemap == NULL)
+   {
+
+      CloseHandle(hfile);
+
+      return "";
+
+   }
+
+   char * pview = (char *) MapViewOfFileEx(
+      hfilemap,
+      FILE_MAP_READ,
+      0,
+      0,
+      0,
+      NULL);
 
    if(pview == NULL)
    {

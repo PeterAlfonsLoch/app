@@ -28,9 +28,12 @@
 #include "c/macos/c_os_file_watcher.h"
 #elif FILEWATCHER_PLATFORM == FILEWATCHER_PLATFORM_INOTIFY
 #include "c/linux/c_os_file_watcher.h"
+#elif FILEWATCHER_PLATFORM == FILEWATCHER_PLATFORM_MERDWIN
+#include "c/merdes_windows/c_os_file_watcher.h"
 #endif
 
-#	define FILEWATCHER_IMPL os_file_watcher
+#define FILEWATCHER_IMPL os_file_watcher
+
 
 namespace file_watcher
 {

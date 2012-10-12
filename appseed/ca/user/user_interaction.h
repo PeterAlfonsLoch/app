@@ -196,10 +196,10 @@ namespace user
 
       virtual bool BringWindowToTop();
 
-
+#ifdef WINDOWSEX
       virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
       virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
-
+#endif
 
       virtual bool SendChildNotifyLastMsg(LRESULT* pResult = NULL);
 
@@ -406,7 +406,7 @@ namespace user
       virtual interaction * ChildWindowFromPoint(POINT point, UINT nFlags);
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       virtual interaction * GetNextWindow(UINT nFlag = GW_HWNDNEXT);
 #else
       virtual interaction * GetNextWindow(UINT nFlag = 0);
@@ -421,7 +421,7 @@ namespace user
 
       virtual void pre_subclass_window();
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       virtual WNDPROC* GetSuperWndProcAddr();
 #endif
 

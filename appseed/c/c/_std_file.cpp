@@ -10,7 +10,7 @@
 #include <stdarg.h>
 #endif
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 
 //_flag values (not the ones used by the normal CRT
@@ -57,6 +57,43 @@ _FILE *fopen_dup(const char *path, const char *attrs)
 #if defined(LINUX) || defined(MACOS)
 
     return fopen(path, attrs);
+#elif defined(MERDE_WINDOWS)
+
+
+	DWORD access, disp;
+	if (strchr_dup(attrs, 'w'))
+	{
+		access = GENERIC_WRITE;
+		disp = CREATE_ALWAYS;
+	}
+	else
+	{
+		access = GENERIC_READ;
+		disp = OPEN_EXISTING;
+	}
+
+   CREATEFILE2_EXTENDED_PARAMETERS ep;
+
+   memset(&ep, 0, sizeof(ep));
+   ep.dwSize = sizeof(ep);
+   ep.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
+
+   wstring wstr(path);
+
+	HANDLE hFile = CreateFile2(wstr, access, 0, disp, &ep);
+
+
+	if (hFile == INVALID_HANDLE_VALUE)
+		return 0;
+
+	_FILE *file = new _FILE;
+	memset_dup(file, 0, sizeof(_FILE));
+	file->_base = (char *) hFile;
+
+	if (strchr_dup(attrs, 't'))
+		file->_flag |= _FILE_TEXT;
+
+	return file;
 
 #else
 
@@ -72,11 +109,9 @@ _FILE *fopen_dup(const char *path, const char *attrs)
 		disp = OPEN_EXISTING;
 	}
 
-   wchar_t * path16 = utf8_to_16(path);
+   wstring wstr(path);
 
-	HANDLE hFile = CreateFileW(path16, access, 0, 0, disp, 0, 0);
-
-   _ca_free(path16, 0);
+	HANDLE hFile = CreateFileW(wstr, access, 0, 0, disp, 0, 0);
 
 	if (hFile == INVALID_HANDLE_VALUE)
 		return 0;
@@ -94,7 +129,7 @@ _FILE *fopen_dup(const char *path, const char *attrs)
 
 }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs)
 {
@@ -126,6 +161,38 @@ _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs)
 
 }
 
+#elif defined(MERDE_WINDOWS)
+
+_FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs)
+{
+
+	DWORD access, disp;
+	if (wcschr_dup(attrs, L'w'))
+	{
+		access = GENERIC_WRITE;
+		disp = CREATE_ALWAYS;
+	}
+	else
+	{
+		access = GENERIC_READ;
+		disp = OPEN_EXISTING;
+	}
+
+	HANDLE hFile = CreateFile2(path, access, 0, disp, NULL);
+	if (hFile == INVALID_HANDLE_VALUE)
+		return 0;
+
+	_FILE *file = new _FILE;
+	memset_dup(file, 0, sizeof(_FILE));
+	file->_base = (char *) hFile;
+
+	if (wcschr_dup(attrs, L't'))
+		file->_flag |= _FILE_TEXT;
+
+	return file;
+
+}
+
 #endif
 
 
@@ -135,7 +202,7 @@ int fprintf_dup(_FILE *fp, const char *s, ...)
 	va_start(args, s);
 
 	char bfr[1024];
-	#ifdef WINDOWS
+	#ifdef WINDOWSEX
 	int len = wvsprintfA(bfr, s, args);
 	#else
 	int len = vsprintf(bfr, s, args);
@@ -147,7 +214,7 @@ int fprintf_dup(_FILE *fp, const char *s, ...)
 	return len;
 }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 int fwprintf_dup(_FILE *fp, const wchar_t *s, ...)
 {

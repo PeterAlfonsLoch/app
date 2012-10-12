@@ -65,7 +65,7 @@ namespace ca
       DECL_GEN_SIGNAL(_002OnDraw)
 
 
-   #if(WINVER >= 0x0500)
+   #if (WINVER >= 0x0500) && defined(WINDOWSEX)
 
       bool GetWindowInfo(PWINDOWINFO pwi) const;
       bool GetTitleBarInfo(PTITLEBARINFO pti) const;
@@ -158,10 +158,10 @@ namespace ca
       virtual UINT ArrangeIconicWindows();
       virtual bool BringWindowToTop();
 
-
+#ifdef WINDOWSEX
       virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
       virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
-
+#endif
 
    // Coordinate Mapping Functions
       virtual void MapWindowPoints(::ca::window* pwndTo, LPPOINT lpPoint, UINT nCount);
@@ -307,7 +307,7 @@ namespace ca
       virtual int ScrollWindowEx(int dx, int dy, LPCRECT lpRectScroll, LPCRECT lpRectClip, ::ca::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags);
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       virtual bool SetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, bool bRedraw = TRUE);
       virtual bool GetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, UINT nMask = SIF_ALL);
 #endif
@@ -315,7 +315,7 @@ namespace ca
 
       virtual int GetScrollLimit(int nBar);
 
-   #if(WINVER >= 0x0500)
+   #if (WINVER >= 0x0500) && defined(WINDOWSEX)
 
       virtual bool GetScrollBarInfo(LONG idObject, PSCROLLBARINFO psbi) const;
 
@@ -325,7 +325,7 @@ namespace ca
       virtual ::user::interaction * ChildWindowFromPoint(POINT point);
       virtual ::user::interaction * ChildWindowFromPoint(POINT point, UINT nFlags);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       virtual ::user::interaction * GetNextWindow(UINT nFlag = GW_HWNDNEXT);
 #else
       virtual ::user::interaction * GetNextWindow(UINT nFlag = 0);
@@ -420,7 +420,7 @@ namespace ca
       void OnClose();
       void OnContextMenu(::ca::window* pWnd, point pos);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       bool OnCopyData(::ca::window* pWnd, COPYDATASTRUCT* pCopyDataStruct);
 #endif
       int OnCreate(LPCREATESTRUCT lpCreateStruct);

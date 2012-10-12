@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "c.h"
+#include "c/c.h"
 
 #define NEAR
 #define FAR

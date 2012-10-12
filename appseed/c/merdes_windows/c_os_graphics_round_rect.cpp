@@ -27,7 +27,6 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-using namespace Gdiplus;
 
 graphics_round_rect::graphics_round_rect(void)
 {
@@ -52,11 +51,11 @@ graphics_round_rect::~graphics_round_rect(void)
 //
 // Returns:     None
 //
-void graphics_round_rect::GetRoundRectPath(GraphicsPath *pPath, Rect r, int dia)
+void graphics_round_rect::GetRoundRectPath(ID2D1PathGeometry *pPath, RECT r, int dia)
 {
    // diameter can't exceed width or height
-   if(dia > r.Width)	dia = r.Width;
-   if(dia > r.Height)	dia = r.Height;
+   if(dia > width(r))	dia = r.Width;
+   if(dia > height(r))	dia = r.Height;
 
    // define a corner
    Rect Corner(r.X, r.Y, dia, dia);

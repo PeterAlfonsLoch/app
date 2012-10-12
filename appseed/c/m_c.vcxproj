@@ -298,6 +298,8 @@
     <ClInclude Include="c\debug.h" />
     <ClInclude Include="c\dir.h" />
     <ClInclude Include="c\file.h" />
+    <ClInclude Include="c\file_watcher.h" />
+    <ClInclude Include="c\file_watcher_impl.h" />
     <ClInclude Include="c\geometric_types.h" />
     <ClInclude Include="c\heap.h" />
     <ClInclude Include="c\index.h" />
@@ -346,6 +348,7 @@
     <ClInclude Include="hotplugin\hotplugin_host.h" />
     <ClInclude Include="hotplugin\hotplugin_plugin.h" />
     <ClInclude Include="merdes_windows\c_os_file.h" />
+    <ClInclude Include="merdes_windows\c_os_file_watcher.h" />
     <ClInclude Include="merdes_windows\c_os_gdi.h" />
     <ClInclude Include="merdes_windows\c_os_graphics_round_rect.h" />
     <ClInclude Include="merdes_windows\c_os_http.h" />
@@ -405,6 +408,7 @@
     <ClCompile Include="c\dir2.cpp" />
     <ClCompile Include="c\file.cpp" />
     <ClCompile Include="c\file_spa.cpp" />
+    <ClCompile Include="c\file_watcher.cpp" />
     <ClCompile Include="c\geometric_types.cpp" />
     <ClCompile Include="c\heap.cpp" />
     <ClCompile Include="c\international.cpp" />
@@ -448,9 +452,9 @@
     <ClCompile Include="hotplugin\hotplugin_container_launcher.cpp" />
     <ClCompile Include="hotplugin\hotplugin_host.cpp" />
     <ClCompile Include="hotplugin\hotplugin_plugin.cpp" />
-    <ClCompile Include="macos\c_os_gdi.cpp" />
     <ClCompile Include="merdes_windows\c_os_c_dll.cpp" />
     <ClCompile Include="merdes_windows\c_os_file.cpp" />
+    <ClCompile Include="merdes_windows\c_os_file_watcher.cpp" />
     <ClCompile Include="merdes_windows\c_os_graphics_round_rect.cpp" />
     <ClCompile Include="merdes_windows\c_os_http.cpp" />
     <ClCompile Include="merdes_windows\c_os_launcher.cpp" />

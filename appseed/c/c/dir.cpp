@@ -10,14 +10,48 @@
 #include <unistd.h>
 #endif
 
+
 #ifdef WINDOWSEX
+
 
 bool CLASS_DECL_c SHGetSpecialFolderPath(HWND hwnd, vsstring &str, int csidl, bool fCreate)
 {
+
    return ::SHGetSpecialFolderPathW(hwnd, wstringtovss(str, MAX_PATH * 8), csidl, fCreate) != FALSE;
+
 }
 
+
 #endif
+
+
+#ifdef WINDOWS
+
+
+bool __win_file_find_is_dots(WIN32_FIND_DATA & data)
+{
+
+   if (data.cFileName[0] == '.')
+   {
+
+      if (data.cFileName[1] == '\0' ||
+         (data.cFileName[1] == '.' &&
+         data.cFileName[2] == '\0'))
+      {
+
+         return true;
+
+      }
+
+   }
+
+   return false;
+
+}
+
+
+#endif
+
 
 bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 {
@@ -39,12 +73,12 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
       throw winmerde();
       //HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramFiles, KF_FLAG_NO_ALIAS, NULL, wstringtovss(buf, 4096));
       //if(FAILED(hr))
-        // throw "dir::get_ca2_module_folder_dup : SHGetKnownFolderPath failed";
+      // throw "dir::get_ca2_module_folder_dup : SHGetKnownFolderPath failed";
 
       strcpy(lpszModuleFilePath, buf.m_psz);
 
       if(lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '\\'
-      || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
+         || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
       {
          lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
       }
@@ -64,7 +98,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
    throw winmerde();
    //GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
 
-// xxx   LPTSTR lpszModuleFileName;
+   // xxx   LPTSTR lpszModuleFileName;
 
    throw winmerde();
    //GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName);
@@ -73,19 +107,19 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
    //lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
 
    throw winmerde();
-/*
+   /*
    if(strlen_dup(lpszModuleFolder) > 0)
    {
 
-      if(lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '\\' || lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '/')
-      {
+   if(lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '\\' || lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '/')
+   {
 
-         lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] = '\0';
-
-      }
+   lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] = '\0';
 
    }
-*/
+
+   }
+   */
 
    return true;
 
@@ -107,7 +141,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
          CSIDL_PROGRAM_FILES,
          FALSE);
       if(lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '\\'
-      || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
+         || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
       {
          lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
       }
@@ -148,8 +182,8 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 #else
 
    strcpy_dup(lpszModuleFolder, "/ca2/");
-   
-   
+
+
 
 #endif
 
@@ -163,7 +197,7 @@ vsstring dir::ca2(const char * path1, const char * path2, const char * path3, co
    if(path1 == NULL && path2 == NULL && path3 == NULL && path4 == NULL)
    {
       vsstring str;
-   #ifdef WINDOWS
+#ifdef WINDOWS
       char lpszModuleFilePath[MAX_PATH * 10];
       get_ca2_module_folder_dup(lpszModuleFilePath);
       str = lpszModuleFilePath;
@@ -191,7 +225,7 @@ vsstring dir::ca2(const char * path1, const char * path2, const char * path3, co
          str += stra[i];
          str += "\\";
       }
-   #endif
+#endif
       return str;
    }
    else
@@ -203,7 +237,7 @@ bool dir::mk(const char * lpcsz)
 
 #ifdef WINDOWS
 
-   if(exists(lpcsz))
+   if(is(lpcsz))
       return true;
 
    vsstring url(lpcsz);
@@ -211,10 +245,10 @@ bool dir::mk(const char * lpcsz)
    vsstring dir;
    index oldpos = -1;
    index pos = url.find("\\");
-	while (pos >= 0)
-	{
+   while (pos >= 0)
+   {
       tmp = url.substr(oldpos + 1, pos - oldpos -1 );
-		dir += tmp + "\\";
+      dir += tmp + "\\";
       DWORD dw = GetFileAttributes(dir);
       if(dw == INVALID_FILE_ATTRIBUTES)
       {
@@ -228,9 +262,9 @@ bool dir::mk(const char * lpcsz)
       oldpos = pos;
       pos = url.find("\\", oldpos + 1);
 
-	}
+   }
    tmp = url.substr(oldpos + 1);
-	dir += tmp + "\\";
+   dir += tmp + "\\";
    if(GetFileAttributes(dir) == INVALID_FILE_ATTRIBUTES)
    {
       wstring wstr(dir);
@@ -244,7 +278,7 @@ bool dir::mk(const char * lpcsz)
 
 #else
 
-// stat -> Sir And Arthur - Serenato
+   // stat -> Sir And Arthur - Serenato
    struct stat st;
 
    vsstring url(lpcsz);
@@ -252,10 +286,10 @@ bool dir::mk(const char * lpcsz)
    vsstring dir;
    ::index oldpos = -1;
    ::index pos = url.find("\\");
-	while (pos >= 0)
-	{
+   while (pos >= 0)
+   {
       tmp = url.substr(oldpos + 1, pos - oldpos -1 );
-		dir += tmp + "\\";
+      dir += tmp + "\\";
       if(stat(dir, &st))
       {
          mkdir(dir, S_IRWXU | S_IRWXG | S_IRWXO);
@@ -263,9 +297,9 @@ bool dir::mk(const char * lpcsz)
       oldpos = pos;
       pos = url.find("\\", oldpos + 1);
 
-	}
+   }
    tmp = url.substr(oldpos + 1);
-	dir += tmp + "\\";
+   dir += tmp + "\\";
    if(stat(dir, &st))
    {
       mkdir(dir, S_IRWXU | S_IRWXG | S_IRWXO);
@@ -406,7 +440,7 @@ void dir::rls(stra_dup & stra, const char *psz)
          rls(stra, stra[i]);
       }
    }
-   
+
 }
 
 void dir::rls_dir(stra_dup & stra, const char *psz)
@@ -418,7 +452,7 @@ void dir::rls_dir(stra_dup & stra, const char *psz)
    {
       rls_dir(stra, stra[i]);
    }
-   
+
 }
 
 
@@ -457,7 +491,7 @@ void dir::ls(stra_dup & stra, const char *psz)
    while(true)
    {
 
-      if(!FindFileData.isDots)
+      if(!__win_file_find_is_dots(FindFileData) && (FindFileData.dwFileAttributes != INVALID_FILE_ATTRIBUTES))
          stra.add(FindFileData.cFileName);
 
       if(!FindNextFile(hFind, &FindFileData))
@@ -474,57 +508,57 @@ void dir::ls(stra_dup & stra, const char *psz)
 
 void dir::ls_dir(stra_dup & stra, const char *psz)
 {
-   
+
 #if defined(LINUX) || defined(MACOS)
-   
+
    DIR * dirp = opendir(psz);
-   
+
    if(dirp == NULL)
       return;
-   
+
    dirent * dp;
-   
+
    while ((dp = readdir(dirp)) != NULL)
    {
       if(is(dp->d_name))
       {
          stra.add(dp->d_name);
       }
-      
+
    }
-   
+
    closedir(dirp);
-   
+
 #else
-   
+
    WIN32_FIND_DATA FindFileData;
-   
+
    HANDLE hFind;
-   
+
    hFind = FindFirstFile(psz, &FindFileData);
-   
+
    if (hFind == INVALID_HANDLE_VALUE)
       return;
-   
+
    while(true)
    {
-      
-      if(!FindFileData.isDots && (FileFileData.dwAttributes & FILE_DIRECTORY) != 0)
+
+      if(!__win_file_find_is_dots(FindFileData) && (FindFileData.dwFileAttributes != INVALID_FILE_ATTRIBUTES) && (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
          stra.add(FindFileData.cFileName);
-  
-      
+
+
       stra.add(FindFileData.cFileName);
-      
+
       if(!FindNextFile(hFind, &FindFileData))
          break;
-      
+
    }
-   
+
    FindClose(hFind);
-   
+
 #endif
-   
-   
+
+
 }
 
 vsstring dir::default_os_user_path_prefix()
@@ -621,7 +655,7 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
 
 #elif defined(MERDE_WINDOWS)
 
-   str = vsstring(::Windows::Storage::KnownFolders::DocumentsLibrary->Path());
+   str = ::Windows::Storage::KnownFolders::DocumentsLibrary->Path->Begin();
 
 #else
 
@@ -644,7 +678,7 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
 
    /*if(App(papp).directrix().m_varTopicQuery.has_property("user_folder_relative_path"))
    {
-      strUserFolderShift = path(strRelative, App(papp).directrix().m_varTopicQuery["user_folder_relative_path"].get_string());
+   strUserFolderShift = path(strRelative, App(papp).directrix().m_varTopicQuery["user_folder_relative_path"].get_string());
    }
    else*/
    {
@@ -653,19 +687,19 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
 
    return path(path(str, "ca2", strUserFolderShift), lpcsz, lpcsz2);
 
-//      return path(path(str, "ca2"), lpcsz);
-/*      if(&AppUser(papp) == NULL)
+   //      return path(path(str, "ca2"), lpcsz);
+   /*      if(&AppUser(papp) == NULL)
    {
-      string str;
-      SHGetSpecialFolderPath(
-         NULL,
-         str,
-         CSIDL_PROFILE,
-         FALSE);
-      return path(path(str, "ca2\\_____default"), lpcsz);
+   string str;
+   SHGetSpecialFolderPath(
+   NULL,
+   str,
+   CSIDL_PROFILE,
+   FALSE);
+   return path(path(str, "ca2\\_____default"), lpcsz);
    }
    else
    {
-      return path(AppUser(papp).m_strPath, lpcsz, lpcsz2);
+   return path(AppUser(papp).m_strPath, lpcsz, lpcsz2);
    }*/
 }
