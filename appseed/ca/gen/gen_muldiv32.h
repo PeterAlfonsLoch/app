@@ -251,7 +251,7 @@ inline unsigned int MulDivRU( unsigned int a, unsigned int b, unsigned int c )
 
 CLASS_DECL_ca inline int muldiv32(int a, int b, int c)
 {
-   return ::MulDiv((int) a, (int) b, (int) c);
+   return (int) ::MulDiv((int) a, (int) b, (int) c);
 }
 
 

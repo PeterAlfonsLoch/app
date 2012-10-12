@@ -41,8 +41,8 @@ typedef INT32 LONG;   // LONG, ULONG and DWORD must be 32-bit
 #undef DWORD
 typedef UINT32 DWORD;
 
-typedef int64_t LONGLONG;
-typedef uint64_t ULONGLONG;
+//typedef int64_t LONGLONG;
+//typedef uint64_t ULONGLONG;
 
 
 typedef const CHAR *LPCSTR;

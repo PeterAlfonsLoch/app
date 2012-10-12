@@ -121,6 +121,7 @@
 		07237F4E15F99D660018B75F /* simple_tap.h in Headers */ = {isa = PBXBuildFile; fileRef = 07237F4415F99D660018B75F /* simple_tap.h */; };
 		07237F4F15F99D660018B75F /* simple_ui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07237F4515F99D660018B75F /* simple_ui.cpp */; };
 		07237F5015F99D660018B75F /* simple_ui.h in Headers */ = {isa = PBXBuildFile; fileRef = 07237F4615F99D660018B75F /* simple_ui.h */; };
+		075898A01628695700C0D8FF /* ansios_crypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0758989F1628695700C0D8FF /* ansios_crypt.cpp */; };
 		077AE6CC1606201C0052CAC4 /* c_os_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077AE6CB1606201C0052CAC4 /* c_os_thread.cpp */; };
 		07AB204D16061A6000CD4EE2 /* os_http.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AB204A16061A6000CD4EE2 /* os_http.cpp */; };
 		07AB204E16061A6000CD4EE2 /* os_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AB204B16061A6000CD4EE2 /* os_thread.cpp */; };
@@ -151,7 +152,6 @@
 		07BD558216215D9D008E31F0 /* c_os_simple_ui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD558116215D9D008E31F0 /* c_os_simple_ui.cpp */; };
 		07BD558516215F2D008E31F0 /* hotplugin_container_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD558316215F2D008E31F0 /* hotplugin_container_launcher.cpp */; };
 		07BD558616215F2D008E31F0 /* hotplugin_container_launcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD558416215F2D008E31F0 /* hotplugin_container_launcher.h */; };
-		07FA39DF1628440C007AF882 /* ansios_crypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FA39DE1628440C007AF882 /* ansios_crypt.cpp */; };
 		9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A8897AA14C24901006B4023 /* c_os_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8897A914C24901006B4023 /* c_os_file.cpp */; };
 		9A90D07D14A348E200226F1A /* c_os_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A90D07C14A348E200226F1A /* c_os_cross_gdi.mm */; };
@@ -362,6 +362,7 @@
 		07237F4415F99D660018B75F /* simple_tap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_tap.h; sourceTree = "<group>"; };
 		07237F4515F99D660018B75F /* simple_ui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_ui.cpp; sourceTree = "<group>"; };
 		07237F4615F99D660018B75F /* simple_ui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_ui.h; sourceTree = "<group>"; };
+		0758989F1628695700C0D8FF /* ansios_crypt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ansios_crypt.cpp; path = ansios/crypto/ansios_crypt.cpp; sourceTree = "<group>"; };
 		077AE6CB1606201C0052CAC4 /* c_os_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_thread.cpp; sourceTree = "<group>"; };
 		07983D461620C118006F8309 /* c_mm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_mm.h; sourceTree = "<group>"; };
 		07AB204A16061A6000CD4EE2 /* os_http.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = os_http.cpp; path = os/os_http.cpp; sourceTree = "<group>"; };
@@ -394,7 +395,6 @@
 		07BD558116215D9D008E31F0 /* c_os_simple_ui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = c_os_simple_ui.cpp; path = macos/c_os_simple_ui.cpp; sourceTree = "<group>"; };
 		07BD558316215F2D008E31F0 /* hotplugin_container_launcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hotplugin_container_launcher.cpp; sourceTree = "<group>"; };
 		07BD558416215F2D008E31F0 /* hotplugin_container_launcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hotplugin_container_launcher.h; sourceTree = "<group>"; };
-		07FA39DE1628440C007AF882 /* ansios_crypt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_crypt.cpp; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A8897A914C24901006B4023 /* c_os_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_file.cpp; sourceTree = "<group>"; };
 		9A88B4F514C2CBF8006B4023 /* c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -638,13 +638,21 @@
 			path = simple_ui;
 			sourceTree = "<group>";
 		};
+		075898A11628695C00C0D8FF /* crypto */ = {
+			isa = PBXGroup;
+			children = (
+				0758989F1628695700C0D8FF /* ansios_crypt.cpp */,
+			);
+			name = crypto;
+			sourceTree = "<group>";
+		};
 		07AB206116061BD600CD4EE2 /* ansios */ = {
 			isa = PBXGroup;
 			children = (
+				075898A11628695C00C0D8FF /* crypto */,
 				07AB205D16061BB200CD4EE2 /* ansios.h */,
 				07AB205C16061BB200CD4EE2 /* ansios_file.h */,
 				07AB205B16061BB200CD4EE2 /* ansios_file.cpp */,
-				07FA39DE1628440C007AF882 /* ansios_crypt.cpp */,
 			);
 			name = ansios;
 			sourceTree = "<group>";
@@ -1125,7 +1133,7 @@
 				07BD558016215D54008E31F0 /* c_os_simple_tap.cpp in Sources */,
 				07BD558216215D9D008E31F0 /* c_os_simple_ui.cpp in Sources */,
 				07BD558516215F2D008E31F0 /* hotplugin_container_launcher.cpp in Sources */,
-				07FA39DF1628440C007AF882 /* ansios_crypt.cpp in Sources */,
+				075898A01628695700C0D8FF /* ansios_crypt.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
