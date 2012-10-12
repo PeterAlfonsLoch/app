@@ -460,6 +460,11 @@
     <ClCompile Include="merdes_windows\c_os_process.cpp" />
     <ClCompile Include="merdes_windows\c_os_registry.cpp" />
     <ClCompile Include="merdes_windows\c_os_simple_app.cpp" />
+    <ClCompile Include="merdes_windows\c_os_simple_bitmap.cpp" />
+    <ClCompile Include="merdes_windows\c_os_simple_brush.cpp" />
+    <ClCompile Include="merdes_windows\c_os_simple_font.cpp" />
+    <ClCompile Include="merdes_windows\c_os_simple_graphics.cpp" />
+    <ClCompile Include="merdes_windows\c_os_simple_pen.cpp" />
     <ClCompile Include="merdes_windows\c_os_simple_shell_launcher.cpp" />
     <ClCompile Include="merdes_windows\c_os_small_ipc_channel.cpp" />
     <ClCompile Include="merdes_windows\c_os_thread.cpp" />

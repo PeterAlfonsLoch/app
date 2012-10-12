@@ -69,6 +69,10 @@ int vwprintf_dup(const wchar_t *format, va_list args)
 
     return vwprintf(format, args);
 
+#elif defined(MERDE_WINDOWS)
+
+    return vwprintf(format, args);
+
 #else
 	wchar_t buf[1024];
 	int ret = wvsprintfW(buf, format, args);

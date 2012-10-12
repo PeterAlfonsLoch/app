@@ -92,7 +92,7 @@ vsstring dir::userappdata(const char * lpcsz)
 
 #elif defined(MERDE_WINDOWS)
 
-   str = ::Windows::Storage::ApplicationData::Current->LocalFolder->Path();
+   str = begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
 
 #endif
    

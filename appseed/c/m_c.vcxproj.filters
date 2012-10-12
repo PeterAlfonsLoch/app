@@ -387,6 +387,21 @@
     <ClCompile Include="macos\c_os_gdi.cpp">
       <Filter>Source Files\macos</Filter>
     </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_simple_bitmap.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_simple_brush.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_simple_font.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_simple_graphics.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_simple_pen.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
