@@ -47,7 +47,7 @@ namespace ca
 #include "natural.h"
 
 
-#define if_then(p, q)  ((!(p))||(!(q)))
+#define if_then(p, q)  ((!(p))||((q)))
 #define GetAValue(rgb)      (LOBYTE((rgb)>>24))
 #define ARGB(a, r, g, b)          ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)|(((DWORD)(BYTE)(a))<<24)))
 

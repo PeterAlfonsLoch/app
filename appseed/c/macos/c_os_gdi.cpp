@@ -183,7 +183,7 @@ WINBOOL GetWindowRect(HWND hwnd, LPRECT lprect)
 }
 
 
-
+/*
 int FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
 {
     
@@ -200,7 +200,7 @@ int FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
    
    return 1;
 }
-
+*/
 
 HDC BeginPaint(HWND hwnd, PAINTSTRUCT * ps)
 {

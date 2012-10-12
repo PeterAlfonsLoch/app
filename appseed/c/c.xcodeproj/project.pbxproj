@@ -151,6 +151,7 @@
 		07BD558216215D9D008E31F0 /* c_os_simple_ui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD558116215D9D008E31F0 /* c_os_simple_ui.cpp */; };
 		07BD558516215F2D008E31F0 /* hotplugin_container_launcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD558316215F2D008E31F0 /* hotplugin_container_launcher.cpp */; };
 		07BD558616215F2D008E31F0 /* hotplugin_container_launcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD558416215F2D008E31F0 /* hotplugin_container_launcher.h */; };
+		07FA39DF1628440C007AF882 /* ansios_crypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FA39DE1628440C007AF882 /* ansios_crypt.cpp */; };
 		9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A8897AA14C24901006B4023 /* c_os_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8897A914C24901006B4023 /* c_os_file.cpp */; };
 		9A90D07D14A348E200226F1A /* c_os_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A90D07C14A348E200226F1A /* c_os_cross_gdi.mm */; };
@@ -393,6 +394,7 @@
 		07BD558116215D9D008E31F0 /* c_os_simple_ui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = c_os_simple_ui.cpp; path = macos/c_os_simple_ui.cpp; sourceTree = "<group>"; };
 		07BD558316215F2D008E31F0 /* hotplugin_container_launcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hotplugin_container_launcher.cpp; sourceTree = "<group>"; };
 		07BD558416215F2D008E31F0 /* hotplugin_container_launcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hotplugin_container_launcher.h; sourceTree = "<group>"; };
+		07FA39DE1628440C007AF882 /* ansios_crypt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_crypt.cpp; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A8897A914C24901006B4023 /* c_os_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_file.cpp; sourceTree = "<group>"; };
 		9A88B4F514C2CBF8006B4023 /* c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -642,6 +644,7 @@
 				07AB205D16061BB200CD4EE2 /* ansios.h */,
 				07AB205C16061BB200CD4EE2 /* ansios_file.h */,
 				07AB205B16061BB200CD4EE2 /* ansios_file.cpp */,
+				07FA39DE1628440C007AF882 /* ansios_crypt.cpp */,
 			);
 			name = ansios;
 			sourceTree = "<group>";
@@ -1122,6 +1125,7 @@
 				07BD558016215D54008E31F0 /* c_os_simple_tap.cpp in Sources */,
 				07BD558216215D9D008E31F0 /* c_os_simple_ui.cpp in Sources */,
 				07BD558516215F2D008E31F0 /* hotplugin_container_launcher.cpp in Sources */,
+				07FA39DF1628440C007AF882 /* ansios_crypt.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

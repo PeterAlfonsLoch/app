@@ -22,7 +22,7 @@ CreateFileA(
     HANDLE handle = new win_handle;
     
     handle->m_etype = win_handle::type_file;
-    handle->m_data.m_pfile = pfile;
+    handle->m_file.m_pfile = pfile;
 
     
     return handle;
@@ -43,7 +43,7 @@ SetFilePointer(
         return -1;
     if(hFile->m_etype != win_handle::type_file)
         return -1;
-    return fseek(hFile->m_data.m_pfile, lDistanceToMove, dwMoveMethod);
+    return fseek(hFile->m_file.m_pfile, lDistanceToMove, dwMoveMethod);
 }
 
 
@@ -61,7 +61,7 @@ WriteFile(
         return FALSE;
     if(hFile->m_etype != win_handle::type_file)
         return FALSE;
-    size_t sizeWritten = fwrite(lpBuffer, nNumberOfBytesToWrite, 1, hFile->m_data.m_pfile);
+    size_t sizeWritten = fwrite(lpBuffer, nNumberOfBytesToWrite, 1, hFile->m_file.m_pfile);
     if(lpNumberOfBytesWritten != NULL)
         *lpNumberOfBytesWritten = (uint32_t) sizeWritten;
     return TRUE;
@@ -81,7 +81,7 @@ ReadFile(
         return FALSE;
     if(hFile->m_etype != win_handle::type_file)
         return FALSE;
-    size_t sizeRead = fwrite(lpBuffer, nNumberOfBytesToRead, 1, hFile->m_data.m_pfile);
+    size_t sizeRead = fwrite(lpBuffer, nNumberOfBytesToRead, 1, hFile->m_file.m_pfile);
     if(lpNumberOfBytesRead != NULL)
         *lpNumberOfBytesRead = (uint32_t)sizeRead;
     return TRUE;
@@ -96,7 +96,7 @@ FlushFileBuffers(
     return FALSE;
     if(hFile->m_etype != win_handle::type_file)
         return FALSE;
-    return fflush(hFile->m_data.m_pfile) == 0;    
+    return fflush(hFile->m_file.m_pfile) == 0;
 }
 
 
@@ -110,7 +110,7 @@ __win_CloseFile(
         return FALSE;
     if(hFile->m_etype != win_handle::type_file)
         return FALSE;
-    return fclose(hFile->m_data.m_pfile) != FALSE;
+    return fclose(hFile->m_file.m_pfile) != FALSE;
 }
 
 WINBOOL
@@ -119,16 +119,18 @@ CloseHandle(
             HANDLE hObject
             )
 {
-    if(hObject == INVALID_HANDLE_VALUE)
-        return FALSE;
-    switch(hObject->m_etype)
-    {
-        case win_handle::type_file:
-            return __win_CloseFile(hObject);
-        default:
-            return FALSE;
-    };
- 
+   if(hObject == INVALID_HANDLE_VALUE)
+      return FALSE;
+   WINBOOL bOk = FALSE;
+   switch(hObject->m_etype)
+   {
+      case win_handle::type_file:
+         bOk = __win_CloseFile(hObject);
+      case win_handle::type_thread:
+         bOk = __win_CloseThread(hObject);
+   };
+   delete hObject;
+   return bOk;
 }
 
 

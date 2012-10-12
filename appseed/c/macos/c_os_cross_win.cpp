@@ -7,9 +7,10 @@ DWORD GetLastError()
     return m_dwLastError;
 }
 
-void SetLastError(DWORD dwLastError)
+DWORD SetLastError(DWORD dwLastError)
 {
     m_dwLastError = dwLastError;
+   return m_dwLastError;
 }
 
 void Sleep(DWORD dwMillis)

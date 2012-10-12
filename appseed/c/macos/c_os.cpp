@@ -89,12 +89,27 @@ CreateThread(
    pst->lpStartAddress = lpStartAddress;
    pst->lpParameter = lpParameter;
    
-   pthread_create(&h->m_data.m_pthread, NULL, &my_thread_proc, (void *) pst);
+   pthread_create(&h->m_thread.m_thread, NULL, &my_thread_proc, (void *) pst);
    
    
    return h;
    
 }
+
+
+WINBOOL
+WINAPI
+__win_CloseThread(
+                HANDLE hThread
+                )
+{
+   if(hThread == INVALID_HANDLE_VALUE)
+      return FALSE;
+   if(hThread->m_etype != win_handle::type_thread)
+      return FALSE;
+   return TRUE;
+}
+
 
 
 

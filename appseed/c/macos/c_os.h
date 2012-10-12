@@ -45,5 +45,10 @@ DWORD GetTickCount();
 #define MAXIMUM_WAIT_OBJECTS      64
 
 
+WINBOOL
+WINAPI
+__win_CloseThread(
+                  HANDLE hThread
+                  );
 
 
