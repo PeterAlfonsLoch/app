@@ -8,6 +8,8 @@ CLASS_DECL_c char * strdup_dup(const char * src);
 CLASS_DECL_c char * strndup_dup(const char * src, count iLen);
 CLASS_DECL_c char * strstr_dup(const char * src, const char * find);
 CLASS_DECL_c char * stristr_dup(const char * src, const char * find);
+CLASS_DECL_c char * strnstr_dup(const char * src, const char * find, int_ptr iLen);
+CLASS_DECL_c char * strnistr_dup(const char * src, const char * find, int_ptr iLen);
 CLASS_DECL_c int stricmp_dup(const char * sz1, const char * sz2);
 CLASS_DECL_c int strcmp_dup(const char * sz1, const char * sz2);
 CLASS_DECL_c int strnicmp_dup(const char * sz1, const char * sz2, count iLen);
@@ -101,4 +103,11 @@ inline size_t safe_strlen(const char * psz)
       return 0;
    return strlen_dup(psz);
 }
+
+
+
+
+CLASS_DECL_c bool matches_wildcard_criteria(const char * pszCriteria, const char * pszValue);
+CLASS_DECL_c bool matches_wildcard_criteria_ci(const char * pszCriteria, const char * pszValue);
+
 

@@ -10,21 +10,21 @@ CLASS_DECL_c bool crypt_decrypt(simple_memory & storageDecrypt, const simple_mem
 
 bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, const char * pszSalt)
 {
-   
+
    simple_memory key(get_md5(pszSalt));
-   
+
    return crypt_encrypt(storageEncrypt, storageDecrypt, key);
-   
+
 }
 
 
 bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, const char * pszSalt)
 {
-   
+
    simple_memory key(get_md5(pszSalt));
-   
+
    return crypt_decrypt(storageDecrypt, storageEncrypt, key);
-   
+
 }
 
 

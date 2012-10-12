@@ -39,6 +39,7 @@
 		<Unit filename="ansios/ansios.h" />
 		<Unit filename="ansios/ansios_file.cpp" />
 		<Unit filename="ansios/ansios_file.h" />
+		<Unit filename="ansios/crypto/ansios_crypt.cpp" />
 		<Unit filename="bsdiff/blocksort.cpp" />
 		<Unit filename="bsdiff/bsdiff.cpp" />
 		<Unit filename="bsdiff/bsdiff.h" />
@@ -83,7 +84,9 @@
 		<Unit filename="c/file.cpp" />
 		<Unit filename="c/file.h" />
 		<Unit filename="c/file_spa.cpp" />
-		<Unit filename="c/gdi.h" />
+		<Unit filename="c/file_watcher.cpp" />
+		<Unit filename="c/file_watcher.h" />
+		<Unit filename="c/file_watcher_impl.h" />
 		<Unit filename="c/geometric_types.cpp" />
 		<Unit filename="c/geometric_types.h" />
 		<Unit filename="c/heap.cpp" />
@@ -177,6 +180,8 @@
 		<Unit filename="linux/c_os_cross_win_gdi_internal.h" />
 		<Unit filename="linux/c_os_file.cpp" />
 		<Unit filename="linux/c_os_file.h" />
+		<Unit filename="linux/c_os_file_watcher.cpp" />
+		<Unit filename="linux/c_os_file_watcher.h" />
 		<Unit filename="linux/c_os_gdi.h" />
 		<Unit filename="linux/c_os_http.cpp" />
 		<Unit filename="linux/c_os_http.h" />

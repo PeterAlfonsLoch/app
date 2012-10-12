@@ -1,0 +1,79 @@
+/**
+	Basic interface for the file_watcher backend.
+
+	@author James Wynn
+	@date 5/11/2009
+
+	Copyright (c) 2009 James Wynn (james@jameswynn.com)
+
+	Permission is hereby granted, free of charge, to any person obtaining a copy
+	of this software and associated documentation files (the "Software"), to deal
+	in the Software without restriction, including without limitation the rights
+	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	copies of the Software, and to permit persons to whom the Software is
+	furnished to do so, subject to the following conditions:
+
+	The above copyright notice and this permission notice shall be included in
+	all copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+	THE SOFTWARE.
+*/
+#pragma once
+
+
+#define FILEWATCHER_PLATFORM_WIN32 1
+#define FILEWATCHER_PLATFORM_INOTIFY 2
+#define FILEWATCHER_PLATFORM_KQUEUE 3
+
+#if defined(WINDOWS)
+#define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_WIN32
+#elif defined(MACOS)
+#define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_KQUEUE
+#elif defined(LINUX)
+#define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_INOTIFY
+#endif
+
+namespace file_watcher
+{
+	struct watch_struct;
+
+	class file_watcher_impl
+	{
+	public:
+		///
+		///
+		file_watcher_impl() {}
+
+		///
+		///
+		virtual ~file_watcher_impl() {}
+
+		/// Add a directory watch
+		/// @exception file_not_found_exception Thrown when the requested directory does not exist
+		virtual id add_watch(const char * directory, file_watch_listener* pwatcher) = 0;
+
+		/// Remove a directory watch. This is a brute force lazy search O(nlogn).
+		virtual void remove_watch(const char * directory) = 0;
+
+		/// Remove a directory watch. This is a map lookup O(logn).
+		virtual void remove_watch(id watchid) = 0;
+
+		virtual vsstring watch_path(id watchid) = 0;
+
+		/// Updates the watcher. Must be called often.
+		virtual void update() = 0;
+
+		/// Handles the action
+		virtual void handle_action(watch_struct* watch, const char * filename, unsigned long action) = 0;
+
+	};
+
+
+} // namespace file_watcher
+

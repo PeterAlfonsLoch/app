@@ -2,7 +2,7 @@
 
 
 /// This class represents events for socket communication.
-class CLASS_DECL_ca socket_event : 
+class CLASS_DECL_ca socket_event :
    public event
 {
 public:
@@ -21,7 +21,7 @@ public:
 	///  \brief		constructor with passed socket handle and read state
 	///  \param		socket socket handle (default: -1)
 	///  \param		read true if socket should be ready to read (default: true)
-	socket_event(unsigned int socket = -1, bool read = true);
+	socket_event(::ca::application * papp, unsigned int socket = -1, bool read = true);
 
 	///  \brief		destructor
 	virtual ~socket_event();

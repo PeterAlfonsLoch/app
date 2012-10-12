@@ -146,7 +146,7 @@ CLASS_DECL_c void zero_pad(vsstring & str, int_ptr iPad);
 
 
 
-CLASS_DECL_c vsstring get_md5(const void * data, ::count c = -1);
+CLASS_DECL_c vsstring get_md5(const void * data, int_ptr c = -1);
 
 
 

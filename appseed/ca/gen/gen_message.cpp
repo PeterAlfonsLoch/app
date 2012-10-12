@@ -731,13 +731,18 @@ namespace gen
          m_pwindowpos = reinterpret_cast<WINDOWPOS*>(lparam);
       }
 
-#endif
-
       void nc_calc_size::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_pparams = reinterpret_cast<NCCALCSIZE_PARAMS*>(lparam);
       }
+
+      bool nc_calc_size::GetCalcValidRects()
+      {
+         return m_wparam != FALSE;
+      }
+
+#endif
 
 
       bool enable::get_enable()
@@ -745,10 +750,6 @@ namespace gen
          return m_wparam != 0;
       }
 
-      bool nc_calc_size::GetCalcValidRects()
-      {
-         return m_wparam != FALSE;
-      }
 
 
 

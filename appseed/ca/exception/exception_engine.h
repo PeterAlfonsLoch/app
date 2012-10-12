@@ -106,6 +106,9 @@ namespace exception
 #endif
 
 
+      void reset();
+
+
 #ifdef WINDOWSEX
 
       DWORD WINAPI stack_trace_ThreadProc(void * lpvoidParam);
@@ -135,7 +138,6 @@ namespace exception
       bool fail() const;
       bool load_modules();
       void clear();
-      void reset();
       bool load_module(HANDLE, HMODULE);
 
 #endif

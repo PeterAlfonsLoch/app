@@ -24,7 +24,7 @@ namespace plane
       if(papp == NULL)
       {
 
-         oprop("parent_system") = NULL;
+         oprop("parent_system") = (::ca::ca *) NULL;
 
       }
       else
@@ -46,7 +46,7 @@ namespace plane
       m_bDoNotExitIfNoApplications              = false;
 
 
-/*    
+/*
       if(psystemParent == NULL)
       {
 

@@ -12,6 +12,7 @@
 #include "c_os_cross_win_gdi.h"
 #include "c_os_cross_win_file.h"
 #include "c_os_file.h"
+#include "c_os_file_watcher.h"
 
 
 

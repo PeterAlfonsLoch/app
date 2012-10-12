@@ -6736,7 +6736,7 @@
 	"ca/primitive/count.h"
 	"ca/api/api.h"
 
-1349626334 /ca2/app/appseed/c/c/c.h
+1350061146 /ca2/app/appseed/c/c/c.h
 	"c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
 	"nodeapp/operational_system/_.h"
 	"c/vms/vms.h"
@@ -6783,6 +6783,8 @@
 	"simple_critical_section.h"
 	"library.h"
 	"simple_memory.h"
+	"file_watcher.h"
+	"file_watcher_impl.h"
 	"c/os/os.h"
 	"base64.h"
 	"c/hotplugin/hotplugin.h"
@@ -6988,7 +6990,7 @@
 
 1342864685 /ca2/app/appseed/c/c/sprintf.h
 
-1349543423 /ca2/app/appseed/c/c/str.h
+1350057504 /ca2/app/appseed/c/c/str.h
 
 1349547262 /ca2/app/appseed/c/c/std_file.h
 
@@ -7007,7 +7009,7 @@
 
 1342864685 /ca2/app/appseed/c/c/geometric_types.h
 
-1349613170 /ca2/app/appseed/c/c/verisimple_string.h
+1350046846 /ca2/app/appseed/c/c/verisimple_string.h
 
 1347082799 /ca2/app/appseed/c/c/verisimple_wstring.h
 
@@ -7168,7 +7170,7 @@
 
 1342864656 /ca2/app/appseed/c/os/os_binreloc.h
 
-1349512029 /ca2/app/appseed/c/macos/c_os.h
+1350054225 /ca2/app/appseed/c/macos/c_os.h
 	<stdarg.h>
 	<wchar.h>
 	"c_os_gdi.h"
@@ -7186,9 +7188,9 @@
 
 1342864676 /ca2/app/appseed/c/macos/c_os_cross_win_gdi.h
 
-1342864676 /ca2/app/appseed/c/macos/c_os_cross_win_file.h
+1350025623 /ca2/app/appseed/c/macos/c_os_cross_win_file.h
 
-1349626334 /ca2/app/appseed/c/linux/c_os.h
+1350061198 /ca2/app/appseed/c/linux/c_os.h
 	<stdarg.h>
 	<wchar.h>
 	"c_os_gdi.h"
@@ -7198,6 +7200,7 @@
 	"c_os_cross_win_gdi.h"
 	"c_os_cross_win_file.h"
 	"c_os_file.h"
+	"c_os_file_watcher.h"
 
 1342864691 /ca2/app/appseed/c/linux/c_os_http_lib.h
 
@@ -7364,7 +7367,7 @@
 
 1342864737 /ca2/app/appseed/ca/ca/ca_exception.h
 
-1349552187 /ca2/app/appseed/ca/exception/exception_engine.h
+1350026657 /ca2/app/appseed/ca/exception/exception_engine.h
 	<imagehlp.h>
 
 1349512037 /ca2/app/appseed/ca/exception/exception_call_stack.h
@@ -7536,13 +7539,13 @@
 
 1349547837 /ca2/app/appseed/ca/x/x_tables.h
 
-1348442181 /ca2/app/appseed/ca/gen/gen_str.h
+1350025625 /ca2/app/appseed/ca/gen/gen_str.h
 	"gen_strn.h"
 	"gen_hex.h"
 
 1348427704 /ca2/app/appseed/ca/primitive/primitive_id.h
 
-1349552223 /ca2/app/appseed/ca/primitive/primitive_string_format.h
+1350025624 /ca2/app/appseed/ca/primitive/primitive_string_format.h
 
 1342864855 /ca2/app/appseed/ca/primitive/primitive_fixed_string.h
 
@@ -7781,7 +7784,7 @@
 
 1342864809 /ca2/app/appseed/ca/collection/collection_array.h
 
-1342864809 /ca2/app/appseed/ca/collection/collection_bitset.h
+1350025624 /ca2/app/appseed/ca/collection/collection_bitset.h
 
 1342864809 /ca2/app/appseed/ca/collection/collection_packset.h
 
@@ -7838,7 +7841,7 @@
 
 1349512034 /ca2/app/appseed/ca/multithreading/multithreading_file_change_event.h
 
-1342864784 /ca2/app/appseed/ca/multithreading/multithreading_socket_event.h
+1350050058 /ca2/app/appseed/ca/multithreading/multithreading_socket_event.h
 
 1342864784 /ca2/app/appseed/ca/multithreading/multithreading_critical_section.h
 
@@ -7944,7 +7947,7 @@
 	"ca/user/user_create_context.h"
 	"ca/user/user_check_interface.h"
 
-1349543423 /ca2/app/appseed/ca/gen/gen_message.h
+1350054225 /ca2/app/appseed/ca/gen/gen_message.h
 
 1342864881 /ca2/app/appseed/ca/user/user_create_context.h
 	"ca/ca_type_info.h"
@@ -8035,9 +8038,9 @@
 
 1342864737 /ca2/app/appseed/ca/ca/ca_live_signal.h
 
-1347621935 /ca2/app/appseed/ca/ca/ca_thread.h
+1350025626 /ca2/app/appseed/ca/ca/ca_thread.h
 
-1347621935 /ca2/app/appseed/ca/radix/radix_thread.h
+1350025624 /ca2/app/appseed/ca/radix/radix_thread.h
 
 1342864737 /ca2/app/appseed/ca/ca/ca_history.h
 
@@ -8550,7 +8553,7 @@
 	"ca2_process.h"
 	"ca/ca_font.h"
 
-1342864833 /ca2/app/appseed/ca/ca2/ca2_process.h
+1350025626 /ca2/app/appseed/ca/ca2/ca2_process.h
 
 1342864825 /ca2/app/appseed/ca/geoip/geoip.h
 	"global.h"
@@ -9589,7 +9592,7 @@
 
 1342864875 /ca2/app/appseed/ca/fontopus/fontopus_application.h
 
-1342864698 /ca2/app/appseed/ca/planebase/planebase_application.h
+1350025625 /ca2/app/appseed/ca/planebase/planebase_application.h
 
 1342864849 /ca2/app/appseed/ca/dynamic_source/dynamic_source_exit_exception.h
 
@@ -9621,7 +9624,7 @@
 
 1342864700 /ca2/app/appseed/ca/plane/plane_session.h
 
-1349512031 /ca2/app/appseed/ca/plane/plane_system.h
+1350025625 /ca2/app/appseed/ca/plane/plane_system.h
 	"ca/collection/collection_gen_lemon_array.h"
 
 1342864809 /ca2/app/appseed/ca/collection/collection_gen_lemon_array.h
@@ -9815,7 +9818,7 @@
 1342864737 source:/ca2/app/appseed/ca/ca/ca_system.cpp
 	"framework.h"
 
-1349512032 source:/ca2/app/appseed/ca/ca/ca_thread.cpp
+1350025626 source:/ca2/app/appseed/ca/ca/ca_thread.cpp
 	"framework.h"
 
 1347621935 source:/ca2/app/appseed/ca/ca/ca_type_info.cpp
@@ -9827,13 +9830,13 @@
 1349512032 source:/ca2/app/appseed/ca/ca/ca_window_draw.cpp
 	"framework.h"
 
-1349512047 source:/ca2/app/appseed/ca/ca2/ca2_application.cpp
+1350025626 source:/ca2/app/appseed/ca/ca2/ca2_application.cpp
 	"framework.h"
 
 1349512047 source:/ca2/app/appseed/ca/ca2/ca2_datetime.cpp
 	"framework.h"
 
-1349552353 source:/ca2/app/appseed/ca/ca2/ca2_library.cpp
+1350053417 source:/ca2/app/appseed/ca/ca2/ca2_library.cpp
 	"framework.h"
 
 1349512047 source:/ca2/app/appseed/ca/ca2/ca2_log.cpp
@@ -9845,7 +9848,7 @@
 	<sys/socket.h>
 	<netdb.h>
 
-1342864833 source:/ca2/app/appseed/ca/ca2/ca2_process.cpp
+1350025626 source:/ca2/app/appseed/ca/ca2/ca2_process.cpp
 	"framework.h"
 
 1348987602 source:/ca2/app/appseed/ca/ca2/ca2_url.cpp
@@ -10769,7 +10772,7 @@
 1347051177 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_library_class.cpp
 	"framework.h"
 
-1349512049 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script.cpp
+1350025626 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script.cpp
 	"framework.h"
 	<dlfcn.h>
 
@@ -10960,7 +10963,7 @@
 1342864819 source:/ca2/app/appseed/ca/exception/exception_base_exception.cpp
 	"framework.h"
 
-1349512044 source:/ca2/app/appseed/ca/exception/exception_call_stack.cpp
+1350025625 source:/ca2/app/appseed/ca/exception/exception_call_stack.cpp
 	"framework.h"
 
 1349512044 source:/ca2/app/appseed/ca/exception/exception_debug.cpp
@@ -10977,7 +10980,7 @@
 	"framework.h"
 	<stdarg.h>
 
-1349552014 source:/ca2/app/appseed/ca/exception/exception_engine.cpp
+1350025625 source:/ca2/app/appseed/ca/exception/exception_engine.cpp
 	"framework.h"
 	<malloc.h>
 	<tlhelp32.h>
@@ -11000,7 +11003,7 @@
 1349512044 source:/ca2/app/appseed/ca/exception/exception_interface_only.cpp
 	"framework.h"
 
-1349512043 source:/ca2/app/appseed/ca/exception/exception_invalid_argument.cpp
+1349690089 source:/ca2/app/appseed/ca/exception/exception_invalid_argument.cpp
 	"framework.h"
 
 1349512037 source:/ca2/app/appseed/ca/exception/exception_invalid_character.cpp
@@ -11287,7 +11290,7 @@
 1342864726 source:/ca2/app/appseed/ca/gen/gen_memory.cpp
 	"framework.h"
 
-1349611816 source:/ca2/app/appseed/ca/gen/gen_message.cpp
+1350057783 source:/ca2/app/appseed/ca/gen/gen_message.cpp
 	"framework.h"
 	<X11/Xlib.h>
 	<X11/Xutil.h>
@@ -11669,7 +11672,7 @@
 1349613138 source:/ca2/app/appseed/ca/multithreading/multithreading_critical_section.cpp
 	"framework.h"
 
-1349512034 source:/ca2/app/appseed/ca/multithreading/multithreading_event.cpp
+1350025625 source:/ca2/app/appseed/ca/multithreading/multithreading_event.cpp
 	"framework.h"
 	<sys/ipc.h>
 	<sys/sem.h>
@@ -11715,7 +11718,7 @@
 1349512034 source:/ca2/app/appseed/ca/multithreading/multithreading_single_lock.cpp
 	"framework.h"
 
-1342864784 source:/ca2/app/appseed/ca/multithreading/multithreading_socket_event.cpp
+1350050989 source:/ca2/app/appseed/ca/multithreading/multithreading_socket_event.cpp
 	"framework.h"
 
 1342864784 source:/ca2/app/appseed/ca/multithreading/multithreading_synch_lock.cpp
@@ -11733,16 +11736,16 @@
 1342864786 source:/ca2/app/appseed/ca/os/os_cross_windows_crt.cpp
 	"framework.h"
 
-1349512031 source:/ca2/app/appseed/ca/plane/plane_application.cpp
+1350025625 source:/ca2/app/appseed/ca/plane/plane_application.cpp
 	"framework.h"
 
 1342864700 source:/ca2/app/appseed/ca/plane/plane_library.cpp
 	"framework.h"
 
-1349512031 source:/ca2/app/appseed/ca/plane/plane_session.cpp
+1350025625 source:/ca2/app/appseed/ca/plane/plane_session.cpp
 	"framework.h"
 
-1349512030 source:/ca2/app/appseed/ca/planebase/planebase_application.cpp
+1350025625 source:/ca2/app/appseed/ca/planebase/planebase_application.cpp
 	"framework.h"
 
 1342864820 source:/ca2/app/appseed/ca/plugin/plugin_history.cpp
@@ -11842,7 +11845,7 @@
 	<fcntl.h>
 	<sys/mman.h>
 
-1349512031 source:/ca2/app/appseed/ca/plane/plane_system.cpp
+1350058133 source:/ca2/app/appseed/ca/plane/plane_system.cpp
 	"framework.h"
 	<GdiPlus.h>
 
@@ -11998,7 +12001,7 @@
 1342864703 source:/ca2/app/appseed/ca/simpledb/simpledb_dataset.cpp
 	"framework.h"
 
-1349512031 source:/ca2/app/appseed/ca/radix/radix_thread.cpp
+1350025624 source:/ca2/app/appseed/ca/radix/radix_thread.cpp
 	"framework.h"
 
 1348390791 source:/ca2/app/appseed/ca/simpledb/simpledb_file_set.cpp
@@ -12052,7 +12055,7 @@
 	"framework.h"
 	"db_str_set.h"
 
-1347120780 source:/ca2/app/appseed/ca/simpledb/simpledb_service.cpp
+1350025624 source:/ca2/app/appseed/ca/simpledb/simpledb_service.cpp
 	"framework.h"
 	<ShlObj.h>
 
@@ -12133,7 +12136,7 @@
 1349634201 source:/ca2/app/appseed/ca/simpledb/simpledb_file_system_size.cpp
 	"framework.h"
 
-1349512031 source:/ca2/app/appseed/ca/simpledb/simpledb_socket_thread.cpp
+1350025624 source:/ca2/app/appseed/ca/simpledb/simpledb_socket_thread.cpp
 	"framework.h"
 
 1342864873 source:/ca2/app/appseed/ca/sockets/asynch_dns/sockets_resolv_server.cpp
@@ -12494,7 +12497,7 @@
 1342864829 source:/ca2/app/appseed/ca/visual/visual_cursor.cpp
 	"framework.h"
 
-1349647157 source:/ca2/app/appseed/ca/user/user_interaction.cpp
+1350025625 source:/ca2/app/appseed/ca/user/user_interaction.cpp
 	"framework.h"
 
 1342864829 source:/ca2/app/appseed/ca/visual/visual_fastblur.cpp
@@ -12786,7 +12789,7 @@
 	"c_os_simple_font.h"
 	"c_os_simple_graphics.h"
 
-1349547261 /ca2/app/appseed/c/macos/c_os_simple_bitmap.h
+1350025623 /ca2/app/appseed/c/macos/c_os_simple_bitmap.h
 
 1349543423 /ca2/app/appseed/c/macos/c_os_simple_brush.h
 
@@ -12794,7 +12797,7 @@
 
 1349547261 /ca2/app/appseed/c/macos/c_os_simple_font.h
 
-1349547261 /ca2/app/appseed/c/macos/c_os_simple_graphics.h
+1350025623 /ca2/app/appseed/c/macos/c_os_simple_graphics.h
 
 1349512029 /ca2/app/appseed/c/merdes_windows/c_os_gdi.h
 	<D2D1.h>
@@ -12813,6 +12816,12 @@
 
 1349512039 /ca2/app/appseed/ca/exception/exception_exit.h
 
-1349551120 /ca2/app/appseed/ca/primitive/datetime/datetime_float_time.h
+1350025624 /ca2/app/appseed/ca/primitive/datetime/datetime_float_time.h
 	<math.h>
+
+1350062804 /ca2/app/appseed/c/c/file_watcher.h
+
+1350062804 /ca2/app/appseed/c/c/file_watcher_impl.h
+
+1350062521 /ca2/app/appseed/c/linux/c_os_file_watcher.h
 

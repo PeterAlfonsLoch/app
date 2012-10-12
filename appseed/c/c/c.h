@@ -125,6 +125,8 @@ extern "C"
 
 #include "simple_memory.h"
 
+#include "file_watcher.h"
+#include "file_watcher_impl.h"
 
 #include "c/os/os.h"
 
@@ -145,7 +147,6 @@ extern "C"
 #include "url.h"
 
 #include "international.h"
-
 
 
 

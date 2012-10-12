@@ -203,6 +203,60 @@ char * stristr_dup(const char * src, const char * find)
    return NULL;
 }
 
+char * strnstr_dup(const char * src, const char * find, int_ptr iLen)
+{
+   if(iLen == 0)
+      return (char *) src;
+   if(iLen > strlen_dup(find))
+      return NULL;
+   int_ptr c;
+   while(*src != '\0')
+   {
+      const char * srcParse = src;
+      const char * findParse = find;
+      c = iLen;
+      while(*srcParse != '\0' && *findParse != '\0')
+      {
+         if(*srcParse != *findParse)
+            break;
+         srcParse++;
+         findParse++;
+         c--;
+      }
+      if(c == 0 || *findParse == '\0')
+         return (char *) src;
+      src++;
+   }
+   return NULL;
+}
+
+char * strnistr_dup(const char * src, const char * find, int_ptr iLen)
+{
+   if(iLen == 0)
+      return (char *) src;
+   if(iLen > strlen_dup(find))
+      return NULL;
+   int_ptr c;
+   while(*src != '\0')
+   {
+      const char * srcParse = src;
+      const char * findParse = find;
+      c = iLen;
+      while(c > 0 && *srcParse != '\0' && *findParse != '\0')
+      {
+         if(to_lower(*srcParse) != to_lower(*findParse))
+            break;
+         srcParse++;
+         findParse++;
+         c--;
+      }
+      if(c == 0 || *findParse == '\0')
+         return (char *) src;
+      src++;
+   }
+   return NULL;
+}
+
 
 void uitoa_dup(char * sz, uint64_t ui, int iBase)
 {
@@ -885,5 +939,185 @@ CLASS_DECL_c void zero_pad(vsstring & str, count iPad)
 
 }
 
+const char * wildcard_next_stop(const char * pszCriteria)
+{
+
+   if(pszCriteria == NULL)
+      return NULL;
 
 
+   const char * pszAsterisk = strstr_dup(pszCriteria, "*");
+   const char * pszQuestion = strstr_dup(pszCriteria, "?");
+
+   if(pszAsterisk == NULL && pszQuestion == NULL)
+      return NULL;
+
+   if(pszAsterisk == NULL)
+      return pszQuestion;
+   else if(pszQuestion == NULL)
+      return pszAsterisk;
+   else if(pszAsterisk < pszQuestion)
+      return pszAsterisk;
+   else
+      return pszQuestion;
+
+}
+
+
+
+bool matches_wildcard_criteria(const char * pszCriteria, const char * pszValue)
+{
+
+
+   const char * pszFind;
+   const char * pszStop;
+
+   int_ptr iLen;
+
+   while(true)
+   {
+
+      pszFind = wildcard_next_stop(pszCriteria);
+
+      if(pszFind == NULL)
+         break;
+
+      iLen = pszFind - pszCriteria;
+
+      if(*pszFind == '?')
+      {
+
+         if(pszFind > pszCriteria)
+         {
+            if(strncmp(pszValue, pszCriteria, iLen) != 0)
+               return false;
+            pszValue       += iLen;
+            pszCriteria    += iLen;
+         }
+
+         if(*pszValue == '\0')
+            return false;
+
+         pszCriteria++;
+         pszValue++;
+
+      }
+      else if(*pszFind == '*')
+      {
+
+         if(pszFind > pszCriteria)
+         {
+            if(strncmp(pszValue, pszCriteria, iLen) != 0)
+               return false;
+            pszValue       += iLen;
+            pszCriteria    += iLen;
+         }
+
+         pszStop = wildcard_next_stop(pszFind + 1);
+
+         if(pszStop == NULL)
+            pszStop = pszFind + strlen_dup(pszFind);
+
+         iLen = pszStop - (pszFind + 1);
+
+         pszValue = strnstr_dup(pszValue, pszFind + 1, iLen);
+
+         if(pszValue == NULL)
+            return false;
+
+         pszValue    = pszValue + iLen;
+         pszCriteria = pszStop;
+
+      }
+      else
+      {
+         throw "not_expected, check wildcard_next_stop function";
+      }
+
+
+   }
+
+   if(strcmp(pszValue, pszCriteria) != 0)
+      return false;
+
+   return true;
+
+}
+
+bool matches_wildcard_criteria_ci(const char * pszCriteria, const char * pszValue)
+{
+
+   const char * pszFind;
+   const char * pszStop;
+
+   int_ptr iLen;
+
+   while(true)
+   {
+
+      pszFind = wildcard_next_stop(pszCriteria);
+
+      if(pszFind == NULL)
+         break;
+
+      iLen = pszFind - pszCriteria;
+
+      if(*pszFind == '?')
+      {
+
+         if(pszFind > pszCriteria)
+         {
+            if(strnicmp_dup(pszValue, pszCriteria, iLen) != 0)
+               return false;
+            pszValue       += iLen;
+            pszCriteria    += iLen;
+         }
+
+         if(*pszValue == '\0')
+            return false;
+
+         pszCriteria++;
+         pszValue++;
+
+      }
+      else if(*pszFind == '*')
+      {
+
+         if(pszFind > pszCriteria)
+         {
+            if(strnicmp_dup(pszValue, pszCriteria, iLen) != 0)
+               return false;
+            pszValue       += iLen;
+            pszCriteria    += iLen;
+         }
+
+         pszStop = wildcard_next_stop(pszFind + 1);
+
+         if(pszStop == NULL)
+            pszStop = pszFind + strlen_dup(pszFind);
+
+         iLen = pszStop - (pszFind + 1);
+
+         pszValue = strnistr_dup(pszValue, pszFind + 1, iLen);
+
+         if(pszValue == NULL)
+            return false;
+
+         pszValue       = pszValue + iLen;
+         pszCriteria    = pszStop;
+
+      }
+      else
+      {
+         throw "not_expected, check wildcard_next_stop function";
+      }
+
+
+   }
+
+   if(stricmp_dup(pszValue, pszCriteria) != 0)
+      return false;
+
+   return true;
+
+}

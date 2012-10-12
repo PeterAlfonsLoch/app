@@ -1,32 +1,47 @@
 #include "framework.h"
 
 
+///  \brief		constructor with passed socket handle and read state
+///  \param		socket socket handle (default: -1)
+///  \param		read true if socket should be ready to read (default: true)
+socket_event::socket_event(::ca::application * papp, unsigned int socket, bool read) :
+   ca(papp),
+	event(papp, false, true),
+	m_bRead(read),
+	m_bActive(false),
+	m_iSocket(socket),
+	m_bUsedBySocketWaiterThread(false)
+{
+
+}
+
+
+socket_event::~socket_event()
+{
+	if ( !m_bUsedBySocketWaiterThread )
+		exit_wait();
+}
+
+
 void socket_event::set_active(bool active)
 {
    m_bActive = active;
 }
 
-///  \brief		constructor with passed socket handle and read state
-///  \param		socket socket handle (default: -1)
-///  \param		read true if socket should be ready to read (default: true)
-socket_event::socket_event(unsigned int socket, bool read) 
-	: event(false, true), m_bRead(read), m_bActive(false), m_iSocket(socket), m_bUsedBySocketWaiterThread(false)
-{
-}
 
 ///  \brief		socket handle setter
 ///  \param		socket socket handle
 void socket_event::SetSocketHandle(unsigned int socket)
 {
-   m_iSocket = socket; 
+   m_iSocket = socket;
 }
 //void SetSocketHandle(const SocketBase& socket) { m_iSocket = socket.get_handle_(); }   // MBO: alternative solution
 //void ChangeSocketHandle(SOCKET socket);
 
 ///  \brief		destructor
 void socket_event::SetUsedBySocketWaiterThread()
-{ 
-   m_bUsedBySocketWaiterThread = true; 
+{
+   m_bUsedBySocketWaiterThread = true;
 }
 
 
@@ -57,11 +72,6 @@ void socket_event::exit_wait ()
 //	internal::g_globals.socketWaiterThread_.AddEvent(this);
 //}
 
-socket_event::~socket_event()
-{
-	if ( !m_bUsedBySocketWaiterThread )
-		exit_wait();
-}
 
 //virtual
 socket_event::operator bool ()
