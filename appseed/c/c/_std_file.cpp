@@ -650,6 +650,6 @@ uint64_t fsize_dup(HANDLE h)
    DWORD dwLo = ::GetFileSize(h, &dwHi);
    if(dwHi)
       return 0;
-   return dwLo |( dwHi << 32);
+   return dwLo | (((DWORD64) dwHi) << 32);
 }
 #endif

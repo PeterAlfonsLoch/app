@@ -28,54 +28,64 @@
 #pragma once
 
 
-#include "FileWatcherImpl.h"
-
-
-namespace FW
+namespace file_watcher
 {
+
+
 	/// Implementation for Win32 based on ReadDirectoryChangesW.
-	/// @class FileWatcherWin32
-	class FileWatcherWin32 : public FileWatcherImpl
+	/// @class os_file_watcher
+	class os_file_watcher : public file_watcher_impl
 	{
 	public:
-		/// type for a map from WatchID to WatchStruct pointer
-		typedef simple_map<WatchID, WatchStruct*> watch_map;
+		
+      
+      /// type for a map from id to watch_struct pointer
+		typedef simple_map<id, watch_struct*> watch_map;
+
+
+	private:
+
+
+		/// Map of id to watch_struct pointers
+		watch_map m_watchmap;
+		/// The last watchid
+		id m_idLast;
+
 
 	public:
-		///
-		///
-		FileWatcherWin32();
 
-		///
-		///
-		virtual ~FileWatcherWin32();
+
+		os_file_watcher();
+		virtual ~os_file_watcher();
+
 
 		/// Add a directory watch
 		/// @exception FileNotFoundException Thrown when the requested directory does not exist
-		WatchID addWatch(const String& directory, FileWatchListener* watcher);
+		id add_watch(const char * directory, file_watch_listener* watcher);
 
 		/// Remove a directory watch. This is a brute force lazy search O(nlogn).
-		void removeWatch(const String& directory);
+		void remove_watch(const char * directory);
 
 		/// Remove a directory watch. This is a map lookup O(logn).
-		void removeWatch(WatchID watchid);
+		void remove_watch(id watchid);
+
+      vsstring watch_path(id watchid);
 
 		/// Updates the watcher. Must be called often.
 		void update();
 
 		/// Handles the action
-		void handleAction(WatchStruct* watch, const String& filename, unsigned long action);
+		void handle_action(watch_struct* watch, const char * filename, unsigned long ulOsAction);
 
-	private:
-		/// Map of WatchID to WatchStruct pointers
-		watch_map mWatches;
-		/// The last watchid
-		WatchID mLastWatchID;
 
-	};//end FileWatcherWin32
+	};
 
-};//namespace FW
 
-#endif//FILEWATCHER_PLATFORM_WIN32
+} // namespace file_watcher
 
-#endif//_FW_FILEWATCHERWIN32_H_
+
+
+
+
+
+
