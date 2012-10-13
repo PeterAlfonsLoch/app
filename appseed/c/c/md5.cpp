@@ -414,9 +414,29 @@ vsstring get_file_md5_by_map(const char * path)
 
    DWORD dwHigh;
 
+#ifdef AMD64
+
    DWORD64 dwSize = ::GetFileSize(hfile, &dwHigh);
 
    dwSize |= ((DWORD64) dwHigh) << 32;
+
+#else
+
+   DWORD dwSize = ::GetFileSize(hfile, &dwHigh);
+
+   if(dwHigh > 0)
+   {
+      
+      // if file is greater than ~4GB in 32 Bits, could not map entire file in memory view
+      // so cannot get_file_md5_by_map
+
+      ::CloseHandle(hfile);
+
+      return "";
+
+   }
+
+#endif
 
    HANDLE hfilemap = CreateFileMapping(
       hfile,
@@ -469,9 +489,29 @@ vsstring get_file_md5_by_map(const char * path)
 
    DWORD dwHigh;
 
+#ifdef AMD64
+
    DWORD64 dwSize = ::GetFileSize(hfile, &dwHigh);
 
    dwSize |= ((DWORD64) dwHigh) << 32;
+
+#else
+
+   DWORD dwSize = ::GetFileSize(hfile, &dwHigh);
+
+   if(dwHigh > 0)
+   {
+      
+      // if file is greater than ~4GB in 32 Bits, could not map entire file in memory view
+      // so cannot get_file_md5_by_map
+
+      ::CloseHandle(hfile);
+
+      return "";
+
+   }
+
+#endif
 
    HANDLE hfilemap = CreateFileMappingFromApp(
       hfile,
@@ -519,7 +559,30 @@ vsstring get_file_md5_by_map(const char * path)
 
    }
 
-   int64_t dwSize = ::get_file_size(fd);
+   int64_t iSize = ::get_file_size(fd);
+
+#ifdef AMD64
+
+   int64_t dwSize = iSize;
+
+#else
+
+   if(iSize > 0xffffffffu)
+   {
+      
+      ::close(fd);
+
+      // if file is greater than ~4GB in 32 Bits, could not map entire file in memory view
+      // so cannot get_file_md5_by_map
+
+      return "";
+
+   }
+
+   size_t dwSize = (size_t) iSize;
+
+#endif
+
 
    char * pview = (char *) mmap(NULL, dwSize, PROT_READ, MAP_PRIVATE, fd, 0);
 
