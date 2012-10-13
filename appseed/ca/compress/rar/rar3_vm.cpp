@@ -193,9 +193,9 @@ namespace compress
          {
             switch(op->Type)
             {
-            case OP_ TYPE_REG: R[op->Data] = val; return;
+            case OP_TYPE_REG: R[op->Data] = val; return;
             case OP_TYPE_REGMEM: SetValue32(&Mem[(op->Base + R[op->Data]) & kSpaceMask], val); return;
-               default:             return;
+            default: return;
             }
          }
 
@@ -215,8 +215,7 @@ namespace compress
             {
             case OP_TYPE_REG: R[op->Data] = (R[op->Data] & 0xFFFFFF00) | val; return;
             case OP_TYPE_REGMEM: Mem[(op->Base + R[op->Data]) & kSpaceMask] = val; return;
-               default:
-                  return;
+            default: return;
             }
          }
 
@@ -293,7 +292,7 @@ namespace compress
                      if (cmd->ByteMode)
                         res &= 0xFF;
                      SetOperand(cmd->ByteMode, &cmd->Op1, res);
-                     Flags = (res < v1 || res == v1 && FC) | (res == 0 ? FLAG_Z : (res & FLAG_S));
+                     Flags = ((res < v1 || res == v1) && FC) | (res == 0 ? FLAG_Z : (res & FLAG_S));
                   }
                   break;
                case CMD_SUB:
@@ -321,7 +320,7 @@ namespace compress
                      if (cmd->ByteMode)
                         res &= 0xFF;
                      SetOperand(cmd->ByteMode, &cmd->Op1, res);
-                     Flags = (res > v1 || res == v1 && FC) | (res == 0 ? FLAG_Z : (res & FLAG_S));
+                     Flags = (res > v1 || (res == v1 && FC)) | (res == 0 ? FLAG_Z : (res & FLAG_S));
                   }
                   break;
                case CMD_INC:
@@ -759,6 +758,7 @@ namespace compress
                   case CMD_SHR: cmd->OpCode = CMD_SHRB; break;
                   case CMD_SAR: cmd->OpCode = CMD_SARB; break;
                   case CMD_MUL: cmd->OpCode = CMD_MULB; break;
+                  default: break;
                   }
                }
             }
