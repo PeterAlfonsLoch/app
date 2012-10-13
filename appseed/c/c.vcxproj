@@ -1045,6 +1045,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClInclude Include="cpu_architecture.h" />
     <ClInclude Include="crypt\crypt.h" />
     <ClInclude Include="crypt\nessie.h" />
+    <ClInclude Include="c\async.h" />
     <ClInclude Include="c\atol.h" />
     <ClInclude Include="c\base64.h" />
     <ClInclude Include="c\c.h" />
@@ -1059,6 +1060,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClInclude Include="c\debug.h" />
     <ClInclude Include="c\dir.h" />
     <ClInclude Include="c\file.h" />
+    <ClInclude Include="c\file_watcher.h" />
+    <ClInclude Include="c\file_watcher_impl.h" />
+    <ClInclude Include="c\file_watcher_listener_thread.h" />
+    <ClInclude Include="c\file_watcher_thread.h" />
     <ClInclude Include="c\geometric_types.h" />
     <ClInclude Include="c\heap.h" />
     <ClInclude Include="c\index.h" />
@@ -1133,6 +1138,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClInclude Include="version\version.h" />
     <ClInclude Include="windows\c_os.h" />
     <ClInclude Include="windows\c_os_file.h" />
+    <ClInclude Include="windows\c_os_file_watcher.h" />
     <ClInclude Include="windows\c_os_gdi.h" />
     <ClInclude Include="windows\c_os_graphics_round_rect.h" />
     <ClInclude Include="windows\c_os_http.h" />
@@ -1241,6 +1247,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="c\dir2.cpp" />
     <ClCompile Include="c\file.cpp" />
     <ClCompile Include="c\file_spa.cpp" />
+    <ClCompile Include="c\file_watcher.cpp" />
+    <ClCompile Include="c\file_watcher_listener_thread.cpp" />
+    <ClCompile Include="c\file_watcher_thread.cpp" />
     <ClCompile Include="c\geometric_types.cpp" />
     <ClCompile Include="c\heap.cpp" />
     <ClCompile Include="c\international.cpp" />
@@ -1346,6 +1355,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="windows\c_os.cpp" />
     <ClCompile Include="windows\c_os_c_dll.cpp" />
     <ClCompile Include="windows\c_os_file.cpp" />
+    <ClCompile Include="windows\c_os_file_watcher.cpp" />
     <ClCompile Include="windows\c_os_gdi.cpp" />
     <ClCompile Include="windows\c_os_graphics_round_rect.cpp" />
     <ClCompile Include="windows\c_os_http.cpp" />

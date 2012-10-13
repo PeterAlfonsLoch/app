@@ -139,6 +139,12 @@ bool thread_layer::on_idle()
 
 }
 
+void thread_layer::wait_thread()
+{
+
+   ::WaitForSingleObject(m_hthread, INFINITE);
+
+}
 
 static HANDLE g_hMainThread = NULL;
 static UINT g_uiMainThread = -1;

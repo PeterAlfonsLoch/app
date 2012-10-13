@@ -103,6 +103,11 @@ public:
    int m_iSleepiness;
    int m_iResult;
 
+#ifdef WINDOWSEX
+   HANDLE   m_hthread;
+   UINT     m_nId;
+#endif
+
 
    thread_layer();
    virtual ~thread_layer();
@@ -115,6 +120,8 @@ public:
 
    virtual int run();
    virtual bool on_idle();
+
+   virtual void wait_thread();
 
 };
 

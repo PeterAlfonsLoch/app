@@ -122,9 +122,9 @@ namespace dynamic_source
 
       {
          clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch();
-         pwatch->m_strPath = m_strNetseedDsCa2Path;
+         pwatch->radd_watch(m_strNetseedDsCa2Path);
          pwatch->m_pmanager = this;
-         __begin_thread(get_app(), clear_include_matches_FolderWatchThread, (LPVOID) pwatch);
+         pwatch->begin();
       }
 
       stringa straPath;
@@ -137,9 +137,9 @@ namespace dynamic_source
          if(gen::str::begins_ci(straTitle[i], "net-"))
          {
             clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch();
-            pwatch->m_strPath = straPath[i];
+            pwatch->radd_watch(straPath[i]);
             pwatch->m_pmanager = this;
-            __begin_thread(get_app(), clear_include_matches_FolderWatchThread, (LPVOID) pwatch);
+            pwatch->begin();
          }
       }
 
@@ -483,53 +483,19 @@ namespace dynamic_source
    }
    
    
-   void clear_include_matches_folder_watch::handle_file_action(id watchid, const char * dir, const char * filename, Action action)
+   void script_manager::clear_include_matches_folder_watch::handle_file_action(::file_watcher::id watchid, const char * dir, const char * filename, ::file_watcher::e_action eaction)
    {
       
-      pwatch->m_pmanager->clear_include_matches();
+      UNREFERENCED_PARAMETER(watchid);
+      UNREFERENCED_PARAMETER(dir);
+      UNREFERENCED_PARAMETER(filename);
+      UNREFERENCED_PARAMETER(eaction);
+
+      m_pmanager->clear_include_matches();
       
    }
 
 
-   UINT c_cdecl script_manager::clear_include_matches_FolderWatchThread(LPVOID lpParam) // thread procedure
-   {
-
-      clear_include_matches_folder_watch * pwatch = (clear_include_matches_folder_watch *) lpParam;
-
-      string strDir = pwatch->m_strPath;
-      
-      pwatch->m_watcher.radd_watch(strDir);
-
-      try
-      {
-         
-         while(true)
-         {
-            
-            try
-            {
-         
-               pwatch->m_watcher.update();
-               
-            }
-            catch(::file_watcher::exception &)
-            {
-         
-            }
-            
-         }
-         
-      }
-      catch(...)
-      {
-         
-      }
-   
-      delete pwatch;
-      
-      return 0;
-
-   }
 
    string script_manager::real_path(const string & strBase, const string & str)
    {

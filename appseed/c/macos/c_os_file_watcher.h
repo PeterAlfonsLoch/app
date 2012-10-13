@@ -62,7 +62,7 @@ namespace file_watcher
 		void update();
 
 		/// Handles the action
-		void handle_action(watch_struct* watch, const char * filename, unsigned long action);
+		void handle_action(watch_struct* watch, const char * filename, unsigned long ulOsAction);
 
 	private:
 		/// Map of id to watch_struct pointers

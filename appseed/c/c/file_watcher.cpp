@@ -38,6 +38,7 @@
 namespace file_watcher
 {
 
+
 	file_watcher::file_watcher()
 	{
 		m_pimpl = new FILEWATCHER_IMPL();

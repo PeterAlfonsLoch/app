@@ -24,6 +24,9 @@ DWORD WINAPI thread_layer::proc(LPVOID lp)
 
    thread_layer * player = (thread_layer *) lp;
 
+   player->m_hthread = ::GetCurrentThread();
+   player->m_nId     = ::GetCurrentThreadId();
+
    return player->run();
 
 }

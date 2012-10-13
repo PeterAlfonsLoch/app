@@ -67,6 +67,9 @@ public:
    void InitHashTable(UINT hashSize, bool bAllocNow = TRUE);
 
 
+   void clear();
+
+
    VALUE get(KEY & argkey, VALUE & valueDefault);
 
 // Implementation
@@ -184,6 +187,13 @@ void simple_map< KEY,  VALUE >::InitHashTable(
    }
    m_nHashTableSize = nHashSize;
 }
+
+template<class KEY,  class VALUE>
+void simple_map< KEY,  VALUE >::clear()
+{
+   remove_all();
+}
+
 
 template<class KEY,  class VALUE>
 void simple_map< KEY,  VALUE >::remove_all()

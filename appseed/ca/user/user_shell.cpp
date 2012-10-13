@@ -407,7 +407,7 @@ namespace filemanager
 
       gen::international::unicode_to_utf8(strPath, lpcszPath);
 
-      if(dir::exists(strPath))
+      if(dir::is(strPath))
       {
          return FolderFileSystem;
       }

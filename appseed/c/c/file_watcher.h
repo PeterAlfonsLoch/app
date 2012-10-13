@@ -31,6 +31,8 @@
 
 namespace file_watcher
 {
+
+
 	/// Type for a watch id
 	typedef unsigned long id;
 	typedef simple_array < id > id_array;
@@ -41,7 +43,7 @@ namespace file_watcher
 
 	/// Base exception class
 	/// @class Exception
-	class exception
+	class CLASS_DECL_c exception
 	{
 	public:
 
@@ -55,7 +57,7 @@ namespace file_watcher
 
 	/// Exception thrown when a file is not found.
 	/// @class file_not_found_exception
-	class file_not_found_exception : public exception
+	class CLASS_DECL_c file_not_found_exception : public exception
 	{
 	public:
 		file_not_found_exception()
@@ -85,7 +87,7 @@ namespace file_watcher
 	/// Listens to files and directories and dispatches events
 	/// to notify the parent program of the changes.
 	/// @class file_watcher
-	class file_watcher
+	class CLASS_DECL_c file_watcher
 	{
 	private:
 		
@@ -121,7 +123,7 @@ namespace file_watcher
 
 	/// Basic interface for listening for file events.
 	/// @class file_watch_listener
-	class file_watch_listener
+	class CLASS_DECL_c file_watch_listener
 	{
 	public:
       

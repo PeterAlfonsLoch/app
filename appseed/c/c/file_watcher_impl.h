@@ -73,7 +73,7 @@ namespace file_watcher
 		virtual void update() = 0;
 
 		/// Handles the action
-		virtual void handle_action(watch_struct* watch, const char * filename, e_action action) = 0;
+		virtual void handle_action(watch_struct* watch, const char * filename, unsigned long ulOsAction) = 0;
 
 	};
 

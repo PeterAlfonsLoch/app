@@ -28,10 +28,10 @@
 #pragma once
 
 
-#if FILEWATCHER_PLATFORM == FILEWATCHER_PLATFORM_MERDWIN
+#include "FileWatcherImpl.h"
 
 
-namespace file_watcher
+namespace FW
 {
 	/// Implementation for Win32 based on ReadDirectoryChangesW.
 	/// @class FileWatcherWin32
@@ -39,7 +39,7 @@ namespace file_watcher
 	{
 	public:
 		/// type for a map from WatchID to WatchStruct pointer
-		typedef std::map<WatchID, WatchStruct*> WatchMap;
+		typedef simple_map<WatchID, WatchStruct*> watch_map;
 
 	public:
 		///
@@ -68,7 +68,7 @@ namespace file_watcher
 
 	private:
 		/// Map of WatchID to WatchStruct pointers
-		WatchMap mWatches;
+		watch_map mWatches;
 		/// The last watchid
 		WatchID mLastWatchID;
 

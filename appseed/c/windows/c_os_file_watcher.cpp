@@ -19,51 +19,38 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE.
 */
+#include "framework.h"
 
-#include <FileWatcher/FileWatcherWin32.h>
 
-#if FILEWATCHER_PLATFORM == FILEWATCHER_PLATFORM_WIN32
-
-#define _WIN32_WINNT 0x0550
-#include <windows.h>
-
-#if defined(_MSC_VER)
-#pragma comment(lib, "comctl32.lib")
-#pragma comment(lib, "user32.lib")
-#pragma comment(lib, "ole32.lib")
-
-// disable secure warnings
-#pragma warning (disable: 4996)
-#endif
-
-namespace FW
+namespace file_watcher
 {
+
 	/// Internal watch data
-	struct WatchStruct
+	struct watch_struct
 	{
-		OVERLAPPED mOverlapped;
-		HANDLE mDirHandle;
-		BYTE mBuffer[32 * 1024];
-		LPARAM lParam;
-		DWORD mNotifyFilter;
-		bool mStopNow;
-		FileWatcherImpl* mFileWatcher;
-		FileWatchListener* mFileWatchListener;
-		char* mDirName;
-		WatchID mWatchid;
+		OVERLAPPED m_overlapped;
+		HANDLE m_hDirectory;
+		BYTE m_buffer[32 * 1024];
+		LPARAM m_lparam;
+		DWORD m_dwNotify;
+		bool m_bStop;
+		file_watcher_impl* m_pwatcher;
+		file_watch_listener* m_plistener;
+		vsstring m_strDirName;
+		id m_id;
 	};
 
 #pragma region Internal Functions
 
 	// forward decl
-	bool RefreshWatch(WatchStruct* pWatch, bool _clear = false);
+	bool RefreshWatch(watch_struct* pWatch, bool _clear = false);
 
 	/// Unpacks events and passes them to a user defined callback.
 	void CALLBACK WatchCallback(DWORD dwErrorCode, DWORD dwNumberOfBytesTransfered, LPOVERLAPPED lpOverlapped)
 	{
 		TCHAR szFile[MAX_PATH];
 		PFILE_NOTIFY_INFORMATION pNotify;
-		WatchStruct* pWatch = (WatchStruct*) lpOverlapped;
+		watch_struct* pWatch = (watch_struct*) lpOverlapped;
 		size_t offset = 0;
 
 		if(dwNumberOfBytesTransfered == 0)
@@ -73,7 +60,7 @@ namespace FW
 		{
 			do
 			{
-				pNotify = (PFILE_NOTIFY_INFORMATION) &pWatch->mBuffer[offset];
+				pNotify = (PFILE_NOTIFY_INFORMATION) &pWatch->m_buffer[offset];
 				offset += pNotify->NextEntryOffset;
 
 #			if defined(UNICODE)
@@ -90,63 +77,62 @@ namespace FW
 				}
 #			endif
 
-				pWatch->mFileWatcher->handleAction(pWatch, szFile, pNotify->Action);
+				pWatch->m_pwatcher->handle_action(pWatch, szFile, pNotify->Action);
 
 			} while (pNotify->NextEntryOffset != 0);
 		}
 
-		if (!pWatch->mStopNow)
+		if (!pWatch->m_bStop)
 		{
 			RefreshWatch(pWatch);
 		}
 	}
 
 	/// Refreshes the directory monitoring.
-	bool RefreshWatch(WatchStruct* pWatch, bool _clear)
+	bool RefreshWatch(watch_struct* pWatch, bool _clear)
 	{
 		return ReadDirectoryChangesW(
-			pWatch->mDirHandle, pWatch->mBuffer, sizeof(pWatch->mBuffer), FALSE,
-			pWatch->mNotifyFilter, NULL, &pWatch->mOverlapped, _clear ? 0 : WatchCallback) != 0;
+			pWatch->m_hDirectory, pWatch->m_buffer, sizeof(pWatch->m_buffer), FALSE,
+			pWatch->m_dwNotify, NULL, &pWatch->m_overlapped, _clear ? 0 : WatchCallback) != 0;
 	}
 
 	/// Stops monitoring a directory.
-	void DestroyWatch(WatchStruct* pWatch)
+	void DestroyWatch(watch_struct* pWatch)
 	{
 		if (pWatch)
 		{
-			pWatch->mStopNow = TRUE;
+			pWatch->m_bStop = TRUE;
 
-			CancelIo(pWatch->mDirHandle);
+			CancelIo(pWatch->m_hDirectory);
 
 			RefreshWatch(pWatch, true);
 
-			if (!HasOverlappedIoCompleted(&pWatch->mOverlapped))
+			if (!HasOverlappedIoCompleted(&pWatch->m_overlapped))
 			{
 				SleepEx(5, TRUE);
 			}
 
-			CloseHandle(pWatch->mOverlapped.hEvent);
-			CloseHandle(pWatch->mDirHandle);
-			delete pWatch->mDirName;
+			CloseHandle(pWatch->m_overlapped.hEvent);
+			CloseHandle(pWatch->m_hDirectory);
 			HeapFree(GetProcessHeap(), 0, pWatch);
 		}
 	}
 
 	/// Starts monitoring a directory.
-	WatchStruct* CreateWatch(LPCTSTR szDirectory, DWORD mNotifyFilter)
+	watch_struct* CreateWatch(LPCTSTR szDirectory, DWORD m_dwNotify)
 	{
-		WatchStruct* pWatch;
+		watch_struct* pWatch;
 		size_t ptrsize = sizeof(*pWatch);
-		pWatch = static_cast<WatchStruct*>(HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, ptrsize));
+		pWatch = static_cast<watch_struct*>(HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, ptrsize));
 
-		pWatch->mDirHandle = CreateFile(szDirectory, FILE_LIST_DIRECTORY,
+		pWatch->m_hDirectory = CreateFile(szDirectory, FILE_LIST_DIRECTORY,
 			FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, 
 			OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED, NULL);
 
-		if (pWatch->mDirHandle != INVALID_HANDLE_VALUE)
+		if (pWatch->m_hDirectory != INVALID_HANDLE_VALUE)
 		{
-			pWatch->mOverlapped.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-			pWatch->mNotifyFilter = mNotifyFilter;
+			pWatch->m_overlapped.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+			pWatch->m_dwNotify = m_dwNotify;
 
 			if (RefreshWatch(pWatch))
 			{
@@ -154,8 +140,8 @@ namespace FW
 			}
 			else
 			{
-				CloseHandle(pWatch->mOverlapped.hEvent);
-				CloseHandle(pWatch->mDirHandle);
+				CloseHandle(pWatch->m_overlapped.hEvent);
+				CloseHandle(pWatch->m_hDirectory);
 			}
 		}
 
@@ -165,104 +151,103 @@ namespace FW
 
 #pragma endregion
 
-	//--------
-	FileWatcherWin32::FileWatcherWin32()
-		: mLastWatchID(0)
+	os_file_watcher::os_file_watcher()
+		: m_idLast(0)
 	{
 	}
 
 	//--------
-	FileWatcherWin32::~FileWatcherWin32()
+	os_file_watcher::~os_file_watcher()
 	{
-		WatchMap::iterator iter = mWatches.begin();
-		WatchMap::iterator end = mWatches.end();
-		for(; iter != end; ++iter)
+      watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
+		for(; ppair != NULL; m_watchmap.PGetNextAssoc(ppair))
 		{
-			DestroyWatch(iter->second);
+			DestroyWatch(ppair->m_value);
 		}
-		mWatches.clear();
+		m_watchmap.clear();
 	}
 
 	//--------
-	WatchID FileWatcherWin32::addWatch(const String& directory, FileWatchListener* watcher)
+	id os_file_watcher::add_watch(const char * directory, file_watch_listener* watcher)
 	{
-		WatchID watchid = ++mLastWatchID;
+		id watchid = ++m_idLast;
 
-		WatchStruct* watch = CreateWatch(directory.c_str(),
-			FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_SIZE | FILE_NOTIFY_CHANGE_FILE_NAME);
+		watch_struct * pwatch = CreateWatch(directory, FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_SIZE | FILE_NOTIFY_CHANGE_FILE_NAME);
 
-		if(!watch)
-			throw FileNotFoundException(directory);
+      if(pwatch == NULL)
+			throw file_not_found_exception(directory);
 
-		watch->mWatchid = watchid;
-		watch->mFileWatcher = this;
-		watch->mFileWatchListener = watcher;
-		watch->mDirName = new char[directory.length()+1];
-		strcpy(watch->mDirName, directory.c_str());
+		pwatch->m_id = watchid;
+		pwatch->m_pwatcher = this;
+		pwatch->m_plistener = watcher;
+		pwatch->m_strDirName = directory;
 
-		mWatches.insert(std::make_pair(watchid, watch));
+		m_watchmap.set_at(watchid, pwatch);
 
 		return watchid;
 	}
 
-	//--------
-	void FileWatcherWin32::removeWatch(const String& directory)
+	void os_file_watcher::remove_watch(const char * directory)
 	{
-		WatchMap::iterator iter = mWatches.begin();
-		WatchMap::iterator end = mWatches.end();
-		for(; iter != end; ++iter)
+      watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
+      for(; ppair != NULL; m_watchmap.PGetNextAssoc(ppair))
 		{
-			if(directory == iter->second->mDirName)
+			if(stricmp(directory, ppair->m_value->m_strDirName) == 0)
 			{
-				removeWatch(iter->first);
+				remove_watch(ppair->m_key);
 				return;
 			}
 		}
 	}
 
-	//--------
-	void FileWatcherWin32::removeWatch(WatchID watchid)
+	void os_file_watcher::remove_watch(id watchid)
 	{
-		WatchMap::iterator iter = mWatches.find(watchid);
+      watch_map::pair * ppair = m_watchmap.PLookup(watchid);
 
-		if(iter == mWatches.end())
+		if(ppair == NULL)
 			return;
 
-		WatchStruct* watch = iter->second;
-		mWatches.erase(iter);
+		watch_struct * pwatch = ppair->m_value;
+      m_watchmap.remove_key(ppair->m_key);
 
-		DestroyWatch(watch);
+		DestroyWatch(pwatch);
 	}
 
-	//--------
-	void FileWatcherWin32::update()
+	vsstring os_file_watcher::watch_path(id watchid)
+   {
+      return m_watchmap.PLookup(watchid)->m_value->m_strDirName;
+   }
+
+	void os_file_watcher::update()
 	{
 		MsgWaitForMultipleObjectsEx(0, NULL, 0, QS_ALLINPUT, MWMO_ALERTABLE);
 	}
 
-	//--------
-	void FileWatcherWin32::handleAction(WatchStruct* watch, const String& filename, unsigned long action)
+	void os_file_watcher::handle_action(watch_struct* watch, const char * filename, unsigned long action)
 	{
-		Action fwAction;
+		e_action eaction;
 
 		switch(action)
 		{
 		case FILE_ACTION_RENAMED_NEW_NAME:
 		case FILE_ACTION_ADDED:
-			fwAction = Actions::Add;
+			eaction = action_add;
 			break;
 		case FILE_ACTION_RENAMED_OLD_NAME:
 		case FILE_ACTION_REMOVED:
-			fwAction = Actions::Delete;
+			eaction = action_delete;
 			break;
 		case FILE_ACTION_MODIFIED:
-			fwAction = Actions::Modified;
+			eaction = action_modify;
 			break;
 		};
 
-		watch->mFileWatchListener->handleFileAction(watch->mWatchid, watch->mDirName, filename, fwAction);
+      watch->m_plistener->handle_file_action(watch->m_id, watch->m_strDirName, filename, eaction);
 	}
 
-};//namespace FW
 
-#endif//_WIN32
+} // namespace file_watcher
+
+
+
+

@@ -8,6 +8,7 @@
 #include "c_os_process.h"
 #include "c_os_simple_hold_handle.h"
 #include "c_os_file.h"
+#include "c_os_file_watcher.h"
 #include "c_os_graphics_round_rect.h"
 
 

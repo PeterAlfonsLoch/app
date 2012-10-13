@@ -32,14 +32,12 @@ namespace dynamic_source
 
       
       class CLASS_DECL_ca clear_include_matches_folder_watch :
-         public ::file_watcher::file_watch_listener
+         public ::file_watcher::listener_thread
       
       {
       public:
 
          
-         ::file_watcher::file_watcher  m_watcher;
-         string                        m_strPath;
          script_manager *              m_pmanager;
          
          

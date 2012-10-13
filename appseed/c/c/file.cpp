@@ -631,7 +631,8 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
 #ifdef WINDOWSEX
    HANDLE hfile1 = NULL;
    HANDLE hfile2 = NULL;
-   hfile1 = ::CreateFile(wstr, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+   wstring wstr(pszFile);
+   hfile1 = ::CreateFileW(wstr, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
    if(hfile1 == INVALID_HANDLE_VALUE)
       return false;
 #elif defined(MERDE_WINDOWS)

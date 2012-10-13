@@ -130,6 +130,10 @@ extern "C"
 
 #include "c/os/os.h"
 
+#include "file_watcher_thread.h"
+#include "file_watcher_listener_thread.h"
+#include "async.h"
+
 
 #include "base64.h"
 #include "c/hotplugin/hotplugin.h"
