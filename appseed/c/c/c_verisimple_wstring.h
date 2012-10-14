@@ -1,6 +1,20 @@
 #pragma once
 
 
+class verisimple_wstring;
+
+
+typedef verisimple_wstring wstring;
+
+
+CLASS_DECL_c verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimple_wstring & wstr2);
+CLASS_DECL_c verisimple_wstring operator + (const verisimple_wstring & str, const wchar_t * psz);
+CLASS_DECL_c verisimple_wstring operator + (const wchar_t * psz, const verisimple_wstring & str);
+
+
+CLASS_DECL_c wstring gen_utf8_to_16(const char * psz);
+
+
 class CLASS_DECL_c wstring_data
 {
 protected:
@@ -226,14 +240,35 @@ public:
       return L"";
    }
 
+   inline verisimple_wstring & append(wchar_t wch)
+   {
+      
+      wchar_t wsz[2];
+      
+      wsz[0] = wch;
+      
+      wsz[1] = L'\0';
+      
+      return *this = (*this + wsz);
+
+   }
+
+   inline verisimple_wstring & append(wchar_t wch, ::count c)
+   {
+
+      while(c > 0)
+      {
+
+         append(wch);
+
+         c--;
+
+      }
+
+      return *this;
+
+   }
+
 };
 
 
-typedef verisimple_wstring wstring;
-
-
-CLASS_DECL_c verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimple_wstring & wstr2);
-CLASS_DECL_c verisimple_wstring operator + (const verisimple_wstring & str, const wchar_t * psz);
-CLASS_DECL_c verisimple_wstring operator + (const wchar_t * psz, const verisimple_wstring & str);
-
-CLASS_DECL_c wstring gen_utf8_to_16(const char * psz);

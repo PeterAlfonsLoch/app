@@ -1,15 +1,24 @@
 #include "framework.h"
+#undef new
 #include <gdiplus.h>
 
 
 simple_graphics::simple_graphics()
 {
 
-   m_hdc    = NULL;
+   m_pgraphics    = NULL;
 
-   m_hwnd   = NULL;
+   m_hwnd         = NULL;
 
-   m_iType  = 0;
+   m_iType        = 0;
+
+   m_pbitmap      = NULL;
+
+   m_pbrush       = NULL;
+
+   m_pfont        = NULL;
+
+   m_ppen         = NULL;
 
 }
 
@@ -412,6 +421,14 @@ SIZE simple_graphics::get_text_extent(const char * psz, int iLen)
 }
 
 
+bool simple_graphics::draw_line(int x1, int y1, int x2, int y2, simple_pen & pen)
+{
+
+   return m_pgraphics->DrawLine(pen.m_ppen, Gdiplus::Point(x1, y1), Gdiplus::Point(x2, y2));
+
+}
+
+
 bool simple_graphics::rectangle(LPCRECT lpcrect)
 {
    
@@ -430,6 +447,49 @@ bool simple_graphics::set_text_color(COLORREF cr)
 {
    
    return ::SetTextColor(m_hdc, cr) != FALSE;
+
+}
+
+bool simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
+{
+
+   switch(emode)
+   {
+   case ::ca::alpha_mode_blend:
+      return m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+   case ::ca::alpha_mode_set:
+      return m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
+   };
+
+   return false;
+
+}
+
+bool simple_graphics::replace_clip(simple_path & path)
+{
+
+   return m_pgraphics->SetClip(path.m_ppath, Gdiplus::CombineModeReplace) == Gdiplus::Ok;
+
+}
+
+bool simple_graphics::exclude_clip(simple_path & path)
+{
+
+   return m_pgraphics->SetClip(path.m_ppath, Gdiplus::CombineModeExclude) == Gdiplus::Ok;
+
+}
+
+bool replace_clip(const RECT & r)
+{
+
+   Gdiplus::Rect rect;
+
+   rect.X = r.left;
+   rect.Y = r.top;
+   rect.Width = width(r);
+   rect.Height = height(r);
+
+   return m_pgraphics->SetClip(rect, Gdiplus::CombineModeReplace) == Gdiplus::Ok;
 
 }
 
@@ -453,3 +513,28 @@ bool simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
    delete  [] pwsz;
    return b;
 }
+
+
+bool simple_graphics::fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode)
+{
+
+   Gdiplus::Point * ppa = new Gdiplus::Point[iCount];
+
+   for(int i = 0; i < iCount; i++)
+   {
+      ppa[i].X = p[i].x;
+      ppa[i].Y = p[i].y;
+   }
+
+   bool bOk = m_pgraphics->FillPolygon(m_brush.m_pbrush, ppa, 4, Gdiplus::FillModeWinding) == Gdiplus::Ok;
+
+   delete ppa;
+
+   return bOk;
+
+
+}
+
+
+
+

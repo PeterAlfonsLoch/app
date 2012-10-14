@@ -32,27 +32,27 @@ return pchParam;
 void simple_edit_box::draw_this(simple_graphics & g)
 {
 
-   Gdiplus::Graphics graphics2(g.m_hdc);
+   g.set_alpha_mode(::ca::alpha_mode_blend);
 
-   graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+   simple_brush br;
+   
+   br.create_solid(ARGB(84 + 49, 255, 255, 233));
 
-   Gdiplus::SolidBrush br(Gdiplus::Color(84 + 49, 255, 255, 233));
-
-   graphics2.FillRectangle(&br, m_rect.left, m_rect.top, width(&m_rect), height(&m_rect));
+   g.fill_rect(m_rect, br);
 
    draw_focus_rect(g);
 
-   Gdiplus::SolidBrush b(Gdiplus::Color(223, 49, 49, 23));
+   simple_solid_brush b(ARGB(223, 49, 49, 23));
 
-   Gdiplus::Font f(L"Geneva", height(&m_rect) * 0.7f, 0, Gdiplus::UnitPixel);
+   simple_pixel_font f(height(&m_rect), "Geneva", g);
 
-   wchar_t * pwsz = utf8_to_16(m_strText);
+   g.select(b);
+
+   g.select(f);
 
    float fMargin = (height(&m_rect) * ((1.0f - 0.7f) / 2.0f));
 
-   graphics2.DrawString(pwsz, wcslen_dup(pwsz), &f, Gdiplus::PointF(m_rect.left + fMargin, m_rect.top + fMargin), &b);
-
-   ca2_free(pwsz);
+   g.text_out(m_rect.left + fMargin, m_rect.top + fMargin, m_strText);
 
 }
 

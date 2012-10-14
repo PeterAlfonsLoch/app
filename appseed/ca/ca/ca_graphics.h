@@ -34,12 +34,6 @@ namespace ca
    class dib;
    class job;
 
-   enum e_alpha_mode
-   {
-      alpha_mode_set,
-      alpha_mode_blend,
-   };
-
    enum e_text_rendering
    {
       text_rendering_anti_alias,

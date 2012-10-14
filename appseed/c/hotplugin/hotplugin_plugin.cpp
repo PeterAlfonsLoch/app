@@ -16,6 +16,11 @@
 #include "c/linux/c_os_cross_win_gdi_internal.h"
 #endif
 
+#ifdef WINDOWSEX
+#include <gdiplus.h>
+#endif
+
+
 
 void fastblur(DWORD * pdata, int w, int h, int radius);
 
@@ -245,224 +250,224 @@ namespace hotplugin
       return true;
    }
 
-/*double cos_prec_dup(double x,double prec)
-{
-    double t , s ;
-    int p;
-    p = 0;
-    s = 1.0;
-    t = 1.0;
-    while(fabs(t/s) > prec)
-    {
-        p++;
-        t = (-t * x * x) / ((2 * p - 1) * (2 * p));
-        s += t;
-    }
-    return s;
-}*/
+   /*double cos_prec_dup(double x,double prec)
+   {
+   double t , s ;
+   int p;
+   p = 0;
+   s = 1.0;
+   t = 1.0;
+   while(fabs(t/s) > prec)
+   {
+   p++;
+   t = (-t * x * x) / ((2 * p - 1) * (2 * p));
+   s += t;
+   }
+   return s;
+   }*/
 
-double sin_dup(double x);
+   double sin_dup(double x);
 
-double cos_dup(double x)
-{
-
-   double sin = sin_dup(x / 2.0);
-
-   return 1.0 - 2.0 * sin * sin;
-
-}
-
-double sin_dup(double x)
-{
-
-   if(x < 0.0)
+   double cos_dup(double x)
    {
 
-      return -sin_dup(-x);
+      double sin = sin_dup(x / 2.0);
+
+      return 1.0 - 2.0 * sin * sin;
 
    }
-   else if(x < 3.1415 / 16.0)
+
+   double sin_dup(double x)
    {
 
-      double sin = 0.0;
-      double pow = x;
-      double fact = 1.0;
-
-      for(double d = 0.0; d < 16.0; d += 1.0)
+      if(x < 0.0)
       {
-         sin += pow / fact;
-         pow *= x * x;
-         fact *= (2.0 * (d + 1.0)) * (2.0 * (d + 1.0) + 1.0);
+
+         return -sin_dup(-x);
+
+      }
+      else if(x < 3.1415 / 16.0)
+      {
+
+         double sin = 0.0;
+         double pow = x;
+         double fact = 1.0;
+
+         for(double d = 0.0; d < 16.0; d += 1.0)
+         {
+            sin += pow / fact;
+            pow *= x * x;
+            fact *= (2.0 * (d + 1.0)) * (2.0 * (d + 1.0) + 1.0);
+         }
+
+         return sin;
+
+      }
+      else
+      {
+
+         return 2.0 * sin_dup(x / 2.0) * cos_dup(x / 2.0);
+
       }
 
-      return sin;
-
-   }
-   else
-   {
-
-      return 2.0 * sin_dup(x / 2.0) * cos_dup(x / 2.0);
-
    }
 
-}
-
-void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int iProfile)
-{
-   double dH = dRate; // blue ==> red => green
-   double dL;
-   double dS;
-
-   if(iProfile == 0)
+   void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int iProfile)
    {
-      dL = 0.49;
-      dS = 0.77;
-   }
-   else if(iProfile == 1)
-   {
-      dL = 0.63;
-      dS = 0.84;
-   }
-   else
-   {
-      dL = 0.54;
-      dS = 0.84;
-   }
+      double dH = dRate; // blue ==> red => green
+      double dL;
+      double dS;
 
-   {
-      if(dH >= 1.0)
-         dH = 0.0;
-      else if(dH < 0.0)
-         dH = 0.0;
-
-      if(dL > 1.0)
-         dL = 1.0;
-      else if(dL < 0.0)
-         dL = 0.0;
-
-      if(dS > 1.0)
-         dS = 1.0;
-      else if(dS < 0.0)
-         dS = 0.0;
-
-      double dR;
-      double dG;
-      double dB;
-
-      dH *= 6.0;
-
-   #if CA2_PLATFORM_VERSION == CA2_BASIS
-      dH += 5.0;
-   #else
-      dH += 2.0;
-   #endif
-      if(dH >= 6.0)
-         dH -= 6.0;
-
-      double dA;
-      if(dH >= 5.0)
-         dA = dH - 5.0;
-      else if(dH >= 4.0)
-         dA = dH - 4.0;
-      else if(dH >= 3.0)
-         dA = dH - 3.0;
-      else if(dH >= 2.0)
-         dA = dH - 2.0;
-      else if(dH >= 1.0)
-         dA = dH - 1.0;
-      else
-         dA = dH;
-
-      if(dH >= 3.0)
+      if(iProfile == 0)
       {
-         if(dH >= 4.0)
+         dL = 0.49;
+         dS = 0.77;
+      }
+      else if(iProfile == 1)
+      {
+         dL = 0.63;
+         dS = 0.84;
+      }
+      else
+      {
+         dL = 0.54;
+         dS = 0.84;
+      }
+
+      {
+         if(dH >= 1.0)
+            dH = 0.0;
+         else if(dH < 0.0)
+            dH = 0.0;
+
+         if(dL > 1.0)
+            dL = 1.0;
+         else if(dL < 0.0)
+            dL = 0.0;
+
+         if(dS > 1.0)
+            dS = 1.0;
+         else if(dS < 0.0)
+            dS = 0.0;
+
+         double dR;
+         double dG;
+         double dB;
+
+         dH *= 6.0;
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+         dH += 5.0;
+#else
+         dH += 2.0;
+#endif
+         if(dH >= 6.0)
+            dH -= 6.0;
+
+         double dA;
+         if(dH >= 5.0)
+            dA = dH - 5.0;
+         else if(dH >= 4.0)
+            dA = dH - 4.0;
+         else if(dH >= 3.0)
+            dA = dH - 3.0;
+         else if(dH >= 2.0)
+            dA = dH - 2.0;
+         else if(dH >= 1.0)
+            dA = dH - 1.0;
+         else
+            dA = dH;
+
+         if(dH >= 3.0)
          {
-            if(dH >= 5.0)
+            if(dH >= 4.0)
             {
-               // 5.0
-               // magenta to red
-               dR = 1.0;
-               dG = 0.0;
-               dB = 1.0 - dA;
+               if(dH >= 5.0)
+               {
+                  // 5.0
+                  // magenta to red
+                  dR = 1.0;
+                  dG = 0.0;
+                  dB = 1.0 - dA;
+               }
+               else
+               {
+                  // 4.0
+                  // blue to magenta
+                  dR = dA;
+                  dG = 0.0;
+                  dB = 1.0;
+               }
             }
             else
             {
-               // 4.0
-               // blue to magenta
-               dR = dA;
-               dG = 0.0;
+               // 3.0
+               // cyan to blue
+               dR = 0.0;
+               dG = 1.0 - dA;
                dB = 1.0;
             }
          }
+         else /// if(dH >= 0.0)
+         {
+            if(dH >= 2.0)
+            {
+               // 2
+               // green to cyan
+               dR = 0.0;
+               dG = 1.0;
+               dB = dA;
+            }
+            else // (dH >= 0.0 && dH < 2.0)
+            {
+               if(dH >= 1.0)
+               {
+                  // 1
+                  // yellow to green
+                  dR = 1.0 - dA;
+                  dG = 1.0;
+                  dB = 0.0;
+               }
+               else // if(dh >= 0 && dH < 1.0);
+               {
+                  // 0
+                  // red to yellow
+                  dR = 1.0;
+                  dG = dA;
+                  dB = 0.0;
+               }
+            }
+         }
+
+         double dCMin;
+         double dCAdd;
+         double dSL = dS * dL;
+         if(dL >= 0.5)
+         {
+            dCMin = dL - dS + dSL;
+            dCAdd = 2.0 * dS - 2.0 * dSL;
+         }
          else
          {
-            // 3.0
-            // cyan to blue
-            dR = 0.0;
-            dG = 1.0 - dA;
-            dB = 1.0;
+            dCMin = dL - dSL;
+            dCAdd = 2.0 * dSL;
          }
-      }
-      else /// if(dH >= 0.0)
-      {
-         if(dH >= 2.0)
-         {
-            // 2
-            // green to cyan
-            dR = 0.0;
-            dG = 1.0;
-            dB = dA;
-         }
-         else // (dH >= 0.0 && dH < 2.0)
-         {
-            if(dH >= 1.0)
-            {
-               // 1
-               // yellow to green
-               dR = 1.0 - dA;
-               dG = 1.0;
-               dB = 0.0;
-            }
-            else // if(dh >= 0 && dH < 1.0);
-            {
-               // 0
-               // red to yellow
-               dR = 1.0;
-               dG = dA;
-               dB = 0.0;
-            }
-         }
-      }
-
-      double dCMin;
-      double dCAdd;
-      double dSL = dS * dL;
-      if(dL >= 0.5)
-      {
-         dCMin = dL - dS + dSL;
-         dCAdd = 2.0 * dS - 2.0 * dSL;
-      }
-      else
-      {
-         dCMin = dL - dSL;
-         dCAdd = 2.0 * dSL;
-      }
 
 
-      dR      = (dCMin + dR * dCAdd);
-      dG      = (dCMin + dG * dCAdd);
-      dB      = (dCMin + dB * dCAdd);
+         dR      = (dCMin + dR * dCAdd);
+         dG      = (dCMin + dG * dCAdd);
+         dB      = (dCMin + dB * dCAdd);
 
-      /*uchR      = (BYTE) ftol(dR * 255.0);
-      uchG      = (BYTE) ftol(dG * 255.0);
-      uchB      = (BYTE) ftol(dB * 255.0);*/
-      uchR      = (BYTE) (dR * 255.0);
-      uchG      = (BYTE) (dG * 255.0);
-      uchB      = (BYTE) (dB * 255.0);
+         /*uchR      = (BYTE) ftol(dR * 255.0);
+         uchG      = (BYTE) ftol(dG * 255.0);
+         uchB      = (BYTE) ftol(dB * 255.0);*/
+         uchR      = (BYTE) (dR * 255.0);
+         uchG      = (BYTE) (dG * 255.0);
+         uchB      = (BYTE) (dB * 255.0);
+
+      }
 
    }
-
-}
 
 
    void plugin::on_bare_paint(simple_graphics & g, LPCRECT lprect)
@@ -480,9 +485,9 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
       rect.right     = cx;
 
       simple_pen pen;
-         
+
       pen.create_solid(1, RGB(84, 84, 77));
-         
+
       simple_brush brush;
 
       brush.from_stock(NULL_BRUSH);
@@ -527,598 +532,237 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
       wstr = m_strStatus;
 
-#ifdef MERDE_WINDOWS
+      int iRate1 = 25;
 
-         int iRate1 = 25;
-
-         BYTE bA;
-
-         {
-
-            //int iARange = (184 - 23) * 2;
-            //int iAClip = iARange / 2;
-            double period = 8.4; // seconds
-            double frequency = 1.0 / period;
-            //int iA = (iARange * ::get_tick_count() / 8000) % iARange;
-            double w = 2.0 * 3.1415 * frequency;
-            double t = get_tick_count() / 1000.0;
-
-
-            /*if(iA < iAClip)
-               bA = iA + 23;
-            else
-               bA = 184 * 2 - iA;*/
-
-            bA = min(255, max(0, (BYTE) ((184.0 * ((sin(w * t) + 1.0) / 2.0)) + 23.0)));
-
-
-
-         }
-
-         BYTE uchR;
-         BYTE uchG;
-         BYTE uchB;
-
-         //graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-
-         int iRate = 10;
-
-         const int iRowCount = cx - cx / (iRate / 2);
-         int iProgressCount = max(min((int) (iRowCount * dRate), iRowCount), 0);
-
-
-         ID2D1Factory * pfactory = NULL;
-
-         g.m_pdc->GetFactory(&pfactory);
-
-         
-
-         int iBorder1 = max(cx / iRate1, cy / iRate1);
-
-         ID2D1PathGeometry * ppathClip1 = NULL;
-
-         pfactory->CreatePathGeometry(&ppathClip1);
-
-         RECT rectClip1;
-         rectClip1.left    = lprect->left + iBorder1;
-         rectClip1.top     = lprect->top + iBorder1;
-         rectClip1.right   = rectClip1.left + cx - iBorder1 * 2;
-         rectClip1.bottom  = rectClip1.top + cy - iBorder1 * 2;
-         graphics_round_rect::GetRoundRectPath(ppathClip1, rectClip1, iBorder1 * 2);
-         g.replace_clip(ppathClip1);
-
-
-
-         int iRatePercentMillis = ((int) (dRate * 100.0 * 1000.0)) % 1000;
-         int iRatePercent = ((int) (dRate * 100.0));
-
-         wstring wstrProgress;
-
-         {
-
-            vsstringtow strProgress(wstrProgress);
-
-            vsstring strDecimal = itoa_dup(iRatePercentMillis);
-
-            zero_pad(strDecimal, 3);
-
-            strProgress = itoa_dup(iRatePercent) + "." + strDecimal + "%";
-
-         }
-
-
-
-         int iBorder = 16;
-
-         Gdiplus::GraphicsPath pathClip;
-
-         Gdiplus::Rect rectClip(lprect->left + cx / iRate - iBorder , lprect->top + (cy - 23) / 2 - iBorder, iRowCount + iBorder * 2, 23 + iBorder * 2);
-         graphics_round_rect::GetRoundRectPath(&pathClip, rectClip, iBorder);
-         graphics2.SetClip(&pathClip, Gdiplus::CombineModeExclude);
-
-
-         Gdiplus::Point pa[4];
-
-         //Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + 23, 177 + 23, 177 + 19));
-         //graphics2.FillRectangle(pbr, lprect->left , lprect->top, lprect->left + cx, lprect->top + cy);
-         //delete pbr;
-
-         Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 184 + 23, 184 + 23, 184 + 19));
-
-         int mcy = cy / 2;
-
-         if(m_iHealingSurface == 1)
-         {
-
-            for(int x = 0; x < (cx + cy); x += 46)
-            {
-
-               pa[0].X = lprect->left + x;
-               pa[0].Y = lprect->top;
-
-               pa[1].X = lprect->left + x + 23;
-               pa[1].Y = lprect->top;
-
-               pa[2].X = lprect->left + x - mcy + 23;
-               pa[2].Y = lprect->top + mcy;
-
-               pa[3].X = lprect->left + x - mcy;
-               pa[3].Y = lprect->top + mcy;
-
-               graphics2.FillPolygon(pbr, pa, 4, Gdiplus::FillModeWinding);
-
-               pa[0].X = lprect->left + x - mcy - 23;
-               pa[0].Y = lprect->top + mcy;
-
-               pa[1].X = lprect->left + x - mcy;
-               pa[1].Y = lprect->top + mcy;
-
-               pa[2].X = lprect->left + x - cy;
-               pa[2].Y = lprect->top + cy;
-
-               pa[3].X = lprect->left + x - cy - 23;
-               pa[3].Y = lprect->top + cy;
-
-               graphics2.FillPolygon(pbr, pa, 4, Gdiplus::FillModeWinding);
-
-            }
-
-         }
-
-         delete pbr;
-
-
-
-
-//         int iRow;
-
-         rectClip.Inflate(3, 3);
-
-         graphics2.SetClip(rectClip, Gdiplus::CombineModeReplace);
-
-         pbr = new Gdiplus::SolidBrush(Gdiplus::Color(84, 84, 84, 77));
-         graphics2.FillRectangle(pbr, lprect->left + cx / iRate - 1 , lprect->top + (cy - 23) / 2 - 1, iRowCount + 2, 23 + 2);
-         delete pbr;
-
-         /*for(iRow = 0; iRow < iProgressCount; iRow++)
-         {
-            {
-               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 0);
-               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-               graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2, 1, 5);
-               delete pbr;
-            }
-            {
-               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 1);
-               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-               graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2 + 5, 1, 5);
-               delete pbr;
-            }
-            {
-               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 2);
-               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-               graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2 + 10, 1, 13);
-               delete pbr;
-            }
-         }*/
-         {
-            get_progress_color(uchR, uchG, uchB, 0.0, 0);
-            Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-            graphics2.FillRectangle(pbr, lprect->left + cx / iRate , lprect->top + (cy - 23) / 2, iProgressCount, 5);
-            delete pbr;
-         }
-         {
-            get_progress_color(uchR, uchG, uchB, 0.0, 1);
-            Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-            graphics2.FillRectangle(pbr, lprect->left + cx / iRate , lprect->top + (cy - 23) / 2 + 5, iProgressCount, 5);
-            delete pbr;
-         }
-         {
-            get_progress_color(uchR, uchG, uchB, 0.0, 2);
-            Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-            graphics2.FillRectangle(pbr, lprect->left + cx / iRate , lprect->top + (cy - 23) / 2 + 10, iProgressCount, 13);
-            delete pbr;
-         }
-
-         int iOffset = 3;
-
-         simple_pen pen;
-         pen.create_solid(1, ARGB(220, 180, 180, 180));
-         g.draw_line(&pen, lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset);
-         g.draw_line(&pen, lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset);
-
-         pen.create_solid(1, ARGB(220, 77, 77, 77));
-         g.draw_line(&pen, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
-         g.draw_line(&pen, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
-
-         iOffset = 2;
-         pen.create_solid(1, ARGB(220, 84, 84, 84));
-         g.draw_line(&pen, lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset);
-         g.draw_line(&pen, lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset);
-
-         pen.create_solid(1, ARGB(220, 170, 170, 170));
-         g.draw_line(&pen, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
-         g.draw_line(&pen, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
-
-
-         g.m_brush.create_solid(ARGB(127, 255, 255, 255), g);
-
-         g.m_font.create_point(180, "Calibri", g);
-
-         wstring wstrStatus;
-
-         wstrStatus     = wstr;
-         wstrStatus     = wstrStatus + L" : ";
-         wstrStatus     = wstrStatus + wstrProgress;
-
-         g.text_out((lprect->left + cx / iRate - 1 + 18), lprect->top + (cy - 23) / 2 - 1 + 1), vsstring(wstrStatus));
-
-         pfactory->Release();
-
-#elif defined(WINDOWSEX)
-
-/*      HFONT hfont = ::CreatePointFont_dup(490, "Lucida Sans Unicode", hdc);
-
-      HFONT hfontOld = (HFONT) ::SelectObject(hdc, hfont);
-
-      const char * psz = "Thank You";
-
-      ::SetBkMode(hdc, TRANSPARENT);
-
-      ::SetTextColor(hdc, RGB(255, 255, 255));
-
-      ::TextOut(hdc, lprect->left + 84, lprect->top + 84, psz, strlen_dup(psz));
-
-      ::SelectObject(hdc, hfontOld);
-
-      ::DeleteObject(hfont);*/
-
-
-  /*    Gdiplus::FontFamily ff(L"Lucida Sans Unicode");
-
-      Gdiplus::Font font(&ff, 49, Gdiplus::FontStyleBold, Gdiplus::UnitPoint);
-
-      Gdiplus::StringFormat * psf = Gdiplus::StringFormat::GenericDefault()->Clone();
-
-      psf->SetLineAlignment(Gdiplus::StringAlignmentCenter);
-
-      psf->SetAlignment(Gdiplus::StringAlignmentNear);
-
-      Gdiplus::RectF rectFull(0.0f, 0.0f, m_sizeBitmap.cx, m_sizeBitmap.cy);
-
-      Gdiplus::RectF rectText(rectFull);
-
-      Gdiplus::RectF rectCircle(84.0f, 84.0f, 84, 84);
-
-      rectText.X = 84.0f;*/
+      BYTE bA;
 
       {
 
-/*         {
-
-            Gdiplus::Graphics graphics((Gdiplus::Bitmap *) m_pbitmap);
-
-            graphics.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
-
-            Gdiplus::SolidBrush br1(Gdiplus::Color(0, 0, 0, 0));
-
-            graphics.FillRectangle(&br1, rectFull);
-
-            Gdiplus::SolidBrush br(Gdiplus::Color(255, 255, 255, 255));
-
-            //graphics.DrawString(wstr, wstr.get_length(), &font, rectText, psf, &br);
-            graphics.FillEllipse(&br, rectCircle);
-
-            for(int i = 0; i < 3; i++)
-            {
-               fastblur(m_pcolorref, m_sizeBitmap.cx, m_sizeBitmap.cy, iStep + 4);
-            }
+         //int iARange = (184 - 23) * 2;
+         //int iAClip = iARange / 2;
+         double period = 8.4; // seconds
+         double frequency = 1.0 / period;
+         //int iA = (iARange * ::get_tick_count() / 8000) % iARange;
+         double w = 2.0 * 3.1415 * frequency;
+         double t = get_tick_count() / 1000.0;
 
 
-            int area = m_sizeBitmap.cx * m_sizeBitmap.cy;
+         /*if(iA < iAClip)
+         bA = iA + 23;
+         else
+         bA = 184 * 2 - iA;*/
 
-            for(int i = 0; i < area; i++)
-            {
-               BYTE bA = min((((m_pcolorref[i] & 0xff00) >> 8) & 0xff), 255);
-
-               m_pcolorref[i] = ((bA << 24) & 0xff000000) | ((((uchR * bA) / 255) & 0xff) << 16) | ((((uchG * bA) / 255) & 0xff) << 8) | ((((uchB * bA) / 255) & 0xff));
-            }
-
-            graphics.SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
-
-            //graphics.FillEllipse(&br, rectCircle);
-
-         }*/
+         bA = min(255, max(0, (BYTE) ((184.0 * ((sin(w * t) + 1.0) / 2.0)) + 23.0)));
 
 
 
-         /*
-         BYTE bA = 84;
-         BYTE uchR;
-         BYTE uchG;
-         BYTE uchB;
+      }
 
-         Gdiplus::Graphics graphics2(hdc);
+      BYTE uchR;
+      BYTE uchG;
+      BYTE uchB;
 
-         graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      //graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
-         const int iLineCount = 23;
-         const int iRowCount = 49;
+      int iRate = 10;
 
-         int iProgressLine = iLineCount * dRate;
+      const int iRowCount = cx - cx / (iRate / 2);
+      int iProgressCount = max(min((int) (iRowCount * dRate), iRowCount), 0);
 
-         if(iProgressLine >= iLineCount)
-            iProgressLine = iLineCount - 1;
 
-         int iProgressRow = iRowCount * ((dRate - ((double)(iProgressLine) / (double) iLineCount)) * iLineCount);
 
-         if(iProgressRow >= iRowCount)
-            iProgressRow = iRowCount - 1;
+      int iBorder1 = max(cx / iRate1, cy / iRate1);
 
-         int iHeight = cy / iLineCount;
-         int iWidth = cx / iRowCount;
+      simple_path pathClip1;
 
-         int iLine;
-         int iRow;
+      RECT rectClip1;
 
-         for(iLine = 0; iLine < iProgressLine; iLine++)
-         {
-            for(iRow = 0; iRow < iRowCount; iRow++)
-            {
-               get_progress_color(uchR, uchG, uchB, (((double) iLine + ((double) iRow / (double)iRowCount)) / (double) iLineCount));
-               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-               graphics2.FillRectangle(pbr, lprect->left + iRow * iWidth, lprect->top + iLine * iHeight, iWidth, iHeight);
-               delete pbr;
-            }
-         }
+      rectClip1.left    = lprect->left + iBorder1;
+      rectClip1.top     = lprect->top + iBorder1;
+      rectClip1.right   = rectClip1.left + cx - iBorder1 * 2;
+      rectClip1.bottom  = rectClip1.top + cy - iBorder1 * 2;
 
-         if(iLine < iLineCount)
-         {
+      graphics_round_rect::GetRoundRectPath(pathClip1, rectClip1, iBorder1 * 2);
+      g.replace_clip(pathClip1);
 
-            for(iRow = 0; iRow < iProgressRow; iRow++)
-            {
-               get_progress_color(uchR, uchG, uchB, (((double) iLine + ((double) iRow / (double)iRowCount)) / (double) iLineCount));
-               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-               graphics2.FillRectangle(pbr, lprect->left + iRow * iWidth, lprect->top + iLine * iHeight, iWidth, iHeight);
-               delete pbr;
-            }
 
-            if(iRow < iRowCount)
-            {
-               get_progress_color(uchR, uchG, uchB, (((double) iLine + ((double) iRow / (double)iRowCount)) / (double) iLineCount));
-               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-               graphics2.FillRectangle(pbr, lprect->left + iRow * iWidth, lprect->top + iLine * iHeight, iWidth * (dRate - ((double) iLine + ((double) iRow / (double)iRowCount) / (double) iLineCount)) , iHeight);
-               delete pbr;
-            }
 
-         }
+      int iRatePercentMillis = ((int) (dRate * 100.0 * 1000.0)) % 1000;
+      int iRatePercent = ((int) (dRate * 100.0));
 
-         //graphics2.DrawImage((Gdiplus::Bitmap *) m_pbitmap, lprect->left, lprect->top);
+      wstring wstrProgress;
 
-      //   delete psf;
-      */
+      {
 
-         int iRate1 = 25;
+         vsstringtow strProgress(wstrProgress);
 
-         BYTE bA;
+         vsstring strDecimal = itoa_dup(iRatePercentMillis);
 
+         zero_pad(strDecimal, 3);
+
+         strProgress = itoa_dup(iRatePercent) + "." + strDecimal + "%";
+
+      }
+
+
+
+      int iBorder = 16;
+
+      simple_path pathClip;
+
+      RECT rectClip;
+
+      rectClip.left     = lprect->left + cx / iRate - iBorder;
+      rectClip.top      = lprect->top + (cy - 23) / 2 - iBorder;
+      rectClip.right    = lprect->left + iRowCount + iBorder * 2;
+      rectClip.bottom   = lprect->top + 23 + iBorder * 2;
+
+      graphics_round_rect::GetRoundRectPath(pathClip, rectClip, iBorder);
+
+      g.exclude_clip(pathClip);
+
+
+      POINT pa[4];
+
+      //Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + 23, 177 + 23, 177 + 19));
+      //graphics2.FillRectangle(pbr, lprect->left , lprect->top, lprect->left + cx, lprect->top + cy);
+      //delete pbr;
+
+      simple_brush br;
+
+      br.create_solid(ARGB(49, 184 + 23, 184 + 23, 184 + 19));
+
+      int mcy = cy / 2;
+
+      if(m_iHealingSurface == 1)
+      {
+
+         g.select(br);
+
+         for(int x = 0; x < (cx + cy); x += 46)
          {
 
-            //int iARange = (184 - 23) * 2;
-            //int iAClip = iARange / 2;
-            double period = 8.4; // seconds
-            double frequency = 1.0 / period;
-            //int iA = (iARange * ::get_tick_count() / 8000) % iARange;
-            double w = 2.0 * 3.1415 * frequency;
-            double t = get_tick_count() / 1000.0;
+            pa[0].x = lprect->left + x;
+            pa[0].y = lprect->top;
 
+            pa[1].x = lprect->left + x + 23;
+            pa[1].y = lprect->top;
 
-            /*if(iA < iAClip)
-               bA = iA + 23;
-            else
-               bA = 184 * 2 - iA;*/
+            pa[2].x = lprect->left + x - mcy + 23;
+            pa[2].y = lprect->top + mcy;
 
-            bA = min(255, max(0, (BYTE) ((184.0 * ((sin(w * t) + 1.0) / 2.0)) + 23.0)));
+            pa[3].x = lprect->left + x - mcy;
+            pa[3].y = lprect->top + mcy;
 
+            g.fill_polygon(pa, 4, ::ca::fill_mode_winding);
 
+            pa[0].x = lprect->left + x - mcy - 23;
+            pa[0].y = lprect->top + mcy;
 
-         }
+            pa[1].x = lprect->left + x - mcy;
+            pa[1].y = lprect->top + mcy;
 
-         BYTE uchR;
-         BYTE uchG;
-         BYTE uchB;
+            pa[2].x = lprect->left + x - cy;
+            pa[2].y = lprect->top + cy;
 
-         Gdiplus::Graphics graphics2(g.m_hdc);
+            pa[3].x = lprect->left + x - cy - 23;
+            pa[3].y = lprect->top + cy;
 
-         graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+            g.fill_polygon(pa, 4, ::ca::fill_mode_winding);
 
-         int iRate = 10;
-
-         const int iRowCount = cx - cx / (iRate / 2);
-         int iProgressCount = max(min((int) (iRowCount * dRate), iRowCount), 0);
-
-
-
-
-         int iBorder1 = max(cx / iRate1, cy / iRate1);
-
-         Gdiplus::GraphicsPath pathClip1;
-
-         Gdiplus::Rect rectClip1(lprect->left + iBorder1, lprect->top + iBorder1, cx - iBorder1 * 2, cy - iBorder1 * 2);
-         graphics_round_rect::GetRoundRectPath(&pathClip1, rectClip1, iBorder1 * 2);
-         graphics2.SetClip(&pathClip1, Gdiplus::CombineModeReplace);
-
-
-
-         int iRatePercentMillis = ((int) (dRate * 100.0 * 1000.0)) % 1000;
-         int iRatePercent = ((int) (dRate * 100.0));
-
-         wstring wstrProgress;
-
-         {
-
-            vsstringtow strProgress(wstrProgress);
-
-            vsstring strDecimal = itoa_dup(iRatePercentMillis);
-
-            zero_pad(strDecimal, 3);
-
-            strProgress = itoa_dup(iRatePercent) + "." + strDecimal + "%";
 
          }
 
+      }
 
 
-         int iBorder = 16;
+      inflate_rect(rectClip, 3);
 
-         Gdiplus::GraphicsPath pathClip;
+      g.replace_clip(rectClip);
 
-         Gdiplus::Rect rectClip(lprect->left + cx / iRate - iBorder , lprect->top + (cy - 23) / 2 - iBorder, iRowCount + iBorder * 2, 23 + iBorder * 2);
-         graphics_round_rect::GetRoundRectPath(&pathClip, rectClip, iBorder);
-         graphics2.SetClip(&pathClip, Gdiplus::CombineModeExclude);
+      br.create_solid(ARGB(84, 84, 84, 77));
 
+      RECT r1;
 
-         Gdiplus::Point pa[4];
+      r1.left = lprect->left + cx / iRate - 1;
+      r1.top = lprect->top + (cy - 23) / 2 - 1;
+      r1.right = r1.left + iRowCount + 2;
+      r1.bottom = r1.top + 23 + 2;
 
-         //Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + 23, 177 + 23, 177 + 19));
-         //graphics2.FillRectangle(pbr, lprect->left , lprect->top, lprect->left + cx, lprect->top + cy);
-         //delete pbr;
+      g.fill_rect(&r1, br);
 
-         Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 184 + 23, 184 + 23, 184 + 19));
+      /*for(iRow = 0; iRow < iProgressCount; iRow++)
+      {
+      {
+      get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 0);
+      Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
+      graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2, 1, 5);
+      delete pbr;
+      }
+      {
+      get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 1);
+      Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
+      graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2 + 5, 1, 5);
+      delete pbr;
+      }
+      {
+      get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 2);
+      Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
+      graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2 + 10, 1, 13);
+      delete pbr;
+      }
+      }*/
+      {
+         get_progress_color(uchR, uchG, uchB, 0.0, 0);
+         br.create_solid(ARGB(bA, uchR, uchG, uchB));
+         g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - 23) / 2, iProgressCount, 5), br);
+      }
+      {
+         get_progress_color(uchR, uchG, uchB, 0.0, 1);
+         br.create_solid(ARGB(bA, uchR, uchG, uchB));
+         g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - 23) / 2 + 5, iProgressCount, 5), br);
+      }
+      {
+         get_progress_color(uchR, uchG, uchB, 0.0, 2);
+         br.create_solid(ARGB(bA, uchR, uchG, uchB));
+         g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - 23) / 2 + 10, iProgressCount, 13), br);
+      }
 
-         int mcy = cy / 2;
+      int iOffset = 3;
 
-         if(m_iHealingSurface == 1)
-         {
+      pen.create_solid(1, ARGB(220, 180, 180, 180));
+      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, pen);
+      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, pen);
 
-            for(int x = 0; x < (cx + cy); x += 46)
-            {
+      pen.create_solid(1, ARGB(220, 77, 77, 77));
+      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset, pen);
+      g.draw_line(lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset, pen);
 
-               pa[0].X = lprect->left + x;
-               pa[0].Y = lprect->top;
+      iOffset = 2;
+      pen.create_solid(1, ARGB(220, 84, 84, 84));
+      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, pen);
+      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, pen);
 
-               pa[1].X = lprect->left + x + 23;
-               pa[1].Y = lprect->top;
-
-               pa[2].X = lprect->left + x - mcy + 23;
-               pa[2].Y = lprect->top + mcy;
-
-               pa[3].X = lprect->left + x - mcy;
-               pa[3].Y = lprect->top + mcy;
-
-               graphics2.FillPolygon(pbr, pa, 4, Gdiplus::FillModeWinding);
-
-               pa[0].X = lprect->left + x - mcy - 23;
-               pa[0].Y = lprect->top + mcy;
-
-               pa[1].X = lprect->left + x - mcy;
-               pa[1].Y = lprect->top + mcy;
-
-               pa[2].X = lprect->left + x - cy;
-               pa[2].Y = lprect->top + cy;
-
-               pa[3].X = lprect->left + x - cy - 23;
-               pa[3].Y = lprect->top + cy;
-
-               graphics2.FillPolygon(pbr, pa, 4, Gdiplus::FillModeWinding);
-
-            }
-
-         }
-
-         delete pbr;
-
-
-
-
-//         int iRow;
-
-         rectClip.Inflate(3, 3);
-
-         graphics2.SetClip(rectClip, Gdiplus::CombineModeReplace);
-
-         pbr = new Gdiplus::SolidBrush(Gdiplus::Color(84, 84, 84, 77));
-         graphics2.FillRectangle(pbr, lprect->left + cx / iRate - 1 , lprect->top + (cy - 23) / 2 - 1, iRowCount + 2, 23 + 2);
-         delete pbr;
-
-         /*for(iRow = 0; iRow < iProgressCount; iRow++)
-         {
-            {
-               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 0);
-               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-               graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2, 1, 5);
-               delete pbr;
-            }
-            {
-               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 1);
-               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-               graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2 + 5, 1, 5);
-               delete pbr;
-            }
-            {
-               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 2);
-               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-               graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2 + 10, 1, 13);
-               delete pbr;
-            }
-         }*/
-         {
-            get_progress_color(uchR, uchG, uchB, 0.0, 0);
-            Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-            graphics2.FillRectangle(pbr, lprect->left + cx / iRate , lprect->top + (cy - 23) / 2, iProgressCount, 5);
-            delete pbr;
-         }
-         {
-            get_progress_color(uchR, uchG, uchB, 0.0, 1);
-            Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-            graphics2.FillRectangle(pbr, lprect->left + cx / iRate , lprect->top + (cy - 23) / 2 + 5, iProgressCount, 5);
-            delete pbr;
-         }
-         {
-            get_progress_color(uchR, uchG, uchB, 0.0, 2);
-            Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-            graphics2.FillRectangle(pbr, lprect->left + cx / iRate , lprect->top + (cy - 23) / 2 + 10, iProgressCount, 13);
-            delete pbr;
-         }
-
-         int iOffset = 3;
-         Gdiplus::Pen * ppen = new Gdiplus::Pen(Gdiplus::Color(220, 180, 180, 180));
-         graphics2.DrawLine(ppen, lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset);
-         graphics2.DrawLine(ppen, lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset);
-         delete ppen;
-         ppen = new Gdiplus::Pen(Gdiplus::Color(220, 77, 77, 77));
-         graphics2.DrawLine(ppen, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
-         graphics2.DrawLine(ppen, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
-         delete ppen;
-         iOffset = 2;
-         ppen = new Gdiplus::Pen(Gdiplus::Color(220, 84, 84, 84));
-         graphics2.DrawLine(ppen, lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset);
-         graphics2.DrawLine(ppen, lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset);
-         delete ppen;
-         ppen = new Gdiplus::Pen(Gdiplus::Color(220, 170, 170, 170));
-         graphics2.DrawLine(ppen, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
-         graphics2.DrawLine(ppen, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
-         delete ppen;
+      pen.create_solid(1, ARGB(220, 170, 170, 170));
+      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset, pen);
+      g.draw_line(lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset, pen);
 
 
-         Gdiplus::SolidBrush b(Gdiplus::Color(127, 255, 255, 255));
+      br.create_solid(ARGB(127, 255, 255, 255), g);
 
-         Gdiplus::Font f(L"Calibri", 18, 0, Gdiplus::UnitPixel);
+      g.select(br);
 
-         wstring wstrStatus;
+      simple_pixel_font f(180, "Calibri", g);
 
-         wstrStatus     = wstr;
-         wstrStatus     = wstrStatus + L" : ";
-         wstrStatus     = wstrStatus + wstrProgress;
+      g.select(f);
 
-         graphics2.DrawString(wstrStatus, wstrStatus.get_length(), &f, Gdiplus::PointF((Gdiplus::REAL) (lprect->left + cx / iRate - 1 + 18), (Gdiplus::REAL) lprect->top + (cy - 23) / 2 - 1 + 1), &b);
-         //graphics2.DrawImage((Gdiplus::Bitmap *) m_pbitmap, lprect->left, lprect->top);
+      wstring wstrStatus;
 
-      //   delete psf;
+      wstrStatus     = wstr;
+      wstrStatus     = wstrStatus + L" : ";
+      wstrStatus     = wstrStatus + wstrProgress;
 
-#endif
-
-
+      g.text_out(lprect->left + cx / iRate - 1 + 18, lprect->top + (cy - 23) / 2 - 1 + 1, vsstring(wstrStatus));
 
    }
 
@@ -1263,8 +907,8 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
    {
 
       if(m_pcolorref == NULL
-      || m_sizeBitmapData.cx != cx
-      || m_sizeBitmapData.cy != cy)
+         || m_sizeBitmapData.cx != cx
+         || m_sizeBitmapData.cy != cy)
       {
 
          m_sizeBitmapData.cx = cx;

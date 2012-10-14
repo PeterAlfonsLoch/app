@@ -7,7 +7,7 @@ typedef int key_t;
 typedef __key_t key_t;
 #include <pthread.h>
 #else
-#include "simple_mutex.h"
+#include "c_simple_mutex.h"
 #endif
 
 

@@ -6,7 +6,7 @@ class CLASS_DECL_c simple_pen
 public:
 
    
-   HPEN                  m_hpen;
+   Gdiplus::Pen *       m_ppen;
 
 
    simple_pen();
@@ -20,3 +20,19 @@ public:
 
 };
 
+
+
+class CLASS_DECL_c simple_solid_pen :
+   public simple_pen
+{
+public:
+
+
+   simple_solid_pen(int iWidth, COLORREF cr)
+   {
+
+      create_solid(iWidth, cr);
+
+   }
+
+};

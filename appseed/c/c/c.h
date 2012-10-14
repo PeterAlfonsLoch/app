@@ -41,105 +41,102 @@ namespace ca
 #include "c/version/version.h"
 
 
-#include "types.h"
+#include "c_types.h"
 
 
-#include "natural.h"
+#include "c_natural.h"
 
 
-#define if_then(p, q)  ((!(p))||((q)))
-#define GetAValue(rgb)      (LOBYTE((rgb)>>24))
-#define ARGB(a, r, g, b)          ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)|(((DWORD)(BYTE)(a))<<24)))
+#include "c_logic.h"
 
 
-
-extern "C"
-{
-
-   #include "cpu_architecture.h"
-
-}
+#include "c_time.h"
 
 
-#include "_libct.h"
+#include "c_cpu_architecture.h"
 
 
-#include "count.h"
-#include "index.h"
-#include "keep_true.h"
+#include "c_libc.h"
 
 
-#include "debug.h"
+#include "c_count.h"
+#include "c_index.h"
+#include "c_keep_true.h"
 
 
-#include "printf.h"
-#include "sprintf.h"
-#include "str.h"
-#include "std_file.h"
-#include "atol.h"
-#include "conv.h"
+#include "c_debug.h"
+
+
+#include "c_printf.h"
+#include "c_sprintf.h"
+#include "c_str.h"
+#include "c_std_file.h"
+#include "c_atol.h"
+#include "c_conv.h"
 
 
 
-#include "heap.h"
-#include "c_gdi.h"
-#include "mem.h"
+#include "c_heap.h"
+#include "c_graphics.h"
+#include "c_mem.h"
 
-#include "_c_math.h"
+#include "c_math.h"
 
-#include "geometric_types.h"
+#include "c_geometric_types.h"
 
 
-#include "verisimple_string.h"
-#include "verisimple_wstring.h"
-#include "vsstringtow.h"
-#include "wstringtovss.h"
+#include "c_verisimple_string.h"
+#include "c_verisimple_wstring.h"
+#include "c_vsstringtow.h"
+#include "c_wstringtovss.h"
 
-#include "dir.h"
-#include "md5.h"
+#include "c_dir.h"
+#include "c_md5.h"
 
-#include "simple_obj.h"
+#include "c_simple_obj.h"
 
-#include "template.h"
-#include "simple_array.h"
-#include "simple_map.h"
-#include "simple_list.h"
-#include "stra.h"
+#include "c_template.h"
+#include "c_simple_array.h"
+#include "c_simple_map.h"
+#include "c_simple_list.h"
+#include "c_stra.h"
 
-#include "xmlite.h"
-#include "file.h"
+#include "c_xmlite.h"
+#include "c_file.h"
 
-#include "launcher.h"
-#include "simple_shell_launcher.h"
+#include "c_launcher.h"
+#include "c_simple_shell_launcher.h"
 
-#include "small_ipc_channel.h"
+#include "c_small_ipc_channel.h"
 
-#include "simple_mutex.h"
-#include "simple_event.h"
+#include "c_simple_mutex.h"
+#include "c_simple_event.h"
 
-#include "mutex_lock.h"
+#include "c_mutex_lock.h"
 
-#include "simple_critical_section.h"
+#include "c_simple_critical_section.h"
 
-#include "library.h"
+#include "c_library.h"
 
-#include "simple_memory.h"
+#include "c_simple_memory.h"
 
-#include "file_watcher.h"
-#include "file_watcher_impl.h"
+#include "c_file_watcher.h"
+#include "c_file_watcher_impl.h"
 
-typedef DWORD dword;
 
-CLASS_DECL_c dword get_tick_count();
+
+
 
 #include "c/os/os.h"
 
-#include "file_watcher_thread.h"
-#include "file_watcher_listener_thread.h"
-#include "async.h"
+#include "c_file_watcher_thread.h"
+#include "c_file_watcher_listener_thread.h"
+#include "c_async.h"
 
 
-#include "base64.h"
+#include "c_base64.h"
+
+
 #include "c/hotplugin/hotplugin.h"
 #include "c/simple_ui/simple_ui.h"
 #include "c/crypt/crypt.h"
@@ -150,11 +147,11 @@ CLASS_DECL_c dword get_tick_count();
 
 
 
-#include "message_loop.h"
+#include "c_message_loop.h"
 
-#include "url.h"
+#include "c_url.h"
 
-#include "international.h"
+#include "c_international.h"
 
 
 
@@ -173,4 +170,4 @@ vsstring _c_get_file_name(const char * psz, bool bCreate = false, int * pfd = NU
 CLASS_DECL_c vsstring get_system_error_message(DWORD dwError);
 
 
-#include "simple_app.h"
+#include "c_simple_app.h"

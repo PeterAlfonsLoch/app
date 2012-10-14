@@ -8,11 +8,12 @@ class CLASS_DECL_c simple_memory
 public:
 
    
-   char *      m_psz;
-   ::count         m_iAlloc;
-   ::count         m_iSize;
+   char *            m_psz;
+   ::count           m_iAlloc;
+   ::count           m_iSize;
 
-   ::count         m_iPos;
+   ::count           m_iPos;
+   bool              m_bAttach;
 
 
    simple_memory();
@@ -22,6 +23,8 @@ public:
 
 
    void allocate(::count iSize);
+
+   void attach(void * p, ::count iSize);
 
 
    void write(void * p, ::count iCount);

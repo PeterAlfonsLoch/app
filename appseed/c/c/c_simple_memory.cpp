@@ -9,7 +9,7 @@ simple_memory::simple_memory()
    m_iAlloc    = 0;
    m_iSize     = 0;
    m_iPos      = 0;
-
+   m_bAttach   = false;
 }
 
 simple_memory::simple_memory(const simple_memory & memory)
@@ -19,6 +19,7 @@ simple_memory::simple_memory(const simple_memory & memory)
    m_iAlloc    = 0;
    m_iSize     = 0;
    m_iPos      = 0;
+   m_bAttach   = false;
 
    operator = (memory);
 
@@ -31,6 +32,7 @@ simple_memory::simple_memory(const char * psz)
    m_iPos      = 0;
    m_iAlloc    = strlen(psz);
    m_iSize     = m_iAlloc;
+   m_bAttach   = false;
    m_psz       = (char *) ca2_alloc(m_iSize);
    memcpy(m_psz, psz, m_iSize);
 
@@ -39,7 +41,7 @@ simple_memory::simple_memory(const char * psz)
 simple_memory::~simple_memory()
 {
    
-   if(m_psz != NULL)
+   if(m_psz != NULL && !m_bAttach)
    {
       ca2_free(m_psz);
    }
@@ -52,10 +54,18 @@ simple_memory & simple_memory::operator = (const simple_memory & memory)
    if(this != &memory)
    {
 
-      m_iAlloc = memory.m_iAlloc;
-      m_iSize = memory.m_iSize;
-      m_psz = (char *) ca2_alloc(m_iAlloc);
-      memcpy(m_psz, memory.m_psz, m_iSize);
+      m_iAlloc    = memory.m_iAlloc;
+      m_iSize     = memory.m_iSize;
+      m_bAttach   = memory.m_bAttach;
+      if(m_bAttach)
+      {
+         m_psz    = memory.m_psz;
+      }
+      else
+      {
+         m_psz = (char *) ca2_alloc(m_iAlloc);
+         memcpy(m_psz, memory.m_psz, m_iSize);
+      }
 
    }
    
@@ -63,8 +73,26 @@ simple_memory & simple_memory::operator = (const simple_memory & memory)
 
 }
 
+void simple_memory::attach(void * p, ::count iSize)
+{
+   
+   m_bAttach   = true;
+   m_iAlloc    = iSize;
+   m_iSize     = iSize;
+   m_psz       = (char *) p;
+
+}
+
 void simple_memory::allocate(::count iSize)
 {
+
+   if(m_bAttach)
+   {
+      m_bAttach   = false;
+      void * pNew = ca2_alloc(m_iSize);
+      memcpy(pNew, m_psz, m_iSize);
+      m_psz       = (char *) pNew;
+   }
    
    ::count iNewAlloc;
 

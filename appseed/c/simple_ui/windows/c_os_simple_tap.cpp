@@ -7,21 +7,19 @@ void simple_tap::draw_simple(simple_graphics & g)
 
    {
 
-      Gdiplus::Graphics graphics2(g.m_hdc);
-
-      graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      g.set_alpha_mode(::ca::alpha_mode_blend);
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      Gdiplus::SolidBrush br(Gdiplus::Color(184, 255, 184, 240));
+      simple_solid_brush br(ARGB(184, 255, 184, 240));
 
 #else
 
-      Gdiplus::SolidBrush br(Gdiplus::Color(184, 184, 255, 177));
+      simple_solid_brush br(ARGB(184, 184, 255, 177));
 
 #endif
 
-      graphics2.FillRectangle(&br, m_rect.left, m_rect.top, width(&m_rect), height(&m_rect));
+      g.fill_rect(m_rect, br);
 
       draw_focus_rect(g);
 

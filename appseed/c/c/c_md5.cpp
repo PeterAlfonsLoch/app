@@ -412,14 +412,26 @@ vsstring get_file_md5_by_map(const char * path)
 
    }
 
-   DWORD dwHigh;
+#ifdef AMD64
+   
+   DWORD64 dwSize = ::GetFileSize(hfile, &dwHigh);
+
+   dwSize |= ((DWORD64) dwHigh) << 32;
+
+#else
 
    DWORD dwSize = ::GetFileSize(hfile, &dwHigh);
 
    if(dwHigh > 0)
    {
+      
+      // cannot optimize getting md5 by map by mapping file entirely into memory view
+
+      return "";
 
    }
+
+#endif
 
    HANDLE hfilemap = CreateFileMappingFromApp(
       hfile,
@@ -470,9 +482,27 @@ vsstring get_file_md5_by_map(const char * path)
 
    DWORD dwHigh;
 
+
+#ifdef AMD64
+   
    DWORD64 dwSize = ::GetFileSize(hfile, &dwHigh);
 
    dwSize |= ((DWORD64) dwHigh) << 32;
+
+#else
+
+   DWORD dwSize = ::GetFileSize(hfile, &dwHigh);
+
+   if(dwHigh > 0)
+   {
+      
+      // cannot optimize getting md5 by map by mapping file entirely into memory view
+
+      return "";
+
+   }
+
+#endif
 
    HANDLE hfilemap = CreateFileMapping(
       hfile,

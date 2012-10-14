@@ -92,7 +92,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
 
    simple_font fontBold;
 
-   font.create_point_bold(100, "Lucida Sans Unicode", 1, g);
+   font.create_point_bold(100, "Lucida Sans Unicode", g);
 
    g.select(font);
 

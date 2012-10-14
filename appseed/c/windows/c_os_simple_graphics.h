@@ -8,12 +8,12 @@ class CLASS_DECL_c simple_graphics
 public:
 
    
-   HDC                     m_hdc;
+   Gdiplus::Graphics *     m_pgraphics;
    HWND                    m_hwnd;
-   HBITMAP                 m_hbitmapOld;
-   HPEN                    m_hpenOld;
-   HFONT                   m_hfontOld;
-   HBRUSH                  m_hbrushOld;
+   simple_bitmap *         m_pbitmap;
+   simple_pen *            m_ppen;
+   simple_font *           m_pfont;
+   simple_brush *          m_pbrush;
    int                     m_iType;
    PAINTSTRUCT             m_ps;
 
@@ -29,16 +29,37 @@ public:
    bool alpha_blend(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf);
    bool create_from_bitmap(simple_bitmap & b);
    bool detach_bitmap();
-   void fill_solid_rect(LPCRECT lpRect, COLORREF clr);
    bool select(simple_font & font);
    bool select(simple_brush & brush);
    bool select(simple_pen & brush);
    bool text_out(int x, int y, const char * pszUtf8, int iLen = -1);
-   bool fill_rect(LPCRECT lpcrect, simple_brush & brush);
    bool blend_bitmap_data(int x, int y, int cx, int cy, COLORREF * pdata);
-   bool rectangle(LPCRECT lpcrect);
+   bool fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode);
    SIZE get_text_extent(const char * psz, int iLen = -1);
    bool set_text_color(COLORREF cr);
+   
+   bool draw_line(int x1, int y1, int x2, int y2, simple_pen & pen);
+   
+   inline bool draw_line(int x1, int y1, int x2, int y2);
+   inline bool draw_line(POINT p1, POINT p2, simple_pen & pen);
+   inline bool draw_line(POINT p1, POINT p2);
+
+   bool rectangle(LPCRECT lpcrect);
+   bool fill_rect(LPCRECT lpcrect, simple_brush & brush);
+   void fill_solid_rect(LPCRECT lpRect, COLORREF clr);
+
+   inline bool rectangle(const RECT & rect);
+   inline bool fill_rect(const RECT & rect, simple_brush & brush);
+   inline void fill_solid_rect(const RECT & rect, COLORREF clr);
+
+   bool set_alpha_mode(::ca::e_alpha_mode emode);
+
+
+   bool replace_clip(simple_path & path);
+   bool exclude_clip(simple_path & path);
+   bool replace_clip(const RECT & r);
+   bool remove_clip();
+
 
    // may be multi-platform
    bool create(simple_graphics & g);
@@ -52,8 +73,8 @@ public:
    bool from_entire_window(HWND hwnd);
    bool from_window(HWND hwnd);
    bool from_window_paint(HWND hwnd, LPRECT lprectPaint = NULL);
-   bool reference_os_data(HDC hdc);
-   operator HDC() { return m_hdc; }
+   bool reference_os_data(Gdiplus::Graphics * pgraphics);
+   operator Gdiplus::Graphics *() { return m_pgraphics; }
 
 
 
@@ -61,3 +82,36 @@ public:
 
 
 };
+
+
+inline bool simple_graphics::draw_line(int x1, int y1, int x2, int y2)
+{
+   return draw_line(x1, y1, x2, y2, *m_ppen);
+}
+
+inline bool simple_graphics::draw_line(POINT p1, POINT p2, simple_pen & pen)
+{
+   return draw_line(p1.x, p1.y, p2.x, p2.y, pen);
+}
+
+inline bool simple_graphics::draw_line(POINT p1, POINT p2)
+{
+   return draw_line(p1, p2, *m_ppen);
+}
+
+
+
+inline bool simple_graphics::fill_rect(const RECT & rect, simple_brush & brush)
+{
+   return fill_rect(&rect, brush);
+}
+
+inline bool simple_graphics::rectangle(const RECT & rect)
+{
+   return rectangle(&rect);
+}
+
+
+
+
+

@@ -1,4 +1,6 @@
 #include "framework.h"
+#undef new
+#include <gdiplus.h>
 
 
 simple_brush::simple_brush()
@@ -34,6 +36,33 @@ bool simple_brush::create_solid(COLORREF cr)
       return false;
 
    return true;
+
+}
+
+
+bool simple_brush::create_liner_gradient(POINT np1, POINT np2, COLORREF cr1, COLORREF cr2)
+{
+
+   if(m_pbrush != NULL)
+   {
+
+      destroy();
+
+   }
+
+   Gdiplus::Point p1;
+   Gdiplus::Point p2;
+
+   p1.X = np1.x;
+   p1.Y = np1.y;
+   
+   p2.X = np2.x;
+   p2.Y = np2.y;
+
+   m_pbrush = new Gdiplus::LinearGradientBrush(p1, p2. Gdiplus::Color(crOut), GdiplusColor(cr2)));
+
+   if(m_pbrush == NULL)
+      return false;
 
 }
 

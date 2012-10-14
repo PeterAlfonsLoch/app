@@ -5,34 +5,27 @@
 void simple_password::draw_this(simple_graphics & g)
 {
 
-   Gdiplus::Graphics graphics2(g.m_hdc);
+   g.set_alpha_mode(::ca::alpha_mode_blend);
 
-   graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+   simple_brush br;
+   
+   br.create_solid(ARGB(184, 255, 255, 240));
 
-   Gdiplus::SolidBrush br(Gdiplus::Color(184, 255, 255, 240));
-
-   graphics2.FillRectangle(&br, m_rect.left, m_rect.top, width(&m_rect), height(&m_rect));
+   g.fill_rect(m_rect, br);
 
    draw_focus_rect(g);
 
-   Gdiplus::SolidBrush b(Gdiplus::Color(223, 49, 49, 23));
+   simple_brush b;
+   
+   b.create_solid(ARGB(223, 49, 49, 23));
 
-   Gdiplus::Font f(L"Geneva", (Gdiplus::REAL) height(&m_rect), Gdiplus::FontStyleRegular, Gdiplus::UnitPixel);
+   simple_pixel_font f(height(&m_rect), "Geneva", g);
 
-   int iLen = m_strText.get_length();
+   wstring wstr;
 
-   wchar_t * pwsz = (wchar_t *) ca2_alloc((iLen + 1) * 2);
-
-   pwsz[iLen] = L'\0';
-   while(iLen > 0)
-   {
-      iLen--;
-      pwsz[iLen] = L'*';
-   }
+   wstr.append(L'*', m_strText.get_length());
 
    graphics2.DrawString(pwsz, wcslen_dup(pwsz), &f, Gdiplus::PointF((Gdiplus::REAL) (m_rect.left + 2), (Gdiplus::REAL) m_rect.top), &b);
-
-   ca2_free(pwsz);
 
 }
 

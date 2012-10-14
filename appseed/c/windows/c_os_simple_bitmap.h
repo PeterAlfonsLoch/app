@@ -7,7 +7,9 @@ class CLASS_DECL_c simple_bitmap
 public:
 
    
-   HBITMAP                  m_hbitmap;
+   Gdiplus::Bitmap *             m_pbitmap;
+   simple_memory                 m_memory;
+   SIZE                          m_size;
 
 
    simple_bitmap();

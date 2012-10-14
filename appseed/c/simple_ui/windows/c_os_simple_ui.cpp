@@ -1,36 +1,35 @@
 #include "framework.h"
+#undef new
 #include <GdiPlus.h>
 
 
 void simple_ui::draw_this(simple_graphics & g)
 {
 
-   Gdiplus::Graphics graphics2(g.m_hdc);
-
-   graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+   g.set_alpha_mode(::ca::alpha_mode_blend);
 
    //Gdiplus::Color crOut(0, 255, 255, 233);
 
    //Gdiplus::Color crIn(84 + 49, 255, 255, 233);
 
-   Gdiplus::Color crOut;
+   COLORREF crOut;
 
-   Gdiplus::Color crIn;
+   COLORREF crIn;
 
    if(get_plugin()->m_eschema == ::hotplugin::plugin::schema_darker)
    {
 
-      crOut.SetValue(Gdiplus::Color::MakeARGB(0, 84, 84, 77));
+      crOut = ARGB(0, 84, 84, 77);
 
-      crIn.SetValue(Gdiplus::Color::MakeARGB(84 + 49, 84, 84, 77));
+      crIn  = ARGB(84 + 49, 84, 84, 77);
 
    }
    else
    {
 
-      crOut.SetValue(Gdiplus::Color::MakeARGB(0, 255, 255, 233));
+      crOut = ARGB(0, 255, 255, 233);
 
-      crIn.SetValue(Gdiplus::Color::MakeARGB(84 + 49, 255, 255, 233));
+      crIn  = ARGB(84 + 49, 255, 255, 233);
 
    }
 
@@ -84,15 +83,13 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
          
-            Gdiplus::GraphicsPath pathRound;
-
-            Gdiplus::Rect rectRound(rect.left, rect.top, width(&rect), height(&rect));
+            simple_path pathRound;
             
-            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 1 * 2);
+            graphics_round_rect::GetRoundRectPath(pathRound, rect, 1 * 2);
 
             Gdiplus::Pen pen(Gdiplus::Color(84, 108, 149, 255), 1.0f);
 
-            graphics2.DrawPath(&pen, &pathRound);
+            graphics2.DrawPath(&pen, pathRound.m_ppath);
 
          }
 
@@ -103,15 +100,13 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
 
-            Gdiplus::GraphicsPath pathRound;
+            simple_path pathRound;
 
-            Gdiplus::Rect rectRound(rect.left, rect.top, width(&rect), height(&rect));
-            
-            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 2 * 2);
+            graphics_round_rect::GetRoundRectPath(pathRound, rect, 2 * 2);
 
             Gdiplus::Pen pen(Gdiplus::Color(72, 108, 149, 255), 1.0f);
 
-            graphics2.DrawPath(&pen, &pathRound);
+            graphics2.DrawPath(&pen, pathRound.m_ppath);
 
          }
 
@@ -122,15 +117,13 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
 
-            Gdiplus::GraphicsPath pathRound;
+            simple_path pathRound;
 
-            Gdiplus::Rect rectRound(rect.left, rect.top, width(&rect), height(&rect));
-            
-            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 3 * 2);
+            graphics_round_rect::GetRoundRectPath(pathRound, rect, 3 * 2);
 
             Gdiplus::Pen pen(Gdiplus::Color(60, 108, 149, 255), 1.0f);
 
-            graphics2.DrawPath(&pen, &pathRound);
+            graphics2.DrawPath(&pen, pathRound.m_ppath);
 
          }
 
@@ -142,15 +135,13 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
 
-            Gdiplus::GraphicsPath pathRound;
+            simple_path pathRound;
 
-            Gdiplus::Rect rectRound(rect.left, rect.top, width(&rect), height(&rect));
-            
-            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 4 * 2);
+            graphics_round_rect::GetRoundRectPath(pathRound, rect, 4 * 2);
 
             Gdiplus::Pen pen(Gdiplus::Color(48, 108, 149, 255), 1.0f);
 
-            graphics2.DrawPath(&pen, &pathRound);
+            graphics2.DrawPath(&pen, pathRound.m_ppath);
 
          }
 
@@ -163,15 +154,13 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
 
-            Gdiplus::GraphicsPath pathRound;
+            simple_path pathRound;
 
-            Gdiplus::Rect rectRound(rect.left, rect.top, width(&rect), height(&rect));
-            
-            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 5 * 2);
+            graphics_round_rect::GetRoundRectPath(pathRound, rect, 5 * 2);
 
             Gdiplus::Pen pen(Gdiplus::Color(36, 108, 149, 255), 1.0f);
 
-            graphics2.DrawPath(&pen, &pathRound);
+            graphics2.DrawPath(&pen, pathRound.m_ppath);
 
          }
 
@@ -186,15 +175,13 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
 
-            Gdiplus::GraphicsPath pathRound;
+            simple_path pathRound;
 
-            Gdiplus::Rect rectRound(rect.left, rect.top, width(&rect), height(&rect));
-            
-            graphics_round_rect::GetRoundRectPath(&pathRound, rectRound, 6 * 2);
+            graphics_round_rect::GetRoundRectPath(&pathRound, rect, 6 * 2);
 
             Gdiplus::Pen pen(Gdiplus::Color(24, 108, 149, 255), 1.0f);
 
-            graphics2.DrawPath(&pen, &pathRound);
+            graphics2.DrawPath(&pen, pathRound.m_ppath);
 
          }
 

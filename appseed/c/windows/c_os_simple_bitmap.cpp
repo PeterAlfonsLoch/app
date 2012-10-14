@@ -1,17 +1,19 @@
 #include "framework.h"
+#undef new
+#include <GdiPlus.h>
 
 
 simple_bitmap::simple_bitmap()
 {
    
-   m_hbitmap = NULL;
+   m_pbitmap = NULL;
 
 }
 
 simple_bitmap::~simple_bitmap()
 {
    
-   if(m_hbitmap != NULL)
+   if(m_pbitmap != NULL)
    {
 
       destroy();
@@ -23,22 +25,39 @@ simple_bitmap::~simple_bitmap()
 bool simple_bitmap::create(int cx, int cy, simple_graphics & g, COLORREF ** ppdata)
 {
 
-   UNREFERENCED_PARAMETER(g);
+   if(m_pbitmap != NULL)
+   {
+      
+      destroy();
 
-   BITMAPINFO m_Info;
+   }
 
-	m_Info.bmiHeader.biSize=sizeof (BITMAPINFOHEADER);
-	m_Info.bmiHeader.biWidth=cx;
-	m_Info.bmiHeader.biHeight=cy;
-	m_Info.bmiHeader.biPlanes=1;
-	m_Info.bmiHeader.biBitCount=32;
-	m_Info.bmiHeader.biCompression=BI_RGB;
-	m_Info.bmiHeader.biSizeImage=cx*cy*4;
+   m_size.cx = abs(cx);
+   m_size.cy = abs(cy);
 
-	m_hbitmap = CreateDIBSection ( NULL, &m_Info, DIB_RGB_COLORS, (void **)ppdata, NULL, 0);
+   m_memory.allocate(4 * m_size.cx * m_size.cy);
 
-   if(m_hbitmap == NULL)
+   if(m_memory.get_data() == NULL)
+   {
+      m_size.cx = 0;
+      m_size.cy = 0;
       return false;
+   }
+
+   m_pbitmap = new Gdiplus::Bitmap(m_size.cx, m_size.cy, m_size.cx * 4, PixelFormat32bppARGB, (BYTE *) m_memory.get_data());
+
+   if(m_pbitmap == NULL)
+   {
+      m_memory.allocate(0);
+      m_size.cx = 0;
+      m_size.cy = 0;
+      return FALSE;
+   }
+
+   if(ppdata != NULL)
+   {
+      *ppdata = (COLORREF *) m_memory.get_data(); 
+   }
 
    return true;
 
@@ -48,12 +67,34 @@ bool simple_bitmap::create(int cx, int cy, simple_graphics & g, COLORREF ** ppda
 bool simple_bitmap::create_from_data(int cx, int cy, COLORREF * pdata, simple_graphics & g)
 {
 
-   UNREFERENCED_PARAMETER(g);
+   if(m_pbitmap != NULL)
+   {
+      
+      destroy();
 
-   m_hbitmap = ::CreateBitmap(cx, cy, 1, 32, pdata);
+   }
 
-   if(m_hbitmap == NULL)
+   m_size.cx = abs(cx);
+   m_size.cy = abs(cy);
+
+   m_memory.attach(pdata, m_size.cx * m_size.cy * 4);
+
+   if(m_memory.get_data() == NULL)
+   {
+      m_size.cx = 0;
+      m_size.cy = 0;
       return false;
+   }
+
+   m_pbitmap = new Gdiplus::Bitmap(m_size.cx, m_size.cy, m_size.cx * 4, PixelFormat32bppARGB, (BYTE *) m_memory.get_data());
+
+   if(m_pbitmap == NULL)
+   {
+      m_memory.allocate(0);
+      m_size.cx = 0;
+      m_size.cy = 0;
+      return FALSE;
+   }
 
    return true;
 
