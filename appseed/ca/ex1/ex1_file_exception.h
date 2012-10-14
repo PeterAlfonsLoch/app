@@ -13,7 +13,7 @@ namespace ex1
       enum
       {
          none,
-         generic,
+         type_generic,
          fileNotFound,
          badPath,
          tooManyOpenFiles,

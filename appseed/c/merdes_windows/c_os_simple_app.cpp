@@ -19,7 +19,8 @@ int simple_app::main()
 
    //Sleep(15 * 1000);
 
-   
+#ifdef WINDOWSEX
+
    __argc = _init_args();
 	__targv = _argv;
 	_init_file();
@@ -75,6 +76,8 @@ int simple_app::main()
 	//_doexit();
 	_term_args();
 
+#endif
+
    return m_iError;
 
 }
@@ -83,41 +86,6 @@ int simple_app::main()
 void simple_app::body()
 {
 
-   if(__argc >= 2)
-   {
-
-      if(!strncmp_dup(__argv[1], "-install:", strlen_dup("-install:")))
-      {
-
-         //Sleep(15 * 1000);
-
-         xxdebug_box(__argv[1], "simple_app::body", 0);
-
-         vsstring strCommandLine;
-
-         for(int i = 1; i < __argc; i++)
-         {
-
-            if(i == 1)
-            {
-               strCommandLine = &__argv[1][strlen_dup("-install:")];
-            }
-            else
-            {
-               strCommandLine = strCommandLine + " ";
-               strCommandLine = strCommandLine + __argv[i];
-            }
-
-         }
-         
-         DWORD dwStartError;
-         
-         spa::ca2_app_install_run(strCommandLine, dwStartError, true);
-         
-         return;
-
-      }
-   }
 
    try
    {
@@ -179,12 +147,14 @@ bool simple_app::initialize()
 int simple_app::run()
 {
 
+#ifdef WINDOWSEX
 	while(true)
 	{
       GetMessage(&m_msg, NULL, 0, 0xffffffffu);
 		TranslateMessage(&m_msg);
 		DispatchMessage(&m_msg);
 	}
+#endif
 
    return 0;
 }

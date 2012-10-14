@@ -394,14 +394,14 @@ namespace dynamic_source
       process.create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat));
 
       bool bTimeout = false;
-      DWORD dwStart = ::GetTickCount();
+      DWORD dwStart = ::get_tick_count();
       DWORD dwExitCode;
       while(true)
       {
          if(process.has_exited(&dwExitCode))
             break;
          Sleep(84);
-         if(::GetTickCount() - dwStart > 5 * 60 * 1000) // 5 minutes
+         if(::get_tick_count() - dwStart > 5 * 60 * 1000) // 5 minutes
          {
             bTimeout = true;
             break;
@@ -463,7 +463,7 @@ namespace dynamic_source
       }
 
 
-      pscript->m_dwLastBuildTime = ::GetTickCount();
+      pscript->m_dwLastBuildTime = ::get_tick_count();
 
       // Wait for finalization of build
       // or delay in case of error to avoid run conditions due extreme overload.
@@ -1673,7 +1673,7 @@ namespace dynamic_source
    bool script_compiler::library_DoesMatchVersion()
    {
 
-      if(GetTickCount() - m_dwLastLibraryVersionCheck < (1984 + 1977))
+      if(get_tick_count() - m_dwLastLibraryVersionCheck < (1984 + 1977))
       {
          return m_bLastLibraryVersionCheck;
       }
@@ -1701,7 +1701,7 @@ namespace dynamic_source
          || memcmp(&m_ftaLibModified[i], &st.st_mtime, sizeof(__time_t)) != 0)
          {
             m_bLastLibraryVersionCheck = false;
-            m_dwLastLibraryVersionCheck = GetTickCount();
+            m_dwLastLibraryVersionCheck = get_tick_count();
             return false;
 
          }
@@ -1709,7 +1709,7 @@ namespace dynamic_source
       }
 
       m_bLastLibraryVersionCheck    = true;
-      m_dwLastLibraryVersionCheck   = GetTickCount();
+      m_dwLastLibraryVersionCheck   = get_tick_count();
 
       return true;
 

@@ -54,7 +54,7 @@ namespace hotplugin
    plugin::~plugin()
    {
       free_memory();
-#if !defined(MACOS) && !defined(LINUX)
+#if !defined(MACOS) && !defined(LINUX) && !defined(MERDE_WINDOWS)
       if(m_pbitmap != NULL)
          delete (Gdiplus::Bitmap *) m_pbitmap;
       if(m_pcolorref != NULL)
@@ -217,7 +217,7 @@ namespace hotplugin
       else if(m_phost != NULL)
       {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
          ::PostMessage(m_phost->::small_ipc_channel::m_hwnd, WM_USER + 100, 3, 1);
 
@@ -509,13 +509,13 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
       int iDelta = s_iDelta;
       int iRadius = 8;
-      int iPhase = ((((GetTickCount()- s_dwSync)  % iDelta)  ) * iRadius * 2) / iDelta;
+      int iPhase = ((((get_tick_count()- s_dwSync)  % iDelta)  ) * iRadius * 2) / iDelta;
 
-      if(iPhase == 0 && (GetTickCount() - s_dwSync) > 1977)
+      if(iPhase == 0 && (get_tick_count() - s_dwSync) > 1977)
       {
 
-         s_iDelta = 1984 + (GetTickCount() % ((1984 + 1977) * 2));
-         s_dwSync = GetTickCount();
+         s_iDelta = 1984 + (get_tick_count() % ((1984 + 1977) * 2));
+         s_dwSync = get_tick_count();
       }
 
       int iStep = iPhase;
@@ -527,7 +527,235 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
       wstr = m_strStatus;
 
-#ifdef WINDOWS
+#ifdef MERDE_WINDOWS
+
+         int iRate1 = 25;
+
+         BYTE bA;
+
+         {
+
+            //int iARange = (184 - 23) * 2;
+            //int iAClip = iARange / 2;
+            double period = 8.4; // seconds
+            double frequency = 1.0 / period;
+            //int iA = (iARange * ::get_tick_count() / 8000) % iARange;
+            double w = 2.0 * 3.1415 * frequency;
+            double t = get_tick_count() / 1000.0;
+
+
+            /*if(iA < iAClip)
+               bA = iA + 23;
+            else
+               bA = 184 * 2 - iA;*/
+
+            bA = min(255, max(0, (BYTE) ((184.0 * ((sin(w * t) + 1.0) / 2.0)) + 23.0)));
+
+
+
+         }
+
+         BYTE uchR;
+         BYTE uchG;
+         BYTE uchB;
+
+         //graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+
+         int iRate = 10;
+
+         const int iRowCount = cx - cx / (iRate / 2);
+         int iProgressCount = max(min((int) (iRowCount * dRate), iRowCount), 0);
+
+
+         ID2D1Factory * pfactory = NULL;
+
+         g.m_pdc->GetFactory(&pfactory);
+
+         
+
+         int iBorder1 = max(cx / iRate1, cy / iRate1);
+
+         ID2D1PathGeometry * ppathClip1 = NULL;
+
+         pfactory->CreatePathGeometry(&ppathClip1);
+
+         RECT rectClip1;
+         rectClip1.left    = lprect->left + iBorder1;
+         rectClip1.top     = lprect->top + iBorder1;
+         rectClip1.right   = rectClip1.left + cx - iBorder1 * 2;
+         rectClip1.bottom  = rectClip1.top + cy - iBorder1 * 2;
+         graphics_round_rect::GetRoundRectPath(ppathClip1, rectClip1, iBorder1 * 2);
+         g.replace_clip(ppathClip1);
+
+
+
+         int iRatePercentMillis = ((int) (dRate * 100.0 * 1000.0)) % 1000;
+         int iRatePercent = ((int) (dRate * 100.0));
+
+         wstring wstrProgress;
+
+         {
+
+            vsstringtow strProgress(wstrProgress);
+
+            vsstring strDecimal = itoa_dup(iRatePercentMillis);
+
+            zero_pad(strDecimal, 3);
+
+            strProgress = itoa_dup(iRatePercent) + "." + strDecimal + "%";
+
+         }
+
+
+
+         int iBorder = 16;
+
+         Gdiplus::GraphicsPath pathClip;
+
+         Gdiplus::Rect rectClip(lprect->left + cx / iRate - iBorder , lprect->top + (cy - 23) / 2 - iBorder, iRowCount + iBorder * 2, 23 + iBorder * 2);
+         graphics_round_rect::GetRoundRectPath(&pathClip, rectClip, iBorder);
+         graphics2.SetClip(&pathClip, Gdiplus::CombineModeExclude);
+
+
+         Gdiplus::Point pa[4];
+
+         //Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + 23, 177 + 23, 177 + 19));
+         //graphics2.FillRectangle(pbr, lprect->left , lprect->top, lprect->left + cx, lprect->top + cy);
+         //delete pbr;
+
+         Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 184 + 23, 184 + 23, 184 + 19));
+
+         int mcy = cy / 2;
+
+         if(m_iHealingSurface == 1)
+         {
+
+            for(int x = 0; x < (cx + cy); x += 46)
+            {
+
+               pa[0].X = lprect->left + x;
+               pa[0].Y = lprect->top;
+
+               pa[1].X = lprect->left + x + 23;
+               pa[1].Y = lprect->top;
+
+               pa[2].X = lprect->left + x - mcy + 23;
+               pa[2].Y = lprect->top + mcy;
+
+               pa[3].X = lprect->left + x - mcy;
+               pa[3].Y = lprect->top + mcy;
+
+               graphics2.FillPolygon(pbr, pa, 4, Gdiplus::FillModeWinding);
+
+               pa[0].X = lprect->left + x - mcy - 23;
+               pa[0].Y = lprect->top + mcy;
+
+               pa[1].X = lprect->left + x - mcy;
+               pa[1].Y = lprect->top + mcy;
+
+               pa[2].X = lprect->left + x - cy;
+               pa[2].Y = lprect->top + cy;
+
+               pa[3].X = lprect->left + x - cy - 23;
+               pa[3].Y = lprect->top + cy;
+
+               graphics2.FillPolygon(pbr, pa, 4, Gdiplus::FillModeWinding);
+
+            }
+
+         }
+
+         delete pbr;
+
+
+
+
+//         int iRow;
+
+         rectClip.Inflate(3, 3);
+
+         graphics2.SetClip(rectClip, Gdiplus::CombineModeReplace);
+
+         pbr = new Gdiplus::SolidBrush(Gdiplus::Color(84, 84, 84, 77));
+         graphics2.FillRectangle(pbr, lprect->left + cx / iRate - 1 , lprect->top + (cy - 23) / 2 - 1, iRowCount + 2, 23 + 2);
+         delete pbr;
+
+         /*for(iRow = 0; iRow < iProgressCount; iRow++)
+         {
+            {
+               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 0);
+               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
+               graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2, 1, 5);
+               delete pbr;
+            }
+            {
+               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 1);
+               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
+               graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2 + 5, 1, 5);
+               delete pbr;
+            }
+            {
+               get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 2);
+               Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
+               graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2 + 10, 1, 13);
+               delete pbr;
+            }
+         }*/
+         {
+            get_progress_color(uchR, uchG, uchB, 0.0, 0);
+            Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
+            graphics2.FillRectangle(pbr, lprect->left + cx / iRate , lprect->top + (cy - 23) / 2, iProgressCount, 5);
+            delete pbr;
+         }
+         {
+            get_progress_color(uchR, uchG, uchB, 0.0, 1);
+            Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
+            graphics2.FillRectangle(pbr, lprect->left + cx / iRate , lprect->top + (cy - 23) / 2 + 5, iProgressCount, 5);
+            delete pbr;
+         }
+         {
+            get_progress_color(uchR, uchG, uchB, 0.0, 2);
+            Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
+            graphics2.FillRectangle(pbr, lprect->left + cx / iRate , lprect->top + (cy - 23) / 2 + 10, iProgressCount, 13);
+            delete pbr;
+         }
+
+         int iOffset = 3;
+
+         simple_pen pen;
+         pen.create_solid(1, ARGB(220, 180, 180, 180));
+         g.draw_line(&pen, lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset);
+         g.draw_line(&pen, lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset);
+
+         pen.create_solid(1, ARGB(220, 77, 77, 77));
+         g.draw_line(&pen, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
+         g.draw_line(&pen, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
+
+         iOffset = 2;
+         pen.create_solid(1, ARGB(220, 84, 84, 84));
+         g.draw_line(&pen, lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset);
+         g.draw_line(&pen, lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset);
+
+         pen.create_solid(1, ARGB(220, 170, 170, 170));
+         g.draw_line(&pen, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
+         g.draw_line(&pen, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset);
+
+
+         g.m_brush.create_solid(ARGB(127, 255, 255, 255), g);
+
+         g.m_font.create_point(180, "Calibri", g);
+
+         wstring wstrStatus;
+
+         wstrStatus     = wstr;
+         wstrStatus     = wstrStatus + L" : ";
+         wstrStatus     = wstrStatus + wstrProgress;
+
+         g.text_out((lprect->left + cx / iRate - 1 + 18), lprect->top + (cy - 23) / 2 - 1 + 1), vsstring(wstrStatus));
+
+         pfactory->Release();
+
+#elif defined(WINDOWSEX)
 
 /*      HFONT hfont = ::CreatePointFont_dup(490, "Lucida Sans Unicode", hdc);
 
@@ -680,9 +908,9 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
             //int iAClip = iARange / 2;
             double period = 8.4; // seconds
             double frequency = 1.0 / period;
-            //int iA = (iARange * ::GetTickCount() / 8000) % iARange;
+            //int iA = (iARange * ::get_tick_count() / 8000) % iARange;
             double w = 2.0 * 3.1415 * frequency;
-            double t = GetTickCount() / 1000.0;
+            double t = get_tick_count() / 1000.0;
 
 
             /*if(iA < iAClip)
@@ -888,7 +1116,6 @@ void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int
 
       //   delete psf;
 
-      }
 #endif
 
 

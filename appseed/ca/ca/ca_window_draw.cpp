@@ -33,8 +33,8 @@ namespace ca
    {
       const DWORD dwTimeOut = 184 * (1984 + 1977);
       m_bRun = false;
-      DWORD dwStart = ::GetTickCount();
-      while(s_bRunning && ((::GetTickCount() - dwStart) < dwTimeOut))
+      DWORD dwStart = ::get_tick_count();
+      while(s_bRunning && ((::get_tick_count() - dwStart) < dwTimeOut))
       {
 #ifdef WINDOWS
          if(!::SwitchToThread())

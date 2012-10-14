@@ -199,13 +199,13 @@ namespace gen
    DWORD process::wait_until_exit(int iWaitMax)
    {
       DWORD dwExitCode = 0;
-      DWORD dwStartTime = ::GetTickCount();
+      DWORD dwStartTime = ::get_tick_count();
       int i = 1;
       while(true)
       {
          if(has_exited(&dwExitCode))
             break;
-         if(iWaitMax >= 0 && GetTickCount() > dwStartTime + iWaitMax)
+         if(iWaitMax >= 0 && get_tick_count() > dwStartTime + iWaitMax)
             break;
          Sleep(100);
          i++;

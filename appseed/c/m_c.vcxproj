@@ -354,11 +354,13 @@
     <ClInclude Include="merdes_windows\c_os_http.h" />
     <ClInclude Include="merdes_windows\c_os_internal.h" />
     <ClInclude Include="merdes_windows\c_os_process.h" />
-    <ClInclude Include="merdes_windows\c_os_registry.h" />
     <ClInclude Include="merdes_windows\c_os_simple_bitmap.h" />
     <ClInclude Include="merdes_windows\c_os_simple_brush.h" />
+    <ClInclude Include="merdes_windows\c_os_simple_font.h" />
     <ClInclude Include="merdes_windows\c_os_simple_graphics.h" />
     <ClInclude Include="merdes_windows\c_os_simple_hold_handle.h" />
+    <ClInclude Include="merdes_windows\c_os_simple_pen.h" />
+    <ClInclude Include="merdes_windows\c_os_sockets.h" />
     <ClInclude Include="merdes_windows\c_os_thread.h" />
     <ClInclude Include="merdes_windows\windows_merde.h" />
     <ClInclude Include="os\os.h" />
@@ -462,7 +464,6 @@
     <ClCompile Include="merdes_windows\c_os_lock.cpp" />
     <ClCompile Include="merdes_windows\c_os_message_loop.cpp" />
     <ClCompile Include="merdes_windows\c_os_process.cpp" />
-    <ClCompile Include="merdes_windows\c_os_registry.cpp" />
     <ClCompile Include="merdes_windows\c_os_simple_app.cpp" />
     <ClCompile Include="merdes_windows\c_os_simple_bitmap.cpp" />
     <ClCompile Include="merdes_windows\c_os_simple_brush.cpp" />
@@ -471,6 +472,7 @@
     <ClCompile Include="merdes_windows\c_os_simple_pen.cpp" />
     <ClCompile Include="merdes_windows\c_os_simple_shell_launcher.cpp" />
     <ClCompile Include="merdes_windows\c_os_small_ipc_channel.cpp" />
+    <ClCompile Include="merdes_windows\c_os_sockets.cpp" />
     <ClCompile Include="merdes_windows\c_os_thread.cpp" />
     <ClCompile Include="merdes_windows\window_merdes.cpp" />
     <ClCompile Include="os\os_process.cpp" />

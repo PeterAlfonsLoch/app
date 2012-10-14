@@ -31,7 +31,7 @@ namespace ca2
       class on_retry onretry;
 
       onretry.m_dwTimeout     = dwTimeout;
-      onretry.m_dwStartTime   = ::GetTickCount();
+      onretry.m_dwStartTime   = ::get_tick_count();
 
       const char * pszEnd = NULL;
 
@@ -50,7 +50,7 @@ namespace ca2
 
       class on_retry * ponretry = (on_retry *) dwParam;
 
-      return ponretry->m_dwTimeout == 0 || ::GetTickCount() - ponretry->m_dwStartTime < ponretry->m_dwTimeout;
+      return ponretry->m_dwTimeout == 0 || ::get_tick_count() - ponretry->m_dwStartTime < ponretry->m_dwTimeout;
 
    }
 

@@ -366,9 +366,6 @@
     <ClCompile Include="merdes_windows\c_os_process.cpp">
       <Filter>Source Files\merdas_windows</Filter>
     </ClCompile>
-    <ClCompile Include="merdes_windows\c_os_registry.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
-    </ClCompile>
     <ClCompile Include="merdes_windows\c_os_simple_app.cpp">
       <Filter>Source Files\merdas_windows</Filter>
     </ClCompile>
@@ -401,6 +398,9 @@
     </ClCompile>
     <ClCompile Include="c\file_watcher.cpp">
       <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="merdes_windows\c_os_sockets.cpp">
+      <Filter>Source Files\merdas_windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -689,9 +689,6 @@
     <ClInclude Include="merdes_windows\c_os_http.h">
       <Filter>Header Files\windows_merdes</Filter>
     </ClInclude>
-    <ClInclude Include="merdes_windows\c_os_registry.h">
-      <Filter>Header Files\windows_merdes</Filter>
-    </ClInclude>
     <ClInclude Include="merdes_windows\c_os_file.h">
       <Filter>Header Files\windows_merdes</Filter>
     </ClInclude>
@@ -730,6 +727,15 @@
     </ClInclude>
     <ClInclude Include="c\file_watcher_impl.h">
       <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="merdes_windows\c_os_simple_font.h">
+      <Filter>Header Files\windows_merdes</Filter>
+    </ClInclude>
+    <ClInclude Include="merdes_windows\c_os_simple_pen.h">
+      <Filter>Header Files\windows_merdes</Filter>
+    </ClInclude>
+    <ClInclude Include="merdes_windows\c_os_sockets.h">
+      <Filter>Header Files\windows_merdes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -20,7 +20,7 @@ namespace user
    bool application::initialize1()
    {
 
-      m_dwAlive = ::GetTickCount();
+      m_dwAlive = ::get_tick_count();
 
       if(is_system())
       {
@@ -34,7 +34,7 @@ namespace user
       m_pkeyboard = new ::user::keyboard(this);
 
 
-      m_dwAlive = ::GetTickCount();
+      m_dwAlive = ::get_tick_count();
 
       if(is_system())
       {

@@ -22552,7 +22552,7 @@ afp_end_lock:
          n += sizeof(pid);
       }
       if( sizeof(DWORD)<=nBuf-n ){
-         DWORD cnt = GetTickCount();
+         DWORD cnt = get_tick_count();
          memcpy(&zBuf[n], &cnt, sizeof(cnt));
          n += sizeof(cnt);
       }

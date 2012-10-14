@@ -132,7 +132,7 @@ CLASS_DECL_c vsstring get_latest_build_number(const char * pszVersion)
 
    vsstring strLatestBuildNumber = g_strmapLatestBuildNumber[pszVersion];
 
-   if(!strLatestBuildNumber.is_empty() && (GetTickCount() - g_dwLatestBuildNumberLastFetch) < ((1984 + 1977) * 3))
+   if(!strLatestBuildNumber.is_empty() && (get_tick_count() - g_dwLatestBuildNumberLastFetch) < ((1984 + 1977) * 3))
       return strLatestBuildNumber;
 
    return fetch_latest_build_number(pszVersion);
@@ -180,7 +180,7 @@ RetryBuildNumber:
    if(iRetry > 10)
    {
 
-      g_dwLatestBuildNumberLastFetch = GetTickCount();
+      g_dwLatestBuildNumberLastFetch = get_tick_count();
 
       g_strmapLatestBuildNumber.set_at(pszVersion, "");
 
@@ -203,7 +203,7 @@ RetryBuildNumber:
 
    }
 
-   g_dwLatestBuildNumberLastFetch = GetTickCount();
+   g_dwLatestBuildNumberLastFetch = get_tick_count();
 
    g_strmapLatestBuildNumber.set_at(pszVersion, strBuildNumber);
 

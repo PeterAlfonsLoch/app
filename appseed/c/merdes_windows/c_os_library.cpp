@@ -71,9 +71,13 @@ namespace ca
          strPath += ".dll";
 
 
-
+#ifdef MERDE_WINDOWS
+      m_plibrary = ::LoadPackagedLibrary(gen_utf8_to_16(strPath), 0);
+#else
       m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
+#endif
 
+#ifdef WINDOWSEX
       if(m_plibrary == NULL)
       {
 
@@ -82,6 +86,7 @@ namespace ca
          m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
 
       }
+#endif
    
       return m_plibrary != NULL;
 
@@ -152,7 +157,7 @@ namespace ca2
    #else
       ::SetDllDirectory(dir::ca2("stage\\x86") + "\\");
    #endif*/
-      return LoadLibrary(psz);
+      return LoadPackagedLibrary(wstring(psz), 0);
    }
 
 }

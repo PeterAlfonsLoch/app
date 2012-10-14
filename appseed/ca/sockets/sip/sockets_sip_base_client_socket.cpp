@@ -177,7 +177,7 @@ namespace sockets
             }
             else
             {
-               m_iFirstTime = ::GetTickCount();
+               m_iFirstTime = ::get_tick_count();
             }
 #else
 

@@ -2179,7 +2179,7 @@ namespace user
                bIdle = FALSE;
             }*/
 
-            m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::GetTickCount();
+            m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
             {
                pappThis1->m_dwAlive = m_pthread->m_dwAlive;
@@ -2231,7 +2231,7 @@ namespace user
                lIdleCount = 0;
             }*/
 
-            m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::GetTickCount();
+            m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
             {
                pappThis1->m_dwAlive = m_pthread->m_dwAlive;
@@ -2588,7 +2588,7 @@ ExitModal:
    bool interaction::timer_item::check(single_lock & sl)
    {
 
-      if(::GetTickCount() >= (m_uiLastSent + m_uiElapse))
+      if(::get_tick_count() >= (m_uiLastSent + m_uiElapse))
       {
 
          bool bWindow;
@@ -2622,7 +2622,7 @@ ExitModal:
 
          sl.lock();
 
-         m_uiLastSent = ::GetTickCount();
+         m_uiLastSent = ::get_tick_count();
 
       }
 
@@ -2649,7 +2649,7 @@ ExitModal:
       {
 
          m_timera[i].m_uiElapse = uiElapse;
-         m_timera[i].m_uiLastSent = ::GetTickCount();
+         m_timera[i].m_uiLastSent = ::get_tick_count();
 
          return (UINT) i;
 
@@ -2662,7 +2662,7 @@ ExitModal:
          item.m_pguie = pguie;
          item.m_uiId = uiId;
          item.m_uiElapse = uiElapse;
-         item.m_uiLastSent = ::GetTickCount();
+         item.m_uiLastSent = ::get_tick_count();
 
          return (UINT) m_timera.add(item);
 

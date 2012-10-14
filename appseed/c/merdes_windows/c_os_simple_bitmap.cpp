@@ -4,14 +4,14 @@
 simple_bitmap::simple_bitmap()
 {
    
-   m_hbitmap = NULL;
+   m_pbitmap = NULL;
 
 }
 
 simple_bitmap::~simple_bitmap()
 {
    
-   if(m_hbitmap != NULL)
+   if(m_pbitmap != NULL)
    {
 
       destroy();
@@ -23,22 +23,32 @@ simple_bitmap::~simple_bitmap()
 bool simple_bitmap::create(int cx, int cy, simple_graphics & g, COLORREF ** ppdata)
 {
 
-   UNREFERENCED_PARAMETER(g);
+   if(m_pbitmap != NULL)
+   {
 
-   BITMAPINFO m_Info;
+      destroy();
 
-	m_Info.bmiHeader.biSize=sizeof (BITMAPINFOHEADER);
-	m_Info.bmiHeader.biWidth=cx;
-	m_Info.bmiHeader.biHeight=cy;
-	m_Info.bmiHeader.biPlanes=1;
-	m_Info.bmiHeader.biBitCount=32;
-	m_Info.bmiHeader.biCompression=BI_RGB;
-	m_Info.bmiHeader.biSizeImage=cx*cy*4;
+   }
 
-	m_hbitmap = CreateDIBSection ( NULL, &m_Info, DIB_RGB_COLORS, (void **)ppdata, NULL, 0);
+   D2D1_SIZE_U size;
 
-   if(m_hbitmap == NULL)
-      return false;
+   size.width = cx;
+   size.height = cy;
+
+   D2D1_BITMAP_PROPERTIES props;
+
+   props.pixelFormat.alphaMode = D2D1_ALPHA_MODE_STRAIGHT;
+   props.pixelFormat.format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+   props.dpiX = 72.0;
+   props.dpiY = 72.0;
+
+   g.m_pdc->CreateBitmap(size, props, &m_pbitmap);
+
+   m_pbitmap->Map(D2D1_MAP_OPTIONS_READ | D2D1_MAP_OPTIONS_WRITE, &m_map);
+
+   if(ppdata != NULL)
+      *ppdata = (COLORREF) m_map.bits;
+
 
    return true;
 
@@ -50,9 +60,17 @@ bool simple_bitmap::create_from_data(int cx, int cy, COLORREF * pdata, simple_gr
 
    UNREFERENCED_PARAMETER(g);
 
-   m_hbitmap = ::CreateBitmap(cx, cy, 1, 32, pdata);
+   if(m_pcr != NULL)
+   {
+      destroy();
+   }
 
-   if(m_hbitmap == NULL)
+
+   m_pcr = pdata;
+
+   //m_hbitmap = ::CreateBitmap(cx, cy, 1, 32, pdata);
+
+   if(m_pcr == NULL)
       return false;
 
    return true;
@@ -64,13 +82,23 @@ bool simple_bitmap::create_from_data(int cx, int cy, COLORREF * pdata, simple_gr
 bool simple_bitmap::destroy()
 {
    
-   if(m_hbitmap == NULL)
+   if(m_pcr == NULL)
       return true;
 
+   bool bOk = true;
 
-   bool bOk = ::DeleteObject(m_hbitmap) != FALSE;
+   try
+   {
 
-   m_hbitmap = NULL;
+      ca2_free(m_pcr);
+
+   }
+   catch(...)
+   {
+      bOk = false;
+   }
+
+   m_pcr = NULL;
 
    if(!bOk)
       return false;

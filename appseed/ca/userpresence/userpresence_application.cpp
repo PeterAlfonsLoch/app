@@ -17,7 +17,7 @@ namespace userpresence
    bool application::initialize()
    {
 
-      m_dwAlive = ::GetTickCount();
+      m_dwAlive = ::get_tick_count();
       
       if(!::simpledb::application::initialize())
          return false;

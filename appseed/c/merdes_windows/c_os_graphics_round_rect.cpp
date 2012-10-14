@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include <math.h>
 
 //
 // CRoundRect.h : Version 1.0 - see article at CodeProject.com
@@ -44,160 +44,314 @@ graphics_round_rect::~graphics_round_rect(void)
 //
 // Purpose:     Defines a Rounded Rectangle and places it in the GraphicsPath
 //
-// Parameters:  pPath		- [out] pointer to GraphicsPath that will recieve the
+// Parameters:  ppath		- [out] pointer to GraphicsPath that will recieve the
 //									path data
 //				r			- [in]	Rect that defines the round rectangle boundaries
 //				dia			- [in]	diameter of the rounded corners (2*radius)
 //
 // Returns:     None
 //
-void graphics_round_rect::GetRoundRectPath(ID2D1PathGeometry *pPath, RECT r, int dia)
+void graphics_round_rect::GetRoundRectPath(ID2D1PathGeometry *ppath, RECT rect, int dia)
 {
+
    // diameter can't exceed width or height
-   if(dia > width(r))	dia = r.Width;
-   if(dia > height(r))	dia = r.Height;
+   if(dia > width(rect))	
+      dia = width(rect);
+
+   if(dia > height(rect))	
+      dia = height(rect);
+
+   D2D1_RECT_F r;
+   r.left = (FLOAT) rect.left;
+   r.top = (FLOAT) rect.top;
+   r.right = (FLOAT) rect.right;
+   r.bottom = (FLOAT) rect.bottom;
 
    // define a corner
-   Rect Corner(r.X, r.Y, dia, dia);
+   D2D1_RECT_F Corner;
+   Corner.left    = (FLOAT) r.left;
+   Corner.top     = (FLOAT) r.top;
+   Corner.right   = (FLOAT) (Corner.left + dia);
+   Corner.bottom  = (FLOAT) (Corner.top + dia);
+
+
+   ID2D1GeometrySink * psink = NULL;
 
    // begin path
-   pPath->Reset();
+   ppath->Open(&psink);
+
+
+   if(psink == NULL)
+      return;
+
+   D2D1_POINT_2F p;
+   
+   p.x = (FLOAT) r.left;
+   p.y = (FLOAT) r.bottom;
+
+   psink->BeginFigure(p, D2D1_FIGURE_BEGIN_FILLED);
+
+   D2D1_ARC_SEGMENT arcseg;
+
+   arcseg.sweepDirection = D2D1_SWEEP_DIRECTION_CLOCKWISE;
+   arcseg.size.width = (FLOAT) (dia / 2);
+   arcseg.size.height = (FLOAT)  (dia / 2);
+   arcseg.point.x = (FLOAT) Corner.right;
+   arcseg.point.y = (FLOAT) Corner.top;
+   arcseg.arcSize = D2D1_ARC_SIZE_SMALL;
+   arcseg.rotationAngle = 90;
+
 
    // top left
-   pPath->AddArc(Corner, 180, 90);
+   psink->AddArc(arcseg);
 
    // tweak needed for radius of 10 (dia of 20)
+   int dia2 = dia;
    if(dia % 2 == 0)
    {
-      Corner.Width += 1;
-      Corner.Height += 1;
+      dia2++;
       //r.Height -=1; //r.Height -= 1;
    }
 
+   Corner.right   = Corner.left + dia2;
+   Corner.bottom  = Corner.top + dia2;
+
+
    // top right
-   Corner.X += (r.Width - dia - 1);
-   pPath->AddArc(Corner, 270, 90);
+   Corner.left    = r.right - dia - 1;
+   Corner.right   = Corner.left + dia2;
+
+   p.x = (FLOAT) Corner.left;
+   p.y =(FLOAT)  Corner.top;
+   psink->AddLine(p);
+
+   arcseg.point.x    = (FLOAT) Corner.right;
+   arcseg.point.y    = (FLOAT) Corner.bottom;
+   psink->AddArc(arcseg);
+
 
    // bottom right
-   Corner.Y += (r.Height - dia - 1);
-   pPath->AddArc(Corner,   0, 90);
+   Corner.top = (FLOAT) (r.bottom - dia - 1);
+   Corner.bottom = (FLOAT) (Corner.top + dia2);
+
+   p.x = (FLOAT) Corner.right;
+   p.y = (FLOAT) Corner.top;
+   psink->AddLine(p);
+
+   arcseg.point.x = (FLOAT) Corner.left;
+   arcseg.point.y = (FLOAT) Corner.bottom;
+   psink->AddArc(arcseg);
+
 
    // bottom left
-   Corner.X -= (r.Width - dia - 1);
-   pPath->AddArc(Corner,  90, 90);
+   Corner.left = (FLOAT) r.left;
+   Corner.right = (FLOAT) (Corner.left + dia2);
+
+   p.x = (FLOAT) Corner.right;
+   p.y = (FLOAT) Corner.bottom;
+   psink->AddLine(p);
+
+   arcseg.point.x = (FLOAT) Corner.left;
+   arcseg.point.y = (FLOAT) Corner.top;
+   psink->AddArc(arcseg);
 
    // end path
-   pPath->CloseFigure();
+   psink->Close();
+
+   psink->Release();
+
+
+
 }
 
-void graphics_round_rect::GetRoundTopLeft(GraphicsPath *pPath, Rect r, int dia)
+void graphics_round_rect::GetRoundTopLeft(ID2D1PathGeometry *ppath, RECT rect, int dia)
 {
    // diameter can't exceed width or height
-   if(dia > r.Width)	dia = r.Width;
-   if(dia > r.Height)	dia = r.Height;
+   if(dia > width(rect))	
+      dia = width(rect);
 
-   // define a corner
-   Rect Corner(r.X, r.Y, dia, dia);
+   if(dia > height(rect))	
+      dia = height(rect);
 
-   // begin path
-   pPath->Reset();
-
-
-   // top left
-//   pPath->AddArc(Corner, 180, 90);
+   D2D1_RECT_F r;
+   r.left = (FLOAT) rect.left;
+   r.top = (FLOAT) rect.top;
+   r.right = (FLOAT) rect.right;
+   r.bottom = (FLOAT) rect.bottom;
 
    // tweak needed for radius of 10 (dia of 20)
+   int dia2 = dia;
    if(dia % 2 == 0)
    {
-      Corner.Width += 1;
-      Corner.Height += 1;
+      dia2++;
       //r.Height -=1; //r.Height -= 1;
    }
 
-   // top right
-   Corner.X += (r.Width - dia - 1);
-   //pPath->AddArc(Corner, 270, 90);
+   // define a corner
+   D2D1_RECT_F Corner;
+   Corner.left    = r.left;
+   Corner.top     = r.bottom - dia - 1;
+   Corner.right   = Corner.left + dia2;
+   Corner.bottom  = Corner.top + dia2;
 
-   // bottom right
-   Corner.Y += (r.Height - dia - 1);
-   //pPath->AddArc(Corner,   0, 90);
 
+   ID2D1GeometrySink * psink = NULL;
+
+   // begin path
+   ppath->Open(&psink);
+
+
+   if(psink == NULL)
+      return;
+
+   D2D1_POINT_2F p;
+   
    // bottom left
-   Corner.X -= (r.Width - dia - 1);
-   pPath->AddArc(Corner,  135, 45);
+   p.x = ((FLOAT) r.right - ((FLOAT) dia / sqrt(2.0f)));
+   p.y = ((FLOAT) r.bottom - ((FLOAT) dia / sqrt(2.0f));
 
-   pPath->AddLine(r.X, r.Y + r.Height - dia / 2, r.X, r.Y + dia / 2);
+   psink->BeginFigure(p, D2D1_FIGURE_BEGIN_FILLED);
+
+   D2D1_ARC_SEGMENT arcseg;
+
+   arcseg.sweepDirection = D2D1_SWEEP_DIRECTION_CLOCKWISE;
+   arcseg.size.width = dia / 2;
+   arcseg.size.height = dia / 2;
+   arcseg.arcSize = D2D1_ARC_SIZE_SMALL;
+   arcseg.rotationAngle = 45;
 
 
-   Corner.Y -= (r.Height - dia - 1);
-   pPath->AddArc(Corner, 180, 90);
+   psink->AddArc(arcseg);
 
-   pPath->AddLine(r.X + dia / 2, r.Y , r.X + r.Width - dia / 2, r.Y);
 
-   Corner.X += (r.Width - dia - 1);
-   pPath->AddArc(Corner, 270, 45);
+   // top left
+   Corner.top    = r.top;
+   Corner.bottom   = Corner.top + dia2;
+
+   p.x = Corner.left;
+   p.y = Corner.bottom;
+   psink->AddLine(p);
+
+   arcseg.point.x    = Corner.right;
+   arcseg.point.y    = Corner.top;
+   arcseg.rotationAngle = 90;
+   psink->AddArc(arcseg);
+
+
+   // top right
+   Corner.left = r.right - dia - 1;
+   Corner.right= Corner.left + dia2;
+
+   p.x = Corner.left;
+   p.y = Corner.top;
+   psink->AddLine(p);
+
+   arcseg.point.x = Corner.right;
+   arcseg.point.y = Corner.bottom;
+   arcseg.rotationAngle = 45;
+   psink->AddArc(arcseg);
 
 
    // end path
-   //pPath->CloseFigure();
+   psink->Close();
+
+   psink->Release();
+
 }
 
 
 
-void graphics_round_rect::GetRoundBottomRight(GraphicsPath *pPath, Rect r, int dia)
+void graphics_round_rect::GetRoundBottomRight(ID2D1PathGeometry *ppath, RECT rect, int dia)
 {
-   // diameter can't exceed width or height
-   if(dia > r.Width)	dia = r.Width;
-   if(dia > r.Height)	dia = r.Height;
+   
+   if(dia > width(rect))	
+      dia = width(rect);
 
-   // define a corner
-   Rect Corner(r.X, r.Y, dia, dia);
+   if(dia > height(rect))	
+      dia = height(rect);
 
-   // begin path
-   pPath->Reset();
+   D2D1_RECT_F r;
+   r.left = (FLOAT) rect.left;
+   r.top = (FLOAT) rect.top;
+   r.right = (FLOAT) rect.right;
+   r.bottom = (FLOAT) rect.bottom;
 
+   D2D1_RECT_F Corner;
 
-   // top left
-//   pPath->AddArc(Corner, 180, 90);
+   Corner.left    = r.right - dia - 1;
+   Corner.top     = r.top;
 
    // tweak needed for radius of 10 (dia of 20)
+   int dia2 = dia;
    if(dia % 2 == 0)
    {
-      Corner.Width += 1;
-      Corner.Height += 1;
+      dia2++;
       //r.Height -=1; //r.Height -= 1;
    }
 
-   // top right
-   Corner.X += (r.Width - dia - 1);
-   pPath->AddArc(Corner, 315, 45);
+   Corner.right   = Corner.left + dia2;
+   Corner.bottom  = Corner.top + dia2;
 
-   pPath->AddLine(r.X + r.Width, r.Y + dia / 2, r.X + r.Width, r.Y + r.Height - dia / 2);
+   ID2D1GeometrySink * psink = NULL;
+
+   // begin path
+   ppath->Open(&psink);
+
+
+   if(psink == NULL)
+      return;
+
+   D2D1_POINT_2F p;
+   
+   p.x = (FLOAT) r.right + ((FLOAT) dia / sqrt(2.0));
+   p.y = (FLOAT) r.top + ((FLOAT) dia / sqrt(2.0));
+
+   psink->BeginFigure(p, D2D1_FIGURE_BEGIN_HOLLOW);
+
+   D2D1_ARC_SEGMENT arcseg;
+
+   arcseg.sweepDirection = D2D1_SWEEP_DIRECTION_CLOCKWISE;
+   arcseg.size.width = dia / 2;
+   arcseg.size.height = dia / 2;
+   arcseg.point.x = Corner.right;
+   arcseg.point.y = Corner.bottom;
+   arcseg.arcSize = D2D1_ARC_SIZE_SMALL;
+   arcseg.rotationAngle = 45;
+
+   psink->AddArc(arcseg);
 
    // bottom right
-   Corner.Y += (r.Height - dia - 1);
-   pPath->AddArc(Corner,   0, 90);
+   Corner.top = r.bottom - dia - 1;
+   Corner.bottom = Corner.top + dia2;
 
-   pPath->AddLine(r.X + dia / 2,r.Y + r.Height , r.X + r.Width - dia / 2, r.Y + r.Height);
+   p.x = Corner.right;
+   p.y = Corner.top;
+   psink->AddLine(p);
+
+   arcseg.point.x = Corner.left;
+   arcseg.point.y = Corner.bottom;
+   arcseg.rotationAngle = 25;
+   psink->AddArc(arcseg)90
+
 
    // bottom left
-   Corner.X -= (r.Width - dia - 1);
-   pPath->AddArc(Corner,  90, 45);
+   Corner.left = r.left;
+   Corner.right = Corner.left + dia2;
 
-   
+   p.x = Corner.right;
+   p.y = Corner.bottom;
+   psink->AddLine(p);
 
-
-   //Corner.Y -= (r.Height - dia - 1);
-   //pPath->AddArc(Corner, 180, 90);
-
-   
-
-   //Corner.X += (r.Width - dia - 1);
-   //pPath->AddArc(Corner, 275, 45);
-
+   arcseg.point.x = Corner.left;
+   arcseg.point.y = Corner.top;
+   arcseg.rotationAngle = 45;
+   psink->AddArc(arcseg);
 
    // end path
-   //pPath->CloseFigure();
+   psink->Close();
+
+   psink->Release();
+
 }
 
 //=============================================================================
@@ -206,7 +360,7 @@ void graphics_round_rect::GetRoundBottomRight(GraphicsPath *pPath, Rect r, int d
 //
 // Purpose:     Draws a rounded rectangle with a solid pen
 //
-// Parameters:  pGraphics	- [in]	pointer to the Graphics device
+// Parameters:  pdc	- [in]	pointer to the Graphics device
 //				r			- [in]	Rect that defines the round rectangle boundaries
 //				color		- [in]	Color value for the brush
 //				radius		- [in]  radius of the rounded corner
@@ -214,145 +368,241 @@ void graphics_round_rect::GetRoundBottomRight(GraphicsPath *pPath, Rect r, int d
 //
 // Returns:     None
 //
-void graphics_round_rect::DrawRoundRect(Graphics* pGraphics, Rect r,  Color color, int radius, int width)
+void graphics_round_rect::DrawRoundRect(ID2D1RenderTarget * pdc, RECT r,  COLORREF color, int radius, int width)
 {
    int dia	= 2*radius;
 
    // set to pixel mode
-   int oldPageUnit = pGraphics->SetPageUnit(UnitPixel);
+   //int oldPageUnit = pdc->SetPageUnit(UnitPixel);
 
    // define the pen
-   Pen pen(color, 1);
-   pen.SetAlignment(PenAlignmentCenter);
+   ID2D1SolidColorBrush * ppen = NULL;
+   //pen.SetAlignment(PenAlignmentCenter);
 
    // get the corner path
-   GraphicsPath path;
+   //GraphicsPath path;
 
    // get path
-   GetRoundRectPath(&path, r, dia);
+
+   ID2D1PathGeometry * ppath = NULL;
+
+   ID2D1Factory * pfactory = NULL;
+      
+   pdc->GetFactory(&pfactory);
+   
+   pfactory->CreatePathGeometry(&ppath);
+
+   GetRoundRectPath(ppath, r, dia);
+
+   D2D1_COLOR_F c;
+
+   c.a = GetAValue(color) / 255.0f;
+   c.r = GetRValue(color) / 255.0f;
+   c.g = GetGValue(color) / 255.0f;
+   c.b = GetBValue(color) / 255.0f;
+
+   pdc->CreateSolidColorBrush(c, &ppen);
 
    // draw the round rect
-   pGraphics->DrawPath(&pen, &path);
+   pdc->DrawGeometry(ppath, ppen);
+
+   ppath->Release();
 
    // if width > 1
    for(int i=1; i<width; i++)
    {
       dia++;
       // left stroke
-      r.Inflate(-1, 0);
+      r.left++;
+      r.right--;
 
       // get the path
-      GetRoundRectPath(&path, r, dia);
+      ppath = NULL;
+      pfactory->CreatePathGeometry(&ppath);
+      GetRoundRectPath(ppath, r, dia);
 
       // draw the round rect
-      pGraphics->DrawPath(&pen, &path);
+      pdc->DrawGeometry(ppath, ppen);
+      ppath->Release();
 
       // up stroke
-      r.Inflate(0, -1);
+      r.top++;
+      r.bottom--;
 
       // get the path
-      GetRoundRectPath(&path, r, dia);
+      ppath = NULL;
+      pfactory->CreatePathGeometry(&ppath);
+      GetRoundRectPath(ppath, r, dia);
 
       // draw the round rect
-      pGraphics->DrawPath(&pen, &path);
+      pdc->DrawGeometry(ppath, ppen);
+      ppath->Release();
    }
 
+   ppen->Release();
+
+   pfactory->Release();
+
    // restore page unit
-   pGraphics->SetPageUnit((Unit)oldPageUnit);
+   //pdc->SetPageUnit((Unit)oldPageUnit);
 }
 
-void graphics_round_rect::DrawTopLeft(Graphics* pGraphics, Rect r,  Color color, int radius, int width)
+void graphics_round_rect::DrawTopLeft(ID2D1RenderTarget* pdc, RECT r,  COLORREF color, int radius, int width)
 {
    int dia	= 2*radius;
 
    // set to pixel mode
-   int oldPageUnit = pGraphics->SetPageUnit(UnitPixel);
+   //int oldPageUnit = pdc->SetPageUnit(UnitPixel);
 
    // define the pen
-   Pen pen(color, 1);
-   pen.SetAlignment(PenAlignmentCenter);
+   ID2D1SolidColorBrush * ppen = NULL;
+   //pen.SetAlignment(PenAlignmentCenter);
 
    // get the corner path
-   GraphicsPath path;
+   //GraphicsPath path;
 
    // get path
-   GetRoundTopLeft(&path, r, dia);
+
+   ID2D1PathGeometry * ppath = NULL;
+
+   ID2D1Factory * pfactory = NULL;
+      
+   pdc->GetFactory(&pfactory);
+   
+   pfactory->CreatePathGeometry(&ppath);
+
+   GetRoundTopLeft(ppath, r, dia);
+
+   D2D1_COLOR_F c;
+
+   c.a = GetAValue(color) / 255.0f;
+   c.r = GetRValue(color) / 255.0f;
+   c.g = GetGValue(color) / 255.0f;
+   c.b = GetBValue(color) / 255.0f;
+
+   pdc->CreateSolidColorBrush(c, &ppen);
 
    // draw the round rect
-   pGraphics->DrawPath(&pen, &path);
+   pdc->DrawGeometry(ppath, ppen);
+
+   ppath->Release();
 
    // if width > 1
    for(int i=1; i<width; i++)
    {
       dia++;
       // left stroke
-      r.Inflate(-1, 0);
+      r.left++;
+      r.right--;
 
       // get the path
-      GetRoundTopLeft(&path, r, dia);
+      ppath = NULL;
+      pfactory->CreatePathGeometry(&ppath);
+      GetRoundTopLeft(ppath, r, dia);
 
       // draw the round rect
-      pGraphics->DrawPath(&pen, &path);
+      pdc->DrawGeometry(ppath, ppen);
+      ppath->Release();
 
       // up stroke
-      r.Inflate(0, -1);
+      r.top++;
+      r.bottom--;
 
       // get the path
-      GetRoundTopLeft(&path, r, dia);
+      ppath = NULL;
+      pfactory->CreatePathGeometry(&ppath);
+      GetRoundTopLeft(ppath, r, dia);
 
       // draw the round rect
-      pGraphics->DrawPath(&pen, &path);
+      pdc->DrawGeometry(ppath, ppen);
+      ppath->Release();
    }
 
+   ppen->Release();
+
+   pfactory->Release();
+
    // restore page unit
-   pGraphics->SetPageUnit((Unit)oldPageUnit);
+   //pdc->SetPageUnit((Unit)oldPageUnit);
 }
 
-void graphics_round_rect::DrawBottomRight(Graphics* pGraphics, Rect r,  Color color, int radius, int width)
+void graphics_round_rect::DrawBottomRight(ID2D1RenderTarget* pdc, RECT r,  COLORREF color, int radius, int width)
 {
    int dia	= 2*radius;
 
    // set to pixel mode
-   int oldPageUnit = pGraphics->SetPageUnit(UnitPixel);
+   //int oldPageUnit = pdc->SetPageUnit(UnitPixel);
 
    // define the pen
-   Pen pen(color, 1);
-   pen.SetAlignment(PenAlignmentCenter);
+   ID2D1SolidColorBrush * ppen = NULL;
+   //pen.SetAlignment(PenAlignmentCenter);
 
    // get the corner path
-   GraphicsPath path;
+   //GraphicsPath path;
 
    // get path
-   GetRoundBottomRight(&path, r, dia);
+
+   ID2D1PathGeometry * ppath = NULL;
+
+   ID2D1Factory * pfactory = NULL;
+      
+   pdc->GetFactory(&pfactory);
+   
+   pfactory->CreatePathGeometry(&ppath);
+
+   GetRoundRectPath(ppath, r, dia);
+
+   D2D1_COLOR_F c;
+
+   c.a = GetAValue(color) / 255.0f;
+   c.r = GetRValue(color) / 255.0f;
+   c.g = GetGValue(color) / 255.0f;
+   c.b = GetBValue(color) / 255.0f;
+
+   pdc->CreateSolidColorBrush(c, &ppen);
 
    // draw the round rect
-   pGraphics->DrawPath(&pen, &path);
+   pdc->GetRoundBottomRight(ppath, ppen);
+
+   ppath->Release();
 
    // if width > 1
    for(int i=1; i<width; i++)
    {
       dia++;
       // left stroke
-      r.Inflate(-1, 0);
+      r.left++;
+      r.right--;
 
       // get the path
-      GetRoundBottomRight(&path, r, dia);
+      ppath = NULL;
+      pfactory->CreatePathGeometry(&ppath);
+      GetRoundBottomRight(ppath, r, dia);
 
       // draw the round rect
-      pGraphics->DrawPath(&pen, &path);
+      pdc->DrawGeometry(ppath, ppen);
+      ppath->Release();
 
       // up stroke
-      r.Inflate(0, -1);
+      r.top++;
+      r.bottom--;
 
       // get the path
-      GetRoundBottomRight(&path, r, dia);
+      ppath = NULL;
+      pfactory->CreatePathGeometry(&ppath);
+      GetRoundBottomRight(ppath, r, dia);
 
       // draw the round rect
-      pGraphics->DrawPath(&pen, &path);
+      pdc->DrawGeometry(ppath, ppen);
+      ppath->Release();
    }
 
+   ppen->Release();
+
+   pfactory->Release();
+
    // restore page unit
-   pGraphics->SetPageUnit((Unit)oldPageUnit);
+   //pdc->SetPageUnit((Unit)oldPageUnit);
 }
 
 //=============================================================================
@@ -362,17 +612,17 @@ void graphics_round_rect::DrawBottomRight(Graphics* pGraphics, Rect r,  Color co
 // Purpose:     Fills a rounded rectangle with a solid brush.  Draws the border
 //				first then fills in the rectangle.
 //
-// Parameters:  pGraphics	- [in]	pointer to the Graphics device
+// Parameters:  pdc	- [in]	pointer to the Graphics device
 //				r			- [in]	Rect that defines the round rectangle boundaries
 //				color		- [in]	Color value for the brush
 //				radius		- [in]  radius of the rounded corner
 //
 // Returns:     None
 //
-void graphics_round_rect::FillRoundRect(Graphics* pGraphics, Rect r,  Color color, int radius)
+void graphics_round_rect::FillRoundRect(Graphics* pdc, Rect r,  Color color, int radius)
 {
    SolidBrush sbr(color);
-   FillRoundRect(pGraphics, &sbr, r, color, radius);
+   FillRoundRect(pdc, &sbr, r, color, radius);
 }
 
 //=============================================================================
@@ -382,7 +632,7 @@ void graphics_round_rect::FillRoundRect(Graphics* pGraphics, Rect r,  Color colo
 // Purpose:     Fills a rounded rectangle with a solid brush.  Draws the border
 //				first then fills in the rectangle.
 //
-// Parameters:  pGraphics	- [in]	pointer to the Graphics device
+// Parameters:  pdc	- [in]	pointer to the Graphics device
 //				pBrush		- [in]  pointer to a Brush
 //				r			- [in]	Rect that defines the round rectangle boundaries
 //				color		- [in]	Color value for the border (needed in case the
@@ -391,12 +641,12 @@ void graphics_round_rect::FillRoundRect(Graphics* pGraphics, Rect r,  Color colo
 //
 // Returns:     None
 //
-void graphics_round_rect::FillRoundRect(Graphics* pGraphics, Brush* pBrush, Rect r, Color border, int radius)
+void graphics_round_rect::FillRoundRect(Graphics* pdc, Brush* pBrush, Rect r, Color border, int radius)
 {
    int dia	= 2*radius;
 
    // set to pixel mode
-   int oldPageUnit = pGraphics->SetPageUnit(UnitPixel);
+   int oldPageUnit = pdc->SetPageUnit(UnitPixel);
 
    // define the pen
    Pen pen(border, 1);
@@ -409,11 +659,11 @@ void graphics_round_rect::FillRoundRect(Graphics* pGraphics, Brush* pBrush, Rect
    GetRoundRectPath(&path, r, dia);
 
    // fill
-   pGraphics->FillPath(pBrush, &path);
+   pdc->FillPath(pBrush, &path);
 
    // draw the border last so it will be on top in case the color is different
-   pGraphics->DrawPath(&pen, &path);
+   pdc->DrawPath(&pen, &path);
 
    // restore page unit
-   pGraphics->SetPageUnit((Unit)oldPageUnit);
+   pdc->SetPageUnit((Unit)oldPageUnit);
 }

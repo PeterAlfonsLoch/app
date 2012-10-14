@@ -78,10 +78,10 @@ namespace spa
       if(!is_installing())
       {
 
-         if((GetTickCount() - m_dwLastRestart) > (1984 + 1977) * 5)
+         if((get_tick_count() - m_dwLastRestart) > (1984 + 1977) * 5)
          {
 
-            m_dwLastRestart = GetTickCount();
+            m_dwLastRestart = get_tick_count();
 
             start_ca2();
 
@@ -99,10 +99,10 @@ namespace spa
       if(m_phost->m_bInstalling)
       {
 
-         if((::GetTickCount() - m_dwLastInstallingCheck) > 1984)
+         if((::get_tick_count() - m_dwLastInstallingCheck) > 1984)
          {
 
-            m_dwLastInstallingCheck = GetTickCount();
+            m_dwLastInstallingCheck = get_tick_count();
 
             try
             {
@@ -117,10 +117,10 @@ namespace spa
          }
 
       }
-      else if((::GetTickCount() - m_dwLastInstallingCheck) > ((1984 + 1977) * 2))
+      else if((::get_tick_count() - m_dwLastInstallingCheck) > ((1984 + 1977) * 2))
       {
 
-         m_dwLastInstallingCheck = GetTickCount();
+         m_dwLastInstallingCheck = get_tick_count();
 
          try
          {
@@ -151,7 +151,7 @@ namespace spa
          if(is_rx_tx_ok())
          {
 
-            m_dwLastOk = GetTickCount();
+            m_dwLastOk = get_tick_count();
 
             m_bRestartCa2        = false;
 
@@ -160,7 +160,7 @@ namespace spa
             bJob                 = true;
 
          }
-         else if(GetTickCount() - m_dwLastOk > ((1984 + 1977) * 2))
+         else if(get_tick_count() - m_dwLastOk > ((1984 + 1977) * 2))
          {
             try
             {
@@ -205,7 +205,7 @@ namespace spa
 
             bJob                 = true;
 
-            m_dwLastOk           = GetTickCount();
+            m_dwLastOk           = get_tick_count();
 
          }
 

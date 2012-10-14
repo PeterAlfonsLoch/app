@@ -352,7 +352,7 @@ namespace sockets
       fd_set efds = m_efds;
    #endif
       int n;
-      dw1 = ::GetTickCount();
+      dw1 = ::get_tick_count();
       if (m_b_use_mutex)
       {
          m_mutex.unlock();
@@ -365,7 +365,7 @@ namespace sockets
          n = select( (int)(m_maxsock + 1),&rfds,&wfds,&efds,tsel);
          m_iSelectErrno = Errno;
       }
-      dw2 = ::GetTickCount();
+      dw2 = ::get_tick_count();
       //TRACE("socket_handler::Select select time = %d, %d, %d\n", dw1, dw2, dw2 - dw1);
       if(n == 0)
       {

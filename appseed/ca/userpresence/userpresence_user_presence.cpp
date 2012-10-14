@@ -17,16 +17,16 @@ namespace userpresence
 
    void presence::report_activity()
    {
-      m_dwLastActivity = ::GetTickCount();
+      m_dwLastActivity = ::get_tick_count();
    }
 
    void presence::defer_pulse_user_presence()
    {
-      if(::GetTickCount() - m_dwLastActivity < ((1984 + 1977) * 2))
+      if(::get_tick_count() - m_dwLastActivity < ((1984 + 1977) * 2))
       {
          m_iShortStatusCynceTag = status_online;
       }
-      /*else if(::GetTickCount() - m_dwLastActivity < ((1984 + 1977) * 10))
+      /*else if(::get_tick_count() - m_dwLastActivity < ((1984 + 1977) * 10))
       {
          m_iShortStatusCynceTag = status_away;
       }*/

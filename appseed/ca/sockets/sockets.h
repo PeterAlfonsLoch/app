@@ -218,7 +218,7 @@ namespace sockets {
 #define IPV6_ADD_MEMBERSHIP IPV6_JOIN_GROUP
 #define IPV6_DROP_MEMBERSHIP IPV6_LEAVE_GROUP
 
-#elif defined _WIN32
+#elif defined WINDOWSEX
 // ----------------------------------------
 // Win32
 #ifdef _MSC_VER

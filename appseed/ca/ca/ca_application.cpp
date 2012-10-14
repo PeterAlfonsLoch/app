@@ -17,7 +17,7 @@ namespace ca
 
       //_setmbcp(CP_UTF8);
 //      DWORD dw = ::_getmbcp();
-      srand(::GetTickCount());
+      srand(::get_tick_count());
 
       m_pinitmaindata   = NULL;
       m_bService        = false;

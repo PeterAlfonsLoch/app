@@ -158,7 +158,7 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
    for (int i = 0; i < m_waitableelementa.get_size(); i++)
       m_waitableelementa[i].item->init_wait();
 
-   DWORD start(GetTickCount());
+   DWORD start(get_tick_count());
 
    DWORD winResult;
    bool FoundExternal=false;
@@ -168,7 +168,7 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
       if (timeout)  {
          // if ANY timeout available
          do {
-            DWORD ticks = GetTickCount();
+            DWORD ticks = get_tick_count();
 
             if (ticks-start >= timeout)
                winResult = WAIT_TIMEOUT;

@@ -336,10 +336,29 @@ _Use_decl_annotations_ BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsVal
 // Called at thread exit to clean up TLS allocations.
 void WINAPI TlsShutdown()
 {
-   ThreadLocalData* threadData = currentThreadData;
+
+   ThreadLocalData * threadData = currentThreadData;
 
    if (threadData)
    {
+
+      try
+      {
+         
+         IDWriteFactory * pfactory = TlsGetWriteFactory()
+
+         if(pfactory != NULL)
+         {
+            
+            pfactory->Release();
+
+         }
+
+      }
+      catch(...)
+      {
+      }
+
       {
             lock_guard<mutex> lock(tlsAllocationLock);
 

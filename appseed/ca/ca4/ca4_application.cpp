@@ -125,7 +125,7 @@ namespace ca4
    bool application::initialize()
    {
 
-      m_dwAlive = ::GetTickCount();
+      m_dwAlive = ::get_tick_count();
 
       if(!ca2::application::initialize())
          return false;

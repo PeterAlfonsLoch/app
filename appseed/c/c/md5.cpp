@@ -398,7 +398,63 @@ namespace md5
 vsstring get_file_md5_by_map(const char * path)
 {
 
-#if defined(WINDOWSEX)
+#ifdef MERDE_WINDOWS
+
+
+   wstring wstr(path);
+
+   HANDLE hfile = ::CreateFile2(wstr, FILE_READ_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, OPEN_EXISTING, NULL);
+
+   if(hfile == INVALID_HANDLE_VALUE)
+   {
+
+      return "";
+
+   }
+
+   DWORD dwHigh;
+
+   DWORD dwSize = ::GetFileSize(hfile, &dwHigh);
+
+   if(dwHigh > 0)
+   {
+
+   }
+
+   HANDLE hfilemap = CreateFileMappingFromApp(
+      hfile,
+      NULL,
+      PAGE_READONLY,
+      dwSize,
+      NULL);
+
+   if(hfilemap == NULL)
+   {
+
+      CloseHandle(hfile);
+
+      return "";
+
+   }
+
+   char * pview = (char *) MapViewOfFileFromApp(
+      hfilemap,
+      FILE_MAP_READ,
+      0,
+      0);
+
+   if(pview == NULL)
+   {
+
+      CloseHandle(hfile);
+
+      CloseHandle(hfilemap);
+
+      return "";
+
+   }
+
+#elif defined(WINDOWS)
 
 
    wstring wstr(path);
@@ -414,29 +470,9 @@ vsstring get_file_md5_by_map(const char * path)
 
    DWORD dwHigh;
 
-#ifdef AMD64
-
    DWORD64 dwSize = ::GetFileSize(hfile, &dwHigh);
 
    dwSize |= ((DWORD64) dwHigh) << 32;
-
-#else
-
-   DWORD dwSize = ::GetFileSize(hfile, &dwHigh);
-
-   if(dwHigh > 0)
-   {
-      
-      // if file is greater than ~4GB in 32 Bits, could not map entire file in memory view
-      // so cannot get_file_md5_by_map
-
-      ::CloseHandle(hfile);
-
-      return "";
-
-   }
-
-#endif
 
    HANDLE hfilemap = CreateFileMapping(
       hfile,
@@ -473,81 +509,6 @@ vsstring get_file_md5_by_map(const char * path)
       return "";
 
    }
-#elif defined(MERDE_WINDOWS)
-
-
-   wstring wstr(path);
-
-   HANDLE hfile = ::CreateFile2(wstr, FILE_READ_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, OPEN_EXISTING, NULL);
-
-   if(hfile == INVALID_HANDLE_VALUE)
-   {
-
-      return "";
-
-   }
-
-   DWORD dwHigh;
-
-#ifdef AMD64
-
-   DWORD64 dwSize = ::GetFileSize(hfile, &dwHigh);
-
-   dwSize |= ((DWORD64) dwHigh) << 32;
-
-#else
-
-   DWORD dwSize = ::GetFileSize(hfile, &dwHigh);
-
-   if(dwHigh > 0)
-   {
-      
-      // if file is greater than ~4GB in 32 Bits, could not map entire file in memory view
-      // so cannot get_file_md5_by_map
-
-      ::CloseHandle(hfile);
-
-      return "";
-
-   }
-
-#endif
-
-   HANDLE hfilemap = CreateFileMappingFromApp(
-      hfile,
-      NULL,
-      PAGE_READONLY,
-      dwSize,
-      NULL);
-
-   if(hfilemap == NULL)
-   {
-
-      CloseHandle(hfile);
-
-      return "";
-
-   }
-
-   char * pview = (char *) MapViewOfFileEx(
-      hfilemap,
-      FILE_MAP_READ,
-      0,
-      0,
-      0,
-      NULL);
-
-   if(pview == NULL)
-   {
-
-      CloseHandle(hfile);
-
-      CloseHandle(hfilemap);
-
-      return "";
-
-   }
-
 #else
 
    int fd = ::open(path, O_RDONLY);
@@ -559,30 +520,7 @@ vsstring get_file_md5_by_map(const char * path)
 
    }
 
-   int64_t iSize = ::get_file_size(fd);
-
-#ifdef AMD64
-
-   int64_t dwSize = iSize;
-
-#else
-
-   if(iSize > 0xffffffffu)
-   {
-      
-      ::close(fd);
-
-      // if file is greater than ~4GB in 32 Bits, could not map entire file in memory view
-      // so cannot get_file_md5_by_map
-
-      return "";
-
-   }
-
-   size_t dwSize = (size_t) iSize;
-
-#endif
-
+   int64_t dwSize = ::get_file_size(fd);
 
    char * pview = (char *) mmap(NULL, dwSize, PROT_READ, MAP_PRIVATE, fd, 0);
 
@@ -631,12 +569,39 @@ vsstring get_file_md5_by_read(const char * path)
 
 
    int64_t iSize;
-
-#ifdef WINDOWS
+#ifdef MERDE_WINDOWS
 
    DWORD dwRead;
 
-   HANDLE hfile = ::CreateFile(path, GENERIC_READ, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+   wstring wstr(path);
+
+   CREATEFILE2_EXTENDED_PARAMETERS ep;
+
+   memset(&ep, 0, sizeof(ep));
+   ep.dwSize = sizeof(ep);
+   ep.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
+
+
+
+   HANDLE hfile = ::CreateFile2(wstr, GENERIC_READ, FILE_SHARE_WRITE | FILE_SHARE_READ, OPEN_EXISTING, &ep);
+
+   if(hfile == INVALID_HANDLE_VALUE)
+      return "";
+
+   DWORD dwHigh;
+
+   iSize = ::GetFileSize(hfile, &dwHigh);
+
+   iSize |= (0x7fffffff & (uint64_t) dwHigh) << 32;
+
+
+#elif defined(WINDOWS)
+
+   DWORD dwRead;
+
+   wstring wstr(path);
+
+   HANDLE hfile = ::CreateFileW(wstr, GENERIC_READ, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
    if(hfile == INVALID_HANDLE_VALUE)
       return "";

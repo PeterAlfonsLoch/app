@@ -411,9 +411,9 @@ namespace sockets
       {
          if (!Ready())
             return;
-         dw1 = ::GetTickCount();
+         dw1 = ::get_tick_count();
          n = SSL_read(m_ssl, buf, TCP_BUFSIZE_READ);
-         dw2 = ::GetTickCount();
+         dw2 = ::get_tick_count();
          //TRACE("tcp_socket::OnRead SSL_read time = %d, %d, %d\n", dw1, dw2, dw2 - dw1);
          if (n == -1)
          {

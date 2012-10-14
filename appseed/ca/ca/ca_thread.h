@@ -97,7 +97,11 @@ namespace ca
 
       byte *      m_pbStart;
       byte *      m_pbEnd;
+#ifdef MERDE_WINDOWS
+      DWORD64     m_dwTickCount;
+#else
       DWORD       m_dwTickCount;
+#endif
 
 
       inline heap_item()
@@ -107,7 +111,11 @@ namespace ca
       }
 
 
+#ifdef MERDE_WINDOWS
+      inline heap_item(void * p, ::primitive::memory_size iSize, DWORD64 dwTick)
+#else
       inline heap_item(void * p, ::primitive::memory_size iSize, DWORD dwTick)
+#endif
       {
          m_pbStart = (byte *) p;
          m_pbEnd = ((byte *) p) + max(iSize - 1, 0);
@@ -142,13 +150,21 @@ namespace ca
    {
    public:
 
+#ifdef MERDE_WINDOWS
+      DWORD64 m_dwLastCleanup;
+#else
       DWORD m_dwLastCleanup;
-
+#endif
 
       inline void add_item(void * p, ::primitive::memory_size iSize)
       {
-         add(heap_item(p, iSize, GetTickCount()));
-         if(GetTickCount() > m_dwLastCleanup + 10000)
+#ifdef MERDE_WINDOWS
+         add(heap_item(p, iSize, GetTickCount64()));
+         if(GetTickCount64() > m_dwLastCleanup + 10000)
+#else
+         add(heap_item(p, iSize, get_tick_count()));
+         if(get_tick_count() > m_dwLastCleanup + 10000)
+#endif
          {
             cleanup();
          }
@@ -156,7 +172,11 @@ namespace ca
 
       inline void cleanup()
       {
-         DWORD dwLimit = GetTickCount() - 1000;
+#ifdef MERDE_WINDOWS
+         DWORD64 dwLimit = GetTickCount64() - 1000;
+#else
+         DWORD64 dwLimit = get_tick_count() - 1000;
+#endif
          for(int i = 0; i < this->get_count();)
          {
             if(dwLimit > m_pData[i].m_dwTickCount)
@@ -168,7 +188,11 @@ namespace ca
                i++;
             }
          }
-         m_dwLastCleanup = GetTickCount();
+#ifdef MERDE_WINDOWS
+         m_dwLastCleanup = GetTickCount64();
+#else
+         m_dwLastCleanup = get_tick_count();
+#endif
       }
 
       inline bool find(void * p, bool bRemove)  // lAyana e Mi tsuo tsumanumA

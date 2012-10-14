@@ -233,7 +233,7 @@ namespace spa
 
       installation_lock_file_lock installationlockfilelock;
 
-      m_dwInstallStartTime = ::GetTickCount();
+      m_dwInstallStartTime = ::get_tick_count();
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
@@ -795,7 +795,7 @@ RetryHost:
 
       class stra_dup straExpandFileSet;
 
-      m_dwDownloadTick = ::GetTickCount();
+      m_dwDownloadTick = ::get_tick_count();
 
       m_dwDownload = 0;
 
@@ -2983,7 +2983,7 @@ RetryHost:
 
    int installer::spaadmin_main(const char * pszCommandLine)
    {
-      ::srand_dup(::GetTickCount());
+      ::srand_dup(::get_tick_count());
 
       ensure_trace_file();
 
@@ -3331,7 +3331,7 @@ RetryHost:
    {
       if(!m_bShowPercentage)
          return;
-      DWORD dw = ::GetTickCount();
+      DWORD dw = ::get_tick_count();
       DWORD dwDeltaTime = dw - m_dwDownloadTick;
       if(dwDeltaTime < 184)
          return;
@@ -3354,10 +3354,10 @@ RetryHost:
          if(m_dDownloadRate != 0.0)
          {
             m_dDownloadRate = 0.0;
-            m_dwDownloadZeroRateTick = ::GetTickCount();
+            m_dwDownloadZeroRateTick = ::get_tick_count();
             m_dwDownloadZeroRateRemain = m_dwDownloadRemain;
          }
-         m_dwDownloadRemain = m_dwDownloadZeroRateRemain + ::GetTickCount() - m_dwDownloadZeroRateTick;
+         m_dwDownloadRemain = m_dwDownloadZeroRateRemain + ::get_tick_count() - m_dwDownloadZeroRateTick;
       }
       else
       {

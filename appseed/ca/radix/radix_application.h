@@ -354,7 +354,7 @@ namespace radix
       // Advanced: process async DDE request
       virtual bool OnDDECommand(LPTSTR lpszCommand);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       // Advanced: Help support
       virtual void WinHelp(dword_ptr dwData, UINT nCmd = HELP_CONTEXT);
       virtual void HtmlHelp(dword_ptr dwData, UINT nCmd = 0x000F);

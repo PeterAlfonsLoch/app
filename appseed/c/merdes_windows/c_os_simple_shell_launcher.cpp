@@ -1,4 +1,7 @@
 #include "framework.h"
+
+#ifndef MERDE_WINDOWS
+
 #include <Shellapi.h>
 
 
@@ -27,6 +30,8 @@ bool simple_shell_launcher::succeeded()
 
 
 
+
+#endif
 
 
 

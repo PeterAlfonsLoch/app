@@ -27,7 +27,7 @@ void wait_message_dialog::on_show(const char * pszMatter, gen::property_set & pr
       //m_pdocument->get_html_data()->m_propertyset["wait_message_dialog_timeout"] = (int) (m_dwDelay / 1000);
       //m_pdocument->get_view()->SetTimer(5432175, 584, NULL);
    }
-   m_dwStartTime = ::GetTickCount();
+   m_dwStartTime = ::get_tick_count();
 }
 
 
@@ -44,7 +44,7 @@ bool wait_message_dialog::BaseOnControlEvent(::user::form * pview, ::user::contr
    {
       if(pevent->m_uiEvent == 5432175)
       {
-         DWORD dwTimeout = ::GetTickCount() - m_dwStartTime;
+         DWORD dwTimeout = ::get_tick_count() - m_dwStartTime;
          if(dwTimeout > m_dwDelay)
          {
             if(on_timeout())

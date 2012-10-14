@@ -194,14 +194,14 @@ wait_result event::wait (const duration & duration)
 	return wait_result(::WaitForSingleObject(item(), timeout));
 #else
 
-	DWORD start = ::GetTickCount();
+	DWORD start = ::get_tick_count();
 
 	timespec delay;
 
 	delay.tv_sec = 0;
 	delay.tv_nsec = 1000000;
 
-	while(duration.is_pos_infinity() || ::GetTickCount() - start < timeout)
+	while(duration.is_pos_infinity() || ::get_tick_count() - start < timeout)
 	{
 
       sembuf sb;
@@ -310,14 +310,14 @@ bool event::lock(const duration & durationTimeout)
 
    DWORD timeout = durationTimeout.os_lock_duration();
 
-	DWORD start = ::GetTickCount();
+	DWORD start = ::get_tick_count();
 
 	timespec delay;
 
 	delay.tv_sec = 0;
 	delay.tv_nsec = 1000000;
 
-	while(::GetTickCount() - start < timeout)
+	while(::get_tick_count() - start < timeout)
 	{
 
       sembuf sb;

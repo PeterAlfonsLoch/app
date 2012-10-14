@@ -148,7 +148,7 @@ namespace ca4
 
          ::collection::string_map < pac * >::pair * ppair = m_mapPac.PLookup(pszUrl);
 
-         if(ppair == NULL || (::GetTickCount() - ppair->m_value->m_dwLastChecked) > (84 * 1000))
+         if(ppair == NULL || (::get_tick_count() - ppair->m_value->m_dwLastChecked) > (84 * 1000))
          {
             if(ppair != NULL)
             {
@@ -158,7 +158,7 @@ namespace ca4
 
             class pac * ppac = new class pac(get_app());
 
-            ppac->m_dwLastChecked = GetTickCount();
+            ppac->m_dwLastChecked = get_tick_count();
 
             ppac->m_strUrl = pszUrl;
 
@@ -209,7 +209,7 @@ namespace ca4
 
          ::collection::string_map < ::ca4::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
 
-         if(ppair == NULL || (::GetTickCount() - ppair->m_value->m_dwLastChecked) > (84 * 1000))
+         if(ppair == NULL || (::get_tick_count() - ppair->m_value->m_dwLastChecked) > (84 * 1000))
          {
             if(ppair != NULL)
             {
@@ -219,7 +219,7 @@ namespace ca4
 
             class ::ca4::http::system::proxy * pproxy = new class ::ca4::http::system::proxy(get_app());
 
-            pproxy->m_dwLastChecked = GetTickCount();
+            pproxy->m_dwLastChecked = get_tick_count();
 
             pproxy->m_strUrl = pszUrl;
 
@@ -462,7 +462,7 @@ namespace ca4
                      const char * pszVersion)
       {
 
-         DWORD dwTimeTelmo1 = GetTickCount();
+         DWORD dwTimeTelmo1 = get_tick_count();
 
          UNREFERENCED_PARAMETER(pszVersion);
          string strServer = pszHost;
@@ -563,7 +563,7 @@ namespace ca4
             }
             psession->EnableSSL();
          }
-         DWORD dw1 = ::GetTickCount();
+         DWORD dw1 = ::get_tick_count();
          bool bConfigProxy = !set.has_property("no_proxy_config") || !(bool)set["no_proxy_config"];
          if(!psession->open(bConfigProxy))
          {
@@ -572,11 +572,11 @@ namespace ca4
                *pestatus = status_failed;
             }*/
             delete psession;
-            DWORD dwTimeTelmo2 = GetTickCount();
+            DWORD dwTimeTelmo2 = get_tick_count();
             TRACE0("Not Opened/Connected Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
             return NULL;
          }
-         DWORD dw2 = ::GetTickCount();
+         DWORD dw2 = ::get_tick_count();
          TRACE("system::get open time %d\n", dw2 - dw1);
 
          return psession;
@@ -688,7 +688,7 @@ retry:
          try
          {
 
-            DWORD dwTimeTelmo1 = GetTickCount();
+            DWORD dwTimeTelmo1 = get_tick_count();
 
             ::ca::application * papp = handler.get_app();
 
@@ -828,13 +828,13 @@ retry:
             }
             oprop("dw").get_value().set_type(var::type_ulong);
             dw1 = oprop("dw").get_value().m_ul;
-            dw2 = ::GetTickCount();
+            dw2 = ::get_tick_count();
 
             TRACE("intertime system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
 
             while(handler.get_count() > 0 && !psession->m_bRequestComplete)
             {
-               dw1 = ::GetTickCount();
+               dw1 = ::get_tick_count();
                handler.Select(23, 0);
                keeplive.keep_alive();
                if(psession->m_estatus == sockets::socket::status_connection_timed_out)
@@ -848,14 +848,14 @@ retry:
                      set["file_out"].ca2 < ::ex1::timeout_file >()->m_uiExpectedSize = psession->m_content_length;
                   }
                }
-               dw2 = ::GetTickCount();
+               dw2 = ::get_tick_count();
                TRACE("system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
                iIteration++;
             }
 
             keeplive.keep_alive();
 
-            oprop("dw").get_value().m_ul = (unsigned long) ::GetTickCount();
+            oprop("dw").get_value().m_ul = (unsigned long) ::get_tick_count();
 
 
             headers = psession->outheaders();
@@ -906,7 +906,7 @@ retry:
                   string strCa2Realm = psession->outheader("ca2realm-x");
                   if(gen::str::begins_ci(strCa2Realm, "not licensed: "))
                   {
-                     DWORD dwTimeTelmo2 = GetTickCount();
+                     DWORD dwTimeTelmo2 = get_tick_count();
                      TRACE0("Not Licensed Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
                      string strLocation = psession->outheader("Location");
                      delete psession;
@@ -920,7 +920,7 @@ retry:
                }
             }
 
-            DWORD dwTimeTelmo2 = GetTickCount();
+            DWORD dwTimeTelmo2 = get_tick_count();
             TRACE0("Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
 
          }
@@ -1077,7 +1077,7 @@ retry:
       {
 retry:
 
-         DWORD dwTimeTelmo1 = GetTickCount();
+         DWORD dwTimeTelmo1 = get_tick_count();
 
          UNREFERENCED_PARAMETER(pszVersion);
          string strServer = System.url().get_root(pszUrl);
@@ -1227,7 +1227,7 @@ retry:
             }
             psocket->EnableSSL();
          }
-         DWORD dw1 = ::GetTickCount();
+         DWORD dw1 = ::get_tick_count();
          bool bConfigProxy = !set.has_property("no_proxy_config") || !(bool)set["no_proxy_config"];
          if(!psocket->open(bConfigProxy))
          {
@@ -1236,11 +1236,11 @@ retry:
                *pestatus = status_failed;
             }
             delete psocket;
-            DWORD dwTimeTelmo2 = GetTickCount();
+            DWORD dwTimeTelmo2 = get_tick_count();
             TRACE0("Not Opened/Connected Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
             return NULL;
          }
-         DWORD dw2 = ::GetTickCount();
+         DWORD dw2 = ::get_tick_count();
          TRACE("system::get open time %d\n", dw2 - dw1);
          handler.add(psocket);
 
@@ -1258,7 +1258,7 @@ retry:
          }
          while(handler.get_count() > 0)
          {
-            dw1 = ::GetTickCount();
+            dw1 = ::get_tick_count();
             handler.Select(23, 0);
             keeplive.keep_alive();
             if(psocket->m_estatus == sockets::socket::status_connection_timed_out)
@@ -1272,7 +1272,7 @@ retry:
                   set["file_out"].ca2 < ::ex1::timeout_file >()->m_uiExpectedSize = psocket->m_content_length;
                }
             }
-            dw2 = ::GetTickCount();
+            dw2 = ::get_tick_count();
             TRACE("system::get time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
             iIteration++;
          }
@@ -1315,7 +1315,7 @@ retry:
                string strCa2Realm = psocket->outheader("ca2realm-x");
                if(gen::str::begins_ci(strCa2Realm, "not licensed: "))
                {
-                  DWORD dwTimeTelmo2 = GetTickCount();
+                  DWORD dwTimeTelmo2 = get_tick_count();
                   TRACE0("Not Licensed Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
                   string strLocation = psocket->outheader("Location");
                   delete psocket;
@@ -1329,7 +1329,7 @@ retry:
             }
          }
 
-         DWORD dwTimeTelmo2 = GetTickCount();
+         DWORD dwTimeTelmo2 = get_tick_count();
          TRACE0("Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
 
          return psocket;

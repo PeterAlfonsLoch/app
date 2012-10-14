@@ -225,13 +225,13 @@ namespace planebase
 
       m_iReturnCode            = 0;
 
-      m_dwAlive = ::GetTickCount();
+      m_dwAlive = ::get_tick_count();
 
       // App global initializations (rare)
       if (!InitApplication())
          goto InitFailure;
 
-      m_dwAlive = ::GetTickCount();
+      m_dwAlive = ::get_tick_count();
       // Perform specific initializations
       try
       {
@@ -262,7 +262,7 @@ namespace planebase
             }
             goto InitFailure;
          }
-         m_dwAlive = ::GetTickCount();
+         m_dwAlive = ::get_tick_count();
          try
          {
             if(!initialize_instance())
@@ -699,7 +699,7 @@ InitFailure:
       try
       {
 
-         m_dwAlive = ::GetTickCount();
+         m_dwAlive = ::get_tick_count();
          int m_iReturnCode = pre_run();
          if(m_iReturnCode != 0)
          {
@@ -719,7 +719,7 @@ InitFailure:
          }
 
 
-         m_dwAlive = ::GetTickCount();
+         m_dwAlive = ::get_tick_count();
          if(!os_native_bergedge_start())
          {
             exit();
@@ -1018,7 +1018,7 @@ InitFailure:
       {
          try
          {
-            pradixapp->m_dwAlive = ::GetTickCount();
+            pradixapp->m_dwAlive = ::get_tick_count();
          }
          catch(...)
          {
@@ -1043,7 +1043,7 @@ InitFailure:
          }
       }
 
-      m_dwAlive = ::GetTickCount();
+      m_dwAlive = ::get_tick_count();
 
       m_splicense(new class ::fontopus::license(this));
 
@@ -1579,7 +1579,7 @@ InitFailure:
 
 
 /*
-            double d1 = ::GetTickCount();
+            double d1 = ::get_tick_count();
             update_appmatter(h, psession, "app", "main"); // update matter of system
             update_appmatter(h, psession, "app", "bergedge"); // update matter of bergedge
             if(!is_session() && !is_system())
@@ -1588,7 +1588,7 @@ InitFailure:
             }
 
 */
-//            double d2 = ::GetTickCount();
+//            double d2 = ::get_tick_count();
 //            double d = (d2 - d1) / 1000.0;
 //            TRACE("update_appmatter seconds %f", d);
 

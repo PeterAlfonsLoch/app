@@ -539,7 +539,7 @@ namespace ca
          if(ppair == NULL)
             return false;
 
-         if(::GetTickCount() > ppair->m_value.m_dwLastCheck + m_dwTimeOut)
+         if(::get_tick_count() > ppair->m_value.m_dwLastCheck + m_dwTimeOut)
          {
             return false;
          }
@@ -568,7 +568,7 @@ namespace ca
          if(ppair == NULL)
             return false;
 
-         if(::GetTickCount() > ppair->m_value.m_dwLastCheck + m_dwTimeOut)
+         if(::get_tick_count() > ppair->m_value.m_dwLastCheck + m_dwTimeOut)
          {
             return false;
          }
@@ -584,7 +584,7 @@ namespace ca
          static string strSep = "\\";
          is_dir isdir;
          isdir.m_bIsDir = bIsDir;
-         isdir.m_dwLastCheck = ::GetTickCount();
+         isdir.m_dwLastCheck = ::get_tick_count();
          string strPath(pszPath);
          if(!gen::str::ends(strPath, strSep))
             strPath += strSep;
@@ -597,7 +597,7 @@ namespace ca
          static string strSep = "\\";
          is_dir isdir;
          isdir.m_bIsDir = bIsDir;
-         isdir.m_dwLastCheck = ::GetTickCount();
+         isdir.m_dwLastCheck = ::get_tick_count();
          if(gen::str::ends(strPath, strSep))
          {
             single_lock sl(&m_mutex, TRUE);

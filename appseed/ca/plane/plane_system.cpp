@@ -511,14 +511,14 @@ namespace plane
    bool system::verb()
    {
 
-      static DWORD dwStart = ::GetTickCount();
+      static DWORD dwStart = ::get_tick_count();
 
       ::plane::application::verb();
 
-      if(directrix().m_varTopicQuery.has_property("install") && (GetTickCount() - dwStart) > (5 * 184 * 1000))
+      if(directrix().m_varTopicQuery.has_property("install") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
          return false;
 
-      if(directrix().m_varTopicQuery.has_property("uninstall") && (GetTickCount() - dwStart) > (5 * 184 * 1000))
+      if(directrix().m_varTopicQuery.has_property("uninstall") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
          return false;
 
       if(!m_bDoNotExitIfNoApplications)

@@ -5,7 +5,7 @@ namespace ca2
 {
 
 
-   DWORD g_dwFirstTick = ::GetTickCount();
+   DWORD g_dwFirstTick = ::get_tick_count();
 
 
    log::log(::ca::application * papp) :
@@ -197,7 +197,7 @@ namespace ca2
       time = time.get_current_time();
       time.Format(strPre, "%Y-%m-%d %H:%M:%S");
       string strTick;
-      strTick.Format(" %011d ", ::GetTickCount() - g_dwFirstTick);
+      strTick.Format(" %011d ", ::get_tick_count() - g_dwFirstTick);
 
       if(!plog->m_spfile->IsOpened()
       || plog->m_iYear != time.GetYear()

@@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
+
 // 1.8.6: define FD_SETSIZE to something bigger than 64 if there are a lot of
 // simultaneous connections (must be done before including winsock.h)
 //#define FD_SETSIZE 1024
@@ -52,6 +53,7 @@ typedef unsigned short port_t;
 #ifdef WINDOWS
 typedef int socklen_t;
 #endif
+
 
 #include "ca2_sockets_address.h"
 

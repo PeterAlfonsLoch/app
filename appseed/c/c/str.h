@@ -48,6 +48,7 @@ CLASS_DECL_c char * strupr(char * psz);
 
 CLASS_DECL_c void wcscat_dup(wchar_t * dest, const wchar_t * cat);
 CLASS_DECL_c void wcscpy_dup(wchar_t * dest, const wchar_t * src);
+CLASS_DECL_c void wcsncpy_dup(wchar_t * dest, const wchar_t * src, int_ptr n);
 CLASS_DECL_c int iswalnum_dup(int wch);
 CLASS_DECL_c count wcslen_dup(const wchar_t * pwsz);
 CLASS_DECL_c wchar_t * wcschr_dup(const wchar_t * sz, wchar_t ch);

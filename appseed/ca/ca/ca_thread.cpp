@@ -12,7 +12,7 @@ namespace ca
    thread::thread()
    {
 
-      m_dwAlive                     = ::GetTickCount();
+      m_dwAlive                     = ::get_tick_count();
       m_bReady                      = false;
       m_bRun                        = true;
       m_pappDelete                  = NULL;
@@ -429,14 +429,14 @@ namespace ca
 
    void thread::on_keep_alive()
    {
-      m_dwAlive = ::GetTickCount();
+      m_dwAlive = ::get_tick_count();
    }
 
    bool thread::is_alive()
    {
       if(!m_bRun)
          return false;
-      if((::GetTickCount() - m_dwAlive) > ((1984 + 1977) * 91))
+      if((::get_tick_count() - m_dwAlive) > ((1984 + 1977) * 91))
          return false;
       return true;
    }

@@ -436,7 +436,7 @@ namespace gen
 
       int CLASS_DECL_ca time_seed()
       {
-         return (time(NULL) % 5000 + (::GetTickCount() / 100) % 5000) % 1000;
+         return (time(NULL) % 5000 + (::get_tick_count() / 100) % 5000) % 1000;
       }
 
 

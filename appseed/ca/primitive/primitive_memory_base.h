@@ -447,7 +447,7 @@ namespace primitive
    inline void memory_base::to_string(string & str) const
    {
 
-      LPTSTR lpsz = str.GetBufferSetLength(this->get_size() + 1);
+      LPSTR lpsz = str.GetBufferSetLength(this->get_size() + 1);
 
       memcpy(lpsz, get_data(), this->get_size());
 

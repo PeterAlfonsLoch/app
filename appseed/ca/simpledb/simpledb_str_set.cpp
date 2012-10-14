@@ -222,7 +222,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       item stritem;
 
-      if(m_map.Lookup(lpKey, stritem) && stritem.m_dwTimeout > GetTickCount())
+      if(m_map.Lookup(lpKey, stritem) && stritem.m_dwTimeout > get_tick_count())
       {
          strValue = stritem.m_str;
          return true;
@@ -253,7 +253,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
          m_phttpsession->m_memoryfile.get_memory()->get_size());
 
 
-      stritem.m_dwTimeout = GetTickCount() + 23 * (1984 + 1977);
+      stritem.m_dwTimeout = get_tick_count() + 23 * (1984 + 1977);
       stritem.m_str = strValue;
 
       m_map.set_at(lpKey, stritem);
@@ -396,7 +396,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
 
       item stritem;
 
-      stritem.m_dwTimeout = GetTickCount() + 23 * (1984 + 1977);
+      stritem.m_dwTimeout = get_tick_count() + 23 * (1984 + 1977);
       stritem.m_str = lpcsz;
 
       m_map.set_at(lpKey, stritem);

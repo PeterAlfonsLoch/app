@@ -135,9 +135,9 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
          {
             //int iPhase =
             // 400
-            //* (0.5 + (sin_dup(((double) ::GetTickCount() * 3.1415 * 2.0  * 0.084 / 1000.0) + ((double) (i) * 3.1415 * 2.0 / (double) (iCount))) / 2.0));
-            //* (0.5 + (cos_dup(((double) ::GetTickCount() * 3.1415 * 2.0  * 0.084 / 1000.0) + ((double) (0) * 3.1415 * 2.0 / (double) (jCount))) / 2.0));
-            double dPhase = fmod_dup((((double) ::GetTickCount() * 360  * 0.5984 / 1000.0) + (i * 360.0 / (double) iCount)  + (j * 360.0 / (double) jCount) + ((double) (sin_dup(((double) ::GetTickCount() * 3.1415 * 2.0  *0.0484 / 1000.0)+i * 3.1415 * 2.0 * 2.0 / (double) (iCount)) * sin_dup(((double) ::GetTickCount() * 3.1415 * 2.0  * 0.0484 / 1000.0)+j * 3.1415 * 2.0 * 2.0 / (double) (jCount)) * 360))), 360.0);
+            //* (0.5 + (sin_dup(((double) ::get_tick_count() * 3.1415 * 2.0  * 0.084 / 1000.0) + ((double) (i) * 3.1415 * 2.0 / (double) (iCount))) / 2.0));
+            //* (0.5 + (cos_dup(((double) ::get_tick_count() * 3.1415 * 2.0  * 0.084 / 1000.0) + ((double) (0) * 3.1415 * 2.0 / (double) (jCount))) / 2.0));
+            double dPhase = fmod_dup((((double) ::get_tick_count() * 360  * 0.5984 / 1000.0) + (i * 360.0 / (double) iCount)  + (j * 360.0 / (double) jCount) + ((double) (sin_dup(((double) ::get_tick_count() * 3.1415 * 2.0  *0.0484 / 1000.0)+i * 3.1415 * 2.0 * 2.0 / (double) (iCount)) * sin_dup(((double) ::get_tick_count() * 3.1415 * 2.0  * 0.0484 / 1000.0)+j * 3.1415 * 2.0 * 2.0 / (double) (jCount)) * 360))), 360.0);
             int iR;
             int iG;
             int iB;
@@ -186,7 +186,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
                iB = 100 + iColor;
             }
 
-            double z = ((int) (360 - (dPhase - 240 + ::GetTickCount() * 360  * 0.1984 / 1000.0))) % 360;
+            double z = ((int) (360 - (dPhase - 240 + ::get_tick_count() * 360  * 0.1984 / 1000.0))) % 360;
             if(dPhase == 240)
                z = 360;
 
@@ -211,7 +211,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
       size_t iRefresh = 884;
       size_t iEat = 8;
       const char * psz = "development message so international english file \"C:\\ca2\\install.log\" excerpt  ::::::::";
-      g.text_out(10, 10 + size.cy * 2, psz, (int) (strlen_dup(psz) - iEat + 1 + ((::GetTickCount() / (iRefresh - 277) % iEat))));
+      g.text_out(10, 10 + size.cy * 2, psz, (int) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
       DWORD dwRead;
 //      int iLineMin = 5;
   //    int iLine = ((rect.bottom - 10) / size.cy) - 1;
@@ -293,7 +293,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
       size_t iRefresh = 884;
       size_t iEat = 8;
       const char * psz = "development message so international english last lines of file \"C:\\ca2\\install.log\" ::::::::";
-      g.text_out(10, 10 + size.cy * 2, psz, (int) (strlen_dup(psz) - iEat + 1 + ((::GetTickCount() / (iRefresh - 277) % iEat))));
+      g.text_out(10, 10 + size.cy * 2, psz, (int) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
       g.select(fontBold);
       g.text_out( 10, 10 + size.cy * 3, s_strLastStatus);
       DWORD dwRead;
@@ -405,8 +405,8 @@ canvas_zero::canvas_zero()
    m_rect.top = 0;
    m_rect.right = 0;
    m_rect.bottom = 0;
-   m_dwCurZero = ::GetTickCount();
-   m_dwNextZero = ::GetTickCount();
+   m_dwCurZero = ::get_tick_count();
+   m_dwNextZero = ::get_tick_count();
    m_iMaxSize = 33;
    m_iLast = 0;
 }
@@ -468,14 +468,14 @@ void canvas_zero::on_paint(simple_graphics & gPaint, LPCRECT lpcrect)
 
    int iTimeFactor = 100; // greater faster
 
-   if(::GetTickCount() >= m_dwNextZero)
+   if(::get_tick_count() >= m_dwNextZero)
    {
       POINT pt;
       pt.x = (rand_dup() * cx / RAND_MAX) + lpcrect->left;
       pt.y = (rand_dup() * cy / RAND_MAX) + lpcrect->top;
       m_pta.insert_at(0, pt);
       m_ia.insert_at(0, ((rand_dup() * max(cx, cy) / 4 / RAND_MAX) + 23));
-      m_dwCurZero = ::GetTickCount();
+      m_dwCurZero = ::get_tick_count();
       m_dwNextZero = m_dwCurZero + m_ia[m_ia.get_count() - 1] * 1000 / iTimeFactor + 1984 + 1977;
       m_iLast = 0;
       int iSize = m_ia[0];
@@ -527,7 +527,7 @@ void canvas_zero::on_paint(simple_graphics & gPaint, LPCRECT lpcrect)
    {
       pt = m_pta[0];
       iSize = m_ia[0];
-      iCurStep = (::GetTickCount() - m_dwCurZero) * iTimeFactor / 1000;
+      iCurStep = (::get_tick_count() - m_dwCurZero) * iTimeFactor / 1000;
       iCurStep = max(2, min(iCurStep, iSize));
       zero(hdc, pt, iSize, iCurStep);
       if(iCurStep == iSize)

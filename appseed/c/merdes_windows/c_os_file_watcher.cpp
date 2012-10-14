@@ -37,7 +37,134 @@ namespace file_watcher
 		file_watch_listener* mFileWatchListener;
 		vsstring m_strDirName;
 		id mWatchid;
+
+      ::Windows::Storage::StorageFolder ^    m_folder;
+      ::Windows::Storage::Search::StorageFileQueryResult ^ m_queryresult;
+
 	};
+
+
+#pragma region Internal Functions
+
+	// forward decl
+	bool RefreshWatch(watch_struct* pWatch, bool _clear = false);
+
+	/// Unpacks events and passes them to a user defined callback.
+	/*void CALLBACK WatchCallback(DWORD dwErrorCode, DWORD dwNumberOfBytesTransfered, LPOVERLAPPED lpOverlapped)
+	{
+		TCHAR szFile[MAX_PATH];
+		PFILE_NOTIFY_INFORMATION pNotify;
+		watch_struct* pWatch = (watch_struct*) lpOverlapped;
+		size_t offset = 0;
+
+		if(dwNumberOfBytesTransfered == 0)
+			return;
+
+		if (dwErrorCode == ERROR_SUCCESS)
+		{
+			do
+			{
+				pNotify = (PFILE_NOTIFY_INFORMATION) &pWatch->m_buffer[offset];
+				offset += pNotify->NextEntryOffset;
+
+#			if defined(UNICODE)
+				{
+					lstrcpynW(szFile, pNotify->FileName,
+						min(MAX_PATH, pNotify->FileNameLength / sizeof(WCHAR) + 1));
+				}
+#			else
+				{
+					int count = WideCharToMultiByte(CP_ACP, 0, pNotify->FileName,
+						pNotify->FileNameLength / sizeof(WCHAR),
+						szFile, MAX_PATH - 1, NULL, NULL);
+					szFile[count] = TEXT('\0');
+				}
+#			endif
+
+				pWatch->m_pwatcher->handle_action(pWatch, szFile, pNotify->Action);
+
+			} while (pNotify->NextEntryOffset != 0);
+		}
+
+		if (!pWatch->m_bStop)
+		{
+			RefreshWatch(pWatch);
+		}
+	}
+
+	/// Refreshes the directory monitoring.
+	bool RefreshWatch(watch_struct* pWatch, bool _clear)
+	{
+		return ReadDirectoryChangesW(
+			pWatch->m_hDirectory, pWatch->m_buffer, sizeof(pWatch->m_buffer), FALSE,
+			pWatch->m_dwNotify, NULL, &pWatch->m_overlapped, _clear ? 0 : WatchCallback) != 0;
+	}
+
+	/// Stops monitoring a directory.
+	void DestroyWatch(watch_struct* pWatch)
+	{
+		if (pWatch)
+		{
+			pWatch->m_bStop = TRUE;
+
+			CancelIo(pWatch->m_hDirectory);
+
+			RefreshWatch(pWatch, true);
+
+			if (!HasOverlappedIoCompleted(&pWatch->m_overlapped))
+			{
+				SleepEx(5, TRUE);
+			}
+
+			CloseHandle(pWatch->m_overlapped.hEvent);
+			CloseHandle(pWatch->m_hDirectory);
+			HeapFree(GetProcessHeap(), 0, pWatch);
+		}
+	}
+   */
+	/// Starts monitoring a directory.
+	watch_struct* CreateWatch(LPCSTR szDirectory, DWORD m_dwNotify)
+	{
+		watch_struct* pWatch;
+		size_t ptrsize = sizeof(*pWatch);
+		pWatch = static_cast<watch_struct*>(HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, ptrsize));
+
+
+      Windows::Storage::Search::QueryOptions ^ options = ref new Windows::Storage::Search::QueryOptions();
+
+      options->FolderDepth = ::Windows::Storage::Search::FolderDepth::Shallow;
+      options->IndexerOption = ::Windows::Storage::Search::IndexerOption::DoNotUseIndexer;
+
+      wstring wstr(szDirectory);
+
+      pWatch->m_folder = ::Windows::Storage::StorageFolder::GetFolderFromPathAsync(Platform::String(wstr))->wait();
+
+      pWatch->m_queryresult = CreateFile(szDirectory, FILE_LIST_DIRECTORY,
+			FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, 
+			OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED, NULL);
+
+		if (pWatch->m_hDirectory != INVALID_HANDLE_VALUE)
+		{
+			pWatch->m_overlapped.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+			pWatch->m_dwNotify = m_dwNotify;
+
+			if (RefreshWatch(pWatch))
+			{
+				return pWatch;
+			}
+			else
+			{
+				CloseHandle(pWatch->m_overlapped.hEvent);
+				CloseHandle(pWatch->m_hDirectory);
+			}
+		}
+
+		
+
+		return NULL;
+	}
+
+#pragma endregion
 
 
 	os_file_watcher::os_file_watcher()

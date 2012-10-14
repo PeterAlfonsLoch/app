@@ -144,7 +144,7 @@ wait_result mutex::wait(const duration & duration)
 
    int irc;
 
-   DWORD start = ::GetTickCount();
+   DWORD start = ::get_tick_count();
 
    if(m_semid >= 0)
    {
@@ -153,7 +153,7 @@ wait_result mutex::wait(const duration & duration)
       struct sembuf operation[1] ;
 
 
-      while(dwTimeout == (DWORD) INFINITE && ::GetTickCount() - start < dwTimeout)
+      while(dwTimeout == (DWORD) INFINITE && ::get_tick_count() - start < dwTimeout)
       {
 
          //Call Wait for Zero with IPC_NOWAIT option,so it will be
@@ -188,7 +188,7 @@ wait_result mutex::wait(const duration & duration)
    else
    {
 
-      while(dwTimeout == (DWORD) INFINITE && ::GetTickCount() - start < dwTimeout)
+      while(dwTimeout == (DWORD) INFINITE && ::get_tick_count() - start < dwTimeout)
       {
 
 

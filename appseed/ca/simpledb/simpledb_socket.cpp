@@ -57,13 +57,13 @@ namespace simpledb
          if(strHost == "ca2.am")
          {
             TRACE("simpledb::socket::send_response ca2.am");
-//            DWORD dw = ::GetTickCount();
+//            DWORD dw = ::get_tick_count();
           //  __debug_break();
          }
          if(strScript == "songs")
          {
             TRACE("simpledb::socket::send_response songs");
-            //DWORD dw = ::GetTickCount();
+            //DWORD dw = ::get_tick_count();
          }
          manager().handle(this);
       }

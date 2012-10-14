@@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #pragma once
 
+
 namespace sockets
 {
 
@@ -37,6 +38,28 @@ namespace sockets
    class udp_socket : 
       virtual public socket
    {
+   private:
+
+
+#ifdef USE_BYESHYTOULA_STYLE_SOCKETS
+
+      ::Windows::Networking::Sockets::DatagramSocket ^      m_datagramsocket;
+
+#else
+
+
+      char *m_ibuf; ///< Input buffer
+      int m_ibufsz; ///< size of input buffer
+      bool m_bind_ok; ///< Bind completed successfully
+      port_t m_port; ///< Bind port number
+      int m_last_size_written;
+      int m_retries;
+      bool m_b_read_ts;
+
+
+#endif
+
+
    public:
       /** Constructor.
          \param h socket_handler_base reference
@@ -174,13 +197,13 @@ namespace sockets
       udp_socket& operator=(const udp_socket& ) { return *this; }
       /** create before using sendto methods */
       void CreateConnection();
-      char *m_ibuf; ///< Input buffer
-      int m_ibufsz; ///< size of input buffer
-      bool m_bind_ok; ///< Bind completed successfully
-      port_t m_port; ///< Bind port number
-      int m_last_size_written;
-      int m_retries;
-      bool m_b_read_ts;
+
+
    };
 
+
 } // namespace sockets
+
+
+
+

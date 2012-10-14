@@ -17,6 +17,12 @@ void strncpy_dup(char * dest, const char * cpy, count iLen)
       *dest++ = *cpy++;
 }
 
+void wcsncpy_dup(wchar_t * dest, const wchar_t * cpy, count iLen)
+{
+   while(*cpy != 0 && iLen-- > 0)
+      *dest++ = *cpy++;
+}
+
 count  strlen_dup(const char * str)
 {
    if(str == NULL)

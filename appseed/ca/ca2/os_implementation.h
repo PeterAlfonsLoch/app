@@ -212,7 +212,7 @@ int c_cdecl __critical_new_handler(size_t nSize);
 // locale-invariant comparison helpers till CRT gets that support
 inline int __invariant_stricmp(const char *pszLeft, const char *pszRight)
 {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
     return ::CompareStringA(MAKELCID(MAKELANGID(LANG_ENGLISH,SUBLANG_ENGLISH_US),SORT_DEFAULT),
                             NORM_IGNORECASE,
                             pszLeft,
@@ -226,7 +226,7 @@ inline int __invariant_stricmp(const char *pszLeft, const char *pszRight)
 
 inline int __invariant_stricmp(const wchar_t *pwszLeft, const wchar_t *pwszRight)
 {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
     return ::CompareStringW(MAKELCID(MAKELANGID(LANG_ENGLISH,SUBLANG_ENGLISH_US),SORT_DEFAULT),
                             NORM_IGNORECASE,
                             pwszLeft,

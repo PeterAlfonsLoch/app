@@ -358,6 +358,9 @@
     <Filter Include="Source Files\html\html_lite">
       <UniqueIdentifier>{257e828c-7398-43da-8206-24cbb4438d7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\sockets\basic\baixatola_sockets">
+      <UniqueIdentifier>{4ba0a9f0-6d29-4073-81c8-831da812cd56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -386,42 +389,6 @@
     </ClCompile>
     <ClCompile Include="sockets\sockets_link_in_socket.cpp">
       <Filter>Source Files\sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_Ipv4Address.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_Ipv6Address.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_SctpSocket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_Socket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_SocketHandler.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_ssl_client_context.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_ssl_client_context_map.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_StreamSocket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_sync_socket_handler.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_tcp_socket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_tls_socket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_udp_socket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
     </ClCompile>
     <ClCompile Include="sockets\http\sockets_HttpClientSocket.cpp">
       <Filter>Source Files\sockets\http</Filter>
@@ -2531,6 +2498,42 @@
     </ClCompile>
     <ClCompile Include="html\html_lite\html_lite_html_tag.cpp">
       <Filter>Source Files\html\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\baishatoula_socks\sockets_Ipv4Address.cpp">
+      <Filter>Source Files\sockets\basic\baixatola_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\baishatoula_socks\sockets_Ipv6Address.cpp">
+      <Filter>Source Files\sockets\basic\baixatola_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\baishatoula_socks\sockets_SctpSocket.cpp">
+      <Filter>Source Files\sockets\basic\baixatola_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\baishatoula_socks\sockets_Socket.cpp">
+      <Filter>Source Files\sockets\basic\baixatola_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\baishatoula_socks\sockets_SocketHandler.cpp">
+      <Filter>Source Files\sockets\basic\baixatola_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\baishatoula_socks\sockets_ssl_client_context.cpp">
+      <Filter>Source Files\sockets\basic\baixatola_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\baishatoula_socks\sockets_ssl_client_context_map.cpp">
+      <Filter>Source Files\sockets\basic\baixatola_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\baishatoula_socks\sockets_StreamSocket.cpp">
+      <Filter>Source Files\sockets\basic\baixatola_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\baishatoula_socks\sockets_sync_socket_handler.cpp">
+      <Filter>Source Files\sockets\basic\baixatola_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\baishatoula_socks\sockets_tcp_socket.cpp">
+      <Filter>Source Files\sockets\basic\baixatola_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\baishatoula_socks\sockets_tls_socket.cpp">
+      <Filter>Source Files\sockets\basic\baixatola_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\baishatoula_socks\sockets_udp_socket.cpp">
+      <Filter>Source Files\sockets\basic\baixatola_sockets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

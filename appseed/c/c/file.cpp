@@ -1156,7 +1156,7 @@ bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
     wstring wstrNewNam(file_title_dup(pszNew));
     wstring wstrSrc(pszSrc);
 
-    Windows::Storage::IStorageFolder ^ pfolder = Windows::Storage::StorageFolder::CreateFolderAsync(Platform::String(wstrNewDir), Windows::Storage::CreationCollisionOption::OpenIfExists)->Wait();
+    Windows::Storage::IStorageFolder ^ pfolder = Windows::Storage::StorageFolder::GetFolderFromPathAsync(Platform::String(wstrNewDir))->Wait();
     var _Option = Windows.Storage.CreationCollisionOption.ReplaceExisting;
  
     // create file 

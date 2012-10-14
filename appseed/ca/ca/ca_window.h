@@ -199,8 +199,8 @@ namespace ca
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL, ::ca::region* prgnUpdate = NULL, UINT flags = 0);
 #endif
 
-
-#ifdef WINDOWS
+      
+#ifdef WINDOWSEX
       virtual bool EnableScrollBar(int nSBFlags, UINT nArrowFlags = ESB_ENABLE_BOTH);
 #else
       virtual bool EnableScrollBar(int nSBFlags, UINT nArrowFlags = 3);
@@ -379,7 +379,7 @@ namespace ca
       void OnHelpIndex();     // ID_HELP_INDEX
       void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
       void OnHelpUsing();     // ID_HELP_USING
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       virtual void WinHelp(dword_ptr dwData, UINT nCmd = HELP_CONTEXT);
       virtual void HtmlHelp(dword_ptr dwData, UINT nCmd = 0x000F);
       virtual void WinHelpInternal(dword_ptr dwData, UINT nCmd = HELP_CONTEXT);
@@ -435,7 +435,7 @@ namespace ca
       bool OnEraseBkgnd(::ca::graphics * pgraphics);
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
       bool OnHelpInfo(HELPINFO* lpHelpInfo);
 #endif
@@ -461,7 +461,7 @@ namespace ca
 
       void OnTCard(UINT idAction, DWORD dwActionData);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       void OnWindowPosChanging(WINDOWPOS* lpwndpos);
       void OnWindowPosChanged(WINDOWPOS* lpwndpos);
 #endif
@@ -473,7 +473,7 @@ namespace ca
    // Nonclient-Area message handler member functions
       bool OnNcActivate(bool bActive);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS* lpncsp);
 #endif
       bool OnNcCreate(LPCREATESTRUCT lpCreateStruct);
@@ -492,7 +492,9 @@ namespace ca
       void OnNcRButtonUp(UINT nHitTest, point point);
 
    // System message handler member functions
+#ifdef WINDOWSEX
       void OnDropFiles(HDROP hDropInfo);
+#endif
       void OnPaletteIsChanging(::ca::window* pRealizeWnd);
       void OnSysChar(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnSysCommand(UINT nID, LPARAM lParam);
@@ -556,7 +558,7 @@ namespace ca
 #endif
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 
       // control message handler member functions
@@ -580,7 +582,7 @@ namespace ca
       void OnExitMenuLoop(bool bIsTrackPopupMenu);
 
       // Win4 messages
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       void OnStyleChanged(int nStyleType, LPSTYLESTRUCT lpStyleStruct);
       void OnStyleChanging(int nStyleType, LPSTYLESTRUCT lpStyleStruct);
 #endif
@@ -589,7 +591,7 @@ namespace ca
       void OnCaptureChanged(::ca::window* pWnd);
       bool OnDeviceChange(UINT nEventType, dword_ptr dwData);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       // Overridables and other helpers (for implementation of derived classes)
       // for deriving from a standard control
       virtual WNDPROC* GetSuperWndProcAddr();

@@ -97,7 +97,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
          if(pnode->child_at(i)->get_name() != "folder")
             continue;
          string strPath = dir_path(pszDir, strName);
-         m_mapdirTimeout[strPath] = ::GetTickCount() + (4 * 1000);
+         m_mapdirTimeout[strPath] = ::get_tick_count() + (4 * 1000);
          m_mapfileTimeout.remove_key(strPath);
          if(pstraPath != NULL)
          {
@@ -121,7 +121,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
          if(pnode->child_at(i)->get_name() != "file")
             continue;
          string strPath = dir_path(pszDir, strName);
-         m_mapfileTimeout[strPath] = ::GetTickCount() + (4 * 1000);
+         m_mapfileTimeout[strPath] = ::get_tick_count() + (4 * 1000);
          m_mapdirTimeout.remove_key(strPath);
          if(pstraPath != NULL)
          {
@@ -161,7 +161,7 @@ bool ifs::is_dir(const char * pszPath)
 
    if(m_mapfileTimeout.Lookup(pszPath, dwTimeout))
    {
-      if(::GetTickCount() > dwTimeout)
+      if(::get_tick_count() > dwTimeout)
       {
          stringa straPath;
          stringa straTitle;
@@ -175,7 +175,7 @@ bool ifs::is_dir(const char * pszPath)
 
    if(m_mapdirTimeout.Lookup(pszPath, dwTimeout))
    {
-      if(::GetTickCount() > dwTimeout)
+      if(::get_tick_count() > dwTimeout)
       {
          stringa straPath;
          stringa straTitle;
@@ -189,7 +189,7 @@ bool ifs::is_dir(const char * pszPath)
 
    if(m_mapfileTimeout.Lookup(pszPath, dwTimeout))
    {
-      if(::GetTickCount() > dwTimeout)
+      if(::get_tick_count() > dwTimeout)
       {
          return false;
       }

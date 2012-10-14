@@ -12,7 +12,7 @@ namespace gen
       cross_pipe              m_pipe;
       bool                    m_bPiped;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       PROCESS_INFORMATION     m_pi;
       STARTUPINFO             m_si;

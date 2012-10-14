@@ -1,13 +1,13 @@
 #pragma once
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 #include <shlobj.h>
 #endif
 
 namespace filemanager
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    class CLASS_DECL_ca Shell
    {
    public:
@@ -86,7 +86,7 @@ namespace filemanager
 
       public:
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 
          IShellFolder *   m_pshellfolder;
@@ -98,18 +98,18 @@ namespace filemanager
          ~ImageSet();
 
          bool GetIcon(HWND hwnd, const char * lpcsz, const wchar_t * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          bool GetIcon(HWND hwnd, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
          bool GetIcon(HWND hwnd, LPITEMIDLIST lpiidlAbsolute, const wchar_t * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
 #endif
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          int GetImage(HWND hwnd, IShellFolder * lpsf, const char * pszPath, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon);
 #endif
          int GetImage(const char * lpcsz, EFileAttribute eattribute, EIcon eicon) ;
          int GetImage(HWND hwnd, const char * lpcsz, const wchar_t * lpcszExtra, EIcon eicon, bool bFolder);
          int GetImageByExtension(HWND hwnd, const char * lpcsz, EIcon eicon, bool bFolder);
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          int GetImage(HWND hwnd, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon);
          int GetImage(HWND hwnd, LPITEMIDLIST lpiidlAbsolute, const wchar_t * lpcszExtra, EIcon eicon);
 #endif
@@ -135,14 +135,14 @@ namespace filemanager
 
 //      string CLASS_DECL_ca _017FilePathGetParent(const char * lpcsz);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       HICON CLASS_DECL_ca CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, int cx, int cy);
       bool CLASS_DECL_ca _017HasSubFolder(::ca::application * papp, LPITEMIDLIST lpiidl, const char * lpcszExtra);
 #endif
       EFolder CLASS_DECL_ca GetFolderType(::ca::application * papp, const wchar_t * lpcszPath);
       EFolder CLASS_DECL_ca GetFolderType(::ca::application * papp, const char * lpcszPath);
 //      void CLASS_DECL_ca GetChildren(stringa & stra, const char * lpcszPath);
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       LPITEMIDLIST CLASS_DECL_ca _017ItemIDListGetLast(LPITEMIDLIST lpiidl);
       int CLASS_DECL_ca _017ItemIDListGetLen(LPITEMIDLIST lpiidl);
       LPITEMIDLIST CLASS_DECL_ca _017ItemIDListDup(LPITEMIDLIST lpiidl);

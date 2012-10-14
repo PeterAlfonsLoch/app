@@ -60,7 +60,7 @@ namespace gen
 
 #ifdef WINDOWS
 
-       long lElapsed = GetTickCount() - GetMessageTime();
+       long lElapsed = get_tick_count() - GetMessageTime();
        //TRACE("Elapsed %d /n", lElapsed);
        if(lElapsed > 1000)
        {

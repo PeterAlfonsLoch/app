@@ -2,6 +2,7 @@
 #include <Shellapi.h>
 #include <string.h>
 
+#ifdef WINDOWSEX
 
 CLASS_DECL_c int call_async(
    const char * pszPath, 
@@ -26,8 +27,9 @@ CLASS_DECL_c int call_async(
 
 }
 
+#endif
 
-
+#ifdef WINDOWSEX
 CLASS_DECL_c DWORD call_sync(
    const char * pszPath, 
    const char * pszParam, 
@@ -77,9 +79,9 @@ CLASS_DECL_c DWORD call_sync(
 
 }
 
+#endif
 
-
-
+#ifdef WINDOWSEX
 int get_current_processor_index()
 {
 
@@ -88,6 +90,11 @@ int get_current_processor_index()
 
 
 }
+
+#endif
+
+
+#ifdef WINDOWSEX
 
 int get_current_process_maximum_affinity()
 {
@@ -112,6 +119,11 @@ int get_current_process_maximum_affinity()
    return iMax;
 
 }
+
+#endif
+
+
+#ifdef WINDOWSEX
 
 int get_current_process_affinity_order()
 {
@@ -140,6 +152,10 @@ int get_current_process_affinity_order()
 }
 
 
+#endif
+
+
+#ifdef WINDOWSEX
 
 bool process_modules(stra_dup & stra, DWORD processID)
 {
@@ -190,6 +206,10 @@ bool process_modules(stra_dup & stra, DWORD processID)
 
 }
 
+#endif
+
+
+#ifdef WINDOWSEX
 
 bool load_modules_diff(stra_dup & straOld, stra_dup & straNew, const char * pszExceptDir)
 {
@@ -280,3 +300,6 @@ bool load_modules_diff(stra_dup & straOld, stra_dup & straNew, const char * pszE
    return true;
 
 }
+
+
+#endif

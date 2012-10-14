@@ -1,5 +1,7 @@
 #include "framework.h"
 
+#ifndef MERDE_WINDOWS
+
 extern bool (WINAPI * g_pfnChangeWindowMessageFilter)(
     _In_ UINT message,
     _In_ DWORD dwFlag);
@@ -434,3 +436,6 @@ bool small_ipc_channel::is_rx_tx_ok()
    return m_rxchannel.is_rx_ok() && is_tx_ok();
 
 }
+
+
+#endif

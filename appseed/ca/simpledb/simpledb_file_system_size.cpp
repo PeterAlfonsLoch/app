@@ -532,9 +532,9 @@ void FileSystemSizeWnd::ClientStartServer()
 
    db_server * pcentral = &System.db();
 
-   if(GetTickCount() - m_dwLastStartTime > 2000)
+   if(get_tick_count() - m_dwLastStartTime > 2000)
    {
-      m_dwLastStartTime = GetTickCount();
+      m_dwLastStartTime = get_tick_count();
 
       simple_shell_launcher launcher(NULL, NULL, System.dir().path(System.get_module_folder(), "winservice_filesystemsizeapp"), NULL, NULL, SW_HIDE);
 

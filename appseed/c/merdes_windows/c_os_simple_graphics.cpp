@@ -1,15 +1,14 @@
 #include "framework.h"
-#include <gdiplus.h>
 
 
 simple_graphics::simple_graphics()
 {
 
-   m_hdc    = NULL;
+   m_pdc       = NULL;
 
-   m_hwnd   = NULL;
+   m_player    = NULL;
 
-   m_iType  = 0;
+   m_pclip     = NULL;
 
 }
 
@@ -17,7 +16,7 @@ simple_graphics::simple_graphics()
 simple_graphics::~simple_graphics()
 {
 
-   if(m_hdc != NULL && m_iType != 0)
+   if(m_pdc != NULL)
    {
 
       destroy();
@@ -26,21 +25,18 @@ simple_graphics::~simple_graphics()
 
 }
 
-bool simple_graphics::create(HDC hdc)
+bool simple_graphics::create(ID2D1RenderTarget * pdc)
 {
 
-   if(m_iType != 0)
+   if(m_pdc != NULL)
+   {
+    
       destroy();
-   
-   m_hdc = ::CreateCompatibleDC(hdc);
 
-   if(m_hdc == NULL)
-      return false;
+   }
    
-   ::ReleaseDC(NULL, hdc);
-   
-   m_iType = 1;
-   
+   m_pdc = pdc;
+
    return true;
 
 }
@@ -239,84 +235,26 @@ bool simple_graphics::select(simple_pen & pen)
 bool simple_graphics::destroy()
 {
    
-   bool bOk = true;
-
-   bool bOkOldBitmap = true;
-
-   bool bOkOldPen = true;
-
-   bool bOkOldBrush = true;
-
-   bool bOkOldFont = true;
-
-   if(m_hbitmapOld != NULL)
+   if(m_player != NULL)
    {
-      
-      bOkOldBitmap   = ::SelectObject(m_hdc, m_hbitmapOld) != NULL;
-      
-      m_hbitmapOld   = NULL;
-
+      m_pdc->PopLayer();
+      m_player->Release();
+      m_player = NULL;
    }
 
-   if(m_hbrushOld != NULL)
+   if(m_pclip != NULL)
    {
-
-      bOkOldBrush    = ::SelectObject(m_hdc, m_hbrushOld) != NULL;
-
-      m_hbrushOld    = NULL;
-         
-   }
-   
-   if(m_hpenOld != NULL)
-   {
-
-      bOkOldPen      = ::SelectObject(m_hdc, m_hpenOld) != NULL;
-
-      m_hpenOld      = NULL;
+      m_pclip->Release();
+      m_pclip = NULL;
    }
 
-   if(m_hfontOld != NULL)
+   if(m_pdc != NULL)
    {
-
-      bOkOldFont     = ::SelectObject(m_hdc, m_hfontOld) != NULL;
-
-      m_hfontOld     = NULL;
-
+      m_pdc->Release();
+      m_pdc = NULL;
    }
 
-
-   if(m_iType == 1)
-   {
-      
-      bOk = ::DeleteDC(m_hdc) != FALSE;
-
-   }
-   else if(m_iType == 2)
-   {
-
-      bOk = ::ReleaseDC(m_hwnd, m_hdc) != FALSE;
-
-   }
-   else if(m_iType == 3)
-   {
-
-      bOk = ::DeleteDC(m_hdc) != FALSE;
-
-   }
-   else if(m_iType == 4)
-   {
-
-      bOk = EndPaint(m_hwnd, &m_ps) != FALSE;
-
-   }
-
-   m_hwnd   = NULL;
-
-   m_hdc    = NULL;
-
-   m_iType  = 0;
-
-   return bOk && bOkOldBitmap && bOkOldBrush && bOkOldFont && bOkOldPen;
+   return true;
 
 }
 
@@ -452,4 +390,175 @@ bool simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
    bool b = TextOutW(m_hdc, x, y, pwsz, (int) wcslen_dup(pwsz)) != FALSE;
    delete  [] pwsz;
    return b;
+}
+
+
+
+bool simple_graphics::draw_line(simple_pen * ppen, int x1, int y1, int x2, int y2)
+{
+   simple_brush b;
+   b.create_solid(ppen->m_cr, *this);
+   D2D1_POINT_2F p1;
+   p1.x = (FLOAT) x1;
+   p1.y = (FLOAT) y1;
+   D2D1_POINT_2F p2;
+   p2.x = (FLOAT) x2;
+   p2.y = (FLOAT) y2;
+   m_pdc->DrawLine(p1, p2, b.get_os_data(), ppen->m_iWidth);
+}
+
+
+bool simple_graphics::replace_clip(ID2D1PathGeometry * ppath)
+{
+   
+   if(m_player != NULL)
+   {
+
+      m_pdc->PopLayer();
+      m_player->Release();
+      m_player = NULL;
+   }
+
+   if(m_pclip != NULL)
+   {
+      m_pclip->Release();
+      m_pclip = NULL;
+   }
+
+   if(ppath == NULL)
+      return true;
+
+   ppath->AddRef();
+
+   m_pclip = ppath;
+
+   HRESULT hr = m_pdc->CreateLayer(NULL, &m_player);
+
+   if(FAILED(hr) || m_player == NULL)
+   {
+      m_pclip->Release();
+      m_pclip = NULL;
+      return false;
+   }
+
+   m_pdc->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), m_pclip), m_player);
+
+   return true;
+
+}
+
+
+bool simple_graphics::exclude_clip(ID2D1PathGeometry * ppath)
+{
+
+   if(ppath == NULL)
+      return true;
+
+   if(m_player != NULL)
+   {
+
+      m_pdc->PopLayer();
+      m_player->Release();
+      m_player = NULL;
+
+   }
+
+   ID2D1Factory * pfactory = NULL;
+
+   HRESULT hr = m_pdc->GetFactory(&pfactory);
+
+   if(FAILED(hr))
+      return false;
+
+   if(m_pclip == NULL)
+   {
+      ID2D1RectangleGeometry * prect;
+
+      hr = pfactory->CreateRectangleGeometry(D2D1::InfiniteRect(), &prect);
+
+      if(FAILED(hr) || m_pclip == NULL)
+      {
+         pfactory->Release();
+         return false;
+      }
+
+      hr = pfactory->CreatePathGeometry(&m_pclip);
+
+      if(FAILED(hr) || m_pclip == NULL)
+      {
+         pfactory->Release();
+         prect->Release();
+         return false;
+      }
+
+      ID2D1GeometrySink * psink = NULL;
+
+      hr = m_pclip->Open(&psink);
+
+      if(FAILED(hr) || psink == NULL)
+      {
+         pfactory->Release();
+         prect->Release();
+         m_pclip->Release();
+         m_pclip = NULL;
+         return false;
+      }
+
+      hr = prect->Simplify(D2D1_GEOMETRY_SIMPLIFICATION_OPTION_LINES, NULL, psink);
+
+      psink->Close();
+      psink->Release();
+      prect->Release();
+
+   }
+
+
+   ID2D1PathGeometry * pclipNew = NULL;
+
+   hr = pfactory->CreatePathGeometry(&pclipNew);
+
+   if(FAILED(hr) || pclipNew == NULL)
+   {
+      pfactory->Release();
+      m_pclip->Release();
+      m_pclip = NULL;
+      return false;
+   }
+
+   ID2D1GeometrySink * psink = NULL;
+
+   hr = m_pclip->Open(&psink);
+
+   if(FAILED(hr) || psink == NULL)
+   {
+      pfactory->Release();
+      m_pclip->Release();
+      m_pclip = NULL;
+      pclipNew->Release();
+      return false;
+   }
+   
+   
+   m_pclip->CombineWithGeometry(ppath, D2D1_COMBINE_MODE_EXCLUDE, NULL, psink);
+
+   psink->Close();
+   psink->Release();
+   pfactory->Release();
+   m_pclip->Release();
+   m_pclip = pclipNew;
+
+
+   HRESULT hr = m_pdc->CreateLayer(NULL, &m_player);
+
+   if(FAILED(hr) || m_player == NULL)
+   {
+      m_pclip->Release();
+      m_pclip = NULL;
+      return false;
+   }
+
+   m_pdc->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), m_pclip), m_player);
+
+   return true;
+
 }

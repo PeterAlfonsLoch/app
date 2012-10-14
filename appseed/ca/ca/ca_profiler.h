@@ -23,7 +23,7 @@ namespace ca
 
       inline int64_t micros()
       {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          int64_t iCount;
          if(g_iFrequency
          && QueryPerformanceCounter((LARGE_INTEGER *) &iCount))
@@ -32,7 +32,18 @@ namespace ca
          }
          else
          {
-            return ::GetTickCount() * 1000;
+            return ::get_tick_count() * 1000;
+         }
+#elif defined(MERDE_WINDOWS)
+         int64_t iCount;
+         if(g_iFrequency
+         && QueryPerformanceCounter((LARGE_INTEGER *) &iCount))
+         {
+            return iCount * 1000 * 1000 / g_iFrequency;
+         }
+         else
+         {
+            return ::GetTickCount64() * 1000;
          }
 #else
          timeval t;

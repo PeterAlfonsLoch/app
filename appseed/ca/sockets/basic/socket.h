@@ -63,13 +63,14 @@ namespace sockets
          status_connection_timed_out,
       };
 
-      gen::memory_file        m_memfileInput;
-      bool                    m_bEnd; // should finish by not sending no more writes
+#ifdef USE_BYESHYTOULA_STYLE_SOCKETS
 
+
+#else
 
       callback *              m_pcallback;
-
-
+      gen::memory_file        m_memfileInput;
+      bool                    m_bEnd; // should finish by not sending no more writes
       int                     m_iBindPort;
       socket_handler_base &   m_handler; ///< Reference of socket_handler_base in control of this socket
       SOCKET                  m_socket; ///< File descriptor
@@ -89,12 +90,16 @@ namespace sockets
       bool                    m_bLost; ///< connection lost
    //   unsigned long m_flags; ///< boolean flags, replacing old 'bool' members
 
-      string m_strCat;
+      string                  m_strCat;
+
+#endif
 
 
-   #ifdef _WIN32
-   static   WSAInitializer m_winsock_init; ///< Winsock initialization singleton class
-   #endif
+#ifdef WINDOWSEX
+
+      static   WSAInitializer m_winsock_init; ///< Winsock initialization singleton class
+
+#endif
 
       bool m_b_enable_ssl; ///< Enable SSL for this tcp_socket
       bool m_b_ssl; ///< ssl negotiation mode (tcp_socket)

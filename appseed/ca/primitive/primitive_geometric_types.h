@@ -2,9 +2,12 @@
 
 
 #define MAKELONG64(a, b)      (((uint64_t)(((unsigned int)(((uint64_t)(a)) & 0xffffffff)) | ((uint64_t)((unsigned int)(((uint64_t)(b)) & 0xffffffff))) << 32)))
+#ifndef LODWORD
 #define LODWORD(l)           ((unsigned int)(((uint64_t)(l)) & 0xffffffff))
+#endif
+#ifndef HIDWORD
 #define HIDWORD(l)           ((unsigned int)((((uint64_t)(l)) >> 32) & 0xffffffff))
-
+#endif
 
 #ifndef GET_X_LPARAM
 #define GET_X_LPARAM(lp)                        ((int)(short)LOWORD(lp))

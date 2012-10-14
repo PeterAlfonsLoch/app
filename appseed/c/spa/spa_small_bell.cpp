@@ -11,7 +11,7 @@ DWORD g_dwPrepareSmallBell = 0;
 
 void prepare_small_bell(bool bExistsOk)
 {
-   g_dwPrepareSmallBell = ::GetTickCount();
+   g_dwPrepareSmallBell = ::get_tick_count();
    if((bExistsOk && file_exists_dup(dir::ca2("stage\\small_bell.mp3")))
    || read_resource_as_file_dup(dir::ca2("stage\\small_bell.mp3"), ::GetModuleHandleA("app-install.exe"), ID_MP3_SMALL_BELL, "MP3")
    || read_resource_as_file_dup(dir::ca2("stage\\small_bell.mp3"), ::GetModuleHandleA("app-sentinel.exe"), ID_MP3_SMALL_BELL, "MP3")
@@ -26,7 +26,7 @@ void prepare_small_bell(bool bExistsOk)
 
 void defer_play_small_bell()
 {
-   if(::GetTickCount() - g_dwPrepareSmallBell > 10 * 1000)
+   if(::get_tick_count() - g_dwPrepareSmallBell > 10 * 1000)
    {
       play_small_bell();
    }

@@ -128,6 +128,10 @@ extern "C"
 #include "file_watcher.h"
 #include "file_watcher_impl.h"
 
+typedef DWORD dword;
+
+CLASS_DECL_c dword get_tick_count();
+
 #include "c/os/os.h"
 
 #include "file_watcher_thread.h"

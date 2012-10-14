@@ -65,12 +65,12 @@ namespace dynamic_source
    bool ds_script::DoesMatchVersion()
    {
 
-      if(GetTickCount() - m_dwLastVersionCheck < (1984 + 1977))
+      if(get_tick_count() - m_dwLastVersionCheck < (1984 + 1977))
       {
          return m_bLastVersionCheck;
       }
 
-      m_dwLastVersionCheck = GetTickCount();
+      m_dwLastVersionCheck = get_tick_count();
 
       single_lock sl(&m_mutex, TRUE);
 
@@ -137,7 +137,7 @@ namespace dynamic_source
    bool ds_script::HasTimedOutLastBuild()
    {
       single_lock sl(&m_mutex, TRUE);
-      return (::GetTickCount() - m_dwLastBuildTime) >
+      return (::get_tick_count() - m_dwLastBuildTime) >
          (m_pmanager->m_dwBuildTimeWindow + System.math().RandRange(0, m_pmanager->m_dwBuildTimeRandomWindow));
    }
 
@@ -317,7 +317,7 @@ namespace dynamic_source
          }
          for(int i = 0; i < m_scriptinstanceptra.get_size();)
          {
-            if(GetTickCount() > (m_scriptinstanceptra[i]->m_dwCreate + 30 * 1000))
+            if(get_tick_count() > (m_scriptinstanceptra[i]->m_dwCreate + 30 * 1000))
             {
                m_scriptinstanceptra.remove_at(i);
             }
@@ -423,7 +423,7 @@ namespace dynamic_source
       {
          pinstance = m_lpfnCreateInstance(this);
       }
-      pinstance->m_dwCreate = GetTickCount();
+      pinstance->m_dwCreate = get_tick_count();
       m_scriptinstanceptra.add(pinstance);
       return pinstance;
    }

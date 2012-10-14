@@ -63,7 +63,7 @@ namespace ex1
       default:
          return ::numeric_info::get_allset_value < file_size >();
       }
-      m_dwLastCall = ::GetTickCount();
+      m_dwLastCall = ::get_tick_count();
       while(true)
       {
          if(dwFuture == m_pfile->get_position())
@@ -88,10 +88,10 @@ namespace ex1
          return (uint64_t) -2;
       if(m_uiExpectedSize == (uint64_t) -1)
       {
-         (const_cast < timeout_file * > (this))->m_dwLastCall = ::GetTickCount();
+         (const_cast < timeout_file * > (this))->m_dwLastCall = ::get_tick_count();
          while(m_uiExpectedSize == (uint64_t) -1)
          {
-            if(::GetTickCount() - m_dwLastCall > m_dwTimeOut)
+            if(::get_tick_count() - m_dwLastCall > m_dwTimeOut)
                break;
             Sleep(max(11, m_dwSleep));
          }
@@ -114,10 +114,10 @@ namespace ex1
          return (uint64_t) -2;
       if(m_uiExpectedSize == (uint64_t) -1)
       {
-         (const_cast < timeout_file * > (this))->m_dwLastCall = ::GetTickCount();
+         (const_cast < timeout_file * > (this))->m_dwLastCall = ::get_tick_count();
          while(m_uiExpectedSize == (uint64_t) -1)
          {
-            if(::GetTickCount() - m_dwLastCall > m_dwTimeOut)
+            if(::get_tick_count() - m_dwLastCall > m_dwTimeOut)
                break;
             Sleep(max(11, m_dwSleep));
          }
@@ -138,7 +138,7 @@ namespace ex1
          return 0;
       ::primitive::memory_size uiRead = 0;
       ::primitive::memory_size uiReadNow = 0;
-      m_dwLastCall = ::GetTickCount();
+      m_dwLastCall = ::get_tick_count();
       while(nCount > 0)
       {
          sl.lock();
@@ -146,11 +146,11 @@ namespace ex1
          sl.unlock();
          if(uiReadNow > 0)
          {
-            m_dwLastCall = ::GetTickCount();
+            m_dwLastCall = ::get_tick_count();
          }
          uiRead += uiReadNow;
          nCount -= uiReadNow;
-         if(nCount <= 0 || (::GetTickCount() - m_dwLastCall > m_dwTimeOut) || 
+         if(nCount <= 0 || (::get_tick_count() - m_dwLastCall > m_dwTimeOut) || 
             (m_pfile->get_position() >= m_uiExpectedSize && 
                   m_uiExpectedSize != ((uint64_t) -1)
                   && m_uiExpectedSize != ((uint64_t) -2)))

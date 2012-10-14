@@ -457,7 +457,7 @@ namespace radix
 //      InitLibId();
 
 
-      m_dwAlive = ::GetTickCount();
+      m_dwAlive = ::get_tick_count();
 
 
       if(!initialize1())
@@ -475,17 +475,17 @@ namespace radix
          return false;
       }
 
-      m_dwAlive = ::GetTickCount();
+      m_dwAlive = ::get_tick_count();
 
       if(!initialize2())
          return false;
 
-      m_dwAlive = ::GetTickCount();
+      m_dwAlive = ::get_tick_count();
 
       if(!initialize3())
          return false;
 
-      m_dwAlive = ::GetTickCount();
+      m_dwAlive = ::get_tick_count();
 
       try
       {

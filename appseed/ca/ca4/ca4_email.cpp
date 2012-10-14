@@ -19,12 +19,12 @@ namespace ca4
       socket.m_estate = ::sockets::smtp_socket::state_initial;
       socket.m_email = email;
 
-      DWORD dwEnd = ::GetTickCount() + 1000 * 120;
+      DWORD dwEnd = ::get_tick_count() + 1000 * 120;
       handler.add(&socket);
       while (true)
       {
          handler.Select(8,0);
-         if(::GetTickCount() > dwEnd)
+         if(::get_tick_count() > dwEnd)
             break;
          if(socket.m_estate == ::sockets::smtp_socket::state_end)
             break;

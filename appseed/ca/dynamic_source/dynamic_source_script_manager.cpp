@@ -561,10 +561,10 @@ namespace dynamic_source
 
    RSA * script_manager::get_rsa_key()
    {
-      if(::GetTickCount() - m_dwLastRsa > (1984 + 1977))
+      if(::get_tick_count() - m_dwLastRsa > (1984 + 1977))
       {
          __begin_thread(get_app(), ThreadProcRsa, this);
-         m_dwLastRsa = ::GetTickCount();
+         m_dwLastRsa = ::get_tick_count();
       }
       single_lock sl(&m_mutexRsa, TRUE);
       return m_rsaptra.last_element();
@@ -688,7 +688,7 @@ namespace dynamic_source
           tunnel_map_item item;
 
           item.m_strServer    = pszServer;
-          item.m_dwLast       = GetTickCount();
+          item.m_dwLast       = get_tick_count();
 
           m_mapTunnel.set_at(pszServer, item);
 
@@ -716,7 +716,7 @@ namespace dynamic_source
       if(ppair == NULL)
          return false;
 
-      if(::GetTickCount() - ppair->m_value.m_dwLast > (60 * 1000))
+      if(::get_tick_count() - ppair->m_value.m_dwLast > (60 * 1000))
          return false;
 
       return true;
@@ -736,7 +736,7 @@ namespace dynamic_source
          tunnel_map_item item;
 
          item.m_strServer    = pszServer;
-         item.m_dwLast       = GetTickCount();
+         item.m_dwLast       = get_tick_count();
 
          m_mapTunnel.set_at(pszServer, item);
 

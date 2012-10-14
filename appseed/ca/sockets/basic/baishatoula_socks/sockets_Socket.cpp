@@ -91,7 +91,7 @@ namespace sockets
    {
 
       m_iBindPort    = -1;
-      m_dwStart      = ::GetTickCount();
+      m_dwStart      = ::get_tick_count();
       m_pcallback    = NULL;
 
    }
@@ -698,7 +698,7 @@ namespace sockets
 
    bool socket::Retain()
    {
-      return m_bRetain && (::GetTickCount() - m_dwStart < 30 * 1000);
+      return m_bRetain && (::get_tick_count() - m_dwStart < 30 * 1000);
    }
 
 
