@@ -380,7 +380,7 @@ install:
 
    }
 
-   void plugin::on_paint(simple_graphics & gWindow, LPCRECT lprect)
+   void plugin::on_paint(simple_graphics & g, LPCRECT lprect)
    {
 
       if(!is_installing() && is_ca2_installed())
@@ -389,7 +389,7 @@ install:
          if(ensure_tx(::hotplugin::message_paint, (void *) lprect, sizeof(*lprect)))
          {
 
-            m_phost->blend_bitmap(gWindow, lprect);
+            m_phost->blend_bitmap(g, lprect);
 
             return;
 
@@ -413,13 +413,13 @@ install:
 
       simple_bitmap b;
 
-      b.create(cx, cy, gWindow);
+      //b.create(cx, cy, gWindow);
 
-      simple_graphics g;
+      //simple_graphics g;
 
-      g.create_from_bitmap(b);
+      //g.create_from_bitmap(b);
 
-      g.bit_blt(0, 0, cx, cy, gWindow, ::hotplugin::plugin::m_rect.left, ::hotplugin::plugin::m_rect.top, SRCCOPY);
+      //g.bit_blt(0, 0, cx, cy, gWindow, ::hotplugin::plugin::m_rect.left, ::hotplugin::plugin::m_rect.top, SRCCOPY);
 
 //      HFONT hfontOld = NULL;
 //      HFONT hfont = NULL;
@@ -460,9 +460,9 @@ install:
 
 #ifdef WINDOWS
 
-      g.set_offset(0, 0);
-      gWindow.bit_blt(lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
-             g         , lprect->left - ::hotplugin::plugin::m_rect.left  , lprect->top - ::hotplugin::plugin::m_rect.top    , SRCCOPY);
+      //g.set_offset(0, 0);
+      //gWindow.bit_blt(lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
+        //     g         , lprect->left - ::hotplugin::plugin::m_rect.left  , lprect->top - ::hotplugin::plugin::m_rect.top    , SRCCOPY);
 
       /*vsstring strx = itoa_dup(lprect->left);
       vsstring stry = itoa_dup(lprect->top);
@@ -481,7 +481,7 @@ install:
       if(!m_bLogin || !m_login.m_bVisible)
       {
 
-         on_bare_paint(gWindow, lprect);
+         on_bare_paint(g, lprect);
 
       }
 

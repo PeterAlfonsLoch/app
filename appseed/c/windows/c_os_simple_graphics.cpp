@@ -333,7 +333,7 @@ bool simple_graphics::offset(int x, int y)
 bool simple_graphics::bit_blt(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, DWORD rop)
 {
    
-   return ::BitBlt(m_hdc, x, y, cx, cy, gSrc.m_hdc, x1, y1, rop) != FALSE;
+   return m_pgraphics->DrawImage(gSrc.m_pbitmap->m_pbitmap, x, y, x1, y1, cx, cy, Gdiplus::UnitPixel) != FALSE;
 
 }
 
