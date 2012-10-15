@@ -27,17 +27,13 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-class CLASS_DECL_c graphics_round_rect
+namespace graphics_round_rect
 {
-public:
 
-
-	graphics_round_rect();
-	~graphics_round_rect();
 
 	//=============================================================================
 	//
-	// GetRoundRectPath()
+	// get_round_rect()
 	//
 	// Purpose:     Defines a Rounded Rectangle and places it in the GraphicsPath
 	//
@@ -48,13 +44,13 @@ public:
 	//
 	// Returns:     None
 	//
-	static void GetRoundRectPath(simple_path & path, const RECT & rect, int dia);
-   static void GetRoundTopLeft(simple_path & path, const RECT & rect, int dia);
-   static void GetRoundBottomRight(simple_path & path, const RECT & rect, int dia);
+	CLASS_DECL_c void get_round_rect(simple_path & path, const RECT & rect, int dia);
+   CLASS_DECL_c void get_round_top_left(simple_path & path, const RECT & rect, int dia);
+   CLASS_DECL_c void get_round_bottom_right(simple_path & path, const RECT & rect, int dia);
 
 	//=============================================================================
 	//
-	// DrawRoundRect()
+	// draw_round_rect()
 	//
 	// Purpose:     Draws a rounded rectangle with a solid pen
 	//
@@ -66,13 +62,13 @@ public:
 	//
 	// Returns:     None
 	//
-	void DrawRoundRect(simple_path & pGraphics, const RECT & r,  COLORREF color, int radius, int width);
-   void DrawTopLeft(simple_path & pGraphics, const RECT & r,  COLORREF color, int radius, int width);
-   void DrawBottomRight(simple_path & pGraphics, const RECT & r,  COLORREF color, int radius, int width);
+	CLASS_DECL_c void draw_round_rect(simple_graphics & pGraphics, const RECT & r,  COLORREF color, int radius, int width);
+   CLASS_DECL_c void draw_top_left(simple_graphics & pGraphics, const RECT & r,  COLORREF color, int radius, int width);
+   CLASS_DECL_c void draw_bottom_right(simple_graphics & pGraphics, const RECT & r,  COLORREF color, int radius, int width);
 
 	//=============================================================================
 	//
-	// FillRoundRect()
+	// fill_round_rect()
 	//
 	// Purpose:     Fills a rounded rectangle with a solid brush.  Draws the border
 	//				first then fills in the rectangle.
@@ -84,11 +80,11 @@ public:
 	//
 	// Returns:     None
 	//
-	void FillRoundRect(simple_path & pGraphics, const RECT & r,  COLORREF color, int radius);
+	CLASS_DECL_c void fill_round_rect(simple_graphics & pGraphics, const RECT & r,  COLORREF color, int radius);
 
 	//=============================================================================
 	//
-	// FillRoundRect()
+	// fill_round_rect()
 	//
 	// Purpose:     Fills a rounded rectangle with a solid brush.  Draws the border
 	//				first then fills in the rectangle.
@@ -102,9 +98,9 @@ public:
 	//
 	// Returns:     None
 	//
-	void FillRoundRect(simple_path & pGraphics, simple_brush & brush, const RECT & r, COLORREF border, int radius);
+	CLASS_DECL_c void fill_round_rect(simple_graphics & pGraphics, simple_brush & brush, const RECT & r, COLORREF border, int radius);
 
 
-};
+} // namespace graphics_round_rect
 
 
