@@ -24,3 +24,18 @@ simple_path::~simple_path()
 
 
 }
+
+
+bool simple_path::add_arc(const RECT & rect, int iStart, int iAngle)
+{
+
+   Gdiplus::Rect rectBound;
+
+   rectBound.X       = rect.left;
+   rectBound.Y       = rect.top;
+   rectBound.Width   = width(rect);
+   rectBound.Height  = height(rect);
+   
+   return m_ppath->AddArc(rectBound, iStart, iAngle) == Gdiplus::Ok;
+
+}

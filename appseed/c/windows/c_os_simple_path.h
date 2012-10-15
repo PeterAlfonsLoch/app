@@ -16,6 +16,8 @@ public:
    ~simple_path();
 
 
+   bool add_arc(const RECT & rect, int iStart, int iAngle);
+
 };
 
 
