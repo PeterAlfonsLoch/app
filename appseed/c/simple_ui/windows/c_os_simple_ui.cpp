@@ -35,17 +35,17 @@ void simple_ui::draw_this(simple_graphics & g)
 
    int iBorderH = min(height(&m_rect) / 2, 49);
 
-   Gdiplus::LinearGradientBrush br1(Gdiplus::Point(0, 0), Gdiplus::Point(0, iBorderH), crOut, crIn);
+   simple_linear_gradient_brush br1(0, 0, 0, iBorderH, crOut, crIn);
 
-   graphics2.FillRectangle(&br1, m_rect.left, m_rect.top, width(&m_rect), iBorderH);
+   g.fill_rect(rect_dim(m_rect.left, m_rect.top, width(&m_rect), iBorderH), br1);
 
-   Gdiplus::SolidBrush br(crIn);
+   simple_solid_brush br(crIn, g);
 
-   graphics2.FillRectangle(&br, m_rect.left, m_rect.top + iBorderH, width(&m_rect), height(&m_rect) - (iBorderH * 2));
+   g.fill_rect(rect_dim(m_rect.left, m_rect.top + iBorderH, width(&m_rect), height(&m_rect) - (iBorderH * 2)), br);
 
-   Gdiplus::LinearGradientBrush br2(Gdiplus::Point(0, m_rect.bottom - iBorderH), Gdiplus::Point(0, m_rect.bottom), crIn, crOut);
+   simple_linear_gradient_brush br2(0, m_rect.bottom - iBorderH, 0, m_rect.bottom, crIn, crOut);
 
-   graphics2.FillRectangle(&br2, m_rect.left, m_rect.bottom - iBorderH, width(&m_rect), iBorderH);
+   g.fill_rect(rect_dim(m_rect.left, m_rect.bottom - iBorderH, width(&m_rect), iBorderH), br2);
 
 
 }
@@ -54,7 +54,7 @@ void simple_ui::draw_this(simple_graphics & g)
 void simple_ui::draw_focus_rect(simple_graphics & g)
 {
 
-   Gdiplus::Graphics graphics2(g);
+   g.set_alpha_mode(::ca::alpha_mode_blend);
 
    int iStyle = 1;
 
@@ -70,9 +70,9 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
          
-            Gdiplus::Pen pen(Gdiplus::Color(255, 108, 149, 255), 1.0f);
+            simple_solid_pen pen(ARGB(255, 108, 149, 255));
 
-            graphics2.DrawRectangle(&pen, rect.left, rect.top, width(&rect), height(&rect));
+            g.draw_rect(rect, pen);
 
          }
 
@@ -85,28 +85,11 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
          
             simple_path pathRound;
             
-            graphics_round_rect::GetRoundRectPath(pathRound, rect, 1 * 2);
+            graphics_round_rect::get_round_rect(pathRound, rect, 1 * 2);
 
-            Gdiplus::Pen pen(Gdiplus::Color(84, 108, 149, 255), 1.0f);
+            simple_solid_pen pen(ARGB(84, 108, 149, 255));
 
-            graphics2.DrawPath(&pen, pathRound.m_ppath);
-
-         }
-
-         rect.left--;
-         rect.right++;
-         rect.top--;
-         rect.bottom++;
-
-         {
-
-            simple_path pathRound;
-
-            graphics_round_rect::GetRoundRectPath(pathRound, rect, 2 * 2);
-
-            Gdiplus::Pen pen(Gdiplus::Color(72, 108, 149, 255), 1.0f);
-
-            graphics2.DrawPath(&pen, pathRound.m_ppath);
+            g.draw_path(pathRound, pen);
 
          }
 
@@ -119,11 +102,28 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
             simple_path pathRound;
 
-            graphics_round_rect::GetRoundRectPath(pathRound, rect, 3 * 2);
+            graphics_round_rect::get_round_rect(pathRound, rect, 2 * 2);
 
-            Gdiplus::Pen pen(Gdiplus::Color(60, 108, 149, 255), 1.0f);
+            simple_solid_pen pen(ARGB(72, 108, 149, 255));
 
-            graphics2.DrawPath(&pen, pathRound.m_ppath);
+            g.draw_path(pathRound, pen);
+
+         }
+
+         rect.left--;
+         rect.right++;
+         rect.top--;
+         rect.bottom++;
+
+         {
+
+            simple_path pathRound;
+
+            graphics_round_rect::get_round_rect(pathRound, rect, 3 * 2);
+
+            simple_solid_pen pen(ARGB(60, 108, 149, 255));
+
+            g.draw_path(pathRound, pen);
 
          }
 
@@ -137,11 +137,11 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
             simple_path pathRound;
 
-            graphics_round_rect::GetRoundRectPath(pathRound, rect, 4 * 2);
+            graphics_round_rect::get_round_rect(pathRound, rect, 4 * 2);
 
-            Gdiplus::Pen pen(Gdiplus::Color(48, 108, 149, 255), 1.0f);
+            simple_solid_pen pen(ARGB(48, 108, 149, 255));
 
-            graphics2.DrawPath(&pen, pathRound.m_ppath);
+            g.draw_path(pathRound, pen);
 
          }
 
@@ -156,11 +156,11 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
             simple_path pathRound;
 
-            graphics_round_rect::GetRoundRectPath(pathRound, rect, 5 * 2);
+            graphics_round_rect::get_round_rect(pathRound, rect, 5 * 2);
 
-            Gdiplus::Pen pen(Gdiplus::Color(36, 108, 149, 255), 1.0f);
+            simple_solid_pen pen(ARGB(36, 108, 149, 255));
 
-            graphics2.DrawPath(&pen, pathRound.m_ppath);
+            g.draw_path(pathRound, pen);
 
          }
 
@@ -177,11 +177,11 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
             simple_path pathRound;
 
-            graphics_round_rect::GetRoundRectPath(&pathRound, rect, 6 * 2);
+            graphics_round_rect::get_round_rect(pathRound, rect, 6 * 2);
 
-            Gdiplus::Pen pen(Gdiplus::Color(24, 108, 149, 255), 1.0f);
+            simple_solid_pen pen(ARGB(24, 108, 149, 255));
 
-            graphics2.DrawPath(&pen, pathRound.m_ppath);
+            g.draw_path(pathRound, pen);
 
          }
 
@@ -190,9 +190,9 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
       else
       {
          
-         Gdiplus::Pen pen(Gdiplus::Color(255, 84, 77, 255), 3.0f);
+         simple_solid_pen pen(ARGB(255, 84, 77, 255), 3);
 
-         graphics2.DrawRectangle(&pen, m_rect.left, m_rect.top, width(&m_rect), height(&m_rect));
+         g.draw_rect(m_rect, pen);
 
       }
 
@@ -200,9 +200,9 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
    else
    {
 
-      Gdiplus::Pen pen(Gdiplus::Color(255, 149, 149, 123), 1.0f);
+      simple_solid_pen pen(ARGB(255, 149, 149, 123));
 
-      graphics2.DrawRectangle(&pen, m_rect.left, m_rect.top, width(&m_rect), height(&m_rect));
+      g.draw_rect(m_rect, pen);
 
    }
 

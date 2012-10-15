@@ -9,6 +9,7 @@ public:
 
    
    Gdiplus::Graphics *     m_pgraphics;
+   HDC                     m_hdc;
    HWND                    m_hwnd;
    simple_bitmap *         m_pbitmap;
    simple_pen *            m_ppen;
@@ -45,12 +46,19 @@ public:
    inline bool draw_line(POINT p1, POINT p2);
 
    bool rectangle(LPCRECT lpcrect);
+   bool draw_rect(LPCRECT lpcrect, simple_pen & pen);
    bool fill_rect(LPCRECT lpcrect, simple_brush & brush);
    void fill_solid_rect(LPCRECT lpRect, COLORREF clr);
 
    inline bool rectangle(const RECT & rect);
+   inline bool draw_rect(const RECT & rect);
+   inline bool draw_rect(const RECT & rect, simple_pen & pen);
+   inline bool fill_rect(const RECT & rect);
    inline bool fill_rect(const RECT & rect, simple_brush & brush);
    inline void fill_solid_rect(const RECT & rect, COLORREF clr);
+
+   bool draw_path(simple_path & path, simple_pen & pen);
+   bool fill_path(simple_path & path, simple_brush & brush);
 
    bool set_alpha_mode(::ca::e_alpha_mode emode);
 
@@ -62,7 +70,6 @@ public:
 
 
    // may be multi-platform
-   bool create(simple_graphics & g);
    bool create_from_screen();
    bool set_offset(int x, int y);
    bool offset(int x, int y);
@@ -84,9 +91,16 @@ public:
 };
 
 
+
+
 inline bool simple_graphics::draw_line(int x1, int y1, int x2, int y2)
 {
+   
+   if(m_ppen == NULL)
+      return true;
+
    return draw_line(x1, y1, x2, y2, *m_ppen);
+
 }
 
 inline bool simple_graphics::draw_line(POINT p1, POINT p2, simple_pen & pen)
@@ -96,10 +110,41 @@ inline bool simple_graphics::draw_line(POINT p1, POINT p2, simple_pen & pen)
 
 inline bool simple_graphics::draw_line(POINT p1, POINT p2)
 {
+   
+   if(m_ppen == NULL)
+      return true;
+
    return draw_line(p1, p2, *m_ppen);
+
 }
 
 
+
+
+inline bool simple_graphics::draw_rect(const RECT & rect)
+{
+   
+   if(m_ppen == NULL)
+      return true;
+
+   return draw_rect(&rect, *m_ppen);
+
+}
+
+inline bool simple_graphics::draw_rect(const RECT & rect, simple_pen & pen)
+{
+   return draw_rect(&rect, pen);
+}
+
+inline bool simple_graphics::fill_rect(const RECT & rect)
+{
+   
+   if(m_pbrush == NULL)
+      return true;
+
+   return fill_rect(&rect, *m_pbrush);
+
+}
 
 inline bool simple_graphics::fill_rect(const RECT & rect, simple_brush & brush)
 {

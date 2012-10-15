@@ -1,16 +1,18 @@
 #include "framework.h"
+#undef new
+#include <gdiplus.h>
 
 simple_pen::simple_pen()
 {
    
-   m_hpen = NULL;
+   m_ppen = NULL;
 
 }
 
 simple_pen::~simple_pen()
 {
    
-   if(m_hpen != NULL)
+   if(m_ppen != NULL)
    {
 
       destroy();
@@ -19,12 +21,12 @@ simple_pen::~simple_pen()
 
 }
 
-bool simple_pen::create_solid(int iWidth, COLORREF cr)
+bool simple_pen::create_solid(COLORREF cr, int iWidth)
 {
 
-   m_hpen = ::CreatePen(PS_SOLID, iWidth, cr);
+   m_ppen = new Gdiplus::Pen(Gdiplus::Color(GetAValue(cr), GetRValue(cr), GetGValue(cr), GetBValue(cr)), iWidth);
 
-   if(m_hpen == NULL)
+   if(m_ppen == NULL)
       return false;
 
    return TRUE;
@@ -33,20 +35,31 @@ bool simple_pen::create_solid(int iWidth, COLORREF cr)
 
 bool simple_pen::destroy()
 {
-   
-   if(m_hpen == NULL)
+ 
+   if(m_ppen == NULL)
       return true;
 
+   bool bOk = true;
 
-   bool bOk = ::DeleteObject(m_hpen) != FALSE;
+   try
+   {
 
-   m_hpen = NULL;
+      delete m_ppen;
+
+   }
+   catch(...)
+   {
+
+      bOk = false;
+
+   }
+   
+   m_ppen = NULL;
 
    if(!bOk)
       return false;
 
    return true;
-
 }
 
 

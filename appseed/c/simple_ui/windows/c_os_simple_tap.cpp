@@ -11,11 +11,11 @@ void simple_tap::draw_simple(simple_graphics & g)
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      simple_solid_brush br(ARGB(184, 255, 184, 240));
+      simple_solid_brush br(ARGB(184, 255, 184, 240), g);
 
 #else
 
-      simple_solid_brush br(ARGB(184, 184, 255, 177));
+      simple_solid_brush br(ARGB(184, 184, 255, 177), g);
 
 #endif
 
@@ -36,18 +36,17 @@ void simple_tap::draw_volume(simple_graphics & g)
 
    {
 
-      Gdiplus::Graphics graphics2(g.m_hdc);
+      
 
-      graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      g.set_alpha_mode(::ca::alpha_mode_blend);
 
+      COLORREF crOut;
 
-      Gdiplus::Color crOut;
+      COLORREF crIn;
 
-      Gdiplus::Color crIn;
+      COLORREF crBorderOut;
 
-      Gdiplus::Color crBorderOut;
-
-      Gdiplus::Color crBorderIn;
+      COLORREF crBorderIn;
 
 
       if(is_hover() || m_bDown || m_bMouseMove)
@@ -55,23 +54,23 @@ void simple_tap::draw_volume(simple_graphics & g)
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         crOut.SetValue(Gdiplus::Color::MakeARGB(184 + 49, 255, 230, 255));
+         crOut = ARGB(184 + 49, 255, 230, 255);
 
-         crIn.SetValue(Gdiplus::Color::MakeARGB(255, 255, 84 + 49, 255));
+         crIn = ARGB(255, 255, 84 + 49, 255);
 
-         crBorderOut.SetValue(Gdiplus::Color::MakeARGB(184, 150, 100, 150));
+         crBorderOut = ARGB(184, 150, 100, 150);
 
-         crBorderIn.SetValue(Gdiplus::Color::MakeARGB(184, 255, 240, 255));
+         crBorderIn = ARGB(184, 255, 240, 255) ;
 
 #else
 
-         crOut.SetValue(Gdiplus::Color::MakeARGB(184 + 49, 230, 255, 225));
+         crOut = ARGB(184 + 49, 230, 255, 225);
 
-         crIn.SetValue(Gdiplus::Color::MakeARGB(255, 84 + 49, 255, 77 + 49));
+         crIn = ARGB(255, 84 + 49, 255, 77 + 49);
 
-         crBorderOut.SetValue(Gdiplus::Color::MakeARGB(184, 100, 150, 100));
+         crBorderOut = ARGB(184, 100, 150, 100);
 
-         crBorderIn.SetValue(Gdiplus::Color::MakeARGB(184, 240, 255, 235));
+         crBorderIn = ARGB(184, 240, 255, 235);
 
 #endif
 
@@ -81,23 +80,23 @@ void simple_tap::draw_volume(simple_graphics & g)
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         crOut.SetValue(Gdiplus::Color::MakeARGB(184, 255, 210, 255));
+         crOut = ARGB(184, 255, 210, 255);
 
-         crIn.SetValue(Gdiplus::Color::MakeARGB(255, 255, 84 + 49, 255));
+         crIn = ARGB(255, 255, 84 + 49, 255);
 
-         crBorderOut.SetValue(Gdiplus::Color::MakeARGB(184, 90, 20, 90));
+         crBorderOut = ARGB(184, 90, 20, 90);
 
-         crBorderIn.SetValue(Gdiplus::Color::MakeARGB(184, 255, 240, 255));
+         crBorderIn = ARGB(184, 255, 240, 255);
 
 #else
 
-         crOut.SetValue(Gdiplus::Color::MakeARGB(184, 210, 255, 205));
+         crOut = ARGB(184, 210, 255, 205);
 
-         crIn.SetValue(Gdiplus::Color::MakeARGB(255, 84 + 49, 255, 77 + 49));
+         crIn = ARGB(255, 84 + 49, 255, 77 + 49);
 
-         crBorderOut.SetValue(Gdiplus::Color::MakeARGB(184, 20, 90, 20));
+         crBorderOut = ARGB(184, 20, 90, 20);
 
-         crBorderIn.SetValue(Gdiplus::Color::MakeARGB(184, 240, 255, 235));
+         crBorderIn = ARGB(184, 240, 255, 235);
 
 #endif
 
@@ -105,13 +104,13 @@ void simple_tap::draw_volume(simple_graphics & g)
 
       int iBorderH = height(&m_rect) / 2;
 
-      Gdiplus::LinearGradientBrush br1(Gdiplus::Point(0, m_rect.top - 1), Gdiplus::Point(0, m_rect.top + iBorderH + 2), crOut, crIn);
+      simple_linear_gradient_brush br1(0, m_rect.top - 1, 0, m_rect.top + iBorderH + 2, crOut, crIn);
 
-      graphics2.FillRectangle(&br1, m_rect.left, m_rect.top, width(&m_rect), iBorderH);
+      g.fill_rect(rect_dim(m_rect.left, m_rect.top, width(&m_rect), iBorderH), br1);
 
-      Gdiplus::LinearGradientBrush br2(Gdiplus::Point(0, m_rect.top + iBorderH - 1), Gdiplus::Point(0, m_rect.top + iBorderH * 2 + 2), crIn, crOut);
+      simple_linear_gradient_brush br2(0, m_rect.top + iBorderH - 1, 0, m_rect.top + iBorderH * 2 + 2, crIn, crOut);
 
-      graphics2.FillRectangle(&br2, m_rect.left, m_rect.top + iBorderH, width(&m_rect), iBorderH);
+      g.fill_rect(rect_dim( m_rect.left, m_rect.top + iBorderH, width(&m_rect), iBorderH), br2);
 
       /*Gdiplus::Pen pen1(crBorderOut);
 
@@ -119,9 +118,9 @@ void simple_tap::draw_volume(simple_graphics & g)
 
       draw_focus_rect(g);
 
-      Gdiplus::Pen pen2(crBorderIn);
+      simple_solid_pen pen(crBorderIn);
 
-      graphics2.DrawRectangle(&pen2, m_rect.left + 1, m_rect.top + 1, width(&m_rect) - 2, iBorderH * 2 - 2);
+      g.draw_rect(rect_dim(m_rect.left + 1, m_rect.top + 1, width(&m_rect) - 2, iBorderH * 2 - 2), pen);
 
    }
 
@@ -133,23 +132,25 @@ void simple_tap::draw_volume(simple_graphics & g)
 void simple_tap::draw_text(simple_graphics & g)
 {
 
-   Gdiplus::Graphics graphics2(g);
+   g.set_alpha_mode(::ca::alpha_mode_blend);
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
-   Gdiplus::SolidBrush b(Gdiplus::Color(223, 84, 49, 77));
+   
+   simple_solid_brush b(ARGB(223, 84, 49, 77), g);
+
 #else
-   Gdiplus::SolidBrush b(Gdiplus::Color(223, 49, 84, 23));
+
+   simple_solid_brush b(ARGB(223, 49, 84, 23), g);
+
 #endif
 
-   Gdiplus::Font f(L"Geneva", (Gdiplus::REAL) (height(&m_rect) * 0.7), Gdiplus::FontStyleRegular, Gdiplus::UnitPixel);
+   simple_pixel_font f(height(m_rect) * 10, "Geneva", g);
 
-   wchar_t * pwsz = utf8_to_16(m_strText);
+   g.select(f);
 
    float fMargin = (height(&m_rect) * ((1.0f - 0.7f) / 2.0f));
 
-   graphics2.DrawString(pwsz, wcslen_dup(pwsz), &f, Gdiplus::PointF((float) (m_rect.left + fMargin), (float) (m_rect.top + fMargin)), &b);
-
-   ca2_free(pwsz);
+   g.text_out((int) (m_rect.left + fMargin), (int) (m_rect.top + fMargin), m_strText);
 
 }
 

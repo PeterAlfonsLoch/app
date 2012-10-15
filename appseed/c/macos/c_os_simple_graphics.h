@@ -58,7 +58,6 @@ public:
    bool bit_blt(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, DWORD rop);
    bool alpha_blend(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf);
    bool create_from_bitmap(simple_bitmap & b);
-   bool detach_bitmap();
    void fill_solid_rect(LPCRECT lpRect, COLORREF clr);
    bool select(simple_font & font);
    bool select(simple_brush & brush);
@@ -68,7 +67,7 @@ public:
    bool blend_bitmap_data(int x, int y, int cx, int cy, COLORREF * pdata);
    bool rectangle(LPCRECT lpcrect);
    SIZE get_text_extent(const char * psz, int iLen = -1);
-   bool set_text_color(COLORREF cr);
+   //bool set_text_color(COLORREF cr);
    
    // may be multi-platform
    bool create(simple_graphics & g);

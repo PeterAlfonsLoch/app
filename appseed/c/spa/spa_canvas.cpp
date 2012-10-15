@@ -111,7 +111,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
       }
       else
       {
-         brush.create_solid(RGB(84, 84, 84));
+         brush.create_solid(RGB(84, 84, 84), g);
       }
 
       g.select(pen);

@@ -6,14 +6,14 @@
 simple_brush::simple_brush()
 {
 
-   m_hbrush = NULL;
+   m_pbrush = NULL;
 
 }
 
 simple_brush::~simple_brush()
 {
    
-   if(m_hbrush != NULL)
+   if(m_pbrush != NULL)
    {
 
       destroy();
@@ -22,17 +22,21 @@ simple_brush::~simple_brush()
 
 }
 
-bool simple_brush::create_solid(COLORREF cr)
+bool simple_brush::create_solid(COLORREF cr, simple_graphics & g)
 {
 
-   if(m_hbrush != NULL)
+   UNREFERENCED_PARAMETER(g);
+
+   if(m_pbrush != NULL)
+   {
+    
       destroy();
 
-   m_bDelete = true;
+   }
 
-   m_hbrush = ::CreateSolidBrush(cr);
+   m_pbrush = new Gdiplus::SolidBrush(Gdiplus::Color(GetAValue(cr), GetRValue(cr), GetGValue(cr), GetBValue(cr)));
 
-   if(m_hbrush == NULL)
+   if(m_pbrush == NULL)
       return false;
 
    return true;
@@ -59,10 +63,16 @@ bool simple_brush::create_liner_gradient(POINT np1, POINT np2, COLORREF cr1, COL
    p2.X = np2.x;
    p2.Y = np2.y;
 
-   m_pbrush = new Gdiplus::LinearGradientBrush(p1, p2. Gdiplus::Color(crOut), GdiplusColor(cr2)));
+   m_pbrush = new Gdiplus::LinearGradientBrush(
+      p1, 
+      p2,
+      Gdiplus::Color(GetAValue(cr1), GetRValue(cr1), GetGValue(cr1), GetBValue(cr1)), 
+      Gdiplus::Color(GetAValue(cr2), GetRValue(cr2), GetGValue(cr2), GetBValue(cr2)));
 
    if(m_pbrush == NULL)
       return false;
+
+   return true;
 
 }
 
@@ -70,21 +80,21 @@ bool simple_brush::create_liner_gradient(POINT np1, POINT np2, COLORREF cr1, COL
 bool simple_brush::from_stock(int iId)
 {
 
-   if(m_hbrush != NULL)
+   if(m_pbrush != NULL)
+   {
+
       destroy();
 
-   m_bDelete = false;
+   }
 
-   m_hbrush = (HBRUSH) ::GetStockObject(iId);
-
-   if(m_hbrush == NULL)
-      return false;
-
-   if(::GetObjectType(m_hbrush) != OBJ_BRUSH)
+   if(iId == NULL_BRUSH)
    {
-      
-      m_hbrush = NULL;
 
+      m_pbrush = NULL;
+
+   }
+   else
+   {
       return false;
 
    }
@@ -98,16 +108,25 @@ bool simple_brush::from_stock(int iId)
 bool simple_brush::destroy()
 {
 
-   if(!m_bDelete)
-      return false;
-   
-   if(m_hbrush == NULL)
+   if(m_pbrush == NULL)
       return true;
 
+   bool bOk = true;
 
-   bool bOk = ::DeleteObject(m_hbrush) != FALSE;
+   try
+   {
 
-   m_hbrush = NULL;
+      delete m_pbrush;
+
+   }
+   catch(...)
+   {
+
+      bOk = false;
+
+   }
+   
+   m_pbrush = NULL;
 
    if(!bOk)
       return false;

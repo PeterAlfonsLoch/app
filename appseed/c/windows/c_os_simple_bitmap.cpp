@@ -105,13 +105,25 @@ bool simple_bitmap::create_from_data(int cx, int cy, COLORREF * pdata, simple_gr
 bool simple_bitmap::destroy()
 {
    
-   if(m_hbitmap == NULL)
+   if(m_pbitmap == NULL)
       return true;
 
+   bool bOk = true;
 
-   bool bOk = ::DeleteObject(m_hbitmap) != FALSE;
+   try
+   {
+      
+      delete m_pbitmap;
 
-   m_hbitmap = NULL;
+   }
+   catch(...)
+   {
+
+      bOk = false;
+
+   }
+
+   m_pbitmap = NULL;
 
    if(!bOk)
       return false;
@@ -119,3 +131,5 @@ bool simple_bitmap::destroy()
    return true;
 
 }
+
+

@@ -20,13 +20,15 @@ simple_graphics::simple_graphics()
 
    m_ppen         = NULL;
 
+   m_hdc          = NULL;
+
 }
 
 
 simple_graphics::~simple_graphics()
 {
 
-   if(m_hdc != NULL && m_iType != 0)
+   if(m_pgraphics != NULL && m_iType != 0)
    {
 
       destroy();
@@ -41,12 +43,10 @@ bool simple_graphics::create(HDC hdc)
    if(m_iType != 0)
       destroy();
    
-   m_hdc = ::CreateCompatibleDC(hdc);
+   m_pgraphics = new Gdiplus::Graphics(hdc);
 
-   if(m_hdc == NULL)
+   if(m_pgraphics == NULL)
       return false;
-   
-   ::ReleaseDC(NULL, hdc);
    
    m_iType = 1;
    
@@ -60,50 +60,14 @@ bool simple_graphics::create_from_bitmap(simple_bitmap & b)
    if(m_iType != 0)
       destroy();
    
-   m_hdc = ::CreateCompatibleDC(NULL);
+   m_pgraphics = new ::Gdiplus::Graphics(b.m_pbitmap);
 
-   if(m_hdc == NULL)
+   if(m_pgraphics == NULL)
       return false;
 
-   m_hbitmapOld = (HBITMAP) ::SelectObject(m_hdc, b.m_hbitmap);
-
-   if(m_hbitmapOld == NULL)
-   {
-      
-      ::DeleteDC(m_hdc);
-      
-      m_hdc = NULL;
-
-      return false;
-
-   }
-   
    m_iType = 3;
    
    return true;
-
-}
-
-bool simple_graphics::detach_bitmap()
-{
-
-   if(m_iType != 0)
-      destroy();
-   
-   if(m_hdc == NULL)
-      return false;
-
-   if(m_hbitmapOld == NULL)
-      return false;
-
-   if(m_iType != 3)
-      return false;
-
-   HBITMAP hbitmap = (HBITMAP) ::SelectObject(m_hdc, m_hbitmapOld);
-
-   m_iType = 1;
-      
-   return hbitmap != NULL;
 
 }
 
@@ -117,6 +81,15 @@ bool simple_graphics::from_entire_window(HWND hwnd)
 
    if(m_hdc == NULL)
       return false;
+
+   m_pgraphics = new Gdiplus::Graphics(m_hdc);
+
+   if(m_pgraphics == NULL)
+   {
+      ::ReleaseDC(hwnd, m_hdc);
+      m_hdc = NULL;
+      return false;
+   }
 
    m_hwnd = hwnd;
 
@@ -138,6 +111,15 @@ bool simple_graphics::from_window(HWND hwnd)
    if(m_hdc == NULL)
       return false;
 
+   m_pgraphics = new Gdiplus::Graphics(m_hdc);
+
+   if(m_pgraphics == NULL)
+   {
+      ::ReleaseDC(hwnd, m_hdc);
+      m_hdc = NULL;
+      return false;
+   }
+
    m_hwnd = hwnd;
 
    m_iType = 2;
@@ -149,35 +131,48 @@ bool simple_graphics::from_window(HWND hwnd)
 bool simple_graphics::from_window_paint(HWND hwnd, LPRECT lprectPaint)
 {
 
+
    if(m_iType != 0)
       destroy();
 
-    m_hdc = BeginPaint(hwnd, &m_ps);
+   m_hdc = BeginPaint(hwnd, &m_ps);
 
-    if(m_hdc == NULL)
-       return false;
+   if(m_hdc == NULL)
+      return false;
+
+   m_pgraphics = new Gdiplus::Graphics(m_hdc);
+
+   if(m_pgraphics == NULL)
+   {
+      ::EndPaint(hwnd, &m_ps);
+      memset(&m_ps, 0, sizeof(m_ps));
+      m_hdc = NULL;
+      return false;
+   }
+
+   m_hwnd = hwnd;
+
+   m_iType = 4;
+
+   if(lprectPaint != NULL)
+   {
     
-    m_hwnd = hwnd;
+      *lprectPaint = m_ps.rcPaint;
 
-    if(lprectPaint != NULL)
-    {
-    
-       *lprectPaint = m_ps.rcPaint;
+   }
 
-    }
+   
+   return true;
 
-    m_iType = 4;
 
-    return true;
-    
 }
 
-bool simple_graphics::reference_os_data(HDC hdc)
+bool simple_graphics::reference_os_data(Gdiplus::Graphics * pgraphics)
 {
    
    m_iType = 5;
 
-   m_hdc = hdc;
+   m_pgraphics = pgraphics;
 
    return true;
 
@@ -186,17 +181,10 @@ bool simple_graphics::reference_os_data(HDC hdc)
 
 bool simple_graphics::create()
 {
-   
+
    simple_graphics g;
 
    g.from_window(NULL);
-   
-   return create(g);
-   
-}
-
-bool simple_graphics::create(simple_graphics & g)
-{
    
    return create(g.m_hdc);
    
@@ -212,36 +200,27 @@ bool simple_graphics::create_from_screen()
 bool simple_graphics::select(simple_font & font)
 {
    
-   HFONT hfontOld = (HFONT) ::SelectObject(m_hdc, font.m_hfont);
+   m_pfont = &font;
 
-   if(m_hfontOld == NULL)
-      m_hfontOld = hfontOld;
-
-   return hfontOld != NULL;
+   return true;
 
 }
 
 bool simple_graphics::select(simple_brush & brush)
 {
    
-   HBRUSH hbrushOld = (HBRUSH) ::SelectObject(m_hdc, brush.m_hbrush);
+   m_pbrush = &brush;
 
-   if(m_hbrushOld == NULL)
-      m_hbrushOld = hbrushOld;
-
-   return hbrushOld != NULL;
+   return true;
 
 }
 
 bool simple_graphics::select(simple_pen & pen)
 {
    
-   HPEN hpenOld = (HPEN) ::SelectObject(m_hdc, pen.m_hpen);
+   m_ppen = &pen;
 
-   if(m_hpenOld == NULL)
-      m_hpenOld = hpenOld;
-
-   return hpenOld != NULL;
+   return true;
 
 }
 
@@ -250,74 +229,71 @@ bool simple_graphics::destroy()
    
    bool bOk = true;
 
-   bool bOkOldBitmap = true;
-
-   bool bOkOldPen = true;
-
-   bool bOkOldBrush = true;
-
-   bool bOkOldFont = true;
-
-   if(m_hbitmapOld != NULL)
+   if(m_pgraphics != NULL && m_iType != 5)
    {
       
-      bOkOldBitmap   = ::SelectObject(m_hdc, m_hbitmapOld) != NULL;
-      
-      m_hbitmapOld   = NULL;
-
-   }
-
-   if(m_hbrushOld != NULL)
-   {
-
-      bOkOldBrush    = ::SelectObject(m_hdc, m_hbrushOld) != NULL;
-
-      m_hbrushOld    = NULL;
+      try
+      {
          
-   }
-   
-   if(m_hpenOld != NULL)
-   {
+         delete m_pgraphics;
 
-      bOkOldPen      = ::SelectObject(m_hdc, m_hpenOld) != NULL;
+      }
+      catch(...)
+      {
 
-      m_hpenOld      = NULL;
-   }
+         bOk = false;
 
-   if(m_hfontOld != NULL)
-   {
-
-      bOkOldFont     = ::SelectObject(m_hdc, m_hfontOld) != NULL;
-
-      m_hfontOld     = NULL;
-
-   }
-
-
-   if(m_iType == 1)
-   {
+      }
       
-      bOk = ::DeleteDC(m_hdc) != FALSE;
-
    }
-   else if(m_iType == 2)
+
+   m_pgraphics = NULL;
+
+
+   if(m_iType == 2)
    {
 
-      bOk = ::ReleaseDC(m_hwnd, m_hdc) != FALSE;
+      try
+      {
 
-   }
-   else if(m_iType == 3)
-   {
+         if(!::ReleaseDC(m_hwnd, m_hdc))
+         {
+         
+            bOk = false;
 
-      bOk = ::DeleteDC(m_hdc) != FALSE;
+         }
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+
+      }
 
    }
    else if(m_iType == 4)
    {
 
-      bOk = EndPaint(m_hwnd, &m_ps) != FALSE;
+      try
+      {
+
+         if(!EndPaint(m_hwnd, &m_ps))
+         {
+
+            bOk = false;
+         }
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+
+      }
 
    }
+
 
    m_hwnd   = NULL;
 
@@ -325,7 +301,7 @@ bool simple_graphics::destroy()
 
    m_iType  = 0;
 
-   return bOk && bOkOldBitmap && bOkOldBrush && bOkOldFont && bOkOldPen;
+   return bOk;
 
 }
 
@@ -424,7 +400,7 @@ SIZE simple_graphics::get_text_extent(const char * psz, int iLen)
 bool simple_graphics::draw_line(int x1, int y1, int x2, int y2, simple_pen & pen)
 {
 
-   return m_pgraphics->DrawLine(pen.m_ppen, Gdiplus::Point(x1, y1), Gdiplus::Point(x2, y2));
+   return m_pgraphics->DrawLine(pen.m_ppen, Gdiplus::Point(x1, y1), Gdiplus::Point(x2, y2)) == Gdiplus::Ok;
 
 }
 
@@ -432,14 +408,26 @@ bool simple_graphics::draw_line(int x1, int y1, int x2, int y2, simple_pen & pen
 bool simple_graphics::rectangle(LPCRECT lpcrect)
 {
    
-   return ::Rectangle(m_hdc, lpcrect->left, lpcrect->top, lpcrect->right, lpcrect->bottom) != FALSE;
+   bool bOk1 = fill_rect(*lpcrect);
+
+   bool bOk2 = draw_rect(*lpcrect);
+
+   return bOk1 && bOk2;
 
 }
+
+bool simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen & pen)
+{
+   
+   return m_pgraphics->DrawRectangle(pen.m_ppen, lpcrect->left, lpcrect->top, width(lpcrect), height(lpcrect)) == Gdiplus::Ok;
+
+}
+
 
 bool simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
 {
    
-   return ::FillRect(m_hdc, lpcrect, brush.m_hbrush) != FALSE;
+   return m_pgraphics->FillRectangle(brush.m_pbrush, lpcrect->left, lpcrect->top, width(lpcrect), height(lpcrect)) == Gdiplus::Ok;
 
 }
 
@@ -456,9 +444,13 @@ bool simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
    switch(emode)
    {
    case ::ca::alpha_mode_blend:
-      return m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+
+      return m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver) == Gdiplus::Ok;
+
    case ::ca::alpha_mode_set:
-      return m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
+
+      return m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceCopy) == Gdiplus::Ok;
+
    };
 
    return false;
@@ -479,7 +471,7 @@ bool simple_graphics::exclude_clip(simple_path & path)
 
 }
 
-bool replace_clip(const RECT & r)
+bool simple_graphics::replace_clip(const RECT & r)
 {
 
    Gdiplus::Rect rect;
@@ -518,6 +510,9 @@ bool simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
 bool simple_graphics::fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode)
 {
 
+   if(m_pbrush == NULL)
+      return true;
+
    Gdiplus::Point * ppa = new Gdiplus::Point[iCount];
 
    for(int i = 0; i < iCount; i++)
@@ -526,7 +521,7 @@ bool simple_graphics::fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode)
       ppa[i].Y = p[i].y;
    }
 
-   bool bOk = m_pgraphics->FillPolygon(m_brush.m_pbrush, ppa, 4, Gdiplus::FillModeWinding) == Gdiplus::Ok;
+   bool bOk = m_pgraphics->FillPolygon(m_pbrush->m_pbrush, ppa, 4, Gdiplus::FillModeWinding) == Gdiplus::Ok;
 
    delete ppa;
 
@@ -537,4 +532,16 @@ bool simple_graphics::fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode)
 
 
 
+bool simple_graphics::draw_path(simple_path & path, simple_pen & pen)
+{
 
+   return m_pgraphics->DrawPath(pen.m_ppen, path.m_ppath) == Gdiplus::Ok;
+
+}
+
+bool simple_graphics::fill_path(simple_path & path, simple_brush & brush)
+{
+   
+   return m_pgraphics->FillPath(brush.m_pbrush, path.m_ppath) == Gdiplus::Ok;
+
+}

@@ -9,7 +9,7 @@ void simple_password::draw_this(simple_graphics & g)
 
    simple_brush br;
    
-   br.create_solid(ARGB(184, 255, 255, 240));
+   br.create_solid(ARGB(184, 255, 255, 240), g);
 
    g.fill_rect(m_rect, br);
 
@@ -17,15 +17,19 @@ void simple_password::draw_this(simple_graphics & g)
 
    simple_brush b;
    
-   b.create_solid(ARGB(223, 49, 49, 23));
+   b.create_solid(ARGB(223, 49, 49, 23), g);
 
-   simple_pixel_font f(height(&m_rect), "Geneva", g);
+   g.select(b);
 
-   wstring wstr;
+   simple_pixel_font f(height(m_rect), "Geneva", g);
 
-   wstr.append(L'*', m_strText.get_length());
+   g.select(f);
 
-   graphics2.DrawString(pwsz, wcslen_dup(pwsz), &f, Gdiplus::PointF((Gdiplus::REAL) (m_rect.left + 2), (Gdiplus::REAL) m_rect.top), &b);
+   vsstring str;
+
+   str.append('*', m_strText.get_length());
+
+   g.text_out(m_rect.left + 2, m_rect.top, str);
 
 }
 

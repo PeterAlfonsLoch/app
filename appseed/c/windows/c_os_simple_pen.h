@@ -12,7 +12,7 @@ public:
    simple_pen();
    ~simple_pen();
 
-   bool create_solid(int iWidth, COLORREF cr);
+   bool create_solid(COLORREF cr, int iWidth);
 
    bool destroy();
 
@@ -28,10 +28,10 @@ class CLASS_DECL_c simple_solid_pen :
 public:
 
 
-   simple_solid_pen(int iWidth, COLORREF cr)
+   simple_solid_pen(COLORREF cr, int iWidth = 1)
    {
 
-      create_solid(iWidth, cr);
+      create_solid(cr, iWidth);
 
    }
 

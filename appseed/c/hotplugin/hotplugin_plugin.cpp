@@ -582,7 +582,7 @@ namespace hotplugin
       rectClip1.right   = rectClip1.left + cx - iBorder1 * 2;
       rectClip1.bottom  = rectClip1.top + cy - iBorder1 * 2;
 
-      graphics_round_rect::GetRoundRectPath(pathClip1, rectClip1, iBorder1 * 2);
+      graphics_round_rect::get_round_rect(pathClip1, rectClip1, iBorder1 * 2);
       g.replace_clip(pathClip1);
 
 
@@ -617,7 +617,7 @@ namespace hotplugin
       rectClip.right    = lprect->left + iRowCount + iBorder * 2;
       rectClip.bottom   = lprect->top + 23 + iBorder * 2;
 
-      graphics_round_rect::GetRoundRectPath(pathClip, rectClip, iBorder);
+      graphics_round_rect::get_round_rect(pathClip, rectClip, iBorder);
 
       g.exclude_clip(pathClip);
 
@@ -630,7 +630,7 @@ namespace hotplugin
 
       simple_brush br;
 
-      br.create_solid(ARGB(49, 184 + 23, 184 + 23, 184 + 19));
+      br.create_solid(ARGB(49, 184 + 23, 184 + 23, 184 + 19), g);
 
       int mcy = cy / 2;
 
@@ -680,7 +680,7 @@ namespace hotplugin
 
       g.replace_clip(rectClip);
 
-      br.create_solid(ARGB(84, 84, 84, 77));
+      br.create_solid(ARGB(84, 84, 84, 77), g);
 
       RECT r1;
 
@@ -714,17 +714,17 @@ namespace hotplugin
       }*/
       {
          get_progress_color(uchR, uchG, uchB, 0.0, 0);
-         br.create_solid(ARGB(bA, uchR, uchG, uchB));
+         br.create_solid(ARGB(bA, uchR, uchG, uchB), g);
          g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - 23) / 2, iProgressCount, 5), br);
       }
       {
          get_progress_color(uchR, uchG, uchB, 0.0, 1);
-         br.create_solid(ARGB(bA, uchR, uchG, uchB));
+         br.create_solid(ARGB(bA, uchR, uchG, uchB), g);
          g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - 23) / 2 + 5, iProgressCount, 5), br);
       }
       {
          get_progress_color(uchR, uchG, uchB, 0.0, 2);
-         br.create_solid(ARGB(bA, uchR, uchG, uchB));
+         br.create_solid(ARGB(bA, uchR, uchG, uchB), g);
          g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - 23) / 2 + 10, iProgressCount, 13), br);
       }
 

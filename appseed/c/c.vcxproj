@@ -1248,6 +1248,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="c\c_file_watcher_listener_thread.cpp" />
     <ClCompile Include="c\c_file_watcher_thread.cpp" />
     <ClCompile Include="c\c_geometric_types.cpp" />
+    <ClCompile Include="c\c_graphics_round_rect.cpp" />
     <ClCompile Include="c\c_heap.cpp" />
     <ClCompile Include="c\c_international.cpp" />
     <ClCompile Include="c\c_md5.cpp" />
@@ -1354,7 +1355,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="windows\c_os_file.cpp" />
     <ClCompile Include="windows\c_os_file_watcher.cpp" />
     <ClCompile Include="windows\c_os_gdi.cpp" />
-    <ClCompile Include="windows\c_os_graphics_round_rect.cpp" />
     <ClCompile Include="windows\c_os_http.cpp" />
     <ClCompile Include="windows\c_os_launcher.cpp" />
     <ClCompile Include="windows\c_os_library.cpp" />

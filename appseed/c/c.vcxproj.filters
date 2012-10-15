@@ -598,9 +598,6 @@
     <ClCompile Include="os\os_http.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>
-    <ClCompile Include="windows\c_os_graphics_round_rect.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
     <ClCompile Include="windows\c_os_gdi.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
@@ -767,6 +764,9 @@
       <Filter>Source Files\c</Filter>
     </ClCompile>
     <ClCompile Include="c\c_small_ipc_channel.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_graphics_round_rect.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
   </ItemGroup>

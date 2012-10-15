@@ -105,6 +105,23 @@ public:
 
    void clear();
 
+   verisimple_string & append(char ch)
+   {
+      return *this += ch;
+   }
+
+   verisimple_string & append(char ch, ::count c)
+   {
+      
+      while(c > 0)
+      {
+         append(ch);
+         c--;
+      }
+
+      return *this;
+
+   }
 
 };
 

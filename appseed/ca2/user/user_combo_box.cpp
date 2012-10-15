@@ -1,5 +1,4 @@
 #include "framework.h"
-#include <gdiplus.h>
 
 
 namespace user
@@ -186,18 +185,15 @@ namespace user
 
       get_element_rect(rectDropDown, element_drop_down);
 
-      graphics_round_rect round;
-
-      Gdiplus::Rect r;
-
-      r.X = rectDropDown.left;
-      r.Y = rectDropDown.top;
-      r.Width = rectDropDown.width();
-      r.Height = rectDropDown.height();
+      rect r = rectDropDown;
 
       int iColorRate;
 
       int i = 0;
+
+      simple_graphics g;
+
+      g.reference_os_data((Gdiplus::Graphics *) pdc->get_os_data());
 
       for(int radius = iMargin * 2 / 3; radius >= 1; radius--)
       {
@@ -206,39 +202,39 @@ namespace user
          {
             if(i == 0)
             {
-               Gdiplus::Color c(230, 130, 130, 120);
-               round.DrawTopLeft((Gdiplus::Graphics *) pdc->get_os_data(), r, c, radius, 1);
+               COLORREF c(ARGB(230, 130, 130, 120));
+               ::graphics_round_rect::draw_top_left(g, r, c, radius, 1);
             }
             else if(i == 1)
             {
-               Gdiplus::Color c(230, 210, 210, 200);
-               round.DrawTopLeft((Gdiplus::Graphics *) pdc->get_os_data(), r, c, radius, 1);
+               COLORREF c(ARGB(230, 210, 210, 200));
+               ::graphics_round_rect::draw_top_left(g, r, c, radius, 1);
             }
             else
             {
-               Gdiplus::Color c(230, 230 - iColorRate, 230 - iColorRate, 220 - iColorRate);
-               round.DrawTopLeft((Gdiplus::Graphics *) pdc->get_os_data(), r, c, radius, 1);
+               COLORREF c(ARGB(230, 230 - iColorRate, 230 - iColorRate, 220 - iColorRate));
+               ::graphics_round_rect::draw_top_left(g, r, c, radius, 1);
             }
          }
          {
             if(i == 0)
             {
-               Gdiplus::Color c(230, 130, 130, 120);
-               round.DrawBottomRight((Gdiplus::Graphics *) pdc->get_os_data(), r, c, radius, 1);
+               COLORREF c(ARGB(230, 130, 130, 120));
+               ::graphics_round_rect::draw_bottom_right(g, r, c, radius, 1);
             }
             else if(i == 1)
             {
-               Gdiplus::Color c(230, 210, 210, 200);
-               round.DrawBottomRight((Gdiplus::Graphics *) pdc->get_os_data(), r, c, radius, 1);
+               COLORREF c(ARGB(230, 210, 210, 200));
+               ::graphics_round_rect::draw_bottom_right(g, r, c, radius, 1);
             }
             else
             {
-               Gdiplus::Color c(230, 190 + iColorRate, 190 + iColorRate, 180 + iColorRate);
-               round.DrawBottomRight((Gdiplus::Graphics *) pdc->get_os_data(), r, c, radius, 1);
+               COLORREF c(ARGB(230, 190 + iColorRate, 190 + iColorRate, 180 + iColorRate));
+               ::graphics_round_rect::draw_bottom_right(g, r, c, radius, 1);
             }
          }
 
-         r.Inflate(-1, -1);
+         r.inflate(-1, -1);
 
          i++;
 

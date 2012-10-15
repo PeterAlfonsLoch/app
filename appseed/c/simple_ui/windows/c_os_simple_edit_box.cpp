@@ -36,13 +36,13 @@ void simple_edit_box::draw_this(simple_graphics & g)
 
    simple_brush br;
    
-   br.create_solid(ARGB(84 + 49, 255, 255, 233));
+   br.create_solid(ARGB(84 + 49, 255, 255, 233), g);
 
    g.fill_rect(m_rect, br);
 
    draw_focus_rect(g);
 
-   simple_solid_brush b(ARGB(223, 49, 49, 23));
+   simple_solid_brush b(ARGB(223, 49, 49, 23), g);
 
    simple_pixel_font f(height(&m_rect), "Geneva", g);
 
@@ -52,7 +52,7 @@ void simple_edit_box::draw_this(simple_graphics & g)
 
    float fMargin = (height(&m_rect) * ((1.0f - 0.7f) / 2.0f));
 
-   g.text_out(m_rect.left + fMargin, m_rect.top + fMargin, m_strText);
+   g.text_out((int) (m_rect.left + fMargin), (int) (m_rect.top + fMargin), m_strText);
 
 }
 

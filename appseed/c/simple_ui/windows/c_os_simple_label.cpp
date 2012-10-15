@@ -32,7 +32,7 @@ void simple_label::draw_this(simple_graphics & g)
 
    simple_brush b;
 
-   b.create_solid(c);
+   b.create_solid(c, g);
 
    simple_font f;
    
@@ -44,7 +44,7 @@ void simple_label::draw_this(simple_graphics & g)
 
    g.select(b);
 
-   g.text_out(m_rect.left, m_rect.top + fMargin, m_strText);
+   g.text_out(m_rect.left, (int) (m_rect.top + fMargin), m_strText);
 
 }
 

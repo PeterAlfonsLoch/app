@@ -360,6 +360,9 @@
     <Filter Include="Source Files\plugin">
       <UniqueIdentifier>{215c0a8b-930f-43b6-80cc-529d0dd9ff61}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\sockets\basic\bsd_style_sockets">
+      <UniqueIdentifier>{7da7bd12-c88d-4959-9626-3240706dab37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libcharguess\big5Prober.h">
@@ -4207,42 +4210,6 @@
     <ClCompile Include="ca2\socket_address.cpp">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_Ipv4Address.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_Ipv6Address.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_SctpSocket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_tcp_socket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_tls_socket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_udp_socket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_SocketHandler.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_ssl_client_context.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_ssl_client_context_map.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_StreamSocket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_sync_socket_handler.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sockets_Socket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
     <ClCompile Include="sockets\http\sockets_http_request_socket.cpp">
       <Filter>Source Files\sockets\http</Filter>
     </ClCompile>
@@ -5469,6 +5436,42 @@
     </ClCompile>
     <ClCompile Include="exception\exception_exit.cpp">
       <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_Ipv4Address.cpp">
+      <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_Ipv6Address.cpp">
+      <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_SctpSocket.cpp">
+      <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_Socket.cpp">
+      <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_SocketHandler.cpp">
+      <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_ssl_client_context.cpp">
+      <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_ssl_client_context_map.cpp">
+      <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_StreamSocket.cpp">
+      <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_sync_socket_handler.cpp">
+      <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_tcp_socket.cpp">
+      <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_tls_socket.cpp">
+      <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_udp_socket.cpp">
+      <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
