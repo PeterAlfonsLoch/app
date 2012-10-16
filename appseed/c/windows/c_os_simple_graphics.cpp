@@ -360,19 +360,13 @@ bool simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORREF *
    
       Gdiplus::Bitmap b(cx, cy, cx *4 , PixelFormat32bppARGB, (BYTE *) pdata);
 
-      Gdiplus::Graphics * pg = new Gdiplus::Graphics(m_hdc);
+      set_alpha_mode(::ca::alpha_mode_blend);
 
-      pg->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
+      m_pgraphics->SetCompositingQuality(Gdiplus::CompositingQualityHighQuality);
 
-      pg->SetCompositingQuality(Gdiplus::CompositingQualityHighQuality);
+      m_pgraphics->DrawImage(&b, x, y, 0, 0, cx, cy, Gdiplus::UnitPixel);
 
-      pg->DrawImage(&b, x, y, 0, 0, cx, cy, Gdiplus::UnitPixel);
-
-      pg->Flush(Gdiplus::FlushIntentionSync);
-
-      delete pg;
-
-      ::GdiFlush();
+      m_pgraphics->Flush(Gdiplus::FlushIntentionSync);
 
       return true;
 
