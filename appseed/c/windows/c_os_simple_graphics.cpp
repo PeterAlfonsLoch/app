@@ -439,6 +439,9 @@ bool simple_graphics::rectangle(LPCRECT lpcrect)
 
 bool simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen & pen)
 {
+
+   if(pen.m_ppen == NULL)
+      return true;
    
    return m_pgraphics->DrawRectangle(pen.m_ppen, lpcrect->left, lpcrect->top, width(lpcrect), height(lpcrect)) == Gdiplus::Ok;
 
@@ -447,6 +450,9 @@ bool simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen & pen)
 
 bool simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
 {
+   
+   if(brush.m_pbrush == NULL)
+      return true;
    
    return m_pgraphics->FillRectangle(brush.m_pbrush, lpcrect->left, lpcrect->top, width(lpcrect), height(lpcrect)) == Gdiplus::Ok;
 

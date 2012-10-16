@@ -60,7 +60,7 @@ bool simple_font::create_pixel(int nPointSize, const char * lpszFaceName, simple
 
    }
 
-   m_pfont = new Gdiplus::Font(wstring(lpszFaceName), nPointSize * 0.7f / 10.0f, bBold ? Gdiplus::FontStyleBold : Gdiplus::FontStyleRegular, Gdiplus::UnitPixel);
+   m_pfont = new Gdiplus::Font(wstring(lpszFaceName), nPointSize * 0.77f / 10.0f, bBold ? Gdiplus::FontStyleBold : Gdiplus::FontStyleRegular, Gdiplus::UnitPixel);
 
    if(m_pfont == NULL)
       return false;

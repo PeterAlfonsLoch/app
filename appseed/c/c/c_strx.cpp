@@ -125,7 +125,10 @@ void utf8_to_16(wchar_t * pwsz, const char * psz)
       *pwsz++ = uni_index(psz);
       psz = utf8_inc(psz);
    }
-   *pwsz = L'\0';
+   if(psz != NULL)
+   {
+      *pwsz = L'\0';
+   }
 }
 
 

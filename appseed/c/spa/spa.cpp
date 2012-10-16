@@ -249,6 +249,7 @@ void installation_file_lock(bool bLock)
 bool is_installation_lock_file_locked()
 {
 
+   return true;
 
 #ifdef WINDOWS
 

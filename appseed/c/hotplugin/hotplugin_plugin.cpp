@@ -604,6 +604,8 @@ namespace hotplugin
 
       }
 
+      int iBarHeight = 23;
+
 
 
       int iBorder = 16;
@@ -613,9 +615,9 @@ namespace hotplugin
       RECT rectClip;
 
       rectClip.left     = lprect->left + cx / iRate - iBorder;
-      rectClip.top      = lprect->top + (cy - 23) / 2 - iBorder;
-      rectClip.right    = lprect->left + iRowCount + iBorder * 2;
-      rectClip.bottom   = lprect->top + 23 + iBorder * 2;
+      rectClip.top      = lprect->top + (cy - iBarHeight) / 2 - iBorder;
+      rectClip.right    = rectClip.left + iRowCount + iBorder * 2;
+      rectClip.bottom   = rectClip.top + iBarHeight + iBorder * 2;
 
       graphics_round_rect::get_round_rect(pathClip, rectClip, iBorder);
 
@@ -624,7 +626,7 @@ namespace hotplugin
 
       POINT pa[4];
 
-      //Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + 23, 177 + 23, 177 + 19));
+      //Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + iBarHeight, 177 + iBarHeight, 177 + 19));
       //graphics2.FillRectangle(pbr, lprect->left , lprect->top, lprect->left + cx, lprect->top + cy);
       //delete pbr;
 
@@ -645,10 +647,10 @@ namespace hotplugin
             pa[0].x = lprect->left + x;
             pa[0].y = lprect->top;
 
-            pa[1].x = lprect->left + x + 23;
+            pa[1].x = lprect->left + x + iBarHeight;
             pa[1].y = lprect->top;
 
-            pa[2].x = lprect->left + x - mcy + 23;
+            pa[2].x = lprect->left + x - mcy + iBarHeight;
             pa[2].y = lprect->top + mcy;
 
             pa[3].x = lprect->left + x - mcy;
@@ -656,7 +658,7 @@ namespace hotplugin
 
             g.fill_polygon(pa, 4, ::ca::fill_mode_winding);
 
-            pa[0].x = lprect->left + x - mcy - 23;
+            pa[0].x = lprect->left + x - mcy - iBarHeight;
             pa[0].y = lprect->top + mcy;
 
             pa[1].x = lprect->left + x - mcy;
@@ -665,7 +667,7 @@ namespace hotplugin
             pa[2].x = lprect->left + x - cy;
             pa[2].y = lprect->top + cy;
 
-            pa[3].x = lprect->left + x - cy - 23;
+            pa[3].x = lprect->left + x - cy - iBarHeight;
             pa[3].y = lprect->top + cy;
 
             g.fill_polygon(pa, 4, ::ca::fill_mode_winding);
@@ -685,9 +687,9 @@ namespace hotplugin
       RECT r1;
 
       r1.left = lprect->left + cx / iRate - 1;
-      r1.top = lprect->top + (cy - 23) / 2 - 1;
+      r1.top = lprect->top + (cy - iBarHeight) / 2 - 1;
       r1.right = r1.left + iRowCount + 2;
-      r1.bottom = r1.top + 23 + 2;
+      r1.bottom = r1.top + iBarHeight + 2;
 
       g.fill_rect(&r1, br);
 
@@ -696,63 +698,63 @@ namespace hotplugin
       {
       get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 0);
       Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-      graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2, 1, 5);
+      graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - iBarHeight) / 2, 1, 5);
       delete pbr;
       }
       {
       get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 1);
       Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-      graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2 + 5, 1, 5);
+      graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - iBarHeight) / 2 + 5, 1, 5);
       delete pbr;
       }
       {
       get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 2);
       Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-      graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - 23) / 2 + 10, 1, 13);
+      graphics2.FillRectangle(pbr, lprect->left + iRow + cx / iRate , lprect->top + (cy - iBarHeight) / 2 + 10, 1, 13);
       delete pbr;
       }
       }*/
       {
          get_progress_color(uchR, uchG, uchB, 0.0, 0);
          br.create_solid(ARGB(bA, uchR, uchG, uchB), g);
-         g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - 23) / 2, iProgressCount, 5), br);
+         g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - iBarHeight) / 2, iProgressCount, 5), br);
       }
       {
          get_progress_color(uchR, uchG, uchB, 0.0, 1);
          br.create_solid(ARGB(bA, uchR, uchG, uchB), g);
-         g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - 23) / 2 + 5, iProgressCount, 5), br);
+         g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5), br);
       }
       {
          get_progress_color(uchR, uchG, uchB, 0.0, 2);
          br.create_solid(ARGB(bA, uchR, uchG, uchB), g);
-         g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - 23) / 2 + 10, iProgressCount, 13), br);
+         g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13), br);
       }
 
       int iOffset = 3;
 
-      pen.create_solid(1, ARGB(220, 180, 180, 180));
-      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, pen);
-      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, pen);
+      pen.create_solid(ARGB(220, 180, 180, 180), 1);
+      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, pen);
+      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
 
-      pen.create_solid(1, ARGB(220, 77, 77, 77));
-      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset, pen);
-      g.draw_line(lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset, pen);
+      pen.create_solid(ARGB(220, 77, 77, 77), 1);
+      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
+      g.draw_line(lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
 
       iOffset = 2;
-      pen.create_solid(1, ARGB(220, 84, 84, 84));
-      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, pen);
-      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, pen);
+      pen.create_solid(ARGB(220, 84, 84, 84), 1);
+      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, pen);
+      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
 
-      pen.create_solid(1, ARGB(220, 170, 170, 170));
-      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy + 23) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset, pen);
-      g.draw_line(lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - 23) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + 23) / 2 + iOffset, pen);
+      pen.create_solid(ARGB(220, 170, 170, 170), 1);
+      g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
+      g.draw_line(lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
 
 
       br.create_solid(ARGB(127, 255, 255, 255), g);
 
       g.select(br);
 
-      simple_pixel_font f(180, "Calibri", g);
+      simple_pixel_font f(iBarHeight * 10, "Calibri", g);
 
       g.select(f);
 
@@ -762,7 +764,7 @@ namespace hotplugin
       wstrStatus     = wstrStatus + L" : ";
       wstrStatus     = wstrStatus + wstrProgress;
 
-      g.text_out(lprect->left + cx / iRate - 1 + 18, lprect->top + (cy - 23) / 2 - 1 + 1, vsstring(wstrStatus));
+      g.text_out(lprect->left + cx / iRate - 1 + 18, lprect->top + (cy - iBarHeight) / 2 - 1 + 1, vsstring(wstrStatus));
 
    }
 

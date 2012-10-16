@@ -24,6 +24,13 @@ simple_pen::~simple_pen()
 bool simple_pen::create_solid(COLORREF cr, int iWidth)
 {
 
+   if(m_ppen != NULL)
+   {
+
+      destroy();
+
+   }
+
    m_ppen = new Gdiplus::Pen(Gdiplus::Color(GetAValue(cr), GetRValue(cr), GetGValue(cr), GetBValue(cr)), iWidth);
 
    if(m_ppen == NULL)
@@ -60,6 +67,7 @@ bool simple_pen::destroy()
       return false;
 
    return true;
+
 }
 
 
