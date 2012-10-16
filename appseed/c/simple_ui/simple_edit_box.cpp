@@ -81,7 +81,7 @@ void simple_edit_box::draw_this(simple_graphics & g)
 
    simple_solid_brush b(ARGB(223, 49, 49, 23), g);
 
-   simple_pixel_font f(height(&m_rect), "Geneva", g);
+   simple_pixel_font f(height(&m_rect) * 10, "Geneva", g);
 
    g.select(b);
 
