@@ -322,7 +322,7 @@ void simple_ui::draw_this(simple_graphics & g)
 
    int iBorderH = min(height(&m_rect) / 2, 49);
 
-   simple_linear_gradient_brush br1(0, 0, 0, iBorderH, crOut, crIn);
+   simple_linear_gradient_brush br1(m_rect.left, m_rect.top, m_rect.left, m_rect.top + iBorderH, crOut, crIn);
 
    g.fill_rect(rect_dim(m_rect.left, m_rect.top, width(&m_rect), iBorderH), br1);
 
@@ -330,7 +330,7 @@ void simple_ui::draw_this(simple_graphics & g)
 
    g.fill_rect(rect_dim(m_rect.left, m_rect.top + iBorderH, width(&m_rect), height(&m_rect) - (iBorderH * 2)), br);
 
-   simple_linear_gradient_brush br2(0, m_rect.bottom - iBorderH, 0, m_rect.bottom, crIn, crOut);
+   simple_linear_gradient_brush br2(m_rect.left, m_rect.bottom - iBorderH, m_rect.left, m_rect.bottom, crIn, crOut);
 
    g.fill_rect(rect_dim(m_rect.left, m_rect.bottom - iBorderH, width(&m_rect), iBorderH), br2);
 

@@ -411,7 +411,9 @@ install:
       rect.right        = cx;
       rect.bottom       = cy;
 
-      simple_bitmap b;
+      //simple_bitmap b;
+
+      g.offset(::hotplugin::plugin::m_rect.left, ::hotplugin::plugin::m_rect.top);
 
       //b.create(cx, cy, gWindow);
 
@@ -460,7 +462,7 @@ install:
 
 #ifdef WINDOWS
 
-      //g.set_offset(0, 0);
+      g.set_offset(0, 0);
       //gWindow.bit_blt(lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
         //     g         , lprect->left - ::hotplugin::plugin::m_rect.left  , lprect->top - ::hotplugin::plugin::m_rect.top    , SRCCOPY);
 

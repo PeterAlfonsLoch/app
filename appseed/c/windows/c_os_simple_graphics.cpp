@@ -305,27 +305,42 @@ bool simple_graphics::destroy()
 
 }
 
+
+POINT simple_graphics::get_offset()
+{
+
+   Gdiplus::Matrix m;
+
+   m_pgraphics->GetTransform(&m);
+
+   Gdiplus::PointF origin(0, 0);
+
+   m.TransformPoints(&origin);
+
+   return point_coord((int64_t) origin.X, (int64_t) origin.Y);
+}
+
+
+
 bool simple_graphics::set_offset(int x, int y)
 {
    
-   POINT ptViewport;
+   Gdiplus::Matrix m;
 
-   if(!SetViewportOrgEx(m_hdc, x, y, &ptViewport))
-      return false;
+   m.Translate((Gdiplus::REAL) x, (Gdiplus::REAL) y);
 
-   return true;
+   return m_pgraphics->SetTransform(&m) == Gdiplus::Ok;
 
 }
 
 bool simple_graphics::offset(int x, int y)
 {
 
-   POINT ptViewport;
+   POINT pt = get_offset();
 
-   if(!OffsetViewportOrgEx(m_hdc, x, y, &ptViewport))
-      return false;
+   ::offset(pt, x, y);
 
-   return true;
+   return set_offset(pt.x, pt.y);
 
 }
 
@@ -381,16 +396,22 @@ SIZE simple_graphics::get_text_extent(const char * psz, int iLen)
 
    wstring wstr(str);
 
+   Gdiplus::RectF box;
+
+   Gdiplus::PointF origin(0, 0);
+
+   Gdiplus::StringFormat strFormat(Gdiplus::StringFormat::GenericTypographic());
+
+   strFormat.SetFormatFlags(strFormat.GetFormatFlags() 
+                           | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
+                           | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
+
+   m_pgraphics->MeasureString(wstr, (int) wstr.get_length(), m_pfont->m_pfont, origin, &strFormat,  &box);
+
    SIZE size;
 
-   if(!::GetTextExtentPointW(m_hdc, wstr, wstr.get_length(), &size))
-   {
-
-      size.cx = 0;
-
-      size.cy = 0;
-
-   }
+   size.cx = box.Width;
+   size.cy = box.Height;
 
    return size;
 
@@ -494,16 +515,22 @@ bool simple_graphics::alpha_blend(int x, int y, int cx, int cy, simple_graphics 
 
 void simple_graphics::fill_solid_rect(LPCRECT lpRect, COLORREF clr)
 {
-   ::SetBkColor(m_hdc, clr);
-   ::ExtTextOut(m_hdc, 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
+   m_pgraphics->FillRectangle(&Gdiplus::SolidBrush(Gdiplus::Color(GetAValue(clr), GetRValue(clr), GetGValue(clr), GetBValue(clr))), lpRect->left, lpRect->top, width(lpRect), height(lpRect));
 }
 
 bool simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
 {
-   WCHAR * pwsz = utf8_to_16(pszUtf8);
-   bool b = TextOutW(m_hdc, x, y, pwsz, (int) wcslen_dup(pwsz)) != FALSE;
-   delete  [] pwsz;
-   return b;
+   
+   wstring wstr(pszUtf8);
+
+   Gdiplus::StringFormat strFormat(Gdiplus::StringFormat::GenericTypographic());
+
+   strFormat.SetFormatFlags(strFormat.GetFormatFlags() 
+                           | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
+                           | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
+
+   return m_pgraphics->DrawString(wstr, wstr.get_length(), m_pfont->m_pfont, Gdiplus::PointF(x, y), &strFormat, m_pbrush->m_pbrush) == Gdiplus::Ok;
+
 }
 
 

@@ -206,11 +206,11 @@ void simple_tap::draw_volume(simple_graphics & g)
 
       int iBorderH = height(&m_rect) / 2;
 
-      simple_linear_gradient_brush br1(0, m_rect.top - 1, 0, m_rect.top + iBorderH + 2, crOut, crIn);
+      simple_linear_gradient_brush br1(m_rect.left, m_rect.top - 1, m_rect.left, m_rect.top + iBorderH + 2, crOut, crIn);
 
       g.fill_rect(rect_dim(m_rect.left, m_rect.top, width(&m_rect), iBorderH), br1);
 
-      simple_linear_gradient_brush br2(0, m_rect.top + iBorderH - 1, 0, m_rect.top + iBorderH * 2 + 2, crIn, crOut);
+      simple_linear_gradient_brush br2(m_rect.left, m_rect.top + iBorderH - 1, m_rect.left, m_rect.top + iBorderH * 2 + 2, crIn, crOut);
 
       g.fill_rect(rect_dim( m_rect.left, m_rect.top + iBorderH, width(&m_rect), iBorderH), br2);
 
@@ -245,6 +245,8 @@ void simple_tap::draw_text(simple_graphics & g)
    simple_solid_brush b(ARGB(223, 49, 84, 23), g);
 
 #endif
+
+   g.select(b);
 
    simple_pixel_font f(height(m_rect) * 10, "Geneva", g);
 

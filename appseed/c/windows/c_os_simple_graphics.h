@@ -38,6 +38,8 @@ public:
    bool fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode);
    SIZE get_text_extent(const char * psz, int iLen = -1);
    bool set_text_color(COLORREF cr);
+
+
    
    bool draw_line(int x1, int y1, int x2, int y2, simple_pen & pen);
    
@@ -71,6 +73,7 @@ public:
 
    // may be multi-platform
    bool create_from_screen();
+   POINT get_offset();
    bool set_offset(int x, int y);
    bool offset(int x, int y);
    
