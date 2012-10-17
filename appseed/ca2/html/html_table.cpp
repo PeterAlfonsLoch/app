@@ -8,6 +8,9 @@ namespace html
 
       table::table()
       {
+
+         m_iBorder = 2;
+
       }
 
       table::~table()
@@ -16,6 +19,11 @@ namespace html
 
       void table::implement_phase2(data * pdata)
       {
+         if(m_pelemental->m_pbase->get_type() !=:: html::base::type_value)
+         {
+            return;
+         }
+
          int cxMax;
          int cxMin;
          while(true)
@@ -114,6 +122,16 @@ namespace html
             }
          }
          m_cellholdera[pt.x][pt.y].m_pcell = pcell;
+      }
+
+      void table::_001OnDraw(data * pdata)
+      {
+         if(m_iBorder > 0)
+         {
+          
+            pdata->m_pdc->Draw3dRect(get_x(), get_y(), get_cx(), get_cy(), ARGB(255, 128, 128, 128), ARGB(255, 0, 0, 0));
+
+         }
       }
 
    } // namespace impl

@@ -42,7 +42,9 @@ namespace html
          int   m_x;
          int   m_cx;
          bool  m_bLastBlockX;
+         bool  m_bLastCellX;
          bool  m_bLastBlockY;
+         bool  m_bLastCellY;
          bool  m_bHasChar;
          //base_array < impl::table *, impl::table *> m_tableptraStack;
          //base_array < impl::table_row *, impl::table_row *> m_tablerowptraStack;

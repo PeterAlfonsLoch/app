@@ -22,14 +22,19 @@ namespace impl
          int m_cxMin;
       };
 
+      int m_iBorder;
+
+      base_array < base_array < cell::holder > > m_cellholdera;
+      base_array < table_row * > m_rowptra;
+      base_array < column > m_columna;
+
       void set_cell(point pt, cell * pcell);
 
       virtual void implement_phase2(data * pdata);
       virtual void layout_phase3(data * pdata);
 
-      base_array < base_array < cell::holder > > m_cellholdera;
-      base_array < table_row * > m_rowptra;
-      base_array < column > m_columna;
+      void _001OnDraw(data * pdata);
+
    };
 
 

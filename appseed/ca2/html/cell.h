@@ -68,6 +68,8 @@ namespace html
          virtual void layout_phase3(data * pdoc);
          virtual void final_layout(data * pdoc);
          void on_change_layout(data * pdoc);
+
+         void _001OnDraw(data * pdata);
       };
 
 

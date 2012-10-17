@@ -624,6 +624,8 @@ namespace user
    {
       try
       {
+         if(!IsWindowVisible())
+            return;
          if(!_001IsPointInside(pmouse->m_pt)
             && !(System.get_capture_uie() == this ||
             is_descendant(System.get_capture_uie())))

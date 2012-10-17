@@ -257,6 +257,10 @@ namespace html
       m_x         = 0;
       m_cx        = 0;
       m_bHasChar  = false;
+      m_bLastCellX = false;
+      m_bLastCellY = false;
+      m_bLastBlockX = false;
+      m_bLastBlockY = false;
    }
 
    int data::get_image_index(const char * pszUrl)

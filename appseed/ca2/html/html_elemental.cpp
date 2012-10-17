@@ -134,10 +134,22 @@ namespace html
          }
          m_pelemental = pelemental;
          m_eposition = PositionRelative;
-         if(strTag == "h1" || strTag == "h2"
+         if(strTag == "h1" || strTag == "h2" || strTag == "h3"
          || strTag == "tr" || strTag == "li" || strTag == "div")
          {
             pelemental->m_style.m_propertyset["display"] = "block";
+         }
+         else if(strTag == "table")
+         {
+            pelemental->m_style.m_propertyset["display"] = "table";
+         }
+         else if(strTag == "tr")
+         {
+            pelemental->m_style.m_propertyset["display"] = "table-row";
+         }
+         else if(strTag == "td")
+         {
+            pelemental->m_style.m_propertyset["display"] = "table-cell";
          }
          else
          {
@@ -307,6 +319,14 @@ namespace html
       void elemental::set_bound_point(data * pdata, point point)
       {
          m_ptBound = point;
+         if(m_pt.x < m_ptBound.x)
+            m_pt.x = m_ptBound.x;
+         else if(m_pt.x > (m_ptBound.x + m_sizeBound.cx))
+            m_pt.x = m_ptBound.x + m_sizeBound.cx;
+         if(m_pt.y < m_ptBound.y)
+            m_pt.y = m_ptBound.y;
+         else if(m_pt.y > (m_ptBound.y + m_sizeBound.cy))
+            m_pt.y = m_ptBound.y + m_sizeBound.cy;
          on_change_layout(pdata);
       }
 
@@ -806,6 +826,7 @@ namespace html
    {
       if(m_pimpl == NULL)
          return;
+
       // implement must be called before
       ASSERT(m_pimpl != NULL);
       string strTag = get_tag_name();
@@ -870,14 +891,10 @@ namespace html
             }
          }
       }*/
-
-
-      if(!m_propertyset.is_new_or_null("PropertyTag")
-      || (m_elementalptra.get_size() <= 0
-         && !m_propertyset["PropertyBody"].is_empty()
-         && (m_pparent->m_style.m_propertyset["display"] != "block")))
+      ::html::impl::cell * pcell = dynamic_cast < ::html::impl::cell * > (m_pimpl);
+      if(m_pbase->get_type() == ::html::base::type_value)
       {
-         if(pdata->m_layoutstate.m_bLastBlockX || m_style.m_propertyset["display"] == "block")
+         if(pdata->m_layoutstate.m_bLastCellY || pdata->m_layoutstate.m_bLastBlockX || m_style.m_propertyset["display"] == "block")
          {
             if(m_pparent != NULL)
             {
@@ -887,13 +904,19 @@ namespace html
             {
                pdata->m_layoutstate.m_x = 0;
             }
-            pdata->m_layoutstate.m_bLastBlockX = false;
+            pdata->m_layoutstate.m_bLastBlockX  = false;
          }
-         if(pdata->m_layoutstate.m_bLastBlockY || m_style.m_propertyset["display"] == "block")
+         if(pdata->m_layoutstate.m_bLastCellX || m_style.m_propertyset["display"] == "table-cell")
+         {
+               pdata->m_layoutstate.m_x += pdata->m_layoutstate.m_cx + (pcell == NULL ? 0 : pcell->get_table()->m_iBorder);
+               pdata->m_layoutstate.m_bLastCellX = false;
+         }
+         if(pdata->m_layoutstate.m_bLastCellY || pdata->m_layoutstate.m_bLastBlockY || m_style.m_propertyset["display"] == "block")
          {
             pdata->m_layoutstate.m_y += pdata->m_layoutstate.m_cy;
             pdata->m_layoutstate.m_cy = 0;
             pdata->m_layoutstate.m_bLastBlockY = false;
+            pdata->m_layoutstate.m_bLastCellY   = false;
          }
       }
       m_pimpl->set_xy(pdata);
@@ -905,7 +928,7 @@ namespace html
          m_elementalptra[i]->layout_phase3(pdata);
       }
       m_pimpl->final_layout(pdata);
-      if(!m_propertyset.is_new_or_null("PropertyTag"))
+      if(m_pbase->get_type() == ::html::base::type_value)
       {
          if(strTag.CompareNoCase("br") == 0)
          {
@@ -928,6 +951,40 @@ namespace html
                pdata->m_layoutstate.m_cy = m_pimpl->get_cy();
             }
          }
+         else if(m_style.m_propertyset["display"] == "table-cell")
+         {
+            if(pcell == NULL)
+            {
+               // as "block" ? 
+               pdata->m_layoutstate.m_bLastBlockX = true;
+               pdata->m_layoutstate.m_bLastBlockY = true;
+               if(m_pimpl->get_cy() > pdata->m_layoutstate.m_cy)
+               {
+                  pdata->m_layoutstate.m_cy = m_pimpl->get_cy();
+               }
+            }
+            else
+            {
+               int iCellPopulationCount = pcell->m_ptaPopulation.get_count();
+               int iCellLastColumn = pcell->m_ptaPopulation.last_element().x;
+               int iLastColumn = pcell->get_table()->m_columna.get_upper_bound();
+               if(iCellLastColumn == iLastColumn)
+               {
+                  pdata->m_layoutstate.m_bLastCellY = true;
+                  pdata->m_layoutstate.m_cy = m_pimpl->get_cy();
+                  pdata->m_layoutstate.m_cx = 0;
+               }
+               else
+               {
+                  pdata->m_layoutstate.m_bLastCellX = true;
+                  pdata->m_layoutstate.m_cx = m_pimpl->get_cx();
+                  pdata->m_layoutstate.m_cy = 0;
+               }
+               
+               
+               
+            }
+         }
          else
          {
             pdata->m_layoutstate.m_bLastBlockX = false;
@@ -944,13 +1001,32 @@ namespace html
 
    void elemental::_001OnDraw(data * pdata)
    {
-      if(m_pimpl != NULL)
+
+      string strTag = get_tag_name();
+
+      if(m_style.m_propertyset["display"] == "table" 
+      ||    (m_style.m_propertyset["display"].get_string().is_empty()
+               && strTag == "table")) 
       {
-         m_pimpl->_001OnDraw(pdata);
+         for(int i = 0; i < m_elementalptra.get_size(); i++)
+         {
+            m_elementalptra[i]->_001OnDraw(pdata);
+         }
+         if(m_pimpl != NULL)
+         {
+            m_pimpl->_001OnDraw(pdata);
+         }
       }
-      for(int i = 0; i < m_elementalptra.get_size(); i++)
+      else
       {
-         m_elementalptra[i]->_001OnDraw(pdata);
+         if(m_pimpl != NULL)
+         {
+            m_pimpl->_001OnDraw(pdata);
+         }
+         for(int i = 0; i < m_elementalptra.get_size(); i++)
+         {
+            m_elementalptra[i]->_001OnDraw(pdata);
+         }
       }
    }
 

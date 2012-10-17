@@ -140,9 +140,11 @@ namespace html
       void text::layout_phase3(data * pdata)
       {
          string strTag;
+         bool bParent = false;
          if(m_pelemental->m_propertyset.is_new_or_null("PropertyTag"))
          {
             strTag = m_pelemental->m_pparent->m_propertyset["PropertyTag"];
+            bParent = true;
          }
          else
          {
@@ -170,7 +172,11 @@ namespace html
          else if(m_pelemental->m_elementalptra.get_size() > 0
          || m_pelemental->m_propertyset["PropertyBody"].is_empty())
          {
-            m_size.cx = 0;
+            if((bParent && m_pelemental->m_pparent->m_style.m_propertyset["display"] != "table-cell")
+            || (!bParent && m_pelemental->m_style.m_propertyset["display"] != "table-cell"))
+            {
+               m_size.cx = 0;
+            }
             m_size.cy = pdata->m_layoutstate.m_cy;
             pdata->m_layoutstate.m_cx   = get_cx();
          }
@@ -257,22 +263,25 @@ namespace html
                m_straLines.add("");
                m_sizea.add(size(0, 0));
             }
-            m_size.cx = 0;
+            if((bParent && m_pelemental->m_pparent->m_style.m_propertyset["display"] != "table-cell")
+            || (!bParent && m_pelemental->m_style.m_propertyset["display"] != "table-cell"))
+            {
+               m_size.cx = 0;
+               if(m_straLines.get_size() > 1)
+               {
+                  m_size.cx = m_sizea.last_element().cx;
+               }
+               else if(m_straLines.get_size() > 0)
+               {
+                  m_size.cx = m_sizea[0].cx;
+               }
+            }
             m_size.cy = 0;
             int i;
             for(i = 0; i < m_sizea.get_size(); i++)
             {
                m_size.cy += m_sizea[i].cy;
             }
-            if(m_straLines.get_size() > 1)
-            {
-               m_size.cx = m_sizea[i - 1].cx;
-            }
-            else if(m_straLines.get_size() > 0)
-            {
-               m_size.cx = m_sizea[0].cx;
-            }
-
 
             if(m_straLines.get_size() > 0)
             {
