@@ -1037,7 +1037,7 @@ namespace html
             }
             pdata->m_layoutstate.m_cx = 0;
          }
-         else if(m_style.m_propertyset["display"] == "table_row")
+         else if(strTag == "tr")
          {
             pdata->m_layoutstate.m_bLastCellY = true;
             //pdata->m_layoutstate.m_y = m_pimpl->get_y() + m_pimpl->get_cy();
