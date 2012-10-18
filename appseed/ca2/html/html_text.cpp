@@ -139,6 +139,7 @@ namespace html
 
       void text::layout_phase3(data * pdata)
       {
+
          string strTag;
          bool bParent = false;
          if(m_pelemental->m_propertyset.is_new_or_null("PropertyTag"))
@@ -168,8 +169,15 @@ namespace html
             }
             pdata->m_layoutstate.m_bLastBlockX = true;
             pdata->m_layoutstate.m_bLastBlockY = true;
+            return;
          }
-         else if(m_pelemental->m_elementalptra.get_size() > 0
+         if(m_pelemental->m_pbase->get_type() != ::html::base::type_value)
+         {
+            text::layout_phase1(pdata);
+            return;
+         }
+
+         if(m_pelemental->m_elementalptra.get_size() > 0
          || m_pelemental->m_propertyset["PropertyBody"].is_empty())
          {
             if((bParent && m_pelemental->m_pparent->m_style.m_propertyset["display"] != "table-cell")

@@ -70,6 +70,11 @@ namespace html
          void on_change_layout(data * pdoc);
 
          void _001OnDraw(data * pdata);
+
+
+         virtual int calc_width();
+
+
       };
 
 

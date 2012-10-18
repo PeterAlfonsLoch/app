@@ -9,7 +9,7 @@ namespace html
       table::table()
       {
 
-         m_iBorder = 2;
+         m_iBorder = 1;
 
       }
 
@@ -126,10 +126,15 @@ namespace html
 
       void table::_001OnDraw(data * pdata)
       {
+         
+         if(m_pelemental->m_pbase->get_type() == ::html::base::type_value)
+            return;
+
          if(m_iBorder > 0)
          {
           
-            pdata->m_pdc->Draw3dRect(get_x(), get_y() - m_iBorder - 2, get_cx(), get_cy(), ARGB(255, 128, 128, 128), ARGB(255, 0, 0, 0));
+            pdata->m_pdc->Draw3dRect(get_x() - m_iBorder - 2, get_y() - m_iBorder - 2, 
+               get_cx() + ((m_iBorder + 2) * 2), get_cy() + ((m_iBorder + 2) * 2), ARGB(255, 184, 184, 184), ARGB(255, 84, 84, 84));
 
          }
       }

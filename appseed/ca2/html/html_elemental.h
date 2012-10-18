@@ -102,6 +102,9 @@ namespace html
 
          virtual void on_change_layout(data * pdoc);
 
+         virtual int calc_width();
+         virtual bool use_in_final_layout(::html::impl::elemental * pimplChild);
+
       protected:
          point m_pt;
          size m_size;

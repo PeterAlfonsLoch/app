@@ -216,6 +216,12 @@
     <Filter Include="Source Files\hi5\net">
       <UniqueIdentifier>{2b00fe3d-d9ef-40de-aa0a-61bc8263b738}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\userhtml">
+      <UniqueIdentifier>{3174a1a5-b34b-474a-ae59-13d6c3268de7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\userhtml">
+      <UniqueIdentifier>{76ae9756-5dc9-422c-a935-0cbaaaf98f17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="calculator\application.h">
@@ -575,24 +581,6 @@
     <ClInclude Include="userex\userex.h">
       <Filter>Header Files\userex</Filter>
     </ClInclude>
-    <ClInclude Include="html\application.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\cell.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\elemental.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\file.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\font.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\form.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
     <ClInclude Include="html\html.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
@@ -602,16 +590,7 @@
     <ClInclude Include="html\html_base.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
-    <ClInclude Include="html\html_child_frame.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_document.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
     <ClInclude Include="html\html_ex.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_form.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
     <ClInclude Include="html\html_form_view.h">
@@ -627,42 +606,6 @@
       <Filter>Header Files\html</Filter>
     </ClInclude>
     <ClInclude Include="html\html_value.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_view.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_view_update_hint.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\input_button.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\input_check_box.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\input_text.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\signal.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\style.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\style_sheet.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\style_sheet_array.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\table.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\table_elemental.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\table_row.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
     <ClInclude Include="mail\application.h">
@@ -1129,9 +1072,6 @@
     </ClInclude>
     <ClInclude Include="sockets\sync_socket_handler.h">
       <Filter>Header Files\sockets\Basic Sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="html\data.h">
-      <Filter>Header Files\html</Filter>
     </ClInclude>
     <ClInclude Include="filemanager\filemanager_data.h">
       <Filter>Header Files\filemanager</Filter>
@@ -1613,6 +1553,78 @@
     <ClInclude Include="hi5\net\hi5_net.h">
       <Filter>Header Files\hi5\net</Filter>
     </ClInclude>
+    <ClInclude Include="html\html_table.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_table_elemental.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_table_row.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_style_sheet.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_style.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_signal.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_style_sheet_array.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_input_text.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_input_check_box.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_input_button.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_font.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_elemental.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_data.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_cell.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_application.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_form.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_form_view.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_frame.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_view.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_view_update_hint.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_form.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_child_frame.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_document.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca2.def">
@@ -1692,21 +1704,6 @@
     <ClCompile Include="user\user_tree.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="html\_html_child_frame.cpp">
-      <Filter>Source Files\html</Filter>
-    </ClCompile>
-    <ClCompile Include="html\_html_document.cpp">
-      <Filter>Source Files\html</Filter>
-    </ClCompile>
-    <ClCompile Include="html\_html_form.cpp">
-      <Filter>Source Files\html</Filter>
-    </ClCompile>
-    <ClCompile Include="html\_html_form_view.cpp">
-      <Filter>Source Files\html</Filter>
-    </ClCompile>
-    <ClCompile Include="html\_html_view.cpp">
-      <Filter>Source Files\html</Filter>
-    </ClCompile>
     <ClCompile Include="html\html_application.cpp">
       <Filter>Source Files\html</Filter>
     </ClCompile>
@@ -1726,9 +1723,6 @@
       <Filter>Source Files\html</Filter>
     </ClCompile>
     <ClCompile Include="html\html_form.cpp">
-      <Filter>Source Files\html</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_frame.cpp">
       <Filter>Source Files\html</Filter>
     </ClCompile>
     <ClCompile Include="html\html_image.cpp">
@@ -1774,9 +1768,6 @@
       <Filter>Source Files\html</Filter>
     </ClCompile>
     <ClCompile Include="html\html_value.cpp">
-      <Filter>Source Files\html</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html_view_update_hint.cpp">
       <Filter>Source Files\html</Filter>
     </ClCompile>
     <ClCompile Include="userex\userex_form_child_frame.cpp">
@@ -2558,6 +2549,27 @@
     </ClCompile>
     <ClCompile Include="hi5\net\hi5_net_twitter_authorization.cpp">
       <Filter>Source Files\hi5\net</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_child_frame.cpp">
+      <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_document.cpp">
+      <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_form.cpp">
+      <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_form_view.cpp">
+      <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_view.cpp">
+      <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_frame.cpp">
+      <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_view_update_hint.cpp">
+      <Filter>Source Files\userhtml</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

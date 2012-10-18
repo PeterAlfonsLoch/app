@@ -13,9 +13,18 @@ namespace html
       {
       public:
 
-         index   m_iIndex;
-         int   m_cyMin;
-         int   m_cyMax;
+
+         index                         m_iIndex;
+         int                           m_cyMin;
+         int                           m_cyMax;
+         base_array < cell::holder >   m_cellholdera;
+
+
+         table_row();
+         virtual ~table_row();
+
+
+         void _001OnDraw(data * pdata);
 
          table * get_table();
 
@@ -27,11 +36,8 @@ namespace html
          virtual void layout_phase3(data * pdata);
          virtual void final_layout(data * pdata);
 
-         base_array < cell::holder > m_cellholdera;
 
-         table_row();
-         virtual ~table_row();
-
+         virtual bool use_in_final_layout(::html::impl::elemental * pimplChild);
 
       };
 

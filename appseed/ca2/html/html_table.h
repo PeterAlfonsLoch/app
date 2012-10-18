@@ -25,7 +25,7 @@ namespace impl
       int m_iBorder;
 
       base_array < base_array < cell::holder > > m_cellholdera;
-      base_array < table_row * > m_rowptra;
+      comparable_array < table_row * > m_rowptra;
       base_array < column > m_columna;
 
       void set_cell(point pt, cell * pcell);

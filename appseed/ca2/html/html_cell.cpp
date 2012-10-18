@@ -58,14 +58,18 @@ namespace html
             text::layout_phase1(pdata);
             return;
          }
+
+         ::html::impl::cell * pcellParent = dynamic_cast < ::html::impl::cell * > (m_pelemental->m_pparent->m_pimpl);
+        
+
          int lMax = 0;
          int lMin = 0;
-         if(m_ptaPopulation.get_size() > 0)
+         if(pcellParent->m_ptaPopulation.get_size() > 0)
          {
-            if(m_ptaPopulation[0].x < get_table()->m_columna.get_size())
+            if(pcellParent->m_ptaPopulation[0].x < get_table()->m_columna.get_size())
             {
-               lMax = get_table()->m_columna[m_ptaPopulation[0].x].m_cxMax;
-               lMin = get_table()->m_columna[m_ptaPopulation[0].x].m_cxMin;
+               lMax = get_table()->m_columna[pcellParent->m_ptaPopulation[0].x].m_cxMax;
+               lMin = get_table()->m_columna[pcellParent->m_ptaPopulation[0].x].m_cxMin;
             }
          }
          int cxMax;
@@ -93,7 +97,7 @@ namespace html
                iAddUp = (W - sMin) / n;
             }
          }
-         size size = m_pelemental->m_pparent->m_pimpl->get_bound_size();
+         size size = pcellParent->get_bound_size();
          size.cx = m_cxMin;
          if(iAddUp > 0)
          {
@@ -120,43 +124,15 @@ namespace html
                iAddUp = (W - sMin) / n;
             }
          }
-         size size = m_pelemental->m_pparent->m_pimpl->get_bound_size();
+         size size = pcellParent->get_bound_size();
          size.cx = m_cxMin;
          if(iAddUp > 0)
          {
             size.cx += (LONG) (iAddUp);
          }*/
-         size size = m_pelemental->m_pparent->m_pimpl->get_bound_size();
-         int iColumnWidth = 0;
-         if(get_table() != NULL)
-         {
-            ::count n = get_table()->m_columna.get_size();
-            int cellMax = 0;
-            int sMax = 0;
-            for(index iColumn = 0; iColumn < n; iColumn++)
-            {
-               cxMax = get_table()->m_columna[iColumn].m_cxMax;
-               sMax += cxMax;
-               for(int j = 0; j < m_ptaPopulation.get_count(); j++)
-               {
-                  if(iColumn == m_ptaPopulation[j].x)
-                  {
-                     cellMax += cxMax;
-                     break;
-                  }
-               }
-            }
-            int W = get_table()->get_bound_size().cx;
-            if(sMax > 0)
-            {
-               iColumnWidth = W * cellMax  / sMax;
-            }
-            else
-            {
-               iColumnWidth = W / n;
-            }
-         }
-         //::size size = m_pelemental->m_pparent->m_pimpl->get_bound_size();
+         size size = pcellParent->get_bound_size();
+         int iColumnWidth = calc_width();
+         //::size size = pcellParent->get_bound_size();
          //size.cx = m_cxMin;
          //if(iAddUp > 0)
          //{
@@ -164,8 +140,8 @@ namespace html
          if(iTableBorder > 0)
          {
             iTableBorder += 2;
-            size.cx = iColumnWidth - (m_ptaPopulation.last_element().x == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
-            size.cy -= (m_ptaPopulation.last_element().y == get_table()->m_rowptra.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
+            size.cx = iColumnWidth - (pcellParent->m_ptaPopulation.last_element().x == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
+            size.cy -= (pcellParent->m_ptaPopulation.last_element().y == get_table()->m_rowptra.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
          }
          else
          {
@@ -175,14 +151,14 @@ namespace html
          set_cy(pdata, size.cy);
          //}
          set_bound_size(pdata, size);
-         point pointBound = m_pelemental->m_pparent->m_pimpl->get_bound_point();
-         int l = pointBound.x  + get_table()->m_iBorder * (m_ptaPopulation.first_element().x + 1);
+         point pointBound = pcellParent->get_bound_point();
+         int l = pointBound.x  + get_table()->m_iBorder * (pcellParent->m_ptaPopulation.first_element().x + 1);
          if(get_row() != NULL)
          {
             l = get_row()->get_bound_point().x;
-            if(m_ptaPopulation.get_size() > 0)
+            if(pcellParent->m_ptaPopulation.get_size() > 0)
             {
-               for(int i = 0; i < m_ptaPopulation[0].x; i++)
+               for(int i = 0; i < pcellParent->m_ptaPopulation[0].x; i++)
                {
                   if(!get_row()->m_cellholdera[i].is_null())
                   {
@@ -190,7 +166,7 @@ namespace html
                   }
                }
             }
-            l += get_table()->m_iBorder * (m_ptaPopulation.first_element().x + 1);
+            l += get_table()->m_iBorder * (pcellParent->m_ptaPopulation.first_element().x + 1);
             pointBound.x = l;
          }
          set_bound_point(pdata, pointBound);
@@ -221,7 +197,7 @@ namespace html
 
       void cell::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
-         if(pelemental->m_pbase->get_type() !=:: html::base::type_value)
+         if(pelemental->m_pbase->get_type() == ::html::base::type_value)
          {
             text::implement_phase1(pdata, pelemental);
             return;
@@ -302,9 +278,9 @@ namespace html
 
       void cell::implement_phase2(data * pdata)
       {
-         if(m_pelemental->m_pbase->get_type() !=:: html::base::type_value)
+         //if(m_pelemental->m_pbase->get_type() !=:: html::base::type_value)
          {
-            return;
+           // return;
          }
 
          table * ptable = get_table();
@@ -353,7 +329,7 @@ namespace html
             for(int i = 0; i < prow->m_pelemental->m_elementalptra.get_count(); i++)
             {
                ::html::elemental * pelemental = prow->m_pelemental->m_elementalptra[i];
-               if(pelemental == m_pelemental->m_pparent)
+               if(pelemental == m_pelemental)
                   break;
                cell * pcell = dynamic_cast < cell * > (pelemental->m_pimpl);
                if(pcell != NULL)
@@ -416,6 +392,7 @@ namespace html
 
       void cell::_001OnDraw(data * pdata)
       {
+
          text::_001OnDraw(pdata);
 
          if(m_pelemental->m_pbase->get_type() != ::html::base::type_value)
@@ -429,11 +406,60 @@ namespace html
             int cx = get_cx();
             int cy = get_cy();
             
-            pdata->m_pdc->Draw3dRect(x, y, cx, cy, ARGB(255, 0, 0, 0), ARGB(255, 128, 128, 128));
+            pdata->m_pdc->Draw3dRect(x, y, cx, cy, ARGB(255, 84, 84, 84), ARGB(255, 184, 184, 184));
 
          }
+
       }
+
+      int cell::calc_width()
+      {
+         if(m_pelemental->m_pbase->get_type() == ::html::base::type_value)
+         {
+            return m_pelemental->m_pparent->m_pimpl->calc_width();
+         }
+         size size = m_pelemental->m_pparent->m_pimpl->get_bound_size();
+         ::html::elemental * pelemental = m_pelemental->m_elementalptra[0];
+         int iColumnWidth = 0;
+         int cxMax;
+         if(get_table() != NULL)
+         {
+            ::count n = get_table()->m_columna.get_size();
+            int cellMax = 0;
+            int sMax = 0;
+            for(index iColumn = 0; iColumn < n; iColumn++)
+            {
+               cxMax = get_table()->m_columna[iColumn].m_cxMax;
+               sMax += cxMax;
+               for(int j = 0; j < m_ptaPopulation.get_count(); j++)
+               {
+                  if(iColumn == m_ptaPopulation[j].x)
+                  {
+                     cellMax += cxMax;
+                     break;
+                  }
+               }
+            }
+            int W = get_table()->calc_width();
+            if(sMax > 0)
+            {
+               iColumnWidth = W * cellMax  / sMax;
+            }
+            else
+            {
+               iColumnWidth = W / n;
+            }
+         }
+
+         return iColumnWidth;
+
+      }
+
 
    } // namespace impl
 
+
 } // namespace html
+
+
+

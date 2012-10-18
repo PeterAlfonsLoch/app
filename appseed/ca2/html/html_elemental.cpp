@@ -378,6 +378,15 @@ namespace html
          on_change_layout(pdata);
       }
 
+      bool elemental::use_in_final_layout(::html::impl::elemental * pimplChild)
+      {
+         
+         UNREFERENCED_PARAMETER(pimplChild);
+
+         return true;
+
+      }
+
       void elemental::final_layout(data * pdata)
       {
          string strTag = m_pelemental->get_tag_name();
@@ -396,6 +405,7 @@ namespace html
          {
             return;
          }
+
          int x = 0x7fffffff;
          int y = 0x7fffffff;
          int cx = 0x80000000;
@@ -410,17 +420,19 @@ namespace html
          {
             pelemental->set_cx(pdata, pelemental->get_bound_point().x + pelemental->get_bound_size().cx - pelemental->get_x());
          }*/
-         if(m_pelemental->m_elementalptra.get_size() > 0)
+
+         bool bOk = false;
+
+         for(int i = 0; i < m_pelemental->m_elementalptra.get_size(); i++)
          {
-            elemental * pelemental = m_pelemental->m_elementalptra[0]->m_pimpl;
-            x = pelemental->get_x();
-            y = pelemental->get_y();
-            cx = pelemental->get_cx();
-            cy = pelemental->get_cy();
-         }
-         for(int i = 1; i < m_pelemental->m_elementalptra.get_size(); i++)
-         {
+            
             elemental * pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
+            
+            if(!use_in_final_layout(pelemental))
+               continue;
+
+            
+
             if(pelemental->get_x() < x)
                x = pelemental->get_x();
             if(pelemental->get_y() < y)
@@ -429,11 +441,41 @@ namespace html
                cx = pelemental->get_cx() + pelemental->get_x() - x;
             if(pelemental->get_y() + pelemental->get_cy() > y + cy)
                cy = pelemental->get_cy() + pelemental->get_y() - y;
+
+            bOk = true;
+
          }
-         set_pos(pdata, x, y, cx, cy);
+
+         if(bOk)
+         {
+
+            set_pos(pdata, x, y, cx, cy);
+
+         }
 
 
       }
+
+
+      int elemental::calc_width()
+      {
+         
+         if(m_pelemental != NULL && m_pelemental->m_pparent != NULL)
+         {
+            
+            return m_pelemental->m_pparent->m_pimpl->calc_width();
+
+         }
+         else
+         {
+
+            return get_bound_size().cx;
+
+         }
+
+      }
+
+
    } // namespace impl
 
    elemental::elemental(data * pdata, elemental * pparent)
@@ -887,6 +929,16 @@ namespace html
          }
       }
 
+      //if(m_pbase->get_type() == ::html::base::type_value)
+      {
+        // if(strTag == "table"
+         //|| strTag == "tbody"
+         //|| strTag == "tr")
+         {
+           // return;
+         }
+      }
+
       /*
       index iIndex = -1;
       if(m_pparent != NULL)
@@ -901,6 +953,11 @@ namespace html
          }
       }*/
       ::html::impl::cell * pcell = dynamic_cast < ::html::impl::cell * > (m_pimpl);
+      ::html::impl::cell * pcellParent = NULL;
+      if(m_pparent != NULL)
+      {
+         pcellParent = dynamic_cast < ::html::impl::cell * > (m_pparent->m_pimpl);
+      }
       int iTableBorder = 0;
       if(pcell != NULL)
       {
@@ -909,13 +966,25 @@ namespace html
             iTableBorder = pcell->get_table()->m_iBorder + 2;
          }
       }
-      if(m_pbase->get_type() == ::html::base::type_value)
+      if(m_pbase->get_type() == ::html::base::type_value
+      && strTag != "table"
+      && strTag != "tbody"
+      && strTag != "tr")
       {
-         if(pdata->m_layoutstate.m_bLastCellY || pdata->m_layoutstate.m_bLastBlockX || m_style.m_propertyset["display"] == "block")
+         if(pcell != NULL && pcellParent->m_ptaPopulation[0].x == 0)
          {
-            if(m_pparent != NULL)
+            pdata->m_layoutstate.m_x = pcell->get_table()->get_x();
+         }
+         if(pcell != NULL && pcellParent->m_ptaPopulation[0].y == 0)
+         {
+            pdata->m_layoutstate.m_y = pcell->get_table()->get_y();
+         }
+         if(pdata->m_layoutstate.m_bLastBlockX || m_style.m_propertyset["display"] == "block"
+            || m_style.m_propertyset["display"] == "table")
+         {
+            if(m_pparent != NULL && m_pparent != NULL)
             {
-               pdata->m_layoutstate.m_x = m_pparent->m_pimpl->get_x();
+               pdata->m_layoutstate.m_x = m_pparent->m_pparent->m_pimpl->get_x();
             }
             else
             {
@@ -925,14 +994,16 @@ namespace html
          }
          if(pdata->m_layoutstate.m_bLastCellX || m_style.m_propertyset["display"] == "table-cell")
          {
-            if(pcell != NULL && pcell->m_ptaPopulation[0].x == 0)
+            if(pcell != NULL && (pcellParent->m_ptaPopulation[0].x == 0 || pcellParent->m_ptaPopulation[0].y == 0))
             {
                pdata->m_layoutstate.m_y += iTableBorder;
             }
-            pdata->m_layoutstate.m_x += pdata->m_layoutstate.m_cx + (pcell == NULL ? 0 : (pcell->m_ptaPopulation[0].x + 1) * iTableBorder);
+            pdata->m_layoutstate.m_x += (pdata->m_layoutstate.m_bLastCellX ? pdata->m_layoutstate.m_cx : 0)  + (pcell == NULL ? 0 : 
+               ((pcellParent->m_ptaPopulation.last_element().x -pcellParent->m_ptaPopulation.first_element().x) + 1) * iTableBorder);
             pdata->m_layoutstate.m_bLastCellX = false;
          }
-         if(pdata->m_layoutstate.m_bLastBlockY || m_style.m_propertyset["display"] == "block")
+         if(pdata->m_layoutstate.m_bLastCellY || pdata->m_layoutstate.m_bLastBlockY || m_style.m_propertyset["display"] == "block"
+             || m_style.m_propertyset["display"] == "table")
          {
             pdata->m_layoutstate.m_y += pdata->m_layoutstate.m_cy;
             pdata->m_layoutstate.m_cy = 0;
@@ -949,7 +1020,10 @@ namespace html
          m_elementalptra[i]->layout_phase3(pdata);
       }
       m_pimpl->final_layout(pdata);
-      if(m_pbase->get_type() == ::html::base::type_value)
+      if((m_pbase->get_type() == ::html::base::type_value
+      && strTag != "tbody")
+      || (m_pbase->get_type() == ::html::base::type_tag
+      && strTag == "tr"))
       {
          if(strTag.CompareNoCase("br") == 0)
          {
@@ -963,7 +1037,23 @@ namespace html
             }
             pdata->m_layoutstate.m_cx = 0;
          }
-         else if(m_style.m_propertyset["display"] == "block")
+         else if(m_style.m_propertyset["display"] == "table_row")
+         {
+            pdata->m_layoutstate.m_bLastCellY = true;
+            //pdata->m_layoutstate.m_y = m_pimpl->get_y() + m_pimpl->get_cy();
+            pdata->m_layoutstate.m_cy = m_pimpl->get_cy();
+            pdata->m_layoutstate.m_cx = 0;
+            if(m_pparent != NULL)
+            {
+               pdata->m_layoutstate.m_x = m_pparent->m_pimpl->get_x();
+            }
+            else
+            {
+               pdata->m_layoutstate.m_x = 0;
+            }
+         }
+         else if(m_style.m_propertyset["display"] == "block"
+             || m_style.m_propertyset["display"] == "table")
          {
             pdata->m_layoutstate.m_bLastBlockX = true;
             pdata->m_layoutstate.m_bLastBlockY = true;
@@ -986,14 +1076,35 @@ namespace html
             }
             else
             {
-               int iCellPopulationCount = pcell->m_ptaPopulation.get_count();
-               int iCellLastColumn = pcell->m_ptaPopulation.last_element().x;
+               int iCellPopulationCount = pcellParent->m_ptaPopulation.get_count();
+               int iCellLastColumn = pcellParent->m_ptaPopulation.last_element().x;
+               int iCellLastRow = pcellParent->m_ptaPopulation.last_element().y;
                int iLastColumn = pcell->get_table()->m_columna.get_upper_bound();
+               int iLastRow = pcell->get_table()->m_rowptra.get_upper_bound();
                if(iCellLastColumn == iLastColumn)
                {
-                  pdata->m_layoutstate.m_bLastCellY = true;
-                  pdata->m_layoutstate.m_cy = m_pimpl->get_cy();
-                  pdata->m_layoutstate.m_cx = 0;
+                  if(iCellLastRow == iLastRow)
+                  {
+                     pdata->m_layoutstate.m_bLastCellX = true;
+                     pdata->m_layoutstate.m_cx = m_pimpl->get_cx();
+                     //pdata->m_layoutstate.m_y = m_pimpl->get_y() + m_pimpl->get_cy();
+                     pdata->m_layoutstate.m_cy = 0;
+                  }
+                  else
+                  {
+                     pdata->m_layoutstate.m_bLastCellY = true;
+                     //pdata->m_layoutstate.m_y = m_pimpl->get_y() + m_pimpl->get_cy();
+                     pdata->m_layoutstate.m_cy = 0;
+                     pdata->m_layoutstate.m_cx = 0;
+                     if(m_pparent != NULL)
+                     {
+                        pdata->m_layoutstate.m_x = m_pparent->m_pimpl->get_x();
+                     }
+                     else
+                     {
+                        pdata->m_layoutstate.m_x = 0;
+                     }
+                  }
                }
                else
                {
@@ -1083,6 +1194,7 @@ namespace html
       else if(m_pbase->get_type() == base::type_value)
       {
          ::html::value * pvalue = dynamic_cast < ::html::value * > (m_pbase);
+         ::html::tag * ptag = dynamic_cast < ::html::tag * > (m_pparent->m_pbase);
          m_propertyset["PropertyBody"] = pvalue->get_value();
          if(m_pparent->m_propertyset["PropertyTag"] == "style")
          {
@@ -1090,7 +1202,6 @@ namespace html
             stylesheet.parse(pdata, pvalue->get_value());
             pdata->m_stylesheeta.add(stylesheet);
          }
-
       }
       else
       {

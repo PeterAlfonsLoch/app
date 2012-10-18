@@ -19,39 +19,33 @@ namespace html
 #include "html_tag.h"
 #include "html_reader.h"
 
-#include "signal.h"
+#include "html_signal.h"
 
-#include "font.h"
-#include "style.h"
-#include "style_sheet.h"
-#include "style_sheet_array.h"
-#include "elemental.h"
+#include "html_font.h"
+#include "html_style.h"
+#include "html_style_sheet.h"
+#include "html_style_sheet_array.h"
+#include "html_elemental.h"
 
 #include "html_text.h"
 #include "html_image.h"
 
-#include "input_button.h"
-#include "input_check_box.h"
-#include "input_text.h"
-#include "form.h"
-
-
-#include "cell.h"
-#include "table_elemental.h"
-#include "table_row.h"
-#include "table.h"
-
-#include "data.h"
-
+#include "html_input_button.h"
+#include "html_input_check_box.h"
+#include "html_input_text.h"
 #include "html_form.h"
-#include "html_form_view.h" // html_form_view does not require a form_document
 
-#include "html_frame.h"
-#include "html_child_frame.h"
-#include "html_view_update_hint.h"
-#include "html_document.h"
-#include "html_view.h"
+
+#include "html_cell.h"
+#include "html_table_elemental.h"
+#include "html_table_row.h"
+#include "html_table.h"
+
+#include "html_data.h"
 
 
 #include "html_ex.h"
-#include "application.h"
+#include "html_application.h"
+
+
+

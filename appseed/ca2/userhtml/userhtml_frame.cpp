@@ -1,12 +1,5 @@
 #include "framework.h"
 
-#include "html_frame.h"
-#include "html_view.h"
-
-HHOOK g_mousehook;
-html_frame  * g_pframe;
-
-
 // IMPLEMENT_DYNCREATE(html_frame, simple_frame_window)
 
  // BEGIN_MESSAGE_MAP(html_frame, simple_frame_window)
@@ -280,16 +273,6 @@ bool html_frame::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
 bool html_frame::MouseHook()
 {
-   g_pframe = this;
-   if((g_mousehook =
-      SetWindowsHookEx(
-      WH_MOUSE_LL,
-      MouseProc,
-      System.m_hInstance,
-      NULL)) == NULL)
-   {
-      return false;
-   }
    
    return true;
 }
@@ -313,36 +296,29 @@ void html_frame::MouseMessage(          int nCode,
    }
 }
 
-LRESULT CALLBACK html_frame::MouseProc(          int nCode,
-    WPARAM wparam,
-    LPARAM lparam
-)
+LRESULT CALLBACK html_frame::MouseProc(int nCode, WPARAM wparam, LPARAM lparam)
 {
 
-   if(nCode < 0)
-   {
-      return CallNextHookEx(g_mousehook, nCode, wparam, lparam);
-   }
-   else
-   {
-      g_pframe->MouseMessage(nCode, wparam, lparam);
-      CallNextHookEx(g_mousehook, nCode, wparam, lparam);
-      return 0;
-   }
+   return 0;
+
 }
 
 
 
 bool html_frame::MouseUnhook()
 {
-   return UnhookWindowsHookEx(g_mousehook) != FALSE;
+
+   return false;
+
 }
 
 
 
 void html_frame::OnHoverAction()
 {
+
    ShowWindow(SW_RESTORE);
+
 }
 
 

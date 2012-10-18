@@ -37,7 +37,10 @@ namespace html
          if(ptable == NULL)
             return;
          m_iIndex = ptable->m_rowptra.get_size();
-         ptable->m_rowptra.add(this);
+         if(m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
+         {
+            ptable->m_rowptra.add_unique(this);
+         }
          for(int i = 0; i < get_table()->m_cellholdera.get_size(); i++)
          {
             for(int j = 0; j < get_table()->m_cellholdera[i].get_size(); j++)
@@ -54,9 +57,9 @@ namespace html
       void table_row::implement_phase2(data * pdata)
       {
 
-         if(m_pelemental->m_pbase->get_type() !=:: html::base::type_value)
+         //if(m_pelemental->m_pbase->get_type() !=:: html::base::type_value)
          {
-            return;
+            //return;
          }
 
 
@@ -164,10 +167,10 @@ namespace html
 
          table_row * prow = NULL;
 
-         if(m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
+         /*if(m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
             prow = dynamic_cast < table_row * > (m_pelemental->m_elementalptra[0]->m_pimpl);
-         }
+         }*/
 
          int iTableBorder = get_table()->m_iBorder;
          if(iTableBorder > 0)
@@ -175,7 +178,7 @@ namespace html
             iTableBorder += 2;
          }
 
-         if(prow != NULL)
+/*         if(prow != NULL)
          {
             for(int i = 0; i < m_cellholdera.get_size(); i++)
             {
@@ -197,9 +200,42 @@ namespace html
 
          m_size.cy = m_cyMax;
 
-         m_sizeBound.cy = m_cyMax;
+         m_sizeBound.cy = m_cyMax;*/
+
+         /*
+         if(prow != NULL)
+         {
+            for(int i = 0; i < m_cellholdera.get_size(); i++)
+            {
+               cell * pcell = m_cellholdera[i].m_pcell;
+               if(pcell != NULL)
+               {
+                  pcell->set_cy(pdata, m_size.cy);
+                  pcell->m_pelemental->m_elementalptra[0]->m_pimpl->set_cy(pdata, m_size.cy);
+               }
+            }
+         }
+         */
 
          elemental::final_layout(pdata);
+
+         if(m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
+         {
+            for(int i = 0; i < m_cellholdera.get_size(); i++)
+            {
+               cell * pcell = m_cellholdera[i].m_pcell;
+               if(pcell != NULL)
+               {
+                  pcell->set_cy(pdata, m_size.cy);
+                  pcell->m_pelemental->m_elementalptra[0]->m_pimpl->set_cy(pdata, m_size.cy);
+               }
+            }
+         }
+         else
+         {
+            ::OutputDebugStringW(L"Is called as value? yes...");
+         }
+
 
       }
 
@@ -215,6 +251,24 @@ namespace html
          }
       }
 
+      void table_row::_001OnDraw(data * pdata)
+      {
+      }
+
+
+      bool table_row::use_in_final_layout(::html::impl::elemental * pimplChild)
+      {
+         
+         if(pimplChild->m_pelemental->get_tag_name() == "tr")
+         {
+            
+            return false;
+
+         }
+
+         return true;
+
+      }
 
    } // namespace impl
 

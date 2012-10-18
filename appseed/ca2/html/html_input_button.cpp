@@ -44,7 +44,8 @@ namespace html
          point pointBound = get_bound_point();
          m_size.cx = 200;
          m_size.cy = 23;
-         if(m_pelemental->m_propertyset["display"] == "block")
+         if(m_pelemental->m_propertyset["display"] == "block"
+             || m_pelemental->m_propertyset["display"] == "table")
          {
             pdata->m_layoutstate.m_y    = get_y() + get_cy();
             pdata->m_layoutstate.m_cy   = 0;
