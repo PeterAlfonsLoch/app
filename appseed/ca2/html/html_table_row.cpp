@@ -53,9 +53,17 @@ namespace html
 
       void table_row::implement_phase2(data * pdata)
       {
+
          if(m_pelemental->m_pbase->get_type() !=:: html::base::type_value)
          {
             return;
+         }
+
+
+         int iTableBorder = get_table()->m_iBorder;
+         if(iTableBorder > 0)
+         {
+            iTableBorder += 2;
          }
 
          int cxMax;
@@ -101,14 +109,14 @@ namespace html
                   {
                      if(pcell->m_cxMax > get_table()->m_columna[i].m_cxMax)
                      {
-                        get_table()->m_columna[i].m_cxMax = pcell->m_cxMax + (i == get_table()->m_columna.get_upper_bound() ?  get_table()->m_iBorder * 2 : get_table()->m_iBorder);
+                        get_table()->m_columna[i].m_cxMax = pcell->m_cxMax + (i == get_table()->m_columna.get_upper_bound() ?  iTableBorder * 2 : iTableBorder);
                      }
                   }
                   if(pcell->m_cxMin >= -1)
                   {
                      if(pcell->m_cxMin > get_table()->m_columna[i].m_cxMin)
                      {
-                        get_table()->m_columna[i].m_cxMin = pcell->m_cxMin + (i == get_table()->m_columna.get_upper_bound() ?  get_table()->m_iBorder * 2 : get_table()->m_iBorder);
+                        get_table()->m_columna[i].m_cxMin = pcell->m_cxMin + (i == get_table()->m_columna.get_upper_bound() ?  iTableBorder * 2 : iTableBorder);
                      }
                   }
                }
@@ -161,6 +169,11 @@ namespace html
             prow = dynamic_cast < table_row * > (m_pelemental->m_elementalptra[0]->m_pimpl);
          }
 
+         int iTableBorder = get_table()->m_iBorder;
+         if(iTableBorder > 0)
+         {
+            iTableBorder += 2;
+         }
 
          if(prow != NULL)
          {
@@ -171,17 +184,19 @@ namespace html
                {
                   if(pcell->get_cy() > m_cyMax)
                   {
-                     m_cyMax = pcell->get_cy() + (i == get_table()->m_columna.get_upper_bound() ?  get_table()->m_iBorder * 2 : get_table()->m_iBorder);;
+                     m_cyMax = pcell->get_cy() + (i == get_table()->m_columna.get_upper_bound() ?  iTableBorder * 2 : iTableBorder);
                   }
                   if(pcell->get_cy() < m_cyMin || m_cyMin < 0)
                   {
-                     m_cyMin = pcell->get_cy() + (i == get_table()->m_columna.get_upper_bound() ?  get_table()->m_iBorder * 2 : get_table()->m_iBorder);;
+                     m_cyMin = pcell->get_cy() + (i == get_table()->m_columna.get_upper_bound() ?  iTableBorder * 2 : iTableBorder);
                   }
                }
             }
             prow->m_size.cy = m_cyMax;
          }
+
          m_size.cy = m_cyMax;
+
          m_sizeBound.cy = m_cyMax;
 
          elemental::final_layout(pdata);

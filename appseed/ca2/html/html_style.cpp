@@ -203,6 +203,28 @@ namespace html
                   return false;
                }
             }
+            else if(strTag == "p")
+            {
+               if(_stricmp("font-family", pszName) == 0)
+               {
+                  str = "Times New Roman";
+                  return true;
+               }
+               else if(_stricmp("font-size", pszName) == 0)
+               {
+                  str = "11";
+                  return true;
+               }
+               else if(_stricmp("font-weight", pszName) == 0)
+               {
+                  str = "normal";
+                  return true;
+               }
+               else
+               {
+                  return false;
+               }
+            }
             else if(strTag == "h3")
             {
                if(_stricmp("font-family", pszName) == 0)

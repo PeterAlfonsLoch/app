@@ -135,6 +135,7 @@ namespace html
          m_pelemental = pelemental;
          m_eposition = PositionRelative;
          if(strTag == "h1" || strTag == "h2" || strTag == "h3"
+         || strTag == "p"
          || strTag == "tr" || strTag == "li" || strTag == "div")
          {
             pelemental->m_style.m_propertyset["display"] = "block";
@@ -409,7 +410,15 @@ namespace html
          {
             pelemental->set_cx(pdata, pelemental->get_bound_point().x + pelemental->get_bound_size().cx - pelemental->get_x());
          }*/
-         for(int i = 0; i < m_pelemental->m_elementalptra.get_size(); i++)
+         if(m_pelemental->m_elementalptra.get_size() > 0)
+         {
+            elemental * pelemental = m_pelemental->m_elementalptra[0]->m_pimpl;
+            x = pelemental->get_x();
+            y = pelemental->get_y();
+            cx = pelemental->get_cx();
+            cy = pelemental->get_cy();
+         }
+         for(int i = 1; i < m_pelemental->m_elementalptra.get_size(); i++)
          {
             elemental * pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
             if(pelemental->get_x() < x)
@@ -892,6 +901,14 @@ namespace html
          }
       }*/
       ::html::impl::cell * pcell = dynamic_cast < ::html::impl::cell * > (m_pimpl);
+      int iTableBorder = 0;
+      if(pcell != NULL)
+      {
+         if(pcell->get_table()->m_iBorder > 0)
+         {
+            iTableBorder = pcell->get_table()->m_iBorder + 2;
+         }
+      }
       if(m_pbase->get_type() == ::html::base::type_value)
       {
          if(pdata->m_layoutstate.m_bLastCellY || pdata->m_layoutstate.m_bLastBlockX || m_style.m_propertyset["display"] == "block")
@@ -908,10 +925,14 @@ namespace html
          }
          if(pdata->m_layoutstate.m_bLastCellX || m_style.m_propertyset["display"] == "table-cell")
          {
-               pdata->m_layoutstate.m_x += pdata->m_layoutstate.m_cx + (pcell == NULL ? 0 : pcell->get_table()->m_iBorder);
-               pdata->m_layoutstate.m_bLastCellX = false;
+            if(pcell != NULL && pcell->m_ptaPopulation[0].x == 0)
+            {
+               pdata->m_layoutstate.m_y += iTableBorder;
+            }
+            pdata->m_layoutstate.m_x += pdata->m_layoutstate.m_cx + (pcell == NULL ? 0 : (pcell->m_ptaPopulation[0].x + 1) * iTableBorder);
+            pdata->m_layoutstate.m_bLastCellX = false;
          }
-         if(pdata->m_layoutstate.m_bLastCellY || pdata->m_layoutstate.m_bLastBlockY || m_style.m_propertyset["display"] == "block")
+         if(pdata->m_layoutstate.m_bLastBlockY || m_style.m_propertyset["display"] == "block")
          {
             pdata->m_layoutstate.m_y += pdata->m_layoutstate.m_cy;
             pdata->m_layoutstate.m_cy = 0;
@@ -987,15 +1008,15 @@ namespace html
          }
          else
          {
-            pdata->m_layoutstate.m_bLastBlockX = false;
-            pdata->m_layoutstate.m_x += pdata->m_layoutstate.m_cx;
-            pdata->m_layoutstate.m_cx = 0;
+         //   pdata->m_layoutstate.m_bLastBlockX = false;
+           // pdata->m_layoutstate.m_x += pdata->m_layoutstate.m_cx;
+            //pdata->m_layoutstate.m_cx = 0;
          }
       }
       else
       {
-         pdata->m_layoutstate.m_x += pdata->m_layoutstate.m_cx;
-         pdata->m_layoutstate.m_cx = 0;
+      //   pdata->m_layoutstate.m_x += pdata->m_layoutstate.m_cx;
+        // pdata->m_layoutstate.m_cx = 0;
       }
    }
 

@@ -160,8 +160,18 @@ namespace html
          //size.cx = m_cxMin;
          //if(iAddUp > 0)
          //{
-         size.cx = iColumnWidth;
-         set_cx(pdata, iColumnWidth - (m_ptaPopulation.last_element().x == get_table()->m_columna.get_upper_bound() ? get_table()->m_iBorder * 2 : get_table()->m_iBorder) );
+         int iTableBorder = get_table()->m_iBorder;
+         if(iTableBorder > 0)
+         {
+            iTableBorder += 2;
+            size.cx = iColumnWidth - (m_ptaPopulation.last_element().x == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
+            size.cy -= (m_ptaPopulation.last_element().y == get_table()->m_rowptra.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
+         }
+         else
+         {
+            size.cx = iColumnWidth;
+         }
+         set_cx(pdata, iColumnWidth);
          set_cy(pdata, size.cy);
          //}
          set_bound_size(pdata, size);
@@ -408,13 +418,18 @@ namespace html
       {
          text::_001OnDraw(pdata);
 
-         if(m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
+         if(m_pelemental->m_pbase->get_type() != ::html::base::type_value)
             return;
 
          if(get_table()->m_iBorder > 0)
          {
+
+            int x = get_x();
+            int y = get_y();
+            int cx = get_cx();
+            int cy = get_cy();
             
-            pdata->m_pdc->Draw3dRect(get_x(), get_y(), get_cx(), get_cy(), ARGB(255, 0, 0, 0), ARGB(255, 128, 128, 128));
+            pdata->m_pdc->Draw3dRect(x, y, cx, cy, ARGB(255, 0, 0, 0), ARGB(255, 128, 128, 128));
 
          }
       }

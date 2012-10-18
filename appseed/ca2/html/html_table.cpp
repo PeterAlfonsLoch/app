@@ -129,7 +129,7 @@ namespace html
          if(m_iBorder > 0)
          {
           
-            pdata->m_pdc->Draw3dRect(get_x(), get_y(), get_cx(), get_cy(), ARGB(255, 128, 128, 128), ARGB(255, 0, 0, 0));
+            pdata->m_pdc->Draw3dRect(get_x(), get_y() - m_iBorder - 2, get_cx(), get_cy(), ARGB(255, 128, 128, 128), ARGB(255, 0, 0, 0));
 
          }
       }
