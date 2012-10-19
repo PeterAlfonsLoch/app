@@ -4,7 +4,7 @@
 CLASS_DECL_C Platform::String ^ m_str(const char * psz)
 {
    
-   return wstring(psz);
+   return ref new Platform::String(wstring(psz));
 
 }
 

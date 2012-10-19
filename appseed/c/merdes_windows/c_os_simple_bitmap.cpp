@@ -35,19 +35,27 @@ bool simple_bitmap::create(int cx, int cy, simple_graphics & g, COLORREF ** ppda
    size.width = cx;
    size.height = cy;
 
-   D2D1_BITMAP_PROPERTIES props;
+   D2D1_BITMAP_PROPERTIES1 props;
 
    props.pixelFormat.alphaMode = D2D1_ALPHA_MODE_STRAIGHT;
    props.pixelFormat.format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
    props.dpiX = 72.0;
    props.dpiY = 72.0;
+   props.bitmapOptions = D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CPU_READ;
 
-   g.m_pdc->CreateBitmap(size, props, &m_pbitmap);
+   if(ppdata != NULL)
+   {
+      g.m_pdc->CreateBitmap(size, *ppdata, cx * sizeof(COLORREF), props, &m_pbitmap);
+   }
+   else
+   {
+      g.m_pdc->CreateBitmap(size, NULL, cx * sizeof(COLORREF), props, &m_pbitmap);
+   }
 
    m_pbitmap->Map(D2D1_MAP_OPTIONS_READ | D2D1_MAP_OPTIONS_WRITE, &m_map);
 
    if(ppdata != NULL)
-      *ppdata = (COLORREF) m_map.bits;
+      *ppdata = (COLORREF *) m_map.bits;
 
 
    return true;
@@ -58,22 +66,32 @@ bool simple_bitmap::create(int cx, int cy, simple_graphics & g, COLORREF ** ppda
 bool simple_bitmap::create_from_data(int cx, int cy, COLORREF * pdata, simple_graphics & g)
 {
 
-   UNREFERENCED_PARAMETER(g);
-
-   if(m_pcr != NULL)
+   if(m_pbitmap != NULL)
    {
+
       destroy();
+
    }
 
+   D2D1_SIZE_U size;
 
-   m_pcr = pdata;
+   size.width = cx;
+   size.height = cy;
 
-   //m_hbitmap = ::CreateBitmap(cx, cy, 1, 32, pdata);
+   D2D1_BITMAP_PROPERTIES1 props;
 
-   if(m_pcr == NULL)
-      return false;
+   props.pixelFormat.alphaMode = D2D1_ALPHA_MODE_STRAIGHT;
+   props.pixelFormat.format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
+   props.dpiX = 72.0;
+   props.dpiY = 72.0;
+   props.bitmapOptions = D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CPU_READ;
+
+   g.m_pdc->CreateBitmap(size, pdata, cx * sizeof(COLORREF), props, &m_pbitmap);
+
+   m_pbitmap->Map(D2D1_MAP_OPTIONS_READ | D2D1_MAP_OPTIONS_WRITE, &m_map);
 
    return true;
+
 
 }
 
@@ -82,26 +100,9 @@ bool simple_bitmap::create_from_data(int cx, int cy, COLORREF * pdata, simple_gr
 bool simple_bitmap::destroy()
 {
    
-   if(m_pcr == NULL)
-      return true;
+   m_pbitmap->Unmap();
 
-   bool bOk = true;
-
-   try
-   {
-
-      ca2_free(m_pcr);
-
-   }
-   catch(...)
-   {
-      bOk = false;
-   }
-
-   m_pcr = NULL;
-
-   if(!bOk)
-      return false;
+   m_pbitmap->Release();
 
    return true;
 

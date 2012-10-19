@@ -15,6 +15,7 @@ simple_pen::simple_pen()
    m_estyle = style_solid;
    m_iWidth = 0;
    m_cr = 0;
+   m_psolidbrush = NULL;
    
 }
 
@@ -23,7 +24,7 @@ simple_pen::~simple_pen()
    
 }
 
-bool simple_pen::create_solid(int iWidth, COLORREF cr)
+bool simple_pen::create_solid(simple_graphics & g, int iWidth, COLORREF cr)
 {
    
    m_iStock = -1;
@@ -33,7 +34,8 @@ bool simple_pen::create_solid(int iWidth, COLORREF cr)
    m_iWidth    = iWidth;
    
    m_cr = cr;
-   
+
+   g.m_pdc->CreateSolidColorBrush(c, &m_psolidbrush);
    
    return TRUE;
    
@@ -83,3 +85,8 @@ simple_pen & simple_pen::operator = (const simple_pen & pen)
 }
 
 
+
+ID2D1Brush * simple_pen::get_os_brush()
+{
+   return m_pbrush;
+}

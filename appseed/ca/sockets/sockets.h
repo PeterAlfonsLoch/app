@@ -1,6 +1,13 @@
 #pragma once
 
 
+#ifdef MERDE_WINDOWS
+#define BYESHYTOULA_STYLE_SOCKS
+#else
+#define BSD_STYLE_SOCKETS
+#endif
+
+
 //#include "config.h"
 
 #ifndef _RUN_DP
@@ -272,6 +279,8 @@ namespace sockets {
 
 #endif
 
+#if BSD_STYLE_SOCKETS
+
 namespace sockets
 {
    /** List type containing file descriptors. */
@@ -282,6 +291,8 @@ namespace sockets
 
 } // namespace sockets
 
+
+#endif
 
 // getaddrinfo / getnameinfo replacements
 #ifdef NO_GETADDRINFO
@@ -294,10 +305,12 @@ namespace sockets
 #endif
 
 #include "ca/ca_log.h"
+#ifdef BSD_STYLE_SOCKETS
 #include "basic/ipv4_address.h"
 #include "basic/ipv6_address.h"
 #include "basic/sockets_ssl_client_context.h"
 #include "basic/sockets_ssl_client_context_map.h"
+#endif
 #include "basic/socket.h"
 #include "basic/stream_socket.h"
 #include "basic/sctp_socket.h"

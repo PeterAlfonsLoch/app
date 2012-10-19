@@ -1,5 +1,12 @@
-#pragma once
-
+namespace carlosgustavocecynlundgren
+{
+   namespace camilosasuketsumanuma
+   {
+      namespace ca2
+      {
+      }
+   }
+}
 
 #define CarlosGustavoCecynLundgren "CarlosGustavoCecynLundgren" // 1 000_00000
 #define CamiloSasukeTsumanuma "CamiloSasukeTsumanuma" // 2
@@ -20,3 +27,6 @@
 #define BEGIN_EXTERN_C
 #define END_EXTERN_C
 #endif
+
+#pragma once
+

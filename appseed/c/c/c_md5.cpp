@@ -412,6 +412,8 @@ vsstring get_file_md5_by_map(const char * path)
 
    }
 
+   DWORD dwHigh;
+
 #ifdef AMD64
    
    DWORD64 dwSize = ::GetFileSize(hfile, &dwHigh);

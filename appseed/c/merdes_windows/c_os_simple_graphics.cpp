@@ -1,5 +1,7 @@
 #include "framework.h"
 
+#define d2d1_fax_options D2D1_FACTORY_OPTIONS // fax of merde
+#define single_threaded D2D1_FACTORY_TYPE_SINGLE_THREADED // ???? muliple performance multi thread hidden option there exists cost uses?
 
 simple_graphics::simple_graphics()
 {
@@ -25,7 +27,7 @@ simple_graphics::~simple_graphics()
 
 }
 
-bool simple_graphics::create(ID2D1RenderTarget * pdc)
+bool simple_graphics::create(ID2D1DeviceContext * pdc)
 {
 
    if(m_pdc != NULL)
@@ -37,7 +39,30 @@ bool simple_graphics::create(ID2D1RenderTarget * pdc)
    
    m_pdc = pdc;
 
+   m_iType = 1;
+
    return true;
+
+}
+
+bool simple_graphics::create_device()
+{
+   if(m_iType != 0)
+      destroy();
+
+   if(!create_device())
+
+   TlsGetD2D1Factory1()->CreateDevice(TlsGetDXGIDevice(), &m_pd);
+
+   m_pd->CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS_NONE, &m_pdc);
+
+   if(m_pdc == NULL)
+   {
+      m_pd->Release();
+      m_pdc = NULL;
+      return false;
+   }
+
 
 }
 
@@ -46,30 +71,203 @@ bool simple_graphics::create_from_bitmap(simple_bitmap & b)
 
    if(m_iType != 0)
       destroy();
-   
-   m_hdc = ::CreateCompatibleDC(NULL);
 
-   if(m_hdc == NULL)
+   if(!create_device())
       return false;
 
-   m_hbitmapOld = (HBITMAP) ::SelectObject(m_hdc, b.m_hbitmap);
+   m_pdc->SetTarget(b.m_pbitmap);
 
-   if(m_hbitmapOld == NULL)
-   {
-      
-      ::DeleteDC(m_hdc);
-      
-      m_hdc = NULL;
-
-      return false;
-
-   }
-   
    m_iType = 3;
    
    return true;
 
 }
+
+bool simple_graphics::from_window( Windows::UI::Core::CoreWindow ^ w)
+{
+   // Allocate a descriptor.
+   DXGI_SWAP_CHAIN_DESC1 swapChainDesc = {0};
+   swapChainDesc.Width = 0;                                     // use automatic sizing
+   swapChainDesc.Height = 0;
+   swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;           // this is the most common swapchain format
+   swapChainDesc.Stereo = false; 
+   swapChainDesc.SampleDesc.Count = 1;                          // don't use multi-sampling
+   swapChainDesc.SampleDesc.Quality = 0;
+   swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+   swapChainDesc.BufferCount = 2;                               // use double buffering to enable flip
+   swapChainDesc.Scaling = DXGI_SCALING_NONE;
+   swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL; // all Metro style apps must use this SwapEffect
+   swapChainDesc.Flags = 0;
+
+
+   TlsGetDXGIDevice()->GetAdapter(&m_pad);
+   m_pad->GetParent(IID_PPV_ARGS(&m_pfax))
+
+    // Get the final swap chain for this window from the DXGI factory.
+    m_pfax->CreateSwapChainForCoreWindow(TlsGetD3D11Device1()->Get(), reinterpret_cast<IUnknown*>(w), &swapChainDesc, nullptr,    // allow on all displays
+    &m_swapChain);
+
+        // Ensure that DXGI doesn't queue more than one frame at a time.
+    TlsGetDXGIDevice()->SetMaximumFrameLatency(1)
+
+}
+
+
+ID2D1Factory1 * TlsGetD2D1Factory1()
+{
+
+   ID2D1Factory1 * pfactory = (ID2D1Factory1 *) TlsGetValue(TLS_D2D1_FACTORY1);
+
+   if(pfactory != NULL)
+      return pfactory;
+
+   d2d1_fax_options options;
+   memset(&options, 0, sizeof(options));
+
+   HRESULT hr = ::D2D1CreateFactory(single_threaded, __uuidof(ID2D1Factory1), &options, &pfactory);
+
+   TlsGetValue(TLS_D2D1_FACTORY1, pfactory);
+
+   if(FAILED(hr))
+       return NULL;
+
+   return pfactory;
+
+}
+
+
+ID3D11Device * TlsGetD3D11Device()
+{
+
+   ID3D11Device * pdevice = (ID3D11Device *) TlsGetValue(TLS_d3_1);
+
+   if(pdevice != NULL)
+      return pdevice;
+
+   // This flag adds support for surfaces with a different color channel ordering than the API default.
+   // You need it for compatibility with Direct2D.
+   UINT create = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
+
+
+   // This array defines the set of DirectX hardware feature levels this app  supports.
+   // The ordering is important and you should  preserve it.
+   // Don't forget to declare your app's minimum required feature level in its
+   // description.  All apps are assumed to support 9.1 unless otherwise stated.
+   D3D_FEATURE_LEVEL featurelevel[] = 
+   {
+      D3D_FEATURE_LEVEL_11_1 /*,
+      D3D_FEATURE_LEVEL_11_0,
+      D3D_FEATURE_LEVEL_10_1,
+      D3D_FEATURE_LEVEL_10_0,
+      D3D_FEATURE_LEVEL_9_3,
+      D3D_FEATURE_LEVEL_9_2,
+      D3D_FEATURE_LEVEL_9_1*/
+   };
+
+   D3D_FEATURE_LEVEL lv;
+
+   d2d1_fax_options options;
+   memset(&options, 0, sizeof(options));
+
+   ID3D11DeviceContext * pcontext = NULL;
+
+   HRESULT hr = 
+        D3D11CreateDevice(
+            nullptr,                    // specify null to use the default adapter
+            D3D_DRIVER_TYPE_HARDWARE,
+            0,                          
+            create,              // optionally set debug and Direct2D compatibility flags
+            featurelevel,              // list of feature levels this app can support
+            ARRAYSIZE(featurelevel),   // number of possible feature levels
+            D3D11_SDK_VERSION,          // always set this to D3D11_SDK_VERSION for Metro style apps.
+            &pdevice,                    // returns the Direct3D device created
+            &lv,            // returns feature level of device created
+            &pcontext                    // returns the device immediate context
+            )
+        );
+
+   TlsSetValue(TLS_d3_1, pdevice);
+   TlsSetValue(TLS_d3_2, pcontext);
+
+   if(FAILED(hr))
+       return NULL;
+
+   return pdevice;
+
+}
+
+
+ID3D11DeviceContext * TlsGetD3D11DeviceContext()
+{
+
+   ID3D11DeviceContext * pcontext = (ID3D11DeviceContext *) TlsGetValue(TLS_d3_2);
+
+   if(pcontext != NULL)
+      return pcontext;
+
+   ID3D11Device * pdevice = (ID3D11Device *) TlsGetValue(TLS_d3_1);
+
+   if(pdevice == NULL)
+      return NULL;
+
+   pcontext = (ID3D11DeviceContext *) TlsGetValue(TLS_d3_2);
+
+   if(pcontext == NULL)
+      return NULL;
+   
+   return pcontext;
+
+}
+
+ID3D11Device1 * TlsGetD3D11Device1()
+{
+
+   ID3D11Device1 * pdevice1 = (ID3D11Device1 *) TlsGetValue(TLS_d3_3);
+
+   if(pdevice1 != NULL)
+      return pdevice1;
+
+   ID3D11Device * pdevice = (ID3D11Device *) TlsGetValue(TLS_d3_1);
+
+   if(pdevice == NULL)
+      return NULL;
+
+   HRESULT hr = pdevice->QueryInterface(__uuidof(ID3D11Device1), (IUnknown **) &pdevice1)
+
+   TlsSetValue(TLS_d3_3, pdevice1);
+
+   if(pdevice1 == NULL)
+      return NULL;
+
+   return pdevice1;
+
+}
+
+IDXGIDevice * TlsGetDXGIDevice()
+{
+
+   ID3D11Device * pdxgidevice = (ID3D11Device *) TlsGetValue(TLS_d3_4);
+
+   if(pdxgidevice == NULL)
+      return NULL;
+
+   ID3D11Device1 * pdevice1 = (ID3D11Device1 *) TlsGetValue(TLS_d3_3);
+
+   if(pdevice1 == NULL)
+      return NULL;
+
+   HRESULT hr = pdevice1->QueryInterface(__uuidof(IDXGIDevice), (IUnknown **) &pdxgidevice)
+
+   TlsSetValue(TLS_d3_4, pdxgidevice);
+
+   if(pdxgidevice == NULL)
+      return NULL;
+
+   return pdxgidevice;
+
+}
+
+
 
 bool simple_graphics::detach_bitmap()
 {
@@ -371,6 +569,26 @@ bool simple_graphics::set_text_color(COLORREF cr)
 
 }
 
+bool simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
+{
+
+   switch(emode)
+   {
+   
+   case ::ca::alpha_mode_blend:
+   
+      return SUCCEEDED(m_pdc->SetPrimitiveBlend(D2D1_PRIMITIVE_BLEND_SOURCE_OVER));
+
+   case ::ca::alpha_mode_copy:
+   
+      return SUCCEEDED(m_pdc->SetPrimitiveBlend(D2D1_PRIMITIVE_BLEND_SOURCE_COPY));
+
+   };
+
+   return false;
+
+}
+
 bool simple_graphics::alpha_blend(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf)
 {
 
@@ -382,6 +600,13 @@ void simple_graphics::fill_solid_rect(LPCRECT lpRect, COLORREF clr)
 {
    ::SetBkColor(m_hdc, clr);
    ::ExtTextOut(m_hdc, 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
+}
+
+bool simple_graphics::draw_path(simple_path & path, simple_pen & pen)
+{
+   
+   return SUCCEEDED(m_pdc->DrawGeometry(path.get_os_data(), pen.get_os_brush(), pen.m_iWidth));
+
 }
 
 bool simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
@@ -562,3 +787,5 @@ bool simple_graphics::exclude_clip(ID2D1PathGeometry * ppath)
    return true;
 
 }
+
+

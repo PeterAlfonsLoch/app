@@ -1,5 +1,6 @@
 #include "framework.h"
 
+#define type_shared DWRITE_FACTORY_TYPE_SHARED
 
 simple_font::simple_font()
 {
@@ -119,3 +120,5 @@ IDWriteFactory * TlsGetWriteFactory()
    return pfactory;
 
 }
+
+

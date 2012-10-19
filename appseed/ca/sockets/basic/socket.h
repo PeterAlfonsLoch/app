@@ -210,6 +210,9 @@ namespace sockets
        */
       virtual void Init();
 
+
+#ifdef BSD_STYLE_SOCKETS
+
       /** create a socket file descriptor.
          \param af Address family AF_INET / AF_INET6 / ...
          \param type SOCK_STREAM / SOCK_DGRAM / ...
@@ -222,6 +225,8 @@ namespace sockets
 
       /** Return file descriptor assigned to this socket. */
       SOCKET GetSocket();
+
+#endif
 
       /** close connection immediately - internal use.
          \sa SetCloseAndDelete */
@@ -247,10 +252,10 @@ namespace sockets
 
       /** Set socket non-block operation. */
       bool SetNonblocking(bool);
-
+#ifdef BSD_STYLE_SOCKETS
       /** Set socket non-block operation. */
       bool SetNonblocking(bool, SOCKET);
-
+#endif
       /** Total lifetime of instance. */
       time_t Uptime();
 
@@ -313,7 +318,9 @@ namespace sockets
          \param protocol Protocol number (tcp, udp, sctp, etc)
          \param s socket file descriptor
       */
+#ifdef BSD_STYLE_SOCKETS
       virtual void OnOptions(int family,int type,int protocol,SOCKET s) = 0;
+#endif
       /** Connection retry callback - return false to abort connection attempts */
       virtual bool OnConnectRetry();
       /** a reconnect has been made */
@@ -557,12 +564,13 @@ namespace sockets
       bool IsSSLServer();
       /** Set flag indicating that this is a tcp_socket with incoming SSL connection. */
       void SetSSLServer(bool x = true);
+#ifdef BSD_STYLE_SOCKETS
       /** SSL; get pointer to ssl context structure. */
       virtual SSL_CTX *GetSslContext() { return NULL; }
       /** SSL; get pointer to ssl structure. */
       virtual SSL *GetSsl() { return NULL; }
       //@}
-
+#endif // BSD_STYLE_SOCKETS
       /** Enable ipv6 for this socket. */
       void SetIpv6(bool x = true);
       /** Check ipv6 socket.
@@ -681,8 +689,12 @@ namespace sockets
       void DetachSocket();
       //@}
 
+#ifdef BSD_STYLE_SOCKETS
       /** write traffic to an IFile. socket will not delete this object. */
       void SetTrafficMonitor(ex1::file *p) { m_traffic_monitor = p; }
+      /** All traffic will be written to this IFile, if set. */
+      ex1::file *GetTrafficMonitor() { return m_traffic_monitor; }
+#endif // BSD_STYLE_SOCKETS
 
       /** \name Triggers */
       //@{
@@ -696,15 +708,13 @@ namespace sockets
       virtual void OnCancelled(int id);
       //@}
 
-      /** All traffic will be written to this IFile, if set. */
-      ex1::file *GetTrafficMonitor() { return m_traffic_monitor; }
 
    };
 
-
+#ifdef BSD_STYLE_SOCKETS
    typedef ::collection::map < SOCKET, SOCKET, socket *, socket * > socket_map;
    typedef ::comparable_eq_list < socket * > socket_list;
-
+#endif // BSD_STYLE_SOCKETS
 
 } // namespace sockets
 

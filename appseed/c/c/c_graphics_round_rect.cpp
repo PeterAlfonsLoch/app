@@ -1,6 +1,4 @@
 #include "framework.h"
-#undef new
-#include <gdiplus.h>
 
 
 //
@@ -29,8 +27,6 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-using namespace Gdiplus;
-
 //=============================================================================
 //
 // get_round_rect()
@@ -51,36 +47,38 @@ void graphics_round_rect::get_round_rect(simple_path & path, const RECT & r, int
    if(dia > height(r))	dia = height(r);
 
    // define a corner
-   Rect Corner(r.left, r.top, dia, dia);
+   RECT Corner(rect_dim(r.left, r.top, dia, dia));
 
    // begin path
-   path.m_ppath->Reset();
+//   path.m_ppath->Reset();
 
    // top left
-   path.m_ppath->AddArc(Corner, 180, 90);
+   path.add_arc(Corner, 180, 90);
 
    // tweak needed for radius of 10 (dia of 20)
+   int dia2 = dia;
    if(dia % 2 == 0)
    {
-      Corner.Width += 1;
-      Corner.Height += 1;
-      //height(r) -=1; //height(r) -= 1;
+      dia2++;
    }
 
    // top right
-   Corner.X += (width(r) - dia - 1);
-   path.m_ppath->AddArc(Corner, 270, 90);
+   Corner.left += (width(r) - dia - 1);
+   Corner.right = Corner.left + dia2;
+   path.add_arc(Corner, 270, 90);
 
    // bottom right
-   Corner.Y += (height(r) - dia - 1);
-   path.m_ppath->AddArc(Corner,   0, 90);
+   Corner.top += (height(r) - dia - 1);
+   Corner.bottom = Corner.top + dia2;
+   path.add_arc(Corner,   0, 90);
 
    // bottom left
-   Corner.X -= (width(r) - dia - 1);
-   path.m_ppath->AddArc(Corner,  90, 90);
+   Corner.left -= (width(r) - dia - 1);
+   Corner.right = Corner.left + dia2;
+   path.add_arc(Corner,  90, 90);
 
    // end path
-   path.m_ppath->CloseFigure();
+   path.close_figure();
 }
 
 void graphics_round_rect::get_round_top_left(simple_path & path, const RECT & r, int dia)
@@ -90,45 +88,49 @@ void graphics_round_rect::get_round_top_left(simple_path & path, const RECT & r,
    if(dia > height(r))	dia = height(r);
 
    // define a corner
-   Rect Corner(r.left, r.top, dia, dia);
+   RECT Corner(rect_dim(r.left, r.top, dia, dia));
 
    // begin path
-   path.m_ppath->Reset();
+   //path.m_ppath->Reset();
 
 
    // top left
 //   path.m_ppath->AddArc(Corner, 180, 90);
 
    // tweak needed for radius of 10 (dia of 20)
+   int dia2 = dia;
    if(dia % 2 == 0)
    {
-      Corner.Width += 1;
-      Corner.Height += 1;
+      dia2++;
+      //Corner.Height += 1;
       //height(r) -=1; //height(r) -= 1;
    }
 
    // top right
-   Corner.X += (width(r) - dia - 1);
+   Corner.left += (width(r) - dia - 1);
    //path.m_ppath->AddArc(Corner, 270, 90);
 
    // bottom right
-   Corner.Y += (height(r) - dia - 1);
+   Corner.top += (height(r) - dia - 1);
    //path.m_ppath->AddArc(Corner,   0, 90);
 
    // bottom left
-   Corner.X -= (width(r) - dia - 1);
-   path.m_ppath->AddArc(Corner,  135, 45);
+   Corner.left -= (width(r) - dia - 1);
+   Corner.right = Corner.left + dia2;
+   path.add_arc(Corner,  135, 45);
 
-   path.m_ppath->AddLine(r.left, r.top + height(r) - dia / 2, r.left, r.top + dia / 2);
+   path.add_line(r.left, r.top + height(r) - dia / 2, r.left, r.top + dia / 2);
 
 
-   Corner.Y -= (height(r) - dia - 1);
-   path.m_ppath->AddArc(Corner, 180, 90);
+   Corner.top -= (height(r) - dia - 1);
+   Corner.bottom = Corner.top + dia2;
+   path.add_arc(Corner, 180, 90);
 
-   path.m_ppath->AddLine(r.left + dia / 2, r.top , r.left + width(r) - dia / 2, r.top);
+   path.add_line(r.left + dia / 2, r.top , r.left + width(r) - dia / 2, r.top);
 
-   Corner.X += (width(r) - dia - 1);
-   path.m_ppath->AddArc(Corner, 270, 45);
+   Corner.left += (width(r) - dia - 1);
+   Corner.right = Corner.left + dia2;
+   path.add_arc(Corner, 270, 45);
 
 
    // end path
@@ -144,38 +146,42 @@ void graphics_round_rect::get_round_bottom_right(simple_path & path, const RECT 
    if(dia > height(r))	dia = height(r);
 
    // define a corner
-   Rect Corner(r.left, r.top, dia, dia);
+   RECT Corner(rect_dim(r.left, r.top, dia, dia));
 
    // begin path
-   path.m_ppath->Reset();
+   //path.m_ppath->Reset();
 
 
    // top left
 //   path.m_ppath->AddArc(Corner, 180, 90);
 
    // tweak needed for radius of 10 (dia of 20)
+   int dia2 = dia;
    if(dia % 2 == 0)
    {
-      Corner.Width += 1;
-      Corner.Height += 1;
+      dia2++;
+      //Corner.Height += 1;
       //height(r) -=1; //height(r) -= 1;
    }
 
    // top right
-   Corner.X += (width(r) - dia - 1);
-   path.m_ppath->AddArc(Corner, 315, 45);
+   Corner.left += (width(r) - dia - 1);
+   Corner.right = Corner.left + dia2;
+   path.add_arc(Corner, 315, 45);
 
-   path.m_ppath->AddLine(r.left + width(r), r.top + dia / 2, r.left + width(r), r.top + height(r) - dia / 2);
+   path.add_line(r.left + width(r), r.top + dia / 2, r.left + width(r), r.top + height(r) - dia / 2);
 
    // bottom right
-   Corner.Y += (height(r) - dia - 1);
-   path.m_ppath->AddArc(Corner,   0, 90);
+   Corner.top += (height(r) - dia - 1);
+   Corner.bottom = Corner.top + dia2;
+   path.add_arc(Corner,   0, 90);
 
-   path.m_ppath->AddLine(r.left + dia / 2, r.top + height(r) , r.left + width(r) - dia / 2, r.top + height(r));
+   path.add_line(r.left + dia / 2, r.top + height(r) , r.left + width(r) - dia / 2, r.top + height(r));
 
    // bottom left
-   Corner.X -= (width(r) - dia - 1);
-   path.m_ppath->AddArc(Corner,  90, 45);
+   Corner.left -= (width(r) - dia - 1);
+   Corner.right = Corner.left + dia2;
+   path.add_arc(Corner,  90, 45);
 
    
 
@@ -215,14 +221,14 @@ void graphics_round_rect::draw_round_rect(simple_graphics & g, const RECT & rect
    int dia	= 2*radius;
 
    // set to pixel mode
-   int oldPageUnit = g.m_pgraphics->SetPageUnit(UnitPixel);
+   //int oldPageUnit = g.m_pgraphics->SetPageUnit(UnitPixel);
 
    // define the pen
-   simple_solid_pen pen(cr);
+   simple_solid_pen pen(g, cr);
    //pen.SetAlignment(PenAlignmentCenter);
 
    // get the corner path
-   simple_path path;
+   simple_path path(true);
 
    // get path
    get_round_rect(path, r, dia);
@@ -265,14 +271,14 @@ void graphics_round_rect::draw_top_left(simple_graphics & g, const RECT & rect, 
    int dia	= 2*radius;
 
    // set to pixel mode
-   int oldPageUnit = g.m_pgraphics->SetPageUnit(UnitPixel);
+   //int oldPageUnit = g.m_pgraphics->SetPageUnit(UnitPixel);
 
    // define the pen
-   simple_solid_pen pen(cr);
+   simple_solid_pen pen(g, cr);
    //pen.SetAlignment(PenAlignmentCenter);
 
    // get the corner path
-   simple_path path;
+   simple_path path(false);
 
    // get path
    get_round_top_left(path, r, dia);
@@ -304,7 +310,7 @@ void graphics_round_rect::draw_top_left(simple_graphics & g, const RECT & rect, 
    }
 
    // restore page unit
-   g.m_pgraphics->SetPageUnit((Unit)oldPageUnit);
+//   g.m_pgraphics->SetPageUnit((Unit)oldPageUnit);
 }
 
 void graphics_round_rect::draw_bottom_right(simple_graphics & g, const RECT & rect, COLORREF cr, int radius, int width)
@@ -315,14 +321,14 @@ void graphics_round_rect::draw_bottom_right(simple_graphics & g, const RECT & re
    int dia	= 2*radius;
 
    // set to pixel mode
-   int oldPageUnit = g.m_pgraphics->SetPageUnit(UnitPixel);
+   //int oldPageUnit = g.m_pgraphics->SetPageUnit(UnitPixel);
 
    // define the pen
-   simple_solid_pen pen(cr);
+   simple_solid_pen pen(g, cr);
    //pen.SetAlignment(PenAlignmentCenter);
 
    // get the corner path
-   simple_path path;
+   simple_path path(false);
 
    // get path
    get_round_bottom_right(path, r, dia);
@@ -354,7 +360,7 @@ void graphics_round_rect::draw_bottom_right(simple_graphics & g, const RECT & re
    }
 
    // restore page unit
-   g.m_pgraphics->SetPageUnit((Unit)oldPageUnit);
+//   g.m_pgraphics->SetPageUnit((Unit)oldPageUnit);
 }
 
 //=============================================================================

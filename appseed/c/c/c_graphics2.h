@@ -38,10 +38,10 @@ class CLASS_DECL_c simple_solid_pen :
 public:
 
 
-   simple_solid_pen(COLORREF cr, int iWidth = 1)
+   simple_solid_pen(simple_graphics & g, COLORREF cr, int iWidth = 1)
    {
 
-      create_solid(cr, iWidth);
+      create_solid(g, cr, iWidth);
 
    }
 

@@ -345,7 +345,24 @@ void WINAPI TlsShutdown()
       try
       {
          
-         IDWriteFactory * pfactory = TlsGetWriteFactory()
+         IDWriteFactory * pfactory = TlsGetWriteFactory();
+
+         if(pfactory != NULL)
+         {
+            
+            pfactory->Release();
+
+         }
+
+      }
+      catch(...)
+      {
+      }
+
+      try
+      {
+         
+         ID2D1Factory1 * pfactory = TlsGetD2D1Factory1();
 
          if(pfactory != NULL)
          {

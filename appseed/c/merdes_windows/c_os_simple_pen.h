@@ -21,21 +21,24 @@ public:
    };
    
    
-   int                  m_iStock;
-   e_style              m_estyle;
-   int                  m_iWidth;
-   COLORREF             m_cr;
+   int                     m_iStock;
+   e_style                 m_estyle;
+   int                     m_iWidth;
+   COLORREF                m_cr;
+   ID2D1SolidColorBrush *  m_psolidbrush;
    
    
    simple_pen();
    ~simple_pen();
    
-   bool create_solid(int iWidth, COLORREF cr);
+   bool create_solid(simple_graphics & g, int iWidth, COLORREF cr);
    bool from_stock(int iId);
    
    bool destroy();
    
    simple_pen & operator = (const simple_pen & pen);
+
+   ID2D1Brush * get_os_brush();
    
 };
 
