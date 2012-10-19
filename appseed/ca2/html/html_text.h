@@ -47,8 +47,8 @@ namespace html
 
          virtual strsize char_hit_test(::ca::graphics * pdc, int x, int y);
 
-         virtual int get_first_line_height();
-         virtual int get_last_line_height();
+         virtual float get_first_line_height();
+         virtual float get_last_line_height();
 
          virtual void _001OnAfterChangeText();
 

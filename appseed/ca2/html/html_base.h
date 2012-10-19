@@ -19,20 +19,19 @@ namespace html
    public:
 
 
-      class tag *             m_ptagParent;
-
-
-      base(tag * pparent);
-      virtual ~base();
-
       enum type
       {
          type_value,
          type_tag,
       };
 
-      virtual type get_type() const = 0;
+      class tag *             m_ptagParent;
 
+
+      base(tag * pparent);
+      virtual ~base();
+
+      virtual type get_type() const = 0;
 
       class tag * parent();
 

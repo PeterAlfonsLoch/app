@@ -28,7 +28,7 @@ namespace impl
       comparable_array < table_row * > m_rowptra;
       base_array < column > m_columna;
 
-      void set_cell(point pt, cell * pcell);
+      void set_cell(int iCol, int iRow, cell * pcell);
 
       virtual void implement_phase2(data * pdata);
       virtual void layout_phase3(data * pdata);

@@ -54,9 +54,8 @@ namespace html
       {
          elemental::layout_phase3(pdata);
          point pointBound = get_bound_point();
-         m_size.cx = 200;
-         m_size.cy = 23;
-         m_pt.y += pdata->m_layoutstate.m_cy;
+         m_box.set_size(200, 23);
+         m_box.offset_y(pdata->m_layoutstate.m_cy);
          pdata->m_layoutstate.m_y    = get_y();
          pdata->m_layoutstate.m_cy   = 23;
          pdata->m_layoutstate.m_x    += pdata->m_layoutstate.m_cx;

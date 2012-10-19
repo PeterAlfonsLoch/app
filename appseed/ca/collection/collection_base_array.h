@@ -245,6 +245,8 @@ public:
 
    // Potentially growing the base_array
    void set_at_grow(index nIndex, ARG_TYPE newElement);
+   TYPE & element_at_grow(index nIndex);
+   TYPE get_at_grow(index nIndex);
    virtual index add_new(::count count);
    virtual index add(ARG_TYPE newElement);
    virtual TYPE & add_new();
@@ -844,6 +846,27 @@ void base_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
    if (nIndex >= m_nSize)
       set_size(nIndex+1, -1);
    m_pData[nIndex] = newElement;
+}
+
+template<class TYPE, class ARG_TYPE>
+TYPE base_array<TYPE, ARG_TYPE>::get_at_grow(index nIndex)
+{
+   return element_at_grow(nIndex);
+}
+
+
+template<class TYPE, class ARG_TYPE>
+TYPE & base_array<TYPE, ARG_TYPE>::element_at_grow(index nIndex)
+{
+   ASSERT_VALID(this);
+   ASSERT(nIndex >= 0);
+
+   if(nIndex < 0)
+      throw invalid_argument_exception(get_app());
+
+   if (nIndex >= m_nSize)
+      set_size(nIndex+1, -1);
+   return m_pData[nIndex];
 }
 
 template<class TYPE, class ARG_TYPE>

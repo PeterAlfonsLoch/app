@@ -401,6 +401,9 @@
     <ClInclude Include="c\c_time.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
+    <ClInclude Include="c\c_graphics2.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">

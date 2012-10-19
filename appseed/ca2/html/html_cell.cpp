@@ -64,12 +64,12 @@ namespace html
 
          int lMax = 0;
          int lMin = 0;
-         if(pcellParent->m_ptaPopulation.get_size() > 0)
+         if(pcellParent->is_tag())
          {
-            if(pcellParent->m_ptaPopulation[0].x < get_table()->m_columna.get_size())
+            if(pcellParent->m_iColBeg < get_table()->m_columna.get_size())
             {
-               lMax = get_table()->m_columna[pcellParent->m_ptaPopulation[0].x].m_cxMax;
-               lMin = get_table()->m_columna[pcellParent->m_ptaPopulation[0].x].m_cxMin;
+               lMax = get_table()->m_columna[pcellParent->m_iColBeg].m_cxMax;
+               lMin = get_table()->m_columna[pcellParent->m_iColBeg].m_cxMin;
             }
          }
          int cxMax;
@@ -140,8 +140,8 @@ namespace html
          if(iTableBorder > 0)
          {
             iTableBorder += 2;
-            size.cx = iColumnWidth - (pcellParent->m_ptaPopulation.last_element().x == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
-            size.cy -= (pcellParent->m_ptaPopulation.last_element().y == get_table()->m_rowptra.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
+            size.cx = iColumnWidth - (pcellParent->m_iColEnd == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
+            size.cy -= (pcellParent->m_iRowEnd == get_table()->m_rowptra.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
          }
          else
          {
@@ -152,13 +152,13 @@ namespace html
          //}
          set_bound_size(pdata, size);
          point pointBound = pcellParent->get_bound_point();
-         int l = pointBound.x  + get_table()->m_iBorder * (pcellParent->m_ptaPopulation.first_element().x + 1);
+         int l = pointBound.x  + get_table()->m_iBorder * (pcellParent->m_iColBeg + 1);
          if(get_row() != NULL)
          {
             l = get_row()->get_bound_point().x;
-            if(pcellParent->m_ptaPopulation.get_size() > 0)
+            if(pcellParent->is_tag())
             {
-               for(int i = 0; i < pcellParent->m_ptaPopulation[0].x; i++)
+               for(int i = 0; i < pcellParent->m_iColBeg; i++)
                {
                   if(!get_row()->m_cellholdera[i].is_null())
                   {
@@ -166,7 +166,7 @@ namespace html
                   }
                }
             }
-            l += get_table()->m_iBorder * (pcellParent->m_ptaPopulation.first_element().x + 1);
+            l += get_table()->m_iBorder * (pcellParent->m_iColBeg + 1);
             pointBound.x = l;
          }
          set_bound_point(pdata, pointBound);
@@ -221,19 +221,19 @@ namespace html
          if(prow == NULL)
             return;
 
-         for(int j = 0; j < m_iRowSpan; j++)
-         {
-            for(int i = 0; i < m_iColSpan; i++)
-            {
-               point pt(get_min_col() + i, prow->m_iIndex + j);
-               m_ptaPopulation.add(pt);
-            }
-         }
 
-         for(int i = 0; i < m_ptaPopulation.get_size(); i++)
+         m_iColBeg = get_min_col();
+         m_iColEnd = m_iColBeg + m_iColSpan - 1;
+         m_iRowBeg = prow->m_iIndex;
+         m_iRowEnd = m_iRowBeg + m_iRowSpan - 1;
+
+         for(int iCol = m_iColBeg; iCol <= m_iColEnd; iCol++)
          {
-            ptable->set_cell(m_ptaPopulation[i], this);
-            prow->set_cell(m_ptaPopulation[i], this);
+            for(int iRow = m_iRowBeg; iRow <= m_iRowEnd; iRow++)
+            {
+               ptable->set_cell(iCol, iRow, this);
+               prow->set_cell(iCol, iRow, this);
+            }
          }
 
          while(ptable->m_columna.get_size() < prow->m_cellholdera.get_size())
@@ -245,7 +245,7 @@ namespace html
          {
             // if first cell in this column has a width,
             // copy this cell width
-            cell * pcellFirst = ptable->m_cellholdera[m_ptaPopulation[0].x][0].m_pcell;
+            cell * pcellFirst = ptable->m_cellholdera[m_iColBeg][0].m_pcell;
             if(pcellFirst != NULL && pcellFirst->m_flags.is_signalized(FlagWidth))
             {
                m_flags.signalize(FlagWidth);
@@ -354,20 +354,29 @@ namespace html
 
       cell::holder::holder()
       {
-         m_pcell = NULL;
-         m_pt = point(-1, -1);
+         
+         m_pcell  =   NULL;
+         m_iCol      = -1;
+         m_iRow      = -1;
+
       }
 
-      cell::holder::holder(point pt)
+      cell::holder::holder(int iCol, int iRow)
       {
-         m_pcell = NULL;
-         m_pt = pt;
+
+         m_pcell     = NULL;
+         m_iCol      = iCol;
+         m_iRow      = iRow;
+
       }
 
-      cell::holder::holder(cell * pcell, point pt)
+      cell::holder::holder(cell * pcell, int iCol, int iRow)
       {
-         m_pcell = pcell;
-         m_pt = pt;
+
+         m_pcell     = pcell;
+         m_iCol      = iCol;
+         m_iRow      = iRow;
+
       }
 
       cell::holder::holder(const class holder & holder)
@@ -382,12 +391,18 @@ namespace html
 
       cell::holder & cell::holder::operator = (const class holder & holder)
       {
+
          if(&holder != this)
          {
-            m_pcell  = holder.m_pcell;
-            m_pt     = holder.m_pt;
+
+            m_pcell     = holder.m_pcell;
+            m_iCol     = holder.m_iCol;
+            m_iRow     = holder.m_iRow;
+
          }
+
          return *this;
+
       }
 
       void cell::_001OnDraw(data * pdata)
@@ -412,6 +427,21 @@ namespace html
 
       }
 
+      bool cell::contains_column(int iCol)
+      {
+         return iCol >= m_iColBeg && iCol <= m_iColEnd;
+      }
+
+      bool cell::contains_row(int iRow)
+      {
+         return iRow >= m_iRowBeg && iRow <= m_iRowEnd;
+      }
+
+      bool cell::contains_cell(int iCol, int iRow)
+      {
+         return contains_column(iCol) && contains_row(iRow);
+      }
+
       int cell::calc_width()
       {
          if(m_pelemental->m_pbase->get_type() == ::html::base::type_value)
@@ -431,13 +461,10 @@ namespace html
             {
                cxMax = get_table()->m_columna[iColumn].m_cxMax;
                sMax += cxMax;
-               for(int j = 0; j < m_ptaPopulation.get_count(); j++)
+               if(contains_column(iColumn))
                {
-                  if(iColumn == m_ptaPopulation[j].x)
-                  {
-                     cellMax += cxMax;
-                     break;
-                  }
+                  cellMax += cxMax;
+                  break;
                }
             }
             int W = get_table()->calc_width();

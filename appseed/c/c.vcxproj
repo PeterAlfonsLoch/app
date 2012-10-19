@@ -1053,6 +1053,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClInclude Include="c\c_count.h" />
     <ClInclude Include="c\c_cpu_architecture.h" />
     <ClInclude Include="c\c_graphics.h" />
+    <ClInclude Include="c\c_graphics2.h" />
     <ClInclude Include="c\c_graphics_round_rect.h" />
     <ClInclude Include="c\c_heap.h" />
     <ClInclude Include="c\c_logic.h" />

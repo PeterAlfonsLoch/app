@@ -4,28 +4,40 @@
 namespace html
 {
 
+
    namespace impl
    {
+
+
       class table;
       class table_row;
+
 
       class CLASS_DECL_ca2 cell : public text
       {
       public:
 
+
          class CLASS_DECL_ca2 holder
          {
          public:
+
+            
+            int m_iCol;
+            int m_iRow;
+
+
             holder();
-            holder(point pt);
-            holder(cell * pcell, point pt);
+            holder(int iCol, int iRow);
+            holder(cell * pcell, int iCol, int iRow);
             holder(const class holder & holder);
             ::html::impl::cell *   m_pcell;
-            point                m_pt;
 
             bool is_null();
 
             holder & operator = (const class holder & holder);
+
+
          };
 
          cell(::ca::application * papp);
@@ -46,7 +58,10 @@ namespace html
          // |        |                  |
          // -----------------------------
          // population: (1, 1), (1, 2), (2, 1), (2, 2)
-         base_array < point, point & > m_ptaPopulation; 
+         int m_iColBeg;
+         int m_iRowBeg;
+         int m_iColEnd;
+         int m_iRowEnd;
          
          
          double m_dWidth;
@@ -73,6 +88,11 @@ namespace html
 
 
          virtual int calc_width();
+
+
+         virtual bool contains_column(int iCol);
+         virtual bool contains_row(int iRow);
+         virtual bool contains_cell(int iCol, int iRow);
 
 
       };

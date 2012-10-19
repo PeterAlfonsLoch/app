@@ -4,15 +4,35 @@
 namespace html
 {
 
+
    class CLASS_DECL_ca2 size
    {
    public:
+
 
       float    cx;
       float    cy;
 
 
+      inline size();
+      inline size(float cx, float cy);
+
    };
 
 
+   inline size::size()
+   {
+      cx = 0.0f;
+      cy = 0.0f;
+   }
+
+   inline size::size(float cx, float cy)
+   {
+      this->cx = cx;
+      this->cy = cy;
+   }
+
+
 } // namespace html
+
+

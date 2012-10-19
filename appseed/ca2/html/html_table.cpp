@@ -93,8 +93,8 @@ namespace html
          {
             cy += m_rowptra[i]->m_cyMax;
          }
-         m_size.cx = cx;
-         m_size.cy = cy;
+         m_box.right    = m_box.left   + cx;
+         m_box.bottom   = m_box.top    + cy;
       }
 
 
@@ -104,24 +104,11 @@ namespace html
          m_cxMin = -2;
       }
 
-      void table::set_cell(point pt, cell * pcell)
+      void table::set_cell(int iRow, int iCol, cell * pcell)
       {
-         while(pt.x >= m_cellholdera.get_size())
-         {
-            m_cellholdera.add_new();
-         }
-         for(int i = 0; i < m_cellholdera.get_size(); i++)
-         {
-            while(pt.y >= m_cellholdera[i].get_size())
-            {
-               m_cellholdera[i].add(
-                  cell::holder(
-                     point(
-                        i,
-                        m_cellholdera[i].get_size())));
-            }
-         }
-         m_cellholdera[pt.x][pt.y].m_pcell = pcell;
+         
+         m_cellholdera.set_at_grow(iCol).set_at_grow(iRow).m_pcell = pcell;
+
       }
 
       void table::_001OnDraw(data * pdata)

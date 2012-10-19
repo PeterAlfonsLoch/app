@@ -73,27 +73,27 @@ namespace html
          virtual bool has_link();
          virtual string link();
 
-         bool hit_test(data * pdata, point pt);
-         double bound_hit_test(data * pdata, point pt);
+         bool hit_test(data * pdata, ::point pt);
+         double bound_hit_test(data * pdata, ::point pt);
 
 
-         virtual int get_x();
-         virtual int get_y();
-         virtual int get_cx();
-         virtual int get_cy();
-         virtual int get_first_line_height();
-         virtual int get_last_line_height();
+         virtual float get_x();
+         virtual float get_y();
+         virtual float get_cx();
+         virtual float get_cy();
+         virtual float get_first_line_height();
+         virtual float get_last_line_height();
          virtual size get_bound_size();
          virtual void set_bound_size(data * pdoc, size size);
          virtual point get_bound_point();
          virtual void set_bound_point(data * pdoc, point point);
-         virtual void set_x(data * pdoc, int x);
-         virtual void set_y(data * pdoc, int y);
-         virtual void set_cx(data * pdoc, int cx);
-         virtual void set_cy(data * pdoc, int cy);
-         virtual void set_xy(data * pdoc, int x, int y);
-         virtual void set_cxy(data * pdoc, int cx, int cy);
-         virtual void set_pos(data * pdoc, int x, int y, int cx, int cy);
+         virtual void set_x(data * pdoc, float x);
+         virtual void set_y(data * pdoc, float y);
+         virtual void set_cx(data * pdoc, float cx);
+         virtual void set_cy(data * pdoc, float cy);
+         virtual void set_xy(data * pdoc, float x, float y);
+         virtual void set_cxy(data * pdoc, float cx, float cy);
+         virtual void set_pos(data * pdoc, float x, float y, float cx, float cy);
 
          ::html::elemental * m_pelemental;
          virtual void _001OnDraw(data * pdoc);
@@ -113,6 +113,9 @@ namespace html
 
          virtual int calc_width();
          virtual bool use_in_final_layout(::html::impl::elemental * pimplChild);
+
+         virtual bool is_tag();
+         virtual bool is_value();
 
       };
    } // namespace impl
@@ -142,15 +145,17 @@ namespace html
 
 
       style                m_style;
+      base_array < elemental *, elemental * > m_elementalptra;
+
 
       elemental * get_element_by_name(id id);
       elemental * get_element_by_id(id id);
 
-      virtual elemental * hit_test(data * pdoc, point pt);
-      virtual elemental * bound_hit_test(data * pdoc, point pt);
-      virtual elemental * bound_hit_test(data * pdoc, point pt, double & dMin);
+      virtual elemental * hit_test(data * pdoc, ::point pt);
+      virtual elemental * bound_hit_test(data * pdoc, ::point pt);
+      virtual elemental * bound_hit_test(data * pdoc, ::point pt, double & dMin);
 
-      base_array < elemental *, elemental * > m_elementalptra;
+      
       virtual void implement(data * pdoc);
       virtual void layout(data * pdoc);
       

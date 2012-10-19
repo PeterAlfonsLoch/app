@@ -20,25 +20,32 @@ void trim001(string & str)
    }
 }
 
+
 namespace html
 {
 
+
    namespace impl
    {
-      elemental::elemental() :
-         m_pt(0, 0),
-         m_size(0, 0)
+
+
+      elemental::elemental()
       {
+
          m_cxMax              = -2;
          m_cxMin              = -2;
          m_bHoverEvaluated    = false;
          m_bHasHover          = false;
          m_bHover             = false;
+
       }
+
 
       elemental::~elemental()
       {
+
       }
+
 
       void elemental::delete_implementation()
       {
@@ -46,41 +53,40 @@ namespace html
          m_cxMin = -2;
       }
 
-      bool elemental::hit_test(data * pdata, point pt)
+      bool elemental::hit_test(data * pdata,:: point pt)
       {
          UNREFERENCED_PARAMETER(pdata);
-         if(pt.x > m_pt.x && pt.x < m_pt.x + m_size.cx)
-            if(pt.y > m_pt.y && pt.y < m_pt.y + m_size.cy)
+         if(m_box.contains(pt))
                return true;
          return false;
       }
 
-      double elemental::bound_hit_test(data * pdata, point pt)
+      double elemental::bound_hit_test(data * pdata, ::point pt)
       {
          UNREFERENCED_PARAMETER(pdata);
          double dx;
          double dy;
 
-         if(pt.x < m_pt.x)
+         if(pt.x < m_box.left)
          {
-            dx = m_pt.x - pt.x;
+            dx = m_box.left - pt.x;
          }
-         else if(pt.x > m_pt.x + m_size.cx)
+         else if(pt.x > m_box.right)
          {
-            dx = pt.x - (m_pt.x + m_size.cx);
+            dx = pt.x - m_box.right;
          }
          else
          {
             dx = 0;
          }
 
-         if(pt.y < m_pt.y)
+         if(pt.y <m_box.top)
          {
-            dy = m_pt.y - pt.y;
+            dy = m_box.top - pt.y;
          }
-         else if(pt.y > m_pt.y + m_size.cy)
+         else if(pt.y > m_box.bottom)
          {
-            dy = pt.y - (m_pt.y + m_size.cy);
+            dy = pt.y - m_box.bottom;
          }
          else
          {
@@ -213,10 +219,7 @@ namespace html
          if(strTag == "body")
          {
             rect rect;
-            rect.left = m_pt.x;
-            rect.top = m_pt.y;
-            rect.right = rect.left + m_size.cx;
-            rect.bottom = rect.top + m_size.cy;
+            m_box.get(rect);
             COLORREF cr;
             double d;
             if(m_pelemental->m_style.get_alpha(NULL, pdata, m_pelemental, d))
@@ -272,39 +275,39 @@ namespace html
          UNREFERENCED_PARAMETER(pdata);
       }
 
-      int elemental::get_y()
+      float elemental::get_y()
       {
-         return m_pt.y;
+         return m_box.top;
       }
 
-      int elemental::get_x()
+      float elemental::get_x()
       {
-         return m_pt.x;
+         return m_box.left;
       }
 
-      int elemental::get_cy()
+      float elemental::get_cy()
       {
-         return m_size.cy;
+         return m_box.get_cy();
       }
 
-      int elemental::get_first_line_height()
+      float elemental::get_first_line_height()
       {
-         return m_size.cy;
+         return m_box.get_cy();
       }
 
-      int elemental::get_last_line_height()
+      float elemental::get_last_line_height()
       {
-         return m_size.cy;
+         return m_box.get_cy();
       }
 
-      int elemental::get_cx()
+      float elemental::get_cx()
       {
-         return m_size.cx;
+         return m_box.get_cx();
       }
 
       size elemental::get_bound_size()
       {
-         return m_sizeBound;
+         return m_bound.size();
       }
 
       void elemental::set_bound_size(data * pdata, size size)
@@ -1459,7 +1462,7 @@ namespace html
       m_pimpl->OnLButtonUp(pobj);
    }
 
-   elemental * elemental::hit_test(data * pdata, point pt)
+   elemental * elemental::hit_test(data * pdata, ::point pt)
    {
       if(m_pimpl != NULL)
       {
@@ -1589,6 +1592,22 @@ namespace html
          str += get_tag_name();
          str += ">";
       }
+
+      bool elemental::is_tag()
+      {
+
+         return m_pelemental->m_pbase->get_type() == ::html::base::type_tag;
+
+      }
+
+
+      bool elemental::is_value()
+      {
+
+         return m_pelemental->m_pbase->get_type() == ::html::base::type_value;
+
+      }
+
    }
 
 } // namespace html

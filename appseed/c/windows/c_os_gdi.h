@@ -27,4 +27,5 @@ namespace Gdiplus
 #include "c_os_simple_graphics.h"
 
 
+#include "c_graphics2.h"
 
