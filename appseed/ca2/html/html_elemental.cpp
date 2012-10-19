@@ -1021,7 +1021,8 @@ namespace html
       }
       m_pimpl->final_layout(pdata);
       if((m_pbase->get_type() == ::html::base::type_value
-      && strTag != "tbody")
+      && strTag != "tbody"
+      && strTag != "tr")
       || (m_pbase->get_type() == ::html::base::type_tag
       && strTag == "tr"))
       {
@@ -1040,17 +1041,10 @@ namespace html
          else if(strTag == "tr")
          {
             pdata->m_layoutstate.m_bLastCellY = true;
-            //pdata->m_layoutstate.m_y = m_pimpl->get_y() + m_pimpl->get_cy();
-            pdata->m_layoutstate.m_cy = m_pimpl->get_cy();
+            pdata->m_layoutstate.m_y = m_pimpl->get_y() + m_pimpl->get_cy();
+            pdata->m_layoutstate.m_cy = 0;
             pdata->m_layoutstate.m_cx = 0;
-            if(m_pparent != NULL)
-            {
-               pdata->m_layoutstate.m_x = m_pparent->m_pimpl->get_x();
-            }
-            else
-            {
-               pdata->m_layoutstate.m_x = 0;
-            }
+            pdata->m_layoutstate.m_x = m_pimpl->get_x() + m_pimpl->get_cx();
          }
          else if(m_style.m_propertyset["display"] == "block"
              || m_style.m_propertyset["display"] == "table")
