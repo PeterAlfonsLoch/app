@@ -1010,7 +1010,10 @@
     <ClInclude Include="hi5\hi5.h" />
     <ClInclude Include="hi5\net\hi5_net.h" />
     <ClInclude Include="hi5\net\hi5_net_twitter_authorization.h" />
+    <ClInclude Include="html\html_box.h" />
     <ClInclude Include="html\html_form.h" />
+    <ClInclude Include="html\html_point.h" />
+    <ClInclude Include="html\html_size.h" />
     <ClInclude Include="mail\mail_list_interface.h" />
     <ClInclude Include="mail\mail_tree_data.h" />
     <ClInclude Include="mail\mail_tree_item.h" />
@@ -1253,8 +1256,6 @@
     <ClInclude Include="html\html_attribute.h" />
     <ClInclude Include="html\html_base.h" />
     <ClInclude Include="html\html_ex.h" />
-    <ClInclude Include="html\html_form_view.h" />
-    <ClInclude Include="html\html_frame.h" />
     <ClInclude Include="html\html_reader.h" />
     <ClInclude Include="html\html_tag.h" />
     <ClInclude Include="html\html_value.h" />

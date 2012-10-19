@@ -593,12 +593,6 @@
     <ClInclude Include="html\html_ex.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
-    <ClInclude Include="html\html_form_view.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_frame.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
     <ClInclude Include="html\html_reader.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
@@ -1624,6 +1618,15 @@
     </ClInclude>
     <ClInclude Include="userhtml\userhtml_document.h">
       <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_size.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_box.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_point.h">
+      <Filter>Header Files\html</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

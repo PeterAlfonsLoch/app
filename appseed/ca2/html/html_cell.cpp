@@ -395,7 +395,7 @@ namespace html
 
          text::_001OnDraw(pdata);
 
-         if(m_pelemental->m_pbase->get_type() != ::html::base::type_value)
+         if(m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
             return;
 
          if(get_table()->m_iBorder > 0)

@@ -36,7 +36,16 @@ namespace html
    {
       class CLASS_DECL_ca2 elemental
       {
+      protected:
+
+         box               m_box;
+         box               m_bound;
+         box               m_padding;
+         box               m_border;
+         box               m_margin;
+
       public:
+
          e_position        m_eposition;
          flags < e_flag >  m_flags;
          int               m_cxMax;
@@ -105,11 +114,6 @@ namespace html
          virtual int calc_width();
          virtual bool use_in_final_layout(::html::impl::elemental * pimplChild);
 
-      protected:
-         point m_pt;
-         size m_size;
-         point m_ptBound;
-         size m_sizeBound;
       };
    } // namespace impl
 

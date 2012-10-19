@@ -204,7 +204,7 @@ namespace html
             string strLine;
             unsigned char uch;
             strsize iLastSpace = 0;
-            point pointBound = get_bound_point();
+            point pointBound(get_x(), get_y());
             int x = m_pt.x;
             size sizeBound = get_bound_size();
             for(int i = 0; i < str.get_length();)
