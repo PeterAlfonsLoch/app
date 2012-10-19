@@ -41,14 +41,13 @@ namespace html
          {
             ptable->m_rowptra.add_unique(this);
          }
-         for(int i = 0; i < get_table()->m_cellholdera.get_size(); i++)
+         for(int iCol = 0; iCol < get_table()->m_cellholdera.get_size(); iCol++)
          {
-            for(int j = 0; j < get_table()->m_cellholdera[i].get_size(); j++)
+            for(int iRow = 0; iRow < get_table()->m_cellholdera[i].get_size(); iRow++)
             {
-               point pt = get_table()->m_cellholdera[i][j].m_pt;
-               if(pt.y == m_iIndex)
+               if(ptable->m_cellholdera[iCol][iRow].m_iCol == m_iIndex)
                {
-                  m_cellholdera.set_at_grow(pt.x, get_table()->m_cellholdera[i][j]);
+                  m_cellholdera.set_at_grow(ptable->m_cellholdera[iCol][iRow].m_iCol, get_table()->m_cellholdera[i][j]);
                }
             }
          }

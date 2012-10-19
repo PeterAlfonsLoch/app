@@ -14,7 +14,7 @@ namespace html
       public:
 
 
-         index                         m_iIndex;
+         index                         m_iRow;
          int                           m_cyMin;
          int                           m_cyMax;
          base_array < cell::holder >   m_cellholdera;

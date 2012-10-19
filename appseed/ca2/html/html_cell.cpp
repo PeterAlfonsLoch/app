@@ -238,7 +238,7 @@ namespace html
 
          while(ptable->m_columna.get_size() < prow->m_cellholdera.get_size())
          {
-            ptable->m_columna.add(table::column());
+            ptable->m_columna.add(table::column(ptable->m_columna.get_size()));
          }
 
          if(prow->m_iIndex > 0)

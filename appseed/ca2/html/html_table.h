@@ -17,9 +17,14 @@ namespace impl
       class CLASS_DECL_ca2 column
       {
       public:
+
+         int      m_iCol;
+         int      m_cxMax;
+         int      m_cxMin;
+
          column();
-         int m_cxMax;
-         int m_cxMin;
+         column(int iCol);
+
       };
 
       int m_iBorder;

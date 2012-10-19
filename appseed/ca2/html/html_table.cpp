@@ -97,11 +97,18 @@ namespace html
          m_box.bottom   = m_box.top    + cy;
       }
 
-
       table::column::column()
       {
-         m_cxMax = -2;
-         m_cxMin = -2;
+         m_iCol   = -1;
+         m_cxMax  = -2;
+         m_cxMin  = -2;
+      }
+
+      table::column::column(int iCol)
+      {
+         m_iCol   = iCol;
+         m_cxMax  = -2;
+         m_cxMin  = -2;
       }
 
       void table::set_cell(int iRow, int iCol, cell * pcell)

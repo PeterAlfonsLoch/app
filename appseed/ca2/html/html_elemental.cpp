@@ -307,7 +307,7 @@ namespace html
 
       size elemental::get_bound_size()
       {
-         return m_bound.size();
+         return m_bound.get_cxy();
       }
 
       void elemental::set_bound_size(data * pdata, size size)
