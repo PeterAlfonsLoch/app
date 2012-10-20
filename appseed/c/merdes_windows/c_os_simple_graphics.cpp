@@ -101,14 +101,19 @@ bool simple_graphics::from_window( Windows::UI::Core::CoreWindow ^ w)
 
 
    TlsGetDXGIDevice()->GetAdapter(&m_pad);
-   m_pad->GetParent(IID_PPV_ARGS(&m_pfax))
 
-    // Get the final swap chain for this window from the DXGI factory.
-    m_pfax->CreateSwapChainForCoreWindow(TlsGetD3D11Device1()->Get(), reinterpret_cast<IUnknown*>(w), &swapChainDesc, nullptr,    // allow on all displays
-    &m_swapChain);
+   m_pad->GetParent(IID_PPV_ARGS(&m_pfax));
+
+   // Get the final swap chain for this window from the DXGI factory.
+   /*m_pfax->CreateSwapChainForCoreWindow(
+      TlsGetD3D11Device1()->Get(), 
+      reinterpret_cast<IUnknown*>(w), 
+      &swapChainDesc, 
+      nullptr,    // allow on all displays
+      &m_swapChain);*/
 
         // Ensure that DXGI doesn't queue more than one frame at a time.
-    TlsGetDXGIDevice()->SetMaximumFrameLatency(1)
+   //TlsGetDXGIDevice()->SetMaximumFrameLatency(1)
 
 }
 
@@ -609,6 +614,18 @@ bool simple_graphics::draw_path(simple_path & path, simple_pen & pen)
 
 }
 
+bool simple_graphics::fill_path(simple_path & path, simple_brush & brush)
+{
+   
+   return SUCCEEDED(m_pdc->DrawGeometry(path.get_os_data(), brush.get_os_brush(), pen.m_iWidth));
+
+}
+
+bool simple_graphics::fill_polygon(LPPOINT lpa, int iCount, ::ca::e_fill_mode emode)
+{
+   m_pgraphics->FillPolygon();
+}
+
 bool simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
 {
    WCHAR * pwsz = utf8_to_16(pszUtf8);
@@ -630,6 +647,49 @@ bool simple_graphics::draw_line(simple_pen * ppen, int x1, int y1, int x2, int y
    p2.x = (FLOAT) x2;
    p2.y = (FLOAT) y2;
    m_pdc->DrawLine(p1, p2, b.get_os_data(), ppen->m_iWidth);
+}
+
+bool simple_graphics::replace_clip(const RECT & rect)
+{
+   
+   if(m_player != NULL)
+   {
+
+      m_pdc->PopLayer();
+      m_player->Release();
+      m_player = NULL;
+   }
+
+   if(m_pclip != NULL)
+   {
+      m_pclip->Release();
+      m_pclip = NULL;
+   }
+
+   simple_path path(true);
+
+   path.add_rect(rect);
+
+   if(path.get_os_data() == NULL)
+      return true;
+
+   path.get_os_data()->AddRef();
+
+   m_pclip = path.get_os_data();
+
+   HRESULT hr = m_pdc->CreateLayer(NULL, &m_player);
+
+   if(FAILED(hr) || m_player == NULL)
+   {
+      m_pclip->Release();
+      m_pclip = NULL;
+      return false;
+   }
+
+   m_pdc->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), m_pclip), m_player);
+
+   return true;
+
 }
 
 

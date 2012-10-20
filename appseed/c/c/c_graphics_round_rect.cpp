@@ -380,7 +380,7 @@ void graphics_round_rect::draw_bottom_right(simple_graphics & g, const RECT & re
 void graphics_round_rect::fill_round_rect(simple_graphics & g, const RECT & r, COLORREF cr, int radius)
 {
 
-   simple_solid_brush br(cr, g);
+   simple_solid_brush br(g, cr);
 
    fill_round_rect(g, br, r, cr, radius);
 
@@ -410,11 +410,11 @@ void graphics_round_rect::fill_round_rect(simple_graphics & g, simple_brush & br
    //int oldPageUnit = g.m_pgraphics->SetPageUnit(UnitPixel);
 
    // define the pen
-   simple_solid_pen pen(border);
+   simple_solid_pen pen(g, border);
    //pen.SetAlignment(PenAlignmentCenter);
 
    // get the corner path
-   simple_path path;
+   simple_path path(true);
 
    // get path
    get_round_rect(path, r, dia);

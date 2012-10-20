@@ -185,3 +185,49 @@ bool simple_path::close_figure()
    return true;
 
 }
+
+
+bool simple_path::add_rect(const RECT & rect)
+{
+   
+   D2D1_POINT_2F pt;
+
+   pt.x = rect.left;
+   pt.y = rect.top;
+
+   if(m_psink == NULL)
+   {
+      
+      m_ppath->Open(&m_psink);
+
+      m_psink->BeginFigure(pt, m_bFill ? D2D1_FIGURE_BEGIN_FILLED : D2D1_FIGURE_BEGIN_HOLLOW);
+
+   }
+   else
+   {
+
+      m_psink->AddLine(pt);
+
+   }
+
+   pt.x = rect.right;
+   pt.y = rect.top;
+
+   m_psink->AddLine(pt);
+
+   pt.x = rect.right;
+   pt.y = rect.bottom;
+
+   m_psink->AddLine(pt);
+
+   pt.x = rect.left;
+   pt.y = rect.bottom;
+
+   m_psink->AddLine(pt);
+
+   pt.x = rect.left;
+   pt.y = rect.top;
+
+   m_psink->AddLine(pt);
+
+}

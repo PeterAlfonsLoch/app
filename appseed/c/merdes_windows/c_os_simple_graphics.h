@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c simple_graphics
+class CLASS_DECL_c os_simple_graphics
 {
 public:
 
@@ -9,7 +9,7 @@ public:
    ID2D1Device *           m_pd;
    ID2D1DeviceContext *    m_pdc;
    IDXGIAdapter *          m_pad;
-   IDXGIFactory *          m_pfax;
+   IDXGIFactory2 *         m_pfax;
    simple_font             m_font;
    simple_brush            m_brush;
    simple_pen              m_pen;
@@ -19,9 +19,11 @@ public:
    ID2D1PathGeometry *     m_pclip;
 
    int                     m_iType;
+   IDXGISwapChain1 *       m_pswapchain;
 
-   simple_graphics();
-   ~simple_graphics();
+
+   os_simple_graphics();
+   ~os_simple_graphics();
 
    // aim to be all-platoform - but if there is no equivalent because no op : create empty method
    bool create();
@@ -33,11 +35,12 @@ public:
    bool create_device();
    void fill_solid_rect(LPCRECT lpRect, COLORREF clr);
    bool draw_path(simple_path & path, simple_pen & pen);
+   bool fill_path(simple_path & path, simple_brush & brush);
+   bool fill_polygon(LPPOINT lpa, int iCount, ::ca::e_fill_mode emode);
    bool select(simple_font & font);
    bool select(simple_brush & brush);
    bool select(simple_pen & brush);
    bool text_out(int x, int y, const char * pszUtf8, int iLen = -1);
-   bool fill_rect(LPCRECT lpcrect, simple_brush & brush);
    bool blend_bitmap_data(int x, int y, int cx, int cy, COLORREF * pdata);
    bool rectangle(LPCRECT lpcrect);
    SIZE get_text_extent(const char * psz, int iLen = -1);
@@ -46,8 +49,12 @@ public:
    void set_alpha_mode(::ca::e_alpha_mode emode);
 
    bool draw_line(simple_pen * ppen, int x1, int y1, int x2, int y2);
-   bool replace_clip(ID2D1PathGeometry * ppath);
-   bool exclude_clip(ID2D1PathGeometry * ppath);
+   bool replace_clip(simple_path & path);
+   bool exclude_clip(simple_path & path);
+   bool replace_clip(const RECT & rect);
+
+   bool fill_rect(LPCRECT lpcrect, simple_brush & brush);
+
 
    // may be multi-platform
    bool create(simple_graphics & g);

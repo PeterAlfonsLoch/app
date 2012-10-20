@@ -486,7 +486,7 @@ namespace hotplugin
 
       simple_pen pen;
 
-      pen.create_solid(1, RGB(84, 84, 77));
+      pen.create_solid(g, 1, RGB(84, 84, 77));
 
       simple_brush brush;
 
@@ -573,7 +573,7 @@ namespace hotplugin
 
       int iBorder1 = max(cx / iRate1, cy / iRate1);
 
-      simple_path pathClip1;
+      simple_path pathClip1(true);
 
       RECT rectClip1;
 
@@ -610,7 +610,7 @@ namespace hotplugin
 
       int iBorder = 16;
 
-      simple_path pathClip;
+      simple_path pathClip(true);
 
       RECT rectClip;
 
@@ -632,7 +632,7 @@ namespace hotplugin
 
       simple_brush br;
 
-      br.create_solid(ARGB(49, 184 + 23, 184 + 23, 184 + 19), g);
+      br.create_solid(g, ARGB(49, 184 + 23, 184 + 23, 184 + 19));
 
       int mcy = cy / 2;
 
@@ -682,7 +682,7 @@ namespace hotplugin
 
       g.replace_clip(rectClip);
 
-      br.create_solid(ARGB(84, 84, 84, 77), g);
+      br.create_solid(g, ARGB(84, 84, 84, 77));
 
       RECT r1;
 
@@ -716,17 +716,17 @@ namespace hotplugin
       }*/
       {
          get_progress_color(uchR, uchG, uchB, 0.0, 0);
-         br.create_solid(ARGB(bA, uchR, uchG, uchB), g);
+         br.create_solid(g, ARGB(bA, uchR, uchG, uchB));
          g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - iBarHeight) / 2, iProgressCount, 5), br);
       }
       {
          get_progress_color(uchR, uchG, uchB, 0.0, 1);
-         br.create_solid(ARGB(bA, uchR, uchG, uchB), g);
+         br.create_solid(g, ARGB(bA, uchR, uchG, uchB));
          g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5), br);
       }
       {
          get_progress_color(uchR, uchG, uchB, 0.0, 2);
-         br.create_solid(ARGB(bA, uchR, uchG, uchB), g);
+         br.create_solid(g, ARGB(bA, uchR, uchG, uchB));
          g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13), br);
       }
 

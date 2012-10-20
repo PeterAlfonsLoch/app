@@ -734,10 +734,13 @@
     <ClInclude Include="simple_ui\simple_tap.h">
       <Filter>Header Files\simple_ui</Filter>
     </ClInclude>
+    <ClInclude Include="c\c_graphics2.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
     <ClInclude Include="merdes_windows\c_os_simple_path.h">
       <Filter>Header Files\windows_merdes</Filter>
     </ClInclude>
-    <ClInclude Include="c\c_graphics2.h">
+    <ClInclude Include="c\c_simple_graphics.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
   </ItemGroup>

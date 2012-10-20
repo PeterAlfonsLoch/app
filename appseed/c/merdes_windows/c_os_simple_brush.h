@@ -10,6 +10,7 @@ public:
       type_none,
       type_brush,
       type_solid,
+      type_linear_gradient,
       type_null,
    };
 
@@ -19,9 +20,11 @@ public:
    union
    {
       
-      ID2D1Brush *               m_pbrush;
+      ID2D1Brush *                  m_pbrush;
 
-      ID2D1SolidColorBrush *     m_psolidbrush;
+      ID2D1SolidColorBrush *        m_psolidbrush;
+
+      ID2D1LinearGradientBrush *    m_plineargradientbrush;
 
    };
 
@@ -31,7 +34,8 @@ public:
    ~simple_brush();
 
 
-   virtual bool create_solid(COLORREF cr, simple_graphics & g);
+   virtual bool create_solid(simple_graphics & g, COLORREF cr);
+   virtual bool create_linear_gradient(simple_graphics & g, POINT np1, POINT np2, COLORREF cr1, COLORREF cr2);
    virtual bool from_stock(int iId);
 
    virtual bool destroy();

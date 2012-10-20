@@ -13,3 +13,31 @@ CLASS_DECL_c _Use_decl_annotations_ BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LP
 CLASS_DECL_c void WINAPI TlsShutdown();
 CLASS_DECL_c int WINAPI GetThreadPriority(_In_ HANDLE hThread);
 */
+
+template < typename T >
+class CLASS_DECL_c m_wait
+{
+public:
+
+   T ^ m_result;
+
+   m_wait(Windows::Foundation::IAsyncOperation <  T ^ > ^ op)
+   {
+      m_result = nullptr;
+      simple_event ev;
+      op->Completed = ([this](Windows::Foundation::IAsyncOperation < ::Windows::Storage::StorageFolder ^ > ^ op, Windows::Foundation::AsyncStatus status))
+      {
+         if(status == Windows::Foundation::AsyncStatus::Completed)
+         {
+            m_result = op->GetResults();
+         }
+         ev.set_event();
+      };
+      ev.wait();
+   }
+
+
+   operator T ^ () { return m_result; }
+
+};
+

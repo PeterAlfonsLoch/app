@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_C Platform::String ^ m_str(const char * psz)
+CLASS_DECL_c Platform::String ^ m_str(const char * psz)
 {
    
    return ref new Platform::String(wstring(psz));
@@ -10,10 +10,10 @@ CLASS_DECL_C Platform::String ^ m_str(const char * psz)
 
 
 
-CLASS_DECL_C  int MessageBox(void * p, const char * pszMessage, const char * pszTitle, int iFlags)
+CLASS_DECL_c int MessageBox(void * p, const char * pszMessage, const char * pszTitle, int iFlags)
 {
   
-   Windows::UI::Popups::MessageDialog ^ merde = ref new Windows::UI::Popups::MessageDialog(pszMessage, pszTitle);
+   Windows::UI::Popups::MessageDialog ^ merde = ref new Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring(pszTitle));
   
    Windows::UI::Popups::UICommand ^ command = merde->ShowAsync()->GetResults();
 

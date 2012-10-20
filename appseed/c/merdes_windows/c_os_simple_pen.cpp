@@ -35,6 +35,13 @@ bool simple_pen::create_solid(simple_graphics & g, int iWidth, COLORREF cr)
    
    m_cr = cr;
 
+   D2D1_COLOR_F c;
+
+   c.a = GetAValue(cr) / 255.0f;
+   c.r = GetRValue(cr) / 255.0f;
+   c.g = GetGValue(cr) / 255.0f;
+   c.b = GetBValue(cr) / 255.0f;
+
    g.m_pdc->CreateSolidColorBrush(c, &m_psolidbrush);
    
    return TRUE;
@@ -88,5 +95,5 @@ simple_pen & simple_pen::operator = (const simple_pen & pen)
 
 ID2D1Brush * simple_pen::get_os_brush()
 {
-   return m_pbrush;
+   return m_psolidbrush;
 }

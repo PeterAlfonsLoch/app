@@ -121,8 +121,8 @@ void * __cdecl operator new[](size_t nSize, int nType, const char * lpszFileName
 
 void * __cdecl operator new(size_t nSize, int nType, const char * lpszFileName, int nLine);
 void * __cdecl operator new[](size_t nSize, int nType, const char * lpszFileName, int nLine);
-CLASS_DECL_ca void __cdecl operator delete(void * p, int nType, const char * /* lpszFileName */, int nLine);
-CLASS_DECL_ca void __cdecl operator delete[](void * p, int nType, const char * lpszFileName, int nLine);
+void __cdecl operator delete(void * p, int nType, const char * /* lpszFileName */, int nLine);
+void __cdecl operator delete[](void * p, int nType, const char * lpszFileName, int nLine);
 
 
 

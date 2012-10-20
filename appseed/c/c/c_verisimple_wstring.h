@@ -139,6 +139,11 @@ public:
    inline operator wchar_t * () const { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
    inline operator wchar_t * () { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
 
+#ifdef MERDE_WINDOWS
+   inline operator Platform::String ^ () { return ref new Platform::String(operator const wchar_t *()); }
+#endif
+
+
    inline wchar_t operator [] (index iIndex) const
    {
       return m_pwsz[iIndex];
@@ -272,3 +277,10 @@ public:
 };
 
 
+
+#ifdef MERDE_WINDOWS
+ inline verisimple_string::operator Platform::String ^()
+ {
+    return ref new Platform::String(wstring(*this));
+ }
+#endif

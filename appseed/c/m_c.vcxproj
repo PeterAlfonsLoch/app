@@ -318,6 +318,7 @@
     <ClInclude Include="c\c_simple_array.h" />
     <ClInclude Include="c\c_simple_critical_section.h" />
     <ClInclude Include="c\c_simple_event.h" />
+    <ClInclude Include="c\c_simple_graphics.h" />
     <ClInclude Include="c\c_simple_list.h" />
     <ClInclude Include="c\c_simple_map.h" />
     <ClInclude Include="c\c_simple_memory.h" />

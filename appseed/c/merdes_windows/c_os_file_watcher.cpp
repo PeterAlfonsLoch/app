@@ -135,9 +135,7 @@ namespace file_watcher
       options->FolderDepth = ::Windows::Storage::Search::FolderDepth::Shallow;
       options->IndexerOption = ::Windows::Storage::Search::IndexerOption::DoNotUseIndexer;
 
-      wstring wstr(szDirectory);
-
-      pWatch->m_folder = ::Windows::Storage::StorageFolder::GetFolderFromPathAsync(Platform::String(wstr))->wait();
+      pWatch->m_folder = m_wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(wstring(szDirectory)));
 
       pWatch->m_queryresult = CreateFile(szDirectory, FILE_LIST_DIRECTORY,
 			FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, 
