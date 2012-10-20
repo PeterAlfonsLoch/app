@@ -111,7 +111,7 @@ namespace html
          m_cxMin  = -2;
       }
 
-      void table::set_cell(int iRow, int iCol, cell * pcell)
+      void table::set_cell(int iCol, int iRow, cell * pcell)
       {
          
          m_cellholdera.element_at_grow(iCol).element_at_grow(iRow).m_pcell = pcell;

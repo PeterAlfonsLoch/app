@@ -1140,8 +1140,6 @@ void dll_processes(simple_uint_array & dwa, stra_dup & straProcesses, const char
 #endif
 
 
-#include <ppltasks.h>
-
 bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
 {
 

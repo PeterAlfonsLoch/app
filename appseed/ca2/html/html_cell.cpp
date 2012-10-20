@@ -62,80 +62,8 @@ namespace html
          ::html::impl::cell * pcellParent = dynamic_cast < ::html::impl::cell * > (m_pelemental->m_pparent->m_pimpl);
         
 
-         int lMax = 0;
-         int lMin = 0;
-         if(pcellParent->is_tag())
-         {
-            if(pcellParent->m_iColBeg < get_table()->m_columna.get_size())
-            {
-               lMax = get_table()->m_columna[pcellParent->m_iColBeg].m_cxMax;
-               lMin = get_table()->m_columna[pcellParent->m_iColBeg].m_cxMin;
-            }
-         }
-         int cxMax;
-         int cxMin;
-         int sMaxMin = 0;
-         int sMin = 0;
-         /*::count iAddUp = 0;
-         if(get_table() != NULL)
-         {
-            ::count n = get_table()->m_columna.get_size();
-            for(index i = 0; i < n; i++)
-            {
-               cxMax = get_table()->m_columna[i].m_cxMax;
-               cxMin = get_table()->m_columna[i].m_cxMin;
-               sMaxMin += cxMax - cxMin;
-               sMin += cxMin;
-            }
-            int W = get_table()->get_bound_size().cx;
-            if(sMaxMin > 0)
-            {
-               iAddUp = ((lMax - lMin) * (W - sMin)) / (sMaxMin);
-            }
-            else
-            {
-               iAddUp = (W - sMin) / n;
-            }
-         }
-         size size = pcellParent->get_bound_size();
-         size.cx = m_cxMin;
-         if(iAddUp > 0)
-         {
-            size.cx += (LONG) (iAddUp);
-         }*/
-         /*::count iColumnWidth = 0;
-         if(get_table() != NULL)
-         {
-            ::count n = get_table()->m_columna.get_size();
-            for(index i = 0; i < n; i++)
-            {
-               cxMax = get_table()->m_columna[i].m_cxMax;
-               cxMin = get_table()->m_columna[i].m_cxMin;
-               sMaxMin += cxMax - cxMin;
-               sMin += cxMin;
-            }
-            int W = get_table()->get_bound_size().cx;
-            if(sMaxMin > 0)
-            {
-               iAddUp = ((lMax - lMin) * (W - sMin)) / (sMaxMin);
-            }
-            else
-            {
-               iAddUp = (W - sMin) / n;
-            }
-         }
-         size size = pcellParent->get_bound_size();
-         size.cx = m_cxMin;
-         if(iAddUp > 0)
-         {
-            size.cx += (LONG) (iAddUp);
-         }*/
          size size = pcellParent->get_bound_size();
          int iColumnWidth = calc_width();
-         //::size size = pcellParent->get_bound_size();
-         //size.cx = m_cxMin;
-         //if(iAddUp > 0)
-         //{
          int iTableBorder = get_table()->m_iBorder;
          if(iTableBorder > 0)
          {
@@ -147,10 +75,10 @@ namespace html
          {
             size.cx = iColumnWidth;
          }
-         set_cx(pdata, iColumnWidth);
-         set_cy(pdata, size.cy);
-         //}
+
+         set_cxy(pdata, iColumnWidth, size.cy);
          set_bound_size(pdata, size);
+
          point pointBound = pcellParent->get_bound_point();
          int l = pointBound.x  + get_table()->m_iBorder * (pcellParent->m_iColBeg + 1);
          if(get_row() != NULL)
@@ -444,19 +372,29 @@ namespace html
 
       int cell::calc_width()
       {
+
          if(m_pelemental->m_pbase->get_type() == ::html::base::type_value)
          {
+
             return m_pelemental->m_pparent->m_pimpl->calc_width();
+
          }
+
          size size = m_pelemental->m_pparent->m_pimpl->get_bound_size();
-         ::html::elemental * pelemental = m_pelemental->m_elementalptra[0];
+
          int iColumnWidth = 0;
+
          int cxMax;
+
          if(get_table() != NULL)
          {
+
             ::count n = get_table()->m_columna.get_size();
+
             int cellMax = 0;
+
             int sMax = 0;
+
             for(index iColumn = 0; iColumn < n; iColumn++)
             {
                cxMax = get_table()->m_columna[iColumn].m_cxMax;
@@ -464,7 +402,6 @@ namespace html
                if(contains_column(iColumn))
                {
                   cellMax += cxMax;
-                  break;
                }
             }
             int W = get_table()->calc_width();
