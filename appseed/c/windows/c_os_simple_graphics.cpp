@@ -3,7 +3,7 @@
 #include <gdiplus.h>
 
 
-simple_graphics::simple_graphics()
+os_simple_graphics::os_simple_graphics()
 {
 
    m_pgraphics    = NULL;
@@ -12,20 +12,12 @@ simple_graphics::simple_graphics()
 
    m_iType        = 0;
 
-   m_pbitmap      = NULL;
-
-   m_pbrush       = NULL;
-
-   m_pfont        = NULL;
-
-   m_ppen         = NULL;
-
    m_hdc          = NULL;
 
 }
 
 
-simple_graphics::~simple_graphics()
+os_simple_graphics::~os_simple_graphics()
 {
 
    if(m_pgraphics != NULL && m_iType != 0)
@@ -37,7 +29,7 @@ simple_graphics::~simple_graphics()
 
 }
 
-bool simple_graphics::create(HDC hdc)
+bool os_simple_graphics::create(HDC hdc)
 {
 
    if(m_iType != 0)
@@ -54,7 +46,7 @@ bool simple_graphics::create(HDC hdc)
 
 }
 
-bool simple_graphics::create_from_bitmap(simple_bitmap & b)
+bool os_simple_graphics::create_from_bitmap(simple_bitmap & b)
 {
 
    if(m_iType != 0)
@@ -71,7 +63,7 @@ bool simple_graphics::create_from_bitmap(simple_bitmap & b)
 
 }
 
-bool simple_graphics::from_entire_window(HWND hwnd)
+bool os_simple_graphics::from_entire_window(HWND hwnd)
 {
 
    if(m_iType != 0)
@@ -100,7 +92,7 @@ bool simple_graphics::from_entire_window(HWND hwnd)
 }
 
 
-bool simple_graphics::from_window(HWND hwnd)
+bool os_simple_graphics::from_window(HWND hwnd)
 {
 
    if(m_iType != 0)
@@ -128,7 +120,7 @@ bool simple_graphics::from_window(HWND hwnd)
 
 }
 
-bool simple_graphics::from_window_paint(HWND hwnd, LPRECT lprectPaint)
+bool os_simple_graphics::from_window_paint(HWND hwnd, LPRECT lprectPaint)
 {
 
 
@@ -167,7 +159,7 @@ bool simple_graphics::from_window_paint(HWND hwnd, LPRECT lprectPaint)
 
 }
 
-bool simple_graphics::reference_os_data(Gdiplus::Graphics * pgraphics)
+bool os_simple_graphics::reference_os_data(Gdiplus::Graphics * pgraphics)
 {
    
    m_iType = 5;
@@ -179,10 +171,10 @@ bool simple_graphics::reference_os_data(Gdiplus::Graphics * pgraphics)
 }
 
 
-bool simple_graphics::create()
+bool os_simple_graphics::create()
 {
 
-   simple_graphics g;
+   os_simple_graphics g;
 
    g.from_window(NULL);
    
@@ -190,41 +182,41 @@ bool simple_graphics::create()
    
 }
 
-bool simple_graphics::create_from_screen()
+bool os_simple_graphics::create_from_screen()
 {
    
    return from_window(NULL);
    
 }
 
-bool simple_graphics::select(simple_font & font)
+bool os_simple_graphics::select(simple_font & font)
 {
    
-   m_pfont = &font;
+   m_font = font;
 
    return true;
 
 }
 
-bool simple_graphics::select(simple_brush & brush)
+bool os_simple_graphics::select(simple_brush & brush)
 {
    
-   m_pbrush = &brush;
+   m_brush = brush;
 
    return true;
 
 }
 
-bool simple_graphics::select(simple_pen & pen)
+bool os_simple_graphics::select(simple_pen & pen)
 {
    
-   m_ppen = &pen;
+   m_pen = pen;
 
    return true;
 
 }
 
-bool simple_graphics::destroy()
+bool os_simple_graphics::destroy()
 {
    
    bool bOk = true;
@@ -306,7 +298,7 @@ bool simple_graphics::destroy()
 }
 
 
-POINT simple_graphics::get_offset()
+POINT os_simple_graphics::get_offset()
 {
 
    Gdiplus::Matrix m;
@@ -322,7 +314,7 @@ POINT simple_graphics::get_offset()
 
 
 
-bool simple_graphics::set_offset(int x, int y)
+bool os_simple_graphics::set_offset(int x, int y)
 {
    
    Gdiplus::Matrix m;
@@ -333,7 +325,7 @@ bool simple_graphics::set_offset(int x, int y)
 
 }
 
-bool simple_graphics::offset(int x, int y)
+bool os_simple_graphics::offset(int x, int y)
 {
 
    POINT pt = get_offset();
@@ -345,14 +337,14 @@ bool simple_graphics::offset(int x, int y)
 }
 
 
-bool simple_graphics::bit_blt(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, DWORD rop)
+bool os_simple_graphics::bit_blt(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, DWORD rop)
 {
    
-   return m_pgraphics->DrawImage(gSrc.m_pbitmap->m_pbitmap, x, y, x1, y1, cx, cy, Gdiplus::UnitPixel) != FALSE;
+   return m_pgraphics->DrawImage(gSrc.m_bitmap.m_pbitmap, x, y, x1, y1, cx, cy, Gdiplus::UnitPixel) != FALSE;
 
 }
 
-bool simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORREF * pdata)
+bool os_simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORREF * pdata)
 {
    
    try
@@ -380,7 +372,7 @@ bool simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORREF *
 
 }
 
-SIZE simple_graphics::get_text_extent(const char * psz, int iLen)
+SIZE os_simple_graphics::get_text_extent(const char * psz, int iLen)
 {
 
    if(iLen < 0)
@@ -400,19 +392,19 @@ SIZE simple_graphics::get_text_extent(const char * psz, int iLen)
                            | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
                            | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
 
-   m_pgraphics->MeasureString(wstr, (int) wstr.get_length(), m_pfont->m_pfont, origin, &strFormat,  &box);
+   m_pgraphics->MeasureString(wstr, (int) wstr.get_length(), m_font.m_pfont, origin, &strFormat,  &box);
 
    SIZE size;
 
-   size.cx = box.Width;
-   size.cy = box.Height;
+   size.cx = (LONG) box.Width;
+   size.cy = (LONG) box.Height;
 
    return size;
 
 }
 
 
-bool simple_graphics::draw_line(int x1, int y1, int x2, int y2, simple_pen & pen)
+bool os_simple_graphics::draw_line(int x1, int y1, int x2, int y2, simple_pen & pen)
 {
 
    return m_pgraphics->DrawLine(pen.m_ppen, Gdiplus::Point(x1, y1), Gdiplus::Point(x2, y2)) == Gdiplus::Ok;
@@ -420,19 +412,22 @@ bool simple_graphics::draw_line(int x1, int y1, int x2, int y2, simple_pen & pen
 }
 
 
-bool simple_graphics::rectangle(LPCRECT lpcrect)
+bool os_simple_graphics::rectangle(LPCRECT lpcrect)
 {
    
-   bool bOk1 = fill_rect(*lpcrect);
+   bool bOk1 = fill_rect(lpcrect, m_brush);
 
-   bool bOk2 = draw_rect(*lpcrect);
+   bool bOk2 = draw_rect(lpcrect, m_pen);
 
    return bOk1 && bOk2;
 
 }
 
-bool simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen & pen)
+bool os_simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen & pen)
 {
+
+   if(&pen == NULL)
+      return true;
 
    if(pen.m_ppen == NULL)
       return true;
@@ -442,8 +437,11 @@ bool simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen & pen)
 }
 
 
-bool simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
+bool os_simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
 {
+
+   if(&brush == NULL)
+      return true;
    
    if(brush.m_pbrush == NULL)
       return true;
@@ -452,14 +450,14 @@ bool simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
 
 }
 
-bool simple_graphics::set_text_color(COLORREF cr)
+bool os_simple_graphics::set_text_color(COLORREF cr)
 {
    
    return ::SetTextColor(m_hdc, cr) != FALSE;
 
 }
 
-bool simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
+bool os_simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
 {
 
    switch(emode)
@@ -478,21 +476,21 @@ bool simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
 
 }
 
-bool simple_graphics::replace_clip(simple_path & path)
+bool os_simple_graphics::replace_clip(simple_path & path)
 {
 
    return m_pgraphics->SetClip(path.m_ppath, Gdiplus::CombineModeReplace) == Gdiplus::Ok;
 
 }
 
-bool simple_graphics::exclude_clip(simple_path & path)
+bool os_simple_graphics::exclude_clip(simple_path & path)
 {
 
    return m_pgraphics->SetClip(path.m_ppath, Gdiplus::CombineModeExclude) == Gdiplus::Ok;
 
 }
 
-bool simple_graphics::replace_clip(const RECT & r)
+bool os_simple_graphics::replace_clip(const RECT & r)
 {
 
    Gdiplus::Rect rect;
@@ -506,19 +504,19 @@ bool simple_graphics::replace_clip(const RECT & r)
 
 }
 
-bool simple_graphics::alpha_blend(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf)
+bool os_simple_graphics::alpha_blend(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf)
 {
 
    return ::AlphaBlend(m_hdc, x, y, cx, cy, gSrc.m_hdc, x1, y1, cx1, cy1, bf) != FALSE;
 
 }
 
-void simple_graphics::fill_solid_rect(LPCRECT lpRect, COLORREF clr)
+void os_simple_graphics::fill_solid_rect(LPCRECT lpRect, COLORREF clr)
 {
    m_pgraphics->FillRectangle(&Gdiplus::SolidBrush(Gdiplus::Color(GetAValue(clr), GetRValue(clr), GetGValue(clr), GetBValue(clr))), lpRect->left, lpRect->top, width(lpRect), height(lpRect));
 }
 
-bool simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
+bool os_simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
 {
    
    wstring wstr(pszUtf8);
@@ -529,15 +527,15 @@ bool simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
                            | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
                            | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
 
-   return m_pgraphics->DrawString(wstr, wstr.get_length(), m_pfont->m_pfont, Gdiplus::PointF(x, y), &strFormat, m_pbrush->m_pbrush) == Gdiplus::Ok;
+   return m_pgraphics->DrawString(wstr, wstr.get_length(), m_font.m_pfont, Gdiplus::PointF((Gdiplus::REAL) x, (Gdiplus::REAL)  y), &strFormat, m_brush.m_pbrush) == Gdiplus::Ok;
 
 }
 
 
-bool simple_graphics::fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode)
+bool os_simple_graphics::fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode)
 {
 
-   if(m_pbrush == NULL)
+   if(m_brush.m_pbrush == NULL)
       return true;
 
    Gdiplus::Point * ppa = new Gdiplus::Point[iCount];
@@ -548,7 +546,7 @@ bool simple_graphics::fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode)
       ppa[i].Y = p[i].y;
    }
 
-   bool bOk = m_pgraphics->FillPolygon(m_pbrush->m_pbrush, ppa, 4, Gdiplus::FillModeWinding) == Gdiplus::Ok;
+   bool bOk = m_pgraphics->FillPolygon(m_brush.m_pbrush, ppa, 4, Gdiplus::FillModeWinding) == Gdiplus::Ok;
 
    delete ppa;
 
@@ -559,14 +557,14 @@ bool simple_graphics::fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode)
 
 
 
-bool simple_graphics::draw_path(simple_path & path, simple_pen & pen)
+bool os_simple_graphics::draw_path(simple_path & path, simple_pen & pen)
 {
 
    return m_pgraphics->DrawPath(pen.m_ppen, path.m_ppath) == Gdiplus::Ok;
 
 }
 
-bool simple_graphics::fill_path(simple_path & path, simple_brush & brush)
+bool os_simple_graphics::fill_path(simple_path & path, simple_brush & brush)
 {
    
    return m_pgraphics->FillPath(brush.m_pbrush, path.m_ppath) == Gdiplus::Ok;

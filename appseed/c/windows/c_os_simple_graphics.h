@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_c simple_graphics
+class CLASS_DECL_c os_simple_graphics
 {
 public:
 
@@ -11,16 +11,16 @@ public:
    Gdiplus::Graphics *     m_pgraphics;
    HDC                     m_hdc;
    HWND                    m_hwnd;
-   simple_bitmap *         m_pbitmap;
-   simple_pen *            m_ppen;
-   simple_font *           m_pfont;
-   simple_brush *          m_pbrush;
+   simple_bitmap           m_bitmap;
+   simple_pen              m_pen;
+   simple_font             m_font;
+   simple_brush            m_brush;
    int                     m_iType;
    PAINTSTRUCT             m_ps;
 
 
-   simple_graphics();
-   ~simple_graphics();
+   os_simple_graphics();
+   ~os_simple_graphics();
 
 
    // aim to be all-platoform - but if there is no equivalent because no op : create empty method
@@ -43,21 +43,11 @@ public:
    
    bool draw_line(int x1, int y1, int x2, int y2, simple_pen & pen);
    
-   inline bool draw_line(int x1, int y1, int x2, int y2);
-   inline bool draw_line(POINT p1, POINT p2, simple_pen & pen);
-   inline bool draw_line(POINT p1, POINT p2);
-
    bool rectangle(LPCRECT lpcrect);
    bool draw_rect(LPCRECT lpcrect, simple_pen & pen);
    bool fill_rect(LPCRECT lpcrect, simple_brush & brush);
    void fill_solid_rect(LPCRECT lpRect, COLORREF clr);
 
-   inline bool rectangle(const RECT & rect);
-   inline bool draw_rect(const RECT & rect);
-   inline bool draw_rect(const RECT & rect, simple_pen & pen);
-   inline bool fill_rect(const RECT & rect);
-   inline bool fill_rect(const RECT & rect, simple_brush & brush);
-   inline void fill_solid_rect(const RECT & rect, COLORREF clr);
 
    bool draw_path(simple_path & path, simple_pen & pen);
    bool fill_path(simple_path & path, simple_brush & brush);
@@ -92,73 +82,6 @@ public:
 
 
 };
-
-
-
-
-inline bool simple_graphics::draw_line(int x1, int y1, int x2, int y2)
-{
-   
-   if(m_ppen == NULL)
-      return true;
-
-   return draw_line(x1, y1, x2, y2, *m_ppen);
-
-}
-
-inline bool simple_graphics::draw_line(POINT p1, POINT p2, simple_pen & pen)
-{
-   return draw_line(p1.x, p1.y, p2.x, p2.y, pen);
-}
-
-inline bool simple_graphics::draw_line(POINT p1, POINT p2)
-{
-   
-   if(m_ppen == NULL)
-      return true;
-
-   return draw_line(p1, p2, *m_ppen);
-
-}
-
-
-
-
-inline bool simple_graphics::draw_rect(const RECT & rect)
-{
-   
-   if(m_ppen == NULL)
-      return true;
-
-   return draw_rect(&rect, *m_ppen);
-
-}
-
-inline bool simple_graphics::draw_rect(const RECT & rect, simple_pen & pen)
-{
-   return draw_rect(&rect, pen);
-}
-
-inline bool simple_graphics::fill_rect(const RECT & rect)
-{
-   
-   if(m_pbrush == NULL)
-      return true;
-
-   return fill_rect(&rect, *m_pbrush);
-
-}
-
-inline bool simple_graphics::fill_rect(const RECT & rect, simple_brush & brush)
-{
-   return fill_rect(&rect, brush);
-}
-
-inline bool simple_graphics::rectangle(const RECT & rect)
-{
-   return rectangle(&rect);
-}
-
 
 
 

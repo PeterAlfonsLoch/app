@@ -42,8 +42,7 @@ namespace html
       {
          elemental::layout_phase3(pdata);
          point pointBound = get_bound_point();
-         m_size.cx = 200;
-         m_size.cy = 23;
+         m_box.set_cxy(200, 23);
          if(m_pelemental->m_propertyset["display"] == "block"
              || m_pelemental->m_propertyset["display"] == "table")
          {
@@ -63,7 +62,7 @@ namespace html
             pdata->m_layoutstate.m_bLastBlockX = false;
             pdata->m_layoutstate.m_bLastBlockY = false;
          }
-         m_pbutton->SetWindowPos(NULL, m_pt.x, m_pt.y, m_size.cx, m_size.cy, SWP_NOREDRAW);
+         m_pbutton->SetWindowPos(NULL, m_box.left, m_box.top, m_box.get_cx(), m_box.get_cy(), SWP_NOREDRAW);
       }
 
       void input_button::_001OnDraw(data * pdata)
@@ -71,8 +70,8 @@ namespace html
          //rect rectWindow;
          //m_pbutton->GetWindowRect(rectWindow);
          //m_pbutton->get_wnd()->ScreenToClient(rectWindow);
-         point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
-         pdata->m_pdc->OffsetViewportOrg(m_pt.x, m_pt.y);
+         ::point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
+         pdata->m_pdc->OffsetViewportOrg(m_box.get_cx(), m_box.get_cy());
          m_pbutton->_001OnDraw(pdata->m_pdc);
          pdata->m_pdc->SetViewportOrg(ptPreviousViewportOrg);
       }
@@ -80,7 +79,7 @@ namespace html
       void input_button::on_change_layout(data * pdata)
       {
          UNREFERENCED_PARAMETER(pdata);
-         m_pbutton->SetWindowPos(NULL, m_pt.x, m_pt.y, m_size.cx, m_size.cy, SWP_NOREDRAW);
+         m_pbutton->SetWindowPos(NULL, m_box.left, m_box.top, m_box.get_cx(), m_box.get_cy(), SWP_NOREDRAW);
       }
 
    }

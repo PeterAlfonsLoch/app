@@ -16,7 +16,7 @@ namespace html
       public:
 
 
-         base_array < size >           m_sizea;
+         base_array < ::size >         m_sizea;
          stringa                       m_straLines;
          stringa                       m_straWordSpace;
          bool                          m_bLink;
@@ -43,7 +43,7 @@ namespace html
          virtual string link();
 
          using user::edit_plain_text::hit_test;
-         virtual int hit_test(data * pdoc, point pt);
+         virtual int hit_test(data * pdoc, ::point pt);
 
          virtual strsize char_hit_test(::ca::graphics * pdc, int x, int y);
 

@@ -1110,6 +1110,13 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClInclude Include="os\os.h" />
     <ClInclude Include="os\os_process.h" />
     <ClInclude Include="os\os_thread.h" />
+    <ClInclude Include="simple_graphics\simple_graphics.h" />
+    <ClInclude Include="simple_graphics\simple_graphics_first_phase.h" />
+    <ClInclude Include="simple_graphics\simple_graphics_second_phase.h" />
+    <ClInclude Include="simple_graphics\simple_linear_gradient_brush.h" />
+    <ClInclude Include="simple_graphics\simple_pixel_font.h" />
+    <ClInclude Include="simple_graphics\simple_solid_brush.h" />
+    <ClInclude Include="simple_graphics\simple_solid_pen.h" />
     <ClInclude Include="simple_ui\simple_button.h" />
     <ClInclude Include="simple_ui\simple_edit.h" />
     <ClInclude Include="simple_ui\simple_ui.h" />
@@ -1320,6 +1327,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\x64\freetype2.3.5-1.dll" "$(O
     <ClCompile Include="os\os_http.cpp" />
     <ClCompile Include="os\os_process.cpp" />
     <ClCompile Include="os\os_thread.cpp" />
+    <ClCompile Include="simple_graphics\simple_graphics.cpp" />
     <ClCompile Include="simple_ui\simple_edit_box.cpp" />
     <ClCompile Include="simple_ui\simple_label.cpp" />
     <ClCompile Include="simple_ui\simple_password.cpp" />

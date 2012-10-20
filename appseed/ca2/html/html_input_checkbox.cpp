@@ -54,21 +54,21 @@ namespace html
       {
          elemental::layout_phase3(pdata);
          point pointBound = get_bound_point();
-         m_box.set_size(200, 23);
+         m_box.set_cxy(200, 23);
          m_box.offset_y(pdata->m_layoutstate.m_cy);
          pdata->m_layoutstate.m_y    = get_y();
          pdata->m_layoutstate.m_cy   = 23;
          pdata->m_layoutstate.m_x    += pdata->m_layoutstate.m_cx;
          pdata->m_layoutstate.m_cx   = 23;
-         m_pcheckbox->SetWindowPos(NULL, m_pt.x, m_pt.y, m_size.cx, m_size.cy, SWP_NOREDRAW);
+         m_pcheckbox->SetWindowPos(NULL, (int) m_box.left, (int) m_box.top, (int) m_box.get_cx(), (int) m_box.get_cy(), SWP_NOREDRAW);
       }
 
       void input_check_box::_001OnDraw(data * pdata)
       {
          //rect rectWindow;
          //m_pcheckbox->GetWindowRect(rectWindow);
-         point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
-         pdata->m_pdc->OffsetViewportOrg(m_pt.x, m_pt.y);
+         ::point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
+         pdata->m_pdc->OffsetViewportOrg(m_box.left, m_box.top);
          m_pcheckbox->_001OnDraw(pdata->m_pdc);
          pdata->m_pdc->SetViewportOrg(ptPreviousViewportOrg);
       }
@@ -76,7 +76,7 @@ namespace html
       void input_check_box::on_change_layout(data * pdata)
       {
          UNREFERENCED_PARAMETER(pdata);
-         m_pcheckbox->SetWindowPos(NULL, m_pt.x, m_pt.y, m_size.cx, m_size.cy, SWP_NOREDRAW);
+         m_pcheckbox->SetWindowPos(NULL, m_box.left, m_box.top, m_box.get_cx(), m_box.get_cy(), SWP_NOREDRAW);
       }
 
    }

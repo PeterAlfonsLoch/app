@@ -550,7 +550,7 @@ install:
             }
             else if(uiMessage == WM_KEYUP)
             {
-               m_login.on_char(static_cast<UINT>(wparam), static_cast<UINT>(lparam));
+               m_login.on_char(static_cast<UINT>(wparam), key_to_char(wparam, lparam));
             }
 
          }

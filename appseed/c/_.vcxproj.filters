@@ -63,6 +63,12 @@
     <Filter Include="Source Files\windows\crypt">
       <UniqueIdentifier>{9dfcd5b4-d97d-4165-aa12-de394188d2a1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\simple_graphics">
+      <UniqueIdentifier>{45bff92f-b316-47a3-9373-a5ecd87824b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\simple_graphics">
+      <UniqueIdentifier>{a670624e-0022-46d7-95ef-db8e5c21ffa6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hotplugin\hotplugin.h">
@@ -391,6 +397,27 @@
     </ClInclude>
     <ClInclude Include="c\c_xmlite.h">
       <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_graphics.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_graphics_first_phase.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_graphics_second_phase.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_linear_gradient_brush.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_pixel_font.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_solid_brush.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_solid_pen.h">
+      <Filter>Header Files\simple_graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -744,6 +771,9 @@
     </ClCompile>
     <ClCompile Include="windows\c_os_simple_path.cpp">
       <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_graphics\simple_graphics.cpp">
+      <Filter>Source Files\simple_graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

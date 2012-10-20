@@ -224,7 +224,7 @@ namespace html
 
          m_iColBeg = get_min_col();
          m_iColEnd = m_iColBeg + m_iColSpan - 1;
-         m_iRowBeg = prow->m_iIndex;
+         m_iRowBeg = prow->m_iRow;
          m_iRowEnd = m_iRowBeg + m_iRowSpan - 1;
 
          for(int iCol = m_iColBeg; iCol <= m_iColEnd; iCol++)
@@ -241,7 +241,7 @@ namespace html
             ptable->m_columna.add(table::column(ptable->m_columna.get_size()));
          }
 
-         if(prow->m_iIndex > 0)
+         if(prow->m_iRow > 0)
          {
             // if first cell in this column has a width,
             // copy this cell width

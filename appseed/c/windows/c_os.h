@@ -52,3 +52,6 @@ WinRegGetValueW(
 
 
 #endif
+
+
+CLASS_DECL_c vsstring key_to_char(WPARAM wparam, LPARAM lparam);

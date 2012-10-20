@@ -113,11 +113,11 @@ void simple_tap::draw_simple(simple_graphics & g)
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      simple_solid_brush br(ARGB(184, 255, 184, 240), g);
+      simple_solid_brush br(g, ARGB(184, 255, 184, 240));
 
 #else
 
-      simple_solid_brush br(ARGB(184, 184, 255, 177), g);
+      simple_solid_brush br(g, ARGB(184, 184, 255, 177));
 
 #endif
 
@@ -206,11 +206,11 @@ void simple_tap::draw_volume(simple_graphics & g)
 
       int iBorderH = height(&m_rect) / 2;
 
-      simple_linear_gradient_brush br1(m_rect.left, m_rect.top - 1, m_rect.left, m_rect.top + iBorderH + 2, crOut, crIn);
+      simple_linear_gradient_brush br1(g, m_rect.left, m_rect.top - 1, m_rect.left, m_rect.top + iBorderH + 2, crOut, crIn);
 
       g.fill_rect(rect_dim(m_rect.left, m_rect.top, width(&m_rect), iBorderH), br1);
 
-      simple_linear_gradient_brush br2(m_rect.left, m_rect.top + iBorderH - 1, m_rect.left, m_rect.top + iBorderH * 2 + 2, crIn, crOut);
+      simple_linear_gradient_brush br2(g, m_rect.left, m_rect.top + iBorderH - 1, m_rect.left, m_rect.top + iBorderH * 2 + 2, crIn, crOut);
 
       g.fill_rect(rect_dim( m_rect.left, m_rect.top + iBorderH, width(&m_rect), iBorderH), br2);
 
@@ -220,7 +220,7 @@ void simple_tap::draw_volume(simple_graphics & g)
 
       draw_focus_rect(g);
 
-      simple_solid_pen pen(crBorderIn);
+      simple_solid_pen pen(g, crBorderIn);
 
       g.draw_rect(rect_dim(m_rect.left + 1, m_rect.top + 1, width(&m_rect) - 2, iBorderH * 2 - 2), pen);
 
@@ -238,17 +238,17 @@ void simple_tap::draw_text(simple_graphics & g)
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
    
-   simple_solid_brush b(ARGB(223, 84, 49, 77), g);
+   simple_solid_brush b(g, ARGB(223, 84, 49, 77));
 
 #else
 
-   simple_solid_brush b(ARGB(223, 49, 84, 23), g);
+   simple_solid_brush b(g, ARGB(223, 49, 84, 23));
 
 #endif
 
    g.select(b);
 
-   simple_pixel_font f(height(m_rect) * 10, "Geneva", g);
+   simple_pixel_font f(g, height(m_rect) * 10, "Geneva");
 
    g.select(f);
 
@@ -259,16 +259,16 @@ void simple_tap::draw_text(simple_graphics & g)
 }
 
 
-void simple_tap::on_char(int ch, UINT uScan)
+void simple_tap::on_char(int iKey, const vsstring & strChar)
 {
 
-   if(ch == VK_RETURN || ch == VK_SPACE)
+   if(iKey == VK_RETURN || iKey == VK_SPACE)
    {
 
       on_action(m_strId);
 
    }
-   else if(ch == VK_TAB)
+   else if(iKey == VK_TAB)
    {
 
       focus_next();

@@ -114,7 +114,7 @@ namespace html
       void table::set_cell(int iRow, int iCol, cell * pcell)
       {
          
-         m_cellholdera.set_at_grow(iCol).set_at_grow(iRow).m_pcell = pcell;
+         m_cellholdera.element_at_grow(iCol).element_at_grow(iRow).m_pcell = pcell;
 
       }
 

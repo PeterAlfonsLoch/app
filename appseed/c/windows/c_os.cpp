@@ -154,3 +154,63 @@ bool main_finalize()
 
 }
 
+
+
+
+vsstring key_to_char(WPARAM wparam, LPARAM lparam)
+{
+   wchar_t wsz[32];
+
+   BYTE baState[256];
+
+   GetKeyboardState(baState);
+
+   if((GetKeyState(VK_SHIFT) & 0x80000000) != 0)
+   {
+      baState[VK_SHIFT] |= 0x80;
+   }
+
+
+   int iRet = ToUnicodeEx(wparam, lparam, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
+
+   if(iRet > 0)
+   {
+
+      wsz[iRet] = L'\0';
+
+      vsstring str;
+
+      str.attach(utf16_to_8(wsz));
+
+      if((GetKeyState(VK_CAPITAL) & 0x0001) != 0)
+      {
+         if((GetKeyState(VK_SHIFT) & 0x80000000) != 0)
+         {
+            to_lower(str.m_psz);
+         }
+         else
+         {
+            to_upper(str.m_psz);
+         }
+      }
+      else
+      {
+         if((GetKeyState(VK_SHIFT) & 0x80000000) != 0)
+         {
+            to_upper(str.m_psz);
+         }
+         else
+         {
+            to_lower(str.m_psz);
+         }
+      }
+
+         
+
+      return str;
+
+   }
+
+   return "";
+
+}

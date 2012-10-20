@@ -60,11 +60,10 @@ namespace html
       {
          elemental::layout_phase3(pdata);
          point pointBound = get_bound_point();
-         m_size.cx = 200;
-         m_size.cy = 23;
+         m_box.set_cxy(200, 23);
          pdata->m_layoutstate.m_cy   = get_cy();
          pdata->m_layoutstate.m_cx   = get_cx();
-         m_pedit->SetWindowPos(NULL, pdata->m_layoutstate.m_x, pdata->m_layoutstate.m_y, m_size.cx, m_size.cy, SWP_NOREDRAW);
+         m_pedit->SetWindowPos(NULL, (int) pdata->m_layoutstate.m_x, (int) pdata->m_layoutstate.m_y, (int) m_box.get_cx(), (int) m_box.get_cy(), SWP_NOREDRAW);
       }
 
       void input_text::_001OnDraw(data * pdata)
@@ -72,7 +71,7 @@ namespace html
          rect rectWindow;
          m_pedit->GetWindowRect(rectWindow);
          m_pedit->get_wnd()->ScreenToClient(rectWindow);
-         point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
+         ::point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
          pdata->m_pdc->SetViewportOrg(rectWindow.top_left());
          m_pedit->_001OnDraw(pdata->m_pdc);
          pdata->m_pdc->SetViewportOrg(ptPreviousViewportOrg);
@@ -81,7 +80,7 @@ namespace html
       void input_text::on_change_layout(data * pdata)
       {
          UNREFERENCED_PARAMETER(pdata);
-         m_pedit->SetWindowPos(NULL, m_pt.x, m_pt.y, m_size.cx, m_size.cy, SWP_NOREDRAW);
+         m_pedit->SetWindowPos(NULL, m_box.left, m_box.top, m_box.get_cx(), m_box.get_cy(), SWP_NOREDRAW);
       }
 
    }

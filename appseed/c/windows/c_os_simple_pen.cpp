@@ -2,12 +2,16 @@
 #undef new
 #include <gdiplus.h>
 
+
 simple_pen::simple_pen()
 {
    
-   m_ppen = NULL;
+   m_ppen      = NULL;
+
+   m_bDelete   = false;
 
 }
+
 
 simple_pen::~simple_pen()
 {
@@ -21,8 +25,11 @@ simple_pen::~simple_pen()
 
 }
 
-bool simple_pen::create_solid(COLORREF cr, int iWidth)
+
+bool simple_pen::create_solid(simple_graphics & g, COLORREF cr, int iWidth)
 {
+
+   UNREFERENCED_PARAMETER(g);
 
    if(m_ppen != NULL)
    {
@@ -36,6 +43,8 @@ bool simple_pen::create_solid(COLORREF cr, int iWidth)
    if(m_ppen == NULL)
       return false;
 
+   m_bDelete = true;
+
    return TRUE;
 
 }
@@ -48,18 +57,25 @@ bool simple_pen::destroy()
 
    bool bOk = true;
 
-   try
+   if(m_bDelete)
    {
 
-      delete m_ppen;
+      try
+      {
+
+         delete m_ppen;
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+
+      }
 
    }
-   catch(...)
-   {
 
-      bOk = false;
-
-   }
+   m_bDelete = false;
    
    m_ppen = NULL;
 
@@ -69,5 +85,32 @@ bool simple_pen::destroy()
    return true;
 
 }
+
+
+
+simple_pen & simple_pen::operator = (const simple_pen & pen)
+{
+
+   if(m_ppen != NULL)
+   {
+
+      destroy();
+
+   }
+
+   m_bDelete = false;
+
+   m_ppen = pen.m_ppen;
+
+   return *this;
+
+}
+
+
+
+
+
+
+
 
 

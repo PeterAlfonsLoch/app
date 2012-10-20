@@ -85,10 +85,10 @@ void simple_ui::draw_children(simple_graphics & g)
 
 }
 
-void simple_ui::on_char(int ch, UINT uScan)
+void simple_ui::on_char(int iKey, const vsstring & strchar)
 {
 
-   get_focus()->on_char(ch, uScan);
+   get_focus()->on_char(iKey, strchar);
 
 }
 
@@ -322,15 +322,15 @@ void simple_ui::draw_this(simple_graphics & g)
 
    int iBorderH = min(height(&m_rect) / 2, 49);
 
-   simple_linear_gradient_brush br1(m_rect.left, m_rect.top, m_rect.left, m_rect.top + iBorderH, crOut, crIn);
+   simple_linear_gradient_brush br1(g, m_rect.left, m_rect.top, m_rect.left, m_rect.top + iBorderH, crOut, crIn);
 
    g.fill_rect(rect_dim(m_rect.left, m_rect.top, width(&m_rect), iBorderH), br1);
 
-   simple_solid_brush br(crIn, g);
+   simple_solid_brush br(g, crIn);
 
    g.fill_rect(rect_dim(m_rect.left, m_rect.top + iBorderH, width(&m_rect), height(&m_rect) - (iBorderH * 2)), br);
 
-   simple_linear_gradient_brush br2(m_rect.left, m_rect.bottom - iBorderH, m_rect.left, m_rect.bottom, crIn, crOut);
+   simple_linear_gradient_brush br2(g, m_rect.left, m_rect.bottom - iBorderH, m_rect.left, m_rect.bottom, crIn, crOut);
 
    g.fill_rect(rect_dim(m_rect.left, m_rect.bottom - iBorderH, width(&m_rect), iBorderH), br2);
 
@@ -357,7 +357,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
          
-            simple_solid_pen pen(ARGB(255, 108, 149, 255));
+            simple_solid_pen pen(g, ARGB(255, 108, 149, 255));
 
             g.draw_rect(rect, pen);
 
@@ -370,11 +370,11 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
          
-            simple_path pathRound;
+            simple_path pathRound(true);
             
             graphics_round_rect::get_round_rect(pathRound, rect, 1 * 2);
 
-            simple_solid_pen pen(ARGB(84, 108, 149, 255));
+            simple_solid_pen pen(g, ARGB(84, 108, 149, 255));
 
             g.draw_path(pathRound, pen);
 
@@ -387,11 +387,11 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
 
-            simple_path pathRound;
+            simple_path pathRound(true);
 
             graphics_round_rect::get_round_rect(pathRound, rect, 2 * 2);
 
-            simple_solid_pen pen(ARGB(72, 108, 149, 255));
+            simple_solid_pen pen(g, ARGB(72, 108, 149, 255));
 
             g.draw_path(pathRound, pen);
 
@@ -404,11 +404,11 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
 
-            simple_path pathRound;
+            simple_path pathRound(true);
 
             graphics_round_rect::get_round_rect(pathRound, rect, 3 * 2);
 
-            simple_solid_pen pen(ARGB(60, 108, 149, 255));
+            simple_solid_pen pen(g, ARGB(60, 108, 149, 255));
 
             g.draw_path(pathRound, pen);
 
@@ -422,11 +422,11 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
 
-            simple_path pathRound;
+            simple_path pathRound(true);
 
             graphics_round_rect::get_round_rect(pathRound, rect, 4 * 2);
 
-            simple_solid_pen pen(ARGB(48, 108, 149, 255));
+            simple_solid_pen pen(g, ARGB(48, 108, 149, 255));
 
             g.draw_path(pathRound, pen);
 
@@ -441,11 +441,11 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
 
-            simple_path pathRound;
+            simple_path pathRound(true);
 
             graphics_round_rect::get_round_rect(pathRound, rect, 5 * 2);
 
-            simple_solid_pen pen(ARGB(36, 108, 149, 255));
+            simple_solid_pen pen(g, ARGB(36, 108, 149, 255));
 
             g.draw_path(pathRound, pen);
 
@@ -462,11 +462,11 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
 
-            simple_path pathRound;
+            simple_path pathRound(true);
 
             graphics_round_rect::get_round_rect(pathRound, rect, 6 * 2);
 
-            simple_solid_pen pen(ARGB(24, 108, 149, 255));
+            simple_solid_pen pen(g, ARGB(24, 108, 149, 255));
 
             g.draw_path(pathRound, pen);
 
@@ -477,7 +477,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
       else
       {
          
-         simple_solid_pen pen(ARGB(255, 84, 77, 255), 3);
+         simple_solid_pen pen(g, ARGB(255, 84, 77, 255), 3);
 
          g.draw_rect(m_rect, pen);
 
@@ -487,7 +487,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
    else
    {
 
-      simple_solid_pen pen(ARGB(255, 149, 149, 123));
+      simple_solid_pen pen(g, ARGB(255, 149, 149, 123));
 
       g.draw_rect(m_rect, pen);
 

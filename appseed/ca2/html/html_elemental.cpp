@@ -312,73 +312,70 @@ namespace html
 
       void elemental::set_bound_size(data * pdata, size size)
       {
-         m_sizeBound = size;
+         m_bound.set_cxy(size);
          on_change_layout(pdata);
       }
 
       point elemental::get_bound_point()
       {
-         return m_ptBound;
+         return m_bound.top_left();
       }
 
       void elemental::set_bound_point(data * pdata, point point)
       {
-         m_ptBound = point;
-         if(m_pt.x < m_ptBound.x)
+         m_bound.set_xy(point);
+         m_bound.constrain(m_box);
+/*         if(m_pt.x < m_ptBound.x)
             m_pt.x = m_ptBound.x;
          else if(m_pt.x > (m_ptBound.x + m_sizeBound.cx))
             m_pt.x = m_ptBound.x + m_sizeBound.cx;
          if(m_pt.y < m_ptBound.y)
             m_pt.y = m_ptBound.y;
          else if(m_pt.y > (m_ptBound.y + m_sizeBound.cy))
-            m_pt.y = m_ptBound.y + m_sizeBound.cy;
+            m_pt.y = m_ptBound.y + m_sizeBound.cy;*/
          on_change_layout(pdata);
       }
 
-      void elemental::set_x(data * pdata, int x)
+      void elemental::set_x(data * pdata, float x)
       {
-         m_pt.x = x;
+         m_box.set_x(x);
          on_change_layout(pdata);
       }
 
-      void elemental::set_y(data * pdata, int y)
+      void elemental::set_y(data * pdata, float y)
       {
-         m_pt.y = y;
+         m_box.set_y(y);
          on_change_layout(pdata);
       }
 
-      void elemental::set_cx(data * pdata, int cx)
+      void elemental::set_cx(data * pdata, float cx)
       {
-         m_size.cx = cx;
+         m_box.set_cx(cx);
          on_change_layout(pdata);
       }
 
-      void elemental::set_cy(data * pdata, int cy)
+      void elemental::set_cy(data * pdata, float cy)
       {
-         m_size.cy = cy;
+         m_box.set_cy(cy);
          on_change_layout(pdata);
       }
 
-      void elemental::set_xy(data * pdata, int x, int y)
+      void elemental::set_xy(data * pdata, float x, float y)
       {
-         m_pt.x = x;
-         m_pt.y = y;
+         m_box.set_xy(x, y);
          on_change_layout(pdata);
       }
 
-      void elemental::set_cxy(data * pdata, int cx, int cy)
+      void elemental::set_cxy(data * pdata, float cx, float cy)
       {
-         m_size.cx = cx;
-         m_size.cy = cy;
+         m_box.set_cxy(cx, cy);
          on_change_layout(pdata);
       }
 
-      void elemental::set_pos(data * pdata, int x, int y, int cx, int cy)
+      void elemental::set_pos(data * pdata, float x, float y, float cx, float cy)
       {
-         m_pt.x = x;
-         m_pt.y = y;
-         m_size.cx = cx;
-         m_size.cy = cy;
+
+         m_box.set_pos_dim(x, y, cx, cy);
          on_change_layout(pdata);
       }
 
@@ -479,6 +476,21 @@ namespace html
 
       }
 
+
+      bool elemental::is_tag()
+      {
+
+         return m_pelemental->m_pbase->get_type() == ::html::base::type_tag;
+
+      }
+
+
+      bool elemental::is_value()
+      {
+
+         return m_pelemental->m_pbase->get_type() == ::html::base::type_value;
+
+      }
 
    } // namespace impl
 
@@ -970,10 +982,10 @@ namespace html
          && (strTag == "td"
          || strTag == "table"))
       {
-         if(pcell != NULL && pcell->m_ptaPopulation[0].x == 0)
+         if(pcell != NULL && pcell->m_iColBeg == 0)
          {
             pdata->m_layoutstate.m_x = pcell->get_table()->get_x();
-            if(pcell->m_ptaPopulation[0].y > 0)
+            if(pcell->m_iRowBeg > 0)
             {
                pdata->m_layoutstate.m_x -= iTableBorder;
             }
@@ -996,8 +1008,7 @@ namespace html
          }
          if(pdata->m_layoutstate.m_bLastCellX || m_style.m_propertyset["display"] == "table-cell")
          {
-            pdata->m_layoutstate.m_x += (pdata->m_layoutstate.m_bLastCellX ? pdata->m_layoutstate.m_cx : 0)  + (pcell == NULL ? 0 : 
-               ((pcell->m_ptaPopulation.last_element().x -pcell->m_ptaPopulation.first_element().x) + 1) * iTableBorder);
+            pdata->m_layoutstate.m_x += (pdata->m_layoutstate.m_bLastCellX ? pdata->m_layoutstate.m_cx : 0)  + (pcell == NULL ? 0 : (pcell->m_iColEnd - pcell->m_iColBeg + 1) * iTableBorder);
             pdata->m_layoutstate.m_bLastCellX = false;
          }
          if(pdata->m_layoutstate.m_bLastCellY || m_style.m_propertyset["display"] == "table")
@@ -1048,16 +1059,11 @@ namespace html
       if(m_pbase->get_type() == ::html::base::type_tag && strTag == "td")
       {
 
-         int iCellPopulationCount = pcell->m_ptaPopulation.get_count();
-         int iCellFirstColumn = pcell->m_ptaPopulation.first_element().x;
-         int iCellFirstRow = pcell->m_ptaPopulation.first_element().y;
-         int iCellLastColumn = pcell->m_ptaPopulation.last_element().x;
-         int iCellLastRow = pcell->m_ptaPopulation.last_element().y;
-         int iLastColumn = pcell->get_table()->m_columna.get_upper_bound();
+         int iLastCol = pcell->get_table()->m_columna.get_upper_bound();
          int iLastRow = pcell->get_table()->m_rowptra.get_upper_bound();
-         if(iCellLastColumn == iLastColumn)
+         if(pcell->m_iColEnd == iLastCol)
          {
-            if(iCellLastRow == iLastRow)
+            if(pcell->m_iRowEnd == iLastRow)
             {
                pdata->m_layoutstate.m_bLastCellX = true;
                pdata->m_layoutstate.m_cx = m_pimpl->get_cx();
@@ -1088,7 +1094,7 @@ namespace html
             pdata->m_layoutstate.m_cy = 0;
          }
 
-         if(iCellFirstColumn == 0 && iCellFirstRow == 0)
+         if(pcell->m_iColBeg == 0 && pcell->m_iRowBeg == 0)
          {
             pcell->get_table()->set_x(pdata, pcell->get_x());
          }
@@ -1485,13 +1491,13 @@ namespace html
       return NULL;
    }
 
-   elemental * elemental::bound_hit_test(data * pdata, point pt)
+   elemental * elemental::bound_hit_test(data * pdata, ::point pt)
    {
       double dMin = -1.0;
       return bound_hit_test(pdata, pt, dMin);
    }
 
-   elemental * elemental::bound_hit_test(data * pdata, point pt, double & dMin)
+   elemental * elemental::bound_hit_test(data * pdata, ::point pt, double & dMin)
    {
       if(m_pimpl != NULL)
       {
@@ -1593,20 +1599,6 @@ namespace html
          str += ">";
       }
 
-      bool elemental::is_tag()
-      {
-
-         return m_pelemental->m_pbase->get_type() == ::html::base::type_tag;
-
-      }
-
-
-      bool elemental::is_value()
-      {
-
-         return m_pelemental->m_pbase->get_type() == ::html::base::type_value;
-
-      }
 
    }
 

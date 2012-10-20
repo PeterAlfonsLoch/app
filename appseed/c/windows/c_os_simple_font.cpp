@@ -6,9 +6,11 @@
 simple_font::simple_font()
 {
    
-   m_pfont = NULL;
+   m_pfont     = NULL;
+   m_bDelete   = false;
 
 }
+
 
 simple_font::~simple_font()
 {
@@ -22,7 +24,8 @@ simple_font::~simple_font()
 
 }
 
-bool simple_font::create_point(int nPointSize, const char * lpszFaceName, simple_graphics & g, bool bBold)
+
+bool simple_font::create_point(simple_graphics & g, int nPointSize, const char * lpszFaceName, bool bBold)
 {
 
    if(m_pfont != NULL)
@@ -36,21 +39,23 @@ bool simple_font::create_point(int nPointSize, const char * lpszFaceName, simple
 
    if(m_pfont == NULL)
       return false;
+
+   m_bDelete = true;
    
    return true;
 
 }
 
-bool simple_font::create_point_bold(int nPointSize, const char * lpszFaceName, simple_graphics & g)
+bool simple_font::create_point_bold(simple_graphics & g, int nPointSize, const char * lpszFaceName)
 {
 
-   return create_point(nPointSize, lpszFaceName, g, true);
+   return create_point(g, nPointSize, lpszFaceName, true);
 
 }
 
 
 
-bool simple_font::create_pixel(int nPointSize, const char * lpszFaceName, simple_graphics & g, bool bBold)
+bool simple_font::create_pixel(simple_graphics & g, int nPointSize, const char * lpszFaceName, bool bBold)
 {
 
    if(m_pfont != NULL)
@@ -64,15 +69,17 @@ bool simple_font::create_pixel(int nPointSize, const char * lpszFaceName, simple
 
    if(m_pfont == NULL)
       return false;
+
+   m_bDelete = true;
    
    return true;
 
 }
 
-bool simple_font::create_pixel_bold(int nPointSize, const char * lpszFaceName, simple_graphics & g)
+bool simple_font::create_pixel_bold(simple_graphics & g, int nPointSize, const char * lpszFaceName)
 {
 
-   return create_pixel(nPointSize, lpszFaceName, g, true);
+   return create_pixel(g, nPointSize, lpszFaceName, true);
 
 }
 
@@ -86,18 +93,25 @@ bool simple_font::destroy()
 
    bool bOk = true;
 
-   try
+   if(m_bDelete)
    {
+
+      try
+      {
       
-      delete m_pfont;
+         delete m_pfont;
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+
+      }
 
    }
-   catch(...)
-   {
 
-      bOk = false;
-
-   }
+   m_bDelete = false;
 
    m_pfont = NULL;
 
@@ -107,5 +121,34 @@ bool simple_font::destroy()
    return true;
 
 }
+
+
+
+
+
+simple_font & simple_font::operator = (const simple_font & font)
+{
+
+   if(m_pfont != NULL)
+   {
+
+      destroy();
+
+   }
+
+   m_bDelete = false;
+
+   m_pfont = font.m_pfont;
+
+   return *this;
+
+}
+
+
+
+
+
+
+
 
 

@@ -66,6 +66,12 @@
     <Filter Include="Header Files\version">
       <UniqueIdentifier>{57916618-2bfd-4c8a-96c9-934717a6dd58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\simple_graphics">
+      <UniqueIdentifier>{c9a6d8e9-3c7a-430d-b940-af9949f0f726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\simple_graphics">
+      <UniqueIdentifier>{c14f6fb5-2f4a-4c34-805b-f5467b6ff11d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hotplugin\hotplugin.h">
@@ -403,6 +409,27 @@
     </ClInclude>
     <ClInclude Include="c\c_graphics2.h">
       <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_graphics.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_graphics_first_phase.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_graphics_second_phase.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_linear_gradient_brush.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_pixel_font.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_solid_brush.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_solid_pen.h">
+      <Filter>Header Files\simple_graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -753,6 +780,9 @@
     </ClCompile>
     <ClCompile Include="c\c_graphics_round_rect.cpp">
       <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_graphics\simple_graphics.cpp">
+      <Filter>Source Files\simple_graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -36,18 +36,18 @@ namespace html
          table * ptable = get_table();
          if(ptable == NULL)
             return;
-         m_iIndex = ptable->m_rowptra.get_size();
+         m_iRow = ptable->m_rowptra.get_size();
          if(m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
             ptable->m_rowptra.add_unique(this);
          }
-         for(int iCol = 0; iCol < get_table()->m_cellholdera.get_size(); iCol++)
+         for(int i = 0; i < get_table()->m_cellholdera.get_size(); i++)
          {
-            for(int iRow = 0; iRow < get_table()->m_cellholdera[i].get_size(); iRow++)
+            for(int j = 0; j < get_table()->m_cellholdera[i].get_size(); j++)
             {
-               if(ptable->m_cellholdera[iCol][iRow].m_iCol == m_iIndex)
+               if(ptable->m_cellholdera[i][j].m_iRow == m_iRow)
                {
-                  m_cellholdera.set_at_grow(ptable->m_cellholdera[iCol][iRow].m_iCol, get_table()->m_cellholdera[i][j]);
+                  m_cellholdera.set_at_grow(ptable->m_cellholdera[i][j].m_iCol, get_table()->m_cellholdera[i][j]);
                }
             }
          }
@@ -225,8 +225,8 @@ namespace html
                cell * pcell = m_cellholdera[i].m_pcell;
                if(pcell != NULL)
                {
-                  pcell->set_cy(pdata, m_size.cy);
-                  pcell->m_pelemental->m_elementalptra[0]->m_pimpl->set_cy(pdata, m_size.cy);
+                  pcell->set_cy(pdata, m_box.get_cy());
+                  pcell->m_pelemental->m_elementalptra[0]->m_pimpl->set_cy(pdata, m_box.get_cy());
                }
             }
          }
@@ -238,16 +238,14 @@ namespace html
 
       }
 
-      void table_row::set_cell(point pt, cell * pcell)
+      void table_row::set_cell(int iCol, int iRow, cell * pcell)
       {
-         while(pt.x >= m_cellholdera.get_size())
-         {
-            m_cellholdera.add(cell::holder(point(m_cellholdera.get_size(), m_iIndex)));
-         }
-         if(pt.y == m_iIndex)
-         {
-            m_cellholdera[pt.x].m_pcell = pcell;
-         }
+         
+         if(iRow != m_iRow)
+            return;
+
+         m_cellholdera.element_at_grow(iCol).m_pcell = pcell;
+
       }
 
       void table_row::_001OnDraw(data * pdata)

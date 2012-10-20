@@ -88,11 +88,11 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
 
    simple_font font;
 
-   font.create_point(100, "Lucida Sans Unicode", g);
+   font.create_point(g, 100, "Lucida Sans Unicode");
 
    simple_font fontBold;
 
-   fontBold.create_point_bold(100, "Lucida Sans Unicode", g);
+   fontBold.create_point_bold(g, 100, "Lucida Sans Unicode");
 
    g.select(font);
 
@@ -103,7 +103,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
 
       simple_pen pen;
 
-      pen.create_solid(1, ARGB(255, 84, 84, 77));
+      pen.create_solid(g, ARGB(255, 84, 84, 77));
 
       if(iMode == 0 || iMode == 1)
       {
@@ -111,7 +111,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
       }
       else
       {
-         brush.create_solid(ARGB(255, 84, 84, 84), g);
+         brush.create_solid(g, ARGB(255, 84, 84, 84));
       }
 
       g.select(pen);
@@ -206,7 +206,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
    else if(iMode == 2) // else // !m_bHealingSurface => "Surgery Internals"
    {
 
-      brush.create_solid(ARGB(255, 0xCC, 0xCC, 0xCC), g);
+      brush.create_solid(g, ARGB(255, 0xCC, 0xCC, 0xCC));
 
       g.select(brush);
 
@@ -290,7 +290,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
    else if(iMode == 3) // else // !m_bHealingSurface => "Surgery Internals"
    {
 
-      brush.create_solid(ARGB(255, 0xCC, 0xCC, 0xCC), g);
+      brush.create_solid(g, ARGB(255, 0xCC, 0xCC, 0xCC));
 
       g.select(brush);
 

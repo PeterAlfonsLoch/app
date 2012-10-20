@@ -279,7 +279,7 @@ namespace sockets {
 
 #endif
 
-#if BSD_STYLE_SOCKETS
+#ifdef BSD_STYLE_SOCKETS
 
 namespace sockets
 {

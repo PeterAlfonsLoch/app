@@ -18,22 +18,36 @@ namespace html
 
       inline box();
 
-      inline bool contains(float x, float y);
-      inline bool contains(::point pt);
-      inline void set_size(float x, float y);
+
+      inline point & top_left();
+      inline point & bottom_right();
+      inline point top_left() const;
+      inline point bottom_right() const;
+      inline point top_right() const;
+      inline point bottom_left() const;
+
+      inline box & constrain(box & box) const;
+
+
+      inline bool contains(float x, float y) const;
+      inline bool contains(::point pt) const;
       inline void offset_x(float x);
       inline void offset_y(float y);
       inline void offset_xy(float x, float y);
       inline void set_x(float x);
       inline void set_y(float y);
       inline void set_xy(float x, float y);
+      inline void set_xy(point point);
       inline void set_cx(float cx);
       inline void set_cy(float cy);
       inline void set_cxy(float cx, float cy);
-      inline LPRECT get(LPRECT lprect);
-      inline float get_cx();
-      inline float get_cy();
-      inline size get_cxy();
+      inline void set_cxy(::size sz);
+      inline void set_cxy(size sz);
+      inline void set_pos_dim(float x, float y, float cx, float cy);
+      inline LPRECT get(LPRECT lprect) const;
+      inline float get_cx() const;
+      inline float get_cy() const;
+      inline size get_cxy() const;
    };
 
 
@@ -47,14 +61,14 @@ namespace html
 
    }
 
-   inline bool box::contains(float x, float y)
+   inline bool box::contains(float x, float y) const
    {
 
       return x >= left && x <= right && y >= top  && y <= bottom;
 
    }
 
-   inline bool box::contains(::point pt)
+   inline bool box::contains(::point pt) const
    {
 
       return contains((float) pt.x, (float) pt.y);
@@ -75,6 +89,16 @@ namespace html
    {
       set_cx(cx);
       set_cy(cy);
+   }
+
+   inline void box::set_cxy(::size sz)
+   {
+      set_cxy((float) sz.cx, (float) sz.cy);
+   }
+
+   inline void box::set_cxy(size sz)
+   {
+      set_cxy(sz.cx, sz.cy);
    }
 
    inline void box::offset_x(float x)
@@ -113,7 +137,12 @@ namespace html
       set_y(y);
    }
 
-   inline LPRECT box::get(LPRECT lprect)
+   inline void box::set_xy(point point)
+   {
+      set_xy(point.x, point.y);
+   }
+
+   inline LPRECT box::get(LPRECT lprect) const
    {
       lprect->left      = (long) left;
       lprect->right     = (long) right;
@@ -122,21 +151,81 @@ namespace html
       return lprect;
    }
 
-   inline float box::get_cx()
+   inline float box::get_cx() const
    {
       return right - left;
    }
 
 
-   inline float box::get_cy()
+   inline float box::get_cy() const
    {
       return bottom - top;
    }
 
-   inline size box::get_cxy()
+   inline size box::get_cxy() const
    {
       return size(get_cx(), get_cy());
    }
+
+   inline point & box::top_left()
+   {
+      return *((point *) &left);
+   }
+
+   inline point & box::bottom_right()
+   {
+      return *((point *) &right);
+   }
+
+   inline point box::top_left() const
+   {
+      return point(left, top);
+   }
+
+   inline point box::bottom_right() const
+   {
+      return point(right, bottom);
+   }
+
+   inline point box::top_right() const
+   {
+      return point(right, top);
+   }
+
+   inline  point box::bottom_left() const
+   {
+      return point(left, bottom);
+   }
+
+   inline box & box::constrain(box & box) const
+   {
+      
+      if(box.left < left)
+         box.left = left;
+
+      if(box.right < right)
+         box.right = right;
+
+      if(box.top < top)
+         box.top = top;
+
+      if(box.bottom < bottom)
+         box.bottom = bottom;
+
+      return box;
+
+   }
+   
+   inline void box::set_pos_dim(float x, float y, float cx, float cy)
+   {
+
+      left     = x;
+      top      = y;
+      right    = x + cx;
+      bottom   = y + cy;
+
+   }
+
 
 } // namespace html
 

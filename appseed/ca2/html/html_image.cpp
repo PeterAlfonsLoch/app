@@ -56,9 +56,10 @@ namespace html
                pdata->m_layoutstate.m_cy = 0;
             }
 
-            m_size.cx = pdata->m_imagea[m_iImage].m_spdib->width();
-            m_size.cy = pdata->m_imagea[m_iImage].m_spdib->height();
+            m_box.set_cxy(pdata->m_imagea[m_iImage].m_spdib->size());
+
          }
+
       }
 
 
