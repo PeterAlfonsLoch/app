@@ -15,9 +15,7 @@ CLASS_DECL_c int MessageBox(void * p, const char * pszMessage, const char * pszT
   
    Windows::UI::Popups::MessageDialog ^ merde = ref new Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring(pszTitle));
   
-   Windows::UI::Popups::UICommand ^ command = merde->ShowAsync()->GetResults();
-
-   command.Close();
+   Windows::UI::Popups::IUICommand ^ command = m_wait(merde->ShowAsync());
 
    return 1;
 
@@ -28,7 +26,8 @@ void WINAPI Sleep(DWORD timeout)
 {
 
    simple_event ev;
-   ev.wait
+   ev.wait(timeout);
+
 }
 
 

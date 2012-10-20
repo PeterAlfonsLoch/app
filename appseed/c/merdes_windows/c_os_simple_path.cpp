@@ -96,22 +96,21 @@ bool simple_path::add_line(int x1, int y1, int x2, int y2)
 bool simple_path::get_arc(D2D1_POINT_2F & pt, D2D1_ARC_SEGMENT & arcseg, const RECT & rect, int iStart, int iAngle)
 {
 
+   float pi = 3.1415927f;
+
    D2D1_POINT_2F ptCenter;
    
    ptCenter.x = ((FLOAT) rect.left + (FLOAT) rect.right) / 2.0f;
    ptCenter.y = ((FLOAT) rect.top + (FLOAT) rect.bottom) / 2.0f;
 
-   float rx = (FLOAT) rect.right - ptCenter.X;
+   float rx = (FLOAT) rect.right    - ptCenter.x;
+   float ry = (FLOAT) rect.bottom   - ptCenter.y;
 
-   float ry = (FLOAT) rect.bottom - ptCenter.Y;
+   pt.x = ptCenter.x + cos(iStart * pi / 180.0f) * rx;
+   pt.y = ptCenter.y - sin(iStart * pi / 180.0f) * ry;
 
-   float pi = 3.1415927f;
-
-   pt.x = ptCenter.X + cos(iStart * pi / 180.0f) * rx;
-   pt.y = ptCenter.Y - sin(iStart * pi / 180.0f) * ry;
-
-   arcSeg.point.X = ptCenter.X + cos((iStart + iAngle) * pi / 180.0f) * rx;
-   arcSeg.point.Y = ptCenter.Y + sin((iStart + iAngle) * pi / 180.0f) * ry;
+   arcseg.point.x = ptCenter.x + cos((iStart + iAngle) * pi / 180.0f) * rx;
+   arcseg.point.y = ptCenter.y + sin((iStart + iAngle) * pi / 180.0f) * ry;
 
    if(iAngle > 0)
    {
@@ -172,13 +171,6 @@ bool simple_path::close_figure()
       m_psink->Release();
 
       m_psink = NULL;
-
-   }
-
-   if(FAILED(m_ppath->CloseFigure()))
-   {
-
-      return false;
 
    }
 

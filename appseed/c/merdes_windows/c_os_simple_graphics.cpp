@@ -3,7 +3,7 @@
 #define d2d1_fax_options D2D1_FACTORY_OPTIONS // fax of merde
 #define single_threaded D2D1_FACTORY_TYPE_SINGLE_THREADED // ???? muliple performance multi thread hidden option there exists cost uses?
 
-simple_graphics::simple_graphics()
+os_simple_graphics::os_simple_graphics()
 {
 
    m_pdc       = NULL;
@@ -15,7 +15,7 @@ simple_graphics::simple_graphics()
 }
 
 
-simple_graphics::~simple_graphics()
+os_simple_graphics::~os_simple_graphics()
 {
 
    if(m_pdc != NULL)
@@ -27,7 +27,7 @@ simple_graphics::~simple_graphics()
 
 }
 
-bool simple_graphics::create(ID2D1DeviceContext * pdc)
+bool os_simple_graphics::reference_os_data(ID2D1DeviceContext * pdc)
 {
 
    if(m_pdc != NULL)
@@ -45,7 +45,7 @@ bool simple_graphics::create(ID2D1DeviceContext * pdc)
 
 }
 
-bool simple_graphics::create_device()
+bool os_simple_graphics::create_device()
 {
    if(m_iType != 0)
       destroy();
@@ -66,7 +66,7 @@ bool simple_graphics::create_device()
 
 }
 
-bool simple_graphics::create_from_bitmap(simple_bitmap & b)
+bool os_simple_graphics::create_from_bitmap(simple_bitmap & b)
 {
 
    if(m_iType != 0)
@@ -83,7 +83,7 @@ bool simple_graphics::create_from_bitmap(simple_bitmap & b)
 
 }
 
-bool simple_graphics::from_window( Windows::UI::Core::CoreWindow ^ w)
+bool os_simple_graphics::from_window( Windows::UI::Core::CoreWindow ^ w)
 {
    // Allocate a descriptor.
    DXGI_SWAP_CHAIN_DESC1 swapChainDesc = {0};
@@ -129,9 +129,9 @@ ID2D1Factory1 * TlsGetD2D1Factory1()
    d2d1_fax_options options;
    memset(&options, 0, sizeof(options));
 
-   HRESULT hr = ::D2D1CreateFactory(single_threaded, __uuidof(ID2D1Factory1), &options, &pfactory);
+   HRESULT hr = ::D2D1CreateFactory(single_threaded, __uuidof(ID2D1Factory1), &options, (void **) &pfactory);
 
-   TlsGetValue(TLS_D2D1_FACTORY1, pfactory);
+   TlsSetValue(TLS_D2D1_FACTORY1, pfactory);
 
    if(FAILED(hr))
        return NULL;
@@ -188,8 +188,7 @@ ID3D11Device * TlsGetD3D11Device()
             &pdevice,                    // returns the Direct3D device created
             &lv,            // returns feature level of device created
             &pcontext                    // returns the device immediate context
-            )
-        );
+            );
 
    TlsSetValue(TLS_d3_1, pdevice);
    TlsSetValue(TLS_d3_2, pcontext);
@@ -237,7 +236,7 @@ ID3D11Device1 * TlsGetD3D11Device1()
    if(pdevice == NULL)
       return NULL;
 
-   HRESULT hr = pdevice->QueryInterface(__uuidof(ID3D11Device1), (IUnknown **) &pdevice1)
+   HRESULT hr = pdevice->QueryInterface(__uuidof(ID3D11Device1), (void **) &pdevice1);
 
    TlsSetValue(TLS_d3_3, pdevice1);
 
@@ -251,7 +250,7 @@ ID3D11Device1 * TlsGetD3D11Device1()
 IDXGIDevice * TlsGetDXGIDevice()
 {
 
-   ID3D11Device * pdxgidevice = (ID3D11Device *) TlsGetValue(TLS_d3_4);
+   IDXGIDevice * pdxgidevice = (IDXGIDevice *) TlsGetValue(TLS_d3_4);
 
    if(pdxgidevice == NULL)
       return NULL;
@@ -261,7 +260,7 @@ IDXGIDevice * TlsGetDXGIDevice()
    if(pdevice1 == NULL)
       return NULL;
 
-   HRESULT hr = pdevice1->QueryInterface(__uuidof(IDXGIDevice), (IUnknown **) &pdxgidevice)
+   HRESULT hr = pdevice1->QueryInterface(__uuidof(IDXGIDevice), (void **) &pdxgidevice);
 
    TlsSetValue(TLS_d3_4, pdxgidevice);
 
@@ -274,7 +273,7 @@ IDXGIDevice * TlsGetDXGIDevice()
 
 
 
-bool simple_graphics::detach_bitmap()
+/*bool os_simple_graphics::detach_bitmap()
 {
 
    if(m_iType != 0)
@@ -295,9 +294,9 @@ bool simple_graphics::detach_bitmap()
       
    return hbitmap != NULL;
 
-}
+}*/
 
-bool simple_graphics::from_entire_window(HWND hwnd)
+/*bool os_simple_graphics::from_entire_window(HWND hwnd)
 {
 
    if(m_iType != 0)
@@ -317,7 +316,7 @@ bool simple_graphics::from_entire_window(HWND hwnd)
 }
 
 
-bool simple_graphics::from_window(HWND hwnd)
+bool os_simple_graphics::from_window(HWND hwnd)
 {
 
    if(m_iType != 0)
@@ -336,7 +335,7 @@ bool simple_graphics::from_window(HWND hwnd)
 
 }
 
-bool simple_graphics::from_window_paint(HWND hwnd, LPRECT lprectPaint)
+bool os_simple_graphics::from_window_paint(HWND hwnd, LPRECT lprectPaint)
 {
 
    if(m_iType != 0)
@@ -360,9 +359,10 @@ bool simple_graphics::from_window_paint(HWND hwnd, LPRECT lprectPaint)
 
     return true;
     
-}
+}*/
 
-bool simple_graphics::reference_os_data(HDC hdc)
+/*
+bool os_simple_graphics::reference_os_data(HDC hdc)
 {
    
    m_iType = 5;
@@ -372,12 +372,12 @@ bool simple_graphics::reference_os_data(HDC hdc)
    return true;
 
 }
+*/
 
-
-bool simple_graphics::create()
+bool os_simple_graphics::create()
 {
    
-   simple_graphics g;
+   os_simple_graphics g;
 
    g.from_window(NULL);
    
@@ -385,21 +385,21 @@ bool simple_graphics::create()
    
 }
 
-bool simple_graphics::create(simple_graphics & g)
+bool os_simple_graphics::create(os_simple_graphics & g)
 {
    
    return create(g.m_hdc);
    
 }
 
-bool simple_graphics::create_from_screen()
+bool os_simple_graphics::create_from_screen()
 {
    
    return from_window(NULL);
    
 }
 
-bool simple_graphics::select(simple_font & font)
+bool os_simple_graphics::select(simple_font & font)
 {
    
    HFONT hfontOld = (HFONT) ::SelectObject(m_hdc, font.m_hfont);
@@ -411,7 +411,7 @@ bool simple_graphics::select(simple_font & font)
 
 }
 
-bool simple_graphics::select(simple_brush & brush)
+bool os_simple_graphics::select(simple_brush & brush)
 {
    
    HBRUSH hbrushOld = (HBRUSH) ::SelectObject(m_hdc, brush.m_hbrush);
@@ -423,7 +423,7 @@ bool simple_graphics::select(simple_brush & brush)
 
 }
 
-bool simple_graphics::select(simple_pen & pen)
+bool os_simple_graphics::select(simple_pen & pen)
 {
    
    HPEN hpenOld = (HPEN) ::SelectObject(m_hdc, pen.m_hpen);
@@ -435,7 +435,7 @@ bool simple_graphics::select(simple_pen & pen)
 
 }
 
-bool simple_graphics::destroy()
+bool os_simple_graphics::destroy()
 {
    
    if(m_player != NULL)
@@ -461,7 +461,7 @@ bool simple_graphics::destroy()
 
 }
 
-bool simple_graphics::set_offset(int x, int y)
+bool os_simple_graphics::set_offset(int x, int y)
 {
    
    POINT ptViewport;
@@ -473,7 +473,7 @@ bool simple_graphics::set_offset(int x, int y)
 
 }
 
-bool simple_graphics::offset(int x, int y)
+bool os_simple_graphics::offset(int x, int y)
 {
 
    POINT ptViewport;
@@ -486,14 +486,14 @@ bool simple_graphics::offset(int x, int y)
 }
 
 
-bool simple_graphics::bit_blt(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, DWORD rop)
+bool os_simple_graphics::bit_blt(int x, int y, int cx, int cy, os_simple_graphics & gSrc, int x1, int y1, DWORD rop)
 {
    
    return ::BitBlt(m_hdc, x, y, cx, cy, gSrc.m_hdc, x1, y1, rop) != FALSE;
 
 }
 
-bool simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORREF * pdata)
+bool os_simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORREF * pdata)
 {
    
    try
@@ -527,7 +527,7 @@ bool simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORREF *
 
 }
 
-SIZE simple_graphics::get_text_extent(const char * psz, int iLen)
+SIZE os_simple_graphics::get_text_extent(const char * psz, int iLen)
 {
 
    if(iLen < 0)
@@ -553,28 +553,51 @@ SIZE simple_graphics::get_text_extent(const char * psz, int iLen)
 }
 
 
-bool simple_graphics::rectangle(LPCRECT lpcrect)
+bool os_simple_graphics::rectangle(LPCRECT lpcrect)
 {
    
    return ::Rectangle(m_hdc, lpcrect->left, lpcrect->top, lpcrect->right, lpcrect->bottom) != FALSE;
 
 }
 
-bool simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
+
+bool os_simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen & pen)
+{
+
+   if(&pen == NULL)
+      return true;
+
+   if(pen.get_os_brush() == NULL)
+      return true;
+
+   D2D1_RECT_F r;
+
+   r.left      = lpcrect->left;
+   r.top       = lpcrect->top;
+   r.right     = lpcrect->right;
+   r.bottom    = lpcrect->bottom;
+
+   m_pdc->DrawRectangle(r, m_pen.get_os_brush(), m_pen.m_iWidth);
+
+   return true;
+
+}
+
+bool os_simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
 {
    
    return ::FillRect(m_hdc, lpcrect, brush.m_hbrush) != FALSE;
 
 }
 
-bool simple_graphics::set_text_color(COLORREF cr)
+bool os_simple_graphics::set_text_color(COLORREF cr)
 {
    
    return ::SetTextColor(m_hdc, cr) != FALSE;
 
 }
 
-bool simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
+bool os_simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
 {
 
    switch(emode)
@@ -594,39 +617,39 @@ bool simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
 
 }
 
-bool simple_graphics::alpha_blend(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf)
+bool os_simple_graphics::alpha_blend(int x, int y, int cx, int cy, os_simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf)
 {
 
    return ::AlphaBlend(m_hdc, x, y, cx, cy, gSrc.m_hdc, x1, y1, cx1, cy1, bf) != FALSE;
 
 }
 
-void simple_graphics::fill_solid_rect(LPCRECT lpRect, COLORREF clr)
+void os_simple_graphics::fill_solid_rect(LPCRECT lpRect, COLORREF clr)
 {
    ::SetBkColor(m_hdc, clr);
    ::ExtTextOut(m_hdc, 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
 }
 
-bool simple_graphics::draw_path(simple_path & path, simple_pen & pen)
+bool os_simple_graphics::draw_path(simple_path & path, simple_pen & pen)
 {
    
    return SUCCEEDED(m_pdc->DrawGeometry(path.get_os_data(), pen.get_os_brush(), pen.m_iWidth));
 
 }
 
-bool simple_graphics::fill_path(simple_path & path, simple_brush & brush)
+bool os_simple_graphics::fill_path(simple_path & path, simple_brush & brush)
 {
    
    return SUCCEEDED(m_pdc->DrawGeometry(path.get_os_data(), brush.get_os_brush(), pen.m_iWidth));
 
 }
 
-bool simple_graphics::fill_polygon(LPPOINT lpa, int iCount, ::ca::e_fill_mode emode)
+bool os_simple_graphics::fill_polygon(LPPOINT lpa, int iCount, ::ca::e_fill_mode emode)
 {
    m_pgraphics->FillPolygon();
 }
 
-bool simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
+bool os_simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
 {
    WCHAR * pwsz = utf8_to_16(pszUtf8);
    bool b = TextOutW(m_hdc, x, y, pwsz, (int) wcslen_dup(pwsz)) != FALSE;
@@ -636,7 +659,7 @@ bool simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
 
 
 
-bool simple_graphics::draw_line(simple_pen * ppen, int x1, int y1, int x2, int y2)
+bool os_simple_graphics::draw_line(simple_pen * ppen, int x1, int y1, int x2, int y2)
 {
    simple_brush b;
    b.create_solid(ppen->m_cr, *this);
@@ -649,7 +672,7 @@ bool simple_graphics::draw_line(simple_pen * ppen, int x1, int y1, int x2, int y
    m_pdc->DrawLine(p1, p2, b.get_os_data(), ppen->m_iWidth);
 }
 
-bool simple_graphics::replace_clip(const RECT & rect)
+bool os_simple_graphics::replace_clip(const RECT & rect)
 {
    
    if(m_player != NULL)
@@ -693,7 +716,7 @@ bool simple_graphics::replace_clip(const RECT & rect)
 }
 
 
-bool simple_graphics::replace_clip(ID2D1PathGeometry * ppath)
+bool os_simple_graphics::replace_clip(ID2D1PathGeometry * ppath)
 {
    
    if(m_player != NULL)
@@ -733,7 +756,7 @@ bool simple_graphics::replace_clip(ID2D1PathGeometry * ppath)
 }
 
 
-bool simple_graphics::exclude_clip(ID2D1PathGeometry * ppath)
+bool os_simple_graphics::exclude_clip(ID2D1PathGeometry * ppath)
 {
 
    if(ppath == NULL)

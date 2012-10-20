@@ -25,6 +25,7 @@ public:
 
    bool add_rect(const RECT & rect);
 
+   bool get_arc(D2D1_POINT_2F & pt, D2D1_ARC_SEGMENT & arcseg, const RECT & rect, int iStart, int iAngle);
 
    ID2D1PathGeometry * get_os_data();
    bool close_figure();

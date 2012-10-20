@@ -31,7 +31,7 @@ public:
    simple_pen();
    ~simple_pen();
    
-   bool create_solid(simple_graphics & g, int iWidth, COLORREF cr);
+   bool create_solid(simple_graphics & g, COLORREF cr, int iWidth = 1);
    bool from_stock(int iId);
    
    bool destroy();

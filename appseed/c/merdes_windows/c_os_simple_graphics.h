@@ -31,7 +31,7 @@ public:
    bool bit_blt(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, DWORD rop);
    bool alpha_blend(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf);
    bool create_from_bitmap(simple_bitmap & b);
-   bool detach_bitmap();
+   //bool detach_bitmap();
    bool create_device();
    void fill_solid_rect(LPCRECT lpRect, COLORREF clr);
    bool draw_path(simple_path & path, simple_pen & pen);
@@ -48,7 +48,8 @@ public:
 
    void set_alpha_mode(::ca::e_alpha_mode emode);
 
-   bool draw_line(simple_pen * ppen, int x1, int y1, int x2, int y2);
+   bool draw_line(int x1, int y1, int x2, int y2, simple_pen & pen);
+   bool draw_rect(LPCRECT lpcrect, simple_pen & pen);
    bool replace_clip(simple_path & path);
    bool exclude_clip(simple_path & path);
    bool replace_clip(const RECT & rect);
@@ -64,9 +65,9 @@ public:
    
 
    // platform-specific
-   bool create(ID2D1DeviceContext * pdc);
+   bool reference_os_data(ID2D1DeviceContext * pdc);
    bool from_window( Windows::UI::Core::CoreWindow ^ w);
-   bool reference_os_data(ID2D1RenderTarget * pdc);
+   //bool reference_os_data(ID2D1RenderTarget * pdc);
    operator ID2D1RenderTarget *() { return m_pdc; }
 
 

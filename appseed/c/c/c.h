@@ -77,7 +77,7 @@ namespace ca
 
 
 #include "c_heap.h"
-#include "c_graphics.h"
+#include "c/simple_graphics/simple_graphics_first_phase.h"
 #include "c_mem.h"
 
 #include "c_math.h"
@@ -129,6 +129,12 @@ namespace ca
 
 #include "c/os/os.h"
 
+
+#include "c/simple_graphics/simple_graphics_second_phase.h"
+
+
+
+
 #include "c_file_watcher_thread.h"
 #include "c_file_watcher_listener_thread.h"
 #include "c_async.h"
@@ -171,3 +177,10 @@ CLASS_DECL_c vsstring get_system_error_message(DWORD dwError);
 
 
 #include "c_simple_app.h"
+
+
+inline void * zero(void * p, size_t s)
+{
+   memset(p, 0, s);
+   return p;
+}

@@ -73,15 +73,15 @@ void simple_edit_box::draw_this(simple_graphics & g)
 
    simple_brush br;
    
-   br.create_solid(ARGB(84 + 49, 255, 255, 233), g);
+   br.create_solid(g, ARGB(84 + 49, 255, 255, 233));
 
    g.fill_rect(m_rect, br);
 
    draw_focus_rect(g);
 
-   simple_solid_brush b(ARGB(223, 49, 49, 23), g);
+   simple_solid_brush b(g, ARGB(223, 49, 49, 23));
 
-   simple_pixel_font f(height(&m_rect) * 10, "Geneva", g);
+   simple_pixel_font f(g, height(&m_rect) * 10, "Geneva");
 
    g.select(b);
 
@@ -95,18 +95,18 @@ void simple_edit_box::draw_this(simple_graphics & g)
 
 
 
-void simple_edit_box::on_char(int ch, UINT uScan)
+void simple_edit_box::on_char(int iKey, const vsstring & strChar)
 {
 
-   if(ch == VK_TAB)
+   if(iKey == VK_TAB)
    {
       focus_next();
    }
-   else if(ch == VK_RETURN)
+   else if(iKey == VK_RETURN)
    {
       on_action("submit");
    }
-   else if(ch == VK_BACK)
+   else if(iKey == VK_BACK)
    {
       if(m_iPos > m_strText.get_length())
       {
@@ -122,7 +122,7 @@ void simple_edit_box::on_char(int ch, UINT uScan)
          m_iPos = 0;
       }
    }
-   else if(ch == VK_DELETE)
+   else if(iKey == VK_DELETE)
    {
       if(m_iPos < 0)
       {
@@ -136,90 +136,7 @@ void simple_edit_box::on_char(int ch, UINT uScan)
    else
    {
 
-      /*int chInsert;
-
-      if((GetKeyState(VK_CAPITAL) & 0x0001) != 0)
-      {
-         if((GetKeyState(VK_SHIFT) & 0x80000000) != 0)
-         {
-            if(ch == 2)
-               chInsert = '@';
-            else
-               chInsert = tolower(ch);
-         }
-         else
-         {
-            chInsert = toupper(ch);
-         }
-      }
-      else
-      {
-         if((GetKeyState(VK_SHIFT) & 0x80000000) != 0)
-         {
-            if(ch == 2)
-               chInsert = '@';
-            else
-               chInsert = toupper(ch);
-         }
-         else
-         {
-            chInsert = tolower(ch);
-         }
-      }
-
-      vsstring str(chInsert);
-
-      */
-
-      wchar_t wsz[32];
-
-      BYTE baState[256];
-
-      GetKeyboardState(baState);
-
-      if((GetKeyState(VK_SHIFT) & 0x80000000) != 0)
-      {
-         baState[VK_SHIFT] |= 0x80;
-      }
-
-
-      int iRet = ToUnicodeEx(ch, uScan, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
-
-      if(iRet > 0)
-      {
-
-         wsz[iRet] = L'\0';
-
-         vsstring str;
-
-         str.attach(utf16_to_8(wsz));
-
-         if((GetKeyState(VK_CAPITAL) & 0x0001) != 0)
-         {
-            if((GetKeyState(VK_SHIFT) & 0x80000000) != 0)
-            {
-               to_lower(str.m_psz);
-            }
-            else
-            {
-               to_upper(str.m_psz);
-            }
-         }
-         else
-         {
-            if((GetKeyState(VK_SHIFT) & 0x80000000) != 0)
-            {
-               to_upper(str.m_psz);
-            }
-            else
-            {
-               to_lower(str.m_psz);
-            }
-         }
-
-         m_strText = m_strText.substr(0, m_iPos) + str + m_strText.substr(m_iPos + 1);
-
-      }
+      m_strText = m_strText.substr(0, m_iPos) + strChar + m_strText.substr(m_iPos + 1);
 
       m_iPos++;
 

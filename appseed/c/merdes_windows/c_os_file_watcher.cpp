@@ -39,7 +39,14 @@ namespace file_watcher
 		id mWatchid;
 
       ::Windows::Storage::StorageFolder ^    m_folder;
-      ::Windows::Storage::Search::StorageFileQueryResult ^ m_queryresult;
+      ::Windows::Storage::Search::StorageItemQueryResult ^ m_queryresult;
+      ::Windows::Foundation::EventRegistrationToken m_evtoken;
+
+      void cOntentscHanged(::Platform::Object ^ o, ::Windows::Storage::Search::IStorageQueryResultBase ^ r)
+      {
+         throw "todo";
+          //mFileWatcher->handle_action(this, r->
+      }
 
 	};
 
@@ -98,36 +105,22 @@ namespace file_watcher
 		return ReadDirectoryChangesW(
 			pWatch->m_hDirectory, pWatch->m_buffer, sizeof(pWatch->m_buffer), FALSE,
 			pWatch->m_dwNotify, NULL, &pWatch->m_overlapped, _clear ? 0 : WatchCallback) != 0;
-	}
+	}*/
 
 	/// Stops monitoring a directory.
 	void DestroyWatch(watch_struct* pWatch)
 	{
 		if (pWatch)
 		{
-			pWatch->m_bStop = TRUE;
-
-			CancelIo(pWatch->m_hDirectory);
-
-			RefreshWatch(pWatch, true);
-
-			if (!HasOverlappedIoCompleted(&pWatch->m_overlapped))
-			{
-				SleepEx(5, TRUE);
-			}
-
-			CloseHandle(pWatch->m_overlapped.hEvent);
-			CloseHandle(pWatch->m_hDirectory);
-			HeapFree(GetProcessHeap(), 0, pWatch);
+         delete pWatch;
 		}
 	}
-   */
 	/// Starts monitoring a directory.
 	watch_struct* CreateWatch(LPCSTR szDirectory, DWORD m_dwNotify)
 	{
 		watch_struct* pWatch;
 		size_t ptrsize = sizeof(*pWatch);
-		pWatch = static_cast<watch_struct*>(HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, ptrsize));
+		pWatch = new watch_struct;
 
 
       Windows::Storage::Search::QueryOptions ^ options = ref new Windows::Storage::Search::QueryOptions();
@@ -137,29 +130,16 @@ namespace file_watcher
 
       pWatch->m_folder = m_wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(wstring(szDirectory)));
 
-      pWatch->m_queryresult = CreateFile(szDirectory, FILE_LIST_DIRECTORY,
-			FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, 
-			OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED, NULL);
+      pWatch->m_queryresult = pWatch->m_folder->CreateItemQuery();
 
-		if (pWatch->m_hDirectory != INVALID_HANDLE_VALUE)
-		{
-			pWatch->m_overlapped.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-			pWatch->m_dwNotify = m_dwNotify;
+		if(pWatch->m_queryresult == nullptr)
+         return NULL;
 
-			if (RefreshWatch(pWatch))
-			{
-				return pWatch;
-			}
-			else
-			{
-				CloseHandle(pWatch->m_overlapped.hEvent);
-				CloseHandle(pWatch->m_hDirectory);
-			}
-		}
+      m_evtoken = pwatch->m_queryresult->ContentsChanged += ref new ::Windows::Foundation::TypedEventHandler < ::Windows::Storage::Search::IStorageQueryResultBase ^, 
+         ::Platform::Object ^ >(pwatch, &watch_struct::cOntentscHanged);
 
-		
+		return pWatch;
 
-		return NULL;
 	}
 
 #pragma endregion
@@ -180,52 +160,55 @@ namespace file_watcher
 		m_watchmap.remove_all();
 	}
 
-	id os_file_watcher::addWatch(const char * directory, file_watch_listener* watcher)
+	id os_file_watcher::add_watch(const char * directory, file_watch_listener* watcher)
 	{
 		id watchid = ++m_idLast;
 
-		watch_struct* watch = CreateWatch(directory, FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_SIZE | FILE_NOTIFY_CHANGE_FILE_NAME);
+		watch_struct * pwatch = CreateWatch(directory, FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_SIZE | FILE_NOTIFY_CHANGE_FILE_NAME);
 
-		if(!watch)
+		if(pwatch == NULL)
 			throw file_not_found_exception(directory);
 
-		watch->mWatchid = watchid;
-		watch->mFileWatcher = this;
-		watch->mFileWatchListener = watcher;
-		watch->m_strDirName = directory;
-		strcpy(watch->m_strDirName, directory);
-
-		m_watchmap.insert(std::make_pair(watchid, watch));
+		pwatch->mWatchid = watchid;
+		pwatch->mFileWatcher = this;
+		pwatch->mFileWatchListener = watcher;
+		pwatch->m_strDirName = directory;
+      
+		m_watchmap.set_at(watchid, watch);
 
 		return watchid;
 	}
 
-	void os_file_watcher::removeWatch(const String& directory)
+	void os_file_watcher::remove_watch(const char * directory)
 	{
-		watch_map::iterator iter = m_watchmap.begin();
-		watch_map::iterator end = m_watchmap.end();
-		for(; iter != end; ++iter)
+      watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
+      for(; ppair != NULL; m_watchmap.PGetNextAssoc(ppair))
 		{
-			if(directory == iter->second->m_strDirName)
+			if(directory == ppair->m_value->m_strDirName)
 			{
-				removeWatch(iter->first);
+				remove_watch(ppair->m_key);
 				return;
 			}
 		}
 	}
 
-	void os_file_watcher::removeWatch(id watchid)
+	void os_file_watcher::remove_watch(id watchid)
 	{
-		watch_map::iterator iter = m_watchmap.find(watchid);
+      watch_map::pair * ppair = m_watchmap.PLookup(watchid);
 
-		if(iter == m_watchmap.end())
+		if(ppair == NULL)
 			return;
 
-		watch_struct* watch = iter->second;
-		m_watchmap.erase(iter);
+      watch_struct* pwatch = ppair->m_value;
+      m_watchmap.remove_key(ppair->m_key);
 
-		DestroyWatch(watch);
+		DestroyWatch(pwatch);
 	}
+
+   vsstring os_file_watcher::watch_path(id watchid)
+   {
+      return m_watchmap[watchid]->m_strDirName;
+   }
 
 	void os_file_watcher::update()
 	{

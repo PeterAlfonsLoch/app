@@ -334,12 +334,14 @@ namespace sockets
          }
       }
 
+#ifdef BSD_STYLE_SOCKETS
       /** Please don't use this method.
          "accept()" is handled automatically in the OnRead() method. */
-           virtual SOCKET Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr)
-           {
-                   return accept(socket, saptr, lenptr);
-           }
+      virtual SOCKET Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr)
+      {
+               return accept(socket, saptr, lenptr);
+      }
+#endif
 
            bool HasCreator() { return m_bHasCreate; }
 

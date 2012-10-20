@@ -2,6 +2,7 @@
 
 #define type_shared DWRITE_FACTORY_TYPE_SHARED
 
+
 simple_font::simple_font()
 {
    
@@ -18,42 +19,6 @@ simple_font::~simple_font()
       destroy();
 
    }
-
-}
-
-bool simple_font::create_indirect(LPLOGFONT  lplf)
-{
-
-   IDWriteFactory * pfactory = TlsGetWriteFactory();
-
-
-   DWRITE_FONT_STYLE style;
-
-   if(lplf->lfItalic)
-      style = DWRITE_FONT_STYLE_ITALIC;
-   else
-      style = DWRITE_FONT_STYLE_NORMAL;
-
-   DWRITE_FONT_STRETCH stretch;
-
-   stretch = DWRITE_FONT_STRETCH_NORMAL;
-
-   HRESULT hr = pfactory->CreateTextFormat(
-      wstring(lplf->lfFaceName),
-      NULL,
-      (DWRITE_FONT_WEIGHT) lplf->lfWeight,
-      style,
-      stretch,
-      lplf->lfHeight / 100.0f,
-      L"",
-      &m_pformat);
-
-
-   if(FAILED(hr) || m_pformat == NULL)
-      return false;
-
-
-   return true;
 
 }
 
@@ -76,30 +41,97 @@ bool simple_font::destroy()
 }
 
 
-bool simple_font::create_point(int nPointSize, const char * lpszFaceName, simple_graphics & g)
+bool simple_font::create_point(simple_graphics & g, int nPointSize, const char * lpszFaceName, bool bBold)
 {
 
-   return create_point_bold(nPointSize, lpszFaceName, FALSE, g);
+   IDWriteFactory * pfactory = TlsGetWriteFactory();
+
+
+   DWRITE_FONT_STYLE style;
+
+   //if(lplf->lfItalic)
+     // style = DWRITE_FONT_STYLE_ITALIC;
+   //else
+      style = DWRITE_FONT_STYLE_NORMAL;
+
+   DWRITE_FONT_STRETCH stretch;
+
+   stretch = DWRITE_FONT_STRETCH_NORMAL;
+
+   HRESULT hr = pfactory->CreateTextFormat(
+      //wstring(lplf->lfFaceName),
+      wstring(lpszFaceName),
+      NULL,
+      //(DWRITE_FONT_WEIGHT) lplf->lfWeight,
+      (DWRITE_FONT_WEIGHT) bBold ? DWRITE_FONT_WEIGHT_BOLD : DWRITE_FONT_WEIGHT_NORMAL,
+      style,
+      stretch,
+      point_dpi(nPointSize / 10.f),
+      L"",
+      &m_pformat);
+
+
+   if(FAILED(hr) || m_pformat == NULL)
+      return false;
+
+
+   return true;
 
 }
 
-bool simple_font::create_point_bold(int nPointSize, const char * lpszFaceName, int iBold, simple_graphics & g)
+
+bool simple_font::create_point_bold(simple_graphics & g, int nPointSize, const char * lpszFaceName)
 {
 
-   LOGFONT logFont;
-
-   memset_dup(&logFont, 0, sizeof(LOGFONT));
-
-   logFont.lfCharSet = DEFAULT_CHARSET;
-
-   logFont.lfHeight = nPointSize / 10.0f;
-   logFont.lfWeight = iBold ? FW_BOLD : FW_NORMAL;
-   wcsncpy_dup(logFont.lfFaceName, wstring(lpszFaceName), sizeof(logFont.lfFaceName));
-
-   return create_indirect(&logFont);
+   return create_point(g, nPointSize, lpszFaceName, true);
 
 }
 
+
+
+bool simple_font::create_pixel(simple_graphics & g, int nPixelSize, const char * lpszFaceName, bool bBold)
+{
+
+   IDWriteFactory * pfactory = TlsGetWriteFactory();
+
+
+   DWRITE_FONT_STYLE style;
+
+   //if(lplf->lfItalic)
+     // style = DWRITE_FONT_STYLE_ITALIC;
+   //else
+      style = DWRITE_FONT_STYLE_NORMAL;
+
+   DWRITE_FONT_STRETCH stretch;
+
+   stretch = DWRITE_FONT_STRETCH_NORMAL;
+
+   HRESULT hr = pfactory->CreateTextFormat(
+      //wstring(lplf->lfFaceName),
+      wstring(lpszFaceName),
+      NULL,
+      (DWRITE_FONT_WEIGHT) bBold ? DWRITE_FONT_WEIGHT_BOLD : DWRITE_FONT_WEIGHT_NORMAL,
+      style,
+      stretch,
+      y_dpi(nPixelSize / 10.f),
+      L"",
+      &m_pformat);
+
+
+   if(FAILED(hr) || m_pformat == NULL)
+      return false;
+
+   return true;
+   
+}
+
+
+bool simple_font::create_pixel_bold(simple_graphics & g, int nPixelSize, const char * lpszFaceName)
+{
+
+   return create_pixel(g, nPixelSize, lpszFaceName, true);
+
+}
 
 
 IDWriteFactory * TlsGetWriteFactory()
@@ -122,3 +154,60 @@ IDWriteFactory * TlsGetWriteFactory()
 }
 
 
+
+
+CLASS_DECL_c float point_dpi(float points)
+{
+
+   FLOAT dpiX, dpiY;
+
+   TlsGetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
+
+	return points * dpiY / 72.f;
+
+}
+
+CLASS_DECL_c float dpiy(float y)
+{
+   
+   FLOAT dpiX, dpiY;
+
+   TlsGetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
+
+   return y * dpiY / 96.f;
+
+}
+
+CLASS_DECL_c float dpix(float x)
+{
+   
+   FLOAT dpiX, dpiY;
+
+   TlsGetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
+
+   return x * dpiX / 96.f;
+
+}
+
+
+CLASS_DECL_c float y_dpi(float y)
+{
+   
+   FLOAT dpiX, dpiY;
+
+   TlsGetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
+
+   return y / dpiY;
+
+}
+
+CLASS_DECL_c float x_dpi(float x)
+{
+   
+   FLOAT dpiX, dpiY;
+
+   TlsGetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
+
+   return x / dpiX;
+
+}

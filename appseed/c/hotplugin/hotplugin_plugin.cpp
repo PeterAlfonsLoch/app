@@ -732,29 +732,29 @@ namespace hotplugin
 
       int iOffset = 3;
 
-      pen.create_solid(ARGB(220, 180, 180, 180), 1);
+      pen.create_solid(g, ARGB(220, 180, 180, 180));
       g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, pen);
       g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
 
-      pen.create_solid(ARGB(220, 77, 77, 77), 1);
+      pen.create_solid(g, ARGB(220, 77, 77, 77));
       g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
       g.draw_line(lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
 
       iOffset = 2;
-      pen.create_solid(ARGB(220, 84, 84, 84), 1);
+      pen.create_solid(g, ARGB(220, 84, 84, 84));
       g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, pen);
       g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
 
-      pen.create_solid(ARGB(220, 170, 170, 170), 1);
+      pen.create_solid(g, ARGB(220, 170, 170, 170));
       g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
       g.draw_line(lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy + iBarHeight) / 2 + iOffset, pen);
 
 
-      br.create_solid(ARGB(127, 255, 255, 255), g);
+      br.create_solid(g, ARGB(127, 255, 255, 255));
 
       g.select(br);
 
-      simple_pixel_font f(iBarHeight * 10, "Calibri", g);
+      simple_pixel_font f(g, iBarHeight * 10, "Calibri");
 
       g.select(f);
 
@@ -999,8 +999,16 @@ namespace hotplugin
 #endif
          }
 
-#ifdef WINDOWS
-         m_hfileBitmap = CreateFile(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel), FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, iOpen, FILE_ATTRIBUTE_NORMAL, NULL);
+#ifdef MERDE_WINDOWS
+         CREATEFILE2_EXTENDED_PARAMETERS ps;
+         zero(&ps, sizeof(ps));
+         ps.dwSize = sizeof(ps);
+         ps.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
+         wstring wstr(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel));
+         m_hfileBitmap = CreateFile2(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, iOpen, &ps);
+#elif defined(WINDOWS)
+         wstring wstr(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel));
+         m_hfileBitmap = CreateFileW(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, iOpen, FILE_ATTRIBUTE_NORMAL, NULL);
 #else
          m_hfileBitmap = ::open(dir::path(dir::userappdata("time"), vsstring("ca2\\ca2plugin-container-") + m_strBitmapChannel).m_psz, iOpen, S_IRUSR | S_IWUSR);
 #endif
@@ -1032,8 +1040,22 @@ namespace hotplugin
          dword_ptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
 
          ensure_file_size(m_hfileBitmap, size);
+#ifdef MERDE_WINDOWS
+         m_hfilemapBitmap = CreateFileMappingFromApp(
+            m_hfileBitmap,
+            NULL,
+            PAGE_READWRITE,
+            size,
+            NULL);
 
-#ifdef WINDOWS
+         if(m_hfilemapBitmap == NULL)
+         {
+            CloseHandle(m_hfileBitmap);
+            m_hfileBitmap = INVALID_HANDLE_VALUE;
+            throw "resource exception";
+         }
+
+#elif defined(WINDOWS)
          m_hfilemapBitmap = CreateFileMapping(
             m_hfileBitmap,
             NULL,
@@ -1051,7 +1073,13 @@ namespace hotplugin
 
 #endif
 
-#ifdef WINDOWS
+#ifdef MERDE_WINDOWS
+      m_pcolorref = (COLORREF *) MapViewOfFileFromApp(
+         m_hfilemapBitmap,
+         FILE_MAP_READ | FILE_MAP_WRITE,
+         0,
+         0);
+#elif defined(WINDOWS)
          m_pcolorref = (COLORREF *) MapViewOfFile(
             m_hfilemapBitmap,
             FILE_MAP_READ | FILE_MAP_WRITE,

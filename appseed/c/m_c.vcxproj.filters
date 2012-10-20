@@ -61,6 +61,9 @@
     <Filter Include="Source Files\merdas_windows">
       <UniqueIdentifier>{8db4b1b9-ec75-4fe9-8f05-8f084c5da0ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\simple_graphics">
+      <UniqueIdentifier>{207db38b-462e-49fe-9cb0-9defd87f854c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -602,9 +605,6 @@
     <ClInclude Include="c\c_geometric_types.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
-    <ClInclude Include="c\c_graphics.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
     <ClInclude Include="c\c_graphics_round_rect.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
@@ -734,14 +734,32 @@
     <ClInclude Include="simple_ui\simple_tap.h">
       <Filter>Header Files\simple_ui</Filter>
     </ClInclude>
-    <ClInclude Include="c\c_graphics2.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
     <ClInclude Include="merdes_windows\c_os_simple_path.h">
       <Filter>Header Files\windows_merdes</Filter>
     </ClInclude>
-    <ClInclude Include="c\c_simple_graphics.h">
+    <ClInclude Include="c\c_simple_pixel_font.h">
       <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_graphics.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_pixel_font.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_graphics_second_phase.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_graphics_first_phase.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_solid_pen.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_solid_brush.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_linear_gradient_brush.h">
+      <Filter>Header Files\simple_graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

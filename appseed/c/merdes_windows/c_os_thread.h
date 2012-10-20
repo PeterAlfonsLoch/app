@@ -14,30 +14,74 @@ CLASS_DECL_c void WINAPI TlsShutdown();
 CLASS_DECL_c int WINAPI GetThreadPriority(_In_ HANDLE hThread);
 */
 
-template < typename T >
-class CLASS_DECL_c m_wait
+/*template < typename T >
+class m_waiter
 {
-public:
-
-   T ^ m_result;
-
-   m_wait(Windows::Foundation::IAsyncOperation <  T ^ > ^ op)
+   simple_event ev;
+   T op;
+   m_waiter(T op)
    {
-      m_result = nullptr;
-      simple_event ev;
-      op->Completed = ([this](Windows::Foundation::IAsyncOperation < ::Windows::Storage::StorageFolder ^ > ^ op, Windows::Foundation::AsyncStatus status))
+      this->op = op;
+      op->Completed = new ::Windows::Foundation::AsyncOperationCompletedHandler(this, &m_waiter::cOMPLETed);
+   }
+   
+   
+   void cOMPLETed(T op, ::Windows::Foundation::AsyncStatus st)
+   {
+      if(st == Windows::Foundation::AsyncStatus::Completed)
       {
-         if(status == Windows::Foundation::AsyncStatus::Completed)
-         {
-            m_result = op->GetResults();
-         }
-         ev.set_event();
-      };
-      ev.wait();
+         mer = op->GetResults();
+      }
+      ev.set_event();
    }
 
+   auto wait()
+   {
+      ev.lock();
+      return op->GetResults();
+   }
 
-   operator T ^ () { return m_result; }
+};
+*/
+
+template < typename T >
+class m_waiter
+{
+   simple_event ev;
+   ::Windows::Foundation::IAsyncOperation < T ^ > ^ op;
+   m_waiter(::Windows::Foundation::IAsyncOperation < T ^ > ^ op)
+   {
+      this->op = op;
+      op->Completed = new ::Windows::Foundation::AsyncOperationCompletedHandler(this, &m_waiter::cOMPLETed);
+   }
+   
+   
+   void cOMPLETed(::Windows::Foundation::IAsyncOperation < T ^ > ^ op, ::Windows::Foundation::AsyncStatus st)
+   {
+      if(st == Windows::Foundation::AsyncStatus::Completed)
+      {
+         mer = op->GetResults();
+      }
+      ev.set_event();
+   }
+
+   T ^ wait()
+   {
+      ev.lock();
+      return op->GetResults();
+   }
 
 };
 
+
+/*template < typename T >
+auto m_wait(T op)
+{
+   return m_waiter < T > (op).wait();
+};*/
+
+template < typename T >
+T ^ m_wait(::Windows::Foundation::IAsyncOperation < T ^ > ^ op)
+{
+   return m_waiter < T > (op).wait();
+};

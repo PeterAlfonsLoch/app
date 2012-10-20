@@ -22,7 +22,7 @@ void simple_password::draw_this(simple_graphics & g)
 
    simple_brush br;
    
-   br.create_solid(ARGB(184, 255, 255, 240), g);
+   br.create_solid(g, ARGB(184, 255, 255, 240));
 
    g.fill_rect(m_rect, br);
 
@@ -30,11 +30,11 @@ void simple_password::draw_this(simple_graphics & g)
 
    simple_brush b;
    
-   b.create_solid(ARGB(223, 49, 49, 23), g);
+   b.create_solid(g, ARGB(223, 49, 49, 23));
 
    g.select(b);
 
-   simple_pixel_font f(height(m_rect) * 10, "Geneva", g);
+   simple_pixel_font f(g, height(m_rect) * 10, "Geneva");
 
    g.select(f);
 

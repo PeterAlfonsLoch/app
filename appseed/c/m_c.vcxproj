@@ -297,8 +297,6 @@
     <ClInclude Include="c\c_file_watcher_listener_thread.h" />
     <ClInclude Include="c\c_file_watcher_thread.h" />
     <ClInclude Include="c\c_geometric_types.h" />
-    <ClInclude Include="c\c_graphics.h" />
-    <ClInclude Include="c\c_graphics2.h" />
     <ClInclude Include="c\c_graphics_round_rect.h" />
     <ClInclude Include="c\c_heap.h" />
     <ClInclude Include="c\c_international.h" />
@@ -318,12 +316,12 @@
     <ClInclude Include="c\c_simple_array.h" />
     <ClInclude Include="c\c_simple_critical_section.h" />
     <ClInclude Include="c\c_simple_event.h" />
-    <ClInclude Include="c\c_simple_graphics.h" />
     <ClInclude Include="c\c_simple_list.h" />
     <ClInclude Include="c\c_simple_map.h" />
     <ClInclude Include="c\c_simple_memory.h" />
     <ClInclude Include="c\c_simple_mutex.h" />
     <ClInclude Include="c\c_simple_obj.h" />
+    <ClInclude Include="c\c_simple_pixel_font.h" />
     <ClInclude Include="c\c_simple_shell_launcher.h" />
     <ClInclude Include="c\c_small_ipc_channel.h" />
     <ClInclude Include="c\c_sprintf.h" />
@@ -361,6 +359,13 @@
     <ClInclude Include="merdes_windows\windows_merde.h" />
     <ClInclude Include="os\os.h" />
     <ClInclude Include="os\os_process.h" />
+    <ClInclude Include="simple_graphics\simple_graphics.h" />
+    <ClInclude Include="simple_graphics\simple_graphics_first_phase.h" />
+    <ClInclude Include="simple_graphics\simple_graphics_second_phase.h" />
+    <ClInclude Include="simple_graphics\simple_linear_gradient_brush.h" />
+    <ClInclude Include="simple_graphics\simple_pixel_font.h" />
+    <ClInclude Include="simple_graphics\simple_solid_brush.h" />
+    <ClInclude Include="simple_graphics\simple_solid_pen.h" />
     <ClInclude Include="simple_ui\simple_button.h" />
     <ClInclude Include="simple_ui\simple_edit.h" />
     <ClInclude Include="simple_ui\simple_edit_box.h" />

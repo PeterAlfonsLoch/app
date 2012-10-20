@@ -20,5 +20,3 @@
 
 
 
-#include "c/c/c_graphics2.h"
-

@@ -14,15 +14,23 @@ public:
 
 
    
+   using ::os_simple_graphics::draw_line;
    inline bool draw_line(int x1, int y1, int x2, int y2);
    inline bool draw_line(POINT p1, POINT p2, simple_pen & pen);
    inline bool draw_line(POINT p1, POINT p2);
 
+   using ::os_simple_graphics::rectangle;
    inline bool rectangle(const RECT & rect);
+
+   using ::os_simple_graphics::draw_rect;
    inline bool draw_rect(const RECT & rect);
    inline bool draw_rect(const RECT & rect, simple_pen & pen);
+
+   using ::os_simple_graphics::fill_rect;
    inline bool fill_rect(const RECT & rect);
    inline bool fill_rect(const RECT & rect, simple_brush & brush);
+
+   using ::os_simple_graphics::fill_solid_rect;
    inline void fill_solid_rect(const RECT & rect, COLORREF clr);
 
 };
