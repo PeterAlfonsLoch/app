@@ -10,7 +10,7 @@ public:
    ID2D1DeviceContext *    m_pdc;
    IDXGIAdapter *          m_pad;
    IDXGIFactory2 *         m_pfax;
-   simple_font             m_font;
+   os_simple_font          m_font;
    simple_brush            m_brush;
    simple_pen              m_pen;
    simple_bitmap           m_bitmap;

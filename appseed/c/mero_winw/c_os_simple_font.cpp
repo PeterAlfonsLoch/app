@@ -3,14 +3,14 @@
 #define type_shared DWRITE_FACTORY_TYPE_SHARED
 
 
-simple_font::simple_font()
+os_simple_font::os_simple_font()
 {
    
    m_pformat = NULL;
 
 }
 
-simple_font::~simple_font()
+os_simple_font::~os_simple_font()
 {
    
    if(m_pformat != NULL)
@@ -22,7 +22,7 @@ simple_font::~simple_font()
 
 }
 
-bool simple_font::destroy()
+bool os_simple_font::destroy()
 {
    
    if(m_pformat == NULL)
@@ -41,7 +41,7 @@ bool simple_font::destroy()
 }
 
 
-bool simple_font::create_point(simple_graphics & g, int nPointSize, const char * lpszFaceName, bool bBold)
+bool os_simple_font::create_point(simple_graphics & g, int nPointSize, const char * lpszFaceName, bool bBold)
 {
 
    IDWriteFactory * pfactory = TlsGetWriteFactory();
@@ -80,7 +80,7 @@ bool simple_font::create_point(simple_graphics & g, int nPointSize, const char *
 }
 
 
-bool simple_font::create_point_bold(simple_graphics & g, int nPointSize, const char * lpszFaceName)
+bool os_simple_font::create_point_bold(simple_graphics & g, int nPointSize, const char * lpszFaceName)
 {
 
    return create_point(g, nPointSize, lpszFaceName, true);
@@ -89,7 +89,7 @@ bool simple_font::create_point_bold(simple_graphics & g, int nPointSize, const c
 
 
 
-bool simple_font::create_pixel(simple_graphics & g, int nPixelSize, const char * lpszFaceName, bool bBold)
+bool os_simple_font::create_pixel(simple_graphics & g, int nPixelSize, const char * lpszFaceName, bool bBold)
 {
 
    IDWriteFactory * pfactory = TlsGetWriteFactory();
@@ -126,7 +126,7 @@ bool simple_font::create_pixel(simple_graphics & g, int nPixelSize, const char *
 }
 
 
-bool simple_font::create_pixel_bold(simple_graphics & g, int nPixelSize, const char * lpszFaceName)
+bool os_simple_font::create_pixel_bold(simple_graphics & g, int nPixelSize, const char * lpszFaceName)
 {
 
    return create_pixel(g, nPixelSize, lpszFaceName, true);
@@ -214,7 +214,7 @@ CLASS_DECL_c float x_dpi(float x)
 
 
 
-simple_font & simple_font::operator = (const simple_font & font)
+os_simple_font & os_simple_font::operator = (const os_simple_font & font)
 {
 
    if(m_pformat != NULL)

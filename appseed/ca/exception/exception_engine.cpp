@@ -751,7 +751,7 @@ retry_get_base:
       stack_trace(str, &context, uiSkip, false, pszFormat);
 
       return true;
-#elif defined(MERDO_WINDWS)
+#elif defined(MEROWINWS)
 
       return true;
 

@@ -18,7 +18,7 @@ int _c_lock_is_active(const char * pszName)
 
 int _c_lock(const char * pszName, void ** pdata)
 {
-#ifdef MERDO_WINDWS
+#ifdef MEROWINWS
    wstring wstrName(pszName);
    HANDLE hmutex = ::CreateMutexEx(NULL, wstrName, 0, SYNCHRONIZE);
 #else

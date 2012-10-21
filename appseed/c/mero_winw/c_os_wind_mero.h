@@ -34,7 +34,7 @@ CLASS_DECL_c UINT   get_main_thread_id();
 CLASS_DECL_c void attach_thread_input_to_main_thread(bool bAttach = true);
 
 
-#ifndef MERDO_WINDWS
+#ifndef MEROWINWS
 
 CLASS_DECL_c
 LSTATUS

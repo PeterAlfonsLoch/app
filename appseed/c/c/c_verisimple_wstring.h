@@ -139,7 +139,7 @@ public:
    inline operator wchar_t * () const { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
    inline operator wchar_t * () { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
 
-#ifdef MERDO_WINDWS
+#ifdef MEROWINWS
    inline operator Platform::String ^ () { return ref new Platform::String(operator const wchar_t *()); }
 #endif
 
@@ -278,7 +278,7 @@ public:
 
 
 
-#ifdef MERDO_WINDWS
+#ifdef MEROWINWS
  inline verisimple_string::operator Platform::String ^()
  {
     return ref new Platform::String(wstring(*this));

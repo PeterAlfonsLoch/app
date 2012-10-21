@@ -118,7 +118,7 @@ bool file_put_contents_dup(const char * path, const char * contents, ::count len
    ::CloseHandle(hfile);
    return dwWrite == dwWritten && bOk != FALSE;
 
-#elif defined(MERDO_WINDWS)
+#elif defined(MEROWINWS)
 
    dir::mk(dir::name(path));
 
@@ -185,7 +185,7 @@ const char * file_get_contents_dup(const char * path)
    ::CloseHandle(hfile);
    return psz;
 
-#elif defined(MERDO_WINDWS)
+#elif defined(MEROWINWS)
 
 
    CREATEFILE2_EXTENDED_PARAMETERS ps;
@@ -245,7 +245,7 @@ bool file_get_memory_dup(simple_memory & memory, const char * path)
    return true;
 
 
-#elif defined(MERDO_WINDWS)
+#elif defined(MEROWINWS)
 
 
    CREATEFILE2_EXTENDED_PARAMETERS ps;
@@ -516,7 +516,7 @@ uint64_t file_length_dup(const char * path)
    ::CloseHandle(hfile);
    return ui;
 
-#elif defined(MERDO_WINDWS)
+#elif defined(MEROWINWS)
    
    CREATEFILE2_EXTENDED_PARAMETERS ep;
 
@@ -635,7 +635,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
    hfile1 = ::CreateFileW(wstr, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
    if(hfile1 == INVALID_HANDLE_VALUE)
       return false;
-#elif defined(MERDO_WINDWS)
+#elif defined(MEROWINWS)
    HANDLE hfile1 = NULL;
    HANDLE hfile2 = NULL;
    CREATEFILE2_EXTENDED_PARAMETERS ep;
@@ -692,7 +692,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
          hfile2 = ::CreateFile(strPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
          if(hfile2 == INVALID_HANDLE_VALUE)
             return false;
-#elif defined(MERDO_WINDWS)
+#elif defined(MEROWINWS)
 
    CREATEFILE2_EXTENDED_PARAMETERS ep2;
 
@@ -1149,7 +1149,7 @@ bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
    wstring wstrSrc(pszSrc);
    return ::CopyFileW(wstrSrc, wstrNew, bOverwrite ? FALSE : TRUE) ? true : false;
 
-#elif defined(MERDO_WINDWS)
+#elif defined(MEROWINWS)
 
     wstring wstrNewNam();
     wstring wstrSrc(pszSrc);

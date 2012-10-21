@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifdef MERDO_WINDWS
+#ifdef MEROWINWS
 #define BYESHYTOULA_STYLE_SOCKS
 #else
 #define BSD_STYLE_SOCKETS

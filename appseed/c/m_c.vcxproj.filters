@@ -354,73 +354,70 @@
     <ClCompile Include="c\c_file_watcher_impl.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_c_dll.cpp">
+    <ClCompile Include="mero_winw\c_os_c_dll.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_crt0dll.cpp">
+    <ClCompile Include="mero_winw\c_os_crt0dll.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_file.cpp">
+    <ClCompile Include="mero_winw\c_os_file.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_file_watcher.cpp">
+    <ClCompile Include="mero_winw\c_os_file_watcher.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_graphics_round_rect.cpp">
+    <ClCompile Include="mero_winw\c_os_http.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_http.cpp">
+    <ClCompile Include="mero_winw\c_os_launcher.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_launcher.cpp">
+    <ClCompile Include="mero_winw\c_os_library.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_library.cpp">
+    <ClCompile Include="mero_winw\c_os_lock.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_lock.cpp">
+    <ClCompile Include="mero_winw\c_os_message_loop.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_message_loop.cpp">
+    <ClCompile Include="mero_winw\c_os_process.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_process.cpp">
+    <ClCompile Include="mero_winw\c_os_simple_app.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_simple_app.cpp">
+    <ClCompile Include="mero_winw\c_os_simple_bitmap.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_simple_bitmap.cpp">
+    <ClCompile Include="mero_winw\c_os_simple_brush.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_simple_brush.cpp">
+    <ClCompile Include="mero_winw\c_os_simple_font.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_simple_font.cpp">
+    <ClCompile Include="mero_winw\c_os_simple_graphics.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_simple_graphics.cpp">
+    <ClCompile Include="mero_winw\c_os_simple_path.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_simple_path.cpp">
+    <ClCompile Include="mero_winw\c_os_simple_pen.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_simple_pen.cpp">
+    <ClCompile Include="mero_winw\c_os_simple_shell_launcher.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_simple_shell_launcher.cpp">
+    <ClCompile Include="mero_winw\c_os_small_ipc_channel.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_small_ipc_channel.cpp">
+    <ClCompile Include="mero_winw\c_os_sockets.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_sockets.cpp">
+    <ClCompile Include="mero_winw\c_os_thread.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="merdos_windws\c_os_thread.cpp">
-      <Filter>Source Files\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="merdos_windws\windw_merdo.cpp">
+    <ClCompile Include="mero_winw\c_os_wind_mero.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
@@ -725,55 +722,52 @@
     <ClInclude Include="simple_graphics\simple_path.h">
       <Filter>Header Files\simple_graphics</Filter>
     </ClInclude>
-    <ClInclude Include="merdos_windws\c_os_file.h">
+    <ClInclude Include="mero_winw\c_os_file.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="merdos_windws\c_os_file_watcher.h">
+    <ClInclude Include="mero_winw\c_os_file_watcher.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="merdos_windws\c_os_gdi.h">
+    <ClInclude Include="mero_winw\c_os_gdi.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="merdos_windws\c_os_graphics_round_rect.h">
+    <ClInclude Include="mero_winw\c_os_http.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="merdos_windws\c_os_http.h">
+    <ClInclude Include="mero_winw\c_os_internal.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="merdos_windws\c_os_internal.h">
+    <ClInclude Include="mero_winw\c_os_process.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="merdos_windws\c_os_process.h">
+    <ClInclude Include="mero_winw\c_os_simple_bitmap.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="merdos_windws\c_os_simple_bitmap.h">
+    <ClInclude Include="mero_winw\c_os_simple_brush.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="merdos_windws\c_os_simple_brush.h">
+    <ClInclude Include="mero_winw\c_os_simple_font.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="merdos_windws\c_os_simple_font.h">
+    <ClInclude Include="mero_winw\c_os_simple_graphics.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="merdos_windws\c_os_simple_graphics.h">
+    <ClInclude Include="mero_winw\c_os_simple_hold_handle.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="merdos_windws\c_os_simple_hold_handle.h">
+    <ClInclude Include="mero_winw\c_os_simple_path.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="merdos_windws\c_os_simple_path.h">
+    <ClInclude Include="mero_winw\c_os_simple_pen.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="merdos_windws\c_os_simple_pen.h">
+    <ClInclude Include="mero_winw\c_os_sockets.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="merdos_windws\c_os_sockets.h">
+    <ClInclude Include="mero_winw\c_os_thread.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="merdos_windws\c_os_thread.h">
-      <Filter>Header Files\metrowin</Filter>
-    </ClInclude>
-    <ClInclude Include="merdos_windws\windw_merdo.h">
+    <ClInclude Include="mero_winw\c_os_wind_mero.h">
       <Filter>Header Files\metrowin</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef MERDO_WINDWS
+#ifdef MEROWINWS
 
 typedef struct tagCREATESTRUCTA {
     LPVOID      lpCreateParams;

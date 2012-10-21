@@ -677,7 +677,7 @@ bool os_simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
 void os_simple_graphics::fill_solid_rect(LPCRECT lpcrect, COLORREF clr)
 {
    
-   simple_solid_brush b(*this, clr);
+   simple_solid_brush b((simple_graphics &) *this, clr);
 
    fill_rect(lpcrect, b);
    

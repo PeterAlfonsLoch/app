@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_c simple_font
+class CLASS_DECL_c os_simple_font
 {
 public:
 
@@ -9,8 +9,8 @@ public:
    IDWriteTextFormat *                  m_pformat;
 
 
-   simple_font();
-   ~simple_font();
+   os_simple_font();
+   ~os_simple_font();
 
    bool create_point(simple_graphics & g, int nPointSize, const char * lpszFaceName, bool bBold = false);
    bool create_point_bold(simple_graphics & g, int nPointSize, const char * lpszFaceName);
@@ -23,7 +23,7 @@ public:
    // platform-specific
    bool create_indirect(LPLOGFONT lplf);
 
-   simple_font & operator = (const simple_font & font);
+   os_simple_font & operator = (const os_simple_font & font);
 
 };
 

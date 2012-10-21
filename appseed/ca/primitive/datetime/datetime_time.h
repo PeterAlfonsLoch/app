@@ -293,8 +293,6 @@ namespace datetime
       {
          return pszFormat;
       }
-
-      char szBuffer[maxTimeBufferSize];
 #if defined(LINUX)
       struct tm* ptmTemp = localtime(&m_time);
       if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
@@ -319,7 +317,7 @@ namespace datetime
       }
 #else
       struct tm* ptmTemp = _localtime64(&m_time);
-      if (ptmTemp == NULL || !_tcsftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
       {
          szBuffer[0] = '\0';
       }

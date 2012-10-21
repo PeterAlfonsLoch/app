@@ -4,7 +4,7 @@
 simple_event::simple_event(bool bInitialWait)
 {
 
-#ifdef MERDO_WINDWS
+#ifdef MEROWINWS
 
    m_hEvent = ::CreateEventEx(NULL, NULL, 0, 0);
 
@@ -39,7 +39,7 @@ simple_event::~simple_event()
 void simple_event::wait()
 {
 
-#ifdef MERDO_WINDWS
+#ifdef MEROWINWS
 
    WaitForSingleObjectEx(m_hEvent, INFINITE, FALSE);
 
@@ -60,7 +60,7 @@ void simple_event::wait()
 void simple_event::wait(DWORD dwTimeout)
 {
 
-#ifdef MERDO_WINDWS
+#ifdef MEROWINWS
 
    WaitForSingleObjectEx(m_hEvent, dwTimeout, FALSE);
 

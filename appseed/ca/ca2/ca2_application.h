@@ -132,7 +132,7 @@ namespace ca2
 
       virtual string get_license_id();
 
-#ifndef MERDO_WINDWS
+#ifndef MEROWINWS
       virtual void get_time(timeval *p);
 #endif
       virtual void set_env_var(const string & var,const string & value);

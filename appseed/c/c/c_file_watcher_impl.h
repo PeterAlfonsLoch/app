@@ -38,7 +38,7 @@
 #define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_KQUEUE
 #elif defined(LINUX)
 #define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_INOTIFY
-#elif defined(MERDO_WINDWS)
+#elif defined(MEROWINWS)
 #define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_MERDWIN
 #endif
 
@@ -75,7 +75,7 @@ namespace file_watcher
 		virtual void update() = 0;
 
 		/// Handles the action
-#ifdef MERDO_WINDWS
+#ifdef MEROWINWS
 		virtual void handle_action(watch_struct * watch, ::Windows::Storage::Search::IStorageQueryResultBase ^ r) = 0;
 #else
       virtual void handle_action(watch_struct * watch, const char * filename, unsigned long ulOsAction) = 0;

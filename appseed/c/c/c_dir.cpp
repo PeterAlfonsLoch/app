@@ -56,7 +56,7 @@ bool __win_file_find_is_dots(WIN32_FIND_DATA & data)
 bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 {
 
-#if defined(MERDO_WINDWS)
+#if defined(MEROWINWS)
 
    char lpszModuleFilePath[MAX_PATH * 8];
 
@@ -325,7 +325,7 @@ vsstring dir::module_folder(const char * path1)
       return dir::path(name(path), path1);
    }
 
-#elif defined(MERDO_WINDWS)
+#elif defined(MEROWINWS)
 
    throw winmerde();
    return path1;
@@ -577,7 +577,7 @@ vsstring dir::default_os_user_path_prefix()
    str.attach(utf16_to_8(buf));
    return str;
 
-#elif defined(MERDO_WINDWS)
+#elif defined(MEROWINWS)
    vsstring str(Windows::System::UserProfile::UserInformation::GetDomainNameAsync()->GetResults()->Data());
    return str;
 
@@ -653,7 +653,7 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
 
    SHGetSpecialFolderPath(NULL, (vsstring &) str, CSIDL_PROFILE, false);
 
-#elif defined(MERDO_WINDWS)
+#elif defined(MEROWINWS)
 
    str = ::Windows::Storage::KnownFolders::DocumentsLibrary->Path->Begin();
 

@@ -191,25 +191,6 @@ ID2D1PathGeometry * os_simple_path::get_os_data()
 }
 
 
-bool os_simple_path::close_figure()
-{
-
-   if(m_psink != NULL)
-   {
-   
-      m_psink->Close();
-
-      m_psink->Release();
-
-      m_psink = NULL;
-
-   }
-
-   return true;
-
-}
-
-
 bool os_simple_path::add_rect(const RECT & rect)
 {
    

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#ifndef MERDO_WINDWS
+#ifndef MEROWINWS
 
 #include <Shellapi.h>
 

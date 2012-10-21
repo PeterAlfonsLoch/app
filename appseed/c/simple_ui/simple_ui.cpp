@@ -370,9 +370,13 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
          
-            simple_path pathRound(true);
+            simple_path pathRound;
+
+            pathRound.begin_figure(true);
             
-            graphics_round_rect::get_round_rect(pathRound, rect, 1 * 2);
+            pathRound.add_round_rect(rect, 1 * 2);
+
+            pathRound.end_figure(true);
 
             simple_solid_pen pen(g, ARGB(84, 108, 149, 255));
 
