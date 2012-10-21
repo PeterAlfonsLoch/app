@@ -109,7 +109,9 @@ public:
 
    bool load(const char * lpKey, int64_t * lValue);
    bool load(const char * lpKey, LPRECT lpRect);
+#ifdef WINDOWSEX
    bool load(const char * lpKey, WINDOWPLACEMENT & wp);
+#endif
    bool load(const char * lpKey, LPPOINT lpPoint);
 
    // save Functions
@@ -123,7 +125,9 @@ public:
 
    bool save(const char * lpKey, int64_t lValue);
    bool save(const char * lpKey, LPCRECT lpRect);
+#ifdef WINDOWSEX
    bool save(const char * lpKey, WINDOWPLACEMENT & wp);
+#endif
    bool save(const char * lpKey, LPPOINT lpPoint);
 
    // Search Functions

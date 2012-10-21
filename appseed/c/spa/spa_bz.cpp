@@ -5,7 +5,7 @@ char * g_pchGzUncompressBuffer = NULL;
 
 
 
-int bzuncompress(LPCTSTR lpcszUncompressed, LPCTSTR lpcszGzFileCompressed)
+int bzuncompress(LPCSTR lpcszUncompressed, LPCSTR lpcszGzFileCompressed)
 {
    if(g_pchGzUncompressBuffer == NULL)
    {

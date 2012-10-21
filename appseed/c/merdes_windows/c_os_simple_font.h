@@ -20,9 +20,10 @@ public:
    // aim to be all-platoform
    bool destroy();
 
-
    // platform-specific
    bool create_indirect(LPLOGFONT lplf);
+
+   simple_font & operator = (const simple_font & font);
 
 };
 

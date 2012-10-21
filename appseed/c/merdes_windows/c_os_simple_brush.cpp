@@ -59,6 +59,8 @@ bool simple_brush::create_solid(simple_graphics & g, COLORREF cr)
 bool simple_brush::create_linear_gradient(simple_graphics & g, POINT np1, POINT np2, COLORREF cr1, COLORREF cr2)
 {
    
+   m_etype = type_linear_gradient;
+
    D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES prop;
 
    prop.startPoint.x    = (FLOAT) np1.x;
@@ -91,6 +93,8 @@ bool simple_brush::create_linear_gradient(simple_graphics & g, POINT np1, POINT 
 
    pgradientstops->Release();
 
+   return true;
+
 }
 
 bool simple_brush::from_stock(int iId)
@@ -122,7 +126,7 @@ bool simple_brush::from_stock(int iId)
 bool simple_brush::destroy()
 {
 
-   if(m_pbrush == NULL && m_psolidbrush == NULL)
+   if(m_pbrush == NULL && m_psolidbrush == NULL && m_plineargradientbrush == NULL)
    {
 
       return true;
@@ -133,6 +137,12 @@ bool simple_brush::destroy()
    {
       
       m_psolidbrush->Release();
+
+   }
+   else if(m_etype == type_linear_gradient)
+   {
+
+      m_plineargradientbrush->Release();
 
    }
    else if(m_etype == type_brush)
@@ -146,6 +156,8 @@ bool simple_brush::destroy()
    m_pbrush = NULL;
 
    m_psolidbrush = NULL;
+
+   m_plineargradientbrush = NULL;
 
    return true;
 
@@ -162,6 +174,12 @@ ID2D1Brush * simple_brush::get_os_data()
       return m_psolidbrush;
 
    }
+   else if(m_etype == type_linear_gradient)
+   {
+
+      return m_plineargradientbrush;
+
+   }
    else if(m_etype == type_brush)
    {
 
@@ -172,6 +190,54 @@ ID2D1Brush * simple_brush::get_os_data()
    return NULL;
 
 }
+
+
+
+
+
+
+
+
+simple_brush & simple_brush::operator = (const simple_brush & brush)
+{
+
+   if(m_pbrush != NULL
+   || m_psolidbrush != NULL
+   || m_plineargradientbrush != NULL)
+   {
+
+      destroy();
+
+   }
+
+   m_etype = brush.m_etype;
+
+   if(m_etype == type_solid)
+   {
+      
+      m_psolidbrush = brush.m_psolidbrush;
+      m_psolidbrush->AddRef();
+
+   }
+   else if(m_etype == type_linear_gradient)
+   {
+      m_plineargradientbrush = brush.m_plineargradientbrush;
+      m_plineargradientbrush->AddRef();
+
+   }
+   else if(m_etype == type_brush)
+   {
+
+      m_pbrush = brush.m_pbrush;
+      m_pbrush->AddRef();
+
+   }
+
+
+   return *this;
+
+}
+
 
 
 

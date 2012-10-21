@@ -25,27 +25,34 @@
 namespace file_watcher
 {
 	/// Internal watch data
-	struct watch_struct
+   class watch_struct
 	{
+   public:
+      
 		OVERLAPPED mOverlapped;
 		HANDLE mDirHandle;
 		BYTE mBuffer[32 * 1024];
 		LPARAM lParam;
 		DWORD mNotifyFilter;
 		bool mStopNow;
-		file_watcher_impl* mFileWatcher;
-		file_watch_listener* mFileWatchListener;
-		vsstring m_strDirName;
+		
 		id mWatchid;
+
 
       ::Windows::Storage::StorageFolder ^    m_folder;
       ::Windows::Storage::Search::StorageItemQueryResult ^ m_queryresult;
       ::Windows::Foundation::EventRegistrationToken m_evtoken;
 
-      void cOntentscHanged(::Platform::Object ^ o, ::Windows::Storage::Search::IStorageQueryResultBase ^ r)
+      property void *                  m_pwatcher;   // should be exactly file_watcher_impl *
+      property void *                  m_plistener;  // should be exactly file_watch_listener *
+      property Platform::String ^      m_name;
+      property unsigned long           m_id;
+
+      static watch_struct ^ create_watch(Platform::String ^ strDirectory);
+
+      void ContentsChanged(::Windows::Storage::Search::IStorageQueryResultBase ^ r, ::Platform::Object ^ o)
       {
-         throw "todo";
-          //mFileWatcher->handle_action(this, r->
+         ((file_watcher_impl *) m_pwatcher)->handle_action(this, r);
       }
 
 	};
@@ -54,7 +61,7 @@ namespace file_watcher
 #pragma region Internal Functions
 
 	// forward decl
-	bool RefreshWatch(watch_struct* pWatch, bool _clear = false);
+	bool RefreshWatch(watch_struct ^ pWatch, bool _clear = false);
 
 	/// Unpacks events and passes them to a user defined callback.
 	/*void CALLBACK WatchCallback(DWORD dwErrorCode, DWORD dwNumberOfBytesTransfered, LPOVERLAPPED lpOverlapped)
@@ -108,19 +115,17 @@ namespace file_watcher
 	}*/
 
 	/// Stops monitoring a directory.
-	void DestroyWatch(watch_struct* pWatch)
+	void DestroyWatch(watch_struct ^ pwatch)
 	{
-		if (pWatch)
+		if(pwatch != nullptr)
 		{
-         delete pWatch;
+         //delete pWatch;
 		}
 	}
 	/// Starts monitoring a directory.
-	watch_struct* CreateWatch(LPCSTR szDirectory, DWORD m_dwNotify)
+	watch_struct ^ watch_struct::create_watch(Platform::String ^ strDirectory)
 	{
-		watch_struct* pWatch;
-		size_t ptrsize = sizeof(*pWatch);
-		pWatch = new watch_struct;
+		watch_struct ^ pwatch = ref new watch_struct;
 
 
       Windows::Storage::Search::QueryOptions ^ options = ref new Windows::Storage::Search::QueryOptions();
@@ -128,17 +133,17 @@ namespace file_watcher
       options->FolderDepth = ::Windows::Storage::Search::FolderDepth::Shallow;
       options->IndexerOption = ::Windows::Storage::Search::IndexerOption::DoNotUseIndexer;
 
-      pWatch->m_folder = m_wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(wstring(szDirectory)));
+      pwatch->m_folder = m_wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(strDirectory));
 
-      pWatch->m_queryresult = pWatch->m_folder->CreateItemQuery();
+      pwatch->m_queryresult = pwatch->m_folder->CreateItemQuery();
 
-		if(pWatch->m_queryresult == nullptr)
-         return NULL;
+		if(pwatch->m_queryresult == nullptr)
+         return nullptr;
 
-      m_evtoken = pwatch->m_queryresult->ContentsChanged += ref new ::Windows::Foundation::TypedEventHandler < ::Windows::Storage::Search::IStorageQueryResultBase ^, 
-         ::Platform::Object ^ >(pwatch, &watch_struct::cOntentscHanged);
+      pwatch->m_evtoken = pwatch->m_queryresult->ContentsChanged += ref new ::Windows::Foundation::TypedEventHandler < ::Windows::Storage::Search::IStorageQueryResultBase ^, 
+         ::Platform::Object ^ >(pwatch, &watch_struct::ContentsChanged);
 
-		return pWatch;
+		return pwatch;
 
 	}
 
@@ -164,9 +169,10 @@ namespace file_watcher
 	{
 		id watchid = ++m_idLast;
 
-		watch_struct * pwatch = CreateWatch(directory, FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_SIZE | FILE_NOTIFY_CHANGE_FILE_NAME);
+		//watch_struct ^ pwatch = watch_struct::create_watch(m_str(directory), FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_SIZE | FILE_NOTIFY_CHANGE_FILE_NAME);
+      watch_struct ^ pwatch = watch_struct::create_watch(m_str(directory));
 
-		if(pwatch == NULL)
+		if(pwatch == nullptr)
 			throw file_not_found_exception(directory);
 
 		pwatch->mWatchid = watchid;

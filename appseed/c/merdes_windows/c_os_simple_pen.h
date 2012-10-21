@@ -39,7 +39,8 @@ public:
    simple_pen & operator = (const simple_pen & pen);
 
    ID2D1Brush * get_os_brush();
-   
+
+
 };
 
 

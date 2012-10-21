@@ -140,6 +140,37 @@ bool simple_path::get_arc(D2D1_POINT_2F & pt, D2D1_ARC_SEGMENT & arcseg, const R
 
 }
 
+bool simple_path::begin_figure(bool bFill)
+{
+
+   m_bFill = true;
+
+   return true;
+
+}
+
+bool simple_path::end_figure(bool bClose)
+{
+
+   if(bClose)
+   {
+
+      m_psink->EndFigure(D2D1_FIGURE_END_CLOSED);
+
+   }
+   else
+   {
+
+      m_psink->EndFigure(D2D1_FIGURE_END_OPEN);
+
+   }
+
+   m_bFill = true;
+
+   return true;
+
+}
+
 
 ID2D1PathGeometry * simple_path::get_os_data()
 {

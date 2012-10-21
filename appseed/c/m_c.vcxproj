@@ -297,7 +297,6 @@
     <ClInclude Include="c\c_file_watcher_listener_thread.h" />
     <ClInclude Include="c\c_file_watcher_thread.h" />
     <ClInclude Include="c\c_geometric_types.h" />
-    <ClInclude Include="c\c_graphics_round_rect.h" />
     <ClInclude Include="c\c_heap.h" />
     <ClInclude Include="c\c_international.h" />
     <ClInclude Include="c\c_keep_true.h" />
@@ -363,6 +362,7 @@
     <ClInclude Include="simple_graphics\simple_graphics_first_phase.h" />
     <ClInclude Include="simple_graphics\simple_graphics_second_phase.h" />
     <ClInclude Include="simple_graphics\simple_linear_gradient_brush.h" />
+    <ClInclude Include="simple_graphics\simple_path.h" />
     <ClInclude Include="simple_graphics\simple_pixel_font.h" />
     <ClInclude Include="simple_graphics\simple_solid_brush.h" />
     <ClInclude Include="simple_graphics\simple_solid_pen.h" />
@@ -421,8 +421,6 @@
     <ClCompile Include="c\c_file_watcher_listener_thread.cpp" />
     <ClCompile Include="c\c_file_watcher_thread.cpp" />
     <ClCompile Include="c\c_geometric_types.cpp" />
-    <ClCompile Include="c\c_graphics.cpp" />
-    <ClCompile Include="c\c_graphics_round_rect.cpp" />
     <ClCompile Include="c\c_heap.cpp" />
     <ClCompile Include="c\c_international.cpp" />
     <ClCompile Include="c\c_math.cpp" />
@@ -484,6 +482,8 @@
     <ClCompile Include="merdes_windows\c_os_thread.cpp" />
     <ClCompile Include="merdes_windows\window_merdes.cpp" />
     <ClCompile Include="os\os_process.cpp" />
+    <ClCompile Include="simple_graphics\simple_graphics.cpp" />
+    <ClCompile Include="simple_graphics\simple_path.cpp" />
     <ClCompile Include="simple_ui\simple_edit_box.cpp" />
     <ClCompile Include="simple_ui\simple_label.cpp" />
     <ClCompile Include="simple_ui\simple_password.cpp" />

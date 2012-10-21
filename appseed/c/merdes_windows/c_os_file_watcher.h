@@ -30,16 +30,19 @@
 
 namespace file_watcher
 {
+
+
 	/// Implementation for Win Merde based on StorageFolder::CreateFileQueryWithOptions.
 	/// @class os_file_watcher
 	class os_file_watcher : 
       public file_watcher_impl
 	{
 	public:
-		/// type for a map from id to watch_struct pointer
-		typedef simple_map<id, watch_struct*> watch_map;
 
-	public:
+
+		/// type for a map from id to watch_struct pointer
+		typedef simple_map < id , watch_struct ^ > watch_map;
+
 		///
 		///
 		os_file_watcher();
@@ -64,7 +67,7 @@ namespace file_watcher
 		void update();
 
 		/// Handles the action
-		void handle_action(watch_struct * watch, const char * filename, unsigned long ulOsAction);
+		void handle_action(watch_struct ^ watch, ::Windows::Storage::Search::IStorageQueryResultBase ^ r);
 
 	private:
 		/// Map of id to watch_struct pointers

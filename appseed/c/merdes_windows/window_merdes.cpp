@@ -43,6 +43,7 @@ typedef bool
 
 LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = NULL;
 
+/*
 typedef  
 LSTATUS
 ( APIENTRY * LPFN_RegGetValueW) (
@@ -57,7 +58,7 @@ LSTATUS
 
 LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 
-
+*/
 
 bool os_initialize()
 {
@@ -186,3 +187,36 @@ bool main_finalize()
 
 }
 
+
+CLASS_DECL_c WINBOOL GetCursorPos(LPPOINT lppoint)
+{
+   
+   lppoint->x = 0;
+
+   lppoint->y = 0;
+
+   Windows::Foundation::Collections::IVectorView < PointerDevice > ^ deva = ::Windows::Devices::Input::PointerDevice::GetPointerDevices();
+
+   for(unsigned int ui = 0; ui < deva.Size; ui++)
+   {
+
+      PointerDevice ^ dev = deva->GetAt(ui);
+
+      if(dev->PointerDeviceType == ::Windows::Devices::Input::PointerDeviceType::Mouse)
+      {
+
+          Windows::UI::Input::PointerPoint ^ pointerPoint = Windows::UI::Input::PointerPoint::GetCurrentPoint(ui);
+
+          lppoint->x = pointerPoint->RawPosition.X;
+
+          lppoint->y = pointerPoint->RawPosition.Y;
+
+          return TRUE; 
+
+      }
+
+   }
+
+   return FALSE;
+
+}

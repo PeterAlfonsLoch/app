@@ -377,18 +377,20 @@ bool os_simple_graphics::reference_os_data(HDC hdc)
 bool os_simple_graphics::create()
 {
    
-   os_simple_graphics g;
+   //os_simple_graphics g;
 
-   g.from_window(NULL);
+   //g.from_window(nullptr);
    
-   return create(g);
+   //return create(g);
+
+   return create_device();
    
 }
 
-bool os_simple_graphics::create(os_simple_graphics & g)
+/*bool os_simple_graphics::create(os_simple_graphics & g)
 {
    
-   return create(g.m_hdc);
+   return reference_os_da(g.m_hdc);
    
 }
 
@@ -397,41 +399,32 @@ bool os_simple_graphics::create_from_screen()
    
    return from_window(NULL);
    
-}
+}*/
 
 bool os_simple_graphics::select(simple_font & font)
 {
-   
-   HFONT hfontOld = (HFONT) ::SelectObject(m_hdc, font.m_hfont);
 
-   if(m_hfontOld == NULL)
-      m_hfontOld = hfontOld;
+   m_font = font;
 
-   return hfontOld != NULL;
+   return font.m_pformat != NULL;
 
 }
 
 bool os_simple_graphics::select(simple_brush & brush)
 {
    
-   HBRUSH hbrushOld = (HBRUSH) ::SelectObject(m_hdc, brush.m_hbrush);
+   m_brush = brush;
 
-   if(m_hbrushOld == NULL)
-      m_hbrushOld = hbrushOld;
-
-   return hbrushOld != NULL;
+   return brush.m_pbrush != NULL || brush.m_plineargradientbrush != NULL || brush.m_psolidbrush != NULL;
 
 }
 
 bool os_simple_graphics::select(simple_pen & pen)
 {
    
-   HPEN hpenOld = (HPEN) ::SelectObject(m_hdc, pen.m_hpen);
+   m_pen = pen;
 
-   if(m_hpenOld == NULL)
-      m_hpenOld = hpenOld;
-
-   return hpenOld != NULL;
+   return m_pen.get_os_brush() != NULL;
 
 }
 
@@ -464,10 +457,7 @@ bool os_simple_graphics::destroy()
 bool os_simple_graphics::set_offset(int x, int y)
 {
    
-   POINT ptViewport;
-
-   if(!SetViewportOrgEx(m_hdc, x, y, &ptViewport))
-      return false;
+   m_pdc->SetTransform(D2D1::Matrix3x2F::Translation(x, y));
 
    return true;
 
@@ -476,20 +466,26 @@ bool os_simple_graphics::set_offset(int x, int y)
 bool os_simple_graphics::offset(int x, int y)
 {
 
-   POINT ptViewport;
+   D2D1::Matrix3x2F m;
 
-   if(!OffsetViewportOrgEx(m_hdc, x, y, &ptViewport))
-      return false;
+   m_pdc->GetTransform(&m);
+
+   m = m * D2D1::Matrix3x2F::Translation(x, y);
+
+   m_pdc->SetTransform(&m);
 
    return true;
 
 }
 
 
-bool os_simple_graphics::bit_blt(int x, int y, int cx, int cy, os_simple_graphics & gSrc, int x1, int y1, DWORD rop)
+bool os_simple_graphics::bit_blt(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, DWORD rop)
 {
    
-   return ::BitBlt(m_hdc, x, y, cx, cy, gSrc.m_hdc, x1, y1, rop) != FALSE;
+   m_pdc->DrawImage(gSrc.m_bitmap.m_pbitmap, D2D1::Point2F(x, y), D2D1::RectF(x1, y1, x1 + cx, y1 + cy));
+   ///return ::BitBlt(m_hdc, x, y, cx, cy, gSrc.m_hdc, x1, y1, rop) != FALSE;
+
+   return true;
 
 }
 
@@ -499,21 +495,11 @@ bool os_simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORRE
    try
    {
    
-      Gdiplus::Bitmap b(cx, cy, cx *4 , PixelFormat32bppARGB, (BYTE *) pdata);
+      simple_bitmap b;
 
-      Gdiplus::Graphics * pg = new Gdiplus::Graphics(m_hdc);
+      b.create_from_data(cx, cy, pdata, (simple_graphics & ) *this);
 
-      pg->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-
-      pg->SetCompositingQuality(Gdiplus::CompositingQualityHighQuality);
-
-      pg->DrawImage(&b, x, y, 0, 0, cx, cy, Gdiplus::UnitPixel);
-
-      pg->Flush(Gdiplus::FlushIntentionSync);
-
-      delete pg;
-
-      ::GdiFlush();
+      m_pdc->DrawImage(b.m_pbitmap, D2D1::Point2F(x, y), D2D1::RectF(0.f, 0.f, (float) cx, (float) cy));
 
       return true;
 
@@ -539,12 +525,35 @@ SIZE os_simple_graphics::get_text_extent(const char * psz, int iLen)
 
    SIZE size;
 
-   if(!::GetTextExtentPointW(m_hdc, wstr, wstr.get_length(), &size))
+   IDWriteTextLayout * playout = NULL;
+
+   HRESULT hr = TlsGetWriteFactory()->CreateTextLayout(
+      wstr,                // The string to be laid out and formatted.
+      wstr.get_length(),   // The length of the string.
+      m_font.m_pformat,    // The text format to apply to the string (contains font information, etc).
+      1024.f * 1024.f,               // The width of the layout box.
+      1024.f * 1024.f,        // The height of the layout box.
+      &playout  // The IDWriteTextLayout interface pointer.
+      );
+
+   if(playout == NULL || FAILED(hr))
    {
 
       size.cx = 0;
 
       size.cy = 0;
+
+   }
+   else
+   {
+      
+      DWRITE_TEXT_METRICS m;
+      
+      playout->GetMetrics(&m);
+
+      size.cx = m.width;
+
+      size.cy = m.height;
 
    }
 
@@ -555,8 +564,26 @@ SIZE os_simple_graphics::get_text_extent(const char * psz, int iLen)
 
 bool os_simple_graphics::rectangle(LPCRECT lpcrect)
 {
+
+   bool bOk1 = true;
+
+   if(m_brush.m_pbrush != NULL)
+   {
+
+      bOk1 = fill_rect(lpcrect, m_brush);
+
+   }
+
+   bool bOk2 = true;
+
+   if(m_pen.get_os_brush() != NULL)
+   {
+
+      bOk2 = draw_rect(lpcrect, m_pen);
+
+   }
    
-   return ::Rectangle(m_hdc, lpcrect->left, lpcrect->top, lpcrect->right, lpcrect->bottom) != FALSE;
+   return bOk1 && bOk2;
 
 }
 
@@ -577,7 +604,7 @@ bool os_simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen & pen)
    r.right     = lpcrect->right;
    r.bottom    = lpcrect->bottom;
 
-   m_pdc->DrawRectangle(r, m_pen.get_os_brush(), m_pen.m_iWidth);
+   m_pdc->DrawRectangle(r, pen.get_os_brush(), m_pen.m_iWidth);
 
    return true;
 
@@ -586,16 +613,33 @@ bool os_simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen & pen)
 bool os_simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
 {
    
-   return ::FillRect(m_hdc, lpcrect, brush.m_hbrush) != FALSE;
+   if(&brush == NULL)
+      return true;
+
+   if(brush.get_os_data() == NULL)
+      return true;
+
+   D2D1_RECT_F r;
+
+   r.left      = lpcrect->left;
+   r.top       = lpcrect->top;
+   r.right     = lpcrect->right;
+   r.bottom    = lpcrect->bottom;
+
+   m_pdc->FillRectangle(r, brush.get_os_data());
+
+   return true;
 
 }
 
-bool os_simple_graphics::set_text_color(COLORREF cr)
+/*bool os_simple_graphics::set_text_color(COLORREF cr)
 {
    
+   m_brush
    return ::SetTextColor(m_hdc, cr) != FALSE;
 
 }
+*/
 
 bool os_simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
 {
@@ -605,11 +649,15 @@ bool os_simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
    
    case ::ca::alpha_mode_blend:
    
-      return SUCCEEDED(m_pdc->SetPrimitiveBlend(D2D1_PRIMITIVE_BLEND_SOURCE_OVER));
+      m_pdc->SetPrimitiveBlend(D2D1_PRIMITIVE_BLEND_SOURCE_OVER);
 
-   case ::ca::alpha_mode_copy:
+      break;
+
+   case ::ca::alpha_mode_set:
    
-      return SUCCEEDED(m_pdc->SetPrimitiveBlend(D2D1_PRIMITIVE_BLEND_SOURCE_COPY));
+      m_pdc->SetPrimitiveBlend(D2D1_PRIMITIVE_BLEND_COPY);
+
+      break;
 
    };
 
@@ -617,36 +665,71 @@ bool os_simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
 
 }
 
-bool os_simple_graphics::alpha_blend(int x, int y, int cx, int cy, os_simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf)
+/*bool os_simple_graphics::alpha_blend(int x, int y, int cx, int cy, os_simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf)
 {
 
-   return ::AlphaBlend(m_hdc, x, y, cx, cy, gSrc.m_hdc, x1, y1, cx1, cy1, bf) != FALSE;
+   m_pdc->DrawImage(gSrc.m_bitmap.m_pbitmap, D2D1::Point2F(x, y), D2D1::RectF(x1, y1, x1 + cx, y1 + cy));
 
-}
+   return true;
 
-void os_simple_graphics::fill_solid_rect(LPCRECT lpRect, COLORREF clr)
+}*/
+
+void os_simple_graphics::fill_solid_rect(LPCRECT lpcrect, COLORREF clr)
 {
-   ::SetBkColor(m_hdc, clr);
-   ::ExtTextOut(m_hdc, 0, 0, ETO_OPAQUE, lpRect, NULL, 0, NULL);
+   
+   simple_solid_brush b(*this, clr);
+
+   fill_rect(lpcrect, b);
+   
 }
 
 bool os_simple_graphics::draw_path(simple_path & path, simple_pen & pen)
 {
    
-   return SUCCEEDED(m_pdc->DrawGeometry(path.get_os_data(), pen.get_os_brush(), pen.m_iWidth));
+   m_pdc->DrawGeometry(path.get_os_data(), pen.get_os_brush(), pen.m_iWidth);
+
+   return true;
 
 }
 
 bool os_simple_graphics::fill_path(simple_path & path, simple_brush & brush)
 {
    
-   return SUCCEEDED(m_pdc->DrawGeometry(path.get_os_data(), brush.get_os_brush(), pen.m_iWidth));
+   m_pdc->FillGeometry(path.get_os_data(), brush.get_os_data());
+
+   return true.
 
 }
 
 bool os_simple_graphics::fill_polygon(LPPOINT lpa, int iCount, ::ca::e_fill_mode emode)
 {
+
+   simple_path p(true);
+
+
+
+pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
+
+pSink->BeginFigure(
+    D2D1::Point2F(346,255),
+    D2D1_FIGURE_BEGIN_FILLED
+    );
+D2D1_POINT_2F points[5] = {
+   D2D1::Point2F(267, 177),
+   D2D1::Point2F(236, 192),
+   D2D1::Point2F(212, 160),
+   D2D1::Point2F(156, 255),
+   D2D1::Point2F(346, 255), 
+   };
+pSink->AddLines(points, ARRAYSIZE(points));
+pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
+
+
+
    m_pgraphics->FillPolygon();
+
+   return true;
+
 }
 
 bool os_simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)

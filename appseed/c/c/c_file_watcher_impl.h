@@ -42,9 +42,13 @@
 #define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_MERDWIN
 #endif
 
+
 namespace file_watcher
 {
-	struct watch_struct;
+
+   
+   ref class watch_struct;
+
 
 	class file_watcher_impl
 	{
@@ -73,7 +77,11 @@ namespace file_watcher
 		virtual void update() = 0;
 
 		/// Handles the action
-		virtual void handle_action(watch_struct* watch, const char * filename, unsigned long ulOsAction) = 0;
+#ifdef MERDE_WINDOWS
+		virtual void handle_action(watch_struct ^ watch, ::Windows::Storage::Search::IStorageQueryResultBase ^ r) = 0;
+#else
+      virtual void handle_action(watch_struct * watch, const char * filename, unsigned long ulOsAction) = 0;
+#endif
 
 	};
 

@@ -211,3 +211,27 @@ CLASS_DECL_c float x_dpi(float x)
    return x / dpiX;
 
 }
+
+
+
+simple_font & simple_font::operator = (const simple_font & font)
+{
+
+   if(m_pformat != NULL)
+   {
+
+      destroy();
+
+   }
+
+   m_pformat = font.m_pformat;
+
+   m_pformat->AddRef();
+
+   return *this;
+
+}
+
+
+
+

@@ -345,9 +345,12 @@ namespace sockets
 
            bool HasCreator() { return m_bHasCreate; }
 
-      void OnOptions(int,int,int,SOCKET) {
+#ifdef BSD_STYLE_SOCKETS
+      void OnOptions(int,int,int,SOCKET)
+      {
          SetSoReuseaddr(true);
       }
+#endif
 
    protected:
       listen_socket(const listen_socket& s) : socket(s) {}

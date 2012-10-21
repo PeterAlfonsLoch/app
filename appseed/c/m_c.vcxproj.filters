@@ -55,14 +55,17 @@
     <Filter Include="Source Files\crypt">
       <UniqueIdentifier>{dcb29c28-19b7-4d41-9b01-8122e6f2e8dd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\windows_merdes">
-      <UniqueIdentifier>{d696e325-44c7-4223-98f8-76e40f0c9e85}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\merdas_windows">
-      <UniqueIdentifier>{8db4b1b9-ec75-4fe9-8f05-8f084c5da0ce}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\simple_graphics">
       <UniqueIdentifier>{207db38b-462e-49fe-9cb0-9defd87f854c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\simple_graphics">
+      <UniqueIdentifier>{379ccdd3-6b7a-4286-89b5-da196e11582c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\metrowin">
+      <UniqueIdentifier>{d696e325-44c7-4223-98f8-76e40f0c9e85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\metrowin">
+      <UniqueIdentifier>{8db4b1b9-ec75-4fe9-8f05-8f084c5da0ce}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -202,64 +205,64 @@
       <Filter>Source Files\crypt</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_thread.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\window_merdes.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_c_dll.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_file.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_http.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_launcher.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_library.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_lock.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_message_loop.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_process.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_simple_app.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_simple_shell_launcher.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_small_ipc_channel.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_simple_bitmap.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_simple_brush.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_simple_font.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_simple_graphics.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_simple_pen.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_file_watcher.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_sockets.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="c\c.cpp">
       <Filter>Source Files\c</Filter>
@@ -304,12 +307,6 @@
       <Filter>Source Files\c</Filter>
     </ClCompile>
     <ClCompile Include="c\c_geometric_types.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
-    <ClCompile Include="c\c_graphics.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
-    <ClCompile Include="c\c_graphics_round_rect.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
     <ClCompile Include="c\c_heap.cpp">
@@ -409,7 +406,13 @@
       <Filter>Source Files\c</Filter>
     </ClCompile>
     <ClCompile Include="merdes_windows\c_os_simple_path.cpp">
-      <Filter>Source Files\merdas_windows</Filter>
+      <Filter>Source Files\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_graphics\simple_path.cpp">
+      <Filter>Source Files\simple_graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_graphics\simple_graphics.cpp">
+      <Filter>Source Files\simple_graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -516,49 +519,49 @@
       <Filter>Header Files\crypt</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\windows_merde.h">
-      <Filter>Header Files\windows_merdes</Filter>
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\c_os_thread.h">
-      <Filter>Header Files\windows_merdes</Filter>
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\c_os_http.h">
-      <Filter>Header Files\windows_merdes</Filter>
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\c_os_file.h">
-      <Filter>Header Files\windows_merdes</Filter>
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\c_os_internal.h">
-      <Filter>Header Files\windows_merdes</Filter>
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\c_os_process.h">
-      <Filter>Header Files\windows_merdes</Filter>
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\c_os_simple_hold_handle.h">
-      <Filter>Header Files\windows_merdes</Filter>
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\c_os_gdi.h">
-      <Filter>Header Files\windows_merdes</Filter>
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\c_os_simple_brush.h">
-      <Filter>Header Files\windows_merdes</Filter>
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\c_os_simple_bitmap.h">
-      <Filter>Header Files\windows_merdes</Filter>
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\c_os_simple_graphics.h">
-      <Filter>Header Files\windows_merdes</Filter>
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\c_os_file_watcher.h">
-      <Filter>Header Files\windows_merdes</Filter>
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\c_os_simple_font.h">
-      <Filter>Header Files\windows_merdes</Filter>
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\c_os_simple_pen.h">
-      <Filter>Header Files\windows_merdes</Filter>
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\c_os_sockets.h">
-      <Filter>Header Files\windows_merdes</Filter>
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="c\c.h">
       <Filter>Header Files\c</Filter>
@@ -603,9 +606,6 @@
       <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="c\c_geometric_types.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_graphics_round_rect.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="c\c_heap.h">
@@ -735,7 +735,7 @@
       <Filter>Header Files\simple_ui</Filter>
     </ClInclude>
     <ClInclude Include="merdes_windows\c_os_simple_path.h">
-      <Filter>Header Files\windows_merdes</Filter>
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="c\c_simple_pixel_font.h">
       <Filter>Header Files\c</Filter>
@@ -759,6 +759,9 @@
       <Filter>Header Files\simple_graphics</Filter>
     </ClInclude>
     <ClInclude Include="simple_graphics\simple_linear_gradient_brush.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_path.h">
       <Filter>Header Files\simple_graphics</Filter>
     </ClInclude>
   </ItemGroup>

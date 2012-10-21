@@ -39,7 +39,6 @@ class simple_graphics;
 #define ARGB(a, r, g, b)          ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)|(((DWORD)(BYTE)(a))<<24)))
 
 
-#include "c_graphics_round_rect.h"
 
 
 

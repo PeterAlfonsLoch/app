@@ -20,3 +20,4 @@
 
 
 
+CLASS_DECL_c WINBOOL GetCursorPos(LPPOINT lppoint);

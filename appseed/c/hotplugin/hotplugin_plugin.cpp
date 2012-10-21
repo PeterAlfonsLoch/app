@@ -573,7 +573,7 @@ namespace hotplugin
 
       int iBorder1 = max(cx / iRate1, cy / iRate1);
 
-      simple_path pathClip1(true);
+      simple_path pathClip1;
 
       RECT rectClip1;
 
@@ -582,7 +582,12 @@ namespace hotplugin
       rectClip1.right   = rectClip1.left + cx - iBorder1 * 2;
       rectClip1.bottom  = rectClip1.top + cy - iBorder1 * 2;
 
-      graphics_round_rect::get_round_rect(pathClip1, rectClip1, iBorder1 * 2);
+      pathClip1.begin_figure(true);
+
+      pathClip1.add_round_rect(rectClip1, iBorder1 * 2);
+
+      pathClip1.end_figure(true);
+
       g.replace_clip(pathClip1);
 
 
@@ -610,7 +615,7 @@ namespace hotplugin
 
       int iBorder = 16;
 
-      simple_path pathClip(true);
+      simple_path pathClip;
 
       RECT rectClip;
 
@@ -619,7 +624,12 @@ namespace hotplugin
       rectClip.right    = rectClip.left + iRowCount + iBorder * 2;
       rectClip.bottom   = rectClip.top + iBarHeight + iBorder * 2;
 
-      graphics_round_rect::get_round_rect(pathClip, rectClip, iBorder);
+
+      pathClip.begin_figure(true);
+
+      pathClip.add_round_rect(rectClip, iBorder);
+
+      pathClip.end_figure(true);
 
       g.exclude_clip(pathClip);
 

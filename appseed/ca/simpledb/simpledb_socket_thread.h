@@ -8,6 +8,7 @@ namespace simpledb
    class socket;
    class service;
 
+
    class CLASS_DECL_ca socket_thread : 
       public ::radix::thread,
       public ::sockets::socket_handler
@@ -16,7 +17,13 @@ namespace simpledb
 
 
       HANDLE                  m_hChildThreadId;
+
+#ifdef WINDOWSEX
+
       PROCESS_INFORMATION     m_pi;
+
+#endif
+
       service *               m_pservice;
 
       string                  m_strIp;
@@ -26,7 +33,11 @@ namespace simpledb
       ::event                 m_evInitialized;
       bool                    m_bInitialized;
 
+#ifdef BSD_STYLE_SOCKETS
+
       SOCKET                  m_hsocket;
+
+#endif
 
       socket *                m_psocket;
 

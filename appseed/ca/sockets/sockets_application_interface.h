@@ -1,15 +1,18 @@
 #pragma once
 
+
 namespace sockets
 {
+
 
    class CLASS_DECL_ca application_interface :
       virtual public ::ca::application_interface
    {
    public:
 
-
+#ifdef BSD_STYLE_SOCKETS
       ssl_client_context_map                       m_clientcontextmap;
+#endif
       AjpBaseSocket::Initializer *                 m_pajpbasesocketinit;
 
       count                                        m_countHttpPostBoundary;
@@ -29,3 +32,6 @@ namespace sockets
 
 
 } // namespace kar
+
+
+

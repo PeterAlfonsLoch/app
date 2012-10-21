@@ -32,16 +32,13 @@
 #include "c/merdes_windows/c_os_file_watcher.h"
 #endif
 
-#define FILEWATCHER_IMPL os_file_watcher
-
-
 namespace file_watcher
 {
 
 
 	file_watcher::file_watcher()
 	{
-		m_pimpl = new FILEWATCHER_IMPL();
+		m_pimpl = new os_file_watcher();
 	}
 
 	file_watcher::~file_watcher()

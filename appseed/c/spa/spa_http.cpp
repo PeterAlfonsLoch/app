@@ -72,11 +72,11 @@ namespace spa
       else if(i == -2)
       {
          DWORD dw = ::GetLastError();
-	      char lastErrorTxt[1024];
+	      wchar_t lastErrorTxt[1024];
          memset_dup(lastErrorTxt, 0, sizeof(lastErrorTxt));
-	      FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM|FORMAT_MESSAGE_IGNORE_INSERTS,NULL,dw,0,lastErrorTxt,1024,NULL);
+	      FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM|FORMAT_MESSAGE_IGNORE_INSERTS,NULL,dw,0,lastErrorTxt,1024,NULL);
          trace("ms_get_dup failed");
-         trace(lastErrorTxt);
+         trace(vsstring(lastErrorTxt));
          trace("ms_get_dup failed : GetLastErrorCode : " + itoa_dup(dw));
       }
       else

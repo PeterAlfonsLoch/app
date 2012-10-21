@@ -235,7 +235,7 @@ void installation_file_lock(bool bLock)
       while(file_exists_dup(strPath) && iRetry > 0)
       {
 #ifdef WINDOWS
-         ::DeleteFile(strPath);
+         ::DeleteFileW(wstring(strPath));
 #else
          unlink(strPath);
 #endif
@@ -256,7 +256,7 @@ bool is_installation_lock_file_locked()
    try
    {
 
-      simple_hold_handle hold_handle(::OpenMutex(SYNCHRONIZE, FALSE, "Global\\ca2::fontopus::ccvotagus_ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784"));
+      simple_hold_handle hold_handle(::OpenMutexW(SYNCHRONIZE, FALSE, L"Global\\ca2::fontopus::ccvotagus_ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784"));
 
       if(hold_handle.m_handle == NULL)
       {

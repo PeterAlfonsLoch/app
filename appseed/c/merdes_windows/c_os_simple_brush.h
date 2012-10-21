@@ -43,6 +43,7 @@ public:
 
    ID2D1Brush * get_os_data();
 
+   simple_brush & operator = (const simple_brush & brush);
 
 };
 

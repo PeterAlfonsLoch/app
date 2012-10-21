@@ -7,6 +7,9 @@
 #include "simple_pixel_font.h"
 
 
+#include "simple_path.h"
+
+
 #include "simple_graphics.h"
 
 

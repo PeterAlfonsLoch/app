@@ -69,6 +69,12 @@ bool simple_pen::destroy()
    m_iWidth = 0;
    m_cr = 0;
    
+   if(m_psolidbrush != NULL)
+   {
+      m_psolidbrush->Release();
+   }
+
+   m_psolidbrush = NULL;
    
    return true;
    
@@ -79,6 +85,11 @@ bool simple_pen::destroy()
 simple_pen & simple_pen::operator = (const simple_pen & pen)
 {
    
+   if(m_psolidbrush != NULL)
+   {
+      m_psolidbrush->Release();
+   }
+
    m_iStock    = pen.m_iStock;
    
    m_estyle    = pen.m_estyle;
@@ -86,6 +97,14 @@ simple_pen & simple_pen::operator = (const simple_pen & pen)
    m_iWidth    = pen.m_iWidth;
    
    m_cr  = pen.m_cr;
+
+
+   m_psolidbrush = pen.m_psolidbrush;
+
+   if(m_psolidbrush != NULL)
+   {
+      m_psolidbrush->AddRef();
+   }
    
    return *this;
    
