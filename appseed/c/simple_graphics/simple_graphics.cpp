@@ -156,7 +156,7 @@ bool simple_graphics::draw_round_rect(const RECT & rect, simple_pen & pen, int r
 
    simple_path path;
 
-   path.begin_figure(true);
+   path.begin_figure(true, ::ca::fill_mode_winding);
 
    path.add_round_rect(rect, 2 * radius);
 
@@ -221,7 +221,7 @@ bool simple_graphics::draw_round_top_left(const RECT & rect, simple_pen & pen, i
 
    simple_path path;
 
-   path.begin_figure(false);
+   path.begin_figure(false, ::ca::fill_mode_winding);
 
    path.add_round_top_left(rect, 2 * radius);
 
@@ -272,7 +272,7 @@ bool simple_graphics::draw_round_bottom_right(const RECT & rect, simple_pen & pe
 
    simple_path path;
 
-   path.begin_figure(false);
+   path.begin_figure(false, ::ca::fill_mode_winding);
 
    path.add_round_bottom_right(rect, 2 * radius);
 
@@ -362,7 +362,7 @@ bool simple_graphics::fill_round_rect(const RECT & rect, simple_brush & br, int 
 
    simple_path path;
 
-   path.begin_figure(true);
+   path.begin_figure(true, ::ca::fill_mode_winding);
 
    path.add_round_rect(rect, 2 * radius);
 

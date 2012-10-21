@@ -278,9 +278,6 @@
     <ClInclude Include="c\c_graphics.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
-    <ClInclude Include="c\c_graphics_round_rect.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
     <ClInclude Include="c\c_heap.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
@@ -665,12 +662,6 @@
       <Filter>Source Files\c</Filter>
     </ClCompile>
     <ClCompile Include="c\c_geometric_types.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
-    <ClCompile Include="c\c_graphics.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
-    <ClCompile Include="c\c_graphics_round_rect.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
     <ClCompile Include="c\c_heap.cpp">

@@ -3,7 +3,7 @@
 #include <gdiplus.h>
 
 
-simple_path::simple_path(bool bFill)
+os_simple_path::os_simple_path(bool bFill)
 {
 
    m_bFill = bFill;
@@ -11,7 +11,7 @@ simple_path::simple_path(bool bFill)
 
 }
 
-simple_path::~simple_path()
+os_simple_path::~os_simple_path()
 {
 
    if(m_ppath != NULL)
@@ -27,7 +27,7 @@ simple_path::~simple_path()
 }
 
 
-bool simple_path::add_arc(const RECT & rect, int iStart, int iAngle)
+bool os_simple_path::add_arc(const RECT & rect, int iStart, int iAngle)
 {
 
    Gdiplus::Rect rectBound;
@@ -41,19 +41,43 @@ bool simple_path::add_arc(const RECT & rect, int iStart, int iAngle)
 
 }
 
-bool simple_path::add_line(int x1, int y1, int x2, int y2)
+bool os_simple_path::add_line(int x1, int y1, int x2, int y2)
 {
 
    return m_ppath->AddLine(x1, y1, x2, y2) == Gdiplus::Ok;
 
 }
 
-bool simple_path::close_figure()
+bool os_simple_path::begin_figure(bool bFill, ::ca::e_fill_mode efillmode)
 {
    
-   if(!m_bFill)
-      return true;
+   m_bFill = bFill;
 
-   return m_ppath->CloseFigure() == Gdiplus::Ok;
+   m_efillmode = efillmode;
+
+   if(efillmode == ::ca::fill_mode_alternate)
+   {
+      
+      return m_ppath->SetFillMode(Gdiplus::FillModeAlternate) == Gdiplus::Ok;
+   
+   }
+   else
+   {
+
+      return m_ppath->SetFillMode(Gdiplus::FillModeWinding) == Gdiplus::Ok;
+
+   }
+
+}
+
+bool os_simple_path::end_figure(bool bClose)
+{
+   
+   if(bClose)
+   {
+      return m_ppath->CloseFigure() == Gdiplus::Ok;
+   }
+
+   return true;
 
 }

@@ -675,7 +675,6 @@
     <ClInclude Include="c\c_file_watcher_thread.h" />
     <ClInclude Include="c\c_geometric_types.h" />
     <ClInclude Include="c\c_graphics.h" />
-    <ClInclude Include="c\c_graphics_round_rect.h" />
     <ClInclude Include="c\c_heap.h" />
     <ClInclude Include="c\c_index.h" />
     <ClInclude Include="c\c_international.h" />
@@ -831,8 +830,6 @@
     <ClCompile Include="c\c_file_watcher_listener_thread.cpp" />
     <ClCompile Include="c\c_file_watcher_thread.cpp" />
     <ClCompile Include="c\c_geometric_types.cpp" />
-    <ClCompile Include="c\c_graphics.cpp" />
-    <ClCompile Include="c\c_graphics_round_rect.cpp" />
     <ClCompile Include="c\c_heap.cpp" />
     <ClCompile Include="c\c_international.cpp" />
     <ClCompile Include="c\c_math.cpp" />
