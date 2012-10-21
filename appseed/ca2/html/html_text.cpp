@@ -591,6 +591,8 @@ namespace html
         int cy = 0;
         int x1;
         int x2;
+        bool bTag = is_tag();
+        bool bValue = is_value();
         for(int i = 0; i < m_straLines.get_size(); i++)
         {
            x1 = i == 0 ? x : m_bound.left;

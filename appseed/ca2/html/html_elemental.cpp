@@ -56,6 +56,8 @@ namespace html
       bool elemental::hit_test(data * pdata,:: point pt)
       {
          UNREFERENCED_PARAMETER(pdata);
+         string strTag = m_pelemental->get_tag_name();
+         string strValue = m_pelemental->m_propertyset["PropertyBody"];
          if(m_box.contains(pt))
                return true;
          return false;
@@ -1470,6 +1472,7 @@ namespace html
 
    elemental * elemental::hit_test(data * pdata, ::point pt)
    {
+      string strTag = get_tag_name();
       if(m_pimpl != NULL)
       {
          if(m_pimpl->hit_test(pdata, pt))
@@ -1480,6 +1483,17 @@ namespace html
                pelemental = m_elementalptra[i]->hit_test(pdata, pt);
                if(pelemental != NULL)
                   return pelemental;
+            }
+            if(m_pimpl->is_value())
+            {
+               string strBody = m_propertyset["PropertyBody"];
+               strBody.trim();
+               if(strBody.is_empty())
+                  return NULL;
+            }
+            else
+            {
+               return NULL;
             }
             return this;
          }
