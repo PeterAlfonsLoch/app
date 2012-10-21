@@ -15,7 +15,7 @@ CLASS_DECL_c int ___()
 CLASS_DECL_c dword get_tick_count()
 {
 
-#ifdef MERDE_WINDOWS
+#ifdef MERDO_WINDWS
 
    return (dword) (GetTickCount64() % 0x100000000ULL);
 

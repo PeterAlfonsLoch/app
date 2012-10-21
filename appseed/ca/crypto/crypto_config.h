@@ -113,7 +113,7 @@
 #define HAVE_WINDOWS_H 1
 
 /* Define to 1 if you have the <winsock2.h> header spfile-> */
-#if defined(WINDOWS)  && !defined(MERDE_WINDOWS)
+#if defined(WINDOWS)  && !defined(MERDO_WINDWS)
 #define HAVE_WINSOCK2_H 1
 #endif
 

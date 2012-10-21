@@ -15,7 +15,7 @@ vsstring dir::appdata(const char * lpcsz)
    vsstring str;
 
 
-#ifdef MERDE_WINDOWS
+#ifdef MERDO_WINDWS
 
    vsstring buf;
 
@@ -90,7 +90,7 @@ vsstring dir::userappdata(const char * lpcsz)
    
    CoTaskMemFree(buf);
 
-#elif defined(MERDE_WINDOWS)
+#elif defined(MERDO_WINDWS)
 
    str = begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
 

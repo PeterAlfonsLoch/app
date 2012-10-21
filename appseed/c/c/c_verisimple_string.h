@@ -101,7 +101,7 @@ public:
    int_ptr rfind(char ch, int_ptr iStart) const;
 
 
-#ifdef MERDE_WINDOWS
+#ifdef MERDO_WINDWS
    inline operator Platform::String ^ ();
 #endif
 

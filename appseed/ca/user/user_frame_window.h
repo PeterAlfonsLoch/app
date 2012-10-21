@@ -165,7 +165,7 @@ public:
    bool OnBarCheck(UINT nID);
    virtual void on_delete(::ca::ca * poc);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    virtual void LoadToolBar(id idToolBar, const char * pszToolBar, DWORD dwCtrlStyle = TBSTYLE_FLAT, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 #else
    virtual void LoadToolBar(id idToolBar, const char * pszToolBar, DWORD dwCtrlStyle = 0, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
@@ -238,7 +238,9 @@ public:
    void OnSysCommand(UINT nID, LPARAM lParam);
    bool OnQueryEndSession();
    void OnEndSession(bool bEnding);
+#ifdef WINDOWSEX
    void OnDropFiles(HDROP hDropInfo);
+#endif
    bool OnSetCursor(::user::interaction* pWnd, UINT nHitTest, UINT message);
    //LRESULT OnCommandHelp(WPARAM wParam, LPARAM lParam);
    //LRESULT OnHelpHitTest(WPARAM wParam, LPARAM lParam);

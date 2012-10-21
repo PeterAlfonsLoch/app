@@ -43,7 +43,7 @@ int vprintf_dup(const char *format, va_list args)
 
     return vprintf(format, args);
 
-#elif defined(MERDE_WINDOWS)
+#elif defined(MERDO_WINDWS)
 
     return vprintf(format, args);
 
@@ -69,7 +69,7 @@ int vwprintf_dup(const wchar_t *format, va_list args)
 
     return vwprintf(format, args);
 
-#elif defined(MERDE_WINDOWS)
+#elif defined(MERDO_WINDWS)
 
     return vwprintf(format, args);
 

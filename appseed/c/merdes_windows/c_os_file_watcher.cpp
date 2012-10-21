@@ -43,12 +43,12 @@ namespace file_watcher
       ::Windows::Storage::Search::StorageItemQueryResult ^ m_queryresult;
       ::Windows::Foundation::EventRegistrationToken m_evtoken;
 
-      property void *                  m_pwatcher;   // should be exactly file_watcher_impl *
-      property void *                  m_plistener;  // should be exactly file_watch_listener *
-      property Platform::String ^      m_name;
-      property unsigned long           m_id;
+      file_watcher_impl *                 m_pwatcher;   // should be exactly file_watcher_impl *
+      file_watch_listener *               m_plistener;  // should be exactly file_watch_listener *
+      vsstring                            m_strDirName;
+      id                                  m_id;
 
-      static watch_struct ^ create_watch(Platform::String ^ strDirectory);
+      static watch_struct * create_watch(Platform::String ^ strDirectory);
 
       void ContentsChanged(::Windows::Storage::Search::IStorageQueryResultBase ^ r, ::Platform::Object ^ o)
       {
@@ -61,7 +61,7 @@ namespace file_watcher
 #pragma region Internal Functions
 
 	// forward decl
-	bool RefreshWatch(watch_struct ^ pWatch, bool _clear = false);
+	bool RefreshWatch(watch_struct * pWatch, bool _clear = false);
 
 	/// Unpacks events and passes them to a user defined callback.
 	/*void CALLBACK WatchCallback(DWORD dwErrorCode, DWORD dwNumberOfBytesTransfered, LPOVERLAPPED lpOverlapped)

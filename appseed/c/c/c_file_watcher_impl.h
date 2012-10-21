@@ -38,7 +38,7 @@
 #define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_KQUEUE
 #elif defined(LINUX)
 #define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_INOTIFY
-#elif defined(MERDE_WINDOWS)
+#elif defined(MERDO_WINDWS)
 #define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_MERDWIN
 #endif
 
@@ -47,19 +47,17 @@ namespace file_watcher
 {
 
    
-   ref class watch_struct;
+   struct watch_struct;
 
 
 	class file_watcher_impl
 	{
 	public:
-		///
-		///
-		file_watcher_impl() {}
 
-		///
-		///
-		virtual ~file_watcher_impl() {}
+      
+      file_watcher_impl();
+		virtual ~file_watcher_impl();
+
 
 		/// Add a directory watch
 		/// @exception file_not_found_exception Thrown when the requested directory does not exist
@@ -77,8 +75,8 @@ namespace file_watcher
 		virtual void update() = 0;
 
 		/// Handles the action
-#ifdef MERDE_WINDOWS
-		virtual void handle_action(watch_struct ^ watch, ::Windows::Storage::Search::IStorageQueryResultBase ^ r) = 0;
+#ifdef MERDO_WINDWS
+		virtual void handle_action(watch_struct * watch, ::Windows::Storage::Search::IStorageQueryResultBase ^ r) = 0;
 #else
       virtual void handle_action(watch_struct * watch, const char * filename, unsigned long ulOsAction) = 0;
 #endif

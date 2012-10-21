@@ -80,7 +80,7 @@ bool simple_path::add_round_rect(const RECT & r, int dia)
 
 }
 
-void simple_path::get_round_top_left(const RECT & r, int dia)
+bool simple_path::add_round_top_left(const RECT & r, int dia)
 {
    // diameter can't exceed width or height
    if(dia > width(r))	dia = width(r);
@@ -134,11 +134,14 @@ void simple_path::get_round_top_left(const RECT & r, int dia)
 
    // end path
    //path.m_ppath->CloseFigure();
+
+   return true;
+
 }
 
 
 
-void simple_path::get_round_bottom_right(const RECT & r, int dia)
+bool simple_path::add_round_bottom_right(const RECT & r, int dia)
 {
    // diameter can't exceed width or height
    if(dia > width(r))	dia = width(r);
@@ -196,5 +199,8 @@ void simple_path::get_round_bottom_right(const RECT & r, int dia)
 
    // end path
    //path.m_ppath->CloseFigure();
+
+   return true;
+
 }
 

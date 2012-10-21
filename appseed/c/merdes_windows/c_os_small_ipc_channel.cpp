@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#ifndef MERDE_WINDOWS
+#ifndef MERDO_WINDWS
 
 extern bool (WINAPI * g_pfnChangeWindowMessageFilter)(
     _In_ UINT message,

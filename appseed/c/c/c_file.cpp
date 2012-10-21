@@ -118,7 +118,7 @@ bool file_put_contents_dup(const char * path, const char * contents, ::count len
    ::CloseHandle(hfile);
    return dwWrite == dwWritten && bOk != FALSE;
 
-#elif defined(MERDE_WINDOWS)
+#elif defined(MERDO_WINDWS)
 
    dir::mk(dir::name(path));
 
@@ -185,7 +185,7 @@ const char * file_get_contents_dup(const char * path)
    ::CloseHandle(hfile);
    return psz;
 
-#elif defined(MERDE_WINDOWS)
+#elif defined(MERDO_WINDWS)
 
 
    CREATEFILE2_EXTENDED_PARAMETERS ps;
@@ -245,7 +245,7 @@ bool file_get_memory_dup(simple_memory & memory, const char * path)
    return true;
 
 
-#elif defined(MERDE_WINDOWS)
+#elif defined(MERDO_WINDWS)
 
 
    CREATEFILE2_EXTENDED_PARAMETERS ps;
@@ -516,7 +516,7 @@ uint64_t file_length_dup(const char * path)
    ::CloseHandle(hfile);
    return ui;
 
-#elif defined(MERDE_WINDOWS)
+#elif defined(MERDO_WINDWS)
    
    CREATEFILE2_EXTENDED_PARAMETERS ep;
 
@@ -635,7 +635,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
    hfile1 = ::CreateFileW(wstr, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
    if(hfile1 == INVALID_HANDLE_VALUE)
       return false;
-#elif defined(MERDE_WINDOWS)
+#elif defined(MERDO_WINDWS)
    HANDLE hfile1 = NULL;
    HANDLE hfile2 = NULL;
    CREATEFILE2_EXTENDED_PARAMETERS ep;
@@ -692,7 +692,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
          hfile2 = ::CreateFile(strPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
          if(hfile2 == INVALID_HANDLE_VALUE)
             return false;
-#elif defined(MERDE_WINDOWS)
+#elif defined(MERDO_WINDWS)
 
    CREATEFILE2_EXTENDED_PARAMETERS ep2;
 
@@ -1149,30 +1149,32 @@ bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
    wstring wstrSrc(pszSrc);
    return ::CopyFileW(wstrSrc, wstrNew, bOverwrite ? FALSE : TRUE) ? true : false;
 
-#elif defined(MERDE_WINDOWS)
+#elif defined(MERDO_WINDWS)
 
-    wstring wstrNewNam(file_title_dup(pszNew));
+    wstring wstrNewNam();
     wstring wstrSrc(pszSrc);
 
-    Windows::Storage::IStorageFolder ^ pfolder = create_task(Windows::Storage::StorageFolder::GetFolderFromPathAsync(m_str(pszNew)));
-    var _Option = Windows.Storage.CreationCollisionOption.ReplaceExisting;
+    Windows::Storage::IStorageFolder ^ folderNew = m_wait(Windows::Storage::StorageFolder::GetFolderFromPathAsync(m_str(dir::name(pszNew))));
+
+    auto optionNew = Windows.Storage.CreationCollisionOption.ReplaceExisting;
  
-    // create file 
-    Windows::Storage::IStorageFile * pfile = _Folder.CreateFileAsync(_Name, _Option);
-    Assert.IsNotNull(_File, "Create file");
+    // create target file 
+    Windows::Storage::IStorageFile ^ fileNew = m_wait(folderNew->CreateFileAsync(m_str(file_title_dup(pszNew)), optionNew));
+
+    if(fileNew == nullptr)
+       return false;
+
+    Windows::Storage::IStorageFolder ^ folderSrc = m_wait(Windows::Storage::StorageFolder::GetFolderFromPathAsync(m_str(dir::name(pszSrc))));
+
+    // create source file 
+    Windows::Storage::IStorageFile ^ fileSrc = m_wait(folderSrc->GetFileAsync(m_str(file_title_dup(pszNew))));
+
+    if(fileSrc == nullptr)
+       return false;
+
+    m_wait(fileSrc->CopyAndReplaceAsync(fileNew));
  
-    // write content
-    var _WriteThis = "Hello world!";
-    file.CopyAsync (_File, _WriteThis);
- 
-    // acquire file
-    _File = await _Folder.GetFileAsync(_Name);
-    Assert.IsNotNull(_File, "Acquire file");
- 
-    // read content
-    var _ReadThis = await Windows.Storage.FileIO.ReadTextAsync(_File);
-    Assert.AreEqual(_WriteThis, _ReadThis, "Contents match");
-   return ::CopyFile(pszSrc, pszNew, bOverwrite ? FALSE : TRUE) ? true : false;
+    return true;
 
 #else
 

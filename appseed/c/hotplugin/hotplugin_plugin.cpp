@@ -59,7 +59,7 @@ namespace hotplugin
    plugin::~plugin()
    {
       free_memory();
-#if !defined(MACOS) && !defined(LINUX) && !defined(MERDE_WINDOWS)
+#if !defined(MACOS) && !defined(LINUX) && !defined(MERDO_WINDWS)
       if(m_pbitmap != NULL)
          delete (Gdiplus::Bitmap *) m_pbitmap;
       if(m_pcolorref != NULL)
@@ -1009,7 +1009,7 @@ namespace hotplugin
 #endif
          }
 
-#ifdef MERDE_WINDOWS
+#ifdef MERDO_WINDWS
          CREATEFILE2_EXTENDED_PARAMETERS ps;
          zero(&ps, sizeof(ps));
          ps.dwSize = sizeof(ps);
@@ -1050,7 +1050,7 @@ namespace hotplugin
          dword_ptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
 
          ensure_file_size(m_hfileBitmap, size);
-#ifdef MERDE_WINDOWS
+#ifdef MERDO_WINDWS
          m_hfilemapBitmap = CreateFileMappingFromApp(
             m_hfileBitmap,
             NULL,
@@ -1083,7 +1083,7 @@ namespace hotplugin
 
 #endif
 
-#ifdef MERDE_WINDOWS
+#ifdef MERDO_WINDWS
       m_pcolorref = (COLORREF *) MapViewOfFileFromApp(
          m_hfilemapBitmap,
          FILE_MAP_READ | FILE_MAP_WRITE,

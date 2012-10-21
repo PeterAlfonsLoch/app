@@ -71,7 +71,7 @@ namespace ca
          strPath += ".dll";
 
 
-#ifdef MERDE_WINDOWS
+#ifdef MERDO_WINDWS
       m_plibrary = ::LoadPackagedLibrary(gen_utf8_to_16(strPath), 0);
 #else
       m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));

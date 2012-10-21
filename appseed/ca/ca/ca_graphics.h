@@ -421,7 +421,7 @@ namespace ca
       virtual int draw_text(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat);
       virtual int draw_text(const string & str, LPRECT lpRect, UINT nFormat);
 
-#ifndef MERDE_WINDOWS
+#ifndef MERDO_WINDWS
       virtual int draw_text_ex(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
       virtual int draw_text_ex(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
 #endif

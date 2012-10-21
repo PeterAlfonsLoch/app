@@ -45,7 +45,7 @@ simple_mutex::simple_mutex(const char * pszName, bool bInitialLock)
       m_hMutex = ::CreateMutexW(NULL, bInitialLock ? TRUE : FALSE, pwszName);
       _ca_free(pwszName, 0);
    }
-#elif defined(MERDE_WINDOWS)
+#elif defined(MERDO_WINDWS)
    if(m_strName.is_empty())
    {
       m_hMutex = ::CreateMutexEx(NULL, NULL, bInitialLock ?  CREATE_MUTEX_INITIAL_OWNER : 0, SYNCHRONIZE);
@@ -125,7 +125,7 @@ void simple_mutex::lock()
 {
 #ifdef WINDOWSEX
    WaitForSingleObject(m_hMutex, INFINITE);
-#elif defined(MERDE_WINDOWS)
+#elif defined(MERDO_WINDWS)
    WaitForSingleObjectEx(m_hMutex, INFINITE, FALSE);
 #else
    if(m_strName.is_empty())

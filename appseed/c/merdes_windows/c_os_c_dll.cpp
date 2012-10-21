@@ -53,7 +53,7 @@ extern "C" void __chkstk()
 
 
 
-#ifdef MERDE_WINDOWS
+#ifdef MERDO_WINDWS
 
 CLASS_DECL_c vsstring get_system_error_message(DWORD dwError)
 {

@@ -109,7 +109,7 @@ namespace ex2
       virtual ::ca::window * FindWindow(const char * lpszClassName, const char * lpszWindowName);
       virtual ::ca::window * FindWindowEx(HWND hwndParent, HWND hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
-#ifndef MERDE_WINDOWS
+#ifndef MERDO_WINDWS
       virtual void get_time(timeval *p);
 #endif
       virtual void set_env_var(const string & var,const string & value);

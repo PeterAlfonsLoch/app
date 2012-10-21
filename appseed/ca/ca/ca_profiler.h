@@ -34,7 +34,7 @@ namespace ca
          {
             return ::get_tick_count() * 1000;
          }
-#elif defined(MERDE_WINDOWS)
+#elif defined(MERDO_WINDWS)
          int64_t iCount;
          if(g_iFrequency
          && QueryPerformanceCounter((LARGE_INTEGER *) &iCount))

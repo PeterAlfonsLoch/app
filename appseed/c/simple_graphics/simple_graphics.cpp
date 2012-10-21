@@ -130,11 +130,43 @@ void fastblur(DWORD * pdata, int w, int h, int radius)
          asum+=a[p1]-a[p2];
 
       yi+=w;
+
       }
+
    }
 
 }
 
+//=============================================================================
+//
+// draw_round_rect()
+//
+// Purpose:     Draws a rounded rectangle with a solid pen
+//
+// Parameters:  pGraphics	- [in]	pointer to the Graphics device
+//				r			- [in]	Rect that defines the round rectangle boundaries
+//				color		- [in]	Color value for the brush
+//				radius		- [in]  radius of the rounded corner
+//				width		- [in]  width of the border
+//
+// Returns:     None
+//
+bool simple_graphics::draw_round_rect(const RECT & rect, simple_pen & pen, int radius)
+{
+
+   simple_path path;
+
+   path.begin_figure(true);
+
+   path.add_round_rect(rect, 2 * radius);
+
+   path.end_figure(true);
+
+   draw_path(path, pen);
+
+   return true;
+
+}
 
 
 //=============================================================================
@@ -151,86 +183,40 @@ void fastblur(DWORD * pdata, int w, int h, int radius)
 //
 // Returns:     None
 //
-void simple_graphics::draw_round_rect(const RECT & rect, COLORREF cr, int radius, int width)
+bool simple_graphics::draw_round_rect(const RECT & rect, COLORREF cr, int radius, int width)
 {
 
    RECT r = rect;
 
-   int dia	= 2*radius;
+   int dia	= 2 * radius;
 
-   // set to pixel mode
-   //int oldPageUnit = g.m_pgraphics->SetPageUnit(UnitPixel);
-
-   // define the pen
    simple_solid_pen pen(*this, cr);
-   //pen.SetAlignment(PenAlignmentCenter);
 
-   // get the corner path
-   simple_path path;
+   draw_round_rect(r, pen, radius);
 
-   path.begin_figure(true);
 
-   // get path
-   path.add_round_rect(r, dia);
-
-   path.end_figure(true);
-
-   // draw the round rect
-   draw_path(path, pen);
-
-   // if width > 1
    for(int i=1; i<width; i++)
    {
       dia++;
+
       // left stroke
       deflate_rect(r, 1, 0);
 
-      {
-
-         // get the corner path
-         simple_path path;
-
-         path.begin_figure(true);
-
-         // get path
-         path.add_round_rect(r, dia);
-
-         path.end_figure(true);
-
-         // draw the round rect
-         draw_path(path, pen);
-
-      }
+      draw_round_rect(r, pen, dia / 2);
 
       // up stroke
       deflate_rect(r, 0, 1);
 
-      {
-
-         // get the corner path
-         simple_path path;
-
-         path.begin_figure(true);
-
-         // get path
-         path.add_round_rect(r, dia);
-
-         path.end_figure(true);
-
-         // draw the round rect
-         draw_path(path, pen);
-
-      }
-
+      draw_round_rect(r, pen, dia / 2);
 
    }
 
-   // restore page unit
-   //g.m_pgraphics->SetPageUnit((Unit)oldPageUnit);
+   return true;
+
 }
 
 
-void simple_graphics::draw_top_left(const RECT & rect, simple_pen & pen, int radius)
+bool simple_graphics::draw_round_top_left(const RECT & rect, simple_pen & pen, int radius)
 {
 
    simple_path path;
@@ -243,167 +229,93 @@ void simple_graphics::draw_top_left(const RECT & rect, simple_pen & pen, int rad
 
    draw_path(path, pen);
 
+   return true;
+
 }
 
 
-void simple_graphics::draw_top_left(const RECT & rect, COLORREF cr, int radius, int width)
+bool simple_graphics::draw_round_top_left(const RECT & rect, COLORREF cr, int radius, int width)
 {
 
    RECT r = rect;
 
-   int dia	= 2*radius;
+   int dia	= 2 * radius;
 
-   // set to pixel mode
-   //int oldPageUnit = g.m_pgraphics->SetPageUnit(UnitPixel);
-
-   // define the pen
    simple_solid_pen pen(*this, cr);
-   //pen.SetAlignment(PenAlignmentCenter);
 
-   {
+   draw_round_top_left(r, pen, radius);
 
-      // get the corner path
-      simple_path path;
 
-      path.begin_figure(false);
-
-      // get path
-      path.add_round_top_left(r, dia);
-
-      path.end_figure(false);
-
-      // draw the round rect
-      draw_path(path, pen);
-
-   }
-
-   // if width > 1
    for(int i=1; i<width; i++)
    {
       dia++;
+
       // left stroke
       deflate_rect(r, 1, 0);
 
-      {
-
-         // get the corner path
-         simple_path path;
-
-         path.begin_figure(false);
-
-         // get path
-         path.add_round_top_left(r, dia);
-
-         path.end_figure(false);
-
-         // draw the round rect
-         draw_path(path, pen);
-
-      }
+      draw_round_top_left(r, pen, dia / 2);
 
       // up stroke
       deflate_rect(r, 0, 1);
 
-      {
+      draw_round_top_left(r, pen, dia / 2);
 
-         // get the corner path
-         simple_path path;
-
-         path.begin_figure(false);
-
-         // get path
-         path.add_round_top_left(r, dia);
-
-         path.end_figure(false);
-
-         // draw the round rect
-         draw_path(path, pen);
-
-      }
    }
 
-   // restore page unit
-//   g.m_pgraphics->SetPageUnit((Unit)oldPageUnit);
+   return true;
+
 }
 
-void simple_graphics::draw_bottom_right(simple_graphics & g, const RECT & rect, COLORREF cr, int radius, int width)
+
+bool simple_graphics::draw_round_bottom_right(const RECT & rect, simple_pen & pen, int radius)
+{
+
+   simple_path path;
+
+   path.begin_figure(false);
+
+   path.add_round_bottom_right(rect, 2 * radius);
+
+   path.end_figure(false);
+
+   draw_path(path, pen);
+
+   return true;
+
+}
+
+
+bool simple_graphics::draw_round_bottom_right(const RECT & rect, COLORREF cr, int radius, int width)
 {
 
    RECT r = rect;
 
-   int dia	= 2*radius;
+   int dia	= 2 * radius;
 
-   // set to pixel mode
-   //int oldPageUnit = g.m_pgraphics->SetPageUnit(UnitPixel);
+   simple_solid_pen pen(*this, cr);
 
-   // define the pen
-   simple_solid_pen pen(g, cr);
-   //pen.SetAlignment(PenAlignmentCenter);
+   draw_round_bottom_right(r, pen, radius);
 
-   {
 
-      // get the corner path
-      simple_path path;
-
-      path.begin_figure(false);
-
-      // get path
-      path.add_round_bottom_right(r, dia);
-
-      path.end_figure(false);
-
-      // draw the round rect
-      draw_path(path, pen);
-
-   }
-
-   // if width > 1
    for(int i=1; i<width; i++)
    {
+
       dia++;
+
       // left stroke
       deflate_rect(r, 1, 0);
 
-      {
-
-         // get the corner path
-         simple_path path;
-
-         path.begin_figure(false);
-
-         // get path
-         path.add_round_bottom_right(r, dia);
-
-         path.end_figure(false);
-
-         // draw the round rect
-         draw_path(path, pen);
-
-      }
+      draw_round_bottom_right(r, pen, dia / 2);
 
       // up stroke
       deflate_rect(r, 0, 1);
 
-      {
+      draw_round_bottom_right(r, pen, dia / 2);
 
-         // get the corner path
-         simple_path path;
-
-         path.begin_figure(false);
-
-         // get path
-         path.add_round_bottom_right(r, dia);
-
-         path.end_figure(false);
-
-         // draw the round rect
-         draw_path(path, pen);
-
-      }
    }
 
-   // restore page unit
-//   g.m_pgraphics->SetPageUnit((Unit)oldPageUnit);
+   return true;
+
 }
 
 //=============================================================================
@@ -420,12 +332,12 @@ void simple_graphics::draw_bottom_right(simple_graphics & g, const RECT & rect, 
 //
 // Returns:     None
 //
-void simple_graphics::fill_round_rect(const RECT & r, COLORREF cr, int radius)
+bool simple_graphics::fill_round_rect(const RECT & r, COLORREF cr, int radius)
 {
 
    simple_solid_brush br(*this, cr);
 
-   fill_round_rect(br, r, cr, radius);
+   return fill_round_rect(r, br, radius);
 
 }
 
@@ -445,33 +357,30 @@ void simple_graphics::fill_round_rect(const RECT & r, COLORREF cr, int radius)
 //
 // Returns:     None
 //
-void simple_graphics::fill_round_rect(simple_brush & br, const RECT & r, COLORREF border, int radius)
+bool simple_graphics::fill_round_rect(const RECT & rect, simple_brush & br, int radius)
 {
-   int dia	= 2*radius;
 
-   // set to pixel mode
-   //int oldPageUnit = g.m_pgraphics->SetPageUnit(UnitPixel);
-
-   // define the pen
-   simple_solid_pen pen(g, border);
-   //pen.SetAlignment(PenAlignmentCenter);
-
-   // get the corner path
    simple_path path;
 
    path.begin_figure(true);
 
-   // get path
-   path.add_round_rect(r, dia);
+   path.add_round_rect(rect, 2 * radius);
 
    path.end_figure(true);
 
-   // fill
    fill_path(path, br);
 
-   // draw the border last so it will be on top in case the color is different
-//   g.draw_path(path, pen);
+   return true;
 
-   // restore page unit
-   //g.m_pgraphics->SetPageUnit((Unit)oldPageUnit);
+}
+
+bool simple_graphics::round_rect(const RECT & r, int radius)
+{
+
+   bool bOk1 = fill_round_rect(r, m_brush, radius);
+
+   bool bOk2 = draw_round_rect(r, m_pen, radius);
+
+   return bOk1 && bOk1 2;
+
 }

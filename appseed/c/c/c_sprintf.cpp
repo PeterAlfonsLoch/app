@@ -46,7 +46,7 @@ int vsprintf_dup(char *dest, const char *fmt, va_list args)
 {
    #ifdef WINDOWSEX
 	int retValue = wvsprintfA(dest, fmt, args);
-   #elif defined(MERDE_WINDOWS)
+   #elif defined(MERDO_WINDWS)
 	int retValue = vsprintf(dest, fmt, args);
 	#else
 	int retValue = vsprintf(dest, fmt, args);
@@ -83,7 +83,7 @@ int vswprintf_dup(wchar_t *dest, size_t n, const wchar_t *fmt, va_list args)
 
 #ifdef WINDOWSEX
 	int retValue = wvsprintfW(dest, fmt, args);
-#elif defined(MERDE_WINDOWS)
+#elif defined(MERDO_WINDWS)
    int retValue = vswprintf_s(dest, n, fmt, args);
 #else
 	int retValue = vswprintf(dest, n, fmt, args);

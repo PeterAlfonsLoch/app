@@ -41,7 +41,7 @@ public:
    image_list(::ca::application * papp);
    virtual ~image_list();
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    bool get_image_info(int nImage, IMAGEINFO* pImageInfo) const;
 #endif
 

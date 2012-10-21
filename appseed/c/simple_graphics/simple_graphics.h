@@ -74,12 +74,12 @@ public:
 	// Returns:     None
 	//
 	bool draw_round_rect(const RECT & r,  simple_pen & pen, int radius);
-   bool draw_top_left(const RECT & r,  simple_pen & pen, int radius);
-   bool draw_bottom_right(const RECT & r,  simple_pen & pen, int radius);
+   bool draw_round_top_left(const RECT & r,  simple_pen & pen, int radius);
+   bool draw_round_bottom_right(const RECT & r,  simple_pen & pen, int radius);
 
 	bool draw_round_rect(const RECT & r,  COLORREF color, int radius, int width);
-   bool draw_top_left(const RECT & r,  COLORREF color, int radius, int width);
-   bool draw_bottom_right(const RECT & r,  COLORREF color, int radius, int width);
+   bool draw_round_top_left(const RECT & r,  COLORREF color, int radius, int width);
+   bool draw_round_bottom_right(const RECT & r,  COLORREF color, int radius, int width);
 
 	//=============================================================================
 	//

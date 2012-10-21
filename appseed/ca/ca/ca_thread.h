@@ -97,7 +97,7 @@ namespace ca
 
       byte *      m_pbStart;
       byte *      m_pbEnd;
-#ifdef MERDE_WINDOWS
+#ifdef MERDO_WINDWS
       DWORD64     m_dwTickCount;
 #else
       DWORD       m_dwTickCount;
@@ -111,7 +111,7 @@ namespace ca
       }
 
 
-#ifdef MERDE_WINDOWS
+#ifdef MERDO_WINDWS
       inline heap_item(void * p, ::primitive::memory_size iSize, DWORD64 dwTick)
 #else
       inline heap_item(void * p, ::primitive::memory_size iSize, DWORD dwTick)
@@ -150,7 +150,7 @@ namespace ca
    {
    public:
 
-#ifdef MERDE_WINDOWS
+#ifdef MERDO_WINDWS
       DWORD64 m_dwLastCleanup;
 #else
       DWORD m_dwLastCleanup;
@@ -158,7 +158,7 @@ namespace ca
 
       inline void add_item(void * p, ::primitive::memory_size iSize)
       {
-#ifdef MERDE_WINDOWS
+#ifdef MERDO_WINDWS
          add(heap_item(p, iSize, GetTickCount64()));
          if(GetTickCount64() > m_dwLastCleanup + 10000)
 #else
@@ -172,7 +172,7 @@ namespace ca
 
       inline void cleanup()
       {
-#ifdef MERDE_WINDOWS
+#ifdef MERDO_WINDWS
          DWORD64 dwLimit = GetTickCount64() - 1000;
 #else
          DWORD64 dwLimit = get_tick_count() - 1000;
@@ -188,7 +188,7 @@ namespace ca
                i++;
             }
          }
-#ifdef MERDE_WINDOWS
+#ifdef MERDO_WINDWS
          m_dwLastCleanup = GetTickCount64();
 #else
          m_dwLastCleanup = get_tick_count();
