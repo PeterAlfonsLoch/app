@@ -251,12 +251,6 @@
     <ClInclude Include="windows\c_os_simple_path.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
-    <ClInclude Include="c\c_graphics_round_rect.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_graphics.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
     <ClInclude Include="c\c_async.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
@@ -407,9 +401,6 @@
     <ClInclude Include="c\c_time.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
-    <ClInclude Include="c\c_graphics2.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
     <ClInclude Include="simple_graphics\simple_graphics.h">
       <Filter>Header Files\simple_graphics</Filter>
     </ClInclude>
@@ -429,6 +420,12 @@
       <Filter>Header Files\simple_graphics</Filter>
     </ClInclude>
     <ClInclude Include="simple_graphics\simple_solid_pen.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_font.h">
+      <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_graphics\simple_path.h">
       <Filter>Header Files\simple_graphics</Filter>
     </ClInclude>
   </ItemGroup>
@@ -658,9 +655,6 @@
     <ClCompile Include="c\c_base64.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="c\c_graphics.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="c\c_conv.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
@@ -778,11 +772,14 @@
     <ClCompile Include="c\c_small_ipc_channel.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="c\c_graphics_round_rect.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="simple_graphics\simple_graphics.cpp">
       <Filter>Source Files\simple_graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_graphics\simple_path.cpp">
+      <Filter>Source Files\simple_graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_file_watcher_impl.cpp">
+      <Filter>Source Files\c</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

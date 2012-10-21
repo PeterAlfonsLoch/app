@@ -38,7 +38,7 @@ bool read_resource_as_file_dup(const char * pszFile, HINSTANCE hinstance, UINT n
 
       dir::mk(dir::name(pszFile));
 
-      HANDLE hfile = ::CreateFile(pszFile, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+      HANDLE hfile = ::create_file(pszFile, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
       if(hfile != INVALID_HANDLE_VALUE)
       {
@@ -599,21 +599,8 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
          file_read_ex1_string_dup(hfile1, &ctx, strRelative);
          vsstring strPath = dir::path(pszDir, strRelative);
          dir::mk(dir::name(strPath));
-#ifdef WINDOWSEX
-         hfile2 = ::CreateFile(strPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-         if(hfile2 == INVALID_HANDLE_VALUE)
-            return false;
-#elif defined(METROWIN)
-
-   CREATEFILE2_EXTENDED_PARAMETERS ep2;
-
-   memset(&ep2, 0, sizeof(ep2));
-   ep2.dwSize = sizeof(ep2);
-   ep2.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
-
-   wstring wstrPath(strPath);
-
-         hfile2 = ::CreateFile2(wstrPath, GENERIC_WRITE, 0, CREATE_ALWAYS, &ep2);
+#ifdef WINDOWS
+         hfile2 = ::create_file(strPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
          if(hfile2 == INVALID_HANDLE_VALUE)
             return false;
 #else

@@ -766,6 +766,7 @@
     <ClInclude Include="windows\c_os_simple_font.h" />
     <ClInclude Include="windows\c_os_simple_graphics.h" />
     <ClInclude Include="windows\c_os_simple_hold_handle.h" />
+    <ClInclude Include="windows\c_os_simple_path.h" />
     <ClInclude Include="windows\c_os_simple_pen.h" />
   </ItemGroup>
   <ItemGroup>
@@ -827,6 +828,7 @@
     <ClCompile Include="c\c_file.cpp" />
     <ClCompile Include="c\c_file_spa.cpp" />
     <ClCompile Include="c\c_file_watcher.cpp" />
+    <ClCompile Include="c\c_file_watcher_impl.cpp" />
     <ClCompile Include="c\c_file_watcher_listener_thread.cpp" />
     <ClCompile Include="c\c_file_watcher_thread.cpp" />
     <ClCompile Include="c\c_geometric_types.cpp" />
@@ -865,6 +867,7 @@
     <ClCompile Include="os\os_http.cpp" />
     <ClCompile Include="os\os_thread.cpp" />
     <ClCompile Include="simple_graphics\simple_graphics.cpp" />
+    <ClCompile Include="simple_graphics\simple_path.cpp" />
     <ClCompile Include="windows\c_os_file.cpp" />
     <ClCompile Include="windows\c_os_gdi.cpp" />
     <ClCompile Include="windows\c_os_simple_bitmap.cpp" />

@@ -219,9 +219,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
       strPath = pszFile;
       DWORD dwLen = 0;
       dir::mk(dir::name(strPath));
-      HANDLE hfile = ::CreateFile(strPath,
-         GENERIC_WRITE, 0, NULL,
-         CREATE_ALWAYS, 0, NULL);
+      HANDLE hfile = ::create_file(strPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL);
       if(hfile == INVALID_HANDLE_VALUE)
       {
          dwError = ::GetLastError();

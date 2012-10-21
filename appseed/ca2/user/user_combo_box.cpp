@@ -203,34 +203,34 @@ namespace user
             if(i == 0)
             {
                COLORREF c(ARGB(230, 130, 130, 120));
-               ::graphics_round_rect::draw_top_left(g, r, c, radius, 1);
+               g.draw_round_top_left(r, c, radius, 1);
             }
             else if(i == 1)
             {
                COLORREF c(ARGB(230, 210, 210, 200));
-               ::graphics_round_rect::draw_top_left(g, r, c, radius, 1);
+               g.draw_round_top_left(r, c, radius, 1);
             }
             else
             {
                COLORREF c(ARGB(230, 230 - iColorRate, 230 - iColorRate, 220 - iColorRate));
-               ::graphics_round_rect::draw_top_left(g, r, c, radius, 1);
+               g.draw_round_top_left(r, c, radius, 1);
             }
          }
          {
             if(i == 0)
             {
                COLORREF c(ARGB(230, 130, 130, 120));
-               ::graphics_round_rect::draw_bottom_right(g, r, c, radius, 1);
+               g.draw_round_bottom_right(r, c, radius, 1);
             }
             else if(i == 1)
             {
                COLORREF c(ARGB(230, 210, 210, 200));
-               ::graphics_round_rect::draw_bottom_right(g, r, c, radius, 1);
+               g.draw_round_bottom_right(r, c, radius, 1);
             }
             else
             {
                COLORREF c(ARGB(230, 190 + iColorRate, 190 + iColorRate, 180 + iColorRate));
-               ::graphics_round_rect::draw_bottom_right(g, r, c, radius, 1);
+               g.draw_round_bottom_right(r, c, radius, 1);
             }
          }
 

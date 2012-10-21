@@ -416,6 +416,9 @@
     <ClInclude Include="simple_graphics\simple_solid_pen.h">
       <Filter>Header Files\simple_graphics</Filter>
     </ClInclude>
+    <ClInclude Include="windows\c_os_simple_path.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">
@@ -764,6 +767,12 @@
       <Filter>Source Files\windows</Filter>
     </ClCompile>
     <ClCompile Include="simple_graphics\simple_graphics.cpp">
+      <Filter>Source Files\simple_graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_file_watcher_impl.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_graphics\simple_path.cpp">
       <Filter>Source Files\simple_graphics</Filter>
     </ClCompile>
   </ItemGroup>

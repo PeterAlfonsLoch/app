@@ -27,7 +27,7 @@ static simple_mutex g_mutexSystemHeap;
 
 CLASS_DECL_ca void * system_heap_alloc(size_t size)
 {
-   mutex_lock lock(&g_mutexSystemHeap, true);
+   mutex_lock lock(g_mutexSystemHeap, true);
 //#if ZEROED_ALLOC
   // byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, HEAP_ZERO_MEMORY, ((size + 4 + 3) & ~3));
 //#else  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
@@ -49,7 +49,7 @@ CLASS_DECL_ca void * system_heap_alloc(size_t size)
 
 CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
 {
-   mutex_lock lock(&g_mutexSystemHeap, true);
+   mutex_lock lock(g_mutexSystemHeap, true);
    byte * pOld = (byte *) pvoidOld;
    int iMod = pOld[-1 - sizeof(size_t)];
    if(iMod < 1 || iMod > 4)
@@ -93,7 +93,7 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
 CLASS_DECL_ca void system_heap_free(void * pvoid)
 {
 
-   mutex_lock lock(&g_mutexSystemHeap, true);
+   mutex_lock lock(g_mutexSystemHeap, true);
 
    byte * p = (byte *) pvoid;
 

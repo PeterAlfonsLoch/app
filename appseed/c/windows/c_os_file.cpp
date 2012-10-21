@@ -17,3 +17,19 @@ CLASS_DECL_c void ensure_file_size(HANDLE h, int64_t iSize)
 
 }
 
+
+
+CLASS_DECL_c handle create_file(const char * lpcszFileName, dword dwDesiredAccess, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile)
+{
+   
+   return CreateFileW(wstring(lpcszFileName), dwDesiredAccess, dwShareMode, lpSA, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
+
+}
+
+
+CLASS_DECL_c bool close_handle(handle h)
+{
+
+   return ::CloseHandle(h) != FALSE;
+
+}

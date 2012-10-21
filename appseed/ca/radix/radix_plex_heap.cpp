@@ -229,7 +229,7 @@ void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int nBlockUse, const 
 
 
 
-   mutex_lock lock(&g_mutex2, true);
+   mutex_lock lock(g_mutex2, true);
    pblock->m_pprevious                 = NULL;
    pblock->m_pnext                     = s_pmemdleakList;
    if(s_pmemdleakList != NULL)
@@ -252,7 +252,7 @@ void plex_heap_alloc_array::free_dbg(void * p, size_t nAllocSize)
 
    memdleak_block * pblock = &((memdleak_block *)p)[-1];
 
-   mutex_lock lock(&g_mutex2, true);
+   mutex_lock lock(g_mutex2, true);
 
    if(s_pmemdleakList == pblock)
    {
@@ -290,7 +290,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
 
    memdleak_block * pblock = &((memdleak_block *)pOld)[-1];
 
-   mutex_lock lock(&g_mutex2, true);
+   mutex_lock lock(g_mutex2, true);
 
    if(s_pmemdleakList == pblock)
    {
@@ -374,7 +374,7 @@ count plex_heap_alloc_array::get_mem_info(int ** ppiUse, const char *** ppszFile
 
 #endif
 
-   mutex_lock lock(&g_mutex2, true);
+   mutex_lock lock(g_mutex2, true);
 
    memdleak_block * pblock = s_pmemdleakList;
 

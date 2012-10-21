@@ -82,7 +82,7 @@ namespace plugin
 
       //Sleep(15 * 1000);
 
-      mutex_lock mlSystem(&m_phost->m_mutexSystem, true);
+      mutex_lock mlSystem(m_phost->m_mutexSystem, true);
 
       if(m_phost->get_system() == NULL)
       {
@@ -263,7 +263,7 @@ namespace plugin
 
          {
 
-            mutex_lock sl(m_pmutexBitmap, true);
+            mutex_lock sl(*m_pmutexBitmap, true);
 
             memcpy(m_pcolorref, m_dib->get_data(), abs_dup(m_sizeBitmap.cy) * abs_dup(m_sizeBitmap.cx) * 4);
 

@@ -13,7 +13,7 @@ public:
    HWND                    m_hwnd;
    simple_bitmap           m_bitmap;
    simple_pen              m_pen;
-   simple_font             m_font;
+   os_simple_font          m_font;
    simple_brush            m_brush;
    int                     m_iType;
    PAINTSTRUCT             m_ps;

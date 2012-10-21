@@ -190,9 +190,9 @@ namespace ca
       string system::time(::ca::application * papp, const char * psz, int iMaxLevel, const char * pszPrefix, const char * pszSuffix)
       {
          mutex_lock lockMachineEvent(
-            &System.machine_event_central() != NULL ?
-               &System.machine_event_central().m_machineevent.m_mutex
-               : NULL, true);
+            (&System.machine_event_central() != NULL) ?
+               System.machine_event_central().m_machineevent.m_mutex
+               : *((simple_mutex *) NULL), true);
          int iIncLevel = -1;
          string str;
          string strPrefix(pszPrefix);

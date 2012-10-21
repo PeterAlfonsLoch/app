@@ -3,11 +3,12 @@
 #include <gdiplus.h>
 
 
-os_simple_path::os_simple_path(bool bFill)
+os_simple_path::os_simple_path()
 {
 
-   m_bFill = bFill;
-   m_ppath = new Gdiplus::GraphicsPath();
+   m_bFill        = false;
+   m_efillmode    = ::ca::fill_mode_winding;
+   m_ppath        = new Gdiplus::GraphicsPath();
 
 }
 
