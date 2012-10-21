@@ -25,7 +25,7 @@
 namespace file_watcher
 {
 	/// Internal watch data
-   class watch_struct
+   struct watch_struct
 	{
    public:
       
@@ -115,7 +115,7 @@ namespace file_watcher
 	}*/
 
 	/// Stops monitoring a directory.
-	void DestroyWatch(watch_struct ^ pwatch)
+	void DestroyWatch(watch_struct * pwatch)
 	{
 		if(pwatch != nullptr)
 		{
@@ -123,9 +123,9 @@ namespace file_watcher
 		}
 	}
 	/// Starts monitoring a directory.
-	watch_struct ^ watch_struct::create_watch(Platform::String ^ strDirectory)
+	watch_struct * watch_struct::create_watch(Platform::String ^ strDirectory)
 	{
-		watch_struct ^ pwatch = ref new watch_struct;
+		watch_struct * pwatch = new watch_struct;
 
 
       Windows::Storage::Search::QueryOptions ^ options = ref new Windows::Storage::Search::QueryOptions();

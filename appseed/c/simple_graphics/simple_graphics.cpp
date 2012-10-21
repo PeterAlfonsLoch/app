@@ -381,6 +381,6 @@ bool simple_graphics::round_rect(const RECT & r, int radius)
 
    bool bOk2 = draw_round_rect(r, m_pen, radius);
 
-   return bOk1 && bOk1 2;
+   return bOk1 && bOk2;
 
 }

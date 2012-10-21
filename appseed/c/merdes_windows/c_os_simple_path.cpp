@@ -2,10 +2,10 @@
 #include <math.h>
 
 
-simple_path::simple_path(bool bFill)
+os_simple_path::os_simple_path()
 {
 
-   m_bFill  = bFill;
+   m_bFill  = false;
 
    //m_ppath = new Gdiplus::GraphicsPath();
 
@@ -15,7 +15,7 @@ simple_path::simple_path(bool bFill)
 
 }
 
-simple_path::~simple_path()
+os_simple_path::~os_simple_path()
 {
 
    if(m_ppath != NULL)
@@ -31,7 +31,7 @@ simple_path::~simple_path()
 }
 
 
-bool simple_path::add_arc(const RECT & rect, int iStart, int iAngle)
+bool os_simple_path::add_arc(const RECT & rect, int iStart, int iAngle)
 {
 
    D2D1_POINT_2F pt;
@@ -61,7 +61,7 @@ bool simple_path::add_arc(const RECT & rect, int iStart, int iAngle)
 
 }
 
-bool simple_path::add_line(int x1, int y1, int x2, int y2)
+bool os_simple_path::add_line(int x1, int y1, int x2, int y2)
 {
 
    D2D1_POINT_2F pt;
@@ -93,7 +93,7 @@ bool simple_path::add_line(int x1, int y1, int x2, int y2)
 
 }
 
-bool simple_path::get_arc(D2D1_POINT_2F & pt, D2D1_ARC_SEGMENT & arcseg, const RECT & rect, int iStart, int iAngle)
+bool os_simple_path::get_arc(D2D1_POINT_2F & pt, D2D1_ARC_SEGMENT & arcseg, const RECT & rect, int iStart, int iAngle)
 {
 
    float pi = 3.1415927f;
@@ -140,7 +140,7 @@ bool simple_path::get_arc(D2D1_POINT_2F & pt, D2D1_ARC_SEGMENT & arcseg, const R
 
 }
 
-bool simple_path::begin_figure(bool bFill)
+bool os_simple_path::begin_figure(bool bFill)
 {
 
    m_bFill = true;
@@ -149,7 +149,7 @@ bool simple_path::begin_figure(bool bFill)
 
 }
 
-bool simple_path::end_figure(bool bClose)
+bool os_simple_path::end_figure(bool bClose)
 {
 
    if(bClose)
@@ -172,7 +172,7 @@ bool simple_path::end_figure(bool bClose)
 }
 
 
-ID2D1PathGeometry * simple_path::get_os_data()
+ID2D1PathGeometry * os_simple_path::get_os_data()
 {
    
    if(m_psink != NULL)
@@ -191,7 +191,7 @@ ID2D1PathGeometry * simple_path::get_os_data()
 }
 
 
-bool simple_path::close_figure()
+bool os_simple_path::close_figure()
 {
 
    if(m_psink != NULL)
@@ -210,7 +210,7 @@ bool simple_path::close_figure()
 }
 
 
-bool simple_path::add_rect(const RECT & rect)
+bool os_simple_path::add_rect(const RECT & rect)
 {
    
    D2D1_POINT_2F pt;
