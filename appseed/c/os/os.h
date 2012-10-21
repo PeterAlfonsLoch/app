@@ -19,7 +19,7 @@
 
 #elif defined(MERDO_WINDWS)
 
-#include "c/merdes_windows/windows_merde.h"
+#include "c/merdos_windws/windw_merdo.h"
 
 #else
 

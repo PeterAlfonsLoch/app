@@ -29,7 +29,7 @@
 #elif FILEWATCHER_PLATFORM == FILEWATCHER_PLATFORM_INOTIFY
 #include "c/linux/c_os_file_watcher.h"
 #elif FILEWATCHER_PLATFORM == FILEWATCHER_PLATFORM_MERDWIN
-#include "c/merdes_windows/c_os_file_watcher.h"
+#include "c/merdos_windws/c_os_file_watcher.h"
 #endif
 
 namespace file_watcher

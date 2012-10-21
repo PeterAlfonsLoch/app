@@ -46,7 +46,7 @@ public:
    SIZE get_text_extent(const char * psz, int iLen = -1);
 //   bool set_text_color(COLORREF cr);
 
-   void set_alpha_mode(::ca::e_alpha_mode emode);
+   bool set_alpha_mode(::ca::e_alpha_mode emode);
 
    bool draw_line(int x1, int y1, int x2, int y2, simple_pen & pen);
    bool draw_rect(LPCRECT lpcrect, simple_pen & pen);
