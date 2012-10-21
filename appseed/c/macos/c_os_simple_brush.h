@@ -15,7 +15,8 @@ public:
    enum e_style
    {
       style_stock,
-     style_solid,
+      style_solid,
+      style_linear_gradient,
       
    };
    
@@ -30,7 +31,8 @@ public:
    
    
    // aim to be all-platoform - but if there is no equivalent because no op : create empty method
-   bool create_solid(COLORREF cr);
+   bool create_solid(simple_graphics & g, COLORREF cr);
+   bool create_linear_gradient(simple_graphics & g, POINT p1, POINT p2, COLORREF cr1, COLORREF cr2);
    bool destroy();
    
    

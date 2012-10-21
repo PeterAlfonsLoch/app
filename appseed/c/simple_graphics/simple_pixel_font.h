@@ -6,9 +6,20 @@ class CLASS_DECL_c simple_pixel_font :
 {
 public:
 
-   simple_pixel_font(simple_graphics & g, int nPixelHeight, const char * lpszFaceName, bool bBold = false)
-   {
-      create_pixel(g, nPixelHeight, lpszFaceName, bBold);
-   }
+   
+   inline simple_pixel_font(simple_graphics & g, int nPixelHeight, const char * lpszFaceName, bool bBold = false);
+
 
 };
+
+
+
+inline simple_pixel_font::simple_pixel_font(simple_graphics & g, int nPixelHeight, const char * lpszFaceName, bool bBold)
+{
+   
+   create_pixel(g, nPixelHeight, lpszFaceName, bBold);
+   
+}
+
+
+

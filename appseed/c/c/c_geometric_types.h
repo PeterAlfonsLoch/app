@@ -115,7 +115,8 @@ inline CLASS_DECL_c LPRECT rect_dim(LPRECT lprect, int x, int y, int cx, int cy)
 
 inline CLASS_DECL_c RECT rect_by_dimension(int x, int y, int cx, int cy)
 {
-   return rect_by_dimension(RECT(), x, y, cx, cy);
+   RECT r;
+   return rect_by_dimension(r, x, y, cx, cy);
 }
 
 inline CLASS_DECL_c RECT rect_dim(int x, int y, int cx, int cy)
@@ -149,7 +150,8 @@ inline CLASS_DECL_c LPPOINT point_coord(LPPOINT lppt, int x, int y)
 
 inline CLASS_DECL_c POINT point_by_coordinate(int x, int y)
 {
-   return point_by_coordinate(POINT(), x, y);
+   POINT p;
+   return point_by_coordinate(p, x, y);
 }
 
 inline CLASS_DECL_c POINT point_coord(int x, int y)

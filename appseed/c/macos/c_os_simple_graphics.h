@@ -8,7 +8,7 @@
 
 
 
-class CLASS_DECL_c simple_graphics
+class CLASS_DECL_c os_simple_graphics
 {
 public:
    
@@ -26,7 +26,7 @@ public:
    //Colormap                m_colormap;
    simple_pen              m_pen;
    simple_brush            m_brush;
-   simple_font             m_font;
+   os_simple_font          m_font;
    simple_bitmap           m_bitmap;
    /*   HWND                    m_hwnd;
     HBITMAP                 m_hbitmapOld;
@@ -48,8 +48,8 @@ public:
    COLORREF                m_crTextColor;
    
    
-   simple_graphics();
-   ~simple_graphics();
+   os_simple_graphics();
+   ~os_simple_graphics();
    
    
    // aim to be all-platoform - but if there is no equivalent because no op : create empty method

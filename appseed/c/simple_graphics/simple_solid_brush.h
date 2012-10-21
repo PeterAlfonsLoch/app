@@ -8,9 +8,22 @@ class CLASS_DECL_c simple_solid_brush :
 {
 public:
 
-   simple_solid_brush(simple_graphics & g, COLORREF cr)
-   {
-      create_solid(g, cr);
-   }
+   
+   inline simple_solid_brush(simple_graphics & g, COLORREF cr);
 
+   
 };
+
+
+
+inline simple_solid_brush::simple_solid_brush(simple_graphics & g, COLORREF cr)
+{
+   
+   create_solid(g, cr);
+   
+}
+
+
+
+
+

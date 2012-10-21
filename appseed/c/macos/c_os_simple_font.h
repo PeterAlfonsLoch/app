@@ -8,7 +8,7 @@
 #pragma once
 
 
-class CLASS_DECL_c simple_font
+class CLASS_DECL_c os_simple_font
 {
 public:
    
@@ -29,11 +29,11 @@ public:
 #endif
    
    
-   simple_font();
-   ~simple_font();
+   os_simple_font();
+   ~os_simple_font();
    
-   bool create_point(int nPointSize, const char * lpszFaceName, simple_graphics & g);
-   bool create_point_bold(int nPointSize, const char * lpszFaceName, int BOLD, simple_graphics & g);
+   bool create_point(simple_graphics & g, int nPointSize, const char * lpszFaceName, bool bBold = false);
+   bool create_pixel(simple_graphics & g, int nPixelSize, const char * lpszFaceName, bool bBold = false);
    
    // aim to be all-platoform
    bool destroy();
