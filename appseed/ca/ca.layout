@@ -472,7 +472,7 @@
 	<File name="gen/gen_math.cpp" open="0" top="0" tabpos="20">
 		<Cursor position="4139" topLine="153" />
 	</File>
-	<File name="gen/gen_message.cpp" open="1" top="0" tabpos="2">
+	<File name="gen/gen_message.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="21298" topLine="727" />
 	</File>
 	<File name="gen/gen_message.h" open="0" top="0" tabpos="0">
@@ -703,7 +703,7 @@
 	<File name="plane/plane_session.cpp" open="0" top="0" tabpos="23">
 		<Cursor position="5026" topLine="160" />
 	</File>
-	<File name="plane/plane_system.cpp" open="1" top="0" tabpos="4">
+	<File name="plane/plane_system.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="420" topLine="6" />
 	</File>
 	<File name="plane/plane_system.h" open="0" top="0" tabpos="2">

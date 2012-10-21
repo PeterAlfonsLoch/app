@@ -40,7 +40,7 @@
 	<File name="bsdiff/huffman.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="7099" topLine="167" />
 	</File>
-	<File name="c/c.h" open="1" top="0" tabpos="12">
+	<File name="c/c.h" open="1" top="0" tabpos="6">
 		<Cursor position="1934" topLine="128" />
 	</File>
 	<File name="c/cpu_architecture.cpp" open="0" top="0" tabpos="0">
@@ -61,13 +61,13 @@
 	<File name="c/file_spa.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="402" topLine="0" />
 	</File>
-	<File name="c/file_watcher.cpp" open="1" top="0" tabpos="11">
+	<File name="c/file_watcher.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="1847" topLine="32" />
 	</File>
-	<File name="c/file_watcher.h" open="1" top="0" tabpos="10">
+	<File name="c/file_watcher.h" open="1" top="0" tabpos="4">
 		<Cursor position="3277" topLine="96" />
 	</File>
-	<File name="c/file_watcher_impl.h" open="1" top="0" tabpos="9">
+	<File name="c/file_watcher_impl.h" open="1" top="0" tabpos="3">
 		<Cursor position="2312" topLine="39" />
 	</File>
 	<File name="c/heap.cpp" open="0" top="0" tabpos="1">
@@ -88,7 +88,7 @@
 	<File name="c/simple_critical_section.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="44" topLine="0" />
 	</File>
-	<File name="c/simple_map.h" open="1" top="0" tabpos="16">
+	<File name="c/simple_map.h" open="1" top="0" tabpos="10">
 		<Cursor position="63" topLine="5" />
 	</File>
 	<File name="c/simple_mutex.cpp" open="0" top="0" tabpos="0">
@@ -106,7 +106,7 @@
 	<File name="c/str.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="22252" topLine="1083" />
 	</File>
-	<File name="c/str.h" open="1" top="0" tabpos="3">
+	<File name="c/str.h" open="1" top="0" tabpos="2">
 		<Cursor position="689" topLine="0" />
 	</File>
 	<File name="c/template.h" open="0" top="0" tabpos="0">
@@ -148,13 +148,13 @@
 	<File name="linux/c_os.cpp" open="0" top="0" tabpos="36">
 		<Cursor position="446" topLine="0" />
 	</File>
-	<File name="linux/c_os.h" open="1" top="0" tabpos="15">
+	<File name="linux/c_os.h" open="1" top="0" tabpos="9">
 		<Cursor position="269" topLine="5" />
 	</File>
 	<File name="linux/c_os_cross_win_file.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="1" topLine="0" />
 	</File>
-	<File name="linux/c_os_cross_win_file.h" open="1" top="0" tabpos="18">
+	<File name="linux/c_os_cross_win_file.h" open="1" top="0" tabpos="11">
 		<Cursor position="62" topLine="0" />
 	</File>
 	<File name="linux/c_os_cross_win_gdi.cpp" open="0" top="0" tabpos="1">
@@ -172,7 +172,7 @@
 	<File name="linux/c_os_file.h" open="0" top="0" tabpos="0">
 		<Cursor position="121" topLine="0" />
 	</File>
-	<File name="linux/c_os_file_watcher.cpp" open="1" top="0" tabpos="13">
+	<File name="linux/c_os_file_watcher.cpp" open="1" top="0" tabpos="7">
 		<Cursor position="2449" topLine="69" />
 	</File>
 	<File name="linux/c_os_file_watcher.h" open="0" top="0" tabpos="0">
@@ -250,7 +250,7 @@
 	<File name="linux/c_os_win_base.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="19" topLine="0" />
 	</File>
-	<File name="os/os.h" open="1" top="1" tabpos="14">
+	<File name="os/os.h" open="1" top="0" tabpos="8">
 		<Cursor position="256" topLine="0" />
 	</File>
 	<File name="os/os_binreloc.cpp" open="0" top="0" tabpos="44">
