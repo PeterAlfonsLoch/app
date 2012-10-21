@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-mutex_lock::mutex_lock(simple_mutex * pmutex, bool bInitialLock)
+mutex_lock::mutex_lock(simple_mutex & mutex, bool bInitialLock)
 {
    m_bLock = false;
-   m_pmutex = pmutex;
+   m_pmutex = &mutex;
    if(bInitialLock)
    {
       lock();

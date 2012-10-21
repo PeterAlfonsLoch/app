@@ -85,7 +85,7 @@ bool crypt_file_set(const char * pszFile, const char * pszData, const char * psz
 
 
 
-
+#ifndef METROWIN
 CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 {
 
@@ -123,4 +123,4 @@ CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 }
 
 
-
+#endif

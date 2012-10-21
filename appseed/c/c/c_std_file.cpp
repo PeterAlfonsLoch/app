@@ -57,7 +57,7 @@ _FILE *fopen_dup(const char *path, const char *attrs)
 #if defined(LINUX) || defined(MACOS)
 
     return fopen(path, attrs);
-#elif defined(MEROWINWS)
+#elif defined(METROWIN)
 
 
 	DWORD access, disp;
@@ -161,7 +161,7 @@ _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs)
 
 }
 
-#elif defined(MEROWINWS)
+#elif defined(METROWIN)
 
 _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs)
 {

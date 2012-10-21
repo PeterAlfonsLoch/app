@@ -15,7 +15,7 @@ vsstring dir::appdata(const char * lpcsz)
    vsstring str;
 
 
-#ifdef MEROWINWS
+#ifdef METROWIN
 
    vsstring buf;
 
@@ -90,7 +90,7 @@ vsstring dir::userappdata(const char * lpcsz)
    
    CoTaskMemFree(buf);
 
-#elif defined(MEROWINWS)
+#elif defined(METROWIN)
 
    str = begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
 

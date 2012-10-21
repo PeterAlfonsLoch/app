@@ -42,7 +42,7 @@ void update_ca2_installed(bool bUnloadIfNotInstalled)
 
    vsstring strStage(dir::ca2("stage", spa_get_platform()));
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    ::SetDllDirectoryA(strStage);
 #endif
 

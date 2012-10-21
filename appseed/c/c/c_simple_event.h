@@ -24,6 +24,8 @@ public:
    ~simple_event();
 
 
+   void set_event();
+
    void wait();
    void wait(DWORD dwTimeout);
 

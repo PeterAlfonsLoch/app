@@ -468,7 +468,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
       if(m_pcolorref == NULL)
          return;
 
-      mutex_lock ml(m_pmutexBitmap, true);
+      mutex_lock ml(*m_pmutexBitmap, true);
 
       m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
 
@@ -504,7 +504,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
       if(m_pcolorref == NULL)
          return;
 
-      mutex_lock ml(m_pmutexBitmap, true);
+      mutex_lock ml(*m_pmutexBitmap, true);
 
       m_sizeBitmap.cx = abs_dup(lprect->right - lprect->left);
 
@@ -547,7 +547,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
       if(m_pcolorref == NULL)
          return;
 
-      mutex_lock ml(m_pmutexBitmap, true);
+      mutex_lock ml(*m_pmutexBitmap, true);
 
       gWindow.blend_bitmap_data(lprect->left, lprect->top, m_sizeBitmap.cx, m_sizeBitmap.cy, m_pcolorref);
 

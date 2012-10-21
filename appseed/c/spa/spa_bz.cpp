@@ -14,7 +14,7 @@ int bzuncompress(LPCSTR lpcszUncompressed, LPCSTR lpcszGzFileCompressed)
    BZFILE * file = BZ2_bzopen(lpcszGzFileCompressed, "rb");
    if (file == NULL)
    {
-      fprintf_dup(stderr_dup, "bzopen error\n");
+      //fprintf_dup(stderr_dup, "bzopen error\n");
       return -2;
    }
    vsstring strUn(lpcszUncompressed);

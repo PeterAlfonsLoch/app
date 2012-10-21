@@ -99,13 +99,13 @@ bool file_put_contents_dup(const char * path, const simple_memory & memory)
 bool file_put_contents_dup(const char * path, const char * contents, ::count len)
 {
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
 
    dir::mk(dir::name(path));
 
    wstring wstr(path);
 
-   HANDLE hfile = ::CreateFileW(wstr, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+   HANDLE hfile = ::create_file(path, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
    if(hfile == INVALID_HANDLE_VALUE)
       return false;
    count dwWrite;
@@ -117,32 +117,6 @@ bool file_put_contents_dup(const char * path, const char * contents, ::count len
    bool bOk = ::WriteFile(hfile, contents, (DWORD) dwWrite, &dwWritten, NULL) != FALSE;
    ::CloseHandle(hfile);
    return dwWrite == dwWritten && bOk != FALSE;
-
-#elif defined(MEROWINWS)
-
-   dir::mk(dir::name(path));
-
-   CREATEFILE2_EXTENDED_PARAMETERS ps;
-
-   memset(&ps, 0, sizeof(ps));
-   ps.dwSize = sizeof(ps);
-   ps.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
-
-   wstring wstr(path);
-
-   HANDLE hfile = ::CreateFile2(wstr, GENERIC_WRITE, 0, CREATE_ALWAYS, &ps);
-   if(hfile == INVALID_HANDLE_VALUE)
-      return false;
-   count dwWrite;
-   if(len < 0)
-      dwWrite = strlen_dup(contents);
-   else
-      dwWrite = len;
-   DWORD dwWritten = 0;
-   bool bOk = ::WriteFile(hfile, contents, (DWORD) dwWrite, &dwWritten, NULL) != FALSE;
-   ::CloseHandle(hfile);
-   return dwWrite == dwWritten && bOk != FALSE;
-
 
 #else
 
@@ -168,44 +142,28 @@ bool file_put_contents_dup(const char * path, const char * contents, ::count len
 const char * file_get_contents_dup(const char * path)
 {
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
 
 
-   wstring wstr(path);
+   HANDLE hfile = ::create_file(path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
-   HANDLE hfile = ::CreateFileW(wstr, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
    if(hfile == INVALID_HANDLE_VALUE)
       return strdup_dup("");
+
    DWORD dwSizeHigh;
+
    DWORD dwSize = ::GetFileSize(hfile, &dwSizeHigh);
+
    char * psz = (char *) _ca_alloc(dwSize + 1);
+
    DWORD dwRead;
+
    ::ReadFile(hfile, psz, dwSize, &dwRead, NULL);
+
    psz[dwSize] = '\0';
+
    ::CloseHandle(hfile);
-   return psz;
 
-#elif defined(MEROWINWS)
-
-
-   CREATEFILE2_EXTENDED_PARAMETERS ps;
-
-   memset(&ps, 0, sizeof(ps));
-   ps.dwSize = sizeof(ps);
-   ps.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
-
-   wstring wstr(path);
-
-   HANDLE hfile = ::CreateFile2(wstr, GENERIC_READ, 0, OPEN_EXISTING, &ps);
-   if(hfile == INVALID_HANDLE_VALUE)
-      return strdup_dup("");
-   DWORD dwSizeHigh;
-   DWORD dwSize = ::GetFileSize(hfile, &dwSizeHigh);
-   char * psz = (char *) _ca_alloc(dwSize + 1);
-   DWORD dwRead;
-   ::ReadFile(hfile, psz, dwSize, &dwRead, NULL);
-   psz[dwSize] = '\0';
-   ::CloseHandle(hfile);
    return psz;
 
 #else
@@ -227,45 +185,28 @@ const char * file_get_contents_dup(const char * path)
 bool file_get_memory_dup(simple_memory & memory, const char * path)
 {
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
 
-
-   wstring wstr(path);
 
    memory.allocate(0);
-   HANDLE hfile = ::CreateFileW(wstr, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+   HANDLE hfile = ::create_file(path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
    if(hfile == INVALID_HANDLE_VALUE)
       return false;
+
    DWORD dwSizeHigh;
+
    ::count  count = ::GetFileSize(hfile, &dwSizeHigh);
+
    memory.allocate(count);
+
    DWORD dwRead;
+
    ::ReadFile(hfile, memory.m_psz, memory.m_iSize, &dwRead, NULL);
+
    ::CloseHandle(hfile);
-   return true;
 
-
-#elif defined(MEROWINWS)
-
-
-   CREATEFILE2_EXTENDED_PARAMETERS ps;
-
-   memset(&ps, 0, sizeof(ps));
-   ps.dwSize = sizeof(ps);
-   ps.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
-
-   wstring wstr(path);
-
-   memory.allocate(0);
-   HANDLE hfile = ::CreateFile2(wstr, GENERIC_READ, 0, OPEN_EXISTING, &ps);
-   if(hfile == INVALID_HANDLE_VALUE)
-      return false;
-   DWORD dwSizeHigh;
-   ::count  count = ::GetFileSize(hfile, &dwSizeHigh);
-   memory.allocate(count);
-   DWORD dwRead;
-   ::ReadFile(hfile, memory.m_psz, memory.m_iSize, &dwRead, NULL);
-   ::CloseHandle(hfile);
    return true;
 
 
@@ -501,42 +442,25 @@ bool get_temp_file_name_dup(char * szRet, ::count iBufferSize, const char * pszN
 uint64_t file_length_dup(const char * path)
 {
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
 
-   wstring wstr(path);
+   HANDLE hfile = ::create_file(path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
-   HANDLE hfile = ::CreateFileW(wstr, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
    if(hfile == INVALID_HANDLE_VALUE)
       return 0;
+
    DWORD dwHigh;
+
    uint64_t ui = ::GetFileSize(hfile, &dwHigh);
+
    //ui |= ((uint64_t) dwHigh) << 32;
+
    if(dwHigh != 0)
       return 0; // currently invalid for the purposes of this API
+
    ::CloseHandle(hfile);
+
    return ui;
-
-#elif defined(MEROWINWS)
-   
-   CREATEFILE2_EXTENDED_PARAMETERS ep;
-
-   memset(&ep, 0, sizeof(ep));
-   ep.dwSize = sizeof(ep);
-   ep.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
-
-   wstring wstr(path);
-
-   HANDLE hfile = ::CreateFile2(wstr, GENERIC_READ, 0, OPEN_EXISTING, &ep);
-   if(hfile == INVALID_HANDLE_VALUE)
-      return 0;
-   DWORD dwHigh;
-   uint64_t ui = ::GetFileSize(hfile, &dwHigh);
-   //ui |= ((uint64_t) dwHigh) << 32;
-   if(dwHigh != 0)
-      return 0; // currently invalid for the purposes of this API
-   ::CloseHandle(hfile);
-   return ui;
-
 
 #else
 
@@ -628,27 +552,14 @@ vsstring file_module_path_dup()
 bool file_ftd_dup(const char * pszDir, const char * pszFile)
 {
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
    HANDLE hfile1 = NULL;
    HANDLE hfile2 = NULL;
    wstring wstr(pszFile);
-   hfile1 = ::CreateFileW(wstr, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+   hfile1 = ::create_file(pszFile, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
    if(hfile1 == INVALID_HANDLE_VALUE)
       return false;
-#elif defined(MEROWINWS)
-   HANDLE hfile1 = NULL;
-   HANDLE hfile2 = NULL;
-   CREATEFILE2_EXTENDED_PARAMETERS ep;
 
-   memset(&ep, 0, sizeof(ep));
-   ep.dwSize = sizeof(ep);
-   ep.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
-
-   wstring wstr(pszFile);
-
-   hfile1 = ::CreateFile2(wstr, GENERIC_READ, NULL, OPEN_EXISTING, &ep);
-   if(hfile1 == INVALID_HANDLE_VALUE)
-      return false;
 #else
    FILE * hfile1 = NULL;
    FILE * hfile2 = NULL;
@@ -692,7 +603,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
          hfile2 = ::CreateFile(strPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
          if(hfile2 == INVALID_HANDLE_VALUE)
             return false;
-#elif defined(MEROWINWS)
+#elif defined(METROWIN)
 
    CREATEFILE2_EXTENDED_PARAMETERS ep2;
 
@@ -1149,30 +1060,27 @@ bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
    wstring wstrSrc(pszSrc);
    return ::CopyFileW(wstrSrc, wstrNew, bOverwrite ? FALSE : TRUE) ? true : false;
 
-#elif defined(MEROWINWS)
+#elif defined(METROWIN)
 
-    wstring wstrNewNam();
-    wstring wstrSrc(pszSrc);
+    ::Windows::Storage::IStorageFolder ^ folderNew = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(rtstr(dir::name(pszNew))));
 
-    Windows::Storage::IStorageFolder ^ folderNew = m_wait(Windows::Storage::StorageFolder::GetFolderFromPathAsync(m_str(dir::name(pszNew))));
-
-    auto optionNew = Windows.Storage.CreationCollisionOption.ReplaceExisting;
+    auto optionNew = ::Windows::Storage::CreationCollisionOption::ReplaceExisting;
  
     // create target file 
-    Windows::Storage::IStorageFile ^ fileNew = m_wait(folderNew->CreateFileAsync(m_str(file_title_dup(pszNew)), optionNew));
+    ::Windows::Storage::IStorageFile ^ fileNew = wait(folderNew->CreateFileAsync(rtstr(file_title_dup(pszNew)), optionNew));
 
     if(fileNew == nullptr)
        return false;
 
-    Windows::Storage::IStorageFolder ^ folderSrc = m_wait(Windows::Storage::StorageFolder::GetFolderFromPathAsync(m_str(dir::name(pszSrc))));
+    ::Windows::Storage::IStorageFolder ^ folderSrc = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(rtstr(dir::name(pszSrc))));
 
     // create source file 
-    Windows::Storage::IStorageFile ^ fileSrc = m_wait(folderSrc->GetFileAsync(m_str(file_title_dup(pszNew))));
+    ::Windows::Storage::IStorageFile ^ fileSrc = wait(folderSrc->GetFileAsync(rtstr(file_title_dup(pszNew))));
 
     if(fileSrc == nullptr)
        return false;
 
-    m_wait(fileSrc->CopyAndReplaceAsync(fileNew));
+    wait(fileSrc->CopyAndReplaceAsync(fileNew));
  
     return true;
 
@@ -1237,7 +1145,7 @@ bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
 
 CLASS_DECL_c bool file_is_equal_path(const char * psz1, const char * psz2)
 {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    const int iBufSize = MAX_PATH * 8;
    const wchar_t * pwsz1 = utf8_to_16(psz1);
    const wchar_t * pwsz2 = utf8_to_16(psz2);
@@ -1263,6 +1171,10 @@ CLASS_DECL_c bool file_is_equal_path(const char * psz1, const char * psz2)
    delete pwszPath2;
    return iCmp == 0;
 
+#elif defined METROWIN
+
+   return normalize_path(psz1).CompareNoCase(normalize_path(psz2)) == 0;
+
 #else
    
    
@@ -1279,7 +1191,7 @@ CLASS_DECL_c bool file_is_equal_path(const char * psz1, const char * psz2)
 
 CLASS_DECL_c vsstring file_get_mozilla_firefox_plugin_container_path()
 {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    vsstring strPath;
    HKEY hkeyMozillaFirefox;
@@ -1330,6 +1242,11 @@ CLASS_DECL_c vsstring file_get_mozilla_firefox_plugin_container_path()
 ret1:
    ::RegCloseKey(hkeyMozillaFirefox);
    return strPath;
+#elif defined(METROWIN)
+   
+   throw " todo ";
+   
+   return "";
    
 #else
    
@@ -1340,3 +1257,5 @@ ret1:
 #endif
    
 }
+
+

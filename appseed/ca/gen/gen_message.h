@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef MEROWINWS
+#ifdef METROWIN
 
 typedef struct tagCREATESTRUCTA {
     LPVOID      lpCreateParams;

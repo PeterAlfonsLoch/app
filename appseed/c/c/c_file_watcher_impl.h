@@ -27,27 +27,14 @@
 #pragma once
 
 
-#define FILEWATCHER_PLATFORM_WIN32 1
-#define FILEWATCHER_PLATFORM_INOTIFY 2
-#define FILEWATCHER_PLATFORM_KQUEUE 3
-#define FILEWATCHER_PLATFORM_MERDWIN 6
-
-#if defined(WINDOWSEX)
-#define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_WIN32
-#elif defined(MACOS)
-#define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_KQUEUE
-#elif defined(LINUX)
-#define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_INOTIFY
-#elif defined(MEROWINWS)
-#define FILEWATCHER_PLATFORM FILEWATCHER_PLATFORM_MERDWIN
-#endif
-
-
 namespace file_watcher
 {
 
-   
+#ifdef METROWIN   
+   ref class watch_struct;
+#else
    struct watch_struct;
+#endif
 
 
 	class file_watcher_impl
@@ -75,8 +62,8 @@ namespace file_watcher
 		virtual void update() = 0;
 
 		/// Handles the action
-#ifdef MEROWINWS
-		virtual void handle_action(watch_struct * watch, ::Windows::Storage::Search::IStorageQueryResultBase ^ r) = 0;
+#ifdef METROWIN
+		virtual void handle_action(watch_struct ^ watch, ::Windows::Storage::Search::IStorageQueryResultBase ^ r) = 0;
 #else
       virtual void handle_action(watch_struct * watch, const char * filename, unsigned long ulOsAction) = 0;
 #endif

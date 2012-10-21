@@ -153,28 +153,28 @@ namespace spa
 
       bool download_file(const vsstring& inplace, const vsstring& url_in, bool bExist, bool bCheck, int64_t iLength, const char * pszCrc, int64_t iGzLen, int_ptr & iFlag);
 
-      vsstring ca2_get_dir(LPCTSTR lpcszUrl);
+      vsstring ca2_get_dir(LPCSTR lpcszUrl);
 
-      vsstring ca2bz_get_dir(LPCTSTR lpcszUrl);
+      vsstring ca2bz_get_dir(LPCSTR lpcszUrl);
 
-      vsstring ca2unbz_get_dir(LPCTSTR lpcszUrl);
+      vsstring ca2unbz_get_dir(LPCSTR lpcszUrl);
 
-      vsstring ca2inplace_get_dir(LPCTSTR lpcszUrl);
+      vsstring ca2inplace_get_dir(LPCSTR lpcszUrl);
 
-      vsstring ca2_get_file(LPCTSTR lpcszUrl);
+      vsstring ca2_get_file(LPCSTR lpcszUrl);
 
-      vsstring ca2bz_get_file(LPCTSTR lpcszUrl, const char * pszCrc);
+      vsstring ca2bz_get_file(LPCSTR lpcszUrl, const char * pszCrc);
 
-      vsstring ca2unbz_get_file(LPCTSTR lpcszUrl);
+      vsstring ca2unbz_get_file(LPCSTR lpcszUrl);
 
-      vsstring ca2inplace_get_file(LPCTSTR lpcszUrl);
+      vsstring ca2inplace_get_file(LPCSTR lpcszUrl);
 
-      bool ca2_fy_url(vsstring & str, LPCTSTR lpcszPath, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen, bool bIndex = false);
+      bool ca2_fy_url(vsstring & str, LPCSTR lpcszPath, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen, bool bIndex = false);
 
-      int GetFileList(stra_dup & stra_dup, LPCTSTR lpcszPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapFlag);
+      int GetFileList(stra_dup & stra_dup, LPCSTR lpcszPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapFlag);
       int GetFileListEx(stra_dup & stra_dup, class stra_dup & straPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapFlag);
 
-      int GetLocalFileList(stra_dup & stra_dup, LPCTSTR lpcszUrl);
+      int GetLocalFileList(stra_dup & stra_dup, LPCSTR lpcszUrl);
 
       count UncompressFileList(stra_dup & stra_dup, simple_string_to_string & strmapCrc);
 

@@ -193,33 +193,6 @@ _Use_decl_annotations_ BOOL WINAPI SetThreadPriority(HANDLE hThread, int nPriori
 }
 
 
-_Use_decl_annotations_ VOID WINAPI Sleep(DWORD dwMilliseconds)
-{
-   static HANDLE singletonEvent = nullptr;
-
-   HANDLE sleepEvent = singletonEvent;
-
-   // Demand create the event.
-   if (!sleepEvent)
-   {
-      sleepEvent = CreateEventEx(nullptr, nullptr, CREATE_EVENT_MANUAL_RESET, EVENT_ALL_ACCESS);
-
-      if (!sleepEvent)
-            return;
-
-      HANDLE previousEvent = InterlockedCompareExchangePointerRelease(&singletonEvent, sleepEvent, nullptr);
-            
-      if (previousEvent)
-      {
-            // Back out if multiple threads try to demand create at the same time.
-            CloseHandle(sleepEvent);
-            sleepEvent = previousEvent;
-      }
-   }
-
-   // Emulate sleep by waiting with timeout on an event that is never signalled.
-   WaitForSingleObjectEx(sleepEvent, dwMilliseconds, false);
-}
 
 
 DWORD WINAPI TlsAlloc()

@@ -2966,15 +2966,6 @@
     <ClInclude Include="primitive\datetime\datetime_windows_file_time.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="gen\aaa_base_want_to_remove_xxx.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\aaa_base_rect_want_to_remove_xxx.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\aaa_base_rect_array_want_to_remove_xxx.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
     <ClInclude Include="gen\gen_composite.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>

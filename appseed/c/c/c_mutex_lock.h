@@ -9,7 +9,7 @@ public:
    bool              m_bLock;
    simple_mutex *    m_pmutex;
 
-   mutex_lock(simple_mutex * pmutex, bool bInitialLock);
+   mutex_lock(simple_mutex & mutex, bool bInitialLock = true);
    ~mutex_lock();
 
 

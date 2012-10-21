@@ -6,8 +6,8 @@
 #endif
 
 
-TCHAR szTitle[1024];					// The title bar text
-TCHAR szWindowClassSpaAdmin[1024];			// the main window class name
+CHAR szTitle[1024];					// The title bar text
+CHAR szWindowClassSpaAdmin[1024];			// the main window class name
 
 
 #define ID_CONTROL_BOX_CLOSE 31000
@@ -37,7 +37,11 @@ namespace spa
    {
       RECT rectClient;
 
+#ifdef WINDOWSEX
       ::GetClientRect(m_hwnd, &rectClient);
+#else
+      throw "todo";
+#endif
 
       /*   ::FillRect(hdc, &rectClient, g_hbrushBkBorder1);
 
@@ -59,6 +63,8 @@ namespace spa
 
       RECT rectWindow;
 
+#ifdef WINDOWSEX
+
       ::GetWindowRect(m_hwnd, &rectWindow);
 
       simple_graphics gScreen;
@@ -76,7 +82,9 @@ namespace spa
       bf.AlphaFormat         = AC_SRC_ALPHA;						// Only works when the bitmap contains an alpha channel
 
       gScreen.alpha_blend(0, 0, 800, 584, m_sgraphicsAlpha, 0, 0, 800, 584, bf);
+#else
 
+#endif
    }
 
 
@@ -97,6 +105,8 @@ namespace spa
    void window::OnPaint(simple_graphics & gWindow, LPRECT lprect)
    {
       RECT rectWindow;
+
+#ifdef WINDOWSEX
       ::GetWindowRect(m_hwnd, &rectWindow);
 
 
@@ -135,12 +145,15 @@ namespace spa
       g.set_offset(0, 0);
 
       gWindow.bit_blt(lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top, g, lprect->left, lprect->top, SRCCOPY);
-
+#else
+      throw "todo";
+#endif
    }
 
 
    void window::OnPaint()
    {
+      #ifdef WINDOWSEX
 
       simple_graphics gWindow;
 
@@ -150,6 +163,11 @@ namespace spa
          return;
 
       OnPaint(gWindow, &rcPaint);
+
+#else
+
+      throw "todo";
+#endif
 
    }
 
@@ -161,12 +179,16 @@ namespace spa
       if(nIDEvent == 184)
       {
 
+#ifdef WINDOWSEX
          simple_graphics gWindow;
 
          gWindow.from_entire_window(m_hwnd);
 
          OnPaint(gWindow, NULL);
+#else
+         throw "todo";
 
+#endif
       }
 
    }
@@ -177,8 +199,13 @@ namespace spa
       {
       case WM_CREATE:
          {
+#ifdef WINDOWSEX
             ::SetTimer(m_hwnd, TIMER_CARET, 100, NULL);
             ::SetTimer(m_hwnd, TIMER_ANIMATION, 33, NULL);
+#else
+         throw "todo";
+
+#endif
          }
          break;
       case WM_PAINT:
@@ -195,7 +222,11 @@ namespace spa
             m_canvas.m_iMode++;
             m_bDrag = true;
             ::GetCursorPos(&m_ptDragStart);
+#ifdef WINDOWSEX
             ::GetWindowRect(m_hwnd, &m_rectWindowDragStart);
+#else
+            throw "todo";
+#endif
          };
          break;
       case WM_MOUSEMOVE:
@@ -217,13 +248,21 @@ namespace spa
          break;
 
       case WM_DESTROY:
+#ifdef WINDOWSEX
          PostQuitMessage(0);
+#else
+            throw "todo";
+#endif
          break;
       case WM_TIMER:
          OnTimer(wparam);
          break;
       default:
+#ifdef WINDOWSEX
          return DefWindowProc(m_hwnd, message, wparam, lparam);
+#else
+            throw "todo";
+#endif
       }
       return 0;
    }
@@ -233,12 +272,17 @@ namespace spa
       window * pwindow = s_windowmap[hwnd];
       if(pwindow != NULL)
          return pwindow->window_proc(message, wParam, lParam);
+#ifdef WINDOWSEX
       return DefWindowProc(hwnd, message, wParam, lParam);
+#else
+            throw "todo";
+#endif
    }
 
 
    ATOM window::register_class(HINSTANCE hInstance)
    {
+#ifdef WINDOWSEX
       WNDCLASSEX wcex;
 
       wcex.cbSize = sizeof(WNDCLASSEX);
@@ -259,6 +303,9 @@ namespace spa
       wcex.hIconSm		   = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_CCVOTAGUS_CA2_SPA));
 
       return RegisterClassEx(&wcex);
+#else
+            throw "todo";
+#endif
    }
 #endif
 
@@ -266,30 +313,46 @@ namespace spa
    {
       POINT ptCursor;
       ::GetCursorPos(&ptCursor);
+#ifdef WINDOWSEX
+
       ::SetWindowPos(m_hwnd, NULL,
          ptCursor.x - m_ptDragStart.x + m_rectWindowDragStart.left,
          ptCursor.y - m_ptDragStart.y + m_rectWindowDragStart.top,
          0,
          0,
          SWP_NOSIZE | SWP_SHOWWINDOW);
+#else
+            throw "todo";
+#endif
+
       if(m_iStyle == 0)
+
       {
       }
       else
       {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          ::SetLayeredWindowAttributes(m_hwnd, 0, (255 * 100) / 100, LWA_ALPHA);
 #endif
       }
+#ifdef WINDOWSEX
+
       ::RedrawWindow(m_hwnd, NULL, NULL, RDW_UPDATENOW | RDW_INVALIDATE);
+#else
+            throw "todo";
+#endif
    }
 
    void window::redraw()
    {
+#ifdef WINDOWSEX
       if(!::IsIconic(m_hwnd) && IsWindowVisible(m_hwnd))
       {
          ::RedrawWindow(m_hwnd, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
       }
+#else
+            throw "todo";
+#endif
    }
 
 

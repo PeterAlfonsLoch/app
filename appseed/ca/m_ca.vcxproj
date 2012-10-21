@@ -794,9 +794,6 @@
     <ClInclude Include="fs\fs_remote_native_file.h" />
     <ClInclude Include="fs\fs_remote_native_fs.h" />
     <ClInclude Include="fs\fs_set.h" />
-    <ClInclude Include="gen\aaa_base_rect_array_want_to_remove_xxx.h" />
-    <ClInclude Include="gen\aaa_base_rect_want_to_remove_xxx.h" />
-    <ClInclude Include="gen\aaa_base_want_to_remove_xxx.h" />
     <ClInclude Include="gen\gen.h" />
     <ClInclude Include="gen\gen_application.h" />
     <ClInclude Include="gen\gen_back_insert_iterator.h" />

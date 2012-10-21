@@ -41,7 +41,7 @@ namespace file_watcher
 
       
       /// type for a map from id to watch_struct pointer
-		typedef simple_map < id , watch_struct * > watch_map;
+		typedef simple_map < id , watch_struct ^ > watch_map;
 
 
 	private:
@@ -77,7 +77,7 @@ namespace file_watcher
 		void update();
 
 		/// Handles the action
-		void handle_action(watch_struct * watch, ::Windows::Storage::Search::IStorageQueryResultBase ^ r);
+		void handle_action(watch_struct ^ watch, ::Windows::Storage::Search::IStorageQueryResultBase ^ r);
 
 
 	}; // end os_file_watcher

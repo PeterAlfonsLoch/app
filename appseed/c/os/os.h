@@ -17,9 +17,9 @@
 #include "os_binreloc.h"
 #include "c/linux/c_os.h"
 
-#elif defined(MEROWINWS)
+#elif defined(METROWIN)
 
-#include "c/mero_winw/c_os_wind_mero.h"
+#include "c/metrowin/c_os.h"
 
 #else
 

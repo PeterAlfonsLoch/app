@@ -42,7 +42,7 @@ void BZ2_bz__AssertH__fail ( int errcode )
    int ei;
    int ej;
    int ek;
-   fprintf_dup(stderr_dup, 
+/*   fprintf_dup(stderr_dup, 
       "\n\nbzip2/libbzip2: internal error number %d.\n"
       "This is a bug in bzip2/libbzip2, %s.\n"
       "Please report it to me at: jseward@bzip.org.  If this happened\n"
@@ -81,7 +81,7 @@ void BZ2_bz__AssertH__fail ( int errcode )
       "  problem -- without which I will be unable to investigate it.\n"
       "\n"
    );
-   }
+   }*/
 
    //throw 3;
    //Exit(3);
@@ -1425,7 +1425,7 @@ BZFILE * bzopen_or_bzdopen
 
    if (open_mode==0) {
       if (path==NULL || strcmp_dup(path,"")==0) {
-        fp = (writing ? stdout_dup : stdin_dup);
+        //fp = (writing ? stdout_dup : stdin_dup);
         SET_BINARY_MODE(fp);
       } else {
         fp = fopen_dup(path,mode2);
@@ -1451,7 +1451,8 @@ BZFILE * bzopen_or_bzdopen
    }
    if (bzfp == NULL) {
       _ca_free(unused, 0);
-      if (fp != stdin_dup && fp != stdout_dup) fclose_dup(fp);
+      //if (fp != stdin_dup && fp != stdout_dup) fclose_dup(fp);
+      fclose_dup(fp);
       return NULL;
    }
    _ca_free(unused, 0);
@@ -1534,9 +1535,9 @@ void BZ_API(BZ2_bzclose) (BZFILE* b)
    }else{
       BZ2_bzReadClose(&bzerr,b);
    }
-   if(fp!=stdin_dup && fp!=stdout_dup){
-      fclose_dup(fp);
-   }
+   //if(fp!=stdin_dup && fp!=stdout_dup){
+     // fclose_dup(fp);
+   //}
 }
 
 

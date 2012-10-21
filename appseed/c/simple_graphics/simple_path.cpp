@@ -78,7 +78,10 @@ bool simple_path::add_round_rect(const RECT & r, int dia)
    Corner.right = Corner.left + dia2;
    add_arc(Corner,  90, 90);
 
+   return true;
+
 }
+
 
 bool simple_path::add_round_top_left(const RECT & r, int dia)
 {

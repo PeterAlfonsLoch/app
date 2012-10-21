@@ -398,7 +398,7 @@ namespace md5
 vsstring get_file_md5_by_map(const char * path)
 {
 
-#ifdef MEROWINWS
+#ifdef METROWIN
 
 
    wstring wstr(path);
@@ -601,7 +601,7 @@ vsstring get_file_md5_by_read(const char * path)
 
 
    int64_t iSize;
-#ifdef MEROWINWS
+#ifdef METROWIN
 
    DWORD dwRead;
 

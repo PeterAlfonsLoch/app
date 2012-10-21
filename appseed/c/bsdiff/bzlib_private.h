@@ -80,18 +80,18 @@ extern void BZ2_bz__AssertH__fail ( int errcode );
 #define AssertD(cond,msg) /* */
 #endif
 
-#define VPrintf0(zf) \
-   fprintf_dup(stderr_dup,zf)
-#define VPrintf1(zf,za1) \
-   fprintf_dup(stderr_dup,zf,za1)
-#define VPrintf2(zf,za1,za2) \
-   fprintf_dup(stderr_dup,zf,za1,za2)
-#define VPrintf3(zf,za1,za2,za3) \
-   fprintf_dup(stderr_dup,zf,za1,za2,za3)
-#define VPrintf4(zf,za1,za2,za3,za4) \
-   fprintf_dup(stderr_dup,zf,za1,za2,za3,za4)
-#define VPrintf5(zf,za1,za2,za3,za4,za5) \
-   fprintf_dup(stderr_dup,zf,za1,za2,za3,za4,za5)
+#define VPrintf0(zf) // \
+   //fprintf_dup(stderr_dup,zf)
+#define VPrintf1(zf,za1) //\
+   //fprintf_dup(stderr_dup,zf,za1)
+#define VPrintf2(zf,za1,za2) //\
+   //fprintf_dup(stderr_dup,zf,za1,za2)
+#define VPrintf3(zf,za1,za2,za3) //\
+   //fprintf_dup(stderr_dup,zf,za1,za2,za3)
+#define VPrintf4(zf,za1,za2,za3,za4) //\
+   //fprintf_dup(stderr_dup,zf,za1,za2,za3,za4)
+#define VPrintf5(zf,za1,za2,za3,za4,za5) //\
+   //fprintf_dup(stderr_dup,zf,za1,za2,za3,za4,za5)
 
 #else
 

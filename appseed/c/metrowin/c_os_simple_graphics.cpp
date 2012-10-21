@@ -115,6 +115,8 @@ bool os_simple_graphics::from_window( Windows::UI::Core::CoreWindow ^ w)
         // Ensure that DXGI doesn't queue more than one frame at a time.
    //TlsGetDXGIDevice()->SetMaximumFrameLatency(1)
 
+   return true;
+
 }
 
 
@@ -697,36 +699,22 @@ bool os_simple_graphics::fill_path(simple_path & path, simple_brush & brush)
    
    m_pdc->FillGeometry(path.get_os_data(), brush.get_os_data());
 
-   return true.
+   return true;
 
 }
 
 bool os_simple_graphics::fill_polygon(LPPOINT lpa, int iCount, ::ca::e_fill_mode emode)
 {
 
-   simple_path p(true);
+   simple_path path;
 
+   path.begin_figure(true, ::ca::fill_mode_winding);
 
+   path.add_lines(lpa, iCount);
 
-pSink->SetFillMode(D2D1_FILL_MODE_WINDING);
+   path.end_figure(true);
 
-pSink->BeginFigure(
-    D2D1::Point2F(346,255),
-    D2D1_FIGURE_BEGIN_FILLED
-    );
-D2D1_POINT_2F points[5] = {
-   D2D1::Point2F(267, 177),
-   D2D1::Point2F(236, 192),
-   D2D1::Point2F(212, 160),
-   D2D1::Point2F(156, 255),
-   D2D1::Point2F(346, 255), 
-   };
-pSink->AddLines(points, ARRAYSIZE(points));
-pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
-
-
-
-   m_pgraphics->FillPolygon();
+   fill_path(path, m_brush);
 
    return true;
 
@@ -734,25 +722,44 @@ pSink->EndFigure(D2D1_FIGURE_END_CLOSED);
 
 bool os_simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
 {
-   WCHAR * pwsz = utf8_to_16(pszUtf8);
+
+   vsstring str(pszUtf8, iSize);
+
+   wstring wstr(str);
+
+   D2D1_RECT_F rect;
+
+   rect.left = x;
+   rect.top = y;
+   rect.right = x + (1024.f * 1024.f);
+   rect.bottom = y + (1024.f * 1024.f);
+
+   m_pdc->DrawText(wstr, wstr.get_length(), m_font.m_pformat, &rect, m_brush.m_pbrush);
+
+   return true;
+
+   /*WCHAR * pwsz = utf8_to_16(pszUtf8);
    bool b = TextOutW(m_hdc, x, y, pwsz, (int) wcslen_dup(pwsz)) != FALSE;
    delete  [] pwsz;
-   return b;
+   return b;*/
 }
 
 
 
-bool os_simple_graphics::draw_line(simple_pen * ppen, int x1, int y1, int x2, int y2)
+bool os_simple_graphics::draw_line(int x1, int y1, int x2, int y2, simple_pen & pen)
 {
-   simple_brush b;
-   b.create_solid(ppen->m_cr, *this);
+
    D2D1_POINT_2F p1;
    p1.x = (FLOAT) x1;
    p1.y = (FLOAT) y1;
+
    D2D1_POINT_2F p2;
    p2.x = (FLOAT) x2;
    p2.y = (FLOAT) y2;
-   m_pdc->DrawLine(p1, p2, b.get_os_data(), ppen->m_iWidth);
+
+   m_pdc->DrawLine(p1, p2, pen.get_os_brush(), pen.m_iWidth);
+
+   return true;
 }
 
 bool os_simple_graphics::replace_clip(const RECT & rect)
@@ -772,9 +779,13 @@ bool os_simple_graphics::replace_clip(const RECT & rect)
       m_pclip = NULL;
    }
 
-   simple_path path(true);
+   simple_path path;
+
+   path.begin_figure(true, ::ca::fill_mode_winding);
 
    path.add_rect(rect);
+
+   path.end_figure(true);
 
    if(path.get_os_data() == NULL)
       return true;
@@ -799,7 +810,7 @@ bool os_simple_graphics::replace_clip(const RECT & rect)
 }
 
 
-bool os_simple_graphics::replace_clip(ID2D1PathGeometry * ppath)
+bool os_simple_graphics::replace_clip(simple_path & path)
 {
    
    if(m_player != NULL)
@@ -816,12 +827,12 @@ bool os_simple_graphics::replace_clip(ID2D1PathGeometry * ppath)
       m_pclip = NULL;
    }
 
-   if(ppath == NULL)
+   if(path.get_os_data() == NULL)
       return true;
 
-   ppath->AddRef();
+   path.get_os_data()->AddRef();
 
-   m_pclip = ppath;
+   m_pclip = path.get_os_data();
 
    HRESULT hr = m_pdc->CreateLayer(NULL, &m_player);
 
@@ -839,10 +850,10 @@ bool os_simple_graphics::replace_clip(ID2D1PathGeometry * ppath)
 }
 
 
-bool os_simple_graphics::exclude_clip(ID2D1PathGeometry * ppath)
+bool os_simple_graphics::exclude_clip(simple_path & path)
 {
 
-   if(ppath == NULL)
+   if(path.get_os_data() == NULL)
       return true;
 
    if(m_player != NULL)
@@ -856,10 +867,9 @@ bool os_simple_graphics::exclude_clip(ID2D1PathGeometry * ppath)
 
    ID2D1Factory * pfactory = NULL;
 
-   HRESULT hr = m_pdc->GetFactory(&pfactory);
+   m_pdc->GetFactory(&pfactory);
 
-   if(FAILED(hr))
-      return false;
+   HRESULT hr;
 
    if(m_pclip == NULL)
    {
@@ -930,7 +940,7 @@ bool os_simple_graphics::exclude_clip(ID2D1PathGeometry * ppath)
    }
    
    
-   m_pclip->CombineWithGeometry(ppath, D2D1_COMBINE_MODE_EXCLUDE, NULL, psink);
+   m_pclip->CombineWithGeometry(path.get_os_data(), D2D1_COMBINE_MODE_EXCLUDE, NULL, psink);
 
    psink->Close();
    psink->Release();
@@ -939,7 +949,7 @@ bool os_simple_graphics::exclude_clip(ID2D1PathGeometry * ppath)
    m_pclip = pclipNew;
 
 
-   HRESULT hr = m_pdc->CreateLayer(NULL, &m_player);
+   hr = m_pdc->CreateLayer(NULL, &m_player);
 
    if(FAILED(hr) || m_player == NULL)
    {

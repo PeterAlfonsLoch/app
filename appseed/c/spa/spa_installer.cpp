@@ -12,15 +12,15 @@
 #endif
 
 
-extern TCHAR szTitle[1024];					// The title bar text
-extern TCHAR szWindowClassSpaAdmin[1024];			// the main window class name
+extern CHAR szTitle[1024];					// The title bar text
+extern CHAR szWindowClassSpaAdmin[1024];			// the main window class name
 
 void ensure_trace_file();
 bool g_bInstalling = false;
 
 typedef PVOID * PPVOID;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 typedef int (* CA2MAIN)(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int nCmdShow);
 
@@ -287,7 +287,7 @@ RetryHost:
 
          set_progress(0.3);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          vsstring path;
          path.alloc(1024 * 4);
          ::GetModuleFileNameA(NULL, (char *) (const char *) path, 1024 * 4);
@@ -297,7 +297,7 @@ RetryHost:
 
          vsstring strUrl;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          HKEY hkey;
 
 
@@ -574,7 +574,7 @@ RetryHost:
          // TODO: simular virtualmente a cópia dos arquivos também, se tiver aquivo travado, também retornar
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
          m_straRestartCommandLine.remove_all();
          m_straRestartProcess.remove_all();
@@ -1520,7 +1520,7 @@ RetryHost:
    }
 
 
-   vsstring installer::ca2_get_dir(LPCTSTR lpcszUrl)
+   vsstring installer::ca2_get_dir(LPCSTR lpcszUrl)
    {
       vsstring url_in(lpcszUrl);
       vsstring dir;
@@ -1560,7 +1560,7 @@ RetryHost:
       return dir;
    }
 
-   vsstring installer::ca2bz_get_dir(LPCTSTR lpcszUrl)
+   vsstring installer::ca2bz_get_dir(LPCSTR lpcszUrl)
    {
       vsstring url_in(lpcszUrl);
       vsstring dir;
@@ -1600,7 +1600,7 @@ RetryHost:
          dir +=  lastfile + "\\";
       return dir;
    }
-   vsstring installer::ca2unbz_get_dir(LPCTSTR lpcszUrl)
+   vsstring installer::ca2unbz_get_dir(LPCSTR lpcszUrl)
    {
       vsstring url_in(lpcszUrl);
       vsstring dir;
@@ -1642,7 +1642,7 @@ RetryHost:
    }
 
 
-   vsstring installer::ca2inplace_get_dir(LPCTSTR lpcszUrl)
+   vsstring installer::ca2inplace_get_dir(LPCSTR lpcszUrl)
    {
       vsstring url_in(lpcszUrl);
       vsstring dir;
@@ -1688,7 +1688,7 @@ RetryHost:
    }
 
 
-   vsstring installer::ca2_get_file(LPCTSTR lpcszUrl)
+   vsstring installer::ca2_get_file(LPCSTR lpcszUrl)
    {
       vsstring url_in(lpcszUrl);
       vsstring dir;
@@ -1729,7 +1729,7 @@ RetryHost:
       else
          return file;
    }
-   vsstring installer::ca2bz_get_file(LPCTSTR lpcszUrl, const char * pszMd5)
+   vsstring installer::ca2bz_get_file(LPCSTR lpcszUrl, const char * pszMd5)
    {
       vsstring url_in(lpcszUrl);
       vsstring dir;
@@ -1777,7 +1777,7 @@ RetryHost:
       }
    }
 
-   vsstring installer::ca2unbz_get_file(LPCTSTR lpcszUrl)
+   vsstring installer::ca2unbz_get_file(LPCSTR lpcszUrl)
    {
       vsstring url_in(lpcszUrl);
       vsstring dir;
@@ -1815,7 +1815,7 @@ RetryHost:
          return file;
    }
 
-   vsstring installer::ca2inplace_get_file(LPCTSTR lpcszUrl)
+   vsstring installer::ca2inplace_get_file(LPCSTR lpcszUrl)
    {
       vsstring url_in(lpcszUrl);
       vsstring url;
@@ -1848,7 +1848,7 @@ RetryHost:
    }
 
 
-   bool installer::ca2_fy_url(vsstring & str, LPCTSTR lpcszPath, bool bExist, int64_t iLength, const char * pszMd5, int64_t iGzLen, bool bIndex)
+   bool installer::ca2_fy_url(vsstring & str, LPCSTR lpcszPath, bool bExist, int64_t iLength, const char * pszMd5, int64_t iGzLen, bool bIndex)
    {
       vsstring strStage;
       vsstring strStageGz;
@@ -1946,7 +1946,7 @@ RetryHost:
 
 
 
-   int installer::GetFileList(stra_dup & stra_dup, LPCTSTR lpcszPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapFlag)
+   int installer::GetFileList(stra_dup & stra_dup, LPCSTR lpcszPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapMd5, simple_string_to_intptr & mapFlag)
    {
       vsstring strPath(lpcszPath);
       strPath = str_replace_dup(strPath, "/", "\\");
@@ -2011,7 +2011,7 @@ RetryHost:
       return 1;
    }
 
-   int installer::GetLocalFileList(stra_dup & stra_dup, LPCTSTR lpcszUrl)
+   int installer::GetLocalFileList(stra_dup & stra_dup, LPCSTR lpcszUrl)
    {
 
       vsstring strUrl(lpcszUrl);
@@ -2174,7 +2174,7 @@ RetryHost:
                }
                if(lpnode->childs[ui]->GetAttr("type") != NULL)
                {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
                   if(vsstring(lpnode->childs[ui]->GetAttrValue("type")) == "parse_file_name")
                   {
                      m_iStart = 4;
@@ -2352,7 +2352,7 @@ RetryHost:
       if(!txchannel.open("ca2/fontopus/ccvotagus/spaboot_install_callback")) 
          return;
 
-#if defined(WINDOWS)
+#if defined(WINDOWSEX)
        
       ::PostMessage(txchannel.m_hwnd, WM_USER + 100, a, b);
        
@@ -2516,7 +2516,7 @@ RetryHost:
          vsstring strCa2sp = file_get_contents_dup(m_strFile);
          if(strCa2sp.length() == 0)
          {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
             strCa2sp = read_resource_as_string_dup(NULL, 1984, "CA2SP");
 #else
             throw "TODO";
@@ -2555,6 +2555,7 @@ RetryHost:
       }*/
 
       //   char * pszStart;
+#ifdef WINDOWSEX
       char * pszEnd = NULL;
       char * lpCmdLine = ::GetCommandLine();
       char * pszLocale = strstr_dup((char *) lpCmdLine, "locale=");
@@ -2572,6 +2573,9 @@ RetryHost:
       {
          m_strLocale = "";
       }
+#else
+        throw "todo";
+#endif
 
       return run_starter_start(nCmdShow);
    }
@@ -2939,7 +2943,7 @@ RetryHost:
          ParseSpaIndex(node);
       }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       // Default stage.bz folder not present, would default to internet install
       // since the spa.xml is not present and contains turning information.
       if(!m_bOfflineInstall && !m_bInstallSet && (m_strApplicationId.length() == 0 || (!m_bForceUpdatedBuild && m_strBuildResource.length() == 0)))
@@ -3091,7 +3095,7 @@ RetryHost:
          return starter_start(strCommandLine);
       }
 
-
+#ifdef WINDOWSEX
       wchar_t * lpwstr = ::GetCommandLineW();
       int numargs;
       int numchars;
@@ -3133,6 +3137,12 @@ RetryHost:
          //m_strStart = "_set_windesk";  m_iStart = 4; return run_install(lpCmdLine, nCmdShow);
          return run_install(pszCommandLine, m_nCmdShow);
       }
+#else
+
+      throw "todo";
+
+#endif
+
    }
 
 
@@ -3210,7 +3220,7 @@ RetryHost:
 
    void installer::machine_signalize_close_application()
    {
-      mutex_lock lockMachineEvent(&m_machineevent.m_mutex, true);
+      mutex_lock lockMachineEvent(m_machineevent.m_mutex);
       machine_event_data data;
       m_machineevent.read(&data);
       data.m_fixed.m_bRequestCloseApplication = true;
@@ -3219,7 +3229,7 @@ RetryHost:
 
    bool installer::machine_unsignalize_close_application()
    {
-      mutex_lock lockMachineEvent(&m_machineevent.m_mutex, true);
+      mutex_lock lockMachineEvent(m_machineevent.m_mutex);
       machine_event_data data;
       m_machineevent.read(&data);
       data.m_fixed.m_bRequestCloseApplication = false;
@@ -3229,7 +3239,7 @@ RetryHost:
 
    bool installer::machine_check_close_application(bool bDefault)
    {
-      mutex_lock lockMachineEvent(&m_machineevent.m_mutex, true);
+      mutex_lock lockMachineEvent(m_machineevent.m_mutex);
       machine_event_data data;
       if(!m_machineevent.read(&data))
          return false;
@@ -3305,7 +3315,7 @@ RetryHost:
 
    bool installer::m_reboot()
    {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       HANDLE hToken;
       TOKEN_PRIVILEGES tkp;
       if (!OpenProcessToken(GetCurrentProcess(),
@@ -3373,7 +3383,7 @@ RetryHost:
       int iSpabootInstallStrSize = MAX_PATH * 16;
       m_strPath.alloc(iSpabootInstallStrSize);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       HINSTANCE hinstancePlugin = (HINSTANCE) ::GetModuleHandleA("npca2.dll");
       if(hinstancePlugin == NULL)
@@ -3436,6 +3446,9 @@ RetryHost:
 
    int installer::run_ca2_application_installer(const char * pszCommandLine)
    {
+#if defined(METROWIN)
+            throw "todo";
+#else
       vsstring param;
       param = "-install:";
       param += pszCommandLine;
@@ -3464,14 +3477,16 @@ RetryHost:
 #else
       free(psz);
 #endif
-
+#endif
       return 0;
    }
 
 
    int ca2_app_install_run(const char * pszCommandLine, DWORD & dwStartError, bool bSynch)
    {
-
+#if defined(METROWIN)
+      throw "todo";
+#else
       vsstring strPlatform = spa_get_platform();
 
 #ifdef WINDOWS
@@ -3497,7 +3512,7 @@ RetryHost:
 #else
       pfn_ca2_main(strFullCommandLine, SW_HIDE);
 #endif
-
+#endif
       return 0;
    }
 

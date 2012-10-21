@@ -59,7 +59,7 @@ namespace hotplugin
    plugin::~plugin()
    {
       free_memory();
-#if !defined(MACOS) && !defined(LINUX) && !defined(MEROWINWS)
+#if !defined(MACOS) && !defined(LINUX) && !defined(METROWIN)
       if(m_pbitmap != NULL)
          delete (Gdiplus::Bitmap *) m_pbitmap;
       if(m_pcolorref != NULL)
@@ -582,7 +582,7 @@ namespace hotplugin
       rectClip1.right   = rectClip1.left + cx - iBorder1 * 2;
       rectClip1.bottom  = rectClip1.top + cy - iBorder1 * 2;
 
-      pathClip1.begin_figure(true);
+      pathClip1.begin_figure(true, ::ca::fill_mode_winding);
 
       pathClip1.add_round_rect(rectClip1, iBorder1 * 2);
 
@@ -625,7 +625,7 @@ namespace hotplugin
       rectClip.bottom   = rectClip.top + iBarHeight + iBorder * 2;
 
 
-      pathClip.begin_figure(true);
+      pathClip.begin_figure(true, ::ca::fill_mode_winding);
 
       pathClip.add_round_rect(rectClip, iBorder);
 
@@ -1009,7 +1009,7 @@ namespace hotplugin
 #endif
          }
 
-#ifdef MEROWINWS
+#ifdef METROWIN
          CREATEFILE2_EXTENDED_PARAMETERS ps;
          zero(&ps, sizeof(ps));
          ps.dwSize = sizeof(ps);
@@ -1050,7 +1050,7 @@ namespace hotplugin
          dword_ptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
 
          ensure_file_size(m_hfileBitmap, size);
-#ifdef MEROWINWS
+#ifdef METROWIN
          m_hfilemapBitmap = CreateFileMappingFromApp(
             m_hfileBitmap,
             NULL,
@@ -1083,7 +1083,7 @@ namespace hotplugin
 
 #endif
 
-#ifdef MEROWINWS
+#ifdef METROWIN
       m_pcolorref = (COLORREF *) MapViewOfFileFromApp(
          m_hfilemapBitmap,
          FILE_MAP_READ | FILE_MAP_WRITE,

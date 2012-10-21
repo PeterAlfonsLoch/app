@@ -31,7 +31,7 @@ void ensure_trace_file()
          return;
       }
    }
-   g_ftrace = ::CreateFile(dir::ca2("install.log"), GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+   g_ftrace = ::create_file(dir::ca2("install.log"), GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
    ::SetFilePointer(g_ftrace, 0, NULL, FILE_END);
 }
 
@@ -75,7 +75,7 @@ void trace(const char * psz)
    }
    vsstring str;
    {
-      mutex_lock lockTrace(&g_mutexTrace, true);
+      mutex_lock lockTrace(g_mutexTrace);
       g_pstraTrace->add(psz);
       str = g_pstraTrace->element_at(g_pstraTrace->get_count() - 1);
    }
@@ -88,7 +88,7 @@ void trace_add(const char * psz)
 {
    vsstring str;
    {
-      mutex_lock lockTrace(&g_mutexTrace, true);
+      mutex_lock lockTrace(g_mutexTrace);
       if(g_pstraTrace->get_count() == 0)
          g_pstraTrace->add(psz);
       else

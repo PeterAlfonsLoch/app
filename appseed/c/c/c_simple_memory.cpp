@@ -180,6 +180,13 @@ void simple_memory::to_string(vsstring & str)
 
 }
 
+bool simple_memory::to_file(const char * pszFile)
+{
+   
+   return file_put_contents_dup(pszFile, *this);
+
+}
+
 void simple_memory::from_string(const vsstring & str)
 {
 

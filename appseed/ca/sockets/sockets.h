@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifdef MEROWINWS
+#ifdef METROWIN
 #define BYESHYTOULA_STYLE_SOCKS
 #else
 #define BSD_STYLE_SOCKETS

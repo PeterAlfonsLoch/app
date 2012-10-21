@@ -4,7 +4,7 @@
 simple_event::simple_event(bool bInitialWait)
 {
 
-#ifdef MEROWINWS
+#ifdef METROWIN
 
    m_hEvent = ::CreateEventEx(NULL, NULL, 0, 0);
 
@@ -36,10 +36,31 @@ simple_event::~simple_event()
 
 }
 
+void simple_event::set_event()
+{
+
+#ifdef METROWIN
+
+   ::SetEvent(m_hEvent);
+
+#elif defined WINDOWS
+
+   WaitForSingleObject(m_hEvent, INFINITE);
+
+#else
+
+   mutex_lock lockMutex(&m_mutex, true);
+
+   pthread_cond_wait(&m_cond, &m_mutex.m_mutex);
+
+#endif
+
+}
+
 void simple_event::wait()
 {
 
-#ifdef MEROWINWS
+#ifdef METROWIN
 
    WaitForSingleObjectEx(m_hEvent, INFINITE, FALSE);
 
@@ -60,7 +81,7 @@ void simple_event::wait()
 void simple_event::wait(DWORD dwTimeout)
 {
 
-#ifdef MEROWINWS
+#ifdef METROWIN
 
    WaitForSingleObjectEx(m_hEvent, dwTimeout, FALSE);
 

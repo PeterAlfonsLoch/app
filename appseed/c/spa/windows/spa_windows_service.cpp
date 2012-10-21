@@ -1,4 +1,7 @@
 ﻿#include "framework.h"
+
+#ifdef WINDOWSEX
+
 #include <WinSvc.h>
 
 
@@ -66,3 +69,4 @@ int remove_service()
 
 
 
+#endif // WINDOWSEX

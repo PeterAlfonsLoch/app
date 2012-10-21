@@ -22,15 +22,16 @@
 #include "framework.h"
 
 
-#if FILEWATCHER_PLATFORM == FILEWATCHER_PLATFORM_WIN32
+#if defined(WINDOWSEX)
 #include "c/windows/c_os_file_watcher.h"
-#elif FILEWATCHER_PLATFORM == FILEWATCHER_PLATFORM_KQUEUE
+#elif defined(MACOS)
 #include "c/macos/c_os_file_watcher.h"
-#elif FILEWATCHER_PLATFORM == FILEWATCHER_PLATFORM_INOTIFY
+#elif defined(LINUX)
 #include "c/linux/c_os_file_watcher.h"
-#elif FILEWATCHER_PLATFORM == FILEWATCHER_PLATFORM_MERDWIN
-#include "c/mero_winw/c_os_file_watcher.h"
+#elif defined(METROWIN)
+#include "c/metrowin/c_os_file_watcher.h"
 #endif
+
 
 namespace file_watcher
 {

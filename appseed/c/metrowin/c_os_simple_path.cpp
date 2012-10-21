@@ -30,6 +30,40 @@ os_simple_path::~os_simple_path()
 
 }
 
+bool os_simple_path::prepare(D2D1_POINT_2F pt)
+{
+
+   if(m_psink == NULL)
+   {
+      
+      m_ppath->Open(&m_psink);
+
+      m_psink->BeginFigure(pt, m_bFill ? D2D1_FIGURE_BEGIN_FILLED : D2D1_FIGURE_BEGIN_HOLLOW);
+
+      if(m_efillmode == ::ca::fill_mode_winding)
+      {
+
+         m_psink->SetFillMode(D2D1_FILL_MODE_WINDING);
+
+      }
+      else if(m_efillmode == ::ca::fill_mode_alternate)
+      {
+
+         m_psink->SetFillMode(D2D1_FILL_MODE_ALTERNATE);
+
+      }
+
+   }
+   else
+   {
+
+      m_psink->AddLine(pt);
+
+   }
+
+   return true;
+
+}
 
 bool os_simple_path::add_arc(const RECT & rect, int iStart, int iAngle)
 {
@@ -40,20 +74,8 @@ bool os_simple_path::add_arc(const RECT & rect, int iStart, int iAngle)
 
    get_arc(pt, arcseg, rect, iStart, iAngle);
 
-   if(m_psink == NULL)
-   {
-      
-      m_ppath->Open(&m_psink);
-
-      m_psink->BeginFigure(pt, m_bFill ? D2D1_FIGURE_BEGIN_FILLED : D2D1_FIGURE_BEGIN_HOLLOW);
-
-   }
-   else
-   {
-
-      m_psink->AddLine(pt);
-
-   }
+   if(!prepare(pt))
+      return false;
 
    m_psink->AddArc(arcseg);
 
@@ -69,25 +91,52 @@ bool os_simple_path::add_line(int x1, int y1, int x2, int y2)
    pt.x = x1;
    pt.y = y1;
 
-   if(m_psink == NULL)
-   {
-      
-      m_ppath->Open(&m_psink);
-
-      m_psink->BeginFigure(pt, m_bFill ? D2D1_FIGURE_BEGIN_FILLED : D2D1_FIGURE_BEGIN_HOLLOW);
-
-   }
-   else
-   {
-
-      m_psink->AddLine(pt);
-
-   }
+   if(!prepare(pt))
+      return false;
 
    pt.x = x2;
    pt.y = y2;
 
    m_psink->AddLine(pt);
+
+   return true;
+
+}
+
+bool os_simple_path::add_lines(LPPOINT lpa, int iCount)
+{
+
+   if(lpa == NULL || iCount <= 0)
+      return true;
+
+   
+   D2D1_POINT_2F pt;
+
+   pt.x = lpa[0].x;
+   pt.y = lpa[0].y;
+
+   if(!prepare(pt))
+      return false;
+
+   iCount--;
+
+   if(iCount <= 0)
+      return true;
+
+   D2D1_POINT_2F * points = new D2D1_POINT_2F[iCount];
+
+   for(int i = 0; i < iCount; i++)
+   {
+      
+      points[i].x = lpa[i].x;
+   
+      points[i].y = lpa[i].y;
+
+   }
+
+   m_psink->AddLines(points, iCount);
+
+   delete points;
 
    return true;
 
@@ -140,10 +189,12 @@ bool os_simple_path::get_arc(D2D1_POINT_2F & pt, D2D1_ARC_SEGMENT & arcseg, cons
 
 }
 
-bool os_simple_path::begin_figure(bool bFill)
+bool os_simple_path::begin_figure(bool bFill, ::ca::e_fill_mode efillmode)
 {
 
-   m_bFill = true;
+   m_bFill        = true;
+
+   m_efillmode    = efillmode;
 
    return true;
 
@@ -199,20 +250,8 @@ bool os_simple_path::add_rect(const RECT & rect)
    pt.x = rect.left;
    pt.y = rect.top;
 
-   if(m_psink == NULL)
-   {
-      
-      m_ppath->Open(&m_psink);
-
-      m_psink->BeginFigure(pt, m_bFill ? D2D1_FIGURE_BEGIN_FILLED : D2D1_FIGURE_BEGIN_HOLLOW);
-
-   }
-   else
-   {
-
-      m_psink->AddLine(pt);
-
-   }
+   if(!prepare(pt))
+      return false;
 
    pt.x = rect.right;
    pt.y = rect.top;
@@ -233,5 +272,11 @@ bool os_simple_path::add_rect(const RECT & rect)
    pt.y = rect.top;
 
    m_psink->AddLine(pt);
+
+   return true;
 
 }
+
+
+
+

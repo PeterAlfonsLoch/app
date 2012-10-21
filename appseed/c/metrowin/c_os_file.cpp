@@ -125,3 +125,29 @@ CLASS_DECL_c BOOL FileTimeToLocalFileTime(const FILETIME * lpFileTime, LPFILETIM
 
 
 }
+
+
+
+
+CLASS_DECL_c HANDLE create_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile)
+{
+
+   CREATEFILE2_EXTENDED_PARAMETERS ps;
+
+   memset(&ps, 0, sizeof(ps));
+
+   ps.dwSize                  = sizeof(ps);
+   ps.dwFileAttributes        = dwFlagsAndAttributes;
+   ps.lpSecurityAttributes    = lpSA;
+   ps.hTemplateFile           = hTemplateFile;
+
+   wstring wstr(lpcszFileName);
+
+   return ::CreateFile2(wstr, dwDesiredAcces, dwShareMode, dwCreationDisposition, &ps);
+
+}
+
+CLASS_DECL_c bool close_handle(handle h)
+{
+   return ::CloseHandle(h) != FALSE;
+}

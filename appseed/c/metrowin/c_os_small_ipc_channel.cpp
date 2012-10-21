@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#ifndef MEROWINWS
+#ifndef METROWIN
 
 extern bool (WINAPI * g_pfnChangeWindowMessageFilter)(
     _In_ UINT message,

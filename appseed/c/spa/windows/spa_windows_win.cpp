@@ -8,6 +8,11 @@
 bool __internal_pump_message()
 {
 
+#ifdef METROWIN
+
+   throw "todo";
+
+#else
 MSG g_msgSpaAdminWindow;
 	if (!::GetMessage(&g_msgSpaAdminWindow, NULL, NULL, NULL))
 	{
@@ -27,6 +32,7 @@ MSG g_msgSpaAdminWindow;
 		::TranslateMessage(&g_msgSpaAdminWindow);
 		::DispatchMessage(&g_msgSpaAdminWindow);
 //	}*/
+#endif
   return TRUE;
 }
 

@@ -219,7 +219,8 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
   //    int iLine = ((rect.bottom - 10) / size.cy) - 1;
       if(rect.bottom - rect.top >= size.cy)
       {
-         HANDLE hfile = ::CreateFile(dir::ca2("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+
+         HANDLE hfile = ::create_file(dir::ca2("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
          if(hfile != INVALID_HANDLE_VALUE)
          {
             int iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);
@@ -305,7 +306,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
       int iLine = ((rect.bottom - 10) / size.cy) - 1;
       if(rect.bottom - rect.top >= size.cy)
       {
-         HANDLE hfile = ::CreateFileA(dir::ca2("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+         HANDLE hfile = ::create_file(dir::ca2("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
          if(hfile != INVALID_HANDLE_VALUE)
          {
             int iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);

@@ -34,7 +34,7 @@ CLASS_DECL_c UINT   get_main_thread_id();
 CLASS_DECL_c void attach_thread_input_to_main_thread(bool bAttach = true);
 
 
-#ifndef MEROWINWS
+#ifndef METROWIN
 
 CLASS_DECL_c
 LSTATUS
@@ -51,3 +51,9 @@ WinRegGetValueW(
 
 
 #endif
+
+
+CLASS_DECL_c vsstring normalize_path(const char * lpcszPath);
+
+
+vsstring key_to_char(WPARAM wparam, LPARAM lparam);

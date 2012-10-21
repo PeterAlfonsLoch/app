@@ -256,7 +256,11 @@ spa_login::e_result spa_login::login()
    }
 
 
-   vsstring strHex = spa_login_crypt(strPass, strRsaModulus);
+   vsstring strHex;
+   
+#ifndef METROWIN
+   strHex = spa_login_crypt(strPass, strRsaModulus);
+#endif
 
    vsstring strResponse;
 

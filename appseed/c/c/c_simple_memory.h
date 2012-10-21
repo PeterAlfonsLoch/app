@@ -60,6 +60,17 @@ public:
 
    bool from_hex(const char * pszHex);
 
+#ifdef METROWIN
+
+   inline Platform::Array < unsigned char, 1U > ^ get_os_bytes()
+   {
+      return ref new Platform::Array < unsigned char, 1U > ((unsigned char *) m_psz, m_iSize);
+   }
+
+#endif
+
+   bool to_file(const char * pszFile);
+
 };
 
 

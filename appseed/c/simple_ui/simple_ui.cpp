@@ -372,7 +372,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
          
             simple_path pathRound;
 
-            pathRound.begin_figure(true);
+            pathRound.begin_figure(true, ::ca::fill_mode_winding);
             
             pathRound.add_round_rect(rect, 1 * 2);
 
@@ -391,9 +391,13 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
 
-            simple_path pathRound(true);
+            simple_path pathRound;
 
-            graphics_round_rect::get_round_rect(pathRound, rect, 2 * 2);
+            pathRound.begin_figure(true, ::ca::fill_mode_winding);
+            
+            pathRound.add_round_rect(rect, 1 * 2);
+
+            pathRound.end_figure(true);
 
             simple_solid_pen pen(g, ARGB(72, 108, 149, 255));
 
@@ -408,9 +412,13 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
 
-            simple_path pathRound(true);
+            simple_path pathRound;
 
-            graphics_round_rect::get_round_rect(pathRound, rect, 3 * 2);
+            pathRound.begin_figure(true, ::ca::fill_mode_winding);
+            
+            pathRound.add_round_rect(rect, 1 * 2);
+
+            pathRound.end_figure(true);
 
             simple_solid_pen pen(g, ARGB(60, 108, 149, 255));
 
@@ -426,9 +434,13 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
 
-            simple_path pathRound(true);
+            simple_path pathRound;
 
-            graphics_round_rect::get_round_rect(pathRound, rect, 4 * 2);
+            pathRound.begin_figure(true, ::ca::fill_mode_winding);
+            
+            pathRound.add_round_rect(rect, 1 * 2);
+
+            pathRound.end_figure(true);
 
             simple_solid_pen pen(g, ARGB(48, 108, 149, 255));
 
@@ -445,9 +457,13 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
 
-            simple_path pathRound(true);
+            simple_path pathRound;
 
-            graphics_round_rect::get_round_rect(pathRound, rect, 5 * 2);
+            pathRound.begin_figure(true, ::ca::fill_mode_winding);
+            
+            pathRound.add_round_rect(rect, 1 * 2);
+
+            pathRound.end_figure(true);
 
             simple_solid_pen pen(g, ARGB(36, 108, 149, 255));
 
@@ -466,9 +482,13 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
          {
 
-            simple_path pathRound(true);
+            simple_path pathRound;
 
-            graphics_round_rect::get_round_rect(pathRound, rect, 6 * 2);
+            pathRound.begin_figure(true, ::ca::fill_mode_winding);
+            
+            pathRound.add_round_rect(rect, 1 * 2);
+
+            pathRound.end_figure(true);
 
             simple_solid_pen pen(g, ARGB(24, 108, 149, 255));
 

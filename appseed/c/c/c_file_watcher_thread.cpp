@@ -8,6 +8,7 @@ namespace file_watcher
    int thread::run()
    {
 
+#ifndef METROWIN
       try
       {
          
@@ -32,7 +33,7 @@ namespace file_watcher
       {
          
       }
-   
+#endif
       return 0;
 
    }

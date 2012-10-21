@@ -49,3 +49,9 @@ CLASS_DECL_c bool file_copy_dup(const char * pszDup, const char * pszSrc, bool b
 
 
 CLASS_DECL_c vsstring file_get_mozilla_firefox_plugin_container_path();
+
+
+typedef HANDLE handle;
+
+CLASS_DECL_c handle create_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile);
+CLASS_DECL_c bool close_handle(handle h);

@@ -101,7 +101,7 @@ public:
    int_ptr rfind(char ch, int_ptr iStart) const;
 
 
-#ifdef MEROWINWS
+#ifdef METROWIN
    inline operator Platform::String ^ ();
 #endif
 

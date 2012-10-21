@@ -71,7 +71,7 @@ namespace ca
          strPath += ".dll";
 
 
-#ifdef MEROWINWS
+#ifdef METROWIN
       m_plibrary = ::LoadPackagedLibrary(gen_utf8_to_16(strPath), 0);
 #else
       m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));

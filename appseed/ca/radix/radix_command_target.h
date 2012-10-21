@@ -175,6 +175,7 @@ public:
    void EndWaitCursor();
    void RestoreWaitCursor();       // call after messagebox
 
+
    virtual bool handle(BaseCmdMsg * pcmdmsg);
 
 

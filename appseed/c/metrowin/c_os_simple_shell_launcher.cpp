@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#ifndef MEROWINWS
+#ifndef METROWIN
 
 #include <Shellapi.h>
 

@@ -12,6 +12,11 @@ DWORD g_dwPrepareSmallBell = 0;
 void prepare_small_bell(bool bExistsOk)
 {
    g_dwPrepareSmallBell = ::get_tick_count();
+#ifdef METROWIN
+
+   throw "todo";
+
+#else
    if((bExistsOk && file_exists_dup(dir::ca2("stage\\small_bell.mp3")))
    || read_resource_as_file_dup(dir::ca2("stage\\small_bell.mp3"), ::GetModuleHandleA("app-install.exe"), ID_MP3_SMALL_BELL, "MP3")
    || read_resource_as_file_dup(dir::ca2("stage\\small_bell.mp3"), ::GetModuleHandleA("app-sentinel.exe"), ID_MP3_SMALL_BELL, "MP3")
@@ -22,6 +27,8 @@ void prepare_small_bell(bool bExistsOk)
          mciSendString("close small_bell_mp3", NULL, 0, NULL);
       }
    }
+
+#endif
 }
 
 void defer_play_small_bell()
@@ -34,6 +41,12 @@ void defer_play_small_bell()
 
 void play_small_bell()
 {
+#ifdef METROWIN
+
+   throw "todo";
+
+#else
+
    if(read_resource_as_file_dup(dir::ca2("stage\\small_bell.mp3"), ::GetModuleHandleA("app-install.exe"), ID_MP3_SMALL_BELL, "MP3")
    || read_resource_as_file_dup(dir::ca2("stage\\small_bell.mp3"), ::GetModuleHandleA("app-sentinel.exe"), ID_MP3_SMALL_BELL, "MP3")
    || read_resource_as_file_dup(dir::ca2("stage\\small_bell.mp3"), ::GetModuleHandleA(NULL), ID_MP3_SMALL_BELL, "MP3")
@@ -46,6 +59,8 @@ void play_small_bell()
          mciSendString("close small_bell_mp3", NULL, 0, NULL);
       }
    }
+#endif
+
 }
 
 
