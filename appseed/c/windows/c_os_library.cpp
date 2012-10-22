@@ -70,6 +70,11 @@ namespace ca
       if(strstr_dup(file_title_dup(strPath), ".") == NULL)
          strPath += ".dll";
 
+#ifdef _M_X64
+      ::SetDllDirectory(dir::ca2("stage\\x64") + "\\");
+#else
+      ::SetDllDirectory(dir::ca2("stage\\x86") + "\\");
+#endif
 
 
       m_plibrary = ::LoadLibraryW(gen_utf8_to_16(strPath));
