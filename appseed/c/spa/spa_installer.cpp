@@ -375,7 +375,7 @@ RetryHost:
 
          XNode nodeInstall;
 
-         nodeInstall.Load(file_get_contents_dup(dir::appdata("spa_install.xml")));
+         nodeInstall.Load(file_as_string_dup(dir::appdata("spa_install.xml")));
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
          LPXNode lpnodeVersion = nodeInstall.GetChild("basis");
@@ -492,7 +492,7 @@ RetryHost:
          /*vsstring strType;
          vsstring strStart;
          XNode nodeSpaStart;
-         nodeSpaStart.Load(file_get_contents_dup(dir::appdata("spa_start.xml")));
+         nodeSpaStart.Load(file_as_string_dup(dir::appdata("spa_start.xml")));
 
          for(int ui = 0; ui < nodeSpaStart.childs.get_count(); ui++)
          {
@@ -702,7 +702,7 @@ RetryHost:
          trace("***Downloading files.");
          if(m_bInternetInstall)
          {
-            download_file_list(straFileList, mapLen, mapMd5, mapGzLen, mapFlag);
+            //download_file_list(straFileList, mapLen, mapMd5, mapGzLen, mapFlag);
          }
          else
          {
@@ -2513,7 +2513,7 @@ RetryHost:
       // MessageBox(NULL, "BegInstall", "Caption", MB_OK);
       if(m_iStart != 4)
       {
-         vsstring strCa2sp = file_get_contents_dup(m_strFile);
+         vsstring strCa2sp = file_as_string_dup(m_strFile);
          if(strCa2sp.length() == 0)
          {
 #ifdef WINDOWSEX
@@ -2937,7 +2937,7 @@ RetryHost:
       // since the spa.xml is not present and contains turning information.
       if(!m_bOfflineInstall && (m_strApplicationId.length() == 0 || (!m_bForceUpdatedBuild && m_strBuildResource.length() == 0)))
       {
-         vsstring str = file_get_contents_dup(dir::module_folder("spa.xml"));
+         vsstring str = file_as_string_dup(dir::module_folder("spa.xml"));
          XNode node;
          node.Load(str);
          ParseSpaIndex(node);
@@ -3283,7 +3283,7 @@ RetryHost:
    void installer::add_spa_start(const char * pszId)
    {
       vsstring strPath = dir::appdata("spa_start.xml");
-      vsstring strContents = file_get_contents_dup(strPath);
+      vsstring strContents = file_as_string_dup(strPath);
       XNode node;
       node.Load(strContents);
       node.name = "spa";
@@ -3299,7 +3299,7 @@ RetryHost:
    void installer::remove_spa_start(const char * pszId)
    {
       vsstring strPath = dir::appdata("spa_start.xml");
-      vsstring strContents = file_get_contents_dup(strPath);
+      vsstring strContents = file_as_string_dup(strPath);
       XNode node;
       node.Load(strContents);
       node.name = "spa";

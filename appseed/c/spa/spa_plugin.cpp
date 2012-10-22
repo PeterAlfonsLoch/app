@@ -333,7 +333,7 @@ namespace spa
 
          // remove install tag : should be turned into a function dependant of spalib at maximum
 
-         if(!node.Load(file_get_contents_dup(dir::appdata("spa_install.xml"))))
+         if(!node.Load(file_as_string_dup(dir::appdata("spa_install.xml"))))
             goto install;
 
 

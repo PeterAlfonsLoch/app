@@ -61,7 +61,7 @@ bool is_installed(const char * pszVersion, const char * pszBuild, const char * p
 
    XNode nodeInstall;
 
-   nodeInstall.Load(file_get_contents_dup(dir::appdata("spa_install.xml")));
+   nodeInstall.Load(file_as_string_dup(dir::appdata("spa_install.xml")));
 
    LPXNode lpnodeVersion = nodeInstall.GetChild(pszVersion);
 

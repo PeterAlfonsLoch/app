@@ -570,3 +570,8 @@ bool os_simple_graphics::fill_path(simple_path & path, simple_brush & brush)
    return m_pgraphics->FillPath(brush.m_pbrush, path.m_ppath) == Gdiplus::Ok;
 
 }
+
+bool os_simple_graphics::is_null()
+{
+   return m_pgraphics == NULL;
+}

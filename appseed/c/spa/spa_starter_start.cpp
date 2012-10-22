@@ -20,12 +20,12 @@ const char * get_starter_version()
 
 const char * get_version()
 {
-   return file_get_contents_dup(dir::ca2("appdata", spa_get_platform(), "build.txt"));
+   return file_as_string_dup(dir::ca2("appdata", spa_get_platform(), "build.txt"));
 }
 
 const char * get_ca2_version()
 {
-   return file_get_contents_dup(dir::ca2("appdata", spa_get_platform(), "ca2_build.txt"));
+   return file_as_string_dup(dir::ca2("appdata", spa_get_platform(), "ca2_build.txt"));
 }
 
 void update_ca2_installed(bool bUnloadIfNotInstalled)

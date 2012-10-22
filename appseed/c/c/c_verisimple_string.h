@@ -139,6 +139,12 @@ typedef verisimple_string vsstring;
 
 
 
+#ifdef WINDOWS
+
+CLASS_DECL_c vsstring read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszType);
+
+#endif
+
 CLASS_DECL_c vsstring std_gen_international_unicode_to_utf8(const wchar_t * psz);
 
 CLASS_DECL_c vsstring url_encode_dup(const char * psz);
@@ -146,28 +152,18 @@ CLASS_DECL_c vsstring url_encode_dup(const char * psz);
 CLASS_DECL_c vsstring str_replace_dup(const char * psz, const char * pszFind, const char * pszReplace);
 
 CLASS_DECL_c vsstring itoa_dup(int64_t i);
+
 CLASS_DECL_c vsstring itohex_dup(int64_t i);
+
 CLASS_DECL_c vsstring itohexpad_dup(int64_t i, int iPad);
-
-
-#ifdef WINDOWS
-
-CLASS_DECL_c vsstring read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszType);
-#endif
-
-
-#define _unitext(text) (std_gen_international_unicode_to_utf8(L##text))
-
-
 
 CLASS_DECL_c vsstring gen_utf16_to_8(const wchar_t * psz);
 
 CLASS_DECL_c void zero_pad(vsstring & str, int_ptr iPad);
 
-
-
 CLASS_DECL_c vsstring get_md5(const void * data, int_ptr c = -1);
 
+CLASS_DECL_c vsstring file_as_string_dup(const char * path);
 
-
+#define _unitext(text) (std_gen_international_unicode_to_utf8(L##text))
 

@@ -472,6 +472,11 @@ namespace hotplugin
 
    void plugin::on_bare_paint(simple_graphics & g, LPCRECT lprect)
    {
+
+      if(g.is_null())
+         return;
+
+
       static DWORD s_dwSync = 0;
       static int s_iDelta = 1984 + 1977;
       RECT rectWindow;

@@ -139,8 +139,10 @@ bool file_put_contents_dup(const char * path, const char * contents, ::count len
 
 
 
-const char * file_get_contents_dup(const char * path)
+vsstring file_as_string_dup(const char * path)
 {
+   
+   vsstring str;
 
 #ifdef WINDOWS
 
@@ -148,35 +150,42 @@ const char * file_get_contents_dup(const char * path)
    HANDLE hfile = ::create_file(path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
    if(hfile == INVALID_HANDLE_VALUE)
-      return strdup_dup("");
+      return "";
 
    DWORD dwSizeHigh;
 
    DWORD dwSize = ::GetFileSize(hfile, &dwSizeHigh);
 
-   char * psz = (char *) _ca_alloc(dwSize + 1);
+   str.alloc(dwSize);
 
    DWORD dwRead;
 
-   ::ReadFile(hfile, psz, dwSize, &dwRead, NULL);
+   ::ReadFile(hfile, str, dwSize, &dwRead, NULL);
 
-   psz[dwSize] = '\0';
+   str.m_psz[dwSize] = '\0';
 
    ::CloseHandle(hfile);
 
-   return psz;
+   return str;
 
 #else
 
    FILE * f = fopen(path, "rb");
+
    if(f == NULL)
-      return NULL;
+      return "";
+
    ::count iSize = fsize_dup(f);
-   char * psz = (char *) _ca_alloc(iSize + 1);
-   ::count iRead = fread(psz, iSize, 1, f);
-   psz[iRead] = '\0';
+
+   str.alloc(iSize);
+
+   ::count iRead = fread(str, iSize, 1, f);
+
+   str.m_psz[iRead] = '\0';
+
    fclose(f);
-   return psz;
+
+   return str;
 
 #endif
 
