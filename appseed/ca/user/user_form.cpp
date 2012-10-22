@@ -453,6 +453,7 @@ namespace user
       ASSERT(pcontrol->descriptor().m_eddx == control::ddx_dbflags);
       base_sort_serializable_int_ptr_array ia;
       if(m_pdataserver->data_server_load(
+         pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_pclient,
          pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idSection,
          pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idKey,
          pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idIndex,
@@ -1057,6 +1058,7 @@ namespace user
          {
             base_sort_serializable_int_ptr_array ia;
             m_pdataserver->data_server_load(
+               pdescriptor->m_ddx.m_pdbflags->m_key.m_pclient,
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idSection,
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idKey,
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idIndex,
@@ -1079,6 +1081,7 @@ namespace user
                }
             }
             m_pdataserver->data_server_save(
+               pdescriptor->m_ddx.m_pdbflags->m_key.m_pclient,
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idSection,
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idKey,
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idIndex,

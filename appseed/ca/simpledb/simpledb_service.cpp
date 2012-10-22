@@ -43,7 +43,7 @@ namespace simpledb
 
 
       stringa stra;
-      stra = System.db().data_load("simpledb", ::database::id(), ::database::id());
+      stra = System.db().data_load(NULL, "simpledb", ::database::id(), ::database::id());
       for(int i = 0; i < stra.get_size(); i++)
       {
          m_threadptra.add(__begin_thread < socket_thread > (get_app()));

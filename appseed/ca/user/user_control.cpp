@@ -114,7 +114,7 @@ namespace user
 
       m_eddx = ::user::control::eddx::ddx_dbflags;
 
-      class ::database::key key(idSection, idKey, idIndex);
+      class ::database::key key(NULL, idSection, idKey, idIndex);
 
       m_ddx.m_pdbflags = new class ::user::control::ddx_dbflags(key, value);
 
