@@ -14,12 +14,13 @@ namespace filemanager
    public:
 
 
-      FileManagerTemplate *            m_ptemplateStd;
-      FileManagerTemplate *            m_ptemplateFs;
-      ::userbase::multiple_document_template *   m_ptemplateForm;
-      ::userbase::single_document_template *     m_ptemplateOperation;
+      FileManagerTemplate *                        m_ptemplateStd;
+      FileManagerTemplate *                        m_ptemplateFs;
+      ::userbase::multiple_document_template *     m_ptemplateForm;
+      ::userbase::single_document_template *       m_ptemplateOperation;
 
-      string                  m_strCopy;
+      string                                       m_strCopy;
+      id                                           m_idFileManager;
 
 
       application();

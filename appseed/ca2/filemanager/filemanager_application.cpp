@@ -64,6 +64,10 @@ namespace filemanager
       GetFsManagerTemplate()->m_pfilelistcallback = this;
       //GetFsManagerTemplate()->m_pfilelistcallback->set_app(this);
       GetFsManagerTemplate()->m_strDISection = "fs." + m_strAppName;
+
+
+      m_idFileManager = m_strAppName;
+
       return true;
    }
  

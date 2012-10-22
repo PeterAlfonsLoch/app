@@ -27,15 +27,22 @@ db_server::~db_server()
    close();
 }
 
-string db_server::calc_key(::database::id & idSection, ::database::id & id, ::database::id & idIndex)
+string db_server::calc_key(::database::client * pclient, ::database::id & idSection, ::database::id & id, ::database::id & idIndex)
 {
-   string str;
-   str = idSection.get_id().str();
-   str += ".";
-   str += id.get_id().str();
-   str += ".";
-   str += idIndex.get_id().str();
-   return str;
+   if(pclient != NULL)
+   {
+      return pclient->calc_key(idSection, id, idIndex);
+   }
+   else
+   {
+      string str;
+      str = idSection.get_id().str();
+      str += ".";
+      str += id.get_id().str();
+      str += ".";
+      str += idIndex.get_id().str();
+      return str;
+   }
 }
 
 bool db_server::initialize_user(mysql::database * pmysqldbUser, const char * pszUser)
@@ -270,20 +277,20 @@ void db_server::close()
 }
 
 
-bool db_server::data_server_load(::database::id idSection, ::database::id id, ::database::id idIndex, ex1::writable & writable, ::database::update_hint * phint)
+bool db_server::data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ex1::writable & writable, ::database::update_hint * phint)
 {
    UNREFERENCED_PARAMETER(phint);
 //   single_lock sl(&m_csImplDatabase, TRUE);
-   if(!load(calc_key(idSection, id, idIndex), writable))
+   if(!load(calc_key(pclient, idSection, id, idIndex), writable))
       return false;
    return true;
 }
 
-bool db_server::data_server_save(::database::id idSection, ::database::id id, ::database::id idIndex, ex1::readable & readable, ::database::update_hint * phint)
+bool db_server::data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ex1::readable & readable, ::database::update_hint * phint)
 {
    UNREFERENCED_PARAMETER(phint);
    single_lock sl(&m_csImplDatabase, TRUE);
-   if(!save(calc_key(idSection, id, idIndex), readable))
+   if(!save(calc_key(pclient, idSection, id, idIndex), readable))
       return false;
 /*   if(idSection.m_id.str() != "ca2_fontopus_votagus" ||
       id.m_id.str() != "database_change")
@@ -401,9 +408,10 @@ critical_section * db_server::GetImplCriticalSection()
    return &m_csImplDatabase;
 }
 
-bool db_server::data_pulse_change(::database::id idSection, ::database::id id, ::database::id idIndex, ::database::update_hint * puh)
+bool db_server::data_pulse_change(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::database::update_hint * puh)
 {
    return ::database::server::data_pulse_change(
+      pclient,
       idSection,
       id,
       idIndex,

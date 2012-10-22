@@ -75,6 +75,9 @@ namespace database
 
 
 
+      virtual string calc_key(::database::id & idSection, ::database::id & id, ::database::id & idIndex);
+
+
       server *  m_pdataserver;
       id        m_dataid;
 

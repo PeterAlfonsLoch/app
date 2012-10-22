@@ -104,3 +104,13 @@ void FileManagerInterface::FileManagerSaveCancel()
 {
    return NULL;
 }
+
+
+string FileManagerInterface::calc_key(::database::id & idSection, ::database::id & id, ::database::id & idIndex)
+{
+   string str;
+   str += id.get_id().str();
+   str += ".";
+   str += idIndex.get_id().str();
+   return str;
+}

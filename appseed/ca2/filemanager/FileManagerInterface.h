@@ -41,4 +41,6 @@ public:
    virtual ::fs::data * get_fs_data();
 
 
+   string calc_key(::database::id & idSection, ::database::id & id, ::database::id & idIndex);
+
 };

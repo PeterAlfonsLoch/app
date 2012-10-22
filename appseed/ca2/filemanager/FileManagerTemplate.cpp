@@ -106,7 +106,7 @@ FileManagerTemplate::~FileManagerTemplate()
       pdoc->get_filemanager_data()->m_iDocument                = m_iNextDocument++;
       pdoc->get_filemanager_data()->m_bTransparentBackground   = bTransparentBackground;
       string strId;
-      strId.Format("filemanager::%s::(%d)", Application.m_strAppName, pdoc->get_filemanager_data()->m_iDocument);
+      strId.Format("filemanager::%s::(%d)", Application.m_idFileManager, pdoc->get_filemanager_data()->m_iDocument);
       pdoc->get_filemanager_data()->m_strDISection             = m_strDISection + "." + strId;
       pdoc->Initialize(bMakeVisible);
       return pdoc;

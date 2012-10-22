@@ -60,13 +60,13 @@ public:
 
 
    using database::server::data_server_load;
-   virtual bool data_server_load(::database::id idSection, ::database::id id, ::database::id idIndex, ex1::writable & writable, ::database::update_hint * phint = NULL);
+   virtual bool data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ex1::writable & writable, ::database::update_hint * phint = NULL);
 
    using database::server::data_server_save;
-   virtual bool data_server_save(::database::id idSection, ::database::id id, ::database::id idIndex, ex1::readable & readable, ::database::update_hint * phint = NULL);
+   virtual bool data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ex1::readable & readable, ::database::update_hint * phint = NULL);
 
 
-   virtual bool data_pulse_change(::database::id idSection, ::database::id id, ::database::id idIndex, ::database::update_hint * puh);
+   virtual bool data_pulse_change(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::database::update_hint * puh);
 
    void close();
 
@@ -77,7 +77,7 @@ public:
    bool save(const char * lpKey, ::ex1::readable & reader);
 
 
-   static string calc_key(::database::id & idSection, ::database::id & id, ::database::id & idIndex);
+   virtual string calc_key(::database::client * pclient, ::database::id & idSection, ::database::id & id, ::database::id & idIndex);
 
    virtual bool initialize_user(mysql::database * pmysqldbUser, const char * pszUser);
    virtual bool initialize();

@@ -1,7 +1,9 @@
 #include "framework.h"
 
+
 namespace database
 {
+
 
    key::key()
    {
@@ -12,11 +14,14 @@ namespace database
       operator = (key);
    }
 
-   key::key(::database::id idSection, ::database::id idKey, ::database::id idIndex)
+   key::key(client * pclient, ::database::id idSection, ::database::id idKey, ::database::id idIndex)
    {
+
+      m_pclient      = pclient;
       m_idSection    = idSection;
       m_idKey        = idKey;
       m_idIndex      = idIndex;
+
    }
 
 
@@ -25,6 +30,7 @@ namespace database
    {
       if(&key != this)
       {
+         m_pclient      = key.m_pclient;
          m_idSection    = key.m_idSection;
          m_idKey        = key.m_idKey;
          m_idIndex      = key.m_idIndex;
