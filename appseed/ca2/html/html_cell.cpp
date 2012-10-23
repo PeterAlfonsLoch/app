@@ -369,7 +369,10 @@ namespace html
          if(m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
             return;
 
-         if(get_table()->m_iBorder > 0)
+
+         elemental::_001OnDraw(pdata);
+
+/*         if(get_table()->m_iBorder > 0)
          {
 
             int x = get_x();
@@ -379,7 +382,7 @@ namespace html
             
             pdata->m_pdc->Draw3dRect(x, y, cx, cy, ARGB(255, 84, 84, 84), ARGB(255, 184, 184, 184));
 
-         }
+         }*/
 
       }
 

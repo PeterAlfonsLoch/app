@@ -756,6 +756,8 @@ var::operator unsigned int()
       return m_ul;
    case type_ca2:
       return 0;
+   case type_uint64:
+      return m_ui64;
    case type_pvar:
       return m_pvar->operator unsigned int();
    default:

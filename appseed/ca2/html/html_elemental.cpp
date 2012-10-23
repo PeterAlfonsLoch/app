@@ -250,6 +250,7 @@ namespace html
             point p2(m_box.left - m_padding.left - m_border.left, m_box.bottom + m_padding.top + m_border.bottom);
             ::ca::pen_sp pen(pdata->get_app());
             pen->CreatePen(PS_SOLID, m_border.left, m_border.crLeft);
+            pdata->m_pdc->SelectObject(pen);
             pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
          }
          if(m_border.top > 0.f)
@@ -258,6 +259,7 @@ namespace html
             point p2(m_box.right + m_padding.right + m_border.right, m_box.top - m_padding.top - m_border.bottom);
             ::ca::pen_sp pen(pdata->get_app());
             pen->CreatePen(PS_SOLID, m_border.top, m_border.crTop);
+            pdata->m_pdc->SelectObject(pen);
             pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
          }
          if(m_border.right > 0.f)
@@ -266,6 +268,7 @@ namespace html
             point p2(m_box.right + m_padding.right + m_border.right, m_box.bottom + m_padding.top + m_border.bottom);
             ::ca::pen_sp pen(pdata->get_app());
             pen->CreatePen(PS_SOLID, m_border.right, m_border.crRight);
+            pdata->m_pdc->SelectObject(pen);
             pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
          }
          if(m_border.bottom > 0.f)
@@ -274,6 +277,7 @@ namespace html
             point p2(m_box.right + m_padding.right + m_border.right, m_box.bottom + m_padding.top + m_border.bottom);
             ::ca::pen_sp pen(pdata->get_app());
             pen->CreatePen(PS_SOLID, m_border.bottom, m_border.crBottom);
+            pdata->m_pdc->SelectObject(pen);
             pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
          }
 
@@ -710,6 +714,7 @@ namespace html
       
       m_style.get_surround_box("padding", NULL, pdata, this, m_pimpl->m_padding);
       m_style.get_border_box("border", NULL, pdata, this, m_pimpl->m_border);
+      m_style.get_border_color("border", NULL, pdata, this, m_pimpl->m_border);
       m_style.get_surround_box("margin", NULL, pdata, this, m_pimpl->m_margin);
 
       m_pimpl->implement_phase1(pdata, this);

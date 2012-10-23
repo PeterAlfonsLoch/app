@@ -38,10 +38,13 @@ namespace html
       return *this;
    }
 
+#define n_to_b(nible) ((nible << 4) | (nible))
+
    COLORREF style::parse_color(const char * psz)
    {
       string str(psz);
       str.trim();
+      str += " ";
       if(str.Left(1) == "#" && str.get_length() >= 7 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]) && ishexdigit(str[4])
           && ishexdigit(str[5]) && ishexdigit(str[6]))
       {
@@ -56,6 +59,21 @@ namespace html
             int r, g, b;
             sscanf(str, "#%02x%02x%02x", &r, &g, &b);
             return ARGB(255, r, g, b);
+         }
+      }
+      else if(str.Left(1) == "#" && str.get_length() >= 4 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]))
+      {
+         if(str.get_length() >= 5 && ishexdigit(str[4]) && !ishexdigit(str[5]))
+         {
+            int a, r, g, b;
+            sscanf(str, "#%1x%1x%1x%1x", &a, &r, &g, &b);
+            return ARGB(n_to_b(a),n_to_b(r),n_to_b(g),n_to_b(b));
+         }
+         else if(!ishexdigit(str[4]))
+         {
+            int r, g, b;
+            sscanf(str, "#%1x%1x%1x", &r, &g, &b);
+            return ARGB(255,n_to_b(r),n_to_b(g),n_to_b(b));
          }
       }
       else if(gen::str::begins_eat_ci(str, "rgb") || gen::str::begins_eat_ci(str, "argb"))
@@ -350,7 +368,7 @@ namespace html
       else
          pstyleW = pdata->m_stylesheeta.rfind_border_width(strTag, strClass, pszSubClass, pszName, fW);
       if(pstyleW != NULL)
-         iW = pstyleW->m_propertyset.find_index(strName);
+         iW = pstyleW->m_propertyset.find_index(strName + "-width");
 
       if(m_propertyset.has_property(strName + "-left") && parse_border_width(m_propertyset[strName + "-left"], fLeft))
          pstyleLeft = this;
@@ -523,7 +541,7 @@ namespace html
       else
          pstyleW = pdata->m_stylesheeta.rfind_border_color(strTag, strClass, pszSubClass, pszName, crW);
       if(pstyleW != NULL)
-         iW = pstyleW->m_propertyset.find_index(strName);
+         iW = pstyleW->m_propertyset.find_index(strName + "-color");
 
       if(m_propertyset.has_property(strName + "-left") && parse_border_color(m_propertyset[strName + "-left"], crLeft))
          pstyleLeft = this;

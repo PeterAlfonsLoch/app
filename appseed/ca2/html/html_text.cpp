@@ -513,6 +513,7 @@ namespace html
          lim += strLine.get_length();
         }
         //pdc->FillSolidRect(0, 0, 100, 100, RGB(0, 255, 0));
+        elemental::_001OnDraw(pdata);
       }
 
       float text::get_first_line_height()
