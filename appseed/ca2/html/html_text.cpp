@@ -295,7 +295,12 @@ namespace html
             {
                cy += m_sizea[i].cy;
             }
-            m_box.set_cy(cy + m_padding.top + m_padding.bottom + m_border.top + m_border.bottom + m_margin.top + m_margin.top);
+            m_box.set_cy(cy + m_pelemental->m_pparent->m_pimpl->m_padding.top 
+                            + m_pelemental->m_pparent->m_pimpl->m_padding.bottom
+                            + m_pelemental->m_pparent->m_pimpl->m_border.top
+                            + m_pelemental->m_pparent->m_pimpl->m_border.bottom
+                            + m_pelemental->m_pparent->m_pimpl->m_margin.top
+                            + m_pelemental->m_pparent->m_pimpl->m_margin.top);
 
             if(m_straLines.get_size() > 0)
             {
@@ -446,8 +451,8 @@ namespace html
          int x = get_x();
          int y = get_y();
 
-         x += m_border.left + m_padding.left + m_margin.left;
-         y += m_border.top + m_padding.top + m_margin.top;
+         x += m_pelemental->m_pparent->m_pimpl->m_border.left + m_pelemental->m_pparent->m_pimpl->m_padding.left + m_pelemental->m_pparent->m_pimpl->m_margin.left;
+         y += m_pelemental->m_pparent->m_pimpl->m_border.top + m_pelemental->m_pparent->m_pimpl->m_padding.top + m_pelemental->m_pparent->m_pimpl->m_margin.top;
          int cy = 0;
          string str1;
          string str2;
