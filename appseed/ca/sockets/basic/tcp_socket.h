@@ -260,18 +260,18 @@ namespace sockets
 #ifdef BSD_STYLE_SOCKETS
       /** SSL; Initialize ssl context for a client socket.
          \param meth_in SSL method */
-      void InitializeContext(const string & context, SSL_METHOD *meth_in = NULL);
+      void InitializeContext(const string & context, const SSL_METHOD *meth_in = NULL);
       /** SSL; Initialize ssl context for a server socket.
          \param keyfile Combined private key/certificate file
          \param password Password for private key
          \param meth_in SSL method */
-      void InitializeContext(const string & context, const string & keyfile, const string & password, SSL_METHOD *meth_in = NULL);
+      void InitializeContext(const string & context, const string & keyfile, const string & password, const SSL_METHOD *meth_in = NULL);
       /** SSL; Initialize ssl context for a server socket.
          \param certfile Separate certificate file
          \param keyfile Combined private key/certificate file
          \param password Password for private key
          \param meth_in SSL method */
-      void InitializeContext(const string & context, const string & certfile, const string & keyfile, const string & password, SSL_METHOD *meth_in = NULL);
+      void InitializeContext(const string & context, const string & certfile, const string & keyfile, const string & password, const SSL_METHOD *meth_in = NULL);
       /** SSL; Password callback method. */
       static   int SSL_password_cb(char *buf,int num,int rwflag,void *userdata);
       /** SSL; get pointer to ssl context structure. */

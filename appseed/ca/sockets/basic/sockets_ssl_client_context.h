@@ -22,7 +22,7 @@ namespace sockets
       int               m_iRetry;
 
 
-      ssl_client_context(::ca::application * papp, SSL_METHOD * pmethod = NULL);
+      ssl_client_context(::ca::application * papp, const SSL_METHOD * pmethod = NULL);
       virtual ~ssl_client_context();
 
 
@@ -30,7 +30,7 @@ namespace sockets
       void set_context(const char * pszFontopus, const char * pszSessId);
 
 
-      void InitializeContext(SSL_METHOD *meth_in);
+      void InitializeContext(const SSL_METHOD *meth_in);
 
 
    };

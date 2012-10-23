@@ -1166,7 +1166,7 @@ namespace sockets
    }
 
 
-   void tcp_socket::InitializeContext(const string & context, SSL_METHOD * pmethod)
+   void tcp_socket::InitializeContext(const string & context, const SSL_METHOD * pmethod)
    {
       /* create our context*/
       if(m_spsslclientcontext.is_null())
@@ -1192,13 +1192,13 @@ namespace sockets
    }
 
 
-   void tcp_socket::InitializeContext(const string & context,const string & keyfile,const string & password,SSL_METHOD *meth_in)
+   void tcp_socket::InitializeContext(const string & context,const string & keyfile,const string & password, const SSL_METHOD *meth_in)
    {
       /* create our context*/
       static ::collection::string_map < SSL_CTX * > server_contexts;
       if(server_contexts.PLookup(context) == NULL)
       {
-         SSL_METHOD *meth = meth_in ? meth_in : SSLv3_method();
+         const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
          m_ssl_ctx = server_contexts[context] = SSL_CTX_new(meth);
          SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
          // session id
@@ -1231,13 +1231,13 @@ namespace sockets
    }
 
 
-   void tcp_socket::InitializeContext(const string & context,const string & certfile,const string & keyfile,const string & password,SSL_METHOD *meth_in)
+   void tcp_socket::InitializeContext(const string & context, const string & certfile, const string & keyfile, const string & password, const SSL_METHOD *meth_in)
    {
       /* create our context*/
       static ::collection::string_map < SSL_CTX * > server_contexts;
       if(server_contexts.PLookup(context) == NULL)
       {
-         SSL_METHOD *meth = meth_in ? meth_in : SSLv3_method();
+         const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
          m_ssl_ctx = server_contexts[context] = SSL_CTX_new(meth);
          SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
          // session id
