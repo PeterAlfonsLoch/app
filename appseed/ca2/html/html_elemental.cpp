@@ -536,6 +536,17 @@ namespace html
 
       }
 
+      size elemental::get_content_size()
+      {
+         class size size = m_box.get_cxy();
+
+         size.cx = max(0, size.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
+         size.cy = max(0, size.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
+
+         return size;
+
+      }
+
    } // namespace impl
 
    elemental::elemental(data * pdata, elemental * pparent)

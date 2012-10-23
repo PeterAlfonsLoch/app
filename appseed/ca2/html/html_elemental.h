@@ -116,6 +116,9 @@ namespace html
          virtual bool is_tag();
          virtual bool is_value();
 
+
+         virtual size get_content_size();
+
       };
    } // namespace impl
 

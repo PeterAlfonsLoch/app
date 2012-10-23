@@ -28,25 +28,34 @@ namespace html
       void table::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
 
-         elemental::implement_phase1(pdata, m_pelemental);
+         elemental::implement_phase1(pdata, pelemental);
 
-         if(m_pelemental->m_pbase->get_type() !=:: html::base::type_value)
+         if(m_pelemental->m_pbase->get_type() !=:: html::base::type_tag)
          {
 
             return;
 
          }
 
-         tag * ptag = m_pelemental->m_pparent->get_tag();
+         tag * ptag = m_pelemental->get_tag();
 
          if(ptag != NULL)
          {
 
-            m_iBorder         = gen::str::to_uint(ptag->get_attr_value("border"));
+            if(ptag->get_attr_value("border").has_char())
+            {
+               m_iBorder         = gen::str::to_uint(ptag->get_attr_value("border"));
+            }
 
-            m_iCellSpacing    = gen::str::to_uint(ptag->get_attr_value("cellspacing"));
+            if(ptag->get_attr_value("cellspacing").has_char())
+            {
+               m_iCellSpacing    = gen::str::to_uint(ptag->get_attr_value("cellspacing"));
+            }
 
-            m_iCellPadding    = gen::str::to_uint(ptag->get_attr_value("cellpadding"));
+            if(ptag->get_attr_value("cellpadding").has_char())
+            {
+               m_iCellPadding    = gen::str::to_uint(ptag->get_attr_value("cellpadding"));
+            }
 
          }
 
@@ -54,25 +63,25 @@ namespace html
 
          if(m_border.left == 0.f && bTableBorder)
          {
-            m_border.left == m_iBorder;
+            m_border.left = m_iBorder;
             m_border.crLeft = ARGB(255, 192, 192, 192);
             m_border.styleLeft = ::html::border::style_solid;
          }
          if(m_border.top == 0.f && bTableBorder)
          {
-            m_border.top == m_iBorder;
+            m_border.top = m_iBorder;
             m_border.crTop = ARGB(255, 192, 192, 192);
             m_border.styleTop = ::html::border::style_solid;
          }
          if(m_border.right == 0.f && bTableBorder)
          {
-            m_border.right == m_iBorder;
+            m_border.right = m_iBorder;
             m_border.crRight = ARGB(255, 84, 84, 84);
             m_border.styleRight = ::html::border::style_solid;
          }
          if(m_border.bottom == 0.f && bTableBorder)
          {
-            m_border.bottom == m_iBorder;
+            m_border.bottom = m_iBorder;
             m_border.crBottom = ARGB(255, 84, 84, 84);
             m_border.styleBottom = ::html::border::style_solid;
          }

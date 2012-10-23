@@ -205,8 +205,11 @@ namespace html
             unsigned char uch;
             strsize iLastSpace = 0;
             point pointBound(get_x(), get_y());
-            int x = m_box.left;
-            size sizeBound = get_bound_size();
+            pointBound.x += m_margin.left + m_border.left + m_padding.left;
+            int x = pointBound.x;
+            size sizeContent = size(get_bound_size());
+            sizeContent.cx = max(0, sizeContent.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
+            sizeContent.cy = max(0, sizeContent.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
             for(int i = 0; i < str.get_length();)
             {
                iSpace = 0;
@@ -237,9 +240,9 @@ namespace html
                   i++;
                }
                sizeText = pdc->GetTextExtent(strLine);
-               if((x + sizeText.cx) > pointBound.x + sizeBound.cx)
+               if((x + sizeText.cx) > pointBound.x + sizeContent.cx)
                {
-                  if(x > m_bound.left && iLastSpace == 0)
+                  if(x > pointBound.x && iLastSpace == 0)
                   {
                      m_straLines.add("");
                      sizeText.cx = 0;
@@ -257,7 +260,7 @@ namespace html
                   }
                   m_sizea.add(sizeText);
                   iLastSpace = 0;
-                  x = m_bound.left;
+                  x = pointBound.x;
                }
             }
             if(strLine.get_length() > 0)
@@ -292,7 +295,7 @@ namespace html
             {
                cy += m_sizea[i].cy;
             }
-            m_box.set_cy(cy);
+            m_box.set_cy(cy + m_padding.top + m_padding.bottom + m_border.top + m_border.bottom + m_margin.top + m_margin.top);
 
             if(m_straLines.get_size() > 0)
             {
@@ -442,6 +445,9 @@ namespace html
          pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
          int x = get_x();
          int y = get_y();
+
+         x += m_border.left + m_padding.left + m_margin.left;
+         y += m_border.top + m_padding.top + m_margin.top;
          int cy = 0;
          string str1;
          string str2;
