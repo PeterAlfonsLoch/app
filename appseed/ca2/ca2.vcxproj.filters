@@ -1628,6 +1628,9 @@
     <ClInclude Include="html\html_point.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
+    <ClInclude Include="html\html_border.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca2.def">

@@ -1010,6 +1010,7 @@
     <ClInclude Include="hi5\hi5.h" />
     <ClInclude Include="hi5\net\hi5_net.h" />
     <ClInclude Include="hi5\net\hi5_net_twitter_authorization.h" />
+    <ClInclude Include="html\html_border.h" />
     <ClInclude Include="html\html_box.h" />
     <ClInclude Include="html\html_form.h" />
     <ClInclude Include="html\html_point.h" />

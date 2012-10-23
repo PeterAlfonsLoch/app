@@ -11,7 +11,8 @@ namespace html
    style * style_sheet_array::rfind(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName)
    {
       style * pstyle = NULL;
-      for(index i = get_upper_bound(); i >= 0; i--)
+      index i;
+      for(i = get_upper_bound(); i >= 0; i--)
       {
          style_sheet & sheet = this->element_at(i);
          pstyle = sheet.rfind(pszTag, pszClass, pszSubClass, pszName);
@@ -23,9 +24,141 @@ namespace html
 
    const style * style_sheet_array::rfind(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName) const
    {
-
       return const_cast < style_sheet_array * > (this)->rfind(pszTag, pszClass, pszSubClass, pszName);
 
    }
+
+   style * style_sheet_array::rfind_border_width(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, float & f)
+   {
+      style * pstyle = NULL;
+      index i;
+      for(i = get_upper_bound(); i >= 0; i--)
+      {
+         style_sheet & sheet = this->element_at(i);
+         pstyle = sheet.rfind_border_width(pszTag, pszClass, pszSubClass, pszName, f);
+         if(pstyle != NULL)
+            break;
+      }
+      return pstyle;
+   }
+
+   const style * style_sheet_array::rfind_border_width(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, float & f) const
+   {
+      return const_cast < style_sheet_array * > (this)->rfind_border_width(pszTag, pszClass, pszSubClass, pszName, f);
+
+   }
+
+   style * style_sheet_array::rfind_border_color(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, COLORREF & cr)
+   {
+      style * pstyle = NULL;
+      index i;
+      for(i = get_upper_bound(); i >= 0; i--)
+      {
+         style_sheet & sheet = this->element_at(i);
+         pstyle = sheet.rfind_border_color(pszTag, pszClass, pszSubClass, pszName, cr);
+         if(pstyle != NULL)
+            break;
+      }
+      return pstyle;
+   }
+
+   const style * style_sheet_array::rfind_border_color(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, COLORREF & cr) const
+   {
+      return const_cast < style_sheet_array * > (this)->rfind_border_color(pszTag, pszClass, pszSubClass, pszName, cr);
+
+   }
+
+   style * style_sheet_array::greater(style * pstyle1, style * pstyle2) const
+   {
+      if(pstyle1 == NULL)
+      {
+         if(pstyle2 == NULL)
+         {
+            return NULL;
+         }
+         else
+         {
+            return pstyle2;
+         }
+      }
+      else if(pstyle2 == NULL)
+      {
+         return pstyle1;
+      }
+      style * pstyle;
+      index i;
+      for(i = get_upper_bound(); i >= 0; i--)
+      {
+         const style_sheet & sheet = this->element_at(i);
+         pstyle = sheet.greater(pstyle1, pstyle2);
+         if(pstyle != NULL)
+            return pstyle;
+      }
+      return NULL;
+   }
+
+
+   const style * style_sheet_array::greater(const style * pstyle1, const style * pstyle2) const
+   {
+      return greater((style *) pstyle1, (style *) pstyle2);
+   }
+
+
+   bool style_sheet_array::greater(style * & pstyleRet, index & iRet, var & varRet, style * pstyle1, index i1, const var & var1, style * pstyle2, index i2, const var & var2) const
+   {
+      if(pstyle1 == NULL)
+      {
+         if(pstyle2 == NULL)
+         {
+            return false;
+         }
+         else
+         {
+            pstyleRet   = pstyle2;
+            iRet        = i2;
+            varRet      = var2;
+            return true;
+         }
+      }
+      else if(pstyle2 == NULL)
+      {
+         pstyleRet   = pstyle1;
+         iRet        = i1;
+         varRet      = var1;
+         return true;
+      }
+      else if(pstyle1 == pstyle2)
+      {
+         if(i1 > i2)
+         {
+            pstyleRet   = pstyle1;
+            iRet        = i1;
+            varRet      = var1;
+         }
+         else
+         {
+            pstyleRet   = pstyle2;
+            iRet        = i2;
+            varRet      = var2;
+         }
+         return true;
+      }
+      style * pstyle;
+      index i;
+      for(i = get_upper_bound(); i >= 0; i--)
+      {
+         const style_sheet & sheet = this->element_at(i);
+         if(sheet.greater(pstyleRet, iRet, varRet, pstyle1, i1, var1, pstyle2, i2, var2))
+            return true;
+      }
+      return false;
+   }
+
+
+   bool style_sheet_array::greater(const style * & pstyleRet, index & iRet, var & varRet, const style * pstyle1, index i1, const var & var1, const style * pstyle2, index i2, const var & var2) const
+   {
+      return greater((style * &) pstyleRet, iRet, varRet, (style *) pstyle1, i1, var1, (style *) pstyle2, i2, var2);
+   }
+
 
 } // namespace html

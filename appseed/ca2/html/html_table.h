@@ -27,7 +27,9 @@ namespace impl
 
       };
 
-      int m_iBorder;
+      int      m_iBorder;
+      int      m_iCellSpacing;
+      int      m_iCellBorder;
 
       base_array < base_array < cell::holder > > m_cellholdera;
       comparable_array < table_row * > m_rowptra;

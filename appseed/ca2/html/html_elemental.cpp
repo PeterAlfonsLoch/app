@@ -243,7 +243,45 @@ namespace html
                }
             }
          }
+
+         if(m_border.left > 0.f)
+         {
+            point p1(m_box.left - m_padding.left - m_border.left, m_box.top - m_padding.top - m_border.bottom);
+            point p2(m_box.left - m_padding.left - m_border.left, m_box.bottom + m_padding.top + m_border.bottom);
+            ::ca::pen_sp pen(pdata->get_app());
+            pen->CreatePen(PS_SOLID, m_border.left, m_border.crLeft);
+            pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+         }
+         if(m_border.top > 0.f)
+         {
+            point p1(m_box.left - m_padding.left - m_border.left, m_box.top - m_padding.top - m_border.bottom);
+            point p2(m_box.right + m_padding.right + m_border.right, m_box.top - m_padding.top - m_border.bottom);
+            ::ca::pen_sp pen(pdata->get_app());
+            pen->CreatePen(PS_SOLID, m_border.top, m_border.crTop);
+            pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+         }
+         if(m_border.right > 0.f)
+         {
+            point p1(m_box.right + m_padding.right + m_border.right, m_box.top - m_padding.top - m_border.bottom);
+            point p2(m_box.right + m_padding.right + m_border.right, m_box.bottom + m_padding.top + m_border.bottom);
+            ::ca::pen_sp pen(pdata->get_app());
+            pen->CreatePen(PS_SOLID, m_border.right, m_border.crRight);
+            pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+         }
+         if(m_border.bottom > 0.f)
+         {
+            point p1(m_box.left - m_padding.left - m_border.left, m_box.bottom + m_padding.top + m_border.bottom);
+            point p2(m_box.right + m_padding.right + m_border.right, m_box.bottom + m_padding.top + m_border.bottom);
+            ::ca::pen_sp pen(pdata->get_app());
+            pen->CreatePen(PS_SOLID, m_border.bottom, m_border.crBottom);
+            pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+         }
+
+
       }
+
+
+
       bool elemental::get_color(COLORREF & cr)
       {
          cr = ARGB(255, 0, 0, 0);
@@ -669,6 +707,11 @@ namespace html
             m_pimpl = new ::html::impl::text(pdata->get_app());
          }
       }
+      
+      m_style.get_surround_box("padding", NULL, pdata, this, m_pimpl->m_padding);
+      m_style.get_border_box("border", NULL, pdata, this, m_pimpl->m_border);
+      m_style.get_surround_box("margin", NULL, pdata, this, m_pimpl->m_margin);
+
       m_pimpl->implement_phase1(pdata, this);
       for(int i = 0; i < m_elementalptra.get_size(); i++)
       {
@@ -976,7 +1019,7 @@ namespace html
       {
          if(pcell->get_table()->m_iBorder > 0)
          {
-            iTableBorder = pcell->get_table()->m_iBorder + 2;
+            iTableBorder = pcell->get_table()->m_iBorder + 1;
          }
       }
 
@@ -1184,6 +1227,7 @@ namespace html
             m_elementalptra[i]->_001OnDraw(pdata);
          }
       }
+
    }
 
    void elemental::load(data * pdata, base * pbase)

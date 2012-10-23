@@ -1745,6 +1745,35 @@ namespace gen
       pszXml = psz;
    }
 
+   uint64_t str::consume_natural(const char * & pszXml, uint64_t uiMax, uint64_t uiMin)
+   {
+      if(uiMax < uiMin)
+      {
+         throw invalid_argument_exception(::ca::get_thread_app(), "max should be greater than min");
+      }
+      const char * psz = pszXml;
+      int i = 0;
+      uint64_t ui;
+      while(gen::ch::is_digit(psz))
+      {
+         psz = utf8_inc(psz);
+         i++;
+      }
+      if(psz == pszXml)
+      {
+         throw "empty natural found";
+      }
+      ui = ::gen::str::to_uint(string(pszXml, psz - pszXml));
+      if(ui < uiMin)
+      {
+         throw "natural less than min";
+      }
+      else if(ui > uiMax)
+      {
+         throw "natural greater than max";
+      }
+      pszXml = psz;
+   }
 
    void str::consume_spaces(const char * & pszXml, count iMinimumCount, const char * pszEnd)
    {
@@ -1762,6 +1791,27 @@ namespace gen
          throw "Space is required";
       }
       pszXml = psz;
+   }
+
+   string str::consume_hex(const char * & pszXml)
+   {
+      const char * psz = pszXml;
+      int i = 0;
+      while(*psz != '\0')
+      {
+         int64_t i = gen::ch::uni_index(pszXml);
+         if(isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'))
+         {
+            psz = __utf8_inc(psz);
+         }
+      }
+      if(psz == pszXml)
+      {
+         throw "no hex consumed";
+      }
+      string str(pszXml, psz - pszXml);
+      pszXml = psz;
+      return psz;
    }
 
 

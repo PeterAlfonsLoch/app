@@ -120,6 +120,11 @@ namespace gen
       property * find(const char * pszName);
       property * find(string_interface & str);
 
+      index find_index(const char * pszName);
+      index find_index(string_interface & str);
+
+      index find_index(const char * pszName) const;
+      index find_index(string_interface & str) const;
 
       count unset(const char * pszName);
 

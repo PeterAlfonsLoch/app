@@ -65,7 +65,7 @@ namespace html
          int iTableBorder = get_table()->m_iBorder;
          if(iTableBorder > 0)
          {
-            iTableBorder += 2;
+            iTableBorder += 1;
          }
 
          int cxMax;
@@ -154,6 +154,8 @@ namespace html
                cxMin += max(0, get_table()->m_columna[i].m_cxMin);
             }
          }
+         cxMax += m_padding.left + m_padding.right + m_border.left + m_border.right + m_margin.left + m_margin.right;
+         cxMin += m_padding.left + m_padding.right + m_border.left + m_border.right + m_margin.left + m_margin.right;
       }
 
       void table_row::layout_phase3(data * pdata)

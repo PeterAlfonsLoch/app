@@ -1880,7 +1880,7 @@ namespace gen
       }
    }
 
-   property * property_set::find(const char * pszName)
+   index property_set::find_index(const char * pszName)
    {
       if(m_bKeyCaseInsensitive)
       {
@@ -1888,22 +1888,52 @@ namespace gen
          strName.make_lower();
          gen::property_map::pair * ppair = m_map.PLookup(strName);
          if(ppair == NULL)
-            return NULL;
-         return &m_propertya[ppair->m_value];
+            return -1;
+         return ppair->m_value;
       }
       else
       {
          gen::property_map::pair * ppair = m_map.PLookup(pszName);
          if(ppair == NULL)
-            return NULL;
-         return &m_propertya[ppair->m_value];
+            return -1;
+         return ppair->m_value;
       }
+   }
+
+   index property_set::find_index(string_interface & str)
+   {
+      return find_index((const char *) string(str));
+   }
+
+
+   index property_set::find_index(const char * pszName) const
+   {
+      return ((property_set *) this)->find_index(pszName);
+   }
+
+
+   index property_set::find_index(string_interface & str) const
+   {
+      return find_index((const char *) string(str));
+   }
+
+   property * property_set::find(const char * pszName)
+   {
+      
+      index i = find_index(pszName);
+
+      if(i < 0)
+         return NULL;
+
+      return &m_propertya[i];
+
    }
 
    property * property_set::find(string_interface & str)
    {
       return find((const char *) string(str));
    }
+
 
    const property * property_set::find(const char * pszName) const
    {

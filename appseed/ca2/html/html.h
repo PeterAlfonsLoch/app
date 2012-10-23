@@ -14,6 +14,7 @@ namespace html
 #include "html_point.h"
 #include "html_size.h"
 #include "html_box.h"
+#include "html_border.h"
 
 #include "html_base.h"
 #include "html_value.h"

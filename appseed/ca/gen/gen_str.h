@@ -217,6 +217,8 @@ namespace gen
       CLASS_DECL_ca void consume(const char * & pszXml, const char * psz, const char * pszEnd);
       CLASS_DECL_ca void consume(const char * & pszXml, const char * psz, count iLen, const char * pszEnd);
       CLASS_DECL_ca void consume_spaces(const char * & pszXml, count iMinimumCount = 1);
+      CLASS_DECL_ca uint64_t consume_natural(const char * & pszXml, uint64_t uiMax = ((uint64_t) -1), uint64_t uiMin = 0);
+      CLASS_DECL_ca string consume_hex(const char * & pszXml);
       CLASS_DECL_ca void consume_spaces(const char * & pszXml, count iMinimumCount, const char * pszEnd);
       CLASS_DECL_ca string consume_nc_name(const char * & pszXml);
       CLASS_DECL_ca string consume_quoted_value(const char * & pszXml);

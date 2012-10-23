@@ -36,15 +36,14 @@ namespace html
    {
       class CLASS_DECL_ca2 elemental
       {
-      protected:
+      public:
 
          box               m_box;
          box               m_bound;
          box               m_padding;
-         box               m_border;
+         border            m_border;
          box               m_margin;
 
-      public:
 
          e_position        m_eposition;
          flags < e_flag >  m_flags;

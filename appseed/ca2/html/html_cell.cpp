@@ -202,6 +202,34 @@ namespace html
                }
             }
          }
+
+         bool bTableBorder = get_table()->m_iBorder > 0;
+
+         if(m_border.left == 0.f && bTableBorder)
+         {
+            m_border.left == 1.f;
+            m_border.crLeft = ARGB(255, 84, 84, 84);
+            m_border.styleLeft = ::html::border::style_solid;
+         }
+         if(m_border.top == 0.f && bTableBorder)
+         {
+            m_border.top == 1.f;
+            m_border.crTop = ARGB(255, 84, 84, 84);
+            m_border.styleTop = ::html::border::style_solid;
+         }
+         if(m_border.right == 0.f && bTableBorder)
+         {
+            m_border.right == 1.f;
+            m_border.crRight = ARGB(255, 192, 192, 192);
+            m_border.styleRight = ::html::border::style_solid;
+         }
+         if(m_border.bottom == 0.f && bTableBorder)
+         {
+            m_border.bottom == 1.f;
+            m_border.crBottom = ARGB(255, 192, 192, 192);
+            m_border.styleBottom = ::html::border::style_solid;
+         }
+
       }
 
       void cell::implement_phase2(data * pdata)
