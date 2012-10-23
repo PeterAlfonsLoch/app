@@ -1,20 +1,82 @@
 #include "framework.h"
 
+
 namespace html
 {
+
 
    namespace impl
    {
 
+
       table::table()
       {
 
-         m_iBorder = 1;
+         m_iBorder         = 1;
+         m_iCellSpacing    = 2;
+         m_iCellPadding    = 2;
 
       }
 
+
       table::~table()
       {
+
+      }
+
+
+      void table::implement_phase1(data * pdata, ::html::elemental * pelemental)
+      {
+
+         elemental::implement_phase1(pdata, m_pelemental);
+
+         if(m_pelemental->m_pbase->get_type() !=:: html::base::type_value)
+         {
+
+            return;
+
+         }
+
+         tag * ptag = m_pelemental->m_pparent->get_tag();
+
+         if(ptag != NULL)
+         {
+
+            m_iBorder         = gen::str::to_uint(ptag->get_attr_value("border"));
+
+            m_iCellSpacing    = gen::str::to_uint(ptag->get_attr_value("cellspacing"));
+
+            m_iCellPadding    = gen::str::to_uint(ptag->get_attr_value("cellpadding"));
+
+         }
+
+         bool bTableBorder = m_iBorder > 0;
+
+         if(m_border.left == 0.f && bTableBorder)
+         {
+            m_border.left == m_iBorder;
+            m_border.crLeft = ARGB(255, 192, 192, 192);
+            m_border.styleLeft = ::html::border::style_solid;
+         }
+         if(m_border.top == 0.f && bTableBorder)
+         {
+            m_border.top == m_iBorder;
+            m_border.crTop = ARGB(255, 192, 192, 192);
+            m_border.styleTop = ::html::border::style_solid;
+         }
+         if(m_border.right == 0.f && bTableBorder)
+         {
+            m_border.right == m_iBorder;
+            m_border.crRight = ARGB(255, 84, 84, 84);
+            m_border.styleRight = ::html::border::style_solid;
+         }
+         if(m_border.bottom == 0.f && bTableBorder)
+         {
+            m_border.bottom == m_iBorder;
+            m_border.crBottom = ARGB(255, 84, 84, 84);
+            m_border.styleBottom = ::html::border::style_solid;
+         }
+
       }
 
       void table::implement_phase2(data * pdata)
@@ -33,7 +95,7 @@ namespace html
             for(int i = 0; i < m_columna.get_size(); i++)
             {
                if(m_columna[i].m_cxMax <= -2
-               || m_columna[i].m_cxMin <= -2)
+                  || m_columna[i].m_cxMin <= -2)
                {
                   for(int j = 0; j < m_rowptra.get_size(); j++)
                   {
@@ -64,7 +126,7 @@ namespace html
                }
             }
             if(cxMax >= -1
-            && cxMin >= -1)
+               && cxMin >= -1)
             {
                break;
             }
@@ -113,24 +175,26 @@ namespace html
 
       void table::set_cell(int iCol, int iRow, cell * pcell)
       {
-         
+
          m_cellholdera.element_at_grow(iCol).element_at_grow(iRow).m_pcell = pcell;
 
       }
 
       void table::_001OnDraw(data * pdata)
       {
-         
+
          if(m_pelemental->m_pbase->get_type() == ::html::base::type_value)
             return;
 
-         if(m_iBorder > 0)
-         {
-          
-            pdata->m_pdc->Draw3dRect(get_x() - m_iBorder - 2, get_y() - m_iBorder - 2, 
-               get_cx() + ((m_iBorder + 2) * 2), get_cy() + ((m_iBorder + 2) * 2), ARGB(255, 184, 184, 184), ARGB(255, 84, 84, 84));
+         elemental::_001OnDraw(pdata);
 
-         }
+         /*if(m_iBorder > 0)
+         {
+
+         pdata->m_pdc->Draw3dRect(get_x() - m_iBorder - 2, get_y() - m_iBorder - 2, 
+         get_cx() + ((m_iBorder + 2) * 2), get_cy() + ((m_iBorder + 2) * 2), ARGB(255, 184, 184, 184), ARGB(255, 84, 84, 84));
+
+         }*/
       }
 
    } // namespace impl
