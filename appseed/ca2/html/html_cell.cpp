@@ -14,8 +14,16 @@ namespace html
          user::edit_plain_text(papp),
          ::html::impl::text(papp)
       {
-         m_iRowSpan = 1;
-         m_iColSpan = 1;
+         
+         m_iRowSpan     = 1;
+         m_iColSpan     = 1;
+
+         m_iColBeg      = -1;
+         m_iColEnd      = -1;
+         m_iRowBeg      = -1;
+         m_iRowEnd      = -1;
+
+
       }
 
       cell::~cell()
@@ -119,7 +127,33 @@ namespace html
 
       void cell::final_layout(data * pdata)
       {
+         
          text::final_layout(pdata);
+
+         if(m_pelemental->m_pbase->get_type() == ::html::base::type_value)
+         {
+            string str = m_pelemental->m_propertyset["PropertyBody"].get_string();
+            str.trim();
+            if(str.is_empty() && m_pelemental->m_pparent->m_elementalptra.get_count() > 1)
+            {
+               m_box.set_cxy(0, 0);
+            }
+         }
+
+         /*
+
+         if(m_box.left > get_row()->m_box.left + m_box.get_cx())
+         {
+            m_box.left = get_row()->m_box.left + m_box.get_cx();
+         }
+
+         if(m_box.right > get_row()->m_box.left + m_box.get_cx())
+         {
+            m_box.right = get_row()->m_box.left + m_box.get_cx();
+         }
+
+         */
+
       }
 
 
@@ -326,6 +360,70 @@ namespace html
          }
       }
 
+      size cell::get_content_size()
+      {
+         
+         class size size = elemental::get_content_size();
+
+         size.cx -= get_table()->m_iCellSpacing;
+
+         if(m_iColBeg == 0)
+         {
+            size.cx -= get_table()->m_iCellSpacing / 2;
+            size.cx -= get_table()->m_iCellSpacing % 2;
+         }
+         else if(m_iColEnd == get_table()->m_columna.get_upper_bound())
+         {
+            size.cx -= get_table()->m_iCellSpacing / 2;
+         }
+
+         size.cy -= get_table()->m_iCellSpacing;
+
+         if(m_iRowBeg == 0)
+         {
+            size.cy -= get_table()->m_iCellSpacing / 2;
+            size.cy -= get_table()->m_iCellSpacing % 2;
+         }
+         else if(m_iRowEnd == get_table()->m_rowptra.get_upper_bound())
+         {
+            size.cy -= get_table()->m_iCellSpacing / 2;
+         }
+
+         return size;
+
+
+      }
+
+      point cell::get_content_xy()
+      {
+
+         class point point = elemental::get_content_xy();
+
+         if(m_iColBeg == 0)
+         {
+            point.x += get_table()->m_iCellSpacing;
+         }
+         else
+         {
+            point.x += get_table()->m_iCellSpacing / 2;
+            point.x += get_table()->m_iCellSpacing % 2;
+         }
+
+         if(m_iRowBeg == 0)
+         {
+            point.y += get_table()->m_iCellSpacing;
+         }
+         else
+         {
+            point.y += get_table()->m_iCellSpacing / 2;
+            point.y += get_table()->m_iCellSpacing % 2;
+         }
+
+         return point;
+
+      }
+
+
       int cell::get_min_col()
       {
          int iMinCol = 0;
@@ -497,6 +595,29 @@ namespace html
          }
 
          return iColumnWidth;
+
+      }
+
+      float cell::get_table_border()
+      {
+
+         return get_table()->m_iBorder;
+
+      }
+
+
+      float cell::get_cell_spacing()
+      {
+
+         return get_table()->m_iCellSpacing;
+
+      }
+
+
+      float cell::get_cell_padding()
+      {
+
+         return get_table()->m_iCellPadding;
 
       }
 

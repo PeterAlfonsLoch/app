@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "float.h"
 
 
 void trim001(string & str)
@@ -244,6 +245,27 @@ namespace html
             }
          }
 
+         box bIn;
+         box bOut;
+
+         if(m_border.left > 0.f || m_border.top > 0.f || m_border.right > 0.f || m_border.bottom > 0.f)
+         {
+            point pIn = get_content_xy();
+            size szIn = get_content_size();
+            bIn.set_xy(pIn);
+            bIn.set_cxy(szIn);
+            bIn.left -= m_padding.left;
+            bIn.top -= m_padding.top;
+            bIn.right += m_padding.right;
+            bIn.bottom += m_padding.bottom;
+            bOut = bIn;
+            bOut.left -= m_border.left;
+            bOut.top -= m_border.top;
+            bOut.right += m_border.right;
+            bOut.bottom += m_border.bottom;
+         }
+
+
          if(m_border.left > 0.f)
          {
             if(m_border.left < 2.f)
@@ -258,10 +280,10 @@ namespace html
             else
             {
                ::pointd pa[4];
-               pa[0] = ::pointd(m_box.left + m_margin.left, m_box.top + m_margin.top);
-               pa[1] = ::pointd(m_box.left + m_margin.left + m_border.left, m_box.top + m_margin.top + m_border.top);
-               pa[2] = ::pointd(m_box.left + m_margin.left + m_border.left, m_box.bottom - m_margin.bottom - m_border.bottom);
-               pa[3] = ::pointd(m_box.left + m_margin.left, m_box.bottom - m_margin.bottom);
+               pa[0] = ::pointd(bOut.left, bOut.top);
+               pa[1] = ::pointd(bIn.left, bIn.top);
+               pa[2] = ::pointd(bIn.left, bIn.bottom);
+               pa[3] = ::pointd(bOut.left, bOut.bottom);
                ::ca::brush_sp brush(pdata->get_app());
                brush->CreateSolidBrush(m_border.crLeft);
                pdata->m_pdc->SelectObject(brush);
@@ -282,10 +304,10 @@ namespace html
             else
             {
                ::pointd pa[4];
-               pa[0] = ::pointd(m_box.left + m_margin.left, m_box.top + m_margin.top);
-               pa[1] = ::pointd(m_box.right - m_margin.right, m_box.top + m_margin.top);
-               pa[2] = ::pointd(m_box.right - m_margin.right - m_border.right, m_box.top + m_margin.top + m_border.top);
-               pa[3] = ::pointd(m_box.left + m_margin.left + m_border.left, m_box.top + m_margin.top + m_border.top);
+               pa[0] = ::pointd(bOut.left, bOut.top);
+               pa[1] = ::pointd(bOut.right, bOut.top);
+               pa[2] = ::pointd(bIn.right, bIn.top);
+               pa[3] = ::pointd(bIn.left, bIn.top);
                ::ca::brush_sp brush(pdata->get_app());
                brush->CreateSolidBrush(m_border.crTop);
                pdata->m_pdc->SelectObject(brush);
@@ -306,10 +328,10 @@ namespace html
             else
             {
                ::pointd pa[4];
-               pa[0] = ::pointd(m_box.right - m_margin.right, m_box.top + m_margin.top);
-               pa[1] = ::pointd(m_box.right - m_margin.right, m_box.bottom - m_margin.bottom);
-               pa[2] = ::pointd(m_box.right - m_margin.right - m_border.right, m_box.bottom - m_margin.bottom - m_border.bottom);
-               pa[3] = ::pointd(m_box.right - m_margin.right - m_border.right, m_box.top + m_margin.top + m_border.top);
+               pa[0] = ::pointd(bOut.right, bOut.top);
+               pa[1] = ::pointd(bOut.right, bOut.bottom);
+               pa[2] = ::pointd(bIn.right, bIn.bottom);
+               pa[3] = ::pointd(bIn.right, bIn.top);
                ::ca::brush_sp brush(pdata->get_app());
                brush->CreateSolidBrush(m_border.crRight);
                pdata->m_pdc->SelectObject(brush);
@@ -330,10 +352,10 @@ namespace html
             else
             {
                ::pointd pa[4];
-               pa[0] = ::pointd(m_box.left + m_margin.left + m_border.left, m_box.bottom - m_margin.bottom - m_border.bottom);
-               pa[1] = ::pointd(m_box.right - m_margin.right - m_border.right, m_box.bottom - m_margin.bottom - m_border.bottom);
-               pa[2] = ::pointd(m_box.right + m_margin.right, m_box.bottom - m_margin.bottom);
-               pa[3] = ::pointd(m_box.left + m_margin.left, m_box.bottom - m_margin.bottom);
+               pa[0] = ::pointd(bIn.left, bIn.bottom);
+               pa[1] = ::pointd(bIn.right, bIn.bottom);
+               pa[2] = ::pointd(bOut.right, bOut.bottom);
+               pa[3] = ::pointd(bOut.left, bOut.bottom);
                ::ca::brush_sp brush(pdata->get_app());
                brush->CreateSolidBrush(m_border.crBottom);
                pdata->m_pdc->SelectObject(brush);
@@ -485,8 +507,23 @@ namespace html
 
       bool elemental::use_in_final_layout(::html::impl::elemental * pimplChild)
       {
+
+         ::html::impl::cell * pcell = dynamic_cast < ::html::impl::cell * > (pimplChild);
+
+         if(pcell != NULL)
+         {
+            if(pcell->m_iColBeg >= 0 
+            || pcell->m_iColEnd >= 0
+            || pcell->m_iRowBeg >= 0
+            || pcell->m_iRowEnd >= 0)
+            {
+               
+               return false;
+
+            }
+         }
          
-         UNREFERENCED_PARAMETER(pimplChild);
+         //UNREFERENCED_PARAMETER(pimplChild);
 
          return true;
 
@@ -508,13 +545,23 @@ namespace html
 
          if(m_pelemental->m_elementalptra.get_size() == 0)
          {
+            //m_box.set_cxy(0, 0);
+            float fMaxRight = m_bound.right;
+            /*if(m_box.left > fMaxRight)
+            {
+               m_box.left = fMaxRight;
+            }
+            if(m_box.right > fMaxRight)
+            {
+               m_box.right = fMaxRight;
+            }*/
             return;
          }
 
-         int x = 0x7fffffff;
-         int y = 0x7fffffff;
-         int cx = 0x80000000;
-         int cy = 0x80000000;
+         float x = FLT_MAX;
+         float y = FLT_MAX;
+         float cx = FLT_MIN;
+         float cy = FLT_MIN;
 
          //elemental * pelemental = m_pelemental->m_elementalptra.last_element()->m_pimpl;
          /*if(pelemental->get_cy() <= 0)
@@ -554,7 +601,11 @@ namespace html
          if(bOk)
          {
 
-            set_pos(pdata, x, y, cx, cy);
+            set_pos(pdata,
+               x,
+               y,
+               cx,
+               cy);
 
          }
 
@@ -598,6 +649,7 @@ namespace html
 
       size elemental::get_content_size()
       {
+
          class size size = m_box.get_cxy();
 
          size.cx = max(0, size.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
@@ -606,6 +658,44 @@ namespace html
          return size;
 
       }
+
+      point elemental::get_content_xy()
+      {
+
+         class point point = m_box.top_left();
+
+         point.x = point.x + m_padding.left + m_border.left + m_margin.left;
+         point.y = point.y + m_padding.top + m_border.top + m_margin.top;
+
+         return point;
+
+      }
+
+      float elemental::get_table_border()
+      {
+
+         return 0.f;
+
+      }
+
+
+      float elemental::get_cell_spacing()
+      {
+
+         return 0.f;
+
+      }
+
+
+      float elemental::get_cell_padding()
+      {
+
+         return 0.f;
+
+      }
+
+
+
 
    } // namespace impl
 
@@ -1176,7 +1266,13 @@ namespace html
       {
          m_elementalptra[i]->layout_phase3(pdata);
       }
+      
+      
+      
       m_pimpl->final_layout(pdata);
+
+
+
       if(m_pbase->get_type() == ::html::base::type_tag && strTag == "td")
       {
 
@@ -1225,10 +1321,12 @@ namespace html
       else if((m_pbase->get_type() == ::html::base::type_value
       && strTag != "tbody"
       && strTag != "tr"
-      && strTag != "td")
+      && strTag != "td"
+      && strTag != "table")
       || (m_pbase->get_type() == ::html::base::type_tag
       && (strTag == "tr"
-      || strTag == "br")))
+      || strTag == "br"
+      || strTag == "table")))
       {
          if(strTag.CompareNoCase("br") == 0)
          {
@@ -1250,8 +1348,15 @@ namespace html
             pdata->m_layoutstate.m_cx = 0;
             pdata->m_layoutstate.m_x = m_pimpl->get_x() + m_pimpl->get_cx();
          }
-         else if(m_style.m_propertyset["display"] == "block"
-             || m_style.m_propertyset["display"] == "table")
+         else if(m_style.m_propertyset["display"] == "table")
+         {
+            //pdata->m_layoutstate.m_bLastCellY = true;
+            pdata->m_layoutstate.m_y = m_pimpl->get_y() + m_pimpl->get_cy();
+            pdata->m_layoutstate.m_cy = 0;
+            pdata->m_layoutstate.m_cx = 0;
+            pdata->m_layoutstate.m_x = m_pimpl->get_x() + m_pimpl->get_cx();
+         }
+         else if(m_style.m_propertyset["display"] == "block")
          {
             pdata->m_layoutstate.m_bLastBlockX = true;
             pdata->m_layoutstate.m_bLastBlockY = true;

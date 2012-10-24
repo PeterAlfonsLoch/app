@@ -77,6 +77,11 @@ namespace html
          using text::set_xy;
          void set_xy(data * pdoc);
 
+
+         virtual size get_content_size();
+         virtual point get_content_xy();
+
+
          virtual void implement_phase1(data * pdoc, ::html::elemental * pelemental);
          virtual void implement_phase2(data * pdoc);
          virtual void layout_phase1(data * pdoc);
@@ -93,6 +98,10 @@ namespace html
          virtual bool contains_column(int iCol);
          virtual bool contains_row(int iRow);
          virtual bool contains_cell(int iCol, int iRow);
+
+         virtual float get_table_border();
+         virtual float get_cell_spacing();
+         virtual float get_cell_padding();
 
 
       };

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <float.h>
 
 
 namespace html
@@ -87,6 +88,80 @@ namespace html
          }
 
       }
+
+      void table::final_layout(data * pdata)
+      {
+         string strTag = m_pelemental->get_tag_name();
+
+/*         if(m_pelemental->m_style.m_edisplay == display_block ||
+            strTag == "br")
+         {
+            pdata->m_layoutstate.m_bLastBlock = true;
+         }
+         else
+         {
+            pdata->m_layoutstate.m_bLastBlock = false;
+         }*/
+
+         if(m_pelemental->m_elementalptra.get_size() == 0)
+         {
+            return;
+         }
+
+         float x = FLT_MAX;
+         float y = FLT_MAX;
+         float cx = FLT_MIN;
+         float cy = FLT_MIN;
+
+         //elemental * pelemental = m_pelemental->m_elementalptra.last_element()->m_pimpl;
+         /*if(pelemental->get_cy() <= 0)
+         {
+            pelemental->set_cy(pdata, pelemental->get_bound_point().y + pelemental->get_bound_size().cy - pelemental->get_y());
+         }
+         if(pelemental->get_cx() <= 0)
+         {
+            pelemental->set_cx(pdata, pelemental->get_bound_point().x + pelemental->get_bound_size().cx - pelemental->get_x());
+         }*/
+
+         bool bOk = false;
+
+         for(int i = 0; i < m_pelemental->m_elementalptra.get_size(); i++)
+         {
+            
+            elemental * pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
+            
+            if(!use_in_final_layout(pelemental))
+               continue;
+
+            
+
+            if(pelemental->get_x() < x)
+               x = pelemental->get_x();
+            if(pelemental->get_y() < y)
+               y = pelemental->get_y();
+            if(pelemental->get_x() + pelemental->get_cx() > x + cx)
+               cx = pelemental->get_cx() + pelemental->get_x() - x;
+            if(pelemental->get_y() + pelemental->get_cy() > y + cy)
+               cy = pelemental->get_cy() + pelemental->get_y() - y;
+
+            bOk = true;
+
+         }
+
+         if(bOk)
+         {
+
+            set_pos(pdata,
+               x - m_iCellSpacing - m_iBorder,
+               y - m_iCellSpacing - m_iBorder,
+               cx + m_iCellSpacing * 2 + m_iBorder * 2,
+               cy + m_iCellSpacing * 2 + m_iBorder * 2);
+
+         }
+
+
+      }
+
 
       void table::implement_phase2(data * pdata)
       {

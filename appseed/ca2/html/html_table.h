@@ -49,6 +49,8 @@ namespace html
 
          void implement_phase1(data * pdata, ::html::elemental * pelemental);
 
+         void final_layout(data * pdata);
+
 
       };
 

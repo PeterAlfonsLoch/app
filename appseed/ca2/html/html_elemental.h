@@ -80,6 +80,14 @@ namespace html
          virtual float get_y();
          virtual float get_cx();
          virtual float get_cy();
+
+         virtual size get_content_size();
+         virtual point get_content_xy();
+
+         virtual float get_table_border();
+         virtual float get_cell_spacing();
+         virtual float get_cell_padding();
+
          virtual float get_first_line_height();
          virtual float get_last_line_height();
          virtual size get_bound_size();
@@ -117,7 +125,7 @@ namespace html
          virtual bool is_value();
 
 
-         virtual size get_content_size();
+         
 
       };
    } // namespace impl
