@@ -689,6 +689,20 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
+   bool graphics::fill_polygon(const POINTD * lpPoints, int nCount)
+   {
+      UNREFERENCED_PARAMETER(lpPoints);
+      UNREFERENCED_PARAMETER(nCount);
+      throw interface_only_exception(get_app());
+   }
+
+   bool graphics::fill_polygon(const POINT* lpPoints, int nCount)
+   {
+      UNREFERENCED_PARAMETER(lpPoints);
+      UNREFERENCED_PARAMETER(nCount);
+      throw interface_only_exception(get_app());
+   }
+
    bool graphics::Polygon(const POINT* lpPoints, int nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);

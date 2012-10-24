@@ -384,7 +384,7 @@ namespace html
       if(pstyleLeftW != NULL)
          iLeftW = pstyleLeftW->m_propertyset.find_index(strName + "-left-width");
 
-      if(m_propertyset.has_property(strName + "-top") && parse_border_width(m_propertyset[strName + "top"], fTop))
+      if(m_propertyset.has_property(strName + "-top") && parse_border_width(m_propertyset[strName + "-top"], fTop))
          pstyleTop = this;
       else
          pstyleTop = pdata->m_stylesheeta.rfind_border_width(strTag, strClass, pszSubClass, strName + "-top", fTop);
@@ -405,26 +405,26 @@ namespace html
       if(pstyleRight != NULL)
          iRight = pstyleRight->m_propertyset.find_index(strName + "-right");
 
-      if(m_propertyset.has_property(strName + "-right-width") && parse_border_width(m_propertyset[strName + "right-width"], fRightW))
+      if(m_propertyset.has_property(strName + "-right-width") && parse_border_width(m_propertyset[strName + "-right-width"], fRightW))
          pstyleRightW = this;
       else
          pstyleRightW = pdata->m_stylesheeta.rfind_border_width(strTag, strClass, pszSubClass, strName + "-right-width", fRightW);
       if(pstyleRightW != NULL)
          iRightW = pstyleRightW->m_propertyset.find_index(strName + "-right-width");
 
-      if(m_propertyset.has_property(strName + "-bottom") && parse_border_width(m_propertyset[strName + "bottom"], fBottom))
+      if(m_propertyset.has_property(strName + "-bottom") && parse_border_width(m_propertyset[strName + "-bottom"], fBottom))
          pstyleBottom = this;
       else
          pstyleBottom = pdata->m_stylesheeta.rfind_border_width(strTag, strClass, pszSubClass, strName + "-bottom", fBottom);
       if(pstyleBottom != NULL)
          iBottom = pstyleBottom->m_propertyset.find_index(strName + "-bottom");
 
-      if(m_propertyset.has_property(strName + "-bottom-width") && parse_border_width(m_propertyset[strName + "bottom-width"], fBottomW))
+      if(m_propertyset.has_property(strName + "-bottom-width") && parse_border_width(m_propertyset[strName + "-bottom-width"], fBottomW))
          pstyleBottomW = this;
       else
          pstyleBottomW = pdata->m_stylesheeta.rfind_border_width(strTag, strClass, pszSubClass, strName + "-bottom-width", fBottomW);
       if(pstyleBottomW != NULL)
-         iBottom = pstyleBottomW->m_propertyset.find_index(strName + "-bottom-width");
+         iBottomW = pstyleBottomW->m_propertyset.find_index(strName + "-bottom-width");
 
       const style *     pstyle1           = NULL;
       int               i1                = -1;
@@ -453,15 +453,15 @@ namespace html
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
-      pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTop, iRight, fRight);
-      pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTopW, iRightW, fRightW);
+      pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRight, iRight, fRight);
+      pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRightW, iRightW, fRightW);
       box.right         = (float) (double) varCur.get_double();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
-      pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTop, iBottom, fBottom);
-      pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTopW, iBottomW, fBottomW);
+      pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottom, iBottom, fBottom);
+      pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottomW, iBottomW, fBottomW);
       box.bottom        = (float) (double) varCur.get_double();
 
       return true;
@@ -578,26 +578,26 @@ namespace html
       if(pstyleRight != NULL)
          iRight = pstyleRight->m_propertyset.find_index(strName + "-right");
 
-      if(m_propertyset.has_property(strName + "-right-color") && parse_border_color(m_propertyset[strName + "right-color"], crRightW))
+      if(m_propertyset.has_property(strName + "-right-color") && parse_border_color(m_propertyset[strName + "-right-color"], crRightW))
          pstyleRightW = this;
       else
          pstyleRightW = pdata->m_stylesheeta.rfind_border_color(strTag, strClass, pszSubClass, strName + "-right-color", crRightW);
       if(pstyleRightW != NULL)
          iRightW = pstyleRightW->m_propertyset.find_index(strName + "-right-color");
 
-      if(m_propertyset.has_property(strName + "-bottom") && parse_border_color(m_propertyset[strName + "bottom"], crBottom))
+      if(m_propertyset.has_property(strName + "-bottom") && parse_border_color(m_propertyset[strName + "-bottom"], crBottom))
          pstyleBottom = this;
       else
          pstyleBottom = pdata->m_stylesheeta.rfind_border_color(strTag, strClass, pszSubClass, strName + "-bottom", crBottom);
       if(pstyleBottom != NULL)
          iBottom = pstyleBottom->m_propertyset.find_index(strName + "-bottom");
 
-      if(m_propertyset.has_property(strName + "-bottom-color") && parse_border_color(m_propertyset[strName + "bottom-color"], crBottomW))
+      if(m_propertyset.has_property(strName + "-bottom-color") && parse_border_color(m_propertyset[strName + "-bottom-color"], crBottomW))
          pstyleBottomW = this;
       else
          pstyleBottomW = pdata->m_stylesheeta.rfind_border_color(strTag, strClass, pszSubClass, strName + "-bottom-color", crBottomW);
       if(pstyleBottomW != NULL)
-         iBottom = pstyleBottomW->m_propertyset.find_index(strName + "-bottom-color");
+         iBottomW = pstyleBottomW->m_propertyset.find_index(strName + "-bottom-color");
 
       const style *     pstyle1           = NULL;
       int               i1                = -1;
@@ -626,15 +626,15 @@ namespace html
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
-      pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTop, iRight, crRight);
-      pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTopW, iRightW, crRightW);
+      pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRight, iRight, crRight);
+      pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRightW, iRightW, crRightW);
       box.crRight       = varCur;
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
-      pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTop, iBottom, crBottom);
-      pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTopW, iBottomW, crBottomW);
+      pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottom, iBottom, crBottom);
+      pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottomW, iBottomW, crBottomW);
       box.crBottom      = varCur;
 
       return true;
@@ -999,9 +999,15 @@ namespace html
    bool style::parse_border_width(const char * psz, float & f)
    {
       
+      if(psz == NULL)
+         return false;
+
       string str(psz);
 
       str.trim();
+
+      if(str.is_empty())
+         return false;
 
       // todo gen::str::find_cssci would find thick between spaces but not concatenated 
       if(str.find_ci("thick") >= 0)
@@ -1083,6 +1089,9 @@ namespace html
 
       strsize i = iFindDigit;
 
+      if(i < 0)
+         return false;
+
       while(i < str.get_length() && i < isdigit(str[i]))
       {
          i++;
@@ -1134,10 +1143,16 @@ namespace html
 
    bool style::parse_border_color(const char * pszParam, COLORREF & cr)
    {
+
+      if(pszParam == NULL)
+         return false;
       
       string str(pszParam);
 
       str.trim();
+
+      if(str.is_empty())
+         return false;
 
       // todo gen::str::find_cssci would find red between spaces but not concatenated 
       if(str.find_ci("magenta") >= 0)
@@ -1166,6 +1181,9 @@ namespace html
       }
       else if(iFindSharp >= 0)
          iFindColor = iFindSharp + 1;
+
+      if(iFindColor < 0)
+         return false;
 
       const char * psz = &str[iFindColor];
       const char * pszStart = psz;

@@ -281,7 +281,8 @@ const char * __cdecl crt_char_traits::StringScanSet(const char * pszBlock,const 
 {
    if(pszMatch == NULL || pszBlock == NULL || *pszBlock == '\0')
       return NULL;
-   while(*pszMatch != '\0')
+   return reinterpret_cast< const char * >( _mbspbrk( reinterpret_cast< const unsigned char* >( pszBlock ), reinterpret_cast< const unsigned char* >( pszMatch ) ) );
+   /*while(*pszMatch != '\0')
    {
       string strUtf8Char = gen::str::utf8_char(pszMatch);
       const char * psz = strstr(pszBlock, strUtf8Char);
@@ -289,7 +290,7 @@ const char * __cdecl crt_char_traits::StringScanSet(const char * pszBlock,const 
          return psz;
       pszMatch = gen::str::utf8_inc(pszMatch);
    }
-   return NULL;
+   return NULL;*/
    //return reinterpret_cast< const char * >( _mbspbrk( reinterpret_cast< const unsigned char* >( pszBlock ),
    // reinterpret_cast< const unsigned char* >( pszMatch ) ) );
 }

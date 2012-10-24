@@ -351,6 +351,8 @@ namespace ca
       virtual bool FillEllipse(LPCRECT lpRect);
       virtual bool Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
       virtual bool Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
+      virtual bool fill_polygon(const POINTD * lpPoints, int nCount);
+      virtual bool fill_polygon(const POINT* lpPoints, int nCount);
       virtual bool Polygon(point_array & pta);
       virtual bool Polygon(const POINT* lpPoints, int nCount);
       virtual bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int nCount);

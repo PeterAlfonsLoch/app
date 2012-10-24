@@ -246,39 +246,99 @@ namespace html
 
          if(m_border.left > 0.f)
          {
-            point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
-            point p2(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-            ::ca::pen_sp pen(pdata->get_app());
-            pen->CreatePen(PS_SOLID, m_border.left, m_border.crLeft);
-            pdata->m_pdc->SelectObject(pen);
-            pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+            if(m_border.left < 2.f)
+            {
+               point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+               point p2(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
+               ::ca::pen_sp pen(pdata->get_app());
+               pen->CreatePen(PS_SOLID, m_border.left, m_border.crLeft);
+               pdata->m_pdc->SelectObject(pen);
+               pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+            }
+            else
+            {
+               ::pointd pa[4];
+               pa[0] = ::pointd(m_box.left + m_margin.left, m_box.top + m_margin.top);
+               pa[1] = ::pointd(m_box.left + m_margin.left + m_border.left, m_box.top + m_margin.top + m_border.top);
+               pa[2] = ::pointd(m_box.left + m_margin.left + m_border.left, m_box.bottom - m_margin.bottom - m_border.bottom);
+               pa[3] = ::pointd(m_box.left + m_margin.left, m_box.bottom - m_margin.bottom);
+               ::ca::brush_sp brush(pdata->get_app());
+               brush->CreateSolidBrush(m_border.crLeft);
+               pdata->m_pdc->SelectObject(brush);
+               pdata->m_pdc->fill_polygon(pa, 4);
+            }
          }
          if(m_border.top > 0.f)
          {
-            point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
-            point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
-            ::ca::pen_sp pen(pdata->get_app());
-            pen->CreatePen(PS_SOLID, m_border.top, m_border.crTop);
-            pdata->m_pdc->SelectObject(pen);
-            pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+            if(m_border.top < 2.f)
+            {
+               point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+               point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+               ::ca::pen_sp pen(pdata->get_app());
+               pen->CreatePen(PS_SOLID, m_border.top, m_border.crTop);
+               pdata->m_pdc->SelectObject(pen);
+               pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+            }
+            else
+            {
+               ::pointd pa[4];
+               pa[0] = ::pointd(m_box.left + m_margin.left, m_box.top + m_margin.top);
+               pa[1] = ::pointd(m_box.right - m_margin.right, m_box.top + m_margin.top);
+               pa[2] = ::pointd(m_box.right - m_margin.right - m_border.right, m_box.top + m_margin.top + m_border.top);
+               pa[3] = ::pointd(m_box.left + m_margin.left + m_border.left, m_box.top + m_margin.top + m_border.top);
+               ::ca::brush_sp brush(pdata->get_app());
+               brush->CreateSolidBrush(m_border.crTop);
+               pdata->m_pdc->SelectObject(brush);
+               pdata->m_pdc->fill_polygon(pa, 4);
+            }
          }
          if(m_border.right > 0.f)
          {
-            point p1(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
-            point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-            ::ca::pen_sp pen(pdata->get_app());
-            pen->CreatePen(PS_SOLID, m_border.right, m_border.crRight);
-            pdata->m_pdc->SelectObject(pen);
-            pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+            if(m_border.right < 2.f)
+            {
+               point p1(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+               point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
+               ::ca::pen_sp pen(pdata->get_app());
+               pen->CreatePen(PS_SOLID, m_border.right, m_border.crRight);
+               pdata->m_pdc->SelectObject(pen);
+               pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+            }
+            else
+            {
+               ::pointd pa[4];
+               pa[0] = ::pointd(m_box.right - m_margin.right, m_box.top + m_margin.top);
+               pa[1] = ::pointd(m_box.right - m_margin.right, m_box.bottom - m_margin.bottom);
+               pa[2] = ::pointd(m_box.right - m_margin.right - m_border.right, m_box.bottom - m_margin.bottom - m_border.bottom);
+               pa[3] = ::pointd(m_box.right - m_margin.right - m_border.right, m_box.top + m_margin.top + m_border.top);
+               ::ca::brush_sp brush(pdata->get_app());
+               brush->CreateSolidBrush(m_border.crRight);
+               pdata->m_pdc->SelectObject(brush);
+               pdata->m_pdc->fill_polygon(pa, 4);
+            }
          }
          if(m_border.bottom > 0.f)
          {
-            point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-            point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-            ::ca::pen_sp pen(pdata->get_app());
-            pen->CreatePen(PS_SOLID, m_border.bottom, m_border.crBottom);
-            pdata->m_pdc->SelectObject(pen);
-            pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+            if(m_border.bottom < 2.f)
+            {
+               point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
+               point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
+               ::ca::pen_sp pen(pdata->get_app());
+               pen->CreatePen(PS_SOLID, m_border.bottom, m_border.crBottom);
+               pdata->m_pdc->SelectObject(pen);
+               pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+            }
+            else
+            {
+               ::pointd pa[4];
+               pa[0] = ::pointd(m_box.left + m_margin.left + m_border.left, m_box.bottom - m_margin.bottom - m_border.bottom);
+               pa[1] = ::pointd(m_box.right - m_margin.right - m_border.right, m_box.bottom - m_margin.bottom - m_border.bottom);
+               pa[2] = ::pointd(m_box.right + m_margin.right, m_box.bottom - m_margin.bottom);
+               pa[3] = ::pointd(m_box.left + m_margin.left, m_box.bottom - m_margin.bottom);
+               ::ca::brush_sp brush(pdata->get_app());
+               brush->CreateSolidBrush(m_border.crBottom);
+               pdata->m_pdc->SelectObject(brush);
+               pdata->m_pdc->fill_polygon(pa, 4);
+            }
          }
 
 
@@ -603,7 +663,7 @@ namespace html
 
    string elemental::get_tag_name() const
    {
-      if(m_propertyset.is_new_or_null("PropertyTag"))
+      if(m_pparent != NULL && m_propertyset.is_new_or_null("PropertyTag"))
       {
          return m_pparent->m_propertyset["PropertyTag"];
       }
