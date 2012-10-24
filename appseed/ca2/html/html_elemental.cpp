@@ -739,19 +739,7 @@ namespace html
       }
    }
 
-   const tag * elemental::get_tag() const
-   {
-      if(m_pbase->get_type() == base::type_tag)
-      {
-         return dynamic_cast < const ::html::tag * > (m_pbase);
-      }
-      else
-      {
-         return NULL;
-      }
-   }
-
-   string elemental::get_tag_name() const
+   string elemental::get_tag_name()
    {
       if(m_pparent != NULL && m_propertyset.is_new_or_null("PropertyTag"))
       {
@@ -1627,7 +1615,7 @@ namespace html
    }
 
 
-   bool elemental::get_background_color(COLORREF & cr) const
+   bool elemental::get_background_color(COLORREF & cr)
    {
 
       if(m_style.get_color("background-color", NULL, m_pdata, this, cr))
@@ -1641,7 +1629,7 @@ namespace html
       return true;
    }
 
-   bool elemental::get_color(COLORREF & cr) const
+   bool elemental::get_color(COLORREF & cr)
    {
       return m_pimpl->get_color(cr);
    }
@@ -1798,7 +1786,7 @@ namespace html
       }
    }
 
-   void elemental::get_html(data * pdata, string & str) const
+   void elemental::get_html(data * pdata, string & str)
    {
       if(m_pbase->get_type() == base::type_value)
       {

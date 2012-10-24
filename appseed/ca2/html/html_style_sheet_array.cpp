@@ -22,11 +22,6 @@ namespace html
       return pstyle;
    }
 
-   const style * style_sheet_array::rfind(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName) const
-   {
-      return const_cast < style_sheet_array * > (this)->rfind(pszTag, pszClass, pszSubClass, pszName);
-
-   }
 
    style * style_sheet_array::rfind_border_width(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, float & f)
    {
@@ -42,11 +37,6 @@ namespace html
       return pstyle;
    }
 
-   const style * style_sheet_array::rfind_border_width(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, float & f) const
-   {
-      return const_cast < style_sheet_array * > (this)->rfind_border_width(pszTag, pszClass, pszSubClass, pszName, f);
-
-   }
 
    style * style_sheet_array::rfind_border_color(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, COLORREF & cr)
    {
@@ -62,13 +52,8 @@ namespace html
       return pstyle;
    }
 
-   const style * style_sheet_array::rfind_border_color(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, COLORREF & cr) const
-   {
-      return const_cast < style_sheet_array * > (this)->rfind_border_color(pszTag, pszClass, pszSubClass, pszName, cr);
 
-   }
-
-   style * style_sheet_array::greater(style * pstyle1, style * pstyle2) const
+   style * style_sheet_array::greater(style * pstyle1, style * pstyle2)
    {
       if(pstyle1 == NULL)
       {
@@ -98,13 +83,7 @@ namespace html
    }
 
 
-   const style * style_sheet_array::greater(const style * pstyle1, const style * pstyle2) const
-   {
-      return greater((style *) pstyle1, (style *) pstyle2);
-   }
-
-
-   bool style_sheet_array::greater(style * & pstyleRet, index & iRet, var & varRet, style * pstyle1, index i1, const var & var1, style * pstyle2, index i2, const var & var2) const
+   bool style_sheet_array::greater(style * & pstyleRet, index & iRet, var & varRet, style * pstyle1, index i1, const var & var1, style * pstyle2, index i2, const var & var2)
    {
       if(pstyle1 == NULL)
       {
@@ -152,12 +131,6 @@ namespace html
             return true;
       }
       return false;
-   }
-
-
-   bool style_sheet_array::greater(const style * & pstyleRet, index & iRet, var & varRet, const style * pstyle1, index i1, const var & var1, const style * pstyle2, index i2, const var & var2) const
-   {
-      return greater((style * &) pstyleRet, iRet, varRet, (style *) pstyle1, i1, var1, (style *) pstyle2, i2, var2);
    }
 
 

@@ -39,19 +39,19 @@ namespace html
       static bool parse_border_width(const char * psz, float & f);
       static bool parse_border_color(const char * psz, COLORREF & cr);
 
-      bool get_dimension(bool bParent, const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, float & f) const;
-      bool get_surround_box(const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, box & box) const;
-      bool get_border_box(const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, border & border) const;
-      bool get_border_color(const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, border & border) const;
+      bool get_dimension(bool bParent, const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, float & f);
+      bool get_surround_box(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, box & box);
+      bool get_border_box(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, border & border);
+      bool get_border_color(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, border & border);
       // todo
-      // bool get_border_style(const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, COLORREF & cr) const;
-      bool get_color(const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, COLORREF & cr) const;
-      bool get_text(const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, string & str) const;
-      bool get_alpha(const char * pszSubClass, const data * pdata, const elemental * pelemental, double & d) const;
+      // bool get_border_style(const char * pszName, const char * pszSubClass, const data * pdata, elemental * pelemental, COLORREF & cr) const;
+      bool get_color(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, COLORREF & cr);
+      bool get_text(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, string & str);
+      bool get_alpha(const char * pszSubClass, data * pdata, elemental * pelemental, double & d);
 
-      bool matches(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName) const;
-      bool matches_border_width(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, float & f) const;
-      bool matches_border_color(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, COLORREF & cr) const;
+      bool matches(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName);
+      bool matches_border_width(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, float & f);
+      bool matches_border_color(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, COLORREF & cr);
 
       
    };

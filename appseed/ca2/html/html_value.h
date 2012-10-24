@@ -19,10 +19,10 @@ namespace html
       virtual ~value();
 
 
-      virtual type get_type() const;
+      virtual type get_type();
 
       void set_value(const char * pszValue);
-      string get_value() const;
+      string get_value();
 
    };
 

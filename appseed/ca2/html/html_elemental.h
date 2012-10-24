@@ -172,12 +172,11 @@ namespace html
       virtual void _001OnDraw(data * pdoc);
       virtual void load(data * pdoc, base * pbase);
 
-      bool get_background_color(COLORREF & cr) const;
-      bool get_color(COLORREF & cr) const;
+      bool get_background_color(COLORREF & cr);
+      bool get_color(COLORREF & cr);
 
-      string get_tag_name() const;
+      string get_tag_name();
       tag * get_tag();
-      const tag * get_tag() const;
 
 
       virtual void implement_phase1(data * pdoc);
@@ -187,7 +186,7 @@ namespace html
       virtual void layout_phase2(data * pdoc);
       virtual void layout_phase3(data * pdoc);
 
-      virtual void get_html(data * pdata, string & str) const;
+      virtual void get_html(data * pdata, string & str);
 
    protected:
       virtual bool parse(data * pdoc, const char * & psz);

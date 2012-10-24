@@ -308,7 +308,7 @@ namespace user
 
    }
 
-   void combo_box::_001GetText(string & str) const
+   void combo_box::_001GetText(string & str)
    {
       
       if(m_bEdit)

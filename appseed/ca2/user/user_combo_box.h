@@ -53,7 +53,7 @@ namespace user
       virtual index _001GetCurSel();
 
 
-      virtual void _001GetText(string & str) const;
+      virtual void _001GetText(string & str);
       virtual void _001SetText(const char * psz);
 
 

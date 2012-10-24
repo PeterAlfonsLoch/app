@@ -810,7 +810,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001GetText(string & str) const
+   void edit_plain_text::_001GetText(string & str)
    {
       ::ca::data::writing writing(m_pdata);
       if(m_pdata == NULL)
@@ -825,7 +825,7 @@ namespace user
    }
 
 
-   void edit_plain_text::_001GetSelText(string & str) const
+   void edit_plain_text::_001GetSelText(string & str)
    {
       file_position iEnd;
       file_position iStart;

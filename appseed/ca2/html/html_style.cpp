@@ -102,7 +102,7 @@ namespace html
       return 0;
    }
 
-   bool style::get_dimension(bool bParent, const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, float & f) const
+   bool style::get_dimension(bool bParent, const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, float & f)
    {
 
       f = 0.f;
@@ -135,7 +135,7 @@ namespace html
       }
       if(m_propertyset.is_new_or_null(pszName))
       {
-         const style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
+         style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
          if(pstyle == NULL)
          {
             if(bParent)
@@ -156,7 +156,7 @@ namespace html
       return true;
    }
 
-   bool style::get_surround_box(const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, box & box) const
+   bool style::get_surround_box(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, box & box)
    {
       string strTag;
       if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
@@ -184,12 +184,12 @@ namespace html
       {
          strTag = pelemental->m_propertyset["PropertyTag"];
       }
-      const style * pstyleCur = NULL;
-      const style * pstyle = NULL;
-      const style * pstyleLeft = NULL;
-      const style * pstyleTop = NULL;
-      const style * pstyleRight = NULL;
-      const style * pstyleBottom = NULL;
+      style * pstyleCur = NULL;
+      style * pstyle = NULL;
+      style * pstyleLeft = NULL;
+      style * pstyleTop = NULL;
+      style * pstyleRight = NULL;
+      style * pstyleBottom = NULL;
       index i;
       index iLeft;
       index iTop;
@@ -295,7 +295,7 @@ namespace html
    }
 
 
-   bool style::get_border_box(const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, border & box) const
+   bool style::get_border_box(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, border & box)
    {
       string strTag;
       if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
@@ -324,16 +324,16 @@ namespace html
          strTag = pelemental->m_propertyset["PropertyTag"];
       }
       
-      const style * pstyle          = NULL;
-      const style * pstyleLeft      = NULL;
-      const style * pstyleTop       = NULL;
-      const style * pstyleRight     = NULL;
-      const style * pstyleBottom    = NULL;
-      const style * pstyleW         = NULL;
-      const style * pstyleLeftW     = NULL;
-      const style * pstyleTopW      = NULL;
-      const style * pstyleRightW    = NULL;
-      const style * pstyleBottomW   = NULL;
+      style * pstyle          = NULL;
+      style * pstyleLeft      = NULL;
+      style * pstyleTop       = NULL;
+      style * pstyleRight     = NULL;
+      style * pstyleBottom    = NULL;
+      style * pstyleW         = NULL;
+      style * pstyleLeftW     = NULL;
+      style * pstyleTopW      = NULL;
+      style * pstyleRightW    = NULL;
+      style * pstyleBottomW   = NULL;
       index i              = -1;
       index iLeft          = -1;
       index iTop           = -1;
@@ -426,14 +426,14 @@ namespace html
       if(pstyleBottomW != NULL)
          iBottomW = pstyleBottomW->m_propertyset.find_index(strName + "-bottom-width");
 
-      const style *     pstyle1           = NULL;
-      int               i1                = -1;
+      style *     pstyle1           = NULL;
+      index               i1                = -1;
       var               var1              = f;
       pdata->m_stylesheeta.greater(pstyle1, i1, var1, pstyle, i, var1, pstyleW, iW, fW);
 
 
-      const style *     pstyleCur;
-      int               iCur;
+      style *     pstyleCur;
+      index               iCur;
       var               varCur;
 
       pstyleCur         = pstyle1;
@@ -469,7 +469,7 @@ namespace html
    }
 
 
-   bool style::get_border_color(const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, border & box) const
+   bool style::get_border_color(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, border & box)
    {
       string strTag;
       if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
@@ -497,16 +497,16 @@ namespace html
       {
          strTag = pelemental->m_propertyset["PropertyTag"];
       }
-      const style * pstyle          = NULL;
-      const style * pstyleLeft      = NULL;
-      const style * pstyleTop       = NULL;
-      const style * pstyleRight     = NULL;
-      const style * pstyleBottom    = NULL;
-      const style * pstyleW         = NULL;
-      const style * pstyleLeftW     = NULL;
-      const style * pstyleTopW      = NULL;
-      const style * pstyleRightW    = NULL;
-      const style * pstyleBottomW   = NULL;
+      style * pstyle          = NULL;
+      style * pstyleLeft      = NULL;
+      style * pstyleTop       = NULL;
+      style * pstyleRight     = NULL;
+      style * pstyleBottom    = NULL;
+      style * pstyleW         = NULL;
+      style * pstyleLeftW     = NULL;
+      style * pstyleTopW      = NULL;
+      style * pstyleRightW    = NULL;
+      style * pstyleBottomW   = NULL;
       index i              = -1;
       index iLeft          = -1;
       index iTop           = -1;
@@ -599,14 +599,14 @@ namespace html
       if(pstyleBottomW != NULL)
          iBottomW = pstyleBottomW->m_propertyset.find_index(strName + "-bottom-color");
 
-      const style *     pstyle1           = NULL;
-      int               i1                = -1;
+      style *     pstyle1           = NULL;
+      index               i1                = -1;
       var               var1              = cr;
       pdata->m_stylesheeta.greater(pstyle1, i1, var1, pstyle, i, var1, pstyleW, iW, crW);
 
 
-      const style *     pstyleCur;
-      int               iCur;
+      style *     pstyleCur;
+      index               iCur;
       var               varCur;
 
       pstyleCur         = pstyle1;
@@ -642,7 +642,7 @@ namespace html
    }
 
 
-   bool style::get_color(const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, COLORREF & cr) const
+   bool style::get_color(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, COLORREF & cr)
    {
       string strTag;
       if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
@@ -672,7 +672,7 @@ namespace html
       }
       if(m_propertyset.is_new_or_null(pszName))
       {
-         const style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
+         style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
          if(pstyle == NULL)
          {
             if(pelemental->m_pparent != NULL && _stricmp(pszName, "background-color"))
@@ -690,7 +690,7 @@ namespace html
       return true;
    }
 
-   bool style::get_text(const char * pszName, const char * pszSubClass, const data * pdata, const elemental * pelemental, string & str) const
+   bool style::get_text(const char * pszName, const char * pszSubClass, data * pdata, elemental * pelemental, string & str)
    {
       string strTag;
       string strClass;
@@ -707,7 +707,7 @@ namespace html
       
       if(m_propertyset.is_new_or_null(pszName))
       {
-         const style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
+         style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
          if(pstyle == NULL)
          {
             if(pelemental->m_pparent != NULL)
@@ -839,7 +839,7 @@ namespace html
       return true;
    }
 
-   bool style::get_alpha(const char * pszSubClass, const data * pdata, const elemental * pelemental, double & d) const
+   bool style::get_alpha(const char * pszSubClass, data * pdata, elemental * pelemental, double & d)
    {
       const char* pszName = "alpha";
       string strTag;
@@ -862,7 +862,7 @@ namespace html
       }
       if(m_propertyset.is_new_or_null(pszName))
       {
-         const style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
+         style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
          if(pstyle == NULL)
             return false;
          return pstyle->get_alpha(pszSubClass, pdata, pelemental, d);
@@ -913,7 +913,7 @@ namespace html
 
    }
 
-   bool style::matches(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName) const
+   bool style::matches(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName)
    {
       if(pszTag != NULL && m_strTag.has_char())
          if(m_strTag != pszTag)
@@ -930,7 +930,7 @@ namespace html
       return true;
    }
 
-   bool style::matches_border_width(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, float & f) const
+   bool style::matches_border_width(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, float & f)
    {
       if(pszTag != NULL && m_strTag.has_char())
          if(m_strTag != pszTag)
@@ -951,7 +951,7 @@ namespace html
       return true;
    }
 
-   bool style::matches_border_color(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, COLORREF & cr) const
+   bool style::matches_border_color(const char * pszTag, const char * pszClass, const char * pszSubClass, const char * pszName, COLORREF & cr)
    {
       if(pszTag != NULL && m_strTag.has_char())
          if(m_strTag != pszTag)

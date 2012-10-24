@@ -14,7 +14,7 @@ namespace html
    {
    }
 
-   base::type value::get_type() const
+   base::type value::get_type()
    {
       return type_value;
    }
@@ -24,7 +24,7 @@ namespace html
       m_strValue = pszValue;
    }
 
-   string value::get_value() const
+   string value::get_value()
    {
       return m_strValue;
    }
