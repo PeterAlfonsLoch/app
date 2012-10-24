@@ -242,11 +242,11 @@ namespace html
          }
          if(m_padding.right == 0.f && bTableCellPadding)
          {
-            m_border.right = get_table()->m_iCellPadding;
+            m_padding.right = get_table()->m_iCellPadding;
          }
          if(m_padding.bottom == 0.f && bTableCellPadding)
          {
-            m_border.bottom = get_table()->m_iCellPadding;
+            m_padding.bottom = get_table()->m_iCellPadding;
          }
 
 
@@ -267,6 +267,36 @@ namespace html
             return;
 
          elemental::implement_phase2(pdata);
+
+
+         if(ptable->m_iCellSpacing > 0)
+         {
+            if(m_iColBeg == 0)
+            {
+               m_cxMax += ptable->m_iCellSpacing; //left;
+               m_cxMin += ptable->m_iCellSpacing; //left;
+               m_cxMax += ptable->m_iCellSpacing * (m_iColEnd - m_iColBeg); // mid
+               m_cxMin += ptable->m_iCellSpacing * (m_iColEnd - m_iColBeg); // mid
+               m_cxMax += ptable->m_iCellSpacing / 2; //half right;
+               m_cxMin += ptable->m_iCellSpacing / 2; //half right;
+               m_cxMax += (ptable->m_iCellSpacing % 2); //odd right;
+               m_cxMin += (ptable->m_iCellSpacing % 2); //odd right;
+            }
+            else if(m_iColEnd == ptable->m_columna.get_upper_bound())
+            {
+               m_cxMax += ptable->m_iCellSpacing / 2; //half left;
+               m_cxMin += ptable->m_iCellSpacing / 2; //half left;
+               m_cxMax += ptable->m_iCellSpacing * (m_iColEnd - m_iColBeg); // mid
+               m_cxMin += ptable->m_iCellSpacing * (m_iColEnd - m_iColBeg); // mid
+               m_cxMax += ptable->m_iCellSpacing; // right;
+               m_cxMin += ptable->m_iCellSpacing; // right;
+            }
+            else
+            {
+               m_cxMax += ptable->m_iCellSpacing * (m_iColEnd - m_iColBeg); // cellcount * mid = cellcount * ((half left) + (half right) + (odd right))
+               m_cxMin += ptable->m_iCellSpacing * (m_iColEnd - m_iColBeg); // cellcount * mid = cellcount * ((half left) + (half right) + (odd right))
+            }
+         }
 
       }
 

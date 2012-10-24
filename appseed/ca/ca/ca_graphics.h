@@ -276,6 +276,10 @@ namespace ca
       virtual point drawLine(int x1, int y1, int x2, int y2);
       virtual point draw_line(int x1, int y1, int x2, int y2);
 
+      virtual point DrawLine(float x1, float y1, float x2, float y2);
+      virtual point drawLine(float x1, float y1, float x2, float y2);
+      virtual point draw_line(float x1, float y1, float x2, float y2);
+
       virtual bool DrawRect(int x1, int y1, int x2, int y2);
       virtual bool drawRect(int x1, int y1, int x2, int y2);
       virtual bool draw_rect(int x1, int y1, int x2, int y2);
@@ -283,7 +287,7 @@ namespace ca
 
       virtual point GetCurrentPosition() const;
       virtual point MoveTo(int x, int y);
-      virtual point MoveTo(double x, double y);
+      virtual pointd MoveTo(double x, double y);
       virtual point MoveTo(POINT point);
       virtual bool LineTo(int x, int y);
       virtual bool LineTo(double x, double y);

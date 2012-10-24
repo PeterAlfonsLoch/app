@@ -246,8 +246,8 @@ namespace html
 
          if(m_border.left > 0.f)
          {
-            point p1(m_box.left + m_margin.left, m_box.top + m_margin.top);
-            point p2(m_box.left + m_margin.left, m_box.bottom - m_margin.bottom);
+            point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+            point p2(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
             ::ca::pen_sp pen(pdata->get_app());
             pen->CreatePen(PS_SOLID, m_border.left, m_border.crLeft);
             pdata->m_pdc->SelectObject(pen);
@@ -255,8 +255,8 @@ namespace html
          }
          if(m_border.top > 0.f)
          {
-            point p1(m_box.left + m_margin.left, m_box.top + m_margin.top);
-            point p2(m_box.right - m_margin.right, m_box.top + m_margin.top);
+            point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+            point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
             ::ca::pen_sp pen(pdata->get_app());
             pen->CreatePen(PS_SOLID, m_border.top, m_border.crTop);
             pdata->m_pdc->SelectObject(pen);
@@ -264,8 +264,8 @@ namespace html
          }
          if(m_border.right > 0.f)
          {
-            point p1(m_box.right - m_margin.right, m_box.top + m_margin.top);
-            point p2(m_box.right - m_margin.right, m_box.bottom - m_margin.bottom);
+            point p1(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+            point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
             ::ca::pen_sp pen(pdata->get_app());
             pen->CreatePen(PS_SOLID, m_border.right, m_border.crRight);
             pdata->m_pdc->SelectObject(pen);
@@ -273,8 +273,8 @@ namespace html
          }
          if(m_border.bottom > 0.f)
          {
-            point p1(m_box.left + m_margin.left, m_box.bottom - m_margin.bottom);
-            point p2(m_box.right - m_margin.right, m_box.bottom - m_margin.bottom);
+            point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
+            point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
             ::ca::pen_sp pen(pdata->get_app());
             pen->CreatePen(PS_SOLID, m_border.bottom, m_border.crBottom);
             pdata->m_pdc->SelectObject(pen);

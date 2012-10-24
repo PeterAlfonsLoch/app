@@ -366,7 +366,8 @@ namespace ca
 
    point graphics::MoveTo(POINT point)
    {
-      return MoveTo((double)point.x, (double)point.y);
+      pointd pointd = MoveTo((double)point.x, (double)point.y);
+      return class point(pointd.x, pointd.y);
    }
 
    bool graphics::LineTo(POINT point)
@@ -1893,7 +1894,8 @@ namespace ca
 
    point graphics::MoveTo(int x, int y)
    {
-      return MoveTo((double)x, (double)y);
+      pointd pointd = MoveTo((double) x, (double) y);
+      return point(pointd.x, pointd.y);
    }
 
    bool graphics::LineTo(int x, int y)
@@ -2277,6 +2279,38 @@ namespace ca
       return setColor(crColor);
    }
 
+   point graphics::DrawLine(float x1, float y1, float x2, float y2)
+   {
+
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      MoveTo(x1, y1);
+      return LineTo(x2, y2);
+
+   }
+
+   point graphics::drawLine(float x1, float y1, float x2, float y2)
+   {
+
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      return DrawLine(x1, y1, x2, y2);
+
+   }
+
+   point graphics::draw_line(float x1, float y1, float x2, float y2)
+   {
+
+      // SIOOT - Should implemennt one of them
+      // OASOWO - otherwise a stack overflow will occur
+      // BTAIOM - because these are interface only methods
+      return drawLine(x1, y1, x2, y2);
+
+   }
+
+
 
    point graphics::DrawLine(int x1, int y1, int x2, int y2)
    {
@@ -2341,13 +2375,13 @@ namespace ca
 
    }
 
-   point graphics::MoveTo(double x, double y)
+   pointd graphics::MoveTo(double x, double y)
    {
-      int px = (int) m_x;
-      int py = (int) m_y;
+      double px = m_x;
+      double py = m_y;
       m_x = x;
       m_y = y;
-      return point(px, py);
+      return pointd(px, py);
    }
 
 

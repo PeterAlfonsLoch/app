@@ -27,7 +27,9 @@ namespace ca
 
       virtual void dump(dump_context & dumpcontext) const;
 
+
    };
+
 
    class CLASS_DECL_ca pen_sp :
       virtual public smart_pointer < pen >
