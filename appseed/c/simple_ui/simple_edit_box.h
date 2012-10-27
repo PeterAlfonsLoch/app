@@ -6,7 +6,8 @@ class CLASS_DECL_c simple_edit_box :
 {
 public:
 
-   int         m_iPos;
+   
+   int_ptr         m_iPos;
 
 
    simple_edit_box();
@@ -22,4 +23,8 @@ public:
 
    virtual bool is_focusable();
 
+   
 };
+
+
+

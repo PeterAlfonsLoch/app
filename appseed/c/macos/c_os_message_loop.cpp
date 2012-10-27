@@ -86,7 +86,7 @@ void _c_simple_message_loop()
 
 WINBOOL sys_message_queue::GetMessage(MSG * pmsg)
 {
-   mutex_lock lockMutex(&m_mutex, false);
+   mutex_lock lockMutex(m_mutex, false);
    while(true)
    {
       lockMutex.lock();
@@ -138,7 +138,7 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 {
 
 
-   mutex_lock lockMutex(&m_mutex, false);
+   mutex_lock lockMutex(m_mutex, false);
 
 
    for(int i = 0; i < m_threadptra.get_count(); i++)

@@ -61,9 +61,10 @@ namespace spa
    void window::PaintTransparentBk(simple_graphics & g)
    {
 
+#ifdef WINDOWSEX
+
       RECT rectWindow;
 
-#ifdef WINDOWSEX
 
       ::GetWindowRect(m_hwnd, &rectWindow);
 
@@ -104,9 +105,9 @@ namespace spa
 
    void window::OnPaint(simple_graphics & gWindow, LPRECT lprect)
    {
-      RECT rectWindow;
 
 #ifdef WINDOWSEX
+      RECT rectWindow;
       ::GetWindowRect(m_hwnd, &rectWindow);
 
 

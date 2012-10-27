@@ -23,7 +23,7 @@ simple_pen::~simple_pen()
    
 }
 
-bool simple_pen::create_solid(int iWidth, COLORREF cr)
+bool simple_pen::create_solid(simple_graphics & g, COLORREF cr, int iWidth)
 {
    
    m_iStock = -1;

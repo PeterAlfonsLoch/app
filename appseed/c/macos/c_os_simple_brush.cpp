@@ -26,7 +26,7 @@ simple_brush::~simple_brush()
    
 }
 
-bool simple_brush::create_solid(COLORREF cr)
+bool simple_brush::create_solid(simple_graphics & g, COLORREF cr)
 {
    
    m_iStock = -1;

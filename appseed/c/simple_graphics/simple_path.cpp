@@ -44,8 +44,8 @@ bool simple_path::add_round_rect(const RECT & r, int dia)
 {
 
    // diameter can't exceed width or height
-   if(dia > width(r))	dia = width(r);
-   if(dia > height(r))	dia = height(r);
+   if(dia > width(r))	dia = (int) width(r);
+   if(dia > height(r))	dia = (int) height(r);
 
    // define a corner
    RECT Corner(rect_dim(r.left, r.top, dia, dia));

@@ -12,12 +12,13 @@ public:
 //   ID2D1PathGeometry *        m_ppath;
   // ID2D1GeometrySink *        m_psink;
    bool                       m_bFill;
+   ::ca::e_fill_mode          m_efillmode;
    
 
    os_simple_path();
    ~os_simple_path();
 
-   bool begin_figure(bool bFill);
+   bool begin_figure(bool bFill, ::ca::e_fill_mode efillmode);
    bool end_figure(bool bClose);
 
    bool add_arc(const RECT & rect, int iStart, int iAngle);

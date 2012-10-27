@@ -1,11 +1,11 @@
 //
-//  c_os_simple_graphics.cpp
+//  c_os_os_simple_graphics.cpp
 //  c
 //
 //  Created by Carlos Gustavo Cecyn Lundgren on 10/6/12.
 //
 //
-#import "macos/c_os_gdi_mm.h"
+#import "macos/c_os_graphics_mm.h"
 
 
 /*
@@ -27,7 +27,7 @@ void set(XColor & color, COLORREF cr)
 
 
 
-simple_graphics::simple_graphics()
+os_simple_graphics::os_simple_graphics()
 {
    
    m_nsgc     = NULL;
@@ -41,12 +41,34 @@ simple_graphics::simple_graphics()
 }
 
 
-simple_graphics::~simple_graphics()
+os_simple_graphics::~os_simple_graphics()
 {
    
 }
 
-bool simple_graphics::create(HDC hdc)
+
+bool os_simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
+{
+   
+   if(emode == ::ca::alpha_mode_blend)
+   {
+      [m_nsgc setCompositingOperation: NSCompositeSourceOver];
+   }
+   else if(emode == ::ca::alpha_mode_set)
+   {
+      [m_nsgc setCompositingOperation: NSCompositeCopy];
+   }
+   
+   return true;
+   
+}
+
+bool os_simple_graphics::is_null()
+{
+   return m_nsgc != NULL;
+}
+
+bool os_simple_graphics::create(HDC hdc)
 {
    
    if(m_iType != 0)
@@ -65,7 +87,7 @@ bool simple_graphics::create(HDC hdc)
    
 }
 
-bool simple_graphics::create_from_bitmap(simple_bitmap & b)
+bool os_simple_graphics::create_from_bitmap(simple_bitmap & b)
 {
    
    if(m_iType != 0)
@@ -95,13 +117,15 @@ bool simple_graphics::create_from_bitmap(simple_bitmap & b)
    
 }
 
-bool simple_graphics::detach_bitmap()
+/*
+
+bool os_simple_graphics::detach_bitmap()
 {
    
    if(m_iType != 0)
       destroy();
    
-   /*   if(m_hdc == NULL)
+    if(m_hdc == NULL)
     return false;
     
     if(m_hbitmapOld == NULL)
@@ -112,14 +136,16 @@ bool simple_graphics::detach_bitmap()
     
     HBITMAP hbitmap = (HBITMAP) ::SelectObject(m_hdc, m_hbitmapOld);
     
-    m_iType = 1;*/
+    m_iType = 1;
    
    //   return hbitmap != NULL;
    return false;
    
 }
 
-bool simple_graphics::from_entire_window(HWND hwnd)
+*/
+
+bool os_simple_graphics::from_entire_window(HWND hwnd)
 {
    
    if(m_iType != 0)
@@ -139,7 +165,7 @@ bool simple_graphics::from_entire_window(HWND hwnd)
 }
 
 
-bool simple_graphics::from_window(HWND hwnd)
+bool os_simple_graphics::from_window(HWND hwnd)
 {
    
    if(m_iType != 0)
@@ -158,7 +184,7 @@ bool simple_graphics::from_window(HWND hwnd)
    
 }
 
-bool simple_graphics::from_window_paint(HWND hwnd, LPRECT lprectPaint)
+bool os_simple_graphics::from_window_paint(HWND hwnd, LPRECT lprectPaint)
 {
    
    if(m_iType != 0)
@@ -184,7 +210,7 @@ bool simple_graphics::from_window_paint(HWND hwnd, LPRECT lprectPaint)
    
 }
 
-bool simple_graphics::reference_os_data(HDC hdc)
+bool os_simple_graphics::reference_os_data(HDC hdc)
 {
    
    m_iType = 5;
@@ -196,7 +222,7 @@ bool simple_graphics::reference_os_data(HDC hdc)
 }
 
 
-bool simple_graphics::create()
+bool os_simple_graphics::create()
 {
    
    simple_graphics g;
@@ -207,22 +233,26 @@ bool simple_graphics::create()
    
 }
 
-bool simple_graphics::create(simple_graphics & g)
+
+
+bool os_simple_graphics::create(simple_graphics & g)
 {
    
    //   return create(g.m_hdc);
    return false;
    
 }
+ 
 
-bool simple_graphics::create_from_screen()
+
+bool os_simple_graphics::create_from_screen()
 {
    
    return from_window(NULL);
    
 }
 
-bool simple_graphics::select(simple_font & font)
+bool os_simple_graphics::select(simple_font & font)
 {
    
    m_font = font;
@@ -231,7 +261,7 @@ bool simple_graphics::select(simple_font & font)
    
 }
 
-bool simple_graphics::select(simple_brush & brush)
+bool os_simple_graphics::select(simple_brush & brush)
 {
    
    m_brush = brush;
@@ -240,7 +270,7 @@ bool simple_graphics::select(simple_brush & brush)
    
 }
 
-bool simple_graphics::select(simple_pen & pen)
+bool os_simple_graphics::select(simple_pen & pen)
 {
    
    m_pen = pen;
@@ -249,7 +279,7 @@ bool simple_graphics::select(simple_pen & pen)
    
 }
 
-bool simple_graphics::destroy()
+bool os_simple_graphics::destroy()
 {
    
    bool bOk = true;
@@ -349,7 +379,7 @@ bool simple_graphics::destroy()
    
 }
 
-bool simple_graphics::set_offset(int x, int y)
+bool os_simple_graphics::set_offset(int x, int y)
 {
    
    [NSGraphicsContext setCurrentContext:m_nsgc];
@@ -371,7 +401,7 @@ bool simple_graphics::set_offset(int x, int y)
    
 }
 
-bool simple_graphics::offset(int x, int y)
+bool os_simple_graphics::offset(int x, int y)
 {
    
    [NSGraphicsContext setCurrentContext:m_nsgc];
@@ -389,7 +419,7 @@ bool simple_graphics::offset(int x, int y)
 }
 
 
-bool simple_graphics::bit_blt(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, DWORD rop)
+bool os_simple_graphics::bit_blt(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, DWORD rop)
 {
    
    //   return ::BitBlt(m_hdc, x, y, cx, cy, gSrc.m_hdc, x1, y1, rop) != FALSE;
@@ -398,7 +428,7 @@ bool simple_graphics::bit_blt(int x, int y, int cx, int cy, simple_graphics & gS
    
 }
 
-bool simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORREF * pdata)
+bool os_simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORREF * pdata)
 {
    
    /*try
@@ -432,7 +462,7 @@ bool simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORREF *
    
 }
 
-SIZE simple_graphics::get_text_extent(const char * psz, int iLen)
+SIZE os_simple_graphics::get_text_extent(const char * psz, int iLen)
 {
    
    SIZE size;
@@ -449,7 +479,7 @@ SIZE simple_graphics::get_text_extent(const char * psz, int iLen)
    
 }
 
-void simple_graphics::select_brush(simple_brush & brush)
+void os_simple_graphics::set(simple_brush & brush)
 {
    
    set_foreground(brush.m_cr);
@@ -457,14 +487,7 @@ void simple_graphics::select_brush(simple_brush & brush)
 }
 
 
-void simple_graphics::select_brush()
-{
-   
-   select_brush(m_brush);
-   
-}
-
-void simple_graphics::select_pen(simple_pen & pen)
+void os_simple_graphics::set(simple_pen & pen)
 {
    
    set_foreground(pen.m_cr);
@@ -472,14 +495,7 @@ void simple_graphics::select_pen(simple_pen & pen)
 }
 
 
-void simple_graphics::select_pen()
-{
-   
-   select_pen(m_pen);
-   
-}
-
-NSColor  * simple_graphics::alloc_color(COLORREF cr)
+NSColor  * os_simple_graphics::alloc_color(COLORREF cr)
 {
    
    NSColor * color = [NSColor colorWithSRGBRed:GetRValue(cr) / 255.0f green:GetGValue(cr) / 255.0f blue:GetBValue(cr) / 255.0f alpha:GetAValue(cr)  / 255.0f ];
@@ -488,7 +504,7 @@ NSColor  * simple_graphics::alloc_color(COLORREF cr)
    
 }
 
-bool simple_graphics::rectangle(LPCRECT lpcrect)
+bool os_simple_graphics::rectangle(LPCRECT lpcrect)
 {
    
    NSRect rect;
@@ -503,7 +519,7 @@ bool simple_graphics::rectangle(LPCRECT lpcrect)
    if(m_brush.m_iStock != NULL_BRUSH)
    {
       
-      select_brush();
+      set(m_brush);
       
       NSRectFill(rect);
       
@@ -512,7 +528,7 @@ bool simple_graphics::rectangle(LPCRECT lpcrect)
    if(m_pen.m_iStock != NULL_PEN)
    {
       
-      select_pen();
+      set(m_pen);
       
       NSFrameRect(rect);
       
@@ -523,7 +539,7 @@ bool simple_graphics::rectangle(LPCRECT lpcrect)
 }
 
 
-bool simple_graphics::free_color(NSColor * nscolor)
+bool os_simple_graphics::free_color(NSColor * nscolor)
 {
 
    [nscolor release];
@@ -533,7 +549,7 @@ bool simple_graphics::free_color(NSColor * nscolor)
    
 }
 
-void simple_graphics::set_foreground(COLORREF cr)
+void os_simple_graphics::set_foreground(COLORREF cr)
 {
    
    if(m_bForeColor)
@@ -555,7 +571,7 @@ void simple_graphics::set_foreground(COLORREF cr)
    
 }
 
-void simple_graphics::set_background(COLORREF cr)
+void os_simple_graphics::set_background(COLORREF cr)
 {
    
    if(m_bBackColor)
@@ -577,10 +593,10 @@ void simple_graphics::set_background(COLORREF cr)
    
 }
 
-bool simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
+bool os_simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
 {
    
-   select_brush(brush);
+   set(brush);
    
    NSRect rect;
    
@@ -645,7 +661,9 @@ bool simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
  }
  */
 
-bool simple_graphics::set_text_color(COLORREF cr)
+/*
+
+bool os_simple_graphics::set_text_color(COLORREF cr)
 {
    
    m_crTextColor = cr;
@@ -654,8 +672,11 @@ bool simple_graphics::set_text_color(COLORREF cr)
    
    
 }
+ */
 
-bool simple_graphics::alpha_blend(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf)
+/*
+
+bool os_simple_graphics::alpha_blend(int x, int y, int cx, int cy, os_simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf)
 {
    
    NSRect rect;
@@ -683,20 +704,22 @@ bool simple_graphics::alpha_blend(int x, int y, int cx, int cy, simple_graphics 
    return false;
    
 }
+ 
+ */
 
-void simple_graphics::fill_solid_rect(LPCRECT lpRect, COLORREF cr)
+void os_simple_graphics::fill_solid_rect(LPCRECT lpRect, COLORREF cr)
 {
    
    simple_brush brush;
    
-   brush.create_solid(cr);
+   brush.create_solid((simple_graphics &)*this, cr);
    
    fill_rect(lpRect, brush);
    
 }
 
 
-bool simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
+bool os_simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
 {
    
    if(!m_font.m_bUpdated)
@@ -732,3 +755,33 @@ bool simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
 
 
 
+bool os_simple_graphics::fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode)
+{
+   
+   if(m_brush.m_estyle == simple_brush::style_stock && m_brush.m_iStock == NULL_BRUSH)
+      return true;
+   
+   
+   NSBezierPath * path = [NSBezierPath bezierPath];
+   
+   NSPointArray pa = new NSPoint[iCount];
+   
+   for(int i = 0; i < iCount; i++)
+   {
+      pa[i] = NSMakePoint(p[i].x, p[i].y);
+   }
+                                            
+   [path appendBezierPathWithPoints:pa count: iCount];
+   
+   [NSGraphicsContext setCurrentContext:m_nsgc];
+   
+   [path fill];
+   
+   [path release];
+   
+   delete pa;
+   
+   return true;
+   
+   
+}

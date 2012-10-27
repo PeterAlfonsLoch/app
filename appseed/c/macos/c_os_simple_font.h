@@ -41,8 +41,8 @@ public:
    
    // platform-specific
    //   bool create_indirect(LPLOGFONT lplf);
-   vsstring get_name(int i);
-   vsstring get_weight(int iWeight);
+//   vsstring get_name(int i);
+//   vsstring get_weight(int iWeight);
    bool update();
    
 };

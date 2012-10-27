@@ -1,16 +1,16 @@
 //
-//  c_os_simple_font.cpp
+//  c_os_os_simple_font.cpp
 //  c
 //
 //  Created by Carlos Gustavo Cecyn Lundgren on 10/6/12.
 //
 //
 
-#import "c_os_gdi_mm.h"
+#import "c_os_graphics_mm.h"
 
 
 
-simple_font::simple_font()
+os_simple_font::os_simple_font()
 {
    
    m_strFamily    = "helvetica";
@@ -21,7 +21,7 @@ simple_font::simple_font()
    m_nsfont = NULL;
 }
 
-simple_font::~simple_font()
+os_simple_font::~os_simple_font()
 {
    
    /*if(m_hfont != NULL)
@@ -33,7 +33,7 @@ simple_font::~simple_font()
    
 }
 
-/*bool simple_font::create_indirect(LPLOGFONT  lplf)
+/*bool os_simple_font::create_indirect(LPLOGFONT  lplf)
  {
  
  m_hfont = ::CreateFontIndirect(lplf);
@@ -46,8 +46,8 @@ simple_font::~simple_font()
  
  }
  */
-
-vsstring simple_font::get_weight(int iWeight)
+/*
+vsstring os_simple_font::get_weight(int iWeight)
 {
    
    if(iWeight <= 400)
@@ -60,8 +60,7 @@ vsstring simple_font::get_weight(int iWeight)
    }
    
 }
-
-vsstring simple_font::get_name(int i)
+vsstring os_simple_font::get_name(int i)
 {
    
    if(i == 0)
@@ -140,10 +139,10 @@ vsstring simple_font::get_name(int i)
    return "fixed";
    
 }
+*/
 
 
-
-bool simple_font::update()
+bool os_simple_font::update()
 {
    
    if(m_bUpdated)
@@ -152,27 +151,20 @@ bool simple_font::update()
       m_bUpdated = false;
       
    }
+
+   NSFontManager * fontmanager = [NSFontManager sharedFontManager];
    
+   m_nsfont = [fontmanager fontWithFamily: [[NSString alloc] initWithUTF8String: m_strFamily]
+                                       traits: 0
+                                             weight: m_iWeight
+                                             size: m_iSize / 10.0];
    
-   vsstring strName;
-   
-   int j = 0;
-   
-   while(true)
+   if(m_nsfont == NULL)
    {
-      
-      strName = get_name(j);
-      
-      if(j >= 32 || strName.is_empty())
-         return false;
-      
-      m_nsfont = [NSFont fontWithName:[[NSString alloc] initWithCString:strName encoding: NSUTF8StringEncoding]  size:10.0];
-      
-      if(m_nsfont != 0)
-         break;
-      
+      m_nsfont = [NSFont controlContentFontOfSize: m_iSize / 10.f];
       
    }
+   
    
    m_bUpdated = true;
    
@@ -185,7 +177,7 @@ bool simple_font::update()
    return true;
 }
 
-bool simple_font::destroy()
+bool os_simple_font::destroy()
 {
    
    if(m_bUpdated)
@@ -207,31 +199,24 @@ bool simple_font::destroy()
 }
 
 
-bool simple_font::create_point(int nPointSize, const char * lpszFaceName, simple_graphics & g)
-{
-   
-   return create_point_bold(nPointSize, lpszFaceName, FALSE, g);
-   
-}
-
-bool simple_font::create_point_bold(int nPointSize, const char * lpszFaceName, int iBold, simple_graphics & g)
-{
-   
-   LOGFONT logFont;
-   
-   memset_dup(&logFont, 0, sizeof(LOGFONT));
-   
-   logFont.lfCharSet = DEFAULT_CHARSET;
-   
+bool os_simple_font::create_point(simple_graphics & g, int nPointSize, const char * lpszFaceName, bool bBold)
+{  
    
    
    m_strFamily = lpszFaceName;
    
    m_iSize = nPointSize;
    
-   m_iWeight = iBold != FALSE ? 800 : 400;
+   m_iWeight = bBold ? 800 : 400;
    
    return update();
+   
+}
+
+bool os_simple_font::create_pixel(simple_graphics & g, int nPixelSize, const char * lpszFaceName, bool bBold)
+{
+   
+   return create_point(g, nPixelSize * 72 / 96, lpszFaceName, bBold);
    
 }
 

@@ -44,10 +44,10 @@ namespace ca
 #include "c/version/version.h"
 
 
-#include "types.h"
+#include "c_types.h"
 
 
-#include "natural.h"
+#include "c_natural.h"
 
 
 #define GetAValue(rgb)      (LOBYTE((rgb)>>24))
@@ -58,52 +58,53 @@ namespace ca
 extern "C"
 {
    
-#include "cpu_architecture.h"
+#include "c_cpu_architecture.h"
    
 }
 
 
-#include "_libct.h"
+#include "c_libc.h"
 
 
-#include "count.h"
-#include "index.h"
-#include "keep_true.h"
+#include "c_count.h"
+#include "c_index.h"
+#include "c_keep_true.h"
 
 
-#include "debug.h"
+#include "c_debug.h"
 
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
 
 
-#include "printf.h"
-#include "sprintf.h"
-#include "str.h"
-#include "std_file.h"
-#include "atol.h"
-#include "conv.h"
+#include "c_printf.h"
+#include "c_sprintf.h"
+#include "c_str.h"
+#include "c_std_file.h"
+#include "c_atol.h"
+#include "c_conv.h"
 
 
 
-#include "heap.h"
-#include "mem.h"
+#include "c_heap.h"
+#include "c_mem.h"
 
-#include "_c_math.h"
+#include "c_math.h"
 
-#include "geometric_types.h"
+#include "c_geometric_types.h"
 
 
-#include "verisimple_string.h"
-#include "verisimple_wstring.h"
-#include "vsstringtow.h"
-#include "wstringtovss.h"
+#include "c_verisimple_string.h"
+#include "c_verisimple_wstring.h"
+#include "c_vsstringtow.h"
+#include "c_wstringtovss.h"
 
-#include "dir.h"
-#include "md5.h"
+#include "c_dir.h"
+#include "c_md5.h"
 
-#include "simple_memory.h"
+
+#include "c_simple_memory.h"
 
 
 
