@@ -12422,7 +12422,7 @@
 1346980288 source:/ca2/app/appseed/ca/user/user_str.cpp
 	"framework.h"
 
-1342864881 source:/ca2/app/appseed/ca/user/user_text_interface.cpp
+1351322634 source:/ca2/app/appseed/ca/user/user_text_interface.cpp
 	"framework.h"
 
 1342864881 source:/ca2/app/appseed/ca/user/user_view_container.cpp
@@ -12434,10 +12434,10 @@
 1351322634 source:/ca2/app/appseed/ca/user/user_form.cpp
 	"framework.h"
 
-1342864881 source:/ca2/app/appseed/ca/user/user_wait_message_dialog.cpp
+1350785044 source:/ca2/app/appseed/ca/user/user_wait_message_dialog.cpp
 	"framework.h"
 
-1342864881 source:/ca2/app/appseed/ca/user/user_window_interface.cpp
+1350785044 source:/ca2/app/appseed/ca/user/user_window_interface.cpp
 	"framework.h"
 
 1342864881 source:/ca2/app/appseed/ca/user/user_window_map.cpp
@@ -12475,10 +12475,10 @@
 	<winbase.h>
 	<sys/cygwin.h>
 
-1342864781 source:/ca2/app/appseed/ca/userpresence/userpresence_application.cpp
+1350784960 source:/ca2/app/appseed/ca/userpresence/userpresence_application.cpp
 	"framework.h"
 
-1348430055 source:/ca2/app/appseed/ca/userpresence/userpresence_user_presence.cpp
+1350784960 source:/ca2/app/appseed/ca/userpresence/userpresence_user_presence.cpp
 	"framework.h"
 
 1342864781 source:/ca2/app/appseed/ca/userpresence/userpresence_user_presence_central.cpp
@@ -12508,7 +12508,7 @@
 1342864829 source:/ca2/app/appseed/ca/visual/visual_cursor.cpp
 	"framework.h"
 
-1350025625 source:/ca2/app/appseed/ca/user/user_interaction.cpp
+1351369237 source:/ca2/app/appseed/ca/user/user_interaction.cpp
 	"framework.h"
 
 1342864829 source:/ca2/app/appseed/ca/visual/visual_fastblur.cpp

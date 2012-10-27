@@ -40,7 +40,6 @@
 		<Unit filename="ansios/ansios_file.cpp" />
 		<Unit filename="ansios/ansios_file.h" />
 		<Unit filename="ansios/crypto/ansios_crypt.cpp" />
-		<Unit filename="ansios_crypt.cpp" />
 		<Unit filename="bsdiff/blocksort.cpp" />
 		<Unit filename="bsdiff/bsdiff.cpp" />
 		<Unit filename="bsdiff/bsdiff.h" />
@@ -231,15 +230,6 @@
 		<Unit filename="simple_graphics/simple_pixel_font.h" />
 		<Unit filename="simple_graphics/simple_solid_brush.h" />
 		<Unit filename="simple_graphics/simple_solid_pen.h" />
-		<Unit filename="simple_ui/linux/c_os_simple_edit_box.cpp" />
-		<Unit filename="simple_ui/linux/c_os_simple_label.cpp" />
-		<Unit filename="simple_ui/linux/c_os_simple_password.cpp" />
-		<Unit filename="simple_ui/linux/c_os_simple_tap.cpp" />
-		<Unit filename="simple_ui/macos/c_os_simple_edit_box.cpp" />
-		<Unit filename="simple_ui/macos/c_os_simple_label.cpp" />
-		<Unit filename="simple_ui/macos/c_os_simple_password.cpp" />
-		<Unit filename="simple_ui/macos/c_os_simple_tap.cpp" />
-		<Unit filename="simple_ui/macos/c_os_simple_ui.cpp" />
 		<Unit filename="simple_ui/simple_edit_box.cpp" />
 		<Unit filename="simple_ui/simple_edit_box.h" />
 		<Unit filename="simple_ui/simple_label.cpp" />
