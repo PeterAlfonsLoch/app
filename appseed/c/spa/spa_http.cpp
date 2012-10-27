@@ -71,13 +71,15 @@ namespace spa
       }
       else if(i == -2)
       {
+         trace("ms_get_dup failed");
+#ifdef WINDOWS
          DWORD dw = ::GetLastError();
 	      wchar_t lastErrorTxt[1024];
          memset_dup(lastErrorTxt, 0, sizeof(lastErrorTxt));
-	      FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM|FORMAT_MESSAGE_IGNORE_INSERTS,NULL,dw,0,lastErrorTxt,1024,NULL);
-         trace("ms_get_dup failed");
+	      FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, dw, 0, lastErrorTxt, 1024, NULL);
          trace(vsstring(lastErrorTxt));
          trace("ms_get_dup failed : GetLastErrorCode : " + itoa_dup(dw));
+#endif
       }
       else
       {

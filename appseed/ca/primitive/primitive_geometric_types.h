@@ -43,7 +43,7 @@ public:
 
 typedef unsigned char      byte;
 typedef unsigned short     word;
-typedef unsigned long      dword;
+//typedef unsigned long      dword;
 typedef __uint64_t         qword;
 typedef unsigned int       uint;
 typedef dword_ptr          dwordptr;

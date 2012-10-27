@@ -127,6 +127,13 @@ namespace ca
 
 
 
+#ifndef WINDOWS
+#define VK_TAB 1
+#define VK_RETURN 2
+#define VK_BACK 3
+#define VK_DELETE 6
+#define VK_SPACE 9
+#endif
 
 
 #include "c/os/os.h"

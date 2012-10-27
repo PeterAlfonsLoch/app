@@ -1080,14 +1080,16 @@ void frame_window::OnSysCommand(UINT nID, LPARAM lParam)
 // trans   user::frame_window_interface::OnSysCommand(nID, lParam);
 }
 
+
+#ifdef WINDOWSEX
+
+
 /////////////////////////////////////////////////////////////////////////////
 // default frame processing
 
 // default drop processing will attempt to open the file
 void frame_window::OnDropFiles(HDROP hDropInfo)
 {
-
-#ifdef WINDOWS
 
    SetActiveWindow();      // activate us first !
    UINT nFiles = ::DragQueryFile(hDropInfo, (UINT)-1, NULL, 0);
@@ -1106,13 +1108,10 @@ void frame_window::OnDropFiles(HDROP hDropInfo)
    }
    ::DragFinish(hDropInfo);
 
-#else
-
-   throw not_implemented(get_app());
-
-#endif
 
 }
+
+#endif
 
 // query end session for main frame will attempt to close it all down
 bool frame_window::OnQueryEndSession()

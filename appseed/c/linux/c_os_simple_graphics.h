@@ -1,19 +1,19 @@
 #pragma once
 
 
-class CLASS_DECL_c simple_graphics
+class CLASS_DECL_c os_simple_graphics
 {
 public:
 
 
-   Display *               m_pdisplay;
+   cairo_t *               m_pdc; // Cairo drawing context
    int                     m_iScreen;
    Drawable                m_d;
    GC                      m_gc;
    Colormap                m_colormap;
    simple_pen              m_pen;
    simple_brush            m_brush;
-   simple_font             m_font;
+   os_simple_font          m_font;
    simple_bitmap           m_bitmap;
 /*   HWND                    m_hwnd;
    HBITMAP                 m_hbitmapOld;
@@ -23,22 +23,22 @@ public:
    int                     m_iType;
    PAINTSTRUCT             m_ps;*/
    int                     m_iType;
-   bool                    m_bForeColor;
-   bool                    m_bBackColor;
-   long unsigned int       m_uiForeColor;
-   long unsigned int       m_uiBackColor;
-   COLORREF                m_crTextColor;
 
 
-   simple_graphics();
-   ~simple_graphics();
+   os_simple_graphics();
+   ~os_simple_graphics();
+
+
+   bool is_null();
+
+
 
 
    // aim to be all-platoform - but if there is no equivalent because no op : create empty method
-   bool create();
+//   bool create();
    bool destroy();
    bool bit_blt(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, DWORD rop);
-   bool alpha_blend(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf);
+//   bool alpha_blend(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf);
    bool create_from_bitmap(simple_bitmap & b);
    bool detach_bitmap();
    void fill_solid_rect(LPCRECT lpRect, COLORREF clr);
@@ -46,17 +46,32 @@ public:
    bool select(simple_brush & brush);
    bool select(simple_pen & brush);
    bool text_out(int x, int y, const char * pszUtf8, int iLen = -1);
-   bool fill_rect(LPCRECT lpcrect, simple_brush & brush);
    bool blend_bitmap_data(int x, int y, int cx, int cy, COLORREF * pdata);
    bool rectangle(LPCRECT lpcrect);
    SIZE get_text_extent(const char * psz, int iLen = -1);
-   bool set_text_color(COLORREF cr);
+//   bool set_text_color(COLORREF cr);
 
    // may be multi-platform
-   bool create(simple_graphics & g);
-   bool create_from_screen();
+   //bool create(simple_graphics & g);
+   //bool create_from_screen();
    bool set_offset(int x, int y);
    bool offset(int x, int y);
+
+
+   bool set_alpha_mode(::ca::e_alpha_mode emode);
+
+   bool draw_path(simple_path & path, simple_pen & pen);
+   bool fill_path(simple_path & path, simple_brush & brush);
+
+
+   bool draw_line(int x1, int y1, int x2, int y2, simple_pen & pen);
+   bool draw_rect(LPCRECT lpcrect, simple_pen & pen);
+   bool fill_rect(LPCRECT lpcrect, simple_brush & brush);
+   bool fill_polygon(LPPOINT lpa, int iCount, ::ca::e_fill_mode emode);
+
+   bool replace_clip(simple_path & path);
+   bool exclude_clip(simple_path & path);
+   bool replace_clip(const RECT & rect);
 
 
    // platform-specific
@@ -65,16 +80,14 @@ public:
    bool from_window(HWND hwnd);
    bool from_window_paint(HWND hwnd, LPRECT lprectPaint = NULL);
    bool reference_os_data(HDC hdc);
-   XFontStruct * get_font(simple_font & font);
-   XFontStruct * get_font();
-   void select_brush();
-   void select_brush(simple_brush & brush);
-   void select_pen();
-   void select_pen(simple_pen & pen);
-   long unsigned int alloc_color(COLORREF cr);
-   bool free_color(long unsigned int pixel);
-   void set_foreground(COLORREF cr);
-   void set_background(COLORREF cr);
+
+   bool set(simple_font & font);
+   bool set(simple_brush & brush);
+   bool set(simple_pen & brush);
+   bool set(simple_path & path);
+   bool set(os_simple_path::element & e);
+   bool set(os_simple_path::arc & a);
+   bool set(os_simple_path::line & l);
 
 
 };

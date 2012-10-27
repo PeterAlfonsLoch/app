@@ -24,26 +24,28 @@ void set(XColor & color, COLORREF cr)
 
 
 
-simple_graphics::simple_graphics()
+os_simple_graphics::os_simple_graphics()
 {
 
-   m_pdisplay     = NULL;
-
-   m_iScreen      = 0;
-
-   m_bForeColor   = false;
-
-   m_bBackColor   = false;
+   m_pdc           = NULL;
 
 }
 
 
-simple_graphics::~simple_graphics()
+os_simple_graphics::~os_simple_graphics()
 {
 
 }
 
-bool simple_graphics::create(HDC hdc)
+
+bool os_simple_graphics::is_null()
+{
+
+      return m_pdc == NULL;
+
+}
+
+bool os_simple_graphics::create(HDC hdc)
 {
 
    if(m_iType != 0)
@@ -62,7 +64,7 @@ bool simple_graphics::create(HDC hdc)
 
 }
 
-bool simple_graphics::create_from_bitmap(simple_bitmap & b)
+bool os_simple_graphics::create_from_bitmap(simple_bitmap & b)
 {
 
    if(m_iType != 0)
@@ -92,7 +94,7 @@ bool simple_graphics::create_from_bitmap(simple_bitmap & b)
 
 }
 
-bool simple_graphics::detach_bitmap()
+bool os_simple_graphics::detach_bitmap()
 {
 
    if(m_iType != 0)
@@ -116,7 +118,7 @@ bool simple_graphics::detach_bitmap()
 
 }
 
-bool simple_graphics::from_entire_window(HWND hwnd)
+bool os_simple_graphics::from_entire_window(HWND hwnd)
 {
 
    if(m_iType != 0)
@@ -136,7 +138,7 @@ bool simple_graphics::from_entire_window(HWND hwnd)
 }
 
 
-bool simple_graphics::from_window(HWND hwnd)
+bool os_simple_graphics::from_window(HWND hwnd)
 {
 
    if(m_iType != 0)
@@ -155,7 +157,7 @@ bool simple_graphics::from_window(HWND hwnd)
 
 }
 
-bool simple_graphics::from_window_paint(HWND hwnd, LPRECT lprectPaint)
+bool os_simple_graphics::from_window_paint(HWND hwnd, LPRECT lprectPaint)
 {
 
    if(m_iType != 0)
@@ -181,7 +183,7 @@ bool simple_graphics::from_window_paint(HWND hwnd, LPRECT lprectPaint)
 
 }
 
-bool simple_graphics::reference_os_data(HDC hdc)
+bool os_simple_graphics::reference_os_data(HDC hdc)
 {
 
    m_iType = 5;
@@ -192,39 +194,12 @@ bool simple_graphics::reference_os_data(HDC hdc)
 
 }
 
-XFontStruct * simple_graphics::get_font(simple_font & font)
+
+
+/*bool os_simple_graphics::create()
 {
 
-   vsstring strName;
-
-   int i = 0;
-
-   XFontStruct * pfont = NULL;
-
-   while(true)
-   {
-
-      strName = font.get_name(i);
-
-      if(i >= 32 || strName.is_empty())
-         break;
-
-      pfont = XLoadQueryFont(m_pdisplay, strName);
-
-      if(pfont != NULL)
-         break;
-
-   }
-
-   return pfont;
-
-}
-
-
-bool simple_graphics::create()
-{
-
-   simple_graphics g;
+   os_simple_graphics g;
 
    g.from_window(NULL);
 
@@ -232,7 +207,7 @@ bool simple_graphics::create()
 
 }
 
-bool simple_graphics::create(simple_graphics & g)
+bool os_simple_graphics::create(os_simple_graphics & g)
 {
 
 //   return create(g.m_hdc);
@@ -240,14 +215,15 @@ return false;
 
 }
 
-bool simple_graphics::create_from_screen()
+bool os_simple_graphics::create_from_screen()
 {
 
    return from_window(NULL);
 
 }
+*/
 
-bool simple_graphics::select(simple_font & font)
+bool os_simple_graphics::select(simple_font & font)
 {
 
    m_font = font;
@@ -256,7 +232,7 @@ bool simple_graphics::select(simple_font & font)
 
 }
 
-bool simple_graphics::select(simple_brush & brush)
+bool os_simple_graphics::select(simple_brush & brush)
 {
 
    m_brush = brush;
@@ -265,7 +241,7 @@ bool simple_graphics::select(simple_brush & brush)
 
 }
 
-bool simple_graphics::select(simple_pen & pen)
+bool os_simple_graphics::select(simple_pen & pen)
 {
 
    m_pen = pen;
@@ -274,7 +250,7 @@ bool simple_graphics::select(simple_pen & pen)
 
 }
 
-bool simple_graphics::destroy()
+bool os_simple_graphics::destroy()
 {
 
    bool bOk = true;
@@ -350,19 +326,6 @@ bool simple_graphics::destroy()
 
    }
 
-   if(m_bForeColor)
-   {
-
-      free_color(m_uiForeColor);
-
-   }
-
-   if(m_bBackColor)
-   {
-
-      free_color(m_uiBackColor);
-
-   }
 
 //   m_hwnd   = NULL;
 
@@ -374,7 +337,7 @@ bool simple_graphics::destroy()
 
 }
 
-bool simple_graphics::set_offset(int x, int y)
+bool os_simple_graphics::set_offset(int x, int y)
 {
 
    POINT ptViewport;
@@ -386,7 +349,7 @@ bool simple_graphics::set_offset(int x, int y)
 
 }
 
-bool simple_graphics::offset(int x, int y)
+bool os_simple_graphics::offset(int x, int y)
 {
 
    POINT ptViewport;
@@ -399,7 +362,7 @@ bool simple_graphics::offset(int x, int y)
 }
 
 
-bool simple_graphics::bit_blt(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, DWORD rop)
+bool os_simple_graphics::bit_blt(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, DWORD rop)
 {
 
 //   return ::BitBlt(m_hdc, x, y, cx, cy, gSrc.m_hdc, x1, y1, rop) != FALSE;
@@ -408,7 +371,7 @@ return false;
 
 }
 
-bool simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORREF * pdata)
+bool os_simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORREF * pdata)
 {
 
    /*try
@@ -442,63 +405,27 @@ bool simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORREF *
 
 }
 
-SIZE simple_graphics::get_text_extent(const char * psz, int iLen)
+SIZE os_simple_graphics::get_text_extent(const char * psz, int iLen)
 {
 
-   SIZE size;
+   vsstring str(psz, iLen);
 
-   size.cx = Xutf8TextEscapement(m_font.m_fontset, psz, iLen);
+   cairo_text_extents_t ex;
 
-	size.cy = m_font.m_iAscent + m_font.m_iDescent;
+   cairo_text_extents(m_pdc, str, &ex);
+
+	SIZE size;
+
+	size.cx = ex.width;
+
+	size.cy = ex.height;
 
    return size;
 
 }
 
-void simple_graphics::select_brush(simple_brush & brush)
-{
 
-   set_foreground(brush.m_cr);
-
-}
-
-
-void simple_graphics::select_brush()
-{
-
-   select_brush(m_brush);
-
-}
-
-void simple_graphics::select_pen(simple_pen & pen)
-{
-
-   set_foreground(pen.m_cr);
-
-}
-
-
-void simple_graphics::select_pen()
-{
-
-   select_pen(m_pen);
-
-}
-
-long unsigned int simple_graphics::alloc_color(COLORREF cr)
-{
-
-   XColor color;
-
-   set(color, cr);
-
-   XAllocColor(m_pdisplay, m_colormap, &color);
-
-   return color.pixel;
-
-}
-
-bool simple_graphics::rectangle(LPCRECT lpcrect)
+bool os_simple_graphics::rectangle(LPCRECT lpcrect)
 {
 
    bool bOk1 = true;
@@ -506,9 +433,23 @@ bool simple_graphics::rectangle(LPCRECT lpcrect)
    if(m_brush.m_iStock != NULL_BRUSH)
    {
 
-      select_brush();
+      set(m_brush);
 
-      bOk1 = XFillRectangle(m_pdisplay, m_d, m_gc, lpcrect->left, lpcrect->top, lpcrect->right - lpcrect->left, lpcrect->bottom - lpcrect->top) != 0;
+      cairo_rectangle(m_pdc, lpcrect->left, lpcrect->top, lpcrect->right - lpcrect->left, lpcrect->bottom - lpcrect->top);
+
+      if(m_pen.m_iStock != NULL_PEN)
+      {
+
+         cairo_fill_preserve(m_pdc);
+
+      }
+      else
+      {
+
+         cairo_fill(m_pdc);
+
+      }
+
 
    }
 
@@ -517,9 +458,9 @@ bool simple_graphics::rectangle(LPCRECT lpcrect)
    if(m_pen.m_iStock != NULL_PEN)
    {
 
-      select_pen();
+      set(m_pen);
 
-      bOk2 = XDrawRectangle(m_pdisplay, m_d, m_gc, lpcrect->left, lpcrect->top, lpcrect->right - lpcrect->left, lpcrect->bottom - lpcrect->top) != 0;
+      cairo_stroke(m_pdc);
 
    }
 
@@ -528,63 +469,17 @@ bool simple_graphics::rectangle(LPCRECT lpcrect)
 }
 
 
-bool simple_graphics::free_color(long unsigned int pixel)
+
+bool os_simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
 {
 
-   if(!XFreeColors(m_pdisplay, m_colormap, &pixel, 1, 0))
-      return false;
+   set(m_brush);
+
+   cairo_rectangle(m_pdc, lpcrect->left, lpcrect->top, lpcrect->right - lpcrect->left, lpcrect->bottom - lpcrect->top);
+
+   cairo_fill(m_pdc);
 
    return true;
-
-
-}
-
-void simple_graphics::set_foreground(COLORREF cr)
-{
-
-   if(m_bForeColor)
-   {
-
-      free_color(m_uiForeColor);
-
-      m_bForeColor = false;
-
-   }
-
-   m_uiForeColor = alloc_color(cr);
-
-   m_bForeColor = true;
-
-   XSetForeground(m_pdisplay, m_gc, m_uiForeColor);
-
-}
-
-void simple_graphics::set_background(COLORREF cr)
-{
-
-   if(m_bBackColor)
-   {
-
-      free_color(m_uiBackColor);
-
-      m_bBackColor = false;
-
-   }
-
-   m_uiBackColor = alloc_color(cr);
-
-   m_bBackColor = true;
-
-   XSetBackground(m_pdisplay, m_gc, m_uiBackColor);
-
-}
-
-bool simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
-{
-
-   select_brush(brush);
-
-   return XFillRectangle(m_pdisplay, m_d, m_gc, lpcrect->left, lpcrect->top, lpcrect->right - lpcrect->left, lpcrect->bottom - lpcrect->top) != 0;
 
 }
 
@@ -630,7 +525,8 @@ break;
 }
 */
 
-bool simple_graphics::set_text_color(COLORREF cr)
+/*
+bool os_simple_graphics::set_text_color(COLORREF cr)
 {
 
    m_crTextColor = cr;
@@ -640,7 +536,10 @@ bool simple_graphics::set_text_color(COLORREF cr)
 
 }
 
-bool simple_graphics::alpha_blend(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf)
+
+*/
+/*
+bool os_simple_graphics::alpha_blend(int x, int y, int cx, int cy, os_simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf)
 {
 
    //return ::AlphaBlend(m_hdc, x, y, cx, cy, gSrc.m_hdc, x1, y1, cx1, cy1, bf) != FALSE;
@@ -648,31 +547,30 @@ bool simple_graphics::alpha_blend(int x, int y, int cx, int cy, simple_graphics 
    return false;
 
 }
+*/
 
-void simple_graphics::fill_solid_rect(LPCRECT lpRect, COLORREF cr)
+void os_simple_graphics::fill_solid_rect(LPCRECT lpRect, COLORREF cr)
 {
 
    simple_brush brush;
 
-   brush.create_solid(cr);
+   brush.create_solid((simple_graphics &) *this, cr);
 
    fill_rect(lpRect, brush);
 
 }
 
 
-bool simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
+bool os_simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
 {
 
-   if(!m_font.m_bUpdated)
-   {
+   cairo_move_to(m_pdc, x, y);
 
-      if(m_font.update(m_pdisplay))
-         return false;
+   set(m_brush);
 
-   }
+   vsstring str(pszUtf8, iSize);
 
-   Xutf8DrawString(m_pdisplay, m_d, m_font.m_fontset, m_gc, x, y, pszUtf8, iSize);
+   cairo_show_text(m_pdc, str);
 
    return true;
 
@@ -680,3 +578,162 @@ bool simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
 
 
 
+bool os_simple_graphics::set_alpha_mode(::ca::e_alpha_mode emode)
+{
+   switch(emode)
+   {
+    case ::ca::alpha_mode_set:
+         cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
+         return true;
+   case ::ca::alpha_mode_blend:
+         cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
+         default:;
+
+   }
+
+   return false;
+}
+
+
+
+bool os_simple_graphics::draw_path(simple_path & path, simple_pen & pen)
+{
+
+   set(path);
+
+   set(pen);
+
+   cairo_stroke(m_pdc);
+
+   return true;
+
+}
+
+bool os_simple_graphics::fill_path(simple_path & path, simple_brush & brush)
+{
+
+   set(path);
+
+   set(brush);
+
+   cairo_fill(m_pdc);
+
+   return true;
+
+}
+
+
+bool os_simple_graphics::set(simple_font & font)
+{
+
+   cairo_select_font_face(m_pdc, font.m_strFamily, CAIRO_FONT_SLANT_NORMAL, font.m_weight);
+
+   cairo_set_font_size(m_pdc, font.m_dSize);
+
+}
+
+bool os_simple_graphics::set(simple_brush & brush)
+{
+
+   cairo_set_source_rgba(m_pdc, GetRValue(brush.m_cr) / 255.0, GetGValue(brush.m_cr) / 255.0, GetBValue(brush.m_cr) / 255.0, GetAValue(brush.m_cr) / 255.0);
+
+}
+
+bool os_simple_graphics::set(simple_pen & pen)
+{
+
+   cairo_set_source_rgba(m_pdc, GetRValue(pen.m_cr) / 255.0, GetGValue(pen.m_cr) / 255.0, GetBValue(pen.m_cr) / 255.0, GetAValue(pen.m_cr) / 255.0);
+
+   cairo_set_line_width(m_pdc, pen.m_iWidth);
+
+}
+
+bool os_simple_graphics::set(simple_path & path)
+{
+
+   for(int i = 0; i < path.m_elementa.get_count(); i++)
+   {
+
+      set(path.m_elementa[i]);
+
+   }
+
+   if(path.m_efillmode == ::ca::fill_mode_alternate)
+   {
+
+      cairo_set_fill_rule(m_pdc, CAIRO_FILL_RULE_EVEN_ODD);
+
+   }
+   else
+   {
+
+      cairo_set_fill_rule(m_pdc, CAIRO_FILL_RULE_WINDING);
+
+   }
+
+
+   return true;
+
+}
+
+
+bool os_simple_graphics::set(simple_path::element & e)
+{
+
+   switch(e.m_etype)
+   {
+   case simple_path::element::type_arc:
+      set(e.m_arc);
+      break;
+   case simple_path::element::type_line:
+      set(e.m_line);
+      break;
+   case simple_path::element::type_close:
+      cairo_close_path(m_pdc);
+      break;
+   default:
+      throw "unexpected simple os graphics element type";
+   }
+
+   return false;
+
+}
+
+bool os_simple_graphics::set(simple_path::arc & a)
+{
+
+   cairo_translate(m_pdc, a.m_xCenter, a.m_yCenter);
+
+   cairo_scale(m_pdc, 1.0, a.m_dRadiusY / a.m_dRadiusX);
+
+   cairo_arc(m_pdc, 0.0, 0.0, a.m_dRadiusX, a.m_dAngle1, a.m_dAngle2);
+
+   cairo_scale(m_pdc, 1.0, a.m_dRadiusX / a.m_dRadiusY);
+
+   cairo_translate(m_pdc, -a.m_xCenter, -a.m_yCenter);
+
+   return true;
+
+}
+
+bool os_simple_graphics::set(simple_path::line & l)
+{
+
+   if(cairo_has_current_point(m_pdc))
+   {
+
+      cairo_move_to(m_pdc, l.m_x1, l.m_y1);
+
+   }
+   else
+   {
+
+      cairo_line_to(m_pdc, l.m_x1, l.m_y1);
+
+   }
+
+   cairo_line_to(m_pdc, l.m_x2, l.m_y2);
+
+   return true;
+
+}

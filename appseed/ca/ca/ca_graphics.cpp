@@ -366,8 +366,11 @@ namespace ca
 
    point graphics::MoveTo(POINT point)
    {
+
       pointd pointd = MoveTo((double)point.x, (double)point.y);
-      return class point(pointd.x, pointd.y);
+
+      return ::point(pointd.x, pointd.y);
+
    }
 
    bool graphics::LineTo(POINT point)

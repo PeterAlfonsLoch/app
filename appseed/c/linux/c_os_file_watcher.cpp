@@ -172,17 +172,17 @@ namespace file_watcher
 
 		if(IN_CLOSE_WRITE & action)
 		{
-			watch->m_plistener->handleFileAction(watch->m_id, watch->m_strDirName, filename, Actions::Modified);
+			watch->m_plistener->handle_file_action(watch->m_id, watch->m_strDirName, filename, action_modify);
 		}
 
 		if(IN_MOVED_TO & action || IN_CREATE & action)
 		{
-			watch->m_plistener->handleFileAction(watch->m_id, watch->m_strDirName, filename, Actions::Add);
+			watch->m_plistener->handle_file_action(watch->m_id, watch->m_strDirName, filename, action_add);
 		}
 
 		if(IN_MOVED_FROM & action || IN_DELETE & action)
 		{
-			watch->m_plistener->handleFileAction(watch->m_id, watch->m_strDirName, filename, Actions::Delete);
+			watch->m_plistener->handle_file_action(watch->m_id, watch->m_strDirName, filename, action_delete);
 		}
 
 	}

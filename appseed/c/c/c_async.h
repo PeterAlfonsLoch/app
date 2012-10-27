@@ -8,7 +8,7 @@ namespace async
    {
    };
 
-   
+
 
 
    struct CLASS_DECL_c token
@@ -170,6 +170,7 @@ namespace async
       typedef void (completion_callback :: *LPFN_COMPLETION_CALLBACK)(task < T > & task, e_status estatus);
 
 
+      T *                           m_presult;
       completion_callback *         m_pcompletioncallback;
       LPFN_COMPLETION_CALLBACK      m_pfncompletioncallback;
       e_status                      m_estatus;
@@ -227,26 +228,26 @@ namespace async
          if(m_pfncompletioncallback == NULL)
             return;
 
-         (m_pcompletioncallback->*m_pfncompletioncallback)(*this, m_estatus); 
+         (m_pcompletioncallback->*m_pfncompletioncallback)(*this, m_estatus);
 
       }
 
       virtual int run()
-      { 
-      
-         defer_call_completion(status_complete); 
-         
+      {
+
+         defer_call_completion(status_complete);
+
          return 0;
-      
+
       }
 
       virtual T * wait()
-      { 
-         
+      {
+
          ::thread_layer::wait_thread();
 
          return m_presult;
-      
+
       }
 
       virtual void close()
@@ -317,7 +318,7 @@ namespace async
 
 
 template < typename T >
-class waiter_for_async_task 
+class waiter_for_async_task
 {
 public:
 
@@ -329,7 +330,7 @@ public:
    {
 
       m_ptask = ptask;
-   
+
    }
 
 
@@ -337,8 +338,8 @@ public:
    {
 
    }
-   
-   
+
+
    T * wait()
    {
 
@@ -356,7 +357,7 @@ public:
 template < typename T >
 inline  T * wait(::async::task < T > * ptask)
 {
-   
+
    return waiter_for_async_task < T > (ptask).wait();
 
 }

@@ -25,7 +25,7 @@ simple_event::~simple_event()
 {
 
 #ifdef WINDOWS
-   
+
    ::CloseHandle(m_hEvent);
 
 #else
@@ -49,7 +49,7 @@ void simple_event::set_event()
 
 #else
 
-   mutex_lock lockMutex(&m_mutex, true);
+   mutex_lock lockMutex(m_mutex, true);
 
    pthread_cond_wait(&m_cond, &m_mutex.m_mutex);
 
@@ -70,7 +70,7 @@ void simple_event::wait()
 
 #else
 
-   mutex_lock lockMutex(&m_mutex, true);
+   mutex_lock lockMutex(m_mutex, true);
 
    pthread_cond_wait(&m_cond, &m_mutex.m_mutex);
 

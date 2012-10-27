@@ -1,6 +1,5 @@
 #include "framework.h"
 
-
 strsize string_interface::get_length() const
 {
    return 0;
@@ -281,7 +280,11 @@ const char * __cdecl crt_char_traits::StringScanSet(const char * pszBlock,const 
 {
    if(pszMatch == NULL || pszBlock == NULL || *pszBlock == '\0')
       return NULL;
+#ifdef WINDOWS
    return reinterpret_cast< const char * >( _mbspbrk( reinterpret_cast< const unsigned char* >( pszBlock ), reinterpret_cast< const unsigned char* >( pszMatch ) ) );
+#else
+   return reinterpret_cast< const char * >( strpbrk( reinterpret_cast< const char* >( pszBlock ), reinterpret_cast< const char* >( pszMatch ) ) );
+#endif
    /*while(*pszMatch != '\0')
    {
       string strUtf8Char = gen::str::utf8_char(pszMatch);

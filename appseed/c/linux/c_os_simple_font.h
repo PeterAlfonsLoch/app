@@ -1,36 +1,28 @@
 #pragma once
 
 
-class CLASS_DECL_c simple_font
+class CLASS_DECL_c os_simple_font
 {
 public:
 
 
    vsstring                m_strFamily;
-   int                     m_iWeight;
-   int                     m_iSize;
-   XFontSet                m_fontset;
-   bool                    m_bUpdated;
-   Display *               m_pdisplay;
-   int                     m_iAscent;
-   int                     m_iDescent;
+   cairo_font_weight_t     m_weight;
+   double                  m_dSize;
 
 
-   simple_font();
-   ~simple_font();
+   os_simple_font();
+   ~os_simple_font();
 
-   bool create_point(int nPointSize, const char * lpszFaceName, simple_graphics & g);
-   bool create_point_bold(int nPointSize, const char * lpszFaceName, int BOLD, simple_graphics & g);
+   bool create_point(simple_graphics & g, int nPointSize, const char * lpszFaceName, bool bBold = false);
+   bool create_point_bold(simple_graphics & g, int nPointSize, const char * lpszFaceName);
+   bool create_pixel(simple_graphics & g, int nPointSize, const char * lpszFaceName, bool bBold = false);
+   bool create_pixel_bold(simple_graphics & g, int nPointSize, const char * lpszFaceName);
 
    // aim to be all-platoform
    bool destroy();
 
 
-   // platform-specific
-//   bool create_indirect(LPLOGFONT lplf);
-   vsstring get_name(int i);
-   vsstring get_weight(int iWeight);
-   bool update(Display * pdisplay);
 
 };
 

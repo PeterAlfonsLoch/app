@@ -45,10 +45,10 @@ void simple_label::draw_this(simple_graphics & g)
    b.create_solid(g, c);
 
    simple_font f;
-   
-   f.create_pixel(g, height(&m_rect) * 10, "Geneva");
 
-   float fMargin = (height(&m_rect) * ((1.0f - 0.7f) / 2.0f));
+   f.create_pixel(g, height(m_rect) * 10, "Geneva");
+
+   float fMargin = (height(m_rect) * ((1.0f - 0.7f) / 2.0f));
 
    g.select(f);
 

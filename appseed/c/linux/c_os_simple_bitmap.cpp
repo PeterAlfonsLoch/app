@@ -4,14 +4,14 @@
 simple_bitmap::simple_bitmap()
 {
 
-   m_pixmap = 0;
+   m_psurface = NULL;
 
 }
 
 simple_bitmap::~simple_bitmap()
 {
 
-   if(m_pixmap != 0)
+   if(m_psurface != NULL)
    {
 
       destroy();
@@ -61,14 +61,40 @@ bool simple_bitmap::create(int cx, int cy, simple_graphics & g,  COLORREF ** ppd
 bool simple_bitmap::create_from_data(int cx, int cy, COLORREF * pdata, simple_graphics & g)
 {
 
-   m_pdisplay = g.m_pdisplay;
-
-   m_pixmap = XCreatePixmapFromBitmapData(g.m_pdisplay, g.m_d, (char *) pdata, cx, cy, BlackPixel(g.m_pdisplay, g.m_iScreen), WhitePixel(g.m_pdisplay, g.m_iScreen), 32);
-
-   if(m_pixmap == 0)
+   if(m_psurface != NULL)
    {
 
-      m_pdisplay = NULL;
+      destroy();
+
+   }
+
+   int iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, cx);
+
+   m_mem.allocate(iStride * cy);
+
+   if(cx * 4 != iStride)
+   {
+
+      int iW = cx * 4;
+
+      for(int i = 0; i < cy; i++)
+      {
+
+         memcpy(&((byte *) m_mem.get_data())[iStride * i], &pdata[iW * i], iW);
+
+      }
+
+   }
+   else
+   {
+      memcpy(m_mem.get_data(), pdata, iStride * cy);
+   }
+
+
+   m_psurface = cairo_image_surface_create_for_data((unsigned char *) m_mem.get_data(), CAIRO_FORMAT_ARGB32, cx, cy, iStride);
+
+   if(m_psurface == NULL)
+   {
 
       return false;
 
@@ -84,16 +110,11 @@ bool simple_bitmap::create_from_data(int cx, int cy, COLORREF * pdata, simple_gr
 bool simple_bitmap::destroy()
 {
 
-   if(m_pixmap == NULL)
+   if(m_psurface == NULL)
       return true;
 
 
-   bool bOk = ::XFreePixmap(m_pdisplay, m_pixmap) != FALSE;
-
-   m_pixmap = 0;
-
-   if(!bOk)
-      return false;
+   cairo_surface_destroy(m_psurface);
 
    return true;
 

@@ -6,8 +6,7 @@ class CLASS_DECL_c simple_bitmap
 public:
 
 
-   Display *               m_pdisplay;
-   Pixmap                  m_pixmap;
+   cairo_surface_t *       m_psurface;
    simple_memory           m_mem;
 
 

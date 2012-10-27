@@ -7,7 +7,7 @@
 
 bool __internal_pump_message()
 {
-
+#ifdef WINDOWS
 #ifdef METROWIN
 
    throw "todo";
@@ -33,6 +33,7 @@ MSG g_msgSpaAdminWindow;
 		::DispatchMessage(&g_msgSpaAdminWindow);
 //	}*/
 #endif
+#endif
   return TRUE;
 }
 
@@ -41,19 +42,7 @@ MSG g_msgSpaAdminWindow;
 
 
 
-wchar_t * wfy(const char * pszUtf8)
-{
-   int iSize = MultiByteToWideChar(CP_UTF8, 0, pszUtf8, (int) strlen_dup(pszUtf8), NULL, NULL);
-   wchar_t * push = new wchar_t[iSize + 1];
-   MultiByteToWideChar(CP_UTF8, 0, pszUtf8, (int) strlen_dup(pszUtf8), push, iSize + 1);
-   push[iSize] = L'\0';
-   return push;
-}
 
-void wfree(wchar_t * push)
-{
-   delete [] push;
-}
 
 
 

@@ -489,9 +489,19 @@ bool db_long_set::MoveWindow_(const char * lpKey, ::ca::window *pWnd)
 
 bool db_long_set::SaveWindowRect_(const char * lpKey, ::ca::window *pWnd)
 {
+
+#ifdef WINDOWSEX
+
    WINDOWPLACEMENT wp;
    pWnd->GetWindowPlacement(&wp);
    return save(lpKey , &wp.rcNormalPosition);
+
+#else
+
+   throw todo(::ca::get_thread_app());
+
+#endif
+
 }
 
 /*HRESULT db_long_set::OpenQuery(CDataSource *pdb, const char * lpcszSql)
@@ -632,6 +642,9 @@ return hr;
 
 bool db_long_set::SetWindowPlacement(const char * lpKey, ::ca::window *pWnd)
 {
+
+#ifdef WINDOWSEX
+
    WINDOWPLACEMENT wp;
    if(!load(lpKey , &wp.rcNormalPosition))
       return false;
@@ -655,10 +668,20 @@ bool db_long_set::SetWindowPlacement(const char * lpKey, ::ca::window *pWnd)
       return false;
    pWnd->SetWindowPlacement(&wp);
    return true;
+
+#else
+
+   throw todo(::ca::get_thread_app());
+
+#endif
+
 }
 
 bool db_long_set::SaveWindowPlacement(const char * lpKey, ::ca::window *pWnd)
 {
+
+#ifdef WINDOWSEX
+
    WINDOWPLACEMENT wp;
    pWnd->GetWindowPlacement(&wp);
    if(!save(lpKey , &wp.rcNormalPosition))
@@ -680,9 +703,20 @@ bool db_long_set::SaveWindowPlacement(const char * lpKey, ::ca::window *pWnd)
    strKey += ".flags";
    if(!save(strKey, (int) wp.flags))
       return false;
+
    return true;
 
+#else
+
+   throw todo(::ca::get_thread_app());
+
+#endif
+
 }
+
+
+#ifdef WINDOWSEX
+
 
 bool db_long_set::save(const char * lpKey, WINDOWPLACEMENT & wp)
 {
@@ -708,6 +742,7 @@ bool db_long_set::save(const char * lpKey, WINDOWPLACEMENT & wp)
       return false;
 
    return true;
+
 }
 
 bool db_long_set::load(const char * lpKey, WINDOWPLACEMENT & wp)
@@ -731,6 +766,10 @@ bool db_long_set::load(const char * lpKey, WINDOWPLACEMENT & wp)
 
    return true;
 }
+
+
+#endif
+
 
 
 bool db_long_set::load(const char * lpKey, LPPOINT lpPoint)

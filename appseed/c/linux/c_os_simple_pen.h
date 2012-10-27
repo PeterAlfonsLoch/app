@@ -6,8 +6,15 @@ class CLASS_DECL_c simple_pen
 public:
 
 
+   enum e_type
+   {
+      type_solid,
+      type_stock,
+   };
+
+
    int                  m_iStock;
-   int                  m_iStyle;
+   e_type               m_etype;
    int                  m_iWidth;
    COLORREF             m_cr;
 
@@ -15,7 +22,7 @@ public:
    simple_pen();
    ~simple_pen();
 
-   bool create_solid(int iWidth, COLORREF cr);
+   bool create_solid(simple_graphics & g, COLORREF cr, int iWidth = 1);
    bool from_stock(int iId);
 
    bool destroy();

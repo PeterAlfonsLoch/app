@@ -278,6 +278,8 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
+#ifdef WINDOWSEX
+
    bool window::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
    {
       UNREFERENCED_PARAMETER(lpwndpl);
@@ -289,6 +291,8 @@ namespace ca
       UNREFERENCED_PARAMETER(lpwndpl);
       throw interface_only_exception(get_app());
    }
+
+#endif
 
    /////////////////////////////////////////////////////////////////////////////
    // window will delegate owner draw messages to self drawing controls
@@ -1649,12 +1653,12 @@ namespace ca
    {
       throw interface_only_exception(get_app());
    }
-#endif
 
    void window::OnDropFiles(HDROP)
    {
       throw interface_only_exception(get_app());
    }
+#endif
 
    void window::OnPaletteIsChanging(window*)
    {

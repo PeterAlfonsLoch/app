@@ -384,3 +384,5 @@ bool simple_graphics::round_rect(const RECT & r, int radius)
    return bOk1 && bOk2;
 
 }
+
+

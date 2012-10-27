@@ -1961,6 +1961,8 @@ namespace user
          return m_pimpl->message_handler(pobj);
    }
 
+#ifdef WINDOWSEX
+
    bool interaction::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
    {
       if(m_pimpl == NULL)
@@ -1976,6 +1978,8 @@ namespace user
       else
          return m_pimpl->SetWindowPlacement(lpwndpl);
    }
+
+#endif
 
    bool interaction::pre_create_window(CREATESTRUCT& cs)
    {

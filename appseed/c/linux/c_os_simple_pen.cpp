@@ -5,7 +5,7 @@ simple_pen::simple_pen()
 {
 
    m_iStock = -1;
-   m_iStyle = LineSolid;
+   m_etype = type_solid;
    m_iWidth = 0;
    m_cr = 0;
 
@@ -16,12 +16,12 @@ simple_pen::~simple_pen()
 
 }
 
-bool simple_pen::create_solid(int iWidth, COLORREF cr)
+bool simple_pen::create_solid(simple_graphics & g, COLORREF cr, int iWidth)
 {
 
    m_iStock = -1;
 
-   m_iStyle    = LineSolid;
+   m_etype    = type_solid;
 
    m_iWidth    = iWidth;
 
@@ -49,7 +49,7 @@ bool simple_pen::destroy()
 {
 
    m_iStock = -1;
-   m_iStyle = LineSolid;
+   m_etype = type_solid;
    m_iWidth = 0;
    m_cr = 0;
 
@@ -65,7 +65,7 @@ simple_pen & simple_pen::operator = (const simple_pen & pen)
 
    m_iStock = pen.m_iStock;
 
-   m_iStyle    = pen.m_iStyle;
+   m_etype    = pen.m_etype;
 
    m_iWidth    = pen.m_iWidth;
 

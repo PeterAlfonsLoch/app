@@ -72,7 +72,7 @@ void simple_edit_box::draw_this(simple_graphics & g)
    g.set_alpha_mode(::ca::alpha_mode_blend);
 
    simple_brush br;
-   
+
    br.create_solid(g, ARGB(84 + 49, 255, 255, 233));
 
    g.fill_rect(m_rect, br);
@@ -92,8 +92,6 @@ void simple_edit_box::draw_this(simple_graphics & g)
    g.text_out((int) (m_rect.left + fMargin), (int) (m_rect.top + fMargin), m_strText);
 
 }
-
-
 
 void simple_edit_box::on_char(int iKey, const vsstring & strChar)
 {

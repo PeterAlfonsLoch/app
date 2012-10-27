@@ -4,6 +4,8 @@
 // Ubuntu apt-get install libx11-dev
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+// Ubuntu apt-get install libcairo2-dev
+#include <cairo/cairo.h>
 
 
 
@@ -14,6 +16,11 @@ void set(XColor & color, COLORREF cr);
 #include "c_os_simple_bitmap.h"
 #include "c_os_simple_font.h"
 #include "c_os_simple_pen.h"
+
+
+#include "c_os_simple_path.h"
+
+
 #include "c_os_simple_graphics.h"
 
 

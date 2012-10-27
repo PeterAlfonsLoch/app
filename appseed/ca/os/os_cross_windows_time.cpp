@@ -35,9 +35,9 @@
 #include "nodeapp/operational_system/bare_operational_system.h"
 #include "os_cross_windows_internals.h"
 #define CLASS_DECL_c
-#include "c/c/verisimple_string.h"
-#include "c/c/simple_mutex.h"
-#include "c/c/mutex_lock.h"
+#include "c/c/c_verisimple_string.h"
+#include "c/c/c_simple_mutex.h"
+#include "c/c/c_mutex_lock.h"
 #include <stdarg.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -260,7 +260,7 @@ static LONG TIME_GetBias(void)
 
     utc = time( NULL );
 
-   mutex_lock ml(&g_mutexTz, true);
+   mutex_lock ml(g_mutexTz, true);
 //    RtlEnterCriticalSection( &TIME_tz_section );
     if (utc != last_utc)
     {
@@ -751,7 +751,7 @@ static int init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
     time_t year_start, year_end, tmp, dlt = 0, std = 0;
     int is_dst, current_is_dst;
 
-   mutex_lock ml(&g_mutexTz, true);
+   mutex_lock ml(g_mutexTz, true);
 //    RtlEnterCriticalSection( &TIME_tz_section );
 
     year_start = time(NULL);

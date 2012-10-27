@@ -113,9 +113,9 @@ public:
       return *this += ch;
    }
 
-   verisimple_string & append(char ch, ::count c)
+   verisimple_string & append(char ch, ::int_ptr c)
    {
-      
+
       while(c > 0)
       {
          append(ch);
