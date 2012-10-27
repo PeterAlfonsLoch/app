@@ -242,20 +242,6 @@ namespace datetime
 #define _CTIMESPANFORMATS 3
 
 
-   /*inline string time_span::Format(UINT nFormatID) const
-   {
-   string strFormat;
-   ENSURE(strFormat.load_string(nFormatID));
-   return Format(strFormat);
-   }*/
-
-#if defined(_AFX) && defined(_UNICODE)
-   inline string time_span::Format(const char * pFormat) const
-   {
-      return Format(string(pFormat));
-   }
-#endif
-
 #ifdef __oledb_h__
    inline time::time( const DBTIMESTAMP& dbts, int nDST ) NOTHROW
    {

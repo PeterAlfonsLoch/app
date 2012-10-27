@@ -19,7 +19,7 @@ EXTERN_C bool WINAPI _DllMainCRTStartup(HANDLE hInst, DWORD reason, LPVOID imp)
 	{
 
       initialize_primitive_heap();
-	   _init_atexit();
+	   //_init_atexit();
 	   _init_file();
 	   _initterm(__xc_a, __xc_z);
 
@@ -35,7 +35,7 @@ EXTERN_C bool WINAPI _DllMainCRTStartup(HANDLE hInst, DWORD reason, LPVOID imp)
 
       os_finalize();
 
-      _doexit();
+      //_doexit();
 
       finalize_primitive_heap();
 

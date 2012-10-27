@@ -911,7 +911,11 @@ namespace hotplugin
       else
       {
 
+#ifndef METROWIN
+
          ::small_ipc_channel::close();
+
+#endif
 
          m_phost->m_bReload = true;
 

@@ -188,11 +188,13 @@
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>__C__DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zm384 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalDependencies>DWrite.lib;Msxml6.lib;D3D11.lib;D2D1.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -438,7 +440,6 @@
     <ClCompile Include="c\c_simple_mutex.cpp" />
     <ClCompile Include="c\c_simple_obj.cpp" />
     <ClCompile Include="c\c_simple_shell_launcher.cpp" />
-    <ClCompile Include="c\c_small_ipc_channel.cpp" />
     <ClCompile Include="c\c_sprintf.cpp" />
     <ClCompile Include="c\c_std_file.cpp" />
     <ClCompile Include="c\c_str.cpp" />
@@ -461,6 +462,7 @@
     <ClCompile Include="hotplugin\hotplugin_container_launcher.cpp" />
     <ClCompile Include="hotplugin\hotplugin_host.cpp" />
     <ClCompile Include="hotplugin\hotplugin_plugin.cpp" />
+    <ClCompile Include="metrowin\crypt\c_os_crypt.cpp" />
     <ClCompile Include="metrowin\c_os_crt0dll.cpp" />
     <ClCompile Include="metrowin\c_os_c_dll.cpp" />
     <ClCompile Include="metrowin\c_os_file.cpp" />
@@ -483,7 +485,9 @@
     <ClCompile Include="metrowin\c_os_sockets.cpp" />
     <ClCompile Include="metrowin\c_os_thread.cpp" />
     <ClCompile Include="metrowin\c_os.cpp" />
+    <ClCompile Include="os\os_http.cpp" />
     <ClCompile Include="os\os_process.cpp" />
+    <ClCompile Include="os\os_thread.cpp" />
     <ClCompile Include="simple_graphics\simple_graphics.cpp" />
     <ClCompile Include="simple_graphics\simple_path.cpp" />
     <ClCompile Include="simple_ui\simple_edit_box.cpp" />

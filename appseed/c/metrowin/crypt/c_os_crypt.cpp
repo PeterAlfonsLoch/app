@@ -1,112 +1,37 @@
 #include "framework.h"
-#include <Wincrypt.h>
 
 
 
-bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, const char * pszSalt)
+bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & memSalt)
 {
-   DATA_BLOB DataIn;
-   DATA_BLOB DataOut;
 
-   if(pszSalt == NULL)
-      pszSalt = "";
+   UNREFERENCED_PARAMETER(memSalt);
 
-   DATA_BLOB DataSalt;
-   simple_memory memorySalt;
-   memorySalt.from_string(pszSalt);
-   DataSalt.pbData = (BYTE *) memorySalt.get_data();
-   DataSalt.cbData = (DWORD) memorySalt.get_size();
+   ::Windows::Security::Cryptography::DataProtection::DataProtectionProvider ^ provider = ref new ::Windows::Security::Cryptography::DataProtection::DataProtectionProvider;
 
-   //--------------------------------------------------------------------
-   // Initialize the DataIn structure.
+   ::Windows::Storage::Streams::IBuffer ^ bufferIn = storageEncrypt.get_os_stream_buffer();
 
-   DataIn.pbData = (BYTE *) storageEncrypt.get_data();
-   DataIn.cbData = (DWORD) storageEncrypt.get_size();
+   ::Windows::Storage::Streams::IBuffer ^ bufferOut = wait(provider->UnprotectAsync(bufferIn));
 
-   wchar_t * lpwsz = NULL;
+   storageDecrypt.set_os_stream_buffer(bufferOut);
 
-   //--------------------------------------------------------------------
-   //  Begin protect phase. Note that the encryption key is created
-   //  by the function and is not passed.
+   return true;
 
-   if(CryptUnprotectData(
-      &DataIn,
-      NULL, // A description string
-                                          // to be included with the
-                                          // encrypted data.
-      &DataSalt,                               // Optional entropy not used.
-      NULL,                               // Reserved.
-      NULL,                               // Pass NULL for the
-                                          // prompt structure.
-      0,
-      &DataOut))
-   {
-//      TRACE("crypt::decrypt The encryption phase worked. \n");
-      storageDecrypt.allocate(DataOut.cbData);
-      memcpy(storageDecrypt.get_data(), DataOut.pbData, DataOut.cbData);
-      LocalFree(lpwsz);
-      LocalFree(DataOut.pbData);
-      return true;
-   }
-   else
-   {
-      DWORD dwLastError = GetLastError();
-  //    TRACELASTERROR();
-    //  TRACE("crypt::decrypt Decryption error! (1)");
-      return false;
-   }
 }
 
-bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, const char * pszSalt)
+bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & memSalt)
 {
-   DATA_BLOB DataIn;
-   DATA_BLOB DataOut;
 
-   if(pszSalt == NULL)
-      pszSalt = "";
+   UNREFERENCED_PARAMETER(memSalt);
 
-   DATA_BLOB DataSalt;
-   simple_memory memorySalt;
-   memorySalt.from_string(pszSalt);
-   DataSalt.pbData = (BYTE *) memorySalt.get_data();
-   DataSalt.cbData = (DWORD) memorySalt.get_size();
+   ::Windows::Security::Cryptography::DataProtection::DataProtectionProvider ^ provider = ref new ::Windows::Security::Cryptography::DataProtection::DataProtectionProvider;
 
+   ::Windows::Storage::Streams::IBuffer ^ bufferIn = storageDecrypt.get_os_stream_buffer();
 
-   //--------------------------------------------------------------------
-   // Initialize the DataIn structure.
+   ::Windows::Storage::Streams::IBuffer ^ bufferOut = wait(provider->ProtectAsync(bufferIn));
 
-   DataIn.pbData = (BYTE *) storageDecrypt.get_data();
-   DataIn.cbData = (DWORD) storageDecrypt.get_size();
+   storageEncrypt.set_os_stream_buffer(bufferOut);
 
-//      wchar_t * lpwsz = NULL;
-
-   //--------------------------------------------------------------------
-   //  Begin protect phase. Note that the encryption key is created
-   //  by the function and is not passed.
-
-   if(CryptProtectData(
-         &DataIn,
-         NULL, // A description string
-                                             // to be included with the
-                                             // encrypted data.
-         &DataSalt,                               // Optional entropy not used.
-         NULL,                               // Reserved.
-         NULL,                               // Pass NULL for the
-                                             // prompt structure.
-         0,
-         &DataOut))
-   {
-      //TRACE("crypt::encrypt The encryption phase worked. \n");
-      storageEncrypt.allocate(DataOut.cbData);
-      memcpy(storageEncrypt.get_data(), DataOut.pbData, DataOut.cbData);
-      LocalFree(DataOut.pbData);
-      return true;
-   }
-   else
-   {
-      DWORD dwLastError = GetLastError();
-      //TRACE("crypt::encrypt Encryption error! (1)");
-         return false;
-   }
+   return true;
 
 }

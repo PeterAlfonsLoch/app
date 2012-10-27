@@ -1,6 +1,9 @@
 #pragma once
 
 
+#ifndef METROWIN
+
+
 CLASS_DECL_c int call_async(
    const char * pszPath, 
    const char * pszParam, 
@@ -28,7 +31,13 @@ CLASS_DECL_c int get_current_process_affinity_order();
 
 
 
+#endif
+
+
 
 
 CLASS_DECL_c vsstring get_command_line_param(const char * pszCommandLine, const char * pszParam, const char * pszIfParamValue, const char * pszReplaceParam);
 CLASS_DECL_c vsstring get_command_line_param(const char * pszCommandLine, const char * pszParam);
+
+
+

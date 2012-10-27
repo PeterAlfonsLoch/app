@@ -95,9 +95,13 @@ namespace spa
 
       virtual void deferred_prodevian_redraw();
 
+#ifndef METROWIN
+
       virtual void on_post(small_ipc_rx_channel * prxchannel, int a, int b);
 
       virtual void on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len);
+
+#endif
 
       virtual bool is_installing();
 

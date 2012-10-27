@@ -103,7 +103,7 @@ public:
    int m_iSleepiness;
    int m_iResult;
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
    HANDLE   m_hthread;
    UINT     m_nId;
 #endif

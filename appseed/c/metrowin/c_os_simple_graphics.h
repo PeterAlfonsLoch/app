@@ -25,6 +25,9 @@ public:
    os_simple_graphics();
    ~os_simple_graphics();
 
+
+   bool is_null();
+
    // aim to be all-platoform - but if there is no equivalent because no op : create empty method
    bool create();
    bool destroy();
@@ -36,7 +39,6 @@ public:
    void fill_solid_rect(LPCRECT lpRect, COLORREF clr);
    bool draw_path(simple_path & path, simple_pen & pen);
    bool fill_path(simple_path & path, simple_brush & brush);
-   bool fill_polygon(LPPOINT lpa, int iCount, ::ca::e_fill_mode emode);
    bool select(simple_font & font);
    bool select(simple_brush & brush);
    bool select(simple_pen & brush);
@@ -50,11 +52,12 @@ public:
 
    bool draw_line(int x1, int y1, int x2, int y2, simple_pen & pen);
    bool draw_rect(LPCRECT lpcrect, simple_pen & pen);
+   bool fill_rect(LPCRECT lpcrect, simple_brush & brush);
+   bool fill_polygon(LPPOINT lpa, int iCount, ::ca::e_fill_mode emode);
    bool replace_clip(simple_path & path);
    bool exclude_clip(simple_path & path);
    bool replace_clip(const RECT & rect);
 
-   bool fill_rect(LPCRECT lpcrect, simple_brush & brush);
 
 
    // may be multi-platform

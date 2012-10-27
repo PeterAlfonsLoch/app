@@ -10,7 +10,31 @@
 #include <stdarg.h>
 #endif
 
-#ifdef WINDOWSEX
+#ifdef METROWIN
+
+//_flag values (not the ones used by the normal CRT
+
+_FILE __iob[3];
+
+void _init_file()
+{
+	// STDIN
+	//__iob[0]._base = (char *) create_file("C:\\Temp\\pid\\stdin");
+   __iob[0]._base = (char *) INVALID_HANDLE_VALUE;
+	__iob[0]._flag = _FILE_TEXT;
+
+	// STDOUT
+	__iob[1]._base = (char *) INVALID_HANDLE_VALUE;
+	__iob[1]._flag = _FILE_TEXT;
+
+	// STDERR
+	__iob[2]._base = (char *) INVALID_HANDLE_VALUE;
+	__iob[2]._flag = _FILE_TEXT;
+}
+
+_FILE *__iob_func_dup() {return (_FILE*)__iob;}
+
+#elif defined(WINDOWS)
 
 
 //_flag values (not the ones used by the normal CRT

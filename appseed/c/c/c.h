@@ -107,7 +107,9 @@ namespace ca
 #include "c_launcher.h"
 #include "c_simple_shell_launcher.h"
 
+#ifndef METROWIN
 #include "c_small_ipc_channel.h"
+#endif
 
 #include "c_simple_mutex.h"
 #include "c_simple_event.h"

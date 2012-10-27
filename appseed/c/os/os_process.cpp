@@ -115,3 +115,4 @@ vsstring get_command_line_param(const char * pszCommandLine, const char * pszPar
    return strValue;
 
 }
+

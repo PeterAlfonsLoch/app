@@ -8,9 +8,13 @@ int cube_run(const char * id)
    vsstring strFile;
 
 #ifdef X86
+
    strDir = dir::ca2("\\stage\\x86");
+
 #else
+
    strDir = dir::ca2("\\stage\\x64");
+
 #endif
 
    strFile = strDir;
@@ -21,7 +25,15 @@ int cube_run(const char * id)
    strParam = ": app=";
    strParam += id;
 
+#ifdef METROWIN
+
+   throw "todo";
+
+#else
+
    call_async(strFile, strParam, strDir, SW_SHOW);
+
+#endif
 
    return 0;
 

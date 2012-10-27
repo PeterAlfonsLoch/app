@@ -557,7 +557,7 @@ RetryHost:
          set_progress(0.7);
 
          simple_uint_array dwa;
-
+#ifndef METROWIN
 #ifdef X86
          dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\c.dll"));
          dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\ca.dll"));
@@ -572,6 +572,7 @@ RetryHost:
          //dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x64\\iexca2.dll"));
 #endif
          // TODO: simular virtualmente a cópia dos arquivos também, se tiver aquivo travado, também retornar
+#endif
 
 
 #ifdef WINDOWSEX
@@ -2317,6 +2318,12 @@ RetryHost:
          vsstring strStage;
          strStage = dir::path(dir::ca2(),strExec.substr(16));
 
+#ifdef METROWIN
+
+         throw "todo";
+
+#else
+
          simple_shell_launcher launcher1(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
 
          launcher1.execute();
@@ -2324,6 +2331,8 @@ RetryHost:
          simple_shell_launcher launcher2(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : install usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
 
          launcher2.execute();
+
+#endif
 
       }
       else if(strExec.substr(0, 10) == "install_ex")
@@ -2335,9 +2344,17 @@ RetryHost:
          strStage = dir::ca2();
          strStage = dir::path(strStage, str3);
 
+#ifdef METROWIN
+
+         throw "todo";
+
+#else
+
          simple_shell_launcher launcher(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
 
          launcher.execute();
+
+#endif
 
       }
       return true;
@@ -2347,10 +2364,18 @@ RetryHost:
    CLASS_DECL_c void send_spaboot_install_post(int a, int b)
    {
 
+#ifdef METROWIN
+
+      throw "todo";
+
+#else
+
       small_ipc_tx_channel txchannel;
 
       if(!txchannel.open("ca2/fontopus/ccvotagus/spaboot_install_callback")) 
          return;
+
+#endif
 
 #if defined(WINDOWSEX)
        

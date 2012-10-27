@@ -48,7 +48,16 @@ namespace spa
       m_iEdge                 = -1;
       m_bAppStarted           = false;
       m_pbReady               = NULL;
+
+#ifdef METROWIN
+
+      throw "todo"; // small_ipc_channel
+
+#else
+
       m_dwTimeout             = (1984 + 1977) * 11;
+
+#endif
 
       m_bLogged               = false;
       m_bLogin                = false;
@@ -142,6 +151,12 @@ namespace spa
 
    bool plugin::thread_start_ca2_on_idle()
    {
+
+#ifdef METROWIN
+
+      throw "todo";
+
+#else
 
       bool bJob = false;
 
@@ -241,6 +256,8 @@ namespace spa
       }
 
       return bJob;
+
+#endif
 
    }
 
@@ -383,6 +400,12 @@ install:
    void plugin::on_paint(simple_graphics & g, LPCRECT lprect)
    {
 
+#ifdef METROWIN
+
+      throw "todo";
+
+#else
+
       if(!is_installing() && is_ca2_installed())
       {
 
@@ -396,6 +419,8 @@ install:
          }
 
       }
+
+#endif
 
 
       RECT rect;
@@ -514,7 +539,15 @@ install:
          msg.wParam = wparam;
          msg.lParam = lparam;
 
+#ifdef METROWIN
+
+         throw "todo";
+
+#else
+
          ensure_tx(::hotplugin::message_message, &msg, sizeof(msg));
+
+#endif
 
       }
       else
@@ -701,6 +734,9 @@ install:
 
    }
 
+#ifndef METROWIN
+
+
    void plugin::on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len)
    {
 
@@ -756,6 +792,7 @@ install:
 
    }
 
+#endif
 
    void plugin::set_window_rect(LPCRECT lpcrect)
    {
@@ -765,7 +802,15 @@ install:
       if(!is_installing() && is_ca2_installed())
       {
 
+#ifdef METROWIN
+
+         throw "todo";
+
+#else
+
          ensure_tx(::hotplugin::message_set_window, (void *) lpcrect, sizeof(RECT));
+
+#endif
 
       }
 

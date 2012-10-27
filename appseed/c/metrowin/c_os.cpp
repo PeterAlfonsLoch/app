@@ -2,7 +2,7 @@
 #include <regex>
 
 
-CLASS_DECL_c Platform::String ^ m_str(const char * psz)
+CLASS_DECL_c Platform::String ^ rtstr(const char * psz)
 {
    
    return ref new Platform::String(wstring(psz));

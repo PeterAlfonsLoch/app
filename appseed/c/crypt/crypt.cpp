@@ -1,8 +1,9 @@
 #include "framework.h"
+#ifndef METROWIN
 #include <openssl/ssl.h>
 #include <openssl/md5.h>
 #include <openssl/err.h>
-
+#endif
 
 CLASS_DECL_c bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & key);
 

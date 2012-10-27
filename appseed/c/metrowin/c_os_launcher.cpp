@@ -13,7 +13,15 @@ bool launcher::start()
 
    vsstring strParams = get_params();
 
+#ifdef METROWIN
+
+   throw "todo";
+
+#else
+
    call_async(strPath, strParams, strDir, SW_HIDE);
+
+#endif
 
    return true;
 

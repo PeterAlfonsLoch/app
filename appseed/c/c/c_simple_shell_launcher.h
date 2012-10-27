@@ -1,6 +1,9 @@
 #pragma once
 
 
+#ifndef METROWIN
+
+
 // created near revision 4405
 // this type information can be used with the information that the class below is replacing Shell Execute calls from windows original implementations,
 // to detect erronous adaptations of replacement
@@ -66,3 +69,4 @@ public:
 
 
 
+#endif

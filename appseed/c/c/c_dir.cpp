@@ -477,6 +477,18 @@ void dir::ls(stra_dup & stra, const char *psz)
 
    closedir(dirp);
 
+#elif defined(METROWIN)
+
+   ::Windows::Storage::StorageFolder ^ folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(rtstr(psz)));
+
+   ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ a = wait(folder->GetItemsAsync());
+
+   for(int i = 0; i < a->Size; i++)
+   {
+      stra.add(begin(a->GetAt(i)->Path));
+   }
+
+
 #else
 
    WIN32_FIND_DATA FindFileData;
@@ -528,6 +540,18 @@ void dir::ls_dir(stra_dup & stra, const char *psz)
    }
 
    closedir(dirp);
+
+#elif defined(METROWIN)
+
+   ::Windows::Storage::StorageFolder ^ folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(rtstr(psz)));
+
+   ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
+
+   for(int i = 0; i < a->Size; i++)
+   {
+      stra.add(begin(a->GetAt(i)->Path));
+   }
+
 
 #else
 

@@ -67,6 +67,9 @@
     <Filter Include="Source Files\metrowin">
       <UniqueIdentifier>{8db4b1b9-ec75-4fe9-8f05-8f084c5da0ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\metrowin\crypt">
+      <UniqueIdentifier>{20860910-2aa6-43a2-a318-b36ccce8b952}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -297,9 +300,6 @@
     <ClCompile Include="c\c_simple_shell_launcher.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="c\c_small_ipc_channel.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="c\c_sprintf.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
@@ -419,6 +419,15 @@
     </ClCompile>
     <ClCompile Include="metrowin\c_os.cpp">
       <Filter>Source Files\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="metrowin\crypt\c_os_crypt.cpp">
+      <Filter>Source Files\metrowin\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="os\os_thread.cpp">
+      <Filter>Source Files\os</Filter>
+    </ClCompile>
+    <ClCompile Include="os\os_http.cpp">
+      <Filter>Source Files\os</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

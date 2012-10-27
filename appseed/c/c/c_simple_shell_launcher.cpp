@@ -1,6 +1,8 @@
 #include "framework.h"
 
 
+#ifndef METROWIN
+
 simple_shell_launcher::simple_shell_launcher()
 {
 
@@ -21,6 +23,9 @@ simple_shell_launcher::simple_shell_launcher(HWND hwnd, const char * pszOperatio
    m_iShow              = iShow;
 
 }
+
+
+#endif
 
 
 

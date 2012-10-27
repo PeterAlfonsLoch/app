@@ -50,8 +50,6 @@ bool os_simple_graphics::create_device()
    if(m_iType != 0)
       destroy();
 
-   if(!create_device())
-
    TlsGetD2D1Factory1()->CreateDevice(TlsGetDXGIDevice(), &m_pd);
 
    m_pd->CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS_NONE, &m_pdc);
@@ -63,6 +61,7 @@ bool os_simple_graphics::create_device()
       return false;
    }
 
+   return true;
 
 }
 
@@ -961,6 +960,15 @@ bool os_simple_graphics::exclude_clip(simple_path & path)
    m_pdc->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), m_pclip), m_player);
 
    return true;
+
+}
+
+
+
+bool os_simple_graphics::is_null()
+{
+
+   return m_pdc != NULL;
 
 }
 

@@ -35,9 +35,10 @@ CLASS_DECL_c void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, vsst
 #endif
 
 
+#ifndef METROWIN
 CLASS_DECL_c bool PrintModules(vsstring & strImage, DWORD processID, const char * pszDll );
 CLASS_DECL_c void dll_processes(simple_uint_array & dwa, stra_dup & straProcesses, const char * pszDll);
-
+#endif
 
 CLASS_DECL_c bool file_copy_dup(const char * pszDup, const char * pszSrc, bool bOverwrite = true);
 
