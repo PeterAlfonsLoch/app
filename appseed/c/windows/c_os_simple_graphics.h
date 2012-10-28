@@ -27,7 +27,6 @@ public:
    bool create();
    bool destroy();
    bool bit_blt(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, DWORD rop);
-   bool alpha_blend(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf);
    bool create_from_bitmap(simple_bitmap & b);
    bool detach_bitmap();
    bool select(simple_font & font);
@@ -35,24 +34,25 @@ public:
    bool select(simple_pen & brush);
    bool text_out(int x, int y, const char * pszUtf8, int iLen = -1);
    bool blend_bitmap_data(int x, int y, int cx, int cy, COLORREF * pdata);
-   bool fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode);
    SIZE get_text_extent(const char * psz, int iLen = -1);
    bool set_text_color(COLORREF cr);
 
    bool is_null();
-   
-   bool draw_line(int x1, int y1, int x2, int y2, simple_pen & pen);
+   bool set_alpha_mode(::ca::e_alpha_mode emode);
    
    bool rectangle(LPCRECT lpcrect);
+   bool draw_line(int x1, int y1, int x2, int y2, simple_pen & pen);
    bool draw_rect(LPCRECT lpcrect, simple_pen & pen);
    bool fill_rect(LPCRECT lpcrect, simple_brush & brush);
    void fill_solid_rect(LPCRECT lpRect, COLORREF clr);
 
 
+   bool fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode);
+
+
    bool draw_path(simple_path & path, simple_pen & pen);
    bool fill_path(simple_path & path, simple_brush & brush);
 
-   bool set_alpha_mode(::ca::e_alpha_mode emode);
 
 
    bool replace_clip(simple_path & path);
