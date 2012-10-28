@@ -1,11 +1,6 @@
 #pragma once
 
 
-#ifdef METROWIN
-#define BYESHYTOULA_STYLE_SOCKS
-#else
-#define BSD_STYLE_SOCKETS
-#endif
 
 
 //#include "config.h"

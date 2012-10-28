@@ -107,9 +107,18 @@ namespace ca
 #include "c_launcher.h"
 #include "c_simple_shell_launcher.h"
 
-#ifndef METROWIN
+
+#ifdef METROWIN
+
+#define BYESHYTOULA_STYLE_SOCKS
+
+#else
+
+#define BSD_STYLE_SOCKETS
 #include "c_small_ipc_channel.h"
+
 #endif
+
 
 #include "c_simple_mutex.h"
 #include "c_simple_event.h"

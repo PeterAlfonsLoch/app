@@ -61,6 +61,12 @@
 	<File name="ca/ca_file_system.h" open="0" top="0" tabpos="0">
 		<Cursor position="825" topLine="14" />
 	</File>
+	<File name="ca/ca_font.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="4931" topLine="135" />
+	</File>
+	<File name="ca/ca_font.h" open="1" top="0" tabpos="7">
+		<Cursor position="369" topLine="0" />
+	</File>
 	<File name="ca/ca_graphics.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="583" topLine="10" />
 	</File>
@@ -373,6 +379,9 @@
 	<File name="ex2/ex2_application.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="8961" topLine="308" />
 	</File>
+	<File name="ex2/ex2_folder_watch.h" open="1" top="0" tabpos="4">
+		<Cursor position="0" topLine="0" />
+	</File>
 	<File name="exception/exception.h" open="0" top="0" tabpos="2">
 		<Cursor position="11314" topLine="383" />
 	</File>
@@ -411,6 +420,12 @@
 	</File>
 	<File name="exception/exception_not_implemented.h" open="0" top="0" tabpos="0">
 		<Cursor position="296" topLine="0" />
+	</File>
+	<File name="exception/exception_overflow_error.cpp" open="1" top="0" tabpos="15">
+		<Cursor position="269" topLine="0" />
+	</File>
+	<File name="exception/exception_overflow_error.h" open="1" top="0" tabpos="13">
+		<Cursor position="449" topLine="0" />
 	</File>
 	<File name="exception/exception_simple.h" open="0" top="0" tabpos="0">
 		<Cursor position="22" topLine="0" />
@@ -787,8 +802,8 @@
 	<File name="primitive/primitive_string_format.h" open="0" top="0" tabpos="0">
 		<Cursor position="8740" topLine="270" />
 	</File>
-	<File name="primitive/primitive_var.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="32682" topLine="1710" />
+	<File name="primitive/primitive_var.cpp" open="1" top="0" tabpos="12">
+		<Cursor position="14677" topLine="805" />
 	</File>
 	<File name="primitive/primitive_var.h" open="0" top="0" tabpos="6">
 		<Cursor position="5753" topLine="210" />
@@ -847,8 +862,8 @@
 	<File name="radix/radix_factory.cpp" open="0" top="0" tabpos="18">
 		<Cursor position="1386" topLine="61" />
 	</File>
-	<File name="radix/radix_factory.h" open="0" top="0" tabpos="0">
-		<Cursor position="401" topLine="0" />
+	<File name="radix/radix_factory.h" open="1" top="0" tabpos="11">
+		<Cursor position="2596" topLine="103" />
 	</File>
 	<File name="radix/radix_fixed_alloc.cpp" open="0" top="0" tabpos="17">
 		<Cursor position="3695" topLine="170" />
