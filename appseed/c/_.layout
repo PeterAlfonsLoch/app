@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="bsdiff/bsdiff.cpp" open="1" top="0" tabpos="3">
+	<File name="bsdiff/bsdiff.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="2478" topLine="91" />
+	</File>
+	<File name="c/c.h" open="1" top="0" tabpos="7">
+		<Cursor position="1754" topLine="81" />
 	</File>
 	<File name="c/c_async.h" open="0" top="0" tabpos="9">
 		<Cursor position="3488" topLine="148" />
 	</File>
-	<File name="c/c_file.h" open="1" top="0" tabpos="5">
+	<File name="c/c_file.h" open="0" top="0" tabpos="5">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="c/c_simple_event.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="920" topLine="52" />
 	</File>
-	<File name="c/c_str.cpp" open="1" top="0" tabpos="4">
+	<File name="c/c_str.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="19617" topLine="872" />
 	</File>
 	<File name="c/c_verisimple_string.h" open="0" top="0" tabpos="3">
 		<Cursor position="3346" topLine="95" />
+	</File>
+	<File name="framework.h" open="1" top="0" tabpos="4">
+		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="hotplugin/hotplugin_plugin.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="11454" topLine="575" />
 	</File>
 	<File name="linux/c_os_graphics.h" open="0" top="0" tabpos="3">
 		<Cursor position="385" topLine="0" />
+	</File>
+	<File name="linux/c_os_http_lib.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="4743" topLine="155" />
 	</File>
 	<File name="linux/c_os_simple_graphics.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="407" topLine="15" />
