@@ -182,8 +182,22 @@ namespace ca2
       }
 
       string strLocale;
+      
       string strSchema;
-#ifdef WINDOWS
+
+#ifdef METROWIN
+
+      string str = gen::international::unicode_to_utf8(begin(::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride));
+
+      stringa stra;
+
+      stra.explode("-", str);
+
+      strLocale = stra[0];
+
+      strSchema = stra[0];
+
+#elif defined(WINDOWS)
       LANGID langid = ::GetUserDefaultLangID();
 #define SPR_DEUTSCH LANG_GERMAN
       if(langid == LANG_SWEDISH)
@@ -269,7 +283,7 @@ namespace ca2
       return true;
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    bool Is_Vista_or_Later ()
    {
       OSVERSIONINFOEX osvi;

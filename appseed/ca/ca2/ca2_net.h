@@ -135,6 +135,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       bool isipv6(const string & str);
 
+#ifdef BSD_STYLE_SOCKETS
+
       bool u2ip(const string & str, ipaddr_t& l, int ai_flags = 0);
       bool u2ip(const string &, struct sockaddr_in& sa, int ai_flags = 0);
 
@@ -149,6 +151,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       void l2ip(const struct in6_addr& ip, string & str,bool mixed = false);
 
       int in6_addr_compare(in6_addr a,in6_addr b);
+
+#endif
 
       void ResolveLocal();
 

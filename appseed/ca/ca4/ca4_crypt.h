@@ -28,8 +28,8 @@ namespace ca4
 
 
       int key(primitive::memory & storage);
-      virtual bool encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, primitive::memory & storageKey);
-      virtual bool decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, primitive::memory & storageKey);
+      virtual bool encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const primitive::memory & storageKey);
+      virtual bool decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const primitive::memory & storageKey);
 
       string strkey();
       int encrypt(string & str, const char * psz, const char * pszKey);
@@ -40,8 +40,11 @@ namespace ca4
       string md5(const char * psz);
       string nessie(const char * psz);
 
-      string md5(primitive::memory & mem);
-      string sha1(primitive::memory & mem);
+      string md5(const primitive::memory & mem);
+      string sha1(const primitive::memory & mem);
+
+      void md5(primitive::memory & memMd5, const primitive::memory & mem);
+      void sha1(primitive::memory & memSha1, const primitive::memory & mem);
 
       // result is 20-byte digest
       void hmac(void * result, const ::primitive::memory & memMessage, const ::primitive::memory & key);

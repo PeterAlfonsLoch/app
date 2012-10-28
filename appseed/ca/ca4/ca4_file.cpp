@@ -1,7 +1,8 @@
 #include "framework.h"
+#ifndef METROWIN
 #include <openssl/ssl.h>
 #include <openssl/md5.h>
-
+#endif
 
 CLASS_DECL_c void NESSIEinit(struct NESSIEstruct * const structpointer);
 CLASS_DECL_c void NESSIEadd(const unsigned char * const source, unsigned long sourceBits, struct NESSIEstruct * const structpointer);

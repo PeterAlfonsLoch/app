@@ -912,9 +912,6 @@
     <ClCompile Include="ca\ca_brush.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_c.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_ca.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>

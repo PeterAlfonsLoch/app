@@ -21,8 +21,6 @@ CLASS_DECL_c DWORD call_sync(
    dword_ptr dwParam);
 
 
-CLASS_DECL_c vsstring consume_param(const char * pszCommandLine, const char ** pszEndPtr);
-
 CLASS_DECL_c int get_current_processor_index();
 
 CLASS_DECL_c int get_current_process_maximum_affinity();
@@ -36,6 +34,7 @@ CLASS_DECL_c int get_current_process_affinity_order();
 
 
 
+CLASS_DECL_c vsstring consume_param(const char * pszCommandLine, const char ** pszEndPtr);
 CLASS_DECL_c vsstring get_command_line_param(const char * pszCommandLine, const char * pszParam, const char * pszIfParamValue, const char * pszReplaceParam);
 CLASS_DECL_c vsstring get_command_line_param(const char * pszCommandLine, const char * pszParam);
 

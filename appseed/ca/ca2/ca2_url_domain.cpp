@@ -41,7 +41,7 @@ url_domain_base::url_domain_base()
          psz += 4;
          m_iCount--;
       }
-      const char * pszEnd = ((LPCTSTR) m_strOriginalName) + m_strOriginalName.get_length();
+      const char * pszEnd = ((LPCSTR) m_strOriginalName) + m_strOriginalName.get_length();
       m_pszTopLevel = pszEnd;
       while(m_pszTopLevel > psz && *m_pszTopLevel != '.')
       {

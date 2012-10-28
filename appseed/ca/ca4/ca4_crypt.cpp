@@ -1,7 +1,8 @@
 #include "framework.h"
+#ifndef METROWIN
 #include <openssl/ssl.h>
 #include <openssl/md5.h>
-
+#endif
 
 #define V5_FINAL_HASH_BYTES (DIGESTBYTES * 16)
 #define V5_SALT_BYTES (V5_FINAL_HASH_BYTES - DIGESTBYTES)
@@ -73,66 +74,164 @@ namespace ca4
       return (int) storage.get_size();
    }
 
+/**
+  AES encryption/decryption demo program using OpenSSL EVP apis
+  gcc -Wall openssl_aes.c -lcrypto
 
-   bool crypt::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, primitive::memory & key)
+  this is public domain code. 
+
+  Saju Pillai (saju.pillai@gmail.com)
+**/
+   //http://stackoverflow.com/questions/10366950/openssl-using-evp-vs-algorithm-api-for-symmetric-crypto
+
+   bool crypt::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const primitive::memory & keyData)
    {
+
+      primitive::memory key;
+
+      sha1(key, keyData);
+
+      primitive::memory iv;
+
+      iv.allocate(32);
+
+      iv.set(0);
+  
+
+#ifdef METROWIN
+
+      ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider ^ cipher = 
+         ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider.OpenAlgorithm(::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb());
+
+      ::Windows::Storage::Streams::IBuffer ^ iv = ::Windows::Security::Cryptography::Core::CryptographicBuffer.GenerateRandom(cipher.BlockLength);
+
+      ::Windows::Security::Cryptography::Core::CryptographicKey ^ key = cipher->CreateSymmetricKey(key.get_os_stream_buffer());
+    
+      storageEncrypt.set_os_stream_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine.Encrypt(key, storageDecrypt.get_os_stream_buffer(), iv.get_os_stream_buffer()));
+
+#else
+      
       int plainlen = (int) storageDecrypt.get_size();
+
       int cipherlen, tmplen;
-      unsigned char iv[8] = {1,2,3,4,5,6,7,8};
+
       EVP_CIPHER_CTX ctx;
+
       EVP_CIPHER_CTX_init(&ctx);
-      EVP_EncryptInit(&ctx,EVP_bf_cbc(),key.get_data(),iv);
-      cipherlen = (int) (storageDecrypt.get_size() + 16 - 1); //; 16 = key size
+
+      EVP_EncryptInit(&ctx, EVP_aes_256_ecb(), key.get_data(), iv.get_data());
+
+      cipherlen = (int) (storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(ctx) - 1); 
+
       storageEncrypt.allocate(cipherlen);
 
-      if (!EVP_EncryptUpdate(&ctx,storageEncrypt.get_data(),&cipherlen, storageDecrypt.get_data(),plainlen))
+      if (!EVP_EncryptUpdate(&ctx,storageEncrypt.get_data(), &cipherlen, storageDecrypt.get_data(), plainlen))
       {
+
          storageEncrypt.allocate(0);
+
          EVP_CIPHER_CTX_cleanup(&ctx);
+
          return false;
+
       }
 
-      if (!EVP_EncryptFinal(&ctx,storageEncrypt.get_data()+cipherlen,&tmplen))
+      if (!EVP_EncryptFinal(&ctx, storageEncrypt.get_data() + cipherlen, &tmplen))
       {
+
          storageEncrypt.allocate(0);
+
          EVP_CIPHER_CTX_cleanup(&ctx);
+
          return false;
+
       }
 
       cipherlen += tmplen;
+
       storageEncrypt.allocate(cipherlen);
+
       EVP_CIPHER_CTX_cleanup(&ctx);
+
       return true;
+
+#endif
 
    }
 
 
    bool crypt::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, primitive::memory & key)
    {
+
+      primitive::memory key;
+
+      sha1(key, keyData);
+
+      primitive::memory iv;
+
+      iv.allocate(32);
+
+      iv.set(0);
+
+#ifdef METROWIN
+
+      ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider ^ cipher = 
+         ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider.OpenAlgorithm(::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb());
+
+      ::Windows::Storage::Streams::IBuffer ^ iv = ::Windows::Security::Cryptography::Core::CryptographicBuffer.GenerateRandom(cipher.BlockLength);
+
+      ::Windows::Security::Cryptography::Core::CryptographicKey ^ key = cipher->CreateSymmetricKey(key.get_os_stream_buffer());
+    
+      storageDecrypt.set_os_stream_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine.Decrypt(key, storageDecrypt.get_os_stream_buffer(), iv.get_os_stream_buffer()));
+
+#else
+      
       int cipherlen = (int) storageEncrypt.get_size();
+
       int plainlen, tmplen;
-      unsigned char iv[8] = {1,2,3,4,5,6,7,8};
+
       EVP_CIPHER_CTX ctx;
+
       EVP_CIPHER_CTX_init(&ctx);
-      EVP_DecryptInit(&ctx,EVP_bf_cbc(),key.get_data(),iv);
-      plainlen = (int) storageEncrypt.get_size();
+
+      EVP_DecryptInit(&ctx, EVP_aes_256_ecb(), key.get_data(), iv.get_data());
+
+      plainlen = (int) storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(ctx);
+
       storageDecrypt.allocate(plainlen);
-      if(!EVP_DecryptUpdate(&ctx,storageDecrypt.get_data(),&plainlen,storageEncrypt.get_data(),cipherlen))
+
+      if(!EVP_DecryptUpdate(&ctx, storageDecrypt.get_data(), &plainlen, storageEncrypt.get_data(), cipherlen))
       {
+
          storageDecrypt.allocate(0);
+
          EVP_CIPHER_CTX_cleanup(&ctx);
+
          return false;
+
       }
-      if (!EVP_DecryptFinal(&ctx,storageDecrypt.get_data()+plainlen,&tmplen))
+
+      if (!EVP_DecryptFinal(&ctx, storageDecrypt.get_data() + plainlen, &tmplen))
       {
+
          storageDecrypt.allocate(0);
+
          EVP_CIPHER_CTX_cleanup(&ctx);
+
          return false;
+
       }
+
       plainlen += tmplen;
+
       storageDecrypt.allocate(plainlen);
+
       EVP_CIPHER_CTX_cleanup(&ctx);
+
       return true;
+
+#endif
+
    }
 
    string crypt::strkey()
@@ -195,42 +294,55 @@ namespace ca4
 
    string crypt::md5(primitive::memory & mem)
    {
-      int iBufSize = 16;
-      unsigned char * buf = new unsigned char[iBufSize];
+
+      primitive::memory memMd5;
+
+      md5(memMd5, mem);
+
+      return memMd5.to_hex();
+
+
+   }
+
+   string crypt::md5(primitive::memory & memMd5, const primitive::memory & mem)
+   {
+      
+      memMd5.allocate(16);
+
       MD5_CTX ctx;
+
       MD5_Init(&ctx);
-      //int iRead;
+
       MD5_Update(&ctx, mem, (unsigned long) mem.get_size());
-      MD5_Final(buf,&ctx);
-      string str;
-      string strFormat;
-      for(int i = 0; i < 16; i++)
-      {
-         strFormat.Format("%02x", buf[i]);
-         str += strFormat;
-      }
-      delete [] buf;
-      return str;
+
+      MD5_Final(memMd5.get_data(), &ctx);
+
    }
 
    string crypt::sha1(primitive::memory & mem)
    {
-      int iBufSize = 20;
-      unsigned char * buf = new unsigned char[iBufSize];
+
+      primitive::memory memSha1;
+
+      sha1(memSha1, mem);
+
+      return memSha1.to_hex();
+
+   }
+
+   void crypt::sha1(primitive::memory & memSha1, const primitive::memory & mem)
+   {
+
+      memSha1.allocate(32);
+
       crypto::sha1::CContext ctx;
+
       ctx.Init();
-      //int iRead;
+
       ctx.update(mem, (int) mem.get_size());
-      ctx.Final(buf);
-      string str;
-      string strFormat;
-      for(int i = 0; i < 20; i++)
-      {
-         strFormat.Format("%02x", buf[i]);
-         str += strFormat;
-      }
-      delete [] buf;
-      return str;
+
+      ctx.Final(memSha1.get_data());
+
    }
 
 
