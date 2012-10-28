@@ -11,18 +11,29 @@
 #include "os_binreloc.h"
 #include "c/macos/c_os.h"
 
+#define BSD_STYLE_SOCKETS
+
 #elif defined(LINUX)
 
 #include "c/ansios/ansios.h"
 #include "os_binreloc.h"
 #include "c/linux/c_os.h"
 
+#define BSD_STYLE_SOCKETS
+
 #elif defined(METROWIN)
 
 #include "c/metrowin/c_os.h"
+
+#define BYESHYTOULA_STYLE_SOCKS
 
 #else
 
 #include "c/windows/c_os.h"
 
+#define BSD_STYLE_SOCKETS
+
 #endif
+
+
+
