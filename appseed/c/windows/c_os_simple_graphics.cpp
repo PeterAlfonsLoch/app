@@ -504,12 +504,17 @@ bool os_simple_graphics::replace_clip(const RECT & r)
 
 }
 
+
+/* fatty fat
+
 bool os_simple_graphics::alpha_blend(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf)
 {
 
    return ::AlphaBlend(m_hdc, x, y, cx, cy, gSrc.m_hdc, x1, y1, cx1, cy1, bf) != FALSE;
 
 }
+
+*/
 
 void os_simple_graphics::fill_solid_rect(LPCRECT lpRect, COLORREF clr)
 {
