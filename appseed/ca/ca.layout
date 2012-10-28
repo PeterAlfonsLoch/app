@@ -112,10 +112,10 @@
 	<File name="ca/ca_type_info.h" open="0" top="0" tabpos="0">
 		<Cursor position="1639" topLine="27" />
 	</File>
-	<File name="ca/ca_window.cpp" open="1" top="0" tabpos="1">
+	<File name="ca/ca_window.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="ca/ca_window.h" open="1" top="0" tabpos="8">
+	<File name="ca/ca_window.h" open="0" top="0" tabpos="8">
 		<Cursor position="137" topLine="6" />
 	</File>
 	<File name="ca2/ca2.h" open="0" top="0" tabpos="20">
@@ -688,7 +688,7 @@
 	<File name="os/os_cross_windows_shared_memory.h" open="0" top="0" tabpos="0">
 		<Cursor position="383" topLine="0" />
 	</File>
-	<File name="os/os_cross_windows_time.cpp" open="1" top="0" tabpos="2">
+	<File name="os/os_cross_windows_time.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="23825" topLine="733" />
 	</File>
 	<File name="os/os_cross_windows_time.h" open="0" top="0" tabpos="27">
@@ -772,7 +772,7 @@
 	<File name="primitive/primitive_simple_string.h" open="0" top="0" tabpos="0">
 		<Cursor position="25473" topLine="1058" />
 	</File>
-	<File name="primitive/primitive_string.cpp" open="1" top="0" tabpos="3">
+	<File name="primitive/primitive_string.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="9191" topLine="265" />
 	</File>
 	<File name="primitive/primitive_string.h" open="0" top="0" tabpos="8">
@@ -898,7 +898,7 @@
 	<File name="simpledb/simpledb_file_system_size.cpp" open="0" top="0" tabpos="42">
 		<Cursor position="15383" topLine="557" />
 	</File>
-	<File name="simpledb/simpledb_long_set.cpp" open="1" top="0" tabpos="4">
+	<File name="simpledb/simpledb_long_set.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="16179" topLine="736" />
 	</File>
 	<File name="simpledb/simpledb_manager.h" open="0" top="0" tabpos="0">
@@ -1039,7 +1039,7 @@
 	<File name="user/user_form.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="25396" topLine="916" />
 	</File>
-	<File name="user/user_frame_window.cpp" open="1" top="0" tabpos="5">
+	<File name="user/user_frame_window.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="33378" topLine="1087" />
 	</File>
 	<File name="user/user_frame_window.h" open="0" top="0" tabpos="0">
@@ -1051,7 +1051,7 @@
 	<File name="user/user_frame_window_interface.h" open="0" top="0" tabpos="0">
 		<Cursor position="258" topLine="0" />
 	</File>
-	<File name="user/user_interaction.cpp" open="1" top="0" tabpos="6">
+	<File name="user/user_interaction.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="48347" topLine="1943" />
 	</File>
 	<File name="user/user_interaction.h" open="0" top="0" tabpos="0">

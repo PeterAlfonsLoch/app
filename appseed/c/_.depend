@@ -1270,10 +1270,10 @@
 
 1342864656 /ca2/app/appseed/c/os/os_binreloc.h
 
-1350075065 /ca2/app/appseed/c/macos/c_os.h
+1351371728 /ca2/app/appseed/c/macos/c_os.h
 	<stdarg.h>
 	<wchar.h>
-	"c_os_gdi.h"
+	"c_os_graphics.h"
 	"c_os_http_lib.h"
 	"c_os_http.h"
 	"c_os_process.h"
@@ -1964,13 +1964,13 @@
 
 1350025623 /ca2/app/appseed/c/macos/c_os_simple_bitmap.h
 
-1349543423 /ca2/app/appseed/c/macos/c_os_simple_brush.h
+1350807661 /ca2/app/appseed/c/macos/c_os_simple_brush.h
 
-1349543423 /ca2/app/appseed/c/macos/c_os_simple_pen.h
+1350807661 /ca2/app/appseed/c/macos/c_os_simple_pen.h
 
-1349547261 /ca2/app/appseed/c/macos/c_os_simple_font.h
+1350807661 /ca2/app/appseed/c/macos/c_os_simple_font.h
 
-1350025623 /ca2/app/appseed/c/macos/c_os_simple_graphics.h
+1350807661 /ca2/app/appseed/c/macos/c_os_simple_graphics.h
 
 1349512029 /ca2/app/appseed/c/merdes_windows/c_os_gdi.h
 	<D2D1.h>
@@ -2442,4 +2442,14 @@
 	<WinSvc.h>
 
 1351344986 source:/ca2/app/appseed/c/spa/windows/spa_windows_win.cpp
+
+1351371728 /ca2/app/appseed/c/macos/c_os_graphics.h
+	"c_os_simple_bitmap.h"
+	"c_os_simple_brush.h"
+	"c_os_simple_pen.h"
+	"c_os_simple_font.h"
+	"c_os_simple_path.h"
+	"c_os_simple_graphics.h"
+
+1350807661 /ca2/app/appseed/c/macos/c_os_simple_path.h
 

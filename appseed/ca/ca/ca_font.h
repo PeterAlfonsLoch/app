@@ -10,7 +10,7 @@ namespace ca
       unit_point,
    };
 
-   class CLASS_DECL_ca font : 
+   class CLASS_DECL_ca font :
       virtual public graphics_object
    {
    public:
@@ -20,7 +20,7 @@ namespace ca
       double      m_dFontSize;
       double      m_dFontWidth;
       e_unit      m_eunitFontSize;
-      bool        m_bBold;
+      int         m_iFontWeight;
       bool        m_bItalic;
       bool        m_bUnderline;
       bool        m_bStrikeout;

@@ -12,7 +12,7 @@ namespace ca
       m_dFontSize          = 17.0;
       m_dFontWidth         = 1.0;
       m_eunitFontSize      = ::ca::unit_point;
-      m_bBold              = false;
+      m_iFontWeight        = 400;
       m_bItalic            = false;
       m_bUnderline         = false;
       m_bStrikeout         = false;
@@ -22,7 +22,7 @@ namespace ca
    void font::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
-      throw interface_only_exception(get_app());   
+      throw interface_only_exception(get_app());
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -31,26 +31,64 @@ namespace ca
    // nPointSize is actually scaled 10x
    bool font::CreatePointFont(int nPointSize, const char * lpszFaceName, ::ca::graphics * pgraphics)
    {
-      UNREFERENCED_PARAMETER(nPointSize);
-      UNREFERENCED_PARAMETER(lpszFaceName);
-      UNREFERENCED_PARAMETER(pgraphics);
-      throw interface_only_exception(get_app());   
+
+      m_strFontFamilyName     = lpszFaceName;
+      m_dFontSize             = nPointSize / 10.0;
+      m_dFontWidth            = 1.0;
+      m_eunitFontSize         = ::ca::unit_point;
+      m_iFontWeight           = 400;
+      m_bItalic               = false;
+      m_bUnderline            = false;
+      m_bStrikeout            = false;
+      m_bUpdated              = false;
+
+      return true;
    }
 
    // pLogFont->nHeight is interpreted as PointSize * 10
    bool font::CreatePointFontIndirect(const LOGFONT* lpLogFont, ::ca::graphics * pgraphics)
    {
-      return ::ca::font::CreateFontIndirect(lpLogFont);
+      m_strFontFamilyName     = lpLogFont->lfFaceName;
+      m_dFontSize             = lpLogFont->lfHeight * 96.0 / (72.0 * 10.0);
+      m_dFontWidth            = 1.0;
+      m_eunitFontSize         = ::ca::unit_pixel;
+      m_iFontWeight           = lpLogFont->lfWeight;
+      m_bItalic               = lpLogFont->lfItalic != FALSE;
+      m_bUnderline            = lpLogFont->lfUnderline != FALSE;
+      m_bStrikeout            = lpLogFont->lfStrikeOut != FALSE;
+      m_bUpdated              = false;
+
+      return true;
+
    }
 
    bool font::CreateFontIndirect(const LOGFONT* lpLogFont)
    {
-      
-      m_strFontFamilyName  = lpLogFont->lfFaceName;
-      m_dFontSize          = lpLogFont->lfHeight / 10.0;
-      m_bUpdated           = false;
 
-      return TRUE;
+      m_strFontFamilyName     = lpLogFont->lfFaceName;
+      m_dFontSize             = lpLogFont->lfHeight / 10.0;
+      m_dFontWidth            = 1.0;
+      m_eunitFontSize         = ::ca::unit_pixel;
+      m_iFontWeight           = lpLogFont->lfWeight;
+      m_bItalic               = lpLogFont->lfItalic != FALSE;
+      m_bUnderline            = lpLogFont->lfUnderline != FALSE;
+      m_bStrikeout            = lpLogFont->lfStrikeOut != FALSE;
+      m_bUpdated              = false;
+                        /*,
+                        lpLogFont->lfWidth,
+                        lpLogFont->lfEscapement,
+                        lpLogFont->lfOrientation,
+                        lpLogFont->lfWeight,
+                        lpLogFont->lfItalic,
+                        lpLogFont->lfUnderline,
+                        lpLogFont->lfStrikeOut,
+                        lpLogFont->lfCharSet,
+                        lpLogFont->lfOutPrecision,
+                        lpLogFont->lfClipPrecision,
+                        lpLogFont->lfQuality,
+                        lpLogFont->lfPitchAndFamily,
+                        lpLogFont->lfFaceName);*/
+      return true;
 
    }
 
@@ -60,21 +98,19 @@ namespace ca
       BYTE nClipPrecision, BYTE nQuality, BYTE nPitchAndFamily,
       const char * lpszFacename)
    {
-      UNREFERENCED_PARAMETER(nHeight);
-      UNREFERENCED_PARAMETER(nWidth);
-      UNREFERENCED_PARAMETER(nEscapement);
-      UNREFERENCED_PARAMETER(nOrientation);
-      UNREFERENCED_PARAMETER(nWeight);
-      UNREFERENCED_PARAMETER(bItalic);
-      UNREFERENCED_PARAMETER(bUnderline);
-      UNREFERENCED_PARAMETER(cStrikeOut);
-      UNREFERENCED_PARAMETER(nCharSet);
-      UNREFERENCED_PARAMETER(nOutPrecision);
-      UNREFERENCED_PARAMETER(nClipPrecision);
-      UNREFERENCED_PARAMETER(nQuality);
-      UNREFERENCED_PARAMETER(nPitchAndFamily);
-      UNREFERENCED_PARAMETER(lpszFacename);
-      throw interface_only_exception(get_app());   
+
+      m_strFontFamilyName     = lpszFacename;
+      m_dFontSize             = nHeight / 10.0;
+      m_dFontWidth            = 1.0;
+      m_eunitFontSize         = ::ca::unit_pixel;
+      m_iFontWeight           = nWeight;
+      m_bItalic               = bItalic != FALSE;
+      m_bUnderline            = bUnderline != FALSE;
+      m_bStrikeout            = cStrikeOut != FALSE;
+      m_bUpdated              = false;
+
+      return true;
+
    }
 
    font & font::operator = (const font & fontSrc)
@@ -84,7 +120,7 @@ namespace ca
       m_dFontSize             = fontSrc.m_dFontSize;
       m_dFontWidth            = fontSrc.m_dFontWidth;
       m_eunitFontSize         = fontSrc.m_eunitFontSize;
-      m_bBold                 = fontSrc.m_bBold;
+      m_iFontWeight           = fontSrc.m_iFontWeight;
       m_bItalic               = fontSrc.m_bItalic;
       m_bUnderline            = fontSrc.m_bUnderline;
       m_bStrikeout            = fontSrc.m_bStrikeout;
@@ -117,7 +153,15 @@ namespace ca
    void font::set_bold(bool bBold)
    {
 
-      m_bBold        = bBold;
+      if(bBold)
+      {
+         m_iFontWeight  = 700;
+      }
+      else
+      {
+         m_iFontWeight  = 400;
+      }
+
       m_bUpdated     = false;
 
    }
