@@ -98,13 +98,24 @@ namespace primitive
       inline operator void *();
 
 
-      inline void To(string & str, memory_position iStart = 0, memory_position iEnd = -1);
-      inline void From(const char * psz);
+      inline void to_hex(string & str, memory_position iStart = 0, memory_size size = -1);
+      inline string to_hex(memory_position iStart = 0, memory_size size = -1);
+      inline void from_hex(const char * psz);
 
-      inline void ToAsc(string & str);
-      inline void FromAsc(const char * psz);
+      inline void to_asc(string & str);
+      inline void from_asc(const char * psz);
 
       inline bool operator == (const memory_base & s);
+
+
+#ifdef METROWIN
+
+      inline Platform::Array < unsigned char, 1U > ^ get_os_bytes(memory_position pos = 0, memory_size size = -1) const;
+      inline ::Windows::Storage::Streams::IBuffer ^ get_os_stream_buffer(memory_position pos = 0, memory_size size = -1) const;
+      inline void set_os_bytes(Platform::Array < unsigned char, 1U > ^ a, memory_position pos = 0, memory_size size = -1);
+      inline void set_os_stream_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos = 0, memory_size size = -1);
+
+#endif
 
 
    };
@@ -296,26 +307,41 @@ namespace primitive
       return *this;
    }
 
-   inline void memory_base::To(string & str, memory_position dwStart, memory_position dwEnd)
+   inline void memory_base::to_hex(string & str, memory_position pos, memory_size size)
    {
-      dwStart = max(dwStart, 0);
-      if(dwEnd == ((memory_position)(-1)))
-         dwEnd = this->get_size() - 1;
-      char * pch = (char *) get_data();
-      for(uint64_t dw = dwStart; dw <= dwEnd; dw++)
+      if(pos > this->get_size())
+         throw invalid_argument_exception(get_app());
+      if(size < 0 || pos + size > get_size())
+         size = get_size() - pos;
+      char * pchSrc = (char *) get_data();
+      char * pchDst = str.GetBufferSetLength(size * 2);
+      uint64_t dwEnd = pos + size - 1;
+      for(uint64_t dw = pos; dw <= dwEnd; dw++)
       {
-         if(((pch[dw] & 0xf0) >> 4) < 10)
-            str += (char)(((pch[dw] & 0xf0) >> 4) + '0');
+         if(((pchSrc[dw] & 0xf0) >> 4) < 10)
+            *pchDst = (char)(((pchSrc[dw] & 0xf0) >> 4) + '0');
          else
-            str += (char)(((pch[dw] & 0xf0) >> 4) + 'A' - 10);
-         if(((pch[dw] & 0x0f)) < 10)
-            str += (char)((pch[dw] & 0x0f) + '0');
+            *pchDst = (char)(((pchSrc[dw] & 0xf0) >> 4) + 'A' - 10);
+         pchDst++;
+         if(((pchSrc[dw] & 0x0f)) < 10)
+            *pchDst = (char)((pchSrc[dw] & 0x0f) + '0');
          else
-            str += (char)((pch[dw] & 0x0f) + 'A' - 10);
+            *pchDst = (char)((pchSrc[dw] & 0x0f) + 'A' - 10);
+         pchDst++;
       }
+      str.ReleaseBuffer();
    }
 
-   inline void memory_base::From(const char * psz)
+   inline string memory_base::to_hex(memory_position pos, memory_size size)
+   {
+      
+      string str;
+      to_hex(str, pos, size);
+      return str;
+
+   }
+
+   inline void memory_base::from_hex(const char * psz)
    {
 
       char ch;
@@ -356,12 +382,12 @@ namespace primitive
 
    }
 
-   inline void memory_base::ToAsc(string & str)
+   inline void memory_base::to_asc(string & str)
    {
 
       string strTo;
 
-      To(strTo);
+      to_hex(strTo);
 
       char ch;
 
@@ -386,7 +412,7 @@ namespace primitive
 
    }
 
-   inline void memory_base::FromAsc(const char * psz)
+   inline void memory_base::from_asc(const char * psz)
    {
 
       string str;
@@ -416,7 +442,7 @@ namespace primitive
 
       }
 
-      From(str);
+      from_hex(str);
 
    }
 
@@ -578,6 +604,43 @@ namespace primitive
       return from_string(psz);
 
    }
+
+#ifdef METROWIN
+
+   inline Platform::Array < unsigned char, 1U > ^ memory_base::get_os_bytes(memory_position pos, memory_size size) const
+   {
+      if(pos > get_size())
+         throw invalid_argument_exception(get_app());
+      if(size < 0 || pos + size > get_size())
+         size = get_size() - pos;
+      return ref new Platform::Array < unsigned char, 1U > ((unsigned char *) &get_data()[pos], size);
+   }
+
+   inline ::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_stream_buffer(memory_position pos, memory_size size) const
+   {
+      return ::Windows::Security::Cryptography::CryptographicBuffer::CreateFromByteArray(get_os_bytes(size));
+   }
+
+   inline void memory_base::set_os_bytes(Platform::Array < unsigned char, 1U > ^ a, memory_position pos, memory_size size)
+   {
+      if(pos > a->Length)
+         throw invalid_argument_exception(get_app());
+      if(pos > a->Length)
+         throw invalid_argument_exception(get_app());
+      if(size < 0 || pos + size > a->Length)
+         size = a->Length - pos;
+      allocate(size - pos);
+      memcpy(get_data(), &a->Data[pos], size - pos);
+   }
+
+   inline void memory_base::set_os_stream_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos, memory_size size)
+   {
+      Platform::Array < unsigned char, 1U > ^ a = nullptr;
+      ::Windows::Security::Cryptography::CryptographicBuffer::CopyToByteArray(ibuf, &a);
+      return set_os_bytes(a, pos, size);
+   }
+
+#endif
 
 
 } // namespace primitive

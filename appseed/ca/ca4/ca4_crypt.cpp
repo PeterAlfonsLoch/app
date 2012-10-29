@@ -74,14 +74,14 @@ namespace ca4
       return (int) storage.get_size();
    }
 
-/**
-  AES encryption/decryption demo program using OpenSSL EVP apis
-  gcc -Wall openssl_aes.c -lcrypto
+   /**
+   AES encryption/decryption demo program using OpenSSL EVP apis
+   gcc -Wall openssl_aes.c -lcrypto
 
-  this is public domain code. 
+   this is public domain code. 
 
-  Saju Pillai (saju.pillai@gmail.com)
-**/
+   Saju Pillai (saju.pillai@gmail.com)
+   **/
    //http://stackoverflow.com/questions/10366950/openssl-using-evp-vs-algorithm-api-for-symmetric-crypto
 
    bool crypt::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const primitive::memory & keyData)
@@ -96,21 +96,19 @@ namespace ca4
       iv.allocate(32);
 
       iv.set(0);
-  
+
 
 #ifdef METROWIN
 
       ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider ^ cipher = 
-         ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider.OpenAlgorithm(::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb());
+         ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb);
 
-      ::Windows::Storage::Streams::IBuffer ^ iv = ::Windows::Security::Cryptography::Core::CryptographicBuffer.GenerateRandom(cipher.BlockLength);
+      ::Windows::Security::Cryptography::Core::CryptographicKey ^ cipherkey = cipher->CreateSymmetricKey(key.get_os_stream_buffer());
 
-      ::Windows::Security::Cryptography::Core::CryptographicKey ^ key = cipher->CreateSymmetricKey(key.get_os_stream_buffer());
-    
-      storageEncrypt.set_os_stream_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine.Encrypt(key, storageDecrypt.get_os_stream_buffer(), iv.get_os_stream_buffer()));
+      storageEncrypt.set_os_stream_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(cipherkey, storageDecrypt.get_os_stream_buffer(), iv.get_os_stream_buffer()));
 
 #else
-      
+
       int plainlen = (int) storageDecrypt.get_size();
 
       int cipherlen, tmplen;
@@ -160,7 +158,7 @@ namespace ca4
    }
 
 
-   bool crypt::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, primitive::memory & key)
+   bool crypt::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const primitive::memory & keyData)
    {
 
       primitive::memory key;
@@ -176,16 +174,14 @@ namespace ca4
 #ifdef METROWIN
 
       ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider ^ cipher = 
-         ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider.OpenAlgorithm(::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb());
+         ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb);
 
-      ::Windows::Storage::Streams::IBuffer ^ iv = ::Windows::Security::Cryptography::Core::CryptographicBuffer.GenerateRandom(cipher.BlockLength);
+      ::Windows::Security::Cryptography::Core::CryptographicKey ^ cipherkey = cipher->CreateSymmetricKey(key.get_os_stream_buffer());
 
-      ::Windows::Security::Cryptography::Core::CryptographicKey ^ key = cipher->CreateSymmetricKey(key.get_os_stream_buffer());
-    
-      storageDecrypt.set_os_stream_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine.Decrypt(key, storageDecrypt.get_os_stream_buffer(), iv.get_os_stream_buffer()));
+      storageDecrypt.set_os_stream_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(cipherkey, storageDecrypt.get_os_stream_buffer(), iv.get_os_stream_buffer()));
 
 #else
-      
+
       int cipherlen = (int) storageEncrypt.get_size();
 
       int plainlen, tmplen;
@@ -273,22 +269,39 @@ namespace ca4
 
    string crypt::md5(const char * psz)
    {
-      int iBufSize = 16;
-      unsigned char * buf = new unsigned char[iBufSize];
+
+      primitive::memory buf;
+
+#ifdef METROWIN
+
+      ::Windows::Security::Cryptography::Core::HashAlgorithmProvider ^ provider = 
+         ::Windows::Security::Cryptography::Core::HashAlgorithmProvider::OpenAlgorithm(
+         ::Windows::Security::Cryptography::Core::HashAlgorithmNames::Md5);
+
+      ::Windows::Security::Cryptography::Core::CryptographicHash ^ hasher = provider->CreateHash();
+
+      ::Windows::Storage::Streams::IBuffer ^ hash = provider->HashData(Windows::Security::Cryptography::CryptographicBuffer::ConvertStringToBinary(rtstr(psz)));
+
+      = hasher->GetValueAndReset();
+
+      buf.set_os_stream_buffer(hash);
+
+#else
+
+      buf.allocate(16);
+
       MD5_CTX ctx;
+
       MD5_Init(&ctx);
-      //int iRead;
+
       MD5_Update(&ctx, psz, (unsigned long) strlen(psz));
-      MD5_Final(buf,&ctx);
-      string str;
-      string strFormat;
-      for(int i = 0; i < 16; i++)
-      {
-         strFormat.Format("%02x", buf[i]);
-         str += strFormat;
-      }
-      delete [] buf;
-      return str;
+
+      MD5_Final(buf.get_data(),&ctx);
+
+#endif
+
+      return buf.to_hex();
+
    }
 
 
@@ -306,7 +319,7 @@ namespace ca4
 
    string crypt::md5(primitive::memory & memMd5, const primitive::memory & mem)
    {
-      
+
       memMd5.allocate(16);
 
       MD5_CTX ctx;

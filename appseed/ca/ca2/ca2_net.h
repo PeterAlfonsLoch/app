@@ -135,24 +135,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       bool isipv6(const string & str);
 
-#ifdef BSD_STYLE_SOCKETS
-
-      bool u2ip(const string & str, ipaddr_t& l, int ai_flags = 0);
-      bool u2ip(const string &, struct sockaddr_in& sa, int ai_flags = 0);
+      bool u2ip(const string & str, ::ipaddr_t& l, int ai_flags = 0);
+      bool u2ip(const string &, struct ::sockaddr_in& sa, int ai_flags = 0);
 
       /** Hostname to ip resolution ipv6, not asynchronous. */
-      bool u2ip(const string & str, struct in6_addr& l, int ai_flags = 0);
-      bool u2ip(const string &, struct sockaddr_in6& sa, int ai_flags = 0);
+      bool u2ip(const string & str, struct ::in6_addr& l, int ai_flags = 0);
+      bool u2ip(const string &, struct ::sockaddr_in6& sa, int ai_flags = 0);
 
-      void l2ip(const ipaddr_t ip, string & str);
+      void l2ip(const ::ipaddr_t ip, string & str);
 
-      void l2ip(const in_addr& ip, string & str);
+      void l2ip(const struct ::in_addr& ip, string & str);
 
-      void l2ip(const struct in6_addr& ip, string & str,bool mixed = false);
+      void l2ip(const struct ::in6_addr& ip, string & str, bool mixed = false);
 
-      int in6_addr_compare(in6_addr a,in6_addr b);
-
-#endif
+      int in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
 
       void ResolveLocal();
 

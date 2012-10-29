@@ -351,7 +351,7 @@ namespace ca2
       }
       else
       {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          // when this process is started in the context of a system account,
          // for example, this code ensure that the process will
          // impersonate a loggen on ::fontopus::user
@@ -659,7 +659,7 @@ namespace ca2
    {
       if(is_system())
       {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          ::ShellExecuteA(NULL, "open", pszLink, NULL, NULL, SW_SHOW);
          return true;
 #else
@@ -688,10 +688,14 @@ namespace ca2
       return NULL;
    }
 
+#ifdef BSD_STYLE_SOCKETS
+
    void application::get_time(struct timeval *p)
    {
       ::ex2::application::get_time(p);
    }
+
+#endif
 
    void application::set_env_var(const string & var,const string & value)
    {

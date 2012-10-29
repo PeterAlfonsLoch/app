@@ -18,7 +18,7 @@ namespace ca2
       ca(papp),
       m_mutexCache(papp)
    {
-   
+
    }
 
    net::~net()
@@ -33,7 +33,7 @@ namespace ca2
    */
    string net::rfc1738_encode(const string & src)
    {
-   static   char hex[] = "0123456789ABCDEF";
+      static   char hex[] = "0123456789ABCDEF";
       string dst;
       for (int i = 0; i < src.get_length(); i++)
       {
@@ -42,17 +42,17 @@ namespace ca2
             dst += src[i];
          }
          else
-         if (src[i] == ' ')
-         {
-            dst += '+';
-         }
-         else
-         {
-            unsigned char c = static_cast<unsigned char>(src[i]);
-            dst += '%';
-            dst += hex[c / 16];
-            dst += hex[c % 16];
-         }
+            if (src[i] == ' ')
+            {
+               dst += '+';
+            }
+            else
+            {
+               unsigned char c = static_cast<unsigned char>(src[i]);
+               dst += '%';
+               dst += hex[c / 16];
+               dst += hex[c % 16];
+            }
       }
       return dst;
    } // rfc1738_encode
@@ -76,14 +76,14 @@ namespace ca2
             dst += (char)(c1 * 16 + c2);
          }
          else
-         if (src[i] == '+')
-         {
-            dst += ' ';
-         }
-         else
-         {
-            dst += src[i];
-         }
+            if (src[i] == '+')
+            {
+               dst += ' ';
+            }
+            else
+            {
+               dst += src[i];
+            }
       }
       return dst;
    } // rfc1738_decode
@@ -98,8 +98,8 @@ namespace ca2
          if (str[i] == '.')
             dots++;
          else
-         if (!isdigit((unsigned char) str[i]))
-            return false;
+            if (!isdigit((unsigned char) str[i]))
+               return false;
       }
       if (dots != 3)
          return false;
@@ -146,6 +146,7 @@ namespace ca2
       return true;
    }
 
+#ifdef BSD_STYLE_SOCKETS
 
    bool net::u2ip(const string & str, ipaddr_t& l, int ai_flags)
    {
@@ -156,13 +157,13 @@ namespace ca2
       if(m_mapCache.Lookup(str, pitem) && ((::get_tick_count() - pitem->m_dwLastChecked) < (((84 + 77) * 1000))))
       {
          l = pitem->m_ipaddr;
-//         DWORD dwTimeTelmo2 = get_tick_count();
+         //         DWORD dwTimeTelmo2 = get_tick_count();
          /*TRACE("Got from cache net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-            (DWORD)((byte*)&pitem->m_ipaddr)[0],
-            (DWORD)((byte*)&pitem->m_ipaddr)[1],
-            (DWORD)((byte*)&pitem->m_ipaddr)[2],
-            (DWORD)((byte*)&pitem->m_ipaddr)[3],
-            (dwTimeTelmo2 - dwTimeTelmo1));*/
+         (DWORD)((byte*)&pitem->m_ipaddr)[0],
+         (DWORD)((byte*)&pitem->m_ipaddr)[1],
+         (DWORD)((byte*)&pitem->m_ipaddr)[2],
+         (DWORD)((byte*)&pitem->m_ipaddr)[3],
+         (dwTimeTelmo2 - dwTimeTelmo1));*/
          return pitem->r;
       }
       if(pitem == NULL)
@@ -272,8 +273,55 @@ namespace ca2
       return 0;
    }
 
+#endif
+
    void net::ResolveLocal()
    {
+
+#ifdef METROWIN
+
+      //Retrieve the ConnectionProfile
+      ::Windows::Networking::Connectivity::ConnectionProfile^ InternetConnectionProfile = Windows::Networking::Connectivity::NetworkInformation::GetInternetConnectionProfile();
+
+      if(InternetConnectionProfile == nullptr)
+         return;
+
+      if(InternetConnectionProfile->NetworkAdapter == nullptr)
+         return;
+
+      //Pass the returned object to a function that accesses the connection data        
+      //::Platform::String^ strConnectionProfileInfo = GetConnectionProfileInfo(InternetConnectionProfile);
+
+      //Windows::Networking::Connectivity::NetworkAdapter ^ adp = InternetConnectionProfile->NetworkAdapter();
+
+      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::HostName ^ > ^ names = ::Windows::Networking::Connectivity::NetworkInformation::GetHostNames();
+
+      //strProfileInfo += connectionProfile->NetworkAdapter->NetworkAdapterId;
+      //strProfileInfo += "\n";
+
+
+      for(int i = 0; i < names->Size; i++)
+      {
+         ::Windows::Networking::HostName ^ name = names->GetAt(i);
+         if(name == nullptr)
+            continue;
+         if(name->IPInformation == nullptr)
+            continue;
+         if(name->IPInformation->NetworkAdapter == nullptr)
+            continue;
+         if(name->IPInformation->NetworkAdapter->NetworkAdapterId == InternetConnectionProfile->NetworkAdapter->NetworkAdapterId)
+         {
+            // there may be more than one local address though
+            m_host = begin(name->CanonicalName);
+            m_local_resolved = true;
+            break;
+         }
+      }
+
+
+      
+
+#else
       char h[256];
 
       // get local hostname and translate into ip-address
@@ -285,8 +333,8 @@ namespace ca2
             net::l2ip(m_ip, m_addr);
          }
       }
-   #ifdef ENABLE_IPV6
-   #ifdef IPPROTO_IPV6
+#ifdef ENABLE_IPV6
+#ifdef IPPROTO_IPV6
       memset(&m_local_ip6, 0, sizeof(m_local_ip6));
       {
          if (net::u2ip(h, m_local_ip6))
@@ -294,10 +342,13 @@ namespace ca2
             net::l2ip(m_local_ip6, m_local_addr6);
          }
       }
-   #endif
-   #endif
+#endif
+#endif
       m_host = h;
       m_local_resolved = true;
+
+#endif
+
    }
 
 
@@ -352,8 +403,6 @@ namespace ca2
 
    string net::Sa2String(struct sockaddr *sa)
    {
-   #ifdef ENABLE_IPV6
-   #ifdef IPPROTO_IPV6
       if (sa -> sa_family == AF_INET6)
       {
          struct sockaddr_in6 *sa6 = (struct sockaddr_in6 *)sa;
@@ -361,8 +410,6 @@ namespace ca2
          net::l2ip(sa6 -> sin6_addr, tmp);
          return tmp + ":" + gen::str::from(ntohs(sa6 -> sin6_port));
       }
-   #endif
-   #endif
       if (sa -> sa_family == AF_INET)
       {
          struct sockaddr_in *sa4 = (struct sockaddr_in *)sa;
@@ -406,9 +453,38 @@ namespace ca2
 
    bool net::u2ip(const string & host, struct sockaddr_in& sa, int ai_flags)
    {
+
+#ifdef METROWIN
+
+      
+      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(rtstr(host)), "0"));
+      
+      if(data->Size <= 0)
+         return false;
+      
+      string str = begin(data->GetAt(0)->RemoteHostName->DisplayName); 
+
+      if(!net::isipv4(str))
+         return false;
+
+      stringa stra;
+
+      stra.explode(".", str);
+
+      if(stra.get_size() != 4)
+         return false;
+
+      sa.sin_addr.S_un.S_un_b.s_b1 = gen::str::to_int(stra[0]);
+      sa.sin_addr.S_un.S_un_b.s_b2 = gen::str::to_int(stra[1]);
+      sa.sin_addr.S_un.S_un_b.s_b3 = gen::str::to_int(stra[2]);
+      sa.sin_addr.S_un.S_un_b.s_b4 = gen::str::to_int(stra[3]);
+
+      return true;
+
+#else
       memset(&sa, 0, sizeof(sa));
       sa.sin_family = AF_INET;
-   #ifdef NO_GETADDRINFO
+#ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
       {
          ::gen::parse pa((const char *)host, ".");
@@ -428,14 +504,14 @@ namespace ca2
          memcpy(&sa.sin_addr, &u.l, sizeof(sa.sin_addr));
          return true;
       }
-   #ifndef LINUX
+#ifndef LINUX
       struct hostent *he = gethostbyname( host );
       if (!he)
       {
          return false;
       }
       memcpy(&sa.sin_addr, he -> h_addr, sizeof(sa.sin_addr));
-   #else
+#else
       struct hostent he;
       struct hostent *result = NULL;
       int myerrno = 0;
@@ -449,9 +525,9 @@ namespace ca2
          memcpy(&sa.sin_addr, he.h_addr, 4);
       else
          return false;
-   #endif
+#endif
       return true;
-   #else
+#else
       struct addrinfo hints;
       memset(&hints, 0, sizeof(hints));
       // AI_NUMERICHOST
@@ -489,11 +565,12 @@ namespace ca2
          return true;
       }
       string error = "Error: ";
-   #ifndef __CYGWIN__
+#ifndef __CYGWIN__
       error += gai_strerror(n);
-   #endif
+#endif
       return false;
-   #endif // NO_GETADDRINFO
+#endif // NO_GETADDRINFO
+#endif
    }
 
 
@@ -501,10 +578,10 @@ namespace ca2
    {
       memset(&sa, 0, sizeof(sa));
       sa.sin6_family = AF_INET6;
-   #ifdef NO_GETADDRINFO
+#ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv6(host))
       {
-//         list<string> vec;
+         //         list<string> vec;
          index x = 0;
          for (index i = 0; i <= host.get_length(); i++)
          {
@@ -555,22 +632,22 @@ namespace ca2
          memcpy(&sa.sin6_addr, addr16, sizeof(addr16));
          return true;
       }
-   #ifdef SOLARIS
+#ifdef SOLARIS
       int errnum = 0;
       struct hostent *he = getipnodebyname( host, AF_INET6, 0, &errnum );
-   #else
+#else
       struct hostent *he = gethostbyname2( host, AF_INET6 );
-   #endif
+#endif
       if (!he)
       {
          return false;
       }
       memcpy(&sa.sin6_addr,he -> h_addr_list[0],he -> h_length);
-   #ifdef SOLARIS
+#ifdef SOLARIS
       free(he);
-   #endif
+#endif
       return true;
-   #else
+#else
       struct addrinfo hints;
       memset(&hints, 0, sizeof(hints));
       hints.ai_flags = ai_flags;
@@ -601,11 +678,11 @@ namespace ca2
          return true;
       }
       string error = "Error: ";
-   #ifndef __CYGWIN__
+#ifndef __CYGWIN__
       error += gai_strerror(n);
-   #endif
+#endif
       return false;
-   #endif // NO_GETADDRINFO
+#endif // NO_GETADDRINFO
    }
 
 
@@ -620,7 +697,7 @@ namespace ca2
    {
       hostname = "";
       service = "";
-   #ifdef NO_GETADDRINFO
+#ifdef NO_GETADDRINFO
       switch (sa -> sa_family)
       {
       case AF_INET:
@@ -653,7 +730,7 @@ namespace ca2
             }
          }
          break;
-   #ifdef ENABLE_IPV6
+#ifdef ENABLE_IPV6
       case AF_INET6:
          if (flags & NI_NUMERICHOST)
          {
@@ -701,10 +778,10 @@ namespace ca2
             }
          }
          break;
-   #endif
+#endif
       }
       return false;
-   #else
+#else
       char host[NI_MAXHOST];
       char serv[NI_MAXSERV];
       // NI_NOFQDN
@@ -728,16 +805,16 @@ namespace ca2
       hostname = host;
       service = serv;
       return true;
-   #endif // NO_GETADDRINFO
+#endif // NO_GETADDRINFO
    }
 
 
    bool net::u2service(const string & name, int& service, int ai_flags)
    {
-   #ifdef NO_GETADDRINFO
+#ifdef NO_GETADDRINFO
       // %!
       return false;
-   #else
+#else
       struct addrinfo hints;
       service = 0;
       memset(&hints, 0, sizeof(hints));
@@ -761,7 +838,7 @@ namespace ca2
          return true;
       }
       return false;
-   #endif // NO_GETADDRINFO
+#endif // NO_GETADDRINFO
    }
 
 } // namespace ca2

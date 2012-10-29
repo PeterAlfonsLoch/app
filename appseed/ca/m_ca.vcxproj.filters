@@ -2532,6 +2532,9 @@
     <ClCompile Include="sockets\basic\baishatoula_socks\sockets_udp_socket.cpp">
       <Filter>Source Files\sockets\basic\baixatola_sockets</Filter>
     </ClCompile>
+    <ClCompile Include="crypto\crypto_md5.cpp">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ca.h">
@@ -5428,6 +5431,9 @@
     </ClInclude>
     <ClInclude Include="html\html_lite\html_lite_html_tag.h">
       <Filter>Header Files\html\html_filter</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto\crypto_md5.h">
+      <Filter>Header Files\crypto</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,8 @@
 
 #define USE_BYESHYTOULA_STYLE_SOCKETS
 
+#define AF_INET         2                 // internetwork: UDP, TCP, etc.
+#define AF_INET6        23                // Internetwork Version 6
 
 
 #ifdef __cplusplus
@@ -135,3 +137,35 @@ struct sockproto {
         u_short sp_protocol;            /* protocol */
 };
 
+
+
+struct sockaddr_in
+{
+   short sin_family;
+   unsigned short sin_port;
+   struct in_addr sin_addr;
+   char sin_zero[8];
+};
+
+
+struct sockaddr_in6
+{
+  short sin6_family;
+  u_short sin6_port;
+  u_long sin6_flowinfo;
+  struct in6_addr sin6_addr;
+  u_long sin6_scope_id;
+};
+
+
+
+typedef struct addrinfo {
+  int             ai_flags;
+  int             ai_family;
+  int             ai_socktype;
+  int             ai_protocol;
+  size_t          ai_addrlen;
+  char            *ai_canonname;
+  struct sockaddr  *ai_addr;
+  struct addrinfo  *ai_next;
+} ADDRINFOA, *PADDRINFOA;

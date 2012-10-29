@@ -29,6 +29,7 @@
 
 
 #include "crypto_kernel.h"
+#include "crypto_md5.h"
 #include "crypto_sha1.h"
 #include "crypto_hmac.h"
 

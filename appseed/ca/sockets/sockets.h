@@ -300,9 +300,9 @@ namespace sockets
 #endif
 
 #include "ca/ca_log.h"
-#ifdef BSD_STYLE_SOCKETS
 #include "basic/ipv4_address.h"
 #include "basic/ipv6_address.h"
+#ifdef BSD_STYLE_SOCKETS
 #include "basic/sockets_ssl_client_context.h"
 #include "basic/sockets_ssl_client_context_map.h"
 #endif

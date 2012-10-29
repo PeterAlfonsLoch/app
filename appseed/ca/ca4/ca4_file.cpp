@@ -42,7 +42,9 @@ namespace ca4
 
    string file::md5(const char * psz)
    {
+
       ex1::filesp spfile(get_app());
+
       try
       {
          if(!spfile->open(psz, ::ex1::file::type_binary | ::ex1::file::mode_read))
@@ -53,25 +55,27 @@ namespace ca4
          gen::del(pe);
          return "";
       }
+
+
       int iBufSize = 1024 * 256;
-      unsigned char * buf = new unsigned char[iBufSize];
-      MD5_CTX ctx;
-      MD5_Init(&ctx);
-      uint64_t iRead;
+
+      primitive::memory buf;
+
+      buf.allocate(1024 * 256);
+
+      ::crypto::md5::context ctx(get_app());
+
+      int iRead;
+
       while((iRead = spfile->read(buf, iBufSize)) > 0)
       {
-         MD5_Update(&ctx, buf, (unsigned long) iRead);
+
+         ctx.update(buf.get_data(), iRead);
+
       }
-      MD5_Final(buf,&ctx);
-      string str;
-      string strFormat;
-      for(int i = 0; i < 16; i++)
-      {
-         strFormat.Format("%02x", buf[i]);
-         str += strFormat;
-      }
-      delete [] buf;
-      return str;
+
+      return ctx.to_hex();
+
    }
 
 
@@ -85,20 +89,34 @@ namespace ca4
 
    void file::dtf(const char * pszFile, stringa & stra, stringa & straRelative, ::ca::application * papp)
    {
+
       ex1::filesp spfile = App(papp).get_file(pszFile, ::ex1::file::mode_create | ::ex1::file::mode_write  | ::ex1::file::type_binary);
+
       if(spfile.is_null())
          throw "failed";
+
       string strVersion;
+
       strVersion = "fileset v1";
-      MD5_CTX ctx;
+
+      ::crypto::md5::context ctx(get_app());
+
       write_ex1_string(spfile, NULL, strVersion);
+
       ex1::filesp file2(get_app());
+
       ::primitive::memory_size iBufSize = 1024 * 1024;
+
       ::primitive::memory_size uiRead;
+
       primitive::memory buf;
+
       buf.allocate(iBufSize);
+
       string strMd5 = "01234567012345670123456701234567";
+
       uint64_t iPos;
+
       for(int i = 0; i < stra.get_size(); i++)
       {
          if(gen::str::ends_ci(stra[i], ".zip"))
@@ -109,7 +127,7 @@ namespace ca4
          write_n_number(spfile, NULL, 1);
          iPos = spfile->get_position();
          write_ex1_string(spfile, NULL, strMd5);
-         MD5_Init(&ctx);
+         ctx.reset();
          write_ex1_string(spfile, &ctx, straRelative[i]);
          if(!file2->open(stra[i], ::ex1::file::mode_read | ::ex1::file::type_binary))
             throw "failed";
@@ -117,18 +135,10 @@ namespace ca4
          while((uiRead = file2->read(buf, iBufSize)) > 0)
          {
             spfile->write(buf, uiRead);
-            MD5_Update(&ctx, buf, (unsigned long) uiRead);
+            ctx.update(buf, (unsigned long) uiRead);
          }
          spfile->seek(iPos, ::ex1::seek_begin);
-         MD5_Final(buf,&ctx);
-         strMd5.Empty();
-         string strFormat;
-         for(int j = 0; j < 16; j++)
-         {
-            UINT ui = (((const char *)buf)[j]) & 0xff;
-            strFormat.Format("%02x", ui);
-            strMd5 += strFormat;
-         }
+         strMd5 = ctx.to_hex();
          write_ex1_string(spfile, NULL, strMd5);
          spfile->seek_to_end();
 
@@ -151,7 +161,7 @@ namespace ca4
       primitive::memory buf;
       buf.allocate(iBufSize);
       int64_t iLen;
-      MD5_CTX ctx;
+      ::crypto::md5::context
       ex1::filesp file2(get_app());
       ::primitive::memory_size uiRead;
       if(strVersion == "fileset v1")

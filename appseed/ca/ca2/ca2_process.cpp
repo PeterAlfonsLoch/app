@@ -37,9 +37,21 @@ namespace ca2
 
       vsstring strBin = consume_param(pszCmdLine, &pszEnd);
 
+
+
+#ifdef METROWIN
+
+      throw todo(get_app());
+
+#else
+
       DWORD dwExitCode = call_sync(strBin, pszEnd, NULL, iShow, -1, 484, &process::s_on_retry, (dword_ptr) &onretry);
 
       return dwExitCode;
+
+#endif
+
+      
 
    }
 
@@ -66,9 +78,17 @@ namespace ca2
       
       vsstring strBin = consume_param(pszCmdLine, &pszEnd);
 
+#ifndef METROWIN
+
       int iOk = call_async(strBin, pszEnd, NULL, iShow);
 
       return iOk != 0;
+
+#else
+
+      throw todo(get_app());
+
+#endif
 
    }
 

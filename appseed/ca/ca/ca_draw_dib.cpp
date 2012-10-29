@@ -113,7 +113,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    ::ca::palette * draw_dib::get_palette()
    {

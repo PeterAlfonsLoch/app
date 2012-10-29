@@ -41,11 +41,11 @@ namespace ca4
       void is_valid_fileset(const char * pszFile, ::ca::application * papp);
 
       // 'n' (natural) terminated ascii number, example: 245765487n
-      static void write_n_number(ex1::file * pfile, MD5_CTX * pctx, int64_t iNumber);
-      static void read_n_number(ex1::file * pfile, MD5_CTX * pctx, int64_t & iNumber);
+      static void write_n_number(ex1::file * pfile, ::crypto::md5::context * pctx, int64_t iNumber);
+      static void read_n_number(ex1::file * pfile, ::crypto::md5::context * pctx, int64_t & iNumber);
 
-      static void write_ex1_string(ex1::file * pfile, MD5_CTX * pctx, string & str);
-      static void read_ex1_string(ex1::file * pfile, MD5_CTX * pctx, string & str);
+      static void write_ex1_string(ex1::file * pfile, ::crypto::md5::context * pctx, string & str);
+      static void read_ex1_string(ex1::file * pfile, ::crypto::md5::context * pctx, string & str);
 
 
    };
