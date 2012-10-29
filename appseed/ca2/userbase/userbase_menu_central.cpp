@@ -29,11 +29,7 @@ BaseMenuCentral::BaseMenuCentral(::ca::application * papp) :
    m_pilHueLight     = new image_list(papp);
 
 
-   NONCLIENTMETRICS ncm;
-   ncm.cbSize = sizeof(NONCLIENTMETRICS);
-   ::SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(NONCLIENTMETRICS), &ncm, 0);
-
-   VERIFY(m_fontMenu->CreateFontIndirect(&ncm.lfMenuFont));
+   VERIFY(m_fontMenu->create_point_font("Arial Unicode", 11));
    
    if(!MenuV033GetImageList()->create(16, 16, ILC_COLOR24 | ILC_MASK, 0, 10))
    {

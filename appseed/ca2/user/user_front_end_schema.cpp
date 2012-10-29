@@ -14,21 +14,7 @@ namespace user
       ::ca::graphics_sp spgraphics(papp);
       spgraphics->CreateCompatibleDC(NULL);
 
-      LOGFONT lf;
-
-      memset(&lf, 0, sizeof(LOGFONT));
-
-
-      //lf.lfHeight         = (int)-MulDiv(11, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-      lf.lfHeight         = 11;
-      lf.lfWeight         = FW_NORMAL;
-      lf.lfCharSet        = DEFAULT_CHARSET;
-      lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-      lf.lfQuality        = PROOF_QUALITY;
-      lf.lfPitchAndFamily = FF_SWISS|DEFAULT_PITCH;
-      lstrcpy(lf.lfFaceName, "Arial");
-
-      m_button.m_font->CreateFontIndirect(&lf);
+      m_button.m_font->create_point_font("Arial", 11.0);
 
 
       color color;
@@ -49,18 +35,8 @@ namespace user
       m_button.m_crBkDisabled          = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
       m_button.m_crBkHover             = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
 
-      memset(&lf, 0, sizeof(LOGFONT));
-
-      //lf.lfHeight         = (int)-MulDiv(11, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-      lf.lfHeight         = 11;
-      lf.lfWeight         = FW_NORMAL;
-      lf.lfCharSet        = DEFAULT_CHARSET;
-      lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-      lf.lfQuality        = PROOF_QUALITY;
-      lf.lfPitchAndFamily = FF_SWISS|DEFAULT_PITCH;
-      lstrcpy(lf.lfFaceName, "Marlett");
-
-      m_buttonBaseWndMenuSysMenu.m_font->CreateFontIndirect(&lf);
+      
+      m_buttonBaseWndMenuSysMenu.m_font->create_point_font("Marlett", 11.0);
 
 
       m_buttonBaseWndMenuSysMenu.m_crTextNormal          = ARGB(255, 0, 0, 0);
@@ -71,15 +47,8 @@ namespace user
       m_buttonBaseWndMenuSysMenu.m_crBkDisabled          = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
       m_buttonBaseWndMenuSysMenu.m_crBkHover             = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
 
-      lf.lfHeight         = 90;
-      lf.lfWeight         = FW_NORMAL;
-      lf.lfCharSet        = DEFAULT_CHARSET;
-      lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-      lf.lfQuality        = PROOF_QUALITY;
-      lf.lfPitchAndFamily = FF_SWISS|DEFAULT_PITCH;
-      lstrcpy(lf.lfFaceName, "Lucida Sans Unicode");
-
-      m_buttonBaseWndMenuItem.m_font->CreateFontIndirect(&lf);
+      
+      m_buttonBaseWndMenuItem.m_font->create_point_font("Lucida Sans Unicode", 9.0);
 
       m_buttonBaseWndMenuItem.m_crTextNormal = ARGB(255, 0, 0, 0);
       m_buttonBaseWndMenuItem.m_crTextHover  = color | (0xff << 24);
@@ -94,34 +63,13 @@ namespace user
       m_buttonBaseWndMenuItem.m_bBorder      = false;
 
 
-      memset(&lf, 0, sizeof(LOGFONT));
-
-
-            lf.lfHeight         = 90;
-
-      lf.lfWeight         = FW_NORMAL;
-      lf.lfCharSet        = DEFAULT_CHARSET;
-      lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-      lf.lfQuality        = PROOF_QUALITY;
-      lf.lfPitchAndFamily = FF_SWISS|DEFAULT_PITCH;
-      lstrcpy(lf.lfFaceName, "Lucida Sans Unicode");
-
-      m_menu.m_font->CreateFontIndirect(&lf);
-
-      memset(&lf, 0, sizeof(LOGFONT));
+      
+      m_menu.m_font->create_point_font("Lucida Sans Unicode", 9.0);
 
 
 
-            lf.lfHeight         = 90;
 
-      lf.lfWeight         = 800;
-      lf.lfCharSet        = DEFAULT_CHARSET;
-      lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-      lf.lfQuality        = PROOF_QUALITY;
-      lf.lfPitchAndFamily = FF_SWISS|DEFAULT_PITCH;
-      lstrcpy(lf.lfFaceName, "Lucida Sans Unicode");
-
-      m_buttonBaseWndMenuItemPopup.m_font->CreateFontIndirect(&lf);
+      m_buttonBaseWndMenuItemPopup.m_font->create_point_font( "Lucida Sans Unicode", 9.0, FW_BOLD);
 
       m_buttonBaseWndMenuItemPopup.m_crTextNormal = ARGB(255, 0, 0, 0);
       m_buttonBaseWndMenuItemPopup.m_crTextHover  = color | (0xff << 24);
@@ -154,21 +102,7 @@ namespace user
       ::ca::graphics_sp spgraphics(papp);
       spgraphics->CreateCompatibleDC(NULL);
 
-      LOGFONT lf;
-
-      memset(&lf, 0, sizeof(LOGFONT));
-
-
-            lf.lfHeight         = 11;
-
-      lf.lfWeight         = FW_NORMAL;
-      lf.lfCharSet        = DEFAULT_CHARSET;
-      lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-      lf.lfQuality        = PROOF_QUALITY;
-      lf.lfPitchAndFamily = FF_SWISS|DEFAULT_PITCH;
-      lstrcpy(lf.lfFaceName, "Marlett");
-
-      m_fontMarlett->CreateFontIndirect(&lf);
+      m_fontMarlett->create_point_font("Marlett", 11.0);
    }
 
    front_end_schema::menu::menu(::ca::application * papp) :

@@ -25,93 +25,41 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // out-of-line ::ca::brush, font, etc. helpers
 
-   // nPointSize is actually scaled 10x
-   bool font::CreatePointFont(int nPointSize, const char * lpszFaceName, ::ca::graphics * pgraphics)
+   bool font::create_pixel_font(const char * lpszFacename, double dSize, int iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
    {
+      
+      m_strFontFamilyName     = lpszFacename;
+      m_dFontSize             = dSize;
+      m_dFontWidth            = 1.0;
+      m_eunitFontSize         = ::ca::unit_pixel;
+      m_iFontWeight           = 400;
+      m_bItalic               = bItalic;
+      m_bUnderline            = bUnderline;
+      m_bStrikeout            = bStrikeOut;
+      m_bUpdated              = false;
 
-      m_strFontFamilyName     = lpszFaceName;
-      m_dFontSize             = nPointSize / 10.0;
+      return true;
+
+   }
+
+   bool font::create_point_font(const char * lpszFacename, double dSize, int iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
+   {
+      
+      m_strFontFamilyName     = lpszFacename;
+      m_dFontSize             = dSize;
       m_dFontWidth            = 1.0;
       m_eunitFontSize         = ::ca::unit_point;
       m_iFontWeight           = 400;
-      m_bItalic               = false;
-      m_bUnderline            = false;
-      m_bStrikeout            = false;
-      m_bUpdated              = false;
-
-      return true;
-   }
-
-   // pLogFont->nHeight is interpreted as PointSize * 10
-   bool font::CreatePointFontIndirect(const LOGFONT* lpLogFont, ::ca::graphics * pgraphics)
-   {
-      m_strFontFamilyName     = lpLogFont->lfFaceName;
-      m_dFontSize             = lpLogFont->lfHeight * 96.0 / (72.0 * 10.0);
-      m_dFontWidth            = 1.0;
-      m_eunitFontSize         = ::ca::unit_pixel;
-      m_iFontWeight           = lpLogFont->lfWeight;
-      m_bItalic               = lpLogFont->lfItalic != FALSE;
-      m_bUnderline            = lpLogFont->lfUnderline != FALSE;
-      m_bStrikeout            = lpLogFont->lfStrikeOut != FALSE;
+      m_bItalic               = bItalic;
+      m_bUnderline            = bUnderline;
+      m_bStrikeout            = bStrikeOut;
       m_bUpdated              = false;
 
       return true;
 
    }
 
-   bool font::CreateFontIndirect(const LOGFONT* lpLogFont)
-   {
-
-      m_strFontFamilyName     = lpLogFont->lfFaceName;
-      m_dFontSize             = lpLogFont->lfHeight / 10.0;
-      m_dFontWidth            = 1.0;
-      m_eunitFontSize         = ::ca::unit_pixel;
-      m_iFontWeight           = lpLogFont->lfWeight;
-      m_bItalic               = lpLogFont->lfItalic != FALSE;
-      m_bUnderline            = lpLogFont->lfUnderline != FALSE;
-      m_bStrikeout            = lpLogFont->lfStrikeOut != FALSE;
-      m_bUpdated              = false;
-                        /*,
-                        lpLogFont->lfWidth,
-                        lpLogFont->lfEscapement,
-                        lpLogFont->lfOrientation,
-                        lpLogFont->lfWeight,
-                        lpLogFont->lfItalic,
-                        lpLogFont->lfUnderline,
-                        lpLogFont->lfStrikeOut,
-                        lpLogFont->lfCharSet,
-                        lpLogFont->lfOutPrecision,
-                        lpLogFont->lfClipPrecision,
-                        lpLogFont->lfQuality,
-                        lpLogFont->lfPitchAndFamily,
-                        lpLogFont->lfFaceName);*/
-      return true;
-
-   }
-
-   bool font::CreateFont(int nHeight, int nWidth, int nEscapement,
-      int nOrientation, int nWeight, BYTE bItalic, BYTE bUnderline,
-      BYTE cStrikeOut, BYTE nCharSet, BYTE nOutPrecision,
-      BYTE nClipPrecision, BYTE nQuality, BYTE nPitchAndFamily,
-      const char * lpszFacename)
-   {
-
-      m_strFontFamilyName     = lpszFacename;
-      m_dFontSize             = nHeight / 10.0;
-      m_dFontWidth            = 1.0;
-      m_eunitFontSize         = ::ca::unit_pixel;
-      m_iFontWeight           = nWeight;
-      m_bItalic               = bItalic != FALSE;
-      m_bUnderline            = bUnderline != FALSE;
-      m_bStrikeout            = cStrikeOut != FALSE;
-      m_bUpdated              = false;
-
-      return true;
-
-   }
 
    font & font::operator = (const font & fontSrc)
    {

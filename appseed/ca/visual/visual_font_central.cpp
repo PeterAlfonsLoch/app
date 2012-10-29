@@ -36,56 +36,18 @@ bool font_central::IsInitialized()
 
 bool font_central::Initialize()
 {
+
    if(IsInitialized())
       return false;
 
-   LOGFONT                 lf;
-   memset(&lf, 0, sizeof(lf));
    ::ca::graphics_sp spgraphics(get_app());
    spgraphics->CreateCompatibleDC(NULL);
-   //lf.lfHeight         = (int)-MulDiv(9, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight = -9;
-   lf.lfWeight         = FW_NORMAL;
-   lf.lfCharSet        = DEFAULT_CHARSET;
 
-#ifdef WINDOWS
+   m_fontMenu->create_point_font(FONTFACENAME_MENU, 9);
 
-   lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-   lf.lfQuality        = PROOF_QUALITY;
-   lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
+   m_font->create_point_font("Lucida Sans Unicode", 11, FW_BOLD);
 
-#else
-
-   throw todo(get_app());
-
-#endif
-
-   strcpy(lf.lfFaceName, FONTFACENAME_MENU);
-
-   VERIFY(m_fontMenu->CreateFontIndirect(&lf));
-
-   memset(&lf, 0, sizeof(lf));
-   lf.lfHeight         = -(int)11;
-   lf.lfWeight         = FW_BOLD;
-   lf.lfCharSet        = DEFAULT_CHARSET;
-
-#ifdef WINDOWS
-
-   lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-   lf.lfQuality        = PROOF_QUALITY;
-   lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-
-#else
-
-   throw todo(get_app());
-
-#endif
-
-   strcpy(lf.lfFaceName, "Lucida Sans Unicode");
-
-   m_font->CreatePointFontIndirect(&lf);
-
-   m_fontStandard->CreatePointFont(80, "Lucida Sans Unicode");
+   m_fontStandard->create_point_font("Lucida Sans Unicode", 8);
 
    m_pTitleFonts = new primitive_array < visual::font *>;
    m_pSubTitleFonts = new primitive_array < visual::font *>;
@@ -93,47 +55,15 @@ bool font_central::Initialize()
    CreateLyricViewFonts();
 
 
-#ifdef WINDOWS
+   m_fontCaption->create_point_font("Lucida Sans Unicode", 11);
 
-   NONCLIENTMETRICS ncm;
-   memset(&ncm, 0,
-   sizeof(ncm));
-   ncm.cbSize = sizeof(ncm);
-   SystemParametersInfo(SPI_GETNONCLIENTMETRICS, 0, &ncm, 0);
-   //get caption bar
-   //font handle.
-   m_fontCaption->CreateFontIndirect(&ncm.lfCaptionFont);
 
-#else
-
-   throw todo(get_app());
-
-#endif
-
-   memset(&lf, 0, sizeof(lf));
-   //lf.lfHeight         = (int)-MulDiv(9, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight = 90;
-   lf.lfWeight         = FW_NORMAL;
-   lf.lfCharSet        = DEFAULT_CHARSET;
-
-#ifdef WINDOWS
-
-   lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-   lf.lfQuality        = PROOF_QUALITY;
-   lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-
-#else
-
-   throw todo(get_app());
-
-#endif
-
-   strcpy(lf.lfFaceName, "Lucida Sans Unicode");
-
-   VERIFY(m_fontListCtrl->CreateFontIndirect(&lf));
+   m_fontListCtrl->create_point_font("Lucida Sans Unicode", 9);
 
    m_bInitialized = true;
+
    return true;
+
 }
 
 
@@ -247,304 +177,85 @@ visual::font * font_central::GetSongListFont()
 
 void font_central::CreateLyricViewFonts()
 {
-   LOGFONT                 lf;
-
-   memset(&lf, 0, sizeof(lf));
-
    ::ca::graphics_sp spgraphics(get_app());
    spgraphics->CreateCompatibleDC(NULL);
 
-   //lf.lfHeight         = (int)-MulDiv(54, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight = -54;
-   lf.lfWeight         = FW_BOLD;
-   lf.lfCharSet        = DEFAULT_CHARSET;
-
-#ifdef WINDOWS
-
-   lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-   lf.lfQuality        = PROOF_QUALITY;
-   lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-
-#else
-
-   throw todo(get_app());
-
-#endif
-
-   strcpy(lf.lfFaceName, "Lucida Sans Unicode");
-
-   ::ca::font_sp font(get_app());
-   font->CreateFontIndirect(&lf);
-   //::ca::font *pFontOld = spgraphics->SelectObject(font);
-   //TEXTMETRIC tm;
-   //spgraphics->GetTextMetrics(&tm);
-
-   //lf.lfWidth = tm.tmAveCharWidth;
-   //lf.lfWidth = 0;
+   
    visual::font * pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->CreateFontIndirect(&lf);
+   pPlayerFont->GetFont()->create_point_font("Lucida Sans Unicode", 54, FW_BOLD);
    pPlayerFont->OnSetFont();
-
-   //m_pLyricViewFonts->add(pPlayerFont);
    m_pfontLyric = pPlayerFont;
 
-/*   lf.lfWidth = (long) (tm.tmAveCharWidth * 0.90);
-   spfont.create(get_app());
-   spfont->CreateFontIndirect(&lf);
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->SetFont(spfont.detach());
-   m_pLyricViewFonts->add(pPlayerFont);
-
-   lf.lfWidth = (long) (tm.tmAveCharWidth * 0.80);
-   spfont.create(get_app());
-   spfont->CreateFontIndirect(&lf);
-   pPlayerFont = new visual::font(get_app());
-   pPlayerFont->SetFont(spfont.detach());
-   m_pLyricViewFonts->add(pPlayerFont);
-
-   lf.lfWidth = (long) (tm.tmAveCharWidth * 0.70);
-   spfont.create(get_app());
-   spfont->CreateFontIndirect(&lf);
-   pPlayerFont = new visual::font(get_app());
-   pPlayerFont->SetFont(spfont.detach());
-   m_pLyricViewFonts->add(pPlayerFont);
-
-   lf.lfWidth = (long) (tm.tmAveCharWidth * 0.60);
-   spfont.create(get_app());
-   spfont->CreateFontIndirect(&lf);
-   pPlayerFont = new visual::font(get_app());
-   pPlayerFont->SetFont(spfont.detach());
-   m_pLyricViewFonts->add(pPlayerFont);*/
-
-   memset(&lf, 0, sizeof(lf));
-
-   //lf.lfHeight         = (int)-MulDiv(12, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight          = -12;
-   lf.lfWeight         = FW_BOLD;
-   lf.lfCharSet        = ANSI_CHARSET;
-
-#ifdef WINDOWS
-
-   lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-   lf.lfQuality        = PROOF_QUALITY;
-   lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-
-#else
-
-   throw todo(get_app());
-
-#endif
-
-   strcpy(lf.lfFaceName, "Tahoma");
-
-   font->CreateFontIndirect(&lf);
-   spgraphics->SelectObject(font);
-//   spgraphics->GetTextMetrics(&tm);
-
-   //lf.lfWidth = tm.tmAveCharWidth;
-   pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->CreateFontIndirect(&lf);
+   pPlayerFont->GetFont()->create_point_font("Tahoma", 12, FW_BOLD);
    pPlayerFont->OnSetFont();
-   //m_pLyricViewCompactFonts->add(pPlayerFont);
    m_pfontLyricCompact = pPlayerFont;
 
-   /*lf.lfWidth = (long) (tm.tmAveCharWidth * 0.90);
-   spfont.create(get_app());
-   spfont->CreateFontIndirect(&lf);
+
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->SetFont(spfont.detach());
-   m_pLyricViewCompactFonts->add(pPlayerFont);
-
-   lf.lfWidth = (long) (tm.tmAveCharWidth * 0.80);
-   spfont.create(get_app());
-   spfont->CreateFontIndirect(&lf);
-   pPlayerFont = new visual::font(get_app());
-   pPlayerFont->SetFont(spfont.detach());
-   m_pLyricViewCompactFonts->add(pPlayerFont);
-
-   lf.lfWidth = (long) (tm.tmAveCharWidth * 0.70);
-   spfont.create(get_app());
-   spfont->CreateFontIndirect(&lf);
-   pPlayerFont = new visual::font(get_app());
-   pPlayerFont->SetFont(spfont.detach());
-   m_pLyricViewCompactFonts->add(pPlayerFont);
-
-   lf.lfWidth = (long) (tm.tmAveCharWidth * 0.60);
-   spfont.create(get_app());
-   spfont->CreateFontIndirect(&lf);
-   pPlayerFont = new visual::font(get_app());
-   pPlayerFont->SetFont(spfont.detach());
-   m_pLyricViewCompactFonts->add(pPlayerFont);*/
-
-   memset(&lf, 0, sizeof(lf));
-
-//   lf.lfHeight         = (int)-MulDiv(48, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight = -48;
-   lf.lfWidth         = 0;
-   lf.lfWeight         = FW_BOLD;
-   lf.lfCharSet        = DEFAULT_CHARSET;
-
-#ifdef WINDOWS
-
-   lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-   lf.lfQuality        = PROOF_QUALITY;
-   lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-
-#else
-
-   throw todo(get_app());
-
-#endif
-
-   strcpy(lf.lfFaceName, "Lucida Sans Unicode");
-
-   font->CreateFontIndirect(&lf);
-   spgraphics->SelectObject(font);
-//   spgraphics->GetTextMetrics(&tm);
-
-  // lf.lfWidth = tm.tmAveCharWidth;
-   pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->CreateFontIndirect(&lf);
+   pPlayerFont->GetFont()->create_point_font("Lucida Sans Unicode", 48, FW_BOLD);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = (LONG) (lf.lfWidth * 0.90);
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->CreateFontIndirect(&lf);
+   pPlayerFont->GetFont()->create_point_font("Lucida Sans Unicode", 48, FW_BOLD, false, false, false, 0.9);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = (LONG) (lf.lfWidth * 0.90);
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->CreateFontIndirect(&lf);
+   pPlayerFont->GetFont()->create_point_font("Lucida Sans Unicode", 48, FW_BOLD, false, false, false, 0.9 * 0.9);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = (LONG) (lf.lfWidth * 0.90);
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->CreateFontIndirect(&lf);
+   pPlayerFont->GetFont()->create_point_font("Lucida Sans Unicode", 48, FW_BOLD, false, false, false, 0.9 * 0.9 * 0.9);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = (LONG) (lf.lfWidth * 0.90);
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->CreateFontIndirect(&lf);
+   pPlayerFont->GetFont()->create_point_font("Lucida Sans Unicode", 48, FW_BOLD, false, false, false, 0.9 * 0.9 * 0.9 * 0.9);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
-   memset(&lf, 0, sizeof(lf));
-//   ::ca::graphics * pgraphics = GetDC();
-//   pgraphics->SetMapMode(MM_TEXT);
-//   RECT rect;
-//   GetClientRect(&rect);
-    //lf.lfHeight         = (int)-MulDiv(24, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight = -24;
-   lf.lfWidth         = 0;
-   lf.lfWeight         = FW_NORMAL;
-   lf.lfCharSet        = DEFAULT_CHARSET;
-
-#ifdef WINDOWS
-
-   lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-   lf.lfQuality        = PROOF_QUALITY;
-   lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-
-#else
-
-   throw todo(get_app());
-
-#endif
-
-   strcpy(lf.lfFaceName, "Lucida Sans Unicode");
-
-   font->CreateFontIndirect(&lf);
-   spgraphics->SelectObject(font);
-
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->CreateFontIndirect(&lf);
+   pPlayerFont->GetFont()->create_point_font("Lucida Sans Unicode", 24, FW_NORMAL);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = long (lf.lfWidth * 0.90);
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->CreateFontIndirect(&lf);
+   pPlayerFont->GetFont()->create_point_font("Lucida Sans Unicode", 24, FW_NORMAL, false, false, false, 0.9);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = long (lf.lfWidth * 0.90);
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->CreateFontIndirect(&lf);
+   pPlayerFont->GetFont()->create_point_font("Lucida Sans Unicode", 24, FW_NORMAL, false, false, false, 0.9 * 0.9);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = long (lf.lfWidth * 0.90);
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->CreateFontIndirect(&lf);
+   pPlayerFont->GetFont()->create_point_font("Lucida Sans Unicode", 24, FW_NORMAL, false, false, false, 0.9 * 0.9 * 0.9);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
-   lf.lfWidth = long (lf.lfWidth * 0.90);
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->CreateFontIndirect(&lf);
+   pPlayerFont->GetFont()->create_point_font("Lucida Sans Unicode", 24, FW_NORMAL, false, false, false, 0.9 * 0.9 * 0.9 * 0.9);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
-   //lf.lfHeight         = (int)-MulDiv(12, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight = -12;
-   lf.lfWeight         = FW_BOLD;
-   lf.lfCharSet        = DEFAULT_CHARSET;
-
-#ifdef WINDOWS
-
-   lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-   lf.lfQuality        = PROOF_QUALITY;
-   lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-
-#else
-
-   throw todo(get_app());
-
-#endif
-
-   strcpy(lf.lfFaceName, "Lucida Sans Unicode");
-
-   font->CreateFontIndirect(&lf);
-   spgraphics->SelectObject(font);
-
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->CreateFontIndirect(&lf);
+   pPlayerFont->GetFont()->create_point_font("Lucida Sans Unicode", 12, FW_BOLD);
    pPlayerFont->OnSetFont();
    m_lpSongLabelFont = pPlayerFont;
 
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->CreateFontIndirect(&lf);
+   pPlayerFont->GetFont()->create_point_font("Lucida Sans Unicode", 12, FW_BOLD);
    pPlayerFont->OnSetFont();
    m_lpSongListFont = pPlayerFont;
 
 
-   //lf.lfHeight         = (int)-MulDiv(10, spgraphics->GetDeviceCaps(LOGPIXELSY), 72);
-   lf.lfHeight = -10;
-   lf.lfWeight         = FW_NORMAL;
-   lf.lfCharSet        = DEFAULT_CHARSET;
-
-#ifdef WINDOWS
-
-   lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-   lf.lfQuality        = PROOF_QUALITY;
-   lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-
-#else
-
-   throw todo(get_app());
-
-#endif
-
-   strcpy(lf.lfFaceName, "Lucida Sans Unicode");
-
-   font->CreateFontIndirect(&lf);
 
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->CreateFontIndirect(&lf);
+   pPlayerFont->GetFont()->create_point_font("Lucida Sans Unicode", 10, FW_NORMAL);
    pPlayerFont->OnSetFont();
    m_pxffontMidiTrackName = pPlayerFont;
 

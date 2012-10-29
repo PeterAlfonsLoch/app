@@ -18,22 +18,33 @@ namespace html
    bool font::create(::ca::application * papp)
    {
       m_font.create(papp);
-      LOGFONT lf;
-
-      memset(&lf, 0, sizeof(lf));
 
 
+      int iWeight;
       if(m_strWeight.CompareNoCase("bold") == 0)
       {
-         lf.lfWeight = 800;
+         iWeight = 800;
       }
       else
       {
-         lf.lfWeight = 400;
+         iWeight = 400;
       }
-      lf.lfHeight = -atoi(m_strSize);
-      if(lf.lfHeight == 0)
-         lf.lfHeight = -16;
+      
+      double dSize;
+      
+      m_strSize.trim();
+
+      if(m_strSize.is_empty())
+      {
+         dSize = 11;
+      }
+      else
+      {
+         dSize = strtod(m_strSize, NULL);
+      }
+
+
+
       stringa stra;
       stra.add_tokens(m_strFamily,",", false);
       for(int i = 0; i < stra.get_size(); i++)
@@ -41,39 +52,33 @@ namespace html
          stra[i].trim();
          if(stra[i].CompareNoCase("fixed-width") == 0)
          {
-            lf.lfPitchAndFamily = FF_DONTCARE | FIXED_PITCH;
-            lf.lfQuality = PROOF_QUALITY;
-            lf.lfClipPrecision = CLIP_DEFAULT_PRECIS;
-            lf.lfOutPrecision = OUT_DEFAULT_PRECIS;
-            lf.lfCharSet =  DEFAULT_CHARSET;
          }
          else if(stra[i].CompareNoCase("sans-serif") == 0)
          {
-            lf.lfPitchAndFamily = FF_SWISS | DEFAULT_PITCH;
          }
          else if(stra[i].CompareNoCase("serif") == 0)
          {
-            lf.lfPitchAndFamily = FF_ROMAN | DEFAULT_PITCH;
          }
       }
       strsize iLen;
+      string strName;
       if(stra.get_count() > 0)
       {
-         iLen = min(sizeof(lf.lfFaceName) - 1, stra[0].get_length());
-         strncpy(lf.lfFaceName, stra[0], iLen);
-         lf.lfFaceName[iLen] = '\0';
-         /*
-         if(stra[0] == "Courier New")
-         {
-            string strHard = "Times New Roman";
-            iLen = min(sizeof(lf.lfFaceName) - 1, strlen(strHard));
-            strncpy(lf.lfFaceName, strHard, iLen);
-         }
-         */
+         strName = stra[0];
+//         iLen = min(sizeof(lf.lfFaceName) - 1, stra[0].get_length());
+  //       strncpy(lf.lfFaceName, stra[0], iLen);
+    //     lf.lfFaceName[iLen] = '\0';
+         strName.trim();
       }
-      lf.lfUnderline = gen::str::find_ci("underline", m_strTextDecoration) >= 0;
+      else
+      {
+         strName = "Arial";
+      }
+      
+      
+      bool bUnderline = gen::str::find_ci("underline", m_strTextDecoration) >= 0;
 
-      m_font->CreateFontIndirectA(&lf);
+      m_font->create_point_font(strName, dSize, iWeight, false, bUnderline);
 
       return true;
    }

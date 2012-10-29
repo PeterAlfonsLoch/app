@@ -29,14 +29,32 @@ namespace ca
       font();
 
 
-      virtual bool CreateFontIndirect(const LOGFONT* lpLogFont);
-      virtual bool CreateFont(int nHeight, int nWidth, int nEscapement,
-            int nOrientation, int nWeight, BYTE bItalic, BYTE bUnderline,
-            BYTE cStrikeOut, BYTE nCharSet, BYTE nOutPrecision,
-            BYTE nClipPrecision, BYTE nQuality, BYTE nPitchAndFamily,
-            const char * lpszFacename);
-      virtual bool CreatePointFont(int nPointSize, const char * lpszFaceName, ::ca::graphics * pgraphics = NULL);
-      virtual bool CreatePointFontIndirect(const LOGFONT* lpLogFont, ::ca::graphics * pgraphics = NULL);
+      virtual bool create_pixel_font(
+         const char * lpszFacename, 
+         double dSize,
+         int iWeight = 400, 
+         bool bItalic = false, 
+         bool bUnderline = false,
+         bool bStrikeOut = false,
+         double dWidth = 1.0);
+
+      virtual bool create_point_font(
+         const char * lpszFacename, 
+         double dSize,
+         int iWeight = 400, 
+         bool bItalic = false, 
+         bool bUnderline = false,
+         bool bStrikeOut = false,
+         double dWidth = 1.0);
+
+
+      //    int nEscapement
+      //    int nOrientation
+      //    BYTE nCharSet
+      //    BYTE nOutPrecision
+      //    BYTE nClipPrecision
+      //    BYTE nQuality
+      //    BYTE nPitchAndFamily
 
       font & operator = (const font & font);
 

@@ -19,7 +19,7 @@ namespace bergedge
       m_dibBk(papp),
       m_mutexDraw(papp)
    {
-      m_font->CreatePointFont(84, "Geneva");
+      m_font->create_point_font("Geneva", 8.4);
       m_bDestroy = false;
       m_iV = 123;
       m_iVH = 49;

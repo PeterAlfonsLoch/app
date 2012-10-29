@@ -65,31 +65,13 @@ namespace platform
       m_brushProgress2->CreateSolidBrush(ARGB(255, 255, 240, 200));
       m_brushProgress3->CreateSolidBrush(ARGB(255, 128, 128, 128));
 
-      LOGFONT lf;
+      m_buttonschema.m_font->create_point_font("Geneva", 16);
 
-      memset(&lf, 0, sizeof(lf));
-      strcpy(lf.lfFaceName, "Geneva");
-      lf.lfPitchAndFamily = FF_SWISS;
-      lf.lfHeight = 16;
+      m_font1->create_point_font("Geneva", 16);
 
-      m_buttonschema.m_font->CreateFontIndirectA(&lf);
+      m_font1->create_point_font("Geneva", 32, FW_BOLD);
 
-      m_font1->CreateFontIndirect(&lf);
-
-      memset(&lf, 0, sizeof(lf));
-      strcpy(lf.lfFaceName, "Geneva");
-      lf.lfPitchAndFamily = FF_SWISS;
-      lf.lfWeight = 900;
-      lf.lfHeight = 32;
-      m_font2->CreateFontIndirect(&lf);
-
-      memset(&lf, 0, sizeof(lf));
-      strcpy(lf.lfFaceName, "Geneva");
-      lf.lfPitchAndFamily = FF_SWISS;
-      lf.lfWeight = 100;
-      lf.lfItalic = 1;
-      lf.lfHeight = 20;
-      m_font3->CreateFontIndirect(&lf);
+      m_font1->create_point_font("Geneva", 20, FW_LIGHT, true);
 
       m_dProgress = -1.0;
       m_dProgress1 = -1.0;

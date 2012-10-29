@@ -324,7 +324,7 @@ namespace user
       {
          return false;
       }
-      m_font->CreatePointFont(100, "Arial");
+      m_font->create_point_font("Arial", 10.0);
       return CreateEx(
          WS_EX_TOOLWINDOW,
          System.RegisterWndClass(0, 0, 0, 0),

@@ -66,29 +66,16 @@ namespace user
 
       //m_rectBorder.set(7, 1, 7, 0);
 
-      LOGFONT                 lf;
-
-      memset(&lf, 0, sizeof(lf));
 
       ::ca::graphics_sp spgraphics(get_app());
       spgraphics->CreateCompatibleDC(NULL);
 
-      lf.lfHeight         = -10;
-      lf.lfWeight         = FW_NORMAL;
-      lf.lfCharSet        = DEFAULT_CHARSET;
-      lf.lfClipPrecision  = CLIP_DEFAULT_PRECIS;
-      lf.lfQuality        = PROOF_QUALITY;
-      lf.lfPitchAndFamily = FF_ROMAN|DEFAULT_PITCH;
-      lstrcpy(lf.lfFaceName, "Lucida Sans Unicode");
+      
+      get_data()->m_font->create_point_font("Lucida Sans Unicode", 10);
 
-      get_data()->m_font->CreateFontIndirect(&lf);
+      get_data()->m_fontBold->create_point_font("Lucida Sans Unicode", 10, FW_BOLD);
 
-      lf.lfWeight         = FW_BOLD;
-      get_data()->m_fontBold->CreateFontIndirect(&lf);
-
-      lf.lfWeight         = FW_NORMAL;
-      lf.lfUnderline      = TRUE;
-      get_data()->m_fontUnderline->CreateFontIndirect(&lf);
+      get_data()->m_fontUnderline->create_point_font("Lucida Sans Unicode", 10, FW_NORMAL, false, true);
 
       _001SetVertical(false);
 

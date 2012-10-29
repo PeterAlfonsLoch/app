@@ -21,7 +21,7 @@ namespace filehandler
 
       ::ca::font_sp font(get_app());
 
-      font->CreatePointFont(140, "Geneva");
+      font->create_point_font("Geneva", 14.0);
 
       SetFont(font);
 
