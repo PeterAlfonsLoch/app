@@ -119,7 +119,7 @@ namespace ca4
 
       EVP_EncryptInit(&ctx, EVP_aes_256_ecb(), key.get_data(), iv.get_data());
 
-      cipherlen = (int) (storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(ctx) - 1); 
+      cipherlen = (int) (storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx) - 1); 
 
       storageEncrypt.allocate(cipherlen);
 
@@ -192,7 +192,7 @@ namespace ca4
 
       EVP_DecryptInit(&ctx, EVP_aes_256_ecb(), key.get_data(), iv.get_data());
 
-      plainlen = (int) storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(ctx);
+      plainlen = (int) storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx);
 
       storageDecrypt.allocate(plainlen);
 
@@ -305,7 +305,7 @@ namespace ca4
    }
 
 
-   string crypt::md5(primitive::memory & mem)
+   string crypt::md5(const primitive::memory & mem)
    {
 
       primitive::memory memMd5;
@@ -317,7 +317,7 @@ namespace ca4
 
    }
 
-   string crypt::md5(primitive::memory & memMd5, const primitive::memory & mem)
+   void crypt::md5(primitive::memory & memMd5, const primitive::memory & mem)
    {
 
       memMd5.allocate(16);
@@ -332,7 +332,7 @@ namespace ca4
 
    }
 
-   string crypt::sha1(primitive::memory & mem)
+   string crypt::sha1(const primitive::memory & mem)
    {
 
       primitive::memory memSha1;
@@ -378,7 +378,7 @@ namespace ca4
    bool crypt::encrypt(primitive::memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt)
    {
       primitive::memory memoryDecrypt;
-      memoryDecrypt.FromAsc(pszDecrypt);
+      memoryDecrypt.from_asc(pszDecrypt);
       return encrypt(storageEncrypt, memoryDecrypt, pszSalt);
    }
 
@@ -387,7 +387,7 @@ namespace ca4
       primitive::memory memoryDecrypt;
       if(!decrypt(memoryDecrypt, storageEncrypt, pszSalt))
          return false;
-      memoryDecrypt.ToAsc(strDecrypt);
+      memoryDecrypt.to_asc(strDecrypt);
       return true;
    }
 

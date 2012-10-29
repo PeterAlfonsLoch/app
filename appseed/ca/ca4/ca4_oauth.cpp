@@ -973,7 +973,7 @@ namespace ca4
 
       /* SHA 1 digest is 160 bits */
       ::primitive::memory memKey;
-      memKey.From(secretSigningKey);
+      memKey.from_hex(secretSigningKey);
 
 
 

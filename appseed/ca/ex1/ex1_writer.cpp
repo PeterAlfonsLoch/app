@@ -118,10 +118,10 @@ namespace ex1
       }
    }
 
-   void writer::From(const char * psz)
+   void writer::from_hex(const char * psz)
    {
       primitive::memory memory(get_app());
-      memory.From(psz);
+      memory.from_hex(psz);
       write(memory.get_data(), memory.get_size());
    }
 

@@ -141,7 +141,7 @@ namespace ex1
       }
    }
 
-   void reader::To(string & str, ::primitive::memory_position dwStart, ::primitive::memory_position dwEnd)
+   void reader::to_hex(string & str, ::primitive::memory_position dwStart, ::primitive::memory_position dwEnd)
    {
       primitive::memory memory(get_app());
       seek((file_offset) dwStart, seek_begin);
@@ -161,7 +161,7 @@ namespace ex1
          }
       }
       memory.allocate((::primitive::memory_size) uiPos);
-      memory.To(str);
+      memory.to_hex(str);
    }
 
 

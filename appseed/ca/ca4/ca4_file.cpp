@@ -172,7 +172,7 @@ namespace ca4
             if(n == 2)
                break;
             read_ex1_string(spfile, NULL, strMd5);
-            MD5_Init(&ctx);
+            ctx.reset();
             read_ex1_string(spfile, &ctx, strRelative);
             string strPath = System.dir().path(pszDir, strRelative);
             App(papp).dir().mk(System.dir().name(strPath));
@@ -185,25 +185,18 @@ namespace ca4
              if(uiRead == 0)
                 break;
                file2->write(buf, uiRead);
-               MD5_Update(&ctx, buf, (unsigned long) uiRead);
+               ctx.update(buf, (unsigned long) uiRead);
                iLen -= (unsigned long) uiRead;
             }
             file2->close();
-            MD5_Final(buf,&ctx);
-            strMd5New.Empty();
-            string strFormat;
-            for(int i = 0; i < 16; i++)
-            {
-               strFormat.Format("%02x", ((const char *)buf)[i]);
-               strMd5New += strFormat;
-            }
+            strMd5New = ctx.to_hex();
             if(strMd5 != strMd5New)
                throw "failed";
          }
       }
    }
 
-   void file::write_n_number(ex1::file * pfile, MD5_CTX  * pctx, int64_t iNumber)
+   void file::write_n_number(ex1::file * pfile, ::crypto::md5::context * pctx, int64_t iNumber)
    {
 
       string str;
@@ -215,13 +208,13 @@ namespace ca4
       if(pctx != NULL)
       {
 
-         MD5_Update(pctx, (const char *) str, (int) str.get_length());
+         pctx->update((const char *) str, (int) str.get_length());
 
       }
 
    }
 
-   void file::read_n_number(ex1::file * pfile, MD5_CTX * pctx, int64_t & iNumber)
+   void file::read_n_number(ex1::file * pfile, ::crypto::md5::context * pctx, int64_t & iNumber)
    {
       
       uint64_t uiRead;
@@ -240,7 +233,7 @@ namespace ca4
 
          if(pctx != NULL)
          {
-            MD5_Update(pctx, &ch, 1);
+            pctx->update(&ch, 1);
          }
 
       }
@@ -250,25 +243,25 @@ namespace ca4
 
       if(pctx != NULL)
       {
-         MD5_Update(pctx, &ch, 1);
+         pctx->update(&ch, 1);
       }
 
       iNumber = gen::str::to_int64(str);
 
    }
 
-   void file::write_ex1_string(ex1::file * pfile, MD5_CTX * pctx, string & str)
+   void file::write_ex1_string(ex1::file * pfile, ::crypto::md5::context * pctx, string & str)
    {
       count iLen = str.get_length();
       write_n_number(pfile, pctx, iLen);
       pfile->write((const char *) str, str.get_length());
       if(pctx != NULL)
       {
-         MD5_Update(pctx, (const char *) str, (int) str.get_length());
+         pctx->update((const char *) str, (int) str.get_length());
       }
    }
 
-   void file::read_ex1_string(ex1::file * pfile, MD5_CTX * pctx, string & str)
+   void file::read_ex1_string(ex1::file * pfile, ::crypto::md5::context * pctx, string & str)
    {
       int64_t iLen;
       read_n_number(pfile, pctx, iLen);
@@ -280,7 +273,7 @@ namespace ca4
          while(iLen - iProcessed > 0)
          {
             int iProcess = (int) min(1024 * 1024, iLen - iProcessed);
-            MD5_Update(pctx, &lpsz[iProcessed], iProcess);
+            pctx->update(&lpsz[iProcessed], iProcess);
             iProcessed += iProcess;
          }
       }

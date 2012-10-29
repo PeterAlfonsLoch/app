@@ -41,7 +41,7 @@ namespace ex1
 
       virtual void close();
 
-      virtual void To(string & str, ::primitive::memory_position iStart = 0, ::primitive::memory_position iEnd = -1);
+      virtual void to_hex(string & str, ::primitive::memory_position iStart = 0, ::primitive::memory_position iEnd = -1);
 
    };
 

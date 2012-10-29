@@ -345,7 +345,7 @@ bool db_server::load(const char * lpKey, ::ex1::writable &  writable)
    {
       return false;
    }
-   writable.From(str);
+   writable.from_hex(str);
    return true;
 }
 
@@ -362,7 +362,7 @@ bool db_server::save(const char * lpKey, ex1::readable & readable)
 {
    single_lock sl(&m_csImplDatabase, TRUE);
    string str;
-   readable.To(str);
+   readable.to_hex(str);
 //   int iLength = str.get_length();
 //   int iKeyLen = strlen(lpKey);
    if(!save(lpKey, str))

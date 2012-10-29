@@ -46,7 +46,7 @@ namespace ex1
 
       virtual void close();
 
-      virtual void From(const char * psz);
+      virtual void from_hex(const char * psz);
 
       virtual void Flush();
 

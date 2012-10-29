@@ -9,7 +9,9 @@ namespace crypto
    {
 
 
-      context::context()
+      context::context(::ca::application * papp) :
+         ca(papp),
+         m_memoryDigest(papp)
       {
 
          m_bEnd = false;
@@ -27,6 +29,12 @@ namespace crypto
          MD5_Init(&m_ctx);
 
 #endif
+
+      }
+
+
+      context::~context()
+      {
 
       }
 
@@ -52,7 +60,7 @@ namespace crypto
 
             read = min(size - pos, 0xffffffffu);
 
-            MD5_Update(&m_ctx, &data[pos], read);
+            MD5_Update(&m_ctx, &((byte *) data)[pos], read);
 
             pos += read;
 
@@ -72,12 +80,12 @@ namespace crypto
       }
 
 
-      string context::get() // 16 bytes - 32 hex characters
+      string context::to_hex() // 16 bytes - 32 hex characters
       {
 
          defer_finalize();
 
-         return m_meoryDigest.to_hex();
+         return m_memoryDigest.to_hex();
 
       }
 
@@ -94,9 +102,13 @@ namespace crypto
 
 #else
          
-            MD5_Final(m_memoryDigest.allocate(16), &m_ctx);
+            m_memoryDigest.allocate(16);
+
+            MD5_Final(m_memoryDigest.get_data(), &m_ctx);
 
 #endif
+
+            m_bEnd = true;
 
          }
 
