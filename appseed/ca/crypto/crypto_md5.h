@@ -1,6 +1,13 @@
 #pragma once
 
 
+#ifndef METROWIN
+
+#include <openssl/md5.h>
+
+#endif
+
+
 namespace crypto
 {
 

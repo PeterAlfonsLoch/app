@@ -161,7 +161,7 @@ namespace ca4
       primitive::memory buf;
       buf.allocate(iBufSize);
       int64_t iLen;
-      ::crypto::md5::context
+      ::crypto::md5::context ctx(get_app());
       ex1::filesp file2(get_app());
       ::primitive::memory_size uiRead;
       if(strVersion == "fileset v1")
