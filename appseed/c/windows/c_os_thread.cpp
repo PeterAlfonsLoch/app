@@ -193,3 +193,17 @@ CLASS_DECL_c void attach_thread_input_to_main_thread(bool bAttach)
    AttachThreadInput(::GetCurrentThreadId(), get_main_thread_id(), bAttach ? TRUE : FALSE);
 
 }
+
+
+DWORD WINAPI thread_layer::proc(LPVOID lp)
+{
+
+   thread_layer * player   = (thread_layer *) lp;
+
+   player->m_hthread       = ::GetCurrentThread();
+
+   player->m_nId           = ::GetCurrentThreadId();
+
+   return player->run();
+
+}

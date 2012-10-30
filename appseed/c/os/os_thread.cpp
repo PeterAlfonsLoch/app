@@ -19,16 +19,3 @@ void thread_layer::begin()
 }
 
 
-DWORD WINAPI thread_layer::proc(LPVOID lp)
-{
-
-   thread_layer * player = (thread_layer *) lp;
-
-throw "todo";
-
-/*   player->m_hthread = ::GetCurrentThread();
-   player->m_nId     = ::GetCurrentThreadId();*/
-
-   return player->run();
-
-}
