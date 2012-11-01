@@ -990,7 +990,7 @@ restart:
       while((str = defer_get_plugin()).is_empty())
       {
          iAttempt++;
-         if(iAttempt > 11)
+         if(iAttempt > 3)
             return "";
          Sleep(iAttempt * 840);
       }
@@ -1026,7 +1026,12 @@ restart:
       }
 
       if(m_strLocale.is_empty())
+      {
+         iAttempt++;
+         if(iAttempt > 3)
+            return "";
          goto restart;
+      }
 
 
       xxdebug_box("plugin::defer_get not logged", "defer get", 0);
