@@ -36,7 +36,7 @@ namespace ca
       DWORD dwStart = ::get_tick_count();
       while(s_bRunning && ((::get_tick_count() - dwStart) < dwTimeOut))
       {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          if(!::SwitchToThread())
 #endif
             Sleep(184);

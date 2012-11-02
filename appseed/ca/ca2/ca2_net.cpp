@@ -576,6 +576,35 @@ namespace ca2
 
    bool net::u2ip(const string & host, struct sockaddr_in6& sa, int ai_flags)
    {
+
+#ifdef METROWIN
+
+      
+      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(rtstr(host)), "0"));
+      
+      if(data->Size <= 0)
+         return false;
+      
+      string str = begin(data->GetAt(0)->RemoteHostName->DisplayName); 
+
+      if(!net::isipv6(str))
+         return false;
+
+      stringa stra;
+
+      stra.explode(".", str);
+
+      if(stra.get_size() != 4)
+         return false;
+
+      sa.sin_addr.S_un.S_un_b.s_b1 = gen::str::to_int(stra[0]);
+      sa.sin_addr.S_un.S_un_b.s_b2 = gen::str::to_int(stra[1]);
+      sa.sin_addr.S_un.S_un_b.s_b3 = gen::str::to_int(stra[2]);
+      sa.sin_addr.S_un.S_un_b.s_b4 = gen::str::to_int(stra[3]);
+
+      return true;
+
+#else
       memset(&sa, 0, sizeof(sa));
       sa.sin6_family = AF_INET6;
 #ifdef NO_GETADDRINFO
@@ -683,6 +712,9 @@ namespace ca2
 #endif
       return false;
 #endif // NO_GETADDRINFO
+
+#endif
+
    }
 
 

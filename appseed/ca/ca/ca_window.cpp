@@ -32,7 +32,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    bool window::GetWindowInfo(PWINDOWINFO pwi) const
    {
       UNREFERENCED_PARAMETER(pwi);

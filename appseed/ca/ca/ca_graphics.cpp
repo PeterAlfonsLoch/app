@@ -34,6 +34,7 @@ namespace ca
       return 0;
    }
 
+   /*
 #ifdef WINDOWS
 
    bool graphics::Attach(HDC hdc)
@@ -47,6 +48,8 @@ namespace ca
    }
 
 #endif
+
+   */
 
    void graphics::attach(void * pdata)
    {
