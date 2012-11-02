@@ -549,7 +549,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    bool graphics::DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc, LPARAM lData, UINT nFlags, HBRUSH hBrush)
    {
@@ -1056,7 +1056,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    DWORD graphics::GetCharacterPlacement(const char * lpString, int nCount, int nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const
    {

@@ -11,7 +11,7 @@ namespace ca
       #ifdef WIN32
       char buf[2048];
       vsnprintf_s(buf, sizeof(buf), sizeof(buf), pszFormat, list);
-      OutputDebugString(buf);
+      OutputDebugStringW(wstring(buf));
       #else
       vprintf(pszFormat, list);
       #endif

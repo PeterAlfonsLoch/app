@@ -549,6 +549,7 @@ namespace ca4
 
          if(strProtocol == "https")
          {
+#ifndef METROWIN
             ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].ca2 < ::sockets::ssl_client_context > ();
             if(pcontext != NULL)
             {
@@ -561,6 +562,7 @@ namespace ca4
                   psession->m_strInitSSLClientContext = System.url().get_server(strUrl) + "?sessid=" + strSessId;
                }
             }
+#endif
             psession->EnableSSL();
          }
          DWORD dw1 = ::get_tick_count();

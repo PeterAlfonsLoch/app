@@ -1739,6 +1739,8 @@ fill_last:
       }
    }
 
+
+
    void dib::SetIconMask(::visual::icon * picon, int cx, int cy)
    {
       create(cx, cy);
@@ -1754,6 +1756,12 @@ fill_last:
       dib1.create(cx, cy);
       dib1.Fill(255, 255, 255);
 
+#ifdef METROWIN
+
+      throw not_implemented(get_app());
+
+#else
+
       dib1.get_graphics()->DrawIcon(
          0, 0,
          picon,
@@ -1762,10 +1770,18 @@ fill_last:
          NULL,
          DI_IMAGE | DI_MASK);
 
+#endif
+
       // Black blend dib
       ::ca::dib_sp spdib2(get_app());
       spdib2->create(cx, cy);
       spdib2->Fill(0, 0, 0);
+
+#ifdef METROWIN
+
+      throw not_implemented(get_app());
+
+#else
 
       spdib2->get_graphics()->DrawIcon(
          0, 0,
@@ -1775,9 +1791,17 @@ fill_last:
          NULL,
          DI_IMAGE | DI_MASK);
 
+#endif
+
       // Mask dib
       dib dibM;
       dibM.create(cx, cy);
+
+#ifdef METROWIN
+
+      throw not_implemented(get_app());
+
+#else
 
       dibM.get_graphics()->DrawIcon(
          0, 0,
@@ -1786,6 +1810,8 @@ fill_last:
          0,
          NULL,
          DI_MASK);
+
+#endif
 
       BYTE * r1=(BYTE*)dib1.get_data();
       BYTE * r2=(BYTE*)spdib2->get_data();
