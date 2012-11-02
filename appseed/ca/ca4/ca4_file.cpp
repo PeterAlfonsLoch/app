@@ -67,7 +67,7 @@ namespace ca4
 
       int iRead;
 
-      while((iRead = spfile->read(buf, iBufSize)) > 0)
+      while((iRead = (int) spfile->read(buf, iBufSize)) > 0)
       {
 
          ctx.update(buf.get_data(), iRead);

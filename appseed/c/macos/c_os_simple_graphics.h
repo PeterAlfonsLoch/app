@@ -6,7 +6,10 @@
 //
 //
 
-
+#ifdef __MM
+#else
+typedef CGRect NSRect;
+#endif
 
 class CLASS_DECL_c os_simple_graphics
 {
@@ -46,6 +49,8 @@ public:
    void *                  m_pnscolorBack;
 #endif
    COLORREF                m_crTextColor;
+   bool                    m_bGotOriginalClipPath;
+   NSRect                  m_rectOriginalClip;
    
    
    os_simple_graphics();
@@ -120,5 +125,6 @@ public:
 #endif
    void set_foreground(COLORREF cr);
    void set_background(COLORREF cr);
+   void defer_get_original_clip_path();
 
 };

@@ -38,6 +38,8 @@ os_simple_graphics::os_simple_graphics()
    
    m_bBackColor   = false;
    
+   m_bGotOriginalClipPath = false;
+   
 }
 
 
@@ -783,5 +785,150 @@ bool os_simple_graphics::fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode)
    
    return true;
    
+   
+}
+
+void os_simple_graphics::defer_get_original_clip_path()
+{
+   
+   if(!m_bGotOriginalClipPath)
+   {
+      
+      CGContextRef context = (CGContextRef) [m_nsgc graphicsPort];
+      
+      m_rectOriginalClip = CGContextGetClipBoundingBox(context);
+      
+      m_bGotOriginalClipPath = true;
+      
+   }
+   
+}
+
+// On 30 Oct, 2012, at 6:47 AM, Graham Cox <graham....@bigpond.com> wrote:
+// http://www.mail-archive.com/cocoa-dev@lists.apple.com/msg83889.html
+bool os_simple_graphics::exclude_clip(simple_path & path)
+{
+
+   [NSGraphicsContext setCurrentContext:m_nsgc];
+   
+   NSBezierPath * cp = [NSBezierPath bezierPathWithRect: m_rectOriginalClip];
+   
+   [cp appendBezierPath: path.m_nspath];
+   
+   [cp setWindingRule:NSEvenOddWindingRule];
+   
+   [cp addClip];
+   
+   return true;
+
+}
+
+
+
+bool os_simple_graphics::replace_clip(simple_path &path)
+{
+   
+   [NSGraphicsContext setCurrentContext:m_nsgc];
+   
+   [path.m_nspath setClip];
+   
+   return true;
+   
+}
+
+
+bool os_simple_graphics::replace_clip(const RECT & r)
+{
+   
+   simple_path path;
+   
+   path.add_rect(r);
+   
+   return replace_clip(path);
+   
+}
+
+
+bool os_simple_graphics::draw_line(int x1, int y1, int x2, int y2, simple_pen &pen)
+{
+   
+   simple_path path;
+   
+   path.add_line(x1, y1, x2, y2);
+   
+   [path.m_nspath setLineWidth:pen.m_iWidth];
+   
+   [NSGraphicsContext setCurrentContext:m_nsgc];
+   
+   NSColor * pcolor = alloc_color(pen.m_cr);
+   
+   [pcolor setStroke];
+   
+   [path.m_nspath stroke];
+   
+   free_color(pcolor);
+   
+   return true;
+   
+}
+
+
+bool os_simple_graphics::draw_path(simple_path & path, simple_pen &pen)
+{
+   
+   [path.m_nspath setLineWidth:pen.m_iWidth];
+   
+   [NSGraphicsContext setCurrentContext:m_nsgc];
+   
+   NSColor * pcolor = alloc_color(pen.m_cr);
+   
+   [pcolor setStroke];
+   
+   [path.m_nspath stroke];
+   
+   free_color(pcolor);
+   
+   return true;
+   
+}
+
+
+bool os_simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen &pen)
+{
+   
+   simple_path path;
+   
+   path.add_rect(*lpcrect);
+   
+   [path.m_nspath setLineWidth:pen.m_iWidth];
+   
+   [NSGraphicsContext setCurrentContext:m_nsgc];
+   
+   NSColor * pcolor = alloc_color(pen.m_cr);
+   
+   [pcolor setStroke];
+   
+   [path.m_nspath stroke];
+   
+   free_color(pcolor);
+   
+   return true;
+   
+}
+
+bool os_simple_graphics::fill_path(simple_path & path, simple_brush & brush)
+{
+   
+   [NSGraphicsContext setCurrentContext:m_nsgc];
+   
+   NSColor * pcolor = alloc_color(brush.m_cr);
+   
+   [pcolor setFill];
+   
+   [path.m_nspath fill];
+   
+   free_color(pcolor);
+   
+   return true;
    
 }

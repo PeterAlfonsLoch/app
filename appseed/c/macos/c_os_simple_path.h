@@ -11,6 +11,16 @@ public:
    
 //   ID2D1PathGeometry *        m_ppath;
   // ID2D1GeometrySink *        m_psink;
+   
+#ifdef __MM
+   NSBezierPath *          m_nspath;
+#else
+   void *                  m_ppath;
+   
+#endif
+   
+   
+   
    bool                       m_bFill;
    ::ca::e_fill_mode          m_efillmode;
    

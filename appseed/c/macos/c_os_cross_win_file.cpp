@@ -3,7 +3,7 @@
 
 HANDLE
 WINAPI
-CreateFileA(
+create_file(
             LPCSTR lpFileName,
             DWORD dwDesiredAccess,
             DWORD dwShareMode,

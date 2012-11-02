@@ -264,9 +264,7 @@ namespace primitive
 
    inline void memory_base::set(byte b, memory_size uiSize)
    {
-      if(uiSize < 0)
-         uiSize = get_size();
-      else if(uiSize > get_size())
+      if(uiSize > get_size())
          uiSize = get_size();
       memset(get_data(), b, (size_t) uiSize);
    }
@@ -311,7 +309,7 @@ namespace primitive
    {
       if(pos > this->get_size())
          throw invalid_argument_exception(get_app());
-      if(size < 0 || pos + size > get_size())
+      if(pos + size > get_size())
          size = get_size() - pos;
       char * pchSrc = (char *) get_data();
       char * pchDst = str.GetBufferSetLength(size * 2);
