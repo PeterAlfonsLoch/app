@@ -84,9 +84,9 @@ namespace ca
    }
 
 
-   bool bitmap::Attach(HBITMAP hbitmap)
+   bool bitmap::Attach(void * posdata)
    {
-      UNREFERENCED_PARAMETER(hbitmap);
+      UNREFERENCED_PARAMETER(posdata);
       throw interface_only_exception(get_app());
    }
 

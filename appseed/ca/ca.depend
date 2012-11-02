@@ -6277,10 +6277,9 @@
 	"user_job.h"
 	"user_application.h"
 
-1342864829 /ca2/app/appseed/ca/visual/visual.h
+1351891576 /ca2/app/appseed/ca/visual/visual.h
 	"ca/userpresence/userpresence.h"
 	"ft2build.h"
-	"visual_clip.h"
 	"visual_dib.h"
 	"visual_fastblur.h"
 	"visual_rgb_quad_array.h"
@@ -7159,7 +7158,7 @@
 1351367157 /ca2/app/appseed/c/spa/spa_plugin.h
 	"c/os/os.h"
 
-1350845754 /ca2/app/appseed/c/os/os.h
+1351509355 /ca2/app/appseed/c/os/os.h
 	"os_thread.h"
 	"os_process.h"
 	"c/ansios/ansios.h"
@@ -7685,7 +7684,7 @@
 	"ex1_writer.h"
 	"ex1_stream.h"
 
-1342864814 /ca2/app/appseed/ca/ex1/ex1_reader.h
+1351812991 /ca2/app/appseed/ca/ex1/ex1_reader.h
 	"ex1_seekable.h"
 
 1342864814 /ca2/app/appseed/ca/ex1/ex1_seekable.h
@@ -7693,7 +7692,7 @@
 
 1342864814 /ca2/app/appseed/ca/ex1/ex1_stream_base.h
 
-1342864814 /ca2/app/appseed/ca/ex1/ex1_writer.h
+1351812991 /ca2/app/appseed/ca/ex1/ex1_writer.h
 
 1342864814 /ca2/app/appseed/ca/ex1/ex1_stream.h
 
@@ -7911,18 +7910,18 @@
 
 1347219354 /ca2/app/appseed/ca/ca/ca_graphics_object.h
 
-1351322634 /ca2/app/appseed/ca/ca/ca_pen.h
+1351863652 /ca2/app/appseed/ca/ca/ca_pen.h
 
-1348449947 /ca2/app/appseed/ca/ca/ca_bitmap.h
+1351848396 /ca2/app/appseed/ca/ca/ca_bitmap.h
 	"ca_graphics_object.h"
 
-1346980282 /ca2/app/appseed/ca/ca/ca_brush.h
+1351863997 /ca2/app/appseed/ca/ca/ca_brush.h
 
-1351383143 /ca2/app/appseed/ca/ca/ca_font.h
+1351812991 /ca2/app/appseed/ca/ca/ca_font.h
 
 1342864737 /ca2/app/appseed/ca/ca/ca_palette.h
 
-1342864737 /ca2/app/appseed/ca/ca/ca_region.h
+1351891852 /ca2/app/appseed/ca/ca/ca_region.h
 
 1342864737 /ca2/app/appseed/ca/ca/ca_igui.h
 
@@ -7931,7 +7930,7 @@
 1348390791 /ca2/app/appseed/ca/ca/ca_draw_dib.h
 	<vfw.h>
 
-1351322634 /ca2/app/appseed/ca/ca/ca_graphics.h
+1351877512 /ca2/app/appseed/ca/ca/ca_graphics.h
 	"user/user_draw_context.h"
 	"ca_bitmap.h"
 	"ca_pen.h"
@@ -7943,7 +7942,7 @@
 
 1342864881 /ca2/app/appseed/ca/user/user_draw_context.h
 
-1346980282 /ca2/app/appseed/ca/ca/ca_graphics_path.h
+1351875715 /ca2/app/appseed/ca/ca/ca_graphics_path.h
 
 1342864726 /ca2/app/appseed/ca/gen/gen_request_signal.h
 
@@ -8026,7 +8025,7 @@
 
 1342864830 /ca2/app/appseed/ca/database/database_update_hint.h
 
-1350784960 /ca2/app/appseed/ca/ca/ca_window.h
+1351855446 /ca2/app/appseed/ca/ca/ca_window.h
 	"ca/user/user_interaction.h"
 
 1342864737 /ca2/app/appseed/ca/ca/ca_message_window.h
@@ -8163,7 +8162,7 @@
 
 1342864814 /ca2/app/appseed/ca/ex1/ex1_file_stream.h
 
-1351438974 /ca2/app/appseed/ca/primitive/primitive_memory_base.h
+1351846830 /ca2/app/appseed/ca/primitive/primitive_memory_base.h
 
 1342864855 /ca2/app/appseed/ca/primitive/primitive_memory.h
 
@@ -8527,7 +8526,7 @@
 
 1349512047 /ca2/app/appseed/ca/ca2/ca2_datetime.h
 
-1351438974 /ca2/app/appseed/ca/ca2/ca2_net.h
+1351812991 /ca2/app/appseed/ca/ca2/ca2_net.h
 	<ws2tcpip.h>
 	<tpipv6.h>
 	"ca2_sockets_address.h"
@@ -8695,7 +8694,7 @@
 
 1347621935 /ca2/app/appseed/ca/colorertake5/application.h
 
-1342864841 /ca2/app/appseed/ca/crypto/crypto.h
+1351812991 /ca2/app/appseed/ca/crypto/crypto.h
 	"crypto_err.h"
 	"crypto_config.h"
 	"crypto_integers.h"
@@ -8722,6 +8721,7 @@
 	"crypto_ut_sim.h"
 	"crypto_c_crypto.h"
 	"crypto_kernel.h"
+	"crypto_md5.h"
 	"crypto_sha1.h"
 	"crypto_hmac.h"
 	"crypto_hmac_sha1.h"
@@ -9115,7 +9115,7 @@
 
 1342864805 /ca2/app/appseed/ca/compress/compress_register_codec.h
 
-1351439670 /ca2/app/appseed/ca/sockets/sockets.h
+1351812991 /ca2/app/appseed/ca/sockets/sockets.h
 	"internal/SSLInitializer.h"
 	<sys/param.h>
 	<stdlib.h>
@@ -9196,7 +9196,7 @@
 
 1342864872 /ca2/app/appseed/ca/sockets/internal/SSLInitializer.h
 
-1342864871 /ca2/app/appseed/ca/sockets/basic/ipv4_address.h
+1351812991 /ca2/app/appseed/ca/sockets/basic/ipv4_address.h
 
 1342864871 /ca2/app/appseed/ca/sockets/basic/ipv6_address.h
 
@@ -9354,7 +9354,7 @@
 
 1342864835 /ca2/app/appseed/ca/ca4/ca4_email.h
 
-1342864835 /ca2/app/appseed/ca/ca4/ca4_file.h
+1351812991 /ca2/app/appseed/ca/ca4/ca4_file.h
 
 1342864835 /ca2/app/appseed/ca/ca4/ca4_http.h
 
@@ -9706,10 +9706,10 @@
 1342864737 source:/ca2/app/appseed/ca/ca/ca_application_interface.cpp
 	"framework.h"
 
-1349512032 source:/ca2/app/appseed/ca/ca/ca_bitmap.cpp
+1351848456 source:/ca2/app/appseed/ca/ca/ca_bitmap.cpp
 	"framework.h"
 
-1349512032 source:/ca2/app/appseed/ca/ca/ca_brush.cpp
+1351864052 source:/ca2/app/appseed/ca/ca/ca_brush.cpp
 	"framework.h"
 
 1342864737 source:/ca2/app/appseed/ca/ca/ca_c.cpp
@@ -9741,7 +9741,7 @@
 1350784960 source:/ca2/app/appseed/ca/ca/ca_dir_system.cpp
 	"framework.h"
 
-1349512032 source:/ca2/app/appseed/ca/ca/ca_draw_dib.cpp
+1351812991 source:/ca2/app/appseed/ca/ca/ca_draw_dib.cpp
 	"framework.h"
 
 1342864737 source:/ca2/app/appseed/ca/ca/ca_edit.cpp
@@ -9763,17 +9763,17 @@
 	<Tlhelp32.h>
 	<Psapi.h>
 
-1351383682 source:/ca2/app/appseed/ca/ca/ca_font.cpp
+1351812991 source:/ca2/app/appseed/ca/ca/ca_font.cpp
 	"framework.h"
 
-1351345401 source:/ca2/app/appseed/ca/ca/ca_graphics.cpp
+1351864100 source:/ca2/app/appseed/ca/ca/ca_graphics.cpp
 	"framework.h"
 	<math.h>
 
 1349512032 source:/ca2/app/appseed/ca/ca/ca_graphics_object.cpp
 	"framework.h"
 
-1349512032 source:/ca2/app/appseed/ca/ca/ca_graphics_path.cpp
+1351876391 source:/ca2/app/appseed/ca/ca/ca_graphics_path.cpp
 	"framework.h"
 
 1342864737 source:/ca2/app/appseed/ca/ca/ca_history.cpp
@@ -9806,7 +9806,7 @@
 1349512032 source:/ca2/app/appseed/ca/ca/ca_palette.cpp
 	"framework.h"
 
-1349512032 source:/ca2/app/appseed/ca/ca/ca_pen.cpp
+1351864276 source:/ca2/app/appseed/ca/ca/ca_pen.cpp
 	"framework.h"
 
 1342864737 source:/ca2/app/appseed/ca/ca/ca_print_job.cpp
@@ -9815,7 +9815,7 @@
 1342864737 source:/ca2/app/appseed/ca/ca/ca_profiler.cpp
 	"framework.h"
 
-1349512032 source:/ca2/app/appseed/ca/ca/ca_region.cpp
+1351890955 source:/ca2/app/appseed/ca/ca/ca_region.cpp
 	"framework.h"
 
 1342864737 source:/ca2/app/appseed/ca/ca/ca_session.cpp
@@ -9833,13 +9833,13 @@
 1347621935 source:/ca2/app/appseed/ca/ca/ca_type_info.cpp
 	"framework.h"
 
-1351366668 source:/ca2/app/appseed/ca/ca/ca_window.cpp
+1351855523 source:/ca2/app/appseed/ca/ca/ca_window.cpp
 	"framework.h"
 
 1350784960 source:/ca2/app/appseed/ca/ca/ca_window_draw.cpp
 	"framework.h"
 
-1351438974 source:/ca2/app/appseed/ca/ca2/ca2_application.cpp
+1351812991 source:/ca2/app/appseed/ca/ca2/ca2_application.cpp
 	"framework.h"
 
 1349512047 source:/ca2/app/appseed/ca/ca2/ca2_datetime.cpp
@@ -9851,13 +9851,13 @@
 1350784961 source:/ca2/app/appseed/ca/ca2/ca2_log.cpp
 	"framework.h"
 
-1350784961 source:/ca2/app/appseed/ca/ca2/ca2_net.cpp
+1351812991 source:/ca2/app/appseed/ca/ca2/ca2_net.cpp
 	"framework.h"
 	<ctype.h>
 	<sys/socket.h>
 	<netdb.h>
 
-1350784961 source:/ca2/app/appseed/ca/ca2/ca2_process.cpp
+1351812991 source:/ca2/app/appseed/ca/ca2/ca2_process.cpp
 	"framework.h"
 
 1350784961 source:/ca2/app/appseed/ca/ca2/ca2_url.cpp
@@ -9885,7 +9885,7 @@
 1349512030 source:/ca2/app/appseed/ca/ca4/ca4_copydesk.cpp
 	"framework.h"
 
-1349512030 source:/ca2/app/appseed/ca/ca4/ca4_crypt.cpp
+1351812991 source:/ca2/app/appseed/ca/ca4/ca4_crypt.cpp
 	"framework.h"
 	<openssl/ssl.h>
 	<openssl/md5.h>
@@ -10142,7 +10142,7 @@
 1350784961 source:/ca2/app/appseed/ca/ca4/ca4_email.cpp
 	"framework.h"
 
-1349512030 source:/ca2/app/appseed/ca/ca4/ca4_file.cpp
+1351846830 source:/ca2/app/appseed/ca/ca4/ca4_file.cpp
 	"framework.h"
 	<openssl/ssl.h>
 	<openssl/md5.h>
@@ -10165,7 +10165,7 @@
 1342864835 source:/ca2/app/appseed/ca/ca4/ca4_nessie.cpp
 	"framework.h"
 
-1345878357 source:/ca2/app/appseed/ca/ca4/ca4_oauth.cpp
+1351812991 source:/ca2/app/appseed/ca/ca4/ca4_oauth.cpp
 	"framework.h"
 	<memory.h>
 
@@ -10893,7 +10893,7 @@
 1348428168 source:/ca2/app/appseed/ca/ex1/ex1_plain_text_stream.cpp
 	"framework.h"
 
-1349512035 source:/ca2/app/appseed/ca/ex1/ex1_reader.cpp
+1351812991 source:/ca2/app/appseed/ca/ex1/ex1_reader.cpp
 	"framework.h"
 
 1345878356 source:/ca2/app/appseed/ca/ex1/ex1_request_interface.cpp
@@ -10944,7 +10944,7 @@
 1342864814 source:/ca2/app/appseed/ca/ex1/ex1_tree_item_data.cpp
 	"framework.h"
 
-1342864814 source:/ca2/app/appseed/ca/ex1/ex1_writer.cpp
+1351812991 source:/ca2/app/appseed/ca/ex1/ex1_writer.cpp
 	"framework.h"
 
 1342864819 source:/ca2/app/appseed/ca/ex2/ex2_application.cpp
@@ -11781,7 +11781,7 @@
 1342864853 source:/ca2/app/appseed/ca/primitive/datetime/datetime_calendar_interface.cpp
 	"framework.h"
 
-1342864853 source:/ca2/app/appseed/ca/primitive/datetime/datetime_clock.cpp
+1351864656 source:/ca2/app/appseed/ca/primitive/datetime/datetime_clock.cpp
 	"framework.h"
 
 1342864853 source:/ca2/app/appseed/ca/primitive/datetime/datetime_clock_interface.cpp
@@ -12062,7 +12062,7 @@
 	"framework.h"
 	<fcntl.h>
 
-1351322633 source:/ca2/app/appseed/ca/simpledb/simpledb_db_server.cpp
+1351812991 source:/ca2/app/appseed/ca/simpledb/simpledb_db_server.cpp
 	"framework.h"
 	"db_str_set.h"
 
@@ -12543,7 +12543,7 @@
 	"framework.h"
 	"include/freeimage.h"
 
-1349647157 source:/ca2/app/appseed/ca/visual/visual_font_central.cpp
+1351812991 source:/ca2/app/appseed/ca/visual/visual_font_central.cpp
 	"framework.h"
 
 1349647426 source:/ca2/app/appseed/ca/user/user_window_util.cpp
@@ -12807,13 +12807,13 @@
 
 1350025623 /ca2/app/appseed/c/macos/c_os_simple_bitmap.h
 
-1350807661 /ca2/app/appseed/c/macos/c_os_simple_brush.h
+1351846830 /ca2/app/appseed/c/macos/c_os_simple_brush.h
 
 1351406554 /ca2/app/appseed/c/macos/c_os_simple_pen.h
 
 1351406554 /ca2/app/appseed/c/macos/c_os_simple_font.h
 
-1351406554 /ca2/app/appseed/c/macos/c_os_simple_graphics.h
+1351846830 /ca2/app/appseed/c/macos/c_os_simple_graphics.h
 
 1349512029 /ca2/app/appseed/c/merdes_windows/c_os_gdi.h
 	<D2D1.h>
@@ -12905,7 +12905,7 @@
 
 1350784958 /ca2/app/appseed/c/c/c_xmlite.h
 
-1351367157 /ca2/app/appseed/c/c/c_file.h
+1351846830 /ca2/app/appseed/c/c/c_file.h
 
 1350784958 /ca2/app/appseed/c/c/c_launcher.h
 
@@ -12987,7 +12987,7 @@
 
 1350845755 /ca2/app/appseed/c/metrowin/c_os_thread.h
 
-1350845755 /ca2/app/appseed/c/metrowin/c_os_sockets.h
+1351812990 /ca2/app/appseed/c/metrowin/c_os_sockets.h
 
 1350845755 /ca2/app/appseed/c/metrowin/c_os_http.h
 
@@ -13151,5 +13151,8 @@
 	"c_os_simple_path.h"
 	"c_os_simple_graphics.h"
 
-1351406554 /ca2/app/appseed/c/macos/c_os_simple_path.h
+1351846830 /ca2/app/appseed/c/macos/c_os_simple_path.h
+
+1351812991 /ca2/app/appseed/ca/crypto/crypto_md5.h
+	<openssl/md5.h>
 

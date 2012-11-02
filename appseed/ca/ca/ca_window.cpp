@@ -1401,11 +1401,11 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction* window::GetWindow(UINT nCmd)
+/*   ::user::interaction* window::GetWindow(UINT nCmd)
    {
       UNREFERENCED_PARAMETER(nCmd);
       throw interface_only_exception(get_app());
-   }
+   }*/
 
    ::user::interaction* window::GetLastActivePopup()
    {

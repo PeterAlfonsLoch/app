@@ -7,13 +7,16 @@ namespace ca
    brush::brush()
    {
 
-      m_crColor   = 0;
+      m_cr        = ARGB(0, 0, 0, 0);
+
       m_etype     = type_solid;
+
       m_bUpdated  = false;
 
 
    }
 
+/*
    void brush::construct(COLORREF crColor)
    {
 
@@ -29,12 +32,14 @@ namespace ca
       UNREFERENCED_PARAMETER(crColor);
       throw interface_only_exception(get_app());
    }
-
    void brush::construct(::ca::bitmap* pBitmap)
    {
       UNREFERENCED_PARAMETER(pBitmap);
       throw interface_only_exception(get_app());
    }
+
+*/
+
 
 #ifdef WINDOWS
    bool brush::CreateDIBPatternBrush(HGLOBAL hPackedDIB, UINT nUsage)
@@ -51,47 +56,46 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool brush::CreateStockObject(int nIndex)
+   bool brush::create_null()
    {
 
-      if(nIndex == NULL_BRUSH)
-      {
-         m_crColor   = ARGB(0, 0, 0, 0);
-         m_etype     = type_solid;
-         m_bUpdated  = false;
-      }
-      else
-      {
-         m_crColor   = ARGB(0, 0, 0, 0);
-         m_etype     = type_solid;
-         m_bUpdated  = false;
-      }
+      m_cr        = ARGB(0, 0, 0, 0);
 
-      return TRUE;
+      m_etype     = type_null;
+
+      m_bUpdated  = true;
+
+      return true;
 
    }
 
-   bool brush::CreateSolidBrush(COLORREF crColor)
+   bool brush::create_solid(COLORREF crColor)
    {
 
-      m_crColor   = crColor;
+      m_cr        = crColor;
+
       m_etype     = type_solid;
+
       m_bUpdated  = false;
 
-      return TRUE;
+      return true;
 
    }
+
    bool brush::CreateHatchBrush(int nIndex, COLORREF crColor)
    {
+
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(crColor);
       throw interface_only_exception(get_app());
    }
+
    bool brush::CreateBrushIndirect(const LOGBRUSH* lpLogBrush)
    {
       UNREFERENCED_PARAMETER(lpLogBrush);
       throw interface_only_exception(get_app());
    }
+
    bool brush::CreatePatternBrush(::ca::bitmap* pBitmap)
    {
       UNREFERENCED_PARAMETER(pBitmap);
@@ -133,7 +137,7 @@ namespace ca
    {
 
       m_etype           = brushSrc.m_etype;
-      m_crColor         = brushSrc.m_crColor;
+      m_cr              = brushSrc.m_cr;
       m_pt1             = brushSrc.m_pt1;
       m_pt2             = brushSrc.m_pt2;
       m_cr1             = brushSrc.m_cr1;

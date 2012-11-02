@@ -8,8 +8,8 @@ namespace visual
       m_pwnd(NULL),
       m_bAcquired(false)
    {
-      m_rgn.CreateRectRgn(0, 0, 0, 0);
-      m_rgnOld.CreateRectRgn(0, 0, 0, 0);
+//      m_rgn.CreateRectRgn(0, 0, 0, 0);
+//      m_rgnOld.CreateRectRgn(0, 0, 0, 0);
    }
 
    //////////////////////////////////////////////////
@@ -28,8 +28,8 @@ namespace visual
    {
       ASSERT(pwnd != NULL);
       ASSERT(pdc != NULL);
-      m_rgn.CreateRectRgn(0, 0, 0, 0);
-      m_rgnOld.CreateRectRgn(0, 0, 0, 0);
+//      m_rgn.CreateRectRgn(0, 0, 0, 0);
+      //m_rgnOld.CreateRectRgn(0, 0, 0, 0);
       Do(pwnd, pdc);
    }
 
@@ -48,8 +48,8 @@ namespace visual
    clip::clip(::ca::graphics * pdc, ::ca::region * prgn)
    {
       ASSERT(pdc != NULL);
-      m_rgn.CreateRectRgn(0, 0, 0, 0);
-      m_rgnOld.CreateRectRgn(0, 0, 0, 0);
+//      m_rgn.CreateRectRgn(0, 0, 0, 0);
+  //    m_rgnOld.CreateRectRgn(0, 0, 0, 0);
       Do(pdc, prgn);
    }
 
@@ -68,8 +68,8 @@ namespace visual
    clip::clip(::ca::graphics * pdc, LPCRECT lpcrect)
    {
       ASSERT(pdc != NULL);
-      m_rgn.CreateRectRgn(0, 0, 0, 0);
-      m_rgnOld.CreateRectRgn(0, 0, 0, 0);
+//      m_rgn.CreateRectRgn(0, 0, 0, 0);
+  //    m_rgnOld.CreateRectRgn(0, 0, 0, 0);
       Do(pdc, lpcrect);
    }
 

@@ -1,20 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+	<File name="ansios/ansios.h" open="0" top="0" tabpos="22">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="ansios/ansios_file.cpp" open="0" top="0" tabpos="28">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="ansios/ansios_file.h" open="0" top="0" tabpos="21">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="ansios/crypto/ansios_crypt.cpp" open="0" top="0" tabpos="29">
+		<Cursor position="0" topLine="16" />
+	</File>
 	<File name="bsdiff/bsdiff.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="2478" topLine="91" />
 	</File>
-	<File name="c/c.h" open="1" top="0" tabpos="7">
+	<File name="c/c.h" open="0" top="0" tabpos="2">
 		<Cursor position="1754" topLine="81" />
 	</File>
 	<File name="c/c_async.h" open="0" top="0" tabpos="9">
 		<Cursor position="3488" topLine="148" />
 	</File>
-	<File name="c/c_file.h" open="0" top="0" tabpos="5">
-		<Cursor position="0" topLine="0" />
+	<File name="c/c_file.cpp" open="0" top="0" tabpos="10">
+		<Cursor position="841" topLine="20" />
+	</File>
+	<File name="c/c_file.h" open="0" top="0" tabpos="11">
+		<Cursor position="2173" topLine="16" />
+	</File>
+	<File name="c/c_md5.cpp" open="0" top="0" tabpos="20">
+		<Cursor position="13370" topLine="455" />
 	</File>
 	<File name="c/c_simple_event.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="920" topLine="52" />
+	</File>
+	<File name="c/c_std_file.cpp" open="0" top="0" tabpos="12">
+		<Cursor position="285" topLine="1" />
 	</File>
 	<File name="c/c_str.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="19617" topLine="872" />
@@ -22,25 +43,67 @@
 	<File name="c/c_verisimple_string.h" open="0" top="0" tabpos="3">
 		<Cursor position="3346" topLine="95" />
 	</File>
-	<File name="framework.h" open="1" top="0" tabpos="4">
+	<File name="framework.h" open="0" top="0" tabpos="1">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="hotplugin/hotplugin_plugin.cpp" open="0" top="0" tabpos="11">
-		<Cursor position="11454" topLine="575" />
+		<Cursor position="13381" topLine="653" />
+	</File>
+	<File name="linux/c_os.cpp" open="0" top="0" tabpos="33">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="linux/c_os_cross_win_file.cpp" open="0" top="0" tabpos="25">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="linux/c_os_cross_win_file.h" open="0" top="0" tabpos="24">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="linux/c_os_cross_win_gdi.cpp" open="0" top="0" tabpos="27">
+		<Cursor position="0" topLine="57" />
+	</File>
+	<File name="linux/c_os_file.cpp" open="0" top="0" tabpos="26">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="linux/c_os_file.h" open="0" top="0" tabpos="23">
+		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="linux/c_os_graphics.h" open="0" top="0" tabpos="3">
 		<Cursor position="385" topLine="0" />
 	</File>
-	<File name="linux/c_os_http_lib.cpp" open="1" top="0" tabpos="9">
+	<File name="linux/c_os_http_lib.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="4743" topLine="155" />
 	</File>
+	<File name="linux/c_os_library.cpp" open="0" top="0" tabpos="32">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="linux/c_os_simple_bitmap.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="980" topLine="71" />
+	</File>
+	<File name="linux/c_os_simple_bitmap.h" open="0" top="0" tabpos="0">
+		<Cursor position="139" topLine="0" />
+	</File>
 	<File name="linux/c_os_simple_graphics.cpp" open="0" top="0" tabpos="12">
-		<Cursor position="407" topLine="15" />
+		<Cursor position="6835" topLine="489" />
 	</File>
 	<File name="linux/c_os_simple_graphics.h" open="0" top="0" tabpos="2">
-		<Cursor position="983" topLine="12" />
+		<Cursor position="2222" topLine="49" />
+	</File>
+	<File name="linux/c_os_simple_path.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="14" />
+	</File>
+	<File name="linux/c_os_thread.cpp" open="0" top="0" tabpos="31">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="linux/c_os_win_base.cpp" open="0" top="0" tabpos="30">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="simple_graphics/simple_graphics.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="7943" topLine="318" />
 	</File>
 	<File name="simple_graphics/simple_graphics.h" open="0" top="0" tabpos="1">
 		<Cursor position="4157" topLine="98" />
+	</File>
+	<File name="simple_graphics/simple_path.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="33" />
 	</File>
 </CodeBlocks_layout_file>

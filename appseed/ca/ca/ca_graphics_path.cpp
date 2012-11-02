@@ -11,7 +11,7 @@ namespace ca
    }
 
 
-   bool graphics_path::start_figure()
+   bool graphics_path::begin_figure(bool bFill, ::ca::e_fill_mode efillmode)
    {
 
       throw interface_only_exception(get_app());
@@ -19,7 +19,14 @@ namespace ca
    }
 
 
-   bool graphics_path::close_figure()
+   bool graphics_path::end_figure(bool bClose)
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+   point graphics_path::current_point()
    {
 
       throw interface_only_exception(get_app());
@@ -27,20 +34,36 @@ namespace ca
    }
 
 
+   bool graphics_path::is_empty()
+   {
 
-   point graphics_path::last_point()
+      return !has_current_point();
+
+   }
+
+   bool graphics_path::has_current_point()
+   {
+
+      return !is_empty();
+
+   }
+
+   bool graphics_path::add_arc(const RECT & rect, int iStart, int iAngle)
    {
 
       throw interface_only_exception(get_app());
 
    }
-
 
 
    bool graphics_path::add_line(int x1, int y1, int x2, int y2)
    {
 
-      throw interface_only_exception(get_app());
+      bool bOk1 = add_line(x1, y1);
+
+      bool bOk2 = add_line(x2, y2);
+
+      return bOk1 && bOk2;
 
    }
 
@@ -48,23 +71,41 @@ namespace ca
    bool graphics_path::add_line(point p1, point p2)
    {
 
-      throw interface_only_exception(get_app());
+      bool bOk1 = add_line(p1);
+
+      bool bOk2 = add_line(p2);
+
+      return bOk1 && bOk2;
 
    }
 
-   bool graphics_path::add_line(int x2, int y2)
+   bool graphics_path::add_line(int x, int y)
    {
 
-      point pt1 = last_point();
-      
-      return add_line(pt1.x, pt1.y, x2, y2);
+      point pt = current_point();
+
+      return add_line(pt.x, pt.y, x, y);
 
    }
 
-   bool graphics_path::add_line(point p2)
+   bool graphics_path::add_line(point p)
    {
-      
-      return add_line(last_point(), p2);
+
+      return add_line(current_point(), p);
+
+   }
+
+   bool graphics_path::add_move(int x, int y)
+   {
+
+      return add_move(point(x, y));
+
+   }
+
+   bool graphics_path::add_move(point p)
+   {
+
+      return add_move(p.x, p.y);
 
    }
 

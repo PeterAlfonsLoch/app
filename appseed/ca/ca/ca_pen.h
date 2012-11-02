@@ -5,21 +5,27 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca pen : 
+   class CLASS_DECL_ca pen :
       virtual public ::ca::graphics_object
    {
    public:
 
 
-      int         m_nPenStyle;
-      double      m_dPenWidth;
-      COLORREF    m_crPenColor;
+      enum e_type
+      {
+         type_null,
+         type_solid,
+      };
 
 
-      virtual void construct(int nPenStyle, double dWidth, COLORREF crColor);
-      virtual void construct(int nPenStyle, double nWidth, const LOGBRUSH* pLogBrush, int nStyleCount = 0, const DWORD* lpStyle = NULL);
-      virtual bool CreatePen(int nPenStyle, double dWidth, COLORREF crColor);
-      virtual bool CreatePen(int nPenStyle, double nWidth, const LOGBRUSH * pLogBrush, int nStyleCount = 0, const DWORD* lpStyle = NULL);
+
+      e_type      m_etype;
+      double      m_dWidth;
+      COLORREF    m_cr;
+
+
+      virtual bool create_null();
+      virtual bool create_solid(double dWidth, COLORREF crColor);
 
 
       pen & operator = (const pen & penSrc);
@@ -45,29 +51,32 @@ namespace ca
       {
       }
 
-      pen_sp(::ca::application * papp) : 
+      pen_sp(::ca::application * papp) :
          smart_pointer < pen > (papp)
       {
       }
 
-      pen_sp(::ca::application * papp, int nPenStyle, int nWidth, COLORREF crColor) :
+      pen_sp(::ca::application * papp, int nWidth, COLORREF crColor) :
          smart_pointer < pen > (papp)
       {
-         m_p->construct(nPenStyle, nWidth, crColor); 
+         m_p->create_solid(nWidth, crColor);
       }
 
+/*
       pen_sp(::ca::application * papp, int nPenStyle, int nWidth, const LOGBRUSH* pLogBrush,
          int nStyleCount = 0, const DWORD* lpStyle = NULL) :
          smart_pointer < pen > (papp)
       {
-         m_p->construct(nPenStyle, nWidth, pLogBrush, nStyleCount, lpStyle); 
+         m_p->construct(nPenStyle, nWidth, pLogBrush, nStyleCount, lpStyle);
       }
+*/
 
       pen_sp & operator = (pen * ppen)
       {
          m_p = ppen;
          return *this;
       }
+
    };
 
 

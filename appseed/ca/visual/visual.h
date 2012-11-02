@@ -20,7 +20,7 @@ CLASS_DECL_ca int  DrawTextU(HDC hdc, const char * lpchText, int cchText, LPRECT
 
 
 
-#include "visual_clip.h"
+//#include "visual_clip.h"
 
 #include "visual_dib.h"
 #include "visual_fastblur.h"

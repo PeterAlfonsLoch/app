@@ -199,7 +199,7 @@ namespace ca
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL, ::ca::region* prgnUpdate = NULL, UINT flags = 0);
 #endif
 
-      
+
 #ifdef WINDOWSEX
       virtual bool EnableScrollBar(int nSBFlags, UINT nArrowFlags = ESB_ENABLE_BOTH);
 #else
@@ -332,7 +332,7 @@ namespace ca
 #endif
       virtual ::user::interaction * GetTopWindow();
 
-      virtual ::user::interaction * GetWindow(UINT nCmd);
+//      virtual ::user::interaction * GetWindow(UINT nCmd);
       virtual ::user::interaction * GetLastActivePopup();
 
       virtual bool IsChild(::user::interaction *  pWnd);
@@ -629,7 +629,7 @@ namespace ca
       virtual bool CheckAutoCenter();
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-      
+
 
       // helper routines for implementation
       virtual bool HandleFloatingSysCommand(UINT nID, LPARAM lParam);

@@ -4,6 +4,9 @@
 	<File name="filemanager/SimpleFolderTreeView.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="9781" topLine="283" />
 	</File>
+	<File name="filemanager/filemanager_icon.h" open="0" top="0" tabpos="0">
+		<Cursor position="330" topLine="0" />
+	</File>
 	<File name="fs/fs_tree.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="5103" topLine="164" />
 	</File>

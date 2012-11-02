@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace ca
 {
+
 
    class CLASS_DECL_ca brush :
       virtual public graphics_object
@@ -11,14 +13,15 @@ namespace ca
 
       enum e_type
       {
-         
+
+         type_null,
          type_solid,
          type_linear_gradient_point_color,
 
       };
 
 
-      COLORREF    m_crColor;
+      COLORREF    m_cr;
       e_type      m_etype;
       point       m_pt1;
       point       m_pt2;
@@ -29,12 +32,12 @@ namespace ca
       brush();
 
 
-      virtual void construct(COLORREF crColor);                // CreateSolidBrush
-      virtual void construct(int nIndex, COLORREF crColor);    // CreateHatchBrush
-      virtual void construct(bitmap * pbitmap);                // CreatePatternBrush
+      //virtual void construct(COLORREF crColor);                // CreateSolidBrush
+      //virtual void construct(int nIndex, COLORREF crColor);    // CreateHatchBrush
+      //virtual void construct(bitmap * pbitmap);                // CreatePatternBrush
 
-      virtual bool CreateStockObject(int nIndex);
-      virtual bool CreateSolidBrush(COLORREF crColor);
+      virtual bool create_null();
+      virtual bool create_solid(COLORREF crColor);
       virtual bool CreateHatchBrush(int nIndex, COLORREF crColor);
       virtual bool CreateBrushIndirect(const LOGBRUSH* lpLogBrush);
       virtual bool CreatePatternBrush(::ca::bitmap* pBitmap);
@@ -77,9 +80,10 @@ namespace ca
       brush_sp(::ca::application * papp, COLORREF crColor) :
          smart_pointer < brush > (papp)
       {
-         m_p->construct(crColor);
+         m_p->create_solid(crColor);
       }
 
+/*
       // CreateHatchBrush
       brush_sp(::ca::application * papp, int nIndex, COLORREF crColor) :
          smart_pointer < brush > (papp)
@@ -92,6 +96,7 @@ namespace ca
       {
          m_p->construct(pbitmap);
       }
+*/
 
       brush_sp & operator = (brush * pbrush)
       {
@@ -102,3 +107,6 @@ namespace ca
 
 
 } // namespace ca
+
+
+

@@ -13,8 +13,60 @@ namespace ca
 
    }
 
+   region::region(const region & region)
+   {
 
-   bool region::CreateRectRgn(int x1, int y1, int x2, int y2)
+      m_etype        = type_none;
+      m_bUpdated     = false;
+      operator = (region);
+
+   }
+
+
+   region::~region()
+   {
+      if(m_etype != type_none)
+      {
+         destroy();
+      }
+   }
+
+   bool region::destroy()
+   {
+
+      e_type etype = m_etype;
+
+      m_etype = type_none;
+
+      switch(etype)
+      {
+      case type_none:
+         return false;
+      case type_rect:
+         return true;
+      case type_oval:
+         return true;
+      case type_polygon:
+         delete m_lppoints;
+         return true;
+      case type_poly_polygon:
+         delete m_lppoints;
+         delete m_lppolycounts;
+         return true;
+      case type_round_rect:
+         return true;
+      case type_combine:
+         delete m_pregion1;
+         delete m_pregion2;
+         return true;
+      default:
+         throw not_implemented(get_app());
+      };
+
+   }
+
+
+   /*bool region::CreateRectRgn(int x1, int y1, int x2, int y2)
    {
 
       m_pta.remove_all();
@@ -245,15 +297,237 @@ namespace ca
       UNREFERENCED_PARAMETER(lpRect);
       throw interface_only_exception(get_app());
    }
+*/
+
+
+   bool region::create_rect(int x1, int y1, int x2, int y2)
+   {
+
+      if(m_etype != type_none)
+      {
+
+         destroy();
+
+      }
+
+      m_etype = type_rect;
+
+      m_x1 = x1;
+      m_y1 = y1;
+      m_x2 = x2;
+      m_y2 = y2;
+
+      return true;
+
+
+   }
+
+   bool region::create_rect(LPCRECT lprect)
+   {
+
+      if(m_etype != type_none)
+      {
+
+         destroy();
+
+      }
+
+      m_etype = type_rect;
+
+      m_x1 = lprect->left;
+      m_y1 = lprect->top;
+      m_x2 = lprect->left;
+      m_y2 = lprect->top;
+
+      return true;
+
+
+   }
+
+   bool region::create_oval(int x1, int y1, int x2, int y2)
+   {
+
+      if(m_etype != type_none)
+      {
+
+         destroy();
+
+      }
+
+      m_etype = type_oval;
+
+      m_x1 = x1;
+      m_y1 = y1;
+      m_x2 = x2;
+      m_y2 = y2;
+
+      return true;
+
+   }
+
+   bool region::create_oval(LPCRECT lprect)
+   {
+
+      if(m_etype != type_none)
+      {
+
+         destroy();
+
+      }
+
+      m_etype = type_oval;
+
+      m_x1 = lprect->left;
+      m_y1 = lprect->top;
+      m_x2 = lprect->left;
+      m_y2 = lprect->top;
+
+      return true;
+
+   }
+
+   bool region::create_polygon(LPPOINT lppoints, int nCount, ::ca::e_fill_mode efillmode)
+   {
+
+      if(m_etype != type_none)
+      {
+
+         destroy();
+
+      }
+
+      m_etype = type_polygon;
+
+      m_nCount = nCount;
+      m_lppoints = new POINT[m_nCount];
+      memcpy(m_lppoints, lppoints, sizeof(POINT) * m_nCount);
+      m_efillmode = efillmode;
+
+      return true;
+   }
+
+   bool region::create_poly_polygon(LPPOINT lppoints, LPINT lppolycounts, int nCount, ::ca::e_fill_mode efillmode)
+   {
+
+      if(m_etype != type_none)
+      {
+
+         destroy();
+
+      }
+
+      m_etype = type_poly_polygon;
+
+      m_nCount = nCount;
+      m_lppolycounts = new INT[m_nCount];
+      memcpy(m_lppolycounts, lppolycounts, sizeof(INT) * m_nCount);
+      int iTotalCount = 0;
+      for(int i = 0; i < nCount; i++)
+      {
+         iTotalCount += m_lppolycounts[i];
+      }
+      m_lppoints = new POINT[iTotalCount];
+      memcpy(m_lppoints, lppoints, sizeof(POINT) * iTotalCount);
+      m_efillmode = efillmode;
+
+      return true;
+
+   }
+   //virtual bool add_round_rect(int x1, int y1, int x2, int y2, int x3, int y3);
+//      virtual bool add_path(::ca::graphics_path * ppath);
+
+//      virtual void SetRectRgn(int x1, int y1, int x2, int y2);
+//      virtual void SetRectRgn(LPCRECT lpRect);
+   bool region::combine(const ::ca::region * prgn1, const ::ca::region * prgn2, e_combine ecombine)
+   {
+
+      if(m_etype != type_none)
+      {
+
+         destroy();
+
+      }
+
+      m_etype = type_combine;
+
+      m_pregion1 = new ::ca::region(*prgn1);
+
+      m_pregion2 = new ::ca::region(*prgn2);
+
+      m_ecombine  = ecombine;
+
+      return true;
+
+   }
 
    region & region::operator = (const ::ca::region & regionSrc)
    {
 
-      m_pta          = regionSrc.m_pta;
-      m_iaCount      = regionSrc.m_iaCount;
-      m_etype        = regionSrc.m_etype;
-      m_bUpdated     = false;
+      if(this == &regionSrc)
+         return *this;
 
+      if(m_etype != type_none)
+      {
+
+         destroy();
+
+      }
+
+      m_etype = regionSrc.m_etype;
+
+      switch(m_etype)
+      {
+      case type_none:
+         return *this;
+      case type_rect:
+         m_x1 = regionSrc.m_x1;
+         m_y1 = regionSrc.m_y1;
+         m_x2 = regionSrc.m_x2;
+         m_y2 = regionSrc.m_y2;
+         return *this;
+      case type_oval:
+         m_x1 = regionSrc.m_x1;
+         m_y1 = regionSrc.m_y1;
+         m_x2 = regionSrc.m_x2;
+         m_y2 = regionSrc.m_y2;
+         return *this;
+      case type_polygon:
+         m_nCount = regionSrc.m_nCount;
+         m_lppoints = new POINT[m_nCount];
+         memcpy(m_lppoints, regionSrc.m_lppoints, sizeof(POINT) * m_nCount);
+         m_efillmode = regionSrc.m_efillmode;
+         return *this;
+      case type_poly_polygon:
+         {
+            m_nCount = regionSrc.m_nCount;
+            m_lppolycounts = new INT[m_nCount];
+            memcpy(m_lppolycounts, regionSrc.m_lppolycounts, sizeof(INT) * m_nCount);
+            int iTotalCount = 0;
+            for(int i = 0; i < m_nCount; i++)
+            {
+               iTotalCount += m_lppolycounts[i];
+            }
+            m_lppoints = new POINT[iTotalCount];
+            memcpy(m_lppoints, regionSrc.m_lppoints, sizeof(POINT) * iTotalCount);
+            m_efillmode = regionSrc.m_efillmode;
+         }
+         return *this;
+      case type_round_rect:
+         m_x1 = regionSrc.m_x1;
+         m_y1 = regionSrc.m_y1;
+         m_x2 = regionSrc.m_x2;
+         m_y2 = regionSrc.m_y2;
+         m_x3 = regionSrc.m_x3;
+         m_y3 = regionSrc.m_y3;
+         return *this;
+      case type_combine:
+         m_pregion1 = new ::ca::region(*regionSrc.m_pregion1);
+         m_pregion2 = new ::ca::region(*regionSrc.m_pregion2);
+         m_ecombine = regionSrc.m_ecombine;
+         return *this;
+      default:
+         throw not_implemented(get_app());
+      };
       return *this;
 
    }

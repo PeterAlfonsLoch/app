@@ -86,8 +86,8 @@ namespace ca
       virtual void attach(void * pdata);
 
 
-      virtual bool Attach(HDC hdc);
-      virtual HDC Detach();
+//      virtual bool Attach(HDC hdc);
+//      virtual HDC Detach();
 
 
       virtual ::user::str_context * str_context();
@@ -502,7 +502,7 @@ namespace ca
       virtual int GetKerningPairs(int nPairs, LPKERNINGPAIR lpkrnpair) const;
       virtual UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRIC lpotm) const;
       virtual DWORD GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm, DWORD cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
-      
+
       virtual bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT lpABCF) const;
 
 #endif
@@ -527,7 +527,7 @@ namespace ca
       virtual int StartDoc(const char * lpszDocName);  // old Win3.0 version
 
 #ifdef WINDOWSEX
-      
+
       virtual int StartDoc(LPDOCINFO lpDocInfo);
 
 #endif

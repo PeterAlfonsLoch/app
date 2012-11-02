@@ -2266,12 +2266,12 @@ namespace ca
    COLORREF graphics::SetColor(COLORREF crColor)
    {
 
-      m_crColor = crColor;
+      m_crColor               = crColor;
 
-      m_penxyz.m_crPenColor   = crColor;
+      m_penxyz.m_cr           = crColor;
       m_penxyz.m_bUpdated     = false;
 
-      m_brushxyz.m_crColor    = crColor;
+      m_brushxyz.m_cr         = crColor;
       m_brushxyz.m_etype      = ::ca::brush::type_solid;
       m_brushxyz.m_bUpdated   = false;
 
@@ -2405,7 +2405,7 @@ namespace ca
    void graphics::set_solid_pen(double dWidth)
    {
 
-      m_penxyz.CreatePen(PS_SOLID, dWidth, m_crColor);
+      m_penxyz.create_solid(dWidth, m_crColor);
 
    }
 

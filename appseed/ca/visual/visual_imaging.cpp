@@ -2781,7 +2781,7 @@ bool imaging::ClipSave(
 
    rect rectClipBox;
 
-   prgnClip->GetRgnBox(rectClipBox);
+   prgnClip->get_bounding_box(rectClipBox);
 
    rect rectUpdate;
 
