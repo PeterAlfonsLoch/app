@@ -36,10 +36,11 @@ namespace ex1
             if(dwWritten <= 0)
                throw "written 0 bytes";
             lpBuf = (const void *)((const byte *)lpBuf + dwWritten);
+            if(dwWritten > nCount)
+               throw "written more than requested count of bytes";
             nCount -= dwWritten;
+ 
          }
-         if(nCount < 0)
-            throw "written more than requested count of bytes";
       }
       else
       {

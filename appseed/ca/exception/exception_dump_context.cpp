@@ -171,7 +171,7 @@ dump_context& dump_context::dumpAsHex(WORD w)
 
 }
 
-#ifdef _WIN64
+#if defined(_WIN64) && !defined(_LP64)
 dump_context& dump_context::operator<<(UINT u)
 #else
 dump_context& dump_context::operator<<(uint_ptr u)
@@ -226,7 +226,7 @@ dump_context& dump_context::operator<<(dword_ptr dw)
 
 #endif
 
-#if defined(_WIN64) && !defined(LINUX)
+#if defined(_WIN64) && !defined(LINUX) && !defined(_LP64)
 dump_context& dump_context::operator<<(int n)
 #else
 dump_context& dump_context::operator<<(int_ptr n)
@@ -280,7 +280,7 @@ dump_context& dump_context::dumpAsHex(long_ptr l)
 
 }
 
-#ifdef _WIN64
+#if defined(_WIN64) && !defined(_LP64)
 dump_context& dump_context::dumpAsHex(DWORD dw)
 #else
 dump_context& dump_context::dumpAsHex(dword_ptr dw)
@@ -297,7 +297,7 @@ dump_context& dump_context::dumpAsHex(dword_ptr dw)
 
 }
 
-#if defined(_WIN64) && !defined(LINUX)
+#if defined(_WIN64) && !defined(LINUX) && !defined(_LP64)
 dump_context& dump_context::dumpAsHex(int n)
 #else
 dump_context& dump_context::dumpAsHex(int_ptr n)

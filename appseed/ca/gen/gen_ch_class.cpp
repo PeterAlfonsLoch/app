@@ -2,10 +2,20 @@
 #include "x/x_charcategory2.h"
 #include "x/x_charcategory_names.h"
 
+
+int gen_ch_class_reference_tables();
+
+
 inline bool is_legal_uni_index(int64_t c)
 {
    return c >= ((uint64_t) 0xffff) ? false : true;
 }
+
+int gen_ch_class_reference_tables()
+{
+   return sizeof(char_bidi_names);
+}
+
 
 namespace gen
 {

@@ -5,7 +5,7 @@ clock::clock(::ca::application * papp) :
    ca(papp),
    clock_interface(papp)
 {
-   ::datetime::time time = ::datetime::time::get_current_time();
+//   ::datetime::time time = ::datetime::time::get_current_time();
 }
 
 void clock::_001OnDraw(::ca::graphics * pdc)

@@ -28,16 +28,12 @@ public:
    dump_context& operator<<(long_ptr l);
 //   dump_context& operator<<(dword_ptr dw);
    dump_context& operator<<(int n);
-#if !defined(MACOS)
-   dump_context& operator<<(UINT u);
-#endif
+   dump_context& operator<<(uint32_t u);
    dump_context& dumpAsHex(int_ptr i);
    dump_context& dumpAsHex(long_ptr l);
    dump_context& dumpAsHex(dword_ptr dw);
    dump_context& dumpAsHex(int n);
-#if !defined(MACOS)
-   dump_context& dumpAsHex(UINT u);
-#endif
+   dump_context& dumpAsHex(uint32_t u);
 #elif defined(_WIN64)
    dump_context& operator<<(LONG l);
    dump_context& operator<<(DWORD dw);

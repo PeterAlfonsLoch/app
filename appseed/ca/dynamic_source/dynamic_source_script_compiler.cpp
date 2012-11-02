@@ -10,6 +10,8 @@
 
 namespace dynamic_source
 {
+   
+   string escape(const char * lpcsz);
 
 
    script_compiler::script_compiler(::ca::application * papp) :
@@ -989,7 +991,7 @@ namespace dynamic_source
       str.trim();
       bool bInSimpleQuote = false;
       bool bInDoubleQuote = false;
-      int iSimpleQuote = 0;
+      strsize iSimpleQuote = 0;
       strsize iArroba = -1;
       bool bInVar = false;
       bool bInSlash = false;

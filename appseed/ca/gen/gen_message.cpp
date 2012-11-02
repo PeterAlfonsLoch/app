@@ -811,6 +811,11 @@ namespace gen
             m_psignal = NULL;
          }
       }
+      
+      dispatch::HandlerItemBase::~HandlerItemBase()
+      {
+         
+      }
 
       dispatch::HandlerItemArray::~HandlerItemArray()
       {
@@ -875,12 +880,18 @@ namespace gen
             default:
                return uiMessage;
          };
-
-#else
+#elif defined(LINUX)
          switch(uiMessage)
          {
             case message_create:
                return CreateNotify;
+            default:
+               return uiMessage;
+         };
+
+#else
+         switch(uiMessage)
+         {
             default:
                return uiMessage;
          };

@@ -25,11 +25,11 @@
 #ifdef DEBUG
 void TRACELASTERROR()
    {
-               DWORD dwMessageId = GetLastError();
-         LPWSTR lpBuffer;
 //         TRACE("Error Message Id: %d\n", dwMessageId);
 
 #ifdef WINDOWS
+      DWORD dwMessageId = GetLastError();
+      LPWSTR lpBuffer;
 
          FormatMessageW(
             FORMAT_MESSAGE_ALLOCATE_BUFFER |
@@ -50,9 +50,9 @@ void TRACELASTERROR()
 string FormatMessageFromSystem(DWORD dwError)
 {
    string strError;
-   LPWSTR pszError = NULL;
 
 #ifdef WINDOWS
+   LPWSTR pszError = NULL;
 
    FormatMessageW(
      FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,

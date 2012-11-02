@@ -35,7 +35,7 @@ namespace plane
       }
 
 
-      ::plane::system * psystemParent             = oprop("parent_system").ca2 < ::plane::system > ();
+//      ::plane::system * psystemParent             = oprop("parent_system").ca2 < ::plane::system > ();
 
 
       m_file.m_psystem                          = this;
@@ -1510,7 +1510,7 @@ namespace plane
       set._008ParseCommandFork(pdata->m_vssCommandLine, varFile, strApp);
 
       if((varFile.is_empty() && ((!set.has_property("app") && !set.has_property("show_platform"))
-         || set["app"] == "session" && !set.has_property("session_start"))) &&
+         || (set["app"] == "session" && !set.has_property("session_start")))) &&
          !(set.has_property("install") || set.has_property("uninstall")))
       {
          if(!set.has_property("show_platform") || set["show_platform"] == 1)

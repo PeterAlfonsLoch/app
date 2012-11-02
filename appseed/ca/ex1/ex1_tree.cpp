@@ -429,6 +429,8 @@ namespace ex1
             delete_item(pitemRelative);
          }
          break;
+         default:
+            throw not_supported_exception(get_app());
       }
 
       _001OnTreeDataChange();

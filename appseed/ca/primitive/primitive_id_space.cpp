@@ -130,7 +130,7 @@ void id_space::sort()
    index iLowerBound;
    index iUpperBound;
    index iLPos, iUPos, iMPos;
-   index i;
+//   index i;
    stackLowerBound.push(0);
    stackUpperBound.push(m_ida.m_nSize - 1);
    while(true)

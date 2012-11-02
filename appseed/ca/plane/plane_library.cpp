@@ -1,5 +1,6 @@
 #include "framework.h"
 
+::ca2::library * get_new_library();
 
 namespace plane
 {

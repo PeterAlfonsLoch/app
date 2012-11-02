@@ -162,7 +162,7 @@ namespace plane
 
    void session::initialize_bergedge_application_interface()
    {
-      int iCount = 32; // todo: get from session profile
+//      int iCount = 32;  todo: get from session profile
 /*      System.factory().creatable < ::session::document > (iCount);
       System.factory().creatable < ::session::view > (iCount);
       System.factory().creatable < ::session::pane_view > (iCount);

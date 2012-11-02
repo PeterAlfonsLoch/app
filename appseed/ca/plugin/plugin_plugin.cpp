@@ -15,6 +15,8 @@
 //#include <unistd.h>
 #endif
 
+void CLASS_DECL_ca __cdecl _ca2_purecall_();
+
 
 void CLASS_DECL_ca __cdecl _ca2_purecall_()
 {
@@ -30,6 +32,8 @@ namespace ex1
 
 namespace plugin
 {
+
+   void ms_get_dup_status_callback(void * p, int i, dword_ptr dw);
 
 
    plugin::plugin()
@@ -101,7 +105,7 @@ namespace plugin
 
          mlSystem.unlock();
 
-         int nReturnCode = 0;
+//         int nReturnCode = 0;
 
 /*         ::win::main_init_data * pinitmaindata  = new ::win::main_init_data;
 

@@ -48,8 +48,8 @@ namespace gen
          {
             double x = lppoint[i].x - xParam;
             double y = lppoint[i].y - yParam;
-            lppoint[i].x = (long) (((x * phicos - y * phisin)) + xParam);
-            lppoint[i].y = (long) (((x * phisin + y * phicos)) + yParam);
+            lppoint[i].x = (LONG) (((x * phicos - y * phisin)) + xParam);
+            lppoint[i].y = (LONG) (((x * phisin + y * phicos)) + yParam);
          }
       }
 
@@ -96,8 +96,8 @@ namespace gen
          {
             long x = lppoint[i].x - m_iXCenter;
             long y = lppoint[i].y - m_iYCenter;
-            lppoint[i].x = ((long) (x * m_dCosPhi - y * m_dSinPhi)) + m_iXCenter;
-            lppoint[i].y = ((long) (x * m_dSinPhi + y * m_dCosPhi)) + m_iYCenter;
+            lppoint[i].x = ((LONG) (x * m_dCosPhi - y * m_dSinPhi)) + m_iXCenter;
+            lppoint[i].y = ((LONG) (x * m_dSinPhi + y * m_dCosPhi)) + m_iYCenter;
          }
       }
 

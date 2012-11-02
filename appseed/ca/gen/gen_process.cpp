@@ -53,7 +53,6 @@ namespace gen
       string szCmdline = pszCmdLine;
 
 
-      bool bSuccess = FALSE;
 
 // Set up members of the PROCESS_INFORMATION structure.
 
@@ -68,6 +67,10 @@ namespace gen
       m_bPiped = bPiped;
 
 #ifdef WINDOWS
+      
+      
+      bool bSuccess = FALSE;
+      
 
 // Set up members of the STARTUPINFO structure.
 // This structure specifies the STDIN and STDOUT handles for redirection.

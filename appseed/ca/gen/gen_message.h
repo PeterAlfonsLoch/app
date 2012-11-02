@@ -145,6 +145,7 @@ namespace gen
          class CLASS_DECL_ca HandlerItemBase
          {
          public:
+            virtual ~HandlerItemBase();
             virtual gen::signalizable * get_signalizable() = 0;
          };
 

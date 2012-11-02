@@ -218,8 +218,8 @@ void calendar::_001GetHtml(::html::file * pfile)
             {
                pfile->print("<div class=\""+ pfile->m_strStyle + "calendar-sel\">");
             }
-            else if(iWeek == 1 && iDayOfWeek < iFirstDayOfWeek ||
-               iWeek == iLineCount && iDayOfWeek > iLastDayOfWeek)
+            else if((iWeek == 1 && iDayOfWeek < iFirstDayOfWeek) ||
+               (iWeek == iLineCount && iDayOfWeek > iLastDayOfWeek))
             {
                pfile->print("<div class=\""+ pfile->m_strStyle + "calendar-out-of-month-day\">");
             }
@@ -318,6 +318,8 @@ void calendar::GetRect(LPRECT lprect, enum EElement eelement)
       case ElementYearTitle:
          GetRectDay(6, 7, lprect);
          return;
+         default:
+            throw not_supported_exception(get_app());
       }
    }
 }

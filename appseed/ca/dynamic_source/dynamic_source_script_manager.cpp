@@ -16,6 +16,8 @@
 
 namespace dynamic_source
 {
+   
+   UINT ThreadProcRsa(LPVOID lp);
 
    script_manager::session::session() :
       m_mutex(::ca::get_thread_app())

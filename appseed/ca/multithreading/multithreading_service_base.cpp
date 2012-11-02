@@ -11,6 +11,8 @@
 
 #include "framework.h"
 
+DWORD Win32FromHResult(HRESULT value);
+
 
 //
 // The single, static service instance pointer.

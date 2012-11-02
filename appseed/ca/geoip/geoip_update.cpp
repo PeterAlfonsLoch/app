@@ -6,6 +6,10 @@
 #include <netdb.h>
 #endif
 
+short int parse_http_proxy(char **proxy_host, int *port);
+struct hostent *GeoIP_get_host_or_proxy ();
+
+
 #define BLOCK_SIZE 1024
 
 /* Update DB Host & HTTP GET Request formats:
@@ -274,7 +278,7 @@ short int GeoIP_update_database (char * license_key, int verbose, void (*f)( cha
 
    for (;;) {
       int amt;
-      amt = recv(sock, &buf[offset], block_size,0);
+      amt = (int) recv(sock, &buf[offset], block_size,0);
       if (amt == 0) {
          break;
       } else if (amt == -1) {
@@ -512,7 +516,7 @@ short int GeoIP_update_database_general (char * user_id,char * license_key,char 
    offset = 0;
    for (;;){
       int amt;
-      amt = recv(sock, &buf[offset], block_size,0);
+      amt = (int) recv(sock, &buf[offset], block_size,0);
       if (amt == 0){
          break;
       } else if (amt == -1) {
@@ -597,7 +601,7 @@ short int GeoIP_update_database_general (char * user_id,char * license_key,char 
 
       for (;;){
          int amt;
-         amt = recv(sock, &buf[offset], block_size,0);
+         amt = (int) recv(sock, &buf[offset], block_size,0);
          if (amt == 0) {
             break;
          } else if (amt == -1) {
@@ -669,7 +673,7 @@ short int GeoIP_update_database_general (char * user_id,char * license_key,char 
 
    for (;;) {
       int amt;
-      amt = recv(sock, &buf[offset], block_size,0);
+      amt = (int) recv(sock, &buf[offset], block_size,0);
 
       if (amt == 0) {
          break;

@@ -141,7 +141,7 @@ namespace ex1
    /////////////////////////////////////////////////////////////////////////////
    // file_exception helpers
 
-   #ifdef DEBUG
+/*   #ifdef DEBUG
    static const char * rgszFileExceptionCause[] =
    {
       "none",
@@ -161,7 +161,7 @@ namespace ex1
       "endOfFile",
    };
    static const char szUnknown[] = "unknown";
-   #endif
+   #endif*/
 
 
    /*void vfxThrowFileException(int cause, LONG lOsError,

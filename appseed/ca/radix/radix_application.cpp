@@ -1,5 +1,7 @@
 #include "framework.h"
+#ifdef LINUX
 #include <malloc.h>
+#endif
 #ifdef WINDOWS
 #include <cderr.h>      // Commdlg Error definitions
 #include <winspool.h>
@@ -9,7 +11,6 @@
 CLASS_DECL_ca extern fixed_alloc_array * g_pfixedallocaWstring;
 
 CLASS_DECL_ca fixed_alloc_array * new_wstring_manager();
-
 
 
 
@@ -888,7 +889,7 @@ namespace radix
       dumpcontext << "\nm_hDevNames = " << (void *)m_hDevNames;
 #endif
 
-      dumpcontext << "\nm_dwPromptContext = " << m_dwPromptContext;
+      dumpcontext << "\nm_dwPromptContext = " << (UINT) m_dwPromptContext;
 //      dumpcontext << "\nm_eHelpType = " << m_eHelpType;
 
 

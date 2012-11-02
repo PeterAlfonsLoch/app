@@ -36,10 +36,6 @@ mutex::mutex(::ca::application * papp, bool bInitiallyOwn, const char * pstrName
 
       m_strName = pstrName;
 
-      int Ret;
-      int timeout = 0;
-
-
       m_key = ftok(m_strName, 0); //Generate a unique key or supply a value
 
       m_semid = semget(
@@ -116,7 +112,7 @@ mutex::~mutex()
 
       semun ignored_argument;
 
-      int iRc = semctl(m_semid, 1, IPC_RMID , ignored_argument);
+      semctl(m_semid, 1, IPC_RMID , ignored_argument);
 
    }
    else

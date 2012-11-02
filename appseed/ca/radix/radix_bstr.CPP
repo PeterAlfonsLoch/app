@@ -1,5 +1,8 @@
 #include "framework.h"
 #include "radix_bstr.h"
+
+#ifdef WINDOWS
+
 #include <comdef.h>
 
 void bstr::copy(BSTR &bstrDest, const BSTR bstrSrc)
@@ -43,3 +46,5 @@ bool bstr::IsEqual(const BSTR bstrA, const BSTR bstrB)
    return bstr1 == bstr2;
 
 }
+
+#endif

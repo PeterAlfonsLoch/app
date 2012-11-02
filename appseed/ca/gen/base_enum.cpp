@@ -2,6 +2,8 @@
 
 #ifdef DEBUG
 
+void DebugBaseEnum();
+
 enum _vmsgenEDebugBaseEnum
 {
    _vmsgenEDebugBaseEnumDefault,
