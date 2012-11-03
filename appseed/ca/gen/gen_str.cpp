@@ -1800,7 +1800,7 @@ namespace gen
    string str::consume_hex(const char * & pszXml)
    {
       const char * psz = pszXml;
-      int i = 0;
+//      int i = 0;
       while(*psz != '\0')
       {
          int64_t i = gen::ch::uni_index(pszXml);

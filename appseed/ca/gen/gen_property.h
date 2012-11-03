@@ -598,3 +598,7 @@ namespace gen
 } // namespace gen
 
 
+
+
+string CLASS_DECL_ca operator + (const char * psz, gen::property & prop);
+string CLASS_DECL_ca operator + (const string & str, gen::property & prop);

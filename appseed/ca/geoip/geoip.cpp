@@ -16,6 +16,10 @@ static geoipv6_t IPV6_NULL;
 
 #endif
 
+int GeoIP_db_avail(::ca::application * m_papp, int type);
+char *_get_name_v6 (GeoIP* gi, geoipv6_t ipnum);
+char *_GeoIP_num_to_addr (GeoIP* gi, unsigned long ipnum);
+
 
 #ifndef        INADDR_NONE
 #define        INADDR_NONE     -1

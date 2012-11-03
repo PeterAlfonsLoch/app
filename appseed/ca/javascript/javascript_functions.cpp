@@ -44,6 +44,7 @@
 #	define UNUSED(x) x
 #endif*/
 
+void scIsInNet(CScriptVar *c, void *data);
 
 
 void scIsInNet(CScriptVar *c, void *data)

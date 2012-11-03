@@ -186,17 +186,8 @@ namespace gen
       return get_value() + str;
    }
 
-   string CLASS_DECL_ca operator + (const char * psz, property & prop)
-   {
-      return psz + prop.get_value();
-   }
 
-   string CLASS_DECL_ca operator + (const string & str, property & prop)
-   {
-      return str + prop.get_value();
-   }
-
-
+   
    property & property::operator = (const property & prop)
    {
       if(&prop != this)
@@ -2862,3 +2853,16 @@ void prop_id_debug(::ca::application * papp)
 
 
 }
+
+
+string CLASS_DECL_ca operator + (const char * psz, property & prop)
+{
+   return psz + prop.get_value();
+}
+
+string CLASS_DECL_ca operator + (const string & str, property & prop)
+{
+   return str + prop.get_value();
+}
+
+

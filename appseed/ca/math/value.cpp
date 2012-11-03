@@ -33,12 +33,12 @@ namespace math
 
    void value::parse_numeric_formula(const char * psz)
    {
-      int iOpen               = 0;
-      bool bLeft              = false;
-      bool bNumber            = false;
+//      int iOpen               = 0;
+  //    bool bLeft              = false;
+    //  bool bNumber            = false;
       m_pimpl                 = new number();
-      const char * pszNumber  = NULL;
-      value_impl * pimpl      = m_pimpl;
+//      const char * pszNumber  = NULL;
+  //    value_impl * pimpl      = m_pimpl;
 
       string strNumber;
 //      binary_operation * pbinopNew;

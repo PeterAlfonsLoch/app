@@ -12,6 +12,9 @@
 
 namespace gen
 {
+   
+   int nibble_to_low_hex(byte nibble);
+
 
    UINT application::APPM_LANGUAGE = WM_APP + 117;
    WPARAM application::WPARAM_LANGUAGE_UPDATE = 1;

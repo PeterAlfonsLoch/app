@@ -1,10 +1,8 @@
 #include "framework.h"
 
-//#if defined(LINUX)
-//#include <unistd.h>
-//#endif
-
-#if defined(LINUX)
+#if defined(MACOS)
+#include <unistd.h>
+#elif defined(LINUX)
 #include <fcntl.h>
 #endif
 

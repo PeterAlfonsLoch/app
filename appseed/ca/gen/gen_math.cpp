@@ -221,13 +221,13 @@ namespace gen
           //  int64_t v3 = ca4::crypt::crc32(tick.QuadPart % 0xffffffff, &pi, sizeof(pi));
             //int64_t v4 = ca4::crypt::crc32(tick.QuadPart % 0xffffffff, fta, sizeof(fta));
 
-            int64_t v1 = (int64_t) timer.getTimeInMicroSec();
+            int v1 = (int) timer.getTimeInMicroSec();
 
-            int64_t v2 = time(NULL);
+            int v2 = (int) time(NULL);
 
-            int64_t v3 = ca4::crypt::crc32(((DWORD) timer.getTimeInMicroSec()) % 0xffffffff, &d1, sizeof(double));
+            int v3 = (int) ca4::crypt::crc32(((DWORD) timer.getTimeInMicroSec()) % 0xffffffff, &d1, sizeof(double));
 
-            int64_t v4 = ca4::crypt::crc32(((DWORD) timer.getTimeInMicroSec()) % 0xffffffff, &d2, sizeof(double));
+            int v4 = (int) ca4::crypt::crc32(((DWORD) timer.getTimeInMicroSec()) % 0xffffffff, &d2, sizeof(double));
 
             iValue = abs(v1 + v2 + v3 + v4) % (iMax - iMin);
 
@@ -433,7 +433,10 @@ namespace gen
    namespace lemon
    {
 
+      int CLASS_DECL_ca time_seed();
 
+      void CLASS_DECL_ca srand();
+      
       int CLASS_DECL_ca time_seed()
       {
          return (time(NULL) % 5000 + (::get_tick_count() / 100) % 5000) % 1000;

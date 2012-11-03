@@ -388,6 +388,9 @@ namespace mail
             m_ppop3->m_strBody += strLine + "\r\n";
          }
          break;
+         default:
+            break;
+            
       }
    }
 
