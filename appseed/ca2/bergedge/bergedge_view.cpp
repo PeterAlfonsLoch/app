@@ -451,7 +451,7 @@ namespace bergedge
 
    void view::mt_show_window(oswindow oswindow, int iShow)
    {
-      UNREFERENCED_PARAMETER;
+      UNREFERENCED_PARAMETER(oswindow);
       UNREFERENCED_PARAMETER(iShow);
    }
 

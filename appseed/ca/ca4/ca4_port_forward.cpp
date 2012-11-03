@@ -137,7 +137,7 @@ namespace ca4
 
    bool port_forward::GetMappingsUsingThread( oswindow oswindow )
    {
-      UNREFERENCED_PARAMETER;
+      UNREFERENCED_PARAMETER(oswindow);
 	   // returns TRUE if thread was started successfully
 	
       return FALSE;
@@ -163,7 +163,7 @@ namespace ca4
    {
       UNREFERENCED_PARAMETER(oldMapping);
       UNREFERENCED_PARAMETER(newMapping);
-      UNREFERENCED_PARAMETER;	
+      UNREFERENCED_PARAMETER(oswindow);	
       return FALSE;
 	
    }
@@ -187,7 +187,7 @@ namespace ca4
    bool port_forward::AddMappingUsingThread(port_forward::port_map & newMapping, oswindow oswindow )
    {
       UNREFERENCED_PARAMETER(newMapping);
-      UNREFERENCED_PARAMETER;	
+      UNREFERENCED_PARAMETER(oswindow);	
 	   return FALSE;
    }
 
@@ -210,7 +210,7 @@ namespace ca4
    bool port_forward::DeleteMappingUsingThread(port_forward::port_map & oldMapping, oswindow oswindow )
    {
       UNREFERENCED_PARAMETER(oldMapping);
-      UNREFERENCED_PARAMETER;	
+      UNREFERENCED_PARAMETER(oswindow);	
 	   return FALSE;
    }
 
@@ -233,7 +233,7 @@ namespace ca4
 
    bool port_forward::GetDeviceInformationUsingThread( oswindow oswindow )
    {	
-      UNREFERENCED_PARAMETER;	
+      UNREFERENCED_PARAMETER(oswindow);	
       return FALSE;
 	
    }

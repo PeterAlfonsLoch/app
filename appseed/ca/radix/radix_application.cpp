@@ -1824,7 +1824,7 @@ namespace radix
    int application::ShowAppMessageBox(application *pApp, const char * lpszPrompt, UINT nType, UINT nIDPrompt)
    {
 
-      throw not_implemented(this);
+      throw not_implemented(pApp);
 
 /*
       // disable windows for modal dialog

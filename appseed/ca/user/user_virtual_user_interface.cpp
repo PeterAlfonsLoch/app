@@ -980,7 +980,7 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout, oswindow oswindow, LPCREC
 {
    ASSERT(oswindow != NULL);
    ASSERT(lpRect != NULL);
-   ::oswindow oswindow_Parent = ::get_parent;
+   ::oswindow oswindow_Parent = ::GetParent(oswindow);
    ASSERT(oswindow_Parent != NULL);
 
    if (lpLayout != NULL && lpLayout->hDWP == NULL)

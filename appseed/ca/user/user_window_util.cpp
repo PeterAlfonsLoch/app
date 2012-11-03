@@ -253,7 +253,7 @@ namespace user
       if(!::IsWindow)
          return;
 
-      ::oswindow oswindowChild = ::GetTopWindow;
+      ::oswindow oswindowChild = ::GetTopWindow(oswindow);
 
       while(oswindowChild != NULL)
       {
@@ -333,7 +333,7 @@ namespace user
       for(i = 0; i < this->get_size(); i++)
       {
          oswindow_tree & tree = this->element_at(i);
-         if(tree.m_oswindowtreea.remove)
+         if(tree.m_oswindowtreea.remove(oswindow))
          {
             return true;
          }
@@ -387,7 +387,7 @@ namespace user
       if(!::IsWindow)
          return;
 
-      ::oswindow oswindowChild = ::GetTopWindow;
+      ::oswindow oswindowChild = ::GetTopWindow(oswindow);
 
       while(oswindowChild != NULL)
       {
@@ -483,7 +483,7 @@ namespace user
    void oswindow_util::ContraintPosToParent(oswindow oswindow)
    {
       rect rectMajor;
-      ::oswindow oswindowParent = ::GetParent;
+      ::oswindow oswindowParent = ::GetParent(oswindow);
       if(oswindowParent == NULL)
       {
 
@@ -615,7 +615,7 @@ namespace user
 
       // walk through HWNDs to avoid creating temporary ::ca::window objects
       // unless we need to call this function recursively
-      for(::oswindow oswindow_Child = ::GetTopWindow; oswindow_Child != NULL; oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
+      for(::oswindow oswindow_Child = ::GetTopWindow(oswindow); oswindow_Child != NULL; oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
       {
          // send message with Windows SendMessage API
          try
@@ -738,11 +738,11 @@ namespace user
       {
          if(oswindow == NULL || !::IsWindow)
             break;
-         iOrder = GetZOrder;
+         iOrder = GetZOrder(oswindow);
          if(iOrder == 0x7fffffff)
             break;
          ia.insert_at(0, iOrder);
-         oswindow = ::GetParent;
+         oswindow = ::GetParent(oswindow);
       }
 
 #else
@@ -845,7 +845,7 @@ namespace user
    {
       while(true)
       {
-         oswindowDescendant = ::get_parent(oswindowDescendant);
+         oswindowDescendant = ::GetParent(oswindowDescendant);
          if(oswindowDescendant == NULL)
             return false;
          if(oswindowDescendant == oswindowAscendant)

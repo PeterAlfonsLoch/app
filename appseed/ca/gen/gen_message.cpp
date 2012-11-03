@@ -580,7 +580,7 @@ namespace gen
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_nState = (UINT)(LOWORD(wparam));
-         m_pWndOther = System.window_from_os_data(lparam);
+         m_pWndOther = System.window_from_os_data((void *) lparam);
          m_bMinimized = HIWORD(wparam) != FALSE;
       }
 
@@ -779,9 +779,9 @@ namespace gen
          return LOWORD(m_wparam);
       }
 
-      oswindow command::Getoswindow_()
+      oswindow command::get_oswindow()
       {
-         return m_lparam;
+         return (oswindow) m_lparam;
       }
 
 #ifdef WINDOWS

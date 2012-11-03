@@ -774,7 +774,7 @@ namespace ca
 
    bool window::subclass_window(oswindow oswindow)
    {
-      UNREFERENCED_PARAMETER;
+      UNREFERENCED_PARAMETER(oswindow);
       throw interface_only_exception(get_app());
    }
 

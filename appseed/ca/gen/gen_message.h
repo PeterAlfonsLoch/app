@@ -559,7 +559,7 @@ namespace gen
             command(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
             UINT GetNotifyCode();
             UINT GetId();
-            oswindow Getoswindow_();
+            oswindow get_oswindow();
          };
 
          class CLASS_DECL_ca ctl_color : public base

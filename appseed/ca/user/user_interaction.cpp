@@ -1106,7 +1106,7 @@ namespace user
 
       }
 
-      return get_wnd()->get_os_data();
+      return get_wnd()->get_handle();
 
    }
 

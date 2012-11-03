@@ -265,7 +265,7 @@ bool frame_window::OnSetCursor(::user::interaction * pWnd, UINT nHitTest, UINT m
 bool frame_window::OnCommand(WPARAM wParam, LPARAM lParam)
    // return TRUE if command invocation was attempted
 {
-   oswindow oswindow_Ctrl = lParam;
+   ::oswindow oswindow_Ctrl = (::oswindow) lParam;
    UINT nID = LOWORD(wParam);
 
    frame_window* pFrameWnd = GetTopLevelFrame();
@@ -334,7 +334,7 @@ void frame_window::BeginModalState()
 
          oswindow->EnableWindow(FALSE);
 
-         m_uiptraDisable.add;
+         m_uiptraDisable.add(oswindow);
 
       }
 

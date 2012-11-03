@@ -1084,7 +1084,7 @@ namespace gen
 
 #ifdef WINDOWS
 
-         int nLen = ::GetWindowTextLength;
+         int nLen = ::GetWindowTextLength(oswindow);
 
          ::GetWindowText(oswindow, str.GetBufferSetLength(nLen), nLen+1);
 
