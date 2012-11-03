@@ -14,7 +14,7 @@ class CLASS_DECL_c simple_shell_launcher
 public:
 
 
-   HWND        m_hwnd;
+   oswindow_        m_hwnd;
    vsstring    m_vssOperation;
    vsstring    m_vssFile;
    vsstring    m_vssParameters;
@@ -55,7 +55,7 @@ public:
 
 
    simple_shell_launcher();
-   simple_shell_launcher(HWND hwnd, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, int iShow);
+   simple_shell_launcher(oswindow_ hwnd, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, int iShow);
 
 
    void execute();

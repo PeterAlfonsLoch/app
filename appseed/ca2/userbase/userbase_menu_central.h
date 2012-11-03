@@ -37,7 +37,7 @@ public:
    static LRESULT CALLBACK CBTHook(int nCode, WPARAM wParam, LPARAM lParam);
    static void UnhookCBTHook();
    static void HookCBTHook();
-   // trans static void RemoveBorder(HWND hWnd);
+   // trans static void RemoveBorder(oswindow_ hWnd);
 };
 
 class CLASS_DECL_ca2 BaseMenuCentralContainer

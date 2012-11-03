@@ -257,7 +257,7 @@ class CDockContext;                     // for dragging control bars
                            // wParam = ID of child ::ca::window
                            // lParam = lpRectNew (new position/size)
 #define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
-#define WM_QUERYCENTERWND   0x036B  // lParam = HWND to use as centering parent
+#define WM_QUERYCENTERWND   0x036B  // lParam = oswindow_ to use as centering parent
 #define WM_DISABLEMODAL     0x036C  // lResult = 0, disable during modal state
                            // lResult = 1, don't disable
 #define WM_FLOATSTATUS      0x036D  // wParam combination of FS_* flags below
@@ -265,7 +265,7 @@ class CDockContext;                     // for dragging control bars
 // WM_ACTIVATETOPLEVEL is like WM_ACTIVATEAPP but works with hierarchies
 //   of mixed processes (as is the case with OLE in-place activation)
 #define WM_ACTIVATETOPLEVEL 0x036E  // wParam = nState (like WM_ACTIVATE)
-                           // lParam = pointer to HWND[2]
+                           // lParam = pointer to oswindow_[2]
                            //  lParam[0] = hWnd getting WM_ACTIVATE
                            //  lParam[1] = hWndOther
 

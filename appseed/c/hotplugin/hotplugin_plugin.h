@@ -88,7 +88,7 @@ namespace hotplugin
 
       virtual void         redraw();
       virtual void         post_message(UINT uiMessage, WPARAM wparam, LPARAM lparam);
-      virtual HWND         get_host_window();
+      virtual oswindow_         get_host_window();
       virtual void         get_window_rect(LPRECT lprect);
 
 

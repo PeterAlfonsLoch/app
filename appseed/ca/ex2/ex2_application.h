@@ -107,7 +107,7 @@ namespace ex2
       virtual ::ca::window * get_desktop_window();
 
       virtual ::ca::window * FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual ::ca::window * FindWindowEx(HWND hwndParent, HWND hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+      virtual ::ca::window * FindWindowEx(oswindow_ hwndParent, oswindow_ hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
 #ifndef METROWIN
       virtual void get_time(timeval *p);

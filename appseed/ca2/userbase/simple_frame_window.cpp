@@ -369,7 +369,7 @@ void simple_frame_window::_001OnGetMinMaxInfo(gen::signal_object * pobj)
 
 void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
 {
-   /*HWND hwndTrayWindow = NULL;
+   /*oswindow_ hwndTrayWindow = NULL;
    if(GetParent() == NULL)
    {
       hwndTrayWindow = FindWindowA("Shell_traywnd", "");

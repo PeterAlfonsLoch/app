@@ -11,7 +11,7 @@
 
 struct myfx_CTLCOLOR
 {
-   HWND hWnd;
+   oswindow_ hWnd;
    HDC hDC;
    UINT nCtlType;
 };
@@ -79,14 +79,14 @@ namespace gen
 
       base * dispatch::peek_message(LPMSG lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
       {
-         if(!::PeekMessageA(lpmsg, (HWND) pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
+         if(!::PeekMessageA(lpmsg, (oswindow_) pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
             return NULL;
          return get_base(lpmsg, pwnd);
       }
 
       base * dispatch::get_message(LPMSG lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
       {
-         if(!::GetMessageA(lpmsg, (HWND) pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax))
+         if(!::GetMessageA(lpmsg, (oswindow_) pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax))
             return NULL;
          return get_base(lpmsg, pwnd);
       }
@@ -580,7 +580,7 @@ namespace gen
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_nState = (UINT)(LOWORD(wparam));
-         m_pWndOther = System.window_from_os_data((HWND)lparam);
+         m_pWndOther = System.window_from_os_data((oswindow_)lparam);
          m_bMinimized = HIWORD(wparam) != FALSE;
       }
 
@@ -675,7 +675,7 @@ namespace gen
       {
          throw not_implemented(get_app());
          return NULL;
-//            return ::ca::window::from_handle(reinterpret_cast<HWND>(m_wparam));
+//            return ::ca::window::from_handle(reinterpret_cast<oswindow_>(m_wparam));
       }
 
       UINT mouse_activate::GetHitTest()
@@ -692,7 +692,7 @@ namespace gen
       {
          throw not_implemented(get_app());
          return NULL;
-//            return ::ca::window::from_handle(reinterpret_cast<HWND>(m_wparam));
+//            return ::ca::window::from_handle(reinterpret_cast<oswindow_>(m_wparam));
       }
 
       point context_menu::GetPoint()
@@ -719,7 +719,7 @@ namespace gen
       void set_focus::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         //m_pwnd = System.window_from_os_data(reinterpret_cast<HWND>(wparam));
+         //m_pwnd = System.window_from_os_data(reinterpret_cast<oswindow_>(wparam));
          m_pwnd = NULL;
       }
 
@@ -779,9 +779,9 @@ namespace gen
          return LOWORD(m_wparam);
       }
 
-      HWND command::GetHwnd()
+      oswindow_ command::GetHwnd()
       {
-         return (HWND) m_lparam;
+         return (oswindow_) m_lparam;
       }
 
 #ifdef WINDOWS
@@ -982,7 +982,7 @@ namespace gen
                   set_cursor setcursor(get_app());
                   setcursor.m_psignal = psignal;
                   setcursor.set(message, wparam, lparam, lresult);
-                  //setcursor.m_pWnd = ::ca::window::from_os_data(reinterpret_cast<HWND>(wparam));
+                  //setcursor.m_pWnd = ::ca::window::from_os_data(reinterpret_cast<oswindow_>(wparam));
                   setcursor.m_nHitTest = LOWORD(lparam);
                   setcursor.m_message = HIWORD(lparam);
                   psignal->emit(&setcursor);
@@ -1088,7 +1088,7 @@ namespace gen
                activate.m_psignal = psignal;
                activate.set(message, wparam, lparam, lresult);
                activate.m_nState = (UINT)(LOWORD(wparam));
-               activate.m_pWndOther = System.window_from_os_data((HWND)lparam);
+               activate.m_pWndOther = System.window_from_os_data((oswindow_)lparam);
                activate.m_bMinimized = (bool)HIWORD(wparam);
                psignal->emit(&activate);
                if(activate.m_bRet)

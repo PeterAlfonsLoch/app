@@ -493,7 +493,7 @@ namespace ca2
                   ptext = dynamic_cast < text_interface * > (pguie);
                   ptext->_001GetText(m_pauth->m_strPassword);
                }
-               HWND hwndPrevious = (HWND) m_pvOldWindow;
+               oswindow_ hwndPrevious = (oswindow_) m_pvOldWindow;
                if(hwndPrevious != NULL)
                {
                   ::user::interaction * puiPrevious = System.window_from_os_data(hwndPrevious);

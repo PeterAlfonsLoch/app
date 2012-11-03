@@ -464,7 +464,7 @@ namespace visual
 
    // Enable OpenGL
 
-   void api::EnableOpenGL(HWND hWnd, HDC & hDC, HGLRC & hRC)
+   void api::EnableOpenGL(oswindow_ hWnd, HDC & hDC, HGLRC & hRC)
    {
       UNREFERENCED_PARAMETER(hWnd);
       UNREFERENCED_PARAMETER(hDC);
@@ -496,7 +496,7 @@ namespace visual
 
    // Disable OpenGL
 
-   void api::DisableOpenGL(HWND hWnd, HDC hDC, HGLRC hRC)
+   void api::DisableOpenGL(oswindow_ hWnd, HDC hDC, HGLRC hRC)
    {
       UNREFERENCED_PARAMETER(hRC);
 /*      wglMakeCurrent( NULL, NULL );

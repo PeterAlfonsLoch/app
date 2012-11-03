@@ -12,7 +12,7 @@ namespace plugin
 
    
    
-      HWND                          m_hwnd;
+      oswindow_                          m_hwnd;
       bool                          m_bStream;
    
 

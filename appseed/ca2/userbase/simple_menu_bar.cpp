@@ -159,7 +159,7 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(int iItem)
 
 
 
-//    HWND hwndOld = __get_thread_state()->m_hTrackingWindow;
+//    oswindow_ hwndOld = __get_thread_state()->m_hTrackingWindow;
 //    m_hwndFilter = NULL;
     return VMSR_SUCCESS;
 }
@@ -559,7 +559,7 @@ bool simple_menu_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyl
 //   _gen::GetDropDownWidth();
 //   ASSERT(gen_DropDownWidth != -1);
 
-   // create the HWND
+   // create the oswindow_
    class rect rect;
    rect.null();
    if (!::user::interaction::create(NULL, NULL, dwStyle, rect, pParentWnd, nID))

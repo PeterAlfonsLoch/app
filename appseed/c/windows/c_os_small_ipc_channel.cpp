@@ -275,7 +275,7 @@ void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, int a, i
 }
 
 
-LRESULT CALLBACK small_ipc_rx_channel::s_message_window_proc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
+LRESULT CALLBACK small_ipc_rx_channel::s_message_window_proc(oswindow_ hwnd, UINT message, WPARAM wparam, LPARAM lparam)
 {
 
    int iRet = 0;

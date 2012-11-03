@@ -16,7 +16,7 @@ class CLASS_DECL_c small_ipc_channel_base
 public:
 
 #ifdef WINDOWS
-   HWND        m_hwnd;
+   oswindow_        m_hwnd;
 #else
    key_t   m_key;
    int      m_iQueue;
@@ -109,7 +109,7 @@ public:
 
 #ifdef WINDOWS
    ATOM register_class(HINSTANCE hInstance);
-   static LRESULT CALLBACK s_message_window_proc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+   static LRESULT CALLBACK s_message_window_proc(oswindow_ hWnd, UINT message, WPARAM wParam, LPARAM lParam);
    LRESULT message_window_proc(UINT message, WPARAM wParam, LPARAM lParam);
 #else
    bool start_receiving();

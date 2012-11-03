@@ -260,14 +260,14 @@ LRESULT CALLBACK BaseMenuCentral::CBTHook(int nCode, WPARAM wParam, LPARAM lPara
    {
       if (nCode == HCBT_CREATEWND)
       {
-//         HWND hWnd = (HWND)wParam;
+//         oswindow_ hWnd = (oswindow_)wParam;
          lRes = CallNextHookEx(m_hCBTHook, nCode, wParam, lParam);
          goto out;
       }
 
       if (nCode == HCBT_DESTROYWND)
       {
-//         HWND hWnd = (HWND)wParam;
+//         oswindow_ hWnd = (oswindow_)wParam;
          lRes = CallNextHookEx(m_hCBTHook, nCode, wParam, lParam);
          goto out;
       }
@@ -299,7 +299,7 @@ void BaseMenuCentral::UnhookCBTHook()
 }
 
 /* trans
-void BaseMenuCentral::RemoveBorder(HWND hWnd)
+void BaseMenuCentral::RemoveBorder(oswindow_ hWnd)
 {
    const int SWP_STYLE = SWP_FRAMECHANGED | SWP_NOSIZE | SWP_NOMOVE |
       SWP_NOZORDER | SWP_NOACTIVATE;

@@ -427,7 +427,7 @@ namespace gcom
 
          /*while(PeekMessage(
          &msg,
-         (HWND) INVALID_HANDLE_VALUE,
+         (oswindow_) INVALID_HANDLE_VALUE,
          Interface::MessageBackViewDequeue,
          Interface::MessageBackViewDequeue,
          PM_REMOVE))

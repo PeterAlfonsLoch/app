@@ -130,7 +130,7 @@ namespace spa
       vsstring       m_strInstallFilter;
       vsstring       m_strLocale;
       vsstring       m_strLoginFailed;
-      HWND           m_hwnd;
+      oswindow_           m_hwnd;
 
       vsstring       m_strFile;
       bool           m_bSynch;

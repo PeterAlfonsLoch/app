@@ -120,8 +120,8 @@ namespace visual
          int               iOffset);
 
 #ifdef WINDOWS
-      static void EnableOpenGL(HWND hWnd, HDC & hdc, HGLRC & hrc);
-      static void DisableOpenGL(HWND hWnd, HDC hDC, HGLRC hRC);
+      static void EnableOpenGL(oswindow_ hWnd, HDC & hdc, HGLRC & hrc);
+      static void DisableOpenGL(oswindow_ hWnd, HDC hDC, HGLRC hRC);
 #endif
 
    };

@@ -789,7 +789,7 @@ namespace radix
       pbase->set_lresult(0);        // sensible default
       if (pbase->m_uiMessage == WM_COMMAND)
       {
-         if ((HWND)pbase->m_lparam == NULL)
+         if ((oswindow_)pbase->m_lparam == NULL)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
             nIDP = "Command Failure";
          pbase->set_lresult((LRESULT)TRUE);        // pretend the command was handled
@@ -1799,7 +1799,7 @@ namespace radix
 
       #ifdef WINDOWS
 
-      return MessageBox((HWND) (puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->_get_handle())), pszMessage, m_strAppName, fuStyle);
+      return MessageBox((oswindow_) (puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->_get_handle())), pszMessage, m_strAppName, fuStyle);
 
       #else
 
@@ -1831,7 +1831,7 @@ namespace radix
       // re-enable the parent ::ca::window, so that focus is restored
       // correctly when the dialog is dismissed.
       if (hWnd != hWndTop)
-         EnableWindow((HWND) hWnd, TRUE);
+         EnableWindow((oswindow_) hWnd, TRUE);
 
       // set help context if possible
       DWORD* pdwContext = NULL;
@@ -1841,12 +1841,12 @@ namespace radix
       {
 
          DWORD dwWndPid=0;
-         GetWindowThreadProcessId((HWND) hWnd, &dwWndPid);
+         GetWindowThreadProcessId((oswindow_) hWnd, &dwWndPid);
 
          if (hWnd != NULL && dwWndPid==GetCurrentProcessId() )
          {
             // use cast-level context or frame level context
-            LRESULT lResult = ::SendMessage((HWND) hWnd, WM_HELPPROMPTADDR, 0, 0);
+            LRESULT lResult = ::SendMessage((oswindow_) hWnd, WM_HELPPROMPTADDR, 0, 0);
             if (lResult != 0)
                pdwContext = (DWORD*)lResult;
          }
@@ -1918,7 +1918,7 @@ namespace radix
       int nResult;
       if(pApp == NULL)
       {
-         nResult = ::MessageBox((HWND) hWnd, lpszPrompt, pszAppName, nType);
+         nResult = ::MessageBox((oswindow_) hWnd, lpszPrompt, pszAppName, nType);
       }
       else
       {
@@ -1931,7 +1931,7 @@ namespace radix
 
       // re-enable windows
       if (hWndTop != NULL)
-         ::EnableWindow((HWND) hWndTop, TRUE);
+         ::EnableWindow((oswindow_) hWndTop, TRUE);
 
       DoEnableModeless(TRUE);
 
@@ -2768,7 +2768,7 @@ namespace radix
 
 
 
-   HWND application::get_ca2_app_wnd(const char * psz)
+   oswindow_ application::get_ca2_app_wnd(const char * psz)
    {
       UNREFERENCED_PARAMETER(psz);
       return NULL;
@@ -2788,7 +2788,7 @@ namespace radix
 
 #ifdef WINDOWS
 
-      HWND hwndCapture = ::GetCapture();
+      oswindow_ hwndCapture = ::GetCapture();
       if(hwndCapture == NULL)
          return NULL;
       return System.window_from_os_data(hwndCapture)->release_capture();
@@ -2806,7 +2806,7 @@ namespace radix
 
 #ifdef WINDOWS
 
-      HWND hwndCapture = ::GetCapture();
+      oswindow_ hwndCapture = ::GetCapture();
       if(hwndCapture == NULL)
          return NULL;
       return System.window_from_os_data(hwndCapture)->get_capture();
@@ -2998,7 +2998,7 @@ namespace radix
    {
       if(m_bSessionSynchronizedScreen)
       {
-         HWND hwndDesktop = ::GetDesktopWindow();
+         oswindow_ hwndDesktop = ::GetDesktopWindow();
          ::GetWindowRect(hwndDesktop, &m_rectScreen);
       }
       if(lprect != NULL)
@@ -3127,7 +3127,7 @@ namespace radix
       throw not_implemented(get_app());
    }
 
-   ::ca::window * application::FindWindowEx(HWND hwndParent, HWND hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   ::ca::window * application::FindWindowEx(oswindow_ hwndParent, oswindow_ hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
       UNREFERENCED_PARAMETER(hwndParent);
       UNREFERENCED_PARAMETER(hwndChildAfter);

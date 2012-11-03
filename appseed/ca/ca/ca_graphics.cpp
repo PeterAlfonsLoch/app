@@ -2444,14 +2444,14 @@ namespace ca
       m_pwindow = pwindow;
       create(pwindow->get_app());
 #ifdef WINDOWS
-      m_p->attach(::BeginPaint((HWND) pwindow->get_safe_handle(), &m_ps));
+      m_p->attach(::BeginPaint((oswindow_) pwindow->get_safe_handle(), &m_ps));
 #endif
    }
 
    paint_graphics::~paint_graphics()
    {
 #ifdef WINDOWS
-      ::EndPaint((HWND) m_pwindow->get_safe_handle(), &m_ps);
+      ::EndPaint((oswindow_) m_pwindow->get_safe_handle(), &m_ps);
 #endif
    }
 

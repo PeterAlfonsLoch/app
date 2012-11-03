@@ -73,7 +73,7 @@ namespace user
       //window_interface * _001GetParent() const;
       //virtual bool _001IsFrameWnd();
       //user::frame_window_interface * _001GetParentFrame() const;
-      //bool Attach(HWND hwnd);
+      //bool Attach(oswindow_ hwnd);
 
       virtual void PreSubClassWindow();
 
@@ -95,13 +95,13 @@ namespace user
       virtual window_interface * window_interface_get_parent();
 
 
-      /*HWND GetHandle() const;
+      /*oswindow_ GetHandle() const;
       DWORD GetStyle() const;
       DWORD GetExStyle() const;
       bool ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
       bool ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
-      static bool PASCAL ModifyStyle(HWND hwnd, DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
-      static bool PASCAL ModifyStyleEx(HWND hwnd, DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
+      static bool PASCAL ModifyStyle(oswindow_ hwnd, DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
+      static bool PASCAL ModifyStyleEx(oswindow_ hwnd, DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
 
       LRESULT SendMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
       bool PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);*/
@@ -134,7 +134,7 @@ namespace user
       bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
          ::ca::region* prgnUpdate = NULL,
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
-      bool SetTimer(UINT nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(HWND, UINT, UINT, DWORD));
+      bool SetTimer(UINT nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow_, UINT, UINT, DWORD));
       bool KillTimer(int nIDEvent);
       bool SetWindowPos(const ::ca::window* pWndInsertAfter, int x, int y, int cx, int cy, UINT nFlags);
       ::ca::window * SetFocus();*/

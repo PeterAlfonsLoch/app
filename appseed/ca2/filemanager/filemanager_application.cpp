@@ -188,7 +188,7 @@ namespace filemanager
       ASSERT(bOpenFileDialog == FALSE);
       ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_ptemplateStd->open(this));
       FileManagerTabView * pview = pdoc->get_typed_view < FileManagerTabView >();
-      HWND hwndDesktop = ::GetDesktopWindow();
+      oswindow_ hwndDesktop = ::GetDesktopWindow();
       rect rectOpen;
       ::GetWindowRect(hwndDesktop, rectOpen);
       int iWidth = rectOpen.width();

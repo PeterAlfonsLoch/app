@@ -206,7 +206,7 @@ public:
 
    // implementation helpers for Shift+F1 help mode
    bool ProcessHelpMsg(MSG& msg, DWORD* pContext);
-   HWND SetHelpCapture(POINT point, bool* pbDescendant);
+   oswindow_ SetHelpCapture(POINT point, bool* pbDescendant);
 
    // frame_window list management
    void AddFrameWnd();

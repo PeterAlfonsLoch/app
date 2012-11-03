@@ -584,7 +584,7 @@ namespace platform
    }
 
 
-   void view::mt_show_window(HWND hwnd, int iShow)
+   void view::mt_show_window(oswindow_ hwnd, int iShow)
    {
 
       __begin_thread(get_app(), &view::ThreadProcShowWindow, new show_window(hwnd, iShow), ::ca::thread_priority_highest);
@@ -592,7 +592,7 @@ namespace platform
    }
 
 
-   view::show_window::show_window(HWND hwnd, int iShow)
+   view::show_window::show_window(oswindow_ hwnd, int iShow)
    {
       m_hwnd   = hwnd;
       m_iShow  = iShow;
@@ -654,7 +654,7 @@ namespace platform
       && iHitArea >= 0
       && iHitArea < m_areaa.get_size())
       {
-      HWND hwnd = m_areaa[m_iArea].m_taska[m_iDragTask - m_iTaskOffset].m_hwnd;
+      oswindow_ hwnd = m_areaa[m_iArea].m_taska[m_iDragTask - m_iTaskOffset].m_hwnd;
       rect rectArea;
       rect rectDesk0 = System.m_monitorinfoaDesk[0].rcMonitor;
       rect rectDesk1 = System.m_monitorinfoaDesk[1].rcMonitor;
@@ -734,7 +734,7 @@ namespace platform
          check_apps();
          if(::IsWindow(m_hwndWinutil))
          {
-            mt_show_window((HWND) GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
+            mt_show_window((oswindow_) GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
             ::PostMessage(m_hwndWinutil, WM_APP + 2000, 0, 2);
          }
       }
@@ -751,7 +751,7 @@ namespace platform
          check_apps();
          if(::IsWindow(m_hwndWinactionarea))
          {
-            mt_show_window((HWND) GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
+            mt_show_window((oswindow_) GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
             ::PostMessage(m_hwndWinactionarea, WM_APP + 2000, 0, 2);
          }
       }
@@ -862,7 +862,7 @@ namespace platform
       {
       m_iCurrentTask = iHitArea;
       m_dwCurrentTaskChangeTime = ::GetTickCount();
-      HWND hwnd = m_areaa[m_iArea].m_taska[iHitArea - m_iTaskOffset].m_hwnd;
+      oswindow_ hwnd = m_areaa[m_iArea].m_taska[iHitArea - m_iTaskOffset].m_hwnd;
       if(::IsIconic(hwnd))
       {
       mt_show_window(hwnd, SW_RESTORE);

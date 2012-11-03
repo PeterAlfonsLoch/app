@@ -30,7 +30,7 @@ namespace cube2
       return true;
    }
 
-   BOOL CALLBACK application::GetAppsEnumWindowsProc(HWND hwnd, LPARAM lParam)
+   BOOL CALLBACK application::GetAppsEnumWindowsProc(oswindow_ hwnd, LPARAM lParam)
    {
       application * papp = (application *) lParam;
       DWORD dwptr;
@@ -107,7 +107,7 @@ namespace cube2
       }
    }
 
-   HWND application::get_ca2_app_wnd(const char * psz)
+   oswindow_ application::get_ca2_app_wnd(const char * psz)
    {
       return m_mapAppInterest[psz];
    }
@@ -131,7 +131,7 @@ namespace cube2
    {
       m_straAppInterest.add(m_strAppName);
       update_app_interest();
-      HWND hwnd = get_ca2_app_wnd(m_strAppName);
+      oswindow_ hwnd = get_ca2_app_wnd(m_strAppName);
       if(hwnd != NULL)
       {
          ::ShowWindow(hwnd, SW_RESTORE);
@@ -146,7 +146,7 @@ namespace cube2
       if(stra.get_size() > 0)
       {
          strApp = stra[0];
-         HWND hwnd = get_ca2_app_wnd(strApp);
+         oswindow_ hwnd = get_ca2_app_wnd(strApp);
          if(hwnd != NULL)
          {
             return send_simple_command((void *) hwnd, psz, osdataSender);
@@ -157,7 +157,7 @@ namespace cube2
 
    int application::send_simple_command(void * osdata, const char * psz, void * osdataSender)
    {
-      HWND hwnd = (HWND) osdata;
+      oswindow_ hwnd = (oswindow_) osdata;
       if(!::IsWindow(hwnd))
          return -1;
       COPYDATASTRUCT cds;
@@ -165,7 +165,7 @@ namespace cube2
       cds.dwData = 198477;
       cds.cbData = (DWORD) strlen(psz);
       cds.lpData = (PVOID) psz;
-      return (int) SendMessage(hwnd, WM_COPYDATA, (WPARAM) (HWND) osdataSender, (LPARAM) &cds);
+      return (int) SendMessage(hwnd, WM_COPYDATA, (WPARAM) (oswindow_) osdataSender, (LPARAM) &cds);
    }
 
    void application::request(::ca::create_context * pcreatecontext)

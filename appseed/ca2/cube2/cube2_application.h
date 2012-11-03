@@ -12,11 +12,11 @@ namespace cube2
 
 
       stringa m_straAppInterest;
-      ::collection::string_map < HWND, HWND > m_mapAppInterest;
+      ::collection::string_map < oswindow_, oswindow_ > m_mapAppInterest;
 
 #ifdef WINDOWS
 
-      static BOOL CALLBACK GetAppsEnumWindowsProc(HWND hwnd, LPARAM lParam);
+      static BOOL CALLBACK GetAppsEnumWindowsProc(oswindow_ hwnd, LPARAM lParam);
 
 #endif
 
@@ -24,7 +24,7 @@ namespace cube2
       void ensure_app_interest();
 
 
-      virtual HWND get_ca2_app_wnd(const char * psz);
+      virtual oswindow_ get_ca2_app_wnd(const char * psz);
 
       application();
       virtual ~application();

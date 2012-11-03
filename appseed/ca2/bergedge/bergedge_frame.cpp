@@ -416,7 +416,7 @@ namespace bergedge
 
       MSG * pmsg = (MSG *) pbase->m_lparam;
 
-      pmsg->hwnd = (HWND) get_safe_handle();
+      pmsg->hwnd = (oswindow_) get_safe_handle();
 
       try
       {

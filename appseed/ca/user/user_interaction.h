@@ -282,7 +282,7 @@ namespace user
 
    // Timer Functions
       virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse,
-         void (CALLBACK* lpfnTimer)(HWND, UINT, uint_ptr, DWORD));
+         void (CALLBACK* lpfnTimer)(oswindow_, UINT, uint_ptr, DWORD));
       virtual bool KillTimer(uint_ptr nIDEvent);
 
       virtual bool IsWindowEnabled();

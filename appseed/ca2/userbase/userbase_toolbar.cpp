@@ -189,7 +189,7 @@ namespace userbase
       dwStyle |= dwCtrlStyle;
 
 
-      // create the HWND
+      // create the oswindow_
       class rect rect; 
       rect.null();
       if (!::user::interaction::create(TOOLBARCLASSNAME, NULL, dwStyle, rect, pParentWnd, nID))

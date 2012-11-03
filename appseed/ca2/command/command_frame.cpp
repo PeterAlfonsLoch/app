@@ -371,7 +371,7 @@ namespace command
       UNREFERENCED_PARAMETER(pobj);
       /*if(m_workset.GetMovingManager()->IsMoving())
       {
-         HWND hwndDesktop = ::GetDesktopWindow();
+         oswindow_ hwndDesktop = ::GetDesktopWindow();
          rect rectDesktop;
          ::GetWindowRect(hwndDesktop, rectDesktop);
          rect rectWindow;

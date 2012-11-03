@@ -1074,7 +1074,7 @@ namespace gen
 
    }
 
-   string str::get_window_text(HWND hwnd)
+   string str::get_window_text(oswindow_ hwnd)
    {
 
       string str;

@@ -231,9 +231,9 @@ namespace userbase
       return NULL;
    }
 
-   HWND FindTrayToolbarWindow()
+   oswindow_ FindTrayToolbarWindow()
    {
-      HWND hWnd = ::FindWindow("Shell_TrayWnd", NULL);
+      oswindow_ hWnd = ::FindWindow("Shell_TrayWnd", NULL);
       if(hWnd != NULL)
       {
          hWnd = ::FindWindowEx(hWnd,NULL,"TrayNotifyWnd", NULL);

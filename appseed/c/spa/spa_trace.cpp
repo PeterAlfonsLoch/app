@@ -1,6 +1,6 @@
 #include "framework.h"
 
-//extern HWND g_hwnd;
+//extern oswindow_ g_hwnd;
 
 
 simple_mutex g_mutexTrace;

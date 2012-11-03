@@ -270,7 +270,7 @@ class dump_context;
 typedef long VMSRESULT;
 
 /*typedef struct tagVMSNMHDR {
-    HWND hwndFrom;
+    oswindow_ hwndFrom;
     UINT idFrom;
     UINT code;
 } VMSNMHDR;

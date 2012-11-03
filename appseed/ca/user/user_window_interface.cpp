@@ -84,7 +84,7 @@ namespace user
 
    /*bool window_interface::TwfRender(
       ::ca::graphics *          pdc,
-      HWND           hwndExclude,
+      oswindow_           hwndExclude,
       LPCRECT        lpcrectUpdate,
       user::HwndTree::Array & hwndtreea,
       bool           bBackground)
@@ -98,7 +98,7 @@ namespace user
       for(int i = hwndtreea.get_size() - 1; i >= 0; i--)
       {
          user::HwndTree & hwndtreeChild = hwndtreea[i];
-         HWND hwndChild = hwndtreeChild.m_hwnd;
+         oswindow_ hwndChild = hwndtreeChild.m_hwnd;
          if(hwndChild == hwndExclude)
          {
             if(bBackground)
@@ -107,7 +107,7 @@ namespace user
                continue;
          }
          ::ca::window * pwndChild = ::ca::window::from_handle(hwndChild);
-         HWND hwndParent = ::GetParent(hwndChild);
+         oswindow_ hwndParent = ::GetParent(hwndChild);
          ::GetClientRect(hwndChild, rectChild);
          ::ClientToScreen(hwndChild, &rectChild.top_left());
          ::ClientToScreen(hwndChild, &rectChild.bottom_right());
@@ -123,7 +123,7 @@ namespace user
 
    bool window_interface::TwfRender(
       ::ca::graphics *          pdc,
-      HWND           hwndExclude,
+      oswindow_           hwndExclude,
       LPCRECT        lpcrectUpdate,
       user::HwndTree & hwndtree,
       bool           bBackground)
@@ -133,7 +133,7 @@ namespace user
 
       DWORD dwTimeIn = get_tick_count();
 
-      HWND hwndParam = hwndtree.m_hwnd;
+      oswindow_ hwndParam = hwndtree.m_hwnd;
 
       if(hwndParam == NULL)
       {
@@ -362,7 +362,7 @@ namespace user
       HRGN hrgn)
    {
 
-      HWND hwnd = hwndtree.m_hwnd;
+      oswindow_ hwnd = hwndtree.m_hwnd;
 
       if(!::IsWindowVisible(hwnd))
       {

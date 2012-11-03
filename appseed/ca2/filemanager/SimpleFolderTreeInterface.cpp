@@ -683,7 +683,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(pitem);
       //         Item & item = m_itema.get_item(pitem->m_dwUser);
 
-      //HWND hwnd = _get_handle();
+      //oswindow_ hwnd = _get_handle();
 
       /*   IShellFolder * lpsf = item.m_spshellfolder;
 

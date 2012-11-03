@@ -282,7 +282,7 @@ int view::OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message
 
       // either re-activate the current ::view, or set this ::view to be active
       ::view * pview = pParentFrame->GetActiveView();
-      HWND hWndFocus = ::GetFocus();
+      oswindow_ hWndFocus = ::GetFocus();
       if (pview == this &&
          get_handle() != hWndFocus && !::IsChild(get_handle(), hWndFocus))
       {

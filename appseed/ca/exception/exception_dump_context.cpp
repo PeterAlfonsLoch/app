@@ -403,7 +403,7 @@ dump_context& dump_context::operator<<(const void * lp)
 
 }
 
-dump_context& dump_context::operator<<(HWND h)
+dump_context& dump_context::operator<<(oswindow_ h)
 {
    return *this << (void *)h;
 }

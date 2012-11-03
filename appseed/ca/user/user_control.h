@@ -277,7 +277,7 @@ namespace user
 
       control_cmd_ui  m_cmdui; // cmd_ui derived class used to update
                                     // base_controlex derived controls
-      ::collection::list<HWND, HWND> m_listwndptrBlackList;
+      ::collection::list<oswindow_, oswindow_> m_listwndptrBlackList;
    };
 
 

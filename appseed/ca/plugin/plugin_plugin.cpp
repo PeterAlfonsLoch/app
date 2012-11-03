@@ -948,7 +948,7 @@ namespace plugin
 
          void * hwnd = pwindow->_get_handle();
 
-         bool bIsWindow = ::IsWindow((HWND) hwnd) != FALSE;
+         bool bIsWindow = ::IsWindow((oswindow_) hwnd) != FALSE;
 
          if(bIsWindow)
          {

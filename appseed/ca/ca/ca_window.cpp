@@ -1201,7 +1201,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   uint_ptr window::SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(HWND, UINT, uint_ptr, DWORD))
+   uint_ptr window::SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow_, UINT, uint_ptr, DWORD))
    {
       UNREFERENCED_PARAMETER(nIDEvent);
       UNREFERENCED_PARAMETER(nElapse);
@@ -2152,8 +2152,8 @@ namespace ca
       }
 
       // a popup ::ca::window cannot be owned by a child ::ca::window
-      while (hWnd != NULL && (::GetWindowLong((HWND) hWnd, GWL_STYLE) & WS_CHILD))
-         hWnd = ::GetParent((HWND) hWnd);
+      while (hWnd != NULL && (::GetWindowLong((oswindow_) hWnd, GWL_STYLE) & WS_CHILD))
+         hWnd = ::GetParent((oswindow_) hWnd);
 
       // determine toplevel ::ca::window to disable as well
       void * hWndTop = hWnd;
@@ -2164,20 +2164,20 @@ namespace ca
             break;
          else
             hWndTop = hWndTemp;
-         hWndTemp = ::GetParent((HWND) hWndTop);
+         hWndTemp = ::GetParent((oswindow_) hWndTop);
       }
 
       // get last active popup of first non-child that was found
       if (hParent == NULL && hWnd != NULL)
-         hWnd = ::GetLastActivePopup((HWND) hWnd);
+         hWnd = ::GetLastActivePopup((oswindow_) hWnd);
 
       // disable and store top level parent ::ca::window if specified
       if (pWndTop != NULL)
       {
-         if (hWndTop != NULL && ::IsWindowEnabled((HWND) hWndTop) && hWndTop != hWnd)
+         if (hWndTop != NULL && ::IsWindowEnabled((oswindow_) hWndTop) && hWndTop != hWnd)
          {
             *pWndTop = hWndTop;
-            ::EnableWindow((HWND) hWndTop, FALSE);
+            ::EnableWindow((oswindow_) hWndTop, FALSE);
          }
          else
             *pWndTop = NULL;

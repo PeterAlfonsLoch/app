@@ -1130,7 +1130,7 @@ namespace user
 
       pimplNew->m_pguie = this;
 
-      if(!pimplNew->SubclassWindow((HWND) posdata))
+      if(!pimplNew->SubclassWindow((oswindow_) posdata))
       {
 
          delete pimplNew;
@@ -2138,7 +2138,7 @@ namespace user
       bool bIdle = TRUE;
       LONG lIdleCount = 0;
       bool bShowIdle = (dwFlags & MLF_SHOWONIDLE) && !(GetStyle() & WS_VISIBLE);
-//      HWND hWndParent = ::GetParent(get_handle());
+//      oswindow_ hWndParent = ::GetParent(get_handle());
       m_iModal = m_iModalCount;
       int iLevel = m_iModal;
       ::user::interaction * puieParent = GetParent();
@@ -2380,7 +2380,7 @@ ExitModal:
 
    // Timer Functions
    uint_ptr interaction::SetTimer(uint_ptr nIDEvent, UINT nElapse,
-         void (CALLBACK* lpfnTimer)(HWND, UINT, uint_ptr, DWORD))
+         void (CALLBACK* lpfnTimer)(oswindow_, UINT, uint_ptr, DWORD))
    {
       if(m_pimpl == NULL)
          return 0;

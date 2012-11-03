@@ -677,7 +677,7 @@ RetryHost:
          if(m_straRestartCommandLine.get_count() > 0)
          {
 
-            HWND hwndSpaBoot = ::FindWindow(NULL, "ca2::fontopus::ccvotagus::spaboot:callback_window");
+            oswindow_ hwndSpaBoot = ::FindWindow(NULL, "ca2::fontopus::ccvotagus::spaboot:callback_window");
 
             if(hwndSpaBoot != NULL)
             {

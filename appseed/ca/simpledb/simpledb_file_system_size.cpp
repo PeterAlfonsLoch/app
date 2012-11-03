@@ -384,7 +384,7 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
 #ifdef WINDOWS
 
    db_server * pcentral = dynamic_cast < db_server * > (&System.db());
-   HWND hwnd = pcentral->m_pfilesystemsizeset->m_table.m_hwndServer;
+   oswindow_ hwnd = pcentral->m_pfilesystemsizeset->m_table.m_hwndServer;
    if(hwnd == NULL || ! ::IsWindow(hwnd))
    {
       if(pcentral->m_pfilesystemsizeset->m_table.m_hwndServer == NULL)
@@ -405,7 +405,7 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
    data.dwData = 0;
    data.cbData = (DWORD) file.get_length();
    data.lpData = file.get_data();
-   HWND hwndWparam = (HWND) m_p->get_os_data();
+   oswindow_ hwndWparam = (oswindow_) m_p->get_os_data();
    WPARAM wparam = (WPARAM) hwndWparam;
    if(::SendMessage(hwnd, WM_COPYDATA, wparam, (LPARAM) &data))
    {
@@ -445,7 +445,7 @@ void FileSystemSizeWnd::_001OnCopyData(gen::signal_object * pobj)
       size.read(file);
 
       single_lock sl(&m_cs, TRUE);
-      size.m_hwnd = (HWND) pbase->m_wparam;
+      size.m_hwnd = (oswindow_) pbase->m_wparam;
       size.m_bRet =  pcentral->m_pfilesystemsizeset->get_fs_size(
          size.m_iSize,
          size.m_strPath,
@@ -480,7 +480,7 @@ void FileSystemSizeWnd::_001OnTimer(gen::signal_object * pobj)
     SCAST_PTR(::gen::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 100)
    {
-      //::PostMessage((HWND) pbase->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);
+      //::PostMessage((oswindow_) pbase->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);
       if(m_sizea.get_size() > 0)
       {
          COPYDATASTRUCT data;
@@ -497,7 +497,7 @@ void FileSystemSizeWnd::_001OnTimer(gen::signal_object * pobj)
             size.write(file);
             data.cbData = (DWORD) file.get_length();
             data.lpData = file.get_data();
-            ::SendMessage((HWND) size.m_hwnd, WM_COPYDATA, (WPARAM) m_p->get_os_data(), (LPARAM) &data);
+            ::SendMessage((oswindow_) size.m_hwnd, WM_COPYDATA, (WPARAM) m_p->get_os_data(), (LPARAM) &data);
             m_sizea.remove_at(0);
          }
       }

@@ -273,7 +273,7 @@ namespace spa
       return 0;
    }
 
-   LRESULT CALLBACK window::s_window_proc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+   LRESULT CALLBACK window::s_window_proc(oswindow_ hwnd, UINT message, WPARAM wParam, LPARAM lParam)
    {
       window * pwindow = s_windowmap[hwnd];
       if(pwindow != NULL)

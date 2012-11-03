@@ -117,7 +117,7 @@ namespace hotplugin
       }
    }
 
-   HWND plugin::get_host_window()
+   oswindow_ plugin::get_host_window()
    {
       if(m_phost != NULL)
       {

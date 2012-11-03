@@ -98,7 +98,7 @@ namespace uinteraction
             if(puieCapture != NULL
                && puieCapture == GetEventWindow())
             {
-               TRACE("MoveManager::message_handler HWND ReleaseCapture %x\n", System.get_capture_uie());
+               TRACE("MoveManager::message_handler oswindow_ ReleaseCapture %x\n", System.get_capture_uie());
                System.release_capture_uie();
             }
             return false;
@@ -205,7 +205,7 @@ namespace uinteraction
          pinterface->WfiOnMove(pmouse->m_uiMessage == WM_MOUSEMOVE || pmouse->m_uiMessage == WM_NCMOUSEMOVE);
          if(pmouse->m_uiMessage == WM_LBUTTONUP || pmouse->m_uiMessage == WM_NCLBUTTONUP)
          {
-            TRACE("MoveManager::message_handler HWND ReleaseCapture 2 %x\n", System.get_capture_uie());
+            TRACE("MoveManager::message_handler oswindow_ ReleaseCapture 2 %x\n", System.get_capture_uie());
             System.release_capture_uie();
             m_bMoving = false;
          }
@@ -311,11 +311,11 @@ namespace uinteraction
 
 
       bool CALLBACK UpdateCurrentAreaEnumWindowsProc(      
-         HWND hwnd,
+         oswindow_ hwnd,
          LPARAM lParam)
       {
          UNREFERENCED_PARAMETER(lParam);
-         //      HWND hwndParam= (HWND) lParam;
+         //      oswindow_ hwndParam= (oswindow_) lParam;
          //DWORD dwThreadId;
          //DWORD dwProcessId;
          //HICON hicon16;
@@ -470,7 +470,7 @@ namespace uinteraction
             pbase->m_uiMessage == WM_LBUTTONUP)
          {
             ::user::interaction * pWndCapture = System.get_capture_uie();
-            TRACE("MoveManager::message_handler HWND Capture %x\n", System.get_capture_uie());
+            TRACE("MoveManager::message_handler oswindow_ Capture %x\n", System.get_capture_uie());
             if(!m_bMoving ||
                pWndCapture == NULL ||
                pWndCapture->_get_handle() != GetEventWindow()->_get_handle())
@@ -521,7 +521,7 @@ namespace uinteraction
             if(bMove && rectWindow.top_left() != pt)
             {
 
-               MoveWindow((HWND) GetMoveWindow()->_get_handle(), pt);
+               MoveWindow((oswindow_) GetMoveWindow()->_get_handle(), pt);
 
             }
             if(pbase->m_uiMessage == WM_LBUTTONUP)

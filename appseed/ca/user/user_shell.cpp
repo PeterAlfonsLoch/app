@@ -589,7 +589,7 @@ namespace filemanager
 #ifdef WINDOWS
 
    int ImageSet::GetImage(
-      HWND hwnd,
+      oswindow_ hwnd,
       IShellFolder * lpsf,
       LPITEMIDLIST lpiidlAbsolute,
       LPITEMIDLIST lpiidlChild,
@@ -1018,7 +1018,7 @@ namespace filemanager
 
 #endif
 
-   int ImageSet::GetImageByExtension(HWND hwnd, const char * pszPath, EIcon eicon, bool bFolder)
+   int ImageSet::GetImageByExtension(oswindow_ hwnd, const char * pszPath, EIcon eicon, bool bFolder)
    {
 
 #ifdef WINDOWS
@@ -1150,7 +1150,7 @@ namespace filemanager
 #ifdef WINDOWS
 
    bool ImageSet::GetIcon(
-      HWND hwnd,
+      oswindow_ hwnd,
       IShellFolder * lpsf,
       LPITEMIDLIST lpiidlAbsolute,
       LPITEMIDLIST lpiidlChild,
@@ -1432,7 +1432,7 @@ namespace filemanager
 
 
    int ImageSet::GetImage(
-      HWND hwnd,
+      oswindow_ hwnd,
       LPITEMIDLIST lpiidlAbsolute,
       const wchar_t * lpcszExtra,
       EIcon eicon)
@@ -1458,7 +1458,7 @@ namespace filemanager
    }
 
    int ImageSet::GetImage(
-      HWND hwnd,
+      oswindow_ hwnd,
       const char * psz,
       const wchar_t * lpcszExtra,
       EIcon eicon,
@@ -1523,7 +1523,7 @@ namespace filemanager
 #endif
 
    bool ImageSet::GetIcon(
-      HWND hwnd,
+      oswindow_ hwnd,
       const char * psz,
       const wchar_t * lpcszExtra,
       EIcon eicon,
@@ -1551,7 +1551,7 @@ namespace filemanager
 #ifdef WINDOWS
 
    bool ImageSet::GetIcon(
-      HWND hwnd,
+      oswindow_ hwnd,
       LPITEMIDLIST lpiidlAbsolute,
       const wchar_t * lpcszExtra,
       EIcon eicon,

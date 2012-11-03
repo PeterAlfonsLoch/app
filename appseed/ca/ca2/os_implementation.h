@@ -3,7 +3,7 @@
 
 #ifdef SetWindowLongPtrA
 #undef SetWindowLongPtrA
-inline long_ptr SetWindowLongPtrA( HWND hWnd, int nIndex, long_ptr dwNewLong )
+inline long_ptr SetWindowLongPtrA( oswindow_ hWnd, int nIndex, long_ptr dwNewLong )
 {
    return( ::SetWindowLongA( hWnd, nIndex, LONG( dwNewLong ) ) );
 }
@@ -11,7 +11,7 @@ inline long_ptr SetWindowLongPtrA( HWND hWnd, int nIndex, long_ptr dwNewLong )
 
 #ifdef SetWindowLongPtrW
 #undef SetWindowLongPtrW
-inline long_ptr SetWindowLongPtrW( HWND hWnd, int nIndex, long_ptr dwNewLong )
+inline long_ptr SetWindowLongPtrW( oswindow_ hWnd, int nIndex, long_ptr dwNewLong )
 {
    return( ::SetWindowLongW( hWnd, nIndex, LONG( dwNewLong ) ) );
 }
@@ -19,7 +19,7 @@ inline long_ptr SetWindowLongPtrW( HWND hWnd, int nIndex, long_ptr dwNewLong )
 
 #ifdef GetWindowLongPtrA
 #undef GetWindowLongPtrA
-inline long_ptr GetWindowLongPtrA( HWND hWnd, int nIndex )
+inline long_ptr GetWindowLongPtrA( oswindow_ hWnd, int nIndex )
 {
    return( ::GetWindowLongA( hWnd, nIndex ) );
 }
@@ -27,7 +27,7 @@ inline long_ptr GetWindowLongPtrA( HWND hWnd, int nIndex )
 
 #ifdef GetWindowLongPtrW
 #undef GetWindowLongPtrW
-inline long_ptr GetWindowLongPtrW( HWND hWnd, int nIndex )
+inline long_ptr GetWindowLongPtrW( oswindow_ hWnd, int nIndex )
 {
    return( ::GetWindowLongW( hWnd, nIndex ) );
 }
@@ -126,7 +126,7 @@ extern CLASS_DECL_ca AUX_DATA afxData;*/
 typedef struct tag__OLDTOOLINFO {
    UINT cbSize;
    UINT uFlags;
-   HWND hwnd;
+   oswindow_ hwnd;
    UINT uId;
    RECT rect;
    HINSTANCE hinst;
@@ -144,12 +144,12 @@ typedef struct tag__OLDTOOLINFO {
 #define __WNDOLECONTROL   __WNDCLASS("OleControl")
 
 // dialog/commdlg hook procs
-CLASS_DECL_ca int_ptr CALLBACK __dialog_procedure(HWND, UINT, WPARAM, LPARAM);
-CLASS_DECL_ca uint_ptr CALLBACK __common_dialog_procedure(HWND hWnd, UINT, WPARAM, LPARAM);
+CLASS_DECL_ca int_ptr CALLBACK __dialog_procedure(oswindow_, UINT, WPARAM, LPARAM);
+CLASS_DECL_ca uint_ptr CALLBACK __common_dialog_procedure(oswindow_ hWnd, UINT, WPARAM, LPARAM);
 
 // support for standard dialogs
 extern UINT gen_MsgSETRGB;
-typedef uint_ptr (CALLBACK* COMMDLGPROC)(HWND, UINT, WPARAM, LPARAM);
+typedef uint_ptr (CALLBACK* COMMDLGPROC)(oswindow_, UINT, WPARAM, LPARAM);
 
 // conversion helpers
 //int c_cdecl _wcstombsz(char* mbstr, const wchar_t* wcstr, size_t count);

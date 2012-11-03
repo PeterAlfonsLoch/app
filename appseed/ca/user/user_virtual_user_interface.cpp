@@ -250,7 +250,7 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
 
 #ifdef WINDOWS
 
-   cs.hwndParent = (HWND) pparent->_get_handle();
+   cs.hwndParent = (oswindow_) pparent->_get_handle();
 
 #else
 
@@ -369,7 +369,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
 #ifdef WINDOWS
 
-   cs.hwndParent = (HWND) pparent->_get_handle();
+   cs.hwndParent = (oswindow_) pparent->_get_handle();
 
 #else
 
@@ -488,7 +488,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
 
 #ifdef WINDOWS
 
-   cs.hwndParent = (HWND) pparent->_get_handle();
+   cs.hwndParent = (oswindow_) pparent->_get_handle();
 
 #else
 
@@ -557,7 +557,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
       int x, int y, int nWidth, int nHeight,
-      HWND hWndParent, HMENU nIDorHMenu, LPVOID lpParam)
+      oswindow_ hWndParent, HMENU nIDorHMenu, LPVOID lpParam)
    {
       return FALSE;
    }
@@ -977,11 +977,11 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
 }
 
 void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
-   HWND hWnd, LPCRECT lpRect)
+   oswindow_ hWnd, LPCRECT lpRect)
 {
    ASSERT(hWnd != NULL);
    ASSERT(lpRect != NULL);
-   HWND hWndParent = ::GetParent(hWnd);
+   oswindow_ hWndParent = ::GetParent(hWnd);
    ASSERT(hWndParent != NULL);
 
    if (lpLayout != NULL && lpLayout->hDWP == NULL)
@@ -1319,7 +1319,7 @@ void virtual_user_interface::SetFont(::ca::font* pFont, bool bRedraw)
 }
 
 uint_ptr virtual_user_interface::SetTimer(uint_ptr nIDEvent, UINT nElapse,
-      void (CALLBACK* lpfnTimer)(HWND, UINT, uint_ptr, DWORD))
+      void (CALLBACK* lpfnTimer)(oswindow_, UINT, uint_ptr, DWORD))
 {
    UNREFERENCED_PARAMETER(lpfnTimer);
    m_pguie->m_pthread->set_timer(m_pguie, nIDEvent, nElapse);

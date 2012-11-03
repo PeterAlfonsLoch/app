@@ -758,7 +758,7 @@ namespace plane
          data.dwData = 1984;
          data.cbData = (DWORD) file.get_length();
          data.lpData = file.get_data();
-         HWND hwnd = (HWND) ::FindWindowA(NULL, "ca2::fontopus::message_wnd::session::");
+         oswindow_ hwnd = (oswindow_) ::FindWindowA(NULL, "ca2::fontopus::message_wnd::session::");
 
          ::SendMessage(hwnd, WM_COPYDATA, NULL, (LPARAM) &data);*/
 

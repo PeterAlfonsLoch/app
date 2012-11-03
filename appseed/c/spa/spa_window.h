@@ -10,7 +10,7 @@ namespace spa
 
 
    class CLASS_DECL_c window_map :
-      public simple_map < HWND, window * >
+      public simple_map < oswindow_, window * >
    {
 
 
@@ -24,7 +24,7 @@ namespace spa
       HINSTANCE            m_hinstance;
       canvas               m_canvas;
 
-      HWND                 m_hwnd;
+      oswindow_                 m_hwnd;
       simple_brush         m_sbrushBk;
       simple_bitmap        m_sbitmapAlpha;
       simple_graphics      m_sgraphicsAlpha;
@@ -57,7 +57,7 @@ namespace spa
     #ifdef WINDOWS
 
       void OnTimer(uint_ptr nIDEvent);
-      static LRESULT CALLBACK s_window_proc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+      static LRESULT CALLBACK s_window_proc(oswindow_ hWnd, UINT message, WPARAM wParam, LPARAM lParam);
       LRESULT window_proc(UINT message, WPARAM wParam, LPARAM lParam);
       ATOM register_class(HINSTANCE hInstance);
 

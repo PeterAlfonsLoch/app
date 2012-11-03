@@ -63,7 +63,7 @@ bool os_simple_graphics::create_from_bitmap(simple_bitmap & b)
 
 }
 
-bool os_simple_graphics::from_entire_window(HWND hwnd)
+bool os_simple_graphics::from_entire_window(oswindow_ hwnd)
 {
 
    if(m_iType != 0)
@@ -92,7 +92,7 @@ bool os_simple_graphics::from_entire_window(HWND hwnd)
 }
 
 
-bool os_simple_graphics::from_window(HWND hwnd)
+bool os_simple_graphics::from_window(oswindow_ hwnd)
 {
 
    if(m_iType != 0)
@@ -120,7 +120,7 @@ bool os_simple_graphics::from_window(HWND hwnd)
 
 }
 
-bool os_simple_graphics::from_window_paint(HWND hwnd, LPRECT lprectPaint)
+bool os_simple_graphics::from_window_paint(oswindow_ hwnd, LPRECT lprectPaint)
 {
 
 
