@@ -307,7 +307,7 @@ namespace user
       rectClient.deflate(2, 2);
 
       //ClientToScreen(rectClient);
-      rgn->CreateRectRgnIndirect(rectClient);
+      rgn->create_rect(rectClient);
 
       double left = rectClient.left;
 

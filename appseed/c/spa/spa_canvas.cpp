@@ -447,7 +447,7 @@ void canvas_zero::prepare(HDC hdc, LPCRECT lpcrect)
 
    /*int iMid = (m_rect.bottom + m_rect.top) / 2;
 
-   HPEN hpen = ::CreatePen(PS_SOLID, 1, RGB(0x7c, 0x7c, 0x7c));
+   HPEN hpen = ::create_solid(1, RGB(0x7c, 0x7c, 0x7c));
 
    ::SelectObject(m_hdc, hpen);
 

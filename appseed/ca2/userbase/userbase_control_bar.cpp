@@ -859,7 +859,7 @@ namespace userbase
          
          if(dwStyle & CBRS_GRIPPER)
          {
-            ::ca::pen_sp pen(get_app(), PS_SOLID, 1, clr);
+            ::ca::pen_sp pen(get_app(), 1, clr);
             ::ca::pen * ppenOld = pdc->SelectObject(pen);
             pdc->MoveTo(0, 7);
             pdc->LineTo(7, 0);

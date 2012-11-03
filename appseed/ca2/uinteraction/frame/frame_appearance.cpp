@@ -231,13 +231,15 @@ namespace frame
             COLORREF crShadow,
             COLORREF crDkShadow)
    {
+
       UNREFERENCED_PARAMETER(crLight);
-      m_penHighlight->CreatePen(PS_SOLID, 1, crHighlight);
-      m_penLight->CreatePen(PS_SOLID, 1, crHighlight);
-      m_penShadow->CreatePen(PS_SOLID, 1, crShadow);
-      m_penDkShadow->CreatePen(PS_SOLID, 1, crDkShadow);
-      m_brushNull->CreateStockObject(NULL_BRUSH);
-      m_brushBody->CreateSolidBrush(crBody);
+
+      m_penHighlight->create_solid(1, crHighlight);
+      m_penLight->create_solid(1, crHighlight);
+      m_penShadow->create_solid(1, crShadow);
+      m_penDkShadow->create_solid(1, crDkShadow);
+      m_brushNull->create_null();
+      m_brushBody->create_solid(crBody);
 
       m_colorbezieraOutsideBorder.remove_all();
       rect rectClient(lpcrect);
@@ -338,7 +340,7 @@ namespace frame
    {
       pdc->SelectObject(m_brushBody);
       ::ca::pen_sp pen(get_app());
-      pen->construct(PS_SOLID, 0, RGB(255, 255, 255));
+      pen->create_solid(0, RGB(255, 255, 255));
       pdc->SelectObject(pen);
       point pt(0, 0);
       visual::api::DrawAndFillBeziers(

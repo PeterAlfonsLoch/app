@@ -1,5 +1,7 @@
 #include "framework.h"
 
+/*
+
 namespace visual
 {
 
@@ -8,8 +10,8 @@ namespace visual
       m_pwnd(NULL),
       m_bAcquired(false)
    {
-//      m_rgn.CreateRectRgn(0, 0, 0, 0);
-//      m_rgnOld.CreateRectRgn(0, 0, 0, 0);
+//      m_rgn.create_rect(0, 0, 0, 0);
+//      m_rgnOld.create_rect(0, 0, 0, 0);
    }
 
    //////////////////////////////////////////////////
@@ -28,8 +30,8 @@ namespace visual
    {
       ASSERT(pwnd != NULL);
       ASSERT(pdc != NULL);
-//      m_rgn.CreateRectRgn(0, 0, 0, 0);
-      //m_rgnOld.CreateRectRgn(0, 0, 0, 0);
+//      m_rgn.create_rect(0, 0, 0, 0);
+      //m_rgnOld.create_rect(0, 0, 0, 0);
       Do(pwnd, pdc);
    }
 
@@ -48,8 +50,8 @@ namespace visual
    clip::clip(::ca::graphics * pdc, ::ca::region * prgn)
    {
       ASSERT(pdc != NULL);
-//      m_rgn.CreateRectRgn(0, 0, 0, 0);
-  //    m_rgnOld.CreateRectRgn(0, 0, 0, 0);
+//      m_rgn.create_rect(0, 0, 0, 0);
+  //    m_rgnOld.create_rect(0, 0, 0, 0);
       Do(pdc, prgn);
    }
 
@@ -68,8 +70,8 @@ namespace visual
    clip::clip(::ca::graphics * pdc, LPCRECT lpcrect)
    {
       ASSERT(pdc != NULL);
-//      m_rgn.CreateRectRgn(0, 0, 0, 0);
-  //    m_rgnOld.CreateRectRgn(0, 0, 0, 0);
+//      m_rgn.create_rect(0, 0, 0, 0);
+  //    m_rgnOld.create_rect(0, 0, 0, 0);
       Do(pdc, lpcrect);
    }
 
@@ -250,10 +252,10 @@ namespace visual
          == 1)
       {
          rect rectTest1;
-         rgnOld.GetRgnBox(rectTest1);
+         rgnOld.get_bounding_box(rectTest1);
          rgn.CombineRgn(&rgn, &rgnOld, RGN_AND);
          rect rectTest2;
-         rgn.GetRgnBox(rectTest2);
+         rgn.get_bounding_box(rectTest2);
       }
 
 #else
@@ -295,3 +297,6 @@ namespace visual
    }
 
 } // namespace visual
+
+
+*/

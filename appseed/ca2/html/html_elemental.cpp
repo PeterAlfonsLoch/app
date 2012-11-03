@@ -204,7 +204,7 @@ namespace html
                pdata->m_layoutstate.m_x + pdata->m_layoutstate.m_cx,
                pdata->m_layoutstate.m_y);
          }*/
-         set_xy(pdata, pdata->m_layoutstate.m_x, pdata->m_layoutstate.m_y);
+         set_xy(pdata, (float) pdata->m_layoutstate.m_x, (float) pdata->m_layoutstate.m_y);
          //set_bound_point(pdata, point(pdata->m_layoutstate.m_x, pdata->m_layoutstate.m_y));
       }
 
@@ -273,7 +273,7 @@ namespace html
                point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                point p2(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                ::ca::pen_sp pen(pdata->get_app());
-               pen->CreatePen(PS_SOLID, m_border.left, m_border.crLeft);
+               pen->create_solid(m_border.left, m_border.crLeft);
                pdata->m_pdc->SelectObject(pen);
                pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
             }
@@ -285,7 +285,7 @@ namespace html
                pa[2] = ::pointd(bIn.left, bIn.bottom);
                pa[3] = ::pointd(bOut.left, bOut.bottom);
                ::ca::brush_sp brush(pdata->get_app());
-               brush->CreateSolidBrush(m_border.crLeft);
+               brush->create_solid(m_border.crLeft);
                pdata->m_pdc->SelectObject(brush);
                pdata->m_pdc->fill_polygon(pa, 4);
             }
@@ -297,7 +297,7 @@ namespace html
                point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                ::ca::pen_sp pen(pdata->get_app());
-               pen->CreatePen(PS_SOLID, m_border.top, m_border.crTop);
+               pen->create_solid(m_border.top, m_border.crTop);
                pdata->m_pdc->SelectObject(pen);
                pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
             }
@@ -309,7 +309,7 @@ namespace html
                pa[2] = ::pointd(bIn.right, bIn.top);
                pa[3] = ::pointd(bIn.left, bIn.top);
                ::ca::brush_sp brush(pdata->get_app());
-               brush->CreateSolidBrush(m_border.crTop);
+               brush->create_solid(m_border.crTop);
                pdata->m_pdc->SelectObject(brush);
                pdata->m_pdc->fill_polygon(pa, 4);
             }
@@ -321,7 +321,7 @@ namespace html
                point p1(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                ::ca::pen_sp pen(pdata->get_app());
-               pen->CreatePen(PS_SOLID, m_border.right, m_border.crRight);
+               pen->create_solid(m_border.right, m_border.crRight);
                pdata->m_pdc->SelectObject(pen);
                pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
             }
@@ -333,7 +333,7 @@ namespace html
                pa[2] = ::pointd(bIn.right, bIn.bottom);
                pa[3] = ::pointd(bIn.right, bIn.top);
                ::ca::brush_sp brush(pdata->get_app());
-               brush->CreateSolidBrush(m_border.crRight);
+               brush->create_solid(m_border.crRight);
                pdata->m_pdc->SelectObject(brush);
                pdata->m_pdc->fill_polygon(pa, 4);
             }
@@ -345,7 +345,7 @@ namespace html
                point p1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                ::ca::pen_sp pen(pdata->get_app());
-               pen->CreatePen(PS_SOLID, m_border.bottom, m_border.crBottom);
+               pen->create_solid(m_border.bottom, m_border.crBottom);
                pdata->m_pdc->SelectObject(pen);
                pdata->m_pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
             }
@@ -357,7 +357,7 @@ namespace html
                pa[2] = ::pointd(bOut.right, bOut.bottom);
                pa[3] = ::pointd(bOut.left, bOut.bottom);
                ::ca::brush_sp brush(pdata->get_app());
-               brush->CreateSolidBrush(m_border.crBottom);
+               brush->create_solid(m_border.crBottom);
                pdata->m_pdc->SelectObject(brush);
                pdata->m_pdc->fill_polygon(pa, 4);
             }

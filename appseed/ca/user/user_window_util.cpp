@@ -215,8 +215,8 @@ namespace user
    ::ScreenToClient(hwnd, &rectChild.top_left());
    ::ScreenToClient(hwnd, &rectChild.bottom_right());
    rectChild.offset(ptOffset);
-   HRGN hrgnChild = ::CreateRectRgnIndirect(rectChild);
-   ::CombineRgn(hrgn, hrgn, hrgnChild, RGN_DIFF);
+   HRGN hrgnChild = ::create_rect(rectChild);
+   ::CombineRgn(hrgn, hrgn, hrgnChild, ::ca::region::combine_exclude);
    ::DeleteObject(hrgnChild);
    }
 
@@ -230,7 +230,7 @@ namespace user
    rect rectWnd;
    ::GetClientRect(hwnd, rectWnd);
    rectWnd.offset(ptOffset);
-   HRGN hrgn = ::CreateRectRgnIndirect(rectWnd);
+   HRGN hrgn = ::create_rect(rectWnd);
 
    if(bExludeChildren)
    {
@@ -796,7 +796,7 @@ namespace user
 
          HRGN hrgnChild = ::CreateRectRgnIndirect(rectChild);
 
-         ::CombineRgn(hrgn, hrgn, hrgnChild, RGN_DIFF);
+         ::CombineRgn(hrgn, hrgn, hrgnChild, ::ca::region::combine_exclude);
 
          ::DeleteObject(hrgnChild);
 

@@ -327,7 +327,7 @@ namespace uinteraction
          //      HRGN hrgnNew = ::CreateRectRgn(0, 0, 0, 0);;
          /*      ::CombineRgn(hrgnNew, (HRGN)g_rgnTotal->get_os_data(), hrgn, RGN_AND);
          ::RedrawWindow(hwnd, NULL, NULL, RDW_INVALIDATE);
-         ::CombineRgn((HRGN)g_rgnTotal->get_os_data(),( HRGN)g_rgnTotal->get_os_data(), hrgnNew, RGN_DIFF);
+         ::CombineRgn((HRGN)g_rgnTotal->get_os_data(),( HRGN)g_rgnTotal->get_os_data(), hrgnNew, ::ca::region::combine_exclude);
          ::DeleteObject(hrgn);
          ::DeleteObject(hrgnNew);*/
 

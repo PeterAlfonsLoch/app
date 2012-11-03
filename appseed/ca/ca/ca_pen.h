@@ -17,16 +17,40 @@ namespace ca
          type_solid,
       };
 
+      enum e_end_cap
+      {
+         end_cap_flat,
+         end_cap_round,
+      };
 
 
-      e_type      m_etype;
-      double      m_dWidth;
-      COLORREF    m_cr;
+      enum e_line_join
+      {
+         line_join_miter,
+         line_join_bevel,
+         line_join_round,
+         line_join_miter_clipped,
+      };
+
+      e_type            m_etype;
+      e_end_cap         m_eendcap;
+      e_line_join       m_elinejoin;
+      double            m_dWidth;
+      COLORREF          m_cr;
+
+
+      pen();
+      virtual ~pen();
 
 
       virtual bool create_null();
       virtual bool create_solid(double dWidth, COLORREF crColor);
 
+      virtual e_end_cap get_end_cap();
+      virtual bool set_end_cap(e_end_cap eendcap);
+
+      virtual e_line_join get_line_join();
+      virtual bool set_line_join(e_line_join elinejoin);
 
       pen & operator = (const pen & penSrc);
 

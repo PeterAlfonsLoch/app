@@ -32,7 +32,7 @@ namespace ca
       brush();
 
 
-      //virtual void construct(COLORREF crColor);                // CreateSolidBrush
+      //virtual void construct(COLORREF crColor);                // create_solid
       //virtual void construct(int nIndex, COLORREF crColor);    // CreateHatchBrush
       //virtual void construct(bitmap * pbitmap);                // CreatePatternBrush
 
@@ -76,7 +76,7 @@ namespace ca
       {
       }
 
-      // CreateSolidBrush
+      // create_solid
       brush_sp(::ca::application * papp, COLORREF crColor) :
          smart_pointer < brush > (papp)
       {

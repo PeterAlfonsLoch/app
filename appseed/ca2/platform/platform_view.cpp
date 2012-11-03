@@ -60,10 +60,10 @@ namespace platform
       m_buttonschema.m_crTextPress = ARGB(255, 255, 255, 0);
       m_buttonschema.m_crTextHover = ARGB(255, 100, 180, 110);
       m_buttonschema.m_crTextNormal = ARGB(255, 100, 100, 20);
-      m_brushBk->CreateSolidBrush(ARGB(255, 255, 250, 245));
-      m_brushProgress1->CreateSolidBrush(ARGB(255, 120, 180, 255));
-      m_brushProgress2->CreateSolidBrush(ARGB(255, 255, 240, 200));
-      m_brushProgress3->CreateSolidBrush(ARGB(255, 128, 128, 128));
+      m_brushBk->create_solid(ARGB(255, 255, 250, 245));
+      m_brushProgress1->create_solid(ARGB(255, 120, 180, 255));
+      m_brushProgress2->create_solid(ARGB(255, 255, 240, 200));
+      m_brushProgress3->create_solid(ARGB(255, 128, 128, 128));
 
       m_buttonschema.m_font->create_point_font("Geneva", 16);
 

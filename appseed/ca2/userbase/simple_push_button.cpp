@@ -165,7 +165,7 @@ void SimplePushButton::_001OnDraw(::ca::graphics *pdc)
    rect.left = x1;
    rect.right = x2;
    rect.bottom = rect.top + 5;
-   ::ca::pen_sp pen(get_app(), PS_SOLID, 1, colorExt1TL);
+   ::ca::pen_sp pen(get_app(), 1, colorExt1TL);
    pdc->SelectObject(pen);
    imaging.color_blend_3dRect(pdc, rect, colorExt1TL, 220, colorExt1BR, 220);
 

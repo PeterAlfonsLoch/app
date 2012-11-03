@@ -33,6 +33,7 @@ namespace ca
       throw interface_only_exception(get_app());
       return 0;
    }
+   /*
 
    /*
 #ifdef WINDOWS
@@ -372,7 +373,7 @@ namespace ca
 
       pointd pointd = MoveTo((double)point.x, (double)point.y);
 
-      return ::point(pointd.x, pointd.y);
+      return ::point((int64_t) pointd.x, (int64_t) pointd.y);
 
    }
 
@@ -1915,7 +1916,7 @@ namespace ca
    point graphics::MoveTo(int x, int y)
    {
       pointd pointd = MoveTo((double) x, (double) y);
-      return point(pointd.x, pointd.y);
+      return point((LONG) pointd.x, (LONG) pointd.y);
    }
 
    bool graphics::LineTo(int x, int y)

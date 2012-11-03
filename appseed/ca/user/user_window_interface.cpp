@@ -328,7 +328,7 @@ namespace user
    {
       ::ca::region rgn;
 
-      rgn.CreateRectRgnIndirect(lpcrect);
+      rgn.create_rect(lpcrect);
 
       Optimize001(hwndtreea, rgn);
    }
@@ -392,8 +392,8 @@ namespace user
          ::ClientToScreen(hwnd, &rectClient.bottom_right());
 
          ::ca::region rgn;
-         rgn.CreateRectRgnIndirect(rectClient);
-         int iCombine = ::CombineRgn(hrgn, hrgn, rgn, RGN_DIFF);
+         rgn.create_rect(rectClient);
+         int iCombine = ::CombineRgn(hrgn, hrgn, rgn, ::ca::region::combine_exclude);
          if(iCombine == NULLREGION)
          {
             ASSERT(TRUE);

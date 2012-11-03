@@ -18,6 +18,7 @@ namespace ca
 
          combine_add,
          combine_exclude,
+         combine_intersect,
 
       };
 
@@ -71,12 +72,12 @@ namespace ca
       virtual bool combine(const ::ca::region * prgn1, const ::ca::region * prgn2, e_combine ecombine);
       //virtual int CopyRgn(const ::ca::region* pRgnSrc);
       //virtual bool EqualRgn(const ::ca::region* pRgn) const;
-      //virtual int OffsetRgn(int x, int y);
-      //virtual int OffsetRgn(POINT point);
-      virtual int get_bounding_box(LPRECT lpRect) const;
+      virtual bool translate(int x, int y);
+      virtual bool translate(POINT point);
+      virtual bool get_bounding_box(LPRECT lpRect) const;
       //virtual int GetRgnBox(rect64 * lpRect) const;
-      //virtual bool PtInRegion(int x, int y) const;
-      //virtual bool PtInRegion(POINT point) const;
+      //virtual bool contains(int x, int y) const;
+      virtual bool contains(POINT point) const;
       //virtual bool RectInRegion(LPCRECT lpRect) const;
 //#ifdef WINDOWS
       //virtual int GetRegionData(LPRGNDATA lpRgnData, int nCount) const;

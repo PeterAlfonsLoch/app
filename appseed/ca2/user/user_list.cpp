@@ -63,8 +63,8 @@ namespace user
 
       m_iClick = 0;
 
-      m_penFocused->CreatePen(PS_SOLID, 2, ARGB(255, 0, 255, 255));
-      m_penHighlight->CreatePen(PS_SOLID, 2, ARGB(255, 0, 255, 255));
+      m_penFocused->create_solid(2, ARGB(255, 0, 255, 255));
+      m_penHighlight->create_solid(2, ARGB(255, 0, 255, 255));
 
       m_crText = ARGB(255, 0, 0, 0);
       m_crTextSelected = ARGB(255, 255, 255, 255);

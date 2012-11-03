@@ -61,13 +61,13 @@ namespace user
 
       ::ca::brush_sp br(get_app());
 
-      br->CreateSolidBrush(ARGB(84, 255, 255, 255));
+      br->create_solid(ARGB(84, 255, 255, 255));
 
       pdc->SelectObject(br);
 
       pdc->FillRectangle(rectClient);
 
-      br->CreateSolidBrush(ARGB(255, 84, 84, 77));
+      br->create_solid(ARGB(255, 84, 84, 77));
 
       pdc->SelectObject(br);
 
@@ -117,7 +117,7 @@ namespace user
 
       get_element_rect(rectDropDown, element_drop_down);
 
-      br->CreateSolidBrush(ARGB(184, 255, 255, 255));
+      br->create_solid(ARGB(184, 255, 255, 255));
 
       pdc->SelectObject(br);
 
@@ -145,7 +145,7 @@ namespace user
 
       }
 
-      br->CreateSolidBrush(ARGB(210, 77, 184, 49));
+      br->create_solid(ARGB(210, 77, 184, 49));
 
       pdc->SelectObject(br);
 
@@ -244,7 +244,7 @@ namespace user
 
       rectDropIn.deflate(iMargin * 2 / 3, iMargin * 2 / 3);
 
-      br->CreateSolidBrush(ARGB(210, 230 - iColorRate, 230 - iColorRate, 220 - iColorRate));
+      br->create_solid(ARGB(210, 230 - iColorRate, 230 - iColorRate, 220 - iColorRate));
 
       pdc->SelectObject(br);
 
@@ -253,7 +253,7 @@ namespace user
       pdc->FillRectangle(rectDropIn);
 
 
-      br->CreateSolidBrush(ARGB(210, 77, 184, 49));
+      br->create_solid(ARGB(210, 77, 184, 49));
 
 
       ::ca::graphics_path_sp path(get_app());
@@ -278,7 +278,7 @@ namespace user
 
       }
 
-      br->CreateSolidBrush(ARGB(210, 77, 184, 49));
+      br->create_solid(ARGB(210, 77, 184, 49));
 
       pdc->SelectObject(br);
 

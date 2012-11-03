@@ -70,7 +70,7 @@ namespace user
 
       ::ca::brush_sp br(get_app());
 
-      br->CreateSolidBrush(ARGB(230, 255, 255, 255));
+      br->create_solid(ARGB(230, 255, 255, 255));
 
       pdc->SelectObject(br);
 
@@ -88,9 +88,9 @@ namespace user
 
       ScreenToClient(&ptCursor);
 
-      br->CreateSolidBrush(ARGB(255, 84, 84, 77));
+      br->create_solid(ARGB(255, 84, 84, 77));
 
-      int dSize = _001GetItemHeight() * 0.7;
+      int dSize = (int) ( _001GetItemHeight() * 0.7);
 
       pdc->m_fontxyz.m_dFontSize = dSize;
       pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;
@@ -107,7 +107,7 @@ namespace user
             if(rectItem.contains(ptCursor))
             {
                ::ca::pen_sp pen(get_app());
-               pen->CreatePen(PS_SOLID, m_iItemHeight / 8, ARGB(230, 77, 184, 63));
+               pen->create_solid(m_iItemHeight / 8, ARGB(230, 77, 184, 63));
                pdc->SelectObject(pen);
                pdc->DrawRectangle(rectItem);
             }
@@ -122,15 +122,15 @@ namespace user
          rectItem.bottom = rectItem.top + _001GetItemHeight();
          if(rectItem.contains(ptCursor))
          {
-            br->CreateSolidBrush(ARGB(123, 123, 149, 108));
+            br->create_solid(ARGB(123, 123, 149, 108));
          }
          else
          {
-            br->CreateSolidBrush(ARGB(184, 77, 184, 63));
+            br->create_solid(ARGB(184, 77, 184, 63));
          }
          pdc->SelectObject(br);
          pdc->FillRectangle(rectItem);
-         br->CreateSolidBrush(ARGB(255, 255, 255, 240));
+         br->create_solid(ARGB(255, 255, 255, 240));
          m_pcombo->_001GetListText(m_pcombo->m_iSel, strItem);
          pdc->SelectObject(br);
          pdc->draw_text(strItem, rectItem, 0);
@@ -153,7 +153,7 @@ namespace user
 
       ::ca::brush_sp br(get_app());
 
-      br->CreateSolidBrush(ARGB(230, 255, 255, 255));
+      br->create_solid(ARGB(230, 255, 255, 255));
 
       pdc->SelectObject(br);
 
@@ -171,7 +171,7 @@ namespace user
 
       ScreenToClient(&ptCursor);
 
-      br->CreateSolidBrush(ARGB(255, 84, 84, 77));
+      br->create_solid(ARGB(255, 84, 84, 77));
 
       int dSize = _001GetItemHeight() * 0.7;
 
@@ -190,7 +190,7 @@ namespace user
             if(rectItem.contains(ptCursor))
             {
                ::ca::pen_sp pen(get_app());
-               pen->CreatePen(PS_SOLID, m_iItemHeight / 8, ARGB(230, 77, 184, 63));
+               pen->create_solid(m_iItemHeight / 8, ARGB(230, 77, 184, 63));
                pdc->SelectObject(pen);
                pdc->DrawRectangle(rectItem);
             }
@@ -205,15 +205,15 @@ namespace user
          rectItem.bottom = rectItem.top + _001GetItemHeight();
          if(rectItem.contains(ptCursor))
          {
-            br->CreateSolidBrush(ARGB(123, 123, 149, 108));
+            br->create_solid(ARGB(123, 123, 149, 108));
          }
          else
          {
-            br->CreateSolidBrush(ARGB(184, 77, 184, 63));
+            br->create_solid(ARGB(184, 77, 184, 63));
          }
          pdc->SelectObject(br);
          pdc->FillRectangle(rectItem);
-         br->CreateSolidBrush(ARGB(255, 255, 255, 240));
+         br->create_solid(ARGB(255, 255, 255, 240));
          m_pcombo->_001GetListText(m_pcombo->m_iSel, strItem);
          pdc->SelectObject(br);
          pdc->draw_text(strItem, rectItem, 0);
@@ -236,7 +236,7 @@ namespace user
 
       pdc->SelectObject(tameshi);
       
-      int dSize = _001GetItemHeight() * 0.7;
+      int dSize = (int) (_001GetItemHeight() * 0.7);
 
       pdc->m_fontxyz.m_dFontSize = dSize;
 

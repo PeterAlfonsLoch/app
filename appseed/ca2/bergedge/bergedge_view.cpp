@@ -150,7 +150,7 @@ namespace bergedge
             ::ca::region_sp rgn(get_app());
             rect rect(graphics.m_rectFinalPlacement);
 /*            ClientToScreen(rect);
-            rgn->CreateRectRgnIndirect(rect);
+            rgn->create_rect(rect);
             pdc->SelectClipRgn(rgn);*/
             pdc->SelectClipRgn(NULL);
             gcom::backview::Interface::BackViewRender(pdc, rectClient);

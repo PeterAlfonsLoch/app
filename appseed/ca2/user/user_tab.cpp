@@ -53,7 +53,7 @@ namespace user
       get_data()->m_iTabWidth    = 48;
       get_data()->m_imagelist.create(16, 16, 0, 0, 0);
 
-      get_data()->m_pen->CreatePen(PS_SOLID, 1, RGB(32, 32, 32));
+      get_data()->m_pen->create_solid(1, RGB(32, 32, 32));
 
       get_data()->m_iDragTab     = -1;
 

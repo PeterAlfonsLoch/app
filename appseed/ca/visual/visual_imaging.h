@@ -132,11 +132,15 @@ public:
    bool prepare_blend(::ca::dib * pdib, point pt, size size, COLORREF cr, BYTE alpha, ::ca::dib * pdibWork);
    bool prepare_blend(::ca::dib * pdib, LPCRECT lpcrect, COLORREF cr, BYTE alpha, ::ca::dib * pdibWork);
 
+
    bool clip_color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha);
    bool clip_color_blend(::ca::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha);
    
+/*
    bool clip_color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha, ::ca::region * prgnClip);
    bool clip_color_blend(::ca::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha, ::ca::region * prgnClip);
+*/
+
 
    static bool CreateBitmap(
       ::ca::graphics * pdc, 
@@ -157,6 +161,8 @@ public:
    
    void AlphaTextOut(::ca::graphics * pdc, int left, int top, const char * lpcsz, int len, COLORREF cr, double dBlend);
    
+/*
+
    bool ClipSave(
       ::ca::graphics * pdc,
       ::ca::bitmap * pbitmap,
@@ -186,6 +192,8 @@ public:
       BITMAP * pbmp,
       LPCRECT lpcrect,
       ::ca::region * prgnClip);
+
+*/
 
    bool GetDeviceContext24BitsCC(
       ::ca::graphics *pdc,

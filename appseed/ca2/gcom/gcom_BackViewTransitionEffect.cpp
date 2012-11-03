@@ -484,10 +484,7 @@ namespace gcom
                   POINT pointa[4];
                   m_tool001.GetRotateRect(point.x, point.y, pointa);
                   ::ca::region_sp rgnClip(get_app());
-                  rgnClip->CreatePolygonRgn(
-                           pointa,
-                           4,
-                           WINDING);
+                  rgnClip->create_polygon(pointa, 4, ::ca::fill_mode_winding);
 
                   //dcBack.SelectClipRgn(NULL);
                   dcBack.SelectClipRgn(rgnClip);
@@ -540,10 +537,7 @@ namespace gcom
                   POINT pointa[6];
                   m_tool001.GetRotateHexagon(point.x, point.y, pointa);
                   ::ca::region_sp rgnClip(get_app());
-                  rgnClip->CreatePolygonRgn(
-                     pointa,
-                     6,
-                     WINDING);
+                  rgnClip->create_polygon(pointa, 6, ::ca::fill_mode_winding);
                   dcBack.SelectClipRgn(rgnClip);
                   m_tool001.GetSimplePolyBox(rectUpdate, pointa, 6);
 
@@ -638,7 +632,7 @@ namespace gcom
                         m_tool001.FindRandomEnglobingEllipse(rectUpdate, rectEllipse, 64);
                      }
                      rectUpdate = rectEllipse;
-                     rgnClip->CreateEllipticRgnIndirect(rectUpdate);
+                     rgnClip->create_oval(rectUpdate);
                      dcBack.SelectClipRgn(rgnClip);
                      dcBack.BitBlt(
                         rectUpdate.left, rectUpdate.top,
@@ -1699,7 +1693,7 @@ namespace gcom
          single_lock sl(&graphics.m_mutex4Transfer, TRUE);
          ::ca::graphics & dcTransfer = graphics.GetTransferDC();
          ::ca::region_sp rgnTransferClip(get_app());
-         rgnTransferClip->CreateRectRgnIndirect(graphics.m_rectFinalPlacement);
+         rgnTransferClip->create_rect(graphics.m_rectFinalPlacement);
          //dcTransfer.SelectClipRgn(rgnTransferClip);
 
          for(int i = 0; i < recta.get_size(); i++)

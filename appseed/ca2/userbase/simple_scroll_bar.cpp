@@ -9,7 +9,7 @@ simple_scroll_bar::simple_scroll_bar(::ca::application * papp) :
    m_rgnB(papp) // região da segunda seta
 {
    //m_brushNull->CreateStockObject(NULL_BRUSH);
-   m_penDraw->CreatePen(PS_SOLID , 1, ARGB(255, 0, 0, 0));
+   m_penDraw->create_solid(1, ARGB(255, 0, 0, 0));
    m_bTracking          = false;
    m_scrollinfo.nMin    = 0;
    m_scrollinfo.nMax    = 100;
@@ -93,7 +93,7 @@ void simple_scroll_bar::_001OnLButtonDown(gen::signal_object * pobj)
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
    }
-   else if(m_rgnA->PtInRegion(pt))
+   else if(m_rgnA->contains(pt))
    {   
       set_capture();
       ScrollLineA();
@@ -101,7 +101,7 @@ void simple_scroll_bar::_001OnLButtonDown(gen::signal_object * pobj)
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
    }
-   else if(m_rgnB->PtInRegion(pt))
+   else if(m_rgnB->contains(pt))
    {
       set_capture();
       ScrollLineB();
@@ -440,8 +440,8 @@ void simple_scroll_bar::_001OnSize(gen::signal_object * pobj)
       ASSERT(FALSE);
    }
 
-   m_rgnA->CreatePolygonRgn(m_ptaA, 4, WINDING);
-   m_rgnB->CreatePolygonRgn(m_ptaB, 4, WINDING);
+   m_rgnA->create_polygon(m_ptaA, 4, ::ca::fill_mode_winding);
+   m_rgnB->create_polygon(m_ptaB, 4, ::ca::fill_mode_winding);
 
    ::ca::graphics * pgraphics = GetDC();
 

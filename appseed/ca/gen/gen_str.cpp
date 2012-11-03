@@ -1772,7 +1772,11 @@ namespace gen
       {
          throw "natural greater than max";
       }
+      
       pszXml = psz;
+      
+      return ui;
+
    }
 
    void str::consume_spaces(const char * & pszXml, count iMinimumCount, const char * pszEnd)
@@ -1800,7 +1804,7 @@ namespace gen
       while(*psz != '\0')
       {
          int64_t i = gen::ch::uni_index(pszXml);
-         if(isdigit(i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'))
+         if(isdigit((int) i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'))
          {
             psz = __utf8_inc(psz);
          }

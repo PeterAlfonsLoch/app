@@ -241,7 +241,7 @@ void MetaButton::UpdateWndRgn()
 
    ::user::interaction::GetClientRect(rectClient);
 
-   m_spregion->CreateEllipticRgnIndirect(rectClient);
+   m_spregion->create_oval(rectClient);
 
 
 }
@@ -279,7 +279,7 @@ index MetaButton::hit_test(point point, e_element & eelement)
 
    ScreenToClient(&point);
 
-   if(!m_spregion->PtInRegion(point))
+   if(!m_spregion->contains(point))
    {
 
       eelement = element_none;

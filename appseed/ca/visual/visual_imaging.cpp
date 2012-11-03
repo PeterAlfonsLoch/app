@@ -2580,6 +2580,8 @@ bool imaging::clip_color_blend(::ca::graphics * pdc, point pt, size size, COLORR
 
 }
 
+/*
+
 bool imaging::clip_color_blend(::ca::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha, ::ca::region * prgnClip)
 {
 
@@ -2624,6 +2626,8 @@ bool imaging::clip_color_blend(::ca::graphics * pdc, point pt, size size, COLORR
 
    return bOk;
 }
+
+*/
 
 bool imaging::color_blend(
    ::ca::graphics * pdc,
@@ -2760,6 +2764,8 @@ bool imaging::prepare_blend(::ca::dib * pdib, point pt, size size, COLORREF cr, 
 
 }
 
+/*
+
 bool imaging::ClipSave(
    ::ca::graphics * pdc,
    ::ca::bitmap * pbitmap,
@@ -2806,21 +2812,16 @@ bool imaging::ClipSave(
 
    ::ca::region rgnUpdate;
 
-   rgnUpdate.CreateRectRgnIndirect(lpcrect);
+   rgnUpdate.create_rect(lpcrect);
 
-#ifdef WINDOWS
+   rgnUpdate.combine(&rgnUpdate, prgnClip, ::ca::region::combine_exclude);
 
-   rgnUpdate.CombineRgn(&rgnUpdate, prgnClip, RGN_DIFF);
+   rgnUpdate.get_bounding_box(rectUpdate);
 
-#else
-
-   throw todo(get_app());
-
-#endif
-
-   rgnUpdate.GetRgnBox(rectUpdate);
    spgraphics->SelectObject(pbitmap);
+
    spgraphics->SelectClipRgn(&rgnUpdate);
+
    if(!spgraphics->BitBlt(
       rectUpdate.left,
       rectUpdate.top,
@@ -2849,8 +2850,8 @@ bool imaging::ClipSave(
    prgnClip->GetRgnBox(rectClipBox);
 
    //   ::ca::region rgnUpdate;
-   //   rgnUpdate.CreateRectRgnIndirect(lpcrect);
-   //   rgnUpdate.CombineRgn(&rgnUpdate, prgnClip, RGN_DIFF);
+   //   rgnUpdate.create_rect(lpcrect);
+   //   rgnUpdate.CombineRgn(&rgnUpdate, prgnClip, ::ca::region::combine_exclude);
    ::ca::graphics_sp spgraphics(get_app());
    spgraphics->CreateCompatibleDC(pdc);
    spgraphics->SetViewportOrg(pdc->GetViewportOrg());
@@ -2883,8 +2884,10 @@ bool imaging::ClipSave(
    {
    return true;
    }*/
-}
+//}
 
+
+/*
 bool imaging::ClipRestore(
    ::ca::graphics * pdc,
    ::ca::bitmap * pbitmap,
@@ -2903,7 +2906,7 @@ bool imaging::ClipRestore(
 
    rect rectClipBox;
 
-   prgnClip->GetRgnBox(rectClipBox);
+   prgnClip->get_bounding_box(rectClipBox);
 
    rect rectUpdate;
 
@@ -2916,7 +2919,7 @@ bool imaging::ClipRestore(
       spgraphics->SetViewportOrg(pdc->GetViewportOrg());
       spgraphics->SelectObject(pbitmap);
       ::ca::region_sp rgnClip(get_app());
-      rgnClip->CreateRectRgn(0, 0, 0, 0);
+      //rgnClip->create_rect(0, 0, 0, 0);
 
       int iClip = 0;
 
@@ -2926,9 +2929,9 @@ bool imaging::ClipRestore(
 
       ::GetClipRgn((HDC)pdc->get_os_data(), (HRGN) rgnClip->get_os_data());
 
-      rgnUpdate->CreateRectRgnIndirect(lpcrect);
+      rgnUpdate->create_rect(lpcrect);
 
-      rgnUpdate->CombineRgn(rgnUpdate, prgnClip, RGN_DIFF);
+      rgnUpdate->combine(rgnUpdate, prgnClip, ::ca::region::combine_exclude);
 
 #else
 
@@ -2980,16 +2983,16 @@ bool imaging::ClipRestore(
    spgraphics->SetViewportOrg(pdc->GetViewportOrg());
    spgraphics->SelectObject(pbitmap);
    ::ca::region rgnClip;
-   rgnClip.CreateRectRgn(0, 0, 0, 0);
+   rgnClip.create_rect(0, 0, 0, 0);
    int iClip = ::GetClipRgn((HDC)pdc->get_os_data(), (HRGN) rgnClip);
    rect rC;
    prgnClip->GetRgnBox(rC);
    ::ca::region rgnUpdate;
-   rgnUpdate.CreateRectRgnIndirect(rectUpdate);
-   rgnUpdate.CombineRgn(&rgnUpdate, prgnClip, RGN_DIFF);
+   rgnUpdate.create_rect(rectUpdate);
+   rgnUpdate.CombineRgn(&rgnUpdate, prgnClip, ::ca::region::combine_exclude);
    pdc->SelectClipRgn(&rgnUpdate);
    rect r1;
-   rgnUpdate.GetRgnBox(r1);
+   rgnUpdate.get_bounding_box(r1);
    bool bOk;
    bOk = pdc->BitBlt(
    rectUpdate.left,
@@ -3010,9 +3013,9 @@ bool imaging::ClipRestore(
    else
    pdc->SelectClipRgn(NULL);
    return bOk;*/
-}
+//}
 
-
+/*
 bool imaging::ClipSave(
    ::ca::graphics * pdc,
    ::ca::bitmap * pbitmap,
@@ -3029,7 +3032,7 @@ bool imaging::ClipSave(
 
    ::ca::region_sp rgnClip(get_app());
 
-   rgnClip->CreateRectRgn(0, 0, 0, 0);
+   rgnClip->create_rect(0, 0, 0, 0);
 
 #ifdef WINDOWS
 
@@ -3069,7 +3072,7 @@ bool imaging::ClipRestore(
 
    ::ca::region_sp rgnClip(get_app());
 
-   rgnClip->CreateRectRgn(0, 0, 0, 0);
+   rgnClip->create_rect(0, 0, 0, 0);
 
 #ifdef WINDOWS
 
@@ -3093,6 +3096,7 @@ bool imaging::ClipRestore(
 #endif
 
 }
+*/
 
 bool imaging::CreateBitmap(
    ::ca::graphics * pdc,

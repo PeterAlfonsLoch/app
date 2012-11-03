@@ -202,3 +202,27 @@ inline void * zero(void * p, size_t s)
    memset(p, 0, s);
    return p;
 }
+
+#ifndef BSD_STYLE_SOCKETS
+
+//
+// IPv6 Internet address (RFC 2553)
+// This is an 'on-wire' format structure.
+//
+typedef struct in6_addr {
+    union {
+        UCHAR       Byte[16];
+        USHORT      Word[8];
+    } u;
+} IN6_ADDR, *PIN6_ADDR, FAR *LPIN6_ADDR;
+
+#endif
+
+typedef struct in6_addr PRIPv6Addr;
+
+
+CLASS_DECL_c int StringToV6Addr(const char *string, PRIPv6Addr *addr);
+CLASS_DECL_c vsstring V6AddrToString(const PRIPv6Addr *addr);
+
+
+

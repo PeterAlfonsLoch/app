@@ -569,7 +569,7 @@ namespace frame
             ::ca::region rgn;
             rect rectWindow;
             rect rect;
-            rgn.CreateRectRgn(0, 0, 0, 0);
+            rgn.create_rect(0, 0, 0, 0);
             int i;
             for(::user::interaction * pwnd = GetWndRegion()->GetWindow(GW_CHILD) ;
                pwnd ; pwnd = pwnd->GetNextWindow())
@@ -589,7 +589,7 @@ namespace frame
                }
                else
                {
-                  rgn.GetRgnBox(rect);
+                  rgn.get_bounding_box(rect);
                   rgn.OffsetRgn(rectWindow.top_left());
                   if(rgn.PtInRegion(ptCursor))
                   {

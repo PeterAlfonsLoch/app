@@ -383,7 +383,7 @@ bool XfplayerViewLine::to(
            if(&rectaModified != NULL)
            {
               rect baserect;
-              rgn.GetRgnBox(baserect);
+              rgn.get_bounding_box(baserect);
               rectaModified.add(baserect);
 
            }
@@ -423,8 +423,8 @@ bool XfplayerViewLine::to(
 
    point iMargin;
    {
-      iMargin.x = (LONG) (pen.m_dPenWidth / 2.0);
-      iMargin.y = (LONG) (pen.m_dPenWidth / 2.0);
+      iMargin.x = (LONG) (pen.m_dWidth / 2.0);
+      iMargin.y = (LONG) (pen.m_dWidth / 2.0);
    }
 
    if(!IsVisible())
@@ -1424,13 +1424,15 @@ void XfplayerViewLine::EmbossedTextOut(
       lb.lbStyle = BS_SOLID;
       lb.lbColor = crOutline;
       ::ca::pen_sp pen;
-      pen->construct(
+/*      pen->construct(
          PS_SOLID
          | PS_GEOMETRIC
          | PS_ENDCAP_ROUND
          | PS_JOIN_ROUND,
          iWidth * 2,
-         &lb);
+         &lb);*/
+      pen->create_solid(iWidth * 2, crOutline);
+
 
       ::ca::pen * ppenOld = pdc->SelectObject(pen);
       pdc->StrokePath();

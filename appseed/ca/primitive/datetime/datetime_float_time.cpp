@@ -530,8 +530,8 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
         hRet = DISP_E_TYPEMISMATCH;
       else if (dp.dwCount != 2 && dp.dwCount != 4 && dp.dwCount != 5)
         hRet = DISP_E_TYPEMISMATCH;
-      st.wHour = dp.dwValues[0];
-      st.wMinute  = dp.dwValues[1];
+      st.wHour = (WORD) dp.dwValues[0];
+      st.wMinute  = (WORD) dp.dwValues[1];
       dp.dwCount -= 2;
       dwOffset = 2;
       break;
@@ -543,9 +543,9 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
         hRet = DISP_E_TYPEMISMATCH;
       else if (dp.dwCount != 3 && dp.dwCount != 5 && dp.dwCount != 6)
         hRet = DISP_E_TYPEMISMATCH;
-      st.wHour   = dp.dwValues[0];
-      st.wMinute = dp.dwValues[1];
-      st.wSecond = dp.dwValues[2];
+      st.wHour   = (WORD) dp.dwValues[0];
+      st.wMinute = (WORD) dp.dwValues[1];
+      st.wSecond = (WORD) dp.dwValues[2];
       dwOffset = 3;
       dp.dwCount -= 3;
       break;
@@ -555,15 +555,15 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
           (dp.dwFlags[0] & (DP_AM|DP_PM)) || (dp.dwFlags[1] & (DP_AM|DP_PM)))
         hRet = DISP_E_TYPEMISMATCH;
 
-      st.wHour = dp.dwValues[2];
-      st.wMinute  = dp.dwValues[3];
+      st.wHour = (WORD) dp.dwValues[2];
+      st.wMinute  = (WORD) dp.dwValues[3];
       dp.dwCount -= 2;
       break;
 
    case 0x0: /* T DD DDD TDDD TDDD */
       if (dp.dwCount == 1 && (dp.dwParseFlags & (DP_AM|DP_PM)))
       {
-        st.wHour = dp.dwValues[0]; /* T */
+        st.wHour = (WORD) dp.dwValues[0]; /* T */
         dp.dwCount = 0;
         break;
       }
@@ -576,14 +576,14 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
         if (dp.dwFlags[0] & (DP_AM|DP_PM)) /* TDD */
         {
           dp.dwCount = 2;
-          st.wHour = dp.dwValues[0];
+          st.wHour = (WORD) dp.dwValues[0];
           dwOffset = 1;
           break;
         }
         if (dp.dwFlags[2] & (DP_AM|DP_PM)) /* DDT */
         {
           dp.dwCount = 2;
-          st.wHour = dp.dwValues[2];
+          st.wHour = (WORD) dp.dwValues[2];
           break;
         }
         else if (dp.dwParseFlags & (DP_AM|DP_PM))
@@ -594,12 +594,12 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
         dp.dwCount = 3;
         if (dp.dwFlags[0] & (DP_AM|DP_PM)) /* TDDD */
         {
-          st.wHour = dp.dwValues[0];
+          st.wHour = (WORD) dp.dwValues[0];
           dwOffset = 1;
         }
         else if (dp.dwFlags[3] & (DP_AM|DP_PM)) /* DDDT */
         {
-          st.wHour = dp.dwValues[3];
+          st.wHour = (WORD) dp.dwValues[3];
         }
         else
           hRet = DISP_E_TYPEMISMATCH;
@@ -613,8 +613,8 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
            (dp.dwFlags[1] & (DP_AM|DP_PM)) || (dp.dwFlags[2] & (DP_AM|DP_PM)))) ||
            dp.dwCount == 4 || dp.dwCount == 6)
         hRet = DISP_E_TYPEMISMATCH;
-      st.wHour   = dp.dwValues[3];
-      st.wMinute = dp.dwValues[4];
+      st.wHour   = (WORD) dp.dwValues[3];
+      st.wMinute = (WORD) dp.dwValues[4];
       if (dp.dwCount == 5)
         dp.dwCount -= 2;
       break;
@@ -623,9 +623,9 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
       if (dp.dwCount != 5 ||
           (dp.dwFlags[0] & (DP_AM|DP_PM)) || (dp.dwFlags[1] & (DP_AM|DP_PM)))
         hRet = DISP_E_TYPEMISMATCH;
-      st.wHour   = dp.dwValues[2];
-      st.wMinute = dp.dwValues[3];
-      st.wSecond = dp.dwValues[4];
+      st.wHour   = (WORD) dp.dwValues[2];
+      st.wMinute = (WORD) dp.dwValues[3];
+      st.wSecond = (WORD) dp.dwValues[4];
       dp.dwCount -= 3;
       break;
 
@@ -633,9 +633,9 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
       if ((dp.dwFlags[0] & (DP_AM|DP_PM)) || (dp.dwFlags[1] & (DP_AM|DP_PM)) ||
           (dp.dwFlags[2] & (DP_AM|DP_PM)))
         hRet = DISP_E_TYPEMISMATCH;
-      st.wHour   = dp.dwValues[3];
-      st.wMinute = dp.dwValues[4];
-      st.wSecond = dp.dwValues[5];
+      st.wHour   = (WORD) dp.dwValues[3];
+      st.wMinute = (WORD) dp.dwValues[4];
+      st.wSecond = (WORD) dp.dwValues[5];
       dp.dwCount -= 3;
       break;
 
@@ -841,14 +841,14 @@ VARIANT_MakeDate_OK:
     st->wHour = 0;
 //xxx  TRACE("Time %d %d %d\n", st->wHour, st->wMinute, st->wSecond);
 
-  st->wDay = v1;
-  st->wMonth = v2;
+  st->wDay = (WORD) v1;
+  st->wMonth = (WORD) v2;
   /* FIXME: For 2 digit dates, I'm not sure if 30 is hard coded or not. It may
    * be retrieved from:
    * HKCU\Control Panel\International\Calendars\TwoDigitYearMax
    * But Wine doesn't have/use that key as at the time of writing.
    */
-  st->wYear = v3 < 30 ? 2000 + v3 : v3 < 100 ? 1900 + v3 : v3;
+  st->wYear = (WORD) (v3 < 30 ? 2000 + v3 : v3 < 100 ? 1900 + v3 : v3);
 //xxx  TRACE("Returning date %d/%d/%d\n", v1, v2, st->wYear);
   return S_OK;
 }

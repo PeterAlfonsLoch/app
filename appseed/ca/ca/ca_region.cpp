@@ -82,7 +82,7 @@ namespace ca
 
    }
 
-   bool region::CreateRectRgnIndirect(LPCRECT lpRect)
+   bool region::create_rect(LPCRECT lpRect)
    {
 
       m_pta.remove_all();
@@ -480,11 +480,6 @@ namespace ca
       case type_none:
          return *this;
       case type_rect:
-         m_x1 = regionSrc.m_x1;
-         m_y1 = regionSrc.m_y1;
-         m_x2 = regionSrc.m_x2;
-         m_y2 = regionSrc.m_y2;
-         return *this;
       case type_oval:
          m_x1 = regionSrc.m_x1;
          m_y1 = regionSrc.m_y1;
@@ -529,6 +524,80 @@ namespace ca
          throw not_implemented(get_app());
       };
       return *this;
+
+   }
+
+
+   bool region::get_bounding_box(LPRECT lprect) const
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+   bool region::contains(POINT point) const
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   bool region::translate(int x, int y)
+   {
+
+      switch(m_etype)
+      {
+      case type_none:
+         return false;
+      case type_round_rect:
+         m_x3 += x;
+         m_y3 += y;
+      case type_rect:
+      case type_oval:
+         m_x1 += x;
+         m_y1 += y;
+         m_x2 += x;
+         m_y2 += y;
+         return true;
+      case type_polygon:
+         for(int i = 0; i < m_nCount; i++)
+         {
+            m_lppoints[i].x += x;
+            m_lppoints[i].y += y;
+         }
+         return true;
+      case type_poly_polygon:
+         {
+            int iTotalCount = 0;
+            for(int i = 0; i < m_nCount; i++)
+            {
+               iTotalCount += m_lppolycounts[i];
+            }
+            for(int i = 0; i < iTotalCount; i++)
+            {
+               m_lppoints[i].x += x;
+               m_lppoints[i].y += y;
+            }
+         }
+         return true;
+      case type_combine:
+         {
+            bool bOk1 = m_pregion1->translate(x, y);
+            bool bOk2 = m_pregion2->translate(x, y);
+            return bOk1 && bOk2;
+         }
+      default:
+         throw not_implemented(get_app());
+      };
+      return false;
+
+   }
+
+   bool region::translate(POINT p)
+   {
+
+      return translate(p.x, p.y);
 
    }
 
