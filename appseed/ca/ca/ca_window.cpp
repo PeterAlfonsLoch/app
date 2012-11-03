@@ -2141,23 +2141,23 @@ namespace ca
 
    ////////////////////////////////////////////////////////////////////////////
    // UI related ::ca::window functions
-
+   /*
    oswindow window::get_safe_owner(oswindow hParent, oswindow* pWndTop)
    {
       // get ::ca::window to start with
       oswindow oswindow = hParent;
       if (oswindow == NULL)
       {
-   /* trans      frame_window* pFrame = command_target::GetRoutingFrame_();
+    trans      frame_window* pFrame = command_target::GetRoutingFrame_();
          if (pFrame != NULL)
             oswindow = pFrame->GetSafeoswindow_();
          else
-            oswindow = System.GetMainWnd()->GetSafeoswindow_();*/
+            oswindow = System.GetMainWnd()->GetSafeoswindow_();
       }
 
       // a popup ::ca::window cannot be owned by a child ::ca::window
       while (oswindow != NULL && (::GetWindowLong((::oswindow) oswindow, GWL_STYLE) & WS_CHILD))
-         oswindow = ::get_parent((::oswindow) oswindow);
+         oswindow = ::GetParent((::oswindow) oswindow);
 
       // determine toplevel ::ca::window to disable as well
       ::oswindow oswindow_Top = oswindow;
@@ -2188,7 +2188,7 @@ namespace ca
       }
 
       return oswindow;    // return the owner as oswindow
-   }
+   }*/
 
    void window::_001BaseWndInterfaceMap()
    {

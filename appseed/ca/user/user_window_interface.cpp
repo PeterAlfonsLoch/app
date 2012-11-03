@@ -249,7 +249,7 @@ namespace user
 
    }*/
 
-   window_interface * window_interface::window_interface_get_parent()
+   window_interface * window_interface::window_interface_get_parent() const
    {
       return NULL;
    }

@@ -147,7 +147,7 @@ namespace user
          return m_pimpl->IsChild(pWnd);
    }
 
-   window_interface * interaction::window_interface_get_parent()
+   window_interface * interaction::window_interface_get_parent() const
    {
       return get_parent();
    }

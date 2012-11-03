@@ -671,7 +671,7 @@ namespace ca
       virtual void _001UpdateWindow();
 
 
-      static oswindow get_safe_owner(oswindow hParent, oswindow* pWndTop);
+      //static oswindow get_safe_owner(oswindow hParent, oswindow* pWndTop);
 
    };
 

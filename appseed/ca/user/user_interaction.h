@@ -299,8 +299,8 @@ namespace user
       virtual bool ReleaseDC(::ca::graphics *);
 
       virtual bool IsChild(interaction *  pWnd);
-      virtual window_interface * window_interface_get_parent();
-      virtual interaction * get_parent();
+      virtual window_interface * window_interface_get_parent() const;
+      virtual interaction * get_parent() const;
       virtual interaction * set_parent(interaction * pguieParent);
 
       virtual id GetDlgCtrlId();

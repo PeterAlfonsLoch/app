@@ -1726,7 +1726,7 @@ LRESULT frame_window::OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam)
       do {
          lResult = ::SendMessage(hwFocus, WM_MOUSEWHEEL,
             (wParam << 16) | keyState, lParam);
-         hwFocus = ::get_parent(hwFocus);
+         hwFocus = ::GetParent(hwFocus);
       }
       while (lResult == 0 && hwFocus != NULL && hwFocus != hwDesktop);
    }
