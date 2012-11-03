@@ -869,7 +869,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction * window::get_parent()
+   ::user::interaction * window::get_parent() const
    {
       throw interface_only_exception(get_app());
    }

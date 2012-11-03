@@ -1092,21 +1092,25 @@ namespace user
    oswindow interaction::get_handle() const
    {
 
+      ::ca::window * pwnd = NULL;
+
       try
       {
 
-         if(get_wnd() == NULL)
+         pwnd = get_wnd();
+
+         if(pwnd == NULL)
             return NULL;
+
+         return pwnd->get_handle();
 
       }
       catch(...)
       {
 
-         return NULL;
-
       }
 
-      return get_handle();
+      return NULL;
 
    }
 

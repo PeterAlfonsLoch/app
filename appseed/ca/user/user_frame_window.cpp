@@ -373,7 +373,7 @@ void frame_window::ShowOwnedWindows(bool bShow)
 /*   oswindow oswindow = ::GetWindow(::GetDesktopWindow(), GW_CHILD);
    while (oswindow != NULL)
    {
-      ::ca::window * pWnd = ::ca::window::FromHandlePermanent;
+      ::ca::window * pWnd = ::ca::window::FromHandlePermanent(oswindow);
       if (pWnd != NULL && get_handle() != oswindow && __is_descendant(this, pWnd))
       {
          DWORD dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);

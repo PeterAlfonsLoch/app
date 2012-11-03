@@ -40,7 +40,7 @@ bool virtual_user_interface::ReleaseDC(::ca::graphics * pdc)
    return get_wnd()->ReleaseDC(pdc);
 }
 
-::user::interaction * virtual_user_interface::get_parent()
+::user::interaction * virtual_user_interface::get_parent() const
 {
    return m_pparent;
 }

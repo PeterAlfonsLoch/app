@@ -336,7 +336,7 @@ namespace ca
       virtual ::user::interaction * GetLastActivePopup();
 
       virtual bool IsChild(::user::interaction *  pWnd);
-      virtual ::user::interaction * get_parent();
+      virtual ::user::interaction * get_parent() const;
       ::ca::window* set_parent(::ca::window* pWndNewParent);
 
    // Alert Functions

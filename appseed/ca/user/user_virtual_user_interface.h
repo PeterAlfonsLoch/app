@@ -27,7 +27,7 @@ public:
    ::user::interaction * set_parent(::user::interaction * pguieParent);
    bool ShowWindow(int nCmdShow);
    virtual bool ReleaseDC(::ca::graphics *);
-   virtual ::user::interaction * get_parent();
+   virtual ::user::interaction * get_parent() const;
 
    virtual void _001WindowMaximize();
    virtual void _001WindowRestore();
