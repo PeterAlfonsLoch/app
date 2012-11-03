@@ -656,7 +656,7 @@ retry:
          try
          {
 
-            if(psession == NULL || psession->GetSocket() == INVALID_SOCKET)
+            if(psession == NULL || !psession->is_valid())
             {
 
                bSeemsOk = false;

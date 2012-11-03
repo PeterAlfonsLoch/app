@@ -30,6 +30,7 @@ namespace sockets
       virtual void OnHeaderComplete();
       virtual void OnDataComplete();
 
+
    };
 
 

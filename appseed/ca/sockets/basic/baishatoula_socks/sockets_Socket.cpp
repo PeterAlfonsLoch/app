@@ -426,6 +426,11 @@ namespace sockets
       return false;
    }
 
+   bool socket::is_valid()
+   {
+      return Ready();
+   }
+
 
    void socket::OnLine(const string & )
    {

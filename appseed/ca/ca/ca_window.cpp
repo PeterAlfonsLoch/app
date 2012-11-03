@@ -252,12 +252,16 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifdef WINDOWS
+
+#ifdef WINDOWSEX
+
    WNDPROC* window::GetSuperWndProcAddr()
    {
       throw interface_only_exception(get_app());
    }
+
 #endif
+
 
    void window::pre_translate_message(gen::signal_object * pobj)
    {
@@ -296,7 +300,7 @@ namespace ca
 
    /////////////////////////////////////////////////////////////////////////////
    // window will delegate owner draw messages to self drawing controls
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    // Drawing: for all 4 control types
    void window::OnDrawItem(int /*nIDCtl*/, LPDRAWITEMSTRUCT lpDrawItemStruct)
    {

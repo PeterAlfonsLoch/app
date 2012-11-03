@@ -239,6 +239,8 @@ namespace sockets
          and socket is not about to be closed. */
       virtual bool Ready();
 
+      virtual bool is_valid();
+
       /** Returns pointer to listen_socket that created this instance
        * on an incoming connection. */
       socket *GetParent();
