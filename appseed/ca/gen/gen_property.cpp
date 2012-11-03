@@ -187,7 +187,7 @@ namespace gen
    }
 
 
-   
+
    property & property::operator = (const property & prop)
    {
       if(&prop != this)
@@ -236,7 +236,7 @@ namespace gen
 
    bool property::is_set() const
    {
-     return get_value().is_set();
+      return get_value().is_set();
    }
 
    bool property::is_new() const
@@ -282,12 +282,12 @@ namespace gen
 
    void property::parse_json(const char * & pszJson, const char * pszEnd)
    {
-       gen::str::consume_spaces(pszJson, 0, pszEnd);
-       m_strName = gen::str::consume_quoted_value(pszJson, pszEnd);
-       m_strNameLow = m_strName;
-       m_strNameLow.make_lower();
-       gen::str::consume(pszJson, ":", 1, pszEnd);
-       get_value().parse_json(pszJson, pszEnd);
+      gen::str::consume_spaces(pszJson, 0, pszEnd);
+      m_strName = gen::str::consume_quoted_value(pszJson, pszEnd);
+      m_strNameLow = m_strName;
+      m_strNameLow.make_lower();
+      gen::str::consume(pszJson, ":", 1, pszEnd);
+      get_value().parse_json(pszJson, pszEnd);
    }
 
    stringa & property::stra()
@@ -830,40 +830,6 @@ namespace gen
    }
 
 
-   var CLASS_DECL_ca operator - (int i, const property & prop)
-   {
-      return i - prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator - (unsigned int user, const property & prop)
-   {
-      return user - prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator - (long l, const property & prop)
-   {
-      return l - prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator - (unsigned long ul, const property & prop)
-   {
-      return ul - prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator - (double d, const property & prop)
-   {
-      return d - prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator - (const var & var, const property & prop)
-   {
-      return var - prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator - (const property & prop1, const property & prop2)
-   {
-      return prop1.get_value() - prop2.get_value();
-   }
 
 
    var property::operator + (int i) const
@@ -973,40 +939,6 @@ namespace gen
    }
 
 
-   var CLASS_DECL_ca operator / (int i, const property & prop)
-   {
-      return i / prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator / (unsigned int user, const property & prop)
-   {
-      return user / prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator / (long l, const property & prop)
-   {
-      return l / prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator / (unsigned long ul, const property & prop)
-   {
-      return ul / prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator / (double d, const property & prop)
-   {
-      return d / prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator / (const var & var, const property & prop)
-   {
-      return var / prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator / (const property & prop1, const property & prop2)
-   {
-      return prop1.get_value() / prop2.get_value();
-   }
 
 
    var property::operator * (int i) const
@@ -1040,40 +972,6 @@ namespace gen
    }
 
 
-   var CLASS_DECL_ca operator * (int i, const property & prop)
-   {
-      return i * prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator * (unsigned int user, const property & prop)
-   {
-      return user * prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator * (long l, const property & prop)
-   {
-      return l * prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator * (unsigned long ul, const property & prop)
-   {
-      return ul * prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator * (double d, const property & prop)
-   {
-      return d * prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator * (const var & var, const property & prop)
-   {
-      return var * prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator * (const property & prop1, const property & prop2)
-   {
-      return prop1.get_value() * prop2.get_value();
-   }
 
 
 
@@ -1458,7 +1356,7 @@ namespace gen
 
    property_set::property_set(::ca::application * papp,
       bool bAutoAdd, bool bMultiValue, bool bKeyCaseInsensitive) :
-      ca(papp)
+   ca(papp)
    {
       m_bAutoAdd = bAutoAdd;
       m_bMultiValue = bMultiValue;
@@ -1865,7 +1763,7 @@ namespace gen
 
    property * property_set::find(const char * pszName)
    {
-      
+
       index i = find_index(pszName);
 
       if(i < 0)
@@ -2150,7 +2048,7 @@ namespace gen
                }
                else if(*pszCmdLine == '\n' || *pszCmdLine == '\r'
                   || *pszCmdLine == '\t' || *pszCmdLine == ' '
-                     || *pszCmdLine == '\0' || !bRun)
+                  || *pszCmdLine == '\0' || !bRun)
                {
                   if(bKey)
                   {
@@ -2312,7 +2210,7 @@ namespace gen
 
 
    PropertySignalObject::PropertySignalObject(signal * psignal)
-   : signal_object(psignal)
+      : signal_object(psignal)
    {
    }
 
@@ -2334,13 +2232,13 @@ namespace gen
 
    string property::get_xml(::xml::disp_option * opt /*= &optDefault*/ )
    {
-   //   std::ostringstream ostring;
-   //   //ostring << (const char *)m_strName << "='" << (const char *)m_strValue << "' ";
+      //   std::ostringstream ostring;
+      //   //ostring << (const char *)m_strName << "='" << (const char *)m_strValue << "' ";
 
-   //   ostring << (const char *)m_strName << L"=" << (CHAR)opt->value_quotation_mark
-   //      << (const char *)(opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue)
-   //      << (CHAR)opt->value_quotation_mark << L" ";
-   //   return ostring.str();
+      //   ostring << (const char *)m_strName << L"=" << (CHAR)opt->value_quotation_mark
+      //      << (const char *)(opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue)
+      //      << (CHAR)opt->value_quotation_mark << L" ";
+      //   return ostring.str();
 
       if(opt == ((::xml::disp_option *) 1))
       {
@@ -2608,7 +2506,7 @@ namespace gen
 
    property_set & property_set::operator = (const pair_set_interface & set)
    {
-   //   if(&set != this)
+      //   if(&set != this)
       {
          m_propertya.remove_all();
          int iCount = set.pair_set_interface_get_count();
@@ -2640,7 +2538,7 @@ namespace gen
 
    property_set & property_set::operator = (const str_str_interface & set)
    {
-   //   if(&set != this)
+      //   if(&set != this)
       {
          m_propertya.remove_all();
          int iCount = set.str_str_interface_get_count();
@@ -2821,43 +2719,154 @@ string CLASS_DECL_ca operator + (const string & str, const gen::property & prop)
 }
 
 
+
+var CLASS_DECL_ca operator - (int i, const gen::property & prop)
+{
+   return i - prop.get_value();
+}
+
+var CLASS_DECL_ca operator - (unsigned int user, const gen::property & prop)
+{
+   return user - prop.get_value();
+}
+
+var CLASS_DECL_ca operator - (long l, const gen::property & prop)
+{
+   return l - prop.get_value();
+}
+
+var CLASS_DECL_ca operator - (unsigned long ul, const gen::property & prop)
+{
+   return ul - prop.get_value();
+}
+
+var CLASS_DECL_ca operator - (double d, const gen::property & prop)
+{
+   return d - prop.get_value();
+}
+
+var CLASS_DECL_ca operator - (const var & var, const gen::property & prop)
+{
+   return var - prop.get_value();
+}
+
+var CLASS_DECL_ca operator - (const gen::property & prop1, const gen::property & prop2)
+{
+   return prop1.get_value() - prop2.get_value();
+}
+
+
 var CLASS_DECL_ca operator + (const gen::property & prop1, const gen::property & prop2)
 {
    return prop1.get_value() + prop2.get_value();
 }
 
 
-var CLASS_DECL_ca operator + (int i, const property & prop)
+var CLASS_DECL_ca operator + (int i, const gen::property & prop)
 {
    return i + prop.get_value();
 }
 
-var CLASS_DECL_ca operator + (unsigned int user, const property & prop)
+var CLASS_DECL_ca operator + (unsigned int user, const gen::property & prop)
 {
    return user + prop.get_value();
 }
 
-var CLASS_DECL_ca operator + (long l, const property & prop)
+var CLASS_DECL_ca operator + (long l, const gen::property & prop)
 {
    return l + prop.get_value();
 }
 
-var CLASS_DECL_ca operator + (unsigned long ul, const property & prop)
+var CLASS_DECL_ca operator + (unsigned long ul, const gen::property & prop)
 {
    return ul + prop.get_value();
 }
 
-var CLASS_DECL_ca operator + (double d, const property & prop)
+var CLASS_DECL_ca operator + (double d, const gen::property & prop)
 {
    return d + prop.get_value();
 }
 
-var CLASS_DECL_ca operator + (const var & var, const property & prop)
+var CLASS_DECL_ca operator + (const var & var, const gen::property & prop)
 {
    return var + prop.get_value();
 }
 
-var CLASS_DECL_ca operator + (const property & prop1, const property & prop2)
+var CLASS_DECL_ca operator + (const gen::property & prop1, const gen::property & prop2)
 {
    return prop1.get_value() + prop2.get_value();
+}
+
+
+
+var CLASS_DECL_ca operator / (int i, const gen::property & prop)
+{
+   return i / prop.get_value();
+}
+
+var CLASS_DECL_ca operator / (unsigned int user, const gen::property & prop)
+{
+   return user / prop.get_value();
+}
+
+var CLASS_DECL_ca operator / (long l, const gen::property & prop)
+{
+   return l / prop.get_value();
+}
+
+var CLASS_DECL_ca operator / (unsigned long ul, const gen::property & prop)
+{
+   return ul / prop.get_value();
+}
+
+var CLASS_DECL_ca operator / (double d, const gen::property & prop)
+{
+   return d / prop.get_value();
+}
+
+var CLASS_DECL_ca operator / (const var & var, const gen::property & prop)
+{
+   return var / prop.get_value();
+}
+
+var CLASS_DECL_ca operator / (const gen::property & prop1, const gen::property & prop2)
+{
+   return prop1.get_value() / prop2.get_value();
+}
+
+
+
+var CLASS_DECL_ca operator * (int i, const gen::property & prop)
+{
+   return i * prop.get_value();
+}
+
+var CLASS_DECL_ca operator * (unsigned int user, const gen::property & prop)
+{
+   return user * prop.get_value();
+}
+
+var CLASS_DECL_ca operator * (long l, const gen::property & prop)
+{
+   return l * prop.get_value();
+}
+
+var CLASS_DECL_ca operator * (unsigned long ul, const gen::property & prop)
+{
+   return ul * prop.get_value();
+}
+
+var CLASS_DECL_ca operator * (double d, const gen::property & prop)
+{
+   return d * prop.get_value();
+}
+
+var CLASS_DECL_ca operator * (const var & var, const gen::property & prop)
+{
+   return var * prop.get_value();
+}
+
+var CLASS_DECL_ca operator * (const gen::property & prop1, const gen::property & prop2)
+{
+   return prop1.get_value() * prop2.get_value();
 }
