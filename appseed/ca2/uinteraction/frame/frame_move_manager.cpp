@@ -374,7 +374,7 @@ namespace uinteraction
          }*/
          m_bPendingMove = false;
          m_dwLastMoveTime = GetTickCount();
-         ::user::interaction * pwnd = System.window_from_os_data;
+         ::user::interaction * pwnd = System.window_from_os_data(oswindow);
          //            if(base < CPlaylistInPlaceWnd >::bases(m_pWndMoving))
          //          {
          //            m_pWndMoving->GetWindowRect(((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow);

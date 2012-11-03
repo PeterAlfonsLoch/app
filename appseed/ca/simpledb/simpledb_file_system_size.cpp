@@ -405,7 +405,7 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
    data.dwData = 0;
    data.cbData = (DWORD) file.get_length();
    data.lpData = file.get_data();
-   ::oswindow oswindowWparam = m_p->get_os_data();
+   ::oswindow oswindowWparam = (::oswindow) m_p->get_os_data();
    WPARAM wparam = (WPARAM) oswindowWparam;
    if(::SendMessage(oswindow, WM_COPYDATA, wparam, (LPARAM) &data))
    {
@@ -445,7 +445,7 @@ void FileSystemSizeWnd::_001OnCopyData(gen::signal_object * pobj)
       size.read(file);
 
       single_lock sl(&m_cs, TRUE);
-      size.m_oswindow = pbase->m_wparam;
+      size.m_oswindow = (oswindow) pbase->m_wparam;
       size.m_bRet =  pcentral->m_pfilesystemsizeset->get_fs_size(
          size.m_iSize,
          size.m_strPath,

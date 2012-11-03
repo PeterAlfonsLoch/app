@@ -262,8 +262,8 @@ extern resource_exception _simpleResourceException;
 
 #define __set_dialog_control_id(oswindow, nID)     SetWindowLong(oswindow, GWL_ID, nID)
 #define __set_dialog_control_id_(oswindow, nID)     oswindow->SetWindowLong(GWL_ID, nID)
-#define __get_dialog_control_id         ((UINT)(WORD)::GetDlgCtrlID)
-#define __get_dialog_control_id_         ((UINT)(WORD)oswindow->GetDlgCtrlId())
+#define __get_dialog_control_id(oswindow)         ((UINT)(WORD)::GetDlgCtrlID(oswindow))
+#define __get_dialog_control_id_(oswindow)         ((UINT)(WORD)oswindow->GetDlgCtrlId())
 
 // misc helpers
 CLASS_DECL_ca void __get_root_path(const char * lpszPath, string & strRoot);
