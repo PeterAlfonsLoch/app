@@ -336,8 +336,8 @@ namespace ca
 
       m_x1 = lprect->left;
       m_y1 = lprect->top;
-      m_x2 = lprect->left;
-      m_y2 = lprect->top;
+      m_x2 = lprect->right;
+      m_y2 = lprect->bottom;
 
       return true;
 
@@ -379,8 +379,8 @@ namespace ca
 
       m_x1 = lprect->left;
       m_y1 = lprect->top;
-      m_x2 = lprect->left;
-      m_y2 = lprect->top;
+      m_x2 = lprect->right;
+      m_y2 = lprect->bottom;
 
       return true;
 
@@ -545,7 +545,7 @@ namespace ca
 
    bool region::translate(int x, int y)
    {
-
+      m_bUpdated = false;
       switch(m_etype)
       {
       case type_none:
