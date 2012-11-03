@@ -69,7 +69,7 @@ bool os_simple_graphics::from_entire_window(oswindow oswindow)
    if(m_iType != 0)
       destroy();
 
-   m_hdc = ::GetWindowDC(oswindow);
+   m_hdc = ::GetWindowDC;
 
    if(m_hdc == NULL)
       return false;
@@ -98,7 +98,7 @@ bool os_simple_graphics::from_window(oswindow oswindow)
    if(m_iType != 0)
       destroy();
 
-   m_hdc = ::GetDC(oswindow);
+   m_hdc = ::GetDC;
 
    if(m_hdc == NULL)
       return false;

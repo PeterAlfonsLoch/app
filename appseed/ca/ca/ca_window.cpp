@@ -774,7 +774,7 @@ namespace ca
 
    bool window::subclass_window(oswindow oswindow)
    {
-      UNREFERENCED_PARAMETER(oswindow);
+      UNREFERENCED_PARAMETER;
       throw interface_only_exception(get_app());
    }
 
@@ -2067,7 +2067,7 @@ namespace ca
       UNREFERENCED_PARAMETER(wParam);
       UNREFERENCED_PARAMETER(lParam);
       /*   UINT nID = LOWORD(wParam);
-      oswindow oswindow_Ctrl = (oswindow)lParam;
+      oswindow oswindow_Ctrl = lParam;
       int nCode = HIWORD(wParam);
 
       // default routing for command messages (through closure table)
@@ -2156,8 +2156,8 @@ namespace ca
       }
 
       // a popup ::ca::window cannot be owned by a child ::ca::window
-      while (oswindow != NULL && (::GetWindowLong((::oswindow) oswindow, GWL_STYLE) & WS_CHILD))
-         oswindow = ::GetParent((::oswindow) oswindow);
+      while (oswindow != NULL && (::GetWindowLong(oswindow, GWL_STYLE) & WS_CHILD))
+         oswindow = ::GetParent;
 
       // determine toplevel ::ca::window to disable as well
       ::oswindow oswindow_Top = oswindow;
@@ -2168,20 +2168,20 @@ namespace ca
             break;
          else
             oswindow_Top = oswindow_Temp;
-         oswindow_Temp = ::get_parent((::oswindow) oswindow_Top);
+         oswindow_Temp = ::get_parent(oswindow_Top);
       }
 
       // get last active popup of first non-child that was found
       if (hParent == NULL && oswindow != NULL)
-         oswindow = ::GetLastActivePopup((::oswindow) oswindow);
+         oswindow = ::GetLastActivePopup;
 
       // disable and store top level parent ::ca::window if specified
       if (pWndTop != NULL)
       {
-         if (oswindow_Top != NULL && ::IsWindowEnabled((::oswindow) oswindow_Top) && oswindow_Top != oswindow)
+         if (oswindow_Top != NULL && ::IsWindowEnabled(oswindow_Top) && oswindow_Top != oswindow)
          {
             *pWndTop = oswindow_Top;
-            ::EnableWindow((::oswindow) oswindow_Top, FALSE);
+            ::EnableWindow(oswindow_Top, FALSE);
          }
          else
             *pWndTop = NULL;

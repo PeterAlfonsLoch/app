@@ -250,7 +250,7 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
 
 #ifdef WINDOWS
 
-   cs.hwndParent = (oswindow) pparent->get_handle();
+   cs.hwndParent = pparent->get_handle();
 
 #else
 
@@ -369,7 +369,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
 #ifdef WINDOWS
 
-   cs.hwndParent = (oswindow) pparent->get_handle();
+   cs.hwndParent = pparent->get_handle();
 
 #else
 
@@ -488,7 +488,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
 
 #ifdef WINDOWS
 
-   cs.hwndParent = (oswindow) pparent->get_handle();
+   cs.hwndParent = pparent->get_handle();
 
 #else
 
@@ -980,7 +980,7 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout, oswindow oswindow, LPCREC
 {
    ASSERT(oswindow != NULL);
    ASSERT(lpRect != NULL);
-   ::oswindow oswindow_Parent = ::get_parent(oswindow);
+   ::oswindow oswindow_Parent = ::get_parent;
    ASSERT(oswindow_Parent != NULL);
 
    if (lpLayout != NULL && lpLayout->hDWP == NULL)

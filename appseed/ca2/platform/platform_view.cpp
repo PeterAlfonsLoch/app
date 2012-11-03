@@ -659,7 +659,7 @@ namespace platform
       rect rectDesk0 = System.m_monitorinfoaDesk[0].rcMonitor;
       rect rectDesk1 = System.m_monitorinfoaDesk[1].rcMonitor;
       GetAreaThumbRect(rectArea, iHitArea);
-      if(::IsWindowVisible(oswindow))
+      if(::IsWindowVisible)
       {
       ::ShowWindow(oswindow, SW_NORMAL);
       }
@@ -711,19 +711,19 @@ namespace platform
       if(m_iArea != iHitArea)
       {
       m_areaa[m_iArea].m_taska.remove_at(m_iDragTask - m_iTaskOffset);
-      count count1 = m_areaa[m_iArea].m_oswindowa.remove(oswindow);
-      count count2 = m_areaa[m_iArea].m_oswindowaHidden.remove(oswindow);
-      m_areaa[iHitArea].m_taska.add(area::task(oswindow));
+      count count1 = m_areaa[m_iArea].m_oswindowa.remove;
+      count count2 = m_areaa[m_iArea].m_oswindowaHidden.remove;
+      m_areaa[iHitArea].m_taska.add(area::task);
       if(count1 > 0)
       {
-      m_areaa[iHitArea].m_oswindowa.add(oswindow);
+      m_areaa[iHitArea].m_oswindowa.add;
       }
       else
       {
-      m_areaa[iHitArea].m_oswindowaHidden.add(oswindow);
+      m_areaa[iHitArea].m_oswindowaHidden.add;
       }
       application & app = ::winactionarea::app_cast(get_app());
-      app.m_oswindowaHidden.add(oswindow);
+      app.m_oswindowaHidden.add;
       mt_show_window(oswindow, SW_HIDE);
       }
       return;
@@ -734,7 +734,7 @@ namespace platform
          check_apps();
          if(::IsWindow(m_oswindowWinutil))
          {
-            mt_show_window((oswindow) GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
+            mt_show_window(GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
             ::PostMessage(m_oswindowWinutil, WM_APP + 2000, 0, 2);
          }
       }
@@ -751,7 +751,7 @@ namespace platform
          check_apps();
          if(::IsWindow(m_oswindowWinactionarea))
          {
-            mt_show_window((oswindow) GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
+            mt_show_window(GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
             ::PostMessage(m_oswindowWinactionarea, WM_APP + 2000, 0, 2);
          }
       }
@@ -863,7 +863,7 @@ namespace platform
       m_iCurrentTask = iHitArea;
       m_dwCurrentTaskChangeTime = ::GetTickCount();
       oswindow oswindow = m_areaa[m_iArea].m_taska[iHitArea - m_iTaskOffset].m_oswindow;
-      if(::IsIconic(oswindow))
+      if(::IsIconic)
       {
       mt_show_window(oswindow, SW_RESTORE);
       }

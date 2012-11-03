@@ -190,7 +190,7 @@ namespace userstack
          data.dwData = 1984;
          data.cbData = (DWORD) file.get_length();
          data.lpData = file.get_data();
-         ::oswindow oswindow = (::oswindow) ::FindWindowA(NULL, "ca2::fontopus::message_wnd::application::");
+         ::oswindow oswindow = ::FindWindowA(NULL, "ca2::fontopus::message_wnd::application::");
 
          ::SendMessage(oswindow, WM_COPYDATA, NULL, (LPARAM) &data);
       }

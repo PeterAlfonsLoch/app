@@ -364,7 +364,7 @@ namespace user
 
       oswindow oswindow = oswindowtree.m_oswindow;
 
-      if(!::IsWindowVisible(oswindow))
+      if(!::IsWindowVisible)
       {
          return OptimizeThis;
       }
@@ -499,12 +499,12 @@ namespace user
    {
    }
 
-   interaction * window_interface::get_guie()
+   interaction * window_interface::get_guie() const
    {
       return m_pguie;
    }
 
-   ::ca::window * window_interface::get_wnd()
+   ::ca::window * window_interface::get_wnd() const
    {
       return NULL;
    }

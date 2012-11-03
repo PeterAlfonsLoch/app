@@ -157,15 +157,15 @@ namespace cube2
 
    int application::send_simple_command(void * osdata, const char * psz, void * osdataSender)
    {
-      ::oswindow oswindow = (::oswindow) osdata;
-      if(!::IsWindow(oswindow))
+      ::oswindow oswindow = osdata;
+      if(!::IsWindow)
          return -1;
       COPYDATASTRUCT cds;
       memset(&cds, 0, sizeof(cds));
       cds.dwData = 198477;
       cds.cbData = (DWORD) strlen(psz);
       cds.lpData = (PVOID) psz;
-      return (int) SendMessage(oswindow, WM_COPYDATA, (WPARAM) (::oswindow) osdataSender, (LPARAM) &cds);
+      return (int) SendMessage(oswindow, WM_COPYDATA, (WPARAM) osdataSender, (LPARAM) &cds);
    }
 
    void application::request(::ca::create_context * pcreatecontext)

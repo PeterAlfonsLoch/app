@@ -712,7 +712,7 @@ namespace filemanager
       if(imagekey.m_iIcon == 0x80000000)
       {
          string strTarget;
-         //if(System.os().resolve_link(strTarget, strFilePath, System.window_from_os_data(oswindow)))
+         //if(System.os().resolve_link(strTarget, strFilePath, System.window_from_os_data))
          if(System.os().resolve_link(strTarget, strFilePath, NULL))
          {
 

@@ -466,7 +466,7 @@ namespace visual
 
    void api::EnableOpenGL(oswindow oswindow, HDC & hDC, HGLRC & hRC)
    {
-      UNREFERENCED_PARAMETER(oswindow);
+      UNREFERENCED_PARAMETER;
       UNREFERENCED_PARAMETER(hDC);
       UNREFERENCED_PARAMETER(hRC);
 /*      PIXELFORMATDESCRIPTOR pfd;

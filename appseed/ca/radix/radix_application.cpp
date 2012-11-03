@@ -789,7 +789,7 @@ namespace radix
       pbase->set_lresult(0);        // sensible default
       if (pbase->m_uiMessage == WM_COMMAND)
       {
-         if ((oswindow)pbase->m_lparam == NULL)
+         if (pbase->m_lparam == NULL)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
             nIDP = "Command Failure";
          pbase->set_lresult((LRESULT)TRUE);        // pretend the command was handled
@@ -1799,7 +1799,7 @@ namespace radix
 
       #ifdef WINDOWS
 
-      return MessageBox((oswindow) (puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
+      return MessageBox((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
 
       #else
 
@@ -1823,6 +1823,10 @@ namespace radix
    // Helper for message boxes; can work when no application can be found
    int application::ShowAppMessageBox(application *pApp, const char * lpszPrompt, UINT nType, UINT nIDPrompt)
    {
+
+      throw not_implemented(this);
+
+/*
       // disable windows for modal dialog
       DoEnableModeless(FALSE);
       ::oswindow oswindow_Top;
@@ -1831,7 +1835,7 @@ namespace radix
       // re-enable the parent ::ca::window, so that focus is restored
       // correctly when the dialog is dismissed.
       if (oswindow != oswindow_Top)
-         EnableWindow((::oswindow) oswindow, TRUE);
+         EnableWindow(oswindow, TRUE);
 
       // set help context if possible
       DWORD* pdwContext = NULL;
@@ -1841,12 +1845,12 @@ namespace radix
       {
 
          DWORD dwWndPid=0;
-         GetWindowThreadProcessId((::oswindow) oswindow, &dwWndPid);
+         GetWindowThreadProcessId(oswindow, &dwWndPid);
 
          if (oswindow != NULL && dwWndPid==GetCurrentProcessId() )
          {
             // use cast-level context or frame level context
-            LRESULT lResult = ::SendMessage((::oswindow) oswindow, WM_HELPPROMPTADDR, 0, 0);
+            LRESULT lResult = ::SendMessage(oswindow, WM_HELPPROMPTADDR, 0, 0);
             if (lResult != 0)
                pdwContext = (DWORD*)lResult;
          }
@@ -1918,11 +1922,11 @@ namespace radix
       int nResult;
       if(pApp == NULL)
       {
-         nResult = ::MessageBox((::oswindow) oswindow, lpszPrompt, pszAppName, nType);
+         nResult = ::MessageBox(oswindow, lpszPrompt, pszAppName, nType);
       }
       else
       {
-         nResult = pApp->simple_message_box(pApp->window_from_os_data(oswindow), lpszPrompt, nType);
+         nResult = pApp->simple_message_box(pApp->window_from_os_data, lpszPrompt, nType);
       }
 
       // restore prompt context if possible
@@ -1931,12 +1935,12 @@ namespace radix
 
       // re-enable windows
       if (oswindow_Top != NULL)
-         ::EnableWindow((::oswindow) oswindow_Top, TRUE);
+         ::EnableWindow(oswindow_Top, TRUE);
 
       DoEnableModeless(TRUE);
 
       return nResult;
-
+      */
    }
 
 

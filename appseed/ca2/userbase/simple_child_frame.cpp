@@ -26,11 +26,11 @@ bool simple_child_frame::pre_create_window(CREATESTRUCT& cs)
    if(!simple_frame_window::pre_create_window(cs))
       return FALSE;
 
-   if(cs.oswindowParent == NULL)
+   if(cs.hwndParent == NULL)
    {
       if(System.m_pwndMain != NULL)
       {
-         cs.oswindowParent = (oswindow) System.m_pwndMain->get_handle();
+         cs.hwndParent = System.m_pwndMain->get_handle();
       }
    }
 

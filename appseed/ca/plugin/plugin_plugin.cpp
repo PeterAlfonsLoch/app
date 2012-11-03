@@ -944,7 +944,7 @@ namespace plugin
 
          void * oswindow = pwindow->get_handle();
 
-         bool bIsWindow = ::IsWindow((::oswindow) oswindow) != FALSE;
+         bool bIsWindow = ::IsWindow!= FALSE;
 
          if(bIsWindow)
          {

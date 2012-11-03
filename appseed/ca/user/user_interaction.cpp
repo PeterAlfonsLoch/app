@@ -152,7 +152,7 @@ namespace user
       return get_parent();
    }
 
-   interaction * interaction::get_parent()
+   interaction * interaction::get_parent() const
    {
       if(m_pimpl == NULL || m_pimpl == this)
          return NULL;
@@ -1106,7 +1106,7 @@ namespace user
 
       }
 
-      return (oswindow) get_wnd()->get_os_data();
+      return get_wnd()->get_os_data();
 
    }
 
@@ -1130,7 +1130,7 @@ namespace user
 
       pimplNew->m_pguie = this;
 
-      if(!pimplNew->subclass_window((oswindow) posdata))
+      if(!pimplNew->subclass_window(posdata))
       {
 
          delete pimplNew;

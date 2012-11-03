@@ -79,14 +79,14 @@ namespace gen
 
       base * dispatch::peek_message(LPMSG lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
       {
-         if(!::PeekMessageA(lpmsg, (oswindow) pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
+         if(!::PeekMessageA(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
             return NULL;
          return get_base(lpmsg, pwnd);
       }
 
       base * dispatch::get_message(LPMSG lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
       {
-         if(!::GetMessageA(lpmsg, (oswindow) pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax))
+         if(!::GetMessageA(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax))
             return NULL;
          return get_base(lpmsg, pwnd);
       }
@@ -580,7 +580,7 @@ namespace gen
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_nState = (UINT)(LOWORD(wparam));
-         m_pWndOther = System.window_from_os_data((oswindow)lparam);
+         m_pWndOther = System.window_from_os_data(lparam);
          m_bMinimized = HIWORD(wparam) != FALSE;
       }
 
@@ -781,7 +781,7 @@ namespace gen
 
       oswindow command::Getoswindow_()
       {
-         return (oswindow) m_lparam;
+         return m_lparam;
       }
 
 #ifdef WINDOWS
@@ -1088,7 +1088,7 @@ namespace gen
                activate.m_psignal = psignal;
                activate.set(message, wparam, lparam, lresult);
                activate.m_nState = (UINT)(LOWORD(wparam));
-               activate.m_pWndOther = System.window_from_os_data((oswindow)lparam);
+               activate.m_pWndOther = System.window_from_os_data(lparam);
                activate.m_bMinimized = (bool)HIWORD(wparam);
                psignal->emit(&activate);
                if(activate.m_bRet)

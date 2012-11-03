@@ -315,7 +315,7 @@ namespace uinteraction
          LPARAM lParam)
       {
          UNREFERENCED_PARAMETER(lParam);
-         //      oswindow oswindowParam= (oswindow) lParam;
+         //      oswindow oswindowParam= lParam;
          //DWORD dwThreadId;
          //DWORD dwProcessId;
          //HICON hicon16;
@@ -336,7 +336,7 @@ namespace uinteraction
          return FALSE;
          else
          return TRUE;*/
-         /*::user::interaction * pwnd = ::user::interaction::from_handle(oswindow);
+         /*::user::interaction * pwnd = ::user::interaction::from_handle;
          if(pwnd == NULL)
          return TRUE;
          //HICON hicon = pwnd->GetIcon(FALSE);
@@ -374,7 +374,7 @@ namespace uinteraction
          }*/
          m_bPendingMove = false;
          m_dwLastMoveTime = GetTickCount();
-         ::user::interaction * pwnd = System.window_from_os_data(oswindow);
+         ::user::interaction * pwnd = System.window_from_os_data;
          //            if(base < CPlaylistInPlaceWnd >::bases(m_pWndMoving))
          //          {
          //            m_pWndMoving->GetWindowRect(((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow);
@@ -521,7 +521,7 @@ namespace uinteraction
             if(bMove && rectWindow.top_left() != pt)
             {
 
-               MoveWindow((oswindow) GetMoveWindow()->get_handle(), pt);
+               MoveWindow(GetMoveWindow()->get_handle(), pt);
 
             }
             if(pbase->m_uiMessage == WM_LBUTTONUP)

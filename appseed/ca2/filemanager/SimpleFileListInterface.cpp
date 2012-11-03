@@ -444,7 +444,7 @@ namespace filemanager
 
          ///IShellFolder * lpsf = m_pshellfolder;
          item.m_iImage = System.shellimageset().GetImage(
-            (oswindow) _GetWnd()->GetTopLevelParent()->get_handle(),
+            _GetWnd()->GetTopLevelParent()->get_handle(),
             item.m_strPath,
             NULL,
             _shell::IconNormal,

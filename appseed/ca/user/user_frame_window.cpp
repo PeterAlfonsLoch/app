@@ -265,7 +265,7 @@ bool frame_window::OnSetCursor(::user::interaction * pWnd, UINT nHitTest, UINT m
 bool frame_window::OnCommand(WPARAM wParam, LPARAM lParam)
    // return TRUE if command invocation was attempted
 {
-   oswindow oswindow_Ctrl = (oswindow)lParam;
+   oswindow oswindow_Ctrl = lParam;
    UINT nID = LOWORD(wParam);
 
    frame_window* pFrameWnd = GetTopLevelFrame();
@@ -334,7 +334,7 @@ void frame_window::BeginModalState()
 
          oswindow->EnableWindow(FALSE);
 
-         m_uiptraDisable.add(oswindow);
+         m_uiptraDisable.add;
 
       }
 
@@ -373,7 +373,7 @@ void frame_window::ShowOwnedWindows(bool bShow)
 /*   oswindow oswindow = ::GetWindow(::GetDesktopWindow(), GW_CHILD);
    while (oswindow != NULL)
    {
-      ::ca::window * pWnd = ::ca::window::FromHandlePermanent(oswindow);
+      ::ca::window * pWnd = ::ca::window::FromHandlePermanent;
       if (pWnd != NULL && get_handle() != oswindow && __is_descendant(this, pWnd))
       {
          DWORD dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
@@ -1164,7 +1164,7 @@ LRESULT frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
       VERIFY(GlobalAddAtom(szAtomName) == pApp->m_atomSystemTopic);
 
       // send the WM_DDE_ACK (caller will delete duplicate atoms)
-      ::SendMessage((oswindow)wParam, WM_DDE_ACK, (WPARAM)get_handle(),
+      ::SendMessage(wParam, WM_DDE_ACK, (WPARAM)get_handle(),
          MAKELPARAM(pApp->m_atomApp, pApp->m_atomSystemTopic));
    }
 
@@ -1207,7 +1207,7 @@ LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
 
 
    // acknowledge now - before attempting to execute
-   ::PostMessage((oswindow)wParam, WM_DDE_ACK, (WPARAM)get_handle(),
+   ::PostMessage(wParam, WM_DDE_ACK, (WPARAM)get_handle(),
      //IA64: Assume DDE LPARAMs are still 32-bit
       ReuseDDElParam(lParam, WM_DDE_EXECUTE, WM_DDE_ACK,
       (UINT)0x8000, (uint_ptr)hData));
@@ -1241,7 +1241,7 @@ LRESULT frame_window::OnDDETerminate(WPARAM wParam, LPARAM lParam)
 
 #ifdef WINDOWS
 
-   ::PostMessage((oswindow)wParam, WM_DDE_TERMINATE, (WPARAM)get_handle(), lParam);
+   ::PostMessage(wParam, WM_DDE_TERMINATE, (WPARAM)get_handle(), lParam);
 
 #else
 
@@ -1781,14 +1781,14 @@ void frame_window::BringToTop(int nCmdShow)
       {
          // if no last active popup, it will return get_handle()
          ::oswindow oswindow = get_handle();
-         ::oswindow oswindow_LastPop = ::GetLastActivePopup((::oswindow) oswindow);
+         ::oswindow oswindow_LastPop = ::GetLastActivePopup;
 
          //DWORD dwStyle = ::GetWindowLong(oswindow_LastPop, GWL_STYLE);
-         if(oswindow_LastPop != (::oswindow) 1)
+         if(oswindow_LastPop != 1)
          {
-            if(::IsWindow((::oswindow) oswindow_LastPop))
+            if(::IsWindow(oswindow_LastPop))
             {
-               ::BringWindowToTop((::oswindow) oswindow_LastPop);
+               ::BringWindowToTop(oswindow_LastPop);
             }
          }
       }

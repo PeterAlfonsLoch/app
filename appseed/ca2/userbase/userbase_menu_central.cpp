@@ -260,14 +260,14 @@ LRESULT CALLBACK BaseMenuCentral::CBTHook(int nCode, WPARAM wParam, LPARAM lPara
    {
       if (nCode == HCBT_CREATEWND)
       {
-//         oswindow oswindow = (oswindow)wParam;
+//         oswindow oswindow = wParam;
          lRes = CallNextHookEx(m_hCBTHook, nCode, wParam, lParam);
          goto out;
       }
 
       if (nCode == HCBT_DESTROYWND)
       {
-//         oswindow oswindow = (oswindow)wParam;
+//         oswindow oswindow = wParam;
          lRes = CallNextHookEx(m_hCBTHook, nCode, wParam, lParam);
          goto out;
       }
