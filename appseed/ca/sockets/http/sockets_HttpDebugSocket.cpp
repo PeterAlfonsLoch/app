@@ -50,7 +50,7 @@ namespace sockets
 
    void http_debug_socket::Init()
    {
-      if (GetParent() -> GetPort() == 443)
+      if (get_parent() -> GetPort() == 443)
       {
    #ifdef HAVE_OPENSSL
          EnableSSL();

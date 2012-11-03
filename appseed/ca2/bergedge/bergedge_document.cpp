@@ -53,7 +53,7 @@ namespace bergedge
    {
       m_pplatformdocument = pdoc;
       //platform_frame * pframe = pdoc->get_platform_frame();
-      //pframe->SetParent(get_bergedge_view());
+      //pframe->set_parent(get_bergedge_view());
       //pframe->ModifyStyle(0, WS_CHILD);
       //pframe->ShowWindow(SW_RESTORE);
       //pframe->SetWindowPos(NULL, 0, 0, 200, 200, SWP_SHOWWINDOW);
@@ -63,7 +63,7 @@ namespace bergedge
    {
       m_pnaturedocument = pdoc;
       //nature_frame * pframe = pdoc->get_nature_frame();
-      //pframe->SetParent(get_bergedge_view());
+      //pframe->set_parent(get_bergedge_view());
       //pframe->ModifyStyle(0, WS_CHILD);
       //pframe->SetWindowPos(NULL, 200, 200, 400, 400, SWP_SHOWWINDOW);
    }

@@ -174,9 +174,9 @@ bool view::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
          return TRUE;
    }
 
-   if(!GetParent()->IsFrameWnd())
+   if(!get_parent()->IsFrameWnd())
    {
-      if(GetParent()->_001OnCmdMsg(pcmdmsg))
+      if(get_parent()->_001OnCmdMsg(pcmdmsg))
          return TRUE;
    }
 
@@ -577,10 +577,10 @@ void view::_001OnView(gen::signal_object * pobj)
    if(pguie != NULL)
    {
 
-      if(pguie->GetParent() != NULL)
+      if(pguie->get_parent() != NULL)
       {
 
-         ::user::place_holder * pholder = dynamic_cast < ::user::place_holder * > (pguie->GetParent());
+         ::user::place_holder * pholder = dynamic_cast < ::user::place_holder * > (pguie->get_parent());
 
          if(pholder != NULL)
          {

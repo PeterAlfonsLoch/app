@@ -26,7 +26,7 @@ int simple_form_list_edit::OnCreate(LPCREATESTRUCT lpCreateStruct)
       //return -1;
 
 
-   ::user::interaction * pwndParent = ::user::interaction::GetParent();
+   ::user::interaction * pwndParent = ::user::interaction::get_parent();
    if(base < simple_form_list_view >::bases(pwndParent))
    {
 
@@ -65,10 +65,10 @@ void simple_form_list_edit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 ::user::interaction * simple_form_list_edit::GetNotifyWnd()
 {
-   ::user::interaction * pwnd = GetOwner();
+   ::user::interaction * pwnd = get_owner();
    if(pwnd != NULL)
       return pwnd;
-   return ::user::interaction::GetParent();
+   return ::user::interaction::get_parent();
 }
 
 void simple_form_list_edit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 

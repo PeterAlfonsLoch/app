@@ -38,9 +38,9 @@ bool menu_view::BaseOnControlEvent(::user::control_event * pevent)
          this,
          pevent);
    }
-   if(GetParent() != NULL)
+   if(get_parent() != NULL)
    {
-      return GetParent()->BaseOnControlEvent(pevent);
+      return get_parent()->BaseOnControlEvent(pevent);
    }
    else
    {

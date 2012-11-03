@@ -46,7 +46,7 @@ namespace userex
          ::user::interaction* pguieNext = m_pviewdata->m_pwnd;
          for(; i > 0; i--)
          {
-            pguieNext = pguie->GetParent();
+            pguieNext = pguie->get_parent();
             if(pguieNext == NULL || !pguieNext->IsWindow())
                break;
             pguie = pguieNext;
@@ -62,7 +62,7 @@ namespace userex
          while(true)
          {
             wnda.add(pguie);
-            pguieNext = pguie->GetParent();
+            pguieNext = pguie->get_parent();
             if(pguieNext == NULL || dynamic_cast < ::ca::window * > (pguie->m_pimpl) != NULL)
                break;
             pguie = pguieNext;

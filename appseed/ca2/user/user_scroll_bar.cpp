@@ -36,7 +36,7 @@ namespace user
       {
          pscroll->m_uiMessage = WM_VSCROLL;
       }
-      ::user::interaction * pParentWnd = GetParent();
+      ::user::interaction * pParentWnd = get_parent();
       pParentWnd->send_message(pscroll);
    }
 

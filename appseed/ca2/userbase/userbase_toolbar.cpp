@@ -218,12 +218,12 @@ namespace userbase
       DefWindowProc(TB_BUTTONSTRUCTSIZE, (WPARAM)sizeof(TBBUTTON), 0);
    }
 
-   void tool_bar::SetOwner(::user::interaction* pOwnerWnd)
+   void tool_bar::set_owner(::user::interaction* pOwnerWnd)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
       DefWindowProc(TB_SETPARENT, (WPARAM)pOwnerWnd, 0);
-      ::userbase::control_bar::SetOwner(pOwnerWnd);
+      ::userbase::control_bar::set_owner(pOwnerWnd);
    }
 
    void tool_bar::SetSizes(SIZE sizeButton, SIZE sizeImage)

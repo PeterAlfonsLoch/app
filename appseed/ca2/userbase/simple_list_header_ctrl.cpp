@@ -51,7 +51,7 @@ void simple_list_header_control::_001OnEndTrack(gen::signal_object * pobj)
 {
    SCAST_PTR(::gen::message::notify, pnotify, pobj)
    /*CTransparentWndInterface * ptwi = NULL;
-   GetParent()->SendMessage(
+   get_parent()->SendMessage(
       WM_APP_GET_TRANSPARENT_INTERFACE, (WPARAM) &ptwi, 0);
    if(ptwi != NULL)
    {
@@ -62,7 +62,7 @@ void simple_list_header_control::_001OnEndTrack(gen::signal_object * pobj)
       }
    }*/
 
-   GetParent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERTRACK);
+   get_parent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERTRACK);
    pnotify->m_bRet = false;
 }
 
@@ -71,7 +71,7 @@ void simple_list_header_control::_001OnTrack(gen::signal_object * pobj)
    SCAST_PTR(::gen::message::notify, pnotify, pobj)
 
 /*   CTransparentWndInterface * ptwi = NULL;
-   GetParent()->SendMessage(
+   get_parent()->SendMessage(
       WM_APP_GET_TRANSPARENT_INTERFACE, (WPARAM) &ptwi, 0);
    if(ptwi != NULL)
    {
@@ -82,7 +82,7 @@ void simple_list_header_control::_001OnTrack(gen::signal_object * pobj)
       }
    }*/
 
-   GetParent()->send_message(::user::list::MESSAGE_COLUMNHEADERTRACK);
+   get_parent()->send_message(::user::list::MESSAGE_COLUMNHEADERTRACK);
    pnotify->m_bRet = false;
 }
 
@@ -102,9 +102,9 @@ void simple_list_header_control::_001OnEndDrag(gen::signal_object * pobj)
 {
    SCAST_PTR(::gen::message::notify, pnotify, pobj)
 //   LPNMHEADER lpnmhd = (LPNMHEADER) pnotify->get_lpnmhdr();
-   GetParent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERDRAG);
+   get_parent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERDRAG);
 /*   CTransparentWndInterface * ptwi = NULL;
-   GetParent()->SendMessage(
+   get_parent()->SendMessage(
       WM_APP_GET_TRANSPARENT_INTERFACE, (WPARAM) &ptwi, 0);
    if(ptwi != NULL)
    {
@@ -141,7 +141,7 @@ void simple_list_header_control::_001OnEndDrag(gen::signal_object * pobj)
    CTransparentWndInterface * ptwi = NULL;
    CTransparentWndInterface::CGetProperty getp;
    getp.m_eproperty = CTransparentWndInterface::PropertyInterface;
-   GetParent()->SendMessage(CTransparentWndInterface::MessageGetProperty, 0, (LPARAM) &getp);
+   get_parent()->SendMessage(CTransparentWndInterface::MessageGetProperty, 0, (LPARAM) &getp);
    ptwi = getp.m_pinterface;
    if(ptwi != NULL)
    {

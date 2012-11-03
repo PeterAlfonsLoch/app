@@ -137,11 +137,11 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
    if(pobj->previous())
       return;
 
-   ::user::place_holder * pplaceholder = dynamic_cast < ::user::place_holder * > (GetParent());
+   ::user::place_holder * pplaceholder = dynamic_cast < ::user::place_holder * > (get_parent());
 
    if(pplaceholder != NULL)
    {
-      ::user::place_holder_container * pcontainer = dynamic_cast < ::user::place_holder_container * > (pplaceholder->GetParent());
+      ::user::place_holder_container * pcontainer = dynamic_cast < ::user::place_holder_container * > (pplaceholder->get_parent());
       if(pcontainer != NULL)
       {
          pcontainer->on_hold(this, pplaceholder);
@@ -150,7 +150,7 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
 
    if(m_bAutoWindowFrame)
    {
-      m_bWindowFrame = GetParent() == NULL;
+      m_bWindowFrame = get_parent() == NULL;
    }
 
    if(m_bWindowFrame)
@@ -370,7 +370,7 @@ void simple_frame_window::_001OnGetMinMaxInfo(gen::signal_object * pobj)
 void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
 {
    /*oswindow oswindowTrayWindow = NULL;
-   if(GetParent() == NULL)
+   if(get_parent() == NULL)
    {
       oswindowTrayWindow = FindWindowA("Shell_traywnd", "");
    }*/
@@ -385,9 +385,9 @@ void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
 
       rect rectDesktop;
          
-      if(GetParent() != NULL)
+      if(get_parent() != NULL)
       {
-         GetParent()->GetClientRect(rectDesktop);
+         get_parent()->GetClientRect(rectDesktop);
       }
       else
       {
@@ -401,7 +401,7 @@ void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
 
       m_FullScreenWindowRect = rectDesktop;
 
-      //if(GetParent() == NULL)
+      //if(get_parent() == NULL)
       {
          SetWindowPos(
             ZORDER_TOP,

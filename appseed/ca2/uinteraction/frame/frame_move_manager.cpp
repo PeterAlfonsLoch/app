@@ -120,7 +120,7 @@ namespace uinteraction
          rect rectWindow;
          m_pworkset->GetWndDraw()->GetWindowRect(rectWindow);
          bool bMove = true;
-         //      ::user::interaction * pWndParent = m_pworkset->GetWndDraw()->GetParent();
+         //      ::user::interaction * pWndParent = m_pworkset->GetWndDraw()->get_parent();
 
          rect rectEvent = rectWindow;
          rectEvent.move_to(pt);
@@ -191,9 +191,9 @@ namespace uinteraction
          {
             g_dwLastMove = ::GetTickCount();
             class point ptMove = pt;
-            if(GetMoveWindow()->GetParent() != NULL)
+            if(GetMoveWindow()->get_parent() != NULL)
             {
-               GetMoveWindow()->GetParent()->ScreenToClient(&ptMove);
+               GetMoveWindow()->get_parent()->ScreenToClient(&ptMove);
             }
             GetMoveWindow()->SetWindowPos(ZORDER_TOP, ptMove.x, ptMove.y, 0, 0, SWP_NOSIZE);
          }
@@ -233,7 +233,7 @@ namespace uinteraction
          m_ptCursorOrigin = ptCursor;
          rect rectWindow;
          GetMoveWindow()->GetWindowRect(rectWindow);
-         ::user::interaction * pWndParent = GetMoveWindow()->GetParent();
+         ::user::interaction * pWndParent = GetMoveWindow()->get_parent();
          if(pWndParent != NULL)
          {
          pWndParent->ScreenToClient(rectWindow);
@@ -264,7 +264,7 @@ namespace uinteraction
          rect rectWindow;
          GetEventWindow()->GetWindowRect(rectWindow);
          bool bMove = true;
-         ::user::interaction * pWndParent = GetMoveWindow()->GetParent();
+         ::user::interaction * pWndParent = GetMoveWindow()->get_parent();
          if(pWndParent != NULL)
          {
          pWndParent->ScreenToClient(rectWindow);
@@ -351,7 +351,7 @@ namespace uinteraction
          && !(iStyleEx & WS_EX_TOOLWINDOW)
          &&((iStyleEx & WS_EX_APPWINDOW)
          || (!(iStyle & WS_CHILD)
-         && pwnd->GetOwner() == NULL)))
+         && pwnd->get_owner() == NULL)))
          {
          if(!pview->m_areaa.Contains(pwnd->GetSafeoswindow_(), pview->m_iArea))
          pview->m_areaa[pview->m_iArea].m_oswindowa.add(pwnd->GetSafeoswindow_());
@@ -385,7 +385,7 @@ namespace uinteraction
          //   TRACE("pt.y  : %d,\n ", pt.y);
          //   TRACE("rectClipBox.right : %d, ", ((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow.right);
          //   TRACE("rectClipBox.bottom: %d\n", ((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow.bottom);
-         /*::user::interaction *  pParentWnd  = m_pWndMoving->GetParent();
+         /*::user::interaction *  pParentWnd  = m_pWndMoving->get_parent();
          rect rectWindow;
          if(pParentWnd != NULL)
          {
@@ -395,7 +395,7 @@ namespace uinteraction
          }*/
 
          ASSERT(GetEventWindow() != NULL);
-         ::user::interaction * pwndParent = GetEventWindow()->GetParent();
+         ::user::interaction * pwndParent = GetEventWindow()->get_parent();
          if(pwndParent != NULL)
          {
             EDock edock = m_pworkset->GetDockManager()->GetDockState();
@@ -455,7 +455,7 @@ namespace uinteraction
             m_ptCursorOrigin = ptCursor;
             rect rectWindow;
             GetMoveWindow()->GetWindowRect(rectWindow);
-            ::user::interaction * pWndParent = GetMoveWindow()->GetParent();
+            ::user::interaction * pWndParent = GetMoveWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(rectWindow);
@@ -499,7 +499,7 @@ namespace uinteraction
             rect rectWindow;
             GetEventWindow()->GetWindowRect(rectWindow);
             bool bMove = true;
-            ::user::interaction * pWndParent = GetMoveWindow()->GetParent();
+            ::user::interaction * pWndParent = GetMoveWindow()->get_parent();
             if(pWndParent == NULL)
                pWndParent = System.get_desktop_window();
             if(pWndParent != NULL)

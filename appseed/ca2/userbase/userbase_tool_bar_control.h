@@ -43,7 +43,7 @@ namespace userbase
       DWORD GetButtonSize();
       bool SetButtonSize(size size);
       bool SetBitmapSize(size size);
-      void SetOwner(::user::interaction* pWnd);
+      void set_owner(::user::interaction* pWnd);
       void SetRows(int nRows, bool bLarger, LPRECT lpRect);
       int GetRows();
       bool SetCmdID(int nIndex, UINT nID);

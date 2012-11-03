@@ -104,14 +104,14 @@ namespace hi5
          void authorization::display_main_frame()
          {
             rect rectOpen;
-            if(m_ptabview->GetParentFrame()->GetParent() == NULL)
+            if(m_ptabview->GetParentFrame()->get_parent() == NULL)
             {
 
                System.get_screen_rect(rectOpen);
             }
             else
             {
-               m_ptabview->GetParentFrame()->GetParent()->GetClientRect(rectOpen);
+               m_ptabview->GetParentFrame()->get_parent()->GetClientRect(rectOpen);
             }
             int iWidth = rectOpen.width();
             int iHeight = rectOpen.height();

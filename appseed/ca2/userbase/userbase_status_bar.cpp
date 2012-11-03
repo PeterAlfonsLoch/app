@@ -183,7 +183,7 @@ namespace userbase
       ::userbase::control_bar::CalcInsideRect(rect, bHorz);
 
       // subtract size grip if present
-      if ((GetStyle() & SBARS_SIZEGRIP) && !GetParent()->IsZoomed())
+      if ((GetStyle() & SBARS_SIZEGRIP) && !get_parent()->IsZoomed())
       {
          // get border metrics from common control
          int rgBorders[3];

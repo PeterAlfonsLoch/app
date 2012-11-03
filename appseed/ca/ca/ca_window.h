@@ -48,8 +48,8 @@ namespace ca
       virtual void mouse_hover_add(::user::interaction* pinterface);
       virtual void mouse_hover_remove(::user::interaction* pinterface);
 
-      //virtual ::user::interaction * GetOwner();
-      virtual void SetOwner(::user::interaction * pOwnerWnd);
+      //virtual ::user::interaction * get_owner();
+      virtual void set_owner(::user::interaction * pOwnerWnd);
 
 
       
@@ -336,8 +336,8 @@ namespace ca
       virtual ::user::interaction * GetLastActivePopup();
 
       virtual bool IsChild(::user::interaction *  pWnd);
-      virtual ::user::interaction * GetParent();
-      ::ca::window* SetParent(::ca::window* pWndNewParent);
+      virtual ::user::interaction * get_parent();
+      ::ca::window* set_parent(::ca::window* pWndNewParent);
 
    // Alert Functions
       bool FlashWindow(bool bInvert);

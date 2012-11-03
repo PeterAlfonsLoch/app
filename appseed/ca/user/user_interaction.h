@@ -300,8 +300,8 @@ namespace user
 
       virtual bool IsChild(interaction *  pWnd);
       virtual window_interface * window_interface_get_parent();
-      virtual interaction * GetParent();
-      virtual interaction * SetParent(interaction * pguieParent);
+      virtual interaction * get_parent();
+      virtual interaction * set_parent(interaction * pguieParent);
 
       virtual id GetDlgCtrlId();
       virtual id SetDlgCtrlId(class id id);
@@ -387,7 +387,7 @@ namespace user
       virtual bool is_descendant(::user::interaction * pui, bool bIncludeSelf = false);
       virtual ::user::interaction * get_focusable_descendant(::user::interaction * pui = NULL);
 
-      virtual ::ca::window * get_wnd();
+      virtual ::ca::window * get_wnd() const;
 
       enum RepositionFlags
       {
@@ -399,8 +399,8 @@ namespace user
 
       virtual void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlag = reposDefault, LPRECT lpRectParam = NULL, LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
-      virtual interaction * GetOwner();
-      virtual void SetOwner(interaction * pguie);
+      virtual interaction * get_owner() const;
+      virtual void set_owner(interaction * pguie);
 
       virtual interaction * ChildWindowFromPoint(POINT point);
       virtual interaction * ChildWindowFromPoint(POINT point, UINT nFlags);
@@ -448,14 +448,14 @@ namespace user
       {
          ASSERT_VALID(this);
 
-         interaction * pParentWnd = GetParent();  // start with one parent up
+         interaction * pParentWnd = get_parent();  // start with one parent up
          while (pParentWnd != NULL)
          {
             if(dynamic_cast < T * > (pParentWnd) != NULL)
             {
                return dynamic_cast < T * > (pParentWnd);
             }
-            pParentWnd = pParentWnd->GetParent();
+            pParentWnd = pParentWnd->get_parent();
          }
          return NULL;
       }

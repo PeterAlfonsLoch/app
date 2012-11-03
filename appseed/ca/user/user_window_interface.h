@@ -1,12 +1,13 @@
 #pragma once
 
 
-
-
 namespace user
 {
+
+
    class interaction;
    class frame_window_interface;
+
 
    class CLASS_DECL_ca window_interface :
       virtual public elemental,
@@ -173,8 +174,8 @@ namespace user
 
       virtual LRESULT _001BaseWndGetProperty(EProperty eproperty, LPARAM lparam);
 
-      virtual interaction * get_guie();
-      virtual ::ca::window * get_wnd();
+      virtual interaction * get_guie() const;
+      virtual ::ca::window * get_wnd() const;
 
       enum EOptimize
       {

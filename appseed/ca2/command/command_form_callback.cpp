@@ -24,9 +24,9 @@ namespace command
    {
       UNREFERENCED_PARAMETER(pview);
       ::user::interaction * pguie = dynamic_cast < ::user::interaction * > (this);
-      if(pguie != NULL && pguie->GetParent() != NULL)
+      if(pguie != NULL && pguie->get_parent() != NULL)
       {
-         return pguie->GetParent()->BaseOnControlEvent(pevent);
+         return pguie->get_parent()->BaseOnControlEvent(pevent);
       }
       return false;
    }

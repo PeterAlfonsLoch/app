@@ -96,7 +96,7 @@ namespace userbase
          rect(0, 0, 0, 0), Bergedge.get_view(), id(), lpvoid))
          return false;
 
-      SetOwner(oswindowParent);
+      set_owner(oswindowParent);
 
       if(!m_buttonClose.create(this, ChildIdClose))
          return false;
@@ -113,9 +113,9 @@ namespace userbase
 
       point pt(x, y);
 
-      if(GetParent() != NULL)
+      if(get_parent() != NULL)
       {
-         GetParent()->ScreenToClient(&pt);
+         get_parent()->ScreenToClient(&pt);
       }
 
       m_ptTrack = pt;

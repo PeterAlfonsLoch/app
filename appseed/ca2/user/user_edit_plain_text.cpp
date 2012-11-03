@@ -629,7 +629,7 @@ namespace user
             pkey->m_bRet      = false;
             return;
          }
-         if((!m_bMultiLine || (bool)oprop("send_enter_key")) && GetParent() != NULL)
+         if((!m_bMultiLine || (bool)oprop("send_enter_key")) && get_parent() != NULL)
          {
             ::user::control_event ev;
             ev.m_puie         = this;
@@ -654,7 +654,7 @@ namespace user
             ev.m_puie         = this;
             ev.m_eevent       = ::user::event_tab_key;
             ev.m_bUser        = true;
-            GetParent()->BaseOnControlEvent(&ev);
+            get_parent()->BaseOnControlEvent(&ev);
             BaseOnControlEvent(&ev);
             pkey->m_bRet      = true;
             return;

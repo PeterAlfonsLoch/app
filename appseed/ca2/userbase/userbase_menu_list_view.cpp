@@ -44,13 +44,13 @@ namespace userbase
       SCAST_PTR(gen::message::base, pbase, pobj);
       if(pbase->m_uiMessage == m_uiMessage)
       {
-         if(base < ::user::place_holder >::bases(GetParent()))
+         if(base < ::user::place_holder >::bases(get_parent()))
          {
-            pbase->set_lresult(GetParent()->GetParent()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
+            pbase->set_lresult(get_parent()->get_parent()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
          }
          else
          {
-            pbase->set_lresult(GetParent()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
+            pbase->set_lresult(get_parent()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
          }
          pbase->m_bRet = true;
          return;

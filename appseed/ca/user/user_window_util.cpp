@@ -465,7 +465,7 @@ namespace user
 
    for(int i = 0; i < wndpa.get_size();)
    {
-   if(wndpa[i]->GetParent() != NULL)
+   if(wndpa[i]->get_parent() != NULL)
    {
    wndpa.remove_at(i);
    }
@@ -483,7 +483,7 @@ namespace user
    void oswindow_util::ContraintPosToParent(oswindow oswindow)
    {
       rect rectMajor;
-      ::oswindow oswindowParent = ::GetParent((::oswindow) oswindow);
+      ::oswindow oswindowParent = ::get_parent((::oswindow) oswindow);
       if(oswindowParent == NULL)
       {
 
@@ -742,7 +742,7 @@ namespace user
          if(iOrder == 0x7fffffff)
             break;
          ia.insert_at(0, iOrder);
-         oswindow = ::GetParent((::oswindow) oswindow);
+         oswindow = ::get_parent((::oswindow) oswindow);
       }
 
 #else
@@ -845,7 +845,7 @@ namespace user
    {
       while(true)
       {
-         oswindowDescendant = ::GetParent((::oswindow) oswindowDescendant);
+         oswindowDescendant = ::get_parent((::oswindow) oswindowDescendant);
          if(oswindowDescendant == NULL)
             return false;
          if(oswindowDescendant == oswindowAscendant)

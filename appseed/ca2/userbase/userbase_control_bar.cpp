@@ -229,7 +229,7 @@ namespace userbase
 
    bool control_bar::SetStatusText(int nHit)
    {
-      ::user::interaction* pOwner = GetOwner();
+      ::user::interaction* pOwner = get_owner();
 
    //   ___THREAD_STATE* pModuleThreadState = __get_thread_state();
       if (nHit == -1)
@@ -272,7 +272,7 @@ namespace userbase
 
       SCAST_PTR(gen::message::base, pbase, pobj);
       UINT message = pbase->m_uiMessage;
-      ::user::interaction* pOwner = GetOwner();
+      ::user::interaction* pOwner = get_owner();
 
       // handle CBRS_FLYBY style (status bar flyby help)
       if (((m_dwStyle & CBRS_FLYBY) ||
@@ -340,7 +340,7 @@ namespace userbase
    //      else
          {
             // try owner next
-            lResult = GetOwner()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam);
+            lResult = get_owner()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam);
 
             // special case for TTN_NEEDTEXTA and TTN_NEEDTEXTW
             if(pbase->m_uiMessage == WM_NOTIFY)
@@ -418,7 +418,7 @@ namespace userbase
       if(pobj->previous())
          return;
 
-      userbase::frame_window *pFrameWnd = dynamic_cast < userbase::frame_window * > (GetParent());
+      userbase::frame_window *pFrameWnd = dynamic_cast < userbase::frame_window * > (get_parent());
       if (pFrameWnd->IsFrameWnd())
       {
          m_pDockSite = pFrameWnd;
@@ -626,7 +626,7 @@ namespace userbase
       // the dockbar style must also be visible
       if ((GetStyle() & WS_VISIBLE))
       {
-         userbase::frame_window* pTarget = dynamic_cast < userbase::frame_window * > (GetOwner());
+         userbase::frame_window* pTarget = dynamic_cast < userbase::frame_window * > (get_owner());
          if (pTarget == NULL || !pTarget->IsFrameWnd())
             pTarget = dynamic_cast < userbase::frame_window * > (GetParentFrame());
          if (pTarget != NULL)

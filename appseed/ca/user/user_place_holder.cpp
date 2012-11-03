@@ -58,7 +58,7 @@ namespace user
       m_uiptraHold.add(pui);
       if(m_uiptraHold.get_count() == 1)
       {
-         pui->SetParent(this);
+         pui->set_parent(this);
       }
       //layout();
       return true;

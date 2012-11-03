@@ -62,7 +62,7 @@ namespace database
       {
          UNREFERENCED_PARAMETER(pobj);
 //         SCAST_PTR(::gen::message::show_window, pshowwindow, pobj)
-         if(GetParent() == NULL)
+         if(get_parent() == NULL)
          {
 #if !core_level_1 && !core_level_2 && defined(WINDOWS)
             if(GetExStyle() && WS_EX_LAYERED)

@@ -444,13 +444,13 @@ namespace sockets
    }
 
 
-   socket *socket::GetParent()
+   socket *socket::get_parent()
    {
       return m_parent;
    }
 
 
-   void socket::SetParent(socket *x)
+   void socket::set_parent(socket *x)
    {
       m_parent = x;
    }

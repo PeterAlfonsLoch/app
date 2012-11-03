@@ -171,14 +171,14 @@ namespace ca2
       void validate::display_main_frame()
       {
          rect rectOpen;
-         if(m_ptabview->GetParentFrame()->GetParent() == NULL)
+         if(m_ptabview->GetParentFrame()->get_parent() == NULL)
          {
 
             System.get_screen_rect(rectOpen);
          }
          else
          {
-            m_ptabview->GetParentFrame()->GetParent()->GetClientRect(rectOpen);
+            m_ptabview->GetParentFrame()->get_parent()->GetClientRect(rectOpen);
          }
 
          m_pvOldWindow = (void *) ::GetFocus();
@@ -212,11 +212,11 @@ namespace ca2
             rectOpen.left, rectOpen.top,
             rectOpen.width(), rectOpen.height(),
             SWP_SHOWWINDOW);
-         if(m_ptabview->GetTopLevelFrame()->GetParent() != NULL)
+         if(m_ptabview->GetTopLevelFrame()->get_parent() != NULL)
          {
             try
             {
-               m_ptabview->GetTopLevelFrame()->GetParent()->layout();
+               m_ptabview->GetTopLevelFrame()->get_parent()->layout();
             }
             catch(...)
             {

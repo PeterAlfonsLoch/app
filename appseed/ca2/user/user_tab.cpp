@@ -1092,7 +1092,7 @@ namespace user
    {
       SCAST_PTR(::gen::message::base, pbase, pobj);
       m_iHover = -1;
-      GetParent()->_001RedrawWindow();
+      get_parent()->_001RedrawWindow();
       pbase->set_lresult(0);
       pobj->m_bRet = true;
    }
@@ -1277,9 +1277,9 @@ namespace user
    ::ca::window * tab::GetNotifyWnd()
    {
       ::ca::window * pwnd;
-   //   if((pwnd = m_pguie->GetOwner()) != NULL)
+   //   if((pwnd = m_pguie->get_owner()) != NULL)
      //    return pwnd;
-      if((pwnd = m_pguie->GetParent()->get_wnd()) != NULL)
+      if((pwnd = m_pguie->get_parent()->get_wnd()) != NULL)
          return pwnd;
       return NULL;
    }

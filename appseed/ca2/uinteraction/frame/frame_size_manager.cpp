@@ -368,7 +368,7 @@ namespace frame
       //      if(ptwi != NULL)
       if(true)
       {
-         //if(pwnd->GetParent() == NULL)
+         //if(pwnd->get_parent() == NULL)
          if(true)
          {
             m_pworkset->_000OnBeforeSize(rectWindow);
@@ -380,9 +380,9 @@ namespace frame
             pwnd->GetWindowRect(rectBefore);
             rect rectAfter = rectWindow;
             rect rectParentClient = rectAfter;
-            if(m_pworkset->GetWndDraw()->GetParent() != NULL)
+            if(m_pworkset->GetWndDraw()->get_parent() != NULL)
             {
-               m_pworkset->GetWndDraw()->GetParent()->ScreenToClient(rectParentClient);
+               m_pworkset->GetWndDraw()->get_parent()->ScreenToClient(rectParentClient);
             }
 
             rect rectTotal;
@@ -569,7 +569,7 @@ namespace frame
          {
             point pt;
             pt = ptCursor;
-            ::user::interaction * pWndParent = GetSizingWindow()->GetParent();
+            ::user::interaction * pWndParent = GetSizingWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
@@ -596,7 +596,7 @@ namespace frame
             bSize = true;
             point pt;
             pt = ptCursor;
-            ::user::interaction * pWndParent = GetSizingWindow()->GetParent();
+            ::user::interaction * pWndParent = GetSizingWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
@@ -616,7 +616,7 @@ namespace frame
             bSize = true;
             point pt;
             pt = ptCursor;
-            ::user::interaction * pWndParent = GetSizingWindow()->GetParent();
+            ::user::interaction * pWndParent = GetSizingWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
@@ -641,7 +641,7 @@ namespace frame
             bSize = true;
             point pt;
             pt = ptCursor;
-            ::user::interaction * pWndParent = GetSizingWindow()->GetParent();
+            ::user::interaction * pWndParent = GetSizingWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
@@ -662,7 +662,7 @@ namespace frame
             bSize = true;
             point pt;
             pt = ptCursor;
-            ::user::interaction * pWndParent = GetSizingWindow()->GetParent();
+            ::user::interaction * pWndParent = GetSizingWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
@@ -687,7 +687,7 @@ namespace frame
             bSize = true;
             point pt;
             pt = ptCursor;
-            ::user::interaction * pWndParent = GetSizingWindow()->GetParent();
+            ::user::interaction * pWndParent = GetSizingWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
@@ -707,7 +707,7 @@ namespace frame
             bSize = true;
             point pt;
             pt = ptCursor;
-            ::user::interaction * pWndParent = GetSizingWindow()->GetParent();
+            ::user::interaction * pWndParent = GetSizingWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);
@@ -732,7 +732,7 @@ namespace frame
             bSize = true;
             point pt;
             pt = ptCursor;
-            ::user::interaction * pWndParent = GetSizingWindow()->GetParent();
+            ::user::interaction * pWndParent = GetSizingWindow()->get_parent();
             if(pWndParent != NULL)
             {
                pWndParent->ScreenToClient(&pt);

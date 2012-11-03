@@ -227,7 +227,7 @@ namespace visual
 
       pwnd->GetClientRect(rectUpdate);
 
-      ::user::interaction * pwndParent = pwnd->GetParent();
+      ::user::interaction * pwndParent = pwnd->get_parent();
 
       if(pwndParent != NULL)
       {

@@ -82,7 +82,7 @@ namespace userbase
       virtual size CalcFixedLayout(bool bStretch, bool bHorz);
       virtual size CalcDynamicLayout(int nLength, DWORD nMode);
       //virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler);
-      void SetOwner(::user::interaction* pOwnerWnd);
+      void set_owner(::user::interaction* pOwnerWnd);
       bool AddReplaceBitmap(HBITMAP hbmImageWell);
       virtual void OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle);
 

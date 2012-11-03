@@ -772,7 +772,7 @@ void document_manager::request(::ca::create_context * pcreatecontext)
          {
             pFrame->ActivateFrame();
 
-            if (pFrame->GetParent() != NULL)
+            if (pFrame->get_parent() != NULL)
             {
                frame_window* pAppFrame;
                if (pFrame != (pAppFrame = dynamic_cast < frame_window * > (System.GetMainWnd())))

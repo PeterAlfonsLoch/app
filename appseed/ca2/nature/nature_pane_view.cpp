@@ -186,7 +186,7 @@ namespace nature
                      userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
-                        pframe->SetParent(this);
+                        pframe->set_parent(this);
                         pcreatordata = new ViewData();
                         pcreatordata->m_eview = eview;
                         pcreatordata->m_pdoc = pdoc;
@@ -213,7 +213,7 @@ namespace nature
                      userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
-                        pframe->SetParent(this);
+                        pframe->set_parent(this);
                         pcreatordata = new ViewData();
                         pcreatordata->m_eview = eview;
                         pcreatordata->m_pdoc = pdoc;
@@ -240,7 +240,7 @@ namespace nature
                      userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
-                        pframe->SetParent(this);
+                        pframe->set_parent(this);
                         pcreatordata = new ViewData();
                         pcreatordata->m_eview = eview;
                         pcreatordata->m_pdoc = pdoc;

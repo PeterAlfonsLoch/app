@@ -149,15 +149,15 @@ namespace user
 
    window_interface * interaction::window_interface_get_parent()
    {
-      return GetParent();
+      return get_parent();
    }
 
-   interaction * interaction::GetParent()
+   interaction * interaction::get_parent()
    {
       if(m_pimpl == NULL || m_pimpl == this)
          return NULL;
       else
-         return m_pimpl->GetParent();
+         return m_pimpl->get_parent();
    }
 
    void interaction::set_timer(array_ptr_alloc < timer_item > timera)
@@ -168,23 +168,23 @@ namespace user
       }
    }
 
-   interaction * interaction::SetParent(interaction * pguieParent)
+   interaction * interaction::set_parent(interaction * pguieParent)
    {
       if(pguieParent == this
       || pguieParent == m_pguie
       || pguieParent == m_pimpl
-      || pguieParent == GetParent())
+      || pguieParent == get_parent())
       {
-         return GetParent();
+         return get_parent();
       }
       ::user::interaction * pimplOld = m_pimpl;
-      interaction * pparentOld = GetParent();
+      interaction * pparentOld = get_parent();
       if(pparentOld != NULL)
       {
          if(pguieParent == NULL)
          {
 
-            m_pimpl->SetParent(NULL);
+            m_pimpl->set_parent(NULL);
 
             ::ca::window * pimplNew = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
 
@@ -216,7 +216,7 @@ namespace user
                delete pimplNew;
                pimplNew = NULL;
                m_pimpl = pimplOld;
-               m_pimpl->SetParent(pparentOld);
+               m_pimpl->set_parent(pparentOld);
             }
             else
             {
@@ -241,7 +241,7 @@ namespace user
          }
          else
          {
-            if(m_pimpl == NULL || m_pimpl->SetParent(pguieParent) == NULL)
+            if(m_pimpl == NULL || m_pimpl->set_parent(pguieParent) == NULL)
                return NULL;
             on_set_parent(pguieParent);
          }
@@ -288,7 +288,7 @@ namespace user
                   {
                   }
                }
-               //if(m_pimpl == NULL || m_pimpl->SetParent(pguieParent) == NULL)
+               //if(m_pimpl == NULL || m_pimpl->set_parent(pguieParent) == NULL)
                  // return NULL;
                on_set_parent(pguieParent);
             }
@@ -343,9 +343,9 @@ namespace user
    void interaction::GetWindowRect(__rect64 * lprect)
    {
       *lprect = m_rectParentClient;
-      if(GetParent() != NULL)
+      if(get_parent() != NULL)
       {
-         GetParent()->ClientToScreen(lprect);
+         get_parent()->ClientToScreen(lprect);
       }
    }
 
@@ -610,7 +610,7 @@ namespace user
 
       SetTimer(19510422, 1951, NULL); // Léia Maheli de Souza Tsumanuma - Mummi - keep alive - each 1951 millis a ca2cuore pulse
 
-      if(GetParent() == NULL)
+      if(get_parent() == NULL)
       {
          System.add_frame(this);
       }
@@ -1089,7 +1089,7 @@ namespace user
          return m_pimpl->pre_translate_message(pobj);
    }
 
-   oswindow interaction::get_handle()
+   oswindow interaction::get_handle() const
    {
 
       try
@@ -1506,30 +1506,30 @@ namespace user
             return m_uiptraChild[0];
          }
       }
-      if(GetParent() == NULL)
+      if(get_parent() == NULL)
       {
          // todo, reached desktop or similar very top system window
          return NULL;
       }
 
-      index iFind = GetParent()->m_uiptraChild.find(this);
+      index iFind = get_parent()->m_uiptraChild.find(this);
 
       if(iFind < 0)
       {
          throw "not expected situation";
       }
-      if(iFind < GetParent()->m_uiptraChild.get_upper_bound())
+      if(iFind < get_parent()->m_uiptraChild.get_upper_bound())
       {
-         return GetParent()->m_uiptraChild[iFind + 1];
+         return get_parent()->m_uiptraChild[iFind + 1];
       }
-      if(GetParent()->GetParent() == NULL)
+      if(get_parent()->get_parent() == NULL)
       {
          // todo, reached desktop or similar very top system window
          return NULL;
       }
       if(piLevel != NULL)
          (*piLevel)--;
-      return GetParent()->GetParent()->get_next(true, piLevel);
+      return get_parent()->get_parent()->get_next(true, piLevel);
    }
 
    interaction * interaction::GetTopWindow()
@@ -1735,14 +1735,14 @@ namespace user
    {
       ASSERT_VALID(this);
 
-      interaction * pParentWnd = GetParent();  // start with one parent up
+      interaction * pParentWnd = get_parent();  // start with one parent up
       while (pParentWnd != NULL)
       {
          if (pParentWnd->IsFrameWnd())
          {
             return dynamic_cast < ::frame_window * > (pParentWnd);
          }
-         pParentWnd = pParentWnd->GetParent();
+         pParentWnd = pParentWnd->get_parent();
       }
       return NULL;
    }
@@ -1768,7 +1768,7 @@ namespace user
    }
 
 
-   interaction * interaction::GetOwner()
+   interaction * interaction::get_owner() const
    {
       if(m_pguieOwner != NULL)
       {
@@ -1776,16 +1776,16 @@ namespace user
       }
       else
       {
-         return GetParent();
+         return get_parent();
       }
    }
 
-   void interaction::SetOwner(interaction * pguie)
+   void interaction::set_owner(interaction * pguie)
    {
       if(m_pimpl == NULL)
          return;
       else
-         m_pimpl->SetOwner(pguie);
+         m_pimpl->set_owner(pguie);
    }
 
    interaction * interaction::GetDescendantWindow(id iId)
@@ -2138,10 +2138,10 @@ namespace user
       bool bIdle = TRUE;
       LONG lIdleCount = 0;
       bool bShowIdle = (dwFlags & MLF_SHOWONIDLE) && !(GetStyle() & WS_VISIBLE);
-//      oswindow oswindow_Parent = ::GetParent(get_handle());
+//      oswindow oswindow_Parent = ::get_parent(get_handle());
       m_iModal = m_iModalCount;
       int iLevel = m_iModal;
-      ::user::interaction * puieParent = GetParent();
+      ::user::interaction * puieParent = get_parent();
       oprop(string("RunModalLoop.thread(") + gen::str::from(iLevel) + ")") = System.GetThread();
       m_iModalCount++;
 
@@ -2360,9 +2360,9 @@ ExitModal:
 
    bool interaction::BaseOnControlEvent(control_event * pevent)
    {
-      if(GetParent() != NULL)
+      if(get_parent() != NULL)
       {
-         return GetParent()->BaseOnControlEvent(pevent);
+         return get_parent()->BaseOnControlEvent(pevent);
       }
       else
       {
@@ -2553,7 +2553,7 @@ ExitModal:
       // walk from the target window up to the oswindow_Stop window checking
       //  if any window wants to translate this message
 
-      for (::user::interaction * pui = pbase->m_pwnd; pui != NULL; pui->GetParent())
+      for (::user::interaction * pui = pbase->m_pwnd; pui != NULL; pui->get_parent())
       {
 
          pui->pre_translate_message(pobj);
@@ -2929,7 +2929,7 @@ ExitModal:
       interaction * pui = NULL;
       try
       {
-         pui = GetParent();
+         pui = get_parent();
       }
       catch(...)
       {
@@ -2977,7 +2977,7 @@ ExitModal:
       interaction * pui = NULL;
       try
       {
-         pui = GetParent();
+         pui = get_parent();
       }
       catch(...)
       {
@@ -3040,7 +3040,7 @@ restart:
    }
 
 
-   ::ca::window * interaction::get_wnd()
+   ::ca::window * interaction::get_wnd() const
    {
       if(m_pimpl != NULL)
       {
@@ -3048,9 +3048,9 @@ restart:
          if(pwnd != NULL)
             return pwnd;
       }
-      if(GetParent() == NULL)
+      if(get_parent() == NULL)
          return NULL;
-      return GetParent()->get_wnd();
+      return get_parent()->get_wnd();
    }
 
    // returns -1 if not descendant
@@ -3061,7 +3061,7 @@ restart:
       {
          if(pui == this)
             return iLevel;
-         pui = pui->GetParent();
+         pui = pui->get_parent();
          iLevel++;
       }
       return -1;
@@ -3182,5 +3182,5 @@ CLASS_DECL_ca ::user::interaction * WINAPI CreateGuieEx(::ca::application * papp
    ::user::interaction* pWnd = oswindow;
    if(pWnd == NULL)
       return NULL;
-   return pWnd->GetOwner();
+   return pWnd->get_owner();
 }

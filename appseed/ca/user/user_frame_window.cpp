@@ -730,7 +730,7 @@ void frame_window::InitialUpdateFrame(::user::document_interface * pDoc, bool bM
       pDoc->update_frame_counts();
    on_update_frame_title(TRUE);
 
-   ::user::place_holder * pholder = dynamic_cast < ::user::place_holder * > (GetParent());
+   ::user::place_holder * pholder = dynamic_cast < ::user::place_holder * > (get_parent());
    if(pholder != NULL)
    {
       if(!oprop("should_not_be_automatically_holded_on_initial_update_frame").is_set()
@@ -743,7 +743,7 @@ void frame_window::InitialUpdateFrame(::user::document_interface * pDoc, bool bM
 
    if(bMakeVisible)
    {
-      if(dynamic_cast < ::user::place_holder * > (GetParent()) == NULL)
+      if(dynamic_cast < ::user::place_holder * > (get_parent()) == NULL)
       {
          InitialFramePosition();
       }
@@ -763,10 +763,10 @@ void frame_window::InitialFramePosition(bool bForceRestore)
       rect rectWindow;
       GetWindowRect(rectWindow);
       rect rectDesktop;
-      if(GetParent() != NULL)
+      if(get_parent() != NULL)
       {
-         GetParent()->GetClientRect(rectDesktop);
-         GetParent()->ScreenToClient(rectWindow);
+         get_parent()->GetClientRect(rectDesktop);
+         get_parent()->ScreenToClient(rectWindow);
       }
       else
       {
@@ -912,7 +912,7 @@ bool frame_window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
       return TRUE;
 
    // then pump through parent
-   ::user::interaction * puiParent = GetParent();
+   ::user::interaction * puiParent = get_parent();
    if(puiParent != NULL && puiParent->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
@@ -1726,7 +1726,7 @@ LRESULT frame_window::OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam)
       do {
          lResult = ::SendMessage(hwFocus, WM_MOUSEWHEEL,
             (wParam << 16) | keyState, lParam);
-         hwFocus = ::GetParent(hwFocus);
+         hwFocus = ::get_parent(hwFocus);
       }
       while (lResult == 0 && hwFocus != NULL && hwFocus != hwDesktop);
    }
@@ -1772,7 +1772,7 @@ void frame_window::BringToTop(int nCmdShow)
 
 #ifdef WINDOWS
 
-   if(GetParent() == NULL)
+   if(get_parent() == NULL)
    {
       // place the ::ca::window on top except for certain nCmdShow
       if (nCmdShow != SW_HIDE &&
@@ -1851,7 +1851,7 @@ bool frame_window::IsTracking() const
 bool frame_window::ShowWindow(int nCmdShow)
 {
    bool bResult = interaction::ShowWindow(nCmdShow);
-   if(GetParent() != NULL
+   if(get_parent() != NULL
    && nCmdShow == SW_RESTORE)
    {
       InitialFramePosition(true);
@@ -1867,7 +1867,7 @@ void frame_window::_001OnSysCommand(gen::signal_object * pobj)
 #ifdef WINDOWS
 
    SCAST_PTR(gen::message::base, pbase, pobj);
-   if(GetParent() == NULL)
+   if(get_parent() == NULL)
    {
       if(pbase->m_wparam == SC_RESTORE)
       {

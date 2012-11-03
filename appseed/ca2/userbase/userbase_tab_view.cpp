@@ -292,13 +292,13 @@ namespace userbase
             m_pviewcreator->m_viewmap[idSplit]->m_pwnd =
                psplitview->_001GetPane(0);
          }
-         psplitview->_001GetPane(0)->SetParent(this);
-         psplitview->_001GetPane(1)->SetParent(this);
+         psplitview->_001GetPane(0)->set_parent(this);
+         psplitview->_001GetPane(1)->set_parent(this);
          m_pviewcreator->m_viewmap[psplitview->get_pane_id(0)]->m_idSplit.is_empty();
          m_pviewcreator->m_viewmap[psplitview->get_pane_id(1)]->m_idSplit.is_empty();
          psplitview->ShowWindow(SW_HIDE);
          psplitview->ModifyStyle(WS_CHILD, 0, 0);
-         psplitview->SetParent(NULL);
+         psplitview->set_parent(NULL);
          psplitview->DestroyWindow();
       }*/
       if(pcreatordata != m_pviewdata)
@@ -376,7 +376,7 @@ namespace userbase
       {
          /*if(pcreatordata->m_pwnd != NULL)
          {
-            pcreatordata->m_pwnd->SetParent(this);
+            pcreatordata->m_pwnd->set_parent(this);
             pcreatordata->m_pwnd->ModifyStyle(0, WS_CHILD, NULL);
          }*/
          pane * ppane = get_pane_by_id(id);

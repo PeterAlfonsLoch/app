@@ -257,7 +257,7 @@ namespace platform
       if(puiParent == NULL)
          puiParent = GetTypedParent < ::user::place_holder > ();
       if(puiParent == NULL)
-         puiParent = GetParent();
+         puiParent = get_parent();
       if(puiParent == NULL)
       {
          // There is no place to dock on to.

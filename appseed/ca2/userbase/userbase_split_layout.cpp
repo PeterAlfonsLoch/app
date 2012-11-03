@@ -527,7 +527,7 @@ namespace userbase
             return false;
       }
       pcomponent->m_id = id.is_empty() ? iIndex : id;
-      //pwnd->SetParent(this);
+      //pwnd->set_parent(this);
 
       //pwnd->ModifyStyle(WS_BORDER, 0, 0);
       //pwnd->ModifyStyleEx(WS_EX_CLIENTEDGE, 0, 0);
@@ -577,7 +577,7 @@ namespace userbase
             return false;
       }
       pcomponent->m_id = id.is_empty() ? iIndex : id;
-      //pwnd->SetParent(this);
+      //pwnd->set_parent(this);
 
       //pwnd->ModifyStyle(WS_BORDER, 0, 0);
       //pwnd->ModifyStyleEx(WS_EX_CLIENTEDGE, 0, 0);

@@ -108,9 +108,9 @@ namespace userbase
       if (::user::interaction::_001OnCmdMsg(pcmdmsg))
          return TRUE;
       ::user::interaction * pwndex;
-      if(base < ::view > ::bases(GetParent()))
+      if(base < ::view > ::bases(get_parent()))
       {
-         pwndex = dynamic_cast < ::user::interaction * >(GetParent());
+         pwndex = dynamic_cast < ::user::interaction * >(get_parent());
          if(pwndex != NULL)
          {
             if (pwndex->_001OnCmdMsg(pcmdmsg))
@@ -126,7 +126,7 @@ namespace userbase
          ::view * pview = ::view::get_document()->get_view(0);
          ASSERT_VALID(pview);
          if (pview != this
-            && pview != GetParent())
+            && pview != get_parent())
          {
             pwndex = dynamic_cast < ::user::interaction * >(pview);
             if(pwndex != NULL)

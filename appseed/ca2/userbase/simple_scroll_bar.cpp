@@ -156,7 +156,7 @@ void simple_scroll_bar::_001OnLButtonUp(gen::signal_object * pobj)
       System.release_capture_uie();
       bool bWasTracking = m_bTracking;
       m_bTracking = false;
-//      ::user::interaction * pParentWnd = GetParent();
+//      ::user::interaction * pParentWnd = get_parent();
       if(bWasTracking)
          SetTrackingPos(pt);
       send_scroll_message(SB_THUMBPOSITION);
@@ -570,7 +570,7 @@ int simple_scroll_bar::ScrollLineB()
 
 int simple_scroll_bar::ScrollPageA()
 {
-//   ::user::interaction * pParentWnd = GetParent();
+//   ::user::interaction * pParentWnd = get_parent();
    int nPos = m_scrollinfo.nPos;
    nPos-=m_scrollinfo.nPage ;
    if(nPos < m_scrollinfo.nMin)
@@ -590,7 +590,7 @@ int simple_scroll_bar::ScrollPageA()
 
 int simple_scroll_bar::ScrollPageB()
 {
-//   ::user::interaction * pParentWnd = GetParent();
+//   ::user::interaction * pParentWnd = get_parent();
    int nPos = m_scrollinfo.nPos;
    nPos+=m_scrollinfo.nPage ;
    if(nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)
@@ -615,7 +615,7 @@ int simple_scroll_bar::ScrollPageB()
 return;
 }
 
-::user::interaction * pParentWnd = GetParent();
+::user::interaction * pParentWnd = get_parent();
 int nPos = m_scrollinfo.nPos;
 nPos+=m_scrollinfo.nPage;
 if(nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)

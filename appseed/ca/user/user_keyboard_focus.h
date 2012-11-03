@@ -28,8 +28,8 @@ namespace user
       virtual void keyboard_focus_OnSysChar(gen::signal_object * pobj);
       virtual void keyboard_focus_OnKeyDown(gen::signal_object * pobj);
       virtual void keyboard_focus_OnKeyUp(gen::signal_object * pobj);
-      virtual interaction * GetParent() = 0;
-      virtual ::ca::window * get_wnd() = 0;
+      virtual interaction * get_parent() = 0;
+      virtual ::ca::window * get_wnd() const = 0;
       virtual bool BaseOnControlEvent(control_event * pevent) = 0;
       virtual keyboard_focus * keyboard_get_next_focusable();
       virtual bool keyboard_set_focus();

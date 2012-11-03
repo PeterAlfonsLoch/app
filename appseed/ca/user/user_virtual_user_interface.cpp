@@ -40,7 +40,7 @@ bool virtual_user_interface::ReleaseDC(::ca::graphics * pdc)
    return get_wnd()->ReleaseDC(pdc);
 }
 
-::user::interaction * virtual_user_interface::GetParent()
+::user::interaction * virtual_user_interface::get_parent()
 {
    return m_pparent;
 }
@@ -125,26 +125,26 @@ bool virtual_user_interface::SetWindowPos(int z, int x, int y, int cx, int cy, U
 
    if(!(nFlags & SWP_NOZORDER))
    {
-      if(GetParent() != NULL)
+      if(get_parent() != NULL)
       {
          if(z == ZORDER_TOP || z == ZORDER_TOPMOST)
          {
             single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex);
             if(sl.lock(millis(84)))
             {
-               index iFind = GetParent()->m_uiptraChild.find(m_pguie);
+               index iFind = get_parent()->m_uiptraChild.find(m_pguie);
                if(iFind >= 0)
                {
                   try
                   {
-                     GetParent()->m_uiptraChild.remove(m_pguie);
+                     get_parent()->m_uiptraChild.remove(m_pguie);
                   }
                   catch(...)
                   {
                   }
                   try
                   {
-                     GetParent()->m_uiptraChild.insert_at(0, m_pguie);
+                     get_parent()->m_uiptraChild.insert_at(0, m_pguie);
                   }
                   catch(...)
                   {
@@ -615,14 +615,14 @@ void virtual_user_interface::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustTyp
 
    ASSERT_VALID(this);
 
-   ::user::interaction* pParentWnd = GetParent();  // start with one parent up
+   ::user::interaction* pParentWnd = get_parent();  // start with one parent up
    while (pParentWnd != NULL)
    {
       if (base < ::user::interaction>::bases(pParentWnd))
       {
          return dynamic_cast < ::frame_window * > (pParentWnd);
       }
-      pParentWnd = pParentWnd->GetParent();
+      pParentWnd = pParentWnd->get_parent();
    }
    return NULL;
 }
@@ -640,7 +640,7 @@ LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPAR
    try
    {
       ::user::interaction * pui = m_pguie;
-      while(pui != NULL && pui->GetParent() != NULL)
+      while(pui != NULL && pui->get_parent() != NULL)
       {
          try
          {
@@ -654,7 +654,7 @@ LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPAR
             return spbase->get_lresult();
          try
          {
-            pui = pui->GetParent();
+            pui = pui->get_parent();
          }
          catch(...)
          {
@@ -684,7 +684,7 @@ LRESULT virtual_user_interface::send_message(XEvent * pevent)
    try
    {
       ::user::interaction * pui = m_pguie;
-      while(pui != NULL && pui->GetParent() != NULL)
+      while(pui != NULL && pui->get_parent() != NULL)
       {
          try
          {
@@ -698,7 +698,7 @@ LRESULT virtual_user_interface::send_message(XEvent * pevent)
             return spbase->get_lresult();
          try
          {
-            pui = pui->GetParent();
+            pui = pui->get_parent();
          }
          catch(...)
          {
@@ -726,7 +726,7 @@ LRESULT virtual_user_interface::send_message(XEvent * pevent)
 
 bool virtual_user_interface::IsWindowEnabled()
 {
-   return m_bEnabled && ((m_pguie == NULL || m_pguie->GetParent() == NULL) ? true : m_pguie->GetParent()->IsWindowEnabled());
+   return m_bEnabled && ((m_pguie == NULL || m_pguie->get_parent() == NULL) ? true : m_pguie->get_parent()->IsWindowEnabled());
 }
 
 ::frame_window * virtual_user_interface::EnsureParentFrame()
@@ -980,7 +980,7 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout, oswindow oswindow, LPCREC
 {
    ASSERT(oswindow != NULL);
    ASSERT(lpRect != NULL);
-   ::oswindow oswindow_Parent = ::GetParent(oswindow);
+   ::oswindow oswindow_Parent = ::get_parent(oswindow);
    ASSERT(oswindow_Parent != NULL);
 
    if (lpLayout != NULL && lpLayout->hDWP == NULL)
@@ -1203,7 +1203,7 @@ void virtual_user_interface::message_handler(gen::signal_object * pobj)
    (this->*m_pfnDispatchWindowProc)(pobj);
 }
 
-::user::interaction * virtual_user_interface::SetParent(::user::interaction * pguieParent)
+::user::interaction * virtual_user_interface::set_parent(::user::interaction * pguieParent)
 {
    if((pguieParent == this
    || pguieParent == m_pguie
@@ -1502,7 +1502,7 @@ bool virtual_user_interface::IsWindowVisible()
    {
       if(!m_pguie->m_bVisible)
          return FALSE;
-      if(m_pguie->GetParent() != NULL && !m_pguie->GetParent()->IsWindowVisible())
+      if(m_pguie->get_parent() != NULL && !m_pguie->get_parent()->IsWindowVisible())
          return FALSE;
    }
    if(!m_bVisible)

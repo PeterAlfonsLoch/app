@@ -1365,7 +1365,7 @@ void simple_toolbar::_001OnLButtonUp(gen::signal_object * pobj)
          pmouse->m_bRet = true;
          pmouse->set_lresult(1);
       }
-      frame_window* pTarget = dynamic_cast < frame_window * > (GetOwner());
+      frame_window* pTarget = dynamic_cast < frame_window * > (get_owner());
       if (pTarget == NULL || !pTarget->IsFrameWnd())
          pTarget = GetParentFrame();
       if (pTarget != NULL)
@@ -1441,7 +1441,7 @@ void simple_toolbar::_001OnTimer(gen::signal_object * pobj)
 
 void simple_toolbar::_001OnClick(int iItem)
 {
-   ::user::interaction * pwnd = GetOwner();
+   ::user::interaction * pwnd = get_owner();
    pwnd->_001SendCommand(m_itema[iItem].m_id);
 }
 

@@ -259,7 +259,7 @@ namespace userbase
       { ASSERT(IsWindow()); return send_message( TB_SETBITMAPSIZE, 0, MAKELPARAM(size.cx, size.cy)) != FALSE; }
    void tool_bar_control::AutoSize()
       { ASSERT(IsWindow()); send_message( TB_AUTOSIZE, 0, 0L); }
-   void tool_bar_control::SetOwner(::user::interaction* pWnd)
+   void tool_bar_control::set_owner(::user::interaction* pWnd)
       { ASSERT(IsWindow()); send_message( TB_SETPARENT, (WPARAM)pWnd, 0L); }
    void tool_bar_control::SetRows(int nRows, bool bLarger, LPRECT lpRect)
       { ASSERT(IsWindow()); send_message( TB_SETROWS, MAKELPARAM(nRows, bLarger), (LPARAM)lpRect); }

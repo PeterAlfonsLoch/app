@@ -107,7 +107,7 @@ namespace user
                continue;
          }
          ::ca::window * pwndChild = ::ca::window::from_handle(oswindowChild);
-         oswindow oswindowParent = ::GetParent(oswindowChild);
+         oswindow oswindowParent = ::get_parent(oswindowChild);
          ::GetClientRect(oswindowChild, rectChild);
          ::ClientToScreen(oswindowChild, &rectChild.top_left());
          ::ClientToScreen(oswindowChild, &rectChild.bottom_right());

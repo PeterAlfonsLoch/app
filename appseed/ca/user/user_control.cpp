@@ -627,7 +627,7 @@ namespace user
        // the style must be visible
        if (bVis)
        {
-           ::frame_window* pTarget = dynamic_cast < ::frame_window * > (pview->GetOwner());
+           ::frame_window* pTarget = dynamic_cast < ::frame_window * > (pview->get_owner());
            if (pTarget == NULL || !pTarget->IsFrameWnd())
                pTarget = dynamic_cast < ::frame_window * > (pview->GetParentFrame());
            if (pTarget != NULL)

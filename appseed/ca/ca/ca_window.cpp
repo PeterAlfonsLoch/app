@@ -869,7 +869,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::user::interaction * window::GetParent()
+   ::user::interaction * window::get_parent()
    {
       throw interface_only_exception(get_app());
    }
@@ -938,7 +938,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::SetOwner(::user::interaction * pOwnerWnd)
+   void window::set_owner(::user::interaction * pOwnerWnd)
    {
       UNREFERENCED_PARAMETER(pOwnerWnd);
       throw interface_only_exception(get_app());
@@ -1416,7 +1416,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   window* window::SetParent(window* pWndNewParent)
+   window* window::set_parent(window* pWndNewParent)
    {
       UNREFERENCED_PARAMETER(pWndNewParent);
       throw interface_only_exception(get_app());
@@ -2157,7 +2157,7 @@ namespace ca
 
       // a popup ::ca::window cannot be owned by a child ::ca::window
       while (oswindow != NULL && (::GetWindowLong((::oswindow) oswindow, GWL_STYLE) & WS_CHILD))
-         oswindow = ::GetParent((::oswindow) oswindow);
+         oswindow = ::get_parent((::oswindow) oswindow);
 
       // determine toplevel ::ca::window to disable as well
       ::oswindow oswindow_Top = oswindow;
@@ -2168,7 +2168,7 @@ namespace ca
             break;
          else
             oswindow_Top = oswindow_Temp;
-         oswindow_Temp = ::GetParent((::oswindow) oswindow_Top);
+         oswindow_Temp = ::get_parent((::oswindow) oswindow_Top);
       }
 
       // get last active popup of first non-child that was found
@@ -2259,7 +2259,7 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
 {
    ASSERT(oswindow != NULL);
    ASSERT(lpRect != NULL);
-   ::user::interaction * oswindow_Parent = oswindow->GetParent();
+   ::user::interaction * oswindow_Parent = oswindow->get_parent();
    ASSERT(oswindow_Parent != NULL);
 
    if (lpLayout != NULL && lpLayout->hDWP == NULL)

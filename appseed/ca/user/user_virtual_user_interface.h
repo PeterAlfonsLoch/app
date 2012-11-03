@@ -24,10 +24,10 @@ public:
 
    virtual void message_handler(gen::signal_object * pobj);
    virtual ::ca::graphics * GetDC();
-   ::user::interaction * SetParent(::user::interaction * pguieParent);
+   ::user::interaction * set_parent(::user::interaction * pguieParent);
    bool ShowWindow(int nCmdShow);
    virtual bool ReleaseDC(::ca::graphics *);
-   virtual ::user::interaction * GetParent();
+   virtual ::user::interaction * get_parent();
 
    virtual void _001WindowMaximize();
    virtual void _001WindowRestore();

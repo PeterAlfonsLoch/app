@@ -243,11 +243,11 @@ namespace sockets
 
       /** Returns pointer to listen_socket that created this instance
        * on an incoming connection. */
-      socket *GetParent();
+      socket *get_parent();
 
       /** Used by listen_socket to set parent pointer of newly created
        * socket instance. */
-      void SetParent(socket *);
+      void set_parent(socket *);
 
       /** get listening port from listen_socket<>. */
       virtual port_t GetPort();

@@ -280,7 +280,7 @@ namespace sockets
          tmp->m_strCat = m_strCat;
          tmp -> EnableSSL(IsSSL()); // SSL Enabled socket
          tmp -> SetIpv6( IsIpv6() );
-         tmp -> SetParent(this);
+         tmp -> set_parent(this);
          tmp -> attach(a_s);
          tmp -> SetNonblocking(true);
          {

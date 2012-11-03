@@ -86,7 +86,7 @@ namespace frame
       ::user::interaction * pwndChild = m_pworkset->GetEventWindow();
       if(pwndChild == NULL)
          return;
-      ::user::interaction * pwndParent = pwndChild->GetParent();
+      ::user::interaction * pwndParent = pwndChild->get_parent();
       if(pwndParent == NULL)
          return;
       rect rectParent;
@@ -122,7 +122,7 @@ namespace frame
          && cy == 0)
          return true;
       ::user::interaction * pwnd = m_pworkset->GetEventWindow();
-      ::user::interaction * pwndParent = pwnd->GetParent();
+      ::user::interaction * pwndParent = pwnd->get_parent();
       rect rectPos;
       pwnd->GetWindowRect(rectPos);
       if(pwndParent != NULL)
@@ -212,7 +212,7 @@ namespace frame
    bool DockManager::MoveWindow(int x, int y)
    {
       ASSERT(m_pworkset->GetEventWindow() != NULL);
-      ::user::interaction * pwndParent = m_pworkset->GetEventWindow()->GetParent();
+      ::user::interaction * pwndParent = m_pworkset->GetEventWindow()->get_parent();
       if(pwndParent == NULL)
          return false;
       rect rectParent;
@@ -260,7 +260,7 @@ namespace frame
    EDock DockManager::CalcDock(int x, int y)
    {
       ASSERT(m_pworkset->GetEventWindow() != NULL);
-      ::user::interaction * pwndParent = m_pworkset->GetEventWindow()->GetParent();
+      ::user::interaction * pwndParent = m_pworkset->GetEventWindow()->get_parent();
       if(pwndParent == NULL)
          return DockNone;
       rect rectParent;
@@ -359,7 +359,7 @@ namespace frame
    {
       if(m_pworkset->GetEventWindow() == NULL)
          return;
-      ::user::interaction * pwndParent = m_pworkset->GetEventWindow()->GetParent();
+      ::user::interaction * pwndParent = m_pworkset->GetEventWindow()->get_parent();
       if(pwndParent == NULL)
          return;
       rect rectParent;

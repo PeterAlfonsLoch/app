@@ -588,9 +588,9 @@ namespace user
    {
       ::ca::window * pwnd = get_guie();
 
-      window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();
+      window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
       if(wndidNotify == NULL)
-         wndidNotify = pwnd->GetParent()->GetSafeoswindow_();
+         wndidNotify = pwnd->get_parent()->GetSafeoswindow_();
       return wndidNotify;
    }*/
 
