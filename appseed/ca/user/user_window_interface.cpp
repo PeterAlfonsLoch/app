@@ -260,7 +260,7 @@ namespace user
       wndpa = *dynamic_cast<user::LPWndArray *>(get_app());
    }
 
-   void window_interface::TwfGetWndArray(user::HWNDArray & hwnda)
+   void window_interface::TwfGetWndArray(user::oswindow_array & hwnda)
    {
       user::LPWndArray & wndpa = *dynamic_cast<user::LPWndArray *>(get_app());
       wndpa.get_wnda(hwnda);

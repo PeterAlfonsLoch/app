@@ -5368,9 +5368,6 @@
     <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_SctpSocket.cpp">
       <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
     </ClCompile>
-    <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_Socket.cpp">
-      <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
-    </ClCompile>
     <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_SocketHandler.cpp">
       <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
     </ClCompile>
@@ -5475,6 +5472,9 @@
     </ClCompile>
     <ClCompile Include="crypto\crypto_md5.cpp">
       <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_socket.cpp">
+      <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

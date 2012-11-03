@@ -3,7 +3,7 @@
 namespace user
 {
 
-   void HWNDArray::SortByZOrder()
+   void oswindow_array::SortByZOrder()
    {
       WndUtil::SortByZOrder(*this);
    }
@@ -13,7 +13,7 @@ namespace user
 
    // This implementation relays in the fact
    // that all windows are siblings
-   void HWNDArray::SortSiblingsByZOrder()
+   void oswindow_array::SortSiblingsByZOrder()
    {
       void * hwndSwap;
       for(int i = 0; i < this->get_size(); i++)
@@ -30,7 +30,7 @@ namespace user
       }
 
    }
-   void HWNDArray::top_windows_by_z_order()
+   void oswindow_array::top_windows_by_z_order()
    {
 
 #ifdef WINDOWS
@@ -343,7 +343,7 @@ namespace user
 
    HwndTree::Array &
       HwndTree::Array::
-      operator = (HWNDArray & hwnda)
+      operator = (oswindow_array & hwnda)
    {
       remove_all();
       HwndTree hwndtree;
@@ -379,7 +379,7 @@ namespace user
    // to the ::ca::window base_array wndpa. The top
    // windows come first in the enumeration.
 
-   void WndUtil::EnumChildren(void * hwnd, HWNDArray & hwnda)
+   void WndUtil::EnumChildren(void * hwnd, oswindow_array & hwnda)
    {
 
 #ifdef WINDOWS
@@ -658,7 +658,7 @@ namespace user
 
    // This implementation relays in the fact
    // that all windows are siblings
-   void WndUtil::SortByZOrder(HWNDArray & hwnda)
+   void WndUtil::SortByZOrder(oswindow_array & hwnda)
    {
       if(hwnda.get_size() <= 0)
          return;
@@ -753,7 +753,7 @@ namespace user
 
    }
 
-   /*void WndUtil::EnumChildren(oswindow_ hwnd, HWNDArray & hwnda)
+   /*void WndUtil::EnumChildren(oswindow_ hwnd, oswindow_array & hwnda)
    {
    if(!::IsWindow(hwnd))
    return;
@@ -771,7 +771,7 @@ namespace user
 
 #ifdef WINDOWS
 
-      HWNDArray hwnda;
+      oswindow_array hwnda;
 
       EnumChildren(hwnd, hwnda);
 
@@ -882,7 +882,7 @@ namespace user
 
    }
 
-   void LPWndArray::get_wnda(HWNDArray & hwnda)
+   void LPWndArray::get_wnda(oswindow_array & hwnda)
    {
       hwnda.remove_all();
       for(int i = 0; i < this->get_size(); i++)

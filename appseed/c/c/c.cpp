@@ -99,7 +99,7 @@ CLASS_DECL_c bool from_string(in6_addr * addr, const char * string)
       } else if (*s) {
          return 0; /* bad character */
       }
-      addr->pr_s6_addr16[section++] = htons((unsigned short)val);
+      addr->pr_s6_addr16[section++] = HTONS((unsigned short)val);
    }
 
    if (*s == '.') {
@@ -252,7 +252,7 @@ CLASS_DECL_c vsstring to_string(in6_addr * addr)
          section += double_colon_length;
          continue;
       }
-      val = ntohs(addr->pr_s6_addr16[section]);
+      val = NTOHS(addr->pr_s6_addr16[section]);
       if (val > 0xfff) {
          STUFF(basis_hex[val >> 12]);
       }

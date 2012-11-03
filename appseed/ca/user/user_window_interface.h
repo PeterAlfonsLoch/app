@@ -209,7 +209,7 @@ namespace user
 
 
       void TwfGetWndArray(user::LPWndArray & wndpa);
-      void TwfGetWndArray(user::HWNDArray & hwnda);
+      void TwfGetWndArray(user::oswindow_array & hwnda);
 
       virtual bool Redraw(rect_array & recta);
       virtual bool Redraw(LPCRECT lprect = NULL, ::ca::region * prgn = NULL);

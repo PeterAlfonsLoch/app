@@ -675,7 +675,7 @@ namespace ca2
    ::user::interaction * application::uie_from_point(point pt)
    {
       user::LPWndArray wnda = frames();
-      user::HWNDArray hwnda;
+      user::oswindow_array hwnda;
       wnda.get_wnda(hwnda);
       user::WndUtil::SortByZOrder(hwnda);
       for(int i = 0; i < hwnda.get_count(); i++)

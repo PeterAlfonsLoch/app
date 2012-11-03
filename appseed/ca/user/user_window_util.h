@@ -15,7 +15,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_ca HWNDArray :
+   class CLASS_DECL_ca oswindow_array :
       public comparable_array < void *, void * >
    {
    public:
@@ -32,7 +32,7 @@ namespace user
 //      using pha(::user::interaction)::find_first;
       ::user::interaction * find_first(::ca::type_info info);
       ::user::interaction * find_first(void * hwnd);
-      void get_wnda(user::HWNDArray & hwnda);
+      void get_wnda(user::oswindow_array & hwnda);
       void send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
       void send_message_to_descendants(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0, bool bRecursive = true);
    };
@@ -49,7 +49,7 @@ namespace user
          bool remove(void * hwnd);
          int_ptr find(void * hwnd);
          void EnumDescendants();
-         Array & operator = (HWNDArray & hwnda);
+         Array & operator = (oswindow_array & hwnda);
 
       };
 
@@ -73,10 +73,10 @@ namespace user
    public:
       static void ContraintPosToParent(void * hwnd);
       //static void EnumChildren(::ca::window * pwnd, LPWndArray & wndpa);
-      static void EnumChildren(void * hwnd, HWNDArray & hwnda);
+      static void EnumChildren(void * hwnd, oswindow_array & hwnda);
       /*static void ExcludeChild(LPWndArray & wndpa);*/
       /*static void SortByZOrder(LPWndArray & wndpa);*/
-      static void SortByZOrder(HWNDArray & hwnda);
+      static void SortByZOrder(oswindow_array & hwnda);
       static HRGN GetAClipRgn(void * hwnd, POINT ptOffset, bool bExludeChilren);
       static void ExcludeChildren(void * hwnd, HRGN hrgn, POINT ptOffset);
       WndUtil();
