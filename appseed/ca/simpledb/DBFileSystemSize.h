@@ -21,7 +21,7 @@ public:
       bool     m_bPending;
       int64_t  m_iSize;
       bool     m_bRet;
-      oswindow_     m_hwnd;
+      oswindow     m_oswindow;
 
 
       get_fs_size();
@@ -75,7 +75,7 @@ public:
    class get_fs_size *     m_pgetfssize;
    FileSystemSizeWnd *     m_pwnd;
    FileSystemSizeWnd *     m_pwndServer;
-   oswindow_                    m_hwndServer;
+   oswindow                    m_oswindowServer;
    ::event *               m_pevExec;
    ::event *               m_pevDone;
    ::mutex *               m_pmutex;

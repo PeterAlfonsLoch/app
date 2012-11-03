@@ -150,7 +150,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, void * hWndParent, id id, LPVOID lpParam)
+   bool window::CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, oswindow oswindow_Parent, id id, LPVOID lpParam)
    {
       UNREFERENCED_PARAMETER(dwExStyle);
       UNREFERENCED_PARAMETER(lpszClassName);
@@ -160,7 +160,7 @@ namespace ca
       UNREFERENCED_PARAMETER(y);
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
-      UNREFERENCED_PARAMETER(hWndParent);
+      UNREFERENCED_PARAMETER(oswindow_Parent);
       UNREFERENCED_PARAMETER(id);
       UNREFERENCED_PARAMETER(lpParam);
       throw interface_only_exception(get_app());
@@ -772,9 +772,9 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // Extra window support for dynamic subclassing of controls
 
-   bool window::SubclassWindow(void * hWnd)
+   bool window::subclass_window(oswindow oswindow)
    {
-      UNREFERENCED_PARAMETER(hWnd);
+      UNREFERENCED_PARAMETER(oswindow);
       throw interface_only_exception(get_app());
    }
 
@@ -785,7 +785,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void * window::UnsubclassWindow()
+   oswindow window::unsubclass_window()
    {
       throw interface_only_exception(get_app());
    }
@@ -898,7 +898,7 @@ namespace ca
    }
 
    // window
-   /* window::operator void *() const
+   /* window::operator oswindow() const
    { return this == NULL ? NULL : get_handle(); }*/
    bool window::operator==(const window& wnd) const
    {
@@ -1205,7 +1205,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   uint_ptr window::SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow_, UINT, uint_ptr, DWORD))
+   uint_ptr window::SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD))
    {
       UNREFERENCED_PARAMETER(nIDEvent);
       UNREFERENCED_PARAMETER(nElapse);
@@ -1429,13 +1429,13 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::ChangeClipboardChain(void * hWndNext)
+   bool window::ChangeClipboardChain(oswindow oswindow_Next)
    {
-      UNREFERENCED_PARAMETER(hWndNext);
+      UNREFERENCED_PARAMETER(oswindow_Next);
       throw interface_only_exception(get_app());
    }
 
-   void * window::SetClipboardViewer()
+   oswindow window::SetClipboardViewer()
    {
       throw interface_only_exception(get_app());
    }
@@ -1908,7 +1908,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnChangeCbChain(void *, void *)
+   void window::OnChangeCbChain(oswindow, oswindow)
    {
       throw interface_only_exception(get_app());
    }
@@ -2067,12 +2067,12 @@ namespace ca
       UNREFERENCED_PARAMETER(wParam);
       UNREFERENCED_PARAMETER(lParam);
       /*   UINT nID = LOWORD(wParam);
-      void * hWndCtrl = (void *)lParam;
+      oswindow oswindow_Ctrl = (oswindow)lParam;
       int nCode = HIWORD(wParam);
 
       // default routing for command messages (through closure table)
 
-      if (hWndCtrl == NULL)
+      if (oswindow_Ctrl == NULL)
       {
       // zero IDs for normal commands are not allowed
       if (nID == 0)
@@ -2094,13 +2094,13 @@ namespace ca
       else
       {
       // control notification
-      ASSERT(nID == 0 || ::IsWindow(hWndCtrl));
+      ASSERT(nID == 0 || ::IsWindow(oswindow_Ctrl));
 
       if (gen_ThreadState->m_hLockoutNotifyWindow == get_handle())
       return TRUE;        // locked out - ignore control notification
 
       // reflect notification to child ::ca::window control
-      if (ReflectLastMsg(hWndCtrl))
+      if (ReflectLastMsg(oswindow_Ctrl))
       return TRUE;    // eaten by child
 
       // zero IDs for normal commands are not allowed
@@ -2142,52 +2142,52 @@ namespace ca
    ////////////////////////////////////////////////////////////////////////////
    // UI related ::ca::window functions
 
-   void * window::GetSafeOwner_(void * hParent, void ** pWndTop)
+   oswindow window::get_safe_owner(oswindow hParent, oswindow* pWndTop)
    {
       // get ::ca::window to start with
-      void * hWnd = hParent;
-      if (hWnd == NULL)
+      oswindow oswindow = hParent;
+      if (oswindow == NULL)
       {
    /* trans      frame_window* pFrame = command_target::GetRoutingFrame_();
          if (pFrame != NULL)
-            hWnd = pFrame->GetSafeHwnd();
+            oswindow = pFrame->GetSafeoswindow_();
          else
-            hWnd = System.GetMainWnd()->GetSafeHwnd();*/
+            oswindow = System.GetMainWnd()->GetSafeoswindow_();*/
       }
 
       // a popup ::ca::window cannot be owned by a child ::ca::window
-      while (hWnd != NULL && (::GetWindowLong((oswindow_) hWnd, GWL_STYLE) & WS_CHILD))
-         hWnd = ::GetParent((oswindow_) hWnd);
+      while (oswindow != NULL && (::GetWindowLong((::oswindow) oswindow, GWL_STYLE) & WS_CHILD))
+         oswindow = ::GetParent((::oswindow) oswindow);
 
       // determine toplevel ::ca::window to disable as well
-      void * hWndTop = hWnd;
-      void * hWndTemp = hWnd;
+      ::oswindow oswindow_Top = oswindow;
+      ::oswindow oswindow_Temp = oswindow;
       for (;;)
       {
-         if (hWndTemp == NULL)
+         if (oswindow_Temp == NULL)
             break;
          else
-            hWndTop = hWndTemp;
-         hWndTemp = ::GetParent((oswindow_) hWndTop);
+            oswindow_Top = oswindow_Temp;
+         oswindow_Temp = ::GetParent((::oswindow) oswindow_Top);
       }
 
       // get last active popup of first non-child that was found
-      if (hParent == NULL && hWnd != NULL)
-         hWnd = ::GetLastActivePopup((oswindow_) hWnd);
+      if (hParent == NULL && oswindow != NULL)
+         oswindow = ::GetLastActivePopup((::oswindow) oswindow);
 
       // disable and store top level parent ::ca::window if specified
       if (pWndTop != NULL)
       {
-         if (hWndTop != NULL && ::IsWindowEnabled((oswindow_) hWndTop) && hWndTop != hWnd)
+         if (oswindow_Top != NULL && ::IsWindowEnabled((::oswindow) oswindow_Top) && oswindow_Top != oswindow)
          {
-            *pWndTop = hWndTop;
-            ::EnableWindow((oswindow_) hWndTop, FALSE);
+            *pWndTop = oswindow_Top;
+            ::EnableWindow((::oswindow) oswindow_Top, FALSE);
          }
          else
             *pWndTop = NULL;
       }
 
-      return hWnd;    // return the owner as void *
+      return oswindow;    // return the owner as oswindow
    }
 
    void window::_001BaseWndInterfaceMap()
@@ -2255,26 +2255,26 @@ void guie_message_wnd::message_handler(gen::signal_object * pobj)
 
 
 void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
-                                ::user::interaction * hWnd, LPCRECT lpRect)
+                                ::user::interaction * oswindow, LPCRECT lpRect)
 {
-   ASSERT(hWnd != NULL);
+   ASSERT(oswindow != NULL);
    ASSERT(lpRect != NULL);
-   ::user::interaction * hWndParent = hWnd->GetParent();
-   ASSERT(hWndParent != NULL);
+   ::user::interaction * oswindow_Parent = oswindow->GetParent();
+   ASSERT(oswindow_Parent != NULL);
 
    if (lpLayout != NULL && lpLayout->hDWP == NULL)
       return;
 
    // first check if the new rectangle is the same as the current
    rect rectOld;
-   hWnd->GetWindowRect(rectOld);
-   hWndParent->ScreenToClient(&rectOld.top_left());
-   hWndParent->ScreenToClient(&rectOld.bottom_right());
+   oswindow->GetWindowRect(rectOld);
+   oswindow_Parent->ScreenToClient(&rectOld.top_left());
+   oswindow_Parent->ScreenToClient(&rectOld.bottom_right());
    //if (::is_equal(rectOld, lpRect))
    //   return;     // nothing to do
 
    // try to use DeferWindowPos for speed, otherwise use SetWindowPos
-   hWnd->SetWindowPos(0, lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top, SWP_NOACTIVATE | SWP_NOZORDER | SWP_NOREDRAW);
+   oswindow->SetWindowPos(0, lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top, SWP_NOACTIVATE | SWP_NOZORDER | SWP_NOREDRAW);
 }
 
 

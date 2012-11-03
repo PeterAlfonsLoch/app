@@ -49,7 +49,7 @@ void simple_form_list_edit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
    UNREFERENCED_PARAMETER(nRepCnt);
    user::control_event key;
 
-// trans   key.m_hwnd     = GetSafeHwnd();
+// trans   key.m_oswindow     = GetSafeoswindow_();
    key.m_eevent   = ::user::event_key_down;
    key.m_puie      = this;
    key.m_uiVKey   = nChar;

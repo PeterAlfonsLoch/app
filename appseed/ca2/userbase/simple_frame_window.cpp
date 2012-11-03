@@ -158,7 +158,7 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
       /*WNDCLASS wndclass;
 
       char szBuf [64];
-      ::GetClassName(_get_handle(), szBuf, _countof(szBuf));
+      ::GetClassName(get_handle(), szBuf, _countof(szBuf));
 
       GetClassInfo(System.m_hInstance, 
          szBuf,
@@ -369,10 +369,10 @@ void simple_frame_window::_001OnGetMinMaxInfo(gen::signal_object * pobj)
 
 void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
 {
-   /*oswindow_ hwndTrayWindow = NULL;
+   /*oswindow oswindowTrayWindow = NULL;
    if(GetParent() == NULL)
    {
-      hwndTrayWindow = FindWindowA("Shell_traywnd", "");
+      oswindowTrayWindow = FindWindowA("Shell_traywnd", "");
    }*/
    if(bFullScreen)
    {
@@ -410,7 +410,7 @@ void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
             SWP_FRAMECHANGED |
             SWP_SHOWWINDOW);
 
-         //::SetWindowPos(hwndTrayWindow, 0, 0, 0, 0, 0, SWP_HIDEWINDOW);
+         //::SetWindowPos(oswindowTrayWindow, 0, 0, 0, 0, 0, SWP_HIDEWINDOW);
       }
    }
    else
@@ -730,7 +730,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle
 
    if (!CreateExW(dwExStyle, (const wchar_t *) lpszClassName, (const wchar_t *) lpszWindowName, dwStyle,
       rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top,
-      pParentWnd->GetSafeHwnd(), hMenu, (LPVOID)pContext))
+      pParentWnd->GetSafeoswindow_(), hMenu, (LPVOID)pContext))
    {
       TRACE0("Warning: failed to create userbase::frame_window.\n");
       if (hMenu != NULL)

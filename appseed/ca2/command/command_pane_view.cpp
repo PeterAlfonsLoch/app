@@ -309,7 +309,7 @@ namespace command
       if(itema.get_size() > 0)
       {
          int i = (int) ::ShellExecuteW(
-            (oswindow_) GetTopLevelParent()->_get_handle(),
+            (oswindow) GetTopLevelParent()->get_handle(),
             NULL,
             gen::international::utf8_to_unicode("\"" + itema[0].m_strPath + "\""),
             NULL,

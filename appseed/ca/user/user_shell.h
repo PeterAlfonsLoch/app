@@ -97,21 +97,21 @@ namespace filemanager
          ImageSet(::ca::application * papp);
          ~ImageSet();
 
-         bool GetIcon(oswindow_ hwnd, const char * lpcsz, const wchar_t * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
+         bool GetIcon(oswindow oswindow, const char * lpcsz, const wchar_t * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
 #ifdef WINDOWSEX
-         bool GetIcon(oswindow_ hwnd, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
-         bool GetIcon(oswindow_ hwnd, LPITEMIDLIST lpiidlAbsolute, const wchar_t * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
+         bool GetIcon(oswindow oswindow, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
+         bool GetIcon(oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const wchar_t * lpcszExtra, EIcon eicon, HICON * phicon16, HICON * phicon48);
 #endif
 
 #ifdef WINDOWSEX
-         int GetImage(oswindow_ hwnd, IShellFolder * lpsf, const char * pszPath, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon);
+         int GetImage(oswindow oswindow, IShellFolder * lpsf, const char * pszPath, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon);
 #endif
          int GetImage(const char * lpcsz, EFileAttribute eattribute, EIcon eicon) ;
-         int GetImage(oswindow_ hwnd, const char * lpcsz, const wchar_t * lpcszExtra, EIcon eicon, bool bFolder);
-         int GetImageByExtension(oswindow_ hwnd, const char * lpcsz, EIcon eicon, bool bFolder);
+         int GetImage(oswindow oswindow, const char * lpcsz, const wchar_t * lpcszExtra, EIcon eicon, bool bFolder);
+         int GetImageByExtension(oswindow oswindow, const char * lpcsz, EIcon eicon, bool bFolder);
 #ifdef WINDOWSEX
-         int GetImage(oswindow_ hwnd, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon);
-         int GetImage(oswindow_ hwnd, LPITEMIDLIST lpiidlAbsolute, const wchar_t * lpcszExtra, EIcon eicon);
+         int GetImage(oswindow oswindow, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon);
+         int GetImage(oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const wchar_t * lpcszExtra, EIcon eicon);
 #endif
 
 

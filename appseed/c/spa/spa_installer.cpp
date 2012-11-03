@@ -148,7 +148,7 @@ namespace spa
       m_dProgress1               = -1.0;
       m_dProgress2               = -1.0;
       m_bShow                    = true;
-      m_hwnd                     = NULL;
+      m_oswindow                     = NULL;
       m_bForceUpdatedBuild       = false;
       m_bSynch                   = true;
       m_hmutexInstall            = NULL;
@@ -227,7 +227,7 @@ namespace spa
       if(g_bInstalling)
          return -1;
 
-      // ::MessageBox(g_hwnd, "Start", "Start", MB_OK);
+      // ::MessageBox(g_oswindow, "Start", "Start", MB_OK);
 
       keep_true keeptrueInstalling(g_bInstalling);
 
@@ -677,9 +677,9 @@ RetryHost:
          if(m_straRestartCommandLine.get_count() > 0)
          {
 
-            oswindow_ hwndSpaBoot = ::FindWindow(NULL, "ca2::fontopus::ccvotagus::spaboot:callback_window");
+            oswindow oswindowSpaBoot = ::FindWindow(NULL, "ca2::fontopus::ccvotagus::spaboot:callback_window");
 
-            if(hwndSpaBoot != NULL)
+            if(oswindowSpaBoot != NULL)
             {
                vsstring str = m_straRestartCommandLine.encode_v16();
                COPYDATASTRUCT cds;
@@ -687,7 +687,7 @@ RetryHost:
                cds.dwData = 15111984;
                cds.cbData = (DWORD) str.length();
                cds.lpData = (PVOID) (const char *) str;
-               ::SendMessageA(hwndSpaBoot, WM_COPYDATA, NULL, (LPARAM) &cds);
+               ::SendMessageA(oswindowSpaBoot, WM_COPYDATA, NULL, (LPARAM) &cds);
             }
 
          }
@@ -2324,11 +2324,11 @@ RetryHost:
 
 #else
 
-         simple_shell_launcher launcher1(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
+         simple_shell_launcher launcher1(m_pwindow == NULL ? NULL : m_pwindow->m_oswindow, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
 
          launcher1.execute();
 
-         simple_shell_launcher launcher2(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, " : install usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
+         simple_shell_launcher launcher2(m_pwindow == NULL ? NULL : m_pwindow->m_oswindow, "open", strStage, " : install usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
 
          launcher2.execute();
 
@@ -2350,7 +2350,7 @@ RetryHost:
 
 #else
 
-         simple_shell_launcher launcher(m_pwindow == NULL ? NULL : m_pwindow->m_hwnd, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
+         simple_shell_launcher launcher(m_pwindow == NULL ? NULL : m_pwindow->m_oswindow, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
 
          launcher.execute();
 
@@ -2379,7 +2379,7 @@ RetryHost:
 
 #if defined(WINDOWSEX)
        
-      ::PostMessage(txchannel.m_hwnd, WM_USER + 100, a, b);
+      ::PostMessage(txchannel.m_oswindow, WM_USER + 100, a, b);
        
 #else
        
@@ -2413,7 +2413,7 @@ RetryHost:
          vsstring strExec = ms_get_dup(strUrl);
          if(!spa_exec(strExec))
          {
-            ::MessageBox(m_pwindow == NULL ? NULL :m_pwindow->m_hwnd, "Error", "Error", MB_OK);
+            ::MessageBox(m_pwindow == NULL ? NULL :m_pwindow->m_oswindow, "Error", "Error", MB_OK);
          }
          set_progress(((double) i * (0.5 - 0.2) / (double) iCount) + 0.2);
       }
@@ -2449,7 +2449,7 @@ RetryHost:
          installation_file_lock(false);
          //       // keeps g_bInstalling for a while
          //         Sleep((1984 + 1977) * 5);
-         //::PostMessage(g_hwnd, WM_CLOSE, 0, 0);
+         //::PostMessage(g_oswindow, WM_CLOSE, 0, 0);
 
          if(m_straRestartProcess.get_count() > 0)
          {

@@ -208,7 +208,7 @@ namespace sockets
       socket_id_list m_fds; ///< Active file descriptor list
       socket_id_list m_fds_erase; ///< File descriptors that are to be erased from m_sockets
       socket_id_list m_fds_callonconnect; ///< checklist CallOnConnect
-      socket_id_list m_fds_detach; ///< checklist Detach
+      socket_id_list m_fds_detach; ///< checklist detach
       socket_id_list m_fds_timeout; ///< checklist timeout
       socket_id_list m_fds_retry; ///< checklist retry client connect
       socket_id_list m_fds_close; ///< checklist close and delete

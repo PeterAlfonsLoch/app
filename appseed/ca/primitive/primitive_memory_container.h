@@ -53,7 +53,7 @@ namespace primitive
 
       memory_container & operator =(const memory_container &container);
 
-      bool Attach(memory_base *pstorage);
+      bool attach(memory_base *pstorage);
 
       memory_base * detach();
 

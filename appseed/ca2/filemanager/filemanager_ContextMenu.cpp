@@ -59,7 +59,7 @@ void ContextMenu::OnCommand(UINT uiId)
    info.fMask = CMIC_MASK_ASYNCOK;
    info.lpParameters = NULL;
    info.lpDirectory = NULL;
-   info.hwnd = (oswindow_) System.GetMainWnd()->_get_handle();
+   info.oswindow = (oswindow) System.GetMainWnd()->get_handle();
    info.lpVerb = MAKEINTRESOURCE(uiId - 0x1000);
    info.nShow = SW_SHOWNORMAL;
 

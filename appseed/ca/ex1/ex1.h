@@ -257,7 +257,7 @@ class CDockContext;                     // for dragging control bars
                            // wParam = ID of child ::ca::window
                            // lParam = lpRectNew (new position/size)
 #define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
-#define WM_QUERYCENTERWND   0x036B  // lParam = oswindow_ to use as centering parent
+#define WM_QUERYCENTERWND   0x036B  // lParam = oswindow to use as centering parent
 #define WM_DISABLEMODAL     0x036C  // lResult = 0, disable during modal state
                            // lResult = 1, don't disable
 #define WM_FLOATSTATUS      0x036D  // wParam combination of FS_* flags below
@@ -265,9 +265,9 @@ class CDockContext;                     // for dragging control bars
 // WM_ACTIVATETOPLEVEL is like WM_ACTIVATEAPP but works with hierarchies
 //   of mixed processes (as is the case with OLE in-place activation)
 #define WM_ACTIVATETOPLEVEL 0x036E  // wParam = nState (like WM_ACTIVATE)
-                           // lParam = pointer to oswindow_[2]
-                           //  lParam[0] = hWnd getting WM_ACTIVATE
-                           //  lParam[1] = hWndOther
+                           // lParam = pointer to oswindow[2]
+                           //  lParam[0] = oswindow getting WM_ACTIVATE
+                           //  lParam[1] = oswindow_Other
 
 #define WM_RESERVED_036F   0x036F  // was WM_QUERY3DCONTROLS (now not used)
 
@@ -342,7 +342,7 @@ enum {  FS_SHOW = 0x01, FS_HIDE = 0x02,
       FS_ENABLE = 0x10, FS_DISABLE = 0x20,
       FS_SYNCACTIVE = 0x40 };
 
-CLASS_DECL_ca void __reposition_window(__SIZEPARENTPARAMS* lpLayout, ::user::interaction * hWnd, LPCRECT lpRect);
+CLASS_DECL_ca void __reposition_window(__SIZEPARENTPARAMS* lpLayout, ::user::interaction * oswindow, LPCRECT lpRect);
 
 #ifndef LAYOUT_LTR
 #define LAYOUT_LTR                         0x00000000

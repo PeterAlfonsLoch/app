@@ -159,8 +159,8 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(int iItem)
 
 
 
-//    oswindow_ hwndOld = __get_thread_state()->m_hTrackingWindow;
-//    m_hwndFilter = NULL;
+//    oswindow oswindowOld = __get_thread_state()->m_hTrackingWindow;
+//    m_oswindowFilter = NULL;
     return VMSR_SUCCESS;
 }
 
@@ -220,7 +220,7 @@ LRESULT CALLBACK simple_menu_bar::MessageProc(
 
     if(code == MSGF_MENU)
     {
-/*        ASSERT(pmsg->hwnd == m_hwndFilter);*/
+/*        ASSERT(pmsg->oswindow == m_oswindowFilter);*/
 
         if(pmsg->message == WM_MOUSEMOVE)
         {
@@ -559,7 +559,7 @@ bool simple_menu_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyl
 //   _gen::GetDropDownWidth();
 //   ASSERT(gen_DropDownWidth != -1);
 
-   // create the oswindow_
+   // create the oswindow
    class rect rect;
    rect.null();
    if (!::user::interaction::create(NULL, NULL, dwStyle, rect, pParentWnd, nID))

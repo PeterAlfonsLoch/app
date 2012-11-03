@@ -172,14 +172,14 @@ retry_license:
          {
             string strMessage = pszMessage;
             strMessage.replace("<br>", "\r\n");
-            return MessageBox(pwndOwner == NULL ? NULL : (oswindow_) pwndOwner->get_wnd()->get_os_data(), strMessage, m_strAppName, fuStyle);
+            return MessageBox(pwndOwner == NULL ? NULL : (oswindow) pwndOwner->get_wnd()->get_os_data(), strMessage, m_strAppName, fuStyle);
          }*/
       }
       catch(...)
       {
          string strMessage = pszMessage;
          strMessage.replace("<br>", "\r\n");
-         return MessageBox(pwndOwner == NULL ? NULL : (oswindow_) pwndOwner->get_wnd()->get_os_data(), strMessage, m_strAppName, fuStyle);
+         return MessageBox(pwndOwner == NULL ? NULL : (oswindow) pwndOwner->get_wnd()->get_os_data(), strMessage, m_strAppName, fuStyle);
       }
       if(box.m_strResponse == "ok")
       {

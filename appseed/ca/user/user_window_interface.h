@@ -73,7 +73,7 @@ namespace user
       //window_interface * _001GetParent() const;
       //virtual bool _001IsFrameWnd();
       //user::frame_window_interface * _001GetParentFrame() const;
-      //bool Attach(oswindow_ hwnd);
+      //bool attach(oswindow oswindow);
 
       virtual void PreSubClassWindow();
 
@@ -95,13 +95,13 @@ namespace user
       virtual window_interface * window_interface_get_parent();
 
 
-      /*oswindow_ GetHandle() const;
+      /*oswindow GetHandle() const;
       DWORD GetStyle() const;
       DWORD GetExStyle() const;
       bool ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
       bool ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
-      static bool PASCAL ModifyStyle(oswindow_ hwnd, DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
-      static bool PASCAL ModifyStyleEx(oswindow_ hwnd, DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
+      static bool PASCAL ModifyStyle(oswindow oswindow, DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
+      static bool PASCAL ModifyStyleEx(oswindow oswindow, DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
 
       LRESULT SendMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
       bool PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);*/
@@ -134,7 +134,7 @@ namespace user
       bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
          ::ca::region* prgnUpdate = NULL,
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
-      bool SetTimer(UINT nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow_, UINT, UINT, DWORD));
+      bool SetTimer(UINT nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, UINT, DWORD));
       bool KillTimer(int nIDEvent);
       bool SetWindowPos(const ::ca::window* pWndInsertAfter, int x, int y, int cx, int cy, UINT nFlags);
       ::ca::window * SetFocus();*/
@@ -183,33 +183,33 @@ namespace user
       };
 
       //void Optimize001(
-      //   user::HwndTree::Array & hwndtreea,
+      //   user::oswindow_tree::Array & oswindowtreea,
       //   LPCRECT lpcrect);
 
       //EOptimize Optimize001(
-      //   user::HwndTree::Array & hwndtreea,
+      //   user::oswindow_tree::Array & oswindowtreea,
       //   HRGN hrgn);
 
       //EOptimize Optimize001(
-      //   user::HwndTree & hwndtree,
+      //   user::oswindow_tree & oswindowtree,
       //   HRGN hrgn);
 
       void Optimize008(
-         user::HwndTree::Array & hwndtreea,
+         user::oswindow_tree::Array & oswindowtreea,
          LPCRECT lpcrect);
 
       EOptimize Optimize008(
-         user::HwndTree::Array & hwndtreea,
+         user::oswindow_tree::Array & oswindowtreea,
          HRGN hrgn);
 
       EOptimize Optimize008(
-         user::HwndTree & hwndtree,
+         user::oswindow_tree & oswindowtree,
          HRGN hrgn);
 
 
 
-      void TwfGetWndArray(user::LPWndArray & wndpa);
-      void TwfGetWndArray(user::oswindow_array & hwnda);
+      void TwfGetWndArray(user::interaction_ptr_array & wndpa);
+      void TwfGetWndArray(user::oswindow_array & oswindowa);
 
       virtual bool Redraw(rect_array & recta);
       virtual bool Redraw(LPCRECT lprect = NULL, ::ca::region * prgn = NULL);

@@ -18,7 +18,7 @@ file_size_table::get_fs_size & file_size_table::get_fs_size::operator = (const g
       m_bPending        = getfssize.m_bPending;
       m_iSize           = getfssize.m_iSize;
       m_bRet            = getfssize.m_bRet;
-      m_hwnd            = getfssize.m_hwnd;
+      m_oswindow            = getfssize.m_oswindow;
 
    }
    return *this;
@@ -31,7 +31,7 @@ file_size_table::file_size_table(::ca::application * papp) :
    m_hmap = NULL;
    m_item.m_pitemParent = NULL;
    m_pwndServer = NULL;
-   m_hwndServer = NULL;
+   m_oswindowServer = NULL;
 
 /*   SECURITY_ATTRIBUTES MutexAttributes;
    ZeroMemory( &MutexAttributes, sizeof(MutexAttributes) );
@@ -384,10 +384,10 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
 #ifdef WINDOWS
 
    db_server * pcentral = dynamic_cast < db_server * > (&System.db());
-   oswindow_ hwnd = pcentral->m_pfilesystemsizeset->m_table.m_hwndServer;
-   if(hwnd == NULL || ! ::IsWindow(hwnd))
+   oswindow oswindow = pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer;
+   if(oswindow == NULL || ! ::IsWindow(oswindow))
    {
-      if(pcentral->m_pfilesystemsizeset->m_table.m_hwndServer == NULL)
+      if(pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer == NULL)
       {
          ClientStartServer();
       }
@@ -405,9 +405,9 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
    data.dwData = 0;
    data.cbData = (DWORD) file.get_length();
    data.lpData = file.get_data();
-   oswindow_ hwndWparam = (oswindow_) m_p->get_os_data();
-   WPARAM wparam = (WPARAM) hwndWparam;
-   if(::SendMessage(hwnd, WM_COPYDATA, wparam, (LPARAM) &data))
+   ::oswindow oswindowWparam = (::oswindow) m_p->get_os_data();
+   WPARAM wparam = (WPARAM) oswindowWparam;
+   if(::SendMessage(oswindow, WM_COPYDATA, wparam, (LPARAM) &data))
    {
       i64Size = m_size.m_iSize;
       bPending = m_size.m_bPending;
@@ -445,7 +445,7 @@ void FileSystemSizeWnd::_001OnCopyData(gen::signal_object * pobj)
       size.read(file);
 
       single_lock sl(&m_cs, TRUE);
-      size.m_hwnd = (oswindow_) pbase->m_wparam;
+      size.m_oswindow = (oswindow) pbase->m_wparam;
       size.m_bRet =  pcentral->m_pfilesystemsizeset->get_fs_size(
          size.m_iSize,
          size.m_strPath,
@@ -480,7 +480,7 @@ void FileSystemSizeWnd::_001OnTimer(gen::signal_object * pobj)
     SCAST_PTR(::gen::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 100)
    {
-      //::PostMessage((oswindow_) pbase->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);
+      //::PostMessage((oswindow) pbase->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);
       if(m_sizea.get_size() > 0)
       {
          COPYDATASTRUCT data;
@@ -497,7 +497,7 @@ void FileSystemSizeWnd::_001OnTimer(gen::signal_object * pobj)
             size.write(file);
             data.cbData = (DWORD) file.get_length();
             data.lpData = file.get_data();
-            ::SendMessage((oswindow_) size.m_hwnd, WM_COPYDATA, (WPARAM) m_p->get_os_data(), (LPARAM) &data);
+            ::SendMessage((oswindow) size.m_oswindow, WM_COPYDATA, (WPARAM) m_p->get_os_data(), (LPARAM) &data);
             m_sizea.remove_at(0);
          }
       }
@@ -543,7 +543,7 @@ void FileSystemSizeWnd::ClientStartServer()
 
    }
 
-   pcentral->m_pfilesystemsizeset->m_table.m_hwndServer = ::FindWindowEx(HWND_MESSAGE, NULL, NULL, "Local\\ca2::fontopus::FileSystemSizeWnd::Server");
+   pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer = ::FindWindowEx(HWND_MESSAGE, NULL, NULL, "Local\\ca2::fontopus::FileSystemSizeWnd::Server");
 
 #else
 
@@ -563,7 +563,7 @@ void file_size_table::get_fs_size::write(ex1::byte_output_stream & ostream)
 
 #ifdef WINDOWS
 
-   ostream << (int) m_hwnd;
+   ostream << (int) m_oswindow;
 
 #else
 
@@ -583,7 +583,7 @@ void file_size_table::get_fs_size::read(ex1::byte_input_stream & istream)
 
 #ifdef WINDOWS
 
-   istream >> (int &) m_hwnd;
+   istream >> (int &) m_oswindow;
 
 #else
 

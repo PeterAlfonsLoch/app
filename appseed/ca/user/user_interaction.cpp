@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_ca ::user::interaction * __get_parent_owner(::user::interaction * hWnd);
+CLASS_DECL_ca ::user::interaction * __get_parent_owner(::user::interaction * oswindow);
 
 
 namespace user
@@ -1089,7 +1089,7 @@ namespace user
          return m_pimpl->pre_translate_message(pobj);
    }
 
-   void * interaction::_get_handle()
+   oswindow interaction::get_handle()
    {
 
       try
@@ -1106,11 +1106,11 @@ namespace user
 
       }
 
-      return get_wnd()->get_os_data();
+      return (oswindow) get_wnd()->get_os_data();
 
    }
 
-   bool interaction::subclass_window(void * posdata)
+   bool interaction::subclass_window(oswindow posdata)
    {
 
       if(IsWindow())
@@ -1130,7 +1130,7 @@ namespace user
 
       pimplNew->m_pguie = this;
 
-      if(!pimplNew->SubclassWindow((oswindow_) posdata))
+      if(!pimplNew->subclass_window((oswindow) posdata))
       {
 
          delete pimplNew;
@@ -1180,7 +1180,7 @@ namespace user
 
    }
 
-   void * interaction::unsubclass_window()
+   oswindow interaction::unsubclass_window()
    {
 
       ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_pimpl);
@@ -1188,7 +1188,7 @@ namespace user
       if(pwindow != NULL)
       {
 
-         return pwindow->UnsubclassWindow();
+         return pwindow->unsubclass_window();
       }
       return NULL;
    }
@@ -1670,16 +1670,16 @@ namespace user
    {
       ASSERT_VALID(this);
 
-      interaction * hWndParent = this;
-      interaction * hWndT;
-      while ((hWndT = __get_parent_owner(hWndParent)) != NULL)
+      interaction * oswindow_Parent = this;
+      interaction * oswindow_T;
+      while ((oswindow_T = __get_parent_owner(oswindow_Parent)) != NULL)
       {
-         if(hWndT->get_wnd() == NULL)
+         if(oswindow_T->get_wnd() == NULL)
             break;
-         hWndParent = hWndT;
+         oswindow_Parent = oswindow_T;
       }
 
-      return hWndParent;
+      return oswindow_Parent;
    }
 
    ::frame_window * interaction::EnsureParentFrame()
@@ -2098,20 +2098,20 @@ namespace user
          m_pimpl->ShowOwnedPopups(bShow);
    }
 
-   bool interaction::Attach(void * hWndNew)
+   bool interaction::attach(oswindow oswindow_New)
    {
       if(m_pimpl == NULL || m_pimpl == this)
          return FALSE;
       else
-         return m_pimpl->Attach(hWndNew);
+         return m_pimpl->attach(oswindow_New);
    }
 
-   void * interaction::Detach()
+   oswindow interaction::detach()
    {
       if(m_pimpl == NULL || m_pimpl == this)
          return NULL;
       else
-         return m_pimpl->Detach();
+         return m_pimpl->detach();
    }
 
    void interaction::pre_subclass_window()
@@ -2138,7 +2138,7 @@ namespace user
       bool bIdle = TRUE;
       LONG lIdleCount = 0;
       bool bShowIdle = (dwFlags & MLF_SHOWONIDLE) && !(GetStyle() & WS_VISIBLE);
-//      oswindow_ hWndParent = ::GetParent(get_handle());
+//      oswindow oswindow_Parent = ::GetParent(get_handle());
       m_iModal = m_iModalCount;
       int iLevel = m_iModal;
       ::user::interaction * puieParent = GetParent();
@@ -2380,7 +2380,7 @@ ExitModal:
 
    // Timer Functions
    uint_ptr interaction::SetTimer(uint_ptr nIDEvent, UINT nElapse,
-         void (CALLBACK* lpfnTimer)(oswindow_, UINT, uint_ptr, DWORD))
+         void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD))
    {
       if(m_pimpl == NULL)
          return 0;
@@ -2550,7 +2550,7 @@ ExitModal:
       ASSERT(pobj != NULL);
 
       SCAST_PTR(::gen::message::base, pbase, pobj);
-      // walk from the target window up to the hWndStop window checking
+      // walk from the target window up to the oswindow_Stop window checking
       //  if any window wants to translate this message
 
       for (::user::interaction * pui = pbase->m_pwnd; pui != NULL; pui->GetParent())
@@ -2561,7 +2561,7 @@ ExitModal:
          if(pobj->m_bRet)
             return; // trapped by target window (eg: accelerators)
 
-         // got to hWndStop window without interest
+         // got to oswindow_Stop window without interest
          if(pui == puiStop)
             break;
 
@@ -3176,10 +3176,10 @@ CLASS_DECL_ca ::user::interaction * WINAPI CreateGuieEx(::ca::application * papp
 
 
 
-::user::interaction * __get_parent_owner(::user::interaction * hWnd)
+::user::interaction * __get_parent_owner(::user::interaction * oswindow)
 {
    // check for permanent-owned ::ca::window first
-   ::user::interaction* pWnd = hWnd;
+   ::user::interaction* pWnd = oswindow;
    if(pWnd == NULL)
       return NULL;
    return pWnd->GetOwner();

@@ -33,7 +33,7 @@ namespace userbase
 
       void layout();
 
-      virtual bool TrackPopupMenu(int iFlags, int x, int y, ::user::interaction * hwndParent);
+      virtual bool TrackPopupMenu(int iFlags, int x, int y, ::user::interaction * oswindowParent);
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)
 
@@ -52,8 +52,8 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnEnable)
 
 
-      bool _TrackPopupMenu(int iFlags, int x, int y, ::user::interaction * hwndParent, menu * pmenuParent);
-      ::user::interaction *     m_hwndParent;
+      bool _TrackPopupMenu(int iFlags, int x, int y, ::user::interaction * oswindowParent, menu * pmenuParent);
+      ::user::interaction *     m_oswindowParent;
       menu *        m_pmenuParent;
       HMENU                m_hmenu;
       menu *        _m_pmenu;

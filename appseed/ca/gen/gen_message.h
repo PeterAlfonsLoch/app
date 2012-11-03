@@ -6,7 +6,7 @@ typedef struct tagCREATESTRUCTA {
     LPVOID      lpCreateParams;
     HINSTANCE   hInstance;
     HMENU       hMenu;
-    oswindow_        hwndParent;
+    oswindow        oswindowParent;
     int         cy;
     int         cx;
     int         y;
@@ -20,7 +20,7 @@ typedef struct tagCREATESTRUCTW {
     LPVOID      lpCreateParams;
     HINSTANCE   hInstance;
     HMENU       hMenu;
-    oswindow_        hwndParent;
+    oswindow        oswindowParent;
     int         cy;
     int         cx;
     int         y;
@@ -559,7 +559,7 @@ namespace gen
             command(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
             UINT GetNotifyCode();
             UINT GetId();
-            oswindow_ GetHwnd();
+            oswindow Getoswindow_();
          };
 
          class CLASS_DECL_ca ctl_color : public base

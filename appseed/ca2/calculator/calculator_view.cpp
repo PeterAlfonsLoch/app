@@ -123,14 +123,14 @@ namespace calculator
    void view:: _001OnDraw(::ca::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
-      //m_hwnd = GetSafeHwnd();
+      //m_oswindow = GetSafeoswindow_();
       //pdc->SetBkMode(TRANSPARENT);
 
       //FIBITMAP * pdib = CImaging::LoadImageFile("C:\\screenshot.jpeg");
 
       //::ca::bitmap bmp2;
 
-      //bmp2.Attach(CImaging::FItoHBITMAP(pdib, true));
+      //bmp2.attach(CImaging::FItoHBITMAP(pdib, true));
       //::ca::graphics_sp dc2;
       //dc2.CreateCompatibleDC(pdc);
       //dc2.SelectObject(bmp2);

@@ -117,7 +117,7 @@ namespace hotplugin
       }
    }
 
-   oswindow_ plugin::get_host_window()
+   oswindow plugin::get_host_window()
    {
       if(m_phost != NULL)
       {
@@ -224,7 +224,7 @@ namespace hotplugin
 
 #ifdef WINDOWSEX
 
-         ::PostMessage(m_phost->::small_ipc_channel::m_hwnd, WM_USER + 100, 3, 1);
+         ::PostMessage(m_phost->::small_ipc_channel::m_oswindow, WM_USER + 100, 3, 1);
 
 #else
 

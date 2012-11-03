@@ -78,15 +78,15 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(lprect);
-   //   TwfRender(pdc, GetSafeHwnd(), lprect, NULL, true);
+   //   TwfRender(pdc, GetSafeoswindow_(), lprect, NULL, true);
    }
 
 
    /*bool window_interface::TwfRender(
       ::ca::graphics *          pdc,
-      oswindow_           hwndExclude,
+      oswindow           oswindowExclude,
       LPCRECT        lpcrectUpdate,
-      user::HwndTree::Array & hwndtreea,
+      user::oswindow_tree::Array & oswindowtreea,
       bool           bBackground)
    {
       rect rectUpdate(*lpcrectUpdate);
@@ -95,25 +95,25 @@ namespace user
 
       rect rectNewUpdate;
 
-      for(int i = hwndtreea.get_size() - 1; i >= 0; i--)
+      for(int i = oswindowtreea.get_size() - 1; i >= 0; i--)
       {
-         user::HwndTree & hwndtreeChild = hwndtreea[i];
-         oswindow_ hwndChild = hwndtreeChild.m_hwnd;
-         if(hwndChild == hwndExclude)
+         user::oswindow_tree & oswindowtreeChild = oswindowtreea[i];
+         oswindow oswindowChild = oswindowtreeChild.m_oswindow;
+         if(oswindowChild == oswindowExclude)
          {
             if(bBackground)
                return false;
             else
                continue;
          }
-         ::ca::window * pwndChild = ::ca::window::from_handle(hwndChild);
-         oswindow_ hwndParent = ::GetParent(hwndChild);
-         ::GetClientRect(hwndChild, rectChild);
-         ::ClientToScreen(hwndChild, &rectChild.top_left());
-         ::ClientToScreen(hwndChild, &rectChild.bottom_right());
+         ::ca::window * pwndChild = ::ca::window::from_handle(oswindowChild);
+         oswindow oswindowParent = ::GetParent(oswindowChild);
+         ::GetClientRect(oswindowChild, rectChild);
+         ::ClientToScreen(oswindowChild, &rectChild.top_left());
+         ::ClientToScreen(oswindowChild, &rectChild.bottom_right());
          if(rectNewUpdate.intersect(rectChild, rectUpdate))
          {
-            if(!TwfRender(pdc, hwndExclude, rectNewUpdate, hwndtreeChild, bBackground))
+            if(!TwfRender(pdc, oswindowExclude, rectNewUpdate, oswindowtreeChild, bBackground))
                return false;
          }
        }
@@ -123,9 +123,9 @@ namespace user
 
    bool window_interface::TwfRender(
       ::ca::graphics *          pdc,
-      oswindow_           hwndExclude,
+      oswindow           oswindowExclude,
       LPCRECT        lpcrectUpdate,
-      user::HwndTree & hwndtree,
+      user::oswindow_tree & oswindowtree,
       bool           bBackground)
    {
 
@@ -133,14 +133,14 @@ namespace user
 
       DWORD dwTimeIn = get_tick_count();
 
-      oswindow_ hwndParam = hwndtree.m_hwnd;
+      oswindow oswindowParam = oswindowtree.m_oswindow;
 
-      if(hwndParam == NULL)
+      if(oswindowParam == NULL)
       {
          return false;
       }
 
-      if(hwndParam == hwndExclude)
+      if(oswindowParam == oswindowExclude)
       {
          if(bBackground)
             return false;
@@ -148,20 +148,20 @@ namespace user
             return true;
       }
 
-      if(!::IsWindow(hwndParam))
+      if(!::IsWindow(oswindowParam))
       {
          return false;
       }
 
-      if(!::IsWindowVisible(hwndParam))
+      if(!::IsWindowVisible(oswindowParam))
       {
          return false;
       }
 
 
-      ::ca::window * pwnd = ::ca::window::FromHandlePermanent(hwndParam);
+      ::ca::window * pwnd = ::ca::window::FromHandlePermanent(oswindowParam);
 
-      if((::GetWindowLong((hwndParam), GWL_STYLE) & WS_VISIBLE) == 0)
+      if((::GetWindowLong((oswindowParam), GWL_STYLE) & WS_VISIBLE) == 0)
       {
          return true;
       }
@@ -173,7 +173,7 @@ namespace user
       if(pwndi == NULL)
       {
          single_lock sl(m_papp->s_ptwf->m_csWndInterfaceMap, TRUE);
-         if(m_papp->s_ptwf->m_wndinterfacemap.Lookup(hwndParam, pwndi))
+         if(m_papp->s_ptwf->m_wndinterfacemap.Lookup(oswindowParam, pwndi))
          {
             if(pwndi != NULL)
             {
@@ -182,9 +182,9 @@ namespace user
          }
          else
          {
-            m_papp->s_ptwf->m_wndinterfacemap.set_at(hwndParam, pwndi);
+            m_papp->s_ptwf->m_wndinterfacemap.set_at(oswindowParam, pwndi);
             ::SendMessage(
-               hwndParam,
+               oswindowParam,
                window_interface::MessageBaseWndGetProperty,
                window_interface::PropertyDrawBaseWndInterface,
                (LPARAM) &pwndi);
@@ -196,11 +196,11 @@ namespace user
      //    return true;
 
       rect rectWindow;
-      ::GetClientRect(hwndParam, rectWindow);
-      ::ClientToScreen(hwndParam, &rectWindow.top_left());
-      ::ClientToScreen(hwndParam, &rectWindow.bottom_right());
-      ::ScreenToClient(GetSafeHwnd(), &rectWindow.top_left());
-      ::ScreenToClient(GetSafeHwnd(), &rectWindow.bottom_right());
+      ::GetClientRect(oswindowParam, rectWindow);
+      ::ClientToScreen(oswindowParam, &rectWindow.top_left());
+      ::ClientToScreen(oswindowParam, &rectWindow.bottom_right());
+      ::ScreenToClient(GetSafeoswindow_(), &rectWindow.top_left());
+      ::ScreenToClient(GetSafeoswindow_(), &rectWindow.bottom_right());
 
       pdc->SetViewportOrg(rectWindow.left, rectWindow.top);
 
@@ -223,11 +223,11 @@ namespace user
          bool bWin4 = FALSE;
       //_gen::FillPSOnStack();
          ::DefWindowProc(
-            hwndParam,
+            oswindowParam,
             (bWin4 ? WM_PRINT : WM_PAINT),
             (WPARAM)(pdc->m_hDC),
             (LPARAM)(bWin4 ? PRF_CHILDREN | PRF_CLIENT : 0));
-         //::RedrawWindow(hwndParam, NULL, rgnClient, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOCHILDREN);
+         //::RedrawWindow(oswindowParam, NULL, rgnClient, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOCHILDREN);
       }
 
 
@@ -242,9 +242,9 @@ namespace user
 
       return TwfRender(
          pdc,
-         hwndExclude,
+         oswindowExclude,
          rectUpdate,
-         hwndtree.m_hwndtreea,
+         oswindowtree.m_oswindowtreea,
          bBackground);
 
    }*/
@@ -255,15 +255,15 @@ namespace user
    }
 
 
-   void window_interface::TwfGetWndArray(user::LPWndArray & wndpa)
+   void window_interface::TwfGetWndArray(user::interaction_ptr_array & wndpa)
    {
-      wndpa = *dynamic_cast<user::LPWndArray *>(get_app());
+      wndpa = *dynamic_cast<user::interaction_ptr_array *>(get_app());
    }
 
-   void window_interface::TwfGetWndArray(user::oswindow_array & hwnda)
+   void window_interface::TwfGetWndArray(user::oswindow_array & oswindowa)
    {
-      user::LPWndArray & wndpa = *dynamic_cast<user::LPWndArray *>(get_app());
-      wndpa.get_wnda(hwnda);
+      user::interaction_ptr_array & wndpa = *dynamic_cast<user::interaction_ptr_array *>(get_app());
+      wndpa.get_wnda(oswindowa);
    }
 
 
@@ -323,32 +323,32 @@ namespace user
    // obscured by opaque children.
 
    /*void window_interface::Optimize001(
-      user::HwndTree::Array & hwndtreea,
+      user::oswindow_tree::Array & oswindowtreea,
       LPCRECT lpcrect)
    {
       ::ca::region rgn;
 
       rgn.create_rect(lpcrect);
 
-      Optimize001(hwndtreea, rgn);
+      Optimize001(oswindowtreea, rgn);
    }
 
    window_interface::EOptimize window_interface::Optimize001(
-      user::HwndTree::Array & hwndtreea,
+      user::oswindow_tree::Array & oswindowtreea,
       HRGN hrgn)
    {
-      for(int i = 0; i < hwndtreea.get_size();)
+      for(int i = 0; i < oswindowtreea.get_size();)
       {
-         user::HwndTree & hwndtree = hwndtreea[i];
+         user::oswindow_tree & oswindowtree = oswindowtreea[i];
          switch(Optimize001(
-            hwndtree,
+            oswindowtree,
             hrgn))
          {
          case OptimizeNone:
             i++;
             break;
          case OptimizeThis:
-            hwndtreea.remove_at(i);
+            oswindowtreea.remove_at(i);
             break;
          }
       }
@@ -358,13 +358,13 @@ namespace user
 
 
    window_interface::EOptimize window_interface::Optimize001(
-      user::HwndTree & hwndtree,
+      user::oswindow_tree & oswindowtree,
       HRGN hrgn)
    {
 
-      oswindow_ hwnd = hwndtree.m_hwnd;
+      oswindow oswindow = oswindowtree.m_oswindow;
 
-      if(!::IsWindowVisible(hwnd))
+      if(!::IsWindowVisible(oswindow))
       {
          return OptimizeThis;
       }
@@ -373,23 +373,23 @@ namespace user
       if(pwndi == NULL)
       {
          single_lock sl(&m_papp->s_ptwf->m_csWndInterfaceMap, TRUE);
-         if(!m_papp->s_ptwf->m_wndinterfacemap.Lookup(hwnd, pwndi))
+         if(!m_papp->s_ptwf->m_wndinterfacemap.Lookup(oswindow, pwndi))
          {
             ::SendMessage(
-               hwnd,
+               oswindow,
                window_interface::MessageBaseWndGetProperty,
                window_interface::PropertyDrawBaseWndInterface,
                (LPARAM) &pwndi);
-            m_papp->s_ptwf->m_wndinterfacemap.set_at(hwnd, pwndi);
+            m_papp->s_ptwf->m_wndinterfacemap.set_at(oswindow, pwndi);
          }
       }
 
       if(pwndi != NULL && !pwndi->_001HasTranslucency())
       {
          rect rectClient;
-         ::GetClientRect(hwnd, rectClient);
-         ::ClientToScreen(hwnd, &rectClient.top_left());
-         ::ClientToScreen(hwnd, &rectClient.bottom_right());
+         ::GetClientRect(oswindow, rectClient);
+         ::ClientToScreen(oswindow, &rectClient.top_left());
+         ::ClientToScreen(oswindow, &rectClient.bottom_right());
 
          ::ca::region rgn;
          rgn.create_rect(rectClient);
@@ -401,7 +401,7 @@ namespace user
       }
 
       return Optimize001(
-            hwndtree.m_hwndtreea,
+            oswindowtree.m_oswindowtreea,
             hrgn);
    }
    */

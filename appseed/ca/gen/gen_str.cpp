@@ -1074,19 +1074,19 @@ namespace gen
 
    }
 
-   string str::get_window_text(oswindow_ hwnd)
+   string str::get_window_text(oswindow oswindow)
    {
 
       string str;
 
-      if (hwnd != NULL)
+      if (oswindow != NULL)
       {
 
 #ifdef WINDOWS
 
-         int nLen = ::GetWindowTextLength(hwnd);
+         int nLen = ::GetWindowTextLength(oswindow);
 
-         ::GetWindowText(hwnd, str.GetBufferSetLength(nLen), nLen+1);
+         ::GetWindowText(oswindow, str.GetBufferSetLength(nLen), nLen+1);
 
          str.ReleaseBuffer();
 

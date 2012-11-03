@@ -452,13 +452,13 @@ namespace fs
       UNREFERENCED_PARAMETER(pitem);
 //         Item & item = m_itema.get_item(pitem->m_dwUser);
 
-      //oswindow_ hwnd = _get_handle();
+      //oswindow oswindow = get_handle();
 
       /*   IShellFolder * lpsf = item.m_spshellfolder;
 
       item.m_iImage =
       _shell::g_imageset.GetImage(
-      hwnd,
+      oswindow,
       lpsf,
       item.m_lpiidlAbsolute,
       item.m_lpiidlRelative,
@@ -467,7 +467,7 @@ namespace fs
 
       item.m_iImageSelected =
       _shell::g_imageset.GetImage(
-      hwnd,
+      oswindow,
       lpsf,
       item.m_lpiidlAbsolute,
       item.m_lpiidlRelative,

@@ -63570,7 +63570,7 @@ error_out:
 
          /* Compute collating sequences used by either the ORDER BY clause or
          ** by any temporary tables needed to implement the compound select.
-         ** Attach the KeyInfo structure to all temporary tables.  Invoke the
+         ** attach the KeyInfo structure to all temporary tables.  Invoke the
          ** ORDER BY processing if there is an ORDER BY clause.
          **
          ** This section is run by the right-most SELECT statement only.
@@ -66919,7 +66919,7 @@ update_cleanup:
       }
       pMain = db->aDb[0].pBt;
 
-      /* Attach the temporary database as 'vacuum_db'. The synchronous pragma
+      /* attach the temporary database as 'vacuum_db'. The synchronous pragma
       ** can be set to 'off' for this file, as it is not recovered if a crash
       ** occurs anyway. The integrity of the database is maintained by a
       ** (possibly synchronous) transaction opened on the main database before
@@ -75417,7 +75417,7 @@ abort_parse:
    ** rollback.
    */
    SQLITE_API void *sqlite3_commit_hook(
-      sqlite3 *db,              /* Attach the hook to this database */
+      sqlite3 *db,              /* attach the hook to this database */
       int (*xCallback)(void*),  /* Function to invoke on each commit */
       void *pArg                /* Argument to the function */
       ){
@@ -75435,7 +75435,7 @@ abort_parse:
    ** inserted or deleted using this database connection.
    */
    SQLITE_API void *sqlite3_update_hook(
-      sqlite3 *db,              /* Attach the hook to this database */
+      sqlite3 *db,              /* attach the hook to this database */
       void (*xCallback)(void*,int,char const *,char const *,sqlite_int64),
       void *pArg                /* Argument to the function */
       ){
@@ -75453,7 +75453,7 @@ abort_parse:
    ** back by this database connection.
    */
    SQLITE_API void *sqlite3_rollback_hook(
-      sqlite3 *db,              /* Attach the hook to this database */
+      sqlite3 *db,              /* attach the hook to this database */
       void (*xCallback)(void*), /* Callback function */
       void *pArg                /* Argument to the function */
       ){

@@ -45,7 +45,7 @@ void html_form::_001OnDraw(::ca::graphics * pdc)
       sphtmldata->_001OnDraw(pdc);
    }
 
-   // tranas m_hwnd = GetSafeHwnd();
+   // tranas m_oswindow = GetSafeoswindow_();
    //pdc->SetBkMode(TRANSPARENT);
    //get_html_data()->_001OnDraw(pdc);
 
@@ -53,7 +53,7 @@ void html_form::_001OnDraw(::ca::graphics * pdc)
 
    //::ca::bitmap bmp2;
 
-   //bmp2.Attach(imaging::FItoHBITMAP(pdib, true));
+   //bmp2.attach(imaging::FItoHBITMAP(pdib, true));
    //::ca::graphics_sp dc2;
    //dc2.CreateCompatibleDC(pdc);
    //dc2.SelectObject(bmp2);

@@ -86,8 +86,8 @@ namespace ca
       virtual void attach(void * pdata);
 
 
-//      virtual bool Attach(HDC hdc);
-//      virtual HDC Detach();
+//      virtual bool attach(HDC hdc);
+//      virtual HDC detach();
 
 
       virtual ::user::str_context * str_context();

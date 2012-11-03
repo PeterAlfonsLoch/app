@@ -789,7 +789,7 @@ namespace radix
       pbase->set_lresult(0);        // sensible default
       if (pbase->m_uiMessage == WM_COMMAND)
       {
-         if ((oswindow_)pbase->m_lparam == NULL)
+         if ((oswindow)pbase->m_lparam == NULL)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
             nIDP = "Command Failure";
          pbase->set_lresult((LRESULT)TRUE);        // pretend the command was handled
@@ -902,7 +902,7 @@ namespace radix
 
    /*   ___THREAD_STATE* pState = __get_thread_state();
       dumpcontext << "\nm_msgCur = {";
-      dumpcontext << "\n\thwnd = " << (void *)pState->m_msgCur.hwnd;
+      dumpcontext << "\n\toswindow = " << (void *)pState->m_msgCur.oswindow;
       dumpcontext << "\n\tmessage = " << (UINT)pState->m_msgCur.message;
       dumpcontext << "\n\twParam = " << (UINT)pState->m_msgCur.wParam;
       dumpcontext << "\n\tlParam = " << (void *)pState->m_msgCur.lParam;
@@ -1071,7 +1071,7 @@ namespace radix
    bool application::process_initialize()
    {
 
-      m_pframea = new ::user::LPWndArray;
+      m_pframea = new ::user::interaction_ptr_array;
 
       if(!ca_process_initialize())
          return false;
@@ -1295,7 +1295,7 @@ namespace radix
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   ::user::LPWndArray & application::frames()
+   ::user::interaction_ptr_array & application::frames()
    {
       return *m_pframea;
    }
@@ -1635,7 +1635,7 @@ namespace radix
       if (hDC != NULL)
       {
          spgraphics->DeleteDC();
-         bool bRet = spgraphics->Attach(hDC);
+         bool bRet = spgraphics->attach(hDC);
          ASSERT(bRet);
          return bRet;
       }*/
@@ -1799,7 +1799,7 @@ namespace radix
 
       #ifdef WINDOWS
 
-      return MessageBox((oswindow_) (puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->_get_handle())), pszMessage, m_strAppName, fuStyle);
+      return MessageBox((oswindow) (puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
 
       #else
 
@@ -1825,13 +1825,13 @@ namespace radix
    {
       // disable windows for modal dialog
       DoEnableModeless(FALSE);
-      void * hWndTop;
-      void * hWnd = ::ca::window::GetSafeOwner_(NULL, (void **) &hWndTop);
+      ::oswindow oswindow_Top;
+      ::oswindow oswindow = ::ca::window::get_safe_owner(NULL, &oswindow_Top);
 
       // re-enable the parent ::ca::window, so that focus is restored
       // correctly when the dialog is dismissed.
-      if (hWnd != hWndTop)
-         EnableWindow((oswindow_) hWnd, TRUE);
+      if (oswindow != oswindow_Top)
+         EnableWindow((::oswindow) oswindow, TRUE);
 
       // set help context if possible
       DWORD* pdwContext = NULL;
@@ -1841,12 +1841,12 @@ namespace radix
       {
 
          DWORD dwWndPid=0;
-         GetWindowThreadProcessId((oswindow_) hWnd, &dwWndPid);
+         GetWindowThreadProcessId((::oswindow) oswindow, &dwWndPid);
 
-         if (hWnd != NULL && dwWndPid==GetCurrentProcessId() )
+         if (oswindow != NULL && dwWndPid==GetCurrentProcessId() )
          {
             // use cast-level context or frame level context
-            LRESULT lResult = ::SendMessage((oswindow_) hWnd, WM_HELPPROMPTADDR, 0, 0);
+            LRESULT lResult = ::SendMessage((::oswindow) oswindow, WM_HELPPROMPTADDR, 0, 0);
             if (lResult != 0)
                pdwContext = (DWORD*)lResult;
          }
@@ -1918,11 +1918,11 @@ namespace radix
       int nResult;
       if(pApp == NULL)
       {
-         nResult = ::MessageBox((oswindow_) hWnd, lpszPrompt, pszAppName, nType);
+         nResult = ::MessageBox((::oswindow) oswindow, lpszPrompt, pszAppName, nType);
       }
       else
       {
-         nResult = pApp->simple_message_box(pApp->window_from_os_data(hWnd), lpszPrompt, nType);
+         nResult = pApp->simple_message_box(pApp->window_from_os_data(oswindow), lpszPrompt, nType);
       }
 
       // restore prompt context if possible
@@ -1930,8 +1930,8 @@ namespace radix
          *pdwContext = dwOldPromptContext;
 
       // re-enable windows
-      if (hWndTop != NULL)
-         ::EnableWindow((oswindow_) hWndTop, TRUE);
+      if (oswindow_Top != NULL)
+         ::EnableWindow((::oswindow) oswindow_Top, TRUE);
 
       DoEnableModeless(TRUE);
 
@@ -1998,7 +1998,7 @@ namespace radix
       if(pwnd != NULL)
       {
          if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-         || ::user::WndUtil::IsAscendant(System.get_active_guie()->get_safe_handle(), pwnd->get_safe_handle()))
+         || ::user::oswindow_util::IsAscendant(System.get_active_guie()->get_safe_handle(), pwnd->get_safe_handle()))
          {
             return pwnd;
          }
@@ -2011,7 +2011,7 @@ namespace radix
       if(pwnd != NULL)
       {
          if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-         || ::user::WndUtil::IsAscendant(System.get_active_guie()->get_safe_handle(), pwnd->get_safe_handle()))
+         || ::user::oswindow_util::IsAscendant(System.get_active_guie()->get_safe_handle(), pwnd->get_safe_handle()))
          {
             return pwnd;
          }
@@ -2768,7 +2768,7 @@ namespace radix
 
 
 
-   oswindow_ application::get_ca2_app_wnd(const char * psz)
+   oswindow application::get_ca2_app_wnd(const char * psz)
    {
       UNREFERENCED_PARAMETER(psz);
       return NULL;
@@ -2788,10 +2788,10 @@ namespace radix
 
 #ifdef WINDOWS
 
-      oswindow_ hwndCapture = ::GetCapture();
-      if(hwndCapture == NULL)
+      oswindow oswindowCapture = ::GetCapture();
+      if(oswindowCapture == NULL)
          return NULL;
-      return System.window_from_os_data(hwndCapture)->release_capture();
+      return System.window_from_os_data(oswindowCapture)->release_capture();
 
 #else
 
@@ -2806,10 +2806,10 @@ namespace radix
 
 #ifdef WINDOWS
 
-      oswindow_ hwndCapture = ::GetCapture();
-      if(hwndCapture == NULL)
+      oswindow oswindowCapture = ::GetCapture();
+      if(oswindowCapture == NULL)
          return NULL;
-      return System.window_from_os_data(hwndCapture)->get_capture();
+      return System.window_from_os_data(oswindowCapture)->get_capture();
 
 #else
 
@@ -2998,8 +2998,8 @@ namespace radix
    {
       if(m_bSessionSynchronizedScreen)
       {
-         oswindow_ hwndDesktop = ::GetDesktopWindow();
-         ::GetWindowRect(hwndDesktop, &m_rectScreen);
+         oswindow oswindowDesktop = ::GetDesktopWindow();
+         ::GetWindowRect(oswindowDesktop, &m_rectScreen);
       }
       if(lprect != NULL)
       {
@@ -3127,10 +3127,10 @@ namespace radix
       throw not_implemented(get_app());
    }
 
-   ::ca::window * application::FindWindowEx(oswindow_ hwndParent, oswindow_ hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   ::ca::window * application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
    {
-      UNREFERENCED_PARAMETER(hwndParent);
-      UNREFERENCED_PARAMETER(hwndChildAfter);
+      UNREFERENCED_PARAMETER(oswindowParent);
+      UNREFERENCED_PARAMETER(oswindowChildAfter);
       UNREFERENCED_PARAMETER(lpszClass);
       UNREFERENCED_PARAMETER(lpszWindow);
       throw not_implemented(get_app());

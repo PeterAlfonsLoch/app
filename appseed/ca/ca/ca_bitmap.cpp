@@ -84,7 +84,7 @@ namespace ca
    }
 
 
-   bool bitmap::Attach(void * posdata)
+   bool bitmap::attach(void * posdata)
    {
       UNREFERENCED_PARAMETER(posdata);
       throw interface_only_exception(get_app());

@@ -1785,7 +1785,7 @@ void XfplayerViewLine::OnLButtonUp(gen::signal_object * pobj)
       {
          string str;
          str = m_straLink[GetCharLink(iChar)];
-         ASSERT(m_hwnd->IsWindow());
+         ASSERT(m_oswindow->IsWindow());
          System.open_link(str);
       }
    }

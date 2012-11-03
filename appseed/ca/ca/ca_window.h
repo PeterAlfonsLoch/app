@@ -52,11 +52,11 @@ namespace ca
       virtual void SetOwner(::user::interaction * pOwnerWnd);
 
 
+      
       virtual window * from_os_data(void * pdata);
-
-
-
       virtual void * get_os_data() const;
+
+
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
@@ -74,9 +74,9 @@ namespace ca
 
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window();
-      virtual bool SubclassWindow(void * hWnd);
+      virtual bool subclass_window(oswindow oswindow);
       virtual bool SubclassDlgItem(UINT nID, ::ca::window* pParent);
-      virtual void * UnsubclassWindow();
+      virtual oswindow unsubclass_window();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
       virtual bool ExecuteDlgInit(const char * lpszResourceName);
@@ -90,7 +90,7 @@ namespace ca
       virtual bool create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction * pParentWnd, id id, create_context* pContext = NULL);
 
       // advanced creation (allows access to extended styles)
-      virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, void * hWndParent, id id, LPVOID lpParam = NULL);
+      virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, oswindow oswindow_Parent, id id, LPVOID lpParam = NULL);
 
       virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd, id id, LPVOID lpParam = NULL);
 
@@ -105,8 +105,8 @@ namespace ca
 
 
       // get immediate child with given ID
-      //void get_child_by_id(id id, int iLevelHWND* phWnd) const;
-      // as above, but returns void *
+      //void get_child_by_id(id id, int iLevelHWND* poswindow_) const;
+      // as above, but returns oswindow
       virtual ::user::interaction * GetDescendantWindow(id id);
       // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message, WPARAM wParam = 0, LPARAM lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
@@ -238,7 +238,7 @@ namespace ca
 
 
    // Timer Functions
-      virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow_, UINT, uint_ptr, DWORD));
+      virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD));
       virtual bool KillTimer(uint_ptr nIDEvent);
 
    // Window State Functions
@@ -351,8 +351,8 @@ namespace ca
    #endif   // WINVER >= 0x0500
 
    // Clipboard Functions
-      virtual bool ChangeClipboardChain(void * hWndNext);
-      virtual void * SetClipboardViewer();
+      virtual bool ChangeClipboardChain(oswindow oswindow_Next);
+      virtual oswindow SetClipboardViewer();
       virtual bool OpenClipboard();
 
    // Caret Functions
@@ -544,7 +544,7 @@ namespace ca
 
       // Clipboard message handler member functions
       void OnAskCbFormatName(UINT nMaxCount, LPTSTR lpszString);
-      void OnChangeCbChain(void * hWndRemove, void * hWndAfter);
+      void OnChangeCbChain(oswindow oswindow_Remove, oswindow oswindow_After);
       void OnDestroyClipboard();
       void OnDrawClipboard();
       void OnHScrollClipboard(::ca::window* pClipAppWnd, UINT nSBCode, UINT nPos);
@@ -671,7 +671,7 @@ namespace ca
       virtual void _001UpdateWindow();
 
 
-      static void * GetSafeOwner_(void * hParent, void ** pWndTop);
+      static oswindow get_safe_owner(oswindow hParent, oswindow* pWndTop);
 
    };
 

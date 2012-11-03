@@ -72,7 +72,7 @@ namespace html
       
       style_sheet_array          m_stylesheeta;
       string                     m_strPathName;
-      user::LPWndArray           m_uiptra;
+      user::interaction_ptr_array           m_uiptra;
       tag *                      m_ptag;
       elemental                  m_elemental;
       bool                       m_bImplemented;

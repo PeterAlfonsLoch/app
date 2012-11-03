@@ -79,7 +79,7 @@ namespace userbase
       bool OnBarCheck(UINT nID);
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-      using ::uinteraction::frame::WorkSetListener::Attach;
+      using ::uinteraction::frame::WorkSetListener::attach;
 
    //#ifdef DEBUG
       virtual void assert_valid() const;

@@ -145,7 +145,7 @@ namespace radix
       // help mode used by the cast
 //      __HELP_TYPE m_eHelpType;
 
-      ::user::LPWndArray * m_pframea;
+      ::user::interaction_ptr_array * m_pframea;
 
 
       //CCommandLineInfo* m_pCmdInfo;
@@ -219,7 +219,7 @@ namespace radix
 //      virtual ::user::interaction * get_place_holder_container();
 
 
-      ::user::LPWndArray & frames();
+      ::user::interaction_ptr_array & frames();
       virtual void add_frame(::user::interaction * pwnd);
       virtual void remove_frame(::user::interaction * pwnd);
 
@@ -443,7 +443,7 @@ namespace radix
       using ::radix::thread::propset;
       gen::property_set & propset(::radix::object * pobject);
 
-      virtual oswindow_ get_ca2_app_wnd(const char * psz);
+      virtual oswindow get_ca2_app_wnd(const char * psz);
 
       virtual ::user::interaction * uie_from_point(point pt);
 
@@ -515,7 +515,7 @@ namespace radix
       virtual ::ca::window * window_from_os_data_permanent(void * pdata);
 
       virtual ::ca::window * FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual ::ca::window * FindWindowEx(oswindow_ hwndParent, oswindow_ hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+      virtual ::ca::window * FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
 
       virtual string get_local_mutex_name(const char * pszAppName);
       virtual string get_local_id_mutex_name(const char * pszAppName, const char * pszId);

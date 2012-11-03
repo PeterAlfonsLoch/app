@@ -5,23 +5,23 @@ class CLASS_DECL_ca window_id
 {
 public:
 
-   window_id(const oswindow_ & hwnd);
+   window_id(const oswindow & oswindow);
 
-   oswindow_ m_hwnd;
+   oswindow m_oswindow;
 
-   operator oswindow_();
+   operator oswindow();
 };
 
 
-inline window_id::window_id(const oswindow_ & hwnd)
+inline window_id::window_id(const oswindow & oswindow)
 {
-   m_hwnd = hwnd;
+   m_oswindow = oswindow;
 }
 
 
-inline window_id::operator oswindow_()
+inline window_id::operator oswindow()
 {
-   return m_hwnd;
+   return m_oswindow;
 }
 
 

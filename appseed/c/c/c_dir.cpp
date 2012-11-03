@@ -14,10 +14,10 @@
 #ifdef WINDOWSEX
 
 
-bool CLASS_DECL_c SHGetSpecialFolderPath(oswindow_ hwnd, vsstring &str, int csidl, bool fCreate)
+bool CLASS_DECL_c SHGetSpecialFolderPath(oswindow oswindow, vsstring &str, int csidl, bool fCreate)
 {
 
-   return ::SHGetSpecialFolderPathW(hwnd, wstringtovss(str, MAX_PATH * 8), csidl, fCreate) != FALSE;
+   return ::SHGetSpecialFolderPathW(oswindow, wstringtovss(str, MAX_PATH * 8), csidl, fCreate) != FALSE;
 
 }
 

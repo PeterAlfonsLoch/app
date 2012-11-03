@@ -152,7 +152,7 @@ namespace filemanager
             {
    /*            Folder & folder = m_foldera.GetFolder(i);
                if(FAILED(m_spshellfolder->GetUIObjectOf(
-                  GetSafeHwnd(),
+                  GetSafeoswindow_(),
                   1,
                   (const ITEMIDLIST **) &folder.m_lpiidlRelative,
                   IID_IExtractIcon,

@@ -8,7 +8,7 @@ namespace userbase
 
    struct CLASS_DECL_ca2 TRAYDATA
    {
-      oswindow_ hwnd;            
+      oswindow oswindow;            
       UINT uID;            
       UINT uCallbackMessage;   
       DWORD Reserved[2];      
@@ -17,7 +17,7 @@ namespace userbase
 
    struct CLASS_DECL_ca2 TrayItemInfo
    {
-      oswindow_ hwnd;            
+      oswindow oswindow;            
       UINT uID;            
       UINT uCallbackMessage;
       string sTip;
@@ -26,7 +26,7 @@ namespace userbase
    };
 
    CLASS_DECL_ca2 char GetDriveLetter(const char * lpDevicePath);
-   CLASS_DECL_ca2 oswindow_ FindTrayToolbarWindow();
+   CLASS_DECL_ca2 oswindow FindTrayToolbarWindow();
    CLASS_DECL_ca2 string GetFilenameFromPid(DWORD pid);
 
    class CLASS_DECL_ca2 notification_area :
@@ -37,7 +37,7 @@ namespace userbase
 
    // Attributes
    public:
-      oswindow_ m_hwndTray;   
+      oswindow m_oswindowTray;   
       image_list * m_pil16;
       array_ptr_alloc < TrayItemInfo, TrayItemInfo & > m_infoa;
       HFONT m_hfontHidden;

@@ -550,7 +550,7 @@ namespace userbase
       }
 
       // force black text on gray background all the time
-/*      if (!::ca::window::GrayCtlColor((HDC)pctlcolor->m_pdc->get_os_data(), (oswindow_) pctlcolor->m_pwnd->get_os_data(), pctlcolor->m_nCtlType,
+/*      if (!::ca::window::GrayCtlColor((HDC)pctlcolor->m_pdc->get_os_data(), (oswindow) pctlcolor->m_pwnd->get_os_data(), pctlcolor->m_nCtlType,
          afxData.hbrBtnFace, afxData.clrBtnText))
       {
          pctlcolor->set_lresult(Default());

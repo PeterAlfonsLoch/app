@@ -534,7 +534,7 @@ namespace user
       }*/
 
      // rgn.CreatePolygonRgn(pta, 6, ALTERNATE);
-   //   SetWindowRgn((HRGN) rgn.Detach(), TRUE);
+   //   SetWindowRgn((HRGN) rgn.detach(), TRUE);
    }
 
 

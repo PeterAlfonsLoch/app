@@ -18,7 +18,7 @@ namespace userbase
       _m_pmenu             = NULL;
       m_pitem              = new menu_item(papp);
       m_bOwnItem           = true;
-      m_hwndParent         = NULL;
+      m_oswindowParent         = NULL;
       m_pmenuParent        = NULL;
       m_psubmenu           = NULL;
       m_iHoverSubMenu      = -1;
@@ -31,7 +31,7 @@ namespace userbase
       m_buttonClose(papp)
    {
       m_iHoverSubMenu      = -1;
-      m_hwndParent         = NULL;
+      m_oswindowParent         = NULL;
       m_pmenuParent        = NULL;
       m_psubmenu           = NULL;
       m_bAutoDelete        = true;
@@ -65,15 +65,15 @@ namespace userbase
       return m_pitem->m_spitema->ptr_at(i);
    }
 
-   bool menu::TrackPopupMenu(int iFlags, int x, int y, ::user::interaction * hwndParent)
+   bool menu::TrackPopupMenu(int iFlags, int x, int y, ::user::interaction * oswindowParent)
    {
-      ASSERT(hwndParent != NULL);
+      ASSERT(oswindowParent != NULL);
       _m_pmenu = new menu(get_app(), m_pitem);
       _m_pmenu->set_app(get_app());
-      return _m_pmenu->_TrackPopupMenu(iFlags, x, y, hwndParent, NULL);
+      return _m_pmenu->_TrackPopupMenu(iFlags, x, y, oswindowParent, NULL);
    }
 
-   bool menu::_TrackPopupMenu(int iFlags, int x, int y, ::user::interaction * hwndParent, menu * pmenuParent)
+   bool menu::_TrackPopupMenu(int iFlags, int x, int y, ::user::interaction * oswindowParent, menu * pmenuParent)
    {
 
       UNREFERENCED_PARAMETER(iFlags);
@@ -82,7 +82,7 @@ namespace userbase
 
    //   HookMenu(this);
 
-      m_hwndParent   = hwndParent;
+      m_oswindowParent   = oswindowParent;
       m_pmenuParent  = pmenuParent;
       //pwndParent->SendMessage(CA2M_BERGEDGE, BERGEDGE_GETAPP, (LPARAM) &m_papp);
 
@@ -96,7 +96,7 @@ namespace userbase
          rect(0, 0, 0, 0), Bergedge.get_view(), id(), lpvoid))
          return false;
 
-      SetOwner(hwndParent);
+      SetOwner(oswindowParent);
 
       if(!m_buttonClose.create(this, ChildIdClose))
          return false;
@@ -344,11 +344,11 @@ namespace userbase
             {
                if(gen::str::begins((const char *) pevent->m_puie->m_id, "syscommand::"))
                {
-                  m_hwndParent->_001SendCommand(pevent->m_puie->m_id);
+                  m_oswindowParent->_001SendCommand(pevent->m_puie->m_id);
                }
                else
                {
-                  ::user::interaction * pwndParent = m_hwndParent;
+                  ::user::interaction * pwndParent = m_oswindowParent;
                   id id = pevent->m_puie->m_id;
                   send_message(WM_CLOSE);
                   // this may be destroyed by WM_CLOSE above
@@ -397,7 +397,7 @@ namespace userbase
                         m_pitem->m_spitema->find(pevent->m_puie->m_id)->m_button.GetWindowRect(rect);
                         m_psubmenu->_TrackPopupMenu(0,
                            rect.right,
-                           rect.top, m_hwndParent, this);
+                           rect.top, m_oswindowParent, this);
                      }
                   }
                }
@@ -435,7 +435,7 @@ namespace userbase
             m_pitem->m_spitema->find(m_idTimerMenu)->m_button.GetWindowRect(rect);
             m_psubmenu->_TrackPopupMenu(0,
                rect.right,
-               rect.top, m_hwndParent, this);
+               rect.top, m_oswindowParent, this);
          }
          m_idTimerMenu.is_empty();
       }
@@ -452,7 +452,7 @@ namespace userbase
                cmdui.m_id        = m_pitem->m_spitema->ptr_at(i)->m_id;
                cmdui.m_pOther    = (::user::interaction *) &m_pitem->m_spitema->ptr_at(i)->m_button;
 
-               ::user::interaction * pwndParent = m_hwndParent;
+               ::user::interaction * pwndParent = m_oswindowParent;
                if(pwndParent != NULL)
                {
                  /* xxx if(pwndParent->_001OnCommand(0,
@@ -508,7 +508,7 @@ namespace userbase
             cmdui.m_id        = m_pitem->m_spitema->ptr_at(i)->m_id;
             cmdui.m_pOther    = (::user::interaction *) &m_pitem->m_spitema->ptr_at(i)->m_button;
 
-            ::user::interaction * pwndParent = m_hwndParent;
+            ::user::interaction * pwndParent = m_oswindowParent;
             if(pwndParent != NULL)
             {
                /*

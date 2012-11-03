@@ -257,7 +257,7 @@ namespace sockets
          if(iError == EINPROGRESS)
    #endif
          {
-            Attach(s);
+            attach(s);
             SetConnecting( true ); // this flag will control fd_set's
          }
          else
@@ -271,7 +271,7 @@ namespace sockets
          {
             string strError = StrError(iError);
             Handler().LogError(this, "connect: failed, reconnect pending", iError, StrError(iError), ::gen::log::level::info);
-            Attach(s);
+            attach(s);
             SetConnecting( true ); // this flag will control fd_set's
          }
          else
@@ -285,7 +285,7 @@ namespace sockets
       }
       else
       {
-         Attach(s);
+         attach(s);
          SetCallOnConnect(); // socket_handler_base must call OnConnect
       }
 

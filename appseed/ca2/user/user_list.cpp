@@ -2645,9 +2645,9 @@ namespace user
       Redraw();
 
 
-      /* trans window_id wndidNotify = pwnd->GetOwner()->GetSafeHwnd();
+      /* trans window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();
       if(wndidNotify == NULL)
-      wndidNotify = pwnd->GetParent()->GetSafeHwnd();*/
+      wndidNotify = pwnd->GetParent()->GetSafeoswindow_();*/
 
 
       LRESULT lresult = 0;
@@ -2657,7 +2657,7 @@ namespace user
       NMLISTVIEW nm;
       nm.hdr.idFrom = pwnd->GetDlgCtrlId();
       nm.hdr.code =   NM_DBLCLK;
-      nm.hdr.hwndFrom = pwnd->GetSafeHwnd();
+      nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
       lresult = ::SendMessage(
       wndidNotify,
       WM_NOTIFY,
@@ -3504,9 +3504,9 @@ namespace user
 
 
                /* trans
-               window_id wndidNotify = pwnd->GetOwner()->GetSafeHwnd();
+               window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();
                if(wndidNotify == NULL)
-               wndidNotify = pwnd->GetParent()->GetSafeHwnd(); */
+               wndidNotify = pwnd->GetParent()->GetSafeoswindow_(); */
 
 //               LRESULT lresult = 0;
 
@@ -3515,7 +3515,7 @@ namespace user
                NMLISTVIEW nm;
                nm.hdr.idFrom = pwnd->GetDlgCtrlId();
                nm.hdr.code =   NM_CLICK;
-               nm.hdr.hwndFrom = pwnd->GetSafeHwnd();
+               nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
                lresult = ::SendMessage(
                wndidNotify,
                WM_NOTIFY,
@@ -3543,9 +3543,9 @@ namespace user
 
 
             /* trans
-            window_id wndidNotify = pwnd->GetOwner()->GetSafeHwnd();
+            window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();
             if(wndidNotify == NULL)
-            wndidNotify = pwnd->GetParent()->GetSafeHwnd(); */
+            wndidNotify = pwnd->GetParent()->GetSafeoswindow_(); */
 
 //            LRESULT lresult = 0;
 
@@ -3554,7 +3554,7 @@ namespace user
             NMLISTVIEW nm;
             nm.hdr.idFrom = pwnd->GetDlgCtrlId();
             nm.hdr.code =   NM_CLICK;
-            nm.hdr.hwndFrom = pwnd->GetSafeHwnd();
+            nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
             lresult = ::SendMessage(
             wndidNotify,
             WM_NOTIFY,

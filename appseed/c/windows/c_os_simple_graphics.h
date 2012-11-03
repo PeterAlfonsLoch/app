@@ -10,7 +10,7 @@ public:
    
    Gdiplus::Graphics *     m_pgraphics;
    HDC                     m_hdc;
-   oswindow_                    m_hwnd;
+   oswindow                    m_oswindow;
    simple_bitmap           m_bitmap;
    simple_pen              m_pen;
    os_simple_font          m_font;
@@ -70,9 +70,9 @@ public:
 
    // platform-specific
    bool create(HDC hdc);
-   bool from_entire_window(oswindow_ hwnd);
-   bool from_window(oswindow_ hwnd);
-   bool from_window_paint(oswindow_ hwnd, LPRECT lprectPaint = NULL);
+   bool from_entire_window(oswindow oswindow);
+   bool from_window(oswindow oswindow);
+   bool from_window_paint(oswindow oswindow, LPRECT lprectPaint = NULL);
    bool reference_os_data(Gdiplus::Graphics * pgraphics);
    operator Gdiplus::Graphics *() { return m_pgraphics; }
 

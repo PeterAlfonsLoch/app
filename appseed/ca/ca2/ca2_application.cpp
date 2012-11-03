@@ -674,13 +674,13 @@ namespace ca2
 
    ::user::interaction * application::uie_from_point(point pt)
    {
-      user::LPWndArray wnda = frames();
-      user::oswindow_array hwnda;
-      wnda.get_wnda(hwnda);
-      user::WndUtil::SortByZOrder(hwnda);
-      for(int i = 0; i < hwnda.get_count(); i++)
+      user::interaction_ptr_array wnda = frames();
+      user::oswindow_array oswindowa;
+      wnda.get_wnda(oswindowa);
+      user::oswindow_util::SortByZOrder(oswindowa);
+      for(int i = 0; i < oswindowa.get_count(); i++)
       {
-         ::user::interaction * puieWindow = wnda.find_first(hwnda[i]);
+         ::user::interaction * puieWindow = wnda.find_first(oswindowa[i]);
          ::user::interaction * puie = puieWindow->_001FromPoint(pt);
          if(puie != NULL)
             return puie;

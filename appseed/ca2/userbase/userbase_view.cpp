@@ -207,9 +207,9 @@ namespace userbase
 
          // either re-activate the current ::view, or set this ::view to be active
          ::view * pview = pParentFrame->GetActiveView();
-         ::user::interaction* hWndFocus = System.get_focus_guie();
+         ::user::interaction* oswindow_Focus = System.get_focus_guie();
          if (pview == this &&
-            this != hWndFocus && !IsChild(hWndFocus))
+            this != oswindow_Focus && !IsChild(oswindow_Focus))
          {
             // re-activate this ::view
             OnActivateView(TRUE, this, this);
@@ -235,9 +235,9 @@ namespace userbase
 
          // either re-activate the current ::view, or set this ::view to be active
          ::view * pview = pParentFrame->GetActiveView();
-         ::user::interaction* hWndFocus = System.get_focus_guie();
+         ::user::interaction* oswindow_Focus = System.get_focus_guie();
          if (pview == this &&
-            this != hWndFocus && !IsChild(hWndFocus))
+            this != oswindow_Focus && !IsChild(oswindow_Focus))
          {
             // re-activate this ::view
             OnActivateView(TRUE, this, this);

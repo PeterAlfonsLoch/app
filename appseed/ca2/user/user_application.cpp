@@ -93,7 +93,7 @@ namespace ca2
 
       void application::SendMessageToWindows(UINT message, WPARAM wparam, LPARAM lparam)
       {
-         ::user::LPWndArray wnda = frames();
+         ::user::interaction_ptr_array wnda = frames();
          for(int i = 0; i < wnda.get_size(); i++)
          {
             ::user::interaction * pwnd = wnda.element_at(i);
@@ -108,7 +108,7 @@ namespace ca2
 
       int application::GetVisibleFrameCountExcept(::user::interaction * pwndExcept)
       {
-         ::user::LPWndArray wnda = frames();
+         ::user::interaction_ptr_array wnda = frames();
          int iCount = 0;
          for(int i = 0; i < wnda.get_size(); i++)
          {
@@ -125,7 +125,7 @@ namespace ca2
 
       int application::GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept)
       {
-         ::user::LPWndArray wnda = frames();
+         ::user::interaction_ptr_array wnda = frames();
          int iCount = 0;
          for(int i = 0; i < wnda.get_size(); i++)
          {
@@ -144,7 +144,7 @@ namespace ca2
 
       int application::GetVisibleFrameCount()
       {
-         ::user::LPWndArray wnda = frames();
+         ::user::interaction_ptr_array wnda = frames();
          int iCount = 0;
          for(int i = 0; i < wnda.get_size(); i++)
          {

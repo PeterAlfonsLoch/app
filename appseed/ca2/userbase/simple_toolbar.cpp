@@ -114,7 +114,7 @@ bool simple_toolbar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle
    m_dwCtrlStyle = dwCtrlStyle & (0xffff0000 | TBSTYLE_FLAT);
 
 
-   // create the oswindow_
+   // create the oswindow
    class rect rect;
    rect.null();
    if (!::user::interaction::create(NULL, NULL, dwStyle, rect, pParentWnd, nID))

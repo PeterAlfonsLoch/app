@@ -58,7 +58,7 @@ namespace userex
       {
          ::user::interaction* pguie = m_pviewdata->m_pwnd;
          ::user::interaction* pguieNext = m_pviewdata->m_pwnd;
-         user::LPWndArray wnda;
+         user::interaction_ptr_array wnda;
          while(true)
          {
             wnda.add(pguie);

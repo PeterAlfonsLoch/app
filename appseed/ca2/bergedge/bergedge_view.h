@@ -31,11 +31,11 @@ namespace bergedge
 
       visual::dib_sp m_dibBk;
 
-      oswindow_                  m_hwndWinactionarea;
-      oswindow_                  m_hwndCommand;
-      oswindow_                  m_hwndWinutil;
-      oswindow_                 m_hwndWinservice1;
-      oswindow_                  m_hwndBergedge;
+      oswindow                  m_oswindowWinactionarea;
+      oswindow                  m_oswindowCommand;
+      oswindow                  m_oswindowWinutil;
+      oswindow                 m_oswindowWinservice1;
+      oswindow                  m_oswindowBergedge;
 
 
       ::ca::font_sp m_font;
@@ -104,7 +104,7 @@ namespace bergedge
 
       void check_apps();
 
-      void mt_show_window(oswindow_ hwnd, int iShow);
+      void mt_show_window(oswindow oswindow, int iShow);
 
       static UINT c_cdecl ThreadProcShowWindow(LPVOID lpparam);
       

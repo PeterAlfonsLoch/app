@@ -8,7 +8,7 @@ bool g_bSpaInstalled = false;
 bool g_bSpaUpdated = false;
 bool g_bUpdated = false;
 char * g_pszCa2Build = NULL;
-extern oswindow_ g_hwndMessage;
+extern oswindow g_oswindowMessage;
 
 
 DWORD WINAPI  _ca2_starter_start(LPVOID pvoid);

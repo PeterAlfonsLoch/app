@@ -3,33 +3,33 @@
 
 #ifdef SetWindowLongPtrA
 #undef SetWindowLongPtrA
-inline long_ptr SetWindowLongPtrA( oswindow_ hWnd, int nIndex, long_ptr dwNewLong )
+inline long_ptr SetWindowLongPtrA( oswindow oswindow, int nIndex, long_ptr dwNewLong )
 {
-   return( ::SetWindowLongA( hWnd, nIndex, LONG( dwNewLong ) ) );
+   return( ::SetWindowLongA( oswindow, nIndex, LONG( dwNewLong ) ) );
 }
 #endif
 
 #ifdef SetWindowLongPtrW
 #undef SetWindowLongPtrW
-inline long_ptr SetWindowLongPtrW( oswindow_ hWnd, int nIndex, long_ptr dwNewLong )
+inline long_ptr SetWindowLongPtrW( oswindow oswindow, int nIndex, long_ptr dwNewLong )
 {
-   return( ::SetWindowLongW( hWnd, nIndex, LONG( dwNewLong ) ) );
+   return( ::SetWindowLongW( oswindow, nIndex, LONG( dwNewLong ) ) );
 }
 #endif
 
 #ifdef GetWindowLongPtrA
 #undef GetWindowLongPtrA
-inline long_ptr GetWindowLongPtrA( oswindow_ hWnd, int nIndex )
+inline long_ptr GetWindowLongPtrA( oswindow oswindow, int nIndex )
 {
-   return( ::GetWindowLongA( hWnd, nIndex ) );
+   return( ::GetWindowLongA( oswindow, nIndex ) );
 }
 #endif
 
 #ifdef GetWindowLongPtrW
 #undef GetWindowLongPtrW
-inline long_ptr GetWindowLongPtrW( oswindow_ hWnd, int nIndex )
+inline long_ptr GetWindowLongPtrW( oswindow oswindow, int nIndex )
 {
-   return( ::GetWindowLongW( hWnd, nIndex ) );
+   return( ::GetWindowLongW( oswindow, nIndex ) );
 }
 #endif
 
@@ -126,7 +126,7 @@ extern CLASS_DECL_ca AUX_DATA afxData;*/
 typedef struct tag__OLDTOOLINFO {
    UINT cbSize;
    UINT uFlags;
-   oswindow_ hwnd;
+   oswindow oswindow;
    UINT uId;
    RECT rect;
    HINSTANCE hinst;
@@ -144,12 +144,12 @@ typedef struct tag__OLDTOOLINFO {
 #define __WNDOLECONTROL   __WNDCLASS("OleControl")
 
 // dialog/commdlg hook procs
-CLASS_DECL_ca int_ptr CALLBACK __dialog_procedure(oswindow_, UINT, WPARAM, LPARAM);
-CLASS_DECL_ca uint_ptr CALLBACK __common_dialog_procedure(oswindow_ hWnd, UINT, WPARAM, LPARAM);
+CLASS_DECL_ca int_ptr CALLBACK __dialog_procedure(oswindow, UINT, WPARAM, LPARAM);
+CLASS_DECL_ca uint_ptr CALLBACK __common_dialog_procedure(oswindow oswindow, UINT, WPARAM, LPARAM);
 
 // support for standard dialogs
 extern UINT gen_MsgSETRGB;
-typedef uint_ptr (CALLBACK* COMMDLGPROC)(oswindow_, UINT, WPARAM, LPARAM);
+typedef uint_ptr (CALLBACK* COMMDLGPROC)(oswindow, UINT, WPARAM, LPARAM);
 
 // conversion helpers
 //int c_cdecl _wcstombsz(char* mbstr, const wchar_t* wcstr, size_t count);
@@ -187,8 +187,8 @@ typedef struct
 /////////////////////////////////////////////////////////////////////////////
 // Special helpers
 
-CLASS_DECL_ca ::user::interaction * __get_parent_owner(::user::interaction * hWnd);
-CLASS_DECL_ca bool __is_descendant(::user::interaction * hWndParent, ::user::interaction * hWndChild);
+CLASS_DECL_ca ::user::interaction * __get_parent_owner(::user::interaction * oswindow);
+CLASS_DECL_ca bool __is_descendant(::user::interaction * oswindow_Parent, ::user::interaction * oswindow_Child);
 
 
 /*// UNICODE/MBCS abstractions
@@ -260,10 +260,10 @@ extern resource_exception _simpleResourceException;
 /////////////////////////////////////////////////////////////////////////////
 // Portability abstractions
 
-#define __set_dialog_control_id(hWnd, nID)     SetWindowLong(hWnd, GWL_ID, nID)
-#define __set_dialog_control_id_(hWnd, nID)     hWnd->SetWindowLong(GWL_ID, nID)
-#define __get_dialog_control_id(hWnd)          ((UINT)(WORD)::GetDlgCtrlID(hWnd))
-#define __get_dialog_control_id_(hWnd)          ((UINT)(WORD)hWnd->GetDlgCtrlId())
+#define __set_dialog_control_id(oswindow, nID)     SetWindowLong(oswindow, GWL_ID, nID)
+#define __set_dialog_control_id_(oswindow, nID)     oswindow->SetWindowLong(GWL_ID, nID)
+#define __get_dialog_control_id(oswindow)          ((UINT)(WORD)::GetDlgCtrlID(oswindow))
+#define __get_dialog_control_id_(oswindow)          ((UINT)(WORD)oswindow->GetDlgCtrlId())
 
 // misc helpers
 CLASS_DECL_ca void __get_root_path(const char * lpszPath, string & strRoot);

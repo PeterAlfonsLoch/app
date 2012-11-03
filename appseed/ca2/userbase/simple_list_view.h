@@ -13,7 +13,7 @@ public:
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-   oswindow_ GetHandle();
+   oswindow GetHandle();
    ::user::interaction* OnDrawInterfaceGetWnd();
    virtual ::user::interaction* _GetWnd();
 

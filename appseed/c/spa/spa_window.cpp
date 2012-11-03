@@ -26,7 +26,7 @@ namespace spa
    window::window()
    {
       m_bDrag = false;
-      m_hwnd = NULL;
+      m_oswindow = NULL;
    }
 
    window::~window()
@@ -38,7 +38,7 @@ namespace spa
       RECT rectClient;
 
 #ifdef WINDOWSEX
-      ::GetClientRect(m_hwnd, &rectClient);
+      ::GetClientRect(m_oswindow, &rectClient);
 #else
       throw "todo";
 #endif
@@ -66,7 +66,7 @@ namespace spa
       RECT rectWindow;
 
 
-      ::GetWindowRect(m_hwnd, &rectWindow);
+      ::GetWindowRect(m_oswindow, &rectWindow);
 
       simple_graphics gScreen;
 
@@ -113,7 +113,7 @@ namespace spa
 
 #ifdef WINDOWSEX
       RECT rectWindow;
-      ::GetWindowRect(m_hwnd, &rectWindow);
+      ::GetWindowRect(m_oswindow, &rectWindow);
 
 
       int cx = rectWindow.right - rectWindow.left;
@@ -165,7 +165,7 @@ namespace spa
 
       RECT rcPaint;
 
-      if(!gWindow.from_window_paint(m_hwnd, &rcPaint))
+      if(!gWindow.from_window_paint(m_oswindow, &rcPaint))
          return;
 
       OnPaint(gWindow, &rcPaint);
@@ -188,7 +188,7 @@ namespace spa
 #ifdef WINDOWSEX
          simple_graphics gWindow;
 
-         gWindow.from_entire_window(m_hwnd);
+         gWindow.from_entire_window(m_oswindow);
 
          OnPaint(gWindow, NULL);
 #else
@@ -206,8 +206,8 @@ namespace spa
       case WM_CREATE:
          {
 #ifdef WINDOWSEX
-            ::SetTimer(m_hwnd, TIMER_CARET, 100, NULL);
-            ::SetTimer(m_hwnd, TIMER_ANIMATION, 33, NULL);
+            ::SetTimer(m_oswindow, TIMER_CARET, 100, NULL);
+            ::SetTimer(m_oswindow, TIMER_ANIMATION, 33, NULL);
 #else
          throw "todo";
 
@@ -229,7 +229,7 @@ namespace spa
             m_bDrag = true;
             ::GetCursorPos(&m_ptDragStart);
 #ifdef WINDOWSEX
-            ::GetWindowRect(m_hwnd, &m_rectWindowDragStart);
+            ::GetWindowRect(m_oswindow, &m_rectWindowDragStart);
 #else
             throw "todo";
 #endif
@@ -265,7 +265,7 @@ namespace spa
          break;
       default:
 #ifdef WINDOWSEX
-         return DefWindowProc(m_hwnd, message, wparam, lparam);
+         return DefWindowProc(m_oswindow, message, wparam, lparam);
 #else
             throw "todo";
 #endif
@@ -273,13 +273,13 @@ namespace spa
       return 0;
    }
 
-   LRESULT CALLBACK window::s_window_proc(oswindow_ hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+   LRESULT CALLBACK window::s_window_proc(oswindow oswindow, UINT message, WPARAM wParam, LPARAM lParam)
    {
-      window * pwindow = s_windowmap[hwnd];
+      window * pwindow = s_windowmap[oswindow];
       if(pwindow != NULL)
          return pwindow->window_proc(message, wParam, lParam);
 #ifdef WINDOWSEX
-      return DefWindowProc(hwnd, message, wParam, lParam);
+      return DefWindowProc(oswindow, message, wParam, lParam);
 #else
             throw "todo";
 #endif
@@ -321,7 +321,7 @@ namespace spa
       ::GetCursorPos(&ptCursor);
 #ifdef WINDOWSEX
 
-      ::SetWindowPos(m_hwnd, NULL,
+      ::SetWindowPos(m_oswindow, NULL,
          ptCursor.x - m_ptDragStart.x + m_rectWindowDragStart.left,
          ptCursor.y - m_ptDragStart.y + m_rectWindowDragStart.top,
          0,
@@ -338,12 +338,12 @@ namespace spa
       else
       {
 #ifdef WINDOWSEX
-         ::SetLayeredWindowAttributes(m_hwnd, 0, (255 * 100) / 100, LWA_ALPHA);
+         ::SetLayeredWindowAttributes(m_oswindow, 0, (255 * 100) / 100, LWA_ALPHA);
 #endif
       }
 #ifdef WINDOWSEX
 
-      ::RedrawWindow(m_hwnd, NULL, NULL, RDW_UPDATENOW | RDW_INVALIDATE);
+      ::RedrawWindow(m_oswindow, NULL, NULL, RDW_UPDATENOW | RDW_INVALIDATE);
 #else
             throw "todo";
 #endif
@@ -352,9 +352,9 @@ namespace spa
    void window::redraw()
    {
 #ifdef WINDOWSEX
-      if(!::IsIconic(m_hwnd) && IsWindowVisible(m_hwnd))
+      if(!::IsIconic(m_oswindow) && IsWindowVisible(m_oswindow))
       {
-         ::RedrawWindow(m_hwnd, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
+         ::RedrawWindow(m_oswindow, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
       }
 #else
             throw "todo";

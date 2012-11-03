@@ -7,7 +7,7 @@ extern bool (WINAPI * g_pfnChangeWindowMessageFilter)(
 
 small_ipc_channel_base::small_ipc_channel_base()
 {
-   m_hwnd = NULL;
+   m_oswindow = NULL;
 }
 
 small_ipc_channel_base::~small_ipc_channel_base()
@@ -17,7 +17,7 @@ small_ipc_channel_base::~small_ipc_channel_base()
 bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
 {
 
-   if(m_hwnd != NULL)
+   if(m_oswindow != NULL)
       close();
 
 
@@ -29,14 +29,14 @@ bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
    else
       iCount = 2;
 
-   m_hwnd = NULL;
+   m_oswindow = NULL;
 
    for(int i = 0; i < iCount; i++)
    {
       for(int j = 0; j < jCount; j++)
       {
-         m_hwnd = ::FindWindow(NULL, pszKey);
-         if(m_hwnd != NULL)
+         m_oswindow = ::FindWindow(NULL, pszKey);
+         if(m_oswindow != NULL)
             break;
          if(i <= 0)
          {
@@ -44,7 +44,7 @@ bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
          }
          Sleep(884);
       }
-      if(m_hwnd != NULL)
+      if(m_oswindow != NULL)
          break;
       if(plauncher != NULL)
       {
@@ -59,10 +59,10 @@ bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
 bool small_ipc_tx_channel::close()
 {
 
-   if(m_hwnd == NULL)
+   if(m_oswindow == NULL)
       return true;
 
-   m_hwnd = NULL;
+   m_oswindow = NULL;
 
    m_strKey = "";
 
@@ -86,7 +86,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
    if(dwTimeout == INFINITE)
    {
 
-      SendMessage(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds);
+      SendMessage(m_oswindow, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds);
 
    }
    else
@@ -94,7 +94,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
 
       DWORD_PTR dwptr;
 
-      if(!::SendMessageTimeout(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds, SMTO_BLOCK, dwTimeout, &dwptr))
+      if(!::SendMessageTimeout(m_oswindow, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds, SMTO_BLOCK, dwTimeout, &dwptr))
          return false;
 
       DWORD dwError = ::GetLastError();
@@ -125,7 +125,7 @@ bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTime
    if(dwTimeout == INFINITE)
    {
 
-      SendMessage(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds);
+      SendMessage(m_oswindow, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds);
 
    }
    else
@@ -133,7 +133,7 @@ bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTime
 
       DWORD_PTR dwptr;
 
-      if(!::SendMessageTimeout(m_hwnd, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds, SMTO_BLOCK, dwTimeout, &dwptr))
+      if(!::SendMessageTimeout(m_oswindow, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds, SMTO_BLOCK, dwTimeout, &dwptr))
          return false;
 
       DWORD dwError = ::GetLastError();
@@ -152,7 +152,7 @@ bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTime
 bool small_ipc_tx_channel::is_tx_ok()
 {
    
-   return ::IsWindow(m_hwnd) != FALSE;
+   return ::IsWindow(m_oswindow) != FALSE;
 
 }
 
@@ -186,17 +186,17 @@ bool small_ipc_rx_channel::create(const char * pszKey, const char * pszWindowPro
 
    ATOM atom = register_class(hinstance);
 
-   m_hwnd = ::CreateWindowExA(0, "small_ipc_rx_channel_message_window_class", pszKey, 0, 0, 0, 0, 0, HWND_MESSAGE, NULL, hinstance, NULL);
+   m_oswindow = ::CreateWindowExA(0, "small_ipc_rx_channel_message_window_class", pszKey, 0, 0, 0, 0, 0, HWND_MESSAGE, NULL, hinstance, NULL);
    
-   if(m_hwnd == NULL)
+   if(m_oswindow == NULL)
    {
       DWORD dwLastError = ::GetLastError();
       return false;
    }
 
-   SetTimer(m_hwnd, 198477, 84, NULL);
+   SetTimer(m_oswindow, 198477, 84, NULL);
 
-   SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (long_ptr) this);
+   SetWindowLongPtr(m_oswindow, GWLP_USERDATA, (long_ptr) this);
 
    m_strWindowProcModule = pszWindowProcModule;
 
@@ -209,10 +209,10 @@ bool small_ipc_rx_channel::create(const char * pszKey, const char * pszWindowPro
 bool small_ipc_rx_channel::destroy()
 {
 
-   if(m_hwnd != NULL)
+   if(m_oswindow != NULL)
    {
-      ::DestroyWindow(m_hwnd);
-      m_hwnd = NULL;
+      ::DestroyWindow(m_oswindow);
+      m_oswindow = NULL;
    }
 
    return true;
@@ -275,17 +275,17 @@ void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, int a, i
 }
 
 
-LRESULT CALLBACK small_ipc_rx_channel::s_message_window_proc(oswindow_ hwnd, UINT message, WPARAM wparam, LPARAM lparam)
+LRESULT CALLBACK small_ipc_rx_channel::s_message_window_proc(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam)
 {
 
    int iRet = 0;
 
-   small_ipc_rx_channel * pchannel = (small_ipc_rx_channel *) GetWindowLongPtr(hwnd, GWLP_USERDATA);
+   small_ipc_rx_channel * pchannel = (small_ipc_rx_channel *) GetWindowLongPtr(oswindow, GWLP_USERDATA);
 
    if(pchannel == NULL)
    {
 
-      return ::DefWindowProcA(hwnd, message, wparam, lparam);
+      return ::DefWindowProcA(oswindow, message, wparam, lparam);
 
    }
    else
@@ -354,7 +354,7 @@ LRESULT small_ipc_rx_channel::message_window_proc(UINT message, WPARAM wparam, L
    else
    {
 
-      return ::DefWindowProcA(m_hwnd, message, wparam, lparam);
+      return ::DefWindowProcA(m_oswindow, message, wparam, lparam);
 
    }
 
@@ -374,7 +374,7 @@ bool small_ipc_rx_channel::on_idle()
 bool small_ipc_rx_channel::is_rx_ok()
 {
 
-   return ::IsWindow(m_hwnd) != FALSE;
+   return ::IsWindow(m_oswindow) != FALSE;
 
 }
 

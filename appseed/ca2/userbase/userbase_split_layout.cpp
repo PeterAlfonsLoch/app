@@ -460,7 +460,7 @@ namespace userbase
    //        if(pcomponent->m_etype == Pane::TypeWndPointer)
      //          pwnd = pcomponent->m_pwnd;
        //    else
-      //      pwnd = ::user::interaction::from_handle(pcomponent->m_hwnd);
+      //      pwnd = ::user::interaction::from_handle(pcomponent->m_oswindow);
          pwnd = pcomponent->m_psplitpane;
            ASSERT(pwnd != NULL);
          if(bNewValue)

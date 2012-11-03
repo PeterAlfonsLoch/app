@@ -16,7 +16,7 @@ namespace user
 
 
    class CLASS_DECL_ca oswindow_array :
-      public comparable_array < void *, void * >
+      public comparable_array < oswindow, oswindow >
    {
    public:
       void SortByZOrder();
@@ -25,77 +25,77 @@ namespace user
    };
 
 
-   class CLASS_DECL_ca LPWndArray :
+   class CLASS_DECL_ca interaction_ptr_array :
       virtual public pha(::user::interaction)
    {
    public:
 //      using pha(::user::interaction)::find_first;
       ::user::interaction * find_first(::ca::type_info info);
-      ::user::interaction * find_first(void * hwnd);
-      void get_wnda(user::oswindow_array & hwnda);
+      ::user::interaction * find_first(oswindow oswindow);
+      void get_wnda(user::oswindow_array & oswindowa);
       void send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
       void send_message_to_descendants(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0, bool bRecursive = true);
    };
 
 
-   class CLASS_DECL_ca HwndTree
+   class CLASS_DECL_ca oswindow_tree
    {
    public:
 
       class CLASS_DECL_ca Array :
-         public array_ptr_alloc < HwndTree, const HwndTree &>
+         public array_ptr_alloc < oswindow_tree, const oswindow_tree &>
       {
       public:
-         bool remove(void * hwnd);
-         int_ptr find(void * hwnd);
+         bool remove(oswindow oswindow);
+         int_ptr find(oswindow oswindow);
          void EnumDescendants();
-         Array & operator = (oswindow_array & hwnda);
+         Array & operator = (oswindow_array & oswindowa);
 
       };
 
-      HwndTree();
-      HwndTree(const HwndTree & tree);
+      oswindow_tree();
+      oswindow_tree(const oswindow_tree & tree);
 
-      void *   m_hwnd;
+      oswindow   m_oswindow;
       DWORD m_dwUser;
-      void * m_pvoidUser;
-      Array m_hwndtreea;
+      oswindow m_pvoidUser;
+      Array m_oswindowtreea;
       public:
          void EnumDescendants();
-      static int CompareHwnd(HwndTree & tree1,  HwndTree & tree2);
+      static int Compareoswindow_(oswindow_tree & tree1,  oswindow_tree & tree2);
       public:
-      HwndTree & operator = (const HwndTree & tree);
+      oswindow_tree & operator = (const oswindow_tree & tree);
    };
 
 
-   class CLASS_DECL_ca WndUtil
+   class CLASS_DECL_ca oswindow_util
    {
    public:
-      static void ContraintPosToParent(void * hwnd);
-      //static void EnumChildren(::ca::window * pwnd, LPWndArray & wndpa);
-      static void EnumChildren(void * hwnd, oswindow_array & hwnda);
-      /*static void ExcludeChild(LPWndArray & wndpa);*/
-      /*static void SortByZOrder(LPWndArray & wndpa);*/
-      static void SortByZOrder(oswindow_array & hwnda);
-      static HRGN GetAClipRgn(void * hwnd, POINT ptOffset, bool bExludeChilren);
-      static void ExcludeChildren(void * hwnd, HRGN hrgn, POINT ptOffset);
-      WndUtil();
-      virtual ~WndUtil();
-      /*static void SendMessageToDescendants(void * hWnd, UINT message,
+      static void ContraintPosToParent(oswindow oswindow);
+      //static void EnumChildren(::ca::window * pwnd, interaction_ptr_array & wndpa);
+      static void EnumChildren(oswindow oswindow, oswindow_array & oswindowa);
+      /*static void ExcludeChild(interaction_ptr_array & wndpa);*/
+      /*static void SortByZOrder(interaction_ptr_array & wndpa);*/
+      static void SortByZOrder(oswindow_array & oswindowa);
+      static HRGN GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChilren);
+      static void ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset);
+      oswindow_util();
+      virtual ~oswindow_util();
+      /*static void SendMessageToDescendants(oswindow oswindow, UINT message,
          WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm);*/
-      static void SendMessageToDescendants(void * hWnd, UINT message,
+      static void SendMessageToDescendants(oswindow oswindow, UINT message,
          WPARAM wParam, LPARAM lParam, bool bDeep);
-      static bool IsAscendant(void * hwndAscendant, void * hwndDescendant);
+      static bool IsAscendant(oswindow oswindowAscendant, oswindow oswindowDescendant);
 
-      static int GetZOrder(void * hwnd);
-      static void GetZOrder(void * hwnd, int_array & ia);
+      static int GetZOrder(oswindow oswindow);
+      static void GetZOrder(oswindow oswindow, int_array & ia);
 
-//      static HRGN GetAClipRgn(void * hwnd, POINT ptOffset, bool bExludeChilren);
-//      static void ExcludeChildren(void * hwnd, HRGN hrgn, POINT ptOffset);
+//      static HRGN GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChilren);
+//      static void ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset);
 
       //static void SortByZOrder(comparable_array < ::ca::window *, ::ca::window * > & wndpa);
-      //static void SortByZOrder(comparable_array < void *, void * > & hwnda);
-      //static void EnumChildren(void * hwnd, comparable_array < void *, void * > & hwnda);
+      //static void SortByZOrder(comparable_array < oswindow, oswindow > & oswindowa);
+      //static void EnumChildren(oswindow oswindow, comparable_array < oswindow, oswindow > & oswindowa);
 
    };
 

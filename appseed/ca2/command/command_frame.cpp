@@ -371,9 +371,9 @@ namespace command
       UNREFERENCED_PARAMETER(pobj);
       /*if(m_workset.GetMovingManager()->IsMoving())
       {
-         oswindow_ hwndDesktop = ::GetDesktopWindow();
+         oswindow oswindowDesktop = ::GetDesktopWindow();
          rect rectDesktop;
-         ::GetWindowRect(hwndDesktop, rectDesktop);
+         ::GetWindowRect(oswindowDesktop, rectDesktop);
          rect rectWindow;
          GetWindowRect(rectWindow);
          double a = (double) rectDesktop.height() / (double) rectDesktop.width();

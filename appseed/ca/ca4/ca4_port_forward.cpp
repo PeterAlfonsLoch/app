@@ -60,11 +60,11 @@ namespace ca4
    // Port Forward Engine creates when running COM requests for device information or for
    // retreival/change of port mappings.
    //
-   // There are five functions that create threads, and each function takes a oswindow_ as a 
-   // parameter.  During execution of the thread, each thread will post messages to this oswindow_,
+   // There are five functions that create threads, and each function takes a oswindow as a 
+   // parameter.  During execution of the thread, each thread will post messages to this oswindow,
    // so as to notify the HWMND of the thread's progress through the needed COM tasks.  The 
    // message is always the same: a UINT named UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION.
-   // Encodings of the WPARAM and LPARAM within the message will enable the oswindow_ to determine
+   // Encodings of the WPARAM and LPARAM within the message will enable the oswindow to determine
    // what's going on inside the thread.  The five functions are:
    //
    //   GetMappingsUsingThread()
@@ -103,7 +103,7 @@ namespace ca4
    //
    // To use this function, your program must be able to receive (and process)
    // a registered window message posted from the thread when the thread is finished.
-   // Thus, you must pass in a oswindow_ of one of your windows that will receive the message.  Typically,
+   // Thus, you must pass in a oswindow of one of your windows that will receive the message.  Typically,
    // you would choose your CMainFrame window (use the ::__get_main_window() function).  However, you might
    // choose a different window, such as your CView-derived window for SDI applications
    //
@@ -135,9 +135,9 @@ namespace ca4
    //        GetPortMappingVector() function to get a copy of the current contents of
    //        std::vector< port_forward::PortMappingContainer > m_MappingContainer
 
-   bool port_forward::GetMappingsUsingThread( oswindow_ hWnd )
+   bool port_forward::GetMappingsUsingThread( oswindow oswindow )
    {
-      UNREFERENCED_PARAMETER(hWnd);
+      UNREFERENCED_PARAMETER(oswindow);
 	   // returns TRUE if thread was started successfully
 	
       return FALSE;
@@ -159,11 +159,11 @@ namespace ca4
    //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL). 
 
 
-   bool port_forward::EditMappingUsingThread( port_forward::port_map & oldMapping, port_forward::port_map & newMapping, oswindow_ hWnd )
+   bool port_forward::EditMappingUsingThread( port_forward::port_map & oldMapping, port_forward::port_map & newMapping, oswindow oswindow )
    {
       UNREFERENCED_PARAMETER(oldMapping);
       UNREFERENCED_PARAMETER(newMapping);
-      UNREFERENCED_PARAMETER(hWnd);	
+      UNREFERENCED_PARAMETER(oswindow);	
       return FALSE;
 	
    }
@@ -184,10 +184,10 @@ namespace ca4
    //  WPARAM == port_forward::EnumAddMappingDone when the thread is finished, where
    //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL). 
 
-   bool port_forward::AddMappingUsingThread(port_forward::port_map & newMapping, oswindow_ hWnd )
+   bool port_forward::AddMappingUsingThread(port_forward::port_map & newMapping, oswindow oswindow )
    {
       UNREFERENCED_PARAMETER(newMapping);
-      UNREFERENCED_PARAMETER(hWnd);	
+      UNREFERENCED_PARAMETER(oswindow);	
 	   return FALSE;
    }
 
@@ -207,10 +207,10 @@ namespace ca4
    //  WPARAM == port_forward::EnumDeleteMappingDone when the thread is finished, where
    //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL). 
 
-   bool port_forward::DeleteMappingUsingThread(port_forward::port_map & oldMapping, oswindow_ hWnd )
+   bool port_forward::DeleteMappingUsingThread(port_forward::port_map & oldMapping, oswindow oswindow )
    {
       UNREFERENCED_PARAMETER(oldMapping);
-      UNREFERENCED_PARAMETER(hWnd);	
+      UNREFERENCED_PARAMETER(oswindow);	
 	   return FALSE;
    }
 
@@ -231,9 +231,9 @@ namespace ca4
    //      GetDeviceInformationContainer() function to retrieve a copy of the current contents of 
    //      port_forward::DeviceInformationContainer m_DeviceInfo
 
-   bool port_forward::GetDeviceInformationUsingThread( oswindow_ hWnd )
+   bool port_forward::GetDeviceInformationUsingThread( oswindow oswindow )
    {	
-      UNREFERENCED_PARAMETER(hWnd);	
+      UNREFERENCED_PARAMETER(oswindow);	
       return FALSE;
 	
    }

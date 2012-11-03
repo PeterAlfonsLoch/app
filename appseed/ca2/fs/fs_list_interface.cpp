@@ -842,7 +842,7 @@ namespace fs
 
          ///IShellFolder * lpsf = m_pshellfolder;
          item.m_iImage = System.shellimageset().GetImage(
-            _GetWnd()->GetTopLevelParent()->_get_handle(),
+            _GetWnd()->GetTopLevelParent()->get_handle(),
             item.m_strPath,
             gen::international::utf8_to_unicode(item.m_strExtra),
             _shell::IconNormal);

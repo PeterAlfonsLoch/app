@@ -69,7 +69,7 @@ namespace sockets
       }
       if (GetSocket() == INVALID_SOCKET)
       {
-         Attach(CreateSocket(ad.GetFamily(), m_type, "sctp"));
+         attach(CreateSocket(ad.GetFamily(), m_type, "sctp"));
       }
       if (GetSocket() != INVALID_SOCKET)
       {
@@ -186,7 +186,7 @@ namespace sockets
       }
       if (GetSocket() == INVALID_SOCKET)
       {
-         Attach(CreateSocket(ad.GetFamily(), m_type, "sctp"));
+         attach(CreateSocket(ad.GetFamily(), m_type, "sctp"));
       }
       if (GetSocket() != INVALID_SOCKET)
       {
@@ -306,7 +306,7 @@ namespace sockets
          return -1;
       }
       socket *p = create();
-      p -> Attach(n);
+      p -> attach(n);
       p -> SetDeleteByHandler();
       Handler().add(p);
       return n;

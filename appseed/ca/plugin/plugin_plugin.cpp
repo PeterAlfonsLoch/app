@@ -619,8 +619,7 @@ namespace plugin
 
 
 #ifdef WINDOWS
-                  int i = 1;
-                  PostMessage(m_phost->::small_ipc_tx_channel::m_hwnd, WM_USER + 100, 1, 1);
+                  PostMessage(m_phost->::small_ipc_tx_channel::m_oswindow, WM_USER + 100, 1, 1);
 #else
                   throw not_implemented(get_app());
 #endif
@@ -660,7 +659,7 @@ namespace plugin
                   vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
 #ifdef WINDOWS
-                  PostMessage(m_phost->::small_ipc_tx_channel::m_hwnd, WM_USER + 100, 1, 1);
+                  PostMessage(m_phost->::small_ipc_tx_channel::m_oswindow, WM_USER + 100, 1, 1);
 #else
                   throw not_implemented(get_app());
 #endif
@@ -759,7 +758,7 @@ namespace plugin
 
 
 #ifdef WINDOWS
-                        PostMessage(m_phost->::small_ipc_tx_channel::m_hwnd, WM_USER + 100, 1, 1);
+                        PostMessage(m_phost->::small_ipc_tx_channel::m_oswindow, WM_USER + 100, 1, 1);
 #else
                         throw not_implemented(get_app());
 #endif
@@ -943,9 +942,9 @@ namespace plugin
 
          ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_puiHost->m_pimpl);
 
-         void * hwnd = pwindow->_get_handle();
+         void * oswindow = pwindow->get_handle();
 
-         bool bIsWindow = ::IsWindow((oswindow_) hwnd) != FALSE;
+         bool bIsWindow = ::IsWindow((::oswindow) oswindow) != FALSE;
 
          if(bIsWindow)
          {

@@ -260,14 +260,14 @@ LRESULT CALLBACK BaseMenuCentral::CBTHook(int nCode, WPARAM wParam, LPARAM lPara
    {
       if (nCode == HCBT_CREATEWND)
       {
-//         oswindow_ hWnd = (oswindow_)wParam;
+//         oswindow oswindow = (oswindow)wParam;
          lRes = CallNextHookEx(m_hCBTHook, nCode, wParam, lParam);
          goto out;
       }
 
       if (nCode == HCBT_DESTROYWND)
       {
-//         oswindow_ hWnd = (oswindow_)wParam;
+//         oswindow oswindow = (oswindow)wParam;
          lRes = CallNextHookEx(m_hCBTHook, nCode, wParam, lParam);
          goto out;
       }
@@ -299,15 +299,15 @@ void BaseMenuCentral::UnhookCBTHook()
 }
 
 /* trans
-void BaseMenuCentral::RemoveBorder(oswindow_ hWnd)
+void BaseMenuCentral::RemoveBorder(oswindow oswindow)
 {
    const int SWP_STYLE = SWP_FRAMECHANGED | SWP_NOSIZE | SWP_NOMOVE |
       SWP_NOZORDER | SWP_NOACTIVATE;
 
-   DWORD dwStyle = ::GetWindowLong(hWnd, GWL_STYLE);
-   DWORD dwStyleEx = ::GetWindowLong(hWnd, GWL_EXSTYLE);
-   ::user::interaction::ModifyStyle(hWnd, WS_POPUP | WS_DLGFRAME | WS_THICKFRAME | WS_BORDER, 0, SWP_STYLE);
-   ::user::interaction::ModifyStyleEx(hWnd, WS_EX_STATICEDGE|WS_EX_WINDOWEDGE|WS_EX_DLGMODALFRAME, 0, SWP_STYLE);
+   DWORD dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
+   DWORD dwStyleEx = ::GetWindowLong(oswindow, GWL_EXSTYLE);
+   ::user::interaction::ModifyStyle(oswindow, WS_POPUP | WS_DLGFRAME | WS_THICKFRAME | WS_BORDER, 0, SWP_STYLE);
+   ::user::interaction::ModifyStyleEx(oswindow, WS_EX_STATICEDGE|WS_EX_WINDOWEDGE|WS_EX_DLGMODALFRAME, 0, SWP_STYLE);
 }
 */
 

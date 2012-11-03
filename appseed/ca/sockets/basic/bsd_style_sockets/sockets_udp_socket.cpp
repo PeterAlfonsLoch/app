@@ -116,7 +116,7 @@ namespace sockets
    {
       if (GetSocket() == INVALID_SOCKET)
       {
-         Attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
+         attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
       }
       if (GetSocket() != INVALID_SOCKET)
       {
@@ -182,7 +182,7 @@ namespace sockets
    {
       if (GetSocket() == INVALID_SOCKET)
       {
-         Attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
+         attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
       }
       if (GetSocket() != INVALID_SOCKET)
       {
@@ -212,7 +212,7 @@ namespace sockets
                return;
             }
             SetNonblocking(true, s);
-            Attach(s);
+            attach(s);
          }
          return;
       }
@@ -224,7 +224,7 @@ namespace sockets
             return;
          }
          SetNonblocking(true, s);
-         Attach(s);
+         attach(s);
       }
    }
 
@@ -268,7 +268,7 @@ namespace sockets
    {
       if (GetSocket() == INVALID_SOCKET)
       {
-         Attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
+         attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
       }
       if (GetSocket() != INVALID_SOCKET)
       {

@@ -8,7 +8,7 @@ os_simple_graphics::os_simple_graphics()
 
    m_pgraphics    = NULL;
 
-   m_hwnd         = NULL;
+   m_oswindow         = NULL;
 
    m_iType        = 0;
 
@@ -63,13 +63,13 @@ bool os_simple_graphics::create_from_bitmap(simple_bitmap & b)
 
 }
 
-bool os_simple_graphics::from_entire_window(oswindow_ hwnd)
+bool os_simple_graphics::from_entire_window(oswindow oswindow)
 {
 
    if(m_iType != 0)
       destroy();
 
-   m_hdc = ::GetWindowDC(hwnd);
+   m_hdc = ::GetWindowDC(oswindow);
 
    if(m_hdc == NULL)
       return false;
@@ -78,12 +78,12 @@ bool os_simple_graphics::from_entire_window(oswindow_ hwnd)
 
    if(m_pgraphics == NULL)
    {
-      ::ReleaseDC(hwnd, m_hdc);
+      ::ReleaseDC(oswindow, m_hdc);
       m_hdc = NULL;
       return false;
    }
 
-   m_hwnd = hwnd;
+   m_oswindow = oswindow;
 
    m_iType = 2;
    
@@ -92,13 +92,13 @@ bool os_simple_graphics::from_entire_window(oswindow_ hwnd)
 }
 
 
-bool os_simple_graphics::from_window(oswindow_ hwnd)
+bool os_simple_graphics::from_window(oswindow oswindow)
 {
 
    if(m_iType != 0)
       destroy();
 
-   m_hdc = ::GetDC(hwnd);
+   m_hdc = ::GetDC(oswindow);
 
    if(m_hdc == NULL)
       return false;
@@ -107,12 +107,12 @@ bool os_simple_graphics::from_window(oswindow_ hwnd)
 
    if(m_pgraphics == NULL)
    {
-      ::ReleaseDC(hwnd, m_hdc);
+      ::ReleaseDC(oswindow, m_hdc);
       m_hdc = NULL;
       return false;
    }
 
-   m_hwnd = hwnd;
+   m_oswindow = oswindow;
 
    m_iType = 2;
    
@@ -120,14 +120,14 @@ bool os_simple_graphics::from_window(oswindow_ hwnd)
 
 }
 
-bool os_simple_graphics::from_window_paint(oswindow_ hwnd, LPRECT lprectPaint)
+bool os_simple_graphics::from_window_paint(oswindow oswindow, LPRECT lprectPaint)
 {
 
 
    if(m_iType != 0)
       destroy();
 
-   m_hdc = BeginPaint(hwnd, &m_ps);
+   m_hdc = BeginPaint(oswindow, &m_ps);
 
    if(m_hdc == NULL)
       return false;
@@ -136,13 +136,13 @@ bool os_simple_graphics::from_window_paint(oswindow_ hwnd, LPRECT lprectPaint)
 
    if(m_pgraphics == NULL)
    {
-      ::EndPaint(hwnd, &m_ps);
+      ::EndPaint(oswindow, &m_ps);
       memset(&m_ps, 0, sizeof(m_ps));
       m_hdc = NULL;
       return false;
    }
 
-   m_hwnd = hwnd;
+   m_oswindow = oswindow;
 
    m_iType = 4;
 
@@ -248,7 +248,7 @@ bool os_simple_graphics::destroy()
       try
       {
 
-         if(!::ReleaseDC(m_hwnd, m_hdc))
+         if(!::ReleaseDC(m_oswindow, m_hdc))
          {
          
             bOk = false;
@@ -270,7 +270,7 @@ bool os_simple_graphics::destroy()
       try
       {
 
-         if(!EndPaint(m_hwnd, &m_ps))
+         if(!EndPaint(m_oswindow, &m_ps))
          {
 
             bOk = false;
@@ -287,7 +287,7 @@ bool os_simple_graphics::destroy()
    }
 
 
-   m_hwnd   = NULL;
+   m_oswindow   = NULL;
 
    m_hdc    = NULL;
 

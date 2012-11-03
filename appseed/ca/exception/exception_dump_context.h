@@ -65,7 +65,7 @@ public:
    dump_context& dumpAsHex(LONGLONG n);
    dump_context& dumpAsHex(ULONGLONG n);
 #endif
-   dump_context& operator<<(oswindow_ h);
+   dump_context& operator<<(oswindow h);
    dump_context& operator<<(HDC h);
 #ifdef WINDOWS
    dump_context& operator<<(HMENU h);

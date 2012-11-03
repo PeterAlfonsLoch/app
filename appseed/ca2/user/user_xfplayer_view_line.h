@@ -46,7 +46,7 @@ public:
    bool                             m_bAutoSizeX;
    bool                             m_bAutoSizeY;
    int                              m_iAlign;
-   ::user::interaction *            m_hwnd;
+   ::user::interaction *            m_oswindow;
 
 
 private:

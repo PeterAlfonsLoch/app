@@ -203,7 +203,7 @@ namespace gen
       CLASS_DECL_ca string          to_upper(const char * psz);
 
 
-      string CLASS_DECL_ca get_window_text(oswindow_ hwnd);
+      string CLASS_DECL_ca get_window_text(oswindow oswindow);
 
       string CLASS_DECL_ca get_word(
                         const char * psz,

@@ -1131,7 +1131,7 @@ namespace sockets
       CheckList(m_fds, "active sockets"); // active sockets
       CheckList(m_fds_erase, "sockets to be erased"); // should always be is_empty anyway
       CheckList(m_fds_callonconnect, "checklist CallOnConnect");
-      CheckList(m_fds_detach, "checklist Detach");
+      CheckList(m_fds_detach, "checklist detach");
       CheckList(m_fds_timeout, "checklist Timeout");
       CheckList(m_fds_retry, "checklist retry client connect");
       CheckList(m_fds_close, "checklist close and delete");
@@ -1183,7 +1183,7 @@ namespace sockets
       if (add)
       {
 /*         TRACE("AddList;  %5d: %s: %s\n", s, (which_one == LIST_CALLONCONNECT) ? "CallOnConnect" :
-            (which_one == LIST_DETACH) ? "Detach" :
+            (which_one == LIST_DETACH) ? "detach" :
             (which_one == LIST_TIMEOUT) ? "Timeout" :
             (which_one == LIST_RETRY) ? "Retry" :
             (which_one == LIST_CLOSE) ? "close" : "<undef>",

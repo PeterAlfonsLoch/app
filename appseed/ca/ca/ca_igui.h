@@ -12,7 +12,7 @@ namespace ca
        UINT          itemID;
        UINT          itemAction;
        UINT          itemState;
-       oswindow_          hwndItem;
+       oswindow          oswindowItem;
        graphics *    m_pgraphics;
        RECT          rcItem;
        ulong_ptr     itemData;

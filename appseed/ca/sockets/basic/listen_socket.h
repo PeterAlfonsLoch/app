@@ -236,7 +236,7 @@ namespace sockets
             return -1;
          }
          m_depth = depth;
-         Attach(s);
+         attach(s);
          return 0;
       }
 
@@ -281,7 +281,7 @@ namespace sockets
          tmp -> EnableSSL(IsSSL()); // SSL Enabled socket
          tmp -> SetIpv6( IsIpv6() );
          tmp -> SetParent(this);
-         tmp -> Attach(a_s);
+         tmp -> attach(a_s);
          tmp -> SetNonblocking(true);
          {
             if (sa_len == sizeof(struct sockaddr_in6))
@@ -314,7 +314,7 @@ namespace sockets
          Handler().add(tmp);
          if(m_bDetach)
          {
-            tmp->Detach();
+            tmp->detach();
          }
          if (tmp -> IsSSL()) // SSL Enabled socket
          {

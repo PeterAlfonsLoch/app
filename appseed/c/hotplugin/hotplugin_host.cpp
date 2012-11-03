@@ -76,7 +76,7 @@ namespace hotplugin
    {
    }
 
-   oswindow_ host::get_host_window()
+   oswindow host::get_host_window()
    {
       return NULL;
    }

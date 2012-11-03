@@ -157,7 +157,7 @@ namespace sockets
                }
             }
          }
-         if (!Detach()) // detach failed?
+         if (!detach()) // detach failed?
          {
             SetCloseAndDelete();
          }

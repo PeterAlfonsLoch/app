@@ -320,9 +320,9 @@ namespace ex2
       return ::ca::smart_pointer < ::ex2::application >::m_p->FindWindow(lpszClassName, lpszWindowName);
    }
 
-   ::ca::window * application::FindWindowEx(oswindow_ hwndParent, oswindow_ hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   ::ca::window * application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
    {
-      return ::ca::smart_pointer < ::ex2::application >::m_p->FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
+      return ::ca::smart_pointer < ::ex2::application >::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
    }
 
    void application::get_time(timeval *p)

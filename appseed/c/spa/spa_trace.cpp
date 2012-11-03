@@ -1,6 +1,6 @@
 #include "framework.h"
 
-//extern oswindow_ g_hwnd;
+//extern oswindow g_oswindow;
 
 
 simple_mutex g_mutexTrace;
@@ -114,15 +114,15 @@ bool isspace_dup(char ch)
 
 void on_trace(vsstring & str, vsstring & str2)
 {
-/*   if(::IsWindowVisible(g_hwnd))
+/*   if(::IsWindowVisible(g_oswindow))
    {
       if(str.length() > 3 && str.substr(0, 3) == "***")
       {
-         SetWindowText(g_hwnd, str.substr(3));
+         SetWindowText(g_oswindow, str.substr(3));
       }
       else if(str.length() > 0 && str.substr(0, 1) != ".")
       {
-         SetWindowText(g_hwnd, str);
+         SetWindowText(g_oswindow, str);
       }
    }*/
    if(g_ftrace != NULL && str2.length() > 0)

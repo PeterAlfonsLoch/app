@@ -868,7 +868,7 @@ namespace frame
 
    void WorkSet::AddListener(WorkSetListener *plistener)
    {
-      m_wfla.Attach(plistener);
+      m_wfla.attach(plistener);
    }
 
    void WorkSet::RemoveListener(WorkSetListener *plistener)

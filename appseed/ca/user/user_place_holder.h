@@ -12,7 +12,7 @@ namespace user
    public:
 
 
-      LPWndArray  m_uiptraHold;
+      interaction_ptr_array  m_uiptraHold;
 
 
       place_holder(::ca::application * papp);

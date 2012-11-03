@@ -29,7 +29,7 @@ namespace frame
       DWORD                m_dwLastMoveTime;
       bool                 m_bPendingMove;
       point                m_ptPendingMove;
-      void *                 m_hwndPendingMove;
+      void *                 m_oswindowPendingMove;
       EBorder              m_eborderMask;
       point                m_ptCursorOrigin;
       point                m_ptWindowOrigin;
@@ -57,7 +57,7 @@ namespace frame
       EBorder GetBorderMask();
 
       bool IsMoving();
-      void MoveWindow(void * hwnd, point pt);
+      void MoveWindow(void * oswindow, point pt);
       void SetSWPFlags(UINT uiFlags);
       bool relay_event(MSG * lpMsg);
       bool update(WorkSet * pwf);

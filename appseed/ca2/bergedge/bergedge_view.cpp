@@ -401,18 +401,18 @@ namespace bergedge
       //if(!m_bEnsureApps)
         // return;
 
-      if(::IsWindow(m_hwndWinactionarea) &&
-         ::IsWindow(m_hwndCommand) &&
-         ::IsWindow(m_hwndWinutil) &&
-         ::IsWindow(m_hwndBergedge))
+      if(::IsWindow(m_oswindowWinactionarea) &&
+         ::IsWindow(m_oswindowCommand) &&
+         ::IsWindow(m_oswindowWinutil) &&
+         ::IsWindow(m_oswindowBergedge))
       {
          return;
       }
-      m_hwndWinservice1       =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winservice_1");
-      m_hwndWinactionarea     =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winactionarea");
-      m_hwndCommand           =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::command");
-      m_hwndWinutil           =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winutil");
-      m_hwndBergedge          =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::bergedge");
+      m_oswindowWinservice1       =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winservice_1");
+      m_oswindowWinactionarea     =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winactionarea");
+      m_oswindowCommand           =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::command");
+      m_oswindowWinutil           =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winutil");
+      m_oswindowBergedge          =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::bergedge");
    }
 
 
@@ -449,9 +449,9 @@ namespace bergedge
    }
 
 
-   void view::mt_show_window(oswindow_ hwnd, int iShow)
+   void view::mt_show_window(oswindow oswindow, int iShow)
    {
-      UNREFERENCED_PARAMETER(hwnd);
+      UNREFERENCED_PARAMETER(oswindow);
       UNREFERENCED_PARAMETER(iShow);
    }
 

@@ -86,10 +86,10 @@ namespace frame
          ::add(plistener);
    }*/
 
-   void WorkSetListenerArray::Attach(WorkSetListener * plistener)
+   void WorkSetListenerArray::attach(WorkSetListener * plistener)
    {
       add(plistener);
-      plistener->Attach(this);
+      plistener->attach(this);
    }
 
    void WorkSetListenerArray::on_delete(::ca::ca * p)

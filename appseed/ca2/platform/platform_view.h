@@ -44,8 +44,8 @@ namespace platform
       class show_window
       {
       public:
-         show_window(oswindow_ hwnd, int iShow);
-         oswindow_        m_hwnd;
+         show_window(oswindow oswindow, int iShow);
+         oswindow        m_oswindow;
          int         m_iShow;
          void show();
       };
@@ -62,11 +62,11 @@ namespace platform
       int                  m_i_winactionarea_h;
       int                  m_i_winactionarea_w;
       visual::dib_sp       m_dib_winactionarea;
-      oswindow_                  m_hwndWinactionarea;
-      oswindow_                  m_hwndCommand;
-      oswindow_                  m_hwndWinutil;
-      oswindow_                 m_hwndWinservice1;
-      oswindow_                  m_hwndBergedge;
+      oswindow                  m_oswindowWinactionarea;
+      oswindow                  m_oswindowCommand;
+      oswindow                  m_oswindowWinutil;
+      oswindow                 m_oswindowWinservice1;
+      oswindow                  m_oswindowBergedge;
       int                  m_iHitArea;
 
       ::user::front_end_schema::button  
@@ -138,7 +138,7 @@ namespace platform
       index hit_test(point pt, e_element & eelement);
 
 
-      void mt_show_window(oswindow_ hwnd, int iShow);
+      void mt_show_window(oswindow oswindow, int iShow);
 
       static UINT c_cdecl ThreadProcShowWindow(LPVOID lpparam);
 

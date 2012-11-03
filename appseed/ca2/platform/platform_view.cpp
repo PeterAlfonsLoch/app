@@ -199,14 +199,14 @@ namespace platform
 
    /*void view:: _001OnDraw(::ca::graphics * pdc)
    {
-   m_hwnd = GetSafeHwnd();
+   m_oswindow = GetSafeoswindow_();
    pdc->SetBkMode(TRANSPARENT);
 
    //FIBITMAP * pdib = imaging::LoadImageFile("C:\\screenshot.jpeg");
 
    //::ca::bitmap bmp2;
 
-   //bmp2.Attach(imaging::FItoHBITMAP(pdib, true));
+   //bmp2.attach(imaging::FItoHBITMAP(pdib, true));
    //::ca::graphics_sp dc2;
    //dc2.CreateCompatibleDC(pdc);
    //dc2.SelectObject(bmp2);
@@ -509,18 +509,18 @@ namespace platform
       //if(!m_bEnsureApps)
       // return;
 
-      if(::IsWindow(m_hwndWinactionarea) &&
-         ::IsWindow(m_hwndCommand) &&
-         ::IsWindow(m_hwndWinutil) &&
-         ::IsWindow(m_hwndBergedge))
+      if(::IsWindow(m_oswindowWinactionarea) &&
+         ::IsWindow(m_oswindowCommand) &&
+         ::IsWindow(m_oswindowWinutil) &&
+         ::IsWindow(m_oswindowBergedge))
       {
          return;
       }
-      m_hwndWinservice1       =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winservice_1");
-      m_hwndWinactionarea     =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winactionarea");
-      m_hwndCommand           =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::command");
-      m_hwndWinutil           =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winutil");
-      m_hwndBergedge          =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::bergedge");
+      m_oswindowWinservice1       =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winservice_1");
+      m_oswindowWinactionarea     =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winactionarea");
+      m_oswindowCommand           =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::command");
+      m_oswindowWinutil           =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winutil");
+      m_oswindowBergedge          =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::bergedge");
    }
 
 
@@ -570,31 +570,31 @@ namespace platform
    {
       if(m_iShow == -1)
       {
-         ::SetForegroundWindow(m_hwnd);
-         ::SetWindowPos(m_hwnd, HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+         ::SetForegroundWindow(m_oswindow);
+         ::SetWindowPos(m_oswindow, HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
       }
       else
       {
          if(m_iShow == SW_RESTORE)
          {
-            ::SetForegroundWindow(m_hwnd);
+            ::SetForegroundWindow(m_oswindow);
          }
-         ::ShowWindow(m_hwnd, m_iShow);
+         ::ShowWindow(m_oswindow, m_iShow);
       }
    }
 
 
-   void view::mt_show_window(oswindow_ hwnd, int iShow)
+   void view::mt_show_window(oswindow oswindow, int iShow)
    {
 
-      __begin_thread(get_app(), &view::ThreadProcShowWindow, new show_window(hwnd, iShow), ::ca::thread_priority_highest);
+      __begin_thread(get_app(), &view::ThreadProcShowWindow, new show_window(oswindow, iShow), ::ca::thread_priority_highest);
 
    }
 
 
-   view::show_window::show_window(oswindow_ hwnd, int iShow)
+   view::show_window::show_window(oswindow oswindow, int iShow)
    {
-      m_hwnd   = hwnd;
+      m_oswindow   = oswindow;
       m_iShow  = iShow;
    }
 
@@ -654,77 +654,77 @@ namespace platform
       && iHitArea >= 0
       && iHitArea < m_areaa.get_size())
       {
-      oswindow_ hwnd = m_areaa[m_iArea].m_taska[m_iDragTask - m_iTaskOffset].m_hwnd;
+      oswindow oswindow = m_areaa[m_iArea].m_taska[m_iDragTask - m_iTaskOffset].m_oswindow;
       rect rectArea;
       rect rectDesk0 = System.m_monitorinfoaDesk[0].rcMonitor;
       rect rectDesk1 = System.m_monitorinfoaDesk[1].rcMonitor;
       GetAreaThumbRect(rectArea, iHitArea);
-      if(::IsWindowVisible(hwnd))
+      if(::IsWindowVisible(oswindow))
       {
-      ::ShowWindow(hwnd, SW_NORMAL);
+      ::ShowWindow(oswindow, SW_NORMAL);
       }
       if(pt.x < (rectArea.left + rectArea.width() / 3))
       {
       if(pt.y < (rectArea.top + rectArea.height() / 3))
       {
-      ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk0.width(), rectDesk0.height() / 2, 0);
+      ::SetWindowPos(oswindow, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk0.width(), rectDesk0.height() / 2, 0);
       }
       else if(pt.y < (rectArea.top + rectArea.height() * 2 / 3))
       {
-      ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk0.width(), rectDesk0.height(), 0);
+      ::SetWindowPos(oswindow, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk0.width(), rectDesk0.height(), 0);
       }
       else
       {
-      ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top + rectDesk0.height() / 2, rectDesk0.width(), rectDesk0.height() / 2, 0);
+      ::SetWindowPos(oswindow, HWND_TOP, rectDesk0.left, rectDesk0.top + rectDesk0.height() / 2, rectDesk0.width(), rectDesk0.height() / 2, 0);
       }
       }
       else if(pt.x < (rectArea.left + rectArea.width() * 2 / 3))
       {
       if(pt.y < (rectArea.top + rectArea.height() / 3))
       {
-      ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk1.right - rectDesk0.left, rectDesk0.height() / 2, 0);
+      ::SetWindowPos(oswindow, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk1.right - rectDesk0.left, rectDesk0.height() / 2, 0);
       }
       else if(pt.y < (rectArea.top + rectArea.height() * 2 / 3))
       {
-      ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk1.right - rectDesk0.left, rectDesk0.height(), 0);
+      ::SetWindowPos(oswindow, HWND_TOP, rectDesk0.left, rectDesk0.top, rectDesk1.right - rectDesk0.left, rectDesk0.height(), 0);
       }
       else
       {
-      ::SetWindowPos(hwnd, HWND_TOP, rectDesk0.left, rectDesk0.top + rectDesk0.height() / 2, rectDesk1.right - rectDesk0.left, rectDesk0.height() / 2, 0);
+      ::SetWindowPos(oswindow, HWND_TOP, rectDesk0.left, rectDesk0.top + rectDesk0.height() / 2, rectDesk1.right - rectDesk0.left, rectDesk0.height() / 2, 0);
       }
       }
       else
       {
       if(pt.y < (rectArea.top + rectArea.height() / 3))
       {
-      ::SetWindowPos(hwnd, HWND_TOP, rectDesk1.left, rectDesk1.top, rectDesk1.width(), rectDesk1.height() / 2, 0);
+      ::SetWindowPos(oswindow, HWND_TOP, rectDesk1.left, rectDesk1.top, rectDesk1.width(), rectDesk1.height() / 2, 0);
       }
       else if(pt.y < (rectArea.top + rectArea.height() * 2 / 3))
       {
-      ::SetWindowPos(hwnd, HWND_TOP, rectDesk1.left, rectDesk1.top, rectDesk1.width(), rectDesk1.height(), 0);
+      ::SetWindowPos(oswindow, HWND_TOP, rectDesk1.left, rectDesk1.top, rectDesk1.width(), rectDesk1.height(), 0);
       }
       else
       {
-      ::SetWindowPos(hwnd, HWND_TOP, rectDesk1.left, rectDesk1.top + rectDesk1.height() / 2, rectDesk1.width(), rectDesk1.height() / 2, 0);
+      ::SetWindowPos(oswindow, HWND_TOP, rectDesk1.left, rectDesk1.top + rectDesk1.height() / 2, rectDesk1.width(), rectDesk1.height() / 2, 0);
       }
       }
       if(m_iArea != iHitArea)
       {
       m_areaa[m_iArea].m_taska.remove_at(m_iDragTask - m_iTaskOffset);
-      count count1 = m_areaa[m_iArea].m_hwnda.remove(hwnd);
-      count count2 = m_areaa[m_iArea].m_hwndaHidden.remove(hwnd);
-      m_areaa[iHitArea].m_taska.add(area::task(hwnd));
+      count count1 = m_areaa[m_iArea].m_oswindowa.remove(oswindow);
+      count count2 = m_areaa[m_iArea].m_oswindowaHidden.remove(oswindow);
+      m_areaa[iHitArea].m_taska.add(area::task(oswindow));
       if(count1 > 0)
       {
-      m_areaa[iHitArea].m_hwnda.add(hwnd);
+      m_areaa[iHitArea].m_oswindowa.add(oswindow);
       }
       else
       {
-      m_areaa[iHitArea].m_hwndaHidden.add(hwnd);
+      m_areaa[iHitArea].m_oswindowaHidden.add(oswindow);
       }
       application & app = ::winactionarea::app_cast(get_app());
-      app.m_hwndaHidden.add(hwnd);
-      mt_show_window(hwnd, SW_HIDE);
+      app.m_oswindowaHidden.add(oswindow);
+      mt_show_window(oswindow, SW_HIDE);
       }
       return;
       }
@@ -732,10 +732,10 @@ namespace platform
       if(iHitArea == m_iV)
       {
          check_apps();
-         if(::IsWindow(m_hwndWinutil))
+         if(::IsWindow(m_oswindowWinutil))
          {
-            mt_show_window((oswindow_) GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
-            ::PostMessage(m_hwndWinutil, WM_APP + 2000, 0, 2);
+            mt_show_window((oswindow) GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
+            ::PostMessage(m_oswindowWinutil, WM_APP + 2000, 0, 2);
          }
       }
       else if(iHitArea == m_i_veriwell)
@@ -749,10 +749,10 @@ namespace platform
       else if(iHitArea == m_i_winactionarea)
       {
          check_apps();
-         if(::IsWindow(m_hwndWinactionarea))
+         if(::IsWindow(m_oswindowWinactionarea))
          {
-            mt_show_window((oswindow_) GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
-            ::PostMessage(m_hwndWinactionarea, WM_APP + 2000, 0, 2);
+            mt_show_window((oswindow) GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
+            ::PostMessage(m_oswindowWinactionarea, WM_APP + 2000, 0, 2);
          }
       }
       /*      else if(iHitArea == m_iShutDown)
@@ -778,12 +778,12 @@ namespace platform
       {
       m_bEnsureApps = false;
       GetTopLevelFrame()->ShowWindow(SW_HIDE);
-      if(m_hwndaDesk.get_size() > 0)
-      ::PostMessage(m_hwndaDesk[0], WM_APP + 2000, 3, 6);
-      ::PostMessage(m_hwndWinactionarea, WM_APP + 2000, 3, 6);
-      ::PostMessage(m_hwndCommand, WM_APP + 2000, 3, 6);
-      ::PostMessage(m_hwndWinutil, WM_APP + 2000, 3, 6);
-      ::PostMessage(m_hwndWinservice1, WM_APP + 2000, 3, 6);
+      if(m_oswindowaDesk.get_size() > 0)
+      ::PostMessage(m_oswindowaDesk[0], WM_APP + 2000, 3, 6);
+      ::PostMessage(m_oswindowWinactionarea, WM_APP + 2000, 3, 6);
+      ::PostMessage(m_oswindowCommand, WM_APP + 2000, 3, 6);
+      ::PostMessage(m_oswindowWinutil, WM_APP + 2000, 3, 6);
+      ::PostMessage(m_oswindowWinservice1, WM_APP + 2000, 3, 6);
 
 
       simple_shell_launcher launcher(
@@ -862,21 +862,21 @@ namespace platform
       {
       m_iCurrentTask = iHitArea;
       m_dwCurrentTaskChangeTime = ::GetTickCount();
-      oswindow_ hwnd = m_areaa[m_iArea].m_taska[iHitArea - m_iTaskOffset].m_hwnd;
-      if(::IsIconic(hwnd))
+      oswindow oswindow = m_areaa[m_iArea].m_taska[iHitArea - m_iTaskOffset].m_oswindow;
+      if(::IsIconic(oswindow))
       {
-      mt_show_window(hwnd, SW_RESTORE);
+      mt_show_window(oswindow, SW_RESTORE);
       }
       else
       {
-      if(hwnd != m_areaa[m_iArea].m_taska[0].m_hwnd)
+      if(oswindow != m_areaa[m_iArea].m_taska[0].m_oswindow)
       {
-      mt_show_window(hwnd, -1);
+      mt_show_window(oswindow, -1);
 
       }
       else
       {
-      mt_show_window(hwnd, SW_MINIMIZE);
+      mt_show_window(oswindow, SW_MINIMIZE);
       }
       }
       Sleep(184 + 177);

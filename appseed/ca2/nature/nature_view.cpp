@@ -144,14 +144,14 @@ namespace nature
 
    void view:: _001OnDraw(::ca::graphics * pdc)
    {
-      //m_hwnd = GetSafeHwnd();
+      //m_oswindow = GetSafeoswindow_();
       pdc->SetBkMode(TRANSPARENT);
 
       //FIBITMAP * pdib = imaging::LoadImageFile("C:\\screenshot.jpeg");
 
       /*   ::ca::bitmap bmp2;
 
-      bmp2.Attach(imaging::FItoHBITMAP(pdib, true));
+      bmp2.attach(imaging::FItoHBITMAP(pdib, true));
       ::ca::graphics_sp dc2;
       dc2.CreateCompatibleDC(pdc);
       dc2.SelectObject(bmp2);*/

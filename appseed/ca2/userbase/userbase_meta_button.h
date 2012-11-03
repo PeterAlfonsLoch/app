@@ -26,7 +26,7 @@ public:
    ::ca::brush       m_brushEllipseDisabled;
    ::ca::pen         m_penEllipseDisabled;
    COLORREF          m_crTextDisabled;
-   oswindow_              m_hwndPreviousFocus;
+   oswindow              m_oswindowPreviousFocus;
 
    ::ca::region_sp   m_spregion;
 

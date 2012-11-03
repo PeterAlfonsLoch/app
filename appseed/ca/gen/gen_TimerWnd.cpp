@@ -117,7 +117,7 @@ namespace gen
 
        //MSG msg;
 
-   //    while(PeekMessage(&msg, m_hWnd, WM_TIMER, WM_TIMER, PM_REMOVE))
+   //    while(PeekMessage(&msg, m_oswindow_, WM_TIMER, WM_TIMER, PM_REMOVE))
      //  {
        //    KillTimer(msg.wParam);
    //    }

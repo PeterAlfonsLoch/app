@@ -41,11 +41,11 @@ namespace user
          {
          case control::type_static:
             {
-   /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) ::ca::window::FromHandlePermanent(pform->get_child_by_id(pcontrol->m_id)->GetSafeHwnd());
+   /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) ::ca::window::FromHandlePermanent(pform->get_child_by_id(pcontrol->m_id)->GetSafeoswindow_());
                if(pstatic == NULL || !base < CTransparentStatic >::bases(pstatic))
                {
                   pstatic = new CTransparentStatic;
-                  VERIFY(pstatic->SubclassWindow(pform->get_child_by_id(pcontrol->m_id)->GetSafeHwnd()));
+                  VERIFY(pstatic->subclass_window(pform->get_child_by_id(pcontrol->m_id)->GetSafeoswindow_()));
                }
                pcontrol->m_unionwndptr.m_pstatic = pstatic;*/
             }
@@ -70,13 +70,13 @@ namespace user
 
          if(dynamic_cast < ::user::interaction * > (pdescriptor->m_pcontrol) != NULL)
          {
-            //window_id wndidTemp = pform->get_child_by_id(descriptor.m_id)->GetSafeHwnd();
+            //window_id wndidTemp = pform->get_child_by_id(descriptor.m_id)->GetSafeoswindow_();
             //if(wndidTemp != NULL)
             {
                /*xxx ::user::window_interface * pwnd = dynamic_cast < ::user::window_interface * > (pcontrol->m_typeinfo->CreateObject());
                if(pwnd != NULL)
                {
-                  if(pwnd->SubclassWindow(wndidTemp))
+                  if(pwnd->subclass_window(wndidTemp))
                   {
                      pcontrol->m_bSubclassed = true;
                      pcontrol->m_pwnd = pwnd;
@@ -929,17 +929,17 @@ namespace user
             }
             else if(descriptor.m_bSubclassed && descriptor.m_pcontrol != NULL)
             {
-   //            if(::IsWindow(pcontrol->m_pwnd->GetSafeHwnd()))
+   //            if(::IsWindow(pcontrol->m_pwnd->GetSafeoswindow_()))
                {
-                  //xxx pcontrol->m_pwnd->UnsubclassWindow();
+                  //xxx pcontrol->m_pwnd->unsubclass_window();
                }
    //            ASSERT(pcontrol->m_typeinfo->IsDerivedFrom(System.type_info < ::ca::window > ()));
                if(dynamic_cast < ::ca::window * >(descriptor.m_pcontrol) != NULL)
                {
-                  //window_id wndidTemp = get_child_by_id(pcontrol->m_id)->GetSafeHwnd();
+                  //window_id wndidTemp = get_child_by_id(pcontrol->m_id)->GetSafeoswindow_();
                   //if(wndidTemp != NULL)
                   {
-             //xxx        VERIFY(pcontrol->m_pwnd->SubclassWindow(wndidTemp));
+             //xxx        VERIFY(pcontrol->m_pwnd->subclass_window(wndidTemp));
                   }
                }
             }
@@ -1107,7 +1107,7 @@ namespace user
       }*/
       _001UpdateFunctionStatic();
    //   CVmsGuiApp * papp = (CVmsGuiApp *) &System;
-   //   papp->TwfInitializeDescendants(pview->GetSafeHwnd(), true);
+   //   papp->TwfInitializeDescendants(pview->GetSafeoswindow_(), true);
       for(int i = 0; i < m_controldescriptorset.get_size(); i++)
       {
          control * pcontrol = m_controldescriptorset[i].m_pcontrol;

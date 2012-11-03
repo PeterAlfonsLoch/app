@@ -121,7 +121,7 @@ namespace sockets
 
       bool m_detach; ///< socket ordered to detach flag
       bool m_detached; ///< socket has been detached
-      socket_thread *m_pThread; ///< Detach socket thread class pointer
+      socket_thread *m_pThread; ///< detach socket thread class pointer
       socket_handler_base *m_slave_handler; ///< Actual sockethandler while detached
 
 
@@ -221,7 +221,7 @@ namespace sockets
 
       /** Assign this socket a file descriptor created
          by a call to socket() or otherwise. */
-      void Attach(SOCKET s);
+      void attach(SOCKET s);
 
       /** Return file descriptor assigned to this socket. */
       SOCKET GetSocket();
@@ -684,7 +684,7 @@ namespace sockets
       const bool IsDetached() const;
       /** Order this socket to start its own thread and call OnDetached
          when ready for operation. */
-      bool Detach();
+      bool detach();
       /** Store the slave sockethandler pointer. */
       void SetSlaveHandler(socket_handler_base *);
       /** create new thread for this socket to run detached in. */

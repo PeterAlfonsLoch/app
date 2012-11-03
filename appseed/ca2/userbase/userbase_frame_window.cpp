@@ -13,7 +13,7 @@ namespace userbase
 
    void frame_window::CommonConstruct()
    {
-      // trans ASSERT(_get_handle() == NULL);
+      // trans ASSERT(get_handle() == NULL);
 
       m_nWindow = -1;                 // unknown ::ca::window ID
       m_bAutoMenuEnable = TRUE;       // auto enable on by default
@@ -95,12 +95,12 @@ namespace userbase
       }
 
       // then update the state of all floating windows owned by the parent
-      ::user::interaction* hWnd = System.get_desktop_window()->GetWindow(GW_CHILD);
-      while (hWnd != NULL)
+      ::user::interaction* oswindow = System.get_desktop_window()->GetWindow(GW_CHILD);
+      while (oswindow != NULL)
       {
-         if (__is_descendant(pParent, hWnd))
-            hWnd->send_message(WM_FLOATSTATUS, dwFlags, 0);
-         hWnd = hWnd->GetWindow(GW_HWNDNEXT);
+         if (__is_descendant(pParent, oswindow))
+            oswindow->send_message(WM_FLOATSTATUS, dwFlags, 0);
+         oswindow = oswindow->GetWindow(GW_HWNDNEXT);
       }
    }
 

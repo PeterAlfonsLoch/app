@@ -270,7 +270,7 @@ class dump_context;
 typedef long VMSRESULT;
 
 /*typedef struct tagVMSNMHDR {
-    oswindow_ hwndFrom;
+    oswindow oswindowFrom;
     UINT idFrom;
     UINT code;
 } VMSNMHDR;
@@ -416,7 +416,7 @@ inline short APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WORD
 
 #ifdef _INC_WINDOWSX
 // The following names from WINDOWSX.H collide with names in this header
-#undef SubclassWindow
+#undef subclass_window
 #undef CopyRgn
 #endif
 

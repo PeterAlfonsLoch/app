@@ -434,7 +434,7 @@ public:
    {
       ENSURE( pstringmanager != NULL );
       string_data * pData = pstringmanager->GetNilString();
-      Attach( pData );
+      attach( pData );
    }
 
    simple_string(const simple_string & strSrc, string_manager * pstringmanager  )
@@ -448,13 +448,13 @@ public:
          {
             ThrowMemoryException();
          }
-         Attach( pData );
+         attach( pData );
          set_length( 0 );
          return;
       }
       string_data* pSrcData = strSrc.get_data();
       string_data* pNewData = CloneData( pSrcData );
-      Attach( pNewData );
+      attach( pNewData );
    }
 
    simple_string(PCXSTR pszSrc,string_manager * pstringmanager )
@@ -467,7 +467,7 @@ public:
       {
          ThrowMemoryException();
       }
-      Attach( pData );
+      attach( pData );
       set_length( nLength );
 #if _SECURE_TEMPLATE
       CopyChars( m_pszData, nLength, pszSrc, nLength );
@@ -490,7 +490,7 @@ public:
       {
          ThrowMemoryException();
       }
-      Attach( pData );
+      attach( pData );
       set_length( nLength );
 #if _SECURE_TEMPLATE
       CopyChars( m_pszData, nLength, pchSrc, nLength );
@@ -518,7 +518,7 @@ public:
          {
             string_data * pNewData = CloneData( pSrcData );
             pOldData->Release();
-            Attach( pNewData );
+            attach( pNewData );
          }
       }
 
@@ -683,7 +683,7 @@ public:
          
          pOldData->Release();
          string_data* pNewData = pstringmanager->GetNilString();
-         Attach( pNewData );
+         attach( pNewData );
 
       }
 
@@ -715,7 +715,7 @@ public:
 #endif
 
          pOldData->Release();
-         Attach( pNewData );
+         attach( pNewData );
          set_length( nLength );
       }
    }
@@ -850,7 +850,7 @@ public:
       string_data * pData = get_data();
       pData->Release();
       pData = pstringmanager->GetNilString();
-      Attach( pData );
+      attach( pData );
    }
    void SetString(PCXSTR pszSrc )
    {
@@ -1004,7 +1004,7 @@ protected:
 
    // Implementation
 private:
-   void Attach(string_data * pData ) NOTHROW
+   void attach(string_data * pData ) NOTHROW
    {
       m_pszData = static_cast< PXSTR >( pData->data() );
    }
@@ -1026,7 +1026,7 @@ private:
 #endif
       pNewData->nDataLength = nOldLength;
       pOldData->Release();
-      Attach( pNewData );
+      attach( pNewData );
    }
    string_data * get_data() const NOTHROW
    {
@@ -1089,7 +1089,7 @@ private:
       {
          ThrowMemoryException();
       }
-      Attach( pNewData );
+      attach( pNewData );
    }
 
    void set_length(strsize nLength )

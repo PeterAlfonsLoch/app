@@ -38,7 +38,7 @@ namespace ca2
          DECL_GEN_SIGNAL(VmsGuiiOnAppLanguage)
 
       
-         //::user::LPWndArray & frames();
+         //::user::interaction_ptr_array & frames();
 
 
          virtual bool initialize1();

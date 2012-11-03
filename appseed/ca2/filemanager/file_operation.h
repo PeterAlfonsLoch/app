@@ -69,7 +69,7 @@ public:
    bool              m_bReplaceAll;
    char *            m_pchBuffer;
    int         m_iBufferSize;
-   ::user::interaction *  m_hwndCallback;
+   ::user::interaction *  m_oswindowCallback;
    UINT              m_uiCallbackMessage;
    WPARAM            m_wparamCallback;
 };

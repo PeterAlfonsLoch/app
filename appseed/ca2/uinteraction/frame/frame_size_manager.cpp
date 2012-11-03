@@ -543,7 +543,7 @@ namespace frame
             bSize = false;
             ::user::interaction * pWndCapture = System.get_capture_uie();
             if(pWndCapture == NULL ||
-               pWndCapture->_get_handle() != GetEventWindow()->_get_handle())
+               pWndCapture->get_handle() != GetEventWindow()->get_handle())
             {
                EHitTest emode = hit_test(ptCursor);
                if(emode != HitTestNone)

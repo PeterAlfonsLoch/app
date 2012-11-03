@@ -486,7 +486,7 @@ namespace user
          NMLISTVIEW nm;
          nm.hdr.idFrom = pwnd->GetDlgCtrlId();
          nm.hdr.code =   NM_DBLCLK;
-         nm.hdr.hwndFrom = pwnd->GetSafeHwnd();
+         nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
          lresult = ::SendMessage(
             wndidNotify,
             WM_NOTIFY,
@@ -564,7 +564,7 @@ namespace user
                NMLISTVIEW nm;
                nm.hdr.idFrom = pwnd->GetDlgCtrlId();
                nm.hdr.code =   NM_CLICK;
-               nm.hdr.hwndFrom = pwnd->GetSafeHwnd();
+               nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
                lresult = ::SendMessage(
                   wndidNotify,
                   WM_NOTIFY,
@@ -588,9 +588,9 @@ namespace user
    {
       ::ca::window * pwnd = get_guie();
 
-      window_id wndidNotify = pwnd->GetOwner()->GetSafeHwnd();
+      window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();
       if(wndidNotify == NULL)
-         wndidNotify = pwnd->GetParent()->GetSafeHwnd();
+         wndidNotify = pwnd->GetParent()->GetSafeoswindow_();
       return wndidNotify;
    }*/
 

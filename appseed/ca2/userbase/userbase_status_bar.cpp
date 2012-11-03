@@ -63,7 +63,7 @@ namespace userbase
       // initialize common controls
       VERIFY(System.DeferRegisterClass(__WNDCOMMCTL_BAR_REG, NULL));
 
-      // create the oswindow_
+      // create the oswindow
       class rect rect;
       rect.null();
       return ::user::interaction::create(STATUSCLASSNAME, NULL, dwStyle, rect, pParentWnd, strId);

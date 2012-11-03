@@ -30,59 +30,59 @@ namespace cube2
       return true;
    }
 
-   BOOL CALLBACK application::GetAppsEnumWindowsProc(oswindow_ hwnd, LPARAM lParam)
+   BOOL CALLBACK application::GetAppsEnumWindowsProc(oswindow oswindow, LPARAM lParam)
    {
       application * papp = (application *) lParam;
       DWORD dwptr;
-      if(!::SendMessageTimeout(hwnd, WM_APP + 2000, 1, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 2)
+      if(!::SendMessageTimeout(oswindow, WM_APP + 2000, 1, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 2)
       {
          return TRUE;
       }
-      if(!::SendMessageTimeout(hwnd, WM_APP + 2000, 2, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 4)
+      if(!::SendMessageTimeout(oswindow, WM_APP + 2000, 2, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 4)
       {
          return TRUE;
       }
-      if(!::SendMessageTimeout(hwnd, WM_APP + 2000, 4, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 5)
+      if(!::SendMessageTimeout(oswindow, WM_APP + 2000, 4, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 5)
       {
          return TRUE;
       }
-      if(!::SendMessageTimeout(hwnd, WM_APP + 2000, 5, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 8)
+      if(!::SendMessageTimeout(oswindow, WM_APP + 2000, 5, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 8)
       {
          return TRUE;
       }
-      if(!::SendMessageTimeout(hwnd, WM_APP + 2000, 8, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 11)
+      if(!::SendMessageTimeout(oswindow, WM_APP + 2000, 8, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 11)
       {
          return TRUE;
       }
-      if(!::SendMessageTimeout(hwnd, WM_APP + 2000, 11, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 23)
+      if(!::SendMessageTimeout(oswindow, WM_APP + 2000, 11, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 23)
       {
          return TRUE;
       }
-      if(!::SendMessageTimeout(hwnd, WM_APP + 2000, 23, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 33)
+      if(!::SendMessageTimeout(oswindow, WM_APP + 2000, 23, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 33)
       {
          return TRUE;
       }
-      if(::SendMessageTimeout(hwnd, WM_APP + 2000, 33, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr))
+      if(::SendMessageTimeout(oswindow, WM_APP + 2000, 33, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr))
       {
          if(dwptr == 1)
          {
             if(papp->m_straAppInterest.find_first("command") >= 0)
-               papp->m_mapAppInterest["command"] = hwnd;
+               papp->m_mapAppInterest["command"] = oswindow;
          }
          else if(dwptr == 67)
          {
             if(papp->m_straAppInterest.find_first("winactionarea") >= 0)
-               papp->m_mapAppInterest["winactionarea"] = hwnd;
+               papp->m_mapAppInterest["winactionarea"] = oswindow;
          }
          else if(dwptr == 68)
          {
             if(papp->m_straAppInterest.find_first("winutil") >= 0)
-               papp->m_mapAppInterest["winutil"] = hwnd;
+               papp->m_mapAppInterest["winutil"] = oswindow;
          }
          else if(dwptr == 69)
          {
             if(papp->m_straAppInterest.find_first("windesk") >= 0)
-               papp->m_mapAppInterest["windesk"] = hwnd;
+               papp->m_mapAppInterest["windesk"] = oswindow;
          }
       }
       return TRUE;
@@ -107,7 +107,7 @@ namespace cube2
       }
    }
 
-   oswindow_ application::get_ca2_app_wnd(const char * psz)
+   oswindow application::get_ca2_app_wnd(const char * psz)
    {
       return m_mapAppInterest[psz];
    }
@@ -131,10 +131,10 @@ namespace cube2
    {
       m_straAppInterest.add(m_strAppName);
       update_app_interest();
-      oswindow_ hwnd = get_ca2_app_wnd(m_strAppName);
-      if(hwnd != NULL)
+      oswindow oswindow = get_ca2_app_wnd(m_strAppName);
+      if(oswindow != NULL)
       {
-         ::ShowWindow(hwnd, SW_RESTORE);
+         ::ShowWindow(oswindow, SW_RESTORE);
       }
    }
 
@@ -146,10 +146,10 @@ namespace cube2
       if(stra.get_size() > 0)
       {
          strApp = stra[0];
-         oswindow_ hwnd = get_ca2_app_wnd(strApp);
-         if(hwnd != NULL)
+         oswindow oswindow = get_ca2_app_wnd(strApp);
+         if(oswindow != NULL)
          {
-            return send_simple_command((void *) hwnd, psz, osdataSender);
+            return send_simple_command((void *) oswindow, psz, osdataSender);
          }
       }
       return -1;
@@ -157,15 +157,15 @@ namespace cube2
 
    int application::send_simple_command(void * osdata, const char * psz, void * osdataSender)
    {
-      oswindow_ hwnd = (oswindow_) osdata;
-      if(!::IsWindow(hwnd))
+      oswindow oswindow = (oswindow) osdata;
+      if(!::IsWindow(oswindow))
          return -1;
       COPYDATASTRUCT cds;
       memset(&cds, 0, sizeof(cds));
       cds.dwData = 198477;
       cds.cbData = (DWORD) strlen(psz);
       cds.lpData = (PVOID) psz;
-      return (int) SendMessage(hwnd, WM_COPYDATA, (WPARAM) (oswindow_) osdataSender, (LPARAM) &cds);
+      return (int) SendMessage(oswindow, WM_COPYDATA, (WPARAM) (oswindow) osdataSender, (LPARAM) &cds);
    }
 
    void application::request(::ca::create_context * pcreatecontext)

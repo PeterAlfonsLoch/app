@@ -45,7 +45,7 @@ namespace gcom
          //   const char *   m_lpImagePath;
          //   FIBITMAP *   m_pfiBitmap;
          //   HDC      m_hDCPersistent;
-         //   oswindow_   m_hWndReturn;
+         //   oswindow   m_oswindow_Return;
          //   LPSTREAM * m_lpStreamEvents;
          //   DWORD   m_dwEventsCount;
          //   LPSTREAM m_lpStreamImageLoader;

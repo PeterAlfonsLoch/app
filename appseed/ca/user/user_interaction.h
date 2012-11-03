@@ -207,8 +207,8 @@ namespace user
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
 
-      virtual bool subclass_window(void * posdata);
-      virtual void * unsubclass_window();
+      virtual bool subclass_window(oswindow posdata);
+      virtual oswindow unsubclass_window();
 
 
       virtual bool create(interaction *pparent, id id);
@@ -282,7 +282,7 @@ namespace user
 
    // Timer Functions
       virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse,
-         void (CALLBACK* lpfnTimer)(oswindow_, UINT, uint_ptr, DWORD));
+         void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD));
       virtual bool KillTimer(uint_ptr nIDEvent);
 
       virtual bool IsWindowEnabled();
@@ -437,10 +437,10 @@ namespace user
       virtual void _001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc);
 
 
-      void * get_safe_handle();
-      virtual void * _get_handle();
-      virtual bool Attach(void * hWndNew);
-      virtual void * Detach();
+      oswindow get_safe_handle();
+      virtual oswindow get_handle();
+      virtual bool attach(oswindow oswindow_New);
+      virtual oswindow detach();
 
 
       template < class T >
@@ -472,13 +472,13 @@ namespace user
 
    };
 
-   inline void * interaction::get_safe_handle()
+   inline oswindow interaction::get_safe_handle()
    {
       if(((byte *)this) < (byte *) (((byte *) NULL) + (16 * 1024))) // consider invalid
       {
          return 0;
       }
-      return _get_handle();
+      return get_handle();
    }
 
 

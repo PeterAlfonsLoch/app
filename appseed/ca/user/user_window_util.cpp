@@ -5,7 +5,7 @@ namespace user
 
    void oswindow_array::SortByZOrder()
    {
-      WndUtil::SortByZOrder(*this);
+      oswindow_util::SortByZOrder(*this);
    }
 
    // This function sort the ::ca::window base_array
@@ -15,16 +15,16 @@ namespace user
    // that all windows are siblings
    void oswindow_array::SortSiblingsByZOrder()
    {
-      void * hwndSwap;
+      oswindow oswindowSwap;
       for(int i = 0; i < this->get_size(); i++)
       {
          for(int j = i + 1; j < this->get_size(); j++)
          {
-            if(WndUtil::GetZOrder(this->element_at(i)) > WndUtil::GetZOrder(this->element_at(j)))
+            if(oswindow_util::GetZOrder(this->element_at(i)) > oswindow_util::GetZOrder(this->element_at(j)))
             {
-               hwndSwap = this->element_at(i);
+               oswindowSwap = this->element_at(i);
                this->element_at(i) = this->element_at(j);
-               this->element_at(j) = hwndSwap;
+               this->element_at(j) = oswindowSwap;
             }
          }
       }
@@ -36,13 +36,13 @@ namespace user
 #ifdef WINDOWS
 
       int iOrder = 0;
-      oswindow_ hwndOrder = ::GetDesktopWindow();
-      hwndOrder = ::GetWindow(hwndOrder, GW_CHILD);
-      while(hwndOrder != NULL
-         && ::IsWindow(hwndOrder))
+      oswindow oswindowOrder = ::GetDesktopWindow();
+      oswindowOrder = ::GetWindow(oswindowOrder, GW_CHILD);
+      while(oswindowOrder != NULL
+         && ::IsWindow(oswindowOrder))
       {
-         add(hwndOrder);
-         hwndOrder = ::GetWindow(hwndOrder, GW_HWNDNEXT);
+         add(oswindowOrder);
+         oswindowOrder = ::GetWindow(oswindowOrder, GW_HWNDNEXT);
          iOrder++;
       }
 
@@ -55,12 +55,12 @@ namespace user
    }
 
 
-   WndUtil::WndUtil()
+   oswindow_util::oswindow_util()
    {
 
    }
 
-   WndUtil::~WndUtil()
+   oswindow_util::~oswindow_util()
    {
 
    }
@@ -73,7 +73,7 @@ namespace user
    // have a permanent ::ca::window associated object
    // and that all ::ca::window base_array pointers
    // are pointers to permanent objects.
-   /*void WndUtil::SortByZOrder(Carray < ::ca::window *, ::ca::window * > & wndpa)
+   /*void oswindow_util::SortByZOrder(Carray < ::ca::window *, ::ca::window * > & wndpa)
    {
    if(wndpa.get_size() <= 0)
    return;
@@ -85,9 +85,9 @@ namespace user
    ::ca::window * pwndChild = pwnd->GetWindow(GW_HWNDFIRST);
 
    while(pwndChild != NULL
-   && ::IsWindow(pwndChild->GetSafeHwnd()))
+   && ::IsWindow(pwndChild->GetSafeoswindow_()))
    {
-   pwnd = ::ca::window::FromHandlePermanent(pwndChild->GetSafeHwnd());
+   pwnd = ::ca::window::FromHandlePermanent(pwndChild->GetSafeoswindow_());
    if(pwnd == NULL)
    {
    CTransparentWndInterface * ptwi = NULL;
@@ -143,77 +143,77 @@ namespace user
    // have a permanent ::ca::window associated object
    // and that all ::ca::window base_array pointers
    // are pointers to permanent objects.
-   /*void WndUtil::SortByZOrder(Carray < oswindow_, oswindow_ > & hwnda)
+   /*void oswindow_util::SortByZOrder(Carray < oswindow, oswindow > & oswindowa)
    {
-   if(hwnda.get_size() <= 0)
+   if(oswindowa.get_size() <= 0)
    return;
 
-   Carray < oswindow_, oswindow_ > hwnda2;
+   Carray < oswindow, oswindow > oswindowa2;
 
-   oswindow_ hwnd = hwnda[0];
+   oswindow oswindow = oswindowa[0];
 
-   oswindow_ hwndChild = ::GetWindow(hwnd, GW_HWNDFIRST);
+   oswindow oswindowChild = ::GetWindow(oswindow, GW_HWNDFIRST);
 
-   while(hwndChild != NULL
-   && ::IsWindow(hwndChild))
+   while(oswindowChild != NULL
+   && ::IsWindow(oswindowChild))
    {
-   hwnda2.add(hwndChild);
-   hwndChild = ::GetWindow(hwndChild, GW_HWNDNEXT);
+   oswindowa2.add(oswindowChild);
+   oswindowChild = ::GetWindow(oswindowChild, GW_HWNDNEXT);
    }
 
-   Carray < oswindow_, oswindow_ > hwnda3;
-   Carray < oswindow_, oswindow_ > hwnda4;
+   Carray < oswindow, oswindow > oswindowa3;
+   Carray < oswindow, oswindow > oswindowa4;
 
-   for(int i = 0; i < hwnda2.get_size(); i++)
+   for(int i = 0; i < oswindowa2.get_size(); i++)
    {
-   if(hwnda.find_first(hwnda2[i]) >= 0)
+   if(oswindowa.find_first(oswindowa2[i]) >= 0)
    {
-   hwnda3.add(hwnda2[i]);
-   }
-   }
-
-   for(i = 0; i < hwnda.get_size(); i++)
-   {
-   if(hwnda3.find_first(hwnda[i]) < 0)
-   {
-   hwnda3.add(hwnda[i]);
+   oswindowa3.add(oswindowa2[i]);
    }
    }
 
-   hwnda.copy(hwnda3);
+   for(i = 0; i < oswindowa.get_size(); i++)
+   {
+   if(oswindowa3.find_first(oswindowa[i]) < 0)
+   {
+   oswindowa3.add(oswindowa[i]);
+   }
+   }
+
+   oswindowa.copy(oswindowa3);
 
    }*/
 
 
-   /*void WndUtil::EnumChildren(oswindow_ hwnd, Carray < oswindow_, oswindow_ > & hwnda)
+   /*void oswindow_util::EnumChildren(oswindow oswindow, Carray < oswindow, oswindow > & oswindowa)
    {
-   if(!::IsWindow(hwnd))
+   if(!::IsWindow(::oswindow))
    return;
-   oswindow_ hwndChild = ::GetTopWindow(hwnd);
-   while(hwndChild != NULL)
+   oswindow oswindowChild = ::GetTopWindow(::oswindow);
+   while(oswindowChild != NULL)
    {
-   hwnda.add(hwndChild);
-   hwndChild = ::GetWindow(hwndChild, GW_HWNDNEXT);
+   oswindowa.add(oswindowChild);
+   oswindowChild = ::GetWindow(oswindowChild, GW_HWNDNEXT);
    }
    }
 
-   void WndUtil::ExcludeChildren(oswindow_ hwnd, HRGN hrgn, POINT ptOffset)
+   void oswindow_util::ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset)
    {
 
 
-   Carray < oswindow_, oswindow_ > hwnda;
+   Carray < oswindow, oswindow > oswindowa;
 
-   EnumChildren(hwnd, hwnda);
+   EnumChildren(oswindow, oswindowa);
 
-   for(int i = 0; i < hwnda.get_size(); i++)
+   for(int i = 0; i < oswindowa.get_size(); i++)
    {
-   oswindow_ hwndChild = hwnda[i];
+   oswindow oswindowChild = oswindowa[i];
    rect rectChild;
-   ::GetClientRect(hwndChild, rectChild);
-   ::ClientToScreen(hwndChild, &rectChild.top_left());
-   ::ClientToScreen(hwndChild, &rectChild.bottom_right());
-   ::ScreenToClient(hwnd, &rectChild.top_left());
-   ::ScreenToClient(hwnd, &rectChild.bottom_right());
+   ::GetClientRect(oswindowChild, rectChild);
+   ::ClientToScreen(oswindowChild, &rectChild.top_left());
+   ::ClientToScreen(oswindowChild, &rectChild.bottom_right());
+   ::ScreenToClient(oswindow, &rectChild.top_left());
+   ::ScreenToClient(oswindow, &rectChild.bottom_right());
    rectChild.offset(ptOffset);
    HRGN hrgnChild = ::create_rect(rectChild);
    ::CombineRgn(hrgn, hrgn, hrgnChild, ::ca::region::combine_exclude);
@@ -225,16 +225,16 @@ namespace user
 
    }*/
 
-   /*HRGN WndUtil::GetAClipRgn(oswindow_ hwnd, POINT ptOffset, bool bExludeChildren)
+   /*HRGN oswindow_util::GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChildren)
    {
    rect rectWnd;
-   ::GetClientRect(hwnd, rectWnd);
+   ::GetClientRect(oswindow, rectWnd);
    rectWnd.offset(ptOffset);
    HRGN hrgn = ::create_rect(rectWnd);
 
    if(bExludeChildren)
    {
-   ExcludeChildren(hwnd, hrgn, ptOffset);
+   ExcludeChildren(oswindow, hrgn, ptOffset);
    }
 
    return hrgn;
@@ -243,27 +243,27 @@ namespace user
 
 
 
-   void HwndTree::EnumDescendants()
+   void oswindow_tree::EnumDescendants()
    {
 
 #ifdef WINDOWS
 
-      void * hwnd = m_hwnd;
+      ::oswindow oswindow = m_oswindow;
 
-      if(!::IsWindow((oswindow_) hwnd))
+      if(!::IsWindow((::oswindow) oswindow))
          return;
 
-      void * hwndChild = ::GetTopWindow((oswindow_) hwnd);
+      ::oswindow oswindowChild = ::GetTopWindow((::oswindow) oswindow);
 
-      while(hwndChild != NULL)
+      while(oswindowChild != NULL)
       {
-         m_hwndtreea.add_new();
-         HwndTree & hwndtreeChild = m_hwndtreea.last_element();
-         hwndtreeChild.m_hwnd = hwndChild;
-         hwndtreeChild.m_dwUser = 0;
-         hwndtreeChild.m_pvoidUser = NULL;
-         hwndtreeChild.EnumDescendants();
-         hwndChild = ::GetWindow((oswindow_) hwndChild, GW_HWNDNEXT);
+         m_oswindowtreea.add_new();
+         oswindow_tree & oswindowtreeChild = m_oswindowtreea.last_element();
+         oswindowtreeChild.m_oswindow = oswindowChild;
+         oswindowtreeChild.m_dwUser = 0;
+         oswindowtreeChild.m_pvoidUser = NULL;
+         oswindowtreeChild.EnumDescendants();
+         oswindowChild = ::GetWindow((::oswindow) oswindowChild, GW_HWNDNEXT);
       }
 
 #else
@@ -274,7 +274,7 @@ namespace user
 
    }
 
-   void HwndTree::Array::EnumDescendants()
+   void oswindow_tree::Array::EnumDescendants()
    {
       for(int i = 0; i < this->get_size(); i++)
       {
@@ -282,45 +282,45 @@ namespace user
       }
    }
 
-   HwndTree::HwndTree()
+   oswindow_tree::oswindow_tree()
    {
-      m_hwnd = NULL;
+      m_oswindow = NULL;
    }
-   HwndTree::HwndTree(const HwndTree & tree)
+   oswindow_tree::oswindow_tree(const oswindow_tree & tree)
    {
       operator =(tree);
    }
 
 
-   HwndTree & HwndTree::operator = (const HwndTree & tree)
+   oswindow_tree & oswindow_tree::operator = (const oswindow_tree & tree)
    {
-      m_hwnd = tree.m_hwnd;
-      m_hwndtreea.copy(tree.m_hwndtreea);
+      m_oswindow = tree.m_oswindow;
+      m_oswindowtreea.copy(tree.m_oswindowtreea);
       return * this;
    }
 
-   int HwndTree::CompareHwnd(HwndTree &tree1, HwndTree &tree2)
+   int oswindow_tree::Compareoswindow_(oswindow_tree &tree1, oswindow_tree &tree2)
    {
-      return (int) ((byte *) (void *) tree1.m_hwnd - (byte *) (void *) tree2.m_hwnd);
+      return (int) ((byte *) (::oswindow) tree1.m_oswindow - (byte *) (::oswindow) tree2.m_oswindow);
    }
 
-   int_ptr HwndTree::Array::find(void * hwnd)
+   int_ptr oswindow_tree::Array::find(oswindow oswindow)
    {
-      HwndTree tree;
-      tree.m_hwnd = hwnd;
-      return array_ptr_alloc < HwndTree, const HwndTree & >::find_first(tree, HwndTree::CompareHwnd);
+      oswindow_tree tree;
+      tree.m_oswindow = oswindow;
+      return array_ptr_alloc < oswindow_tree, const oswindow_tree & >::find_first(tree, oswindow_tree::Compareoswindow_);
    }
 
 
-   bool HwndTree::Array::remove(void * hwnd)
+   bool oswindow_tree::Array::remove(oswindow oswindow)
    {
-      if(hwnd == NULL)
+      if(oswindow == NULL)
          return true;
       int i;
       for(i = 0; i < this->get_size();)
       {
-         HwndTree & tree = this->element_at(i);
-         if(tree.m_hwnd == hwnd)
+         oswindow_tree & tree = this->element_at(i);
+         if(tree.m_oswindow == oswindow)
          {
             remove_at(i);
             return true;
@@ -332,8 +332,8 @@ namespace user
       }
       for(i = 0; i < this->get_size(); i++)
       {
-         HwndTree & tree = this->element_at(i);
-         if(tree.m_hwndtreea.remove(hwnd))
+         oswindow_tree & tree = this->element_at(i);
+         if(tree.m_oswindowtreea.remove(oswindow))
          {
             return true;
          }
@@ -341,16 +341,16 @@ namespace user
       return false;
    }
 
-   HwndTree::Array &
-      HwndTree::Array::
-      operator = (oswindow_array & hwnda)
+   oswindow_tree::Array &
+      oswindow_tree::Array::
+      operator = (oswindow_array & oswindowa)
    {
       remove_all();
-      HwndTree hwndtree;
-      for(int i = 0; i < hwnda.get_size(); i++)
+      oswindow_tree oswindowtree;
+      for(int i = 0; i < oswindowa.get_size(); i++)
       {
-         hwndtree.m_hwnd = hwnda[i];
-         add(hwndtree);
+         oswindowtree.m_oswindow = oswindowa[i];
+         add(oswindowtree);
       }
       return * this;
    }
@@ -362,9 +362,9 @@ namespace user
    // to the ::ca::window base_array wndpa. The top
    // windows come first in the enumeration.
 
-   /*void WndUtil::EnumChildren(::ca::window * pwnd, LPWndArray & wndpa)
+   /*void oswindow_util::EnumChildren(::ca::window * pwnd, interaction_ptr_array & wndpa)
    {
-   if(!::IsWindow(pwnd->GetSafeHwnd()))
+   if(!::IsWindow(pwnd->GetSafeoswindow_()))
    return;
    ::ca::window * pwndChild = pwnd->GetTopWindow();
    while(pwndChild != NULL)
@@ -379,22 +379,22 @@ namespace user
    // to the ::ca::window base_array wndpa. The top
    // windows come first in the enumeration.
 
-   void WndUtil::EnumChildren(void * hwnd, oswindow_array & hwnda)
+   void oswindow_util::EnumChildren(oswindow oswindow, oswindow_array & oswindowa)
    {
 
 #ifdef WINDOWS
 
-      if(!::IsWindow((oswindow_) hwnd))
+      if(!::IsWindow((::oswindow) oswindow))
          return;
 
-      void * hwndChild = ::GetTopWindow((oswindow_) hwnd);
+      ::oswindow oswindowChild = ::GetTopWindow((::oswindow) oswindow);
 
-      while(hwndChild != NULL)
+      while(oswindowChild != NULL)
       {
 
-         hwnda.add(hwndChild);
+         oswindowa.add(oswindowChild);
 
-         hwndChild = ::GetWindow((oswindow_) hwndChild, GW_HWNDNEXT);
+         oswindowChild = ::GetWindow((::oswindow) oswindowChild, GW_HWNDNEXT);
 
       }
 
@@ -415,12 +415,12 @@ namespace user
    // have a permanent ::ca::window associated object
    // and that all ::ca::window base_array pointers
    // are pointers to permanent objects.
-   /*void WndUtil::SortByZOrder(LPWndArray & wndpa)
+   /*void oswindow_util::SortByZOrder(interaction_ptr_array & wndpa)
    {
    if(wndpa.get_size() <= 0)
    return;
 
-   LPWndArray wndpa2;
+   interaction_ptr_array wndpa2;
 
    ::ca::window * pwnd = wndpa[0];
 
@@ -428,7 +428,7 @@ namespace user
 
    while(pwndChild != NULL)
    {
-   pwnd = ::ca::window::FromHandlePermanent(pwndChild->GetSafeHwnd());
+   pwnd = ::ca::window::FromHandlePermanent(pwndChild->GetSafeoswindow_());
    if(pwnd == NULL)
    {
    wndpa2.add(pwnd);
@@ -436,8 +436,8 @@ namespace user
    pwndChild = pwndChild->GetWindow(GW_HWNDNEXT);
    }
 
-   LPWndArray wndpa3;
-   LPWndArray wndpa4;
+   interaction_ptr_array wndpa3;
+   interaction_ptr_array wndpa4;
 
    int i;
    for( i = 0; i < wndpa2.get_size(); i++)
@@ -460,7 +460,7 @@ namespace user
 
    }*/
 
-   /*void WndUtil::ExcludeChild(LPWndArray & wndpa)
+   /*void oswindow_util::ExcludeChild(interaction_ptr_array & wndpa)
    {
 
    for(int i = 0; i < wndpa.get_size();)
@@ -480,11 +480,11 @@ namespace user
 
 
 
-   void WndUtil::ContraintPosToParent(void * hwnd)
+   void oswindow_util::ContraintPosToParent(oswindow oswindow)
    {
       rect rectMajor;
-      void * hwndParent = ::GetParent((oswindow_) hwnd);
-      if(hwndParent == NULL)
+      ::oswindow oswindowParent = ::GetParent((::oswindow) oswindow);
+      if(oswindowParent == NULL)
       {
 
 #ifdef WINDOWS
@@ -503,24 +503,24 @@ namespace user
       }
       else
       {
-         ::GetClientRect((oswindow_) hwndParent, rectMajor);
+         ::GetClientRect((::oswindow) oswindowParent, rectMajor);
       }
 
       rect rect;
-      ::GetClientRect((oswindow_) hwnd, rect);
+      ::GetClientRect((::oswindow) oswindow, rect);
 
 #ifdef WINDOWS
 
-      ::ClientToScreen((oswindow_) hwnd, &rect.top_left());
+      ::ClientToScreen((::oswindow) oswindow, &rect.top_left());
 
-      ::ClientToScreen((oswindow_) hwnd, &rect.bottom_right());
+      ::ClientToScreen((::oswindow) oswindow, &rect.bottom_right());
 
-      if(hwndParent != NULL)
+      if(oswindowParent != NULL)
       {
 
-         ::ScreenToClient((oswindow_) hwndParent, &rect.top_left());
+         ::ScreenToClient((::oswindow) oswindowParent, &rect.top_left());
 
-         ::ScreenToClient((oswindow_) hwndParent, &rect.bottom_right());
+         ::ScreenToClient((::oswindow) oswindowParent, &rect.bottom_right());
 
       }
 
@@ -563,7 +563,7 @@ namespace user
       if(bModified)
       {
 
-         ::SetWindowPos((oswindow_) hwnd, HWND_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
+         ::SetWindowPos((::oswindow) oswindow, HWND_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
 
       }
 
@@ -575,65 +575,65 @@ namespace user
 
    }
 
-   /*void WndUtil::SendMessageToDescendants(oswindow_ hWnd, UINT message,
+   /*void oswindow_util::SendMessageToDescendants(oswindow oswindow, UINT message,
    WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
    {
    // walk through HWNDs to avoid creating temporary ::ca::window objects
    // unless we need to call this function recursively
-   for (oswindow_ hWndChild = ::GetTopWindow(hWnd); hWndChild != NULL;
-   hWndChild = ::GetNextWindow(hWndChild, GW_HWNDNEXT))
+   for (oswindow oswindow_Child = ::GetTopWindow(oswindow); oswindow_Child != NULL;
+   oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
    {
    // if bOnlyPerm is TRUE, don't send to non-permanent windows
    if (bOnlyPerm)
    {
-   ::ca::window* pWnd = ::ca::window::FromHandlePermanent(hWndChild);
+   ::ca::window* pWnd = ::ca::window::FromHandlePermanent(oswindow_Child);
    if (pWnd != NULL)
    {
    // call ::ca::window proc directly since it is a C++ ::ca::window
-   __call_window_procedure(pWnd, pWnd->m_hWnd, message, wParam, lParam);
+   __call_window_procedure(pWnd, pWnd->m_oswindow_, message, wParam, lParam);
    }
    }
    else
    {
    // send message with Windows SendMessage API
-   ::SendMessage(hWndChild, message, wParam, lParam);
+   ::SendMessage(oswindow_Child, message, wParam, lParam);
    }
-   if (bDeep && ::GetTopWindow(hWndChild) != NULL)
+   if (bDeep && ::GetTopWindow(oswindow_Child) != NULL)
    {
    // send to child windows after parent
-   SendMessageToDescendants(hWndChild, message, wParam, lParam,
+   SendMessageToDescendants(oswindow_Child, message, wParam, lParam,
    bDeep, bOnlyPerm);
    }
    }
    }*/
 
 
-   void WndUtil::SendMessageToDescendants(void * hWnd, UINT message, WPARAM wParam, LPARAM lParam, bool bDeep)
+   void oswindow_util::SendMessageToDescendants(oswindow oswindow, UINT message, WPARAM wParam, LPARAM lParam, bool bDeep)
    {
 
 #if defined(WINDOWS)
 
       // walk through HWNDs to avoid creating temporary ::ca::window objects
       // unless we need to call this function recursively
-      for(void * hWndChild = ::GetTopWindow((oswindow_) hWnd); hWndChild != NULL; hWndChild = ::GetNextWindow((oswindow_) hWndChild, GW_HWNDNEXT))
+      for(::oswindow oswindow_Child = ::GetTopWindow((::oswindow) oswindow); oswindow_Child != NULL; oswindow_Child = ::GetNextWindow((::oswindow) oswindow_Child, GW_HWNDNEXT))
       {
          // send message with Windows SendMessage API
          try
          {
-            ::SendMessage((oswindow_) hWndChild, message, wParam, lParam);
+            ::SendMessage((::oswindow) oswindow_Child, message, wParam, lParam);
          }
          catch(...)
          {
          }
 
-         if (bDeep && ::GetTopWindow((oswindow_) hWndChild) != NULL)
+         if (bDeep && ::GetTopWindow((::oswindow) oswindow_Child) != NULL)
          {
 
             // send to child windows after parent
             try
             {
 
-               SendMessageToDescendants(hWndChild, message, wParam, lParam, bDeep);
+               SendMessageToDescendants(oswindow_Child, message, wParam, lParam, bDeep);
 
             }
             catch(...)
@@ -658,28 +658,28 @@ namespace user
 
    // This implementation relays in the fact
    // that all windows are siblings
-   void WndUtil::SortByZOrder(oswindow_array & hwnda)
+   void oswindow_util::SortByZOrder(oswindow_array & oswindowa)
    {
-      if(hwnda.get_size() <= 0)
+      if(oswindowa.get_size() <= 0)
          return;
 
       int_array ia1;
       int_array ia2;
-      void * hwndSwap;
+      oswindow oswindowSwap;
 
-      for(int i = 0; i < hwnda.get_size(); i++)
+      for(int i = 0; i < oswindowa.get_size(); i++)
       {
-         for(int j = i + 1; j < hwnda.get_size(); j++)
+         for(int j = i + 1; j < oswindowa.get_size(); j++)
          {
             try
             {
-               GetZOrder(hwnda[i], ia1);
-               GetZOrder(hwnda[j], ia2);
+               GetZOrder(oswindowa[i], ia1);
+               GetZOrder(oswindowa[j], ia2);
                if(ia1.Cmp(ia2) > 0)
                {
-                  hwndSwap = hwnda[i];
-                  hwnda[i] = hwnda[j];
-                  hwnda[j] = hwndSwap;
+                  oswindowSwap = oswindowa[i];
+                  oswindowa[i] = oswindowa[j];
+                  oswindowa[j] = oswindowSwap;
                }
             }
             catch(...)
@@ -690,13 +690,13 @@ namespace user
 
    }
 
-   int WndUtil::GetZOrder(void * hwnd)
+   int oswindow_util::GetZOrder(oswindow oswindow)
    {
       int iOrder = 0;
-      void * hwndOrder = NULL;
+      ::oswindow oswindowOrder = NULL;
       try
       {
-         hwndOrder = ::GetWindow((oswindow_) hwnd, GW_HWNDFIRST);
+         oswindowOrder = ::GetWindow((::oswindow) oswindow, GW_HWNDFIRST);
       }
       catch(...)
       {
@@ -705,13 +705,13 @@ namespace user
 
 #ifdef WINDOWS
 
-      while(hwndOrder != NULL && ::IsWindow((oswindow_) hwndOrder))
+      while(oswindowOrder != NULL && ::IsWindow((::oswindow) oswindowOrder))
       {
 
-         if(hwnd == hwndOrder)
+         if(oswindow == oswindowOrder)
             return iOrder;
 
-         hwndOrder = ::GetWindow((oswindow_) hwndOrder, GW_HWNDNEXT);
+         oswindowOrder = ::GetWindow((::oswindow) oswindowOrder, GW_HWNDNEXT);
 
          iOrder++;
 
@@ -727,7 +727,7 @@ namespace user
    }
 
 
-   void WndUtil::GetZOrder(void * hwnd, int_array & ia)
+   void oswindow_util::GetZOrder(oswindow oswindow, int_array & ia)
    {
 
 #ifdef WINDOWS
@@ -736,13 +736,13 @@ namespace user
       ia.remove_all();
       while(true)
       {
-         if(hwnd == NULL || !::IsWindow((oswindow_) hwnd))
+         if(oswindow == NULL || !::IsWindow((::oswindow) oswindow))
             break;
-         iOrder = GetZOrder((oswindow_) hwnd);
+         iOrder = GetZOrder((::oswindow) oswindow);
          if(iOrder == 0x7fffffff)
             break;
          ia.insert_at(0, iOrder);
-         hwnd = ::GetParent((oswindow_) hwnd);
+         oswindow = ::GetParent((::oswindow) oswindow);
       }
 
 #else
@@ -753,44 +753,44 @@ namespace user
 
    }
 
-   /*void WndUtil::EnumChildren(oswindow_ hwnd, oswindow_array & hwnda)
+   /*void oswindow_util::EnumChildren(oswindow oswindow, oswindow_array & oswindowa)
    {
-   if(!::IsWindow(hwnd))
+   if(!::IsWindow(oswindow))
    return;
-   oswindow_ hwndChild = ::GetTopWindow(hwnd);
-   while(hwndChild != NULL)
+   oswindow oswindowChild = ::GetTopWindow(oswindow);
+   while(oswindowChild != NULL)
    {
-   hwnda.add(hwndChild);
-   hwndChild = ::GetWindow(hwndChild, GW_HWNDNEXT);
+   oswindowa.add(oswindowChild);
+   oswindowChild = ::GetWindow(oswindowChild, GW_HWNDNEXT);
    }
    }*/
 
-   void WndUtil::ExcludeChildren(void *hwnd, HRGN hrgn, POINT ptOffset)
+   void oswindow_util::ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset)
    {
 
 
 #ifdef WINDOWS
 
-      oswindow_array hwnda;
+      oswindow_array oswindowa;
 
-      EnumChildren(hwnd, hwnda);
+      EnumChildren(oswindow, oswindowa);
 
-      for(int i = 0; i < hwnda.get_size(); i++)
+      for(int i = 0; i < oswindowa.get_size(); i++)
       {
 
-         void * hwndChild = hwnda[i];
+         ::oswindow oswindowChild = oswindowa[i];
 
          rect rectChild;
 
-         ::GetClientRect((oswindow_) hwndChild, rectChild);
+         ::GetClientRect((::oswindow) oswindowChild, rectChild);
 
-         ::ClientToScreen((oswindow_) hwndChild, &rectChild.top_left());
+         ::ClientToScreen((::oswindow) oswindowChild, &rectChild.top_left());
 
-         ::ClientToScreen((oswindow_) hwndChild, &rectChild.bottom_right());
+         ::ClientToScreen((::oswindow) oswindowChild, &rectChild.bottom_right());
 
-         ::ScreenToClient((oswindow_) hwnd, &rectChild.top_left());
+         ::ScreenToClient((::oswindow) oswindow, &rectChild.top_left());
 
-         ::ScreenToClient((oswindow_) hwnd, &rectChild.bottom_right());
+         ::ScreenToClient((::oswindow) oswindow, &rectChild.bottom_right());
 
          rectChild.offset(ptOffset);
 
@@ -811,14 +811,14 @@ namespace user
 
    }
 
-   HRGN WndUtil::GetAClipRgn(void * hwnd, POINT ptOffset, bool bExludeChildren)
+   HRGN oswindow_util::GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChildren)
    {
 
 #ifdef WINDOWS
 
       rect rectWnd;
 
-      ::GetClientRect((oswindow_) hwnd, rectWnd);
+      ::GetClientRect((::oswindow) oswindow, rectWnd);
 
       rectWnd.offset(ptOffset);
 
@@ -827,7 +827,7 @@ namespace user
       if(bExludeChildren)
       {
 
-         ExcludeChildren(hwnd, hrgn, ptOffset);
+         ExcludeChildren(oswindow, hrgn, ptOffset);
 
       }
 
@@ -841,19 +841,19 @@ namespace user
 
    }
 
-   bool WndUtil::IsAscendant(void * hwndAscendant, void * hwndDescendant)
+   bool oswindow_util::IsAscendant(oswindow oswindowAscendant, oswindow oswindowDescendant)
    {
       while(true)
       {
-         hwndDescendant = ::GetParent((oswindow_) hwndDescendant);
-         if(hwndDescendant == NULL)
+         oswindowDescendant = ::GetParent((::oswindow) oswindowDescendant);
+         if(oswindowDescendant == NULL)
             return false;
-         if(hwndDescendant == hwndAscendant)
+         if(oswindowDescendant == oswindowAscendant)
             return true;
       }
    }
 
-   ::user::interaction * LPWndArray::find_first(::ca::type_info info)
+   ::user::interaction * interaction_ptr_array::find_first(::ca::type_info info)
    {
       for(int i = 0; i < this->get_size(); i++)
       {
@@ -865,13 +865,13 @@ namespace user
       return NULL;
    }
 
-   ::user::interaction * LPWndArray::find_first(void * hwnd)
+   ::user::interaction * interaction_ptr_array::find_first(oswindow oswindow)
    {
 
       for(int i = 0; i < this->get_size(); i++)
       {
 
-         if(this->element_at(i)->get_safe_handle() == hwnd)
+         if(this->element_at(i)->get_safe_handle() == oswindow)
          {
 
             return this->element_at(i);
@@ -882,16 +882,16 @@ namespace user
 
    }
 
-   void LPWndArray::get_wnda(oswindow_array & hwnda)
+   void interaction_ptr_array::get_wnda(oswindow_array & oswindowa)
    {
-      hwnda.remove_all();
+      oswindowa.remove_all();
       for(int i = 0; i < this->get_size(); i++)
       {
-         hwnda.add(this->element_at(i)->_get_handle());
+         oswindowa.add(this->element_at(i)->get_handle());
       }
    }
 
-   void LPWndArray::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   void interaction_ptr_array::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
       for(int i = 0; i < this->get_size(); i++)
       {
@@ -905,7 +905,7 @@ namespace user
       }
    }
 
-   void LPWndArray::send_message_to_descendants(UINT uiMessage, WPARAM wparam, LPARAM lparam, bool bRecursive)
+   void interaction_ptr_array::send_message_to_descendants(UINT uiMessage, WPARAM wparam, LPARAM lparam, bool bRecursive)
    {
       for(int i = 0; i < this->get_size(); i++)
       {

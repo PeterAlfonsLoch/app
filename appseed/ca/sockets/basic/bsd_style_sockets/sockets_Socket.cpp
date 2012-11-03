@@ -201,14 +201,14 @@ namespace sockets
          throw simple_exception(get_app(), string("socket() failed: ") + StrError(Errno));
          return INVALID_SOCKET;
       }
-      Attach(s);
+      attach(s);
       OnOptions(af, type, protno, s);
-      Attach(INVALID_SOCKET);
+      attach(INVALID_SOCKET);
       return s;
    }
 
 
-   void socket::Attach(SOCKET s)
+   void socket::attach(SOCKET s)
    {
       m_socket = s;
    }
@@ -657,7 +657,7 @@ namespace sockets
    void socket::CopyConnection(socket *sock)
    {
 
-      Attach( sock -> GetSocket() );
+      attach( sock -> GetSocket() );
       SetIpv6( sock -> IsIpv6() );
       SetSocketType( sock -> GetSocketType() );
       SetSocketProtocol( sock -> GetSocketProtocol() );
@@ -781,7 +781,7 @@ namespace sockets
       return m_socks4_userid;
    }
 
-   bool socket::Detach()
+   bool socket::detach()
    {
       if (!DeleteByHandler())
          return false;

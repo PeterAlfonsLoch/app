@@ -53,7 +53,7 @@ namespace hotplugin
       virtual vsstring     get_host_location_url();
 
       virtual void         post_message(UINT uiMessage, WPARAM wparam, LPARAM lparam);
-      virtual oswindow_         get_host_window();
+      virtual oswindow         get_host_window();
       virtual void         get_window_rect(LPRECT lprect);
 
       // client should implement

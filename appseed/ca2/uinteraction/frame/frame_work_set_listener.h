@@ -16,7 +16,7 @@ namespace frame
    {
    public:
       virtual void on_delete(::ca::ca * poc);
-      void Attach(WorkSetListenerArray * plistenerpa);
+      void attach(WorkSetListenerArray * plistenerpa);
       
       WorkSetListener();
       virtual ~WorkSetListener();

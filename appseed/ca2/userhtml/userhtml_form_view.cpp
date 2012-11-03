@@ -138,7 +138,7 @@ void html_form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* 
                   }*/
                _001UpdateFunctionStatic();
                //   CVmsGuiApp * papp = (CVmsGuiApp *) &System;
-               //   papp->TwfInitializeDescendants(pview->GetSafeHwnd(), true);
+               //   papp->TwfInitializeDescendants(pview->GetSafeoswindow_(), true);
                for(int i = 0; i < m_controldescriptorset.get_size(); i++)
                {
                   user::control * pcontrol = m_controldescriptorset[i].m_pcontrol;

@@ -21,7 +21,7 @@ namespace ca
       virtual bool CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset);
       virtual bool CreateDIBitmap(::ca::graphics * pdc, const BITMAPINFOHEADER *pbmih, DWORD flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage);
 
-      virtual bool Attach(void * posdata);
+      virtual bool attach(void * posdata);
 
       virtual class size SetBitmapDimension(int nWidth, int nHeight);
       virtual class size set_size(class size size);

@@ -38,12 +38,12 @@ namespace ca
    /*
 #ifdef WINDOWS
 
-   bool graphics::Attach(HDC hdc)
+   bool graphics::attach(HDC hdc)
    {
       throw interface_only_exception(get_app());
    }
 
-   HDC graphics::Detach()
+   HDC graphics::detach()
    {
       throw interface_only_exception(get_app());
    }
@@ -2444,14 +2444,14 @@ namespace ca
       m_pwindow = pwindow;
       create(pwindow->get_app());
 #ifdef WINDOWS
-      m_p->attach(::BeginPaint((oswindow_) pwindow->get_safe_handle(), &m_ps));
+      m_p->attach(::BeginPaint((oswindow) pwindow->get_safe_handle(), &m_ps));
 #endif
    }
 
    paint_graphics::~paint_graphics()
    {
 #ifdef WINDOWS
-      ::EndPaint((oswindow_) m_pwindow->get_safe_handle(), &m_ps);
+      ::EndPaint((oswindow) m_pwindow->get_safe_handle(), &m_ps);
 #endif
    }
 

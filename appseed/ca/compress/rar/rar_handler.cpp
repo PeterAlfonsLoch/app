@@ -645,7 +645,7 @@ namespace rar
 
          NArchive::NRar::CInArchive &archive = _archives[refItem.VolumeIndex + partIndex];
 
-         inStream.Attach(archive.CreateLimitedStream(item.GetDataPosition(),
+         inStream.attach(archive.CreateLimitedStream(item.GetDataPosition(),
          item.PackSize));
          */
          if (!folderInStream)

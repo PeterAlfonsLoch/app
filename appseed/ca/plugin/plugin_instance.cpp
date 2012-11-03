@@ -19,7 +19,7 @@ namespace plugin
 
       m_puiHost         = NULL;
 
-      m_hwnd            = NULL;
+      m_oswindow            = NULL;
 
       m_bStream         = false;
 
@@ -38,14 +38,14 @@ namespace plugin
    bool instance::initialize()
    {
 
-      m_hwnd = m_phost->get_host_window();
+      m_oswindow = m_phost->get_host_window();
 
-      if(m_hwnd == NULL)
+      if(m_oswindow == NULL)
          return FALSE;
 
       m_bInitialized = true;
 
-      //NPN_GetValue(m_instance, NPNVnetscapeWindow, &m_hwnd);
+      //NPN_GetValue(m_instance, NPNVnetscapeWindow, &m_oswindow);
 
       start_ca2_system();
 
@@ -61,7 +61,7 @@ namespace plugin
 
       plugin::finalize();
 
-      m_hwnd = NULL;
+      m_oswindow = NULL;
 
       m_bInitialized = false;
 

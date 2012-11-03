@@ -18,7 +18,7 @@ public:
 
    file_manager_operation_thread(::ca::application * papp);
 
-   void queue_copy(stringa & stra, const char * pszDest, const char * pszSrcBase, bool bExpand, ::user::interaction * hwndCallback = NULL, UINT uiMessage = WM_USER, WPARAM wparam = 0x1000);
+   void queue_copy(stringa & stra, const char * pszDest, const char * pszSrcBase, bool bExpand, ::user::interaction * oswindowCallback = NULL, UINT uiMessage = WM_USER, WPARAM wparam = 0x1000);
    void kick();
 
    int get_item_count();

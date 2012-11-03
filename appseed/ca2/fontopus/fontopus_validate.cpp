@@ -493,10 +493,10 @@ namespace ca2
                   ptext = dynamic_cast < text_interface * > (pguie);
                   ptext->_001GetText(m_pauth->m_strPassword);
                }
-               oswindow_ hwndPrevious = (oswindow_) m_pvOldWindow;
-               if(hwndPrevious != NULL)
+               oswindow oswindowPrevious = (oswindow) m_pvOldWindow;
+               if(oswindowPrevious != NULL)
                {
-                  ::user::interaction * puiPrevious = System.window_from_os_data(hwndPrevious);
+                  ::user::interaction * puiPrevious = System.window_from_os_data(oswindowPrevious);
                   if(puiPrevious != NULL)
                   {
                      if(puiPrevious->SetForegroundWindow())

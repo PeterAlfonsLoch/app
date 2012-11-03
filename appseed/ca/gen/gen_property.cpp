@@ -2855,12 +2855,12 @@ void prop_id_debug(::ca::application * papp)
 }
 
 
-string CLASS_DECL_ca operator + (const char * psz, property & prop)
+string CLASS_DECL_ca operator + (const char * psz, gen::property & prop)
 {
    return psz + prop.get_value();
 }
 
-string CLASS_DECL_ca operator + (const string & str, property & prop)
+string CLASS_DECL_ca operator + (const string & str, gen::property & prop)
 {
    return str + prop.get_value();
 }

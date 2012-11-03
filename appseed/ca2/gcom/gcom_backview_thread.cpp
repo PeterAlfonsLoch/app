@@ -65,8 +65,8 @@ namespace gcom
           TRACE("\nCXfplayerThreadV1::OnImageLoaded before lock %X\n", m_nThreadID);
           single_lock slGdi(pinterface->BackViewGetSourceBitmapCriticalSection(), true);
           //TRACE("\nCXfplayerThreadV1::OnImageLoaded after lock %X\n", m_nThreadID);
-         HBITMAP hBitmapOld = (HBITMAP) graphics.m_bmpBackViewSource.Detach();
-         graphics.m_bmpBackViewSource.Attach(hbitmap);
+         HBITMAP hBitmapOld = (HBITMAP) graphics.m_bmpBackViewSource.detach();
+         graphics.m_bmpBackViewSource.attach(hbitmap);
          CSavings & savings = CSavings::AppGetSavings();
       //    if(iEconoMode != CVMSApp::SaveMemory)
         //  {

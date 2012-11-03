@@ -182,7 +182,7 @@ namespace primitive
    }
 
 
-   bool memory_container ::Attach(memory_base * pstorage)
+   bool memory_container ::attach(memory_base * pstorage)
    {
 
       m_spmemory(pstorage);

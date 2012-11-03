@@ -4,7 +4,7 @@
 #include <dde.h>        // for DDE execute shell requests
 #endif
 
-CLASS_DECL_ca ::user::interaction * __get_parent_owner(::user::interaction * hWnd);
+CLASS_DECL_ca ::user::interaction * __get_parent_owner(::user::interaction * oswindow);
 
 /////////////////////////////////////////////////////////////////////////////
 // frame_window
@@ -152,7 +152,7 @@ void frame_window::pre_translate_message(gen::signal_object * pobj)
    ENSURE_ARG(pobj != NULL);
    // check for special cancel modes for combo boxes
    //if (pMsg->message == WM_LBUTTONDOWN || pMsg->message == WM_NCLBUTTONDOWN)
-   //   __cancel_modes(pMsg->hwnd);    // filter clicks
+   //   __cancel_modes(pMsg->oswindow);    // filter clicks
 
    // allow tooltip messages to be filtered
    user::frame_window_interface::pre_translate_message(pobj);
@@ -265,12 +265,12 @@ bool frame_window::OnSetCursor(::user::interaction * pWnd, UINT nHitTest, UINT m
 bool frame_window::OnCommand(WPARAM wParam, LPARAM lParam)
    // return TRUE if command invocation was attempted
 {
-   oswindow_ hWndCtrl = (oswindow_)lParam;
+   oswindow oswindow_Ctrl = (oswindow)lParam;
    UINT nID = LOWORD(wParam);
 
    frame_window* pFrameWnd = GetTopLevelFrame();
    ENSURE_VALID(pFrameWnd);
-/*   if (pFrameWnd->m_bHelpMode && hWndCtrl == NULL &&
+/*   if (pFrameWnd->m_bHelpMode && oswindow_Ctrl == NULL &&
       nID != ID_HELP && nID != ID_DEFAULT_HELP && nID != ID_CONTEXT_HELP)
    {
       // route as help
@@ -285,24 +285,24 @@ bool frame_window::OnCommand(WPARAM wParam, LPARAM lParam)
 }
 
 
-bool __is_descendant(::user::interaction * hWndParent, ::user::interaction * hWndChild)
+bool __is_descendant(::user::interaction * oswindow_Parent, ::user::interaction * oswindow_Child)
    // helper for detecting whether child descendent of parent
    //  (works with owned popups as well)
 {
-   if(!hWndChild->IsWindow())
+   if(!oswindow_Child->IsWindow())
       return FALSE;
-   if(!hWndParent->IsWindow())
+   if(!oswindow_Parent->IsWindow())
       return FALSE;
-   ASSERT(hWndParent->IsWindow());
-   ASSERT(hWndChild->IsWindow());
+   ASSERT(oswindow_Parent->IsWindow());
+   ASSERT(oswindow_Child->IsWindow());
 
    do
    {
-      if (hWndParent == hWndChild)
+      if (oswindow_Parent == oswindow_Child)
          return TRUE;
 
-      hWndChild = __get_parent_owner(hWndChild);
-   } while (hWndChild != NULL);
+      oswindow_Child = __get_parent_owner(oswindow_Child);
+   } while (oswindow_Child != NULL);
 
    return FALSE;
 }
@@ -324,21 +324,21 @@ void frame_window::BeginModalState()
    m_uiptraDisable.remove_all();
 
    // disable all windows connected to this frame (and add them to the list)
-   ::user::interaction * hWnd = System.get_desktop_window()->GetWindow(GW_CHILD);
+   ::user::interaction * oswindow = System.get_desktop_window()->GetWindow(GW_CHILD);
 
-   while (hWnd != NULL)
+   while (oswindow != NULL)
    {
 
-      if (hWnd->IsWindowEnabled() &&    __is_descendant(pParent, hWnd) && hWnd->send_message(WM_DISABLEMODAL, 0, 0) == 0)
+      if (oswindow->IsWindowEnabled() &&    __is_descendant(pParent, oswindow) && oswindow->send_message(WM_DISABLEMODAL, 0, 0) == 0)
       {
 
-         hWnd->EnableWindow(FALSE);
+         oswindow->EnableWindow(FALSE);
 
-         m_uiptraDisable.add(hWnd);
+         m_uiptraDisable.add(oswindow);
 
       }
 
-      hWnd = hWnd->GetWindow( GW_HWNDNEXT);
+      oswindow = oswindow->GetWindow( GW_HWNDNEXT);
 
    }
 
@@ -370,27 +370,27 @@ void frame_window::ShowOwnedWindows(bool bShow)
    UNREFERENCED_PARAMETER(bShow);
    // walk through all top-level windows
    throw not_implemented(get_app());
-/*   oswindow_ hWnd = ::GetWindow(::GetDesktopWindow(), GW_CHILD);
-   while (hWnd != NULL)
+/*   oswindow oswindow = ::GetWindow(::GetDesktopWindow(), GW_CHILD);
+   while (oswindow != NULL)
    {
-      ::ca::window * pWnd = ::ca::window::FromHandlePermanent(hWnd);
-      if (pWnd != NULL && _get_handle() != hWnd && __is_descendant(this, pWnd))
+      ::ca::window * pWnd = ::ca::window::FromHandlePermanent(oswindow);
+      if (pWnd != NULL && get_handle() != oswindow && __is_descendant(this, pWnd))
       {
-         DWORD dwStyle = ::GetWindowLong(hWnd, GWL_STYLE);
+         DWORD dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
          if (!bShow && (dwStyle & (WS_VISIBLE|WS_DISABLED)) == WS_VISIBLE)
          {
-            ::ShowWindow(hWnd, SW_HIDE);
+            ::ShowWindow(oswindow, SW_HIDE);
             pWnd->m_nFlags |= WF_TEMPHIDE;
          }
          // don't show temporarily hidden windows if we're in print preview mode
          else if (bShow && (dwStyle & (WS_VISIBLE|WS_DISABLED)) == 0 &&
             (pWnd->m_nFlags & WF_TEMPHIDE) && !m_lpfnCloseProc)
          {
-            ::ShowWindow(hWnd, SW_SHOWNOACTIVATE);
+            ::ShowWindow(oswindow, SW_SHOWNOACTIVATE);
             pWnd->m_nFlags &= ~WF_TEMPHIDE;
          }
       }
-      hWnd = ::GetWindow(hWnd, GW_HWNDNEXT);
+      oswindow = ::GetWindow(oswindow, GW_HWNDNEXT);
    }*/
 }
 
@@ -655,7 +655,7 @@ bool frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
    }
 
    // save the default menu handle
-   //ASSERT(_get_handle() != NULL);
+   //ASSERT(get_handle() != NULL);
    // trans m_hMenuDefault = ::GetMenu(get_handle());
    m_hMenuDefault = NULL; // trans
 
@@ -698,8 +698,8 @@ void frame_window::InitialUpdateFrame(::user::document_interface * pDoc, bool bM
       }
    }
 
-//   oswindow_ hwnd = _get_handle();
-//   DWORD dwStyle = ::GetWindowLong(hwnd, GWL_STYLE);
+//   oswindow oswindow = get_handle();
+//   DWORD dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
 //   bool bChild =  dwStyle & WS_CHILD;
 
    if (bMakeVisible)
@@ -1164,7 +1164,7 @@ LRESULT frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
       VERIFY(GlobalAddAtom(szAtomName) == pApp->m_atomSystemTopic);
 
       // send the WM_DDE_ACK (caller will delete duplicate atoms)
-      ::SendMessage((oswindow_)wParam, WM_DDE_ACK, (WPARAM)_get_handle(),
+      ::SendMessage((oswindow)wParam, WM_DDE_ACK, (WPARAM)get_handle(),
          MAKELPARAM(pApp->m_atomApp, pApp->m_atomSystemTopic));
    }
 
@@ -1207,7 +1207,7 @@ LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
 
 
    // acknowledge now - before attempting to execute
-   ::PostMessage((oswindow_)wParam, WM_DDE_ACK, (WPARAM)_get_handle(),
+   ::PostMessage((oswindow)wParam, WM_DDE_ACK, (WPARAM)get_handle(),
      //IA64: Assume DDE LPARAMs are still 32-bit
       ReuseDDElParam(lParam, WM_DDE_EXECUTE, WM_DDE_ACK,
       (UINT)0x8000, (uint_ptr)hData));
@@ -1241,7 +1241,7 @@ LRESULT frame_window::OnDDETerminate(WPARAM wParam, LPARAM lParam)
 
 #ifdef WINDOWS
 
-   ::PostMessage((oswindow_)wParam, WM_DDE_TERMINATE, (WPARAM)_get_handle(), lParam);
+   ::PostMessage((oswindow)wParam, WM_DDE_TERMINATE, (WPARAM)get_handle(), lParam);
 
 #else
 
@@ -1544,13 +1544,13 @@ void frame_window::OnSetPreviewMode(bool bPreview, CPrintPreviewState* pState)
       m_lpfnCloseProc = NULL;
 
       // shift original "pane_first" back to its rightful ID
-/*      ::user::interaction * hWnd = get_child_by_id(__IDW_PANE_SAVE);
-      if (hWnd != NULL)
+/*      ::user::interaction * oswindow = get_child_by_id(__IDW_PANE_SAVE);
+      if (oswindow != NULL)
       {
-         ::user::interaction * hWndTemp = get_child_by_id("pane_first");
-         if (hWndTemp != NULL)
-            __set_dialog_control_id_(hWndTemp, __IDW_PANE_SAVE);
-         __set_dialog_control_id_(hWnd, "pane_first");
+         ::user::interaction * oswindow_Temp = get_child_by_id("pane_first");
+         if (oswindow_Temp != NULL)
+            __set_dialog_control_id_(oswindow_Temp, __IDW_PANE_SAVE);
+         __set_dialog_control_id_(oswindow, "pane_first");
       }*/
 
       layout();
@@ -1716,8 +1716,8 @@ LRESULT frame_window::OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam)
    keyState |= (::GetKeyState(VK_CONTROL) < 0) ? MK_CONTROL : 0;
    keyState |= (::GetKeyState(VK_SHIFT) < 0) ? MK_SHIFT : 0;
 
-   oswindow_ hwFocus = ::GetFocus();
-   const oswindow_ hwDesktop = ::GetDesktopWindow();
+   oswindow hwFocus = ::GetFocus();
+   const oswindow hwDesktop = ::GetDesktopWindow();
 
    if (hwFocus == NULL)
       lResult = send_message(WM_MOUSEWHEEL, (wParam << 16) | keyState, lParam);
@@ -1780,15 +1780,15 @@ void frame_window::BringToTop(int nCmdShow)
          nCmdShow != SW_SHOWNA && nCmdShow != SW_SHOWNOACTIVATE)
       {
          // if no last active popup, it will return get_handle()
-         void * hwnd = _get_handle();
-         void * hWndLastPop = ::GetLastActivePopup((oswindow_) hwnd);
+         ::oswindow oswindow = get_handle();
+         ::oswindow oswindow_LastPop = ::GetLastActivePopup((::oswindow) oswindow);
 
-         //DWORD dwStyle = ::GetWindowLong(hWndLastPop, GWL_STYLE);
-         if(hWndLastPop != (oswindow_) 1)
+         //DWORD dwStyle = ::GetWindowLong(oswindow_LastPop, GWL_STYLE);
+         if(oswindow_LastPop != (::oswindow) 1)
          {
-            if(::IsWindow((oswindow_) hWndLastPop))
+            if(::IsWindow((::oswindow) oswindow_LastPop))
             {
-               ::BringWindowToTop((oswindow_) hWndLastPop);
+               ::BringWindowToTop((::oswindow) oswindow_LastPop);
             }
          }
       }

@@ -54,7 +54,7 @@ namespace frame
       UNREFERENCED_PARAMETER(point);
    }
 
-   void WorkSetListener::Attach(WorkSetListenerArray *plistenerpa)
+   void WorkSetListener::attach(WorkSetListenerArray *plistenerpa)
    {
       add(plistenerpa);
       m_listenerpapa.add(plistenerpa);

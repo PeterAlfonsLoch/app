@@ -589,7 +589,7 @@ namespace filemanager
 #ifdef WINDOWS
 
    int ImageSet::GetImage(
-      oswindow_ hwnd,
+      oswindow oswindow,
       IShellFolder * lpsf,
       LPITEMIDLIST lpiidlAbsolute,
       LPITEMIDLIST lpiidlChild,
@@ -678,7 +678,7 @@ namespace filemanager
          }
       }*/
       if(SUCCEEDED(lpsf->GetUIObjectOf(
-         hwnd,
+         oswindow,
          1,
          (LPCITEMIDLIST *) &lpiidlChild,
          IID_IExtractIcon,
@@ -712,7 +712,7 @@ namespace filemanager
       if(imagekey.m_iIcon == 0x80000000)
       {
          string strTarget;
-         //if(System.os().resolve_link(strTarget, strFilePath, System.window_from_os_data(hwnd)))
+         //if(System.os().resolve_link(strTarget, strFilePath, System.window_from_os_data(oswindow)))
          if(System.os().resolve_link(strTarget, strFilePath, NULL))
          {
 
@@ -744,7 +744,7 @@ namespace filemanager
             LPITEMIDLIST lpiidlParent2    = _017ItemIDListGetFolderParent(lpiidl2);
 
             int iImage = GetImage(
-               hwnd,
+               oswindow,
                lpsf,
                lpiidl2,
                lpiidlChild2,
@@ -1018,7 +1018,7 @@ namespace filemanager
 
 #endif
 
-   int ImageSet::GetImageByExtension(oswindow_ hwnd, const char * pszPath, EIcon eicon, bool bFolder)
+   int ImageSet::GetImageByExtension(oswindow oswindow, const char * pszPath, EIcon eicon, bool bFolder)
    {
 
 #ifdef WINDOWS
@@ -1150,7 +1150,7 @@ namespace filemanager
 #ifdef WINDOWS
 
    bool ImageSet::GetIcon(
-      oswindow_ hwnd,
+      oswindow oswindow,
       IShellFolder * lpsf,
       LPITEMIDLIST lpiidlAbsolute,
       LPITEMIDLIST lpiidlChild,
@@ -1241,7 +1241,7 @@ namespace filemanager
          }
       }*/
       if(SUCCEEDED(lpsf->GetUIObjectOf(
-         hwnd,
+         oswindow,
          1,
          (LPCITEMIDLIST *) &lpiidlChild,
          IID_IExtractIcon,
@@ -1432,7 +1432,7 @@ namespace filemanager
 
 
    int ImageSet::GetImage(
-      oswindow_ hwnd,
+      oswindow oswindow,
       LPITEMIDLIST lpiidlAbsolute,
       const wchar_t * lpcszExtra,
       EIcon eicon)
@@ -1443,7 +1443,7 @@ namespace filemanager
 
       LPITEMIDLIST lpiidlChild = _017ItemIDListGetLast(lpiidlAbsolute);
       int iImage = GetImage(
-         hwnd,
+         oswindow,
          lpsf,
          lpiidlAbsolute,
          lpiidlChild,
@@ -1458,7 +1458,7 @@ namespace filemanager
    }
 
    int ImageSet::GetImage(
-      oswindow_ hwnd,
+      oswindow oswindow,
       const char * psz,
       const wchar_t * lpcszExtra,
       EIcon eicon,
@@ -1500,11 +1500,11 @@ namespace filemanager
          if(i > 0 && i == strProtocol.get_length())
          {
             // heuristically valid protocol
-            return GetImageByExtension(hwnd, strPath, eicon, bFolder);
+            return GetImageByExtension(oswindow, strPath, eicon, bFolder);
          }
          if(bFolder)
          {
-            return GetImageByExtension(hwnd, strPath, eicon, bFolder);
+            return GetImageByExtension(oswindow, strPath, eicon, bFolder);
          }
       }
 
@@ -1512,7 +1512,7 @@ namespace filemanager
 
       _017ItemIDListParsePath(&lpiidlAbsolute, psz);
 
-      iImage = GetImage(hwnd, lpiidlAbsolute, lpcszExtra, eicon);
+      iImage = GetImage(oswindow, lpiidlAbsolute, lpcszExtra, eicon);
 
       _017ItemIDListFree(lpiidlAbsolute);
 
@@ -1523,7 +1523,7 @@ namespace filemanager
 #endif
 
    bool ImageSet::GetIcon(
-      oswindow_ hwnd,
+      oswindow oswindow,
       const char * psz,
       const wchar_t * lpcszExtra,
       EIcon eicon,
@@ -1535,7 +1535,7 @@ namespace filemanager
 
       LPITEMIDLIST lpiidlAbsolute;
       _017ItemIDListParsePath(&lpiidlAbsolute, psz);
-      bool bGet = GetIcon(hwnd, lpiidlAbsolute, lpcszExtra, eicon, phicon16, phicon48);
+      bool bGet = GetIcon(oswindow, lpiidlAbsolute, lpcszExtra, eicon, phicon16, phicon48);
       _017ItemIDListFree(lpiidlAbsolute);
       return bGet;
 
@@ -1551,7 +1551,7 @@ namespace filemanager
 #ifdef WINDOWS
 
    bool ImageSet::GetIcon(
-      oswindow_ hwnd,
+      oswindow oswindow,
       LPITEMIDLIST lpiidlAbsolute,
       const wchar_t * lpcszExtra,
       EIcon eicon,
@@ -1564,7 +1564,7 @@ namespace filemanager
 
       LPITEMIDLIST lpiidlChild = _017ItemIDListGetLast(lpiidlAbsolute);
       bool bGet = GetIcon(
-         hwnd,
+         oswindow,
          lpsf,
          lpiidlAbsolute,
          lpiidlChild,

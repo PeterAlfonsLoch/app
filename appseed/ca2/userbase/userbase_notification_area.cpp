@@ -37,7 +37,7 @@ namespace userbase
       lf.lfItalic = TRUE;
       m_hfontHidden = CreateFontIndirect(&lf);
 
-      m_hwndTray = FindTrayToolbarWindow();
+      m_oswindowTray = FindTrayToolbarWindow();
       m_pil16 = new image_list(papp);
       m_pil16->create(16,16,ILC_COLOR24,16,16);
 
@@ -51,23 +51,23 @@ namespace userbase
 
       m_pil16->remove_all();
 
-      if(m_hwndTray == NULL)
+      if(m_oswindowTray == NULL)
       {
-         m_hwndTray = FindTrayToolbarWindow();
-         if(m_hwndTray == NULL)
+         m_oswindowTray = FindTrayToolbarWindow();
+         if(m_oswindowTray == NULL)
          {
             return;
          }
       }
 
       DWORD dwTrayPid = 0;
-      if(!GetWindowThreadProcessId(m_hwndTray, &dwTrayPid))
+      if(!GetWindowThreadProcessId(m_oswindowTray, &dwTrayPid))
          return;
 
       if(dwTrayPid == 0)
          return;
 
-      int count = (int)::SendMessage(m_hwndTray, TB_BUTTONCOUNT, 0, 0);
+      int count = (int)::SendMessage(m_oswindowTray, TB_BUTTONCOUNT, 0, 0);
 
       process_data<TBBUTTON> data(dwTrayPid);
       TBBUTTON tb = {0};
@@ -76,12 +76,12 @@ namespace userbase
 
       for(int i=0; i<count; i++)
       {
-         ::SendMessage(m_hwndTray, TB_GETBUTTON, i, (LPARAM)data.get_data());
+         ::SendMessage(m_oswindowTray, TB_GETBUTTON, i, (LPARAM)data.get_data());
          data.ReadData(&tb);
          data.ReadData<TRAYDATA>(&tray,(LPCVOID)tb.dwData);
 
          DWORD dwProcessId = 0;
-         GetWindowThreadProcessId(tray.hwnd,&dwProcessId);
+         GetWindowThreadProcessId(tray.oswindow,&dwProcessId);
 
          info.sProcessPath = GetFilenameFromPid(dwProcessId);
 
@@ -107,7 +107,7 @@ namespace userbase
 
          info.sTip = gen::international::unicode_to_utf8(sTip);
 
-         info.hwnd = tray.hwnd;
+         info.oswindow = tray.oswindow;
          info.uCallbackMessage = tray.uCallbackMessage;
          info.uID = tray.uID;
 
@@ -179,7 +179,7 @@ namespace userbase
 
    void notification_area::PostMessageToTrayIcon(int iItem, LPARAM lParam)
    {
-      ::PostMessage(m_infoa[iItem].hwnd,
+      ::PostMessage(m_infoa[iItem].oswindow,
          m_infoa[iItem].uCallbackMessage,
          m_infoa[iItem].uID,
          lParam);
@@ -189,7 +189,7 @@ namespace userbase
    {
       if(iItem > 0)
       {
-         ::SendMessage(m_hwndTray, TB_MOVEBUTTON, iItem, iItem-1);
+         ::SendMessage(m_oswindowTray, TB_MOVEBUTTON, iItem, iItem-1);
          ListTrayIcons(iItem - 1);
       }
    }
@@ -198,7 +198,7 @@ namespace userbase
    {
       if(iItem < (m_infoa.get_size() - 1))
       {
-         ::SendMessage(m_hwndTray, TB_MOVEBUTTON, iItem, iItem+1);
+         ::SendMessage(m_oswindowTray, TB_MOVEBUTTON, iItem, iItem+1);
          ListTrayIcons(iItem + 1);
       }
    }
@@ -231,22 +231,22 @@ namespace userbase
       return NULL;
    }
 
-   oswindow_ FindTrayToolbarWindow()
+   oswindow FindTrayToolbarWindow()
    {
-      oswindow_ hWnd = ::FindWindow("Shell_TrayWnd", NULL);
-      if(hWnd != NULL)
+      oswindow oswindow = ::FindWindow("Shell_TrayWnd", NULL);
+      if(oswindow != NULL)
       {
-         hWnd = ::FindWindowEx(hWnd,NULL,"TrayNotifyWnd", NULL);
-         if(hWnd != NULL)
+         oswindow = ::FindWindowEx(oswindow,NULL,"TrayNotifyWnd", NULL);
+         if(oswindow != NULL)
          {
-            hWnd = ::FindWindowEx(hWnd,NULL,"SysPager", NULL);
-            if(hWnd != NULL)
+            oswindow = ::FindWindowEx(oswindow,NULL,"SysPager", NULL);
+            if(oswindow != NULL)
             {
-               hWnd = ::FindWindowEx(hWnd, NULL,"ToolbarWindow32", NULL);
+               oswindow = ::FindWindowEx(oswindow, NULL,"ToolbarWindow32", NULL);
             }
          }
       }
-      return hWnd;
+      return oswindow;
    }
 
    string GetFilenameFromPid(DWORD pid)

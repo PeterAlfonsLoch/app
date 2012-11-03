@@ -5,7 +5,7 @@ file_operation::file_operation(::ca::application * papp) :
    m_fileSrc(papp),
    m_fileDst(papp)
 {
-   m_hwndCallback = NULL;
+   m_oswindowCallback = NULL;
    m_bReplaceAll = false;
    m_eoperation = filemanager::operation_none;
    m_iBufferSize = 1024 * 1024;
@@ -261,9 +261,9 @@ bool file_operation::finish()
       }
       break;
    }
-   if(m_hwndCallback != NULL)
+   if(m_oswindowCallback != NULL)
    {
-      m_hwndCallback->send_message(m_uiCallbackMessage, m_wparamCallback, 0);
+      m_oswindowCallback->send_message(m_uiCallbackMessage, m_wparamCallback, 0);
    }
    return true;
 }

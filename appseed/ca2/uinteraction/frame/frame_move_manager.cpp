@@ -98,7 +98,7 @@ namespace uinteraction
             if(puieCapture != NULL
                && puieCapture == GetEventWindow())
             {
-               TRACE("MoveManager::message_handler oswindow_ ReleaseCapture %x\n", System.get_capture_uie());
+               TRACE("MoveManager::message_handler oswindow ReleaseCapture %x\n", System.get_capture_uie());
                System.release_capture_uie();
             }
             return false;
@@ -205,7 +205,7 @@ namespace uinteraction
          pinterface->WfiOnMove(pmouse->m_uiMessage == WM_MOUSEMOVE || pmouse->m_uiMessage == WM_NCMOUSEMOVE);
          if(pmouse->m_uiMessage == WM_LBUTTONUP || pmouse->m_uiMessage == WM_NCLBUTTONUP)
          {
-            TRACE("MoveManager::message_handler oswindow_ ReleaseCapture 2 %x\n", System.get_capture_uie());
+            TRACE("MoveManager::message_handler oswindow ReleaseCapture 2 %x\n", System.get_capture_uie());
             System.release_capture_uie();
             m_bMoving = false;
          }
@@ -225,7 +225,7 @@ namespace uinteraction
          return false;
          /*
          if(GetEventWindow() == NULL ||
-         lpMsg->hwnd != GetEventWindow()->get_handle())
+         lpMsg->oswindow != GetEventWindow()->get_handle())
          return false;
          if(lpMsg->message == WM_LBUTTONDOWN)
          {
@@ -311,22 +311,22 @@ namespace uinteraction
 
 
       bool CALLBACK UpdateCurrentAreaEnumWindowsProc(      
-         oswindow_ hwnd,
+         oswindow oswindow,
          LPARAM lParam)
       {
          UNREFERENCED_PARAMETER(lParam);
-         //      oswindow_ hwndParam= (oswindow_) lParam;
+         //      oswindow oswindowParam= (oswindow) lParam;
          //DWORD dwThreadId;
          //DWORD dwProcessId;
          //HICON hicon16;
          //HICON hicon48;
          rect rectWindow;
-         ::GetWindowRect(hwnd, &rectWindow);
+         ::GetWindowRect(oswindow, &rectWindow);
          HRGN hrgn = ::CreateRectRgnIndirect(&rectWindow);
-         ::GetWindowRgn(hwnd, hrgn);
+         ::GetWindowRgn(oswindow, hrgn);
          //      HRGN hrgnNew = ::CreateRectRgn(0, 0, 0, 0);;
          /*      ::CombineRgn(hrgnNew, (HRGN)g_rgnTotal->get_os_data(), hrgn, RGN_AND);
-         ::RedrawWindow(hwnd, NULL, NULL, RDW_INVALIDATE);
+         ::RedrawWindow(oswindow, NULL, NULL, RDW_INVALIDATE);
          ::CombineRgn((HRGN)g_rgnTotal->get_os_data(),( HRGN)g_rgnTotal->get_os_data(), hrgnNew, ::ca::region::combine_exclude);
          ::DeleteObject(hrgn);
          ::DeleteObject(hrgnNew);*/
@@ -336,7 +336,7 @@ namespace uinteraction
          return FALSE;
          else
          return TRUE;*/
-         /*::user::interaction * pwnd = ::user::interaction::from_handle(hwnd);
+         /*::user::interaction * pwnd = ::user::interaction::from_handle(oswindow);
          if(pwnd == NULL)
          return TRUE;
          //HICON hicon = pwnd->GetIcon(FALSE);
@@ -346,24 +346,24 @@ namespace uinteraction
          //}
          /*int iStyle = pwnd->GetStyle();
          int iStyleEx = pwnd->GetExStyle();
-         if(pwnd->GetSafeHwnd() != pview->GetParentFrame()->GetSafeHwnd()
+         if(pwnd->GetSafeoswindow_() != pview->GetParentFrame()->GetSafeoswindow_()
          && (iStyle & WS_VISIBLE)
          && !(iStyleEx & WS_EX_TOOLWINDOW)
          &&((iStyleEx & WS_EX_APPWINDOW)
          || (!(iStyle & WS_CHILD)
          && pwnd->GetOwner() == NULL)))
          {
-         if(!pview->m_areaa.Contains(pwnd->GetSafeHwnd(), pview->m_iArea))
-         pview->m_areaa[pview->m_iArea].m_hwnda.add(pwnd->GetSafeHwnd());
+         if(!pview->m_areaa.Contains(pwnd->GetSafeoswindow_(), pview->m_iArea))
+         pview->m_areaa[pview->m_iArea].m_oswindowa.add(pwnd->GetSafeoswindow_());
          }*/
          return TRUE;
       }
 
-      void MoveManager::MoveWindow(void * hwnd, point pt)
+      void MoveManager::MoveWindow(void * oswindow, point pt)
       {
          /*   if(GetTickCount() - m_dwLastMoveTime < s_dwMoveTime)
          {
-         m_hwndPendingMove = hwnd;
+         m_oswindowPendingMove = oswindow;
          m_ptPendingMove = pt;
          if(!m_bPendingMove)
          {
@@ -374,7 +374,7 @@ namespace uinteraction
          }*/
          m_bPendingMove = false;
          m_dwLastMoveTime = GetTickCount();
-         ::user::interaction * pwnd = System.window_from_os_data(hwnd);
+         ::user::interaction * pwnd = System.window_from_os_data(oswindow);
          //            if(base < CPlaylistInPlaceWnd >::bases(m_pWndMoving))
          //          {
          //            m_pWndMoving->GetWindowRect(((CPlaylistInPlaceWnd *) m_pWndMoving)->m_rectWindow);
@@ -444,7 +444,7 @@ namespace uinteraction
          {
             m_bPendingMove = false;
             MoveWindow(
-               m_hwndPendingMove,
+               m_oswindowPendingMove,
                m_ptPendingMove);
          }
 
@@ -470,13 +470,13 @@ namespace uinteraction
             pbase->m_uiMessage == WM_LBUTTONUP)
          {
             ::user::interaction * pWndCapture = System.get_capture_uie();
-            TRACE("MoveManager::message_handler oswindow_ Capture %x\n", System.get_capture_uie());
+            TRACE("MoveManager::message_handler oswindow Capture %x\n", System.get_capture_uie());
             if(!m_bMoving ||
                pWndCapture == NULL ||
-               pWndCapture->_get_handle() != GetEventWindow()->_get_handle())
+               pWndCapture->get_handle() != GetEventWindow()->get_handle())
             {
                if(pWndCapture != NULL
-                  && pWndCapture->_get_handle() == GetEventWindow()->_get_handle())
+                  && pWndCapture->get_handle() == GetEventWindow()->get_handle())
                {
                   System.release_capture_uie();
                }
@@ -521,7 +521,7 @@ namespace uinteraction
             if(bMove && rectWindow.top_left() != pt)
             {
 
-               MoveWindow((oswindow_) GetMoveWindow()->_get_handle(), pt);
+               MoveWindow((oswindow) GetMoveWindow()->get_handle(), pt);
 
             }
             if(pbase->m_uiMessage == WM_LBUTTONUP)
@@ -539,7 +539,7 @@ namespace uinteraction
          if(nIDEvent == 0x08000000 - 1)
          {
             GetEventWindow()->KillTimer(nIDEvent);
-            MoveWindow(m_hwndPendingMove, m_ptPendingMove);
+            MoveWindow(m_oswindowPendingMove, m_ptPendingMove);
             return true;
          }
          return false;
