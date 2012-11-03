@@ -1,6 +1,24 @@
 #pragma once
 
 
+namespace gen
+{
+
+   class property;
+
+} // namespace gen
+
+
+string CLASS_DECL_ca operator + (const char * psz, const gen::property & prop);
+string CLASS_DECL_ca operator + (const string & str, const gen::property & prop);
+var CLASS_DECL_ca operator + (int i, const gen::property & prop);
+var CLASS_DECL_ca operator + (unsigned int user, const gen::property & prop);
+var CLASS_DECL_ca operator + (long l, const gen::property & prop);
+var CLASS_DECL_ca operator + (unsigned long ul, const gen::property & prop);
+var CLASS_DECL_ca operator + (double d, const gen::property & prop);
+var CLASS_DECL_ca operator + (const var & var, const gen::property & prop);
+var CLASS_DECL_ca operator + (const gen::property & prop1, const gen::property & prop2);
+
 
 
 namespace xml
@@ -600,5 +618,3 @@ namespace gen
 
 
 
-string CLASS_DECL_ca operator + (const char * psz, gen::property & prop);
-string CLASS_DECL_ca operator + (const string & str, gen::property & prop);

@@ -799,17 +799,6 @@ namespace gen
 
 
 
-   string CLASS_DECL_ca operator + (const char * psz, const property & prop)
-   {
-      return psz + prop.get_value();
-   }
-
-   string CLASS_DECL_ca operator + (const string & str, const property & prop)
-   {
-      return str + prop.get_value();
-   }
-
-
    var property::operator - (int i) const
    {
       return get_value() - i;
@@ -908,40 +897,6 @@ namespace gen
    }
 
 
-   var CLASS_DECL_ca operator + (int i, const property & prop)
-   {
-      return i + prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator + (unsigned int user, const property & prop)
-   {
-      return user + prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator + (long l, const property & prop)
-   {
-      return l + prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator + (unsigned long ul, const property & prop)
-   {
-      return ul + prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator + (double d, const property & prop)
-   {
-      return d + prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator + (const var & var, const property & prop)
-   {
-      return var + prop.get_value();
-   }
-
-   var CLASS_DECL_ca operator + (const property & prop1, const property & prop2)
-   {
-      return prop1.get_value() + prop2.get_value();
-   }
 
 
 
@@ -2855,14 +2810,54 @@ void prop_id_debug(::ca::application * papp)
 }
 
 
-string CLASS_DECL_ca operator + (const char * psz, gen::property & prop)
+string CLASS_DECL_ca operator + (const char * psz, const gen::property & prop)
 {
    return psz + prop.get_value();
 }
 
-string CLASS_DECL_ca operator + (const string & str, gen::property & prop)
+string CLASS_DECL_ca operator + (const string & str, const gen::property & prop)
 {
    return str + prop.get_value();
 }
 
 
+var CLASS_DECL_ca operator + (const gen::property & prop1, const gen::property & prop2)
+{
+   return prop1.get_value() + prop2.get_value();
+}
+
+
+var CLASS_DECL_ca operator + (int i, const property & prop)
+{
+   return i + prop.get_value();
+}
+
+var CLASS_DECL_ca operator + (unsigned int user, const property & prop)
+{
+   return user + prop.get_value();
+}
+
+var CLASS_DECL_ca operator + (long l, const property & prop)
+{
+   return l + prop.get_value();
+}
+
+var CLASS_DECL_ca operator + (unsigned long ul, const property & prop)
+{
+   return ul + prop.get_value();
+}
+
+var CLASS_DECL_ca operator + (double d, const property & prop)
+{
+   return d + prop.get_value();
+}
+
+var CLASS_DECL_ca operator + (const var & var, const property & prop)
+{
+   return var + prop.get_value();
+}
+
+var CLASS_DECL_ca operator + (const property & prop1, const property & prop2)
+{
+   return prop1.get_value() + prop2.get_value();
+}
