@@ -38,7 +38,7 @@ bool os_simple_path::add_arc(const RECT & rect, int iStart, int iAngle)
    rectBound.Width   = width(rect);
    rectBound.Height  = height(rect);
    
-   return m_ppath->AddArc(rectBound, iStart, iAngle) == Gdiplus::Ok;
+   return m_ppath->AddArc(rectBound, (float) iStart, (float) iAngle) == Gdiplus::Ok;
 
 }
 

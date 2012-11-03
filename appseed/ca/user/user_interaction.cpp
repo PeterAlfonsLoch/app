@@ -1106,7 +1106,7 @@ namespace user
 
       }
 
-      return get_wnd()->get_handle();
+      return get_handle();
 
    }
 

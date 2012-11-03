@@ -38,7 +38,7 @@ bool simple_pen::create_solid(simple_graphics & g, COLORREF cr, int iWidth)
 
    }
 
-   m_ppen = new Gdiplus::Pen(Gdiplus::Color(GetAValue(cr), GetRValue(cr), GetGValue(cr), GetBValue(cr)), iWidth);
+   m_ppen = new Gdiplus::Pen(Gdiplus::Color(GetAValue(cr), GetRValue(cr), GetGValue(cr), GetBValue(cr)), (float) iWidth);
 
    if(m_ppen == NULL)
       return false;

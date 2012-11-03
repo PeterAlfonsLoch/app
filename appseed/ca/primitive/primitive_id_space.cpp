@@ -86,7 +86,7 @@ id id_space::operator()(int64_t i)
 
    id idSearch;
 
-   idSearch.raw_set(i);
+   idSearch.raw_set((int_ptr) i);
 
    index iIndex = 0;
 

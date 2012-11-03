@@ -385,7 +385,7 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
 
    db_server * pcentral = dynamic_cast < db_server * > (&System.db());
    oswindow oswindow = pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer;
-   if(oswindow == NULL || ! ::IsWindow)
+   if(oswindow == NULL || ! ::IsWindow(oswindow))
    {
       if(pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer == NULL)
       {

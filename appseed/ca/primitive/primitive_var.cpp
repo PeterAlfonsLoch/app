@@ -757,7 +757,7 @@ var::operator unsigned int()
    case type_ca2:
       return 0;
    case type_uint64:
-      return m_ui64;
+      return (unsigned int) m_ui64;
    case type_pvar:
       return m_pvar->operator unsigned int();
    default:
@@ -1661,7 +1661,7 @@ inline id var::get_id(const char * pszOnNull) const
       }
       else if(m_etype == var::type_int64)
       {
-         id = m_i64;
+         id = (int_ptr) m_i64;
       }
       else if(m_etype == var::type_ulong)
       {

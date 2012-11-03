@@ -250,7 +250,7 @@ namespace user
 
       ::oswindow oswindow = m_oswindow;
 
-      if(!::IsWindow)
+      if(!::IsWindow(oswindow))
          return;
 
       ::oswindow oswindowChild = ::GetTopWindow(oswindow);
@@ -384,7 +384,7 @@ namespace user
 
 #ifdef WINDOWS
 
-      if(!::IsWindow)
+      if(!::IsWindow(oswindow))
          return;
 
       ::oswindow oswindowChild = ::GetTopWindow(oswindow);
@@ -736,7 +736,7 @@ namespace user
       ia.remove_all();
       while(true)
       {
-         if(oswindow == NULL || !::IsWindow)
+         if(oswindow == NULL || !::IsWindow(oswindow))
             break;
          iOrder = GetZOrder(oswindow);
          if(iOrder == 0x7fffffff)

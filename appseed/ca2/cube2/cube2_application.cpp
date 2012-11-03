@@ -158,7 +158,7 @@ namespace cube2
    int application::send_simple_command(void * osdata, const char * psz, void * osdataSender)
    {
       ::oswindow oswindow = (::oswindow) osdata;
-      if(!::IsWindow)
+      if(!::IsWindow(oswindow))
          return -1;
       COPYDATASTRUCT cds;
       memset(&cds, 0, sizeof(cds));
