@@ -6,7 +6,7 @@
 
 namespace html
 {
-   
+
 
    class data;
 
@@ -116,8 +116,9 @@ class COleDataObject;   // forward reference (see afxole.h)
 
 
 
-namespace win
+namespace user
 {
+
    class CLASS_DECL_ca message
    {
    public:

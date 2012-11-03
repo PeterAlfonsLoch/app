@@ -10,6 +10,9 @@
 	<File name="fs/fs_tree.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="5103" topLine="164" />
 	</File>
+	<File name="html/html_font.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="47" topLine="0" />
+	</File>
 	<File name="userbase/simple_mdi_child_window.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="4115" topLine="92" />
 	</File>

@@ -24,7 +24,7 @@ namespace ca
 
    thread * get_thread()
    {
-      
+
       if(g_pfn_get_thread == NULL)
          return NULL;
 
@@ -493,7 +493,7 @@ namespace ca
 } // namespace ca
 
 
-namespace win
+namespace user
 {
 
 
