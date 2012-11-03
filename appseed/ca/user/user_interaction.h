@@ -437,8 +437,8 @@ namespace user
       virtual void _001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc);
 
 
-      oswindow get_safe_handle();
-      virtual oswindow get_handle();
+      oswindow get_safe_handle() const;
+      virtual oswindow get_handle() const;
       virtual bool attach(oswindow oswindow_New);
       virtual oswindow detach();
 
@@ -472,7 +472,7 @@ namespace user
 
    };
 
-   inline oswindow interaction::get_safe_handle()
+   inline oswindow interaction::get_safe_handle() const
    {
       if(((byte *)this) < (byte *) (((byte *) NULL) + (16 * 1024))) // consider invalid
       {
