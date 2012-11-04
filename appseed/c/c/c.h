@@ -204,8 +204,10 @@ inline void * zero(void * p, size_t s)
    return p;
 }
 
-
 #ifndef BSD_STYLE_SOCKETS
+
+
+
 
 CLASS_DECL_c bool from_string(in6_addr * addr, const char * string);
 CLASS_DECL_c vsstring to_string(const in6_addr *addr);
