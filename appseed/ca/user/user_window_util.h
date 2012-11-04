@@ -68,7 +68,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_ca oswindow_util
+   class CLASS_DECL_ca window_util
    {
    public:
       static void ContraintPosToParent(oswindow oswindow);
@@ -79,8 +79,8 @@ namespace user
       static void SortByZOrder(oswindow_array & oswindowa);
       static HRGN GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChilren);
       static void ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset);
-      oswindow_util();
-      virtual ~oswindow_util();
+      window_util();
+      virtual ~window_util();
       /*static void SendMessageToDescendants(oswindow oswindow, UINT message,
          WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm);*/
       static void SendMessageToDescendants(oswindow oswindow, UINT message,

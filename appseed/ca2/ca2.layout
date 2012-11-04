@@ -13,7 +13,28 @@
 	<File name="html/html_font.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="47" topLine="0" />
 	</File>
+	<File name="upnp/CPortForwardEngine/PortForwardEngine.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="36306" topLine="1239" />
+	</File>
+	<File name="upnp/CPortForwardEngine/PortForwardEngine.h" open="0" top="0" tabpos="0">
+		<Cursor position="8908" topLine="190" />
+	</File>
+	<File name="user/_user_window_util.h" open="0" top="0" tabpos="0">
+		<Cursor position="1213" topLine="28" />
+	</File>
+	<File name="user/user_mdi_frame_window.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="24798" topLine="726" />
+	</File>
+	<File name="user/user_mini_frame_window.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="7092" topLine="190" />
+	</File>
 	<File name="userbase/simple_mdi_child_window.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="4115" topLine="92" />
+		<Cursor position="5756" topLine="144" />
+	</File>
+	<File name="userbase/simple_mdi_frame_window.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2250" topLine="10" />
+	</File>
+	<File name="userbase/userbase_mdi_frame_window.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2345" topLine="12" />
 	</File>
 </CodeBlocks_layout_file>

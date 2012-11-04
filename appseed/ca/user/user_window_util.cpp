@@ -5,7 +5,7 @@ namespace user
 
    void oswindow_array::SortByZOrder()
    {
-      oswindow_util::SortByZOrder(*this);
+      window_util::SortByZOrder(*this);
    }
 
    // This function sort the ::ca::window base_array
@@ -20,7 +20,7 @@ namespace user
       {
          for(int j = i + 1; j < this->get_size(); j++)
          {
-            if(oswindow_util::GetZOrder(this->element_at(i)) > oswindow_util::GetZOrder(this->element_at(j)))
+            if(window_util::GetZOrder(this->element_at(i)) > window_util::GetZOrder(this->element_at(j)))
             {
                oswindowSwap = this->element_at(i);
                this->element_at(i) = this->element_at(j);
@@ -55,12 +55,12 @@ namespace user
    }
 
 
-   oswindow_util::oswindow_util()
+   window_util::window_util()
    {
 
    }
 
-   oswindow_util::~oswindow_util()
+   window_util::~window_util()
    {
 
    }
@@ -73,7 +73,7 @@ namespace user
    // have a permanent ::ca::window associated object
    // and that all ::ca::window base_array pointers
    // are pointers to permanent objects.
-   /*void oswindow_util::SortByZOrder(Carray < ::ca::window *, ::ca::window * > & wndpa)
+   /*void window_util::SortByZOrder(Carray < ::ca::window *, ::ca::window * > & wndpa)
    {
    if(wndpa.get_size() <= 0)
    return;
@@ -143,7 +143,7 @@ namespace user
    // have a permanent ::ca::window associated object
    // and that all ::ca::window base_array pointers
    // are pointers to permanent objects.
-   /*void oswindow_util::SortByZOrder(Carray < oswindow, oswindow > & oswindowa)
+   /*void window_util::SortByZOrder(Carray < oswindow, oswindow > & oswindowa)
    {
    if(oswindowa.get_size() <= 0)
    return;
@@ -185,7 +185,7 @@ namespace user
    }*/
 
 
-   /*void oswindow_util::EnumChildren(oswindow oswindow, Carray < oswindow, oswindow > & oswindowa)
+   /*void window_util::EnumChildren(oswindow oswindow, Carray < oswindow, oswindow > & oswindowa)
    {
    if(!::IsWindow)
    return;
@@ -197,7 +197,7 @@ namespace user
    }
    }
 
-   void oswindow_util::ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset)
+   void window_util::ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset)
    {
 
 
@@ -225,7 +225,7 @@ namespace user
 
    }*/
 
-   /*HRGN oswindow_util::GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChildren)
+   /*HRGN window_util::GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChildren)
    {
    rect rectWnd;
    ::GetClientRect(oswindow, rectWnd);
@@ -362,7 +362,7 @@ namespace user
    // to the ::ca::window base_array wndpa. The top
    // windows come first in the enumeration.
 
-   /*void oswindow_util::EnumChildren(::ca::window * pwnd, interaction_ptr_array & wndpa)
+   /*void window_util::EnumChildren(::ca::window * pwnd, interaction_ptr_array & wndpa)
    {
    if(!::IsWindow(pwnd->GetSafeoswindow_()))
    return;
@@ -379,7 +379,7 @@ namespace user
    // to the ::ca::window base_array wndpa. The top
    // windows come first in the enumeration.
 
-   void oswindow_util::EnumChildren(oswindow oswindow, oswindow_array & oswindowa)
+   void window_util::EnumChildren(oswindow oswindow, oswindow_array & oswindowa)
    {
 
 #ifdef WINDOWS
@@ -415,7 +415,7 @@ namespace user
    // have a permanent ::ca::window associated object
    // and that all ::ca::window base_array pointers
    // are pointers to permanent objects.
-   /*void oswindow_util::SortByZOrder(interaction_ptr_array & wndpa)
+   /*void window_util::SortByZOrder(interaction_ptr_array & wndpa)
    {
    if(wndpa.get_size() <= 0)
    return;
@@ -460,7 +460,7 @@ namespace user
 
    }*/
 
-   /*void oswindow_util::ExcludeChild(interaction_ptr_array & wndpa)
+   /*void window_util::ExcludeChild(interaction_ptr_array & wndpa)
    {
 
    for(int i = 0; i < wndpa.get_size();)
@@ -480,7 +480,7 @@ namespace user
 
 
 
-   void oswindow_util::ContraintPosToParent(oswindow oswindow)
+   void window_util::ContraintPosToParent(oswindow oswindow)
    {
       rect rectMajor;
       ::oswindow oswindowParent = ::GetParent(oswindow);
@@ -575,7 +575,7 @@ namespace user
 
    }
 
-   /*void oswindow_util::SendMessageToDescendants(oswindow oswindow, UINT message,
+   /*void window_util::SendMessageToDescendants(oswindow oswindow, UINT message,
    WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
    {
    // walk through HWNDs to avoid creating temporary ::ca::window objects
@@ -608,7 +608,7 @@ namespace user
    }*/
 
 
-   void oswindow_util::SendMessageToDescendants(oswindow oswindow, UINT message, WPARAM wParam, LPARAM lParam, bool bDeep)
+   void window_util::SendMessageToDescendants(oswindow oswindow, UINT message, WPARAM wParam, LPARAM lParam, bool bDeep)
    {
 
 #if defined(WINDOWS)
@@ -658,7 +658,7 @@ namespace user
 
    // This implementation relays in the fact
    // that all windows are siblings
-   void oswindow_util::SortByZOrder(oswindow_array & oswindowa)
+   void window_util::SortByZOrder(oswindow_array & oswindowa)
    {
       if(oswindowa.get_size() <= 0)
          return;
@@ -690,7 +690,7 @@ namespace user
 
    }
 
-   int oswindow_util::GetZOrder(oswindow oswindow)
+   int window_util::GetZOrder(oswindow oswindow)
    {
       int iOrder = 0;
       ::oswindow oswindowOrder = ::ca::null();
@@ -727,7 +727,7 @@ namespace user
    }
 
 
-   void oswindow_util::GetZOrder(oswindow oswindow, int_array & ia)
+   void window_util::GetZOrder(oswindow oswindow, int_array & ia)
    {
 
 #ifdef WINDOWS
@@ -753,7 +753,7 @@ namespace user
 
    }
 
-   /*void oswindow_util::EnumChildren(oswindow oswindow, oswindow_array & oswindowa)
+   /*void window_util::EnumChildren(oswindow oswindow, oswindow_array & oswindowa)
    {
    if(!::IsWindow)
    return;
@@ -765,7 +765,7 @@ namespace user
    }
    }*/
 
-   void oswindow_util::ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset)
+   void window_util::ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset)
    {
 
 
@@ -811,7 +811,7 @@ namespace user
 
    }
 
-   HRGN oswindow_util::GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChildren)
+   HRGN window_util::GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChildren)
    {
 
 #ifdef WINDOWS
@@ -841,7 +841,7 @@ namespace user
 
    }
 
-   bool oswindow_util::IsAscendant(oswindow oswindowAscendant, oswindow oswindowDescendant)
+   bool window_util::IsAscendant(oswindow oswindowAscendant, oswindow oswindowDescendant)
    {
       while(true)
       {

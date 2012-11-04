@@ -2002,7 +2002,7 @@ namespace radix
       if(pwnd != NULL)
       {
          if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-         || ::user::oswindow_util::IsAscendant(System.get_active_guie()->get_safe_handle(), pwnd->get_safe_handle()))
+         || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(), pwnd->get_safe_handle()))
          {
             return pwnd;
          }
@@ -2015,7 +2015,7 @@ namespace radix
       if(pwnd != NULL)
       {
          if(System.get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-         || ::user::oswindow_util::IsAscendant(System.get_active_guie()->get_safe_handle(), pwnd->get_safe_handle()))
+         || ::user::window_util::IsAscendant(System.get_active_guie()->get_safe_handle(), pwnd->get_safe_handle()))
          {
             return pwnd;
          }

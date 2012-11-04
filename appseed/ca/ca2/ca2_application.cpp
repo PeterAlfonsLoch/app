@@ -7,7 +7,7 @@ namespace ca2
 
    application::application()
    {
-      
+
       m_eexclusiveinstance       = ::radix::ExclusiveInstanceNone;
       m_pmutexLocal              = NULL;
       m_pmutexGlobal             = NULL;
@@ -182,7 +182,7 @@ namespace ca2
       }
 
       string strLocale;
-      
+
       string strSchema;
 
 #ifdef METROWIN
@@ -231,7 +231,7 @@ namespace ca2
          strSchema = "pl";
       }
 #endif
-      
+
       if(strLocale.is_empty())
          strLocale = "se";
 
@@ -246,13 +246,13 @@ namespace ca2
 
       if(Sys(this).directrix().m_varTopicQuery["locale"].get_string().has_char())
          strLocale = Sys(this).directrix().m_varTopicQuery["locale"];
-      
+
       if(Sys(this).directrix().m_varTopicQuery["schema"].get_string().has_char())
          strSchema = Sys(this).directrix().m_varTopicQuery["schema"];
 
       if(App(this).directrix().m_varTopicQuery["locale"].get_string().has_char())
          strLocale = App(this).directrix().m_varTopicQuery["locale"];
-      
+
       if(App(this).directrix().m_varTopicQuery["schema"].get_string().has_char())
          strSchema = App(this).directrix().m_varTopicQuery["schema"];
 
@@ -264,7 +264,7 @@ namespace ca2
 
       str_context()->localeschema().m_idaLocale.add(strLocale);
       str_context()->localeschema().m_idaSchema.add(strSchema);
-      
+
 
       return ex2::application::initialize1();
 
@@ -677,7 +677,7 @@ namespace ca2
       user::interaction_ptr_array wnda = frames();
       user::oswindow_array oswindowa;
       wnda.get_wnda(oswindowa);
-      user::oswindow_util::SortByZOrder(oswindowa);
+      user::window_util::SortByZOrder(oswindowa);
       for(int i = 0; i < oswindowa.get_count(); i++)
       {
          ::user::interaction * puieWindow = wnda.find_first(oswindowa[i]);
