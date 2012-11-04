@@ -1158,7 +1158,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    int graphics::GetKerningPairs(int nPairs, LPKERNINGPAIR lpkrnpair) const
    {
@@ -1292,7 +1292,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    bool graphics::GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const
    {
@@ -1352,7 +1352,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT lpABCF) const
    {
@@ -1521,6 +1521,8 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
+#ifndef METROWIN
+
    bool graphics::GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) const
    {
       UNREFERENCED_PARAMETER(giFirst);
@@ -1529,6 +1531,8 @@ namespace ca
       UNREFERENCED_PARAMETER(lpabc);
       throw interface_only_exception(get_app());
    }
+
+#endif
 
    bool graphics::GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, LPINT lpBuffer) const
    {

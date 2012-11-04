@@ -252,4 +252,6 @@ unsigned long ntohl(unsigned long n);
 #endif
 
 
+#define NI_NUMERICHOST  0x02  /* Return numeric form of the host's address */
+
 #endif

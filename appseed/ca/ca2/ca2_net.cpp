@@ -590,17 +590,7 @@ namespace ca2
       if(!net::isipv6(str))
          return false;
 
-      stringa stra;
-
-      stra.explode(".", str);
-
-      if(stra.get_size() != 4)
-         return false;
-
-      sa.sin_addr.S_un.S_un_b.s_b1 = gen::str::to_int(stra[0]);
-      sa.sin_addr.S_un.S_un_b.s_b2 = gen::str::to_int(stra[1]);
-      sa.sin_addr.S_un.S_un_b.s_b3 = gen::str::to_int(stra[2]);
-      sa.sin_addr.S_un.S_un_b.s_b4 = gen::str::to_int(stra[3]);
+      from_string(&sa.sin6_addr, str);
 
       return true;
 
@@ -727,6 +717,133 @@ namespace ca2
 
    bool net::reverse(struct sockaddr *sa, socklen_t sa_len, string & hostname, string & service, int flags)
    {
+
+#ifdef METROWIN
+
+      switch(sa->sa_family)
+      {
+      case AF_INET:
+         {
+
+            union
+            {
+               struct
+               {
+                  unsigned char b1;
+                  unsigned char b2;
+                  unsigned char b3;
+                  unsigned char b4;
+               } a;
+               ipaddr_t l;
+            } u;
+
+            struct sockaddr_in *sa_in = (struct sockaddr_in *)sa;
+
+            memcpy(&u.l, &sa_in -> sin_addr, sizeof(u.l));
+
+            hostname.Format("%u.%u.%u.%u", u.a.b1, u.a.b2, u.a.b3, u.a.b4);
+
+            if (flags & NI_NUMERICHOST)
+            {
+               return true;
+            }
+
+            ::Windows::Networking::HostName ^ name = ref new ::Windows::Socket::HostName(rtstr(hostname));
+
+            if(name != nullptr)
+            {
+               
+               hostname = begin(name->CanonicalName);
+
+               return true;
+
+            }
+
+         }
+         break;
+
+      case AF_INET6:
+         {
+            char slask[100]; // l2ip temporary
+            *slask = 0;
+            unsigned int prev = 0;
+            bool skipped = false;
+            bool ok_to_skip = true;
+            {
+               unsigned short addr16[8];
+               struct sockaddr_in6 *sa_in6 = (struct sockaddr_in6 *)sa;
+               memcpy(addr16, &sa_in6 -> sin6_addr, sizeof(addr16));
+               for (index i = 0; i < 8; i++)
+               {
+                  unsigned short x = ntohs(addr16[i]);
+                  if (*slask && (x || !ok_to_skip || prev))
+                     strcat(slask,":");
+                  if (x || !ok_to_skip)
+                  {
+                     sprintf(slask + strlen(slask),"%x", x);
+                     if (x && skipped)
+                        ok_to_skip = false;
+                  }
+                  else
+                  {
+                     skipped = true;
+                  }
+                  prev = x;
+               }
+            }
+            if (!*slask)
+               strcpy(slask, "::");
+            hostname = slask;
+            if (flags & NI_NUMERICHOST)
+            {
+               return true;
+            }
+            // %! TODO: ipv6 reverse lookup
+
+            ::Windows::Networking::Hostname ^ name = ref new ::Windows::Socket::HostName(rtstr(hostname));
+
+            if(name != nullptr)
+            {
+               
+               hostname = begin(name->CanonicalName);
+
+               return true;
+
+            }
+         }
+         break;
+      }
+      return false;
+#else
+      char host[NI_MAXHOST];
+      char serv[NI_MAXSERV];
+      // NI_NOFQDN
+      // NI_NUMERICHOST
+      // NI_NAMEREQD
+      // NI_NUMERICSERV
+      // NI_DGRAM
+      int n = getnameinfo(sa, sa_len, host, sizeof(host), serv, sizeof(serv), flags);
+      if (n)
+      {
+         // EAI_AGAIN
+         // EAI_BADFLAGS
+         // EAI_FAIL
+         // EAI_FAMILY
+         // EAI_MEMORY
+         // EAI_NONAME
+         // EAI_OVERFLOW
+         // EAI_SYSTEM
+         return false;
+      }
+      hostname = host;
+      service = serv;
+      return true;
+#endif // NO_GETADDRINFO
+#endif
+
+
+#else
+
       hostname = "";
       service = "";
 #ifdef NO_GETADDRINFO
@@ -838,6 +955,7 @@ namespace ca2
       service = serv;
       return true;
 #endif // NO_GETADDRINFO
+#endif
    }
 
 

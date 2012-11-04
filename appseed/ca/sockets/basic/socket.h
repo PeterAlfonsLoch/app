@@ -63,6 +63,9 @@ namespace sockets
          status_connection_timed_out,
       };
 
+
+      socket_handler_base &   m_handler; ///< Reference of socket_handler_base in control of this socket
+
 #ifdef USE_BYESHYTOULA_STYLE_SOCKETS
 
 
@@ -72,7 +75,6 @@ namespace sockets
       gen::memory_file        m_memfileInput;
       bool                    m_bEnd; // should finish by not sending no more writes
       int                     m_iBindPort;
-      socket_handler_base &   m_handler; ///< Reference of socket_handler_base in control of this socket
       SOCKET                  m_socket; ///< File descriptor
       bool                    m_bDel; ///< Delete by handler flag
       bool                    m_bClose; ///< close and delete flag

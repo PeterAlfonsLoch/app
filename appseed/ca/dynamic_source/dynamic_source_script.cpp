@@ -82,7 +82,7 @@ namespace dynamic_source
       memset(&ftCreation, 0, sizeof(FILETIME));
       //memset(&ftAccess, 0, sizeof(FILETIME));
       memset(&ftModified, 0, sizeof(FILETIME));
-      HANDLE h = ::CreateFileW(m_wstrSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+      HANDLE h = create_file(m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
       try
       {
          bMatches = GetFileTime(h, &ftCreation, NULL, &ftModified) != FALSE;

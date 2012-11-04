@@ -429,6 +429,9 @@
     <ClCompile Include="os\os_http.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>
+    <ClCompile Include="metrowin\c_os_window.cpp">
+      <Filter>Source Files\metrowin</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

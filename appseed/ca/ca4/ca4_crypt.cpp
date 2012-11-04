@@ -272,35 +272,11 @@ namespace ca4
 
       primitive::memory buf;
 
-#ifdef METROWIN
+      ::crypto::md5::context ctx(get_app());
 
-      ::Windows::Security::Cryptography::Core::HashAlgorithmProvider ^ provider = 
-         ::Windows::Security::Cryptography::Core::HashAlgorithmProvider::OpenAlgorithm(
-         ::Windows::Security::Cryptography::Core::HashAlgorithmNames::Md5);
+      ctx.update(psz, strlen(psz));
 
-      ::Windows::Security::Cryptography::Core::CryptographicHash ^ hasher = provider->CreateHash();
-
-      ::Windows::Storage::Streams::IBuffer ^ hash = provider->HashData(Windows::Security::Cryptography::CryptographicBuffer::ConvertStringToBinary(rtstr(psz)));
-
-      = hasher->GetValueAndReset();
-
-      buf.set_os_stream_buffer(hash);
-
-#else
-
-      buf.allocate(16);
-
-      MD5_CTX ctx;
-
-      MD5_Init(&ctx);
-
-      MD5_Update(&ctx, psz, (unsigned long) strlen(psz));
-
-      MD5_Final(buf.get_data(),&ctx);
-
-#endif
-
-      return buf.to_hex();
+      return ctx.to_hex();
 
    }
 
@@ -320,15 +296,11 @@ namespace ca4
    void crypt::md5(primitive::memory & memMd5, const primitive::memory & mem)
    {
 
-      memMd5.allocate(16);
+      ::crypto::md5::context ctx(get_app());
 
-      MD5_CTX ctx;
+      ctx.update(mem, mem.get_size());
 
-      MD5_Init(&ctx);
-
-      MD5_Update(&ctx, mem, (unsigned long) mem.get_size());
-
-      MD5_Final(memMd5.get_data(), &ctx);
+      ctx.get(memMd5);
 
    }
 

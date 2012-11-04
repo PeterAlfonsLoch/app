@@ -337,9 +337,9 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
+#ifdef WINDOWSEX
    /////////////////////////////////////////////////////////////////////////////
    // window extensions for help support
-#ifdef WINDOWS
    void window::WinHelp(dword_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
@@ -360,7 +360,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    void window::WinHelpInternal(dword_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
@@ -499,7 +499,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    bool window::SetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, bool bRedraw)
    {
       UNREFERENCED_PARAMETER(nBar);
@@ -631,11 +631,12 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-
+#ifdef WINDOWSEX
    bool window::OnHelpInfo(HELPINFO* /*pHelpInfo*/)
    {
       throw interface_only_exception(get_app());
    }
+#endif
 #endif
 
    LRESULT window::OnDisplayChange(WPARAM, LPARAM)

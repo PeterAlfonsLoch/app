@@ -55,7 +55,6 @@ namespace dynamic_source
       bool                    m_bLastVersionCheck;
       DWORD                   m_dwLastVersionCheck;
       string                  m_strSourcePath;
-      wstring                 m_wstrSourcePath;
       string                  m_strSourceDir;
       string                  m_strCppPath;
       string                  m_strScriptPath;

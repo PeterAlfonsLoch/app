@@ -5,6 +5,15 @@ namespace ca
 {
 
 
+   // ::ca::null back link to operational system oswindow.h
+   //
+   //
+   //
+   //
+   // operational system null/void itself to a windowing service
+   //
+   // Curitiba, inha-metro-win-ubuntu-mountain-lion-macos 4 de novembro de 2012
+
 
    template < class T >
    class smart_pointer :

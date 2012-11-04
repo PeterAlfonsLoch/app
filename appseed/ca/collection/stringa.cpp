@@ -384,7 +384,7 @@ count stringa::remove_empty()
 }
 
 
-LPTSTR stringa::GetFormatV004()
+LPSTR stringa::GetFormatV004()
 {
 
    strsize iTotalLength = 0;
@@ -406,11 +406,11 @@ LPTSTR stringa::GetFormatV004()
       iTotalLength++;
    }
 
-   LPTSTR lpsz = (LPTSTR) malloc(iTotalLength * sizeof(char));
+   LPSTR lpsz = (LPSTR) malloc(iTotalLength * sizeof(char));
 
    memset(lpsz, 0x00, iTotalLength * sizeof(char));
 
-   LPTSTR lpszN = lpsz;
+   LPSTR lpszN = lpsz;
 
    strsize iLength;
 
@@ -428,13 +428,13 @@ LPTSTR stringa::GetFormatV004()
       strcat(lpszN, *pstr);
 #endif
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       iLength = _tcsnbcnt(lpszN, iLength);
 #else
       iLength = strlen(lpszN);
 #endif
 
-      lpszN = (LPTSTR) ((LPBYTE)lpszN) + iLength + sizeof(char);
+      lpszN = (LPSTR) ((LPBYTE)lpszN) + iLength + sizeof(char);
 
    }
 

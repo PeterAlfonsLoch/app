@@ -80,11 +80,12 @@ namespace ca4
 
    // define the value of the registered Window message.  An arbitrary GUID is included, to ensure uniqueness
 
+#ifdef WINDOWSEX
 
    extern const UINT UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION = ::RegisterWindowMessage(
 		   _T("UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION-{7C29C80A_5712_40e8_A124_A82E4B2795A7}") );
 
-
+#endif
 
    ///////////////////////////////////////////////
    //
@@ -280,11 +281,11 @@ namespace ca4
    HRESULT /* STDMETHODCALLTYPE */ port_forward_change_callbacks::OnNewNumberOfEntries( long lNewNumberOfEntries )
    {
 	   string tempStr;
-	   tempStr.Format( _T("UPnP has detected a change in the number of port mappings for your router \n")
-		   _T("New number of mappings = %d \n")
-		   _T("It is recommended to update your list of mappings"), lNewNumberOfEntries );
+	   tempStr.Format( "UPnP has detected a change in the number of port mappings for your router \n"
+		   "New number of mappings = %d \n"
+		   "It is recommended to update your list of mappings", lNewNumberOfEntries );
 
-	   ::MessageBox(::ca::null(), tempStr, _T("Change Detected in Number of Port Mappings"), MB_OK | MB_ICONEXCLAMATION);
+	   ::MessageBox(::ca::null(), tempStr, "Change Detected in Number of Port Mappings", MB_OK | MB_ICONEXCLAMATION);
 
 	   return S_OK;
    }
@@ -294,11 +295,11 @@ namespace ca4
    HRESULT /* STDMETHODCALLTYPE */ port_forward_change_callbacks::OnNewExternalIPAddress(const char * pszNewExternalIPAddress )
    {
 	   string tempStr;
-	   tempStr.Format( _T("UPnP has detected a change in your external IP address \n")
-		   _T("New IP address = %s \n")
-		   _T("It is recommended to update your list of mappings"), pszNewExternalIPAddress);
+	   tempStr.Format( "UPnP has detected a change in your external IP address \n"
+		   "New IP address = %s \n"
+		   "It is recommended to update your list of mappings", pszNewExternalIPAddress);
 
-	   ::MessageBox(::ca::null(), tempStr, _T("Change Detected in External IP Address"), MB_OK | MB_ICONEXCLAMATION);
+	   ::MessageBox(::ca::null(), tempStr, "Change Detected in External IP Address", MB_OK | MB_ICONEXCLAMATION);
 
 	   return S_OK;
    }

@@ -97,8 +97,7 @@ namespace crypto
 
 #ifdef METROWIN
 
-            buf.set_os_stream_buffer(m_hash->GetValueAndReset());
-
+            m_memoryDigest.set_os_stream_buffer(m_hash->GetValueAndReset());
 
 #else
          

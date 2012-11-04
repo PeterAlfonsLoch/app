@@ -248,7 +248,10 @@ StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID
   stringa *hrdLocV = NULL;
   if (nameID.is_empty())
   {
-    char *hrd = getenv("COLORER5HRD");
+    char * hrd = NULL;
+#ifndef METROWIN
+    hrd = getenv("COLORER5HRD");
+#endif
     hrdLocV = (hrd) ? hrdClass->pget((hrd)) : hrdClass->pget(("default"));
     if(hrdLocV == NULL)
     {

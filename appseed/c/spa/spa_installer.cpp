@@ -2413,7 +2413,7 @@ RetryHost:
          vsstring strExec = ms_get_dup(strUrl);
          if(!spa_exec(strExec))
          {
-            #ifdef WINDOWS
+            #ifdef WINDOWSEX
             ::MessageBox(m_pwindow == NULL ? NULL :m_pwindow->m_oswindow, "Error", "Error", MB_OK);
             #endif
          }
