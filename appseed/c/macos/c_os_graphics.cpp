@@ -79,12 +79,12 @@ WINBOOL mac_release_color(CGColorRef colorref)
 
 
 
-HDC GetWindowDC(HWND hwnd)
+HDC GetWindowDC(oswindow hwnd)
 {
    return GetDC(hwnd);
 }
 
-HDC GetDC(HWND hwnd)
+HDC GetDC(oswindow hwnd)
 {
     
     HDC hdc = new device_context;
@@ -119,7 +119,7 @@ HDC GetDC(HWND hwnd)
 }
 
 
-WINBOOL ReleaseDC(HWND hwnd, HDC hdc)
+WINBOOL ReleaseDC(oswindow hwnd, HDC hdc)
 {
 
    if(hdc == NULL)
@@ -138,7 +138,7 @@ WINBOOL ReleaseDC(HWND hwnd, HDC hdc)
 }
 
 
-WINBOOL GetClientRect(HWND hwnd, LPRECT lprect)
+WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect)
 {
 /*   XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
@@ -164,7 +164,7 @@ WINBOOL GetClientRect(HWND hwnd, LPRECT lprect)
 }
 
 
-WINBOOL GetWindowRect(HWND hwnd, LPRECT lprect)
+WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 {
   /* XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
@@ -202,7 +202,7 @@ int FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
 }
 */
 
-HDC BeginPaint(HWND hwnd, PAINTSTRUCT * ps)
+HDC BeginPaint(oswindow hwnd, PAINTSTRUCT * ps)
 {
 
    HDC hdc = GetDC(hwnd);
@@ -214,7 +214,7 @@ HDC BeginPaint(HWND hwnd, PAINTSTRUCT * ps)
 }
 
 
-WINBOOL EndPaint(HWND hwnd, PAINTSTRUCT * ps)
+WINBOOL EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
 {
 
    return ReleaseDC(hwnd, ps->hdc);

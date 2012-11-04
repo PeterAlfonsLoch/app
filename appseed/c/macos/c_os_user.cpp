@@ -28,7 +28,7 @@
 #endif
 
 
-WINBOOL SetWindowPos(HWND hwnd, HWND hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
+WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
 {
    
 //   int   value_mask = 0;
@@ -104,7 +104,7 @@ WINBOOL SetWindowPos(HWND hwnd, HWND hwndInsertAfter, int x, int y, int cx, int 
 
 
 
-int MessageBoxA(HWND hwnd, const char* header, const char* message, unsigned int message_type )
+int MessageBoxA(oswindow hwnd, const char* header, const char* message, unsigned int message_type )
 {
    //convert the strings from char* to CFStringRef
    CFStringRef header_ref      = CFStringCreateWithCString( NULL, header, (int)    strlen(header)    );
@@ -140,7 +140,7 @@ int MessageBoxA(HWND hwnd, const char* header, const char* message, unsigned int
 }
 
 
-WINBOOL RedrawWindow(HWND hWnd, CONST RECT *lprcUpdate, HRGN hrgnUpdate, UINT flags)
+WINBOOL RedrawWindow(oswindow hWnd, CONST RECT *lprcUpdate, HRGN hrgnUpdate, UINT flags)
 {
    
    return TRUE;

@@ -8,6 +8,7 @@
 
 #pragma once
 
+
 #include "c/c.h"
 
 #define NEAR
@@ -24,7 +25,7 @@
     
 } WINDOW, * LPWINDOW;
 
-typedef LPWINDOW HWND;
+typedef LPWINDOW oswindow;
 
 typedef int LONG;
 
@@ -43,10 +44,10 @@ typedef const RECT FAR* LPCRECT;
 #pragma once
 */
 
-CGContextRef get_nswindow_cgcontext(HWND pnswindow);
+CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
 
 
-WINBOOL get_nswindow_rect(HWND hwnd, LPRECT lprect);
+WINBOOL get_nswindow_rect(oswindow hwnd, LPRECT lprect);
 
 
 inline int wxRound(double x)
@@ -178,7 +179,7 @@ public:
    
    CGrafPtr          m_windowPort;
    CGrafPtr          m_savedPort;
-   HWND             m_window;
+   oswindow             m_window;
    Rect              m_portBounds;
    bool              m_wasSwapped;
    
@@ -296,5 +297,5 @@ WINBOOL mac_release_color(CGColorRef colorref);
 
 
 
-WINBOOL set_nswindow_frame(HWND hwnd, LPCRECT prect, int iDisplay);
-WINBOOL move_nswindow(HWND hwnd, int x, int y);
+WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT prect, int iDisplay);
+WINBOOL move_nswindow(oswindow hwnd, int x, int y);

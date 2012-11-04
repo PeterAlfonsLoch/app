@@ -147,7 +147,7 @@ bool os_simple_graphics::detach_bitmap()
 
 */
 
-bool os_simple_graphics::from_entire_window(HWND hwnd)
+bool os_simple_graphics::from_entire_window(oswindow hwnd)
 {
    
    if(m_iType != 0)
@@ -167,7 +167,7 @@ bool os_simple_graphics::from_entire_window(HWND hwnd)
 }
 
 
-bool os_simple_graphics::from_window(HWND hwnd)
+bool os_simple_graphics::from_window(oswindow hwnd)
 {
    
    if(m_iType != 0)
@@ -186,7 +186,7 @@ bool os_simple_graphics::from_window(HWND hwnd)
    
 }
 
-bool os_simple_graphics::from_window_paint(HWND hwnd, LPRECT lprectPaint)
+bool os_simple_graphics::from_window_paint(oswindow hwnd, LPRECT lprectPaint)
 {
    
    if(m_iType != 0)
@@ -229,7 +229,7 @@ bool os_simple_graphics::create()
    
    simple_graphics g;
    
-   g.from_window(NULL);
+   g.from_window(::ca::null());
    
    return create(g);
    
@@ -250,7 +250,7 @@ bool os_simple_graphics::create(simple_graphics & g)
 bool os_simple_graphics::create_from_screen()
 {
    
-   return from_window(NULL);
+   return from_window(::ca::null());
    
 }
 

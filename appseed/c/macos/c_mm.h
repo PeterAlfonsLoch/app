@@ -35,6 +35,7 @@ namespace ca
 } // namespace ca
 
 
+
 #include "nodeapp/operational_system/_.h"
 
 
@@ -73,8 +74,6 @@ extern "C"
 
 #include "c_debug.h"
 
-#import <Foundation/Foundation.h>
-#import <Cocoa/Cocoa.h>
 
 
 

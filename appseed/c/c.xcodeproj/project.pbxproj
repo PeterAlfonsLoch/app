@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070791481646940E009D76F9 /* c_os_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070791471646940E009D76F9 /* c_os_window.cpp */; };
 		0713C3FB1618A54B00719F96 /* c_os_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 0713C3FA1618A54B00719F96 /* c_os_graphics.h */; };
 		07237F3715F99D570018B75F /* crypt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07237F3215F99D570018B75F /* crypt.cpp */; };
 		07237F3815F99D570018B75F /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 07237F3315F99D570018B75F /* crypt.h */; };
@@ -256,6 +257,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		070791471646940E009D76F9 /* c_os_window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_window.cpp; sourceTree = "<group>"; };
 		0713C3FA1618A54B00719F96 /* c_os_graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_os_graphics.h; sourceTree = "<group>"; };
 		0713C3FD1618AF3200719F96 /* c_os_simple_brush.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_os_simple_brush.h; sourceTree = "<group>"; };
 		0713C3FE1618B03800719F96 /* c_os_simple_graphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_os_simple_graphics.h; sourceTree = "<group>"; };
@@ -881,6 +883,7 @@
 				077AE6CB1606201C0052CAC4 /* c_os_thread.cpp */,
 				CEBB9C6A146656B800912AFA /* c_os_user.cpp */,
 				07AB205416061B3600CD4EE2 /* c_os_win_base.cpp */,
+				070791471646940E009D76F9 /* c_os_window.cpp */,
 			);
 			path = macos;
 			sourceTree = "<group>";
@@ -1188,6 +1191,7 @@
 				07A81DC51633E0A000ADF7D6 /* c_xmlite.cpp in Sources */,
 				07A81DC71633E0A000ADF7D6 /* c.cpp in Sources */,
 				07A81DCC1633E65100ADF7D6 /* c_os_simple_path.mm in Sources */,
+				070791481646940E009D76F9 /* c_os_window.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
