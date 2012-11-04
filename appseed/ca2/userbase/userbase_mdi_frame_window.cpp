@@ -50,7 +50,7 @@ namespace userbase
       if (userbase::frame_window::OnCommand(wParam, lParam))
          return TRUE; // handled through normal mechanism (MDI child or frame)
 
-      HWND hWndCtrl = (HWND)lParam;
+      oswindow hWndCtrl = (oswindow)lParam;
 
       ASSERT(AFX_IDM_FIRST_MDICHILD == 0xFF00);
       if (hWndCtrl == NULL && (LOWORD(wParam) & 0xf000) == 0xf000)
@@ -65,7 +65,7 @@ namespace userbase
    }
 
    bool mdi_frame_window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
-      
+
    {
       mdi_child_window* pActiveChild = MDIGetActive();
       // pump through active child FIRST
@@ -258,7 +258,7 @@ namespace userbase
       if (cs.lpszClass == NULL)
       {
          VERIFY(System.DeferRegisterClass(AFX_WNDMDIFRAME_REG, &cs.lpszClass));
-         
+
       }
       return TRUE;
    }
@@ -491,10 +491,10 @@ namespace userbase
          {
             char szWinNumber[16+1];
             _stprintf_s(szWinNumber, _countof(szWinNumber), ":%d", m_nWindow);
-            
+
             if( lstrlen(szText) + lstrlen(szWinNumber) < _countof(szText) )
             {
-               _template::checked::strcat_s( szText, _countof(szText), szWinNumber ); 
+               _template::checked::strcat_s( szText, _countof(szText), szWinNumber );
             }
          }
 
@@ -597,7 +597,7 @@ namespace userbase
       // call base class with lParam context (not MDI one)
       MDICREATESTRUCT* lpmcs;
       lpmcs = (MDICREATESTRUCT*)lpCreateStruct->lpCreateParams;
-      
+
       ::ca::create_context* pContext = (::ca::create_context*)lpmcs->lParam;
 
       return OnCreateHelper(lpCreateStruct, pContext);

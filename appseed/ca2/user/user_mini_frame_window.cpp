@@ -61,7 +61,7 @@ BOOL CMiniFrameWnd::OnNcCreate(LPCREATESTRUCT lpcs)
 {
    UNREFERENCED_PARAMETER(lpcs);
 /* trans   if (!frame_window::OnNcCreate(lpcs))
-      return FALSE; 
+      return FALSE;
 
    if (GetStyle() & MFS_SYNCACTIVE)
    {
@@ -228,7 +228,7 @@ LRESULT CMiniFrameWnd::OnFloatStatus(WPARAM wParam, LPARAM)
 LRESULT CMiniFrameWnd::OnQueryCenterWnd(WPARAM, LPARAM)
 {
    // forward WM_QUERYCENTERWND to parent ::ca::window
-/* trans    HWND hWndParent = ::GetParent(get_handle());
+/* trans    oswindow hWndParent = ::GetParent(get_handle());
    LRESULT lResult = ::SendMessage(hWndParent, WM_QUERYCENTERWND, 0, 0);
    if (lResult == 0)
       lResult = (LRESULT)hWndParent;

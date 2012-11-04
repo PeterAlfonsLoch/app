@@ -473,8 +473,8 @@ namespace gen
       string operator + (const char * psz) const;
       string operator + (const string & str) const;
 
-      friend string CLASS_DECL_ca ::operator + (const char * psz, const property & var);
-      friend string CLASS_DECL_ca ::operator + (const string & str, const property & var);
+//      friend string CLASS_DECL_ca operator + (const char * psz, const property & var);
+//      friend string CLASS_DECL_ca operator + (const string & str, const property & var);
 
       var operator - (int i) const;
       var operator - (unsigned int user) const;
@@ -483,13 +483,13 @@ namespace gen
       var operator - (double d) const;
       var operator - (const var & var) const;
 
-      friend var CLASS_DECL_ca ::operator - (int i, const property & prop);
-      friend var CLASS_DECL_ca ::operator - (unsigned int user, const property & prop);
-      friend var CLASS_DECL_ca ::operator - (long l, const property & prop);
-      friend var CLASS_DECL_ca ::operator - (unsigned long ul, const property & prop);
-      friend var CLASS_DECL_ca ::operator - (double d, const property & prop);
-      friend var CLASS_DECL_ca ::operator - (const var & var, const property & prop);
-      friend var CLASS_DECL_ca ::operator - (const property & prop1, const property & prop2);
+//      friend var CLASS_DECL_ca operator - (int i, const property & prop);
+//      friend var CLASS_DECL_ca operator - (unsigned int user, const property & prop);
+//      friend var CLASS_DECL_ca operator - (long l, const property & prop);
+//      friend var CLASS_DECL_ca operator - (unsigned long ul, const property & prop);
+//      friend var CLASS_DECL_ca operator - (double d, const property & prop);
+//      friend var CLASS_DECL_ca operator - (const var & var, const property & prop);
+//      friend var CLASS_DECL_ca operator - (const property & prop1, const property & prop2);
 
       var operator + (int i) const;
       var operator + (unsigned int user) const;
@@ -498,13 +498,13 @@ namespace gen
       var operator + (double d) const;
       var operator + (const var & var) const;
 
-      friend var CLASS_DECL_ca ::operator + (int i, const property & prop);
-      friend var CLASS_DECL_ca ::operator + (unsigned int user, const property & prop);
-      friend var CLASS_DECL_ca ::operator + (long l, const property & prop);
-      friend var CLASS_DECL_ca ::operator + (unsigned long ul, const property & prop);
-      friend var CLASS_DECL_ca ::operator + (double d, const property & prop);
-      friend var CLASS_DECL_ca ::operator + (const var & var, const property & prop);
-      friend var CLASS_DECL_ca ::operator + (const property & prop1, const property & prop2);
+//      friend var CLASS_DECL_ca operator + (int i, const property & prop);
+//      friend var CLASS_DECL_ca operator + (unsigned int user, const property & prop);
+//      friend var CLASS_DECL_ca operator + (long l, const property & prop);
+//      friend var CLASS_DECL_ca operator + (unsigned long ul, const property & prop);
+//      friend var CLASS_DECL_ca operator + (double d, const property & prop);
+//      friend var CLASS_DECL_ca operator + (const var & var, const property & prop);
+//      friend var CLASS_DECL_ca operator + (const property & prop1, const property & prop2);
 
       var operator / (int i) const;
       var operator / (unsigned int user) const;
@@ -513,13 +513,13 @@ namespace gen
       var operator / (double d) const;
       var operator / (const var & var) const;
 
-      friend var CLASS_DECL_ca ::operator / (int i, const property & prop);
-      friend var CLASS_DECL_ca ::operator / (unsigned int user, const property & prop);
-      friend var CLASS_DECL_ca ::operator / (long l, const property & prop);
-      friend var CLASS_DECL_ca ::operator / (unsigned long ul, const property & prop);
-      friend var CLASS_DECL_ca ::operator / (double d, const property & prop);
-      friend var CLASS_DECL_ca ::operator / (const var & var, const property & prop);
-      friend var CLASS_DECL_ca ::operator / (const property & prop1, const property & prop2);
+//      friend var CLASS_DECL_ca operator / (int i, const property & prop);
+//      friend var CLASS_DECL_ca operator / (unsigned int user, const property & prop);
+//      friend var CLASS_DECL_ca operator / (long l, const property & prop);
+//      friend var CLASS_DECL_ca operator / (unsigned long ul, const property & prop);
+//      friend var CLASS_DECL_ca operator / (double d, const property & prop);
+//      friend var CLASS_DECL_ca operator / (const var & var, const property & prop);
+//      friend var CLASS_DECL_ca operator / (const property & prop1, const property & prop2);
 
       var operator * (int i) const;
       var operator * (unsigned int user) const;
@@ -528,13 +528,13 @@ namespace gen
       var operator * (double d) const;
       var operator * (const var & var) const;
 
-      friend var CLASS_DECL_ca ::operator * (int i, const property & prop);
-      friend var CLASS_DECL_ca ::operator * (unsigned int user, const property & prop);
-      friend var CLASS_DECL_ca ::operator * (long l, const property & prop);
-      friend var CLASS_DECL_ca ::operator * (unsigned long ul, const property & prop);
-      friend var CLASS_DECL_ca ::operator * (double d, const property & prop);
-      friend var CLASS_DECL_ca ::operator * (const var & var, const property & prop);
-      friend var CLASS_DECL_ca ::operator * (const property & prop1, const property & prop2);
+//      friend var CLASS_DECL_ca operator * (int i, const property & prop);
+//      friend var CLASS_DECL_ca operator * (unsigned int user, const property & prop);
+//      friend var CLASS_DECL_ca operator * (long l, const property & prop);
+//      friend var CLASS_DECL_ca operator * (unsigned long ul, const property & prop);
+//      friend var CLASS_DECL_ca operator * (double d, const property & prop);
+//      friend var CLASS_DECL_ca operator * (const var & var, const property & prop);
+//      friend var CLASS_DECL_ca operator * (const property & prop1, const property & prop2);
 
       property & operator -= (int i);
       property & operator -= (unsigned int user);
@@ -587,12 +587,12 @@ namespace gen
       void PASCAL operator delete(void * p);
       void PASCAL operator delete(void * p, void * pPlace);
 
-      #if defined(DEBUG) 
-         
+      #if defined(DEBUG)
+
          // for file name/line number tracking using DEBUG_NEW
          void * PASCAL operator new(size_t nSize, const char * lpszFileName, int nLine);
          void PASCAL operator delete(void *p, const char * lpszFileName, int nLine);
-      
+
       #endif
 
       #define new DEBUG_NEW

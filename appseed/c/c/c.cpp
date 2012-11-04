@@ -5,7 +5,7 @@
 CLASS_DECL_c int ___()
 {
 
-   MessageBox(NULL, "___ library of ca2", "___ library of ca2", MB_ICONINFORMATION | MB_OK);
+   MessageBox(::ca::null(), "___ library of ca2", "___ library of ca2", MB_ICONINFORMATION | MB_OK);
 
    return 0;
 
@@ -27,6 +27,8 @@ CLASS_DECL_c dword get_tick_count()
 
 }
 
+
+#ifndef BSD_STYLE_SOCKETS
 
 #define XX 127
 static const unsigned char index_hex[256] = {
@@ -153,7 +155,7 @@ CLASS_DECL_c bool from_string(in6_addr * addr, const char * string)
       int tosection;
       int ncopy = section - double_colon;
       for (tosection = 7; ncopy--; tosection--) {
-         addr->pr_s6_addr16[tosection] = 
+         addr->pr_s6_addr16[tosection] =
             addr->pr_s6_addr16[double_colon + ncopy];
       }
       while (tosection >= double_colon) {
@@ -268,9 +270,8 @@ CLASS_DECL_c vsstring to_string(in6_addr * addr)
    }
    STUFF('\0');
    return str;
-#undef STUFF    
+#undef STUFF
 }
 #endif /* !_PR_HAVE_INET_NTOP */
 
-
-
+#endif // !defined(BSD_STYLE_SOCKETS)

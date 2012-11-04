@@ -41,7 +41,7 @@ BOOL CMDIFrameWnd::OnCommand(WPARAM wParam, LPARAM lParam)
    if (frame_window::OnCommand(wParam, lParam))
       return TRUE; // handled through normal mechanism (MDI child or frame)
 
-   HWND hWndCtrl = (HWND)lParam;
+   oswindow hWndCtrl = (oswindow)lParam;
 
    ASSERT(AFX_IDM_FIRST_MDICHILD == 0xFF00);
    if (hWndCtrl == NULL && (LOWORD(wParam) & 0xf000) == 0xf000)
@@ -174,7 +174,7 @@ void CMDIFrameWnd::pre_translate_message(gen::signal_object * pobj)
       if(pobj->m_bRet)
          return;
    }
-   
+
    SCAST_PTR(gen::message::base, pbase, pobj);
 
    if(pbase->m_uiMessage >= WM_KEYFIRST && pbase->m_uiMessage <= WM_KEYLAST)
@@ -414,7 +414,7 @@ BOOL CMDIChildWnd::DestroyWindow()
 
    // avoid changing the caption during the destroy message(s)
    CMDIFrameWnd* pFrameWnd = GetMDIFrame();
-   HWND hWndFrame = pFrameWnd->_get_handle();
+   oswindow hWndFrame = pFrameWnd->_get_handle();
    ASSERT(::IsWindow(hWndFrame));
    DWORD dwStyle = ::SetWindowLong(hWndFrame, GWL_STYLE,
       ::GetWindowLong(hWndFrame, GWL_STYLE) & ~FWS_ADDTOTITLE);
@@ -524,7 +524,7 @@ BOOL CMDIChildWnd::create(const char * lpszClassName,
 
    // create the ::ca::window through the MDICLIENT ::ca::window
 //   AfxHookWindowCreate(this);
-   HWND hWnd = (HWND)pParentWnd->m_pguieMdiClient->SendMessage(
+   oswindow hWnd = (oswindow)pParentWnd->m_pguieMdiClient->SendMessage(
       WM_MDICREATE, 0, (LPARAM)&mcs);
    //if (!AfxUnhookWindowCreate())
    //   PostNcDestroy();        // cleanup if MDICREATE fails too soon
@@ -750,7 +750,7 @@ void CMDIChildWnd::ActivateFrame(int nCmdShow)
    if (!bVisibleNow)
    {
       // get current active ::ca::window according to Windows MDI
-      HWND hWnd = (HWND)pFrameWnd->m_pguieMdiClient->SendMessage(
+      oswindow hWnd = (oswindow)pFrameWnd->m_pguieMdiClient->SendMessage(
          WM_MDIGETACTIVE, 0, 0);
       if (hWnd != _get_handle())
       {
@@ -764,7 +764,7 @@ void CMDIChildWnd::ActivateFrame(int nCmdShow)
       pFrameWnd->MDINext();
 
       // see if it has been deactivated now...
-      hWnd = (HWND)pFrameWnd->m_pguieMdiClient->SendMessage(
+      hWnd = (oswindow)pFrameWnd->m_pguieMdiClient->SendMessage(
          WM_MDIGETACTIVE, 0, 0);
       if (hWnd == _get_handle())
       {
@@ -907,10 +907,10 @@ void CMDIChildWnd::on_update_frame_title(BOOL bAddToTitle)
       {
          char szWinNumber[16+1];
          _stprintf_s(szWinNumber, _countof(szWinNumber), ":%d", m_nWindow);
-         
+
          if( lstrlen(szText) + lstrlen(szWinNumber) < _countof(szText) )
          {
-            _template::checked::strcat_s( szText, _countof(szText), szWinNumber ); 
+            _template::checked::strcat_s( szText, _countof(szText), szWinNumber );
          }
       }
 
@@ -1144,4 +1144,3 @@ void CMDIFrameWnd::OnWindowNew()
    {  m_pguieMdiClient->SendMessage(WM_MDICASCADE, nType, 0); }
  void CMDIFrameWnd::MDITile(int nType)
    {  m_pguieMdiClient->SendMessage(WM_MDITILE, nType, 0); }
- 

@@ -16,13 +16,13 @@ namespace ca4
 
    HRESULT port_forward::StopListeningForUpnpChanges( )
    {
-	   // Stops listenting for UPnP change events on the router and deletes any 
+	   // Stops listenting for UPnP change events on the router and deletes any
 	   // port_forward_change_callbacks-derived objects that are currently being held
-	
+
 	   // check if we are already listening
-	
+
       return E_FAIL;
-	
+
    }
 
 
@@ -42,9 +42,9 @@ namespace ca4
    }
 
    array_ptr_alloc < port_forward::device > port_forward::get_igd() const
-   {	
+   {
 	   // returns a copy of the current device information (note: thread-awareness is needed)
-	
+
 	   // cast away const-ness of the critical section (since this is a const function)
 	   return array_ptr_alloc < port_forward::device > ();
    }
@@ -60,9 +60,9 @@ namespace ca4
    // Port Forward Engine creates when running COM requests for device information or for
    // retreival/change of port mappings.
    //
-   // There are five functions that create threads, and each function takes a oswindow as a 
+   // There are five functions that create threads, and each function takes a oswindow as a
    // parameter.  During execution of the thread, each thread will post messages to this oswindow,
-   // so as to notify the HWMND of the thread's progress through the needed COM tasks.  The 
+   // so as to notify the HWMND of the thread's progress through the needed COM tasks.  The
    // message is always the same: a UINT named UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION.
    // Encodings of the WPARAM and LPARAM within the message will enable the oswindow to determine
    // what's going on inside the thread.  The five functions are:
@@ -81,8 +81,8 @@ namespace ca4
    // define the value of the registered Window message.  An arbitrary GUID is included, to ensure uniqueness
 
 
-   extern const UINT UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION = ::RegisterWindowMessage( 
-		   _T("UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION-{7C29C80A_5712_40e8_A124_A82E4B2795A7}") );  
+   extern const UINT UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION = ::RegisterWindowMessage(
+		   _T("UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION-{7C29C80A_5712_40e8_A124_A82E4B2795A7}") );
 
 
 
@@ -108,16 +108,16 @@ namespace ca4
    // choose a different window, such as your CView-derived window for SDI applications
    //
    // The window that you choose must be able to process the message, which is a UINT named
-   // UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION.  For an MFC application, here are the changes 
+   // UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION.  For an MFC application, here are the changes
    // you must make to your ::user::interaction class:
    //
-   // 1. Declare a handler in your .h file using the following signature, in which 
+   // 1. Declare a handler in your .h file using the following signature, in which
    //    the name "OnMappingThreadNotificationMeesage" is arbitrary (ie, you can use
    //    any name that you want, but you must be consistent):
    //
    //		LRESULT OnMappingThreadNotificationMeesage(WPARAM wParam, LPARAM lParam);
    //
-   // 2. In your *.cpp file include the following "extern" statement somewhere at the beginning of 
+   // 2. In your *.cpp file include the following "extern" statement somewhere at the beginning of
    //    the file.  This statement tells the linker that the value of the message is defined elsewhere:
    //
    //		extern const UINT UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION;  // defined in PortForwadEngine.cpp
@@ -126,12 +126,12 @@ namespace ca4
    //
    //		ON_REGISTERED_MESSAGE( UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION, OnMappingThreadNotificationMeesage )
    //
-   // 4. Again in your .cpp file, write the body of the OnMappingThreadNotificationMeesage() function.  
+   // 4. Again in your .cpp file, write the body of the OnMappingThreadNotificationMeesage() function.
    //    Typically, you would check the WPARAM parameter to determine the nature of the notification.
    //      WPARAM == port_forward::EnumPortRetrieveInterval is sent at intervals, where
    //        LPARAM goes from 0 to 10.  You can use this to update a progress control (if you want)
-   //      WPARAM == port_forward::EnumPortRetrieveDone is sent when the thread is done, where 
-   //        LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).  Call the 
+   //      WPARAM == port_forward::EnumPortRetrieveDone is sent when the thread is done, where
+   //        LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).  Call the
    //        GetPortMappingVector() function to get a copy of the current contents of
    //        std::vector< port_forward::PortMappingContainer > m_MappingContainer
 
@@ -139,7 +139,7 @@ namespace ca4
    {
       UNREFERENCED_PARAMETER(oswindow);
 	   // returns TRUE if thread was started successfully
-	
+
       return FALSE;
    }
 
@@ -151,21 +151,21 @@ namespace ca4
    //////////////////////////////////////////////
    //
    // The thread created by the EditMappingUsingThread() function uses the same architecture for
-   // message notification as above (ie, it posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION 
+   // message notification as above (ie, it posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION
    // message), but with the following WPARAM and LPARAM encodings:
    //  WPARAM == port_forward::EnumEditMappingInterval at intervals, where
    //      LPARAM varies from 0 to 10.  You can use this to update of a progress control (if you want).
    //  WPARAM == port_forward::EnumEditMappingDone when the thread is finished, where
-   //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL). 
+   //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).
 
 
    bool port_forward::EditMappingUsingThread( port_forward::port_map & oldMapping, port_forward::port_map & newMapping, oswindow oswindow )
    {
       UNREFERENCED_PARAMETER(oldMapping);
       UNREFERENCED_PARAMETER(newMapping);
-      UNREFERENCED_PARAMETER(oswindow);	
+      UNREFERENCED_PARAMETER(oswindow);
       return FALSE;
-	
+
    }
 
 
@@ -177,17 +177,17 @@ namespace ca4
    //////////////////////////////////////////////
    //
    // The thread created by the AddMappingUsingThread() function uses the same architecture for
-   // message notification as above (ie, it posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION 
+   // message notification as above (ie, it posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION
    // message), but with the following WPARAM and LPARAM encodings:
    //  WPARAM == port_forward::EnumAddMappingInterval at intervals, where
    //      LPARAM varies from 0 to 10.  You can use this to update of a progress control (if you want).
    //  WPARAM == port_forward::EnumAddMappingDone when the thread is finished, where
-   //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL). 
+   //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).
 
    bool port_forward::AddMappingUsingThread(port_forward::port_map & newMapping, oswindow oswindow )
    {
       UNREFERENCED_PARAMETER(newMapping);
-      UNREFERENCED_PARAMETER(oswindow);	
+      UNREFERENCED_PARAMETER(oswindow);
 	   return FALSE;
    }
 
@@ -200,17 +200,17 @@ namespace ca4
    //////////////////////////////////////////////
    //
    // The thread created by the DeleteMappingUsingThread() function uses the same architecture for
-   // message notification as above (ie, it posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION 
+   // message notification as above (ie, it posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION
    // message), but with the following WPARAM and LPARAM encodings:
    //  WPARAM == port_forward::EnumDeleteMappingInterval at intervals, where
    //      LPARAM varies from 0 to 10.  You can use this to update of a progress control (if you want).
    //  WPARAM == port_forward::EnumDeleteMappingDone when the thread is finished, where
-   //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL). 
+   //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).
 
    bool port_forward::DeleteMappingUsingThread(port_forward::port_map & oldMapping, oswindow oswindow )
    {
       UNREFERENCED_PARAMETER(oldMapping);
-      UNREFERENCED_PARAMETER(oswindow);	
+      UNREFERENCED_PARAMETER(oswindow);
 	   return FALSE;
    }
 
@@ -222,27 +222,27 @@ namespace ca4
    //////////////////////////////////////////////
    //
    // The thread created by the GetDeviceInformationUsingThread() function uses the same architecture for
-   // message notification as above (ie, it posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION 
+   // message notification as above (ie, it posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION
    // message), but with the following WPARAM and LPARAM encodings:
    //  WPARAM == port_forward::EnumDeviceInfoInterval at intervals, where
    //      LPARAM varies from 0 to 10.  You can use this to update of a progress control (if you want).
    //  WPARAM == port_forward::EnumDeviceInfoDone when thread is finished, where
-   //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).  Call the 
-   //      GetDeviceInformationContainer() function to retrieve a copy of the current contents of 
+   //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).  Call the
+   //      GetDeviceInformationContainer() function to retrieve a copy of the current contents of
    //      port_forward::DeviceInformationContainer m_DeviceInfo
 
    bool port_forward::GetDeviceInformationUsingThread( oswindow oswindow )
-   {	
-      UNREFERENCED_PARAMETER(oswindow);	
+   {
+      UNREFERENCED_PARAMETER(oswindow);
       return FALSE;
-	
+
    }
 
 
    HRESULT port_forward::ListenForUpnpChanges(port_forward_change_callbacks *pCallbacks /* =NULL */ )
    {
 	   // check if we are already listening
-      UNREFERENCED_PARAMETER(pCallbacks);	
+      UNREFERENCED_PARAMETER(pCallbacks);
       return E_FAIL;
    }
 
@@ -267,12 +267,12 @@ namespace ca4
 
    port_forward_change_callbacks::port_forward_change_callbacks()
    {
-	
+
    }
 
    port_forward_change_callbacks::~port_forward_change_callbacks()
    {
-	
+
    }
 
 
@@ -283,9 +283,9 @@ namespace ca4
 	   tempStr.Format( _T("UPnP has detected a change in the number of port mappings for your router \n")
 		   _T("New number of mappings = %d \n")
 		   _T("It is recommended to update your list of mappings"), lNewNumberOfEntries );
-	
-	   ::MessageBox(NULL, tempStr, _T("Change Detected in Number of Port Mappings"), MB_OK | MB_ICONEXCLAMATION);
-	
+
+	   ::MessageBox(::ca::null(), tempStr, _T("Change Detected in Number of Port Mappings"), MB_OK | MB_ICONEXCLAMATION);
+
 	   return S_OK;
    }
 
@@ -297,9 +297,9 @@ namespace ca4
 	   tempStr.Format( _T("UPnP has detected a change in your external IP address \n")
 		   _T("New IP address = %s \n")
 		   _T("It is recommended to update your list of mappings"), pszNewExternalIPAddress);
-	
-	   ::MessageBox(NULL, tempStr, _T("Change Detected in External IP Address"), MB_OK | MB_ICONEXCLAMATION);
-	
+
+	   ::MessageBox(::ca::null(), tempStr, _T("Change Detected in External IP Address"), MB_OK | MB_ICONEXCLAMATION);
+
 	   return S_OK;
    }
 

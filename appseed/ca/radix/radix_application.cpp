@@ -945,7 +945,7 @@ namespace radix
                if(!(bool)System.oprop("not_installed_message_already_shown"))
                {
 
-                  MessageBox(NULL, "Debug only message, please install:\n\n\n\t" + notinstalled.m_strId + "\n\ttype = " + notinstalled.m_strType + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\tbuild number = " + notinstalled.m_strBuild + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/", "Debug only message, please install.", MB_ICONINFORMATION | MB_OK);
+                  MessageBox(::ca::null(), "Debug only message, please install:\n\n\n\t" + notinstalled.m_strId + "\n\ttype = " + notinstalled.m_strType + "\n\tlocale = " + notinstalled.m_strLocale + "\n\tschema = " + notinstalled.m_strSchema + "\n\tbuild number = " + notinstalled.m_strBuild + "\n\n\nThere are helper scripts under <solution directory>/nodeapp/stage/install/", "Debug only message, please install.", MB_ICONINFORMATION | MB_OK);
 
                   System.oprop("not_installed_message_already_shown") = true;
 
@@ -1803,7 +1803,7 @@ namespace radix
 
       #else
 
-      return MessageBox(0, pszMessage, m_strAppName, fuStyle);
+      return MessageBox(::ca::null(), pszMessage, m_strAppName, fuStyle);
 
       #endif
 
@@ -2775,7 +2775,7 @@ namespace radix
    oswindow application::get_ca2_app_wnd(const char * psz)
    {
       UNREFERENCED_PARAMETER(psz);
-      return NULL;
+      return ::ca::null();
    }
 
    ::user::interaction * application::uie_from_point(point pt)

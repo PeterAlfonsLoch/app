@@ -31,7 +31,7 @@ file_size_table::file_size_table(::ca::application * papp) :
    m_hmap = NULL;
    m_item.m_pitemParent = NULL;
    m_pwndServer = NULL;
-   m_oswindowServer = NULL;
+   m_oswindowServer = ::ca::null();
 
 /*   SECURITY_ATTRIBUTES MutexAttributes;
    ZeroMemory( &MutexAttributes, sizeof(MutexAttributes) );

@@ -148,7 +148,7 @@ namespace spa
       m_dProgress1               = -1.0;
       m_dProgress2               = -1.0;
       m_bShow                    = true;
-      m_oswindow                     = NULL;
+      m_oswindow                 = ::ca::null();
       m_bForceUpdatedBuild       = false;
       m_bSynch                   = true;
       m_hmutexInstall            = NULL;
@@ -406,7 +406,7 @@ RetryHost:
             Sleep(184);
             goto RetryHost;
          }
-         
+
          set_progress(0.5);
 
          ParseIndexFile(strIndexPath, mapLen, mapMd5, mapGzLen, mapFlag);
@@ -470,7 +470,7 @@ RetryHost:
 
          }
 
-         
+
          {
 
             stra_dup straPath;
@@ -745,7 +745,7 @@ RetryHost:
          {
             add_spa_start(m_strCommandLine);
 
-            if(::MessageBox(NULL, "The computer need to be restarted!!\n\nDo you want to restart now?\n\nWe recommend you to close all other applications first and then agree with this question using the buttons below.", "spa - Restart Needed!!", MB_ICONEXCLAMATION | MB_YESNO)
+            if(::MessageBox(::ca::null(), "The computer need to be restarted!!\n\nDo you want to restart now?\n\nWe recommend you to close all other applications first and then agree with this question using the buttons below.", "spa - Restart Needed!!", MB_ICONEXCLAMATION | MB_YESNO)
                == IDYES)
             {
                m_reboot();
@@ -806,7 +806,7 @@ RetryHost:
 
       m_iGzLen = 0;
 
-      
+
 
       vsstring str;
 
@@ -854,7 +854,7 @@ RetryHost:
          iGzLen = mapGzLen[strCurrent];
 
          m_iProgressTotalGzLen += iGzLen;
-         
+
          m_iTotalGzLen -= iGzLen;
 
       }
@@ -882,21 +882,21 @@ RetryHost:
          }
 
          str += ".bz";
-         
+
          vsstring str3  = str;
-         
+
          strMd5         = mapMd5[strCurrent];
-         
+
          iLen           = mapLen[strCurrent];
 
          iGzLen         = mapGzLen[strCurrent];
 
          str += ".";
-         
+
          str += strMd5;
-         
+
          vsstring strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent, strMd5);
-         
+
          strStageInplaceFile = ca2inplace_get_file(strCurrent);
 
          bDownload = true;
@@ -906,7 +906,7 @@ RetryHost:
          strStageInplace = ca2bz_get_dir(strCurrent) + strStageInplaceFile;
 
          if(file_exists_dup(strStageInplace)
-         && (iLen != -1) && file_length_dup(strStageInplace) == iLen 
+         && (iLen != -1) && file_length_dup(strStageInplace) == iLen
          && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
          {
 
@@ -922,7 +922,7 @@ RetryHost:
             bzuncompress(strStageInplace, strStageGz);
 
             if(file_exists_dup(strStageInplace)
-            && (iLen != -1) && file_length_dup(strStageInplace) == iLen 
+            && (iLen != -1) && file_length_dup(strStageInplace) == iLen
             && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
                bDownload = false;
 
@@ -930,7 +930,7 @@ RetryHost:
 
          if(bDownload && download_file(strStageInplace, str3, false, false, iLen, strMd5, iGzLen, mapFlag[stra_dup[i]]))
          {
-            
+
             m_dProgress = m_dProgress2;
 
             vsstring strRelative = dir::path(dir::name(strCurrent), file_name_dup(strCurrent));
@@ -956,9 +956,9 @@ RetryHost:
          m_iProgressTotalGzLen = iPreviousTotalProgress; // restore progress rate total calculator
 
          m_iGzLen += iGzLen;
-         
+
          dlr(m_iGzLen);
-         
+
          set_progress((double) m_iGzLen / (double) m_iProgressTotalGzLen);
 
       }
@@ -994,19 +994,19 @@ RetryHost:
          }
 
          str += ".bz";
-         
+
          vsstring str3  = str;
-         
+
          strMd5         = mapMd5[strCurrent];
-         
+
          iLen           = mapLen[strCurrent];
 
          str += ".";
-         
+
          str += strMd5;
-         
+
          vsstring strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent, strMd5);
-         
+
          strStageInplaceFile = ca2inplace_get_file(strCurrent);
 
          bDownload = true;
@@ -1016,7 +1016,7 @@ RetryHost:
          trace(str_replace_dup(file_title_dup((str2 + str)), "\\", "/"));
 
          if(file_exists_dup(strStageInplace)
-         && (iLen != -1) && file_length_dup(strStageInplace) == iLen 
+         && (iLen != -1) && file_length_dup(strStageInplace) == iLen
          && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
          {
 
@@ -1033,7 +1033,7 @@ RetryHost:
             bzuncompress(strStageInplace, strStageGz);
 
             if(file_exists_dup(strStageInplace)
-            && (iLen != -1) && file_length_dup(strStageInplace) == iLen 
+            && (iLen != -1) && file_length_dup(strStageInplace) == iLen
             && strMd5.has_char() && stricmp_dup(get_file_md5(strStageInplace), strMd5) == 0)
                bDownload = false;
 
@@ -1044,7 +1044,7 @@ RetryHost:
 
             if(download_file(strStageInplace, str3, false, false, iLen, strMd5, iGzLen, mapFlag[stra_dup[i]]))
             {
-            
+
                m_dProgress = m_dProgress2;
 
             }
@@ -1058,9 +1058,9 @@ RetryHost:
          }
 
          m_iGzLen += iGzLen;
-         
+
          dlr(m_iGzLen);
-         
+
          set_progress((double) m_iGzLen / (double) m_iProgressTotalGzLen);
 
       }
@@ -1904,7 +1904,7 @@ RetryHost:
       int iCurrent;
 
       vsstring strPlatform = spa_get_platform();
-      
+
       for(int i = 0; i < straPath.get_count(); i++)
       {
 
@@ -2324,11 +2324,11 @@ RetryHost:
 
 #else
 
-         simple_shell_launcher launcher1(m_pwindow == NULL ? NULL : m_pwindow->m_oswindow, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
+         simple_shell_launcher launcher1(m_pwindow == NULL ? ::ca::null() : m_pwindow->m_oswindow, "open", strStage, " : remove usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
 
          launcher1.execute();
 
-         simple_shell_launcher launcher2(m_pwindow == NULL ? NULL : m_pwindow->m_oswindow, "open", strStage, " : install usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
+         simple_shell_launcher launcher2(m_pwindow == NULL ? ::ca::null() : m_pwindow->m_oswindow, "open", strStage, " : install usehostlogin", dir::name(strStage), SW_SHOWNORMAL);
 
          launcher2.execute();
 
@@ -2350,7 +2350,7 @@ RetryHost:
 
 #else
 
-         simple_shell_launcher launcher(m_pwindow == NULL ? NULL : m_pwindow->m_oswindow, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
+         simple_shell_launcher launcher(m_pwindow == NULL ? ::ca::null() : m_pwindow->m_oswindow, "open", strStage, (" : " + str2.substr(0, iPos) + " usehostlogin"), dir::name(strStage), SW_SHOWNORMAL);
 
          launcher.execute();
 
@@ -2372,19 +2372,19 @@ RetryHost:
 
       small_ipc_tx_channel txchannel;
 
-      if(!txchannel.open("ca2/fontopus/ccvotagus/spaboot_install_callback")) 
+      if(!txchannel.open("ca2/fontopus/ccvotagus/spaboot_install_callback"))
          return;
 
 #endif
 
 #if defined(WINDOWSEX)
-       
+
       ::PostMessage(txchannel.m_oswindow, WM_USER + 100, a, b);
-       
+
 #else
-       
+
        throw "not implemented";
-       
+
 #endif
 
    }
@@ -2413,7 +2413,9 @@ RetryHost:
          vsstring strExec = ms_get_dup(strUrl);
          if(!spa_exec(strExec))
          {
+            #ifdef WINDOWS
             ::MessageBox(m_pwindow == NULL ? NULL :m_pwindow->m_oswindow, "Error", "Error", MB_OK);
+            #endif
          }
          set_progress(((double) i * (0.5 - 0.2) / (double) iCount) + 0.2);
       }
@@ -2490,7 +2492,7 @@ RetryHost:
                }
             }
 
-            ::MessageBox(NULL, str, "You may restart the applications ...", MB_ICONINFORMATION | MB_OK);
+            ::MessageBox(::ca::null(), str, "You may restart the applications ...", MB_ICONINFORMATION | MB_OK);
 
          }
 
@@ -2635,7 +2637,7 @@ RetryHost:
             m_strInstallSchema      = "en";
 
          }
-         else 
+         else
          {
 
             m_strInstallSchema      = m_strInstallLocale;
@@ -2645,7 +2647,7 @@ RetryHost:
       }
       else
       {
-         
+
          if(m_strInstallLocale.is_empty())
          {
 
@@ -2700,7 +2702,7 @@ RetryHost:
       }
 
       vsstring strStatusTemplate;
-      
+
       if(m_strInstallStatusTemplate.get_length() >= strlen_dup("%APPNAME%"))
       {
          strStatusTemplate = m_strInstallStatusTemplate;

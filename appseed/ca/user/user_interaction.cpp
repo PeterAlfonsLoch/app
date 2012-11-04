@@ -1100,7 +1100,7 @@ namespace user
          pwnd = get_wnd();
 
          if(pwnd == NULL)
-            return NULL;
+            return ::ca::null();
 
          return pwnd->get_handle();
 
@@ -1110,7 +1110,7 @@ namespace user
 
       }
 
-      return NULL;
+      return ::ca::null();
 
    }
 
@@ -1194,7 +1194,7 @@ namespace user
 
          return pwindow->unsubclass_window();
       }
-      return NULL;
+      return ::ca::null();
    }
 
 
@@ -2113,7 +2113,7 @@ namespace user
    oswindow interaction::detach()
    {
       if(m_pimpl == NULL || m_pimpl == this)
-         return NULL;
+         return ::ca::null();
       else
          return m_pimpl->detach();
    }

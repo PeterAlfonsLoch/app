@@ -123,7 +123,7 @@ namespace hotplugin
       {
          return m_phost->get_host_window();
       }
-      return NULL;
+      return ::ca::null();
    }
 
    // ca2.dll-absence-(ca2.dll-delay-load)-safe

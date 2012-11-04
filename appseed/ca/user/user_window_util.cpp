@@ -284,7 +284,7 @@ namespace user
 
    oswindow_tree::oswindow_tree()
    {
-      m_oswindow = NULL;
+      m_oswindow = ::ca::null();
    }
    oswindow_tree::oswindow_tree(const oswindow_tree & tree)
    {
@@ -299,16 +299,16 @@ namespace user
       return * this;
    }
 
-   int oswindow_tree::Compareoswindow_(oswindow_tree &tree1, oswindow_tree &tree2)
+   int oswindow_tree::compare_oswindow(oswindow_tree &tree1, oswindow_tree &tree2)
    {
-      return (int) ((byte *) tree1.m_oswindow - (byte *) tree2.m_oswindow);
+      return (int) ((byte *) (void *) tree1.m_oswindow - (byte *) (void *) tree2.m_oswindow);
    }
 
    int_ptr oswindow_tree::Array::find(oswindow oswindow)
    {
       oswindow_tree tree;
       tree.m_oswindow = oswindow;
-      return array_ptr_alloc < oswindow_tree, const oswindow_tree & >::find_first(tree, oswindow_tree::Compareoswindow_);
+      return array_ptr_alloc < oswindow_tree, const oswindow_tree & >::find_first(tree, oswindow_tree::compare_oswindow);
    }
 
 
@@ -693,7 +693,7 @@ namespace user
    int oswindow_util::GetZOrder(oswindow oswindow)
    {
       int iOrder = 0;
-      ::oswindow oswindowOrder = NULL;
+      ::oswindow oswindowOrder = ::ca::null();
       try
       {
          oswindowOrder = ::GetWindow(oswindow, GW_HWNDFIRST);

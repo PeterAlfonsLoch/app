@@ -26,7 +26,7 @@ namespace spa
    window::window()
    {
       m_bDrag = false;
-      m_oswindow = NULL;
+      m_oswindow = ::ca::null();
    }
 
    window::~window()

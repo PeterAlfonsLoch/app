@@ -11,7 +11,7 @@
 
 struct myfx_CTLCOLOR
 {
-   oswindow oswindow;
+   ::oswindow oswindow;
    HDC hDC;
    UINT nCtlType;
 };
@@ -779,12 +779,12 @@ namespace gen
          return LOWORD(m_wparam);
       }
 
+#ifdef WINDOWS
+
       oswindow command::get_oswindow()
       {
          return (oswindow) m_lparam;
       }
-
-#ifdef WINDOWS
 
       LPNMHDR notify::get_lpnmhdr()
       {
@@ -811,10 +811,10 @@ namespace gen
             m_psignal = NULL;
          }
       }
-      
+
       dispatch::HandlerItemBase::~HandlerItemBase()
       {
-         
+
       }
 
       dispatch::HandlerItemArray::~HandlerItemArray()

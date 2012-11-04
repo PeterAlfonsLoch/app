@@ -78,7 +78,7 @@ namespace hotplugin
 
    oswindow host::get_host_window()
    {
-      return NULL;
+      return ::ca::null();
    }
 
    void host::get_window_rect(LPRECT lprect)
@@ -407,17 +407,17 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
 
    int host::starter_start_sync(const char * pszCommandLine, plugin * pplugin)
    {
-      
+
       set_installing_ca2();
-      
+
       spa_starter_start * pstart    = new spa_starter_start;
 
       pstart->m_pplugin             = pplugin;
 
       pstart->m_strCommandLine      = pszCommandLine;
-      
+
       ::_ca2_starter_start(pstart);
-         
+
       return 0;
 
    }

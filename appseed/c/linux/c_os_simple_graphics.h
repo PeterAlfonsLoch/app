@@ -15,7 +15,7 @@ public:
    simple_brush            m_brush;
    os_simple_font          m_font;
    simple_bitmap           m_bitmap;
-/*   HWND                    m_hwnd;
+/*   oswindow                    m_hwnd;
    HBITMAP                 m_hbitmapOld;
    HPEN                    m_hpenOld;
    HFONT                   m_hfontOld;
@@ -76,9 +76,9 @@ public:
 
    // platform-specific
    bool create(HDC hdc);
-   bool from_entire_window(HWND hwnd);
-   bool from_window(HWND hwnd);
-   bool from_window_paint(HWND hwnd, LPRECT lprectPaint = NULL);
+   bool from_entire_window(oswindow hwnd);
+   bool from_window(oswindow hwnd);
+   bool from_window_paint(oswindow hwnd, LPRECT lprectPaint = NULL);
    bool reference_os_data(HDC hdc);
 
    bool set(simple_font & font);

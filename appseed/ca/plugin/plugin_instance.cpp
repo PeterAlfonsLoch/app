@@ -19,7 +19,7 @@ namespace plugin
 
       m_puiHost         = NULL;
 
-      m_oswindow            = NULL;
+      m_oswindow        = ::ca::null();
 
       m_bStream         = false;
 
@@ -56,12 +56,12 @@ namespace plugin
 
    void instance::shut()
    {
-      
+
       //::KillTimer(NULL, (uint_ptr) this);
 
       plugin::finalize();
 
-      m_oswindow = NULL;
+      m_oswindow = ::ca::null();
 
       m_bInitialized = false;
 

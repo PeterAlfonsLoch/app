@@ -63,7 +63,7 @@ namespace sockets
       m_memoryfile(h.get_app()),
       m_mutexData(h.get_app())
    {
-      
+
       string strRequestUri;
 
       url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
@@ -92,7 +92,7 @@ namespace sockets
          Handler().LogError(this, "OnFirst", 0, "Response expected but not received - aborting", ::gen::log::level::fatal);
          SetCloseAndDelete();
       }
-      m_content = m_response.attr("http_version").get_string() + " " +
+      m_content = m_response.attr("http_version") + " " +
                   m_response.attr("http_status_code") + " " +
                   m_response.attr("http_status") + "\r\n";
    }
@@ -151,7 +151,7 @@ namespace sockets
          return;
       }
       m_memoryfile.write(buf, len);
-   
+
       m_content_ptr += len;
       if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))
       {

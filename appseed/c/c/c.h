@@ -105,7 +105,6 @@ namespace ca
 #include "c_file.h"
 
 #include "c_launcher.h"
-#include "c_simple_shell_launcher.h"
 
 
 #ifdef METROWIN
@@ -150,6 +149,8 @@ namespace ca
 
 #include "c/simple_graphics/simple_graphics_second_phase.h"
 
+
+#include "c_simple_shell_launcher.h"
 
 
 
@@ -204,12 +205,10 @@ inline void * zero(void * p, size_t s)
 }
 
 
+#ifndef BSD_STYLE_SOCKETS
+
 CLASS_DECL_c bool from_string(in6_addr * addr, const char * string);
 CLASS_DECL_c vsstring to_string(const in6_addr *addr);
-
-
-
-
 
 
 #if BYTE_ORDER == BIG_ENDIAN
@@ -247,5 +246,8 @@ unsigned long ntohl(unsigned long n);
 
 #define htonl(n) HTONL(n)
 #define ntohl(n) NTOHL(n)
+
+#endif
+
 
 #endif

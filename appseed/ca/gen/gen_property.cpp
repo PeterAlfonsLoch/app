@@ -1057,7 +1057,7 @@ namespace gen
 
    property & property::operator -= (const property & prop)
    {
-      operator=(*this - prop);
+      operator=(get_value() - prop.get_value());
       return *this;
    }
 
@@ -1153,7 +1153,7 @@ namespace gen
 
    property & property::operator += (const property & prop)
    {
-      operator=(*this + prop);
+      operator=(get_value() + prop.get_value());
       return *this;
    }
 
@@ -1231,7 +1231,7 @@ namespace gen
 
    property & property::operator /= (const property & prop)
    {
-      operator=(*this / prop);
+      operator=(get_value() / prop.get_value());
       return *this;
    }
 
@@ -1297,7 +1297,7 @@ namespace gen
 
    property & property::operator *= (const property & prop)
    {
-      operator=(*this * prop);
+      operator=(get_value() * prop.get_value());
       return *this;
    }
 

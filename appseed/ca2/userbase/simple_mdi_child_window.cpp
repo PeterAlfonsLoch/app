@@ -182,7 +182,7 @@ BOOL SimpleMDIChildWindow::create(const char * lpszClassName,
 
    // create the ::ca::window through the MDICLIENT ::ca::window
    AfxHookWindowCreate(this);
-   HWND hWnd = (HWND)pParentWnd->m_pguieMdiClient->SendMessage(
+   oswindow hWnd = (oswindow)pParentWnd->m_pguieMdiClient->SendMessage(
       WM_MDICREATE, 0, (LPARAM)&mcs);
    if (!AfxUnhookWindowCreate())
       PostNcDestroy();        // cleanup if MDICREATE fails too soon

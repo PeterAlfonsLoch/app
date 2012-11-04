@@ -20,7 +20,7 @@
    ON_COMMAND(ID_WINDOW_NEW, &SimpleMDIFrameWindow::OnWindowNew)
    ON_WM_DESTROY()
    ON_MESSAGE(WM_COMMANDHELP, &SimpleMDIFrameWindow::OnCommandHelp)
-   ON_WM_MENUCHAR() 
+   ON_WM_MENUCHAR()
    //}}AFX_MSG_MAP
  // END_MESSAGE_MAP()
 */
@@ -48,7 +48,7 @@ BOOL SimpleMDIFrameWindow::OnCommand(WPARAM wParam, LPARAM lParam)
    if (frame_window::OnCommand(wParam, lParam))
       return TRUE; // handled through normal mechanism (MDI child or frame)
 
-   HWND hWndCtrl = (HWND)lParam;
+   oswindow hWndCtrl = (oswindow)lParam;
 
    ASSERT(AFX_IDM_FIRST_MDICHILD == 0xFF00);
    if (hWndCtrl == NULL && (LOWORD(wParam) & 0xf000) == 0xf000)
@@ -63,7 +63,7 @@ BOOL SimpleMDIFrameWindow::OnCommand(WPARAM wParam, LPARAM lParam)
 }
 
 bool SimpleMDIFrameWindow::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
-   
+
 {
    SimpleMDIChildWindow* pActiveChild = dynamic_cast < SimpleMDIChildWindow* > (MDIGetActive());
    // pump through active child FIRST

@@ -882,7 +882,7 @@ namespace plane
             string strParameters;
             strParameters = ": global_mutex_id=\"" + string(pszId) + "\"";
 
-            simple_shell_launcher launcher(NULL, NULL, dir().path(get_module_folder(), strApp), strParameters, NULL, SW_SHOW);
+            simple_shell_launcher launcher(::ca::null(), NULL, dir().path(get_module_folder(), strApp), strParameters, NULL, SW_SHOW);
 
             launcher.execute();
 
@@ -903,7 +903,7 @@ namespace plane
             string strApp = pszAppName;
             strApp += "app.exe";
 
-            simple_shell_launcher launcher(NULL, NULL, dir().path(get_module_folder(), strApp), NULL, NULL, SW_SHOW);
+            simple_shell_launcher launcher(::ca::null(), NULL, dir().path(get_module_folder(), strApp), NULL, NULL, SW_SHOW);
 
             launcher.execute();
 
@@ -933,7 +933,7 @@ namespace plane
             string strParameters;
             strParameters = ": app=" + strAppName + " local_mutex_id=\"" + strId + "\"";
 
-            simple_shell_launcher launcher(NULL, NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
+            simple_shell_launcher launcher(::ca::null(), NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
 
             launcher.execute();
 
@@ -957,7 +957,7 @@ namespace plane
             string strParameters;
             strParameters = ": app=" + strAppName;
 
-            simple_shell_launcher launcher(NULL, NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
+            simple_shell_launcher launcher(::ca::null(), NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
 
             launcher.execute();
 

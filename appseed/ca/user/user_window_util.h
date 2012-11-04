@@ -62,7 +62,7 @@ namespace user
       Array m_oswindowtreea;
       public:
          void EnumDescendants();
-      static int Compareoswindow_(oswindow_tree & tree1,  oswindow_tree & tree2);
+      static int compare_oswindow(oswindow_tree & tree1,  oswindow_tree & tree2);
       public:
       oswindow_tree & operator = (const oswindow_tree & tree);
    };

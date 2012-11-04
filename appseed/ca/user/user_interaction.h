@@ -476,7 +476,7 @@ namespace user
    {
       if(((byte *)this) < (byte *) (((byte *) NULL) + (16 * 1024))) // consider invalid
       {
-         return 0;
+         return ::ca::null();
       }
       return get_handle();
    }

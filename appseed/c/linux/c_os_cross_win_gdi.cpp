@@ -9,7 +9,7 @@ device_context::device_context()
    m_display   = NULL;
    m_d         = 0;
    m_gc        = NULL;
-   m_hwnd      = NULL;
+   m_hwnd      = ::ca::null();
 
 
 
@@ -17,14 +17,14 @@ device_context::device_context()
 
 
 
-HDC GetDC(HWND hwnd)
+HDC GetDC(oswindow hwnd)
 {
 
    HDC hdc = new device_context;
 
    hdc->m_display    = XOpenDisplay(NULL);
    hdc->m_hwnd       = hwnd;
-   hdc->m_d          = (Drawable) (hwnd == NULL || hwnd->m_window == NULL ? DefaultRootWindow(hdc->m_display) : hwnd->m_window);
+   hdc->m_d          = (Drawable) (hwnd == NULL || hwnd.window() == NULL ? DefaultRootWindow(hdc->m_display) : hwnd.window());
    hdc->m_gc         = XCreateGC(hdc->m_display, hdc->m_d, 0, 0);
 
    return hdc;
@@ -32,13 +32,13 @@ HDC GetDC(HWND hwnd)
 }
 
 
-HDC GetWindowDC(HWND hwnd)
+HDC GetWindowDC(oswindow hwnd)
 {
    return GetDC(hwnd);
 }
 
 
-WINBOOL ReleaseDC(HWND hwnd, HDC hdc)
+WINBOOL ReleaseDC(oswindow hwnd, HDC hdc)
 {
 
    if(hdc == NULL)
@@ -53,11 +53,11 @@ WINBOOL ReleaseDC(HWND hwnd, HDC hdc)
 }
 
 
-WINBOOL GetClientRect(HWND hwnd, LPRECT lprect)
+WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect)
 {
    XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
-   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd->m_window, &attrs) == 0)
+   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd.window(), &attrs) == 0)
    {
       return false;
    }
@@ -68,11 +68,11 @@ WINBOOL GetClientRect(HWND hwnd, LPRECT lprect)
 }
 
 
-WINBOOL GetWindowRect(HWND hwnd, LPRECT lprect)
+WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 {
    XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
-   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd->m_window, &attrs) == 0)
+   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd.window(), &attrs) == 0)
    {
       return false;
    }
@@ -91,7 +91,7 @@ int FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
 }
 
 
-HDC BeginPaint(HWND hwnd, PAINTSTRUCT * ps)
+HDC BeginPaint(oswindow hwnd, PAINTSTRUCT * ps)
 {
 
    HDC hdc = GetDC(hwnd);
@@ -103,7 +103,7 @@ HDC BeginPaint(HWND hwnd, PAINTSTRUCT * ps)
 }
 
 
-WINBOOL EndPaint(HWND hwnd, PAINTSTRUCT * ps)
+WINBOOL EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
 {
 
    return ReleaseDC(hwnd, ps->hdc);
@@ -132,7 +132,7 @@ WINBOOL GetCursorPos(LPPOINT lpptCursor)
 
 
 
-WINBOOL SetWindowPos(HWND hwnd, HWND hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
+WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
 {
 
    Display * display = XOpenDisplay(NULL);
@@ -158,26 +158,26 @@ WINBOOL SetWindowPos(HWND hwnd, HWND hwndInsertAfter, int x, int y, int cx, int 
    if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter >= 0)
    {
       value_mask |= CWSibling;
-      values.sibling = hwndInsertAfter->m_window;
+      values.sibling = hwndInsertAfter.window();
       values.stack_mode = Above;
    }
 
-   XConfigureWindow(display, hwnd->m_window, value_mask, &values);
+   XConfigureWindow(display, hwnd.window(), value_mask, &values);
 
    if(uFlags & SWP_SHOWWINDOW)
    {
-      XMapWindow(display, hwnd->m_window);
+      XMapWindow(display, hwnd.window());
    }
 
    if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter < 0)
    {
-      if(hwndInsertAfter->m_window == ZORDER_TOP || hwndInsertAfter->m_window == ZORDER_TOPMOST)
+      if(hwndInsertAfter.window() == ZORDER_TOP || hwndInsertAfter.window() == ZORDER_TOPMOST)
       {
-         XRaiseWindow(display, hwnd->m_window);
+         XRaiseWindow(display, hwnd.window());
       }
-      else if(hwndInsertAfter->m_window == ZORDER_BOTTOM)
+      else if(hwndInsertAfter.window() == ZORDER_BOTTOM)
       {
-         XLowerWindow(display, hwnd->m_window);
+         XLowerWindow(display, hwnd.window());
       }
 
    }

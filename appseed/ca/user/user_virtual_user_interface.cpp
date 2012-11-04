@@ -1023,7 +1023,7 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout, oswindow oswindow, LPCREC
    }
    else
    {
-      ::SetWindowPos(oswindow, NULL, lpRect->left, lpRect->top,
+      ::SetWindowPos(oswindow, ::ca::null(), lpRect->left, lpRect->top,
          lpRect->right - lpRect->left, lpRect->bottom - lpRect->top,
          SWP_NOACTIVATE|SWP_NOZORDER);
    }

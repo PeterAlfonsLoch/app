@@ -1,9 +1,6 @@
 #pragma once
 
 
-// Ubuntu apt-get install libx11-dev
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
 
 
 
@@ -46,7 +43,7 @@ public:
    Display *   m_display;
    Drawable    m_d;
    GC          m_gc;
-   HWND        m_hwnd;
+   oswindow        m_hwnd;
 
 
    device_context();

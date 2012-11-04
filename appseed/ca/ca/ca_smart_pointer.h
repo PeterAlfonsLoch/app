@@ -5,16 +5,6 @@ namespace ca
 {
 
 
-   class CLASS_DECL_ca null
-   {
-   public:
-
-
-      null() {}
-
-
-   };
-
 
    template < class T >
    class smart_pointer :

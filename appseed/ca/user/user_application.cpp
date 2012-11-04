@@ -179,7 +179,7 @@ retry_license:
       {
          string strMessage = pszMessage;
          strMessage.replace("<br>", "\r\n");
-         return MessageBox(pwndOwner == NULL ? NULL : pwndOwner->get_handle(), strMessage, m_strAppName, fuStyle);
+         return MessageBox(pwndOwner == NULL ? ::ca::null() : pwndOwner->get_handle(), strMessage, m_strAppName, fuStyle);
       }
       if(box.m_strResponse == "ok")
       {
