@@ -611,7 +611,7 @@ DWORD __cdecl crt_char_traits::GetEnvironmentVariable(const char * pszVar, char 
 
 #else
 
-   return strlen(strncpy(pszBuffer, getenv(pszVar), dwSize));
+   return (DWORD) strlen(strncpy(pszBuffer, getenv(pszVar), dwSize));
 
 #endif
 
@@ -1354,7 +1354,7 @@ strsize string::replace(PCXSTR pszOld, PCXSTR pszNew, strsize iStart)
    strsize nCount = 0;
    {
       PCXSTR pszStart = GetString() + iStart;
-      PCXSTR pszEnd = pszStart+get_length();
+//      PCXSTR pszEnd = pszStart+get_length();
       PCXSTR pszTarget;
       while( (pszTarget = string_trait::StringFindString( pszStart, pszOld ) ) != NULL)
       {
@@ -2572,7 +2572,7 @@ BSTR string::SetSysString(BSTR* pbstr ) const
 bool string::GetEnvironmentVariable(PCXSTR pszVar )
 {
 
-   ULONG nLength = string_trait::GetEnvironmentVariable( pszVar, NULL, 0 );
+   DWOR nLength = string_trait::GetEnvironmentVariable( pszVar, NULL, 0 );
    bool bRetVal = FALSE;
 
    if( nLength == 0 )

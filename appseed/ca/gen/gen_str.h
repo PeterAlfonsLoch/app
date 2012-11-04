@@ -109,13 +109,14 @@ namespace gen
       string CLASS_DECL_ca if_null(const char * psz, const char * pszIfNull = NULL);
 
 
-      FORCEINLINE  const char * __utf8_inc(const char * psz)
-      {
-         return psz + 1 + trailingBytesForUTF8[(unsigned char) *psz];
-      }
+      FORCEINLINE  const char * __utf8_inc(const char * psz) { return psz + 1 + trailingBytesForUTF8[(unsigned char) *psz]; }
 
+      
       CLASS_DECL_ca  const char *   utf8_inc(const char * psz);
+      CLASS_DECL_ca  const char *   utf8_inc_slide(strsize * pslide, const char * psz);
+      CLASS_DECL_ca  const char *   utf8_inc_copy_slide_back(strsize * pslideback, char * pchDst, const char * pchSrc);
 
+      
       CLASS_DECL_ca  const char *   utf8_dec(const char * pszBeg, const char * psz);
       CLASS_DECL_ca  string         utf8_char(const char *psz);
       CLASS_DECL_ca  string         utf8_char(const char *psz, const char * pszEnd);

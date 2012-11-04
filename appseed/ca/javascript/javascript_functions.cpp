@@ -45,6 +45,10 @@
 #endif*/
 
 void scIsInNet(CScriptVar *c, void *data);
+bool is_only_digits(const char * psz);
+void scIsPlainHostName(CScriptVar *c, void *data);
+void scMyIpAddress(CScriptVar *c, void *data);
+
 
 
 void scIsInNet(CScriptVar *c, void *data)
@@ -105,7 +109,7 @@ bool is_only_digits(const char * psz)
 
 void scIsPlainHostName(CScriptVar *c, void *data)
 {
-	tinyjs *tinyJS = (tinyjs *)data;
+//	tinyjs *tinyJS = (tinyjs *)data;
 
 //   App(tinyJS->m_papp);
 
@@ -142,7 +146,7 @@ void scIsPlainHostName(CScriptVar *c, void *data)
 
 void scMyIpAddress(CScriptVar *c, void *data)
 {
-	tinyjs *tinyJS = (tinyjs *)data;
+//	tinyjs *tinyJS = (tinyjs *)data;
 
 //   App(tinyJS->m_papp);
 

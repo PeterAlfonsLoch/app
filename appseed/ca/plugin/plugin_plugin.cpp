@@ -34,6 +34,7 @@ namespace plugin
 {
 
    void ms_get_dup_status_callback(void * p, int i, dword_ptr dw);
+   void my_se_translator_function(unsigned int, struct _EXCEPTION_POINTERS* );
 
 
    plugin::plugin()

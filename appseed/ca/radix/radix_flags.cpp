@@ -9,6 +9,9 @@
 
 namespace ___FlagsDebug
 {
+   
+   
+   void FlagsDebug();
 
    enum ___EFlagsDebug
    {

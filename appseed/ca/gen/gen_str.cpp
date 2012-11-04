@@ -1344,6 +1344,46 @@ namespace gen
       throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
    }
 
+   // macos mountain lion near Finados - inha |-) at veriverse on 2012-11-04 with Mom with Carol speaking about Mom Dream with gone Grandma - extrem care feeling
+   const char * str::utf8_inc_slide(strsize * pslide, const char * psz)
+   {
+      char len =  1 + gen::str::trailingBytesForUTF8[(unsigned char) *psz];
+      if(len == 0)   { *pslide += 0; return psz; }
+      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(len == 1)   { *pslide += 1; return psz; }
+      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(len == 2)   { *pslide += 2; return psz; }
+      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(len == 3)   { *pslide += 3; return psz; }
+      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(len == 4)   { *pslide += 4; return psz; }
+      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(len == 5)   { *pslide += 5; return psz; }
+      if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+      if(len == 6)   { *pslide += 6; return psz; }
+      throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
+   }
+   
+   // macos mountain lion near Finados - inha |-) at veriverse on 2012-11-04 with Mom with Carol speaking about Mom Dream with gone Grandma - extrem care feeling
+   const char * str::utf8_inc_copy_slide_back(strsize * pslideback, char * pchDst, const char * pchSrc)
+   {
+
+      strsize count = 0;
+ 
+      gen::str::utf8_inc_slide(&count, pchSrc);
+   
+      memcpy(pchDst, pchSrc, count);
+      
+      pchSrc         += count;
+   
+      pchDst         += count;
+   
+      *pslideback    -= count;
+      
+      return pchSrc;
+      
+   }
+
 
 
    const char * str::utf8_dec(const char * pszBeg, const char * psz)

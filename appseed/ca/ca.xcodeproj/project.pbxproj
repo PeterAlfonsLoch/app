@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070791621646B39F009D76F9 /* sockets_Ipv4Address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070791561646B39F009D76F9 /* sockets_Ipv4Address.cpp */; };
+		070791631646B39F009D76F9 /* sockets_Ipv6Address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070791571646B39F009D76F9 /* sockets_Ipv6Address.cpp */; };
+		070791641646B39F009D76F9 /* sockets_SctpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070791581646B39F009D76F9 /* sockets_SctpSocket.cpp */; };
+		070791651646B39F009D76F9 /* sockets_Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070791591646B39F009D76F9 /* sockets_Socket.cpp */; };
+		070791661646B39F009D76F9 /* sockets_SocketHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0707915A1646B39F009D76F9 /* sockets_SocketHandler.cpp */; };
+		070791671646B39F009D76F9 /* sockets_ssl_client_context_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0707915B1646B39F009D76F9 /* sockets_ssl_client_context_map.cpp */; };
+		070791681646B39F009D76F9 /* sockets_ssl_client_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0707915C1646B39F009D76F9 /* sockets_ssl_client_context.cpp */; };
+		070791691646B39F009D76F9 /* sockets_StreamSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0707915D1646B39F009D76F9 /* sockets_StreamSocket.cpp */; };
+		0707916A1646B39F009D76F9 /* sockets_sync_socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0707915E1646B39F009D76F9 /* sockets_sync_socket_handler.cpp */; };
+		0707916B1646B39F009D76F9 /* sockets_tcp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0707915F1646B39F009D76F9 /* sockets_tcp_socket.cpp */; };
+		0707916C1646B39F009D76F9 /* sockets_tls_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070791601646B39F009D76F9 /* sockets_tls_socket.cpp */; };
+		0707916D1646B39F009D76F9 /* sockets_udp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070791611646B39F009D76F9 /* sockets_udp_socket.cpp */; };
 		07BD559816215FA2008E31F0 /* api_debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD558916215FA2008E31F0 /* api_debug.h */; };
 		07BD559916215FA2008E31F0 /* api_integer_to_string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD558A16215FA2008E31F0 /* api_integer_to_string.cpp */; };
 		07BD559A16215FA2008E31F0 /* api_integer_to_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD558B16215FA2008E31F0 /* api_integer_to_string.h */; };
@@ -1230,20 +1242,8 @@
 		9A88B33414C2CA2F006B4023 /* socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AC0214C2CA2D006B4023 /* socket.h */; };
 		9A88B33514C2CA2F006B4023 /* socket_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AC0314C2CA2D006B4023 /* socket_handler.h */; };
 		9A88B33614C2CA2F006B4023 /* socket_handler_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AC0414C2CA2D006B4023 /* socket_handler_base.h */; };
-		9A88B33714C2CA2F006B4023 /* sockets_Ipv4Address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AC0514C2CA2D006B4023 /* sockets_Ipv4Address.cpp */; };
-		9A88B33814C2CA2F006B4023 /* sockets_Ipv6Address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AC0614C2CA2D006B4023 /* sockets_Ipv6Address.cpp */; };
-		9A88B33914C2CA2F006B4023 /* sockets_SctpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AC0714C2CA2D006B4023 /* sockets_SctpSocket.cpp */; };
-		9A88B33A14C2CA2F006B4023 /* sockets_Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AC0814C2CA2D006B4023 /* sockets_Socket.cpp */; };
-		9A88B33B14C2CA2F006B4023 /* sockets_SocketHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AC0914C2CA2D006B4023 /* sockets_SocketHandler.cpp */; };
-		9A88B33C14C2CA2F006B4023 /* sockets_ssl_client_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AC0A14C2CA2D006B4023 /* sockets_ssl_client_context.cpp */; };
 		9A88B33D14C2CA2F006B4023 /* sockets_ssl_client_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AC0B14C2CA2D006B4023 /* sockets_ssl_client_context.h */; };
-		9A88B33E14C2CA2F006B4023 /* sockets_ssl_client_context_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AC0C14C2CA2D006B4023 /* sockets_ssl_client_context_map.cpp */; };
 		9A88B33F14C2CA2F006B4023 /* sockets_ssl_client_context_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AC0D14C2CA2D006B4023 /* sockets_ssl_client_context_map.h */; };
-		9A88B34014C2CA2F006B4023 /* sockets_StreamSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AC0E14C2CA2D006B4023 /* sockets_StreamSocket.cpp */; };
-		9A88B34114C2CA2F006B4023 /* sockets_sync_socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AC0F14C2CA2D006B4023 /* sockets_sync_socket_handler.cpp */; };
-		9A88B34214C2CA2F006B4023 /* sockets_tcp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AC1014C2CA2D006B4023 /* sockets_tcp_socket.cpp */; };
-		9A88B34314C2CA2F006B4023 /* sockets_tls_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AC1114C2CA2D006B4023 /* sockets_tls_socket.cpp */; };
-		9A88B34414C2CA2F006B4023 /* sockets_udp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AC1214C2CA2D006B4023 /* sockets_udp_socket.cpp */; };
 		9A88B34514C2CA2F006B4023 /* stream_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AC1314C2CA2D006B4023 /* stream_socket.h */; };
 		9A88B34614C2CA2F006B4023 /* sync_socket_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AC1414C2CA2D006B4023 /* sync_socket_handler.h */; };
 		9A88B34714C2CA2F006B4023 /* tcp_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AC1514C2CA2D006B4023 /* tcp_socket.h */; };
@@ -1811,6 +1811,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		070791561646B39F009D76F9 /* sockets_Ipv4Address.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sockets_Ipv4Address.cpp; path = bsd_style_sockets/sockets_Ipv4Address.cpp; sourceTree = "<group>"; };
+		070791571646B39F009D76F9 /* sockets_Ipv6Address.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sockets_Ipv6Address.cpp; path = bsd_style_sockets/sockets_Ipv6Address.cpp; sourceTree = "<group>"; };
+		070791581646B39F009D76F9 /* sockets_SctpSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sockets_SctpSocket.cpp; path = bsd_style_sockets/sockets_SctpSocket.cpp; sourceTree = "<group>"; };
+		070791591646B39F009D76F9 /* sockets_Socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sockets_Socket.cpp; path = bsd_style_sockets/sockets_Socket.cpp; sourceTree = "<group>"; };
+		0707915A1646B39F009D76F9 /* sockets_SocketHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sockets_SocketHandler.cpp; path = bsd_style_sockets/sockets_SocketHandler.cpp; sourceTree = "<group>"; };
+		0707915B1646B39F009D76F9 /* sockets_ssl_client_context_map.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sockets_ssl_client_context_map.cpp; path = bsd_style_sockets/sockets_ssl_client_context_map.cpp; sourceTree = "<group>"; };
+		0707915C1646B39F009D76F9 /* sockets_ssl_client_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sockets_ssl_client_context.cpp; path = bsd_style_sockets/sockets_ssl_client_context.cpp; sourceTree = "<group>"; };
+		0707915D1646B39F009D76F9 /* sockets_StreamSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sockets_StreamSocket.cpp; path = bsd_style_sockets/sockets_StreamSocket.cpp; sourceTree = "<group>"; };
+		0707915E1646B39F009D76F9 /* sockets_sync_socket_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sockets_sync_socket_handler.cpp; path = bsd_style_sockets/sockets_sync_socket_handler.cpp; sourceTree = "<group>"; };
+		0707915F1646B39F009D76F9 /* sockets_tcp_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sockets_tcp_socket.cpp; path = bsd_style_sockets/sockets_tcp_socket.cpp; sourceTree = "<group>"; };
+		070791601646B39F009D76F9 /* sockets_tls_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sockets_tls_socket.cpp; path = bsd_style_sockets/sockets_tls_socket.cpp; sourceTree = "<group>"; };
+		070791611646B39F009D76F9 /* sockets_udp_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sockets_udp_socket.cpp; path = bsd_style_sockets/sockets_udp_socket.cpp; sourceTree = "<group>"; };
 		07BD558916215FA2008E31F0 /* api_debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_debug.h; sourceTree = "<group>"; };
 		07BD558A16215FA2008E31F0 /* api_integer_to_string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api_integer_to_string.cpp; sourceTree = "<group>"; };
 		07BD558B16215FA2008E31F0 /* api_integer_to_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_integer_to_string.h; sourceTree = "<group>"; };
@@ -3040,20 +3052,8 @@
 		9A88AC0214C2CA2D006B4023 /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
 		9A88AC0314C2CA2D006B4023 /* socket_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket_handler.h; sourceTree = "<group>"; };
 		9A88AC0414C2CA2D006B4023 /* socket_handler_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket_handler_base.h; sourceTree = "<group>"; };
-		9A88AC0514C2CA2D006B4023 /* sockets_Ipv4Address.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_Ipv4Address.cpp; sourceTree = "<group>"; };
-		9A88AC0614C2CA2D006B4023 /* sockets_Ipv6Address.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_Ipv6Address.cpp; sourceTree = "<group>"; };
-		9A88AC0714C2CA2D006B4023 /* sockets_SctpSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_SctpSocket.cpp; sourceTree = "<group>"; };
-		9A88AC0814C2CA2D006B4023 /* sockets_Socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_Socket.cpp; sourceTree = "<group>"; };
-		9A88AC0914C2CA2D006B4023 /* sockets_SocketHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_SocketHandler.cpp; sourceTree = "<group>"; };
-		9A88AC0A14C2CA2D006B4023 /* sockets_ssl_client_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_ssl_client_context.cpp; sourceTree = "<group>"; };
 		9A88AC0B14C2CA2D006B4023 /* sockets_ssl_client_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sockets_ssl_client_context.h; sourceTree = "<group>"; };
-		9A88AC0C14C2CA2D006B4023 /* sockets_ssl_client_context_map.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_ssl_client_context_map.cpp; sourceTree = "<group>"; };
 		9A88AC0D14C2CA2D006B4023 /* sockets_ssl_client_context_map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sockets_ssl_client_context_map.h; sourceTree = "<group>"; };
-		9A88AC0E14C2CA2D006B4023 /* sockets_StreamSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_StreamSocket.cpp; sourceTree = "<group>"; };
-		9A88AC0F14C2CA2D006B4023 /* sockets_sync_socket_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_sync_socket_handler.cpp; sourceTree = "<group>"; };
-		9A88AC1014C2CA2D006B4023 /* sockets_tcp_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_tcp_socket.cpp; sourceTree = "<group>"; };
-		9A88AC1114C2CA2D006B4023 /* sockets_tls_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_tls_socket.cpp; sourceTree = "<group>"; };
-		9A88AC1214C2CA2D006B4023 /* sockets_udp_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_udp_socket.cpp; sourceTree = "<group>"; };
 		9A88AC1314C2CA2D006B4023 /* stream_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stream_socket.h; sourceTree = "<group>"; };
 		9A88AC1414C2CA2D006B4023 /* sync_socket_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sync_socket_handler.h; sourceTree = "<group>"; };
 		9A88AC1514C2CA2D006B4023 /* tcp_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcp_socket.h; sourceTree = "<group>"; };
@@ -3635,6 +3635,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		070791541646B385009D76F9 /* bsd_style_sockets */ = {
+			isa = PBXGroup;
+			children = (
+				070791561646B39F009D76F9 /* sockets_Ipv4Address.cpp */,
+				070791571646B39F009D76F9 /* sockets_Ipv6Address.cpp */,
+				070791581646B39F009D76F9 /* sockets_SctpSocket.cpp */,
+				070791591646B39F009D76F9 /* sockets_Socket.cpp */,
+				0707915A1646B39F009D76F9 /* sockets_SocketHandler.cpp */,
+				0707915B1646B39F009D76F9 /* sockets_ssl_client_context_map.cpp */,
+				0707915C1646B39F009D76F9 /* sockets_ssl_client_context.cpp */,
+				0707915D1646B39F009D76F9 /* sockets_StreamSocket.cpp */,
+				0707915E1646B39F009D76F9 /* sockets_sync_socket_handler.cpp */,
+				0707915F1646B39F009D76F9 /* sockets_tcp_socket.cpp */,
+				070791601646B39F009D76F9 /* sockets_tls_socket.cpp */,
+				070791611646B39F009D76F9 /* sockets_udp_socket.cpp */,
+			);
+			name = bsd_style_sockets;
+			sourceTree = "<group>";
+		};
 		07BD565B162160C2008E31F0 /* 7z */ = {
 			isa = PBXGroup;
 			children = (
@@ -5428,6 +5447,7 @@
 		9A88ABFD14C2CA2D006B4023 /* basic */ = {
 			isa = PBXGroup;
 			children = (
+				070791541646B385009D76F9 /* bsd_style_sockets */,
 				9A88ABFE14C2CA2D006B4023 /* ipv4_address.h */,
 				9A88ABFF14C2CA2D006B4023 /* ipv6_address.h */,
 				9A88AC0014C2CA2D006B4023 /* listen_socket.h */,
@@ -5435,20 +5455,8 @@
 				9A88AC0214C2CA2D006B4023 /* socket.h */,
 				9A88AC0314C2CA2D006B4023 /* socket_handler.h */,
 				9A88AC0414C2CA2D006B4023 /* socket_handler_base.h */,
-				9A88AC0514C2CA2D006B4023 /* sockets_Ipv4Address.cpp */,
-				9A88AC0614C2CA2D006B4023 /* sockets_Ipv6Address.cpp */,
-				9A88AC0714C2CA2D006B4023 /* sockets_SctpSocket.cpp */,
-				9A88AC0814C2CA2D006B4023 /* sockets_Socket.cpp */,
-				9A88AC0914C2CA2D006B4023 /* sockets_SocketHandler.cpp */,
-				9A88AC0A14C2CA2D006B4023 /* sockets_ssl_client_context.cpp */,
 				9A88AC0B14C2CA2D006B4023 /* sockets_ssl_client_context.h */,
-				9A88AC0C14C2CA2D006B4023 /* sockets_ssl_client_context_map.cpp */,
 				9A88AC0D14C2CA2D006B4023 /* sockets_ssl_client_context_map.h */,
-				9A88AC0E14C2CA2D006B4023 /* sockets_StreamSocket.cpp */,
-				9A88AC0F14C2CA2D006B4023 /* sockets_sync_socket_handler.cpp */,
-				9A88AC1014C2CA2D006B4023 /* sockets_tcp_socket.cpp */,
-				9A88AC1114C2CA2D006B4023 /* sockets_tls_socket.cpp */,
-				9A88AC1214C2CA2D006B4023 /* sockets_udp_socket.cpp */,
 				9A88AC1314C2CA2D006B4023 /* stream_socket.h */,
 				9A88AC1414C2CA2D006B4023 /* sync_socket_handler.h */,
 				9A88AC1514C2CA2D006B4023 /* tcp_socket.h */,
@@ -7410,18 +7418,6 @@
 				9A88B32414C2CA2F006B4023 /* simpledb_veiev_post.cpp in Sources */,
 				9A88B32E14C2CA2F006B4023 /* sockets_resolv_server.cpp in Sources */,
 				9A88B32F14C2CA2F006B4023 /* sockets_resolv_socket.cpp in Sources */,
-				9A88B33714C2CA2F006B4023 /* sockets_Ipv4Address.cpp in Sources */,
-				9A88B33814C2CA2F006B4023 /* sockets_Ipv6Address.cpp in Sources */,
-				9A88B33914C2CA2F006B4023 /* sockets_SctpSocket.cpp in Sources */,
-				9A88B33A14C2CA2F006B4023 /* sockets_Socket.cpp in Sources */,
-				9A88B33B14C2CA2F006B4023 /* sockets_SocketHandler.cpp in Sources */,
-				9A88B33C14C2CA2F006B4023 /* sockets_ssl_client_context.cpp in Sources */,
-				9A88B33E14C2CA2F006B4023 /* sockets_ssl_client_context_map.cpp in Sources */,
-				9A88B34014C2CA2F006B4023 /* sockets_StreamSocket.cpp in Sources */,
-				9A88B34114C2CA2F006B4023 /* sockets_sync_socket_handler.cpp in Sources */,
-				9A88B34214C2CA2F006B4023 /* sockets_tcp_socket.cpp in Sources */,
-				9A88B34314C2CA2F006B4023 /* sockets_tls_socket.cpp in Sources */,
-				9A88B34414C2CA2F006B4023 /* sockets_udp_socket.cpp in Sources */,
 				9A88B35414C2CA2F006B4023 /* sockets_http_request_socket.cpp in Sources */,
 				9A88B35514C2CA2F006B4023 /* sockets_http_socket.cpp in Sources */,
 				9A88B35614C2CA2F006B4023 /* sockets_http_tunnel.cpp in Sources */,
@@ -7777,6 +7773,18 @@
 				07BD67E91621666A008E31F0 /* xml_data.cpp in Sources */,
 				07BD67ED1621666A008E31F0 /* xml_edit.cpp in Sources */,
 				07BD67FB1621666A008E31F0 /* xml_xml.cpp in Sources */,
+				070791621646B39F009D76F9 /* sockets_Ipv4Address.cpp in Sources */,
+				070791631646B39F009D76F9 /* sockets_Ipv6Address.cpp in Sources */,
+				070791641646B39F009D76F9 /* sockets_SctpSocket.cpp in Sources */,
+				070791651646B39F009D76F9 /* sockets_Socket.cpp in Sources */,
+				070791661646B39F009D76F9 /* sockets_SocketHandler.cpp in Sources */,
+				070791671646B39F009D76F9 /* sockets_ssl_client_context_map.cpp in Sources */,
+				070791681646B39F009D76F9 /* sockets_ssl_client_context.cpp in Sources */,
+				070791691646B39F009D76F9 /* sockets_StreamSocket.cpp in Sources */,
+				0707916A1646B39F009D76F9 /* sockets_sync_socket_handler.cpp in Sources */,
+				0707916B1646B39F009D76F9 /* sockets_tcp_socket.cpp in Sources */,
+				0707916C1646B39F009D76F9 /* sockets_tls_socket.cpp in Sources */,
+				0707916D1646B39F009D76F9 /* sockets_udp_socket.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

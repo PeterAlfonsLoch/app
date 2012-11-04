@@ -187,6 +187,9 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 
 namespace radix
 {
+   
+   void __format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int nString);
+   
 
    const char application::gen_FileSection[] = "Recent File List";
    const char application::gen_FileEntry[] = "File%d";
@@ -1395,14 +1398,14 @@ namespace radix
       __format_strings(rString, strFormat, rglpsz, nString);
    }*/
 
-   void __format_strings(string & rString, const char * lpszFormat,
-         const char * const* rglpsz, int nString)
+   void __format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int nString)
    {
       ENSURE_ARG(lpszFormat != NULL);
       ENSURE_ARG(rglpsz != NULL);
       // determine length of destination string, not including null terminator
-      int nTotalLen = 0;
+      strsize nTotalLen = 0;
       const char * pchSrc = lpszFormat;
+      strsize count;
       while (*pchSrc != '\0')
       {
          if (pchSrc[0] == '%' &&
@@ -1423,15 +1426,13 @@ namespace radix
          }
          else
          {
-            if (_istlead(*pchSrc))
-               ++nTotalLen, ++pchSrc;
-            ++pchSrc;
-            ++nTotalLen;
+            pchSrc = gen::str::utf8_inc_wave(&nTotalLen, pchSrc);
          }
       }
 
       pchSrc = lpszFormat;
       LPTSTR pchDest = rString.GetBuffer(nTotalLen);
+      strsize count;
       while (*pchSrc != '\0')
       {
          if (pchSrc[0] == '%' &&
@@ -1453,7 +1454,7 @@ namespace radix
             }
             else if (rglpsz[i] != NULL)
             {
-               int nLen = strlen(rglpsz[i]);
+               size_t nLen = strlen(rglpsz[i]);
                ::gen::strcpy_s(pchDest, nTotalLen + 1, rglpsz[i]);
                nTotalLen -= nLen;
                pchDest += nLen;
@@ -1461,11 +1462,11 @@ namespace radix
          }
          else
          {
-            if (_istlead(*pchSrc))
-               *pchDest++ = *pchSrc++, nTotalLen--; // copy first of 2 bytes
-            *pchDest++ = *pchSrc++;
-            nTotalLen--;
+            
+            gen::str::utf8_inc_copy_wave_back(&nTotalLen, pchDest, pchSrc)
+            
          }
+         
       }
       rString.ReleaseBuffer((int)((const char *)pchDest - (const char *)rString));
          // ReleaseBuffer will assert if we went too far

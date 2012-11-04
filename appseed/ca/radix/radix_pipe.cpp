@@ -1,8 +1,6 @@
 #include "framework.h"
 
-#if defined(MACOS)
-#include <unistd.h>
-#elif defined(LINUX)
+#if defined(LINUX)
 #include <fcntl.h>
 #endif
 
@@ -85,11 +83,26 @@ namespace gen
 
       int iFlags = bBlock ? 0 : O_NONBLOCK;
 
-      if(pipe2(m_fd, iFlags))
+      if(::pipe(m_fd))
       {
          // errno
          return false;
       }
+      
+      if(fcntl(m_fd[0], F_SETFL, iFlags))
+      {
+         close(m_fd[0]);
+         close(m_fd[1]);
+         return false;
+      }
+      
+      if(fcntl(m_fd[1], F_SETFL, iFlags))
+      {
+         close(m_fd[0]);
+         close(m_fd[1]);
+         return false;
+      }
+      
 
 #endif
 
@@ -128,8 +141,8 @@ namespace gen
 
    bool pipe::write(const char * psz)
    {
-      DWORD dwWritten;
-      DWORD dwLen = strlen(psz);
+      size_t dwWritten;
+      size_t dwLen = strlen(psz);
       bool bSuccess = FALSE;
 #ifdef WINDOWS
       bSuccess = WriteFile(m_hWrite, (const char *) psz, (DWORD) dwLen, &dwWritten, NULL) != FALSE;
@@ -143,7 +156,7 @@ namespace gen
    {
       string str;
       const int BUFSIZE = 1024 * 8;
-      DWORD dwRead;
+      size_t dwRead;
       bool bSuccess;
       char chBuf[BUFSIZE];
       for (;;)
@@ -179,7 +192,7 @@ namespace gen
    {
       string str;
       const int BUFSIZE = 1024 * 8;
-      DWORD dwRead;
+      size_t dwRead;
       bool bSuccess = FALSE;
       char chBuf[BUFSIZE];
       memset(chBuf, 0, BUFSIZE);

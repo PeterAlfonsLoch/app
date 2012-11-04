@@ -7,6 +7,7 @@
 #define ROUND(x,y) (((x)+(y-1))&~(y-1))
 #define ROUND16(x) ROUND(x, 16)
 
+void prop_id_debug(::ca::application * papp);
 
 namespace gen
 {

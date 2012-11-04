@@ -121,7 +121,7 @@ namespace sip
    // --------------------------------------------------------------------------------------
    void transaction::SetContentLength(long value)
    {
-      header("Content-Length") = value;
+      header("Content-Length") = (int64_t) value;
    }
 
 

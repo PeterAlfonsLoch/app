@@ -161,7 +161,7 @@ namespace mysql
       if(row == NULL)
          return varDefault;
       else if(row[0] == NULL)
-         return ::var(::var::e_type::type_null);
+         return ::var(::var::type_null);
       else
          return var(row[0]);
    }
@@ -187,14 +187,14 @@ namespace mysql
    {
       result * presult = query(pszSql);
       if(presult == NULL)
-         return ::var(::var::e_type::type_new);
+         return ::var(::var::type_new);
       var a;
       MYSQL_ROW row;
       int i = 0;
       while((row = (MYSQL_ROW) presult->fetch_row()) != NULL)
       {
          if(row[0] == NULL)
-            a.propset().add(gen::str::from(i), ::var(::var::e_type::type_null));
+            a.propset().add(gen::str::from(i), ::var(::var::type_null));
          else
             a.propset().add(gen::str::from(i), var(row[0]));
          i++;
@@ -205,16 +205,16 @@ namespace mysql
    {
       result * presult = query(pszSql);
       if(presult == NULL)
-         return ::var(::var::e_type::type_new);
+         return ::var(::var::type_new);
       MYSQL_ROW row = (MYSQL_ROW) presult->fetch_row();
       if(row == NULL)
-         return ::var(::var::e_type::type_new);
+         return ::var(::var::type_new);
       var a;
       int iNumFields = presult->num_fields();
       for(int j = 0; j < iNumFields; j++)
       {
          if(row[j] == NULL)
-            a.propset().add(gen::str::from(j), ::var(::var::e_type::type_null));
+            a.propset().add(gen::str::from(j), ::var(::var::type_null));
          else
             a.propset().add(gen::str::from(j), var(row[j]));
       }
@@ -224,7 +224,7 @@ namespace mysql
    {
       result * presult = query(pszSql);
       if(presult == NULL)
-         return ::var(::var::e_type::type_new);
+         return ::var(::var::type_new);
       MYSQL_ROW row;
       var a;
       //var a2;
@@ -249,7 +249,7 @@ namespace mysql
          for(int j = 0; j < iNumFields; j++)
          {
             if(row[j] == NULL)
-               a.m_pvara->element_at(i).vara()[j].set_type(::var::e_type::type_null);
+               a.m_pvara->element_at(i).vara()[j].set_type(::var::type_null);
             else
                a.m_pvara->element_at(i).vara()[j] = row[j];
          }

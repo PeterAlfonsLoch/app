@@ -288,6 +288,8 @@ void var::set_type(e_type e_type, bool bConvert)
       case type_id:
          m_id     = get_id();
          break;
+      default:
+         break;
       }
    }
    m_etype = e_type;
@@ -580,6 +582,8 @@ class var & var::operator = (const class var & var)
          // should dereference (this operator here means a content copy)
          *this  = *((class var &)var).m_pstr;
          return *this;
+         default:
+            break;
       }
 
       set_type(((class var &)var).get_type(), false);
@@ -636,7 +640,8 @@ class var & var::operator = (const class var & var)
       case type_id:
          m_id    = var.m_id;
          break;
-
+      default:
+         break;
       }
    }
    return *this;
@@ -753,7 +758,7 @@ var::operator unsigned int()
    case type_integer:
       return m_i;
    case type_ulong:
-      return m_ul;
+      return (unsigned int) m_ul;
    case type_ca2:
       return 0;
    case type_uint64:
@@ -807,7 +812,7 @@ var::operator int()
    case type_uint64:
       return (int) m_ui64;
    case type_ulong:
-      return m_ul;
+      return (unsigned int)m_ul;
    case type_ca2:
       return 0;
    case type_pvar:
@@ -1176,7 +1181,7 @@ int var::compare_ci(const class var & var) const
    }
    else if(is_ulong() || var.is_ulong())
    {
-      return get_ulong() - var.get_ulong();
+      return (int) (get_ulong() - var.get_ulong());
    }
    else
    {
@@ -1246,7 +1251,7 @@ int var::compare(const class var & var) const
    }
    else if(is_ulong() || var.is_ulong())
    {
-      return get_ulong() - var.get_ulong();
+      return (int) (get_ulong() - var.get_ulong());
    }
    else
    {
@@ -1665,7 +1670,7 @@ inline id var::get_id(const char * pszOnNull) const
       }
       else if(m_etype == var::type_ulong)
       {
-         id = (int64_t) m_ul;
+         id = (int_ptr) m_ul;
       }
       else if(m_etype == var::type_double)
       {

@@ -173,7 +173,7 @@ namespace sockets
             inheader("Accept") = "text/html, text/plain, application/xml, */*;q=0.01";
             inheader("Connection") = "close";
          }
-         inheader("Content-length") = body.get_length();
+         inheader("Content-length") = (int64_t) body.get_length();
          SendRequest();
 
          if(body.get_length() > 0)
@@ -240,7 +240,7 @@ namespace sockets
       inheader("Accept") = "text/html, text/plain, */*;q=0.01";
       inheader("Connection") = "close";
       inheader("Content-type") = "multipart/form-data; boundary=" + m_boundary;
-      inheader("Content-length") = length;
+      inheader("Content-length") = (int64_t) length;
 
       SendRequest();
 
