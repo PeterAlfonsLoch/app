@@ -681,7 +681,7 @@ void string_array::add(const id & id)
    }
    else if(id.is_number())
    {
-      add(gen::str::itoa(id));
+      add(gen::str::from(id));
    }
    else if(id.is_empty())
    {

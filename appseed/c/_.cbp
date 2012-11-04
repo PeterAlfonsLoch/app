@@ -178,6 +178,7 @@
 		<Unit filename="linux/c_os_cross_win_gdi.cpp" />
 		<Unit filename="linux/c_os_cross_win_gdi.h" />
 		<Unit filename="linux/c_os_cross_win_gdi_internal.h" />
+		<Unit filename="linux/c_os_display.cpp" />
 		<Unit filename="linux/c_os_file.cpp" />
 		<Unit filename="linux/c_os_file.h" />
 		<Unit filename="linux/c_os_file_watcher.cpp" />

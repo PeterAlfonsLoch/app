@@ -198,16 +198,7 @@ CLASS_DECL_c vsstring get_system_error_message(DWORD dwError);
 #include "c_simple_app.h"
 
 
-inline void * zero(void * p, size_t s)
-{
-   memset(p, 0, s);
-   return p;
-}
-
 #ifndef BSD_STYLE_SOCKETS
-
-
-
 
 CLASS_DECL_c bool from_string(in6_addr * addr, const char * string);
 CLASS_DECL_c vsstring to_string(const in6_addr *addr);

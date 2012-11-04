@@ -487,7 +487,7 @@ namespace colorertake5
                break;
             default:
                break;
-               
+
          };
       };
       return MATCH_NOTHING;
@@ -511,7 +511,7 @@ namespace colorertake5
             clearLine = gy;
             str = lineSource->getLine(gy);
             /*if (str == NULL){
-               throw exception(string("NULL string passed into the parser: ")+gen::str::itoa(gy));
+               throw exception(string("NULL string passed into the parser: ")+gen::str::from(gy));
                gy = gy2;
                break;
             };*/

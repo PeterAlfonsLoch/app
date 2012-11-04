@@ -6,7 +6,7 @@
 inline void string_format::format(int i)
 {
 
-   append(gen::str::itoa(i));
+   append(gen::str::from(i));
 
 }
 

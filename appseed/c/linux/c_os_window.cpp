@@ -9,7 +9,9 @@ public:
 
 };
 
-
+#define CA2_CCVOTAGUS_WINDOW_LONG "ca2_ccvotagus_fontopu_window_long"
+#define CA2_CCVOTAGUS_WINDOW_LONG_STYLE "ca2_ccvotagus_fontopu_window_long_style"
+#define CA2_CCVOTAGUS_WINDOW_LONG_STYLE_EX "ca2_ccvotagus_fontopu_window_long_style_ex"
 
 oswindow_dataptra * oswindow::s_pdataptra = new oswindow_dataptra;
 
@@ -19,7 +21,7 @@ int oswindow::find(Display * pdisplay, Window window)
 
    for(int i = 0; i < s_pdataptra->get_count(); i++)
    {
-      if(s_pdataptra->element_at(i)->m_pdisplay == pdisplay
+      if(s_pdataptra->element_at(i)->m_osdisplay == pdisplay
       && s_pdataptra->element_at(i)->m_window == window)
       {
          return i;
@@ -40,7 +42,7 @@ oswindow::data * oswindow::get(Display * pdisplay, Window window)
 
    ::oswindow::data * pdata = new data;
 
-   pdata->m_pdisplay    = pdisplay;
+   pdata->m_osdisplay   = pdisplay;
    pdata->m_window      = window;
 
    s_pdataptra->add(pdata);
@@ -198,3 +200,94 @@ void oswindow::set_user_interaction(::user::interaction * pui)
 
 }
 
+
+
+bool oswindow::is_child(::oswindow oswindow)
+{
+
+   oswindow = oswindow.get_parent();
+   while(!oswindow.is_null())
+   {
+      if(oswindow.m_pdata == m_pdata)
+         return true;
+   }
+
+   return false;
+
+}
+
+oswindow oswindow::get_parent()
+{
+
+   if(m_pdata == NULL)
+      return ::ca::null();
+
+   Window root = 0;
+   Window parent = 0;
+   Window * pchildren = NULL;
+   unsigned int ncount = 0;
+
+   XQueryTree(display(), window(), &root, &parent, &pchildren, &ncount);
+
+   if(pchildren != NULL)
+      XFree(pchildren);
+
+   return oswindow(display(), parent);
+
+}
+
+
+bool oswindow::show_window(int nCmdShow)
+{
+
+   if(nCmdShow == SW_HIDE)
+   {
+
+      XUnmapWindow(display(), window());
+
+   }
+   else
+   {
+
+      XMapWindow(display(), window());
+
+   }
+
+}
+
+
+
+LONG oswindow::get_window_long(int nIndex)
+{
+
+   Atom type = 0;
+   int format = 0;
+   unsigned long itemcount = 0;
+   unsigned long remaining = 0;
+   LONG * pl = NULL;
+   LONG l;
+
+   XGetWindowProperty(display(), window(), m_pdata->m_osdisplay.get_window_long_atom(nIndex), 0, 1, False, m_pdata->m_osdisplay.atom_long_type(), &type, &format, &itemcount, &remaining, (unsigned char **) &pl);
+
+   l = *pl;
+
+   XFree(pl);
+
+   return l;
+
+}
+
+
+LONG oswindow::set_window_long(int nIndex, LONG l)
+{
+
+   LONG lOld = get_window_long(nIndex);
+
+   XChangeProperty(display(), window(), m_pdata->m_osdisplay.get_window_long_atom(nIndex), m_pdata->m_osdisplay.atom_long_type(), 32, PropModeReplace, (unsigned char *) &l, 1);
+
+   return lOld;
+
+}
+
+
+Atom get_window_long_atom(int nIndex);

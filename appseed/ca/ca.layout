@@ -10,8 +10,8 @@
 	<File name="ca.h" open="0" top="0" tabpos="6">
 		<Cursor position="32" topLine="0" />
 	</File>
-	<File name="ca/ca.h" open="0" top="0" tabpos="1">
-		<Cursor position="1215" topLine="47" />
+	<File name="ca/ca.h" open="1" top="0" tabpos="10">
+		<Cursor position="1074" topLine="47" />
 	</File>
 	<File name="ca/ca_application.h" open="0" top="0" tabpos="42">
 		<Cursor position="2779" topLine="119" />
@@ -131,7 +131,7 @@
 		<Cursor position="11635" topLine="479" />
 	</File>
 	<File name="ca/ca_thread.h" open="0" top="0" tabpos="21">
-		<Cursor position="7063" topLine="227" />
+		<Cursor position="8666" topLine="279" />
 	</File>
 	<File name="ca/ca_type_info.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1169" topLine="54" />
@@ -148,7 +148,7 @@
 	<File name="ca2/ca2.h" open="0" top="0" tabpos="4">
 		<Cursor position="923" topLine="40" />
 	</File>
-	<File name="ca2/ca2_application.cpp" open="1" top="0" tabpos="11">
+	<File name="ca2/ca2_application.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="17699" topLine="639" />
 	</File>
 	<File name="ca2/ca2_library.cpp" open="0" top="0" tabpos="1">
@@ -241,6 +241,9 @@
 	<File name="colorertake5/colorertake5_parser_factory.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="349" topLine="1" />
 	</File>
+	<File name="colorertake5/colorertake5_text_parser_impl.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="14486" topLine="473" />
+	</File>
 	<File name="colorertake5/exception.h" open="0" top="0" tabpos="0">
 		<Cursor position="165" topLine="0" />
 	</File>
@@ -254,7 +257,7 @@
 		<Cursor position="225" topLine="9" />
 	</File>
 	<File name="colorertake5/xmldom.h" open="0" top="0" tabpos="0">
-		<Cursor position="5626" topLine="196" />
+		<Cursor position="1107" topLine="48" />
 	</File>
 	<File name="compress/compress_create_coder.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="1843" topLine="55" />
@@ -472,8 +475,8 @@
 	<File name="fontopus/fontopus_validate.cpp" open="0" top="0" tabpos="40">
 		<Cursor position="20028" topLine="559" />
 	</File>
-	<File name="framework.h" open="0" top="0" tabpos="5">
-		<Cursor position="7" topLine="0" />
+	<File name="framework.h" open="1" top="0" tabpos="12">
+		<Cursor position="38" topLine="0" />
 	</File>
 	<File name="fs/fs.h" open="0" top="0" tabpos="11">
 		<Cursor position="36" topLine="0" />
@@ -761,7 +764,7 @@
 		<Cursor position="13749" topLine="409" />
 	</File>
 	<File name="plane/plane_system_primitive_string_format_spec.h" open="0" top="0" tabpos="4">
-		<Cursor position="34" topLine="0" />
+		<Cursor position="105" topLine="0" />
 	</File>
 	<File name="plane/plane_system_primitive_var.h" open="0" top="0" tabpos="5">
 		<Cursor position="27" topLine="0" />
@@ -883,8 +886,8 @@
 	<File name="radix/radix_allocation_system_heap.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="2904" topLine="89" />
 	</File>
-	<File name="radix/radix_application.cpp" open="1" top="0" tabpos="12">
-		<Cursor position="58323" topLine="1977" />
+	<File name="radix/radix_application.cpp" open="0" top="0" tabpos="12">
+		<Cursor position="22868" topLine="771" />
 	</File>
 	<File name="radix/radix_application.h" open="0" top="0" tabpos="45">
 		<Cursor position="13979" topLine="396" />
@@ -980,7 +983,7 @@
 		<Cursor position="307" topLine="0" />
 	</File>
 	<File name="simpledb/simpledb_socket_thread.cpp" open="0" top="0" tabpos="31">
-		<Cursor position="3989" topLine="104" />
+		<Cursor position="3744" topLine="104" />
 	</File>
 	<File name="simpledb/simpledb_socket_thread.h" open="0" top="0" tabpos="32">
 		<Cursor position="63" topLine="0" />
@@ -1123,6 +1126,12 @@
 	<File name="user/user_keyboard_focus.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="739" topLine="15" />
 	</File>
+	<File name="user/user_keyboard_layout_cfg.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3337" topLine="78" />
+	</File>
+	<File name="user/user_network_configuration.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1738" topLine="18" />
+	</File>
 	<File name="user/user_shell.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="41777" topLine="1503" />
 	</File>
@@ -1141,10 +1150,10 @@
 	<File name="user/user_virtual_user_interface.h" open="0" top="0" tabpos="0">
 		<Cursor position="2088" topLine="45" />
 	</File>
-	<File name="user/user_window_util.cpp" open="1" top="0" tabpos="1">
+	<File name="user/user_window_util.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="19192" topLine="803" />
 	</File>
-	<File name="user/user_window_util.h" open="1" top="0" tabpos="13">
+	<File name="user/user_window_util.h" open="0" top="0" tabpos="13">
 		<Cursor position="2373" topLine="58" />
 	</File>
 	<File name="userpresence/userpresence.h" open="0" top="0" tabpos="14">

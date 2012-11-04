@@ -6735,7 +6735,7 @@
 	"ca/primitive/count.h"
 	"ca/api/api.h"
 
-1351983119 /ca2/app/appseed/c/c/c.h
+1352061263 /ca2/app/appseed/c/c/c.h
 	"c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
 	"nodeapp/operational_system/_.h"
 	"c/vms/vms.h"
@@ -6813,7 +6813,7 @@
 
 1345878529 /ca2/nodeapp/operational_system/linux_system.h
 
-1352011652 /ca2/nodeapp/operational_system/bare_operational_system.h
+1352049884 /ca2/nodeapp/operational_system/bare_operational_system.h
 	<features.h>
 	<stdlib.h>
 	<stdio.h>
@@ -6831,6 +6831,7 @@
 	<sys/resource.h>
 	<X11/Xlib.h>
 	<X11/Xutil.h>
+	"osdisplay.h"
 	"oswindow.h"
 	"version_linux.h"
 	"version_cpu.h"
@@ -6858,10 +6859,10 @@
 
 1345878529 /ca2/nodeapp/operational_system/cross/win/base_tsd.h
 
-1352004466 /ca2/nodeapp/operational_system/cross/win/win_def.h
+1352055671 /ca2/nodeapp/operational_system/cross/win/win_def.h
 	"win_nt.h"
 
-1347084097 /ca2/nodeapp/operational_system/cross/win/win_nt.h
+1352053647 /ca2/nodeapp/operational_system/cross/win/win_nt.h
 	"base_tsd.h"
 	"win_guid_def.h"
 	<ctype.h>
@@ -6948,7 +6949,7 @@
 
 1352004467 /ca2/nodeapp/operational_system/cross/win/win_gdi.h
 
-1352004455 /ca2/nodeapp/operational_system/cross/win/win_user.h
+1352039540 /ca2/nodeapp/operational_system/cross/win/win_user.h
 
 1345878529 /ca2/nodeapp/operational_system/cross/win/win_errno.h
 
@@ -9653,7 +9654,7 @@
 
 1342864700 /ca2/app/appseed/ca/plane/plane_system_radix_factory.h
 
-1342864700 /ca2/app/appseed/ca/plane/plane_system_primitive_string_format_spec.h
+1352033295 /ca2/app/appseed/ca/plane/plane_system_primitive_string_format_spec.h
 
 1342864820 /ca2/app/appseed/ca/plugin/plugin.h
 	"plugin_gen.h"
@@ -10346,7 +10347,7 @@
 1342864745 source:/ca2/app/appseed/ca/colorertake5/colorertake5_text_parser_helpers.cpp
 	"framework.h"
 
-1350075067 source:/ca2/app/appseed/ca/colorertake5/colorertake5_text_parser_impl.cpp
+1352033293 source:/ca2/app/appseed/ca/colorertake5/colorertake5_text_parser_impl.cpp
 	"framework.h"
 
 1349512034 source:/ca2/app/appseed/ca/compress/7z/7zDecode.cpp
@@ -12141,7 +12142,7 @@
 1352005111 source:/ca2/app/appseed/ca/sockets/http/sockets_HttpClientSocket.cpp
 	"framework.h"
 
-1352014623 source:/ca2/app/appseed/ca/radix/radix_application.cpp
+1352053613 source:/ca2/app/appseed/ca/radix/radix_application.cpp
 	"framework.h"
 	<malloc.h>
 	<cderr.h>
@@ -12399,7 +12400,7 @@
 1342864881 source:/ca2/app/appseed/ca/user/user_keyboard_layout.cpp
 	"framework.h"
 
-1345878359 source:/ca2/app/appseed/ca/user/user_keyboard_layout_cfg.cpp
+1352033296 source:/ca2/app/appseed/ca/user/user_keyboard_layout_cfg.cpp
 	"framework.h"
 
 1342864881 source:/ca2/app/appseed/ca/user/user_message_box.cpp
@@ -12411,7 +12412,7 @@
 1342864881 source:/ca2/app/appseed/ca/user/user_multiple_document_template.cpp
 	"framework.h"
 
-1345878359 source:/ca2/app/appseed/ca/user/user_network_configuration.cpp
+1352033296 source:/ca2/app/appseed/ca/user/user_network_configuration.cpp
 	"framework.h"
 
 1351980443 source:/ca2/app/appseed/ca/user/user_place_holder.cpp
@@ -12877,7 +12878,7 @@
 
 1350784940 /ca2/app/appseed/c/simple_graphics/simple_graphics_first_phase.h
 
-1350784958 /ca2/app/appseed/c/c/c_mem.h
+1352061254 /ca2/app/appseed/c/c/c_mem.h
 
 1350784958 /ca2/app/appseed/c/c/c_math.h
 
@@ -13162,5 +13163,8 @@
 
 1351983846 /ca2/app/appseed/c/linux/c_os_window.h
 
-1352030601 /ca2/nodeapp/operational_system/oswindow.h
+1352055657 /ca2/nodeapp/operational_system/oswindow.h
+	<inttypes.h>
+
+1352049950 /ca2/nodeapp/operational_system/osdisplay.h
 

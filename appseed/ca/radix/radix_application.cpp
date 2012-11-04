@@ -792,7 +792,7 @@ namespace radix
       pbase->set_lresult(0);        // sensible default
       if (pbase->m_uiMessage == WM_COMMAND)
       {
-         if (pbase->m_lparam == NULL)
+         if (pbase->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
             nIDP = "Command Failure";
          pbase->set_lresult((LRESULT)TRUE);        // pretend the command was handled

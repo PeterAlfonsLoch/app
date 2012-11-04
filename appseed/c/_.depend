@@ -824,7 +824,7 @@
 	"linux/c_os_internal.h"
 	"windows/c_os_internal.h"
 
-1351983119 /ca2/app/appseed/c/c/c.h
+1352061263 /ca2/app/appseed/c/c/c.h
 	"c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
 	"nodeapp/operational_system/_.h"
 	"c/vms/vms.h"
@@ -902,7 +902,7 @@
 
 1345878529 /ca2/nodeapp/operational_system/linux_system.h
 
-1352011652 /ca2/nodeapp/operational_system/bare_operational_system.h
+1352049884 /ca2/nodeapp/operational_system/bare_operational_system.h
 	<features.h>
 	<stdlib.h>
 	<stdio.h>
@@ -920,6 +920,7 @@
 	<sys/resource.h>
 	<X11/Xlib.h>
 	<X11/Xutil.h>
+	"osdisplay.h"
 	"oswindow.h"
 	"version_linux.h"
 	"version_cpu.h"
@@ -947,10 +948,10 @@
 
 1345878529 /ca2/nodeapp/operational_system/cross/win/base_tsd.h
 
-1352004466 /ca2/nodeapp/operational_system/cross/win/win_def.h
+1352055671 /ca2/nodeapp/operational_system/cross/win/win_def.h
 	"win_nt.h"
 
-1347084097 /ca2/nodeapp/operational_system/cross/win/win_nt.h
+1352053647 /ca2/nodeapp/operational_system/cross/win/win_nt.h
 	"base_tsd.h"
 	"win_guid_def.h"
 	<ctype.h>
@@ -1037,7 +1038,7 @@
 
 1352004467 /ca2/nodeapp/operational_system/cross/win/win_gdi.h
 
-1352004455 /ca2/nodeapp/operational_system/cross/win/win_user.h
+1352039540 /ca2/nodeapp/operational_system/cross/win/win_user.h
 
 1345878529 /ca2/nodeapp/operational_system/cross/win/win_errno.h
 
@@ -2049,7 +2050,7 @@
 
 1350784940 /ca2/app/appseed/c/simple_graphics/simple_graphics_first_phase.h
 
-1350784958 /ca2/app/appseed/c/c/c_mem.h
+1352061254 /ca2/app/appseed/c/c/c_mem.h
 
 1350784958 /ca2/app/appseed/c/c/c_math.h
 
@@ -2456,8 +2457,14 @@
 
 1351983846 /ca2/app/appseed/c/linux/c_os_window.h
 
-1352028066 source:/ca2/app/appseed/c/linux/c_os_window.cpp
+1352053345 source:/ca2/app/appseed/c/linux/c_os_window.cpp
 	"framework.h"
 
-1352030601 /ca2/nodeapp/operational_system/oswindow.h
+1352055657 /ca2/nodeapp/operational_system/oswindow.h
+	<inttypes.h>
+
+1352049950 /ca2/nodeapp/operational_system/osdisplay.h
+
+1352049990 source:/ca2/app/appseed/c/linux/c_os_display.cpp
+	"framework.h"
 

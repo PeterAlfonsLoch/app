@@ -46,11 +46,11 @@ namespace colorertak5
        message += "ParseException: " + msg;
        if (line > -1)
        {
-          message += " at line: " + gen::str::itoa(line);
+          message += " at line: " + gen::str::from(line);
        }
        if (pos > -1)
        {
-          message += ", pos: " + gen::str::itoa(pos);
+          message += ", pos: " + gen::str::from(pos);
        }
      };
    protected:
@@ -513,7 +513,7 @@ namespace colorertak5
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *
