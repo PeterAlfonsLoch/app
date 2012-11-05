@@ -319,7 +319,7 @@ namespace ca2
       }
 
 
-      
+
 
 #else
       char h[256];
@@ -456,12 +456,12 @@ namespace ca2
 
 #ifdef METROWIN
 
-      
+
       ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(rtstr(host)), "0"));
-      
+
       if(data->Size <= 0)
          return false;
-      
+
       string str = begin(data->GetAt(0)->RemoteHostName->DisplayName); 
 
       if(!net::isipv4(str))
@@ -579,12 +579,12 @@ namespace ca2
 
 #ifdef METROWIN
 
-      
+
       ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(rtstr(host)), "0"));
-      
+
       if(data->Size <= 0)
          return false;
-      
+
       string str = begin(data->GetAt(0)->RemoteHostName->DisplayName); 
 
       if(!net::isipv6(str))
@@ -752,7 +752,7 @@ namespace ca2
 
             if(name != nullptr)
             {
-               
+
                hostname = begin(name->CanonicalName);
 
                return true;
@@ -804,7 +804,7 @@ namespace ca2
 
             if(name != nullptr)
             {
-               
+
                hostname = begin(name->CanonicalName);
 
                return true;
@@ -815,35 +815,6 @@ namespace ca2
       }
       return false;
 #else
-      char host[NI_MAXHOST];
-      char serv[NI_MAXSERV];
-      // NI_NOFQDN
-      // NI_NUMERICHOST
-      // NI_NAMEREQD
-      // NI_NUMERICSERV
-      // NI_DGRAM
-      int n = getnameinfo(sa, sa_len, host, sizeof(host), serv, sizeof(serv), flags);
-      if (n)
-      {
-         // EAI_AGAIN
-         // EAI_BADFLAGS
-         // EAI_FAIL
-         // EAI_FAMILY
-         // EAI_MEMORY
-         // EAI_NONAME
-         // EAI_OVERFLOW
-         // EAI_SYSTEM
-         return false;
-      }
-      hostname = host;
-      service = serv;
-      return true;
-#endif // NO_GETADDRINFO
-#endif
-
-
-#else
-
       hostname = "";
       service = "";
 #ifdef NO_GETADDRINFO

@@ -183,7 +183,6 @@ namespace dynamic_source
       {
          pscript->m_strSourcePath.Format(System.dir().path(m_pmanager->m_strNetnodePath, "net\\netseed\\ds\\ca2\\%s", false), strName);
       }
-      pscript->m_wstrSourcePath = gen::international::utf8_to_unicode(strName);
       pscript->m_strSourceDir = System.dir().name(pscript->m_strSourcePath);
 
       if(!Application.file().exists(pscript->m_strSourcePath))
@@ -474,7 +473,7 @@ namespace dynamic_source
       pscript->m_bShouldBuild =false;
 #ifdef WINDOWS
 
-      HANDLE h = ::CreateFileW(pscript->m_wstrSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+      HANDLE h = create_file(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
       try
       {

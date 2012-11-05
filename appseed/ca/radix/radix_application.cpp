@@ -1426,13 +1426,12 @@ namespace radix
          }
          else
          {
-            pchSrc = gen::str::utf8_inc_wave(&nTotalLen, pchSrc);
+            pchSrc = gen::str::utf8_inc_slide(&nTotalLen, pchSrc);
          }
       }
 
       pchSrc = lpszFormat;
       LPTSTR pchDest = rString.GetBuffer(nTotalLen);
-      strsize count;
       while (*pchSrc != '\0')
       {
          if (pchSrc[0] == '%' &&
@@ -1463,7 +1462,7 @@ namespace radix
          else
          {
             
-            gen::str::utf8_inc_copy_wave_back(&nTotalLen, pchDest, pchSrc)
+            gen::str::utf8_inc_copy_slide_back(&nTotalLen, pchDest, pchSrc);
             
          }
          

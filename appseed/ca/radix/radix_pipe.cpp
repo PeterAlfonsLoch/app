@@ -141,12 +141,13 @@ namespace gen
 
    bool pipe::write(const char * psz)
    {
-      size_t dwWritten;
-      size_t dwLen = strlen(psz);
+      DWORD dwLen = (DWORD) strlen(psz);
       bool bSuccess = FALSE;
 #ifdef WINDOWS
-      bSuccess = WriteFile(m_hWrite, (const char *) psz, (DWORD) dwLen, &dwWritten, NULL) != FALSE;
+      DWORD dwWritten;
+      bSuccess = WriteFile(m_hWrite, (const char *) psz, dwLen, &dwWritten, NULL) != FALSE;
 #else
+      size_t dwWritten;
       dwWritten = ::write(m_fd[1], (const char *) psz, dwLen);
 #endif
       return bSuccess != FALSE && dwWritten == dwLen;
@@ -156,7 +157,11 @@ namespace gen
    {
       string str;
       const int BUFSIZE = 1024 * 8;
+#ifdef WINDOWS
+      DWORD dwRead;
+#else
       size_t dwRead;
+#endif
       bool bSuccess;
       char chBuf[BUFSIZE];
       for (;;)
@@ -192,7 +197,11 @@ namespace gen
    {
       string str;
       const int BUFSIZE = 1024 * 8;
+#ifdef WINDOWS
+      DWORD dwRead;
+#else
       size_t dwRead;
+#endif
       bool bSuccess = FALSE;
       char chBuf[BUFSIZE];
       memset(chBuf, 0, BUFSIZE);

@@ -2572,7 +2572,7 @@ BSTR string::SetSysString(BSTR* pbstr ) const
 bool string::GetEnvironmentVariable(PCXSTR pszVar )
 {
 
-   DWOR nLength = string_trait::GetEnvironmentVariable( pszVar, NULL, 0 );
+   DWORD nLength = string_trait::GetEnvironmentVariable( pszVar, NULL, 0 );
    bool bRetVal = FALSE;
 
    if( nLength == 0 )
