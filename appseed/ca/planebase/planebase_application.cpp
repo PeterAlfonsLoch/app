@@ -865,7 +865,7 @@ InitFailure:
          else
          {
 
-            spfile = AppUser(this).m_pifs->get_file(varFile, nOpenFlags);
+            spfile = AppUser(this).m_pifs->get_file(strPath, nOpenFlags);
 
          }
 
