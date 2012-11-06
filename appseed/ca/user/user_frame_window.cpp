@@ -4,7 +4,6 @@
 #include <dde.h>        // for DDE execute shell requests
 #endif
 
-CLASS_DECL_ca ::user::interaction * __get_parent_owner(::user::interaction * oswindow);
 
 /////////////////////////////////////////////////////////////////////////////
 // frame_window
@@ -285,27 +284,6 @@ bool frame_window::OnCommand(WPARAM wParam, LPARAM lParam)
 }
 
 
-bool __is_descendant(::user::interaction * oswindow_Parent, ::user::interaction * oswindow_Child)
-   // helper for detecting whether child descendent of parent
-   //  (works with owned popups as well)
-{
-   if(!oswindow_Child->IsWindow())
-      return FALSE;
-   if(!oswindow_Parent->IsWindow())
-      return FALSE;
-   ASSERT(oswindow_Parent->IsWindow());
-   ASSERT(oswindow_Child->IsWindow());
-
-   do
-   {
-      if (oswindow_Parent == oswindow_Child)
-         return TRUE;
-
-      oswindow_Child = __get_parent_owner(oswindow_Child);
-   } while (oswindow_Child != NULL);
-
-   return FALSE;
-}
 
 
 void frame_window::BeginModalState()
@@ -329,7 +307,7 @@ void frame_window::BeginModalState()
    while (oswindow != NULL)
    {
 
-      if (oswindow->IsWindowEnabled() &&    __is_descendant(pParent, oswindow) && oswindow->send_message(WM_DISABLEMODAL, 0, 0) == 0)
+      if (oswindow->IsWindowEnabled() &&    ::user::is_descendant(pParent, oswindow) && oswindow->send_message(WM_DISABLEMODAL, 0, 0) == 0)
       {
 
          oswindow->EnableWindow(FALSE);

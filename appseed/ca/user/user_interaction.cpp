@@ -1,9 +1,6 @@
 #include "framework.h"
 
 
-CLASS_DECL_ca ::user::interaction * __get_parent_owner(::user::interaction * oswindow);
-
-
 namespace user
 {
 
@@ -1677,7 +1674,7 @@ namespace user
 
       interaction * oswindow_Parent = this;
       interaction * oswindow_T;
-      while ((oswindow_T = __get_parent_owner(oswindow_Parent)) != NULL)
+      while ((oswindow_T = get_parent_owner(oswindow_Parent)) != NULL)
       {
          if(oswindow_T->get_wnd() == NULL)
             break;
@@ -3164,43 +3161,6 @@ restart:
       DestroyWindow();
 
    }
-
-
-   CLASS_DECL_ca ::user::interaction * create_virtual_window(::ca::application * papp, DWORD dwExStyle, const char * lpClassName, const char * lpWindowName, DWORD dwStyle,
-                                                         int X, int Y, int nWidth, int nHeight, ::user::interaction * pguieParent, id id, HINSTANCE hInstance, LPVOID lpParam)
-   {
-      UNREFERENCED_PARAMETER(dwExStyle);
-      UNREFERENCED_PARAMETER(lpClassName);
-      UNREFERENCED_PARAMETER(lpWindowName);
-      UNREFERENCED_PARAMETER(dwStyle);
-      UNREFERENCED_PARAMETER(X);
-      UNREFERENCED_PARAMETER(Y);
-      UNREFERENCED_PARAMETER(nWidth);
-      UNREFERENCED_PARAMETER(nHeight);
-      UNREFERENCED_PARAMETER(hInstance);
-      UNREFERENCED_PARAMETER(lpParam);
-      ::user::interaction * pguie = new ::user::interaction(papp);
-      if(pguie->create(pguieParent, id))
-      {
-         return pguie;
-      }
-      delete pguie;
-      return NULL;
-   }
-
-
-
-
-
-   ::user::interaction * get_parent_owner(::user::interaction * oswindow)
-   {
-      // check for permanent-owned ::ca::window first
-      ::user::interaction* pWnd = oswindow;
-      if(pWnd == NULL)
-         return NULL;
-      return pWnd->get_owner();
-   }
-
 
 
 

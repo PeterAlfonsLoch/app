@@ -1,9 +1,6 @@
 #include "framework.h"
 
 
-CLASS_DECL_ca ::user::interaction * __get_parent_owner(::user::interaction * oswindow);
-
-
 virtual_user_interface::virtual_user_interface()
 {
 
@@ -223,7 +220,7 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
          break;
       oswindow_Parent = oswindow_T;
    }
-   while ((oswindow_T = __get_parent_owner(oswindow_Parent)) != NULL);*/
+   while ((oswindow_T = ::user::get_parent_owner(oswindow_Parent)) != NULL);*/
 
 //   m_pwnd = NULL;
   // m_pguie->m_pwnd = NULL;
@@ -341,7 +338,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
          break;
       oswindow_Parent = oswindow_T;
    }
-   while ((oswindow_T = __get_parent_owner(oswindow_Parent)) != NULL);*/
+   while ((oswindow_T = ::user::get_parent_owner(oswindow_Parent)) != NULL);*/
 
 //   m_pwnd = NULL;
 //   m_pguie->m_pwnd = NULL;
@@ -459,7 +456,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
          break;
       oswindow_Parent = oswindow_T;
    }
-   while ((oswindow_T = __get_parent_owner(oswindow_Parent)) != NULL);*/
+   while ((oswindow_T = ::user::get_parent_owner(oswindow_Parent)) != NULL);*/
 
 //   m_pwnd = NULL;
 //   m_pguie->m_pwnd = NULL;
@@ -1170,7 +1167,7 @@ bool virtual_user_interface::DestroyWindow()
    ::user::interaction * oswindow_Parent = this;
    ::user::interaction * oswindow_T;
 
-   while ((oswindow_T = __get_parent_owner(oswindow_Parent)) != NULL)
+   while ((oswindow_T = ::user::get_parent_owner(oswindow_Parent)) != NULL)
       oswindow_Parent = oswindow_T;
 
    return oswindow_Parent;

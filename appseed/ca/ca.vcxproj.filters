@@ -5476,6 +5476,9 @@
     <ClCompile Include="sockets\basic\bsd_style_sockets\sockets_socket.cpp">
       <Filter>Source Files\sockets\basic\bsd_style_sockets</Filter>
     </ClCompile>
+    <ClCompile Include="user\user.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca.def">
