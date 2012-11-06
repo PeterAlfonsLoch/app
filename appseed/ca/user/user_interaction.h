@@ -345,6 +345,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnMove)
       DECL_GEN_SIGNAL(_001OnUser184)
       DECL_GEN_SIGNAL(_001OnNcCalcSize)
+      DECL_GEN_SIGNAL(_001OnClose)
+
 
       virtual DECL_GEN_SIGNAL(_002OnLButtonDown)
       virtual DECL_GEN_SIGNAL(_002OnLButtonUp)

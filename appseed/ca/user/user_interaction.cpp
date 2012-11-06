@@ -370,6 +370,7 @@ namespace user
    void interaction::install_message_handling(gen::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_CREATE      , pinterface, this, &interaction::_001OnCreate);
+      IGUI_WIN_MSG_LINK(WM_CLOSE       , pinterface, this, &interaction::_001OnClose);
       IGUI_WIN_MSG_LINK(WM_TIMER       , pinterface, this, &interaction::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_DESTROY     , pinterface, this, &interaction::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_SIZE        , pinterface, this, &interaction::_001OnSize);
@@ -3153,38 +3154,57 @@ restart:
    }
 
 
+   void interaction::_001OnClose(gen::signal_object * pobj)
+   {
+      UNREFERENCED_PARAMETER(pobj);
+      if(!IsWindow())
+         return;
+      pobj->m_bRet = true;
+      ShowWindow(SW_HIDE);
+      DestroyWindow();
+
+   }
+
+
+   CLASS_DECL_ca ::user::interaction * create_virtual_window(::ca::application * papp, DWORD dwExStyle, const char * lpClassName, const char * lpWindowName, DWORD dwStyle,
+                                                         int X, int Y, int nWidth, int nHeight, ::user::interaction * pguieParent, id id, HINSTANCE hInstance, LPVOID lpParam)
+   {
+      UNREFERENCED_PARAMETER(dwExStyle);
+      UNREFERENCED_PARAMETER(lpClassName);
+      UNREFERENCED_PARAMETER(lpWindowName);
+      UNREFERENCED_PARAMETER(dwStyle);
+      UNREFERENCED_PARAMETER(X);
+      UNREFERENCED_PARAMETER(Y);
+      UNREFERENCED_PARAMETER(nWidth);
+      UNREFERENCED_PARAMETER(nHeight);
+      UNREFERENCED_PARAMETER(hInstance);
+      UNREFERENCED_PARAMETER(lpParam);
+      ::user::interaction * pguie = new ::user::interaction(papp);
+      if(pguie->create(pguieParent, id))
+      {
+         return pguie;
+      }
+      delete pguie;
+      return NULL;
+   }
+
+
+
+
+
+   ::user::interaction * get_parent_owner(::user::interaction * oswindow)
+   {
+      // check for permanent-owned ::ca::window first
+      ::user::interaction* pWnd = oswindow;
+      if(pWnd == NULL)
+         return NULL;
+      return pWnd->get_owner();
+   }
+
+
+
+
+
 } // namespace user
 
 
-CLASS_DECL_ca ::user::interaction * WINAPI CreateGuieEx(::ca::application * papp, DWORD dwExStyle, const char * lpClassName, const char * lpWindowName, DWORD dwStyle,
-                                                      int X, int Y, int nWidth, int nHeight, ::user::interaction * pguieParent, id id, HINSTANCE hInstance, LPVOID lpParam)
-{
-   UNREFERENCED_PARAMETER(dwExStyle);
-   UNREFERENCED_PARAMETER(lpClassName);
-   UNREFERENCED_PARAMETER(lpWindowName);
-   UNREFERENCED_PARAMETER(dwStyle);
-   UNREFERENCED_PARAMETER(X);
-   UNREFERENCED_PARAMETER(Y);
-   UNREFERENCED_PARAMETER(nWidth);
-   UNREFERENCED_PARAMETER(nHeight);
-   UNREFERENCED_PARAMETER(hInstance);
-   UNREFERENCED_PARAMETER(lpParam);
-   ::user::interaction * pguie = new ::user::interaction(papp);
-   if(pguie->create(pguieParent, id))
-   {
-      return pguie;
-   }
-   delete pguie;
-   return NULL;
-}
-
-
-
-::user::interaction * __get_parent_owner(::user::interaction * oswindow)
-{
-   // check for permanent-owned ::ca::window first
-   ::user::interaction* pWnd = oswindow;
-   if(pWnd == NULL)
-      return NULL;
-   return pWnd->get_owner();
-}

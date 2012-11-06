@@ -197,8 +197,7 @@ namespace userbase
 
    //   rect rect;
       m_buttonClose.GetWindowRect(rect);
-      m_buttonClose.SetWindowPos(NULL, m_size.cx - rect.width() - 2,
-         2, 0, 0, SWP_NOSIZE);
+      m_buttonClose.SetWindowPos(NULL, 0, 0, 0, 0, SWP_NOSIZE);
       //m_buttonClose.ShowWindow(SW_NORMAL);
 
 

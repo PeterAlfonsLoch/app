@@ -583,7 +583,6 @@ void virtual_user_interface::install_message_handling(::gen::message::dispatch *
 {
    IGUI_WIN_MSG_LINK(WM_DESTROY     , pinterface, this, &virtual_user_interface::_001OnDestroy);
    IGUI_WIN_MSG_LINK(WM_NCDESTROY   , pinterface, this, &virtual_user_interface::_001OnNcDestroy);
-   IGUI_WIN_MSG_LINK(WM_CLOSE       , pinterface, this, &virtual_user_interface::_001OnClose);
    if(m_pguie != this)
    {
       m_pguie->install_message_handling(pinterface);
@@ -1483,16 +1482,6 @@ void virtual_user_interface::_001OnSize(gen::signal_object * pobj)
    }
 }
 
-void virtual_user_interface::_001OnClose(gen::signal_object * pobj)
-{
-   UNREFERENCED_PARAMETER(pobj);
-   if(!IsWindow())
-      return;
-   pobj->m_bRet = true;
-   ShowWindow(SW_HIDE);
-   DestroyWindow();
-
-}
 
 bool virtual_user_interface::IsWindowVisible()
 {

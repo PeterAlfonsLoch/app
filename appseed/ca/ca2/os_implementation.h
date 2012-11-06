@@ -187,8 +187,16 @@ typedef struct
 /////////////////////////////////////////////////////////////////////////////
 // Special helpers
 
-CLASS_DECL_ca ::user::interaction * __get_parent_owner(::user::interaction * oswindow);
-CLASS_DECL_ca bool __is_descendant(::user::interaction * oswindow_Parent, ::user::interaction * oswindow_Child);
+
+namespace user
+{
+
+
+   CLASS_DECL_ca ::user::interaction * get_parent_owner(::user::interaction * pui);
+   CLASS_DECL_ca bool is_descendant(::user::interaction * puiParent, ::user::interaction * puiChild);
+
+
+} // namespace user
 
 
 /*// UNICODE/MBCS abstractions
