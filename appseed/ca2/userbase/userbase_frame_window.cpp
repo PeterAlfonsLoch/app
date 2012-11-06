@@ -98,7 +98,7 @@ namespace userbase
       ::user::interaction* oswindow = System.get_desktop_window()->GetWindow(GW_CHILD);
       while (oswindow != NULL)
       {
-         if (__is_descendant(pParent, oswindow))
+         if(::user::is_descendant(pParent, oswindow))
             oswindow->send_message(WM_FLOATSTATUS, dwFlags, 0);
          oswindow = oswindow->GetWindow(GW_HWNDNEXT);
       }
