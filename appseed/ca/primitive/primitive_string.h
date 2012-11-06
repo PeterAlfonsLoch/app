@@ -535,6 +535,14 @@ public:
 
    string substr(strsize iFirst, strsize nCount) const;
 
+   string utf8_substr(strsize iFirst) const;
+
+   string utf8_substr(strsize iFirst, strsize nCount) const;
+
+   ::count utf8_get_length() const;
+
+   inline ::count utf8_length() const;
+
    void clear();
 
    strsize length() const;
@@ -844,6 +852,10 @@ inline strsize string::length() const
    return get_length();
 }
 
+inline strsize string::utf8_length() const
+{
+   return utf8_get_length();
+}
 
 
 

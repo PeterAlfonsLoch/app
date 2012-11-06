@@ -2719,3 +2719,88 @@ string string::reversed() const
    return string(*this).MakeReverse();
 
 }
+
+
+string string::utf8_substr(strsize iFirst) const
+{
+
+   return utf8_substr(iFirst, -1);
+
+}
+
+string string::utf8_substr(strsize iFirst, strsize nCount) const
+{
+
+   const char * pchStart = *this;
+
+   if(pchStart == NULL)
+      return "";
+
+   ::count iUtf8Len = utf8_get_length();
+   
+   if(iFirst < 0 )
+      iFirst = iUtf8Len + iFirst;
+
+   if(nCount < 0)
+      nCount = iUtf8Len - iFirst + nCount + 1;
+
+   if(iFirst + nCount > iUtf8Len)
+      nCount = iUtf8Len - iFirst;
+
+   if(nCount <= 0)
+      return "";
+
+   ::count c = 0;
+
+   while(c < iFirst && *pchStart != '\0')
+   {
+
+      pchStart = gen::str::__utf8_inc(pchStart);
+
+      c++;
+
+   }
+
+   if(*pchStart ==  '\0')
+      return "";
+
+   const char * pchEnd = pchStart;
+
+   c = 0;
+
+   while(c < nCount && *pchEnd != '\0')
+   {
+
+      pchEnd = gen::str::__utf8_inc(pchEnd);
+
+      c++;
+
+   }
+
+   return string(pchStart, pchEnd - pchStart);
+
+
+}
+
+::count string::utf8_get_length() const
+{
+
+   const char * pch = *this;
+
+   if(pch == NULL)
+      return 0;
+
+   ::count c = 0;
+
+   while(*pch != '\0')
+   {
+
+      pch = gen::str::__utf8_inc(pch);
+
+      c++;
+
+   }
+
+   return c;
+   
+}
