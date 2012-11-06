@@ -1237,6 +1237,11 @@ namespace html
             }
             pdata->m_layoutstate.m_bLastBlockX  = false;
          }
+         else
+         {
+            pdata->m_layoutstate.m_x += pdata->m_layoutstate.m_cx;
+            pdata->m_layoutstate.m_cx = 0;
+         }
          if(pdata->m_layoutstate.m_bLastBlockY || m_style.m_propertyset["display"] == "block")
          {
             pdata->m_layoutstate.m_y += pdata->m_layoutstate.m_cy;
