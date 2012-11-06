@@ -274,6 +274,8 @@ public:
 
    }
 
+   verisimple_wstring substr(::index iStart, ::count = -1);
+
 };
 
 

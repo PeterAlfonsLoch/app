@@ -237,12 +237,45 @@ CLASS_DECL_c wstring gen_utf8_to_16(const char * psz)
 
 
 
+verisimple_wstring verisimple_wstring::substr(::index iStart, ::count count)
+{
+   if(m_pwsz == NULL)
+   {
 
+      return L"";
+
+   }
+   else
+   {
+
+      if(count < 0)
+      {
+         count = get_data()->m_iLength - iStart + count + 1;
+      }
+      
+      if(iStart + count > get_data()->m_iLength)
+      {
+         count = get_data()->m_iLength - iStart;
+      }
+
+      if(count <= 0)
+      {
+         return L"";
+      }
+
+      return wstring(&m_pwsz[iStart], count);
+
+   }
+
+}
 
 
 template<> CLASS_DECL_c bool simple_CompareElements(const wstring * pElement1, const wstring * pElement2)
 {
    return pElement1->Compare(*pElement2) != FALSE;
 }
+
+
+
 
 
