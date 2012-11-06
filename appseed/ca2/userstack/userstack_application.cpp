@@ -16,12 +16,6 @@ namespace userstack
 
       m_strAppName               = "userstack";
 
-
-      ::fs::set * pset = new class ::fs::set(this);
-      pset->m_spafsdata.add(new ::fs::native(this));
-      m_spfsdata(pset);
-
-
    }
 
    application::~application()

@@ -284,8 +284,11 @@ namespace ca
 
    bool thread::on_run_exception(::ca::exception & e)
    {
+      
       UNREFERENCED_PARAMETER(e);
-      throw interface_only_exception(get_app());
+      
+      return false;
+
    }
 
    ::ca::e_thread_priority thread::get_thread_priority()
