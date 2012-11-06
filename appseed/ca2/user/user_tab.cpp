@@ -146,14 +146,35 @@ namespace user
 
    bool tab::remove_tab_by_id(id id)
    {
+
       for(int i = 0; i < get_data()->m_panea.get_count(); i++)
       {
+
          if(get_data()->m_panea[i].m_id == id)
          {
+
             get_data()->m_panea.remove_at(i);
-            return true;
+
          }
+
       }
+
+      if(get_data()->m_matchanyRestore.get_count() > 0)
+      {
+
+         var_array vara;
+
+         data_get("restore_tab", "", vara);
+
+         if(vara.remove_ci(id) > 0)
+         {
+
+            data_set("restore_tab", "", vara);
+
+         }
+
+      }
+
       return true;
    }
 
@@ -2056,7 +2077,7 @@ namespace user
 
    void tab::_001CloseTab(::index iTab)
    {
-      UNREFERENCED_PARAMETER(iTab);
+      remove_tab_by_id(get_id_by_tab(iTab));
    }
 
 } // namespace ex1

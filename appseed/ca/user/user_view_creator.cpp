@@ -123,6 +123,15 @@ namespace user
       {
          on_create_view(pcreatordata);
       }
+      catch(create_exception & e)
+      {
+         if(e.m_id == id)
+         {
+            delete pcreatordata;
+            return NULL;
+         }
+         throw e;
+      }
       catch(::exit_exception & e)
       {
             

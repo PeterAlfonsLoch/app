@@ -47,6 +47,18 @@ namespace user
    public:
 
 
+      class CLASS_DECL_ca create_exception
+      {
+      public:
+
+
+         id       m_id;
+
+
+         create_exception(id id) : m_id(id) {}
+
+
+      };
 
 
       class CLASS_DECL_ca view_map :

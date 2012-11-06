@@ -231,7 +231,9 @@ namespace userex
 
    void pane_tab_view::_001OnTabClose(int iTab)
    {
-      UNREFERENCED_PARAMETER(iTab);
+      
+      ::user::tab::_001OnTabClose(iTab);
+
       if(GetParentFrame()->ContinueModal(0) && get_filemanager_document() != NULL
       && get_filemanager_document()->get_filemanager_data()->m_pdocumentSave != NULL)
       {
