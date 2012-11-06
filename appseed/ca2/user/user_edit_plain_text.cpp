@@ -455,7 +455,7 @@ namespace user
             size2.cx -= size1.cx;
             if(iEnd > iStart)
             {
-               pdc->FillSolidRect((int) (left + size1.cx), y, size2.cx, size2.cy, ARGB(255, 120, 240, 180));
+               pdc->FillSolidRect((int) (left + size1.cx), (int) y, (int) size2.cx, (int) size2.cy, ARGB(255, 120, 240, 180));
                pdc->set_color(crSel);
                pdc->TextOut(left + size1.cx, y, strExtent2);
             }

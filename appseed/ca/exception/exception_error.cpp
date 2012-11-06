@@ -13,7 +13,7 @@ error_exception::~error_exception()
 {
 }
 
-bool error_exception::GetErrorMessage(string & str, PUINT pnHelpContext)
+bool error_exception::get_error_message(string & str, PUINT pnHelpContext)
 {
 
    UNREFERENCED_PARAMETER(pnHelpContext);

@@ -324,8 +324,8 @@ namespace user
 
       ::rect rect(rectClient);
 
-      rect.left   += rect.height() * 0.15;
-      rect.top    += rect.height() * 0.15;
+      rect.left   += (LONG) (rect.height() * 0.15);
+      rect.top    += (LONG) (rect.height() * 0.15);
 
       m_rectText = rect;
 

@@ -504,7 +504,7 @@ namespace user
                if (pfe->m_strFileName.is_empty())
                   pfe->m_strFileName = lpszPathName;
 
-               if (!pfe->GetErrorMessage(prompt))
+               if (!pfe->get_error_message(prompt))
                {
                   /*               switch (((ex1::file_exception_sp*)e)->m_cause)
                   {

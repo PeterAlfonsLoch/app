@@ -1405,7 +1405,7 @@ namespace radix
       // determine length of destination string, not including null terminator
       strsize nTotalLen = 0;
       const char * pchSrc = lpszFormat;
-      strsize count;
+//      strsize count;
       while (*pchSrc != '\0')
       {
          if (pchSrc[0] == '%' &&

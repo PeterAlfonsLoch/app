@@ -24,7 +24,7 @@ void ParserFactory::init()
    catch(ex1::exception * pe)
    {
       string str;
-      pe->GetErrorMessage(str);
+      pe->get_error_message(str);
       throw ParserFactoryException(get_app(), str);
    }
 
@@ -203,7 +203,7 @@ HRCParser* ParserFactory::getHRCParser()
                   catch(base_exception &e)
                   {
                      string str;
-                     e.GetErrorMessage(str);
+                     e.get_error_message(str);
                      TRACE("exception %s", str.c_str());
                   }
                }
@@ -221,7 +221,7 @@ HRCParser* ParserFactory::getHRCParser()
                catch(base_exception & e)
                {
                   string str;
-                  e.GetErrorMessage(str);
+                  e.get_error_message(str);
                   TRACE("exception %s", str.c_str());
                }
             }

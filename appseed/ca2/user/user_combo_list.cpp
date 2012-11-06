@@ -173,7 +173,7 @@ namespace user
 
       br->create_solid(ARGB(255, 84, 84, 77));
 
-      int dSize = _001GetItemHeight() * 0.7;
+      int dSize = (int) (_001GetItemHeight() * 0.7);
 
       pdc->m_fontxyz.m_dFontSize = dSize;
       pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;

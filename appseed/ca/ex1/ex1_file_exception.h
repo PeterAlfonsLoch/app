@@ -10,6 +10,8 @@ namespace ex1
       virtual public exception
    {
    public:
+
+
       enum
       {
          none,
@@ -32,22 +34,21 @@ namespace ex1
 
 
 
-   int      m_cause;
-   LONG     m_lOsError;
-   string   m_strFileName;
-   string   m_strAdd;
+      int      m_cause;
+      LONG     m_lOsError;
+      string   m_strFileName;
+      string   m_strAdd;
 
 
 
-   // Constructor
+      // Constructor
       file_exception(const file_exception & e) :
          exception(e),
          ::call_stack(e.get_app())
       {
       }
 
-      file_exception(::ca::application * papp, int cause = file_exception::none, LONG lOsError = -1,
-         const char * lpszArchiveName = NULL);
+      file_exception(::ca::application * papp, int cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 
       virtual void Construct(int cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 
@@ -63,18 +64,14 @@ namespace ex1
 
 
       virtual void dump(dump_context&) const;
-      
-      virtual bool GetErrorMessage(string & str, PUINT pnHelpContext = NULL) const;
 
-      virtual string get_message(PUINT pnHelpContext = NULL) const;
+      virtual bool get_error_message(string & str, PUINT pnHelpContext = NULL);
 
-      virtual bool get_friendly_error_message(string & str, PUINT pnHelpContext = NULL) const;
-
-      virtual string get_friendly_message(PUINT pnHelpContext = NULL) const;
 
    };
 
 
 } // namespace ex1
+
 
 

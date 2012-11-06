@@ -332,7 +332,7 @@ inline void c_cdecl __trace(...) { }
 #define REPORT_EXCEPTION(pException, szMsg) \
    do { \
       string str; \
-      if (pException->GetErrorMessage(str, 0)) \
+      if (pException->get_error_message(str, 0)) \
          TRACE(::radix::trace::category_AppMsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
       else \
          TRACE(::radix::trace::category_AppMsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
@@ -343,7 +343,7 @@ inline void c_cdecl __trace(...) { }
    do { \
       string strMsg; \
       char  szErrorMessage[512]; \
-      if (pException->GetErrorMessage(szErrorMessage, sizeof(szErrorMessage)/sizeof(*szErrorMessage), 0)) \
+      if (pException->get_error_message(szErrorMessage, sizeof(szErrorMessage)/sizeof(*szErrorMessage), 0)) \
          strMsg.Format("%s (%s:%d)\n%s", szMsg, __FILE__, __LINE__, szErrorMessage); \
       else \
          strMsg.Format("%s (%s:%d)", szMsg, __FILE__, __LINE__); \

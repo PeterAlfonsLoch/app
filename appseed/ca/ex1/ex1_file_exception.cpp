@@ -114,6 +114,7 @@ namespace ex1
 
    }
 
+/*
    string file_exception::get_friendly_message(PUINT pnHelpContext) const
    {
 
@@ -125,9 +126,9 @@ namespace ex1
       return str;
 
    }
+*/
 
-
-   bool file_exception::get_friendly_error_message(string & str, PUINT pnHelpContext) const
+   bool file_exception::get_error_message(string & str, PUINT pnHelpContext)
    {
 
      // if (pnHelpContext != NULL)
@@ -174,20 +175,8 @@ namespace ex1
    }
 
 
-   string file_exception::get_message(PUINT pnHelpContext) const
-   {
-
-      string str;
-
-      if(!GetErrorMessage(str, pnHelpContext))
-         return "";
-
-      return str;
-
-   }
-
-
-   bool file_exception::GetErrorMessage(string & str, PUINT pnHelpContext) const
+/*
+   bool file_exception::get_error_message(string & str, PUINT pnHelpContext) const
    {
 
      // if (pnHelpContext != NULL)
@@ -210,6 +199,7 @@ namespace ex1
 
       return TRUE;
    }
+*/
 
    /////////////////////////////////////////////////////////////////////////////
    // file_exception diagnostics

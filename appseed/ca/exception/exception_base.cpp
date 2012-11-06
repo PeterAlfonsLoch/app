@@ -50,15 +50,33 @@ void base_exception::Delete()
    }
 }
 
-bool base_exception::GetErrorMessage(string & str,   PUINT pnHelpContext /* = NULL */ )
+
+bool base_exception::get_error_message(string & str, PUINT pnHelpContext)
 {
+
    if (pnHelpContext != NULL)
       *pnHelpContext = 0;
 
    str.Empty();
 
-   return FALSE;
+   return false;
+
 }
+
+string base_exception::get_message(PUINT pnHelpContext)
+{
+
+   string str;
+
+   if(!get_error_message(str, pnHelpContext))
+      return "";
+
+   return str;
+
+}
+
+
+
 
 
 int base_exception::ReportError(UINT nType /* = MB_OK */,
@@ -70,7 +88,7 @@ int base_exception::ReportError(UINT nType /* = MB_OK */,
 
    // nHelpContext should come with the message "<helpcontext id=\"123\" />"
 
-   if (GetErrorMessage(strErrorMessage, &nHelpContext))
+   if (get_error_message(strErrorMessage, &nHelpContext))
       nDisposition = System.simple_message_box(NULL, strErrorMessage, nType);
    else
    {

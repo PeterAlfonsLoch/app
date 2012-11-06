@@ -190,7 +190,7 @@ namespace dynamic_source
          catch(base_exception & e)
          {
             string str;
-            e.GetErrorMessage(str);
+            e.get_error_message(str);
             pinstance->dprint("str");
             TRACE0("Error: ::ca::exception at script_manager::handle run");
             TRACE0(str);
@@ -198,7 +198,7 @@ namespace dynamic_source
          catch(base_exception * pe)
          {
             string str;
-            pe->GetErrorMessage(str);
+            pe->get_error_message(str);
             pinstance->dprint("str");
 
             TRACE0("Error: ::ca::exception * at script_manager::handle run");

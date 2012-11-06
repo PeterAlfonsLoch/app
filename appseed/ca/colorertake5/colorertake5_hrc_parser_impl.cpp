@@ -61,7 +61,8 @@ void HRCParserImpl::loadFileType(file_type *filetype)
    }
    catch(ex1::file_exception &e)
    {
-      if (errorHandler != NULL){
+      if (errorHandler != NULL)
+      {
          errorHandler->fatalError("Can't open source stream: " +e.get_message());
       }
       thisType->loadBroken = true;

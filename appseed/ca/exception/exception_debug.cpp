@@ -116,7 +116,7 @@ misc_exception::~misc_exception()
 {
 }
 
-bool misc_exception::GetErrorMessage(string & str, PUINT pnHelpContext)
+bool misc_exception::get_error_message(string & str, PUINT pnHelpContext)
 {
    UNREFERENCED_PARAMETER(pnHelpContext);
    str = m_strMessage;

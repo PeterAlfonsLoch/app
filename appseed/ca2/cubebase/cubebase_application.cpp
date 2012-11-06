@@ -153,12 +153,10 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
          return get_file(varFile, nOpenFlags);
 
       }
-      catch(ex1::file_exception * pe)
+      catch(::ex1::file_exception & e)
       {
 
-         string strMessage;
-
-         pe->get_friendly_error_message(strMessage);
+         string strMessage = e.get_message();
 
          App(this).simple_message_box(NULL, strMessage, MB_OK);
 
