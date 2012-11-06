@@ -229,25 +229,28 @@ namespace ca2
 
       string strLibraryName(get_library_name());
 
-      stringa straAppList;
-
-      get_app_list(straAppList);
-
       strPrefix += "/";
 
-      if(straAppList.get_count() > 1)
-      {
+      strPrefix += strLibraryName;
 
-         strPrefix += strLibraryName;
-
-         strPrefix += "/";
-
-      }
+      strPrefix += "/";
 
       gen::str::begins_eat(strAppName, strPrefix);
 
       if(!contains_app(strAppName))
-         return "";
+      {
+
+         strAppName     = pszAppId;
+         
+         strPrefix      = get_root();
+
+         strPrefix += "/";
+
+         gen::str::begins_eat(strAppName, strPrefix);
+
+         if(!contains_app(strAppName))
+            return "";
+      }
 
       return strAppName;
 

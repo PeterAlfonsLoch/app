@@ -431,29 +431,25 @@ namespace plane
          m_mapAppLibrary.set_at(strRoot + stra[0], pszLibrary);
 
       }
-      else
+
+      string strLibrary(pszLibrary);
+
+      string strPrefix = strRoot;
+
+      strPrefix.replace("-", "_");
+
+      strPrefix.replace("/", "_");
+
+      gen::str::begins_eat_ci(strLibrary, strPrefix);
+
+      strRoot += strLibrary;
+
+      strRoot += "/";
+
+      for(int i = 0; i < stra.get_count(); i++)
       {
 
-         string strLibrary(pszLibrary);
-
-         string strPrefix = strRoot;
-
-         strPrefix.replace("-", "_");
-
-         strPrefix.replace("/", "_");
-
-         gen::str::begins_eat_ci(strLibrary, strPrefix);
-
-         strRoot += strLibrary;
-
-         strRoot += "/";
-
-         for(int i = 0; i < stra.get_count(); i++)
-         {
-
-            m_mapAppLibrary.set_at(strRoot + stra[i], pszLibrary);
-
-         }
+         m_mapAppLibrary.set_at(strRoot + stra[i], pszLibrary);
 
       }
 
