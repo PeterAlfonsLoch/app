@@ -25,8 +25,9 @@
 #ifdef DEBUG
 void TRACELASTERROR()
 {
-      string strErrorMessage = ::get_system_error_message(::GetLastError())
-      APPTRACE(::ca::get_thread_app())("Error Message :\n%s\n", strErrorMessage);
+   ::ca::application * m_papp = ::ca::get_thread_app();
+   string strErrorMessage = ::get_system_error_message(::GetLastError());
+   TRACE("Error Message :\n%s\n", strErrorMessage);
 }
 #endif
 

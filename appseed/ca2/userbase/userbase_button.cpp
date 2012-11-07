@@ -72,23 +72,19 @@ namespace userbase
       COLORREF crBorder;
       if(!_001IsWindowEnabled())
       {
-         crBorder = RGB(127, 127, 127);
-         pdc->SetTextColor(m_pschema->m_crTextDisabled);
+         crBorder = ARGB(255, 127, 127, 127);
       }
       else if(_001IsPressed())
       {
-         crBorder = RGB(255, 255, 255);
-         pdc->SetTextColor(m_pschema->m_crTextPress);
+         crBorder = ARGB(255, 255, 255, 255);
       }
       else if(m_iHover >= 0)
       {
-         crBorder = RGB(100, 100, 200);
-         pdc->SetTextColor(m_pschema->m_crTextHover);
+         crBorder = ARGB(255, 100, 100, 200);
       }
       else
       {
-         crBorder = RGB(10, 10, 100);
-         pdc->SetTextColor(m_pschema->m_crTextNormal);
+         crBorder = ARGB(255, 10, 10, 100);
       }
 
       if(m_pschema->m_bBorder)
@@ -118,6 +114,23 @@ namespace userbase
       }
 
 
+      if(!_001IsWindowEnabled())
+      {
+         pdc->SetTextColor(m_pschema->m_crTextDisabled);
+      }
+      else if(_001IsPressed())
+      {
+         pdc->SetTextColor(m_pschema->m_crTextPress);
+      }
+      else if(m_iHover >= 0)
+      {
+         pdc->SetTextColor(m_pschema->m_crTextHover);
+      }
+      else
+      {
+         pdc->SetTextColor(m_pschema->m_crTextNormal);
+      }
+
 
       string strText(m_istrButtonText);
       pdc->SelectObject(m_pschema->m_font);
@@ -144,8 +157,8 @@ namespace userbase
       size size = pdc->GetTextExtent(strText);
 
       rect rect(0, 0, 0, 0);
-      rect.right = size.cx + 4;
-      rect.bottom = size.cy + 4;
+      rect.right = size.cx / 0.77 + 4;
+      rect.bottom = size.cy / 0.77 + 4;
 
       SetWindowPos(NULL, 0, 0, rect.width(), rect.height(), SWP_NOMOVE);
 

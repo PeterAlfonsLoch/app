@@ -235,7 +235,7 @@ CLASS_DECL_c vsstring get_system_error_message(DWORD dwError)
 
       HMODULE Hand = ::LoadLibrary("NTDLL.DLL");
 
-      if(!FormatMessage(
+      if(!FormatMessageW(
          FORMAT_MESSAGE_ALLOCATE_BUFFER |
          FORMAT_MESSAGE_FROM_SYSTEM |
          FORMAT_MESSAGE_FROM_HMODULE,
@@ -252,9 +252,7 @@ CLASS_DECL_c vsstring get_system_error_message(DWORD dwError)
 
    }
 
-   vsstring str;
-
-   str.attach(utf16_to_8(lpBuffer));
+   vsstring str(lpBuffer);
 
    LocalFree(lpBuffer);
    
