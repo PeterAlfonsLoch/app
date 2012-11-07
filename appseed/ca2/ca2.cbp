@@ -22,15 +22,16 @@
 					<Add option="-D_DEBUG" />
 					<Add directory="." />
 					<Add directory=".." />
-					<Add directory="../ca" />
-					<Add directory="../ca2" />
-					<Add directory="../../appseedcore" />
+					<Add directory="../../.." />
 					<Add directory="../../../app" />
+					<Add directory="../../appseedcore" />
 					<Add directory="../../nodeapp/linux" />
 					<Add directory="../../thirdparty" />
 					<Add directory="../../thirdparty/appseed" />
 					<Add directory="../../../app/thirdparty/include" />
 					<Add directory="../../../app/thirdparty/appseed" />
+					<Add directory="../ca" />
+					<Add directory="../ca2" />
 				</Compiler>
 			</Target>
 		</Build>

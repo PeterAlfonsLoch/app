@@ -22,13 +22,13 @@
 					<Add directory="." />
 					<Add directory=".." />
 					<Add directory="../../.." />
-					<Add directory="../ca" />
 					<Add directory="../../../app" />
 					<Add directory="../../nodeapp/linux" />
-					<Add directory="../ca2" />
 					<Add directory="../../nodeapp/linux/include" />
 					<Add directory="../../../app/thirdparty/include" />
 					<Add directory="../../../app/thirdparty/appseed" />
+					<Add directory="../ca" />
+					<Add directory="../ca2" />
 				</Compiler>
 			</Target>
 		</Build>

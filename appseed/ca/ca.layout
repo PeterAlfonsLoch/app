@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="api/api.h" open="1" top="0" tabpos="2">
+	<File name="api/api.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="api/api_linux.h" open="1" top="0" tabpos="3">
+	<File name="api/api_linux.h" open="0" top="0" tabpos="3">
 		<Cursor position="1002" topLine="0" />
 	</File>
 	<File name="api/api_muldiv64.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="14973" topLine="458" />
 	</File>
-	<File name="ca.h" open="0" top="0" tabpos="6">
+	<File name="ca.h" open="1" top="0" tabpos="26">
 		<Cursor position="32" topLine="0" />
 	</File>
-	<File name="ca/ca.h" open="1" top="0" tabpos="1">
+	<File name="ca/ca.h" open="0" top="0" tabpos="1">
 		<Cursor position="1074" topLine="47" />
 	</File>
 	<File name="ca/ca_application.h" open="0" top="0" tabpos="42">
@@ -364,7 +364,7 @@
 	<File name="dynamic_source/dynamic_source_script_compiler.h" open="0" top="0" tabpos="0">
 		<Cursor position="1017" topLine="21" />
 	</File>
-	<File name="dynamic_source/dynamic_source_script_interface.h" open="1" top="0" tabpos="6">
+	<File name="dynamic_source/dynamic_source_script_interface.h" open="1" top="0" tabpos="1">
 		<Cursor position="208" topLine="0" />
 	</File>
 	<File name="dynamic_source/dynamic_source_script_manager.cpp" open="0" top="0" tabpos="0">
@@ -574,10 +574,10 @@
 	<File name="geoip/geoip_update.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="7559" topLine="225" />
 	</File>
-	<File name="html/html.h" open="1" top="1" tabpos="10">
+	<File name="html/html.h" open="0" top="0" tabpos="10">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="html/html_file.h" open="1" top="0" tabpos="9">
+	<File name="html/html_file.h" open="0" top="0" tabpos="9">
 		<Cursor position="1027" topLine="0" />
 	</File>
 	<File name="html/html_lite/html_lite_html_attributes.cpp" open="0" top="0" tabpos="0">
@@ -802,7 +802,7 @@
 	<File name="primitive/datetime/datetime_calendar.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="6720" topLine="177" />
 	</File>
-	<File name="primitive/datetime/datetime_calendar.h" open="1" top="0" tabpos="8">
+	<File name="primitive/datetime/datetime_calendar.h" open="1" top="0" tabpos="2">
 		<Cursor position="41" topLine="0" />
 	</File>
 	<File name="primitive/datetime/datetime_clock.cpp" open="0" top="0" tabpos="0">
