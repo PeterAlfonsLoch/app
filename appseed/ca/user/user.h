@@ -119,6 +119,7 @@ class COleDataObject;   // forward reference (see afxole.h)
 namespace user
 {
 
+
    class CLASS_DECL_ca message
    {
    public:
@@ -131,7 +132,12 @@ namespace user
       static void post(::user::interaction * puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal);
    };
 
-} // namespace win
+
+   CLASS_DECL_ca ::user::interaction * get_parent_owner(::user::interaction * pui);
+   CLASS_DECL_ca bool is_descendant(::user::interaction * puiParent, ::user::interaction * puiChild);
+
+
+} // namespace user
 
 
 #include "user_window_util.h"

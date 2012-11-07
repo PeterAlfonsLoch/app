@@ -188,15 +188,6 @@ typedef struct
 // Special helpers
 
 
-namespace user
-{
-
-
-   CLASS_DECL_ca ::user::interaction * get_parent_owner(::user::interaction * pui);
-   CLASS_DECL_ca bool is_descendant(::user::interaction * puiParent, ::user::interaction * puiChild);
-
-
-} // namespace user
 
 
 /*// UNICODE/MBCS abstractions
