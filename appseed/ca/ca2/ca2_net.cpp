@@ -748,7 +748,7 @@ namespace ca2
                return true;
             }
 
-            ::Windows::Networking::HostName ^ name = ref new ::Windows::Socket::HostName(rtstr(hostname));
+            ::Windows::Networking::HostName ^ name = ref new ::Windows::Networking::HostName(rtstr(hostname));
 
             if(name != nullptr)
             {
@@ -800,7 +800,7 @@ namespace ca2
             }
             // %! TODO: ipv6 reverse lookup
 
-            ::Windows::Networking::Hostname ^ name = ref new ::Windows::Socket::HostName(rtstr(hostname));
+            ::Windows::Networking::Core::Hostname ^ name = ref new ::Windows::Socket::HostName(rtstr(hostname));
 
             if(name != nullptr)
             {

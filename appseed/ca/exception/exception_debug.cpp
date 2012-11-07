@@ -275,26 +275,7 @@ namespace win
    CLASS_DECL_ca string error_message(DWORD dwError)
    {
 
-      string str;
-
-#ifdef WINDOWS
-
-      wchar_t * lpBuffer;
-      FormatMessageW(
-         FORMAT_MESSAGE_ALLOCATE_BUFFER |
-         FORMAT_MESSAGE_FROM_SYSTEM,
-         NULL,
-         dwError,
-         0,
-         (wchar_t *) &lpBuffer,
-         1,
-         NULL);
-
-      str = gen::international::unicode_to_utf8(lpBuffer);
-      LocalFree(lpBuffer);
-#endif
-
-      return str;
+      return get_system_error_message(dwError);
 
    }
 

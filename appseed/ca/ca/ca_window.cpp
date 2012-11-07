@@ -1550,12 +1550,16 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifdef WINDOWS
+
+#ifdef WINDOWSEX
+
    bool window::OnCopyData(window*, COPYDATASTRUCT*)
    {
       throw interface_only_exception(get_app());
    }
+
 #endif
+
 
    int window::OnCreate(LPCREATESTRUCT)
    {
@@ -1577,12 +1581,20 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifdef WINDOWS
+
+#ifdef WINDOWSEX
+
+
    void window::OnGetMinMaxInfo(MINMAXINFO*)
    {
+
       throw interface_only_exception(get_app());
+
    }
+
+
 #endif
+
 
    void window::OnIconEraseBkgnd(::ca::graphics *)
    {

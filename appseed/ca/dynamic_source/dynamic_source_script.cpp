@@ -76,7 +76,7 @@ namespace dynamic_source
 
       bool bMatches = false;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       FILETIME ftCreation;
       FILETIME ftModified;
       memset(&ftCreation, 0, sizeof(FILETIME));
@@ -96,6 +96,29 @@ namespace dynamic_source
       {
       }
       ::CloseHandle(h);
+
+#elif defined(METROWIN)
+
+      FILETIME ftCreation;
+      FILETIME ftModified;
+      memset(&ftCreation, 0, sizeof(FILETIME));
+      //memset(&ftAccess, 0, sizeof(FILETIME));
+      memset(&ftModified, 0, sizeof(FILETIME));
+      ::Windows::Storage::StorageFile ^ h = get_os_file(m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+      try
+      {
+         bMatches = get_file_time(h, &ftCreation, NULL, &ftModified) != FALSE;
+         if(bMatches)
+         {
+            bMatches = memcmp(&m_ftCreation, &ftCreation, sizeof(FILETIME)) == 0
+                    && memcmp(&m_ftModified, &ftModified, sizeof(FILETIME)) == 0;
+         }
+      }
+      catch(...)
+      {
+      }
+//      ::CloseHandle(h);
+
 #else
 
       struct stat st;
@@ -270,28 +293,11 @@ namespace dynamic_source
             {
                __debug_break();
             }
-            LPTSTR lpBuffer;
             TRACE("Error Message Id: %d\n", dwMessageId);
-            FormatMessage(
-               FORMAT_MESSAGE_ALLOCATE_BUFFER |
-               FORMAT_MESSAGE_FROM_SYSTEM,
-               NULL,
-               dwMessageId,
-               0,
-               (LPTSTR) &lpBuffer,
-               1,
-               NULL);
+            string strError = get_system_error_message(::GetLastError());
             string str;
-            str.Format("%d : ", ::GetLastError());
-            m_memfileError << strStagePath << " : LoadLibrary, GetLastError "  << str;
-
-            if(lpBuffer != NULL)
-            {
-               m_memfileError << lpBuffer;
-#ifdef WINDOWS
-               LocalFree(lpBuffer);
-#endif
-            }
+            str.Format("%d - ", ::GetLastError());
+            m_memfileError << strStagePath << " : LoadLibrary, GetLastError : " << str << strError;
          }
       }
       m_lpfnCreateInstance = m_library.get < NET_NODE_CREATE_INSTANCE_PROC > ("create_dynamic_source_script_instance");
@@ -338,7 +344,8 @@ namespace dynamic_source
 
          string strStagePath = get_stage_path();
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
+
          HMODULE hmodule = ::GetModuleHandleW(gen::international::utf8_to_unicode("\\\\?\\" + strStagePath));
          bool b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + strStagePath), &hmodule) != FALSE;
          if(hmodule != NULL && !::FreeLibrary(hmodule))
@@ -356,6 +363,9 @@ namespace dynamic_source
             DWORD dwError = ::GetLastError();
             TRACE("ds_script::Unload Error close Handle %s %d\r\n", strPdb, dwError);
          }
+
+#elif defined(METROWIN)
+
 #else
          void * p = dlopen(m_strScriptPath, RTLD_NOLOAD);
          if(p != NULL && !dlclose(p))

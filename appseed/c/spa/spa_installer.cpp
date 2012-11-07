@@ -56,28 +56,9 @@ PPEB GetPebAddress(HANDLE handleProcess)
 
 vsstring get_display_error(DWORD NTStatusMessage)
 {
-   LPVOID lpMessageBuffer;
-   HMODULE Hand = ::LoadLibrary("NTDLL.DLL");
 
-   FormatMessage(
-      FORMAT_MESSAGE_ALLOCATE_BUFFER |
-      FORMAT_MESSAGE_FROM_SYSTEM |
-      FORMAT_MESSAGE_FROM_HMODULE,
-      Hand,
-      NTStatusMessage,
-      MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-      (LPTSTR) &lpMessageBuffer,
-      0,
-      NULL );
+   return get_system_error_message(NTStatusMessage);
 
-   // Now display the string.
-
-   vsstring str = (LPTSTR) lpMessageBuffer;
-
-   // Free the buffer allocated by the system.
-   LocalFree( lpMessageBuffer );
-   FreeLibrary(Hand);
-   return str;
 }
 
 

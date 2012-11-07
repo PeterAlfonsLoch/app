@@ -151,3 +151,138 @@ CLASS_DECL_c bool close_handle(handle h)
 {
    return ::CloseHandle(h) != FALSE;
 }
+
+
+CLASS_DECL_c ::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName)
+{
+
+   return wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(rtstr(lpcszDirName)));
+
+}
+
+
+CLASS_DECL_c ::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile)
+{
+
+/*
+   CREATE_ALWAYS
+   2
+   Creates a new file, always.
+   If the specified file exists and is writable, the function overwrites the file, the function succeeds, and last-error code is set to ERROR_ALREADY_EXISTS (183).
+   If the specified file does not exist and is a valid path, a new file is created, the function succeeds, and the last-error code is set to zero.
+   For more information, see the Remarks section of this topic.
+
+   CREATE_NEW
+   1
+   Creates a new file, only if it does not already exist.
+   If the specified file exists, the function fails and the last-error code is set to ERROR_FILE_EXISTS (80).
+   If the specified file does not exist and is a valid path to a writable location, a new file is created.
+
+   OPEN_ALWAYS
+   4
+   Opens a file, always.
+   If the specified file exists, the function succeeds and the last-error code is set to ERROR_ALREADY_EXISTS (183).
+   If the specified file does not exist and is a valid path to a writable location, the function creates a file and the last-error code is set to zero.
+
+   OPEN_EXISTING
+   3
+   Opens a file or device, only if it exists.
+   If the specified file or device does not exist, the function fails and the last-error code is set to ERROR_FILE_NOT_FOUND (2).
+   For more information about devices, see the Remarks section.
+   
+   TRUNCATE_EXISTING
+   5
+   Opens a file and truncates it so that its size is zero bytes, only if it exists.
+   If the specified file does not exist, the function fails and the last-error code is set to ERROR_FILE_NOT_FOUND (2).
+   The calling process must open the file with the GENERIC_WRITE bit set as part of the dwDesiredAccess parameter.
+
+*/
+
+   ::Windows::Storage::StorageFile ^ file = nullptr;
+
+   ::Windows::Storage::StorageFolder ^ folder = get_os_folder(dir::name(lpcszFileName));
+
+   if(folder == nullptr)
+      return nullptr;
+
+   ::Platform::String ^ strFileName = rtstr(file_title_dup(lpcszFileName));
+
+   if(dwCreationDisposition == CREATE_ALWAYS)
+   {
+
+      auto optionNew = ::Windows::Storage::CreationCollisionOption::ReplaceExisting;
+ 
+      file = wait(folder->CreateFileAsync(strFileName, optionNew));
+
+   }
+   else if(dwCreationDisposition == CREATE_NEW)
+   {
+
+      auto optionNew = ::Windows::Storage::CreationCollisionOption::FailIfExists;
+ 
+      file = wait(folder->CreateFileAsync(strFileName, optionNew));
+
+   }
+   else if(dwCreationDisposition == OPEN_ALWAYS)
+   {
+
+      auto optionNew = ::Windows::Storage::CreationCollisionOption::OpenIfExists;
+ 
+      file = wait(folder->CreateFileAsync(strFileName, optionNew));
+
+   }
+   else if(dwCreationDisposition == OPEN_EXISTING)
+   {
+
+      file = wait(folder->GetFileAsync(strFileName));
+
+   }
+   else if(dwCreationDisposition == TRUNCATE_EXISTING)
+   {
+
+      file = wait(folder->GetFileAsync(strFileName));
+ 
+      ::Windows::Storage::StorageStreamTransaction ^ transaction = wait(file->OpenTransactedWriteAsync());
+
+      transaction->Stream->Size = 0;
+
+   }
+
+   return file;
+
+
+}
+
+
+CLASS_DECL_c bool get_file_time(::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime)
+{
+
+   if(lpCreationTime != NULL)
+   {
+      
+      *lpCreationTime = (FILETIME &) file->DateCreated;
+
+   }
+
+   if(lpItemTime != NULL || lpLastWriteTime != NULL)
+   {
+
+      ::Windows::Storage::FileProperties::BasicProperties ^ properties = wait(file->GetBasicPropertiesAsync());
+
+      if(lpItemTime != NULL)
+      {
+         *lpItemTime = (FILETIME &) properties->ItemDate;
+      }
+
+      if(lpLastWriteTime != NULL)
+      {
+         *lpLastWriteTime = (FILETIME &) properties->DateModified;
+      }
+
+   }
+
+   return true;
+
+}
+
+

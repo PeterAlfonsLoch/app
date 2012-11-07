@@ -53,7 +53,14 @@ namespace dynamic_source
    void script_compiler::prepare_compile_and_link_environment()
    {
       //string strVars = getenv("VS100COMNTOOLS");
-      string strVars = getenv("VS110COMNTOOLS");
+      string strVars;
+      
+#ifndef METROWIN
+
+      strVars = getenv("VS110COMNTOOLS");
+
+#endif
+
       System.file().path().eat_end_level(strVars, 2, "\\");
       //m_strEnv = strVars;
       //m_strEnv += "vc\\vcvarsall.bat";
@@ -125,18 +132,26 @@ namespace dynamic_source
 
       strItem = System.dir().ca2("stage\\" + m_strPlatform + "\\dynamic_source\\library");
       str = str + strItem + ";";
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       DWORD dwSize = GetEnvironmentVariable("PATH", NULL, 0);
       LPTSTR lpsz = new char[dwSize + 1];
       dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
       str += lpsz;
       delete lpsz;
+#elif defined(METROWIN)
+
+      throw todo(get_app());
+
 #else
       str += getenv("PATH");
 #endif
       bool bResult;
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       bResult = SetEnvironmentVariable("PATH", str) != FALSE;
+#elif defined(METROWIN)
+
+      throw todo(get_app());
+
 #else
       bResult = setenv("PATH", str, TRUE);
 #endif

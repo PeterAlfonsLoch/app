@@ -1532,8 +1532,6 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#endif
-
    bool graphics::GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, LPINT lpBuffer) const
    {
       UNREFERENCED_PARAMETER(giFirst);
@@ -1542,6 +1540,8 @@ namespace ca
       UNREFERENCED_PARAMETER(lpBuffer);
       throw interface_only_exception(get_app());
    }
+
+#endif
 
    bool graphics::GetTextExtentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE lpSize) const
    {
@@ -2008,15 +2008,21 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifdef WINDOWS
+
+#ifdef WINDOWSEX
+
 
    bool graphics::SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust)
    {
+
       UNREFERENCED_PARAMETER(lpColorAdjust);
       throw interface_only_exception(get_app());
+
    }
 
+
 #endif
+
 
    bool graphics::PolyBezierTo(const POINT* lpPoints, int nCount)
    {

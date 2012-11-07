@@ -1,5 +1,10 @@
 #include "framework.h"
+
+#ifdef WINDOWSEX
+
 #include <openssl/ssl.h>
+
+#endif
 
 #if defined(LINUX)
 
@@ -313,18 +318,26 @@ namespace dynamic_source
       str = str + str2;
 
       string strNew;
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       DWORD dwSize = GetEnvironmentVariable("PATH", NULL, 0);
       LPTSTR lpsz = new char[dwSize + 1024];
       dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1024);
       strNew = lpsz;
       delete lpsz;
+#elif defined(METROWIN)
+
+      throw todo(get_app());
+
 #else
       strNew = getenv("PATH");
 #endif
       strNew += str;
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       SetEnvironmentVariable("PATH", strNew);
+#elif defined(METROWIN)
+
+      throw todo(get_app());
+
 #else
       setenv("PATH", strNew, 1);
 #endif
@@ -332,12 +345,16 @@ namespace dynamic_source
 
       // just verifying
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       dwSize = GetEnvironmentVariable("PATH", NULL, 0);
       lpsz = new char[dwSize + 1024];
       dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1024);
       TRACE(lpsz);
       delete lpsz;
+#elif defined(METROWIN)
+
+      throw todo(get_app());
+
 #else
 //      LPCTSTR lpcsz = getenv("PATH");
 #endif

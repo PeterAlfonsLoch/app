@@ -322,3 +322,22 @@ vsstring key_to_char(WPARAM wparam, LPARAM lparam)
 {
    throw "todo";
 }
+
+
+
+
+CLASS_DECL_c vsstring get_system_error_message(DWORD dwError)
+{
+   wstring wstr;
+   wstr.alloc(64 * 1024 / sizeof(wchar_t));
+   FormatMessageW(
+      FORMAT_MESSAGE_FROM_SYSTEM,
+      NULL,
+      dwError,
+      0,
+      (LPWSTR) (LPCWSTR) wstr,
+      wstr.get_storage_size(),
+      NULL);
+   vsstring str(wstr);
+   return str;
+}

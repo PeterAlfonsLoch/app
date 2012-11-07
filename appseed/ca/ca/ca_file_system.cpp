@@ -765,7 +765,7 @@ namespace ca
 
       void system::move(const char * pszNew, const char * psz)
       {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          if(!::MoveFileW(
             gen::international::utf8_to_unicode(psz),
             gen::international::utf8_to_unicode(pszNew)))
@@ -775,6 +775,43 @@ namespace ca
             strError.Format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
             throw strError;
          }
+#elif defined(METROWIN)
+
+         ::Windows::Storage::StorageFile ^ file = get_os_file(psz,  0, 0, NULL, OPEN_EXISTING, 0, NULL);
+
+         if(file == nullptr)
+            throw "file::system::move Could not move file, could not open source file";
+
+         string strDirOld     = System.dir().name(psz);
+         string strDirNew     = System.dir().name(pszNew)
+         string strNameOld    = System.file().name(psz);
+         string strNameNew    = System.file().name(pszNew);
+
+         if(strDirOld == strDirNew)
+         {
+            if(strNameOld == strNameNew)
+            {
+               return;
+            }
+            else
+            {
+               wait(file->RenameAsync(rtstr(strNameNew));
+            }
+         }
+         else
+         {
+            ::Windows::Storage::StorageFile ^ folder = get_os_folder(rtstr(strDirNew));
+            if(strNameOld == strNameNew)
+            {
+               wait(file->MoveAsync(folder));
+            }
+            else
+            {
+               wait(file->MoveAsync(folder, rtstr(strNameNew)));
+            }
+         }
+
+
 #else
          if(rename(psz, pszNew) != 0)
          {

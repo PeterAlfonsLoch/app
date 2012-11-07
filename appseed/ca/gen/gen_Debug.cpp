@@ -24,51 +24,18 @@
 
 #ifdef DEBUG
 void TRACELASTERROR()
-   {
-//         TRACE("Error Message Id: %d\n", dwMessageId);
-
-#ifdef WINDOWS
-      DWORD dwMessageId = GetLastError();
-      LPWSTR lpBuffer;
-
-         FormatMessageW(
-            FORMAT_MESSAGE_ALLOCATE_BUFFER |
-            FORMAT_MESSAGE_FROM_SYSTEM,
-            NULL,
-            dwMessageId,
-            0,
-            (LPWSTR) &lpBuffer,
-            1,
-            NULL);
-         //TRACE("Error Message :\n%s\n", gen::international::unicode_to_utf8(lpBuffer));
-         LocalFree(lpBuffer);
+{
+      string strErrorMessage = ::get_system_error_message(::GetLastError())
+      APPTRACE(::ca::get_thread_app())("Error Message :\n%s\n", strErrorMessage);
+}
 #endif
 
-   }
-#endif
 
 string FormatMessageFromSystem(DWORD dwError)
 {
-   string strError;
 
-#ifdef WINDOWS
-   LPWSTR pszError = NULL;
 
-   FormatMessageW(
-     FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
-     NULL,
-     dwError,
-     0,
-     (LPWSTR) &pszError,
-     8,
-     NULL);
+   return ::get_system_error_message(dwError);
 
-   strError = gen::international::unicode_to_utf8(pszError);
-
-   ::LocalFree(pszError);
-
-#endif
-
-   return strError;
 
 }
