@@ -1031,7 +1031,7 @@ void frame_window::OnSysCommand(UINT nID, LPARAM lParam)
    ENSURE_VALID(pFrameWnd);
 
    // set status bar as appropriate
-   UINT nItemID = (nID & 0xFFF0);
+//   UINT nItemID = (nID & 0xFFF0);
 
    // don't interfere with system commands if not in help mode
    if (pFrameWnd->m_bHelpMode)

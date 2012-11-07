@@ -102,7 +102,17 @@ namespace user
       int                                 m_iModal;
       int                                 m_iModalCount;
       bool                                m_bRectOk;
+      
+#ifdef WINDOWS
+      
       comparable_array < int_ptr >        m_iaModalThread;
+      
+#else
+      
+      comparable_array < pthread_t >      m_iaModalThread;
+      
+#endif
+      
       id                                  m_idModalResult; // for return values from ::ca::window::RunModalLoop
       COLORREF                            m_crDefaultBackgroundColor;
 
