@@ -28,7 +28,7 @@ verisimple_wstring::verisimple_wstring(const char * psz)
 }
 
 
-verisimple_wstring::verisimple_wstring(const wchar_t * pwsz, int iCount)
+verisimple_wstring::verisimple_wstring(const wchar_t * pwsz, ::count iCount)
 {
    if(pwsz == NULL)
    {

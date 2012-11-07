@@ -34,6 +34,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 namespace sockets
 {
+   
+
+   void rand_seed(const void * buf, int num);
+   int rand_bytes(unsigned char * buf, int num);
+   void rand_cleanup();
+   void rand_add(const void * buf, int num, double entropy);
+   int rand_pseudorand(unsigned char * buf, int num);
+   int rand_status();
+   
+   
    RAND_METHOD rand_meth;
 
    ::plane::system * g_psystem = NULL;
@@ -212,7 +222,7 @@ namespace sockets
 #ifdef WIN32
       return ::GetCurrentThreadId();
 #else
-      return ::pthread_self();
+      return (unsigned long) (int_ptr) ::pthread_self();
       //return System.get_thread_id();
 #endif
    }

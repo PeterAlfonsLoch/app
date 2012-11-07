@@ -33,11 +33,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //#include <sys/time.h>
 #endif
 
+
 namespace sockets
 {
 
    // statics
-   long Event::m_unique_id = 0;
+   int Event::m_unique_id = 0;
 
 
    Event::Event(IEventOwner *from,long sec,long usec) : m_from(from), m_time(sec, usec), m_id(++m_unique_id)
@@ -56,7 +57,7 @@ namespace sockets
    }
 
 
-   long Event::GetID()
+   int Event::GetID()
    {
       return m_id;
    }

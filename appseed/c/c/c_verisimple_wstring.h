@@ -102,7 +102,7 @@ public:
    verisimple_wstring();
    verisimple_wstring(const char * psz);
    verisimple_wstring(const wchar_t * pwsz);
-   verisimple_wstring(const wchar_t * pwsz, int iCount);
+   verisimple_wstring(const wchar_t * pwsz, ::count iCount);
    verisimple_wstring(const verisimple_wstring & wstr);
    inline verisimple_wstring(wstring_data * pdata)
    {

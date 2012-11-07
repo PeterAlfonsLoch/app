@@ -36,6 +36,8 @@ public:
    {
       m_iAllocCount = 0;
    }
+   
+   virtual ~factory_allocator() {}
 
    inline void * alloc()
    {

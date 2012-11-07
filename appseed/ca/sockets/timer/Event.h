@@ -29,36 +29,54 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #pragma once
 
+
 #ifdef _WIN32
 #else
 #include <sys/select.h>
 #endif
 
+
 namespace sockets
 {
 
+   
    class IEventOwner;
 
+   
    /** Store information about a timer event.
       \ingroup timer */
    class Event
    {
+   private:
+      
+      
+      IEventOwner *     m_from;
+      EventTime         m_time;
+      static int        m_unique_id;
+      int               m_id;
+      
+      
+      Event(const Event& ) {} // copy constructor
+      Event& operator=(const Event& ) { return *this; } // assignment operator
+      
+      
    public:
+      
+      
       Event(IEventOwner *,long sec,long usec);
       ~Event();
 
+      
       bool operator<(Event&);
-      long GetID();
+      int GetID();
       const EventTime& get_time() const;
       IEventOwner *GetFrom();
 
-   private:
-      Event(const Event& ) {} // copy constructor
-      Event& operator=(const Event& ) { return *this; } // assignment operator
-      IEventOwner *m_from;
-      EventTime m_time;
-      static long m_unique_id;
-      long m_id;
+      
    };
 
+   
 } // namespace sockets
+
+
+

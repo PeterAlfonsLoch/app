@@ -2,6 +2,9 @@
 
 namespace simpledb
 {
+   
+   int callback(void * res_ptr,int ncol, char** reslt,char** cols);
+   
    set::set() :
       ::database::set()
    {
@@ -338,6 +341,7 @@ namespace simpledb
          }
       }
 
+      return true;
 
    }
 
@@ -933,7 +937,8 @@ namespace simpledb
    **********************************************************************/
    //************* Callback function ***************************
 
-   int callback(void * res_ptr,int ncol, char** reslt,char** cols){
+   int callback(void * res_ptr,int ncol, char** reslt,char** cols)
+   {
 
       database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
       count sz = r->records.get_size();

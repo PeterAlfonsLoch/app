@@ -264,8 +264,8 @@ bool frame_window::OnSetCursor(::user::interaction * pWnd, UINT nHitTest, UINT m
 bool frame_window::OnCommand(WPARAM wParam, LPARAM lParam)
    // return TRUE if command invocation was attempted
 {
-   ::oswindow oswindow_Ctrl = (::oswindow) lParam;
-   UINT nID = LOWORD(wParam);
+//   ::oswindow oswindow_Ctrl = (::oswindow) lParam;
+//   UINT nID = LOWORD(wParam);
 
    frame_window* pFrameWnd = GetTopLevelFrame();
    ENSURE_VALID(pFrameWnd);

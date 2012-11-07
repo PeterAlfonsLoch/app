@@ -278,6 +278,7 @@ void document_template::dump(dump_context & dumpcontext) const
       for(index index = 0; index < count; index++)
       {
          ::user::document_interface * pdocument = get_document(index);
+         dumpcontext << (int_ptr) pdocument;
       }
       dumpcontext << "\n}";
    }
@@ -293,6 +294,7 @@ void document_template::assert_valid() const
    for(index index = 0; index < count; index++)
    {
       ::user::document_interface * pdocument = get_document(index);
+      pdocument->assert_valid();
    }
 }
 

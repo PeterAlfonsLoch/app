@@ -50,6 +50,8 @@ namespace user
                pcontrol->m_unionwndptr.m_pstatic = pstatic;*/
             }
             break;
+            default:
+               break;
 
          }
       }

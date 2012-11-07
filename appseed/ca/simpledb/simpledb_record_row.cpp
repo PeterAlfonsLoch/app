@@ -47,7 +47,7 @@ namespace simpledb
       void record_row::read(::ex1::byte_input_stream & istream)
       {
 
-         if(m_straFields.get_size() <= 0 || m_straFields.get_size() == 1 && m_straFields[0] == "*")
+         if(m_straFields.get_size() <= 0 || (m_straFields.get_size() == 1 && m_straFields[0] == "*"))
          {
             for(int i = 0; i < m_ptable->m_fielddefinition.get_count(); i++)
             {

@@ -112,7 +112,7 @@ namespace user
    void control::descriptor::set_ddx_dbflags(::database::id idSection, ::database::id idKey, ::database::id idIndex, int_ptr value)
    {
 
-      m_eddx = ::user::control::eddx::ddx_dbflags;
+      m_eddx = ::user::control::ddx_dbflags;
 
       class ::database::key key(NULL, idSection, idKey, idIndex);
 
@@ -258,6 +258,8 @@ namespace user
             m_data.m_pcombobox = new Ex1FormInterfaceComboBox;
          }
          break;
+         default:
+            break;
       }
    }
 
@@ -704,9 +706,10 @@ namespace user
       if(GetWnd() != NULL)
       {
 
-         UINT uiMessage = ((wParam >> 16) & 0xffff);
-
 #ifdef WINDOWS
+
+         UINT uiMessage = ((wParam >> 16) & 0xffff);
+         
 
          if(uiMessage == BN_CLICKED)
          {

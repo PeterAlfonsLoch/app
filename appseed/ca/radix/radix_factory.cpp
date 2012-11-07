@@ -1,6 +1,9 @@
 #include "framework.h"
 
 
+void itemswap(void * pswaparg, index i1, index i2);
+
+
 void itemswap(void * pswaparg, index i1, index i2)
 {
    base_array < factory_item_base * > * pitemptra = (base_array < factory_item_base * > *) pswaparg;
