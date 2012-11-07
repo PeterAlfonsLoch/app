@@ -877,6 +877,7 @@
     <ClCompile Include="windows\c_os_simple_path.cpp" />
     <ClCompile Include="windows\c_os_simple_pen.cpp" />
     <ClCompile Include="windows\c_os_thread.cpp" />
+    <ClCompile Include="windows\c_os_time.cpp" />
     <ClInclude Include=".\hotplugin\hotplugin_container_launcher.h">
       <FileType>CppCode</FileType>
     </ClInclude>

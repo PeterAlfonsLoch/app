@@ -775,5 +775,8 @@
     <ClCompile Include="simple_graphics\simple_path.cpp">
       <Filter>Source Files\simple_graphics</Filter>
     </ClCompile>
+    <ClCompile Include="windows\c_os_time.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
