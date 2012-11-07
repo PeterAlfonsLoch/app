@@ -43,6 +43,11 @@ public:
 
    inline XfplayerViewLineSelection & GetSelection();
 
+   void get_sel_text(string & strSelText, const char * pszLineSeparator = "\r\n");
+   string get_sel_text(const char * pszLineSeparator = "\r\n");
+
+   void get_text(string & strSelText, const char * pszLineSeparator = "\r\n");
+   string get_text(const char * pszLineSeparator = "\r\n");
 
 };
 

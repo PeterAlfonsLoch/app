@@ -198,3 +198,96 @@ XfplayerViewLineSelection & XfplayerViewLines::GetSelection()
    return m_selection;
 }
 
+
+void XfplayerViewLines::get_sel_text(string & strSelText, const char * pszLineSeparator)
+{
+
+   index iLineStart;
+   index iCharStart;
+   index iLineEnd;
+   index iCharEnd;
+   
+   m_selection.GetNormalSelection(iLineStart, iCharStart, iLineEnd, iCharEnd);
+
+   if(iLineEnd >= iLineStart)
+   {
+
+      if(iLineEnd == iLineStart)
+      {
+
+         strSelText = element_at(iLineStart).m_str.Mid(iCharStart, iCharEnd - iCharStart + 1);
+
+      }
+      else
+      {
+
+         strSelText = element_at(iLineStart).m_str.Mid(iCharStart);
+
+         for(int iLine = iLineStart + 1; iLine < iLineEnd; iLine++)
+         {
+
+            strSelText += pszLineSeparator;
+
+            strSelText += element_at(iLine).m_str;
+
+         }
+
+         if(iLineEnd > iLineStart)
+         {
+
+            strSelText += pszLineSeparator;
+
+            strSelText += element_at(iLineEnd).m_str.Mid(0, iCharEnd + 1);
+
+         }
+      }
+         
+   }
+
+}
+
+string XfplayerViewLines::get_sel_text(const char * pszLineSeparator)
+{
+
+   string strSelText;
+
+   get_sel_text(strSelText, pszLineSeparator);
+
+   return strSelText;
+
+}
+
+
+void XfplayerViewLines::get_text(string & strSelText, const char * pszLineSeparator)
+{
+
+   string strText;
+
+   if(get_count() > 0)
+   {
+
+      strText = element_at(0).m_str;
+
+   }
+         
+   for(int iLine = 1; iLine < get_count(); iLine++)
+   {
+
+      strSelText += pszLineSeparator;
+
+      strSelText += element_at(iLine).m_str;
+
+   }
+
+}
+
+string XfplayerViewLines::get_text(const char * pszLineSeparator)
+{
+
+   string strText;
+
+   get_text(strText, pszLineSeparator);
+
+   return strText;
+
+}
