@@ -14,19 +14,23 @@
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
+					<Add option="-std=c++0x" />
 					<Add option="-g" />
 					<Add option="-fPIC" />
-					<Add option="-fexceptions" />
-					<Add option="-fpermissive" />
-					<Add option="-Wno-conversion-null" />
+					<Add option="-Wno-attributes" />
+					<Add option="-Winvalid-pch" />
+					<Add option="-D_DEBUG" />
 					<Add directory="." />
 					<Add directory=".." />
+					<Add directory="../ca" />
 					<Add directory="../ca2" />
 					<Add directory="../../appseedcore" />
 					<Add directory="../../../app" />
 					<Add directory="../../nodeapp/linux" />
 					<Add directory="../../thirdparty" />
 					<Add directory="../../thirdparty/appseed" />
+					<Add directory="../../../app/thirdparty/include" />
+					<Add directory="../../../app/thirdparty/appseed" />
 				</Compiler>
 			</Target>
 		</Build>

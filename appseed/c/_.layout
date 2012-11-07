@@ -19,7 +19,7 @@
 	<File name="c/c.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="85" topLine="0" />
 	</File>
-	<File name="c/c.h" open="1" top="0" tabpos="11">
+	<File name="c/c.h" open="0" top="0" tabpos="11">
 		<Cursor position="2997" topLine="180" />
 	</File>
 	<File name="c/c_async.h" open="0" top="0" tabpos="9">
@@ -37,7 +37,7 @@
 	<File name="c/c_md5.cpp" open="0" top="0" tabpos="20">
 		<Cursor position="13370" topLine="455" />
 	</File>
-	<File name="c/c_mem.h" open="1" top="0" tabpos="10">
+	<File name="c/c_mem.h" open="0" top="0" tabpos="10">
 		<Cursor position="758" topLine="0" />
 	</File>
 	<File name="c/c_simple_event.cpp" open="0" top="0" tabpos="10">
