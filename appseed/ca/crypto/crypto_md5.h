@@ -40,7 +40,7 @@ namespace crypto
 
          void update(const void * data, size_t size);
 
-         void get(void * digest); // 16 bytes
+         void get(primitive::memory_base & mem);
 
          string to_hex(); // 32 characters
 

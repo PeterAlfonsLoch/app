@@ -260,7 +260,25 @@ ex1::filesp ifs::get_file(var varFile, UINT nOpenFlags)
 
    spfile(new ifs_file(get_app(), varFile));
 
-   if(!spfile->open(varFile.get_string(), nOpenFlags))
+   string strUrl;
+
+   if(varFile.get_type() == var::type_propset)
+   {
+      if(varFile.has_property("url"))
+      {
+         strUrl = varFile["url"];
+      }
+      else
+      {
+         strUrl = varFile.propset().m_propertya[0].get_value();
+      }
+   }
+   else
+   {
+      strUrl = varFile;
+   }
+
+   if(!spfile->open(strUrl, nOpenFlags))
    {
       throw new ex1::file_exception(get_app(), ::ex1::file_exception::none, 01, varFile.get_string());
    }

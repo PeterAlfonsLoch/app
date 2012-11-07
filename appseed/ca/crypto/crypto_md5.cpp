@@ -70,12 +70,12 @@ namespace crypto
 
       }
 
-      void context::get(void * digest) // 16 bytes - 32 hex characters
+      void context::get(primitive::memory_base & mem) // 16 bytes - 32 hex characters
       {
 
          defer_finalize();
 
-         memcpy(digest, m_memoryDigest.get_data(), m_memoryDigest.get_size());
+         mem = m_memoryDigest;
 
       }
 
