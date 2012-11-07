@@ -419,6 +419,9 @@
     <ClInclude Include="windows\c_os_simple_path.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
+    <ClInclude Include="windows\c_os_file.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">

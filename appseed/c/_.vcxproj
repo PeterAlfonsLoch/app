@@ -740,6 +740,7 @@
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
     <ClInclude Include="windows\c_os.h" />
+    <ClInclude Include="windows\c_os_file.h" />
     <ClInclude Include="windows\c_os_gdi.h" />
     <ClInclude Include="windows\c_os_graphics_round_rect.h" />
     <ClInclude Include="windows\c_os_http.h" />

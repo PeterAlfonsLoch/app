@@ -214,3 +214,58 @@ vsstring key_to_char(WPARAM wparam, LPARAM lparam)
    return "";
 
 }
+
+CLASS_DECL_c vsstring get_system_error_message(DWORD dwError)
+{
+
+   LPWSTR lpBuffer;
+
+   HMODULE Hand = NULL;
+
+   if(!FormatMessageW(
+      FORMAT_MESSAGE_ALLOCATE_BUFFER |
+      FORMAT_MESSAGE_FROM_SYSTEM,
+      NULL,
+      dwError,
+      0,
+      (LPWSTR) &lpBuffer,
+      1,
+      NULL))
+   {
+
+      HMODULE Hand = ::LoadLibrary("NTDLL.DLL");
+
+      if(!FormatMessage(
+         FORMAT_MESSAGE_ALLOCATE_BUFFER |
+         FORMAT_MESSAGE_FROM_SYSTEM |
+         FORMAT_MESSAGE_FROM_HMODULE,
+         Hand,
+         dwError,
+         0,
+         (LPWSTR) &lpBuffer,
+         1,
+         NULL))
+      {
+         FreeLibrary(Hand);
+         return "";
+      }
+
+   }
+
+   vsstring str;
+
+   str.attach(utf16_to_8(lpBuffer));
+
+   LocalFree(lpBuffer);
+   
+   if(Hand != NULL)
+   {
+      FreeLibrary(Hand);
+   }
+
+   return str;
+
+}
+
+
+
