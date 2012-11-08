@@ -3272,6 +3272,9 @@
     <ClInclude Include="crypto\crypto_xfm.h">
       <Filter>Header Files\crypto</Filter>
     </ClInclude>
+    <ClInclude Include="crypto\crypto_md5.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">

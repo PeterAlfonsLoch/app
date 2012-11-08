@@ -1256,6 +1256,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="crypto\crypto_kernel_compat.h" />
     <ClInclude Include="crypto\crypto_key.h" />
     <ClInclude Include="crypto\crypto_math.h" />
+    <ClInclude Include="crypto\crypto_md5.h" />
     <ClInclude Include="crypto\crypto_null_auth.h" />
     <ClInclude Include="crypto\crypto_null_cipher.h" />
     <ClInclude Include="crypto\crypto_prng.h" />
