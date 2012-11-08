@@ -304,8 +304,16 @@ bool XfplayerViewLine::to(
                   if(rect.area() > 0)
                   {
                      dib->create(rect.size());
-                     dib->from(null_point(), pdc, rect.top_left(), rect.size());
+                     dib->Fill(255, 255, 255, 255);
+                     dib->get_graphics()->set_alpha_mode(::ca::alpha_mode_blend);
+                     pdc->flush();
+
+                     point pt = pdc->GetViewportOrg();
+                     dib->from(null_point(), pdc, pt + rect.top_left(), rect.size());
+                     //dib->get_graphics()->FillSolidRect(0, 0, 16, 16, ARGB(255, 255, 0, 255));
                      dib->Invert();
+                     //dib->fill_channel(0, ::visual::rgba::channel_blue);
+                     dib->fill_channel(255, ::visual::rgba::channel_alpha);
                      dib->to(pdc, rect.top_left(), rect.size(), null_point());
                   }
                }

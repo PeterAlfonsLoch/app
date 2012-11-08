@@ -179,6 +179,8 @@ namespace ca
       virtual COLORREF setColor(COLORREF crColor);
       virtual COLORREF set_color(COLORREF crColor);
 
+      virtual bool flush();
+
 
 
 #ifdef WINDOWSEX

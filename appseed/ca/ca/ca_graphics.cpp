@@ -2471,6 +2471,12 @@ namespace ca
       return 96.0;
    }
 
+   bool graphics::flush()
+   {
+      throw interface_only_exception(get_app());
+      return false;
+   }
+
 } // namespace ca
 
 
