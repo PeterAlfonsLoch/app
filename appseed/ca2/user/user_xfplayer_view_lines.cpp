@@ -212,6 +212,12 @@ void XfplayerViewLines::get_sel_text(string & strSelText, const char * pszLineSe
    if(iLineEnd >= iLineStart)
    {
 
+      if(iLineStart < 0)
+         return;
+
+      if(iLineEnd < 0)
+         return;
+
       if(iLineEnd == iLineStart)
       {
 
@@ -258,10 +264,8 @@ string XfplayerViewLines::get_sel_text(const char * pszLineSeparator)
 }
 
 
-void XfplayerViewLines::get_text(string & strSelText, const char * pszLineSeparator)
+void XfplayerViewLines::get_text(string & strText, const char * pszLineSeparator)
 {
-
-   string strText;
 
    if(get_count() > 0)
    {
@@ -273,9 +277,9 @@ void XfplayerViewLines::get_text(string & strSelText, const char * pszLineSepara
    for(int iLine = 1; iLine < get_count(); iLine++)
    {
 
-      strSelText += pszLineSeparator;
+      strText += pszLineSeparator;
 
-      strSelText += element_at(iLine).m_str;
+      strText += element_at(iLine).m_str;
 
    }
 

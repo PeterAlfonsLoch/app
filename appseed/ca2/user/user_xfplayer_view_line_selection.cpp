@@ -359,6 +359,10 @@ XfplayerViewLineSelection & XfplayerViewLineSelection::operator =(XfplayerViewLi
 
 XfplayerViewLineSelectionItem::XfplayerViewLineSelectionItem()
 {
+   m_iLineStart = -1;
+   m_iLineEnd = -1;
+   m_iCharStart = -1;
+   m_iCharEnd = -1;
 }
 XfplayerViewLineSelectionItem::XfplayerViewLineSelectionItem(
    index      iLineStart,
