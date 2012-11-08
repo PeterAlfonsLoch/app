@@ -1,27 +1,16 @@
 #include "framework.h"
 
-#ifdef WINDOWSEX
+
+#ifdef BSD_STYLE_SOCKETS
 
 #include <openssl/ssl.h>
-
-#endif
-
-#if defined(LINUX)
-
-#include <sys/inotify.h>
-
-#elif defined(MACOS)
-
-#include <sys/event.h>
-//#include <sys/time.h>
-#include <sys/types.h>
 
 #endif
 
 
 namespace dynamic_source
 {
-   
+
    UINT ThreadProcRsa(LPVOID lp);
 
    script_manager::session::session() :
@@ -500,18 +489,18 @@ namespace dynamic_source
       single_lock sl(&m_mutexIncludeExpandMd5, TRUE);
       m_mapIncludeExpandMd5[strPath] = strMd5;
    }
-   
-   
+
+
    void script_manager::clear_include_matches_folder_watch::handle_file_action(::file_watcher::id watchid, const char * dir, const char * filename, ::file_watcher::e_action eaction)
    {
-      
+
       UNREFERENCED_PARAMETER(watchid);
       UNREFERENCED_PARAMETER(dir);
       UNREFERENCED_PARAMETER(filename);
       UNREFERENCED_PARAMETER(eaction);
 
       m_pmanager->clear_include_matches();
-      
+
    }
 
 
