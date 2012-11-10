@@ -84,6 +84,19 @@ public:
       ::Windows::Security::Cryptography::CryptographicBuffer::CopyToByteArray(ibuf, &a);
       return set_os_bytes(a);
    }
+    
+#elif defined(MACOS)
+    
+    inline CFDataRef get_os_cf_data() const
+    {
+        return CFDataCreate(kCFAllocatorNull, (const UInt8 *) m_psz, (CFIndex) m_iSize);
+    }
+    
+    inline void set_os_cf_data(CFDataRef data)
+    {
+        allocate(CFDataGetLength(data));
+        memcpy(get_data(), CFDataGetBytePtr(data), get_size());
+    }
 
 #endif
 

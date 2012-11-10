@@ -115,6 +115,11 @@ namespace primitive
       inline void set_os_bytes(Platform::Array < unsigned char, 1U > ^ a, memory_position pos = 0, memory_size size = -1);
       inline void set_os_stream_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos = 0, memory_size size = -1);
 
+#elif defined(MACOS)
+       
+       inline CFDataRef get_os_cf_data(memory_position pos = 0, memory_size size = -1) const;
+       inline void set_os_cf_data(CFDataRef data, memory_position pos = 0, memory_size size = -1);
+       
 #endif
 
 
@@ -627,8 +632,8 @@ namespace primitive
          throw invalid_argument_exception(get_app());
       if(size < 0 || pos + size > a->Length)
          size = a->Length - pos;
-      allocate(size - pos);
-      memcpy(get_data(), &a->Data[pos], size - pos);
+      allocate(size);
+      memcpy(get_data(), &a->Data[pos], size);
    }
 
    inline void memory_base::set_os_stream_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos, memory_size size)
@@ -637,7 +642,32 @@ namespace primitive
       ::Windows::Security::Cryptography::CryptographicBuffer::CopyToByteArray(ibuf, &a);
       return set_os_bytes(a, pos, size);
    }
-
+    
+    
+#elif defined(MACOS)
+    
+    inline CFDataRef memory_base::get_os_cf_data(memory_position pos, memory_size size) const
+    {
+        if(pos > get_size())
+            throw invalid_argument_exception(get_app());
+        if(pos + size > get_size())
+            size = get_size() - pos;
+        return CFDataCreate(kCFAllocatorNull, (const UInt8 *) &get_data()[pos], (CFIndex) size);
+    }
+    
+    inline void memory_base::set_os_cf_data(CFDataRef data, memory_position pos, memory_size size)
+    {
+        if(pos > CFDataGetLength(data))
+            throw invalid_argument_exception(get_app());
+        if(pos > CFDataGetLength(data))
+            throw invalid_argument_exception(get_app());
+        if(pos + size > CFDataGetLength(data))
+            size = CFDataGetLength(data) - pos;
+        allocate(size);
+        memcpy(get_data(), &CFDataGetBytePtr(data)[pos] , size);
+    }
+    
+    
 #endif
 
 
