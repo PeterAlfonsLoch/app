@@ -39,9 +39,9 @@ namespace command
 	      pDocTemplate = new ::userbase::single_document_template(
             this,
 		      "system/form",
-		      System.template type_info < command::document > (),
-		      System.template type_info < command::frame > (),
-		      System.template type_info < command::pane_view > ());
+		      System.type_info < command::document > (),
+		      System.type_info < command::frame > (),
+		      System.type_info < command::pane_view > ());
          userbase::application::add_document_template(pDocTemplate);
          m_ptemplateCommandMain = pDocTemplate;
 

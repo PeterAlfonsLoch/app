@@ -1,6 +1,6 @@
 #include "framework.h"
 
- 
+
 namespace bergedge
 {
 
@@ -48,7 +48,7 @@ namespace bergedge
          return;
       }
 
-      SetWindowTextA("bergedge");
+      SetWindowText("bergedge");
 
    }
 
@@ -68,7 +68,9 @@ namespace bergedge
       if( !simple_frame_window::pre_create_window(cs) )
          return FALSE;
       cs.dwExStyle &= ~WS_EX_WINDOWEDGE;
+#ifdef WINDOWS
       ::DestroyMenu(cs.hMenu);
+#endif
       cs.hMenu = NULL;
       return TRUE;
    }
@@ -86,7 +88,7 @@ namespace bergedge
 #endif //DEBUG
 
 
-   void frame::_001OnTimer(gen::signal_object * pobj) 
+   void frame::_001OnTimer(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
@@ -116,14 +118,14 @@ namespace bergedge
          {
             m_dwLastHover = ::GetTickCount();
             m_bHoverMouse = true;
-               
+
          }
          else if(m_bHoverMouse && (pt.x > 10 || pt.y > 0))
          {
             m_bHoverMouse = false;
          }
             theta += 2.0f;
-         
+
       }
    }
 
@@ -165,7 +167,7 @@ namespace bergedge
       }
    }
 
-   
+
 
    void frame::_000OnMouse(::gen::message::mouse * pmouse)
    {
@@ -190,7 +192,7 @@ namespace bergedge
                m_pdocument->m_pplatformdocument->get_platform_frame()->super_dock_on_bergedge();
             }
          }
-         else 
+         else
          {
             get_wnd()->release_capture();
             m_bMouseOver = false;
@@ -202,7 +204,7 @@ namespace bergedge
 
    void frame::_001OnMouseLeave(gen::signal_object * pobj)
    {
-      
+
       UNREFERENCED_PARAMETER(pobj);
 
 //      SCAST_PTR(gen::message::mouse, pmouse, pobj);
@@ -275,11 +277,12 @@ namespace bergedge
          }
          else if(pbase->m_lparam == 5)
          {
-            
+
             class rect rect;
             ::GetWindowRect(::GetDesktopWindow(), rect);
             point pt = rect.center();
-            if(!IsWindowVisible() 
+#ifdef WINDOWS
+            if(!IsWindowVisible()
             || ::WindowFromPoint(pt) != get_safe_handle())
             {
                ShowWindow(SW_SHOW);
@@ -291,6 +294,7 @@ namespace bergedge
             {
                ShowWindow(SW_HIDE);
             }
+#endif
          }
       }
 /*         else if(pbase->m_lparam == 1)
@@ -307,7 +311,7 @@ namespace bergedge
          {
            ShowWindow(SW_HIDE);
          }
-  */       
+  */
     /*  }
 */
       else if(pbase->m_wparam == 1)
@@ -354,13 +358,17 @@ namespace bergedge
          int iEdge = atoi(str);
          if(iEdge == 0)
             iEdge = 77;
-         else 
+         else
             iEdge += 1984;
          pbase->set_lresult(iEdge);
       }
       else if(pbase->m_wparam == 25)
       {
+#ifdef WINDOWSEX
          pbase->set_lresult((LRESULT) GetTopLevelFrame()->get_safe_handle());
+#else
+         throw todo(get_app());
+#endif
       }
       pbase->m_bRet = true;
    }
@@ -411,7 +419,7 @@ namespace bergedge
 
    void frame::_001OnApp1(gen::signal_object * pobj)
    {
-      
+
       SCAST_PTR(gen::message::base, pbase, pobj);
 
       MSG * pmsg = (MSG *) pbase->m_lparam;
@@ -423,6 +431,7 @@ namespace bergedge
 
          if(pmsg->message != WM_KICKIDLE)
          {
+#ifdef WINDOWSEX
             ::ca::smart_pointer < ::gen::message::base > spbase;
             spbase(get_base(pmsg));
             pre_translate_message(spbase);
@@ -430,6 +439,10 @@ namespace bergedge
             {
                send_message(spbase);
             }
+#else
+            throw todo(get_app());
+#endif
+
          }
 
       }

@@ -1,76 +1,166 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="ca2.h" open="1" top="0" tabpos="2">
+	<File name="bergedge/bergedge_bergedge.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="5639" topLine="179" />
+	</File>
+	<File name="bergedge/bergedge_frame.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="11046" topLine="414" />
+	</File>
+	<File name="bergedge/bergedge_pane_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="23677" topLine="644" />
+	</File>
+	<File name="bergedge/bergedge_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="6843" topLine="219" />
+	</File>
+	<File name="ca2.h" open="0" top="0" tabpos="2">
 		<Cursor position="35" topLine="0" />
 	</File>
-	<File name="ca8/ca8.h" open="1" top="0" tabpos="14">
+	<File name="ca8/ca8.h" open="0" top="0" tabpos="14">
 		<Cursor position="35" topLine="0" />
+	</File>
+	<File name="ca8/ca8_application.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2108" topLine="65" />
 	</File>
 	<File name="ca8/ca8_keyboard_layout.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="3270" topLine="79" />
+		<Cursor position="4564" topLine="133" />
 	</File>
-	<File name="calculator/calculator.h" open="1" top="0" tabpos="10">
+	<File name="ca8/ca8_network_configuration.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2468" topLine="59" />
+	</File>
+	<File name="calculator/calculator.h" open="0" top="0" tabpos="10">
 		<Cursor position="48" topLine="0" />
 	</File>
-	<File name="collection/string_array.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="15948" topLine="643" />
+	<File name="calculator/calculator_frame.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="4650" topLine="139" />
 	</File>
-	<File name="command/command.h" open="1" top="0" tabpos="7">
+	<File name="calculator/calculator_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2330" topLine="49" />
+	</File>
+	<File name="command/command.h" open="0" top="0" tabpos="7">
 		<Cursor position="40" topLine="0" />
 	</File>
-	<File name="cube/cube.h" open="1" top="0" tabpos="3">
+	<File name="command/command_application.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1224" topLine="3" />
+	</File>
+	<File name="command/command_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2674" topLine="64" />
+	</File>
+	<File name="cube/cube.h" open="0" top="0" tabpos="3">
 		<Cursor position="39" topLine="0" />
 	</File>
-	<File name="cube1/cube1.h" open="1" top="0" tabpos="13">
+	<File name="cube/cube_cube.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="561" topLine="0" />
+	</File>
+	<File name="cube1/cube1.h" open="0" top="0" tabpos="13">
 		<Cursor position="39" topLine="0" />
 	</File>
-	<File name="cube2/cube2.h" open="1" top="0" tabpos="12">
+	<File name="cube2/cube2.h" open="0" top="0" tabpos="12">
 		<Cursor position="42" topLine="0" />
 	</File>
-	<File name="cube5/cube5.h" open="1" top="0" tabpos="5">
+	<File name="cube5/cube5.h" open="0" top="0" tabpos="5">
 		<Cursor position="38" topLine="0" />
 	</File>
-	<File name="cube8/cube8.h" open="1" top="0" tabpos="4">
+	<File name="cube8/cube8.h" open="0" top="0" tabpos="4">
 		<Cursor position="40" topLine="0" />
 	</File>
-	<File name="cubebase/cubebase.h" open="1" top="1" tabpos="23">
-		<Cursor position="29" topLine="0" />
+	<File name="cubebase/cubebase.h" open="0" top="0" tabpos="23">
+		<Cursor position="294" topLine="0" />
 	</File>
-	<File name="databaseuser/databaseuser.h" open="1" top="0" tabpos="21">
+	<File name="databaseuser/databaseuser.h" open="0" top="0" tabpos="21">
 		<Cursor position="41" topLine="0" />
 	</File>
-	<File name="filehandler/filehandler.h" open="1" top="0" tabpos="9">
+	<File name="filehandler/filehandler.h" open="0" top="0" tabpos="9">
 		<Cursor position="47" topLine="0" />
+	</File>
+	<File name="filehandler/filehandler_application.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1120" topLine="8" />
+	</File>
+	<File name="filehandler/filehandler_pane_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="5644" topLine="155" />
+	</File>
+	<File name="filemanager/FileManagerTemplate.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="7282" topLine="143" />
+	</File>
+	<File name="filemanager/FileManagerView.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="4101" topLine="66" />
+	</File>
+	<File name="filemanager/SimpleFileListInterface.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="15414" topLine="498" />
+	</File>
+	<File name="filemanager/SimpleFilePropertiesForm.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="403" topLine="0" />
+	</File>
+	<File name="filemanager/SimpleFolderTreeInterface.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="23544" topLine="831" />
 	</File>
 	<File name="filemanager/SimpleFolderTreeView.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="9781" topLine="283" />
 	</File>
+	<File name="filemanager/filemanager_application.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="6057" topLine="103" />
+	</File>
 	<File name="filemanager/filemanager_icon.h" open="0" top="0" tabpos="0">
 		<Cursor position="330" topLine="0" />
 	</File>
-	<File name="fontopus/fontopus.h" open="1" top="0" tabpos="11">
+	<File name="fontopus/fontopus.h" open="0" top="0" tabpos="11">
 		<Cursor position="43" topLine="0" />
 	</File>
-	<File name="framework.h" open="1" top="0" tabpos="1">
+	<File name="fontopus/fontopus_validate.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1032" topLine="0" />
+	</File>
+	<File name="framework.h" open="0" top="0" tabpos="1">
 		<Cursor position="54" topLine="0" />
 	</File>
-	<File name="fs/fs.h" open="1" top="0" tabpos="15">
+	<File name="fs/fs.h" open="0" top="0" tabpos="15">
 		<Cursor position="36" topLine="0" />
+	</File>
+	<File name="fs/fs_main_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1461" topLine="4" />
 	</File>
 	<File name="fs/fs_tree.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="5103" topLine="164" />
 	</File>
-	<File name="html/html.h" open="1" top="0" tabpos="18">
+	<File name="fs/fs_tree_interface.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="19573" topLine="711" />
+	</File>
+	<File name="html/html.h" open="0" top="0" tabpos="18">
 		<Cursor position="40" topLine="0" />
 	</File>
 	<File name="html/html_font.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="47" topLine="0" />
 	</File>
-	<File name="mail/mail.h" open="1" top="0" tabpos="8">
+	<File name="ihtml/view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3752" topLine="103" />
+	</File>
+	<File name="mail/mail.h" open="0" top="0" tabpos="8">
 		<Cursor position="44" topLine="0" />
 	</File>
-	<File name="uinteraction/uinteraction.h" open="1" top="0" tabpos="20">
+	<File name="nature/nature_appearance_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3161" topLine="70" />
+	</File>
+	<File name="nature/nature_application.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1157" topLine="1" />
+	</File>
+	<File name="nature/nature_pane_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3853" topLine="75" />
+	</File>
+	<File name="nature/nature_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2106" topLine="41" />
+	</File>
+	<File name="platform/platform_application.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="752" topLine="0" />
+	</File>
+	<File name="platform/platform_frame.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="7633" topLine="249" />
+	</File>
+	<File name="platform/platform_pane_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3786" topLine="82" />
+	</File>
+	<File name="platform/platform_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="4213" topLine="116" />
+	</File>
+	<File name="uinteraction/uinteraction.h" open="0" top="0" tabpos="20">
 		<Cursor position="41" topLine="0" />
 	</File>
 	<File name="upnp/CPortForwardEngine/PortForwardEngine.cpp" open="0" top="0" tabpos="0">
@@ -82,14 +172,32 @@
 	<File name="user/_user_window_util.h" open="0" top="0" tabpos="0">
 		<Cursor position="1213" topLine="28" />
 	</File>
-	<File name="user/user.h" open="1" top="0" tabpos="22">
+	<File name="user/user.h" open="0" top="0" tabpos="22">
 		<Cursor position="39" topLine="0" />
+	</File>
+	<File name="user/user_check_box.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3612" topLine="104" />
+	</File>
+	<File name="user/user_edit_plain_text.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="38590" topLine="1271" />
+	</File>
+	<File name="user/user_form.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="27608" topLine="779" />
+	</File>
+	<File name="user/user_list_header.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="12447" topLine="441" />
 	</File>
 	<File name="user/user_mdi_frame_window.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="24798" topLine="726" />
 	</File>
 	<File name="user/user_mini_frame_window.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="7092" topLine="190" />
+		<Cursor position="1528" topLine="31" />
+	</File>
+	<File name="user/user_xfplayer_view_line.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="46271" topLine="1749" />
+	</File>
+	<File name="userbase/simple_frame_window.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3674" topLine="84" />
 	</File>
 	<File name="userbase/simple_mdi_child_window.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="5756" topLine="144" />
@@ -97,16 +205,49 @@
 	<File name="userbase/simple_mdi_frame_window.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2250" topLine="10" />
 	</File>
-	<File name="userbase/userbase.h" open="1" top="0" tabpos="19">
+	<File name="userbase/simple_menu_bar.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3054" topLine="67" />
+	</File>
+	<File name="userbase/userbase.h" open="0" top="0" tabpos="19">
 		<Cursor position="42" topLine="0" />
+	</File>
+	<File name="userbase/userbase_form_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="4599" topLine="107" />
 	</File>
 	<File name="userbase/userbase_mdi_frame_window.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2345" topLine="12" />
 	</File>
-	<File name="userex/userex.h" open="1" top="0" tabpos="16">
+	<File name="userbase/userbase_menu.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2530" topLine="68" />
+	</File>
+	<File name="userbase/userbase_split_bar.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3540" topLine="103" />
+	</File>
+	<File name="userbase/userbase_static.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1931" topLine="18" />
+	</File>
+	<File name="userbase/userbase_static.h" open="0" top="0" tabpos="0">
+		<Cursor position="518" topLine="0" />
+	</File>
+	<File name="userbase/userbase_tab_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3050" topLine="85" />
+	</File>
+	<File name="userex/userex.h" open="0" top="0" tabpos="16">
 		<Cursor position="37" topLine="0" />
 	</File>
-	<File name="userstack/userstack.h" open="1" top="0" tabpos="6">
+	<File name="userex/userex_application.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2037" topLine="31" />
+	</File>
+	<File name="userex/userex_pane_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1189" topLine="25" />
+	</File>
+	<File name="userstack/userstack.h" open="0" top="0" tabpos="6">
 		<Cursor position="43" topLine="0" />
+	</File>
+	<File name="userstack/userstack_application.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3288" topLine="112" />
+	</File>
+	<File name="userstack/userstack_view.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="5655" topLine="185" />
 	</File>
 </CodeBlocks_layout_file>

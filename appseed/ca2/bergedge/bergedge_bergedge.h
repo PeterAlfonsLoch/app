@@ -15,6 +15,7 @@ namespace bergedge
 {
 
 
+   class document;
    class view;
 
 
@@ -27,13 +28,13 @@ namespace bergedge
 
 
       index                                                          m_iEdge;
-                                                                     
+
       bool                                                           m_bShowPlatform;
-                                                                     
+
       ::ca::application *                                            m_pappCurrent;
       ::collection::string_map < ::ca::application * >               m_mapApplication;
-                                                                     
-                                                                     
+
+
       ::userbase::single_document_template *                         m_ptemplate_bergedge;
       ::userbase::single_document_template *                         m_ptemplate_platform;
       ::userbase::single_document_template *                         m_ptemplate_nature;
@@ -42,11 +43,11 @@ namespace bergedge
       platform::document *                                           m_pplatformdocument;
       nature::document *                                             m_pnaturedocument;
       nature::database *                                             m_pdatabase;
-                                                                     
-                                                                     
+
+
       var                                                            m_varTopicFile;
       var                                                            m_varCurrentViewFile;
-                                                                     
+
       bool                                                           m_bDrawCursor;
 
       ::collection::string_map < ::uinteraction::interaction * >     m_mapUinteraction;
@@ -102,15 +103,15 @@ namespace bergedge
       virtual void check_topic_file_change();
 
       void on_exclusive_instance_conflict(::radix::EExclusiveInstance eexclusive);
-      
+
       void launch_app(const char * psz);
       void install_app(const char * psz);
 
-      bergedge::document *          get_document();
-      bergedge::view *              get_view();
+      ::bergedge::document *          get_document();
+      ::bergedge::view *              get_view();
       platform::document *          get_platform();
       nature::document *            get_nature();
-      
+
       virtual bool initialize1();
 
       virtual bool initialize();

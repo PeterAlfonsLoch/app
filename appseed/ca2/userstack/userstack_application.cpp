@@ -139,7 +139,7 @@ namespace userstack
    {
 
       int iCount = 32; // todo: get from bergedge profile
-      
+
       System.factory().creatable < ::userstack::document > (iCount);
       System.factory().creatable < ::userstack::view > (iCount);
       System.factory().creatable < ::userstack::pane_view > (iCount);
@@ -148,9 +148,9 @@ namespace userstack
       m_ptemplate_pane    = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         System.template type_info < document > (),
-         System.template type_info < frame > (),
-         System.template type_info < pane_view > ());
+         System.type_info < document > (),
+         System.type_info < frame > (),
+         System.type_info < pane_view > ());
 
    }
 
@@ -193,9 +193,9 @@ namespace userstack
 
 /*   void application::request(::ca::create_context * pcreatecontext)
    {
-      
-      if(m_pappCurrent != NULL && m_pappCurrent != this 
-         && (pcreatecontext->m_spCommandLine->m_strApp.is_empty() 
+
+      if(m_pappCurrent != NULL && m_pappCurrent != this
+         && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
          ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
       {
          if(get_document() != NULL && get_document()->get_typed_view < pane_view >() != NULL)
@@ -439,7 +439,7 @@ namespace userstack
       {
          get_view()->GetWindowRect(lprect);
       }
-      else 
+      else
       {
          System.get_screen_rect(lprect);
       }
@@ -472,7 +472,7 @@ namespace userstack
 
          if(ppaneview != NULL)
          {
-         
+
             string strAppName(pszAppId);
 
             ::user::tab::pane * ppane = ppaneview->get_pane_by_id("app:" + strAppName);
@@ -496,7 +496,7 @@ namespace userstack
    bool application::initialize1()
    {
 
-      
+
       if(!::cubebase::application::initialize1())
          return false;
 
@@ -509,7 +509,7 @@ namespace userstack
    bool application::initialize()
    {
 
-      
+
       if(!::cubebase::application::initialize())
          return false;
 
@@ -528,8 +528,8 @@ namespace userstack
 
    int application::main()
    {
-      
-      
+
+
       return ::cubebase::application::main();
 
 

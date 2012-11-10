@@ -42,14 +42,14 @@ namespace cube
       virtual void register_bergedge_application(::ca::application * papp);
       virtual void unregister_bergedge_application(::ca::application * papp);
 
- 
+
       virtual bool base_support();
 
-  
+
       DECL_GEN_SIGNAL(on_application_signal);
 
-  
-      using ::cube8::application::process;
+
+      using ::userstack::application::process;
       bool set_history(::ca::history * phistory);
 
 

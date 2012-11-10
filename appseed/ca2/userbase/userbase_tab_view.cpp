@@ -33,7 +33,7 @@ namespace userbase
    #endif //DEBUG
 
 
-   void tab_view::_001OnCreate(gen::signal_object * pobj) 
+   void tab_view::_001OnCreate(gen::signal_object * pobj)
    {
 //      SCAST_PTR(::gen::message::create, pcreate, pobj)
       if(pobj->previous())
@@ -41,9 +41,9 @@ namespace userbase
    }
 
 
-   void tab_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint) 
+   void tab_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint)
    {
-      
+
       if(m_pviewcreator != NULL)
       {
 
@@ -55,9 +55,9 @@ namespace userbase
 
    }
 
-   void tab_view::_001OnSetFocus(gen::signal_object * pobj) 
+   void tab_view::_001OnSetFocus(gen::signal_object * pobj)
    {
-      
+
       UNREFERENCED_PARAMETER(pobj);
 
       if(get_view_uie() != NULL)
@@ -67,9 +67,9 @@ namespace userbase
 
    }
 
-   bool tab_view::pre_create_window(CREATESTRUCT& cs) 
+   bool tab_view::pre_create_window(CREATESTRUCT& cs)
    {
-      cs.dwExStyle &= ~WS_EX_CLIENTEDGE;   
+      cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
       return view::pre_create_window(cs);
    }
@@ -123,7 +123,7 @@ namespace userbase
    {
       ::user::interaction * pwnd1 = ensure(::user::tab::get_id_by_tab(::user::tab::_001GetSel()))->m_pwnd;
       ::user::interaction * pwnd2 = ensure(::user::tab::get_id_by_tab(iPane))->m_pwnd;
-      ::userbase::split_view * psplitview = dynamic_cast < ::userbase::split_view * > (view::create_view(System.template type_info < ::userbase::split_view > (), get_document(), this, 100));
+      ::userbase::split_view * psplitview = dynamic_cast < ::userbase::split_view * > (view::create_view(System.type_info < ::userbase::split_view > (), get_document(), this, 100));
       if(eposition == position_top || eposition == position_bottom)
       {
          psplitview->SetSplitOrientation(::userbase::split_layout::orientation_horizontal);
@@ -150,10 +150,10 @@ namespace userbase
 
       id id1 = ::user::tab::get_id_by_tab(::user::tab::_001GetSel());
       id id2 = ::user::tab::get_id_by_tab(iPane);
-      
+
       pane * ppane1 = get_pane_by_id(id1);
       pane * ppane2 = get_pane_by_id(id2);
-      
+
       string strName1 = ppane1->m_istrTitleEx;
       string strName2 = ppane2->m_istrTitleEx;
 
@@ -241,7 +241,7 @@ namespace userbase
       id id = get_id_by_tab(_001GetSel(), false);
       class id idSplit;
       ::user::view_creator_data * pcreatordata = ensure(id);
-      
+
       index iTab = ::user::tab::get_tab_by_id(id);
 
       if(pcreatordata != NULL)
@@ -278,14 +278,14 @@ namespace userbase
       /*
       if(idSplit.has_char())
       {
-         ::userbase::split_view * psplitview = dynamic_cast < ::userbase::split_view * > 
+         ::userbase::split_view * psplitview = dynamic_cast < ::userbase::split_view * >
             (m_pviewcreator->m_viewmap[idSplit]->m_pwnd);
          bool bSwap = m_pviewcreator->m_viewmap[idSplit]->m_bTabSplitSwap;
          if(bSwap)
          {
             m_pviewcreator->m_viewmap[idSplit]->m_pwnd =
                psplitview->_001GetPane(1);
-            
+
          }
          else
          {
@@ -453,7 +453,7 @@ namespace userbase
       }
 
    }
-   
+
    ::user::view_creator * tab_view::get_view_creator()
    {
       return m_pviewcreator;
@@ -482,7 +482,7 @@ namespace userbase
 
       COLORREF crBorder = RGB(127, 127, 80);
       COLORREF crBorderSel = RGB(40, 40, 20);
-      
+
       point ptCursor;
       System.get_cursor_pos(&ptCursor);
       ScreenToClient(&ptCursor);
@@ -555,7 +555,7 @@ namespace userbase
       pdc->Draw3dRect(rectLeft, crBorder, crBorder);
       pdc->Draw3dRect(rectRight, crBorder, crBorder);
       pdc->Draw3dRect(rectBottom, crBorder, crBorder);
-      
+
       if(epositionDrag != position_none)
       {
          rect rectSel;

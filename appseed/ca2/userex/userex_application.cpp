@@ -17,7 +17,7 @@ namespace userex
 
    bool application::initialize1()
    {
-      
+
       // menu
       System.factory().creatable_small < menu_document > ();
       System.factory().creatable_small < menu_frame > ();
@@ -36,7 +36,7 @@ namespace userex
 
 
 
-      if(!html::application::initialize1())     
+      if(!html::application::initialize1())
          return false;
 
       return true;
@@ -45,31 +45,31 @@ namespace userex
 
    bool application::initialize2()
    {
-      
 
-      if(!html::application::initialize2())     
+
+      if(!html::application::initialize2())
          return false;
 
       m_ptemplateForm = new ::userbase::multiple_document_template(
          this,
          "system/form",
-         System.template type_info < form_document > (),
-         System.template type_info < form_frame > (),
-         System.template type_info < form_view > ());
+         System.type_info < form_document > (),
+         System.type_info < form_frame > (),
+         System.type_info < form_view > ());
 
       m_ptemplateChildForm = new ::userbase::multiple_document_template(
          this,
          "system/form",
-         System.template type_info < form_document > (),
-         System.template type_info < form_child_frame > (),
-         System.template type_info < form_view > ());
+         System.type_info < form_document > (),
+         System.type_info < form_child_frame > (),
+         System.type_info < form_view > ());
 
       m_ptemplatePlaceHolder = new ::userbase::multiple_document_template(
          this,
          "system/form",
-         System.template type_info < simple_document > (),
-         System.template type_info < simple_frame_window > (),
-         System.template type_info < user::place_holder > ());
+         System.type_info < simple_document > (),
+         System.type_info < simple_frame_window > (),
+         System.type_info < user::place_holder > ());
 
 
       return true;
@@ -117,7 +117,7 @@ namespace userex
       {
          createcontext->m_bHold                       = false;
       }
-         
+
       pdoc = dynamic_cast < form_document * > (m_ptemplateForm->open_document_file(createcontext));
       ::view * pview = pdoc->get_view(0);
       pdoc->get_html_data()->m_pform = dynamic_cast < ::user::form * > (pview);
@@ -179,7 +179,7 @@ namespace userex
       simple_document * pdoc = dynamic_cast < simple_document * > (m_ptemplatePlaceHolder->open_document_file(createcontext));
 
       user::place_holder * pholder = pdoc->get_typed_view < user::place_holder  >();
-      
+
       pholder->hold(pui);
 
       return pdoc;

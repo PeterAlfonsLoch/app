@@ -26,9 +26,9 @@ namespace user
 
    void list_header::DrawItem(::ca::draw_item * pdrawitem)
    {
-      
+
       ::ca::graphics * pdc = pdrawitem->m_pgraphics;
-      
+
       rect rectColumn = pdrawitem->rcItem;
 
       int iColumn = pdrawitem->itemID;
@@ -72,7 +72,7 @@ namespace user
 
    bool list_header::GetItemRect(LPRECT lprect, EElement eelement, index iItem)
    {
-      
+
       if(iItem < 0)
          return false;
 
@@ -131,9 +131,9 @@ namespace user
    }
 
    bool list_header::GetItemRect(
-      LPRECT lprect, 
-      EElement eelementLButtonDown, 
-      index iItemLButtonDown, 
+      LPRECT lprect,
+      EElement eelementLButtonDown,
+      index iItemLButtonDown,
       EElement eelement,
       index iItem)
    {
@@ -157,13 +157,13 @@ namespace user
 
             class rect rect;
             GetItemRect(rect, ElementItemBox, iItem);
-            
+
             class rect rectB;
             if(!GetItemRect(rectA, ElementItemBox, iItem + 1))
             {
                GetItemRect(rectA, ElementItemBox, iItem);
             }
-            
+
             rect.left = rectA.left + rectA.width() / 2;
             rect.right = rectB.left + rectB.width() / 2;
             *lprect = rect;
@@ -336,7 +336,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &list_header::_001OnMouseMove);
    }
 
-   void list_header::_001OnLButtonDown(gen::signal_object * pobj) 
+   void list_header::_001OnLButtonDown(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point ptCursor = pmouse->m_pt;
@@ -345,11 +345,11 @@ namespace user
       {
          m_bLButtonDown = true;
       }
-      
+
       pmouse->m_bRet = false;
    }
 
-   void list_header::_001OnLButtonUp(gen::signal_object * pobj) 
+   void list_header::_001OnLButtonUp(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       list * plist = m_plistctrlinterface;
@@ -399,13 +399,13 @@ namespace user
 
          }
       }
-      
+
       pmouse->m_bRet = false;
    }
 
 
 
-   void list_header::_001OnMouseMove(gen::signal_object * pobj) 
+   void list_header::_001OnMouseMove(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point ptCursor = pmouse->m_pt;
@@ -455,18 +455,26 @@ namespace user
       if(m_bHover
          && m_eelementHover == ElementDivider)
       {
-         SetCursor(::LoadCursor(NULL, IDC_SIZEWE));
+#ifdef WINDOWSEX
+      ::SetCursor(::LoadCursor(NULL, IDC_SIZEWE));
+#else
+      throw todo(get_app());
+#endif
       }
       else
       {
-         SetCursor(::LoadCursor(NULL, IDC_ARROW));
+#ifdef WINDOWSEX
+      ::SetCursor(::LoadCursor(NULL, IDC_ARROW));
+#else
+      throw todo(get_app());
+#endif
       }
 
       pmouse->m_bRet = false;
    }
 
 
-   void list_header::_001OnLButtonDblClk(gen::signal_object * pobj) 
+   void list_header::_001OnLButtonDblClk(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point ptCursor = pmouse->m_pt;
@@ -475,8 +483,8 @@ namespace user
       EElement eelement;
       index iItem;
       if(hit_test(
-         ptCursor, 
-         eelement, 
+         ptCursor,
+         eelement,
          iItem)
          )
       {
@@ -485,13 +493,13 @@ namespace user
             plist->_001OnListHeaderItemDblClk(iItem);
          }
       }
-      
+
       pmouse->m_bRet = false;
    }
 
    void list_header::_001OnDraw(::ca::graphics *pdc)
    {
-      
+
       rect rectClient;
 
       GetClientRect(rectClient);

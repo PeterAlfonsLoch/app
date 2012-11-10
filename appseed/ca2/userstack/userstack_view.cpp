@@ -181,7 +181,7 @@ namespace userstack
          return;
       }
 
-      m_ppaneview = dynamic_cast < pane_view * > (create_view(System.template type_info < pane_view > (), get_document(), this, 102));
+      m_ppaneview = dynamic_cast < pane_view * > (create_view(System.type_info < pane_view > (), get_document(), this, 102));
 
 
    }
@@ -203,7 +203,11 @@ namespace userstack
 
    void view::_001OnSetCursor(gen::signal_object * pobj)
    {
+#ifdef WINDOWSEX
       ::SetCursor(::LoadCursor(NULL, IDC_ARROW));
+#else
+      throw todo(get_app());
+#endif
 
       pobj->previous();
    }

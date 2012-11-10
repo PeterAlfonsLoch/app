@@ -21,7 +21,7 @@ namespace ca8
 
       m_dwAlive = ::GetTickCount();
 
-      if(!ca2::fs::application::initialize1())     
+      if(!ca2::fs::application::initialize1())
          return false;
 
       return true;
@@ -36,12 +36,12 @@ namespace ca8
       {
          System.factory().creatable_small < keyboard_layout > ();
       }
-      
+
       m_pshellimageset = new filemanager::_shell::ImageSet(this);
 
 
 
-      if(!::ca2::fs::application::initialize())     
+      if(!::ca2::fs::application::initialize())
          return false;
 
 
@@ -57,7 +57,7 @@ namespace ca8
    string application::message_box(const char * pszMatter, gen::property_set & propertyset)
    {
       class message_box box(this);
-      box.show(pszMatter, propertyset);
+      box.show(pszMatter, &propertyset);
       return box.m_strResponse;
    }
 
@@ -79,18 +79,18 @@ namespace ca8
       }
       try
       {
-         if(!box.show(strMatter, propertyset))
+         if(!box.show(strMatter, &propertyset))
          {
             string strMessage = pszMessage;
             strMessage.replace("<br>", "\r\n");
-            return MessageBox(pwndOwner == NULL ? NULL : pwndOwner->get_handle(), strMessage, m_strAppName, fuStyle);
+            return MessageBox(pwndOwner == NULL ? (oswindow) ::ca::null() : pwndOwner->get_handle(), strMessage, m_strAppName, fuStyle);
          }
       }
       catch(...)
       {
          string strMessage = pszMessage;
          strMessage.replace("<br>", "\r\n");
-         return MessageBox(pwndOwner == NULL ? NULL : pwndOwner->get_handle(), strMessage, m_strAppName, fuStyle);
+         return MessageBox(pwndOwner == NULL ? (oswindow) ::ca::null() : pwndOwner->get_handle(), strMessage, m_strAppName, fuStyle);
       }
       if(box.m_strResponse == "ok")
       {

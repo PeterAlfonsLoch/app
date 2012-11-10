@@ -71,7 +71,7 @@ namespace platform
    }
 
 
-   void frame::_001OnTimer(gen::signal_object * pobj) 
+   void frame::_001OnTimer(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
@@ -203,7 +203,7 @@ namespace platform
          track_mouse_hover();
       }
       if(m_bMouseLeaveTimer)
-      {  
+      {
          m_bMouseLeaveTimer = false;
          KillTimer(4321875);
       }
@@ -242,7 +242,7 @@ namespace platform
       }
       ShowWindow(SW_HIDE);
       //super_dock_on_bergedge();
-   }  
+   }
 
    void frame::super_dock_on_bergedge()
    {
@@ -287,7 +287,7 @@ namespace platform
    {
 
       ::uinteraction::frame::frame * pframe = Application.get_frame_schema("app-core/uinteraction", "005");
-      pframe->m_typeinfoControlBoxButton = System.template type_info < MetaButton > ();
+      pframe->m_typeinfoControlBoxButton = System.type_info < MetaButton > ();
       pframe->set_style("StyleTranslucidWarmGray");
       return pframe;
 

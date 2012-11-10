@@ -19,10 +19,10 @@ namespace filehandler
 
    void application::construct()
    {
-      
+
       m_strAppName         = "default_file_handler";
       m_strBaseSupportId   = "default_file_handler";
-      m_strInstallToken    = "default_file_handler";    
+      m_strInstallToken    = "default_file_handler";
       m_bLicense           = false;
 
    }
@@ -30,7 +30,7 @@ namespace filehandler
    bool application::initialize_instance()
    {
 
-         
+
       System.factory().creatable_small < pane_view >();
       System.factory().creatable_small < document >();
       System.factory().creatable_small < frame >();
@@ -44,9 +44,9 @@ namespace filehandler
       ::userbase::single_document_template* pdoctemplate = new ::userbase::single_document_template(
          this,
          "html/frame",
-         System.template type_info < document > (),
-         System.template type_info < frame > (),       // main SDI frame ::ca::window
-         System.template type_info < pane_view > ());
+         System.type_info < document > (),
+         System.type_info < frame > (),       // main SDI frame ::ca::window
+         System.type_info < pane_view > ());
       userbase::application::add_document_template(pdoctemplate);
       m_ptemplateMenu = pdoctemplate;
 
@@ -61,13 +61,13 @@ namespace filehandler
 
       try
       {
-         
+
          iExitCode = ::cubebase::application::exit_instance();
 
       }
       catch(...)
       {
-         
+
          iExitCode = -1;
 
       }

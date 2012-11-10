@@ -27,9 +27,9 @@ namespace platform
       pDocTemplate = new ::userbase::single_document_template(
          this,
          "system/form",
-         System.template type_info < document > (),
-         System.template type_info < frame > (),       // main SDI frame ::ca::window
-         System.template type_info < pane_view > ());
+         System.type_info < document > (),
+         System.type_info < frame > (),       // main SDI frame ::ca::window
+         System.type_info < pane_view > ());
       userbase::application::add_document_template(pDocTemplate);
       m_ptemplate_html = pDocTemplate;
 
@@ -71,7 +71,7 @@ namespace platform
    }
 
    void application::OnFileManagerOpenFile(
-      ::filemanager::data * pdata, 
+      ::filemanager::data * pdata,
       ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);

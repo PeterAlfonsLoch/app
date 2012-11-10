@@ -58,7 +58,7 @@ namespace filemanager
       m_bDelayedListUpdate = false;
 
 
-      
+
 
    }
 
@@ -375,7 +375,7 @@ namespace filemanager
                   }
                }
             }
-            
+
          }
          strNew.Empty();
          if(pitem != NULL)
@@ -383,7 +383,7 @@ namespace filemanager
             pitemBase = pitem;
             continue;
          }
-         else 
+         else
          {
             // pitem == NULL
             if(i == 0)
@@ -532,7 +532,7 @@ namespace filemanager
       {
 
          string strPathOld = ((::fs::tree_item *) pitem->m_pitemdata)->m_strPath;
-         
+
          strPathOld.trim_right("/\\");
 
          if(!straNew.contains(strPathOld) || !GetFileManager()->get_fs_data()->is_dir(strPathOld))
@@ -869,7 +869,7 @@ namespace filemanager
 
    void SimpleFolderTreeInterface::_001OnItemExpand(::ex1::tree_item * pitem)
    {
-      if(typeid(*pitem->m_pitemdata) == System.template type_info < ::fs::tree_item > ())
+      if(typeid(*pitem->m_pitemdata) == System.type_info < ::fs::tree_item > ())
       {
          _017UpdateList(((::fs::tree_item *)pitem->m_pitemdata)->m_strPath, pitem, 1);
       }
@@ -933,7 +933,7 @@ namespace filemanager
    {
 
       SCAST_PTR(::gen::message::timer, ptimer, pobj);
-      
+
       switch(ptimer->m_nIDEvent)
       {
          case TimerDelayedListUpdate:
@@ -971,7 +971,7 @@ namespace filemanager
 
    void filemanager::SimpleFolderTreeInterface::_DelayedListUpdate()
    {
-      
+
       single_lock sl(&m_mutexMissinUpdate, TRUE);
 
       if(m_straMissingUpdate.get_size() == 0)

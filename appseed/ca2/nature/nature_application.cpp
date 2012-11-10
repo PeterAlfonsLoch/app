@@ -37,9 +37,9 @@ namespace nature
       pDocTemplate = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         System.template type_info < document > (),
-         System.template type_info < frame > (),       // main SDI frame ::ca::window
-         System.template type_info < pane_view > ());
+         System.type_info < document > (),
+         System.type_info < frame > (),       // main SDI frame ::ca::window
+         System.type_info < pane_view > ());
       userbase::application::add_document_template(pDocTemplate);
       m_ptemplate_html = pDocTemplate;
 
@@ -71,14 +71,14 @@ namespace nature
 
 
    bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
-         
+
    {
       return gen::application::_001OnCmdMsg(pcmdmsg);
    }
 
    bool application::InitializeLocalDataCentral()
    {
-      
+
       m_pdatabase = new nature::database(this);
 
       if(m_pdatabase == NULL)

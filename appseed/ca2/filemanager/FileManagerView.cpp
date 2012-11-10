@@ -34,7 +34,7 @@ void FileManagerAView::dump(dump_context & dumpcontext) const
 #endif //DEBUG
 
 
-void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != NULL)
@@ -104,7 +104,7 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::radix::object
                {
                   //::ca::create_context cc;
                   //cc.m_usercreatecontext.m_pCurrentDoc = get_document();
-                  //cc.m_usercreatecontext.m_typeinfoNewView =  System.template type_info < FileManagerSaveAsView > ();
+                  //cc.m_usercreatecontext.m_typeinfoNewView =  System.type_info < FileManagerSaveAsView > ();
                   //cc.m_usercreatecontext.m_pCurrentFrame = this;
 
                   FileManagerSaveAsView * ptopview = create_view < FileManagerSaveAsView > ();
@@ -114,9 +114,9 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::radix::object
                   }
                   ptopview->m_pfilemanagerinterface = GetFileManager();
                   InsertPaneAt(0, ptopview, true);
-                  string strName = 
-                     System.file().title_(GetFileManager()->get_filemanager_data()->m_pdocumentSave->get_path_name()) 
-                  + " - " + System.datetime().international().get_gmt_date_time() 
+                  string strName =
+                     System.file().title_(GetFileManager()->get_filemanager_data()->m_pdocumentSave->get_path_name())
+                  + " - " + System.datetime().international().get_gmt_date_time()
                   + "." + System.file().extension(GetFileManager()->get_filemanager_data()->m_pdocumentSave->get_path_name());
                   strName.replace(":", "-");
                   strName = System.dir().path(GetFileManager()->get_item().m_strPath, strName);
@@ -139,7 +139,7 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::radix::object
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypeSaveAsOK))
             {
                ASSERT(GetFileManager()->get_filemanager_data()->m_pdocumentSave != NULL);
-               
+
                string strPath = puh->m_strPath;
                if(strPath.is_empty())
                {
@@ -172,9 +172,9 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::radix::object
                      bSave = false;
                   }
                }
-            
+
                FileManagerViewUpdateHint uh;
-            
+
                if(bSave)
                {
                   if(GetFileManager()->get_filemanager_data()->m_pdocumentSave->do_save(strPath))
@@ -205,13 +205,13 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::radix::object
          }
       }
    }
-   
+
    FileManagerTabView * ptabview = GetParentFrame()->GetTypedParent < FileManagerTabView > ();
    if(ptabview != NULL)
    {
       ptabview->on_update(this, lHint, phint);
    }
-   
+
 }
 
 void FileManagerAView::CreateViews()
@@ -219,10 +219,10 @@ void FileManagerAView::CreateViews()
    SetPaneCount(2);
 
    SetSplitOrientation(orientation_horizontal);
-  
+
    set_position(0, 24);
 
-   
+
 
    FileManagerPathView * ptopview = create_view < FileManagerPathView > ();
    if(ptopview == NULL)
@@ -284,7 +284,7 @@ void FileManagerView::dump(dump_context & dumpcontext) const
 
 
 
-void FileManagerView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+void FileManagerView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != NULL)
@@ -316,7 +316,7 @@ void FileManagerView::on_update(::view * pSender, LPARAM lHint, ::radix::object*
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypeOpenSelectionProperties))
             {
-               OpenSelectionProperties(); 
+               OpenSelectionProperties();
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypePop))
             {
@@ -359,8 +359,8 @@ void FileManagerView::on_update(::view * pSender, LPARAM lHint, ::radix::object*
          }
       }
    }
-   
-   
+
+
 }
 
 void FileManagerView::CreateViews()
@@ -368,10 +368,10 @@ void FileManagerView::CreateViews()
    SetPaneCount(2);
 
    SetSplitOrientation(orientation_vertical);
-  
+
    set_position_rate(0, 0.3);
 
-   
+
 
    FileManagerLeftView * pleftview = create_view < FileManagerLeftView > ();
 
@@ -383,7 +383,7 @@ void FileManagerView::CreateViews()
    pleftview->CreateViews();
 
    m_pfilelist = create_view < filemanager::SimpleFileListView > ();
-   
+
    if(m_pfilelist == NULL)
    {
       System.simple_message_box(NULL, "Could not create file list ::view");
@@ -421,7 +421,7 @@ bool FileManagerView::_001OnCommand(id id)
          layout();
          m_ppreview->ShowWindow(SW_HIDE);
       }
-      else 
+      else
       {
          SetPane(1, m_ppreview, false);
          layout();
@@ -429,6 +429,6 @@ bool FileManagerView::_001OnCommand(id id)
       }
       return true;
    }
-   return false;   
+   return false;
 }
 

@@ -5,7 +5,7 @@
 namespace calculator
 {
 
-   view::view(::ca::application * papp) : 
+   view::view(::ca::application * papp) :
       ca(papp),
       ::user::interaction(papp),
       ::userbase::view(papp)
@@ -65,15 +65,19 @@ namespace calculator
 
    bool view::pre_create_window(CREATESTRUCT& cs)
    {
+#ifdef WINDOWSEX
       cs.lpszClass = System.RegisterWndClass(
          CS_DBLCLKS |
          CS_OWNDC,
          0, 0, 0);
+#else
+      throw todo(get_app());
+#endif
       cs.style &= ~WS_EX_CLIENTEDGE;
       return ::userbase::view::pre_create_window(cs);
    }
 
-   void view::_001OnInitialUpdate(gen::signal_object * pobj) 
+   void view::_001OnInitialUpdate(gen::signal_object * pobj)
    {
       ::userbase::view::_001OnInitialUpdate(pobj);
 
@@ -85,7 +89,7 @@ namespace calculator
       return this;
    }
 
-   void view::on_update(::view* pSender, LPARAM lHint, ::radix::object* phint) 
+   void view::on_update(::view* pSender, LPARAM lHint, ::radix::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -96,7 +100,7 @@ namespace calculator
    {
       return this;
    }
-   void view::_001OnDestroy(gen::signal_object * pobj) 
+   void view::_001OnDestroy(gen::signal_object * pobj)
    {
       ::userbase::view::_001OnDestroy(pobj);
 
@@ -104,13 +108,13 @@ namespace calculator
 
 
 
-   void view::_001OnSize(gen::signal_object * pobj) 
+   void view::_001OnSize(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 
    }
 
-   void view::_001OnPaint(gen::signal_object * pobj) 
+   void view::_001OnPaint(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //CPaintDC spgraphics(this); // device context for calculatoring
@@ -143,14 +147,14 @@ namespace calculator
       //pdc->TextOut(20, 110, "Assinado Camilo Sasuke Tsumanuma.");
    }
 
-   void view::_001OnCreate(gen::signal_object * pobj) 
+   void view::_001OnCreate(gen::signal_object * pobj)
    {
       if(pobj->previous())
          return;
 
 
    }
-   void view::_001OnContextMenu(gen::signal_object * pobj) 
+   void view::_001OnContextMenu(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
          point point = pcontextmenu->GetPoint();
@@ -194,10 +198,14 @@ namespace calculator
    }*/
 
 
-   void view::_001OnSetCursor(gen::signal_object * pobj) 
+   void view::_001OnSetCursor(gen::signal_object * pobj)
    {
-      ::SetCursor(::LoadCursor(NULL, IDC_ARROW));
 
+#ifdef WINDOWSEX
+      ::SetCursor(::LoadCursor(NULL, IDC_ARROW));
+#else
+      throw todo(get_app());
+#endif
       pobj->previous();
    }
 

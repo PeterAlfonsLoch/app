@@ -41,9 +41,9 @@ namespace nature
    }
 #endif //DEBUG
 
-   void appearance_view::_001OnCreate(gen::signal_object * pobj) 
+   void appearance_view::_001OnCreate(gen::signal_object * pobj)
    {
-      
+
       if(pobj->previous())
          return;
 
@@ -54,7 +54,7 @@ namespace nature
    }
 
 
-   void appearance_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint) 
+   void appearance_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -72,15 +72,15 @@ namespace nature
    }
 
 
-   void appearance_view::_001OnSize(gen::signal_object * pobj) 
+   void appearance_view::_001OnSize(gen::signal_object * pobj)
    {
       if(pobj->previous())
          return;
    }
 
-   bool appearance_view::pre_create_window(CREATESTRUCT& cs) 
+   bool appearance_view::pre_create_window(CREATESTRUCT& cs)
    {
-      cs.dwExStyle &= ~WS_EX_CLIENTEDGE;   
+      cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
       return ::userbase::view::pre_create_window(cs);
    }
@@ -100,7 +100,7 @@ namespace nature
          ASSERT(FALSE);
          break;
       }
-      
+
    }
 
    void appearance_view::on_create_view(::user::view_creator_data * pcreatordata)
@@ -108,7 +108,7 @@ namespace nature
       filemanager::application & filemanagerapp = dynamic_cast < filemanager::application & > (System);
       folder_selection_list_view * pview;
       pview = dynamic_cast < folder_selection_list_view * > (::view::create_view(
-         System.template type_info < folder_selection_list_view > (), 
+         System.type_info < folder_selection_list_view > (),
          get_document(),
          this,
          pcreatordata->m_id));

@@ -106,7 +106,7 @@ namespace filemanager
 
             string strPath = stra[i];
             string strName = System.file().title_(strPath);
-            
+
 
             item.m_iImage = -1;
             item.m_strPath = strPath;
@@ -488,7 +488,7 @@ namespace filemanager
       {
          control.m_bTransparent = true;
          control.set_type(user::control::type_button);
-         control.m_typeinfo = System.template type_info < BaseButtonControl > ();
+         control.m_typeinfo = System.type_info < BaseButtonControl > ();
          control.m_id = 1000 + i;
          control.add_function(user::control::function_action);
          index iControl = _001AddControl(control);
@@ -536,7 +536,7 @@ namespace filemanager
       //pcontrol->descriptor().m_id = _vms::FILE_MANAGER_ID_FILE_NAME;
       control.set_data_type(user::control::DataTypeString);
       control.add_function(user::control::function_vms_data_edit);
-      //control.m_typeinfo = System.template type_info < simple_edit_plain_text > ();
+      //control.m_typeinfo = System.type_info < simple_edit_plain_text > ();
       control.m_typeinfo.name("");
       control.m_iSubItem = i;
       control.m_id = 1000 + i;

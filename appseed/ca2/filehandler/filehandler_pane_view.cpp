@@ -27,25 +27,25 @@ namespace filehandler
       /*   ::userbase::single_document_template* pdoctemplate;
       pdoctemplate = new ::userbase::single_document_template(
       IDR_ALBUM,
-      System.template type_info < MediaLibraryDoc > (),
-      System.template type_info < MediaLibraryChildFrame > (),
-      System.template type_info < ::mplite::library::view > ());
+      System.type_info < MediaLibraryDoc > (),
+      System.type_info < MediaLibraryChildFrame > (),
+      System.type_info < ::mplite::library::view > ());
       m_pdoctemplateAlbum = pdoctemplate;
 
       pdoctemplate = new ::userbase::single_document_template(
       IDR_ALBUM,
-      System.template type_info < OptionsDoc > (),
-      System.template type_info < OptionsChildFrame > (),
-      System.template type_info < OptionsView > ());
+      System.type_info < OptionsDoc > (),
+      System.type_info < OptionsChildFrame > (),
+      System.type_info < OptionsView > ());
 
 
       m_pdoctemplateOptions = pdoctemplate;
 
       pdoctemplate = new ::userbase::single_document_template(
       IDR_ALBUM,
-      System.template type_info < GoodMixerDoc > (),
-      System.template type_info < simple_child_frame > (),
-      System.template type_info < MixerMainView > ());
+      System.type_info < GoodMixerDoc > (),
+      System.type_info < simple_child_frame > (),
+      System.type_info < MixerMainView > ());
 
       m_pdoctemplateAudioControl = pdoctemplate;*/
 
@@ -73,7 +73,7 @@ namespace filehandler
    /////////////////////////////////////////////////////////////////////////////
    // pane_view message handlers
 
-   void pane_view::_001OnCreate(gen::signal_object * pobj) 
+   void pane_view::_001OnCreate(gen::signal_object * pobj)
    {
       if(pobj->previous())
          return;
@@ -87,7 +87,7 @@ namespace filehandler
    }
 
 
-   void pane_view::on_update(::view* pSender, LPARAM lHint, ::radix::object* pHint) 
+   void pane_view::on_update(::view* pSender, LPARAM lHint, ::radix::object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -134,9 +134,9 @@ namespace filehandler
 
 
 
-   bool pane_view::pre_create_window(CREATESTRUCT& cs) 
+   bool pane_view::pre_create_window(CREATESTRUCT& cs)
    {
-      cs.dwExStyle &= ~WS_EX_CLIENTEDGE;   
+      cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
       return ::userbase::view::pre_create_window(cs);
    }
@@ -193,7 +193,7 @@ namespace filehandler
             }*/
             /*         create_context cc;
             cc.m_pCurrentDoc = get_document();
-            cc.m_typeinfoNewView =  System.template type_info < rtprx::view > ();
+            cc.m_typeinfoNewView =  System.type_info < rtprx::view > ();
 
             ::userbase::view * pview = dynamic_cast < ::userbase::view * > (CreateView(&cc, 101, this));
             if(pview != NULL)

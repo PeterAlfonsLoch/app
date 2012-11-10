@@ -63,7 +63,7 @@ namespace userex
          {
             //create_context cc;
             //cc.m_pCurrentDoc = get_document();
-            //cc.m_typeinfoNewView = System.template type_info < ::userbase::menu_list_view > ();
+            //cc.m_typeinfoNewView = System.type_info < ::userbase::menu_list_view > ();
 
             ::userbase::view * pview = create_view < userbase::view > ();
             if(pview != NULL)

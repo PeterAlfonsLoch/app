@@ -13,13 +13,13 @@ namespace nature
    {
 
       m_etranslucency      = TranslucencyPresent;
-      
+
       m_pdoctemplateAppearance = new ::userbase::single_document_template(
          get_app(),
          "nature/appearance",
-         System.template type_info < ::userbase::document > (),
-         System.template type_info < simple_child_frame > (),
-         System.template type_info < appearance_view > ());
+         System.type_info < ::userbase::document > (),
+         System.type_info < simple_child_frame > (),
+         System.type_info < appearance_view > ());
 
    }
 
@@ -40,12 +40,12 @@ namespace nature
 #endif //DEBUG
 
 
-   void pane_view::_001OnCreate(gen::signal_object * pobj) 
+   void pane_view::_001OnCreate(gen::signal_object * pobj)
    {
       //SCAST_PTR(::gen::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
-      
+
       ::user::tab::get_data()->m_iHeightAddUp = 5;
 
 
@@ -58,7 +58,7 @@ namespace nature
 
       set_cur_tab_by_id(nature::PaneViewDevEdge);
 
-      
+
 
 
 
@@ -78,9 +78,9 @@ namespace nature
          {
 //            create_context cc;
   //          cc.m_pCurrentDoc = get_document();
-    //        cc.m_typeinfoNewView =  System.template type_info < ::userbase::menu_list_view > ();
+    //        cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
 
-            ::userbase::menu_list_view * pview = dynamic_cast < ::userbase::menu_list_view * > (view::create_view(System.template type_info < ::userbase::menu_list_view > (), get_document(), this, 101));
+            ::userbase::menu_list_view * pview = dynamic_cast < ::userbase::menu_list_view * > (view::create_view(System.type_info < ::userbase::menu_list_view > (), get_document(), this, 101));
             if(pview != NULL)
             {
                ::userbase::menu_list_view * pmenuview = (::userbase::menu_list_view *) pview;
@@ -91,10 +91,10 @@ namespace nature
             }
          }
          break;
-         
+
    /*         create_context cc;
             cc.m_pCurrentDoc = get_document();
-            cc.m_typeinfoNewView =  System.template type_info < ::userbase::menu_list_view > ();
+            cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
 
             ::userex::pane_tab_view * pview = dynamic_cast < ::userex::pane_tab_view * > (CreateView(&cc, 101, this));
             if(pview != NULL)
@@ -111,9 +111,9 @@ namespace nature
          {
 //            create_context cc;
   //          cc.m_pCurrentDoc = get_document();
-    //        cc.m_typeinfoNewView =  System.template type_info < nature::view > ();
+    //        cc.m_typeinfoNewView =  System.type_info < nature::view > ();
 
-            ::user::interaction * pview = dynamic_cast < ::user::interaction * > (view::create_view(System.template type_info < nature::view > (), get_document(), this, 101));
+            ::user::interaction * pview = dynamic_cast < ::user::interaction * > (view::create_view(System.type_info < nature::view > (), get_document(), this, 101));
             if(pview != NULL)
             {
                pcreatordata->m_pdoc = get_document();
@@ -123,7 +123,7 @@ namespace nature
          break;
       case PaneViewAppearance:
          {
-            ::userbase::document * pdoc = dynamic_cast < ::userbase::document * > (m_pdoctemplateAppearance->open_document_file(::ca::create_context_sp()));   
+            ::userbase::document * pdoc = dynamic_cast < ::userbase::document * > (m_pdoctemplateAppearance->open_document_file(::ca::create_context_sp()));
             if(pdoc != NULL)
             {
                ::view * pview = pdoc->get_view();
@@ -143,7 +143,7 @@ namespace nature
    /*   case PaneViewPlaylist:
          {
             ::mediaplaylist::document * pdoc = ((MusicalPlayerLightApp *) &System)->GetPlaylistCentral().GetCurrentPlaylist(true, false);
-            
+
             if(pdoc != NULL)
             {
                MusicalPlayerLightDoc * pplayerdoc = (MusicalPlayerLightDoc *) get_document();
@@ -172,7 +172,7 @@ namespace nature
          break;
       case PaneViewMediaLibrary:
          {
-            MediaLibraryDoc * pdoc = (MediaLibraryDoc *) m_pdoctemplateAlbum->open_document_file(NULL, FALSE);   
+            MediaLibraryDoc * pdoc = (MediaLibraryDoc *) m_pdoctemplateAlbum->open_document_file(NULL, FALSE);
             if(pdoc != NULL)
             {
                POSITION pos = pdoc->get_view_count();
@@ -199,7 +199,7 @@ namespace nature
          break;
       case PaneViewAudioControl:
          {
-            GoodMixerDoc * pdoc = (GoodMixerDoc *) m_pdoctemplateAudioControl->open_document_file(NULL, FALSE);   
+            GoodMixerDoc * pdoc = (GoodMixerDoc *) m_pdoctemplateAudioControl->open_document_file(NULL, FALSE);
             if(pdoc != NULL)
             {
                POSITION pos = pdoc->get_view_count();
@@ -226,7 +226,7 @@ namespace nature
          break;
       case PaneViewOptions:
          {
-            OptionsDoc * pdoc = (OptionsDoc *) m_pdoctemplateOptions->open_document_file(NULL, FALSE);   
+            OptionsDoc * pdoc = (OptionsDoc *) m_pdoctemplateOptions->open_document_file(NULL, FALSE);
             if(pdoc != NULL)
             {
                POSITION pos = pdoc->get_view_count();
@@ -277,7 +277,7 @@ namespace nature
 
    }
 
-   void pane_view::on_show_view() 
+   void pane_view::on_show_view()
    {
       ::userex::pane_tab_view::on_show_view();
       if(m_pviewdata->m_id == nature::PaneViewIdioma)
@@ -289,7 +289,7 @@ namespace nature
       }
    }
 
-   void pane_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint) 
+   void pane_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);

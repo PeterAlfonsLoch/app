@@ -22,7 +22,7 @@ namespace user
 
    void check_box::_001SetCheck(check::e_check echeck, bool bUser)
    {
-      if(echeck != check::unchecked 
+      if(echeck != check::unchecked
       && echeck != check::checked
       && echeck != check::tristate)
       {
@@ -65,7 +65,7 @@ namespace user
             pdc->FillSolidRect(rectCheckBox, ARGB(255, 220, 220, 220));
          }
          pdc->Draw3dRect(rectCheckBox, ARGB(255, 128, 128, 128), ARGB(255, 128, 128, 128));
-         if(m_echeck == check::tristate 
+         if(m_echeck == check::tristate
          || m_echeck == check::checked)
          {
             ::ca::pen_sp pen(get_app());
@@ -80,23 +80,23 @@ namespace user
          }
       }
       pdc->OffsetViewportOrg(-rectClient.left, -rectClient.top);
-      
+
    }
 
 
-   void check_box::_001OnTimer(gen::signal_object * pobj) 
+   void check_box::_001OnTimer(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //SCAST_PTR(::gen::message::timer, ptimer, pobj)
    }
 
-   void check_box::_001OnKeyDown(gen::signal_object * pobj) 
+   void check_box::_001OnKeyDown(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::gen::message::key, pkey, pobj)
    }
 
-   void check_box::_001OnKeyUp(gen::signal_object * pobj) 
+   void check_box::_001OnKeyUp(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_SPACE)
@@ -111,7 +111,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       m_bMouseDown = true;
-      
+
    }
    void check_box::_001OnLButtonUp(gen::signal_object * pobj)
    {
@@ -132,7 +132,11 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
-      ::SetCursor(::LoadCursor(NULL, IDC_IBEAM));
+#ifdef WINDOWSEX
+      ::SetCursor(::LoadCursor(NULL, IDC_BEAM));
+#else
+      throw todo(get_app());
+#endif
    }
 
    void check_box::install_message_handling(::gen::message::dispatch * pinterface)

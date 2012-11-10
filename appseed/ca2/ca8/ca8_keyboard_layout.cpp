@@ -151,7 +151,7 @@ namespace ca8
             ptext->_001GetText(strServer);
             if(strServer.get_length() == 0)
             {
-               ::DeleteFile(System.dir().appdata("proxy.xml"));
+               System.file().del(System.dir().appdata("proxy.xml"));
             }
             else
             {

@@ -120,10 +120,14 @@ void view::Dump(CDumpContext& dc) const
 
 BOOL view::PreCreateWindow(CREATESTRUCT& cs)
 {
-   cs.lpszClass = AfxRegisterWndClass(
-		CS_DBLCLKS |
-		CS_OWNDC,
-		0, 0, 0);
+#ifdef WINDOWSEX
+      cs.lpszClass = Application.RegisterWndClass(
+		   CS_DBLCLKS |
+		   CS_OWNDC,
+		   0, 0, 0);
+#else
+      throw todo(get_app());
+#endif
    cs.style &= ~WS_EX_CLIENTEDGE;
 	return BaseView::PreCreateWindow(cs);
 }
@@ -159,7 +163,7 @@ void view::OnEndPrinting(CDC* pDC, CPrintInfo* pInfo)
 
 /////////////////////////////////////////////////////////////////////////////
 // view message handlers
-void view::_001OnInitialUpdate(gen::signal_object * pobj) 
+void view::_001OnInitialUpdate(gen::signal_object * pobj)
 {
    BaseView::_001OnInitialUpdate(pobj);
 
@@ -184,7 +188,7 @@ base_wnd * view::_001GetWnd()
    return this;
 }
 
-void view::OnUpdate(BaseView* pSender, LPARAM lHint, base_object* phint) 
+void view::OnUpdate(BaseView* pSender, LPARAM lHint, base_object* phint)
 {
    if(phint != NULL)
    {
@@ -219,14 +223,14 @@ void view::OnUpdate(BaseView* pSender, LPARAM lHint, base_object* phint)
          }
       }
    }
-	
-	
+
+
 }
 base_wnd * view::BackViewGetWnd()
 {
    return this;
 }
-void view::_001OnDestroy(gen::signal_object * pobj) 
+void view::_001OnDestroy(gen::signal_object * pobj)
 {
 	BaseView::OnDestroy();
 
@@ -234,7 +238,7 @@ void view::_001OnDestroy(gen::signal_object * pobj)
 
 
 
-void view::_001OnSize(gen::signal_object * pobj) 
+void view::_001OnSize(gen::signal_object * pobj)
 {
    SCAST_PTR(igui::win::message::size, psize, pobj)
 
@@ -273,10 +277,10 @@ void view::_001OnSize(gen::signal_object * pobj)
    LayoutKaraokeBouncingBall();*/
 }
 
-void view::_001OnPaint(gen::signal_object * pobj) 
+void view::_001OnPaint(gen::signal_object * pobj)
 {
 	CPaintDC dc(this); // device context for painting
-   
+
 
    dc.TextOut(20, 20, "Carlos Gustavo Cecyn Lundgren é minha Vida Eterna, meu Coração Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!");
 }
@@ -305,11 +309,11 @@ void view:: _001OnDraw(CDC * pdc)
    //pdc->TextOut(20, 110, "Assinado Camilo Sasuke Tsumanuma.");
 }
 
-void view::_001OnCreate(gen::signal_object * pobj) 
+void view::_001OnCreate(gen::signal_object * pobj)
 {
    if(pobj->previous())
       return;
-   
+
    /*GetDocument()->m_document.m_pnd = this;
    GetDocument()->m_document.m_pguie = this;
    GetDocument()->m_document.m_papp = get_app();
@@ -317,11 +321,11 @@ void view::_001OnCreate(gen::signal_object * pobj)
 */
 
 }
-void view::_001OnContextMenu(gen::signal_object * pobj) 
+void view::_001OnContextMenu(gen::signal_object * pobj)
 {
    SCAST_PTR(igui::win::message::context_menu, pcontextmenu, pobj)
    point point = pcontextmenu->GetPoint();
-	
+
 }
 
 
@@ -368,13 +372,17 @@ void view::_001OnViewEncoding(gen::signal_object * pobj)
 }*/
 
 
-void view::_001OnSetCursor(gen::signal_object * pobj) 
+void view::_001OnSetCursor(gen::signal_object * pobj)
 {
-   ::SetCursor(::LoadCursor(NULL, IDC_ARROW));
-	
+#ifdef WINDOWSEX
+      ::SetCursor(::LoadCursor(NULL, IDC_ARROW));
+#else
+      throw todo(get_app());
+#endif
+
 	pobj->previous();
 }
-void view::_001OnEraseBkgnd(gen::signal_object * pobj) 
+void view::_001OnEraseBkgnd(gen::signal_object * pobj)
 {
    SCAST_PTR(igui::win::message::erase_bkgnd, perasebkgnd, pobj)
    perasebkgnd->m_bRet = true;

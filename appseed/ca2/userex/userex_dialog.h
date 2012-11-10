@@ -28,9 +28,9 @@ public:
 
    virtual void EndModalLoop(id nResult);
 
-   virtual bool show(const char * pszMatter = NULL, gen::property_set & propertyset = gen::property_set());
-   
-   virtual void on_show(const char * pszMatter, gen::property_set & propertyset);
+   virtual bool show(const char * pszMatter = NULL, gen::property_set * ppropertyset = NULL);
+
+   virtual void on_show(const char * pszMatter, gen::property_set * ppropertyset);
 
 
 

@@ -72,7 +72,7 @@ FileManagerTemplate::~FileManagerTemplate()
       pdoc->get_filemanager_data()->m_ptemplate       = this;
       pdoc->get_filemanager_data()->m_iTemplate       = m_iTemplate;
       pdoc->get_filemanager_data()->m_iDocument       = m_iNextDocument++;
-      
+
       return pdoc;
    }
    return NULL;
@@ -158,28 +158,28 @@ void FileManagerTemplate::Initialize(::ca::application * papp, int iTemplate, co
    m_pdoctemplateMain = new ::userbase::multiple_document_template(
       papp,
       pszMatter,
-      System.template type_info < ::filemanager::document > (),
-      System.template type_info < FileManagerMainFrame > (),       // main SDI frame ::ca::window
-      System.template type_info < FileManagerTabView > ());
+      System.type_info < ::filemanager::document > (),
+      System.type_info < FileManagerMainFrame > (),       // main SDI frame ::ca::window
+      System.type_info < FileManagerTabView > ());
 
    m_pdoctemplate = new ::userbase::multiple_document_template(
       papp,
       pszMatter,
-      System.template type_info < ::filemanager::document > (),
-      System.template type_info < FileManagerFrame > (),
-      System.template type_info < FileManagerAView > ());
+      System.type_info < ::filemanager::document > (),
+      System.type_info < FileManagerFrame > (),
+      System.type_info < FileManagerAView > ());
 
    m_pdoctemplateChild = new ::userbase::multiple_document_template(
       papp,
       pszMatter,
-      System.template type_info < ::filemanager::document > (),
-      System.template type_info < FileManagerChildFrame > (),
-      System.template type_info < FileManagerAView > ());
+      System.type_info < ::filemanager::document > (),
+      System.type_info < FileManagerChildFrame > (),
+      System.type_info < FileManagerAView > ());
 
    m_pdoctemplateChildList = new ::userbase::multiple_document_template(
       papp,
       pszMatter,
-      System.template type_info < ::filemanager::document > (),
-      System.template type_info < FileManagerChildFrame > (),
-      System.template type_info < filemanager::SimpleFileListView > ());
+      System.type_info < ::filemanager::document > (),
+      System.type_info < FileManagerChildFrame > (),
+      System.type_info < filemanager::SimpleFileListView > ());
 }

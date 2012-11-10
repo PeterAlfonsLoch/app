@@ -154,7 +154,7 @@ namespace bergedge
             pdc->SelectClipRgn(rgn);*/
             pdc->SelectClipRgn(NULL);
             gcom::backview::Interface::BackViewRender(pdc, rectClient);
-            
+
 
          }
       }
@@ -211,7 +211,7 @@ namespace bergedge
          return;
       }
 
-      m_ppaneview = dynamic_cast < ::bergedge::pane_view * > (create_view(System.template type_info < ::bergedge::pane_view > (), get_document(), this, 102));
+      m_ppaneview = dynamic_cast < ::bergedge::pane_view * > (create_view(System.type_info < ::bergedge::pane_view > (), get_document(), this, 102));
 
       hold(m_ppaneview);
 
@@ -234,9 +234,19 @@ namespace bergedge
 
    void view::_001OnSetCursor(gen::signal_object * pobj)
    {
+
+#ifdef WINDOWSEX
+
       ::SetCursor(::LoadCursor(NULL, IDC_ARROW));
 
+#else
+
+      throw todo(get_app());
+
+#endif
+
       pobj->previous();
+
    }
 
    void view::pre_translate_message(gen::signal_object * pobj)

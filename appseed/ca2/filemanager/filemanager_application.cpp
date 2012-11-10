@@ -70,7 +70,7 @@ namespace filemanager
 
       return true;
    }
- 
+
 
    void application::on_request(::ca::create_context * pcreatecontext)
    {
@@ -132,16 +132,16 @@ namespace filemanager
       m_ptemplateForm = new ::userbase::multiple_document_template(
          this,
          pszMatter,
-         System.template type_info < file_manager_form_document > (),
-         System.template type_info < file_manager_form_child_frame > (),
-         System.template type_info < file_manager_form_view > ());
+         System.type_info < file_manager_form_document > (),
+         System.type_info < file_manager_form_child_frame > (),
+         System.type_info < file_manager_form_view > ());
 
       m_ptemplateOperation = new ::userbase::single_document_template(
          this,
          pszMatter,
-         System.template type_info < file_manager_operation_document > (),
-         System.template type_info < file_manager_operation_child_frame > (),
-         System.template type_info < file_manager_operation_view > ());
+         System.type_info < file_manager_operation_document > (),
+         System.type_info < file_manager_operation_child_frame > (),
+         System.type_info < file_manager_operation_view > ());
    }
 
 
@@ -208,18 +208,18 @@ namespace filemanager
 
    string application::get_file_manager_initial_browse_path(const char * pszDefault)
    {
-      
+
       string strId;
-      
+
       strId.Format("::filemanager::document(%s)", GetStdFileManagerTemplate()->m_strDISection);
-      
+
       database::id dataid = strId;
 
       string strPath;
 
       if(data_get(dataid, "InitialBrowsePath", ::radix::system::idEmpty, strPath))
       {
-         
+
          App(this).dir().mk(strPath);
 
          if(App(this).dir().is(strPath))
@@ -236,7 +236,7 @@ namespace filemanager
 
          strPath = pszDefault;
 
-      }      
+      }
       else
       {
 

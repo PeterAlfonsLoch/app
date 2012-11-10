@@ -86,7 +86,19 @@ namespace userbase
       m_pmenuParent  = pmenuParent;
       //pwndParent->SendMessage(CA2M_BERGEDGE, BERGEDGE_GETAPP, (LPARAM) &m_papp);
 
-      const char * lpcsz = System.RegisterWndClass(CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW);
+//      const char * lpcsz = System.RegisterWndClass(CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW);
+
+      const char * lpcsz = NULL;
+
+#ifdef WINDOWSEX
+
+      lpcsz = System.RegisterWndClass(CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW);
+
+#else
+
+      throw todo(get_app());
+
+#endif
 
       LPVOID lpvoid = NULL;
       if(!CreateEx(WS_EX_LAYERED |
@@ -502,7 +514,7 @@ namespace userbase
          cmdui.m_pitema          = m_pitem->m_spitema;
          for(int i = 0; i < m_pitem->m_spitema->get_size(); i++)
          {
-            
+
             cmdui.m_iIndex    = i;
             cmdui.m_id        = m_pitem->m_spitema->ptr_at(i)->m_id;
             cmdui.m_pOther    = (::user::interaction *) &m_pitem->m_spitema->ptr_at(i)->m_button;

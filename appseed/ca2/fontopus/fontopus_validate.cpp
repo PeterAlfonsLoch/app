@@ -32,9 +32,9 @@ namespace ca2
          m_ptemplatePane   = new ::userbase::single_document_template(
             papp,
             "system/auth",
-            System.template type_info < form_document > (),
-            System.template type_info < simple_main_frame > (),
-            System.template type_info < userex::pane_tab_view > ());
+            System.type_info < form_document > (),
+            System.type_info < simple_main_frame > (),
+            System.type_info < userex::pane_tab_view > ());
          m_pauth           = NULL;
          m_pviewAuth       = NULL;
          m_pdocAuth        = NULL;
@@ -64,7 +64,7 @@ namespace ca2
 
       void validate::show_and_request_auth()
       {
-         
+
          if(m_loginthread.m_strLicense.is_empty())
          {
             m_pviewAuth->SetTimer(1984, 484, NULL);
@@ -80,7 +80,7 @@ namespace ca2
 
       void validate::ensure_main_document()
       {
-         
+
          if(m_pdoc != NULL)
             return;
 
@@ -102,23 +102,23 @@ namespace ca2
 
       void validate::page1(const stringa & straMatter)
       {
-         
+
          m_pdocAuth->get_html_data()->m_puser = m_loginthread.m_puser;
-         
+
          string strPath;
-         
+
          if(straMatter.get_count() <= 0)
          {
-            
+
             if(m_strLicense.is_empty())
             {
-               
+
                m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Authenticating";
 
             }
             else
             {
-               
+
                m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Licensing";
                string strUrl;
                strUrl = "http://api.ca2.cc/spaignition/query?node=install_application&id=";
@@ -193,7 +193,7 @@ namespace ca2
          }
          int_ptr ui1 = GetCurrentThreadId();
          int_ptr ui2 = m_ptabview->GetTopLevelFrame()->m_pthread->get_os_int();
-         if(::AttachThreadInput((DWORD) ui1, (DWORD) ui2, TRUE)) 
+         if(::AttachThreadInput((DWORD) ui1, (DWORD) ui2, TRUE))
          {
             TRACE("AttachedThreadInput");
          }
@@ -240,7 +240,7 @@ namespace ca2
          m_ptabview->GetTopLevelFrame()->layout();
 
 
-      
+
 
          //m_pviewAuth->GetTopLevelParent()->SetForegroundWindow();
          //m_pviewAuth->GetTopLevelParent()->BringWindowToTop();
@@ -665,7 +665,7 @@ namespace ca2
 
       void validate::authentication_succeeded()
       {
-         
+
          ::fontopus::validate::authentication_succeeded();
 
          if(m_ptabview != NULL)

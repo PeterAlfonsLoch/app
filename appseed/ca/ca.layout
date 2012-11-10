@@ -10,7 +10,7 @@
 	<File name="api/api_muldiv64.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="14973" topLine="458" />
 	</File>
-	<File name="ca.h" open="1" top="0" tabpos="26">
+	<File name="ca.h" open="0" top="0" tabpos="26">
 		<Cursor position="32" topLine="0" />
 	</File>
 	<File name="ca/ca.h" open="0" top="0" tabpos="1">
@@ -63,6 +63,9 @@
 	</File>
 	<File name="ca/ca_exception.h" open="0" top="0" tabpos="39">
 		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="ca/ca_file_application.h" open="0" top="0" tabpos="0">
+		<Cursor position="166" topLine="0" />
 	</File>
 	<File name="ca/ca_file_system.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="34124" topLine="1185" />
@@ -364,7 +367,7 @@
 	<File name="dynamic_source/dynamic_source_script_compiler.h" open="0" top="0" tabpos="0">
 		<Cursor position="1017" topLine="21" />
 	</File>
-	<File name="dynamic_source/dynamic_source_script_interface.h" open="1" top="0" tabpos="1">
+	<File name="dynamic_source/dynamic_source_script_interface.h" open="0" top="0" tabpos="1">
 		<Cursor position="208" topLine="0" />
 	</File>
 	<File name="dynamic_source/dynamic_source_script_manager.cpp" open="0" top="0" tabpos="0">
@@ -533,7 +536,7 @@
 		<Cursor position="21928" topLine="763" />
 	</File>
 	<File name="gen/gen_message.h" open="0" top="0" tabpos="0">
-		<Cursor position="1742" topLine="70" />
+		<Cursor position="5774" topLine="197" />
 	</File>
 	<File name="gen/gen_microtimer.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="4162" topLine="118" />
@@ -770,7 +773,7 @@
 		<Cursor position="21429" topLine="939" />
 	</File>
 	<File name="plane/plane_system.h" open="0" top="0" tabpos="2">
-		<Cursor position="13749" topLine="409" />
+		<Cursor position="28805" topLine="993" />
 	</File>
 	<File name="plane/plane_system_primitive_string_format_spec.h" open="0" top="0" tabpos="4">
 		<Cursor position="105" topLine="0" />
@@ -802,7 +805,7 @@
 	<File name="primitive/datetime/datetime_calendar.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="6720" topLine="177" />
 	</File>
-	<File name="primitive/datetime/datetime_calendar.h" open="1" top="0" tabpos="2">
+	<File name="primitive/datetime/datetime_calendar.h" open="0" top="0" tabpos="2">
 		<Cursor position="41" topLine="0" />
 	</File>
 	<File name="primitive/datetime/datetime_clock.cpp" open="0" top="0" tabpos="0">
@@ -899,7 +902,7 @@
 		<Cursor position="2904" topLine="89" />
 	</File>
 	<File name="radix/radix_application.cpp" open="0" top="0" tabpos="12">
-		<Cursor position="22868" topLine="771" />
+		<Cursor position="50271" topLine="1695" />
 	</File>
 	<File name="radix/radix_application.h" open="0" top="0" tabpos="45">
 		<Cursor position="13979" topLine="396" />
@@ -1115,7 +1118,7 @@
 		<Cursor position="25396" topLine="916" />
 	</File>
 	<File name="user/user_frame_window.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="9492" topLine="289" />
+		<Cursor position="7423" topLine="209" />
 	</File>
 	<File name="user/user_frame_window.h" open="0" top="0" tabpos="0">
 		<Cursor position="3192" topLine="62" />

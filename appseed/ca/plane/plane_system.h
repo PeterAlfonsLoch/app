@@ -277,10 +277,10 @@ namespace plane
 
 
       fontopus::authentication_map                 m_authmap;
-                                                  
-                                                  
+
+
       index                                        m_iNewEdge;
-                                                  
+
       class machine_event_central *                m_pmachineeventcentral;
 
       // certain instantiators like npca2plugin and iexca2plugin rely
@@ -290,8 +290,8 @@ namespace plane
       bool                                         m_bInitApplicationResult;
       bool                                         m_bProcessInitialize;
       bool                                         m_bProcessInitializeResult;
-                                                   
-                                                   
+
+
       bool                                         m_bLibCharGuess;
 
       ::user::str *                                m_puserstr;
@@ -299,7 +299,7 @@ namespace plane
      ::collection::string_map < ::collection::int_map < string, string >, const ::collection::int_map < string, string > & >
                                                    m_mapEnumToName;
 
-     ::collection::string_map < ::collection::string_map < int, int >, const ::collection::string_map < int, int > & > 
+     ::collection::string_map < ::collection::string_map < int, int >, const ::collection::string_map < int, int > & >
                                                    m_mapNameToEnum;
 
 
@@ -945,7 +945,7 @@ template <class TYPE, class ARG_TYPE>
 inline void array_app_alloc < TYPE, ARG_TYPE >::insert_at(index iIndex, ARG_TYPE t)
 {
 
-   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info < TYPE > ()));
+   TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System. template  type_info  < TYPE > ()));
 
    *pt = t;
 
@@ -963,7 +963,7 @@ inline array_app_alloc <TYPE, ARG_TYPE> & array_app_alloc < TYPE, ARG_TYPE >::op
    for(index i = 0; i < a.ptra().get_size(); i++)
    {
 
-      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info < TYPE > ()));
+      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.  template  type_info  < TYPE > ()));
 
       *pt = *a.ptra()[i];
 
@@ -999,7 +999,7 @@ void array_app_alloc<TYPE, ARG_TYPE>::set_at_grow(index iIndex, ARG_TYPE t)
          this->set_app(t.get_app());
       for(i = iOldSize; i < iEmptySize; i++)
       {
-         this->ptra().element_at(i) = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info < TYPE > ()));
+         this->ptra().element_at(i) = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.  template  type_info   < TYPE > ()));
       }
       this->ptra().element_at(i) = dynamic_cast < TYPE * > (System.clone(dynamic_cast < ::ca::ca * > (const_cast < TYPE * > (&t))));
    }
@@ -1011,7 +1011,7 @@ set_size(::count iSize)
 {
    while(this->get_size() < iSize)
    {
-      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.template type_info < TYPE > ()));
+      TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), System.  template  type_info  < TYPE > ()));
       add(pt);
    }
    while(this->get_size() > iSize)

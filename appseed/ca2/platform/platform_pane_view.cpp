@@ -3,7 +3,7 @@
 namespace platform
 {
 
-   pane_view::pane_view(::ca::application * papp) : 
+   pane_view::pane_view(::ca::application * papp) :
       ca(papp),
       ::user::tab(papp),
       ::userbase::view(papp),
@@ -14,7 +14,7 @@ namespace platform
 
       m_pviewdataOld = NULL;
 
-      
+
       m_etranslucency      = TranslucencyPresent;
 
       m_pviewdata              = NULL;
@@ -23,28 +23,28 @@ namespace platform
    /*   ::userbase::single_document_template* pdoctemplate;
       pdoctemplate = new ::userbase::single_document_template(
          IDR_ALBUM,
-         System.template type_info < MediaLibraryDoc > (),
-         System.template type_info < MediaLibraryChildFrame > (),
-         System.template type_info < ::mplite::library::view > ());
+         System.type_info < MediaLibraryDoc > (),
+         System.type_info < MediaLibraryChildFrame > (),
+         System.type_info < ::mplite::library::view > ());
       m_pdoctemplateAlbum = pdoctemplate;
 
       pdoctemplate = new ::userbase::single_document_template(
          IDR_ALBUM,
-         System.template type_info < OptionsDoc > (),
-         System.template type_info < OptionsChildFrame > (),
-         System.template type_info < OptionsView > ());
+         System.type_info < OptionsDoc > (),
+         System.type_info < OptionsChildFrame > (),
+         System.type_info < OptionsView > ());
 
-      
+
       m_pdoctemplateOptions = pdoctemplate;
 
       pdoctemplate = new ::userbase::single_document_template(
          IDR_ALBUM,
-         System.template type_info < GoodMixerDoc > (),
-         System.template type_info < simple_child_frame > (),
-         System.template type_info < MixerMainView > ());
+         System.type_info < GoodMixerDoc > (),
+         System.type_info < simple_child_frame > (),
+         System.type_info < MixerMainView > ());
 
       m_pdoctemplateAudioControl = pdoctemplate;*/
-      
+
 
    }
 
@@ -73,7 +73,7 @@ namespace platform
    /////////////////////////////////////////////////////////////////////////////
    // pane_view message handlers
 
-   void pane_view::_001OnCreate(gen::signal_object * pobj) 
+   void pane_view::_001OnCreate(gen::signal_object * pobj)
    {
 //      SCAST_PTR(::gen::message::create, pcreate, pobj)
       if(pobj->previous())
@@ -104,9 +104,9 @@ namespace platform
          {
 //            create_context cc;
   //          cc.m_pCurrentDoc = get_document();
-    //        cc.m_typeinfoNewView =  System.template type_info < ::userbase::menu_list_view > ();
+    //        cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
 
-            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (view::create_view(System.template type_info < ::userbase::menu_list_view > (), get_document(), this, 101));
+            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (view::create_view(System.type_info < ::userbase::menu_list_view > (), get_document(), this, 101));
             if(pview != NULL)
             {
                ::userbase::menu_list_view * pmenuview = (::userbase::menu_list_view *) pview;
@@ -117,10 +117,10 @@ namespace platform
             }
          }
          break;
-         
+
    /*         create_context cc;
             cc.m_pCurrentDoc = get_document();
-            cc.m_typeinfoNewView =  System.template type_info < ::userbase::menu_list_view > ();
+            cc.m_typeinfoNewView =  System.type_info < ::userbase::menu_list_view > ();
 
             ::userbase::view * pview = dynamic_cast < ::userbase::view * > (CreateView(&cc, 101, this));
             if(pview != NULL)
@@ -166,7 +166,7 @@ namespace platform
    /*   case PaneViewPlaylist:
          {
             ::mediaplaylist::document * pdoc = ((MusicalPlayerLightApp *) &System)->GetPlaylistCentral().GetCurrentPlaylist(true, false);
-            
+
             if(pdoc != NULL)
             {
                MusicalPlayerLightDoc * pplayerdoc = (MusicalPlayerLightDoc *) get_document();
@@ -194,7 +194,7 @@ namespace platform
          break;
       case PaneViewMediaLibrary:
          {
-            MediaLibraryDoc * pdoc = (MediaLibraryDoc *) m_pdoctemplateAlbum->open_document_file(NULL, FALSE);   
+            MediaLibraryDoc * pdoc = (MediaLibraryDoc *) m_pdoctemplateAlbum->open_document_file(NULL, FALSE);
             if(pdoc != NULL)
             {
                POSITION pos = pdoc->get_view_count();
@@ -220,7 +220,7 @@ namespace platform
          break;
       case PaneViewAudioControl:
          {
-            GoodMixerDoc * pdoc = (GoodMixerDoc *) m_pdoctemplateAudioControl->open_document_file(NULL, FALSE);   
+            GoodMixerDoc * pdoc = (GoodMixerDoc *) m_pdoctemplateAudioControl->open_document_file(NULL, FALSE);
             if(pdoc != NULL)
             {
                POSITION pos = pdoc->get_view_count();
@@ -245,7 +245,7 @@ namespace platform
          break;
       case PaneViewOptions:
          {
-            OptionsDoc * pdoc = (OptionsDoc *) m_pdoctemplateOptions->open_document_file(NULL, FALSE);   
+            OptionsDoc * pdoc = (OptionsDoc *) m_pdoctemplateOptions->open_document_file(NULL, FALSE);
             if(pdoc != NULL)
             {
                POSITION pos = pdoc->get_view_count();

@@ -99,9 +99,9 @@ namespace calculator
          TRACE0("Failed to create toolbar\n");
          return -1;      // fail to create
       }
-      
-      
-      if (!m_dialogbar.create(this, IDR_MAINFRAME, 
+
+
+      if (!m_dialogbar.create(this, IDR_MAINFRAME,
          WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP | CBRS_GRIPPER | CBRS_SIZE_DYNAMIC
          | CBRS_DRAGMOVE, __IDW_DIALOGBAR))
       {
@@ -157,7 +157,9 @@ namespace calculator
       if( !simple_frame_window::pre_create_window(cs) )
          return FALSE;
       cs.dwExStyle &= ~WS_EX_WINDOWEDGE;
+#ifdef WINDOWSEX
       ::DestroyMenu(cs.hMenu);
+#endif
       cs.hMenu = NULL;
       return TRUE;
    }
@@ -179,7 +181,7 @@ namespace calculator
 
    #endif //DEBUG
 
-   void frame::OnTimer(UINT nIDEvent) 
+   void frame::OnTimer(UINT nIDEvent)
    {
       static float theta;
       if(nIDEvent == 3)
@@ -198,10 +200,10 @@ namespace calculator
       else if(nIDEvent == 4033)
       {
    // OpenGL animation code goes here
-            
+
             //glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
             //glClear( GL_COLOR_BUFFER_BIT );
-            
+
             /*glPushMatrix();
             glRotatef( theta, 0.0f, 1.0f, 1.0f );
             glBegin( GL_TRIANGLES );
@@ -210,11 +212,11 @@ namespace calculator
             glColor3f( 0.0f, 0.0f, 1.0f ); glVertex2f( -0.87f, -0.5f );
             glEnd();
             glPopMatrix();*/
-            
+
             //SwapBuffers( m_hdcOpenGL );
-            
+
             theta += 2.0f;
-         
+
       }
    //   simple_frame_window::OnTimer(nIDEvent);
    }
@@ -234,7 +236,7 @@ namespace calculator
 
    void frame::AnimateStatusBar()
    {
-      
+
       if(m_strAnimatedStatusBarText.is_empty())
          return;
 

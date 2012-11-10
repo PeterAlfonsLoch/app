@@ -77,7 +77,7 @@ bool simple_frame_window::IsFullScreen()
 
 
 
-void simple_frame_window::_001OnDestroy(gen::signal_object * pobj) 
+void simple_frame_window::_001OnDestroy(gen::signal_object * pobj)
 {
    try
    {
@@ -122,7 +122,7 @@ void simple_frame_window::_001OnDestroy(gen::signal_object * pobj)
 
    ::uinteraction::frame::frame * pschema = Application.get_frame_schema("app-core/uinteraction", "005");
 
-   pschema->m_typeinfoControlBoxButton = System.template type_info < MetaButton > ();
+   pschema->m_typeinfoControlBoxButton = System.type_info < MetaButton > ();
 
    return pschema;
 
@@ -131,7 +131,7 @@ void simple_frame_window::_001OnDestroy(gen::signal_object * pobj)
 
 void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
 {
-   
+
    SCAST_PTR(::gen::message::create, pcreate, pobj)
 
    if(pobj->previous())
@@ -160,7 +160,7 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
       char szBuf [64];
       ::GetClassName(get_handle(), szBuf, _countof(szBuf));
 
-      GetClassInfo(System.m_hInstance, 
+      GetClassInfo(System.m_hInstance,
          szBuf,
          &wndclass);*/
 
@@ -221,17 +221,17 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
          return;
       }
 
-      
+
 
    }
-   
+
    defer_synch_layered();
 
    pcreate->m_bRet = false;
 
 }
 
-void simple_frame_window::_001OnSize(gen::signal_object * pobj) 
+void simple_frame_window::_001OnSize(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    if((m_workset.GetMovingManager() == NULL ||
@@ -248,7 +248,7 @@ void simple_frame_window::_001OnSize(gen::signal_object * pobj)
 
 }
 
-void simple_frame_window::_001OnMove(gen::signal_object * pobj) 
+void simple_frame_window::_001OnMove(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    if((m_workset.GetMovingManager() == NULL ||
@@ -265,13 +265,13 @@ void simple_frame_window::_001OnMove(gen::signal_object * pobj)
 
 }
 
-bool simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext) 
+bool simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext)
 {
 // trans   HICON hicon = GetIcon(false);
    return userbase::frame_window::OnCreateClient(lpcs, pContext);
 }
 
-bool simple_frame_window::pre_create_window(CREATESTRUCT& cs) 
+bool simple_frame_window::pre_create_window(CREATESTRUCT& cs)
 {
 
    if(cs.lpszClass == NULL)
@@ -294,7 +294,7 @@ bool simple_frame_window::pre_create_window(CREATESTRUCT& cs)
    return TRUE;
 }
 
-void simple_frame_window::layout() 
+void simple_frame_window::layout()
 {
    if(m_bWindowFrame && m_workset.IsAppearanceEnabled() && !WfiIsFullScreen())
    {
@@ -315,7 +315,7 @@ void simple_frame_window::ViewOnActivateFrame(::userbase::view * pview, UINT use
 //      pview->OnActivateFrame(WA_INACTIVE, (userbase::frame_window *) pframe);
 }
 
-void simple_frame_window::_001OnGetMinMaxInfo(gen::signal_object * pobj) 
+void simple_frame_window::_001OnGetMinMaxInfo(gen::signal_object * pobj)
 {
    SCAST_PTR(gen::message::base, pbase, pobj);
    MINMAXINFO FAR * lpMMI = (MINMAXINFO FAR*) pbase->m_lparam;
@@ -345,8 +345,8 @@ void simple_frame_window::_001OnGetMinMaxInfo(gen::signal_object * pobj)
    //   m_statusbar.ShowWindow(nShow);
       m_menubar.ShowWindow(nShow);
       m_dialogbar.ShowWindow(nShow);*/
-      
-      
+
+
       POSITION pos = m_toolbarmap.m_keymap.get_start_position();
 
       id idKey;
@@ -384,7 +384,7 @@ void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
 //      DWORD dwStyleEx = GetExStyle();
 
       rect rectDesktop;
-         
+
       if(get_parent() != NULL)
       {
          get_parent()->GetClientRect(rectDesktop);
@@ -420,22 +420,22 @@ void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
 }
 
 
-void simple_frame_window::_001OnViewFullScreen(gen::signal_object * pobj) 
+void simple_frame_window::_001OnViewFullScreen(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    ToggleFullScreen();
 }
 
-void simple_frame_window::_001OnMouseMove(gen::signal_object * pobj) 
+void simple_frame_window::_001OnMouseMove(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 //   SCAST_PTR(::gen::message::mouse, pmouse, pobj)
 }
 
-void simple_frame_window::_001OnUpdateViewFullScreen(gen::signal_object * pobj) 
+void simple_frame_window::_001OnUpdateViewFullScreen(gen::signal_object * pobj)
 {
    SCAST_PTR(base_cmd_ui, pcmdui, pobj)
-   pcmdui->m_pcmdui->Enable();   
+   pcmdui->m_pcmdui->Enable();
    pcmdui->m_pcmdui->_001SetCheck(WfiIsFullScreen());
    pcmdui->m_bRet = true;
 }
@@ -445,12 +445,12 @@ void simple_frame_window::ToggleFullScreen()
    WfiFullScreen(!WfiIsFullScreen(), true);
 }
 
-bool simple_frame_window::_001CanEnterScreenSaver() 
+bool simple_frame_window::_001CanEnterScreenSaver()
 {
    return true;
 }
 
-void simple_frame_window::_001OnSysCommand(gen::signal_object * pobj) 
+void simple_frame_window::_001OnSysCommand(gen::signal_object * pobj)
 {
    SCAST_PTR(gen::message::base, pbase, pobj);
 
@@ -489,13 +489,13 @@ void simple_frame_window::_001OnSysCommand(gen::signal_object * pobj)
 }
 
 
-void simple_frame_window::_001OnToggleCustomFrame(gen::signal_object * pobj) 
+void simple_frame_window::_001OnToggleCustomFrame(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    SetCustomFrame(!GetCustomFrame());
 }
 
-void simple_frame_window::_001OnUpdateToggleCustomFrame(gen::signal_object * pobj) 
+void simple_frame_window::_001OnUpdateToggleCustomFrame(gen::signal_object * pobj)
 {
    SCAST_PTR(base_cmd_ui, pcmdui, pobj)
    pcmdui->m_pcmdui->Enable();
@@ -504,9 +504,9 @@ void simple_frame_window::_001OnUpdateToggleCustomFrame(gen::signal_object * pob
 
 
 
-void simple_frame_window::ActivateFrame(int nCmdShow) 
+void simple_frame_window::ActivateFrame(int nCmdShow)
 {
-   
+
    userbase::frame_window::ActivateFrame(nCmdShow);
 }
 
@@ -534,7 +534,7 @@ bool simple_frame_window::GetCustomFrame()
    return m_bWindowFrame;
 }
 
-void simple_frame_window::_001OnClose(gen::signal_object * pobj) 
+void simple_frame_window::_001OnClose(gen::signal_object * pobj)
 {
    if(m_iModalCount > 0)
    {
@@ -586,13 +586,13 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
 
    if(papp->is_cube() || papp->is_bergedge() || papp->is_session() || papp->is_system())
    {
-         
+
       // TODO: instead of closing all applications in process System.m_apptra, should close application that make part of
       // cube, bergedge, session or system.
-         
+
       for(int i = 0; Sys(papp).m_appptra.get_count(); i++)
       {
-            
+
          ::cube8::application * pappChild = &App(Sys(papp).m_appptra[i]);
 
          if(!pappChild->_001CloseApplicationByUser(this))
@@ -603,7 +603,7 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
    }
    else if(papp->GetVisibleTopLevelFrameCountExcept(this) <= 0)
    {
-      
+
       if(!papp->_001CloseApplicationByUser(this))
          return;
 
@@ -612,10 +612,10 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
    {
       DestroyWindow();
    }
-   
+
 }
 
-void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp) 
+void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp)
 {
    UNREFERENCED_PARAMETER(bCalcValidRects);
    if(m_workset.IsEnabled() && m_workset.m_pframeschema != NULL)
@@ -828,7 +828,7 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::ca::graphics
    }
    else
    {
-      
+
       userbase::frame_window::_001OnDeferPaintLayeredWindowBackground(pdc);
    }
 }
@@ -889,8 +889,8 @@ void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
             m_fastblur->get_graphics()->BitBlt(0, 0, rectClient.width(), rectClient.height(), pdc, 0, 0, SRCCOPY);
             m_fastblur.blur();
             imaging.bitmap_blend(
-               m_fastblur->get_graphics(), 
-               null_point(), 
+               m_fastblur->get_graphics(),
+               null_point(),
                rectClient.size(),
                m_dibBk->get_graphics(),
                null_point(),
@@ -997,7 +997,7 @@ void simple_frame_window::_001OnUser184(gen::signal_object * pobj)
 // persistent frame implemenation using updowntarget
 bool simple_frame_window::WndFrameworkDownUpGetUpEnable()
 {
-   return 
+   return
       m_pupdowntarget != NULL
    && m_pupdowntarget->is_up_down_target()
    && m_pupdowntarget->up_down_target_is_down();
@@ -1005,7 +1005,7 @@ bool simple_frame_window::WndFrameworkDownUpGetUpEnable()
 
 bool simple_frame_window::WndFrameworkDownUpGetDownEnable()
 {
-   return 
+   return
       m_pupdowntarget != NULL
    && m_pupdowntarget->is_up_down_target()
    && m_pupdowntarget->up_down_target_is_up();

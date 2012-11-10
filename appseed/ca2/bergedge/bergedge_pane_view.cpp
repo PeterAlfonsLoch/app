@@ -201,7 +201,7 @@ namespace bergedge
             ::ca::application * pappTab;
             if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
             {
-               
+
                ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
                pbiasCreate->m_puiParent = pcreatordata->m_pholder;
 
@@ -283,7 +283,7 @@ namespace bergedge
          {
          case PaneViewContextMenu:
             {
-   /*            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(System.template type_info < bergedge::menu_view > (), get_document(), this, 102));
+   /*            ::userbase::view * pview = dynamic_cast < ::userbase::view * > (create_view(System.type_info < bergedge::menu_view > (), get_document(), this, 102));
                if(pview != NULL)
                {
                   pcreatordata->m_pdoc = get_document();
@@ -294,7 +294,7 @@ namespace bergedge
          case PaneViewWinActionArea:
             {
                pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
-               FileManagerTemplate * ptemplate = papp->GetStdFileManagerTemplate(); 
+               FileManagerTemplate * ptemplate = papp->GetStdFileManagerTemplate();
                ::filemanager::document * pdoc = ptemplate->OpenChildList(papp, false, true, pcreatordata->m_pholder);
                if(pdoc != NULL)
                {
@@ -456,7 +456,7 @@ namespace bergedge
       {
          string str = System.dir().path(psz, straRelative[i]);
          Application.dir().mk(System.dir().name(str));
-         ::CopyFile(straPath[i], str , TRUE);
+         Application.file().copy(str, straPath[i], true);
       }
       straRelative.remove_all();
       straPath.remove_all();
@@ -465,7 +465,7 @@ namespace bergedge
       {
          string str = System.dir().path(psz, straRelative[i]);
          Application.dir().mk(System.dir().name(str));
-         ::CopyFile(straPath[i], str, TRUE);
+         Application.file().copy(str, straPath[i], true);
       }
    }
 
@@ -510,6 +510,7 @@ namespace bergedge
 
    void pane_view::check_desktop_dir(const char * psz)
    {
+#ifdef WINDOWSEX
       stringa straPath;
       stringa straRelative;
       char buf[4096];
@@ -530,7 +531,7 @@ namespace bergedge
             {
                string str = System.dir().path(psz, straRelative[i]);
                Application.dir().mk(System.dir().name(str));
-               ::CopyFile(straPath[i], str, TRUE);
+               Application.file().copy(str, straPath[i], true);
             }
          }
       }
@@ -555,6 +556,9 @@ namespace bergedge
             }
          }
       }
+#else
+      throw todo(get_app());
+#endif
    }
 
 
@@ -623,7 +627,7 @@ namespace bergedge
 
    void pane_view::OnFileManagerOpenContextMenu(::filemanager::data * pdata)
    {
-      
+
       UNREFERENCED_PARAMETER(pdata);
 
       if(get_view_id() == ::bergedge::PaneViewWinActionArea)
@@ -657,9 +661,9 @@ namespace bergedge
       UNREFERENCED_PARAMETER(pobj);
       if(get_view_id() == ::bergedge::PaneViewWinActionArea)
       {
-         
-         simple_shell_launcher launcher(NULL, NULL, "control.exe", "desk.cpl", NULL, SW_SHOWNORMAL);
-         
+
+         simple_shell_launcher launcher(::ca::null(), NULL, "control.exe", "desk.cpl", NULL, SW_SHOWNORMAL);
+
          launcher.execute();
 
       }

@@ -197,21 +197,21 @@ namespace bergedge
       m_ptemplate_bergedge    = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         System.template type_info < document > (),
-         System.template type_info < frame > (),
-         System.template type_info < view > ());
+         System.type_info < document > (),
+         System.type_info < frame > (),
+         System.type_info < view > ());
       m_ptemplate_platform    = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         System.template type_info < platform::document > (),
-         System.template type_info < platform::frame > (),
-         System.template type_info < platform::pane_view > ());
+         System.type_info < platform::document > (),
+         System.type_info < platform::frame > (),
+         System.type_info < platform::pane_view > ());
       m_ptemplate_nature      = new ::userbase::single_document_template(
          this,
          "bergedge/frame",
-         System.template type_info < nature::document > (),
-         System.template type_info < nature::frame > (),
-         System.template type_info < nature::view > ());
+         System.type_info < nature::document > (),
+         System.type_info < nature::frame > (),
+         System.type_info < nature::view > ());
       m_pnaturedocument = NULL;
    }
 
@@ -232,7 +232,7 @@ namespace bergedge
 
          m_pbergedgedocument = dynamic_cast < document * > (m_ptemplate_bergedge->open_document_file(createcontextBergedge));
          m_pbergedgedocument->m_psession = m_psession;
-      
+
       }
       if(m_bShowPlatform)
       {
@@ -393,7 +393,7 @@ namespace bergedge
          }
 
       }
-      
+
       if(m_bShowPlatform)
       {
          ::simple_frame_window * pframeApp = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::bergedge::pane_view >()->get_view_uie());
@@ -507,9 +507,9 @@ namespace bergedge
 
    void bergedge::request(::ca::create_context * pcreatecontext)
    {
-      
-      if(m_pappCurrent != NULL && m_pappCurrent != this 
-         && (pcreatecontext->m_spCommandLine->m_strApp.is_empty() 
+
+      if(m_pappCurrent != NULL && m_pappCurrent != this
+         && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
          ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
       {
          if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
@@ -602,13 +602,13 @@ namespace bergedge
          }
          catch(::exit_exception & e)
          {
-            
+
             throw e;
 
          }
          catch(::ca::exception & e)
          {
-            
+
             if(!App(this).on_run_exception(e))
                throw exit_exception(get_app());
 
@@ -785,7 +785,7 @@ namespace bergedge
       {
          get_view()->GetWindowRect(lprect);
       }
-      else 
+      else
       {
          System.get_screen_rect(lprect);
       }
@@ -818,7 +818,7 @@ namespace bergedge
 
          if(ppaneview != NULL)
          {
-         
+
             string strAppName(pszAppId);
 
             ::user::tab::pane * ppane = ppaneview->get_pane_by_id("app:" + strAppName);
@@ -842,7 +842,7 @@ namespace bergedge
    bool bergedge::initialize1()
    {
 
-      
+
       if(!::platform::application::initialize1())
          return false;
 
@@ -855,7 +855,7 @@ namespace bergedge
    bool bergedge::initialize()
    {
 
-      
+
       if(!::platform::application::initialize())
          return false;
 
@@ -874,8 +874,8 @@ namespace bergedge
 
    int bergedge::main()
    {
-      
-      
+
+
       return ::platform::application::main();
 
 

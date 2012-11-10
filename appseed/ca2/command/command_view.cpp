@@ -31,7 +31,7 @@ namespace command
       //IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &::user::interaction::_001OnKeyDown);
       IGUI_WIN_MSG_LINK(WM_KEYUP, pinterface, this, &::user::interaction::_001OnKeyUp);
-   
+
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &view::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &view::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_RBUTTONUP, pinterface, this, &view::_001OnRButtonUp);
@@ -80,20 +80,24 @@ namespace command
 
    bool view::pre_create_window(CREATESTRUCT& cs)
    {
+#ifdef WINDOWSEX
       cs.lpszClass = Application.RegisterWndClass(
 		   CS_DBLCLKS |
 		   CS_OWNDC,
 		   0, 0, 0);
+#else
+      throw todo(get_app());
+#endif
       cs.style &= ~WS_EX_CLIENTEDGE;
 	   return ::userbase::view::pre_create_window(cs);
    }
-   void view::_001OnInitialUpdate(gen::signal_object * pobj) 
+   void view::_001OnInitialUpdate(gen::signal_object * pobj)
    {
       ::userbase::view::_001OnInitialUpdate(pobj);
    }
 
 
-   void view::on_update(::view* pSender, LPARAM lHint, ::radix::object* phint) 
+   void view::on_update(::view* pSender, LPARAM lHint, ::radix::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);
@@ -101,15 +105,15 @@ namespace command
       {
          SetTimer(5432108, 100, NULL);
       }
-	
+
    }
 
-   void view::_001OnDestroy(gen::signal_object * pobj) 
+   void view::_001OnDestroy(gen::signal_object * pobj)
    {
 	   ::userbase::view::_001OnDestroy(pobj);
    }
 
-   void view::_001OnSize(gen::signal_object * pobj) 
+   void view::_001OnSize(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //   SCAST_PTR(::gen::message::size, psize, pobj)
@@ -135,7 +139,7 @@ namespace command
       }
    }
 
-   void view::_001OnPaint(gen::signal_object * pobj) 
+   void view::_001OnPaint(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //	CPaintDC spgraphics(this); // device context for winactionareaing
@@ -148,7 +152,7 @@ namespace command
       UNREFERENCED_PARAMETER(pdc);
    }
 
-   void view::_001OnCreate(gen::signal_object * pobj) 
+   void view::_001OnCreate(gen::signal_object * pobj)
    {
       if(pobj->previous())
          return;
@@ -156,7 +160,7 @@ namespace command
    }
 
 
-   void view::_001OnContextMenu(gen::signal_object * pobj) 
+   void view::_001OnContextMenu(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
       point point = pcontextmenu->GetPoint();
@@ -173,10 +177,14 @@ namespace command
       }
    }
 
-   void view::_001OnSetCursor(gen::signal_object * pobj) 
+   void view::_001OnSetCursor(gen::signal_object * pobj)
    {
+#ifdef WINDOWSEX
       ::SetCursor(::LoadCursor(NULL, IDC_ARROW));
-	
+#else
+      throw todo(get_app());
+#endif
+
 	   pobj->previous();
    }
 
@@ -265,7 +273,7 @@ namespace command
       strDateTime.Format("%s %s %s", strDate, strWeekDay, strTime);
    }
 
-   void view::_001OnShowWindow(gen::signal_object * pobj) 
+   void view::_001OnShowWindow(gen::signal_object * pobj)
    {
    //   SCAST_PTR(::gen::message::show_window, pshowwindow, pobj)
       UNREFERENCED_PARAMETER(pobj);
