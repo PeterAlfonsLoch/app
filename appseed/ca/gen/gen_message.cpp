@@ -75,7 +75,7 @@ namespace gen
          return true;
       }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       base * dispatch::peek_message(LPMSG lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
       {
@@ -236,6 +236,16 @@ namespace gen
 
          return get_base(pwnd, lpmsg->message, lpmsg->wParam, lpmsg->lParam);
       }
+
+#elif defined(METROWIN)
+
+      base * dispatch::get_base(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam)
+      {
+
+         return NULL;
+
+      }
+
 
 #else
 
@@ -785,6 +795,10 @@ namespace gen
       {
          return (oswindow) m_lparam;
       }
+
+#endif
+
+#ifdef WINDOWSEX
 
       LPNMHDR notify::get_lpnmhdr()
       {

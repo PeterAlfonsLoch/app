@@ -307,7 +307,11 @@ namespace ex2
 
    ::ca::window * application::get_desktop_window()
    {
+#ifdef METROWIN
+      throw todo(this);
+#else
       return window_from_os_data(::GetDesktopWindow());
+#endif
    }
 
    void application::SetCurrentHandles()
@@ -325,10 +329,14 @@ namespace ex2
       return ::ca::smart_pointer < ::ex2::application >::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
    }
 
+#ifndef METROWIN
+
    void application::get_time(timeval *p)
    {
       ::ca::smart_pointer < ::ex2::application >::m_p->get_time(p);
    }
+
+#endif
 
    void application::set_env_var(const string & var,const string & value)
    {

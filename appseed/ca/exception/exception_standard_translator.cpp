@@ -17,7 +17,7 @@ It is provided "as is" without express or implied warranty.
 #include "framework.h"
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 // 0x40010005 control C
 // 0xc0000135 Dll Not Found
@@ -81,7 +81,9 @@ namespace exception
       ::ca::application * papp = ::ca::get_thread_app();
       switch (ppointers->ExceptionRecord->ExceptionCode)
       {
+#ifdef WINDOWSEX
       case EXCEPTION_NO_MEMORY:                 throw standard_no_memory(papp, ppointers);                  break;
+#endif
       case EXCEPTION_ACCESS_VIOLATION:          throw standard_access_violation(papp, ppointers);           break;
       case EXCEPTION_DATATYPE_MISALIGNMENT:     throw standard_datatype_misalignment(papp, ppointers);      break;
       case EXCEPTION_BREAKPOINT:                throw standard_breakpoint(papp, ppointers);                 break;
@@ -174,7 +176,9 @@ namespace exception
       UNREFERENCED_PARAMETER(uiCode);
       switch (ppointers->ExceptionRecord->ExceptionCode)
       {
+#ifdef WINDOWSEX
       case EXCEPTION_NO_MEMORY:                 throw standard_no_memory(get_app(), ppointers);                  break;
+#endif
       case EXCEPTION_ACCESS_VIOLATION:          throw standard_access_violation(get_app(), ppointers);           break;
       case EXCEPTION_DATATYPE_MISALIGNMENT:     throw standard_datatype_misalignment(get_app(), ppointers);      break;
       case EXCEPTION_BREAKPOINT:                throw standard_breakpoint(get_app(), ppointers);                 break;
@@ -209,7 +213,9 @@ namespace exception
 
       switch (uiCode)
       {
+#ifdef WINDOWSEX
       case EXCEPTION_NO_MEMORY:                 str = "No Memory";                  break;
+#endif
       case EXCEPTION_ACCESS_VIOLATION:          str = "Access Violation";           break;
       case EXCEPTION_DATATYPE_MISALIGNMENT:     str = "Datatype Misalignment";      break;
       case EXCEPTION_BREAKPOINT:                str = "Breakpoint";                 break;
@@ -250,9 +256,11 @@ namespace exception
 
       switch(uiCode)
       {
+#ifdef WINDOWSEX
       case EXCEPTION_NO_MEMORY:
          str = "The allocation attempt failed because of a lack of available primitive::memory or heap corruption.";
          break;
+#endif
       case EXCEPTION_ACCESS_VIOLATION:
          str = "The thread attempted to read from or write to a virtual address for which it does not have the appropriate access";
          break;

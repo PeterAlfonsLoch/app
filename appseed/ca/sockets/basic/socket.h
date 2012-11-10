@@ -65,6 +65,7 @@ namespace sockets
 
 
       socket_handler_base &   m_handler; ///< Reference of socket_handler_base in control of this socket
+      gen::memory_file        m_memfileInput;
 
 #ifdef USE_BYESHYTOULA_STYLE_SOCKETS
 
@@ -72,7 +73,6 @@ namespace sockets
 #else
 
       callback *              m_pcallback;
-      gen::memory_file        m_memfileInput;
       bool                    m_bEnd; // should finish by not sending no more writes
       int                     m_iBindPort;
       SOCKET                  m_socket; ///< File descriptor

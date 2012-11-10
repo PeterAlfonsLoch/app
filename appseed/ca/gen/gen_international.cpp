@@ -14,9 +14,6 @@ namespace gen
    {
 
 
-      UINT       g_uiACP = GetACP();
-
-
       bool UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize nCount, const wchar_t * lpcsz)
       {
          return WideCharToMultiByte(uiCodePage, 0, lpcsz, -1, lpstrMultiByte, (int) nCount, NULL, NULL) != FALSE;
@@ -30,7 +27,7 @@ namespace gen
       bool UnicodeToMultiByte(UINT uiCodePage, string &str, const wchar_t * lpcsz)
       {
          strsize iCount = UnicodeToMultiByteCount(uiCodePage, lpcsz);
-         LPTSTR lpsz = str.GetBuffer(iCount);
+         LPSTR lpsz = str.GetBuffer(iCount);
          if(UnicodeToMultiByte(uiCodePage, lpsz, iCount, lpcsz))
          {
             str.ReleaseBufferSetLength(iCount - 1);
@@ -48,7 +45,7 @@ namespace gen
       bool UnicodeToMultiByte(UINT uiCodePage, string &str, const wchar_t * lpcsz, strsize iCount)
       {
          strsize iMultiByteCount = UnicodeToMultiByteCount(uiCodePage, lpcsz, iCount);
-         LPTSTR lpsz = str.GetBuffer(iCount);
+         LPSTR lpsz = str.GetBuffer(iCount);
          if(UnicodeToMultiByte(uiCodePage, lpsz, iMultiByteCount, lpcsz, iCount))
          {
             str.ReleaseBufferSetLength(iCount - 1);
@@ -183,25 +180,25 @@ namespace gen
          return UnicodeToMultiByte(uiCodePageDst, str, MultiByteToUnicode(uiCodePageSrc, lpcsz, nCount));
       }
 
-      bool MultiByteToOEM(UINT uiCodePage, string & str, const char * lpcsz)
-      {
-         return MultiByteToMultiByte(::GetOEMCP(), str, uiCodePage, lpcsz);
-      }
+      //bool MultiByteToOEM(UINT uiCodePage, string & str, const char * lpcsz)
+      //{
+      //   return MultiByteToMultiByte(::GetOEMCP(), str, uiCodePage, lpcsz);
+      //}
 
-      bool MultiByteToOEM(UINT uiCodePage, string & str, const char * lpcsz, strsize nCount)
-      {
-         return MultiByteToMultiByte(::GetOEMCP(), str, uiCodePage, lpcsz, nCount);
-      }
+      //bool MultiByteToOEM(UINT uiCodePage, string & str, const char * lpcsz, strsize nCount)
+      //{
+      //   return MultiByteToMultiByte(::GetOEMCP(), str, uiCodePage, lpcsz, nCount);
+      //}
 
-      bool OEMToMultiByte(UINT uiCodePage, string & str, const char * lpcsz)
-      {
-         return MultiByteToMultiByte(uiCodePage, str, ::GetOEMCP(), lpcsz);
-      }
+      //bool OEMToMultiByte(UINT uiCodePage, string & str, const char * lpcsz)
+      //{
+      //   return MultiByteToMultiByte(uiCodePage, str, ::GetOEMCP(), lpcsz);
+      //}
 
-      bool OEMToMultiByte(UINT uiCodePage, string & str, const char * lpcsz, strsize nCount)
-      {
-         return MultiByteToMultiByte(uiCodePage, str, ::GetOEMCP(), lpcsz, nCount);
-      }
+      //bool OEMToMultiByte(UINT uiCodePage, string & str, const char * lpcsz, strsize nCount)
+      //{
+      //   return MultiByteToMultiByte(uiCodePage, str, ::GetOEMCP(), lpcsz, nCount);
+      //}
 
       string unicode_to_utf8(const wchar_t * lpcsz)
       {
@@ -226,15 +223,15 @@ namespace gen
          return UnicodeToMultiByte(uiCodePage, (char *) memstorage.get_data(), (strsize) memstorage.get_size(), lpcsz);
       }
 
-      bool OEMToMultiByte(UINT uiCodePage, primitive::memory & str, const char * lpcsz)
-      {
-         return MultiByteToMultiByte(uiCodePage, str, ::GetOEMCP(), lpcsz);
-      }
+      //bool OEMToMultiByte(UINT uiCodePage, primitive::memory & str, const char * lpcsz)
+      //{
+      //   return MultiByteToMultiByte(uiCodePage, str, ::GetOEMCP(), lpcsz);
+      //}
 
-      bool OEMToMultiByte(UINT uiCodePage, primitive::memory & str, const char * lpcsz, strsize nCount)
-      {
-         return MultiByteToMultiByte(uiCodePage, str, ::GetOEMCP(), lpcsz, nCount);
-      }
+      //bool OEMToMultiByte(UINT uiCodePage, primitive::memory & str, const char * lpcsz, strsize nCount)
+      //{
+      //   return MultiByteToMultiByte(uiCodePage, str, ::GetOEMCP(), lpcsz, nCount);
+      //}
 
       ///////////////////////////////////////////////////////////////
       // ACP ( GetACP() function) conversion
@@ -414,15 +411,15 @@ namespace gen
       }
 
 
-      bool AcpToUtf8(LPTSTR lpstrUnicode, strsize nCount, const char * lpcsz)
-      {
-         return MultiByteToMultiByte(CP_UTF8, lpstrUnicode, nCount, g_uiACP, lpcsz);
-      }
+      //bool AcpToUtf8(LPTSTR lpstrUnicode, strsize nCount, const char * lpcsz)
+      //{
+      //   return MultiByteToMultiByte(CP_UTF8, lpstrUnicode, nCount, g_uiACP, lpcsz);
+      //}
 
-      bool AcpToUtf8(string & str, const char * lpcsz, strsize iSize)
-      {
-         return MultiByteToMultiByte(CP_UTF8, str, g_uiACP, lpcsz, iSize);
-      }
+      //bool AcpToUtf8(string & str, const char * lpcsz, strsize iSize)
+      //{
+      //   return MultiByteToMultiByte(CP_UTF8, str, g_uiACP, lpcsz, iSize);
+      //}
 
 
    } // namespace international

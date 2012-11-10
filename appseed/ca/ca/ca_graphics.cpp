@@ -2144,6 +2144,8 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
+#ifndef METROWIN
+
    int graphics::draw_text_ex(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams)
    {
       UNREFERENCED_PARAMETER(lpszString);
@@ -2162,6 +2164,10 @@ namespace ca
       UNREFERENCED_PARAMETER(lpDTParams);
       throw interface_only_exception(get_app());
    }
+
+
+#endif
+
 
    bool graphics::from(point ptDst, size size, ::ca::graphics * pgraphicsSrc, point ptSrc, DWORD dwRop)
    {
@@ -2453,15 +2459,19 @@ namespace ca
    {
       m_pwindow = pwindow;
       create(pwindow->get_app());
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       m_p->attach(::BeginPaint(pwindow->get_safe_handle(), &m_ps));
+#else
+      throw todo(get_app());
 #endif
    }
 
    paint_graphics::~paint_graphics()
    {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       ::EndPaint(m_pwindow->get_safe_handle(), &m_ps);
+#else
+      throw todo(get_app());
 #endif
    }
 

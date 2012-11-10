@@ -1,7 +1,13 @@
 #include "framework.h"
+
+
+#ifdef BSD_STYLE_SOCKETS
+
 #include <openssl/rsa.h>
 #include <openssl/engine.h>
 #include <openssl/err.h>
+
+#endif
 
 
 typedef string ( *SALT)(::ca::application *, const char * , stringa &);

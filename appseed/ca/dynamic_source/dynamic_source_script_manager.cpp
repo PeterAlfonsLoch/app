@@ -567,7 +567,11 @@ namespace dynamic_source
       return 0;
    }
 
+#ifdef BSD_STYLE_SOCKETS
    RSA * script_manager::get_rsa_key()
+#else
+   ::Windows::Security::Cryptography::Core::CryptographicKey ^ script_manager::get_rsa_key()
+#endif
    {
       if(::get_tick_count() - m_dwLastRsa > (1984 + 1977))
       {
@@ -581,12 +585,32 @@ namespace dynamic_source
 
    void script_manager::calc_rsa_key()
    {
+
+#ifdef BSD_STYLE_SOCKETS
+      
       RSA * prsa = RSA_generate_key(1024, 65537, NULL, NULL);
+
+#else
+
+      ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider ^ provider = 
+         ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider::OpenAlgorithm(
+            ::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
+
+      ::Windows::Security::Cryptography::Core::CryptographicKey ^ prsa = provider->CreateKeyPair(1024);
+
+#endif
+     
       single_lock sl(&m_mutexRsa, TRUE);
       m_rsaptra.add(prsa);
       if(m_rsaptra.get_size() > 23)
       {
+
+#ifdef BSD_STYLE_SOCKETS
+
          RSA_free(m_rsaptra[0]);
+
+#endif
+
          m_rsaptra.remove_at(0);
       }
    }

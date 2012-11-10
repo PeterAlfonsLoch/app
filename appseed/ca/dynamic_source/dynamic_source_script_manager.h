@@ -125,7 +125,17 @@ namespace dynamic_source
       mutex                                     m_mutexSpider;
                                                
       mutex                                     m_mutexRsa;
+
+#ifdef BSD_STYLE_SOCKETS
+
       raw_array < RSA * >                       m_rsaptra;
+
+#else
+
+      raw_array < ::Windows::Security::Cryptography::Core::CryptographicKey ^ > m_rsaptra;
+
+#endif
+
       DWORD                                     m_dwLastRsa;
 
 
@@ -194,7 +204,16 @@ namespace dynamic_source
       virtual string real_path(const string & strBase, const string & str);
 
 
+      
+#ifdef BSD_STYLE_SOCKETS
+
       RSA * get_rsa_key();
+
+#else
+
+      ::Windows::Security::Cryptography::Core::CryptographicKey ^ get_rsa_key();
+
+#endif
       void calc_rsa_key();
 
 

@@ -31,7 +31,7 @@ It is provided "as is" without express or implied warranty.
 #include <malloc.h>
 
 #define USED_CONTEXT_FLAGS CONTEXT_FULL
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 #include <tlhelp32.h>
 
@@ -58,7 +58,7 @@ It is provided "as is" without express or implied warranty.
 
 bool IsNT()
 {
-#if 1
+#if defined(WINDOWSEX)
    OSVERSIONINFO vi = { sizeof(vi)};
    ::GetVersionEx(&vi);
    return vi.dwPlatformId == VER_PLATFORM_WIN32_NT;

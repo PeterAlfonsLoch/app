@@ -22,13 +22,24 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
 
    void application::Ex1OnFactoryExchange()
    {
-#ifdef WIN32
+
+#ifdef WINDOWS
 
       System.factory().creatable_large < ::ex1::file_exception > ();
 
       if(g_hmoduleOs == NULL)
       {
+
+#ifdef WINDOWSEX
+
          g_hmoduleOs = ::LoadLibraryA("os.dll");
+
+#else
+
+         g_hmoduleOs = ::LoadPackagedLibrary(L"os.dll", 0);
+
+#endif
+
       }
 
       if(g_hmoduleOs != NULL)

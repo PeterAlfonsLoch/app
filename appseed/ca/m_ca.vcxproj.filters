@@ -2040,9 +2040,6 @@
     <ClCompile Include="simpledb\simpledb_veiev_post.cpp">
       <Filter>Source Files\simpledb</Filter>
     </ClCompile>
-    <ClCompile Include="exception\exception.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\exception_archive.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -2065,9 +2062,6 @@
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_dump_output.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_errorn.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_hresult.cpp">

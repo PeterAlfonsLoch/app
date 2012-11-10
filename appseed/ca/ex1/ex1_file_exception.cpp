@@ -62,7 +62,7 @@ namespace ex1
 	   if(System.file().name_(gen::international::unicode_to_utf8(OpenedFileInfo.lpFile)).CompareNoCase(System.file().name_(m_strFileName)) == 0)
       {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 	      PROCESS_INFO_t stInfo;
 	      //if( !m_stProcessInfo.Lookup( OpenedFileInfo.dwPID, stInfo))
 	      {

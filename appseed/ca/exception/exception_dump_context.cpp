@@ -51,7 +51,7 @@ void dump_context::OutputString(const char * lpsz)
    // use C-runtime/OutputDebugString when m_pFile is NULL
    if (m_pFile == NULL)
    {
-      ::OutputDebugString(lpsz);
+      ::OutputDebugStringW(gen::international::utf8_to_unicode(lpsz));
       //     TRACE(::radix::trace::category_dumpContext, 0, "%s", lpsz);
       return;
    }
@@ -60,7 +60,7 @@ void dump_context::OutputString(const char * lpsz)
    if( lpsz == NULL )
       throw user_exception(get_app());
    // otherwise, write the string to the file
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    m_pFile->write(lpsz, lstrlen(lpsz)*sizeof(char));
 #else
    m_pFile->write(lpsz, strlen(lpsz)*sizeof(char));
@@ -97,7 +97,7 @@ dump_context& dump_context::operator<<(const char * lpsz)
    if (m_pFile == NULL)
    {
       char szBuffer[512];
-      LPTSTR lpBuf = szBuffer;
+      LPSTR lpBuf = szBuffer;
       while (*lpsz != '\0')
       {
          if (lpBuf > szBuffer + _countof(szBuffer) - 3)

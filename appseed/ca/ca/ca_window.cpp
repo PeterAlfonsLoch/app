@@ -1660,22 +1660,36 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifdef WINDOWS
+
+#ifdef WINDOWSEX
+
+
    void window::OnWindowPosChanging(WINDOWPOS*)
    {
+
       throw interface_only_exception(get_app());
+
    }
+
 
    void window::OnWindowPosChanged(WINDOWPOS*)
    {
+
       throw interface_only_exception(get_app());
+
    }
+
 
    void window::OnDropFiles(HDROP)
    {
+
       throw interface_only_exception(get_app());
+
    }
+
+
 #endif
+
 
    void window::OnPaletteIsChanging(window*)
    {
@@ -1688,12 +1702,19 @@ namespace ca
    }
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
+
+
    void window::OnNcCalcSize(bool, NCCALCSIZE_PARAMS*)
    {
+
       throw interface_only_exception(get_app());
+
    }
+
+
 #endif
+
 
    bool window::OnNcCreate(LPCREATESTRUCT)
    {
@@ -1988,18 +2009,29 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifdef WINDOWS
+
+#ifdef WINDOWSEX
+
+
    // Win4 support
    void window::OnStyleChanged(int, LPSTYLESTRUCT)
    {
+
       throw interface_only_exception(get_app());
+
    }
+
 
    void window::OnStyleChanging(int, LPSTYLESTRUCT)
    {
+
       throw interface_only_exception(get_app());
+
    }
+
+
 #endif
+
 
    void window::OnSizing(UINT, LPRECT)
    {

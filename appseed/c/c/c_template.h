@@ -20,6 +20,17 @@ inline UINT simple_HashKey(ARG_KEY key)
    return (DWORD)(((dword_ptr)key)>>4);
 }
 
+#ifdef METROWIN
+
+template < >
+inline UINT simple_HashKey(oswindow key)
+{
+   // default identity hash - works for most primitive values
+   return (DWORD)(((dword_ptr)(void *) key)>>4);
+}
+
+#endif
+
 template<> CLASS_DECL_c bool simple_CompareElements(const wstring * pElement1, const wstring * pElement2);
 
 

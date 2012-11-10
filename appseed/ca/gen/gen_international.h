@@ -53,18 +53,18 @@ namespace gen
        bool CLASS_DECL_ca multibyte_to_utf8(UINT uiCodePageSrc, string & str, const char * lpcsz, strsize nCount);
        strsize   CLASS_DECL_ca Utf8ToMultiByteCount(UINT uiCodePage, const char * lpcsz);
 
-       bool CLASS_DECL_ca MultiByteToOEM(UINT uiCodePage, string & str, const char * lpcsz);
-       bool CLASS_DECL_ca MultiByteToOEM(UINT uiCodePage, string & str, const char * lpcsz, strsize nCount);
+       //bool CLASS_DECL_ca MultiByteToOEM(UINT uiCodePage, string & str, const char * lpcsz);
+       //bool CLASS_DECL_ca MultiByteToOEM(UINT uiCodePage, string & str, const char * lpcsz, strsize nCount);
 
-       bool CLASS_DECL_ca OEMToMultiByte(UINT uiCodePage, string & str, const char * lpcsz);
-       bool CLASS_DECL_ca OEMToMultiByte(UINT uiCodePage, string & str, const char * lpcsz, strsize nCount);
+       //bool CLASS_DECL_ca OEMToMultiByte(UINT uiCodePage, string & str, const char * lpcsz);
+       //bool CLASS_DECL_ca OEMToMultiByte(UINT uiCodePage, string & str, const char * lpcsz, strsize nCount);
 
        bool CLASS_DECL_ca utf8_to_multibyte(UINT uiCodePage, string & str, const char * lpcsz);
        bool CLASS_DECL_ca utf8_to_multibyte(UINT uiCodePage, string & str, const char * lpcsz, strsize nCount);
        bool CLASS_DECL_ca utf8_to_multibyte(UINT uiCodePageSrc, char * lpsz, strsize nCount, const char * lpcsz);
 
-       bool CLASS_DECL_ca OemToUtf8(string & str, const char * lpcsz);
-       bool CLASS_DECL_ca OemToUtf8(string & str, const char * lpcsz, strsize nCount);
+       //bool CLASS_DECL_ca OemToUtf8(string & str, const char * lpcsz);
+       //bool CLASS_DECL_ca OemToUtf8(string & str, const char * lpcsz, strsize nCount);
 
        bool CLASS_DECL_ca unicode_to_utf8(string & str, const wchar_t * lpcsz);
        CLASS_DECL_ca wstring utf8_to_unicode(const char * lpcsz);

@@ -14,7 +14,7 @@ namespace gen
 
       m_bPiped = false;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       memset(&m_pi, 0, sizeof(PROCESS_INFORMATION));
 
@@ -27,7 +27,7 @@ namespace gen
    process::~process()
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       if(m_pi.hProcess != INVALID_HANDLE_VALUE && m_pi.hProcess != NULL)
       {
@@ -66,7 +66,7 @@ namespace gen
 
       m_bPiped = bPiped;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       
       
       bool bSuccess = FALSE;
@@ -123,6 +123,10 @@ namespace gen
          //CloseHandle(m_pi.hThread);
       }
       return true;
+
+#elif defined(METROWIN)
+
+      throw todo(::ca::get_thread_app());
 
 #else
    char *   exec_path_name;
@@ -222,13 +226,17 @@ namespace gen
       if(pdwExitCode == NULL)
          pdwExitCode = &dwExitCode;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       if(!GetExitCodeProcess(m_pi.hProcess, pdwExitCode))
          return true;
       if(*pdwExitCode == STILL_ACTIVE)
          return false;
       return true;
+
+#elif defined(METROWIN)
+
+      throw todo(::ca::get_thread_app());
 
 #else
 

@@ -101,7 +101,7 @@ int base_exception::ReportError(UINT nType /* = MB_OK */,
 }
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 bool IsWow64()
 {

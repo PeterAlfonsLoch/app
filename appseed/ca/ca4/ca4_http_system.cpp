@@ -864,6 +864,8 @@ retry:
 
 //            string strSessId;
 
+#ifdef BSD_STYLE_SOCKETS
+
             if(psession->IsSSL())
             {
                strSessId = psession->m_response.m_cookies["sessid"];
@@ -872,6 +874,8 @@ retry:
                   System.m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psession->m_spsslclientcontext;
                }
             }
+
+#endif
 
             string strCookie = psession->response().cookies().get_cookie_header();
             set["Cookie"] = strCookie;

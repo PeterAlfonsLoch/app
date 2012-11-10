@@ -1530,7 +1530,6 @@
     <ClCompile Include="ex2\ex2_file_set.cpp" />
     <ClCompile Include="ex2\ex2_folder_watch.cpp" />
     <ClCompile Include="ex2\ex2_transfer_file.cpp" />
-    <ClCompile Include="exception\exception.cpp" />
     <ClCompile Include="exception\exception_archive.cpp" />
     <ClCompile Include="exception\exception_base.cpp" />
     <ClCompile Include="exception\exception_call_stack.cpp" />
@@ -1540,7 +1539,6 @@
     <ClCompile Include="exception\exception_dump_floating_point.cpp" />
     <ClCompile Include="exception\exception_dump_output.cpp" />
     <ClCompile Include="exception\exception_engine.cpp" />
-    <ClCompile Include="exception\exception_errorn.cpp" />
     <ClCompile Include="exception\exception_hresult.cpp" />
     <ClCompile Include="exception\exception_installing.cpp" />
     <ClCompile Include="exception\exception_interface_only.cpp" />

@@ -67,7 +67,7 @@ namespace gen
       if(is_system())
       {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
          {
             char lpszModuleFilePath[MAX_PATH + 1];
@@ -90,6 +90,10 @@ namespace gen
             string strModuleFolder(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
             m_strCa2ModuleFolder = strModuleFolder;
          }
+
+#elif defined(METROWIN)
+
+         throw todo(this);
 
 #else
          {
@@ -361,7 +365,7 @@ finishedCa2ModuleFolder:;
 
       string strModuleFileName;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       char lpszModuleFilePath[MAX_PATH + 1];
 
@@ -372,8 +376,11 @@ finishedCa2ModuleFolder:;
 
       }
 
-#else
+#elif defined(METROWIN)
 
+      throw todo(this);
+
+#else
 
 #ifdef RTLD_DI_LINKMAP
 
@@ -441,7 +448,7 @@ finishedCa2ModuleFolder:;
    string application::get_module_file_path()
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       char lpszModuleFilePath[MAX_PATH + 1];
 
@@ -450,6 +457,10 @@ finishedCa2ModuleFolder:;
       string strModuleFileName(lpszModuleFilePath);
 
       return strModuleFileName;
+
+#elif defined(METROWIN)
+
+      throw todo(this);
 
 #else
 
@@ -629,7 +640,7 @@ finishedCa2ModuleFolder:;
 
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    HENHMETAFILE application::LoadEnhMetaFile(UINT uiResource)
    {

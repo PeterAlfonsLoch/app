@@ -800,7 +800,7 @@ namespace ca2
             }
             // %! TODO: ipv6 reverse lookup
 
-            ::Windows::Networking::Core::Hostname ^ name = ref new ::Windows::Socket::HostName(rtstr(hostname));
+            ::Windows::Networking::HostName ^ name = ref new ::Windows::Networking::HostName(rtstr(hostname));
 
             if(name != nullptr)
             {
@@ -932,6 +932,9 @@ namespace ca2
 
    bool net::u2service(const string & name, int& service, int ai_flags)
    {
+
+#ifdef BSD_STYLE_SOCKETS
+
 #ifdef NO_GETADDRINFO
       // %!
       return false;
@@ -960,6 +963,13 @@ namespace ca2
       }
       return false;
 #endif // NO_GETADDRINFO
+
+#else
+
+      return false;
+
+#endif
+
    }
 
 } // namespace ca2

@@ -34,7 +34,7 @@ void c_cdecl __trace(const char * lpszFormat, ...)
    int nBuf;
    char szBuffer[512];
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    nBuf = _vstprintf_s(szBuffer, _countof(szBuffer), lpszFormat, args);
 #else
    nBuf = vsprintf(szBuffer, lpszFormat, args);
