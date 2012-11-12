@@ -1,13 +1,19 @@
 #include "framework.h"
+#ifdef BSD_STYLE_SOCKETS
 #include <openssl/ssl.h>
 #include <openssl/md5.h>
+#endif
 
 #if defined(LINUX) || defined(MACOS)
 #include <netdb.h>
 #endif
 
 short int parse_http_proxy(char **proxy_host, int *port);
+#ifdef BSD_STYLE_SOCKETS
 struct hostent *GeoIP_get_host_or_proxy ();
+#else
+string GeoIP_get_host_or_proxy ();
+#endif
 
 
 #define BLOCK_SIZE 1024
@@ -152,7 +158,15 @@ static const char * GeoIPProxiedHost = "";
  * A "::fontopus::user:password@" part will break this.
  */
 short int parse_http_proxy(char **proxy_host, int *port) {
+
+#ifdef METROWIN
+
+   return 0;
+
+#else
+
    char * http_proxy;
+
    char * port_value;
 
    if ((http_proxy = getenv("http_proxy"))) {
@@ -175,10 +189,18 @@ short int parse_http_proxy(char **proxy_host, int *port) {
    else {
       return(0);
    }
+
+#endif
+
 }
 
 /* get the GeoIP host or the current HTTP Proxy host. */
-struct hostent *GeoIP_get_host_or_proxy () {
+#ifdef BSD_STYLE_SOCKETS
+struct hostent *GeoIP_get_host_or_proxy () 
+#else
+string GeoIP_get_host_or_proxy () 
+#endif
+{
    char * hostname = (char *) GeoIPUpdateHost;
    char * proxy_host;
    int proxy_port;
@@ -192,12 +214,21 @@ struct hostent *GeoIP_get_host_or_proxy () {
    }
 
    /* Resolve DNS host entry. */
-   return(gethostbyname(hostname));
+#ifdef BSD_STYLE_SOCKETS
+   return gethostbyname(hostname);
+#else
+   return c_gethostbyname(hostname);
+#endif
 }
 
-short int GeoIP_update_database (char * license_key, int verbose, void (*f)( char * )) {
+short int GeoIP_update_database (char * license_key, int verbose, void (*f)( char * ))
+{
+
+#ifdef BSD_STYLE_SOCKETS
    struct hostent *hostlist;
    SOCKET sock;
+#endif
+
    char * buf;
    struct sockaddr_in sa;
    int offset = 0, err;

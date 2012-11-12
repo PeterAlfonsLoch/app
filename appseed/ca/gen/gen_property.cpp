@@ -9,9 +9,11 @@
 
 void prop_id_debug(::ca::application * papp);
 
+
+
+
 namespace gen
 {
-
 
    pair_set_interface::pair_set_interface()
    {
@@ -229,11 +231,6 @@ namespace gen
       m_strNameLow.make_lower();
       set_value(var);
    }
-
-   property::~property()
-   {
-   }
-
 
    bool property::is_set() const
    {

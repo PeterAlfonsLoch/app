@@ -106,6 +106,8 @@ namespace ca4
       ::Windows::Security::Cryptography::Core::CryptographicKey ^ cipherkey = cipher->CreateSymmetricKey(memSha1.get_os_stream_buffer());
 
       storageEncrypt.set_os_stream_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(cipherkey, storageDecrypt.get_os_stream_buffer(), iv.get_os_stream_buffer()));
+
+      return true;
        
 #elif defined(MACOS)
        
@@ -330,7 +332,7 @@ namespace ca4
       ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider ^ cipher = 
          ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb);
 
-      ::Windows::Security::Cryptography::Core::CryptographicKey ^ cipherkey = cipher->CreateSymmetricKey(key.get_os_stream_buffer());
+      ::Windows::Security::Cryptography::Core::CryptographicKey ^ cipherkey = cipher->CreateSymmetricKey(memSha1.get_os_stream_buffer());
 
       storageDecrypt.set_os_stream_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(cipherkey, storageDecrypt.get_os_stream_buffer(), iv.get_os_stream_buffer()));
 

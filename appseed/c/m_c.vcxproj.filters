@@ -213,9 +213,6 @@
     <ClCompile Include="c\c_argcargv.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="c\c_atol.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="c\c_base64.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
@@ -432,6 +429,15 @@
     <ClCompile Include="metrowin\c_os_window.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
+    <ClCompile Include="c\c_net.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_integer_to_string.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_string_to_integer.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -540,9 +546,6 @@
       <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="c\c_async.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_atol.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="c\c_base64.h">
@@ -781,6 +784,15 @@
     </ClInclude>
     <ClInclude Include="metrowin\c_os.h">
       <Filter>Header Files\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_net.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_string_to_integer.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_integer_to_string.h">
+      <Filter>Header Files\c</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

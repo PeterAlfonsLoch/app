@@ -71,8 +71,6 @@ namespace ca
 #include "c_sprintf.h"
 #include "c_str.h"
 #include "c_std_file.h"
-#include "c_atol.h"
-#include "c_conv.h"
 
 
 
@@ -89,6 +87,7 @@ namespace ca
 #include "c_verisimple_wstring.h"
 #include "c_vsstringtow.h"
 #include "c_wstringtovss.h"
+
 
 #include "c_dir.h"
 #include "c_md5.h"
@@ -147,6 +146,11 @@ namespace ca
 #include "c/os/os.h"
 
 
+#include "c_conv.h"
+#include "c_string_to_integer.h"
+#include "c_integer_to_string.h"
+
+
 #include "c/simple_graphics/simple_graphics_second_phase.h"
 
 
@@ -175,6 +179,7 @@ namespace ca
 #include "c_message_loop.h"
 
 #include "c_url.h"
+#include "c_net.h"
 
 #include "c_international.h"
 
@@ -198,51 +203,3 @@ CLASS_DECL_c vsstring get_system_error_message(DWORD dwError);
 #include "c_simple_app.h"
 
 
-#ifndef BSD_STYLE_SOCKETS
-
-CLASS_DECL_c bool from_string(in6_addr * addr, const char * string);
-CLASS_DECL_c vsstring to_string(const in6_addr *addr);
-
-
-#if BYTE_ORDER == BIG_ENDIAN
-
-#define HTONS(n) (n)
-#define NTOHS(n) (n)
-#define HTONL(n) (n)
-#define NTOHL(n) (n)
-
-#else
-
-#define HTONS(n) (((((unsigned short)(n) & 0xFF)) << 8) | (((unsigned short)(n) & 0xFF00) >> 8))
-#define NTOHS(n) (((((unsigned short)(n) & 0xFF)) << 8) | (((unsigned short)(n) & 0xFF00) >> 8))
-
-#define HTONL(n) (((((unsigned long)(n) & 0xFF)) << 24) | \
-                  ((((unsigned long)(n) & 0xFF00)) << 8) | \
-                  ((((unsigned long)(n) & 0xFF0000)) >> 8) | \
-                  ((((unsigned long)(n) & 0xFF000000)) >> 24))
-
-#define NTOHL(n) (((((unsigned long)(n) & 0xFF)) << 24) | \
-                  ((((unsigned long)(n) & 0xFF00)) << 8) | \
-                  ((((unsigned long)(n) & 0xFF0000)) >> 8) | \
-                  ((((unsigned long)(n) & 0xFF000000)) >> 24))
-#endif
-
-#if 0
-
-unsigned short htons(unsigned short n);
-unsigned short ntohs(unsigned short n);
-unsigned long htonl(unsigned long n);
-unsigned long ntohl(unsigned long n);
-
-#define htons(n) HTONS(n)
-#define ntohs(n) NTOHS(n)
-
-#define htonl(n) HTONL(n)
-#define ntohl(n) NTOHL(n)
-
-#endif
-
-
-#define NI_NUMERICHOST  0x02  /* Return numeric form of the host's address */
-
-#endif

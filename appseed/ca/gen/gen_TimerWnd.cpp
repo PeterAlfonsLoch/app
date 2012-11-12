@@ -58,7 +58,7 @@ namespace gen
    //            return;
    //    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
        long lElapsed = get_tick_count() - GetMessageTime();
        //TRACE("Elapsed %d /n", lElapsed);
@@ -67,6 +67,10 @@ namespace gen
    //        ASSERT(FALSE);
            return;
        }
+
+#else
+
+       throw todo(get_app());
 
 #endif
 

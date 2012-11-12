@@ -1083,12 +1083,6 @@
     <ClCompile Include="radix\radix_wait_cursor.cpp">
       <Filter>Source Files\radix</Filter>
     </ClCompile>
-    <ClCompile Include="api\api_string_to_integer.cpp">
-      <Filter>Source Files\api</Filter>
-    </ClCompile>
-    <ClCompile Include="api\api_integer_to_string.cpp">
-      <Filter>Source Files\api</Filter>
-    </ClCompile>
     <ClCompile Include="api\api_muldiv64.cpp">
       <Filter>Source Files\api</Filter>
     </ClCompile>
@@ -3359,13 +3353,7 @@
     <ClInclude Include="ca\OpenedFiles.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="api\api_string_to_integer.h">
-      <Filter>Header Files\api</Filter>
-    </ClInclude>
     <ClInclude Include="api\api.h">
-      <Filter>Header Files\api</Filter>
-    </ClInclude>
-    <ClInclude Include="api\api_integer_to_string.h">
       <Filter>Header Files\api</Filter>
     </ClInclude>
     <ClInclude Include="api\api_debug.h">

@@ -519,7 +519,7 @@ namespace gen
       if(strFind.get_length() > (str.get_length() - iStart))
          return -1;
 
-      string strFindLow(&((LPCTSTR)strFind)[0], strFind.get_length()); // avoid optimized read only string copy
+      string strFindLow(&((LPCSTR)strFind)[0], strFind.get_length()); // avoid optimized read only string copy
 
       strFindLow.make_lower();
 
@@ -595,7 +595,7 @@ namespace gen
       else
       {
 
-         string strFindLow(&((LPCTSTR)strFind)[0], iFindLen); // avoid optimized read only string copy
+         string strFindLow(&((LPCSTR)strFind)[0], iFindLen); // avoid optimized read only string copy
 
          strFindLow.make_lower();
 
@@ -1082,13 +1082,17 @@ namespace gen
       if (oswindow != NULL)
       {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
          int nLen = ::GetWindowTextLength(oswindow);
 
          ::GetWindowText(oswindow, str.GetBufferSetLength(nLen), nLen+1);
 
          str.ReleaseBuffer();
+
+#else
+
+         throw todo(::ca::get_thread_app());
 
 #endif
 
@@ -1712,7 +1716,7 @@ namespace gen
    {
       string str(pszCandidate);
       str.trim();
-      LPCTSTR psz = str;
+      LPCSTR psz = str;
       if(*psz == '\0')
          return false;
       while(*psz != '\0')

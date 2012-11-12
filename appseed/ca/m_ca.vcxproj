@@ -278,13 +278,11 @@
   <ItemGroup>
     <ClInclude Include="api\api.h" />
     <ClInclude Include="api\api_debug.h" />
-    <ClInclude Include="api\api_integer_to_string.h" />
     <ClInclude Include="api\api_muldiv64.h" />
     <ClInclude Include="api\api_rotate.h" />
     <ClInclude Include="api\api_simple_critical_section.h" />
     <ClInclude Include="api\api_simple_mutex.h" />
     <ClInclude Include="api\api_string.h" />
-    <ClInclude Include="api\api_string_to_integer.h" />
     <ClInclude Include="bergedge\bergedge.h" />
     <ClInclude Include="bergedge\bergedge_interface.h" />
     <ClInclude Include="ca.h" />
@@ -1244,10 +1242,8 @@
     <ClInclude Include="zlib\zutil.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="api\api_integer_to_string.cpp" />
     <ClCompile Include="api\api_muldiv64.cpp" />
     <ClCompile Include="api\api_string.cpp" />
-    <ClCompile Include="api\api_string_to_integer.cpp" />
     <ClCompile Include="bergedge\bergedge_interface.cpp" />
     <ClCompile Include="ca2\ca2_application.cpp" />
     <ClCompile Include="ca2\ca2_datetime.cpp" />

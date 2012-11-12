@@ -894,10 +894,12 @@ retry:
             {
                if(iStatusCode == 0)
                {
+#if defined(BSD_STYLE_SOCKETS)
                   if(psession->m_spsslclientcontext.is_set() && psession->m_spsslclientcontext->m_iRetry == 1)
                   {
                      goto retry;
                   }
+#endif
                }
                if(iStatusCode == 200 || psession->outattr("http_status_code").is_empty())
                {

@@ -158,7 +158,14 @@ const char GeoIP_country_continent[253][3] = {"--","AS","EU","EU","AS","AS","SA"
 
 geoipv6_t _GeoIP_lookupaddress_v6 (const char *host);
 
-#if defined(_WIN32)
+#if defined(METROWIN)
+static int _GeoIP_inet_pton(int af, const char *src, void *dst) {
+   return c_inet_pton(af, src, dst);
+}
+static const char * _GeoIP_inet_ntop(int af, const void *src, char *dst, socklen_t cnt) {
+   return c_inet_ntop(af, src, dst, cnt);
+}
+#elif defined(_WIN32)
 /* http://www.mail-archive.com/users@ipv6.org/msg02107.html */
 static const char * _GeoIP_inet_ntop(int af, const void *src, char *dst, socklen_t cnt)
 {
@@ -243,7 +250,7 @@ char *_GeoIP_full_path_to(const char *file_name)
    char *path = (char *)  malloc(sizeof(char) * 1024);
 
    if (custom_directory == NULL){
-#if !defined(_WIN32)
+#if defined(METROWIN) || !defined(_WIN32)
       memset(path, 0, sizeof(char) * 1024);
       snprintf(path, sizeof(char) * 1024 - 1, "%s/%s", GEOIPDATADIR, file_name);
 #else
@@ -824,7 +831,14 @@ const char *GeoIP_country_name_by_name (GeoIP* gi, const char *name) {
    return (country_id > 0) ? GeoIP_country_name[country_id] : NULL;
 }
 
-unsigned long _GeoIP_lookupaddress (const char *host) {
+unsigned long _GeoIP_lookupaddress (const char *host)
+{
+#ifdef METROWIN
+
+   return c_inet_addr(c_gethostbyname(host));
+
+#else
+
    unsigned long addr = inet_addr(host);
    struct hostent phe2;
    struct hostent * phe = &phe2;
@@ -872,6 +886,7 @@ unsigned long _GeoIP_lookupaddress (const char *host) {
    free(buf);
 #endif
    return ntohl(addr);
+#endif
 }
 
 geoipv6_t
