@@ -181,8 +181,8 @@
 	<File name="ca4/ca4_compress.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1668" topLine="28" />
 	</File>
-	<File name="ca4/ca4_crypt.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="3003" topLine="103" />
+	<File name="ca4/ca4_crypt.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="10375" topLine="480" />
 	</File>
 	<File name="ca4/ca4_crypt.h" open="0" top="0" tabpos="21">
 		<Cursor position="3044" topLine="36" />
@@ -205,8 +205,17 @@
 	<File name="ca4/ca4_twit.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="36099" topLine="1311" />
 	</File>
-	<File name="calculator/calculator.h" open="0" top="0" tabpos="19">
+	<File name="calculator/calculator.h" open="1" top="0" tabpos="17">
 		<Cursor position="37" topLine="0" />
+	</File>
+	<File name="calculator/calculator_class.h" open="1" top="0" tabpos="14">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="calculator/datetime_element.h" open="1" top="0" tabpos="16">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="calculator/numeric_value.h" open="1" top="0" tabpos="18">
+		<Cursor position="0" topLine="10" />
 	</File>
 	<File name="collection/collection.h" open="0" top="0" tabpos="0">
 		<Cursor position="73" topLine="0" />
@@ -559,8 +568,8 @@
 	<File name="gen/gen_str.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="37094" topLine="1657" />
 	</File>
-	<File name="gen/gen_str.h" open="0" top="0" tabpos="0">
-		<Cursor position="9820" topLine="132" />
+	<File name="gen/gen_str.h" open="1" top="0" tabpos="22">
+		<Cursor position="149" topLine="0" />
 	</File>
 	<File name="gen/gen_str2.h" open="0" top="0" tabpos="0">
 		<Cursor position="6523" topLine="191" />
@@ -775,6 +784,12 @@
 	<File name="plane/plane_system.h" open="0" top="0" tabpos="2">
 		<Cursor position="28805" topLine="993" />
 	</File>
+	<File name="plane/plane_system_gen_str.cpp" open="1" top="0" tabpos="21">
+		<Cursor position="548" topLine="0" />
+	</File>
+	<File name="plane/plane_system_gen_str.h" open="1" top="1" tabpos="20">
+		<Cursor position="1674" topLine="55" />
+	</File>
 	<File name="plane/plane_system_primitive_string_format_spec.h" open="0" top="0" tabpos="4">
 		<Cursor position="105" topLine="0" />
 	</File>
@@ -853,11 +868,11 @@
 	<File name="primitive/primitive_string_core.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="194" topLine="0" />
 	</File>
-	<File name="primitive/primitive_string_format.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="4455" topLine="193" />
+	<File name="primitive/primitive_string_format.cpp" open="1" top="0" tabpos="19">
+		<Cursor position="1487" topLine="73" />
 	</File>
-	<File name="primitive/primitive_string_format.h" open="0" top="0" tabpos="0">
-		<Cursor position="8740" topLine="270" />
+	<File name="primitive/primitive_string_format.h" open="1" top="0" tabpos="12">
+		<Cursor position="7687" topLine="108" />
 	</File>
 	<File name="primitive/primitive_var.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="14677" topLine="805" />

@@ -35,13 +35,15 @@ namespace filemanager
       public:
          void AddFolder(Folder & folder);
          ::count GetFolderCount();
+#ifdef WINDOWSEX
          void clear(LPITEMIDLIST lpiidlPreserve1, LPITEMIDLIST lpiidlPreserve2);
+#endif
          Folder & GetFolder(index i);
       };
 
       virtual void _017Synchronize();
 
-      FolderArray         m_foldera; 
+      FolderArray         m_foldera;
       ::collection::map < HICON, HICON, int, int > m_iconmap;
 
       ::fs::item & GetFileManagerItem();

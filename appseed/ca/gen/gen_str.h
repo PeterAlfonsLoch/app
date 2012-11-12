@@ -4,6 +4,17 @@
 class var;
 class stringa;
 class id;
+class string_format;
+
+
+namespace calculator
+{
+
+
+   class value;
+
+
+} // namespace calculator
 
 
 namespace gen
@@ -111,12 +122,12 @@ namespace gen
 
       FORCEINLINE  const char * __utf8_inc(const char * psz) { return psz + 1 + trailingBytesForUTF8[(unsigned char) *psz]; }
 
-      
+
       CLASS_DECL_ca  const char *   utf8_inc(const char * psz);
       CLASS_DECL_ca  const char *   utf8_inc_slide(strsize * pslide, const char * psz);
       CLASS_DECL_ca  const char *   utf8_inc_copy_slide_back(strsize * pslideback, char * pchDst, const char * pchSrc);
 
-      
+
       CLASS_DECL_ca  const char *   utf8_dec(const char * pszBeg, const char * psz);
       CLASS_DECL_ca  string         utf8_char(const char *psz);
       CLASS_DECL_ca  string         utf8_char(const char *psz, const char * pszEnd);
@@ -240,10 +251,46 @@ namespace gen
       template < class TYPE >
       inline TYPE from_string(const char * psz);
 
+      void format(string_format * pformat, char const &  i);
+
+      void format(string_format * pformat, unsigned char const &  i);
+
+      void format(string_format * pformat, short const &  i);
+
+      void format(string_format * pformat, unsigned short const &  i);
+
+      void format(string_format * pformat, int const &  i);
+
+      void format(string_format * pformat, unsigned int const &  i);
+
+      void format(string_format * pformat, long const & i);
+
+      void format(string_format * pformat, unsigned long const & i);
+
+      void format(string_format * pformat, long long const & i);
+
+      void format(string_format * pformat, unsigned long long const & i);
+
+      void format(string_format * pformat, double const &  i);
+
+      void format(string_format * pformat, float const &  i);
+
+      void format(string_format * pformat, void * const & p);
+
+      void format(string_format * pformat, const void * const & p);
+
+      void format(string_format * pformat, unsigned char * const & p);
+
+      void format(string_format * pformat, const char * const & psz);
+
+      void format(string_format * pformat, const calculator::value & val);
 
 
 
       bool CLASS_DECL_ca simple_escaped(const string & str, strsize pos);
+
+
+
 
    } // namespace str
 

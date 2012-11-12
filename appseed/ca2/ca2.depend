@@ -1125,7 +1125,7 @@
 
 1350784958 /ca2/app/appseed/c/c/c_simple_obj.h
 
-1350784958 /ca2/app/appseed/c/c/c_template.h
+1352570126 /ca2/app/appseed/c/c/c_template.h
 
 1350784958 /ca2/app/appseed/c/c/c_simple_array.h
 
@@ -1159,7 +1159,7 @@
 
 1350784958 /ca2/app/appseed/c/c/c_library.h
 
-1351367157 /ca2/app/appseed/c/c/c_simple_memory.h
+1352561027 /ca2/app/appseed/c/c/c_simple_memory.h
 
 1350784958 /ca2/app/appseed/c/c/c_file_watcher.h
 
@@ -1803,7 +1803,7 @@
 
 1349547837 /ca2/app/appseed/ca/x/x_tables.h
 
-1352064800 /ca2/app/appseed/ca/gen/gen_str.h
+1352677665 /ca2/app/appseed/ca/gen/gen_str.h
 	"gen_strn.h"
 	"gen_hex.h"
 
@@ -1813,7 +1813,7 @@
 
 1348427704 /ca2/app/appseed/ca/primitive/primitive_id.h
 
-1350025624 /ca2/app/appseed/ca/primitive/primitive_string_format.h
+1352677696 /ca2/app/appseed/ca/primitive/primitive_string_format.h
 
 1342864855 /ca2/app/appseed/ca/primitive/primitive_fixed_string.h
 
@@ -1838,7 +1838,7 @@
 1342864726 /ca2/app/appseed/ca/gen/gen_ch_class.h
 	"primitive/primitive_memory_operator.h"
 
-1342864726 /ca2/app/appseed/ca/gen/gen_international.h
+1352570126 /ca2/app/appseed/ca/gen/gen_international.h
 
 1348428020 /ca2/app/appseed/ca/gen/gen_str2.h
 	<string.h>
@@ -2424,7 +2424,7 @@
 
 1342864814 /ca2/app/appseed/ca/ex1/ex1_file_stream.h
 
-1351846830 /ca2/app/appseed/ca/primitive/primitive_memory_base.h
+1352561027 /ca2/app/appseed/ca/primitive/primitive_memory_base.h
 
 1342864855 /ca2/app/appseed/ca/primitive/primitive_memory.h
 
@@ -3447,7 +3447,7 @@
 
 1342864871 /ca2/app/appseed/ca/sockets/basic/sockets_ssl_client_context_map.h
 
-1352064797 /ca2/app/appseed/ca/sockets/basic/socket.h
+1352570126 /ca2/app/appseed/ca/sockets/basic/socket.h
 
 1342864871 /ca2/app/appseed/ca/sockets/basic/stream_socket.h
 
@@ -3861,7 +3861,7 @@
 
 1346980287 /ca2/app/appseed/ca/dynamic_source/dynamic_source_httpd_socket.h
 
-1350116422 /ca2/app/appseed/ca/dynamic_source/dynamic_source_script_manager.h
+1352570126 /ca2/app/appseed/ca/dynamic_source/dynamic_source_script_manager.h
 
 1342864700 /ca2/app/appseed/ca/plane/plane_library.h
 
@@ -3879,7 +3879,7 @@
 
 1342864809 /ca2/app/appseed/ca/collection/collection_gen_lemon_array.h
 
-1348427618 /ca2/app/appseed/ca/plane/plane_system_gen_str.h
+1352677555 /ca2/app/appseed/ca/plane/plane_system_gen_str.h
 
 1342864700 /ca2/app/appseed/ca/plane/plane_system_primitive_var.h
 
@@ -4755,5 +4755,124 @@
 	"framework.h"
 
 1352436930 source:/ca2/app/appseed/ca2/command/command_view.cpp
+	"framework.h"
+
+1347621938 source:/ca2/app/appseed/ca2/cube/cube_library.cpp
+	"framework.h"
+
+1352577595 source:/ca2/app/appseed/ca2/ca8/ca8_application.cpp
+	"framework.h"
+
+1352675889 source:/ca2/app/appseed/ca2/bergedge/bergedge_bergedge.cpp
+	"framework.h"
+
+1352675889 source:/ca2/app/appseed/ca2/command/command_application.cpp
+	"framework.h"
+
+1352675982 source:/ca2/app/appseed/ca2/command/command_frame.cpp
+	"framework.h"
+
+1352676110 source:/ca2/app/appseed/ca2/command/command_pane_view.cpp
+	"framework.h"
+
+1342864889 source:/ca2/app/appseed/ca2/cube5/cube5_application.cpp
+	"framework.h"
+
+1350025626 source:/ca2/app/appseed/ca2/cube8/cube8_application.cpp
+	"framework.h"
+
+1352246691 source:/ca2/app/appseed/ca2/cubebase/cubebase_application.cpp
+	"framework.h"
+
+1352676133 source:/ca2/app/appseed/ca2/cube/cube_cube.cpp
+	"framework.h"
+	<GdiPlus.h>
+
+1347754849 source:/ca2/app/appseed/ca2/cubebase/cubebase_cubebase.cpp
+	"framework.h"
+
+1342864889 source:/ca2/app/appseed/ca2/databaseuser/database_key_list_data.cpp
+	"framework.h"
+
+1342864889 source:/ca2/app/appseed/ca2/databaseuser/database_list_data.cpp
+	"framework.h"
+
+1352423361 source:/ca2/app/appseed/ca2/filehandler/filehandler_application.cpp
+	"framework.h"
+
+1347621938 source:/ca2/app/appseed/ca2/filehandler/filehandler_document.cpp
+	"framework.h"
+
+1342864933 source:/ca2/app/appseed/ca2/filehandler/filehandler_frame.cpp
+	"framework.h"
+
+1352423361 source:/ca2/app/appseed/ca2/filehandler/filehandler_pane_view.cpp
+	"framework.h"
+
+1342864933 source:/ca2/app/appseed/ca2/filehandler/filehandler_pane_view_update_hint.cpp
+	"framework.h"
+
+1351812992 source:/ca2/app/appseed/ca2/filehandler/filehandler_view.cpp
+	"framework.h"
+
+1342864904 source:/ca2/app/appseed/ca2/filemanager/FileManagerCallbackInterface.cpp
+	"framework.h"
+
+1342864904 source:/ca2/app/appseed/ca2/filemanager/FileManagerFileListCallback.cpp
+	"framework.h"
+
+1342864904 source:/ca2/app/appseed/ca2/filemanager/FileManagerFrame.cpp
+	"framework.h"
+	"FileManagerFrame.h"
+
+1342864904 /ca2/app/appseed/ca2/filemanager/FileManagerFrame.h
+
+1351322635 source:/ca2/app/appseed/ca2/filemanager/FileManagerInterface.cpp
+	"framework.h"
+
+1342864904 source:/ca2/app/appseed/ca2/filemanager/FileManagerChildFrame.cpp
+	"framework.h"
+	"FileManagerViewUpdateHint.h"
+	"SimpleFileListInterface.h"
+
+1352676249 /ca2/app/appseed/ca2/filemanager/SimpleFileListInterface.h
+
+1342864904 source:/ca2/app/appseed/ca2/filemanager/FileManagerMainFrame.cpp
+	"framework.h"
+	"FileManagerMainFrame.h"
+
+1348987605 source:/ca2/app/appseed/ca2/filemanager/FileManagerPathView.cpp
+	"framework.h"
+
+1342864904 source:/ca2/app/appseed/ca2/filemanager/FileManagerSaveAsNameView.cpp
+	"framework.h"
+
+1352423361 source:/ca2/app/appseed/ca2/filemanager/FileManagerTemplate.cpp
+	"framework.h"
+	"FileManagerFrame.h"
+	"FileManagerViewUpdateHint.h"
+	"SimpleFileListView.h"
+
+1342864904 /ca2/app/appseed/ca2/filemanager/SimpleFileListView.h
+	"ContextMenu.h"
+	"SimpleFileListInterface.h"
+
+1342864904 source:/ca2/app/appseed/ca2/filemanager/FileManagerViewInterface.cpp
+	"framework.h"
+
+1342864904 source:/ca2/app/appseed/ca2/filemanager/FileManagerViewUpdateHint.cpp
+	"framework.h"
+	"FileManagerViewUpdateHint.h"
+
+1352676362 source:/ca2/app/appseed/ca2/cube1/cube1_application.cpp
+	"framework.h"
+
+1352423361 source:/ca2/app/appseed/ca2/filemanager/SimpleFilePropertiesForm.cpp
+	"framework.h"
+
+1352676493 source:/ca2/app/appseed/ca2/cube2/cube2_application.cpp
+	"framework.h"
+
+1352676110 source:/ca2/app/appseed/ca2/command/command_primary_view.cpp
 	"framework.h"
 

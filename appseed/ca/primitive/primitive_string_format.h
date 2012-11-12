@@ -190,7 +190,7 @@ public:
          if(!parse(s))
          {
 
-            format(value);
+            gen::str::format(this, value);
 
             printf(s, args...);
 
@@ -227,7 +227,7 @@ public:
          if(!parse(s))
          {
 
-            format(value);
+            ::gen::str::format(this, value);
 
             printf(s, args...);
 
@@ -257,38 +257,6 @@ public:
       defer_get_additional_argument(s, args...);
 
    }
-
-   void format(char const &  i);
-
-   void format(unsigned char const &  i);
-
-   void format(short const &  i);
-
-   void format(unsigned short const &  i);
-
-   void format(int const &  i);
-
-   void format(unsigned int const &  i);
-
-   void format(long const & i);
-
-   void format(unsigned long const & i);
-
-   void format(long long const & i);
-
-   void format(unsigned long long const & i);
-
-   void format(double const &  i);
-
-   void format(float const &  i);
-
-   void format(void * const & p);
-
-   void format(const void * const & p);
-
-   void format(unsigned char * const & p);
-
-   void format(const char * const & psz);
 
    inline void printf(const char * & s)
    {

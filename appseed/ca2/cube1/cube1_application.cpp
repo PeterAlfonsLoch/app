@@ -34,9 +34,16 @@ namespace cube1
          rect.unite(rect, &rectMonitor);
       }
 
-#if !core_level_1 && !core_level_2
+#ifdef WINDOWS
+
       m_monitorinfoaDesk = m_monitorinfoa;
+
+#else
+
+      throw todo(get_app());
+
 #endif
+
       /*if(m_monitorinfoa.get_size() == 1)
       {
          MONITORINFO mi = m_monitorinfoaDesk.last_element();
@@ -84,14 +91,23 @@ namespace cube1
 
    void application::enum_display_monitors()
    {
-#if !core_level_1 && !core_level_2
+
+#ifdef WINDOWS
+
       m_monitorinfoa.remove_all();
+
       ::EnumDisplayMonitors(NULL, NULL, &application::monitor_enum_proc,
          (LPARAM) ( dynamic_cast < cube1::application * > (this)));
+
+#else
+
+      throw todo(get_app());
+
 #endif
+
    }
 
-#if !core_level_1 && !core_level_2
+#ifdef WINDOWS
    BOOL CALLBACK application::monitor_enum_proc(
      HMONITOR hmonitor,
      HDC hdcMonitor,
@@ -104,7 +120,7 @@ namespace cube1
    }
 #endif
 
-#if !core_level_1 && !core_level_2
+#ifdef WINDOWS
    void application::monitor_enum(
      HMONITOR hmonitor,
      HDC hdcMonitor,
@@ -127,9 +143,10 @@ namespace cube1
 
    count application::get_monitor_count()
    {
-#if !core_level_1
+#ifdef WINDOWS
       return m_monitorinfoa.get_size();
 #else
+      throw todo(get_app());
       return 1;
 #endif
    }
@@ -138,9 +155,10 @@ namespace cube1
    {
       if(i < 0 || i >= get_monitor_count())
          return false;
-#if !core_level_1
+#ifdef WINDOWS
       *lprect = m_monitorinfoa[i].rcMonitor;
 #else
+      throw todo(get_app());
       ::GetWindowRect(::GetDesktopWindow(), lprect);
 #endif
       return true;
@@ -149,9 +167,10 @@ namespace cube1
 
    count application::get_desk_monitor_count()
    {
-#if !core_level_1
+#ifdef WINDOWS
       return m_monitorinfoaDesk.get_size();
 #else
+      throw todo(get_app());
       return 1;
 #endif
    }
@@ -160,9 +179,10 @@ namespace cube1
    {
       if(i < 0 || i >= get_desk_monitor_count())
          return false;
-#if !core_level_1
+#ifdef WINDOWS
       *lprect = m_monitorinfoaDesk[i].rcMonitor;
 #else
+      throw todo(get_app());
       ::GetWindowRect(::GetDesktopWindow(), lprect);
 #endif
       return true;

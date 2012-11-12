@@ -137,7 +137,7 @@ namespace ca8
       {
          strMatter = "system\\user\\simple_message_box\\ok.xhtml";
       }
-      box.show(strMatter, propertyset);
+      box.show(strMatter, &propertyset);
       if(box.m_strResponse == "ok")
       {
          return IDOK;

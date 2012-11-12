@@ -305,16 +305,30 @@ namespace command
 
    void pane_view::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
    {
+
       UNREFERENCED_PARAMETER(pdata);
+
       if(itema.get_size() > 0)
       {
-         int i = (int) ::ShellExecuteW(
+
+         int i = 0;
+
+#ifdef WINDOWS
+
+         i = (int) ::ShellExecuteW(
             GetTopLevelParent()->get_handle(),
             NULL,
             gen::international::utf8_to_unicode("\"" + itema[0].m_strPath + "\""),
             NULL,
             gen::international::utf8_to_unicode("\"" +  System.dir().name(itema[0].m_strPath) + "\""),
             SW_SHOWNORMAL);
+
+#else
+
+         throw todo(get_app());
+
+#endif
+
          string str;
          str.Format("%d", i);
          //Application.simple_message_box(str);

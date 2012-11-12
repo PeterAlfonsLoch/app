@@ -431,7 +431,7 @@ namespace bergedge
       {
          try
          {
-            get_view()->GetParentFrame()->SetWindowTextA(dynamic_cast < ::fontopus::application * > (m_pappCurrent)->m_puser->m_strLogin);
+            get_view()->GetParentFrame()->SetWindowText(dynamic_cast < ::fontopus::application * > (m_pappCurrent)->m_puser->m_strLogin);
          }
          catch(...)
          {
@@ -500,7 +500,16 @@ namespace bergedge
          data.lpData = file.get_data();
          ::oswindow oswindow = ::FindWindowA(NULL, "ca2::fontopus::message_wnd::bergedge::");
 
+#ifdef WINDOWSEX
+
          ::SendMessage(oswindow, WM_COPYDATA, NULL, (LPARAM) &data);
+
+#else
+
+         throw todo(get_app());
+
+#endif
+
       }
    }
 

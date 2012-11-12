@@ -102,9 +102,9 @@ namespace command
 		   TRACE0("Failed to create toolbar\n");
 		   return -1;      // fail to create
 	   }
-   
-   
-	   if (!m_dialogbar.create(this, IDR_MAINFRAME, 
+
+
+	   if (!m_dialogbar.create(this, IDR_MAINFRAME,
 		   WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP | CBRS_GRIPPER | CBRS_SIZE_DYNAMIC
          | CBRS_DRAGMOVE, __IDW_DIALOGBAR))
 	   {
@@ -174,7 +174,7 @@ namespace command
    #endif //DEBUG
 
 
-   void frame::_001OnTimer(gen::signal_object * pobj) 
+   void frame::_001OnTimer(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
@@ -187,6 +187,9 @@ namespace command
       {
          KillTimer(nIDEvent);
          m_bTimerOn = false;
+
+#ifdef WINDOWS
+
          bool bLControlKeyDown = (GetAsyncKeyState (VK_LCONTROL) >> ((sizeof(SHORT) * 8) - 1)) != 0;
          bool bLAltKeyDown = (GetAsyncKeyState (VK_LMENU) >> ((sizeof(SHORT) * 8) - 1)) != 0;
          if(bLControlKeyDown && !bLAltKeyDown)
@@ -197,6 +200,13 @@ namespace command
          {
             ShowWindow(SW_HIDE);
          }
+
+#else
+
+         throw todo(get_app());
+
+#endif
+
       }
       else if(nIDEvent == 1001)
       {
@@ -234,7 +244,7 @@ namespace command
             {
                m_dwLastHover = ::GetTickCount();
                m_bHoverMouse = true;
-            
+
             }
             else if(m_bHoverMouse && (pt.x > 10 || pt.y > 0))
             {
@@ -243,10 +253,10 @@ namespace command
 
          }*/
    // OpenGL animation code goes here
-			
+
 			   //glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
 			   //glClear( GL_COLOR_BUFFER_BIT );
-			
+
 			   /*glPushMatrix();
 			   glRotatef( theta, 0.0f, 1.0f, 1.0f );
 			   glBegin( GL_TRIANGLES );
@@ -255,11 +265,11 @@ namespace command
 			   glColor3f( 0.0f, 0.0f, 1.0f ); glVertex2f( -0.87f, -0.5f );
 			   glEnd();
 			   glPopMatrix();*/
-			
+
 			   //SwapBuffers( m_hdcOpenGL );
-			
+
 			   theta += 2.0f;
-		
+
       }
    //	simple_frame_window::OnTimer(nIDEvent);
    }
@@ -423,7 +433,7 @@ namespace command
    void frame::_001OnShowWindow(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::show_window, pshowwindow, pobj)
-   
+
       if(!pshowwindow->m_bShow)
       {
          if(GetActiveDocument() != NULL)
@@ -449,11 +459,11 @@ namespace command
          bChanged = true;
       }
       SetWindowPos(
-         ZORDER_TOPMOST, 
-         rectWindow.left, 
-         rectWindow.top, 
-         rectWindow.width(), 
-         rectWindow.height(), 
+         ZORDER_TOPMOST,
+         rectWindow.left,
+         rectWindow.top,
+         rectWindow.width(),
+         rectWindow.height(),
          SWP_SHOWWINDOW);
    }
 
@@ -484,7 +494,7 @@ namespace command
             KillTimer(1000);
             m_bTimerOn = false;
          }
-      
+
       }
       else if(pbase->m_wparam == 1)
       {

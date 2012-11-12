@@ -7,9 +7,9 @@ namespace command
 
    primary_view::primary_view(::ca::application * papp) :
       ca(papp),
-      ::user::interaction(papp), 
+      ::user::interaction(papp),
       ::userbase::view(papp),
-      ::userbase::edit_plain_text_view(papp), 
+      ::userbase::edit_plain_text_view(papp),
       ::user::scroll_view(papp)
    {
 
@@ -23,7 +23,7 @@ namespace command
 
    }
 
-   void primary_view::on_update(::view* pSender, LPARAM lHint, ::radix::object* phint) 
+   void primary_view::on_update(::view* pSender, LPARAM lHint, ::radix::object* phint)
    {
 
       UNREFERENCED_PARAMETER(pSender);
@@ -130,12 +130,15 @@ namespace command
                   TRACE("error %s", psz);
                   bOk = false;
                }
-            
+
                if(!bOk)
                {
+
+#ifdef WINDOWS
+
                   if(::ShellExecuteW(
-                     NULL, 
-                     NULL, 
+                     NULL,
+                     NULL,
                      gen::international::utf8_to_unicode(strLine),
                      NULL,
                      NULL,
@@ -146,10 +149,17 @@ namespace command
                      _001SetText(strNewText);
                      m_iCompromised = m_iSelStart = m_iSelEnd = strNewText.get_length();
                   }
+
+#else
+
+                  throw todo(get_app());
+
+#endif
+
                }
             }
          }
-      
+
 
       }
    }
@@ -180,7 +190,7 @@ namespace command
    }
 
 
-   void primary_view::_001OnContextMenu(gen::signal_object * pobj) 
+   void primary_view::_001OnContextMenu(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
       point point = pcontextmenu->GetPoint();

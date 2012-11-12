@@ -30,6 +30,9 @@ namespace cube2
       return true;
    }
 
+
+#ifdef WINDOWS
+
    BOOL CALLBACK application::GetAppsEnumWindowsProc(oswindow oswindow, LPARAM lParam)
    {
       application * papp = (application *) lParam;
@@ -85,14 +88,27 @@ namespace cube2
                papp->m_mapAppInterest["windesk"] = oswindow;
          }
       }
+
       return TRUE;
+
    }
 
+#endif
 
 
    void application::update_app_interest()
    {
+
+#ifdef WINDOWS
+
       EnumWindows(GetAppsEnumWindowsProc, (LPARAM) (application *) (this));
+
+#else
+
+      throw todo(get_app());
+
+#endif
+
    }
 
    void application::ensure_app_interest()
@@ -157,6 +173,7 @@ namespace cube2
 
    int application::send_simple_command(void * osdata, const char * psz, void * osdataSender)
    {
+#ifdef WINDOWS
       ::oswindow oswindow = (::oswindow) osdata;
       if(!::IsWindow(oswindow))
          return -1;
@@ -166,6 +183,9 @@ namespace cube2
       cds.cbData = (DWORD) strlen(psz);
       cds.lpData = (PVOID) psz;
       return (int) SendMessage(oswindow, WM_COPYDATA, (WPARAM) osdataSender, (LPARAM) &cds);
+#else
+      throw todo(get_app());
+#endif
    }
 
    void application::request(::ca::create_context * pcreatecontext)

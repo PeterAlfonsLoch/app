@@ -15,13 +15,13 @@ namespace filemanager
    {
    public:
 
-      
+
       class create_image_list_thread :
          public ::radix::thread
       {
       public:
-         
-         
+
+
          SimpleFileListInterface * m_plist;
 
 
@@ -67,7 +67,7 @@ namespace filemanager
          bool IsFolder() const;
       };*/
 
-      
+
       /*class ItemArray :
          protected class_sort_array < ItemArray, Item, Item & >
       {
@@ -101,8 +101,9 @@ namespace filemanager
       ::collection::map < icon_key, const icon_key &, icon, icon & > m_iconmap;
 
       mutex            m_mutex;
-
+#ifdef WINDOWS
       IShellFolder *   m_pshellfolder;
+#endif
       bool               m_bCreateImageList;
       bool               m_bCreateImageListRedraw;
       index               m_iAnimate;
@@ -117,7 +118,7 @@ namespace filemanager
       bool              m_bRestartCreateImageList;
 
       bool              m_bStatic;
-      
+
    /*   class icon_key
       {
       public:
@@ -132,9 +133,9 @@ namespace filemanager
          }
          bool operator == (const icon_key & key) const;
       };
-      
-      
-      
+
+
+
       class icon
       {
       public:
@@ -146,7 +147,7 @@ namespace filemanager
       SimpleFileListInterface(::ca::application * papp);
       virtual ~SimpleFileListInterface();
       virtual void file_size_add_request(bool bClear);
-      
+
 
       virtual COLORREF get_background_color();
       void add_item(const char * pszPath, const char * pszTitle);

@@ -78,7 +78,7 @@ namespace ca4
    AES encryption/decryption demo program using OpenSSL EVP apis
    gcc -Wall openssl_aes.c -lcrypto
 
-   this is public domain code. 
+   this is public domain code.
 
    Saju Pillai (saju.pillai@gmail.com)
    **/
@@ -100,7 +100,7 @@ namespace ca4
 
 #ifdef METROWIN
 
-      ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider ^ cipher = 
+      ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider ^ cipher =
          ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb);
 
       ::Windows::Security::Cryptography::Core::CryptographicKey ^ cipherkey = cipher->CreateSymmetricKey(memSha1.get_os_stream_buffer());
@@ -110,157 +110,157 @@ namespace ca4
       return true;
        
 #elif defined(MACOS)
-       
+
       CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-       
+
       CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeAES);
-       
+
       CFDataRef keyData = memSha1.get_os_cf_data();
-       
+
       CFErrorRef error = NULL;
-       
+
       SecKeyRef key = SecKeyCreateFromData(parameters, keyData, &error);
-       
+
       if(error != NULL)
       {
-           
+
          CFRelease(error);
-          
+
          CFRelease(keyData);
-          
+
          CFRelease(parameters);
-           
+
          return false;
-           
+
       }
-       
+
       SecTransformRef transform = SecEncryptTransformCreate(key, &error);
-       
+
       if(error != NULL)
       {
-           
+
          CFRelease(error);
 
          CFRelease(key);
-         
+
          CFRelease(keyData);
-         
+
          CFRelease(parameters);
-         
+
          return false;
-           
+
       }
-       
+
       SecTransformSetAttribute(transform, kSecPaddingKey, kSecPaddingPKCS1Key, &error);
-       
+
       if(error != NULL)
       {
-           
+
          CFRelease(transform);
-           
+
          CFRelease(keyData);
-           
+
          CFRelease(parameters);
-           
+
          CFRelease(key);
-           
+
          CFRelease(error);
-           
+
          return false;
-           
+
       }
-       
+
       CFDataRef dataIv = iv.get_os_cf_data();
-       
+
       SecTransformSetAttribute(transform, kSecIVKey, dataIv, &error);
-      
+
       if(error != NULL)
       {
-         
+
          CFRelease(dataIv);
-         
+
          CFRelease(transform);
-         
+
          CFRelease(parameters);
-         
+
          CFRelease(keyData);
-         
+
          CFRelease(key);
-         
+
          CFRelease(error);
-         
+
          return false;
-         
+
       }
-      
+
       CFDataRef dataIn = storageDecrypt.get_os_cf_data();
-       
+
       SecTransformSetAttribute(transform, kSecTransformInputAttributeName, dataIn, &error);
-       
+
       if(error != NULL)
       {
-           
+
          CFRelease(dataIn);
-           
+
          CFRelease(dataIv);
-          
+
          CFRelease(transform);
-           
+
          CFRelease(parameters);
-           
+
          CFRelease(keyData);
-           
+
          CFRelease(key);
-           
+
          CFRelease(error);
-           
+
          return false;
-           
+
       }
-       
+
       /* Encrypt the data. */
-       
+
       CFDataRef data = (CFDataRef) SecTransformExecute(transform, &error);
-       
+
       if(error != NULL)
       {
-           
+
          CFRelease(dataIn);
-           
+
          CFRelease(dataIv);
-          
+
          CFRelease(transform);
-           
+
          CFRelease(parameters);
-           
+
          CFRelease(keyData);
-           
+
          CFRelease(key);
-           
+
          CFRelease(error);
-           
+
          return false;
-           
+
       }
-       
+
       simple_memory memory;
-       
+
       storageEncrypt.set_os_cf_data(data);
-       
+
       CFRelease(data);
-       
+
       CFRelease(dataIv);
-      
+
       CFRelease(dataIn);
-       
+
       CFRelease(transform);
-       
+
       CFRelease(keyData);
-       
+
       CFRelease(parameters);
-      
+
       CFRelease(key);
-       
+
       return true;
 
 #else
@@ -273,9 +273,9 @@ namespace ca4
 
       EVP_CIPHER_CTX_init(&ctx);
 
-      EVP_EncryptInit(&ctx, EVP_aes_256_ecb(), key.get_data(), iv.get_data());
+      EVP_EncryptInit(&ctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
-      cipherlen = (int) (storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx) - 1); 
+      cipherlen = (int) (storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx) - 1);
 
       storageEncrypt.allocate(cipherlen);
 
@@ -329,167 +329,167 @@ namespace ca4
 
 #ifdef METROWIN
 
-      ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider ^ cipher = 
+      ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider ^ cipher =
          ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb);
 
-      ::Windows::Security::Cryptography::Core::CryptographicKey ^ cipherkey = cipher->CreateSymmetricKey(memSha1.get_os_stream_buffer());
+      ::Windows::Security::Cryptography::Core::CryptographicKey ^ cipherkey = cipher->CreateSymmetricKey(key.get_os_stream_buffer());
 
       storageDecrypt.set_os_stream_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(cipherkey, storageDecrypt.get_os_stream_buffer(), iv.get_os_stream_buffer()));
 
 #elif defined(MACOS)
-      
+
       CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-      
+
       CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeAES);
-      
+
       CFDataRef keyData = memSha1.get_os_cf_data();
-      
+
       CFErrorRef error = NULL;
-      
+
       SecKeyRef key = SecKeyCreateFromData(parameters, keyData, &error);
-      
+
       if(error != NULL)
       {
-         
+
          CFRelease(error);
-         
+
          CFRelease(keyData);
-         
+
          CFRelease(parameters);
-         
+
          return false;
-         
+
       }
-      
+
       SecTransformRef transform = SecDecryptTransformCreate(key, &error);
-      
+
       if(error != NULL)
       {
-         
+
          CFRelease(error);
-         
+
          CFRelease(key);
-         
+
          CFRelease(keyData);
-         
+
          CFRelease(parameters);
-         
+
          return false;
-         
+
       }
-      
+
       SecTransformSetAttribute(transform, kSecPaddingKey, kSecPaddingPKCS1Key, &error);
-      
+
       if(error != NULL)
       {
-         
+
          CFRelease(transform);
-         
+
          CFRelease(keyData);
-         
+
          CFRelease(parameters);
-         
+
          CFRelease(key);
-         
+
          CFRelease(error);
-         
+
          return false;
-         
+
       }
-      
+
       CFDataRef dataIv = iv.get_os_cf_data();
-      
+
       SecTransformSetAttribute(transform, kSecIVKey, dataIv, &error);
-      
+
       if(error != NULL)
       {
-         
+
          CFRelease(dataIv);
-         
+
          CFRelease(transform);
-         
+
          CFRelease(parameters);
-         
+
          CFRelease(keyData);
-         
+
          CFRelease(key);
-         
+
          CFRelease(error);
-         
+
          return false;
-         
+
       }
-      
+
       CFDataRef dataIn = storageEncrypt.get_os_cf_data();
-      
+
       SecTransformSetAttribute(transform, kSecTransformInputAttributeName, dataIn, &error);
-      
+
       if(error != NULL)
       {
-         
+
          CFRelease(dataIn);
-         
+
          CFRelease(dataIv);
-         
+
          CFRelease(transform);
-         
+
          CFRelease(parameters);
-         
+
          CFRelease(keyData);
-         
+
          CFRelease(key);
-         
+
          CFRelease(error);
-         
+
          return false;
-         
+
       }
-      
+
       /* Encrypt the data. */
-      
+
       CFDataRef data = (CFDataRef) SecTransformExecute(transform, &error);
-      
+
       if(error != NULL)
       {
-         
+
          CFRelease(dataIn);
-         
+
          CFRelease(dataIv);
-         
+
          CFRelease(transform);
-         
+
          CFRelease(parameters);
-         
+
          CFRelease(keyData);
-         
+
          CFRelease(key);
-         
+
          CFRelease(error);
-         
+
          return false;
-         
+
       }
-      
+
       simple_memory memory;
-      
+
       storageDecrypt.set_os_cf_data(data);
-      
+
       CFRelease(data);
-      
+
       CFRelease(dataIv);
-      
+
       CFRelease(dataIn);
-      
+
       CFRelease(transform);
-      
+
       CFRelease(keyData);
-      
+
       CFRelease(parameters);
-      
+
       CFRelease(key);
-      
+
       return true;
-      
+
 #else
 
       int cipherlen = (int) storageEncrypt.get_size();
@@ -500,7 +500,7 @@ namespace ca4
 
       EVP_CIPHER_CTX_init(&ctx);
 
-      EVP_DecryptInit(&ctx, EVP_aes_256_ecb(), key.get_data(), iv.get_data());
+      EVP_DecryptInit(&ctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
       plainlen = (int) storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx);
 

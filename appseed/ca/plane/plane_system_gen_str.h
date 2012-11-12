@@ -45,21 +45,21 @@ namespace gen
 
       inline bool CLASS_DECL_ca begins_eat(var & var, const char * lpcszPrefix)
       {
-         
+
          return begins_eat(var.get_ref_string(), lpcszPrefix);
 
       }
 
       inline bool CLASS_DECL_ca begins_eat_ci(var & var, const char * lpcszPrefix) // case insensitive
       {
-         
+
          return begins_eat_ci(var.get_ref_string(), lpcszPrefix);
 
       }
 
       inline bool CLASS_DECL_ca begins_eat_ci(var & var, const char * lpcszPrefix, const char * pszSeparator) // case insensitive
       {
-         
+
          return begins_eat_ci(var.get_ref_string(), lpcszPrefix, pszSeparator);
 
       }

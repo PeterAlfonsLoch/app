@@ -68,6 +68,9 @@ namespace command
       UNREFERENCED_PARAMETER(pdata);
       if(itema.get_size() > 0)
       {
+
+#ifdef WINDOWS
+
          ::ShellExecuteW(
             NULL,
             L"open",
@@ -75,6 +78,13 @@ namespace command
             NULL,
             gen::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)),
             SW_SHOW);
+
+#else
+
+         throw todo(get_app());
+
+#endif
+
       }
 
    }

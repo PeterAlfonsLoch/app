@@ -1,8 +1,10 @@
 #include "framework.h"
 
+#ifdef WINDOWS
 #undef new
 #include <GdiPlus.h>
 #define new DEBUG_NEW
+#endif
 
 
 namespace cube
@@ -16,7 +18,7 @@ namespace cube
       m_bLicense                 = false;
       m_strAppName               = "cube";
       m_strInstallToken          = "cube";
-      
+
 
    }
 
@@ -80,7 +82,7 @@ namespace cube
 
       if(!::cube2::application::initialize3())
          return false;
-      
+
       return true;
 
    }
@@ -118,7 +120,7 @@ namespace cube
       catch(...)
       {
       }
-         
+
 
 
       return iRet;
@@ -190,8 +192,8 @@ namespace cube
 
    void cube::register_bergedge_application(::ca::application * papp)
    {
-      
-      
+
+
       System.register_bergedge_application(papp);
 
 
@@ -279,7 +281,7 @@ namespace cube
             return false;
          return true;
       }
-      
+
       gen::property_set set(this);
 
       var varFile;
@@ -315,7 +317,7 @@ namespace cube
 
       if(!::cube2::application::set_main_init_data(pdata))
          return false;
-      
+
       return true;
 
    }

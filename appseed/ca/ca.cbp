@@ -1245,6 +1245,7 @@
 		<Unit filename="plane/plane_system.h" />
 		<Unit filename="plane/plane_system_allocate.h" />
 		<Unit filename="plane/plane_system_ca_template.h" />
+		<Unit filename="plane/plane_system_gen_str.cpp" />
 		<Unit filename="plane/plane_system_gen_str.h" />
 		<Unit filename="plane/plane_system_primitive_string_format_spec.h" />
 		<Unit filename="plane/plane_system_primitive_var.h" />
