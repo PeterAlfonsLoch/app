@@ -692,7 +692,7 @@ namespace user
 
    int window_util::GetZOrder(oswindow oswindow)
    {
-      int iOrder = 0;
+//      int iOrder = 0;
       ::oswindow oswindowOrder = ::ca::null();
       try
       {

@@ -1,5 +1,7 @@
 #include "framework.h"
 
+void __reposition_window(__SIZEPARENTPARAMS* lpLayout, oswindow oswindow, LPCRECT lpRect);
+
 
 virtual_user_interface::virtual_user_interface()
 {
@@ -46,7 +48,7 @@ bool virtual_user_interface::ReleaseDC(::ca::graphics * pdc)
 bool virtual_user_interface::SetWindowPos(int z, int x, int y, int cx, int cy, UINT nFlags)
 {
    synch_lock lock(m_pguie);
-   rect64 rectOld = m_rectParentClient;
+//   rect64 rectOld = m_rectParentClient;
    if(nFlags & SWP_NOMOVE)
    {
       if(nFlags & SWP_NOSIZE)

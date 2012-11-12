@@ -567,7 +567,9 @@ namespace dynamic_source
       return 0;
    }
 
-#ifdef BSD_STYLE_SOCKETS
+#ifdef MACOS
+   SecKeyRef script_manager::get_rsa_key()
+#elif BSD_STYLE_SOCKETS
    RSA * script_manager::get_rsa_key()
 #else
    ::Windows::Security::Cryptography::Core::CryptographicKey ^ script_manager::get_rsa_key()
@@ -585,8 +587,23 @@ namespace dynamic_source
 
    void script_manager::calc_rsa_key()
    {
+      
+#ifdef MACOS
 
-#ifdef BSD_STYLE_SOCKETS
+      CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+      
+      CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeRSA);
+      
+      CFDictionaryAddValue(parameters, kSecAttrKeySizeInBits, (CFTypeRef) 1024);
+      
+      SecKeyRef prsa = SecKeyGenerateSymmetric(parameters, NULL);
+      
+      if(prsa == NULL)
+         return;
+      
+      CFRelease(parameters);
+
+#elif defined(BSD_STYLE_SOCKETS)
       
       RSA * prsa = RSA_generate_key(1024, 65537, NULL, NULL);
 
@@ -605,7 +622,11 @@ namespace dynamic_source
       if(m_rsaptra.get_size() > 23)
       {
 
-#ifdef BSD_STYLE_SOCKETS
+#ifdef MACOS
+         
+         CFRelease(m_rsaptra[0]);
+
+#elif defined(BSD_STYLE_SOCKETS)
 
          RSA_free(m_rsaptra[0]);
 

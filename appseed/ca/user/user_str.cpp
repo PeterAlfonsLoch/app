@@ -244,7 +244,7 @@ namespace user
       static ::id idEn("en");
       static ::id idStd("_std");
 
-      gen::international::locale_schema * plocaleschema = NULL;
+//      gen::international::locale_schema * plocaleschema = NULL;
 
       string str;
       if(pcontext != NULL)
@@ -341,7 +341,7 @@ namespace user
       static ::id idEn("en");
       static ::id idStd("_std");
 
-      gen::international::locale_schema * plocaleschema = NULL;
+//      gen::international::locale_schema * plocaleschema = NULL;
 
       string str;
       if(pcontext != NULL)
@@ -479,7 +479,7 @@ namespace user
       static ::id idEn("en");
       static ::id idStd("_std");
 
-      gen::international::locale_schema * plocaleschema = NULL;
+//      gen::international::locale_schema * plocaleschema = NULL;
 
       string str;
       if(pcontext != NULL)
@@ -549,7 +549,7 @@ namespace user
       static ::id idEn("en");
       static ::id idStd("_std");
 
-      gen::international::locale_schema * plocaleschema = NULL;
+//      gen::international::locale_schema * plocaleschema = NULL;
 
       string str;
       if(pcontext != NULL)
@@ -619,7 +619,7 @@ namespace user
       static ::id idEn("en");
       static ::id idStd("_std");
 
-      gen::international::locale_schema * plocaleschema = NULL;
+//      gen::international::locale_schema * plocaleschema = NULL;
 
       string str;
       if(pcontext != NULL)

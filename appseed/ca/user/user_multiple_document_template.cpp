@@ -188,6 +188,7 @@ void multiple_document_template::assert_valid() const
    for(index index = 0; index < count; index++)
    {
       user::document_interface * pdocument = get_document(index);
+      pdocument->assert_valid();
    }
 
 }

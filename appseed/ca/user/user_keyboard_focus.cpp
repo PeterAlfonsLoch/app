@@ -32,10 +32,10 @@ namespace user
    void keyboard_focus::keyboard_focus_OnKeyDown(gen::signal_object * pobj)
    {
 
-      SCAST_PTR(::gen::message::key, pkey, pobj)
-
 #ifdef WINDOWS
 
+      SCAST_PTR(::gen::message::key, pkey, pobj)
+      
       if(pkey->m_nChar == VK_TAB)
       {
          control_event ev;

@@ -12,6 +12,7 @@ namespace filemanager
    namespace _shell
    {
 
+      string _017FilePathGetParent(const char * lpcsz);
 
 #ifdef WINDOWS
 

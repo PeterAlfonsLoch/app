@@ -86,6 +86,9 @@ namespace sockets
    SSLInitializer::SSLInitializer(::ca::application * papp) :
       ca(papp)
    {
+
+#if defined(BSD_STYLE_SOCKETS) && !defined(MACOS)
+      
       TRACE("SSLInitializer()\n");
 
       bio_err = NULL;
@@ -174,6 +177,8 @@ namespace sockets
             memstorage.get_size());*/
 
       //RAND_seed(memstorage.get_data(), memstorage.get_size());
+      
+#endif
 
    }
 

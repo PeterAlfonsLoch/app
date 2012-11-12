@@ -2136,26 +2136,28 @@ namespace user
 
    id interaction::RunModalLoop(DWORD dwFlags, ::ca::live_object * pliveobject)
    {
+      
+#ifdef WINDOWS
+      
       // for tracking the idle time state
       bool bIdle = TRUE;
       LONG lIdleCount = 0;
       bool bShowIdle = (dwFlags & MLF_SHOWONIDLE) && !(GetStyle() & WS_VISIBLE);
-//      oswindow oswindow_Parent = ::get_parent(get_handle());
+      //      oswindow oswindow_Parent = ::get_parent(get_handle());
       m_iModal = m_iModalCount;
       int iLevel = m_iModal;
       ::user::interaction * puieParent = get_parent();
       oprop(string("RunModalLoop.thread(") + gen::str::from(iLevel) + ")") = System.GetThread();
       m_iModalCount++;
-
+      
       //bool bAttach = AttachThreadInput(get_wnd()->m_pthread->get_os_int(), ::GetCurrentThreadId(), TRUE);
-
+      
       m_iaModalThread.add(::ca::get_thread()->get_os_int());
       ::radix::application * pappThis1 = dynamic_cast < ::radix::application * > (m_pthread->m_p);
       ::radix::application * pappThis2 = dynamic_cast < ::radix::application * > (m_pthread);
       // acquire and dispatch messages until the modal state is done
       MSG msg;
-
-#ifdef WINDOWS
+      
 
       for (;;)
       {

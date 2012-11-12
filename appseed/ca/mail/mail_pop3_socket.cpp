@@ -419,6 +419,7 @@ namespace mail
 
    void pop3_socket::InitSSLClient()
    {
+#if defined(BSD_STYLE_SOCKETS) && !defined(MACOS)
       if(m_bTls)
       {
          InitializeContext("", TLSv1_method());
@@ -427,6 +428,7 @@ namespace mail
       {
          InitializeContext("", SSLv3_method());
       }
+#endif
    }
 
 
