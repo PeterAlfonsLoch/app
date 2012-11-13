@@ -244,7 +244,7 @@ namespace gen
          return str;
       }
 
-      bool UnicodeToACP(string & str, const wchar_t * lpcsz)
+/*      bool UnicodeToACP(string & str, const wchar_t * lpcsz)
       {
          return UnicodeToMultiByte(g_uiACP, str, lpcsz);
       }
@@ -274,13 +274,13 @@ namespace gen
       wstring  ACPToUnicode(const char * lpcsz, strsize iSize)
       {
          return MultiByteToUnicode(g_uiACP, lpcsz, iSize).detach();
-      }
+      }*/
 
       ///////////////////////////////////////////////////////////////
       // OEM ( GetOEM() function) conversion
       ///////////////////////////////////////////////////////////////
 
-      bool UnicodeToOEM(string & str, const wchar_t * lpcsz)
+/*      bool UnicodeToOEM(string & str, const wchar_t * lpcsz)
       {
          return UnicodeToMultiByte(CodePageOem, str, lpcsz);
       }
@@ -300,7 +300,7 @@ namespace gen
       wstring OEMToUnicode(const char * lpcsz)
       {
          return MultiByteToUnicode(CodePageOem, lpcsz).detach();
-      }
+      } */
 
       bool unicode_to_utf8(string & str, const wchar_t * lpcsz)
       {

@@ -528,7 +528,7 @@ CLASS_DECL_c vsstring c_gethostbyname(const char * hostname)
 
    struct hostent * pentry = gethostbyname(hostname);
 
-   return c_inet_pton(pentry->h_addrtype, pentry->h_addr_list[0]);
+   return c_inet_ntop(pentry->h_addrtype, pentry->h_addr_list[0]);
 
 #else
 

@@ -221,8 +221,7 @@ string GeoIP_get_host_or_proxy ()
 #endif
 }
 
-short int GeoIP_update_database (::ca::application * papp, char * license_key, int verbose, void (*f)( char * )) {
-short int GeoIP_update_database (char * license_key, int verbose, void (*f)( char * ))
+short int GeoIP_update_database (::ca::application * papp, char * license_key, int verbose, void (*f)( char * ))
 {
 
 #ifdef BSD_STYLE_SOCKETS

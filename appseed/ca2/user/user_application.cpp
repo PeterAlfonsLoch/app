@@ -169,7 +169,7 @@ namespace ca2
 
          class ::ca8::message_box box(this);
 
-         box.show(pszMatter, propertyset);
+         box.show(pszMatter, &propertyset);
 
          return box.m_strResponse;
 

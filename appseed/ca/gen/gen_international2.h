@@ -21,14 +21,14 @@ namespace gen
       bool CLASS_DECL_ca multibyte_to_utf8(UINT uiCodePageSrc, primitive::memory & str, const char * lpcsz);
       bool CLASS_DECL_ca multibyte_to_utf8(UINT uiCodePageSrc, primitive::memory & str, const char * lpcsz, strsize nCount);
 
-      bool CLASS_DECL_ca OEMToMultiByte(UINT uiCodePage, primitive::memory & str, const char * lpcsz);
-      bool CLASS_DECL_ca OEMToMultiByte(UINT uiCodePage, primitive::memory & str, const char * lpcsz, strsize nCount);
+//      bool CLASS_DECL_ca OEMToMultiByte(UINT uiCodePage, primitive::memory & str, const char * lpcsz);
+//      bool CLASS_DECL_ca OEMToMultiByte(UINT uiCodePage, primitive::memory & str, const char * lpcsz, strsize nCount);
 
       bool CLASS_DECL_ca utf8_to_multibyte(UINT uiCodePage, primitive::memory & str, const char * lpcsz);
       bool CLASS_DECL_ca utf8_to_multibyte(UINT uiCodePage, primitive::memory & str, const char * lpcsz, strsize nCount);
 
-      bool CLASS_DECL_ca OemToUtf8(primitive::memory & str, const char * lpcsz);
-      bool CLASS_DECL_ca OemToUtf8(primitive::memory & str, const char * lpcsz, strsize nCount);
+//      bool CLASS_DECL_ca OemToUtf8(primitive::memory & str, const char * lpcsz);
+//      bool CLASS_DECL_ca OemToUtf8(primitive::memory & str, const char * lpcsz, strsize nCount);
 
 /*      inline void unicode_to_utf8(stringa & stra, stringa & stra)
       {
@@ -60,15 +60,15 @@ namespace gen
          return MultiByteToMultiByte(CP_UTF8, str, uiCodePageSrc, lpcsz, nCount);
       }
 
-      inline bool OemToUtf8(primitive::memory & str, const char * lpcsz)
-      {
-         return MultiByteToMultiByte(CP_UTF8, str, CP_OEMCP, lpcsz);
-      }
+      //inline bool OemToUtf8(primitive::memory & str, const char * lpcsz)
+      //{
+      //   return MultiByteToMultiByte(CP_UTF8, str, CP_OEMCP, lpcsz);
+      //}
 
-      inline bool OemToUtf8(primitive::memory & str, const char * lpcsz, strsize nCount)
-      {
-         return MultiByteToMultiByte(CP_UTF8, str, CP_OEMCP, lpcsz, nCount);
-      }
+      //inline bool OemToUtf8(primitive::memory & str, const char * lpcsz, strsize nCount)
+      //{
+      //   return MultiByteToMultiByte(CP_UTF8, str, CP_OEMCP, lpcsz, nCount);
+      //}
 
       inline bool utf8_to_multibyte(UINT uiCodePage, primitive::memory & str, const char * lpcsz)
       {

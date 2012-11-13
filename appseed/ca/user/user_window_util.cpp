@@ -705,6 +705,8 @@ namespace user
 
 #ifdef WINDOWS
 
+      int iOrder = 0;
+
       while(oswindowOrder != NULL && ::IsWindow(oswindowOrder))
       {
 

@@ -661,7 +661,6 @@
     <ClInclude Include="crypt\nessie.h" />
     <ClInclude Include="c\c.h" />
     <ClInclude Include="c\c_async.h" />
-    <ClInclude Include="c\c_atol.h" />
     <ClInclude Include="c\c_base64.h" />
     <ClInclude Include="c\c_conv.h" />
     <ClInclude Include="c\c_count.h" />
@@ -677,6 +676,7 @@
     <ClInclude Include="c\c_graphics.h" />
     <ClInclude Include="c\c_heap.h" />
     <ClInclude Include="c\c_index.h" />
+    <ClInclude Include="c\c_integer_to_string.h" />
     <ClInclude Include="c\c_international.h" />
     <ClInclude Include="c\c_keep_true.h" />
     <ClInclude Include="c\c_launcher.h" />
@@ -689,6 +689,7 @@
     <ClInclude Include="c\c_message_loop.h" />
     <ClInclude Include="c\c_mutex_lock.h" />
     <ClInclude Include="c\c_natural.h" />
+    <ClInclude Include="c\c_net.h" />
     <ClInclude Include="c\c_printf.h" />
     <ClInclude Include="c\c_simple_app.h" />
     <ClInclude Include="c\c_simple_array.h" />
@@ -705,6 +706,7 @@
     <ClInclude Include="c\c_std_file.h" />
     <ClInclude Include="c\c_str.h" />
     <ClInclude Include="c\c_stra.h" />
+    <ClInclude Include="c\c_string_to_integer.h" />
     <ClInclude Include="c\c_template.h" />
     <ClInclude Include="c\c_time.h" />
     <ClInclude Include="c\c_types.h" />
@@ -819,7 +821,6 @@
     <ClCompile Include=".\hotplugin\hotplugin_container_launcher.cpp" />
     <ClCompile Include="c\c.cpp" />
     <ClCompile Include="c\c_argcargv.cpp" />
-    <ClCompile Include="c\c_atol.cpp" />
     <ClCompile Include="c\c_base64.cpp" />
     <ClCompile Include="c\c_conv.cpp" />
     <ClCompile Include="c\c_cpu_architecture.cpp" />
@@ -834,12 +835,14 @@
     <ClCompile Include="c\c_file_watcher_thread.cpp" />
     <ClCompile Include="c\c_geometric_types.cpp" />
     <ClCompile Include="c\c_heap.cpp" />
+    <ClCompile Include="c\c_integer_to_string.cpp" />
     <ClCompile Include="c\c_international.cpp" />
     <ClCompile Include="c\c_math.cpp" />
     <ClCompile Include="c\c_md5.cpp" />
     <ClCompile Include="c\c_mem.cpp" />
     <ClCompile Include="c\c_mktime.cpp" />
     <ClCompile Include="c\c_mutex_lock.cpp" />
+    <ClCompile Include="c\c_net.cpp" />
     <ClCompile Include="c\c_printf.cpp" />
     <ClCompile Include="c\c_simple_array.cpp" />
     <ClCompile Include="c\c_simple_critical_section.cpp" />
@@ -855,6 +858,7 @@
     <ClCompile Include="c\c_str.cpp" />
     <ClCompile Include="c\c_stra.cpp" />
     <ClCompile Include="c\c_strdup.cpp" />
+    <ClCompile Include="c\c_string_to_integer.cpp" />
     <ClCompile Include="c\c_strw.cpp" />
     <ClCompile Include="c\c_strx.cpp" />
     <ClCompile Include="c\c_template.cpp" />

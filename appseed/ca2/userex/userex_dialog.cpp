@@ -51,7 +51,7 @@ dialog::~dialog()
 }
 
 
-bool dialog::show(const char * pszMatter, gen::property_set & propertyset)
+bool dialog::show(const char * pszMatter, gen::property_set  * ppropertyset)
 {
 
    if(pszMatter != NULL && *pszMatter != '\0')
@@ -71,7 +71,13 @@ bool dialog::show(const char * pszMatter, gen::property_set & propertyset)
       TRACE(str);
       return false;
    }
-   m_pdocument->get_html_data()->m_propertyset = propertyset;
+
+   if(ppropertyset != NULL)
+   {
+
+      m_pdocument->get_html_data()->m_propertyset = *ppropertyset;
+
+   }
    
    m_pdocument->on_open_document(Application.dir().matter(m_strMatter));
    
@@ -82,7 +88,7 @@ bool dialog::show(const char * pszMatter, gen::property_set & propertyset)
 
    on_position_parent_frame();
 
-   on_show(m_strMatter, m_pdocument->get_html_data()->m_propertyset);
+   on_show(m_strMatter, &m_pdocument->get_html_data()->m_propertyset);
 
    m_pframe->RunModalLoop();
 
@@ -90,16 +96,22 @@ bool dialog::show(const char * pszMatter, gen::property_set & propertyset)
 
 }
 
-void dialog::on_show(const char * pszMatter, gen::property_set & propertyset)
+void dialog::on_show(const char * pszMatter, gen::property_set  * ppropertyset)
 {
+   
    UNREFERENCED_PARAMETER(pszMatter);
-   UNREFERENCED_PARAMETER(propertyset);
+   
+   UNREFERENCED_PARAMETER(ppropertyset);
+
 }
 
 void dialog::EndModalLoop(id nResult)
 {
+
    m_pframe->EndModalLoop(nResult);
+
    m_pframe->ShowWindow(SW_HIDE);
+
 }
 
 

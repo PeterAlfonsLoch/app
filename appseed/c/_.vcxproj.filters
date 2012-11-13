@@ -236,9 +236,6 @@
     <ClInclude Include="c\c_async.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
-    <ClInclude Include="c\c_atol.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
     <ClInclude Include="c\c_base64.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
@@ -421,6 +418,15 @@
     </ClInclude>
     <ClInclude Include="windows\c_os_file.h">
       <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_net.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_integer_to_string.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_string_to_integer.h">
+      <Filter>Header Files\c</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -631,9 +637,6 @@
     <ClCompile Include="c\c_argcargv.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="c\c_atol.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="c\c_base64.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
@@ -780,6 +783,15 @@
     </ClCompile>
     <ClCompile Include="windows\c_os_time.cpp">
       <Filter>Source Files\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_integer_to_string.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_string_to_integer.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_net.cpp">
+      <Filter>Source Files\c</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -569,7 +569,7 @@ namespace dynamic_source
 
 #ifdef MACOS
    SecKeyRef script_manager::get_rsa_key()
-#elif BSD_STYLE_SOCKETS
+#elif defined(BSD_STYLE_SOCKETS)
    RSA * script_manager::get_rsa_key()
 #else
    ::Windows::Security::Cryptography::Core::CryptographicKey ^ script_manager::get_rsa_key()

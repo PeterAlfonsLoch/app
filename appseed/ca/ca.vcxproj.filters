@@ -5143,12 +5143,6 @@
     <ClCompile Include="compress\compress_writer_with_crc.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
-    <ClCompile Include=".\api\api_integer_to_string.cpp">
-      <Filter>Source Files\api</Filter>
-    </ClCompile>
-    <ClCompile Include=".\api\api_string_to_integer.cpp">
-      <Filter>Source Files\api</Filter>
-    </ClCompile>
     <ClCompile Include=".\api\api_string.cpp">
       <Filter>Source Files\api</Filter>
     </ClCompile>

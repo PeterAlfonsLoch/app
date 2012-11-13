@@ -106,7 +106,7 @@ namespace zip
    void  File::write_to_file(ex1::file * pfileOut, const wchar_t * lpcsz)
    {
       string str;
-      gen::international::UnicodeToACP(str, lpcsz);
+      gen::international::unicode_to_utf8(str, lpcsz);
       str.replace("\\", "/");
       if(unzLocateFile(m_pfUnzip, str, 1) != UNZ_OK)
          return;

@@ -133,7 +133,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
 #ifdef WINDOWSEX
-      ::SetCursor(::LoadCursor(NULL, IDC_BEAM));
+      ::SetCursor(::LoadCursor(NULL, IDC_IBEAM));
 #else
       throw todo(get_app());
 #endif

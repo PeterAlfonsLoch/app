@@ -640,7 +640,7 @@ namespace filemanager
       string strPathEx(strFilePath);
       string strExtra;
 
-      gen::international::UnicodeToACP(strExtra, lpcszExtra);
+      gen::international::unicode_to_utf8(strExtra, lpcszExtra);
 
       if(strExtra.get_length() > 0)
       {
@@ -1203,7 +1203,7 @@ namespace filemanager
       string strPathEx(strFilePath);
       string strExtra;
 
-      gen::international::UnicodeToACP(strExtra, lpcszExtra);
+      gen::international::unicode_to_utf8(strExtra, lpcszExtra);
 
       if(strExtra.get_length() > 0)
       {

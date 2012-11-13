@@ -254,9 +254,6 @@
     <ClInclude Include="c\c_async.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
-    <ClInclude Include="c\c_atol.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
     <ClInclude Include="c\c_base64.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
@@ -427,6 +424,15 @@
     </ClInclude>
     <ClInclude Include="simple_graphics\simple_path.h">
       <Filter>Header Files\simple_graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_integer_to_string.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_net.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_string_to_integer.h">
+      <Filter>Header Files\c</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -637,9 +643,6 @@
     <ClCompile Include="c\c_argcargv.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="c\c_atol.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="c\c_math.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
@@ -779,6 +782,15 @@
       <Filter>Source Files\simple_graphics</Filter>
     </ClCompile>
     <ClCompile Include="c\c_file_watcher_impl.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_string_to_integer.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_integer_to_string.cpp">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_net.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
   </ItemGroup>

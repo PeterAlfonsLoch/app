@@ -1882,12 +1882,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="zlib\zutil.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include=".\api\api_string_to_integer.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include=".\api\api_integer_to_string.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="api\api_muldiv64.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>

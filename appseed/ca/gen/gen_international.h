@@ -12,7 +12,7 @@ namespace gen
    {
 
 
-      extern UINT g_uiACP;
+//      extern UINT g_uiACP;
       enum ECodePage
       {
          CodePageShiftJIS = 932,
@@ -74,7 +74,7 @@ namespace gen
        bool CLASS_DECL_ca unicode_to_utf8(string & str, const wchar_t * lpcsz, strsize iCount);
        string CLASS_DECL_ca unicode_to_utf8(const wchar_t * lpcsz);
 
-       bool CLASS_DECL_ca AcpToUtf8(string & str, const char * lpcsz);
+/*       bool CLASS_DECL_ca AcpToUtf8(string & str, const char * lpcsz);
        bool CLASS_DECL_ca AcpToUtf8(string & str, const char * lpcsz, strsize iSize);
        bool CLASS_DECL_ca AcpToUtf8(LPTSTR lpstrUnicode, strsize nCount, const char * lpcsz);
 
@@ -91,28 +91,28 @@ namespace gen
        bool CLASS_DECL_ca UnicodeToOEM(char * lpstrUnicode, strsize nCount, const wchar_t * lpcsz);
        CLASS_DECL_ca wstring OEMToUnicode(const char * lpcsz);
        bool CLASS_DECL_ca OEMToUnicode(wchar_t * lpstrUnicode, strsize nCount, const char * lpcsz);
-
+       */
 
       ///////////////////////////////////////////////////////////////
       // ACP ( GetACP() function) conversion
       ///////////////////////////////////////////////////////////////
 
       CLASS_DECL_ca string UnicodeToMultiByte(UINT uiCodePage, const wchar_t * lpcsz);
-      CLASS_DECL_ca bool UnicodeToACP(string & str, const wchar_t * lpcsz);
-      CLASS_DECL_ca bool UnicodeToACP(char * lpstrUnicode, strsize nCount, const wchar_t * lpcsz);
-      CLASS_DECL_ca string UnicodeToACP(const wchar_t * lpcsz);
-      CLASS_DECL_ca bool ACPToUnicode(wchar_t * lpstrUnicode, strsize nCount, const char * lpcsz);
-      CLASS_DECL_ca wstring  ACPToUnicode(const char * lpcsz);
-      CLASS_DECL_ca wstring  ACPToUnicode(const char * lpcsz, strsize iSize);
+      //CLASS_DECL_ca bool UnicodeToACP(string & str, const wchar_t * lpcsz);
+      //CLASS_DECL_ca bool UnicodeToACP(char * lpstrUnicode, strsize nCount, const wchar_t * lpcsz);
+      //CLASS_DECL_ca string UnicodeToACP(const wchar_t * lpcsz);
+      //CLASS_DECL_ca bool ACPToUnicode(wchar_t * lpstrUnicode, strsize nCount, const char * lpcsz);
+      //CLASS_DECL_ca wstring  ACPToUnicode(const char * lpcsz);
+      //CLASS_DECL_ca wstring  ACPToUnicode(const char * lpcsz, strsize iSize);
 
       ///////////////////////////////////////////////////////////////
       // OEM ( GetOEM() function) conversion
       ///////////////////////////////////////////////////////////////
 
-      CLASS_DECL_ca bool UnicodeToOEM(string & str, const wchar_t * lpcsz);
-      CLASS_DECL_ca bool UnicodeToOEM(char * lpstrUnicode, strsize nCount, const wchar_t * lpcsz);
-      CLASS_DECL_ca bool OEMToUnicode(wchar_t * lpstrUnicode, strsize nCount, const char * lpcsz);
-      CLASS_DECL_ca wstring OEMToUnicode(const char * lpcsz);
+      //CLASS_DECL_ca bool UnicodeToOEM(string & str, const wchar_t * lpcsz);
+      //CLASS_DECL_ca bool UnicodeToOEM(char * lpstrUnicode, strsize nCount, const wchar_t * lpcsz);
+      //CLASS_DECL_ca bool OEMToUnicode(wchar_t * lpstrUnicode, strsize nCount, const char * lpcsz);
+      //CLASS_DECL_ca wstring OEMToUnicode(const char * lpcsz);
       CLASS_DECL_ca bool unicode_to_utf8(string & str, const wchar_t * lpcsz);
       CLASS_DECL_ca wstring utf8_to_unicode(const char * lpcsz);
       CLASS_DECL_ca strsize utf8_to_unicode_count(const char * lpcsz, strsize count = -1);
@@ -123,20 +123,20 @@ namespace gen
       CLASS_DECL_ca string ACPToUnicode(const char * lpcsz);
       */
 
-      CLASS_DECL_ca bool AcpToUtf8(string & str, const char * lpcsz);
-      CLASS_DECL_ca bool Utf8ToAcp(string & str, const char * lpcsz);
+      //CLASS_DECL_ca bool AcpToUtf8(string & str, const char * lpcsz);
+      //CLASS_DECL_ca bool Utf8ToAcp(string & str, const char * lpcsz);
       CLASS_DECL_ca bool multibyte_to_utf8(UINT uiCodePageSrc, string & str, const char * lpcsz);
       CLASS_DECL_ca bool multibyte_to_utf8(UINT uiCodePageSrc, string & str, const char * lpcsz, strsize nCount);
-      CLASS_DECL_ca bool OemToUtf8(string & str, const char * lpcsz);
-      CLASS_DECL_ca bool OemToUtf8(string & str, const char * lpcsz, strsize nCount);
+      //CLASS_DECL_ca bool OemToUtf8(string & str, const char * lpcsz);
+      //CLASS_DECL_ca bool OemToUtf8(string & str, const char * lpcsz, strsize nCount);
       CLASS_DECL_ca wstring utf8_to_unicode(const char * lpcsz, strsize iCount);
       CLASS_DECL_ca bool utf8_to_unicode(wchar_t * lpwsz, strsize iBuffer, const char * lpcsz, strsize iCount);
       CLASS_DECL_ca bool utf8_to_unicode(wchar_t * lpwsz, strsize iBuffer, const char * lpcsz);
       CLASS_DECL_ca bool utf8_to_multibyte(UINT uiCodePage, string & str, const char * lpcsz);
       CLASS_DECL_ca bool utf8_to_multibyte(UINT uiCodePage, string & str, const char * lpcsz, strsize nCount);
       CLASS_DECL_ca bool utf8_to_multibyte(UINT uiCodePage, char * lpsz, strsize nCount, const char * lpcsz);
-      CLASS_DECL_ca bool AcpToUtf8(LPTSTR lpstrUnicode, strsize nCount, const char * lpcsz);
-      CLASS_DECL_ca bool AcpToUtf8(string & str, const char * lpcsz, strsize iSize);
+      //CLASS_DECL_ca bool AcpToUtf8(LPTSTR lpstrUnicode, strsize nCount, const char * lpcsz);
+      //CLASS_DECL_ca bool AcpToUtf8(string & str, const char * lpcsz, strsize iSize);
 
 
    } // namespace international
