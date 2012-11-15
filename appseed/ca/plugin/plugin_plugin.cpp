@@ -954,7 +954,7 @@ namespace plugin
 
          ::ca::window * pwindow = dynamic_cast < ::ca::window * > (m_puiHost->m_pimpl);
 
-         void * oswindow = pwindow->get_handle();
+         oswindow oswindow = pwindow->get_handle();
 
          bool bIsWindow = ::IsWindow(oswindow) != FALSE;
 
