@@ -40,3 +40,12 @@
 
 
 
+
+
+/* OpenSSL support. */
+#if defined(BSD_STYLE_SOCKETS) && !defined(MACOS)
+#define HAVE_OPENSSL
+#endif
+
+
+
