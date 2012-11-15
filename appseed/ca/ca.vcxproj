@@ -936,7 +936,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="ca2\ca2_library.h" />
     <ClInclude Include="ca2\ca2_log.h" />
     <ClInclude Include="ca2\ca2_main.h" />
-    <ClInclude Include="ca2\ca2_net.h" />
     <ClInclude Include="ca2\ca2_process.h" />
     <ClInclude Include="ca2\ca2_stra.h" />
     <ClInclude Include="ca2\ca2_url.h" />
@@ -1725,8 +1724,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="sockets\bsd\http\http_session.h" />
     <ClInclude Include="sockets\bsd\http\http_socket.h" />
     <ClInclude Include="sockets\bsd\http\http_tunnel.h" />
-    <ClInclude Include="sockets\bsd\http_file.h" />
-    <ClInclude Include="sockets\bsd\http_memory_file.h" />
     <ClInclude Include="sockets\bsd\internal\SSLInitializer.h" />
     <ClInclude Include="sockets\bsd\log\StdLog.h" />
     <ClInclude Include="sockets\bsd\log\trace_log.h" />
@@ -1746,8 +1743,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="sockets\bsd\smtp\smtp_socket.h" />
     <ClInclude Include="sockets\bsd\sockets.h" />
     <ClInclude Include="sockets\bsd\sockets_application_interface.h" />
-    <ClInclude Include="sockets\bsd\sockets_http_batch_file.h" />
-    <ClInclude Include="sockets\bsd\sockets_http_file.h" />
     <ClInclude Include="sockets\bsd\sockets_link_in_socket.h" />
     <ClInclude Include="sockets\bsd\sockets_link_out_socket.h" />
     <ClInclude Include="sockets\bsd\timer\Event.h" />
@@ -1770,7 +1765,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="sockets\sockets_application.h" />
     <ClInclude Include="sockets\sockets_http_batch_file.h" />
     <ClInclude Include="sockets\sockets_http_file.h" />
-    <ClInclude Include="sockets\sockets_stream_socket.h" />
     <ClInclude Include="sqlite\sqlite.h" />
     <ClInclude Include="sqlite\sqlite3.h" />
     <ClInclude Include="framework.h" />
@@ -1903,13 +1897,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="ca2\ca2_datetime.cpp" />
     <ClCompile Include="ca2\ca2_library.cpp" />
     <ClCompile Include="ca2\ca2_log.cpp" />
-    <ClCompile Include="ca2\ca2_net.cpp" />
     <ClCompile Include="ca2\ca2_process.cpp" />
     <ClCompile Include="ca2\ca2_url.cpp" />
     <ClCompile Include="ca2\ca2_url_domain.cpp" />
-    <ClCompile Include="ca2\socket_address.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="ca4\ca4_application.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
@@ -3075,8 +3065,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="simpledb\simpledb_veiev_post.cpp" />
     <ClCompile Include="sockets\bsd\asynch_dns\sockets_resolv_server.cpp" />
     <ClCompile Include="sockets\bsd\asynch_dns\sockets_resolv_socket.cpp" />
+    <ClCompile Include="sockets\bsd\basic\sockets_address.cpp" />
     <ClCompile Include="sockets\bsd\basic\sockets_Ipv4Address.cpp" />
     <ClCompile Include="sockets\bsd\basic\sockets_Ipv6Address.cpp" />
+    <ClCompile Include="sockets\bsd\basic\sockets_net.cpp" />
     <ClCompile Include="sockets\bsd\basic\sockets_SctpSocket.cpp" />
     <ClCompile Include="sockets\bsd\basic\sockets_Socket.cpp" />
     <ClCompile Include="sockets\bsd\basic\sockets_SocketHandler.cpp" />
@@ -3122,8 +3114,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="sockets\bsd\http\sockets_http_session.cpp" />
     <ClCompile Include="sockets\bsd\http\sockets_http_socket.cpp" />
     <ClCompile Include="sockets\bsd\http\sockets_http_tunnel.cpp" />
-    <ClCompile Include="sockets\bsd\http_file.cpp" />
-    <ClCompile Include="sockets\bsd\http_memory_file.cpp" />
     <ClCompile Include="sockets\bsd\internal\sockets_SSLInitializer.cpp" />
     <ClCompile Include="sockets\bsd\log\sockets_trace_log.cpp" />
     <ClCompile Include="sockets\bsd\sip\sockets_sip_base.cpp" />
@@ -3139,8 +3129,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="sockets\bsd\smtp\sockets_smtpd_socket.cpp" />
     <ClCompile Include="sockets\bsd\smtp\sockets_smtp_socket.cpp" />
     <ClCompile Include="sockets\bsd\sockets_application_interface.cpp" />
-    <ClCompile Include="sockets\bsd\sockets_http_batch_file.cpp" />
-    <ClCompile Include="sockets\bsd\sockets_http_file.cpp" />
     <ClCompile Include="sockets\bsd\sockets_include.cpp" />
     <ClCompile Include="sockets\bsd\sockets_link_in_socket.cpp" />
     <ClCompile Include="sockets\bsd\sockets_link_out_socket.cpp" />
@@ -3157,8 +3145,11 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="sockets\bsd\webserver\sockets_http_request.cpp" />
     <ClCompile Include="sockets\bsd\webserver\sockets_http_response.cpp" />
     <ClCompile Include="sockets\bsd\webserver\sockets_http_transaction.cpp" />
+    <ClCompile Include="sockets\http_file.cpp" />
+    <ClCompile Include="sockets\http_memory_file.cpp" />
     <ClCompile Include="sockets\sockets_application.cpp" />
-    <ClCompile Include="sockets\sockets_stream_socket.cpp" />
+    <ClCompile Include="sockets\sockets_http_batch_file.cpp" />
+    <ClCompile Include="sockets\sockets_http_file.cpp" />
     <ClCompile Include="uinteraction_frame.cpp" />
     <ClCompile Include="userpresence\userpresence_application.cpp" />
     <ClCompile Include="userpresence\userpresence_user_presence.cpp" />

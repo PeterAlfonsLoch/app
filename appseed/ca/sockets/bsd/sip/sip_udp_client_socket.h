@@ -1,10 +1,9 @@
 #pragma once
 
-namespace bsd
-{
 
 namespace sockets
 {
+
 
    class CLASS_DECL_ca sip_udp_client_socket :
       virtual public udp_socket,
@@ -33,11 +32,6 @@ namespace sockets
    };
 
 } // namespace sockets
-
-
-
-} // namespace bsd
-
 
 
 

@@ -7,8 +7,6 @@ typedef struct ssl_method_st SSL_METHOD;
 typedef struct ssl_session_st SSL_SESSION;
 
 
-namespace bsd
-{
 
 
    namespace sockets
@@ -42,10 +40,6 @@ namespace bsd
 
 
    } // namespace sockets
-
-
-
-} // namespace bsd
 
 
 

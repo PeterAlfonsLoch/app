@@ -1,7 +1,9 @@
 #include "framework.h"
 
+
 namespace mail
 {
+
 
    pop3::pop3(::ca::application * papp) :
       ca(papp),

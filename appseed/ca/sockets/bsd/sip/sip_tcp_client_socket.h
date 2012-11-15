@@ -1,10 +1,9 @@
 #pragma once
 
-namespace bsd
-{
 
 namespace sockets
 {
+
 
    class CLASS_DECL_ca sip_tcp_client_socket :
       virtual public tcp_socket,
@@ -12,13 +11,17 @@ namespace sockets
    {
    public:
 
+
       sip_tcp_client_socket(socket_handler_base& );
+
 
       void OnRawData(char *, size_t);
       void OnLine(const string & line);
+
+
    };
+
 
 } // namespace sockets
 
 
-} // namespace bsd

@@ -249,7 +249,7 @@ namespace plane
       class ::ca2::process                         m_process;
 #endif
       class ::ca2::datetime *                      m_pdatetime;
-      class ::ca2::net                             m_net;
+      class ::sockets::net                             m_net;
 
       class ::ca4::compress                        m_compress;
       class ::ca4::patch                           m_patch;
@@ -275,6 +275,7 @@ namespace plane
       class factory *                              m_pfactory;
       class ::ca::history *                        m_phistory;
       class ::ca::window_draw *                    m_ptwf;
+//      ::sockets::net                               m_net;
 //      sp(::ca2::filehandler::handler)  m_spfilehandler;
 
 
@@ -411,7 +412,7 @@ namespace plane
 #ifndef METROWIN
       ::ca2::process                   & process();
 #endif
-      class ::ca2::net                 & net();
+      class ::sockets::net             & net();
 
       ::ca::history                    & hist();
 

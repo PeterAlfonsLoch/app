@@ -1,10 +1,6 @@
 #pragma once
 
 
-namespace bsd
-{
-
-
    namespace sockets
    {
 
@@ -61,10 +57,5 @@ namespace bsd
       };
 
    } // namespace sockets
-
-
-
-} // namespace bsd
-
 
 

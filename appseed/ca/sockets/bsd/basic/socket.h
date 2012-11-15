@@ -1,8 +1,5 @@
 #pragma once
 
-namespace bsd
-{
-
    namespace sockets
    {
 
@@ -700,11 +697,6 @@ namespace bsd
       typedef ::comparable_eq_list < socket * > socket_list;
 
    } // namespace sockets
-
-
-
-
-} // namespace bsd
 
 
 

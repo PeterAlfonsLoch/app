@@ -1142,9 +1142,6 @@
     <ClInclude Include="ca2\ca2_main.h">
       <Filter>Header Files\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\ca2_net.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="ca2\ca2_process.h">
       <Filter>Header Files\ca2</Filter>
     </ClInclude>
@@ -3254,19 +3251,7 @@
     <ClInclude Include="sockets\bsd\timer\IEventOwner.h">
       <Filter>Header Files\sockets\bsd\timer</Filter>
     </ClInclude>
-    <ClInclude Include="sockets\bsd\http_file.h">
-      <Filter>Header Files\sockets\bsd</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\bsd\http_memory_file.h">
-      <Filter>Header Files\sockets\bsd</Filter>
-    </ClInclude>
     <ClInclude Include="sockets\bsd\sockets.h">
-      <Filter>Header Files\sockets\bsd</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\bsd\sockets_http_batch_file.h">
-      <Filter>Header Files\sockets\bsd</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\bsd\sockets_http_file.h">
       <Filter>Header Files\sockets\bsd</Filter>
     </ClInclude>
     <ClInclude Include="sockets\bsd\sockets_link_in_socket.h">
@@ -3284,23 +3269,20 @@
     <ClInclude Include="sockets\sockets_http_batch_file.h">
       <Filter>Header Files\sockets</Filter>
     </ClInclude>
-    <ClInclude Include="sockets\sockets_http_file.h">
-      <Filter>Header Files\sockets</Filter>
-    </ClInclude>
     <ClInclude Include="sockets\bsd\basic\address.h">
       <Filter>Header Files\sockets\bsd\basic</Filter>
     </ClInclude>
     <ClInclude Include="sockets\bsd\basic\net.h">
       <Filter>Header Files\sockets\bsd\basic</Filter>
     </ClInclude>
-    <ClInclude Include="sockets\sockets_stream_socket.h">
-      <Filter>Header Files\sockets</Filter>
-    </ClInclude>
     <ClInclude Include="sockets\sockets_application.h">
       <Filter>Header Files\sockets</Filter>
     </ClInclude>
     <ClInclude Include="sockets\bsd\sockets_application_interface.h">
       <Filter>Header Files\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sockets_http_file.h">
+      <Filter>Header Files\sockets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4237,9 +4219,6 @@
     <ClCompile Include="simpledb\simpledb_veiev_post.cpp">
       <Filter>Source Files\simpledb</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\socket_address.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="exception\exception_debug.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -5089,9 +5068,6 @@
     <ClCompile Include="ca2\ca2_log.cpp">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_net.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
     <ClCompile Include="ca2\ca2_process.cpp">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
@@ -5452,19 +5428,7 @@
     <ClCompile Include="sockets\bsd\timer\sockets_IEventOwner.cpp">
       <Filter>Source Files\sockets\bsd\timer</Filter>
     </ClCompile>
-    <ClCompile Include="sockets\bsd\http_file.cpp">
-      <Filter>Source Files\sockets\bsd</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\bsd\http_memory_file.cpp">
-      <Filter>Source Files\sockets\bsd</Filter>
-    </ClCompile>
     <ClCompile Include="sockets\bsd\sockets_application_interface.cpp">
-      <Filter>Source Files\sockets\bsd</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\bsd\sockets_http_batch_file.cpp">
-      <Filter>Source Files\sockets\bsd</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\bsd\sockets_http_file.cpp">
       <Filter>Source Files\sockets\bsd</Filter>
     </ClCompile>
     <ClCompile Include="sockets\bsd\sockets_include.cpp">
@@ -5506,7 +5470,22 @@
     <ClCompile Include="sockets\sockets_application.cpp">
       <Filter>Source Files\sockets</Filter>
     </ClCompile>
-    <ClCompile Include="sockets\sockets_stream_socket.cpp">
+    <ClCompile Include="sockets\bsd\basic\sockets_net.cpp">
+      <Filter>Source Files\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\bsd\basic\sockets_address.cpp">
+      <Filter>Source Files\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\http_file.cpp">
+      <Filter>Source Files\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\http_memory_file.cpp">
+      <Filter>Source Files\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_http_batch_file.cpp">
+      <Filter>Source Files\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\sockets_http_file.cpp">
       <Filter>Source Files\sockets</Filter>
     </ClCompile>
   </ItemGroup>

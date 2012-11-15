@@ -78,7 +78,7 @@ namespace ca4
 
 
          ::sockets::http_session * open(
-                     ::sockets::socket_handler & handler,
+                     ::sockets::socket_handler & handler, 
                      const char * pszHost,
                      const char * pszProtocol,
                      gen::property_set & set,

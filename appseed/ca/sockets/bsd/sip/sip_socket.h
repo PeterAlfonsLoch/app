@@ -1,11 +1,9 @@
 #pragma once
 
 
-namespace bsd
-{
-
 namespace sockets
 {
+
 
    class CLASS_DECL_ca sip_socket :
       public http_tunnel
@@ -32,9 +30,11 @@ namespace sockets
       sip_socket(socket_handler_base& );
       void invite(const char * pszAddress);
       void OnHeaderComplete();
+
+
    };
+
 
 } // namespace sockets
 
 
-} // namespace bsd

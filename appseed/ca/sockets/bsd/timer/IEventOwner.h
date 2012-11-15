@@ -30,11 +30,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
-namespace bsd
-{
-
 namespace sockets
 {
+
 
    /** Any class that wants to use timer events inherits this.
       \ingroup timer */
@@ -65,8 +63,8 @@ namespace sockets
       bool m_handler_invalid;
    };
 
+
 } // namespace sockets
 
 
 
-} // namespace bsd

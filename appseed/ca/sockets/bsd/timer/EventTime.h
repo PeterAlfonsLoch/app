@@ -29,11 +29,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #pragma once
 
-namespace bsd
-{
 
 namespace sockets
 {
+
 
    typedef int64_t mytime_t;
 
@@ -59,9 +58,11 @@ namespace sockets
       EventTime(const EventTime& ) {} // copy constructor
       EventTime& operator=(const EventTime& ) { return *this; } // assignment operator
       mytime_t m_time;
+
+
    };
+
 
 } // namespace sockets
 
 
-} // namespace bsd

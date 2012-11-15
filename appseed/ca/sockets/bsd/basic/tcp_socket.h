@@ -34,9 +34,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define TCP_OUTPUT_CAPACITY 1024000
 
 
-namespace bsd
-{
-
 
    namespace sockets
    {
@@ -301,8 +298,5 @@ namespace bsd
 
    } // namespace sockets
 
-
-
-} // namespace bsd
 
 

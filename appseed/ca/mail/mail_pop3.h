@@ -22,9 +22,9 @@ namespace mail
 
       virtual void set_list_size(int iSize);
 
-      //::bsd::sockets::socket_handler     m_handler;
+      ::sockets::socket_handler     m_handler;
       pop3_socket *                 m_psocket;
-      event                        m_evFinish;
+      event                         m_evFinish;
       bool                          m_bRun;
       bool                          m_bSynch;
 

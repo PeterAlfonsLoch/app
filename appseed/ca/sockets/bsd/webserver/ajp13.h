@@ -24,9 +24,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
-namespace bsd
+namespace sockets
 {
-namespace sockets {
 
 #define HTTP_REQUEST_ACCEPT       0xa001
 #define HTTP_REQUEST_ACCEPT_CHARSET    0xa002
@@ -85,6 +84,4 @@ namespace sockets {
 #define ATTR_STORED_METHOD 13
 
 } // namespace sockets
-
-} // namespace bsd
 

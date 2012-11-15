@@ -29,22 +29,37 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #pragma once
 
-namespace bsd
-{
 
 namespace sockets
 {
+
 
    class StdLog;
    class IEventOwner;
    class Event;
    class tcp_socket;
 
+
    /** socket_handler implementing the IEventHandler interface.
       \ingroup timer */
    class EventHandler : public socket_handler,public IEventHandler
    {
+   private:
+
+
+      ::collection::list<Event *>   m_events;
+      bool                          m_quit;
+      tcp_socket *                  m_socket;
+      port_t                        m_port;
+
+
+      EventHandler(::ca::application * papp, const EventHandler& ) : ca(papp), socket_handler(papp) {} // copy constructor
+      EventHandler& operator=(const EventHandler& ) { return *this; } // assignment operator
+
+
    public:
+
+
       EventHandler(::ca::application * papp, StdLog * = NULL);
       EventHandler(::ca::application * papp, mutex &,StdLog * = NULL);
       ~EventHandler();
@@ -62,17 +77,11 @@ namespace sockets
 
       void add(socket *);
 
-   private:
-      EventHandler(::ca::application * papp, const EventHandler& ) : ca(papp), socket_handler(papp) {} // copy constructor
-      EventHandler& operator=(const EventHandler& ) { return *this; } // assignment operator
-      ::collection::list<Event *> m_events;
-      bool m_quit;
-      tcp_socket *m_socket;
-      port_t m_port;
+
    };
+
 
 } // namespace sockets
 
 
 
-} // namespace bsd

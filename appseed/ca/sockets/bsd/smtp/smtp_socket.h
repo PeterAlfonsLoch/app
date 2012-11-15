@@ -41,8 +41,6 @@ public:
    void prepare_headers();
 };
 
-namespace bsd
-{
 
 
 namespace sockets
@@ -117,4 +115,3 @@ namespace sockets
 
 
 
-} // namespace bsd

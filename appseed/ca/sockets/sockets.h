@@ -1,6 +1,13 @@
 #pragma once
 
 
+typedef unsigned long ipaddr_t;
+typedef unsigned short port_t;
+#ifdef WINDOWS
+typedef int socklen_t;
+#endif
+
+
 #include "http_file.h"
 #include "http_memory_file.h"
 
@@ -18,7 +25,11 @@
 #include "sockets_http_batch_file.h"
 
 
-#include "sockets_stream_socket.h"
+
+
+#include "ca/mail/mail.h"
+
+
 
 
 #include "sockets_application.h"

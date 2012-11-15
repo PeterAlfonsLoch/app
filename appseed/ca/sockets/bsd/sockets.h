@@ -31,7 +31,7 @@
 
 
 /* Define NO_GETADDRINFO if your operating system does not support
-   the "getaddrinfo" and "getnameinfo" function calls. */
+the "getaddrinfo" and "getnameinfo" function calls. */
 //#define NO_GETADDRINFO
 
 
@@ -48,8 +48,8 @@
 
 
 /* Enable TCP reconnect on lost connection.
-   socket::OnReconnect
-   socket::OnDisconnect
+socket::OnReconnect
+socket::OnDisconnect
 */
 #define ENABLE_RECONNECT
 
@@ -78,7 +78,7 @@
 // common defines affecting library and applications using library
 
 /* Define SOCKETS_DYNAMIC_TEMP to use dynamically allocated buffers
-   in read operations - helps on ECOS */
+in read operations - helps on ECOS */
 #define SOCKETS_DYNAMIC_TEMP
 
 //#include <openssl/ssl.h>
@@ -125,7 +125,7 @@ namespace sockets {
 #endif
 
 
-// WIN32 adapt
+   // WIN32 adapt
 #define closesocket close
 #define INVALID_SOCKET -1
 #define SOCKET_ERROR -1
@@ -158,7 +158,7 @@ typedef unsigned short port_t;
 #ifdef sockets
 namespace sockets {
 #endif
-// no defs
+   // no defs
 
 #ifdef sockets
 }
@@ -181,7 +181,7 @@ typedef   in_port_t port_t;
 #ifdef sockets
 namespace sockets {
 #endif
-// no defs
+   // no defs
 
 #ifdef sockets
 }
@@ -206,7 +206,7 @@ typedef unsigned long ipaddr_t;
 #ifdef sockets
 namespace sockets {
 #endif
-// no defs
+   // no defs
 
 #ifdef sockets
 }
@@ -240,53 +240,47 @@ CLASS_DECL_ca const char *StrError(int x);
 #define Errno WSAGetLastError()
 CLASS_DECL_ca const char *StrError(int x);
 
-namespace bsd
+namespace sockets 
 {
 
-namespace sockets {
-
-
-// class WSAInitializer is a part of the socket class (on win32)
-// as a static instance - so whenever an application uses a socket,
-// winsock is initialized
-class WSAInitializer // Winsock Initializer
-{
-public:
-   WSAInitializer() {
-      if (WSAStartup(0x101,&m_wsadata))
-      {
-         exit(-1);
+   // class WSAInitializer is a part of the socket class (on win32)
+   // as a static instance - so whenever an application uses a socket,
+   // winsock is initialized
+   class WSAInitializer // Winsock Initializer
+   {
+   public:
+      WSAInitializer() {
+         if (WSAStartup(0x101,&m_wsadata))
+         {
+            exit(-1);
+         }
       }
-   }
-   ~WSAInitializer() {
-      WSACleanup();
-   }
-private:
-   WSADATA m_wsadata;
-};
+      ~WSAInitializer() {
+         WSACleanup();
+      }
+   private:
+      WSADATA m_wsadata;
+   };
 
 } // namespace sockets
 
-} // namespace bsd
 
 #else
+
+
 // ----------------------------------------
 // LINUX
 typedef unsigned long ipaddr_t;
 typedef unsigned short port_t;
 
-namespace bsd
+namespace sockets
 {
-namespace sockets {
-// no defs
+   // no defs
 
 } // namespace sockets
-} // namespace bsd
 
 #endif
 
-namespace bsd
-{
 
 namespace sockets
 {
@@ -298,7 +292,7 @@ namespace sockets
 
 } // namespace sockets
 
-} // namespace bsd
+
 // getaddrinfo / getnameinfo replacements
 #ifdef NO_GETADDRINFO
 #ifndef AI_NUMERICHOST
@@ -393,13 +387,10 @@ namespace sockets
 #include "basic/sync_socket_handler.h"
 
 
-#include "ca/mail/mail.h"
-
-
 #include "sockets_link_out_socket.h"
 #include "sockets_link_in_socket.h"
 
-
+#include "basic/net.h"
 
 #include "sockets_application_interface.h"
 

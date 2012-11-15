@@ -59,7 +59,6 @@ namespace ca2
 
 
 #include "ca2_datetime.h"
-#include "ca2_net.h"
 
 
 

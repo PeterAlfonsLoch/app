@@ -4,7 +4,7 @@ namespace mail
 {
 
    class CLASS_DECL_ca pop3_socket : 
-      public ::sockets::stream_socket
+      public ::sockets::tcp_socket
    {
    public:
    
@@ -39,7 +39,7 @@ namespace mail
 
       void InitSSLClient();
 
-      pop3_socket(::ca::application * papp);
+      pop3_socket(::sockets::socket_handler & handler);
       ~pop3_socket();
 
       void OnLine(const string & );

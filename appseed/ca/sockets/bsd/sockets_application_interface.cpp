@@ -10,7 +10,7 @@ namespace sockets
       m_mutexResolvCache(get_app())
    {
 
-      m_pajpbasesocketinit = NULL;
+      m_pajpbasesocketinit    = NULL;
 
    }
 
@@ -20,7 +20,6 @@ namespace sockets
       if(papplicationsignal->m_esignal == ::ca::application_signal_initialize1)
       {
 
-         
          if(App(dynamic_cast < ::ca::application * >(this)).is_system())
          {
 

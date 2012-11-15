@@ -1,10 +1,9 @@
 #pragma once
 
-namespace bsd
-{
 
 namespace sockets
 {
+
 
    class CLASS_DECL_ca sip_client :
       virtual public ::radix::object
@@ -17,6 +16,8 @@ namespace sockets
 
    };
 
+
 } // namespace sockets
 
-} // namespace bsd
+
+
