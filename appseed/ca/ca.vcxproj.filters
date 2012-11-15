@@ -363,6 +363,12 @@
     <Filter Include="Header Files\crypto">
       <UniqueIdentifier>{8ce024ba-d9e5-4670-83a3-b6b44d1a2222}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\sockets\bsd">
+      <UniqueIdentifier>{449e7b52-2923-4e17-b472-00438b93a7e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\bsd\basic">
+      <UniqueIdentifier>{854c4b0d-3c03-448b-a206-653a9b22e223}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libcharguess\big5Prober.h">
